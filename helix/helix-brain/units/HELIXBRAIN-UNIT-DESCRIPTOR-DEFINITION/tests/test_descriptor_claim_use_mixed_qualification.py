@@ -52,13 +52,16 @@ class TestDescriptorClaimUseMixedQualification(unittest.TestCase):
         validated = validate_supply_input(raw)
         self.assertIsInstance(validated["input"], dict)
         self.assertEqual(validated["input"], raw_before)
-        self.assertEqual(validated["input_issues"], [
-            {
-                "locator": f"/sources/{unusable_source_index}",
-                "reason": "source bytes/body/digest or independent qualification is unresolved.",
-                "source_ref": copy.deepcopy(unusable_source["ref"]),
-            },
-        ])
+        self.assertEqual(
+            validated["input_issues"],
+            [
+                {
+                    "locator": f"/sources/{unusable_source_index}",
+                    "reason": "source bytes/body/digest or independent qualification is unresolved.",
+                    "source_ref": copy.deepcopy(unusable_source["ref"]),
+                },
+            ],
+        )
         self.assertNotIn(usable_source["ref"], validated["unusable_source_refs"])
         self.assertIn(unusable_source["ref"], validated["unusable_source_refs"])
         self.assertNotIn(raw["sources"][0]["ref"], validated["unusable_source_refs"])
@@ -79,7 +82,9 @@ class TestDescriptorClaimUseMixedQualification(unittest.TestCase):
         self.assertEqual(len(uses), 1)
         use = uses[0]
         self.assertEqual(use["target_read"]["state"], "resolved")
-        self.assertEqual(use["basis_source_indices"], [usable_source_index, unusable_source_index])
+        self.assertEqual(
+            use["basis_source_indices"], [usable_source_index, unusable_source_index]
+        )
         self.assertEqual(use["unresolved_basis_ref_indices"], [0])
         self.assertEqual(use["basis_class"], "unresolved")
 

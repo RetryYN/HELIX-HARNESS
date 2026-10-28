@@ -7,6 +7,7 @@ definition_meaning_core/basic_reader_bindings/meaning/body/algorithm leaves
 those supplied carriers on the existing unclosed reader path. Each case uses
 FN0-qualified source bytes, qualification, provenance, and fact refs.
 """
+
 from __future__ import annotations
 
 import copy
@@ -46,8 +47,13 @@ class TestDescriptorMeaningCarrierWrongShapes(unittest.TestCase):
                     candidate = [_typed_nonempty_operation(seed)]
                 raw = _trace_raw_with_carrier(candidate, supplied=True)
                 raw_before = copy.deepcopy(raw)
-                self.assertIn("definition_meaning_operations", raw["sources"][0]["content"])
-                self.assertEqual(raw["sources"][0]["content"]["definition_meaning_operations"], candidate)
+                self.assertIn(
+                    "definition_meaning_operations", raw["sources"][0]["content"]
+                )
+                self.assertEqual(
+                    raw["sources"][0]["content"]["definition_meaning_operations"],
+                    candidate,
+                )
                 validated = _validate(raw)
                 validated_before = copy.deepcopy(validated)
 

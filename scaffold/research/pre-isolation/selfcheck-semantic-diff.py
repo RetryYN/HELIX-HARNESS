@@ -15,14 +15,18 @@ from pathlib import Path
 
 
 ROOT = Path(__file__).resolve().parents[3]
-INVENTORY = ROOT / "scaffold/research/pre-isolation/rdp001-6path-semantic-diff-inventory.json"
+INVENTORY = (
+    ROOT / "scaffold/research/pre-isolation/rdp001-6path-semantic-diff-inventory.json"
+)
 VALIDATOR = ROOT / "scaffold/research/pre-isolation/validate-semantic-diff.py"
 
 
 def run_case(name: str, mutate, expected_text: str) -> None:
     document = json.loads(INVENTORY.read_text(encoding="utf-8"))
     mutate(document)
-    with tempfile.TemporaryDirectory(prefix="rdp001-semantic-diff-selfcheck-") as temporary:
+    with tempfile.TemporaryDirectory(
+        prefix="rdp001-semantic-diff-selfcheck-"
+    ) as temporary:
         candidate = Path(temporary) / "inventory.json"
         candidate.write_text(json.dumps(document, ensure_ascii=False), encoding="utf-8")
         result = subprocess.run(
@@ -70,17 +74,23 @@ def main() -> int:
     )
     run_case(
         "owner candidate drift",
-        lambda document: document["fragments"][0].update({"product_owner_candidate": "HELIX-OS"}),
+        lambda document: document["fragments"][0].update(
+            {"product_owner_candidate": "HELIX-OS"}
+        ),
         "RDP001-DIFF-001 product_owner_candidateが固定候補と不一致",
     )
     run_case(
         "phase status drift",
-        lambda document: document["source_items"][0].update({"phase_authority_status": "candidate_unchanged"}),
+        lambda document: document["source_items"][0].update(
+            {"phase_authority_status": "candidate_unchanged"}
+        ),
         "PREISO-REV-000001 phase_authority_statusが未確認状態と不一致",
     )
     run_case(
         "negative ID drift",
-        lambda document: document["retained_negatives"][0].update({"negative_id": "NEG-FAKE"}),
+        lambda document: document["retained_negatives"][0].update(
+            {"negative_id": "NEG-FAKE"}
+        ),
         "retained negative ID集合が固定8件と不一致",
     )
     return 0

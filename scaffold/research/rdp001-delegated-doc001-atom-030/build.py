@@ -23,7 +23,11 @@ def sha(data: bytes) -> str:
 
 
 def read_jsonl(path: Path) -> list[dict]:
-    return [json.loads(line) for line in path.read_text(encoding="utf-8").splitlines() if line.strip()]
+    return [
+        json.loads(line)
+        for line in path.read_text(encoding="utf-8").splitlines()
+        if line.strip()
+    ]
 
 
 def source_span(lines: list[str], start: int, end: int) -> dict:
@@ -77,7 +81,10 @@ def build_atom(
         "reference_edge_ids": ["DELEGATED-REF-0303"] if kind == "metadata" else [],
         "legacy_status_ref": "DELEGATED-DOC-001",
         "legacy_status_unconfirmed": True,
-        "existing_identity_relations": ["source_holding:file_blob", "preserved_pending_atomization"],
+        "existing_identity_relations": [
+            "source_holding:file_blob",
+            "preserved_pending_atomization",
+        ],
         "retained_meaning": [
             "原文の肯定・否定・停止・証拠・数量・actor・authority条件をsource spanのまま保持する",
             "candidate targetは責務境界からの仮説であり、successor・採否・current authorityを生成しない",
@@ -124,109 +131,297 @@ def build_atom(
 
 
 def parse_pipe_row(lines: list[str], line_no: int) -> tuple[str, str]:
-    fields = [field.strip() for field in lines[line_no - 1].strip().strip("|").split("|")]
+    fields = [
+        field.strip() for field in lines[line_no - 1].strip().strip("|").split("|")
+    ]
     return fields[0], " | ".join(fields[1:])
 
 
 def main() -> None:
     archive_path = ROOT / ARCHIVE_REL
     lines = archive_path.read_text(encoding="utf-8").splitlines(keepends=True)
-    asset_rows = {row["source_path"]: row for row in read_jsonl(ROOT / "docs/governance/legacy-asset-disposition.jsonl")}
-    phase_rows = {row["source_path"]: row for row in read_jsonl(ROOT / "docs/governance/legacy-asset-phase-product-classification-bootstrap.jsonl")}
+    asset_rows = {
+        row["source_path"]: row
+        for row in read_jsonl(ROOT / "docs/governance/legacy-asset-disposition.jsonl")
+    }
+    phase_rows = {
+        row["source_path"]: row
+        for row in read_jsonl(
+            ROOT
+            / "docs/governance/legacy-asset-phase-product-classification-bootstrap.jsonl"
+        )
+    }
     asset = asset_rows[SOURCE_REL]
     phase = phase_rows[SOURCE_REL]
 
     atoms: list[dict] = []
     meta = [
-        ("DD001-SEM-DOC-001-METADATA", 1, 12, "metadata", "unresolved", "L3", "旧文書frontmatter、authority、pair、confirmed statusを保持する"),
-        ("DD001-SEM-DOC-001-INTRO", 13, 16, "metadata", "unresolved", "L3", "文書identityとL3要件文書であることを保持する"),
-        ("DD001-SEM-DOC-001-INPUT", 17, 23, "premise", "unresolved", "PHCAP-01/L3", "source family receipt、digest、inventory、差異、裁定履歴を入力証拠として保持する"),
-        ("DD001-SEM-DOC-001-DISPOSITION", 24, 34, "constraint", "unresolved", "L3", "三契約、semantic ID、gate、lifecycle、Python/Node境界、旧入力の裁定を分離して保持する"),
-        ("DD001-SEM-DOC-001-FR-HEADER", 35, 38, "metadata", "unresolved", "L3", "機能要求と受入IDの表構造を保持する"),
-        ("DD001-SEM-DOC-001-MAP-HEADER", 58, 62, "metadata", "unresolved", "L3", "旧HBR-DHからVDH-FRへの対応表の見出しを保持する"),
-        ("DD001-SEM-DOC-001-LAYER-HEADER", 92, 96, "metadata", "unresolved", "L1-L12", "Vision Design義務とV字証拠の層別表を保持する"),
-        ("DD001-SEM-DOC-001-HYBRID-HEADER", 109, 111, "metadata", "unresolved", "L3", "ハイブリッド経路の見出しを保持する"),
-        ("DD001-SEM-DOC-001-COMPLETE-HEADER", 119, 121, "metadata", "unresolved", "L11/L12", "完了式の見出しと式の境界を保持する"),
+        (
+            "DD001-SEM-DOC-001-METADATA",
+            1,
+            12,
+            "metadata",
+            "unresolved",
+            "L3",
+            "旧文書frontmatter、authority、pair、confirmed statusを保持する",
+        ),
+        (
+            "DD001-SEM-DOC-001-INTRO",
+            13,
+            16,
+            "metadata",
+            "unresolved",
+            "L3",
+            "文書identityとL3要件文書であることを保持する",
+        ),
+        (
+            "DD001-SEM-DOC-001-INPUT",
+            17,
+            23,
+            "premise",
+            "unresolved",
+            "PHCAP-01/L3",
+            "source family receipt、digest、inventory、差異、裁定履歴を入力証拠として保持する",
+        ),
+        (
+            "DD001-SEM-DOC-001-DISPOSITION",
+            24,
+            34,
+            "constraint",
+            "unresolved",
+            "L3",
+            "三契約、semantic ID、gate、lifecycle、Python/Node境界、旧入力の裁定を分離して保持する",
+        ),
+        (
+            "DD001-SEM-DOC-001-FR-HEADER",
+            35,
+            38,
+            "metadata",
+            "unresolved",
+            "L3",
+            "機能要求と受入IDの表構造を保持する",
+        ),
+        (
+            "DD001-SEM-DOC-001-MAP-HEADER",
+            58,
+            62,
+            "metadata",
+            "unresolved",
+            "L3",
+            "旧HBR-DHからVDH-FRへの対応表の見出しを保持する",
+        ),
+        (
+            "DD001-SEM-DOC-001-LAYER-HEADER",
+            92,
+            96,
+            "metadata",
+            "unresolved",
+            "L1-L12",
+            "Vision Design義務とV字証拠の層別表を保持する",
+        ),
+        (
+            "DD001-SEM-DOC-001-HYBRID-HEADER",
+            109,
+            111,
+            "metadata",
+            "unresolved",
+            "L3",
+            "ハイブリッド経路の見出しを保持する",
+        ),
+        (
+            "DD001-SEM-DOC-001-COMPLETE-HEADER",
+            119,
+            121,
+            "metadata",
+            "unresolved",
+            "L11/L12",
+            "完了式の見出しと式の境界を保持する",
+        ),
     ]
     for atom_id, start, end, kind, target, hint, normalized in meta:
-        atoms.append(build_atom(lines, atom_id, start, end, kind, target, hint, normalized))
+        atoms.append(
+            build_atom(lines, atom_id, start, end, kind, target, hint, normalized)
+        )
 
     fr_targets = {
-        1: "HELIX-HARNESS", 2: "HELIX-HARNESS", 3: "HELIX-HARNESS", 4: "HELIX-HARNESS",
-        5: "HELIX-HARNESS", 6: "HELIX-HARNESS", 7: "HELIX-HARNESS", 8: "unresolved",
-        9: "HELIX-HARNESS", 10: "unresolved", 11: "HELIX-HARNESS", 12: "HELIX-HARNESS",
-        13: "unresolved", 14: "HELIX-HARNESS", 15: "HELIX-HARNESS", 16: "unresolved",
-        17: "unresolved", 18: "unresolved", 19: "HELIX-HARNESS",
+        1: "HELIX-HARNESS",
+        2: "HELIX-HARNESS",
+        3: "HELIX-HARNESS",
+        4: "HELIX-HARNESS",
+        5: "HELIX-HARNESS",
+        6: "HELIX-HARNESS",
+        7: "HELIX-HARNESS",
+        8: "unresolved",
+        9: "HELIX-HARNESS",
+        10: "unresolved",
+        11: "HELIX-HARNESS",
+        12: "HELIX-HARNESS",
+        13: "unresolved",
+        14: "HELIX-HARNESS",
+        15: "HELIX-HARNESS",
+        16: "unresolved",
+        17: "unresolved",
+        18: "unresolved",
+        19: "HELIX-HARNESS",
     }
     for number in range(1, 20):
         line_no = 38 + number
         original, body = parse_pipe_row(lines, line_no)
-        atoms.append(build_atom(
-            lines,
-            f"DD001-SEM-{original}",
-            line_no,
-            line_no,
-            "requirement",
-            fr_targets[number],
-            "L3→L5/L6-L7/L10-L12",
-            body,
-            original,
-        ))
+        atoms.append(
+            build_atom(
+                lines,
+                f"DD001-SEM-{original}",
+                line_no,
+                line_no,
+                "requirement",
+                fr_targets[number],
+                "L3→L5/L6-L7/L10-L12",
+                body,
+                original,
+            )
+        )
 
     mapping_targets = {
-        1: "unresolved", 2: "HELIX-HARNESS", 3: "HELIX-HARNESS", 4: "HELIX-HARNESS", 5: "HELIX-HARNESS",
-        6: "unresolved", 7: "unresolved", 8: "HELIX-HARNESS", 9: "HELIX-HARNESS", 10: "HELIX-HARNESS",
-        11: "HELIX-HARNESS", 12: "HELIX-HARNESS", 13: "HELIX-HARNESS", 14: "HELIX-HARNESS", 15: "HELIX-HARNESS",
-        16: "HELIX-HARNESS", 17: "HELIX-HARNESS", 18: "HELIX-HARNESS", 19: "HELIX-HARNESS", 20: "HELIX-HARNESS",
-        21: "unresolved", 22: "unresolved", 23: "unresolved", 24: "unresolved", 25: "HELIX-HARNESS",
-        26: "unresolved", 27: "unresolved", 28: "unresolved", 29: "unresolved",
+        1: "unresolved",
+        2: "HELIX-HARNESS",
+        3: "HELIX-HARNESS",
+        4: "HELIX-HARNESS",
+        5: "HELIX-HARNESS",
+        6: "unresolved",
+        7: "unresolved",
+        8: "HELIX-HARNESS",
+        9: "HELIX-HARNESS",
+        10: "HELIX-HARNESS",
+        11: "HELIX-HARNESS",
+        12: "HELIX-HARNESS",
+        13: "HELIX-HARNESS",
+        14: "HELIX-HARNESS",
+        15: "HELIX-HARNESS",
+        16: "HELIX-HARNESS",
+        17: "HELIX-HARNESS",
+        18: "HELIX-HARNESS",
+        19: "HELIX-HARNESS",
+        20: "HELIX-HARNESS",
+        21: "unresolved",
+        22: "unresolved",
+        23: "unresolved",
+        24: "unresolved",
+        25: "HELIX-HARNESS",
+        26: "unresolved",
+        27: "unresolved",
+        28: "unresolved",
+        29: "unresolved",
     }
     for number in range(1, 30):
         line_no = 62 + number
         original, body = parse_pipe_row(lines, line_no)
-        atoms.append(build_atom(
-            lines,
-            f"DD001-SEM-MAP-{number:03d}",
-            line_no,
-            line_no,
-            "relation",
-            mapping_targets[number],
-            "L3",
-            f"{original} → {body}",
-            original,
-        ))
+        atoms.append(
+            build_atom(
+                lines,
+                f"DD001-SEM-MAP-{number:03d}",
+                line_no,
+                line_no,
+                "relation",
+                mapping_targets[number],
+                "L3",
+                f"{original} → {body}",
+                original,
+            )
+        )
 
     for layer in range(1, 13):
         line_no = 96 + layer
-        fields = [field.strip() for field in lines[line_no - 1].strip().strip("|").split("|")]
-        atoms.append(build_atom(
-            lines,
-            f"DD001-SEM-LAYER-{layer:02d}",
-            line_no,
-            line_no,
-            "layout",
-            "HELIX-HARNESS",
-            "L1-L12",
-            f"{fields[0]}: {fields[1]} ↔ {fields[2]}",
-            f"L{layer}",
-        ))
+        fields = [
+            field.strip() for field in lines[line_no - 1].strip().strip("|").split("|")
+        ]
+        atoms.append(
+            build_atom(
+                lines,
+                f"DD001-SEM-LAYER-{layer:02d}",
+                line_no,
+                line_no,
+                "layout",
+                "HELIX-HARNESS",
+                "L1-L12",
+                f"{fields[0]}: {fields[1]} ↔ {fields[2]}",
+                f"L{layer}",
+            )
+        )
 
     hybrid = [
-        ("DD001-SEM-HYBRID-001", 112, 113, "constraint", "HELIX-HARNESS", "development styleを3種からexactly one選択し、各styleのV-pairを保持する"),
-        ("DD001-SEM-HYBRID-002", 114, 114, "constraint", "HELIX-HARNESS", "Discovery／PoCをstyleへ混入せずcase-driven modelとして扱う"),
-        ("DD001-SEM-HYBRID-003", 115, 116, "constraint", "HELIX-HARNESS", "Design HARNESSを独立layerやstyleではなく対象へ適用するspecialist capabilityとする"),
-        ("DD001-SEM-HYBRID-004", 117, 118, "constraint", "unresolved", "旧style名はmigration inputだけに保持しcurrent output・decision・evidenceへ出力しない"),
+        (
+            "DD001-SEM-HYBRID-001",
+            112,
+            113,
+            "constraint",
+            "HELIX-HARNESS",
+            "development styleを3種からexactly one選択し、各styleのV-pairを保持する",
+        ),
+        (
+            "DD001-SEM-HYBRID-002",
+            114,
+            114,
+            "constraint",
+            "HELIX-HARNESS",
+            "Discovery／PoCをstyleへ混入せずcase-driven modelとして扱う",
+        ),
+        (
+            "DD001-SEM-HYBRID-003",
+            115,
+            116,
+            "constraint",
+            "HELIX-HARNESS",
+            "Design HARNESSを独立layerやstyleではなく対象へ適用するspecialist capabilityとする",
+        ),
+        (
+            "DD001-SEM-HYBRID-004",
+            117,
+            118,
+            "constraint",
+            "unresolved",
+            "旧style名はmigration inputだけに保持しcurrent output・decision・evidenceへ出力しない",
+        ),
     ]
     for atom_id, start, end, kind, target, normalized in hybrid:
-        atoms.append(build_atom(lines, atom_id, start, end, kind, target, "L3/L6-L12", normalized))
+        atoms.append(
+            build_atom(
+                lines, atom_id, start, end, kind, target, "L3/L6-L12", normalized
+            )
+        )
 
     completion = [
-        ("DD001-SEM-COMPLETE-001", 122, 123, "acceptance", "unresolved", "L11/L12", "vision_design_completeの三契約、trace、V-pair、実装receipt、UX evidence、人間authority閉包"),
-        ("DD001-SEM-COMPLETE-002", 124, 125, "acceptance", "unresolved", "L11/L12", "scrum_ui_slice_readyのdelta、SR0..SR4、vision backfill、prototype/profile/binding evidence閉包"),
-        ("DD001-SEM-COMPLETE-003", 126, 126, "acceptance", "unresolved", "L3/L10", "HBR-DH-001..029のmapping、unmapped、理由付きrejectの全数閉包"),
+        (
+            "DD001-SEM-COMPLETE-001",
+            122,
+            123,
+            "acceptance",
+            "unresolved",
+            "L11/L12",
+            "vision_design_completeの三契約、trace、V-pair、実装receipt、UX evidence、人間authority閉包",
+        ),
+        (
+            "DD001-SEM-COMPLETE-002",
+            124,
+            125,
+            "acceptance",
+            "unresolved",
+            "L11/L12",
+            "scrum_ui_slice_readyのdelta、SR0..SR4、vision backfill、prototype/profile/binding evidence閉包",
+        ),
+        (
+            "DD001-SEM-COMPLETE-003",
+            126,
+            126,
+            "acceptance",
+            "unresolved",
+            "L3/L10",
+            "HBR-DH-001..029のmapping、unmapped、理由付きrejectの全数閉包",
+        ),
     ]
     for atom_id, start, end, kind, target, hint, normalized in completion:
-        atoms.append(build_atom(lines, atom_id, start, end, kind, target, hint, normalized))
+        atoms.append(
+            build_atom(lines, atom_id, start, end, kind, target, hint, normalized)
+        )
 
     current_authority_paths = [
         "docs/concept/product-boundary.md",
@@ -237,7 +432,9 @@ def main() -> None:
         "docs/helix-web-os/L1-planning/system-intent.md",
         "docs/governance/decisions/concept-v4.1-and-four-l1-approval-2026-09-17.md",
     ]
-    report_path = ROOT / "scaffold/research/rdp001-delegated-doc003-unprocessed8/report.json"
+    report_path = (
+        ROOT / "scaffold/research/rdp001-delegated-doc003-unprocessed8/report.json"
+    )
     report = json.loads(report_path.read_text(encoding="utf-8"))
     output = {
         "schema": "helix-scaffold-delegated-doc-semantic-atom-candidate.v1",
@@ -270,11 +467,23 @@ def main() -> None:
         },
         "ledger_provenance": {
             "source_holding_path": "docs/governance/delegated-requirement-document-source-holding.jsonl",
-            "source_holding_sha256": sha((ROOT / "docs/governance/delegated-requirement-document-source-holding.jsonl").read_bytes()),
+            "source_holding_sha256": sha(
+                (
+                    ROOT
+                    / "docs/governance/delegated-requirement-document-source-holding.jsonl"
+                ).read_bytes()
+            ),
             "source_registration": "MPR-SH-DELEGATED-DOC-003",
             "source_record_count": 114,
-            "asset_ledger_sha256": sha((ROOT / "docs/governance/legacy-asset-disposition.jsonl").read_bytes()),
-            "phase_ledger_sha256": sha((ROOT / "docs/governance/legacy-asset-phase-product-classification-bootstrap.jsonl").read_bytes()),
+            "asset_ledger_sha256": sha(
+                (ROOT / "docs/governance/legacy-asset-disposition.jsonl").read_bytes()
+            ),
+            "phase_ledger_sha256": sha(
+                (
+                    ROOT
+                    / "docs/governance/legacy-asset-phase-product-classification-bootstrap.jsonl"
+                ).read_bytes()
+            ),
             "selected_report_path": "scaffold/rdp001-delegated-doc003-unprocessed8/report.json",
             "selected_report_sha256": sha(report_path.read_bytes()),
         },
@@ -329,20 +538,38 @@ def main() -> None:
             "current_authority_claim": False,
         },
         "current_authority_evidence": [
-            {"path": path, "sha256": sha((ROOT / path).read_bytes())} for path in current_authority_paths
+            {"path": path, "sha256": sha((ROOT / path).read_bytes())}
+            for path in current_authority_paths
         ],
         "atomization": {
             "atom_count": len(atoms),
-            "requirement_atom_count": sum(atom["candidate_kind"] == "requirement" for atom in atoms),
-            "relation_atom_count": sum(atom["candidate_kind"] == "relation" for atom in atoms),
+            "requirement_atom_count": sum(
+                atom["candidate_kind"] == "requirement" for atom in atoms
+            ),
+            "relation_atom_count": sum(
+                atom["candidate_kind"] == "relation" for atom in atoms
+            ),
             "coverage_status": "complete_source_lines_1_126",
-            "coverage_spans": [[1, 12], [13, 16], [17, 23], [24, 34], [35, 38], [39, 57], [58, 91], [92, 108], [109, 118], [119, 126]],
+            "coverage_spans": [
+                [1, 12],
+                [13, 16],
+                [17, 23],
+                [24, 34],
+                [35, 38],
+                [39, 57],
+                [58, 91],
+                [92, 108],
+                [109, 118],
+                [119, 126],
+            ],
             "unresolved_source_lines": [],
             "file_blob_is_not_single_requirement_atom": True,
         },
         "atoms": atoms,
         "degraded_and_implementation_boundary": {
-            "document_lexical_counts_from_pr1964_report": report["documents"][0]["legacy"],
+            "document_lexical_counts_from_pr1964_report": report["documents"][0][
+                "legacy"
+            ],
             "structured_implementation_status": "unknown",
             "structured_degraded_status": "unknown_not_recorded",
             "structured_failure_status": "unknown_not_recorded",
@@ -358,7 +585,9 @@ def main() -> None:
         ],
     }
     out = ROOT / "scaffold/research/rdp001-delegated-doc001-atom-030/inventory.json"
-    out.write_text(json.dumps(output, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    out.write_text(
+        json.dumps(output, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
+    )
     print(f"wrote {out} atoms={len(atoms)} lines={len(lines)}")
 
 

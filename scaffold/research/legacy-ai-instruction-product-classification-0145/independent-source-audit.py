@@ -5,6 +5,7 @@ This intentionally does not import generate.py or validate.py. It reads Git obje
 the fixed legacy disposition, the hand-authored span profile and the rendered ledger.
 It verifies byte/path/span claims; it does not certify the semantic interpretation.
 """
+
 from __future__ import annotations
 
 import argparse
@@ -26,7 +27,9 @@ SCF_0144_BASE = "7afee33ae892fe1a3cf1085fac4e02d923ece01d"
 ARCHIVE = "archive/legacy-generation-2026-09-14/root/"
 MANIFEST = "archive/legacy-generation-2026-09-14/MANIFEST.sha256"
 DISPOSITION = "docs/governance/legacy-asset-disposition.jsonl"
-CONSUMER_INVENTORY = "docs/governance/audits/source-rebaseline/legacy-ai-consumer-relation-inventory.md"
+CONSUMER_INVENTORY = (
+    "docs/governance/audits/source-rebaseline/legacy-ai-consumer-relation-inventory.md"
+)
 MAIN_LEDGER_PATHS = [
     "scaffold/legacy-asset-product-classification-0107/classification-research.jsonl",
     "scaffold/legacy-lint-product-classification-0108/classification-research.jsonl",
@@ -44,15 +47,26 @@ PINNED_SNAPSHOTS = {
     "pr-2090-inventory.json": "sha256:f4b5fd82731660bf9bb8885ff4b4451b32cf08319aa0f91b09b5e3970cbf268d",
 }
 MAIN_0144_INVENTORY = "scaffold/legacy-overlap-reconciliation-0144/inventory.json"
-MAIN_0144_LEDGER = "scaffold/legacy-overlap-reconciliation-0144/classification-reconciliation.jsonl"
+MAIN_0144_LEDGER = (
+    "scaffold/legacy-overlap-reconciliation-0144/classification-reconciliation.jsonl"
+)
 PINNED_SNAPSHOT_SOURCE_PATHS = {
     "pr-2090-classification-research.jsonl": "scaffold/legacy-config-product-classification-0141/classification-research.jsonl",
     "pr-2090-inventory.json": "scaffold/legacy-config-product-classification-0141/inventory.json",
 }
 EXCLUSIONS = {
-    "LEGACY-ASSET-3AC78FD8A01E0F9811C5": (".claude/hooks/git-command-guard.ts", "94519967c5565bd024b3da03384f7a12d9622c16af0b0836e534d4ff0434853d"),
-    "LEGACY-ASSET-A8DD18BCB237675730CD": (".claude/hooks/session-log.ts", "42434283c9fcb273d9064aea08eb35b56bb0f18ee2d89ce75c85005143e3bc8f"),
-    "LEGACY-ASSET-DB4925588127A51391D7": (".claude/hooks/work-guard.ts", "c9aa80b399925bb258de728314dc43f531e0f219c771585d9f661cd0772a7009"),
+    "LEGACY-ASSET-3AC78FD8A01E0F9811C5": (
+        ".claude/hooks/git-command-guard.ts",
+        "94519967c5565bd024b3da03384f7a12d9622c16af0b0836e534d4ff0434853d",
+    ),
+    "LEGACY-ASSET-A8DD18BCB237675730CD": (
+        ".claude/hooks/session-log.ts",
+        "42434283c9fcb273d9064aea08eb35b56bb0f18ee2d89ce75c85005143e3bc8f",
+    ),
+    "LEGACY-ASSET-DB4925588127A51391D7": (
+        ".claude/hooks/work-guard.ts",
+        "c9aa80b399925bb258de728314dc43f531e0f219c771585d9f661cd0772a7009",
+    ),
 }
 
 
@@ -89,7 +103,9 @@ def git(rev: str, path: str) -> bytes:
 
 
 def tree(rev: str, path: str) -> tuple[str, str, str]:
-    lines = subprocess.check_output(["git", "ls-tree", rev, "--", path], text=True, cwd=ROOT).splitlines()
+    lines = subprocess.check_output(
+        ["git", "ls-tree", rev, "--", path], text=True, cwd=ROOT
+    ).splitlines()
     if len(lines) != 1:
         raise ValueError(f"archive path missing or ambiguous: {rev}:{path}")
     meta, actual = lines[0].split("\t", 1)
@@ -111,7 +127,11 @@ def identity(row: dict) -> tuple[str, str, str]:
 def manifest_digest(path: str) -> str:
     inner = path.removeprefix(ARCHIVE)
     lines = git(BASE, MANIFEST).decode("utf-8").splitlines()
-    found = [line.split()[0] for line in lines if line.endswith("  " + inner) or line.endswith(" " + inner)]
+    found = [
+        line.split()[0]
+        for line in lines
+        if line.endswith("  " + inner) or line.endswith(" " + inner)
+    ]
     if len(found) != 1:
         raise ValueError(f"MANIFEST entry count for {inner}: {len(found)}")
     return "sha256:" + found[0]
@@ -126,22 +146,38 @@ def run_audit(bundle: Path) -> dict:
     disposition = parse_jsonl(git(BASE, DISPOSITION), DISPOSITION)
     prefixes = tuple(target_scope["included_unresolved_prefixes"])
     roots = set(target_scope["included_unresolved_root_paths"])
-    candidates = [row for row in disposition if row.get("disposition") == "unresolved" and
-                  (row.get("source_path", "").startswith(prefixes) or row.get("source_path") in roots)]
+    candidates = [
+        row
+        for row in disposition
+        if row.get("disposition") == "unresolved"
+        and (
+            row.get("source_path", "").startswith(prefixes)
+            or row.get("source_path") in roots
+        )
+    ]
     if len(candidates) != 75:
-        raise ValueError(f"fixed source scope count is {len(candidates)}, expected 75 before overlap exclusions")
+        raise ValueError(
+            f"fixed source scope count is {len(candidates)}, expected 75 before overlap exclusions"
+        )
 
-    main_rows = [row for path in MAIN_LEDGER_PATHS for row in parse_jsonl(git(MAIN, path), path)]
+    main_rows = [
+        row for path in MAIN_LEDGER_PATHS for row in parse_jsonl(git(MAIN, path), path)
+    ]
     snap_name = "pr-2090-classification-research.jsonl"
     data = (bundle / "upstream" / snap_name).read_bytes()
-    if sha(data) != PINNED_SNAPSHOTS[snap_name] or data != git(HISTORICAL_PR2090, PINNED_SNAPSHOT_SOURCE_PATHS[snap_name]):
+    if sha(data) != PINNED_SNAPSHOTS[snap_name] or data != git(
+        HISTORICAL_PR2090, PINNED_SNAPSHOT_SOURCE_PATHS[snap_name]
+    ):
         raise ValueError("historical PR #2090 classification snapshot digest drift")
     merged_2090_data = git(MAIN, PINNED_SNAPSHOT_SOURCE_PATHS[snap_name])
     if data != merged_2090_data:
-        raise ValueError("historical PR #2090 ledger bytes differ from merged main ledger")
+        raise ValueError(
+            "historical PR #2090 ledger bytes differ from merged main ledger"
+        )
     inv_data = (bundle / "upstream" / "pr-2090-inventory.json").read_bytes()
-    if (sha(inv_data) != PINNED_SNAPSHOTS["pr-2090-inventory.json"] or
-            inv_data != git(HISTORICAL_PR2090, PINNED_SNAPSHOT_SOURCE_PATHS["pr-2090-inventory.json"])):
+    if sha(inv_data) != PINNED_SNAPSHOTS["pr-2090-inventory.json"] or inv_data != git(
+        HISTORICAL_PR2090, PINNED_SNAPSHOT_SOURCE_PATHS["pr-2090-inventory.json"]
+    ):
         raise ValueError("historical PR #2090 inventory snapshot digest drift")
     inventory = parse_json(inv_data, "pr-2090-inventory.json")
     if inventory.get("research_union", {}).get("authoritative", {}).get("count") != 496:
@@ -156,35 +192,69 @@ def run_audit(bundle: Path) -> dict:
     counts = {label: len(ids) for label, ids in prior_ids.items()}
     if counts != {"main": 537}:
         raise ValueError(f"prior set counts changed: {counts}")
-    previous_main_rows = [row for path in MAIN_LEDGER_PATHS[:-1] for row in parse_jsonl(git(PREVIOUS_MAIN, path), path)]
+    previous_main_rows = [
+        row
+        for path in MAIN_LEDGER_PATHS[:-1]
+        for row in parse_jsonl(git(PREVIOUS_MAIN, path), path)
+    ]
     previous_main_ids = {identity(row)[0] for row in previous_main_rows}
     main_ids = {identity(row)[0] for row in main_rows}
     historical_2090_ids = {identity(row)[0] for row in pr2090_rows}
-    historical_2090_paths = {(identity(row)[1], identity(row)[2]) for row in pr2090_rows}
+    historical_2090_paths = {
+        (identity(row)[1], identity(row)[2]) for row in pr2090_rows
+    }
     main_path_sha = {(identity(row)[1], identity(row)[2]) for row in main_rows}
-    if (len(historical_2090_ids) != 41 or main_ids - previous_main_ids != historical_2090_ids or
-            historical_2090_ids - main_ids or historical_2090_paths - main_path_sha):
-        raise ValueError("merged main union does not include exactly the historical #2090 41-ID addition")
-    main_0144_inventory = parse_json(git(MAIN, MAIN_0144_INVENTORY), MAIN_0144_INVENTORY)
+    if (
+        len(historical_2090_ids) != 41
+        or main_ids - previous_main_ids != historical_2090_ids
+        or historical_2090_ids - main_ids
+        or historical_2090_paths - main_path_sha
+    ):
+        raise ValueError(
+            "merged main union does not include exactly the historical #2090 41-ID addition"
+        )
+    main_0144_inventory = parse_json(
+        git(MAIN, MAIN_0144_INVENTORY), MAIN_0144_INVENTORY
+    )
     main_0144_rows = parse_jsonl(git(MAIN, MAIN_0144_LEDGER), MAIN_0144_LEDGER)
     main_0144_ids = {row["asset_id"] for row in main_0144_rows}
-    main_0144_paths = {(row["source_identity"]["source_path"], row["source_identity"]["source_sha256"]) for row in main_0144_rows}
-    target_ids = {row["asset_id"] for row in candidates if row["asset_id"] not in EXCLUSIONS}
-    target_paths = {(row["source_path"], row["source_sha256"]) for row in candidates if row["asset_id"] not in EXCLUSIONS}
-    if (main_0144_inventory.get("adds_assets_to_main_union") is not False or
-            main_0144_inventory.get("base_revision") != SCF_0144_BASE or len(main_0144_rows) != 36 or
-            main_0144_ids - previous_main_ids or
-            main_0144_ids & target_ids or main_0144_paths & target_paths):
-        raise ValueError("#2092 SCF-B-0144 reconciliation scope or target overlap changed")
+    main_0144_paths = {
+        (row["source_identity"]["source_path"], row["source_identity"]["source_sha256"])
+        for row in main_0144_rows
+    }
+    target_ids = {
+        row["asset_id"] for row in candidates if row["asset_id"] not in EXCLUSIONS
+    }
+    target_paths = {
+        (row["source_path"], row["source_sha256"])
+        for row in candidates
+        if row["asset_id"] not in EXCLUSIONS
+    }
+    if (
+        main_0144_inventory.get("adds_assets_to_main_union") is not False
+        or main_0144_inventory.get("base_revision") != SCF_0144_BASE
+        or len(main_0144_rows) != 36
+        or main_0144_ids - previous_main_ids
+        or main_0144_ids & target_ids
+        or main_0144_paths & target_paths
+    ):
+        raise ValueError(
+            "#2092 SCF-B-0144 reconciliation scope or target overlap changed"
+        )
     labels = list(prior_rows)
     pairwise = {}
     for i, left in enumerate(labels):
-        for right in labels[i + 1:]:
+        for right in labels[i + 1 :]:
             pairwise[f"{left}/{right}"] = {
                 "asset_id_overlap": len(prior_ids[left] & prior_ids[right]),
-                "source_path_sha256_overlap": len(prior_paths[left] & prior_paths[right]),
+                "source_path_sha256_overlap": len(
+                    prior_paths[left] & prior_paths[right]
+                ),
             }
-    if any(value != {"asset_id_overlap": 0, "source_path_sha256_overlap": 0} for value in pairwise.values()):
+    if any(
+        value != {"asset_id_overlap": 0, "source_path_sha256_overlap": 0}
+        for value in pairwise.values()
+    ):
         raise ValueError(f"prior research sets overlap: {pairwise}")
 
     all_prior_ids = set().union(*prior_ids.values())
@@ -194,7 +264,9 @@ def run_audit(bundle: Path) -> dict:
     duplicate_ids = candidate_ids & all_prior_ids
     duplicate_pairs = candidate_pairs & all_prior_paths
     if duplicate_ids != set(EXCLUSIONS) or duplicate_pairs != set(EXCLUSIONS.values()):
-        raise ValueError("candidate/prior overlap differs from exact 3-row integrated #2078 exclusion set")
+        raise ValueError(
+            "candidate/prior overlap differs from exact 3-row integrated #2078 exclusion set"
+        )
     target_rows = [row for row in candidates if row["asset_id"] not in duplicate_ids]
     target_ids = {row["asset_id"] for row in target_rows}
     target_pairs = {(row["source_path"], row["source_sha256"]) for row in target_rows}
@@ -204,10 +276,15 @@ def run_audit(bundle: Path) -> dict:
         raise ValueError("post-exclusion target still overlaps prior set")
 
     profile_rows = {row["source_path"]: row for row in profile["records"]}
-    ledger_rows = parse_jsonl((bundle / "classification-research.jsonl").read_bytes(), "classification-research.jsonl")
+    ledger_rows = parse_jsonl(
+        (bundle / "classification-research.jsonl").read_bytes(),
+        "classification-research.jsonl",
+    )
     ledger_by_id = {row.get("asset_id"): row for row in ledger_rows}
     if len(ledger_by_id) != len(ledger_rows) or set(ledger_by_id) != target_ids:
-        raise ValueError("rendered ledger exact target set does not equal independent disposition-derived set")
+        raise ValueError(
+            "rendered ledger exact target set does not equal independent disposition-derived set"
+        )
     if set(profile_rows) != {row["source_path"] for row in target_rows}:
         raise ValueError("manual profile path set differs from independent target set")
 
@@ -217,95 +294,189 @@ def run_audit(bundle: Path) -> dict:
         path = source["source_path"]
         manual = profile_rows[path]
         ledger = ledger_by_id[source["asset_id"]]
-        if (manual.get("authority_effect") != "none" or
-                type(manual.get("formal_asset_classification_updated")) is not bool or manual["formal_asset_classification_updated"] is not False or
-                type(manual.get("new_build_allowed")) is not bool or manual["new_build_allowed"] is not False):
-            raise ValueError(f"profile authority boundary is not research-only for {path}")
-        if (manual["asset_id"], manual["source_sha256"]) != (source["asset_id"], source["source_sha256"]):
-            raise ValueError(f"profile identity differs from fixed disposition for {path}")
+        if (
+            manual.get("authority_effect") != "none"
+            or type(manual.get("formal_asset_classification_updated")) is not bool
+            or manual["formal_asset_classification_updated"] is not False
+            or type(manual.get("new_build_allowed")) is not bool
+            or manual["new_build_allowed"] is not False
+        ):
+            raise ValueError(
+                f"profile authority boundary is not research-only for {path}"
+            )
+        if (manual["asset_id"], manual["source_sha256"]) != (
+            source["asset_id"],
+            source["source_sha256"],
+        ):
+            raise ValueError(
+                f"profile identity differs from fixed disposition for {path}"
+            )
         archive_path = ARCHIVE + path
         mode, kind, blob = tree(BASE, archive_path)
         content = git(BASE, archive_path)
         content_sha = sha(content)
         expected_sha = "sha256:" + source["source_sha256"]
         if content_sha != expected_sha or manifest_digest(archive_path) != content_sha:
-            raise ValueError(f"archive / disposition / MANIFEST SHA mismatch for {path}")
-        if hashlib.sha1(b"blob " + str(len(content)).encode() + b"\0" + content).hexdigest() != blob:
+            raise ValueError(
+                f"archive / disposition / MANIFEST SHA mismatch for {path}"
+            )
+        if (
+            hashlib.sha1(
+                b"blob " + str(len(content)).encode() + b"\0" + content
+            ).hexdigest()
+            != blob
+        ):
             raise ValueError(f"Git object identity mismatch for {path}")
         lines = content.decode("utf-8", errors="strict").splitlines()
         start, end = manual["line_start"], manual["line_end"]
         if not (1 <= start <= end <= len(lines)):
             raise ValueError(f"profile span outside source for {path}:{start}-{end}")
-        span = lines[start - 1:end]
+        span = lines[start - 1 : end]
         span_sha = sha("\n".join(span).encode("utf-8"))
         output_source = ledger.get("source_exact", {})
         output_anchor = output_source.get("semantic_anchor", {})
-        if output_anchor.get("line_start") != start or output_anchor.get("line_end") != end or output_anchor.get("line_text") != span:
-            raise ValueError(f"rendered semantic span text differs from direct BASE extraction for {path}")
+        if (
+            output_anchor.get("line_start") != start
+            or output_anchor.get("line_end") != end
+            or output_anchor.get("line_text") != span
+        ):
+            raise ValueError(
+                f"rendered semantic span text differs from direct BASE extraction for {path}"
+            )
         if output_anchor.get("line_text_sha256") != span_sha:
-            raise ValueError(f"rendered semantic span digest differs from direct BASE extraction for {path}")
-        if ledger.get("source_sha256") != source["source_sha256"] or output_source.get("sha256") != content_sha or output_source.get("blob") != blob or output_source.get("archive_mode") != mode or output_source.get("archive_type") != kind:
-            raise ValueError(f"rendered archive receipt differs from direct BASE object for {path}")
+            raise ValueError(
+                f"rendered semantic span digest differs from direct BASE extraction for {path}"
+            )
+        if (
+            ledger.get("source_sha256") != source["source_sha256"]
+            or output_source.get("sha256") != content_sha
+            or output_source.get("blob") != blob
+            or output_source.get("archive_mode") != mode
+            or output_source.get("archive_type") != kind
+        ):
+            raise ValueError(
+                f"rendered archive receipt differs from direct BASE object for {path}"
+            )
         if ledger.get("classification", {}).get("category") != manual["category"]:
-            raise ValueError(f"rendered candidate category differs from manual profile for {path}")
+            raise ValueError(
+                f"rendered candidate category differs from manual profile for {path}"
+            )
         products = manual.get("candidate_products")
         basis = manual.get("product_basis")
         counters = manual.get("counterevidence")
         basis_products = [item.get("product") for item in basis if type(item) is dict]
-        counter_products = [item.get("product") for item in counters if type(item) is dict]
-        if (type(products) is not list or type(basis) is not list or type(counters) is not list or
-                len(products) != len(set(products)) or any(product not in {"HELIX-HARNESS", "HELIX-OS", "HELIX-Web", "HELIX-Web-OS"} for product in products) or
-                len(basis_products) != len(basis) or set(basis_products) != set(products) or
-                len(counter_products) != len(counters) or any(product in products for product in counter_products)):
+        counter_products = [
+            item.get("product") for item in counters if type(item) is dict
+        ]
+        if (
+            type(products) is not list
+            or type(basis) is not list
+            or type(counters) is not list
+            or len(products) != len(set(products))
+            or any(
+                product
+                not in {"HELIX-HARNESS", "HELIX-OS", "HELIX-Web", "HELIX-Web-OS"}
+                for product in products
+            )
+            or len(basis_products) != len(basis)
+            or set(basis_products) != set(products)
+            or len(counter_products) != len(counters)
+            or any(product in products for product in counter_products)
+        ):
             raise ValueError(f"manual category evidence invariant failed for {path}")
-        category_ok = ((manual["category"] == "direct_product_basis" and len(products) == 1) or
-                       (manual["category"] == "multi_product_conflict" and len(products) >= 2) or
-                       (manual["category"] == "insufficient_basis" and not products and not basis))
+        category_ok = (
+            (manual["category"] == "direct_product_basis" and len(products) == 1)
+            or (manual["category"] == "multi_product_conflict" and len(products) >= 2)
+            or (
+                manual["category"] == "insufficient_basis"
+                and not products
+                and not basis
+            )
+        )
         if not category_ok:
             raise ValueError(f"category/product-count invariant failed for {path}")
         category_counts[manual["category"]] += 1
-        audit_records.append({
-            "asset_id": source["asset_id"], "source_path": path,
-            "archive_blob": blob, "archive_mode": mode, "archive_type": kind,
-            "source_sha256": content_sha, "line_start": start, "line_end": end,
-            "span_text_sha256": span_sha, "category_candidate": manual["category"],
-            "candidate_products": manual["candidate_products"],
-        })
+        audit_records.append(
+            {
+                "asset_id": source["asset_id"],
+                "source_path": path,
+                "archive_blob": blob,
+                "archive_mode": mode,
+                "archive_type": kind,
+                "source_sha256": content_sha,
+                "line_start": start,
+                "line_end": end,
+                "span_text_sha256": span_sha,
+                "category_candidate": manual["category"],
+                "candidate_products": manual["candidate_products"],
+            }
+        )
 
     template_prefix = ARCHIVE + "docs/templates/adapter/"
-    names = subprocess.check_output(["git", "ls-tree", "-r", "--name-only", BASE, "--", template_prefix], text=True, cwd=ROOT).splitlines()
+    names = subprocess.check_output(
+        ["git", "ls-tree", "-r", "--name-only", BASE, "--", template_prefix],
+        text=True,
+        cwd=ROOT,
+    ).splitlines()
     template_paths = sorted(name.removeprefix(ARCHIVE) for name in names)
-    target_templates = sorted(path for path in profile_rows if path.startswith("docs/templates/adapter/"))
+    target_templates = sorted(
+        path for path in profile_rows if path.startswith("docs/templates/adapter/")
+    )
     if len(template_paths) != 34 or template_paths != target_templates:
-        raise ValueError(f"AICR-06 exact template set differs: archive={len(template_paths)} profile={len(target_templates)}")
-    if dict(category_counts) != {"multi_product_conflict": 41, "direct_product_basis": 28, "insufficient_basis": 3}:
-        raise ValueError(f"manual category denominator changed: {dict(category_counts)}")
+        raise ValueError(
+            f"AICR-06 exact template set differs: archive={len(template_paths)} profile={len(target_templates)}"
+        )
+    if dict(category_counts) != {
+        "multi_product_conflict": 41,
+        "direct_product_basis": 28,
+        "insufficient_basis": 3,
+    }:
+        raise ValueError(
+            f"manual category denominator changed: {dict(category_counts)}"
+        )
     consumer_data = git(BASE, CONSUMER_INVENTORY)
     consumer_text = consumer_data.decode("utf-8")
     expected_inventory_claim = "`docs/templates/adapter/`で34ファイルを発見した"
     if expected_inventory_claim not in consumer_text or "AICR-06" not in consumer_text:
-        raise ValueError("fixed consumer inventory does not document AICR-06 34-template relation")
+        raise ValueError(
+            "fixed consumer inventory does not document AICR-06 34-template relation"
+        )
 
     return {
         "schema_revision": 1,
         "audit_kind": "independent_static_source_identity_and_span_reconciliation",
         "fixed_base_revision": BASE,
-        "comparison_revisions": {"main": MAIN, "pr_2090_historical_evidence": HISTORICAL_PR2090},
+        "comparison_revisions": {
+            "main": MAIN,
+            "pr_2090_historical_evidence": HISTORICAL_PR2090,
+        },
         "profile_sha256": sha(profile_bytes),
-        "fixed_disposition": {"path": DISPOSITION, "blob": tree(BASE, DISPOSITION)[2], "sha256": sha(git(BASE, DISPOSITION))},
-        "consumer_inventory": {"path": CONSUMER_INVENTORY, "blob": tree(BASE, CONSUMER_INVENTORY)[2], "sha256": sha(consumer_data), "AICR_06_claimed_template_count": 34},
+        "fixed_disposition": {
+            "path": DISPOSITION,
+            "blob": tree(BASE, DISPOSITION)[2],
+            "sha256": sha(git(BASE, DISPOSITION)),
+        },
+        "consumer_inventory": {
+            "path": CONSUMER_INVENTORY,
+            "blob": tree(BASE, CONSUMER_INVENTORY)[2],
+            "sha256": sha(consumer_data),
+            "AICR_06_claimed_template_count": 34,
+        },
         "selection_counts": {
             "unresolved_candidates_before_overlap": len(candidates),
             "exact_prior_overlap_exclusions": len(duplicate_ids),
             "target_denominator": len(target_rows),
-            "main_product_research_ids": counts["main"], "historical_pr_2090_target_ids_in_main": len(historical_2090_ids),
+            "main_product_research_ids": counts["main"],
+            "historical_pr_2090_target_ids_in_main": len(historical_2090_ids),
         },
         "prior_pairwise_overlap": pairwise,
         "main_pr2092_scf_b_0144": {
             "revision": MAIN,
             "base_revision": main_0144_inventory["base_revision"],
             "reconciliation_count": len(main_0144_rows),
-            "adds_assets_to_main_union": main_0144_inventory["adds_assets_to_main_union"],
+            "adds_assets_to_main_union": main_0144_inventory[
+                "adds_assets_to_main_union"
+            ],
             "reconciliation_ids_in_prior_main": len(main_0144_ids & previous_main_ids),
             "main_id_union_added_from_2090": len(main_ids - previous_main_ids),
             "target_asset_id_overlap": len(main_0144_ids & target_ids),
@@ -316,14 +487,26 @@ def run_audit(bundle: Path) -> dict:
             "record_count": len(pr2090_rows),
             "counted_as_separate_union": False,
             "main_asset_id_overlap": len(historical_2090_ids & main_ids),
-            "main_source_path_sha256_overlap": len(historical_2090_paths & main_path_sha),
+            "main_source_path_sha256_overlap": len(
+                historical_2090_paths & main_path_sha
+            ),
             "target_asset_id_overlap": len(historical_2090_ids & target_ids),
-            "target_source_path_sha256_overlap": len(historical_2090_paths & target_paths),
+            "target_source_path_sha256_overlap": len(
+                historical_2090_paths & target_paths
+            ),
             "ledger_bytes_equal_to_main": True,
         },
         "target_overlap_with_main537": {"asset_id": 0, "source_path_sha256": 0},
-        "excluded_prior_overlap_rows": [{"asset_id": aid, "source_path": pair[0], "source_sha256": pair[1]} for aid, pair in sorted(EXCLUSIONS.items())],
-        "adapter_template_set": {"archive_physical_count": len(template_paths), "target_count": len(target_templates), "exact_set_match": True, "paths": template_paths},
+        "excluded_prior_overlap_rows": [
+            {"asset_id": aid, "source_path": pair[0], "source_sha256": pair[1]}
+            for aid, pair in sorted(EXCLUSIONS.items())
+        ],
+        "adapter_template_set": {
+            "archive_physical_count": len(template_paths),
+            "target_count": len(target_templates),
+            "exact_set_match": True,
+            "paths": template_paths,
+        },
         "category_candidate_counts": dict(sorted(category_counts.items())),
         "source_span_records": audit_records,
         "semantic_interpretation_status": "manual candidate interpretations were not independently adjudicated; human judgment remains required",
@@ -345,23 +528,38 @@ def run_audit(bundle: Path) -> dict:
 
 def main() -> int:
     parser = argparse.ArgumentParser()
-    parser.add_argument("--write", action="store_true", help="write independently recomputed report")
+    parser.add_argument(
+        "--write", action="store_true", help="write independently recomputed report"
+    )
     parser.add_argument("--bundle", type=Path, default=BUNDLE)
     args = parser.parse_args()
     bundle = args.bundle.resolve()
     report_path = bundle / "independent-source-audit.json"
     try:
         report = run_audit(bundle)
-    except (ValueError, KeyError, TypeError, OSError, subprocess.CalledProcessError) as exc:
+    except (
+        ValueError,
+        KeyError,
+        TypeError,
+        OSError,
+        subprocess.CalledProcessError,
+    ) as exc:
         print(f"SCF-B-0145 independent-source-audit FAIL {exc}", file=sys.stderr)
         return 1
     rendered = json.dumps(report, ensure_ascii=False, sort_keys=True, indent=2) + "\n"
     if args.write:
         report_path.write_text(rendered, encoding="utf-8")
-    elif not report_path.exists() or report_path.read_text(encoding="utf-8") != rendered:
-        print("SCF-B-0145 independent-source-audit FAIL report absent or stale; rerun with --write", file=sys.stderr)
+    elif (
+        not report_path.exists() or report_path.read_text(encoding="utf-8") != rendered
+    ):
+        print(
+            "SCF-B-0145 independent-source-audit FAIL report absent or stale; rerun with --write",
+            file=sys.stderr,
+        )
         return 1
-    print("SCF-B-0145 independent-source-audit PASS targets=72 raw_spans=72 adapter_templates=34 main=537 historical_2090_in_main=41 overlaps=0 semantic_adjudication=human_pending")
+    print(
+        "SCF-B-0145 independent-source-audit PASS targets=72 raw_spans=72 adapter_templates=34 main=537 historical_2090_in_main=41 overlaps=0 semantic_adjudication=human_pending"
+    )
     return 0
 
 

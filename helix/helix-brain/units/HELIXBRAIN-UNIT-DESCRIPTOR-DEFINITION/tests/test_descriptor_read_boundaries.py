@@ -30,7 +30,9 @@ class TestDescriptorReadBoundaries(unittest.TestCase):
         raw_before = copy.deepcopy(raw)
 
         validated = validate_supply_input(raw)
-        self.assertIsInstance(validated["input"], dict, "setup: fn0 decodes this raw snapshot")
+        self.assertIsInstance(
+            validated["input"], dict, "setup: fn0 decodes this raw snapshot"
+        )
         self.assertEqual(validated["input"], raw_before)
         self.assertEqual(validated["input_issues"], [])
         validated_before = copy.deepcopy(validated)
@@ -43,10 +45,17 @@ class TestDescriptorReadBoundaries(unittest.TestCase):
             validated, {"slot_locator": f"/descriptors/{slot_index}"}
         )
 
-        self.assertEqual(set(read), {
-            "slot_locator", "request", "acquisition_state", "source_occurrences",
-            "supports", "problems",
-        })
+        self.assertEqual(
+            set(read),
+            {
+                "slot_locator",
+                "request",
+                "acquisition_state",
+                "source_occurrences",
+                "supports",
+                "problems",
+            },
+        )
         self.assertEqual(read["slot_locator"], f"/descriptors/{slot_index}")
         self.assertEqual(read["request"], {"presence": "absent"})
         self.assertEqual(read["acquisition_state"], "not_requested")
@@ -66,15 +75,20 @@ class TestDescriptorReadBoundaries(unittest.TestCase):
 
         binding_knowledge_ref = added_raw["binding"]["knowledge_ref"]
         records = [
-            row for row in added_raw["knowledge_records"]
+            row
+            for row in added_raw["knowledge_records"]
             if row.get("ref") == binding_knowledge_ref
         ]
-        self.assertEqual(len(records), 1, "setup: one KnowledgeRecord owns the raw Binding")
+        self.assertEqual(
+            len(records), 1, "setup: one KnowledgeRecord owns the raw Binding"
+        )
         record = records[0]
-        self.assertFalse(any(
-            ref.get("identity") == unrelated_source_ref["identity"]
-            for ref in record["provenance_refs"]
-        ))
+        self.assertFalse(
+            any(
+                ref.get("identity") == unrelated_source_ref["identity"]
+                for ref in record["provenance_refs"]
+            )
+        )
         record["provenance_refs"].append(copy.deepcopy(unrelated_source_ref))
 
         baseline_before = copy.deepcopy(baseline_raw)
@@ -82,27 +96,36 @@ class TestDescriptorReadBoundaries(unittest.TestCase):
         baseline_validated = validate_supply_input(baseline_raw)
         added_validated = validate_supply_input(added_raw)
         for validated, expected in (
-            (baseline_validated, baseline_before), (added_validated, added_before),
+            (baseline_validated, baseline_before),
+            (added_validated, added_before),
         ):
-            self.assertIsInstance(validated["input"], dict, "setup: fn0 decodes the provenance input")
+            self.assertIsInstance(
+                validated["input"], dict, "setup: fn0 decodes the provenance input"
+            )
             self.assertEqual(validated["input"], expected)
             self.assertEqual(validated["input_issues"], [])
             self.assertEqual(validated["unusable_source_refs"], [])
 
         baseline_before_read = copy.deepcopy(baseline_validated)
         added_before_read = copy.deepcopy(added_validated)
-        baseline_walk = evaluate_descriptor_definition_walk({"validated": baseline_validated})
+        baseline_walk = evaluate_descriptor_definition_walk(
+            {"validated": baseline_validated}
+        )
         added_walk = evaluate_descriptor_definition_walk({"validated": added_validated})
 
         baseline_reads = baseline_walk["native_material"]["meaning_reads"]
         added_reads = added_walk["native_material"]["meaning_reads"]
-        self.assertEqual(len(baseline_reads), 15, "setup: the base trace input has 15 actual facts")
+        self.assertEqual(
+            len(baseline_reads), 15, "setup: the base trace input has 15 actual facts"
+        )
         self.assertEqual(added_reads, baseline_reads)
         self.assertTrue(all(read["problems"] for read in baseline_reads))
-        self.assertTrue(all(
-            all(problem["source_index"] == 0 for problem in read["problems"])
-            for read in baseline_reads
-        ))
+        self.assertTrue(
+            all(
+                all(problem["source_index"] == 0 for problem in read["problems"])
+                for read in baseline_reads
+            )
+        )
         self.assertEqual(baseline_raw, baseline_before)
         self.assertEqual(added_raw, added_before)
         self.assertEqual(baseline_validated, baseline_before_read)

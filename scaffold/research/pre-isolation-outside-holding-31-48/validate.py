@@ -39,12 +39,13 @@ def relocated(path):
     return path
 
 
-
 HERE = Path(__file__).resolve().parent
 ROOT = HERE.parents[2]
 INV = HERE / "inventory.json"
 REPORT_PATH = "scaffold/pre-isolation-outside-holding-67/report.json"
-SOURCE_SET_PATH = "docs/governance/pre-isolation-outside-holding-67-source-holding.jsonl"
+SOURCE_SET_PATH = (
+    "docs/governance/pre-isolation-outside-holding-67-source-holding.jsonl"
+)
 REGISTER_PATH = "docs/governance/management-provisional-requirement-register-pre-append-3df81ad.jsonl"
 HOLDING_PATH = "docs/governance/pre-isolation-revision-delta-source-holding.jsonl"
 PRE_ISOLATION = "2d4991042be55268bac30a8bbcdac45b3865030a"
@@ -87,20 +88,143 @@ EXPECTED_PROHIBITED_INFERENCE = [
 ]
 
 KEYSETS = {
-    "root": {"schema", "candidate_id", "status", "authority_effect", "meaning_change_applied", "successor_requirement_ids", "human_decision_ref", "formal_register_append", "old_runtime_test_ci_execution", "scope", "live_holdings", "rows", "aggregate", "findings", "proposed_row_schema", "prohibited_inference", "verification_scope"},
-    "scope": {"parent_commit", "outside_report_path", "outside_report_sha256", "source_set_path", "source_set_sha256", "management_register_path", "management_register_sha256", "pre_isolation_holding_path", "pre_isolation_holding_sha256", "pre_isolation_commit", "archive_commit", "current_capture_commit", "historical_holding_comparison", "selection_rule", "selected_count", "live_holding_count", "requirement_atoms", "read_only", "source_unit"},
-    "live_holding": {"registration_id", "source_atom_set_ref", "source_atom_set_sha256", "source_atom_set_record_count", "registration_kind", "product_target", "authority_effect"},
-    "row": {"global_ordinal", "source_item_id", "source_path", "source_unit", "artifact_kind", "diff_status", "candidate_product", "candidate_product_basis", "product_status", "candidate_phase", "candidate_phase_basis", "phase_status", "implementation_status", "implementation_evidence", "degradation_assessment", "degradation_evidence", "semantic_inclusion_status", "semantic_inclusion_relation", "semantic_inclusion_evidence", "legacy_catalog_record_count", "source_holding_status", "existing_holding_inclusion_relation", "new_holding_needed", "semantic_disposition", "pre_isolation", "archive", "archive_root_present", "current_capture", "live_holding_relations", "authority_effect", "meaning_change_applied", "successor_requirement_ids", "human_decision_ref", "old_runtime_test_ci_execution"},
-    "pre_isolation": {"commit", "blob_oid", "sha256", "bytes", "reported_blob_oid", "reported_blob_oid_matches_git"},
-    "archive": {"commit", "blob_oid", "sha256", "bytes", "relation_to_pre_isolation", "reported_blob_oid", "reported_blob_oid_matches_git"},
+    "root": {
+        "schema",
+        "candidate_id",
+        "status",
+        "authority_effect",
+        "meaning_change_applied",
+        "successor_requirement_ids",
+        "human_decision_ref",
+        "formal_register_append",
+        "old_runtime_test_ci_execution",
+        "scope",
+        "live_holdings",
+        "rows",
+        "aggregate",
+        "findings",
+        "proposed_row_schema",
+        "prohibited_inference",
+        "verification_scope",
+    },
+    "scope": {
+        "parent_commit",
+        "outside_report_path",
+        "outside_report_sha256",
+        "source_set_path",
+        "source_set_sha256",
+        "management_register_path",
+        "management_register_sha256",
+        "pre_isolation_holding_path",
+        "pre_isolation_holding_sha256",
+        "pre_isolation_commit",
+        "archive_commit",
+        "current_capture_commit",
+        "historical_holding_comparison",
+        "selection_rule",
+        "selected_count",
+        "live_holding_count",
+        "requirement_atoms",
+        "read_only",
+        "source_unit",
+    },
+    "live_holding": {
+        "registration_id",
+        "source_atom_set_ref",
+        "source_atom_set_sha256",
+        "source_atom_set_record_count",
+        "registration_kind",
+        "product_target",
+        "authority_effect",
+    },
+    "row": {
+        "global_ordinal",
+        "source_item_id",
+        "source_path",
+        "source_unit",
+        "artifact_kind",
+        "diff_status",
+        "candidate_product",
+        "candidate_product_basis",
+        "product_status",
+        "candidate_phase",
+        "candidate_phase_basis",
+        "phase_status",
+        "implementation_status",
+        "implementation_evidence",
+        "degradation_assessment",
+        "degradation_evidence",
+        "semantic_inclusion_status",
+        "semantic_inclusion_relation",
+        "semantic_inclusion_evidence",
+        "legacy_catalog_record_count",
+        "source_holding_status",
+        "existing_holding_inclusion_relation",
+        "new_holding_needed",
+        "semantic_disposition",
+        "pre_isolation",
+        "archive",
+        "archive_root_present",
+        "current_capture",
+        "live_holding_relations",
+        "authority_effect",
+        "meaning_change_applied",
+        "successor_requirement_ids",
+        "human_decision_ref",
+        "old_runtime_test_ci_execution",
+    },
+    "pre_isolation": {
+        "commit",
+        "blob_oid",
+        "sha256",
+        "bytes",
+        "reported_blob_oid",
+        "reported_blob_oid_matches_git",
+    },
+    "archive": {
+        "commit",
+        "blob_oid",
+        "sha256",
+        "bytes",
+        "relation_to_pre_isolation",
+        "reported_blob_oid",
+        "reported_blob_oid_matches_git",
+    },
     "current_capture": {"commit", "state", "blob_oid"},
-    "relation": {"registration_id", "source_atom_set_ref", "relation", "path_match_count", "path_match_evidence", "pre_isolation_blob_match_count", "blob_match_evidence", "pre_isolation_sha256_match_count", "sha256_match_evidence"},
-    "aggregate": {"candidate_product_counts", "candidate_phase_counts", "archive_blob_relation_counts", "current_state_counts", "not_in_any_live_holding_count", "new_holding_needed_unresolved_count", "implementation_unknown_count", "degradation_unknown_count", "semantic_inclusion_unknown_count", "legacy_catalog_zero_count"},
+    "relation": {
+        "registration_id",
+        "source_atom_set_ref",
+        "relation",
+        "path_match_count",
+        "path_match_evidence",
+        "pre_isolation_blob_match_count",
+        "blob_match_evidence",
+        "pre_isolation_sha256_match_count",
+        "sha256_match_evidence",
+    },
+    "aggregate": {
+        "candidate_product_counts",
+        "candidate_phase_counts",
+        "archive_blob_relation_counts",
+        "current_state_counts",
+        "not_in_any_live_holding_count",
+        "new_holding_needed_unresolved_count",
+        "implementation_unknown_count",
+        "degradation_unknown_count",
+        "semantic_inclusion_unknown_count",
+        "legacy_catalog_zero_count",
+    },
     "aggregate.candidate_product_counts": {"shared-cross-product"},
     "aggregate.candidate_phase_counts": {"upstream-governance-or-crosswalk"},
     "aggregate.archive_blob_relation_counts": {"different", "same"},
     "aggregate.current_state_counts": {"absent"},
-    "proposed_row_schema": {"identity", "physical_revision", "candidate_classification", "holding_relation", "boundary"},
+    "proposed_row_schema": {
+        "identity",
+        "physical_revision",
+        "candidate_classification",
+        "holding_relation",
+        "boundary",
+    },
     "verification_scope": {"static_only", "evidence_kind", "checks"},
 }
 
@@ -110,15 +234,30 @@ def digest(data: bytes) -> str:
 
 
 def load_jsonl(path: Path) -> list[dict]:
-    return [json.loads(line) for line in path.read_text(encoding="utf-8").splitlines() if line.strip()]
+    return [
+        json.loads(line)
+        for line in path.read_text(encoding="utf-8").splitlines()
+        if line.strip()
+    ]
 
 
 def git_blob(commit: str, path: str) -> bytes:
-    return subprocess.run(["git", "show", f"{commit}:{path}"], cwd=ROOT, check=True, stdout=subprocess.PIPE).stdout
+    return subprocess.run(
+        ["git", "show", f"{commit}:{path}"],
+        cwd=ROOT,
+        check=True,
+        stdout=subprocess.PIPE,
+    ).stdout
 
 
 def git_oid(commit: str, path: str) -> str | None:
-    result = subprocess.run(["git", "rev-parse", f"{commit}:{path}"], cwd=ROOT, text=True, stdout=subprocess.PIPE, stderr=subprocess.DEVNULL)
+    result = subprocess.run(
+        ["git", "rev-parse", f"{commit}:{path}"],
+        cwd=ROOT,
+        text=True,
+        stdout=subprocess.PIPE,
+        stderr=subprocess.DEVNULL,
+    )
     return result.stdout.strip() if result.returncode == 0 else None
 
 
@@ -137,7 +276,11 @@ def exact_hits(value: object, target: str, path: str = "") -> list[str]:
 
 
 def live_holdings(register: list[dict]) -> list[dict]:
-    superseded = {row.get("supersedes_registration_id") for row in register if row.get("supersedes_registration_id")}
+    superseded = {
+        row.get("supersedes_registration_id")
+        for row in register
+        if row.get("supersedes_registration_id")
+    }
     result: list[dict] = []
     for row in register:
         if row.get("registration_id") in superseded:
@@ -157,7 +300,9 @@ def live_holdings(register: list[dict]) -> list[dict]:
     return result
 
 
-def relation(path: str, pre_oid: str, pre_sha: str, records: list[dict]) -> tuple[list[str], list[str], list[str]]:
+def relation(
+    path: str, pre_oid: str, pre_sha: str, records: list[dict]
+) -> tuple[list[str], list[str], list[str]]:
     paths: list[str] = []
     blobs: list[str] = []
     shas: list[str] = []
@@ -173,7 +318,9 @@ def fail(errors: list[str], condition: bool, message: str) -> None:
         errors.append(message)
 
 
-def check_keyset(errors: list[str], value: object, expected: set[str], code: str) -> None:
+def check_keyset(
+    errors: list[str], value: object, expected: set[str], code: str
+) -> None:
     fail(errors, isinstance(value, dict) and set(value) == expected, code)
 
 
@@ -185,14 +332,30 @@ def validate(inv: dict) -> list[str]:
     register_file = relocated(ROOT / REGISTER_PATH)
     holding_file = relocated(ROOT / HOLDING_PATH)
     fail(errors, inv.get("schema") == SCHEMA, "E_SCHEMA")
-    fail(errors, inv.get("candidate_id") == "RDP-001-PREISO-OUTSIDE-HOLDING-31-48-0043", "E_CANDIDATE")
+    fail(
+        errors,
+        inv.get("candidate_id") == "RDP-001-PREISO-OUTSIDE-HOLDING-31-48-0043",
+        "E_CANDIDATE",
+    )
     fail(errors, inv.get("status") == "findings_only", "E_STATUS")
     fail(errors, inv.get("authority_effect") == "none", "E_AUTHORITY")
     fail(errors, inv.get("meaning_change_applied") is False, "E_MEANING")
-    fail(errors, inv.get("successor_requirement_ids") == [] and inv.get("human_decision_ref") is None, "E_DECISION_BOUNDARY")
+    fail(
+        errors,
+        inv.get("successor_requirement_ids") == []
+        and inv.get("human_decision_ref") is None,
+        "E_DECISION_BOUNDARY",
+    )
     fail(errors, inv.get("formal_register_append") is False, "E_FORMAL_APPEND")
     fail(errors, inv.get("old_runtime_test_ci_execution") is False, "E_OLD_EXECUTION")
-    fail(errors, report_file.is_file() and source_file.is_file() and register_file.is_file() and holding_file.is_file(), "E_INPUT_MISSING")
+    fail(
+        errors,
+        report_file.is_file()
+        and source_file.is_file()
+        and register_file.is_file()
+        and holding_file.is_file(),
+        "E_INPUT_MISSING",
+    )
     if errors:
         return errors
 
@@ -202,110 +365,425 @@ def validate(inv: dict) -> list[str]:
     holdings = live_holdings(register)
     scope = inv.get("scope", {})
     fail(errors, scope.get("parent_commit") == PARENT_COMMIT, "E_PARENT_COMMIT")
-    fail(errors, scope.get("outside_report_path") == REPORT_PATH and scope.get("outside_report_sha256") == digest(report_file.read_bytes()), "E_REPORT_DIGEST")
-    fail(errors, scope.get("source_set_path") == SOURCE_SET_PATH and scope.get("source_set_sha256") == digest(source_file.read_bytes()), "E_SOURCE_DIGEST")
-    fail(errors, scope.get("management_register_path") == REGISTER_PATH and scope.get("management_register_sha256") == digest(register_file.read_bytes()), "E_REGISTER_DIGEST")
-    fail(errors, scope.get("pre_isolation_holding_path") == HOLDING_PATH and scope.get("pre_isolation_holding_sha256") == digest(holding_file.read_bytes()), "E_HOLDING_DIGEST")
-    fail(errors, scope.get("pre_isolation_commit") == PRE_ISOLATION and scope.get("archive_commit") == ARCHIVE and scope.get("current_capture_commit") == CURRENT_CAPTURE, "E_COMMITS")
-    fail(errors, scope.get("historical_holding_comparison") == "fixed_to_parent_d272; later_base_changes_do_not_rewrite_13_holding_denominator", "E_BASE_PIN")
-    fail(errors, scope.get("selection_rule") == "outside-67 report order; global rows 31 through 48 inclusive", "E_SELECTION_RULE")
-    fail(errors, scope.get("selected_count") == 18 and scope.get("live_holding_count") == 13, "E_SCOPE_COUNTS")
-    fail(errors, scope.get("requirement_atoms") is False and scope.get("read_only") is True, "E_SCOPE_BOUNDARY")
+    fail(
+        errors,
+        scope.get("outside_report_path") == REPORT_PATH
+        and scope.get("outside_report_sha256") == digest(report_file.read_bytes()),
+        "E_REPORT_DIGEST",
+    )
+    fail(
+        errors,
+        scope.get("source_set_path") == SOURCE_SET_PATH
+        and scope.get("source_set_sha256") == digest(source_file.read_bytes()),
+        "E_SOURCE_DIGEST",
+    )
+    fail(
+        errors,
+        scope.get("management_register_path") == REGISTER_PATH
+        and scope.get("management_register_sha256")
+        == digest(register_file.read_bytes()),
+        "E_REGISTER_DIGEST",
+    )
+    fail(
+        errors,
+        scope.get("pre_isolation_holding_path") == HOLDING_PATH
+        and scope.get("pre_isolation_holding_sha256")
+        == digest(holding_file.read_bytes()),
+        "E_HOLDING_DIGEST",
+    )
+    fail(
+        errors,
+        scope.get("pre_isolation_commit") == PRE_ISOLATION
+        and scope.get("archive_commit") == ARCHIVE
+        and scope.get("current_capture_commit") == CURRENT_CAPTURE,
+        "E_COMMITS",
+    )
+    fail(
+        errors,
+        scope.get("historical_holding_comparison")
+        == "fixed_to_parent_d272; later_base_changes_do_not_rewrite_13_holding_denominator",
+        "E_BASE_PIN",
+    )
+    fail(
+        errors,
+        scope.get("selection_rule")
+        == "outside-67 report order; global rows 31 through 48 inclusive",
+        "E_SELECTION_RULE",
+    )
+    fail(
+        errors,
+        scope.get("selected_count") == 18 and scope.get("live_holding_count") == 13,
+        "E_SCOPE_COUNTS",
+    )
+    fail(
+        errors,
+        scope.get("requirement_atoms") is False and scope.get("read_only") is True,
+        "E_SCOPE_BOUNDARY",
+    )
     try:
-        fail(errors, subprocess.run(["git", "merge-base", "--is-ancestor", CURRENT_CAPTURE, "HEAD"], cwd=ROOT).returncode == 0, "E_CAPTURE_NOT_ANCESTOR")
-        fail(errors, subprocess.run(["git", "merge-base", "--is-ancestor", PARENT_COMMIT, "HEAD"], cwd=ROOT).returncode == 0, "E_PARENT_NOT_HEAD_BASE")
+        fail(
+            errors,
+            subprocess.run(
+                ["git", "merge-base", "--is-ancestor", CURRENT_CAPTURE, "HEAD"],
+                cwd=ROOT,
+            ).returncode
+            == 0,
+            "E_CAPTURE_NOT_ANCESTOR",
+        )
+        fail(
+            errors,
+            subprocess.run(
+                ["git", "merge-base", "--is-ancestor", PARENT_COMMIT, "HEAD"], cwd=ROOT
+            ).returncode
+            == 0,
+            "E_PARENT_NOT_HEAD_BASE",
+        )
     except OSError as exc:
         errors.append(f"E_GIT:{exc}")
 
-    fail(errors, len(source_rows) == 67 and len(report.get("rows", [])) == 67, "E_SOURCE_ROSTER")
-    fail(errors, {row.get("registration_id") for row in holdings} == LIVE_HOLDING_IDS, "E_LIVE_HOLDING_ROSTER")
-    fail(errors, len(holdings) == 13 and len(inv.get("live_holdings", [])) == 13, "E_LIVE_HOLDING_COUNT")
+    fail(
+        errors,
+        len(source_rows) == 67 and len(report.get("rows", [])) == 67,
+        "E_SOURCE_ROSTER",
+    )
+    fail(
+        errors,
+        {row.get("registration_id") for row in holdings} == LIVE_HOLDING_IDS,
+        "E_LIVE_HOLDING_ROSTER",
+    )
+    fail(
+        errors,
+        len(holdings) == 13 and len(inv.get("live_holdings", [])) == 13,
+        "E_LIVE_HOLDING_COUNT",
+    )
     fail(errors, inv.get("live_holdings") == holdings, "E_LIVE_HOLDING_SNAPSHOT")
     check_keyset(errors, scope, KEYSETS["scope"], "E_KEYSET:scope")
-    check_keyset(errors, inv.get("aggregate", {}), KEYSETS["aggregate"], "E_KEYSET:aggregate")
+    check_keyset(
+        errors, inv.get("aggregate", {}), KEYSETS["aggregate"], "E_KEYSET:aggregate"
+    )
     aggregate = inv.get("aggregate", {})
-    check_keyset(errors, aggregate.get("candidate_product_counts", {}), KEYSETS["aggregate.candidate_product_counts"], "E_KEYSET:aggregate.candidate_product_counts")
-    check_keyset(errors, aggregate.get("candidate_phase_counts", {}), KEYSETS["aggregate.candidate_phase_counts"], "E_KEYSET:aggregate.candidate_phase_counts")
-    check_keyset(errors, aggregate.get("archive_blob_relation_counts", {}), KEYSETS["aggregate.archive_blob_relation_counts"], "E_KEYSET:aggregate.archive_blob_relation_counts")
-    check_keyset(errors, aggregate.get("current_state_counts", {}), KEYSETS["aggregate.current_state_counts"], "E_KEYSET:aggregate.current_state_counts")
-    check_keyset(errors, inv.get("proposed_row_schema", {}), KEYSETS["proposed_row_schema"], "E_KEYSET:proposed_row_schema")
-    check_keyset(errors, inv.get("verification_scope", {}), KEYSETS["verification_scope"], "E_KEYSET:verification_scope")
+    check_keyset(
+        errors,
+        aggregate.get("candidate_product_counts", {}),
+        KEYSETS["aggregate.candidate_product_counts"],
+        "E_KEYSET:aggregate.candidate_product_counts",
+    )
+    check_keyset(
+        errors,
+        aggregate.get("candidate_phase_counts", {}),
+        KEYSETS["aggregate.candidate_phase_counts"],
+        "E_KEYSET:aggregate.candidate_phase_counts",
+    )
+    check_keyset(
+        errors,
+        aggregate.get("archive_blob_relation_counts", {}),
+        KEYSETS["aggregate.archive_blob_relation_counts"],
+        "E_KEYSET:aggregate.archive_blob_relation_counts",
+    )
+    check_keyset(
+        errors,
+        aggregate.get("current_state_counts", {}),
+        KEYSETS["aggregate.current_state_counts"],
+        "E_KEYSET:aggregate.current_state_counts",
+    )
+    check_keyset(
+        errors,
+        inv.get("proposed_row_schema", {}),
+        KEYSETS["proposed_row_schema"],
+        "E_KEYSET:proposed_row_schema",
+    )
+    check_keyset(
+        errors,
+        inv.get("verification_scope", {}),
+        KEYSETS["verification_scope"],
+        "E_KEYSET:verification_scope",
+    )
     fail(errors, inv.get("findings") == EXPECTED_FINDINGS, "E_FINDINGS")
-    fail(errors, inv.get("prohibited_inference") == EXPECTED_PROHIBITED_INFERENCE, "E_PROHIBITED_INFERENCE")
+    fail(
+        errors,
+        inv.get("prohibited_inference") == EXPECTED_PROHIBITED_INFERENCE,
+        "E_PROHIBITED_INFERENCE",
+    )
     for holding in inv.get("live_holdings", []):
-        check_keyset(errors, holding, KEYSETS["live_holding"], "E_KEYSET:live_holdings[]")
+        check_keyset(
+            errors, holding, KEYSETS["live_holding"], "E_KEYSET:live_holdings[]"
+        )
     rows = inv.get("rows", [])
     fail(errors, len(rows) == 18, "E_ROW_COUNT")
-    fail(errors, [row.get("global_ordinal") for row in rows] == list(range(31, 49)), "E_ROW_ORDINALS")
-    fail(errors, [row.get("source_item_id") for row in rows] == [f"OUTSIDE67-PATH-{i:03d}" for i in range(31, 49)], "E_SOURCE_IDS")
+    fail(
+        errors,
+        [row.get("global_ordinal") for row in rows] == list(range(31, 49)),
+        "E_ROW_ORDINALS",
+    )
+    fail(
+        errors,
+        [row.get("source_item_id") for row in rows]
+        == [f"OUTSIDE67-PATH-{i:03d}" for i in range(31, 49)],
+        "E_SOURCE_IDS",
+    )
 
-    holding_records = {holding["registration_id"]: load_jsonl(relocated(ROOT / holding["source_atom_set_ref"])) for holding in holdings}
+    holding_records = {
+        holding["registration_id"]: load_jsonl(
+            relocated(ROOT / holding["source_atom_set_ref"])
+        )
+        for holding in holdings
+    }
     expected_same = expected_different = 0
     for offset, row in enumerate(rows):
         ordinal = offset + 31
         check_keyset(errors, row, KEYSETS["row"], "E_KEYSET:rows[]")
-        check_keyset(errors, row.get("pre_isolation", {}), KEYSETS["pre_isolation"], "E_KEYSET:rows[].pre_isolation")
-        check_keyset(errors, row.get("archive", {}), KEYSETS["archive"], "E_KEYSET:rows[].archive")
-        check_keyset(errors, row.get("current_capture", {}), KEYSETS["current_capture"], "E_KEYSET:rows[].current_capture")
+        check_keyset(
+            errors,
+            row.get("pre_isolation", {}),
+            KEYSETS["pre_isolation"],
+            "E_KEYSET:rows[].pre_isolation",
+        )
+        check_keyset(
+            errors,
+            row.get("archive", {}),
+            KEYSETS["archive"],
+            "E_KEYSET:rows[].archive",
+        )
+        check_keyset(
+            errors,
+            row.get("current_capture", {}),
+            KEYSETS["current_capture"],
+            "E_KEYSET:rows[].current_capture",
+        )
         for relation_item in row.get("live_holding_relations", []):
-            check_keyset(errors, relation_item, KEYSETS["relation"], "E_KEYSET:rows[].live_holding_relations[]")
+            check_keyset(
+                errors,
+                relation_item,
+                KEYSETS["relation"],
+                "E_KEYSET:rows[].live_holding_relations[]",
+            )
         report_row = report["rows"][ordinal - 1]
         source_row = source_rows[ordinal - 1]
         path = report_row["path"]
-        fail(errors, row.get("source_path") == path and row.get("source_item_id") == f"OUTSIDE67-PATH-{ordinal:03d}", f"E_PATH:{ordinal}")
+        fail(
+            errors,
+            row.get("source_path") == path
+            and row.get("source_item_id") == f"OUTSIDE67-PATH-{ordinal:03d}",
+            f"E_PATH:{ordinal}",
+        )
         fail(errors, source_row.get("source_path") == path, f"E_SOURCE_PATH:{ordinal}")
-        fail(errors, row.get("candidate_product") == "shared-cross-product" and row.get("product_status") == "unknown_path_based_candidate_only", f"E_PRODUCT:{ordinal}")
-        fail(errors, row.get("candidate_phase") == "upstream-governance-or-crosswalk" and row.get("phase_status") == "unknown_path_based_candidate_only", f"E_PHASE:{ordinal}")
-        fail(errors, row.get("implementation_status") == "unknown_not_evidenced_by_path_or_blob_catalog", f"E_IMPLEMENTATION:{ordinal}")
-        fail(errors, row.get("degradation_assessment") == "unknown_not_semantically_assessed", f"E_DEGRADATION:{ordinal}")
-        fail(errors, row.get("semantic_inclusion_status") == "unknown_not_semantically_assessed", f"E_SEMANTIC_INCLUSION:{ordinal}")
-        fail(errors, row.get("semantic_inclusion_relation") == "unknown_not_semantically_assessed", f"E_SEMANTIC_RELATION:{ordinal}")
-        fail(errors, row.get("archive_root_present") is False and row.get("legacy_catalog_record_count") == 0, f"E_ARCHIVE_CATALOG:{ordinal}")
-        fail(errors, row.get("authority_effect") == "none" and row.get("meaning_change_applied") is False and row.get("successor_requirement_ids") == [] and row.get("human_decision_ref") is None, f"E_ROW_BOUNDARY:{ordinal}")
-        fail(errors, row.get("old_runtime_test_ci_execution") is False, f"E_ROW_EXECUTION:{ordinal}")
+        fail(
+            errors,
+            row.get("candidate_product") == "shared-cross-product"
+            and row.get("product_status") == "unknown_path_based_candidate_only",
+            f"E_PRODUCT:{ordinal}",
+        )
+        fail(
+            errors,
+            row.get("candidate_phase") == "upstream-governance-or-crosswalk"
+            and row.get("phase_status") == "unknown_path_based_candidate_only",
+            f"E_PHASE:{ordinal}",
+        )
+        fail(
+            errors,
+            row.get("implementation_status")
+            == "unknown_not_evidenced_by_path_or_blob_catalog",
+            f"E_IMPLEMENTATION:{ordinal}",
+        )
+        fail(
+            errors,
+            row.get("degradation_assessment") == "unknown_not_semantically_assessed",
+            f"E_DEGRADATION:{ordinal}",
+        )
+        fail(
+            errors,
+            row.get("semantic_inclusion_status") == "unknown_not_semantically_assessed",
+            f"E_SEMANTIC_INCLUSION:{ordinal}",
+        )
+        fail(
+            errors,
+            row.get("semantic_inclusion_relation")
+            == "unknown_not_semantically_assessed",
+            f"E_SEMANTIC_RELATION:{ordinal}",
+        )
+        fail(
+            errors,
+            row.get("archive_root_present") is False
+            and row.get("legacy_catalog_record_count") == 0,
+            f"E_ARCHIVE_CATALOG:{ordinal}",
+        )
+        fail(
+            errors,
+            row.get("authority_effect") == "none"
+            and row.get("meaning_change_applied") is False
+            and row.get("successor_requirement_ids") == []
+            and row.get("human_decision_ref") is None,
+            f"E_ROW_BOUNDARY:{ordinal}",
+        )
+        fail(
+            errors,
+            row.get("old_runtime_test_ci_execution") is False,
+            f"E_ROW_EXECUTION:{ordinal}",
+        )
         pre_blob = git_blob(PRE_ISOLATION, path)
         archive_blob = git_blob(ARCHIVE, path)
         pre_oid = git_oid(PRE_ISOLATION, path)
         archive_oid = git_oid(ARCHIVE, path)
         pre_sha = digest(pre_blob)
-        fail(errors, pre_oid is not None and archive_oid is not None, f"E_GIT_OBJECT:{ordinal}")
+        fail(
+            errors,
+            pre_oid is not None and archive_oid is not None,
+            f"E_GIT_OBJECT:{ordinal}",
+        )
         if pre_oid is None or archive_oid is None:
             continue
-        fail(errors, row["pre_isolation"]["blob_oid"] == pre_oid and row["pre_isolation"]["sha256"] == pre_sha and row["pre_isolation"]["bytes"] == len(pre_blob), f"E_PRE_PHYSICAL:{ordinal}")
-        fail(errors, row["pre_isolation"]["reported_blob_oid"] == report_row["pre_isolation_blob_oid"] and row["pre_isolation"]["reported_blob_oid_matches_git"] is True, f"E_PRE_REPORT:{ordinal}")
+        fail(
+            errors,
+            row["pre_isolation"]["blob_oid"] == pre_oid
+            and row["pre_isolation"]["sha256"] == pre_sha
+            and row["pre_isolation"]["bytes"] == len(pre_blob),
+            f"E_PRE_PHYSICAL:{ordinal}",
+        )
+        fail(
+            errors,
+            row["pre_isolation"]["reported_blob_oid"]
+            == report_row["pre_isolation_blob_oid"]
+            and row["pre_isolation"]["reported_blob_oid_matches_git"] is True,
+            f"E_PRE_REPORT:{ordinal}",
+        )
         archive_relation = "same" if archive_blob == pre_blob else "different"
         expected_same += archive_relation == "same"
         expected_different += archive_relation == "different"
-        fail(errors, row["archive"]["blob_oid"] == archive_oid and row["archive"]["sha256"] == digest(archive_blob) and row["archive"]["bytes"] == len(archive_blob), f"E_ARCHIVE_PHYSICAL:{ordinal}")
-        fail(errors, row["archive"]["reported_blob_oid"] == report_row["archive_commit_blob_oid"] and row["archive"]["reported_blob_oid_matches_git"] is True, f"E_ARCHIVE_REPORT:{ordinal}")
-        fail(errors, row["archive"]["relation_to_pre_isolation"] == archive_relation, f"E_ARCHIVE_RELATION:{ordinal}")
+        fail(
+            errors,
+            row["archive"]["blob_oid"] == archive_oid
+            and row["archive"]["sha256"] == digest(archive_blob)
+            and row["archive"]["bytes"] == len(archive_blob),
+            f"E_ARCHIVE_PHYSICAL:{ordinal}",
+        )
+        fail(
+            errors,
+            row["archive"]["reported_blob_oid"] == report_row["archive_commit_blob_oid"]
+            and row["archive"]["reported_blob_oid_matches_git"] is True,
+            f"E_ARCHIVE_REPORT:{ordinal}",
+        )
+        fail(
+            errors,
+            row["archive"]["relation_to_pre_isolation"] == archive_relation,
+            f"E_ARCHIVE_RELATION:{ordinal}",
+        )
         current_oid = git_oid(CURRENT_CAPTURE, path)
-        fail(errors, row["current_capture"] == {"commit": CURRENT_CAPTURE, "state": "present" if current_oid else "absent", "blob_oid": current_oid}, f"E_CURRENT_CAPTURE:{ordinal}")
-        fail(errors, report_row.get("archive_root_present") is False and report_row.get("legacy_catalog_record_count") == 0, f"E_REPORT_BOUNDARY:{ordinal}")
+        fail(
+            errors,
+            row["current_capture"]
+            == {
+                "commit": CURRENT_CAPTURE,
+                "state": "present" if current_oid else "absent",
+                "blob_oid": current_oid,
+            },
+            f"E_CURRENT_CAPTURE:{ordinal}",
+        )
+        fail(
+            errors,
+            report_row.get("archive_root_present") is False
+            and report_row.get("legacy_catalog_record_count") == 0,
+            f"E_REPORT_BOUNDARY:{ordinal}",
+        )
 
         relations = row.get("live_holding_relations", [])
         fail(errors, len(relations) == 13, f"E_RELATION_COUNT:{ordinal}")
         all_unmatched = True
         for holding, item in zip(holdings, relations):
-            paths, blobs, shas = relation(path, pre_oid, pre_sha, holding_records[holding["registration_id"]])
-            expected_relation = "no_exact_path_or_blob_or_sha_match" if not (paths or blobs or shas) else "match_requires_review"
-            all_unmatched = all_unmatched and expected_relation == "no_exact_path_or_blob_or_sha_match"
-            fail(errors, item.get("registration_id") == holding["registration_id"], f"E_RELATION_ID:{ordinal}:{holding['registration_id']}")
-            fail(errors, item.get("relation") == expected_relation, f"E_RELATION_STATE:{ordinal}:{holding['registration_id']}")
-            fail(errors, item.get("path_match_count") == len(paths) and item.get("pre_isolation_blob_match_count") == len(blobs) and item.get("pre_isolation_sha256_match_count") == len(shas), f"E_RELATION_COUNTS:{ordinal}:{holding['registration_id']}")
-            fail(errors, item.get("path_match_evidence") == paths and item.get("blob_match_evidence") == blobs and item.get("sha256_match_evidence") == shas, f"E_RELATION_EVIDENCE:{ordinal}:{holding['registration_id']}")
-        fail(errors, all_unmatched and row.get("existing_holding_inclusion_relation") == "not_in_any_of_13_live_holdings", f"E_PHYSICAL_NONINCLUSION:{ordinal}")
-        fail(errors, all_unmatched and row.get("new_holding_needed") == "unresolved_new_holding_needed", f"E_NEW_HOLDING:{ordinal}")
+            paths, blobs, shas = relation(
+                path, pre_oid, pre_sha, holding_records[holding["registration_id"]]
+            )
+            expected_relation = (
+                "no_exact_path_or_blob_or_sha_match"
+                if not (paths or blobs or shas)
+                else "match_requires_review"
+            )
+            all_unmatched = (
+                all_unmatched
+                and expected_relation == "no_exact_path_or_blob_or_sha_match"
+            )
+            fail(
+                errors,
+                item.get("registration_id") == holding["registration_id"],
+                f"E_RELATION_ID:{ordinal}:{holding['registration_id']}",
+            )
+            fail(
+                errors,
+                item.get("relation") == expected_relation,
+                f"E_RELATION_STATE:{ordinal}:{holding['registration_id']}",
+            )
+            fail(
+                errors,
+                item.get("path_match_count") == len(paths)
+                and item.get("pre_isolation_blob_match_count") == len(blobs)
+                and item.get("pre_isolation_sha256_match_count") == len(shas),
+                f"E_RELATION_COUNTS:{ordinal}:{holding['registration_id']}",
+            )
+            fail(
+                errors,
+                item.get("path_match_evidence") == paths
+                and item.get("blob_match_evidence") == blobs
+                and item.get("sha256_match_evidence") == shas,
+                f"E_RELATION_EVIDENCE:{ordinal}:{holding['registration_id']}",
+            )
+        fail(
+            errors,
+            all_unmatched
+            and row.get("existing_holding_inclusion_relation")
+            == "not_in_any_of_13_live_holdings",
+            f"E_PHYSICAL_NONINCLUSION:{ordinal}",
+        )
+        fail(
+            errors,
+            all_unmatched
+            and row.get("new_holding_needed") == "unresolved_new_holding_needed",
+            f"E_NEW_HOLDING:{ordinal}",
+        )
 
     aggregate = inv.get("aggregate", {})
-    fail(errors, aggregate.get("candidate_product_counts") == {"shared-cross-product": 18}, "E_AGGREGATE_PRODUCT")
-    fail(errors, aggregate.get("candidate_phase_counts") == {"upstream-governance-or-crosswalk": 18}, "E_AGGREGATE_PHASE")
-    fail(errors, aggregate.get("archive_blob_relation_counts") == {"different": expected_different, "same": expected_same}, "E_AGGREGATE_BLOBS")
-    fail(errors, aggregate.get("current_state_counts") == {"absent": 18}, "E_AGGREGATE_CURRENT")
-    fail(errors, aggregate.get("not_in_any_live_holding_count") == 18 and aggregate.get("new_holding_needed_unresolved_count") == 18, "E_AGGREGATE_HOLDINGS")
-    fail(errors, aggregate.get("implementation_unknown_count") == 18 and aggregate.get("degradation_unknown_count") == 18 and aggregate.get("semantic_inclusion_unknown_count") == 18 and aggregate.get("legacy_catalog_zero_count") == 18, "E_AGGREGATE_UNKNOWNS")
-    fail(errors, len(inv.get("prohibited_inference", [])) == 6, "E_PROHIBITED_INFERENCE")
-    fail(errors, inv.get("verification_scope", {}).get("static_only") is True, "E_STATIC_ONLY")
+    fail(
+        errors,
+        aggregate.get("candidate_product_counts") == {"shared-cross-product": 18},
+        "E_AGGREGATE_PRODUCT",
+    )
+    fail(
+        errors,
+        aggregate.get("candidate_phase_counts")
+        == {"upstream-governance-or-crosswalk": 18},
+        "E_AGGREGATE_PHASE",
+    )
+    fail(
+        errors,
+        aggregate.get("archive_blob_relation_counts")
+        == {"different": expected_different, "same": expected_same},
+        "E_AGGREGATE_BLOBS",
+    )
+    fail(
+        errors,
+        aggregate.get("current_state_counts") == {"absent": 18},
+        "E_AGGREGATE_CURRENT",
+    )
+    fail(
+        errors,
+        aggregate.get("not_in_any_live_holding_count") == 18
+        and aggregate.get("new_holding_needed_unresolved_count") == 18,
+        "E_AGGREGATE_HOLDINGS",
+    )
+    fail(
+        errors,
+        aggregate.get("implementation_unknown_count") == 18
+        and aggregate.get("degradation_unknown_count") == 18
+        and aggregate.get("semantic_inclusion_unknown_count") == 18
+        and aggregate.get("legacy_catalog_zero_count") == 18,
+        "E_AGGREGATE_UNKNOWNS",
+    )
+    fail(
+        errors, len(inv.get("prohibited_inference", [])) == 6, "E_PROHIBITED_INFERENCE"
+    )
+    fail(
+        errors,
+        inv.get("verification_scope", {}).get("static_only") is True,
+        "E_STATIC_ONLY",
+    )
     return errors
 
 
@@ -315,4 +793,6 @@ if __name__ == "__main__":
         print("FAIL outside-67 rows 31-48 validator")
         print("\n".join(errors))
         sys.exit(1)
-    print("PASS outside-67 rows 31-48 validator: 18 paths / 13 live holdings / static blob relation")
+    print(
+        "PASS outside-67 rows 31-48 validator: 18 paths / 13 live holdings / static blob relation"
+    )

@@ -25,9 +25,10 @@ def normal_input():
 def _same_ref_without_digest(left, right):
     if not isinstance(left, dict) or not isinstance(right, dict):
         return False
-    return all(left.get(key) == right.get(key) for key in (
-        "identity", "revision", "scope", "owner", "source_locator"
-    ))
+    return all(
+        left.get(key) == right.get(key)
+        for key in ("identity", "revision", "scope", "owner", "source_locator")
+    )
 
 
 def _trace_carrier_input():
@@ -50,7 +51,9 @@ def _trace_carrier_input():
 
     # 同Bindingの元KnowledgeRecordのprovenance出現だけをsource0へ結ぶ。
     knowledge_ref = raw["binding"]["knowledge_ref"]
-    records = [row for row in raw["knowledge_records"] if row.get("ref") == knowledge_ref]
+    records = [
+        row for row in raw["knowledge_records"] if row.get("ref") == knowledge_ref
+    ]
     if len(records) != 1:
         raise ValueError("trace fixtureには一意なBinding KnowledgeRecordが必要")
     record = records[0]
@@ -87,9 +90,13 @@ def trace_input(mode="positive"):
     elif mode == "equal_qualifications":
         # source0のQualificationを完全複写。rootは物理一出現のまま。
         qualification_ref = raw["sources"][0]["qualification_ref"]
-        rows = [row for row in raw["qualifications"] if row.get("ref") == qualification_ref]
+        rows = [
+            row for row in raw["qualifications"] if row.get("ref") == qualification_ref
+        ]
         if len(rows) != 1:
-            raise ValueError("equal_qualifications fixtureは元Qualification一件から始める")
+            raise ValueError(
+                "equal_qualifications fixtureは元Qualification一件から始める"
+            )
         raw["qualifications"].append(copy.deepcopy(rows[0]))
     return raw
 
@@ -113,8 +120,7 @@ def _ref(identity, revision, scope, owner, sha256=None):
 def _matching_qualification(raw, source):
     qualification_ref = source.get("qualification_ref")
     matches = [
-        row for row in raw["qualifications"]
-        if row.get("ref") == qualification_ref
+        row for row in raw["qualifications"] if row.get("ref") == qualification_ref
     ]
     if qualification_ref is None or len(matches) != 1:
         raise ValueError("合成sourceには一意なqualification_refが必要")
@@ -134,17 +140,23 @@ def _write_source_content(raw, source, content):
         qualification["subject_sha256"] = digest
 
 
-def _append_qualified_source(raw, *, identity, owner, scope, content,
-                             qualification_identity, root_identity,
-                             revision="synthetic-rev-A"):
+def _append_qualified_source(
+    raw,
+    *,
+    identity,
+    owner,
+    scope,
+    content,
+    qualification_identity,
+    root_identity,
+    revision="synthetic-rev-A",
+):
     """合成sourceと対応するQualification/rootを末尾へ追加する。"""
     source_ref = _ref(identity, revision, scope, owner)
     encoded = _json_bytes(content)
     digest = hashlib.sha256(encoded).hexdigest()
     source_ref["sha256"] = digest
-    qualification_ref = _ref(
-        qualification_identity, revision, scope, owner
-    )
+    qualification_ref = _ref(qualification_identity, revision, scope, owner)
     root_ref = _ref(root_identity, revision, scope, owner)
     source = {
         "ref": source_ref,
@@ -179,7 +191,9 @@ def _target_record(raw, index=0):
 
 
 def _right_source(raw, record):
-    matches = [row for row in raw["sources"] if row.get("ref") == record.get("source_ref")]
+    matches = [
+        row for row in raw["sources"] if row.get("ref") == record.get("source_ref")
+    ]
     if len(matches) != 1:
         raise ValueError("record.source_refに対応するright sourceが一意でない")
     return matches[0]
@@ -200,7 +214,9 @@ def _left_body(raw, record, right_source, *, compatible, outside=False):
             "owner": left_ref["owner"],
             "compatible": compatible,
             "range_relation": "outside" if outside else "not_supplied",
-            "range_reason": "synthetic owner declares pair outside its range" if outside else None,
+            "range_reason": "synthetic owner declares pair outside its range"
+            if outside
+            else None,
         },
     }
     if outside:
@@ -244,10 +260,13 @@ def _range_declaration(raw, record):
     }
 
 
-def _append_left_owner(raw, record, right_source, suffix, *, compatible,
-                       outside=False, source_scope=None):
+def _append_left_owner(
+    raw, record, right_source, suffix, *, compatible, outside=False, source_scope=None
+):
     left_ref = record["left_ref"]
-    scope = copy.deepcopy(source_scope if source_scope is not None else left_ref["scope"])
+    scope = copy.deepcopy(
+        source_scope if source_scope is not None else left_ref["scope"]
+    )
     owner = left_ref["owner"]
     body = _left_body(raw, record, right_source, compatible=compatible, outside=outside)
     return _append_qualified_source(
@@ -280,11 +299,17 @@ def _append_right_range_source(raw, record, suffix):
     )
 
 
-def _add_left_for_record(raw, record, right_source, suffix, *, compatible,
-                         outside=False, source_scope=None):
+def _add_left_for_record(
+    raw, record, right_source, suffix, *, compatible, outside=False, source_scope=None
+):
     return _append_left_owner(
-        raw, record, right_source, suffix, compatible=compatible,
-        outside=outside, source_scope=source_scope,
+        raw,
+        record,
+        right_source,
+        suffix,
+        compatible=compatible,
+        outside=outside,
+        source_scope=source_scope,
     )
 
 
@@ -319,7 +344,9 @@ def bilateral_input(mode):
 
     if mode == "opposing":
         right_positive = _right_source(raw, record)
-        _add_left_for_record(raw, record, right_positive, "OPPOSING-POSITIVE", compatible=True)
+        _add_left_for_record(
+            raw, record, right_positive, "OPPOSING-POSITIVE", compatible=True
+        )
 
         second = copy.deepcopy(record)
         second["ref"] = copy.deepcopy(record["ref"])
@@ -329,16 +356,28 @@ def bilateral_input(mode):
         right_outside = _append_right_range_source(raw, second, "OPPOSING-OUTSIDE")
         _set_record_source(second, right_outside)
         raw["compatibility_records"].append(second)
-        _add_left_for_record(raw, second, right_outside, "OPPOSING-OUTSIDE",
-                             compatible=False, outside=True)
+        _add_left_for_record(
+            raw,
+            second,
+            right_outside,
+            "OPPOSING-OUTSIDE",
+            compatible=False,
+            outside=True,
+        )
         return raw
 
     if mode == "scope":
         right = _right_source(raw, record)
         mismatch_scope = copy.deepcopy(record["left_ref"]["scope"])
         mismatch_scope["environment"] = "synthetic-C3-outside-environment"
-        _add_left_for_record(raw, record, right, "SCOPE-DIFFERS", compatible=True,
-                             source_scope=mismatch_scope)
+        _add_left_for_record(
+            raw,
+            record,
+            right,
+            "SCOPE-DIFFERS",
+            compatible=True,
+            source_scope=mismatch_scope,
+        )
         return raw
 
     if mode == "outside":
@@ -346,8 +385,9 @@ def bilateral_input(mode):
         outside_right = _append_right_range_source(raw, record, "OUTSIDE")
         _set_record_source(record, outside_right)
         _outside_record(record)
-        _add_left_for_record(raw, record, outside_right, "OUTSIDE",
-                             compatible=False, outside=True)
+        _add_left_for_record(
+            raw, record, outside_right, "OUTSIDE", compatible=False, outside=True
+        )
         return raw
 
     # positive: retain the original right source and add only its explicit left owner.

@@ -29,7 +29,9 @@ def _assert_stop(test, callback, branch):
 
 def _measurement_fact(validated):
     raw = validated["input"]
-    slot = next(row for row in raw["descriptors"] if row["descriptor_kind"] == "measurement")
+    slot = next(
+        row for row in raw["descriptors"] if row["descriptor_kind"] == "measurement"
+    )
     return slot["facts"][0]
 
 
@@ -37,7 +39,8 @@ def _oracle_source(validated):
     raw = validated["input"]
     oracle_ref = raw["oracle_bindings"][0]["source_ref"]
     index, source = next(
-        (index, row) for index, row in enumerate(raw["sources"])
+        (index, row)
+        for index, row in enumerate(raw["sources"])
         if row["ref"] == oracle_ref
     )
     return index, source

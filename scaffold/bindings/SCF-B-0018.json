@@ -65,13 +65,13 @@
     },
     {
       "path": "scaffold/research/pre-isolation-research-next60/validate.py",
-      "sha256": "dea857835630b64f022032b79977d7436e09a765c1aaf9c0c64a3ee1956067c9",
-      "note": "RDP-001 research-premise next60 candidate artifact [2026-09-26 旧HELIXからの移行台帳のlegacy-migration/への移動（PO判断） read-after: pre-isolation-research-next60/validate.pyは、旧HELIXからの移行作業の台帳・待ち行列・wave記録をdocs/governance/直下からdocs/governance/legacy-migration/の種類別フォルダへ移した（2026-09-26のPO判断、docs/governance/decisions/governance-legacy-migration-layout-po-decisions-2026-09-26.md）のに合わせ、現行ファイルを読む移動対象のpath定数と、リンク先だけが変わった旧要求atom化review contractの入力SHA定数だけを更新した（判定の条件・分岐・意味field・期待件数は不変）。本bindingのrole・obligations・connections・replacement・artifactは、旧HELIXからの移行台帳のpath（旧docs/governance/直下）、それらへのリンクの表記、研究用pinとvalidatorのpath・digestの表記に依存しないことをbinding全体で確認した。前receipt=922e03d652cdb52e1d99ec0cb5bf08afb5ddd620482a7db34e765e0451829743; 現receipt=4fd362cc7ad40e73810ca8698348a779c0ec88c04eca4766dea208b8f7724139; このBindingの採否・authorityは変更しない。]"
+      "sha256": "88c98c501f90d3001b1024ba36bd5282f0a6979c2202562eef36aaf3f0eec4fb",
+      "note": "RDP-001 research-premise next60 candidate artifact [2026-09-26 旧HELIXからの移行台帳のlegacy-migration/への移動（PO判断） read-after: pre-isolation-research-next60/validate.pyは、旧HELIXからの移行作業の台帳・待ち行列・wave記録をdocs/governance/直下からdocs/governance/legacy-migration/の種類別フォルダへ移した（2026-09-26のPO判断、docs/governance/decisions/governance-legacy-migration-layout-po-decisions-2026-09-26.md）のに合わせ、現行ファイルを読む移動対象のpath定数と、リンク先だけが変わった旧要求atom化review contractの入力SHA定数だけを更新した（判定の条件・分岐・意味field・期待件数は不変）。本bindingのrole・obligations・connections・replacement・artifactは、旧HELIXからの移行台帳のpath（旧docs/governance/直下）、それらへのリンクの表記、研究用pinとvalidatorのpath・digestの表記に依存しないことをbinding全体で確認した。前receipt=922e03d652cdb52e1d99ec0cb5bf08afb5ddd620482a7db34e765e0451829743; 現receipt=4fd362cc7ad40e73810ca8698348a779c0ec88c04eca4766dea208b8f7724139; このBindingの採否・authorityは変更しない。] [WR73/PR3773: 402867935の元sourceとRuff整形後sourceは位置情報を除くAST同値、型コメント付属も保持。binding全体（reason/role/obligations/connections/operations/verificationのoracle・negative case/replacement.role_target）への意味影響を確認し、役割・権限・義務・固定capture・採否は不変として再束縛。旧receipt=dea857835630b64f022032b79977d7436e09a765c1aaf9c0c64a3ee1956067c9; 現receipt=88c98c501f90d3001b1024ba36bd5282f0a6979c2202562eef36aaf3f0eec4fb。固定bytes consumerを持つ4ファイルは除外して元bytesを保持。]"
     },
     {
       "path": "scaffold/research/pre-isolation-research-next60/selfcheck.py",
-      "sha256": "6cf5b5ac83e43849306c3e185058f7bb2b70e73ef39f6aece9a87759f6ac9be0",
-      "note": "RDP-001 research-premise next60 candidate artifact"
+      "sha256": "4b746d854cbc473adae90267823665f11c379a2ad5461c998fc466cb3b5e9461",
+      "note": "RDP-001 research-premise next60 candidate artifact [WR73/PR3773: 402867935の元sourceとRuff整形後sourceは位置情報を除くAST同値、型コメント付属も保持。binding全体（reason/role/obligations/connections/operations/verificationのoracle・negative case/replacement.role_target）への意味影響を確認し、役割・権限・義務・固定capture・採否は不変として再束縛。旧receipt=6cf5b5ac83e43849306c3e185058f7bb2b70e73ef39f6aece9a87759f6ac9be0; 現receipt=4b746d854cbc473adae90267823665f11c379a2ad5461c998fc466cb3b5e9461。固定bytes consumerを持つ4ファイルは除外して元bytesを保持。]"
     }
   ],
   "role": "RDP-001 pre-isolation source revisionのexact Git-object provenanceとhunk-level research-premise候補を保持し、PR #1949候補との非重複、candidate product／phase／legacy status、compound hold、review-only subunit、未完了denominator、counterevidenceを後続の意味reviewへ引き渡す。",

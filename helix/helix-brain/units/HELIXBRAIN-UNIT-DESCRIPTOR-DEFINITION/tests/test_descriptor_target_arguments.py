@@ -1,4 +1,5 @@
 """L4 fill_definition専用portの経路外引数を明示停止する負例。"""
+
 import copy
 import unittest
 
@@ -21,7 +22,9 @@ class TestDescriptorTargetArguments(unittest.TestCase):
                 before = copy.deepcopy((validated, claim))
                 with self.assertRaises(NotImplementedError) as caught:
                     read_descriptor_replacement_target(validated, claim, "/claims/0")
-                self.assertEqual(str(caught.exception),
+                self.assertEqual(
+                    str(caught.exception),
                     "F01/F02/unclosed/descriptor_target_reader; "
-                    "Backflow HELIXBRAIN-L6-032-N03-PATH")
+                    "Backflow HELIXBRAIN-L6-032-N03-PATH",
+                )
                 self.assertEqual((validated, claim), before)

@@ -4,6 +4,7 @@ Expectations are read from the L4 finite-domain/route projection and the L5
 ClaimUse/public-output contracts. FN0, FN1-FN6, the definition walk and ClaimUse
 builder are called on the same raw input. No Comparison/frame is fabricated.
 """
+
 from __future__ import annotations
 
 import copy
@@ -42,21 +43,27 @@ def _actual_same_call(raw):
     validated_before = copy.deepcopy(validated)
 
     definitions = compare_descriptor_definitions({"validated": validated})
-    values = compare_values_and_applicability({
-        "validated": validated,
-        "definitions": definitions,
-    })
+    values = compare_values_and_applicability(
+        {
+            "validated": validated,
+            "definitions": definitions,
+        }
+    )
     identity = compare_identity_versions_and_trace({"validated": validated})
-    oracle = compare_oracle_and_view_boundary({
-        "validated": validated,
-        "definitions": definitions,
-        "identity_trace": identity,
-    })
+    oracle = compare_oracle_and_view_boundary(
+        {
+            "validated": validated,
+            "definitions": definitions,
+            "identity_trace": identity,
+        }
+    )
     promotion = compare_knowledge_promotion({"validated": validated})
-    dependencies = compare_dependencies_and_handoff({
-        "validated": validated,
-        "definitions": definitions,
-    })
+    dependencies = compare_dependencies_and_handoff(
+        {
+            "validated": validated,
+            "definitions": definitions,
+        }
+    )
     comparisons = {
         "definitions": definitions,
         "values_applicability": values,
@@ -132,14 +139,8 @@ class TestClaimBoundariesFiniteRoutes(unittest.TestCase):
     def _assert_all_required_definitions_remain_missing(self, call):
         raw = call["validated"]["input"]
         rows = call["comparisons"]["definitions"]["axes"]
-        expected = {
-            f"{kind}.definition"
-            for kind in raw["required_descriptor_kinds"]
-        }
-        missing = {
-            row["axis"] for row in rows
-            if row["state"] == "missing"
-        }
+        expected = {f"{kind}.definition" for kind in raw["required_descriptor_kinds"]}
+        missing = {row["axis"] for row in rows if row["state"] == "missing"}
         self.assertTrue(expected <= missing)
 
     def test_none_route_keeps_null_and_string_claim_occurrences(self):
@@ -160,12 +161,14 @@ class TestClaimBoundariesFiniteRoutes(unittest.TestCase):
             [use["route"] for use in call["uses"]],
             ["none", "none"],
         )
-        self.assertTrue(all(
-            use["route_reason"] == ROUTE_REASON["none"]
-            and use["intent_read"]["intent"] == "positive"
-            and use["target_read"]["state"] == "resolved"
-            for use in call["uses"]
-        ))
+        self.assertTrue(
+            all(
+                use["route_reason"] == ROUTE_REASON["none"]
+                and use["intent_read"]["intent"] == "positive"
+                and use["target_read"]["state"] == "resolved"
+                for use in call["uses"]
+            )
+        )
         self.assertEqual(len(call["walk"]["target_reads"]), 2)
         self.assertEqual(len(call["walk"]["intent_reads"]), 2)
         _assert_fn7_projection(self, call)
@@ -185,12 +188,14 @@ class TestClaimBoundariesFiniteRoutes(unittest.TestCase):
             [use["route"] for use in call["uses"]],
             ["unresolved", "unresolved"],
         )
-        self.assertTrue(all(
-            use["route_reason"] == ROUTE_REASON["unresolved"]
-            and use["intent_read"]["intent"] == "positive"
-            and use["target_read"]["state"] == "conflict"
-            for use in call["uses"]
-        ))
+        self.assertTrue(
+            all(
+                use["route_reason"] == ROUTE_REASON["unresolved"]
+                and use["intent_read"]["intent"] == "positive"
+                and use["target_read"]["state"] == "conflict"
+                for use in call["uses"]
+            )
+        )
         self.assertTrue(all(use["assessment_indices"] == [] for use in call["uses"]))
         self.assertEqual(len(call["walk"]["target_reads"]), 2)
         _assert_fn7_projection(self, call)
@@ -218,7 +223,8 @@ class TestClaimBoundariesFiniteRoutes(unittest.TestCase):
         self.assertEqual(use["route_reason"], ROUTE_REASON["rule87"])
 
         fn6_rule87 = [
-            finding for finding in call["comparisons"]["dependencies_handoff"]["findings"]
+            finding
+            for finding in call["comparisons"]["dependencies_handoff"]["findings"]
             if finding.get("rule_ref") == FN6_RULE87
         ]
         self.assertEqual(len(fn6_rule87), 1)
@@ -228,4 +234,3 @@ class TestClaimBoundariesFiniteRoutes(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
-

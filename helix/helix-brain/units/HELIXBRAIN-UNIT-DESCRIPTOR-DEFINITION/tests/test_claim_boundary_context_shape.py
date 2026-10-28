@@ -60,7 +60,9 @@ class TestClaimBoundaryContextShape(unittest.TestCase):
             with self.subTest(case=label):
                 self._assert_unclosed(context, "claim_context_shape")
 
-    def test_validated_supply_shape_rejects_nonobject_missing_extra_and_bad_arrays(self):
+    def test_validated_supply_shape_rejects_nonobject_missing_extra_and_bad_arrays(
+        self,
+    ):
         """Only the fixed three-member ValidatedSupply envelope is accepted."""
         valid_shape = {
             "input": None,

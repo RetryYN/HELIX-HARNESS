@@ -65,13 +65,13 @@
     },
     {
       "path": "scaffold/research/delegated-doc-005-014-011-018/validate.py",
-      "sha256": "9fc1d4617256b9244bf07d86c4359b7bae82589a6a0ef3ad9372455fa59c2a91",
-      "note": "RDP-001 candidate artifact [2026-09-26 旧HELIXからの移行台帳のlegacy-migration/への移動（PO判断） read-after: delegated-doc-005-014-011-018/validate.pyは、旧HELIXからの移行作業の台帳・待ち行列・wave記録をdocs/governance/直下からdocs/governance/legacy-migration/の種類別フォルダへ移した（2026-09-26のPO判断、docs/governance/decisions/governance-legacy-migration-layout-po-decisions-2026-09-26.md）のに合わせ、現行ファイルを読む移動対象のpath定数（または同じ定数の一覧）だけを新しいpathへ改めた（判定の条件・分岐・意味field・期待件数は不変、git diffで定数行だけの変更を確認）。本bindingのrole・obligations・connections・replacement・artifactは、旧HELIXからの移行台帳のpath（旧docs/governance/直下）、それらへのリンクの表記、研究用pinとvalidatorのpath・digestの表記に依存しないことをbinding全体で確認した。前receipt=874add6ad53432bbcf44a2f67ae3d5fe9c371cd53458b0d866b8fbba9115726d; 現receipt=f0e9ab89cfcebdb5ece07cadcd6c3b9e2ba08531fb9da1b7b66ebf9ec701cee9; このBindingの採否・authorityは変更しない。]"
+      "sha256": "65636126a8343203273746a377d73c41c3d72d5482a442e540a3a65573165390",
+      "note": "RDP-001 candidate artifact [2026-09-26 旧HELIXからの移行台帳のlegacy-migration/への移動（PO判断） read-after: delegated-doc-005-014-011-018/validate.pyは、旧HELIXからの移行作業の台帳・待ち行列・wave記録をdocs/governance/直下からdocs/governance/legacy-migration/の種類別フォルダへ移した（2026-09-26のPO判断、docs/governance/decisions/governance-legacy-migration-layout-po-decisions-2026-09-26.md）のに合わせ、現行ファイルを読む移動対象のpath定数（または同じ定数の一覧）だけを新しいpathへ改めた（判定の条件・分岐・意味field・期待件数は不変、git diffで定数行だけの変更を確認）。本bindingのrole・obligations・connections・replacement・artifactは、旧HELIXからの移行台帳のpath（旧docs/governance/直下）、それらへのリンクの表記、研究用pinとvalidatorのpath・digestの表記に依存しないことをbinding全体で確認した。前receipt=874add6ad53432bbcf44a2f67ae3d5fe9c371cd53458b0d866b8fbba9115726d; 現receipt=f0e9ab89cfcebdb5ece07cadcd6c3b9e2ba08531fb9da1b7b66ebf9ec701cee9; このBindingの採否・authorityは変更しない。] [WR73/PR3773: 402867935の元sourceとRuff整形後sourceは位置情報を除くAST同値、型コメント付属も保持。binding全体（reason/role/obligations/connections/operations/verificationのoracle・negative case/replacement.role_target）への意味影響を確認し、役割・権限・義務・固定capture・採否は不変として再束縛。旧receipt=9fc1d4617256b9244bf07d86c4359b7bae82589a6a0ef3ad9372455fa59c2a91; 現receipt=65636126a8343203273746a377d73c41c3d72d5482a442e540a3a65573165390。固定bytes consumerを持つ4ファイルは除外して元bytesを保持。]"
     },
     {
       "path": "scaffold/research/delegated-doc-005-014-011-018/selfcheck.py",
-      "sha256": "c603b4ddf3d4674896ec776a1a7374469ec1968de5fc2d54144c28229f8a2dfa",
-      "note": "RDP-001 candidate artifact"
+      "sha256": "5f97e75892d110f96f1933de99bfba58ebc50f546b3254c35f278b368adb1676",
+      "note": "RDP-001 candidate artifact [WR73/PR3773: 402867935の元sourceとRuff整形後sourceは位置情報を除くAST同値、型コメント付属も保持。binding全体（reason/role/obligations/connections/operations/verificationのoracle・negative case/replacement.role_target）への意味影響を確認し、役割・権限・義務・固定capture・採否は不変として再束縛。旧receipt=c603b4ddf3d4674896ec776a1a7374469ec1968de5fc2d54144c28229f8a2dfa; 現receipt=5f97e75892d110f96f1933de99bfba58ebc50f546b3254c35f278b368adb1676。固定bytes consumerを持つ4ファイルは除外して元bytesを保持。]"
     }
   ],
   "role": "DELEGATED-DOC-005/014 と DOC-011/018のsource blobをfull coverageとsource atom候補へ分け、原ID／actor／authority／negative、L3/L10 AC/T parity、missing crossdoc、HARNESS／OS owner候補、phase／implementation／consumer未確認境界を保持する。",

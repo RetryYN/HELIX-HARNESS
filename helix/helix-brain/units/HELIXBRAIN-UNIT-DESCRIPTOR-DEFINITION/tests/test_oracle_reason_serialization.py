@@ -1,4 +1,5 @@
 """R3-M1: FN4診断のUnicode canonical JSONをbyte列で確認する。"""
+
 import copy
 import json
 import unittest
@@ -17,7 +18,9 @@ from oracle_binding_input_fixtures import (
 
 class TestOracleReasonSerialization(unittest.TestCase):
     def _assert_canonical_reason(self, rule):
-        raw, _before, _slot, _fact, oracle, source, _old, _new = oracle_binding_rule_input(rule)
+        raw, _before, _slot, _fact, oracle, source, _old, _new = (
+            oracle_binding_rule_input(rule)
+        )
         oracle["ref"]["identity"] = "合成-オラクル束縛"
         mirror = source["content"]["oracle_bindings"][0]
         for member in mirror:
@@ -31,7 +34,9 @@ class TestOracleReasonSerialization(unittest.TestCase):
         context = {
             "validated": validated,
             "definitions": compare_descriptor_definitions({"validated": validated}),
-            "identity_trace": compare_identity_versions_and_trace({"validated": validated}),
+            "identity_trace": compare_identity_versions_and_trace(
+                {"validated": validated}
+            ),
         }
         context_before = copy.deepcopy(context)
         result = compare_oracle_and_view_boundary(context)
@@ -41,9 +46,15 @@ class TestOracleReasonSerialization(unittest.TestCase):
         prefix, separator, diagnostic_text = reason.partition("\n")
         self.assertEqual(separator, "\n")
         self.assertIn("合成-オラクル束縛", diagnostic_text)
-        canonical = json.dumps(json.loads(diagnostic_text), ensure_ascii=False,
-                               sort_keys=True, separators=(",", ":"))
-        self.assertEqual(reason.encode("utf-8"), (prefix + "\n" + canonical).encode("utf-8"))
+        canonical = json.dumps(
+            json.loads(diagnostic_text),
+            ensure_ascii=False,
+            sort_keys=True,
+            separators=(",", ":"),
+        )
+        self.assertEqual(
+            reason.encode("utf-8"), (prefix + "\n" + canonical).encode("utf-8")
+        )
         self.assertEqual(raw, raw_before)
         self.assertEqual(context, context_before)
 

@@ -20,13 +20,13 @@
     },
     {
       "path": "scaffold/research/phcap15-deploy-research/validate.py",
-      "sha256": "321d9c8035a72bd97f56936bed895b82436f26d4265bbbe62c475207c42cd26e",
-      "note": "ledger digest、exact span、four-product、phase join、unknown validator"
+      "sha256": "8905215158618892efca47463ea5d2dfd8822acf3e5f9782b207316834b799fb",
+      "note": "ledger digest、exact span、four-product、phase join、unknown validator [WR73/PR3773: 402867935の元sourceとRuff整形後sourceは位置情報を除くAST同値、型コメント付属も保持。binding全体（reason/role/obligations/connections/operations/verificationのoracle・negative case/replacement.role_target）への意味影響を確認し、役割・権限・義務・固定capture・採否は不変として再束縛。旧receipt=321d9c8035a72bd97f56936bed895b82436f26d4265bbbe62c475207c42cd26e; 現receipt=8905215158618892efca47463ea5d2dfd8822acf3e5f9782b207316834b799fb。固定bytes consumerを持つ4ファイルは除外して元bytesを保持。]"
     },
     {
       "path": "scaffold/research/phcap15-deploy-research/selfcheck.py",
-      "sha256": "c0d1ee5c773a0046005bb65bfc2ca2f7fb7f2747a3d94352020590abbf66302f",
-      "note": "41 authority／implementation／failure／consumer／source／keyset negative cases"
+      "sha256": "f34d27377fde01c9f423d53169cb8203449d615405e95c118d6bdba37800bd2f",
+      "note": "41 authority／implementation／failure／consumer／source／keyset negative cases [WR73/PR3773: 402867935の元sourceとRuff整形後sourceは位置情報を除くAST同値、型コメント付属も保持。binding全体（reason/role/obligations/connections/operations/verificationのoracle・negative case/replacement.role_target）への意味影響を確認し、役割・権限・義務・固定capture・採否は不変として再束縛。旧receipt=c0d1ee5c773a0046005bb65bfc2ca2f7fb7f2747a3d94352020590abbf66302f; 現receipt=f34d27377fde01c9f423d53169cb8203449d615405e95c118d6bdba37800bd2f。固定bytes consumerを持つ4ファイルは除外して元bytesを保持。]"
     },
     {
       "path": "docs/governance/phase-capability-inventory.json",

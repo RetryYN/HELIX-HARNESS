@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Selftest for scaffold/tools/bounded_exec.py (evidence_kind: scaffold, authority_effect: none)."""
+
 import errno
 import json
 import os
@@ -49,14 +50,21 @@ class BoundedExecSelftest(unittest.TestCase):
             "reaped": True,
             "error": None,
         }
-        self.assertEqual(b.classify_terminal(base), {"ok": True, "classification": "ok", "failure": None})
+        self.assertEqual(
+            b.classify_terminal(base),
+            {"ok": True, "classification": "ok", "failure": None},
+        )
         self.assertEqual(
             b.classify_terminal({**base, "timed_out": True}),
             {"ok": False, "classification": "timeout", "failure": "timeout"},
         )
         self.assertEqual(
             b.classify_terminal({**base, "tree_lingered": True}),
-            {"ok": False, "classification": "tree_lingered", "failure": "tree_lingered"},
+            {
+                "ok": False,
+                "classification": "tree_lingered",
+                "failure": "tree_lingered",
+            },
         )
         self.assertEqual(
             b.classify_terminal({**base, "interrupted_by": "SIGINT"}),
@@ -68,7 +76,11 @@ class BoundedExecSelftest(unittest.TestCase):
         )
         self.assertEqual(
             b.classify_terminal({**base, "reaped": False}),
-            {"ok": False, "classification": "reap_unconfirmed", "failure": "reap_unconfirmed"},
+            {
+                "ok": False,
+                "classification": "reap_unconfirmed",
+                "failure": "reap_unconfirmed",
+            },
         )
         self.assertEqual(
             b.classify_terminal({**base, "error": "spawn_error", "status": None}),
@@ -122,7 +134,8 @@ class BoundedExecSelftest(unittest.TestCase):
         self.assertEqual(outcome["stderr_bytes"], 6)
         self.assertTrue(outcome["output_truncated"])
         self.assertEqual(
-            len(outcome["stdout"].encode("utf-8")) + len(outcome["stderr"].encode("utf-8")),
+            len(outcome["stdout"].encode("utf-8"))
+            + len(outcome["stderr"].encode("utf-8")),
             10,
         )
 
@@ -130,7 +143,11 @@ class BoundedExecSelftest(unittest.TestCase):
         # M1: 64KiB超（300KiB）のstdinを完全に非同期書込できることと、childがstdinを読まない場合でもtimeoutが効くことを確認する。
         large_payload = b"A" * (300 * 1024)
         read_outcome = b.run_bounded(
-            [sys.executable, "-c", "import sys; sys.stdout.write(str(len(sys.stdin.buffer.read())))"],
+            [
+                sys.executable,
+                "-c",
+                "import sys; sys.stdout.write(str(len(sys.stdin.buffer.read())))",
+            ],
             timeout_ms=3_000,
             stdin_data=large_payload,
         )
@@ -161,7 +178,7 @@ class BoundedExecSelftest(unittest.TestCase):
                 "import json, os, pathlib, signal, subprocess, sys, time\n"
                 "signal.signal(signal.SIGTERM, signal.SIG_IGN)\n"
                 "g = subprocess.Popen([sys.executable, '-c', "
-                "\"import pathlib, signal, sys, time; signal.signal(signal.SIGTERM, signal.SIG_IGN); "
+                '"import pathlib, signal, sys, time; signal.signal(signal.SIGTERM, signal.SIG_IGN); '
                 "pathlib.Path(sys.argv[1]).write_text('ready'); "
                 "time.sleep(1.2); pathlib.Path(sys.argv[2]).write_text('late')\", "
                 "sys.argv[1], sys.argv[3]])\n"
@@ -172,7 +189,14 @@ class BoundedExecSelftest(unittest.TestCase):
                 "time.sleep(30)\n"
             )
             outcome = b.run_bounded(
-                [sys.executable, "-c", child_code, str(ready_file), str(pid_file), str(late_marker)],
+                [
+                    sys.executable,
+                    "-c",
+                    child_code,
+                    str(ready_file),
+                    str(pid_file),
+                    str(late_marker),
+                ],
                 timeout_ms=400,
                 grace_ms=60,
                 reap_ms=1_500,
@@ -200,7 +224,7 @@ class BoundedExecSelftest(unittest.TestCase):
             child_code = (
                 "import json, os, pathlib, signal, subprocess, sys, time\n"
                 "g = subprocess.Popen([sys.executable, '-c', "
-                "\"import pathlib, signal, sys, time; signal.signal(signal.SIGTERM, signal.SIG_IGN); "
+                '"import pathlib, signal, sys, time; signal.signal(signal.SIGTERM, signal.SIG_IGN); '
                 "pathlib.Path(sys.argv[1]).write_text('ready'); time.sleep(30)\", sys.argv[1]], "
                 "stdin=subprocess.DEVNULL, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)\n"
                 "while not pathlib.Path(sys.argv[1]).exists():\n"
@@ -232,7 +256,11 @@ class BoundedExecSelftest(unittest.TestCase):
                 os.killpg(pids["pgid"], 0)
 
     def test_parent_signal_forwarded_to_process_group_and_reaped(self):
-        for sig_name, expected_code in (("SIGINT", 130), ("SIGTERM", 143), ("SIGHUP", 129)):
+        for sig_name, expected_code in (
+            ("SIGINT", 130),
+            ("SIGTERM", 143),
+            ("SIGHUP", 129),
+        ):
             with self.subTest(signal=sig_name):
                 with tempfile.TemporaryDirectory() as tmp:
                     ready_file = Path(tmp) / "g_ready.txt"
@@ -242,7 +270,7 @@ class BoundedExecSelftest(unittest.TestCase):
                         "import json, os, pathlib, signal, subprocess, sys, time\n"
                         "signal.signal(signal.SIGTERM, signal.SIG_IGN)\n"
                         "g = subprocess.Popen([sys.executable, '-c', "
-                        "\"import pathlib, signal, sys, time; signal.signal(signal.SIGTERM, signal.SIG_IGN); "
+                        '"import pathlib, signal, sys, time; signal.signal(signal.SIGTERM, signal.SIG_IGN); '
                         "pathlib.Path(sys.argv[1]).write_text('ready'); time.sleep(30)\", sys.argv[1]])\n"
                         "while not pathlib.Path(sys.argv[1]).exists():\n"
                         "    time.sleep(0.005)\n"
@@ -307,7 +335,9 @@ class BoundedExecSelftest(unittest.TestCase):
         holder = {}
 
         def _in_worker_thread():
-            holder["outcome"] = b.run_bounded([sys.executable, "-c", "pass"], timeout_ms=1_000)
+            holder["outcome"] = b.run_bounded(
+                [sys.executable, "-c", "pass"], timeout_ms=1_000
+            )
 
         t = threading.Thread(target=_in_worker_thread)
         t.start()
@@ -321,7 +351,11 @@ class BoundedExecSelftest(unittest.TestCase):
         try:
             signal.signal(signal.SIGHUP, signal.SIG_IGN)
             hup_outcome = b.run_bounded(
-                [sys.executable, "-c", f"import os, signal; os.kill({os.getpid()}, signal.SIGHUP)"],
+                [
+                    sys.executable,
+                    "-c",
+                    f"import os, signal; os.kill({os.getpid()}, signal.SIGHUP)",
+                ],
                 timeout_ms=2_000,
             )
             self.assertTrue(hup_outcome["ok"])
@@ -345,10 +379,13 @@ class BoundedExecSelftest(unittest.TestCase):
             registered_signals.append((sig, handler))
             return real_signal_fn(sig, handler)
 
-        with patch.object(b.signal, "getsignal", side_effect=fake_getsignal), patch.object(
-            b.signal, "signal", side_effect=tracking_signal
+        with (
+            patch.object(b.signal, "getsignal", side_effect=fake_getsignal),
+            patch.object(b.signal, "signal", side_effect=tracking_signal),
         ):
-            n1_outcome = b.run_bounded([sys.executable, "-c", "print('n1-ok')"], timeout_ms=2_000)
+            n1_outcome = b.run_bounded(
+                [sys.executable, "-c", "print('n1-ok')"], timeout_ms=2_000
+            )
         self.assertTrue(n1_outcome["ok"])
         self.assertEqual(n1_outcome["classification"], "ok")
         self.assertEqual(n1_outcome["stdout"], "n1-ok\n")
@@ -375,7 +412,14 @@ class BoundedExecSelftest(unittest.TestCase):
                 "raise SystemExit(b.exit_code_for_outcome(outcome))\n"
             )
             wrapper = subprocess.Popen(
-                [sys.executable, "-c", wrapper_code, child_code, str(ready_file), str(out_file)],
+                [
+                    sys.executable,
+                    "-c",
+                    wrapper_code,
+                    child_code,
+                    str(ready_file),
+                    str(out_file),
+                ],
                 stdout=subprocess.DEVNULL,
                 stderr=subprocess.DEVNULL,
             )

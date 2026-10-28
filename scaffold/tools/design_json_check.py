@@ -1,30 +1,80 @@
 #!/usr/bin/env python3
 """Read-only static check for explicit design JSON references."""
+
 import argparse, collections, hashlib, json, os, re, subprocess, sys
 from pathlib import Path
 
 REV, SHA = re.compile(r"^[0-9a-f]{40}$"), re.compile(r"^[0-9a-f]{64}$")
-POINTER_KEYS = {"json_pointer", "pointer", "pointers", "base_pointer", "input_base_pointer", "input_patch_pointer",
-                "source_patch_pointer", "origin_before_case_pointer", "fixture_base_pointer", "base_case_pointer"}
+POINTER_KEYS = {
+    "json_pointer",
+    "pointer",
+    "pointers",
+    "base_pointer",
+    "input_base_pointer",
+    "input_patch_pointer",
+    "source_patch_pointer",
+    "origin_before_case_pointer",
+    "fixture_base_pointer",
+    "base_case_pointer",
+}
 LOCAL_POINTER_KEYS = {"scope_pointers", "document_id_source_pointer"}
 REVISION_KEYS = ("revision", "commit", "source_revision", "approval_record_revision")
-WHOLE_SHA_KEYS = ("sha256", "source_sha256", "file_sha256", "file_bytes_sha256", "whole_sha256",
-                  "whole_file_sha256", "approval_record_sha256")
+WHOLE_SHA_KEYS = (
+    "sha256",
+    "source_sha256",
+    "file_sha256",
+    "file_bytes_sha256",
+    "whole_sha256",
+    "whole_file_sha256",
+    "approval_record_sha256",
+)
 PATH_KEY_EXCEPTIONS = {"path", "document", "paired_document"}
 PIN_EXCEPTIONS = {
-    "path": (("revision", "commit", "source_revision"),
-             ("sha256", "source_sha256", "file_sha256", "file_bytes_sha256", "whole_sha256",
-              "whole_file_sha256", "source_file_sha256")),
-    "source_path": (("source_revision", "source_commit", "revision"),
-                    ("source_sha256", "sha256", "whole_sha256", "file_sha256", "source_file_sha256")),
-    "approval_record_path": (("approval_record_revision", "approval_record_commit"),
-                             ("approval_record_sha256",)),
+    "path": (
+        ("revision", "commit", "source_revision"),
+        (
+            "sha256",
+            "source_sha256",
+            "file_sha256",
+            "file_bytes_sha256",
+            "whole_sha256",
+            "whole_file_sha256",
+            "source_file_sha256",
+        ),
+    ),
+    "source_path": (
+        ("source_revision", "source_commit", "revision"),
+        (
+            "source_sha256",
+            "sha256",
+            "whole_sha256",
+            "file_sha256",
+            "source_file_sha256",
+        ),
+    ),
+    "approval_record_path": (
+        ("approval_record_revision", "approval_record_commit"),
+        ("approval_record_sha256",),
+    ),
     "document": (("revision",), ("sha256", "file_sha256")),
     "paired_document": (("revision",), ("sha256", "file_sha256")),
 }
-SKIP_PIN_KEYS = {"pointer", "pointers", "json_pointer", "line_range", "read_lines", "start_line",
-                 "end_line_exclusive", "quote", "line_range_inclusive", "exact_quote", "lines",
-                 "archive_range", "archive_quote_sha256", "byte_length"}
+SKIP_PIN_KEYS = {
+    "pointer",
+    "pointers",
+    "json_pointer",
+    "line_range",
+    "read_lines",
+    "start_line",
+    "end_line_exclusive",
+    "quote",
+    "line_range_inclusive",
+    "exact_quote",
+    "lines",
+    "archive_range",
+    "archive_quote_sha256",
+    "byte_length",
+}
 PATH_SUFFIXES = (".json", ".jsonl", ".md", ".yaml", ".yml", ".py", ".ts", ".txt")
 LEGACY_ROOT = "archive/legacy-generation-2026-09-14/root/"
 LOCAL_PREFIX = "scaffold/review-handoff/local/"
@@ -35,26 +85,40 @@ FIXED_SOURCE_BINDINGS = (
 
 
 def safe(path):
-    return (isinstance(path, str) and path and os.path.normpath(path) == path
-            and not os.path.isabs(path) and ".." not in path.split("/") and "\\" not in path)
+    return (
+        isinstance(path, str)
+        and path
+        and os.path.normpath(path) == path
+        and not os.path.isabs(path)
+        and ".." not in path.split("/")
+        and "\\" not in path
+    )
 
 
 def parse_ref(value):
     if not isinstance(value, str):
         return None, None, None
-    path, pointer = (value.split("#", 1) + [None])[:2] if "#" in value else (value, None)
+    path, pointer = (
+        (value.split("#", 1) + [None])[:2] if "#" in value else (value, None)
+    )
     match = re.match(r"^([0-9a-f]{40}):(.*)$", path)
     return (match.group(2), pointer, match.group(1)) if match else (path, pointer, None)
 
 
 def looks_like_path(value):
     path, _, _ = parse_ref(value)
-    return (isinstance(path, str) and path and not path.startswith("/")
-            and ("/" in path or path.endswith(PATH_SUFFIXES)))
+    return (
+        isinstance(path, str)
+        and path
+        and not path.startswith("/")
+        and ("/" in path or path.endswith(PATH_SUFFIXES))
+    )
 
 
 def unsafe_shape(value):
-    return isinstance(value, str) and (value.startswith("../") or "\\" in value or os.path.isabs(value))
+    return isinstance(value, str) and (
+        value.startswith("../") or "\\" in value or os.path.isabs(value)
+    )
 
 
 def resolve(doc, ref):
@@ -79,8 +143,14 @@ def file_path_key(key):
 
 
 def semantic_path(path):
-    return (re.search(r"[\u3000-\uffff]", path) or ":" in path or " " in path
-            or "{" in path or "}" in path or not path.endswith(PATH_SUFFIXES))
+    return (
+        re.search(r"[\u3000-\uffff]", path)
+        or ":" in path
+        or " " in path
+        or "{" in path
+        or "}" in path
+        or not path.endswith(PATH_SUFFIXES)
+    )
 
 
 def fixture_path(path):
@@ -88,14 +158,24 @@ def fixture_path(path):
 
 
 def pin_candidates(obj):
-    for path_key in [k for k in obj if file_path_key(k) and looks_like_path(obj.get(k))]:
+    for path_key in [
+        k for k in obj if file_path_key(k) and looks_like_path(obj.get(k))
+    ]:
         if path_key in PIN_EXCEPTIONS:
             revision_keys, sha_keys = PIN_EXCEPTIONS[path_key]
         else:
             prefix = path_key[:-5]
-            revision_keys, sha_keys = (prefix + "_revision", prefix + "_commit"), (prefix + "_sha256",)
-        fixed = {key for key in revision_keys if key != "source_revision"
-                 and isinstance(obj.get(key), str) and REV.fullmatch(obj[key])}
+            revision_keys, sha_keys = (
+                (prefix + "_revision", prefix + "_commit"),
+                (prefix + "_sha256",),
+            )
+        fixed = {
+            key
+            for key in revision_keys
+            if key != "source_revision"
+            and isinstance(obj.get(key), str)
+            and REV.fullmatch(obj[key])
+        }
         for rev_key in revision_keys:
             if path_key == "path" and rev_key == "source_revision" and fixed:
                 continue
@@ -123,8 +203,11 @@ class Checker:
         key = (path, revision)
         if key not in self.blobs:
             if revision:
-                p = subprocess.run(["git", "-C", self.root, "show", revision + ":" + path],
-                                   stdout=subprocess.PIPE, stderr=subprocess.DEVNULL)
+                p = subprocess.run(
+                    ["git", "-C", self.root, "show", revision + ":" + path],
+                    stdout=subprocess.PIPE,
+                    stderr=subprocess.DEVNULL,
+                )
                 if p.returncode:
                     raise FileNotFoundError(revision + ":" + path)
                 data = p.stdout
@@ -146,15 +229,25 @@ class Checker:
         return None, False
 
     def path_in(self, obj):
-        for key in ("path", "source_path", "approval_record_path", "document", "paired_document"):
+        for key in (
+            "path",
+            "source_path",
+            "approval_record_path",
+            "document",
+            "paired_document",
+        ):
             path, _, _ = parse_ref(obj.get(key))
             if looks_like_path(obj.get(key)) and safe(path):
                 return path
 
     def classify_pins(self, obj, rel, at):
         fragment_pin = any(file_path_key(k) and "#" in str(obj.get(k, "")) for k in obj)
-        if (SKIP_PIN_KEYS & obj.keys() or fragment_pin or "candidate" in str(obj.get("kind", ""))
-                or any(k.startswith("historical") for k in obj)):
+        if (
+            SKIP_PIN_KEYS & obj.keys()
+            or fragment_pin
+            or "candidate" in str(obj.get("kind", ""))
+            or any(k.startswith("historical") for k in obj)
+        ):
             self.unclassified["partial_or_candidate_pin"] += 1
             return
         matched = False
@@ -170,8 +263,11 @@ class Checker:
             else:
                 self.verify_pin(rel, at + "/" + sha_key, path, revision, expected)
         has_path = any(file_path_key(k) and looks_like_path(obj.get(k)) for k in obj)
-        has_rev = any(("revision" in k or "commit" in k or k.endswith("_head")) and isinstance(obj[k], str)
-                      for k in obj)
+        has_rev = any(
+            ("revision" in k or "commit" in k or k.endswith("_head"))
+            and isinstance(obj[k], str)
+            for k in obj
+        )
         has_sha = any(k.endswith("sha256") and isinstance(obj[k], str) for k in obj)
         if not matched and sum((has_path, has_rev, has_sha)) >= 2:
             self.unclassified["unpaired_pin_shape"] += 1
@@ -180,17 +276,28 @@ class Checker:
         try:
             actual = hashlib.sha256(self.blob(path, revision)).hexdigest()
         except Exception as error:
-            self.fail(rel, at, "E_LOCAL_REF" if path.startswith(LOCAL_PREFIX) else "E_SOURCE", error)
+            self.fail(
+                rel,
+                at,
+                "E_LOCAL_REF" if path.startswith(LOCAL_PREFIX) else "E_SOURCE",
+                error,
+            )
             return
         if actual != expected:
             self.fail(rel, at, "E_SOURCE_SHA", {"expected": expected, "actual": actual})
 
     def bind_fixed_source(self, pins, path, pointer=None):
-        matches = {(pin.get("revision"), pin.get("file_sha256")) for pin in pins
-                   if isinstance(pin, dict) and pin.get("path") == path
-                   and (pointer is None or pin.get("pointer") == pointer)
-                   and isinstance(pin.get("revision"), str) and REV.fullmatch(pin["revision"])
-                   and isinstance(pin.get("file_sha256"), str) and SHA.fullmatch(pin["file_sha256"])}
+        matches = {
+            (pin.get("revision"), pin.get("file_sha256"))
+            for pin in pins
+            if isinstance(pin, dict)
+            and pin.get("path") == path
+            and (pointer is None or pin.get("pointer") == pointer)
+            and isinstance(pin.get("revision"), str)
+            and REV.fullmatch(pin["revision"])
+            and isinstance(pin.get("file_sha256"), str)
+            and SHA.fullmatch(pin["file_sha256"])
+        }
         if len(matches) != 1:
             return None
         revision, expected = next(iter(matches))
@@ -225,7 +332,12 @@ class Checker:
             if not revision and (self.root / (LEGACY_ROOT + path)).exists():
                 self.unclassified["legacy_root_path"] += 1
                 return
-            self.fail(rel, at, "E_LOCAL_REF" if path.startswith(LOCAL_PREFIX) else "E_PATH", error)
+            self.fail(
+                rel,
+                at,
+                "E_LOCAL_REF" if path.startswith(LOCAL_PREFIX) else "E_PATH",
+                error,
+            )
             return
         try:
             resolve(target, pointer)
@@ -258,7 +370,9 @@ class Checker:
         if not isinstance(value, str) or not value.startswith("/") and "#" not in value:
             self.unclassified["pointer_shape"] += 1
             return
-        path, pointer, embedded_rev = parse_ref(value) if "#" in value else (None, value, None)
+        path, pointer, embedded_rev = (
+            parse_ref(value) if "#" in value else (None, value, None)
+        )
         if path:
             revision, valid = self.revision(obj)
             if revision and not valid:
@@ -279,9 +393,16 @@ class Checker:
             target, error = self.pointer_target(doc, obj, source_basis)
         if error is not None:
             skipped = error in ("implicit target", "label revision", "non_json_target")
-            self.unclassified["implicit_pointer_target" if skipped else "pointer_target_error"] += 1
+            self.unclassified[
+                "implicit_pointer_target" if skipped else "pointer_target_error"
+            ] += 1
             if not skipped:
-                code = "E_LOCAL_REF" if (path and path.startswith(LOCAL_PREFIX)) or LOCAL_PREFIX in str(error) else "E_PATH"
+                code = (
+                    "E_LOCAL_REF"
+                    if (path and path.startswith(LOCAL_PREFIX))
+                    or LOCAL_PREFIX in str(error)
+                    else "E_PATH"
+                )
                 self.fail(rel, at, code, error)
             return
         try:
@@ -303,24 +424,42 @@ class Checker:
                 path, _, _ = parse_ref(child)
                 if isinstance(path, str) and ("<" in path or ">" in path):
                     self.unclassified["placeholder_path"] += 1
-                elif isinstance(path, str) and path.startswith("/") and not path.endswith(PATH_SUFFIXES):
+                elif (
+                    isinstance(path, str)
+                    and path.startswith("/")
+                    and not path.endswith(PATH_SUFFIXES)
+                ):
                     self.unclassified["pointer_valued_path"] += 1
                 elif isinstance(path, str) and fixture_path(path):
                     self.unclassified["fixture_path"] += 1
                 elif isinstance(path, str) and semantic_path(path):
                     self.unclassified["ambiguous_path"] += 1
                 elif unsafe_shape(child) or looks_like_path(child):
-                    self.verify_path(rel, child_at, child, value, fixed_sources.get(True))
+                    self.verify_path(
+                        rel, child_at, child, value, fixed_sources.get(True)
+                    )
                 else:
                     self.unclassified["ambiguous_path"] += 1
             if key in LOCAL_POINTER_KEYS | POINTER_KEYS:
-                for index, pointer in enumerate(child if isinstance(child, list) else [child]):
-                    self.verify_pointer(rel, child_at + "/" + str(index), doc, value, pointer,
-                                        key in LOCAL_POINTER_KEYS, fixed_sources.get(False))
+                for index, pointer in enumerate(
+                    child if isinstance(child, list) else [child]
+                ):
+                    self.verify_pointer(
+                        rel,
+                        child_at + "/" + str(index),
+                        doc,
+                        value,
+                        pointer,
+                        key in LOCAL_POINTER_KEYS,
+                        fixed_sources.get(False),
+                    )
             child_sources = dict(fixed_sources)
             for marker, pins, scope, match_pointer in FIXED_SOURCE_BINDINGS:
-                if (key == scope and isinstance(value.get(marker), str)
-                        and isinstance(value.get(pins), list)):
+                if (
+                    key == scope
+                    and isinstance(value.get(marker), str)
+                    and isinstance(value.get(pins), list)
+                ):
                     child_sources[match_pointer] = value[pins]
             self.collect(child, doc, rel, child_at, child_sources)
         self.classify_pins(value, rel, at)
@@ -346,13 +485,26 @@ class Checker:
 
 def main(argv=None):
     parser = argparse.ArgumentParser()
-    parser.add_argument("--root", type=Path, default=Path(__file__).resolve().parents[2])
+    parser.add_argument(
+        "--root", type=Path, default=Path(__file__).resolve().parents[2]
+    )
     args = parser.parse_args(argv)
     checker = Checker(args.root).run()
-    json.dump({"schema": "helix-design-json-check.v1", "evidence_kind": "scaffold", "authority_effect": "none",
-               "files": checker.files, "violations": len(checker.errors),
-               "unclassified": dict(checker.unclassified), "items": checker.errors},
-              sys.stdout, ensure_ascii=False, sort_keys=True, indent=2)
+    json.dump(
+        {
+            "schema": "helix-design-json-check.v1",
+            "evidence_kind": "scaffold",
+            "authority_effect": "none",
+            "files": checker.files,
+            "violations": len(checker.errors),
+            "unclassified": dict(checker.unclassified),
+            "items": checker.errors,
+        },
+        sys.stdout,
+        ensure_ascii=False,
+        sort_keys=True,
+        indent=2,
+    )
     print()
     return 1 if checker.errors else 0
 

@@ -65,13 +65,13 @@
     },
     {
       "path": "scaffold/research/delegated-doc-007-016-030-034/validate.py",
-      "sha256": "1288d04034c639149e395fb629633b3ab714a77c2bd8e39cbe23d931f918c1a1",
-      "note": "fail-closed static validator [2026-09-26 旧HELIXからの移行台帳のlegacy-migration/への移動（PO判断） read-after: delegated-doc-007-016-030-034/validate.pyは、旧HELIXからの移行作業の台帳・待ち行列・wave記録をdocs/governance/直下からdocs/governance/legacy-migration/の種類別フォルダへ移した（2026-09-26のPO判断、docs/governance/decisions/governance-legacy-migration-layout-po-decisions-2026-09-26.md）のに合わせ、現行ファイルを読む移動対象のpath定数（または同じ定数の一覧）だけを新しいpathへ改めた（判定の条件・分岐・意味field・期待件数は不変、git diffで定数行だけの変更を確認）。本bindingのrole・obligations・connections・replacement・artifactは、旧HELIXからの移行台帳のpath（旧docs/governance/直下）、それらへのリンクの表記、研究用pinとvalidatorのpath・digestの表記に依存しないことをbinding全体で確認した。前receipt=f663c539a863481f9d233bd87e5f66fc82f091cc835283025d42d83671041cc3; 現receipt=c8c9d79eff176cc9db456471194dea4ba0b4cad1f9dacf8d62ad5f606474b88d; このBindingの採否・authorityは変更しない。]"
+      "sha256": "1a7dd2fb5557c2d3a50dffb6b1e8dd0cb734f02a5373bbdd740913f142685044",
+      "note": "fail-closed static validator [2026-09-26 旧HELIXからの移行台帳のlegacy-migration/への移動（PO判断） read-after: delegated-doc-007-016-030-034/validate.pyは、旧HELIXからの移行作業の台帳・待ち行列・wave記録をdocs/governance/直下からdocs/governance/legacy-migration/の種類別フォルダへ移した（2026-09-26のPO判断、docs/governance/decisions/governance-legacy-migration-layout-po-decisions-2026-09-26.md）のに合わせ、現行ファイルを読む移動対象のpath定数（または同じ定数の一覧）だけを新しいpathへ改めた（判定の条件・分岐・意味field・期待件数は不変、git diffで定数行だけの変更を確認）。本bindingのrole・obligations・connections・replacement・artifactは、旧HELIXからの移行台帳のpath（旧docs/governance/直下）、それらへのリンクの表記、研究用pinとvalidatorのpath・digestの表記に依存しないことをbinding全体で確認した。前receipt=f663c539a863481f9d233bd87e5f66fc82f091cc835283025d42d83671041cc3; 現receipt=c8c9d79eff176cc9db456471194dea4ba0b4cad1f9dacf8d62ad5f606474b88d; このBindingの採否・authorityは変更しない。] [WR73/PR3773: 402867935の元sourceとRuff整形後sourceは位置情報を除くAST同値、型コメント付属も保持。binding全体（reason/role/obligations/connections/operations/verificationのoracle・negative case/replacement.role_target）への意味影響を確認し、役割・権限・義務・固定capture・採否は不変として再束縛。旧receipt=1288d04034c639149e395fb629633b3ab714a77c2bd8e39cbe23d931f918c1a1; 現receipt=1a7dd2fb5557c2d3a50dffb6b1e8dd0cb734f02a5373bbdd740913f142685044。固定bytes consumerを持つ4ファイルは除外して元bytesを保持。]"
     },
     {
       "path": "scaffold/research/delegated-doc-007-016-030-034/selfcheck.py",
-      "sha256": "03421e60b1b0b5fd14cbee39559a31445f82ac78e6f3523b16b6f069f00ef8ce",
-      "note": "32 meaningful negative selfchecks"
+      "sha256": "2a08fd37f6b4ce2e467e7a254d73d15d3b865262300eaa07c23c2f9e994c6e0f",
+      "note": "32 meaningful negative selfchecks [WR73/PR3773: 402867935の元sourceとRuff整形後sourceは位置情報を除くAST同値、型コメント付属も保持。binding全体（reason/role/obligations/connections/operations/verificationのoracle・negative case/replacement.role_target）への意味影響を確認し、役割・権限・義務・固定capture・採否は不変として再束縛。旧receipt=03421e60b1b0b5fd14cbee39559a31445f82ac78e6f3523b16b6f069f00ef8ce; 現receipt=2a08fd37f6b4ce2e467e7a254d73d15d3b865262300eaa07c23c2f9e994c6e0f。固定bytes consumerを持つ4ファイルは除外して元bytesを保持。]"
     }
   ],
   "role": "DELEGATED-DOC-007/016とDOC-030/034の固定source blobをlossless full coverage、原ID／atomized／unatomized partition、actor／authority／negative atom候補へ記録し、両L3/L10 parityと未解決参照、HARNESS／OS owner・consumer候補、phase／implementation unknown境界を保持する",

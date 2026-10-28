@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Negative cases for the PHCAP-15/17 membership research scaffold."""
+
 from __future__ import annotations
 
 import copy
@@ -29,28 +30,107 @@ def main() -> int:
     case("successor", lambda d: d.__setitem__("successor_requirement_ids", ["REQ-1"]))
     case("human_decision", lambda d: d.__setitem__("human_decision_ref", "DEC-1"))
     case("equivalence", lambda d: d.__setitem__("equivalence_claim", "equivalent"))
-    case("old_execution", lambda d: d.__setitem__("old_runtime_test_ci_execution", True))
-    case("asset_implementation", lambda d: d["assets"][0].__setitem__("implementation_status", "implemented"))
-    case("asset_consumer", lambda d: d["assets"][0].__setitem__("consumer_refs", ["consumer"]))
-    case("decision", lambda d: d["failure_consumer_decision_audit"].__setitem__("matching_decision_records", 1))
-    case("membership_affirmative", lambda d: d["membership_sets"][0].__setitem__("classification", "affirmative"))
+    case(
+        "old_execution", lambda d: d.__setitem__("old_runtime_test_ci_execution", True)
+    )
+    case(
+        "asset_implementation",
+        lambda d: d["assets"][0].__setitem__("implementation_status", "implemented"),
+    )
+    case(
+        "asset_consumer",
+        lambda d: d["assets"][0].__setitem__("consumer_refs", ["consumer"]),
+    )
+    case(
+        "decision",
+        lambda d: d["failure_consumer_decision_audit"].__setitem__(
+            "matching_decision_records", 1
+        ),
+    )
+    case(
+        "membership_affirmative",
+        lambda d: d["membership_sets"][0].__setitem__("classification", "affirmative"),
+    )
     case("membership_removed", lambda d: d["membership_sets"][0]["crosswalk_ids"].pop())
-    case("direct_link", lambda d: d["semantic_link_audit"].__setitem__("direct_legacy_asset_links_observed", 1))
-    case("source_id_match", lambda d: d["semantic_link_audit"].__setitem__("requirement_id_exact_matches", 1))
-    case("source_span_match", lambda d: d["semantic_link_audit"].__setitem__("source_span_exact_matches", 1))
-    case("anchor_text", lambda d: d["assets"][0]["anchors"][0].__setitem__("exact_text", "tampered"))
-    case("anchor_hash", lambda d: d["assets"][1]["anchors"][0].__setitem__("sha256", "0" * 64))
+    case(
+        "direct_link",
+        lambda d: d["semantic_link_audit"].__setitem__(
+            "direct_legacy_asset_links_observed", 1
+        ),
+    )
+    case(
+        "source_id_match",
+        lambda d: d["semantic_link_audit"].__setitem__(
+            "requirement_id_exact_matches", 1
+        ),
+    )
+    case(
+        "source_span_match",
+        lambda d: d["semantic_link_audit"].__setitem__("source_span_exact_matches", 1),
+    )
+    case(
+        "anchor_text",
+        lambda d: d["assets"][0]["anchors"][0].__setitem__("exact_text", "tampered"),
+    )
+    case(
+        "anchor_hash",
+        lambda d: d["assets"][1]["anchors"][0].__setitem__("sha256", "0" * 64),
+    )
     case("unknown_count", lambda d: d["semantic_link_audit"].__setitem__("unknown", 68))
     case("key_injection", lambda d: d.__setitem__("unapproved_key", True))
-    case("prohibited_inference_reversal", lambda d: d["prohibited_inference"].__setitem__(0, "candidate pool membershipを意味関係とみなしてよい"), "E_PROHIBITED_INFERENCE")
-    case("prohibited_inference_removed", lambda d: d["prohibited_inference"].pop(), "E_PROHIBITED_INFERENCE")
-    case("asset_nested_authority", lambda d: d["assets"][0].__setitem__("verified", True), "E_NESTED_KEYS:assets[0]")
-    case("membership_nested_authority", lambda d: d["membership_sets"][0].__setitem__("confirmed", True), "E_NESTED_KEYS:membership_sets[0]")
-    case("scope_nested_authority", lambda d: d["scope"].__setitem__("approved", True), "E_NESTED_KEYS:scope")
-    case("provenance_nested_authority", lambda d: d["provenance"]["crosswalk"].__setitem__("verified", True), "E_NESTED_KEYS:provenance.crosswalk")
-    case("anchor_meaning", lambda d: d["assets"][0]["anchors"][0].__setitem__("meaning", "invented meaning"), "E_ANCHOR_MEANING_PIN:P1")
-    case("membership_source_contract", lambda d: d["membership_sets"][0].__setitem__("source_contract", "invented contract"), "E_MEMBERSHIP_SOURCE_CONTRACT:LEGACY-ASSET-189702B332643A3BFDAF")
-    case("membership_classification_reason", lambda d: d["membership_sets"][1].__setitem__("classification_reason", "invented reason"), "E_MEMBERSHIP_CLASSIFICATION_REASON:LEGACY-ASSET-4618C7243C283228809A")
+    case(
+        "prohibited_inference_reversal",
+        lambda d: d["prohibited_inference"].__setitem__(
+            0, "candidate pool membershipを意味関係とみなしてよい"
+        ),
+        "E_PROHIBITED_INFERENCE",
+    )
+    case(
+        "prohibited_inference_removed",
+        lambda d: d["prohibited_inference"].pop(),
+        "E_PROHIBITED_INFERENCE",
+    )
+    case(
+        "asset_nested_authority",
+        lambda d: d["assets"][0].__setitem__("verified", True),
+        "E_NESTED_KEYS:assets[0]",
+    )
+    case(
+        "membership_nested_authority",
+        lambda d: d["membership_sets"][0].__setitem__("confirmed", True),
+        "E_NESTED_KEYS:membership_sets[0]",
+    )
+    case(
+        "scope_nested_authority",
+        lambda d: d["scope"].__setitem__("approved", True),
+        "E_NESTED_KEYS:scope",
+    )
+    case(
+        "provenance_nested_authority",
+        lambda d: d["provenance"]["crosswalk"].__setitem__("verified", True),
+        "E_NESTED_KEYS:provenance.crosswalk",
+    )
+    case(
+        "anchor_meaning",
+        lambda d: d["assets"][0]["anchors"][0].__setitem__(
+            "meaning", "invented meaning"
+        ),
+        "E_ANCHOR_MEANING_PIN:P1",
+    )
+    case(
+        "membership_source_contract",
+        lambda d: d["membership_sets"][0].__setitem__(
+            "source_contract", "invented contract"
+        ),
+        "E_MEMBERSHIP_SOURCE_CONTRACT:LEGACY-ASSET-189702B332643A3BFDAF",
+    )
+    case(
+        "membership_classification_reason",
+        lambda d: d["membership_sets"][1].__setitem__(
+            "classification_reason", "invented reason"
+        ),
+        "E_MEMBERSHIP_CLASSIFICATION_REASON:LEGACY-ASSET-4618C7243C283228809A",
+    )
 
     failed = 0
     for name, data, expected_code in cases:
@@ -60,7 +140,9 @@ def main() -> int:
             failed += 1
     if failed:
         return 1
-    print(f"PASS PHCAP-15/17 membership selfcheck: {len(cases)} negative cases rejected")
+    print(
+        f"PASS PHCAP-15/17 membership selfcheck: {len(cases)} negative cases rejected"
+    )
     return 0
 
 

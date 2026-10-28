@@ -26,24 +26,30 @@ class TestFn0IdentityWireAndQualifications(unittest.TestCase):
         validated, original = self._validate_keeps_raw(raw)
         validated_before = copy.deepcopy(validated)
         definitions = compare_descriptor_definitions({"validated": validated})
-        self.assertEqual(definitions["producer_symbol"], "compare_descriptor_definitions")
+        self.assertEqual(
+            definitions["producer_symbol"], "compare_descriptor_definitions"
+        )
         self.assertEqual(definitions["input_binding"], original["binding"])
         definitions_before = copy.deepcopy(definitions)
         self.assertEqual(validated, validated_before)
 
-        values = compare_values_and_applicability({
-            "validated": validated,
-            "definitions": definitions,
-        })
+        values = compare_values_and_applicability(
+            {
+                "validated": validated,
+                "definitions": definitions,
+            }
+        )
         self.assertEqual(values["producer_symbol"], "compare_values_and_applicability")
         self.assertEqual(values["input_binding"], original["binding"])
         self.assertEqual(validated, validated_before)
         self.assertEqual(definitions, definitions_before)
 
-        handoff = compare_dependencies_and_handoff({
-            "validated": validated,
-            "definitions": definitions,
-        })
+        handoff = compare_dependencies_and_handoff(
+            {
+                "validated": validated,
+                "definitions": definitions,
+            }
+        )
         self.assertEqual(handoff["producer_symbol"], "compare_dependencies_and_handoff")
         self.assertEqual(handoff["input_binding"], original["binding"])
         self.assertEqual(validated, validated_before)
@@ -57,10 +63,12 @@ class TestFn0IdentityWireAndQualifications(unittest.TestCase):
         definitions = compare_descriptor_definitions({"validated": validated})
         self.assertEqual(definitions["input_binding"], original["binding"])
         definitions_before = copy.deepcopy(definitions)
-        values = compare_values_and_applicability({
-            "validated": validated,
-            "definitions": definitions,
-        })
+        values = compare_values_and_applicability(
+            {
+                "validated": validated,
+                "definitions": definitions,
+            }
+        )
         self.assertEqual(values["input_binding"], original["binding"])
         self.assertEqual(validated, validated_before)
         self.assertEqual(definitions, definitions_before)
@@ -68,10 +76,12 @@ class TestFn0IdentityWireAndQualifications(unittest.TestCase):
         # fn6's current closed Binding reader has a separate typed boundary. Keep that
         # stop explicit; do not repair or widen it using a value synthesized from fn0.
         try:
-            handoff = compare_dependencies_and_handoff({
-                "validated": validated,
-                "definitions": definitions,
-            })
+            handoff = compare_dependencies_and_handoff(
+                {
+                    "validated": validated,
+                    "definitions": definitions,
+                }
+            )
         except NotImplementedError as exc:
             self.assertIn("F09/B02/binding_or_subject_ref_missing", str(exc))
             self.assertIn("Backflow", str(exc))
@@ -101,12 +111,15 @@ class TestFn0IdentityWireAndQualifications(unittest.TestCase):
                 self._run_fn1_fn2_and_observe_fn6_boundary(raw)
                 self.assertEqual(raw, raw_before)
 
-    def test_exact_duplicate_qualification_is_retained_without_changing_fn0_status(self):
+    def test_exact_duplicate_qualification_is_retained_without_changing_fn0_status(
+        self,
+    ):
         raw = normal_input()
         baseline, original = self._validate_keeps_raw(raw)
         source = original["sources"][0]
         matching = [
-            qualification for qualification in original["qualifications"]
+            qualification
+            for qualification in original["qualifications"]
             if qualification["ref"] == source["qualification_ref"]
         ]
         self.assertEqual(len(matching), 1)
@@ -116,13 +129,18 @@ class TestFn0IdentityWireAndQualifications(unittest.TestCase):
         repeated_before = copy.deepcopy(repeated)
         validated, decoded = self._validate_keeps_raw(repeated)
         self.assertEqual(decoded, repeated_before)
-        self.assertEqual(len(validated["input"]["qualifications"]), len(original["qualifications"]) + 1)
+        self.assertEqual(
+            len(validated["input"]["qualifications"]),
+            len(original["qualifications"]) + 1,
+        )
         self.assertEqual(
             validated["input"]["qualifications"][-1],
             matching[0],
             "the exact repeated Qualification remains a second original occurrence",
         )
-        self.assertEqual(validated["unusable_source_refs"], baseline["unusable_source_refs"])
+        self.assertEqual(
+            validated["unusable_source_refs"], baseline["unusable_source_refs"]
+        )
         self.assertEqual(validated["input_issues"], baseline["input_issues"])
         # A repeated Qualification is not converted into a new trust result. The existing
         # same-snapshot consumers receive and preserve this exact decoded input.

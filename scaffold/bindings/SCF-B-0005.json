@@ -65,13 +65,13 @@
     },
     {
       "path": "scaffold/research/delegated-doc-003-028/validate.py",
-      "sha256": "cebd576e272a6b35cb8f4af13d8d30c590b4b6e883224344749c7b50aa7a3960",
-      "note": "台帳／Git blob／原ID／atom／owner／legacy status静的検証"
+      "sha256": "49e8efa9c93aefaac95d56a4e5dd1ee5d316665402671f3894cf3dbe71ad9939",
+      "note": "台帳／Git blob／原ID／atom／owner／legacy status静的検証 [WR73/PR3773: 402867935の元sourceとRuff整形後sourceは位置情報を除くAST同値、型コメント付属も保持。binding全体（reason/role/obligations/connections/operations/verificationのoracle・negative case/replacement.role_target）への意味影響を確認し、役割・権限・義務・固定capture・採否は不変として再束縛。旧receipt=cebd576e272a6b35cb8f4af13d8d30c590b4b6e883224344749c7b50aa7a3960; 現receipt=49e8efa9c93aefaac95d56a4e5dd1ee5d316665402671f3894cf3dbe71ad9939。固定bytes consumerを持つ4ファイルは除外して元bytesを保持。]"
     },
     {
       "path": "scaffold/research/delegated-doc-003-028/selfcheck.py",
-      "sha256": "214ae753fa019615830cbde3bf8a7a9814ec83c72c140ba1eb4ed0aace637fa5",
-      "note": "digest、edge、coverage、原ID欠落の否定例"
+      "sha256": "867879dc76e28361d623f7a42def1ff4ca014d403863617bf6871788763153c9",
+      "note": "digest、edge、coverage、原ID欠落の否定例 [WR73/PR3773: 402867935の元sourceとRuff整形後sourceは位置情報を除くAST同値、型コメント付属も保持。binding全体（reason/role/obligations/connections/operations/verificationのoracle・negative case/replacement.role_target）への意味影響を確認し、役割・権限・義務・固定capture・採否は不変として再束縛。旧receipt=214ae753fa019615830cbde3bf8a7a9814ec83c72c140ba1eb4ed0aace637fa5; 現receipt=867879dc76e28361d623f7a42def1ff4ca014d403863617bf6871788763153c9。固定bytes consumerを持つ4ファイルは除外して元bytesを保持。]"
     }
   ],
   "role": "DELEGATED-DOC-003/028のsource blobを14 coverage spanと59 semantic atomへ分け、REF-0303/0759/0760のpair／body edge、旧phase・implementation・consumer状態、否定条件を同じreview単位で保持する",

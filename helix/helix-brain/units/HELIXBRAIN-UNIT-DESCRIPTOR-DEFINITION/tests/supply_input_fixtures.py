@@ -12,7 +12,9 @@ L8_PATH = Path(__file__).resolve().parents[5] / (
 
 
 # L8から撤去した入力材料のL7側の置き場。撤去前revisionの値をそのまま持つ。
-MATERIALS_PATH = Path(__file__).resolve().parent / "fixtures" / "supply-input-materials.json"
+MATERIALS_PATH = (
+    Path(__file__).resolve().parent / "fixtures" / "supply-input-materials.json"
+)
 
 
 def load_document():

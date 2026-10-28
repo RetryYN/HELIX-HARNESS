@@ -41,92 +41,176 @@ FIELD_SPECS = {
         "expected_status": "unknown",
         "reason_code": "E_OLD_IMPLEMENTATION_DIRECT_RECEIPT_MISSING",
         "artifact_keys": [
-            "asset_id", "source_path", "source_blob_sha256", "source_anchor",
-            "execution_receipt_sha256", "result", "acceptance_verdict",
+            "asset_id",
+            "source_path",
+            "source_blob_sha256",
+            "source_anchor",
+            "execution_receipt_sha256",
+            "result",
+            "acceptance_verdict",
         ],
         "relation_keys": [
-            "unit_candidate_id", "requirement_atom_id", "semantic_edge_id",
-            "asset_id", "receipt_ref",
+            "unit_candidate_id",
+            "requirement_atom_id",
+            "semantic_edge_id",
+            "asset_id",
+            "receipt_ref",
         ],
-        "human_decision_keys": ["decision_id", "authority", "verdict", "decision_revision"],
+        "human_decision_keys": [
+            "decision_id",
+            "authority",
+            "verdict",
+            "decision_revision",
+        ],
     },
     "old_degradation": {
         "expected_status": "unknown",
         "reason_code": "E_OLD_DEGRADATION_OBSERVED_TRANSITION_MISSING",
         "artifact_keys": [
-            "asset_id", "source_anchor", "before_state", "after_state",
-            "trigger", "observed_at", "revision", "degradation_receipt_sha256",
+            "asset_id",
+            "source_anchor",
+            "before_state",
+            "after_state",
+            "trigger",
+            "observed_at",
+            "revision",
+            "degradation_receipt_sha256",
         ],
         "relation_keys": [
-            "unit_candidate_id", "requirement_atom_id", "semantic_edge_id",
-            "asset_id", "affected_atom_ids",
+            "unit_candidate_id",
+            "requirement_atom_id",
+            "semantic_edge_id",
+            "asset_id",
+            "affected_atom_ids",
         ],
-        "human_decision_keys": ["decision_id", "authority", "classification", "decision_revision"],
+        "human_decision_keys": [
+            "decision_id",
+            "authority",
+            "classification",
+            "decision_revision",
+        ],
     },
     "old_failure": {
         "expected_status": "unknown",
         "reason_code": "E_OLD_FAILURE_RECEIPT_MISSING",
         "artifact_keys": [
-            "asset_id", "source_anchor", "failure_code", "status_or_exit",
-            "observed_at", "revision", "failure_receipt_sha256",
+            "asset_id",
+            "source_anchor",
+            "failure_code",
+            "status_or_exit",
+            "observed_at",
+            "revision",
+            "failure_receipt_sha256",
         ],
         "relation_keys": [
-            "unit_candidate_id", "requirement_atom_id", "semantic_edge_id",
-            "asset_id", "acceptance_ref",
+            "unit_candidate_id",
+            "requirement_atom_id",
+            "semantic_edge_id",
+            "asset_id",
+            "acceptance_ref",
         ],
-        "human_decision_keys": ["decision_id", "authority", "failure_classification", "decision_revision"],
+        "human_decision_keys": [
+            "decision_id",
+            "authority",
+            "failure_classification",
+            "decision_revision",
+        ],
     },
     "consumer": {
         "expected_status": "pending",
         "reason_code": "E_CONSUMER_CLOSURE_RELATION_MISSING",
         "artifact_keys": [
-            "consumer_id", "closure_receipt_sha256", "decision_record_ref",
-            "read_after_record_ref", "revision",
+            "consumer_id",
+            "closure_receipt_sha256",
+            "decision_record_ref",
+            "read_after_record_ref",
+            "revision",
         ],
         "relation_keys": [
-            "unit_candidate_id", "requirement_atom_id", "asset_id",
-            "consumer_id", "acceptance_ref",
+            "unit_candidate_id",
+            "requirement_atom_id",
+            "asset_id",
+            "consumer_id",
+            "acceptance_ref",
         ],
-        "human_decision_keys": ["decision_id", "authority", "closure_verdict", "decision_revision"],
+        "human_decision_keys": [
+            "decision_id",
+            "authority",
+            "closure_verdict",
+            "decision_revision",
+        ],
     },
     "current_implementation": {
         "expected_status": "unknown",
         "reason_code": "E_CURRENT_IMPLEMENTATION_RECEIPT_MISSING",
         "artifact_keys": [
-            "current_path", "current_blob_sha256", "source_anchor",
-            "execution_receipt_sha256", "operation_result", "revision",
+            "current_path",
+            "current_blob_sha256",
+            "source_anchor",
+            "execution_receipt_sha256",
+            "operation_result",
+            "revision",
         ],
         "relation_keys": [
-            "unit_candidate_id", "requirement_atom_id", "current_source_ref",
+            "unit_candidate_id",
+            "requirement_atom_id",
+            "current_source_ref",
             "acceptance_ref",
         ],
-        "human_decision_keys": ["decision_id", "authority", "implementation_verdict", "decision_revision"],
+        "human_decision_keys": [
+            "decision_id",
+            "authority",
+            "implementation_verdict",
+            "decision_revision",
+        ],
     },
     "acceptance": {
         "expected_status": "unknown",
         "reason_code": "E_ACCEPTANCE_VERDICT_MISSING",
         "artifact_keys": [
-            "acceptance_id", "criteria", "verdict", "evidence_refs",
-            "revision", "acceptance_receipt_sha256",
+            "acceptance_id",
+            "criteria",
+            "verdict",
+            "evidence_refs",
+            "revision",
+            "acceptance_receipt_sha256",
         ],
         "relation_keys": [
-            "unit_candidate_id", "requirement_atom_id", "source_ref",
-            "edge_ref", "consumer_ref",
+            "unit_candidate_id",
+            "requirement_atom_id",
+            "source_ref",
+            "edge_ref",
+            "consumer_ref",
         ],
-        "human_decision_keys": ["decision_id", "authority", "acceptance_verdict", "decision_revision"],
+        "human_decision_keys": [
+            "decision_id",
+            "authority",
+            "acceptance_verdict",
+            "decision_revision",
+        ],
     },
     "unimplemented": {
         "expected_status": "not_assessed",
         "reason_code": "E_NONIMPLEMENTATION_DECISION_MISSING",
         "artifact_keys": [
-            "non_implementation_decision_id", "search_scope", "search_scope_digest",
-            "negative_result", "counterevidence_refs",
+            "non_implementation_decision_id",
+            "search_scope",
+            "search_scope_digest",
+            "negative_result",
+            "counterevidence_refs",
         ],
         "relation_keys": [
-            "unit_candidate_id", "requirement_atom_id", "search_scope",
+            "unit_candidate_id",
+            "requirement_atom_id",
+            "search_scope",
             "counterevidence_ref",
         ],
-        "human_decision_keys": ["decision_id", "authority", "disposition", "decision_revision"],
+        "human_decision_keys": [
+            "decision_id",
+            "authority",
+            "disposition",
+            "decision_revision",
+        ],
     },
 }
 
@@ -158,7 +242,11 @@ def sha256_bytes(value: bytes) -> str:
 
 
 def sha256_obj(value) -> str:
-    return sha256_bytes(json.dumps(value, ensure_ascii=False, sort_keys=True, separators=(",", ":")).encode())
+    return sha256_bytes(
+        json.dumps(
+            value, ensure_ascii=False, sort_keys=True, separators=(",", ":")
+        ).encode()
+    )
 
 
 def git_bytes(path: str) -> bytes:
@@ -169,7 +257,9 @@ def git_bytes(path: str) -> bytes:
         stderr=subprocess.PIPE,
     )
     if result.returncode:
-        raise RuntimeError(f"BASEから読めない入力 {path}: {result.stderr.decode(errors='replace').strip()}")
+        raise RuntimeError(
+            f"BASEから読めない入力 {path}: {result.stderr.decode(errors='replace').strip()}"
+        )
     return result.stdout
 
 
@@ -194,17 +284,23 @@ def parse_jsonl(path: str):
 
 
 def input_digests():
-    return [{"path": path, "sha256": sha256_bytes(git_bytes(path))} for path in INPUT_PATHS]
+    return [
+        {"path": path, "sha256": sha256_bytes(git_bytes(path))} for path in INPUT_PATHS
+    ]
 
 
 def load_decomposition():
     _, rows = parse_jsonl(CANONICAL_INPUTS[1])
     by_unit = {}
     for parent_line, parent_raw, parent in rows:
-        for candidate_index, candidate in enumerate(parent.get("candidate_units") or []):
+        for candidate_index, candidate in enumerate(
+            parent.get("candidate_units") or []
+        ):
             unit_id = candidate.get("unit_candidate_id")
             if not unit_id or unit_id in by_unit:
-                raise ValueError(f"decomposition candidate unit重複または欠落: {unit_id!r}")
+                raise ValueError(
+                    f"decomposition candidate unit重複または欠落: {unit_id!r}"
+                )
             by_unit[unit_id] = {
                 "parent_line": parent_line,
                 "parent_row_sha256": "sha256:" + sha256_bytes(parent_raw),
@@ -242,12 +338,14 @@ def load_partition_rows():
     for path in SOURCE_PARTITIONS:
         _, parsed = parse_jsonl(path)
         for line_no, raw, row in parsed:
-            rows.append({
-                "path": path,
-                "line": line_no,
-                "row_sha256": "sha256:" + sha256_bytes(raw),
-                "row": row,
-            })
+            rows.append(
+                {
+                    "path": path,
+                    "line": line_no,
+                    "row_sha256": "sha256:" + sha256_bytes(raw),
+                    "row": row,
+                }
+            )
     return rows
 
 
@@ -282,19 +380,29 @@ def raw_observations(row):
     unimplemented = row.get("unimplemented_assessment") or {}
     is_br = row.get("schema", "").startswith("br-")
     return {
-        "legacy_execution_performed": bool(impl.get("execution_performed") if is_br else impl.get("legacy_execution_performed")),
+        "legacy_execution_performed": bool(
+            impl.get("execution_performed")
+            if is_br
+            else impl.get("legacy_execution_performed")
+        ),
         "implementation_claim": bool(impl.get("explicit_implementation_claim")),
-        "degradation_execution_performed": bool(degradation.get("legacy_execution_performed")),
+        "degradation_execution_performed": bool(
+            degradation.get("legacy_execution_performed")
+        ),
         "degradation_claim": bool(degradation.get("explicit_degradation_claim")),
         "failure_claim": bool(failure.get("explicit_failure_claim")),
         "failure_receipt_count": len(failure.get("observed_failure_receipts") or []),
         "consumer_closure_status": consumer.get("closure_status"),
-        "consumer_closure_evidence_count": len(consumer.get("consumer_closure_evidence") or []),
+        "consumer_closure_evidence_count": len(
+            consumer.get("consumer_closure_evidence") or []
+        ),
         "current_execution_performed": bool(current.get("execution_performed")),
         "current_claim": bool(current.get("explicit_claim")),
         "current_status": current.get("status"),
         "acceptance_status": current.get("acceptance_status"),
-        "non_implementation_claim": bool(unimplemented.get("explicit_non_implementation_claim")),
+        "non_implementation_claim": bool(
+            unimplemented.get("explicit_non_implementation_claim")
+        ),
     }
 
 
@@ -302,14 +410,24 @@ def direct_evidence_flags(row):
     obs = raw_observations(row)
     # 直接unit証拠として認めるreceipt schemaを明示する。固定BASEでは全て欠落する。
     impl_direct = obs["implementation_claim"] and obs["legacy_execution_performed"]
-    degradation_direct = obs["degradation_claim"] and obs["degradation_execution_performed"]
+    degradation_direct = (
+        obs["degradation_claim"] and obs["degradation_execution_performed"]
+    )
     failure_direct = obs["failure_claim"] and obs["failure_receipt_count"] > 0
     consumer_direct = (
         obs["consumer_closure_status"] == "closed"
         and obs["consumer_closure_evidence_count"] > 0
     )
-    current_direct = obs["current_claim"] and obs["current_execution_performed"] and obs["current_status"] not in (None, "unknown")
-    acceptance_direct = obs["acceptance_status"] not in (None, "unknown", "not_assessed")
+    current_direct = (
+        obs["current_claim"]
+        and obs["current_execution_performed"]
+        and obs["current_status"] not in (None, "unknown")
+    )
+    acceptance_direct = obs["acceptance_status"] not in (
+        None,
+        "unknown",
+        "not_assessed",
+    )
     unimplemented_direct = obs["non_implementation_claim"]
     return {
         "old_implementation": impl_direct,
@@ -325,34 +443,49 @@ def direct_evidence_flags(row):
 def edge_rows(row):
     edges = []
     for entry in row.get("semantic_review_edges") or []:
-        edge = entry.get("edge") if isinstance(entry, dict) and isinstance(entry.get("edge"), dict) else entry
-        edges.append({
-            "review_id": edge.get("review_id"),
-            "asset_id": edge.get("asset_id"),
-            "wave": edge.get("wave"),
-            "source_review_file": edge.get("source_review_file"),
-            "source_path": edge.get("source_path"),
-            "source_sha256": edge.get("source_sha256"),
-            "source_requirement_id": edge.get("source_requirement_id"),
-            "unit_candidate_id": edge.get("unit_candidate_id"),
-            "legacy_execution_status": edge.get("legacy_execution_status"),
-            "legacy_requirement_implementation_contribution": edge.get("legacy_requirement_implementation_contribution"),
-            "consumer_closure_status": edge.get("consumer_closure_status"),
-            "current_requirement_implementation_status": edge.get("current_requirement_implementation_status"),
-        })
+        edge = (
+            entry.get("edge")
+            if isinstance(entry, dict) and isinstance(entry.get("edge"), dict)
+            else entry
+        )
+        edges.append(
+            {
+                "review_id": edge.get("review_id"),
+                "asset_id": edge.get("asset_id"),
+                "wave": edge.get("wave"),
+                "source_review_file": edge.get("source_review_file"),
+                "source_path": edge.get("source_path"),
+                "source_sha256": edge.get("source_sha256"),
+                "source_requirement_id": edge.get("source_requirement_id"),
+                "unit_candidate_id": edge.get("unit_candidate_id"),
+                "legacy_execution_status": edge.get("legacy_execution_status"),
+                "legacy_requirement_implementation_contribution": edge.get(
+                    "legacy_requirement_implementation_contribution"
+                ),
+                "consumer_closure_status": edge.get("consumer_closure_status"),
+                "current_requirement_implementation_status": edge.get(
+                    "current_requirement_implementation_status"
+                ),
+            }
+        )
     return edges
 
 
 def asset_ids(row):
     if row.get("asset_set"):
         return list(row["asset_set"].get("asset_ids") or [])
-    return [asset.get("asset_id") for asset in (row.get("old_asset_evidence", {}).get("assets") or [])]
+    return [
+        asset.get("asset_id")
+        for asset in (row.get("old_asset_evidence", {}).get("assets") or [])
+    ]
 
 
 def field_record(field: str, direct: bool):
     spec = FIELD_SPECS[field]
     if direct:
-        raise ValueError(f"固定BASEで直接unit証拠が見つかったため期待unknown境界を維持できない: {field}")
+        raise ValueError(
+            f"固定BASEで直接unit証拠が見つかったため期待unknown境界を維持できない: {field}"
+        )
     return {
         "status": spec["expected_status"],
         "direct_evidence_present": False,
@@ -368,7 +501,11 @@ def field_record(field: str, direct: bool):
 def derive_record(source):
     row = source["row"]
     unit_id = row["unit_candidate_id"]
-    crosswalk, decomposition, ledger = source["crosswalk"], source["decomposition"], source["ledger"]
+    crosswalk, decomposition, ledger = (
+        source["crosswalk"],
+        source["decomposition"],
+        source["ledger"],
+    )
     cw = crosswalk[unit_id]
     dec = decomposition[unit_id]
     crosswalk_row = cw["row"]
@@ -379,7 +516,9 @@ def derive_record(source):
     if any(not edge["review_id"] for edge in edges):
         raise ValueError(f"review id欠落: {unit_id}")
     flags = direct_evidence_flags(row)
-    status_partition = {field: field_record(field, flags[field]) for field in FIELD_SPECS}
+    status_partition = {
+        field: field_record(field, flags[field]) for field in FIELD_SPECS
+    }
     observations = raw_observations(row)
     subject = {
         "unit_candidate_id": unit_id,
@@ -436,7 +575,9 @@ def derive_record(source):
             "current_requirement_candidate_is_not_current_implementation",
             "missing_receipt_is_not_explicit_non_implementation",
         ],
-        "ledger_asset_ids_checked": [asset_id for asset_id in assets if asset_id in ledger],
+        "ledger_asset_ids_checked": [
+            asset_id for asset_id in assets if asset_id in ledger
+        ],
     }
 
 
@@ -459,9 +600,15 @@ def derive_all():
 
 
 def counts(records):
-    edge_ids = [edge_id for record in records for edge_id in record["coverage"]["edge_ids"]]
-    asset_ids = [asset_id for record in records for asset_id in record["coverage"]["asset_ids"]]
-    product_units = [r for r in records if r["subject"]["subject_kind"] == "product_unit"]
+    edge_ids = [
+        edge_id for record in records for edge_id in record["coverage"]["edge_ids"]
+    ]
+    asset_ids = [
+        asset_id for record in records for asset_id in record["coverage"]["asset_ids"]
+    ]
+    product_units = [
+        r for r in records if r["subject"]["subject_kind"] == "product_unit"
+    ]
     connections = [r for r in records if r["subject"]["subject_kind"] == "connection"]
     return {
         "records": len(records),
@@ -472,7 +619,15 @@ def counts(records):
         "asset_references": len(asset_ids),
         "unique_old_assets": len(set(asset_ids)),
         "status_fields": {
-            field: {status: sum(record["status_partition"][field]["status"] == status for record in records) for status in {record["status_partition"][field]["status"] for record in records}}
+            field: {
+                status: sum(
+                    record["status_partition"][field]["status"] == status
+                    for record in records
+                )
+                for status in {
+                    record["status_partition"][field]["status"] for record in records
+                }
+            }
             for field in FIELD_SPECS
         },
     }

@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """PHCAP-12/13 static research premise inventory generator."""
+
 from __future__ import annotations
 
 import hashlib
@@ -11,7 +12,10 @@ ROOT = HERE.parents[2]
 ARCHIVE = ROOT / "archive/legacy-generation-2026-09-14/root"
 PHASE_INV = ROOT / "docs/governance/phase-capability-inventory.json"
 DISP = ROOT / "docs/governance/legacy-asset-disposition.jsonl"
-PHASE = ROOT / "docs/governance/legacy-migration/asset/legacy-asset-phase-product-classification-bootstrap.jsonl"
+PHASE = (
+    ROOT
+    / "docs/governance/legacy-migration/asset/legacy-asset-phase-product-classification-bootstrap.jsonl"
+)
 DECISIONS = ROOT / "docs/governance/legacy-asset-decisions.jsonl"
 INV = HERE / "inventory.json"
 FAILURE_CONSUMER_INTERPRETATION = "historical source failure/consumer descriptions remain candidate evidence; current execution, read-after, and closure are unknown"
@@ -31,30 +35,213 @@ ASSET_ORDER = [
 ]
 
 SPAN_SPECS = {
-    ASSET_ORDER[0]: [(1, 33, "D107-01", "historical independent review boundary and sealed receipt contract"), (35, 40, "D107-02", "historical non-runtime and later-slice boundary")],
-    ASSET_ORDER[1]: [(1, 44, "D681-01", "historical cross-review admission input and independence contract"), (45, 80, "D681-02", "historical fail-close and receipt lifecycle candidate")],
-    ASSET_ORDER[2]: [(1, 42, "4FED-01", "historical review receipt and PLAN binding boundary"), (43, 56, "4FED-02", "historical receipt evidence and terminal binding candidate")],
-    ASSET_ORDER[3]: [(1, 33, "188D-01", "historical review lane closure digest boundary"), (34, 80, "188D-02", "historical closure manifest and provider material candidate")],
-    ASSET_ORDER[4]: [(1, 27, "50A9-01", "historical worker review system-test design and negative cases")],
-    ASSET_ORDER[5]: [(1, 55, "A2E-01", "historical review receipt/PLAN binding test fixture and cases"), (56, 120, "A2E-02", "historical receipt drift and failure test cases")],
-    ASSET_ORDER[6]: [(1, 50, "8686-01", "historical merge admission requirement and same-HEAD receipt boundary"), (51, 100, "8686-02", "historical merge readiness and identity gate candidate")],
-    ASSET_ORDER[7]: [(1, 36, "0CC6-01", "historical merge admission system-test design and negative cases")],
-    ASSET_ORDER[8]: [(1, 65, "EA1D-01", "historical GitHub cross-review admission input and decision envelope"), (66, 140, "EA1D-02", "historical admission failure reasons and read-after candidate")],
+    ASSET_ORDER[0]: [
+        (
+            1,
+            33,
+            "D107-01",
+            "historical independent review boundary and sealed receipt contract",
+        ),
+        (35, 40, "D107-02", "historical non-runtime and later-slice boundary"),
+    ],
+    ASSET_ORDER[1]: [
+        (
+            1,
+            44,
+            "D681-01",
+            "historical cross-review admission input and independence contract",
+        ),
+        (45, 80, "D681-02", "historical fail-close and receipt lifecycle candidate"),
+    ],
+    ASSET_ORDER[2]: [
+        (1, 42, "4FED-01", "historical review receipt and PLAN binding boundary"),
+        (
+            43,
+            56,
+            "4FED-02",
+            "historical receipt evidence and terminal binding candidate",
+        ),
+    ],
+    ASSET_ORDER[3]: [
+        (1, 33, "188D-01", "historical review lane closure digest boundary"),
+        (
+            34,
+            80,
+            "188D-02",
+            "historical closure manifest and provider material candidate",
+        ),
+    ],
+    ASSET_ORDER[4]: [
+        (
+            1,
+            27,
+            "50A9-01",
+            "historical worker review system-test design and negative cases",
+        )
+    ],
+    ASSET_ORDER[5]: [
+        (
+            1,
+            55,
+            "A2E-01",
+            "historical review receipt/PLAN binding test fixture and cases",
+        ),
+        (56, 120, "A2E-02", "historical receipt drift and failure test cases"),
+    ],
+    ASSET_ORDER[6]: [
+        (
+            1,
+            50,
+            "8686-01",
+            "historical merge admission requirement and same-HEAD receipt boundary",
+        ),
+        (51, 100, "8686-02", "historical merge readiness and identity gate candidate"),
+    ],
+    ASSET_ORDER[7]: [
+        (
+            1,
+            36,
+            "0CC6-01",
+            "historical merge admission system-test design and negative cases",
+        )
+    ],
+    ASSET_ORDER[8]: [
+        (
+            1,
+            65,
+            "EA1D-01",
+            "historical GitHub cross-review admission input and decision envelope",
+        ),
+        (
+            66,
+            140,
+            "EA1D-02",
+            "historical admission failure reasons and read-after candidate",
+        ),
+    ],
 }
 
 CURRENT_REFS = [
-    ("BOUNDARY-UNIT-CONNECTION", "docs/concept/product-boundary.md", "ALL", "boundary_current_ref", "Concept", 12, 45, "four-product unit and connection boundary"),
-    ("OS-REVIEW-HANDOFF", "docs/governance/feature-tickets/FT-OS-REVIEWHANDOFF-001.md", "HELIX-OS", "direct_current_ref", "Feature candidate", 1, 64, "review handoff candidate and authority boundary"),
-    ("GITHUB-UPSTREAM-MODEL", "docs/governance/github-upstream-operating-model.md", "HELIX-OS", "direct_current_ref", "Governance", 112, 177, "review and merge admission operating candidate"),
-    ("MERGE-REHOST-ASSESSMENT", "docs/governance/audits/source-rebaseline/legacy-reviewed-merge-rehost-assessment-2026-09-20.md", "HELIX-OS", "direct_current_ref", "Audit", 1, 82, "legacy reviewed merge rehost assessment boundary"),
-    ("HARNESS-L2", "docs/helix-harness/L2-requirements/product-requirements.md", "HELIX-HARNESS", "direct_current_ref", "L2", 1, 45, "HARNESS V-model and review contract candidate"),
-    ("OS-L2", "docs/helix-os/L2-requirements/governance-requirements.md", "HELIX-OS", "direct_current_ref", "L2", 1, 45, "OS progression and evidence governance candidate"),
-    ("WEB-L2", "docs/helix-web/L2-requirements/product-requirements.md", "HELIX-Web", "adjacent_current_ref", "L2", 1, 47, "Web user-facing product boundary candidate"),
-    ("WEBOS-L2", "docs/helix-web-os/L2-requirements/service-governance-requirements.md", "HELIX-Web-OS", "adjacent_current_ref", "L2", 1, 40, "Web-OS service boundary candidate"),
-    ("HARNESS-L11", "docs/helix-harness/L11-acceptance/product-acceptance.md", "HELIX-HARNESS", "direct_current_ref", "L11", 1, 45, "HARNESS acceptance remains draft/unexecuted"),
-    ("OS-L11", "docs/helix-os/L11-acceptance/governance-acceptance.md", "HELIX-OS", "direct_current_ref", "L11", 1, 45, "OS acceptance remains draft/unexecuted"),
-    ("WEB-L11", "docs/helix-web/L11-acceptance/product-acceptance.md", "HELIX-Web", "adjacent_current_ref", "L11", 1, 33, "Web acceptance remains draft/unexecuted"),
-    ("WEBOS-L11", "docs/helix-web-os/L11-acceptance/service-acceptance.md", "HELIX-Web-OS", "adjacent_current_ref", "L11", 1, 26, "Web-OS acceptance remains draft/unexecuted"),
+    (
+        "BOUNDARY-UNIT-CONNECTION",
+        "docs/concept/product-boundary.md",
+        "ALL",
+        "boundary_current_ref",
+        "Concept",
+        12,
+        45,
+        "four-product unit and connection boundary",
+    ),
+    (
+        "OS-REVIEW-HANDOFF",
+        "docs/governance/feature-tickets/FT-OS-REVIEWHANDOFF-001.md",
+        "HELIX-OS",
+        "direct_current_ref",
+        "Feature candidate",
+        1,
+        64,
+        "review handoff candidate and authority boundary",
+    ),
+    (
+        "GITHUB-UPSTREAM-MODEL",
+        "docs/governance/github-upstream-operating-model.md",
+        "HELIX-OS",
+        "direct_current_ref",
+        "Governance",
+        112,
+        177,
+        "review and merge admission operating candidate",
+    ),
+    (
+        "MERGE-REHOST-ASSESSMENT",
+        "docs/governance/audits/source-rebaseline/legacy-reviewed-merge-rehost-assessment-2026-09-20.md",
+        "HELIX-OS",
+        "direct_current_ref",
+        "Audit",
+        1,
+        82,
+        "legacy reviewed merge rehost assessment boundary",
+    ),
+    (
+        "HARNESS-L2",
+        "docs/helix-harness/L2-requirements/product-requirements.md",
+        "HELIX-HARNESS",
+        "direct_current_ref",
+        "L2",
+        1,
+        45,
+        "HARNESS V-model and review contract candidate",
+    ),
+    (
+        "OS-L2",
+        "docs/helix-os/L2-requirements/governance-requirements.md",
+        "HELIX-OS",
+        "direct_current_ref",
+        "L2",
+        1,
+        45,
+        "OS progression and evidence governance candidate",
+    ),
+    (
+        "WEB-L2",
+        "docs/helix-web/L2-requirements/product-requirements.md",
+        "HELIX-Web",
+        "adjacent_current_ref",
+        "L2",
+        1,
+        47,
+        "Web user-facing product boundary candidate",
+    ),
+    (
+        "WEBOS-L2",
+        "docs/helix-web-os/L2-requirements/service-governance-requirements.md",
+        "HELIX-Web-OS",
+        "adjacent_current_ref",
+        "L2",
+        1,
+        40,
+        "Web-OS service boundary candidate",
+    ),
+    (
+        "HARNESS-L11",
+        "docs/helix-harness/L11-acceptance/product-acceptance.md",
+        "HELIX-HARNESS",
+        "direct_current_ref",
+        "L11",
+        1,
+        45,
+        "HARNESS acceptance remains draft/unexecuted",
+    ),
+    (
+        "OS-L11",
+        "docs/helix-os/L11-acceptance/governance-acceptance.md",
+        "HELIX-OS",
+        "direct_current_ref",
+        "L11",
+        1,
+        45,
+        "OS acceptance remains draft/unexecuted",
+    ),
+    (
+        "WEB-L11",
+        "docs/helix-web/L11-acceptance/product-acceptance.md",
+        "HELIX-Web",
+        "adjacent_current_ref",
+        "L11",
+        1,
+        33,
+        "Web acceptance remains draft/unexecuted",
+    ),
+    (
+        "WEBOS-L11",
+        "docs/helix-web-os/L11-acceptance/service-acceptance.md",
+        "HELIX-Web-OS",
+        "adjacent_current_ref",
+        "L11",
+        1,
+        26,
+        "Web-OS acceptance remains draft/unexecuted",
+    ),
 ]
 
 
@@ -63,13 +250,17 @@ def sha(data: bytes) -> str:
 
 
 def jsonl(path: Path) -> list[dict]:
-    return [json.loads(line) for line in path.read_text(encoding="utf-8").splitlines() if line.strip()]
+    return [
+        json.loads(line)
+        for line in path.read_text(encoding="utf-8").splitlines()
+        if line.strip()
+    ]
 
 
 def line_text(path: Path, start: int, end: int) -> str:
     lines = path.read_text(encoding="utf-8").splitlines()
     assert 1 <= start <= end <= len(lines), (path, start, end, len(lines))
-    return "\n".join(lines[start - 1:end]) + "\n"
+    return "\n".join(lines[start - 1 : end]) + "\n"
 
 
 def phase_snapshot(row: dict) -> dict:
@@ -78,9 +269,19 @@ def phase_snapshot(row: dict) -> dict:
 
 def ledger_snapshot(row: dict) -> dict:
     keys = [
-        "revision", "source_revision", "source_path", "source_sha256", "asset_class",
-        "reuse_exclusion_class", "product_target", "authority_status", "disposition",
-        "implementation_status", "consumer_refs", "decision_record_ref", "executability_status",
+        "revision",
+        "source_revision",
+        "source_path",
+        "source_sha256",
+        "asset_class",
+        "reuse_exclusion_class",
+        "product_target",
+        "authority_status",
+        "disposition",
+        "implementation_status",
+        "consumer_refs",
+        "decision_record_ref",
+        "executability_status",
         "external_effect_status",
     ]
     return {key: row.get(key) for key in keys}
@@ -126,11 +327,22 @@ disp = {row["asset_id"]: row for row in disp_rows}
 phase = {row["asset_id"]: row for row in phase_rows}
 phase_inventory = json.loads(PHASE_INV.read_text(encoding="utf-8"))
 phase_records = {row["task_id"]: row for row in phase_inventory["records"]}
-phase12_ids = {row["asset_id"] for row in phase_rows if "PHCAP-12" in row.get("candidate_phase_targets", [])}
-phase13_ids = {row["asset_id"] for row in phase_rows if "PHCAP-13" in row.get("candidate_phase_targets", [])}
-selected_decision_rows = [row for row in decision_rows if row.get("asset_id") in ASSET_ORDER]
+phase12_ids = {
+    row["asset_id"]
+    for row in phase_rows
+    if "PHCAP-12" in row.get("candidate_phase_targets", [])
+}
+phase13_ids = {
+    row["asset_id"]
+    for row in phase_rows
+    if "PHCAP-13" in row.get("candidate_phase_targets", [])
+}
+selected_decision_rows = [
+    row for row in decision_rows if row.get("asset_id") in ASSET_ORDER
+]
 decision_matching_asset_ids = [
-    aid for aid in ASSET_ORDER
+    aid
+    for aid in ASSET_ORDER
     if any(row.get("asset_id") == aid for row in selected_decision_rows)
 ]
 decision_match_count = len(selected_decision_rows)
@@ -142,47 +354,65 @@ for aid in ASSET_ORDER:
     old = disp[aid]
     cls = phase[aid]
     source = ARCHIVE / old["source_path"]
-    anchors = [make_anchor(source, start, end, sid, meaning) for start, end, sid, meaning in SPAN_SPECS[aid]]
+    anchors = [
+        make_anchor(source, start, end, sid, meaning)
+        for start, end, sid, meaning in SPAN_SPECS[aid]
+    ]
     anchor_ids = [row["anchor_id"] for row in anchors]
     candidates = {
-        ASSET_ORDER[0]: ["HELIX-OS review progression and independent reviewer candidate"],
-        ASSET_ORDER[1]: ["HARNESS review contract", "OS merge admission progression", "Web-OS bounded observation candidate"],
+        ASSET_ORDER[0]: [
+            "HELIX-OS review progression and independent reviewer candidate"
+        ],
+        ASSET_ORDER[1]: [
+            "HARNESS review contract",
+            "OS merge admission progression",
+            "Web-OS bounded observation candidate",
+        ],
         ASSET_ORDER[2]: ["OS PLAN/review evidence consumer candidate"],
         ASSET_ORDER[3]: ["OS review lane closure candidate"],
         ASSET_ORDER[4]: ["OS verification/evidence consumer candidate"],
         ASSET_ORDER[5]: ["OS receipt/PLAN binding consumer candidate"],
         ASSET_ORDER[6]: ["HARNESS requirement and OS merge admission candidate"],
-        ASSET_ORDER[7]: ["HARNESS/OS merge admission verification candidate", "Web/Web-OS adjacent evidence candidate"],
+        ASSET_ORDER[7]: [
+            "HARNESS/OS merge admission verification candidate",
+            "Web/Web-OS adjacent evidence candidate",
+        ],
         ASSET_ORDER[8]: ["OS admission evaluator consumer candidate"],
     }[aid]
-    assets.append({
-        "asset_id": aid,
-        "source_path": old["source_path"],
-        "archive_path": ARCHIVE_PREFIX + old["source_path"],
-        "source_revision": old["source_revision"],
-        "source_sha256": old["source_sha256"],
-        "source_line_count": len(source.read_text(encoding="utf-8").splitlines()),
-        "artifact_evidence_kind": cls.get("artifact_evidence_kind"),
-        "implementation_evidence_state": cls.get("implementation_evidence_state"),
-        "legacy_layers": cls.get("phase_assessments", []),
-        "ledger_snapshot": ledger_snapshot(old),
-        "phase_classification_snapshot": phase_snapshot(cls),
-        "decision_history": {"matching_count": 0, "matching_records": [], "status": "no_matching_append_only_decision_record"},
-        "source_anchors": anchors,
-        "failure_evidence": {
-            "status": "source_contract_only_unexecuted",
-            "execution_receipts": 0,
-            "anchor_ids": anchor_ids[:1],
-            "finding": "historical review/admission failure or negative boundary candidate; no current execution or pass is inferred",
-        },
-        "consumer_evidence": {
-            "status": "candidate_only_closure_pending",
-            "consumer_refs": [],
-            "anchor_ids": anchor_ids[-1:],
-            "candidates": candidates,
-            "finding": "historical consumer or trace candidate; current consumer read-after and closure remain unknown",
-        },
-    })
+    assets.append(
+        {
+            "asset_id": aid,
+            "source_path": old["source_path"],
+            "archive_path": ARCHIVE_PREFIX + old["source_path"],
+            "source_revision": old["source_revision"],
+            "source_sha256": old["source_sha256"],
+            "source_line_count": len(source.read_text(encoding="utf-8").splitlines()),
+            "artifact_evidence_kind": cls.get("artifact_evidence_kind"),
+            "implementation_evidence_state": cls.get("implementation_evidence_state"),
+            "legacy_layers": cls.get("phase_assessments", []),
+            "ledger_snapshot": ledger_snapshot(old),
+            "phase_classification_snapshot": phase_snapshot(cls),
+            "decision_history": {
+                "matching_count": 0,
+                "matching_records": [],
+                "status": "no_matching_append_only_decision_record",
+            },
+            "source_anchors": anchors,
+            "failure_evidence": {
+                "status": "source_contract_only_unexecuted",
+                "execution_receipts": 0,
+                "anchor_ids": anchor_ids[:1],
+                "finding": "historical review/admission failure or negative boundary candidate; no current execution or pass is inferred",
+            },
+            "consumer_evidence": {
+                "status": "candidate_only_closure_pending",
+                "consumer_refs": [],
+                "anchor_ids": anchor_ids[-1:],
+                "candidates": candidates,
+                "finding": "historical consumer or trace candidate; current consumer read-after and closure remain unknown",
+            },
+        }
+    )
 
 units = [
     {
@@ -197,7 +427,12 @@ units = [
         "acceptance_status": "draft_unexecuted",
         "current_ref_ids": ["BOUNDARY-UNIT-CONNECTION", "HARNESS-L2", "HARNESS-L11"],
         "legacy_asset_ids": [ASSET_ORDER[1], ASSET_ORDER[6], ASSET_ORDER[7]],
-        "unresolved": ["formal owner", "L2/L11 adoption", "current implementation", "consumer closure"],
+        "unresolved": [
+            "formal owner",
+            "L2/L11 adoption",
+            "current implementation",
+            "consumer closure",
+        ],
     },
     {
         "unit_id": "PHCAP12-13-UNIT-OS",
@@ -209,9 +444,22 @@ units = [
         "legacy_transition_status": "degraded_to_manual_or_candidate_contract",
         "authority_status": "candidate_unresolved",
         "acceptance_status": "draft_unexecuted",
-        "current_ref_ids": ["BOUNDARY-UNIT-CONNECTION", "OS-REVIEW-HANDOFF", "GITHUB-UPSTREAM-MODEL", "MERGE-REHOST-ASSESSMENT", "OS-L2", "OS-L11"],
+        "current_ref_ids": [
+            "BOUNDARY-UNIT-CONNECTION",
+            "OS-REVIEW-HANDOFF",
+            "GITHUB-UPSTREAM-MODEL",
+            "MERGE-REHOST-ASSESSMENT",
+            "OS-L2",
+            "OS-L11",
+        ],
         "legacy_asset_ids": ASSET_ORDER,
-        "unresolved": ["canonical receipt schema", "DB convergence", "current CI", "formal owner", "consumer closure"],
+        "unresolved": [
+            "canonical receipt schema",
+            "DB convergence",
+            "current CI",
+            "formal owner",
+            "consumer closure",
+        ],
     },
     {
         "unit_id": "PHCAP12-13-UNIT-WEB",
@@ -225,7 +473,12 @@ units = [
         "acceptance_status": "draft_unexecuted",
         "current_ref_ids": ["BOUNDARY-UNIT-CONNECTION", "WEB-L2", "WEB-L11"],
         "legacy_asset_ids": [ASSET_ORDER[7]],
-        "unresolved": ["PHCAP-12/13 direct evidence", "owner", "review consumer", "implementation"],
+        "unresolved": [
+            "PHCAP-12/13 direct evidence",
+            "owner",
+            "review consumer",
+            "implementation",
+        ],
     },
     {
         "unit_id": "PHCAP12-13-UNIT-WEBOS",
@@ -239,30 +492,117 @@ units = [
         "acceptance_status": "draft_unexecuted",
         "current_ref_ids": ["BOUNDARY-UNIT-CONNECTION", "WEBOS-L2", "WEBOS-L11"],
         "legacy_asset_ids": [ASSET_ORDER[1], ASSET_ORDER[6], ASSET_ORDER[7]],
-        "unresolved": ["service consumer scope", "credential/state separation", "implementation", "acceptance"],
+        "unresolved": [
+            "service consumer scope",
+            "credential/state separation",
+            "implementation",
+            "acceptance",
+        ],
     },
 ]
 
 edges = [
-    {"edge_id": "CONN-HARNESS-OS-REVIEW-CONTRACT", "from": "HELIX-HARNESS", "to": "HELIX-OS", "kind": "contract_to_progression", "status": "candidate", "authority_effect": "none", "meaning": "HARNESS review/evidence vocabulary may constrain OS progression and admission; no authority or implementation is inferred."},
-    {"edge_id": "CONN-OS-HARNESS-RECEIPT-PROJECTION", "from": "HELIX-OS", "to": "HELIX-HARNESS", "kind": "receipt_to_contract_feedback", "status": "candidate", "authority_effect": "none", "meaning": "OS receipt/finding projection may feed HARNESS contract review; a receipt does not create approval or acceptance."},
-    {"edge_id": "CONN-OS-WEB-PROJECT-RESULT", "from": "HELIX-OS", "to": "HELIX-Web", "kind": "project_to_user_result", "status": "adjacent_candidate", "authority_effect": "none", "meaning": "OS may expose scoped project/review result state to Web; Web has no WBS, ticket, or merge authority."},
-    {"edge_id": "CONN-WEB-WEBOS-SERVICE-REQUEST", "from": "HELIX-Web", "to": "HELIX-Web-OS", "kind": "user_request_to_service", "status": "adjacent_candidate", "authority_effect": "none", "meaning": "Web user operation may reach Web-OS service state through a bounded contract; tenant state and credentials remain separate."},
-    {"edge_id": "CONN-WEBOS-OS-OBSERVATION-EXPORT", "from": "HELIX-Web-OS", "to": "HELIX-OS", "kind": "scoped_observation_export", "status": "adjacent_candidate", "authority_effect": "none", "meaning": "Permitted service observation may be exported to OS improvement/review evidence; raw tenant data and writer authority are not shared."},
+    {
+        "edge_id": "CONN-HARNESS-OS-REVIEW-CONTRACT",
+        "from": "HELIX-HARNESS",
+        "to": "HELIX-OS",
+        "kind": "contract_to_progression",
+        "status": "candidate",
+        "authority_effect": "none",
+        "meaning": "HARNESS review/evidence vocabulary may constrain OS progression and admission; no authority or implementation is inferred.",
+    },
+    {
+        "edge_id": "CONN-OS-HARNESS-RECEIPT-PROJECTION",
+        "from": "HELIX-OS",
+        "to": "HELIX-HARNESS",
+        "kind": "receipt_to_contract_feedback",
+        "status": "candidate",
+        "authority_effect": "none",
+        "meaning": "OS receipt/finding projection may feed HARNESS contract review; a receipt does not create approval or acceptance.",
+    },
+    {
+        "edge_id": "CONN-OS-WEB-PROJECT-RESULT",
+        "from": "HELIX-OS",
+        "to": "HELIX-Web",
+        "kind": "project_to_user_result",
+        "status": "adjacent_candidate",
+        "authority_effect": "none",
+        "meaning": "OS may expose scoped project/review result state to Web; Web has no WBS, ticket, or merge authority.",
+    },
+    {
+        "edge_id": "CONN-WEB-WEBOS-SERVICE-REQUEST",
+        "from": "HELIX-Web",
+        "to": "HELIX-Web-OS",
+        "kind": "user_request_to_service",
+        "status": "adjacent_candidate",
+        "authority_effect": "none",
+        "meaning": "Web user operation may reach Web-OS service state through a bounded contract; tenant state and credentials remain separate.",
+    },
+    {
+        "edge_id": "CONN-WEBOS-OS-OBSERVATION-EXPORT",
+        "from": "HELIX-Web-OS",
+        "to": "HELIX-OS",
+        "kind": "scoped_observation_export",
+        "status": "adjacent_candidate",
+        "authority_effect": "none",
+        "meaning": "Permitted service observation may be exported to OS improvement/review evidence; raw tenant data and writer authority are not shared.",
+    },
 ]
 
 consumer_candidates = [
-    {"consumer_id": "CONSUMER-HARNESS-REVIEW-CONTRACT", "product": "HELIX-HARNESS", "candidate_input": "review/evidence contract", "observed": False, "closure_status": "pending", "evidence_status": "candidate_only", "authority_effect": "none"},
-    {"consumer_id": "CONSUMER-OS-PROGRESSION-ADMISSION", "product": "HELIX-OS", "candidate_input": "receipt/finding/merge admission state", "observed": False, "closure_status": "pending", "evidence_status": "candidate_only", "authority_effect": "none"},
-    {"consumer_id": "CONSUMER-WEB-RESULT-PRESENTATION", "product": "HELIX-Web", "candidate_input": "scoped review/project result", "observed": False, "closure_status": "pending", "evidence_status": "adjacent_candidate_only", "authority_effect": "none"},
-    {"consumer_id": "CONSUMER-WEBOS-SERVICE-OBSERVATION", "product": "HELIX-Web-OS", "candidate_input": "bounded service observation/export", "observed": False, "closure_status": "pending", "evidence_status": "adjacent_candidate_only", "authority_effect": "none"},
+    {
+        "consumer_id": "CONSUMER-HARNESS-REVIEW-CONTRACT",
+        "product": "HELIX-HARNESS",
+        "candidate_input": "review/evidence contract",
+        "observed": False,
+        "closure_status": "pending",
+        "evidence_status": "candidate_only",
+        "authority_effect": "none",
+    },
+    {
+        "consumer_id": "CONSUMER-OS-PROGRESSION-ADMISSION",
+        "product": "HELIX-OS",
+        "candidate_input": "receipt/finding/merge admission state",
+        "observed": False,
+        "closure_status": "pending",
+        "evidence_status": "candidate_only",
+        "authority_effect": "none",
+    },
+    {
+        "consumer_id": "CONSUMER-WEB-RESULT-PRESENTATION",
+        "product": "HELIX-Web",
+        "candidate_input": "scoped review/project result",
+        "observed": False,
+        "closure_status": "pending",
+        "evidence_status": "adjacent_candidate_only",
+        "authority_effect": "none",
+    },
+    {
+        "consumer_id": "CONSUMER-WEBOS-SERVICE-OBSERVATION",
+        "product": "HELIX-Web-OS",
+        "candidate_input": "bounded service observation/export",
+        "observed": False,
+        "closure_status": "pending",
+        "evidence_status": "adjacent_candidate_only",
+        "authority_effect": "none",
+    },
 ]
 
 current_refs = [current_ref(spec) for spec in CURRENT_REFS]
 phase_joins = []
 for phase_id in ("PHCAP-12", "PHCAP-13"):
-    selected = [aid for aid in ASSET_ORDER if phase_id in phase[aid].get("candidate_phase_targets", [])]
-    phase_joins.append({"phase_id": phase_id, "selected_asset_ids": selected, "interpretation": "candidate phase join only; no admission, owner, or successor is generated"})
+    selected = [
+        aid
+        for aid in ASSET_ORDER
+        if phase_id in phase[aid].get("candidate_phase_targets", [])
+    ]
+    phase_joins.append(
+        {
+            "phase_id": phase_id,
+            "selected_asset_ids": selected,
+            "interpretation": "candidate phase join only; no admission, owner, or successor is generated",
+        }
+    )
 
 inventory = {
     "schema": "phcap12-13-review-research/v1",
@@ -307,7 +647,12 @@ inventory = {
         "legacy_asset_ids": ASSET_ORDER,
         "selected_source_asset_count": len(ASSET_ORDER),
         "source_anchor_count": sum(len(a["source_anchors"]) for a in assets),
-        "candidate_asset_counts": {"PHCAP-12": len(phase12_ids), "PHCAP-13": len(phase13_ids), "both": len(phase12_ids & phase13_ids), "either": len(phase12_ids | phase13_ids)},
+        "candidate_asset_counts": {
+            "PHCAP-12": len(phase12_ids),
+            "PHCAP-13": len(phase13_ids),
+            "both": len(phase12_ids & phase13_ids),
+            "either": len(phase12_ids | phase13_ids),
+        },
         "closure_rule": "PHCAP-12/13 representative assets and current refs only; unselected asset, failure, consumer, and implementation closure remains residual",
     },
     "product_units": units,
@@ -380,5 +725,9 @@ inventory = {
         "legacy_consumer_refs_observed": 0,
     },
 }
-INV.write_text(json.dumps(inventory, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
-print(f"wrote {INV}: {len(assets)} selected assets, {len(current_refs)} current refs, {sum(len(a['source_anchors']) for a in assets)} source anchors")
+INV.write_text(
+    json.dumps(inventory, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
+)
+print(
+    f"wrote {INV}: {len(assets)} selected assets, {len(current_refs)} current refs, {sum(len(a['source_anchors']) for a in assets)} source anchors"
+)

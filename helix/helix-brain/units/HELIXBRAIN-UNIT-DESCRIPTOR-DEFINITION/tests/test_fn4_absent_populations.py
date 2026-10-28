@@ -55,12 +55,20 @@ def _raw_runner_material(raw):
 
 class TestFn4AbsentPopulations(unittest.TestCase):
     def _assert_unclosed_not_empty_success(self, raw):
-        raw_before, validated_before, validated, walk, frame, context = _raw_runner_material(raw)
+        raw_before, validated_before, validated, walk, frame, context = (
+            _raw_runner_material(raw)
+        )
         self.assertEqual(context["definitions"], walk["evaluation"]["comparison"])
         self.assertIs(frame["validated"], validated)
-        self.assertEqual(set(frame), {
-            "validated", "definition_evaluation", "target_reads", "claim_uses",
-        })
+        self.assertEqual(
+            set(frame),
+            {
+                "validated",
+                "definition_evaluation",
+                "target_reads",
+                "claim_uses",
+            },
+        )
 
         with self.assertRaises(NotImplementedError) as caught:
             compare_oracle_and_view_boundary_detail(context, frame)
@@ -78,7 +86,9 @@ class TestFn4AbsentPopulations(unittest.TestCase):
         # outside the finite FN4 return branch.
         raw["oracle_bindings"] = []
 
-        raw_before, validated_before, validated, walk, frame, context = _raw_runner_material(raw)
+        raw_before, validated_before, validated, walk, frame, context = (
+            _raw_runner_material(raw)
+        )
         self.assertNotIn("claims", raw_before)
         self.assertNotIn("claims", validated["input"])
         self.assertEqual(walk["target_reads"], [])
@@ -100,7 +110,9 @@ class TestFn4AbsentPopulations(unittest.TestCase):
         raw.pop("oracle_bindings")
         raw["claims"] = []
 
-        raw_before, validated_before, validated, walk, frame, context = _raw_runner_material(raw)
+        raw_before, validated_before, validated, walk, frame, context = (
+            _raw_runner_material(raw)
+        )
         self.assertNotIn("oracle_bindings", raw_before)
         self.assertNotIn("oracle_bindings", validated["input"])
         self.assertEqual(walk["target_reads"], [])

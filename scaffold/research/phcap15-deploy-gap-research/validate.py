@@ -133,22 +133,136 @@ EXPECTED_ANCHOR_MEANINGS = {
     ],
 }
 EXPECTED_KEYSETS = {
-    "root": frozenset({"schema", "capture", "phase", "denominator", "products", "assets", "evidence_gaps", "prohibited_inference", "verification_contract"}),
-    "root.capture": frozenset({"basis_revision", "basis_ref", "observed_at", "worktree", "authority_effect", "new_build_allowed", "scope", "archive_read_mode", "old_execution_performed"}),
-    "root.phase": frozenset({"task_id", "title", "current_status", "current_evidence_products", "current_refs", "legacy_layers_evidenced", "legacy_capability_status", "transition_assessment", "gap_statement", "new_build_allowed", "authority_effect", "source"}),
+    "root": frozenset(
+        {
+            "schema",
+            "capture",
+            "phase",
+            "denominator",
+            "products",
+            "assets",
+            "evidence_gaps",
+            "prohibited_inference",
+            "verification_contract",
+        }
+    ),
+    "root.capture": frozenset(
+        {
+            "basis_revision",
+            "basis_ref",
+            "observed_at",
+            "worktree",
+            "authority_effect",
+            "new_build_allowed",
+            "scope",
+            "archive_read_mode",
+            "old_execution_performed",
+        }
+    ),
+    "root.phase": frozenset(
+        {
+            "task_id",
+            "title",
+            "current_status",
+            "current_evidence_products",
+            "current_refs",
+            "legacy_layers_evidenced",
+            "legacy_capability_status",
+            "transition_assessment",
+            "gap_statement",
+            "new_build_allowed",
+            "authority_effect",
+            "source",
+        }
+    ),
     "root.phase.source": frozenset({"path", "sha256"}),
-    "root.denominator": frozenset({"archive_manifest_assets", "asset_disposition_rows", "asset_disposition_unresolved", "phcap15_classification_pool_rows", "phcap15_pool_historical_unresolved", "phcap15_pool_source_snapshot_pending", "selected_representative_rows", "selected_rows_still_unresolved", "pool_rows_outside_selected_scope", "pool_coverage_statement"}),
-    "root.products[]": frozenset({"product_id", "unit_boundary", "current_evidence_status", "refs"}),
-    "root.products[].refs[]": frozenset({"path", "line_start", "line_end", "span_sha256", "file_sha256"}),
-    "root.assets[]": frozenset({"asset_id", "source_path", "archive_path", "artifact_evidence_kind", "source_file_sha256", "source_line_count", "candidate_phase_targets", "candidate_product_targets", "phase_classification_status", "product_classification_status", "implementation_evidence_state", "legacy_execution_performed", "legacy_implementation_status", "disposition", "consumer_closure_status", "consumer_refs", "decision_matches", "copy_read_after_matches", "anchors", "current_interpretation"}),
-    "root.assets[].anchors[]": frozenset({"line_start", "line_end", "span_sha256", "meaning"}),
-    "root.assets[].current_interpretation": frozenset({"implementation", "degradation", "failure", "consumer"}),
-    "root.evidence_gaps": frozenset({"decision", "failure", "consumer", "implementation"}),
-    "root.evidence_gaps.decision": frozenset({"selected_asset_decision_matches", "selected_asset_copy_read_after_matches", "interpretation"}),
-    "root.evidence_gaps.failure": frozenset({"selected_failure_receipts", "interpretation"}),
-    "root.evidence_gaps.consumer": frozenset({"selected_consumer_refs_nonempty", "selected_consumer_closure_pending", "interpretation"}),
-    "root.evidence_gaps.implementation": frozenset({"old_source_implementation_candidates", "old_test_candidates", "old_runtime_evidence_candidates", "current_implementation_evidence", "interpretation"}),
-    "root.verification_contract": frozenset({"archive_execution", "current_implementation_claim", "required_commands", "negative_cases"}),
+    "root.denominator": frozenset(
+        {
+            "archive_manifest_assets",
+            "asset_disposition_rows",
+            "asset_disposition_unresolved",
+            "phcap15_classification_pool_rows",
+            "phcap15_pool_historical_unresolved",
+            "phcap15_pool_source_snapshot_pending",
+            "selected_representative_rows",
+            "selected_rows_still_unresolved",
+            "pool_rows_outside_selected_scope",
+            "pool_coverage_statement",
+        }
+    ),
+    "root.products[]": frozenset(
+        {"product_id", "unit_boundary", "current_evidence_status", "refs"}
+    ),
+    "root.products[].refs[]": frozenset(
+        {"path", "line_start", "line_end", "span_sha256", "file_sha256"}
+    ),
+    "root.assets[]": frozenset(
+        {
+            "asset_id",
+            "source_path",
+            "archive_path",
+            "artifact_evidence_kind",
+            "source_file_sha256",
+            "source_line_count",
+            "candidate_phase_targets",
+            "candidate_product_targets",
+            "phase_classification_status",
+            "product_classification_status",
+            "implementation_evidence_state",
+            "legacy_execution_performed",
+            "legacy_implementation_status",
+            "disposition",
+            "consumer_closure_status",
+            "consumer_refs",
+            "decision_matches",
+            "copy_read_after_matches",
+            "anchors",
+            "current_interpretation",
+        }
+    ),
+    "root.assets[].anchors[]": frozenset(
+        {"line_start", "line_end", "span_sha256", "meaning"}
+    ),
+    "root.assets[].current_interpretation": frozenset(
+        {"implementation", "degradation", "failure", "consumer"}
+    ),
+    "root.evidence_gaps": frozenset(
+        {"decision", "failure", "consumer", "implementation"}
+    ),
+    "root.evidence_gaps.decision": frozenset(
+        {
+            "selected_asset_decision_matches",
+            "selected_asset_copy_read_after_matches",
+            "interpretation",
+        }
+    ),
+    "root.evidence_gaps.failure": frozenset(
+        {"selected_failure_receipts", "interpretation"}
+    ),
+    "root.evidence_gaps.consumer": frozenset(
+        {
+            "selected_consumer_refs_nonempty",
+            "selected_consumer_closure_pending",
+            "interpretation",
+        }
+    ),
+    "root.evidence_gaps.implementation": frozenset(
+        {
+            "old_source_implementation_candidates",
+            "old_test_candidates",
+            "old_runtime_evidence_candidates",
+            "current_implementation_evidence",
+            "interpretation",
+        }
+    ),
+    "root.verification_contract": frozenset(
+        {
+            "archive_execution",
+            "current_implementation_claim",
+            "required_commands",
+            "negative_cases",
+        }
+    ),
 }
 
 
@@ -162,7 +276,9 @@ def sha256_file(path: Path) -> str:
 
 def read_jsonl(path: Path) -> list[dict[str, Any]]:
     rows: list[dict[str, Any]] = []
-    for line_number, line in enumerate(path.read_text(encoding="utf-8").splitlines(), 1):
+    for line_number, line in enumerate(
+        path.read_text(encoding="utf-8").splitlines(), 1
+    ):
         try:
             value = json.loads(line)
         except json.JSONDecodeError as exc:
@@ -209,8 +325,15 @@ def validate_keysets(value: object) -> list[str]:
 def validate_inventory(data: dict[str, Any], root: Path = ROOT) -> list[str]:
     errors: list[str] = validate_keysets(data)
     expected_top = {
-        "schema", "capture", "phase", "denominator", "products", "assets",
-        "evidence_gaps", "prohibited_inference", "verification_contract",
+        "schema",
+        "capture",
+        "phase",
+        "denominator",
+        "products",
+        "assets",
+        "evidence_gaps",
+        "prohibited_inference",
+        "verification_contract",
     }
     if set(data) != expected_top:
         add(errors, "E_KEYS", f"top={sorted(data)}")
@@ -222,7 +345,10 @@ def validate_inventory(data: dict[str, Any], root: Path = ROOT) -> list[str]:
         add(errors, "E_BASIS", "basis_ref")
     if capture.get("basis_revision") != "2ff4f888249b350afb624e359eaa8e3f3ea6defb":
         add(errors, "E_BASIS", "basis_revision")
-    if capture.get("authority_effect") != "none" or capture.get("new_build_allowed") is not False:
+    if (
+        capture.get("authority_effect") != "none"
+        or capture.get("new_build_allowed") is not False
+    ):
         add(errors, "E_AUTHORITY", "capture boundary promoted")
     if capture.get("scope") != EXPECTED_CAPTURE_SCOPE:
         add(errors, "E_CAPTURE_SCOPE", "capture scope changed")
@@ -235,11 +361,16 @@ def validate_inventory(data: dict[str, Any], root: Path = ROOT) -> list[str]:
     for key, expected in EXPECTED_PHASE.items():
         if phase.get(key) != expected:
             add(errors, "E_PHASE", f"{key}={phase.get(key)!r}")
-    if phase.get("new_build_allowed") is not False or phase.get("authority_effect") != "inventory_and_work_projection_only":
+    if (
+        phase.get("new_build_allowed") is not False
+        or phase.get("authority_effect") != "inventory_and_work_projection_only"
+    ):
         add(errors, "E_PHASE_BOUNDARY", "phase boundary")
     phase_source = phase.get("source", {})
     phase_path = root / phase_source.get("path", "")
-    if not phase_path.is_file() or sha256_file(phase_path) != phase_source.get("sha256"):
+    if not phase_path.is_file() or sha256_file(phase_path) != phase_source.get(
+        "sha256"
+    ):
         add(errors, "E_PHASE_SOURCE", str(phase_source.get("path")))
 
     denominator = data.get("denominator", {})
@@ -249,7 +380,9 @@ def validate_inventory(data: dict[str, Any], root: Path = ROOT) -> list[str]:
     for key, expected in {
         "phcap15_classification_pool_rows": EXPECTED_POOL["rows"],
         "phcap15_pool_historical_unresolved": EXPECTED_POOL["historical_unresolved"],
-        "phcap15_pool_source_snapshot_pending": EXPECTED_POOL["source_snapshot_pending"],
+        "phcap15_pool_source_snapshot_pending": EXPECTED_POOL[
+            "source_snapshot_pending"
+        ],
         "selected_representative_rows": EXPECTED_POOL["selected"],
         "pool_rows_outside_selected_scope": EXPECTED_POOL["outside_selected"],
     }.items():
@@ -257,13 +390,17 @@ def validate_inventory(data: dict[str, Any], root: Path = ROOT) -> list[str]:
             add(errors, "E_DENOMINATOR", f"{key}={denominator.get(key)!r}")
 
     products = data.get("products", [])
-    if {p.get("product_id") for p in products} != EXPECTED_PRODUCTS or len(products) != 4:
+    if {p.get("product_id") for p in products} != EXPECTED_PRODUCTS or len(
+        products
+    ) != 4:
         add(errors, "E_PRODUCTS", "four product units changed")
     for product in products:
         product_id = product.get("product_id")
         if product.get("unit_boundary") != EXPECTED_UNIT_BOUNDARIES.get(product_id):
             add(errors, "E_PRODUCT_UNIT_BOUNDARY", str(product_id))
-        if product.get("current_evidence_status") != EXPECTED_PRODUCT_EVIDENCE_STATUS.get(product_id):
+        if product.get(
+            "current_evidence_status"
+        ) != EXPECTED_PRODUCT_EVIDENCE_STATUS.get(product_id):
             add(errors, "E_PRODUCT_EVIDENCE_STATUS", str(product_id))
         for ref in product.get("refs", []):
             path = root / ref.get("path", "")
@@ -272,11 +409,16 @@ def validate_inventory(data: dict[str, Any], root: Path = ROOT) -> list[str]:
                 continue
             if sha256_file(path) != ref.get("file_sha256"):
                 add(errors, "E_CURRENT_DIGEST", ref.get("path", ""))
-            if span_digest(path, ref.get("line_start", 0), ref.get("line_end", 0)) != ref.get("span_sha256"):
+            if span_digest(
+                path, ref.get("line_start", 0), ref.get("line_end", 0)
+            ) != ref.get("span_sha256"):
                 add(errors, "E_CURRENT_SPAN", ref.get("path", ""))
 
     disposition_path = root / "docs/governance/legacy-asset-disposition.jsonl"
-    classification_path = root / "docs/governance/legacy-asset-phase-product-classification-bootstrap.jsonl"
+    classification_path = (
+        root
+        / "docs/governance/legacy-asset-phase-product-classification-bootstrap.jsonl"
+    )
     decision_path = root / "docs/governance/legacy-asset-decisions.jsonl"
     read_after_path = root / "docs/governance/legacy-asset-copy-read-after.jsonl"
     try:
@@ -288,15 +430,40 @@ def validate_inventory(data: dict[str, Any], root: Path = ROOT) -> list[str]:
         add(errors, "E_LEDGER_READ", str(exc))
         return errors
 
-    pool = [row for row in classification_rows if "PHCAP-15" in row.get("candidate_phase_targets", [])]
+    pool = [
+        row
+        for row in classification_rows
+        if "PHCAP-15" in row.get("candidate_phase_targets", [])
+    ]
     if len(disposition) != 4020 or len(pool) != EXPECTED_POOL["rows"]:
-        add(errors, "E_LEDGER_DENOMINATOR", f"disposition={len(disposition)} pool={len(pool)}")
+        add(
+            errors,
+            "E_LEDGER_DENOMINATOR",
+            f"disposition={len(disposition)} pool={len(pool)}",
+        )
     pool_ids = {row.get("asset_id") for row in pool}
-    pool_unresolved = sum(disposition.get(asset_id, {}).get("disposition") == "unresolved" for asset_id in pool_ids)
-    pool_snapshots = sum(disposition.get(asset_id, {}).get("disposition") == "source_snapshot_preservation" for asset_id in pool_ids)
-    if pool_unresolved != EXPECTED_POOL["historical_unresolved"] or pool_snapshots != EXPECTED_POOL["source_snapshot_pending"]:
-        add(errors, "E_POOL_STATE", f"unresolved={pool_unresolved} snapshots={pool_snapshots}")
-    if sum(row.get("disposition") == "unresolved" for row in disposition.values()) != 3991:
+    pool_unresolved = sum(
+        disposition.get(asset_id, {}).get("disposition") == "unresolved"
+        for asset_id in pool_ids
+    )
+    pool_snapshots = sum(
+        disposition.get(asset_id, {}).get("disposition")
+        == "source_snapshot_preservation"
+        for asset_id in pool_ids
+    )
+    if (
+        pool_unresolved != EXPECTED_POOL["historical_unresolved"]
+        or pool_snapshots != EXPECTED_POOL["source_snapshot_pending"]
+    ):
+        add(
+            errors,
+            "E_POOL_STATE",
+            f"unresolved={pool_unresolved} snapshots={pool_snapshots}",
+        )
+    if (
+        sum(row.get("disposition") == "unresolved" for row in disposition.values())
+        != 3991
+    ):
         add(errors, "E_GLOBAL_DENOMINATOR", "unresolved asset disposition denominator")
 
     assets = data.get("assets", [])
@@ -316,37 +483,76 @@ def validate_inventory(data: dict[str, Any], root: Path = ROOT) -> list[str]:
         if not archive_path.is_file():
             add(errors, "E_ARCHIVE_PATH", asset.get("archive_path", ""))
             continue
-        if sha256_file(archive_path) != asset.get("source_file_sha256") or sha256_file(archive_path) != old.get("source_sha256"):
+        if sha256_file(archive_path) != asset.get("source_file_sha256") or sha256_file(
+            archive_path
+        ) != old.get("source_sha256"):
             add(errors, "E_ARCHIVE_DIGEST", asset_id)
-        if len(archive_path.read_text(encoding="utf-8").splitlines()) != asset.get("source_line_count"):
+        if len(archive_path.read_text(encoding="utf-8").splitlines()) != asset.get(
+            "source_line_count"
+        ):
             add(errors, "E_ARCHIVE_LINES", asset_id)
         expected_meanings = EXPECTED_ANCHOR_MEANINGS.get(asset_id, [])
         if len(asset.get("anchors", [])) != EXPECTED_ANCHOR_COUNTS.get(asset_id):
             add(errors, "E_ANCHOR_COUNT", asset_id)
-        if [anchor.get("meaning") for anchor in asset.get("anchors", [])] != expected_meanings:
+        if [
+            anchor.get("meaning") for anchor in asset.get("anchors", [])
+        ] != expected_meanings:
             add(errors, "E_ANCHOR_MEANINGS", asset_id)
         for anchor in asset.get("anchors", []):
-            if span_digest(archive_path, anchor.get("line_start", 0), anchor.get("line_end", 0)) != anchor.get("span_sha256"):
-                add(errors, "E_ANCHOR_DIGEST", f"{asset_id}:{anchor.get('line_start')}-{anchor.get('line_end')}")
-        for key in ("artifact_evidence_kind", "candidate_phase_targets", "candidate_product_targets", "implementation_evidence_state", "legacy_execution_performed", "legacy_implementation_status", "consumer_closure_status", "consumer_refs"):
+            if span_digest(
+                archive_path, anchor.get("line_start", 0), anchor.get("line_end", 0)
+            ) != anchor.get("span_sha256"):
+                add(
+                    errors,
+                    "E_ANCHOR_DIGEST",
+                    f"{asset_id}:{anchor.get('line_start')}-{anchor.get('line_end')}",
+                )
+        for key in (
+            "artifact_evidence_kind",
+            "candidate_phase_targets",
+            "candidate_product_targets",
+            "implementation_evidence_state",
+            "legacy_execution_performed",
+            "legacy_implementation_status",
+            "consumer_closure_status",
+            "consumer_refs",
+        ):
             if asset.get(key) != candidate.get(key):
                 add(errors, "E_CLASSIFICATION", f"{asset_id}:{key}")
-        if asset.get("disposition") != old.get("disposition") or old.get("disposition") != "unresolved":
+        if (
+            asset.get("disposition") != old.get("disposition")
+            or old.get("disposition") != "unresolved"
+        ):
             add(errors, "E_DISPOSITION", asset_id)
-        if old.get("consumer_refs") != [] or asset.get("consumer_refs") != [] or asset.get("consumer_closure_status") != "pending":
+        if (
+            old.get("consumer_refs") != []
+            or asset.get("consumer_refs") != []
+            or asset.get("consumer_closure_status") != "pending"
+        ):
             add(errors, "E_CONSUMER_PROMOTION", asset_id)
-        if asset.get("legacy_execution_performed") is not False or asset.get("legacy_implementation_status") != "unknown":
+        if (
+            asset.get("legacy_execution_performed") is not False
+            or asset.get("legacy_implementation_status") != "unknown"
+        ):
             add(errors, "E_IMPLEMENTATION_PROMOTION", asset_id)
-        if sum(row.get("asset_id") == asset_id for row in decisions) != asset.get("decision_matches"):
+        if sum(row.get("asset_id") == asset_id for row in decisions) != asset.get(
+            "decision_matches"
+        ):
             add(errors, "E_DECISION_COUNT", asset_id)
-        if sum(row.get("asset_id") == asset_id for row in read_afters) != asset.get("copy_read_after_matches"):
+        if sum(row.get("asset_id") == asset_id for row in read_afters) != asset.get(
+            "copy_read_after_matches"
+        ):
             add(errors, "E_READ_AFTER_COUNT", asset_id)
         current = asset.get("current_interpretation", {})
         if current.get("implementation") != "unknown":
             add(errors, "E_CURRENT_IMPLEMENTATION", asset_id)
-        if current.get("failure", "").startswith("no failure receipt") is False and "no failure" not in current.get("failure", ""):
+        if current.get("failure", "").startswith(
+            "no failure receipt"
+        ) is False and "no failure" not in current.get("failure", ""):
             add(errors, "E_FAILURE_PROMOTION", asset_id)
-        if "unknown" not in current.get("consumer", "") and "pending" not in current.get("consumer", ""):
+        if "unknown" not in current.get(
+            "consumer", ""
+        ) and "pending" not in current.get("consumer", ""):
             add(errors, "E_CONSUMER_INTERPRETATION", asset_id)
 
     evidence = data.get("evidence_gaps", {})
@@ -354,7 +560,10 @@ def validate_inventory(data: dict[str, Any], root: Path = ROOT) -> list[str]:
         add(errors, "E_DECISION_GAP", "decision matches")
     if evidence.get("failure", {}).get("selected_failure_receipts") != 0:
         add(errors, "E_FAILURE_GAP", "failure receipts")
-    if evidence.get("consumer", {}).get("selected_consumer_refs_nonempty") != 0 or evidence.get("consumer", {}).get("selected_consumer_closure_pending") != 7:
+    if (
+        evidence.get("consumer", {}).get("selected_consumer_refs_nonempty") != 0
+        or evidence.get("consumer", {}).get("selected_consumer_closure_pending") != 7
+    ):
         add(errors, "E_CONSUMER_GAP", "consumer gap")
     for key, expected in EXPECTED_EVIDENCE_GAP_INTERPRETATIONS.items():
         if evidence.get(key, {}).get("interpretation") != expected:
@@ -383,9 +592,14 @@ def main() -> int:
     if errors:
         for error in errors:
             print(error, file=sys.stderr)
-        print(f"PHCAP-15 deploy gap validation: FAIL ({len(errors)} errors)", file=sys.stderr)
+        print(
+            f"PHCAP-15 deploy gap validation: FAIL ({len(errors)} errors)",
+            file=sys.stderr,
+        )
         return 1
-    print("PHCAP-15 deploy gap validation: PASS (static ledger/source/span/unknown checks)")
+    print(
+        "PHCAP-15 deploy gap validation: PASS (static ledger/source/span/unknown checks)"
+    )
     return 0
 
 

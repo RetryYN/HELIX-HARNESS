@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Run Wave37 validation and explicit fail-closed mutations."""
+
 from __future__ import annotations
 
 import copy
@@ -30,14 +31,20 @@ def rejected(label: str, mutate) -> None:
             ledger = root / original_ledger.name
             ledger.write_text(
                 "".join(
-                    json.dumps(row, ensure_ascii=False, sort_keys=True, separators=(",", ":")) + "\n"
+                    json.dumps(
+                        row, ensure_ascii=False, sort_keys=True, separators=(",", ":")
+                    )
+                    + "\n"
                     for row in mutated_rows
                 )
             )
             mutated_meta = copy.deepcopy(meta)
             mutated_meta["output_sha256"] = module.file_digest(ledger)
             meta_path = root / original_meta.name
-            meta_path.write_text(json.dumps(mutated_meta, ensure_ascii=False, sort_keys=True, indent=2) + "\n")
+            meta_path.write_text(
+                json.dumps(mutated_meta, ensure_ascii=False, sort_keys=True, indent=2)
+                + "\n"
+            )
             module.LEDGER = ledger
             module.META = meta_path
             module.verify()
@@ -52,17 +59,23 @@ def rejected(label: str, mutate) -> None:
 
 def mutate_stale_anchor(mutated_rows) -> None:
     design = next(row for row in mutated_rows if row["role_kind"] == "design")
-    design["evidence_atom_bindings"][0]["source_fragment_anchors"] = ["unquoted-current-meaning"]
+    design["evidence_atom_bindings"][0]["source_fragment_anchors"] = [
+        "unquoted-current-meaning"
+    ]
 
 
 def mutate_role_inversion(mutated_rows) -> None:
     design = next(row for row in mutated_rows if row["role_kind"] == "design")
-    design["semantic_relation"] = "same_requirement_id_exact_source_contract_not_implementation"
+    design["semantic_relation"] = (
+        "same_requirement_id_exact_source_contract_not_implementation"
+    )
 
 
 def mutate_inferred_meaning(mutated_rows) -> None:
     design = next(row for row in mutated_rows if row["role_kind"] == "design")
-    design["covered_requirement_atoms"][0]["text"] = "inferred implementation is complete"
+    design["covered_requirement_atoms"][0]["text"] = (
+        "inferred implementation is complete"
+    )
 
 
 def mutate_prior_asset_reuse(mutated_rows) -> None:

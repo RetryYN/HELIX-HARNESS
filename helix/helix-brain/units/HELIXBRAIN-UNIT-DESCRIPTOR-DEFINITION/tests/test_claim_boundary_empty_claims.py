@@ -4,6 +4,7 @@ The independent expectation is the exact L4 finite_domain stop. The case does
 not create a successful FN7 Comparison or treat an absent Claim collection as
 empty. The expectation follows L4 unclosed_projection_boundaries/other_domain.
 """
+
 from __future__ import annotations
 
 import copy
@@ -13,9 +14,7 @@ from claim_boundary_input_fixtures import finite_claim_input
 from descriptor_definitions import compare_claim_boundaries
 from test_claim_boundaries_finite import _actual_same_call
 
-FINITE_DOMAIN_STOP = (
-    "FN7/unclosed/finite_domain; Backflow HELIXBRAIN-L6-032-FN7-CLAIM"
-)
+FINITE_DOMAIN_STOP = "FN7/unclosed/finite_domain; Backflow HELIXBRAIN-L6-032-FN7-CLAIM"
 
 
 class TestClaimBoundaryEmptyClaims(unittest.TestCase):

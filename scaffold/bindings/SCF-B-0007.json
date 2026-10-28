@@ -60,13 +60,13 @@
     },
     {
       "path": "scaffold/research/pre-isolation-next/validate.py",
-      "sha256": "4ed17681e4b6c35d7fe4787c2ae44947095f7efb81cb4b7415702d4ec7576c8b",
-      "note": "read-only Git object、台帳、diff denominator／hunk、hunk分類とsemantic atom境界、phase、negative validator"
+      "sha256": "155b99cfb5f5e47b93fb2dadab845a7adb5225c59c1380931ca83c14cf29901a",
+      "note": "read-only Git object、台帳、diff denominator／hunk、hunk分類とsemantic atom境界、phase、negative validator [WR73/PR3773: 402867935の元sourceとRuff整形後sourceは位置情報を除くAST同値、型コメント付属も保持。binding全体（reason/role/obligations/connections/operations/verificationのoracle・negative case/replacement.role_target）への意味影響を確認し、役割・権限・義務・固定capture・採否は不変として再束縛。旧receipt=4ed17681e4b6c35d7fe4787c2ae44947095f7efb81cb4b7415702d4ec7576c8b; 現receipt=155b99cfb5f5e47b93fb2dadab845a7adb5225c59c1380931ca83c14cf29901a。固定bytes consumerを持つ4ファイルは除外して元bytesを保持。]"
     },
     {
       "path": "scaffold/research/pre-isolation-next/selfcheck.py",
-      "sha256": "24b1496254143c36185b3a88b21b2bb5e3b70f07035f941c42f10a9f53d69a56",
-      "note": "digest、phase、owner、authority、旧実行、hunk、分類、semantic atom境界・subunit grounding改変の否定例"
+      "sha256": "8c5da7d92bdf8b17e3e4c8deedd97b90135ff2e2914884df50a8b08dd4336e35",
+      "note": "digest、phase、owner、authority、旧実行、hunk、分類、semantic atom境界・subunit grounding改変の否定例 [WR73/PR3773: 402867935の元sourceとRuff整形後sourceは位置情報を除くAST同値、型コメント付属も保持。binding全体（reason/role/obligations/connections/operations/verificationのoracle・negative case/replacement.role_target）への意味影響を確認し、役割・権限・義務・固定capture・採否は不変として再束縛。旧receipt=24b1496254143c36185b3a88b21b2bb5e3b70f07035f941c42f10a9f53d69a56; 現receipt=8c5da7d92bdf8b17e3e4c8deedd97b90135ff2e2914884df50a8b08dd4336e35。固定bytes consumerを持つ4ファイルは除外して元bytesを保持。]"
     }
   ],
   "role": "PREISO-REV-000003..000008のbaseline／pre-isolation／archive provenance、24 diff hunk、要求・制約・provenance・metadata候補、旧asset／phase状態、未処理分母をreview可能なscaffoldへ固定する",

@@ -105,13 +105,13 @@
     },
     {
       "path": "scaffold/research/phcap14-release-research/validate.py",
-      "sha256": "7ac7e3439905676e2d7ca5b5e6c479a0e3ab7e5702cdc7e3e9bb1440fdca742a",
-      "note": "fail-closed static candidate validator [2026-09-26 旧HELIXからの移行台帳のlegacy-migration/への移動（PO判断） read-after: phcap14-release-research/validate.pyは、旧HELIXからの移行作業の台帳・待ち行列・wave記録をdocs/governance/直下からdocs/governance/legacy-migration/の種類別フォルダへ移した（2026-09-26のPO判断、docs/governance/decisions/governance-legacy-migration-layout-po-decisions-2026-09-26.md）のに合わせ、現行ファイルを読む移動対象のpath定数（または同じ定数の一覧）だけを新しいpathへ改めた（判定の条件・分岐・意味field・期待件数は不変、git diffで定数行だけの変更を確認）。本bindingのrole・obligations・connections・replacement・artifactは、旧HELIXからの移行台帳のpath（旧docs/governance/直下）、それらへのリンクの表記、研究用pinとvalidatorのpath・digestの表記に依存しないことをbinding全体で確認した。前receipt=21651049a0c2505219a9433fb517ea7bc3818f5e1fab7e5da2fc40cf3b57a786; 現receipt=d69ba8f4d83ea182bb4fec150b232736b13867ec1081697707beb5e80d665d49; このBindingの採否・authorityは変更しない。]"
+      "sha256": "3fdb12dfc4cfa1c389d778aa5662aaff08d2d94d6872df0f34cd69b9b3889dc2",
+      "note": "fail-closed static candidate validator [2026-09-26 旧HELIXからの移行台帳のlegacy-migration/への移動（PO判断） read-after: phcap14-release-research/validate.pyは、旧HELIXからの移行作業の台帳・待ち行列・wave記録をdocs/governance/直下からdocs/governance/legacy-migration/の種類別フォルダへ移した（2026-09-26のPO判断、docs/governance/decisions/governance-legacy-migration-layout-po-decisions-2026-09-26.md）のに合わせ、現行ファイルを読む移動対象のpath定数（または同じ定数の一覧）だけを新しいpathへ改めた（判定の条件・分岐・意味field・期待件数は不変、git diffで定数行だけの変更を確認）。本bindingのrole・obligations・connections・replacement・artifactは、旧HELIXからの移行台帳のpath（旧docs/governance/直下）、それらへのリンクの表記、研究用pinとvalidatorのpath・digestの表記に依存しないことをbinding全体で確認した。前receipt=21651049a0c2505219a9433fb517ea7bc3818f5e1fab7e5da2fc40cf3b57a786; 現receipt=d69ba8f4d83ea182bb4fec150b232736b13867ec1081697707beb5e80d665d49; このBindingの採否・authorityは変更しない。] [WR73/PR3773: 402867935の元sourceとRuff整形後sourceは位置情報を除くAST同値、型コメント付属も保持。binding全体（reason/role/obligations/connections/operations/verificationのoracle・negative case/replacement.role_target）への意味影響を確認し、役割・権限・義務・固定capture・採否は不変として再束縛。旧receipt=7ac7e3439905676e2d7ca5b5e6c479a0e3ab7e5702cdc7e3e9bb1440fdca742a; 現receipt=3fdb12dfc4cfa1c389d778aa5662aaff08d2d94d6872df0f34cd69b9b3889dc2。固定bytes consumerを持つ4ファイルは除外して元bytesを保持。]"
     },
     {
       "path": "scaffold/research/phcap14-release-research/selfcheck.py",
-      "sha256": "c31839697ed38a20e7e4aae5bcbbe3653ccd48b6314609087273cc7010715178",
-      "note": "meaningful negative selfchecks"
+      "sha256": "ac5ffd790ffe08b607d9a2be381962a7bb6ef0d358aa9dc523a3c8243b07bd9d",
+      "note": "meaningful negative selfchecks [WR73/PR3773: 402867935の元sourceとRuff整形後sourceは位置情報を除くAST同値、型コメント付属も保持。binding全体（reason/role/obligations/connections/operations/verificationのoracle・negative case/replacement.role_target）への意味影響を確認し、役割・権限・義務・固定capture・採否は不変として再束縛。旧receipt=c31839697ed38a20e7e4aae5bcbbe3653ccd48b6314609087273cc7010715178; 現receipt=ac5ffd790ffe08b607d9a2be381962a7bb6ef0d358aa9dc523a3c8243b07bd9d。固定bytes consumerを持つ4ファイルは除外して元bytesを保持。]"
     }
   ],
   "role": "PHCAP-14のphase到達、旧L3／L7／L10相当のrelease asset、製品別artifact／promotion／rollback境界、legacy implementation／degradation／current gapをresearch premiseとして束ねる。",

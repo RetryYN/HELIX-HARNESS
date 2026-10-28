@@ -4,6 +4,7 @@
 This reads pinned Git objects only. It never imports or executes archive code or
 the #2078 generator; target-generator literals are inspected with Python AST.
 """
+
 from __future__ import annotations
 
 import ast
@@ -44,8 +45,12 @@ DECISIONS = "docs/governance/legacy-asset-decisions.jsonl"
 READ_AFTER = "docs/governance/legacy-asset-copy-read-after.jsonl"
 MANIFEST = "archive/legacy-generation-2026-09-14/MANIFEST.sha256"
 BOUNDARY = "docs/concept/product-boundary.md"
-FAILURE_SOURCE = "docs/governance/audits/source-rebaseline/legacy-ci-ai-runtime-source-inventory.md"
-CONSUMER_SOURCE = "docs/governance/audits/source-rebaseline/legacy-ci-consumer-relation-inventory.md"
+FAILURE_SOURCE = (
+    "docs/governance/audits/source-rebaseline/legacy-ci-ai-runtime-source-inventory.md"
+)
+CONSUMER_SOURCE = (
+    "docs/governance/audits/source-rebaseline/legacy-ci-consumer-relation-inventory.md"
+)
 L1_PATHS = {
     "HELIX-HARNESS": "docs/helix-harness/L1-planning/product-intent.md",
     "HELIX-OS": "docs/helix-os/L1-planning/system-intent.md",
@@ -76,7 +81,13 @@ def tagged(data: bytes) -> str:
 
 
 def canonical(value: object) -> bytes:
-    return json.dumps(value, ensure_ascii=False, sort_keys=True, separators=(",", ":"), allow_nan=False).encode()
+    return json.dumps(
+        value,
+        ensure_ascii=False,
+        sort_keys=True,
+        separators=(",", ":"),
+        allow_nan=False,
+    ).encode()
 
 
 def strict_pairs(pairs: list[tuple[str, object]]) -> dict:
@@ -102,7 +113,9 @@ def git_bytes(revision: str, path: str) -> bytes:
 
 @lru_cache(maxsize=None)
 def git_tree(revision: str, path: str) -> dict[str, str]:
-    raw = subprocess.check_output(["git", "ls-tree", revision, "--", path], cwd=ROOT, text=True)
+    raw = subprocess.check_output(
+        ["git", "ls-tree", revision, "--", path], cwd=ROOT, text=True
+    )
     rows = [line for line in raw.splitlines() if line]
     if len(rows) != 1 or "\t" not in rows[0]:
         raise AssertionError(f"E_SOURCE_TREE exact path {revision}:{path}")
@@ -115,7 +128,11 @@ def git_tree(revision: str, path: str) -> dict[str, str]:
 
 def strict_json(data: bytes, path: str) -> object:
     try:
-        return json.loads(data.decode("utf-8"), object_pairs_hook=strict_pairs, parse_constant=reject_json_constant)
+        return json.loads(
+            data.decode("utf-8"),
+            object_pairs_hook=strict_pairs,
+            parse_constant=reject_json_constant,
+        )
     except (UnicodeDecodeError, json.JSONDecodeError, TypeError, ValueError) as exc:
         raise AssertionError(f"E_JSON {path}: {exc}") from exc
 
@@ -130,7 +147,11 @@ def strict_jsonl(data: bytes, path: str) -> list[tuple[int, dict]]:
         if not line.strip():
             continue
         try:
-            row = json.loads(line, object_pairs_hook=strict_pairs, parse_constant=reject_json_constant)
+            row = json.loads(
+                line,
+                object_pairs_hook=strict_pairs,
+                parse_constant=reject_json_constant,
+            )
         except (json.JSONDecodeError, TypeError, ValueError) as exc:
             raise AssertionError(f"E_JSON {path}:{line_no}: {exc}") from exc
         if not isinstance(row, dict):
@@ -141,14 +162,26 @@ def strict_jsonl(data: bytes, path: str) -> list[tuple[int, dict]]:
 
 def ast_value(tree: ast.Module, name: str):
     for node in tree.body:
-        if isinstance(node, ast.Assign) and any(isinstance(t, ast.Name) and t.id == name for t in node.targets):
+        if isinstance(node, ast.Assign) and any(
+            isinstance(t, ast.Name) and t.id == name for t in node.targets
+        ):
             return ast.literal_eval(node.value)
-        if isinstance(node, ast.AnnAssign) and isinstance(node.target, ast.Name) and node.target.id == name:
+        if (
+            isinstance(node, ast.AnnAssign)
+            and isinstance(node.target, ast.Name)
+            and node.target.id == name
+        ):
             return ast.literal_eval(node.value)
     raise AssertionError(f"E_TARGET_METHOD missing literal {name}")
 
 
-def target_method_pins() -> tuple[str, dict[str, str], dict[str, list[tuple[int, int]]], list[tuple[int, int]], dict[str, list[tuple[int, int]]]]:
+def target_method_pins() -> tuple[
+    str,
+    dict[str, str],
+    dict[str, list[tuple[int, int]]],
+    list[tuple[int, int]],
+    dict[str, list[tuple[int, int]]],
+]:
     raw = git_bytes(TARGET_REVISION, TARGET_GENERATOR)
     source = raw.decode("utf-8")
     tree = ast.parse(source, filename=TARGET_GENERATOR)
@@ -206,13 +239,17 @@ def input_digest(revision: str, path: str, purpose: str, archive: bool = False) 
 
 def parse_manifest(revision: str, source_path: str) -> str:
     matches = []
-    for line in git_bytes(revision, MANIFEST).decode("utf-8", errors="replace").splitlines():
+    for line in (
+        git_bytes(revision, MANIFEST).decode("utf-8", errors="replace").splitlines()
+    ):
         if line.endswith(" " + source_path):
             digest, path = line.split(maxsplit=1)
             if path == source_path:
                 matches.append("sha256:" + digest)
     if len(matches) != 1:
-        raise AssertionError(f"E_MANIFEST entry cardinality {source_path}={len(matches)}")
+        raise AssertionError(
+            f"E_MANIFEST entry cardinality {source_path}={len(matches)}"
+        )
     return matches[0]
 
 
@@ -226,20 +263,23 @@ def archive_evidence(source_path: str, expected_sha: str) -> tuple[dict, bytes]:
     manifest_sha = parse_manifest(ARCHIVE_REVISION, source_path)
     if manifest_sha != sha:
         raise AssertionError(f"E_MANIFEST archived bytes mismatch {source_path}")
-    return ({
-        "archive_revision": ARCHIVE_REVISION,
-        "archive_path": path,
-        "source_path": source_path,
-        **tree,
-        "bytes": len(data),
-        "line_count": len(data.decode("utf-8", errors="replace").splitlines()),
-        "sha256": sha,
-        "manifest_path": MANIFEST,
-        "manifest_sha256": manifest_sha,
-        "manifest_match": True,
-        "read_mode": "git_object_static_read_only",
-        "execution_performed": False,
-    }, data)
+    return (
+        {
+            "archive_revision": ARCHIVE_REVISION,
+            "archive_path": path,
+            "source_path": source_path,
+            **tree,
+            "bytes": len(data),
+            "line_count": len(data.decode("utf-8", errors="replace").splitlines()),
+            "sha256": sha,
+            "manifest_path": MANIFEST,
+            "manifest_sha256": manifest_sha,
+            "manifest_match": True,
+            "read_mode": "git_object_static_read_only",
+            "execution_performed": False,
+        },
+        data,
+    )
 
 
 def unique_anchor(source_bytes: bytes) -> dict:
@@ -267,7 +307,7 @@ def range_receipt(revision: str, path: str, start: int, end: int) -> dict:
     lines = data.decode("utf-8", errors="replace").splitlines()
     if start < 1 or end < start or end > len(lines):
         raise AssertionError(f"E_L1_RANGE {revision}:{path}:{start}-{end}")
-    selected = lines[start - 1:end]
+    selected = lines[start - 1 : end]
     text = "\n".join(selected)
     tree = git_tree(revision, path)
     return {
@@ -287,13 +327,19 @@ def target_boundary_pool(l1_map: dict, boundary_ranges: list, l1_ranges: dict) -
         "product_boundary": {
             "path": BOUNDARY,
             "sha256": tagged(git_bytes(ARCHIVE_REVISION, BOUNDARY)),
-            "ranges": [range_receipt(ARCHIVE_REVISION, BOUNDARY, a, b) for a, b in boundary_ranges],
+            "ranges": [
+                range_receipt(ARCHIVE_REVISION, BOUNDARY, a, b)
+                for a, b in boundary_ranges
+            ],
         },
         "four_product_l1_comparison_pool": {
             product: {
                 "path": l1_map[product],
                 "sha256": tagged(git_bytes(ARCHIVE_REVISION, l1_map[product])),
-                "ranges": [range_receipt(ARCHIVE_REVISION, l1_map[product], a, b) for a, b in l1_ranges[product]],
+                "ranges": [
+                    range_receipt(ARCHIVE_REVISION, l1_map[product], a, b)
+                    for a, b in l1_ranges[product]
+                ],
             }
             for product in PRODUCTS
         },
@@ -311,26 +357,58 @@ def main_records() -> tuple[dict[str, list[dict]], dict[str, tuple[int, dict]]]:
             asset_id = row.get("asset_id")
             if not isinstance(asset_id, str):
                 raise AssertionError(f"E_MAIN_RECORD {bundle}:{line} missing asset_id")
-            by_id.setdefault(asset_id, []).append({"bundle": bundle, "line": line, "row": row, "row_sha256": row_digest(row)})
+            by_id.setdefault(asset_id, []).append(
+                {
+                    "bundle": bundle,
+                    "line": line,
+                    "row": row,
+                    "row_sha256": row_digest(row),
+                }
+            )
     if len(by_id) != 429:
-        raise AssertionError(f"E_MAIN_RESULT prior main candidate union expected 429 IDs got {len(by_id)}")
+        raise AssertionError(
+            f"E_MAIN_RESULT prior main candidate union expected 429 IDs got {len(by_id)}"
+        )
     for asset_id, results in by_id.items():
         identity = {
-            (r["row"].get("source_exact", {}).get("source_path"), r["row"].get("source_exact", {}).get("sha256"))
+            (
+                r["row"].get("source_exact", {}).get("source_path"),
+                r["row"].get("source_exact", {}).get("sha256"),
+            )
             for r in results
         }
         if len(identity) != 1:
-            raise AssertionError(f"E_MAIN_RESULT same-ID source path/SHA alias {asset_id}")
+            raise AssertionError(
+                f"E_MAIN_RESULT same-ID source path/SHA alias {asset_id}"
+            )
         for result in results:
             row = result["row"]
-            nested = row.get("classification", {}) if isinstance(row.get("classification"), dict) else {}
+            nested = (
+                row.get("classification", {})
+                if isinstance(row.get("classification"), dict)
+                else {}
+            )
             category = row.get("classification_category") or nested.get("category")
-            products = row.get("candidate_products", nested.get("candidate_products", []))
-            valid = ((category == "direct_product_basis" and isinstance(products, list) and len(products) == 1)
-                     or (category == "multi_product_conflict" and isinstance(products, list) and len(products) >= 2)
-                     or (category == "insufficient_basis" and products == []))
+            products = row.get(
+                "candidate_products", nested.get("candidate_products", [])
+            )
+            valid = (
+                (
+                    category == "direct_product_basis"
+                    and isinstance(products, list)
+                    and len(products) == 1
+                )
+                or (
+                    category == "multi_product_conflict"
+                    and isinstance(products, list)
+                    and len(products) >= 2
+                )
+                or (category == "insufficient_basis" and products == [])
+            )
             if not valid or any(product not in PRODUCTS for product in products):
-                raise AssertionError(f"E_MAIN_RESULT category/product invariant {asset_id}")
+                raise AssertionError(
+                    f"E_MAIN_RESULT category/product invariant {asset_id}"
+                )
     for path in (PHASE, DISPOSITION):
         for line, row in strict_jsonl(git_bytes(BASE_REVISION, path), path):
             asset_id = row.get("asset_id")
@@ -342,12 +420,23 @@ def main_records() -> tuple[dict[str, list[dict]], dict[str, tuple[int, dict]]]:
 def current_main_union_evidence(prior_main_by_id: dict[str, list[dict]]) -> dict:
     target_rows = strict_jsonl(git_bytes(BASE_REVISION, TARGET_RECORDS), TARGET_RECORDS)
     target_ids = [row["asset_id"] for _, row in target_rows]
-    if len(target_ids) != 67 or len(set(target_ids)) != 67 or set(target_ids) & set(prior_main_by_id):
-        raise AssertionError("E_MAIN_UNION current main must be 429 prior IDs plus 67 disjoint #2078 residual IDs")
+    if (
+        len(target_ids) != 67
+        or len(set(target_ids)) != 67
+        or set(target_ids) & set(prior_main_by_id)
+    ):
+        raise AssertionError(
+            "E_MAIN_UNION current main must be 429 prior IDs plus 67 disjoint #2078 residual IDs"
+        )
     merged_tree = git_tree(BASE_REVISION, TARGET_RECORDS)
     pinned_tree = git_tree(TARGET_REVISION, TARGET_RECORDS)
-    if merged_tree["blob"] != pinned_tree["blob"] or merged_tree["mode"] != pinned_tree["mode"]:
-        raise AssertionError("E_MAIN_UNION merged #2078 residual records differ from immutable c55 pin")
+    if (
+        merged_tree["blob"] != pinned_tree["blob"]
+        or merged_tree["mode"] != pinned_tree["mode"]
+    ):
+        raise AssertionError(
+            "E_MAIN_UNION merged #2078 residual records differ from immutable c55 pin"
+        )
     return {
         "prior_main_candidate_union_count": len(prior_main_by_id),
         "merged_2078_residual_count": len(target_ids),
@@ -358,18 +447,31 @@ def current_main_union_evidence(prior_main_by_id: dict[str, list[dict]]) -> dict
 
 
 def target_phase_inputs(asset_id: str) -> dict:
-    phase_rows = {row.get("asset_id"): (line, row) for line, row in strict_jsonl(git_bytes(ARCHIVE_REVISION, PHASE), PHASE)}
-    disp_rows = {row.get("asset_id"): (line, row) for line, row in strict_jsonl(git_bytes(ARCHIVE_REVISION, DISPOSITION), DISPOSITION)}
+    phase_rows = {
+        row.get("asset_id"): (line, row)
+        for line, row in strict_jsonl(git_bytes(ARCHIVE_REVISION, PHASE), PHASE)
+    }
+    disp_rows = {
+        row.get("asset_id"): (line, row)
+        for line, row in strict_jsonl(
+            git_bytes(ARCHIVE_REVISION, DISPOSITION), DISPOSITION
+        )
+    }
     if asset_id not in phase_rows or asset_id not in disp_rows:
         raise AssertionError(f"E_TARGET_PHASE missing {asset_id}")
     pline, phase = phase_rows[asset_id]
     dline, disposition = disp_rows[asset_id]
-    if phase.get("source_path") != disposition.get("source_path") or phase.get("source_sha256") != disposition.get("source_sha256"):
+    if phase.get("source_path") != disposition.get("source_path") or phase.get(
+        "source_sha256"
+    ) != disposition.get("source_sha256"):
         raise AssertionError(f"E_TARGET_PHASE path/SHA alias {asset_id}")
     return {
         "phase": {
-            "path": PHASE, "line": pline, "row_sha256": row_digest(phase),
-            "source_path": phase.get("source_path"), "source_sha256": phase.get("source_sha256"),
+            "path": PHASE,
+            "line": pline,
+            "row_sha256": row_digest(phase),
+            "source_path": phase.get("source_path"),
+            "source_sha256": phase.get("source_sha256"),
             "product_classification_status": phase.get("product_classification_status"),
             "artifact_evidence_kind": phase.get("artifact_evidence_kind"),
             "implementation_evidence_state": phase.get("implementation_evidence_state"),
@@ -379,8 +481,11 @@ def target_phase_inputs(asset_id: str) -> dict:
             "legacy_execution_performed": phase.get("legacy_execution_performed"),
         },
         "disposition": {
-            "path": DISPOSITION, "line": dline, "row_sha256": row_digest(disposition),
-            "disposition": disposition.get("disposition"), "asset_class": disposition.get("asset_class"),
+            "path": DISPOSITION,
+            "line": dline,
+            "row_sha256": row_digest(disposition),
+            "disposition": disposition.get("disposition"),
+            "asset_class": disposition.get("asset_class"),
             "implementation_status": disposition.get("implementation_status"),
             "product_target": disposition.get("product_target"),
             "consumer_refs": sorted(disposition.get("consumer_refs", [])),
@@ -392,21 +497,66 @@ def target_phase_inputs(asset_id: str) -> dict:
 
 
 def target_history(asset_id: str) -> dict:
-    decisions = [(line, row) for line, row in strict_jsonl(git_bytes(ARCHIVE_REVISION, DECISIONS), DECISIONS) if row.get("asset_id") == asset_id]
-    after = [(line, row) for line, row in strict_jsonl(git_bytes(ARCHIVE_REVISION, READ_AFTER), READ_AFTER) if row.get("asset_id") == asset_id]
+    decisions = [
+        (line, row)
+        for line, row in strict_jsonl(git_bytes(ARCHIVE_REVISION, DECISIONS), DECISIONS)
+        if row.get("asset_id") == asset_id
+    ]
+    after = [
+        (line, row)
+        for line, row in strict_jsonl(
+            git_bytes(ARCHIVE_REVISION, READ_AFTER), READ_AFTER
+        )
+        if row.get("asset_id") == asset_id
+    ]
     return {
-        "decisions": [{"path": DECISIONS, "line": n, "row_sha256": row_digest(row), "decision_id": row.get("decision_id"), "product_target": row.get("product_target"), "disposition": row.get("disposition")} for n, row in decisions],
-        "read_after": [{"path": READ_AFTER, "line": n, "row_sha256": row_digest(row), "read_after_id": row.get("read_after_id"), "result": row.get("result"), "digest_match": row.get("digest_match"), "consumer_match": row.get("consumer_match")} for n, row in after],
+        "decisions": [
+            {
+                "path": DECISIONS,
+                "line": n,
+                "row_sha256": row_digest(row),
+                "decision_id": row.get("decision_id"),
+                "product_target": row.get("product_target"),
+                "disposition": row.get("disposition"),
+            }
+            for n, row in decisions
+        ],
+        "read_after": [
+            {
+                "path": READ_AFTER,
+                "line": n,
+                "row_sha256": row_digest(row),
+                "read_after_id": row.get("read_after_id"),
+                "result": row.get("result"),
+                "digest_match": row.get("digest_match"),
+                "consumer_match": row.get("consumer_match"),
+            }
+            for n, row in after
+        ],
         "failure_consumer_static": {
-            "failure": {"path": FAILURE_SOURCE, "blob": git_tree(ARCHIVE_REVISION, FAILURE_SOURCE)["blob"], "sha256": tagged(git_bytes(ARCHIVE_REVISION, FAILURE_SOURCE)), "read_mode": "git_object_static_read_only"},
-            "consumer": {"path": CONSUMER_SOURCE, "blob": git_tree(ARCHIVE_REVISION, CONSUMER_SOURCE)["blob"], "sha256": tagged(git_bytes(ARCHIVE_REVISION, CONSUMER_SOURCE)), "read_mode": "git_object_static_read_only"},
+            "failure": {
+                "path": FAILURE_SOURCE,
+                "blob": git_tree(ARCHIVE_REVISION, FAILURE_SOURCE)["blob"],
+                "sha256": tagged(git_bytes(ARCHIVE_REVISION, FAILURE_SOURCE)),
+                "read_mode": "git_object_static_read_only",
+            },
+            "consumer": {
+                "path": CONSUMER_SOURCE,
+                "blob": git_tree(ARCHIVE_REVISION, CONSUMER_SOURCE)["blob"],
+                "sha256": tagged(git_bytes(ARCHIVE_REVISION, CONSUMER_SOURCE)),
+                "read_mode": "git_object_static_read_only",
+            },
         },
         "closure_status": "asset-level consumer closure is not inferred from historical refs",
     }
 
 
 def target_archive_entry(target_inventory: dict, asset_id: str) -> dict:
-    hits = [x for x in target_inventory["archive_source_provenance"] if x.get("asset_id") == asset_id]
+    hits = [
+        x
+        for x in target_inventory["archive_source_provenance"]
+        if x.get("asset_id") == asset_id
+    ]
     if len(hits) != 1:
         raise AssertionError(f"E_TARGET_ARCHIVE provenance cardinality {asset_id}")
     return hits[0]
@@ -414,23 +564,51 @@ def target_archive_entry(target_inventory: dict, asset_id: str) -> dict:
 
 def overlap_snapshot(revision: str) -> tuple[list[dict], list[dict]]:
     inventory = strict_json(git_bytes(revision, TARGET_INVENTORY), TARGET_INVENTORY)
-    rows = sorted(inventory.get("overlap_reconciliation", {}).get("entries", []), key=lambda x: x.get("asset_id", ""))
+    rows = sorted(
+        inventory.get("overlap_reconciliation", {}).get("entries", []),
+        key=lambda x: x.get("asset_id", ""),
+    )
     conflicts = [x for x in rows if x.get("overlap_status") == OVERLAP_STATUS]
     if len(rows) != 53 or len(conflicts) != 36:
-        raise AssertionError(f"E_REPIN_COUNTS {revision}: overlaps={len(rows)} conflicts={len(conflicts)}")
+        raise AssertionError(
+            f"E_REPIN_COUNTS {revision}: overlaps={len(rows)} conflicts={len(conflicts)}"
+        )
     return rows, conflicts
 
 
 def repin_stability(current_inventory: dict) -> dict:
     old_rows, old_conflicts = overlap_snapshot(PREVIOUS_TARGET_REVISION)
-    new_rows = sorted(current_inventory.get("overlap_reconciliation", {}).get("entries", []), key=lambda x: x.get("asset_id", ""))
+    new_rows = sorted(
+        current_inventory.get("overlap_reconciliation", {}).get("entries", []),
+        key=lambda x: x.get("asset_id", ""),
+    )
     new_conflicts = [x for x in new_rows if x.get("overlap_status") == OVERLAP_STATUS]
     old_ids = [x["asset_id"] for x in old_conflicts]
     new_ids = [x["asset_id"] for x in new_conflicts]
-    old_sources = [(x["asset_id"], x["source_path"], x["source_sha256"]) for x in old_conflicts]
-    new_sources = [(x["asset_id"], x["source_path"], x["source_sha256"]) for x in new_conflicts]
-    old_candidates = [(x["asset_id"], x["target_category"], x["target_products"], x["existing_candidate_results"]) for x in old_conflicts]
-    new_candidates = [(x["asset_id"], x["target_category"], x["target_products"], x["existing_candidate_results"]) for x in new_conflicts]
+    old_sources = [
+        (x["asset_id"], x["source_path"], x["source_sha256"]) for x in old_conflicts
+    ]
+    new_sources = [
+        (x["asset_id"], x["source_path"], x["source_sha256"]) for x in new_conflicts
+    ]
+    old_candidates = [
+        (
+            x["asset_id"],
+            x["target_category"],
+            x["target_products"],
+            x["existing_candidate_results"],
+        )
+        for x in old_conflicts
+    ]
+    new_candidates = [
+        (
+            x["asset_id"],
+            x["target_category"],
+            x["target_products"],
+            x["existing_candidate_results"],
+        )
+        for x in new_conflicts
+    ]
     return {
         "from_head": PREVIOUS_TARGET_REVISION,
         "to_head": TARGET_REVISION,
@@ -449,14 +627,18 @@ def repin_stability(current_inventory: dict) -> dict:
         "overlap_rows_unchanged": old_rows == new_rows,
         "conflict_id_set_unchanged": old_ids == new_ids,
         "conflict_source_identity_unchanged": old_sources == new_sources,
-        "conflict_target_and_main_candidate_summaries_unchanged": old_candidates == new_candidates,
+        "conflict_target_and_main_candidate_summaries_unchanged": old_candidates
+        == new_candidates,
         "recomputed_main_candidate_result_rows": len(new_conflicts),
-        "changed_overlap_row_count": sum(a != b for a, b in zip(old_rows, new_rows)) + abs(len(old_rows) - len(new_rows)),
+        "changed_overlap_row_count": sum(a != b for a, b in zip(old_rows, new_rows))
+        + abs(len(old_rows) - len(new_rows)),
         "history_only_previous_pin": True,
     }
 
 
-def candidate_reason_candidates(main: dict, target_span: dict, main_spans: list, target_scope: dict) -> list[dict]:
+def candidate_reason_candidates(
+    main: dict, target_span: dict, main_spans: list, target_scope: dict
+) -> list[dict]:
     results = []
     membership = target_scope["scope_membership_evidence"]
     if (
@@ -466,61 +648,127 @@ def candidate_reason_candidates(main: dict, target_span: dict, main_spans: list,
         and membership["fallback_profile_reason_claims_asset_absent"] is True
         and membership["main_union_contains_asset_id"] is True
     ):
-        results.append({
-            "type": "scope_difference",
-            "evidence_refs": ["target.scope.scope_membership_evidence", "target.overlap_result", "main.input_union"],
-            "basis": "The #2078 UNRESEARCHED_PREFIX_ASSET_PATHS fallback reason asserts this asset ID was absent from prior research, while its overlap row and the retained source-specific result place it in the prior 429-ID union. The current main union is 496 after adding 67 disjoint residual assets; this is a research-scope difference for human review, not a semantic conflict.",
-        })
-    if not main_spans or any((s.get("line_start"), s.get("line_end"), s.get("line_text_sha256")) != (target_span.get("line_start"), target_span.get("line_end"), tagged("\n".join(target_span.get("line_text", [])).encode("utf-8"))) for s in main_spans):
-        results.append({
-            "type": "evidence_span_difference",
-            "evidence_refs": ["main.source_spans", "target.reconstructed_source_span"],
-            "basis": "The main result retains source-specific span(s); #2078's fallback chooses one unique non-empty line. Their line bounds or text digest differ.",
-        })
+        results.append(
+            {
+                "type": "scope_difference",
+                "evidence_refs": [
+                    "target.scope.scope_membership_evidence",
+                    "target.overlap_result",
+                    "main.input_union",
+                ],
+                "basis": "The #2078 UNRESEARCHED_PREFIX_ASSET_PATHS fallback reason asserts this asset ID was absent from prior research, while its overlap row and the retained source-specific result place it in the prior 429-ID union. The current main union is 496 after adding 67 disjoint residual assets; this is a research-scope difference for human review, not a semantic conflict.",
+            }
+        )
+    if not main_spans or any(
+        (s.get("line_start"), s.get("line_end"), s.get("line_text_sha256"))
+        != (
+            target_span.get("line_start"),
+            target_span.get("line_end"),
+            tagged("\n".join(target_span.get("line_text", [])).encode("utf-8")),
+        )
+        for s in main_spans
+    ):
+        results.append(
+            {
+                "type": "evidence_span_difference",
+                "evidence_refs": [
+                    "main.source_spans",
+                    "target.reconstructed_source_span",
+                ],
+                "basis": "The main result retains source-specific span(s); #2078's fallback chooses one unique non-empty line. Their line bounds or text digest differ.",
+            }
+        )
     if (
         main.get("manual_semantic_review", {}).get("status")
         and main_spans
         and target_span.get("interpretation") == PROFILE_REASON
         and main.get("classification_reason")
     ):
-        results.append({
-            "type": "research_method_state_difference",
-            "evidence_refs": ["main.manual_semantic_review", "main.source_spans", "target.profile_reason", "target.method.classification_rule"],
-            "basis": "The main side has source-specific semantic review and spans, while #2078 supplies only a generic insufficient-basis fallback for an unresearched-prefix set. This records research, method, and state difference; it is not a semantic interpretation conflict because both sides did not independently research the source.",
-        })
-    if main.get("classification_category") != "insufficient_basis" or main.get("candidate_products") != []:
-        results.append({
-            "type": "classification_rule_difference",
-            "evidence_refs": ["main.classification", "main.manual_semantic_review", "target.fallback_profile"],
-            "basis": "The main result has a direct or multi-product semantic review; the #2078 overlap candidate inherits the generic insufficient-basis rule for the unresearched-prefix set.",
-        })
+        results.append(
+            {
+                "type": "research_method_state_difference",
+                "evidence_refs": [
+                    "main.manual_semantic_review",
+                    "main.source_spans",
+                    "target.profile_reason",
+                    "target.method.classification_rule",
+                ],
+                "basis": "The main side has source-specific semantic review and spans, while #2078 supplies only a generic insufficient-basis fallback for an unresearched-prefix set. This records research, method, and state difference; it is not a semantic interpretation conflict because both sides did not independently research the source.",
+            }
+        )
+    if (
+        main.get("classification_category") != "insufficient_basis"
+        or main.get("candidate_products") != []
+    ):
+        results.append(
+            {
+                "type": "classification_rule_difference",
+                "evidence_refs": [
+                    "main.classification",
+                    "main.manual_semantic_review",
+                    "target.fallback_profile",
+                ],
+                "basis": "The main result has a direct or multi-product semantic review; the #2078 overlap candidate inherits the generic insufficient-basis rule for the unresearched-prefix set.",
+            }
+        )
     if not results:
-        results.append({"type": "unresolved", "evidence_refs": ["main", "target"], "basis": "Static records do not establish a supported difference cause."})
+        results.append(
+            {
+                "type": "unresolved",
+                "evidence_refs": ["main", "target"],
+                "basis": "Static records do not establish a supported difference cause.",
+            }
+        )
     return results
 
 
-def make_record(entry: dict, main_results: list[dict], target_inv: dict, path_to_id: dict[str, str], l1: dict, boundary_ranges: list, l1_ranges: dict) -> dict:
+def make_record(
+    entry: dict,
+    main_results: list[dict],
+    target_inv: dict,
+    path_to_id: dict[str, str],
+    l1: dict,
+    boundary_ranges: list,
+    l1_ranges: dict,
+) -> dict:
     asset_id = entry["asset_id"]
     if len(main_results) != 1:
-        raise AssertionError(f"E_MAIN_RESULT expected single result {asset_id} got {len(main_results)}")
+        raise AssertionError(
+            f"E_MAIN_RESULT expected single result {asset_id} got {len(main_results)}"
+        )
     existing = main_results[0]
     main = existing["row"]
     source_path = entry["source_path"]
     if path_to_id.get(source_path) != asset_id:
-        raise AssertionError(f"E_TARGET_METHOD fallback target ID/path mismatch {asset_id}")
+        raise AssertionError(
+            f"E_TARGET_METHOD fallback target ID/path mismatch {asset_id}"
+        )
     source_sha = entry["source_sha256"]
     if not source_sha.startswith("sha256:"):
         raise AssertionError(f"E_SOURCE_IDENTITY malformed source digest {asset_id}")
     archive, source_bytes = archive_evidence(source_path, source_sha)
     main_exact = main.get("source_exact", {})
-    if main.get("asset_id") != asset_id or main_exact.get("source_path") != source_path or main_exact.get("sha256") != source_sha:
+    if (
+        main.get("asset_id") != asset_id
+        or main_exact.get("source_path") != source_path
+        or main_exact.get("sha256") != source_sha
+    ):
         raise AssertionError(f"E_SOURCE_IDENTITY main row path/SHA mismatch {asset_id}")
-    if main_exact.get("blob") != archive["blob"] or main_exact.get("bytes") != archive["bytes"]:
-        raise AssertionError(f"E_SOURCE_IDENTITY main row archive object mismatch {asset_id}")
+    if (
+        main_exact.get("blob") != archive["blob"]
+        or main_exact.get("bytes") != archive["bytes"]
+    ):
+        raise AssertionError(
+            f"E_SOURCE_IDENTITY main row archive object mismatch {asset_id}"
+        )
     target_span = unique_anchor(source_bytes)
     target_source = target_archive_entry(target_inv, asset_id)
     te = target_source["source_exact"]
-    if target_source.get("source_path") != source_path or te.get("sha256") != source_sha or te.get("blob") != archive["blob"]:
+    if (
+        target_source.get("source_path") != source_path
+        or te.get("sha256") != source_sha
+        or te.get("blob") != archive["blob"]
+    ):
         raise AssertionError(f"E_TARGET_ARCHIVE path/SHA/blob mismatch {asset_id}")
     target_l1_pool = target_boundary_pool(l1, boundary_ranges, l1_ranges)
     main_spans = main_exact.get("semantic_anchors", [])
@@ -530,8 +778,10 @@ def make_record(entry: dict, main_results: list[dict], target_inv: dict, path_to
         "target_generator_scope": "new_residual_after_main_product_union; overlap candidates are excluded from emitted 67-record target JSONL",
         "target_fallback_profile_scope": "UNRESEARCHED_PREFIX_ASSET_PATHS (53 static ID/path literals); generic rationale refers to absent prior research IDs",
         "scope_membership_evidence": {
-            "fallback_profile_contains_asset_id": path_to_id.get(source_path) == asset_id,
-            "fallback_profile_reason_claims_asset_absent": "absent from the prior research asset-ID set" in PROFILE_REASON,
+            "fallback_profile_contains_asset_id": path_to_id.get(source_path)
+            == asset_id,
+            "fallback_profile_reason_claims_asset_absent": "absent from the prior research asset-ID set"
+            in PROFILE_REASON,
             "main_union_contains_asset_id": main.get("asset_id") == asset_id,
             "main_union_asset_count": 496,
             "prior_main_candidate_union_asset_count": 429,
@@ -554,7 +804,9 @@ def make_record(entry: dict, main_results: list[dict], target_inv: dict, path_to
         "product_boundary_and_l1": target_l1_pool,
         "counterevidence": {
             "status": "not_recorded_for_overlap_row",
-            "available_human_counterevidence": target_l1_pool["four_product_l1_comparison_pool"],
+            "available_human_counterevidence": target_l1_pool[
+                "four_product_l1_comparison_pool"
+            ],
             "note": "All four L1 roots are a comparison pool only; no product candidate is inferred from them.",
         },
         "method": {
@@ -563,7 +815,9 @@ def make_record(entry: dict, main_results: list[dict], target_inv: dict, path_to
             "classification_rule": "insufficient_basis; candidate_products=[]",
             "scope": target_scope,
             "source_exclusion": "#2078 final classification JSONL excludes all 53 overlap entries; target result is inventory summary plus generator profile.",
-            "generator_source_sha256": tagged(git_bytes(TARGET_REVISION, TARGET_GENERATOR)),
+            "generator_source_sha256": tagged(
+                git_bytes(TARGET_REVISION, TARGET_GENERATOR)
+            ),
             "inventory_overlap_row_sha256": row_digest(entry),
         },
         "phase_implementation_context": phase,
@@ -583,31 +837,49 @@ def make_record(entry: dict, main_results: list[dict], target_inv: dict, path_to
         "source_spans": main_spans,
         "product_boundary_evidence": main.get("boundary_evidence"),
         "l1_evidence": main.get("l1_evidence"),
-        "counterevidence": main.get("manual_semantic_review", {}).get("boundary_counterevidence", []),
+        "counterevidence": main.get("manual_semantic_review", {}).get(
+            "boundary_counterevidence", []
+        ),
         "manual_semantic_review": main.get("manual_semantic_review"),
         "method": {
             "bundle": existing["bundle"],
             "row": existing["line"],
             "row_sha256": existing["row_sha256"],
             "source_profile": main.get("source_profile"),
-            "manual_review_status": main.get("manual_semantic_review", {}).get("status"),
+            "manual_review_status": main.get("manual_semantic_review", {}).get(
+                "status"
+            ),
             "classification_schema": "classification_category + candidate_products + manual_semantic_review + source_exact.semantic_anchors",
             "scope": "source-specific candidate is retained in the prior 429-record union; current main union is 496 after merging 67 disjoint #2078 residual records",
         },
         "phase_implementation_context": {
             "phase_ledger": main.get("phase_ledger"),
-            "legacy_implementation_shrinkage_evidence": main.get("legacy_implementation_shrinkage_evidence"),
-            "legacy_history_failure_consumer": main.get("legacy_history_failure_consumer"),
+            "legacy_implementation_shrinkage_evidence": main.get(
+                "legacy_implementation_shrinkage_evidence"
+            ),
+            "legacy_history_failure_consumer": main.get(
+                "legacy_history_failure_consumer"
+            ),
             "failure_consumer_static_refs": main.get("failure_consumer_static_refs"),
-            "legacy_implementation_status": main.get("legacy_implementation_shrinkage_evidence", {}).get("implementation_status"),
-            "phase_candidate_targets": (main.get("phase_ledger") or {}).get("candidate_phase_targets", []),
-            "closure_status": (main.get("legacy_history_failure_consumer") or {}).get("state_boundary"),
+            "legacy_implementation_status": main.get(
+                "legacy_implementation_shrinkage_evidence", {}
+            ).get("implementation_status"),
+            "phase_candidate_targets": (main.get("phase_ledger") or {}).get(
+                "candidate_phase_targets", []
+            ),
+            "closure_status": (main.get("legacy_history_failure_consumer") or {}).get(
+                "state_boundary"
+            ),
         },
         "authority_effect": main.get("authority_effect"),
-        "formal_asset_classification_updated": main.get("formal_asset_classification_updated"),
+        "formal_asset_classification_updated": main.get(
+            "formal_asset_classification_updated"
+        ),
         "new_build_allowed": main.get("new_build_allowed"),
     }
-    differences = candidate_reason_candidates(main, target_span, main_spans, target_scope)
+    differences = candidate_reason_candidates(
+        main, target_span, main_spans, target_scope
+    )
     return {
         "asset_id": asset_id,
         "source_identity": {
@@ -630,22 +902,23 @@ def make_record(entry: dict, main_results: list[dict], target_inv: dict, path_to
                 "archive_path": te.get("archive_path"),
                 "blob": te.get("blob"),
                 "bytes": te.get("bytes"),
-            "line_count": te.get("line_count"),
-            "ledger_source_sha256": te.get("ledger_source_sha256"),
-            "sha256": te.get("sha256"),
-            "mode": te.get("mode"),
-            "type": te.get("type"),
-            "ledger_digest_match": te.get("ledger_digest_match"),
-            "archive_manifest_sha256": te.get("archive_manifest_sha256"),
-            "archive_manifest_match": te.get("archive_manifest_match"),
-            "archive_manifest_resolution": te.get("archive_manifest_resolution"),
-            "read_mode": te.get("read_mode"),
-        },
+                "line_count": te.get("line_count"),
+                "ledger_source_sha256": te.get("ledger_source_sha256"),
+                "sha256": te.get("sha256"),
+                "mode": te.get("mode"),
+                "type": te.get("type"),
+                "ledger_digest_match": te.get("ledger_digest_match"),
+                "archive_manifest_sha256": te.get("archive_manifest_sha256"),
+                "archive_manifest_match": te.get("archive_manifest_match"),
+                "archive_manifest_resolution": te.get("archive_manifest_resolution"),
+                "read_mode": te.get("read_mode"),
+            },
             "identity_checks": {
                 "main_and_target_source_path_equal": True,
                 "main_and_target_source_sha256_equal": True,
                 "archive_blob_sha_manifest_all_match": True,
-                "type_blob_regular_mode": archive["type"] == "blob" and archive["mode"] in {"100644", "100755"},
+                "type_blob_regular_mode": archive["type"] == "blob"
+                and archive["mode"] in {"100644", "100755"},
             },
         },
         "main_existing_result": main_context,
@@ -667,28 +940,57 @@ def make_record(entry: dict, main_results: list[dict], target_inv: dict, path_to
 def collect_inputs(target_inv: dict, entries: list[dict]) -> list[dict]:
     inputs = []
     for path in MAIN_BUNDLES:
-        inputs.append(input_digest(BASE_REVISION, path, "main candidate-result union input"))
+        inputs.append(
+            input_digest(BASE_REVISION, path, "main candidate-result union input")
+        )
     for path, purpose in (
-        (TARGET_GENERATOR, "#2078 target method/profile static source; inspected as text/AST only"),
+        (
+            TARGET_GENERATOR,
+            "#2078 target method/profile static source; inspected as text/AST only",
+        ),
         (TARGET_INVENTORY, "#2078 overlap row/source identity/result pin"),
         (TARGET_RECORDS, "#2078 emitted-target exclusion proof"),
         (TARGET_BINDING, "#2078 scaffold boundary/method provenance"),
     ):
         inputs.append(input_digest(TARGET_REVISION, path, purpose))
     for path, purpose in (
-        (BOUNDARY, "four-product boundary roots"), (PHASE, "phase-candidate/source identity"),
-        (DISPOSITION, "legacy disposition and implementation status"), (DECISIONS, "legacy decision history"),
+        (BOUNDARY, "four-product boundary roots"),
+        (PHASE, "phase-candidate/source identity"),
+        (DISPOSITION, "legacy disposition and implementation status"),
+        (DECISIONS, "legacy decision history"),
         (READ_AFTER, "legacy read-after history"),
-        (FAILURE_SOURCE, "static failure inventory"), (CONSUMER_SOURCE, "static consumer inventory"),
-        *[(path, "approved four-product L1 evidence root") for path in L1_PATHS.values()],
+        (FAILURE_SOURCE, "static failure inventory"),
+        (CONSUMER_SOURCE, "static consumer inventory"),
+        *[
+            (path, "approved four-product L1 evidence root")
+            for path in L1_PATHS.values()
+        ],
     ):
         inputs.append(input_digest(BASE_REVISION, path, purpose))
-        if tagged(git_bytes(BASE_REVISION, path)) != tagged(git_bytes(ARCHIVE_REVISION, path)):
-            raise AssertionError(f"E_INPUT_REVISION target/base doc drift requires explicit comparison: {path}")
-    inputs.append(input_digest(BASE_REVISION, MANIFEST, "archive MANIFEST digest cross-check; static archive reference", archive=True))
+        if tagged(git_bytes(BASE_REVISION, path)) != tagged(
+            git_bytes(ARCHIVE_REVISION, path)
+        ):
+            raise AssertionError(
+                f"E_INPUT_REVISION target/base doc drift requires explicit comparison: {path}"
+            )
+    inputs.append(
+        input_digest(
+            BASE_REVISION,
+            MANIFEST,
+            "archive MANIFEST digest cross-check; static archive reference",
+            archive=True,
+        )
+    )
     # Pin every contested legacy blob as static inventory provenance, not as a Binding upstream.
     for entry in entries:
-        inputs.append(input_digest(ARCHIVE_REVISION, ARCHIVE_PREFIX + entry["source_path"], "contested archive source bytes; static Git object read only", archive=True))
+        inputs.append(
+            input_digest(
+                ARCHIVE_REVISION,
+                ARCHIVE_PREFIX + entry["source_path"],
+                "contested archive source bytes; static Git object read only",
+                archive=True,
+            )
+        )
     unique = {}
     for item in inputs:
         key = (item["revision"], item["path"])
@@ -699,27 +1001,97 @@ def collect_inputs(target_inv: dict, entries: list[dict]) -> list[dict]:
 
 
 def main_rebaseline(prior_main_by_id: dict[str, list[dict]]) -> dict:
-    paths = sorted(set((*MAIN_BUNDLES, BOUNDARY, PHASE, DISPOSITION, DECISIONS, READ_AFTER, MANIFEST, FAILURE_SOURCE, CONSUMER_SOURCE, *L1_PATHS.values())))
+    paths = sorted(
+        set(
+            (
+                *MAIN_BUNDLES,
+                BOUNDARY,
+                PHASE,
+                DISPOSITION,
+                DECISIONS,
+                READ_AFTER,
+                MANIFEST,
+                FAILURE_SOURCE,
+                CONSUMER_SOURCE,
+                *L1_PATHS.values(),
+            )
+        )
+    )
     comparisons = []
     for path in paths:
         previous = git_tree(PREVIOUS_BASE_REVISION, path)
         current = git_tree(BASE_REVISION, path)
         if previous["blob"] != current["blob"] or previous["mode"] != current["mode"]:
             raise AssertionError(f"E_MAIN_REBASELINE fixed input changed: {path}")
-        comparisons.append({"path": path, "blob": current["blob"], "mode": current["mode"]})
-    changed_scaffold = subprocess.check_output(["git", "diff", "--name-only", PREVIOUS_BASE_REVISION, BASE_REVISION, "--", "scaffold"], cwd=ROOT, text=True).splitlines()
-    added_scaffold = subprocess.check_output(["git", "diff", "--name-only", "--diff-filter=A", PREVIOUS_BASE_REVISION, BASE_REVISION, "--", "scaffold"], cwd=ROOT, text=True).splitlines()
-    expected_added = sorted([TARGET_BINDING, f"{TARGET_BUNDLE}/PR-DRAFT.md", f"{TARGET_BUNDLE}/README.md", TARGET_RECORDS, TARGET_GENERATOR, TARGET_INVENTORY, f"{TARGET_BUNDLE}/selfcheck.py", f"{TARGET_BUNDLE}/validate.py"])
-    prior_scaffold_changes = [path for path in changed_scaffold if path not in added_scaffold]
+        comparisons.append(
+            {"path": path, "blob": current["blob"], "mode": current["mode"]}
+        )
+    changed_scaffold = subprocess.check_output(
+        [
+            "git",
+            "diff",
+            "--name-only",
+            PREVIOUS_BASE_REVISION,
+            BASE_REVISION,
+            "--",
+            "scaffold",
+        ],
+        cwd=ROOT,
+        text=True,
+    ).splitlines()
+    added_scaffold = subprocess.check_output(
+        [
+            "git",
+            "diff",
+            "--name-only",
+            "--diff-filter=A",
+            PREVIOUS_BASE_REVISION,
+            BASE_REVISION,
+            "--",
+            "scaffold",
+        ],
+        cwd=ROOT,
+        text=True,
+    ).splitlines()
+    expected_added = sorted(
+        [
+            TARGET_BINDING,
+            f"{TARGET_BUNDLE}/PR-DRAFT.md",
+            f"{TARGET_BUNDLE}/README.md",
+            TARGET_RECORDS,
+            TARGET_GENERATOR,
+            TARGET_INVENTORY,
+            f"{TARGET_BUNDLE}/selfcheck.py",
+            f"{TARGET_BUNDLE}/validate.py",
+        ]
+    )
+    prior_scaffold_changes = [
+        path for path in changed_scaffold if path not in added_scaffold
+    ]
     if added_scaffold != expected_added or prior_scaffold_changes:
-        raise AssertionError("E_MAIN_REBASELINE unexpected Scaffold delta while merging #2078")
+        raise AssertionError(
+            "E_MAIN_REBASELINE unexpected Scaffold delta while merging #2078"
+        )
     merged_2078_objects = []
-    for path in (TARGET_BINDING, f"{TARGET_BUNDLE}/PR-DRAFT.md", f"{TARGET_BUNDLE}/README.md", TARGET_RECORDS, TARGET_GENERATOR, TARGET_INVENTORY, f"{TARGET_BUNDLE}/selfcheck.py", f"{TARGET_BUNDLE}/validate.py"):
+    for path in (
+        TARGET_BINDING,
+        f"{TARGET_BUNDLE}/PR-DRAFT.md",
+        f"{TARGET_BUNDLE}/README.md",
+        TARGET_RECORDS,
+        TARGET_GENERATOR,
+        TARGET_INVENTORY,
+        f"{TARGET_BUNDLE}/selfcheck.py",
+        f"{TARGET_BUNDLE}/validate.py",
+    ):
         current = git_tree(BASE_REVISION, path)
         pinned = git_tree(TARGET_REVISION, path)
         if current["blob"] != pinned["blob"] or current["mode"] != pinned["mode"]:
-            raise AssertionError(f"E_MAIN_REBASELINE merged #2078 object differs from immutable c55 pin: {path}")
-        merged_2078_objects.append({"path": path, "blob": current["blob"], "mode": current["mode"]})
+            raise AssertionError(
+                f"E_MAIN_REBASELINE merged #2078 object differs from immutable c55 pin: {path}"
+            )
+        merged_2078_objects.append(
+            {"path": path, "blob": current["blob"], "mode": current["mode"]}
+        )
     return {
         "previous_main_revision": PREVIOUS_BASE_REVISION,
         "current_main_revision": BASE_REVISION,
@@ -735,41 +1107,82 @@ def main_rebaseline(prior_main_by_id: dict[str, list[dict]]) -> dict:
 def binding_upstream(inputs: list[dict]) -> list[dict]:
     # Open-PR objects are pinned and checked by the generator/validator through git show;
     # Binding upstream paths must exist in the fixed main checkout for scfctl validation.
-    selected = [x for x in inputs if x["revision"] == BASE_REVISION and not x["archive_static_only"] and not x["path"].startswith("archive/")]
+    selected = [
+        x
+        for x in inputs
+        if x["revision"] == BASE_REVISION
+        and not x["archive_static_only"]
+        and not x["path"].startswith("archive/")
+    ]
     by_path = {}
     for item in selected:
         existing = by_path.get(item["path"])
         if existing and existing != item["sha256"]:
-            raise AssertionError(f"E_BINDING_UPSTREAM conflicting same path {item['path']}")
+            raise AssertionError(
+                f"E_BINDING_UPSTREAM conflicting same path {item['path']}"
+            )
         by_path[item["path"]] = item["sha256"]
-    return [{"path": path, "sha256": by_path[path].removeprefix("sha256:")} for path in sorted(by_path)]
+    return [
+        {"path": path, "sha256": by_path[path].removeprefix("sha256:")}
+        for path in sorted(by_path)
+    ]
 
 
 def build() -> None:
-    target_inv = strict_json(git_bytes(TARGET_REVISION, TARGET_INVENTORY), TARGET_INVENTORY)
+    target_inv = strict_json(
+        git_bytes(TARGET_REVISION, TARGET_INVENTORY), TARGET_INVENTORY
+    )
     if not isinstance(target_inv, dict):
         raise AssertionError("E_TARGET_INVENTORY object required")
     _, path_to_id, l1, boundary_ranges, l1_ranges = target_method_pins()
     entries = target_inv.get("overlap_reconciliation", {}).get("entries", [])
     conflicts = [e for e in entries if e.get("overlap_status") == OVERLAP_STATUS]
     if len(entries) != 53 or len(conflicts) != 36:
-        raise AssertionError(f"E_TARGET_SET overlap53/conflict36 expected; got {len(entries)}/{len(conflicts)}")
+        raise AssertionError(
+            f"E_TARGET_SET overlap53/conflict36 expected; got {len(entries)}/{len(conflicts)}"
+        )
     main_by_id, _ = main_records()
     out_rows = []
     for entry in sorted(conflicts, key=lambda e: e["asset_id"]):
         results = main_by_id.get(entry["asset_id"], [])
-        out_rows.append(make_record(entry, results, target_inv, path_to_id, l1, boundary_ranges, l1_ranges))
+        out_rows.append(
+            make_record(
+                entry, results, target_inv, path_to_id, l1, boundary_ranges, l1_ranges
+            )
+        )
     ids = [r["asset_id"] for r in out_rows]
     if len(ids) != 36 or len(set(ids)) != 36:
         raise AssertionError("E_TARGET_SET exact 36 unique IDs")
     output = b"".join(canonical(row) + b"\n" for row in out_rows)
     inputs = collect_inputs(target_inv, conflicts)
-    counts = Counter(reason["type"] for row in out_rows for reason in row["difference_reason_candidates"])
-    main_counts = Counter(row["main_existing_result"]["result"]["category"] for row in out_rows)
-    target_counts = Counter(row["target_2078_result"]["classification_result"]["category"] for row in out_rows)
+    counts = Counter(
+        reason["type"]
+        for row in out_rows
+        for reason in row["difference_reason_candidates"]
+    )
+    main_counts = Counter(
+        row["main_existing_result"]["result"]["category"] for row in out_rows
+    )
+    target_counts = Counter(
+        row["target_2078_result"]["classification_result"]["category"]
+        for row in out_rows
+    )
     repin = repin_stability(target_inv)
-    if not all(repin[key] for key in ("overlap_rows_unchanged", "conflict_id_set_unchanged", "conflict_source_identity_unchanged", "conflict_target_and_main_candidate_summaries_unchanged")) or repin["changed_overlap_row_count"] != 0:
-        raise AssertionError("E_REPIN_STABILITY #2078 HEAD update changed overlap evidence; inspect before proceeding")
+    if (
+        not all(
+            repin[key]
+            for key in (
+                "overlap_rows_unchanged",
+                "conflict_id_set_unchanged",
+                "conflict_source_identity_unchanged",
+                "conflict_target_and_main_candidate_summaries_unchanged",
+            )
+        )
+        or repin["changed_overlap_row_count"] != 0
+    ):
+        raise AssertionError(
+            "E_REPIN_STABILITY #2078 HEAD update changed overlap evidence; inspect before proceeding"
+        )
     inventory = {
         "schema_revision": 1,
         "binding_id": "SCF-B-0144",
@@ -783,9 +1196,21 @@ def build() -> None:
         "target_head_pin": TARGET_REVISION,
         "repin_stability_from_previous_head": repin,
         "target_head_pin_history": [
-            {"head": INITIAL_TARGET_REVISION, "status": "initial_pin", "note": "first comparison pin requested before PR #2078 advanced"},
-            {"head": PREVIOUS_TARGET_REVISION, "status": "previous_repin", "note": "PR #2078 advanced from the initial pin; overlap53/conflict36 IDs and source identities were rechecked"},
-            {"head": TARGET_REVISION, "status": "current_repin", "note": "PR #2078 advanced from 8c8cf851; overlap53/conflict36 IDs, source identities, and candidate summaries were recomputed and remained unchanged; target inventory/generator pins were refreshed"},
+            {
+                "head": INITIAL_TARGET_REVISION,
+                "status": "initial_pin",
+                "note": "first comparison pin requested before PR #2078 advanced",
+            },
+            {
+                "head": PREVIOUS_TARGET_REVISION,
+                "status": "previous_repin",
+                "note": "PR #2078 advanced from the initial pin; overlap53/conflict36 IDs and source identities were rechecked",
+            },
+            {
+                "head": TARGET_REVISION,
+                "status": "current_repin",
+                "note": "PR #2078 advanced from 8c8cf851; overlap53/conflict36 IDs, source identities, and candidate summaries were recomputed and remained unchanged; target inventory/generator pins were refreshed",
+            },
         ],
         "target_head_follow_policy": "STOP the current baseline/review if PR #2078 advances beyond c55ffc91b08aabb0a0216168b3cf2b1e5fe6bf03 or main advances beyond 7afee33ae892fe1a3cf1085fac4e02d923ece01d. Do not present this packet as current until the exact new HEADs and rebase base are inspected, pins are explicitly refreshed, generator/validator/selfcheck are rerun, and all set/evidence changes are reviewed and recorded. No floating branch ref is followed automatically. This stop rule is operator-enforced; the validator checks pinned objects and does not query remote branch HEADs or establish review freshness.",
         "subject_count": 36,
@@ -801,17 +1226,30 @@ def build() -> None:
         "category_counts_main_existing": dict(sorted(main_counts.items())),
         "category_counts_target_2078": dict(sorted(target_counts.items())),
         "difference_reason_candidate_counts": dict(sorted(counts.items())),
-        "difference_reason_vocabulary": ["scope_difference", "evidence_span_difference", "research_method_state_difference", "classification_rule_difference", "unresolved"],
+        "difference_reason_vocabulary": [
+            "scope_difference",
+            "evidence_span_difference",
+            "research_method_state_difference",
+            "classification_rule_difference",
+            "unresolved",
+        ],
         "semantic_interpretation_conflict_policy": "A semantic interpretation conflict requires both sides to have independently researched source-specific evidence and to retain incompatible interpretations. The #2078 rows here are generic insufficient-basis fallbacks, so the 36 records contain zero such conflicts.",
         "semantic_interpretation_conflict_count": 0,
         "candidate_reason_policy": "Reasons are evidence-backed non-exclusive candidates; no winner, owner, formal route, phase, successor, implementation status, or consumer closure is generated.",
-        "authority_boundary": {**AUTHORITY, "formal_update": "none", "research_only": True, "LABO": "excluded; Issue #2089 hold remains in force"},
+        "authority_boundary": {
+            **AUTHORITY,
+            "formal_update": "none",
+            "research_only": True,
+            "LABO": "excluded; Issue #2089 hold remains in force",
+        },
         "target_overlap_reconciliation_pin": {
             "inventory_path": TARGET_INVENTORY,
             "inventory_sha256": tagged(git_bytes(TARGET_REVISION, TARGET_INVENTORY)),
             "overlap_rows_sha256": tagged(canonical(conflicts)),
             "target_generator_path": TARGET_GENERATOR,
-            "target_generator_sha256": tagged(git_bytes(TARGET_REVISION, TARGET_GENERATOR)),
+            "target_generator_sha256": tagged(
+                git_bytes(TARGET_REVISION, TARGET_GENERATOR)
+            ),
             "target_records_path": TARGET_RECORDS,
             "target_records_sha256": tagged(git_bytes(TARGET_REVISION, TARGET_RECORDS)),
             "target_result_emission": "36 excluded overlap results are not JSONL records; candidate values are in inventory and target fallback literals in generator.",
@@ -825,24 +1263,50 @@ def build() -> None:
             "archive_runtime_test_ci_hook_adapter_execution": False,
         },
         "negative_cases": [
-            "N01-json-duplicate-key", "N02-target-set-omission", "N03-target-set-duplicate",
-            "N04-main-result-mutation", "N05-target-result-mutation", "N06-source-sha-alias",
-            "N07-source-span-tamper", "N08-l1-evidence-tamper", "N09-reason-evidence-tamper",
-            "N10-formal-authority-promotion", "N11-phase-status-promotion", "N12-upstream-digest-stale",
-            "N13-output-digest-stale", "N14-scope-membership-evidence-tamper",
-            "N15-json-nan", "N16-json-infinity", "N17-json-negative-infinity",
-            "N18-nested-authority-promotion", "N19-main-review-unbound", "N20-source-provenance-forgery",
-            "N21-inventory-id-and-pin-forgery", "N22-reason-wording-drift", "N23-strict-json-types",
-            "N24-inventory-policy-drift", "N25-repin-stability-drift", "N26-main-union-drift",
-            "N27-main-rebaseline-drift", "N28-binding-drift",
+            "N01-json-duplicate-key",
+            "N02-target-set-omission",
+            "N03-target-set-duplicate",
+            "N04-main-result-mutation",
+            "N05-target-result-mutation",
+            "N06-source-sha-alias",
+            "N07-source-span-tamper",
+            "N08-l1-evidence-tamper",
+            "N09-reason-evidence-tamper",
+            "N10-formal-authority-promotion",
+            "N11-phase-status-promotion",
+            "N12-upstream-digest-stale",
+            "N13-output-digest-stale",
+            "N14-scope-membership-evidence-tamper",
+            "N15-json-nan",
+            "N16-json-infinity",
+            "N17-json-negative-infinity",
+            "N18-nested-authority-promotion",
+            "N19-main-review-unbound",
+            "N20-source-provenance-forgery",
+            "N21-inventory-id-and-pin-forgery",
+            "N22-reason-wording-drift",
+            "N23-strict-json-types",
+            "N24-inventory-policy-drift",
+            "N25-repin-stability-drift",
+            "N26-main-union-drift",
+            "N27-main-rebaseline-drift",
+            "N28-binding-drift",
             "N29-negative-case-contract-drift",
             "N30-malformed-container-fails-closed",
             "N31-nested-unknown-key",
-            "N32-record-unknown-key", "N33-target-source-span-tamper", "N34-target-product-evidence-unknown-key",
+            "N32-record-unknown-key",
+            "N33-target-source-span-tamper",
+            "N34-target-product-evidence-unknown-key",
         ],
-        "outputs": {"records_sha256": tagged(output), "records_bytes": len(output), "record_count": len(out_rows)},
+        "outputs": {
+            "records_sha256": tagged(output),
+            "records_bytes": len(output),
+            "record_count": len(out_rows),
+        },
     }
-    inventory["inventory_sha256"] = tagged(canonical({k: v for k, v in inventory.items() if k != "inventory_sha256"}))
+    inventory["inventory_sha256"] = tagged(
+        canonical({k: v for k, v in inventory.items() if k != "inventory_sha256"})
+    )
     binding = {
         "schema_revision": 1,
         "id": "SCF-B-0144",
@@ -864,12 +1328,29 @@ def build() -> None:
         ],
         "connections": {
             "boundary": "research-only; authority_effect=none; no formal route, classification update, phase admission, successor, implementation promotion, closure, or new build",
-            "consumers": ["comparison evidence; existing main candidate dispositions remain unapproved for their ordinary disposition process"],
-            "dependencies": ["main candidate comparison union 429 at 7afee33a plus current union 496 after merging the exact 67 #2078 residual rows", "#2078 exact target HEAD object c55ffc91, verified byte-identical to merged main objects", "four-product L1 and product-boundary", "fixed archive source blobs/MANIFEST"],
+            "consumers": [
+                "comparison evidence; existing main candidate dispositions remain unapproved for their ordinary disposition process"
+            ],
+            "dependencies": [
+                "main candidate comparison union 429 at 7afee33a plus current union 496 after merging the exact 67 #2078 residual rows",
+                "#2078 exact target HEAD object c55ffc91, verified byte-identical to merged main objects",
+                "four-product L1 and product-boundary",
+                "fixed archive source blobs/MANIFEST",
+            ],
         },
         "operations": {
-            "allowed": ["read pinned Git objects statically", "write scaffold comparison artifacts", "run generator/validator/selfcheck/scfctl"],
-            "forbidden": ["execute archive source/runtime/test/CI/hook/adapter", "select a winning product result", "update formal route/classification/phase/successor/implementation/consumer closure", "apply LABO classification", "merge/close/deploy"],
+            "allowed": [
+                "read pinned Git objects statically",
+                "write scaffold comparison artifacts",
+                "run generator/validator/selfcheck/scfctl",
+            ],
+            "forbidden": [
+                "execute archive source/runtime/test/CI/hook/adapter",
+                "select a winning product result",
+                "update formal route/classification/phase/successor/implementation/consumer closure",
+                "apply LABO classification",
+                "merge/close/deploy",
+            ],
         },
         "artifacts": [
             "scaffold/bindings/SCF-B-0144.json",
@@ -884,30 +1365,60 @@ def build() -> None:
         ],
         "verification": {
             "evidence_kind": "scaffold",
-            "scope": ["source_revision_stale", "deterministic_behavior", "negative_case", "forbidden_write_scope"],
+            "scope": [
+                "source_revision_stale",
+                "deterministic_behavior",
+                "negative_case",
+                "forbidden_write_scope",
+            ],
             "oracles": [
                 "validator independently reads the pinned #2078 inventory/generator, eight prior main classification inputs, and merged 67-row residual set without importing generate.py",
                 "validator checks exactly 36 conflict IDs, all 53 overlap rows, prior candidate union429 and current main union496, same path/SHA, archive blob/type/mode/MANIFEST, spans, candidate/L1/counterevidence and method/scope pins",
                 "strict JSON parsing, all input Git-object SHA pins, authority invariants, exact negative-case execution and deterministic output digests",
             ],
             "negative_cases": [
-                "N01-json-duplicate-key", "N02-target-set-omission", "N03-target-set-duplicate",
-                "N04-main-result-mutation", "N05-target-result-mutation", "N06-source-sha-alias",
-                "N07-source-span-tamper", "N08-l1-evidence-tamper", "N09-reason-evidence-tamper",
-                "N10-formal-authority-promotion", "N11-phase-status-promotion", "N12-upstream-digest-stale",
-                "N13-output-digest-stale", "N14-scope-membership-evidence-tamper",
-                "N15-json-nan", "N16-json-infinity", "N17-json-negative-infinity",
-                "N18-nested-authority-promotion", "N19-main-review-unbound", "N20-source-provenance-forgery",
-                "N21-inventory-id-and-pin-forgery", "N22-reason-wording-drift", "N23-strict-json-types",
-                "N24-inventory-policy-drift", "N25-repin-stability-drift", "N26-main-union-drift",
-                "N27-main-rebaseline-drift", "N28-binding-drift",
+                "N01-json-duplicate-key",
+                "N02-target-set-omission",
+                "N03-target-set-duplicate",
+                "N04-main-result-mutation",
+                "N05-target-result-mutation",
+                "N06-source-sha-alias",
+                "N07-source-span-tamper",
+                "N08-l1-evidence-tamper",
+                "N09-reason-evidence-tamper",
+                "N10-formal-authority-promotion",
+                "N11-phase-status-promotion",
+                "N12-upstream-digest-stale",
+                "N13-output-digest-stale",
+                "N14-scope-membership-evidence-tamper",
+                "N15-json-nan",
+                "N16-json-infinity",
+                "N17-json-negative-infinity",
+                "N18-nested-authority-promotion",
+                "N19-main-review-unbound",
+                "N20-source-provenance-forgery",
+                "N21-inventory-id-and-pin-forgery",
+                "N22-reason-wording-drift",
+                "N23-strict-json-types",
+                "N24-inventory-policy-drift",
+                "N25-repin-stability-drift",
+                "N26-main-union-drift",
+                "N27-main-rebaseline-drift",
+                "N28-binding-drift",
                 "N29-negative-case-contract-drift",
                 "N30-malformed-container-fails-closed",
                 "N31-nested-unknown-key",
-                "N32-record-unknown-key", "N33-target-source-span-tamper", "N34-target-product-evidence-unknown-key",
+                "N32-record-unknown-key",
+                "N33-target-source-span-tamper",
+                "N34-target-product-evidence-unknown-key",
             ],
         },
-        "replacement": {"formal_artifacts": [], "issue": 2078, "role_target": None, "status": "pending"},
+        "replacement": {
+            "formal_artifacts": [],
+            "issue": 2078,
+            "role_target": None,
+            "status": "pending",
+        },
         "created": "2026-09-23",
         "updated": "2026-09-23",
     }
@@ -916,9 +1427,14 @@ def build() -> None:
     records_path.write_bytes(output)
     (BUNDLE / "inventory.json").write_bytes(canonical(inventory) + b"\n")
     BINDING_PATH.parent.mkdir(parents=True, exist_ok=True)
-    BINDING_PATH.write_bytes(json.dumps(binding, ensure_ascii=False, sort_keys=True, indent=2).encode() + b"\n")
+    BINDING_PATH.write_bytes(
+        json.dumps(binding, ensure_ascii=False, sort_keys=True, indent=2).encode()
+        + b"\n"
+    )
     render_packet(out_rows)
-    print(f"SCF-B-0144 generated {len(out_rows)} conflicts; new_asset_research_count=0; reasons={dict(sorted(counts.items()))}")
+    print(
+        f"SCF-B-0144 generated {len(out_rows)} conflicts; new_asset_research_count=0; reasons={dict(sorted(counts.items()))}"
+    )
 
 
 def render_packet(rows: list[dict]) -> None:
@@ -938,7 +1454,9 @@ def render_packet(rows: list[dict]) -> None:
         main = row["main_existing_result"]["result"]
         target = row["target_2078_result"]["classification_result"]
         reasons = ", ".join(x["type"] for x in row["difference_reason_candidates"])
-        lines.append(f"| `{row['asset_id']}` | `{row['source_identity']['source_path']}` | {record_no} | `{main['category']}` {main.get('candidate_products', [])} | `{target['category']}` {target['candidate_products']} | {reasons} | 調査状態差。旧main候補の通常採否は未承認 |")
+        lines.append(
+            f"| `{row['asset_id']}` | `{row['source_identity']['source_path']}` | {record_no} | `{main['category']}` {main.get('candidate_products', [])} | `{target['category']}` {target['candidate_products']} | {reasons} | 調査状態差。旧main候補の通常採否は未承認 |"
+        )
     lines += [
         "",
         "レビュー時はsource spanの差と、candidate/L1 evidenceの差を分けて確認する。target-side counterevidenceはoverlap行に保存されていないため、添付の4製品L1は照合用poolとして扱う。phase候補、implementation status、歴史的consumer/failureはcandidate owner判断から独立している。",

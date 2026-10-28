@@ -65,10 +65,12 @@ class TestN03PathBoundaries(unittest.TestCase):
         self.assertEqual(len(carried), 2)
         self.assertEqual({axis["axis"] for axis in carried}, set(DEFINITION_AXES))
 
-        result = compare_values_and_applicability({
-            "validated": validated,
-            "definitions": definitions,
-        })
+        result = compare_values_and_applicability(
+            {
+                "validated": validated,
+                "definitions": definitions,
+            }
+        )
 
         self.assertEqual(result["axes"][:2], carried)
         self.assertEqual(
@@ -83,10 +85,13 @@ class TestN03PathBoundaries(unittest.TestCase):
         self.assertEqual(validated["input"], before)
         self.assertEqual(raw, before)
 
-    def test_missing_required_field_slot_emits_descriptor_07_missing_and_carries_to_fn2(self):
+    def test_missing_required_field_slot_emits_descriptor_07_missing_and_carries_to_fn2(
+        self,
+    ):
         raw = base_input(self.document)
         matching = [
-            index for index, slot in enumerate(raw["descriptors"])
+            index
+            for index, slot in enumerate(raw["descriptors"])
             if slot["descriptor_kind"] == "required field"
         ]
         self.assertEqual(len(matching), 1)
@@ -94,7 +99,9 @@ class TestN03PathBoundaries(unittest.TestCase):
         raw["descriptors"].pop(matching[0])
         validated, before = self._validate(raw)
         definitions = compare_descriptor_definitions({"validated": validated})
-        self.assertEqual([f["code"] for f in definitions["findings"]], ["descriptor_07_missing"])
+        self.assertEqual(
+            [f["code"] for f in definitions["findings"]], ["descriptor_07_missing"]
+        )
         carried = [
             copy.deepcopy(axis)
             for axis in definitions["axes"]
@@ -103,12 +110,17 @@ class TestN03PathBoundaries(unittest.TestCase):
         self.assertEqual(len(carried), 2)
         self.assertEqual(
             {axis["axis"]: axis["state"] for axis in carried},
-            {"required section.definition": "unknown", "required field.definition": "missing"},
+            {
+                "required section.definition": "unknown",
+                "required field.definition": "missing",
+            },
         )
-        result = compare_values_and_applicability({
-            "validated": validated,
-            "definitions": definitions,
-        })
+        result = compare_values_and_applicability(
+            {
+                "validated": validated,
+                "definitions": definitions,
+            }
+        )
         self.assertEqual(result["axes"][:2], carried)
         self.assertEqual(validated["input"], before)
         self.assertEqual(raw, before)
@@ -116,22 +128,28 @@ class TestN03PathBoundaries(unittest.TestCase):
     def test_duplicate_required_field_kind_stops_as_f02_n03_path(self):
         raw = base_input(self.document)
         slots = [
-            slot for slot in raw["descriptors"]
+            slot
+            for slot in raw["descriptors"]
             if slot["descriptor_kind"] == "required field"
         ]
         self.assertEqual(len(slots), 1)
         raw["descriptors"].append(copy.deepcopy(slots[0]))
         self._assert_f02_path_stop(raw)
 
-    def test_required_descriptor_kinds_surplus_slot_is_read_and_duplicate_required_stops(self):
+    def test_required_descriptor_kinds_surplus_slot_is_read_and_duplicate_required_stops(
+        self,
+    ):
         raw = base_input(self.document)
         self.assertIn("required field", raw["required_descriptor_kinds"])
-        self.assertTrue(any(
-            slot["descriptor_kind"] == "required field"
-            for slot in raw["descriptors"]
-        ))
+        self.assertTrue(
+            any(
+                slot["descriptor_kind"] == "required field"
+                for slot in raw["descriptors"]
+            )
+        )
         raw["required_descriptor_kinds"] = [
-            kind for kind in raw["required_descriptor_kinds"]
+            kind
+            for kind in raw["required_descriptor_kinds"]
             if kind != "required field"
         ]
         validated, before = self._validate(raw)
@@ -160,10 +178,12 @@ class TestN03PathBoundaries(unittest.TestCase):
         outcome = None
 
         with self.assertRaises(NotImplementedError) as caught:
-            outcome = compare_values_and_applicability({
-                "validated": validated,
-                "definitions": definitions,
-            })
+            outcome = compare_values_and_applicability(
+                {
+                    "validated": validated,
+                    "definitions": definitions,
+                }
+            )
 
         self.assertIn(N03_PATH_ID, str(caught.exception))
         self.assertIsNone(outcome, "unsupported input returns no Comparison/Finding")
@@ -177,7 +197,9 @@ class TestN03PathBoundaries(unittest.TestCase):
 
         self._assert_n03_not_implemented_without_result(mutate)
 
-    def test_n03_value_fact_with_supplied_value_stops_without_finding_or_input_change(self):
+    def test_n03_value_fact_with_supplied_value_stops_without_finding_or_input_change(
+        self,
+    ):
         def mutate(raw, _claim):
             raw["values"][-1]["value"] = "supplied-value"
 

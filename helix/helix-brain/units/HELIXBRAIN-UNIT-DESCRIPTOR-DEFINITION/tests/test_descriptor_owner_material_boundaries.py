@@ -56,10 +56,15 @@ class TestDescriptorOwnerMaterialBoundaries(unittest.TestCase):
 
         self.assertEqual(material["knowledge_record_indices"], [])
         self.assertEqual(material["provenance"], [])
-        self.assertEqual(material["boundaries"], [{
-            "locator": "/binding/knowledge_ref",
-            "cause": "owner_source_unresolved",
-        }])
+        self.assertEqual(
+            material["boundaries"],
+            [
+                {
+                    "locator": "/binding/knowledge_ref",
+                    "cause": "owner_source_unresolved",
+                }
+            ],
+        )
         self._assert_physical_sources_preserved(raw, validated, material)
 
     def test_ambiguous_matching_records_keep_every_record_index(self):
@@ -74,10 +79,15 @@ class TestDescriptorOwnerMaterialBoundaries(unittest.TestCase):
             [0, 1],
             "each ambiguous original record's provenance occurrence remains visible",
         )
-        self.assertEqual(material["boundaries"], [{
-            "locator": "/knowledge_records",
-            "cause": "owner_source_unresolved",
-        }])
+        self.assertEqual(
+            material["boundaries"],
+            [
+                {
+                    "locator": "/knowledge_records",
+                    "cause": "owner_source_unresolved",
+                }
+            ],
+        )
         self._assert_physical_sources_preserved(raw, validated, material)
 
     def test_unjoined_and_empty_provenance_use_their_original_locators(self):
@@ -98,18 +108,28 @@ class TestDescriptorOwnerMaterialBoundaries(unittest.TestCase):
 
                 self.assertEqual(material["knowledge_record_indices"], [0])
                 if mode == "unjoined":
-                    self.assertEqual(material["provenance"], [{
-                        "knowledge_record_index": 0,
-                        "provenance_index": 0,
-                        "ref": copy.deepcopy(unmatched_ref),
-                        "source_indices": [],
-                    }])
+                    self.assertEqual(
+                        material["provenance"],
+                        [
+                            {
+                                "knowledge_record_index": 0,
+                                "provenance_index": 0,
+                                "ref": copy.deepcopy(unmatched_ref),
+                                "source_indices": [],
+                            }
+                        ],
+                    )
                     expected_locator = "/knowledge_records/0/provenance_refs/0"
                 else:
                     self.assertEqual(material["provenance"], [])
                     expected_locator = "/knowledge_records/0/provenance_refs"
-                self.assertEqual(material["boundaries"], [{
-                    "locator": expected_locator,
-                    "cause": "owner_source_unresolved",
-                }])
+                self.assertEqual(
+                    material["boundaries"],
+                    [
+                        {
+                            "locator": expected_locator,
+                            "cause": "owner_source_unresolved",
+                        }
+                    ],
+                )
                 self._assert_physical_sources_preserved(raw, validated, material)

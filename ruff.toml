@@ -3,7 +3,16 @@ required-version = "==0.17.1"
 target-version = "py312"
 line-length = 88
 include = ["helix/**/*.py", "scaffold/**/*.py"]
-extend-exclude = ["archive", "scaffold/review-handoff/local"]
+extend-exclude = [
+    "archive",
+    "scaffold/review-handoff/local",
+    # Fixed-byte research captures: internal validators pin these exact files.
+    # See docs/governance/python-tooling.md (PR #3773 F1).
+    "scaffold/research/pre-isolation-outside-l1-semantic/generate.py",
+    "scaffold/research/pre-isolation-outside-holding-16-30/generate.py",
+    "scaffold/research/legacy-test-design-worker-workflow-0148/selfcheck.py",
+    "scaffold/research/rdp001-web-webos-vision-coverage-0091/selfcheck.py",
+]
 force-exclude = true
 
 [lint]

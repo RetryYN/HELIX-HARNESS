@@ -26,7 +26,8 @@ def write_oracle_axes(
         )
 
     retained = [
-        row for row in original_axes
+        row
+        for row in original_axes
         if row.get("axis") in carry_axes
         or any(matches(row, predicate) for predicate in predicate_axes)
     ]
@@ -40,4 +41,3 @@ def write_oracle_axes(
         appended.append(predicate)
         result.append(copy.deepcopy(predicate))
     return result
-

@@ -14,23 +14,36 @@ class TestIdentityWitnessReads(unittest.TestCase):
         scope["binding"]["template_ref"]["scope"] = None
         missing = normal_input()
         source = missing["sources"].pop(0)
-        missing["qualifications"] = [q for q in missing["qualifications"]
-                                     if q["ref"] != source["qualification_ref"]]
+        missing["qualifications"] = [
+            q
+            for q in missing["qualifications"]
+            if q["ref"] != source["qualification_ref"]
+        ]
         mixed = trace_input("positive")
-        mixed["descriptors"][0]["facts"][0]["binding"]["knowledge_ref"]["revision"] = "synthetic-next-revision"
-        for raw, code in ((scope, "scope_missing"), (missing, "source_missing"),
-                          (mixed, "mixed_knowledge_revision"), (mixed, "silent_supersession")):
+        mixed["descriptors"][0]["facts"][0]["binding"]["knowledge_ref"]["revision"] = (
+            "synthetic-next-revision"
+        )
+        for raw, code in (
+            (scope, "scope_missing"),
+            (missing, "source_missing"),
+            (mixed, "mixed_knowledge_revision"),
+            (mixed, "silent_supersession"),
+        ):
             with self.subTest(code=code):
                 before = copy.deepcopy(raw)
                 validated = product.validate_supply_input(raw)
                 self.assertEqual(validated["input"], before)
                 self.assertEqual(validated["input_issues"], [])
-                result = product.compare_identity_versions_and_trace({"validated": validated})
+                result = product.compare_identity_versions_and_trace(
+                    {"validated": validated}
+                )
                 finding = next(row for row in result["findings"] if row["code"] == code)
                 _, separator, encoded = finding["reason"].partition("\n")
                 self.assertTrue(separator)
                 material = json.loads(encoded)
-                self.assertEqual(set(material), {"code", "rule_ref", "predicate_observations"})
+                self.assertEqual(
+                    set(material), {"code", "rule_ref", "predicate_observations"}
+                )
                 self.assertEqual(material["code"], code)
                 self.assertEqual(material["rule_ref"], finding["rule_ref"])
                 self.assertTrue(material["predicate_observations"])
@@ -42,12 +55,20 @@ class TestIdentityWitnessReads(unittest.TestCase):
                         token = token.replace("~1", "/").replace("~0", "~")
                         if isinstance(node, dict) and token in node:
                             node = node[token]
-                        elif isinstance(node, list) and token.isdigit() and int(token) < len(node):
+                        elif (
+                            isinstance(node, list)
+                            and token.isdigit()
+                            and int(token) < len(node)
+                        ):
                             node = node[int(token)]
                         else:
                             supplied = False
                             break
-                    expected = {"presence": "supplied", "value": node} if supplied else {"presence": "absent"}
+                    expected = (
+                        {"presence": "supplied", "value": node}
+                        if supplied
+                        else {"presence": "absent"}
+                    )
                     self.assertEqual(observation["original_read"], expected)
                 self.assertEqual(raw, before)
                 self.assertEqual(validated["input"], before)
@@ -56,16 +77,25 @@ class TestIdentityWitnessReads(unittest.TestCase):
         raw = bilateral_input("outside")
         before = copy.deepcopy(raw)
         record = raw["compatibility_records"][0]
-        source_index = next(i for i, source in enumerate(raw["sources"])
-                            if source["ref"] == record["source_ref"])
+        source_index = next(
+            i
+            for i, source in enumerate(raw["sources"])
+            if source["ref"] == record["source_ref"]
+        )
         pointer = f"/sources/{source_index}/content/compatibility_range_declaration/actual_artifact_version"
-        self.assertIsInstance(raw["sources"][source_index]["content"][
-            "compatibility_range_declaration"]["actual_artifact_version"], str)
+        self.assertIsInstance(
+            raw["sources"][source_index]["content"]["compatibility_range_declaration"][
+                "actual_artifact_version"
+            ],
+            str,
+        )
         validated = product.validate_supply_input(raw)
         self.assertEqual(validated["input"], before)
         self.assertEqual(validated["input_issues"], [])
         result = product.compare_identity_versions_and_trace({"validated": validated})
-        artifact_axis = next(row for row in result["axes"] if row["axis"] == "pack.artifact_version")
+        artifact_axis = next(
+            row for row in result["axes"] if row["axis"] == "pack.artifact_version"
+        )
         material = json.loads(artifact_axis["reason"].partition("\n")[2])
         self.assertEqual(material["actual_source_pointers"], [pointer])
         self.assertEqual(raw, before)

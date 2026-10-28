@@ -55,36 +55,56 @@ def synchronize_oracle_binding_source(raw):
     content = copy.deepcopy(source["content"])
     content["oracle_bindings"] = []
     for row in raw["oracle_bindings"]:
-        content["oracle_bindings"].append({
-            key: copy.deepcopy(value) for key, value in row.items() if key != "source_ref"
-        })
+        content["oracle_bindings"].append(
+            {
+                key: copy.deepcopy(value)
+                for key, value in row.items()
+                if key != "source_ref"
+            }
+        )
     _old_ref, final_ref = _rewrite_qualified_source_body(raw, source, content)
     for row in raw["oracle_bindings"]:
         row["source_ref"] = copy.deepcopy(final_ref)
     return source, final_ref
 
 
-def oracle_projection_input(*, rules=("measurement",), duplicate=False, competing=False):
+def oracle_projection_input(
+    *, rules=("measurement",), duplicate=False, competing=False
+):
     """Make a source/qualification/provenance-synchronized R71/R72 input.
 
     ``rules`` preserves requested order. ``duplicate`` repeats a whole equal
     measurement OracleBinding. ``competing`` appends a distinct same-subject
     measurement OracleBinding and is intentionally not a valid positive case.
     """
-    if not isinstance(rules, (tuple, list)) or not rules or any(rule not in _RULES for rule in rules):
+    if (
+        not isinstance(rules, (tuple, list))
+        or not rules
+        or any(rule not in _RULES for rule in rules)
+    ):
         raise ValueError("rules must be a nonempty sequence of measurement/completion")
     raw = base_input(load_document())
     before = copy.deepcopy(raw)
     rows = [_rule_row(raw, rule) for rule in rules]
     if duplicate:
         if rules != ("measurement",) and list(rules) != ["measurement"]:
-            raise ValueError("duplicate fixture currently applies only to one measurement row")
+            raise ValueError(
+                "duplicate fixture currently applies only to one measurement row"
+            )
         rows.append(copy.deepcopy(rows[0]))
     if competing:
         if "measurement" not in rules:
             raise ValueError("competition fixture requires a measurement row")
-        alternate = copy.deepcopy(next(row for row in rows if row["subject_ref"] == _slot_and_fact(raw, "measurement")[1]["ref"]))
-        alternate["ref"] = _other_ref(alternate["ref"], "SYNTHETIC-COMPETING-ORACLE-BINDING")
+        alternate = copy.deepcopy(
+            next(
+                row
+                for row in rows
+                if row["subject_ref"] == _slot_and_fact(raw, "measurement")[1]["ref"]
+            )
+        )
+        alternate["ref"] = _other_ref(
+            alternate["ref"], "SYNTHETIC-COMPETING-ORACLE-BINDING"
+        )
         alternate["obligation_ref"] = _other_ref(
             alternate["obligation_ref"], "SYNTHETIC-SECOND-UNRELATED-OBLIGATION"
         )
@@ -104,8 +124,12 @@ def oracle_projection_public_context(raw, *, allow_fn0_issues=False):
 
     raw_before = copy.deepcopy(raw)
     validated = validate_supply_input(raw)
-    if validated["input"] is None or (validated["input_issues"] and not allow_fn0_issues):
-        raise AssertionError("setup: typed oracle input must decode within the declared fixture boundary")
+    if validated["input"] is None or (
+        validated["input_issues"] and not allow_fn0_issues
+    ):
+        raise AssertionError(
+            "setup: typed oracle input must decode within the declared fixture boundary"
+        )
     if validated["input"] != raw_before:
         raise AssertionError("setup: fn0 must preserve the selected raw input")
     definitions = compare_descriptor_definitions({"validated": validated})
@@ -120,4 +144,3 @@ def oracle_projection_public_context(raw, *, allow_fn0_issues=False):
         "identity_trace": identity_trace,
     }
     return validated, definitions, identity_trace, context
-

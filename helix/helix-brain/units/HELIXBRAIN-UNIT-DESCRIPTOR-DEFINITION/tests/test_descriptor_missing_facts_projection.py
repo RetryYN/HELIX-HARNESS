@@ -15,7 +15,9 @@ from descriptor_definitions import validate_supply_input
 
 
 class TestDescriptorMissingFactsProjection(unittest.TestCase):
-    def test_absent_null_empty_keep_axis_without_slot_missing_finding_and_exact_cause(self):
+    def test_absent_null_empty_keep_axis_without_slot_missing_finding_and_exact_cause(
+        self,
+    ):
         for presence in ("absent", "null", "empty"):
             with self.subTest(presence=presence):
                 raw = descriptor_claim_input("positive")
@@ -42,16 +44,25 @@ class TestDescriptorMissingFactsProjection(unittest.TestCase):
                     "reason": "原descriptor slotの意味factsが不足している。元presenceと所在を保持する。",
                     "backflow_owner": binding["knowledge_ref"]["owner"],
                 }
-                positions = [i for i, axis in enumerate(comparison["axes"])
-                             if axis["axis"] == "template identity.definition"]
+                positions = [
+                    i
+                    for i, axis in enumerate(comparison["axes"])
+                    if axis["axis"] == "template identity.definition"
+                ]
                 self.assertEqual(len(positions), 1)
                 self.assertEqual(comparison["axes"][positions[0]], expected_axis)
-                self.assertFalse(any(
-                    finding["rule_ref"] == "HELIXBRAIN-L5-032-R-descriptor_01_missing"
-                    for finding in comparison["findings"]
-                ))
-                rows = [(i, row) for i, row in enumerate(walk["evaluation"]["assessments"])
-                        if row["origin_branch"] == "facts_missing"]
+                self.assertFalse(
+                    any(
+                        finding["rule_ref"]
+                        == "HELIXBRAIN-L5-032-R-descriptor_01_missing"
+                        for finding in comparison["findings"]
+                    )
+                )
+                rows = [
+                    (i, row)
+                    for i, row in enumerate(walk["evaluation"]["assessments"])
+                    if row["origin_branch"] == "facts_missing"
+                ]
                 self.assertEqual(len(rows), 1)
                 ordinal, assessment = rows[0]
                 self.assertEqual(assessment["comparison_axis_indices"], positions)

@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """SCF-B-0103: PO未承認routing correction 7件の影響を静的に投影する。"""
+
 from __future__ import annotations
 
 import hashlib
@@ -12,8 +13,13 @@ ROOT = Path(__file__).resolve().parents[3]
 BUNDLE = Path(__file__).resolve().parent
 BASE_HEAD = "36784d25aa4cc53d89c28c2ff81b4009db234605"
 IDS = (
-    "HIL-FR-01", "HIL-FR-11", "HIL-FR-15", "HIL-FR-16",
-    "HIL-FR-37", "HIL-FR-41", "HIL-FR-57",
+    "HIL-FR-01",
+    "HIL-FR-11",
+    "HIL-FR-15",
+    "HIL-FR-16",
+    "HIL-FR-37",
+    "HIL-FR-41",
+    "HIL-FR-57",
 )
 PRODUCTS = ("HELIX-HARNESS", "HELIX-OS", "HELIX-Web", "HELIX-Web-OS")
 L1_LINES = {
@@ -34,13 +40,19 @@ OLD_IR = "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements
 CORRECTIONS = "docs/governance/legacy-ir-product-routing-corrections.jsonl"
 ROUTING = "docs/governance/legacy-ir-product-routing-bootstrap.jsonl"
 DECOMP = "docs/governance/legacy-ir-product-unit-decomposition-bootstrap.jsonl"
-CROSSWALK = "docs/governance/legacy-requirement-implementation-crosswalk-bootstrap.jsonl"
+CROSSWALK = (
+    "docs/governance/legacy-requirement-implementation-crosswalk-bootstrap.jsonl"
+)
 LEDGER = "docs/governance/legacy-asset-disposition.jsonl"
 PHASE = "docs/governance/legacy-asset-phase-product-classification-bootstrap.jsonl"
 DECISIONS = "docs/governance/legacy-asset-decisions.jsonl"
 READ_AFTER = "docs/governance/legacy-asset-copy-read-after.jsonl"
-FAILURE = "docs/governance/audits/source-rebaseline/legacy-ci-ai-runtime-source-inventory.md"
-CONSUMER = "docs/governance/audits/source-rebaseline/legacy-ci-consumer-relation-inventory.md"
+FAILURE = (
+    "docs/governance/audits/source-rebaseline/legacy-ci-ai-runtime-source-inventory.md"
+)
+CONSUMER = (
+    "docs/governance/audits/source-rebaseline/legacy-ci-consumer-relation-inventory.md"
+)
 WAVE_FILES = {
     "HIL-FR-01": "docs/governance/legacy-requirement-direct-semantic-review-wave23.jsonl",
     "HIL-FR-11": "docs/governance/legacy-requirement-direct-semantic-review-wave27.jsonl",
@@ -51,12 +63,30 @@ WAVE_FILES = {
     "HIL-FR-57": "docs/governance/legacy-requirement-direct-semantic-review-wave36.jsonl",
 }
 WAVE_METHODS = {
-    23: ("docs/governance/audits/source-rebaseline/legacy-requirement-direct-semantic-review-wave23-method-2026-09-21.md", "docs/governance/audits/source-rebaseline/legacy-requirement-direct-semantic-review-wave23-premise-packet-2026-09-21.md"),
-    27: ("docs/governance/audits/source-rebaseline/legacy-requirement-direct-semantic-review-wave27-method-2026-09-22.md", "docs/governance/audits/source-rebaseline/legacy-requirement-direct-semantic-review-wave27-premise-packet-2026-09-22.md"),
-    28: ("docs/governance/audits/source-rebaseline/legacy-requirement-direct-semantic-review-wave28-method-2026-09-22.md", "docs/governance/audits/source-rebaseline/legacy-requirement-direct-semantic-review-wave28-premise-packet-2026-09-22.md"),
-    33: (None, "docs/governance/audits/source-rebaseline/legacy-requirement-direct-semantic-review-wave33-premise-packet-2026-09-22.md"),
-    34: ("docs/governance/audits/source-rebaseline/legacy-requirement-direct-semantic-review-wave34-method-2026-09-22.md", "docs/governance/audits/source-rebaseline/legacy-requirement-direct-semantic-review-wave34-premise-packet-2026-09-22.md"),
-    36: ("docs/governance/audits/source-rebaseline/legacy-requirement-direct-semantic-review-wave36-method-2026-09-22.md", "docs/governance/audits/source-rebaseline/legacy-requirement-direct-semantic-review-wave36-premise-packet-2026-09-22.md"),
+    23: (
+        "docs/governance/audits/source-rebaseline/legacy-requirement-direct-semantic-review-wave23-method-2026-09-21.md",
+        "docs/governance/audits/source-rebaseline/legacy-requirement-direct-semantic-review-wave23-premise-packet-2026-09-21.md",
+    ),
+    27: (
+        "docs/governance/audits/source-rebaseline/legacy-requirement-direct-semantic-review-wave27-method-2026-09-22.md",
+        "docs/governance/audits/source-rebaseline/legacy-requirement-direct-semantic-review-wave27-premise-packet-2026-09-22.md",
+    ),
+    28: (
+        "docs/governance/audits/source-rebaseline/legacy-requirement-direct-semantic-review-wave28-method-2026-09-22.md",
+        "docs/governance/audits/source-rebaseline/legacy-requirement-direct-semantic-review-wave28-premise-packet-2026-09-22.md",
+    ),
+    33: (
+        None,
+        "docs/governance/audits/source-rebaseline/legacy-requirement-direct-semantic-review-wave33-premise-packet-2026-09-22.md",
+    ),
+    34: (
+        "docs/governance/audits/source-rebaseline/legacy-requirement-direct-semantic-review-wave34-method-2026-09-22.md",
+        "docs/governance/audits/source-rebaseline/legacy-requirement-direct-semantic-review-wave34-premise-packet-2026-09-22.md",
+    ),
+    36: (
+        "docs/governance/audits/source-rebaseline/legacy-requirement-direct-semantic-review-wave36-method-2026-09-22.md",
+        "docs/governance/audits/source-rebaseline/legacy-requirement-direct-semantic-review-wave36-premise-packet-2026-09-22.md",
+    ),
 }
 SPLIT_RESPONSIBILITY = {
     "HIL-FR-01": "HARNESS候補: intakeからmerge／issueまでの工程順序を定義する規範。OS候補のstate運転・digest binding・event causalityと境界を再審査する。",
@@ -72,8 +102,12 @@ LEGACY_EVIDENCE_PATHS = (LEDGER, PHASE, DECISIONS, READ_AFTER, FAILURE, CONSUMER
 BEFORE_UNIT_IMPACT_INTERPRETATION = "current decomposition candidate unit/connection/composite counts are derived from its fixed-BASE candidate_units"
 PHASE_IMPACT_HUMAN_ACTION = "既存unitと追加候補unitの両方についてphase責務・source spanを対象revision付きで再審査する。既存phaseを新unitへ自動移送しない。"
 CONSUMER_IMPACT_HUMAN_ACTION = "追加候補のconsumer、source/history/failure relationを直接意味linkとして再審査する。pendingをclosureへ昇格しない。"
-SUCCESSOR_IMPACT_HUMAN_ACTION = "保持atom、未被覆atom、successor ID、L2/L11接続を人間が決める。"
-CONNECTION_IMPACT_INTERPRETATION = "split_requiredは二つの候補unitを示すだけで、connection/composite成立を生成しない。"
+SUCCESSOR_IMPACT_HUMAN_ACTION = (
+    "保持atom、未被覆atom、successor ID、L2/L11接続を人間が決める。"
+)
+CONNECTION_IMPACT_INTERPRETATION = (
+    "split_requiredは二つの候補unitを示すだけで、connection/composite成立を生成しない。"
+)
 
 
 def base_bytes(path: str) -> bytes:
@@ -81,7 +115,9 @@ def base_bytes(path: str) -> bytes:
 
 
 def blob(path: str) -> str:
-    return subprocess.check_output(["git", "rev-parse", f"{BASE_HEAD}:{path}"], cwd=ROOT, text=True).strip()
+    return subprocess.check_output(
+        ["git", "rev-parse", f"{BASE_HEAD}:{path}"], cwd=ROOT, text=True
+    ).strip()
 
 
 def digest_bytes(value: bytes) -> str:
@@ -164,7 +200,15 @@ def statement_anchor(requirement_id: str) -> tuple[int, str, str]:
     raise ValueError(f"statement.text not found: {requirement_id}")
 
 
-def asset_snapshot(asset: dict, ledger: dict, ledger_line: int, phase: dict | None, phase_line: int | None, decisions: list[tuple[int, dict]], reads: list[tuple[int, dict]]) -> dict:
+def asset_snapshot(
+    asset: dict,
+    ledger: dict,
+    ledger_line: int,
+    phase: dict | None,
+    phase_line: int | None,
+    decisions: list[tuple[int, dict]],
+    reads: list[tuple[int, dict]],
+) -> dict:
     asset_id = asset["asset_id"]
     ledger_row = ledger.get(asset_id)
     if ledger_row is None:
@@ -179,19 +223,29 @@ def asset_snapshot(asset: dict, ledger: dict, ledger_line: int, phase: dict | No
         "artifact_evidence_kind": asset.get("artifact_evidence_kind"),
         "legacy_implementation_status": asset.get("legacy_implementation_status"),
         "implementation_evidence_state": asset.get("implementation_evidence_state"),
-        "direct_requirement_semantic_link": asset.get("direct_requirement_semantic_link"),
+        "direct_requirement_semantic_link": asset.get(
+            "direct_requirement_semantic_link"
+        ),
         "consumer_closure_status": asset.get("consumer_closure_status"),
         "consumer_refs_observed": asset.get("consumer_refs_observed", []),
         "unresolved": asset.get("unresolved", []),
         "phase_ids": asset.get("phase_ids", []),
         "ledger_ref": jsonl_ref(LEDGER, ledger_line, "legacy asset disposition"),
-        "phase_ref": jsonl_ref(PHASE, phase_line, "phase/product candidate") if phase and phase_line else None,
+        "phase_ref": jsonl_ref(PHASE, phase_line, "phase/product candidate")
+        if phase and phase_line
+        else None,
         "history": {
             "decision_ids": [x.get("decision_id") for _, x in decisions],
-            "decision_refs": [jsonl_ref(DECISIONS, n, "decision history") for n, _ in decisions],
+            "decision_refs": [
+                jsonl_ref(DECISIONS, n, "decision history") for n, _ in decisions
+            ],
             "read_after_ids": [x.get("read_after_id") for _, x in reads],
-            "read_after_refs": [jsonl_ref(READ_AFTER, n, "copy/read-after history") for n, _ in reads],
-            "closure_status": "recorded" if decisions or reads else "no_matching_record",
+            "read_after_refs": [
+                jsonl_ref(READ_AFTER, n, "copy/read-after history") for n, _ in reads
+            ],
+            "closure_status": "recorded"
+            if decisions or reads
+            else "no_matching_record",
         },
         "failure_consumer_refs": [
             line_ref(FAILURE, 1, "legacy source/runtime/failure static inventory"),
@@ -210,28 +264,45 @@ def wave_snapshot(requirement_id: str) -> list[dict]:
         if row.get("source_requirement_id") != requirement_id:
             continue
         # rows are contiguous in each wave, but derive the physical line again.
-        physical_line = next(line for line, raw in raw_by_line.items() if json.loads(raw) == row)
-        result.append({
-            "ref": jsonl_ref(path, physical_line, "wave semantic review row"),
-            "artifact_evidence_kind": row.get("artifact_evidence_kind"),
-            "asset_id": row.get("asset_id"),
-            "candidate_product_targets": row.get("candidate_product_targets", []),
-            "candidate_phase_targets": row.get("candidate_phase_targets", []),
-            "covered_requirement_atom_ids": row.get("covered_requirement_atom_ids", []),
-            "boundary_review_states": sorted({a.get("boundary_review_state") for a in row.get("covered_requirement_atoms", [])}),
-            "atomization_hold": row.get("atomization_hold"),
-            "catalog_legacy_implementation_status": row.get("catalog_legacy_implementation_status"),
-            "consumer_closure_status": row.get("consumer_closure_status"),
-            "authority_effect": row.get("authority_effect"),
-            "new_build_allowed": row.get("new_build_allowed"),
-            "semantic_link_status": row.get("semantic_link_status"),
-        })
+        physical_line = next(
+            line for line, raw in raw_by_line.items() if json.loads(raw) == row
+        )
+        result.append(
+            {
+                "ref": jsonl_ref(path, physical_line, "wave semantic review row"),
+                "artifact_evidence_kind": row.get("artifact_evidence_kind"),
+                "asset_id": row.get("asset_id"),
+                "candidate_product_targets": row.get("candidate_product_targets", []),
+                "candidate_phase_targets": row.get("candidate_phase_targets", []),
+                "covered_requirement_atom_ids": row.get(
+                    "covered_requirement_atom_ids", []
+                ),
+                "boundary_review_states": sorted(
+                    {
+                        a.get("boundary_review_state")
+                        for a in row.get("covered_requirement_atoms", [])
+                    }
+                ),
+                "atomization_hold": row.get("atomization_hold"),
+                "catalog_legacy_implementation_status": row.get(
+                    "catalog_legacy_implementation_status"
+                ),
+                "consumer_closure_status": row.get("consumer_closure_status"),
+                "authority_effect": row.get("authority_effect"),
+                "new_build_allowed": row.get("new_build_allowed"),
+                "semantic_link_status": row.get("semantic_link_status"),
+            }
+        )
     return result
 
 
 def wave_doc_refs(requirement_id: str) -> list[dict]:
     wave_number = int(WAVE_FILES[requirement_id].split("wave")[1].split(".")[0])
-    return [line_ref(path, 1, "wave method/premise") for path in WAVE_METHODS[wave_number] if path]
+    return [
+        line_ref(path, 1, "wave method/premise")
+        for path in WAVE_METHODS[wave_number]
+        if path
+    ]
 
 
 def l1_evidence() -> list[dict]:
@@ -246,7 +317,10 @@ def boundary_evidence() -> dict:
         dict(line_ref(BOUNDARY_PATH, line, "product boundary table"), product=product)
         for product, line in BOUNDARY_LINES.items()
     ]
-    refs.extend(line_ref(BOUNDARY_PATH, line, "boundary context") for line in BOUNDARY_CONTEXT_LINES)
+    refs.extend(
+        line_ref(BOUNDARY_PATH, line, "boundary context")
+        for line in BOUNDARY_CONTEXT_LINES
+    )
     return {
         "path": BOUNDARY_PATH,
         "blob": blob(BOUNDARY_PATH),
@@ -262,8 +336,18 @@ def main() -> None:
     routing, routing_lines = index_rows(ROUTING, "source_requirement_id")
     decomp, decomp_lines = index_rows(DECOMP, "source_requirement_id")
     crosswalk_rows, crosswalk_lines = jsonl_rows(CROSSWALK)
-    crosswalk = {(x.get("source_requirement_id"), x.get("unit_candidate_id")): x for x in crosswalk_rows}
-    crosswalk_line_map = {(x.get("source_requirement_id"), x.get("unit_candidate_id")): line for line, raw in enumerate(base_bytes(CROSSWALK).decode("utf-8").splitlines(), 1) if raw.strip() for x in [json.loads(raw)]}
+    crosswalk = {
+        (x.get("source_requirement_id"), x.get("unit_candidate_id")): x
+        for x in crosswalk_rows
+    }
+    crosswalk_line_map = {
+        (x.get("source_requirement_id"), x.get("unit_candidate_id")): line
+        for line, raw in enumerate(
+            base_bytes(CROSSWALK).decode("utf-8").splitlines(), 1
+        )
+        if raw.strip()
+        for x in [json.loads(raw)]
+    }
     ledger, ledger_lines = index_rows(LEDGER, "asset_id")
     phase, phase_lines = index_rows(PHASE, "asset_id")
     decisions_rows, _ = jsonl_rows(DECISIONS)
@@ -272,9 +356,13 @@ def main() -> None:
     for number, raw in enumerate(base_bytes(DECISIONS).decode("utf-8").splitlines(), 1):
         if raw.strip():
             item = json.loads(raw)
-            decisions_by_asset.setdefault(item.get("asset_id"), []).append((number, item))
+            decisions_by_asset.setdefault(item.get("asset_id"), []).append(
+                (number, item)
+            )
     reads_by_asset = {}
-    for number, raw in enumerate(base_bytes(READ_AFTER).decode("utf-8").splitlines(), 1):
+    for number, raw in enumerate(
+        base_bytes(READ_AFTER).decode("utf-8").splitlines(), 1
+    ):
         if raw.strip():
             item = json.loads(raw)
             reads_by_asset.setdefault(item.get("asset_id"), []).append((number, item))
@@ -284,12 +372,24 @@ def main() -> None:
 
     all_decomp, _ = jsonl_rows(DECOMP)
     all_units = [u for x in all_decomp for u in x.get("candidate_units", [])]
-    current_products = Counter(u.get("product_target") for u in all_units if u.get("unit_kind") == "product_unit")
-    current_connections = sum(u.get("unit_kind") == "cross_product_connection" for u in all_units)
+    current_products = Counter(
+        u.get("product_target")
+        for u in all_units
+        if u.get("unit_kind") == "product_unit"
+    )
+    current_connections = sum(
+        u.get("unit_kind") == "cross_product_connection" for u in all_units
+    )
     current_composites = sum(u.get("unit_kind") == "composite" for u in all_units)
-    current_phase_candidates = sum(bool(u.get("direct_phase_candidates")) for u in all_units)
-    current_unresolved_phase = sum(not u.get("direct_phase_candidates") for u in all_units)
-    current_phase_links = sum(len(u.get("direct_phase_candidates", [])) for u in all_units)
+    current_phase_candidates = sum(
+        bool(u.get("direct_phase_candidates")) for u in all_units
+    )
+    current_unresolved_phase = sum(
+        not u.get("direct_phase_candidates") for u in all_units
+    )
+    current_phase_links = sum(
+        len(u.get("direct_phase_candidates", [])) for u in all_units
+    )
 
     records = []
     for rid in IDS:
@@ -310,10 +410,17 @@ def main() -> None:
         assets = []
         for asset in cross.get("representative_legacy_assets", []):
             aid = asset["asset_id"]
-            assets.append(asset_snapshot(
-                asset, ledger, ledger_lines.get(aid), phase.get(aid), phase_lines.get(aid),
-                decisions_by_asset.get(aid, []), reads_by_asset.get(aid, []),
-            ))
+            assets.append(
+                asset_snapshot(
+                    asset,
+                    ledger,
+                    ledger_lines.get(aid),
+                    phase.get(aid),
+                    phase_lines.get(aid),
+                    decisions_by_asset.get(aid, []),
+                    reads_by_asset.get(aid, []),
+                )
+            )
         assets.sort(key=lambda x: x["asset_id"])
         before_unit = {
             "unit_candidate_id": uid,
@@ -325,10 +432,16 @@ def main() -> None:
             "phase_classification_status": unit.get("phase_classification_status"),
             "semantic_coverage_status": unit.get("semantic_coverage_status"),
             "successor_assignment_status": d.get("successor_assignment_status"),
-            "crosswalk_ref": jsonl_ref(CROSSWALK, crosswalk_line_map[(rid, uid)], "affected current unit"),
+            "crosswalk_ref": jsonl_ref(
+                CROSSWALK, crosswalk_line_map[(rid, uid)], "affected current unit"
+            ),
             "crosswalk_status": {
-                "legacy_requirement_implementation_status": cross.get("legacy_requirement_implementation_status"),
-                "current_requirement_implementation_status": cross.get("current_requirement_implementation_status"),
+                "legacy_requirement_implementation_status": cross.get(
+                    "legacy_requirement_implementation_status"
+                ),
+                "current_requirement_implementation_status": cross.get(
+                    "current_requirement_implementation_status"
+                ),
                 "consumer_closure_status": cross.get("consumer_closure_status"),
                 "direct_legacy_asset_links": cross.get("direct_legacy_asset_links", []),
                 "successor_assignment_status": cross.get("successor_assignment_status"),
@@ -357,8 +470,12 @@ def main() -> None:
             "correction_exact": {
                 "correction_id": corr.get("correction_id"),
                 "routing_registration_id": corr.get("routing_registration_id"),
-                "source_statement_semantic_digest": corr.get("source_statement_semantic_digest"),
-                "from_classification_revision": corr.get("from_classification_revision"),
+                "source_statement_semantic_digest": corr.get(
+                    "source_statement_semantic_digest"
+                ),
+                "from_classification_revision": corr.get(
+                    "from_classification_revision"
+                ),
                 "product_targets_before": corr.get("product_targets_before"),
                 "routing_candidate_before": corr.get("routing_candidate_before"),
                 "product_targets_after": corr.get("product_targets_after"),
@@ -367,7 +484,9 @@ def main() -> None:
                 "correction_state": corr.get("correction_state"),
                 "authority_effect": corr.get("authority_effect"),
                 "meaning_change_applied": corr.get("meaning_change_applied"),
-                "ref": jsonl_ref(CORRECTIONS, correction_lines[rid], "PO-pending correction"),
+                "ref": jsonl_ref(
+                    CORRECTIONS, correction_lines[rid], "PO-pending correction"
+                ),
             },
             "before": {
                 "routing": {
@@ -376,7 +495,9 @@ def main() -> None:
                     "classification_state": route.get("classification_state"),
                     "authority_effect": route.get("authority_effect"),
                     "meaning_change_applied": route.get("meaning_change_applied"),
-                    "ref": jsonl_ref(ROUTING, routing_lines[rid], "153 routing candidate"),
+                    "ref": jsonl_ref(
+                        ROUTING, routing_lines[rid], "153 routing candidate"
+                    ),
                 },
                 "decomposition": {
                     "candidate_product_targets": d.get("candidate_product_targets"),
@@ -384,14 +505,18 @@ def main() -> None:
                     "classification_state": d.get("classification_state"),
                     "successor_assignment_status": d.get("successor_assignment_status"),
                     "unit_set": [before_unit],
-                    "ref": jsonl_ref(DECOMP, decomp_lines[rid], "current decomposition candidate"),
+                    "ref": jsonl_ref(
+                        DECOMP, decomp_lines[rid], "current decomposition candidate"
+                    ),
                 },
                 "unit_connection_composite": {
                     "unit_count": 1,
                     "connection_count": 0,
                     "composite_count": 0,
                     "interpretation": BEFORE_UNIT_IMPACT_INTERPRETATION,
-                    "interpretation_sha256": digest_text(BEFORE_UNIT_IMPACT_INTERPRETATION),
+                    "interpretation_sha256": digest_text(
+                        BEFORE_UNIT_IMPACT_INTERPRETATION
+                    ),
                 },
             },
             "after_proposal": {
@@ -404,7 +529,9 @@ def main() -> None:
                 "routing_candidate": corr.get("routing_candidate_after"),
                 "candidate_shape": "unit_set",
                 "human_split_responsibility": SPLIT_RESPONSIBILITY[rid],
-                "human_split_responsibility_sha256": digest_text(SPLIT_RESPONSIBILITY[rid]),
+                "human_split_responsibility_sha256": digest_text(
+                    SPLIT_RESPONSIBILITY[rid]
+                ),
                 "projected_added_unit": {
                     "projected_unit_candidate_id": candidate_added_id,
                     "candidate_product": added_product,
@@ -439,15 +566,21 @@ def main() -> None:
                     "human_action_sha256": digest_text(PHASE_IMPACT_HUMAN_ACTION),
                 },
                 "consumer_impact": {
-                    "before_unit_consumer_closure_status": cross.get("consumer_closure_status"),
-                    "before_direct_legacy_asset_links": cross.get("direct_legacy_asset_links", []),
+                    "before_unit_consumer_closure_status": cross.get(
+                        "consumer_closure_status"
+                    ),
+                    "before_direct_legacy_asset_links": cross.get(
+                        "direct_legacy_asset_links", []
+                    ),
                     "projected_added_unit_consumer_edges": [],
                     "applied_consumer_edge_delta": 0,
                     "human_action": CONSUMER_IMPACT_HUMAN_ACTION,
                     "human_action_sha256": digest_text(CONSUMER_IMPACT_HUMAN_ACTION),
                 },
                 "successor_impact": {
-                    "before_successor_assignment_status": d.get("successor_assignment_status"),
+                    "before_successor_assignment_status": d.get(
+                        "successor_assignment_status"
+                    ),
                     "projected_added_unit_successor_assignment_status": "unassigned",
                     "projected_successor_ids": [],
                     "applied_successor_delta": 0,
@@ -461,7 +594,9 @@ def main() -> None:
                     "projected_composite_count": 0,
                     "applied_connection_delta": 0,
                     "interpretation": CONNECTION_IMPACT_INTERPRETATION,
-                    "interpretation_sha256": digest_text(CONNECTION_IMPACT_INTERPRETATION),
+                    "interpretation_sha256": digest_text(
+                        CONNECTION_IMPACT_INTERPRETATION
+                    ),
                 },
             },
             "product_boundary": boundary,
@@ -470,14 +605,25 @@ def main() -> None:
                 "review_rows": wave_snapshot(rid),
                 "method_premise_refs": wave_doc_refs(rid),
                 "interpretation": "waveはexact source atom、候補phase/product、未完consumer／boundary reviewを保持する静的semantic review候補であり、correctionのPO承認や実装証拠ではない。",
-                "interpretation_sha256": digest_text("waveはexact source atom、候補phase/product、未完consumer／boundary reviewを保持する静的semantic review候補であり、correctionのPO承認や実装証拠ではない。"),
+                "interpretation_sha256": digest_text(
+                    "waveはexact source atom、候補phase/product、未完consumer／boundary reviewを保持する静的semantic review候補であり、correctionのPO承認や実装証拠ではない。"
+                ),
             },
             "legacy_asset_evidence": {
                 "crosswalk_record_count": cross.get("crosswalk_record_count"),
-                "crosswalk_ref": jsonl_ref(CROSSWALK, crosswalk_line_map[(rid, uid)], "affected implementation crosswalk"),
+                "crosswalk_ref": jsonl_ref(
+                    CROSSWALK,
+                    crosswalk_line_map[(rid, uid)],
+                    "affected implementation crosswalk",
+                ),
                 "candidate_assets": assets,
-                "source_history_failure_consumer_refs": [line_ref(path, 1, "static legacy evidence inventory") for path in LEGACY_EVIDENCE_PATHS],
-                "implementation_status": cross.get("legacy_requirement_implementation_status"),
+                "source_history_failure_consumer_refs": [
+                    line_ref(path, 1, "static legacy evidence inventory")
+                    for path in LEGACY_EVIDENCE_PATHS
+                ],
+                "implementation_status": cross.get(
+                    "legacy_requirement_implementation_status"
+                ),
                 "consumer_closure_status": cross.get("consumer_closure_status"),
                 "failure_closure_status": cross.get("failure_closure_status"),
                 "history_closure_status": cross.get("history_closure_status"),
@@ -503,41 +649,77 @@ def main() -> None:
         rid = record["source_requirement_id"]
         d = decomp[rid]
         uid = d["candidate_units"][0]["unit_candidate_id"]
-        current_unit_ids = [u["unit_candidate_id"] for u in d.get("candidate_units", [])]
-        added_id = record["after_proposal"]["projected_added_unit"]["projected_unit_candidate_id"]
+        current_unit_ids = [
+            u["unit_candidate_id"] for u in d.get("candidate_units", [])
+        ]
+        added_id = record["after_proposal"]["projected_added_unit"][
+            "projected_unit_candidate_id"
+        ]
         record["before"]["unit_connection_composite"] = {
             "unit_count": len(current_unit_ids),
-            "connection_count": sum(u.get("unit_kind") == "cross_product_connection" for u in d.get("candidate_units", [])),
-            "composite_count": sum(u.get("unit_kind") == "composite" for u in d.get("candidate_units", [])),
+            "connection_count": sum(
+                u.get("unit_kind") == "cross_product_connection"
+                for u in d.get("candidate_units", [])
+            ),
+            "composite_count": sum(
+                u.get("unit_kind") == "composite" for u in d.get("candidate_units", [])
+            ),
             "interpretation": BEFORE_UNIT_IMPACT_INTERPRETATION,
             "interpretation_sha256": digest_text(BEFORE_UNIT_IMPACT_INTERPRETATION),
         }
-        record["after_proposal"]["unit_impact"].update({
-            "current_unit_ids": current_unit_ids,
-            "projected_after_unit_ids": current_unit_ids + [added_id],
-            "current_unit_count": len(current_unit_ids),
-            "projected_unit_count": len(current_unit_ids) + 1,
-            "applied_unit_count_delta": 0,
-            "hypothetical_unit_count_delta_if_adopted": 1,
-        })
-        record["after_proposal"]["phase_impact"].update({
-            "phase_candidate_units_current": current_phase_candidates,
-            "phase_candidate_units_projected_scaffold_only": current_phase_candidates,
-            "unresolved_phase_units_current": current_unresolved_phase,
-            "unresolved_phase_units_projected_scaffold_only": current_unresolved_phase + 1,
-            "phase_links_current": current_phase_links,
-            "phase_links_projected_scaffold_only": current_phase_links,
-        })
-        record["after_proposal"]["connection_composite_impact"].update({
-            "before_connection_count": current_connections,
-            "projected_connection_count": current_connections,
-            "before_composite_count": current_composites,
-            "projected_composite_count": current_composites,
-            "applied_connection_delta": 0,
-        })
-    (BUNDLE / "impact.jsonl").write_text("".join(json.dumps(x, ensure_ascii=False, sort_keys=True) + "\n" for x in records), encoding="utf-8")
+        record["after_proposal"]["unit_impact"].update(
+            {
+                "current_unit_ids": current_unit_ids,
+                "projected_after_unit_ids": current_unit_ids + [added_id],
+                "current_unit_count": len(current_unit_ids),
+                "projected_unit_count": len(current_unit_ids) + 1,
+                "applied_unit_count_delta": 0,
+                "hypothetical_unit_count_delta_if_adopted": 1,
+            }
+        )
+        record["after_proposal"]["phase_impact"].update(
+            {
+                "phase_candidate_units_current": current_phase_candidates,
+                "phase_candidate_units_projected_scaffold_only": current_phase_candidates,
+                "unresolved_phase_units_current": current_unresolved_phase,
+                "unresolved_phase_units_projected_scaffold_only": current_unresolved_phase
+                + 1,
+                "phase_links_current": current_phase_links,
+                "phase_links_projected_scaffold_only": current_phase_links,
+            }
+        )
+        record["after_proposal"]["connection_composite_impact"].update(
+            {
+                "before_connection_count": current_connections,
+                "projected_connection_count": current_connections,
+                "before_composite_count": current_composites,
+                "projected_composite_count": current_composites,
+                "applied_connection_delta": 0,
+            }
+        )
+    (BUNDLE / "impact.jsonl").write_text(
+        "".join(
+            json.dumps(x, ensure_ascii=False, sort_keys=True) + "\n" for x in records
+        ),
+        encoding="utf-8",
+    )
 
-    inputs = [OLD_IR, CORRECTIONS, ROUTING, DECOMP, CROSSWALK, BOUNDARY_PATH, *[x[0] for x in L1_LINES.values()], LEDGER, PHASE, DECISIONS, READ_AFTER, FAILURE, CONSUMER, *sorted(set(WAVE_FILES.values()))]
+    inputs = [
+        OLD_IR,
+        CORRECTIONS,
+        ROUTING,
+        DECOMP,
+        CROSSWALK,
+        BOUNDARY_PATH,
+        *[x[0] for x in L1_LINES.values()],
+        LEDGER,
+        PHASE,
+        DECISIONS,
+        READ_AFTER,
+        FAILURE,
+        CONSUMER,
+        *sorted(set(WAVE_FILES.values())),
+    ]
     for pair in WAVE_METHODS.values():
         inputs.extend(path for path in pair if path)
     inputs = list(dict.fromkeys(inputs))
@@ -559,38 +741,115 @@ def main() -> None:
         "current_decomposition": {
             "record_count": len(all_decomp),
             "unit_count": len(all_units),
-            "product_unit_count": sum(u.get("unit_kind") == "product_unit" for u in all_units),
+            "product_unit_count": sum(
+                u.get("unit_kind") == "product_unit" for u in all_units
+            ),
             "product_counts": {p: current_products.get(p, 0) for p in PRODUCTS},
             "connection_count": current_connections,
             "composite_count": 0,
-            "phase_candidate_units": sum(bool(u.get("direct_phase_candidates")) for u in all_units),
-            "unresolved_phase_units": sum(not u.get("direct_phase_candidates") for u in all_units),
-            "phase_links": sum(len(u.get("direct_phase_candidates", [])) for u in all_units),
+            "phase_candidate_units": sum(
+                bool(u.get("direct_phase_candidates")) for u in all_units
+            ),
+            "unresolved_phase_units": sum(
+                not u.get("direct_phase_candidates") for u in all_units
+            ),
+            "phase_links": sum(
+                len(u.get("direct_phase_candidates", [])) for u in all_units
+            ),
             "successor_assigned": 0,
         },
         "projected_after_if_all_seven_adopted": {
             "applied": False,
             "unit_count": len(all_units) + len(records),
-            "product_unit_count": sum(u.get("unit_kind") == "product_unit" for u in all_units) + len(records),
-            "product_counts": {"HELIX-HARNESS": current_products.get("HELIX-HARNESS", 0) + 4, "HELIX-OS": current_products.get("HELIX-OS", 0) + 3, "HELIX-Web": 0, "HELIX-Web-OS": 0},
+            "product_unit_count": sum(
+                u.get("unit_kind") == "product_unit" for u in all_units
+            )
+            + len(records),
+            "product_counts": {
+                "HELIX-HARNESS": current_products.get("HELIX-HARNESS", 0) + 4,
+                "HELIX-OS": current_products.get("HELIX-OS", 0) + 3,
+                "HELIX-Web": 0,
+                "HELIX-Web-OS": 0,
+            },
             "connection_count": current_connections,
             "composite_count": 0,
-            "phase_candidate_units": sum(bool(u.get("direct_phase_candidates")) for u in all_units),
-            "unresolved_phase_units": sum(not u.get("direct_phase_candidates") for u in all_units) + len(records),
-            "phase_links": sum(len(u.get("direct_phase_candidates", [])) for u in all_units),
+            "phase_candidate_units": sum(
+                bool(u.get("direct_phase_candidates")) for u in all_units
+            ),
+            "unresolved_phase_units": sum(
+                not u.get("direct_phase_candidates") for u in all_units
+            )
+            + len(records),
+            "phase_links": sum(
+                len(u.get("direct_phase_candidates", [])) for u in all_units
+            ),
             "successor_assigned": 0,
             "consumer_edges_generated": 0,
         },
-        "input_digests": [{"path": p, "blob": blob(p), "sha256": file_digest(p)} for p in inputs],
+        "input_digests": [
+            {"path": p, "blob": blob(p), "sha256": file_digest(p)} for p in inputs
+        ],
         "correction_state": "proposed_pending_po_review",
         "formal_routing_updated": False,
         "existing_ledgers_updated": False,
         "successor_updated": False,
         "legacy_execution_performed": False,
         "new_build_allowed": False,
-        "negative_cases": ["duplicate_id", "record_count_guard", "missing_id", "correction_digest_tamper", "source_anchor_tamper", "source_digest_tamper", "before_candidate_tamper", "routing_reference_guard", "unit_impact_guard", "wave_digest_tamper", "wave_method_reference_guard", "boundary_reference_tamper", "l1_reference_tamper", "impact_count_tamper", "authority_promotion", "asset_digest_tamper", "asset_set_tamper", "human_judgment_tamper", "successor_promotion", "after_proposal_guard", "consumer_impact_guard", "successor_impact_guard", "projected_unit_guard", "impact_interpretation_guard", "asset_reference_guard", "asset_state_guard", "boundary_interpretation_guard", "correction_reference_guard", "crosswalk_reference_guard", "crosswalk_state_guard", "decomp_reference_guard", "failure_consumer_reference_guard", "history_reference_guard", "history_state_guard", "source_missing_guard", "wave_asset_guard", "input_digest_tamper", "input_set_missing", "input_set_duplicate", "input_set_extra", "input_blob_guard", "base_head_guard", "source_provenance_guard", "current_counts_guard", "inventory_guard", "legacy_execution_guard", "inventory_authority_guard", "base_ancestor_tamper"],
+        "negative_cases": [
+            "duplicate_id",
+            "record_count_guard",
+            "missing_id",
+            "correction_digest_tamper",
+            "source_anchor_tamper",
+            "source_digest_tamper",
+            "before_candidate_tamper",
+            "routing_reference_guard",
+            "unit_impact_guard",
+            "wave_digest_tamper",
+            "wave_method_reference_guard",
+            "boundary_reference_tamper",
+            "l1_reference_tamper",
+            "impact_count_tamper",
+            "authority_promotion",
+            "asset_digest_tamper",
+            "asset_set_tamper",
+            "human_judgment_tamper",
+            "successor_promotion",
+            "after_proposal_guard",
+            "consumer_impact_guard",
+            "successor_impact_guard",
+            "projected_unit_guard",
+            "impact_interpretation_guard",
+            "asset_reference_guard",
+            "asset_state_guard",
+            "boundary_interpretation_guard",
+            "correction_reference_guard",
+            "crosswalk_reference_guard",
+            "crosswalk_state_guard",
+            "decomp_reference_guard",
+            "failure_consumer_reference_guard",
+            "history_reference_guard",
+            "history_state_guard",
+            "source_missing_guard",
+            "wave_asset_guard",
+            "input_digest_tamper",
+            "input_set_missing",
+            "input_set_duplicate",
+            "input_set_extra",
+            "input_blob_guard",
+            "base_head_guard",
+            "source_provenance_guard",
+            "current_counts_guard",
+            "inventory_guard",
+            "legacy_execution_guard",
+            "inventory_authority_guard",
+            "base_ancestor_tamper",
+        ],
     }
-    (BUNDLE / "inventory.json").write_text(json.dumps(inventory, ensure_ascii=False, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    (BUNDLE / "inventory.json").write_text(
+        json.dumps(inventory, ensure_ascii=False, indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
+    )
 
 
 if __name__ == "__main__":

@@ -14,10 +14,14 @@ class TestFn0R2NegativeBoundaries(unittest.TestCase):
         """同一qualification Refに異なる原Qが複数あるとき、sourceをusableにしない。"""
         raw = normal_input()
         source = raw["sources"][0]
-        matching = [q for q in raw["qualifications"] if q["ref"] == source["qualification_ref"]]
+        matching = [
+            q for q in raw["qualifications"] if q["ref"] == source["qualification_ref"]
+        ]
         self.assertEqual(len(matching), 1)
         conflicting = copy.deepcopy(matching[0])
-        conflicting["qualification_body"]["authority_effect"] = "different original occurrence"
+        conflicting["qualification_body"]["authority_effect"] = (
+            "different original occurrence"
+        )
         raw["qualifications"].append(conflicting)
         before = copy.deepcopy(raw)
 
@@ -26,14 +30,20 @@ class TestFn0R2NegativeBoundaries(unittest.TestCase):
         self.assertEqual(validated["input"], before)
         self.assertEqual(raw, before)
         self.assertIn(source["ref"], validated["unusable_source_refs"])
-        self.assertTrue(any(issue.get("source_ref") == source["ref"]
-                            for issue in validated["input_issues"]))
+        self.assertTrue(
+            any(
+                issue.get("source_ref") == source["ref"]
+                for issue in validated["input_issues"]
+            )
+        )
 
     def test_one_invalid_copy_of_equal_qualifications_makes_source_unusable(self):
         """重複Qの一方だけsubject digestを壊しても、他方でsourceをusableにしない。"""
         raw = normal_input()
         source = raw["sources"][0]
-        matching = [q for q in raw["qualifications"] if q["ref"] == source["qualification_ref"]]
+        matching = [
+            q for q in raw["qualifications"] if q["ref"] == source["qualification_ref"]
+        ]
         self.assertEqual(len(matching), 1)
         raw["qualifications"].append(copy.deepcopy(matching[0]))
         raw["qualifications"][-1]["subject_sha256"] = "0" * 64
@@ -44,8 +54,12 @@ class TestFn0R2NegativeBoundaries(unittest.TestCase):
         self.assertEqual(validated["input"], before)
         self.assertEqual(raw, before)
         self.assertIn(source["ref"], validated["unusable_source_refs"])
-        self.assertTrue(any(issue.get("source_ref") == source["ref"]
-                            for issue in validated["input_issues"]))
+        self.assertTrue(
+            any(
+                issue.get("source_ref") == source["ref"]
+                for issue in validated["input_issues"]
+            )
+        )
 
     def test_non_string_ref_member_is_rejected_by_fn0_decode(self):
         """Refの型外memberはfn0 decode failureでありfn3 semantic branchへ混ぜない。"""

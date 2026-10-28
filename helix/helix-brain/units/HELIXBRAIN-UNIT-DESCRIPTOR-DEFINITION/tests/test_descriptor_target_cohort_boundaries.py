@@ -18,10 +18,21 @@ from identity_input_fixtures import _write_source_content
 
 
 _KINDS = (
-    "template identity", "version", "layer/pair", "applicability",
-    "required input", "required section", "required field", "relation",
-    "意味owner", "trace", "negative oracle", "measurement", "completion",
-    "downstream kind", "supersession",
+    "template identity",
+    "version",
+    "layer/pair",
+    "applicability",
+    "required input",
+    "required section",
+    "required field",
+    "relation",
+    "意味owner",
+    "trace",
+    "negative oracle",
+    "measurement",
+    "completion",
+    "downstream kind",
+    "supersession",
 )
 
 _REASONS = {
@@ -56,7 +67,11 @@ def _read(raw):
     """FN0受理とraw/V不変を確かめて、同じsnapshotのtarget readを返す。"""
     raw_before = copy.deepcopy(raw)
     validated = validate_supply_input(raw)
-    if validated["input"] is None or validated["input_issues"] or validated["unusable_source_refs"]:
+    if (
+        validated["input"] is None
+        or validated["input_issues"]
+        or validated["unusable_source_refs"]
+    ):
         raise AssertionError("setup: FN0 must accept the synchronized source input")
     if validated["input"] != raw_before:
         raise AssertionError("setup: FN0 must preserve the original raw snapshot")
@@ -79,7 +94,9 @@ class TestDescriptorTargetCohortBoundaries(unittest.TestCase):
         return copy.deepcopy(raw["sources"][0]["content"]["descriptor_targets"][0])
 
     def _problem_tuples(self, result):
-        return [(row["kind"], row["locator"], row["reason"]) for row in result["problems"]]
+        return [
+            (row["kind"], row["locator"], row["reason"]) for row in result["problems"]
+        ]
 
     def test_same_identity_unresolved_frame_suppresses_exact_match(self):
         """同identityの比較不能frameはexact宣言と同cohortをunknownにする。"""
@@ -98,13 +115,25 @@ class TestDescriptorTargetCohortBoundaries(unittest.TestCase):
         self.assertEqual(len(result["occurrences"]), 2)
         self.assertEqual(
             [row["declaration_locator"] for row in result["occurrences"]],
-            ["/sources/0/content/descriptor_targets/0", "/sources/0/content/descriptor_targets/1"],
+            [
+                "/sources/0/content/descriptor_targets/0",
+                "/sources/0/content/descriptor_targets/1",
+            ],
         )
         self.assertEqual(
             self._problem_tuples(result),
-            [("target_ref_unresolved", "/sources/0/content/descriptor_targets/1/target_ref", _REASONS["target_ref_unresolved"])],
+            [
+                (
+                    "target_ref_unresolved",
+                    "/sources/0/content/descriptor_targets/1/target_ref",
+                    _REASONS["target_ref_unresolved"],
+                )
+            ],
         )
-        self.assertEqual(result["problems"][0]["source_ref"], {"presence": "supplied", "value": source_ref})
+        self.assertEqual(
+            result["problems"][0]["source_ref"],
+            {"presence": "supplied", "value": source_ref},
+        )
         self.assertEqual(raw, before)
 
     def test_unassociated_identity_problem_does_not_cancel_exact_match(self):
@@ -120,18 +149,33 @@ class TestDescriptorTargetCohortBoundaries(unittest.TestCase):
         result = _read(raw)
         self.assertEqual(result["state"], "resolved")
         self.assertEqual(len(result["matches"]), 1)
-        self.assertEqual(result["matches"][0]["declaration_locators"], ["/sources/0/content/descriptor_targets/0"])
+        self.assertEqual(
+            result["matches"][0]["declaration_locators"],
+            ["/sources/0/content/descriptor_targets/0"],
+        )
         self.assertEqual(len(result["occurrences"]), 2)
         self.assertEqual(
             self._problem_tuples(result),
-            [("target_ref_unresolved", "/sources/0/content/descriptor_targets/1/target_ref", _REASONS["target_ref_unresolved"])],
+            [
+                (
+                    "target_ref_unresolved",
+                    "/sources/0/content/descriptor_targets/1/target_ref",
+                    _REASONS["target_ref_unresolved"],
+                )
+            ],
         )
         self.assertEqual(raw, before)
 
     def test_untyped_kind_or_slot_does_not_become_a_partial_match(self):
         """ExactRef/Bindingでもkind又はslotが型付き住所でなければcohort全体がunknown。"""
         cases = (
-            ("unknown kind", "descriptor_kind", "unrecognized-kind", "kind_unresolved", "/descriptor_kind"),
+            (
+                "unknown kind",
+                "descriptor_kind",
+                "unrecognized-kind",
+                "kind_unresolved",
+                "/descriptor_kind",
+            ),
             ("non-string slot", "slot_identity", 17, "declaration_shape", ""),
         )
         for label, member, value, problem_kind, suffix in cases:
@@ -158,8 +202,12 @@ class TestDescriptorTargetCohortBoundaries(unittest.TestCase):
     def test_caller_slot_known_kind_difference_is_a_conflict(self):
         """owner宣言一件でも、対応slotの既知別kindはmapping conflictにする。"""
         raw = self._positive()
-        owner_kind = raw["sources"][0]["content"]["descriptor_targets"][0]["descriptor_kind"]
-        raw["descriptors"][0]["descriptor_kind"] = next(kind for kind in _KINDS if kind != owner_kind)
+        owner_kind = raw["sources"][0]["content"]["descriptor_targets"][0][
+            "descriptor_kind"
+        ]
+        raw["descriptors"][0]["descriptor_kind"] = next(
+            kind for kind in _KINDS if kind != owner_kind
+        )
         before = copy.deepcopy(raw)
 
         result = _read(raw)
@@ -167,7 +215,13 @@ class TestDescriptorTargetCohortBoundaries(unittest.TestCase):
         self.assertEqual(result["matches"], [])
         self.assertEqual(
             self._problem_tuples(result),
-            [("target_mapping_conflict", "/descriptors/0/descriptor_kind", _REASONS["target_mapping_conflict"])],
+            [
+                (
+                    "target_mapping_conflict",
+                    "/descriptors/0/descriptor_kind",
+                    _REASONS["target_mapping_conflict"],
+                )
+            ],
         )
         self.assertEqual(raw, before)
 
@@ -187,9 +241,18 @@ class TestDescriptorTargetCohortBoundaries(unittest.TestCase):
         self.assertEqual(len(result["occurrences"]), 1)
         self.assertEqual(
             self._problem_tuples(result),
-            [("target_ref_conflict", "/sources/0/content/descriptor_targets/0/target_ref", _REASONS["target_ref_conflict"])],
+            [
+                (
+                    "target_ref_conflict",
+                    "/sources/0/content/descriptor_targets/0/target_ref",
+                    _REASONS["target_ref_conflict"],
+                )
+            ],
         )
-        self.assertEqual(result["problems"][0]["source_ref"], {"presence": "supplied", "value": source_ref})
+        self.assertEqual(
+            result["problems"][0]["source_ref"],
+            {"presence": "supplied", "value": source_ref},
+        )
         self.assertEqual(raw, before)
 
     def test_partial_binding_problem_on_unrelated_target_is_local(self):
@@ -213,7 +276,9 @@ class TestDescriptorTargetCohortBoundaries(unittest.TestCase):
         result = _read(raw)
         self.assertEqual(result["state"], "resolved")
         self.assertEqual(len(result["matches"]), 1)
-        self.assertEqual(result["matches"][0]["source_refs"], [raw["sources"][0]["ref"]])
+        self.assertEqual(
+            result["matches"][0]["source_refs"], [raw["sources"][0]["ref"]]
+        )
         self.assertEqual(len(result["occurrences"]), 2)
         self.assertEqual(
             result["occurrences"][1]["source_binding"],
@@ -221,9 +286,18 @@ class TestDescriptorTargetCohortBoundaries(unittest.TestCase):
         )
         self.assertEqual(
             self._problem_tuples(result),
-            [("binding_unresolved", "/sources/3/content/binding", _REASONS["binding_unresolved"])],
+            [
+                (
+                    "binding_unresolved",
+                    "/sources/3/content/binding",
+                    _REASONS["binding_unresolved"],
+                )
+            ],
         )
-        self.assertEqual(result["problems"][0]["source_ref"], {"presence": "supplied", "value": source_ref})
+        self.assertEqual(
+            result["problems"][0]["source_ref"],
+            {"presence": "supplied", "value": source_ref},
+        )
         self.assertEqual(raw, before)
 
 

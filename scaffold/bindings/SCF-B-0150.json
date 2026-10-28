@@ -125,8 +125,8 @@
     },
     {
       "path": "scaffold/research/legacy-worker-execution-checkpoint-quota-0150/validate.py",
-      "sha256": "79b08ba8b21975447163372b01b9916e405503390d076ac25afa25c88e426e89",
-      "note": "SCF-B-0150 research artifact digest"
+      "sha256": "9a3a3c21a8666902b4efdb657c1920eb60128bbb52aa950938507a66854512bc",
+      "note": "SCF-B-0150 research artifact digest [WR73/PR3773: 402867935の元sourceとRuff整形後sourceは位置情報を除くAST同値、型コメント付属も保持。binding全体（reason/role/obligations/connections/operations/verificationのoracle・negative case/replacement.role_target）への意味影響を確認し、役割・権限・義務・固定capture・採否は不変として再束縛。旧receipt=79b08ba8b21975447163372b01b9916e405503390d076ac25afa25c88e426e89; 現receipt=9a3a3c21a8666902b4efdb657c1920eb60128bbb52aa950938507a66854512bc。固定bytes consumerを持つ4ファイルは除外して元bytesを保持。]"
     }
   ],
   "role": "legacy-worker-execution-checkpoint-quota-phase-product-classification-0150-static",

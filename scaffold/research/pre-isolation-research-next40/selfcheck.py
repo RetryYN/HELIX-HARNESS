@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """RDP-001 research-premise次候補40 pathの否定例を検証するread-only selfcheck。"""
+
 from __future__ import annotations
 
 import json
@@ -15,7 +16,9 @@ MANIFEST = HERE / "rdp001-preiso-research-next40.json"
 INVENTORY = HERE / "rdp001-preiso-research-next40-semantic-diff-inventory.json"
 
 
-def run_case(label: str, mutate_manifest=None, mutate_inventory=None, expected: str = "") -> None:
+def run_case(
+    label: str, mutate_manifest=None, mutate_inventory=None, expected: str = ""
+) -> None:
     manifest = json.loads(MANIFEST.read_text(encoding="utf-8"))
     inventory = json.loads(INVENTORY.read_text(encoding="utf-8"))
     if mutate_manifest:
@@ -25,11 +28,25 @@ def run_case(label: str, mutate_manifest=None, mutate_inventory=None, expected: 
     with tempfile.TemporaryDirectory(prefix="rdp001-research40-selfcheck-") as tmp:
         manifest_path = Path(tmp) / "manifest.json"
         inventory_path = Path(tmp) / "inventory.json"
-        manifest_path.write_text(json.dumps(manifest, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
-        inventory_path.write_text(json.dumps(inventory, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+        manifest_path.write_text(
+            json.dumps(manifest, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
+        )
+        inventory_path.write_text(
+            json.dumps(inventory, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
+        )
         result = subprocess.run(
-            [sys.executable, str(VALIDATOR), "--manifest", str(manifest_path), "--inventory", str(inventory_path)],
-            cwd=ROOT, capture_output=True, text=True, check=False,
+            [
+                sys.executable,
+                str(VALIDATOR),
+                "--manifest",
+                str(manifest_path),
+                "--inventory",
+                str(inventory_path),
+            ],
+            cwd=ROOT,
+            capture_output=True,
+            text=True,
+            check=False,
         )
     if result.returncode == 0 or (expected and expected not in result.stdout):
         raise SystemExit(f"FAIL selfcheck: {label}\n{result.stdout}{result.stderr}")
@@ -44,12 +61,16 @@ def main() -> int:
     )
     run_case(
         "phase implementation promotion",
-        mutate_manifest=lambda m: m["paths"][0]["phase_classification"].update(legacy_implementation_status="implemented"),
+        mutate_manifest=lambda m: m["paths"][0]["phase_classification"].update(
+            legacy_implementation_status="implemented"
+        ),
         expected="PREISO-REV-000044 phase_classification不一致: legacy_implementation_status",
     )
     run_case(
         "owner promotion",
-        mutate_manifest=lambda m: m["paths"][0].update(product_owner_candidate="HELIX-HARNESS"),
+        mutate_manifest=lambda m: m["paths"][0].update(
+            product_owner_candidate="HELIX-HARNESS"
+        ),
         expected="PREISO-REV-000044 owner候補不一致",
     )
     run_case(
@@ -59,17 +80,23 @@ def main() -> int:
     )
     run_case(
         "old execution promotion",
-        mutate_manifest=lambda m: m["comparison"].update(old_runtime_test_ci_execution=True),
+        mutate_manifest=lambda m: m["comparison"].update(
+            old_runtime_test_ci_execution=True
+        ),
         expected="old_runtime_test_ci_executionはfalseに固定する",
     )
     run_case(
         "PR1946 overlap scope drift",
-        mutate_manifest=lambda m: m["scope"].update(pr1946_unmerged_candidate_source_revision_item_ids=["PREISO-REV-000044"]),
+        mutate_manifest=lambda m: m["scope"].update(
+            pr1946_unmerged_candidate_source_revision_item_ids=["PREISO-REV-000044"]
+        ),
         expected="manifest scope不一致",
     )
     run_case(
         "PR1946 rebaseline provenance drift",
-        mutate_manifest=lambda m: m["comparison"]["pr1946_unmerged_candidate_scope"].update(status_at_rebaseline="unmerged_candidate"),
+        mutate_manifest=lambda m: m["comparison"][
+            "pr1946_unmerged_candidate_scope"
+        ].update(status_at_rebaseline="unmerged_candidate"),
         expected="prior selected scope不一致",
     )
     run_case(
@@ -79,22 +106,30 @@ def main() -> int:
     )
     run_case(
         "hunk span drift",
-        mutate_inventory=lambda i: i["fragments"][0]["pre_isolation"].update(end_line=i["fragments"][0]["pre_isolation"]["end_line"] + 1),
+        mutate_inventory=lambda i: i["fragments"][0]["pre_isolation"].update(
+            end_line=i["fragments"][0]["pre_isolation"]["end_line"] + 1
+        ),
         expected="Git diff hunkとinventory spanの集合不一致",
     )
     run_case(
         "hunk classification promotion",
-        mutate_inventory=lambda i: i["fragments"][0].update(classification="semantic_atom"),
+        mutate_inventory=lambda i: i["fragments"][0].update(
+            classification="semantic_atom"
+        ),
         expected="RDP001-RESEARCH40-DIFF-001 path／classification不一致",
     )
     run_case(
         "semantic atomization completion claim",
-        mutate_inventory=lambda i: i["semantic_atomization"].update(semantic_atomization_complete=True),
+        mutate_inventory=lambda i: i["semantic_atomization"].update(
+            semantic_atomization_complete=True
+        ),
         expected="semantic_atomization semantic_atomization_complete不一致",
     )
     run_case(
         "review-only subunit owner promotion",
-        mutate_inventory=lambda i: i["fragments"][1]["semantic_subunits"][0].update(owner_candidate="HELIX-HARNESS"),
+        mutate_inventory=lambda i: i["fragments"][1]["semantic_subunits"][0].update(
+            owner_candidate="HELIX-HARNESS"
+        ),
         expected="RDP001-RESEARCH40-DIFF-002 review-only subunit境界不一致",
     )
     run_case(

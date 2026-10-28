@@ -150,8 +150,8 @@
     },
     {
       "path": "scaffold/research/rdp001-web-webos-vision-coverage-0091/validate.py",
-      "sha256": "d6d68b1f8939150671ea331feb610e64b797e7ca89ba806023e52f7bb0b91865",
-      "note": "fail-closed validator including phase/asset candidate ID multisets"
+      "sha256": "5e13dd3adb2174ce55f4faa0cf38e3ea92956237abed3e3b05b1301b60a7d0d5",
+      "note": "fail-closed validator including phase/asset candidate ID multisets [WR73/PR3773: 402867935の元sourceとRuff整形後sourceは位置情報を除くAST同値、型コメント付属も保持。binding全体（reason/role/obligations/connections/operations/verificationのoracle・negative case/replacement.role_target）への意味影響を確認し、役割・権限・義務・固定capture・採否は不変として再束縛。旧receipt=d6d68b1f8939150671ea331feb610e64b797e7ca89ba806023e52f7bb0b91865; 現receipt=5e13dd3adb2174ce55f4faa0cf38e3ea92956237abed3e3b05b1301b60a7d0d5。固定bytes consumerを持つ4ファイルは除外して元bytesを保持。]"
     },
     {
       "path": "scaffold/research/rdp001-web-webos-vision-coverage-0091/selfcheck.py",

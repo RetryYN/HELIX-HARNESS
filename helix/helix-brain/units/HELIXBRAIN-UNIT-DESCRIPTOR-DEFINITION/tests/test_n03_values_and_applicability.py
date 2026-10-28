@@ -69,7 +69,9 @@ def _n03_input(document, case):
     raw = base_input(document)
     original_value = raw["values"][0]
     value_fact = {
-        "subject_ref": _synthetic_ref_from(original_value["subject_ref"], case["subject_ref_identity"]),
+        "subject_ref": _synthetic_ref_from(
+            original_value["subject_ref"], case["subject_ref_identity"]
+        ),
         "binding": copy.deepcopy(original_value["binding"]),
         "value": None,
         "source_ref": None,
@@ -109,17 +111,25 @@ class TestN03ValuesAndApplicability(unittest.TestCase):
 
         # fn1/fn2は同じvを使う。定義結果を別fixtureやcacheから注入しない。
         definitions = compare_descriptor_definitions({"validated": validated})
-        self.assertEqual(definitions["producer_symbol"], "compare_descriptor_definitions")
-        self.assertEqual(set(definitions), {"axes", "findings", "producer_symbol", "input_binding"})
+        self.assertEqual(
+            definitions["producer_symbol"], "compare_descriptor_definitions"
+        )
+        self.assertEqual(
+            set(definitions), {"axes", "findings", "producer_symbol", "input_binding"}
+        )
         self.assertEqual(definitions["input_binding"], raw_before["binding"])
         definitions_before = copy.deepcopy(definitions)
         self.assertEqual(validated, validated_before)
-        result = compare_values_and_applicability({
-            "validated": validated,
-            "definitions": definitions,
-        })
+        result = compare_values_and_applicability(
+            {
+                "validated": validated,
+                "definitions": definitions,
+            }
+        )
         self.assertEqual(result["producer_symbol"], "compare_values_and_applicability")
-        self.assertEqual(set(result), {"axes", "findings", "producer_symbol", "input_binding"})
+        self.assertEqual(
+            set(result), {"axes", "findings", "producer_symbol", "input_binding"}
+        )
         self.assertEqual(result["input_binding"], raw_before["binding"])
         self.assertEqual(definitions, definitions_before)
         self.assertEqual(validated, validated_before)
@@ -142,31 +152,46 @@ class TestN03ValuesAndApplicability(unittest.TestCase):
         for descriptor in raw_before["descriptors"]:
             for fact in descriptor["facts"]:
                 with self.subTest(kind=descriptor["descriptor_kind"]):
-                    observed = [row for row in definitions["axes"]
-                                if row["subject_ref"] == fact["ref"]
-                                and row["binding"] == fact["binding"]
-                                and row["axis"] == descriptor["descriptor_kind"] + ".definition"]
+                    observed = [
+                        row
+                        for row in definitions["axes"]
+                        if row["subject_ref"] == fact["ref"]
+                        and row["binding"] == fact["binding"]
+                        and row["axis"] == descriptor["descriptor_kind"] + ".definition"
+                    ]
                     self.assertTrue(observed)
                     self.assertTrue(all(row["state"] == "unknown" for row in observed))
-                    attribution = [row for row in definitions["axes"]
-                                   if row["subject_ref"] == fact["ref"]
-                                   and row["binding"] == descriptor["binding"]
-                                   and row["axis"] == "descriptor.attribution"]
+                    attribution = [
+                        row
+                        for row in definitions["axes"]
+                        if row["subject_ref"] == fact["ref"]
+                        and row["binding"] == descriptor["binding"]
+                        and row["axis"] == "descriptor.attribution"
+                    ]
                     self.assertTrue(attribution)
                     self.assertTrue(all(row["state"] == "known" for row in attribution))
-            na_rows = [row for row in definitions["axes"]
-                       if row["binding"] == descriptor["binding"]
-                       and row["axis"] == descriptor["descriptor_kind"] + ".definition_applicability"]
+            na_rows = [
+                row
+                for row in definitions["axes"]
+                if row["binding"] == descriptor["binding"]
+                and row["axis"]
+                == descriptor["descriptor_kind"] + ".definition_applicability"
+            ]
             self.assertTrue(na_rows)
             self.assertTrue(all(row["state"] == "unknown" for row in na_rows))
 
         target = raw_before["values"][0]
         target_axes = [
-            row for row in result["axes"]
+            row
+            for row in result["axes"]
             if row["subject_ref"] == target["subject_ref"]
             and row["binding"] == target["binding"]
         ]
-        for axis_name in ("field.definition", "field.value", "applicability.evaluation"):
+        for axis_name in (
+            "field.definition",
+            "field.value",
+            "applicability.evaluation",
+        ):
             with self.subTest(axis=axis_name):
                 matching = [row for row in target_axes if row["axis"] == axis_name]
                 self.assertTrue(matching)
@@ -181,7 +206,8 @@ class TestN03ValuesAndApplicability(unittest.TestCase):
         self.assertEqual(validated["input"]["claims"][-1], claim)
 
         matching_findings = [
-            finding for finding in result["findings"]
+            finding
+            for finding in result["findings"]
             if finding["rule_ref"] == case["rule_ref"]
         ]
         self.assertEqual(len(matching_findings), 1)
@@ -194,17 +220,20 @@ class TestN03ValuesAndApplicability(unittest.TestCase):
         self.assertEqual(finding["backflow_owner"], case["backflow_owner"])
 
         matching_axes = [
-            axis for axis in result["axes"]
+            axis
+            for axis in result["axes"]
             if axis["subject_ref"] == claim["subject_ref"]
             and axis["binding"] == claim["binding"]
             and axis["axis"] == case["axis"]
         ]
         self.assertTrue(matching_axes)
-        self.assertTrue(any(
-            axis["state"] == case["state"]
-            and axis["backflow_owner"] == case["backflow_owner"]
-            for axis in matching_axes
-        ))
+        self.assertTrue(
+            any(
+                axis["state"] == case["state"]
+                and axis["backflow_owner"] == case["backflow_owner"]
+                for axis in matching_axes
+            )
+        )
 
     def test_n03_neg01_timeout_fixture_is_not_a_runtime_deadline(self):
         self._assert_n03_case(N03_CASES[0])

@@ -59,7 +59,9 @@ def _with_nonfill_claim(raw, source_claim, kind, proposed_value):
 def _actual_walk(raw, testcase):
     raw_before = copy.deepcopy(raw)
     validated = validate_supply_input(raw)
-    testcase.assertIsNotNone(validated["input"], "setup: FN0 must retain this raw input")
+    testcase.assertIsNotNone(
+        validated["input"], "setup: FN0 must retain this raw input"
+    )
     testcase.assertEqual(validated["input"], raw_before)
     testcase.assertEqual(validated["input_issues"], [])
     testcase.assertEqual(validated["unusable_source_refs"], [])
@@ -86,8 +88,12 @@ def _build_and_assert_preserved(raw, testcase):
         caught = error
     finally:
         testcase.assertEqual(raw, raw_before, "raw input must remain unchanged")
-        testcase.assertEqual(validated, validated_before, "FN0 result must remain unchanged")
-        testcase.assertEqual(walk, walk_before, "same-call evaluation and reads must remain unchanged")
+        testcase.assertEqual(
+            validated, validated_before, "FN0 result must remain unchanged"
+        )
+        testcase.assertEqual(
+            walk, walk_before, "same-call evaluation and reads must remain unchanged"
+        )
     testcase.assertIsNone(caught, f"builder unexpectedly stopped: {caught!r}")
     return validated, walk, uses
 
@@ -121,12 +127,8 @@ class TestClaimUseNonfillConsumer(unittest.TestCase):
     def test_mixed_occurrences_build_uses_only_for_original_fill_locators(self):
         raw = finite_claim_input("none")
         fill = copy.deepcopy(raw["claims"][0])
-        before = _with_nonfill_claim(
-            raw, fill, "requirements_agreement", True
-        )
-        after = _with_nonfill_claim(
-            raw, fill, "design_completion", True
-        )
+        before = _with_nonfill_claim(raw, fill, "requirements_agreement", True)
+        after = _with_nonfill_claim(raw, fill, "design_completion", True)
         raw["claims"] = [before, copy.deepcopy(fill), after, copy.deepcopy(fill)]
         raw_before = copy.deepcopy(raw)
 
@@ -150,8 +152,12 @@ class TestClaimUseNonfillConsumer(unittest.TestCase):
             self.assertEqual(use["claim"], original_claim)
             self.assertEqual(use["target_read"], target_read)
             self.assertEqual(use["intent_read"], intent_read)
-            self.assertEqual(use["target_read"]["claim_locator"], f"/claims/{claim_index}")
-            self.assertEqual(use["intent_read"]["claim_locator"], f"/claims/{claim_index}")
+            self.assertEqual(
+                use["target_read"]["claim_locator"], f"/claims/{claim_index}"
+            )
+            self.assertEqual(
+                use["intent_read"]["claim_locator"], f"/claims/{claim_index}"
+            )
             self.assertEqual(use["target_read"]["claim"], original_claim)
             self.assertEqual(use["intent_read"]["claim"], original_claim)
         self.assertNotIn("/claims/0", [use["claim_locator"] for use in uses])
@@ -192,10 +198,26 @@ class TestClaimUseNonfillConsumer(unittest.TestCase):
         cases = (
             ("target_missing", lambda r, i: r.pop(), "same_walk_claim_count"),
             ("intent_missing", lambda r, i: i.pop(), "same_walk_claim_count"),
-            ("target_extra", lambda r, i: r.append(copy.deepcopy(r[-1])), "same_walk_claim_count"),
-            ("intent_extra", lambda r, i: i.append(copy.deepcopy(i[-1])), "same_walk_claim_count"),
-            ("target_locator", lambda r, i: r[1].update(claim_locator="/claims/1"), "same_walk_read_mismatch"),
-            ("intent_locator", lambda r, i: i[1].update(claim_locator="/claims/1"), "same_walk_read_mismatch"),
+            (
+                "target_extra",
+                lambda r, i: r.append(copy.deepcopy(r[-1])),
+                "same_walk_claim_count",
+            ),
+            (
+                "intent_extra",
+                lambda r, i: i.append(copy.deepcopy(i[-1])),
+                "same_walk_claim_count",
+            ),
+            (
+                "target_locator",
+                lambda r, i: r[1].update(claim_locator="/claims/1"),
+                "same_walk_read_mismatch",
+            ),
+            (
+                "intent_locator",
+                lambda r, i: i[1].update(claim_locator="/claims/1"),
+                "same_walk_read_mismatch",
+            ),
         )
         for case, mutate, stop_branch in cases:
             with self.subTest(protocol_clone=case):

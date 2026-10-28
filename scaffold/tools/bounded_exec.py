@@ -41,6 +41,7 @@ issue: #3510 (comment 6386473748 / 6386507513 / 6405275048)
   - 子孫プロセスが自ら setsid() / setpgid() を呼んで別セッション・別 process group へ逃避した場合は、killpg(pgid) と tree_lingered 検知の対象外となる。
   - RLIMIT_AS / RLIMIT_CPU はカーネルの per-process 制限（子孫へ継承）であり、cgroup のようなプロセスツリー全体の合算上限ではない。
 """
+
 import argparse
 import atexit
 import ctypes
@@ -121,7 +122,11 @@ def validate_bounds(
     rlimit_as_bytes=DEFAULT_RLIMIT_AS_BYTES,
     rlimit_cpu_seconds=DEFAULT_RLIMIT_CPU_SECONDS,
 ):
-    if not isinstance(argv, (list, tuple)) or not argv or any(not isinstance(x, str) or not x for x in argv):
+    if (
+        not isinstance(argv, (list, tuple))
+        or not argv
+        or any(not isinstance(x, str) or not x for x in argv)
+    ):
         raise ValueError("argv must be a non-empty sequence of non-empty strings")
     _require_positive_int(timeout_ms, "timeout_ms")
     _require_positive_int(grace_ms, "grace_ms")
@@ -266,17 +271,33 @@ def classify_terminal(outcome):
     exit 0単独では、timeout・残存tree・signal・reap未確認を成功へ昇格しない。
     """
     if not outcome.get("reaped", False):
-        return {"ok": False, "classification": "reap_unconfirmed", "failure": "reap_unconfirmed"}
+        return {
+            "ok": False,
+            "classification": "reap_unconfirmed",
+            "failure": "reap_unconfirmed",
+        }
     if outcome.get("timed_out"):
         return {"ok": False, "classification": "timeout", "failure": "timeout"}
     if outcome.get("tree_lingered"):
-        return {"ok": False, "classification": "tree_lingered", "failure": "tree_lingered"}
+        return {
+            "ok": False,
+            "classification": "tree_lingered",
+            "failure": "tree_lingered",
+        }
     if outcome.get("interrupted_by") is not None or outcome.get("signal") is not None:
         return {"ok": False, "classification": "signal", "failure": "signal"}
     if outcome.get("error") is not None:
-        return {"ok": False, "classification": "spawn_failed", "failure": "spawn_failed"}
+        return {
+            "ok": False,
+            "classification": "spawn_failed",
+            "failure": "spawn_failed",
+        }
     if outcome.get("status") != 0:
-        return {"ok": False, "classification": "exit_nonzero", "failure": "exit_nonzero"}
+        return {
+            "ok": False,
+            "classification": "exit_nonzero",
+            "failure": "exit_nonzero",
+        }
     return {"ok": True, "classification": "ok", "failure": None}
 
 
@@ -290,7 +311,11 @@ def exit_code_for_outcome(outcome):
     if terminal["classification"] == "timeout":
         return 124
     status = outcome.get("status")
-    if isinstance(status, int) and status > 0 and terminal["classification"] == "exit_nonzero":
+    if (
+        isinstance(status, int)
+        and status > 0
+        and terminal["classification"] == "exit_nonzero"
+    ):
         return status
     return 1
 
@@ -413,13 +438,19 @@ def run_bounded(
 
     if errors or interrupted[0] is not None:
         _restore_signal_handlers()
-        return _finalize(None, None, False, False, interrupted[0], "none", True, None, errors)
+        return _finalize(
+            None, None, False, False, interrupted[0], "none", True, None, errors
+        )
 
     prev_subreaper = _configure_subreaper(True)
     parent_pid = os.getpid()
     raw_in = None
     if stdin_data is not None:
-        raw_in = memoryview(stdin_data.encode("utf-8") if isinstance(stdin_data, str) else bytes(stdin_data))
+        raw_in = memoryview(
+            stdin_data.encode("utf-8")
+            if isinstance(stdin_data, str)
+            else bytes(stdin_data)
+        )
 
     pgid = None
     reaped = False
@@ -505,7 +536,9 @@ def run_bounded(
             if prev_subreaper is not None:
                 _configure_subreaper(bool(prev_subreaper))
             _restore_signal_handlers()
-            return _finalize(None, None, False, False, interrupted[0], "none", True, None, [str(exc)])
+            return _finalize(
+                None, None, False, False, interrupted[0], "none", True, None, [str(exc)]
+            )
 
         pgid = child.pid
         atexit_active[0] = True
@@ -630,37 +663,79 @@ def run_bounded(
             return int(rc), None
 
         execution_deadline_ns = started_ns + timeout_ms * 1_000_000
-        first = _wait_until(check_group=False, deadline_ns=execution_deadline_ns, stop_on_interrupt=True)
+        first = _wait_until(
+            check_group=False, deadline_ns=execution_deadline_ns, stop_on_interrupt=True
+        )
 
         if first is True and interrupted[0] is None:
             grace_deadline_ns = time.monotonic_ns() + grace_ms * 1_000_000
-            grace_res = _wait_until(check_group=True, deadline_ns=grace_deadline_ns, stop_on_interrupt=True)
+            grace_res = _wait_until(
+                check_group=True, deadline_ns=grace_deadline_ns, stop_on_interrupt=True
+            )
             reaped = grace_res is True
             # m2: grace待ち中に親がシグナルを受けた場合もinterrupted[0]を結果に反映し、未回収なら段階停止へ進む。
             if reaped:
                 _close_pipes()
                 _release_handlers(True)
                 status, sig_name = _decode_rc()
-                return _finalize(status, sig_name, False, False, interrupted[0], "none", True, pgid, errors)
+                return _finalize(
+                    status,
+                    sig_name,
+                    False,
+                    False,
+                    interrupted[0],
+                    "none",
+                    True,
+                    pgid,
+                    errors,
+                )
 
             if interrupted[0] is None:
                 # Direct child exited within deadline, but descendant processes lingered in the process group.
                 termination_stage = "term_sent"
-                errors.append(signal_process_group(pgid, signal.SIGTERM, killpg_fn=killpg_fn))
+                errors.append(
+                    signal_process_group(pgid, signal.SIGTERM, killpg_fn=killpg_fn)
+                )
                 grace_deadline_ns = time.monotonic_ns() + grace_ms * 1_000_000
-                reaped = _wait_until(check_group=True, deadline_ns=grace_deadline_ns, stop_on_interrupt=False) is True
+                reaped = (
+                    _wait_until(
+                        check_group=True,
+                        deadline_ns=grace_deadline_ns,
+                        stop_on_interrupt=False,
+                    )
+                    is True
+                )
                 if not reaped and process_group_alive(pgid, killpg_fn=killpg_fn):
                     termination_stage = "kill_sent"
-                    errors.append(signal_process_group(pgid, signal.SIGKILL, killpg_fn=killpg_fn))
+                    errors.append(
+                        signal_process_group(pgid, signal.SIGKILL, killpg_fn=killpg_fn)
+                    )
                 if not reaped:
                     reap_deadline_ns = time.monotonic_ns() + reap_ms * 1_000_000
-                    reaped = _wait_until(check_group=True, deadline_ns=reap_deadline_ns, stop_on_interrupt=False) is True
+                    reaped = (
+                        _wait_until(
+                            check_group=True,
+                            deadline_ns=reap_deadline_ns,
+                            stop_on_interrupt=False,
+                        )
+                        is True
+                    )
                 if not reaped:
                     errors.append("process_group_reap_timeout")
                 _close_pipes()
                 _release_handlers(reaped)
                 status, sig_name = _decode_rc()
-                return _finalize(status, sig_name, False, True, interrupted[0], termination_stage, reaped, pgid, errors)
+                return _finalize(
+                    status,
+                    sig_name,
+                    False,
+                    True,
+                    interrupted[0],
+                    termination_stage,
+                    reaped,
+                    pgid,
+                    errors,
+                )
 
         timed_out = first is False and interrupted[0] is None
         interrupted_by = interrupted[0]
@@ -668,19 +743,43 @@ def run_bounded(
         termination_stage = "term_sent"
         errors.append(signal_process_group(pgid, signal.SIGTERM, killpg_fn=killpg_fn))
         grace_deadline_ns = time.monotonic_ns() + grace_ms * 1_000_000
-        reaped = _wait_until(check_group=True, deadline_ns=grace_deadline_ns, stop_on_interrupt=False) is True
+        reaped = (
+            _wait_until(
+                check_group=True, deadline_ns=grace_deadline_ns, stop_on_interrupt=False
+            )
+            is True
+        )
         if not reaped and process_group_alive(pgid, killpg_fn=killpg_fn):
             termination_stage = "kill_sent"
-            errors.append(signal_process_group(pgid, signal.SIGKILL, killpg_fn=killpg_fn))
+            errors.append(
+                signal_process_group(pgid, signal.SIGKILL, killpg_fn=killpg_fn)
+            )
         if not reaped:
             reap_deadline_ns = time.monotonic_ns() + reap_ms * 1_000_000
-            reaped = _wait_until(check_group=True, deadline_ns=reap_deadline_ns, stop_on_interrupt=False) is True
+            reaped = (
+                _wait_until(
+                    check_group=True,
+                    deadline_ns=reap_deadline_ns,
+                    stop_on_interrupt=False,
+                )
+                is True
+            )
         if not reaped:
             errors.append("process_group_reap_timeout")
         _close_pipes()
         _release_handlers(reaped)
         status, sig_name = _decode_rc()
-        return _finalize(status, sig_name, timed_out, False, interrupted_by, termination_stage, reaped, pgid, errors)
+        return _finalize(
+            status,
+            sig_name,
+            timed_out,
+            False,
+            interrupted_by,
+            termination_stage,
+            reaped,
+            pgid,
+            errors,
+        )
     finally:
         # m1: 予期しない例外で抜ける場合でもprocess groupをSIGKILLし、ハンドラ・pipeを片付ける。
         if pgid is not None and not reaped:
@@ -695,17 +794,27 @@ def main(argv=None):
     parser.add_argument("--timeout-ms", type=int, default=DEFAULT_TIMEOUT_MS)
     parser.add_argument("--grace-ms", type=int, default=DEFAULT_GRACE_MS)
     parser.add_argument("--reap-ms", type=int, default=DEFAULT_REAP_MS)
-    parser.add_argument("--max-output-bytes", type=int, default=DEFAULT_MAX_OUTPUT_BYTES)
+    parser.add_argument(
+        "--max-output-bytes", type=int, default=DEFAULT_MAX_OUTPUT_BYTES
+    )
     parser.add_argument("--rlimit-as-bytes", type=int, default=DEFAULT_RLIMIT_AS_BYTES)
-    parser.add_argument("--rlimit-cpu-seconds", type=int, default=DEFAULT_RLIMIT_CPU_SECONDS)
+    parser.add_argument(
+        "--rlimit-cpu-seconds", type=int, default=DEFAULT_RLIMIT_CPU_SECONDS
+    )
     parser.add_argument("--cwd", default=None)
-    parser.add_argument("command", nargs=argparse.REMAINDER, help="実行するコマンドと引数（先頭の -- は除く）")
+    parser.add_argument(
+        "command",
+        nargs=argparse.REMAINDER,
+        help="実行するコマンドと引数（先頭の -- は除く）",
+    )
     args = parser.parse_args(argv)
     cmd = list(args.command)
     if cmd and cmd[0] == "--":
         cmd = cmd[1:]
     if not cmd:
-        parser.error("実行するコマンドが必要（例: bounded_exec.py -- python3 script.py）")
+        parser.error(
+            "実行するコマンドが必要（例: bounded_exec.py -- python3 script.py）"
+        )
     try:
         outcome = run_bounded(
             cmd,

@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Run Wave43 validation and explicit fail-closed mutations."""
+
 from __future__ import annotations
 
 import copy
@@ -30,14 +31,20 @@ def rejected(label: str, mutate) -> None:
             ledger = root / original_ledger.name
             ledger.write_text(
                 "".join(
-                    json.dumps(row, ensure_ascii=False, sort_keys=True, separators=(",", ":")) + "\n"
+                    json.dumps(
+                        row, ensure_ascii=False, sort_keys=True, separators=(",", ":")
+                    )
+                    + "\n"
                     for row in mutated_rows
                 )
             )
             mutated_meta = copy.deepcopy(meta)
             mutated_meta["output_sha256"] = module.file_digest(ledger)
             meta_path = root / original_meta.name
-            meta_path.write_text(json.dumps(mutated_meta, ensure_ascii=False, sort_keys=True, indent=2) + "\n")
+            meta_path.write_text(
+                json.dumps(mutated_meta, ensure_ascii=False, sort_keys=True, indent=2)
+                + "\n"
+            )
             module.LEDGER = ledger
             module.META = meta_path
             module.verify()
@@ -57,7 +64,9 @@ def rejected_meta(label: str, mutate) -> None:
         with tempfile.TemporaryDirectory(prefix="wave43-meta-selfcheck-") as tmp:
             meta_path = Path(tmp) / original_meta.name
             mutate(meta)
-            meta_path.write_text(json.dumps(meta, ensure_ascii=False, sort_keys=True, indent=2) + "\n")
+            meta_path.write_text(
+                json.dumps(meta, ensure_ascii=False, sort_keys=True, indent=2) + "\n"
+            )
             module.META = meta_path
             module.verify()
     except AssertionError:
@@ -93,18 +102,26 @@ def mutate_stale_anchor(mutated_rows) -> None:
 
 
 def mutate_shared_connection(mutated_rows) -> None:
-    shared = next(row for row in mutated_rows if row["unit_candidate_id"] == "IRUNIT-HIL-NFR-15-HELIX-OS")
+    shared = next(
+        row
+        for row in mutated_rows
+        if row["unit_candidate_id"] == "IRUNIT-HIL-NFR-15-HELIX-OS"
+    )
     shared["connection_records"] = []
 
 
 def mutate_role_inversion(mutated_rows) -> None:
     design = next(row for row in mutated_rows if row["role_kind"] == "design")
-    design["semantic_relation"] = "same_requirement_id_exact_source_contract_not_implementation"
+    design["semantic_relation"] = (
+        "same_requirement_id_exact_source_contract_not_implementation"
+    )
 
 
 def mutate_inferred_meaning(mutated_rows) -> None:
     design = next(row for row in mutated_rows if row["role_kind"] == "design")
-    design["covered_requirement_atoms"][0]["text"] = "inferred implementation is complete"
+    design["covered_requirement_atoms"][0]["text"] = (
+        "inferred implementation is complete"
+    )
 
 
 def mutate_prior_asset_reuse(mutated_rows) -> None:
@@ -127,12 +144,20 @@ def mutate_phase_promotion(mutated_rows) -> None:
 
 
 def mutate_implementation_promotion(mutated_rows) -> None:
-    implementation = next(row for row in mutated_rows if row["role_kind"] == "implementation_source")
-    implementation["catalog_legacy_implementation_status"] = "current_implementation_complete"
+    implementation = next(
+        row for row in mutated_rows if row["role_kind"] == "implementation_source"
+    )
+    implementation["catalog_legacy_implementation_status"] = (
+        "current_implementation_complete"
+    )
 
 
 def mutate_unresolved_binding_promotion(mutated_rows) -> None:
-    design = next(row for row in mutated_rows if row["role_kind"] == "design" and not row["evidence_atom_bindings"])
+    design = next(
+        row
+        for row in mutated_rows
+        if row["role_kind"] == "design" and not row["evidence_atom_bindings"]
+    )
     design["evidence_binding_status"] = "literal_anchor_checked"
 
 
@@ -157,7 +182,10 @@ rejected("stale source anchor", mutate_stale_anchor)
 rejected("shared source connection deletion", mutate_shared_connection)
 rejected("design/requirement semantic inversion", mutate_role_inversion)
 rejected("inferred implementation meaning", mutate_inferred_meaning)
-rejected("same-batch non-requirement asset reuse without explicit shared relation", mutate_same_batch_asset_reuse)
+rejected(
+    "same-batch non-requirement asset reuse without explicit shared relation",
+    mutate_same_batch_asset_reuse,
+)
 rejected("prior implementation asset reuse", mutate_prior_asset_reuse)
 rejected("current authority promotion", mutate_authority_promotion)
 rejected("phase admission promotion", mutate_phase_promotion)

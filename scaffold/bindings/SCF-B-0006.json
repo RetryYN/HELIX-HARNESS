@@ -65,13 +65,13 @@
     },
     {
       "path": "scaffold/research/delegated-doc-008-017/validate.py",
-      "sha256": "8fa4fb0da97c9159ed25cb890eb057bbd161096c3d54b02f37c81e5b3aa2f7a3",
-      "note": "台帳／Git blob／原ID／境界固有要約／条件／consumer／legacy status静的検証"
+      "sha256": "17dfbe7ed36e57374c4b9bc50d4e2a9ab61d1bdf7f91657c537c50a53495b516",
+      "note": "台帳／Git blob／原ID／境界固有要約／条件／consumer／legacy status静的検証 [WR73/PR3773: 402867935の元sourceとRuff整形後sourceは位置情報を除くAST同値、型コメント付属も保持。binding全体（reason/role/obligations/connections/operations/verificationのoracle・negative case/replacement.role_target）への意味影響を確認し、役割・権限・義務・固定capture・採否は不変として再束縛。旧receipt=8fa4fb0da97c9159ed25cb890eb057bbd161096c3d54b02f37c81e5b3aa2f7a3; 現receipt=17dfbe7ed36e57374c4b9bc50d4e2a9ab61d1bdf7f91657c537c50a53495b516。固定bytes consumerを持つ4ファイルは除外して元bytesを保持。]"
     },
     {
       "path": "scaffold/research/delegated-doc-008-017/selfcheck.py",
-      "sha256": "d1c6b55ae2f2ac90982f77106fa4f0c11a94b9eb36cdb8f03fb9ef39927101cf",
-      "note": "digest、edge、coverage、ID重複、product source、linkage、negative、generic placeholderの否定例"
+      "sha256": "8d8113f138eba380f984746d230fb454e7a20bd394628f1e536156b2b884c52e",
+      "note": "digest、edge、coverage、ID重複、product source、linkage、negative、generic placeholderの否定例 [WR73/PR3773: 402867935の元sourceとRuff整形後sourceは位置情報を除くAST同値、型コメント付属も保持。binding全体（reason/role/obligations/connections/operations/verificationのoracle・negative case/replacement.role_target）への意味影響を確認し、役割・権限・義務・固定capture・採否は不変として再束縛。旧receipt=d1c6b55ae2f2ac90982f77106fa4f0c11a94b9eb36cdb8f03fb9ef39927101cf; 現receipt=8d8113f138eba380f984746d230fb454e7a20bd394628f1e536156b2b884c52e。固定bytes consumerを持つ4ファイルは除外して元bytesを保持。]"
     }
   ],
   "role": "DELEGATED-DOC-008/017のsource blobをlossless coverageとRDJ-FR/RDJ-AC意味候補へ分け、pair／parent／authority edge、HARNESS候補とOS consumer候補、phase／implementation／consumer未確認境界を同じreview単位で保持する",

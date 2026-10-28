@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """SCF-B-0103の負例。各変異が狙ったguardで拒否されることを確認する。"""
+
 from __future__ import annotations
 
 import copy
@@ -13,7 +14,11 @@ from validate import ancestor_errors, validate_inventory, validate_records  # no
 
 
 def load_records():
-    return [json.loads(line) for line in (HERE / "impact.jsonl").read_text(encoding="utf-8").splitlines() if line.strip()]
+    return [
+        json.loads(line)
+        for line in (HERE / "impact.jsonl").read_text(encoding="utf-8").splitlines()
+        if line.strip()
+    ]
 
 
 def expects(name, records, code):
@@ -100,7 +105,9 @@ def main() -> int:
     expects("human_judgment_tamper", human, "E_HUMAN_JUDGMENT")
 
     successor = copy.deepcopy(base)
-    successor[0]["after_proposal"]["successor_impact"]["projected_successor_ids"] = ["SUCCESSOR-TAMPER"]
+    successor[0]["after_proposal"]["successor_impact"]["projected_successor_ids"] = [
+        "SUCCESSOR-TAMPER"
+    ]
     expects("successor_promotion", successor, "E_SUCCESSOR")
 
     after = copy.deepcopy(base)
@@ -108,43 +115,65 @@ def main() -> int:
     expects("after_proposal_guard", after, "E_AFTER_PROPOSAL")
 
     consumer_impact = copy.deepcopy(base)
-    consumer_impact[0]["after_proposal"]["consumer_impact"]["before_unit_consumer_closure_status"] = "closed"
+    consumer_impact[0]["after_proposal"]["consumer_impact"][
+        "before_unit_consumer_closure_status"
+    ] = "closed"
     expects("consumer_impact_guard", consumer_impact, "E_CONSUMER_IMPACT")
 
     successor_impact = copy.deepcopy(base)
-    successor_impact[0]["after_proposal"]["successor_impact"]["before_successor_assignment_status"] = "assigned"
+    successor_impact[0]["after_proposal"]["successor_impact"][
+        "before_successor_assignment_status"
+    ] = "assigned"
     expects("successor_impact_guard", successor_impact, "E_SUCCESSOR")
 
     projected_unit = copy.deepcopy(base)
-    projected_unit[0]["after_proposal"]["projected_added_unit"]["phase_status"] = "approved"
+    projected_unit[0]["after_proposal"]["projected_added_unit"]["phase_status"] = (
+        "approved"
+    )
     expects("projected_unit_guard", projected_unit, "E_AFTER_PROPOSAL")
 
     impact_interpretation = copy.deepcopy(base)
-    impact_interpretation[0]["after_proposal"]["consumer_impact"]["human_action"] = "tampered"
-    expects("impact_interpretation_guard", impact_interpretation, "E_IMPACT_INTERPRETATION")
+    impact_interpretation[0]["after_proposal"]["consumer_impact"]["human_action"] = (
+        "tampered"
+    )
+    expects(
+        "impact_interpretation_guard", impact_interpretation, "E_IMPACT_INTERPRETATION"
+    )
 
     asset_ref = copy.deepcopy(base)
-    asset_ref[0]["legacy_asset_evidence"]["candidate_assets"][0]["ledger_ref"]["line"] = 999
+    asset_ref[0]["legacy_asset_evidence"]["candidate_assets"][0]["ledger_ref"][
+        "line"
+    ] = 999
     expects("asset_reference_guard", asset_ref, "E_ASSET_REFERENCE")
 
     asset_state = copy.deepcopy(base)
-    asset_state[0]["legacy_asset_evidence"]["candidate_assets"][0]["legacy_implementation_status"] = "implemented"
+    asset_state[0]["legacy_asset_evidence"]["candidate_assets"][0][
+        "legacy_implementation_status"
+    ] = "implemented"
     expects("asset_state_guard", asset_state, "E_ASSET_STATE")
 
     boundary_interpretation = copy.deepcopy(base)
     boundary_interpretation[0]["product_boundary"]["interpretation"] = "tampered"
-    expects("boundary_interpretation_guard", boundary_interpretation, "E_BOUNDARY_INTERPRETATION")
+    expects(
+        "boundary_interpretation_guard",
+        boundary_interpretation,
+        "E_BOUNDARY_INTERPRETATION",
+    )
 
     correction_ref = copy.deepcopy(base)
     correction_ref[0]["correction_exact"]["ref"]["line"] = 999
     expects("correction_reference_guard", correction_ref, "E_CORRECTION_REFERENCE")
 
     crosswalk_ref = copy.deepcopy(base)
-    crosswalk_ref[0]["before"]["decomposition"]["unit_set"][0]["crosswalk_ref"]["line"] = 999
+    crosswalk_ref[0]["before"]["decomposition"]["unit_set"][0]["crosswalk_ref"][
+        "line"
+    ] = 999
     expects("crosswalk_reference_guard", crosswalk_ref, "E_CROSSWALK_REFERENCE")
 
     crosswalk_state = copy.deepcopy(base)
-    crosswalk_state[0]["before"]["decomposition"]["unit_set"][0]["crosswalk_status"]["new_build_allowed"] = True
+    crosswalk_state[0]["before"]["decomposition"]["unit_set"][0]["crosswalk_status"][
+        "new_build_allowed"
+    ] = True
     expects("crosswalk_state_guard", crosswalk_state, "E_CROSSWALK_STATE")
 
     decomp_ref = copy.deepcopy(base)
@@ -152,15 +181,23 @@ def main() -> int:
     expects("decomp_reference_guard", decomp_ref, "E_DECOMP_REFERENCE")
 
     failure_ref = copy.deepcopy(base)
-    failure_ref[0]["legacy_asset_evidence"]["source_history_failure_consumer_refs"][0]["line"] = 999
-    expects("failure_consumer_reference_guard", failure_ref, "E_FAILURE_CONSUMER_REFERENCE")
+    failure_ref[0]["legacy_asset_evidence"]["source_history_failure_consumer_refs"][0][
+        "line"
+    ] = 999
+    expects(
+        "failure_consumer_reference_guard", failure_ref, "E_FAILURE_CONSUMER_REFERENCE"
+    )
 
     history_ref = copy.deepcopy(base)
-    history_ref[0]["legacy_asset_evidence"]["candidate_assets"][0]["history"]["decision_refs"].append({"path": "tampered"})
+    history_ref[0]["legacy_asset_evidence"]["candidate_assets"][0]["history"][
+        "decision_refs"
+    ].append({"path": "tampered"})
     expects("history_reference_guard", history_ref, "E_HISTORY_REFERENCE")
 
     history_state = copy.deepcopy(base)
-    history_state[0]["legacy_asset_evidence"]["candidate_assets"][0]["history"]["closure_status"] = "closed"
+    history_state[0]["legacy_asset_evidence"]["candidate_assets"][0]["history"][
+        "closure_status"
+    ] = "closed"
     expects("history_state_guard", history_state, "E_HISTORY_STATE")
 
     source_missing = copy.deepcopy(base)
@@ -168,27 +205,49 @@ def main() -> int:
     expects("source_missing_guard", source_missing, "E_SOURCE_MISSING")
 
     wave_asset = copy.deepcopy(base)
-    wave_asset[0]["wave_semantic_review"]["review_rows"][0]["asset_id"] = "LEGACY-ASSET-FABRICATED"
+    wave_asset[0]["wave_semantic_review"]["review_rows"][0]["asset_id"] = (
+        "LEGACY-ASSET-FABRICATED"
+    )
     expects("wave_asset_guard", wave_asset, "E_WAVE_ASSET")
 
     inventory = json.loads((HERE / "inventory.json").read_text(encoding="utf-8"))
     inventory["input_digests"][0]["sha256"] = "0" * 64
-    if not any(item.startswith("E_INPUT_DIGEST:") for item in validate_inventory(inventory, check_ancestor=False)):
+    if not any(
+        item.startswith("E_INPUT_DIGEST:")
+        for item in validate_inventory(inventory, check_ancestor=False)
+    ):
         raise AssertionError("input_digest_tamper: expected E_INPUT_DIGEST")
 
     input_missing = json.loads((HERE / "inventory.json").read_text(encoding="utf-8"))
     input_missing["input_digests"].pop()
-    if not any(item.startswith("E_INPUT_SET:") for item in validate_inventory(input_missing, check_ancestor=False)):
+    if not any(
+        item.startswith("E_INPUT_SET:")
+        for item in validate_inventory(input_missing, check_ancestor=False)
+    ):
         raise AssertionError("input_set_missing: expected E_INPUT_SET")
 
     input_duplicate = json.loads((HERE / "inventory.json").read_text(encoding="utf-8"))
-    input_duplicate["input_digests"].append(copy.deepcopy(input_duplicate["input_digests"][-1]))
-    if not any(item.startswith("E_INPUT_SET:") for item in validate_inventory(input_duplicate, check_ancestor=False)):
+    input_duplicate["input_digests"].append(
+        copy.deepcopy(input_duplicate["input_digests"][-1])
+    )
+    if not any(
+        item.startswith("E_INPUT_SET:")
+        for item in validate_inventory(input_duplicate, check_ancestor=False)
+    ):
         raise AssertionError("input_set_duplicate: expected E_INPUT_SET")
 
     input_extra = json.loads((HERE / "inventory.json").read_text(encoding="utf-8"))
-    input_extra["input_digests"].append({"path": "docs/governance/new-generation-start-here.md", "blob": "0" * 40, "sha256": "0" * 64})
-    if not any(item.startswith("E_INPUT_SET:") for item in validate_inventory(input_extra, check_ancestor=False)):
+    input_extra["input_digests"].append(
+        {
+            "path": "docs/governance/new-generation-start-here.md",
+            "blob": "0" * 40,
+            "sha256": "0" * 64,
+        }
+    )
+    if not any(
+        item.startswith("E_INPUT_SET:")
+        for item in validate_inventory(input_extra, check_ancestor=False)
+    ):
         raise AssertionError("input_set_extra: expected E_INPUT_SET")
 
     input_blob = json.loads((HERE / "inventory.json").read_text(encoding="utf-8"))
@@ -199,9 +258,13 @@ def main() -> int:
     base_head["base_head"] = "0" * 40
     expects_inventory("base_head_guard", base_head, "E_BASE_HEAD")
 
-    source_provenance = json.loads((HERE / "inventory.json").read_text(encoding="utf-8"))
+    source_provenance = json.loads(
+        (HERE / "inventory.json").read_text(encoding="utf-8")
+    )
     source_provenance["source_snapshot"]["working_tree_used_for_source_digest"] = True
-    expects_inventory("source_provenance_guard", source_provenance, "E_SOURCE_PROVENANCE")
+    expects_inventory(
+        "source_provenance_guard", source_provenance, "E_SOURCE_PROVENANCE"
+    )
 
     current_counts = json.loads((HERE / "inventory.json").read_text(encoding="utf-8"))
     current_counts["current_decomposition"]["unit_count"] = 999
@@ -215,11 +278,17 @@ def main() -> int:
     legacy_execution["legacy_execution_performed"] = True
     expects_inventory("legacy_execution_guard", legacy_execution, "E_LEGACY_EXECUTION")
 
-    inventory_authority = json.loads((HERE / "inventory.json").read_text(encoding="utf-8"))
+    inventory_authority = json.loads(
+        (HERE / "inventory.json").read_text(encoding="utf-8")
+    )
     inventory_authority["authority_effect"] = "approved"
-    expects_inventory("inventory_authority_guard", inventory_authority, "E_AUTHORITY_BOUNDARY")
+    expects_inventory(
+        "inventory_authority_guard", inventory_authority, "E_AUTHORITY_BOUNDARY"
+    )
 
-    if not any(item.startswith("E_BASE_NOT_ANCESTOR:") for item in ancestor_errors("0" * 40)):
+    if not any(
+        item.startswith("E_BASE_NOT_ANCESTOR:") for item in ancestor_errors("0" * 40)
+    ):
         raise AssertionError("base_ancestor_tamper: expected E_BASE_NOT_ANCESTOR")
 
     print("SCF-B-0103 selfcheck: PASS negative_cases=48")

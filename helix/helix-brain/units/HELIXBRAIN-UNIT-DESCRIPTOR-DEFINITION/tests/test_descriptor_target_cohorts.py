@@ -70,7 +70,11 @@ def _rewrite_source_body_and_links(raw, source_index, content):
 def _read_target(raw):
     raw_before = copy.deepcopy(raw)
     validated = validate_supply_input(raw)
-    if validated["input"] is None or validated["input_issues"] or validated["unusable_source_refs"]:
+    if (
+        validated["input"] is None
+        or validated["input_issues"]
+        or validated["unusable_source_refs"]
+    ):
         raise AssertionError("setup: FN0 must accept the synchronized raw source")
     if validated["input"] != raw_before:
         raise AssertionError("setup: FN0 must preserve the raw input snapshot")
@@ -92,8 +96,12 @@ class TestDescriptorTargetCohorts(unittest.TestCase):
     def _target(self, raw):
         target = _read_target(raw)
         self.assertEqual(set(target), TARGET_READ_FIELDS)
-        self.assertTrue(all(set(row) == TARGET_OCCURRENCE_FIELDS for row in target["occurrences"]))
-        self.assertTrue(all(set(row) == TARGET_MATCH_FIELDS for row in target["matches"]))
+        self.assertTrue(
+            all(set(row) == TARGET_OCCURRENCE_FIELDS for row in target["occurrences"])
+        )
+        self.assertTrue(
+            all(set(row) == TARGET_MATCH_FIELDS for row in target["matches"])
+        )
         self.assertEqual(target["claim_locator"], "/claims/0")
         self.assertEqual(target["claim"], raw["claims"][0])
         return target
@@ -109,8 +117,18 @@ class TestDescriptorTargetCohorts(unittest.TestCase):
         target = self._target(raw)
         self.assertEqual(target["state"], "unknown")
         self.assertEqual(target["matches"], [])
-        self.assertTrue(any(problem["kind"] == "target_ref_unresolved" for problem in target["problems"]))
-        self.assertFalse(any(problem["kind"] in {"target_ref_conflict", "target_mapping_conflict"} for problem in target["problems"]))
+        self.assertTrue(
+            any(
+                problem["kind"] == "target_ref_unresolved"
+                for problem in target["problems"]
+            )
+        )
+        self.assertFalse(
+            any(
+                problem["kind"] in {"target_ref_conflict", "target_mapping_conflict"}
+                for problem in target["problems"]
+            )
+        )
 
     def test_null_source_binding_revision_is_unresolved_not_binding_conflict(self):
         """A nullable source Ref revision prevents a known full-Binding mismatch."""
@@ -124,8 +142,15 @@ class TestDescriptorTargetCohorts(unittest.TestCase):
         target = self._target(raw)
         self.assertEqual(target["state"], "unknown")
         self.assertEqual(target["matches"], [])
-        self.assertTrue(any(problem["kind"] == "binding_unresolved" for problem in target["problems"]))
-        self.assertFalse(any(problem["kind"] == "binding_conflict" for problem in target["problems"]))
+        self.assertTrue(
+            any(
+                problem["kind"] == "binding_unresolved"
+                for problem in target["problems"]
+            )
+        )
+        self.assertFalse(
+            any(problem["kind"] == "binding_conflict" for problem in target["problems"])
+        )
         self.assertEqual(raw, raw_before)
 
     def test_omitted_optional_ref_location_and_digest_keep_exact_binding_match(self):
@@ -134,9 +159,16 @@ class TestDescriptorTargetCohorts(unittest.TestCase):
         source = raw["sources"][0]
         content = copy.deepcopy(source["content"])
         source_binding = content["binding"]
-        refs = [source_binding[name] for name in (
-            "template_ref", "knowledge_ref", "requirement_ref", "oracle_ref", "pack_ref"
-        )]
+        refs = [
+            source_binding[name]
+            for name in (
+                "template_ref",
+                "knowledge_ref",
+                "requirement_ref",
+                "oracle_ref",
+                "pack_ref",
+            )
+        ]
         refs.extend(source_binding["pack_dependency_versions"])
         for ref in refs:
             ref.pop("source_locator", None)
@@ -154,7 +186,9 @@ class TestDescriptorTargetCohorts(unittest.TestCase):
         )
         self.assertEqual(raw, raw_before)
 
-    def test_exact_target_survives_other_known_binding_and_unresolved_target_frame(self):
+    def test_exact_target_survives_other_known_binding_and_unresolved_target_frame(
+        self,
+    ):
         """A separate source Binding with an incomplete target frame cannot cancel exact evidence."""
         raw = descriptor_claim_input("positive")
         self.assertEqual(raw["sources"][3]["role"], "semantic_json")
@@ -170,11 +204,13 @@ class TestDescriptorTargetCohorts(unittest.TestCase):
         )
         target_ref = copy.deepcopy(raw["claims"][0]["subject_ref"])
         target_ref["revision"] = None
-        content["descriptor_targets"] = [{
-            "target_ref": target_ref,
-            "slot_identity": raw["descriptors"][0]["slot_identity"],
-            "descriptor_kind": raw["descriptors"][0]["descriptor_kind"],
-        }]
+        content["descriptor_targets"] = [
+            {
+                "target_ref": target_ref,
+                "slot_identity": raw["descriptors"][0]["slot_identity"],
+                "descriptor_kind": raw["descriptors"][0]["descriptor_kind"],
+            }
+        ]
         source3_ref = _rewrite_source_body_and_links(raw, 3, content)
         record = raw["knowledge_records"][0]
         record["provenance_refs"].append(copy.deepcopy(source3_ref))
@@ -190,7 +226,9 @@ class TestDescriptorTargetCohorts(unittest.TestCase):
         self.assertEqual(len(target["matches"]), 1)
         match = target["matches"][0]
         self.assertEqual(match["source_refs"], [source0_ref])
-        self.assertEqual(match["declaration_locators"], ["/sources/0/content/descriptor_targets/0"])
+        self.assertEqual(
+            match["declaration_locators"], ["/sources/0/content/descriptor_targets/0"]
+        )
         self.assertEqual(raw, raw_before)
 
     def test_physical_reference_only_duplicate_does_not_add_owner_witness(self):
@@ -204,8 +242,13 @@ class TestDescriptorTargetCohorts(unittest.TestCase):
         target = self._target(raw)
         self.assertEqual(target["state"], "resolved")
         self.assertEqual(len(target["matches"]), 1)
-        self.assertEqual(target["matches"][0]["source_refs"], [raw["sources"][0]["ref"]])
-        self.assertEqual(target["matches"][0]["declaration_locators"], ["/sources/0/content/descriptor_targets/0"])
+        self.assertEqual(
+            target["matches"][0]["source_refs"], [raw["sources"][0]["ref"]]
+        )
+        self.assertEqual(
+            target["matches"][0]["declaration_locators"],
+            ["/sources/0/content/descriptor_targets/0"],
+        )
         self.assertEqual(raw, raw_before)
 
 

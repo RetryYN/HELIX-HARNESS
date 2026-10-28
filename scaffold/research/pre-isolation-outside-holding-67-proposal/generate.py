@@ -41,7 +41,6 @@ def relocated(path):
     return path
 
 
-
 HERE = Path(__file__).resolve().parent
 ROOT = HERE.parents[2]
 REPORT_PATH = "scaffold/pre-isolation-outside-holding-67/report.json"
@@ -51,11 +50,15 @@ ARCHIVE = "064280b5c1c5c98f949e6e3be5ef87cbe4a4b658"
 CURRENT_HEAD = "3df81ad27157c471e004083783f37a5860eaa2ee"
 REGISTER_PATH = "docs/governance/management-provisional-requirement-register-pre-append-3df81ad.jsonl"
 REGISTER_SHA = "4e43fadaec48dcb0399e73eff148419671d4ac87fd4f8f68899dadf186ce5b8b"
-DISPOSITION_PATH = "docs/governance/requirement-disposition-review-program-pre-append-3df81ad.md"
+DISPOSITION_PATH = (
+    "docs/governance/requirement-disposition-review-program-pre-append-3df81ad.md"
+)
 DISPOSITION_SHA = "6eb28f5fef9b5551c84231ceb8fefca949f6cfd5449224b5ab644d61f7136308"
 REGISTRATION_PATH = "docs/governance/management-provisional-requirement-registration-pre-append-3df81ad.md"
 HOLDING_PATH = "docs/governance/pre-isolation-revision-delta-source-holding.jsonl"
-FORMAL_SOURCE_PATH = "docs/governance/pre-isolation-outside-holding-67-source-holding.jsonl"
+FORMAL_SOURCE_PATH = (
+    "docs/governance/pre-isolation-outside-holding-67-source-holding.jsonl"
+)
 FORMAL_COVERAGE_PATH = "docs/governance/audits/source-rebaseline/pre-isolation-outside-holding-67-coverage-receipt-2026-09-22.md"
 SCHEMA = "rdp001-preisolation-outside-holding-67-source-holding-proposal/v1"
 PROPOSAL_ID = "MPR-SH-OUTSIDE67-001"
@@ -67,15 +70,30 @@ def sha(data: bytes) -> str:
 
 
 def load_jsonl(path: Path) -> list[dict]:
-    return [json.loads(line) for line in path.read_text(encoding="utf-8").splitlines() if line.strip()]
+    return [
+        json.loads(line)
+        for line in path.read_text(encoding="utf-8").splitlines()
+        if line.strip()
+    ]
 
 
 def git_blob(commit: str, path: str) -> bytes:
-    return subprocess.run(["git", "show", f"{commit}:{path}"], cwd=ROOT, check=True, stdout=subprocess.PIPE).stdout
+    return subprocess.run(
+        ["git", "show", f"{commit}:{path}"],
+        cwd=ROOT,
+        check=True,
+        stdout=subprocess.PIPE,
+    ).stdout
 
 
 def git_oid(commit: str, path: str) -> str | None:
-    result = subprocess.run(["git", "rev-parse", f"{commit}:{path}"], cwd=ROOT, stdout=subprocess.PIPE, stderr=subprocess.DEVNULL, text=True)
+    result = subprocess.run(
+        ["git", "rev-parse", f"{commit}:{path}"],
+        cwd=ROOT,
+        stdout=subprocess.PIPE,
+        stderr=subprocess.DEVNULL,
+        text=True,
+    )
     return result.stdout.strip() if result.returncode == 0 else None
 
 
@@ -94,33 +112,47 @@ def exact_hits(value: object, target: str, path: str = "") -> list[str]:
 
 
 def live_holdings(register: list[dict]) -> list[dict]:
-    superseded = {row.get("supersedes_registration_id") for row in register if row.get("supersedes_registration_id")}
+    superseded = {
+        row.get("supersedes_registration_id")
+        for row in register
+        if row.get("supersedes_registration_id")
+    }
     live = [row for row in register if row.get("registration_id") not in superseded]
     result = []
     for row in live:
         source_path = relocated(ROOT / row["source_atom_set_ref"])
         records = load_jsonl(source_path)
-        result.append({
-            "registration_id": row["registration_id"],
-            "source_atom_set_ref": row["source_atom_set_ref"],
-            "source_atom_set_sha256": sha(source_path.read_bytes()),
-            "source_atom_set_record_count": len(records),
-            "registration_kind": row["registration_kind"],
-            "product_target": row["product_target"],
-            "authority_effect": row["authority_effect"],
-        })
+        result.append(
+            {
+                "registration_id": row["registration_id"],
+                "source_atom_set_ref": row["source_atom_set_ref"],
+                "source_atom_set_sha256": sha(source_path.read_bytes()),
+                "source_atom_set_record_count": len(records),
+                "registration_kind": row["registration_kind"],
+                "product_target": row["product_target"],
+                "authority_effect": row["authority_effect"],
+            }
+        )
     return result
 
 
 def git_references(value: str) -> list[str]:
-    result = subprocess.run(["git", "grep", "-l", value, CURRENT_HEAD, "--", "scaffold", "docs"], cwd=ROOT, stdout=subprocess.PIPE, stderr=subprocess.DEVNULL, text=True)
+    result = subprocess.run(
+        ["git", "grep", "-l", value, CURRENT_HEAD, "--", "scaffold", "docs"],
+        cwd=ROOT,
+        stdout=subprocess.PIPE,
+        stderr=subprocess.DEVNULL,
+        text=True,
+    )
     refs = []
     for line in result.stdout.splitlines():
         refs.append(line.split(":", 1)[-1])
     return sorted(set(refs))
 
 
-def build_item(index: int, row: dict, holdings: list[dict], holding_rows: dict[str, list[dict]]) -> dict:
+def build_item(
+    index: int, row: dict, holdings: list[dict], holding_rows: dict[str, list[dict]]
+) -> dict:
     path = row["path"]
     pre_blob = git_blob(PRE_ISOLATION, path)
     archive_blob = git_blob(ARCHIVE, path)
@@ -132,30 +164,46 @@ def build_item(index: int, row: dict, holdings: list[dict], holding_rows: dict[s
         path_hits: list[str] = []
         blob_hits: list[str] = []
         sha_hits: list[str] = []
-        for record_index, source_row in enumerate(holding_rows[holding["registration_id"]], 1):
-            path_hits.extend(f"{record_index}:{hit}" for hit in exact_hits(source_row, path))
-            blob_hits.extend(f"{record_index}:{hit}" for hit in exact_hits(source_row, pre_oid or ""))
-            sha_hits.extend(f"{record_index}:{hit}" for hit in exact_hits(source_row, pre_sha))
+        for record_index, source_row in enumerate(
+            holding_rows[holding["registration_id"]], 1
+        ):
+            path_hits.extend(
+                f"{record_index}:{hit}" for hit in exact_hits(source_row, path)
+            )
+            blob_hits.extend(
+                f"{record_index}:{hit}" for hit in exact_hits(source_row, pre_oid or "")
+            )
+            sha_hits.extend(
+                f"{record_index}:{hit}" for hit in exact_hits(source_row, pre_sha)
+            )
         if path_hits and not blob_hits and not sha_hits:
             relation = "path_reference_only_match_requires_review"
         elif path_hits or blob_hits or sha_hits:
             relation = "match_requires_review"
         else:
             relation = "no_exact_path_or_blob_or_sha_match"
-        relations.append({
-            "registration_id": holding["registration_id"],
-            "source_atom_set_ref": holding["source_atom_set_ref"],
-            "path_match_count": len(path_hits),
-            "pre_isolation_blob_match_count": len(blob_hits),
-            "pre_isolation_sha256_match_count": len(sha_hits),
-            "path_match_evidence": path_hits,
-            "blob_match_evidence": blob_hits,
-            "sha256_match_evidence": sha_hits,
-            "relation": relation,
-        })
+        relations.append(
+            {
+                "registration_id": holding["registration_id"],
+                "source_atom_set_ref": holding["source_atom_set_ref"],
+                "path_match_count": len(path_hits),
+                "pre_isolation_blob_match_count": len(blob_hits),
+                "pre_isolation_sha256_match_count": len(sha_hits),
+                "path_match_evidence": path_hits,
+                "blob_match_evidence": blob_hits,
+                "sha256_match_evidence": sha_hits,
+                "relation": relation,
+            }
+        )
     current_oid = git_oid(CURRENT_HEAD, path)
-    all_unmatched = all(item["relation"] == "no_exact_path_or_blob_or_sha_match" for item in relations)
-    exact_blob_unmatched = all(item["pre_isolation_blob_match_count"] == 0 and item["pre_isolation_sha256_match_count"] == 0 for item in relations)
+    all_unmatched = all(
+        item["relation"] == "no_exact_path_or_blob_or_sha_match" for item in relations
+    )
+    exact_blob_unmatched = all(
+        item["pre_isolation_blob_match_count"] == 0
+        and item["pre_isolation_sha256_match_count"] == 0
+        for item in relations
+    )
     return {
         "source_item_id": f"OUTSIDE67-PATH-{index:03d}",
         "source_unit": "path_revision_pair",
@@ -184,8 +232,11 @@ def build_item(index: int, row: dict, holdings: list[dict], holding_rows: dict[s
             "sha256": sha(archive_blob),
             "bytes": len(archive_blob),
             "reported_blob_oid": row["archive_commit_blob_oid"],
-            "reported_blob_oid_matches_git": archive_oid == row["archive_commit_blob_oid"],
-            "relation_to_pre_isolation": "same" if archive_blob == pre_blob else "different",
+            "reported_blob_oid_matches_git": archive_oid
+            == row["archive_commit_blob_oid"],
+            "relation_to_pre_isolation": "same"
+            if archive_blob == pre_blob
+            else "different",
         },
         "archive_root_present": row["archive_root_present"],
         "legacy_catalog_record_count": row["legacy_catalog_record_count"],
@@ -194,9 +245,17 @@ def build_item(index: int, row: dict, holdings: list[dict], holding_rows: dict[s
             "state": "present" if current_oid else "absent",
             "blob_oid": current_oid,
         },
-        "existing_holding_inclusion_relation": "not_in_any_of_13_live_holdings" if all_unmatched else "path_reference_only_match_requires_review" if exact_blob_unmatched else "match_requires_review",
+        "existing_holding_inclusion_relation": "not_in_any_of_13_live_holdings"
+        if all_unmatched
+        else "path_reference_only_match_requires_review"
+        if exact_blob_unmatched
+        else "match_requires_review",
         "live_holding_relations": relations,
-        "new_holding_needed": "unresolved_new_holding_needed" if all_unmatched else "unresolved_new_holding_needed_or_existing_relation_review" if exact_blob_unmatched else "unresolved_match_requires_review",
+        "new_holding_needed": "unresolved_new_holding_needed"
+        if all_unmatched
+        else "unresolved_new_holding_needed_or_existing_relation_review"
+        if exact_blob_unmatched
+        else "unresolved_match_requires_review",
         "source_holding_status": "proposed_preserved_unassigned",
         "semantic_disposition": "not_started",
         "authority_effect": "none",
@@ -208,7 +267,11 @@ def build_item(index: int, row: dict, holdings: list[dict], holding_rows: dict[s
 
 
 def source_lines(items: list[dict]) -> bytes:
-    return "".join(json.dumps(item, ensure_ascii=False, sort_keys=True, separators=(",", ":")) + "\n" for item in items).encode("utf-8")
+    return "".join(
+        json.dumps(item, ensure_ascii=False, sort_keys=True, separators=(",", ":"))
+        + "\n"
+        for item in items
+    ).encode("utf-8")
 
 
 def proposed_record(source_digest: str, count: int) -> dict:
@@ -254,8 +317,16 @@ def build() -> dict:
     register_path = relocated(ROOT / REGISTER_PATH)
     register = load_jsonl(register_path)
     holdings = live_holdings(register)
-    holding_rows = {item["registration_id"]: load_jsonl(relocated(ROOT / item["source_atom_set_ref"])) for item in holdings}
-    items = [build_item(i, row, holdings, holding_rows) for i, row in enumerate(report["rows"], 1)]
+    holding_rows = {
+        item["registration_id"]: load_jsonl(
+            relocated(ROOT / item["source_atom_set_ref"])
+        )
+        for item in holdings
+    }
+    items = [
+        build_item(i, row, holdings, holding_rows)
+        for i, row in enumerate(report["rows"], 1)
+    ]
     if len(items) != 67:
         raise ValueError(f"expected 67 rows, found {len(items)}")
     source_digest = sha(source_lines(items))
@@ -263,8 +334,13 @@ def build() -> dict:
     formal_source_path = relocated(ROOT / FORMAL_SOURCE_PATH)
     formal_coverage_path = ROOT / FORMAL_COVERAGE_PATH
     source_bytes = source_lines(items)
-    if not formal_source_path.is_file() or formal_source_path.read_bytes() != source_bytes:
-        raise ValueError("formal source set must be byte-identical to generated source items")
+    if (
+        not formal_source_path.is_file()
+        or formal_source_path.read_bytes() != source_bytes
+    ):
+        raise ValueError(
+            "formal source set must be byte-identical to generated source items"
+        )
     if not formal_coverage_path.is_file():
         raise ValueError("formal coverage receipt is missing")
     historical_sha_refs = git_references(REGISTER_SHA)
@@ -287,17 +363,28 @@ def build() -> dict:
             "selected_count": len(items),
             "source_unit": "path_revision_pair",
             "requirement_atoms": False,
-            "archive_root_present_count": sum(item["archive_root_present"] for item in items),
-            "same_blob_count": sum(item["archive"]["relation_to_pre_isolation"] == "same" for item in items),
-            "changed_blob_count": sum(item["archive"]["relation_to_pre_isolation"] == "different" for item in items),
+            "archive_root_present_count": sum(
+                item["archive_root_present"] for item in items
+            ),
+            "same_blob_count": sum(
+                item["archive"]["relation_to_pre_isolation"] == "same" for item in items
+            ),
+            "changed_blob_count": sum(
+                item["archive"]["relation_to_pre_isolation"] == "different"
+                for item in items
+            ),
             "live_holding_count": len(holdings),
             "management_register_path": REGISTER_PATH,
             "management_register_sha256": sha(register_path.read_bytes()),
             "requirement_disposition_program_path": DISPOSITION_PATH,
-            "requirement_disposition_program_sha256": sha(relocated(ROOT / DISPOSITION_PATH).read_bytes()),
+            "requirement_disposition_program_sha256": sha(
+                relocated(ROOT / DISPOSITION_PATH).read_bytes()
+            ),
             "registration_contract_path": REGISTRATION_PATH,
             "pre_isolation_holding_path": HOLDING_PATH,
-            "pre_isolation_holding_sha256": sha(relocated(ROOT / HOLDING_PATH).read_bytes()),
+            "pre_isolation_holding_sha256": sha(
+                relocated(ROOT / HOLDING_PATH).read_bytes()
+            ),
             "read_only": True,
         },
         "formal_source_set": {
@@ -314,8 +401,13 @@ def build() -> dict:
             "source_set_path": FORMAL_SOURCE_PATH,
             "source_set_sha256": sha(formal_source_path.read_bytes()),
             "source_item_count": len(items),
-            "same_blob_count": sum(item["archive"]["relation_to_pre_isolation"] == "same" for item in items),
-            "changed_blob_count": sum(item["archive"]["relation_to_pre_isolation"] == "different" for item in items),
+            "same_blob_count": sum(
+                item["archive"]["relation_to_pre_isolation"] == "same" for item in items
+            ),
+            "changed_blob_count": sum(
+                item["archive"]["relation_to_pre_isolation"] == "different"
+                for item in items
+            ),
             "live_holding_count": len(holdings),
             "authority_effect": "none",
         },
@@ -327,7 +419,13 @@ def build() -> dict:
             "status": "blocked_historical_capture_digest_invalidation",
             "current_register_sha256": sha(register_path.read_bytes()),
             "historical_expected_register_sha256": REGISTER_SHA,
-            "proposed_append_register_sha256": sha(register_path.read_bytes() + (json.dumps(proposed, ensure_ascii=False, separators=(",", ":")) + "\n").encode("utf-8")),
+            "proposed_append_register_sha256": sha(
+                register_path.read_bytes()
+                + (
+                    json.dumps(proposed, ensure_ascii=False, separators=(",", ":"))
+                    + "\n"
+                ).encode("utf-8")
+            ),
             "historical_register_sha_references_in_HEAD": historical_sha_refs,
             "known_capture_conflicts": [
                 "existing first15 generator/validator reads the live register and would regenerate 14 holdings after append while inventory.json captures 13 holdings",
@@ -344,15 +442,52 @@ def build() -> dict:
             ],
         },
         "aggregate": {
-            "product_scope_counts": dict(sorted(Counter(item["reported_path_scope"]["product_scope"] for item in items).items())),
-            "phase_scope_counts": dict(sorted(Counter(item["reported_path_scope"]["phase_scope"] for item in items).items())),
-            "same_blob_count": sum(item["archive"]["relation_to_pre_isolation"] == "same" for item in items),
-            "changed_blob_count": sum(item["archive"]["relation_to_pre_isolation"] == "different" for item in items),
-            "not_in_any_live_holding_count": sum(item["existing_holding_inclusion_relation"] == "not_in_any_of_13_live_holdings" for item in items),
-            "path_reference_only_match_count": sum(item["existing_holding_inclusion_relation"] == "path_reference_only_match_requires_review" for item in items),
-            "exact_blob_or_sha_match_count": sum(any(r["pre_isolation_blob_match_count"] or r["pre_isolation_sha256_match_count"] for r in item["live_holding_relations"]) for item in items),
-            "source_holding_proposed_count": sum(item["source_holding_status"] == "proposed_preserved_unassigned" for item in items),
-            "semantic_disposition_not_started_count": sum(item["semantic_disposition"] == "not_started" for item in items),
+            "product_scope_counts": dict(
+                sorted(
+                    Counter(
+                        item["reported_path_scope"]["product_scope"] for item in items
+                    ).items()
+                )
+            ),
+            "phase_scope_counts": dict(
+                sorted(
+                    Counter(
+                        item["reported_path_scope"]["phase_scope"] for item in items
+                    ).items()
+                )
+            ),
+            "same_blob_count": sum(
+                item["archive"]["relation_to_pre_isolation"] == "same" for item in items
+            ),
+            "changed_blob_count": sum(
+                item["archive"]["relation_to_pre_isolation"] == "different"
+                for item in items
+            ),
+            "not_in_any_live_holding_count": sum(
+                item["existing_holding_inclusion_relation"]
+                == "not_in_any_of_13_live_holdings"
+                for item in items
+            ),
+            "path_reference_only_match_count": sum(
+                item["existing_holding_inclusion_relation"]
+                == "path_reference_only_match_requires_review"
+                for item in items
+            ),
+            "exact_blob_or_sha_match_count": sum(
+                any(
+                    r["pre_isolation_blob_match_count"]
+                    or r["pre_isolation_sha256_match_count"]
+                    for r in item["live_holding_relations"]
+                )
+                for item in items
+            ),
+            "source_holding_proposed_count": sum(
+                item["source_holding_status"] == "proposed_preserved_unassigned"
+                for item in items
+            ),
+            "semantic_disposition_not_started_count": sum(
+                item["semantic_disposition"] == "not_started" for item in items
+            ),
         },
         "findings": [
             "outside-67 reportの67件を要求atomへ分解せず、path_revision_pairとして保持候補化した。",
@@ -374,16 +509,31 @@ def build() -> dict:
         "verification_scope": {
             "evidence_kind": "scaffold",
             "static_only": True,
-            "checks": ["67 path count", "pre-isolation/archive Git OID and SHA", "39/28 relation", "13 live holding exact scan", "append blocker assessment", "authority boundary", "formal source-set and coverage-receipt paths", "formal/scaffold source-set byte-identical SHA"],
+            "checks": [
+                "67 path count",
+                "pre-isolation/archive Git OID and SHA",
+                "39/28 relation",
+                "13 live holding exact scan",
+                "append blocker assessment",
+                "authority boundary",
+                "formal source-set and coverage-receipt paths",
+                "formal/scaffold source-set byte-identical SHA",
+            ],
         },
     }
 
 
 def write_outputs(inventory: dict) -> None:
-    (HERE / "inventory.json").write_text(json.dumps(inventory, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    (HERE / "inventory.json").write_text(
+        json.dumps(inventory, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
+    )
     items = source_lines(inventory["source_items"])
     (HERE / "source-items.jsonl").write_bytes(items)
-    (HERE / "proposed-register-record.json").write_text(json.dumps(inventory["proposed_register_record"], ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    (HERE / "proposed-register-record.json").write_text(
+        json.dumps(inventory["proposed_register_record"], ensure_ascii=False, indent=2)
+        + "\n",
+        encoding="utf-8",
+    )
 
 
 if __name__ == "__main__":

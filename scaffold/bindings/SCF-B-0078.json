@@ -100,18 +100,18 @@
     },
     {
       "path": "scaffold/research/legacy-semantic-review-wave44/generate.py",
-      "sha256": "735acdcd3446829609110ef844d1159cd4a6ba27a992d211bc79a951ef7cede0",
-      "note": "Wave44 static input or Scaffold artifact; no current authority, implementation, degradation, failure, consumer, or decision closure"
+      "sha256": "1bf4ad2b45cbc9ff734436313e9b0dd13730001e6a0d3593eeeb3ae14f1fc1b3",
+      "note": "Wave44 static input or Scaffold artifact; no current authority, implementation, degradation, failure, consumer, or decision closure [WR73/PR3773: 402867935の元sourceとRuff整形後sourceは位置情報を除くAST同値、型コメント付属も保持。binding全体（reason/role/obligations/connections/operations/verificationのoracle・negative case/replacement.role_target）への意味影響を確認し、役割・権限・義務・固定capture・採否は不変として再束縛。旧receipt=735acdcd3446829609110ef844d1159cd4a6ba27a992d211bc79a951ef7cede0; 現receipt=1bf4ad2b45cbc9ff734436313e9b0dd13730001e6a0d3593eeeb3ae14f1fc1b3。固定bytes consumerを持つ4ファイルは除外して元bytesを保持。]"
     },
     {
       "path": "scaffold/research/legacy-semantic-review-wave44/validate.py",
-      "sha256": "37910917fba3deecf98d39e439572881b752802a44c60e42638386a8b47fe641",
-      "note": "Wave44 static input or Scaffold artifact; no current authority, implementation, degradation, failure, consumer, or decision closure [2026-09-26 旧HELIXからの移行台帳のlegacy-migration/への移動（PO判断） read-after: legacy-semantic-review-wave44/validate.pyは、旧HELIXからの移行作業の台帳・待ち行列・wave記録をdocs/governance/直下からdocs/governance/legacy-migration/の種類別フォルダへ移した（2026-09-26のPO判断、docs/governance/decisions/governance-legacy-migration-layout-po-decisions-2026-09-26.md）のに合わせ、現行ファイルを読む移動対象のpath定数（または同じ定数の一覧）だけを新しいpathへ改めた（判定の条件・分岐・意味field・期待件数は不変、git diffで定数行だけの変更を確認）。本bindingのrole・obligations・connections・replacement・artifactは、旧HELIXからの移行台帳のpath（旧docs/governance/直下）、それらへのリンクの表記、研究用pinとvalidatorのpath・digestの表記に依存しないことをbinding全体で確認した。前receipt=fc66fae001464d253fe260c1e84ffc757e56a12f2e73473c2135b1f2f1290703; 現receipt=26b25757a340878b585ffa838e812f448dd77ee71aeb612687bb046dddfbfb3d; このBindingの採否・authorityは変更しない。]"
+      "sha256": "f9b3ac7a6af32caaf600fd7827b96fc75174307bcd39cb6261c501d4361a24a5",
+      "note": "Wave44 static input or Scaffold artifact; no current authority, implementation, degradation, failure, consumer, or decision closure [2026-09-26 旧HELIXからの移行台帳のlegacy-migration/への移動（PO判断） read-after: legacy-semantic-review-wave44/validate.pyは、旧HELIXからの移行作業の台帳・待ち行列・wave記録をdocs/governance/直下からdocs/governance/legacy-migration/の種類別フォルダへ移した（2026-09-26のPO判断、docs/governance/decisions/governance-legacy-migration-layout-po-decisions-2026-09-26.md）のに合わせ、現行ファイルを読む移動対象のpath定数（または同じ定数の一覧）だけを新しいpathへ改めた（判定の条件・分岐・意味field・期待件数は不変、git diffで定数行だけの変更を確認）。本bindingのrole・obligations・connections・replacement・artifactは、旧HELIXからの移行台帳のpath（旧docs/governance/直下）、それらへのリンクの表記、研究用pinとvalidatorのpath・digestの表記に依存しないことをbinding全体で確認した。前receipt=fc66fae001464d253fe260c1e84ffc757e56a12f2e73473c2135b1f2f1290703; 現receipt=26b25757a340878b585ffa838e812f448dd77ee71aeb612687bb046dddfbfb3d; このBindingの採否・authorityは変更しない。] [WR73/PR3773: 402867935の元sourceとRuff整形後sourceは位置情報を除くAST同値、型コメント付属も保持。binding全体（reason/role/obligations/connections/operations/verificationのoracle・negative case/replacement.role_target）への意味影響を確認し、役割・権限・義務・固定capture・採否は不変として再束縛。旧receipt=37910917fba3deecf98d39e439572881b752802a44c60e42638386a8b47fe641; 現receipt=f9b3ac7a6af32caaf600fd7827b96fc75174307bcd39cb6261c501d4361a24a5。固定bytes consumerを持つ4ファイルは除外して元bytesを保持。]"
     },
     {
       "path": "scaffold/research/legacy-semantic-review-wave44/selfcheck.py",
-      "sha256": "2ab33f4ede0a31af7b5c4ae2f865c367409b09e9c8bd3f5b6ca204bff1a704db",
-      "note": "Wave44 static input or Scaffold artifact; no current authority, implementation, degradation, failure, consumer, or decision closure"
+      "sha256": "4e0f3d19d5aa1dfbe2af544a7fd8d7b94652c2178947e2a06b4cefd52f2de6e3",
+      "note": "Wave44 static input or Scaffold artifact; no current authority, implementation, degradation, failure, consumer, or decision closure [WR73/PR3773: 402867935の元sourceとRuff整形後sourceは位置情報を除くAST同値、型コメント付属も保持。binding全体（reason/role/obligations/connections/operations/verificationのoracle・negative case/replacement.role_target）への意味影響を確認し、役割・権限・義務・固定capture・採否は不変として再束縛。旧receipt=2ab33f4ede0a31af7b5c4ae2f865c367409b09e9c8bd3f5b6ca204bff1a704db; 現receipt=4e0f3d19d5aa1dfbe2af544a7fd8d7b94652c2178947e2a06b4cefd52f2de6e3。固定bytes consumerを持つ4ファイルは除外して元bytesを保持。]"
     },
     {
       "path": "scaffold/research/legacy-semantic-review-wave44/legacy-requirement-direct-semantic-review-wave44.jsonl",

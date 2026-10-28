@@ -1,4 +1,5 @@
 """fn4のContext境界と一回walkからのprivate detail委譲。"""
+
 from __future__ import annotations
 
 
@@ -12,10 +13,12 @@ def compare_oracle_and_view_boundary(context: dict[str, object]) -> dict[str, ob
         )
 
     validated = context["validated"]
-    if (not isinstance(validated, dict)
-            or set(validated) != {"input", "input_issues", "unusable_source_refs"}
-            or not isinstance(validated.get("input_issues"), list)
-            or not isinstance(validated.get("unusable_source_refs"), list)):
+    if (
+        not isinstance(validated, dict)
+        or set(validated) != {"input", "input_issues", "unusable_source_refs"}
+        or not isinstance(validated.get("input_issues"), list)
+        or not isinstance(validated.get("unusable_source_refs"), list)
+    ):
         raise NotImplementedError(
             "F05/F06/unclosed/validated_supply_shape; Backflow HELIXBRAIN-L6-032-FN4-ORACLE"
         )
@@ -28,13 +31,17 @@ def compare_oracle_and_view_boundary(context: dict[str, object]) -> dict[str, ob
     comparison_members = {"axes", "findings", "producer_symbol", "input_binding"}
     for name in ("definitions", "identity_trace"):
         comparison = context[name]
-        if (not isinstance(comparison, dict)
-                or set(comparison) != comparison_members
-                or not isinstance(comparison.get("axes"), list)
-                or not isinstance(comparison.get("findings"), list)
-                or not isinstance(comparison.get("producer_symbol"), str)
-                or (comparison.get("input_binding") is not None
-                    and not isinstance(comparison.get("input_binding"), dict))):
+        if (
+            not isinstance(comparison, dict)
+            or set(comparison) != comparison_members
+            or not isinstance(comparison.get("axes"), list)
+            or not isinstance(comparison.get("findings"), list)
+            or not isinstance(comparison.get("producer_symbol"), str)
+            or (
+                comparison.get("input_binding") is not None
+                and not isinstance(comparison.get("input_binding"), dict)
+            )
+        ):
             raise NotImplementedError(
                 f"F05/F06/unclosed/{name}_comparison_shape; "
                 "Backflow HELIXBRAIN-L6-032-FN4-ORACLE"
@@ -48,15 +55,28 @@ def compare_oracle_and_view_boundary(context: dict[str, object]) -> dict[str, ob
 
     definitions = context["definitions"]
     identity_trace = context["identity_trace"]
-    partial_context_branches = () if raw is None else (
-        (definitions["producer_symbol"] != "compare_descriptor_definitions",
-         "definitions_producer"),
-        (identity_trace["producer_symbol"] != "compare_identity_versions_and_trace",
-         "identity_trace_producer"),
-        (not _binding_same(definitions["input_binding"], binding),
-         "definitions_binding"),
-        (not _binding_same(identity_trace["input_binding"], binding),
-         "identity_trace_binding"),
+    partial_context_branches = (
+        ()
+        if raw is None
+        else (
+            (
+                definitions["producer_symbol"] != "compare_descriptor_definitions",
+                "definitions_producer",
+            ),
+            (
+                identity_trace["producer_symbol"]
+                != "compare_identity_versions_and_trace",
+                "identity_trace_producer",
+            ),
+            (
+                not _binding_same(definitions["input_binding"], binding),
+                "definitions_binding",
+            ),
+            (
+                not _binding_same(identity_trace["input_binding"], binding),
+                "identity_trace_binding",
+            ),
+        )
     )
     for mismatch, branch in partial_context_branches:
         if mismatch:
@@ -73,6 +93,10 @@ def compare_oracle_and_view_boundary(context: dict[str, object]) -> dict[str, ob
     uses = build_descriptor_claim_uses(
         validated, walk["evaluation"], walk["target_reads"], walk["intent_reads"]
     )
-    frame = {"validated": validated, "definition_evaluation": walk["evaluation"],
-             "target_reads": walk["target_reads"], "claim_uses": uses}
+    frame = {
+        "validated": validated,
+        "definition_evaluation": walk["evaluation"],
+        "target_reads": walk["target_reads"],
+        "claim_uses": uses,
+    }
     return compare_oracle_and_view_boundary_detail(context, frame)

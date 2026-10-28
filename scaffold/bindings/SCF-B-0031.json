@@ -95,13 +95,13 @@
     },
     {
       "path": "scaffold/research/phcap07-web-verification-l10/validate.py",
-      "sha256": "f2cc98d441c5f42f3fbab60c45ddedc96fdef83261571c6b777766555413415f",
-      "note": "static source/ledger/product evidence gap validator [2026-09-26 旧HELIXからの移行台帳のlegacy-migration/への移動（PO判断） read-after: phcap07-web-verification-l10/validate.pyは、旧HELIXからの移行作業の台帳・待ち行列・wave記録をdocs/governance/直下からdocs/governance/legacy-migration/の種類別フォルダへ移した（2026-09-26のPO判断、docs/governance/decisions/governance-legacy-migration-layout-po-decisions-2026-09-26.md）のに合わせ、現行ファイルを読む移動対象のpath定数（または同じ定数の一覧）だけを新しいpathへ改めた（判定の条件・分岐・意味field・期待件数は不変、git diffで定数行だけの変更を確認）。本bindingのrole・obligations・connections・replacement・artifactは、旧HELIXからの移行台帳のpath（旧docs/governance/直下）、それらへのリンクの表記、研究用pinとvalidatorのpath・digestの表記に依存しないことをbinding全体で確認した。前receipt=1e3e4711aaef0775cb9f017ca9bfd9d77569745d85400ae04303ae965271ef1f; 現receipt=00ab7e7fec0610dde911cf15b650d4927e57a136c2d9bf7d42504a6ca890d4b2; このBindingの採否・authorityは変更しない。]"
+      "sha256": "60c6559dd7890118befc934bb9ce147d2f6ec578f6db7210f3e91f13a9452598",
+      "note": "static source/ledger/product evidence gap validator [2026-09-26 旧HELIXからの移行台帳のlegacy-migration/への移動（PO判断） read-after: phcap07-web-verification-l10/validate.pyは、旧HELIXからの移行作業の台帳・待ち行列・wave記録をdocs/governance/直下からdocs/governance/legacy-migration/の種類別フォルダへ移した（2026-09-26のPO判断、docs/governance/decisions/governance-legacy-migration-layout-po-decisions-2026-09-26.md）のに合わせ、現行ファイルを読む移動対象のpath定数（または同じ定数の一覧）だけを新しいpathへ改めた（判定の条件・分岐・意味field・期待件数は不変、git diffで定数行だけの変更を確認）。本bindingのrole・obligations・connections・replacement・artifactは、旧HELIXからの移行台帳のpath（旧docs/governance/直下）、それらへのリンクの表記、研究用pinとvalidatorのpath・digestの表記に依存しないことをbinding全体で確認した。前receipt=1e3e4711aaef0775cb9f017ca9bfd9d77569745d85400ae04303ae965271ef1f; 現receipt=00ab7e7fec0610dde911cf15b650d4927e57a136c2d9bf7d42504a6ca890d4b2; このBindingの採否・authorityは変更しない。] [WR73/PR3773: 402867935の元sourceとRuff整形後sourceは位置情報を除くAST同値、型コメント付属も保持。binding全体（reason/role/obligations/connections/operations/verificationのoracle・negative case/replacement.role_target）への意味影響を確認し、役割・権限・義務・固定capture・採否は不変として再束縛。旧receipt=f2cc98d441c5f42f3fbab60c45ddedc96fdef83261571c6b777766555413415f; 現receipt=60c6559dd7890118befc934bb9ce147d2f6ec578f6db7210f3e91f13a9452598。固定bytes consumerを持つ4ファイルは除外して元bytesを保持。]"
     },
     {
       "path": "scaffold/research/phcap07-web-verification-l10/selfcheck.py",
-      "sha256": "86993a3041affc65862dab67432add257c38de7c66fd99a33c8e66775972c9e5",
-      "note": "negative-case guard against L10/CI/authority promotion"
+      "sha256": "2683ed55bd9c5e81869f567249e811e329723f843b355d7ab0bde3558e0fe651",
+      "note": "negative-case guard against L10/CI/authority promotion [WR73/PR3773: 402867935の元sourceとRuff整形後sourceは位置情報を除くAST同値、型コメント付属も保持。binding全体（reason/role/obligations/connections/operations/verificationのoracle・negative case/replacement.role_target）への意味影響を確認し、役割・権限・義務・固定capture・採否は不変として再束縛。旧receipt=86993a3041affc65862dab67432add257c38de7c66fd99a33c8e66775972c9e5; 現receipt=2683ed55bd9c5e81869f567249e811e329723f843b355d7ab0bde3558e0fe651。固定bytes consumerを持つ4ファイルは除外して元bytesを保持。]"
     }
   ],
   "role": "PHCAP-07におけるHELIX-Web／HELIX-Web-OS製品別L10証拠gap、旧到達層、current direct／adjacent／unknown、oracle／CI／failure／consumer残差を、正式採否・実装・受入へ昇格させないresearch premise candidateとして保持する",

@@ -21,8 +21,16 @@ def run_case(name, mutate):
         mutate(rows, manifest)
         candidate_path = tmp / "atom-candidates.jsonl"
         manifest_path = tmp / "manifest.json"
-        candidate_path.write_text("".join(json.dumps(row, ensure_ascii=False, separators=(",", ":")) + "\n" for row in rows), encoding="utf-8")
-        manifest_path.write_text(json.dumps(manifest, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+        candidate_path.write_text(
+            "".join(
+                json.dumps(row, ensure_ascii=False, separators=(",", ":")) + "\n"
+                for row in rows
+            ),
+            encoding="utf-8",
+        )
+        manifest_path.write_text(
+            json.dumps(manifest, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
+        )
         validate.CANDIDATES = candidate_path
         validate.MANIFEST = manifest_path
         try:
@@ -36,13 +44,46 @@ def run_case(name, mutate):
 
 
 def main() -> int:
-    run_case("primary-secondary relation swap", lambda rows, manifest: next(row for row in rows if row["relation"] == "primary").update(relation="secondary_relation"))
-    run_case("source span text drift", lambda rows, manifest: rows[0]["source_spans"][0].update(source_text="改変"))
-    run_case("legacy asset digest drift", lambda rows, manifest: rows[0]["source_spans"][0]["legacy_asset"].update(asset_sha256="0" * 64))
-    run_case("legacy primary relation drift", lambda rows, manifest: next(row for row in rows if row["relation"] == "secondary_relation").update(legacy_requirement_primary="RUL-COR-04"))
-    run_case("S1 screen/link denominator merge", lambda rows, manifest: manifest["s1_accounting_snapshot"].update(secondary_links_from_other_primary=22))
-    run_case("current authority claim", lambda rows, manifest: rows[0]["authority_vocabulary_relation"].update(current_authority_claim=True))
-    run_case("old/current contradiction collapse", lambda rows, manifest: manifest["old_current_contradiction"].update(status="resolved"))
+    run_case(
+        "primary-secondary relation swap",
+        lambda rows, manifest: next(
+            row for row in rows if row["relation"] == "primary"
+        ).update(relation="secondary_relation"),
+    )
+    run_case(
+        "source span text drift",
+        lambda rows, manifest: rows[0]["source_spans"][0].update(source_text="改変"),
+    )
+    run_case(
+        "legacy asset digest drift",
+        lambda rows, manifest: rows[0]["source_spans"][0]["legacy_asset"].update(
+            asset_sha256="0" * 64
+        ),
+    )
+    run_case(
+        "legacy primary relation drift",
+        lambda rows, manifest: next(
+            row for row in rows if row["relation"] == "secondary_relation"
+        ).update(legacy_requirement_primary="RUL-COR-04"),
+    )
+    run_case(
+        "S1 screen/link denominator merge",
+        lambda rows, manifest: manifest["s1_accounting_snapshot"].update(
+            secondary_links_from_other_primary=22
+        ),
+    )
+    run_case(
+        "current authority claim",
+        lambda rows, manifest: rows[0]["authority_vocabulary_relation"].update(
+            current_authority_claim=True
+        ),
+    )
+    run_case(
+        "old/current contradiction collapse",
+        lambda rows, manifest: manifest["old_current_contradiction"].update(
+            status="resolved"
+        ),
+    )
     run_case("atom loss", lambda rows, manifest: rows.pop())
     print("PASS all 8 negative selfchecks")
     return 0

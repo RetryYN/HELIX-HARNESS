@@ -6,7 +6,10 @@ import copy
 import json
 import unittest
 
-from descriptor_definitions import compare_identity_versions_and_trace, validate_supply_input
+from descriptor_definitions import (
+    compare_identity_versions_and_trace,
+    validate_supply_input,
+)
 from identity_input_fixtures import (
     _write_source_content,
     bilateral_input,
@@ -27,24 +30,32 @@ def _replace_scopes(value, replacement):
 
 
 def _refresh_source_bytes(raw):
-    sources = [source for source in raw.get("sources", [])
-               if isinstance(source, dict) and isinstance(source.get("content"), dict)]
+    sources = [
+        source
+        for source in raw.get("sources", [])
+        if isinstance(source, dict) and isinstance(source.get("content"), dict)
+    ]
 
     def source_identity_key(source_ref):
         return json.dumps(
             [source_ref.get(key) for key in ("identity", "revision", "scope", "owner")],
-            ensure_ascii=False, sort_keys=True, separators=(",", ":"),
+            ensure_ascii=False,
+            sort_keys=True,
+            separators=(",", ":"),
         )
 
     def refs_by_identity():
         return {
             source_identity_key(source["ref"]): source["ref"]
-            for source in sources if isinstance(source.get("ref"), dict)
+            for source in sources
+            if isinstance(source.get("ref"), dict)
         }
 
     def sync_refs(value, source_refs, own_refs):
         if isinstance(value, dict):
-            if id(value) not in own_refs and all(key in value for key in ("identity", "revision", "scope", "owner")):
+            if id(value) not in own_refs and all(
+                key in value for key in ("identity", "revision", "scope", "owner")
+            ):
                 source_ref = source_refs.get(source_identity_key(value))
                 if source_ref is not None and isinstance(value.get("sha256"), str):
                     value["sha256"] = source_ref.get("sha256")
@@ -58,7 +69,11 @@ def _refresh_source_bytes(raw):
         for source in sources:
             _write_source_content(raw, source, source["content"])
         source_refs = refs_by_identity()
-        own_refs = {id(source["ref"]) for source in sources if isinstance(source.get("ref"), dict)}
+        own_refs = {
+            id(source["ref"])
+            for source in sources
+            if isinstance(source.get("ref"), dict)
+        }
         sync_refs(raw, source_refs, own_refs)
     for source in sources:
         _write_source_content(raw, source, source["content"])
@@ -90,15 +105,31 @@ class TestIdentityR2Scope(unittest.TestCase):
             prefix, separator, encoded = row["reason"].partition("\n")
             self.assertEqual((prefix, separator), (cause, "\n"))
             material = json.loads(encoded)
-            self.assertEqual(set(material), {
-                "cause", "request", "state", "slot_presence", "slot_is_null",
-                "fact_presence", "fact_is_null", "knowledge_record_indices",
-                "provenance_indices", "source_indices", "body_group_locators",
-            })
+            self.assertEqual(
+                set(material),
+                {
+                    "cause",
+                    "request",
+                    "state",
+                    "slot_presence",
+                    "slot_is_null",
+                    "fact_presence",
+                    "fact_is_null",
+                    "knowledge_record_indices",
+                    "provenance_indices",
+                    "source_indices",
+                    "body_group_locators",
+                },
+            )
             self.assertEqual(material["cause"], cause)
             self.assertEqual(material["state"], row["state"])
-            self.assertEqual(material["request"], {"slot_locator": f"/descriptors/{index}",
-                                                  "fact_locator": f"/descriptors/{index}/facts/0"})
+            self.assertEqual(
+                material["request"],
+                {
+                    "slot_locator": f"/descriptors/{index}",
+                    "fact_locator": f"/descriptors/{index}/facts/0",
+                },
+            )
 
     def test_same_scalar_scope_is_equal_in_actual_and_trace_reads(self):
         raw = bilateral_input("outside")
@@ -117,14 +148,24 @@ class TestIdentityR2Scope(unittest.TestCase):
         self.assertEqual(len(traces), 15)
         self.assertTrue(all(row["state"] == "resolved" for row in traces))
 
-    def test_known_different_scope_is_conflict_for_actual_trace_and_bilateral_reads(self):
+    def test_known_different_scope_is_conflict_for_actual_trace_and_bilateral_reads(
+        self,
+    ):
         raw = bilateral_input("outside")
         record = raw["compatibility_records"][0]
-        right = next(source for source in raw["sources"] if source.get("ref") == record["source_ref"])
+        right = next(
+            source
+            for source in raw["sources"]
+            if source.get("ref") == record["source_ref"]
+        )
         old_ref = copy.deepcopy(right["ref"])
         changed_scope = "synthetic-known-different-scope"
-        qualification = next(row for row in raw["qualifications"]
-                             if row.get("ref", {}).get("identity") == right["qualification_ref"]["identity"])
+        qualification = next(
+            row
+            for row in raw["qualifications"]
+            if row.get("ref", {}).get("identity")
+            == right["qualification_ref"]["identity"]
+        )
         right["ref"]["scope"] = changed_scope
         right["qualification_ref"]["scope"] = changed_scope
         qualification["ref"]["scope"] = changed_scope
@@ -135,9 +176,12 @@ class TestIdentityR2Scope(unittest.TestCase):
         for root in raw["qualification_roots"]:
             if root.get("identity") == root_ref.get("identity"):
                 root["scope"] = changed_scope
-        left = next(source for source in raw["sources"]
-                    if isinstance(source.get("content"), dict)
-                    and source["content"].get("compatibility_record_ref") == record["ref"])
+        left = next(
+            source
+            for source in raw["sources"]
+            if isinstance(source.get("content"), dict)
+            and source["content"].get("compatibility_record_ref") == record["ref"]
+        )
         left_body = copy.deepcopy(left["content"])
         left_body["counterpart_source_ref"] = copy.deepcopy(right["ref"])
         _write_source_content(raw, right, right["content"])
@@ -148,11 +192,19 @@ class TestIdentityR2Scope(unittest.TestCase):
 
         result = self._call(raw)
         pack_rows = self._axis(result, "pack.identity")
-        self.assertTrue(any(row["state"] == "conflict" and "actual_scope_differs" in row["reason"]
-                            for row in pack_rows))
+        self.assertTrue(
+            any(
+                row["state"] == "conflict" and "actual_scope_differs" in row["reason"]
+                for row in pack_rows
+            )
+        )
         compatibility = self._axis(result, "compatibility")[0]
         self.assertEqual(compatibility["state"], "conflict")
-        self.assertTrue(compatibility["reason"].startswith("原source自身の資格scopeは対応するが対象pairのscopeと既知に異なる。\n"))
+        self.assertTrue(
+            compatibility["reason"].startswith(
+                "原source自身の資格scopeは対応するが対象pairのscopeと既知に異なる。\n"
+            )
+        )
 
         raw = trace_input("positive")
         other_scope = "synthetic-known-different-scope"
@@ -175,8 +227,12 @@ class TestIdentityR2Scope(unittest.TestCase):
         result = self._call(raw)
         traces = self._axis(result, "descriptor.trace")
         self.assertEqual(len(traces), 15)
-        self.assertTrue(all(row["state"] == "conflict" and "scope_differs" in row["reason"]
-                            for row in traces))
+        self.assertTrue(
+            all(
+                row["state"] == "conflict" and "scope_differs" in row["reason"]
+                for row in traces
+            )
+        )
         self._assert_nonresolved_scope_reason(traces, "scope_differs")
 
     def test_unobserved_scope_stays_unknown_in_trace_bilateral_and_actual_reads(self):
@@ -231,15 +287,22 @@ class TestIdentityR2Scope(unittest.TestCase):
         # the public unknown and do not claim a typed actual_operand/cause was read.
         raw = bilateral_input("outside")
         record = raw["compatibility_records"][0]
-        right = next(source for source in raw["sources"] if source.get("ref") == record["source_ref"])
+        right = next(
+            source
+            for source in raw["sources"]
+            if source.get("ref") == record["source_ref"]
+        )
         body = copy.deepcopy(right["content"])
         body["compatibility_range_declaration"]["actual_artifact_version"] = None
         old_ref = copy.deepcopy(right["ref"])
         _write_source_content(raw, right, body)
         record["source_ref"] = copy.deepcopy(right["ref"])
-        left = next(source for source in raw["sources"]
-                    if isinstance(source.get("content"), dict)
-                    and source["content"].get("counterpart_source_ref") == old_ref)
+        left = next(
+            source
+            for source in raw["sources"]
+            if isinstance(source.get("content"), dict)
+            and source["content"].get("counterpart_source_ref") == old_ref
+        )
         left_body = copy.deepcopy(left["content"])
         left_body["counterpart_source_ref"] = copy.deepcopy(right["ref"])
         _write_source_content(raw, left, left_body)

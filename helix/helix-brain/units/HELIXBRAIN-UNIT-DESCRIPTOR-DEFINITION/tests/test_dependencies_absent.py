@@ -48,10 +48,12 @@ def _call_fn0_fn1_fn6(raw: dict) -> tuple[dict, dict, dict]:
     definitions = compare_descriptor_definitions({"validated": validated})
     validated_before = copy.deepcopy(validated)
     definitions_before = copy.deepcopy(definitions)
-    result = compare_dependencies_and_handoff({
-        "validated": validated,
-        "definitions": definitions,
-    })
+    result = compare_dependencies_and_handoff(
+        {
+            "validated": validated,
+            "definitions": definitions,
+        }
+    )
     if raw != raw_before:
         raise AssertionError("FN0/FN1/FN6 changed the supplied raw input")
     if validated != validated_before or definitions != definitions_before:
@@ -60,7 +62,9 @@ def _call_fn0_fn1_fn6(raw: dict) -> tuple[dict, dict, dict]:
 
 
 class TestDependenciesAbsent(unittest.TestCase):
-    def test_absent_dependencies_preserves_missing_selectors_handoff_and_empty_claim_scope(self) -> None:
+    def test_absent_dependencies_preserves_missing_selectors_handoff_and_empty_claim_scope(
+        self,
+    ) -> None:
         document = load_document()
         normal_raw = base_input(document)
         self.assertEqual(normal_raw["claims"], [])
@@ -76,10 +80,10 @@ class TestDependenciesAbsent(unittest.TestCase):
             definitions["producer_symbol"], "compare_descriptor_definitions"
         )
         self.assertEqual(definitions["input_binding"], absent_before["binding"])
+        self.assertEqual(result["producer_symbol"], "compare_dependencies_and_handoff")
         self.assertEqual(
-            result["producer_symbol"], "compare_dependencies_and_handoff"
+            list(result), ["axes", "findings", "producer_symbol", "input_binding"]
         )
-        self.assertEqual(list(result), ["axes", "findings", "producer_symbol", "input_binding"])
         self.assertEqual(result["input_binding"], absent_before["binding"])
         self.assertEqual(absent_raw, absent_before)
 
@@ -87,16 +91,27 @@ class TestDependenciesAbsent(unittest.TestCase):
         # trace does not invent a category array or a missing Ref; all five
         # source occurrences remain separate even though the trace omits ID.
         missing_axes = [
-            row for row in result["axes"]
+            row
+            for row in result["axes"]
             if row["axis"] == "dependency_reference" and row["state"] == "missing"
         ]
         self.assertEqual(len(missing_axes), len(ALWAYS_IDENTITIES))
         for axis in missing_axes:
-            self.assertEqual(list(axis), [
-                "subject_ref", "binding", "axis", "state", "original_refs",
-                "reason", "backflow_owner",
-            ])
-            self.assertEqual(axis["subject_ref"], absent_before["binding"]["knowledge_ref"])
+            self.assertEqual(
+                list(axis),
+                [
+                    "subject_ref",
+                    "binding",
+                    "axis",
+                    "state",
+                    "original_refs",
+                    "reason",
+                    "backflow_owner",
+                ],
+            )
+            self.assertEqual(
+                axis["subject_ref"], absent_before["binding"]["knowledge_ref"]
+            )
             self.assertEqual(axis["binding"], absent_before["binding"])
             self.assertEqual(axis["original_refs"], [])
             self.assertEqual(axis["backflow_owner"], "knowledge_owner")
@@ -109,17 +124,31 @@ class TestDependenciesAbsent(unittest.TestCase):
             self.assertEqual(
                 list(trace),
                 [
-                    "format", "producer_symbol", "axis", "state", "subject_ref",
-                    "binding", "original_refs", "backflow_owner", "request_locator",
-                    "source_category_locator", "cause", "canonical_body_support",
-                    "handoff_record", "selection_observation",
+                    "format",
+                    "producer_symbol",
+                    "axis",
+                    "state",
+                    "subject_ref",
+                    "binding",
+                    "original_refs",
+                    "backflow_owner",
+                    "request_locator",
+                    "source_category_locator",
+                    "cause",
+                    "canonical_body_support",
+                    "handoff_record",
+                    "selection_observation",
                 ],
             )
             self.assertEqual(trace["format"], "BRAIN032-F09-axis-reason-trace-v1")
-            self.assertEqual(trace["producer_symbol"], "compare_dependencies_and_handoff")
+            self.assertEqual(
+                trace["producer_symbol"], "compare_dependencies_and_handoff"
+            )
             self.assertEqual(trace["axis"], "dependency_reference")
             self.assertEqual(trace["state"], "missing")
-            self.assertEqual(trace["subject_ref"], absent_before["binding"]["knowledge_ref"])
+            self.assertEqual(
+                trace["subject_ref"], absent_before["binding"]["knowledge_ref"]
+            )
             self.assertEqual(trace["binding"], absent_before["binding"])
             self.assertEqual(trace["original_refs"], [])
             self.assertEqual(trace["backflow_owner"], "knowledge_owner")
@@ -132,7 +161,9 @@ class TestDependenciesAbsent(unittest.TestCase):
 
         # L5 R105 carries the complete missing-identity sequence and source
         # category in its own reason. It is distinct from the TRACE14 Axis.
-        missing_findings = [row for row in result["findings"] if row.get("rule_ref") == R105]
+        missing_findings = [
+            row for row in result["findings"] if row.get("rule_ref") == R105
+        ]
         self.assertEqual(len(missing_findings), len(ALWAYS_IDENTITIES))
         self.assertEqual(
             [row["reason"] for row in missing_findings],
@@ -147,12 +178,21 @@ class TestDependenciesAbsent(unittest.TestCase):
             self.assertEqual(
                 list(row),
                 [
-                    "code", "rule_ref", "subject_ref", "binding", "axis", "state",
-                    "source_refs", "reason", "backflow_owner",
+                    "code",
+                    "rule_ref",
+                    "subject_ref",
+                    "binding",
+                    "axis",
+                    "state",
+                    "source_refs",
+                    "reason",
+                    "backflow_owner",
                 ],
             )
             self.assertEqual(row["code"], "required_dependency_missing")
-            self.assertEqual(row["subject_ref"], absent_before["binding"]["knowledge_ref"])
+            self.assertEqual(
+                row["subject_ref"], absent_before["binding"]["knowledge_ref"]
+            )
             self.assertEqual(row["binding"], absent_before["binding"])
             self.assertEqual(row["axis"], "dependency_reference")
             self.assertEqual(row["state"], "missing")
@@ -164,25 +204,41 @@ class TestDependenciesAbsent(unittest.TestCase):
         selector_axes = [
             row for row in result["axes"] if row["axis"] == "dependency_selection"
         ]
-        selector_findings = [row for row in result["findings"] if row.get("rule_ref") == R106]
+        selector_findings = [
+            row for row in result["findings"] if row.get("rule_ref") == R106
+        ]
         self.assertEqual(len(selector_axes), 3)
         self.assertEqual(len(selector_findings), 3)
         expected_selector_reasons = [
-            "条件selector " + selector + " が /dependencies/" + selector
+            "条件selector "
+            + selector
+            + " が /dependencies/"
+            + selector
             + " にない。falseを既定せず、その条件のref集合を評価しない。"
             for selector in SELECTORS
         ]
-        self.assertEqual([row["reason"] for row in selector_axes], expected_selector_reasons)
-        self.assertEqual([row["reason"] for row in selector_findings], expected_selector_reasons)
+        self.assertEqual(
+            [row["reason"] for row in selector_axes], expected_selector_reasons
+        )
+        self.assertEqual(
+            [row["reason"] for row in selector_findings], expected_selector_reasons
+        )
         for axis, finding in zip(selector_axes, selector_findings):
             self.assertEqual(
                 list(axis),
                 [
-                    "subject_ref", "binding", "axis", "state", "original_refs",
-                    "reason", "backflow_owner",
+                    "subject_ref",
+                    "binding",
+                    "axis",
+                    "state",
+                    "original_refs",
+                    "reason",
+                    "backflow_owner",
                 ],
             )
-            self.assertEqual(axis["subject_ref"], absent_before["binding"]["knowledge_ref"])
+            self.assertEqual(
+                axis["subject_ref"], absent_before["binding"]["knowledge_ref"]
+            )
             self.assertEqual(axis["binding"], absent_before["binding"])
             self.assertEqual(axis["state"], "unknown")
             self.assertEqual(axis["original_refs"], [])
@@ -190,8 +246,15 @@ class TestDependenciesAbsent(unittest.TestCase):
             self.assertEqual(
                 list(finding),
                 [
-                    "code", "rule_ref", "subject_ref", "binding", "axis", "state",
-                    "source_refs", "reason", "backflow_owner",
+                    "code",
+                    "rule_ref",
+                    "subject_ref",
+                    "binding",
+                    "axis",
+                    "state",
+                    "source_refs",
+                    "reason",
+                    "backflow_owner",
                 ],
             )
             self.assertEqual(finding["code"], "dependency_selector_unknown")
@@ -208,21 +271,33 @@ class TestDependenciesAbsent(unittest.TestCase):
         # result or create a claim-origin finding for claims=[]. Compare only
         # this unchanged responsibility against the real normal call.
         _, _, normal_result = _call_fn0_fn1_fn6(normal_raw)
-        normal_handoff = [row for row in normal_result["axes"] if row["axis"] == "handoff"]
+        normal_handoff = [
+            row for row in normal_result["axes"] if row["axis"] == "handoff"
+        ]
         absent_handoff = [row for row in result["axes"] if row["axis"] == "handoff"]
         self.assertEqual(absent_handoff, normal_handoff)
         self.assertEqual(len(absent_handoff), len(absent_before["handoff_records"]))
         self.assertEqual(result["axes"], missing_axes + selector_axes + absent_handoff)
         normal_other_findings = [
-            row for row in normal_result["findings"]
+            row
+            for row in normal_result["findings"]
             if row.get("rule_ref") not in {R105, R106}
         ]
         absent_other_findings = [
-            row for row in result["findings"]
-            if row.get("rule_ref") not in {R105, R106}
+            row for row in result["findings"] if row.get("rule_ref") not in {R105, R106}
         ]
         self.assertEqual(absent_other_findings, normal_other_findings)
-        self.assertEqual(result["findings"], missing_findings + selector_findings + absent_other_findings)
-        self.assertFalse(any(row.get("code") in {
-            "receipt_as_product_discharge", "receipt_as_na",
-        } for row in result["findings"]))
+        self.assertEqual(
+            result["findings"],
+            missing_findings + selector_findings + absent_other_findings,
+        )
+        self.assertFalse(
+            any(
+                row.get("code")
+                in {
+                    "receipt_as_product_discharge",
+                    "receipt_as_na",
+                }
+                for row in result["findings"]
+            )
+        )

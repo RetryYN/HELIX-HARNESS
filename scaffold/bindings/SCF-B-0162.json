@@ -15,8 +15,8 @@
     },
     {
       "path": "scaffold/tools/scfctl.py",
-      "sha256": "4c53e471c45a079a1c546b430eba0c2497d277b8e5551f6ecb12917bb59b2df0",
-      "note": "R5: retired validateへ既存固定receipt照合を再利用。check_staleと研究意味は不変。retired後の正式artifact通常更新を固定しない。check_staleのみconsumerであり、既存役割・義務・verification・replacementは不変。非regular receiptをE_RETIRE読戻し不能へ分類する1分岐を追加（FIFO read待ち回避、新field/gateなし、現SHA=4c53e471c45a079a1c546b430eba0c2497d277b8e5551f6ecb12917bb59b2df0）。"
+      "sha256": "d72dc3f6414729117b030a17f0096463dd7373363ed0b4fc07ad2bb2d8415d8b",
+      "note": "R5: retired validateへ既存固定receipt照合を再利用。check_staleと研究意味は不変。retired後の正式artifact通常更新を固定しない。check_staleのみconsumerであり、既存役割・義務・verification・replacementは不変。非regular receiptをE_RETIRE読戻し不能へ分類する1分岐を追加（FIFO read待ち回避、新field/gateなし、現SHA=4c53e471c45a079a1c546b430eba0c2497d277b8e5551f6ecb12917bb59b2df0）。 [WR73/PR3773: 402867935の元sourceとRuff整形後sourceは位置情報を除くAST同値、型コメント付属も保持。binding全体（reason/role/obligations/connections/operations/verificationのoracle・negative case/replacement.role_target）への意味影響を確認し、役割・権限・義務・固定capture・採否は不変として再束縛。旧receipt=4c53e471c45a079a1c546b430eba0c2497d277b8e5551f6ecb12917bb59b2df0; 現receipt=d72dc3f6414729117b030a17f0096463dd7373363ed0b4fc07ad2bb2d8415d8b。固定bytes consumerを持つ4ファイルは除外して元bytesを保持。]"
     }
   ],
   "role": "PR reviewed exact HEADを変えずに試mergeし、changed blobとBinding staleのローカルevidenceを返すread-only研究core、および既存admission条件をGitHub read-only snapshotから評価するadapter",
@@ -29,13 +29,31 @@
     "merge-treeが参照されないobjectをobject DBへ書く場合がある。ref・index・worktreeは変えない。"
   ],
   "connections": {
-    "consumers": ["Issue #3565のadmission checker実装レビュー", "SCF-B-0001のBinding/stale既存機構"],
-    "dependencies": ["git temporary repository", "Python standard library", "scaffold/tools/scfctl.py::check_stale", "gh CLI read-only PR/API GET", "GitHub HTTPS read-only fetch"],
+    "consumers": [
+      "Issue #3565のadmission checker実装レビュー",
+      "SCF-B-0001のBinding/stale既存機構"
+    ],
+    "dependencies": [
+      "git temporary repository",
+      "Python standard library",
+      "scaffold/tools/scfctl.py::check_stale",
+      "gh CLI read-only PR/API GET",
+      "GitHub HTTPS read-only fetch"
+    ],
     "boundary": "scaffold内のauthority_effect:noneの研究実装。試mergeで参照されないobjectがobject DBに残る場合がある。ref・index・worktreeとGitHub外部状態は変えない。"
   },
   "operations": {
-    "allowed": ["temporary Git fixtureと実repositoryでのmerge-treeとblob ID照合", "trial treeのBinding upstream digest検査", "GitHub read-only snapshotと一時bare repositoryのadmission評価"],
-    "forbidden": ["GitHub review/Ready/merge/comment/mailboxの外部状態変更", "共有checkout/PRのref・index・worktree変更", "CodeQLやrequired checkを新しいgateにする", "旧CLI/hook/runtime/test/CIの実行"]
+    "allowed": [
+      "temporary Git fixtureと実repositoryでのmerge-treeとblob ID照合",
+      "trial treeのBinding upstream digest検査",
+      "GitHub read-only snapshotと一時bare repositoryのadmission評価"
+    ],
+    "forbidden": [
+      "GitHub review/Ready/merge/comment/mailboxの外部状態変更",
+      "共有checkout/PRのref・index・worktree変更",
+      "CodeQLやrequired checkを新しいgateにする",
+      "旧CLI/hook/runtime/test/CIの実行"
+    ]
   },
   "artifacts": [
     "scaffold/tools/pr_admission_github.py",
@@ -46,9 +64,32 @@
   ],
   "verification": {
     "evidence_kind": "scaffold",
-    "scope": ["schema_interface", "deterministic_behavior", "source_revision_stale", "negative_case", "forbidden_write_scope"],
-    "oracles": ["scaffold/tools/pr_admission_github_selftest.py: mocked GitHub plus temporary Git fixture", "scaffold/tools/pr_admission_check_selftest.py: temporary Git fixture", "scaffold/tools/scfctl.py::check_stale", "git diff --check"],
-    "negative_cases": ["GitHub API error/missing fields", "fetch snapshot OID race", "Draft PR", "DIRTY mergeStateStatus", "reviewed HEAD mismatch", "changed blob mismatch", "stale upstream Binding", "trial merge conflict", "Git/object failure unknown", "binary/CRLF object ID", "deleted path missing on both sides"]
+    "scope": [
+      "schema_interface",
+      "deterministic_behavior",
+      "source_revision_stale",
+      "negative_case",
+      "forbidden_write_scope"
+    ],
+    "oracles": [
+      "scaffold/tools/pr_admission_github_selftest.py: mocked GitHub plus temporary Git fixture",
+      "scaffold/tools/pr_admission_check_selftest.py: temporary Git fixture",
+      "scaffold/tools/scfctl.py::check_stale",
+      "git diff --check"
+    ],
+    "negative_cases": [
+      "GitHub API error/missing fields",
+      "fetch snapshot OID race",
+      "Draft PR",
+      "DIRTY mergeStateStatus",
+      "reviewed HEAD mismatch",
+      "changed blob mismatch",
+      "stale upstream Binding",
+      "trial merge conflict",
+      "Git/object failure unknown",
+      "binary/CRLF object ID",
+      "deleted path missing on both sides"
+    ]
   },
   "replacement": {
     "role_target": "既存上流運用モデルに沿うread-only admission証拠checkerの将来保守担当（formal owner未確定）",

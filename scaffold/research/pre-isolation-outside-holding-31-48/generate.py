@@ -39,11 +39,12 @@ def relocated(path):
     return path
 
 
-
 HERE = Path(__file__).resolve().parent
 ROOT = HERE.parents[2]
 REPORT_PATH = "scaffold/pre-isolation-outside-holding-67/report.json"
-SOURCE_SET_PATH = "docs/governance/pre-isolation-outside-holding-67-source-holding.jsonl"
+SOURCE_SET_PATH = (
+    "docs/governance/pre-isolation-outside-holding-67-source-holding.jsonl"
+)
 REGISTER_PATH = "docs/governance/management-provisional-requirement-register-pre-append-3df81ad.jsonl"
 HOLDING_PATH = "docs/governance/pre-isolation-revision-delta-source-holding.jsonl"
 PRE_ISOLATION = "2d4991042be55268bac30a8bbcdac45b3865030a"
@@ -74,11 +75,20 @@ def sha(data: bytes) -> str:
 
 
 def load_jsonl(path: Path) -> list[dict]:
-    return [json.loads(line) for line in path.read_text(encoding="utf-8").splitlines() if line.strip()]
+    return [
+        json.loads(line)
+        for line in path.read_text(encoding="utf-8").splitlines()
+        if line.strip()
+    ]
 
 
 def git_blob(commit: str, path: str) -> bytes:
-    return subprocess.run(["git", "show", f"{commit}:{path}"], cwd=ROOT, check=True, stdout=subprocess.PIPE).stdout
+    return subprocess.run(
+        ["git", "show", f"{commit}:{path}"],
+        cwd=ROOT,
+        check=True,
+        stdout=subprocess.PIPE,
+    ).stdout
 
 
 def git_oid(commit: str, path: str) -> str | None:
@@ -107,7 +117,11 @@ def exact_hits(value: object, target: str, path: str = "") -> list[str]:
 
 
 def live_holdings(register: list[dict]) -> list[dict]:
-    superseded = {row.get("supersedes_registration_id") for row in register if row.get("supersedes_registration_id")}
+    superseded = {
+        row.get("supersedes_registration_id")
+        for row in register
+        if row.get("supersedes_registration_id")
+    }
     live = [row for row in register if row.get("registration_id") not in superseded]
     result = []
     for row in live:
@@ -127,15 +141,27 @@ def live_holdings(register: list[dict]) -> list[dict]:
     return result
 
 
-def build_relation(path: str, pre_oid: str, pre_sha: str, holding: dict, records: list[dict]) -> dict:
+def build_relation(
+    path: str, pre_oid: str, pre_sha: str, holding: dict, records: list[dict]
+) -> dict:
     path_hits: list[str] = []
     blob_hits: list[str] = []
     sha_hits: list[str] = []
     for record_index, source_row in enumerate(records, 1):
-        path_hits.extend(f"{record_index}:{hit}" for hit in exact_hits(source_row, path))
-        blob_hits.extend(f"{record_index}:{hit}" for hit in exact_hits(source_row, pre_oid))
-        sha_hits.extend(f"{record_index}:{hit}" for hit in exact_hits(source_row, pre_sha))
-    relation = "no_exact_path_or_blob_or_sha_match" if not (path_hits or blob_hits or sha_hits) else "match_requires_review"
+        path_hits.extend(
+            f"{record_index}:{hit}" for hit in exact_hits(source_row, path)
+        )
+        blob_hits.extend(
+            f"{record_index}:{hit}" for hit in exact_hits(source_row, pre_oid)
+        )
+        sha_hits.extend(
+            f"{record_index}:{hit}" for hit in exact_hits(source_row, pre_sha)
+        )
+    relation = (
+        "no_exact_path_or_blob_or_sha_match"
+        if not (path_hits or blob_hits or sha_hits)
+        else "match_requires_review"
+    )
     return {
         "registration_id": holding["registration_id"],
         "source_atom_set_ref": holding["source_atom_set_ref"],
@@ -149,7 +175,13 @@ def build_relation(path: str, pre_oid: str, pre_sha: str, holding: dict, records
     }
 
 
-def build_row(ordinal: int, report_row: dict, holdings: list[dict], holding_rows: dict[str, list[dict]], source_row: dict) -> dict:
+def build_row(
+    ordinal: int,
+    report_row: dict,
+    holdings: list[dict],
+    holding_rows: dict[str, list[dict]],
+    source_row: dict,
+) -> dict:
     path = report_row["path"]
     pre_blob = git_blob(PRE_ISOLATION, path)
     archive_blob = git_blob(ARCHIVE, path)
@@ -158,11 +190,18 @@ def build_row(ordinal: int, report_row: dict, holdings: list[dict], holding_rows
     if pre_oid is None or archive_oid is None:
         raise ValueError(f"missing Git object for {path}")
     pre_sha = sha(pre_blob)
-    relations = [build_relation(path, pre_oid, pre_sha, holding, holding_rows[holding["registration_id"]]) for holding in holdings]
+    relations = [
+        build_relation(
+            path, pre_oid, pre_sha, holding, holding_rows[holding["registration_id"]]
+        )
+        for holding in holdings
+    ]
     current_oid = git_oid(CURRENT_CAPTURE, path)
     if source_row["source_path"] != path:
         raise ValueError(f"source set path mismatch for {path}")
-    all_unmatched = all(r["relation"] == "no_exact_path_or_blob_or_sha_match" for r in relations)
+    all_unmatched = all(
+        r["relation"] == "no_exact_path_or_blob_or_sha_match" for r in relations
+    )
     return {
         "global_ordinal": ordinal,
         "source_item_id": f"OUTSIDE67-PATH-{ordinal:03d}",
@@ -188,7 +227,8 @@ def build_row(ordinal: int, report_row: dict, holdings: list[dict], holding_rows
             "sha256": pre_sha,
             "bytes": len(pre_blob),
             "reported_blob_oid": report_row["pre_isolation_blob_oid"],
-            "reported_blob_oid_matches_git": pre_oid == report_row["pre_isolation_blob_oid"],
+            "reported_blob_oid_matches_git": pre_oid
+            == report_row["pre_isolation_blob_oid"],
         },
         "archive": {
             "commit": ARCHIVE,
@@ -196,8 +236,11 @@ def build_row(ordinal: int, report_row: dict, holdings: list[dict], holding_rows
             "sha256": sha(archive_blob),
             "bytes": len(archive_blob),
             "reported_blob_oid": report_row["archive_commit_blob_oid"],
-            "reported_blob_oid_matches_git": archive_oid == report_row["archive_commit_blob_oid"],
-            "relation_to_pre_isolation": "same" if archive_blob == pre_blob else "different",
+            "reported_blob_oid_matches_git": archive_oid
+            == report_row["archive_commit_blob_oid"],
+            "relation_to_pre_isolation": "same"
+            if archive_blob == pre_blob
+            else "different",
         },
         "archive_root_present": report_row["archive_root_present"],
         "legacy_catalog_record_count": report_row["legacy_catalog_record_count"],
@@ -207,9 +250,13 @@ def build_row(ordinal: int, report_row: dict, holdings: list[dict], holding_rows
             "blob_oid": current_oid,
         },
         "live_holding_relations": relations,
-        "existing_holding_inclusion_relation": "not_in_any_of_13_live_holdings" if all_unmatched else "unresolved_match_requires_review",
+        "existing_holding_inclusion_relation": "not_in_any_of_13_live_holdings"
+        if all_unmatched
+        else "unresolved_match_requires_review",
         "semantic_inclusion_relation": "unknown_not_semantically_assessed",
-        "new_holding_needed": "unresolved_new_holding_needed" if all_unmatched else "unresolved",
+        "new_holding_needed": "unresolved_new_holding_needed"
+        if all_unmatched
+        else "unresolved",
         "source_holding_status": "proposed_preserved_unassigned",
         "semantic_disposition": "not_started",
         "authority_effect": "none",
@@ -231,12 +278,20 @@ def build() -> dict:
     holdings = live_holdings(register)
     if {row["registration_id"] for row in holdings} != LIVE_HOLDING_IDS:
         raise ValueError("unexpected live holding roster")
-    holding_rows = {item["registration_id"]: load_jsonl(relocated(ROOT / item["source_atom_set_ref"])) for item in holdings}
+    holding_rows = {
+        item["registration_id"]: load_jsonl(
+            relocated(ROOT / item["source_atom_set_ref"])
+        )
+        for item in holdings
+    }
     selected = report["rows"][30:48]
     selected_source = source_rows[30:48]
     if len(selected) != 18 or len(selected_source) != 18:
         raise ValueError("expected outside-67 rows 31 through 48")
-    rows = [build_row(i + 31, row, holdings, holding_rows, selected_source[i]) for i, row in enumerate(selected)]
+    rows = [
+        build_row(i + 31, row, holdings, holding_rows, selected_source[i])
+        for i, row in enumerate(selected)
+    ]
     return {
         "schema": SCHEMA,
         "candidate_id": CANDIDATE_ID,
@@ -265,22 +320,51 @@ def build() -> dict:
             "management_register_path": REGISTER_PATH,
             "management_register_sha256": sha(register_path.read_bytes()),
             "pre_isolation_holding_path": HOLDING_PATH,
-            "pre_isolation_holding_sha256": sha(relocated(ROOT / HOLDING_PATH).read_bytes()),
+            "pre_isolation_holding_sha256": sha(
+                relocated(ROOT / HOLDING_PATH).read_bytes()
+            ),
             "read_only": True,
         },
         "live_holdings": holdings,
         "rows": rows,
         "aggregate": {
-            "candidate_product_counts": dict(sorted(Counter(row["candidate_product"] for row in rows).items())),
-            "candidate_phase_counts": dict(sorted(Counter(row["candidate_phase"] for row in rows).items())),
-            "archive_blob_relation_counts": dict(sorted(Counter(row["archive"]["relation_to_pre_isolation"] for row in rows).items())),
-            "current_state_counts": dict(sorted(Counter(row["current_capture"]["state"] for row in rows).items())),
-            "not_in_any_live_holding_count": sum(row["existing_holding_inclusion_relation"] == "not_in_any_of_13_live_holdings" for row in rows),
-            "new_holding_needed_unresolved_count": sum(row["new_holding_needed"] == "unresolved_new_holding_needed" for row in rows),
-            "implementation_unknown_count": sum(row["implementation_status"].startswith("unknown") for row in rows),
-            "degradation_unknown_count": sum(row["degradation_assessment"].startswith("unknown") for row in rows),
-            "semantic_inclusion_unknown_count": sum(row["semantic_inclusion_status"].startswith("unknown") for row in rows),
-            "legacy_catalog_zero_count": sum(row["legacy_catalog_record_count"] == 0 for row in rows),
+            "candidate_product_counts": dict(
+                sorted(Counter(row["candidate_product"] for row in rows).items())
+            ),
+            "candidate_phase_counts": dict(
+                sorted(Counter(row["candidate_phase"] for row in rows).items())
+            ),
+            "archive_blob_relation_counts": dict(
+                sorted(
+                    Counter(
+                        row["archive"]["relation_to_pre_isolation"] for row in rows
+                    ).items()
+                )
+            ),
+            "current_state_counts": dict(
+                sorted(Counter(row["current_capture"]["state"] for row in rows).items())
+            ),
+            "not_in_any_live_holding_count": sum(
+                row["existing_holding_inclusion_relation"]
+                == "not_in_any_of_13_live_holdings"
+                for row in rows
+            ),
+            "new_holding_needed_unresolved_count": sum(
+                row["new_holding_needed"] == "unresolved_new_holding_needed"
+                for row in rows
+            ),
+            "implementation_unknown_count": sum(
+                row["implementation_status"].startswith("unknown") for row in rows
+            ),
+            "degradation_unknown_count": sum(
+                row["degradation_assessment"].startswith("unknown") for row in rows
+            ),
+            "semantic_inclusion_unknown_count": sum(
+                row["semantic_inclusion_status"].startswith("unknown") for row in rows
+            ),
+            "legacy_catalog_zero_count": sum(
+                row["legacy_catalog_record_count"] == 0 for row in rows
+            ),
         },
         "findings": [
             "outside-67 report orderの31–48件を18件として固定した。全件がgovernance/crosswalk配下で、candidate productはshared-cross-product、candidate phaseはupstream-governance-or-crosswalkに留める。",
@@ -292,11 +376,50 @@ def build() -> dict:
             "13 holdingの歴史的分母は親d272に固定し、後続baseのregister変更でこの研究証拠を再計算・上書きしない。",
         ],
         "proposed_row_schema": {
-            "identity": ["global_ordinal", "source_item_id", "source_unit", "source_path", "artifact_kind", "diff_status"],
-            "candidate_classification": ["candidate_product", "candidate_product_basis", "product_status", "candidate_phase", "candidate_phase_basis", "phase_status", "implementation_status", "implementation_evidence", "degradation_assessment", "degradation_evidence", "semantic_inclusion_status", "semantic_inclusion_evidence"],
-            "physical_revision": ["pre_isolation", "archive", "archive_root_present", "current_capture", "legacy_catalog_record_count"],
-            "holding_relation": ["live_holding_relations", "existing_holding_inclusion_relation", "semantic_inclusion_relation", "new_holding_needed"],
-            "boundary": ["source_holding_status", "semantic_disposition", "authority_effect", "meaning_change_applied", "successor_requirement_ids", "human_decision_ref", "old_runtime_test_ci_execution"],
+            "identity": [
+                "global_ordinal",
+                "source_item_id",
+                "source_unit",
+                "source_path",
+                "artifact_kind",
+                "diff_status",
+            ],
+            "candidate_classification": [
+                "candidate_product",
+                "candidate_product_basis",
+                "product_status",
+                "candidate_phase",
+                "candidate_phase_basis",
+                "phase_status",
+                "implementation_status",
+                "implementation_evidence",
+                "degradation_assessment",
+                "degradation_evidence",
+                "semantic_inclusion_status",
+                "semantic_inclusion_evidence",
+            ],
+            "physical_revision": [
+                "pre_isolation",
+                "archive",
+                "archive_root_present",
+                "current_capture",
+                "legacy_catalog_record_count",
+            ],
+            "holding_relation": [
+                "live_holding_relations",
+                "existing_holding_inclusion_relation",
+                "semantic_inclusion_relation",
+                "new_holding_needed",
+            ],
+            "boundary": [
+                "source_holding_status",
+                "semantic_disposition",
+                "authority_effect",
+                "meaning_change_applied",
+                "successor_requirement_ids",
+                "human_decision_ref",
+                "old_runtime_test_ci_execution",
+            ],
         },
         "prohibited_inference": [
             "path／directory prefixを正式product owner、requirement identity、authorityへ昇格しない",
@@ -309,10 +432,21 @@ def build() -> dict:
         "verification_scope": {
             "evidence_kind": "scaffold",
             "static_only": True,
-            "checks": ["selection rows 31-48", "13 live holding closure", "pre-isolation/archive blob OID", "SHA/bytes", "current capture state", "implementation/degradation unknown", "semantic-inclusion unknown", "parent-base denominator pin"],
+            "checks": [
+                "selection rows 31-48",
+                "13 live holding closure",
+                "pre-isolation/archive blob OID",
+                "SHA/bytes",
+                "current capture state",
+                "implementation/degradation unknown",
+                "semantic-inclusion unknown",
+                "parent-base denominator pin",
+            ],
         },
     }
 
 
 if __name__ == "__main__":
-    (HERE / "inventory.json").write_text(json.dumps(build(), ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    (HERE / "inventory.json").write_text(
+        json.dumps(build(), ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
+    )

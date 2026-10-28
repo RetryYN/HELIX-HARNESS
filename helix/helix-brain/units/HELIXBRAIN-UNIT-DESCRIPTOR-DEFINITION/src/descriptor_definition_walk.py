@@ -10,7 +10,9 @@ _PRODUCER = "compare_descriptor_definitions"
 _BACKFLOW = "HELIXBRAIN-L6-032-N03-PATH"
 _UNRESOLVED_REASON = "当該原意味のsource又は規範に対するowner原解釈を解決できない。元原因と所在を保持する。"
 _MISSING_REASON = "必要なdescriptor slotが当該原Bindingに供給されていない。"
-_FACTS_MISSING_REASON = "原descriptor slotの意味factsが不足している。元presenceと所在を保持する。"
+_FACTS_MISSING_REASON = (
+    "原descriptor slotの意味factsが不足している。元presenceと所在を保持する。"
+)
 _MISSING_RULE_FAILURE_INDICES = {
     "template identity": 9,
     "version": 12,
@@ -46,7 +48,10 @@ def _closed_empty_result(binding: Any) -> dict[str, Any]:
     from descriptor_definitions import _comparison
 
     return {
-        "evaluation": {"comparison": _comparison([], [], _PRODUCER, binding), "assessments": []},
+        "evaluation": {
+            "comparison": _comparison([], [], _PRODUCER, binding),
+            "assessments": [],
+        },
         "native_material": {
             "meaning_reads": [],
             "applicability_reads": [],
@@ -96,8 +101,16 @@ def _axis_event(
 ) -> dict[str, Any]:
     from descriptor_definitions import _ordered
 
-    source_refs = sorted(_object_refs(sort_source_refs), key=_ordered) if sort_source_refs is not None else []
-    key = copy.deepcopy(assessment_key) if assessment_key is not None else _key_for_slot(slot)
+    source_refs = (
+        sorted(_object_refs(sort_source_refs), key=_ordered)
+        if sort_source_refs is not None
+        else []
+    )
+    key = (
+        copy.deepcopy(assessment_key)
+        if assessment_key is not None
+        else _key_for_slot(slot)
+    )
     slot_locators = [slot_locator] if isinstance(slot_locator, str) else []
     return {
         "axis": copy.deepcopy(axis),
@@ -125,7 +138,9 @@ def _axis_event(
             "slot_locators": copy.deepcopy(slot_locators),
             "fact_locators": copy.deepcopy(fact_locators),
             "meaning_read_indices": copy.deepcopy(meaning_read_indices or []),
-            "applicability_read_indices": copy.deepcopy(applicability_read_indices or []),
+            "applicability_read_indices": copy.deepcopy(
+                applicability_read_indices or []
+            ),
             "subject_ref": _presence(subject_ref),
             "binding": _presence(binding),
             "axis_name": copy.deepcopy(axis["axis"]),
@@ -133,23 +148,33 @@ def _axis_event(
             "reason": copy.deepcopy(axis["reason"]),
             "backflow_owner": copy.deepcopy(axis["backflow_owner"]),
             "finding_rule_indices": [],
-            "sort_source_refs": _presence(source_refs) if sort_source_refs is not None else {"presence": "absent"},
+            "sort_source_refs": _presence(source_refs)
+            if sort_source_refs is not None
+            else {"presence": "absent"},
             "special_read_indices": [],
             "pair_origin_links": copy.deepcopy(pair_origin_links or []),
-            "applicability_judgment_links": copy.deepcopy(applicability_judgment_links or []),
+            "applicability_judgment_links": copy.deepcopy(
+                applicability_judgment_links or []
+            ),
             "meaning_support_links": copy.deepcopy(meaning_support_links or []),
             "meaning_problem_links": copy.deepcopy(meaning_problem_links or []),
             "special_support_links": [],
         },
-}
+    }
 
 
-def evaluate_descriptor_definition_walk(context: dict[str, object]) -> dict[str, object]:
+def evaluate_descriptor_definition_walk(
+    context: dict[str, object],
+) -> dict[str, object]:
     """Build FN1 comparison and all native/index material from one validated input."""
     if not isinstance(context, dict) or set(context) != {"validated"}:
         _stop("context_shape")
     validated = context["validated"]
-    if not isinstance(validated, dict) or set(validated) != {"input", "input_issues", "unusable_source_refs"}:
+    if not isinstance(validated, dict) or set(validated) != {
+        "input",
+        "input_issues",
+        "unusable_source_refs",
+    }:
         _stop("validated_shape")
     raw = validated["input"]
     if raw is None:
@@ -157,7 +182,9 @@ def evaluate_descriptor_definition_walk(context: dict[str, object]) -> dict[str,
     if not isinstance(raw, dict):
         _stop("input_shape")
     claims = raw["claims"] if "claims" in raw else []
-    if not isinstance(claims, list) or any(not isinstance(claim, dict) for claim in claims):
+    if not isinstance(claims, list) or any(
+        not isinstance(claim, dict) for claim in claims
+    ):
         _stop("supplied_claim_ports")
     raw_binding = raw.get("binding")
     if not isinstance(raw_binding, dict):
@@ -169,7 +196,9 @@ def evaluate_descriptor_definition_walk(context: dict[str, object]) -> dict[str,
     # unchanged. The existing structural guard receives only a local view;
     # every native reader and returned observation still uses the original raw.
     structural_view = raw if "claims" in raw else {**raw, "claims": []}
-    population = _fn1_scope_guard(structural_view, raw_binding, allow_missing_facts=True)
+    population = _fn1_scope_guard(
+        structural_view, raw_binding, allow_missing_facts=True
+    )
 
     # Keep the existing stop for a raw-distinct slot that only compares equal
     # to root through nullable Ref members. A distinct full candidate frame is
@@ -225,7 +254,9 @@ def evaluate_descriptor_definition_walk(context: dict[str, object]) -> dict[str,
     }
     events: list[dict[str, Any]] = []
     required_kinds = set(raw["required_descriptor_kinds"])
-    ordered_entries: list[tuple[int | None, dict[str, Any] | None, str | None, dict[str, Any]]] = []
+    ordered_entries: list[
+        tuple[int | None, dict[str, Any] | None, str | None, dict[str, Any]]
+    ] = []
     for frame in population["frames"]:
         frame_binding = frame["binding"]
         for approved_kind in _APPROVED_KINDS:
@@ -271,17 +302,19 @@ def evaluate_descriptor_definition_walk(context: dict[str, object]) -> dict[str,
                 },
             )
             missing_code = f"descriptor_{_APPROVED_KINDS.index(kind) + 1:02d}_missing"
-            event["findings"] = [{
-                "code": missing_code,
-                "rule_ref": f"HELIXBRAIN-L5-032-R-{missing_code}",
-                "subject_ref": copy.deepcopy(subject),
-                "binding": copy.deepcopy(frame_binding),
-                "axis": axis_name,
-                "state": "missing",
-                "source_refs": [],
-                "reason": _MISSING_REASON,
-                "backflow_owner": "knowledge_owner",
-            }]
+            event["findings"] = [
+                {
+                    "code": missing_code,
+                    "rule_ref": f"HELIXBRAIN-L5-032-R-{missing_code}",
+                    "subject_ref": copy.deepcopy(subject),
+                    "binding": copy.deepcopy(frame_binding),
+                    "axis": axis_name,
+                    "state": "missing",
+                    "source_refs": [],
+                    "reason": _MISSING_REASON,
+                    "backflow_owner": "knowledge_owner",
+                }
+            ]
             event["origin"]["finding_rule_indices"] = [
                 _MISSING_RULE_FAILURE_INDICES[kind]
             ]
@@ -297,13 +330,19 @@ def evaluate_descriptor_definition_walk(context: dict[str, object]) -> dict[str,
         if "facts" not in slot or original_facts is None or original_facts == []:
             facts: list[Any] = []
             binding = slot.get("binding")
-            subject = binding.get("knowledge_ref") if isinstance(binding, dict) else None
+            subject = (
+                binding.get("knowledge_ref") if isinstance(binding, dict) else None
+            )
             if not isinstance(subject, dict) and isinstance(binding, dict):
                 subject = binding.get("template_ref")
             if not isinstance(subject, dict):
                 _stop("input_binding_shape")
-            knowledge_ref = binding.get("knowledge_ref") if isinstance(binding, dict) else None
-            owner = knowledge_ref.get("owner") if isinstance(knowledge_ref, dict) else None
+            knowledge_ref = (
+                binding.get("knowledge_ref") if isinstance(binding, dict) else None
+            )
+            owner = (
+                knowledge_ref.get("owner") if isinstance(knowledge_ref, dict) else None
+            )
             axis = {
                 "subject_ref": copy.deepcopy(subject),
                 "binding": copy.deepcopy(binding),
@@ -313,17 +352,19 @@ def evaluate_descriptor_definition_walk(context: dict[str, object]) -> dict[str,
                 "reason": _FACTS_MISSING_REASON,
                 "backflow_owner": owner if isinstance(owner, str) else None,
             }
-            events.append(_axis_event(
-                axis=axis,
-                slot=slot,
-                slot_locator=slot_locator,
-                fact_locators=[],
-                cause="facts_absent_or_null_or_empty",
-                branch="facts_missing",
-                subject_ref=subject,
-                binding=binding,
-                sort_source_refs=[],
-            ))
+            events.append(
+                _axis_event(
+                    axis=axis,
+                    slot=slot,
+                    slot_locator=slot_locator,
+                    fact_locators=[],
+                    cause="facts_absent_or_null_or_empty",
+                    branch="facts_missing",
+                    subject_ref=subject,
+                    binding=binding,
+                    sort_source_refs=[],
+                )
+            )
         elif isinstance(original_facts, list):
             facts = original_facts
         else:
@@ -335,17 +376,21 @@ def evaluate_descriptor_definition_walk(context: dict[str, object]) -> dict[str,
                 _stop("fact_shape")
             fact_locator = f"{slot_locator}/facts/{fact_index}"
             attribution = _attribution_axis(validated, slot, fact)
-            events.append(_axis_event(
-                axis=attribution,
-                slot=slot,
-                slot_locator=slot_locator,
-                fact_locators=[fact_locator],
-                cause="owner_descriptor_attribution",
-                branch="existing_definition_result",
-                subject_ref=attribution["subject_ref"],
-                binding=attribution["binding"],
-                sort_source_refs=[fact["source_ref"]] if isinstance(fact.get("source_ref"), dict) else [],
-            ))
+            events.append(
+                _axis_event(
+                    axis=attribution,
+                    slot=slot,
+                    slot_locator=slot_locator,
+                    fact_locators=[fact_locator],
+                    cause="owner_descriptor_attribution",
+                    branch="existing_definition_result",
+                    subject_ref=attribution["subject_ref"],
+                    binding=attribution["binding"],
+                    sort_source_refs=[fact["source_ref"]]
+                    if isinstance(fact.get("source_ref"), dict)
+                    else [],
+                )
+            )
 
         # The current native path retains unknown reads and their target-scoped
         # problems. A read is still acquired only once per raw fact; each
@@ -359,22 +404,34 @@ def evaluate_descriptor_definition_walk(context: dict[str, object]) -> dict[str,
                 "normative_entry_pointer": frame["entry_pointer"],
             }
             bundle = read_original_definition_meaning_bundle(validated, request)
-            if not isinstance(bundle, dict) or set(bundle) != {"read", "problem_scopes", "support_origins"}:
+            if not isinstance(bundle, dict) or set(bundle) != {
+                "read",
+                "problem_scopes",
+                "support_origins",
+            }:
                 _stop("meaning_bundle_shape")
             read = bundle["read"]
             if not isinstance(read, dict) or set(read) != {
-                "slot_locator", "fact_locator", "binding", "normative_frame", "acquisition_state",
-                "occurrences", "supports", "problems",
+                "slot_locator",
+                "fact_locator",
+                "binding",
+                "normative_frame",
+                "acquisition_state",
+                "occurrences",
+                "supports",
+                "problems",
             }:
                 _stop("meaning_read_shape")
             problem_scopes = bundle["problem_scopes"]
             support_origins = bundle["support_origins"]
-            if (read["acquisition_state"] != "unknown"
-                    or read["supports"]
-                    or not isinstance(read["problems"], list)
-                    or not isinstance(problem_scopes, list)
-                    or not isinstance(support_origins, list)
-                    or support_origins):
+            if (
+                read["acquisition_state"] != "unknown"
+                or read["supports"]
+                or not isinstance(read["problems"], list)
+                or not isinstance(problem_scopes, list)
+                or not isinstance(support_origins, list)
+                or support_origins
+            ):
                 _stop("meaning_read_branch")
             for problem in read["problems"]:
                 cause = problem.get("cause") if isinstance(problem, dict) else None
@@ -382,16 +439,20 @@ def evaluate_descriptor_definition_walk(context: dict[str, object]) -> dict[str,
                     _stop("meaning_problem_branch")
             meaning_index = len(native["meaning_reads"])
             native["meaning_reads"].append(copy.deepcopy(read))
-            native["meaning_read_origins"].append({
-                "meaning_read_index": meaning_index,
-                "problem_scopes": copy.deepcopy(problem_scopes),
-                "support_origins": copy.deepcopy(support_origins),
-            })
+            native["meaning_read_origins"].append(
+                {
+                    "meaning_read_index": meaning_index,
+                    "problem_scopes": copy.deepcopy(problem_scopes),
+                    "support_origins": copy.deepcopy(support_origins),
+                }
+            )
             original_refs = _object_refs([fact.get("ref"), fact.get("source_ref")])
             reason = _UNRESOLVED_REASON
             owner = None
             binding = slot.get("binding")
-            if isinstance(binding, dict) and isinstance(binding.get("knowledge_ref"), dict):
+            if isinstance(binding, dict) and isinstance(
+                binding.get("knowledge_ref"), dict
+            ):
                 owner = binding["knowledge_ref"].get("owner")
             axis = {
                 "subject_ref": copy.deepcopy(fact.get("ref")),
@@ -406,16 +467,44 @@ def evaluate_descriptor_definition_walk(context: dict[str, object]) -> dict[str,
             sort_sources.extend(
                 copy.deepcopy(occurrence["source_ref"])
                 for occurrence in read["occurrences"]
-                if isinstance(occurrence, dict) and isinstance(occurrence.get("source_ref"), dict)
+                if isinstance(occurrence, dict)
+                and isinstance(occurrence.get("source_ref"), dict)
             )
-            target_problem_indices = sorted([
-                scope["problem_index"]
-                for scope in problem_scopes
-                if isinstance(scope, dict) and scope.get("relevance") == "target"
-            ])
+            target_problem_indices = sorted(
+                [
+                    scope["problem_index"]
+                    for scope in problem_scopes
+                    if isinstance(scope, dict) and scope.get("relevance") == "target"
+                ]
+            )
             if target_problem_indices:
                 for problem_index in target_problem_indices:
-                    events.append(_axis_event(
+                    events.append(
+                        _axis_event(
+                            axis=axis,
+                            slot=slot,
+                            slot_locator=slot_locator,
+                            fact_locators=[fact_locator],
+                            cause="required_source_or_interpretation_unresolved",
+                            branch="source_unresolved",
+                            subject_ref=fact.get("ref"),
+                            binding=binding,
+                            meaning_read_indices=[meaning_index],
+                            meaning_problem_links=[
+                                {
+                                    "meaning_read_index": meaning_index,
+                                    "problem_index": problem_index,
+                                }
+                            ],
+                            sort_source_refs=sort_sources,
+                        )
+                    )
+            else:
+                # No supports and no target problem is the existing unresolved
+                # read fallback. Unattributed source problems remain only in
+                # the same native read and are not promoted to this target.
+                events.append(
+                    _axis_event(
                         axis=axis,
                         slot=slot,
                         slot_locator=slot_locator,
@@ -425,28 +514,9 @@ def evaluate_descriptor_definition_walk(context: dict[str, object]) -> dict[str,
                         subject_ref=fact.get("ref"),
                         binding=binding,
                         meaning_read_indices=[meaning_index],
-                        meaning_problem_links=[{
-                            "meaning_read_index": meaning_index,
-                            "problem_index": problem_index,
-                        }],
                         sort_source_refs=sort_sources,
-                    ))
-            else:
-                # No supports and no target problem is the existing unresolved
-                # read fallback. Unattributed source problems remain only in
-                # the same native read and are not promoted to this target.
-                events.append(_axis_event(
-                    axis=axis,
-                    slot=slot,
-                    slot_locator=slot_locator,
-                    fact_locators=[fact_locator],
-                    cause="required_source_or_interpretation_unresolved",
-                    branch="source_unresolved",
-                    subject_ref=fact.get("ref"),
-                    binding=binding,
-                    meaning_read_indices=[meaning_index],
-                    sort_source_refs=sort_sources,
-                ))
+                    )
+                )
 
         # A single-fact slot has no pair candidates; retain the annotated producer result.
         if facts and len(facts) != 1:
@@ -455,7 +525,9 @@ def evaluate_descriptor_definition_walk(context: dict[str, object]) -> dict[str,
         if not isinstance(pair_result, dict) or set(pair_result) != {"axes", "origins"}:
             _stop("pair_result_shape")
         pair_index = len(native["pair_reads"])
-        native["pair_reads"].append({"slot_locator": slot_locator, "result": copy.deepcopy(pair_result)})
+        native["pair_reads"].append(
+            {"slot_locator": slot_locator, "result": copy.deepcopy(pair_result)}
+        )
         if pair_result["axes"] or pair_result["origins"]:
             _stop("meaning_pair_nonempty_unimplemented")
 
@@ -467,47 +539,67 @@ def evaluate_descriptor_definition_walk(context: dict[str, object]) -> dict[str,
         if not isinstance(judgments, list):
             _stop("applicability_projection_shape")
         batch_index = len(native["applicability_judgment_batches"])
-        native["applicability_judgment_batches"].append({
-            "applicability_read_index": app_index,
-            "slot_locator": slot_locator,
-            "judgments": copy.deepcopy(judgments),
-        })
+        native["applicability_judgment_batches"].append(
+            {
+                "applicability_read_index": app_index,
+                "slot_locator": slot_locator,
+                "judgments": copy.deepcopy(judgments),
+            }
+        )
         for judgment_index, judgment in enumerate(judgments):
             if not isinstance(judgment, dict) or set(judgment) != {
-                "state", "origin_branch", "cause", "axis", "reason", "source_refs",
-                "subject_ref", "binding", "backflow_owner", "slot_locator", "record_locator",
+                "state",
+                "origin_branch",
+                "cause",
+                "axis",
+                "reason",
+                "source_refs",
+                "subject_ref",
+                "binding",
+                "backflow_owner",
+                "slot_locator",
+                "record_locator",
             }:
                 _stop("applicability_judgment_shape")
             na_axis = {
                 "subject_ref": copy.deepcopy(judgment["subject_ref"].get("value"))
-                    if judgment["subject_ref"].get("presence") == "supplied" else None,
+                if judgment["subject_ref"].get("presence") == "supplied"
+                else None,
                 "binding": copy.deepcopy(judgment["binding"].get("value"))
-                    if judgment["binding"].get("presence") == "supplied" else None,
+                if judgment["binding"].get("presence") == "supplied"
+                else None,
                 "axis": judgment["axis"],
                 "state": judgment["state"],
                 "original_refs": copy.deepcopy(judgment["source_refs"]),
                 "reason": judgment["reason"],
                 "backflow_owner": judgment["backflow_owner"],
             }
-            events.append(_axis_event(
-                axis=na_axis,
-                slot=slot,
-                slot_locator=slot_locator,
-                fact_locators=[],
-                cause=judgment["cause"],
-                branch=judgment["origin_branch"],
-                subject_ref=na_axis["subject_ref"],
-                binding=na_axis["binding"],
-                applicability_read_indices=[app_index],
-                applicability_judgment_links=[{"batch_index": batch_index, "judgment_index": judgment_index}],
-                sort_source_refs=judgment["source_refs"],
-            ))
+            events.append(
+                _axis_event(
+                    axis=na_axis,
+                    slot=slot,
+                    slot_locator=slot_locator,
+                    fact_locators=[],
+                    cause=judgment["cause"],
+                    branch=judgment["origin_branch"],
+                    subject_ref=na_axis["subject_ref"],
+                    binding=na_axis["binding"],
+                    applicability_read_indices=[app_index],
+                    applicability_judgment_links=[
+                        {"batch_index": batch_index, "judgment_index": judgment_index}
+                    ],
+                    sort_source_refs=judgment["source_refs"],
+                )
+            )
 
     ordered = sorted(
         enumerate(events),
         key=lambda item: _public_axis_sort_key(
-            item[1]["axis"], item[1]["slot"], item[1]["sort_source_refs"],
-            item[1]["sort_source_refs_present"], item[0],
+            item[1]["axis"],
+            item[1]["slot"],
+            item[1]["sort_source_refs"],
+            item[1]["sort_source_refs_present"],
+            item[0],
         ),
     )
     axes: list[dict[str, Any]] = []
@@ -520,24 +612,28 @@ def evaluate_descriptor_definition_walk(context: dict[str, object]) -> dict[str,
     finding_ordinal = 0
     for event_index, event in enumerate(events):
         for finding in event["findings"]:
-            finding_events.append((
-                event_index,
-                finding,
-                _public_finding_sort_key(
+            finding_events.append(
+                (
+                    event_index,
                     finding,
-                    event["slot"],
-                    event["sort_source_refs"],
-                    event["sort_source_refs_present"],
-                    finding_ordinal,
-                ),
-            ))
+                    _public_finding_sort_key(
+                        finding,
+                        event["slot"],
+                        event["sort_source_refs"],
+                        event["sort_source_refs_present"],
+                        finding_ordinal,
+                    ),
+                )
+            )
             finding_ordinal += 1
     findings: list[dict[str, Any]] = []
     for finding_index, (event_index, finding, _sort_key) in enumerate(
         sorted(finding_events, key=lambda item: item[2])
     ):
         findings.append(copy.deepcopy(finding))
-        events[event_index]["assessment"]["comparison_finding_indices"].append(finding_index)
+        events[event_index]["assessment"]["comparison_finding_indices"].append(
+            finding_index
+        )
 
     assessments = []
     for ordinal, event in enumerate(events):

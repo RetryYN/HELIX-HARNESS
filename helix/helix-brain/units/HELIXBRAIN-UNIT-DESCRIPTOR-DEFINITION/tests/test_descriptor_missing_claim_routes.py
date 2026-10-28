@@ -76,13 +76,25 @@ class TestDescriptorMissingClaimRoutes(unittest.TestCase):
 
                 self.assertEqual(len(uses), 1)
                 use = uses[0]
-                self.assertEqual(set(use), {
-                    "claim_locator", "claim", "target_read", "intent_read",
-                    "assessment_indices", "unmatched_match_indices", "basis_source_indices",
-                    "unresolved_basis_ref_indices", "basis_class", "missing_support_indices",
-                    "undefined_support_indices", "route", "route_reason",
-                    "primary_definition_assessment_indices",
-                })
+                self.assertEqual(
+                    set(use),
+                    {
+                        "claim_locator",
+                        "claim",
+                        "target_read",
+                        "intent_read",
+                        "assessment_indices",
+                        "unmatched_match_indices",
+                        "basis_source_indices",
+                        "unresolved_basis_ref_indices",
+                        "basis_class",
+                        "missing_support_indices",
+                        "undefined_support_indices",
+                        "route",
+                        "route_reason",
+                        "primary_definition_assessment_indices",
+                    },
+                )
                 claim = raw["claims"][0]
                 self.assertEqual(use["claim_locator"], "/claims/0")
                 self.assertEqual(use["claim"], claim)
@@ -101,12 +113,22 @@ class TestDescriptorMissingClaimRoutes(unittest.TestCase):
                 assessment = walk["evaluation"]["assessments"][0]
                 self.assertEqual(assessment["origin_branch"], "required_slot_absent")
                 self.assertEqual(assessment["state"], "missing")
-                self.assertEqual(assessment["key"]["binding"], {
-                    "presence": "supplied", "value": raw["binding"],
-                })
-                self.assertEqual(assessment["key"]["slot_identity"], {"presence": "absent"})
-                self.assertEqual(assessment["key"]["descriptor_kind"], "template identity")
-                self.assertEqual(assessment["axis_name"], "template identity.definition")
+                self.assertEqual(
+                    assessment["key"]["binding"],
+                    {
+                        "presence": "supplied",
+                        "value": raw["binding"],
+                    },
+                )
+                self.assertEqual(
+                    assessment["key"]["slot_identity"], {"presence": "absent"}
+                )
+                self.assertEqual(
+                    assessment["key"]["descriptor_kind"], "template identity"
+                )
+                self.assertEqual(
+                    assessment["axis_name"], "template identity.definition"
+                )
                 self.assertEqual(use["basis_class"], expected_class)
                 self.assertEqual(use["route"], expected_route)
                 self.assertEqual(use["route_reason"], _ROUTE_REASONS[expected_route])

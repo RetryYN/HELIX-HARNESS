@@ -26,7 +26,9 @@ class TestDescriptorDefinitionWalkLinks(unittest.TestCase):
         raw = base_input(load_document())
         raw_before = copy.deepcopy(raw)
         validated = validate_supply_input(raw)
-        self.assertIsInstance(validated["input"], dict, "setup: L7 normal fixture decodes")
+        self.assertIsInstance(
+            validated["input"], dict, "setup: L7 normal fixture decodes"
+        )
         validated_before = copy.deepcopy(validated)
         self.assertTrue(all(len(slot["facts"]) == 1 for slot in raw["descriptors"]))
 
@@ -66,7 +68,9 @@ class TestDescriptorDefinitionWalkLinks(unittest.TestCase):
             key = (read["slot_locator"], read["fact_locator"])
             self.assertIn(key, facts)
             meaning_index_by_locators[key] = index
-            self.assertEqual(read["binding"], _presence(slots[read["slot_locator"]]["binding"]))
+            self.assertEqual(
+                read["binding"], _presence(slots[read["slot_locator"]]["binding"])
+            )
             self.assertEqual(len(read["problems"]), 1)
             problem = read["problems"][0]
             self.assertEqual(problem["cause"], "source_unresolved")
@@ -75,28 +79,42 @@ class TestDescriptorDefinitionWalkLinks(unittest.TestCase):
             self.assertEqual(problem["source_ref"], _presence(raw["sources"][0]["ref"]))
 
             observation = meaning_origins[index]
-            self.assertEqual(set(observation), {"meaning_read_index", "problem_scopes", "support_origins"})
+            self.assertEqual(
+                set(observation),
+                {"meaning_read_index", "problem_scopes", "support_origins"},
+            )
             self.assertEqual(observation["meaning_read_index"], index)
-            self.assertEqual(observation["problem_scopes"], [{"problem_index": 0, "relevance": "target"}])
+            self.assertEqual(
+                observation["problem_scopes"],
+                [{"problem_index": 0, "relevance": "target"}],
+            )
             self.assertEqual(observation["support_origins"], [])
 
         applicability_reads = native["applicability_reads"]
         batches = native["applicability_judgment_batches"]
         self.assertEqual(len(applicability_reads), len(slots))
         self.assertEqual(len(batches), len(slots))
-        app_index_by_slot = {row["slot_locator"]: index for index, row in enumerate(applicability_reads)}
-        batch_index_by_slot = {row["slot_locator"]: index for index, row in enumerate(batches)}
+        app_index_by_slot = {
+            row["slot_locator"]: index for index, row in enumerate(applicability_reads)
+        }
+        batch_index_by_slot = {
+            row["slot_locator"]: index for index, row in enumerate(batches)
+        }
         self.assertEqual(set(app_index_by_slot), set(slots))
         self.assertEqual(set(batch_index_by_slot), set(slots))
         for slot_locator, read_index in app_index_by_slot.items():
-            self.assertEqual(applicability_reads[read_index]["request"], _presence(None))
+            self.assertEqual(
+                applicability_reads[read_index]["request"], _presence(None)
+            )
             batch = batches[batch_index_by_slot[slot_locator]]
             self.assertEqual(batch["applicability_read_index"], read_index)
             self.assertEqual(batch["slot_locator"], slot_locator)
             self.assertEqual(len(batch["judgments"]), 1)
             judgment = batch["judgments"][0]
             self.assertEqual(judgment["slot_locator"], slot_locator)
-            self.assertEqual(judgment["binding"], _presence(slots[slot_locator]["binding"]))
+            self.assertEqual(
+                judgment["binding"], _presence(slots[slot_locator]["binding"])
+            )
             self.assertIn(judgment["subject_ref"]["presence"], ("supplied", "absent"))
 
         # Every primary definition origin links its actual read and same-bundle problem index.
@@ -110,14 +128,17 @@ class TestDescriptorDefinitionWalkLinks(unittest.TestCase):
                 meaning_index = meaning_index_by_locators[(slot_locator, fact_locator)]
                 fact = facts[(slot_locator, fact_locator)]
                 self.assertEqual(origin["meaning_read_indices"], [meaning_index])
-                self.assertEqual(origin["meaning_problem_links"], [
-                    {"meaning_read_index": meaning_index, "problem_index": 0}
-                ])
+                self.assertEqual(
+                    origin["meaning_problem_links"],
+                    [{"meaning_read_index": meaning_index, "problem_index": 0}],
+                )
                 self.assertEqual(origin["meaning_support_links"], [])
                 self.assertEqual(origin["applicability_read_indices"], [])
                 self.assertEqual(origin["applicability_judgment_links"], [])
                 self.assertEqual(origin["subject_ref"], _presence(fact["ref"]))
-                self.assertEqual(origin["binding"], _presence(slots[slot_locator]["binding"]))
+                self.assertEqual(
+                    origin["binding"], _presence(slots[slot_locator]["binding"])
+                )
                 self.assertEqual(origin["pair_origin_links"], [])
             elif axis.endswith(".definition_applicability"):
                 slot_locator = origin["slot_locators"][0]
@@ -128,9 +149,10 @@ class TestDescriptorDefinitionWalkLinks(unittest.TestCase):
                 self.assertEqual(origin["meaning_problem_links"], [])
                 self.assertEqual(origin["meaning_support_links"], [])
                 self.assertEqual(origin["applicability_read_indices"], [read_index])
-                self.assertEqual(origin["applicability_judgment_links"], [
-                    {"batch_index": batch_index, "judgment_index": 0}
-                ])
+                self.assertEqual(
+                    origin["applicability_judgment_links"],
+                    [{"batch_index": batch_index, "judgment_index": 0}],
+                )
                 self.assertEqual(origin["subject_ref"], judgment["subject_ref"])
                 self.assertEqual(origin["binding"], judgment["binding"])
                 self.assertEqual(origin["pair_origin_links"], [])

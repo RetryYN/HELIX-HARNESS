@@ -23,11 +23,19 @@ from oracle_view_boundary import compare_oracle_and_view_boundary as public_fn4
 BACKFLOW = "Backflow HELIXBRAIN-L6-032-FN4-ORACLE"
 
 
-def _ref(*, identity="SYNTHETIC-ORACLE", revision="rev-a", scope=None, owner="synthetic-owner"):
+def _ref(
+    *,
+    identity="SYNTHETIC-ORACLE",
+    revision="rev-a",
+    scope=None,
+    owner="synthetic-owner",
+):
     return {
         "identity": identity,
         "revision": revision,
-        "scope": {"project": "synthetic-project"} if scope is None else copy.deepcopy(scope),
+        "scope": {"project": "synthetic-project"}
+        if scope is None
+        else copy.deepcopy(scope),
         "owner": owner,
         "source_locator": "synthetic/oracle.json",
         "sha256": "a" * 64,
@@ -37,11 +45,31 @@ def _ref(*, identity="SYNTHETIC-ORACLE", revision="rev-a", scope=None, owner="sy
 class OracleRevisionPredicateTests(unittest.TestCase):
     def test_revision_difference_requires_known_matching_identity_scope_and_owner(self):
         cases = (
-            ("different revision", _ref(revision="rev-a"), _ref(revision="rev-b"), True),
+            (
+                "different revision",
+                _ref(revision="rev-a"),
+                _ref(revision="rev-b"),
+                True,
+            ),
             ("same revision", _ref(revision="rev-a"), _ref(revision="rev-a"), False),
-            ("different identity", _ref(identity="ORACLE-A"), _ref(identity="ORACLE-B", revision="rev-b"), False),
-            ("different scope", _ref(scope={"project": "P-a"}), _ref(scope={"project": "P-b"}, revision="rev-b"), False),
-            ("different owner", _ref(owner="owner-a"), _ref(owner="owner-b", revision="rev-b"), False),
+            (
+                "different identity",
+                _ref(identity="ORACLE-A"),
+                _ref(identity="ORACLE-B", revision="rev-b"),
+                False,
+            ),
+            (
+                "different scope",
+                _ref(scope={"project": "P-a"}),
+                _ref(scope={"project": "P-b"}, revision="rev-b"),
+                False,
+            ),
+            (
+                "different owner",
+                _ref(owner="owner-a"),
+                _ref(owner="owner-b", revision="rev-b"),
+                False,
+            ),
         )
         for label, left, right, expected in cases:
             with self.subTest(case=label):
@@ -74,7 +102,9 @@ class OracleRevisionPredicateTests(unittest.TestCase):
         synchronize_oracle_binding_source(raw)
         raw_before = copy.deepcopy(raw)
 
-        validated, _definitions, _identity_trace, context = oracle_projection_public_context(raw)
+        validated, _definitions, _identity_trace, context = (
+            oracle_projection_public_context(raw)
+        )
         self.assertEqual(validated["input_issues"], [])
         self.assertEqual(validated["input"], raw_before)
         context_before = copy.deepcopy(context)

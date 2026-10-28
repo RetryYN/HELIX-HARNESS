@@ -38,11 +38,13 @@ def relocated(path):
     return path
 
 
-
 HERE = Path(__file__).resolve().parent
 ROOT = HERE.parents[2]
 REPORT = ROOT / "scaffold/research/pre-isolation-outside-holding-67/report.json"
-REGISTER = ROOT / "docs/governance/management-provisional-requirement-register-pre-append-3df81ad.jsonl"
+REGISTER = (
+    ROOT
+    / "docs/governance/management-provisional-requirement-register-pre-append-3df81ad.jsonl"
+)
 PRE_ISOLATION = "2d4991042be55268bac30a8bbcdac45b3865030a"
 ARCHIVE = "064280b5c1c5c98f949e6e3be5ef87cbe4a4b658"
 HISTORICAL_CAPTURE = "3df81ad27157c471e004083783f37a5860eaa2ee"
@@ -58,15 +60,30 @@ def digest(data: bytes) -> str:
 
 
 def load_jsonl(path: Path) -> list[dict]:
-    return [json.loads(line) for line in path.read_text(encoding="utf-8").splitlines() if line.strip()]
+    return [
+        json.loads(line)
+        for line in path.read_text(encoding="utf-8").splitlines()
+        if line.strip()
+    ]
 
 
 def git_blob(commit: str, path: str) -> bytes:
-    return subprocess.run(["git", "show", f"{commit}:{path}"], cwd=ROOT, check=True, stdout=subprocess.PIPE).stdout
+    return subprocess.run(
+        ["git", "show", f"{commit}:{path}"],
+        cwd=ROOT,
+        check=True,
+        stdout=subprocess.PIPE,
+    ).stdout
 
 
 def git_oid(commit: str, path: str) -> str | None:
-    result = subprocess.run(["git", "rev-parse", f"{commit}:{path}"], cwd=ROOT, stdout=subprocess.PIPE, stderr=subprocess.DEVNULL, text=True)
+    result = subprocess.run(
+        ["git", "rev-parse", f"{commit}:{path}"],
+        cwd=ROOT,
+        stdout=subprocess.PIPE,
+        stderr=subprocess.DEVNULL,
+        text=True,
+    )
     return result.stdout.strip() if result.returncode == 0 else None
 
 
@@ -86,68 +103,110 @@ def exact_hits(value: object, target: str, prefix: str = "") -> list[str]:
 
 def holding_snapshot() -> tuple[list[dict], dict[str, list[dict]]]:
     register = load_jsonl(relocated(REGISTER))
-    superseded = {row.get("supersedes_registration_id") for row in register if row.get("supersedes_registration_id")}
-    live_rows = [row for row in register if row.get("registration_id") not in superseded]
+    superseded = {
+        row.get("supersedes_registration_id")
+        for row in register
+        if row.get("supersedes_registration_id")
+    }
+    live_rows = [
+        row for row in register if row.get("registration_id") not in superseded
+    ]
     holdings: list[dict] = []
     records: dict[str, list[dict]] = {}
     for row in live_rows:
         source_path = relocated(ROOT / row["source_atom_set_ref"])
         source_records = load_jsonl(source_path)
         records[row["registration_id"]] = source_records
-        holdings.append({
-            "registration_id": row["registration_id"],
-            "source_atom_set_ref": row["source_atom_set_ref"],
-            "source_atom_set_sha256": digest(source_path.read_bytes()),
-            "source_atom_set_record_count": len(source_records),
-            "registration_kind": row["registration_kind"],
-            "product_target": row["product_target"],
-            "authority_effect": row["authority_effect"],
-        })
+        holdings.append(
+            {
+                "registration_id": row["registration_id"],
+                "source_atom_set_ref": row["source_atom_set_ref"],
+                "source_atom_set_sha256": digest(source_path.read_bytes()),
+                "source_atom_set_record_count": len(source_records),
+                "registration_kind": row["registration_kind"],
+                "product_target": row["product_target"],
+                "authority_effect": row["authority_effect"],
+            }
+        )
     return holdings, records
 
 
-def relation_for(path: str, pre_oid: str, pre_sha: str, holdings: list[dict], records: dict[str, list[dict]]) -> list[dict]:
+def relation_for(
+    path: str,
+    pre_oid: str,
+    pre_sha: str,
+    holdings: list[dict],
+    records: dict[str, list[dict]],
+) -> list[dict]:
     relations: list[dict] = []
     for holding in holdings:
         path_hits: list[str] = []
         blob_hits: list[str] = []
         sha_hits: list[str] = []
         for record_index, record in enumerate(records[holding["registration_id"]], 1):
-            path_hits.extend(f"{record_index}:{hit}" for hit in exact_hits(record, path))
-            blob_hits.extend(f"{record_index}:{hit}" for hit in exact_hits(record, pre_oid))
-            sha_hits.extend(f"{record_index}:{hit}" for hit in exact_hits(record, pre_sha))
+            path_hits.extend(
+                f"{record_index}:{hit}" for hit in exact_hits(record, path)
+            )
+            blob_hits.extend(
+                f"{record_index}:{hit}" for hit in exact_hits(record, pre_oid)
+            )
+            sha_hits.extend(
+                f"{record_index}:{hit}" for hit in exact_hits(record, pre_sha)
+            )
         if path_hits and not blob_hits and not sha_hits:
             relation = "path_reference_only_match_requires_review"
         elif path_hits or blob_hits or sha_hits:
             relation = "match_requires_review"
         else:
             relation = "no_exact_path_or_blob_or_sha_match"
-        relations.append({
-            "registration_id": holding["registration_id"],
-            "source_atom_set_ref": holding["source_atom_set_ref"],
-            "path_match_count": len(path_hits),
-            "pre_isolation_blob_match_count": len(blob_hits),
-            "pre_isolation_sha256_match_count": len(sha_hits),
-            "path_match_evidence": path_hits,
-            "blob_match_evidence": blob_hits,
-            "sha256_match_evidence": sha_hits,
-            "relation": relation,
-        })
+        relations.append(
+            {
+                "registration_id": holding["registration_id"],
+                "source_atom_set_ref": holding["source_atom_set_ref"],
+                "path_match_count": len(path_hits),
+                "pre_isolation_blob_match_count": len(blob_hits),
+                "pre_isolation_sha256_match_count": len(sha_hits),
+                "path_match_evidence": path_hits,
+                "blob_match_evidence": blob_hits,
+                "sha256_match_evidence": sha_hits,
+                "relation": relation,
+            }
+        )
     return relations
 
 
-def build_item(ordinal: int, row: dict, holdings: list[dict], records: dict[str, list[dict]]) -> dict:
+def build_item(
+    ordinal: int, row: dict, holdings: list[dict], records: dict[str, list[dict]]
+) -> dict:
     path = row["path"]
     pre_bytes = git_blob(PRE_ISOLATION, path)
     archive_bytes = git_blob(ARCHIVE, path)
-    pre_oid = subprocess.run(["git", "rev-parse", f"{PRE_ISOLATION}:{path}"], cwd=ROOT, check=True, stdout=subprocess.PIPE, text=True).stdout.strip()
-    archive_oid = subprocess.run(["git", "rev-parse", f"{ARCHIVE}:{path}"], cwd=ROOT, check=True, stdout=subprocess.PIPE, text=True).stdout.strip()
+    pre_oid = subprocess.run(
+        ["git", "rev-parse", f"{PRE_ISOLATION}:{path}"],
+        cwd=ROOT,
+        check=True,
+        stdout=subprocess.PIPE,
+        text=True,
+    ).stdout.strip()
+    archive_oid = subprocess.run(
+        ["git", "rev-parse", f"{ARCHIVE}:{path}"],
+        cwd=ROOT,
+        check=True,
+        stdout=subprocess.PIPE,
+        text=True,
+    ).stdout.strip()
     pre_sha = digest(pre_bytes)
     archive_sha = digest(archive_bytes)
     current_oid = git_oid(HISTORICAL_CAPTURE, path)
     relations = relation_for(path, pre_oid, pre_sha, holdings, records)
-    has_path_only = any(r["relation"] == "path_reference_only_match_requires_review" for r in relations)
-    inclusion = "path_reference_only_match_requires_review" if has_path_only else "not_in_any_of_13_live_holdings"
+    has_path_only = any(
+        r["relation"] == "path_reference_only_match_requires_review" for r in relations
+    )
+    inclusion = (
+        "path_reference_only_match_requires_review"
+        if has_path_only
+        else "not_in_any_of_13_live_holdings"
+    )
     return {
         "source_item_id": f"OUTSIDE67-GLOBAL-{ordinal:03d}",
         "source_ordinal": ordinal,
@@ -193,8 +252,11 @@ def build_item(ordinal: int, row: dict, holdings: list[dict], records: dict[str,
             "sha256": archive_sha,
             "bytes": len(archive_bytes),
             "reported_blob_oid": row["archive_commit_blob_oid"],
-            "reported_blob_oid_matches_git": row["archive_commit_blob_oid"] == archive_oid,
-            "relation_to_pre_isolation": "same" if pre_oid == archive_oid else "different",
+            "reported_blob_oid_matches_git": row["archive_commit_blob_oid"]
+            == archive_oid,
+            "relation_to_pre_isolation": "same"
+            if pre_oid == archive_oid
+            else "different",
         },
         "archive_root_present": row["archive_root_present"],
         "legacy_catalog_record_count": row["legacy_catalog_record_count"],
@@ -217,20 +279,31 @@ def build_item(ordinal: int, row: dict, holdings: list[dict], records: dict[str,
 
 
 def canonical_lines(items: list[dict]) -> bytes:
-    return "".join(json.dumps(item, ensure_ascii=False, sort_keys=True, separators=(",", ":")) + "\n" for item in items).encode("utf-8")
+    return "".join(
+        json.dumps(item, ensure_ascii=False, sort_keys=True, separators=(",", ":"))
+        + "\n"
+        for item in items
+    ).encode("utf-8")
 
 
 def build() -> tuple[dict, list[dict]]:
     report = json.loads(REPORT.read_text(encoding="utf-8"))
-    report_rows = report["rows"][ORDINAL_START - 1:ORDINAL_END]
+    report_rows = report["rows"][ORDINAL_START - 1 : ORDINAL_END]
     holdings, records = holding_snapshot()
-    items = [build_item(ordinal, row, holdings, records) for ordinal, row in zip(range(ORDINAL_START, ORDINAL_END + 1), report_rows)]
+    items = [
+        build_item(ordinal, row, holdings, records)
+        for ordinal, row in zip(range(ORDINAL_START, ORDINAL_END + 1), report_rows)
+    ]
     source_bytes = canonical_lines(items)
-    products = Counter(item["path_classification"]["product_candidate"] for item in items)
+    products = Counter(
+        item["path_classification"]["product_candidate"] for item in items
+    )
     phases = Counter(item["path_classification"]["phase_candidate"] for item in items)
     relations = [item["existing_holding_inclusion_relation"] for item in items]
     same = sum(item["archive"]["relation_to_pre_isolation"] == "same" for item in items)
-    changed = sum(item["archive"]["relation_to_pre_isolation"] == "different" for item in items)
+    changed = sum(
+        item["archive"]["relation_to_pre_isolation"] == "different" for item in items
+    )
     inventory = {
         "schema": "rdp001-outside67-global-classification-49-67/v1",
         "candidate_id": "RDP-001-OUTSIDE67-GLOBAL-49-67-0044",
@@ -252,7 +325,9 @@ def build() -> tuple[dict, list[dict]]:
             "selected_count": len(items),
             "source_unit": "path_revision_pair",
             "requirement_atoms": False,
-            "archive_root_present_count": sum(item["archive_root_present"] for item in items),
+            "archive_root_present_count": sum(
+                item["archive_root_present"] for item in items
+            ),
             "same_blob_count": same,
             "changed_blob_count": changed,
             "live_holding_count": len(holdings),
@@ -279,9 +354,20 @@ def build() -> tuple[dict, list[dict]]:
             "phase_candidate_counts": dict(sorted(phases.items())),
             "same_blob_count": same,
             "changed_blob_count": changed,
-            "not_in_any_live_holding_count": relations.count("not_in_any_of_13_live_holdings"),
-            "path_reference_only_match_count": relations.count("path_reference_only_match_requires_review"),
-            "exact_blob_or_sha_match_count": sum(any(r["pre_isolation_blob_match_count"] or r["pre_isolation_sha256_match_count"] for r in item["live_holding_relations"]) for item in items),
+            "not_in_any_live_holding_count": relations.count(
+                "not_in_any_of_13_live_holdings"
+            ),
+            "path_reference_only_match_count": relations.count(
+                "path_reference_only_match_requires_review"
+            ),
+            "exact_blob_or_sha_match_count": sum(
+                any(
+                    r["pre_isolation_blob_match_count"]
+                    or r["pre_isolation_sha256_match_count"]
+                    for r in item["live_holding_relations"]
+                )
+                for item in items
+            ),
             "implementation_unknown_count": len(items),
             "degradation_unknown_count": len(items),
             "semantic_inclusion_unknown_count": len(items),
@@ -321,8 +407,18 @@ def build() -> tuple[dict, list[dict]]:
 def main() -> None:
     inventory, items = build()
     (HERE / "source-items.jsonl").write_bytes(canonical_lines(items))
-    (HERE / "inventory.json").write_text(json.dumps(inventory, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
-    print(json.dumps({"selected_count": len(items), "source_items_sha256": inventory["source_items"]["sha256"]}, ensure_ascii=False))
+    (HERE / "inventory.json").write_text(
+        json.dumps(inventory, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
+    )
+    print(
+        json.dumps(
+            {
+                "selected_count": len(items),
+                "source_items_sha256": inventory["source_items"]["sha256"],
+            },
+            ensure_ascii=False,
+        )
+    )
 
 
 if __name__ == "__main__":

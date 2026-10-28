@@ -18,7 +18,9 @@ VALIDATOR = ROOT / "scaffold/research/delegated-doc-003-028/validate.py"
 def run_case(name: str, mutate, expected_text: str) -> None:
     document = json.loads(CANDIDATE.read_text(encoding="utf-8"))
     mutate(document)
-    with tempfile.TemporaryDirectory(prefix="delegated-doc-003-028-selfcheck-") as directory:
+    with tempfile.TemporaryDirectory(
+        prefix="delegated-doc-003-028-selfcheck-"
+    ) as directory:
         candidate = Path(directory) / "inventory.json"
         candidate.write_text(json.dumps(document, ensure_ascii=False), encoding="utf-8")
         result = subprocess.run(
@@ -42,7 +44,9 @@ def main() -> int:
     )
     run_case(
         "reference edge target drift",
-        lambda document: document["reference_edges"][0].update({"target_sha256": "0" * 64}),
+        lambda document: document["reference_edges"][0].update(
+            {"target_sha256": "0" * 64}
+        ),
         "DELEGATED-REF-0303 candidate/ledger record不一致",
     )
     run_case(
@@ -67,17 +71,23 @@ def main() -> int:
     )
     run_case(
         "negative ID forgery",
-        lambda document: document["negative_conditions"][0].update({"negative_id": "ZZZ-NEG-FAKE"}),
+        lambda document: document["negative_conditions"][0].update(
+            {"negative_id": "ZZZ-NEG-FAKE"}
+        ),
         "negative ID集合不一致",
     )
     run_case(
         "reference linkage atom drift",
-        lambda document: document["reference_edge_linkage"].update({"DELEGATED-REF-0303": ["DD328-SEM-GH-AC-001"]}),
+        lambda document: document["reference_edge_linkage"].update(
+            {"DELEGATED-REF-0303": ["DD328-SEM-GH-AC-001"]}
+        ),
         "DELEGATED-REF-0303 linkage atom集合不一致",
     )
     run_case(
         "duplicate source document ID",
-        lambda document: document["source_documents"].append(dict(document["source_documents"][0])),
+        lambda document: document["source_documents"].append(
+            dict(document["source_documents"][0])
+        ),
         "source_documentsは重複なし",
     )
     run_case(
@@ -87,7 +97,13 @@ def main() -> int:
     )
     run_case(
         "normalized statement placeholder",
-        lambda document: document["atoms"][next(index for index, atom in enumerate(document["atoms"]) if atom["original_id"] == "GH-AC-001")].update({"normalized_statement": "acceptance condition GH-AC-001"}),
+        lambda document: document["atoms"][
+            next(
+                index
+                for index, atom in enumerate(document["atoms"])
+                if atom["original_id"] == "GH-AC-001"
+            )
+        ].update({"normalized_statement": "acceptance condition GH-AC-001"}),
         "normalized_statementがplaceholder",
     )
     run_case(
@@ -97,17 +113,23 @@ def main() -> int:
     )
     run_case(
         "pair acceptance audit mutation",
-        lambda document: document["pair_acceptance_reference_audit"].update({"missing_from_pair": ["GH-AC-016"]}),
+        lambda document: document["pair_acceptance_reference_audit"].update(
+            {"missing_from_pair": ["GH-AC-016"]}
+        ),
         "pair_acceptance_reference_auditが固定blob再計算結果と不一致",
     )
     run_case(
         "test atom unresolved linkage deletion",
-        lambda document: next(atom for atom in document["atoms"] if atom["original_id"] == "GH-T-014").update({"unresolved_decision_ids": []}),
+        lambda document: next(
+            atom for atom in document["atoms"] if atom["original_id"] == "GH-T-014"
+        ).update({"unresolved_decision_ids": []}),
         "DD328-SEM-GH-T-014 unresolved_decision_idsが未定義または不一致",
     )
     run_case(
         "extra unresolved pair acceptance decision",
-        lambda document: document["unresolved_decisions"].append({"decision_id": "RDP-UNRESOLVED-GH-AC-999"}),
+        lambda document: document["unresolved_decisions"].append(
+            {"decision_id": "RDP-UNRESOLVED-GH-AC-999"}
+        ),
         "unresolved_decisionsのmissing AC ID集合",
     )
     return 0

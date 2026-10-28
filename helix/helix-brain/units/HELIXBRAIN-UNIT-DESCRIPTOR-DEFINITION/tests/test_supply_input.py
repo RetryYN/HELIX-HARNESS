@@ -24,7 +24,9 @@ import unittest
 from descriptor_definitions import validate_supply_input
 
 REPOSITORY = Path(__file__).resolve().parents[5]
-L8_PATH = REPOSITORY / "docs/helix-brain/L8-unit-verification/template-semantic-supply.json"
+L8_PATH = (
+    REPOSITORY / "docs/helix-brain/L8-unit-verification/template-semantic-supply.json"
+)
 
 # 独立test basis: L5 /functions/0, /type_contract/types/{ValidatedSupply,InputIssue};
 # L8 /function_oracles/0, /additional_unit_cases/{0,1},
@@ -37,7 +39,9 @@ def load_document():
         return json.loads(fh.read().decode("utf-8"))
 
 
-MATERIALS_PATH = Path(__file__).resolve().parent / "fixtures" / "supply-input-materials.json"
+MATERIALS_PATH = (
+    Path(__file__).resolve().parent / "fixtures" / "supply-input-materials.json"
+)
 
 
 def base_input(document):
@@ -54,14 +58,18 @@ class TestSupplyInput(unittest.TestCase):
         validated = validate_supply_input(raw)
         self.assertIsInstance(validated, dict)
         self.assertIsNotNone(validated["input"])
-        self.assertEqual(validated["input"]["descriptors"][6]
-                         ["slot_identity"], "synthetic-descriptor-7")
+        self.assertEqual(
+            validated["input"]["descriptors"][6]["slot_identity"],
+            "synthetic-descriptor-7",
+        )
         self.assertEqual(len(validated["input"]["descriptors"]), 15)
         self.assertEqual(
             validated["input"]["required_descriptor_kinds"],
             raw["required_descriptor_kinds"],
         )
-        self.assertEqual(validated["input"], snapshot, "all decoded logical fields are preserved")
+        self.assertEqual(
+            validated["input"], snapshot, "all decoded logical fields are preserved"
+        )
         self.assertEqual(validated["input_issues"], [])
         self.assertEqual(raw, snapshot, "validator must not mutate input")
 
@@ -71,18 +79,23 @@ class TestSupplyInput(unittest.TestCase):
         self.assertIsNone(validated["input"])
         self.assertNotEqual(validated["input_issues"], [])
         issue = validated["input_issues"][0]
-        self.assertEqual(issue["locator"], "", "root JSON Pointer identifies the rejected raw value")
+        self.assertEqual(
+            issue["locator"], "", "root JSON Pointer identifies the rejected raw value"
+        )
         self.assertIsNone(issue["source_ref"], "root string has no supplied source Ref")
         self.assertIsInstance(issue["reason"], str)
         self.assertNotEqual(issue["reason"], "")
-        self.assertEqual(set(issue.keys()),
-                         {"locator", "reason", "source_ref"})
+        self.assertEqual(set(issue.keys()), {"locator", "reason", "source_ref"})
 
     def test_add02_meaning_null_is_preserved(self):
         document = load_document()
         raw = base_input(document)
         # ADD-02の具体変異は既存semantic_boundary_cases/1に固定済み。
-        self.assertEqual(raw["descriptors"][0]["descriptor_kind"], "template identity", "setup: target slot")
+        self.assertEqual(
+            raw["descriptors"][0]["descriptor_kind"],
+            "template identity",
+            "setup: target slot",
+        )
         raw["descriptors"][0]["facts"][0]["meaning"] = None
         snapshot = copy.deepcopy(raw)
         validated = validate_supply_input(raw)
@@ -90,8 +103,12 @@ class TestSupplyInput(unittest.TestCase):
         slot = validated["input"]["descriptors"][0]
         self.assertEqual(slot["slot_identity"], "synthetic-descriptor-1")
         self.assertIsNone(slot["facts"][0]["meaning"])
-        self.assertEqual(validated["input"], snapshot, "semantic null remains in decoded input")
-        self.assertEqual(validated["input_issues"], [], "semantic null is not a shape error")
+        self.assertEqual(
+            validated["input"], snapshot, "semantic null remains in decoded input"
+        )
+        self.assertEqual(
+            validated["input_issues"], [], "semantic null is not a shape error"
+        )
         self.assertEqual(raw, snapshot, "validator must not mutate input")
 
 

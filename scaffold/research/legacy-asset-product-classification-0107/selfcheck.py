@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Exercise SCF-B-0107 validator negative cases with expected error codes."""
+
 from __future__ import annotations
 
 import copy
@@ -10,7 +11,9 @@ import tempfile
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
-spec = importlib.util.spec_from_file_location("scf_b_0107_validate", HERE / "validate.py")
+spec = importlib.util.spec_from_file_location(
+    "scf_b_0107_validate", HERE / "validate.py"
+)
 assert spec and spec.loader
 module = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(module)
@@ -26,7 +29,13 @@ def tagged(data: bytes) -> str:
     return "sha256:" + hashlib.sha256(data).hexdigest()
 
 
-def run_case(label: str, expected_code: str, mutate_rows=None, mutate_inventory=None, mutate_module=None) -> None:
+def run_case(
+    label: str,
+    expected_code: str,
+    mutate_rows=None,
+    mutate_inventory=None,
+    mutate_module=None,
+) -> None:
     rows = copy.deepcopy(base_rows)
     inventory = copy.deepcopy(base_inventory)
     if mutate_rows:
@@ -38,10 +47,21 @@ def run_case(label: str, expected_code: str, mutate_rows=None, mutate_inventory=
         with tempfile.TemporaryDirectory(prefix="scf-b-0107-selfcheck-") as tmp:
             root = Path(tmp)
             ledger = root / original_ledger.name
-            ledger.write_text("".join(json.dumps(row, ensure_ascii=False, sort_keys=True, separators=(",", ":")) + "\n" for row in rows))
+            ledger.write_text(
+                "".join(
+                    json.dumps(
+                        row, ensure_ascii=False, sort_keys=True, separators=(",", ":")
+                    )
+                    + "\n"
+                    for row in rows
+                )
+            )
             inventory["output_sha256"] = tagged(ledger.read_bytes())
             inv = root / original_inventory.name
-            inv.write_text(json.dumps(inventory, ensure_ascii=False, sort_keys=True, indent=2) + "\n")
+            inv.write_text(
+                json.dumps(inventory, ensure_ascii=False, sort_keys=True, indent=2)
+                + "\n"
+            )
             module.LEDGER = ledger
             module.INVENTORY = inv
             if mutate_module:
@@ -50,7 +70,9 @@ def run_case(label: str, expected_code: str, mutate_rows=None, mutate_inventory=
                 module.verify()
             except AssertionError as exc:
                 if expected_code not in str(exc):
-                    raise AssertionError(f"{label}: expected {expected_code}, got {exc}") from exc
+                    raise AssertionError(
+                        f"{label}: expected {expected_code}, got {exc}"
+                    ) from exc
                 print(f"PASS negative: {label} [{expected_code}]")
             else:
                 raise AssertionError(f"{label}: mutation was accepted")
@@ -73,7 +95,9 @@ def remove_edge(rows):
 
 
 def duplicate_edge(rows):
-    rows[0]["wave_semantic_links"].append(copy.deepcopy(rows[0]["wave_semantic_links"][0]))
+    rows[0]["wave_semantic_links"].append(
+        copy.deepcopy(rows[0]["wave_semantic_links"][0])
+    )
 
 
 def source_digest(rows):
@@ -105,7 +129,9 @@ def edge_status_denominator(inventory):
 
 
 def asset_kind_denominator(inventory):
-    inventory["counts"]["target_asset_artifact_evidence_kinds"]["implementation_source"] -= 1
+    inventory["counts"]["target_asset_artifact_evidence_kinds"][
+        "implementation_source"
+    ] -= 1
 
 
 def authority_promotion(rows):
@@ -116,7 +142,9 @@ def authority_promotion(rows):
 
 
 def boundary_digest(rows):
-    rows[0]["boundary_evidence"]["HELIX-OS"]["ranges"][0]["line_text_sha256"] = "sha256:" + "f" * 64
+    rows[0]["boundary_evidence"]["HELIX-OS"]["ranges"][0]["line_text_sha256"] = (
+        "sha256:" + "f" * 64
+    )
 
 
 def remove_input(inventory):
@@ -136,16 +164,38 @@ run_case("target record duplicate", "E_TARGET_SET", mutate_rows=duplicate_first_
 run_case("edge omission", "E_EDGE_SET", mutate_rows=remove_edge)
 run_case("edge duplicate", "E_EDGE_SET", mutate_rows=duplicate_edge)
 run_case("source digest tamper", "E_SOURCE_DIGEST", mutate_rows=source_digest)
-run_case("candidate product tamper", "E_CANDIDATE_PRODUCTS", mutate_rows=candidate_product)
+run_case(
+    "candidate product tamper", "E_CANDIDATE_PRODUCTS", mutate_rows=candidate_product
+)
 run_case("extra formal owner", "E_RECORD_SCHEMA", mutate_rows=added_formal_owner)
 run_case("source read mode tamper", "E_SOURCE_DIGEST", mutate_rows=source_read_mode)
-run_case("authority promotion", "E_AUTHORITY_PROMOTION", mutate_rows=authority_promotion)
-run_case("boundary line digest tamper", "E_BOUNDARY_DIGEST", mutate_rows=boundary_digest)
+run_case(
+    "authority promotion", "E_AUTHORITY_PROMOTION", mutate_rows=authority_promotion
+)
+run_case(
+    "boundary line digest tamper", "E_BOUNDARY_DIGEST", mutate_rows=boundary_digest
+)
 run_case("input digest omission", "E_INPUT_SET", mutate_inventory=remove_input)
 run_case("input digest duplicate", "E_INPUT_SET", mutate_inventory=duplicate_input)
-run_case("inventory authority promotion", "E_INVENTORY_DECLARATION", mutate_inventory=inventory_authority)
-run_case("inventory classification rule tamper", "E_INVENTORY_DECLARATION", mutate_inventory=inventory_rule)
-run_case("edge status denominator tamper", "E_EXPECTED_DENOMINATOR", mutate_inventory=edge_status_denominator)
-run_case("asset kind denominator tamper", "E_EXPECTED_DENOMINATOR", mutate_inventory=asset_kind_denominator)
+run_case(
+    "inventory authority promotion",
+    "E_INVENTORY_DECLARATION",
+    mutate_inventory=inventory_authority,
+)
+run_case(
+    "inventory classification rule tamper",
+    "E_INVENTORY_DECLARATION",
+    mutate_inventory=inventory_rule,
+)
+run_case(
+    "edge status denominator tamper",
+    "E_EXPECTED_DENOMINATOR",
+    mutate_inventory=edge_status_denominator,
+)
+run_case(
+    "asset kind denominator tamper",
+    "E_EXPECTED_DENOMINATOR",
+    mutate_inventory=asset_kind_denominator,
+)
 run_case("fixed BASE non-ancestor", "E_BASE_NOT_ANCESTOR", mutate_module=non_ancestor)
 print("SCF-B-0107 selfcheck: PASS negative_cases=17")

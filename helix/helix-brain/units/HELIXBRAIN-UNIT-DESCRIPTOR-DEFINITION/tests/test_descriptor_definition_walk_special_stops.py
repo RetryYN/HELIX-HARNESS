@@ -45,7 +45,9 @@ class TestDescriptorDefinitionWalkSpecialStops(unittest.TestCase):
     def _validated(self, raw):
         raw_before = copy.deepcopy(raw)
         validated = validate_supply_input(raw)
-        self.assertEqual(validated["input"], raw_before, "setup: fn0 preserves the raw source entry")
+        self.assertEqual(
+            validated["input"], raw_before, "setup: fn0 preserves the raw source entry"
+        )
         self.assertEqual(validated["input_issues"], [])
         self.assertEqual(validated["unusable_source_refs"], [])
         return raw_before, validated, copy.deepcopy(validated)
@@ -75,14 +77,24 @@ class TestDescriptorDefinitionWalkSpecialStops(unittest.TestCase):
         raw, source = _raw_with_native_carrier("required_relations", [])
         raw_before, validated, validated_before = self._validated(raw)
         walk = evaluate_descriptor_definition_walk({"validated": validated})
-        self.assertEqual(set(walk), {"evaluation", "native_material", "target_reads", "intent_reads"})
-        self.assertEqual(walk["evaluation"]["comparison"]["producer_symbol"], "compare_descriptor_definitions")
-        self.assertTrue(walk["evaluation"]["comparison"]["axes"], "normal decoded input retains its existing axes")
+        self.assertEqual(
+            set(walk), {"evaluation", "native_material", "target_reads", "intent_reads"}
+        )
+        self.assertEqual(
+            walk["evaluation"]["comparison"]["producer_symbol"],
+            "compare_descriptor_definitions",
+        )
+        self.assertTrue(
+            walk["evaluation"]["comparison"]["axes"],
+            "normal decoded input retains its existing axes",
+        )
         self.assertTrue(walk["native_material"]["meaning_reads"])
-        self.assertTrue(all(
-            read["acquisition_state"] == "unknown"
-            for read in walk["native_material"]["meaning_reads"]
-        ))
+        self.assertTrue(
+            all(
+                read["acquisition_state"] == "unknown"
+                for read in walk["native_material"]["meaning_reads"]
+            )
+        )
         self.assertEqual(walk["native_material"]["special_reads"], [])
         self.assertEqual(walk["target_reads"], [])
         self.assertEqual(walk["intent_reads"], [])

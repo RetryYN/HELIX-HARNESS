@@ -5,6 +5,7 @@ This audit deliberately derives its scope from the fixed BASE disposition ledger
 it does not import the bundle generator, validator, or generated classification.
 Legacy material is read only through Git objects and is never executed.
 """
+
 from __future__ import annotations
 
 import hashlib
@@ -15,15 +16,22 @@ from pathlib import Path
 
 BASE = "a577a7cddd1405de27bf01d22b050eb2acaa9ba9"
 ROOT = Path(__file__).resolve().parents[3]
-OUTPUT = ROOT / "scaffold/research/legacy-research-assets-product-classification-0142/independent-source-audit.json"
+OUTPUT = (
+    ROOT
+    / "scaffold/research/legacy-research-assets-product-classification-0142/independent-source-audit.json"
+)
 ARCHIVE_PREFIX = "archive/legacy-generation-2026-09-14/root/"
 MANIFEST_PATH = "archive/legacy-generation-2026-09-14/MANIFEST.sha256"
 DISPOSITION = "docs/governance/legacy-asset-disposition.jsonl"
 PHASE = "docs/governance/legacy-asset-phase-product-classification-bootstrap.jsonl"
 DECISIONS = "docs/governance/legacy-asset-decisions.jsonl"
 READ_AFTER = "docs/governance/legacy-asset-copy-read-after.jsonl"
-FAILURE = "docs/governance/audits/source-rebaseline/legacy-ci-ai-runtime-source-inventory.md"
-CONSUMER = "docs/governance/audits/source-rebaseline/legacy-ci-consumer-relation-inventory.md"
+FAILURE = (
+    "docs/governance/audits/source-rebaseline/legacy-ci-ai-runtime-source-inventory.md"
+)
+CONSUMER = (
+    "docs/governance/audits/source-rebaseline/legacy-ci-consumer-relation-inventory.md"
+)
 BOUNDARY = "docs/concept/product-boundary.md"
 APPROVAL = "docs/governance/decisions/concept-v4.1-and-four-l1-approval-2026-09-17.md"
 TARGET_PREFIX = "docs/research/assets/"
@@ -79,7 +87,9 @@ def blob_oid(path: str) -> str:
 
 def jsonl(path: str) -> list[tuple[int, dict]]:
     result = []
-    for number, line in enumerate(git_bytes(path).decode(errors="replace").splitlines(), 1):
+    for number, line in enumerate(
+        git_bytes(path).decode(errors="replace").splitlines(), 1
+    ):
         if not line.strip():
             continue
         row = json.loads(line)
@@ -97,7 +107,9 @@ def regular_blob(path: str) -> tuple[str, str, str]:
     left, entry_path = rows[0].split("\t", 1)
     mode, kind, oid = left.split()
     if entry_path != archive_path or mode != "100644" or kind != "blob":
-        raise AssertionError(f"archive source is not regular blob mode 100644: {rows[0]}")
+        raise AssertionError(
+            f"archive source is not regular blob mode 100644: {rows[0]}"
+        )
     return mode, kind, oid
 
 
@@ -157,11 +169,17 @@ def main() -> None:
     phases = jsonl(PHASE)
     decisions = jsonl(DECISIONS)
     read_after = jsonl(READ_AFTER)
-    target_rows = [(number, row) for number, row in dispositions if row.get("source_path", "").startswith(TARGET_PREFIX)]
+    target_rows = [
+        (number, row)
+        for number, row in dispositions
+        if row.get("source_path", "").startswith(TARGET_PREFIX)
+    ]
     ids = [row["asset_id"] for _, row in target_rows]
     paths = [row["source_path"] for _, row in target_rows]
     if len(target_rows) != 57 or len(set(ids)) != 57 or len(set(paths)) != 57:
-        raise AssertionError(f"unexpected exact scope: rows={len(target_rows)} ids={len(set(ids))} paths={len(set(paths))}")
+        raise AssertionError(
+            f"unexpected exact scope: rows={len(target_rows)} ids={len(set(ids))} paths={len(set(paths))}"
+        )
 
     phase_by_id: dict[str, list[tuple[int, dict]]] = defaultdict(list)
     decisions_by_id: dict[str, list[tuple[int, dict]]] = defaultdict(list)
@@ -207,7 +225,9 @@ def main() -> None:
             raise AssertionError(f"source/ledger/MANIFEST SHA mismatch: {path}")
         phase_matches = phase_by_id.get(asset_id, [])
         if len(phase_matches) != 1:
-            raise AssertionError(f"phase row count for {asset_id}: {len(phase_matches)}")
+            raise AssertionError(
+                f"phase row count for {asset_id}: {len(phase_matches)}"
+            )
         phase_line, phase = phase_matches[0]
         phase_status = phase.get("phase_classification_status")
         phase_counts[phase_status] += 1
@@ -215,8 +235,16 @@ def main() -> None:
         asset_read_after = after_by_id.get(asset_id, [])
         direct_decision_count += len(asset_decisions)
         direct_read_after_count += len(asset_read_after)
-        id_wave_hits = [wave for wave, contents in wave_contents.items() if asset_id.encode() in contents]
-        path_wave_hits = [wave for wave, contents in wave_contents.items() if path.encode() in contents]
+        id_wave_hits = [
+            wave
+            for wave, contents in wave_contents.items()
+            if asset_id.encode() in contents
+        ]
+        path_wave_hits = [
+            wave
+            for wave, contents in wave_contents.items()
+            if path.encode() in contents
+        ]
         failure_id_hit = asset_id.encode() in failure_data
         failure_path_hit = path.encode() in failure_data
         consumer_id_hit = asset_id.encode() in consumer_data
@@ -253,28 +281,49 @@ def main() -> None:
                 "phase": {
                     "line": phase_line,
                     "status": phase_status,
-                    "candidate_phase_targets": sorted(phase.get("candidate_phase_targets", [])),
-                    "candidate_product_targets": sorted(phase.get("candidate_product_targets", [])),
-                    "implementation_evidence_state": phase.get("implementation_evidence_state"),
+                    "candidate_phase_targets": sorted(
+                        phase.get("candidate_phase_targets", [])
+                    ),
+                    "candidate_product_targets": sorted(
+                        phase.get("candidate_product_targets", [])
+                    ),
+                    "implementation_evidence_state": phase.get(
+                        "implementation_evidence_state"
+                    ),
                     "unresolved": sorted(phase.get("unresolved", [])),
                 },
-                "asset_specific_decision_rows": [number for number, _ in asset_decisions],
-                "asset_specific_read_after_rows": [number for number, _ in asset_read_after],
+                "asset_specific_decision_rows": [
+                    number for number, _ in asset_decisions
+                ],
+                "asset_specific_read_after_rows": [
+                    number for number, _ in asset_read_after
+                ],
                 "wave_id_hits": id_wave_hits,
                 "wave_path_hits": path_wave_hits,
                 "failure_inventory_id_or_path_hit": failure_id_hit or failure_path_hit,
-                "consumer_inventory_id_or_path_hit": consumer_id_hit or consumer_path_hit,
+                "consumer_inventory_id_or_path_hit": consumer_id_hit
+                or consumer_path_hit,
             }
         )
 
-    if group_counts != Counter({"kimi-review-lane-admission": 22, "kimi-s4-bench": 20, "kimi-smoke-rerun": 15}):
+    if group_counts != Counter(
+        {"kimi-review-lane-admission": 22, "kimi-s4-bench": 20, "kimi-smoke-rerun": 15}
+    ):
         raise AssertionError(f"unexpected group counts: {group_counts}")
     empty_records = [record for record in records if record["source"]["bytes"] == 0]
     expected_empty = 5
-    if len(empty_records) != expected_empty or total_bytes != 58243 or total_lines != 1181:
-        raise AssertionError(f"unexpected source totals: empty={len(empty_records)} bytes={total_bytes} lines={total_lines}")
+    if (
+        len(empty_records) != expected_empty
+        or total_bytes != 58243
+        or total_lines != 1181
+    ):
+        raise AssertionError(
+            f"unexpected source totals: empty={len(empty_records)} bytes={total_bytes} lines={total_lines}"
+        )
     if direct_decision_count or direct_read_after_count:
-        raise AssertionError("target-specific decision or read-after rows exist; re-audit required")
+        raise AssertionError(
+            "target-specific decision or read-after rows exist; re-audit required"
+        )
 
     boundary_receipts = {
         product: marker_receipt(BOUNDARY, entry["boundary_marker"])
@@ -290,17 +339,32 @@ def main() -> None:
     }
     for record in records:
         if record["wave_id_hits"] or record["wave_path_hits"]:
-            raise AssertionError(f"direct wave hit requires review: {record['asset_id']}")
-        if record["failure_inventory_id_or_path_hit"] or record["consumer_inventory_id_or_path_hit"]:
-            raise AssertionError(f"asset-specific failure/consumer inventory hit requires review: {record['asset_id']}")
+            raise AssertionError(
+                f"direct wave hit requires review: {record['asset_id']}"
+            )
+        if (
+            record["failure_inventory_id_or_path_hit"]
+            or record["consumer_inventory_id_or_path_hit"]
+        ):
+            raise AssertionError(
+                f"asset-specific failure/consumer inventory hit requires review: {record['asset_id']}"
+            )
 
     phase_status_counts = dict(sorted(phase_counts.items()))
     if phase_status_counts != {"unresolved": 34, "unresolved_with_candidate": 23}:
         raise AssertionError(f"unexpected phase status counts: {phase_status_counts}")
     phase_candidate_counts = {
-        "without_candidate_phase": sum(not record["phase"]["candidate_phase_targets"] for record in records),
-        "PHCAP-12": sum(record["phase"]["candidate_phase_targets"] == ["PHCAP-12"] for record in records),
-        "PHCAP-15": sum(record["phase"]["candidate_phase_targets"] == ["PHCAP-15"] for record in records),
+        "without_candidate_phase": sum(
+            not record["phase"]["candidate_phase_targets"] for record in records
+        ),
+        "PHCAP-12": sum(
+            record["phase"]["candidate_phase_targets"] == ["PHCAP-12"]
+            for record in records
+        ),
+        "PHCAP-15": sum(
+            record["phase"]["candidate_phase_targets"] == ["PHCAP-15"]
+            for record in records
+        ),
     }
     candidate_product_anomalies = [
         {
@@ -336,11 +400,21 @@ def main() -> None:
             "bytes": total_bytes,
             "lines": total_lines,
             "empty_source_count": len(empty_records),
-            "empty_source_asset_ids": sorted(record["asset_id"] for record in empty_records),
+            "empty_source_asset_ids": sorted(
+                record["asset_id"] for record in empty_records
+            ),
             "empty_source_sha256": tagged(b""),
             "group_counts": dict(sorted(group_counts.items())),
             "artifact_role_counts": dict(sorted(role_counts.items())),
-            "same_source_sha_occurrences": dict(sorted(Counter(record["source"]["sha256"] for record in records if record["source"]["bytes"] == 0).items())),
+            "same_source_sha_occurrences": dict(
+                sorted(
+                    Counter(
+                        record["source"]["sha256"]
+                        for record in records
+                        if record["source"]["bytes"] == 0
+                    ).items()
+                )
+            ),
         },
         "static_content_review": {
             "kimi_review_lane_admission": "Two dated lanes contain approve/quota-switch/schema-drift/seeded-blocker/tool-request receipts and mutation cases for high-risk/tool activity/head binding/stale receipt/closure drift. These are historical evidence fixtures, not current runtime or acceptance proof.",
@@ -354,10 +428,27 @@ def main() -> None:
             "phase_candidate_counts": phase_candidate_counts,
             "target_specific_decision_rows": direct_decision_count,
             "target_specific_read_after_rows": direct_read_after_count,
-            "all_disposition_rows_formally_unresolved": all(record["disposition"]["disposition"] == "unresolved" and record["disposition"]["product_target"] == "unresolved" and record["disposition"]["implementation_status"] == "unknown" for record in records),
-            "all_consumer_refs_empty": all(not record["disposition"]["consumer_refs"] for record in records),
-            "failure_inventory": {"path": FAILURE, "sha256": tagged(failure_data), "target_id_hits": 0, "target_path_hits": 0},
-            "consumer_inventory": {"path": CONSUMER, "sha256": tagged(consumer_data), "target_id_hits": 0, "target_path_hits": 0},
+            "all_disposition_rows_formally_unresolved": all(
+                record["disposition"]["disposition"] == "unresolved"
+                and record["disposition"]["product_target"] == "unresolved"
+                and record["disposition"]["implementation_status"] == "unknown"
+                for record in records
+            ),
+            "all_consumer_refs_empty": all(
+                not record["disposition"]["consumer_refs"] for record in records
+            ),
+            "failure_inventory": {
+                "path": FAILURE,
+                "sha256": tagged(failure_data),
+                "target_id_hits": 0,
+                "target_path_hits": 0,
+            },
+            "consumer_inventory": {
+                "path": CONSUMER,
+                "sha256": tagged(consumer_data),
+                "target_id_hits": 0,
+                "target_path_hits": 0,
+            },
             "wave_inputs_scanned": len(wave_contents),
             "target_id_wave_hits": 0,
             "target_path_wave_hits": 0,
@@ -365,9 +456,23 @@ def main() -> None:
             "interpretation": "No asset-specific decision, read-after, failure, or consumer closure was found. Absence of direct references does not establish absence of indirect consumers; closure remains pending.",
         },
         "four_product_current_main_evidence": {
-            "product_boundary": {"revision": BASE, "path": BOUNDARY, "sha256": tagged(git_bytes(BOUNDARY)), "rows": boundary_receipts},
-            "approval_decision": {"revision": BASE, "path": APPROVAL, "sha256": tagged(git_bytes(APPROVAL)), "rows": approval_receipts, "scope_limit": "Approval records bind exact L1 document bytes; they do not admit lower layers, assign these 57 assets, or authorize implementation."},
-            "l1_documents": {product: {**l1_receipts[product], "product": product} for product in PRODUCTS},
+            "product_boundary": {
+                "revision": BASE,
+                "path": BOUNDARY,
+                "sha256": tagged(git_bytes(BOUNDARY)),
+                "rows": boundary_receipts,
+            },
+            "approval_decision": {
+                "revision": BASE,
+                "path": APPROVAL,
+                "sha256": tagged(git_bytes(APPROVAL)),
+                "rows": approval_receipts,
+                "scope_limit": "Approval records bind exact L1 document bytes; they do not admit lower layers, assign these 57 assets, or authorize implementation.",
+            },
+            "l1_documents": {
+                product: {**l1_receipts[product], "product": product}
+                for product in PRODUCTS
+            },
         },
         "wave_inputs": [
             {"path": path, "blob": blob_oid(path), "sha256": tagged(contents)}
@@ -384,8 +489,12 @@ def main() -> None:
             "new_build_allowed": False,
         },
     }
-    OUTPUT.write_text(json.dumps(audit, ensure_ascii=False, sort_keys=True, indent=2) + "\n")
-    print(f"SCF-B-0142 independent source audit PASS records={len(records)} bytes={total_bytes} lines={total_lines} phase_candidates={phase_candidate_counts} target_wave_edges=0")
+    OUTPUT.write_text(
+        json.dumps(audit, ensure_ascii=False, sort_keys=True, indent=2) + "\n"
+    )
+    print(
+        f"SCF-B-0142 independent source audit PASS records={len(records)} bytes={total_bytes} lines={total_lines} phase_candidates={phase_candidate_counts} target_wave_edges=0"
+    )
 
 
 if __name__ == "__main__":

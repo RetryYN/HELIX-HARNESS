@@ -33,7 +33,12 @@ CARRY_AXES = [
     "negative oracle.definition",
 ]
 AXIS_MEMBERS = {
-    "subject_ref", "binding", "axis", "state", "original_refs", "reason",
+    "subject_ref",
+    "binding",
+    "axis",
+    "state",
+    "original_refs",
+    "reason",
     "backflow_owner",
 }
 
@@ -44,7 +49,8 @@ def _finite_input(populations="absent"):
         raise ValueError("unknown population presence mode")
     raw = normal_input()
     raw["descriptors"] = [
-        slot for slot in raw["descriptors"]
+        slot
+        for slot in raw["descriptors"]
         if slot["descriptor_kind"] not in TARGET_KINDS
     ]
 
@@ -80,10 +86,18 @@ class TestOracleFiniteCarry(unittest.TestCase):
     def _formed_context(self, raw):
         raw_before = copy.deepcopy(raw)
         validated = validate_supply_input(raw)
-        self.assertIsNotNone(validated["input"], "setup: FN0 must decode the finite input")
+        self.assertIsNotNone(
+            validated["input"], "setup: FN0 must decode the finite input"
+        )
         self.assertEqual(validated["input"], raw_before)
-        self.assertEqual(validated["input_issues"], [], "setup: no structural input issue")
-        self.assertEqual(validated["unusable_source_refs"], [], "setup: synchronized sources remain usable")
+        self.assertEqual(
+            validated["input_issues"], [], "setup: no structural input issue"
+        )
+        self.assertEqual(
+            validated["unusable_source_refs"],
+            [],
+            "setup: synchronized sources remain usable",
+        )
 
         definitions = compare_descriptor_definitions({"validated": validated})
         identity_trace = compare_identity_versions_and_trace({"validated": validated})
@@ -119,8 +133,9 @@ class TestOracleFiniteCarry(unittest.TestCase):
         self.assertEqual(result["producer_symbol"], FN4)
         self.assertEqual(result["input_binding"], raw["binding"])
         self.assertEqual(result["axes"], carry)
-        self.assertEqual([row["axis"] for row in result["axes"]],
-                         [row["axis"] for row in carry])
+        self.assertEqual(
+            [row["axis"] for row in result["axes"]], [row["axis"] for row in carry]
+        )
         self.assertTrue(all(set(row) == AXIS_MEMBERS for row in result["axes"]))
         self.assertEqual(result["findings"], [])
         self.assertEqual(raw, raw_before)
@@ -134,10 +149,13 @@ class TestOracleFiniteCarry(unittest.TestCase):
         raw = _finite_input("absent")
         for member in ("oracle_bindings", "values", "handoff_records"):
             self.assertNotIn(member, raw)
-        self.assertFalse(any(slot["descriptor_kind"] in TARGET_KINDS
-                             for slot in raw["descriptors"]))
+        self.assertFalse(
+            any(slot["descriptor_kind"] in TARGET_KINDS for slot in raw["descriptors"])
+        )
         raw_before, _, _, _, context, carry = self._formed_context(raw)
-        self._assert_fn4_carries_only_original_definition_rows(raw_before, context, carry)
+        self._assert_fn4_carries_only_original_definition_rows(
+            raw_before, context, carry
+        )
 
     def test_explicit_empty_populations_keep_their_presence_and_carry_rows(self):
         """[] branch: zero件はabsentへ正規化せず、同じcarry行を保持する。"""
@@ -146,59 +164,86 @@ class TestOracleFiniteCarry(unittest.TestCase):
             self.assertIn(member, raw)
             self.assertEqual(raw[member], [])
         raw_before, _, _, _, context, carry = self._formed_context(raw)
-        self._assert_fn4_carries_only_original_definition_rows(raw_before, context, carry)
+        self._assert_fn4_carries_only_original_definition_rows(
+            raw_before, context, carry
+        )
 
-    def test_reference_only_source_with_allowed_content_key_remains_in_finite_domain(self):
+    def test_reference_only_source_with_allowed_content_key_remains_in_finite_domain(
+        self,
+    ):
         """L4 role/key allowlist: reference_onlyとreference_targetは有限枝内。"""
         raw = _finite_input("absent")
         source = raw["sources"][0]
         source["role"] = "reference_only"
-        _write_source_content(raw, source, {
-            "binding": copy.deepcopy(raw["binding"]),
-            "reference_target": copy.deepcopy(raw["descriptors"][0]["facts"][0]["ref"]),
-        })
+        _write_source_content(
+            raw,
+            source,
+            {
+                "binding": copy.deepcopy(raw["binding"]),
+                "reference_target": copy.deepcopy(
+                    raw["descriptors"][0]["facts"][0]["ref"]
+                ),
+            },
+        )
         raw_before, _, _, _, context, carry = self._formed_context(raw)
-        self._assert_fn4_carries_only_original_definition_rows(raw_before, context, carry)
+        self._assert_fn4_carries_only_original_definition_rows(
+            raw_before, context, carry
+        )
 
     def test_target_descriptor_slot_is_not_misclassified_as_finite_carry(self):
         """L4: target実slotはfacts内容に関わらず有限枝の外として停止する。"""
         raw = _finite_input("absent")
         original = normal_input()
         target_slot = next(
-            slot for slot in original["descriptors"]
+            slot
+            for slot in original["descriptors"]
             if slot["descriptor_kind"] == "measurement"
         )
         raw["descriptors"].append(copy.deepcopy(target_slot))
         raw_before = copy.deepcopy(raw)
         validated = validate_supply_input(raw)
-        self.assertIsNotNone(validated["input"], "setup: FN0 must decode the out-of-branch case")
+        self.assertIsNotNone(
+            validated["input"], "setup: FN0 must decode the out-of-branch case"
+        )
         self.assertEqual(validated["input_issues"], [])
         definitions = compare_descriptor_definitions({"validated": validated})
         identity_trace = compare_identity_versions_and_trace({"validated": validated})
-        context = {"validated": validated, "definitions": definitions,
-                   "identity_trace": identity_trace}
+        context = {
+            "validated": validated,
+            "definitions": definitions,
+            "identity_trace": identity_trace,
+        }
         with self.assertRaises(NotImplementedError) as caught:
             compare_oracle_and_view_boundary(context)
-        self.assertEqual(str(caught.exception),
-                         "F05/F06/unclosed/formed_context; owner=knowledge_owner; "
-                         "Backflow HELIXBRAIN-L6-032-FN4-ORACLE")
+        self.assertEqual(
+            str(caught.exception),
+            "F05/F06/unclosed/formed_context; owner=knowledge_owner; "
+            "Backflow HELIXBRAIN-L6-032-FN4-ORACLE",
+        )
         self.assertIn("Backflow HELIXBRAIN-L6-032-FN4-ORACLE", str(caught.exception))
         self.assertEqual(raw, raw_before)
 
     def _assert_outside_finite_domain_stops(self, raw):
         raw_before = copy.deepcopy(raw)
         validated = validate_supply_input(raw)
-        self.assertIsNotNone(validated["input"], "setup: FN0 must preserve raw branch input")
+        self.assertIsNotNone(
+            validated["input"], "setup: FN0 must preserve raw branch input"
+        )
         self.assertEqual(validated["input_issues"], [], "setup: no structural issue")
         definitions = compare_descriptor_definitions({"validated": validated})
         identity_trace = compare_identity_versions_and_trace({"validated": validated})
-        context = {"validated": validated, "definitions": definitions,
-                   "identity_trace": identity_trace}
+        context = {
+            "validated": validated,
+            "definitions": definitions,
+            "identity_trace": identity_trace,
+        }
         with self.assertRaises(NotImplementedError) as caught:
             compare_oracle_and_view_boundary(context)
-        self.assertEqual(str(caught.exception),
-                         "F05/F06/unclosed/formed_context; owner=knowledge_owner; "
-                         "Backflow HELIXBRAIN-L6-032-FN4-ORACLE")
+        self.assertEqual(
+            str(caught.exception),
+            "F05/F06/unclosed/formed_context; owner=knowledge_owner; "
+            "Backflow HELIXBRAIN-L6-032-FN4-ORACLE",
+        )
         self.assertIn("Backflow HELIXBRAIN-L6-032-FN4-ORACLE", str(caught.exception))
         self.assertEqual(raw, raw_before)
 
@@ -221,11 +266,13 @@ class TestOracleFiniteCarry(unittest.TestCase):
         """L4 typed_kind_census: semantic_json descriptor_factsの対象kindで停止。"""
         raw = _finite_input("absent")
         source = raw["sources"][0]
-        source["content"]["descriptor_facts"] = [{
-            "descriptor_kind": "measurement",
-            "slot_identity": "census-target-measurement",
-            "facts": [],
-        }]
+        source["content"]["descriptor_facts"] = [
+            {
+                "descriptor_kind": "measurement",
+                "slot_identity": "census-target-measurement",
+                "facts": [],
+            }
+        ]
         _write_source_content(raw, source, source["content"])
         self._assert_outside_finite_domain_stops(raw)
 

@@ -15,7 +15,10 @@ import copy
 import json
 import unittest
 
-from descriptor_definitions import compare_identity_versions_and_trace, validate_supply_input
+from descriptor_definitions import (
+    compare_identity_versions_and_trace,
+    validate_supply_input,
+)
 from identity_input_fixtures import _write_source_content, bilateral_input, normal_input
 
 
@@ -46,36 +49,54 @@ class TestIdentityProjectionBoundaries(unittest.TestCase):
         result = compare_identity_versions_and_trace({"validated": validated})
         self.assertEqual(raw, raw_before, case_id)
         self.assertEqual(validated, validated_before, case_id)
-        self.assertFalse(any(
-            row["code"] == "compatibility_mismatch" for row in result["findings"]
-        ), case_id)
+        self.assertFalse(
+            any(row["code"] == "compatibility_mismatch" for row in result["findings"]),
+            case_id,
+        )
         artifact = self._axis(result, "pack.artifact_version")
         self.assertEqual(artifact["state"], "unknown", case_id)
-        compatibility = [row for row in result["axes"] if row["axis"] == "compatibility"]
+        compatibility = [
+            row for row in result["axes"] if row["axis"] == "compatibility"
+        ]
         self.assertTrue(compatibility, case_id)
-        self.assertTrue(all(row["state"] == "unknown" for row in compatibility), case_id)
+        self.assertTrue(
+            all(row["state"] == "unknown" for row in compatibility), case_id
+        )
         _prefix, separator, material_json = compatibility[0]["reason"].partition("\n")
         self.assertTrue(separator, case_id)
-        self.assertEqual(json.loads(material_json)["cause"], "bilateral_owner_unresolved", case_id)
+        self.assertEqual(
+            json.loads(material_json)["cause"], "bilateral_owner_unresolved", case_id
+        )
 
     def test_pack_identity_does_not_compare_source_locator(self):
         raw = bilateral_input("outside")
         record = raw["compatibility_records"][0]
-        right = next(source for source in raw["sources"] if source["ref"] == record["source_ref"])
+        right = next(
+            source for source in raw["sources"] if source["ref"] == record["source_ref"]
+        )
         content = copy.deepcopy(right["content"])
         range_declaration = content["compatibility_range_declaration"]
         changed_actual_ref = range_declaration["actual_pack_ref"]
         original_actual_ref = copy.deepcopy(changed_actual_ref)
         changed_actual_ref["source_locator"] = "owners/pack-observation.json"
         self.assertEqual(
-            {key: value for key, value in changed_actual_ref.items() if key != "source_locator"},
-            {key: value for key, value in original_actual_ref.items() if key != "source_locator"},
+            {
+                key: value
+                for key, value in changed_actual_ref.items()
+                if key != "source_locator"
+            },
+            {
+                key: value
+                for key, value in original_actual_ref.items()
+                if key != "source_locator"
+            },
         )
 
         _write_source_content(raw, right, content)
         record["source_ref"] = copy.deepcopy(right["ref"])
         left = next(
-            source for source in raw["sources"]
+            source
+            for source in raw["sources"]
             if isinstance(source.get("content"), dict)
             and source["content"].get("compatibility_record_ref") == record["ref"]
         )
@@ -98,7 +119,9 @@ class TestIdentityProjectionBoundaries(unittest.TestCase):
         """L4 actual finite_branch_orderの型外operandはunknown、compatibilityの未形成rangeもbilateral_owner_unresolved unknownで、R62は成立しない。"""
         raw = bilateral_input("outside")
         record = raw["compatibility_records"][0]
-        right = next(source for source in raw["sources"] if source["ref"] == record["source_ref"])
+        right = next(
+            source for source in raw["sources"] if source["ref"] == record["source_ref"]
+        )
         content = copy.deepcopy(right["content"])
         content["compatibility_range_declaration"]["actual_artifact_version"] = {
             "untyped": "raw value remains preserved"
@@ -106,7 +129,8 @@ class TestIdentityProjectionBoundaries(unittest.TestCase):
         _write_source_content(raw, right, content)
         record["source_ref"] = copy.deepcopy(right["ref"])
         left = next(
-            source for source in raw["sources"]
+            source
+            for source in raw["sources"]
             if isinstance(source.get("content"), dict)
             and source["content"].get("compatibility_record_ref") == record["ref"]
         )
@@ -120,13 +144,18 @@ class TestIdentityProjectionBoundaries(unittest.TestCase):
         """L4 pair_aggregationでは左右両ownerのqualified outsideが必要。型外relationはunknownであり、片側だけの宣言からR62を作らない。"""
         raw = bilateral_input("outside")
         record = raw["compatibility_records"][0]
-        right = next(source for source in raw["sources"] if source["ref"] == record["source_ref"])
+        right = next(
+            source for source in raw["sources"] if source["ref"] == record["source_ref"]
+        )
         content = copy.deepcopy(right["content"])
-        content["compatibility_range_declaration"]["owner_declarations"][1]["relation"] = "inside"
+        content["compatibility_range_declaration"]["owner_declarations"][1][
+            "relation"
+        ] = "inside"
         _write_source_content(raw, right, content)
         record["source_ref"] = copy.deepcopy(right["ref"])
         left = next(
-            source for source in raw["sources"]
+            source
+            for source in raw["sources"]
             if isinstance(source.get("content"), dict)
             and source["content"].get("compatibility_record_ref") == record["ref"]
         )
@@ -145,7 +174,9 @@ class TestIdentityProjectionBoundaries(unittest.TestCase):
                 oracle = raw["oracle_bindings"][0]
                 oracle["oracle_ref"]["revision"] = "synthetic-other-oracle-revision"
                 if case_id == "obligation identity differs":
-                    oracle["obligation_ref"]["identity"] = "synthetic-unmatched-requirement"
+                    oracle["obligation_ref"]["identity"] = (
+                        "synthetic-unmatched-requirement"
+                    )
                 else:
                     oracle["subject_ref"]["identity"] = "synthetic-nonexistent-subject"
 
@@ -158,15 +189,23 @@ class TestIdentityProjectionBoundaries(unittest.TestCase):
                 result = compare_identity_versions_and_trace({"validated": validated})
                 self.assertEqual(raw, raw_before)
                 self.assertEqual(validated, validated_before)
-                self.assertEqual(result["producer_symbol"], "compare_identity_versions_and_trace")
-                self.assertEqual(set(result), {"axes", "findings", "producer_symbol", "input_binding"})
+                self.assertEqual(
+                    result["producer_symbol"], "compare_identity_versions_and_trace"
+                )
+                self.assertEqual(
+                    set(result),
+                    {"axes", "findings", "producer_symbol", "input_binding"},
+                )
                 self.assertIsInstance(result["axes"], list)
                 self.assertIsInstance(result["findings"], list)
                 self.assertEqual(result["input_binding"], raw_before["binding"])
-                self.assertFalse(any(
-                    row["code"] == "oracle_revision_mismatch"
-                    for row in result["findings"]
-                ), case_id)
+                self.assertFalse(
+                    any(
+                        row["code"] == "oracle_revision_mismatch"
+                        for row in result["findings"]
+                    ),
+                    case_id,
+                )
 
 
 if __name__ == "__main__":

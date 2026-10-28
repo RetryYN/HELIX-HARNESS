@@ -5,6 +5,7 @@
 known/qualificationの根拠に使わない。raw guardのNoneは適用範囲分類のみで、
 FN7 Comparisonや意味読取の成功を表さない。
 """
+
 from __future__ import annotations
 
 import copy
@@ -28,20 +29,31 @@ from test_oracle_finite_carry import _finite_input
 from test_descriptor_empty_meaning_carrier import _typed_nonempty_operation
 
 
-MEANING_UNCLOSED = "FN7/unclosed/finite_meaning_value; Backflow HELIXBRAIN-L6-032-FN7-CLAIM"
+MEANING_UNCLOSED = (
+    "FN7/unclosed/finite_meaning_value; Backflow HELIXBRAIN-L6-032-FN7-CLAIM"
+)
 DOMAIN_UNCLOSED = "FN7/unclosed/finite_domain; Backflow HELIXBRAIN-L6-032-FN7-CLAIM"
-CANDIDATES_UNCLOSED = "FN7/unclosed/finite_candidates; Backflow HELIXBRAIN-L6-032-FN7-CLAIM"
+CANDIDATES_UNCLOSED = (
+    "FN7/unclosed/finite_candidates; Backflow HELIXBRAIN-L6-032-FN7-CLAIM"
+)
 OTHER_EMPTY = (
-    "meaning_comparisons", "section_fields", "values", "applicability_records",
-    "relations", "oracle_bindings", "compatibility_records", "handoff_records",
+    "meaning_comparisons",
+    "section_fields",
+    "values",
+    "applicability_records",
+    "relations",
+    "oracle_bindings",
+    "compatibility_records",
+    "handoff_records",
 )
 
 
 def _contract_literal():
     repo = Path(__file__).resolve().parents[5]
     document = json.loads(
-        (repo / "docs/helix-brain/L4-basic-design/template-semantic-supply.json")
-        .read_text(encoding="utf-8")
+        (
+            repo / "docs/helix-brain/L4-basic-design/template-semantic-supply.json"
+        ).read_text(encoding="utf-8")
     )
     return document["claim_boundary_projection_contract"]["finite_domain"][
         "meaning_carrier_predicate"
@@ -61,7 +73,10 @@ def _finite_raw():
     validated = validate_supply_input(raw)
     if validated.get("input") != before:
         raise AssertionError("setup: FN0 must preserve the finite raw snapshot")
-    if validated.get("input_issues") != [] or validated.get("unusable_source_refs") != []:
+    if (
+        validated.get("input_issues") != []
+        or validated.get("unusable_source_refs") != []
+    ):
         raise AssertionError("setup: finite_claim_input('none') must be FN0-clean")
     return raw
 
@@ -77,17 +92,22 @@ def _root_fact_variant(raw, meaning):
     slot["facts"][0]["meaning"] = copy.deepcopy(meaning)
     slot_kind = slot["descriptor_kind"]
     if slot_kind not in raw["required_descriptor_kinds"]:
-        raise AssertionError("setup: original slot kind is not in the retained required-kind array")
+        raise AssertionError(
+            "setup: original slot kind is not in the retained required-kind array"
+        )
     # finite_claim_input changed the declared target source body/digest. Rebind
     # only the copied root fact's existing source occurrence to the corresponding
     # existing source Ref in this raw snapshot; no source/Q is synthesized.
     original_source_ref = slot["facts"][0].get("source_ref")
     matches = [
-        source["ref"] for source in raw["sources"]
+        source["ref"]
+        for source in raw["sources"]
         if _same_ref_without_digest(source.get("ref"), original_source_ref)
     ]
     if len(matches) != 1:
-        raise AssertionError("setup: copied root fact must resolve to one existing source")
+        raise AssertionError(
+            "setup: copied root fact must resolve to one existing source"
+        )
     slot["facts"][0]["source_ref"] = copy.deepcopy(matches[0])
     raw["descriptors"].append(slot)
     return raw
@@ -101,12 +121,15 @@ def _source_fact_variant(raw, meaning):
     if slot["descriptor_kind"] not in raw["required_descriptor_kinds"]:
         raise AssertionError("setup: source fact kind must be a declared existing kind")
     source_matches = [
-        source for source in raw["sources"]
+        source
+        for source in raw["sources"]
         if source.get("role") == "semantic_json"
         and _same_ref_without_digest(source.get("ref"), fact.get("source_ref"))
     ]
     if len(source_matches) != 1:
-        raise AssertionError("setup: original source fact must resolve to one existing semantic_json source")
+        raise AssertionError(
+            "setup: original source fact must resolve to one existing semantic_json source"
+        )
     source = source_matches[0]
     old_ref = copy.deepcopy(source["ref"])
     in_body_ref = copy.deepcopy(old_ref)
@@ -118,16 +141,19 @@ def _source_fact_variant(raw, meaning):
     fact["source_ref"] = in_body_ref
     fact["meaning"] = copy.deepcopy(meaning)
     content = copy.deepcopy(source["content"])
-    content["descriptor_facts"] = [{
-        "slot_identity": copy.deepcopy(slot["slot_identity"]),
-        "descriptor_kind": slot["descriptor_kind"],
-        "facts": [fact],
-    }]
+    content["descriptor_facts"] = [
+        {
+            "slot_identity": copy.deepcopy(slot["slot_identity"]),
+            "descriptor_kind": slot["descriptor_kind"],
+            "facts": [fact],
+        }
+    ]
     _write_source_content(raw, source, content)
     new_ref = copy.deepcopy(source["ref"])
     for record in raw["knowledge_records"]:
         record["provenance_refs"] = [
-            copy.deepcopy(new_ref) if _same_ref_without_digest(ref, old_ref)
+            copy.deepcopy(new_ref)
+            if _same_ref_without_digest(ref, old_ref)
             else copy.deepcopy(ref)
             for ref in record["provenance_refs"]
         ]
@@ -140,7 +166,8 @@ def _operation_fact_body_variant(raw, meaning):
     slot = copy.deepcopy(template["descriptors"][0])
     fact = copy.deepcopy(slot["facts"][0])
     source = next(
-        source for source in raw["sources"]
+        source
+        for source in raw["sources"]
         if source.get("role") == "semantic_json"
         and _same_ref_without_digest(source.get("ref"), fact.get("source_ref"))
     )
@@ -155,7 +182,8 @@ def _operation_fact_body_variant(raw, meaning):
     new_ref = copy.deepcopy(source["ref"])
     for record in raw["knowledge_records"]:
         record["provenance_refs"] = [
-            copy.deepcopy(new_ref) if _same_ref_without_digest(ref, old_ref)
+            copy.deepcopy(new_ref)
+            if _same_ref_without_digest(ref, old_ref)
             else copy.deepcopy(ref)
             for ref in record["provenance_refs"]
         ]
@@ -184,8 +212,14 @@ class TestClaimBoundaryFiniteDomain(unittest.TestCase):
             self.assertFalse(_meaning_value_in_finite_domain(incomplete), missing)
         for wrong in (
             {"template_identity": 7, "functional_role": literal["functional_role"]},
-            {"template_identity": literal["template_identity"], "functional_role": None},
-            [], "meaning", 1, False,
+            {
+                "template_identity": literal["template_identity"],
+                "functional_role": None,
+            },
+            [],
+            "meaning",
+            1,
+            False,
         ):
             self.assertFalse(_meaning_value_in_finite_domain(wrong), repr(wrong))
 
@@ -200,7 +234,11 @@ class TestClaimBoundaryFiniteDomain(unittest.TestCase):
         variants = (
             ("root fact", _root_fact_variant, "meaning"),
             ("source descriptor fact", _source_fact_variant, "meaning"),
-            ("operation arguments fact_body", _operation_fact_body_variant, "fact_body"),
+            (
+                "operation arguments fact_body",
+                _operation_fact_body_variant,
+                "fact_body",
+            ),
         )
         for label, build, member in variants:
             with self.subTest(carrier=label):
@@ -209,7 +247,9 @@ class TestClaimBoundaryFiniteDomain(unittest.TestCase):
                     build(raw, inside)
                     raw_before = copy.deepcopy(raw)
                     self.assertIsNone(_validate_finite_domain(raw), label)
-                    self.assertEqual(raw, raw_before, "raw guard must not normalize the snapshot")
+                    self.assertEqual(
+                        raw, raw_before, "raw guard must not normalize the snapshot"
+                    )
 
                 for changed_key in ("template_identity", "functional_role"):
                     outside = copy.deepcopy(literal)

@@ -85,8 +85,8 @@
     },
     {
       "path": "scaffold/research/legacy-semantic-review-wave39/generate.py",
-      "sha256": "211ef6f0eb4067754a7e5ff7d958b0b58b17744472975cb73fec3d0b1a84ab61",
-      "note": "Wave39 static Scaffold artifact; no formal requirement or implementation authority"
+      "sha256": "ea8e4918af81092f02fa14dd815314f50c686533c3346fde48d4cdfbc65c873c",
+      "note": "Wave39 static Scaffold artifact; no formal requirement or implementation authority [WR73/PR3773: 402867935の元sourceとRuff整形後sourceは位置情報を除くAST同値、型コメント付属も保持。binding全体（reason/role/obligations/connections/operations/verificationのoracle・negative case/replacement.role_target）への意味影響を確認し、役割・権限・義務・固定capture・採否は不変として再束縛。旧receipt=211ef6f0eb4067754a7e5ff7d958b0b58b17744472975cb73fec3d0b1a84ab61; 現receipt=ea8e4918af81092f02fa14dd815314f50c686533c3346fde48d4cdfbc65c873c。固定bytes consumerを持つ4ファイルは除外して元bytesを保持。]"
     },
     {
       "path": "scaffold/research/legacy-semantic-review-wave39/inventory.json",
@@ -110,13 +110,13 @@
     },
     {
       "path": "scaffold/research/legacy-semantic-review-wave39/selfcheck.py",
-      "sha256": "787e918f5987f9b7974719c555baf9636a8bec22e5b7d0c32b650aeaa0791277",
-      "note": "Wave39 static Scaffold artifact; no formal requirement or implementation authority"
+      "sha256": "18ecc213b24f565a8652750746f58b1289030a1c59a15657a20ada7bbf640d19",
+      "note": "Wave39 static Scaffold artifact; no formal requirement or implementation authority [WR73/PR3773: 402867935の元sourceとRuff整形後sourceは位置情報を除くAST同値、型コメント付属も保持。binding全体（reason/role/obligations/connections/operations/verificationのoracle・negative case/replacement.role_target）への意味影響を確認し、役割・権限・義務・固定capture・採否は不変として再束縛。旧receipt=787e918f5987f9b7974719c555baf9636a8bec22e5b7d0c32b650aeaa0791277; 現receipt=18ecc213b24f565a8652750746f58b1289030a1c59a15657a20ada7bbf640d19。固定bytes consumerを持つ4ファイルは除外して元bytesを保持。]"
     },
     {
       "path": "scaffold/research/legacy-semantic-review-wave39/validate.py",
-      "sha256": "8a431e365292cd5b8f0d1480ab575920e57e5a518a745d9d91bac6109834c173",
-      "note": "Wave39 static Scaffold artifact; no formal requirement or implementation authority [2026-09-26 旧HELIXからの移行台帳のlegacy-migration/への移動（PO判断） read-after: legacy-semantic-review-wave39/validate.pyは、旧HELIXからの移行作業の台帳・待ち行列・wave記録をdocs/governance/直下からdocs/governance/legacy-migration/の種類別フォルダへ移した（2026-09-26のPO判断、docs/governance/decisions/governance-legacy-migration-layout-po-decisions-2026-09-26.md）のに合わせ、現行ファイルを読む移動対象のpath定数（または同じ定数の一覧）だけを新しいpathへ改めた（判定の条件・分岐・意味field・期待件数は不変、git diffで定数行だけの変更を確認）。本bindingのrole・obligations・connections・replacement・artifactは、旧HELIXからの移行台帳のpath（旧docs/governance/直下）、それらへのリンクの表記、研究用pinとvalidatorのpath・digestの表記に依存しないことをbinding全体で確認した。前receipt=5fc1d561c373f02ac4e70856e491d4b1e2d9c89628712065c854f74ff176b601; 現receipt=7778b99047f9f023e9a3822f3782a5af69a0e26697e3bbb54aa6052de9980e77; このBindingの採否・authorityは変更しない。]"
+      "sha256": "27ee5a36be767ee5f3fee093b994f88b7d5f862c495244ba750401c714f2f033",
+      "note": "Wave39 static Scaffold artifact; no formal requirement or implementation authority [2026-09-26 旧HELIXからの移行台帳のlegacy-migration/への移動（PO判断） read-after: legacy-semantic-review-wave39/validate.pyは、旧HELIXからの移行作業の台帳・待ち行列・wave記録をdocs/governance/直下からdocs/governance/legacy-migration/の種類別フォルダへ移した（2026-09-26のPO判断、docs/governance/decisions/governance-legacy-migration-layout-po-decisions-2026-09-26.md）のに合わせ、現行ファイルを読む移動対象のpath定数（または同じ定数の一覧）だけを新しいpathへ改めた（判定の条件・分岐・意味field・期待件数は不変、git diffで定数行だけの変更を確認）。本bindingのrole・obligations・connections・replacement・artifactは、旧HELIXからの移行台帳のpath（旧docs/governance/直下）、それらへのリンクの表記、研究用pinとvalidatorのpath・digestの表記に依存しないことをbinding全体で確認した。前receipt=5fc1d561c373f02ac4e70856e491d4b1e2d9c89628712065c854f74ff176b601; 現receipt=7778b99047f9f023e9a3822f3782a5af69a0e26697e3bbb54aa6052de9980e77; このBindingの採否・authorityは変更しない。] [WR73/PR3773: 402867935の元sourceとRuff整形後sourceは位置情報を除くAST同値、型コメント付属も保持。binding全体（reason/role/obligations/connections/operations/verificationのoracle・negative case/replacement.role_target）への意味影響を確認し、役割・権限・義務・固定capture・採否は不変として再束縛。旧receipt=8a431e365292cd5b8f0d1480ab575920e57e5a518a745d9d91bac6109834c173; 現receipt=27ee5a36be767ee5f3fee093b994f88b7d5f862c495244ba750401c714f2f033。固定bytes consumerを持つ4ファイルは除外して元bytesを保持。]"
     }
   ],
   "role": "Wave39のrequirements／design／implementation_source 15 edgeと7 source atom候補を、TR08共有関係・TR01 routing hold・旧asset status unknownを含む静的Scaffoldとしてroot reviewへ渡す",
