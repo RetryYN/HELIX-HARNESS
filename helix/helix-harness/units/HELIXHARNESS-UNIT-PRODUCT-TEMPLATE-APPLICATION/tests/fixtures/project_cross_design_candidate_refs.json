@@ -1,0 +1,675 @@
+{
+  "source_provenance": {
+    "revision": "7b209d91cdf2c0e6114fd41bf1467df82deedc42",
+    "path": "docs/helix-harness/L8-unit-verification/product-template-application.json",
+    "whole_file_sha256": "cfaf2e308ce8d404dc3d8f8dfe0b84a12fdb99e5574c405797e59f6e17dd1bd2",
+    "source_pointers": {
+      "universe_a": "/fixture_contract/normal_fixtures/0/input/universes/0",
+      "candidate_a": "/fixture_contract/normal_fixtures/0/input/universes/0/members/0",
+      "template_a": "/fixture_contract/normal_fixtures/0/input/templates/0"
+    },
+    "material_kind": "L8 historical synthetic universe and template snapshot copied as test operands; candidate B, second scope, occurrence order, and packet composition are derived test material. No qualification or runtime evidence."
+  },
+  "input_packet": {
+    "brain_supply_analysis": {
+      "candidate_refs": [
+        {
+          "identity": "SYNTHETIC-T-unit",
+          "revision": "synthetic-A",
+          "scope": {
+            "product": "SYNTHETIC-P",
+            "tenant": "SYNTHETIC-T",
+            "environment": "SYNTHETIC-E"
+          },
+          "owner": "synthetic-brain-owner",
+          "source_locator": null,
+          "sha256": null
+        },
+        {
+          "identity": "SYNTHETIC-T-unit",
+          "revision": "synthetic-A",
+          "scope": {
+            "product": "SYNTHETIC-Q",
+            "tenant": "SYNTHETIC-T2",
+            "environment": "SYNTHETIC-E"
+          },
+          "owner": "synthetic-brain-owner",
+          "source_locator": null,
+          "sha256": null
+        },
+        {
+          "identity": "SYNTHETIC-T-unit",
+          "revision": "synthetic-A",
+          "scope": {
+            "product": "SYNTHETIC-P",
+            "tenant": "SYNTHETIC-T",
+            "environment": "SYNTHETIC-E"
+          },
+          "owner": "synthetic-brain-owner",
+          "source_locator": null,
+          "sha256": null
+        }
+      ]
+    },
+    "core_application": {
+      "universes": [
+        {
+          "ref": {
+            "identity": "universe",
+            "revision": "synthetic-A",
+            "scope": {
+              "product": "SYNTHETIC-P",
+              "tenant": "SYNTHETIC-T",
+              "environment": "SYNTHETIC-E"
+            },
+            "owner": "synthetic-core-owner",
+            "source_locator": null,
+            "sha256": null
+          },
+          "binding": {
+            "requirement_ref": {
+              "identity": "synthetic-requirement",
+              "revision": "synthetic-A",
+              "scope": {
+                "product": "SYNTHETIC-P",
+                "tenant": "SYNTHETIC-T",
+                "environment": "SYNTHETIC-E"
+              },
+              "owner": "synthetic-requirement-owner",
+              "source_locator": null,
+              "sha256": null
+            },
+            "product_scope": {
+              "product": "SYNTHETIC-P",
+              "tenant": "SYNTHETIC-T",
+              "environment": "SYNTHETIC-E"
+            },
+            "process_contract_ref": {
+              "identity": "synthetic-process-contract",
+              "revision": "synthetic-A",
+              "scope": {
+                "product": "SYNTHETIC-P",
+                "tenant": "SYNTHETIC-T",
+                "environment": "SYNTHETIC-E"
+              },
+              "owner": "synthetic-harness-owner",
+              "source_locator": null,
+              "sha256": null
+            },
+            "application_contract_ref": {
+              "identity": "synthetic-application-contract",
+              "revision": "synthetic-A",
+              "scope": {
+                "product": "SYNTHETIC-P",
+                "tenant": "SYNTHETIC-T",
+                "environment": "SYNTHETIC-E"
+              },
+              "owner": "synthetic-harness-owner",
+              "source_locator": null,
+              "sha256": null
+            },
+            "template_ref": {
+              "identity": "SYNTHETIC-T-unit",
+              "revision": "synthetic-A",
+              "scope": {
+                "product": "SYNTHETIC-P",
+                "tenant": "SYNTHETIC-T",
+                "environment": "SYNTHETIC-E"
+              },
+              "owner": "synthetic-brain-owner",
+              "source_locator": null,
+              "sha256": null
+            },
+            "knowledge_ref": {
+              "identity": "SYNTHETIC-K-unit",
+              "revision": "synthetic-A",
+              "scope": {
+                "product": "SYNTHETIC-P",
+                "tenant": "SYNTHETIC-T",
+                "environment": "SYNTHETIC-E"
+              },
+              "owner": "synthetic-brain-owner",
+              "source_locator": null,
+              "sha256": null
+            },
+            "oracle_ref": {
+              "identity": "synthetic-pair-unit",
+              "revision": "synthetic-A",
+              "scope": {
+                "product": "SYNTHETIC-P",
+                "tenant": "SYNTHETIC-T",
+                "environment": "SYNTHETIC-E"
+              },
+              "owner": "synthetic-oracle-owner",
+              "source_locator": null,
+              "sha256": null
+            }
+          },
+          "members": [
+            {
+              "identity": "SYNTHETIC-T-unit",
+              "revision": "synthetic-A",
+              "scope": {
+                "product": "SYNTHETIC-P",
+                "tenant": "SYNTHETIC-T",
+                "environment": "SYNTHETIC-E"
+              },
+              "owner": "synthetic-brain-owner",
+              "source_locator": null,
+              "sha256": null
+            }
+          ],
+          "boundary_refs": [
+            {
+              "identity": "synthetic-application-contract",
+              "revision": "synthetic-A",
+              "scope": {
+                "product": "SYNTHETIC-P",
+                "tenant": "SYNTHETIC-T",
+                "environment": "SYNTHETIC-E"
+              },
+              "owner": "synthetic-harness-owner",
+              "source_locator": null,
+              "sha256": null
+            }
+          ],
+          "source_ref": {
+            "identity": "source-synthetic-harness-owner",
+            "revision": "synthetic-A",
+            "scope": {
+              "product": "SYNTHETIC-P",
+              "tenant": "SYNTHETIC-T",
+              "environment": "SYNTHETIC-E"
+            },
+            "owner": "synthetic-harness-owner",
+            "source_locator": null,
+            "sha256": null
+          }
+        },
+        {
+          "ref": {
+            "identity": "universe",
+            "revision": "synthetic-A",
+            "scope": {
+              "product": "SYNTHETIC-Q",
+              "tenant": "SYNTHETIC-T2",
+              "environment": "SYNTHETIC-E"
+            },
+            "owner": "synthetic-core-owner",
+            "source_locator": null,
+            "sha256": null
+          },
+          "binding": {
+            "requirement_ref": {
+              "identity": "synthetic-requirement",
+              "revision": "synthetic-A",
+              "scope": {
+                "product": "SYNTHETIC-P",
+                "tenant": "SYNTHETIC-T",
+                "environment": "SYNTHETIC-E"
+              },
+              "owner": "synthetic-requirement-owner",
+              "source_locator": null,
+              "sha256": null
+            },
+            "product_scope": {
+              "product": "SYNTHETIC-Q",
+              "tenant": "SYNTHETIC-T2",
+              "environment": "SYNTHETIC-E"
+            },
+            "process_contract_ref": {
+              "identity": "synthetic-process-contract",
+              "revision": "synthetic-A",
+              "scope": {
+                "product": "SYNTHETIC-P",
+                "tenant": "SYNTHETIC-T",
+                "environment": "SYNTHETIC-E"
+              },
+              "owner": "synthetic-harness-owner",
+              "source_locator": null,
+              "sha256": null
+            },
+            "application_contract_ref": {
+              "identity": "synthetic-application-contract",
+              "revision": "synthetic-A",
+              "scope": {
+                "product": "SYNTHETIC-P",
+                "tenant": "SYNTHETIC-T",
+                "environment": "SYNTHETIC-E"
+              },
+              "owner": "synthetic-harness-owner",
+              "source_locator": null,
+              "sha256": null
+            },
+            "template_ref": {
+              "identity": "SYNTHETIC-T-unit",
+              "revision": "synthetic-A",
+              "scope": {
+                "product": "SYNTHETIC-P",
+                "tenant": "SYNTHETIC-T",
+                "environment": "SYNTHETIC-E"
+              },
+              "owner": "synthetic-brain-owner",
+              "source_locator": null,
+              "sha256": null
+            },
+            "knowledge_ref": {
+              "identity": "SYNTHETIC-K-unit",
+              "revision": "synthetic-A",
+              "scope": {
+                "product": "SYNTHETIC-P",
+                "tenant": "SYNTHETIC-T",
+                "environment": "SYNTHETIC-E"
+              },
+              "owner": "synthetic-brain-owner",
+              "source_locator": null,
+              "sha256": null
+            },
+            "oracle_ref": {
+              "identity": "synthetic-pair-unit",
+              "revision": "synthetic-A",
+              "scope": {
+                "product": "SYNTHETIC-P",
+                "tenant": "SYNTHETIC-T",
+                "environment": "SYNTHETIC-E"
+              },
+              "owner": "synthetic-oracle-owner",
+              "source_locator": null,
+              "sha256": null
+            }
+          },
+          "members": [
+            {
+              "identity": "SYNTHETIC-T-unit",
+              "revision": "synthetic-A",
+              "scope": {
+                "product": "SYNTHETIC-Q",
+                "tenant": "SYNTHETIC-T2",
+                "environment": "SYNTHETIC-E"
+              },
+              "owner": "synthetic-brain-owner",
+              "source_locator": null,
+              "sha256": null
+            }
+          ],
+          "boundary_refs": [
+            {
+              "identity": "synthetic-application-contract",
+              "revision": "synthetic-A",
+              "scope": {
+                "product": "SYNTHETIC-P",
+                "tenant": "SYNTHETIC-T",
+                "environment": "SYNTHETIC-E"
+              },
+              "owner": "synthetic-harness-owner",
+              "source_locator": null,
+              "sha256": null
+            }
+          ],
+          "source_ref": {
+            "identity": "source-synthetic-harness-owner",
+            "revision": "synthetic-A",
+            "scope": {
+              "product": "SYNTHETIC-P",
+              "tenant": "SYNTHETIC-T",
+              "environment": "SYNTHETIC-E"
+            },
+            "owner": "synthetic-harness-owner",
+            "source_locator": null,
+            "sha256": null
+          }
+        }
+      ],
+      "templates": [
+        {
+          "ref": {
+            "identity": "SYNTHETIC-T-unit",
+            "revision": "synthetic-A",
+            "scope": {
+              "product": "SYNTHETIC-P",
+              "tenant": "SYNTHETIC-T",
+              "environment": "SYNTHETIC-E"
+            },
+            "owner": "synthetic-brain-owner",
+            "source_locator": null,
+            "sha256": null
+          },
+          "binding": {
+            "requirement_ref": {
+              "identity": "synthetic-requirement",
+              "revision": "synthetic-A",
+              "scope": {
+                "product": "SYNTHETIC-P",
+                "tenant": "SYNTHETIC-T",
+                "environment": "SYNTHETIC-E"
+              },
+              "owner": "synthetic-requirement-owner",
+              "source_locator": null,
+              "sha256": null
+            },
+            "product_scope": {
+              "product": "SYNTHETIC-P",
+              "tenant": "SYNTHETIC-T",
+              "environment": "SYNTHETIC-E"
+            },
+            "process_contract_ref": {
+              "identity": "synthetic-process-contract",
+              "revision": "synthetic-A",
+              "scope": {
+                "product": "SYNTHETIC-P",
+                "tenant": "SYNTHETIC-T",
+                "environment": "SYNTHETIC-E"
+              },
+              "owner": "synthetic-harness-owner",
+              "source_locator": null,
+              "sha256": null
+            },
+            "application_contract_ref": {
+              "identity": "synthetic-application-contract",
+              "revision": "synthetic-A",
+              "scope": {
+                "product": "SYNTHETIC-P",
+                "tenant": "SYNTHETIC-T",
+                "environment": "SYNTHETIC-E"
+              },
+              "owner": "synthetic-harness-owner",
+              "source_locator": null,
+              "sha256": null
+            },
+            "template_ref": {
+              "identity": "SYNTHETIC-T-unit",
+              "revision": "synthetic-A",
+              "scope": {
+                "product": "SYNTHETIC-P",
+                "tenant": "SYNTHETIC-T",
+                "environment": "SYNTHETIC-E"
+              },
+              "owner": "synthetic-brain-owner",
+              "source_locator": null,
+              "sha256": null
+            },
+            "knowledge_ref": {
+              "identity": "SYNTHETIC-K-unit",
+              "revision": "synthetic-A",
+              "scope": {
+                "product": "SYNTHETIC-P",
+                "tenant": "SYNTHETIC-T",
+                "environment": "SYNTHETIC-E"
+              },
+              "owner": "synthetic-brain-owner",
+              "source_locator": null,
+              "sha256": null
+            },
+            "oracle_ref": {
+              "identity": "synthetic-pair-unit",
+              "revision": "synthetic-A",
+              "scope": {
+                "product": "SYNTHETIC-P",
+                "tenant": "SYNTHETIC-T",
+                "environment": "SYNTHETIC-E"
+              },
+              "owner": "synthetic-oracle-owner",
+              "source_locator": null,
+              "sha256": null
+            }
+          },
+          "meaning_contract_ref": {
+            "identity": "synthetic-meaning-contract",
+            "revision": "synthetic-A",
+            "scope": {
+              "product": "SYNTHETIC-P",
+              "tenant": "SYNTHETIC-T",
+              "environment": "SYNTHETIC-E"
+            },
+            "owner": "synthetic-brain-owner",
+            "source_locator": null,
+            "sha256": null
+          },
+          "knowledge_ref": {
+            "identity": "SYNTHETIC-K-unit",
+            "revision": "synthetic-A",
+            "scope": {
+              "product": "SYNTHETIC-P",
+              "tenant": "SYNTHETIC-T",
+              "environment": "SYNTHETIC-E"
+            },
+            "owner": "synthetic-brain-owner",
+            "source_locator": null,
+            "sha256": null
+          },
+          "usability": {
+            "source": "synthetic qualified original state"
+          },
+          "condition_refs": [
+            {
+              "identity": "condition",
+              "revision": "synthetic-A",
+              "scope": {
+                "product": "SYNTHETIC-P",
+                "tenant": "SYNTHETIC-T",
+                "environment": "SYNTHETIC-E"
+              },
+              "owner": "synthetic-core-owner",
+              "source_locator": null,
+              "sha256": null
+            }
+          ],
+          "required_input_refs": [
+            {
+              "identity": "field-A",
+              "revision": "synthetic-A",
+              "scope": {
+                "product": "SYNTHETIC-P",
+                "tenant": "SYNTHETIC-T",
+                "environment": "SYNTHETIC-E"
+              },
+              "owner": "synthetic-core-owner",
+              "source_locator": null,
+              "sha256": null
+            }
+          ],
+          "obligation_refs": [
+            {
+              "identity": "synthetic-obligation-unit",
+              "revision": "synthetic-A",
+              "scope": {
+                "product": "SYNTHETIC-P",
+                "tenant": "SYNTHETIC-T",
+                "environment": "SYNTHETIC-E"
+              },
+              "owner": "synthetic-core-owner",
+              "source_locator": null,
+              "sha256": null
+            }
+          ],
+          "source_ref": {
+            "identity": "source-synthetic-brain-owner",
+            "revision": "synthetic-A",
+            "scope": {
+              "product": "SYNTHETIC-P",
+              "tenant": "SYNTHETIC-T",
+              "environment": "SYNTHETIC-E"
+            },
+            "owner": "synthetic-brain-owner",
+            "source_locator": null,
+            "sha256": null
+          }
+        },
+        {
+          "ref": {
+            "identity": "SYNTHETIC-T-unit",
+            "revision": "synthetic-A",
+            "scope": {
+              "product": "SYNTHETIC-Q",
+              "tenant": "SYNTHETIC-T2",
+              "environment": "SYNTHETIC-E"
+            },
+            "owner": "synthetic-brain-owner",
+            "source_locator": null,
+            "sha256": null
+          },
+          "binding": {
+            "requirement_ref": {
+              "identity": "synthetic-requirement",
+              "revision": "synthetic-A",
+              "scope": {
+                "product": "SYNTHETIC-P",
+                "tenant": "SYNTHETIC-T",
+                "environment": "SYNTHETIC-E"
+              },
+              "owner": "synthetic-requirement-owner",
+              "source_locator": null,
+              "sha256": null
+            },
+            "product_scope": {
+              "product": "SYNTHETIC-Q",
+              "tenant": "SYNTHETIC-T2",
+              "environment": "SYNTHETIC-E"
+            },
+            "process_contract_ref": {
+              "identity": "synthetic-process-contract",
+              "revision": "synthetic-A",
+              "scope": {
+                "product": "SYNTHETIC-P",
+                "tenant": "SYNTHETIC-T",
+                "environment": "SYNTHETIC-E"
+              },
+              "owner": "synthetic-harness-owner",
+              "source_locator": null,
+              "sha256": null
+            },
+            "application_contract_ref": {
+              "identity": "synthetic-application-contract",
+              "revision": "synthetic-A",
+              "scope": {
+                "product": "SYNTHETIC-P",
+                "tenant": "SYNTHETIC-T",
+                "environment": "SYNTHETIC-E"
+              },
+              "owner": "synthetic-harness-owner",
+              "source_locator": null,
+              "sha256": null
+            },
+            "template_ref": {
+              "identity": "SYNTHETIC-T-unit",
+              "revision": "synthetic-A",
+              "scope": {
+                "product": "SYNTHETIC-P",
+                "tenant": "SYNTHETIC-T",
+                "environment": "SYNTHETIC-E"
+              },
+              "owner": "synthetic-brain-owner",
+              "source_locator": null,
+              "sha256": null
+            },
+            "knowledge_ref": {
+              "identity": "SYNTHETIC-K-unit",
+              "revision": "synthetic-A",
+              "scope": {
+                "product": "SYNTHETIC-P",
+                "tenant": "SYNTHETIC-T",
+                "environment": "SYNTHETIC-E"
+              },
+              "owner": "synthetic-brain-owner",
+              "source_locator": null,
+              "sha256": null
+            },
+            "oracle_ref": {
+              "identity": "synthetic-pair-unit",
+              "revision": "synthetic-A",
+              "scope": {
+                "product": "SYNTHETIC-P",
+                "tenant": "SYNTHETIC-T",
+                "environment": "SYNTHETIC-E"
+              },
+              "owner": "synthetic-oracle-owner",
+              "source_locator": null,
+              "sha256": null
+            }
+          },
+          "meaning_contract_ref": {
+            "identity": "synthetic-meaning-contract",
+            "revision": "synthetic-A",
+            "scope": {
+              "product": "SYNTHETIC-P",
+              "tenant": "SYNTHETIC-T",
+              "environment": "SYNTHETIC-E"
+            },
+            "owner": "synthetic-brain-owner",
+            "source_locator": null,
+            "sha256": null
+          },
+          "knowledge_ref": {
+            "identity": "SYNTHETIC-K-unit",
+            "revision": "synthetic-A",
+            "scope": {
+              "product": "SYNTHETIC-P",
+              "tenant": "SYNTHETIC-T",
+              "environment": "SYNTHETIC-E"
+            },
+            "owner": "synthetic-brain-owner",
+            "source_locator": null,
+            "sha256": null
+          },
+          "usability": {
+            "source": "synthetic qualified original state"
+          },
+          "condition_refs": [
+            {
+              "identity": "condition",
+              "revision": "synthetic-A",
+              "scope": {
+                "product": "SYNTHETIC-P",
+                "tenant": "SYNTHETIC-T",
+                "environment": "SYNTHETIC-E"
+              },
+              "owner": "synthetic-core-owner",
+              "source_locator": null,
+              "sha256": null
+            }
+          ],
+          "required_input_refs": [
+            {
+              "identity": "field-A",
+              "revision": "synthetic-A",
+              "scope": {
+                "product": "SYNTHETIC-P",
+                "tenant": "SYNTHETIC-T",
+                "environment": "SYNTHETIC-E"
+              },
+              "owner": "synthetic-core-owner",
+              "source_locator": null,
+              "sha256": null
+            }
+          ],
+          "obligation_refs": [
+            {
+              "identity": "synthetic-obligation-unit",
+              "revision": "synthetic-A",
+              "scope": {
+                "product": "SYNTHETIC-P",
+                "tenant": "SYNTHETIC-T",
+                "environment": "SYNTHETIC-E"
+              },
+              "owner": "synthetic-core-owner",
+              "source_locator": null,
+              "sha256": null
+            }
+          ],
+          "source_ref": {
+            "identity": "source-synthetic-brain-owner",
+            "revision": "synthetic-A",
+            "scope": {
+              "product": "SYNTHETIC-P",
+              "tenant": "SYNTHETIC-T",
+              "environment": "SYNTHETIC-E"
+            },
+            "owner": "synthetic-brain-owner",
+            "source_locator": null,
+            "sha256": null
+          }
+        }
+      ]
+    }
+  }
+}
