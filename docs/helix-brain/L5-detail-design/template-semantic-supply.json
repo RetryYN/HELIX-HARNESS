@@ -11555,7 +11555,7 @@
     "documents": [
       {
         "path": "docs/helix-brain/L4-basic-design/template-semantic-supply.json",
-        "sha256": "3f05bf3fc133ebd3e983276c97fc2248e95c377dd32fac757bd87db1a02d1d06",
+        "sha256": "eae6011c70b310c68b5b28c43aeb48402da2a711bfa4a577c8af39b88b1a2b50",
         "pointers": [
           "/dependency_semantic_ports",
           "/definition_meaning_resolution_contract"
@@ -11563,7 +11563,7 @@
       },
       {
         "path": "docs/helix-brain/L9-integration-verification/template-semantic-supply.json",
-        "sha256": "81c7a0255ec5de0a2d746bdba61e3951b1dfa6b47ddd66c272690e4a3a75615b"
+        "sha256": "7b372fa3939d4be2595d311ce0bcc553bbb6f65e1b68680416466700da3b84b4"
       }
     ],
     "scope": "既存target portと原owner意味/NA判断の論理契約。source_pins内の旧revisionは元導出の歴史pinとして保持する。実provider/実資格を成立したという記録ではない。",
