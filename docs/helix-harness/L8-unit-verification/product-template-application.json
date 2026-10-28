@@ -4361,7 +4361,7 @@
    "context_type": "RawProviderRequest",
    "expected_observation": "単一入力request:RawProviderRequestから内部builder publish_general_proposal_exchange（P0〜P6）へ1回委譲し、公開契約（schema_id=helix.harness.product_template_application.general_proposal_publication_endpoint, version=1.0.0）に適合するCoreProposalPublication全値（general_view・header_port・header_decode・authority_port・source_candidate・publication_issues）を返す。副作用0、OS状態変更・authority実生成なし。",
    "execution_state": "not_executed",
-   "expected_output_rule": "general_proposal_exchange_detail/public_proposal_publication_endpointのresponse_contract.carrier_schemasに従い、4 carrier構造と全Ref4/Ref6・不成立理由・未知状態を無変換で保持する。"
+   "expected_output_rule": "general_proposal_exchange_detail/publication_writer/public_proposal_publication_endpointのresponse_contract（carrier_schemas / nested_public_type_schemas / public_type_aliases）に従い、4 carrier構造と全member公開型・入れ子公開型・全Ref4/Ref6・不成立理由・未知状態を無変換で保持する。"
   }
  ],
  "wire_codec_verification": {
@@ -13215,7 +13215,7 @@
    "l4_endpoint_pointer": "/contracts/3/original_operation_proposal_provider/general_proposal_exchange/publication/public_proposal_publication_endpoint",
    "schema_id": "helix.harness.product_template_application.general_proposal_publication_endpoint",
    "schema_version": "1.0.0",
-   "expected_boundary_ja": "publish_general_proposal_exchange_public(request:RawProviderRequest)->CoreProposalPublicationが内部builder publish_general_proposal_exchangeへ1回委譲し、4 carrier構造（CoreProposalPublication・PublicationSourceCarrier・PublicationRecord・GeneralProposalView）を公開契約として返し、外部機構（HELIX-OS OS002等）がCORE private_typesへのsame_candidate_cross_mechanism_private_type_bindingなしで受領できることを検証する（effect_count=0）。",
+   "expected_boundary_ja": "publish_general_proposal_exchange_public(request:RawProviderRequest)->CoreProposalPublicationが内部builder publish_general_proposal_exchangeへ1回委譲し、4 carrier構造（CoreProposalPublication・PublicationSourceCarrier・PublicationRecord・GeneralProposalView）の各member型、入れ子公開型30種（nested_public_type_schemas）、共有型alias（public_type_aliases）を公開契約自身が宣言して返し（internal_writer_refは説明参照のみ）、外部機構（HELIX-OS OS002等）がCORE private_typesへのsame_candidate_cross_mechanism_private_type_bindingなしで公開型と完全一致する受領型で検証できることを確かめる（effect_count=0）。",
    "execution_state": "not_executed"
   }
  },

@@ -2965,54 +2965,93 @@
             },
             "response_contract": {
               "output_type": "CoreProposalPublication",
+              "type_authority_rule_ja": "4 carrierおよび全入れ子型・共有型aliasの型定義は本公開契約（carrier_schemas / nested_public_type_schemas / public_type_aliases）自身が正本として宣言し、private_typesやall_leaf_writer_ledgerへ型定義の決定権を委譲しない。",
               "carrier_schemas": {
                 "CoreProposalPublication": {
-                  "ordered_members": [
-                    "general_view",
-                    "header_port",
-                    "header_decode",
-                    "authority_port",
-                    "source_candidate",
-                    "publication_issues"
-                  ],
-                  "preservation_rule_ja": "general_view・header_port・header_decode・authority_port・source_candidate・publication_issuesの6 memberと全Ref4/Ref6・不成立理由・未知状態を欠落なく公開契約として返す。"
+                  "kind": "closed_record",
+                  "ordered_members": {
+                    "general_view": "GeneralProposalView",
+                    "header_port": "PublicationHeaderPortCapture",
+                    "header_decode": "PublicationHeaderDecode",
+                    "authority_port": "PublicationAuthorityPortCapture",
+                    "source_candidate": "PublicationSourceStage",
+                    "publication_issues": "LocalIssue[]"
+                  },
+                  "preservation_rule_ja": "general_view・header_port・header_decode・authority_port・source_candidate・publication_issuesの6 memberと各公開型・全Ref4/Ref6・不成立理由・未知状態を欠落なく公開契約として返す。"
                 },
                 "PublicationSourceCarrier": {
-                  "ordered_members": [
-                    "source_ref",
-                    "owner",
-                    "source_json_utf8",
-                    "source_sha256",
-                    "decoded_raw_records",
-                    "qualification_ref",
-                    "qualifications",
-                    "qualification_roots"
-                  ],
-                  "preservation_rule_ja": "source_ref・owner・source_json_utf8・source_sha256・decoded_raw_records・qualification_ref・qualifications・qualification_rootsの8 memberを保持し、資格既知差やunknownを自動修復しない。"
+                  "kind": "closed_record",
+                  "ordered_members": {
+                    "source_ref": "OSRef4",
+                    "owner": "string",
+                    "source_json_utf8": "string",
+                    "source_sha256": "string",
+                    "decoded_raw_records": "PublicationRecord[]",
+                    "qualification_ref": "OSRef4",
+                    "qualifications": "OSQualification[]",
+                    "qualification_roots": "OSQualificationRoot[]"
+                  },
+                  "preservation_rule_ja": "source_ref・owner・source_json_utf8・source_sha256・decoded_raw_records・qualification_ref・qualifications・qualification_rootsの8 memberと各公開型を保持し、資格既知差やunknownを自動修復しない。"
                 },
                 "PublicationRecord": {
-                  "ordered_members": [
-                    "subject_ref",
-                    "section_key",
-                    "record_kind",
-                    "payload",
-                    "owner"
-                  ],
-                  "preservation_rule_ja": "subject_ref・section_key=F02・record_kind=core_proposal_exchange・payload={original_trace_section,evidence}・ownerの5 memberを保持し、旧OwnerRecordへcastしない。"
+                  "kind": "closed_record",
+                  "ordered_members": {
+                    "subject_ref": "OSRef4",
+                    "section_key": "literal F02",
+                    "record_kind": "literal core_proposal_exchange",
+                    "payload": "PublicationRolePayload",
+                    "owner": "string"
+                  },
+                  "preservation_rule_ja": "subject_ref・section_key=F02・record_kind=core_proposal_exchange・payload:PublicationRolePayload・ownerの5 memberを保持し、旧OwnerRecordへcastしない。"
                 },
                 "GeneralProposalView": {
-                  "ordered_members": [
-                    "attempt_capture",
-                    "membership_capture",
-                    "universe_observation",
-                    "relation_observations",
-                    "proposed_body",
-                    "body_issues"
-                  ],
-                  "preservation_rule_ja": "attempt_capture・membership_capture・universe_observation・relation_observations・proposed_body・body_issuesの6 memberと同一call F02比較証拠を保持する。"
+                  "kind": "closed_record",
+                  "ordered_members": {
+                    "attempt_capture": "GeneralOwnerAttempt",
+                    "membership_capture": "GeneralMembershipCapture",
+                    "universe_observation": "UniverseDetailObservation",
+                    "relation_observations": "GeneralCandidateRelation[]",
+                    "proposed_body": "GeneralProposalBody",
+                    "body_issues": "LocalIssue[]"
+                  },
+                  "preservation_rule_ja": "attempt_capture・membership_capture・universe_observation・relation_observations・proposed_body・body_issuesの6 memberと各公開型・同一call F02比較証拠を保持する。"
                 }
               },
-              "cross_mechanism_boundary_rule_ja": "外部機構（HELIX-OS OS002等）はH5#/general_proposal_exchange_detail/private_types/*をsame_candidate_cross_mechanism_private_type_bindingで直接束縛せず、本公開端点契約（schema_id=helix.harness.product_template_application.general_proposal_publication_endpoint, version=1.0.0）に対して受領側自身の受領型（OsReceivedProposalPublication等）とadapter/schema検証で受領する。"
+              "nested_public_type_names": [
+                "PublicationHeaderPortCapture",
+                "PublicationHeaderDecode",
+                "PublicationAuthorityPortCapture",
+                "PublicationSourceStage",
+                "PublicationRolePayload",
+                "GeneralOwnerAttempt",
+                "GeneralMembershipCapture",
+                "UniverseDetailObservation",
+                "GeneralCandidateRelation",
+                "GeneralProposalBody",
+                "PublicationDiagnosticRef",
+                "PublicationHeaderRequest",
+                "PublicationHeader",
+                "PublicationAuthorityRequest",
+                "GeneralNativeDispatch",
+                "GeneralDiagnosticRef",
+                "UniverseComparisonObservation",
+                "GeneralMatchedRelation",
+                "GeneralNativeRef4",
+                "GeneralBindingObservation",
+                "GeneralNativeDetailedReturn",
+                "UniverseEvidenceRef",
+                "UniverseEvidenceStep",
+                "UniverseMemberObservation",
+                "UniverseComparisonConclusion",
+                "GeneralTargetRead",
+                "GeneralQualificationOrigin",
+                "NativeUniverseDetailObservation",
+                "UniverseStepState",
+                "CandidateUniverseDetailedReturn"
+              ],
+              "l5_nested_public_type_schemas_pointer": "/general_proposal_exchange_detail/publication_writer/public_proposal_publication_endpoint/response_contract/nested_public_type_schemas",
+              "l5_public_type_aliases_pointer": "/general_proposal_exchange_detail/publication_writer/public_proposal_publication_endpoint/response_contract/public_type_aliases",
+              "cross_mechanism_boundary_rule_ja": "外部機構（HELIX-OS OS002等）はH5#/general_proposal_exchange_detail/private_types/*をsame_candidate_cross_mechanism_private_type_bindingで直接束縛せず、本公開端点契約（schema_id=helix.harness.product_template_application.general_proposal_publication_endpoint, version=1.0.0）のcarrier_schemas・nested_public_type_schemas・public_type_aliasesと完全一致する受領型（OsReceivedProposalPublication等）とadapter/schema検証で受領する。"
             }
           }
         },
