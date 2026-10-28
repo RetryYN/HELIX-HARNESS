@@ -83,10 +83,16 @@ class TestOracleViewBoundaryContext(unittest.TestCase):
         # これはdecode-error composition用の明示empty Comparisonであり、
         # formed fn1/fn3 resultを捏造して通常入力へ使うものではない。
         definitions = {
-            "axes": [], "findings": [], "producer_symbol": FN1, "input_binding": None,
+            "axes": [],
+            "findings": [],
+            "producer_symbol": FN1,
+            "input_binding": None,
         }
         identity_trace = {
-            "axes": [], "findings": [], "producer_symbol": FN3, "input_binding": None,
+            "axes": [],
+            "findings": [],
+            "producer_symbol": FN3,
+            "input_binding": None,
         }
         self._assert_input_comparison(definitions, FN1, None)
         self._assert_input_comparison(identity_trace, FN3, None)
@@ -128,7 +134,11 @@ class TestOracleViewBoundaryContext(unittest.TestCase):
         definitions["producer_symbol"] = "another_producer"
         context["definitions"] = definitions
         self._assert_partial_context_stop(
-            context, raw, raw_before, validated, validated_before,
+            context,
+            raw,
+            raw_before,
+            validated,
+            validated_before,
             "definitions_producer",
         )
 
@@ -141,7 +151,11 @@ class TestOracleViewBoundaryContext(unittest.TestCase):
         identity_trace["input_binding"] = mismatched_binding
         context["identity_trace"] = identity_trace
         self._assert_partial_context_stop(
-            context, raw, raw_before, validated, validated_before,
+            context,
+            raw,
+            raw_before,
+            validated,
+            validated_before,
             "identity_trace_binding",
         )
 
@@ -152,7 +166,11 @@ class TestOracleViewBoundaryContext(unittest.TestCase):
         identity_trace["producer_symbol"] = "another_producer"
         context["identity_trace"] = identity_trace
         self._assert_partial_context_stop(
-            context, raw, raw_before, validated, validated_before,
+            context,
+            raw,
+            raw_before,
+            validated,
+            validated_before,
             "identity_trace_producer",
         )
 
@@ -165,7 +183,11 @@ class TestOracleViewBoundaryContext(unittest.TestCase):
         definitions["input_binding"] = mismatched_binding
         context["definitions"] = definitions
         self._assert_partial_context_stop(
-            context, raw, raw_before, validated, validated_before,
+            context,
+            raw,
+            raw_before,
+            validated,
+            validated_before,
             "definitions_binding",
         )
 

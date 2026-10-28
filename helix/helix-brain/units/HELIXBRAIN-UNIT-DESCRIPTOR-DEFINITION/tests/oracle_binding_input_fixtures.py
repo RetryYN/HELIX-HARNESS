@@ -19,9 +19,20 @@ def _json_bytes(value):
 
 
 def _same_ref(left, right):
-    return isinstance(left, dict) and isinstance(right, dict) and all(
-        left.get(key) == right.get(key)
-        for key in ("identity", "revision", "scope", "owner", "source_locator", "sha256")
+    return (
+        isinstance(left, dict)
+        and isinstance(right, dict)
+        and all(
+            left.get(key) == right.get(key)
+            for key in (
+                "identity",
+                "revision",
+                "scope",
+                "owner",
+                "source_locator",
+                "sha256",
+            )
+        )
     )
 
 
@@ -34,7 +45,8 @@ def _source_by_ref(raw, ref):
 
 def _qualification_for(raw, source):
     matches = [
-        row for row in raw["qualifications"]
+        row
+        for row in raw["qualifications"]
         if _same_ref(row.get("ref"), source.get("qualification_ref"))
     ]
     if source.get("qualification_ref") is None or len(matches) != 1:
@@ -93,10 +105,14 @@ def oracle_binding_rule_input(rule):
     source = _source_by_ref(raw, oracle_binding["source_ref"])
     mirrored_rows = source.get("content", {}).get("oracle_bindings")
     if not isinstance(mirrored_rows, list) or len(mirrored_rows) != 1:
-        raise ValueError("qualified oracle source requires one mirror OracleBinding row")
+        raise ValueError(
+            "qualified oracle source requires one mirror OracleBinding row"
+        )
     mirrored = mirrored_rows[0]
     if "source_ref" in mirrored:
-        raise ValueError("source-body OracleBinding mirror must not self-reference its source digest")
+        raise ValueError(
+            "source-body OracleBinding mirror must not self-reference its source digest"
+        )
 
     if rule == "unrelated_measurement":
         slot, fact = _slot_and_fact(raw, "measurement")
@@ -107,7 +123,9 @@ def oracle_binding_rule_input(rule):
     else:
         slot, fact = _slot_and_fact(raw, "completion")
         oracle_binding["subject_ref"] = copy.deepcopy(fact["ref"])
-        oracle_binding["obligation_ref"] = copy.deepcopy(fact["binding"]["requirement_ref"])
+        oracle_binding["obligation_ref"] = copy.deepcopy(
+            fact["binding"]["requirement_ref"]
+        )
         oracle_binding["oracle_ref"] = copy.deepcopy(oracle_binding["oracle_ref"])
         oracle_binding["oracle_ref"]["revision"] = "synthetic-other-oracle-revision"
 
@@ -127,14 +145,29 @@ def oracle_binding_rule_input(rule):
     # value for R72; the separate OracleBinding carries the requested version.
     if rule == "completion_oracle_revision":
         if oracle_binding["oracle_ref"]["revision"] == fact["oracle_ref"]["revision"]:
-            raise AssertionError("setup: completion and requested oracle revisions must differ")
+            raise AssertionError(
+                "setup: completion and requested oracle revisions must differ"
+            )
 
     # The only deliberate changes are the selected typed OracleBinding tuple
     # and the same source's synchronized digest/qualification/provenance links.
     if len(raw["descriptors"]) != len(raw_before["descriptors"]):
         raise AssertionError("setup: preserve all descriptor facts")
-    for index, (before, after) in enumerate(zip(raw_before["descriptors"], raw["descriptors"])):
+    for index, (before, after) in enumerate(
+        zip(raw_before["descriptors"], raw["descriptors"])
+    ):
         if before["descriptor_kind"] not in {"measurement", "completion"}:
             if before["facts"] != after["facts"]:
-                raise AssertionError(f"setup: unrelated descriptor fact changed at {index}")
-    return raw, raw_before, slot, fact, oracle_binding, source, old_source_ref, new_source_ref
+                raise AssertionError(
+                    f"setup: unrelated descriptor fact changed at {index}"
+                )
+    return (
+        raw,
+        raw_before,
+        slot,
+        fact,
+        oracle_binding,
+        source,
+        old_source_ref,
+        new_source_ref,
+    )

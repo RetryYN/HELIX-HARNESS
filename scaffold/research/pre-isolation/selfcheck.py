@@ -49,38 +49,52 @@ def main() -> int:
     run_case(
         "archive snapshot path drift",
         lambda document: document["paths"][0].update(
-            {"archive_path": "archive/legacy-generation-2026-09-14/root/config/workflow-execution-policy.v1.json"}
+            {
+                "archive_path": "archive/legacy-generation-2026-09-14/root/config/workflow-execution-policy.v1.json"
+            }
         ),
         "archive_pathがsource_pathのsnapshotではない",
     )
     run_case(
         "revision contract meaning change",
-        lambda document: document["revision_contract"].update({"meaning_change_applied": True}),
+        lambda document: document["revision_contract"].update(
+            {"meaning_change_applied": True}
+        ),
         "revision_contractが候補境界の9項目と完全一致しない",
     )
     run_case(
         "revision contract semantic equivalence claim",
-        lambda document: document["revision_contract"].update({"semantic_equivalence": "confirmed"}),
+        lambda document: document["revision_contract"].update(
+            {"semantic_equivalence": "confirmed"}
+        ),
         "revision_contractが候補境界の9項目と完全一致しない",
     )
     run_case(
         "revision contract runtime execution drift",
-        lambda document: document["revision_contract"].update({"runtime_or_test_execution": "allowed"}),
+        lambda document: document["revision_contract"].update(
+            {"runtime_or_test_execution": "allowed"}
+        ),
         "revision_contractが候補境界の9項目と完全一致しない",
     )
     run_case(
         "revision contract human decision fabrication",
-        lambda document: document["revision_contract"].update({"human_decision_ref": "DECISION-FAKE"}),
+        lambda document: document["revision_contract"].update(
+            {"human_decision_ref": "DECISION-FAKE"}
+        ),
         "revision_contractが候補境界の9項目と完全一致しない",
     )
     run_case(
         "revision contract successor fabrication",
-        lambda document: document["revision_contract"].update({"successor_requirement_ids": ["REQ-FAKE"]}),
+        lambda document: document["revision_contract"].update(
+            {"successor_requirement_ids": ["REQ-FAKE"]}
+        ),
         "revision_contractが候補境界の9項目と完全一致しない",
     )
     run_case(
         "revision contract preservation drift",
-        lambda document: document["revision_contract"].update({"preserve_baseline_and_pre_isolation": False}),
+        lambda document: document["revision_contract"].update(
+            {"preserve_baseline_and_pre_isolation": False}
+        ),
         "revision_contractが候補境界の9項目と完全一致しない",
     )
     return 0

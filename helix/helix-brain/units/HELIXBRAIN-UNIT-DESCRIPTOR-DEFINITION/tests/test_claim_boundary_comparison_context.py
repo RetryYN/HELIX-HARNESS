@@ -3,6 +3,7 @@
 元Contextは同rawの実FN0〜FN6から形成する。変形後の値は正規producer結果とも
 成功Contextとも呼ばず、構造・producer・Bindingの否定境界だけを検証する。
 """
+
 import copy
 import unittest
 
@@ -11,8 +12,12 @@ from descriptor_definitions import compare_claim_boundaries
 from test_claim_boundaries_finite import _actual_same_call
 
 FIELDS = (
-    "definitions", "values_applicability", "identity_trace", "oracle_view",
-    "promotion", "dependencies_handoff",
+    "definitions",
+    "values_applicability",
+    "identity_trace",
+    "oracle_view",
+    "promotion",
+    "dependencies_handoff",
 )
 BACKFLOW = "Backflow HELIXBRAIN-L6-032-FN7-CLAIM"
 
@@ -31,7 +36,13 @@ class TestClaimBoundaryComparisonContext(unittest.TestCase):
     def test_each_comparison_keeps_closed_four_member_and_list_shapes(self):
         original = self._context()
         for member in FIELDS:
-            for variant in ("nonobject", "missing", "extra", "axes_type", "findings_type"):
+            for variant in (
+                "nonobject",
+                "missing",
+                "extra",
+                "axes_type",
+                "findings_type",
+            ):
                 with self.subTest(member=member, variant=variant):
                     context = copy.deepcopy(original)
                     comparison = context[member]
@@ -62,7 +73,9 @@ class TestClaimBoundaryComparisonContext(unittest.TestCase):
                 with self.subTest(member=member, variant=variant):
                     context = copy.deepcopy(original)
                     if variant == "different_identity":
-                        context[member]["input_binding"]["template_ref"]["identity"] += "-different"
+                        context[member]["input_binding"]["template_ref"][
+                            "identity"
+                        ] += "-different"
                     else:
                         context[member]["input_binding"] = "not-a-Binding"
                     self._expect_stop(context, "comparison_binding")

@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Generate the SCF-B-0145 research bundle from pinned Git objects."""
+
 from __future__ import annotations
 
 import hashlib
@@ -18,9 +19,13 @@ HISTORICAL_PR2090 = "4b6e1bbf122b03fd3531047290161aced34eefda"
 PREVIOUS_MAIN = "7bed4fcd1f50721592b0ce25a8c5d4ee71220b0b"
 BINDING_ID = "SCF-B-0145"
 ARCHIVE_PREFIX = "archive/legacy-generation-2026-09-14/root/"
-PROFILE_PATH = "scaffold/legacy-ai-instruction-product-classification-0145/semantic-profile.json"
+PROFILE_PATH = (
+    "scaffold/legacy-ai-instruction-product-classification-0145/semantic-profile.json"
+)
 AUDIT_REPORT_PATH = "scaffold/legacy-ai-instruction-product-classification-0145/independent-source-audit.json"
-PROFILE_SHA256 = "sha256:4f72ea9f16fbbf544a579182750511b8e0b01a17b6f6aa521ad388d7e7cb1aea"
+PROFILE_SHA256 = (
+    "sha256:4f72ea9f16fbbf544a579182750511b8e0b01a17b6f6aa521ad388d7e7cb1aea"
+)
 
 PHASE = "docs/governance/legacy-asset-phase-product-classification-bootstrap.jsonl"
 DISPOSITION = "docs/governance/legacy-asset-disposition.jsonl"
@@ -34,18 +39,33 @@ L1 = {
     "HELIX-Web": "docs/helix-web/L1-planning/product-intent.md",
     "HELIX-Web-OS": "docs/helix-web-os/L1-planning/system-intent.md",
 }
-FAILURE = "docs/governance/audits/source-rebaseline/legacy-ci-ai-runtime-source-inventory.md"
-CONSUMER = "docs/governance/audits/source-rebaseline/legacy-ai-consumer-relation-inventory.md"
-ENTRY_DISPOSITION = "docs/governance/audits/source-rebaseline/legacy-ai-read-entry-disposition.md"
-CI_CONSUMER = "docs/governance/audits/source-rebaseline/legacy-ci-consumer-relation-inventory.md"
-DECISION_RECORD = "docs/governance/decisions/concept-v4.1-and-four-l1-approval-2026-09-17.md"
-DECISION_PACKET = "docs/governance/audits/source-rebaseline/concept-v4.1-human-decision-packet.md"
+FAILURE = (
+    "docs/governance/audits/source-rebaseline/legacy-ci-ai-runtime-source-inventory.md"
+)
+CONSUMER = (
+    "docs/governance/audits/source-rebaseline/legacy-ai-consumer-relation-inventory.md"
+)
+ENTRY_DISPOSITION = (
+    "docs/governance/audits/source-rebaseline/legacy-ai-read-entry-disposition.md"
+)
+CI_CONSUMER = (
+    "docs/governance/audits/source-rebaseline/legacy-ci-consumer-relation-inventory.md"
+)
+DECISION_RECORD = (
+    "docs/governance/decisions/concept-v4.1-and-four-l1-approval-2026-09-17.md"
+)
+DECISION_PACKET = (
+    "docs/governance/audits/source-rebaseline/concept-v4.1-human-decision-packet.md"
+)
 PHASE_METHOD = "docs/governance/audits/source-rebaseline/legacy-phase-product-classification-method-2026-09-20.md"
 REUSE = "docs/governance/legacy-asset-reuse-control.md"
 START = "docs/governance/new-generation-start-here.md"
 WAVES = {
-    n: (f"docs/governance/legacy-requirement-direct-semantic-review-wave{n}.jsonl" if n <= 36
-        else f"scaffold/legacy-semantic-review-wave{n}/legacy-requirement-direct-semantic-review-wave{n}.jsonl")
+    n: (
+        f"docs/governance/legacy-requirement-direct-semantic-review-wave{n}.jsonl"
+        if n <= 36
+        else f"scaffold/legacy-semantic-review-wave{n}/legacy-requirement-direct-semantic-review-wave{n}.jsonl"
+    )
     for n in range(1, 51)
 }
 MAIN_CLASSIFICATION_INPUTS = [
@@ -60,7 +80,10 @@ MAIN_CLASSIFICATION_INPUTS = [
     "scaffold/legacy-implementation-residual-0126/classification-research.jsonl",
     "scaffold/legacy-config-product-classification-0141/classification-research.jsonl",
 ]
-MAIN_INVENTORY_INPUTS = [p.removesuffix("classification-research.jsonl") + "inventory.json" for p in MAIN_CLASSIFICATION_INPUTS]
+MAIN_INVENTORY_INPUTS = [
+    p.removesuffix("classification-research.jsonl") + "inventory.json"
+    for p in MAIN_CLASSIFICATION_INPUTS
+]
 SNAPSHOTS = {
     "scaffold/legacy-ai-instruction-product-classification-0145/upstream/pr-2090-classification-research.jsonl": "sha256:a92c3731a91f0417ccbdf28fa80913d3ec694d185ddb1ac391e58b907a9f056b",
     "scaffold/legacy-ai-instruction-product-classification-0145/upstream/pr-2090-inventory.json": "sha256:f4b5fd82731660bf9bb8885ff4b4451b32cf08319aa0f91b09b5e3970cbf268d",
@@ -70,34 +93,87 @@ PINNED_SNAPSHOT_SOURCE_PATHS = {
     "pr-2090-inventory.json": "scaffold/legacy-config-product-classification-0141/inventory.json",
 }
 BASE_INPUTS = [
-    PHASE, DISPOSITION, DECISIONS, READ_AFTER, BOUNDARY, *L1.values(),
-    FAILURE, CONSUMER, ENTRY_DISPOSITION, CI_CONSUMER,
-    DECISION_RECORD, DECISION_PACKET, PHASE_METHOD, REUSE, START, MANIFEST,
+    PHASE,
+    DISPOSITION,
+    DECISIONS,
+    READ_AFTER,
+    BOUNDARY,
+    *L1.values(),
+    FAILURE,
+    CONSUMER,
+    ENTRY_DISPOSITION,
+    CI_CONSUMER,
+    DECISION_RECORD,
+    DECISION_PACKET,
+    PHASE_METHOD,
+    REUSE,
+    START,
+    MANIFEST,
     *WAVES.values(),
 ]
 PRODUCTS = tuple(L1)
 EXPECTED_EXCLUSIONS = {
-    "LEGACY-ASSET-3AC78FD8A01E0F9811C5": (".claude/hooks/git-command-guard.ts", "94519967c5565bd024b3da03384f7a12d9622c16af0b0836e534d4ff0434853d"),
-    "LEGACY-ASSET-A8DD18BCB237675730CD": (".claude/hooks/session-log.ts", "42434283c9fcb273d9064aea08eb35b56bb0f18ee2d89ce75c85005143e3bc8f"),
-    "LEGACY-ASSET-DB4925588127A51391D7": (".claude/hooks/work-guard.ts", "c9aa80b399925bb258de728314dc43f531e0f219c771585d9f661cd0772a7009"),
+    "LEGACY-ASSET-3AC78FD8A01E0F9811C5": (
+        ".claude/hooks/git-command-guard.ts",
+        "94519967c5565bd024b3da03384f7a12d9622c16af0b0836e534d4ff0434853d",
+    ),
+    "LEGACY-ASSET-A8DD18BCB237675730CD": (
+        ".claude/hooks/session-log.ts",
+        "42434283c9fcb273d9064aea08eb35b56bb0f18ee2d89ce75c85005143e3bc8f",
+    ),
+    "LEGACY-ASSET-DB4925588127A51391D7": (
+        ".claude/hooks/work-guard.ts",
+        "c9aa80b399925bb258de728314dc43f531e0f219c771585d9f661cd0772a7009",
+    ),
 }
 EXPECTED_NEGATIVE_CASES = (
-    "target_omission", "target_duplicate", "target_extra", "overlap_injection",
-    "source_identity_tamper", "source_blob_tamper", "source_anchor_tamper",
-    "source_coverage_tamper", "manual_category_tamper", "manual_product_tamper",
-    "manual_product_basis_tamper", "manual_counterevidence_tamper",
-    "phase_candidate_tamper", "implementation_status_tamper",
-    "history_failure_tamper", "consumer_closure_tamper", "wave44_edge_tamper",
-    "authority_promotion", "new_build_promotion", "inventory_target_tamper",
-    "inventory_category_count", "inventory_overlap_tamper", "inventory_input_tamper",
-    "profile_pin_tamper", "snapshot_2090_inventory_tamper", "snapshot_2090_tamper",
-    "binding_omission", "binding_extra", "binding_stale", "malformed_json",
-    "duplicate_json_key", "archive_symlink_mode", "archive_nonregular_type",
-    "archive_path_mismatch", "manifest_mismatch", "typed_bool_alias",
-    "typed_number_alias", "record_null_object", "inventory_null_scope",
-    "output_byte_tamper", "record_extra_key", "inventory_extra_key",
-    "binding_metadata_tamper", "negative_case_order_tamper", "audit_report_tamper",
-    "profile_authority_tamper", "fixed_input_head_drift",
+    "target_omission",
+    "target_duplicate",
+    "target_extra",
+    "overlap_injection",
+    "source_identity_tamper",
+    "source_blob_tamper",
+    "source_anchor_tamper",
+    "source_coverage_tamper",
+    "manual_category_tamper",
+    "manual_product_tamper",
+    "manual_product_basis_tamper",
+    "manual_counterevidence_tamper",
+    "phase_candidate_tamper",
+    "implementation_status_tamper",
+    "history_failure_tamper",
+    "consumer_closure_tamper",
+    "wave44_edge_tamper",
+    "authority_promotion",
+    "new_build_promotion",
+    "inventory_target_tamper",
+    "inventory_category_count",
+    "inventory_overlap_tamper",
+    "inventory_input_tamper",
+    "profile_pin_tamper",
+    "snapshot_2090_inventory_tamper",
+    "snapshot_2090_tamper",
+    "binding_omission",
+    "binding_extra",
+    "binding_stale",
+    "malformed_json",
+    "duplicate_json_key",
+    "archive_symlink_mode",
+    "archive_nonregular_type",
+    "archive_path_mismatch",
+    "manifest_mismatch",
+    "typed_bool_alias",
+    "typed_number_alias",
+    "record_null_object",
+    "inventory_null_scope",
+    "output_byte_tamper",
+    "record_extra_key",
+    "inventory_extra_key",
+    "binding_metadata_tamper",
+    "negative_case_order_tamper",
+    "audit_report_tamper",
+    "profile_authority_tamper",
+    "fixed_input_head_drift",
 )
 RULES = {
     "direct_product_basis": "manual semantic span supports exactly one current four-product L1 candidate; research only",
@@ -141,7 +217,9 @@ def git_bytes(revision: str, path: str) -> bytes:
 @lru_cache(maxsize=None)
 def git_tree(revision: str, path: str) -> tuple[str, str, str]:
     try:
-        rows = subprocess.check_output(["git", "ls-tree", revision, "--", path], text=True, cwd=ROOT).splitlines()
+        rows = subprocess.check_output(
+            ["git", "ls-tree", revision, "--", path], text=True, cwd=ROOT
+        ).splitlines()
     except subprocess.CalledProcessError:
         fail("E_ARCHIVE_STATIC", path)
     if len(rows) != 1:
@@ -174,7 +252,11 @@ def source_identity(row: dict) -> tuple[str, str, str]:
     digest = source.get("sha256", row.get("source_sha256", ""))
     if isinstance(digest, str):
         digest = digest.removeprefix("sha256:")
-    if not isinstance(path, str) or not isinstance(row.get("asset_id"), str) or not isinstance(digest, str):
+    if (
+        not isinstance(path, str)
+        or not isinstance(row.get("asset_id"), str)
+        or not isinstance(digest, str)
+    ):
         fail("E_RESEARCH_INPUT", "research row has no source identity")
     return row["asset_id"], path, digest
 
@@ -187,11 +269,24 @@ def profile_data() -> dict:
     if type(value) is not dict or type(value.get("records")) is not list:
         fail("E_PROFILE", "profile object/records required")
     if len(value["records"]) != 72:
-        fail("E_PROFILE", f"manual profile record count {len(value['records'])}; expected 72")
+        fail(
+            "E_PROFILE",
+            f"manual profile record count {len(value['records'])}; expected 72",
+        )
     profile_ids = [row.get("asset_id") for row in value["records"] if type(row) is dict]
-    profile_paths = [row.get("source_path") for row in value["records"] if type(row) is dict]
-    if len(profile_ids) != 72 or len(set(profile_ids)) != 72 or len(profile_paths) != 72 or len(set(profile_paths)) != 72:
-        fail("E_PROFILE", "manual profile asset IDs and source paths must be exact and unique")
+    profile_paths = [
+        row.get("source_path") for row in value["records"] if type(row) is dict
+    ]
+    if (
+        len(profile_ids) != 72
+        or len(set(profile_ids)) != 72
+        or len(profile_paths) != 72
+        or len(set(profile_paths)) != 72
+    ):
+        fail(
+            "E_PROFILE",
+            "manual profile asset IDs and source paths must be exact and unique",
+        )
     category_counts = Counter()
     for row in value["records"]:
         if type(row) is not dict:
@@ -200,37 +295,89 @@ def profile_data() -> dict:
         products = row.get("candidate_products")
         basis = row.get("product_basis")
         counters = row.get("counterevidence")
-        if (row.get("authority_effect") != "none" or
-                type(row.get("formal_asset_classification_updated")) is not bool or row["formal_asset_classification_updated"] is not False or
-                type(row.get("new_build_allowed")) is not bool or row["new_build_allowed"] is not False):
-            fail("E_PROFILE_AUTHORITY", f"profile authority boundary for {row.get('source_path')}")
-        if category not in RULES or type(products) is not list or type(basis) is not list or type(counters) is not list:
-            fail("E_CATEGORY", f"invalid category/product evidence for {row.get('source_path')}")
-        if len(set(products)) != len(products) or any(product not in PRODUCTS for product in products):
-            fail("E_CATEGORY", f"candidate product names/uniqueness for {row.get('source_path')}")
+        if (
+            row.get("authority_effect") != "none"
+            or type(row.get("formal_asset_classification_updated")) is not bool
+            or row["formal_asset_classification_updated"] is not False
+            or type(row.get("new_build_allowed")) is not bool
+            or row["new_build_allowed"] is not False
+        ):
+            fail(
+                "E_PROFILE_AUTHORITY",
+                f"profile authority boundary for {row.get('source_path')}",
+            )
+        if (
+            category not in RULES
+            or type(products) is not list
+            or type(basis) is not list
+            or type(counters) is not list
+        ):
+            fail(
+                "E_CATEGORY",
+                f"invalid category/product evidence for {row.get('source_path')}",
+            )
+        if len(set(products)) != len(products) or any(
+            product not in PRODUCTS for product in products
+        ):
+            fail(
+                "E_CATEGORY",
+                f"candidate product names/uniqueness for {row.get('source_path')}",
+            )
         basis_products = [item.get("product") for item in basis if type(item) is dict]
-        if len(basis_products) != len(basis) or len(set(basis_products)) != len(basis_products) or set(basis_products) != set(products):
-            fail("E_CATEGORY", f"product basis must exactly support candidates for {row.get('source_path')}")
-        counter_products = [item.get("product") for item in counters if type(item) is dict]
-        if len(counter_products) != len(counters) or any(product not in PRODUCTS or product in products for product in counter_products):
-            fail("E_CATEGORY", f"counterevidence must name a non-candidate product for {row.get('source_path')}")
+        if (
+            len(basis_products) != len(basis)
+            or len(set(basis_products)) != len(basis_products)
+            or set(basis_products) != set(products)
+        ):
+            fail(
+                "E_CATEGORY",
+                f"product basis must exactly support candidates for {row.get('source_path')}",
+            )
+        counter_products = [
+            item.get("product") for item in counters if type(item) is dict
+        ]
+        if len(counter_products) != len(counters) or any(
+            product not in PRODUCTS or product in products
+            for product in counter_products
+        ):
+            fail(
+                "E_CATEGORY",
+                f"counterevidence must name a non-candidate product for {row.get('source_path')}",
+            )
         valid = {
             "direct_product_basis": len(products) == 1,
             "multi_product_conflict": len(products) >= 2,
             "insufficient_basis": len(products) == 0 and len(basis) == 0,
         }
         if not valid[category]:
-            fail("E_CATEGORY", f"category/product-count invariant for {row.get('source_path')}")
-        if not isinstance(row.get("semantic_interpretation"), str) or not row["semantic_interpretation"].strip():
-            fail("E_PROFILE", f"semantic interpretation missing for {row.get('source_path')}")
+            fail(
+                "E_CATEGORY",
+                f"category/product-count invariant for {row.get('source_path')}",
+            )
+        if (
+            not isinstance(row.get("semantic_interpretation"), str)
+            or not row["semantic_interpretation"].strip()
+        ):
+            fail(
+                "E_PROFILE",
+                f"semantic interpretation missing for {row.get('source_path')}",
+            )
         category_counts[category] += 1
-    if {key: category_counts.get(key, 0) for key in RULES} != {"direct_product_basis": 28, "multi_product_conflict": 41, "insufficient_basis": 3}:
-        fail("E_CATEGORY", f"manual profile category denominator {dict(category_counts)}")
+    if {key: category_counts.get(key, 0) for key in RULES} != {
+        "direct_product_basis": 28,
+        "multi_product_conflict": 41,
+        "insufficient_basis": 3,
+    }:
+        fail(
+            "E_CATEGORY", f"manual profile category denominator {dict(category_counts)}"
+        )
     return value
 
 
 def upstream_path_bytes(path: str) -> bytes:
-    if path.startswith("scaffold/legacy-ai-instruction-product-classification-0145/upstream/"):
+    if path.startswith(
+        "scaffold/legacy-ai-instruction-product-classification-0145/upstream/"
+    ):
         name = Path(path).name
         local = BUNDLE / "upstream" / name
         try:
@@ -247,7 +394,11 @@ def upstream_path_bytes(path: str) -> bytes:
 def manifest_sha(path: str) -> str:
     raw = git_bytes(BASE, MANIFEST).decode("utf-8", errors="strict")
     manifest_path = path.removeprefix(ARCHIVE_PREFIX)
-    matches = [line for line in raw.splitlines() if line.endswith("  " + manifest_path) or line.endswith(" " + manifest_path)]
+    matches = [
+        line
+        for line in raw.splitlines()
+        if line.endswith("  " + manifest_path) or line.endswith(" " + manifest_path)
+    ]
     if len(matches) != 1:
         fail("E_ARCHIVE_STATIC", f"manifest entry {path}")
     return "sha256:" + matches[0].split(maxsplit=1)[0]
@@ -266,47 +417,89 @@ def historical_pr2090_rows(bundle: Path | None = None) -> list[dict]:
         fail("E_RESEARCH_INPUT", "stale historical PR #2090 snapshot")
     source_path = PINNED_SNAPSHOT_SOURCE_PATHS.get(name)
     if source_path is None or data != git_bytes(HISTORICAL_PR2090, source_path):
-        fail("E_RESEARCH_INPUT", "historical PR #2090 snapshot differs from pinned Git object")
+        fail(
+            "E_RESEARCH_INPUT",
+            "historical PR #2090 snapshot differs from pinned Git object",
+        )
     if data != git_bytes(MAIN, source_path):
-        fail("E_RESEARCH_INPUT", "historical PR #2090 ledger differs from merged main ledger")
+        fail(
+            "E_RESEARCH_INPUT",
+            "historical PR #2090 ledger differs from merged main ledger",
+        )
     return parse_jsonl(data, path)
 
 
 def prior_unions(bundle: Path | None = None) -> tuple[list[dict]]:
-    main = [row for path in MAIN_CLASSIFICATION_INPUTS for row in parse_jsonl(git_bytes(MAIN, path), path)]
+    main = [
+        row
+        for path in MAIN_CLASSIFICATION_INPUTS
+        for row in parse_jsonl(git_bytes(MAIN, path), path)
+    ]
     history = historical_pr2090_rows(bundle)
     main_ids = {source_identity(row)[0] for row in main}
     main_path_sha = {(source_identity(row)[1], source_identity(row)[2]) for row in main}
     history_ids = {source_identity(row)[0] for row in history}
-    history_path_sha = {(source_identity(row)[1], source_identity(row)[2]) for row in history}
-    if (len(history_ids) != 41 or history_ids - main_ids or history_path_sha - main_path_sha):
-        fail("E_RESEARCH_INPUT", "historical #2090 41-asset set is not included in merged main")
+    history_path_sha = {
+        (source_identity(row)[1], source_identity(row)[2]) for row in history
+    }
+    if (
+        len(history_ids) != 41
+        or history_ids - main_ids
+        or history_path_sha - main_path_sha
+    ):
+        fail(
+            "E_RESEARCH_INPUT",
+            "historical #2090 41-asset set is not included in merged main",
+        )
     return (main,)
 
 
-def target_rows(profile: dict, prior: tuple[list[dict], list[dict], list[dict]]) -> tuple[list[dict], dict, dict]:
+def target_rows(
+    profile: dict, prior: tuple[list[dict], list[dict], list[dict]]
+) -> tuple[list[dict], dict, dict]:
     disposition = strict_base_rows(DISPOSITION)
     prefixes = tuple(profile["scope"]["included_unresolved_prefixes"])
     root_paths = set(profile["scope"]["included_unresolved_root_paths"])
-    candidates = [row for row in disposition if row.get("disposition") == "unresolved" and
-                  (row.get("source_path", "").startswith(prefixes) or row.get("source_path") in root_paths)]
+    candidates = [
+        row
+        for row in disposition
+        if row.get("disposition") == "unresolved"
+        and (
+            row.get("source_path", "").startswith(prefixes)
+            or row.get("source_path") in root_paths
+        )
+    ]
     if len(candidates) != 75:
         fail("E_TARGET_SET", f"pre-overlap candidate count {len(candidates)}")
     prior_rows = [row for group in prior for row in group]
     prior_ids = {source_identity(row)[0] for row in prior_rows}
-    prior_pairs = {(source_identity(row)[1], source_identity(row)[2]) for row in prior_rows}
+    prior_pairs = {
+        (source_identity(row)[1], source_identity(row)[2]) for row in prior_rows
+    }
     candidate_ids = {row["asset_id"] for row in candidates}
     candidate_pairs = {(row["source_path"], row["source_sha256"]) for row in candidates}
     duplicate_ids = candidate_ids & prior_ids
     duplicate_pairs = candidate_pairs & prior_pairs
     excluded_rows = profile.get("overlap_exclusions", [])
-    expected_exclusions = {row["asset_id"]: (row["source_path"], row["source_sha256"]) for row in excluded_rows}
+    expected_exclusions = {
+        row["asset_id"]: (row["source_path"], row["source_sha256"])
+        for row in excluded_rows
+    }
     if duplicate_ids != set(expected_exclusions):
-        fail("E_OVERLAP", f"expected excluded IDs {sorted(expected_exclusions)}, found {sorted(duplicate_ids)}")
+        fail(
+            "E_OVERLAP",
+            f"expected excluded IDs {sorted(expected_exclusions)}, found {sorted(duplicate_ids)}",
+        )
     if duplicate_pairs != set(expected_exclusions.values()):
-        fail("E_OVERLAP", "source path/SHA overlap does not match explicit exclusion list")
+        fail(
+            "E_OVERLAP",
+            "source path/SHA overlap does not match explicit exclusion list",
+        )
     if expected_exclusions != EXPECTED_EXCLUSIONS:
-        fail("E_OVERLAP", "overlap exclusions differ from #2078 records integrated into current main")
+        fail(
+            "E_OVERLAP",
+            "overlap exclusions differ from #2078 records integrated into current main",
+        )
     target = [row for row in candidates if row["asset_id"] not in duplicate_ids]
     if len(target) != 72:
         fail("E_TARGET_SET", f"target count {len(target)}")
@@ -316,7 +509,10 @@ def target_rows(profile: dict, prior: tuple[list[dict], list[dict], list[dict]])
         fail("E_TARGET_SET", "manual profile path set differs from exact target set")
     for row in target:
         manual = profile_by_path[row["source_path"]]
-        if manual.get("asset_id") != row["asset_id"] or manual.get("source_sha256") != row["source_sha256"]:
+        if (
+            manual.get("asset_id") != row["asset_id"]
+            or manual.get("source_sha256") != row["source_sha256"]
+        ):
             fail("E_SOURCE", f"profile identity mismatch for {row['source_path']}")
     summary = {
         "candidate_count_before_overlap_exclusion": len(candidates),
@@ -329,15 +525,20 @@ def target_rows(profile: dict, prior: tuple[list[dict], list[dict], list[dict]])
         prior_sets[label] = {
             "count": len({source_identity(row)[0] for row in group}),
             "ids": {source_identity(row)[0] for row in group},
-            "path_sha": {(source_identity(row)[1], source_identity(row)[2]) for row in group},
+            "path_sha": {
+                (source_identity(row)[1], source_identity(row)[2]) for row in group
+            },
         }
     expected_prior_counts = {"main": 537}
     for label, expected_count in expected_prior_counts.items():
         if len(prior_sets[label]["ids"]) != expected_count:
-            fail("E_RESEARCH_INPUT", f"{label} target count {len(prior_sets[label]['ids'])}; expected {expected_count}")
+            fail(
+                "E_RESEARCH_INPUT",
+                f"{label} target count {len(prior_sets[label]['ids'])}; expected {expected_count}",
+            )
     labels = tuple(expected_prior_counts)
     for index, left in enumerate(labels):
-        for right in labels[index + 1:]:
+        for right in labels[index + 1 :]:
             if prior_sets[left]["ids"] & prior_sets[right]["ids"]:
                 fail("E_OVERLAP", f"prior target ID overlap: {left}/{right}")
             if prior_sets[left]["path_sha"] & prior_sets[right]["path_sha"]:
@@ -349,7 +550,7 @@ def ranges_expected(path: str, content: bytes, line_start: int, line_end: int) -
     lines = content.decode("utf-8", errors="replace").splitlines()
     if not (1 <= line_start <= line_end <= len(lines)):
         fail("E_SOURCE_ANCHOR", f"{path}:{line_start}-{line_end}")
-    selected = lines[line_start - 1:line_end]
+    selected = lines[line_start - 1 : line_end]
     unread = []
     if line_start > 1:
         unread.append([1, line_start - 1])
@@ -379,9 +580,14 @@ def expected_source(asset: dict, manual: dict) -> dict:
     manifest_digest = manifest_sha(archive_path)
     if digest != ledger_digest or digest != manifest_digest:
         fail("E_ARCHIVE_MANIFEST", f"digest mismatch for {archive_path}")
-    if hashlib.sha1(b"blob " + str(len(data)).encode() + b"\0" + data).hexdigest() != oid:
+    if (
+        hashlib.sha1(b"blob " + str(len(data)).encode() + b"\0" + data).hexdigest()
+        != oid
+    ):
         fail("E_ARCHIVE_STATIC", f"blob oid mismatch for {archive_path}")
-    coverage = ranges_expected(source_path, data, manual["line_start"], manual["line_end"])
+    coverage = ranges_expected(
+        source_path, data, manual["line_start"], manual["line_end"]
+    )
     return {
         "source_path": source_path,
         "archive_path": archive_path,
@@ -395,8 +601,11 @@ def expected_source(asset: dict, manual: dict) -> dict:
         "archive_manifest_sha256": manifest_digest,
         "archive_manifest_match": digest == manifest_digest,
         "line_count": coverage["source_line_count"],
-        "anchor_line_coverage": {key: value for key, value in coverage.items() if key != "semantic_anchor"},
-        "semantic_anchor": coverage["semantic_anchor"] | {"interpretation": manual["semantic_interpretation"]},
+        "anchor_line_coverage": {
+            key: value for key, value in coverage.items() if key != "semantic_anchor"
+        },
+        "semantic_anchor": coverage["semantic_anchor"]
+        | {"interpretation": manual["semantic_interpretation"]},
         "read_mode": "git_object_static_read_only",
     }
 
@@ -407,13 +616,25 @@ def source_range(path: str, line_start: int, line_end: int) -> dict:
     if kind != "blob":
         fail("E_BASE_SOURCE", path)
     details = ranges_expected(path, content, line_start, line_end)["semantic_anchor"]
-    return {"path": path, "blob": oid, "sha256": tagged(content), "mode": mode, **details}
+    return {
+        "path": path,
+        "blob": oid,
+        "sha256": tagged(content),
+        "mode": mode,
+        **details,
+    }
 
 
 def boundary_evidence() -> dict:
     ranges = [(36, 39), (54, 65), (86, 89)]
-    return {"path": BOUNDARY, "blob": git_tree(BASE, BOUNDARY)[2], "sha256": tagged(git_bytes(BASE, BOUNDARY),),
-            "ranges": [source_range(BOUNDARY, *r) for r in ranges]}
+    return {
+        "path": BOUNDARY,
+        "blob": git_tree(BASE, BOUNDARY)[2],
+        "sha256": tagged(
+            git_bytes(BASE, BOUNDARY),
+        ),
+        "ranges": [source_range(BOUNDARY, *r) for r in ranges],
+    }
 
 
 def l1_evidence() -> dict:
@@ -425,13 +646,20 @@ def l1_evidence() -> dict:
     }
     output = {}
     for product, path in L1.items():
-        output[product] = {"path": path, "blob": git_tree(BASE, path)[2], "sha256": tagged(git_bytes(BASE, path)),
-                           "ranges": [source_range(path, *item) for item in ranges[product]]}
+        output[product] = {
+            "path": path,
+            "blob": git_tree(BASE, path)[2],
+            "sha256": tagged(git_bytes(BASE, path)),
+            "ranges": [source_range(path, *item) for item in ranges[product]],
+        }
     return output
 
 
 def phase_map() -> dict[str, dict]:
-    return {row["asset_id"]: (number, row) for number, row in enumerate(strict_base_rows(PHASE), 1)}
+    return {
+        row["asset_id"]: (number, row)
+        for number, row in enumerate(strict_base_rows(PHASE), 1)
+    }
 
 
 def decision_map(path: str) -> dict[str, tuple[int, dict]]:
@@ -443,31 +671,56 @@ def decision_map(path: str) -> dict[str, tuple[int, dict]]:
     return output
 
 
-def wave_links(target_ids: set[str], source_paths: set[str]) -> tuple[list[dict], int, dict[str, list[dict]]]:
+def wave_links(
+    target_ids: set[str], source_paths: set[str]
+) -> tuple[list[dict], int, dict[str, list[dict]]]:
     links = []
     per_asset: dict[str, list[dict]] = {asset_id: [] for asset_id in target_ids}
-    path_to_id = {row["source_path"]: row["asset_id"] for row in strict_base_rows(DISPOSITION) if row.get("asset_id") in target_ids}
+    path_to_id = {
+        row["source_path"]: row["asset_id"]
+        for row in strict_base_rows(DISPOSITION)
+        if row.get("asset_id") in target_ids
+    }
     for number, path in WAVES.items():
         blob = git_bytes(BASE, path)
         for line_no, row in enumerate(parse_jsonl(blob, path), 1):
             asset_id = row.get("asset_id")
-            exact_path_values = {value for key, value in row.items() if key in {"source_path", "archive_path"} and isinstance(value, str)}
+            exact_path_values = {
+                value
+                for key, value in row.items()
+                if key in {"source_path", "archive_path"} and isinstance(value, str)
+            }
             matching_ids = {asset_id} if asset_id in target_ids else set()
             if not matching_ids:
-                matching_ids = {path_to_id[path] for path in exact_path_values & source_paths}
+                matching_ids = {
+                    path_to_id[path] for path in exact_path_values & source_paths
+                }
             for found_id in matching_ids:
                 entry = {
                     "wave": number,
                     "path": path,
                     "line": line_no,
-                    "row_sha256": tagged(json.dumps(row, ensure_ascii=False, sort_keys=True, separators=(",", ":")).encode("utf-8")),
+                    "row_sha256": tagged(
+                        json.dumps(
+                            row,
+                            ensure_ascii=False,
+                            sort_keys=True,
+                            separators=(",", ":"),
+                        ).encode("utf-8")
+                    ),
                     "review_id": row.get("review_id"),
                     "source_requirement_id": row.get("source_requirement_id"),
                     "semantic_relation": row.get("semantic_relation"),
                     "semantic_link_status": row.get("semantic_link_status"),
-                    "candidate_phase_targets": row.get("candidate_phase_targets", row.get("phase_candidates", [])),
-                    "candidate_product_targets": row.get("candidate_product_targets", row.get("product_scope", [])),
-                    "current_requirement_implementation_status": row.get("current_requirement_implementation_status"),
+                    "candidate_phase_targets": row.get(
+                        "candidate_phase_targets", row.get("phase_candidates", [])
+                    ),
+                    "candidate_product_targets": row.get(
+                        "candidate_product_targets", row.get("product_scope", [])
+                    ),
+                    "current_requirement_implementation_status": row.get(
+                        "current_requirement_implementation_status"
+                    ),
                     "consumer_closure_status": row.get("consumer_closure_status"),
                     "legacy_execution_status": row.get("legacy_execution_status"),
                 }
@@ -477,8 +730,16 @@ def wave_links(target_ids: set[str], source_paths: set[str]) -> tuple[list[dict]
 
 
 def relation_ids(path: str, family: str) -> list[str]:
-    if family in {"root_project_instructions", "native_runtime_policy", "consumer_instructions"}:
-        return ["AICR-01", "AICR-06"] if path.startswith("docs/templates/") else ["AICR-01"]
+    if family in {
+        "root_project_instructions",
+        "native_runtime_policy",
+        "consumer_instructions",
+    }:
+        return (
+            ["AICR-01", "AICR-06"]
+            if path.startswith("docs/templates/")
+            else ["AICR-01"]
+        )
     if family in {"native_agent", "adapter_agent"}:
         return ["AICR-03"] + (["AICR-06"] if family == "adapter_agent" else [])
     if family in {"native_command", "adapter_command"}:
@@ -490,21 +751,46 @@ def relation_ids(path: str, family: str) -> list[str]:
 
 def evidence_refs(path: str) -> dict:
     docs = [
-        ENTRY_DISPOSITION, CONSUMER, FAILURE, CI_CONSUMER,
-        DECISION_RECORD, DECISION_PACKET, REUSE, START,
+        ENTRY_DISPOSITION,
+        CONSUMER,
+        FAILURE,
+        CI_CONSUMER,
+        DECISION_RECORD,
+        DECISION_PACKET,
+        REUSE,
+        START,
     ]
     refs = []
     for ref in docs:
         mode, kind, oid = git_tree(BASE, ref)
-        refs.append({"path": ref, "blob": oid, "sha256": tagged(git_bytes(BASE, ref)), "read_mode": "git_object_static_read_only"})
+        refs.append(
+            {
+                "path": ref,
+                "blob": oid,
+                "sha256": tagged(git_bytes(BASE, ref)),
+                "read_mode": "git_object_static_read_only",
+            }
+        )
     return {
         "asset_decision": None,
         "read_after": None,
         "historical_context": refs,
         "failure_consumer_static": {
-            "failure": {"path": FAILURE, "blob": git_tree(BASE, FAILURE)[2], "sha256": tagged(git_bytes(BASE, FAILURE))},
-            "consumer": {"path": CONSUMER, "blob": git_tree(BASE, CONSUMER)[2], "sha256": tagged(git_bytes(BASE, CONSUMER))},
-            "relation_inventory": {"path": ENTRY_DISPOSITION, "blob": git_tree(BASE, ENTRY_DISPOSITION)[2], "sha256": tagged(git_bytes(BASE, ENTRY_DISPOSITION))},
+            "failure": {
+                "path": FAILURE,
+                "blob": git_tree(BASE, FAILURE)[2],
+                "sha256": tagged(git_bytes(BASE, FAILURE)),
+            },
+            "consumer": {
+                "path": CONSUMER,
+                "blob": git_tree(BASE, CONSUMER)[2],
+                "sha256": tagged(git_bytes(BASE, CONSUMER)),
+            },
+            "relation_inventory": {
+                "path": ENTRY_DISPOSITION,
+                "blob": git_tree(BASE, ENTRY_DISPOSITION)[2],
+                "sha256": tagged(git_bytes(BASE, ENTRY_DISPOSITION)),
+            },
             "failure_observation": "asset_specific_failure_or_degradation_not_established; static source behavior is not runtime evidence",
             "consumer_relation_ids": relation_ids(path, family_for_path(path)),
             "consumer_closure_status": "pending",
@@ -514,22 +800,45 @@ def evidence_refs(path: str) -> dict:
 
 
 def family_for_path(path: str) -> str:
-    if path.startswith(".cursor/"): return "external_cursor"
-    if path.startswith(".claude/agents/"): return "native_agent"
-    if path.startswith(".claude/commands/"): return "native_command"
-    if path.startswith("docs/templates/adapter/.claude/agents/"): return "adapter_agent"
-    if path.startswith("docs/templates/adapter/.claude/commands/"): return "adapter_command"
-    if path in {".claude/hooks/agent-guard.ts", ".claude/settings.json", ".codex/config.toml", ".codex/hooks.json",
-                "docs/templates/adapter/.claude/settings.json", "docs/templates/adapter/.codex/config.toml",
-                "docs/templates/adapter/.codex/hooks.json"}: return "runtime_adapter"
-    if path.startswith("docs/templates/adapter/"): return "consumer_instructions"
-    if path == ".claude/CLAUDE.md": return "native_runtime_policy"
-    if path in {"AGENTS.md", "CLAUDE.md"}: return "root_project_instructions"
+    if path.startswith(".cursor/"):
+        return "external_cursor"
+    if path.startswith(".claude/agents/"):
+        return "native_agent"
+    if path.startswith(".claude/commands/"):
+        return "native_command"
+    if path.startswith("docs/templates/adapter/.claude/agents/"):
+        return "adapter_agent"
+    if path.startswith("docs/templates/adapter/.claude/commands/"):
+        return "adapter_command"
+    if path in {
+        ".claude/hooks/agent-guard.ts",
+        ".claude/settings.json",
+        ".codex/config.toml",
+        ".codex/hooks.json",
+        "docs/templates/adapter/.claude/settings.json",
+        "docs/templates/adapter/.codex/config.toml",
+        "docs/templates/adapter/.codex/hooks.json",
+    }:
+        return "runtime_adapter"
+    if path.startswith("docs/templates/adapter/"):
+        return "consumer_instructions"
+    if path == ".claude/CLAUDE.md":
+        return "native_runtime_policy"
+    if path in {"AGENTS.md", "CLAUDE.md"}:
+        return "root_project_instructions"
     fail("E_PROFILE", f"unknown source family {path}")
 
 
-def expected_record(asset: dict, manual: dict, phases: dict, decisions: dict, read_after: dict,
-                    l1: dict, boundary: dict, links_by_asset: dict[str, list[dict]]) -> dict:
+def expected_record(
+    asset: dict,
+    manual: dict,
+    phases: dict,
+    decisions: dict,
+    read_after: dict,
+    l1: dict,
+    boundary: dict,
+    links_by_asset: dict[str, list[dict]],
+) -> dict:
     aid = asset["asset_id"]
     phase_number, phase = phases[aid]
     decision = decisions.get(aid)
@@ -540,22 +849,52 @@ def expected_record(asset: dict, manual: dict, phases: dict, decisions: dict, re
     products = manual["candidate_products"]
     basis = []
     for item in manual["product_basis"]:
-        basis.append({**item, "l1_blob": l1[item["product"]]["blob"], "l1_sha256": l1[item["product"]]["sha256"]})
+        basis.append(
+            {
+                **item,
+                "l1_blob": l1[item["product"]]["blob"],
+                "l1_sha256": l1[item["product"]]["sha256"],
+            }
+        )
     counters = []
     for item in manual["counterevidence"]:
-        counters.append({**item, "l1_blob": l1[item["product"]]["blob"], "l1_sha256": l1[item["product"]]["sha256"]})
+        counters.append(
+            {
+                **item,
+                "l1_blob": l1[item["product"]]["blob"],
+                "l1_sha256": l1[item["product"]]["sha256"],
+            }
+        )
     legacy_evidence = {
-        key: asset.get(key) for key in (
-            "asset_class", "reuse_exclusion_class", "disposition", "source_revision", "source_path",
-            "source_sha256", "source_surface", "product_target", "authority_status", "implementation_status",
-            "decision_record_ref", "consumer_refs", "migration_preconditions", "rights_status",
-            "executability_status", "secret_status", "external_effect_status",
+        key: asset.get(key)
+        for key in (
+            "asset_class",
+            "reuse_exclusion_class",
+            "disposition",
+            "source_revision",
+            "source_path",
+            "source_sha256",
+            "source_surface",
+            "product_target",
+            "authority_status",
+            "implementation_status",
+            "decision_record_ref",
+            "consumer_refs",
+            "migration_preconditions",
+            "rights_status",
+            "executability_status",
+            "secret_status",
+            "external_effect_status",
         )
     }
     phase_evidence = {
         "path": PHASE,
         "line": phase_number,
-        "row_sha256": tagged(json.dumps(phase, ensure_ascii=False, sort_keys=True, separators=(",", ":")).encode("utf-8")),
+        "row_sha256": tagged(
+            json.dumps(
+                phase, ensure_ascii=False, sort_keys=True, separators=(",", ":")
+            ).encode("utf-8")
+        ),
         "source_path": phase["source_path"],
         "source_sha256": "sha256:" + phase["source_sha256"],
         "artifact_evidence_kind": phase["artifact_evidence_kind"],
@@ -575,7 +914,11 @@ def expected_record(asset: dict, manual: dict, phases: dict, decisions: dict, re
         "asset_id": aid,
         "source_path": asset["source_path"],
         "source_sha256": asset["source_sha256"],
-        "research_scope": {"batch_id": BINDING_ID, "family": family, "new_asset_research": True},
+        "research_scope": {
+            "batch_id": BINDING_ID,
+            "family": family,
+            "new_asset_research": True,
+        },
         "source_exact": source,
         "legacy_asset_evidence": legacy_evidence,
         "classification": {
@@ -597,12 +940,24 @@ def expected_record(asset: dict, manual: dict, phases: dict, decisions: dict, re
             "current_successor_evidence_status": "not_established",
             "current_product_implementation_status": "not_established",
             "degradation_or_shrinkage_status": "not_established_from_static_evidence",
-            "known_evidence_gaps": ["successor mapping absent", "consumer closure pending", "runtime behavior unverified"],
+            "known_evidence_gaps": [
+                "successor mapping absent",
+                "consumer closure pending",
+                "runtime behavior unverified",
+            ],
         },
         "legacy_history_failure_consumer": {
             **evidence_refs(asset["source_path"]),
-            "asset_decision": None if decision is None else {"path": DECISIONS, "line": decision[0], "row": decision[1]},
-            "read_after": None if read_after_row is None else {"path": READ_AFTER, "line": read_after_row[0], "row": read_after_row[1]},
+            "asset_decision": None
+            if decision is None
+            else {"path": DECISIONS, "line": decision[0], "row": decision[1]},
+            "read_after": None
+            if read_after_row is None
+            else {
+                "path": READ_AFTER,
+                "line": read_after_row[0],
+                "row": read_after_row[1],
+            },
         },
         "wave_semantic_links": links_by_asset[aid],
         "wave_edge_count": len(links_by_asset[aid]),
@@ -610,9 +965,12 @@ def expected_record(asset: dict, manual: dict, phases: dict, decisions: dict, re
         "formal_asset_classification_updated": False,
         "new_build_allowed": False,
         "human_judgment_remaining": [
-            "product owner and L1 boundary decision", "semantic span acceptance and unit/connection/composite split",
-            "phase admission and successor assignment", "implementation or degradation evidence",
-            "consumer closure", "formal asset classification",
+            "product owner and L1 boundary decision",
+            "semantic span acceptance and unit/connection/composite split",
+            "phase admission and successor assignment",
+            "implementation or degradation evidence",
+            "consumer closure",
+            "formal asset classification",
         ],
     }
 
@@ -623,20 +981,36 @@ def input_digest(path: str, revision: str) -> dict:
         expected = SNAPSHOTS[path]
         if tagged(data) != expected:
             fail("E_RESEARCH_INPUT", f"snapshot digest {path}")
-        return {"path": path, "revision": "historical-pr-2090-snapshot", "sha256": tagged(data), "bytes": len(data)}
+        return {
+            "path": path,
+            "revision": "historical-pr-2090-snapshot",
+            "sha256": tagged(data),
+            "bytes": len(data),
+        }
     if path in {PROFILE_PATH, AUDIT_REPORT_PATH}:
         local = BUNDLE / Path(path).name
         try:
             data = local.read_bytes()
         except OSError:
             fail("E_RESEARCH_INPUT", f"missing manual input {path}")
-        return {"path": path, "revision": "manual-static-audit-input", "sha256": tagged(data), "bytes": len(data)}
+        return {
+            "path": path,
+            "revision": "manual-static-audit-input",
+            "sha256": tagged(data),
+            "bytes": len(data),
+        }
     data = git_bytes(revision, path)
     if revision == BASE:
         current = git_bytes("HEAD", path)
         if current != data:
             fail("E_INPUT_DRIFT", f"current HEAD differs from fixed BASE input {path}")
-    return {"path": path, "revision": revision, "sha256": tagged(data), "bytes": len(data), "blob": git_tree(revision, path)[2]}
+    return {
+        "path": path,
+        "revision": revision,
+        "sha256": tagged(data),
+        "bytes": len(data),
+        "blob": git_tree(revision, path)[2],
+    }
 
 
 def build() -> None:
@@ -649,20 +1023,50 @@ def build() -> None:
     read_after = decision_map(READ_AFTER)
     l1 = l1_evidence()
     boundary = boundary_evidence()
-    links, wave_edge_count, links_by_asset = wave_links({row["asset_id"] for row in assets}, {row["source_path"] for row in assets})
-    ledger_rows = [expected_record(row, profile_by_path[row["source_path"]], phases, decisions, read_after, l1, boundary, links_by_asset) for row in assets]
-    output_bytes = b"".join((json.dumps(row, ensure_ascii=False, sort_keys=True, separators=(",", ":")) + "\n").encode("utf-8") for row in ledger_rows)
+    links, wave_edge_count, links_by_asset = wave_links(
+        {row["asset_id"] for row in assets}, {row["source_path"] for row in assets}
+    )
+    ledger_rows = [
+        expected_record(
+            row,
+            profile_by_path[row["source_path"]],
+            phases,
+            decisions,
+            read_after,
+            l1,
+            boundary,
+            links_by_asset,
+        )
+        for row in assets
+    ]
+    output_bytes = b"".join(
+        (
+            json.dumps(row, ensure_ascii=False, sort_keys=True, separators=(",", ":"))
+            + "\n"
+        ).encode("utf-8")
+        for row in ledger_rows
+    )
     (BUNDLE / "classification-research.jsonl").write_bytes(output_bytes)
     category_counts = Counter(row["classification"]["category"] for row in ledger_rows)
-    status_counts = Counter(row["phase_evidence"]["phase_classification_status"] for row in ledger_rows)
-    implementation_counts = Counter(row["implementation_evidence"]["legacy_implementation_status"] for row in ledger_rows)
+    status_counts = Counter(
+        row["phase_evidence"]["phase_classification_status"] for row in ledger_rows
+    )
+    implementation_counts = Counter(
+        row["implementation_evidence"]["legacy_implementation_status"]
+        for row in ledger_rows
+    )
     all_prior_ids = set().union(*(prior_sets[label]["ids"] for label in ("main",)))
-    all_prior_paths = set().union(*(prior_sets[label]["path_sha"] for label in ("main",)))
+    all_prior_paths = set().union(
+        *(prior_sets[label]["path_sha"] for label in ("main",))
+    )
     target_ids = {row["asset_id"] for row in assets}
     target_paths = {(row["source_path"], row["source_sha256"]) for row in assets}
     research_inputs = [
         *(input_digest(path, BASE) for path in BASE_INPUTS),
-        *(input_digest(path, MAIN) for path in MAIN_CLASSIFICATION_INPUTS + MAIN_INVENTORY_INPUTS),
+        *(
+            input_digest(path, MAIN)
+            for path in MAIN_CLASSIFICATION_INPUTS + MAIN_INVENTORY_INPUTS
+        ),
         *(input_digest(path, MAIN) for path in SNAPSHOTS),
         input_digest(PROFILE_PATH, "manual-static-audit-input"),
         input_digest(AUDIT_REPORT_PATH, "manual-static-audit-input"),
@@ -670,8 +1074,16 @@ def build() -> None:
     archive_inputs = []
     for row in assets:
         archive_path = ARCHIVE_PREFIX + row["source_path"]
-        archive_inputs.append({"path": archive_path, "sha256": tagged(git_bytes(BASE, archive_path)), "bytes": len(git_bytes(BASE, archive_path))})
-    binding_inputs = {item["path"]: item["sha256"].removeprefix("sha256:") for item in research_inputs}
+        archive_inputs.append(
+            {
+                "path": archive_path,
+                "sha256": tagged(git_bytes(BASE, archive_path)),
+                "bytes": len(git_bytes(BASE, archive_path)),
+            }
+        )
+    binding_inputs = {
+        item["path"]: item["sha256"].removeprefix("sha256:") for item in research_inputs
+    }
     for item in archive_inputs:
         binding_inputs[item["path"]] = item["sha256"].removeprefix("sha256:")
     binding = {
@@ -685,8 +1097,15 @@ def build() -> None:
         "role": "legacy-ai-instruction-product-boundary-research-0145-static",
         "reason": "旧AI指示、provider adapter、consumer templateの意味を固定BASEから静的に調べるresearch-only Scaffold Binding。product欄は登録先であり、単一ownerやauthorityを意味しない。",
         "upstream": [
-            ({"path": path, "sha256": digest, "note": "静的read-only参照のみ。旧archiveは実行しない。"}
-             if path.startswith("archive/legacy-generation-") else {"path": path, "sha256": digest})
+            (
+                {
+                    "path": path,
+                    "sha256": digest,
+                    "note": "静的read-only参照のみ。旧archiveは実行しない。",
+                }
+                if path.startswith("archive/legacy-generation-")
+                else {"path": path, "sha256": digest}
+            )
             for path, digest in sorted(binding_inputs.items())
         ],
         "obligations": [
@@ -698,13 +1117,30 @@ def build() -> None:
             "旧archive source/runtime/test/hook/adapter/CIを実行せず、validatorはgenerator再生成一致、independent-source-audit.pyは非依存のsource/span照合として役割を分ける",
         ],
         "connections": {
-            "consumers": ["parent product-classification research ledger", "人間のproduct-boundary判断packet（未接続・採否待ち）"],
-            "dependencies": ["fixed BASE disposition/phase/decision/read-after", "four current product L1 and product-boundary", "pinned main research union 537 including #2078 and merged #2090; retained #2090 41-row snapshot is historical byte-identity evidence only", "AICR-01..10 and failure/consumer relation inventories"],
+            "consumers": [
+                "parent product-classification research ledger",
+                "人間のproduct-boundary判断packet（未接続・採否待ち）",
+            ],
+            "dependencies": [
+                "fixed BASE disposition/phase/decision/read-after",
+                "four current product L1 and product-boundary",
+                "pinned main research union 537 including #2078 and merged #2090; retained #2090 41-row snapshot is historical byte-identity evidence only",
+                "AICR-01..10 and failure/consumer relation inventories",
+            ],
             "boundary": "candidate research evidence only; no formal product, phase, successor, implementation or new-build authority",
         },
         "operations": {
-            "allowed": ["read fixed BASE and archive Git objects statically", "write this research-only scaffold bundle and Binding", "run the new generator, validator, independent static source audit and selfcheck"],
-            "forbidden": ["execute old-generation archive source/runtime/test/hook/adapter/CI", "promote candidate to formal owner/phase/successor/implementation", "modify formal classification ledgers or phase bootstrap", "merge/close/deploy"],
+            "allowed": [
+                "read fixed BASE and archive Git objects statically",
+                "write this research-only scaffold bundle and Binding",
+                "run the new generator, validator, independent static source audit and selfcheck",
+            ],
+            "forbidden": [
+                "execute old-generation archive source/runtime/test/hook/adapter/CI",
+                "promote candidate to formal owner/phase/successor/implementation",
+                "modify formal classification ledgers or phase bootstrap",
+                "merge/close/deploy",
+            ],
         },
         "artifacts": [
             "scaffold/bindings/SCF-B-0145.json",
@@ -720,7 +1156,13 @@ def build() -> None:
         ],
         "verification": {
             "evidence_kind": "scaffold",
-            "scope": ["schema_interface", "deterministic_behavior", "source_revision_stale", "negative_case", "forbidden_write_scope"],
+            "scope": [
+                "schema_interface",
+                "deterministic_behavior",
+                "source_revision_stale",
+                "negative_case",
+                "forbidden_write_scope",
+            ],
             "oracles": [
                 "fixed BASE disposition yields 75 in-scope rows, exact 3 prior duplicates are excluded, and the resulting target set is 72",
                 "independent source audit rechecks all 72 original Git objects, archive manifest entries, and line-span strings without importing generator or validator",
@@ -730,28 +1172,51 @@ def build() -> None:
             ],
             "negative_cases": list(EXPECTED_NEGATIVE_CASES),
         },
-        "replacement": {"role_target": None, "formal_artifacts": [], "issue": 0, "status": "pending"},
+        "replacement": {
+            "role_target": None,
+            "formal_artifacts": [],
+            "issue": 0,
+            "status": "pending",
+        },
         "created": "2026-09-23",
         "updated": "2026-09-23",
     }
-    (BINDING.parent / "SCF-B-0145.json").write_text(json.dumps(binding, ensure_ascii=False, sort_keys=True, indent=2) + "\n", encoding="utf-8")
+    (BINDING.parent / "SCF-B-0145.json").write_text(
+        json.dumps(binding, ensure_ascii=False, sort_keys=True, indent=2) + "\n",
+        encoding="utf-8",
+    )
     inventory = {
         "schema_revision": 1,
         "binding_id": BINDING_ID,
         "research_scope": {
             "fixed_base_revision": BASE,
             "current_main_revision": MAIN,
-            "included_unresolved_prefixes": profile["scope"]["included_unresolved_prefixes"],
-            "included_unresolved_root_paths": profile["scope"]["included_unresolved_root_paths"],
+            "included_unresolved_prefixes": profile["scope"][
+                "included_unresolved_prefixes"
+            ],
+            "included_unresolved_root_paths": profile["scope"][
+                "included_unresolved_root_paths"
+            ],
             "target_count": len(assets),
             "target_ids": sorted(target_ids),
             "target_ids_sha256": tagged("\n".join(sorted(target_ids)).encode()),
-            "target_source_path_sha256": [{"source_path": path, "source_sha256": sha} for path, sha in sorted(target_paths)],
+            "target_source_path_sha256": [
+                {"source_path": path, "source_sha256": sha}
+                for path, sha in sorted(target_paths)
+            ],
             "selection": selection,
         },
         "comparison_heads": {
-            "main": {"revision": MAIN, "research_union_count": len(prior_sets["main"]["ids"])},
-            "pr_2090_historical_snapshot": {"revision": HISTORICAL_PR2090, "target_count": 41, "included_in_main": True, "snapshot_prefix": "upstream/pr-2090-"},
+            "main": {
+                "revision": MAIN,
+                "research_union_count": len(prior_sets["main"]["ids"]),
+            },
+            "pr_2090_historical_snapshot": {
+                "revision": HISTORICAL_PR2090,
+                "target_count": 41,
+                "included_in_main": True,
+                "snapshot_prefix": "upstream/pr-2090-",
+            },
         },
         "overlap_status": {
             "main_target_id_overlap": len(target_ids & prior_sets["main"]["ids"]),
@@ -770,7 +1235,9 @@ def build() -> None:
         },
         "classification_counts": {key: category_counts.get(key, 0) for key in RULES},
         "phase_status_counts": dict(sorted(status_counts.items())),
-        "legacy_implementation_status_counts": dict(sorted(implementation_counts.items())),
+        "legacy_implementation_status_counts": dict(
+            sorted(implementation_counts.items())
+        ),
         "wave_edge_count": wave_edge_count,
         "wave_semantic_links": links,
         "source_archive_receipts": archive_inputs,
@@ -789,14 +1256,22 @@ def build() -> None:
             "archive_read_mode": "git_object_static_read_only",
         },
         "human_judgment_remaining": [
-            "product owner and L1 boundary decision", "semantic span acceptance and unit/connection/composite split",
-            "phase admission and successor assignment", "implementation or degradation evidence",
-            "consumer closure", "formal asset classification",
+            "product owner and L1 boundary decision",
+            "semantic span acceptance and unit/connection/composite split",
+            "phase admission and successor assignment",
+            "implementation or degradation evidence",
+            "consumer closure",
+            "formal asset classification",
         ],
         "negative_cases_expected_order": list(EXPECTED_NEGATIVE_CASES),
     }
-    (BUNDLE / "inventory.json").write_text(json.dumps(inventory, ensure_ascii=False, sort_keys=True, indent=2) + "\n", encoding="utf-8")
-    print(f"SCF-B-0145 generate PASS records={len(assets)} categories={dict(category_counts)} wave_edges={wave_edge_count} overlaps=0")
+    (BUNDLE / "inventory.json").write_text(
+        json.dumps(inventory, ensure_ascii=False, sort_keys=True, indent=2) + "\n",
+        encoding="utf-8",
+    )
+    print(
+        f"SCF-B-0145 generate PASS records={len(assets)} categories={dict(category_counts)} wave_edges={wave_edge_count} overlaps=0"
+    )
 
 
 if __name__ == "__main__":

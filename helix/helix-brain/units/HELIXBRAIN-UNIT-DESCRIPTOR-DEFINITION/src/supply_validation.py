@@ -51,18 +51,35 @@ _APPROVED_KINDS = (
     "downstream kind",
     "supersession",
 )
-_SUPPLY_INPUT_MEMBERS = frozenset((
-    "binding", "required_descriptor_kinds", "sources", "qualification_roots",
-    "qualifications", "descriptors", "meaning_comparisons", "section_fields",
-    "values", "applicability_records", "relations", "oracle_bindings",
-    "compatibility_records", "knowledge_records", "dependencies", "handoff_records",
-    "claims", "candidates",
-))
+_SUPPLY_INPUT_MEMBERS = frozenset(
+    (
+        "binding",
+        "required_descriptor_kinds",
+        "sources",
+        "qualification_roots",
+        "qualifications",
+        "descriptors",
+        "meaning_comparisons",
+        "section_fields",
+        "values",
+        "applicability_records",
+        "relations",
+        "oracle_bindings",
+        "compatibility_records",
+        "knowledge_records",
+        "dependencies",
+        "handoff_records",
+        "claims",
+        "candidates",
+    )
+)
 _BACKFLOW_ID = "HELIXBRAIN-L6-032-N03-PATH"
 
 
 def _unsupported(contract: str, branch: str, detail: str) -> NotImplementedError:
-    error = NotImplementedError(f"{contract}/{branch}: {detail}; Backflow {_BACKFLOW_ID}")
+    error = NotImplementedError(
+        f"{contract}/{branch}: {detail}; Backflow {_BACKFLOW_ID}"
+    )
     error._n03_branch_tagged = True
     return error
 
@@ -77,9 +94,14 @@ def _tag_unsupported(contract: str):
                 message = str(exc)
                 if getattr(exc, "_n03_branch_tagged", False):
                     raise
-                branch = message.partition(":")[0].strip().replace(" ", "_") or "unsupported_branch"
+                branch = (
+                    message.partition(":")[0].strip().replace(" ", "_")
+                    or "unsupported_branch"
+                )
                 raise _unsupported(contract, branch, message) from exc
+
         return wrapped
+
     return decorate
 
 
@@ -106,7 +128,9 @@ def _is_json_value(value: Any) -> bool:
     if isinstance(value, list):
         return all(_is_json_value(item) for item in value)
     if isinstance(value, dict):
-        return all(isinstance(key, str) and _is_json_value(item) for key, item in value.items())
+        return all(
+            isinstance(key, str) and _is_json_value(item) for key, item in value.items()
+        )
     return False
 
 
@@ -115,20 +139,33 @@ def _ref_shape_ok(value: Any) -> bool:
     if not isinstance(value, dict) or set(value) != fields:
         return False
     string_or_null = (str, type(None))
-    return (
-        all(isinstance(value[key], string_or_null) for key in ("identity", "revision", "owner", "source_locator", "sha256"))
-        and _is_json_value(value["scope"])
-    )
+    return all(
+        isinstance(value[key], string_or_null)
+        for key in ("identity", "revision", "owner", "source_locator", "sha256")
+    ) and _is_json_value(value["scope"])
 
 
 def _binding_shape_ok(value: Any) -> bool:
     fields = {
-        "template_ref", "knowledge_ref", "requirement_ref", "oracle_ref", "pack_ref",
-        "pack_contract_version", "pack_artifact_version", "pack_dependency_versions", "version_target",
+        "template_ref",
+        "knowledge_ref",
+        "requirement_ref",
+        "oracle_ref",
+        "pack_ref",
+        "pack_contract_version",
+        "pack_artifact_version",
+        "pack_dependency_versions",
+        "version_target",
     }
     if not isinstance(value, dict) or set(value) != fields:
         return False
-    for key in ("template_ref", "knowledge_ref", "requirement_ref", "oracle_ref", "pack_ref"):
+    for key in (
+        "template_ref",
+        "knowledge_ref",
+        "requirement_ref",
+        "oracle_ref",
+        "pack_ref",
+    ):
         if not _ref_shape_ok(value[key]):
             return False
     for key in ("pack_contract_version", "pack_artifact_version", "version_target"):
@@ -156,14 +193,23 @@ def _wire_binding_shape_ok(value: Any) -> bool:
     """fn0-only optional-member wire shape; strict downstream readers stay unchanged."""
     if not isinstance(value, dict):
         return False
-    ref_fields = {"template_ref", "knowledge_ref", "requirement_ref", "oracle_ref", "pack_ref"}
+    ref_fields = {
+        "template_ref",
+        "knowledge_ref",
+        "requirement_ref",
+        "oracle_ref",
+        "pack_ref",
+    }
     scalar_fields = {"pack_contract_version", "pack_artifact_version", "version_target"}
     fields = ref_fields | scalar_fields | {"pack_dependency_versions"}
     if not set(value) <= fields:
         return False
     if any(key in value and not _wire_ref_shape_ok(value[key]) for key in ref_fields):
         return False
-    if any(key in value and value[key] is not None and not isinstance(value[key], str) for key in scalar_fields):
+    if any(
+        key in value and value[key] is not None and not isinstance(value[key], str)
+        for key in scalar_fields
+    ):
         return False
     if "pack_dependency_versions" in value and (
         not isinstance(value["pack_dependency_versions"], list)
@@ -176,19 +222,32 @@ def _wire_binding_shape_ok(value: Any) -> bool:
 def _source_shape_ok(source: Any) -> bool:
     return (
         isinstance(source, dict)
-        and set(source) == {"ref", "content", "content_bytes", "qualification_ref", "role"}
+        and set(source)
+        == {"ref", "content", "content_bytes", "qualification_ref", "role"}
         and _ref_shape_ok(source.get("ref"))
         and isinstance(source.get("content_bytes"), str)
-        and (source.get("qualification_ref") is None or _ref_shape_ok(source.get("qualification_ref")))
+        and (
+            source.get("qualification_ref") is None
+            or _ref_shape_ok(source.get("qualification_ref"))
+        )
         and isinstance(source.get("role"), str)
-        and source["role"] in {"semantic_json", "derived_view", "explanation", "reference_only"}
+        and source["role"]
+        in {"semantic_json", "derived_view", "explanation", "reference_only"}
     )
 
 
 def _qualification_shape_ok(qualification: Any) -> bool:
     return (
         isinstance(qualification, dict)
-        and set(qualification) == {"ref", "subject_ref", "subject_sha256", "applicable_scope", "qualification_body", "root_ref"}
+        and set(qualification)
+        == {
+            "ref",
+            "subject_ref",
+            "subject_sha256",
+            "applicable_scope",
+            "qualification_body",
+            "root_ref",
+        }
         and _ref_shape_ok(qualification.get("ref"))
         and _ref_shape_ok(qualification.get("subject_ref"))
         and isinstance(qualification.get("subject_sha256"), (str, type(None)))
@@ -214,10 +273,22 @@ def _auxiliary_array_record_issue(raw: dict[str, Any]) -> tuple[str, int] | None
             if record_kind == "Ref[]":
                 valid = _ref_shape_ok(row)
             elif record_kind == "OracleBinding":
-                keys = {"ref", "subject_ref", "obligation_ref", "oracle_ref", "viewpoint", "evidence_refs", "source_ref"}
+                keys = {
+                    "ref",
+                    "subject_ref",
+                    "obligation_ref",
+                    "oracle_ref",
+                    "viewpoint",
+                    "evidence_refs",
+                    "source_ref",
+                }
                 valid = (
-                    isinstance(row, dict) and set(row) == keys
-                    and all(_ref_shape_ok(row[key]) for key in ("ref", "subject_ref", "obligation_ref"))
+                    isinstance(row, dict)
+                    and set(row) == keys
+                    and all(
+                        _ref_shape_ok(row[key])
+                        for key in ("ref", "subject_ref", "obligation_ref")
+                    )
                     and (row["oracle_ref"] is None or _ref_shape_ok(row["oracle_ref"]))
                     and _is_json_value(row["viewpoint"])
                     and isinstance(row["evidence_refs"], list)
@@ -225,24 +296,42 @@ def _auxiliary_array_record_issue(raw: dict[str, Any]) -> tuple[str, int] | None
                     and (row["source_ref"] is None or _ref_shape_ok(row["source_ref"]))
                 )
             elif record_kind == "CompatibilityRecord":
-                keys = {"ref", "left_ref", "right_ref", "source_ref", "compatible", "reason"}
+                keys = {
+                    "ref",
+                    "left_ref",
+                    "right_ref",
+                    "source_ref",
+                    "compatible",
+                    "reason",
+                }
                 valid = (
-                    isinstance(row, dict) and set(row) == keys
+                    isinstance(row, dict)
+                    and set(row) == keys
                     and _ref_shape_ok(row["ref"])
                     and _ref_shape_ok(row["left_ref"])
                     and _ref_shape_ok(row["right_ref"])
                     and (row["source_ref"] is None or _ref_shape_ok(row["source_ref"]))
-                    and (row["compatible"] is None or isinstance(row["compatible"], bool))
+                    and (
+                        row["compatible"] is None or isinstance(row["compatible"], bool)
+                    )
                     and (row["reason"] is None or isinstance(row["reason"], str))
                 )
             else:
                 keys = {"subject_ref", "binding", "state", "source_ref", "reason"}
                 valid = (
-                    isinstance(row, dict) and set(row) == keys
+                    isinstance(row, dict)
+                    and set(row) == keys
                     and _ref_shape_ok(row["subject_ref"])
                     and _binding_shape_ok(row["binding"])
                     and isinstance(row["state"], str)
-                    and row["state"] in {"not_requested", "not_received", "received", "unknown", "conflict"}
+                    and row["state"]
+                    in {
+                        "not_requested",
+                        "not_received",
+                        "received",
+                        "unknown",
+                        "conflict",
+                    }
                     and (row["source_ref"] is None or _ref_shape_ok(row["source_ref"]))
                     and (row["reason"] is None or isinstance(row["reason"], str))
                 )
@@ -255,7 +344,12 @@ def _ref_same(left: Any, right: Any) -> bool:
     if not isinstance(left, dict) or not isinstance(right, dict):
         return False
     for key in ("identity", "revision", "scope", "owner"):
-        if key not in left or key not in right or left[key] is None or right[key] is None:
+        if (
+            key not in left
+            or key not in right
+            or left[key] is None
+            or right[key] is None
+        ):
             return False
         if not _json_equal(left[key], right[key]):
             return False
@@ -268,8 +362,10 @@ def _ref_identity_same(left: Any, right: Any) -> bool:
     if not isinstance(left, dict) or not isinstance(right, dict):
         return False
     return all(
-        key in left and key in right
-        and left[key] is not None and right[key] is not None
+        key in left
+        and key in right
+        and left[key] is not None
+        and right[key] is not None
         and _json_equal(left[key], right[key])
         for key in ("identity", "revision", "scope", "owner")
     )
@@ -281,12 +377,19 @@ def _binding_same(left: Any, right: Any) -> bool:
     if not all(_ref_same(left.get(key), right.get(key)) for key in _BINDING_REFS):
         return False
     for key in ("pack_contract_version", "pack_artifact_version", "version_target"):
-        if key not in left or key not in right or not _json_equal(left[key], right[key]):
+        if (
+            key not in left
+            or key not in right
+            or not _json_equal(left[key], right[key])
+        ):
             return False
     a, b = left.get("pack_dependency_versions"), right.get("pack_dependency_versions")
-    return isinstance(a, list) and isinstance(b, list) and all(
-        any(_ref_same(x, y) for y in b) for x in a
-    ) and all(any(_ref_same(y, x) for x in a) for y in b)
+    return (
+        isinstance(a, list)
+        and isinstance(b, list)
+        and all(any(_ref_same(x, y) for y in b) for x in a)
+        and all(any(_ref_same(y, x) for x in a) for y in b)
+    )
 
 
 def _ordered(value: Any) -> str:
@@ -309,7 +412,9 @@ def _unique_object_pairs(pairs: list[tuple[str, Any]]) -> dict[str, Any]:
 def _copy_refs_in_source_order(refs: list[Any]) -> list[dict[str, Any]]:
     """L5のoriginal_ref_columns: 元Refのみを元順/反復のまま保つ。"""
     if any(not isinstance(ref, dict) for ref in refs):
-        raise NotImplementedError("non-Ref original reference: Backflow HELIXBRAIN-L6-032-N03-PATH")
+        raise NotImplementedError(
+            "non-Ref original reference: Backflow HELIXBRAIN-L6-032-N03-PATH"
+        )
     return copy.deepcopy(refs)
 
 
@@ -317,7 +422,9 @@ def _input_issue(locator: str, reason: str, source_ref: Any = None) -> dict[str,
     return {
         "locator": locator,
         "reason": reason,
-        "source_ref": copy.deepcopy(source_ref) if isinstance(source_ref, dict) else None,
+        "source_ref": copy.deepcopy(source_ref)
+        if isinstance(source_ref, dict)
+        else None,
     }
 
 
@@ -326,7 +433,9 @@ def _source_qualification_ok(raw: dict[str, Any], source: Any) -> bool:
         return False
     source_ref = source["ref"]
     content_bytes = source["content_bytes"]
-    if not isinstance(content_bytes, str) or not isinstance(source_ref.get("sha256"), str):
+    if not isinstance(content_bytes, str) or not isinstance(
+        source_ref.get("sha256"), str
+    ):
         return False
     try:
         encoded = content_bytes.encode("utf-8", errors="strict")
@@ -354,7 +463,8 @@ def _source_qualification_ok(raw: dict[str, Any], source: Any) -> bool:
     if not isinstance(qualifications, list) or not isinstance(roots, list):
         return False
     matches = [
-        (index, row) for index, row in enumerate(qualifications)
+        (index, row)
+        for index, row in enumerate(qualifications)
         if isinstance(row, dict) and _ref_same(row.get("ref"), qualification_ref)
     ]
     if not matches:
@@ -366,14 +476,18 @@ def _source_qualification_ok(raw: dict[str, Any], source: Any) -> bool:
         return False
     for _index, qualification in matches:
         root_ref = qualification.get("root_ref")
-        root_matches = [root for root in roots if _ref_shape_ok(root) and _ref_same(root, root_ref)]
+        root_matches = [
+            root for root in roots if _ref_shape_ok(root) and _ref_same(root, root_ref)
+        ]
         if not root_matches:
             return False
         subject_sha = qualification.get("subject_sha256")
         if not (
             _ref_same(qualification.get("subject_ref"), source_ref)
             and subject_sha == digest
-            and _json_equal(qualification.get("applicable_scope"), source_ref.get("scope"))
+            and _json_equal(
+                qualification.get("applicable_scope"), source_ref.get("scope")
+            )
             # qualification_body is opaque here; no trust resolver is implied.
             and "qualification_body" in qualification
         ):
@@ -392,34 +506,63 @@ def validate_supply_input(raw: object) -> dict[str, object]:
     if not _is_json_value(raw):
         return {
             "input": None,
-            "input_issues": [_input_issue("", "SupplyInput contains a non-JSON value or non-finite number.")],
+            "input_issues": [
+                _input_issue(
+                    "", "SupplyInput contains a non-JSON value or non-finite number."
+                )
+            ],
             "unusable_source_refs": [],
         }
     unknown = [key for key in raw if key not in _SUPPLY_INPUT_MEMBERS]
     if unknown:
         return {
             "input": None,
-            "input_issues": [_input_issue("/" + unknown[0], "SupplyInput member is outside the declared input shape.")],
+            "input_issues": [
+                _input_issue(
+                    "/" + unknown[0],
+                    "SupplyInput member is outside the declared input shape.",
+                )
+            ],
             "unusable_source_refs": [],
         }
-    bad_arrays = [key for key in _INPUT_ARRAYS if key in raw and not isinstance(raw[key], list)]
+    bad_arrays = [
+        key for key in _INPUT_ARRAYS if key in raw and not isinstance(raw[key], list)
+    ]
     if (
         bad_arrays
-        or ("descriptors" in raw and raw["descriptors"] is not None and not isinstance(raw["descriptors"], list))
+        or (
+            "descriptors" in raw
+            and raw["descriptors"] is not None
+            and not isinstance(raw["descriptors"], list)
+        )
         or ("binding" in raw and not _wire_binding_shape_ok(raw["binding"]))
         or ("dependencies" in raw and not isinstance(raw["dependencies"], dict))
     ):
-        field = bad_arrays[0] if bad_arrays else next(
-            key for key in ("descriptors", "binding", "dependencies")
-            if key in raw and (
-                (key == "descriptors" and raw[key] is not None and not isinstance(raw[key], list))
-                or (key == "binding" and not _wire_binding_shape_ok(raw[key]))
-                or (key == "dependencies" and not isinstance(raw[key], dict))
+        field = (
+            bad_arrays[0]
+            if bad_arrays
+            else next(
+                key
+                for key in ("descriptors", "binding", "dependencies")
+                if key in raw
+                and (
+                    (
+                        key == "descriptors"
+                        and raw[key] is not None
+                        and not isinstance(raw[key], list)
+                    )
+                    or (key == "binding" and not _wire_binding_shape_ok(raw[key]))
+                    or (key == "dependencies" and not isinstance(raw[key], dict))
+                )
             )
         )
         return {
             "input": None,
-            "input_issues": [_input_issue("/" + field, "SupplyInput member has an invalid container shape.")],
+            "input_issues": [
+                _input_issue(
+                    "/" + field, "SupplyInput member has an invalid container shape."
+                )
+            ],
             "unusable_source_refs": [],
         }
 
@@ -429,7 +572,11 @@ def validate_supply_input(raw: object) -> dict[str, object]:
         locator = f"/{member}" if index < 0 else f"/{member}/{index}"
         return {
             "input": None,
-            "input_issues": [_input_issue(locator, "SupplyInput record has an unsupported typed shape.")],
+            "input_issues": [
+                _input_issue(
+                    locator, "SupplyInput record has an unsupported typed shape."
+                )
+            ],
             "unusable_source_refs": [],
         }
 
@@ -442,11 +589,18 @@ def validate_supply_input(raw: object) -> dict[str, object]:
         if rows is not None:
             if not isinstance(rows, list):
                 continue  # The array-container diagnostic above handles this.
-            malformed = next((index for index, row in enumerate(rows) if not checker(row)), None)
+            malformed = next(
+                (index for index, row in enumerate(rows) if not checker(row)), None
+            )
             if malformed is not None:
                 return {
                     "input": None,
-                    "input_issues": [_input_issue(f"/{member}/{malformed}", "SupplyInput record has an invalid closed shape.")],
+                    "input_issues": [
+                        _input_issue(
+                            f"/{member}/{malformed}",
+                            "SupplyInput record has an invalid closed shape.",
+                        )
+                    ],
                     "unusable_source_refs": [],
                 }
 
@@ -459,7 +613,13 @@ def validate_supply_input(raw: object) -> dict[str, object]:
                 ref = source["ref"] if isinstance(source, dict) else None
                 if isinstance(ref, dict):
                     unusable.append(copy.deepcopy(ref))
-                issues.append(_input_issue(f"/sources/{index}", "source bytes/body/digest or independent qualification is unresolved.", ref))
+                issues.append(
+                    _input_issue(
+                        f"/sources/{index}",
+                        "source bytes/body/digest or independent qualification is unresolved.",
+                        ref,
+                    )
+                )
     return {"input": snapshot, "input_issues": issues, "unusable_source_refs": unusable}
 
 
@@ -491,8 +651,12 @@ def _owner_body_equal(left: Any, right: Any) -> bool:
     return _json_equal(left_body, right_body)
 
 
-
-def _comparison(axes: list[dict[str, Any]], findings: list[dict[str, Any]], producer: str, binding: Any) -> dict[str, Any]:
+def _comparison(
+    axes: list[dict[str, Any]],
+    findings: list[dict[str, Any]],
+    producer: str,
+    binding: Any,
+) -> dict[str, Any]:
     return {
         "axes": axes,
         "findings": findings,
@@ -501,7 +665,9 @@ def _comparison(axes: list[dict[str, Any]], findings: list[dict[str, Any]], prod
     }
 
 
-
 def _presence(value: Any = None, *, present: bool) -> dict[str, Any]:
-    return {"presence": "supplied", "value": copy.deepcopy(value)} if present else {"presence": "absent"}
-
+    return (
+        {"presence": "supplied", "value": copy.deepcopy(value)}
+        if present
+        else {"presence": "absent"}
+    )

@@ -27,7 +27,9 @@ BACKFLOW = "HELIXBRAIN-L6-032-B02-FN6-PATH"
 
 
 class TestDependenciesAbsentBoundaries(unittest.TestCase):
-    def test_injected_non_object_dependencies_preserve_fn1_and_stop_at_fn6_guard(self) -> None:
+    def test_injected_non_object_dependencies_preserve_fn1_and_stop_at_fn6_guard(
+        self,
+    ) -> None:
         raw = base_input(load_document())
         raw_before = copy.deepcopy(raw)
 
@@ -39,7 +41,9 @@ class TestDependenciesAbsentBoundaries(unittest.TestCase):
         # Keep a real same-call FN1 Comparison; fault injection touches only a
         # private copy of ValidatedSupply after FN0 has completed.
         definitions = compare_descriptor_definitions({"validated": validated})
-        self.assertEqual(definitions["producer_symbol"], "compare_descriptor_definitions")
+        self.assertEqual(
+            definitions["producer_symbol"], "compare_descriptor_definitions"
+        )
         definitions_before = copy.deepcopy(definitions)
 
         malformed_context_values = (
@@ -62,7 +66,8 @@ class TestDependenciesAbsentBoundaries(unittest.TestCase):
                     injected_dependencies
                 )
                 self.assertEqual(
-                    set(injected_validated), set(validated),
+                    set(injected_validated),
+                    set(validated),
                     "failure injection must preserve the ValidatedSupply shape",
                 )
                 expected_injected = copy.deepcopy(validated)
@@ -72,10 +77,12 @@ class TestDependenciesAbsentBoundaries(unittest.TestCase):
                 self.assertEqual(injected_validated, expected_injected)
 
                 with self.assertRaises(NotImplementedError) as caught:
-                    compare_dependencies_and_handoff({
-                        "validated": injected_validated,
-                        "definitions": definitions,
-                    })
+                    compare_dependencies_and_handoff(
+                        {
+                            "validated": injected_validated,
+                            "definitions": definitions,
+                        }
+                    )
                 self.assertEqual(str(caught.exception), expected_stop)
                 self.assertEqual(injected_validated, expected_injected)
 
@@ -99,10 +106,12 @@ class TestDependenciesAbsentBoundaries(unittest.TestCase):
         definitions_before = copy.deepcopy(definitions)
 
         with self.assertRaises(NotImplementedError) as caught:
-            compare_dependencies_and_handoff({
-                "validated": validated,
-                "definitions": definitions,
-            })
+            compare_dependencies_and_handoff(
+                {
+                    "validated": validated,
+                    "definitions": definitions,
+                }
+            )
         self.assertEqual(
             str(caught.exception),
             "F09/conditional_selector: dependencies.core_return_requested is missing, "

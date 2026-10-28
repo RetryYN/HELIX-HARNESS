@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Shared, fail-closed source classification and diff derivation helpers."""
+
 from __future__ import annotations
 
 import difflib
@@ -8,8 +9,13 @@ import re
 FRONTMATTER_KEY = re.compile(r"^[A-Za-z_][A-Za-z0-9_-]*\s*:")
 TABLE_SEPARATOR = re.compile(r"^\|(?:\s*:?-{3,}:?\s*\|)+$")
 GENERIC_METADATA = {
-    "---", "|---|", "| --- |", "|---|---|", "| --- | --- |",
-    "|---|---|---|", "| --- | --- | --- |",
+    "---",
+    "|---|",
+    "| --- |",
+    "|---|---|",
+    "| --- | --- |",
+    "|---|---|---|",
+    "| --- | --- | --- |",
 }
 
 
@@ -60,7 +66,15 @@ def metadata_line_numbers(lines: list[str]) -> set[int]:
 
 
 def derive_source_diff(pre: list[str], archive: list[str]) -> dict:
-    unified = list(difflib.unified_diff(pre, archive, fromfile="pre-isolation", tofile="archive-revision", lineterm=""))
+    unified = list(
+        difflib.unified_diff(
+            pre,
+            archive,
+            fromfile="pre-isolation",
+            tofile="archive-revision",
+            lineterm="",
+        )
+    )
     hunks = [line for line in unified if line.startswith("@@")]
     return {
         "status": "same" if pre == archive else "different",

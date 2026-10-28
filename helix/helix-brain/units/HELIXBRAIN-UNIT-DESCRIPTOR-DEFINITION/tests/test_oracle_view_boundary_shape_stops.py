@@ -45,7 +45,8 @@ class TestOracleViewBoundaryShapeStops(unittest.TestCase):
             set(definitions), {"axes", "findings", "producer_symbol", "input_binding"}
         )
         self.assertEqual(
-            set(identity_trace), {"axes", "findings", "producer_symbol", "input_binding"}
+            set(identity_trace),
+            {"axes", "findings", "producer_symbol", "input_binding"},
         )
         context = {
             "validated": validated,
@@ -80,8 +81,13 @@ class TestOracleViewBoundaryShapeStops(unittest.TestCase):
             else:
                 context["frame"] = {}
             self._assert_shape_stop(
-                context, stop_id="oracle_context_shape", raw=raw, raw_before=raw_before,
-                validated=validated, validated_before=validated_before, case=name,
+                context,
+                stop_id="oracle_context_shape",
+                raw=raw,
+                raw_before=raw_before,
+                validated=validated,
+                validated_before=validated_before,
+                case=name,
             )
 
     def test_validated_supply_shape_stop_covers_object_members_and_arrays(self):
@@ -90,8 +96,14 @@ class TestOracleViewBoundaryShapeStops(unittest.TestCase):
         cases = (
             ("missing_member", lambda value: value.pop("unusable_source_refs")),
             ("extra_member", lambda value: value.update({"unmodeled": []})),
-            ("input_issues_nonarray", lambda value: value.update({"input_issues": None})),
-            ("unusable_source_refs_nonarray", lambda value: value.update({"unusable_source_refs": None})),
+            (
+                "input_issues_nonarray",
+                lambda value: value.update({"input_issues": None}),
+            ),
+            (
+                "unusable_source_refs_nonarray",
+                lambda value: value.update({"unusable_source_refs": None}),
+            ),
         )
         for name in ("nonobject", *(item[0] for item in cases)):
             context = copy.deepcopy(base)
@@ -101,8 +113,13 @@ class TestOracleViewBoundaryShapeStops(unittest.TestCase):
                 change = next(change for case, change in cases if case == name)
                 change(context["validated"])
             self._assert_shape_stop(
-                context, stop_id="validated_supply_shape", raw=raw, raw_before=raw_before,
-                validated=validated, validated_before=validated_before, case=name,
+                context,
+                stop_id="validated_supply_shape",
+                raw=raw,
+                raw_before=raw_before,
+                validated=validated,
+                validated_before=validated_before,
+                case=name,
             )
 
     def test_validated_input_type_stop_uses_only_an_ill_formed_context(self):
@@ -111,8 +128,13 @@ class TestOracleViewBoundaryShapeStops(unittest.TestCase):
         context = copy.deepcopy(base)
         context["validated"]["input"] = "not-a-decoded-SupplyInput"
         self._assert_shape_stop(
-            context, stop_id="validated_input_type", raw=raw, raw_before=raw_before,
-            validated=validated, validated_before=validated_before, case="scalar_input",
+            context,
+            stop_id="validated_input_type",
+            raw=raw,
+            raw_before=raw_before,
+            validated=validated,
+            validated_before=validated_before,
+            case="scalar_input",
         )
 
     def test_each_comparison_shape_stop_is_fixed_for_both_operands(self):
@@ -124,8 +146,14 @@ class TestOracleViewBoundaryShapeStops(unittest.TestCase):
             ("extra_member", lambda value: value.update({"unmodeled": []})),
             ("axes_nonarray", lambda value: value.update({"axes": None})),
             ("findings_nonarray", lambda value: value.update({"findings": None})),
-            ("producer_nonstring", lambda value: value.update({"producer_symbol": None})),
-            ("input_binding_nondict", lambda value: value.update({"input_binding": "not-a-Binding"})),
+            (
+                "producer_nonstring",
+                lambda value: value.update({"producer_symbol": None}),
+            ),
+            (
+                "input_binding_nondict",
+                lambda value: value.update({"input_binding": "not-a-Binding"}),
+            ),
         )
         for operand in ("definitions", "identity_trace"):
             for name, change in cases:
@@ -135,9 +163,13 @@ class TestOracleViewBoundaryShapeStops(unittest.TestCase):
                 else:
                     change(context[operand])
                 self._assert_shape_stop(
-                    context, stop_id=f"{operand}_comparison_shape", raw=raw,
-                    raw_before=raw_before, validated=validated,
-                    validated_before=validated_before, case=f"{operand}_{name}",
+                    context,
+                    stop_id=f"{operand}_comparison_shape",
+                    raw=raw,
+                    raw_before=raw_before,
+                    validated=validated,
+                    validated_before=validated_before,
+                    case=f"{operand}_{name}",
                 )
 
     def test_input_binding_shape_stop_rejects_nonobject_binding(self):
@@ -146,8 +178,13 @@ class TestOracleViewBoundaryShapeStops(unittest.TestCase):
         context = copy.deepcopy(base)
         context["validated"]["input"]["binding"] = []
         self._assert_shape_stop(
-            context, stop_id="input_binding_shape", raw=raw, raw_before=raw_before,
-            validated=validated, validated_before=validated_before, case="binding_array",
+            context,
+            stop_id="input_binding_shape",
+            raw=raw,
+            raw_before=raw_before,
+            validated=validated,
+            validated_before=validated_before,
+            case="binding_array",
         )
 
 

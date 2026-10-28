@@ -6,6 +6,7 @@ absent distinct from explicit null and outside the finite branch. L5
 unresolved; /source_return_contract/descriptor_target_dataflow/direct_wrappers/fn4
 and /functions/4 bound the finite carry cases.
 """
+
 from __future__ import annotations
 
 import copy
@@ -13,7 +14,10 @@ import unittest
 
 from descriptor_definition_walk import evaluate_descriptor_definition_walk
 from descriptor_definitions import compare_oracle_and_view_boundary
-from test_descriptor_fill_oracle_connection import _claim_finite_input, _same_call_context
+from test_descriptor_fill_oracle_connection import (
+    _claim_finite_input,
+    _same_call_context,
+)
 
 
 EXPECTED_STOP = (
@@ -23,7 +27,9 @@ EXPECTED_STOP = (
 
 
 class TestDescriptorFn4AbsentProposalStop(unittest.TestCase):
-    def test_absent_proposed_value_stays_unresolved_for_resolved_and_unknown_targets(self):
+    def test_absent_proposed_value_stays_unresolved_for_resolved_and_unknown_targets(
+        self,
+    ):
         for resolved_target in (True, False):
             with self.subTest(resolved_target=resolved_target):
                 raw = _claim_finite_input(
@@ -51,7 +57,9 @@ class TestDescriptorFn4AbsentProposalStop(unittest.TestCase):
                     self.assertIsInstance(caught, NotImplementedError)
                     self.assertEqual(str(caught), EXPECTED_STOP)
                 else:
-                    self.fail("absent proposal must stay outside the finite carry branch")
+                    self.fail(
+                        "absent proposal must stay outside the finite carry branch"
+                    )
 
                 self.assertEqual(raw, raw_before)
                 self.assertEqual(context, context_before)

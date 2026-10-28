@@ -12,7 +12,9 @@ import validate
 
 
 def run_case(name: str, mutate, refresh_proposal_digest: bool = False) -> None:
-    with tempfile.TemporaryDirectory(prefix="rdp001-reqatom-next5-selfcheck-") as temp_dir:
+    with tempfile.TemporaryDirectory(
+        prefix="rdp001-reqatom-next5-selfcheck-"
+    ) as temp_dir:
         temp = Path(temp_dir)
         original_prop = validate.PROP
         original_inventory = validate.INVENTORY
@@ -21,11 +23,18 @@ def run_case(name: str, mutate, refresh_proposal_digest: bool = False) -> None:
         mutate(proposals, inventory)
         proposal_path = temp / "proposals.jsonl"
         inventory_path = temp / "inventory.json"
-        proposal_text = "".join(json.dumps(row, ensure_ascii=False, separators=(",", ":")) + "\n" for row in proposals)
+        proposal_text = "".join(
+            json.dumps(row, ensure_ascii=False, separators=(",", ":")) + "\n"
+            for row in proposals
+        )
         if refresh_proposal_digest:
-            inventory["proposal_sha256"] = validate.sha256(proposal_text.encode("utf-8"))
+            inventory["proposal_sha256"] = validate.sha256(
+                proposal_text.encode("utf-8")
+            )
         proposal_path.write_text(proposal_text, encoding="utf-8")
-        inventory_path.write_text(json.dumps(inventory, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+        inventory_path.write_text(
+            json.dumps(inventory, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
+        )
         validate.PROP = proposal_path
         validate.INVENTORY = inventory_path
         try:
@@ -52,11 +61,15 @@ def main() -> int:
     )
     run_case(
         "coverage duplicate",
-        lambda rows, inventory: rows[0]["line_coverage"]["consumed_once"].append(rows[0]["line_coverage"]["consumed_once"][0]),
+        lambda rows, inventory: rows[0]["line_coverage"]["consumed_once"].append(
+            rows[0]["line_coverage"]["consumed_once"][0]
+        ),
     )
     run_case(
         "exact source text drift",
-        lambda rows, inventory: rows[0]["candidate_atoms"][0].update(exact_source_text="改変"),
+        lambda rows, inventory: rows[0]["candidate_atoms"][0].update(
+            exact_source_text="改変"
+        ),
     )
     run_case(
         "normalized meaning reversal with refreshed digest",
@@ -67,7 +80,9 @@ def main() -> int:
     )
     run_case(
         "source line digest drift",
-        lambda rows, inventory: rows[0]["input_content_line_digests"].update({"REQSRC-LINE-00008": "sha256:" + "0" * 64}),
+        lambda rows, inventory: rows[0]["input_content_line_digests"].update(
+            {"REQSRC-LINE-00008": "sha256:" + "0" * 64}
+        ),
     )
     run_case(
         "authority promotion",
@@ -75,19 +90,27 @@ def main() -> int:
     )
     run_case(
         "successor assignment",
-        lambda rows, inventory: rows[0].update(successor_requirement_ids=["HARNESS-L2-001"]),
+        lambda rows, inventory: rows[0].update(
+            successor_requirement_ids=["HARNESS-L2-001"]
+        ),
     )
     run_case(
         "implementation status promotion",
-        lambda rows, inventory: rows[4]["candidate_atoms"][0]["status_preservation"].update(implementation_status="implemented"),
+        lambda rows, inventory: rows[4]["candidate_atoms"][0][
+            "status_preservation"
+        ].update(implementation_status="implemented"),
     )
     run_case(
         "degradation status promotion",
-        lambda rows, inventory: rows[4]["candidate_atoms"][0]["status_preservation"].update(degradation_status="degraded"),
+        lambda rows, inventory: rows[4]["candidate_atoms"][0][
+            "status_preservation"
+        ].update(degradation_status="degraded"),
     )
     run_case(
         "phase placement promotion",
-        lambda rows, inventory: rows[4]["candidate_atoms"][0]["status_preservation"].update(phase_status="L3"),
+        lambda rows, inventory: rows[4]["candidate_atoms"][0][
+            "status_preservation"
+        ].update(phase_status="L3"),
     )
     run_case(
         "four-product denominator mutation",
@@ -102,15 +125,21 @@ def main() -> int:
     )
     run_case(
         "OS current inference merged into retained meaning",
-        lambda rows, inventory: rows[4]["candidate_atoms"][1]["retained_meaning"].append("OSのCI／permission運転を追加"),
+        lambda rows, inventory: rows[4]["candidate_atoms"][1][
+            "retained_meaning"
+        ].append("OSのCI／permission運転を追加"),
     )
     run_case(
         "OS current inference separation removed",
-        lambda rows, inventory: rows[4]["candidate_atoms"][1].update(candidate_inference=[]),
+        lambda rows, inventory: rows[4]["candidate_atoms"][1].update(
+            candidate_inference=[]
+        ),
     )
     run_case(
         "Web direct evidence promotion",
-        lambda rows, inventory: rows[2]["candidate_atoms"][0].update(candidate_target="HELIX-Web"),
+        lambda rows, inventory: rows[2]["candidate_atoms"][0].update(
+            candidate_target="HELIX-Web"
+        ),
     )
     run_case(
         "nested unknown key injection",

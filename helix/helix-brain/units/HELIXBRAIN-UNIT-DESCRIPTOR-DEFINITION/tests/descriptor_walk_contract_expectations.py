@@ -11,46 +11,112 @@ REPO_ROOT = Path(__file__).resolve().parents[5]
 L4_PATH = REPO_ROOT / "docs/helix-brain/L4-basic-design/template-semantic-supply.json"
 KIND_ORDER = tuple(
     entry["value"]["descriptor"]
-    for entry in json.loads(L4_PATH.read_text(encoding="utf-8"))["definition_meaning_resolution_contract"]["normative_basis_snapshot"]["entries"]
+    for entry in json.loads(L4_PATH.read_text(encoding="utf-8"))[
+        "definition_meaning_resolution_contract"
+    ]["normative_basis_snapshot"]["entries"]
 )
 
 AXIS_FIELDS = {
-    "subject_ref", "binding", "axis", "state", "original_refs", "reason", "backflow_owner",
+    "subject_ref",
+    "binding",
+    "axis",
+    "state",
+    "original_refs",
+    "reason",
+    "backflow_owner",
 }
 ASSESSMENT_FIELDS = {
-    "key", "state", "origin_branch", "slot_locators", "fact_locators",
-    "comparison_axis_indices", "comparison_finding_indices", "original_axes", "axis_name",
+    "key",
+    "state",
+    "origin_branch",
+    "slot_locators",
+    "fact_locators",
+    "comparison_axis_indices",
+    "comparison_finding_indices",
+    "original_axes",
+    "axis_name",
 }
 ORIGIN_FIELDS = {
-    "ordinal", "assessment_key", "branch", "state", "cause", "slot_locators",
-    "fact_locators", "meaning_read_indices", "applicability_read_indices", "subject_ref",
-    "binding", "axis_name", "original_refs", "reason", "backflow_owner",
-    "finding_rule_indices", "sort_source_refs", "special_read_indices", "pair_origin_links",
-    "applicability_judgment_links", "meaning_support_links", "meaning_problem_links",
+    "ordinal",
+    "assessment_key",
+    "branch",
+    "state",
+    "cause",
+    "slot_locators",
+    "fact_locators",
+    "meaning_read_indices",
+    "applicability_read_indices",
+    "subject_ref",
+    "binding",
+    "axis_name",
+    "original_refs",
+    "reason",
+    "backflow_owner",
+    "finding_rule_indices",
+    "sort_source_refs",
+    "special_read_indices",
+    "pair_origin_links",
+    "applicability_judgment_links",
+    "meaning_support_links",
+    "meaning_problem_links",
     "special_support_links",
 }
 NATIVE_FIELDS = {
-    "meaning_reads", "applicability_reads", "special_reads", "judgment_origins",
-    "pair_reads", "applicability_judgment_batches", "meaning_read_origins",
+    "meaning_reads",
+    "applicability_reads",
+    "special_reads",
+    "judgment_origins",
+    "pair_reads",
+    "applicability_judgment_batches",
+    "meaning_read_origins",
 }
 NATIVE_MEANING_FIELDS = {
-    "slot_locator", "fact_locator", "binding", "normative_frame", "acquisition_state",
-    "occurrences", "supports", "problems",
+    "slot_locator",
+    "fact_locator",
+    "binding",
+    "normative_frame",
+    "acquisition_state",
+    "occurrences",
+    "supports",
+    "problems",
 }
 NATIVE_PROBLEM_FIELDS = {
-    "cause", "source_ref", "source_index", "locator", "original_value", "reason",
+    "cause",
+    "source_ref",
+    "source_index",
+    "locator",
+    "original_value",
+    "reason",
 }
 NATIVE_APPLICABILITY_FIELDS = {
-    "slot_locator", "request", "acquisition_state", "source_occurrences", "supports", "problems",
+    "slot_locator",
+    "request",
+    "acquisition_state",
+    "source_occurrences",
+    "supports",
+    "problems",
 }
 NATIVE_APPLICABILITY_JUDGMENT_FIELDS = {
-    "state", "origin_branch", "cause", "axis", "reason", "source_refs", "subject_ref",
-    "binding", "backflow_owner", "slot_locator", "record_locator",
+    "state",
+    "origin_branch",
+    "cause",
+    "axis",
+    "reason",
+    "source_refs",
+    "subject_ref",
+    "binding",
+    "backflow_owner",
+    "slot_locator",
+    "record_locator",
 }
 
 
 def presence(value, supplied=True):
-    return {"presence": "supplied", "value": copy.deepcopy(value)} if supplied else {"presence": "absent"}
+    return (
+        {"presence": "supplied", "value": copy.deepcopy(value)}
+        if supplied
+        else {"presence": "absent"}
+    )
 
 
 def _canonical(value):
@@ -58,7 +124,10 @@ def _canonical(value):
 
 
 def _sort_refs(values):
-    return sorted((copy.deepcopy(value) for value in values if isinstance(value, dict)), key=_canonical)
+    return sorted(
+        (copy.deepcopy(value) for value in values if isinstance(value, dict)),
+        key=_canonical,
+    )
 
 
 def _component(value, supplied=True):
@@ -74,13 +143,23 @@ def _path_presence(container, member):
 def _axis_sort_key(event):
     origin = event["origin"]
     binding = origin["binding"]
-    binding_value = binding.get("value") if binding.get("presence") == "supplied" else None
-    template_ref = binding_value.get("template_ref") if isinstance(binding_value, dict) else None
-    knowledge_ref = binding_value.get("knowledge_ref") if isinstance(binding_value, dict) else None
+    binding_value = (
+        binding.get("value") if binding.get("presence") == "supplied" else None
+    )
+    template_ref = (
+        binding_value.get("template_ref") if isinstance(binding_value, dict) else None
+    )
+    knowledge_ref = (
+        binding_value.get("knowledge_ref") if isinstance(binding_value, dict) else None
+    )
     template_identity, has_template_identity = _path_presence(template_ref, "identity")
     template_revision, has_template_revision = _path_presence(template_ref, "revision")
-    knowledge_identity, has_knowledge_identity = _path_presence(knowledge_ref, "identity")
-    knowledge_revision, has_knowledge_revision = _path_presence(knowledge_ref, "revision")
+    knowledge_identity, has_knowledge_identity = _path_presence(
+        knowledge_ref, "identity"
+    )
+    knowledge_revision, has_knowledge_revision = _path_presence(
+        knowledge_ref, "revision"
+    )
     slot_presence = origin["assessment_key"]["slot_identity"]
     source_presence = origin["sort_source_refs"]
     axis = event["axis"]["axis"]
@@ -89,8 +168,12 @@ def _axis_sort_key(event):
         _component(template_revision, has_template_revision),
         _component(knowledge_identity, has_knowledge_identity),
         _component(knowledge_revision, has_knowledge_revision),
-        _component(slot_presence.get("value"), slot_presence.get("presence") == "supplied"),
-        _component(source_presence.get("value"), source_presence.get("presence") == "supplied"),
+        _component(
+            slot_presence.get("value"), slot_presence.get("presence") == "supplied"
+        ),
+        _component(
+            source_presence.get("value"), source_presence.get("presence") == "supplied"
+        ),
         _component(axis),
     )
 
@@ -102,7 +185,9 @@ def _normative_snapshot():
 
 def _normative_frame(kind):
     snapshot = _normative_snapshot()
-    entry = next(row for row in snapshot["entries"] if row["value"]["descriptor"] == kind)
+    entry = next(
+        row for row in snapshot["entries"] if row["value"]["descriptor"] == kind
+    )
     return {
         "revision": snapshot["revision"],
         "path": snapshot["path"],
@@ -147,9 +232,18 @@ def _problem(source, source_index, cause):
 
 
 def _axis_event(
-    *, axis, slot, slot_locator, fact_locators, cause, branch, sort_refs,
-    meaning_read_indices=(), applicability_read_indices=(),
-    applicability_judgment_links=(), meaning_problem_links=(),
+    *,
+    axis,
+    slot,
+    slot_locator,
+    fact_locators,
+    cause,
+    branch,
+    sort_refs,
+    meaning_read_indices=(),
+    applicability_read_indices=(),
+    applicability_judgment_links=(),
+    meaning_problem_links=(),
 ):
     key = _key(slot)
     event = {
@@ -188,7 +282,9 @@ def _axis_event(
         "sort_source_refs": copy.deepcopy(event["sort_source_refs"]),
         "special_read_indices": [],
         "pair_origin_links": [],
-        "applicability_judgment_links": copy.deepcopy(list(applicability_judgment_links)),
+        "applicability_judgment_links": copy.deepcopy(
+            list(applicability_judgment_links)
+        ),
         "meaning_support_links": [],
         "meaning_problem_links": copy.deepcopy(list(meaning_problem_links)),
         "special_support_links": [],
@@ -207,7 +303,11 @@ def expected_walk(raw, attribution_comparison, meaning_problem_specs):
         enumerate(raw["descriptors"]),
         key=lambda pair: (KIND_ORDER.index(pair[1]["descriptor_kind"]), pair[0]),
     )
-    attr_rows = [row for row in attribution_comparison["axes"] if row["axis"] == "descriptor.attribution"]
+    attr_rows = [
+        row
+        for row in attribution_comparison["axes"]
+        if row["axis"] == "descriptor.attribution"
+    ]
     meanings = []
     meaning_origins = []
     applicability_reads = []
@@ -221,8 +321,10 @@ def expected_walk(raw, attribution_comparison, meaning_problem_specs):
         for fact_index, fact in enumerate(slot["facts"]):
             fact_locator = f"{slot_locator}/facts/{fact_index}"
             attr_matches = [
-                row for row in attr_rows
-                if row["subject_ref"] == fact["ref"] and row["binding"] == slot["binding"]
+                row
+                for row in attr_rows
+                if row["subject_ref"] == fact["ref"]
+                and row["binding"] == slot["binding"]
             ]
             if len(attr_matches) != 1:
                 raise AssertionError(
@@ -230,46 +332,61 @@ def expected_walk(raw, attribution_comparison, meaning_problem_specs):
                 )
             attr_axis = copy.deepcopy(attr_matches[0])
             if set(attr_axis) != AXIS_FIELDS:
-                raise AssertionError("the unchanged public fn1 attribution helper must retain its seven-field AxisResult")
-            events.append(_axis_event(
-                axis=attr_axis,
-                slot=slot,
-                slot_locator=slot_locator,
-                fact_locators=[fact_locator],
-                cause="owner_descriptor_attribution",
-                branch="existing_definition_result",
-                sort_refs=[fact["source_ref"]] if isinstance(fact.get("source_ref"), dict) else [],
-            ))
+                raise AssertionError(
+                    "the unchanged public fn1 attribution helper must retain its seven-field AxisResult"
+                )
+            events.append(
+                _axis_event(
+                    axis=attr_axis,
+                    slot=slot,
+                    slot_locator=slot_locator,
+                    fact_locators=[fact_locator],
+                    cause="owner_descriptor_attribution",
+                    branch="existing_definition_result",
+                    sort_refs=[fact["source_ref"]]
+                    if isinstance(fact.get("source_ref"), dict)
+                    else [],
+                )
+            )
 
             read_index = len(meanings)
             native_problems = [
                 _problem(raw["sources"][source_index], source_index, cause)
-                for source_index, cause in meaning_problem_specs[(slot_index, fact_index)]
+                for source_index, cause in meaning_problem_specs[
+                    (slot_index, fact_index)
+                ]
             ]
-            meanings.append({
-                "slot_locator": slot_locator,
-                "fact_locator": fact_locator,
-                "binding": presence(slot["binding"]),
-                "normative_frame": _normative_frame(kind),
-                "acquisition_state": "unknown",
-                "occurrences": [],
-                "supports": [],
-                "problems": copy.deepcopy(native_problems),
-            })
-            meaning_origins.append({
-                "meaning_read_index": read_index,
-                "problem_scopes": [
-                    {"problem_index": problem_index, "relevance": "target"}
-                    for problem_index in range(len(native_problems))
-                ],
-                "support_origins": [],
-            })
+            meanings.append(
+                {
+                    "slot_locator": slot_locator,
+                    "fact_locator": fact_locator,
+                    "binding": presence(slot["binding"]),
+                    "normative_frame": _normative_frame(kind),
+                    "acquisition_state": "unknown",
+                    "occurrences": [],
+                    "supports": [],
+                    "problems": copy.deepcopy(native_problems),
+                }
+            )
+            meaning_origins.append(
+                {
+                    "meaning_read_index": read_index,
+                    "problem_scopes": [
+                        {"problem_index": problem_index, "relevance": "target"}
+                        for problem_index in range(len(native_problems))
+                    ],
+                    "support_origins": [],
+                }
+            )
 
             for problem_index, problem in enumerate(native_problems):
                 # The public source/reference column follows L5 per_fact_definition:
                 # fact.ref, fact.source_ref, then read occurrence refs. Problems
                 # remain linked by their native indexes instead of being cast here.
-                original_refs = [copy.deepcopy(fact["ref"]), copy.deepcopy(fact["source_ref"])]
+                original_refs = [
+                    copy.deepcopy(fact["ref"]),
+                    copy.deepcopy(fact["source_ref"]),
+                ]
                 axis = {
                     "subject_ref": copy.deepcopy(fact["ref"]),
                     "binding": copy.deepcopy(slot["binding"]),
@@ -283,25 +400,36 @@ def expected_walk(raw, attribution_comparison, meaning_problem_specs):
                 # fact source Ref followed by read.occurrences source_refs only.
                 # A source_unresolved problem keeps its own source_ref in native
                 # material/link but is not merged into this independent column.
-                source_refs = [fact["source_ref"]] if isinstance(fact.get("source_ref"), dict) else []
-                events.append(_axis_event(
-                    axis=axis,
-                    slot=slot,
-                    slot_locator=slot_locator,
-                    fact_locators=[fact_locator],
-                    cause="required_source_or_interpretation_unresolved",
-                    branch="source_unresolved",
-                    sort_refs=source_refs,
-                    meaning_read_indices=[read_index],
-                    meaning_problem_links=[
-                        {"meaning_read_index": read_index, "problem_index": problem_index}
-                    ],
-                ))
+                source_refs = (
+                    [fact["source_ref"]]
+                    if isinstance(fact.get("source_ref"), dict)
+                    else []
+                )
+                events.append(
+                    _axis_event(
+                        axis=axis,
+                        slot=slot,
+                        slot_locator=slot_locator,
+                        fact_locators=[fact_locator],
+                        cause="required_source_or_interpretation_unresolved",
+                        branch="source_unresolved",
+                        sort_refs=source_refs,
+                        meaning_read_indices=[read_index],
+                        meaning_problem_links=[
+                            {
+                                "meaning_read_index": read_index,
+                                "problem_index": problem_index,
+                            }
+                        ],
+                    )
+                )
 
-        pair_reads.append({
-            "slot_locator": slot_locator,
-            "result": {"axes": [], "origins": []},
-        })
+        pair_reads.append(
+            {
+                "slot_locator": slot_locator,
+                "result": {"axes": [], "origins": []},
+            }
+        )
 
         app_index = len(applicability_reads)
         app_read = {
@@ -310,14 +438,16 @@ def expected_walk(raw, attribution_comparison, meaning_problem_specs):
             "acquisition_state": "unknown",
             "source_occurrences": [],
             "supports": [],
-            "problems": [{
-                "cause": "applicability_request_null",
-                "source_ref": {"presence": "absent"},
-                "source_index": None,
-                "locator": slot_locator + "/definition_applicability_ref",
-                "original_value": presence(None),
-                "reason": "定義非適用の原参照が明示nullであり、当該原判断を解決できない。",
-            }],
+            "problems": [
+                {
+                    "cause": "applicability_request_null",
+                    "source_ref": {"presence": "absent"},
+                    "source_index": None,
+                    "locator": slot_locator + "/definition_applicability_ref",
+                    "original_value": presence(None),
+                    "reason": "定義非適用の原参照が明示nullであり、当該原判断を解決できない。",
+                }
+            ],
         }
         applicability_reads.append(app_read)
         batch_index = len(applicability_batches)
@@ -334,11 +464,13 @@ def expected_walk(raw, attribution_comparison, meaning_problem_specs):
             "slot_locator": slot_locator,
             "record_locator": None,
         }
-        applicability_batches.append({
-            "applicability_read_index": app_index,
-            "slot_locator": slot_locator,
-            "judgments": [copy.deepcopy(judgment)],
-        })
+        applicability_batches.append(
+            {
+                "applicability_read_index": app_index,
+                "slot_locator": slot_locator,
+                "judgments": [copy.deepcopy(judgment)],
+            }
+        )
         na_axis = {
             "subject_ref": copy.deepcopy(judgment["subject_ref"]["value"]),
             "binding": copy.deepcopy(judgment["binding"]["value"]),
@@ -348,30 +480,38 @@ def expected_walk(raw, attribution_comparison, meaning_problem_specs):
             "reason": judgment["reason"],
             "backflow_owner": judgment["backflow_owner"],
         }
-        events.append(_axis_event(
-            axis=na_axis,
-            slot=slot,
-            slot_locator=slot_locator,
-            fact_locators=[],
-            cause="applicability_request_null",
-            branch="source_unresolved",
-            sort_refs=[],
-            applicability_read_indices=[app_index],
-            applicability_judgment_links=[{"batch_index": batch_index, "judgment_index": 0}],
-        ))
+        events.append(
+            _axis_event(
+                axis=na_axis,
+                slot=slot,
+                slot_locator=slot_locator,
+                fact_locators=[],
+                cause="applicability_request_null",
+                branch="source_unresolved",
+                sort_refs=[],
+                applicability_read_indices=[app_index],
+                applicability_judgment_links=[
+                    {"batch_index": batch_index, "judgment_index": 0}
+                ],
+            )
+        )
 
     # L5 exact_sort_contract: seven component keys and stable event-ordinal tie.
     for ordinal, event in enumerate(events):
         event["ordinal"] = ordinal
         event["origin"]["ordinal"] = ordinal
-    sorted_events = sorted(events, key=lambda event: (_axis_sort_key(event), event["ordinal"]))
+    sorted_events = sorted(
+        events, key=lambda event: (_axis_sort_key(event), event["ordinal"])
+    )
     axis_index_by_ordinal = {
         event["ordinal"]: index for index, event in enumerate(sorted_events)
     }
     for event in events:
         axis_index = axis_index_by_ordinal[event["ordinal"]]
         event["assessment"]["comparison_axis_indices"] = [axis_index]
-        event["assessment"]["original_axes"] = [copy.deepcopy(sorted_events[axis_index]["axis"])]
+        event["assessment"]["original_axes"] = [
+            copy.deepcopy(sorted_events[axis_index]["axis"])
+        ]
 
     native = {
         "meaning_reads": meanings,

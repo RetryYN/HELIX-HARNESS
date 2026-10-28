@@ -5,6 +5,7 @@
 このbundleは研究用の候補記録であり、実装、未実装、degradation、failure、consumer closure、phase/product
 authorityを確定しない。
 """
+
 from __future__ import annotations
 
 import hashlib
@@ -28,20 +29,41 @@ BASE_DECLARATION = {
     "required_ancestor": BASE,
 }
 NEGATIVE_CASE_CODES = [
-    "E_UNIT_SET", "E_UNIT_SCHEMA", "E_REVIEW_EDGE_SET", "E_REVIEW_EDGE_DUP", "E_ASSET_SET",
-    "E_INVENTORY_DECLARATION", "E_REPRESENTATIVE_ASSET", "E_IMPLEMENTATION_EVIDENCE",
-    "E_DEGRADATION_EVIDENCE", "E_FAILURE_EVIDENCE", "E_CONSUMER_EVIDENCE", "E_SOURCE_ANCHOR",
-    "E_OLD_ASSET_SOURCE", "E_OLD_ASSET_EVIDENCE", "E_INPUT_DIGEST", "E_BASE_COMMIT",
-    "E_BASE_NOT_ANCESTOR", "E_AUTHORITY_BOUNDARY", "E_CURRENT_STATUS", "E_UNIMPLEMENTED_CLAIM",
+    "E_UNIT_SET",
+    "E_UNIT_SCHEMA",
+    "E_REVIEW_EDGE_SET",
+    "E_REVIEW_EDGE_DUP",
+    "E_ASSET_SET",
+    "E_INVENTORY_DECLARATION",
+    "E_REPRESENTATIVE_ASSET",
+    "E_IMPLEMENTATION_EVIDENCE",
+    "E_DEGRADATION_EVIDENCE",
+    "E_FAILURE_EVIDENCE",
+    "E_CONSUMER_EVIDENCE",
+    "E_SOURCE_ANCHOR",
+    "E_OLD_ASSET_SOURCE",
+    "E_OLD_ASSET_EVIDENCE",
+    "E_INPUT_DIGEST",
+    "E_BASE_COMMIT",
+    "E_BASE_NOT_ANCESTOR",
+    "E_AUTHORITY_BOUNDARY",
+    "E_CURRENT_STATUS",
+    "E_UNIMPLEMENTED_CLAIM",
 ]
-CROSSWALK = "docs/governance/legacy-requirement-implementation-crosswalk-bootstrap.jsonl"
+CROSSWALK = (
+    "docs/governance/legacy-requirement-implementation-crosswalk-bootstrap.jsonl"
+)
 IR = "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json"
 DECOMP = "docs/governance/legacy-ir-product-unit-decomposition-bootstrap.jsonl"
 DISPOSITION = "docs/governance/legacy-asset-disposition.jsonl"
 DECISIONS = "docs/governance/legacy-asset-decisions.jsonl"
 READ_AFTER = "docs/governance/legacy-asset-copy-read-after.jsonl"
-CLASSIFICATION = "docs/governance/legacy-asset-phase-product-classification-bootstrap.jsonl"
-CLASSIFICATION_META = "docs/governance/legacy-asset-phase-product-classification-bootstrap.meta.json"
+CLASSIFICATION = (
+    "docs/governance/legacy-asset-phase-product-classification-bootstrap.jsonl"
+)
+CLASSIFICATION_META = (
+    "docs/governance/legacy-asset-phase-product-classification-bootstrap.meta.json"
+)
 
 SOURCE_IDS = [f"HIL-NFR-{n:02d}" for n in range(1, 21)]
 UNIT_PATTERN = re.compile(r"^IRUNIT-HIL-NFR-(0[1-9]|1[0-9]|20)-HELIX-(OS|HARNESS)$")
@@ -60,10 +82,15 @@ CONTEXT_INPUTS = [
 
 
 def git_exists(path: str) -> bool:
-    return subprocess.run(
-        ["git", "cat-file", "-e", f"{BASE}:{path}"],
-        cwd=ROOT, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL,
-    ).returncode == 0
+    return (
+        subprocess.run(
+            ["git", "cat-file", "-e", f"{BASE}:{path}"],
+            cwd=ROOT,
+            stdout=subprocess.DEVNULL,
+            stderr=subprocess.DEVNULL,
+        ).returncode
+        == 0
+    )
 
 
 def wave_paths() -> dict[int, str]:
@@ -76,7 +103,16 @@ def wave_paths() -> dict[int, str]:
 
 
 WAVE_PATHS = wave_paths()
-INPUT_PATHS = [CROSSWALK, IR, DECOMP, DISPOSITION, DECISIONS, READ_AFTER, CLASSIFICATION, CLASSIFICATION_META]
+INPUT_PATHS = [
+    CROSSWALK,
+    IR,
+    DECOMP,
+    DISPOSITION,
+    DECISIONS,
+    READ_AFTER,
+    CLASSIFICATION,
+    CLASSIFICATION_META,
+]
 INPUT_PATHS += [WAVE_PATHS[n] for n in range(1, 51)]
 INPUT_PATHS += CONTEXT_INPUTS
 
@@ -90,7 +126,11 @@ def base_json(path: str) -> Any:
 
 
 def base_jsonl(path: str) -> list[dict[str, Any]]:
-    return [json.loads(line) for line in base_bytes(path).decode("utf-8").splitlines() if line.strip()]
+    return [
+        json.loads(line)
+        for line in base_bytes(path).decode("utf-8").splitlines()
+        if line.strip()
+    ]
 
 
 def sha256(data: bytes, prefix: bool = True) -> str:
@@ -99,7 +139,11 @@ def sha256(data: bytes, prefix: bool = True) -> str:
 
 
 def canonical_digest(value: Any) -> str:
-    return sha256(json.dumps(value, ensure_ascii=False, sort_keys=True, separators=(",", ":")).encode("utf-8"))
+    return sha256(
+        json.dumps(
+            value, ensure_ascii=False, sort_keys=True, separators=(",", ":")
+        ).encode("utf-8")
+    )
 
 
 def base_digest(path: str) -> str:
@@ -111,12 +155,16 @@ def base_file_sha256(path: str) -> str:
 
 
 def base_blob(path: str) -> str:
-    return subprocess.check_output(["git", "rev-parse", f"{BASE}:{path}"], cwd=ROOT, text=True).strip()
+    return subprocess.check_output(
+        ["git", "rev-parse", f"{BASE}:{path}"], cwd=ROOT, text=True
+    ).strip()
 
 
 def git_blob(path: str) -> str:
     archived = f"archive/legacy-generation-2026-09-14/root/{path}"
-    return subprocess.check_output(["git", "rev-parse", f"{BASE}:{archived}"], cwd=ROOT, text=True).strip()
+    return subprocess.check_output(
+        ["git", "rev-parse", f"{BASE}:{archived}"], cwd=ROOT, text=True
+    ).strip()
 
 
 def jsonl_by_id(path: str, key: str) -> dict[str, dict[str, Any]]:
@@ -124,8 +172,14 @@ def jsonl_by_id(path: str, key: str) -> dict[str, dict[str, Any]]:
 
 
 def target_crosswalk() -> list[dict[str, Any]]:
-    rows = [row for row in base_jsonl(CROSSWALK) if row.get("source_requirement_id") in SOURCE_IDS]
-    if len(rows) != 31 or any(not UNIT_PATTERN.fullmatch(row.get("unit_candidate_id", "")) for row in rows):
+    rows = [
+        row
+        for row in base_jsonl(CROSSWALK)
+        if row.get("source_requirement_id") in SOURCE_IDS
+    ]
+    if len(rows) != 31 or any(
+        not UNIT_PATTERN.fullmatch(row.get("unit_candidate_id", "")) for row in rows
+    ):
         raise ValueError("HIL-NFR-01〜20の製品unit集合が31件のNFR専用集合ではない")
     if any("HIL-BR-" in row.get("unit_candidate_id", "") for row in rows):
         raise ValueError("BR unitがNFR bundleへ混入した")
@@ -137,9 +191,17 @@ def target_crosswalk() -> list[dict[str, Any]]:
 def source_range(requirement_id: str) -> dict[str, Any]:
     raw = base_bytes(IR)
     lines = raw.splitlines(keepends=True)
-    start = next(i for i, line in enumerate(lines) if re.match(rb'^  "' + requirement_id.encode() + rb'": \{', line))
+    start = next(
+        i
+        for i, line in enumerate(lines)
+        if re.match(rb'^  "' + requirement_id.encode() + rb'": \{', line)
+    )
     next_start = next(
-        (i for i in range(start + 1, len(lines)) if re.match(rb'^  "HIL-[A-Z]+-[0-9]+": \{', lines[i])),
+        (
+            i
+            for i in range(start + 1, len(lines))
+            if re.match(rb'^  "HIL-[A-Z]+-[0-9]+": \{', lines[i])
+        ),
         len(lines),
     )
     selected = b"".join(lines[start:next_start])
@@ -172,13 +234,15 @@ def anchor_resolution(edge: dict[str, Any]) -> dict[str, Any]:
             data = base_bytes(archive_path)
             lines = data.splitlines(keepends=True)
             start, end = ref["line_start"], ref["line_end"]
-            selected = lines[start - 1:end]
+            selected = lines[start - 1 : end]
             if len(selected) != end - start + 1:
                 range_status = "invalid"
             else:
                 raw = b"".join(selected)
                 actual = sha256(raw)
-                without_terminal_newline = sha256(raw[:-1]) if raw.endswith(b"\n") else actual
+                without_terminal_newline = (
+                    sha256(raw[:-1]) if raw.endswith(b"\n") else actual
+                )
                 normalized = "\n".join(
                     line.decode("utf-8").rstrip("\r\n") for line in selected
                 ).encode("utf-8")
@@ -196,31 +260,40 @@ def anchor_resolution(edge: dict[str, Any]) -> dict[str, Any]:
             hash_basis = "utf8_lines_strip_crlf_join_lf_without_terminal_newline"
         else:
             hash_basis = "unresolved"
-        references.append({
-            "review_id": edge["review_id"],
-            "evidence_ref_id": ref.get("evidence_ref_id"),
-            "archive_path": archive_path,
-            "line_start": ref.get("line_start"),
-            "line_end": ref.get("line_end"),
-            "declared_excerpt_sha256": declared,
-            "base_excerpt_sha256": actual,
-            "base_excerpt_sha256_without_terminal_newline": without_terminal_newline,
-            "base_excerpt_sha256_lf_join_without_terminal_newline": normalized_digest,
-            "declared_hash_basis": hash_basis,
-            "base_file_sha256": base_file_sha256(archive_path) if actual is not None else None,
-            "git_blob_oid_at_base": base_blob(archive_path) if actual is not None else None,
-            "range_status": range_status,
-            "digest_matches": hash_basis != "unresolved",
-        })
+        references.append(
+            {
+                "review_id": edge["review_id"],
+                "evidence_ref_id": ref.get("evidence_ref_id"),
+                "archive_path": archive_path,
+                "line_start": ref.get("line_start"),
+                "line_end": ref.get("line_end"),
+                "declared_excerpt_sha256": declared,
+                "base_excerpt_sha256": actual,
+                "base_excerpt_sha256_without_terminal_newline": without_terminal_newline,
+                "base_excerpt_sha256_lf_join_without_terminal_newline": normalized_digest,
+                "declared_hash_basis": hash_basis,
+                "base_file_sha256": base_file_sha256(archive_path)
+                if actual is not None
+                else None,
+                "git_blob_oid_at_base": base_blob(archive_path)
+                if actual is not None
+                else None,
+                "range_status": range_status,
+                "digest_matches": hash_basis != "unresolved",
+            }
+        )
     mismatches = [x for x in references if not x["digest_matches"]]
     return {
-        "status": "resolved" if not mismatches else "unresolved_declared_digest_mismatch_at_base",
+        "status": "resolved"
+        if not mismatches
+        else "unresolved_declared_digest_mismatch_at_base",
         "references": references,
         "mismatch_count": len(mismatches),
         "why_unresolved": (
             "旧semantic reviewが保持するexcerpt digestと固定BASE archive bytesが一致しないため、"
             "旧anchorの成立を断定せず、宣言値とBASE実値を分離して保留する"
-            if mismatches else "全旧anchorの宣言excerpt digestが固定BASE bytesと一致する"
+            if mismatches
+            else "全旧anchorの宣言excerpt digestが固定BASE bytesと一致する"
         ),
     }
 
@@ -233,7 +306,11 @@ def scan_edges() -> tuple[dict[str, list[dict[str, Any]]], int, list[str]]:
         for row in base_jsonl(path):
             scan_count += 1
             unit = row.get("unit_candidate_id")
-            if unit and UNIT_PATTERN.fullmatch(unit) and row.get("source_requirement_id") in SOURCE_IDS:
+            if (
+                unit
+                and UNIT_PATTERN.fullmatch(unit)
+                and row.get("source_requirement_id") in SOURCE_IDS
+            ):
                 by_unit.setdefault(unit, []).append(compact_edge(row, wave, path))
     for unit in by_unit:
         by_unit[unit].sort(key=lambda edge: (edge["wave"], edge["review_id"]))
@@ -248,7 +325,9 @@ def source_snapshot(source: dict[str, Any], decomp: dict[str, Any]) -> dict[str,
         "schema_revision": source.get("schema_revision"),
         "source_requirement_id": source["source_requirement_id"],
         "source_revision": source.get("source_revision"),
-        "source_statement_semantic_digest": source.get("source_statement_semantic_digest"),
+        "source_statement_semantic_digest": source.get(
+            "source_statement_semantic_digest"
+        ),
         "source_text_spans": source.get("source_text_spans", []),
         "product_scope": source.get("product_scope", []),
         "status_scope": source.get("status_scope"),
@@ -257,28 +336,45 @@ def source_snapshot(source: dict[str, Any], decomp: dict[str, Any]) -> dict[str,
         "direct_phase_candidates": source.get("direct_phase_candidates", []),
         "phase_classification_status": source.get("phase_classification_status"),
         "phase_rationale": source.get("phase_rationale"),
-        "legacy_requirement_implementation_status": source.get("legacy_requirement_implementation_status"),
-        "current_requirement_implementation_status": source.get("current_requirement_implementation_status"),
-        "unimplemented_assessment_status": source.get("unimplemented_assessment_status"),
+        "legacy_requirement_implementation_status": source.get(
+            "legacy_requirement_implementation_status"
+        ),
+        "current_requirement_implementation_status": source.get(
+            "current_requirement_implementation_status"
+        ),
+        "unimplemented_assessment_status": source.get(
+            "unimplemented_assessment_status"
+        ),
         "successor_assignment_status": source.get("successor_assignment_status"),
         "consumer_closure_status": source.get("consumer_closure_status"),
-        "direct_legacy_asset_link_status": source.get("direct_legacy_asset_link_status"),
+        "direct_legacy_asset_link_status": source.get(
+            "direct_legacy_asset_link_status"
+        ),
         "direct_legacy_asset_links": source.get("direct_legacy_asset_links", []),
         "legacy_execution_performed": source.get("legacy_execution_performed"),
         "new_build_allowed": source.get("new_build_allowed"),
         "authority_effect": source.get("authority_effect"),
         "unresolved": source.get("unresolved", []),
         "candidate_asset_pool": {
-            key: value for key, value in pool.items() if key != "phase_and_product_candidate_asset_ids"
-        } | {
+            key: value
+            for key, value in pool.items()
+            if key != "phase_and_product_candidate_asset_ids"
+        }
+        | {
             "phase_and_product_candidate_asset_ids_count": len(pool_ids),
             "phase_and_product_candidate_asset_ids_digest": canonical_digest(pool_ids),
         },
-        "representative_asset_candidates": source.get("representative_legacy_assets", []),
+        "representative_asset_candidates": source.get(
+            "representative_legacy_assets", []
+        ),
         "phase_capability_evidence": source.get("phase_capability_evidence", []),
         "decomposition_id": decomp.get("decomposition_id"),
         "decomposition_unit": next(
-            (unit for unit in decomp.get("candidate_units", []) if unit.get("unit_candidate_id") == source.get("unit_candidate_id")),
+            (
+                unit
+                for unit in decomp.get("candidate_units", [])
+                if unit.get("unit_candidate_id") == source.get("unit_candidate_id")
+            ),
             None,
         ),
     }
@@ -294,13 +390,26 @@ def old_asset_record(
 ) -> dict[str, Any]:
     old = disposition[asset_id]
     asset_edges = [edge for edge in unit_edges if edge.get("asset_id") == asset_id]
-    coverage_failures = sorted({edge.get("coverage", {}).get("failure") for edge in asset_edges if edge.get("coverage", {}).get("failure")})
-    unresolved = sorted({item for edge in asset_edges for item in edge.get("unresolved", [])})
+    coverage_failures = sorted(
+        {
+            edge.get("coverage", {}).get("failure")
+            for edge in asset_edges
+            if edge.get("coverage", {}).get("failure")
+        }
+    )
+    unresolved = sorted(
+        {item for edge in asset_edges for item in edge.get("unresolved", [])}
+    )
     edge_counterevidence = [
-        {"review_id": edge["review_id"], "counterevidence": edge.get("counterevidence", [])}
+        {
+            "review_id": edge["review_id"],
+            "counterevidence": edge.get("counterevidence", []),
+        }
         for edge in asset_edges
     ]
-    edge_consumers = sorted({ref for edge in asset_edges for ref in edge.get("observed_consumer_refs", [])})
+    edge_consumers = sorted(
+        {ref for edge in asset_edges for ref in edge.get("observed_consumer_refs", [])}
+    )
     classification = classifications.get(asset_id)
     archive_path = f"archive/legacy-generation-2026-09-14/root/{old['source_path']}"
     return {
@@ -312,7 +421,9 @@ def old_asset_record(
             "source_revision": old.get("source_revision"),
             "source_surface": old.get("source_surface"),
             "source_provenance_ref": old.get("source_provenance_ref"),
-            "artifact_evidence_kind": sorted({edge.get("artifact_evidence_kind") for edge in asset_edges}),
+            "artifact_evidence_kind": sorted(
+                {edge.get("artifact_evidence_kind") for edge in asset_edges}
+            ),
             "git_blob_oid_at_base": git_blob(old["source_path"]),
             "git_blob_sha256_at_base": sha256(base_bytes(archive_path), prefix=False),
         },
@@ -322,9 +433,19 @@ def old_asset_record(
             "disposition": old.get("disposition"),
             "implementation_status": old.get("implementation_status"),
             "decision_record_ref": old.get("decision_record_ref"),
-            "classification_id": classification.get("classification_id") if classification else None,
-            "phase_classification_status": classification.get("phase_classification_status") if classification else None,
-            "product_classification_status": classification.get("product_classification_status") if classification else None,
+            "classification_id": classification.get("classification_id")
+            if classification
+            else None,
+            "phase_classification_status": classification.get(
+                "phase_classification_status"
+            )
+            if classification
+            else None,
+            "product_classification_status": classification.get(
+                "product_classification_status"
+            )
+            if classification
+            else None,
         },
         "failure": {
             "static_only": True,
@@ -340,8 +461,12 @@ def old_asset_record(
             "ledger_consumer_refs": sorted(old.get("consumer_refs", [])),
             "edge_consumer_refs": edge_consumers,
             "edge_evidence_count": len(asset_edges),
-            "decision_records": [row for row in decisions if row.get("asset_id") == asset_id],
-            "read_after_records": [row for row in read_after if row.get("asset_id") == asset_id],
+            "decision_records": [
+                row for row in decisions if row.get("asset_id") == asset_id
+            ],
+            "read_after_records": [
+                row for row in read_after if row.get("asset_id") == asset_id
+            ],
         },
         "ledger_record": old,
         "classification_record": classification,
@@ -359,15 +484,22 @@ def implementation_partition(edges: list[dict[str, Any]]) -> dict[str, Any]:
             "artifact_evidence_kind": edge.get("artifact_evidence_kind"),
             "source_path": edge.get("source_path"),
             "source_sha256": edge.get("source_sha256"),
-            "legacy_implementation_status": edge.get("catalog_legacy_implementation_status"),
+            "legacy_implementation_status": edge.get(
+                "catalog_legacy_implementation_status"
+            ),
             "legacy_execution_status": edge.get("legacy_execution_status"),
             "static_only": True,
             "evidence_role": "candidate_source_presence_only",
         }
         for edge in edges
-        if edge.get("artifact_evidence_kind") in {"implementation_source", "test_source"}
+        if edge.get("artifact_evidence_kind")
+        in {"implementation_source", "test_source"}
     ]
-    design_refs = [edge["review_id"] for edge in edges if edge.get("artifact_evidence_kind") in {"design", "test_design"}]
+    design_refs = [
+        edge["review_id"]
+        for edge in edges
+        if edge.get("artifact_evidence_kind") in {"design", "test_design"}
+    ]
     return {
         "status": "static_candidate_partition",
         "unit_implementation_status": "unknown",
@@ -379,7 +511,9 @@ def implementation_partition(edges: list[dict[str, Any]]) -> dict[str, Any]:
     }
 
 
-def degradation_partition(source: dict[str, Any], edges: list[dict[str, Any]]) -> dict[str, Any]:
+def degradation_partition(
+    source: dict[str, Any], edges: list[dict[str, Any]]
+) -> dict[str, Any]:
     return {
         "status": "static_transition_and_constraint_partition",
         "unit_degradation_status": "unknown",
@@ -389,7 +523,9 @@ def degradation_partition(source: dict[str, Any], edges: list[dict[str, Any]]) -
             {
                 "review_id": edge["review_id"],
                 "coverage": edge.get("coverage", {}),
-                "legacy_requirement_implementation_contribution": edge.get("legacy_requirement_implementation_contribution"),
+                "legacy_requirement_implementation_contribution": edge.get(
+                    "legacy_requirement_implementation_contribution"
+                ),
                 "static_only": True,
             }
             for edge in edges
@@ -420,7 +556,9 @@ def failure_partition(edges: list[dict[str, Any]]) -> dict[str, Any]:
     }
 
 
-def consumer_partition(edges: list[dict[str, Any]], assets: list[dict[str, Any]]) -> dict[str, Any]:
+def consumer_partition(
+    edges: list[dict[str, Any]], assets: list[dict[str, Any]]
+) -> dict[str, Any]:
     return {
         "status": "static_consumer_reference_partition",
         "closure_status": "pending",
@@ -436,26 +574,47 @@ def consumer_partition(edges: list[dict[str, Any]], assets: list[dict[str, Any]]
             }
             for edge in edges
         ],
-        "ledger_consumer_refs": sorted({ref for asset in assets for ref in asset["consumer"]["ledger_consumer_refs"]}),
+        "ledger_consumer_refs": sorted(
+            {
+                ref
+                for asset in assets
+                for ref in asset["consumer"]["ledger_consumer_refs"]
+            }
+        ),
         "decision_and_read_after_asset_count": sum(
-            bool(asset["consumer"]["decision_records"] or asset["consumer"]["read_after_records"]) for asset in assets
+            bool(
+                asset["consumer"]["decision_records"]
+                or asset["consumer"]["read_after_records"]
+            )
+            for asset in assets
         ),
     }
 
 
 def current_context() -> list[dict[str, Any]]:
     return [
-        {"path": path, "sha256": base_digest(path), "status": "context_only", "implementation_claim": False}
+        {
+            "path": path,
+            "sha256": base_digest(path),
+            "status": "context_only",
+            "implementation_claim": False,
+        }
         for path in CONTEXT_INPUTS
     ]
 
 
-def representative_ids(source: dict[str, Any], asset_ids: list[str]) -> tuple[list[str], str]:
-    candidate_ids = [item.get("asset_id") for item in source.get("representative_legacy_assets", [])]
+def representative_ids(
+    source: dict[str, Any], asset_ids: list[str]
+) -> tuple[list[str], str]:
+    candidate_ids = [
+        item.get("asset_id") for item in source.get("representative_legacy_assets", [])
+    ]
     selected = [asset_id for asset_id in candidate_ids if asset_id in asset_ids]
     if not selected:
         selected = asset_ids[:3]
-        rule = "crosswalk_representative_intersection_else_sorted_edge_assets_first_three"
+        rule = (
+            "crosswalk_representative_intersection_else_sorted_edge_assets_first_three"
+        )
     else:
         selected = selected[:3]
         rule = "crosswalk_representative_intersection_first_three"
@@ -487,74 +646,101 @@ def build_bundle() -> tuple[dict[str, Any], list[dict[str, Any]]]:
         total_edges += len(edges)
         asset_ids = sorted({edge["asset_id"] for edge in edges})
         unique_assets.update(asset_ids)
-        assets = [old_asset_record(asset_id, edges, disposition, decisions, read_after, classifications) for asset_id in asset_ids]
+        assets = [
+            old_asset_record(
+                asset_id, edges, disposition, decisions, read_after, classifications
+            )
+            for asset_id in asset_ids
+        ]
         reps, rep_rule = representative_ids(source, asset_ids)
-        evidence.append({
-            "schema": UNIT_SCHEMA,
-            "unit_candidate_id": unit,
-            "source_requirement": source_snapshot(source, decomp_row),
-            "source_anchor": source_range(source["source_requirement_id"]),
-            "semantic_review_edges": edges,
-            "asset_set": {
-                "asset_ids": asset_ids,
-                "count": len(asset_ids),
-                "completeness": "exact_unique_asset_ids_derived_from_wave_edges",
-                "edge_asset_membership": {asset_id: [edge["review_id"] for edge in edges if edge["asset_id"] == asset_id] for asset_id in asset_ids},
-            },
-            "old_asset_evidence": {
-                "assets": assets,
-                "static_only": True,
-                "not_implementation_proof": True,
-            },
-            "implementation_evidence": implementation_partition(edges),
-            "degradation_evidence": degradation_partition(source, edges),
-            "failure_evidence": failure_partition(edges),
-            "consumer_evidence": consumer_partition(edges, assets),
-            "representative_assets": {
-                "selection_rule": rep_rule,
-                "representative_asset_ids": reps,
-                "records": [next(asset for asset in assets if asset["asset_id"] == asset_id) for asset_id in reps],
-                "static_only": True,
-                "not_implementation_proof": True,
-            },
-            "current_context": current_context(),
-            "current_implementation_evidence": {
-                "status": "unknown",
-                "execution_performed": False,
-                "current_refs": current_context(),
-                "acceptance_status": "unknown",
-                "operation_status": "unknown",
-                "explicit_claim": False,
-            },
-            "unimplemented_assessment": {
-                "status": "not_assessed",
-                "explicit_non_implementation_claim": False,
-                "reason": "静的候補・review edge・source/historyだけではunitの未実装を導けない",
-            },
-            "authority_boundary": {
-                "formal_phase_authority": False,
-                "formal_product_authority": False,
-                "formal_implementation_acceptance": False,
-                "successor_assignment": False,
-                "consumer_closure": False,
-                "new_build": False,
-            },
-            "unresolved": sorted(set(source.get("unresolved", [])) | {
-                "unit_implementation_status_unknown",
-                "unit_degradation_status_unknown",
-                "unit_failure_status_unknown",
-                "consumer_closure_pending",
-                "direct_phase_product_authority_pending",
-            }),
-        })
+        evidence.append(
+            {
+                "schema": UNIT_SCHEMA,
+                "unit_candidate_id": unit,
+                "source_requirement": source_snapshot(source, decomp_row),
+                "source_anchor": source_range(source["source_requirement_id"]),
+                "semantic_review_edges": edges,
+                "asset_set": {
+                    "asset_ids": asset_ids,
+                    "count": len(asset_ids),
+                    "completeness": "exact_unique_asset_ids_derived_from_wave_edges",
+                    "edge_asset_membership": {
+                        asset_id: [
+                            edge["review_id"]
+                            for edge in edges
+                            if edge["asset_id"] == asset_id
+                        ]
+                        for asset_id in asset_ids
+                    },
+                },
+                "old_asset_evidence": {
+                    "assets": assets,
+                    "static_only": True,
+                    "not_implementation_proof": True,
+                },
+                "implementation_evidence": implementation_partition(edges),
+                "degradation_evidence": degradation_partition(source, edges),
+                "failure_evidence": failure_partition(edges),
+                "consumer_evidence": consumer_partition(edges, assets),
+                "representative_assets": {
+                    "selection_rule": rep_rule,
+                    "representative_asset_ids": reps,
+                    "records": [
+                        next(asset for asset in assets if asset["asset_id"] == asset_id)
+                        for asset_id in reps
+                    ],
+                    "static_only": True,
+                    "not_implementation_proof": True,
+                },
+                "current_context": current_context(),
+                "current_implementation_evidence": {
+                    "status": "unknown",
+                    "execution_performed": False,
+                    "current_refs": current_context(),
+                    "acceptance_status": "unknown",
+                    "operation_status": "unknown",
+                    "explicit_claim": False,
+                },
+                "unimplemented_assessment": {
+                    "status": "not_assessed",
+                    "explicit_non_implementation_claim": False,
+                    "reason": "静的候補・review edge・source/historyだけではunitの未実装を導けない",
+                },
+                "authority_boundary": {
+                    "formal_phase_authority": False,
+                    "formal_product_authority": False,
+                    "formal_implementation_acceptance": False,
+                    "successor_assignment": False,
+                    "consumer_closure": False,
+                    "new_build": False,
+                },
+                "unresolved": sorted(
+                    set(source.get("unresolved", []))
+                    | {
+                        "unit_implementation_status_unknown",
+                        "unit_degradation_status_unknown",
+                        "unit_failure_status_unknown",
+                        "consumer_closure_pending",
+                        "direct_phase_product_authority_pending",
+                    }
+                ),
+            }
+        )
 
     counts = {
         "units": len(evidence),
-        "helix_os_units": sum(row["unit_candidate_id"].endswith("HELIX-OS") for row in evidence),
-        "helix_harness_units": sum(row["unit_candidate_id"].endswith("HELIX-HARNESS") for row in evidence),
+        "helix_os_units": sum(
+            row["unit_candidate_id"].endswith("HELIX-OS") for row in evidence
+        ),
+        "helix_harness_units": sum(
+            row["unit_candidate_id"].endswith("HELIX-HARNESS") for row in evidence
+        ),
         "semantic_review_edges": total_edges,
         "unique_old_assets": len(unique_assets),
-        "current_static_refs": sum(len(row["current_implementation_evidence"]["current_refs"]) for row in evidence),
+        "current_static_refs": sum(
+            len(row["current_implementation_evidence"]["current_refs"])
+            for row in evidence
+        ),
         "old_failure_receipts": 0,
         "old_runtime_test_ci_executions": 0,
         "current_runtime_executions": 0,
@@ -569,7 +755,10 @@ def build_bundle() -> tuple[dict[str, Any], list[dict[str, Any]]]:
         "scope": {
             "source_requirement_ids": SOURCE_IDS,
             "unit_count": 31,
-            "product_counts": {"HELIX-OS": counts["helix_os_units"], "HELIX-HARNESS": counts["helix_harness_units"]},
+            "product_counts": {
+                "HELIX-OS": counts["helix_os_units"],
+                "HELIX-HARNESS": counts["helix_harness_units"],
+            },
             "wave_range": [1, 50],
             "semantic_review_scan_files": scan_files,
             "semantic_review_scan_row_count": scan_count,
@@ -582,7 +771,9 @@ def build_bundle() -> tuple[dict[str, Any], list[dict[str, Any]]]:
             "wave_18_50": "utf8_lines_strip_crlf_join_lf_without_terminal_newline",
             "provenance": "legacy semantic review evidence_refs excerpt_sha256 static contract; policy is selected by edge wave",
         },
-        "input_snapshot": [{"path": path, "sha256": base_digest(path)} for path in INPUT_PATHS],
+        "input_snapshot": [
+            {"path": path, "sha256": base_digest(path)} for path in INPUT_PATHS
+        ],
         "counts": counts,
         "unit_ids": [row["unit_candidate_id"] for row in evidence],
         "unit_declarations": [
@@ -591,14 +782,24 @@ def build_bundle() -> tuple[dict[str, Any], list[dict[str, Any]]]:
                 "product_scope": row["source_requirement"]["product_scope"],
                 "asset_ids": row["asset_set"]["asset_ids"],
                 "asset_count": row["asset_set"]["count"],
-                "edge_refs": [edge["review_id"] for edge in row["semantic_review_edges"]],
+                "edge_refs": [
+                    edge["review_id"] for edge in row["semantic_review_edges"]
+                ],
                 "edge_count": len(row["semantic_review_edges"]),
-                "representative_asset_ids": row["representative_assets"]["representative_asset_ids"],
-                "implementation_record_count": len(row["implementation_evidence"]["records"]),
-                "degradation_phase_record_count": len(row["degradation_evidence"]["phase_transition_evidence"]),
+                "representative_asset_ids": row["representative_assets"][
+                    "representative_asset_ids"
+                ],
+                "implementation_record_count": len(
+                    row["implementation_evidence"]["records"]
+                ),
+                "degradation_phase_record_count": len(
+                    row["degradation_evidence"]["phase_transition_evidence"]
+                ),
                 "failure_record_count": len(row["failure_evidence"]["records"]),
                 "consumer_record_count": len(row["consumer_evidence"]["records"]),
-                "phase_classification_status": row["source_requirement"]["phase_classification_status"],
+                "phase_classification_status": row["source_requirement"][
+                    "phase_classification_status"
+                ],
             }
             for row in evidence
         ],
@@ -642,10 +843,17 @@ def build_bundle() -> tuple[dict[str, Any], list[dict[str, Any]]]:
 
 def write_bundle(inventory: dict[str, Any], evidence: list[dict[str, Any]]) -> None:
     BUNDLE.mkdir(parents=True, exist_ok=True)
-    (BUNDLE / "inventory.json").write_text(json.dumps(inventory, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    (BUNDLE / "inventory.json").write_text(
+        json.dumps(inventory, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
+    )
     with (BUNDLE / "evidence.jsonl").open("w", encoding="utf-8") as handle:
         for row in evidence:
-            handle.write(json.dumps(row, ensure_ascii=False, sort_keys=True, separators=(",", ":")) + "\n")
+            handle.write(
+                json.dumps(
+                    row, ensure_ascii=False, sort_keys=True, separators=(",", ":")
+                )
+                + "\n"
+            )
 
 
 if __name__ == "__main__":

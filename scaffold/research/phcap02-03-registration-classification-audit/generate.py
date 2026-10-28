@@ -29,7 +29,9 @@ ORIGIN = "2fa9aca42ff3ffdd5dea9b2186c49ee50db7dc2c"
 BRANCH = "research/phcap02-03-audit"
 ARCHIVE_PREFIX = "archive/legacy-generation-2026-09-14/root/"
 PHASE_PATH = "docs/governance/phase-capability-inventory.json"
-ROUTING_PATH = "docs/governance/legacy-migration/ir/legacy-ir-product-routing-bootstrap.jsonl"
+ROUTING_PATH = (
+    "docs/governance/legacy-migration/ir/legacy-ir-product-routing-bootstrap.jsonl"
+)
 REGISTER_PATH = "docs/governance/management-provisional-requirement-register-pre-append-3df81ad.jsonl"
 ASSET_PATH = "docs/governance/legacy-asset-disposition.jsonl"
 PHASE_ASSET_PATH = "docs/governance/legacy-migration/asset/legacy-asset-phase-product-classification-bootstrap.jsonl"
@@ -105,7 +107,11 @@ def sha(data: bytes) -> str:
 
 
 def read_jsonl(path: Path) -> list[dict]:
-    return [json.loads(line) for line in path.read_text(encoding="utf-8").splitlines() if line.strip()]
+    return [
+        json.loads(line)
+        for line in path.read_text(encoding="utf-8").splitlines()
+        if line.strip()
+    ]
 
 
 def git_archive_bytes(path: str) -> bytes:
@@ -139,12 +145,24 @@ def outside_67_audit() -> dict:
         "report_sha256": sha(path.read_bytes()),
         "record_count": len(rows),
         "path_set_sha256": report.get("external_path_set_sha256"),
-        "all_legacy_catalog_record_count_zero": all(row.get("legacy_catalog_record_count") == 0 for row in rows),
-        "phase_scope_counts": dict(sorted(Counter(row.get("phase_scope") for row in rows).items())),
-        "product_scope_counts": dict(sorted(Counter(row.get("product_scope") for row in rows).items())),
-        "potential_l2_upstream_count": sum(row.get("phase_scope") == "L2-requirements" for row in rows),
-        "potential_upstream_crosswalk_count": sum(row.get("phase_scope") == "upstream-governance-or-crosswalk" for row in rows),
-        "downstream_l11_count": sum(row.get("phase_scope") == "L11-acceptance" for row in rows),
+        "all_legacy_catalog_record_count_zero": all(
+            row.get("legacy_catalog_record_count") == 0 for row in rows
+        ),
+        "phase_scope_counts": dict(
+            sorted(Counter(row.get("phase_scope") for row in rows).items())
+        ),
+        "product_scope_counts": dict(
+            sorted(Counter(row.get("product_scope") for row in rows).items())
+        ),
+        "potential_l2_upstream_count": sum(
+            row.get("phase_scope") == "L2-requirements" for row in rows
+        ),
+        "potential_upstream_crosswalk_count": sum(
+            row.get("phase_scope") == "upstream-governance-or-crosswalk" for row in rows
+        ),
+        "downstream_l11_count": sum(
+            row.get("phase_scope") == "L11-acceptance" for row in rows
+        ),
         "direct_phcap02_or_03_join_count": 0,
         "classification": "path_based_adjacent_only_no_direct_phcap02_phcap03_join",
         "interpretation": "67件はL1/L2/L11 draftまたはupstream/crosswalkのpath候補であり、PHCAP-02/03の登録identity・phase join・要件atomとは断定しない。",
@@ -156,8 +174,12 @@ def build() -> dict:
     phase_records = phase_inventory["records"]
     routing = read_jsonl(ROOT / ROUTING_PATH)
     register = read_jsonl(relocated(ROOT / REGISTER_PATH))
-    disposition_records = {record["asset_id"]: record for record in read_jsonl(ROOT / ASSET_PATH)}
-    phase_asset_records = {record["asset_id"]: record for record in read_jsonl(ROOT / PHASE_ASSET_PATH)}
+    disposition_records = {
+        record["asset_id"]: record for record in read_jsonl(ROOT / ASSET_PATH)
+    }
+    phase_asset_records = {
+        record["asset_id"]: record for record in read_jsonl(ROOT / PHASE_ASSET_PATH)
+    }
     decision_records = read_jsonl(ROOT / DECISIONS_PATH)
 
     assets = []
@@ -167,7 +189,9 @@ def build() -> dict:
         blob = git_archive_bytes(disposition["source_path"])
         lines = blob.decode("utf-8").splitlines()
         anchors = []
-        for index, ((start, end), meaning) in enumerate(zip(selected["anchors"], selected["anchor_meanings"]), 1):
+        for index, ((start, end), meaning) in enumerate(
+            zip(selected["anchors"], selected["anchor_meanings"]), 1
+        ):
             exact = span_text(lines, start, end)
             anchors.append(
                 {
@@ -192,12 +216,22 @@ def build() -> dict:
                 "authority_status": disposition["authority_status"],
                 "disposition": disposition["disposition"],
                 "legacy_implementation_status": disposition["implementation_status"],
-                "legacy_execution_performed": classification["legacy_execution_performed"],
-                "implementation_evidence_state": classification["implementation_evidence_state"],
+                "legacy_execution_performed": classification[
+                    "legacy_execution_performed"
+                ],
+                "implementation_evidence_state": classification[
+                    "implementation_evidence_state"
+                ],
                 "candidate_phase_targets": classification["candidate_phase_targets"],
-                "candidate_product_targets": classification["candidate_product_targets"],
-                "phase_classification_status": classification["phase_classification_status"],
-                "product_classification_status": classification["product_classification_status"],
+                "candidate_product_targets": classification[
+                    "candidate_product_targets"
+                ],
+                "phase_classification_status": classification[
+                    "phase_classification_status"
+                ],
+                "product_classification_status": classification[
+                    "product_classification_status"
+                ],
                 "consumer_refs": disposition["consumer_refs"],
                 "consumer_closure_status": classification["consumer_closure_status"],
                 "decision_record_ref": disposition["decision_record_ref"],
@@ -205,32 +239,64 @@ def build() -> dict:
                     "status": "source_contract_or_test_design_only_unexecuted",
                     "execution_receipts": 0,
                     "observed_failure_status": "unknown",
-                    "anchor_ids": [anchor["anchor_id"] for anchor in anchors if "failure" in anchor["meaning"] or "failure" in anchor["exact_text"].lower()],
+                    "anchor_ids": [
+                        anchor["anchor_id"]
+                        for anchor in anchors
+                        if "failure" in anchor["meaning"]
+                        or "failure" in anchor["exact_text"].lower()
+                    ],
                 },
                 "consumer_evidence": {
                     "status": "source_candidate_only_closure_pending",
                     "consumer_refs": disposition["consumer_refs"],
                     "read_after_receipts": 0,
-                    "anchor_ids": [anchor["anchor_id"] for anchor in anchors if "consumer" in anchor["meaning"].lower() or "downstream" in anchor["exact_text"].lower()],
+                    "anchor_ids": [
+                        anchor["anchor_id"]
+                        for anchor in anchors
+                        if "consumer" in anchor["meaning"].lower()
+                        or "downstream" in anchor["exact_text"].lower()
+                    ],
                 },
             }
         )
 
     phase_audit = {}
     for task_id in ("PHCAP-02", "PHCAP-03"):
-        candidates = [record for record in phase_asset_records.values() if task_id in record.get("candidate_phase_targets", [])]
+        candidates = [
+            record
+            for record in phase_asset_records.values()
+            if task_id in record.get("candidate_phase_targets", [])
+        ]
         phase_audit[task_id] = {
             "record_count": len(candidates),
-            "artifact_evidence_kind": count_values(candidates, "artifact_evidence_kind"),
-            "implementation_evidence_state": count_values(candidates, "implementation_evidence_state"),
-            "legacy_implementation_status": count_values(candidates, "legacy_implementation_status"),
-            "consumer_closure_status": count_values(candidates, "consumer_closure_status"),
-            "phase_classification_status": count_values(candidates, "phase_classification_status"),
-            "product_classification_status": count_values(candidates, "product_classification_status"),
-            "legacy_execution_performed": count_values(candidates, "legacy_execution_performed"),
+            "artifact_evidence_kind": count_values(
+                candidates, "artifact_evidence_kind"
+            ),
+            "implementation_evidence_state": count_values(
+                candidates, "implementation_evidence_state"
+            ),
+            "legacy_implementation_status": count_values(
+                candidates, "legacy_implementation_status"
+            ),
+            "consumer_closure_status": count_values(
+                candidates, "consumer_closure_status"
+            ),
+            "phase_classification_status": count_values(
+                candidates, "phase_classification_status"
+            ),
+            "product_classification_status": count_values(
+                candidates, "product_classification_status"
+            ),
+            "legacy_execution_performed": count_values(
+                candidates, "legacy_execution_performed"
+            ),
             "decision_record_ref": count_values(candidates, "decision_record_ref"),
-            "candidate_product_target_sets": count_values(candidates, "candidate_product_targets"),
-            "product_assessment_lengths": count_values(candidates, "product_assessments"),
+            "candidate_product_target_sets": count_values(
+                candidates, "candidate_product_targets"
+            ),
+            "product_assessment_lengths": count_values(
+                candidates, "product_assessments"
+            ),
         }
 
     exact_product_set = tuple(PRODUCTS)
@@ -238,35 +304,70 @@ def build() -> dict:
         "record_count": len(routing),
         "evaluated_product_set_counts": count_values(routing, "evaluated_product_set"),
         "records_with_exact_four_product_evaluations": sum(
-            1 for record in routing if tuple(record.get("evaluated_product_set", [])) == exact_product_set and len(record.get("product_evaluations", [])) == 4
+            1
+            for record in routing
+            if tuple(record.get("evaluated_product_set", [])) == exact_product_set
+            and len(record.get("product_evaluations", [])) == 4
         ),
         "classification_state_counts": count_values(routing, "classification_state"),
         "routing_candidate_counts": count_values(routing, "routing_candidate"),
-        "candidate_product_target_counts": count_values(routing, "candidate_product_targets"),
-        "phase_field_presence": {field: sum(field in record for record in routing) for field in ("phase_candidates", "candidate_phase_targets")},
+        "candidate_product_target_counts": count_values(
+            routing, "candidate_product_targets"
+        ),
+        "phase_field_presence": {
+            field: sum(field in record for record in routing)
+            for field in ("phase_candidates", "candidate_phase_targets")
+        },
         "legacy_evidence_field_presence": {
             field: sum(field in record for record in routing)
-            for field in ("legacy_implementation_status", "implementation_status", "failure_status", "degraded_status", "consumer_closure_status")
+            for field in (
+                "legacy_implementation_status",
+                "implementation_status",
+                "failure_status",
+                "degraded_status",
+                "consumer_closure_status",
+            )
         },
-        "successor_assignment_status_counts": count_values(routing, "successor_assignment_status"),
+        "successor_assignment_status_counts": count_values(
+            routing, "successor_assignment_status"
+        ),
     }
 
     management_audit = {
         "record_count": len(register),
         "registration_kind_counts": count_values(register, "registration_kind"),
         "product_target_counts": count_values(register, "product_target"),
-        "requirement_candidate_count": sum(1 for record in register if record.get("registration_kind") == "requirement_candidate"),
-        "source_holding_unassigned_count": sum(1 for record in register if record.get("registration_kind") == "source_holding" and record.get("product_target") == "unassigned_cross_product"),
+        "requirement_candidate_count": sum(
+            1
+            for record in register
+            if record.get("registration_kind") == "requirement_candidate"
+        ),
+        "source_holding_unassigned_count": sum(
+            1
+            for record in register
+            if record.get("registration_kind") == "source_holding"
+            and record.get("product_target") == "unassigned_cross_product"
+        ),
     }
 
-    matching_decisions = [record for record in decision_records if record.get("asset_id") in disposition_records]
-    phase_snapshots = {task_id: phase_record(phase_records, task_id) for task_id in ("PHCAP-02", "PHCAP-03")}
+    matching_decisions = [
+        record
+        for record in decision_records
+        if record.get("asset_id") in disposition_records
+    ]
+    phase_snapshots = {
+        task_id: phase_record(phase_records, task_id)
+        for task_id in ("PHCAP-02", "PHCAP-03")
+    }
     gaps = [
         {
             "gap_id": "PHCAP-02-PRODUCT-001",
             "phase": "PHCAP-02",
             "kind": "four_product_join_missing",
-            "evidence": ["phase-capability-inventory:PHCAP-02", "legacy-ir-product-routing-bootstrap:153/153 exact four-product evaluation"],
+            "evidence": [
+                "phase-capability-inventory:PHCAP-02",
+                "legacy-ir-product-routing-bootstrap:153/153 exact four-product evaluation",
+            ],
             "finding": "PHCAP-02 capabilityのproduct_targets／current evidence_productsがHELIX-OSだけであること自体はphase scopeである。欠落は、登録された各requirement origin／target productを、四製品routingのincluded/excluded/unresolved評価へrevision-boundでtraceできるphase joinがないこと。",
             "required_evidence": "PHCAP-02 registered requirement identity／source atomごとのorigin・target productと、四製品routing評価を結ぶrevision-bound traceability（capability自体のWeb／Web-OS target追加を意味しない）",
         },
@@ -274,7 +375,9 @@ def build() -> dict:
             "gap_id": "PHCAP-02-REGISTER-001",
             "phase": "PHCAP-02",
             "kind": "requirement_candidate_missing",
-            "evidence": ["management-provisional-requirement-register:32 source_holding / 0 requirement_candidate"],
+            "evidence": [
+                "management-provisional-requirement-register:32 source_holding / 0 requirement_candidate"
+            ],
             "finding": "仮登録はsource_holdingをunassigned_cross_productで保持するだけで、PHCAP-02のproduct-specific requirement_candidate登録がない。",
             "required_evidence": "candidate identity、product target、parent revision、source atom coverage、human decisionの別record",
         },
@@ -282,7 +385,10 @@ def build() -> dict:
             "gap_id": "PHCAP-02-IMPLEMENTATION-001",
             "phase": "PHCAP-02",
             "kind": "legacy_implementation_conflict",
-            "evidence": ["phase-capability-inventory:implemented_with_tests", "selected legacy assets: implementation_status=unknown / execution=false"],
+            "evidence": [
+                "phase-capability-inventory:implemented_with_tests",
+                "selected legacy assets: implementation_status=unknown / execution=false",
+            ],
             "finding": "phaseのimplemented_with_testsはasset-level実装成立を裏付けない。代表3 assetはunknown、source/testはunexecutedである。",
             "required_evidence": "current implementation identity、revision、実行receipt、consumer read-after",
         },
@@ -290,7 +396,9 @@ def build() -> dict:
             "gap_id": "PHCAP-02-FAILURE-CONSUMER-001",
             "phase": "PHCAP-02",
             "kind": "failure_consumer_closure_missing",
-            "evidence": ["42 phase candidates: legacy_execution=false=42, consumer_closure=pending=42, decision=null=42"],
+            "evidence": [
+                "42 phase candidates: legacy_execution=false=42, consumer_closure=pending=42, decision=null=42"
+            ],
             "finding": "failure/degradedの観測receipt、consumer refs、decision recordがなく、旧sourceのfailure条件を観測結果へ昇格できない。",
             "required_evidence": "failure/degraded observation、recovery/retry result、consumer closure、append-only decision record",
         },
@@ -298,7 +406,10 @@ def build() -> dict:
             "gap_id": "PHCAP-03-PRODUCT-001",
             "phase": "PHCAP-03",
             "kind": "phase_product_join_missing",
-            "evidence": ["phase-capability-inventory:PHCAP-03 current H/OS", "legacy-ir-product-routing-bootstrap:153/153 exact four-product evaluation"],
+            "evidence": [
+                "phase-capability-inventory:PHCAP-03 current H/OS",
+                "legacy-ir-product-routing-bootstrap:153/153 exact four-product evaluation",
+            ],
             "finding": "PHCAP-03 capabilityのproduct_targets／current evidence_productsがHARNESS/OSだけであることはphase scopeである。欠落は、分類対象のregistered requirement origin／target productを四製品routingのincluded/excluded/unresolved評価へrevision-boundでtraceするphase joinがないこと。",
             "required_evidence": "分類対象のrequirement identity／source atomと四製品評価、excluded reason、unresolved、routing revisionのtraceability（capability自体のWeb／Web-OS target追加を意味しない）",
         },
@@ -306,7 +417,10 @@ def build() -> dict:
             "gap_id": "PHCAP-03-LEGACY-001",
             "phase": "PHCAP-03",
             "kind": "legacy_implementation_conflict",
-            "evidence": ["phase-capability-inventory:implemented_partial", "161 phase candidates: implementation unknown=160, non_executable=1, execution=false=161"],
+            "evidence": [
+                "phase-capability-inventory:implemented_partial",
+                "161 phase candidates: implementation unknown=160, non_executable=1, execution=false=161",
+            ],
             "finding": "implemented_partialは旧design/config/test/sourceの存在分類であり、current implementation evidenceではない。",
             "required_evidence": "classification implementationの現行identity、実行可能なrevision、独立検証receipt、degraded/unimplemented disposition",
         },
@@ -314,7 +428,9 @@ def build() -> dict:
             "gap_id": "PHCAP-03-FAILURE-CONSUMER-001",
             "phase": "PHCAP-03",
             "kind": "failure_consumer_closure_missing",
-            "evidence": ["161 phase candidates: consumer_closure=pending=161, decision=null=161"],
+            "evidence": [
+                "161 phase candidates: consumer_closure=pending=161, decision=null=161"
+            ],
             "finding": "旧failure matrix／validator contractは静的設計として存在するが、実行failure、degraded state、consumer closureのreceiptがない。",
             "required_evidence": "failure/degraded/unimplemented stateを区別する観測receipt、consumer read-after、decision record",
         },
@@ -322,7 +438,11 @@ def build() -> dict:
             "gap_id": "PHCAP-03-BOUNDARY-001",
             "phase": "PHCAP-03",
             "kind": "harness_os_boundary_unresolved",
-            "evidence": ["FT-HARNESS-REQENG-001", "FT-OS-REQCLASS-001", "selected L4/L5/L6 legacy sources"],
+            "evidence": [
+                "FT-HARNESS-REQENG-001",
+                "FT-OS-REQCLASS-001",
+                "selected L4/L5/L6 legacy sources",
+            ],
             "finding": "HARNESS semantic coreとOS classification projectionの接続・authority・consumer contractは候補段階で、正式L3/L10へ凍結されていない。",
             "required_evidence": "source atom別のunit/connection/split decision、authority owner、versioned consumer contract、L3/L10 pair",
         },
@@ -342,12 +462,19 @@ def build() -> dict:
             "origin_main_commit": ORIGIN,
             "branch": BRANCH,
             "worktree": str(Path.cwd()),
-            "rebaseline": {"origin_main_at_start": ORIGIN, "origin_main_at_final": ORIGIN, "changed": False},
+            "rebaseline": {
+                "origin_main_at_start": ORIGIN,
+                "origin_main_at_final": ORIGIN,
+                "changed": False,
+            },
         },
         "scope": {
             "phase_ids": ["PHCAP-02", "PHCAP-03"],
             "approved_products": PRODUCTS,
-            "phase_current_evidence_products": {"PHCAP-02": ["HELIX-OS"], "PHCAP-03": ["HELIX-HARNESS", "HELIX-OS"]},
+            "phase_current_evidence_products": {
+                "PHCAP-02": ["HELIX-OS"],
+                "PHCAP-03": ["HELIX-HARNESS", "HELIX-OS"],
+            },
             "selected_legacy_asset_ids": [asset["asset_id"] for asset in assets],
             "selection_rule": "phase bootstrap candidates whose representative assets are named by PHCAP-02/03 inventory; exact source/ledger evidence only",
         },
@@ -358,12 +485,36 @@ def build() -> dict:
         "outside_holding_67_audit": outside_67_audit(),
         "legacy_assets": assets,
         "source_observations": [
-            {"path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L6-function-design/requirement-discovery-event-projection.md", "lines": "16-23", "observation": "draft移行用pure component、DB/GitHub/filesystem/L3 write authorityなし、未実装interview engineを実装済みと扱わない"},
-            {"path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L6-function-design/requirement-discovery-event-projection.md", "lines": "27-50", "observation": "strict event failureとcandidate projection不変条件を設計するが、runtime execution receiptではない"},
-            {"path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/requirement-refinement-authority.md", "lines": "85-107", "observation": "design-reality bindingのdeclared_failure_codesとfailure_reachabilityが空"},
-            {"path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/requirement-refinement-authority.md", "lines": "153-154", "observation": "failure mutation、manifest/view/DB統合、frozen bundleは未実装と明記"},
-            {"path": "archive/legacy-generation-2026-09-14/root/docs/plans/PLAN-L6-88-requirement-discovery-event-projection.md", "lines": "93-99", "observation": "PLAN confirmはdesign/test pair freezeだけで、runtime完了やcanonical cutoverを意味しない"},
-            {"path": "archive/legacy-generation-2026-09-14/root/docs/plans/PLAN-L7-487-requirement-discovery-event-projection.md", "lines": "126-147", "observation": "旧planはpure APIとmutation oracleの工程・closureを記述するが、新世代の実装証拠へ昇格しない"},
+            {
+                "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L6-function-design/requirement-discovery-event-projection.md",
+                "lines": "16-23",
+                "observation": "draft移行用pure component、DB/GitHub/filesystem/L3 write authorityなし、未実装interview engineを実装済みと扱わない",
+            },
+            {
+                "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L6-function-design/requirement-discovery-event-projection.md",
+                "lines": "27-50",
+                "observation": "strict event failureとcandidate projection不変条件を設計するが、runtime execution receiptではない",
+            },
+            {
+                "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/requirement-refinement-authority.md",
+                "lines": "85-107",
+                "observation": "design-reality bindingのdeclared_failure_codesとfailure_reachabilityが空",
+            },
+            {
+                "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/requirement-refinement-authority.md",
+                "lines": "153-154",
+                "observation": "failure mutation、manifest/view/DB統合、frozen bundleは未実装と明記",
+            },
+            {
+                "path": "archive/legacy-generation-2026-09-14/root/docs/plans/PLAN-L6-88-requirement-discovery-event-projection.md",
+                "lines": "93-99",
+                "observation": "PLAN confirmはdesign/test pair freezeだけで、runtime完了やcanonical cutoverを意味しない",
+            },
+            {
+                "path": "archive/legacy-generation-2026-09-14/root/docs/plans/PLAN-L7-487-requirement-discovery-event-projection.md",
+                "lines": "126-147",
+                "observation": "旧planはpure APIとmutation oracleの工程・closureを記述するが、新世代の実装証拠へ昇格しない",
+            },
         ],
         "decisions": {
             "selected_asset_ids": [asset["asset_id"] for asset in assets],
@@ -396,4 +547,6 @@ def build() -> dict:
 
 
 if __name__ == "__main__":
-    (HERE / "inventory.json").write_text(json.dumps(build(), ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    (HERE / "inventory.json").write_text(
+        json.dumps(build(), ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
+    )

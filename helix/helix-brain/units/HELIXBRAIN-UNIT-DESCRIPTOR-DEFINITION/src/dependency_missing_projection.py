@@ -8,7 +8,9 @@ from typing import Any
 from dependencies_handoff_ports import _serialize_trace
 
 
-_MISSING_AXIS_PREFIX = "必要identityに対応する原Refは当該categoryに未供給。他bodyで補償しない。"
+_MISSING_AXIS_PREFIX = (
+    "必要identityに対応する原Refは当該categoryに未供給。他bodyで補償しない。"
+)
 _MISSING_RULE = "HELIXBRAIN-L5-032-R-required_dependency_missing"
 _SELECTOR_RULE = "HELIXBRAIN-L5-032-R-dependency_selector_unknown"
 _SELECTORS = (
@@ -18,7 +20,9 @@ _SELECTORS = (
 )
 
 
-def _root_binding_and_subject(validated: dict[str, Any]) -> tuple[dict[str, Any], dict[str, Any]] | None:
+def _root_binding_and_subject(
+    validated: dict[str, Any],
+) -> tuple[dict[str, Any], dict[str, Any]] | None:
     raw = validated.get("input")
     binding = raw.get("binding") if isinstance(raw, dict) else None
     if not isinstance(binding, dict):
@@ -31,7 +35,9 @@ def _root_binding_and_subject(validated: dict[str, Any]) -> tuple[dict[str, Any]
     return binding, subject
 
 
-def _category_refs_and_locator(raw: dict[str, Any], category: str) -> tuple[list[Any], str | None]:
+def _category_refs_and_locator(
+    raw: dict[str, Any], category: str
+) -> tuple[list[Any], str | None]:
     dependencies = raw.get("dependencies")
     refs = dependencies.get(category) if isinstance(dependencies, dict) else None
     if isinstance(refs, list):
@@ -75,15 +81,17 @@ def project_required_dependency_missing_axis(
         "selection_observation": None,
     }
     reason = write_required_dependency_missing_axis_reason(material)
-    return [{
-        "subject_ref": copy.deepcopy(subject),
-        "binding": copy.deepcopy(binding),
-        "axis": "dependency_reference",
-        "state": "missing",
-        "original_refs": original_refs,
-        "reason": reason,
-        "backflow_owner": "knowledge_owner",
-    }]
+    return [
+        {
+            "subject_ref": copy.deepcopy(subject),
+            "binding": copy.deepcopy(binding),
+            "axis": "dependency_reference",
+            "state": "missing",
+            "original_refs": original_refs,
+            "reason": reason,
+            "backflow_owner": "knowledge_owner",
+        }
+    ]
 
 
 def project_required_dependency_missing_finding(
@@ -101,21 +109,23 @@ def project_required_dependency_missing_finding(
     raw = validated["input"]
     source_path = f"/dependencies/{category}"
     original_refs, _ = _category_refs_and_locator(raw, category)
-    return [{
-        "code": "required_dependency_missing",
-        "rule_ref": _MISSING_RULE,
-        "subject_ref": copy.deepcopy(subject),
-        "binding": copy.deepcopy(binding),
-        "axis": "dependency_reference",
-        "state": "missing",
-        "source_refs": original_refs,
-        "reason": (
-            "HELIXBRAIN-L3-032-F09で必要なidentity "
-            f"{required_identity} が入力 {source_path} にない。"
-            "欠落Refのrevision/scope/owner/source_locator/digestは生成しない。"
-        ),
-        "backflow_owner": "knowledge_owner",
-    }]
+    return [
+        {
+            "code": "required_dependency_missing",
+            "rule_ref": _MISSING_RULE,
+            "subject_ref": copy.deepcopy(subject),
+            "binding": copy.deepcopy(binding),
+            "axis": "dependency_reference",
+            "state": "missing",
+            "source_refs": original_refs,
+            "reason": (
+                "HELIXBRAIN-L3-032-F09で必要なidentity "
+                f"{required_identity} が入力 {source_path} にない。"
+                "欠落Refのrevision/scope/owner/source_locator/digestは生成しない。"
+            ),
+            "backflow_owner": "knowledge_owner",
+        }
+    ]
 
 
 def project_absent_dependency_selector(

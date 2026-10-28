@@ -45,7 +45,9 @@ def read_claim_intent(claim: dict[str, Any], claim_locator: str) -> dict[str, An
     return _read(claim, claim_locator)
 
 
-def read_receipt_claim_origin(supply_input: dict[str, Any], request: dict[str, Any]) -> dict[str, Any]:
+def read_receipt_claim_origin(
+    supply_input: dict[str, Any], request: dict[str, Any]
+) -> dict[str, Any]:
     """L4#/dependency_semantic_ports/ports/1 & L5#/dependency_incoming_detail/receipt_origin_mapping。"""
     from dependencies_handoff_ports import read_receipt_claim_origin as _read
 
@@ -74,30 +76,58 @@ def read_os_obligation_incoming(
     )
 
 
-def read_canonical_dependency_body(validated: dict[str, Any], request: dict[str, Any]) -> dict[str, Any]:
+def read_canonical_dependency_body(
+    validated: dict[str, Any], request: dict[str, Any]
+) -> dict[str, Any]:
     """L4#/dependency_semantic_ports/ports/0 & L5#/canonical_dependency_detail。"""
     from dependencies_handoff_ports import read_canonical_dependency_body as _read
 
     return _read(validated, request)
 
 
-def _validate_fn6_slice_dependencies(raw: dict[str, Any], binding: dict[str, Any]) -> None:
-    if not _binding_shape_ok(binding) or not _ref_frame_supplied_ok(binding.get("knowledge_ref")):
-        raise _unsupported("F09/B02", "binding_or_subject_ref_missing", "input.binding or knowledge_ref is incomplete")
+def _validate_fn6_slice_dependencies(
+    raw: dict[str, Any], binding: dict[str, Any]
+) -> None:
+    if not _binding_shape_ok(binding) or not _ref_frame_supplied_ok(
+        binding.get("knowledge_ref")
+    ):
+        raise _unsupported(
+            "F09/B02",
+            "binding_or_subject_ref_missing",
+            "input.binding or knowledge_ref is incomplete",
+        )
     dependencies = raw.get("dependencies")
     if not isinstance(dependencies, dict):
-        raise _unsupported("F09/B02", "dependencies_container_shape", "dependencies must be an object")
+        raise _unsupported(
+            "F09/B02", "dependencies_container_shape", "dependencies must be an object"
+        )
 
-    for selector in ("core_return_requested", "core_source_selected", "labo_evaluation_selected"):
-        if selector not in dependencies or type(dependencies[selector]) is not bool or dependencies[selector] is not False:
+    for selector in (
+        "core_return_requested",
+        "core_source_selected",
+        "labo_evaluation_selected",
+    ):
+        if (
+            selector not in dependencies
+            or type(dependencies[selector]) is not bool
+            or dependencies[selector] is not False
+        ):
             raise _unsupported(
                 "F09",
                 "conditional_selector",
                 f"dependencies.{selector} is missing, non-boolean, or True (outside B02 normal-dependency slice)",
             )
 
-    for cond_cat in ("core_return_refs", "selected_source_refs", "selected_evaluation_refs"):
-        if cond_cat not in dependencies or not isinstance(dependencies[cond_cat], list) or dependencies[cond_cat]:
+    for cond_cat in (
+        "core_return_refs",
+        "selected_source_refs",
+        "selected_evaluation_refs",
+    ):
+        if (
+            cond_cat not in dependencies
+            or not isinstance(dependencies[cond_cat], list)
+            or dependencies[cond_cat]
+        ):
             raise _unsupported(
                 "F09",
                 "conditional_selector",
@@ -105,7 +135,9 @@ def _validate_fn6_slice_dependencies(raw: dict[str, Any], binding: dict[str, Any
             )
 
     always_refs = dependencies.get("always_refs")
-    if not isinstance(always_refs, list) or len(always_refs) != len(_REQUIRED_ALWAYS_IDENTITIES):
+    if not isinstance(always_refs, list) or len(always_refs) != len(
+        _REQUIRED_ALWAYS_IDENTITIES
+    ):
         raise _unsupported(
             "F09",
             "required_always_ref_missing",
@@ -128,8 +160,14 @@ def _validate_fn6_slice_dependencies(raw: dict[str, Any], binding: dict[str, Any
         )
 
     unselected_refs = dependencies.get("unselected_refs")
-    if not isinstance(unselected_refs, list) or any(not _ref_frame_supplied_ok(ref) for ref in unselected_refs):
-        raise _unsupported("F09/B02", "unselected_refs_shape", "dependencies.unselected_refs is not a valid Ref array")
+    if not isinstance(unselected_refs, list) or any(
+        not _ref_frame_supplied_ok(ref) for ref in unselected_refs
+    ):
+        raise _unsupported(
+            "F09/B02",
+            "unselected_refs_shape",
+            "dependencies.unselected_refs is not a valid Ref array",
+        )
 
 
 def _is_os_incoming_content(content: Any) -> bool:
@@ -142,7 +180,9 @@ def _is_os_incoming_content(content: Any) -> bool:
 
 def _is_receipt_carrier_content(content: Any) -> bool:
     return isinstance(content, dict) and (
-        "origin" in content or "producer_input" in content or "producer_return" in content
+        "origin" in content
+        or "producer_input" in content
+        or "producer_return" in content
     )
 
 
@@ -155,12 +195,22 @@ def _assess_b02_claim_basis(
     """L5#/dependency_incoming_detail: claim.basis_refsに対応するsourceのみを原順で検査しDP1IncomingAssessment[]を返す。"""
     raw = validated["input"]
     basis_refs = claim.get("basis_refs")
-    if not isinstance(basis_refs, list) or not basis_refs or any(not _ref_frame_supplied_ok(ref) for ref in basis_refs):
-        raise _unsupported("B02/F09", "claim_basis_refs_unresolved", "B02 claim requires non-empty valid basis_refs")
+    if (
+        not isinstance(basis_refs, list)
+        or not basis_refs
+        or any(not _ref_frame_supplied_ok(ref) for ref in basis_refs)
+    ):
+        raise _unsupported(
+            "B02/F09",
+            "claim_basis_refs_unresolved",
+            "B02 claim requires non-empty valid basis_refs",
+        )
 
     sources = raw.get("sources")
     if not isinstance(sources, list):
-        raise _unsupported("B02/F09", "sources_container_shape", "sources must be an array")
+        raise _unsupported(
+            "B02/F09", "sources_container_shape", "sources must be an array"
+        )
 
     claim_locator = f"/claims/{claim_index}"
     assessments: list[dict[str, Any]] = []
@@ -169,7 +219,9 @@ def _assess_b02_claim_basis(
         matched_sources = [
             (source_index, src)
             for source_index, src in enumerate(sources)
-            if isinstance(src, dict) and src.get("role") == "semantic_json" and _ref_same(src.get("ref"), basis_ref)
+            if isinstance(src, dict)
+            and src.get("role") == "semantic_json"
+            and _ref_same(src.get("ref"), basis_ref)
         ]
         if not matched_sources:
             raise _unsupported(
@@ -213,7 +265,9 @@ def _assess_b02_claim_basis(
                     "os_binding_comparison": None,
                     "support_components": None,
                 }
-                assessments.append({key: assessment[key] for key in _DP1_ASSESSMENT_MEMBER_ORDER})
+                assessments.append(
+                    {key: assessment[key] for key in _DP1_ASSESSMENT_MEMBER_ORDER}
+                )
             elif _is_os_incoming_content(content):
                 assessments.append(
                     read_os_obligation_incoming(
@@ -241,7 +295,8 @@ def _assess_b02_claim_basis(
         )
 
     has_positive_os_support = any(
-        isinstance(a["support_components"], dict) and all(a["support_components"].values())
+        isinstance(a["support_components"], dict)
+        and all(a["support_components"].values())
         for a in assessments
     )
     if has_positive_os_support:
@@ -263,7 +318,11 @@ def _verify_na_claim_subject_applicability_unknown(
     section_fields = raw.get("section_fields")
     descriptors = raw.get("descriptors")
     if not isinstance(section_fields, list) or not isinstance(descriptors, list):
-        raise _unsupported("B02", "subject_field_not_found", "section_fields or descriptors is not an array")
+        raise _unsupported(
+            "B02",
+            "subject_field_not_found",
+            "section_fields or descriptors is not an array",
+        )
 
     matched_fields = [
         sf
@@ -327,13 +386,17 @@ def _build_claim_call_frame(validated):
 
 def compare_dependencies_and_handoff(context: dict[str, object]) -> dict[str, object]:
     """FN6 public wrapper; supplied fill_definition Claims use one same-call frame."""
-    if (isinstance(context, dict) and set(context) == {"validated", "definitions"}
-            and isinstance(context.get("validated"), dict)
-            and isinstance(context["validated"].get("input"), dict)):
+    if (
+        isinstance(context, dict)
+        and set(context) == {"validated", "definitions"}
+        and isinstance(context.get("validated"), dict)
+        and isinstance(context["validated"].get("input"), dict)
+    ):
         claims = context["validated"]["input"].get("claims")
-        if (isinstance(claims, list)
-                and any(isinstance(claim, dict)
-                        and claim.get("kind") == "fill_definition" for claim in claims)):
+        if isinstance(claims, list) and any(
+            isinstance(claim, dict) and claim.get("kind") == "fill_definition"
+            for claim in claims
+        ):
             frame = _build_claim_call_frame(context["validated"])
             return compare_dependencies_and_handoff_detail(context, frame)
     return _compare_dependencies_and_claims(context)
@@ -342,34 +405,63 @@ def compare_dependencies_and_handoff(context: dict[str, object]) -> dict[str, ob
 def compare_dependencies_and_handoff_detail(context, frame):
     """L5 same-call FN6 consumer for the existing closed DescriptorTargetCallFrame."""
     validated = context.get("validated") if isinstance(context, dict) else None
-    if (not isinstance(context, dict) or set(context) != {"validated", "definitions"}
-            or not isinstance(frame, dict)
-            or set(frame) != {"validated", "definition_evaluation", "target_reads", "claim_uses"}
-            or frame.get("validated") is not validated
-            or not isinstance(frame.get("definition_evaluation"), dict)
-            or set(frame["definition_evaluation"]) != {"comparison", "assessments"}
-            or not isinstance(frame.get("target_reads"), list)
-            or not isinstance(frame.get("claim_uses"), list)):
-        raise _unsupported("B02/F09", "claim_call_frame_shape", "FN6 requires its same-call DescriptorTargetCallFrame")
+    if (
+        not isinstance(context, dict)
+        or set(context) != {"validated", "definitions"}
+        or not isinstance(frame, dict)
+        or set(frame)
+        != {"validated", "definition_evaluation", "target_reads", "claim_uses"}
+        or frame.get("validated") is not validated
+        or not isinstance(frame.get("definition_evaluation"), dict)
+        or set(frame["definition_evaluation"]) != {"comparison", "assessments"}
+        or not isinstance(frame.get("target_reads"), list)
+        or not isinstance(frame.get("claim_uses"), list)
+    ):
+        raise _unsupported(
+            "B02/F09",
+            "claim_call_frame_shape",
+            "FN6 requires its same-call DescriptorTargetCallFrame",
+        )
     return _compare_dependencies_and_claims(context, frame)
 
 
-def _compare_dependencies_and_claims(context: dict[str, object], frame=None) -> dict[str, object]:
+def _compare_dependencies_and_claims(
+    context: dict[str, object], frame=None
+) -> dict[str, object]:
     """Same-call detail with the existing B02 prefix and FN4 ClaimUse frame."""
     if not isinstance(context, dict) or set(context) != {"validated", "definitions"}:
-        raise _unsupported("B02/F09", "dependency_context_shape", "DependencyContext requires validated and definitions")
+        raise _unsupported(
+            "B02/F09",
+            "dependency_context_shape",
+            "DependencyContext requires validated and definitions",
+        )
     validated = context.get("validated")
     definitions = context.get("definitions")
     if not isinstance(validated, dict) or not isinstance(validated.get("input"), dict):
-        raise _unsupported("B02/F09", "validated_supply_shape", "compare_dependencies_and_handoff requires a decoded SupplyInput")
-    if validated.get("input_issues") != [] or validated.get("unusable_source_refs") != []:
-        raise _unsupported("B02/F09", "validated_supply_issues_present", "fn6 B02 slice requires clean ValidatedSupply")
+        raise _unsupported(
+            "B02/F09",
+            "validated_supply_shape",
+            "compare_dependencies_and_handoff requires a decoded SupplyInput",
+        )
+    if (
+        validated.get("input_issues") != []
+        or validated.get("unusable_source_refs") != []
+    ):
+        raise _unsupported(
+            "B02/F09",
+            "validated_supply_issues_present",
+            "fn6 B02 slice requires clean ValidatedSupply",
+        )
 
     raw = validated["input"]
     binding = raw.get("binding")
     if not isinstance(binding, dict):
-        raise _unsupported("B02/F09", "binding_absent_or_wrong_type", "input.binding must be an object")
-    comparison_binding = definitions.get("input_binding") if isinstance(definitions, dict) else None
+        raise _unsupported(
+            "B02/F09", "binding_absent_or_wrong_type", "input.binding must be an object"
+        )
+    comparison_binding = (
+        definitions.get("input_binding") if isinstance(definitions, dict) else None
+    )
     comparison_binding_matches = _binding_same(comparison_binding, binding)
     if (
         not comparison_binding_matches
@@ -386,7 +478,11 @@ def _compare_dependencies_and_claims(context: dict[str, object], frame=None) -> 
         or not isinstance(definitions.get("findings"), list)
         or not comparison_binding_matches
     ):
-        raise _unsupported("B02/F09", "definitions_comparison_mismatch", "definitions must be the same-snapshot fn1 Comparison")
+        raise _unsupported(
+            "B02/F09",
+            "definitions_comparison_mismatch",
+            "definitions must be the same-snapshot fn1 Comparison",
+        )
 
     axes: list[dict[str, Any]] = []
     findings: list[dict[str, Any]] = []
@@ -398,12 +494,16 @@ def _compare_dependencies_and_claims(context: dict[str, object], frame=None) -> 
         )
 
         for required_identity in _REQUIRED_ALWAYS_IDENTITIES:
-            axes.extend(project_required_dependency_missing_axis(
-                validated, "always_refs", required_identity
-            ))
-            findings.extend(project_required_dependency_missing_finding(
-                validated, "always_refs", required_identity
-            ))
+            axes.extend(
+                project_required_dependency_missing_axis(
+                    validated, "always_refs", required_identity
+                )
+            )
+            findings.extend(
+                project_required_dependency_missing_finding(
+                    validated, "always_refs", required_identity
+                )
+            )
         for selector in (
             "core_return_requested",
             "core_source_selected",
@@ -450,15 +550,17 @@ def _compare_dependencies_and_claims(context: dict[str, object], frame=None) -> 
                 "handoff_record": None,
                 "selection_observation": None,
             }
-            axes.append({
-                "subject_ref": copy.deepcopy(subject_ref),
-                "binding": copy.deepcopy(binding),
-                "axis": "dependency_reference",
-                "state": body_read["state"],
-                "original_refs": copy.deepcopy(body_read["category_refs"]),
-                "reason": f"{prefix}\nTRACE={_serialize_trace(trace_material)}",
-                "backflow_owner": "knowledge_owner",
-            })
+            axes.append(
+                {
+                    "subject_ref": copy.deepcopy(subject_ref),
+                    "binding": copy.deepcopy(binding),
+                    "axis": "dependency_reference",
+                    "state": body_read["state"],
+                    "original_refs": copy.deepcopy(body_read["category_refs"]),
+                    "reason": f"{prefix}\nTRACE={_serialize_trace(trace_material)}",
+                    "backflow_owner": "knowledge_owner",
+                }
+            )
 
         unselected_refs = raw["dependencies"]["unselected_refs"]
         for index, unselected_ref in enumerate(unselected_refs):
@@ -482,23 +584,28 @@ def _compare_dependencies_and_claims(context: dict[str, object], frame=None) -> 
                     "port_call": "not_called_for_unselected_ref",
                 },
             }
-            axes.append({
-                "subject_ref": copy.deepcopy(subject_ref),
-                "binding": copy.deepcopy(binding),
-                "axis": "unselected_source",
-                "state": "unobserved",
-                "original_refs": [copy.deepcopy(unselected_ref)],
-                "reason": f"未選択sourceは未観測。\nTRACE={_serialize_trace(trace_material)}",
-                "backflow_owner": None,
-            })
+            axes.append(
+                {
+                    "subject_ref": copy.deepcopy(subject_ref),
+                    "binding": copy.deepcopy(binding),
+                    "axis": "unselected_source",
+                    "state": "unobserved",
+                    "original_refs": [copy.deepcopy(unselected_ref)],
+                    "reason": f"未選択sourceは未観測。\nTRACE={_serialize_trace(trace_material)}",
+                    "backflow_owner": None,
+                }
+            )
 
     handoff_records = raw["handoff_records"] if "handoff_records" in raw else []
     if not isinstance(handoff_records, list):
-        raise _unsupported("F09/B02", "handoff_records_shape", "handoff_records must be an array")
+        raise _unsupported(
+            "F09/B02", "handoff_records_shape", "handoff_records must be an array"
+        )
     for index, record in enumerate(handoff_records):
         if (
             not isinstance(record, dict)
-            or set(record) != {"subject_ref", "binding", "state", "source_ref", "reason"}
+            or set(record)
+            != {"subject_ref", "binding", "state", "source_ref", "reason"}
             or not _ref_frame_supplied_ok(record.get("subject_ref"))
             or not _binding_shape_ok(record.get("binding"))
             or record.get("state") != "not_received"
@@ -531,50 +638,80 @@ def _compare_dependencies_and_claims(context: dict[str, object], frame=None) -> 
             "handoff_record": copy.deepcopy(record),
             "selection_observation": None,
         }
-        axes.append({
-            "subject_ref": copy.deepcopy(record["subject_ref"]),
-            "binding": copy.deepcopy(record["binding"]),
-            "axis": "handoff",
-            "state": record["state"],
-            "original_refs": original_refs,
-            "reason": f"受渡しstateを原recordから保持。\nTRACE={_serialize_trace(trace_material)}",
-            "backflow_owner": "os_owner",
-        })
+        axes.append(
+            {
+                "subject_ref": copy.deepcopy(record["subject_ref"]),
+                "binding": copy.deepcopy(record["binding"]),
+                "axis": "handoff",
+                "state": record["state"],
+                "original_refs": original_refs,
+                "reason": f"受渡しstateを原recordから保持。\nTRACE={_serialize_trace(trace_material)}",
+                "backflow_owner": "os_owner",
+            }
+        )
 
     claims = raw.get("claims")
     if not isinstance(claims, list):
-        raise _unsupported("B02/F09", "claims_container_shape", "claims must be an array")
-    required_claim_members = {"subject_ref", "binding", "actor", "kind", "proposed_value", "basis_refs"}
+        raise _unsupported(
+            "B02/F09", "claims_container_shape", "claims must be an array"
+        )
+    required_claim_members = {
+        "subject_ref",
+        "binding",
+        "actor",
+        "kind",
+        "proposed_value",
+        "basis_refs",
+    }
     for index, claim in enumerate(claims):
         if isinstance(claim, dict) and claim.get("kind") == "fill_definition":
             fill_required_members = {"subject_ref", "binding", "actor", "kind"}
-            if (not fill_required_members <= set(claim)
-                    or not set(claim) <= required_claim_members):
+            if (
+                not fill_required_members <= set(claim)
+                or not set(claim) <= required_claim_members
+            ):
                 raise _unsupported(
-                    "B02/F09", "claim_closed_shape",
+                    "B02/F09",
+                    "claim_closed_shape",
                     f"claims[{index}] is outside the 6-field Claim shape",
                 )
-            if (not _ref_frame_supplied_ok(claim.get("subject_ref"))
-                    or not _binding_shape_ok(claim.get("binding"))
-                    or claim.get("actor") != "BRAIN"):
+            if (
+                not _ref_frame_supplied_ok(claim.get("subject_ref"))
+                or not _binding_shape_ok(claim.get("binding"))
+                or claim.get("actor") != "BRAIN"
+            ):
                 raise _unsupported(
-                    "B02/F09", "claim_frame_or_actor",
+                    "B02/F09",
+                    "claim_frame_or_actor",
                     f"claims[{index}] has unsupported subject/binding/actor",
                 )
             if not _binding_same(claim["binding"], binding):
                 raise _unsupported(
-                    "B02", "claim_binding_mismatch",
+                    "B02",
+                    "claim_binding_mismatch",
                     f"claims[{index}].binding does not match input.binding",
                 )
-            if (not isinstance(frame, dict)
-                    or len(frame["target_reads"]) != len(claims)
-                    or len(frame["claim_uses"]) != len(claims)):
-                raise _unsupported("B02/F09", "claim_call_frame_shape", "FN6 requires original fill ClaimUse occurrences")
+            if (
+                not isinstance(frame, dict)
+                or len(frame["target_reads"]) != len(claims)
+                or len(frame["claim_uses"]) != len(claims)
+            ):
+                raise _unsupported(
+                    "B02/F09",
+                    "claim_call_frame_shape",
+                    "FN6 requires original fill ClaimUse occurrences",
+                )
             use = frame["claim_uses"][index]
-            if (not isinstance(use, dict)
-                    or use.get("claim_locator") != f"/claims/{index}"
-                    or not _json_equal(use.get("claim"), claim)):
-                raise _unsupported("B02/F09", "claim_call_frame_shape", f"ClaimUse does not match /claims/{index}")
+            if (
+                not isinstance(use, dict)
+                or use.get("claim_locator") != f"/claims/{index}"
+                or not _json_equal(use.get("claim"), claim)
+            ):
+                raise _unsupported(
+                    "B02/F09",
+                    "claim_call_frame_shape",
+                    f"ClaimUse does not match /claims/{index}",
+                )
             route = use.get("route")
             if route == "rule87":
                 reason = (
@@ -591,21 +728,43 @@ def _compare_dependencies_and_claims(context: dict[str, object], frame=None) -> 
                 }
                 basis_refs = _copy_refs_in_source_order(claim["basis_refs"])
                 axes.append({**common, "original_refs": basis_refs})
-                findings.append({
-                    "code": "reference_as_required_definition",
-                    "rule_ref": "HELIXBRAIN-L5-032-R-reference_as_required_definition",
-                    **common,
-                    "source_refs": copy.deepcopy(basis_refs),
-                })
+                findings.append(
+                    {
+                        "code": "reference_as_required_definition",
+                        "rule_ref": "HELIXBRAIN-L5-032-R-reference_as_required_definition",
+                        **common,
+                        "source_refs": copy.deepcopy(basis_refs),
+                    }
+                )
             elif route not in {"none", "unresolved", "rule93"}:
-                raise _unsupported("B02", "unsupported_claim_kind", f"unsupported ClaimUse route {route!r}")
+                raise _unsupported(
+                    "B02",
+                    "unsupported_claim_kind",
+                    f"unsupported ClaimUse route {route!r}",
+                )
             continue
         if not isinstance(claim, dict) or set(claim) != required_claim_members:
-            raise _unsupported("B02/F09", "claim_closed_shape", f"claims[{index}] is outside the 6-field Claim shape")
-        if not _ref_frame_supplied_ok(claim.get("subject_ref")) or not _binding_shape_ok(claim.get("binding")) or claim.get("actor") != "BRAIN":
-            raise _unsupported("B02/F09", "claim_frame_or_actor", f"claims[{index}] has unsupported subject/binding/actor")
+            raise _unsupported(
+                "B02/F09",
+                "claim_closed_shape",
+                f"claims[{index}] is outside the 6-field Claim shape",
+            )
+        if (
+            not _ref_frame_supplied_ok(claim.get("subject_ref"))
+            or not _binding_shape_ok(claim.get("binding"))
+            or claim.get("actor") != "BRAIN"
+        ):
+            raise _unsupported(
+                "B02/F09",
+                "claim_frame_or_actor",
+                f"claims[{index}] has unsupported subject/binding/actor",
+            )
         if not _binding_same(claim["binding"], binding):
-            raise _unsupported("B02", "claim_binding_mismatch", f"claims[{index}].binding does not match input.binding")
+            raise _unsupported(
+                "B02",
+                "claim_binding_mismatch",
+                f"claims[{index}].binding does not match input.binding",
+            )
 
         kind = claim.get("kind")
         if kind not in {"project_obligation_discharge", "field_not_applicable"}:
@@ -625,7 +784,11 @@ def _compare_dependencies_and_claims(context: dict[str, object], frame=None) -> 
 
         assessments = _assess_b02_claim_basis(validated, claim, index, intent_read)
         if not assessments:
-            raise _unsupported("B02", "claim_basis_not_receipt", f"claims[{index}] produced no basis assessments")
+            raise _unsupported(
+                "B02",
+                "claim_basis_not_receipt",
+                f"claims[{index}] produced no basis assessments",
+            )
 
         if kind == "project_obligation_discharge":
             rule_ref = "HELIXBRAIN-L5-032-R-receipt_as_product_discharge"
@@ -634,7 +797,9 @@ def _compare_dependencies_and_claims(context: dict[str, object], frame=None) -> 
             backflow_owner = "os_owner"
             reason = "030受領主張は案件義務成立の根拠にならない。OSの案件義務達成根拠が未供給のため義務状態はunknown。"
         else:
-            _verify_na_claim_subject_applicability_unknown(raw, definitions, claim, index)
+            _verify_na_claim_subject_applicability_unknown(
+                raw, definitions, claim, index
+            )
             rule_ref = "HELIXBRAIN-L5-032-R-receipt_as_na"
             code = "receipt_as_na"
             axis_name = "applicability_claim"
@@ -642,26 +807,30 @@ def _compare_dependencies_and_claims(context: dict[str, object], frame=None) -> 
             reason = "030受領主張だけでN/Aは成立しない。COREの適用判断・理由・判定者・再評価条件が未供給のためunknown。"
 
         basis_copy = _copy_refs_in_source_order(claim["basis_refs"])
-        axes.append({
-            "subject_ref": copy.deepcopy(claim["subject_ref"]),
-            "binding": copy.deepcopy(claim["binding"]),
-            "axis": axis_name,
-            "state": "unknown",
-            "original_refs": basis_copy,
-            "reason": reason,
-            "backflow_owner": backflow_owner,
-        })
-        findings.append({
-            "code": code,
-            "rule_ref": rule_ref,
-            "subject_ref": copy.deepcopy(claim["subject_ref"]),
-            "binding": copy.deepcopy(claim["binding"]),
-            "axis": axis_name,
-            "state": "unknown",
-            "source_refs": copy.deepcopy(basis_copy),
-            "reason": reason,
-            "backflow_owner": backflow_owner,
-        })
+        axes.append(
+            {
+                "subject_ref": copy.deepcopy(claim["subject_ref"]),
+                "binding": copy.deepcopy(claim["binding"]),
+                "axis": axis_name,
+                "state": "unknown",
+                "original_refs": basis_copy,
+                "reason": reason,
+                "backflow_owner": backflow_owner,
+            }
+        )
+        findings.append(
+            {
+                "code": code,
+                "rule_ref": rule_ref,
+                "subject_ref": copy.deepcopy(claim["subject_ref"]),
+                "binding": copy.deepcopy(claim["binding"]),
+                "axis": axis_name,
+                "state": "unknown",
+                "source_refs": copy.deepcopy(basis_copy),
+                "reason": reason,
+                "backflow_owner": backflow_owner,
+            }
+        )
 
     return {
         "axes": axes,

@@ -4,15 +4,28 @@ from __future__ import annotations
 
 import copy
 
-from identity_input_fixtures import _same_ref_without_digest, _write_source_content, trace_input
+from identity_input_fixtures import (
+    _same_ref_without_digest,
+    _write_source_content,
+    trace_input,
+)
 
 
 def descriptor_claim_input(mode="positive"):
     """既存qualified sourceに原target declarationを置いた独立rawを返す。"""
     supported = {
-        "positive", "absent", "null", "type", "empty", "owner_source_unresolved",
-        "declaration_shape", "same_slot_kind_conflict", "distinct_slot",
-        "unrelated_target", "duplicate_declaration", "candidate_scope",
+        "positive",
+        "absent",
+        "null",
+        "type",
+        "empty",
+        "owner_source_unresolved",
+        "declaration_shape",
+        "same_slot_kind_conflict",
+        "distinct_slot",
+        "unrelated_target",
+        "duplicate_declaration",
+        "candidate_scope",
     }
     if mode not in supported:
         raise ValueError(f"unknown descriptor claim fixture mode: {mode}")
@@ -87,12 +100,14 @@ def descriptor_claim_input(mode="positive"):
             copy.deepcopy(raw["binding"]["template_ref"]),
         ]
 
-    raw["claims"] = [{
-        "subject_ref": copy.deepcopy(target_ref),
-        "binding": copy.deepcopy(raw["binding"]),
-        "actor": "BRAIN",
-        "kind": "fill_definition",
-        "proposed_value": None,
-        "basis_refs": [],
-    }]
+    raw["claims"] = [
+        {
+            "subject_ref": copy.deepcopy(target_ref),
+            "binding": copy.deepcopy(raw["binding"]),
+            "actor": "BRAIN",
+            "kind": "fill_definition",
+            "proposed_value": None,
+            "basis_refs": [],
+        }
+    ]
     return raw

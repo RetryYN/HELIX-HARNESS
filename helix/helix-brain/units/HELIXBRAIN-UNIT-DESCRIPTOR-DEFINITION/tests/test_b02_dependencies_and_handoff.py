@@ -77,7 +77,9 @@ def _append_qualified_semantic_source(
     *,
     owner: str = "brain_owner",
 ) -> tuple[int, dict]:
-    content_bytes = json.dumps(content, ensure_ascii=False, separators=(",", ":"), sort_keys=True)
+    content_bytes = json.dumps(
+        content, ensure_ascii=False, separators=(",", ":"), sort_keys=True
+    )
     digest = hashlib.sha256(content_bytes.encode("utf-8")).hexdigest()
     base_source = raw["sources"][0]
     base_qual = raw["qualifications"][0]
@@ -221,9 +223,18 @@ def _build_os_incoming_content(
             "project_scope": {
                 "presence": "supplied",
                 "value": {
-                    "project": {"presence": "supplied", "value": req_scope.get("project")},
-                    "tenant": {"presence": "supplied", "value": req_scope.get("tenant")},
-                    "environment": {"presence": "supplied", "value": req_scope.get("environment")},
+                    "project": {
+                        "presence": "supplied",
+                        "value": req_scope.get("project"),
+                    },
+                    "tenant": {
+                        "presence": "supplied",
+                        "value": req_scope.get("tenant"),
+                    },
+                    "environment": {
+                        "presence": "supplied",
+                        "value": req_scope.get("environment"),
+                    },
                 },
             },
             "requirement_ref": {"presence": "supplied", "value": orig_requirement_ref},
@@ -246,38 +257,48 @@ class TestB02DependenciesAndHandoff(unittest.TestCase):
         validated_before = copy.deepcopy(validated)
 
         definitions = compare_descriptor_definitions({"validated": validated})
-        self.assertEqual(definitions["producer_symbol"], "compare_descriptor_definitions")
-        self.assertEqual(set(definitions), {"axes", "findings", "producer_symbol", "input_binding"})
+        self.assertEqual(
+            definitions["producer_symbol"], "compare_descriptor_definitions"
+        )
+        self.assertEqual(
+            set(definitions), {"axes", "findings", "producer_symbol", "input_binding"}
+        )
         self.assertEqual(definitions["input_binding"], raw_before["binding"])
         definitions_before = copy.deepcopy(definitions)
         self.assertEqual(validated, validated_before)
 
-        result = compare_dependencies_and_handoff({
-            "validated": validated,
-            "definitions": definitions,
-        })
+        result = compare_dependencies_and_handoff(
+            {
+                "validated": validated,
+                "definitions": definitions,
+            }
+        )
         self.assertEqual(result["producer_symbol"], "compare_dependencies_and_handoff")
-        self.assertEqual(set(result), {"axes", "findings", "producer_symbol", "input_binding"})
+        self.assertEqual(
+            set(result), {"axes", "findings", "producer_symbol", "input_binding"}
+        )
         self.assertEqual(result["input_binding"], raw_before["binding"])
         self.assertEqual(definitions, definitions_before)
         self.assertEqual(validated, validated_before)
         self.assertEqual(raw, raw_before)
         return validated, definitions, result
 
-    def test_normal_path_observes_always_unknown_unselected_and_handoff_not_received(self) -> None:
+    def test_normal_path_observes_always_unknown_unselected_and_handoff_not_received(
+        self,
+    ) -> None:
         """L8#/function_oracles/6: 常時5参照unknown、unselected unobserved、handoff not_received（L4#/failure_classifications/84によりos_owner）、原definition known併存。"""
         raw = base_input(self.document)
         raw_before = copy.deepcopy(raw)
         validated, definitions, result = self._run_same_snapshot_fn6(raw)
 
         target_findings = [
-            f for f in result["findings"]
-            if f.get("rule_ref") in TARGET_FN6_RULE_REFS
+            f for f in result["findings"] if f.get("rule_ref") in TARGET_FN6_RULE_REFS
         ]
         self.assertEqual(target_findings, [])
 
         dep_axes = [
-            axis for axis in result["axes"]
+            axis
+            for axis in result["axes"]
             if axis["axis"] == "dependency_reference"
             and axis["binding"] == raw_before["binding"]
         ]
@@ -285,11 +306,18 @@ class TestB02DependenciesAndHandoff(unittest.TestCase):
         for index, expected_identity in enumerate(REQUIRED_ALWAYS_IDENTITIES):
             with self.subTest(always_ref=expected_identity):
                 axis = dep_axes[index]
-                self.assertEqual(axis["subject_ref"], raw_before["binding"]["knowledge_ref"])
+                self.assertEqual(
+                    axis["subject_ref"], raw_before["binding"]["knowledge_ref"]
+                )
                 self.assertEqual(axis["state"], "unknown")
-                self.assertEqual(axis["original_refs"], raw_before["dependencies"]["always_refs"])
+                self.assertEqual(
+                    axis["original_refs"], raw_before["dependencies"]["always_refs"]
+                )
                 self.assertEqual(axis["backflow_owner"], "knowledge_owner")
-                self.assertIn(f'"request_locator":"/dependencies/always_refs/{index}"', axis["reason"])
+                self.assertIn(
+                    f'"request_locator":"/dependencies/always_refs/{index}"',
+                    axis["reason"],
+                )
 
                 body_read = read_canonical_dependency_body(
                     validated,
@@ -300,47 +328,85 @@ class TestB02DependenciesAndHandoff(unittest.TestCase):
                 )
                 self.assertEqual(
                     list(body_read.keys()),
-                    ["target_ref", "binding", "state", "records", "problems", "category_refs"],
+                    [
+                        "target_ref",
+                        "binding",
+                        "state",
+                        "records",
+                        "problems",
+                        "category_refs",
+                    ],
                 )
                 self.assertEqual(body_read["state"], "unknown")
                 self.assertEqual(body_read["records"], [])
                 self.assertEqual(len(body_read["problems"]), 1)
-                self.assertEqual(body_read["target_ref"]["value"]["identity"], expected_identity)
-                self.assertEqual(body_read["binding"], {"presence": "supplied", "value": raw_before["binding"]})
+                self.assertEqual(
+                    body_read["target_ref"]["value"]["identity"], expected_identity
+                )
+                self.assertEqual(
+                    body_read["binding"],
+                    {"presence": "supplied", "value": raw_before["binding"]},
+                )
                 self.assertEqual(
                     list(body_read["problems"][0].keys()),
-                    ["state", "request_locator", "source_locators", "member", "original_presence", "reason"],
+                    [
+                        "state",
+                        "request_locator",
+                        "source_locators",
+                        "member",
+                        "original_presence",
+                        "reason",
+                    ],
                 )
                 self.assertEqual(body_read["problems"][0]["state"], "unknown")
-                self.assertEqual(body_read["problems"][0]["request_locator"], f"/dependencies/always_refs/{index}")
+                self.assertEqual(
+                    body_read["problems"][0]["request_locator"],
+                    f"/dependencies/always_refs/{index}",
+                )
                 self.assertEqual(body_read["problems"][0]["source_locators"], [])
                 self.assertEqual(body_read["problems"][0]["member"], "canonical_source")
 
         unselected_axes = [
-            axis for axis in result["axes"]
+            axis
+            for axis in result["axes"]
             if axis["axis"] == "unselected_source"
             and axis["binding"] == raw_before["binding"]
         ]
-        self.assertEqual(len(unselected_axes), len(raw_before["dependencies"]["unselected_refs"]))
-        self.assertEqual(unselected_axes[0]["subject_ref"], raw_before["binding"]["knowledge_ref"])
+        self.assertEqual(
+            len(unselected_axes), len(raw_before["dependencies"]["unselected_refs"])
+        )
+        self.assertEqual(
+            unselected_axes[0]["subject_ref"], raw_before["binding"]["knowledge_ref"]
+        )
         self.assertEqual(unselected_axes[0]["state"], "unobserved")
-        self.assertEqual(unselected_axes[0]["original_refs"], [raw_before["dependencies"]["unselected_refs"][0]])
+        self.assertEqual(
+            unselected_axes[0]["original_refs"],
+            [raw_before["dependencies"]["unselected_refs"][0]],
+        )
         self.assertIsNone(unselected_axes[0]["backflow_owner"])
 
         handoff_axes = [
-            axis for axis in result["axes"]
+            axis
+            for axis in result["axes"]
             if axis["axis"] == "handoff"
             and axis["subject_ref"] == raw_before["handoff_records"][0]["subject_ref"]
             and axis["binding"] == raw_before["handoff_records"][0]["binding"]
         ]
         self.assertEqual(len(handoff_axes), 1)
-        self.assertEqual(handoff_axes[0]["state"], raw_before["handoff_records"][0]["state"])
-        self.assertEqual(handoff_axes[0]["original_refs"], [raw_before["handoff_records"][0]["source_ref"]])
+        self.assertEqual(
+            handoff_axes[0]["state"], raw_before["handoff_records"][0]["state"]
+        )
+        self.assertEqual(
+            handoff_axes[0]["original_refs"],
+            [raw_before["handoff_records"][0]["source_ref"]],
+        )
         # L4#/dependency_semantic_ports/public_projection/axis_reason_writer/axis_root/writers/backflow_owner
         # and L4#/failure_classifications/84: 明示not_receivedのhandoffはclassification/84に従いos_owner。
         self.assertEqual(handoff_axes[0]["backflow_owner"], "os_owner")
 
-        selection_axes = [axis for axis in result["axes"] if axis["axis"] == "dependency_selection"]
+        selection_axes = [
+            axis for axis in result["axes"] if axis["axis"] == "dependency_selection"
+        ]
         self.assertEqual(selection_axes, [])
         self.assertTrue(
             any(
@@ -357,7 +423,9 @@ class TestB02DependenciesAndHandoff(unittest.TestCase):
             raw["binding"],
             [copy.deepcopy(raw["sources"][0]["ref"])],
         )
-        _, receipt_ref = _append_qualified_semantic_source(raw, "knowledge-receipt", carrier_content)
+        _, receipt_ref = _append_qualified_semantic_source(
+            raw, "knowledge-receipt", carrier_content
+        )
         claim = {
             "subject_ref": subject_ref,
             "binding": copy.deepcopy(raw["binding"]),
@@ -373,7 +441,8 @@ class TestB02DependenciesAndHandoff(unittest.TestCase):
         self.assertEqual(validated["input"], raw_before)
 
         matching_findings = [
-            finding for finding in result["findings"]
+            finding
+            for finding in result["findings"]
             if finding["rule_ref"] == "HELIXBRAIN-L5-032-R-receipt_as_product_discharge"
         ]
         self.assertEqual(len(matching_findings), 1)
@@ -387,7 +456,8 @@ class TestB02DependenciesAndHandoff(unittest.TestCase):
         self.assertEqual(finding["backflow_owner"], "os_owner")
 
         matching_axes = [
-            axis for axis in result["axes"]
+            axis
+            for axis in result["axes"]
             if axis["axis"] == "obligation_discharge_claim"
             and axis["subject_ref"] == claim["subject_ref"]
             and axis["binding"] == claim["binding"]
@@ -405,7 +475,9 @@ class TestB02DependenciesAndHandoff(unittest.TestCase):
             raw["binding"],
             [copy.deepcopy(raw["sources"][0]["ref"])],
         )
-        _, receipt_ref = _append_qualified_semantic_source(raw, "knowledge-receipt", carrier_content)
+        _, receipt_ref = _append_qualified_semantic_source(
+            raw, "knowledge-receipt", carrier_content
+        )
         claim = {
             "subject_ref": subject_ref,
             "binding": copy.deepcopy(raw["binding"]),
@@ -421,7 +493,8 @@ class TestB02DependenciesAndHandoff(unittest.TestCase):
         self.assertEqual(validated["input"], raw_before)
 
         matching_findings = [
-            finding for finding in result["findings"]
+            finding
+            for finding in result["findings"]
             if finding["rule_ref"] == "HELIXBRAIN-L5-032-R-receipt_as_na"
         ]
         self.assertEqual(len(matching_findings), 1)
@@ -435,7 +508,8 @@ class TestB02DependenciesAndHandoff(unittest.TestCase):
         self.assertEqual(finding["backflow_owner"], "core_owner")
 
         matching_axes = [
-            axis for axis in result["axes"]
+            axis
+            for axis in result["axes"]
             if axis["axis"] == "applicability_claim"
             and axis["subject_ref"] == claim["subject_ref"]
             and axis["binding"] == claim["binding"]
@@ -445,12 +519,18 @@ class TestB02DependenciesAndHandoff(unittest.TestCase):
         self.assertEqual(matching_axes[0]["original_refs"], claim["basis_refs"])
         self.assertEqual(matching_axes[0]["backflow_owner"], "core_owner")
 
-    def test_dp1_receipt_origin_preserved_without_discharge_and_mismatch_keeps_raw_predicate(self) -> None:
+    def test_dp1_receipt_origin_preserved_without_discharge_and_mismatch_keeps_raw_predicate(
+        self,
+    ) -> None:
         raw = base_input(self.document)
         subject_ref = copy.deepcopy(raw["binding"]["requirement_ref"])
         binding = copy.deepcopy(raw["binding"])
-        origin_basis_ref = _synthetic_ref_from(raw["sources"][0]["ref"], "SYNTHETIC-030-BASIS")
-        carrier_content = _build_receipt_carrier_content(subject_ref, binding, [origin_basis_ref])
+        origin_basis_ref = _synthetic_ref_from(
+            raw["sources"][0]["ref"], "SYNTHETIC-030-BASIS"
+        )
+        carrier_content = _build_receipt_carrier_content(
+            subject_ref, binding, [origin_basis_ref]
+        )
         carrier_idx, carrier_source_ref = _append_qualified_semantic_source(
             raw, "SYNTHETIC-030-RECEIPT-CARRIER", carrier_content
         )
@@ -482,7 +562,9 @@ class TestB02DependenciesAndHandoff(unittest.TestCase):
         )
         self.assertEqual(projection["state"], "resolved")
         self.assertEqual(projection["claim"]["presence"], "supplied")
-        self.assertEqual(projection["claim"]["value"]["kind"], "project_obligation_discharge")
+        self.assertEqual(
+            projection["claim"]["value"]["kind"], "project_obligation_discharge"
+        )
         self.assertIs(projection["claim"]["value"]["proposed_value"], True)
         self.assertEqual(projection["claim"]["value"]["actor"], "BRAIN")
         self.assertEqual(projection["claim"]["value"]["basis_refs"], [origin_basis_ref])
@@ -505,7 +587,8 @@ class TestB02DependenciesAndHandoff(unittest.TestCase):
         _, _, result = self._run_same_snapshot_fn6(raw)
         self.assertEqual(raw, raw_before)
         findings = [
-            f for f in result["findings"]
+            f
+            for f in result["findings"]
             if f["rule_ref"] == "HELIXBRAIN-L5-032-R-receipt_as_product_discharge"
         ]
         self.assertEqual(len(findings), 1)
@@ -515,18 +598,22 @@ class TestB02DependenciesAndHandoff(unittest.TestCase):
         # Origin subject mismatch is recorded on the projection read without suppressing raw Claim evaluation.
         mismatched_raw = base_input(self.document)
         other_subject = _synthetic_ref_from(subject_ref, "OTHER-UNRELATED-SUBJECT")
-        bad_carrier = _build_receipt_carrier_content(other_subject, binding, [origin_basis_ref])
+        bad_carrier = _build_receipt_carrier_content(
+            other_subject, binding, [origin_basis_ref]
+        )
         bad_idx, bad_source_ref = _append_qualified_semantic_source(
             mismatched_raw, "SYNTHETIC-030-MISMATCH-CARRIER", bad_carrier
         )
-        mismatched_raw["claims"].append({
-            "subject_ref": copy.deepcopy(subject_ref),
-            "binding": copy.deepcopy(binding),
-            "actor": "BRAIN",
-            "kind": "project_obligation_discharge",
-            "proposed_value": True,
-            "basis_refs": [copy.deepcopy(bad_source_ref)],
-        })
+        mismatched_raw["claims"].append(
+            {
+                "subject_ref": copy.deepcopy(subject_ref),
+                "binding": copy.deepcopy(binding),
+                "actor": "BRAIN",
+                "kind": "project_obligation_discharge",
+                "proposed_value": True,
+                "basis_refs": [copy.deepcopy(bad_source_ref)],
+            }
+        )
         bad_projection = read_receipt_claim_origin(
             mismatched_raw,
             {
@@ -545,27 +632,36 @@ class TestB02DependenciesAndHandoff(unittest.TestCase):
             bad_projection["reason"],
             "元carrierのsubject_refと同callerのconsumer subject_refがfullRef不一致。030 flagを別targetへ投影しない。",
         )
-        self.assertEqual(bad_projection["source_locators"], [f"/sources/{bad_idx}/content"])
+        self.assertEqual(
+            bad_projection["source_locators"], [f"/sources/{bad_idx}/content"]
+        )
 
         _, _, mismatch_result = self._run_same_snapshot_fn6(mismatched_raw)
         mismatch_findings = [
-            f for f in mismatch_result["findings"]
+            f
+            for f in mismatch_result["findings"]
             if f["rule_ref"] == "HELIXBRAIN-L5-032-R-receipt_as_product_discharge"
         ]
         self.assertEqual(len(mismatch_findings), 1)
 
-    def test_dp1_os_incoming_binding_and_original_state_separated_for_both_variants(self) -> None:
+    def test_dp1_os_incoming_binding_and_original_state_separated_for_both_variants(
+        self,
+    ) -> None:
         # Variant 1: B02-NEG-01 (project_obligation_discharge=True) + OS incoming with original_state="completed"
         raw_v1 = base_input(self.document)
         subject_ref_v1 = copy.deepcopy(raw_v1["binding"]["requirement_ref"])
         binding_v1 = copy.deepcopy(raw_v1["binding"])
         carrier_v1 = _build_receipt_carrier_content(
-            subject_ref_v1, binding_v1, [_synthetic_ref_from(raw_v1["sources"][0]["ref"], "SYNTHETIC-030-BASIS")]
+            subject_ref_v1,
+            binding_v1,
+            [_synthetic_ref_from(raw_v1["sources"][0]["ref"], "SYNTHETIC-030-BASIS")],
         )
         _, receipt_ref_v1 = _append_qualified_semantic_source(
             raw_v1, "SYNTHETIC-030-CARRIER-V1", carrier_v1
         )
-        os_incoming_v1 = _build_os_incoming_content(raw_v1, subject_ref_v1, original_state="completed")
+        os_incoming_v1 = _build_os_incoming_content(
+            raw_v1, subject_ref_v1, original_state="completed"
+        )
         os_idx_v1, os_wrapper_ref_v1 = _append_qualified_semantic_source(
             raw_v1, "SYNTHETIC-OS-INCOMING-WRAPPER-V1", os_incoming_v1, owner="os_owner"
         )
@@ -586,7 +682,10 @@ class TestB02DependenciesAndHandoff(unittest.TestCase):
             "actor": "BRAIN",
             "kind": "project_obligation_discharge",
             "proposed_value": True,
-            "basis_refs": [copy.deepcopy(receipt_ref_v1), copy.deepcopy(os_wrapper_ref_v1)],
+            "basis_refs": [
+                copy.deepcopy(receipt_ref_v1),
+                copy.deepcopy(os_wrapper_ref_v1),
+            ],
         }
         raw_v1["claims"].append(claim_v1)
 
@@ -640,13 +739,19 @@ class TestB02DependenciesAndHandoff(unittest.TestCase):
             },
         )
         self.assertEqual(
-            set(typed_body["original_project_binding"]["project_scope"]["value"].keys()),
+            set(
+                typed_body["original_project_binding"]["project_scope"]["value"].keys()
+            ),
             {"project", "tenant", "environment"},
         )
-        self.assertEqual(typed_body["original_state"], {"presence": "supplied", "value": "completed"})
+        self.assertEqual(
+            typed_body["original_state"], {"presence": "supplied", "value": "completed"}
+        )
         self.assertEqual(typed_body["discharge_assertion"], {"presence": "absent"})
         self.assertEqual(len(os_read_v1["os_binding_comparison"]), 7)
-        self.assertTrue(all(row["matched"] for row in os_read_v1["os_binding_comparison"]))
+        self.assertTrue(
+            all(row["matched"] for row in os_read_v1["os_binding_comparison"])
+        )
         self.assertEqual(
             os_read_v1["support_components"],
             {
@@ -661,7 +766,8 @@ class TestB02DependenciesAndHandoff(unittest.TestCase):
         )
 
         findings_v1 = [
-            f for f in result_v1["findings"]
+            f
+            for f in result_v1["findings"]
             if f["rule_ref"] == "HELIXBRAIN-L5-032-R-receipt_as_product_discharge"
         ]
         self.assertEqual(len(findings_v1), 1)
@@ -674,12 +780,20 @@ class TestB02DependenciesAndHandoff(unittest.TestCase):
         subject_ref_v2 = copy.deepcopy(raw_v2["section_fields"][0]["ref"])
         binding_v2 = copy.deepcopy(raw_v2["binding"])
         carrier_v2 = _build_receipt_carrier_content(
-            subject_ref_v2, binding_v2, [_synthetic_ref_from(raw_v2["sources"][0]["ref"], "SYNTHETIC-030-BASIS-V2")]
+            subject_ref_v2,
+            binding_v2,
+            [
+                _synthetic_ref_from(
+                    raw_v2["sources"][0]["ref"], "SYNTHETIC-030-BASIS-V2"
+                )
+            ],
         )
         _, receipt_ref_v2 = _append_qualified_semantic_source(
             raw_v2, "SYNTHETIC-030-CARRIER-V2", carrier_v2
         )
-        os_incoming_v2 = _build_os_incoming_content(raw_v2, subject_ref_v2, original_state="completed")
+        os_incoming_v2 = _build_os_incoming_content(
+            raw_v2, subject_ref_v2, original_state="completed"
+        )
         _, os_wrapper_ref_v2 = _append_qualified_semantic_source(
             raw_v2, "SYNTHETIC-OS-INCOMING-WRAPPER-V2", os_incoming_v2, owner="os_owner"
         )
@@ -689,13 +803,17 @@ class TestB02DependenciesAndHandoff(unittest.TestCase):
             "actor": "BRAIN",
             "kind": "field_not_applicable",
             "proposed_value": "not_applicable",
-            "basis_refs": [copy.deepcopy(receipt_ref_v2), copy.deepcopy(os_wrapper_ref_v2)],
+            "basis_refs": [
+                copy.deepcopy(receipt_ref_v2),
+                copy.deepcopy(os_wrapper_ref_v2),
+            ],
         }
         raw_v2["claims"].append(claim_v2)
 
         _, _, result_v2 = self._run_same_snapshot_fn6(raw_v2)
         findings_v2 = [
-            f for f in result_v2["findings"]
+            f
+            for f in result_v2["findings"]
             if f["rule_ref"] == "HELIXBRAIN-L5-032-R-receipt_as_na"
         ]
         self.assertEqual(len(findings_v2), 1)
@@ -719,21 +837,32 @@ class TestB02DependenciesAndHandoff(unittest.TestCase):
             ["claim_locator", "claim", "kind", "proposed_value", "intent", "reason"],
         )
         self.assertEqual(pos_discharge["intent"], "positive")
-        self.assertEqual(pos_discharge["kind"], {"presence": "supplied", "value": "project_obligation_discharge"})
-        self.assertEqual(pos_discharge["proposed_value"], {"presence": "supplied", "value": True})
-        self.assertEqual(pos_discharge["reason"], "既存030 boolean flag trueの肯定主張を保持する。")
+        self.assertEqual(
+            pos_discharge["kind"],
+            {"presence": "supplied", "value": "project_obligation_discharge"},
+        )
+        self.assertEqual(
+            pos_discharge["proposed_value"], {"presence": "supplied", "value": True}
+        )
+        self.assertEqual(
+            pos_discharge["reason"], "既存030 boolean flag trueの肯定主張を保持する。"
+        )
 
         neg_claim = copy.deepcopy(base_claim)
         neg_claim["proposed_value"] = False
         neg_read = read_claim_intent(neg_claim, "/claims/0")
         self.assertEqual(neg_read["intent"], "negative")
-        self.assertEqual(neg_read["reason"], "既存030 boolean flag falseの非主張を保持する。")
+        self.assertEqual(
+            neg_read["reason"], "既存030 boolean flag falseの非主張を保持する。"
+        )
 
         null_claim = copy.deepcopy(base_claim)
         null_claim["proposed_value"] = None
         null_read = read_claim_intent(null_claim, "/claims/0")
         self.assertEqual(null_read["intent"], "unresolved")
-        self.assertEqual(null_read["proposed_value"], {"presence": "supplied", "value": None})
+        self.assertEqual(
+            null_read["proposed_value"], {"presence": "supplied", "value": None}
+        )
         self.assertEqual(
             null_read["reason"],
             "project_obligation_dischargeのproposed_valueはboolean肯定/否定へ解決できない。原値を保持する。",
@@ -796,7 +925,9 @@ class TestB02DependenciesAndHandoff(unittest.TestCase):
             "Claim kindを認識できない。原Claim/RawValueを保持し意図を補完しない。",
         )
 
-    def _assert_fn6_stop(self, raw: dict, expected_tag: str, *, definitions_override: dict | None = None) -> None:
+    def _assert_fn6_stop(
+        self, raw: dict, expected_tag: str, *, definitions_override: dict | None = None
+    ) -> None:
         raw_before = copy.deepcopy(raw)
         validated = validate_supply_input(raw)
         self.assertEqual(validated["input_issues"], [])
@@ -809,10 +940,12 @@ class TestB02DependenciesAndHandoff(unittest.TestCase):
         validated_before = copy.deepcopy(validated)
 
         with self.assertRaises(NotImplementedError) as caught:
-            compare_dependencies_and_handoff({
-                "validated": validated,
-                "definitions": definitions,
-            })
+            compare_dependencies_and_handoff(
+                {
+                    "validated": validated,
+                    "definitions": definitions,
+                }
+            )
         message = str(caught.exception)
         self.assertIn(expected_tag, message)
         self.assertIn(B02_PATH_ID, message)
@@ -820,13 +953,17 @@ class TestB02DependenciesAndHandoff(unittest.TestCase):
         self.assertEqual(validated, validated_before)
         self.assertEqual(definitions, definitions_before)
 
-    def test_dp2_positive_os_discharge_assertion_stops_with_not_implemented(self) -> None:
+    def test_dp2_positive_os_discharge_assertion_stops_with_not_implemented(
+        self,
+    ) -> None:
         raw = base_input(self.document)
         subject_ref = copy.deepcopy(raw["binding"]["requirement_ref"])
         carrier = _build_receipt_carrier_content(
             subject_ref, raw["binding"], [copy.deepcopy(raw["sources"][0]["ref"])]
         )
-        _, receipt_ref = _append_qualified_semantic_source(raw, "knowledge-receipt", carrier)
+        _, receipt_ref = _append_qualified_semantic_source(
+            raw, "knowledge-receipt", carrier
+        )
         os_incoming = _build_os_incoming_content(
             raw,
             subject_ref,
@@ -837,47 +974,65 @@ class TestB02DependenciesAndHandoff(unittest.TestCase):
         _, dp2_ref = _append_qualified_semantic_source(
             raw, "SYNTHETIC-OS-DP2-POSITIVE", os_incoming, owner="os_owner"
         )
-        raw["claims"].append({
-            "subject_ref": subject_ref,
-            "binding": copy.deepcopy(raw["binding"]),
-            "actor": "BRAIN",
-            "kind": "project_obligation_discharge",
-            "proposed_value": True,
-            "basis_refs": [receipt_ref, dp2_ref],
-        })
+        raw["claims"].append(
+            {
+                "subject_ref": subject_ref,
+                "binding": copy.deepcopy(raw["binding"]),
+                "actor": "BRAIN",
+                "kind": "project_obligation_discharge",
+                "proposed_value": True,
+                "basis_refs": [receipt_ref, dp2_ref],
+            }
+        )
         self._assert_fn6_stop(raw, "B02/DP2/os_positive_discharge_assertion")
 
-    def test_os_only_or_unresolvable_basis_without_receipt_stops_with_not_implemented(self) -> None:
+    def test_os_only_or_unresolvable_basis_without_receipt_stops_with_not_implemented(
+        self,
+    ) -> None:
         # OS-incoming-only basis without any 030 receipt carrier must NOT emit receipt_as_product_discharge.
         raw_os_only = base_input(self.document)
         subject_ref = copy.deepcopy(raw_os_only["binding"]["requirement_ref"])
-        os_incoming = _build_os_incoming_content(raw_os_only, subject_ref, original_state="completed")
+        os_incoming = _build_os_incoming_content(
+            raw_os_only, subject_ref, original_state="completed"
+        )
         _, os_wrapper_ref = _append_qualified_semantic_source(
             raw_os_only, "SYNTHETIC-OS-ONLY-BASIS", os_incoming, owner="os_owner"
         )
-        raw_os_only["claims"].append({
-            "subject_ref": subject_ref,
-            "binding": copy.deepcopy(raw_os_only["binding"]),
-            "actor": "BRAIN",
-            "kind": "project_obligation_discharge",
-            "proposed_value": True,
-            "basis_refs": [os_wrapper_ref],
-        })
+        raw_os_only["claims"].append(
+            {
+                "subject_ref": subject_ref,
+                "binding": copy.deepcopy(raw_os_only["binding"]),
+                "actor": "BRAIN",
+                "kind": "project_obligation_discharge",
+                "proposed_value": True,
+                "basis_refs": [os_wrapper_ref],
+            }
+        )
         self._assert_fn6_stop(raw_os_only, "B02/claim_basis_not_receipt")
 
         # Unresolvable basis_ref with no matching source in raw["sources"] must stop even if identity contains "receipt".
         raw_unresolved = base_input(self.document)
-        raw_unresolved["claims"].append({
-            "subject_ref": copy.deepcopy(raw_unresolved["binding"]["requirement_ref"]),
-            "binding": copy.deepcopy(raw_unresolved["binding"]),
-            "actor": "BRAIN",
-            "kind": "project_obligation_discharge",
-            "proposed_value": True,
-            "basis_refs": [_synthetic_ref_from(raw_unresolved["sources"][0]["ref"], "knowledge-receipt")],
-        })
+        raw_unresolved["claims"].append(
+            {
+                "subject_ref": copy.deepcopy(
+                    raw_unresolved["binding"]["requirement_ref"]
+                ),
+                "binding": copy.deepcopy(raw_unresolved["binding"]),
+                "actor": "BRAIN",
+                "kind": "project_obligation_discharge",
+                "proposed_value": True,
+                "basis_refs": [
+                    _synthetic_ref_from(
+                        raw_unresolved["sources"][0]["ref"], "knowledge-receipt"
+                    )
+                ],
+            }
+        )
         self._assert_fn6_stop(raw_unresolved, "B02/claim_basis_not_receipt")
 
-    def test_conditional_selector_true_or_missing_stops_with_not_implemented(self) -> None:
+    def test_conditional_selector_true_or_missing_stops_with_not_implemented(
+        self,
+    ) -> None:
         raw_true = base_input(self.document)
         raw_true["dependencies"]["core_source_selected"] = True
         self._assert_fn6_stop(raw_true, "F09/conditional_selector")
@@ -891,66 +1046,94 @@ class TestB02DependenciesAndHandoff(unittest.TestCase):
         raw["dependencies"]["always_refs"].pop(0)
         self._assert_fn6_stop(raw, "F09/required_always_ref_missing")
 
-    def test_canonical_body_resolved_source_present_stops_with_not_implemented(self) -> None:
+    def test_canonical_body_resolved_source_present_stops_with_not_implemented(
+        self,
+    ) -> None:
         raw = base_input(self.document)
         always_ref_0 = copy.deepcopy(raw["dependencies"]["always_refs"][0])
         content = {"canonical_identity": always_ref_0["identity"]}
-        content_bytes = json.dumps(content, ensure_ascii=False, separators=(",", ":"), sort_keys=True)
+        content_bytes = json.dumps(
+            content, ensure_ascii=False, separators=(",", ":"), sort_keys=True
+        )
         digest = hashlib.sha256(content_bytes.encode("utf-8")).hexdigest()
         always_ref_0["sha256"] = digest
         raw["dependencies"]["always_refs"][0] = copy.deepcopy(always_ref_0)
-        _append_qualified_semantic_source(raw, always_ref_0["identity"], content, owner=always_ref_0["owner"])
+        _append_qualified_semantic_source(
+            raw, always_ref_0["identity"], content, owner=always_ref_0["owner"]
+        )
         raw["sources"][-1]["ref"] = copy.deepcopy(always_ref_0)
         raw["qualifications"][-1]["subject_ref"] = copy.deepcopy(always_ref_0)
-        raw["qualifications"][-1]["applicable_scope"] = copy.deepcopy(always_ref_0["scope"])
+        raw["qualifications"][-1]["applicable_scope"] = copy.deepcopy(
+            always_ref_0["scope"]
+        )
         self._assert_fn6_stop(raw, "F09/canonical_body_resolved")
 
     def test_unsupported_claim_kind_stops_with_not_implemented(self) -> None:
         raw = base_input(self.document)
-        raw["claims"].append({
-            "subject_ref": copy.deepcopy(raw["binding"]["requirement_ref"]),
-            "binding": copy.deepcopy(raw["binding"]),
-            "actor": "BRAIN",
-            "kind": "upstream_authority",
-            "proposed_value": True,
-            "basis_refs": [_synthetic_ref_from(raw["sources"][0]["ref"], "knowledge-receipt")],
-        })
+        raw["claims"].append(
+            {
+                "subject_ref": copy.deepcopy(raw["binding"]["requirement_ref"]),
+                "binding": copy.deepcopy(raw["binding"]),
+                "actor": "BRAIN",
+                "kind": "upstream_authority",
+                "proposed_value": True,
+                "basis_refs": [
+                    _synthetic_ref_from(raw["sources"][0]["ref"], "knowledge-receipt")
+                ],
+            }
+        )
         self._assert_fn6_stop(raw, "B02/unsupported_claim_kind")
 
     def test_non_positive_b02_claim_intent_stops_with_not_implemented(self) -> None:
         raw = base_input(self.document)
-        raw["claims"].append({
-            "subject_ref": copy.deepcopy(raw["binding"]["requirement_ref"]),
-            "binding": copy.deepcopy(raw["binding"]),
-            "actor": "BRAIN",
-            "kind": "project_obligation_discharge",
-            "proposed_value": False,
-            "basis_refs": [_synthetic_ref_from(raw["sources"][0]["ref"], "knowledge-receipt")],
-        })
+        raw["claims"].append(
+            {
+                "subject_ref": copy.deepcopy(raw["binding"]["requirement_ref"]),
+                "binding": copy.deepcopy(raw["binding"]),
+                "actor": "BRAIN",
+                "kind": "project_obligation_discharge",
+                "proposed_value": False,
+                "basis_refs": [
+                    _synthetic_ref_from(raw["sources"][0]["ref"], "knowledge-receipt")
+                ],
+            }
+        )
         self._assert_fn6_stop(raw, "B02/non_positive_claim_intent")
 
         # Swapped kind/proposed_value (project_obligation_discharge with "not_applicable") -> unresolved -> stop.
         raw_swap1 = base_input(self.document)
-        raw_swap1["claims"].append({
-            "subject_ref": copy.deepcopy(raw_swap1["binding"]["requirement_ref"]),
-            "binding": copy.deepcopy(raw_swap1["binding"]),
-            "actor": "BRAIN",
-            "kind": "project_obligation_discharge",
-            "proposed_value": "not_applicable",
-            "basis_refs": [_synthetic_ref_from(raw_swap1["sources"][0]["ref"], "knowledge-receipt")],
-        })
+        raw_swap1["claims"].append(
+            {
+                "subject_ref": copy.deepcopy(raw_swap1["binding"]["requirement_ref"]),
+                "binding": copy.deepcopy(raw_swap1["binding"]),
+                "actor": "BRAIN",
+                "kind": "project_obligation_discharge",
+                "proposed_value": "not_applicable",
+                "basis_refs": [
+                    _synthetic_ref_from(
+                        raw_swap1["sources"][0]["ref"], "knowledge-receipt"
+                    )
+                ],
+            }
+        )
         self._assert_fn6_stop(raw_swap1, "B02/non_positive_claim_intent")
 
         # Swapped kind/proposed_value (field_not_applicable with True) -> unresolved -> stop.
         raw_swap2 = base_input(self.document)
-        raw_swap2["claims"].append({
-            "subject_ref": copy.deepcopy(raw_swap2["section_fields"][0]["ref"]),
-            "binding": copy.deepcopy(raw_swap2["binding"]),
-            "actor": "BRAIN",
-            "kind": "field_not_applicable",
-            "proposed_value": True,
-            "basis_refs": [_synthetic_ref_from(raw_swap2["sources"][0]["ref"], "knowledge-receipt")],
-        })
+        raw_swap2["claims"].append(
+            {
+                "subject_ref": copy.deepcopy(raw_swap2["section_fields"][0]["ref"]),
+                "binding": copy.deepcopy(raw_swap2["binding"]),
+                "actor": "BRAIN",
+                "kind": "field_not_applicable",
+                "proposed_value": True,
+                "basis_refs": [
+                    _synthetic_ref_from(
+                        raw_swap2["sources"][0]["ref"], "knowledge-receipt"
+                    )
+                ],
+            }
+        )
         self._assert_fn6_stop(raw_swap2, "B02/non_positive_claim_intent")
 
     def test_known_definition_applicability_and_handoff_or_subject_stops(self) -> None:
@@ -959,40 +1142,52 @@ class TestB02DependenciesAndHandoff(unittest.TestCase):
         carrier = _build_receipt_carrier_content(
             subject_ref, raw["binding"], [copy.deepcopy(raw["sources"][0]["ref"])]
         )
-        _, receipt_ref = _append_qualified_semantic_source(raw, "knowledge-receipt", carrier)
-        raw["claims"].append({
-            "subject_ref": subject_ref,
-            "binding": copy.deepcopy(raw["binding"]),
-            "actor": "BRAIN",
-            "kind": "field_not_applicable",
-            "proposed_value": "not_applicable",
-            "basis_refs": [receipt_ref],
-        })
+        _, receipt_ref = _append_qualified_semantic_source(
+            raw, "knowledge-receipt", carrier
+        )
+        raw["claims"].append(
+            {
+                "subject_ref": subject_ref,
+                "binding": copy.deepcopy(raw["binding"]),
+                "actor": "BRAIN",
+                "kind": "field_not_applicable",
+                "proposed_value": "not_applicable",
+                "basis_refs": [receipt_ref],
+            }
+        )
         validated = validate_supply_input(raw)
         definitions = compare_descriptor_definitions({"validated": validated})
         for axis in definitions["axes"]:
             if axis["axis"].endswith(".definition_applicability"):
                 axis["state"] = "known"
                 break
-        self._assert_fn6_stop(raw, "B02/known_definition_applicability", definitions_override=definitions)
+        self._assert_fn6_stop(
+            raw, "B02/known_definition_applicability", definitions_override=definitions
+        )
 
         # Unrelated subject_ref not in section_fields stops with B02/subject_field_not_found.
         raw_unmatched_field = base_input(self.document)
-        unmatched_ref = _synthetic_ref_from(raw_unmatched_field["section_fields"][0]["ref"], "UNMATCHED-FIELD-REF")
+        unmatched_ref = _synthetic_ref_from(
+            raw_unmatched_field["section_fields"][0]["ref"], "UNMATCHED-FIELD-REF"
+        )
         carrier_unmatched = _build_receipt_carrier_content(
-            unmatched_ref, raw_unmatched_field["binding"], [copy.deepcopy(raw_unmatched_field["sources"][0]["ref"])]
+            unmatched_ref,
+            raw_unmatched_field["binding"],
+            [copy.deepcopy(raw_unmatched_field["sources"][0]["ref"])],
         )
         _, receipt_unmatched = _append_qualified_semantic_source(
             raw_unmatched_field, "knowledge-receipt-unmatched", carrier_unmatched
         )
-        raw_unmatched_field["claims"].append({
-            "subject_ref": unmatched_ref,
-            "binding": copy.deepcopy(raw_unmatched_field["binding"]),
-            "actor": "BRAIN",
-            "kind": "field_not_applicable",
-            "proposed_value": "not_applicable",
-            "basis_refs": [receipt_unmatched],
-        })
+        raw_unmatched_field["claims"].append(
+            {
+                "subject_ref": unmatched_ref,
+                "binding": copy.deepcopy(raw_unmatched_field["binding"]),
+                "actor": "BRAIN",
+                "kind": "field_not_applicable",
+                "proposed_value": "not_applicable",
+                "basis_refs": [receipt_unmatched],
+            }
+        )
         self._assert_fn6_stop(raw_unmatched_field, "B02/subject_field_not_found")
 
         # Handoff record with source_ref=None stops with F09/B02/handoff_source_ref_absent.

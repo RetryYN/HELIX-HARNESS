@@ -35,7 +35,8 @@ def _filename_identity_claim_input():
     original_source_a_bytes = source_a["content_bytes"]
     original_source_a_digest = source_a["ref"]["sha256"]
     qualification_a = next(
-        row for row in raw["qualifications"]
+        row
+        for row in raw["qualifications"]
         if row["ref"] == source_a["qualification_ref"]
     )
 
@@ -51,11 +52,13 @@ def _filename_identity_claim_input():
     template_b = copy.deepcopy(binding_b["template_ref"])
 
     logical_source_b_ref = copy.deepcopy(source_a["ref"])
-    logical_source_b_ref.update({
-        "identity": "SYNTHETIC-SEMANTIC-SOURCE-B",
-        "sha256": None,
-        "source_locator": FILENAME,
-    })
+    logical_source_b_ref.update(
+        {
+            "identity": "SYNTHETIC-SEMANTIC-SOURCE-B",
+            "sha256": None,
+            "source_locator": FILENAME,
+        }
+    )
     fact_b_in_body = copy.deepcopy(raw["descriptors"][0]["facts"][0])
     fact_b_in_body["ref"]["identity"] = "SYNTHETIC-DESCRIPTOR-B-FACT-1"
     fact_b_in_body["source_ref"] = copy.deepcopy(logical_source_b_ref)
@@ -80,21 +83,24 @@ def _filename_identity_claim_input():
     )
     source_b["ref"]["source_locator"] = FILENAME
     qualification_b = next(
-        row for row in raw["qualifications"]
+        row
+        for row in raw["qualifications"]
         if row["ref"] == source_b["qualification_ref"]
     )
     qualification_b["subject_ref"] = copy.deepcopy(source_b["ref"])
 
     fact_b = copy.deepcopy(fact_b_in_body)
     fact_b["source_ref"] = copy.deepcopy(source_b["ref"])
-    raw["descriptors"].append({
-        "slot_identity": "synthetic-descriptor-B",
-        "descriptor_kind": "template identity",
-        "binding": copy.deepcopy(binding_b),
-        "facts": [fact_b],
-        "comparison_refs": [],
-        "definition_applicability_ref": None,
-    })
+    raw["descriptors"].append(
+        {
+            "slot_identity": "synthetic-descriptor-B",
+            "descriptor_kind": "template identity",
+            "binding": copy.deepcopy(binding_b),
+            "facts": [fact_b],
+            "comparison_refs": [],
+            "definition_applicability_ref": None,
+        }
+    )
     record_b = copy.deepcopy(raw["knowledge_records"][0])
     record_b["ref"] = copy.deepcopy(binding_b["knowledge_ref"])
     record_b["provenance_refs"] = [copy.deepcopy(source_b["ref"])]
@@ -128,7 +134,9 @@ def _filename_identity_claim_input():
 
 class TestFilenameIdentityClaim(unittest.TestCase):
     def test_qualified_distinct_identity_candidates_make_R66_claim_conflict(self):
-        raw, source_a, source_b, claim, template_a, template_b = _filename_identity_claim_input()
+        raw, source_a, source_b, claim, template_a, template_b = (
+            _filename_identity_claim_input()
+        )
         raw_before = copy.deepcopy(raw)
         validated = validate_supply_input(raw)
         validated_before = copy.deepcopy(validated)
@@ -140,10 +148,14 @@ class TestFilenameIdentityClaim(unittest.TestCase):
         result = compare_identity_versions_and_trace({"validated": validated})
         self.assertEqual(raw, raw_before)
         self.assertEqual(validated, validated_before)
-        self.assertEqual(result["producer_symbol"], "compare_identity_versions_and_trace")
+        self.assertEqual(
+            result["producer_symbol"], "compare_identity_versions_and_trace"
+        )
         self.assertEqual(result["input_binding"], raw_before["binding"])
 
-        findings = [row for row in result["findings"] if row["code"] == "filename_identity_join"]
+        findings = [
+            row for row in result["findings"] if row["code"] == "filename_identity_join"
+        ]
         self.assertEqual(len(findings), 1)
         finding = findings[0]
         self.assertEqual(finding["rule_ref"], FILENAME_RULE)
@@ -152,7 +164,10 @@ class TestFilenameIdentityClaim(unittest.TestCase):
         self.assertEqual(finding["backflow_owner"], "knowledge_owner")
         self.assertEqual(finding["subject_ref"], claim["subject_ref"])
         self.assertEqual(finding["binding"], claim["binding"])
-        source_indices = [raw_before["sources"].index(source_a), raw_before["sources"].index(source_b)]
+        source_indices = [
+            raw_before["sources"].index(source_a),
+            raw_before["sources"].index(source_b),
+        ]
         self.assertEqual(
             finding["source_refs"],
             [raw_before["sources"][index]["ref"] for index in source_indices],
@@ -160,21 +175,42 @@ class TestFilenameIdentityClaim(unittest.TestCase):
         self.assertEqual(finding["source_refs"][0]["source_locator"], FILENAME)
         self.assertEqual(finding["source_refs"][1]["source_locator"], FILENAME)
         self.assertNotEqual(template_a["identity"], template_b["identity"])
-        template_identity_rows = [row for row in result["axes"] if row["axis"] == "template.identity"]
+        template_identity_rows = [
+            row for row in result["axes"] if row["axis"] == "template.identity"
+        ]
         self.assertTrue(template_identity_rows)
-        self.assertTrue(all(row["subject_ref"] == template_a for row in template_identity_rows))
-        self.assertTrue(all(row["binding"] == raw_before["binding"] for row in template_identity_rows))
+        self.assertTrue(
+            all(row["subject_ref"] == template_a for row in template_identity_rows)
+        )
+        self.assertTrue(
+            all(
+                row["binding"] == raw_before["binding"]
+                for row in template_identity_rows
+            )
+        )
 
         # L4 evaluation_populations: 明示candidate Bの原frameと14不足を保持。
         fn1_result = compare_descriptor_definitions({"validated": validated})
         binding_b = raw_before["descriptors"][-1]["binding"]
         self.assertEqual(fn1_result["input_binding"], raw_before["binding"])
-        b_missing = [row for row in fn1_result["axes"]
-                     if row["binding"] == binding_b and row["state"] == "missing"]
+        b_missing = [
+            row
+            for row in fn1_result["axes"]
+            if row["binding"] == binding_b and row["state"] == "missing"
+        ]
         self.assertEqual(len(b_missing), 14)
-        self.assertTrue(all(row["subject_ref"] == binding_b["knowledge_ref"] for row in b_missing))
-        self.assertEqual([row["state"] for row in fn1_result["axes"]
-                          if row["binding"] == binding_b and row["axis"] == "descriptor.attribution"], ["known"])
+        self.assertTrue(
+            all(row["subject_ref"] == binding_b["knowledge_ref"] for row in b_missing)
+        )
+        self.assertEqual(
+            [
+                row["state"]
+                for row in fn1_result["axes"]
+                if row["binding"] == binding_b
+                and row["axis"] == "descriptor.attribution"
+            ],
+            ["known"],
+        )
         self.assertEqual(raw, raw_before)
         self.assertEqual(validated, validated_before)
 
@@ -184,20 +220,30 @@ class TestFilenameIdentityClaim(unittest.TestCase):
         self.assertEqual(material["code"], "filename_identity_join")
         self.assertEqual(material["rule_ref"], FILENAME_RULE)
         observations = material["predicate_observations"]
-        self.assertTrue(any(row["locator"].startswith("/claims/0/basis_refs") for row in observations))
+        self.assertTrue(
+            any(
+                row["locator"].startswith("/claims/0/basis_refs")
+                for row in observations
+            )
+        )
         observations_json = json.dumps(observations, ensure_ascii=False)
         self.assertIn(template_a["identity"], observations_json)
         self.assertIn(template_b["identity"], observations_json)
         # filename/semantic identity claim alone supplies no artifact actual-version body or trust.
-        self.assertFalse(any(
-            row["axis"] == "template.version" and row["state"] == "resolved"
-            for row in result["axes"]
-        ))
+        self.assertFalse(
+            any(
+                row["axis"] == "template.version" and row["state"] == "resolved"
+                for row in result["axes"]
+            )
+        )
 
     def test_unqualified_candidate_cannot_support_R66_and_fn1_keeps_local_unknown(self):
-        raw, _source_a, source_b, _claim, _template_a, _template_b = _filename_identity_claim_input()
+        raw, _source_a, source_b, _claim, _template_a, _template_b = (
+            _filename_identity_claim_input()
+        )
         qualification_b = next(
-            row for row in raw["qualifications"]
+            row
+            for row in raw["qualifications"]
             if row["ref"] == source_b["qualification_ref"]
         )
         qualification_b["subject_sha256"] = "0" * 64
@@ -206,21 +252,39 @@ class TestFilenameIdentityClaim(unittest.TestCase):
 
         self.assertIsNotNone(validated["input"])
         self.assertEqual(validated["input"], raw_before)
-        self.assertTrue(any(
-            ref == source_b["ref"] for ref in validated["unusable_source_refs"]
-        ))
-        self.assertTrue(any(
-            row["source_ref"] == source_b["ref"] for row in validated["input_issues"]
-        ))
+        self.assertTrue(
+            any(ref == source_b["ref"] for ref in validated["unusable_source_refs"])
+        )
+        self.assertTrue(
+            any(
+                row["source_ref"] == source_b["ref"]
+                for row in validated["input_issues"]
+            )
+        )
         # 資格の不成立はcandidate選択を消さず、原B frameのunknownへ局所保持。
         validated_before = copy.deepcopy(validated)
         fn1_result = compare_descriptor_definitions({"validated": validated})
         binding_b = raw_before["descriptors"][-1]["binding"]
         self.assertEqual(fn1_result["input_binding"], raw_before["binding"])
-        self.assertEqual(len([row for row in fn1_result["axes"]
-                              if row["binding"] == binding_b and row["state"] == "missing"]), 14)
-        self.assertEqual([row["state"] for row in fn1_result["axes"]
-                          if row["binding"] == binding_b and row["axis"] == "descriptor.attribution"], ["unknown"])
+        self.assertEqual(
+            len(
+                [
+                    row
+                    for row in fn1_result["axes"]
+                    if row["binding"] == binding_b and row["state"] == "missing"
+                ]
+            ),
+            14,
+        )
+        self.assertEqual(
+            [
+                row["state"]
+                for row in fn1_result["axes"]
+                if row["binding"] == binding_b
+                and row["axis"] == "descriptor.attribution"
+            ],
+            ["unknown"],
+        )
         self.assertEqual(raw, raw_before)
         self.assertEqual(validated, validated_before)
 
@@ -228,13 +292,21 @@ class TestFilenameIdentityClaim(unittest.TestCase):
         result = compare_identity_versions_and_trace({"validated": validated})
         self.assertEqual(raw, raw_before)
         self.assertEqual(validated["input"], raw_before)
-        self.assertFalse(any(row["code"] == "filename_identity_join" for row in result["findings"]))
-        trace_a = next(row for row in result["axes"]
-                       if row["axis"] == "descriptor.trace"
-                       and row["subject_ref"] == raw_before["descriptors"][0]["facts"][0]["ref"])
-        trace_b = next(row for row in result["axes"]
-                       if row["axis"] == "descriptor.trace"
-                       and row["subject_ref"] == raw_before["descriptors"][-1]["facts"][0]["ref"])
+        self.assertFalse(
+            any(row["code"] == "filename_identity_join" for row in result["findings"])
+        )
+        trace_a = next(
+            row
+            for row in result["axes"]
+            if row["axis"] == "descriptor.trace"
+            and row["subject_ref"] == raw_before["descriptors"][0]["facts"][0]["ref"]
+        )
+        trace_b = next(
+            row
+            for row in result["axes"]
+            if row["axis"] == "descriptor.trace"
+            and row["subject_ref"] == raw_before["descriptors"][-1]["facts"][0]["ref"]
+        )
         self.assertEqual(trace_a["state"], "resolved")
         self.assertEqual(trace_b["state"], "unknown")
         self.assertFalse(any(row["axis"] == "identity_claim" for row in result["axes"]))

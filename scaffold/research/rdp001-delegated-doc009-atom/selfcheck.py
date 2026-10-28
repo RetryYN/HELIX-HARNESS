@@ -46,31 +46,108 @@ def main() -> int:
         failures.append("Web direct target was invented")
     if any(atom.get("candidate_target") == "HELIX-Web-OS" for atom in atoms):
         failures.append("Web-OS direct target was invented")
-    if len(data.get("source_line_coverage", {}).get("physical_lines_consumed_once", [])) != 87:
+    if (
+        len(
+            data.get("source_line_coverage", {}).get("physical_lines_consumed_once", [])
+        )
+        != 87
+    ):
         failures.append("source line coverage is lossy")
-    if any(atom.get("legacy_state", {}).get("implementation_status") != "unknown" for atom in atoms):
+    if any(
+        atom.get("legacy_state", {}).get("implementation_status") != "unknown"
+        for atom in atoms
+    ):
         failures.append("atom implementation unknown boundary was lost")
 
     # Mutation probes are in-memory and must be rejected by the actual validator.
     for label, mutation in (
         ("authority disguise", lambda x: x.__setitem__("authority_effect", "current")),
-        ("line deletion", lambda x: x["source_line_coverage"].__setitem__("physical_lines_consumed_once", list(range(1, 87)))),
-        ("implementation promotion", lambda x: x["legacy_status"].__setitem__("implementation_status", "implemented")),
-        ("source revision", lambda x: x["source_document"].__setitem__("source_sha256", "0" * 64)),
-        ("source text", lambda x: x["source_spans"][0].__setitem__("exact_source_text", "altered")),
-        ("atom target", lambda x: x["atoms"][0].__setitem__("candidate_target", "invented-product")),
-        ("phase promotion", lambda x: x["product_phase_classification"].__setitem__("phase_status", "approved")),
-        ("consumer closure", lambda x: x["atoms"][0]["legacy_state"].__setitem__("consumer_status", "closed")),
-        ("decision promotion", lambda x: x["legacy_status"].__setitem__("decision_status", "approved")),
-        ("successor invention", lambda x: x.__setitem__("successor_requirement_ids", ["invented"])),
-        ("source holding digest", lambda x: x["ledger_provenance"].__setitem__("source_holding_sha256", "0" * 64)),
-        ("reference holding digest", lambda x: x["ledger_provenance"].__setitem__("reference_holding_sha256", "0" * 64)),
-        ("asset ledger digest", lambda x: x["ledger_provenance"].__setitem__("asset_ledger_sha256", "0" * 64)),
-        ("phase ledger digest", lambda x: x["ledger_provenance"].__setitem__("phase_ledger_sha256", "0" * 64)),
-        ("Web owner invention", lambda x: x["atoms"][0]["owner_candidates"].append("HELIX-Web")),
-        ("Web-OS owner invention", lambda x: x["atoms"][0]["owner_candidates"].append("HELIX-Web-OS")),
-        ("Web direct target invention", lambda x: x["atoms"][0].__setitem__("candidate_target", "HELIX-Web")),
-        ("legacy execution promotion", lambda x: x["legacy_status"].__setitem__("legacy_execution_performed", True)),
+        (
+            "line deletion",
+            lambda x: x["source_line_coverage"].__setitem__(
+                "physical_lines_consumed_once", list(range(1, 87))
+            ),
+        ),
+        (
+            "implementation promotion",
+            lambda x: x["legacy_status"].__setitem__(
+                "implementation_status", "implemented"
+            ),
+        ),
+        (
+            "source revision",
+            lambda x: x["source_document"].__setitem__("source_sha256", "0" * 64),
+        ),
+        (
+            "source text",
+            lambda x: x["source_spans"][0].__setitem__("exact_source_text", "altered"),
+        ),
+        (
+            "atom target",
+            lambda x: x["atoms"][0].__setitem__("candidate_target", "invented-product"),
+        ),
+        (
+            "phase promotion",
+            lambda x: x["product_phase_classification"].__setitem__(
+                "phase_status", "approved"
+            ),
+        ),
+        (
+            "consumer closure",
+            lambda x: x["atoms"][0]["legacy_state"].__setitem__(
+                "consumer_status", "closed"
+            ),
+        ),
+        (
+            "decision promotion",
+            lambda x: x["legacy_status"].__setitem__("decision_status", "approved"),
+        ),
+        (
+            "successor invention",
+            lambda x: x.__setitem__("successor_requirement_ids", ["invented"]),
+        ),
+        (
+            "source holding digest",
+            lambda x: x["ledger_provenance"].__setitem__(
+                "source_holding_sha256", "0" * 64
+            ),
+        ),
+        (
+            "reference holding digest",
+            lambda x: x["ledger_provenance"].__setitem__(
+                "reference_holding_sha256", "0" * 64
+            ),
+        ),
+        (
+            "asset ledger digest",
+            lambda x: x["ledger_provenance"].__setitem__(
+                "asset_ledger_sha256", "0" * 64
+            ),
+        ),
+        (
+            "phase ledger digest",
+            lambda x: x["ledger_provenance"].__setitem__(
+                "phase_ledger_sha256", "0" * 64
+            ),
+        ),
+        (
+            "Web owner invention",
+            lambda x: x["atoms"][0]["owner_candidates"].append("HELIX-Web"),
+        ),
+        (
+            "Web-OS owner invention",
+            lambda x: x["atoms"][0]["owner_candidates"].append("HELIX-Web-OS"),
+        ),
+        (
+            "Web direct target invention",
+            lambda x: x["atoms"][0].__setitem__("candidate_target", "HELIX-Web"),
+        ),
+        (
+            "legacy execution promotion",
+            lambda x: x["legacy_status"].__setitem__(
+                "legacy_execution_performed", True
+            ),
+        ),
     ):
         probe = copy.deepcopy(data)
         mutation(probe)
@@ -82,7 +159,9 @@ def main() -> int:
         for failure in failures:
             print("  - " + failure)
         return 1
-    print("PASS selfcheck rdp001-delegated-doc009-atom: baseline and 18 mutation probes")
+    print(
+        "PASS selfcheck rdp001-delegated-doc009-atom: baseline and 18 mutation probes"
+    )
     return 0
 
 

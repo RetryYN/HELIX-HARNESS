@@ -6,8 +6,16 @@ import copy
 import json
 import unittest
 
-from descriptor_definitions import compare_identity_versions_and_trace, validate_supply_input
-from identity_input_fixtures import _append_qualified_source, _write_source_content, bilateral_input, trace_input
+from descriptor_definitions import (
+    compare_identity_versions_and_trace,
+    validate_supply_input,
+)
+from identity_input_fixtures import (
+    _append_qualified_source,
+    _write_source_content,
+    bilateral_input,
+    trace_input,
+)
 
 
 class TestIdentityR5ReaderActualNegatives(unittest.TestCase):
@@ -25,10 +33,15 @@ class TestIdentityR5ReaderActualNegatives(unittest.TestCase):
 
     @staticmethod
     def _trace_for(result, subject_ref):
-        rows = [row for row in result["axes"]
-                if row["axis"] == "descriptor.trace" and row["subject_ref"] == subject_ref]
+        rows = [
+            row
+            for row in result["axes"]
+            if row["axis"] == "descriptor.trace" and row["subject_ref"] == subject_ref
+        ]
         if len(rows) != 1:
-            raise AssertionError(f"expected one trace row for {subject_ref!r}; got {len(rows)}")
+            raise AssertionError(
+                f"expected one trace row for {subject_ref!r}; got {len(rows)}"
+            )
         return rows[0]
 
     def test_malformed_inner_source_ref_is_local_source_unresolved(self):
@@ -39,16 +52,26 @@ class TestIdentityR5ReaderActualNegatives(unittest.TestCase):
             with self.subTest(variant=variant):
                 raw = trace_input("positive")
                 fact = raw["descriptors"][0]["facts"][0]
-                source = next(row for row in raw["sources"]
-                              if row.get("ref") == fact.get("source_ref"))
+                source = next(
+                    row
+                    for row in raw["sources"]
+                    if row.get("ref") == fact.get("source_ref")
+                )
                 original_fact_source_ref = copy.deepcopy(fact["source_ref"])
-                record = next(row for row in raw["knowledge_records"]
-                              if row.get("ref") == raw["descriptors"][0]["binding"]["knowledge_ref"])
+                record = next(
+                    row
+                    for row in raw["knowledge_records"]
+                    if row.get("ref")
+                    == raw["descriptors"][0]["binding"]["knowledge_ref"]
+                )
                 original_provenance = copy.deepcopy(record["provenance_refs"])
                 body = copy.deepcopy(source["content"])
-                matching_inner = [inner for group in body["descriptor_facts"]
-                                  for inner in group["facts"]
-                                  if inner.get("ref") == fact["ref"]]
+                matching_inner = [
+                    inner
+                    for group in body["descriptor_facts"]
+                    for inner in group["facts"]
+                    if inner.get("ref") == fact["ref"]
+                ]
                 self.assertEqual(len(matching_inner), 1)
                 inner = matching_inner[0]
                 malformed = copy.deepcopy(inner["source_ref"])
@@ -64,25 +87,37 @@ class TestIdentityR5ReaderActualNegatives(unittest.TestCase):
                 for slot in raw["descriptors"]:
                     for public_fact in slot.get("facts", []):
                         if public_fact.get("source_ref") == original_fact_source_ref:
-                            public_fact["source_ref"] = copy.deepcopy(updated_source_ref)
+                            public_fact["source_ref"] = copy.deepcopy(
+                                updated_source_ref
+                            )
                 for knowledge_record in raw["knowledge_records"]:
-                    for index, provenance_ref in enumerate(knowledge_record.get("provenance_refs", [])):
+                    for index, provenance_ref in enumerate(
+                        knowledge_record.get("provenance_refs", [])
+                    ):
                         if provenance_ref == original_fact_source_ref:
-                            knowledge_record["provenance_refs"][index] = copy.deepcopy(updated_source_ref)
+                            knowledge_record["provenance_refs"][index] = copy.deepcopy(
+                                updated_source_ref
+                            )
 
                 # The test changes only the owner-body witness. The public fact
                 # and KnowledgeRecord provenance path remain the original path.
                 self.assertEqual(fact["source_ref"], updated_source_ref)
-                self.assertEqual(sum(ref == updated_source_ref for ref in record["provenance_refs"]),
-                                 sum(ref == original_fact_source_ref for ref in original_provenance))
+                self.assertEqual(
+                    sum(ref == updated_source_ref for ref in record["provenance_refs"]),
+                    sum(ref == original_fact_source_ref for ref in original_provenance),
+                )
                 result = self._call(raw)
                 row = self._trace_for(result, fact["ref"])
                 self.assertEqual(row["state"], "unknown")
                 prefix, separator, encoded = row["reason"].partition("\n")
                 self.assertEqual((prefix, separator), ("source_unresolved", "\n"))
                 self.assertEqual(json.loads(encoded)["cause"], "source_unresolved")
-                siblings = [axis for axis in result["axes"]
-                            if axis["axis"] == "descriptor.trace" and axis["subject_ref"] != fact["ref"]]
+                siblings = [
+                    axis
+                    for axis in result["axes"]
+                    if axis["axis"] == "descriptor.trace"
+                    and axis["subject_ref"] != fact["ref"]
+                ]
                 self.assertEqual(len(siblings), 14)
                 self.assertTrue(all(axis["state"] == "resolved" for axis in siblings))
 
@@ -91,8 +126,11 @@ class TestIdentityR5ReaderActualNegatives(unittest.TestCase):
             with self.subTest(endpoint=endpoint):
                 raw = bilateral_input("outside")
                 record = raw["compatibility_records"][0]
-                source = next(row for row in raw["sources"]
-                              if row.get("ref") == record.get("source_ref"))
+                source = next(
+                    row
+                    for row in raw["sources"]
+                    if row.get("ref") == record.get("source_ref")
+                )
                 body = copy.deepcopy(source["content"])
                 declaration = body["compatibility_range_declaration"]
                 member = f"{endpoint}_ref"
@@ -107,18 +145,27 @@ class TestIdentityR5ReaderActualNegatives(unittest.TestCase):
 
                 result = self._call(raw)
                 for axis_name in ("pack.identity", "pack.revision"):
-                    axis = next(row for row in result["axes"] if row["axis"] == axis_name)
+                    axis = next(
+                        row for row in result["axes"] if row["axis"] == axis_name
+                    )
                     self.assertEqual(axis["state"], "conflict")
-                    self.assertEqual(json.loads(axis["reason"].partition("\n")[2])["cause"],
-                                     "actual_scope_differs")
+                    self.assertEqual(
+                        json.loads(axis["reason"].partition("\n")[2])["cause"],
+                        "actual_scope_differs",
+                    )
 
-    def test_actual_owner_difference_prevents_subject_candidate_on_either_endpoint(self):
+    def test_actual_owner_difference_prevents_subject_candidate_on_either_endpoint(
+        self,
+    ):
         for endpoint in ("left", "right"):
             with self.subTest(endpoint=endpoint):
                 raw = bilateral_input("outside")
                 record = raw["compatibility_records"][0]
-                source = next(row for row in raw["sources"]
-                              if row.get("ref") == record.get("source_ref"))
+                source = next(
+                    row
+                    for row in raw["sources"]
+                    if row.get("ref") == record.get("source_ref")
+                )
                 body = copy.deepcopy(source["content"])
                 declaration = body["compatibility_range_declaration"]
                 member = f"{endpoint}_ref"
@@ -132,19 +179,29 @@ class TestIdentityR5ReaderActualNegatives(unittest.TestCase):
                 raw["compatibility_records"] = []
 
                 result = self._call(raw)
-                axis = next(row for row in result["axes"] if row["axis"] == "pack.identity")
+                axis = next(
+                    row for row in result["axes"] if row["axis"] == "pack.identity"
+                )
                 self.assertEqual(axis["state"], "unknown")
-                self.assertEqual(json.loads(axis["reason"].partition("\n")[2])["cause"],
-                                 "actual_owner_body_unprovided")
+                self.assertEqual(
+                    json.loads(axis["reason"].partition("\n")[2])["cause"],
+                    "actual_owner_body_unprovided",
+                )
 
     def test_malformed_matching_provenance_is_not_a_public_ref_or_trace_link(self):
         raw = trace_input("positive")
         fact = raw["descriptors"][0]["facts"][0]
         source_ref = raw["sources"][0]["ref"]
-        record = next(row for row in raw["knowledge_records"]
-                      if row.get("ref") == raw["descriptors"][0]["binding"]["knowledge_ref"])
-        matches = [index for index, ref in enumerate(record["provenance_refs"])
-                   if ref == source_ref]
+        record = next(
+            row
+            for row in raw["knowledge_records"]
+            if row.get("ref") == raw["descriptors"][0]["binding"]["knowledge_ref"]
+        )
+        matches = [
+            index
+            for index, ref in enumerate(record["provenance_refs"])
+            if ref == source_ref
+        ]
         self.assertEqual(len(matches), 1)
         provenance_index = matches[0]
         malformed = copy.deepcopy(record["provenance_refs"][provenance_index])
@@ -155,7 +212,8 @@ class TestIdentityR5ReaderActualNegatives(unittest.TestCase):
         unrelated_body = copy.deepcopy(raw["sources"][0]["content"])
         unrelated_body["descriptor_facts"] = []
         unrelated_source = _append_qualified_source(
-            raw, identity="SYNTHETIC-R5-UNRELATED-PROVENANCE-SOURCE",
+            raw,
+            identity="SYNTHETIC-R5-UNRELATED-PROVENANCE-SOURCE",
             owner=raw["sources"][0]["ref"]["owner"],
             scope=copy.deepcopy(raw["sources"][0]["ref"]["scope"]),
             content=unrelated_body,
@@ -164,12 +222,18 @@ class TestIdentityR5ReaderActualNegatives(unittest.TestCase):
         )
         record["provenance_refs"].append(copy.deepcopy(unrelated_source["ref"]))
         expected_actual_refs = [raw["binding"]["knowledge_ref"]]
-        expected_actual_refs.extend(ref for index, ref in enumerate(record["provenance_refs"])
-                                    if index != provenance_index)
+        expected_actual_refs.extend(
+            ref
+            for index, ref in enumerate(record["provenance_refs"])
+            if index != provenance_index
+        )
 
         result = self._call(raw)
-        actual = next(row for row in result["axes"]
-                      if row["axis"] == "knowledge.operational_state")
+        actual = next(
+            row
+            for row in result["axes"]
+            if row["axis"] == "knowledge.operational_state"
+        )
         self.assertEqual(actual["original_refs"], expected_actual_refs)
         self.assertNotIn(malformed, actual["original_refs"])
         trace = self._trace_for(result, fact["ref"])
@@ -177,14 +241,22 @@ class TestIdentityR5ReaderActualNegatives(unittest.TestCase):
         prefix, separator, encoded = trace["reason"].partition("\n")
         self.assertEqual((prefix, separator), ("source_unresolved", "\n"))
         self.assertEqual(json.loads(encoded)["cause"], "source_unresolved")
-        siblings = [axis for axis in result["axes"]
-                    if axis["axis"] == "descriptor.trace" and axis["subject_ref"] != fact["ref"]]
+        siblings = [
+            axis
+            for axis in result["axes"]
+            if axis["axis"] == "descriptor.trace" and axis["subject_ref"] != fact["ref"]
+        ]
         self.assertEqual(len(siblings), 14)
         # This KnowledgeRecord is shared by all fifteen facts; its malformed
         # source occurrence makes every dependent trace unknown, without a stop.
         self.assertTrue(all(axis["state"] == "unknown" for axis in siblings))
-        self.assertTrue(all(json.loads(axis["reason"].partition("\n")[2])["cause"] == "source_unresolved"
-                            for axis in siblings))
+        self.assertTrue(
+            all(
+                json.loads(axis["reason"].partition("\n")[2])["cause"]
+                == "source_unresolved"
+                for axis in siblings
+            )
+        )
 
 
 if __name__ == "__main__":

@@ -29,7 +29,9 @@ class TestDescriptorClaimUseBasisOccurrences(unittest.TestCase):
             validated, walk["evaluation"], walk["target_reads"], walk["intent_reads"]
         )
         self.assertEqual(len(uses), 1)
-        self.assertEqual(uses[0]["basis_source_indices"], [1, duplicate_index, 1, duplicate_index])
+        self.assertEqual(
+            uses[0]["basis_source_indices"], [1, duplicate_index, 1, duplicate_index]
+        )
         self.assertEqual(uses[0]["basis_class"], "reference_only_only")
         self.assertEqual(uses[0]["unresolved_basis_ref_indices"], [])
         self.assertEqual(uses[0]["target_read"], walk["target_reads"][0])

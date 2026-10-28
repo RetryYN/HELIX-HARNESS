@@ -37,7 +37,9 @@ def _real_material():
     raw_before = copy.deepcopy(raw)
     validated = validate_supply_input(raw)
     if not isinstance(validated.get("input"), dict) or validated["input_issues"]:
-        raise AssertionError("setup: fn0 must accept the selected raw input without issues")
+        raise AssertionError(
+            "setup: fn0 must accept the selected raw input without issues"
+        )
     validated_before = copy.deepcopy(validated)
     walk = evaluate_descriptor_definition_walk({"validated": validated})
     uses = build_descriptor_claim_uses(
@@ -60,8 +62,12 @@ def _real_material():
 class TestDescriptorTargetFrameContract(unittest.TestCase):
     def test_real_zero_claim_walk_builds_exact_empty_claim_use_frame(self):
         """A real no-Claim walk yields zero uses; its frame keeps the same snapshot."""
-        raw, raw_before, validated, validated_before, walk, frame, context = _real_material()
-        self.assertEqual(set(walk), {"evaluation", "native_material", "target_reads", "intent_reads"})
+        raw, raw_before, validated, validated_before, walk, frame, context = (
+            _real_material()
+        )
+        self.assertEqual(
+            set(walk), {"evaluation", "native_material", "target_reads", "intent_reads"}
+        )
         self.assertEqual(set(walk["evaluation"]), EVALUATION_FIELDS)
         self.assertEqual(walk["target_reads"], [])
         self.assertEqual(walk["intent_reads"], [])
@@ -80,7 +86,9 @@ class TestDescriptorTargetFrameContract(unittest.TestCase):
 
     def test_claim_use_builder_rejects_private_reads_not_from_zero_claim_walk(self):
         """Typed nonempty private reads are invalid transport here, not product input."""
-        _raw, _raw_before, validated, _validated_before, walk, _frame, _context = _real_material()
+        _raw, _raw_before, validated, _validated_before, walk, _frame, _context = (
+            _real_material()
+        )
         raw_binding = validated["input"]["binding"]
         claim = {
             "subject_ref": copy.deepcopy(raw_binding["template_ref"]),
@@ -91,15 +99,22 @@ class TestDescriptorTargetFrameContract(unittest.TestCase):
             "basis_refs": [],
         }
         target_read = {
-            "claim_locator": "/claims/0", "claim": claim,
-            "candidate_indices": [], "candidate_refs": [], "occurrences": [],
-            "matches": [], "state": "unknown", "problems": [],
+            "claim_locator": "/claims/0",
+            "claim": claim,
+            "candidate_indices": [],
+            "candidate_refs": [],
+            "occurrences": [],
+            "matches": [],
+            "state": "unknown",
+            "problems": [],
         }
         intent_read = {
-            "claim_locator": "/claims/0", "claim": claim,
+            "claim_locator": "/claims/0",
+            "claim": claim,
             "kind": {"presence": "supplied", "value": "fill_definition"},
             "proposed_value": {"presence": "supplied", "value": None},
-            "intent": "unresolved", "reason": "private negative control",
+            "intent": "unresolved",
+            "reason": "private negative control",
         }
         cases = (
             ("target_reads", [target_read], []),
@@ -116,7 +131,9 @@ class TestDescriptorTargetFrameContract(unittest.TestCase):
 
     def test_claim_use_builder_rejects_malformed_evaluation_shape(self):
         """Malformed evaluation members are not accepted as a zero-Claim walk."""
-        _raw, _raw_before, validated, _validated_before, walk, _frame, _context = _real_material()
+        _raw, _raw_before, validated, _validated_before, walk, _frame, _context = (
+            _real_material()
+        )
         malformed_evaluations = (
             {**copy.deepcopy(walk["evaluation"]), "assessments": None},
             {"comparison": copy.deepcopy(walk["evaluation"]["comparison"])},
@@ -144,7 +161,9 @@ class TestDescriptorTargetFrameContract(unittest.TestCase):
 
     def test_private_detail_rejects_corrupted_frame_shape(self):
         """The closed frame is validated before any FN4 predicate is evaluated."""
-        _raw, raw_before, validated, validated_before, _walk, frame, context = _real_material()
+        _raw, raw_before, validated, validated_before, _walk, frame, context = (
+            _real_material()
+        )
         invalid = dict(frame)
         invalid["caller_override"] = {}
         with self.assertRaises(NotImplementedError) as caught:
@@ -157,7 +176,9 @@ class TestDescriptorTargetFrameContract(unittest.TestCase):
 
     def test_private_detail_rejects_corrupted_evaluation_shape(self):
         """The nested evaluation must retain its two typed fields."""
-        _raw, raw_before, validated, validated_before, _walk, frame, context = _real_material()
+        _raw, raw_before, validated, validated_before, _walk, frame, context = (
+            _real_material()
+        )
         invalid = dict(frame)
         invalid["definition_evaluation"] = {
             "comparison": copy.deepcopy(frame["definition_evaluation"]["comparison"]),

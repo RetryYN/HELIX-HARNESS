@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """RDP-001 holding外67 pathのread-only静的検証。"""
+
 from __future__ import annotations
 
 import hashlib
@@ -34,9 +35,13 @@ BASELINE = "6fabd12512a3659fff4a956692cdd61faeeb16ce"
 PRE_ISOLATION = "2d4991042be55268bac30a8bbcdac45b3865030a"
 ARCHIVE = "064280b5c1c5c98f949e6e3be5ef87cbe4a4b658"
 HOLDING_PATH = "docs/governance/pre-isolation-revision-delta-source-holding.jsonl"
-CATALOG_PATH = "docs/governance/legacy-asset-phase-product-classification-bootstrap.jsonl"
+CATALOG_PATH = (
+    "docs/governance/legacy-asset-phase-product-classification-bootstrap.jsonl"
+)
 ARCHIVE_ROOT = "archive/legacy-generation-2026-09-14/root"
-EXPECTED_PATH_SET_SHA256 = "fdcc60e7354a32d77b2ca563461a26737867a8f07ad41b64e01e707330ca9381"
+EXPECTED_PATH_SET_SHA256 = (
+    "fdcc60e7354a32d77b2ca563461a26737867a8f07ad41b64e01e707330ca9381"
+)
 EXPECTED_DENOMINATORS = {
     "pre_isolation_tree_file_count": 4092,
     "archive_root_tree_file_count": 4020,
@@ -82,7 +87,9 @@ REQUIRED_READ_SOURCES = {
 
 
 def run_git(args: list[str], check: bool = True) -> str:
-    result = subprocess.run(["git", *args], cwd=ROOT, text=True, capture_output=True, check=False)
+    result = subprocess.run(
+        ["git", *args], cwd=ROOT, text=True, capture_output=True, check=False
+    )
     if check and result.returncode:
         raise RuntimeError(result.stderr.strip() or "git command failed")
     return result.stdout.strip()
@@ -162,12 +169,18 @@ def classify(path: str) -> tuple[str, str, str]:
         phase = "upstream-governance-or-crosswalk"
     else:
         phase = "shared-design"
-    artifact = "design-patch" if path.endswith(".jsonpatch") else ("markdown" if path.endswith(".md") else "document")
+    artifact = (
+        "design-patch"
+        if path.endswith(".jsonpatch")
+        else ("markdown" if path.endswith(".md") else "document")
+    )
     return product, phase, artifact
 
 
 def canonical_path_sha256(paths: list[str]) -> str:
-    payload = json.dumps(sorted(paths), ensure_ascii=False, separators=(",", ":")).encode("utf-8")
+    payload = json.dumps(
+        sorted(paths), ensure_ascii=False, separators=(",", ":")
+    ).encode("utf-8")
     return hashlib.sha256(payload).hexdigest()
 
 
@@ -187,7 +200,10 @@ def validate(report: dict | None = None) -> list[str]:
         errors.append("findings_only境界が変更されている")
     if report.get("authority_effect") != "none":
         errors.append("authority_effectはnoneに固定する")
-    if report.get("binding_created") is not True or report.get("binding_id") != "SCF-B-0023":
+    if (
+        report.get("binding_created") is not True
+        or report.get("binding_id") != "SCF-B-0023"
+    ):
         errors.append("SCF-B-0023登録境界が欠落している")
     if report.get("binding_state") != "registered":
         errors.append("SCF-B-0023はregisteredに固定する")
@@ -198,12 +214,21 @@ def validate(report: dict | None = None) -> list[str]:
 
     if len(holding) != 333:
         errors.append(f"holding record数不一致: {len(holding)}")
-    diff_lines = run_git(["diff", "--name-status", BASELINE, PRE_ISOLATION]).splitlines()
+    diff_lines = run_git(
+        ["diff", "--name-status", BASELINE, PRE_ISOLATION]
+    ).splitlines()
     diff_rows = [line.split("\t", 1) for line in diff_lines if "\t" in line]
-    external = sorted(path for status, path in diff_rows if status == "A" and path not in holding_paths)
+    external = sorted(
+        path
+        for status, path in diff_rows
+        if status == "A" and path not in holding_paths
+    )
     if len(external) != 67:
         errors.append(f"holding外status A数不一致: {len(external)}")
-    if canonical_path_sha256(external) != report.get("external_path_set_sha256") or report.get("external_path_set_sha256") != EXPECTED_PATH_SET_SHA256:
+    if (
+        canonical_path_sha256(external) != report.get("external_path_set_sha256")
+        or report.get("external_path_set_sha256") != EXPECTED_PATH_SET_SHA256
+    ):
         errors.append("holding外path set digest不一致")
 
     rows = report.get("rows")
@@ -217,7 +242,11 @@ def validate(report: dict | None = None) -> list[str]:
         errors.append("report path setがGit diffと不一致")
 
     archive_paths = tree_paths(ARCHIVE)
-    archive_root_paths = {path[len(ARCHIVE_ROOT) + 1:] for path in archive_paths if path.startswith(ARCHIVE_ROOT + "/")}
+    archive_root_paths = {
+        path[len(ARCHIVE_ROOT) + 1 :]
+        for path in archive_paths
+        if path.startswith(ARCHIVE_ROOT + "/")
+    }
     current = report.get("scope", {}).get("current_main_commit")
     if not current:
         errors.append("current_main_commitが欠落")
@@ -230,8 +259,14 @@ def validate(report: dict | None = None) -> list[str]:
         pre = git_oid(PRE_ISOLATION, path)
         archived = git_oid(ARCHIVE, path)
         current_oid = git_oid(current, path)
-        current_state = "absent" if current_oid is None else ("same" if current_oid == pre else "changed")
-        archive_relation = "same" if archived == pre else ("different" if archived else "absent")
+        current_state = (
+            "absent"
+            if current_oid is None
+            else ("same" if current_oid == pre else "changed")
+        )
+        archive_relation = (
+            "same" if archived == pre else ("different" if archived else "absent")
+        )
         product, phase, artifact = classify(path)
         expected = {
             "diff_status": "A",
@@ -255,7 +290,12 @@ def validate(report: dict | None = None) -> list[str]:
             errors.append(f"row {path} に実装証拠を追加できない")
         expected_rows.append(row)
 
-    hunk_count = sum(line.startswith("@@ ") for line in run_git(["diff", "--unified=0", BASELINE, PRE_ISOLATION]).splitlines())
+    hunk_count = sum(
+        line.startswith("@@ ")
+        for line in run_git(
+            ["diff", "--unified=0", BASELINE, PRE_ISOLATION]
+        ).splitlines()
+    )
     actual_denominators = {
         "pre_isolation_tree_file_count": len(tree_paths(PRE_ISOLATION)),
         "archive_root_tree_file_count": len(archive_root_paths),
@@ -266,26 +306,58 @@ def validate(report: dict | None = None) -> list[str]:
         "holding_existing_path_record_count": len(holding_paths),
         "holding_external_new_path_count": len(external),
         "external_status_A_count": sum(status == "A" for status, _ in diff_rows),
-        "archive_commit_exact_path_count": sum(git_oid(ARCHIVE, path) is not None for path in external),
-        "archive_commit_same_blob_count": sum(git_oid(ARCHIVE, path) == git_oid(PRE_ISOLATION, path) for path in external),
-        "archive_commit_changed_blob_count": sum(git_oid(ARCHIVE, path) not in (None, git_oid(PRE_ISOLATION, path)) for path in external),
-        "archive_root_present_count": sum(path in archive_root_paths for path in external),
+        "archive_commit_exact_path_count": sum(
+            git_oid(ARCHIVE, path) is not None for path in external
+        ),
+        "archive_commit_same_blob_count": sum(
+            git_oid(ARCHIVE, path) == git_oid(PRE_ISOLATION, path) for path in external
+        ),
+        "archive_commit_changed_blob_count": sum(
+            git_oid(ARCHIVE, path) not in (None, git_oid(PRE_ISOLATION, path))
+            for path in external
+        ),
+        "archive_root_present_count": sum(
+            path in archive_root_paths for path in external
+        ),
         "legacy_catalog_record_count": sum(catalog_counts[path] for path in external),
-        "current_main_path_present_count": sum(row.get("current_main_state") != "absent" for row in expected_rows),
-        "current_main_same_blob_count": sum(row.get("current_main_state") == "same" for row in expected_rows),
-        "current_main_changed_blob_count": sum(row.get("current_main_state") == "changed" for row in expected_rows),
-        "current_main_absent_count": sum(row.get("current_main_state") == "absent" for row in expected_rows),
+        "current_main_path_present_count": sum(
+            row.get("current_main_state") != "absent" for row in expected_rows
+        ),
+        "current_main_same_blob_count": sum(
+            row.get("current_main_state") == "same" for row in expected_rows
+        ),
+        "current_main_changed_blob_count": sum(
+            row.get("current_main_state") == "changed" for row in expected_rows
+        ),
+        "current_main_absent_count": sum(
+            row.get("current_main_state") == "absent" for row in expected_rows
+        ),
     }
     for key, value in EXPECTED_DENOMINATORS.items():
-        if actual_denominators.get(key) != value or report.get("denominators", {}).get(key) != value:
-            errors.append(f"denominator不一致: {key} actual={actual_denominators.get(key)} report={report.get('denominators', {}).get(key)}")
+        if (
+            actual_denominators.get(key) != value
+            or report.get("denominators", {}).get(key) != value
+        ):
+            errors.append(
+                f"denominator不一致: {key} actual={actual_denominators.get(key)} report={report.get('denominators', {}).get(key)}"
+            )
 
     aggregate = report.get("aggregate_classification", {})
-    product_counts = dict(sorted(Counter(row.get("product_scope") for row in expected_rows).items()))
-    phase_counts = dict(sorted(Counter(row.get("phase_scope") for row in expected_rows).items()))
-    if product_counts != EXPECTED_PRODUCT_COUNTS or aggregate.get("product_scope_counts") != EXPECTED_PRODUCT_COUNTS:
+    product_counts = dict(
+        sorted(Counter(row.get("product_scope") for row in expected_rows).items())
+    )
+    phase_counts = dict(
+        sorted(Counter(row.get("phase_scope") for row in expected_rows).items())
+    )
+    if (
+        product_counts != EXPECTED_PRODUCT_COUNTS
+        or aggregate.get("product_scope_counts") != EXPECTED_PRODUCT_COUNTS
+    ):
         errors.append("product分類数不一致")
-    if phase_counts != EXPECTED_PHASE_COUNTS or aggregate.get("phase_scope_counts") != EXPECTED_PHASE_COUNTS:
+    if (
+        phase_counts != EXPECTED_PHASE_COUNTS
+        or aggregate.get("phase_scope_counts") != EXPECTED_PHASE_COUNTS
+    ):
         errors.append("phase分類数不一致")
 
     if binding.get("id") != "SCF-B-0023" or binding.get("state") != "registered":
@@ -301,7 +373,11 @@ def validate(report: dict | None = None) -> list[str]:
         errors.append("SCF-B-0023 roleがuniqueではない")
     for upstream in binding.get("upstream", []):
         path = upstream.get("path")
-        actual = hashlib.sha256((ROOT / path).read_bytes()).hexdigest() if isinstance(path, str) and (ROOT / path).is_file() else None
+        actual = (
+            hashlib.sha256((ROOT / path).read_bytes()).hexdigest()
+            if isinstance(path, str) and (ROOT / path).is_file()
+            else None
+        )
         if actual != upstream.get("sha256"):
             errors.append(f"binding upstream digest不一致: {path}")
     expected_artifacts = {

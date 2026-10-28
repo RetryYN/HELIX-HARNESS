@@ -25,11 +25,14 @@ class TestOracleReferenceBoundaries(unittest.TestCase):
         """L4 R71 treats a typed different obligation as the measurement conflict."""
         for member, replacement in (
             ("owner", "synthetic-other-requirement-owner"),
-            ("scope", {
-                "project": "synthetic-other-project",
-                "tenant": "synthetic-other-tenant",
-                "environment": "synthetic-other-environment",
-            }),
+            (
+                "scope",
+                {
+                    "project": "synthetic-other-project",
+                    "tenant": "synthetic-other-tenant",
+                    "environment": "synthetic-other-environment",
+                },
+            ),
             ("revision", "synthetic-other-requirement-revision"),
         ):
             with self.subTest(member=member):
@@ -68,7 +71,8 @@ class TestOracleReferenceBoundaries(unittest.TestCase):
                 self.assertEqual(findings[0]["backflow_owner"], "knowledge_owner")
                 self.assertEqual(findings[0]["subject_ref"], fact["ref"])
                 axes = [
-                    axis for axis in result["axes"]
+                    axis
+                    for axis in result["axes"]
                     if axis["axis"] == "measurement.binding"
                 ]
                 self.assertEqual(len(axes), 1)
@@ -112,14 +116,19 @@ class TestOracleReferenceBoundaries(unittest.TestCase):
                 )
                 finding = result["findings"][0]
                 self.assertEqual(finding["subject_ref"], fact["ref"])
-                self.assertEqual(finding["subject_ref"]["sha256"], fact["ref"]["sha256"])
+                self.assertEqual(
+                    finding["subject_ref"]["sha256"], fact["ref"]["sha256"]
+                )
                 axes = [
-                    axis for axis in result["axes"]
+                    axis
+                    for axis in result["axes"]
                     if axis["axis"] == "measurement.binding"
                 ]
                 self.assertEqual(len(axes), 1)
                 self.assertEqual(axes[0]["subject_ref"], fact["ref"])
-                self.assertEqual(axes[0]["subject_ref"]["sha256"], fact["ref"]["sha256"])
+                self.assertEqual(
+                    axes[0]["subject_ref"]["sha256"], fact["ref"]["sha256"]
+                )
 
 
 if __name__ == "__main__":

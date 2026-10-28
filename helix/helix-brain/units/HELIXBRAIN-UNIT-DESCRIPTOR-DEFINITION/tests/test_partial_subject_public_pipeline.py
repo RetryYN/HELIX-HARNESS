@@ -49,7 +49,9 @@ def _run_fn0_fn1(raw: dict) -> tuple[dict, dict, dict, dict]:
     validated = validate_supply_input(raw)
     validated_before = copy.deepcopy(validated)
     if validated["input"] is None or validated["input_issues"]:
-        raise AssertionError("setup: FN0 must preserve the decode-valid partial snapshot")
+        raise AssertionError(
+            "setup: FN0 must preserve the decode-valid partial snapshot"
+        )
     definitions = compare_descriptor_definitions({"validated": validated})
     if raw != raw_before or validated != validated_before:
         raise AssertionError("FN0/FN1 must preserve the original same-call snapshot")
@@ -58,32 +60,47 @@ def _run_fn0_fn1(raw: dict) -> tuple[dict, dict, dict, dict]:
 
 class TestPartialSubjectPublicPipeline(unittest.TestCase):
     def _assert_empty_fn1_comparison(self, raw: dict, definitions: dict) -> None:
-        self.assertEqual(list(definitions), [
-            "axes", "findings", "producer_symbol", "input_binding",
-        ])
+        self.assertEqual(
+            list(definitions),
+            [
+                "axes",
+                "findings",
+                "producer_symbol",
+                "input_binding",
+            ],
+        )
         self.assertEqual(definitions["axes"], [])
         self.assertEqual(definitions["findings"], [])
-        self.assertEqual(definitions["producer_symbol"], "compare_descriptor_definitions")
+        self.assertEqual(
+            definitions["producer_symbol"], "compare_descriptor_definitions"
+        )
         self.assertEqual(definitions["input_binding"], raw["binding"])
 
-    def test_template_ref_fallback_projects_missing_dependencies_and_preserves_handoff(self) -> None:
+    def test_template_ref_fallback_projects_missing_dependencies_and_preserves_handoff(
+        self,
+    ) -> None:
         raw = _zero_profile(remove_template_ref=False)
         raw_before, validated, validated_before, definitions = _run_fn0_fn1(raw)
         self._assert_empty_fn1_comparison(raw_before, definitions)
 
         definitions_before = copy.deepcopy(definitions)
-        result = compare_dependencies_and_handoff({
-            "validated": validated,
-            "definitions": definitions,
-        })
+        result = compare_dependencies_and_handoff(
+            {
+                "validated": validated,
+                "definitions": definitions,
+            }
+        )
 
         template_subject = raw_before["binding"]["template_ref"]
         self.assertEqual(result["producer_symbol"], "compare_dependencies_and_handoff")
-        self.assertEqual(list(result), ["axes", "findings", "producer_symbol", "input_binding"])
+        self.assertEqual(
+            list(result), ["axes", "findings", "producer_symbol", "input_binding"]
+        )
         self.assertEqual(result["input_binding"], raw_before["binding"])
         self.assertEqual(
             [row["axis"] for row in result["axes"]],
-            ["dependency_reference"] * 5 + ["dependency_selection"] * 3
+            ["dependency_reference"] * 5
+            + ["dependency_selection"] * 3
             + ["handoff"] * len(raw_before["handoff_records"]),
         )
         dependency_axes = result["axes"][:8]
@@ -109,16 +126,20 @@ class TestPartialSubjectPublicPipeline(unittest.TestCase):
         self.assertEqual(validated, validated_before)
         self.assertEqual(definitions, definitions_before)
 
-    def test_no_subject_ref_keeps_fn6_handoff_without_typed_dependency_rows(self) -> None:
+    def test_no_subject_ref_keeps_fn6_handoff_without_typed_dependency_rows(
+        self,
+    ) -> None:
         raw = _zero_profile(remove_template_ref=True)
         raw_before, validated, validated_before, definitions = _run_fn0_fn1(raw)
         self._assert_empty_fn1_comparison(raw_before, definitions)
 
         definitions_before = copy.deepcopy(definitions)
-        result = compare_dependencies_and_handoff({
-            "validated": validated,
-            "definitions": definitions,
-        })
+        result = compare_dependencies_and_handoff(
+            {
+                "validated": validated,
+                "definitions": definitions,
+            }
+        )
 
         self.assertEqual(result["producer_symbol"], "compare_dependencies_and_handoff")
         self.assertEqual(result["input_binding"], raw_before["binding"])
@@ -136,7 +157,9 @@ class TestPartialSubjectPublicPipeline(unittest.TestCase):
         self.assertEqual(validated, validated_before)
         self.assertEqual(definitions, definitions_before)
 
-    def test_actual_slots_with_partial_root_binding_keep_existing_fn1_stop(self) -> None:
+    def test_actual_slots_with_partial_root_binding_keep_existing_fn1_stop(
+        self,
+    ) -> None:
         for remove_template_ref in (False, True):
             with self.subTest(remove_template_ref=remove_template_ref):
                 raw = base_input(load_document())
@@ -151,17 +174,23 @@ class TestPartialSubjectPublicPipeline(unittest.TestCase):
 
                 with self.assertRaises(NotImplementedError) as caught:
                     compare_descriptor_definitions({"validated": validated})
-                self.assertTrue(str(caught.exception).startswith(
-                    "F02/descriptor_slot_binding_unresolved:"
-                ))
-                self.assertIn("Backflow HELIXBRAIN-L6-032-N03-PATH", str(caught.exception))
+                self.assertTrue(
+                    str(caught.exception).startswith(
+                        "F02/descriptor_slot_binding_unresolved:"
+                    )
+                )
+                self.assertIn(
+                    "Backflow HELIXBRAIN-L6-032-N03-PATH", str(caught.exception)
+                )
                 self.assertEqual(raw, raw_before)
                 self.assertEqual(validated, validated_before)
 
     def test_fn6_rejects_changed_input_binding_in_real_fn1_comparison(self) -> None:
         raw = _zero_profile(remove_template_ref=False)
         raw_before, validated, validated_before, definitions = _run_fn0_fn1(raw)
-        self.assertEqual(definitions["producer_symbol"], "compare_descriptor_definitions")
+        self.assertEqual(
+            definitions["producer_symbol"], "compare_descriptor_definitions"
+        )
         self.assertEqual(definitions["input_binding"], raw_before["binding"])
 
         definitions_before = copy.deepcopy(definitions)
@@ -176,10 +205,12 @@ class TestPartialSubjectPublicPipeline(unittest.TestCase):
         self.assertEqual(mismatched_definitions, expected_mismatch)
 
         with self.assertRaises(NotImplementedError) as caught:
-            compare_dependencies_and_handoff({
-                "validated": validated,
-                "definitions": mismatched_definitions,
-            })
+            compare_dependencies_and_handoff(
+                {
+                    "validated": validated,
+                    "definitions": mismatched_definitions,
+                }
+            )
         self.assertEqual(
             str(caught.exception),
             "B02/F09/definitions_comparison_mismatch: definitions must be the same-snapshot "
@@ -189,7 +220,9 @@ class TestPartialSubjectPublicPipeline(unittest.TestCase):
         self.assertEqual(validated, validated_before)
         self.assertEqual(definitions, definitions_before)
 
-    def test_required_missing_kind_uses_template_subject_or_remains_unformattable(self) -> None:
+    def test_required_missing_kind_uses_template_subject_or_remains_unformattable(
+        self,
+    ) -> None:
         # L4 /descriptor_meanings/0 and the L4/L5 descriptor_01_missing rule
         # identify the first approved literal and its existing missing predicate.
         required_kind = "template identity"
@@ -202,7 +235,9 @@ class TestPartialSubjectPublicPipeline(unittest.TestCase):
                 raw["required_descriptor_kinds"] = [required_kind]
                 raw_before, validated, validated_before, definitions = _run_fn0_fn1(raw)
 
-                self.assertEqual(definitions["producer_symbol"], "compare_descriptor_definitions")
+                self.assertEqual(
+                    definitions["producer_symbol"], "compare_descriptor_definitions"
+                )
                 self.assertEqual(definitions["input_binding"], raw_before["binding"])
                 if remove_template_ref:
                     # No-fact subject resolution has neither knowledge_ref nor
@@ -212,26 +247,36 @@ class TestPartialSubjectPublicPipeline(unittest.TestCase):
                     self.assertEqual(definitions["findings"], [])
                 else:
                     template_subject = raw_before["binding"]["template_ref"]
-                    self.assertEqual(definitions["axes"], [{
-                        "subject_ref": template_subject,
-                        "binding": raw_before["binding"],
-                        "axis": axis_name,
-                        "state": "missing",
-                        "original_refs": [],
-                        "reason": expected_reason,
-                        "backflow_owner": "knowledge_owner",
-                    }])
-                    self.assertEqual(definitions["findings"], [{
-                        "code": "descriptor_01_missing",
-                        "rule_ref": "HELIXBRAIN-L5-032-R-descriptor_01_missing",
-                        "subject_ref": template_subject,
-                        "binding": raw_before["binding"],
-                        "axis": axis_name,
-                        "state": "missing",
-                        "source_refs": [],
-                        "reason": expected_reason,
-                        "backflow_owner": "knowledge_owner",
-                    }])
+                    self.assertEqual(
+                        definitions["axes"],
+                        [
+                            {
+                                "subject_ref": template_subject,
+                                "binding": raw_before["binding"],
+                                "axis": axis_name,
+                                "state": "missing",
+                                "original_refs": [],
+                                "reason": expected_reason,
+                                "backflow_owner": "knowledge_owner",
+                            }
+                        ],
+                    )
+                    self.assertEqual(
+                        definitions["findings"],
+                        [
+                            {
+                                "code": "descriptor_01_missing",
+                                "rule_ref": "HELIXBRAIN-L5-032-R-descriptor_01_missing",
+                                "subject_ref": template_subject,
+                                "binding": raw_before["binding"],
+                                "axis": axis_name,
+                                "state": "missing",
+                                "source_refs": [],
+                                "reason": expected_reason,
+                                "backflow_owner": "knowledge_owner",
+                            }
+                        ],
+                    )
 
                 self.assertEqual(raw, raw_before)
                 self.assertEqual(validated, validated_before)

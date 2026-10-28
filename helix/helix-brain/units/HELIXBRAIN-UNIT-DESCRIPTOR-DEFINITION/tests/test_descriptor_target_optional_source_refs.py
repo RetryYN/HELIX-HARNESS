@@ -21,7 +21,8 @@ class TestDescriptorTargetOptionalSourceRefs(unittest.TestCase):
         raw = descriptor_claim_input("positive")
         owner_source = raw["sources"][0]
         source_index = next(
-            index for index, source in enumerate(raw["sources"])
+            index
+            for index, source in enumerate(raw["sources"])
             if source is owner_source
         )
         original_owner_binding = copy.deepcopy(owner_source["content"]["binding"])
@@ -34,7 +35,8 @@ class TestDescriptorTargetOptionalSourceRefs(unittest.TestCase):
 
         validated = validate_supply_input(raw)
         self.assertIsInstance(
-            validated["input"], dict,
+            validated["input"],
+            dict,
             "setup: FN0 must retain the raw Claim snapshot; no ValidatedSupply is synthesized",
         )
         self.assertEqual(validated["input"], raw_before)
@@ -46,8 +48,12 @@ class TestDescriptorTargetOptionalSourceRefs(unittest.TestCase):
             validated, raw["claims"][0], "/claims/0"
         )
 
-        self.assertEqual(raw, raw_before, "target reading must not mutate the original Claim")
-        self.assertEqual(validated, validated_before, "target reading must not mutate FN0 output")
+        self.assertEqual(
+            raw, raw_before, "target reading must not mutate the original Claim"
+        )
+        self.assertEqual(
+            validated, validated_before, "target reading must not mutate FN0 output"
+        )
         self.assertEqual(actual["claim"], raw["claims"][0])
         self.assertEqual(
             actual["claim"]["binding"]["knowledge_ref"],
@@ -60,18 +66,25 @@ class TestDescriptorTargetOptionalSourceRefs(unittest.TestCase):
         match = actual["matches"][0]
         self.assertEqual(match["target_ref"], raw["claims"][0]["subject_ref"])
         self.assertEqual(
-            match["binding"], original_owner_binding,
+            match["binding"],
+            original_owner_binding,
             "the match keeps the owner source's original full Binding, not a repaired Claim Binding",
         )
         self.assertEqual(match["source_refs"], [original_source_ref])
-        self.assertEqual(match["declaration_locators"], [
-            f"/sources/{source_index}/content/descriptor_targets/0",
-        ])
+        self.assertEqual(
+            match["declaration_locators"],
+            [
+                f"/sources/{source_index}/content/descriptor_targets/0",
+            ],
+        )
         self.assertEqual(len(actual["occurrences"]), 1)
-        self.assertEqual(actual["occurrences"][0]["source_ref"], {
-            "presence": "supplied",
-            "value": original_source_ref,
-        })
+        self.assertEqual(
+            actual["occurrences"][0]["source_ref"],
+            {
+                "presence": "supplied",
+                "value": original_source_ref,
+            },
+        )
 
     def test_partial_owner_source_binding_is_supplied_and_unresolved(self):
         from test_descriptor_target_cohorts import _rewrite_source_body_and_links
@@ -79,7 +92,8 @@ class TestDescriptorTargetOptionalSourceRefs(unittest.TestCase):
         raw = descriptor_claim_input("positive")
         source = raw["sources"][0]
         source_index = next(
-            index for index, candidate in enumerate(raw["sources"])
+            index
+            for index, candidate in enumerate(raw["sources"])
             if candidate is source
         )
         content = copy.deepcopy(source["content"])
@@ -91,7 +105,8 @@ class TestDescriptorTargetOptionalSourceRefs(unittest.TestCase):
 
         validated = validate_supply_input(raw)
         self.assertIsInstance(
-            validated["input"], dict,
+            validated["input"],
+            dict,
             "setup: FN0 must qualify the synchronized source with its supplied partial Binding",
         )
         self.assertEqual(validated["input"], raw_before)
@@ -103,23 +118,40 @@ class TestDescriptorTargetOptionalSourceRefs(unittest.TestCase):
             validated, raw["claims"][0], "/claims/0"
         )
 
-        self.assertEqual(raw, raw_before, "target reading must not mutate the raw snapshot")
-        self.assertEqual(validated, validated_before, "target reading must not mutate FN0 output")
+        self.assertEqual(
+            raw, raw_before, "target reading must not mutate the raw snapshot"
+        )
+        self.assertEqual(
+            validated, validated_before, "target reading must not mutate FN0 output"
+        )
         self.assertEqual(actual["state"], "unknown")
         self.assertEqual(actual["matches"], [])
-        self.assertEqual(actual["occurrences"], [{
-            "source_ref": {"presence": "supplied", "value": source_ref},
-            "source_locator": f"/sources/{source_index}",
-            "declaration_locator": f"/sources/{source_index}/content/descriptor_targets/0",
-            "declaration": declaration,
-            "source_binding": {"presence": "supplied", "value": partial_binding},
-        }])
-        self.assertEqual(actual["problems"], [{
-            "kind": "binding_unresolved",
-            "locator": f"/sources/{source_index}/content/binding",
-            "reason": "owner原target宣言のfull Bindingを原Claim.bindingへ比較できない。原値を保持する。",
-            "source_ref": {"presence": "supplied", "value": source_ref},
-        }])
+        self.assertEqual(
+            actual["occurrences"],
+            [
+                {
+                    "source_ref": {"presence": "supplied", "value": source_ref},
+                    "source_locator": f"/sources/{source_index}",
+                    "declaration_locator": f"/sources/{source_index}/content/descriptor_targets/0",
+                    "declaration": declaration,
+                    "source_binding": {
+                        "presence": "supplied",
+                        "value": partial_binding,
+                    },
+                }
+            ],
+        )
+        self.assertEqual(
+            actual["problems"],
+            [
+                {
+                    "kind": "binding_unresolved",
+                    "locator": f"/sources/{source_index}/content/binding",
+                    "reason": "owner原target宣言のfull Bindingを原Claim.bindingへ比較できない。原値を保持する。",
+                    "source_ref": {"presence": "supplied", "value": source_ref},
+                }
+            ],
+        )
 
     def test_partial_binding_with_known_difference_does_not_block_exact_cohort(self):
         from test_descriptor_target_cohorts import _rewrite_source_body_and_links
@@ -128,7 +160,8 @@ class TestDescriptorTargetOptionalSourceRefs(unittest.TestCase):
         current_source = raw["sources"][0]
         other_source = raw["sources"][3]
         other_index = next(
-            index for index, source in enumerate(raw["sources"])
+            index
+            for index, source in enumerate(raw["sources"])
             if source is other_source
         )
         content = copy.deepcopy(other_source["content"])
@@ -138,14 +171,17 @@ class TestDescriptorTargetOptionalSourceRefs(unittest.TestCase):
         content["binding"].pop("knowledge_ref")
         original_artifact_version = content["binding"]["pack_artifact_version"]
         self.assertIsInstance(original_artifact_version, str)
-        content["binding"]["pack_artifact_version"] = original_artifact_version + "-different"
-        content["descriptor_targets"] = [copy.deepcopy(
-            current_source["content"]["descriptor_targets"][0]
-        )]
+        content["binding"]["pack_artifact_version"] = (
+            original_artifact_version + "-different"
+        )
+        content["descriptor_targets"] = [
+            copy.deepcopy(current_source["content"]["descriptor_targets"][0])
+        ]
         other_source_ref = _rewrite_source_body_and_links(raw, other_index, content)
         knowledge_ref = raw["claims"][0]["binding"]["knowledge_ref"]
         matching_records = [
-            record for record in raw["knowledge_records"]
+            record
+            for record in raw["knowledge_records"]
             if record.get("ref") == knowledge_ref
         ]
         self.assertEqual(len(matching_records), 1)
@@ -156,7 +192,8 @@ class TestDescriptorTargetOptionalSourceRefs(unittest.TestCase):
 
         validated = validate_supply_input(raw)
         self.assertIsInstance(
-            validated["input"], dict,
+            validated["input"],
+            dict,
             "setup: FN0 must qualify both synchronized sources; do not synthesize ValidatedSupply",
         )
         self.assertEqual(validated["input"], raw_before)
@@ -168,28 +205,43 @@ class TestDescriptorTargetOptionalSourceRefs(unittest.TestCase):
             validated, raw["claims"][0], "/claims/0"
         )
 
-        self.assertEqual(raw, raw_before, "target reading must not mutate the raw snapshot")
-        self.assertEqual(validated, validated_before, "target reading must not mutate FN0 output")
+        self.assertEqual(
+            raw, raw_before, "target reading must not mutate the raw snapshot"
+        )
+        self.assertEqual(
+            validated, validated_before, "target reading must not mutate FN0 output"
+        )
         self.assertEqual(actual["state"], "resolved")
         self.assertEqual(len(actual["matches"]), 1)
         self.assertEqual(actual["matches"][0]["source_refs"], [current_source_ref])
-        self.assertEqual(actual["matches"][0]["declaration_locators"], [
-            "/sources/0/content/descriptor_targets/0",
-        ])
+        self.assertEqual(
+            actual["matches"][0]["declaration_locators"],
+            [
+                "/sources/0/content/descriptor_targets/0",
+            ],
+        )
         self.assertEqual(
             [row["source_locator"] for row in actual["occurrences"]],
             ["/sources/0", f"/sources/{other_index}"],
         )
-        self.assertEqual(actual["occurrences"][1]["source_binding"], {
-            "presence": "supplied",
-            "value": partial_binding,
-        })
-        self.assertEqual(actual["problems"], [{
-            "kind": "binding_conflict",
-            "locator": f"/sources/{other_index}/content/binding",
-            "reason": "owner原target宣言のfull Bindingと原Claim.bindingが既知に異なる。原scopeを保持する。",
-            "source_ref": {"presence": "supplied", "value": other_source_ref},
-        }])
+        self.assertEqual(
+            actual["occurrences"][1]["source_binding"],
+            {
+                "presence": "supplied",
+                "value": partial_binding,
+            },
+        )
+        self.assertEqual(
+            actual["problems"],
+            [
+                {
+                    "kind": "binding_conflict",
+                    "locator": f"/sources/{other_index}/content/binding",
+                    "reason": "owner原target宣言のfull Bindingと原Claim.bindingが既知に異なる。原scopeを保持する。",
+                    "source_ref": {"presence": "supplied", "value": other_source_ref},
+                }
+            ],
+        )
 
 
 if __name__ == "__main__":

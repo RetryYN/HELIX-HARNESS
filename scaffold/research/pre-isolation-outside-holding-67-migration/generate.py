@@ -11,7 +11,35 @@ from pathlib import Path
 # 2026-09-26のPO判断で、旧HELIXからの移行台帳をdocs/governance/legacy-migration/へ移した
 # （docs/governance/decisions/governance-legacy-migration-layout-po-decisions-2026-09-26.md）。
 # 固定commitのgit objectと記録済みのpathは旧pathのまま扱い、現行ファイルを読む箇所だけこの対応表で移動先へ引き直す。
-RELOCATED_PATHS = {'scaffold/pre-isolation-outside-holding-67': 'scaffold/research/pre-isolation-outside-holding-67', 'docs/governance/management-provisional-requirement-register-pre-append-3df81ad.jsonl': 'docs/governance/audits/requirements-stage/history-snapshots/management-provisional-requirement-register-pre-append-3df81ad.jsonl', 'docs/governance/delegated-requirement-document-reference-holding.jsonl': 'docs/governance/legacy-migration/delegated-document/delegated-requirement-document-reference-holding.jsonl', 'docs/governance/delegated-requirement-document-source-holding.jsonl': 'docs/governance/legacy-migration/delegated-document/delegated-requirement-document-source-holding.jsonl', 'docs/governance/harness-workflow-source-clause-carry-forward.jsonl': 'docs/governance/legacy-migration/harness-workflow/harness-workflow-source-clause-carry-forward.jsonl', 'docs/governance/legacy-candidate-source-line-carry-forward.jsonl': 'docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl', 'docs/governance/legacy-confirmed-requirement-identity-carry-forward.jsonl': 'docs/governance/legacy-migration/identity/legacy-confirmed-requirement-identity-carry-forward.jsonl', 'docs/governance/legacy-requirement-carry-forward.jsonl': 'docs/governance/legacy-migration/requirement/legacy-requirement-carry-forward.jsonl', 'docs/governance/legacy-requirement-semantic-line-carry-forward.jsonl': 'docs/governance/legacy-migration/requirement/legacy-requirement-semantic-line-carry-forward.jsonl', 'docs/governance/legacy-requirement-structural-heading-carry-forward.jsonl': 'docs/governance/legacy-migration/requirement/legacy-requirement-structural-heading-carry-forward.jsonl', 'docs/governance/legacy-requirement-supplementary-source-carry-forward.jsonl': 'docs/governance/legacy-migration/requirement/legacy-requirement-supplementary-source-carry-forward.jsonl', 'docs/governance/legacy-rule-atom-inventory.jsonl': 'docs/governance/audits/requirements-stage/history-snapshots/legacy-rule-atom-inventory-pre-source-correction-8955f45.jsonl', 'docs/governance/pre-isolation-outside-holding-67-source-holding.jsonl': 'docs/governance/legacy-migration/pre-isolation/pre-isolation-outside-holding-67-source-holding.jsonl', 'docs/governance/pre-isolation-revision-delta-source-holding.jsonl': 'docs/governance/legacy-migration/pre-isolation/pre-isolation-revision-delta-source-holding.jsonl', 'docs/governance/scrum-reverse-source-line-carry-forward.jsonl': 'docs/governance/legacy-migration/delegated-document/scrum-reverse-source-line-carry-forward.jsonl', 'docs/governance/management-provisional-requirement-register.jsonl': 'docs/governance/audits/requirements-stage/history-snapshots/management-provisional-requirement-register-capture-72b9f368.jsonl', 'docs/governance/phase-capability-inventory.json': 'docs/governance/audits/requirements-stage/history-snapshots/phase-capability-input0040-capture-72b9f368.json', 'docs/governance/requirement-disposition-review-program.md': 'docs/governance/audits/requirements-stage/history-snapshots/requirement-disposition-program-input0040-capture-72b9f368.md', 'docs/governance/management-provisional-requirement-registration.md': 'docs/governance/audits/requirements-stage/history-snapshots/management-registration-contract-input0040-capture-72b9f368.md', 'scaffold/pre-isolation-outside-holding-first15/': 'scaffold/research/pre-isolation-outside-holding-first15/', 'scaffold/phcap02-03-registration-classification-audit/': 'scaffold/research/phcap02-03-registration-classification-audit/', 'scaffold/rdp001-delegated-doc003-unprocessed8/': 'scaffold/research/rdp001-delegated-doc003-unprocessed8/', 'scaffold/rdp001-unassessed-atom-audit/': 'scaffold/research/rdp001-unassessed-atom-audit/', 'scaffold/pre-isolation-outside-l1-semantic/': 'scaffold/research/pre-isolation-outside-l1-semantic/', 'scaffold/pre-isolation-outside-holding-31-48/': 'scaffold/research/pre-isolation-outside-holding-31-48/', 'scaffold/outside67-global-49-67/': 'scaffold/research/outside67-global-49-67/', 'scaffold/pre-isolation-outside-holding-67-proposal/': 'scaffold/research/pre-isolation-outside-holding-67-proposal/'}
+RELOCATED_PATHS = {
+    "scaffold/pre-isolation-outside-holding-67": "scaffold/research/pre-isolation-outside-holding-67",
+    "docs/governance/management-provisional-requirement-register-pre-append-3df81ad.jsonl": "docs/governance/audits/requirements-stage/history-snapshots/management-provisional-requirement-register-pre-append-3df81ad.jsonl",
+    "docs/governance/delegated-requirement-document-reference-holding.jsonl": "docs/governance/legacy-migration/delegated-document/delegated-requirement-document-reference-holding.jsonl",
+    "docs/governance/delegated-requirement-document-source-holding.jsonl": "docs/governance/legacy-migration/delegated-document/delegated-requirement-document-source-holding.jsonl",
+    "docs/governance/harness-workflow-source-clause-carry-forward.jsonl": "docs/governance/legacy-migration/harness-workflow/harness-workflow-source-clause-carry-forward.jsonl",
+    "docs/governance/legacy-candidate-source-line-carry-forward.jsonl": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+    "docs/governance/legacy-confirmed-requirement-identity-carry-forward.jsonl": "docs/governance/legacy-migration/identity/legacy-confirmed-requirement-identity-carry-forward.jsonl",
+    "docs/governance/legacy-requirement-carry-forward.jsonl": "docs/governance/legacy-migration/requirement/legacy-requirement-carry-forward.jsonl",
+    "docs/governance/legacy-requirement-semantic-line-carry-forward.jsonl": "docs/governance/legacy-migration/requirement/legacy-requirement-semantic-line-carry-forward.jsonl",
+    "docs/governance/legacy-requirement-structural-heading-carry-forward.jsonl": "docs/governance/legacy-migration/requirement/legacy-requirement-structural-heading-carry-forward.jsonl",
+    "docs/governance/legacy-requirement-supplementary-source-carry-forward.jsonl": "docs/governance/legacy-migration/requirement/legacy-requirement-supplementary-source-carry-forward.jsonl",
+    "docs/governance/legacy-rule-atom-inventory.jsonl": "docs/governance/audits/requirements-stage/history-snapshots/legacy-rule-atom-inventory-pre-source-correction-8955f45.jsonl",
+    "docs/governance/pre-isolation-outside-holding-67-source-holding.jsonl": "docs/governance/legacy-migration/pre-isolation/pre-isolation-outside-holding-67-source-holding.jsonl",
+    "docs/governance/pre-isolation-revision-delta-source-holding.jsonl": "docs/governance/legacy-migration/pre-isolation/pre-isolation-revision-delta-source-holding.jsonl",
+    "docs/governance/scrum-reverse-source-line-carry-forward.jsonl": "docs/governance/legacy-migration/delegated-document/scrum-reverse-source-line-carry-forward.jsonl",
+    "docs/governance/management-provisional-requirement-register.jsonl": "docs/governance/audits/requirements-stage/history-snapshots/management-provisional-requirement-register-capture-72b9f368.jsonl",
+    "docs/governance/phase-capability-inventory.json": "docs/governance/audits/requirements-stage/history-snapshots/phase-capability-input0040-capture-72b9f368.json",
+    "docs/governance/requirement-disposition-review-program.md": "docs/governance/audits/requirements-stage/history-snapshots/requirement-disposition-program-input0040-capture-72b9f368.md",
+    "docs/governance/management-provisional-requirement-registration.md": "docs/governance/audits/requirements-stage/history-snapshots/management-registration-contract-input0040-capture-72b9f368.md",
+    "scaffold/pre-isolation-outside-holding-first15/": "scaffold/research/pre-isolation-outside-holding-first15/",
+    "scaffold/phcap02-03-registration-classification-audit/": "scaffold/research/phcap02-03-registration-classification-audit/",
+    "scaffold/rdp001-delegated-doc003-unprocessed8/": "scaffold/research/rdp001-delegated-doc003-unprocessed8/",
+    "scaffold/rdp001-unassessed-atom-audit/": "scaffold/research/rdp001-unassessed-atom-audit/",
+    "scaffold/pre-isolation-outside-l1-semantic/": "scaffold/research/pre-isolation-outside-l1-semantic/",
+    "scaffold/pre-isolation-outside-holding-31-48/": "scaffold/research/pre-isolation-outside-holding-31-48/",
+    "scaffold/outside67-global-49-67/": "scaffold/research/outside67-global-49-67/",
+    "scaffold/pre-isolation-outside-holding-67-proposal/": "scaffold/research/pre-isolation-outside-holding-67-proposal/",
+}
 
 
 def relocated(path):
@@ -24,9 +52,16 @@ def relocated(path):
 
 HERE = Path(__file__).resolve().parent
 ROOT = HERE.parents[2]
-CURRENT_REGISTER = ROOT / "docs/governance/management-provisional-requirement-register.jsonl"
-HISTORICAL_REGISTER = ROOT / "docs/governance/management-provisional-requirement-register-pre-append-3df81ad.jsonl"
-SOURCE_SET = ROOT / "docs/governance/pre-isolation-outside-holding-67-source-holding.jsonl"
+CURRENT_REGISTER = (
+    ROOT / "docs/governance/management-provisional-requirement-register.jsonl"
+)
+HISTORICAL_REGISTER = (
+    ROOT
+    / "docs/governance/management-provisional-requirement-register-pre-append-3df81ad.jsonl"
+)
+SOURCE_SET = (
+    ROOT / "docs/governance/pre-isolation-outside-holding-67-source-holding.jsonl"
+)
 PROPOSAL = HERE / "proposed-register-record.json"
 READ_AFTER = HERE / "read-after-14.json"
 CAPTURE = "3df81ad27157c471e004083783f37a5860eaa2ee"
@@ -40,11 +75,19 @@ def sha(data: bytes) -> str:
 
 
 def load(path: Path) -> list[dict]:
-    return [json.loads(line) for line in relocated(path).read_text(encoding="utf-8").splitlines() if line.strip()]
+    return [
+        json.loads(line)
+        for line in relocated(path).read_text(encoding="utf-8").splitlines()
+        if line.strip()
+    ]
 
 
 def live(rows: list[dict]) -> list[dict]:
-    superseded = {row.get("supersedes_registration_id") for row in rows if row.get("supersedes_registration_id")}
+    superseded = {
+        row.get("supersedes_registration_id")
+        for row in rows
+        if row.get("supersedes_registration_id")
+    }
     return [row for row in rows if row.get("registration_id") not in superseded]
 
 
@@ -57,7 +100,11 @@ def build() -> dict:
     current_live = live(current)
     historical_live = live(historical)
     captured_register = subprocess.run(
-        ["git", "show", f"{CAPTURE}:docs/governance/management-provisional-requirement-register.jsonl"],
+        [
+            "git",
+            "show",
+            f"{CAPTURE}:docs/governance/management-provisional-requirement-register.jsonl",
+        ],
         cwd=ROOT,
         check=True,
         stdout=subprocess.PIPE,
@@ -80,20 +127,76 @@ def build() -> dict:
         "scaffold/bindings/SCF-B-0044.json",
     ]
     repointed_sources = [
-        {"path": "scaffold/pre-isolation-outside-holding-67-proposal/generate.py", "role": "generator", "historical_register_ref": str(HISTORICAL_REGISTER.relative_to(ROOT))},
-        {"path": "scaffold/pre-isolation-outside-holding-67-proposal/validate.py", "role": "validator", "historical_register_ref": str(HISTORICAL_REGISTER.relative_to(ROOT))},
-        {"path": "scaffold/pre-isolation-outside-holding-first15/generate.py", "role": "generator", "historical_register_ref": str(HISTORICAL_REGISTER.relative_to(ROOT))},
-        {"path": "scaffold/pre-isolation-outside-holding-first15/validate.py", "role": "validator", "historical_register_ref": str(HISTORICAL_REGISTER.relative_to(ROOT))},
-        {"path": "scaffold/phcap02-03-registration-classification-audit/generate.py", "role": "generator", "historical_register_ref": str(HISTORICAL_REGISTER.relative_to(ROOT))},
-        {"path": "scaffold/phcap02-03-registration-classification-audit/validate.py", "role": "validator", "historical_register_ref": str(HISTORICAL_REGISTER.relative_to(ROOT))},
-        {"path": "scaffold/rdp001-delegated-doc003-unprocessed8/validate.py", "role": "validator", "historical_register_ref": str(HISTORICAL_REGISTER.relative_to(ROOT))},
-        {"path": "scaffold/rdp001-unassessed-atom-audit/validate.py", "role": "validator", "historical_register_ref": str(HISTORICAL_REGISTER.relative_to(ROOT))},
-        {"path": "scaffold/pre-isolation-outside-l1-semantic/generate.py", "role": "generator", "historical_register_ref": str(HISTORICAL_REGISTER.relative_to(ROOT))},
-        {"path": "scaffold/pre-isolation-outside-l1-semantic/validate.py", "role": "validator", "historical_register_ref": str(HISTORICAL_REGISTER.relative_to(ROOT))},
-        {"path": "scaffold/pre-isolation-outside-holding-31-48/generate.py", "role": "generator", "historical_register_ref": str(HISTORICAL_REGISTER.relative_to(ROOT))},
-        {"path": "scaffold/pre-isolation-outside-holding-31-48/validate.py", "role": "validator", "historical_register_ref": str(HISTORICAL_REGISTER.relative_to(ROOT))},
-        {"path": "scaffold/outside67-global-49-67/generate.py", "role": "generator", "historical_register_ref": str(HISTORICAL_REGISTER.relative_to(ROOT))},
-        {"path": "scaffold/outside67-global-49-67/validate.py", "role": "validator", "historical_register_ref": str(HISTORICAL_REGISTER.relative_to(ROOT))},
+        {
+            "path": "scaffold/pre-isolation-outside-holding-67-proposal/generate.py",
+            "role": "generator",
+            "historical_register_ref": str(HISTORICAL_REGISTER.relative_to(ROOT)),
+        },
+        {
+            "path": "scaffold/pre-isolation-outside-holding-67-proposal/validate.py",
+            "role": "validator",
+            "historical_register_ref": str(HISTORICAL_REGISTER.relative_to(ROOT)),
+        },
+        {
+            "path": "scaffold/pre-isolation-outside-holding-first15/generate.py",
+            "role": "generator",
+            "historical_register_ref": str(HISTORICAL_REGISTER.relative_to(ROOT)),
+        },
+        {
+            "path": "scaffold/pre-isolation-outside-holding-first15/validate.py",
+            "role": "validator",
+            "historical_register_ref": str(HISTORICAL_REGISTER.relative_to(ROOT)),
+        },
+        {
+            "path": "scaffold/phcap02-03-registration-classification-audit/generate.py",
+            "role": "generator",
+            "historical_register_ref": str(HISTORICAL_REGISTER.relative_to(ROOT)),
+        },
+        {
+            "path": "scaffold/phcap02-03-registration-classification-audit/validate.py",
+            "role": "validator",
+            "historical_register_ref": str(HISTORICAL_REGISTER.relative_to(ROOT)),
+        },
+        {
+            "path": "scaffold/rdp001-delegated-doc003-unprocessed8/validate.py",
+            "role": "validator",
+            "historical_register_ref": str(HISTORICAL_REGISTER.relative_to(ROOT)),
+        },
+        {
+            "path": "scaffold/rdp001-unassessed-atom-audit/validate.py",
+            "role": "validator",
+            "historical_register_ref": str(HISTORICAL_REGISTER.relative_to(ROOT)),
+        },
+        {
+            "path": "scaffold/pre-isolation-outside-l1-semantic/generate.py",
+            "role": "generator",
+            "historical_register_ref": str(HISTORICAL_REGISTER.relative_to(ROOT)),
+        },
+        {
+            "path": "scaffold/pre-isolation-outside-l1-semantic/validate.py",
+            "role": "validator",
+            "historical_register_ref": str(HISTORICAL_REGISTER.relative_to(ROOT)),
+        },
+        {
+            "path": "scaffold/pre-isolation-outside-holding-31-48/generate.py",
+            "role": "generator",
+            "historical_register_ref": str(HISTORICAL_REGISTER.relative_to(ROOT)),
+        },
+        {
+            "path": "scaffold/pre-isolation-outside-holding-31-48/validate.py",
+            "role": "validator",
+            "historical_register_ref": str(HISTORICAL_REGISTER.relative_to(ROOT)),
+        },
+        {
+            "path": "scaffold/outside67-global-49-67/generate.py",
+            "role": "generator",
+            "historical_register_ref": str(HISTORICAL_REGISTER.relative_to(ROOT)),
+        },
+        {
+            "path": "scaffold/outside67-global-49-67/validate.py",
+            "role": "validator",
+            "historical_register_ref": str(HISTORICAL_REGISTER.relative_to(ROOT)),
+        },
     ]
     return {
         "schema": "rdp001-preisolation-outside-holding-67-migration/v1",
@@ -116,7 +219,8 @@ def build() -> dict:
             "register_record_count": len(historical),
             "live_holding_count": len(historical_live),
             "source_revision": CAPTURE,
-            "preserved_without_rewrite": relocated(HISTORICAL_REGISTER).read_bytes() == captured_register,
+            "preserved_without_rewrite": relocated(HISTORICAL_REGISTER).read_bytes()
+            == captured_register,
         },
         "formal_append": {
             "register_path": str(CURRENT_REGISTER.relative_to(ROOT)),
@@ -127,7 +231,9 @@ def build() -> dict:
             "source_set_path": str(SOURCE_SET.relative_to(ROOT)),
             "source_set_sha256": sha(relocated(SOURCE_SET).read_bytes()),
             "source_item_count": len(source),
-            "append_only_prefix_preserved": relocated(CURRENT_REGISTER).read_bytes().startswith(relocated(HISTORICAL_REGISTER).read_bytes()),
+            "append_only_prefix_preserved": relocated(CURRENT_REGISTER)
+            .read_bytes()
+            .startswith(relocated(HISTORICAL_REGISTER).read_bytes()),
         },
         "read_after": {
             "path": "scaffold/pre-isolation-outside-holding-67-migration/read-after-14.json",
@@ -183,4 +289,6 @@ def build() -> dict:
 
 
 if __name__ == "__main__":
-    (HERE / "migration.json").write_text(json.dumps(build(), ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    (HERE / "migration.json").write_text(
+        json.dumps(build(), ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
+    )

@@ -3,7 +3,10 @@
 import copy
 import unittest
 
-from descriptor_definitions import compare_identity_versions_and_trace, validate_supply_input
+from descriptor_definitions import (
+    compare_identity_versions_and_trace,
+    validate_supply_input,
+)
 from identity_input_fixtures import normal_input
 
 

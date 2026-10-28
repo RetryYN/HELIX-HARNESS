@@ -7,6 +7,7 @@ L5 `/logical_input_structure/schema/$defs/Claim`, `/functions/6`, and
 six-field and actor checks remain in force; a real same-call Claim route must not
 bypass them merely because `kind=fill_definition`.
 """
+
 from __future__ import annotations
 
 import copy

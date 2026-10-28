@@ -17,12 +17,20 @@ from pathlib import Path
 
 
 ROOT = Path(__file__).resolve().parents[3]
-DEFAULT_INVENTORY = ROOT / "scaffold/research/pre-isolation/rdp001-6path-semantic-diff-inventory.json"
+DEFAULT_INVENTORY = (
+    ROOT / "scaffold/research/pre-isolation/rdp001-6path-semantic-diff-inventory.json"
+)
 BASELINE_COMMIT = "6fabd12512a3659fff4a956692cdd61faeeb16ce"
 PRE_ISOLATION_COMMIT = "2d4991042be55268bac30a8bbcdac45b3865030a"
 EXPECTED_SOURCES = {
-    "PREISO-REV-000001": ("config/workflow-classification-catalog.v1.json", "other_legacy_asset"),
-    "PREISO-REV-000002": ("config/workflow-execution-policy.v1.json", "other_legacy_asset"),
+    "PREISO-REV-000001": (
+        "config/workflow-classification-catalog.v1.json",
+        "other_legacy_asset",
+    ),
+    "PREISO-REV-000002": (
+        "config/workflow-execution-policy.v1.json",
+        "other_legacy_asset",
+    ),
     "PREISO-REV-000015": (
         "docs/design/helix/L3-requirements/workflow-classification-registry.v1.json",
         "requirement_or_prototype_source",
@@ -31,8 +39,14 @@ EXPECTED_SOURCES = {
         "docs/design/helix/L3-requirements/workflow-execution-policy-registry.v1.json",
         "requirement_or_prototype_source",
     ),
-    "PREISO-REV-000026": ("docs/governance/helix-harness-requirements_v1.3.md", "core_upstream_source"),
-    "PREISO-REV-000060": ("docs/plans/PLAN-L3-82-authority-vocabulary-separation.md", "legacy_plan_source"),
+    "PREISO-REV-000026": (
+        "docs/governance/helix-harness-requirements_v1.3.md",
+        "core_upstream_source",
+    ),
+    "PREISO-REV-000060": (
+        "docs/plans/PLAN-L3-82-authority-vocabulary-separation.md",
+        "legacy_plan_source",
+    ),
 }
 DIFF_SCOPE = "selected_source_items_only"
 DIFF_SCOPE_NOTE = "2 commit全体は400 files／492 hunksであり、この候補はそのうち6 path／9 hunkのみを対象とする。"
@@ -69,7 +83,13 @@ EXPECTED_FRAGMENT_IDS = {
     "RDP001-DIFF-008",
     "RDP001-DIFF-009",
 }
-ALLOWED_CLASSIFICATIONS = {"requirement", "constraint", "provenance", "generated_metadata", "unresolved"}
+ALLOWED_CLASSIFICATIONS = {
+    "requirement",
+    "constraint",
+    "provenance",
+    "generated_metadata",
+    "unresolved",
+}
 ALLOWED_CANDIDATE_KINDS = {"requirement", "constraint", "metadata", "unresolved"}
 ALLOWED_OWNERS = {"HELIX-HARNESS", "HELIX-OS", "unresolved"}
 EXPECTED_COUNTS = {
@@ -96,7 +116,9 @@ def fail(errors: list[str], message: str) -> None:
     errors.append(message)
 
 
-def git_blob_bytes(commit: str, source_path: str, label: str, errors: list[str]) -> bytes | None:
+def git_blob_bytes(
+    commit: str, source_path: str, label: str, errors: list[str]
+) -> bytes | None:
     result = subprocess.run(
         ["git", "cat-file", "blob", f"{commit}:{source_path}"],
         cwd=ROOT,
@@ -131,7 +153,9 @@ def check_span(errors: list[str], label: str, blob: bytes, declaration: object) 
     end_line = declaration.get("end_line")
     actual = line_span(blob, start_line, end_line)
     if actual is None:
-        fail(errors, f"{label} line span不正またはblob末尾超過: {start_line}-{end_line}")
+        fail(
+            errors, f"{label} line span不正またはblob末尾超過: {start_line}-{end_line}"
+        )
         return
     expected_text = declaration.get("exact_text")
     if not isinstance(expected_text, str):
@@ -170,7 +194,10 @@ def git_diff_hunks(errors: list[str]) -> list[tuple[str, int, int, int, int]]:
         check=False,
     )
     if result.returncode != 0:
-        fail(errors, f"baseline/pre-isolation git diffを読めない: {result.stderr.strip()}")
+        fail(
+            errors,
+            f"baseline/pre-isolation git diffを読めない: {result.stderr.strip()}",
+        )
         return []
     current_path: str | None = None
     hunks: list[tuple[str, int, int, int, int]] = []
@@ -209,7 +236,9 @@ def git_diff_hunks(errors: list[str]) -> list[tuple[str, int, int, int, int]]:
 
 
 def main() -> int:
-    parser = argparse.ArgumentParser(description="RDP-001 semantic diff inventory static check")
+    parser = argparse.ArgumentParser(
+        description="RDP-001 semantic diff inventory static check"
+    )
     parser.add_argument("--inventory", type=Path, default=DEFAULT_INVENTORY)
     args = parser.parse_args()
     errors: list[str] = []
@@ -229,7 +258,12 @@ def main() -> int:
         fail(errors, "diff_scopeはselected_source_items_onlyに固定する")
     if inventory.get("diff_scope_note") != DIFF_SCOPE_NOTE:
         fail(errors, "diff_scope_noteが6 path／9 hunkの限定を明示していない")
-    for field, expected in (("meaning_change_applied", False), ("successor_requirement_ids", []), ("human_decision_ref", None), ("equivalence_claim", None)):
+    for field, expected in (
+        ("meaning_change_applied", False),
+        ("successor_requirement_ids", []),
+        ("human_decision_ref", None),
+        ("equivalence_claim", None),
+    ):
         if inventory.get(field) != expected:
             fail(errors, f"inventory {field}が候補境界に反する")
 
@@ -240,7 +274,10 @@ def main() -> int:
         fail(errors, "comparison pre_isolation_commit不一致")
     if comparison.get("old_runtime_test_ci_execution") is not False:
         fail(errors, "old_runtime_test_ci_executionはfalseに固定する")
-    if comparison.get("method") != "read-only Git blob bytes; exact changed line spans and UTF-8 SHA-256":
+    if (
+        comparison.get("method")
+        != "read-only Git blob bytes; exact changed line spans and UTF-8 SHA-256"
+    ):
         fail(errors, "comparison method不一致")
 
     sources = inventory.get("source_items")
@@ -274,7 +311,10 @@ def main() -> int:
             fail(errors, f"{item_id} phase_candidatesは未確認の空集合に固定する")
         if source.get("phase_authority_status") != EXPECTED_PHASE_AUTHORITY_STATUS:
             fail(errors, f"{item_id} phase_authority_statusが未確認状態と不一致")
-        if source.get("legacy_implementation_status") != EXPECTED_LEGACY_IMPLEMENTATION_STATUS:
+        if (
+            source.get("legacy_implementation_status")
+            != EXPECTED_LEGACY_IMPLEMENTATION_STATUS
+        ):
             fail(errors, f"{item_id} legacy_implementation_statusがunknownでない")
         # source itemのfragment_idsは下のfragment参照と同じ固定集合で照合する。
         expected_fragment_ids_by_source = {
@@ -282,10 +322,17 @@ def main() -> int:
             "PREISO-REV-000002": {"RDP001-DIFF-002"},
             "PREISO-REV-000015": {"RDP001-DIFF-003"},
             "PREISO-REV-000016": {"RDP001-DIFF-004", "RDP001-DIFF-005"},
-            "PREISO-REV-000026": {"RDP001-DIFF-006", "RDP001-DIFF-007", "RDP001-DIFF-008"},
+            "PREISO-REV-000026": {
+                "RDP001-DIFF-006",
+                "RDP001-DIFF-007",
+                "RDP001-DIFF-008",
+            },
             "PREISO-REV-000060": {"RDP001-DIFF-009"},
         }
-        if set(source.get("fragment_ids", [])) != expected_fragment_ids_by_source[item_id]:
+        if (
+            set(source.get("fragment_ids", []))
+            != expected_fragment_ids_by_source[item_id]
+        ):
             fail(errors, f"{item_id} fragment_ids集合が固定対応と不一致")
     if set(source_by_id) != set(EXPECTED_SOURCES):
         fail(errors, "source revision item ID集合が6件の期待集合と不一致")
@@ -319,18 +366,27 @@ def main() -> int:
             observed_counts[classification] += 1
         if fragment.get("candidate_kind") not in ALLOWED_CANDIDATE_KINDS:
             fail(errors, f"{fragment_id} candidate_kind不正")
-        expected_owner, expected_secondary = EXPECTED_FRAGMENT_OWNERS.get(fragment_id, (None, None))
+        expected_owner, expected_secondary = EXPECTED_FRAGMENT_OWNERS.get(
+            fragment_id, (None, None)
+        )
         if fragment.get("product_owner_candidate") != expected_owner:
             fail(errors, f"{fragment_id} product_owner_candidateが固定候補と不一致")
         if fragment.get("secondary_consumer_candidate") != expected_secondary:
-            fail(errors, f"{fragment_id} secondary_consumer_candidateが固定候補と不一致")
+            fail(
+                errors, f"{fragment_id} secondary_consumer_candidateが固定候補と不一致"
+            )
         if fragment.get("phase_candidates") != EXPECTED_PHASE_CANDIDATES:
             fail(errors, f"{fragment_id} phase_candidatesは未確認の空集合に固定する")
         if fragment.get("phase_authority_status") != EXPECTED_PHASE_AUTHORITY_STATUS:
             fail(errors, f"{fragment_id} phase_authority_statusが未確認状態と不一致")
-        if fragment.get("legacy_implementation_status") != EXPECTED_LEGACY_IMPLEMENTATION_STATUS:
+        if (
+            fragment.get("legacy_implementation_status")
+            != EXPECTED_LEGACY_IMPLEMENTATION_STATUS
+        ):
             fail(errors, f"{fragment_id} legacy_implementation_statusがunknownでない")
-        if not isinstance(fragment.get("unresolved_meaning"), list) or not fragment.get("unresolved_meaning"):
+        if not isinstance(fragment.get("unresolved_meaning"), list) or not fragment.get(
+            "unresolved_meaning"
+        ):
             fail(errors, f"{fragment_id} unresolved_meaningを空にしない")
         source_path = EXPECTED_SOURCES.get(item_id, (None, None))[0]
         if source_path is None:
@@ -354,18 +410,42 @@ def main() -> int:
                     pre_decl["end_line"],
                 )
             )
-        baseline_blob = git_blob_bytes(BASELINE_COMMIT, source_path, f"{fragment_id} baseline", errors)
-        pre_blob = git_blob_bytes(PRE_ISOLATION_COMMIT, source_path, f"{fragment_id} pre-isolation", errors)
+        baseline_blob = git_blob_bytes(
+            BASELINE_COMMIT, source_path, f"{fragment_id} baseline", errors
+        )
+        pre_blob = git_blob_bytes(
+            PRE_ISOLATION_COMMIT, source_path, f"{fragment_id} pre-isolation", errors
+        )
         if baseline_blob is not None:
-            check_span(errors, f"{fragment_id} baseline", baseline_blob, fragment.get("baseline"))
+            check_span(
+                errors,
+                f"{fragment_id} baseline",
+                baseline_blob,
+                fragment.get("baseline"),
+            )
         if pre_blob is not None:
-            check_span(errors, f"{fragment_id} pre-isolation", pre_blob, fragment.get("pre_isolation"))
-        if isinstance(baseline_decl, dict) and isinstance(pre_decl, dict) and baseline_decl.get("exact_text") == pre_decl.get("exact_text"):
-            fail(errors, f"{fragment_id} changed fragmentのbaseline/pre-isolation textが同一")
+            check_span(
+                errors,
+                f"{fragment_id} pre-isolation",
+                pre_blob,
+                fragment.get("pre_isolation"),
+            )
+        if (
+            isinstance(baseline_decl, dict)
+            and isinstance(pre_decl, dict)
+            and baseline_decl.get("exact_text") == pre_decl.get("exact_text")
+        ):
+            fail(
+                errors,
+                f"{fragment_id} changed fragmentのbaseline/pre-isolation textが同一",
+            )
     if set(fragment_by_id) != EXPECTED_FRAGMENT_IDS:
         fail(errors, "fragment ID集合が9件の期待集合と不一致")
     if inventory.get("classification_counts") != observed_counts:
-        fail(errors, f"classification_counts不一致: declared={inventory.get('classification_counts')} actual={observed_counts}")
+        fail(
+            errors,
+            f"classification_counts不一致: declared={inventory.get('classification_counts')} actual={observed_counts}",
+        )
     if observed_counts != EXPECTED_COUNTS:
         fail(errors, f"classificationの候補集計不一致: {observed_counts}")
     diff_hunks = git_diff_hunks(errors)
@@ -398,7 +478,9 @@ def main() -> int:
             fail(errors, f"{negative_id} source_path不一致")
         if negative.get("commit") != PRE_ISOLATION_COMMIT:
             fail(errors, f"{negative_id} commit不一致")
-        blob = git_blob_bytes(PRE_ISOLATION_COMMIT, expected_path, f"{negative_id}", errors)
+        blob = git_blob_bytes(
+            PRE_ISOLATION_COMMIT, expected_path, f"{negative_id}", errors
+        )
         if blob is not None:
             check_span(errors, negative_id, blob, negative)
         if not isinstance(negative.get("meaning"), str) or not negative.get("meaning"):
@@ -418,8 +500,12 @@ def main() -> int:
             print(f"- {error}")
         return 1
     print("PASS: RDP-001 6-path semantic diff inventory (read-only static check)")
-    print("diff_scope=selected_source_items_only; sources=6; fragments=9; diff_hunks=9; requirement=1; constraint=2; provenance=4; generated_metadata=2; unresolved=0")
-    print(f"retained_negatives=8; equivalence_claim={inventory.get('equivalence_claim')}; authority_effect={inventory.get('authority_effect')}; runtime/test execution=forbidden")
+    print(
+        "diff_scope=selected_source_items_only; sources=6; fragments=9; diff_hunks=9; requirement=1; constraint=2; provenance=4; generated_metadata=2; unresolved=0"
+    )
+    print(
+        f"retained_negatives=8; equivalence_claim={inventory.get('equivalence_claim')}; authority_effect={inventory.get('authority_effect')}; runtime/test execution=forbidden"
+    )
     return 0
 
 

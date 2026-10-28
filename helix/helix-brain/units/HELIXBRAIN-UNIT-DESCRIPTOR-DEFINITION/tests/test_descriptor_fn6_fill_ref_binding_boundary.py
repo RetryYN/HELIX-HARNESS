@@ -6,6 +6,7 @@ keep Claim intent separate from structural subject/Binding validation. L5
 /logical_input_structure/schema/$defs/Claim and /functions/6 preserve the
 existing B02/F09 boundaries before a fill Claim can reach the new consumer.
 """
+
 from __future__ import annotations
 
 import copy

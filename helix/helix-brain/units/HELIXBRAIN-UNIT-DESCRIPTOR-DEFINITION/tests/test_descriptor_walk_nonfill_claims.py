@@ -46,11 +46,13 @@ class TestDescriptorWalkNonfillClaims(unittest.TestCase):
         self.assertEqual(raw, raw_before, "walk must not mutate raw input")
         self.assertEqual(validated, validated_before, "walk must not mutate FN0 output")
         self.assertEqual(
-            validated["input"]["claims"], raw_before["claims"],
+            validated["input"]["claims"],
+            raw_before["claims"],
             "all original Claim occurrences remain in the full raw snapshot",
         )
         self.assertEqual(
-            set(result), {"evaluation", "native_material", "target_reads", "intent_reads"}
+            set(result),
+            {"evaluation", "native_material", "target_reads", "intent_reads"},
         )
         return result
 
@@ -74,7 +76,9 @@ class TestDescriptorWalkNonfillClaims(unittest.TestCase):
     def test_i05_nonfill_only_claim_is_retained_without_target_or_intent_read(self):
         raw = descriptor_claim_input("positive")
         original_template = copy.deepcopy(raw["claims"][0])
-        self.assertTrue(raw["candidates"], "setup: candidate-A resolves to an existing Ref")
+        self.assertTrue(
+            raw["candidates"], "setup: candidate-A resolves to an existing Ref"
+        )
         claim = self._with_nonfill_kind(
             raw,
             original_template,
@@ -103,9 +107,7 @@ class TestDescriptorWalkNonfillClaims(unittest.TestCase):
         nonfill_before = self._with_nonfill_kind(
             raw, fill, "requirements_agreement", True
         )
-        nonfill_after = self._with_nonfill_kind(
-            raw, fill, "design_completion", True
-        )
+        nonfill_after = self._with_nonfill_kind(raw, fill, "design_completion", True)
         raw["claims"] = [
             nonfill_before,
             copy.deepcopy(fill),
@@ -161,12 +163,20 @@ class TestDescriptorWalkNonfillClaims(unittest.TestCase):
         self.assertEqual(len(target["matches"]), 1)
         declaration = raw["sources"][0]["content"]["descriptor_targets"][0]
         self.assertEqual(target["matches"][0]["target_ref"], declaration["target_ref"])
-        self.assertEqual(target["matches"][0]["slot_identity"], declaration["slot_identity"])
-        self.assertEqual(target["matches"][0]["descriptor_kind"], declaration["descriptor_kind"])
+        self.assertEqual(
+            target["matches"][0]["slot_identity"], declaration["slot_identity"]
+        )
+        self.assertEqual(
+            target["matches"][0]["descriptor_kind"], declaration["descriptor_kind"]
+        )
         intent = result["intent_reads"][0]
         self.assertEqual(intent["claim"], claim)
-        self.assertEqual(intent["kind"], {"presence": "supplied", "value": "fill_definition"})
-        self.assertEqual(intent["proposed_value"], {"presence": "supplied", "value": None})
+        self.assertEqual(
+            intent["kind"], {"presence": "supplied", "value": "fill_definition"}
+        )
+        self.assertEqual(
+            intent["proposed_value"], {"presence": "supplied", "value": None}
+        )
         self.assertEqual(intent["intent"], "positive")
 
 

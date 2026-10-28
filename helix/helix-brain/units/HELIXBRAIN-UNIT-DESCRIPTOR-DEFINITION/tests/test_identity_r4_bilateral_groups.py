@@ -13,7 +13,10 @@ import copy
 import json
 import unittest
 
-from descriptor_definitions import compare_identity_versions_and_trace, validate_supply_input
+from descriptor_definitions import (
+    compare_identity_versions_and_trace,
+    validate_supply_input,
+)
 from identity_input_fixtures import (
     _append_qualified_source,
     _left_body,
@@ -40,24 +43,39 @@ class TestIdentityR4BilateralGroups(unittest.TestCase):
 
     @staticmethod
     def _record_sources(raw, record):
-        right = [source for source in raw["sources"] if source.get("ref") == record.get("source_ref")]
-        left = [source for source in raw["sources"]
-                if isinstance(source.get("content"), dict)
-                and source["content"].get("compatibility_record_ref") == record.get("ref")]
+        right = [
+            source
+            for source in raw["sources"]
+            if source.get("ref") == record.get("source_ref")
+        ]
+        left = [
+            source
+            for source in raw["sources"]
+            if isinstance(source.get("content"), dict)
+            and source["content"].get("compatibility_record_ref") == record.get("ref")
+        ]
         if len(right) != 1 or len(left) != 1:
-            raise AssertionError("setup: each synthetic bilateral read needs one right and one left source")
+            raise AssertionError(
+                "setup: each synthetic bilateral read needs one right and one left source"
+            )
         return right[0], left[0]
 
     @staticmethod
     def _remove_qualified_source(raw, source):
         qualification_ref = copy.deepcopy(source.get("qualification_ref"))
-        qualifications = [row for row in raw["qualifications"] if row.get("ref") == qualification_ref]
+        qualifications = [
+            row for row in raw["qualifications"] if row.get("ref") == qualification_ref
+        ]
         if len(qualifications) != 1:
-            raise AssertionError("setup: removed source must have one original Qualification")
+            raise AssertionError(
+                "setup: removed source must have one original Qualification"
+            )
         root_ref = copy.deepcopy(qualifications[0].get("root_ref"))
         roots = [row for row in raw["qualification_roots"] if row == root_ref]
         if len(roots) != 1:
-            raise AssertionError("setup: removed Qualification must have one original root")
+            raise AssertionError(
+                "setup: removed Qualification must have one original root"
+            )
         raw["sources"].remove(source)
         raw["qualifications"].remove(qualifications[0])
         raw["qualification_roots"].remove(roots[0])
@@ -103,7 +121,9 @@ class TestIdentityR4BilateralGroups(unittest.TestCase):
     def test_different_pairs_remain_individual_resolved_reads(self):
         """L4 cause competition groups only a matching pair/full frame; another pair stays a read."""
         raw = bilateral_input("positive")
-        second = self._append_positive_read(raw, suffix="DISTINCT-PAIR", distinct_pair=True)
+        second = self._append_positive_read(
+            raw, suffix="DISTINCT-PAIR", distinct_pair=True
+        )
 
         result = self._call(raw)
         rows = self._compatibility_rows(result)
@@ -120,14 +140,22 @@ class TestIdentityR4BilateralGroups(unittest.TestCase):
         for index, record in enumerate(raw["compatibility_records"]):
             row = by_record[index]
             self.assertEqual(row["subject_ref"], record["left_ref"])
-            self.assertEqual(row["original_refs"][:4], [
-                record["ref"], record["left_ref"], record["right_ref"], record["source_ref"],
-            ])
+            self.assertEqual(
+                row["original_refs"][:4],
+                [
+                    record["ref"],
+                    record["left_ref"],
+                    record["right_ref"],
+                    record["source_ref"],
+                ],
+            )
 
     def test_same_cause_state_repetitions_keep_resolved_state_and_occurrences(self):
         """Repeated positive reads are not turned into an unknown cause competition."""
         raw = bilateral_input("positive")
-        self._append_positive_read(raw, suffix="SAME-PAIR-POSITIVE", distinct_pair=False)
+        self._append_positive_read(
+            raw, suffix="SAME-PAIR-POSITIVE", distinct_pair=False
+        )
 
         result = self._call(raw)
         rows = self._compatibility_rows(result)
@@ -141,16 +169,21 @@ class TestIdentityR4BilateralGroups(unittest.TestCase):
             self.assertEqual(len(material["record_indices"]), 1)
             by_record[material["record_indices"][0]] = row
         self.assertEqual(set(by_record), {0, 1})
-        self.assertEqual([by_record[index]["original_refs"][0]["identity"] for index in (0, 1)], [
-            raw["compatibility_records"][0]["ref"]["identity"],
-            raw["compatibility_records"][1]["ref"]["identity"],
-        ])
+        self.assertEqual(
+            [by_record[index]["original_refs"][0]["identity"] for index in (0, 1)],
+            [
+                raw["compatibility_records"][0]["ref"]["identity"],
+                raw["compatibility_records"][1]["ref"]["identity"],
+            ],
+        )
 
     def test_interleaved_pair_reads_aggregate_only_the_same_pair_competition(self):
         """A/B/A order groups only A's competing pair causes; the existing two-read finite rule stays exact."""
         raw = bilateral_input("opposing")
         a_positive, a_outside = raw["compatibility_records"]
-        b_positive = self._append_positive_read(raw, suffix="INTERLEAVED-DISTINCT-PAIR", distinct_pair=True)
+        b_positive = self._append_positive_read(
+            raw, suffix="INTERLEAVED-DISTINCT-PAIR", distinct_pair=True
+        )
         raw["compatibility_records"] = [a_positive, b_positive, a_outside]
 
         result = self._call(raw)
@@ -161,8 +194,14 @@ class TestIdentityR4BilateralGroups(unittest.TestCase):
             _prefix, separator, encoded = row["reason"].partition("\n")
             self.assertEqual(separator, "\n")
             material = json.loads(encoded)
-            indices = (material["record_indices"] if "record_indices" in material
-                       else [occurrence["record_index"] for occurrence in material["cause_occurrences"]])
+            indices = (
+                material["record_indices"]
+                if "record_indices" in material
+                else [
+                    occurrence["record_index"]
+                    for occurrence in material["cause_occurrences"]
+                ]
+            )
             group_rows[tuple(indices)] = row
 
         # The historical finite [resolved, conflict(outside)] projection applies only
@@ -172,25 +211,37 @@ class TestIdentityR4BilateralGroups(unittest.TestCase):
         self.assertEqual(a_group["state"], "unknown")
         _prefix, separator, encoded = a_group["reason"].partition("\n")
         self.assertEqual(separator, "\n")
-        self.assertEqual(json.loads(encoded), {
-            "cause_occurrences": [
-                {"cause": "positive", "record_index": 0, "state": "resolved"},
-                {"cause": "outside", "record_index": 2, "state": "conflict"},
-            ],
-        })
+        self.assertEqual(
+            json.loads(encoded),
+            {
+                "cause_occurrences": [
+                    {"cause": "positive", "record_index": 0, "state": "resolved"},
+                    {"cause": "outside", "record_index": 2, "state": "conflict"},
+                ],
+            },
+        )
         b_row = group_rows[(1,)]
         self.assertEqual(b_row["state"], "resolved")
         self.assertEqual(b_row["subject_ref"], b_positive["left_ref"])
-        mismatch_findings = [row for row in result["findings"] if row["code"] == "compatibility_mismatch"]
+        mismatch_findings = [
+            row for row in result["findings"] if row["code"] == "compatibility_mismatch"
+        ]
         self.assertEqual(len(mismatch_findings), 1)
         finding = mismatch_findings[0]
         self.assertEqual(finding["subject_ref"], a_outside["left_ref"])
-        self.assertEqual(finding["source_refs"], [
-            a_outside["source_ref"],
-            next(source["ref"] for source in raw["sources"]
-                 if isinstance(source.get("content"), dict)
-                 and source["content"].get("compatibility_record_ref") == a_outside["ref"]),
-        ])
+        self.assertEqual(
+            finding["source_refs"],
+            [
+                a_outside["source_ref"],
+                next(
+                    source["ref"]
+                    for source in raw["sources"]
+                    if isinstance(source.get("content"), dict)
+                    and source["content"].get("compatibility_record_ref")
+                    == a_outside["ref"]
+                ),
+            ],
+        )
         _prefix, separator, finding_material = finding["reason"].partition("\n")
         self.assertEqual(separator, "\n")
         self.assertEqual(json.loads(finding_material)["record_index"], 2)
@@ -199,13 +250,19 @@ class TestIdentityR4BilateralGroups(unittest.TestCase):
         """Noncompeting repeated pair reads stay individual and are not reordered around another pair."""
         raw = bilateral_input("positive")
         a_first = raw["compatibility_records"][0]
-        b_middle = self._append_positive_read(raw, suffix="ORDER-DISTINCT-PAIR", distinct_pair=True)
-        a_last = self._append_positive_read(raw, suffix="ORDER-SAME-PAIR-REPEAT", distinct_pair=False)
+        b_middle = self._append_positive_read(
+            raw, suffix="ORDER-DISTINCT-PAIR", distinct_pair=True
+        )
+        a_last = self._append_positive_read(
+            raw, suffix="ORDER-SAME-PAIR-REPEAT", distinct_pair=False
+        )
         self.assertEqual(raw["compatibility_records"], [a_first, b_middle, a_last])
 
         rows = self._compatibility_rows(self._call(raw))
         self.assertEqual(len(rows), 3)
-        self.assertEqual([row["state"] for row in rows], ["resolved", "resolved", "resolved"])
+        self.assertEqual(
+            [row["state"] for row in rows], ["resolved", "resolved", "resolved"]
+        )
         observed_indices = []
         for index, row in enumerate(rows):
             _prefix, separator, encoded = row["reason"].partition("\n")
@@ -216,9 +273,15 @@ class TestIdentityR4BilateralGroups(unittest.TestCase):
             observed_indices.append(read_index)
             record = raw["compatibility_records"][read_index]
             self.assertEqual(row["subject_ref"], record["left_ref"])
-            self.assertEqual(row["original_refs"][:4], [
-                record["ref"], record["left_ref"], record["right_ref"], record["source_ref"],
-            ])
+            self.assertEqual(
+                row["original_refs"][:4],
+                [
+                    record["ref"],
+                    record["left_ref"],
+                    record["right_ref"],
+                    record["source_ref"],
+                ],
+            )
         self.assertEqual(observed_indices, [0, 1, 2])
 
     def test_null_and_regular_multiple_left_sources_have_distinct_stop_ids(self):
@@ -235,14 +298,18 @@ class TestIdentityR4BilateralGroups(unittest.TestCase):
         _right, null_left = self._record_sources(explicit_null, null_record)
         explicit_null["sources"].append(copy.deepcopy(null_left))
         null_record["source_ref"] = None
-        cases.append((explicit_null, "unclosed/multiple_finding_range_sources/left_null"))
+        cases.append(
+            (explicit_null, "unclosed/multiple_finding_range_sources/left_null")
+        )
 
         observed_ids = []
         for raw, expected_id in cases:
             with self.subTest(case_id=expected_id):
                 with self.assertRaises(NotImplementedError) as caught:
                     self._call(raw)
-                self.assertTrue(str(caught.exception).startswith(f"F04/N01/{expected_id}:"))
+                self.assertTrue(
+                    str(caught.exception).startswith(f"F04/N01/{expected_id}:")
+                )
                 observed_ids.append(expected_id)
         self.assertEqual(len(set(observed_ids)), 2)
 
@@ -254,15 +321,21 @@ class TestIdentityR4BilateralGroups(unittest.TestCase):
         body = copy.deepcopy(left["content"])
         body["endpoint_owner_declaration"]["range_relation"] = "not_supplied"
         body["endpoint_owner_declaration"]["range_reason"] = None
-        self.assertEqual(body["endpoint_owner_declaration"]["range_relation"], "not_supplied")
-        self.assertEqual(right["content"]["compatibility_range_declaration"]["relation"], "outside")
+        self.assertEqual(
+            body["endpoint_owner_declaration"]["range_relation"], "not_supplied"
+        )
+        self.assertEqual(
+            right["content"]["compatibility_range_declaration"]["relation"], "outside"
+        )
         _write_source_content(raw, left, body)
 
         result = self._call(raw)
         rows = self._compatibility_rows(result)
         self.assertEqual(len(rows), 1)
         self.assertEqual(rows[0]["state"], "unknown")
-        self.assertFalse(any(row["code"] == "compatibility_mismatch" for row in result["findings"]))
+        self.assertFalse(
+            any(row["code"] == "compatibility_mismatch" for row in result["findings"])
+        )
 
     def test_right_source_owner_must_match_the_recorded_range_owner(self):
         """A qualified right Ref under another owner cannot complete the range declaration."""
@@ -284,15 +357,22 @@ class TestIdentityR4BilateralGroups(unittest.TestCase):
         left_body = copy.deepcopy(left["content"])
         left_body["counterpart_source_ref"] = copy.deepcopy(wrong_owner["ref"])
         _write_source_content(raw, left, left_body)
-        range_owner = next(owner for owner in old_right["content"]["compatibility_range_declaration"]["owner_declarations"]
-                           if owner["endpoint_ref"] == record["right_ref"])
+        range_owner = next(
+            owner
+            for owner in old_right["content"]["compatibility_range_declaration"][
+                "owner_declarations"
+            ]
+            if owner["endpoint_ref"] == record["right_ref"]
+        )
         self.assertNotEqual(wrong_owner["ref"]["owner"], range_owner["owner"])
 
         result = self._call(raw)
         rows = self._compatibility_rows(result)
         self.assertEqual(len(rows), 1)
         self.assertEqual(rows[0]["state"], "unknown")
-        self.assertFalse(any(row["code"] == "compatibility_mismatch" for row in result["findings"]))
+        self.assertFalse(
+            any(row["code"] == "compatibility_mismatch" for row in result["findings"])
+        )
 
     def test_unobserved_left_owner_scope_stays_unknown(self):
         """An unobserved target scope keeps the left owner read unknown despite qualified source scope."""
@@ -314,7 +394,11 @@ class TestIdentityR4BilateralGroups(unittest.TestCase):
                 self.assertEqual((prefix, separator), ("scope_unresolved", "\n"))
                 material = json.loads(encoded)
                 self.assertIn("owner_observations", material)
-                left_reads = [row for row in material["owner_observations"] if row["endpoint"] == "left"]
+                left_reads = [
+                    row
+                    for row in material["owner_observations"]
+                    if row["endpoint"] == "left"
+                ]
                 self.assertEqual(len(left_reads), 1)
                 self.assertEqual(left_reads[0]["target_scope_relation"], "unobserved")
                 self.assertEqual(left_reads[0]["cause"], "owner_subject_unresolved")

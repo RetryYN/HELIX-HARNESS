@@ -42,16 +42,28 @@ def load_rows(root: Path = ROOT) -> list[dict]:
                 if not line.strip():
                     continue
                 record = json.loads(line)
-                if not isinstance(record, dict) or not isinstance(record.get("asset_id"), str):
-                    raise ValueError(f"{path}:{line_number}: asset_id付きobjectではありません")
-                rows.append({"bundle": bundle, "binding_id": binding_id,
-                             "line": line_number, "record": record})
+                if not isinstance(record, dict) or not isinstance(
+                    record.get("asset_id"), str
+                ):
+                    raise ValueError(
+                        f"{path}:{line_number}: asset_id付きobjectではありません"
+                    )
+                rows.append(
+                    {
+                        "bundle": bundle,
+                        "binding_id": binding_id,
+                        "line": line_number,
+                        "record": record,
+                    }
+                )
     return rows
 
 
 def category(record: dict) -> str | None:
     classification = record.get("classification")
-    if isinstance(classification, dict) and isinstance(classification.get("category"), str):
+    if isinstance(classification, dict) and isinstance(
+        classification.get("category"), str
+    ):
         return classification["category"]
     value = record.get("classification_category")
     return value if isinstance(value, str) else None
@@ -59,7 +71,11 @@ def category(record: dict) -> str | None:
 
 def mechanical_flags(record: dict) -> list[bool]:
     classification = record.get("classification")
-    bases = classification.get("product_basis") if isinstance(classification, dict) else None
+    bases = (
+        classification.get("product_basis")
+        if isinstance(classification, dict)
+        else None
+    )
     if not isinstance(bases, list):
         return []
     flags = []
@@ -67,7 +83,9 @@ def mechanical_flags(record: dict) -> list[bool]:
         if not isinstance(basis, dict):
             continue
         excerpt = basis.get("mechanical_excerpt")
-        if isinstance(excerpt, dict) and isinstance(excerpt.get("not_semantic_analysis"), bool):
+        if isinstance(excerpt, dict) and isinstance(
+            excerpt.get("not_semantic_analysis"), bool
+        ):
             flags.append(excerpt["not_semantic_analysis"])
     return flags
 
@@ -77,23 +95,31 @@ def validate_rows(rows: list[dict]) -> None:
         raise ValueError("対象bundle数が14ではありません")
     for row in rows:
         record = row["record"]
-        if "classification" in record and not isinstance(record["classification"], dict):
+        if "classification" in record and not isinstance(
+            record["classification"], dict
+        ):
             raise ValueError(
                 f"{row['bundle']}:{row['line']}: classificationはobjectである必要があります"
             )
-        if ("formal_asset_classification_updated" in record
-                and type(record["formal_asset_classification_updated"]) is not bool):
+        if (
+            "formal_asset_classification_updated" in record
+            and type(record["formal_asset_classification_updated"]) is not bool
+        ):
             raise ValueError(
                 f"{row['bundle']}:{row['line']}: formal_asset_classification_updatedはbooleanである必要があります"
             )
     ids = [r["record"]["asset_id"] for r in rows]
     occurrences = Counter(ids)
     if len(rows) != 768 or len(occurrences) != 726:
-        raise ValueError(f"分母変更: rows={len(rows)} unique={len(occurrences)} (expected 768/726)")
+        raise ValueError(
+            f"分母変更: rows={len(rows)} unique={len(occurrences)} (expected 768/726)"
+        )
     if sum(n - 1 for n in occurrences.values()) != 42:
         raise ValueError("重複出現数が42ではありません")
     if sum(category(r["record"]) == "direct_product_basis" for r in rows) != 387:
-        raise ValueError("既存category形式2種から再集計したdirect_product_basis出現数が387ではありません")
+        raise ValueError(
+            "既存category形式2種から再集計したdirect_product_basis出現数が387ではありません"
+        )
 
     by_bundle = defaultdict(list)
     for row in rows:
@@ -101,23 +127,39 @@ def validate_rows(rows: list[dict]) -> None:
     research = by_bundle["legacy-research-assets-product-classification-0142"]
     direct_0142 = [r for r in research if category(r) == "direct_product_basis"]
     flags_0142 = [mechanical_flags(r) for r in research]
-    marked_0142 = [flags for flags in flags_0142 if flags and all(flag is True for flag in flags)]
+    marked_0142 = [
+        flags for flags in flags_0142 if flags and all(flag is True for flag in flags)
+    ]
     false_markers_0142 = sum(flag is False for flags in flags_0142 for flag in flags)
-    if (len(research) != 57 or len(direct_0142) != 35 or len(marked_0142) != 52
-            or false_markers_0142 != 0):
+    if (
+        len(research) != 57
+        or len(direct_0142) != 35
+        or len(marked_0142) != 52
+        or false_markers_0142 != 0
+    ):
         raise ValueError("SCF-B-0142の件数またはmechanical markerが変化しました")
-    if sum(category(r) == "direct_product_basis"
-           and (flags := mechanical_flags(r))
-           and all(flag is True for flag in flags)
-           for r in research) != 35:
-        raise ValueError("SCF-B-0142 direct 35件のmechanical markerがtrue-onlyではありません")
+    if (
+        sum(
+            category(r) == "direct_product_basis"
+            and (flags := mechanical_flags(r))
+            and all(flag is True for flag in flags)
+            for r in research
+        )
+        != 35
+    ):
+        raise ValueError(
+            "SCF-B-0142 direct 35件のmechanical markerがtrue-onlyではありません"
+        )
 
     config = by_bundle["legacy-config-product-classification-0141"]
     direct_0141 = [r for r in config if category(r) == "direct_product_basis"]
     span_status = "manual_semantic_span_pinned_pending_human_review"
     if len(config) != 41 or len(direct_0141) != 26:
         raise ValueError("SCF-B-0141の件数またはdirect候補数が変化しました")
-    if any(r.get("classification", {}).get("semantic_status") != span_status for r in config):
+    if any(
+        r.get("classification", {}).get("semantic_status") != span_status
+        for r in config
+    ):
         raise ValueError("SCF-B-0141のselected-span statusが変化しました")
 
 
@@ -153,30 +195,40 @@ def project(rows: list[dict]) -> dict:
             str(r["record"].get("formal_asset_classification_updated", "<missing>"))
             for r in occurrences
         )
-        source_exact = sum(isinstance(r["record"].get("source_exact"), dict) for r in occurrences)
-        boundary_material = sum(isinstance(r["record"].get("boundary_evidence"), dict)
-                               for r in occurrences)
+        source_exact = sum(
+            isinstance(r["record"].get("source_exact"), dict) for r in occurrences
+        )
+        boundary_material = sum(
+            isinstance(r["record"].get("boundary_evidence"), dict) for r in occurrences
+        )
         mechanical_true = sum(
-            bool(flags := mechanical_flags(r["record"])) and all(flag is True for flag in flags)
+            bool(flags := mechanical_flags(r["record"]))
+            and all(flag is True for flag in flags)
             for r in occurrences
         )
         mechanical_false = sum(
             flag is False for r in occurrences for flag in mechanical_flags(r["record"])
         )
-        bundle_summaries.append({
-            "bundle": bundle,
-            "binding_id": binding_id,
-            "record_rows": len(occurrences),
-            "unique_asset_ids": len({r["record"]["asset_id"] for r in occurrences}),
-            "extra_duplicate_occurrences_after_first_bundle": duplicate_by_bundle[bundle],
-            "source_exact_records": source_exact,
-            "boundary_comparison_material_records": boundary_material,
-            "declared_category_occurrences": dict(sorted(categories.items())),
-            "semantic_status_occurrences": dict(sorted(semantic_status.items())),
-            "records_with_only_true_mechanical_not_semantic_analysis_markers": mechanical_true,
-            "mechanical_not_semantic_analysis_false_marker_occurrences": mechanical_false,
-            "formal_asset_classification_updated_occurrences": dict(sorted(formal.items())),
-        })
+        bundle_summaries.append(
+            {
+                "bundle": bundle,
+                "binding_id": binding_id,
+                "record_rows": len(occurrences),
+                "unique_asset_ids": len({r["record"]["asset_id"] for r in occurrences}),
+                "extra_duplicate_occurrences_after_first_bundle": duplicate_by_bundle[
+                    bundle
+                ],
+                "source_exact_records": source_exact,
+                "boundary_comparison_material_records": boundary_material,
+                "declared_category_occurrences": dict(sorted(categories.items())),
+                "semantic_status_occurrences": dict(sorted(semantic_status.items())),
+                "records_with_only_true_mechanical_not_semantic_analysis_markers": mechanical_true,
+                "mechanical_not_semantic_analysis_false_marker_occurrences": mechanical_false,
+                "formal_asset_classification_updated_occurrences": dict(
+                    sorted(formal.items())
+                ),
+            }
+        )
 
     direct_occurrences = sum(
         category(row["record"]) == "direct_product_basis" for row in rows
@@ -186,8 +238,10 @@ def project(rows: list[dict]) -> dict:
         # Count a positive only when an existing record explicitly says true.
         # A duplicate ID is positive/negative only when every occurrence agrees;
         # missing fields or conflicting duplicates remain visible as missing/mixed.
-        values = [r["record"].get("formal_asset_classification_updated", "<missing>")
-                  for r in refs]
+        values = [
+            r["record"].get("formal_asset_classification_updated", "<missing>")
+            for r in refs
+        ]
         if all(value is True for value in values):
             formal_by_id["true"] += 1
         elif all(value is False for value in values):
@@ -202,9 +256,10 @@ def project(rows: list[dict]) -> dict:
         "denominator": {
             "record_rows": len(rows),
             "unique_asset_ids": len(by_id),
-            "duplicate_asset_ids": sum(count > 1 for count in Counter(
-                row["record"]["asset_id"] for row in rows
-            ).values()),
+            "duplicate_asset_ids": sum(
+                count > 1
+                for count in Counter(row["record"]["asset_id"] for row in rows).values()
+            ),
             "extra_duplicate_occurrences": sum(len(v) - 1 for v in by_id.values()),
             "legacy_asset_ledger_total": 4020,
             "unique_id_coverage_percent": round(len(by_id) / 4020 * 100, 2),
@@ -220,22 +275,30 @@ def project(rows: list[dict]) -> dict:
                 "0142_records_with_nonempty_all_true_markers": sum(
                     bool(flags := mechanical_flags(r["record"]))
                     and all(flag is True for flag in flags)
-                    for r in by_bundle["legacy-research-assets-product-classification-0142"]
+                    for r in by_bundle[
+                        "legacy-research-assets-product-classification-0142"
+                    ]
                 ),
                 "0142_false_marker_occurrences": sum(
                     flag is False
-                    for r in by_bundle["legacy-research-assets-product-classification-0142"]
+                    for r in by_bundle[
+                        "legacy-research-assets-product-classification-0142"
+                    ]
                     for flag in mechanical_flags(r["record"])
                 ),
                 "0142_direct_product_basis_occurrences": sum(
                     category(r["record"]) == "direct_product_basis"
-                    for r in by_bundle["legacy-research-assets-product-classification-0142"]
+                    for r in by_bundle[
+                        "legacy-research-assets-product-classification-0142"
+                    ]
                 ),
                 "0142_direct_occurrences_with_mechanical_marker": sum(
                     category(r["record"]) == "direct_product_basis"
                     and bool(flags := mechanical_flags(r["record"]))
                     and all(flag is True for flag in flags)
-                    for r in by_bundle["legacy-research-assets-product-classification-0142"]
+                    for r in by_bundle[
+                        "legacy-research-assets-product-classification-0142"
+                    ]
                 ),
                 "meaning": "profile/path-group first pass; marker explicitly denies semantic analysis",
             },
@@ -260,7 +323,9 @@ def project(rows: list[dict]) -> dict:
                 ),
                 "0142_records_with_boundary_evidence_object": sum(
                     isinstance(r["record"].get("boundary_evidence"), dict)
-                    for r in by_bundle["legacy-research-assets-product-classification-0142"]
+                    for r in by_bundle[
+                        "legacy-research-assets-product-classification-0142"
+                    ]
                 ),
                 "meaning": "comparison material is present in records; its presence alone does not establish semantic review, owner, or adoption",
             },
@@ -274,12 +339,13 @@ def project(rows: list[dict]) -> dict:
         },
         "bundles": bundle_summaries,
         "duplicate_accounting": {
-            "asset_ids_with_multiple_bundle_occurrences": sum(n > 1 for n in Counter(
-                r["record"]["asset_id"] for r in rows
-            ).values()),
+            "asset_ids_with_multiple_bundle_occurrences": sum(
+                n > 1 for n in Counter(r["record"]["asset_id"] for r in rows).values()
+            ),
             "extra_duplicate_occurrences": sum(len(v) - 1 for v in by_id.values()),
             "extra_duplicate_occurrences_by_bundle_after_first_bundle": dict(
-                (bundle, duplicate_by_bundle[bundle]) for bundle, _ in BUNDLES
+                (bundle, duplicate_by_bundle[bundle])
+                for bundle, _ in BUNDLES
                 if duplicate_by_bundle[bundle]
             ),
             "occurrence_rows_retained_in_source_bundles": len(rows),
@@ -295,15 +361,21 @@ def project(rows: list[dict]) -> dict:
 
 
 def encode(value: dict) -> bytes:
-    return (json.dumps(value, ensure_ascii=False, indent=2, sort_keys=False) + "\n").encode()
+    return (
+        json.dumps(value, ensure_ascii=False, indent=2, sort_keys=False) + "\n"
+    ).encode()
 
 
 def main() -> int:
     parser = argparse.ArgumentParser()
     mode = parser.add_mutually_exclusive_group(required=True)
     mode.add_argument("--write", action="store_true", help="projection.jsonを再生成")
-    mode.add_argument("--check", action="store_true", help="保存projectionとの一致を確認")
-    mode.add_argument("--selfcheck", action="store_true", help="機械／semantic境界の否定例を確認")
+    mode.add_argument(
+        "--check", action="store_true", help="保存projectionとの一致を確認"
+    )
+    mode.add_argument(
+        "--selfcheck", action="store_true", help="機械／semantic境界の否定例を確認"
+    )
     args = parser.parse_args()
     try:
         rows = load_rows()
@@ -315,11 +387,14 @@ def main() -> int:
         elif args.check:
             if not OUT.exists() or OUT.read_bytes() != payload:
                 raise ValueError("projection.jsonが再生成結果と一致しません")
-            print("projection: pass (768 rows / 726 unique IDs; 42 duplicate occurrences)")
+            print(
+                "projection: pass (768 rows / 726 unique IDs; 42 duplicate occurrences)"
+            )
         else:
             changed = copy.deepcopy(rows)
             target = next(
-                r["record"] for r in changed
+                r["record"]
+                for r in changed
                 if r["bundle"] == "legacy-research-assets-product-classification-0142"
                 and category(r["record"]) == "direct_product_basis"
             )
@@ -340,13 +415,16 @@ def main() -> int:
             except ValueError as exc:
                 if "classificationはobject" not in str(exc):
                     raise
-                print("negative check: pass (non-object classification rejected as ValueError)")
+                print(
+                    "negative check: pass (non-object classification rejected as ValueError)"
+                )
             else:
                 raise ValueError("non-object classificationを拒否できませんでした")
 
             malformed_marker = copy.deepcopy(rows)
             marked = next(
-                r["record"] for r in malformed_marker
+                r["record"]
+                for r in malformed_marker
                 if "formal_asset_classification_updated" in r["record"]
             )
             marked["formal_asset_classification_updated"] = 1
@@ -360,12 +438,19 @@ def main() -> int:
                 raise ValueError("numeric formal update markerを拒否できませんでした")
 
             duplicate_counts = Counter(r["record"]["asset_id"] for r in rows)
-            duplicate_id = next(asset_id for asset_id, count in duplicate_counts.items() if count > 1)
+            duplicate_id = next(
+                asset_id for asset_id, count in duplicate_counts.items() if count > 1
+            )
             conflicting_duplicates = copy.deepcopy(rows)
-            duplicate_refs = [r["record"] for r in conflicting_duplicates
-                              if r["record"]["asset_id"] == duplicate_id]
-            original_values = [record.get("formal_asset_classification_updated", "<missing>")
-                               for record in duplicate_refs]
+            duplicate_refs = [
+                r["record"]
+                for r in conflicting_duplicates
+                if r["record"]["asset_id"] == duplicate_id
+            ]
+            original_values = [
+                record.get("formal_asset_classification_updated", "<missing>")
+                for record in duplicate_refs
+            ]
             if all(value is True for value in original_values):
                 original_state = "true"
             elif all(value is False for value in original_values):
@@ -376,14 +461,20 @@ def main() -> int:
                 record["formal_asset_classification_updated"] = True
             duplicate_refs[-1]["formal_asset_classification_updated"] = False
             mixed_result = project(conflicting_duplicates)
-            mixed_counts = mixed_result["depth_projection"]["formal_classification_update"]
+            mixed_counts = mixed_result["depth_projection"][
+                "formal_classification_update"
+            ]
             baseline_counts = result["depth_projection"]["formal_classification_update"]
             expected_missing = baseline_counts["unique_ids_missing_or_mixed"]
             if original_state != "missing_or_mixed":
                 expected_missing += 1
             if mixed_counts["unique_ids_missing_or_mixed"] != expected_missing:
-                raise ValueError("conflicting duplicate markerをmissing_or_mixedに分類できませんでした")
-            print("negative check: pass (conflicting duplicate markers remain missing_or_mixed)")
+                raise ValueError(
+                    "conflicting duplicate markerをmissing_or_mixedに分類できませんでした"
+                )
+            print(
+                "negative check: pass (conflicting duplicate markers remain missing_or_mixed)"
+            )
     except (OSError, json.JSONDecodeError, KeyError, TypeError, ValueError) as exc:
         print(f"evidence-depth projection: FAIL: {exc}", file=sys.stderr)
         return 1

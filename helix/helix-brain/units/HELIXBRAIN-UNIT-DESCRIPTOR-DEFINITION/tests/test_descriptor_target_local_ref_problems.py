@@ -11,9 +11,7 @@ from descriptor_definitions import validate_supply_input
 from identity_input_fixtures import _same_ref_without_digest, _write_source_content
 
 
-TARGET_REF_UNRESOLVED_REASON = (
-    "owner原target Refの比較必須memberが未供給/null/型外である。対応するtargetを補完しない。"
-)
+TARGET_REF_UNRESOLVED_REASON = "owner原target Refの比較必須memberが未供給/null/型外である。対応するtargetを補完しない。"
 
 
 def _sync_source_content(raw, source, content):
@@ -22,7 +20,8 @@ def _sync_source_content(raw, source, content):
     new_ref = copy.deepcopy(source["ref"])
     for record in raw.get("knowledge_records", []):
         record["provenance_refs"] = [
-            copy.deepcopy(new_ref) if _same_ref_without_digest(ref, old_ref)
+            copy.deepcopy(new_ref)
+            if _same_ref_without_digest(ref, old_ref)
             else copy.deepcopy(ref)
             for ref in record.get("provenance_refs", [])
         ]
@@ -68,17 +67,27 @@ class TestDescriptorTargetLocalRefProblems(unittest.TestCase):
                     content["descriptor_targets"],
                 )
                 self.assertEqual(len(actual["matches"]), 1)
-                self.assertEqual(actual["matches"][0]["target_ref"], raw["claims"][0]["subject_ref"])
+                self.assertEqual(
+                    actual["matches"][0]["target_ref"], raw["claims"][0]["subject_ref"]
+                )
                 self.assertEqual(
                     actual["matches"][0]["declaration_locators"],
                     ["/sources/0/content/descriptor_targets/0"],
                 )
-                self.assertEqual(actual["problems"], [{
-                    "kind": "target_ref_unresolved",
-                    "locator": "/sources/0/content/descriptor_targets/1/target_ref",
-                    "reason": TARGET_REF_UNRESOLVED_REASON,
-                    "source_ref": {"presence": "supplied", "value": raw["sources"][0]["ref"]},
-                }])
+                self.assertEqual(
+                    actual["problems"],
+                    [
+                        {
+                            "kind": "target_ref_unresolved",
+                            "locator": "/sources/0/content/descriptor_targets/1/target_ref",
+                            "reason": TARGET_REF_UNRESOLVED_REASON,
+                            "source_ref": {
+                                "presence": "supplied",
+                                "value": raw["sources"][0]["ref"],
+                            },
+                        }
+                    ],
+                )
 
 
 if __name__ == "__main__":

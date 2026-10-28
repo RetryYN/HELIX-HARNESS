@@ -33,6 +33,8 @@ MISSING_KINDS = (
     ("downstream kind", "descriptor_14_missing", 48),
     ("supersession", "descriptor_15_missing", 51),
 )
+
+
 def _validate(raw: dict) -> dict:
     raw_before = copy.deepcopy(raw)
     validated = validate_supply_input(raw)
@@ -64,53 +66,70 @@ class TestDescriptorWalkScopeBoundaries(unittest.TestCase):
         self.assertEqual(comparison["producer_symbol"], PRODUCER)
         self.assertEqual(comparison["input_binding"], raw["binding"])
         self.assertEqual(raw["required_descriptor_kinds"], required_kinds)
-        self.assertEqual(validated["input"]["required_descriptor_kinds"], required_kinds)
+        self.assertEqual(
+            validated["input"]["required_descriptor_kinds"], required_kinds
+        )
         self.assertEqual(raw["descriptors"], retained_slots)
         self.assertEqual(validated["input"]["descriptors"], retained_slots)
         self.assertEqual(comparison["findings"], [])
-        self.assertFalse(any(
-            row["axis"].startswith("template identity")
-            for row in comparison["axes"]
-        ))
+        self.assertFalse(
+            any(
+                row["axis"].startswith("template identity")
+                for row in comparison["axes"]
+            )
+        )
 
         assessments = walk["evaluation"]["assessments"]
         origins = walk["native_material"]["judgment_origins"]
-        self.assertFalse(any(
-            row["key"]["descriptor_kind"] == "template identity"
-            for row in assessments
-        ))
-        self.assertFalse(any(
-            row["assessment_key"]["descriptor_kind"] == "template identity"
-            for row in origins
-        ))
-        self.assertFalse(any(row["branch"] == "required_slot_absent" for row in origins))
+        self.assertFalse(
+            any(
+                row["key"]["descriptor_kind"] == "template identity"
+                for row in assessments
+            )
+        )
+        self.assertFalse(
+            any(
+                row["assessment_key"]["descriptor_kind"] == "template identity"
+                for row in origins
+            )
+        )
+        self.assertFalse(
+            any(row["branch"] == "required_slot_absent" for row in origins)
+        )
 
         # The other 14 raw slots still exist. Their primary definition results
         # are source_unresolved/unknown, not missing-slot events.
-        self.assertCountEqual([slot["descriptor_kind"] for slot in retained_slots], required_kinds)
+        self.assertCountEqual(
+            [slot["descriptor_kind"] for slot in retained_slots], required_kinds
+        )
         self.assertEqual(len(retained_slots), 14)
         for slot_index, slot in enumerate(retained_slots):
             kind = slot["descriptor_kind"]
             axis_name = f"{kind}.definition"
             slot_locator = f"/descriptors/{slot_index}"
             axis_positions = [
-                i for i, row in enumerate(comparison["axes"])
+                i
+                for i, row in enumerate(comparison["axes"])
                 if row["axis"] == axis_name and row["state"] == "unknown"
             ]
             self.assertEqual(len(axis_positions), len(slot["facts"]))
             matching_assessments = [
-                row for row in assessments
+                row
+                for row in assessments
                 if row["axis_name"] == axis_name
                 and row["key"]["descriptor_kind"] == kind
-                and row["key"]["slot_identity"] == {
-                    "presence": "supplied", "value": slot["slot_identity"],
+                and row["key"]["slot_identity"]
+                == {
+                    "presence": "supplied",
+                    "value": slot["slot_identity"],
                 }
             ]
             self.assertEqual(len(matching_assessments), len(slot["facts"]))
             for fact_index, _fact in enumerate(slot["facts"]):
                 fact_locator = f"{slot_locator}/facts/{fact_index}"
                 fact_assessments = [
-                    row for row in matching_assessments
+                    row
+                    for row in matching_assessments
                     if row["fact_locators"] == [fact_locator]
                 ]
                 self.assertEqual(len(fact_assessments), 1)
@@ -127,7 +146,8 @@ class TestDescriptorWalkScopeBoundaries(unittest.TestCase):
                 self.assertEqual(axis["axis"], axis_name)
 
                 matching_origins = [
-                    row for row in origins
+                    row
+                    for row in origins
                     if row["axis_name"] == axis_name
                     and row["assessment_key"] == assessment["key"]
                     and row["fact_locators"] == [fact_locator]
@@ -155,16 +175,26 @@ class TestDescriptorWalkScopeBoundaries(unittest.TestCase):
         claim = raw["claims"][0]
         claim["kind"] = "project_obligation_discharge"
         claim["proposed_value"] = True
-        self.assertEqual(set(claim), {
-            "subject_ref", "binding", "actor", "kind", "proposed_value", "basis_refs",
-        })
+        self.assertEqual(
+            set(claim),
+            {
+                "subject_ref",
+                "binding",
+                "actor",
+                "kind",
+                "proposed_value",
+                "basis_refs",
+            },
+        )
         raw_before = copy.deepcopy(raw)
         validated = _validate(raw)
         validated_before = copy.deepcopy(validated)
 
         control_raw = copy.deepcopy(raw)
         control_raw["claims"] = []
-        control_walk = evaluate_descriptor_definition_walk({"validated": _validate(control_raw)})
+        control_walk = evaluate_descriptor_definition_walk(
+            {"validated": _validate(control_raw)}
+        )
         try:
             walk = evaluate_descriptor_definition_walk({"validated": validated})
             self.assertEqual(walk, control_walk)

@@ -19,8 +19,7 @@ from supply_input_fixtures import base_input, load_document
 
 BACKFLOW = "Backflow HELIXBRAIN-L6-032-N03-PATH"
 RAW_DISTINCT_FRAME_STOP = (
-    "F01/F02/unclosed/definition_meaning_walk/raw_distinct_binding_frames; "
-    + BACKFLOW
+    "F01/F02/unclosed/definition_meaning_walk/raw_distinct_binding_frames; " + BACKFLOW
 )
 
 
@@ -50,7 +49,9 @@ def _distinct_root_slot_raw(candidate_present: bool):
 def _walk(raw):
     validated = validate_supply_input(raw)
     if validated["input"] is None or validated["input_issues"]:
-        raise AssertionError("setup: the selected typed input must decode with no issues")
+        raise AssertionError(
+            "setup: the selected typed input must decode with no issues"
+        )
     return evaluate_descriptor_definition_walk({"validated": validated})
 
 
@@ -58,7 +59,9 @@ class TestDescriptorDefinitionWalkPopulationStops(unittest.TestCase):
     def _assert_raw_distinct_stop(self, raw):
         raw_before = copy.deepcopy(raw)
         validated = validate_supply_input(raw)
-        self.assertIsInstance(validated["input"], dict, "setup: fn0 accepts the typed input")
+        self.assertIsInstance(
+            validated["input"], dict, "setup: fn0 accepts the typed input"
+        )
         self.assertEqual(validated["input_issues"], [])
 
         root_template = raw["binding"]["template_ref"]

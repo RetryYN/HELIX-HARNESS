@@ -17,14 +17,22 @@ from pathlib import Path
 
 
 ROOT = Path(__file__).resolve().parents[3]
-DEFAULT_MANIFEST = ROOT / "scaffold/research/pre-isolation/rdp001-revision-coherence-6path.json"
+DEFAULT_MANIFEST = (
+    ROOT / "scaffold/research/pre-isolation/rdp001-revision-coherence-6path.json"
+)
 HOLDING_REL = "docs/governance/pre-isolation-revision-delta-source-holding.jsonl"
 SHA256 = re.compile(r"^[0-9a-f]{64}$")
 OID = re.compile(r"^[0-9a-f]{40}$")
 
 EXPECTED = {
-    "PREISO-REV-000001": ("config/workflow-classification-catalog.v1.json", "other_legacy_asset"),
-    "PREISO-REV-000002": ("config/workflow-execution-policy.v1.json", "other_legacy_asset"),
+    "PREISO-REV-000001": (
+        "config/workflow-classification-catalog.v1.json",
+        "other_legacy_asset",
+    ),
+    "PREISO-REV-000002": (
+        "config/workflow-execution-policy.v1.json",
+        "other_legacy_asset",
+    ),
     "PREISO-REV-000015": (
         "docs/design/helix/L3-requirements/workflow-classification-registry.v1.json",
         "requirement_or_prototype_source",
@@ -33,8 +41,14 @@ EXPECTED = {
         "docs/design/helix/L3-requirements/workflow-execution-policy-registry.v1.json",
         "requirement_or_prototype_source",
     ),
-    "PREISO-REV-000026": ("docs/governance/helix-harness-requirements_v1.3.md", "core_upstream_source"),
-    "PREISO-REV-000060": ("docs/plans/PLAN-L3-82-authority-vocabulary-separation.md", "legacy_plan_source"),
+    "PREISO-REV-000026": (
+        "docs/governance/helix-harness-requirements_v1.3.md",
+        "core_upstream_source",
+    ),
+    "PREISO-REV-000060": (
+        "docs/plans/PLAN-L3-82-authority-vocabulary-separation.md",
+        "legacy_plan_source",
+    ),
 }
 EXPECTED_METADATA = {
     "PREISO-REV-000015": {
@@ -159,12 +173,16 @@ def load_holding(path: Path, errors: list[str]) -> dict[str, dict]:
     return records
 
 
-def check_digest_field(errors: list[str], value: object, label: str, pattern: re.Pattern[str]) -> None:
+def check_digest_field(
+    errors: list[str], value: object, label: str, pattern: re.Pattern[str]
+) -> None:
     if not isinstance(value, str) or not pattern.fullmatch(value):
         fail(errors, f"{label}の形式不正")
 
 
-def git_blob_bytes(commit: str, source_path: str, label: str, errors: list[str]) -> bytes | None:
+def git_blob_bytes(
+    commit: str, source_path: str, label: str, errors: list[str]
+) -> bytes | None:
     """既知commitのblobをread-onlyで取得する。shell/runtimeは起動しない。"""
     result = subprocess.run(
         ["git", "cat-file", "blob", f"{commit}:{source_path}"],
@@ -184,8 +202,14 @@ def git_blob_oid(blob: bytes) -> str:
     return hashlib.sha1(header + blob).hexdigest()
 
 
-def check_blob_revision(errors: list[str], item_id: str, revision_name: str, blob: bytes,
-                        expected_sha: str, expected_oid: str) -> None:
+def check_blob_revision(
+    errors: list[str],
+    item_id: str,
+    revision_name: str,
+    blob: bytes,
+    expected_sha: str,
+    expected_oid: str,
+) -> None:
     actual_sha = hashlib.sha256(blob).hexdigest()
     if actual_sha != expected_sha:
         fail(errors, f"{item_id} {revision_name} file SHA-256不一致: {actual_sha}")
@@ -207,7 +231,9 @@ def json_field(value: object, dotted_path: str) -> object:
 
 
 def main() -> int:
-    parser = argparse.ArgumentParser(description="RDP-001 PREISOLATION 6-path static coherence check")
+    parser = argparse.ArgumentParser(
+        description="RDP-001 PREISOLATION 6-path static coherence check"
+    )
     parser.add_argument("--manifest", type=Path, default=DEFAULT_MANIFEST)
     args = parser.parse_args()
     errors: list[str] = []
@@ -224,7 +250,10 @@ def main() -> int:
         actual_holding_digest = digest(holding_path)
         declared_holding_digest = manifest.get("holding", {}).get("sha256")
         if declared_holding_digest != actual_holding_digest:
-            fail(errors, f"holding台帳digest不一致: declared={declared_holding_digest} actual={actual_holding_digest}")
+            fail(
+                errors,
+                f"holding台帳digest不一致: declared={declared_holding_digest} actual={actual_holding_digest}",
+            )
 
     if manifest.get("schema") != "helix-scaffold-preisolation-revision-coherence.v1":
         fail(errors, "manifest schema不正")
@@ -238,7 +267,10 @@ def main() -> int:
         fail(errors, "diff_scopeはselected_source_items_onlyに固定する")
     if manifest.get("diff_scope_note") != DIFF_SCOPE_NOTE:
         fail(errors, "diff_scope_noteが6 path／9 hunkの限定を明示していない")
-    if manifest.get("product_boundary", {}).get("sources") != EXPECTED_PRODUCT_BOUNDARY_SOURCES:
+    if (
+        manifest.get("product_boundary", {}).get("sources")
+        != EXPECTED_PRODUCT_BOUNDARY_SOURCES
+    ):
         fail(errors, "product boundary sourceの固定集合またはdigestが不一致")
     if manifest.get("revision_contract") != EXPECTED_REVISION_CONTRACT:
         fail(errors, "revision_contractが候補境界の9項目と完全一致しない")
@@ -302,24 +334,47 @@ def main() -> int:
         ):
             if entry.get(field) != revision_contract.get(field):
                 fail(errors, f"{item_id} path fieldとrevision_contract.{field}が不一致")
-        if item_id in EXPECTED_METADATA and entry.get("declared_metadata") != EXPECTED_METADATA[item_id]:
+        if (
+            item_id in EXPECTED_METADATA
+            and entry.get("declared_metadata") != EXPECTED_METADATA[item_id]
+        ):
             fail(errors, f"{item_id} declared_metadata不一致")
         record = holding.get(item_id)
         if record is None:
             fail(errors, f"holding台帳に欠落: {item_id}")
             continue
-        for field in ("source_path", "archive_path", "source_category", "baseline_commit", "pre_isolation_commit", "archive_commit",
-                      "revision_relation", "baseline_revision_state", "pre_isolation_revision_state",
-                      "meaning_change_applied", "successor_requirement_ids", "human_decision_ref", "authority_effect"):
+        for field in (
+            "source_path",
+            "archive_path",
+            "source_category",
+            "baseline_commit",
+            "pre_isolation_commit",
+            "archive_commit",
+            "revision_relation",
+            "baseline_revision_state",
+            "pre_isolation_revision_state",
+            "meaning_change_applied",
+            "successor_requirement_ids",
+            "human_decision_ref",
+            "authority_effect",
+        ):
             if entry.get(field) is not None and entry.get(field) != record.get(field):
                 fail(errors, f"{item_id} manifest/holding {field}不一致")
         if record.get("revision_relation") != REVISION_RELATION:
             fail(errors, f"{item_id} revision_relation不一致")
-        if record.get("baseline_revision_state") != "preserved_git_revision_pending_review":
+        if (
+            record.get("baseline_revision_state")
+            != "preserved_git_revision_pending_review"
+        ):
             fail(errors, f"{item_id} baseline_revision_state不一致")
-        if record.get("pre_isolation_revision_state") != "preserved_archive_revision_pending_review":
+        if (
+            record.get("pre_isolation_revision_state")
+            != "preserved_archive_revision_pending_review"
+        ):
             fail(errors, f"{item_id} pre_isolation_revision_state不一致")
-        expected_archive_path = "archive/legacy-generation-2026-09-14/root/" + source_path
+        expected_archive_path = (
+            "archive/legacy-generation-2026-09-14/root/" + source_path
+        )
         if entry.get("archive_path") != expected_archive_path:
             fail(errors, f"{item_id} archive_pathがsource_pathのsnapshotではない")
         for revision_name in ("baseline", "pre_isolation"):
@@ -333,8 +388,18 @@ def main() -> int:
                 fail(errors, f"{item_id} {revision_name}.blob_oid不一致")
             if revision.get("file_sha256") != record.get(sha_key):
                 fail(errors, f"{item_id} {revision_name}.file_sha256不一致")
-            check_digest_field(errors, revision.get("blob_oid"), f"{item_id} {revision_name}.blob_oid", OID)
-            check_digest_field(errors, revision.get("file_sha256"), f"{item_id} {revision_name}.file_sha256", SHA256)
+            check_digest_field(
+                errors,
+                revision.get("blob_oid"),
+                f"{item_id} {revision_name}.blob_oid",
+                OID,
+            )
+            check_digest_field(
+                errors,
+                revision.get("file_sha256"),
+                f"{item_id} {revision_name}.file_sha256",
+                SHA256,
+            )
 
             revision_blob = git_blob_bytes(
                 record.get(commit_key, ""),
@@ -351,19 +416,35 @@ def main() -> int:
                     record.get(sha_key, ""),
                     record.get(oid_key, ""),
                 )
-                if revision_name == "pre_isolation" and item_id in {"PREISO-REV-000001", "PREISO-REV-000002", "PREISO-REV-000015", "PREISO-REV-000016"}:
+                if revision_name == "pre_isolation" and item_id in {
+                    "PREISO-REV-000001",
+                    "PREISO-REV-000002",
+                    "PREISO-REV-000015",
+                    "PREISO-REV-000016",
+                }:
                     try:
                         parsed = json.loads(revision_blob.decode("utf-8"))
                         pre_isolation_json[item_id] = parsed
-                        for metadata_key, expected_metadata_value in EXPECTED_METADATA.get(item_id, {}).items():
+                        for (
+                            metadata_key,
+                            expected_metadata_value,
+                        ) in EXPECTED_METADATA.get(item_id, {}).items():
                             metadata_path = METADATA_PATHS[item_id][metadata_key]
                             actual_metadata_value = json_field(parsed, metadata_path)
                             if actual_metadata_value is MISSING:
-                                fail(errors, f"{item_id} pre-isolation metadata fieldが未定義: {metadata_path}")
+                                fail(
+                                    errors,
+                                    f"{item_id} pre-isolation metadata fieldが未定義: {metadata_path}",
+                                )
                             elif actual_metadata_value != expected_metadata_value:
-                                fail(errors, f"{item_id} pre-isolation metadata値不一致: {metadata_key}")
+                                fail(
+                                    errors,
+                                    f"{item_id} pre-isolation metadata値不一致: {metadata_key}",
+                                )
                     except (UnicodeDecodeError, json.JSONDecodeError) as exc:
-                        fail(errors, f"{item_id} pre-isolation consumer JSON不正: {exc}")
+                        fail(
+                            errors, f"{item_id} pre-isolation consumer JSON不正: {exc}"
+                        )
 
         archive_blob = git_blob_bytes(
             record.get("archive_commit", ""),
@@ -379,11 +460,22 @@ def main() -> int:
         )
         if archive_blob is not None and pre_isolation_blob is not None:
             if archive_blob != pre_isolation_blob:
-                fail(errors, f"{item_id} archive snapshotとpre-isolation blobがbyte不一致")
+                fail(
+                    errors,
+                    f"{item_id} archive snapshotとpre-isolation blobがbyte不一致",
+                )
             if git_blob_oid(archive_blob) != record.get("pre_isolation_blob_oid"):
-                fail(errors, f"{item_id} archive snapshotのblob OIDがpre-isolationと不一致")
-            if hashlib.sha256(archive_blob).hexdigest() != record.get("pre_isolation_file_sha256"):
-                fail(errors, f"{item_id} archive snapshotのSHA-256がpre-isolationと不一致")
+                fail(
+                    errors,
+                    f"{item_id} archive snapshotのblob OIDがpre-isolationと不一致",
+                )
+            if hashlib.sha256(archive_blob).hexdigest() != record.get(
+                "pre_isolation_file_sha256"
+            ):
+                fail(
+                    errors,
+                    f"{item_id} archive snapshotのSHA-256がpre-isolationと不一致",
+                )
 
     if manifest_ids != set(EXPECTED):
         fail(errors, f"manifest対象ID集合不一致: {sorted(manifest_ids)}")
@@ -392,7 +484,10 @@ def main() -> int:
         if record is None:
             fail(errors, f"holding台帳の必須6行が欠落: {item_id}")
             continue
-        if record.get("source_path") != source_path or record.get("source_category") != source_category:
+        if (
+            record.get("source_path") != source_path
+            or record.get("source_category") != source_category
+        ):
             fail(errors, f"holding台帳の対象path/category不一致: {item_id}")
 
     for source in manifest.get("product_boundary", {}).get("sources", []):
@@ -451,12 +546,18 @@ def main() -> int:
         fail(errors, "registry_provenanceはlistでなければならない")
         edges = []
     for edge in edges:
-        key = (edge.get("consumer_item_id"), edge.get("source_item_id"), edge.get("relation"))
+        key = (
+            edge.get("consumer_item_id"),
+            edge.get("source_item_id"),
+            edge.get("relation"),
+        )
         actual_edges.add(key)
         if key not in expected_edges:
             fail(errors, f"registry provenance edgeが不正: {key}")
         else:
-            expected_path_field, expected_digest_field, expected_path_value = expected_edges[key]
+            expected_path_field, expected_digest_field, expected_path_value = (
+                expected_edges[key]
+            )
             if edge.get("consumer_declared_path_field") != expected_path_field:
                 fail(errors, f"registry provenance path field不一致: {key}")
             if edge.get("consumer_declared_digest_field") != expected_digest_field:
@@ -464,33 +565,56 @@ def main() -> int:
             if edge.get("source_path_value") != expected_path_value:
                 fail(errors, f"registry provenance source path value不一致: {key}")
             source_record = holding.get(edge.get("source_item_id"), {})
-            expected_digest = "sha256:" + str(source_record.get("pre_isolation_file_sha256", ""))
+            expected_digest = "sha256:" + str(
+                source_record.get("pre_isolation_file_sha256", "")
+            )
             if edge.get("source_digest_value") != expected_digest:
                 fail(errors, f"registry provenance source digest value不一致: {key}")
             consumer = pre_isolation_json.get(edge.get("consumer_item_id"), MISSING)
             if consumer is MISSING:
-                fail(errors, f"registry provenance consumerのpre-isolation JSONが未取得: {key}")
+                fail(
+                    errors,
+                    f"registry provenance consumerのpre-isolation JSONが未取得: {key}",
+                )
             else:
                 path_field = edge.get("consumer_declared_path_field")
                 path_value = edge.get("source_path_value")
                 if path_field is None:
                     if path_value is not None:
-                        fail(errors, f"registry provenance path fieldなしなのにpath値がある: {key}")
+                        fail(
+                            errors,
+                            f"registry provenance path fieldなしなのにpath値がある: {key}",
+                        )
                 else:
                     actual_path = json_field(consumer, path_field)
                     if actual_path is MISSING:
-                        fail(errors, f"registry provenance consumer path fieldが未定義: {key} field={path_field}")
+                        fail(
+                            errors,
+                            f"registry provenance consumer path fieldが未定義: {key} field={path_field}",
+                        )
                     elif actual_path != path_value:
-                        fail(errors, f"registry provenance consumer path値不一致: {key}")
+                        fail(
+                            errors, f"registry provenance consumer path値不一致: {key}"
+                        )
                 digest_field = edge.get("consumer_declared_digest_field")
-                actual_digest = json_field(consumer, digest_field) if isinstance(digest_field, str) else MISSING
+                actual_digest = (
+                    json_field(consumer, digest_field)
+                    if isinstance(digest_field, str)
+                    else MISSING
+                )
                 if actual_digest is MISSING:
-                    fail(errors, f"registry provenance consumer digest fieldが未定義: {key} field={digest_field}")
+                    fail(
+                        errors,
+                        f"registry provenance consumer digest fieldが未定義: {key} field={digest_field}",
+                    )
                 elif actual_digest != edge.get("source_digest_value"):
                     fail(errors, f"registry provenance consumer digest値不一致: {key}")
         if edge.get("status") != "declared_in_pre_isolation_revision_pending_review":
             fail(errors, f"registry provenance status不一致: {key}")
-        if edge.get("consumer_item_id") not in EXPECTED or edge.get("source_item_id") not in EXPECTED:
+        if (
+            edge.get("consumer_item_id") not in EXPECTED
+            or edge.get("source_item_id") not in EXPECTED
+        ):
             fail(errors, f"registry provenanceが未知IDを参照: {key}")
     if actual_edges != set(expected_edges):
         fail(errors, "registry provenance edge集合が不足または過剰")
@@ -500,7 +624,9 @@ def main() -> int:
         for error in errors:
             print(f"- {error}")
         return 1
-    print("PASS: RDP-001 PREISOLATION 6-path coherence (read-only static candidate check)")
+    print(
+        "PASS: RDP-001 PREISOLATION 6-path coherence (read-only static candidate check)"
+    )
     print(
         "diff_scope=selected_source_items_only; paths=6; hunks=9; "
         f"authority_effect={manifest.get('authority_effect')}; "

@@ -29,7 +29,9 @@ class TestDescriptorOwnerUnresolvedRef(unittest.TestCase):
         raw_before = copy.deepcopy(raw)
 
         validated = validate_supply_input(raw)
-        self.assertIsNotNone(validated["input"], "setup: FN0 should retain the wire-valid Ref")
+        self.assertIsNotNone(
+            validated["input"], "setup: FN0 should retain the wire-valid Ref"
+        )
         self.assertEqual(validated["input"], raw_before)
         self.assertIn(
             source_ref,
@@ -37,7 +39,8 @@ class TestDescriptorOwnerUnresolvedRef(unittest.TestCase):
             "the unresolved source's exact Ref must be reported as unusable",
         )
         source_issues = [
-            issue for issue in validated["input_issues"]
+            issue
+            for issue in validated["input_issues"]
             if issue.get("locator") == "/sources/2"
         ]
         self.assertEqual(len(source_issues), 1)

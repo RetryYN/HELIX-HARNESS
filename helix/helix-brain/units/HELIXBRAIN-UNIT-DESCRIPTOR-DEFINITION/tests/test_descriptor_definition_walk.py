@@ -25,31 +25,76 @@ WALK_FIELDS = {"evaluation", "native_material", "target_reads", "intent_reads"}
 EVALUATION_FIELDS = {"comparison", "assessments"}
 COMPARISON_FIELDS = {"axes", "findings", "producer_symbol", "input_binding"}
 ASSESSMENT_FIELDS = {
-    "key", "state", "origin_branch", "slot_locators", "fact_locators",
-    "comparison_axis_indices", "comparison_finding_indices", "original_axes", "axis_name",
+    "key",
+    "state",
+    "origin_branch",
+    "slot_locators",
+    "fact_locators",
+    "comparison_axis_indices",
+    "comparison_finding_indices",
+    "original_axes",
+    "axis_name",
 }
 KEY_FIELDS = {"binding", "slot_identity", "descriptor_kind"}
 ORIGIN_FIELDS = {
-    "ordinal", "assessment_key", "branch", "state", "cause", "slot_locators",
-    "fact_locators", "meaning_read_indices", "applicability_read_indices",
-    "subject_ref", "binding", "axis_name", "original_refs", "reason",
-    "backflow_owner", "finding_rule_indices", "sort_source_refs",
-    "special_read_indices", "pair_origin_links", "applicability_judgment_links",
-    "meaning_support_links", "meaning_problem_links", "special_support_links",
+    "ordinal",
+    "assessment_key",
+    "branch",
+    "state",
+    "cause",
+    "slot_locators",
+    "fact_locators",
+    "meaning_read_indices",
+    "applicability_read_indices",
+    "subject_ref",
+    "binding",
+    "axis_name",
+    "original_refs",
+    "reason",
+    "backflow_owner",
+    "finding_rule_indices",
+    "sort_source_refs",
+    "special_read_indices",
+    "pair_origin_links",
+    "applicability_judgment_links",
+    "meaning_support_links",
+    "meaning_problem_links",
+    "special_support_links",
 }
 NATIVE_FIELDS = {
-    "meaning_reads", "applicability_reads", "special_reads", "judgment_origins",
-    "pair_reads", "applicability_judgment_batches", "meaning_read_origins",
+    "meaning_reads",
+    "applicability_reads",
+    "special_reads",
+    "judgment_origins",
+    "pair_reads",
+    "applicability_judgment_batches",
+    "meaning_read_origins",
 }
 MEANING_READ_FIELDS = {
-    "slot_locator", "fact_locator", "binding", "normative_frame", "acquisition_state",
-    "occurrences", "supports", "problems",
+    "slot_locator",
+    "fact_locator",
+    "binding",
+    "normative_frame",
+    "acquisition_state",
+    "occurrences",
+    "supports",
+    "problems",
 }
 MEANING_PROBLEM_FIELDS = {
-    "cause", "source_ref", "source_index", "locator", "original_value", "reason",
+    "cause",
+    "source_ref",
+    "source_index",
+    "locator",
+    "original_value",
+    "reason",
 }
 APPLICABILITY_READ_FIELDS = {
-    "slot_locator", "request", "acquisition_state", "source_occurrences", "supports", "problems",
+    "slot_locator",
+    "request",
+    "acquisition_state",
+    "source_occurrences",
+    "supports",
+    "problems",
 }
 
 
@@ -71,14 +116,20 @@ def _resolve_json_pointer(value, pointer):
 
 
 def _presence(value, supplied=True):
-    return {"presence": "supplied", "value": copy.deepcopy(value)} if supplied else {"presence": "absent"}
+    return (
+        {"presence": "supplied", "value": copy.deepcopy(value)}
+        if supplied
+        else {"presence": "absent"}
+    )
 
 
 class TestDescriptorDefinitionWalk(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         cls.l4 = json.loads(L4_PATH.read_text(encoding="utf-8"))
-        cls.snapshot = cls.l4["definition_meaning_resolution_contract"]["normative_basis_snapshot"]
+        cls.snapshot = cls.l4["definition_meaning_resolution_contract"][
+            "normative_basis_snapshot"
+        ]
 
     def _call(self, raw):
         raw_before = copy.deepcopy(raw)
@@ -89,7 +140,9 @@ class TestDescriptorDefinitionWalk(unittest.TestCase):
 
         # Public fn1 remains a same-v compatibility observation, not the L5 canonical oracle.
         public_fn1 = compare_descriptor_definitions({"validated": validated})
-        self.assertEqual(public_fn1["producer_symbol"], "compare_descriptor_definitions")
+        self.assertEqual(
+            public_fn1["producer_symbol"], "compare_descriptor_definitions"
+        )
         self.assertEqual(public_fn1["input_binding"], raw_before["binding"])
         public_fn1_before = copy.deepcopy(public_fn1)
 
@@ -101,7 +154,8 @@ class TestDescriptorDefinitionWalk(unittest.TestCase):
 
     def _expected_frame(self, descriptor_kind):
         entry = next(
-            entry for entry in self.snapshot["entries"]
+            entry
+            for entry in self.snapshot["entries"]
             if entry["value"]["descriptor"] == descriptor_kind
         )
         return {
@@ -125,10 +179,16 @@ class TestDescriptorDefinitionWalk(unittest.TestCase):
         self.assertEqual(set(native), NATIVE_FIELDS)
         comparison = evaluation["comparison"]
         self.assertEqual(set(comparison), COMPARISON_FIELDS)
-        self.assertEqual(comparison["producer_symbol"], "compare_descriptor_definitions")
+        self.assertEqual(
+            comparison["producer_symbol"], "compare_descriptor_definitions"
+        )
         self.assertEqual(comparison["input_binding"], raw["binding"])
         for member in NATIVE_FIELDS:
-            self.assertIsInstance(native[member], list, f"native member {member} is returned even when empty")
+            self.assertIsInstance(
+                native[member],
+                list,
+                f"native member {member} is returned even when empty",
+            )
 
         assessments = evaluation["assessments"]
         origins = native["judgment_origins"]
@@ -175,10 +235,14 @@ class TestDescriptorDefinitionWalk(unittest.TestCase):
             item for item in assessments if item["axis_name"].endswith(".definition")
         ]
         attribution_assessments = [
-            item for item in assessments if item["axis_name"] == "descriptor.attribution"
+            item
+            for item in assessments
+            if item["axis_name"] == "descriptor.attribution"
         ]
         applicability_assessments = [
-            item for item in assessments if item["axis_name"].endswith(".definition_applicability")
+            item
+            for item in assessments
+            if item["axis_name"].endswith(".definition_applicability")
         ]
         self.assertEqual(
             {fact for item in definition_assessments for fact in item["fact_locators"]},
@@ -187,10 +251,16 @@ class TestDescriptorDefinitionWalk(unittest.TestCase):
         )
         for fact_locator, (slot_locator, slot, _fact) in expected_facts.items():
             fact = _fact
-            rows = [item for item in definition_assessments if fact_locator in item["fact_locators"]]
+            rows = [
+                item
+                for item in definition_assessments
+                if fact_locator in item["fact_locators"]
+            ]
             self.assertEqual(len(rows), 1)
             self.assertEqual(rows[0]["slot_locators"], [slot_locator])
-            self.assertEqual(rows[0]["axis_name"], f"{slot['descriptor_kind']}.definition")
+            self.assertEqual(
+                rows[0]["axis_name"], f"{slot['descriptor_kind']}.definition"
+            )
             self.assertEqual(rows[0]["state"], "unknown")
             self.assertEqual(rows[0]["origin_branch"], "source_unresolved")
             self.assertEqual(len(rows[0]["original_axes"]), 1)
@@ -211,7 +281,11 @@ class TestDescriptorDefinitionWalk(unittest.TestCase):
             "attribution events remain separate from definition events",
         )
         self.assertEqual(
-            {loc for item in applicability_assessments for loc in item["slot_locators"]},
+            {
+                loc
+                for item in applicability_assessments
+                for loc in item["slot_locators"]
+            },
             set(expected_slots),
             "each explicit-null applicability request produces its own NA event",
         )
@@ -219,17 +293,28 @@ class TestDescriptorDefinitionWalk(unittest.TestCase):
             self.assertEqual(item["state"], "unknown")
             self.assertEqual(item["origin_branch"], "source_unresolved")
             slot_locator = item["slot_locators"][0]
-            self.assertEqual(item["axis_name"], f"{expected_kinds[slot_locator]}.definition_applicability")
+            self.assertEqual(
+                item["axis_name"],
+                f"{expected_kinds[slot_locator]}.definition_applicability",
+            )
 
         meaning_reads = native["meaning_reads"]
         self.assertEqual(len(meaning_reads), len(expected_facts))
         self.assertEqual(
             {(read["slot_locator"], read["fact_locator"]) for read in meaning_reads},
-            {(slot_locator, fact_locator) for fact_locator, (slot_locator, _slot, _fact) in expected_facts.items()},
+            {
+                (slot_locator, fact_locator)
+                for fact_locator, (slot_locator, _slot, _fact) in expected_facts.items()
+            },
         )
         for read in meaning_reads:
             self.assertEqual(set(read), MEANING_READ_FIELDS)
-            self.assertEqual(read["normative_frame"], self._expected_frame(expected_facts[read["fact_locator"]][1]["descriptor_kind"]))
+            self.assertEqual(
+                read["normative_frame"],
+                self._expected_frame(
+                    expected_facts[read["fact_locator"]][1]["descriptor_kind"]
+                ),
+            )
             self.assertEqual(read["acquisition_state"], "unknown")
             self.assertEqual(read["occurrences"], [])
             self.assertEqual(read["supports"], [])
@@ -238,16 +323,24 @@ class TestDescriptorDefinitionWalk(unittest.TestCase):
             self.assertEqual(set(problem), MEANING_PROBLEM_FIELDS)
             self.assertEqual(problem["cause"], expected_meaning_cause)
             self.assertEqual(problem["source_index"], 0)
-            self.assertEqual(problem["reason"], (
-                "当該原source又はその既存owner資格を解決できない。"
-                if expected_meaning_cause == "source_unresolved"
-                else "当該原sourceの要求されたcarrier memberが供給されていない。"
-            ))
+            self.assertEqual(
+                problem["reason"],
+                (
+                    "当該原source又はその既存owner資格を解決できない。"
+                    if expected_meaning_cause == "source_unresolved"
+                    else "当該原sourceの要求されたcarrier memberが供給されていない。"
+                ),
+            )
             if expected_meaning_cause == "source_unresolved":
                 self.assertEqual(problem["locator"], "/sources/0")
-                self.assertEqual(problem["original_value"], _presence(raw["sources"][0]))
+                self.assertEqual(
+                    problem["original_value"], _presence(raw["sources"][0])
+                )
             else:
-                self.assertEqual(problem["locator"], "/sources/0/content/definition_meaning_operations")
+                self.assertEqual(
+                    problem["locator"],
+                    "/sources/0/content/definition_meaning_operations",
+                )
                 self.assertEqual(problem["original_value"], {"presence": "absent"})
 
         applicability_reads = native["applicability_reads"]
@@ -265,32 +358,64 @@ class TestDescriptorDefinitionWalk(unittest.TestCase):
             problem = read["problems"][0]
             self.assertEqual(problem["cause"], "applicability_request_null")
             self.assertEqual(problem["source_index"], None)
-            self.assertEqual(problem["locator"], read["slot_locator"] + "/definition_applicability_ref")
+            self.assertEqual(
+                problem["locator"],
+                read["slot_locator"] + "/definition_applicability_ref",
+            )
             self.assertEqual(problem["original_value"], _presence(None))
-            self.assertEqual(problem["reason"], "定義非適用の原参照が明示nullであり、当該原判断を解決できない。")
+            self.assertEqual(
+                problem["reason"],
+                "定義非適用の原参照が明示nullであり、当該原判断を解決できない。",
+            )
 
-        self.assertEqual(len(native["applicability_judgment_batches"]), len(expected_slots))
+        self.assertEqual(
+            len(native["applicability_judgment_batches"]), len(expected_slots)
+        )
         for batch in native["applicability_judgment_batches"]:
-            self.assertEqual(set(batch), {"applicability_read_index", "slot_locator", "judgments"})
+            self.assertEqual(
+                set(batch), {"applicability_read_index", "slot_locator", "judgments"}
+            )
             self.assertEqual(batch["slot_locator"] in expected_slots, True)
             self.assertIsInstance(batch["applicability_read_index"], int)
             self.assertEqual(len(batch["judgments"]), 1)
             judgment = batch["judgments"][0]
-            self.assertEqual(set(judgment), {
-                "state", "origin_branch", "cause", "axis", "reason", "source_refs",
-                "subject_ref", "binding", "backflow_owner", "slot_locator", "record_locator",
-            })
+            self.assertEqual(
+                set(judgment),
+                {
+                    "state",
+                    "origin_branch",
+                    "cause",
+                    "axis",
+                    "reason",
+                    "source_refs",
+                    "subject_ref",
+                    "binding",
+                    "backflow_owner",
+                    "slot_locator",
+                    "record_locator",
+                },
+            )
             self.assertEqual(judgment["state"], "unknown")
             self.assertEqual(judgment["origin_branch"], "source_unresolved")
             self.assertEqual(judgment["cause"], "applicability_request_null")
-            self.assertEqual(judgment["axis"], f"{expected_kinds[batch['slot_locator']]}.definition_applicability")
-            self.assertEqual(judgment["reason"], "定義非適用の原参照が明示nullであり、当該原判断を解決できない。")
+            self.assertEqual(
+                judgment["axis"],
+                f"{expected_kinds[batch['slot_locator']]}.definition_applicability",
+            )
+            self.assertEqual(
+                judgment["reason"],
+                "定義非適用の原参照が明示nullであり、当該原判断を解決できない。",
+            )
             self.assertEqual(judgment["source_refs"], [])
             self.assertEqual(judgment["slot_locator"], batch["slot_locator"])
             self.assertIsNone(judgment["record_locator"])
 
-        self.assertEqual(walk["target_reads"], [], "no raw Claim means no target reader invocation")
-        self.assertEqual(walk["intent_reads"], [], "no raw Claim means no intent reader invocation")
+        self.assertEqual(
+            walk["target_reads"], [], "no raw Claim means no target reader invocation"
+        )
+        self.assertEqual(
+            walk["intent_reads"], [], "no raw Claim means no intent reader invocation"
+        )
 
     def test_l7_normal_keeps_digest_mismatch_as_source_unresolved(self):
         """L7 normalを修復せず、既知のsource/provenance digest差を直接原因として保持する。"""
@@ -325,13 +450,17 @@ class TestDescriptorDefinitionWalk(unittest.TestCase):
         self.assertEqual(
             walk["evaluation"]["comparison"],
             {
-                "axes": [], "findings": [],
-                "producer_symbol": "compare_descriptor_definitions", "input_binding": None,
+                "axes": [],
+                "findings": [],
+                "producer_symbol": "compare_descriptor_definitions",
+                "input_binding": None,
             },
         )
         self.assertEqual(walk["evaluation"]["assessments"], [])
         self.assertEqual(set(walk["native_material"]), NATIVE_FIELDS)
-        self.assertTrue(all(walk["native_material"][member] == [] for member in NATIVE_FIELDS))
+        self.assertTrue(
+            all(walk["native_material"][member] == [] for member in NATIVE_FIELDS)
+        )
         self.assertEqual(walk["target_reads"], [])
         self.assertEqual(walk["intent_reads"], [])
         self.assertEqual(validated, validated_before)

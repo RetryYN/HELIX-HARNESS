@@ -14,8 +14,15 @@ import copy
 import json
 import unittest
 
-from descriptor_definitions import compare_identity_versions_and_trace, validate_supply_input
-from identity_input_fixtures import _append_qualified_source, _left_body, bilateral_input
+from descriptor_definitions import (
+    compare_identity_versions_and_trace,
+    validate_supply_input,
+)
+from identity_input_fixtures import (
+    _append_qualified_source,
+    _left_body,
+    bilateral_input,
+)
 
 
 class TestIdentityR5PairFrameNegatives(unittest.TestCase):
@@ -38,25 +45,38 @@ class TestIdentityR5PairFrameNegatives(unittest.TestCase):
     def _record_indices(row):
         _prefix, separator, encoded = row["reason"].partition("\n")
         if separator != "\n":
-            raise AssertionError("setup: compatibility reason must include its diagnostic JSON")
+            raise AssertionError(
+                "setup: compatibility reason must include its diagnostic JSON"
+            )
         material = json.loads(encoded)
         if "record_indices" in material:
             return material["record_indices"], material
-        return [item["record_index"] for item in material["cause_occurrences"]], material
+        return [
+            item["record_index"] for item in material["cause_occurrences"]
+        ], material
 
     @staticmethod
     def _reason_prefix(row):
         prefix, separator, _encoded = row["reason"].partition("\n")
         if separator != "\n":
-            raise AssertionError("setup: compatibility reason must include its diagnostic JSON")
+            raise AssertionError(
+                "setup: compatibility reason must include its diagnostic JSON"
+            )
         return prefix
 
     @staticmethod
     def _record_sources(raw, record):
-        right = [source for source in raw["sources"] if source.get("ref") == record.get("source_ref")]
-        left = [source for source in raw["sources"]
-                if isinstance(source.get("content"), dict)
-                and source["content"].get("compatibility_record_ref") == record.get("ref")]
+        right = [
+            source
+            for source in raw["sources"]
+            if source.get("ref") == record.get("source_ref")
+        ]
+        left = [
+            source
+            for source in raw["sources"]
+            if isinstance(source.get("content"), dict)
+            and source["content"].get("compatibility_record_ref") == record.get("ref")
+        ]
         if len(right) != 1 or len(left) != 1:
             raise AssertionError("setup: expected one original left/right source")
         return right[0], left[0]
@@ -136,7 +156,9 @@ class TestIdentityR5PairFrameNegatives(unittest.TestCase):
         raw["binding"]["template_ref"]["scope"] = target_scope
         self.assertEqual(first["left_ref"], second["left_ref"])
         self.assertEqual(first["right_ref"], second["right_ref"])
-        self.assertNotEqual(first["left_ref"]["scope"], raw["binding"]["template_ref"]["scope"])
+        self.assertNotEqual(
+            first["left_ref"]["scope"], raw["binding"]["template_ref"]["scope"]
+        )
 
         rows = self._rows(self._call(raw))
         self.assertEqual(len(rows), 2)
@@ -168,9 +190,13 @@ class TestIdentityR5PairFrameNegatives(unittest.TestCase):
         target_scope = copy.deepcopy(raw["binding"]["pack_ref"]["scope"])
         target_scope["environment"] = "synthetic-R5-different-pack-frame"
         raw["binding"]["pack_ref"]["scope"] = target_scope
-        self.assertEqual(first["left_ref"]["scope"], raw["binding"]["template_ref"]["scope"])
+        self.assertEqual(
+            first["left_ref"]["scope"], raw["binding"]["template_ref"]["scope"]
+        )
         self.assertEqual(first["right_ref"], second["right_ref"])
-        self.assertNotEqual(first["right_ref"]["scope"], raw["binding"]["pack_ref"]["scope"])
+        self.assertNotEqual(
+            first["right_ref"]["scope"], raw["binding"]["pack_ref"]["scope"]
+        )
 
         rows = self._rows(self._call(raw))
         self.assertEqual(len(rows), 2)
@@ -201,10 +227,13 @@ class TestIdentityR5PairFrameNegatives(unittest.TestCase):
         self.assertEqual(rows[0]["state"], "unknown")
         indices, material = self._record_indices(rows[0])
         self.assertEqual(indices, [0, 1])
-        self.assertEqual(material["cause_occurrences"], [
-            {"cause": "compatible_null", "record_index": 0, "state": "unknown"},
-            {"cause": "outside", "record_index": 1, "state": "conflict"},
-        ])
+        self.assertEqual(
+            material["cause_occurrences"],
+            [
+                {"cause": "compatible_null", "record_index": 0, "state": "unknown"},
+                {"cause": "outside", "record_index": 1, "state": "conflict"},
+            ],
+        )
 
     def test_partial_original_binding_keeps_competing_pair_reads_individual(self):
         """A wire-valid partial Binding does not establish a full group frame."""
@@ -240,11 +269,16 @@ class TestIdentityR5PairFrameNegatives(unittest.TestCase):
         self.assertEqual(set(by_indices), {(0,), (1, 2)})
         self.assertEqual(by_indices[(0,)][0]["state"], "resolved")
         self.assertEqual(by_indices[(1, 2)][0]["state"], "unknown")
-        self.assertEqual(by_indices[(1, 2)][1]["cause_occurrences"], [
-            {"cause": "positive", "record_index": 1, "state": "resolved"},
-            {"cause": "outside", "record_index": 2, "state": "conflict"},
-        ])
-        mismatches = [row for row in result["findings"] if row["code"] == "compatibility_mismatch"]
+        self.assertEqual(
+            by_indices[(1, 2)][1]["cause_occurrences"],
+            [
+                {"cause": "positive", "record_index": 1, "state": "resolved"},
+                {"cause": "outside", "record_index": 2, "state": "conflict"},
+            ],
+        )
+        mismatches = [
+            row for row in result["findings"] if row["code"] == "compatibility_mismatch"
+        ]
         self.assertEqual(len(mismatches), 1)
         _prefix, separator, finding_material = mismatches[0]["reason"].partition("\n")
         self.assertEqual(separator, "\n")

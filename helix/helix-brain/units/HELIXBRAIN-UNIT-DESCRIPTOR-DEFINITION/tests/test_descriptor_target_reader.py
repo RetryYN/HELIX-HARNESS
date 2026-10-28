@@ -28,7 +28,9 @@ class TestDescriptorTargetReader(unittest.TestCase):
         raw = descriptor_claim_input(mode)
         raw_before = copy.deepcopy(raw)
         validated = validate_supply_input(raw)
-        self.assertIsInstance(validated["input"], dict, "setup: fn0 decodes the raw claim/source snapshot")
+        self.assertIsInstance(
+            validated["input"], dict, "setup: fn0 decodes the raw claim/source snapshot"
+        )
         self.assertEqual(validated["input"], raw_before)
         self.assertEqual(validated["input_issues"], [])
         self.assertEqual(validated["unusable_source_refs"], [])
@@ -98,15 +100,25 @@ class TestDescriptorTargetReader(unittest.TestCase):
                 self.assertEqual(actual["matches"], [])
                 self.assertEqual(actual["claim_locator"], "/claims/0")
                 self.assertEqual(actual["claim"], raw["claims"][0])
-                self.assertEqual(actual["candidate_indices"], list(range(len(raw["candidates"]))))
+                self.assertEqual(
+                    actual["candidate_indices"], list(range(len(raw["candidates"])))
+                )
                 self.assertEqual(actual["candidate_refs"], raw["candidates"])
                 self.assertEqual(actual["occurrences"], [])
-                self.assertEqual(actual["problems"], [{
-                    "kind": kind,
-                    "locator": expected_locator,
-                    "reason": _TARGET_PROBLEM_REASONS[kind],
-                    "source_ref": {"presence": "supplied", "value": raw["sources"][0]["ref"]},
-                }])
+                self.assertEqual(
+                    actual["problems"],
+                    [
+                        {
+                            "kind": kind,
+                            "locator": expected_locator,
+                            "reason": _TARGET_PROBLEM_REASONS[kind],
+                            "source_ref": {
+                                "presence": "supplied",
+                                "value": raw["sources"][0]["ref"],
+                            },
+                        }
+                    ],
+                )
 
     def test_missing_knowledge_record_is_local_owner_source_unresolved(self):
         """L4 KB/provenance selector does not infer an owner source from raw sources."""
@@ -114,12 +126,17 @@ class TestDescriptorTargetReader(unittest.TestCase):
         self.assertEqual(actual["state"], "unknown")
         self.assertEqual(actual["matches"], [])
         self.assertEqual(actual["occurrences"], [])
-        self.assertEqual(actual["problems"], [{
-            "kind": "owner_source_unresolved",
-            "locator": "/knowledge_records",
-            "reason": _TARGET_PROBLEM_REASONS["owner_source_unresolved"],
-            "source_ref": {"presence": "absent"},
-        }])
+        self.assertEqual(
+            actual["problems"],
+            [
+                {
+                    "kind": "owner_source_unresolved",
+                    "locator": "/knowledge_records",
+                    "reason": _TARGET_PROBLEM_REASONS["owner_source_unresolved"],
+                    "source_ref": {"presence": "absent"},
+                }
+            ],
+        )
 
     def test_malformed_declaration_is_preserved_as_one_local_problem(self):
         """L4 typed view failure keeps the original RawValue occurrence and locator."""
@@ -128,13 +145,24 @@ class TestDescriptorTargetReader(unittest.TestCase):
         self.assertEqual(actual["matches"], [])
         self.assertEqual(len(actual["occurrences"]), 1)
         self.assertEqual(actual["occurrences"][0]["declaration"], None)
-        self.assertEqual(actual["occurrences"][0]["declaration_locator"], "/sources/0/content/descriptor_targets/0")
-        self.assertEqual(actual["problems"], [{
-            "kind": "declaration_shape",
-            "locator": "/sources/0/content/descriptor_targets/0",
-            "reason": _TARGET_PROBLEM_REASONS["declaration_shape"],
-            "source_ref": {"presence": "supplied", "value": raw["sources"][0]["ref"]},
-        }])
+        self.assertEqual(
+            actual["occurrences"][0]["declaration_locator"],
+            "/sources/0/content/descriptor_targets/0",
+        )
+        self.assertEqual(
+            actual["problems"],
+            [
+                {
+                    "kind": "declaration_shape",
+                    "locator": "/sources/0/content/descriptor_targets/0",
+                    "reason": _TARGET_PROBLEM_REASONS["declaration_shape"],
+                    "source_ref": {
+                        "presence": "supplied",
+                        "value": raw["sources"][0]["ref"],
+                    },
+                }
+            ],
+        )
 
     def test_same_slot_kind_conflict_and_distinct_slot_are_not_first_match(self):
         """L4 cohort reduction preserves all declarations and does not select a winner."""
@@ -144,19 +172,33 @@ class TestDescriptorTargetReader(unittest.TestCase):
         ):
             with self.subTest(mode=mode):
                 raw, actual = self._read(mode)
-                self.assertEqual(actual["state"], "conflict" if kind == "target_mapping_conflict" else "unknown")
+                self.assertEqual(
+                    actual["state"],
+                    "conflict" if kind == "target_mapping_conflict" else "unknown",
+                )
                 self.assertEqual(actual["matches"], [])
                 self.assertEqual(len(actual["occurrences"]), 2)
                 self.assertEqual(
                     [row["declaration_locator"] for row in actual["occurrences"]],
-                    ["/sources/0/content/descriptor_targets/0", "/sources/0/content/descriptor_targets/1"],
+                    [
+                        "/sources/0/content/descriptor_targets/0",
+                        "/sources/0/content/descriptor_targets/1",
+                    ],
                 )
-                self.assertEqual(actual["problems"], [{
-                    "kind": kind,
-                    "locator": "/sources/0/content/descriptor_targets",
-                    "reason": _TARGET_PROBLEM_REASONS[kind],
-                    "source_ref": {"presence": "supplied", "value": raw["sources"][0]["ref"]},
-                }])
+                self.assertEqual(
+                    actual["problems"],
+                    [
+                        {
+                            "kind": kind,
+                            "locator": "/sources/0/content/descriptor_targets",
+                            "reason": _TARGET_PROBLEM_REASONS[kind],
+                            "source_ref": {
+                                "presence": "supplied",
+                                "value": raw["sources"][0]["ref"],
+                            },
+                        }
+                    ],
+                )
 
     def test_unrelated_target_problem_does_not_block_exact_target(self):
         """L4 relevance table keeps unrelated target declarations local."""
@@ -164,13 +206,23 @@ class TestDescriptorTargetReader(unittest.TestCase):
         self.assertEqual(actual["state"], "resolved")
         self.assertEqual(len(actual["occurrences"]), 2)
         self.assertEqual(len(actual["matches"]), 1)
-        self.assertEqual(actual["matches"][0]["target_ref"], raw["claims"][0]["subject_ref"])
-        self.assertEqual(actual["problems"], [{
-            "kind": "kind_unresolved",
-            "locator": "/sources/0/content/descriptor_targets/1/descriptor_kind",
-            "reason": _TARGET_PROBLEM_REASONS["kind_unresolved"],
-            "source_ref": {"presence": "supplied", "value": raw["sources"][0]["ref"]},
-        }])
+        self.assertEqual(
+            actual["matches"][0]["target_ref"], raw["claims"][0]["subject_ref"]
+        )
+        self.assertEqual(
+            actual["problems"],
+            [
+                {
+                    "kind": "kind_unresolved",
+                    "locator": "/sources/0/content/descriptor_targets/1/descriptor_kind",
+                    "reason": _TARGET_PROBLEM_REASONS["kind_unresolved"],
+                    "source_ref": {
+                        "presence": "supplied",
+                        "value": raw["sources"][0]["ref"],
+                    },
+                }
+            ],
+        )
 
     def test_exact_duplicate_target_keeps_each_source_and_locator_occurrence(self):
         """L4 exact-match aggregation preserves duplicate provenance and locator order."""
@@ -180,13 +232,18 @@ class TestDescriptorTargetReader(unittest.TestCase):
         self.assertEqual(len(actual["occurrences"]), 2)
         self.assertEqual(len(actual["matches"]), 1)
         self.assertEqual(actual["matches"][0]["source_refs"], [source_ref, source_ref])
-        self.assertEqual(actual["matches"][0]["declaration_locators"], [
-            "/sources/0/content/descriptor_targets/0",
-            "/sources/0/content/descriptor_targets/1",
-        ])
+        self.assertEqual(
+            actual["matches"][0]["declaration_locators"],
+            [
+                "/sources/0/content/descriptor_targets/0",
+                "/sources/0/content/descriptor_targets/1",
+            ],
+        )
         self.assertEqual(actual["matches"][0]["slot_locators"], ["/descriptors/0"])
 
-    def test_all_candidates_are_preserved_but_match_indices_select_all_equal_root_refs(self):
+    def test_all_candidates_are_preserved_but_match_indices_select_all_equal_root_refs(
+        self,
+    ):
         """L4 all-candidate preservation is distinct from match selection."""
         raw, actual = self._read("candidate_scope")
         all_candidate_refs = raw["candidates"]
@@ -195,9 +252,13 @@ class TestDescriptorTargetReader(unittest.TestCase):
         self.assertEqual(actual["state"], "resolved")
         self.assertEqual(len(actual["matches"]), 1)
         self.assertEqual(actual["matches"][0]["candidate_indices"], [0, 2])
-        self.assertEqual(actual["matches"][0]["candidate_refs"], [
-            all_candidate_refs[0], all_candidate_refs[2],
-        ])
+        self.assertEqual(
+            actual["matches"][0]["candidate_refs"],
+            [
+                all_candidate_refs[0],
+                all_candidate_refs[2],
+            ],
+        )
         self.assertEqual(actual["problems"], [])
 
 

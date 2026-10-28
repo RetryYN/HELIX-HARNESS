@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Run Wave50 validation and explicit fail-closed mutations."""
+
 from __future__ import annotations
 
 import copy
@@ -30,14 +31,20 @@ def rejected(label: str, mutate) -> None:
             ledger = root / original_ledger.name
             ledger.write_text(
                 "".join(
-                    json.dumps(row, ensure_ascii=False, sort_keys=True, separators=(",", ":")) + "\n"
+                    json.dumps(
+                        row, ensure_ascii=False, sort_keys=True, separators=(",", ":")
+                    )
+                    + "\n"
                     for row in mutated_rows
                 )
             )
             mutated_meta = copy.deepcopy(meta)
             mutated_meta["output_sha256"] = module.file_digest(ledger)
             meta_path = root / original_meta.name
-            meta_path.write_text(json.dumps(mutated_meta, ensure_ascii=False, sort_keys=True, indent=2) + "\n")
+            meta_path.write_text(
+                json.dumps(mutated_meta, ensure_ascii=False, sort_keys=True, indent=2)
+                + "\n"
+            )
             module.LEDGER = ledger
             module.META = meta_path
             module.verify()
@@ -57,7 +64,9 @@ def rejected_meta(label: str, mutate) -> None:
         with tempfile.TemporaryDirectory(prefix="wave50-meta-selfcheck-") as tmp:
             meta_path = Path(tmp) / original_meta.name
             mutate(meta)
-            meta_path.write_text(json.dumps(meta, ensure_ascii=False, sort_keys=True, indent=2) + "\n")
+            meta_path.write_text(
+                json.dumps(meta, ensure_ascii=False, sort_keys=True, indent=2) + "\n"
+            )
             module.META = meta_path
             module.verify()
     except AssertionError:
@@ -75,7 +84,10 @@ def rejected_document(label: str, module_attr: str, mutate) -> None:
         with tempfile.TemporaryDirectory(prefix="wave50-document-selfcheck-") as tmp:
             path = Path(tmp) / original_path.name
             mutate(document)
-            path.write_text(json.dumps(document, ensure_ascii=False, sort_keys=True, indent=2) + "\n")
+            path.write_text(
+                json.dumps(document, ensure_ascii=False, sort_keys=True, indent=2)
+                + "\n"
+            )
             setattr(module, module_attr, path)
             module.verify()
     except AssertionError:
@@ -96,9 +108,15 @@ def mutate_source_span(mutated_rows) -> None:
 
 
 def mutate_source_overlap(mutated_rows) -> None:
-    requirement_rows = [row for row in mutated_rows if row["role_kind"] == "requirement"]
-    requirement_rows[1]["source_requirement_id"] = requirement_rows[0]["source_requirement_id"]
-    requirement_rows[1]["source_text_spans"] = copy.deepcopy(requirement_rows[0]["source_text_spans"])
+    requirement_rows = [
+        row for row in mutated_rows if row["role_kind"] == "requirement"
+    ]
+    requirement_rows[1]["source_requirement_id"] = requirement_rows[0][
+        "source_requirement_id"
+    ]
+    requirement_rows[1]["source_text_spans"] = copy.deepcopy(
+        requirement_rows[0]["source_text_spans"]
+    )
 
 
 def mutate_atom_identity(mutated_rows) -> None:
@@ -118,24 +136,28 @@ def mutate_stale_anchor(mutated_rows) -> None:
 
 def mutate_shared_connection(mutated_rows) -> None:
     row = next(row for row in mutated_rows if row["role_kind"] == "design")
-    row["connection_records"] = [{
-        "relation": "shared_source_span",
-        "shared_with_units": ["IRUNIT-HIL-NFR-30-HELIX-OS"],
-        "source_fragments": ["invented shared source"],
-    }]
+    row["connection_records"] = [
+        {
+            "relation": "shared_source_span",
+            "shared_with_units": ["IRUNIT-HIL-NFR-30-HELIX-OS"],
+            "source_fragments": ["invented shared source"],
+        }
+    ]
 
 
 def mutate_connection_key_injection(mutated_rows) -> None:
     row = next(row for row in mutated_rows if row["role_kind"] == "requirement")
     fragment = row["source_text_spans"][0]
     row["source_connective_fragments"] = [fragment]
-    row["connection_records"] = [{
-        "relation": "shared_source_span",
-        "review_state": "product_boundary_pending_human_decision",
-        "shared_with_units": ["IRUNIT-HIL-NFR-22-HELIX-OS"],
-        "source_fragments": [fragment],
-        "unexpected_key": "injected",
-    }]
+    row["connection_records"] = [
+        {
+            "relation": "shared_source_span",
+            "review_state": "product_boundary_pending_human_decision",
+            "shared_with_units": ["IRUNIT-HIL-NFR-22-HELIX-OS"],
+            "source_fragments": [fragment],
+            "unexpected_key": "injected",
+        }
+    ]
 
 
 def mutate_duplicate_connection(mutated_rows) -> None:
@@ -155,34 +177,42 @@ def mutate_nonexistent_shared_target(mutated_rows) -> None:
     row = next(row for row in mutated_rows if row["role_kind"] == "requirement")
     fragment = row["source_text_spans"][0]
     row["source_connective_fragments"] = [fragment]
-    row["connection_records"] = [{
-        "relation": "shared_source_span",
-        "review_state": "product_boundary_pending_human_decision",
-        "shared_with_units": ["IRUNIT-HIL-NFR-99-HELIX-OS"],
-        "source_fragments": [fragment],
-    }]
+    row["connection_records"] = [
+        {
+            "relation": "shared_source_span",
+            "review_state": "product_boundary_pending_human_decision",
+            "shared_with_units": ["IRUNIT-HIL-NFR-99-HELIX-OS"],
+            "source_fragments": [fragment],
+        }
+    ]
 
 
 def mutate_prior_wave_shared_target(mutated_rows) -> None:
     row = next(row for row in mutated_rows if row["role_kind"] == "requirement")
     fragment = row["source_text_spans"][0]
     row["source_connective_fragments"] = [fragment]
-    row["connection_records"] = [{
-        "relation": "shared_source_span",
-        "review_state": "product_boundary_pending_human_decision",
-        "shared_with_units": ["IRUNIT-HIL-NFR-29-HELIX-HARNESS"],
-        "source_fragments": [fragment],
-    }]
+    row["connection_records"] = [
+        {
+            "relation": "shared_source_span",
+            "review_state": "product_boundary_pending_human_decision",
+            "shared_with_units": ["IRUNIT-HIL-NFR-29-HELIX-HARNESS"],
+            "source_fragments": [fragment],
+        }
+    ]
 
 
 def mutate_role_inversion(mutated_rows) -> None:
     design = next(row for row in mutated_rows if row["role_kind"] == "design")
-    design["semantic_relation"] = "same_requirement_id_exact_source_contract_not_implementation"
+    design["semantic_relation"] = (
+        "same_requirement_id_exact_source_contract_not_implementation"
+    )
 
 
 def mutate_inferred_meaning(mutated_rows) -> None:
     design = next(row for row in mutated_rows if row["role_kind"] == "design")
-    design["covered_requirement_atoms"][0]["text"] = "inferred implementation is complete"
+    design["covered_requirement_atoms"][0]["text"] = (
+        "inferred implementation is complete"
+    )
 
 
 def mutate_direct_semantic_link(mutated_rows) -> None:
@@ -197,7 +227,9 @@ def mutate_legacy_evidence_promotion(mutated_rows) -> None:
 
 def mutate_nonrequirement_source_spans(mutated_rows) -> None:
     design = next(row for row in mutated_rows if row["role_kind"] == "design")
-    design["source_text_spans"] = list(design["source_text_spans"]) + ["invented nonrequirement span"]
+    design["source_text_spans"] = list(design["source_text_spans"]) + [
+        "invented nonrequirement span"
+    ]
 
 
 def mutate_coverage_contract(mutated_rows) -> None:
@@ -223,7 +255,10 @@ def mutate_selection_route(mutated_rows) -> None:
 
 def mutate_bounded_search_query(mutated_rows) -> None:
     design = next(row for row in mutated_rows if row["role_kind"] == "design")
-    design["bounded_search_query"] = {"anchors": ["invented"], "match_mode": "archive_file_contains_any_utf8_anchor"}
+    design["bounded_search_query"] = {
+        "anchors": ["invented"],
+        "match_mode": "archive_file_contains_any_utf8_anchor",
+    }
 
 
 def mutate_prior_asset_reuse(mutated_rows) -> None:
@@ -241,13 +276,22 @@ def mutate_independent_pool_membership(mutated_rows) -> None:
     # Replace a selected design with a catalog design that the bounded query can
     # see but the unit's independent phase/product pool does not contain.
     catalog = {row["asset_id"]: row for row in module.read_jsonl(module.CATALOG_PATH)}
-    crosswalk = {row["unit_candidate_id"]: row for row in module.read_jsonl(module.CROSSWALK_PATH)}
+    crosswalk = {
+        row["unit_candidate_id"]: row
+        for row in module.read_jsonl(module.CROSSWALK_PATH)
+    }
     row = next(row for row in mutated_rows if row["role_kind"] == "design")
-    pool = set(crosswalk[row["unit_candidate_id"]]["candidate_asset_pool"]["phase_and_product_candidate_asset_ids"])
+    pool = set(
+        crosswalk[row["unit_candidate_id"]]["candidate_asset_pool"][
+            "phase_and_product_candidate_asset_ids"
+        ]
+    )
     ids = module.candidate_ids_for_query(catalog, row["bounded_search_query"])
     replacement = next(
-        asset_id for asset_id in ids
-        if asset_id not in pool and asset_id not in module.SELECTED[row["unit_candidate_id"]]
+        asset_id
+        for asset_id in ids
+        if asset_id not in pool
+        and asset_id not in module.SELECTED[row["unit_candidate_id"]]
         and catalog[asset_id]["artifact_evidence_kind"] == "design"
     )
     row["asset_id"] = replacement
@@ -263,11 +307,17 @@ def mutate_phase_promotion(mutated_rows) -> None:
 
 def mutate_implementation_promotion(mutated_rows) -> None:
     requirement = next(row for row in mutated_rows if row["role_kind"] == "requirement")
-    requirement["current_requirement_implementation_status"] = "current_implementation_complete"
+    requirement["current_requirement_implementation_status"] = (
+        "current_implementation_complete"
+    )
 
 
 def mutate_unresolved_binding_promotion(mutated_rows) -> None:
-    design = next(row for row in mutated_rows if row["role_kind"] == "design" and not row["evidence_atom_bindings"])
+    design = next(
+        row
+        for row in mutated_rows
+        if row["role_kind"] == "design" and not row["evidence_atom_bindings"]
+    )
     design["evidence_binding_status"] = "literal_anchor_checked"
 
 
@@ -293,17 +343,23 @@ def mutate_inventory_count(inventory) -> None:
 
 def mutate_pool_consumed_overclaim(meta) -> None:
     reconciliation = next(
-        item for item in meta["candidate_pool_reconciliations"]
-        if item["unit_candidate_id"] == "IRUNIT-HIL-NFR-20-HELIX-OS" and item["role_kind"] == "implementation_source"
+        item
+        for item in meta["candidate_pool_reconciliations"]
+        if item["unit_candidate_id"] == "IRUNIT-HIL-NFR-20-HELIX-OS"
+        and item["role_kind"] == "implementation_source"
     )
-    reconciliation["consumed_asset_ids"] = list(reconciliation["consumed_asset_ids"]) + ["LEGACY-ASSET-INJECTED"]
+    reconciliation["consumed_asset_ids"] = list(
+        reconciliation["consumed_asset_ids"]
+    ) + ["LEGACY-ASSET-INJECTED"]
     reconciliation["consumed_asset_count"] = len(reconciliation["consumed_asset_ids"])
 
 
 def mutate_pool_unexamined_omission(meta) -> None:
     reconciliation = next(
-        item for item in meta["candidate_pool_reconciliations"]
-        if item["unit_candidate_id"] == "IRUNIT-HIL-NFR-20-HELIX-OS" and item["role_kind"] == "implementation_source"
+        item
+        for item in meta["candidate_pool_reconciliations"]
+        if item["unit_candidate_id"] == "IRUNIT-HIL-NFR-20-HELIX-OS"
+        and item["role_kind"] == "implementation_source"
     )
     reconciliation["unexamined_asset_ids"] = ["LEGACY-ASSET-INJECTED"]
     reconciliation["unexamined_asset_count"] = 1
@@ -311,16 +367,20 @@ def mutate_pool_unexamined_omission(meta) -> None:
 
 def mutate_design_reconciliation_omission(meta) -> None:
     receipt = next(
-        item for item in meta["missing_evidence_receipts"]
-        if item["unit_candidate_id"] == "IRUNIT-HIL-NFR-22-HELIX-OS" and item["role_kind"] == "design"
+        item
+        for item in meta["missing_evidence_receipts"]
+        if item["unit_candidate_id"] == "IRUNIT-HIL-NFR-22-HELIX-OS"
+        and item["role_kind"] == "design"
     )
     del receipt["candidate_pool_reconciliation"]
 
 
 def mutate_design_unexamined_hiding(meta) -> None:
     reconciliation = next(
-        item for item in meta["candidate_pool_reconciliations"]
-        if item["unit_candidate_id"] == "IRUNIT-HIL-NFR-22-HELIX-OS" and item["role_kind"] == "design"
+        item
+        for item in meta["candidate_pool_reconciliations"]
+        if item["unit_candidate_id"] == "IRUNIT-HIL-NFR-22-HELIX-OS"
+        and item["role_kind"] == "design"
     )
     reconciliation["unexamined_asset_ids"] = ["LEGACY-ASSET-INJECTED"]
     reconciliation["unexamined_asset_count"] = 1
@@ -368,7 +428,9 @@ def reject_wave49_copy_residue() -> None:
     )
     for path in (HERE / "README.md", HERE / "plan.json", HERE / "inventory.json"):
         text = path.read_text()
-        assert not any(marker in text for marker in forbidden), f"stale Wave49 copy residue: {path}"
+        assert not any(marker in text for marker in forbidden), (
+            f"stale Wave49 copy residue: {path}"
+        )
 
 
 reject_wave49_copy_residue()
@@ -395,8 +457,13 @@ rejected("atomization hold promotion", mutate_atomization_hold)
 rejected("routing candidate promotion", mutate_routing_candidate)
 rejected("selection route promotion", mutate_selection_route)
 rejected("bounded search query tamper", mutate_bounded_search_query)
-rejected("same-batch non-requirement asset reuse without explicit shared relation", mutate_same_batch_asset_reuse)
-rejected("independent phase/product pool membership", mutate_independent_pool_membership)
+rejected(
+    "same-batch non-requirement asset reuse without explicit shared relation",
+    mutate_same_batch_asset_reuse,
+)
+rejected(
+    "independent phase/product pool membership", mutate_independent_pool_membership
+)
 rejected("prior implementation asset reuse", mutate_prior_asset_reuse)
 rejected("current authority promotion", mutate_authority_promotion)
 rejected("phase admission promotion", mutate_phase_promotion)
@@ -404,9 +471,17 @@ rejected("current implementation promotion", mutate_implementation_promotion)
 rejected("unresolved literal binding promotion", mutate_unresolved_binding_promotion)
 rejected_meta("missing evidence receipt deletion", mutate_missing_receipt)
 rejected_meta("missing evidence reason tamper", mutate_missing_reason)
-rejected_meta("implementation candidate consumed asset ID overclaim", mutate_pool_consumed_overclaim)
-rejected_meta("implementation candidate unexamined asset ID omission", mutate_pool_unexamined_omission)
-rejected_meta("design missing role reconciliation omission", mutate_design_reconciliation_omission)
+rejected_meta(
+    "implementation candidate consumed asset ID overclaim",
+    mutate_pool_consumed_overclaim,
+)
+rejected_meta(
+    "implementation candidate unexamined asset ID omission",
+    mutate_pool_unexamined_omission,
+)
+rejected_meta(
+    "design missing role reconciliation omission", mutate_design_reconciliation_omission
+)
 rejected_meta("design unexamined asset hiding", mutate_design_unexamined_hiding)
 rejected_meta("selected role asset count mismatch", mutate_selected_role_asset_count)
 rejected_document("plan count mismatch", "PLAN", mutate_plan_count)

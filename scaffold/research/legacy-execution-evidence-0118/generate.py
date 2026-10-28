@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Build the fixed-base, read-only receipt evidence research bundle."""
+
 from __future__ import annotations
 
 import hashlib
@@ -16,12 +17,18 @@ BUNDLE = Path(__file__).resolve().parent
 BASE_REVISION = "44d546a40d2b4fa88701faf93ea8b618f4f1b86c"
 ARCHIVE_PREFIX = "archive/legacy-generation-2026-09-14/root/"
 DISPOSITION = "docs/governance/legacy-asset-disposition.jsonl"
-CROSSWALK = "docs/governance/legacy-requirement-implementation-crosswalk-bootstrap.jsonl"
+CROSSWALK = (
+    "docs/governance/legacy-requirement-implementation-crosswalk-bootstrap.jsonl"
+)
 DECOMPOSITION = "docs/governance/legacy-ir-product-unit-decomposition-bootstrap.jsonl"
 DECISIONS = "docs/governance/legacy-asset-decisions.jsonl"
 READ_AFTER = "docs/governance/legacy-asset-copy-read-after.jsonl"
-PHASE_CLASSIFICATION = "docs/governance/legacy-asset-phase-product-classification-bootstrap.jsonl"
-SELECTION_REGEX = r"(?:\.vitest\.log$|/vitest-targeted|test-result|receipt\.json$|full-receipt)"
+PHASE_CLASSIFICATION = (
+    "docs/governance/legacy-asset-phase-product-classification-bootstrap.jsonl"
+)
+SELECTION_REGEX = (
+    r"(?:\.vitest\.log$|/vitest-targeted|test-result|receipt\.json$|full-receipt)"
+)
 WAVE_PATHS = {
     n: (
         f"docs/governance/legacy-requirement-direct-semantic-review-wave{n}.jsonl"
@@ -50,7 +57,13 @@ ANCHOR_REGEX = re.compile(
     r"numFailedTestSuites|numTotalTests|numPassedTests|numFailedTests|head_sha|base_sha|tested_merge_head)",
     re.IGNORECASE,
 )
-FORBIDDEN_PROMOTIONS = {"implemented", "degraded", "unimplemented", "accepted", "rejected"}
+FORBIDDEN_PROMOTIONS = {
+    "implemented",
+    "degraded",
+    "unimplemented",
+    "accepted",
+    "rejected",
+}
 
 
 def git_bytes(path: str) -> bytes:
@@ -58,11 +71,17 @@ def git_bytes(path: str) -> bytes:
 
 
 def git_blob(path: str) -> str:
-    return subprocess.check_output(["git", "rev-parse", f"{BASE_REVISION}:{path}"], cwd=ROOT, text=True).strip()
+    return subprocess.check_output(
+        ["git", "rev-parse", f"{BASE_REVISION}:{path}"], cwd=ROOT, text=True
+    ).strip()
 
 
 def rows(path: str) -> list[dict]:
-    return [json.loads(line) for line in git_bytes(path).decode().splitlines() if line.strip()]
+    return [
+        json.loads(line)
+        for line in git_bytes(path).decode().splitlines()
+        if line.strip()
+    ]
 
 
 def sha(data: bytes) -> str:
@@ -74,7 +93,11 @@ def tagged(data: bytes) -> str:
 
 
 def canonical(value: object) -> str:
-    return tagged(json.dumps(value, ensure_ascii=False, sort_keys=True, separators=(",", ":")).encode())
+    return tagged(
+        json.dumps(
+            value, ensure_ascii=False, sort_keys=True, separators=(",", ":")
+        ).encode()
+    )
 
 
 def source_anchors(path: str, data: bytes) -> list[dict]:
@@ -91,9 +114,15 @@ def source_anchors(path: str, data: bytes) -> list[dict]:
         for i in indices
     ]
 
+
 def input_digests() -> list[dict]:
     return [
-        {"path": path, "blob": git_blob(path), "bytes": len((data := git_bytes(path))), "sha256": tagged(data)}
+        {
+            "path": path,
+            "blob": git_blob(path),
+            "bytes": len((data := git_bytes(path))),
+            "sha256": tagged(data),
+        }
         for path in INPUT_PATHS
     ]
 
@@ -101,17 +130,25 @@ def input_digests() -> list[dict]:
 def main() -> None:
     disposition_rows = rows(DISPOSITION)
     disposition_by_asset = {row["asset_id"]: row for row in disposition_rows}
-    selected = [row for row in disposition_rows if re.search(SELECTION_REGEX, row.get("source_path", ""), re.IGNORECASE)]
+    selected = [
+        row
+        for row in disposition_rows
+        if re.search(SELECTION_REGEX, row.get("source_path", ""), re.IGNORECASE)
+    ]
     if len(selected) != 28:
         raise SystemExit(f"selection expected 28, got {len(selected)}")
     selected_ids = [row["asset_id"] for row in selected]
 
     wave_rows = []
     for wave, path in WAVE_PATHS.items():
-        wave_rows.extend((wave, path, line_no, row) for line_no, row in enumerate(rows(path), 1))
+        wave_rows.extend(
+            (wave, path, line_no, row) for line_no, row in enumerate(rows(path), 1)
+        )
     wave_by_asset: dict[str, list[dict]] = defaultdict(list)
     for wave, path, line_no, row in wave_rows:
-        wave_by_asset[row["asset_id"]].append({"wave": wave, "path": path, "line": line_no})
+        wave_by_asset[row["asset_id"]].append(
+            {"wave": wave, "path": path, "line": line_no}
+        )
 
     crosswalk_rows = rows(CROSSWALK)
     candidate_pool_units: dict[str, set[str]] = defaultdict(set)
@@ -119,10 +156,15 @@ def main() -> None:
     representative_links: dict[str, set[str]] = defaultdict(set)
     for row in crosswalk_rows:
         unit = row["unit_candidate_id"]
-        pool = row.get("candidate_asset_pool", {}).get("phase_and_product_candidate_asset_ids", [])
+        pool = row.get("candidate_asset_pool", {}).get(
+            "phase_and_product_candidate_asset_ids", []
+        )
         for asset_id in pool:
             candidate_pool_units[asset_id].add(unit)
-        for field, target in (("direct_legacy_asset_links", direct_links), ("representative_legacy_assets", representative_links)):
+        for field, target in (
+            ("direct_legacy_asset_links", direct_links),
+            ("representative_legacy_assets", representative_links),
+        ):
             for item in row.get(field, []):
                 asset_id = item if isinstance(item, str) else item.get("asset_id")
                 if asset_id:
@@ -160,12 +202,16 @@ def main() -> None:
                     {
                         "kind": "crosswalk_direct_link",
                         "direct_legacy_asset_link_count": len(direct_unit_refs),
-                        "representative_legacy_asset_link_count": len(representative_refs),
+                        "representative_legacy_asset_link_count": len(
+                            representative_refs
+                        ),
                         "reason": "candidate pool membership is explicitly search-candidate-only and is not a semantic link",
                     },
                     {
                         "kind": "formal_ledger_state",
-                        "implementation_status": ledger_record.get("implementation_status"),
+                        "implementation_status": ledger_record.get(
+                            "implementation_status"
+                        ),
                         "disposition": ledger_record.get("disposition"),
                         "reason": "the fixed-base ledger remains unknown/unresolved",
                     },
@@ -221,7 +267,9 @@ def main() -> None:
                     "archive_path": archive_path,
                     "blob": git_blob(archive_path),
                     "bytes": len(source_data),
-                    "line_count": len(source_data.decode(errors="replace").splitlines()),
+                    "line_count": len(
+                        source_data.decode(errors="replace").splitlines()
+                    ),
                     "sha256": tagged(source_data),
                     "ledger_source_sha256": "sha256:" + ledger_record["source_sha256"],
                     "read_mode": "git_object_static_read_only",
@@ -240,7 +288,12 @@ def main() -> None:
 
     BUNDLE.mkdir(parents=True, exist_ok=True)
     evidence_path = BUNDLE / "evidence.jsonl"
-    evidence_path.write_text("".join(json.dumps(row, ensure_ascii=False, sort_keys=True) + "\n" for row in evidence_rows))
+    evidence_path.write_text(
+        "".join(
+            json.dumps(row, ensure_ascii=False, sort_keys=True) + "\n"
+            for row in evidence_rows
+        )
+    )
 
     scope = {
         "product_units": 218,
@@ -277,11 +330,42 @@ def main() -> None:
             "excludes_by_rule": "every ledger row whose source_path does not match the regex; no representative-only sampling",
             "excluded_scope": {
                 "nonmatching_ledger_rows": len(disposition_rows) - len(selected),
-                "nonmatching_helix_evidence_rows": sum(1 for row in disposition_rows if row.get("source_path", "").startswith(".helix/evidence/") and not re.search(SELECTION_REGEX, row.get("source_path", ""), re.IGNORECASE)),
-                "nonmatching_test_source_rows": sum(1 for row in disposition_rows if row.get("source_path", "").startswith("tests/") and not re.search(SELECTION_REGEX, row.get("source_path", ""), re.IGNORECASE)),
-                "nonmatching_lint_named_rows": sum(1 for row in disposition_rows if "lint" in row.get("source_path", "").lower() and not re.search(SELECTION_REGEX, row.get("source_path", ""), re.IGNORECASE)),
-                "nonmatching_review_head_rows": sum(1 for row in disposition_rows if "/review-" in row.get("source_path", "") and row.get("source_path", "").endswith("head.txt")),
-                "examples": ["tests/*.test.ts", ".helix/evidence/review-1600/head.txt", ".helix/evidence/review-1600/biome.log", ".helix/evidence/review-1600/tsc.log"],
+                "nonmatching_helix_evidence_rows": sum(
+                    1
+                    for row in disposition_rows
+                    if row.get("source_path", "").startswith(".helix/evidence/")
+                    and not re.search(
+                        SELECTION_REGEX, row.get("source_path", ""), re.IGNORECASE
+                    )
+                ),
+                "nonmatching_test_source_rows": sum(
+                    1
+                    for row in disposition_rows
+                    if row.get("source_path", "").startswith("tests/")
+                    and not re.search(
+                        SELECTION_REGEX, row.get("source_path", ""), re.IGNORECASE
+                    )
+                ),
+                "nonmatching_lint_named_rows": sum(
+                    1
+                    for row in disposition_rows
+                    if "lint" in row.get("source_path", "").lower()
+                    and not re.search(
+                        SELECTION_REGEX, row.get("source_path", ""), re.IGNORECASE
+                    )
+                ),
+                "nonmatching_review_head_rows": sum(
+                    1
+                    for row in disposition_rows
+                    if "/review-" in row.get("source_path", "")
+                    and row.get("source_path", "").endswith("head.txt")
+                ),
+                "examples": [
+                    "tests/*.test.ts",
+                    ".helix/evidence/review-1600/head.txt",
+                    ".helix/evidence/review-1600/biome.log",
+                    ".helix/evidence/review-1600/tsc.log",
+                ],
             },
         },
         "anchor_rule": {
@@ -312,9 +396,13 @@ def main() -> None:
         "output_sha256": "",
     }
     inventory_path = BUNDLE / "inventory.json"
-    inventory_path.write_text(json.dumps(inventory, ensure_ascii=False, indent=2) + "\n")
+    inventory_path.write_text(
+        json.dumps(inventory, ensure_ascii=False, indent=2) + "\n"
+    )
     inventory["output_sha256"] = tagged(evidence_path.read_bytes())
-    inventory_path.write_text(json.dumps(inventory, ensure_ascii=False, indent=2) + "\n")
+    inventory_path.write_text(
+        json.dumps(inventory, ensure_ascii=False, indent=2) + "\n"
+    )
 
 
 if __name__ == "__main__":

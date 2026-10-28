@@ -5,7 +5,9 @@ from __future__ import annotations
 from typing import Any
 
 
-def meaning_pair_axes_with_origins(validated: dict[str, Any], slot: dict[str, Any]) -> dict[str, object]:
+def meaning_pair_axes_with_origins(
+    validated: dict[str, Any], slot: dict[str, Any]
+) -> dict[str, object]:
     """Return the typed empty pair result when a slot has fewer than two facts.
 
     A comparison pair requires two original facts. This bounded reader has no

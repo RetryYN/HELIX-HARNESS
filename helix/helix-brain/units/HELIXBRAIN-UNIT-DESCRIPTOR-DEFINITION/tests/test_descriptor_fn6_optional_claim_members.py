@@ -6,6 +6,7 @@ basis_refs stays unresolved basis. In this fixture the real primary support is
 source_unresolved (neither missing nor meaning_undefined), so the latter routes
 none before basis classification. Public FN6 must preserve its same-input prefix.
 """
+
 from __future__ import annotations
 
 import copy
@@ -49,7 +50,10 @@ class TestDescriptorFn6OptionalClaimMembers(unittest.TestCase):
                 walk = evaluate_descriptor_definition_walk({"validated": validated})
                 walk_before = copy.deepcopy(walk)
                 uses = build_descriptor_claim_uses(
-                    validated, walk["evaluation"], walk["target_reads"], walk["intent_reads"]
+                    validated,
+                    walk["evaluation"],
+                    walk["target_reads"],
+                    walk["intent_reads"],
                 )
                 self.assertEqual(validated, validated_before)
                 self.assertEqual(definitions, definitions_before)
@@ -61,10 +65,15 @@ class TestDescriptorFn6OptionalClaimMembers(unittest.TestCase):
                     primary = uses[0]["primary_definition_assessment_indices"]
                     assessments = walk["evaluation"]["assessments"]
                     self.assertTrue(primary)
-                    self.assertTrue(all(assessments[i]["state"] == "unknown" for i in primary))
-                    self.assertTrue(all(
-                        assessments[i]["origin_branch"] == "source_unresolved" for i in primary
-                    ))
+                    self.assertTrue(
+                        all(assessments[i]["state"] == "unknown" for i in primary)
+                    )
+                    self.assertTrue(
+                        all(
+                            assessments[i]["origin_branch"] == "source_unresolved"
+                            for i in primary
+                        )
+                    )
                     self.assertEqual(uses[0]["basis_class"], "unresolved")
                     self.assertEqual(uses[0]["missing_support_indices"], [])
                     self.assertEqual(uses[0]["undefined_support_indices"], [])
@@ -74,13 +83,22 @@ class TestDescriptorFn6OptionalClaimMembers(unittest.TestCase):
                 prefix = _call(baseline_raw)
                 result = _call(raw)
 
-                self.assertEqual(set(result), {"axes", "findings", "producer_symbol", "input_binding"})
-                self.assertEqual(result["producer_symbol"], "compare_dependencies_and_handoff")
+                self.assertEqual(
+                    set(result),
+                    {"axes", "findings", "producer_symbol", "input_binding"},
+                )
+                self.assertEqual(
+                    result["producer_symbol"], "compare_dependencies_and_handoff"
+                )
                 self.assertEqual(result["input_binding"], raw["binding"])
                 self.assertEqual(result["axes"], prefix["axes"])
                 self.assertEqual(result["findings"], prefix["findings"])
-                self.assertNotIn(RULE87, [finding.get("rule_ref") for finding in result["findings"]])
-                self.assertNotIn(RULE93, [finding.get("rule_ref") for finding in result["findings"]])
+                self.assertNotIn(
+                    RULE87, [finding.get("rule_ref") for finding in result["findings"]]
+                )
+                self.assertNotIn(
+                    RULE93, [finding.get("rule_ref") for finding in result["findings"]]
+                )
                 self.assertNotIn(omitted_member, raw["claims"][0])
                 self.assertEqual(raw, raw_before)
 

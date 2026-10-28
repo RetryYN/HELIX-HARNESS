@@ -7,6 +7,7 @@ archive.  The selected source spans and asset IDs are deliberately explicit
 so a later wave can extend ``UNIT_SPECS`` without changing the extraction
 rules.
 """
+
 from __future__ import annotations
 
 import copy
@@ -24,13 +25,21 @@ MAIN_MERGE_PARENTS = [
     "083133e17019fafb8be7182975cb913f8b43f21e",
     "929da891382b153049da23bcecaf84b6b198092c",
 ]
-CATALOG_PATH = "docs/governance/legacy-asset-phase-product-classification-bootstrap.jsonl"
-CROSSWALK_PATH = "docs/governance/legacy-requirement-implementation-crosswalk-bootstrap.jsonl"
-DECOMPOSITION_PATH = "docs/governance/legacy-ir-product-unit-decomposition-bootstrap.jsonl"
+CATALOG_PATH = (
+    "docs/governance/legacy-asset-phase-product-classification-bootstrap.jsonl"
+)
+CROSSWALK_PATH = (
+    "docs/governance/legacy-requirement-implementation-crosswalk-bootstrap.jsonl"
+)
+DECOMPOSITION_PATH = (
+    "docs/governance/legacy-ir-product-unit-decomposition-bootstrap.jsonl"
+)
 REQ_RELATION_PATH = "docs/governance/legacy-ir-document-source-relation.jsonl"
 PHASE_INVENTORY_SOURCE_REVISION = "554aff0d3dd61e4e15bd261991af925d1e59baf7"
 PHASE_INVENTORY_SOURCE_PATH = "docs/governance/phase-capability-inventory.json"
-PHASE_INVENTORY_SOURCE_SHA256 = "16deda553e0d5c1d0b8b037c68301bc4f80967305d64b7e4b99f3178b040bfe4"
+PHASE_INVENTORY_SOURCE_SHA256 = (
+    "16deda553e0d5c1d0b8b037c68301bc4f80967305d64b7e4b99f3178b040bfe4"
+)
 REQ_IR = ARCHIVE / "requirements-ir/requirements.json"
 REQ_SHA = "80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688"
 REQUIREMENT_ASSET = "LEGACY-ASSET-A60CF91DD2AF6693E6F9"
@@ -40,37 +49,76 @@ REQUIREMENT_ASSET = "LEGACY-ASSET-A60CF91DD2AF6693E6F9"
 UNIT_SPECS = [
     {
         "unit": "IRUNIT-HIL-NFR-01-HELIX-OS",
-        "query": {"anchors": ["memory", "idempotent", "delivery"], "match_mode": "archive_file_contains_any_utf8_anchor"},
+        "query": {
+            "anchors": ["memory", "idempotent", "delivery"],
+            "match_mode": "archive_file_contains_any_utf8_anchor",
+        },
         "design_asset": "LEGACY-ASSET-899A61905AFBC415F595",
         "implementation_asset": "LEGACY-ASSET-79AD1AFBFB2A4B00CC95",
         "evidence": {
-            "design": ("docs/design/helix/L3-requirements/orchestration-memory.md", 1, 42, [("NFR01-OS-A01", ["memory"], ["memory"], [])]),
-            "implementation_source": ("src/memory/memory-v2.ts", 300, 330, [("NFR01-OS-A01", ["memory"], ["memory-write"], [])]),
+            "design": (
+                "docs/design/helix/L3-requirements/orchestration-memory.md",
+                1,
+                42,
+                [("NFR01-OS-A01", ["memory"], ["memory"], [])],
+            ),
+            "implementation_source": (
+                "src/memory/memory-v2.ts",
+                300,
+                330,
+                [("NFR01-OS-A01", ["memory"], ["memory-write"], [])],
+            ),
         },
     },
     {
         "unit": "IRUNIT-HIL-NFR-10-HELIX-OS",
-        "query": {"anchors": ["agent", "runtime", "registry"], "match_mode": "archive_file_contains_any_utf8_anchor"},
+        "query": {
+            "anchors": ["agent", "runtime", "registry"],
+            "match_mode": "archive_file_contains_any_utf8_anchor",
+        },
         "design_asset": "LEGACY-ASSET-25EB3B29EA909B050987",
         "implementation_asset": "LEGACY-ASSET-44F2DE5EBB3DF3A4744A",
         "evidence": {
-            "design": ("docs/design/helix/L5-detail/worker-lifecycle-receipt.md", 21, 70, [("NFR10-OS-A01", ["runtime"], ["runtime"], [])]),
-            "implementation_source": ("src/orchestration/loop-runner.ts", 1, 15, [("NFR10-OS-A01", ["runtime"], ["runtime"], [])]),
+            "design": (
+                "docs/design/helix/L5-detail/worker-lifecycle-receipt.md",
+                21,
+                70,
+                [("NFR10-OS-A01", ["runtime"], ["runtime"], [])],
+            ),
+            "implementation_source": (
+                "src/orchestration/loop-runner.ts",
+                1,
+                15,
+                [("NFR10-OS-A01", ["runtime"], ["runtime"], [])],
+            ),
         },
     },
     {
         "unit": "IRUNIT-HIL-NFR-19-HELIX-OS",
-        "query": {"anchors": ["Linux", "macOS", "Windows", "adapter"], "match_mode": "archive_file_contains_any_utf8_anchor"},
+        "query": {
+            "anchors": ["Linux", "macOS", "Windows", "adapter"],
+            "match_mode": "archive_file_contains_any_utf8_anchor",
+        },
         "design_asset": "LEGACY-ASSET-E212E913117C5C247DAE",
         "implementation_asset": "LEGACY-ASSET-573CC6D5360F04EEDEE3",
         "evidence": {
-            "design": ("docs/design/helix/L5-detail/os-portability-supply-chain.md", 31, 52, [
-                ("NFR19-OS-A01", ["macOS"], ["compatibility"], []),
-                ("NFR19-OS-A02", ["Windows"], ["Linux", "wrapper"], []),
-            ]),
-            "implementation_source": ("src/runtime/adapter.ts", 62, 72, [
-                ("NFR19-OS-A02", ["Windows"], ["Windows"], []),
-            ]),
+            "design": (
+                "docs/design/helix/L5-detail/os-portability-supply-chain.md",
+                31,
+                52,
+                [
+                    ("NFR19-OS-A01", ["macOS"], ["compatibility"], []),
+                    ("NFR19-OS-A02", ["Windows"], ["Linux", "wrapper"], []),
+                ],
+            ),
+            "implementation_source": (
+                "src/runtime/adapter.ts",
+                62,
+                72,
+                [
+                    ("NFR19-OS-A02", ["Windows"], ["Windows"], []),
+                ],
+            ),
         },
     },
 ]
@@ -83,10 +131,15 @@ ROLE_POLICY = {
         "legacy_requirement_implementation_contribution": "contract_only_no_implementation_claim",
         "evidence_ref_count": 2,
         "unresolved": [
-            "exact_head_independent_review_pending", "human_product_authority_decision_pending",
-            "successor_assignment_unassigned", "product_boundary_human_decision_pending",
-            "candidate_product_routing_requires_human_review", "source_atomization_review_pending",
-            "unit_split_requires_independent_review", "consumer_closure_pending", "legacy_execution_not_run",
+            "exact_head_independent_review_pending",
+            "human_product_authority_decision_pending",
+            "successor_assignment_unassigned",
+            "product_boundary_human_decision_pending",
+            "candidate_product_routing_requires_human_review",
+            "source_atomization_review_pending",
+            "unit_split_requires_independent_review",
+            "consumer_closure_pending",
+            "legacy_execution_not_run",
         ],
     },
     "design": {
@@ -96,10 +149,15 @@ ROLE_POLICY = {
         "legacy_requirement_implementation_contribution": "design_contract_only_no_implementation_claim",
         "evidence_ref_count": 1,
         "unresolved": [
-            "exact_head_independent_review_pending", "human_product_authority_decision_pending",
-            "successor_assignment_unassigned", "product_boundary_human_decision_pending",
-            "candidate_product_routing_requires_human_review", "source_atomization_review_pending",
-            "unit_split_requires_independent_review", "consumer_closure_pending", "legacy_execution_not_run",
+            "exact_head_independent_review_pending",
+            "human_product_authority_decision_pending",
+            "successor_assignment_unassigned",
+            "product_boundary_human_decision_pending",
+            "candidate_product_routing_requires_human_review",
+            "source_atomization_review_pending",
+            "unit_split_requires_independent_review",
+            "consumer_closure_pending",
+            "legacy_execution_not_run",
         ],
     },
     "implementation_source": {
@@ -109,10 +167,15 @@ ROLE_POLICY = {
         "legacy_requirement_implementation_contribution": "implementation_candidate_only",
         "evidence_ref_count": 1,
         "unresolved": [
-            "exact_head_independent_review_pending", "human_product_authority_decision_pending",
-            "successor_assignment_unassigned", "product_boundary_human_decision_pending",
-            "candidate_product_routing_requires_human_review", "source_atomization_review_pending",
-            "unit_split_requires_independent_review", "consumer_closure_pending", "legacy_execution_not_run",
+            "exact_head_independent_review_pending",
+            "human_product_authority_decision_pending",
+            "successor_assignment_unassigned",
+            "product_boundary_human_decision_pending",
+            "candidate_product_routing_requires_human_review",
+            "source_atomization_review_pending",
+            "unit_split_requires_independent_review",
+            "consumer_closure_pending",
+            "legacy_execution_not_run",
         ],
     },
 }
@@ -140,7 +203,11 @@ def file_digest(path: Path) -> str:
 
 def fixed_phase_inventory_digest() -> str:
     result = subprocess.run(
-        ["git", "show", f"{PHASE_INVENTORY_SOURCE_REVISION}:{PHASE_INVENTORY_SOURCE_PATH}"],
+        [
+            "git",
+            "show",
+            f"{PHASE_INVENTORY_SOURCE_REVISION}:{PHASE_INVENTORY_SOURCE_PATH}",
+        ],
         cwd=ROOT,
         stdout=subprocess.PIPE,
         stderr=subprocess.DEVNULL,
@@ -155,7 +222,11 @@ def fixed_phase_inventory_digest() -> str:
 
 
 def canonical(value: object) -> str:
-    return digest(json.dumps(value, ensure_ascii=False, sort_keys=True, separators=(",", ":")).encode())
+    return digest(
+        json.dumps(
+            value, ensure_ascii=False, sort_keys=True, separators=(",", ":")
+        ).encode()
+    )
 
 
 def excerpt(path: Path, start: int, end: int) -> str:
@@ -181,7 +252,9 @@ def make_atom(atom_id: str, text: str, index: int) -> dict:
     }
 
 
-def build_evidence_ref(role: str, source_path: str, start: int, end: int, ordinal: int, relation: str) -> dict:
+def build_evidence_ref(
+    role: str, source_path: str, start: int, end: int, ordinal: int, relation: str
+) -> dict:
     full = archive_path(source_path)
     body = excerpt(ROOT / full, start, end)
     return {
@@ -205,7 +278,9 @@ def phase_projection(crosswalk: dict) -> list[dict]:
             "transition_assessment": item["transition_assessment"],
             "gap": item["gap"],
             "catalog_asset_count": item["phase_candidate_asset_count"],
-            "product_intersection_count": item["phase_and_product_candidate_asset_count"],
+            "product_intersection_count": item[
+                "phase_and_product_candidate_asset_count"
+            ],
         }
         for item in crosswalk.get("phase_capability_evidence", [])
     ]
@@ -222,12 +297,16 @@ def candidate_ids_for_query(catalog: dict, query: dict) -> list[str]:
 
 def main() -> None:
     catalog = {row["asset_id"]: row for row in read_jsonl(ROOT / CATALOG_PATH)}
-    crosswalk = {row["unit_candidate_id"]: row for row in read_jsonl(ROOT / CROSSWALK_PATH)}
+    crosswalk = {
+        row["unit_candidate_id"]: row for row in read_jsonl(ROOT / CROSSWALK_PATH)
+    }
     decomposition = {}
     for parent in read_jsonl(ROOT / DECOMPOSITION_PATH):
         for candidate in parent.get("candidate_units", []):
             decomposition[candidate["unit_candidate_id"]] = (parent, candidate)
-    relations = {row["requirement_id"]: row for row in read_jsonl(ROOT / REQ_RELATION_PATH)}
+    relations = {
+        row["requirement_id"]: row for row in read_jsonl(ROOT / REQ_RELATION_PATH)
+    }
 
     rows: list[dict] = []
     bounded_receipts: dict[str, dict] = {}
@@ -244,7 +323,9 @@ def main() -> None:
         req_asset = catalog[REQUIREMENT_ASSET]
         design_asset = catalog[spec["design_asset"]]
         impl_asset = catalog[spec["implementation_asset"]]
-        selected_assets = sorted([REQUIREMENT_ASSET, spec["design_asset"], spec["implementation_asset"]])
+        selected_assets = sorted(
+            [REQUIREMENT_ASSET, spec["design_asset"], spec["implementation_asset"]]
+        )
         candidate_ids = candidate_ids_for_query(catalog, spec["query"])
         if not set(selected_assets) <= set(candidate_ids):
             raise AssertionError(f"selected assets outside candidate query: {unit}")
@@ -253,47 +334,112 @@ def main() -> None:
             "candidate_asset_count": len(candidate_ids),
             "candidate_asset_ids_sha256": canonical(candidate_ids),
             "catalog_record_count": len(catalog),
-            "phase_pool_asset_count": cross["candidate_asset_pool"]["phase_and_product_candidate_asset_count"],
-            "phase_pool_asset_ids_sha256": canonical(sorted(cross["candidate_asset_pool"]["phase_and_product_candidate_asset_ids"])),
+            "phase_pool_asset_count": cross["candidate_asset_pool"][
+                "phase_and_product_candidate_asset_count"
+            ],
+            "phase_pool_asset_ids_sha256": canonical(
+                sorted(
+                    cross["candidate_asset_pool"][
+                        "phase_and_product_candidate_asset_ids"
+                    ]
+                )
+            ),
             "query": spec["query"],
             "selected_asset_ids": selected_assets,
             "unreviewed_asset_count": len(remaining),
             "unreviewed_asset_ids_sha256": canonical(remaining),
         }
         phase_rows[unit] = phase_projection(cross)
-        holds.append({"unit_candidate_id": unit, "status": "product_boundary_shared_atom_hold", "shared_atom_ids": []})
+        holds.append(
+            {
+                "unit_candidate_id": unit,
+                "status": "product_boundary_shared_atom_hold",
+                "shared_atom_ids": [],
+            }
+        )
         atom_specs = []
         for index, fragment in enumerate(candidate["source_text_spans"]):
             atom_id = f"NFR{req_id.split('-')[-1]}-OS-A{index + 1:02d}"
             atom_specs.append(make_atom(atom_id, fragment, index))
         atom_ids = [atom["atom_id"] for atom in atom_specs]
 
-        asset_by_role = [("requirement", req_asset), ("design", design_asset), ("implementation_source", impl_asset)]
+        asset_by_role = [
+            ("requirement", req_asset),
+            ("design", design_asset),
+            ("implementation_source", impl_asset),
+        ]
         for role, asset in asset_by_role:
             policy = ROLE_POLICY[role]
             if role == "requirement":
                 refs = [
-                    build_evidence_ref("requirement", "requirements-ir/requirements.json", parent["source_requirement_id"] and int({"HIL-NFR-01": 4432, "HIL-NFR-10": 4819, "HIL-NFR-19": 5206}[req_id]), int({"HIL-NFR-01": 4432, "HIL-NFR-10": 4819, "HIL-NFR-19": 5206}[req_id]), 1, policy["semantic_relation"]),
-                    build_evidence_ref("requirement", "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md", int(relations[req_id]["preserved_source_pointer"].rsplit(":", 1)[1]), int(relations[req_id]["preserved_source_pointer"].rsplit(":", 1)[1]), 2, policy["semantic_relation"]),
+                    build_evidence_ref(
+                        "requirement",
+                        "requirements-ir/requirements.json",
+                        parent["source_requirement_id"]
+                        and int(
+                            {
+                                "HIL-NFR-01": 4432,
+                                "HIL-NFR-10": 4819,
+                                "HIL-NFR-19": 5206,
+                            }[req_id]
+                        ),
+                        int(
+                            {
+                                "HIL-NFR-01": 4432,
+                                "HIL-NFR-10": 4819,
+                                "HIL-NFR-19": 5206,
+                            }[req_id]
+                        ),
+                        1,
+                        policy["semantic_relation"],
+                    ),
+                    build_evidence_ref(
+                        "requirement",
+                        "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+                        int(
+                            relations[req_id]["preserved_source_pointer"].rsplit(
+                                ":", 1
+                            )[1]
+                        ),
+                        int(
+                            relations[req_id]["preserved_source_pointer"].rsplit(
+                                ":", 1
+                            )[1]
+                        ),
+                        2,
+                        policy["semantic_relation"],
+                    ),
                 ]
                 bindings = []
                 source_sha = REQ_SHA
                 evidence_state = "non_executable_source_snapshot"
             else:
                 source_path, start, end, binding_specs = spec["evidence"][role]
-                refs = [build_evidence_ref(role, source_path, start, end, 1, policy["semantic_relation"])]
+                refs = [
+                    build_evidence_ref(
+                        role, source_path, start, end, 1, policy["semantic_relation"]
+                    )
+                ]
                 bindings = []
                 for atom_id, anchors, required_terms, mapping in binding_specs:
-                    bindings.append({
-                        "anchor_evidence_terms": {anchor: terms for anchor, terms in mapping},
-                        "atom_id": atom_id,
-                        "evidence_ref_indexes": [0],
-                        "match_mode": "controlled_term_set_partial",
-                        "required_terms": required_terms,
-                        "source_fragment_anchors": anchors,
-                    })
+                    bindings.append(
+                        {
+                            "anchor_evidence_terms": {
+                                anchor: terms for anchor, terms in mapping
+                            },
+                            "atom_id": atom_id,
+                            "evidence_ref_indexes": [0],
+                            "match_mode": "controlled_term_set_partial",
+                            "required_terms": required_terms,
+                            "source_fragment_anchors": anchors,
+                        }
+                    )
                 source_sha = asset["source_sha256"]
-                evidence_state = "document_present" if role == "design" else "implementation_source_present_unexecuted"
+                evidence_state = (
+                    "document_present"
+                    if role == "design"
+                    else "implementation_source_present_unexecuted"
+                )
             row = {
                 "artifact_evidence_kind": policy["artifact_evidence_kind"],
                 "asset_id": asset["asset_id"],
@@ -304,13 +450,20 @@ def main() -> None:
                 "candidate_membership_semantics": "bounded_global_search_candidate_only_not_semantic_evidence",
                 "candidate_phase_targets": asset["candidate_phase_targets"],
                 "candidate_product_targets": asset["candidate_product_targets"],
-                "catalog_legacy_implementation_status": asset["legacy_implementation_status"],
+                "catalog_legacy_implementation_status": asset[
+                    "legacy_implementation_status"
+                ],
                 "classification_id": asset["classification_id"],
                 "connection_records": [],
                 "consumer_closure_evidence": [],
                 "consumer_closure_status": "pending",
                 "counterevidence": copy.deepcopy(COUNTEREVIDENCE),
-                "coverage": {"constraint": "product boundary／phase authority／consumer closure未確定", "failure": "未対応atom、partial evidence、またはmissing acceptance receipt", "normal": "exact source anchorを固定したstatic evidence only", "recovery": "not_evidenced"},
+                "coverage": {
+                    "constraint": "product boundary／phase authority／consumer closure未確定",
+                    "failure": "未対応atom、partial evidence、またはmissing acceptance receipt",
+                    "normal": "exact source anchorを固定したstatic evidence only",
+                    "recovery": "not_evidenced",
+                },
                 "covered_requirement_atom_ids": atom_ids,
                 "covered_requirement_atoms": copy.deepcopy(atom_specs),
                 "current_requirement_implementation_status": "not_established",
@@ -318,7 +471,9 @@ def main() -> None:
                 "evidence_refs": refs,
                 "legacy_asset_evidence_state": evidence_state,
                 "legacy_execution_status": "not_run",
-                "legacy_requirement_implementation_contribution": policy["legacy_requirement_implementation_contribution"],
+                "legacy_requirement_implementation_contribution": policy[
+                    "legacy_requirement_implementation_contribution"
+                ],
                 "new_build_allowed": False,
                 "observed_consumer_refs": copy.deepcopy(CONSUMERS),
                 "phase_authority_status": "candidate_unchanged",
@@ -338,35 +493,67 @@ def main() -> None:
                 "source_connective_fragments": [],
                 "source_path": asset["source_path"],
                 "source_requirement_id": req_id,
-                "source_requirement_legacy_markdown_span": relations[req_id]["preserved_source_pointer"],
+                "source_requirement_legacy_markdown_span": relations[req_id][
+                    "preserved_source_pointer"
+                ],
                 "source_requirement_pointer": parent["source_pointer"],
                 "source_scope_fragments": [],
                 "source_sha256": source_sha,
-                "source_statement_semantic_digest": parent["source_statement_semantic_digest"],
+                "source_statement_semantic_digest": parent[
+                    "source_statement_semantic_digest"
+                ],
                 "source_statement_text": parent["statement_text"],
                 "source_text_spans": candidate["source_text_spans"],
                 "unit_candidate_id": unit,
                 "unresolved": copy.deepcopy(policy["unresolved"]),
             }
             rows.append(row)
-        aggregates.append({"unit_candidate_id": unit, "reviewed_edge_count": 3, "semantic_link_counts": {"confirmed": 1, "rejected": 0, "unresolved": 2}, "direct_confirmed_implementation_asset_ids": [], "phase_authority_status": "candidate_unchanged"})
+        aggregates.append(
+            {
+                "unit_candidate_id": unit,
+                "reviewed_edge_count": 3,
+                "semantic_link_counts": {
+                    "confirmed": 1,
+                    "rejected": 0,
+                    "unresolved": 2,
+                },
+                "direct_confirmed_implementation_asset_ids": [],
+                "phase_authority_status": "candidate_unchanged",
+            }
+        )
 
     ledger_path = OUT / "legacy-requirement-direct-semantic-review-wave37.jsonl"
-    ledger_path.write_text("".join(json.dumps(row, ensure_ascii=False, sort_keys=True) + "\n" for row in rows))
+    ledger_path.write_text(
+        "".join(
+            json.dumps(row, ensure_ascii=False, sort_keys=True) + "\n" for row in rows
+        )
+    )
 
     inputs = {
-        "archive/legacy-generation-2026-09-14/MANIFEST.sha256": file_digest(ROOT / "archive/legacy-generation-2026-09-14/MANIFEST.sha256"),
+        "archive/legacy-generation-2026-09-14/MANIFEST.sha256": file_digest(
+            ROOT / "archive/legacy-generation-2026-09-14/MANIFEST.sha256"
+        ),
         CATALOG_PATH: file_digest(ROOT / CATALOG_PATH),
         CROSSWALK_PATH: file_digest(ROOT / CROSSWALK_PATH),
         DECOMPOSITION_PATH: file_digest(ROOT / DECOMPOSITION_PATH),
         REQ_RELATION_PATH: file_digest(ROOT / REQ_RELATION_PATH),
         # The historical input is read from its exact commit; current refs are a separate projection.
         "docs/governance/phase-capability-inventory.json": fixed_phase_inventory_digest(),
-        "docs/concept/product-boundary.md": file_digest(ROOT / "docs/concept/product-boundary.md"),
-        "docs/helix-harness/L1-planning/product-intent.md": file_digest(ROOT / "docs/helix-harness/L1-planning/product-intent.md"),
-        "docs/helix-os/L1-planning/system-intent.md": file_digest(ROOT / "docs/helix-os/L1-planning/system-intent.md"),
-        "docs/helix-web/L1-planning/product-intent.md": file_digest(ROOT / "docs/helix-web/L1-planning/product-intent.md"),
-        "docs/helix-web-os/L1-planning/system-intent.md": file_digest(ROOT / "docs/helix-web-os/L1-planning/system-intent.md"),
+        "docs/concept/product-boundary.md": file_digest(
+            ROOT / "docs/concept/product-boundary.md"
+        ),
+        "docs/helix-harness/L1-planning/product-intent.md": file_digest(
+            ROOT / "docs/helix-harness/L1-planning/product-intent.md"
+        ),
+        "docs/helix-os/L1-planning/system-intent.md": file_digest(
+            ROOT / "docs/helix-os/L1-planning/system-intent.md"
+        ),
+        "docs/helix-web/L1-planning/product-intent.md": file_digest(
+            ROOT / "docs/helix-web/L1-planning/product-intent.md"
+        ),
+        "docs/helix-web-os/L1-planning/system-intent.md": file_digest(
+            ROOT / "docs/helix-web-os/L1-planning/system-intent.md"
+        ),
     }
     for wave in range(1, 37):
         for suffix in ("jsonl", "meta.json"):
@@ -375,10 +562,22 @@ def main() -> None:
 
     prior_batches = []
     for wave in range(1, 37):
-        ledger = ROOT / f"docs/governance/legacy-requirement-direct-semantic-review-wave{wave}.jsonl"
-        meta_path = ROOT / f"docs/governance/legacy-requirement-direct-semantic-review-wave{wave}.meta.json"
+        ledger = (
+            ROOT
+            / f"docs/governance/legacy-requirement-direct-semantic-review-wave{wave}.jsonl"
+        )
+        meta_path = (
+            ROOT
+            / f"docs/governance/legacy-requirement-direct-semantic-review-wave{wave}.meta.json"
+        )
         prior_meta = json.loads(meta_path.read_text())
-        prior_batches.append({"batch_id": prior_meta["batch_id"], "ledger_sha256": file_digest(ledger), "meta_sha256": file_digest(meta_path)})
+        prior_batches.append(
+            {
+                "batch_id": prior_meta["batch_id"],
+                "ledger_sha256": file_digest(ledger),
+                "meta_sha256": file_digest(meta_path),
+            }
+        )
 
     meta = {
         "authority_effect": "none",
@@ -397,11 +596,23 @@ def main() -> None:
         "output_sha256": file_digest(ledger_path),
         "parent_revision": BASE,
         "phase_rows": phase_rows,
-        "prior_fixed_input_digests": {k: inputs[k] for k in [CATALOG_PATH, DECOMPOSITION_PATH, "docs/governance/phase-capability-inventory.json", REQ_RELATION_PATH, "archive/legacy-generation-2026-09-14/MANIFEST.sha256"]},
+        "prior_fixed_input_digests": {
+            k: inputs[k]
+            for k in [
+                CATALOG_PATH,
+                DECOMPOSITION_PATH,
+                "docs/governance/phase-capability-inventory.json",
+                REQ_RELATION_PATH,
+                "archive/legacy-generation-2026-09-14/MANIFEST.sha256",
+            ]
+        },
         "prior_review_batches": prior_batches,
         "record_count": len(rows),
         "remaining_unit_count": 70,
-        "reviewed_edges": [{"asset_id": row["asset_id"], "unit_candidate_id": row["unit_candidate_id"]} for row in rows],
+        "reviewed_edges": [
+            {"asset_id": row["asset_id"], "unit_candidate_id": row["unit_candidate_id"]}
+            for row in rows
+        ],
         "reviewed_unit_ids": selected_units,
         "schema_revision": 10,
         "semantic_link_counts": {"confirmed": 3, "rejected": 0, "unresolved": 6},
@@ -419,13 +630,22 @@ def main() -> None:
         "wave37_exact_head": BASE,
     }
     # Preserve the historical lineage fields carried by schema10 Wave36.
-    previous_meta = json.loads((ROOT / "docs/governance/legacy-requirement-direct-semantic-review-wave36.meta.json").read_text())
+    previous_meta = json.loads(
+        (
+            ROOT
+            / "docs/governance/legacy-requirement-direct-semantic-review-wave36.meta.json"
+        ).read_text()
+    )
     for key in previous_meta:
         if key.startswith("wave") and key not in meta:
             meta[key] = previous_meta[key]
     meta_path = OUT / "legacy-requirement-direct-semantic-review-wave37.meta.json"
-    meta_path.write_text(json.dumps(meta, ensure_ascii=False, indent=2, sort_keys=True) + "\n")
-    print(f"generated rows={len(rows)} units={len(selected_units)} ledger={ledger_path}")
+    meta_path.write_text(
+        json.dumps(meta, ensure_ascii=False, indent=2, sort_keys=True) + "\n"
+    )
+    print(
+        f"generated rows={len(rows)} units={len(selected_units)} ledger={ledger_path}"
+    )
 
 
 if __name__ == "__main__":

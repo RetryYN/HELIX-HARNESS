@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """仮設review・作業依頼パケットの版・参照・応答対応を静的確認する。外部送信・file書込なし。"""
+
 import argparse
 import hashlib
 import json
@@ -44,22 +45,33 @@ def sha(data):
 
 
 def encode(value):
-    return json.dumps(value, ensure_ascii=False, sort_keys=True, separators=(",", ":")).encode()
+    return json.dumps(
+        value, ensure_ascii=False, sort_keys=True, separators=(",", ":")
+    ).encode()
 
 
 def git(*args):
-    return subprocess.check_output(["git", "-C", str(ROOT), *args], stderr=subprocess.DEVNULL)
+    return subprocess.check_output(
+        ["git", "-C", str(ROOT), *args], stderr=subprocess.DEVNULL
+    )
 
 
 def commit(value):
-    require(isinstance(value, str) and re.fullmatch(r"[0-9a-f]{40}", value), "full SHAが必要")
-    require(git("rev-parse", value + "^{commit}").decode().strip() == value, "commit不一致")
+    require(
+        isinstance(value, str) and re.fullmatch(r"[0-9a-f]{40}", value),
+        "full SHAが必要",
+    )
+    require(
+        git("rev-parse", value + "^{commit}").decode().strip() == value, "commit不一致"
+    )
     return value
 
 
 def references(head):
-    return [{"path": path, "kind": kind, "sha256": sha(git("show", head + ":" + path))}
-            for path, kind in REFERENCES.items()]
+    return [
+        {"path": path, "kind": kind, "sha256": sha(git("show", head + ":" + path))}
+        for path, kind in REFERENCES.items()
+    ]
 
 
 def text(value):
@@ -71,19 +83,53 @@ def pr_review_pair_allowed(author, reviewer):
 
 
 def validate(packet, base, head):
-    fields = {"schema", "evidence_kind", "authority_effect", "request_id", "repository", "pr",
-              "base_sha", "content_sha", "author", "reviewer", "purpose", "scope",
-              "route", "references", "payload_sha256"}
+    fields = {
+        "schema",
+        "evidence_kind",
+        "authority_effect",
+        "request_id",
+        "repository",
+        "pr",
+        "base_sha",
+        "content_sha",
+        "author",
+        "reviewer",
+        "purpose",
+        "scope",
+        "route",
+        "references",
+        "payload_sha256",
+    }
     require(isinstance(packet, dict) and set(packet) == fields, "依頼のfield不一致")
     require(packet["schema"] == "scaffold-review-request.v1", "schema不一致")
-    require(packet["evidence_kind"] == "scaffold" and packet["authority_effect"] == "none", "authority不一致")
+    require(
+        packet["evidence_kind"] == "scaffold" and packet["authority_effect"] == "none",
+        "authority不一致",
+    )
     require(packet["repository"] == "RetryYN/HELIX-HARNESS", "repository不一致")
     require(type(packet["pr"]) is int and packet["pr"] > 0, "PR番号が必要")
-    require(text(packet["request_id"]) and text(packet["purpose"]), "依頼identity・目的が必要")
-    require(isinstance(packet["scope"], list) and packet["scope"] and all(text(s) for s in packet["scope"]), "scopeが必要")
-    require(pr_review_pair_allowed(packet["author"], packet["reviewer"]), "PR作成側・review側の組合せ対象外")
-    require(packet["route"] in ("manual_handoff_no_launch", "vscode_gui_mailbox"), "未対応の配送経路")
-    require(packet["base_sha"] == commit(base) and packet["content_sha"] == commit(head), "staleなbase/content")
+    require(
+        text(packet["request_id"]) and text(packet["purpose"]),
+        "依頼identity・目的が必要",
+    )
+    require(
+        isinstance(packet["scope"], list)
+        and packet["scope"]
+        and all(text(s) for s in packet["scope"]),
+        "scopeが必要",
+    )
+    require(
+        pr_review_pair_allowed(packet["author"], packet["reviewer"]),
+        "PR作成側・review側の組合せ対象外",
+    )
+    require(
+        packet["route"] in ("manual_handoff_no_launch", "vscode_gui_mailbox"),
+        "未対応の配送経路",
+    )
+    require(
+        packet["base_sha"] == commit(base) and packet["content_sha"] == commit(head),
+        "staleなbase/content",
+    )
     require(packet["references"] == references(head), "参照集合・種別・bytesが不一致")
     core = {k: v for k, v in packet.items() if k != "payload_sha256"}
     require(packet["payload_sha256"] == sha(encode(core)), "payload不一致")
@@ -91,19 +137,53 @@ def validate(packet, base, head):
 
 def validate_work(packet, base):
     """作業依頼。記録の正本はIssueで、通知は配送。承認・要求の意味・完了を生成しない。"""
-    fields = {"schema", "evidence_kind", "authority_effect", "request_id", "repository", "issue",
-              "base_sha", "dispatcher", "worker", "purpose", "scope", "route", "references", "payload_sha256"}
-    require(isinstance(packet, dict) and set(packet) in (fields, fields | {"after"}), "作業依頼のfield不一致")
+    fields = {
+        "schema",
+        "evidence_kind",
+        "authority_effect",
+        "request_id",
+        "repository",
+        "issue",
+        "base_sha",
+        "dispatcher",
+        "worker",
+        "purpose",
+        "scope",
+        "route",
+        "references",
+        "payload_sha256",
+    }
+    require(
+        isinstance(packet, dict) and set(packet) in (fields, fields | {"after"}),
+        "作業依頼のfield不一致",
+    )
     if "after" in packet:
-        require(isinstance(packet["after"], str) and re.fullmatch(r"[A-Za-z0-9_-]{1,128}", packet["after"]),
-                "afterは先行event IDが必要")
+        require(
+            isinstance(packet["after"], str)
+            and re.fullmatch(r"[A-Za-z0-9_-]{1,128}", packet["after"]),
+            "afterは先行event IDが必要",
+        )
     require(packet["schema"] == "scaffold-work-request.v1", "作業依頼schema不一致")
-    require(packet["evidence_kind"] == "scaffold" and packet["authority_effect"] == "none", "authority不一致")
+    require(
+        packet["evidence_kind"] == "scaffold" and packet["authority_effect"] == "none",
+        "authority不一致",
+    )
     require(packet["repository"] == "RetryYN/HELIX-HARNESS", "repository不一致")
     require(type(packet["issue"]) is int and packet["issue"] > 0, "Issue番号が必要")
-    require(text(packet["request_id"]) and text(packet["purpose"]), "依頼identity・目的が必要")
-    require(isinstance(packet["scope"], list) and packet["scope"] and all(text(s) for s in packet["scope"]), "scopeが必要")
-    require(packet["dispatcher"] in PR_RUNTIMES and packet["worker"] in RUNTIMES, "依頼側・作業側のruntime対象外")
+    require(
+        text(packet["request_id"]) and text(packet["purpose"]),
+        "依頼identity・目的が必要",
+    )
+    require(
+        isinstance(packet["scope"], list)
+        and packet["scope"]
+        and all(text(s) for s in packet["scope"]),
+        "scopeが必要",
+    )
+    require(
+        packet["dispatcher"] in PR_RUNTIMES and packet["worker"] in RUNTIMES,
+        "依頼側・作業側のruntime対象外",
+    )
     require(packet["dispatcher"] != packet["worker"], "依頼側と作業側は異なるruntime")
     require(packet["route"] == "vscode_gui_mailbox", "未対応の配送経路")
     require(packet["base_sha"] == commit(base), "staleなbase")
@@ -114,65 +194,167 @@ def validate_work(packet, base):
 
 def validate_work_result(result, request):
     """作業側の返却。proposalは依頼baseを祖先に持つcommit。依頼側が読んで自分のPRにするかを決める。"""
-    fields = {"schema", "evidence_kind", "authority_effect", "request_id", "request_payload_sha256", "issue",
-              "base_sha", "dispatcher", "worker", "result", "result_sha", "branch", "summary"}
+    fields = {
+        "schema",
+        "evidence_kind",
+        "authority_effect",
+        "request_id",
+        "request_payload_sha256",
+        "issue",
+        "base_sha",
+        "dispatcher",
+        "worker",
+        "result",
+        "result_sha",
+        "branch",
+        "summary",
+    }
     require(isinstance(result, dict) and set(result) == fields, "作業結果のfield不一致")
     require(result["schema"] == "scaffold-work-result.v1", "作業結果schema不一致")
-    require(result["evidence_kind"] == "scaffold" and result["authority_effect"] == "none", "作業結果authority不一致")
+    require(
+        result["evidence_kind"] == "scaffold" and result["authority_effect"] == "none",
+        "作業結果authority不一致",
+    )
     for field in ("request_id", "issue", "base_sha", "dispatcher", "worker"):
         require(result[field] == request[field], "作業結果binding不一致: " + field)
-    require(result["request_payload_sha256"] == request["payload_sha256"], "作業結果payload不一致")
-    require(result["result"] in ("proposal", "incomplete", "declined"), "作業結果result不正")
-    require(isinstance(result["summary"], list) and result["summary"] and all(text(v) for v in result["summary"]), "summaryが必要")
+    require(
+        result["request_payload_sha256"] == request["payload_sha256"],
+        "作業結果payload不一致",
+    )
+    require(
+        result["result"] in ("proposal", "incomplete", "declined"), "作業結果result不正"
+    )
+    require(
+        isinstance(result["summary"], list)
+        and result["summary"]
+        and all(text(v) for v in result["summary"]),
+        "summaryが必要",
+    )
     if result["result"] == "proposal":
         commit(result["result_sha"])
-        require(text(result["branch"]) and re.fullmatch(r"[A-Za-z0-9._/-]{1,200}", result["branch"]), "branch形式不正")
-        require(subprocess.run(["git", "-C", str(ROOT), "merge-base", "--is-ancestor", request["base_sha"], result["result_sha"]]).returncode == 0,
-                "proposalが依頼baseから派生していない")
+        require(
+            text(result["branch"])
+            and re.fullmatch(r"[A-Za-z0-9._/-]{1,200}", result["branch"]),
+            "branch形式不正",
+        )
+        require(
+            subprocess.run(
+                [
+                    "git",
+                    "-C",
+                    str(ROOT),
+                    "merge-base",
+                    "--is-ancestor",
+                    request["base_sha"],
+                    result["result_sha"],
+                ]
+            ).returncode
+            == 0,
+            "proposalが依頼baseから派生していない",
+        )
         require(result["result_sha"] != request["base_sha"], "proposalに変更がない")
         pushed_branch = subprocess.run(
-            ["git", "-C", str(ROOT), "show-ref", "--verify", "--quiet",
-             "refs/remotes/origin/" + result["branch"]],
-            stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL,
+            [
+                "git",
+                "-C",
+                str(ROOT),
+                "show-ref",
+                "--verify",
+                "--quiet",
+                "refs/remotes/origin/" + result["branch"],
+            ],
+            stdout=subprocess.DEVNULL,
+            stderr=subprocess.DEVNULL,
         )
         require(pushed_branch.returncode in (0, 1), "origin branch refを確認できない")
         if pushed_branch.returncode == 0:
-            merged = subprocess.run(
-                ["git", "-C", str(ROOT), "merge-base", "--is-ancestor", result["result_sha"],
-                 "refs/remotes/origin/main"],
-                stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL,
-            ).returncode == 0
+            merged = (
+                subprocess.run(
+                    [
+                        "git",
+                        "-C",
+                        str(ROOT),
+                        "merge-base",
+                        "--is-ancestor",
+                        result["result_sha"],
+                        "refs/remotes/origin/main",
+                    ],
+                    stdout=subprocess.DEVNULL,
+                    stderr=subprocess.DEVNULL,
+                ).returncode
+                == 0
+            )
             require(
                 merged,
                 "pushしたbranchのproposalは明示merge・read-after後に返す（git fetch後に再送）",
             )
     else:
-        require(result["result_sha"] is None and result["branch"] is None, "提案なしの結果にcommitを付けない")
+        require(
+            result["result_sha"] is None and result["branch"] is None,
+            "提案なしの結果にcommitを付けない",
+        )
 
 
 def validate_response(response, request):
-    fields = {"schema", "evidence_kind", "authority_effect", "request_id", "request_payload_sha256",
-              "base_sha", "content_sha", "reviewer", "result", "findings", "unreviewed"}
+    fields = {
+        "schema",
+        "evidence_kind",
+        "authority_effect",
+        "request_id",
+        "request_payload_sha256",
+        "base_sha",
+        "content_sha",
+        "reviewer",
+        "result",
+        "findings",
+        "unreviewed",
+    }
     require(isinstance(response, dict) and set(response) == fields, "応答のfield不一致")
     require(response["schema"] == "scaffold-review-response.v1", "応答schema不一致")
-    require(response["evidence_kind"] == "scaffold" and response["authority_effect"] == "none", "応答authority不一致")
+    require(
+        response["evidence_kind"] == "scaffold"
+        and response["authority_effect"] == "none",
+        "応答authority不一致",
+    )
     for field in ("request_id", "base_sha", "content_sha", "reviewer"):
         require(response[field] == request[field], "応答binding不一致: " + field)
-    require(response["request_payload_sha256"] == request["payload_sha256"], "応答payload不一致")
-    require(response["result"] in ("findings", "no_findings", "incomplete"), "応答result不正")
+    require(
+        response["request_payload_sha256"] == request["payload_sha256"],
+        "応答payload不一致",
+    )
+    require(
+        response["result"] in ("findings", "no_findings", "incomplete"),
+        "応答result不正",
+    )
     require(isinstance(response["findings"], list), "findingsが必要")
     ids = set()
     for finding in response["findings"]:
-        require(isinstance(finding, dict) and set(finding) == {"id", "severity", "evidence", "change"}, "finding形式不正")
+        require(
+            isinstance(finding, dict)
+            and set(finding) == {"id", "severity", "evidence", "change"},
+            "finding形式不正",
+        )
         require(all(text(v) for v in finding.values()), "findingに空欄")
-        require(finding["severity"] in ("Blocker", "Major", "Minor", "Info"), "severity不正")
+        require(
+            finding["severity"] in ("Blocker", "Major", "Minor", "Info"), "severity不正"
+        )
         require(finding["id"] not in ids, "finding ID重複")
         ids.add(finding["id"])
-    require(isinstance(response["unreviewed"], list) and all(text(v) for v in response["unreviewed"]), "未確認範囲の形式不正")
+    require(
+        isinstance(response["unreviewed"], list)
+        and all(text(v) for v in response["unreviewed"]),
+        "未確認範囲の形式不正",
+    )
     if response["result"] == "no_findings":
-        require(not response["findings"] and not response["unreviewed"], "未確認・指摘ありをno_findingsにできない")
+        require(
+            not response["findings"] and not response["unreviewed"],
+            "未確認・指摘ありをno_findingsにできない",
+        )
     if response["result"] == "findings":
-        require(bool(response["findings"]) and not response["unreviewed"], "指摘または未確認範囲とresultが不整合")
+        require(
+            bool(response["findings"]) and not response["unreviewed"],
+            "指摘または未確認範囲とresultが不整合",
+        )
     if response["result"] == "incomplete":
         require(bool(response["unreviewed"]), "incompleteの理由が必要")
 
@@ -187,7 +369,11 @@ def main():
     build.add_argument("--author", choices=tuple(PR_REVIEWER), required=True)
     build.add_argument("--reviewer", choices=PR_RUNTIMES)
     build.add_argument("--scope", action="append", required=True)
-    build.add_argument("--route", choices=("manual_handoff_no_launch", "vscode_gui_mailbox"), default="vscode_gui_mailbox")
+    build.add_argument(
+        "--route",
+        choices=("manual_handoff_no_launch", "vscode_gui_mailbox"),
+        default="vscode_gui_mailbox",
+    )
     work = sub.add_parser("build-work")
     for name in ("base", "request-id", "purpose"):
         work.add_argument("--" + name, required=True)
@@ -204,22 +390,48 @@ def main():
     args = parser.parse_args()
     try:
         if args.command == "build":
-            reviewer = args.reviewer if args.reviewer is not None else ("codex" if args.author == "claude" else PR_REVIEWER[args.author][0])
-            packet = dict(schema="scaffold-review-request.v1", evidence_kind="scaffold", authority_effect="none",
-                          request_id=args.request_id, repository="RetryYN/HELIX-HARNESS", pr=args.pr,
-                          base_sha=commit(args.base), content_sha=commit(args.head), author=args.author,
-                          reviewer=reviewer,
-                          purpose=args.purpose,
-                          scope=args.scope, route=args.route, references=references(args.head))
+            reviewer = (
+                args.reviewer
+                if args.reviewer is not None
+                else (
+                    "codex" if args.author == "claude" else PR_REVIEWER[args.author][0]
+                )
+            )
+            packet = dict(
+                schema="scaffold-review-request.v1",
+                evidence_kind="scaffold",
+                authority_effect="none",
+                request_id=args.request_id,
+                repository="RetryYN/HELIX-HARNESS",
+                pr=args.pr,
+                base_sha=commit(args.base),
+                content_sha=commit(args.head),
+                author=args.author,
+                reviewer=reviewer,
+                purpose=args.purpose,
+                scope=args.scope,
+                route=args.route,
+                references=references(args.head),
+            )
             packet["payload_sha256"] = sha(encode(packet))
             validate(packet, args.base, args.head)
             print(json.dumps(packet, ensure_ascii=False, indent=2))
         elif args.command == "build-work":
-            packet = dict(schema="scaffold-work-request.v1", evidence_kind="scaffold", authority_effect="none",
-                          request_id=args.request_id, repository="RetryYN/HELIX-HARNESS", issue=args.issue,
-                          base_sha=commit(args.base), dispatcher=args.dispatcher, worker=args.worker,
-                          purpose=args.purpose, scope=args.scope, route="vscode_gui_mailbox",
-                          references=references(args.base))
+            packet = dict(
+                schema="scaffold-work-request.v1",
+                evidence_kind="scaffold",
+                authority_effect="none",
+                request_id=args.request_id,
+                repository="RetryYN/HELIX-HARNESS",
+                issue=args.issue,
+                base_sha=commit(args.base),
+                dispatcher=args.dispatcher,
+                worker=args.worker,
+                purpose=args.purpose,
+                scope=args.scope,
+                route="vscode_gui_mailbox",
+                references=references(args.base),
+            )
             if args.after is not None:
                 packet["after"] = args.after
             packet["payload_sha256"] = sha(encode(packet))
@@ -227,18 +439,33 @@ def main():
             print(json.dumps(packet, ensure_ascii=False, indent=2))
         else:
             packet = json.loads(Path(args.request).read_text())
-            if isinstance(packet, dict) and packet.get("schema") == "scaffold-work-request.v1":
+            if (
+                isinstance(packet, dict)
+                and packet.get("schema") == "scaffold-work-request.v1"
+            ):
                 validate_work(packet, args.base)
                 if args.response:
-                    validate_work_result(json.loads(Path(args.response).read_text()), packet)
-                print("scaffold: work_packet_consistent（配送・着手・提案の意味review・完了は未判定）")
+                    validate_work_result(
+                        json.loads(Path(args.response).read_text()), packet
+                    )
+                print(
+                    "scaffold: work_packet_consistent（配送・着手・提案の意味review・完了は未判定）"
+                )
                 return
             require(bool(args.head), "--headが必要")
             validate(packet, args.base, args.head)
             if args.response:
                 validate_response(json.loads(Path(args.response).read_text()), packet)
-            print("scaffold: packet_consistent（配送・本人性・意味review・merge admissionは未判定）")
-    except (ValueError, TypeError, KeyError, OSError, subprocess.SubprocessError) as error:
+            print(
+                "scaffold: packet_consistent（配送・本人性・意味review・merge admissionは未判定）"
+            )
+    except (
+        ValueError,
+        TypeError,
+        KeyError,
+        OSError,
+        subprocess.SubprocessError,
+    ) as error:
         parser.exit(1, "scaffold: 拒否: " + str(error) + "\n")
 
 

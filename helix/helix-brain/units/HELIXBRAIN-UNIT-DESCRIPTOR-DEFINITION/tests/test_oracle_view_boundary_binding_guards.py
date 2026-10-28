@@ -68,15 +68,21 @@ class TestOracleViewBoundaryBindingGuards(unittest.TestCase):
         mirror_rows = source["content"]["oracle_bindings"]
         self.assertEqual(len(mirror_rows), 1)
         mirror = mirror_rows[0]
-        self.assertNotIn("source_ref", mirror, "avoid a self-digest cycle in source body")
+        self.assertNotIn(
+            "source_ref", mirror, "avoid a self-digest cycle in source body"
+        )
         for member in mirror:
             self.assertIn(member, oracle_binding)
             mirror[member] = copy.deepcopy(oracle_binding[member])
-        _old_ref, new_ref = _rewrite_qualified_source_body(raw, source, source["content"])
+        _old_ref, new_ref = _rewrite_qualified_source_body(
+            raw, source, source["content"]
+        )
         oracle_binding["source_ref"] = copy.deepcopy(new_ref)
         self.assertEqual(source["ref"], new_ref)
         for member, value in mirror.items():
-            self.assertEqual(value, oracle_binding[member], f"owner body mirror {member}")
+            self.assertEqual(
+                value, oracle_binding[member], f"owner body mirror {member}"
+            )
 
     def _prepare(self, rule, mutation=None):
         raw, _fixture_before, _slot, fact, oracle_binding, source, _old, _new = (
@@ -87,7 +93,9 @@ class TestOracleViewBoundaryBindingGuards(unittest.TestCase):
             self._sync_oracle_binding(raw, oracle_binding, source)
         raw_before = copy.deepcopy(raw)
         validated = validate_supply_input(raw)
-        self.assertIsNotNone(validated["input"], "setup: fn0 accepts typed partial Ref members")
+        self.assertIsNotNone(
+            validated["input"], "setup: fn0 accepts typed partial Ref members"
+        )
         self.assertEqual(validated["input"], raw_before)
         self.assertEqual(validated["input_issues"], [])
         self.assertEqual(validated["unusable_source_refs"], [])
@@ -106,11 +114,19 @@ class TestOracleViewBoundaryBindingGuards(unittest.TestCase):
             "identity_trace": identity_trace,
         }
         self.assertEqual(set(context), {"validated", "definitions", "identity_trace"})
-        return raw, raw_before, validated, validated_before, context, fact, oracle_binding
+        return (
+            raw,
+            raw_before,
+            validated,
+            validated_before,
+            context,
+            fact,
+            oracle_binding,
+        )
 
     def _assert_unfired_stops_without_empty_result(self, rule, mutation):
-        (raw, raw_before, validated, validated_before, context, _fact, _oracle) = self._prepare(
-            rule, mutation
+        (raw, raw_before, validated, validated_before, context, _fact, _oracle) = (
+            self._prepare(rule, mutation)
         )
         context_before = copy.deepcopy(context)
         with self.assertRaises(NotImplementedError) as caught:
@@ -122,52 +138,73 @@ class TestOracleViewBoundaryBindingGuards(unittest.TestCase):
 
     def test_R71_matching_obligation_does_not_fire_unrelated_measurement(self):
         """L4/L5 rule 71 needs a different typed obligation after subject correspondence."""
+
         def match_obligation(fact, oracle):
             oracle["obligation_ref"] = copy.deepcopy(fact["binding"]["requirement_ref"])
 
-        self._assert_unfired_stops_without_empty_result("unrelated_measurement", match_obligation)
+        self._assert_unfired_stops_without_empty_result(
+            "unrelated_measurement", match_obligation
+        )
 
     def test_R72_different_subject_does_not_become_revision_conflict(self):
         """L4 f06_join: same obligation and different revision cannot bridge another subject."""
+
         def different_subject(_fact, oracle):
             oracle["subject_ref"] = _ref_with_identity(
                 oracle["subject_ref"], "SYNTHETIC-OTHER-COMPLETION-SUBJECT"
             )
 
-        self._assert_unfired_stops_without_empty_result("completion_oracle_revision", different_subject)
+        self._assert_unfired_stops_without_empty_result(
+            "completion_oracle_revision", different_subject
+        )
 
     def test_R72_different_obligation_does_not_become_revision_conflict(self):
         """L4 f06_join: a known other obligation is not the completion's required obligation."""
+
         def different_obligation(_fact, oracle):
             oracle["obligation_ref"] = _ref_with_identity(
                 oracle["obligation_ref"], "SYNTHETIC-OTHER-COMPLETION-OBLIGATION"
             )
 
-        self._assert_unfired_stops_without_empty_result("completion_oracle_revision", different_obligation)
+        self._assert_unfired_stops_without_empty_result(
+            "completion_oracle_revision", different_obligation
+        )
 
     def test_R72_equal_oracle_revision_does_not_fire(self):
         """L4 revision_order: aligned subject and obligation are compared before revisions."""
+
         def equal_revision(fact, oracle):
             oracle["oracle_ref"]["revision"] = fact["oracle_ref"]["revision"]
 
-        self._assert_unfired_stops_without_empty_result("completion_oracle_revision", equal_revision)
+        self._assert_unfired_stops_without_empty_result(
+            "completion_oracle_revision", equal_revision
+        )
 
     def test_R72_owner_difference_is_not_a_revision_only_conflict(self):
         """L4 mismatch: identity/scope/revision resemblance cannot hide a different oracle owner."""
+
         def different_owner(_fact, oracle):
             oracle["oracle_ref"]["owner"] = "SYNTHETIC-OTHER-ORACLE-OWNER"
 
-        self._assert_unfired_stops_without_empty_result("completion_oracle_revision", different_owner)
+        self._assert_unfired_stops_without_empty_result(
+            "completion_oracle_revision", different_owner
+        )
 
     def _assert_positive_rule_prefix_and_observations(self, rule):
-        raw, raw_before, validated, validated_before, context, fact, oracle_binding = self._prepare(rule)
+        raw, raw_before, validated, validated_before, context, fact, oracle_binding = (
+            self._prepare(rule)
+        )
         context_before = copy.deepcopy(context)
         result = compare_oracle_and_view_boundary(context)
         expectation = CASES[rule]
-        findings = [row for row in result["findings"] if row["code"] == expectation["code"]]
+        findings = [
+            row for row in result["findings"] if row["code"] == expectation["code"]
+        ]
         self.assertEqual(len(findings), 1)
         finding = findings[0]
-        self.assertEqual(finding["rule_ref"], "HELIXBRAIN-L5-032-R-" + expectation["code"])
+        self.assertEqual(
+            finding["rule_ref"], "HELIXBRAIN-L5-032-R-" + expectation["code"]
+        )
         self.assertEqual(finding["axis"], expectation["axis"])
         self.assertEqual(finding["state"], "conflict")
         self.assertEqual(finding["subject_ref"], fact["ref"])
@@ -178,7 +215,9 @@ class TestOracleViewBoundaryBindingGuards(unittest.TestCase):
         self.assertEqual(prefix, expectation["predicate"])
         self.assertTrue(separator)
         diagnostic = json.loads(diagnostic_text)
-        self.assertEqual(set(diagnostic), {"code", "rule_ref", "predicate_observations"})
+        self.assertEqual(
+            set(diagnostic), {"code", "rule_ref", "predicate_observations"}
+        )
         self.assertEqual(diagnostic["code"], expectation["code"])
         self.assertEqual(diagnostic["rule_ref"], finding["rule_ref"])
         self.assertTrue(diagnostic["predicate_observations"])

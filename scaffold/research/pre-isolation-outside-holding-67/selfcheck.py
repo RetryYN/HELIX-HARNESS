@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """候補reportの境界をメモリ上の変異で確認する。repositoryへは書き込まない。"""
+
 from __future__ import annotations
 
 import copy

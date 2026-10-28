@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """SCF-B-0100 validatorの負例。各変異が狙ったguardで拒否されることを確認する。"""
+
 from __future__ import annotations
 
 import copy
@@ -13,7 +14,11 @@ from validate import base_ancestor_errors, validate_inventory, validate_records 
 
 
 def load():
-    return [json.loads(line) for line in (HERE / "research.jsonl").read_text(encoding="utf-8").splitlines() if line.strip()]
+    return [
+        json.loads(line)
+        for line in (HERE / "research.jsonl").read_text(encoding="utf-8").splitlines()
+        if line.strip()
+    ]
 
 
 def expects(name, records, code):
@@ -54,10 +59,16 @@ def main():
 
     boundary_interpretation = copy.deepcopy(base)
     boundary_interpretation[0]["product_boundary"]["interpretation"] = "tampered"
-    expects("boundary_interpretation_tamper", boundary_interpretation, "E_BOUNDARY_INTERPRETATION")
+    expects(
+        "boundary_interpretation_tamper",
+        boundary_interpretation,
+        "E_BOUNDARY_INTERPRETATION",
+    )
 
     target = copy.deepcopy(base)
-    target[0]["decomposition_candidate"]["candidate_product_targets"].append("HELIX-Web")
+    target[0]["decomposition_candidate"]["candidate_product_targets"].append(
+        "HELIX-Web"
+    )
     expects("candidate_product_boundary_tamper", target, "E_CANDIDATE_BOUNDARY")
 
     authority = copy.deepcopy(base)
@@ -79,12 +90,18 @@ def main():
     execution[0]["legacy_execution_performed"] = True
     expects("legacy_execution_promotion", execution, "E_LEGACY_EXECUTION")
 
-    if not any(item.startswith("E_BASE_NOT_ANCESTOR:") for item in base_ancestor_errors("0" * 40)):
+    if not any(
+        item.startswith("E_BASE_NOT_ANCESTOR:")
+        for item in base_ancestor_errors("0" * 40)
+    ):
         raise AssertionError("base_ancestor_tamper: expected E_BASE_NOT_ANCESTOR")
 
     inventory = json.loads((HERE / "inventory.json").read_text(encoding="utf-8"))
     inventory["input_digests"][0]["sha256"] = "0" * 64
-    if not any(item.startswith("E_INPUT_DIGEST:") for item in validate_inventory(inventory, check_ancestor=False)):
+    if not any(
+        item.startswith("E_INPUT_DIGEST:")
+        for item in validate_inventory(inventory, check_ancestor=False)
+    ):
         raise AssertionError("base_object_digest_tamper: expected E_INPUT_DIGEST")
 
     print("SCF-B-0100 selfcheck: PASS negative_cases=15")

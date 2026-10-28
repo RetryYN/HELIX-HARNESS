@@ -46,7 +46,11 @@ ROUTE_REASONS = {
 def _walk_and_build_uses(raw):
     raw_before = copy.deepcopy(raw)
     validated = validate_supply_input(raw)
-    if validated["input"] is None or validated["input_issues"] or validated["unusable_source_refs"]:
+    if (
+        validated["input"] is None
+        or validated["input_issues"]
+        or validated["unusable_source_refs"]
+    ):
         raise AssertionError("setup: FN0 must accept the qualified Claim fixture")
     if validated["input"] != raw_before:
         raise AssertionError("setup: FN0 must preserve the input snapshot")
@@ -104,11 +108,13 @@ def _expected_primary_indices(evaluation, related_indices):
 def _assert_use_partition(testcase, raw, evaluation, use, expected_related):
     expected_primary = _expected_primary_indices(evaluation, expected_related)
     expected_missing = [
-        index for index in expected_primary
+        index
+        for index in expected_primary
         if evaluation["assessments"][index]["state"] == "missing"
     ]
     expected_undefined = [
-        index for index in expected_primary
+        index
+        for index in expected_primary
         if evaluation["assessments"][index]["state"] == "unknown"
         and evaluation["assessments"][index]["origin_branch"] == "meaning_undefined"
     ]
@@ -121,7 +127,10 @@ def _assert_use_partition(testcase, raw, evaluation, use, expected_related):
 class TestDescriptorClaimUses(unittest.TestCase):
     def _assert_uses(self, raw, expected_count):
         validated, walk, uses = _walk_and_build_uses(raw)
-        self.assertEqual(walk["evaluation"]["comparison"]["input_binding"], validated["input"]["binding"])
+        self.assertEqual(
+            walk["evaluation"]["comparison"]["input_binding"],
+            validated["input"]["binding"],
+        )
         self.assertEqual(len(uses), expected_count)
         for index, use in enumerate(uses):
             self.assertEqual(set(use), USE_FIELDS)
@@ -135,9 +144,15 @@ class TestDescriptorClaimUses(unittest.TestCase):
             self.assertEqual(use["target_read"]["claim"], claim)
             self.assertEqual(use["intent_read"]["claim_locator"], locator)
             self.assertEqual(use["intent_read"]["claim"], claim)
-            self.assertIn(use["basis_class"], {
-                "reference_only_only", "nonsemantic_or_empty", "semantic_or_mixed", "unresolved"
-            })
+            self.assertIn(
+                use["basis_class"],
+                {
+                    "reference_only_only",
+                    "nonsemantic_or_empty",
+                    "semantic_or_mixed",
+                    "unresolved",
+                },
+            )
             self.assertIn(use["route"], {"rule87", "rule93", "none", "unresolved"})
             self.assertEqual(use["route_reason"], ROUTE_REASONS[use["route"]])
         return validated, walk, uses
@@ -155,8 +170,15 @@ class TestDescriptorClaimUses(unittest.TestCase):
 
         # This L7 fixture has no primary missing or meaning_undefined support.
         # The existing source_unresolved assessment is not reclassified as either.
-        self.assertTrue(all(evaluation["assessments"][i]["state"] == "unknown" for i in primary))
-        self.assertTrue(all(evaluation["assessments"][i]["origin_branch"] == "source_unresolved" for i in primary))
+        self.assertTrue(
+            all(evaluation["assessments"][i]["state"] == "unknown" for i in primary)
+        )
+        self.assertTrue(
+            all(
+                evaluation["assessments"][i]["origin_branch"] == "source_unresolved"
+                for i in primary
+            )
+        )
         self.assertEqual(uses[0]["missing_support_indices"], [])
         self.assertEqual(uses[0]["undefined_support_indices"], [])
         self.assertEqual(uses[0]["basis_class"], "nonsemantic_or_empty")
@@ -196,11 +218,14 @@ class TestDescriptorClaimUses(unittest.TestCase):
         for use in uses:
             _assert_use_partition(self, raw, walk["evaluation"], use, related)
             self.assertEqual(use["route"], "none")
-        self.assertEqual([use["claim_locator"] for use in uses], ["/claims/0", "/claims/1"])
+        self.assertEqual(
+            [use["claim_locator"] for use in uses], ["/claims/0", "/claims/1"]
+        )
         self.assertEqual([use["claim"] for use in uses], raw["claims"])
 
     def test_basis_presence_role_and_unresolved_occurrence_indices(self):
         """Basis classes preserve original refs and indices without creating qualifications."""
+
         def make_case(mode):
             raw = descriptor_claim_input("positive")
             claim = raw["claims"][0]
@@ -221,7 +246,11 @@ class TestDescriptorClaimUses(unittest.TestCase):
                 missing = copy.deepcopy(raw["sources"][0]["ref"])
                 missing["identity"] += "-unjoined"
                 source_ref = copy.deepcopy(raw["sources"][0]["ref"])
-                claim["basis_refs"] = [source_ref, copy.deepcopy(missing), copy.deepcopy(source_ref)]
+                claim["basis_refs"] = [
+                    source_ref,
+                    copy.deepcopy(missing),
+                    copy.deepcopy(source_ref),
+                ]
             return raw
 
         expected = {
@@ -239,7 +268,9 @@ class TestDescriptorClaimUses(unittest.TestCase):
                 use = uses[0]
                 self.assertEqual(use["basis_class"], basis_class)
                 self.assertEqual(use["basis_source_indices"], source_indices)
-                self.assertEqual(use["unresolved_basis_ref_indices"], unresolved_indices)
+                self.assertEqual(
+                    use["unresolved_basis_ref_indices"], unresolved_indices
+                )
                 self.assertEqual(use["missing_support_indices"], [])
                 self.assertEqual(use["undefined_support_indices"], [])
                 self.assertEqual(use["route"], "none")

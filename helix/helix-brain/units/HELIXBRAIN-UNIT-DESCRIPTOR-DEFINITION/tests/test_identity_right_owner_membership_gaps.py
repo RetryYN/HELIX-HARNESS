@@ -12,7 +12,10 @@ import copy
 import json
 import unittest
 
-from descriptor_definitions import compare_identity_versions_and_trace, validate_supply_input
+from descriptor_definitions import (
+    compare_identity_versions_and_trace,
+    validate_supply_input,
+)
 from identity_input_fixtures import (
     _append_qualified_source,
     _write_source_content,
@@ -36,14 +39,20 @@ class TestIdentityRightOwnerMembershipGaps(unittest.TestCase):
         result = compare_identity_versions_and_trace({"validated": validated})
         self.assertEqual(raw, raw_before)
         self.assertEqual(validated, validated_before)
-        compatibility_rows = [row for row in result["axes"] if row["axis"] == "compatibility"]
+        compatibility_rows = [
+            row for row in result["axes"] if row["axis"] == "compatibility"
+        ]
         self.assertTrue(compatibility_rows)
         self.assertTrue(all(row["state"] == "unknown" for row in compatibility_rows))
         for row in compatibility_rows:
             _prefix, separator, material = row["reason"].partition("\n")
             self.assertTrue(separator)
-            self.assertEqual(json.loads(material)["cause"], "bilateral_owner_unresolved")
-        self.assertFalse(any(row["code"] == "compatibility_mismatch" for row in result["findings"]))
+            self.assertEqual(
+                json.loads(material)["cause"], "bilateral_owner_unresolved"
+            )
+        self.assertFalse(
+            any(row["code"] == "compatibility_mismatch" for row in result["findings"])
+        )
         self.assertEqual(raw, raw_before)
         self.assertEqual(validated, validated_before)
 
@@ -53,20 +62,27 @@ class TestIdentityRightOwnerMembershipGaps(unittest.TestCase):
 
     @staticmethod
     def _right_source(raw, source_ref):
-        matches = [source for source in raw["sources"] if source.get("ref") == source_ref]
+        matches = [
+            source for source in raw["sources"] if source.get("ref") == source_ref
+        ]
         if len(matches) != 1:
-            raise AssertionError("setup: the original CompatibilityRecord must select one right source")
+            raise AssertionError(
+                "setup: the original CompatibilityRecord must select one right source"
+            )
         return matches[0]
 
     @staticmethod
     def _left_source(raw, record_ref):
         matches = [
-            source for source in raw["sources"]
+            source
+            for source in raw["sources"]
             if isinstance(source.get("content"), dict)
             and source["content"].get("compatibility_record_ref") == record_ref
         ]
         if len(matches) != 1:
-            raise AssertionError("setup: the positive fixture must contain one linked left source")
+            raise AssertionError(
+                "setup: the positive fixture must contain one linked left source"
+            )
         return matches[0]
 
     def test_qualified_source_of_another_owner_does_not_resolve_right_endpoint(self):
@@ -89,8 +105,12 @@ class TestIdentityRightOwnerMembershipGaps(unittest.TestCase):
             root_identity="SYNTHETIC-OTHER-OWNER-RIGHT-ROOT",
             revision=original_right["ref"]["revision"],
         )
-        self.assertNotEqual(other_owner_source["ref"]["owner"], record["right_ref"]["owner"])
-        self.assertIn(record["right_ref"], other_owner_source["content"]["compatible_refs"])
+        self.assertNotEqual(
+            other_owner_source["ref"]["owner"], record["right_ref"]["owner"]
+        )
+        self.assertIn(
+            record["right_ref"], other_owner_source["content"]["compatible_refs"]
+        )
         record["source_ref"] = copy.deepcopy(other_owner_source["ref"])
 
         # 左ownerの明示counterpart linkだけを新sourceへ同期する。左側membershipに
@@ -112,18 +132,26 @@ class TestIdentityRightOwnerMembershipGaps(unittest.TestCase):
         body = copy.deepcopy(right["content"])
         original_members = body["compatible_refs"]
         matching_positions = [
-            index for index, member in enumerate(original_members)
+            index
+            for index, member in enumerate(original_members)
             if member == original_right_ref
         ]
-        self.assertTrue(matching_positions, "setup: positive control must contain the original right Ref")
+        self.assertTrue(
+            matching_positions,
+            "setup: positive control must contain the original right Ref",
+        )
         replacement = copy.deepcopy(original_right_ref)
         replacement["identity"] = "SYNTHETIC-DIFFERENT-RIGHT-ENDPOINT"
         body["compatible_refs"] = [
             replacement if member == original_right_ref else member
             for member in original_members
         ]
-        self.assertFalse(any(member == original_right_ref for member in body["compatible_refs"]))
-        self.assertTrue(all(isinstance(member, dict) for member in body["compatible_refs"]))
+        self.assertFalse(
+            any(member == original_right_ref for member in body["compatible_refs"])
+        )
+        self.assertTrue(
+            all(isinstance(member, dict) for member in body["compatible_refs"])
+        )
 
         # body digest/Q subjectを同期したうえで、recordとleft counterpartの原linkも
         # 新しいsource Refへ同期する。right sourceのqualification identityは保つ。
@@ -145,9 +173,15 @@ class TestIdentityRightOwnerMembershipGaps(unittest.TestCase):
 
         body = copy.deepcopy(right["content"])
         members = body["compatible_refs"]
-        matching_positions = [index for index, member in enumerate(members)
-                              if member == original_right_ref]
-        self.assertTrue(matching_positions, "setup: positive control must contain the original right Ref")
+        matching_positions = [
+            index
+            for index, member in enumerate(members)
+            if member == original_right_ref
+        ]
+        self.assertTrue(
+            matching_positions,
+            "setup: positive control must contain the original right Ref",
+        )
         moved_member = members.pop(matching_positions[0])
         members.insert(0, moved_member)
         self.assertEqual(members[0], original_right_ref)
@@ -162,10 +196,14 @@ class TestIdentityRightOwnerMembershipGaps(unittest.TestCase):
         validated, raw_before = self._validated(raw)
         validated_before = copy.deepcopy(validated)
         result = compare_identity_versions_and_trace({"validated": validated})
-        compatibility_rows = [row for row in result["axes"] if row["axis"] == "compatibility"]
+        compatibility_rows = [
+            row for row in result["axes"] if row["axis"] == "compatibility"
+        ]
         self.assertEqual(len(compatibility_rows), 1)
         self.assertEqual(compatibility_rows[0]["state"], "resolved")
-        self.assertFalse(any(row["code"] == "compatibility_mismatch" for row in result["findings"]))
+        self.assertFalse(
+            any(row["code"] == "compatibility_mismatch" for row in result["findings"])
+        )
         self.assertEqual(raw, raw_before)
         self.assertEqual(validated, validated_before)
 

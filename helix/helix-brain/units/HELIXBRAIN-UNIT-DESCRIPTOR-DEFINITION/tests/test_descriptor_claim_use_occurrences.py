@@ -13,10 +13,20 @@ from identity_input_fixtures import _same_ref_without_digest, _write_source_cont
 
 
 USE_FIELDS = {
-    "claim_locator", "claim", "target_read", "intent_read", "assessment_indices",
-    "unmatched_match_indices", "basis_source_indices", "unresolved_basis_ref_indices",
-    "basis_class", "missing_support_indices", "undefined_support_indices", "route",
-    "route_reason", "primary_definition_assessment_indices",
+    "claim_locator",
+    "claim",
+    "target_read",
+    "intent_read",
+    "assessment_indices",
+    "unmatched_match_indices",
+    "basis_source_indices",
+    "unresolved_basis_ref_indices",
+    "basis_class",
+    "missing_support_indices",
+    "undefined_support_indices",
+    "route",
+    "route_reason",
+    "primary_definition_assessment_indices",
 }
 
 
@@ -27,7 +37,9 @@ def _rewrite_source(raw, source_index, content):
     new_ref = copy.deepcopy(source["ref"])
     for record in raw.get("knowledge_records", []):
         record["provenance_refs"] = [
-            copy.deepcopy(new_ref) if _same_ref_without_digest(ref, old_ref) else copy.deepcopy(ref)
+            copy.deepcopy(new_ref)
+            if _same_ref_without_digest(ref, old_ref)
+            else copy.deepcopy(ref)
             for ref in record.get("provenance_refs", [])
         ]
     for slot in raw.get("descriptors", []):
@@ -43,7 +55,9 @@ def _walk_and_build(raw, *, expected_input_issue_sources=()):
         raise AssertionError("setup: FN0 must decode and preserve the raw snapshot")
     issue_sources = [issue["source_ref"] for issue in validated["input_issues"]]
     if issue_sources != list(expected_input_issue_sources):
-        raise AssertionError("setup: FN0 qualification issues must match the constructed source state")
+        raise AssertionError(
+            "setup: FN0 qualification issues must match the constructed source state"
+        )
     validated_before = copy.deepcopy(validated)
     walk = evaluate_descriptor_definition_walk({"validated": validated})
     walk_before = copy.deepcopy(walk)
@@ -55,11 +69,17 @@ def _walk_and_build(raw, *, expected_input_issue_sources=()):
     )
     for index, use in enumerate(uses):
         if use["target_read"] != walk["target_reads"][index]:
-            raise AssertionError("each use must preserve its same-call target read in full")
+            raise AssertionError(
+                "each use must preserve its same-call target read in full"
+            )
         if use["intent_read"] != walk["intent_reads"][index]:
-            raise AssertionError("each use must preserve its same-call intent read in full")
+            raise AssertionError(
+                "each use must preserve its same-call intent read in full"
+            )
     if raw != raw_before or validated != validated_before or walk != walk_before:
-        raise AssertionError("walk/use construction must preserve raw, v, and same-walk outputs")
+        raise AssertionError(
+            "walk/use construction must preserve raw, v, and same-walk outputs"
+        )
     return validated, walk, uses
 
 
@@ -71,24 +91,30 @@ def _expected_related_indices(raw, evaluation, slot_index=0):
         key = assessment["key"]
         binding = key["binding"]
         slot_identity = key["slot_identity"]
-        if (key["descriptor_kind"] == slot["descriptor_kind"]
-                and binding == {"presence": "supplied", "value": slot["binding"]}
-                and slot_identity == {"presence": "supplied", "value": slot["slot_identity"]}
-                and f"/descriptors/{slot_index}" in assessment["slot_locators"]):
+        if (
+            key["descriptor_kind"] == slot["descriptor_kind"]
+            and binding == {"presence": "supplied", "value": slot["binding"]}
+            and slot_identity
+            == {"presence": "supplied", "value": slot["slot_identity"]}
+            and f"/descriptors/{slot_index}" in assessment["slot_locators"]
+        ):
             indices.append(index)
     return indices
 
 
 def _expected_primary_indices(evaluation, related):
     return [
-        index for index in related
+        index
+        for index in related
         if evaluation["assessments"][index]["axis_name"]
         == evaluation["assessments"][index]["key"]["descriptor_kind"] + ".definition"
     ]
 
 
 class TestDescriptorClaimUseOccurrences(unittest.TestCase):
-    def test_same_ref_with_optional_locator_difference_keeps_two_matches_but_one_assessment_occurrence(self):
+    def test_same_ref_with_optional_locator_difference_keeps_two_matches_but_one_assessment_occurrence(
+        self,
+    ):
         """Two raw Ref values remain two matches; their shared E assessment is indexed once."""
         raw = descriptor_claim_input("positive")
         source = raw["sources"][0]
@@ -104,16 +130,22 @@ class TestDescriptorClaimUseOccurrences(unittest.TestCase):
         target = walk["target_reads"][0]
         self.assertEqual(target["state"], "resolved")
         self.assertEqual(len(target["matches"]), 2)
-        self.assertNotEqual(target["matches"][0]["target_ref"], target["matches"][1]["target_ref"])
+        self.assertNotEqual(
+            target["matches"][0]["target_ref"], target["matches"][1]["target_ref"]
+        )
         self.assertEqual(uses[0]["target_read"], target)
         self.assertEqual(set(uses[0]), USE_FIELDS)
 
         expected_related = _expected_related_indices(raw, walk["evaluation"])
-        expected_primary = _expected_primary_indices(walk["evaluation"], expected_related)
+        expected_primary = _expected_primary_indices(
+            walk["evaluation"], expected_related
+        )
         self.assertTrue(expected_related)
         self.assertEqual(uses[0]["assessment_indices"], expected_related)
         self.assertEqual(len(uses[0]["assessment_indices"]), len(set(expected_related)))
-        self.assertEqual(uses[0]["primary_definition_assessment_indices"], expected_primary)
+        self.assertEqual(
+            uses[0]["primary_definition_assessment_indices"], expected_primary
+        )
         self.assertEqual(uses[0]["unmatched_match_indices"], [])
 
     def test_owner_target_slot_absent_from_input_keeps_match_unmatched(self):
@@ -121,7 +153,9 @@ class TestDescriptorClaimUseOccurrences(unittest.TestCase):
         raw = descriptor_claim_input("positive")
         source = raw["sources"][0]
         content = copy.deepcopy(source["content"])
-        content["descriptor_targets"][0]["slot_identity"] = "owner-declared-slot-not-in-input"
+        content["descriptor_targets"][0]["slot_identity"] = (
+            "owner-declared-slot-not-in-input"
+        )
         _rewrite_source(raw, 0, content)
 
         _validated, walk, uses = _walk_and_build(raw)
@@ -135,13 +169,16 @@ class TestDescriptorClaimUseOccurrences(unittest.TestCase):
         self.assertEqual(use["missing_support_indices"], [])
         self.assertEqual(use["route"], "unresolved")
         kind = raw["descriptors"][0]["descriptor_kind"]
-        self.assertFalse(any(
-            row["key"]["descriptor_kind"] == kind
-            and row["key"]["binding"] == {"presence": "supplied", "value": raw["binding"]}
-            and row["key"]["slot_identity"] == {"presence": "absent"}
-            and row["slot_locators"] == []
-            for row in walk["evaluation"]["assessments"]
-        ))
+        self.assertFalse(
+            any(
+                row["key"]["descriptor_kind"] == kind
+                and row["key"]["binding"]
+                == {"presence": "supplied", "value": raw["binding"]}
+                and row["key"]["slot_identity"] == {"presence": "absent"}
+                and row["slot_locators"] == []
+                for row in walk["evaluation"]["assessments"]
+            )
+        )
 
     def test_absent_proposed_value_keeps_raw_presence_and_unresolved_intent(self):
         """FN0 retains a Claim with proposed_value absent; intent reader does not default it."""
@@ -182,9 +219,13 @@ class TestDescriptorClaimUseOccurrences(unittest.TestCase):
                 self.assertEqual(validated["unusable_source_refs"], [])
                 self.assertEqual(uses[0]["basis_source_indices"], basis_source_indices)
                 self.assertEqual(uses[0]["basis_class"], expected_class)
-                self.assertEqual(uses[0]["unresolved_basis_ref_indices"], unresolved_indices)
+                self.assertEqual(
+                    uses[0]["unresolved_basis_ref_indices"], unresolved_indices
+                )
 
-    def test_unusable_basis_source_is_unresolved_without_disqualifying_owner_source(self):
+    def test_unusable_basis_source_is_unresolved_without_disqualifying_owner_source(
+        self,
+    ):
         """A source with failed FN0 qualification stays unresolved, not semantic basis success."""
         raw = descriptor_claim_input("positive")
         basis_source = raw["sources"][1]

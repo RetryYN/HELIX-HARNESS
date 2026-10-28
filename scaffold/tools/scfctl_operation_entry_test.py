@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Direct command-entry regression tests for scfctl's write guards."""
+
 import contextlib
 import importlib.util
 import io
@@ -12,7 +13,9 @@ from pathlib import Path
 
 
 TOOL_PATH = Path(__file__).with_name("scfctl.py")
-SPEC = importlib.util.spec_from_file_location("scfctl_operation_entry_test_scfctl", TOOL_PATH)
+SPEC = importlib.util.spec_from_file_location(
+    "scfctl_operation_entry_test_scfctl", TOOL_PATH
+)
 SCFCTL = importlib.util.module_from_spec(SPEC)
 assert SPEC.loader is not None
 SPEC.loader.exec_module(SCFCTL)
@@ -27,8 +30,14 @@ class OperationEntryTests(unittest.TestCase):
         evidence = scaffold / "evidence"
         bindings.mkdir(parents=True)
         evidence.mkdir(parents=True)
-        previous = (SCFCTL.ROOT, SCFCTL.SCF, SCFCTL.BINDINGS, SCFCTL.EVIDENCE,
-                    SCFCTL.CASES, SCFCTL.SCHEMA)
+        previous = (
+            SCFCTL.ROOT,
+            SCFCTL.SCF,
+            SCFCTL.BINDINGS,
+            SCFCTL.EVIDENCE,
+            SCFCTL.CASES,
+            SCFCTL.SCHEMA,
+        )
         SCFCTL.ROOT = str(root)
         SCFCTL.SCF = str(scaffold)
         SCFCTL.BINDINGS = str(bindings)
@@ -43,12 +52,25 @@ class OperationEntryTests(unittest.TestCase):
         try:
             yield root
         finally:
-            (SCFCTL.ROOT, SCFCTL.SCF, SCFCTL.BINDINGS, SCFCTL.EVIDENCE,
-             SCFCTL.CASES, SCFCTL.SCHEMA) = previous
+            (
+                SCFCTL.ROOT,
+                SCFCTL.SCF,
+                SCFCTL.BINDINGS,
+                SCFCTL.EVIDENCE,
+                SCFCTL.CASES,
+                SCFCTL.SCHEMA,
+            ) = previous
             temporary.cleanup()
 
-    def binding(self, root, issue, state="active", replacement_status="pending",
-                binding_id="SCF-B-0900", role="direct command test role"):
+    def binding(
+        self,
+        root,
+        issue,
+        state="active",
+        replacement_status="pending",
+        binding_id="SCF-B-0900",
+        role="direct command test role",
+    ):
         upstream = root / "source" / "upstream.md"
         artifact = root / "scaffold" / "artifact.txt"
         formal = root / "formal" / "target.txt"
@@ -70,10 +92,16 @@ class OperationEntryTests(unittest.TestCase):
             "owner_candidate": "HELIX-OS test",
             "state": state,
             "reason": "formal artifact lifecycle entry test",
-            "upstream": [{"path": upstream_rel, "sha256": SCFCTL.sha256_file(upstream_rel)}],
+            "upstream": [
+                {"path": upstream_rel, "sha256": SCFCTL.sha256_file(upstream_rel)}
+            ],
             "role": role,
             "obligations": ["obligation"],
-            "connections": {"consumers": ["consumer"], "dependencies": [], "boundary": "scaffold/"},
+            "connections": {
+                "consumers": ["consumer"],
+                "dependencies": [],
+                "boundary": "scaffold/",
+            },
             "operations": {"allowed": [], "forbidden": ["outside scaffold write"]},
             "artifacts": [artifact_rel],
             "verification": {
@@ -110,14 +138,21 @@ class OperationEntryTests(unittest.TestCase):
                 "binding_core_digest": SCFCTL.binding_core_digest(binding),
                 "target_revisions": dict(binding["replacement"]["target_revisions"]),
             }
-            receipt_path.write_text(json.dumps(receipt, ensure_ascii=False, sort_keys=True) + "\n", encoding="utf-8")
+            receipt_path.write_text(
+                json.dumps(receipt, ensure_ascii=False, sort_keys=True) + "\n",
+                encoding="utf-8",
+            )
             binding["replacement"]["confirmation_ref"] = receipt_rel
-            binding["replacement"]["confirmation_digest"] = SCFCTL.sha256_file(receipt_rel)
+            binding["replacement"]["confirmation_digest"] = SCFCTL.sha256_file(
+                receipt_rel
+            )
         return binding
 
     def write_binding(self, binding):
         path = Path(SCFCTL.BINDINGS) / (binding["id"] + ".json")
-        path.write_text(json.dumps(binding, ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
+        path.write_text(
+            json.dumps(binding, ensure_ascii=False, indent=1) + "\n", encoding="utf-8"
+        )
         return path
 
     def invoke(self, *argv):
@@ -129,7 +164,9 @@ class OperationEntryTests(unittest.TestCase):
     def test_retire_rejects_invalid_issue_without_mutating_binding(self):
         for issue in (0, -1, True):
             with self.subTest(issue=issue), self.layout() as root:
-                binding = self.binding(root, issue, state="replacing", replacement_status="confirmed")
+                binding = self.binding(
+                    root, issue, state="replacing", replacement_status="confirmed"
+                )
                 path = self.write_binding(binding)
                 before = path.read_bytes()
                 code, output = self.invoke("retire", binding["id"])
@@ -144,7 +181,9 @@ class OperationEntryTests(unittest.TestCase):
                 binding = self.binding(root, issue)
                 path = self.write_binding(binding)
                 before = path.read_bytes()
-                code, output = self.invoke("check-replacement", binding["id"], "--record")
+                code, output = self.invoke(
+                    "check-replacement", binding["id"], "--record"
+                )
                 self.assertNotEqual(code, 0)
                 self.assertIn("E_ISSUE", output)
                 self.assertEqual(path.read_bytes(), before)
@@ -174,7 +213,9 @@ class OperationEntryTests(unittest.TestCase):
     def test_check_replacement_keeps_duplicate_role_rule_at_entry(self):
         with self.layout() as root:
             binding = self.binding(root, 1, binding_id="SCF-B-0900")
-            sibling = self.binding(root, 1, binding_id="SCF-B-0901", role=binding["role"])
+            sibling = self.binding(
+                root, 1, binding_id="SCF-B-0901", role=binding["role"]
+            )
             target_path = self.write_binding(binding)
             self.write_binding(sibling)
             before = target_path.read_bytes()
@@ -198,7 +239,9 @@ class OperationEntryTests(unittest.TestCase):
 
     def test_retire_normal_workflow_still_mutates_only_after_preflight(self):
         with self.layout() as root:
-            binding = self.binding(root, 1, state="replacing", replacement_status="confirmed")
+            binding = self.binding(
+                root, 1, state="replacing", replacement_status="confirmed"
+            )
             path = self.write_binding(binding)
             code, output = self.invoke("retire", binding["id"])
             self.assertEqual(code, 0, output)
@@ -206,15 +249,25 @@ class OperationEntryTests(unittest.TestCase):
 
     def test_receipt_checks_at_retire_and_validate(self):
         failures = {
-            "bytes": "E_RETIRE", "missing": "E_RETIRE", "json": "E_RETIRE",
-            "shape": "E_RETIRE", "result": "E_RETIRE", "binding": "E_RETIRE",
-            "core": "E_RETIRE", "revision_missing": "E_RECEIPT_REVISION_SET",
+            "bytes": "E_RETIRE",
+            "missing": "E_RETIRE",
+            "json": "E_RETIRE",
+            "shape": "E_RETIRE",
+            "result": "E_RETIRE",
+            "binding": "E_RETIRE",
+            "core": "E_RETIRE",
+            "revision_missing": "E_RECEIPT_REVISION_SET",
             "revision_wrong": "E_RECEIPT_REVISION",
         }
         for command in ("retire", "validate"):
             for change in ("normal", *failures, "formal_updated", "artifact_deleted"):
-                with self.subTest(command=command, change=change), self.layout() as root:
-                    binding = self.binding(root, 1, state="replacing", replacement_status="confirmed")
+                with (
+                    self.subTest(command=command, change=change),
+                    self.layout() as root,
+                ):
+                    binding = self.binding(
+                        root, 1, state="replacing", replacement_status="confirmed"
+                    )
                     path = self.write_binding(binding)
                     if command == "validate":
                         code, output = self.invoke("retire", binding["id"])
@@ -229,31 +282,62 @@ class OperationEntryTests(unittest.TestCase):
                     elif change == "core":
                         binding["reason"] += " changed"
                     elif change == "formal_updated":
-                        (root / "formal/target.txt").write_bytes(b"new formal revision\n")
+                        (root / "formal/target.txt").write_bytes(
+                            b"new formal revision\n"
+                        )
                     elif change == "artifact_deleted":
                         (root / "scaffold/artifact.txt").unlink()
-                    elif change in ("json", "shape", "result", "binding", "revision_missing", "revision_wrong"):
-                        if change == "result": receipt["result"] = "fail"
-                        if change == "binding": receipt["binding"] = "SCF-B-0901"
-                        if change == "revision_missing": receipt["target_revisions"] = {}
-                        if change == "revision_wrong": receipt["target_revisions"]["formal/target.txt"] = "0" * 64
-                        receipt_path.write_text("{" if change == "json" else json.dumps([] if change == "shape" else receipt))
-                        binding["replacement"]["confirmation_digest"] = SCFCTL.sha256_file(binding["replacement"]["confirmation_ref"])
+                    elif change in (
+                        "json",
+                        "shape",
+                        "result",
+                        "binding",
+                        "revision_missing",
+                        "revision_wrong",
+                    ):
+                        if change == "result":
+                            receipt["result"] = "fail"
+                        if change == "binding":
+                            receipt["binding"] = "SCF-B-0901"
+                        if change == "revision_missing":
+                            receipt["target_revisions"] = {}
+                        if change == "revision_wrong":
+                            receipt["target_revisions"]["formal/target.txt"] = "0" * 64
+                        receipt_path.write_text(
+                            "{"
+                            if change == "json"
+                            else json.dumps([] if change == "shape" else receipt)
+                        )
+                        binding["replacement"]["confirmation_digest"] = (
+                            SCFCTL.sha256_file(
+                                binding["replacement"]["confirmation_ref"]
+                            )
+                        )
                         if command == "validate":
-                            binding["retired"]["read_after_digest"] = binding["replacement"]["confirmation_digest"]
+                            binding["retired"]["read_after_digest"] = binding[
+                                "replacement"
+                            ]["confirmation_digest"]
                     self.write_binding(binding)
                     before = path.read_bytes()
-                    code, output = self.invoke(command, *([binding["id"]] if command == "retire" else []))
+                    code, output = self.invoke(
+                        command, *([binding["id"]] if command == "retire" else [])
+                    )
                     expected = failures.get(change)
-                    if command == "retire" and change in ("formal_updated", "artifact_deleted"):
-                        expected = "E_REVISION" if change == "formal_updated" else "E_ARTIFACT"
+                    if command == "retire" and change in (
+                        "formal_updated",
+                        "artifact_deleted",
+                    ):
+                        expected = (
+                            "E_REVISION" if change == "formal_updated" else "E_ARTIFACT"
+                        )
                     if expected:
                         self.assertNotEqual(code, 0, output)
                         self.assertIn(expected, output)
                         self.assertEqual(path.read_bytes(), before)
                     else:
                         self.assertEqual(code, 0, output)
-                        if command == "validate": self.assertEqual(path.read_bytes(), before)
+                        if command == "validate":
+                            self.assertEqual(path.read_bytes(), before)
 
     def test_validate_rejects_retired_read_after_mismatch(self):
         for field, value in (
@@ -261,7 +345,9 @@ class OperationEntryTests(unittest.TestCase):
             ("confirmation_ref", "scaffold/evidence/other.json"),
         ):
             with self.subTest(field=field), self.layout() as root:
-                binding = self.binding(root, 1, state="replacing", replacement_status="confirmed")
+                binding = self.binding(
+                    root, 1, state="replacing", replacement_status="confirmed"
+                )
                 path = self.write_binding(binding)
                 code, output = self.invoke("retire", binding["id"])
                 self.assertEqual(code, 0, output)
@@ -275,9 +361,14 @@ class OperationEntryTests(unittest.TestCase):
                 self.assertEqual(path.read_bytes(), before)
 
     def test_validate_rejects_incomplete_fixed_revision_set(self):
-        for change, expected in (("partial_want", "E_REVISION_SET"), ("empty_formal", "E_REPL")):
+        for change, expected in (
+            ("partial_want", "E_REVISION_SET"),
+            ("empty_formal", "E_REPL"),
+        ):
             with self.subTest(change=change), self.layout() as root:
-                binding = self.binding(root, 1, state="replacing", replacement_status="confirmed")
+                binding = self.binding(
+                    root, 1, state="replacing", replacement_status="confirmed"
+                )
                 path = self.write_binding(binding)
                 code, output = self.invoke("retire", binding["id"])
                 self.assertEqual(code, 0, output)
@@ -302,7 +393,9 @@ class OperationEntryTests(unittest.TestCase):
 
     def test_validate_rejects_fifo_receipt(self):
         with self.layout() as root:
-            binding = self.binding(root, 1, state="replacing", replacement_status="confirmed")
+            binding = self.binding(
+                root, 1, state="replacing", replacement_status="confirmed"
+            )
             path = self.write_binding(binding)
             code, output = self.invoke("retire", binding["id"])
             self.assertEqual(code, 0, output)

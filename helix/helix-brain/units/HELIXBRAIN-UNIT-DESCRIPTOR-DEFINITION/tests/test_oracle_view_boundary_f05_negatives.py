@@ -42,21 +42,29 @@ class TestOracleViewBoundaryF05Negatives(unittest.TestCase):
         validated = validate_supply_input(raw)
         self.assertIsNotNone(validated["input"], "setup: L8-derived input must decode")
         self.assertEqual(validated["input"], raw_before)
-        added_sources = raw["sources"][len(builder.base["sources"]):]
+        added_sources = raw["sources"][len(builder.base["sources"]) :]
         for source in added_sources:
             self.assertNotIn(source["ref"], validated["unusable_source_refs"])
         validated_before = copy.deepcopy(validated)
 
         definitions = compare_descriptor_definitions({"validated": validated})
-        self.assertEqual(definitions["producer_symbol"], "compare_descriptor_definitions")
+        self.assertEqual(
+            definitions["producer_symbol"], "compare_descriptor_definitions"
+        )
         self.assertEqual(definitions["input_binding"], raw_before["binding"])
-        missing = [row for row in definitions["findings"] if row["code"] == expected_missing_code]
+        missing = [
+            row
+            for row in definitions["findings"]
+            if row["code"] == expected_missing_code
+        ]
         self.assertEqual(len(missing), 1)
         self.assertEqual(missing[0]["axis"], f"{kind}.definition")
         self.assertEqual(missing[0]["state"], "missing")
 
         identity_trace = compare_identity_versions_and_trace({"validated": validated})
-        self.assertEqual(identity_trace["producer_symbol"], "compare_identity_versions_and_trace")
+        self.assertEqual(
+            identity_trace["producer_symbol"], "compare_identity_versions_and_trace"
+        )
         self.assertEqual(identity_trace["input_binding"], raw_before["binding"])
         context = {
             "validated": validated,
@@ -72,7 +80,9 @@ class TestOracleViewBoundaryF05Negatives(unittest.TestCase):
         self.assertEqual(validated, validated_before)
         self.assertEqual(context, context_before)
 
-    def test_f05_neg01_view_measurement_repair_keeps_fn1_missing_and_stops_at_walk_id(self):
+    def test_f05_neg01_view_measurement_repair_keeps_fn1_missing_and_stops_at_walk_id(
+        self,
+    ):
         self._assert_f05_negative_stops_at_unimplemented_claim_walk(
             11,
             "measurement",
@@ -80,7 +90,9 @@ class TestOracleViewBoundaryF05Negatives(unittest.TestCase):
             "SYNTHETIC-OWNER-MEASUREMENT-TARGET-A",
         )
 
-    def test_f05_neg02_view_completion_repair_keeps_fn1_missing_and_stops_at_walk_id(self):
+    def test_f05_neg02_view_completion_repair_keeps_fn1_missing_and_stops_at_walk_id(
+        self,
+    ):
         self._assert_f05_negative_stops_at_unimplemented_claim_walk(
             12,
             "completion",

@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """PHCAP-08/09 read-only static evidence inventory generator."""
+
 from __future__ import annotations
 import hashlib
 import json
@@ -10,7 +11,10 @@ HERE = Path(__file__).resolve().parent
 ROOT = HERE.parents[2]
 ARCHIVE = ROOT / "archive/legacy-generation-2026-09-14/root"
 DISP = ROOT / "docs/governance/legacy-asset-disposition.jsonl"
-PHASE = ROOT / "docs/governance/legacy-migration/asset/legacy-asset-phase-product-classification-bootstrap.jsonl"
+PHASE = (
+    ROOT
+    / "docs/governance/legacy-migration/asset/legacy-asset-phase-product-classification-bootstrap.jsonl"
+)
 DECISIONS = ROOT / "docs/governance/legacy-asset-decisions.jsonl"
 PHASE_INV = ROOT / "docs/governance/phase-capability-inventory.json"
 INV = HERE / "inventory.json"
@@ -27,7 +31,11 @@ FAILURE_CONSUMER_INTERPRETATION = "failure/consumer text is historical candidate
 
 
 def read_jsonl(path: Path):
-    return [json.loads(line) for line in path.read_text(encoding="utf-8").splitlines() if line.strip()]
+    return [
+        json.loads(line)
+        for line in path.read_text(encoding="utf-8").splitlines()
+        if line.strip()
+    ]
 
 
 def archive_path(source_path: str) -> str:
@@ -52,9 +60,14 @@ def make_span(path: Path, start: int, end: int, span_id: str, role: str) -> dict
     }
 
 
-def source_spec(asset_id: str, source_path: str, spans: list[tuple[int, int, str, str]],
-                failure_span_ids: list[str], consumer_span_ids: list[str],
-                evidence_summary: str) -> dict:
+def source_spec(
+    asset_id: str,
+    source_path: str,
+    spans: list[tuple[int, int, str, str]],
+    failure_span_ids: list[str],
+    consumer_span_ids: list[str],
+    evidence_summary: str,
+) -> dict:
     ap = ARCHIVE / source_path
     old = disposition[asset_id]
     ph = phase_by_id[asset_id]
@@ -65,12 +78,22 @@ def source_spec(asset_id: str, source_path: str, spans: list[tuple[int, int, str
     span_ids = {row["span_id"] for row in span_rows}
     assert set(failure_span_ids) <= span_ids
     assert set(consumer_span_ids) <= span_ids
-    decision_matches = [row for row in decisions if asset_id in json.dumps(row, ensure_ascii=False)]
+    decision_matches = [
+        row for row in decisions if asset_id in json.dumps(row, ensure_ascii=False)
+    ]
     assert not decision_matches, asset_id
     ledger_keys = [
-        "revision", "asset_class", "reuse_exclusion_class", "product_target",
-        "authority_status", "disposition", "implementation_status", "consumer_refs",
-        "decision_record_ref", "executability_status", "external_effect_status",
+        "revision",
+        "asset_class",
+        "reuse_exclusion_class",
+        "product_target",
+        "authority_status",
+        "disposition",
+        "implementation_status",
+        "consumer_refs",
+        "decision_record_ref",
+        "executability_status",
+        "external_effect_status",
     ]
     ledger = {key: old.get(key) for key in ledger_keys}
     return {
@@ -91,7 +114,9 @@ def source_spec(asset_id: str, source_path: str, spans: list[tuple[int, int, str
             "matching_decision_records": [],
             "status": "no_matching_append_only_decision_record",
             "interpretation": DECISION_HISTORY_INTERPRETATION,
-            "interpretation_sha256": sha(DECISION_HISTORY_INTERPRETATION.encode("utf-8")),
+            "interpretation_sha256": sha(
+                DECISION_HISTORY_INTERPRETATION.encode("utf-8")
+            ),
         },
         "failure_evidence": [
             {
@@ -114,8 +139,16 @@ def source_spec(asset_id: str, source_path: str, spans: list[tuple[int, int, str
     }
 
 
-def current_ref(ref_id: str, path: str, product: str, classification: str,
-                layer: str, start: int, end: int, role: str) -> dict:
+def current_ref(
+    ref_id: str,
+    path: str,
+    product: str,
+    classification: str,
+    layer: str,
+    start: int,
+    end: int,
+    role: str,
+) -> dict:
     p = ROOT / path
     text = line_text(p, start, end)
     return {
@@ -157,66 +190,137 @@ selected_specs = [
     source_spec(
         "LEGACY-ASSET-D27D4A1511BFD43623A9",
         "docs/design/helix/L3-requirements/lifecycle-stage-completion-goals.md",
-        [(21, 36, "D27-01", "historical authority and V-model pair boundary"),
-         (45, 68, "D27-02", "stage exit contract and required evidence"),
-         (80, 84, "D27-03", "L3 requirement and failure/trace obligations"),
-         (97, 107, "D27-04", "implementation trace and verification obligations")],
-        ["D27-03", "D27-04"], ["D27-01", "D27-02"],
+        [
+            (21, 36, "D27-01", "historical authority and V-model pair boundary"),
+            (45, 68, "D27-02", "stage exit contract and required evidence"),
+            (80, 84, "D27-03", "L3 requirement and failure/trace obligations"),
+            (97, 107, "D27-04", "implementation trace and verification obligations"),
+        ],
+        ["D27-03", "D27-04"],
+        ["D27-01", "D27-02"],
         "historical completion/failure/trace obligation; no current oracle or pass is inferred",
     ),
     source_spec(
         "LEGACY-ASSET-78D55762187C612C93C4",
         "src/state-db/current-location.ts",
-        [(17, 40, "78-01", "project model and operation status vocabulary"),
-         (93, 116, "78-02", "acceptance traceability data model"),
-         (589, 620, "78-03", "current location, roadmap and closure snapshot data model")],
-        ["78-02", "78-03"], ["78-01", "78-03"],
+        [
+            (17, 40, "78-01", "project model and operation status vocabulary"),
+            (93, 116, "78-02", "acceptance traceability data model"),
+            (
+                589,
+                620,
+                "78-03",
+                "current location, roadmap and closure snapshot data model",
+            ),
+        ],
+        ["78-02", "78-03"],
+        ["78-01", "78-03"],
         "historical state/roadmap data model; source execution and current implementation remain unknown",
     ),
     source_spec(
         "LEGACY-ASSET-DE68E15724FB6EC258AB",
         "docs/governance/plan-descent-baseline.json",
-        [(1, 20, "DE68-01", "historical plan baseline metadata and plan identifiers"),
-         (193, 217, "DE68-02", "historical plan set tail and operational plan candidates")],
-        ["DE68-02"], ["DE68-01"],
+        [
+            (
+                1,
+                20,
+                "DE68-01",
+                "historical plan baseline metadata and plan identifiers",
+            ),
+            (
+                193,
+                217,
+                "DE68-02",
+                "historical plan set tail and operational plan candidates",
+            ),
+        ],
+        ["DE68-02"],
+        ["DE68-01"],
         "historical plan/roadmap candidate; no plan execution or completion is inferred",
     ),
     source_spec(
         "LEGACY-ASSET-B1B5271C3933B1F0F345",
         "docs/plans/PLAN-L6-01-function-spec.md",
-        [(1, 18, "B1-01", "historical plan metadata and approval fields"),
-         (43, 55, "B1-02", "function design scope with WBS textual mention"),
-         (79, 84, "B1-03", "WBS checklist and explicit unfinished items")],
-        ["B1-03"], ["B1-01", "B1-02"],
+        [
+            (1, 18, "B1-01", "historical plan metadata and approval fields"),
+            (43, 55, "B1-02", "function design scope with WBS textual mention"),
+            (79, 84, "B1-03", "WBS checklist and explicit unfinished items"),
+        ],
+        ["B1-03"],
+        ["B1-01", "B1-02"],
         "textual WBS near-equivalent candidate; exact WBS artifact identity is not established",
     ),
     source_spec(
         "LEGACY-ASSET-3A15E5645D2D2A59DFF5",
         "docs/governance/candidates/execution-ticket-requirements.md",
-        [(1, 25, "3A-01", "ticket candidate metadata and authority boundary"),
-         (81, 87, "3A-02", "ticket/assignment/measurement responsibility separation"),
-         (121, 143, "3A-03", "ExecutionTicket and Assignment data contract"),
-         (186, 206, "3A-04", "ticket functional requirements and deterministic compiler candidate"),
-         (246, 286, "3A-05", "closure, projection and legacy transition candidate boundaries")],
-        ["3A-01", "3A-04", "3A-05"], ["3A-02", "3A-05"],
+        [
+            (1, 25, "3A-01", "ticket candidate metadata and authority boundary"),
+            (
+                81,
+                87,
+                "3A-02",
+                "ticket/assignment/measurement responsibility separation",
+            ),
+            (121, 143, "3A-03", "ExecutionTicket and Assignment data contract"),
+            (
+                186,
+                206,
+                "3A-04",
+                "ticket functional requirements and deterministic compiler candidate",
+            ),
+            (
+                246,
+                286,
+                "3A-05",
+                "closure, projection and legacy transition candidate boundaries",
+            ),
+        ],
+        ["3A-01", "3A-04", "3A-05"],
+        ["3A-02", "3A-05"],
         "historical ticket contract/failure boundary candidate; no compiler, admission or close execution is inferred",
     ),
     source_spec(
         "LEGACY-ASSET-BE8B151A0094B754FF20",
         "docs/governance/candidates/execution-ticket-acceptance.md",
-        [(1, 18, "BE8-01", "acceptance candidate metadata and explicit unexecuted oracle boundary"),
-         (25, 53, "BE8-02", "ticket acceptance and negative cases"),
-         (125, 135, "BE8-03", "end-to-end failure, retry and later finding candidate")],
-        ["BE8-01", "BE8-02", "BE8-03"], ["BE8-03"],
+        [
+            (
+                1,
+                18,
+                "BE8-01",
+                "acceptance candidate metadata and explicit unexecuted oracle boundary",
+            ),
+            (25, 53, "BE8-02", "ticket acceptance and negative cases"),
+            (
+                125,
+                135,
+                "BE8-03",
+                "end-to-end failure, retry and later finding candidate",
+            ),
+        ],
+        ["BE8-01", "BE8-02", "BE8-03"],
+        ["BE8-03"],
         "historical acceptance/test design only; all oracle execution and closure remain unknown",
     ),
     source_spec(
         "LEGACY-ASSET-06C7FAF2A0981A4778AC",
         "docs/plans/PLAN-L3-88-execution-ticket-bench-authority.md",
-        [(1, 50, "06C-01", "plan candidate metadata, authority and contract boundary"),
-         (68, 83, "06C-02", "generated ticket candidate artifacts and non-runtime scope"),
-         (90, 108, "06C-03", "candidate-only transition and runtime non-goal")],
-        ["06C-01", "06C-03"], ["06C-02"],
+        [
+            (
+                1,
+                50,
+                "06C-01",
+                "plan candidate metadata, authority and contract boundary",
+            ),
+            (
+                68,
+                83,
+                "06C-02",
+                "generated ticket candidate artifacts and non-runtime scope",
+            ),
+            (90, 108, "06C-03", "candidate-only transition and runtime non-goal"),
+        ],
+        ["06C-01", "06C-03"],
+        ["06C-02"],
         "historical plan/contract candidate; explicit non-runtime scope does not prove current implementation",
     ),
 ]
@@ -224,32 +328,49 @@ selected_specs = [
 selected_assets = {row["asset_id"]: row for row in selected_specs}
 
 ticket_source_paths = sorted(
-    row["source_path"] for row in disposition_rows
+    row["source_path"]
+    for row in disposition_rows
     if "ticket" in row.get("source_path", "").lower()
 )
 ticket_catalog = []
 for path in ticket_source_paths:
     old = next(row for row in disposition_rows if row["source_path"] == path)
     ph = phase_by_id[old["asset_id"]]
-    ticket_catalog.append({
-        "asset_id": old["asset_id"],
-        "source_path": path,
-        "source_sha256": old["source_sha256"],
-        "source_line_count": len((ARCHIVE / path).read_text(encoding="utf-8").splitlines()),
-        "ledger_state": {key: old.get(key) for key in [
-            "revision", "asset_class", "reuse_exclusion_class", "product_target", "authority_status",
-            "disposition", "implementation_status", "consumer_refs", "decision_record_ref",
-            "executability_status", "external_effect_status",
-        ]},
-        "phase_classification_record": ph,
-        "source_expanded": old["asset_id"] in selected_assets,
-    })
+    ticket_catalog.append(
+        {
+            "asset_id": old["asset_id"],
+            "source_path": path,
+            "source_sha256": old["source_sha256"],
+            "source_line_count": len(
+                (ARCHIVE / path).read_text(encoding="utf-8").splitlines()
+            ),
+            "ledger_state": {
+                key: old.get(key)
+                for key in [
+                    "revision",
+                    "asset_class",
+                    "reuse_exclusion_class",
+                    "product_target",
+                    "authority_status",
+                    "disposition",
+                    "implementation_status",
+                    "consumer_refs",
+                    "decision_record_ref",
+                    "executability_status",
+                    "external_effect_status",
+                ]
+            },
+            "phase_classification_record": ph,
+            "source_expanded": old["asset_id"] in selected_assets,
+        }
+    )
 
 # WBS path/name/content audit is intentionally separate from textual near-equivalent candidates.
 wbs_term = re.compile(r"(?i)\bWBS\b|work[- ]breakdown")
 archive_files = sorted(p for p in ARCHIVE.rglob("*") if p.is_file())
 archive_filename_matches = [
-    str(p.relative_to(ROOT)) for p in archive_files
+    str(p.relative_to(ROOT))
+    for p in archive_files
     if re.search(r"(?i)wbs|work[- ]breakdown", p.name)
 ]
 archive_content_matches = []
@@ -261,16 +382,20 @@ for p in archive_files:
     if wbs_term.search(text):
         archive_content_matches.append(str(p.relative_to(ROOT)))
 legacy_wbs_paths = sorted(
-    row["source_path"] for row in disposition_rows
+    row["source_path"]
+    for row in disposition_rows
     if "wbs" in row.get("source_path", "").lower()
 )
 legacy_work_breakdown_paths = sorted(
-    row["source_path"] for row in disposition_rows
+    row["source_path"]
+    for row in disposition_rows
     if "work-breakdown" in row.get("source_path", "").lower()
 )
 exact_basename_matches = sorted(
-    str(p.relative_to(ROOT)) for p in archive_files
-    if p.name.lower() in {"wbs.md", "wbs.json", "wbs.yaml", "wbs.yml", "wbs.ts", "wbs.js"}
+    str(p.relative_to(ROOT))
+    for p in archive_files
+    if p.name.lower()
+    in {"wbs.md", "wbs.json", "wbs.yaml", "wbs.yml", "wbs.ts", "wbs.js"}
 )
 archive_hidden_component_file_count = sum(
     any(part.startswith(".") for part in p.relative_to(ARCHIVE).parts)
@@ -278,16 +403,106 @@ archive_hidden_component_file_count = sum(
 )
 
 current_refs = [
-    current_ref("BOUNDARY-UNIT-CONNECTION", "docs/concept/product-boundary.md", "ALL", "boundary_current_ref", "Concept", 13, 30, "four-product unit/connection responsibility statements"),
-    current_ref("BOUNDARY-IDENTITY-LOOP", "docs/concept/product-boundary.md", "ALL", "boundary_current_ref", "Concept", 33, 45, "four product entrances and unit/connection separation"),
-    current_ref("HARNESS-L2", "docs/helix-harness/L2-requirements/product-requirements.md", "HELIX-HARNESS", "direct_current_ref", "L2", 1, 36, "HARNESS normative V-model and OS separation candidate"),
-    current_ref("OS-L2", "docs/helix-os/L2-requirements/governance-requirements.md", "HELIX-OS", "direct_current_ref", "L2", 1, 35, "OS management/trace and no-implementation candidate"),
-    current_ref("WEB-L2", "docs/helix-web/L2-requirements/product-requirements.md", "HELIX-Web", "adjacent_current_ref", "L2", 1, 33, "Web user-facing product boundary candidate"),
-    current_ref("WEBOS-L2", "docs/helix-web-os/L2-requirements/service-governance-requirements.md", "HELIX-Web-OS", "adjacent_current_ref", "L2", 1, 36, "Web-OS service runtime boundary candidate"),
-    current_ref("HARNESS-L11", "docs/helix-harness/L11-acceptance/product-acceptance.md", "HELIX-HARNESS", "direct_current_ref", "L11", 1, 38, "HARNESS acceptance remains draft/unexecuted"),
-    current_ref("OS-L11", "docs/helix-os/L11-acceptance/governance-acceptance.md", "HELIX-OS", "direct_current_ref", "L11", 1, 42, "OS acceptance remains draft/unexecuted"),
-    current_ref("WEB-L11", "docs/helix-web/L11-acceptance/product-acceptance.md", "HELIX-Web", "adjacent_current_ref", "L11", 1, 33, "Web acceptance remains draft/unexecuted"),
-    current_ref("WEBOS-L11", "docs/helix-web-os/L11-acceptance/service-acceptance.md", "HELIX-Web-OS", "adjacent_current_ref", "L11", 1, 26, "Web-OS acceptance remains draft/unexecuted"),
+    current_ref(
+        "BOUNDARY-UNIT-CONNECTION",
+        "docs/concept/product-boundary.md",
+        "ALL",
+        "boundary_current_ref",
+        "Concept",
+        13,
+        30,
+        "four-product unit/connection responsibility statements",
+    ),
+    current_ref(
+        "BOUNDARY-IDENTITY-LOOP",
+        "docs/concept/product-boundary.md",
+        "ALL",
+        "boundary_current_ref",
+        "Concept",
+        33,
+        45,
+        "four product entrances and unit/connection separation",
+    ),
+    current_ref(
+        "HARNESS-L2",
+        "docs/helix-harness/L2-requirements/product-requirements.md",
+        "HELIX-HARNESS",
+        "direct_current_ref",
+        "L2",
+        1,
+        36,
+        "HARNESS normative V-model and OS separation candidate",
+    ),
+    current_ref(
+        "OS-L2",
+        "docs/helix-os/L2-requirements/governance-requirements.md",
+        "HELIX-OS",
+        "direct_current_ref",
+        "L2",
+        1,
+        35,
+        "OS management/trace and no-implementation candidate",
+    ),
+    current_ref(
+        "WEB-L2",
+        "docs/helix-web/L2-requirements/product-requirements.md",
+        "HELIX-Web",
+        "adjacent_current_ref",
+        "L2",
+        1,
+        33,
+        "Web user-facing product boundary candidate",
+    ),
+    current_ref(
+        "WEBOS-L2",
+        "docs/helix-web-os/L2-requirements/service-governance-requirements.md",
+        "HELIX-Web-OS",
+        "adjacent_current_ref",
+        "L2",
+        1,
+        36,
+        "Web-OS service runtime boundary candidate",
+    ),
+    current_ref(
+        "HARNESS-L11",
+        "docs/helix-harness/L11-acceptance/product-acceptance.md",
+        "HELIX-HARNESS",
+        "direct_current_ref",
+        "L11",
+        1,
+        38,
+        "HARNESS acceptance remains draft/unexecuted",
+    ),
+    current_ref(
+        "OS-L11",
+        "docs/helix-os/L11-acceptance/governance-acceptance.md",
+        "HELIX-OS",
+        "direct_current_ref",
+        "L11",
+        1,
+        42,
+        "OS acceptance remains draft/unexecuted",
+    ),
+    current_ref(
+        "WEB-L11",
+        "docs/helix-web/L11-acceptance/product-acceptance.md",
+        "HELIX-Web",
+        "adjacent_current_ref",
+        "L11",
+        1,
+        33,
+        "Web acceptance remains draft/unexecuted",
+    ),
+    current_ref(
+        "WEBOS-L11",
+        "docs/helix-web-os/L11-acceptance/service-acceptance.md",
+        "HELIX-Web-OS",
+        "adjacent_current_ref",
+        "L11",
+        1,
+        26,
+        "Web-OS acceptance remains draft/unexecuted",
+    ),
 ]
 
 # Keep phase inventory records as snapshots; validator compares them byte-for-byte as JSON values.
@@ -295,15 +510,31 @@ all_ticket_ids = [row["asset_id"] for row in ticket_catalog]
 phase_joins = [
     {
         "phase_id": "PHCAP-08",
-        "selected_asset_ids": [aid for aid in selected_assets if "PHCAP-08" in phase_by_id[aid].get("candidate_phase_targets", [])],
-        "catalog_asset_ids": [aid for aid in selected_assets if "PHCAP-08" in phase_by_id[aid].get("candidate_phase_targets", [])],
+        "selected_asset_ids": [
+            aid
+            for aid in selected_assets
+            if "PHCAP-08" in phase_by_id[aid].get("candidate_phase_targets", [])
+        ],
+        "catalog_asset_ids": [
+            aid
+            for aid in selected_assets
+            if "PHCAP-08" in phase_by_id[aid].get("candidate_phase_targets", [])
+        ],
         "interpretation": PHCAP_08_INTERPRETATION,
         "interpretation_sha256": sha(PHCAP_08_INTERPRETATION.encode("utf-8")),
     },
     {
         "phase_id": "PHCAP-09",
-        "selected_asset_ids": [aid for aid in selected_assets if "PHCAP-09" in phase_by_id[aid].get("candidate_phase_targets", [])],
-        "catalog_asset_ids": [aid for aid in all_ticket_ids if "PHCAP-09" in phase_by_id[aid].get("candidate_phase_targets", [])],
+        "selected_asset_ids": [
+            aid
+            for aid in selected_assets
+            if "PHCAP-09" in phase_by_id[aid].get("candidate_phase_targets", [])
+        ],
+        "catalog_asset_ids": [
+            aid
+            for aid in all_ticket_ids
+            if "PHCAP-09" in phase_by_id[aid].get("candidate_phase_targets", [])
+        ],
         "interpretation": PHCAP_09_INTERPRETATION,
         "interpretation_sha256": sha(PHCAP_09_INTERPRETATION.encode("utf-8")),
     },
@@ -370,7 +601,12 @@ inventory = {
             "unit_boundary": "V-model、workflow vocabulary、WBS normative shape、ticket contract候補を所有する提供product。OSのWorker/CI/log/管理運転は所有しない。",
             "phase_evidence": ["PHCAP-08", "PHCAP-09"],
             "current_refs": ["HARNESS-L2", "HARNESS-L11"],
-            "legacy_asset_ids": ["LEGACY-ASSET-D27D4A1511BFD43623A9", "LEGACY-ASSET-B1B5271C3933B1F0F345", "LEGACY-ASSET-3A15E5645D2D2A59DFF5", "LEGACY-ASSET-06C7FAF2A0981A4778AC"],
+            "legacy_asset_ids": [
+                "LEGACY-ASSET-D27D4A1511BFD43623A9",
+                "LEGACY-ASSET-B1B5271C3933B1F0F345",
+                "LEGACY-ASSET-3A15E5645D2D2A59DFF5",
+                "LEGACY-ASSET-06C7FAF2A0981A4778AC",
+            ],
             "implementation_status": "unknown",
             "acceptance_status": "draft_unexecuted",
             "authority_status": "candidate_only",
@@ -381,7 +617,13 @@ inventory = {
             "unit_boundary": "project群のWBS ledger、progression、ticket生成・登録・統制、Worker/CI/log/改善の管理候補。HARNESSの規範語彙を独自上書きしない。",
             "phase_evidence": ["PHCAP-08", "PHCAP-09"],
             "current_refs": ["OS-L2", "OS-L11"],
-            "legacy_asset_ids": ["LEGACY-ASSET-D27D4A1511BFD43623A9", "LEGACY-ASSET-78D55762187C612C93C4", "LEGACY-ASSET-DE68E15724FB6EC258AB", "LEGACY-ASSET-3A15E5645D2D2A59DFF5", "LEGACY-ASSET-BE8B151A0094B754FF20"],
+            "legacy_asset_ids": [
+                "LEGACY-ASSET-D27D4A1511BFD43623A9",
+                "LEGACY-ASSET-78D55762187C612C93C4",
+                "LEGACY-ASSET-DE68E15724FB6EC258AB",
+                "LEGACY-ASSET-3A15E5645D2D2A59DFF5",
+                "LEGACY-ASSET-BE8B151A0094B754FF20",
+            ],
             "implementation_status": "unknown",
             "acceptance_status": "draft_unexecuted",
             "authority_status": "candidate_only",
@@ -391,8 +633,16 @@ inventory = {
             "status": "adjacent_boundary_only",
             "unit_boundary": "利用者向けdashboard・操作・成果表示の個別product。PHCAP-08/09のdirect current evidence、ticket/WBS owner、実装・受入は未確定。",
             "phase_evidence": [],
-            "current_refs": ["BOUNDARY-UNIT-CONNECTION", "BOUNDARY-IDENTITY-LOOP", "WEB-L2", "WEB-L11"],
-            "legacy_asset_ids": ["LEGACY-ASSET-78D55762187C612C93C4", "LEGACY-ASSET-3A15E5645D2D2A59DFF5"],
+            "current_refs": [
+                "BOUNDARY-UNIT-CONNECTION",
+                "BOUNDARY-IDENTITY-LOOP",
+                "WEB-L2",
+                "WEB-L11",
+            ],
+            "legacy_asset_ids": [
+                "LEGACY-ASSET-78D55762187C612C93C4",
+                "LEGACY-ASSET-3A15E5645D2D2A59DFF5",
+            ],
             "implementation_status": "unknown",
             "acceptance_status": "draft_unexecuted",
             "authority_status": "adjacent_candidate_only",
@@ -402,18 +652,56 @@ inventory = {
             "status": "adjacent_boundary_only",
             "unit_boundary": "Web展開先のtenant・job・service state・配備・監視・復旧を担う独立service runtime。WBS/ticket authorityを吸収しない。",
             "phase_evidence": [],
-            "current_refs": ["BOUNDARY-UNIT-CONNECTION", "BOUNDARY-IDENTITY-LOOP", "WEBOS-L2", "WEBOS-L11"],
-            "legacy_asset_ids": ["LEGACY-ASSET-D27D4A1511BFD43623A9", "LEGACY-ASSET-78D55762187C612C93C4", "LEGACY-ASSET-DE68E15724FB6EC258AB", "LEGACY-ASSET-3A15E5645D2D2A59DFF5"],
+            "current_refs": [
+                "BOUNDARY-UNIT-CONNECTION",
+                "BOUNDARY-IDENTITY-LOOP",
+                "WEBOS-L2",
+                "WEBOS-L11",
+            ],
+            "legacy_asset_ids": [
+                "LEGACY-ASSET-D27D4A1511BFD43623A9",
+                "LEGACY-ASSET-78D55762187C612C93C4",
+                "LEGACY-ASSET-DE68E15724FB6EC258AB",
+                "LEGACY-ASSET-3A15E5645D2D2A59DFF5",
+            ],
             "implementation_status": "unknown",
             "acceptance_status": "draft_unexecuted",
             "authority_status": "adjacent_candidate_only",
         },
     ],
     "candidate_connections": [
-        {"connection_id": "CONN-WBS-HARNESS-OS", "from": "HELIX-HARNESS", "to": "HELIX-OS", "kind": "normative_to_management_projection", "status": "candidate", "meaning": "HARNESSのWBS normative shapeをOSのmanagement ledger/progressionへ接続する候補。単体完了から接続成立を推定しない。"},
-        {"connection_id": "CONN-TICKET-HARNESS-OS", "from": "HELIX-HARNESS", "to": "HELIX-OS", "kind": "contract_to_issuer", "status": "candidate", "meaning": "HARNESSのticket vocabulary/contractとOSのissuer/registration/projectionを分離接続する候補。Issueはauthorityでない。"},
-        {"connection_id": "CONN-OS-WEB-PROJECT", "from": "HELIX-OS", "to": "HELIX-Web", "kind": "project_control", "status": "adjacent_candidate", "meaning": "OSがWeb projectを管理する候補。Web固有の利用者体験とticket/WBS authorityは混同しない。"},
-        {"connection_id": "CONN-WEBOS-OS-IMPROVEMENT", "from": "HELIX-Web-OS", "to": "HELIX-OS", "kind": "scoped_log_telemetry_export", "status": "adjacent_candidate", "meaning": "許可されたservice log/telemetryを改善候補へ投影する接続候補。service runtimeのwriter/state/credentialは共有しない。"},
+        {
+            "connection_id": "CONN-WBS-HARNESS-OS",
+            "from": "HELIX-HARNESS",
+            "to": "HELIX-OS",
+            "kind": "normative_to_management_projection",
+            "status": "candidate",
+            "meaning": "HARNESSのWBS normative shapeをOSのmanagement ledger/progressionへ接続する候補。単体完了から接続成立を推定しない。",
+        },
+        {
+            "connection_id": "CONN-TICKET-HARNESS-OS",
+            "from": "HELIX-HARNESS",
+            "to": "HELIX-OS",
+            "kind": "contract_to_issuer",
+            "status": "candidate",
+            "meaning": "HARNESSのticket vocabulary/contractとOSのissuer/registration/projectionを分離接続する候補。Issueはauthorityでない。",
+        },
+        {
+            "connection_id": "CONN-OS-WEB-PROJECT",
+            "from": "HELIX-OS",
+            "to": "HELIX-Web",
+            "kind": "project_control",
+            "status": "adjacent_candidate",
+            "meaning": "OSがWeb projectを管理する候補。Web固有の利用者体験とticket/WBS authorityは混同しない。",
+        },
+        {
+            "connection_id": "CONN-WEBOS-OS-IMPROVEMENT",
+            "from": "HELIX-Web-OS",
+            "to": "HELIX-OS",
+            "kind": "scoped_log_telemetry_export",
+            "status": "adjacent_candidate",
+            "meaning": "許可されたservice log/telemetryを改善候補へ投影する接続候補。service runtimeのwriter/state/credentialは共有しない。",
+        },
     ],
     "candidate_phase_joins": phase_joins,
     "wbs_name_audit": {
@@ -439,9 +727,21 @@ inventory = {
             }
         ],
         "representative_near_capability_candidates": [
-            {"asset_id": "LEGACY-ASSET-D27D4A1511BFD43623A9", "capability": "stage completion/requirements trace", "same_name_identity": False},
-            {"asset_id": "LEGACY-ASSET-78D55762187C612C93C4", "capability": "current location/roadmap/state data model", "same_name_identity": False},
-            {"asset_id": "LEGACY-ASSET-DE68E15724FB6EC258AB", "capability": "plan/roadmap baseline", "same_name_identity": False},
+            {
+                "asset_id": "LEGACY-ASSET-D27D4A1511BFD43623A9",
+                "capability": "stage completion/requirements trace",
+                "same_name_identity": False,
+            },
+            {
+                "asset_id": "LEGACY-ASSET-78D55762187C612C93C4",
+                "capability": "current location/roadmap/state data model",
+                "same_name_identity": False,
+            },
+            {
+                "asset_id": "LEGACY-ASSET-DE68E15724FB6EC258AB",
+                "capability": "plan/roadmap baseline",
+                "same_name_identity": False,
+            },
         ],
         "interpretation": "同名WBS assetは0。archive本文45ファイルの語彙ヒットと等価能力候補は、WBS identity・実装・authority・semantic equivalenceを証明しない。",
         "interpretation_sha256": "9f92e27c2c6e6f2b16c2feea54b92198603e31bb2621994bd3541470104619b7",
@@ -450,7 +750,11 @@ inventory = {
         "match_rule": "legacy-asset-disposition.source_path contains 'ticket' case-insensitive",
         "path_match_count": len(ticket_catalog),
         "path_match_asset_ids": all_ticket_ids,
-        "selected_representative_asset_ids": ["LEGACY-ASSET-3A15E5645D2D2A59DFF5", "LEGACY-ASSET-BE8B151A0094B754FF20", "LEGACY-ASSET-06C7FAF2A0981A4778AC"],
+        "selected_representative_asset_ids": [
+            "LEGACY-ASSET-3A15E5645D2D2A59DFF5",
+            "LEGACY-ASSET-BE8B151A0094B754FF20",
+            "LEGACY-ASSET-06C7FAF2A0981A4778AC",
+        ],
         "asset_catalog": ticket_catalog,
         "interpretation": "ticket path 9件はcandidate source catalog。代表3件だけ本文exact spanを展開し、残り6件はsource path/hashとphase/ledger stateの範囲に留める。",
         "interpretation_sha256": "345e32b2408dcf5323dc2a388d80583b2a000e2a30dcc6df76f200b68593e05c",
@@ -494,5 +798,9 @@ inventory = {
         "failure_receipts_observed": 0,
     },
 }
-INV.write_text(json.dumps(inventory, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
-print(f"wrote {INV}: {len(selected_specs)} selected assets, {len(ticket_catalog)} ticket paths, {len(archive_content_matches)} archive text matches")
+INV.write_text(
+    json.dumps(inventory, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
+)
+print(
+    f"wrote {INV}: {len(selected_specs)} selected assets, {len(ticket_catalog)} ticket paths, {len(archive_content_matches)} archive text matches"
+)

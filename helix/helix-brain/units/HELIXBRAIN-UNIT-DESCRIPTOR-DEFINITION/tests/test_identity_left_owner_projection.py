@@ -11,7 +11,10 @@ from __future__ import annotations
 import copy
 import unittest
 
-from descriptor_definitions import compare_identity_versions_and_trace, validate_supply_input
+from descriptor_definitions import (
+    compare_identity_versions_and_trace,
+    validate_supply_input,
+)
 from identity_input_fixtures import _write_source_content, bilateral_input
 
 
@@ -20,7 +23,8 @@ class TestIdentityLeftOwnerProjection(unittest.TestCase):
         raw = bilateral_input("positive")
         record = raw["compatibility_records"][0]
         left_sources = [
-            source for source in raw["sources"]
+            source
+            for source in raw["sources"]
             if isinstance(source.get("content"), dict)
             and source["content"].get("compatibility_record_ref") == record["ref"]
             and source["content"].get("counterpart_source_ref") == record["source_ref"]
@@ -46,10 +50,13 @@ class TestIdentityLeftOwnerProjection(unittest.TestCase):
         self.assertEqual(result["input_binding"], raw_before["binding"], label)
         # L4 raw_carriers/projection_guard keeps the malformed private body without
         # forming a qualified outside predicate or synthesizing an R62 Finding.
-        self.assertFalse(any(
-            finding["code"] == "compatibility_mismatch"
-            for finding in result["findings"]
-        ), label)
+        self.assertFalse(
+            any(
+                finding["code"] == "compatibility_mismatch"
+                for finding in result["findings"]
+            ),
+            label,
+        )
         rows = [axis for axis in result["axes"] if axis["axis"] == "compatibility"]
         self.assertTrue(rows, label)
         self.assertTrue(all(axis["state"] == "unknown" for axis in rows), label)
@@ -60,13 +67,19 @@ class TestIdentityLeftOwnerProjection(unittest.TestCase):
         raw = self._input_with_left_declaration(
             lambda declaration: declaration.__setitem__("range_relation", "inside")
         )
-        self._assert_not_false_outside_resolution(raw, "EndpointOwnerDeclaration.range_relation enum")
+        self._assert_not_false_outside_resolution(
+            raw, "EndpointOwnerDeclaration.range_relation enum"
+        )
 
     def test_out_of_type_left_range_reason_is_not_positive_owner_evidence(self):
         raw = self._input_with_left_declaration(
-            lambda declaration: declaration.__setitem__("range_reason", {"raw": "not string or null"})
+            lambda declaration: declaration.__setitem__(
+                "range_reason", {"raw": "not string or null"}
+            )
         )
-        self._assert_not_false_outside_resolution(raw, "EndpointOwnerDeclaration.range_reason type")
+        self._assert_not_false_outside_resolution(
+            raw, "EndpointOwnerDeclaration.range_reason type"
+        )
 
 
 if __name__ == "__main__":

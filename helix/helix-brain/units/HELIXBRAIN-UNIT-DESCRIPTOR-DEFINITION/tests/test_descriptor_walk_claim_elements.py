@@ -55,6 +55,8 @@ class TestDescriptorWalkClaimElementGuard(unittest.TestCase):
                         "FN0 ValidatedSupply must remain unchanged",
                     )
 
-                self.assertIsNotNone(caught, "walk should stop at the existing closed boundary")
+                self.assertIsNotNone(
+                    caught, "walk should stop at the existing closed boundary"
+                )
                 self.assertIsInstance(caught, NotImplementedError)
                 self.assertEqual(str(caught), _EXPECTED_STOP)

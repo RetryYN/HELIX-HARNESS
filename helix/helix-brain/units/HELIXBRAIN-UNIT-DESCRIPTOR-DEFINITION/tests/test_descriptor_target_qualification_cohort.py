@@ -46,11 +46,14 @@ class TestDescriptorTargetQualificationCohort(unittest.TestCase):
             revision=original_source["ref"]["revision"],
         )
         matching_records = [
-            record for record in raw["knowledge_records"]
+            record
+            for record in raw["knowledge_records"]
             if record.get("ref") == raw["claims"][0]["binding"].get("knowledge_ref")
         ]
         if len(matching_records) != 1:
-            raise ValueError("fixture must have exactly one original Claim knowledge record")
+            raise ValueError(
+                "fixture must have exactly one original Claim knowledge record"
+            )
         matching_records[0]["provenance_refs"].append(copy.deepcopy(qualified["ref"]))
         return qualified, declaration
 
@@ -58,7 +61,8 @@ class TestDescriptorTargetQualificationCohort(unittest.TestCase):
         raw_before = copy.deepcopy(raw)
         validated = validate_supply_input(raw)
         self.assertIsInstance(
-            validated["input"], dict,
+            validated["input"],
+            dict,
             "setup: FN0 must retain the raw snapshot; do not synthesize ValidatedSupply",
         )
         self.assertEqual(validated["input"], raw_before)
@@ -67,17 +71,24 @@ class TestDescriptorTargetQualificationCohort(unittest.TestCase):
             validated, raw["claims"][0], "/claims/0"
         )
         self.assertEqual(raw, raw_before, "target reading must not mutate raw input")
-        self.assertEqual(validated, validated_before, "target reading must not mutate FN0 output")
+        self.assertEqual(
+            validated, validated_before, "target reading must not mutate FN0 output"
+        )
         return validated, result
 
     def _expected_occurrence(self, source, source_index, declaration_index=0):
         return {
-            "source_ref": {"presence": "supplied", "value": copy.deepcopy(source["ref"])},
+            "source_ref": {
+                "presence": "supplied",
+                "value": copy.deepcopy(source["ref"]),
+            },
             "source_locator": f"/sources/{source_index}",
             "declaration_locator": (
                 f"/sources/{source_index}/content/descriptor_targets/{declaration_index}"
             ),
-            "declaration": copy.deepcopy(source["content"]["descriptor_targets"][declaration_index]),
+            "declaration": copy.deepcopy(
+                source["content"]["descriptor_targets"][declaration_index]
+            ),
             "source_binding": {
                 "presence": "supplied",
                 "value": copy.deepcopy(source["content"]["binding"]),
@@ -89,24 +100,32 @@ class TestDescriptorTargetQualificationCohort(unittest.TestCase):
             "kind": "owner_source_unresolved",
             "locator": f"/sources/{source_index}",
             "reason": _OWNER_SOURCE_REASON,
-            "source_ref": {"presence": "supplied", "value": copy.deepcopy(source["ref"])},
+            "source_ref": {
+                "presence": "supplied",
+                "value": copy.deepcopy(source["ref"]),
+            },
         }
 
-    def test_unqualified_exact_declaration_is_retained_but_qualified_copy_resolves(self):
+    def test_unqualified_exact_declaration_is_retained_but_qualified_copy_resolves(
+        self,
+    ):
         raw = descriptor_claim_input("positive")
         unqualified_source = raw["sources"][0]
         self._unqualify_source_bytes(unqualified_source)
         qualified_source, declaration = self._append_qualified_copy(raw)
         record = next(
-            record for record in raw["knowledge_records"]
+            record
+            for record in raw["knowledge_records"]
             if record.get("ref") == raw["claims"][0]["binding"].get("knowledge_ref")
         )
         unqualified_index = next(
-            index for index, source in enumerate(raw["sources"])
+            index
+            for index, source in enumerate(raw["sources"])
             if source is unqualified_source
         )
         qualified_index = next(
-            index for index, source in enumerate(raw["sources"])
+            index
+            for index, source in enumerate(raw["sources"])
             if source is qualified_source
         )
 
@@ -123,17 +142,28 @@ class TestDescriptorTargetQualificationCohort(unittest.TestCase):
         self.assertEqual(match["slot_identity"], declaration["slot_identity"])
         self.assertEqual(match["descriptor_kind"], declaration["descriptor_kind"])
         self.assertEqual(match["source_refs"], [qualified_source["ref"]])
-        self.assertEqual(match["declaration_locators"], [
-            f"/sources/{qualified_index}/content/descriptor_targets/0",
-        ])
+        self.assertEqual(
+            match["declaration_locators"],
+            [
+                f"/sources/{qualified_index}/content/descriptor_targets/0",
+            ],
+        )
         self.assertNotIn(unqualified_source["ref"], match["source_refs"])
-        self.assertEqual(actual["occurrences"], [
-            self._expected_occurrence(unqualified_source, unqualified_index),
-            self._expected_occurrence(qualified_source, qualified_index),
-        ])
-        self.assertEqual(actual["problems"], [
-            self._expected_unqualified_problem(unqualified_source, unqualified_index),
-        ])
+        self.assertEqual(
+            actual["occurrences"],
+            [
+                self._expected_occurrence(unqualified_source, unqualified_index),
+                self._expected_occurrence(qualified_source, qualified_index),
+            ],
+        )
+        self.assertEqual(
+            actual["problems"],
+            [
+                self._expected_unqualified_problem(
+                    unqualified_source, unqualified_index
+                ),
+            ],
+        )
         self.assertEqual(record["provenance_refs"][-1], qualified_source["ref"])
 
     def test_single_unqualified_exact_declaration_remains_unknown(self):
@@ -141,7 +171,8 @@ class TestDescriptorTargetQualificationCohort(unittest.TestCase):
         unqualified_source = raw["sources"][0]
         self._unqualify_source_bytes(unqualified_source)
         unqualified_index = next(
-            index for index, source in enumerate(raw["sources"])
+            index
+            for index, source in enumerate(raw["sources"])
             if source is unqualified_source
         )
 
@@ -150,12 +181,20 @@ class TestDescriptorTargetQualificationCohort(unittest.TestCase):
         self.assertIn(unqualified_source["ref"], validated["unusable_source_refs"])
         self.assertEqual(actual["state"], "unknown")
         self.assertEqual(actual["matches"], [])
-        self.assertEqual(actual["occurrences"], [
-            self._expected_occurrence(unqualified_source, unqualified_index),
-        ])
-        self.assertEqual(actual["problems"], [
-            self._expected_unqualified_problem(unqualified_source, unqualified_index),
-        ])
+        self.assertEqual(
+            actual["occurrences"],
+            [
+                self._expected_occurrence(unqualified_source, unqualified_index),
+            ],
+        )
+        self.assertEqual(
+            actual["problems"],
+            [
+                self._expected_unqualified_problem(
+                    unqualified_source, unqualified_index
+                ),
+            ],
+        )
 
 
 if __name__ == "__main__":

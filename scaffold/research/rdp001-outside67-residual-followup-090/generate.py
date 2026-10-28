@@ -118,13 +118,18 @@ def blob_oid(commit: str, path: str) -> str:
 
 def dump(path: Path, value: object) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_text(json.dumps(value, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    path.write_text(
+        json.dumps(value, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
+    )
 
 
 def dump_lines(path: Path, values: list[object]) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(
-        "".join(json.dumps(value, ensure_ascii=False, sort_keys=True) + "\n" for value in values),
+        "".join(
+            json.dumps(value, ensure_ascii=False, sort_keys=True) + "\n"
+            for value in values
+        ),
         encoding="utf-8",
     )
 
@@ -132,7 +137,10 @@ def dump_lines(path: Path, values: list[object]) -> None:
 def holding_rows() -> dict[str, dict]:
     return {
         row["source_item_id"]: row
-        for row in (json.loads(line) for line in (ROOT / HOLDING).read_text(encoding="utf-8").splitlines())
+        for row in (
+            json.loads(line)
+            for line in (ROOT / HOLDING).read_text(encoding="utf-8").splitlines()
+        )
     }
 
 
@@ -140,18 +148,24 @@ def make() -> None:
     OUT.mkdir(parents=True, exist_ok=True)
     rows = holding_rows()
     previous = json.loads(
-        (ROOT / "scaffold/research/rdp001-outside67-concept-freeze-followup-087/inventory.json").read_text(
-            encoding="utf-8"
-        )
+        (
+            ROOT
+            / "scaffold/research/rdp001-outside67-concept-freeze-followup-087/inventory.json"
+        ).read_text(encoding="utf-8")
     )
-    existing = previous["scope"]["existing_reviewed_ids"] + previous["scope"]["candidate_ids"]
+    existing = (
+        previous["scope"]["existing_reviewed_ids"] + previous["scope"]["candidate_ids"]
+    )
     assert len(existing) == 57 and not set(existing) & set(IDS)
     assert all(rows[sid]["source_path"] == SOURCE_PATHS[sid] for sid in IDS)
 
     current_bytes = {sid: blob(HEAD, COUNTERPARTS[sid]) for sid in IDS}
     pre_bytes = {sid: blob(PRE, SOURCE_PATHS[sid]) for sid in IDS}
     archive_bytes = {sid: blob(ARCH, SOURCE_PATHS[sid]) for sid in IDS}
-    expected_diff = {sid: ("same" if pre_bytes[sid] == archive_bytes[sid] else "different") for sid in IDS}
+    expected_diff = {
+        sid: ("same" if pre_bytes[sid] == archive_bytes[sid] else "different")
+        for sid in IDS
+    }
     hash_equal = [sid for sid in IDS if current_bytes[sid] == archive_bytes[sid]]
     drift = [sid for sid in IDS if current_bytes[sid] != archive_bytes[sid]]
 
@@ -203,7 +217,10 @@ def make() -> None:
                 ),
             }
         )
-    dump(OUT / "source-diffs.json", {"schema": "rdp001-outside67-source-diffs/v1", "items": diffs})
+    dump(
+        OUT / "source-diffs.json",
+        {"schema": "rdp001-outside67-source-diffs/v1", "items": diffs},
+    )
 
     selected = []
     units = []
@@ -218,7 +235,10 @@ def make() -> None:
         "decision",
         "current_counterpart_relation",
     ]
-    semantic_fields = {key: "unresolved" for key in ["action", "actor", "condition", "guard", "sequence"]}
+    semantic_fields = {
+        key: "unresolved"
+        for key in ["action", "actor", "condition", "guard", "sequence"]
+    }
     selection_reason = (
         "旧source／判断史／failure／consumer境界に関係するlineを静的保持する。"
         "fragment外のactor/action/condition/guard/sequence、正式要求identity、owner、phase authority、"
@@ -244,7 +264,8 @@ def make() -> None:
                 "archive_revision": {
                     **row["archive"],
                     "line_count": len(archive_lines),
-                    "reported_blob_oid_matches_git": blob_oid(ARCH, SOURCE_PATHS[sid]) == row["archive"]["blob_oid"],
+                    "reported_blob_oid_matches_git": blob_oid(ARCH, SOURCE_PATHS[sid])
+                    == row["archive"]["blob_oid"],
                 },
                 "artifact_kind": row["artifact_kind"],
                 "candidate_phase": row["reported_path_scope"]["phase_scope"],
@@ -259,14 +280,17 @@ def make() -> None:
                 "pre_isolation": {
                     **row["pre_isolation"],
                     "line_count": len(source_lines),
-                    "reported_blob_oid_matches_git": blob_oid(PRE, SOURCE_PATHS[sid]) == row["pre_isolation"]["blob_oid"],
+                    "reported_blob_oid_matches_git": blob_oid(PRE, SOURCE_PATHS[sid])
+                    == row["pre_isolation"]["blob_oid"],
                 },
                 "product_candidates": FOUR,
                 "product_status": row["reported_path_scope"]["product_status"],
                 "reported_holding": {
                     "human_decision_ref": row["human_decision_ref"],
                     "legacy_catalog_record_count": row["legacy_catalog_record_count"],
-                    "old_runtime_test_ci_execution": row["old_runtime_test_ci_execution"],
+                    "old_runtime_test_ci_execution": row[
+                        "old_runtime_test_ci_execution"
+                    ],
                     "semantic_disposition": row["semantic_disposition"],
                     "source_holding_status": row["source_holding_status"],
                 },
@@ -349,7 +373,11 @@ def make() -> None:
                     "source_support": "exact_line_anchor_only",
                     "successor_requirement_ids": [],
                     "unit_id": unit_id,
-                    "unresolved_questions": {"items": unresolved, "scope": "unit", "status": "open_unknowns"},
+                    "unresolved_questions": {
+                        "items": unresolved,
+                        "scope": "unit",
+                        "status": "open_unknowns",
+                    },
                 }
             )
     dump_lines(OUT / "selected-source-items.jsonl", selected)
@@ -361,9 +389,7 @@ def make() -> None:
         text = (ROOT / ledger).read_text(encoding="utf-8", errors="replace")
         files[ledger] = {"sha256": sha(text), "bytes": len(text.encode("utf-8"))}
         exact_hits_by_ledger = [
-            token
-            for token in IDS + list(SOURCE_PATHS.values())
-            if token in text
+            token for token in IDS + list(SOURCE_PATHS.values()) if token in text
         ]
         exact_hits[ledger] = sorted(set(exact_hits_by_ledger))
     dump(
@@ -383,7 +409,12 @@ def make() -> None:
             "current_counterpart_paths": {sid: COUNTERPARTS[sid] for sid in IDS},
             "current_counterpart_sha256": {sid: sha(current_bytes[sid]) for sid in IDS},
             "old_runtime_test_ci_execution": False,
-            "source_revision_commits": {"pre_isolation": PRE, "archive": ARCH, "historical_capture": HISTORICAL, "current": HEAD},
+            "source_revision_commits": {
+                "pre_isolation": PRE,
+                "archive": ARCH,
+                "historical_capture": HISTORICAL,
+                "current": HEAD,
+            },
         },
     )
 
@@ -424,7 +455,11 @@ def make() -> None:
         "binding_registration_status": "registered",
     }
     documents = [
-        {"source_item_id": sid, "source_path": SOURCE_PATHS[sid], "current_counterpart_path": COUNTERPARTS[sid]}
+        {
+            "source_item_id": sid,
+            "source_path": SOURCE_PATHS[sid],
+            "current_counterpart_path": COUNTERPARTS[sid],
+        }
         for sid in IDS
     ]
     inventory = {
@@ -463,11 +498,33 @@ def make() -> None:
             "product": "source topic and path suggest a candidate boundary only; four-product candidates remain unresolved",
             "semantic_units": "exact source line anchors are preserved; multi-duty lines remain composite_unresolved",
         },
-        "four_products": [{"product": product, "status": "candidate_boundary_only", "authority_effect": "none"} for product in FOUR],
+        "four_products": [
+            {
+                "product": product,
+                "status": "candidate_boundary_only",
+                "authority_effect": "none",
+            }
+            for product in FOUR
+        ],
         "documents": documents,
         "product_unit_count": len(units),
         "product_unit_ids": [unit["unit_id"] for unit in units],
-        "unknown_counts": {key: 5 for key in ["implementation", "degradation", "failure", "consumer", "decision", "phase", "authority", "legacy_implementation", "current_implementation", "legacy_degradation", "current_degradation"]},
+        "unknown_counts": {
+            key: 5
+            for key in [
+                "implementation",
+                "degradation",
+                "failure",
+                "consumer",
+                "decision",
+                "phase",
+                "authority",
+                "legacy_implementation",
+                "current_implementation",
+                "legacy_degradation",
+                "current_degradation",
+            ]
+        },
         "source_diffs": "source-diffs.json",
         "evidence_scan": "evidence-scan.json",
         "prohibited_inference": [

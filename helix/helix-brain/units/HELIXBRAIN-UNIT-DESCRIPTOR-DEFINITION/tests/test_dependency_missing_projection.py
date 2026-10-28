@@ -26,10 +26,13 @@ class TestDependencyMissingProjection(unittest.TestCase):
         self.assertEqual(raw, raw_before)
         return validated
 
-    def test_missing_root_knowledge_ref_uses_original_template_ref_and_keeps_presence(self) -> None:
+    def test_missing_root_knowledge_ref_uses_original_template_ref_and_keeps_presence(
+        self,
+    ) -> None:
         raw = base_input(load_document())
         raw["dependencies"]["always_refs"] = [
-            ref for ref in raw["dependencies"]["always_refs"]
+            ref
+            for ref in raw["dependencies"]["always_refs"]
             if ref["identity"] != "HELIXBRAIN-L2-003"
         ]
         del raw["binding"]["knowledge_ref"]
@@ -45,16 +48,26 @@ class TestDependencyMissingProjection(unittest.TestCase):
 
         self.assertEqual(len(axes), 1)
         axis = axes[0]
-        self.assertEqual(list(axis), [
-            "subject_ref", "binding", "axis", "state", "original_refs",
-            "reason", "backflow_owner",
-        ])
+        self.assertEqual(
+            list(axis),
+            [
+                "subject_ref",
+                "binding",
+                "axis",
+                "state",
+                "original_refs",
+                "reason",
+                "backflow_owner",
+            ],
+        )
         self.assertEqual(axis["subject_ref"], raw_before["binding"]["template_ref"])
         self.assertEqual(axis["binding"], raw_before["binding"])
         self.assertNotIn("knowledge_ref", axis["binding"])
         self.assertEqual(axis["axis"], "dependency_reference")
         self.assertEqual(axis["state"], "missing")
-        self.assertEqual(axis["original_refs"], raw_before["dependencies"]["always_refs"])
+        self.assertEqual(
+            axis["original_refs"], raw_before["dependencies"]["always_refs"]
+        )
         self.assertEqual(axis["backflow_owner"], "knowledge_owner")
 
         prefix, trace_text = axis["reason"].split("\nTRACE=", 1)
@@ -63,16 +76,31 @@ class TestDependencyMissingProjection(unittest.TestCase):
             "必要identityに対応する原Refは当該categoryに未供給。他bodyで補償しない。",
         )
         trace = json.loads(trace_text)
-        self.assertEqual(list(trace), [
-            "format", "producer_symbol", "axis", "state", "subject_ref",
-            "binding", "original_refs", "backflow_owner", "request_locator",
-            "source_category_locator", "cause", "canonical_body_support",
-            "handoff_record", "selection_observation",
-        ])
+        self.assertEqual(
+            list(trace),
+            [
+                "format",
+                "producer_symbol",
+                "axis",
+                "state",
+                "subject_ref",
+                "binding",
+                "original_refs",
+                "backflow_owner",
+                "request_locator",
+                "source_category_locator",
+                "cause",
+                "canonical_body_support",
+                "handoff_record",
+                "selection_observation",
+            ],
+        )
         self.assertEqual(trace["subject_ref"], raw_before["binding"]["template_ref"])
         self.assertEqual(trace["binding"], raw_before["binding"])
         self.assertNotIn("knowledge_ref", trace["binding"])
-        self.assertEqual(trace["original_refs"], raw_before["dependencies"]["always_refs"])
+        self.assertEqual(
+            trace["original_refs"], raw_before["dependencies"]["always_refs"]
+        )
         self.assertEqual(trace["source_category_locator"], "/dependencies/always_refs")
         self.assertIsNone(trace["request_locator"])
         self.assertIsNone(trace["cause"])
@@ -84,7 +112,8 @@ class TestDependencyMissingProjection(unittest.TestCase):
     def test_absent_root_subject_refs_do_not_form_a_typed_axis(self) -> None:
         raw = base_input(load_document())
         raw["dependencies"]["always_refs"] = [
-            ref for ref in raw["dependencies"]["always_refs"]
+            ref
+            for ref in raw["dependencies"]["always_refs"]
             if ref["identity"] != "HELIXBRAIN-L2-003"
         ]
         del raw["binding"]["knowledge_ref"]
@@ -102,7 +131,8 @@ class TestDependencyMissingProjection(unittest.TestCase):
     def test_category_refs_keep_occurrences_and_absence_has_no_locator(self) -> None:
         present_raw = base_input(load_document())
         present_raw["dependencies"]["always_refs"] = [
-            ref for ref in present_raw["dependencies"]["always_refs"]
+            ref
+            for ref in present_raw["dependencies"]["always_refs"]
             if ref["identity"] != "HELIXBRAIN-L2-003"
         ]
         present_raw["dependencies"]["always_refs"].append(

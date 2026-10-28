@@ -36,10 +36,12 @@ def _call_fn0_fn1_fn6(raw: dict) -> tuple[dict, dict, dict]:
     definitions = compare_descriptor_definitions({"validated": validated})
     validated_before = copy.deepcopy(validated)
     definitions_before = copy.deepcopy(definitions)
-    result = compare_dependencies_and_handoff({
-        "validated": validated,
-        "definitions": definitions,
-    })
+    result = compare_dependencies_and_handoff(
+        {
+            "validated": validated,
+            "definitions": definitions,
+        }
+    )
     if raw != raw_before:
         raise AssertionError("FN0/FN1/FN6 changed the supplied raw input")
     if validated != validated_before or definitions != definitions_before:
@@ -48,7 +50,9 @@ def _call_fn0_fn1_fn6(raw: dict) -> tuple[dict, dict, dict]:
 
 
 class TestDescriptorFillHandoffAbsent(unittest.TestCase):
-    def _assert_case(self, *, handoff_presence: str, dependencies_presence: str) -> None:
+    def _assert_case(
+        self, *, handoff_presence: str, dependencies_presence: str
+    ) -> None:
         raw = descriptor_claim_input("positive")
         if handoff_presence == "absent":
             raw.pop("handoff_records", None)
@@ -72,12 +76,20 @@ class TestDescriptorFillHandoffAbsent(unittest.TestCase):
         validated, definitions, result = _call_fn0_fn1_fn6(raw)
         self.assertEqual(validated["input_issues"], [])
         self.assertEqual(validated["input"], raw_before)
-        self.assertEqual(definitions["producer_symbol"], "compare_descriptor_definitions")
+        self.assertEqual(
+            definitions["producer_symbol"], "compare_descriptor_definitions"
+        )
         self.assertEqual(result["producer_symbol"], "compare_dependencies_and_handoff")
         self.assertEqual(result["input_binding"], raw_before["binding"])
-        self.assertEqual([axis for axis in result["axes"] if axis["axis"] == "handoff"], [])
-        self.assertNotIn(RULE87, [finding.get("rule_ref") for finding in result["findings"]])
-        self.assertNotIn(RULE93, [finding.get("rule_ref") for finding in result["findings"]])
+        self.assertEqual(
+            [axis for axis in result["axes"] if axis["axis"] == "handoff"], []
+        )
+        self.assertNotIn(
+            RULE87, [finding.get("rule_ref") for finding in result["findings"]]
+        )
+        self.assertNotIn(
+            RULE93, [finding.get("rule_ref") for finding in result["findings"]]
+        )
 
         # The same raw snapshot with no Claim must retain the same FN6
         # dependency/handoff result. This checks route=none through its public
@@ -98,7 +110,9 @@ class TestDescriptorFillHandoffAbsent(unittest.TestCase):
             no_claim_result["findings"],
             "route=none adds no rule87/93 Finding or other FN6 Finding",
         )
-        self.assertEqual(no_claim_definitions["producer_symbol"], "compare_descriptor_definitions")
+        self.assertEqual(
+            no_claim_definitions["producer_symbol"], "compare_descriptor_definitions"
+        )
         self.assertEqual(raw, raw_before)
 
     def test_absent_handoff_with_supplied_dependencies_has_zero_rows(self) -> None:
@@ -112,4 +126,3 @@ class TestDescriptorFillHandoffAbsent(unittest.TestCase):
 
     def test_empty_handoff_with_absent_dependencies_has_zero_rows(self) -> None:
         self._assert_case(handoff_presence="empty", dependencies_presence="absent")
-

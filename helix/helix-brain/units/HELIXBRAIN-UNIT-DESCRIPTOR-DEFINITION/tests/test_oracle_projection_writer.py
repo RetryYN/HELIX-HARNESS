@@ -23,7 +23,9 @@ def _ref(identity):
     }
 
 
-def _binding(template_identity="synthetic-template", requirement_identity="synthetic-requirement"):
+def _binding(
+    template_identity="synthetic-template", requirement_identity="synthetic-requirement"
+):
     base = _ref(template_identity)
     return {
         "template_ref": base,
@@ -40,7 +42,9 @@ def _binding(template_identity="synthetic-template", requirement_identity="synth
 
 def _axis(name, *, subject=None, binding=None, state="unknown", reason="raw reason"):
     return {
-        "subject_ref": copy.deepcopy(subject if subject is not None else _ref("synthetic-subject")),
+        "subject_ref": copy.deepcopy(
+            subject if subject is not None else _ref("synthetic-subject")
+        ),
         "binding": copy.deepcopy(binding if binding is not None else _binding()),
         "axis": name,
         "state": state,
@@ -51,17 +55,31 @@ def _axis(name, *, subject=None, binding=None, state="unknown", reason="raw reas
 
 
 class TestOracleProjectionWriter(unittest.TestCase):
-    def test_carry_and_existing_matching_axis_keep_all_seven_fields_and_original_order(self):
-        carry = _axis("measurement.definition", state="missing", reason="carry stays exact")
-        matching = _axis("measurement.binding", state="unknown", reason="preexisting raw reason")
+    def test_carry_and_existing_matching_axis_keep_all_seven_fields_and_original_order(
+        self,
+    ):
+        carry = _axis(
+            "measurement.definition", state="missing", reason="carry stays exact"
+        )
+        matching = _axis(
+            "measurement.binding", state="unknown", reason="preexisting raw reason"
+        )
         mismatched_subject = _axis(
-            "measurement.binding", subject=_ref("other-subject"), reason="must not carry"
+            "measurement.binding",
+            subject=_ref("other-subject"),
+            reason="must not carry",
         )
         mismatched_binding = _axis(
-            "measurement.binding", binding=_binding("other-template"), reason="must not carry either"
+            "measurement.binding",
+            binding=_binding("other-template"),
+            reason="must not carry either",
         )
-        predicate_match = _axis("measurement.binding", state="conflict", reason="predicate copy")
-        new_rule = _axis("completion.binding", state="conflict", reason="new completion row")
+        predicate_match = _axis(
+            "measurement.binding", state="conflict", reason="predicate copy"
+        )
+        new_rule = _axis(
+            "completion.binding", state="conflict", reason="new completion row"
+        )
         original = [carry, mismatched_subject, matching, mismatched_binding]
         predicate = [predicate_match, new_rule]
         original_before = copy.deepcopy(original)
@@ -72,15 +90,26 @@ class TestOracleProjectionWriter(unittest.TestCase):
         self.assertEqual(result, [carry, matching, new_rule])
         self.assertEqual(result[0], original[0])
         self.assertEqual(result[1], original[2])
-        self.assertEqual(set(result[1]), {
-            "subject_ref", "binding", "axis", "state", "original_refs", "reason", "backflow_owner",
-        })
+        self.assertEqual(
+            set(result[1]),
+            {
+                "subject_ref",
+                "binding",
+                "axis",
+                "state",
+                "original_refs",
+                "reason",
+                "backflow_owner",
+            },
+        )
         self.assertEqual(original, original_before)
         self.assertEqual(predicate, predicate_before)
 
     def test_repeated_predicate_row_keeps_first_axis_occurrence(self):
         carry = _axis("negative oracle.definition", state="missing")
-        first = _axis("measurement.binding", state="conflict", reason="first occurrence")
+        first = _axis(
+            "measurement.binding", state="conflict", reason="first occurrence"
+        )
         repeated = copy.deepcopy(first)
         repeated["reason"] = "later duplicate must not replace first"
 
@@ -97,9 +126,14 @@ class TestOracleProjectionWriter(unittest.TestCase):
         result = write_oracle_axes([carry], [completion, measurement])
 
         self.assertEqual(result, [carry, completion, measurement])
-        self.assertEqual([row["axis"] for row in result], [
-            "completion.definition", "completion.binding", "measurement.binding",
-        ])
+        self.assertEqual(
+            [row["axis"] for row in result],
+            [
+                "completion.definition",
+                "completion.binding",
+                "measurement.binding",
+            ],
+        )
 
 
 if __name__ == "__main__":

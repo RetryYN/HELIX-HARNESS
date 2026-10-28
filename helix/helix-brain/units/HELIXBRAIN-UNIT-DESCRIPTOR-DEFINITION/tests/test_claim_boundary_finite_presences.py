@@ -3,6 +3,7 @@
 pure guardの分類だけを測り、非空meaning decoderや公開ClaimContextの成立を
 主張しない。全値は原inputとして構成し、Comparison/frameを作らない。
 """
+
 import copy
 import unittest
 
@@ -11,7 +12,9 @@ from claim_boundary_input_fixtures import finite_claim_input
 from descriptor_definitions import validate_supply_input
 from identity_input_fixtures import _same_ref_without_digest, _write_source_content
 from test_claim_boundary_finite_domain import (
-    _contract_literal, _root_fact_variant, _operation_fact_body_variant,
+    _contract_literal,
+    _root_fact_variant,
+    _operation_fact_body_variant,
 )
 
 STOP = "FN7/unclosed/finite_domain; Backflow HELIXBRAIN-L6-032-FN7-CLAIM"
@@ -22,7 +25,8 @@ def _sync_source(raw, source):
     _write_source_content(raw, source, copy.deepcopy(source["content"]))
     for record in raw["knowledge_records"]:
         record["provenance_refs"] = [
-            copy.deepcopy(source["ref"]) if _same_ref_without_digest(ref, old)
+            copy.deepcopy(source["ref"])
+            if _same_ref_without_digest(ref, old)
             else copy.deepcopy(ref)
             for ref in record["provenance_refs"]
         ]
@@ -46,7 +50,12 @@ class TestClaimBoundaryFinitePresences(unittest.TestCase):
     def test_optional_slot_metadata_absence_is_not_a_new_finite_requirement(self):
         # L5 DescriptorSlot has optional properties; L4 adds own facts array and
         # known kind, not required comparison/applicability or other metadata.
-        for member in ("comparison_refs", "definition_applicability_ref", "slot_identity", "binding"):
+        for member in (
+            "comparison_refs",
+            "definition_applicability_ref",
+            "slot_identity",
+            "binding",
+        ):
             with self.subTest(absent=member):
                 raw = finite_claim_input("none")
                 _root_fact_variant(raw, _contract_literal())
@@ -57,7 +66,12 @@ class TestClaimBoundaryFinitePresences(unittest.TestCase):
                 self.assertEqual(raw, before)
 
     def test_each_claim_requires_its_original_ref_and_binding_owner_declaration(self):
-        for variant in ("carrier_absent", "subject_differs", "binding_differs", "second_claim_unaddressed"):
+        for variant in (
+            "carrier_absent",
+            "subject_differs",
+            "binding_differs",
+            "second_claim_unaddressed",
+        ):
             with self.subTest(variant=variant):
                 raw = finite_claim_input("none")
                 if variant == "carrier_absent":
@@ -74,8 +88,17 @@ class TestClaimBoundaryFinitePresences(unittest.TestCase):
                 _assert_fn0_clean(self, raw)
                 self._expect_stop(raw)
 
-    def test_operation_keeps_existing_closed_typed_members_without_decoding_meaning(self):
-        for variant in ("extra_operation", "missing_operation_ref", "extra_argument", "missing_binding", "invalid_relation", "extra_normative"):
+    def test_operation_keeps_existing_closed_typed_members_without_decoding_meaning(
+        self,
+    ):
+        for variant in (
+            "extra_operation",
+            "missing_operation_ref",
+            "extra_argument",
+            "missing_binding",
+            "invalid_relation",
+            "extra_normative",
+        ):
             with self.subTest(variant=variant):
                 raw = finite_claim_input("none")
                 _operation_fact_body_variant(raw, _contract_literal())

@@ -7,6 +7,7 @@ archive.  The selected source spans and asset IDs are deliberately explicit
 so a later wave can extend ``UNIT_SPECS`` without changing the extraction
 rules.
 """
+
 from __future__ import annotations
 
 import copy
@@ -24,69 +25,122 @@ MAIN_MERGE_PARENTS = [
     "b343360a104d377e545adc404a4151d70eac024e",
     "596560427669779522f85afb0ffc40faaad9ec1f",
 ]
-CATALOG_PATH = "docs/governance/legacy-asset-phase-product-classification-bootstrap.jsonl"
-CROSSWALK_PATH = "docs/governance/legacy-requirement-implementation-crosswalk-bootstrap.jsonl"
-DECOMPOSITION_PATH = "docs/governance/legacy-ir-product-unit-decomposition-bootstrap.jsonl"
+CATALOG_PATH = (
+    "docs/governance/legacy-asset-phase-product-classification-bootstrap.jsonl"
+)
+CROSSWALK_PATH = (
+    "docs/governance/legacy-requirement-implementation-crosswalk-bootstrap.jsonl"
+)
+DECOMPOSITION_PATH = (
+    "docs/governance/legacy-ir-product-unit-decomposition-bootstrap.jsonl"
+)
 REQ_RELATION_PATH = "docs/governance/legacy-ir-document-source-relation.jsonl"
 PHASE_INVENTORY_SOURCE_REVISION = "554aff0d3dd61e4e15bd261991af925d1e59baf7"
 PHASE_INVENTORY_SOURCE_PATH = "docs/governance/phase-capability-inventory.json"
-PHASE_INVENTORY_SOURCE_SHA256 = "16deda553e0d5c1d0b8b037c68301bc4f80967305d64b7e4b99f3178b040bfe4"
+PHASE_INVENTORY_SOURCE_SHA256 = (
+    "16deda553e0d5c1d0b8b037c68301bc4f80967305d64b7e4b99f3178b040bfe4"
+)
 DISPOSITION_PATH = "docs/governance/legacy-asset-disposition.jsonl"
 DECISION_PATH = "docs/governance/legacy-asset-decisions.jsonl"
 READ_AFTER_PATH = "docs/governance/legacy-asset-copy-read-after.jsonl"
 REQ_IR = ARCHIVE / "requirements-ir/requirements.json"
 REQ_SHA = "80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688"
 REQUIREMENT_ASSET = "LEGACY-ASSET-A60CF91DD2AF6693E6F9"
-SUPPLEMENTAL_ASSET_IDS = ["LEGACY-ASSET-7F5DBC909D6DCBA27665", "LEGACY-ASSET-787B224EBE62ACB57F52", "LEGACY-ASSET-451D9907D88A929B5E02", "LEGACY-ASSET-4715728481A85D429B84"]
+SUPPLEMENTAL_ASSET_IDS = [
+    "LEGACY-ASSET-7F5DBC909D6DCBA27665",
+    "LEGACY-ASSET-787B224EBE62ACB57F52",
+    "LEGACY-ASSET-451D9907D88A929B5E02",
+    "LEGACY-ASSET-4715728481A85D429B84",
+]
 
 # Each entry is one product-unit source chain.  Asset selection is kept
 # separate from meaning fields; the latter come from the decomposition record.
 UNIT_SPECS = [
     {
         "unit": "IRUNIT-HIL-NFR-09-HELIX-HARNESS",
-        "query": {"anchors": ["gate", "check", "requirement"], "match_mode": "archive_file_contains_any_utf8_anchor"},
+        "query": {
+            "anchors": ["gate", "check", "requirement"],
+            "match_mode": "archive_file_contains_any_utf8_anchor",
+        },
         "design_asset": "LEGACY-ASSET-4FC5BCF06EE23819C5D6",
         "implementation_asset": "LEGACY-ASSET-25D8367FB27CCF6AACA8",
         "missing_roles": [],
         "atom_prefix": "NFR09-HARNESS",
         "composite_unresolved_count": 1,
         "shared_with": ["IRUNIT-HIL-NFR-09-HELIX-OS"],
-        "shared_fragments": ["Linux primaryで全core gateを実行", "adapter contract testで検出する", "OS別logic forkを作らない"],
+        "shared_fragments": [
+            "Linux primaryで全core gateを実行",
+            "adapter contract testで検出する",
+            "OS別logic forkを作らない",
+        ],
         "evidence": {
-            "design": ("docs/design/harness/L6-function-design/gate-confirm.md", 1, 45, []),
+            "design": (
+                "docs/design/harness/L6-function-design/gate-confirm.md",
+                1,
+                45,
+                [],
+            ),
             "implementation_source": ("src/lint/l1-l2-gap-check.ts", 1, 80, []),
         },
     },
     {
         "unit": "IRUNIT-HIL-NFR-09-HELIX-OS",
-        "query": {"anchors": ["source"], "match_mode": "archive_file_contains_all_utf8_anchors"},
+        "query": {
+            "anchors": ["source"],
+            "match_mode": "archive_file_contains_all_utf8_anchors",
+        },
         "design_asset": "LEGACY-ASSET-13362A81144CD6852A5B",
         "implementation_asset": "LEGACY-ASSET-20B55B3292190135B82D",
         "missing_roles": [],
         "atom_prefix": "NFR09-OS",
         "composite_unresolved_count": 1,
         "shared_with": ["IRUNIT-HIL-NFR-09-HELIX-HARNESS"],
-        "shared_fragments": ["Linux primaryで全core gateを実行", "adapter contract testで検出する", "OS別logic forkを作らない"],
+        "shared_fragments": [
+            "Linux primaryで全core gateを実行",
+            "adapter contract testで検出する",
+            "OS別logic forkを作らない",
+        ],
         "evidence": {
-            "design": ("docs/design/helix/L5-detail/worker-isolation-broker.md", 1, 45, []),
-            "implementation_source": ("src/runtime/ci-execution-telemetry.ts", 1, 60, []),
+            "design": (
+                "docs/design/helix/L5-detail/worker-isolation-broker.md",
+                1,
+                45,
+                [],
+            ),
+            "implementation_source": (
+                "src/runtime/ci-execution-telemetry.ts",
+                1,
+                60,
+                [],
+            ),
         },
     },
     {
         "unit": "IRUNIT-HIL-NFR-11-HELIX-HARNESS",
-        "query": {"anchors": ["workflow", "adapter"], "match_mode": "archive_file_contains_all_utf8_anchors"},
+        "query": {
+            "anchors": ["workflow", "adapter"],
+            "match_mode": "archive_file_contains_all_utf8_anchors",
+        },
         "design_asset": "LEGACY-ASSET-2B787F62211AD9705592",
         "implementation_asset": None,
         "missing_roles": ["implementation_source"],
         "atom_prefix": "NFR11-HARNESS",
         "composite_unresolved_count": 1,
         "evidence": {
-            "design": ("docs/design/helix/L3-requirements/workflow-classification-terminal-fullback-authority.v1.json", 1, 32, []),
+            "design": (
+                "docs/design/helix/L3-requirements/workflow-classification-terminal-fullback-authority.v1.json",
+                1,
+                32,
+                [],
+            ),
         },
     },
     {
         "unit": "IRUNIT-HIL-NFR-11-HELIX-OS",
-        "query": {"anchors": ["skip"], "match_mode": "archive_file_contains_all_utf8_anchors"},
+        "query": {
+            "anchors": ["skip"],
+            "match_mode": "archive_file_contains_all_utf8_anchors",
+        },
         "design_asset": None,
         "implementation_asset": None,
         "missing_roles": ["design", "implementation_source"],
@@ -96,14 +150,22 @@ UNIT_SPECS = [
     },
     {
         "unit": "IRUNIT-HIL-NFR-12-HELIX-HARNESS",
-        "query": {"anchors": ["source"], "match_mode": "archive_file_contains_all_utf8_anchors"},
+        "query": {
+            "anchors": ["source"],
+            "match_mode": "archive_file_contains_all_utf8_anchors",
+        },
         "design_asset": "LEGACY-ASSET-CFA0C589C5D817BB5DD8",
         "implementation_asset": None,
         "missing_roles": ["implementation_source"],
         "atom_prefix": "NFR12-HARNESS",
         "composite_unresolved_count": 1,
         "evidence": {
-            "design": ("docs/design/helix/L6-function-design/review-db-candidate-tree-binding.md", 1, 36, []),
+            "design": (
+                "docs/design/helix/L6-function-design/review-db-candidate-tree-binding.md",
+                1,
+                36,
+                [],
+            ),
         },
     },
 ]
@@ -116,10 +178,15 @@ ROLE_POLICY = {
         "legacy_requirement_implementation_contribution": "contract_only_no_implementation_claim",
         "evidence_ref_count": 2,
         "unresolved": [
-            "exact_head_independent_review_pending", "human_product_authority_decision_pending",
-            "successor_assignment_unassigned", "product_boundary_human_decision_pending",
-            "candidate_product_routing_requires_human_review", "source_atomization_review_pending",
-            "unit_split_requires_independent_review", "consumer_closure_pending", "legacy_execution_not_run",
+            "exact_head_independent_review_pending",
+            "human_product_authority_decision_pending",
+            "successor_assignment_unassigned",
+            "product_boundary_human_decision_pending",
+            "candidate_product_routing_requires_human_review",
+            "source_atomization_review_pending",
+            "unit_split_requires_independent_review",
+            "consumer_closure_pending",
+            "legacy_execution_not_run",
         ],
     },
     "design": {
@@ -129,10 +196,15 @@ ROLE_POLICY = {
         "legacy_requirement_implementation_contribution": "design_contract_only_no_implementation_claim",
         "evidence_ref_count": 1,
         "unresolved": [
-            "exact_head_independent_review_pending", "human_product_authority_decision_pending",
-            "successor_assignment_unassigned", "product_boundary_human_decision_pending",
-            "candidate_product_routing_requires_human_review", "source_atomization_review_pending",
-            "unit_split_requires_independent_review", "consumer_closure_pending", "legacy_execution_not_run",
+            "exact_head_independent_review_pending",
+            "human_product_authority_decision_pending",
+            "successor_assignment_unassigned",
+            "product_boundary_human_decision_pending",
+            "candidate_product_routing_requires_human_review",
+            "source_atomization_review_pending",
+            "unit_split_requires_independent_review",
+            "consumer_closure_pending",
+            "legacy_execution_not_run",
         ],
     },
     "implementation_source": {
@@ -142,10 +214,15 @@ ROLE_POLICY = {
         "legacy_requirement_implementation_contribution": "implementation_candidate_only",
         "evidence_ref_count": 1,
         "unresolved": [
-            "exact_head_independent_review_pending", "human_product_authority_decision_pending",
-            "successor_assignment_unassigned", "product_boundary_human_decision_pending",
-            "candidate_product_routing_requires_human_review", "source_atomization_review_pending",
-            "unit_split_requires_independent_review", "consumer_closure_pending", "legacy_execution_not_run",
+            "exact_head_independent_review_pending",
+            "human_product_authority_decision_pending",
+            "successor_assignment_unassigned",
+            "product_boundary_human_decision_pending",
+            "candidate_product_routing_requires_human_review",
+            "source_atomization_review_pending",
+            "unit_split_requires_independent_review",
+            "consumer_closure_pending",
+            "legacy_execution_not_run",
         ],
     },
 }
@@ -182,7 +259,11 @@ def file_digest(path: Path) -> str:
 
 def fixed_phase_inventory_digest() -> str:
     result = subprocess.run(
-        ["git", "show", f"{PHASE_INVENTORY_SOURCE_REVISION}:{PHASE_INVENTORY_SOURCE_PATH}"],
+        [
+            "git",
+            "show",
+            f"{PHASE_INVENTORY_SOURCE_REVISION}:{PHASE_INVENTORY_SOURCE_PATH}",
+        ],
         cwd=ROOT,
         stdout=subprocess.PIPE,
         stderr=subprocess.DEVNULL,
@@ -197,7 +278,11 @@ def fixed_phase_inventory_digest() -> str:
 
 
 def canonical(value: object) -> str:
-    return digest(json.dumps(value, ensure_ascii=False, sort_keys=True, separators=(",", ":")).encode())
+    return digest(
+        json.dumps(
+            value, ensure_ascii=False, sort_keys=True, separators=(",", ":")
+        ).encode()
+    )
 
 
 def excerpt(path: Path, start: int, end: int) -> str:
@@ -223,7 +308,9 @@ def make_atom(atom_id: str, text: str, index: int) -> dict:
     }
 
 
-def build_evidence_ref(role: str, source_path: str, start: int, end: int, ordinal: int, relation: str) -> dict:
+def build_evidence_ref(
+    role: str, source_path: str, start: int, end: int, ordinal: int, relation: str
+) -> dict:
     full = archive_path(source_path)
     body = excerpt(ROOT / full, start, end)
     return {
@@ -247,7 +334,9 @@ def phase_projection(crosswalk: dict) -> list[dict]:
             "transition_assessment": item["transition_assessment"],
             "gap": item["gap"],
             "catalog_asset_count": item["phase_candidate_asset_count"],
-            "product_intersection_count": item["phase_and_product_candidate_asset_count"],
+            "product_intersection_count": item[
+                "phase_and_product_candidate_asset_count"
+            ],
         }
         for item in crosswalk.get("phase_capability_evidence", [])
     ]
@@ -257,16 +346,20 @@ def candidate_ids_for_query(catalog: dict, query: dict) -> list[str]:
     ids = []
     for asset_id, asset in catalog.items():
         body = (ARCHIVE / asset["source_path"]).read_text(errors="replace")
-        if (all(anchor in body for anchor in query["anchors"])
-                if query.get("match_mode") == "archive_file_contains_all_utf8_anchors"
-                else any(anchor in body for anchor in query["anchors"])):
+        if (
+            all(anchor in body for anchor in query["anchors"])
+            if query.get("match_mode") == "archive_file_contains_all_utf8_anchors"
+            else any(anchor in body for anchor in query["anchors"])
+        ):
             ids.append(asset_id)
     return sorted(ids)
 
 
 def main() -> None:
     catalog = {row["asset_id"]: row for row in read_jsonl(ROOT / CATALOG_PATH)}
-    crosswalk = {row["unit_candidate_id"]: row for row in read_jsonl(ROOT / CROSSWALK_PATH)}
+    crosswalk = {
+        row["unit_candidate_id"]: row for row in read_jsonl(ROOT / CROSSWALK_PATH)
+    }
     dispositions = read_jsonl(ROOT / DISPOSITION_PATH)
     decisions = read_jsonl(ROOT / DECISION_PATH)
     read_afters = read_jsonl(ROOT / READ_AFTER_PATH)
@@ -274,7 +367,9 @@ def main() -> None:
     for parent in read_jsonl(ROOT / DECOMPOSITION_PATH):
         for candidate in parent.get("candidate_units", []):
             decomposition[candidate["unit_candidate_id"]] = (parent, candidate)
-    relations = {row["requirement_id"]: row for row in read_jsonl(ROOT / REQ_RELATION_PATH)}
+    relations = {
+        row["requirement_id"]: row for row in read_jsonl(ROOT / REQ_RELATION_PATH)
+    }
 
     rows: list[dict] = []
     bounded_receipts: dict[str, dict] = {}
@@ -289,9 +384,25 @@ def main() -> None:
         req_id = parent["source_requirement_id"]
         cross = crosswalk[unit]
         req_asset = catalog[REQUIREMENT_ASSET]
-        design_asset = catalog[spec["design_asset"]] if spec.get("design_asset") else None
-        impl_asset = catalog[spec["implementation_asset"]] if spec.get("implementation_asset") else None
-        selected_assets = sorted([aid for aid in [REQUIREMENT_ASSET, spec.get("design_asset"), spec.get("implementation_asset")] if aid])
+        design_asset = (
+            catalog[spec["design_asset"]] if spec.get("design_asset") else None
+        )
+        impl_asset = (
+            catalog[spec["implementation_asset"]]
+            if spec.get("implementation_asset")
+            else None
+        )
+        selected_assets = sorted(
+            [
+                aid
+                for aid in [
+                    REQUIREMENT_ASSET,
+                    spec.get("design_asset"),
+                    spec.get("implementation_asset"),
+                ]
+                if aid
+            ]
+        )
         candidate_ids = candidate_ids_for_query(catalog, spec["query"])
         if not set(selected_assets) <= set(candidate_ids):
             raise AssertionError(f"selected assets outside candidate query: {unit}")
@@ -300,15 +411,33 @@ def main() -> None:
             "candidate_asset_count": len(candidate_ids),
             "candidate_asset_ids_sha256": canonical(candidate_ids),
             "catalog_record_count": len(catalog),
-            "phase_pool_asset_count": cross["candidate_asset_pool"]["phase_and_product_candidate_asset_count"],
-            "phase_pool_asset_ids_sha256": canonical(sorted(cross["candidate_asset_pool"]["phase_and_product_candidate_asset_ids"])),
+            "phase_pool_asset_count": cross["candidate_asset_pool"][
+                "phase_and_product_candidate_asset_count"
+            ],
+            "phase_pool_asset_ids_sha256": canonical(
+                sorted(
+                    cross["candidate_asset_pool"][
+                        "phase_and_product_candidate_asset_ids"
+                    ]
+                )
+            ),
             "query": spec["query"],
             "selected_asset_ids": selected_assets,
             "unreviewed_asset_count": len(remaining),
             "unreviewed_asset_ids_sha256": canonical(remaining),
         }
         phase_rows[unit] = phase_projection(cross)
-        holds.append({"unit_candidate_id": unit, "status": spec.get("routing_boundary", "product_boundary_shared_atom_hold"), "shared_atom_ids": [], "composite_unresolved_count": spec["composite_unresolved_count"], "routing_hold": spec.get("routing_hold")})
+        holds.append(
+            {
+                "unit_candidate_id": unit,
+                "status": spec.get(
+                    "routing_boundary", "product_boundary_shared_atom_hold"
+                ),
+                "shared_atom_ids": [],
+                "composite_unresolved_count": spec["composite_unresolved_count"],
+                "routing_hold": spec.get("routing_hold"),
+            }
+        )
         atom_specs = []
         for index, fragment in enumerate(candidate["source_text_spans"]):
             atom_id = f"{spec['atom_prefix']}-A{index + 1:02d}"
@@ -328,30 +457,68 @@ def main() -> None:
         for role, asset in asset_by_role:
             policy = ROLE_POLICY[role]
             if role == "requirement":
-                req_ranges = {"HIL-NFR-09": (4767, 4777), "HIL-NFR-11": (4853, 4863), "HIL-NFR-12": (4896, 4906)}
+                req_ranges = {
+                    "HIL-NFR-09": (4767, 4777),
+                    "HIL-NFR-11": (4853, 4863),
+                    "HIL-NFR-12": (4896, 4906),
+                }
                 req_start, req_end = req_ranges[req_id]
                 refs = [
-                    build_evidence_ref("requirement", "requirements-ir/requirements.json", req_start, req_end, 1, policy["semantic_relation"]),
-                    build_evidence_ref("requirement", "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md", int(relations[req_id]["preserved_source_pointer"].rsplit(":", 1)[1]), int(relations[req_id]["preserved_source_pointer"].rsplit(":", 1)[1]), 2, policy["semantic_relation"]),
+                    build_evidence_ref(
+                        "requirement",
+                        "requirements-ir/requirements.json",
+                        req_start,
+                        req_end,
+                        1,
+                        policy["semantic_relation"],
+                    ),
+                    build_evidence_ref(
+                        "requirement",
+                        "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+                        int(
+                            relations[req_id]["preserved_source_pointer"].rsplit(
+                                ":", 1
+                            )[1]
+                        ),
+                        int(
+                            relations[req_id]["preserved_source_pointer"].rsplit(
+                                ":", 1
+                            )[1]
+                        ),
+                        2,
+                        policy["semantic_relation"],
+                    ),
                 ]
                 bindings = []
                 source_sha = REQ_SHA
                 evidence_state = "non_executable_source_snapshot"
             else:
                 source_path, start, end, binding_specs = spec["evidence"][role]
-                refs = [build_evidence_ref(role, source_path, start, end, 1, policy["semantic_relation"])]
+                refs = [
+                    build_evidence_ref(
+                        role, source_path, start, end, 1, policy["semantic_relation"]
+                    )
+                ]
                 bindings = []
                 for atom_id, anchors, required_terms, mapping in binding_specs:
-                    bindings.append({
-                        "anchor_evidence_terms": {anchor: terms for anchor, terms in mapping},
-                        "atom_id": atom_id,
-                        "evidence_ref_indexes": [0],
-                        "match_mode": "controlled_term_set_partial",
-                        "required_terms": required_terms,
-                        "source_fragment_anchors": anchors,
-                    })
+                    bindings.append(
+                        {
+                            "anchor_evidence_terms": {
+                                anchor: terms for anchor, terms in mapping
+                            },
+                            "atom_id": atom_id,
+                            "evidence_ref_indexes": [0],
+                            "match_mode": "controlled_term_set_partial",
+                            "required_terms": required_terms,
+                            "source_fragment_anchors": anchors,
+                        }
+                    )
                 source_sha = asset["source_sha256"]
-                evidence_state = "document_present" if role == "design" else "implementation_source_present_unexecuted"
+                evidence_state = (
+                    "document_present"
+                    if role == "design"
+                    else "implementation_source_present_unexecuted"
+                )
             row = {
                 "artifact_evidence_kind": policy["artifact_evidence_kind"],
                 "asset_id": asset["asset_id"],
@@ -362,27 +529,48 @@ def main() -> None:
                 "candidate_membership_semantics": "bounded_global_search_candidate_only_not_semantic_evidence",
                 "candidate_phase_targets": asset["candidate_phase_targets"],
                 "candidate_product_targets": asset["candidate_product_targets"],
-                "catalog_legacy_implementation_status": asset["legacy_implementation_status"],
+                "catalog_legacy_implementation_status": asset[
+                    "legacy_implementation_status"
+                ],
                 "classification_id": asset["classification_id"],
-                "connection_records": ([{
-                    "relation": "shared_source_span",
-                    "shared_with_units": spec.get("shared_with", []),
-                    "source_fragments": spec.get("shared_fragments", []),
-                    "review_state": "product_boundary_pending_human_decision",
-                }] if spec.get("shared_with") else ([spec["routing_hold"]] if spec.get("routing_hold") else [])),
+                "connection_records": (
+                    [
+                        {
+                            "relation": "shared_source_span",
+                            "shared_with_units": spec.get("shared_with", []),
+                            "source_fragments": spec.get("shared_fragments", []),
+                            "review_state": "product_boundary_pending_human_decision",
+                        }
+                    ]
+                    if spec.get("shared_with")
+                    else ([spec["routing_hold"]] if spec.get("routing_hold") else [])
+                ),
                 "consumer_closure_evidence": [],
                 "consumer_closure_status": "pending",
                 "counterevidence": copy.deepcopy(COUNTEREVIDENCE),
-                "coverage": {"constraint": "product boundary／phase authority／consumer closure未確定", "failure": "未対応atom、partial evidence、またはmissing acceptance receipt", "normal": "exact source anchorを固定したstatic evidence only", "recovery": "not_evidenced"},
+                "coverage": {
+                    "constraint": "product boundary／phase authority／consumer closure未確定",
+                    "failure": "未対応atom、partial evidence、またはmissing acceptance receipt",
+                    "normal": "exact source anchorを固定したstatic evidence only",
+                    "recovery": "not_evidenced",
+                },
                 "covered_requirement_atom_ids": atom_ids,
                 "covered_requirement_atoms": copy.deepcopy(atom_specs),
                 "current_requirement_implementation_status": "not_established",
                 "evidence_atom_bindings": bindings,
-                "evidence_binding_status": "requirement_source_exact" if role == "requirement" else ("literal_anchor_checked" if bindings else "semantic_relation_unresolved_no_literal_anchor"),
+                "evidence_binding_status": "requirement_source_exact"
+                if role == "requirement"
+                else (
+                    "literal_anchor_checked"
+                    if bindings
+                    else "semantic_relation_unresolved_no_literal_anchor"
+                ),
                 "evidence_refs": refs,
                 "legacy_asset_evidence_state": evidence_state,
                 "legacy_execution_status": "not_run",
-                "legacy_requirement_implementation_contribution": policy["legacy_requirement_implementation_contribution"],
+                "legacy_requirement_implementation_contribution": policy[
+                    "legacy_requirement_implementation_contribution"
+                ],
                 "new_build_allowed": False,
                 "observed_consumer_refs": copy.deepcopy(CONSUMERS),
                 "phase_authority_status": "candidate_unchanged",
@@ -402,92 +590,138 @@ def main() -> None:
                 "source_connective_fragments": list(spec.get("shared_fragments", [])),
                 "source_path": asset["source_path"],
                 "source_requirement_id": req_id,
-                "source_requirement_legacy_markdown_span": relations[req_id]["preserved_source_pointer"],
+                "source_requirement_legacy_markdown_span": relations[req_id][
+                    "preserved_source_pointer"
+                ],
                 "source_requirement_pointer": parent["source_pointer"],
                 "source_scope_fragments": [],
                 "source_sha256": source_sha,
-                "source_statement_semantic_digest": parent["source_statement_semantic_digest"],
+                "source_statement_semantic_digest": parent[
+                    "source_statement_semantic_digest"
+                ],
                 "source_statement_text": parent["statement_text"],
                 "source_text_spans": candidate["source_text_spans"],
                 "unit_candidate_id": unit,
                 "unresolved": copy.deepcopy(policy["unresolved"]),
             }
             rows.append(row)
-        aggregates.append({"unit_candidate_id": unit, "reviewed_edge_count": len(asset_by_role), "semantic_link_counts": {"confirmed": 1, "rejected": 0, "unresolved": len(asset_by_role) - 1}, "direct_confirmed_implementation_asset_ids": [], "phase_authority_status": "candidate_unchanged"})
+        aggregates.append(
+            {
+                "unit_candidate_id": unit,
+                "reviewed_edge_count": len(asset_by_role),
+                "semantic_link_counts": {
+                    "confirmed": 1,
+                    "rejected": 0,
+                    "unresolved": len(asset_by_role) - 1,
+                },
+                "direct_confirmed_implementation_asset_ids": [],
+                "phase_authority_status": "candidate_unchanged",
+            }
+        )
 
     selected_asset_ids = sorted({row["asset_id"] for row in rows})
     asset_status_receipts = []
     for asset_id in selected_asset_ids:
-        asset_dispositions = [row for row in dispositions if row.get("asset_id") == asset_id]
+        asset_dispositions = [
+            row for row in dispositions if row.get("asset_id") == asset_id
+        ]
         asset_decisions = [row for row in decisions if row.get("asset_id") == asset_id]
-        asset_read_afters = [row for row in read_afters if row.get("asset_id") == asset_id]
-        asset_status_receipts.append({
-            "asset_id": asset_id,
-            "disposition_records": [
-                {
-                    "revision": row.get("revision"),
-                    "disposition": row.get("disposition"),
-                    "implementation_status": row.get("implementation_status"),
-                    "authority_status": row.get("authority_status"),
-                    "reuse_exclusion_class": row.get("reuse_exclusion_class"),
-                    "decision_record_ref": row.get("decision_record_ref"),
-                    "read_after_record_ref": row.get("read_after_record_ref"),
-                    "consumer_refs": sorted(row.get("consumer_refs", [])),
-                }
-                for row in asset_dispositions
-            ],
-            "decision_ids": [
-                {
-                    "decision_id": row.get("decision_id"),
-                    "decision_revision": row.get("decision_revision"),
-                    "disposition": row.get("disposition"),
-                    "consumer_refs": sorted(row.get("consumer_refs", [])),
-                }
-                for row in asset_decisions
-            ],
-            "copy_read_after_records": [
-                {
-                    "read_after_id": row.get("read_after_id"),
-                    "digest_match": row.get("digest_match"),
-                    "consumer_match": row.get("consumer_match"),
-                    "failure": row.get("failure"),
-                    "consumer_refs_observed": sorted(row.get("consumer_refs_observed", [])),
-                }
-                for row in asset_read_afters
-            ],
-            "historical_consumer_refs": sorted({
-                ref
-                for row in asset_dispositions + asset_decisions
-                for ref in row.get("consumer_refs", [])
-            } | {
-                ref
-                for row in asset_read_afters
-                for ref in row.get("consumer_refs_observed", [])
-            }),
-            "failure_status": "historical_failure_field_preserved" if asset_read_afters else "no_selected_failure_record",
-        })
+        asset_read_afters = [
+            row for row in read_afters if row.get("asset_id") == asset_id
+        ]
+        asset_status_receipts.append(
+            {
+                "asset_id": asset_id,
+                "disposition_records": [
+                    {
+                        "revision": row.get("revision"),
+                        "disposition": row.get("disposition"),
+                        "implementation_status": row.get("implementation_status"),
+                        "authority_status": row.get("authority_status"),
+                        "reuse_exclusion_class": row.get("reuse_exclusion_class"),
+                        "decision_record_ref": row.get("decision_record_ref"),
+                        "read_after_record_ref": row.get("read_after_record_ref"),
+                        "consumer_refs": sorted(row.get("consumer_refs", [])),
+                    }
+                    for row in asset_dispositions
+                ],
+                "decision_ids": [
+                    {
+                        "decision_id": row.get("decision_id"),
+                        "decision_revision": row.get("decision_revision"),
+                        "disposition": row.get("disposition"),
+                        "consumer_refs": sorted(row.get("consumer_refs", [])),
+                    }
+                    for row in asset_decisions
+                ],
+                "copy_read_after_records": [
+                    {
+                        "read_after_id": row.get("read_after_id"),
+                        "digest_match": row.get("digest_match"),
+                        "consumer_match": row.get("consumer_match"),
+                        "failure": row.get("failure"),
+                        "consumer_refs_observed": sorted(
+                            row.get("consumer_refs_observed", [])
+                        ),
+                    }
+                    for row in asset_read_afters
+                ],
+                "historical_consumer_refs": sorted(
+                    {
+                        ref
+                        for row in asset_dispositions + asset_decisions
+                        for ref in row.get("consumer_refs", [])
+                    }
+                    | {
+                        ref
+                        for row in asset_read_afters
+                        for ref in row.get("consumer_refs_observed", [])
+                    }
+                ),
+                "failure_status": "historical_failure_field_preserved"
+                if asset_read_afters
+                else "no_selected_failure_record",
+            }
+        )
 
     supplemental_asset_receipts = []
     for asset_id in SUPPLEMENTAL_ASSET_IDS:
         asset = catalog[asset_id]
-        asset_dispositions = [row for row in dispositions if row.get("asset_id") == asset_id]
+        asset_dispositions = [
+            row for row in dispositions if row.get("asset_id") == asset_id
+        ]
         asset_decisions = [row for row in decisions if row.get("asset_id") == asset_id]
-        asset_read_afters = [row for row in read_afters if row.get("asset_id") == asset_id]
-        supplemental_asset_receipts.append({
-            "asset_id": asset_id,
-            "selected_role_edge": False,
-            "source_path": asset["source_path"],
-            "source_sha256": asset["source_sha256"],
-            "artifact_evidence_kind": asset["artifact_evidence_kind"],
-            "classification_id": asset["classification_id"],
-            "legacy_implementation_status": asset["legacy_implementation_status"],
-            "legacy_execution_status": "not_run",
-            "decision_count": len(asset_decisions),
-            "read_after_count": len(asset_read_afters),
-            "consumer_refs": sorted({ref for row in asset_dispositions + asset_decisions for ref in row.get("consumer_refs", [])} | {ref for row in asset_read_afters for ref in row.get("consumer_refs_observed", [])}),
-            "current_implementation": "unknown_pending_direct_current_review",
-            "degradation": "unknown_pending_direct_current_review",
-        })
+        asset_read_afters = [
+            row for row in read_afters if row.get("asset_id") == asset_id
+        ]
+        supplemental_asset_receipts.append(
+            {
+                "asset_id": asset_id,
+                "selected_role_edge": False,
+                "source_path": asset["source_path"],
+                "source_sha256": asset["source_sha256"],
+                "artifact_evidence_kind": asset["artifact_evidence_kind"],
+                "classification_id": asset["classification_id"],
+                "legacy_implementation_status": asset["legacy_implementation_status"],
+                "legacy_execution_status": "not_run",
+                "decision_count": len(asset_decisions),
+                "read_after_count": len(asset_read_afters),
+                "consumer_refs": sorted(
+                    {
+                        ref
+                        for row in asset_dispositions + asset_decisions
+                        for ref in row.get("consumer_refs", [])
+                    }
+                    | {
+                        ref
+                        for row in asset_read_afters
+                        for ref in row.get("consumer_refs_observed", [])
+                    }
+                ),
+                "current_implementation": "unknown_pending_direct_current_review",
+                "degradation": "unknown_pending_direct_current_review",
+            }
+        )
 
     missing_evidence_receipts = []
     for spec in UNIT_SPECS:
@@ -497,25 +731,50 @@ def main() -> None:
             cross = crosswalk[unit]
             pool = cross["candidate_asset_pool"]
             for role in spec["missing_roles"]:
-                missing_evidence_receipts.append({
-                    "unit_candidate_id": unit,
-                    "role_kind": role,
-                    "status": "missing_evidence_recorded",
-                    "reason": ("crosswalk phase_and_product_candidate_asset_count is zero; no direct asset evidence was selected" if pool["phase_and_product_candidate_asset_count"] == 0 else ("crosswalk implementation_source candidates are already consumed by prior waves; no unused direct asset evidence was selected" if role == "implementation_source" and unit in {"IRUNIT-HIL-NFR-11-HELIX-HARNESS", "IRUNIT-HIL-NFR-12-HELIX-HARNESS"} else "crosswalk candidate pool contains no implementation_source asset available for this role; no direct asset evidence was selected")),
-                    "phase_candidates": candidate["direct_phase_candidates"],
-                    "phase_pool_asset_count": pool["phase_and_product_candidate_asset_count"],
-                    "candidate_product_targets": parent["candidate_product_targets"],
-                    "current_implementation": "unknown",
-                    "degradation": "unknown",
-                    "consumer_closure": "pending",
-                    "legacy_execution": "not_run",
-                })
+                missing_evidence_receipts.append(
+                    {
+                        "unit_candidate_id": unit,
+                        "role_kind": role,
+                        "status": "missing_evidence_recorded",
+                        "reason": (
+                            "crosswalk phase_and_product_candidate_asset_count is zero; no direct asset evidence was selected"
+                            if pool["phase_and_product_candidate_asset_count"] == 0
+                            else (
+                                "crosswalk implementation_source candidates are already consumed by prior waves; no unused direct asset evidence was selected"
+                                if role == "implementation_source"
+                                and unit
+                                in {
+                                    "IRUNIT-HIL-NFR-11-HELIX-HARNESS",
+                                    "IRUNIT-HIL-NFR-12-HELIX-HARNESS",
+                                }
+                                else "crosswalk candidate pool contains no implementation_source asset available for this role; no direct asset evidence was selected"
+                            )
+                        ),
+                        "phase_candidates": candidate["direct_phase_candidates"],
+                        "phase_pool_asset_count": pool[
+                            "phase_and_product_candidate_asset_count"
+                        ],
+                        "candidate_product_targets": parent[
+                            "candidate_product_targets"
+                        ],
+                        "current_implementation": "unknown",
+                        "degradation": "unknown",
+                        "consumer_closure": "pending",
+                        "legacy_execution": "not_run",
+                    }
+                )
 
     ledger_path = OUT / "legacy-requirement-direct-semantic-review-wave42.jsonl"
-    ledger_path.write_text("".join(json.dumps(row, ensure_ascii=False, sort_keys=True) + "\n" for row in rows))
+    ledger_path.write_text(
+        "".join(
+            json.dumps(row, ensure_ascii=False, sort_keys=True) + "\n" for row in rows
+        )
+    )
 
     inputs = {
-        "archive/legacy-generation-2026-09-14/MANIFEST.sha256": file_digest(ROOT / "archive/legacy-generation-2026-09-14/MANIFEST.sha256"),
+        "archive/legacy-generation-2026-09-14/MANIFEST.sha256": file_digest(
+            ROOT / "archive/legacy-generation-2026-09-14/MANIFEST.sha256"
+        ),
         CATALOG_PATH: file_digest(ROOT / CATALOG_PATH),
         CROSSWALK_PATH: file_digest(ROOT / CROSSWALK_PATH),
         DECOMPOSITION_PATH: file_digest(ROOT / DECOMPOSITION_PATH),
@@ -525,12 +784,24 @@ def main() -> None:
         READ_AFTER_PATH: file_digest(ROOT / READ_AFTER_PATH),
         # The historical input is read from its exact commit; current refs are a separate projection.
         "docs/governance/phase-capability-inventory.json": fixed_phase_inventory_digest(),
-        "docs/concept/product-boundary.md": file_digest(ROOT / "docs/concept/product-boundary.md"),
-        "docs/helix-harness/L1-planning/product-intent.md": file_digest(ROOT / "docs/helix-harness/L1-planning/product-intent.md"),
-        "docs/helix-os/L1-planning/system-intent.md": file_digest(ROOT / "docs/helix-os/L1-planning/system-intent.md"),
-        "docs/helix-web/L1-planning/product-intent.md": file_digest(ROOT / "docs/helix-web/L1-planning/product-intent.md"),
-        "docs/helix-web-os/L1-planning/system-intent.md": file_digest(ROOT / "docs/helix-web-os/L1-planning/system-intent.md"),
-        "docs/governance/legacy-ir-target-routing-queue.jsonl": file_digest(ROOT / "docs/governance/legacy-ir-target-routing-queue.jsonl"),
+        "docs/concept/product-boundary.md": file_digest(
+            ROOT / "docs/concept/product-boundary.md"
+        ),
+        "docs/helix-harness/L1-planning/product-intent.md": file_digest(
+            ROOT / "docs/helix-harness/L1-planning/product-intent.md"
+        ),
+        "docs/helix-os/L1-planning/system-intent.md": file_digest(
+            ROOT / "docs/helix-os/L1-planning/system-intent.md"
+        ),
+        "docs/helix-web/L1-planning/product-intent.md": file_digest(
+            ROOT / "docs/helix-web/L1-planning/product-intent.md"
+        ),
+        "docs/helix-web-os/L1-planning/system-intent.md": file_digest(
+            ROOT / "docs/helix-web-os/L1-planning/system-intent.md"
+        ),
+        "docs/governance/legacy-ir-target-routing-queue.jsonl": file_digest(
+            ROOT / "docs/governance/legacy-ir-target-routing-queue.jsonl"
+        ),
     }
     for wave in range(1, 42):
         for suffix in ("jsonl", "meta.json"):
@@ -542,7 +813,13 @@ def main() -> None:
         _, ledger = prior_artifact(wave, "jsonl")
         _, meta_path = prior_artifact(wave, "meta.json")
         prior_meta = json.loads(meta_path.read_text())
-        prior_batches.append({"batch_id": prior_meta["batch_id"], "ledger_sha256": file_digest(ledger), "meta_sha256": file_digest(meta_path)})
+        prior_batches.append(
+            {
+                "batch_id": prior_meta["batch_id"],
+                "ledger_sha256": file_digest(ledger),
+                "meta_sha256": file_digest(meta_path),
+            }
+        )
 
     meta = {
         "authority_effect": "none",
@@ -550,7 +827,9 @@ def main() -> None:
         "bounded_search_receipts": bounded_receipts,
         "asset_status_receipts": asset_status_receipts,
         "supplemental_asset_receipts": supplemental_asset_receipts,
-        "inspected_legacy_asset_ids": sorted(set(selected_asset_ids) | set(SUPPLEMENTAL_ASSET_IDS)),
+        "inspected_legacy_asset_ids": sorted(
+            set(selected_asset_ids) | set(SUPPLEMENTAL_ASSET_IDS)
+        ),
         "consumer_closure_status": "pending",
         "cumulative_reviewed_edge_count": 497,
         "cumulative_reviewed_unit_count": 171,
@@ -564,16 +843,40 @@ def main() -> None:
         "output_sha256": file_digest(ledger_path),
         "parent_revision": BASE,
         "phase_rows": phase_rows,
-        "prior_fixed_input_digests": {k: inputs[k] for k in [CATALOG_PATH, DECOMPOSITION_PATH, "docs/governance/phase-capability-inventory.json", REQ_RELATION_PATH, "archive/legacy-generation-2026-09-14/MANIFEST.sha256"]},
+        "prior_fixed_input_digests": {
+            k: inputs[k]
+            for k in [
+                CATALOG_PATH,
+                DECOMPOSITION_PATH,
+                "docs/governance/phase-capability-inventory.json",
+                REQ_RELATION_PATH,
+                "archive/legacy-generation-2026-09-14/MANIFEST.sha256",
+            ]
+        },
         "prior_review_batches": prior_batches,
         "record_count": len(rows),
-        "semantic_atom_count": len({atom["atom_id"] for row in rows for atom in row["covered_requirement_atoms"]}),
-        "composite_unresolved_count": sum(spec["composite_unresolved_count"] for spec in UNIT_SPECS),
+        "semantic_atom_count": len(
+            {
+                atom["atom_id"]
+                for row in rows
+                for atom in row["covered_requirement_atoms"]
+            }
+        ),
+        "composite_unresolved_count": sum(
+            spec["composite_unresolved_count"] for spec in UNIT_SPECS
+        ),
         "remaining_unit_count": 47,
-        "reviewed_edges": [{"asset_id": row["asset_id"], "unit_candidate_id": row["unit_candidate_id"]} for row in rows],
+        "reviewed_edges": [
+            {"asset_id": row["asset_id"], "unit_candidate_id": row["unit_candidate_id"]}
+            for row in rows
+        ],
         "reviewed_unit_ids": selected_units,
         "schema_revision": 10,
-        "semantic_link_counts": {"confirmed": len(selected_units), "rejected": 0, "unresolved": len(rows) - len(selected_units)},
+        "semantic_link_counts": {
+            "confirmed": len(selected_units),
+            "rejected": 0,
+            "unresolved": len(rows) - len(selected_units),
+        },
         "source_atomization_holds": holds,
         "source_main_base_revision": BASE,
         "source_requirement_asset_id": REQUIREMENT_ASSET,
@@ -582,8 +885,16 @@ def main() -> None:
         "stacked_pr_parent_revision": BASE,
         "status": "candidate",
         "unit_aggregates": aggregates,
-        "ancestor_base_gate": {"required_base_revision": BASE, "mode": "base_or_descendant", "checked_by": "validate.py"},
-        "routing_holds": [spec["routing_hold"] | {"unit_candidate_id": spec["unit"]} for spec in UNIT_SPECS if spec.get("routing_hold")],
+        "ancestor_base_gate": {
+            "required_base_revision": BASE,
+            "mode": "base_or_descendant",
+            "checked_by": "validate.py",
+        },
+        "routing_holds": [
+            spec["routing_hold"] | {"unit_candidate_id": spec["unit"]}
+            for spec in UNIT_SPECS
+            if spec.get("routing_hold")
+        ],
         "wave40_candidate_parent": "95ba7e1813116632fd68ab3dcfc3b52ef18712b1",
         "wave40_candidate_ref": "research/legacy-semantic-review-wave40",
         "wave40_candidate_root": "95ba7e1813116632fd68ab3dcfc3b52ef18712b1",
@@ -598,13 +909,22 @@ def main() -> None:
         "wave42_exact_head": BASE,
     }
     # Preserve the historical lineage fields carried by schema10 Wave36.
-    previous_meta = json.loads((ROOT / "docs/governance/legacy-requirement-direct-semantic-review-wave36.meta.json").read_text())
+    previous_meta = json.loads(
+        (
+            ROOT
+            / "docs/governance/legacy-requirement-direct-semantic-review-wave36.meta.json"
+        ).read_text()
+    )
     for key in previous_meta:
         if key.startswith("wave") and key not in meta:
             meta[key] = previous_meta[key]
     meta_path = OUT / "legacy-requirement-direct-semantic-review-wave42.meta.json"
-    meta_path.write_text(json.dumps(meta, ensure_ascii=False, indent=2, sort_keys=True) + "\n")
-    print(f"generated rows={len(rows)} units={len(selected_units)} ledger={ledger_path}")
+    meta_path.write_text(
+        json.dumps(meta, ensure_ascii=False, indent=2, sort_keys=True) + "\n"
+    )
+    print(
+        f"generated rows={len(rows)} units={len(selected_units)} ledger={ledger_path}"
+    )
 
 
 if __name__ == "__main__":
