@@ -1716,6 +1716,18 @@ def _check_negative_equivalence_mode(
                     l4_parent_contract_refs.setdefault(classification_id, set()).add(
                         l4_contract_id
                     )
+    nested_l4_class_ids = set(l4_parent_contract_refs)
+    for top_row in raw_class_rows["L4"]:
+        if not isinstance(top_row, dict):
+            continue
+        top_class_id = top_row.get("class_id", top_row.get("id"))
+        if isinstance(top_class_id, str) and top_class_id in nested_l4_class_ids:
+            fail(
+                "l4_parent_ref",
+                layer="L4",
+                case_id=top_class_id,
+                reason="l4_class_dual_definition_nested_and_top_level",
+            )
     parent_link_mode = "legacy"
     has_top_level_parent_link = any(
         isinstance(row, dict) and "design_ref" in row
@@ -1765,7 +1777,6 @@ def _check_negative_equivalence_mode(
 
             top_rows_by_id: dict[str, dict[str, Any]] = {}
             top_parent_by_id: dict[str, str] = {}
-            nested_ids = set(l4_parent_contract_refs)
             for index, raw in enumerate(raw_class_rows["L4"]):
                 if not isinstance(raw, dict):
                     continue
@@ -1781,13 +1792,6 @@ def _check_negative_equivalence_mode(
                     )
                     continue
                 top_rows_by_id[class_id] = raw
-                if class_id in nested_ids:
-                    fail(
-                        "l4_parent_ref",
-                        layer="L4",
-                        case_id=class_id,
-                        reason="l4_class_dual_definition_nested_and_top_level",
-                    )
                 design_ref = raw.get("design_ref")
                 if not isinstance(design_ref, str) or not design_ref.strip():
                     fail(

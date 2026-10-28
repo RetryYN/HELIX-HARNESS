@@ -515,6 +515,28 @@ class DesignVerificationCheckerSelfTest(unittest.TestCase):
             {item["reason"] for item in result["failures"]},
         )
 
+    def test_chk_neg_4way_explicit_legacy_parent_mode_rejects_nested_duplicate(self) -> None:
+        layers = list(self._equivalence_mode_layers())
+        l4 = layers[0]
+        for row in l4["failure_classifications"]:
+            row.pop("design_ref", None)
+        l4["contracts"][0].pop("negative_class_refs", None)
+        l4["contracts"][0]["negative_classifications"] = [
+            copy.deepcopy(l4["failure_classifications"][0])
+        ]
+        result = dvc.check_neg_4way_match(
+            REPO_ROOT, "L4", "L9", "L8", "L5", *layers
+        )
+        self.assertEqual(
+            result["comparison_mode"], "explicit_negative_equivalence_classes"
+        )
+        self.assertEqual(result["parent_link_mode"], "legacy")
+        self.assertFalse(result["passed"], msg=result)
+        self.assertIn(
+            "l4_class_dual_definition_nested_and_top_level",
+            {item["reason"] for item in result["failures"]},
+        )
+
     def test_chk_neg_4way_verification_discipline_old_parent_form_passes(self) -> None:
         paths = (
             "docs/helix-harness/L4-basic-design/verification-discipline.json",
