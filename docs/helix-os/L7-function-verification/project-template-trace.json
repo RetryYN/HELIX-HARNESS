@@ -434,12 +434,6 @@
         "path": "docs/helix-os/L8-unit-verification/project-template-trace.json",
         "pointer": "/function_cases/1"
       },
-      "additional_l8_oracle_refs": [
-        {
-          "path": "docs/helix-os/L8-unit-verification/project-template-trace.json",
-          "pointer": "/function_cases/12"
-        }
-      ],
       "l8_case_refs": [
         {
           "path": "docs/helix-os/L8-unit-verification/project-template-trace.json",

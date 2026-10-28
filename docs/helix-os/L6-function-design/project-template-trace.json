@@ -371,12 +371,6 @@
         "path": "docs/helix-os/L8-unit-verification/project-template-trace.json",
         "pointer": "/function_cases/1"
       },
-      "additional_l8_oracle_refs": [
-        {
-          "path": "docs/helix-os/L8-unit-verification/project-template-trace.json",
-          "pointer": "/function_cases/12"
-        }
-      ],
       "pair_freeze_binding_ref": {
         "path": "docs/governance/audits/tdd/os002-t1a-b01-b02-freeze-2026-10-28.json",
         "pointer": "/function_freeze_rows/1"
