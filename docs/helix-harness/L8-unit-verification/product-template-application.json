@@ -577,12 +577,52 @@
      "function_ref": "HARNESS-L5-009-compare_semantic_equivalence",
      "input_refinement_status": "defined_candidate_not_executed",
      "typed_mutation": {
-      "target": "claims",
-      "operation": "append",
+      "target": "nonsemantic_metadata + obligations + semantic_comparisons + claims",
+      "operation": "replace_and_append",
       "synthetic_value": {
+       "nonsemantic_metadata": {
+        "ai_name": "synthetic-ai-B"
+       },
+       "obligations": [
+        {
+         "ref": "SYNTHETIC-OBLIGATION-EXTRA",
+         "template_ref": "SYNTHETIC-T-unit",
+         "binding": "same-semantic-binding",
+         "kind": "unit",
+         "meaning": {
+          "obligation": "AI名差のみで追加された別義務"
+         },
+         "condition_refs": [
+          "condition"
+         ],
+         "reentry_ref": null,
+         "source_ref": "source-synthetic-harness-owner"
+        }
+       ],
+       "semantic_comparisons": [
+        {
+         "ref": "obligation-comparison-ai-name",
+         "left_ref": "synthetic-obligation-unit",
+         "right_ref": "SYNTHETIC-OBLIGATION-EXTRA",
+         "same_meaning": false,
+         "source_ref": "source-synthetic-harness-owner",
+         "reason": "同分類/母集合/契約/scopeの期待義務とAI名差のみで追加した義務は非等価"
+        }
+       ],
        "kind": "different_obligations",
+       "expected_obligations": [
+        "synthetic-obligation-unit"
+       ],
+       "value": [
+        "synthetic-obligation-unit",
+        "SYNTHETIC-OBLIGATION-EXTRA"
+       ],
        "basis": "different-ai-name",
-       "retain": "same-semantic-binding"
+       "retain": "same-semantic-binding",
+       "basis_refs": [
+        "obligation-comparison-ai-name",
+        "synthetic-requirement"
+       ]
       },
       "notation": "logical fixture construction plan; selectors refer to fixture refs, not runtime operators"
      }
@@ -608,12 +648,52 @@
      "function_ref": "HARNESS-L5-009-compare_semantic_equivalence",
      "input_refinement_status": "defined_candidate_not_executed",
      "typed_mutation": {
-      "target": "claims",
-      "operation": "append",
+      "target": "nonsemantic_metadata + obligations + semantic_comparisons + claims",
+      "operation": "replace_and_append",
       "synthetic_value": {
+       "nonsemantic_metadata": {
+        "language_name": "synthetic-language-B"
+       },
+       "obligations": [
+        {
+         "ref": "SYNTHETIC-OBLIGATION-OMITTED",
+         "template_ref": "SYNTHETIC-T-unit",
+         "binding": "same-semantic-binding",
+         "kind": "unit",
+         "meaning": {
+          "obligation": "同意味scopeで保持すべき第2必要論点"
+         },
+         "condition_refs": [
+          "condition"
+         ],
+         "reentry_ref": null,
+         "source_ref": "source-synthetic-harness-owner"
+        }
+       ],
+       "semantic_comparisons": [
+        {
+         "ref": "obligation-comparison-language",
+         "left_ref": "synthetic-obligation-unit",
+         "right_ref": "SYNTHETIC-OBLIGATION-OMITTED",
+         "same_meaning": false,
+         "source_ref": "source-synthetic-harness-owner",
+         "reason": "同意味scopeの第2必要義務は既存義務で代替できず言語差を理由に省略できない"
+        }
+       ],
        "kind": "different_obligations",
+       "expected_obligations": [
+        "synthetic-obligation-unit",
+        "SYNTHETIC-OBLIGATION-OMITTED"
+       ],
+       "value": [
+        "synthetic-obligation-unit"
+       ],
        "basis": "different-language",
-       "retain": "same-semantic-binding"
+       "retain": "same-semantic-binding",
+       "basis_refs": [
+        "obligation-comparison-language",
+        "synthetic-requirement"
+       ]
       },
       "notation": "logical fixture construction plan; selectors refer to fixture refs, not runtime operators"
      }
@@ -639,11 +719,77 @@
      "function_ref": "HARNESS-L5-009-compare_semantic_equivalence",
      "input_refinement_status": "defined_candidate_not_executed",
      "typed_mutation": {
-      "target": "claims",
+      "target": "obligations + semantic_comparisons + binding + claims",
       "operation": "append",
       "synthetic_value": {
+       "binding": {
+        "requirement_ref": "SYNTHETIC-REQ-DOMAIN-Q",
+        "product_scope": {
+         "product": "product-Q",
+         "tenant": "SYNTHETIC-T",
+         "environment": "SYNTHETIC-E",
+         "domain": "SYNTHETIC-DOMAIN-B",
+         "risk": "SYNTHETIC-RISK-HIGH"
+        },
+        "process_contract_ref": "synthetic-process-contract",
+        "application_contract_ref": "synthetic-application-contract",
+        "template_ref": "SYNTHETIC-T-DOMAIN-Q",
+        "knowledge_ref": "SYNTHETIC-K-unit",
+        "oracle_ref": "synthetic-pair-unit"
+       },
+       "obligations": [
+        {
+         "ref": {
+          "identity": "SYNTHETIC-OBLIGATION-DOMAIN-Q",
+          "revision": "synthetic-A",
+          "scope": {
+           "product": "product-Q",
+           "tenant": "SYNTHETIC-T",
+           "environment": "SYNTHETIC-E",
+           "domain": "SYNTHETIC-DOMAIN-B",
+           "risk": "SYNTHETIC-RISK-HIGH"
+          },
+          "owner": "synthetic-core-owner"
+         },
+         "template_ref": "SYNTHETIC-T-DOMAIN-Q",
+         "binding": "different-domain-risk-scope-binding",
+         "kind": "unit",
+         "meaning": {
+          "obligation": "異domain/risk/scope境界の固有義務"
+         },
+         "condition_refs": [
+          "condition"
+         ],
+         "reentry_ref": null,
+         "source_ref": "source-synthetic-harness-owner"
+        }
+       ],
+       "semantic_comparisons": [
+        {
+         "ref": "boundary-comparison-domain-risk-scope",
+         "left_ref": "synthetic-obligation-unit",
+         "right_ref": "SYNTHETIC-OBLIGATION-DOMAIN-Q",
+         "same_meaning": false,
+         "source_ref": "source-synthetic-harness-owner",
+         "reason": "異domain/risk/scopeの比較境界と適用根拠が異なり同一集合を強制できない"
+        }
+       ],
        "kind": "same_candidate_set",
-       "basis": "different-domain-risk-scope"
+       "expected_candidate_set": [
+        "SYNTHETIC-T-unit"
+       ],
+       "alternate_candidate_set": [
+        "SYNTHETIC-T-DOMAIN-Q"
+       ],
+       "value": [
+        "SYNTHETIC-T-unit"
+       ],
+       "basis": "different-domain-risk-scope",
+       "retain": "same-original-input-binding",
+       "basis_refs": [
+        "boundary-comparison-domain-risk-scope",
+        "SYNTHETIC-REQ-DOMAIN-Q"
+       ]
       },
       "notation": "logical fixture construction plan; selectors refer to fixture refs, not runtime operators"
      }
@@ -669,11 +815,48 @@
      "function_ref": "HARNESS-L5-009-compare_semantic_equivalence",
      "input_refinement_status": "defined_candidate_not_executed",
      "typed_mutation": {
-      "target": "claims",
+      "target": "obligations + semantic_comparisons + claims",
       "operation": "append",
       "synthetic_value": {
+       "obligations": [
+        {
+         "ref": "SYNTHETIC-OBLIGATION-EXTRA",
+         "template_ref": "SYNTHETIC-T-unit",
+         "binding": "same-semantic-binding",
+         "kind": "unit",
+         "meaning": {
+          "obligation": "件数のみ一致する別内容の義務"
+         },
+         "condition_refs": [
+          "condition"
+         ],
+         "reentry_ref": null,
+         "source_ref": "source-synthetic-harness-owner"
+        }
+       ],
+       "semantic_comparisons": [
+        {
+         "ref": "obligation-comparison-equal-count",
+         "left_ref": "synthetic-obligation-unit",
+         "right_ref": "SYNTHETIC-OBLIGATION-EXTRA",
+         "same_meaning": null,
+         "source_ref": "source-synthetic-harness-owner",
+         "reason": "期待義務と実義務のidentity/意味が異なり意味等価根拠は未評価であり件数一致だけでは同等にならない"
+        }
+       ],
        "kind": "same_obligations",
-       "basis": "equal-count-only"
+       "expected_obligations": [
+        "synthetic-obligation-unit"
+       ],
+       "value": [
+        "SYNTHETIC-OBLIGATION-EXTRA"
+       ],
+       "basis": "equal-count-only",
+       "retain": "same-semantic-binding",
+       "basis_refs": [
+        "obligation-comparison-equal-count",
+        "synthetic-requirement"
+       ]
       },
       "notation": "logical fixture construction plan; selectors refer to fixture refs, not runtime operators"
      }
