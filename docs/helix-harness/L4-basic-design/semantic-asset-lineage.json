@@ -343,7 +343,9 @@
       "expected_operation_selection": "not_requested",
       "expected_reference_state": "unresolved",
       "expected_side_effect_count": 0,
-      "design_ref": "HARNESS-L4-053-F04"
+      "design_ref": "HARNESS-L4-053-F04",
+      "backflow_owner": "authority_record_owner",
+      "basis_ref": "docs/helix-harness/L4-basic-design/semantic-asset-lineage.json#/failure_classifications/0/backflow_owners/0"
     },
     {
       "code": "authority_mapping_unknown",
@@ -369,7 +371,9 @@
       "expected_operation_selection": "not_requested",
       "expected_reference_state": "unresolved",
       "expected_side_effect_count": 0,
-      "design_ref": "HARNESS-L4-053-F04"
+      "design_ref": "HARNESS-L4-053-F04",
+      "backflow_owner": "authority_record_owner",
+      "basis_ref": "docs/helix-harness/L4-basic-design/semantic-asset-lineage.json#/failure_classifications/1/backflow_owners/0"
     },
     {
       "code": "authority_procedure_added",
@@ -395,7 +399,9 @@
       "expected_operation_selection": "not_requested",
       "expected_reference_state": "unresolved",
       "expected_side_effect_count": 0,
-      "design_ref": "HARNESS-L4-053-B01"
+      "design_ref": "HARNESS-L4-053-B01",
+      "backflow_owner": "authority_record_owner",
+      "basis_ref": "docs/helix-harness/L4-basic-design/semantic-asset-lineage.json#/failure_classifications/2/backflow_owners/0"
     },
     {
       "code": "base_revision_mismatch",
@@ -426,7 +432,9 @@
       "expected_operation_selection": "not_requested",
       "expected_reference_state": "unresolved",
       "expected_side_effect_count": 0,
-      "design_ref": "HARNESS-L4-053-F03"
+      "design_ref": "HARNESS-L4-053-F03",
+      "backflow_owner": "record_owner",
+      "basis_ref": "docs/helix-harness/L4-basic-design/semantic-asset-lineage.json#/failure_classifications/3/backflow_owners/0"
     },
     {
       "code": "fixture_as_rollback",
@@ -452,7 +460,9 @@
       "expected_operation_selection": "not_requested",
       "expected_reference_state": "unresolved",
       "expected_side_effect_count": 0,
-      "design_ref": "HARNESS-L4-053-B01"
+      "design_ref": "HARNESS-L4-053-B01",
+      "backflow_owner": "persistence_owner",
+      "basis_ref": "docs/helix-harness/L4-basic-design/semantic-asset-lineage.json#/failure_classifications/4/backflow_owners/0"
     },
     {
       "code": "global_stop_added",
@@ -478,7 +488,9 @@
       "expected_operation_selection": "not_requested",
       "expected_reference_state": "unresolved",
       "expected_side_effect_count": 0,
-      "design_ref": "HARNESS-L4-053-N01"
+      "design_ref": "HARNESS-L4-053-N01",
+      "backflow_owner": "harness053_requirement_owner",
+      "basis_ref": "docs/helix-harness/L4-basic-design/semantic-asset-lineage.json#/failure_classifications/5/backflow_owners/0"
     },
     {
       "code": "hash_identity_inference",
@@ -504,7 +516,9 @@
       "expected_operation_selection": "not_requested",
       "expected_reference_state": "unresolved",
       "expected_side_effect_count": 0,
-      "design_ref": "HARNESS-L4-053-F01"
+      "design_ref": "HARNESS-L4-053-F01",
+      "backflow_owner": "record_owner",
+      "basis_ref": "docs/helix-harness/L4-basic-design/semantic-asset-lineage.json#/failure_classifications/6/backflow_owners/0"
     },
     {
       "code": "history_mapping_missing",
@@ -530,7 +544,9 @@
       "expected_operation_selection": "not_requested",
       "expected_reference_state": "unresolved",
       "expected_side_effect_count": 0,
-      "design_ref": "HARNESS-L4-053-F03"
+      "design_ref": "HARNESS-L4-053-F03",
+      "backflow_owner": "record_owner",
+      "basis_ref": "docs/helix-harness/L4-basic-design/semantic-asset-lineage.json#/failure_classifications/7/backflow_owners/0"
     },
     {
       "code": "identity_conflict",
@@ -556,7 +572,9 @@
       "expected_operation_selection": "not_requested",
       "expected_reference_state": "unresolved",
       "expected_side_effect_count": 0,
-      "design_ref": "HARNESS-L4-053-F01"
+      "design_ref": "HARNESS-L4-053-F01",
+      "backflow_owner": "record_owner",
+      "basis_ref": "docs/helix-harness/L4-basic-design/semantic-asset-lineage.json#/failure_classifications/8/backflow_owners/0"
     },
     {
       "code": "identity_missing",
@@ -582,7 +600,9 @@
       "expected_operation_selection": "not_requested",
       "expected_reference_state": "unresolved",
       "expected_side_effect_count": 0,
-      "design_ref": "HARNESS-L4-053-F01"
+      "design_ref": "HARNESS-L4-053-F01",
+      "backflow_owner": "record_owner",
+      "basis_ref": "docs/helix-harness/L4-basic-design/semantic-asset-lineage.json#/failure_classifications/9/backflow_owners/0"
     },
     {
       "code": "legacy_completion_claim",
@@ -608,7 +628,9 @@
       "expected_operation_selection": "not_requested",
       "expected_reference_state": "unresolved",
       "expected_side_effect_count": 0,
-      "design_ref": "HARNESS-L4-053-B01"
+      "design_ref": "HARNESS-L4-053-B01",
+      "backflow_owner": "harness053_requirement_owner",
+      "basis_ref": "docs/helix-harness/L4-basic-design/semantic-asset-lineage.json#/failure_classifications/10/backflow_owners/0"
     },
     {
       "code": "lineage_as_authority_transfer",
@@ -634,7 +656,9 @@
       "expected_operation_selection": "not_requested",
       "expected_reference_state": "unresolved",
       "expected_side_effect_count": 0,
-      "design_ref": "HARNESS-L4-053-F03"
+      "design_ref": "HARNESS-L4-053-F03",
+      "backflow_owner": "authority_record_owner",
+      "basis_ref": "docs/helix-harness/L4-basic-design/semantic-asset-lineage.json#/failure_classifications/11/backflow_owners/0"
     },
     {
       "code": "lineage_endpoint_missing",
@@ -665,7 +689,9 @@
       "expected_operation_selection": "not_requested",
       "expected_reference_state": "unresolved",
       "expected_side_effect_count": 0,
-      "design_ref": "HARNESS-L4-053-F03"
+      "design_ref": "HARNESS-L4-053-F03",
+      "backflow_owner": "record_owner",
+      "basis_ref": "docs/helix-harness/L4-basic-design/semantic-asset-lineage.json#/failure_classifications/12/backflow_owners/0"
     },
     {
       "code": "lineage_target_missing",
@@ -696,7 +722,9 @@
       "expected_operation_selection": "not_requested",
       "expected_reference_state": "unresolved",
       "expected_side_effect_count": 0,
-      "design_ref": "HARNESS-L4-053-F03"
+      "design_ref": "HARNESS-L4-053-F03",
+      "backflow_owner": "record_owner",
+      "basis_ref": "docs/helix-harness/L4-basic-design/semantic-asset-lineage.json#/failure_classifications/13/backflow_owners/0"
     },
     {
       "code": "local_as_global_completion",
@@ -722,7 +750,9 @@
       "expected_operation_selection": "not_requested",
       "expected_reference_state": "unresolved",
       "expected_side_effect_count": 0,
-      "design_ref": "HARNESS-L4-053-N01"
+      "design_ref": "HARNESS-L4-053-N01",
+      "backflow_owner": "harness053_requirement_owner",
+      "basis_ref": "docs/helix-harness/L4-basic-design/semantic-asset-lineage.json#/failure_classifications/14/backflow_owners/0"
     },
     {
       "code": "location_as_semantic",
@@ -753,7 +783,9 @@
       "expected_operation_selection": "not_requested",
       "expected_reference_state": "unresolved",
       "expected_side_effect_count": 0,
-      "design_ref": "HARNESS-L4-053-F02"
+      "design_ref": "HARNESS-L4-053-F02",
+      "backflow_owner": "record_owner",
+      "basis_ref": "docs/helix-harness/L4-basic-design/semantic-asset-lineage.json#/failure_classifications/15/backflow_owners/0"
     },
     {
       "code": "location_identity_change",
@@ -784,7 +816,9 @@
       "expected_operation_selection": "not_requested",
       "expected_reference_state": "unresolved",
       "expected_side_effect_count": 0,
-      "design_ref": "HARNESS-L4-053-F01"
+      "design_ref": "HARNESS-L4-053-F01",
+      "backflow_owner": "record_owner",
+      "basis_ref": "docs/helix-harness/L4-basic-design/semantic-asset-lineage.json#/failure_classifications/16/backflow_owners/0"
     },
     {
       "code": "name_identity_inference",
@@ -810,7 +844,9 @@
       "expected_operation_selection": "not_requested",
       "expected_reference_state": "unresolved",
       "expected_side_effect_count": 0,
-      "design_ref": "HARNESS-L4-053-F01"
+      "design_ref": "HARNESS-L4-053-F01",
+      "backflow_owner": "record_owner",
+      "basis_ref": "docs/helix-harness/L4-basic-design/semantic-asset-lineage.json#/failure_classifications/17/backflow_owners/0"
     },
     {
       "code": "new_precondition",
@@ -836,7 +872,9 @@
       "expected_operation_selection": "not_requested",
       "expected_reference_state": "unresolved",
       "expected_side_effect_count": 0,
-      "design_ref": "HARNESS-L4-053-B01"
+      "design_ref": "HARNESS-L4-053-B01",
+      "backflow_owner": "harness053_requirement_owner",
+      "basis_ref": "docs/helix-harness/L4-basic-design/semantic-asset-lineage.json#/failure_classifications/18/backflow_owners/0"
     },
     {
       "code": "oracle_mapping_missing",
@@ -872,7 +910,9 @@
       "expected_operation_selection": "not_requested",
       "expected_reference_state": "unresolved",
       "expected_side_effect_count": 0,
-      "design_ref": "HARNESS-L4-053-F04"
+      "design_ref": "HARNESS-L4-053-F04",
+      "backflow_owner": "oracle_owner",
+      "basis_ref": "docs/helix-harness/L4-basic-design/semantic-asset-lineage.json#/failure_classifications/19/backflow_owners/0"
     },
     {
       "code": "oracle_revision_mismatch",
@@ -898,7 +938,9 @@
       "expected_operation_selection": "not_requested",
       "expected_reference_state": "unresolved",
       "expected_side_effect_count": 0,
-      "design_ref": "HARNESS-L4-053-F04"
+      "design_ref": "HARNESS-L4-053-F04",
+      "backflow_owner": "oracle_owner",
+      "basis_ref": "docs/helix-harness/L4-basic-design/semantic-asset-lineage.json#/failure_classifications/20/backflow_owners/0"
     },
     {
       "code": "owner_boundary_change",
@@ -924,7 +966,9 @@
       "expected_operation_selection": "not_requested",
       "expected_reference_state": "unresolved",
       "expected_side_effect_count": 0,
-      "design_ref": "HARNESS-L4-053-B01"
+      "design_ref": "HARNESS-L4-053-B01",
+      "backflow_owner": "harness053_requirement_owner",
+      "basis_ref": "docs/helix-harness/L4-basic-design/semantic-asset-lineage.json#/failure_classifications/21/backflow_owners/0"
     },
     {
       "code": "path_identity_inference",
@@ -950,7 +994,9 @@
       "expected_operation_selection": "not_requested",
       "expected_reference_state": "unresolved",
       "expected_side_effect_count": 0,
-      "design_ref": "HARNESS-L4-053-F01"
+      "design_ref": "HARNESS-L4-053-F01",
+      "backflow_owner": "record_owner",
+      "basis_ref": "docs/helix-harness/L4-basic-design/semantic-asset-lineage.json#/failure_classifications/22/backflow_owners/0"
     },
     {
       "code": "record_as_acceptance",
@@ -976,7 +1022,9 @@
       "expected_operation_selection": "not_requested",
       "expected_reference_state": "unresolved",
       "expected_side_effect_count": 0,
-      "design_ref": "HARNESS-L4-053-B01"
+      "design_ref": "HARNESS-L4-053-B01",
+      "backflow_owner": "PO",
+      "basis_ref": "docs/helix-harness/L4-basic-design/semantic-asset-lineage.json#/failure_classifications/23/backflow_owners/0"
     },
     {
       "code": "record_as_permission",
@@ -1002,7 +1050,9 @@
       "expected_operation_selection": "not_requested",
       "expected_reference_state": "unresolved",
       "expected_side_effect_count": 0,
-      "design_ref": "HARNESS-L4-053-B01"
+      "design_ref": "HARNESS-L4-053-B01",
+      "backflow_owner": "authority_record_owner",
+      "basis_ref": "docs/helix-harness/L4-basic-design/semantic-asset-lineage.json#/failure_classifications/24/backflow_owners/0"
     },
     {
       "code": "record_as_persistence",
@@ -1028,7 +1078,9 @@
       "expected_operation_selection": "not_requested",
       "expected_reference_state": "unresolved",
       "expected_side_effect_count": 0,
-      "design_ref": "HARNESS-L4-053-B01"
+      "design_ref": "HARNESS-L4-053-B01",
+      "backflow_owner": "persistence_owner",
+      "basis_ref": "docs/helix-harness/L4-basic-design/semantic-asset-lineage.json#/failure_classifications/25/backflow_owners/0"
     },
     {
       "code": "reference_meaning_mismatch",
@@ -1054,7 +1106,9 @@
       "expected_operation_selection": "not_requested",
       "expected_reference_state": "unresolved",
       "expected_side_effect_count": 0,
-      "design_ref": "HARNESS-L4-053-N01"
+      "design_ref": "HARNESS-L4-053-N01",
+      "backflow_owner": "harness053_requirement_owner",
+      "basis_ref": "docs/helix-harness/L4-basic-design/semantic-asset-lineage.json#/failure_classifications/26/backflow_owners/0"
     },
     {
       "code": "reference_substitution",
@@ -1080,7 +1134,9 @@
       "expected_operation_selection": "not_requested",
       "expected_reference_state": "unresolved",
       "expected_side_effect_count": 0,
-      "design_ref": "HARNESS-L4-053-N01"
+      "design_ref": "HARNESS-L4-053-N01",
+      "backflow_owner": "harness053_requirement_owner",
+      "basis_ref": "docs/helix-harness/L4-basic-design/semantic-asset-lineage.json#/failure_classifications/27/backflow_owners/0"
     },
     {
       "code": "relation_kind_missing",
@@ -1106,7 +1162,9 @@
       "expected_operation_selection": "not_requested",
       "expected_reference_state": "unresolved",
       "expected_side_effect_count": 0,
-      "design_ref": "HARNESS-L4-053-F03"
+      "design_ref": "HARNESS-L4-053-F03",
+      "backflow_owner": "record_owner",
+      "basis_ref": "docs/helix-harness/L4-basic-design/semantic-asset-lineage.json#/failure_classifications/28/backflow_owners/0"
     },
     {
       "code": "revision_conflict",
@@ -1132,7 +1190,9 @@
       "expected_operation_selection": "not_requested",
       "expected_reference_state": "unresolved",
       "expected_side_effect_count": 0,
-      "design_ref": "HARNESS-L4-053-F02"
+      "design_ref": "HARNESS-L4-053-F02",
+      "backflow_owner": "record_owner",
+      "basis_ref": "docs/helix-harness/L4-basic-design/semantic-asset-lineage.json#/failure_classifications/29/backflow_owners/0"
     },
     {
       "code": "scope_cross_binding",
@@ -1178,7 +1238,9 @@
       "expected_operation_selection": "not_requested",
       "expected_reference_state": "unresolved",
       "expected_side_effect_count": 0,
-      "design_ref": "HARNESS-L4-053-F03"
+      "design_ref": "HARNESS-L4-053-F03",
+      "backflow_owner": "record_owner",
+      "basis_ref": "docs/helix-harness/L4-basic-design/semantic-asset-lineage.json#/failure_classifications/30/backflow_owners/0"
     },
     {
       "code": "semantic_as_location",
@@ -1214,7 +1276,9 @@
       "expected_operation_selection": "not_requested",
       "expected_reference_state": "unresolved",
       "expected_side_effect_count": 0,
-      "design_ref": "HARNESS-L4-053-F02"
+      "design_ref": "HARNESS-L4-053-F02",
+      "backflow_owner": "record_owner",
+      "basis_ref": "docs/helix-harness/L4-basic-design/semantic-asset-lineage.json#/failure_classifications/31/backflow_owners/0"
     },
     {
       "code": "semantic_identity_change",
@@ -1245,7 +1309,9 @@
       "expected_operation_selection": "not_requested",
       "expected_reference_state": "unresolved",
       "expected_side_effect_count": 0,
-      "design_ref": "HARNESS-L4-053-F02"
+      "design_ref": "HARNESS-L4-053-F02",
+      "backflow_owner": "record_owner",
+      "basis_ref": "docs/helix-harness/L4-basic-design/semantic-asset-lineage.json#/failure_classifications/32/backflow_owners/0"
     },
     {
       "code": "semantic_impact_missing",
@@ -1281,7 +1347,9 @@
       "expected_operation_selection": "not_requested",
       "expected_reference_state": "unresolved",
       "expected_side_effect_count": 0,
-      "design_ref": "HARNESS-L4-053-F02"
+      "design_ref": "HARNESS-L4-053-F02",
+      "backflow_owner": "trace_owner",
+      "basis_ref": "docs/helix-harness/L4-basic-design/semantic-asset-lineage.json#/failure_classifications/33/backflow_owners/0"
     },
     {
       "code": "semantic_source_missing",
@@ -1307,7 +1375,9 @@
       "expected_operation_selection": "not_requested",
       "expected_reference_state": "unresolved",
       "expected_side_effect_count": 0,
-      "design_ref": "HARNESS-L4-053-F02"
+      "design_ref": "HARNESS-L4-053-F02",
+      "backflow_owner": "record_owner",
+      "basis_ref": "docs/helix-harness/L4-basic-design/semantic-asset-lineage.json#/failure_classifications/34/backflow_owners/0"
     },
     {
       "code": "typed_edge_kind_mismatch",
@@ -1333,7 +1403,9 @@
       "expected_operation_selection": "not_requested",
       "expected_reference_state": "unresolved",
       "expected_side_effect_count": 0,
-      "design_ref": "HARNESS-L4-053-F04"
+      "design_ref": "HARNESS-L4-053-F04",
+      "backflow_owner": "trace_owner",
+      "basis_ref": "docs/helix-harness/L4-basic-design/semantic-asset-lineage.json#/failure_classifications/35/backflow_owners/0"
     },
     {
       "code": "typed_edge_mapping_missing",
@@ -1369,7 +1441,9 @@
       "expected_operation_selection": "not_requested",
       "expected_reference_state": "unresolved",
       "expected_side_effect_count": 0,
-      "design_ref": "HARNESS-L4-053-F04"
+      "design_ref": "HARNESS-L4-053-F04",
+      "backflow_owner": "trace_owner",
+      "basis_ref": "docs/helix-harness/L4-basic-design/semantic-asset-lineage.json#/failure_classifications/36/backflow_owners/0"
     },
     {
       "code": "unselected_operation",
@@ -1395,7 +1469,9 @@
       "expected_operation_selection": "not_selected",
       "expected_reference_state": "unresolved",
       "expected_side_effect_count": 0,
-      "design_ref": "HARNESS-L4-053-N01"
+      "design_ref": "HARNESS-L4-053-N01",
+      "backflow_owner": "harness053_requirement_owner",
+      "basis_ref": "docs/helix-harness/L4-basic-design/semantic-asset-lineage.json#/failure_classifications/37/backflow_owners/0"
     }
   ],
   "remaining": [

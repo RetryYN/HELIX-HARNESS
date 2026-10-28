@@ -8035,7 +8035,9 @@
       "condition": "OS保存receiptだけで検証成功を主張",
       "backflow_owner": "HARNESS005/OS検収",
       "preserve": "保存は保存。実oracle不足を保持。",
-      "contract_ref": "HARNESS-L5-005-B01"
+      "contract_ref": "HARNESS-L5-005-B01",
+      "expected": "保存は保存。実oracle不足を保持。",
+      "basis_ref": "docs/helix-harness/L5-detail-design/verification-discipline.json#/failure_rules/0/preserve"
     },
     {
       "code": "test_deleted_green",
@@ -8043,7 +8045,9 @@
       "condition": "修復で必要testを削除してgreen化",
       "backflow_owner": "検証設計owner",
       "preserve": "削除で失った義務を保持し修復成立にしない。",
-      "contract_ref": "HARNESS-L5-005-B01"
+      "contract_ref": "HARNESS-L5-005-B01",
+      "expected": "削除で失った義務を保持し修復成立にしない。",
+      "basis_ref": "docs/helix-harness/L5-detail-design/verification-discipline.json#/failure_rules/1/preserve"
     },
     {
       "code": "threshold_relaxed_green",
@@ -8051,7 +8055,9 @@
       "condition": "修復で凍結した期待閾値を緩める",
       "backflow_owner": "検証設計owner",
       "preserve": "元oracleの期待と緩和差分を保持。",
-      "contract_ref": "HARNESS-L5-005-B01"
+      "contract_ref": "HARNESS-L5-005-B01",
+      "expected": "元oracleの期待と緩和差分を保持。",
+      "basis_ref": "docs/helix-harness/L5-detail-design/verification-discipline.json#/failure_rules/2/preserve"
     },
     {
       "code": "repair_scope_expansion",
@@ -8059,7 +8065,9 @@
       "condition": "修復scopeを原対象外へ広げる",
       "backflow_owner": "設計owner/OS",
       "preserve": "元scopeと未許可差分を保持。",
-      "contract_ref": "HARNESS-L5-005-B01"
+      "contract_ref": "HARNESS-L5-005-B01",
+      "expected": "元scopeと未許可差分を保持。",
+      "basis_ref": "docs/helix-harness/L5-detail-design/verification-discipline.json#/failure_rules/3/preserve"
     },
     {
       "code": "unchecked_digest_update",
@@ -8067,7 +8075,9 @@
       "condition": "意味digestを独立照合なしで更新",
       "backflow_owner": "意味owner",
       "preserve": "新digestは検証成立を示さない。",
-      "contract_ref": "HARNESS-L5-005-B01"
+      "contract_ref": "HARNESS-L5-005-B01",
+      "expected": "新digestは検証成立を示さない。",
+      "basis_ref": "docs/helix-harness/L5-detail-design/verification-discipline.json#/failure_rules/4/preserve"
     },
     {
       "code": "self_report_independent",
@@ -8075,7 +8085,9 @@
       "condition": "作成Worker自身の自己報告を独立検証とする",
       "backflow_owner": "review-owner",
       "preserve": "identity/context/authority/routeの不足を保持。",
-      "contract_ref": "HARNESS-L5-005-B01"
+      "contract_ref": "HARNESS-L5-005-B01",
+      "expected": "identity/context/authority/routeの不足を保持。",
+      "basis_ref": "docs/helix-harness/L5-detail-design/verification-discipline.json#/failure_rules/5/preserve"
     },
     {
       "code": "unexecuted_as_complete",
@@ -8083,7 +8095,9 @@
       "condition": "未実行oracleを完了とする",
       "backflow_owner": "execution-owner",
       "preserve": "実観測欠落を保持。",
-      "contract_ref": "HARNESS-L5-005-B01"
+      "contract_ref": "HARNESS-L5-005-B01",
+      "expected": "実観測欠落を保持。",
+      "basis_ref": "docs/helix-harness/L5-detail-design/verification-discipline.json#/failure_rules/6/preserve"
     },
     {
       "code": "digest_mismatch_accepted",
@@ -8091,7 +8105,9 @@
       "condition": "実結果の意味digestを別値へ変更",
       "backflow_owner": "意味owner/execution-owner",
       "preserve": "当該結果を元対象の証拠へ数えない。",
-      "contract_ref": "HARNESS-L5-005-B01"
+      "contract_ref": "HARNESS-L5-005-B01",
+      "expected": "当該結果を元対象の証拠へ数えない。",
+      "basis_ref": "docs/helix-harness/L5-detail-design/verification-discipline.json#/failure_rules/7/preserve"
     },
     {
       "code": "other_head_review",
@@ -8099,7 +8115,9 @@
       "condition": "独立reviewが別HEADを対象にする",
       "backflow_owner": "review-owner",
       "preserve": "review対象不一致を保持。",
-      "contract_ref": "HARNESS-L5-005-B01"
+      "contract_ref": "HARNESS-L5-005-B01",
+      "expected": "review対象不一致を保持。",
+      "basis_ref": "docs/helix-harness/L5-detail-design/verification-discipline.json#/failure_rules/8/preserve"
     },
     {
       "code": "projection_as_complete",
@@ -8107,7 +8125,9 @@
       "condition": "表示projectionだけで工程完了を主張",
       "backflow_owner": "OS/検証owner",
       "preserve": "原実結果未供給を保持。",
-      "contract_ref": "HARNESS-L5-005-B01"
+      "contract_ref": "HARNESS-L5-005-B01",
+      "expected": "原実結果未供給を保持。",
+      "basis_ref": "docs/helix-harness/L5-detail-design/verification-discipline.json#/failure_rules/9/preserve"
     },
     {
       "code": "runtime_exchange_skip",
@@ -8115,7 +8135,9 @@
       "condition": "runtime交代を理由に元証拠条件を省略",
       "backflow_owner": "OS/実行環境",
       "preserve": "同じ義務を保持し再開不足理由を示す。",
-      "contract_ref": "HARNESS-L5-005-B01"
+      "contract_ref": "HARNESS-L5-005-B01",
+      "expected": "同じ義務を保持し再開不足理由を示す。",
+      "basis_ref": "docs/helix-harness/L5-detail-design/verification-discipline.json#/failure_rules/10/preserve"
     },
     {
       "code": "duty_missing_requirement_revision",
@@ -8123,7 +8145,9 @@
       "condition": "検証義務のrequirement_revisionを除去",
       "backflow_owner": "検証契約owner",
       "preserve": "当該義務のrequirement_revision不足を特定して成立させない。",
-      "contract_ref": "HARNESS-L5-005-F01"
+      "contract_ref": "HARNESS-L5-005-F01",
+      "expected": "当該義務のrequirement_revision不足を特定して成立させない。",
+      "basis_ref": "docs/helix-harness/L5-detail-design/verification-discipline.json#/failure_rules/11/preserve"
     },
     {
       "code": "duty_missing_artifact",
@@ -8131,7 +8155,9 @@
       "condition": "検証義務のartifactを除去",
       "backflow_owner": "検証契約owner",
       "preserve": "当該義務のartifact不足を特定して成立させない。",
-      "contract_ref": "HARNESS-L5-005-F01"
+      "contract_ref": "HARNESS-L5-005-F01",
+      "expected": "当該義務のartifact不足を特定して成立させない。",
+      "basis_ref": "docs/helix-harness/L5-detail-design/verification-discipline.json#/failure_rules/12/preserve"
     },
     {
       "code": "duty_missing_input",
@@ -8139,7 +8165,9 @@
       "condition": "検証義務のinputを除去",
       "backflow_owner": "検証契約owner",
       "preserve": "当該義務のinput不足を特定して成立させない。",
-      "contract_ref": "HARNESS-L5-005-F01"
+      "contract_ref": "HARNESS-L5-005-F01",
+      "expected": "当該義務のinput不足を特定して成立させない。",
+      "basis_ref": "docs/helix-harness/L5-detail-design/verification-discipline.json#/failure_rules/13/preserve"
     },
     {
       "code": "duty_missing_oracle",
@@ -8147,7 +8175,9 @@
       "condition": "検証義務のoracleを除去",
       "backflow_owner": "検証契約owner",
       "preserve": "当該義務のoracle不足を特定して成立させない。",
-      "contract_ref": "HARNESS-L5-005-F01"
+      "contract_ref": "HARNESS-L5-005-F01",
+      "expected": "当該義務のoracle不足を特定して成立させない。",
+      "basis_ref": "docs/helix-harness/L5-detail-design/verification-discipline.json#/failure_rules/14/preserve"
     },
     {
       "code": "duty_missing_expected_failure",
@@ -8155,7 +8185,9 @@
       "condition": "検証義務のexpected_failureを除去",
       "backflow_owner": "検証契約owner",
       "preserve": "当該義務のexpected_failure不足を特定して成立させない。",
-      "contract_ref": "HARNESS-L5-005-F01"
+      "contract_ref": "HARNESS-L5-005-F01",
+      "expected": "当該義務のexpected_failure不足を特定して成立させない。",
+      "basis_ref": "docs/helix-harness/L5-detail-design/verification-discipline.json#/failure_rules/15/preserve"
     },
     {
       "code": "duty_missing_evidence_validity",
@@ -8163,7 +8195,9 @@
       "condition": "検証義務のevidence_validityを除去",
       "backflow_owner": "検証契約owner",
       "preserve": "当該義務のevidence_validity不足を特定して成立させない。",
-      "contract_ref": "HARNESS-L5-005-F01"
+      "contract_ref": "HARNESS-L5-005-F01",
+      "expected": "当該義務のevidence_validity不足を特定して成立させない。",
+      "basis_ref": "docs/helix-harness/L5-detail-design/verification-discipline.json#/failure_rules/16/preserve"
     },
     {
       "code": "duty_missing_backflow_owner",
@@ -8171,7 +8205,9 @@
       "condition": "検証義務のbackflow_ownerを除去",
       "backflow_owner": "検証契約owner",
       "preserve": "当該義務のbackflow_owner不足を特定して成立させない。",
-      "contract_ref": "HARNESS-L5-005-F01"
+      "contract_ref": "HARNESS-L5-005-F01",
+      "expected": "当該義務のbackflow_owner不足を特定して成立させない。",
+      "basis_ref": "docs/helix-harness/L5-detail-design/verification-discipline.json#/failure_rules/17/preserve"
     },
     {
       "code": "unknown_as_skip",
@@ -8179,7 +8215,9 @@
       "condition": "適用unknownをskipへ変換",
       "backflow_owner": "CORE/005",
       "preserve": "不明義務を未評価として保持。",
-      "contract_ref": "HARNESS-L5-005-F01"
+      "contract_ref": "HARNESS-L5-005-F01",
+      "expected": "不明義務を未評価として保持。",
+      "basis_ref": "docs/helix-harness/L5-detail-design/verification-discipline.json#/failure_rules/18/preserve"
     },
     {
       "code": "worker_as_duty",
@@ -8187,7 +8225,9 @@
       "condition": "Worker名だけで必要義務を決める",
       "backflow_owner": "005契約owner",
       "preserve": "元変更/layer/risk/pair根拠不足を保持。",
-      "contract_ref": "HARNESS-L5-005-F01"
+      "contract_ref": "HARNESS-L5-005-F01",
+      "expected": "元変更/layer/risk/pair根拠不足を保持。",
+      "basis_ref": "docs/helix-harness/L5-detail-design/verification-discipline.json#/failure_rules/19/preserve"
     },
     {
       "code": "conditional_as_discharged",
@@ -8195,7 +8235,9 @@
       "condition": "未充足conditionalを合格消込",
       "backflow_owner": "CORE/005",
       "preserve": "条件falseと未充足義務を保持。",
-      "contract_ref": "HARNESS-L5-005-F01"
+      "contract_ref": "HARNESS-L5-005-F01",
+      "expected": "条件falseと未充足義務を保持。",
+      "basis_ref": "docs/helix-harness/L5-detail-design/verification-discipline.json#/failure_rules/20/preserve"
     },
     {
       "code": "informational_as_required",
@@ -8203,7 +8245,9 @@
       "condition": "理由なくinformationalをrequiredへ変更",
       "backflow_owner": "CORE/005",
       "preserve": "元分類を保持し余分な必須化を拒否。",
-      "contract_ref": "HARNESS-L5-005-F01"
+      "contract_ref": "HARNESS-L5-005-F01",
+      "expected": "元分類を保持し余分な必須化を拒否。",
+      "basis_ref": "docs/helix-harness/L5-detail-design/verification-discipline.json#/failure_rules/21/preserve"
     },
     {
       "code": "units_as_connection",
@@ -8211,7 +8255,9 @@
       "condition": "全単体proofで接続完了を主張",
       "backflow_owner": "接続設計/検証owner",
       "preserve": "接続固有oracle不足を保持。",
-      "contract_ref": "HARNESS-L5-005-F02"
+      "contract_ref": "HARNESS-L5-005-F02",
+      "expected": "接続固有oracle不足を保持。",
+      "basis_ref": "docs/helix-harness/L5-detail-design/verification-discipline.json#/failure_rules/22/preserve"
     },
     {
       "code": "lower_as_composite",
@@ -8219,7 +8265,9 @@
       "condition": "下位proofで未証明上位固有UX1を相殺",
       "backflow_owner": "構成体検証owner",
       "preserve": "UX1の別証明不足を保持。",
-      "contract_ref": "HARNESS-L5-005-F02"
+      "contract_ref": "HARNESS-L5-005-F02",
+      "expected": "UX1の別証明不足を保持。",
+      "basis_ref": "docs/helix-harness/L5-detail-design/verification-discipline.json#/failure_rules/23/preserve"
     },
     {
       "code": "combination_missing",
@@ -8227,7 +8275,9 @@
       "condition": "組合せ契約を欠く",
       "backflow_owner": "構成体設計owner",
       "preserve": "原下位proofを保持し合成根拠不足を示す。",
-      "contract_ref": "HARNESS-L5-005-F02"
+      "contract_ref": "HARNESS-L5-005-F02",
+      "expected": "原下位proofを保持し合成根拠不足を示す。",
+      "basis_ref": "docs/helix-harness/L5-detail-design/verification-discipline.json#/failure_rules/24/preserve"
     },
     {
       "code": "unique_nfr_cancelled",
@@ -8235,7 +8285,9 @@
       "condition": "固有非機能を単体proofで充足扱い",
       "backflow_owner": "構成体検証owner",
       "preserve": "固有非機能の独立oracleを維持。",
-      "contract_ref": "HARNESS-L5-005-F02"
+      "contract_ref": "HARNESS-L5-005-F02",
+      "expected": "固有非機能の独立oracleを維持。",
+      "basis_ref": "docs/helix-harness/L5-detail-design/verification-discipline.json#/failure_rules/25/preserve"
     },
     {
       "code": "unconditional_e2e",
@@ -8243,7 +8295,9 @@
       "condition": "固有なしを示す契約と全下位有効proofがあるのに端から端再実行を一律強制",
       "backflow_owner": "005/構成体設計owner",
       "preserve": "契約根拠付き機械導出を可能とし新しい一律gateを拒否。",
-      "contract_ref": "HARNESS-L5-005-F02"
+      "contract_ref": "HARNESS-L5-005-F02",
+      "expected": "契約根拠付き機械導出を可能とし新しい一律gateを拒否。",
+      "basis_ref": "docs/helix-harness/L5-detail-design/verification-discipline.json#/failure_rules/26/preserve"
     },
     {
       "code": "count_as_composition",
@@ -8251,7 +8305,9 @@
       "condition": "proof件数一致だけで必要subject充足",
       "backflow_owner": "構成体検証owner",
       "preserve": "subject/oracle/revisionごとの不足を特定。",
-      "contract_ref": "HARNESS-L5-005-F02"
+      "contract_ref": "HARNESS-L5-005-F02",
+      "expected": "subject/oracle/revisionごとの不足を特定。",
+      "basis_ref": "docs/helix-harness/L5-detail-design/verification-discipline.json#/failure_rules/27/preserve"
     },
     {
       "code": "fixed_full_default",
@@ -8259,7 +8315,9 @@
       "condition": "ticket関係を無視して全件CIを既定化",
       "backflow_owner": "005/OS検収",
       "preserve": "ticket/risk由来の集合と必要上位義務を保持。",
-      "contract_ref": "HARNESS-L5-005-F03"
+      "contract_ref": "HARNESS-L5-005-F03",
+      "expected": "ticket/risk由来の集合と必要上位義務を保持。",
+      "basis_ref": "docs/helix-harness/L5-detail-design/verification-discipline.json#/failure_rules/28/preserve"
     },
     {
       "code": "omission_lost",
@@ -8267,7 +8325,9 @@
       "condition": "省略した検査の集合を記録しない",
       "backflow_owner": "OS検収/005",
       "preserve": "省略itemと回収先を未完として保持。",
-      "contract_ref": "HARNESS-L5-005-F03"
+      "contract_ref": "HARNESS-L5-005-F03",
+      "expected": "省略itemと回収先を未完として保持。",
+      "basis_ref": "docs/helix-harness/L5-detail-design/verification-discipline.json#/failure_rules/29/preserve"
     },
     {
       "code": "outside_ticket_change",
@@ -8275,7 +8335,9 @@
       "condition": "実差分にticket scope外Bを追加",
       "backflow_owner": "OS/設計owner",
       "preserve": "scope外Bを特定し当該合流未成立。",
-      "contract_ref": "HARNESS-L5-005-F03"
+      "contract_ref": "HARNESS-L5-005-F03",
+      "expected": "scope外Bを特定し当該合流未成立。",
+      "basis_ref": "docs/helix-harness/L5-detail-design/verification-discipline.json#/failure_rules/30/preserve"
     },
     {
       "code": "high_risk_unit_only",
@@ -8283,7 +8345,9 @@
       "condition": "小ticketだから高riskのC1/X1を省略",
       "backflow_owner": "OS検収/005",
       "preserve": "C1/X1のPR前証明不足を保持。",
-      "contract_ref": "HARNESS-L5-005-F03"
+      "contract_ref": "HARNESS-L5-005-F03",
+      "expected": "C1/X1のPR前証明不足を保持。",
+      "basis_ref": "docs/helix-harness/L5-detail-design/verification-discipline.json#/failure_rules/31/preserve"
     },
     {
       "code": "unrecovered_release",
@@ -8291,7 +8355,9 @@
       "condition": "未回収省略C1を残してPort通過を主張",
       "backflow_owner": "OS/Release Port owner",
       "preserve": "未回収C1とPort未成立を保持。",
-      "contract_ref": "HARNESS-L5-005-F03"
+      "contract_ref": "HARNESS-L5-005-F03",
+      "expected": "未回収C1とPort未成立を保持。",
+      "basis_ref": "docs/helix-harness/L5-detail-design/verification-discipline.json#/failure_rules/32/preserve"
     },
     {
       "code": "wrong_join_ticket",
@@ -8299,7 +8365,9 @@
       "condition": "小から小へ省略を渡して回収済み扱い",
       "backflow_owner": "OS推進/検収",
       "preserve": "小→中/大、中→大の元関係と不足を保持。",
-      "contract_ref": "HARNESS-L5-005-F03"
+      "contract_ref": "HARNESS-L5-005-F03",
+      "expected": "小→中/大、中→大の元関係と不足を保持。",
+      "basis_ref": "docs/helix-harness/L5-detail-design/verification-discipline.json#/failure_rules/33/preserve"
     },
     {
       "code": "nightly_recovery_default",
@@ -8307,7 +8375,9 @@
       "condition": "省略回収先を夜間全件へ黙って変更",
       "backflow_owner": "005/OS",
       "preserve": "採択した合流先ticket回収を保持。",
-      "contract_ref": "HARNESS-L5-005-F03"
+      "contract_ref": "HARNESS-L5-005-F03",
+      "expected": "採択した合流先ticket回収を保持。",
+      "basis_ref": "docs/helix-harness/L5-detail-design/verification-discipline.json#/failure_rules/34/preserve"
     },
     {
       "code": "coupling_unit_only",
@@ -8315,7 +8385,9 @@
       "condition": "AB/Xへ影響するのに小の単体だけで合流",
       "backflow_owner": "OS検収/接続構成体owner",
       "preserve": "当該PRのAB/X実証不足を保持。",
-      "contract_ref": "HARNESS-L5-005-F04"
+      "contract_ref": "HARNESS-L5-005-F04",
+      "expected": "当該PRのAB/X実証不足を保持。",
+      "basis_ref": "docs/helix-harness/L5-detail-design/verification-discipline.json#/failure_rules/35/preserve"
     },
     {
       "code": "refactor_as_proof",
@@ -8323,7 +8395,9 @@
       "condition": "Design-refactor発行だけで当該PR検査成立",
       "backflow_owner": "OS/設計owner",
       "preserve": "発行材料と現PR検査の成立を分離。",
-      "contract_ref": "HARNESS-L5-005-F04"
+      "contract_ref": "HARNESS-L5-005-F04",
+      "expected": "発行材料と現PR検査の成立を分離。",
+      "basis_ref": "docs/helix-harness/L5-detail-design/verification-discipline.json#/failure_rules/36/preserve"
     },
     {
       "code": "permanent_full_as_fix",
@@ -8331,7 +8405,9 @@
       "condition": "恒常全件CIで密結合設計不足を完了扱い",
       "backflow_owner": "設計owner",
       "preserve": "結合解消の別設計材料を残す。",
-      "contract_ref": "HARNESS-L5-005-F04"
+      "contract_ref": "HARNESS-L5-005-F04",
+      "expected": "結合解消の別設計材料を残す。",
+      "basis_ref": "docs/helix-harness/L5-detail-design/verification-discipline.json#/failure_rules/37/preserve"
     },
     {
       "code": "path_as_cause",
@@ -8339,7 +8415,9 @@
       "condition": "同じpathだけで後日失敗の原因ticket確定",
       "backflow_owner": "assessment-owner/LABO",
       "preserve": "因果根拠未決を保持。",
-      "contract_ref": "HARNESS-L5-005-F04"
+      "contract_ref": "HARNESS-L5-005-F04",
+      "expected": "因果根拠未決を保持。",
+      "basis_ref": "docs/helix-harness/L5-detail-design/verification-discipline.json#/failure_rules/38/preserve"
     },
     {
       "code": "time_as_cause",
@@ -8347,7 +8425,9 @@
       "condition": "時刻近接だけで原因ticket確定",
       "backflow_owner": "assessment-owner/LABO",
       "preserve": "証拠付きrelation不足を保持。",
-      "contract_ref": "HARNESS-L5-005-F04"
+      "contract_ref": "HARNESS-L5-005-F04",
+      "expected": "証拠付きrelation不足を保持。",
+      "basis_ref": "docs/helix-harness/L5-detail-design/verification-discipline.json#/failure_rules/39/preserve"
     },
     {
       "code": "overwrite_old_closure",
@@ -8355,7 +8435,9 @@
       "condition": "後日失敗で元closedをfailedへ上書き",
       "backflow_owner": "OS管理",
       "preserve": "元closureと追補assessmentを別に保持。",
-      "contract_ref": "HARNESS-L5-005-F04"
+      "contract_ref": "HARNESS-L5-005-F04",
+      "expected": "元closureと追補assessmentを別に保持。",
+      "basis_ref": "docs/helix-harness/L5-detail-design/verification-discipline.json#/failure_rules/40/preserve"
     },
     {
       "code": "material_as_labo_success",
@@ -8363,7 +8445,9 @@
       "condition": "LABO入力供給だけで評価成功を主張",
       "backflow_owner": "LABO",
       "preserve": "原記録集合は保持し評価結果不足を残す。",
-      "contract_ref": "HARNESS-L5-005-F04"
+      "contract_ref": "HARNESS-L5-005-F04",
+      "expected": "原記録集合は保持し評価結果不足を残す。",
+      "basis_ref": "docs/helix-harness/L5-detail-design/verification-discipline.json#/failure_rules/41/preserve"
     },
     {
       "code": "forbidden_edge",
@@ -8371,7 +8455,9 @@
       "condition": "domain→application禁止edgeを追加",
       "backflow_owner": "設計owner",
       "preserve": "禁止edgeを特定し元方向表を保存。",
-      "contract_ref": "HARNESS-L5-005-F05"
+      "contract_ref": "HARNESS-L5-005-F05",
+      "expected": "禁止edgeを特定し元方向表を保存。",
+      "basis_ref": "docs/helix-harness/L5-detail-design/verification-discipline.json#/failure_rules/42/preserve"
     },
     {
       "code": "forbidden_cycle",
@@ -8379,7 +8465,9 @@
       "condition": "CYCLE-ISOLATED-BASISの全辺許可・循環禁止tableを保持したままactualへcontract→applicationを追加",
       "backflow_owner": "設計owner",
       "preserve": "cycleの辺を特定し無関係edgeを保持。",
-      "contract_ref": "HARNESS-L5-005-F05"
+      "contract_ref": "HARNESS-L5-005-F05",
+      "expected": "cycleの辺を特定し無関係edgeを保持。",
+      "basis_ref": "docs/helix-harness/L5-detail-design/verification-discipline.json#/failure_rules/43/preserve"
     },
     {
       "code": "direction_table_missing",
@@ -8387,7 +8475,9 @@
       "condition": "宣言方向表を除去",
       "backflow_owner": "設計owner",
       "preserve": "表不足をunknownへ保持し旧表fallbackしない。",
-      "contract_ref": "HARNESS-L5-005-F05"
+      "contract_ref": "HARNESS-L5-005-F05",
+      "expected": "表不足をunknownへ保持し旧表fallbackしない。",
+      "basis_ref": "docs/helix-harness/L5-detail-design/verification-discipline.json#/failure_rules/44/preserve"
     },
     {
       "code": "foreign_scope_table",
@@ -8395,7 +8485,9 @@
       "condition": "PへQの方向表を転用",
       "backflow_owner": "設計owner",
       "preserve": "別scope表を被覆に数えない。",
-      "contract_ref": "HARNESS-L5-005-F05"
+      "contract_ref": "HARNESS-L5-005-F05",
+      "expected": "別scope表を被覆に数えない。",
+      "basis_ref": "docs/helix-harness/L5-detail-design/verification-discipline.json#/failure_rules/45/preserve"
     },
     {
       "code": "old_direction_auto_apply",
@@ -8403,7 +8495,9 @@
       "condition": "旧src/lint/runtime/schema表を全製品へ自動適用",
       "backflow_owner": "設計owner",
       "preserve": "旧表の原意味は保持し今回の宣言表を置換しない。",
-      "contract_ref": "HARNESS-L5-005-F05"
+      "contract_ref": "HARNESS-L5-005-F05",
+      "expected": "旧表の原意味は保持し今回の宣言表を置換しない。",
+      "basis_ref": "docs/helix-harness/L5-detail-design/verification-discipline.json#/failure_rules/46/preserve"
     },
     {
       "code": "direction_authority_unknown",
@@ -8411,7 +8505,9 @@
       "condition": "表の設計authority状態を不明化",
       "backflow_owner": "設計authority-owner",
       "preserve": "当該表で合格を生成しない。",
-      "contract_ref": "HARNESS-L5-005-F05"
+      "contract_ref": "HARNESS-L5-005-F05",
+      "expected": "当該表で合格を生成しない。",
+      "basis_ref": "docs/helix-harness/L5-detail-design/verification-discipline.json#/failure_rules/47/preserve"
     },
     {
       "code": "invariant_oracle_missing",
@@ -8419,7 +8515,9 @@
       "condition": "INV2に対応するoracleを除去",
       "backflow_owner": "検証設計owner",
       "preserve": "INV2不足とINV1有効対応を保持。",
-      "contract_ref": "HARNESS-L5-005-F06"
+      "contract_ref": "HARNESS-L5-005-F06",
+      "expected": "INV2不足とINV1有効対応を保持。",
+      "basis_ref": "docs/helix-harness/L5-detail-design/verification-discipline.json#/failure_rules/48/preserve"
     },
     {
       "code": "invariant_oracle_unresolved",
@@ -8427,7 +8525,9 @@
       "condition": "INV2 oracle参照を未解決にする",
       "backflow_owner": "検証設計owner",
       "preserve": "参照存在を被覆へ数えない。",
-      "contract_ref": "HARNESS-L5-005-F06"
+      "contract_ref": "HARNESS-L5-005-F06",
+      "expected": "参照存在を被覆へ数えない。",
+      "basis_ref": "docs/helix-harness/L5-detail-design/verification-discipline.json#/failure_rules/49/preserve"
     },
     {
       "code": "invariant_wrong_revision",
@@ -8435,7 +8535,9 @@
       "condition": "INV2 oracleの対象revisionをr0へ変更",
       "backflow_owner": "検証設計owner",
       "preserve": "当該旧oracleはr1被覆にならない。",
-      "contract_ref": "HARNESS-L5-005-F06"
+      "contract_ref": "HARNESS-L5-005-F06",
+      "expected": "当該旧oracleはr1被覆にならない。",
+      "basis_ref": "docs/helix-harness/L5-detail-design/verification-discipline.json#/failure_rules/50/preserve"
     },
     {
       "code": "invariant_wrong_behavior",
@@ -8443,7 +8545,9 @@
       "condition": "INV2 oracleを残高非負だけへ変更",
       "backflow_owner": "検証設計owner",
       "preserve": "件数/linkが同じでも重複event義務未被覆。",
-      "contract_ref": "HARNESS-L5-005-F06"
+      "contract_ref": "HARNESS-L5-005-F06",
+      "expected": "件数/linkが同じでも重複event義務未被覆。",
+      "basis_ref": "docs/helix-harness/L5-detail-design/verification-discipline.json#/failure_rules/51/preserve"
     },
     {
       "code": "trace_as_execution",
@@ -8451,7 +8555,9 @@
       "condition": "traceのみで振る舞い実成功を主張",
       "backflow_owner": "execution-owner",
       "preserve": "trace成立と未実行を分離。",
-      "contract_ref": "HARNESS-L5-005-F06"
+      "contract_ref": "HARNESS-L5-005-F06",
+      "expected": "trace成立と未実行を分離。",
+      "basis_ref": "docs/helix-harness/L5-detail-design/verification-discipline.json#/failure_rules/52/preserve"
     },
     {
       "code": "red_missing",
@@ -8459,7 +8565,9 @@
       "condition": "Red原結果を除去",
       "backflow_owner": "execution-owner/015",
       "preserve": "実装前Red不足を保持。",
-      "contract_ref": "HARNESS-L5-005-F07"
+      "contract_ref": "HARNESS-L5-005-F07",
+      "expected": "実装前Red不足を保持。",
+      "basis_ref": "docs/helix-harness/L5-detail-design/verification-discipline.json#/failure_rules/53/preserve"
     },
     {
       "code": "red_after_green",
@@ -8467,7 +8575,9 @@
       "condition": "RedをGreen後sequence5へ変更",
       "backflow_owner": "execution-owner/015",
       "preserve": "同oracleでも逆順を不成立。",
-      "contract_ref": "HARNESS-L5-005-F07"
+      "contract_ref": "HARNESS-L5-005-F07",
+      "expected": "同oracleでも逆順を不成立。",
+      "basis_ref": "docs/helix-harness/L5-detail-design/verification-discipline.json#/failure_rules/54/preserve"
     },
     {
       "code": "red_after_body",
@@ -8475,7 +8585,9 @@
       "condition": "Redを本体変更後かつGreen前sequence3.5へ変更",
       "backflow_owner": "execution-owner/015",
       "preserve": "Green前だけでは実装前Red保証を満たさない。",
-      "contract_ref": "HARNESS-L5-005-F07"
+      "contract_ref": "HARNESS-L5-005-F07",
+      "expected": "Green前だけでは実装前Red保証を満たさない。",
+      "basis_ref": "docs/helix-harness/L5-detail-design/verification-discipline.json#/failure_rules/55/preserve"
     },
     {
       "code": "red_not_executed",
@@ -8483,7 +8595,9 @@
       "condition": "Redをtest記述時刻だけへ置換",
       "backflow_owner": "execution-owner/015",
       "preserve": "実観測と記述を区別。",
-      "contract_ref": "HARNESS-L5-005-F07"
+      "contract_ref": "HARNESS-L5-005-F07",
+      "expected": "実観測と記述を区別。",
+      "basis_ref": "docs/helix-harness/L5-detail-design/verification-discipline.json#/failure_rules/56/preserve"
     },
     {
       "code": "ordering_unknown",
@@ -8491,7 +8605,9 @@
       "condition": "sequence/因果orderの根拠を除去",
       "backflow_owner": "execution-owner/015",
       "preserve": "壁時計文字列だけで順序を推測しない。",
-      "contract_ref": "HARNESS-L5-005-F07"
+      "contract_ref": "HARNESS-L5-005-F07",
+      "expected": "壁時計文字列だけで順序を推測しない。",
+      "basis_ref": "docs/helix-harness/L5-detail-design/verification-discipline.json#/failure_rules/57/preserve"
     },
     {
       "code": "mutation_as_pre_red",
@@ -8499,7 +8615,9 @@
       "condition": "実装後mutationを実装前Redの代替にする",
       "backflow_owner": "execution-owner/015",
       "preserve": "別の強度証拠を保持し実装前欠落を残す。",
-      "contract_ref": "HARNESS-L5-005-F07"
+      "contract_ref": "HARNESS-L5-005-F07",
+      "expected": "別の強度証拠を保持し実装前欠落を残す。",
+      "basis_ref": "docs/helix-harness/L5-detail-design/verification-discipline.json#/failure_rules/58/preserve"
     },
     {
       "code": "green_oracle_changed",
@@ -8507,7 +8625,9 @@
       "condition": "Green oracleを凍結時と別revisionへ変更",
       "backflow_owner": "検証設計owner/015",
       "preserve": "元凍結oracleのGreen不足を保持。",
-      "contract_ref": "HARNESS-L5-005-F07"
+      "contract_ref": "HARNESS-L5-005-F07",
+      "expected": "元凍結oracleのGreen不足を保持。",
+      "basis_ref": "docs/helix-harness/L5-detail-design/verification-discipline.json#/failure_rules/59/preserve"
     },
     {
       "code": "red_wrong_failure",
@@ -8515,7 +8635,9 @@
       "condition": "Red実失敗を起動エラーへ変更",
       "backflow_owner": "検証設計owner/015",
       "preserve": "意図した欠陥検出の不足を特定。",
-      "contract_ref": "HARNESS-L5-005-F07"
+      "contract_ref": "HARNESS-L5-005-F07",
+      "expected": "意図した欠陥検出の不足を特定。",
+      "basis_ref": "docs/helix-harness/L5-detail-design/verification-discipline.json#/failure_rules/60/preserve"
     },
     {
       "code": "oracle_no_assertion",
@@ -8523,7 +8645,9 @@
       "condition": "oracleの判定内容を除去",
       "backflow_owner": "検証設計owner",
       "preserve": "実行欄だけでは具体期待を判定しない。",
-      "contract_ref": "HARNESS-L5-005-F08"
+      "contract_ref": "HARNESS-L5-005-F08",
+      "expected": "実行欄だけでは具体期待を判定しない。",
+      "basis_ref": "docs/helix-harness/L5-detail-design/verification-discipline.json#/failure_rules/61/preserve"
     },
     {
       "code": "oracle_truthiness",
@@ -8531,7 +8655,9 @@
       "condition": "equal5を結果truthinessだけへ変更",
       "backflow_owner": "検証設計owner",
       "preserve": "5/6両方truthyで欠陥を見逃す弱さを指摘。",
-      "contract_ref": "HARNESS-L5-005-F08"
+      "contract_ref": "HARNESS-L5-005-F08",
+      "expected": "5/6両方truthyで欠陥を見逃す弱さを指摘。",
+      "basis_ref": "docs/helix-harness/L5-detail-design/verification-discipline.json#/failure_rules/62/preserve"
     },
     {
       "code": "expected_from_implementation",
@@ -8539,7 +8665,9 @@
       "condition": "実装が返す6を期待値の正本とする",
       "backflow_owner": "検証設計owner",
       "preserve": "独立期待5と不一致を保持。",
-      "contract_ref": "HARNESS-L5-005-F08"
+      "contract_ref": "HARNESS-L5-005-F08",
+      "expected": "独立期待5と不一致を保持。",
+      "basis_ref": "docs/helix-harness/L5-detail-design/verification-discipline.json#/failure_rules/63/preserve"
     },
     {
       "code": "same_pass_defect",
@@ -8547,7 +8675,9 @@
       "condition": "違反6と正解5へ同じ成功を返す",
       "backflow_owner": "検証設計owner",
       "preserve": "欠陥非識別を対象behaviorへ結ぶ。",
-      "contract_ref": "HARNESS-L5-005-F08"
+      "contract_ref": "HARNESS-L5-005-F08",
+      "expected": "欠陥非識別を対象behaviorへ結ぶ。",
+      "basis_ref": "docs/helix-harness/L5-detail-design/verification-discipline.json#/failure_rules/64/preserve"
     },
     {
       "code": "gwt_then_missing",
@@ -8555,7 +8685,9 @@
       "condition": "Then期待を除去",
       "backflow_owner": "結合検証設計owner",
       "preserve": "前提/操作を保持し期待観測不足を示す。",
-      "contract_ref": "HARNESS-L5-005-F09"
+      "contract_ref": "HARNESS-L5-005-F09",
+      "expected": "前提/操作を保持し期待観測不足を示す。",
+      "basis_ref": "docs/helix-harness/L5-detail-design/verification-discipline.json#/failure_rules/65/preserve"
     },
     {
       "code": "gwt_labels_only",
@@ -8563,7 +8695,9 @@
       "condition": "Given/When/Thenを空の名前だけへ変更",
       "backflow_owner": "結合検証設計owner",
       "preserve": "名前で被覆を生成しない。",
-      "contract_ref": "HARNESS-L5-005-F09"
+      "contract_ref": "HARNESS-L5-005-F09",
+      "expected": "名前で被覆を生成しない。",
+      "basis_ref": "docs/helix-harness/L5-detail-design/verification-discipline.json#/failure_rules/66/preserve"
     },
     {
       "code": "gwt_foreign_scope",
@@ -8571,7 +8705,9 @@
       "condition": "結合oracleにQ結果を転用",
       "backflow_owner": "結合検証設計owner",
       "preserve": "Pの同pair不足を保持。",
-      "contract_ref": "HARNESS-L5-005-F09"
+      "contract_ref": "HARNESS-L5-005-F09",
+      "expected": "Pの同pair不足を保持。",
+      "basis_ref": "docs/helix-harness/L5-detail-design/verification-discipline.json#/failure_rules/67/preserve"
     },
     {
       "code": "old_layer_label_only",
@@ -8579,7 +8715,9 @@
       "condition": "旧L8/L9番号だけでcurrent pairを適用",
       "backflow_owner": "設計/検証owner",
       "preserve": "意味/種類/対応根拠不足を保持。",
-      "contract_ref": "HARNESS-L5-005-F09"
+      "contract_ref": "HARNESS-L5-005-F09",
+      "expected": "意味/種類/対応根拠不足を保持。",
+      "basis_ref": "docs/helix-harness/L5-detail-design/verification-discipline.json#/failure_rules/68/preserve"
     },
     {
       "code": "gwt_failure_missing",
@@ -8587,7 +8725,9 @@
       "condition": "失敗経路の期待を除去",
       "backflow_owner": "結合検証設計owner",
       "preserve": "再送重複eventの失敗経路を未被覆へ。",
-      "contract_ref": "HARNESS-L5-005-F09"
+      "contract_ref": "HARNESS-L5-005-F09",
+      "expected": "再送重複eventの失敗経路を未被覆へ。",
+      "basis_ref": "docs/helix-harness/L5-detail-design/verification-discipline.json#/failure_rules/69/preserve"
     },
     {
       "code": "unknown_as_na",
@@ -8595,7 +8735,9 @@
       "condition": "integration unknownをN/Aへ変更",
       "backflow_owner": "CORE/005",
       "preserve": "入力不明と正当非適用を分離。",
-      "contract_ref": "HARNESS-L5-005-N01"
+      "contract_ref": "HARNESS-L5-005-N01",
+      "expected": "入力不明と正当非適用を分離。",
+      "basis_ref": "docs/helix-harness/L5-detail-design/verification-discipline.json#/failure_rules/70/preserve"
     },
     {
       "code": "unknown_as_zero",
@@ -8603,7 +8745,9 @@
       "condition": "規律未評価を0違反へ変更",
       "backflow_owner": "005/検証owner",
       "preserve": "未評価scopeと戻し先を保持。",
-      "contract_ref": "HARNESS-L5-005-N01"
+      "contract_ref": "HARNESS-L5-005-N01",
+      "expected": "未評価scopeと戻し先を保持。",
+      "basis_ref": "docs/helix-harness/L5-detail-design/verification-discipline.json#/failure_rules/71/preserve"
     },
     {
       "code": "unknown_rule_fallback",
@@ -8611,7 +8755,9 @@
       "condition": "identity不明ruleを既知directionへ置換",
       "backflow_owner": "005契約owner",
       "preserve": "原identity不明をそのまま不足とする。",
-      "contract_ref": "HARNESS-L5-005-N01"
+      "contract_ref": "HARNESS-L5-005-N01",
+      "expected": "原identity不明をそのまま不足とする。",
+      "basis_ref": "docs/helix-harness/L5-detail-design/verification-discipline.json#/failure_rules/72/preserve"
     },
     {
       "code": "other_rule_cancels",
@@ -8619,7 +8765,9 @@
       "condition": "direction成功でintegration不足を相殺",
       "backflow_owner": "005/検証owner",
       "preserve": "規律ごとの未完義務を独立保存。",
-      "contract_ref": "HARNESS-L5-005-N01"
+      "contract_ref": "HARNESS-L5-005-N01",
+      "expected": "規律ごとの未完義務を独立保存。",
+      "basis_ref": "docs/helix-harness/L5-detail-design/verification-discipline.json#/failure_rules/73/preserve"
     },
     {
       "code": "na_reason_missing",
@@ -8627,7 +8775,9 @@
       "condition": "TDD N/A理由を除去",
       "backflow_owner": "CORE009",
       "preserve": "判定者/revision/再評価条件も既存009へ結ぶ。",
-      "contract_ref": "HARNESS-L5-005-N01"
+      "contract_ref": "HARNESS-L5-005-N01",
+      "expected": "判定者/revision/再評価条件も既存009へ結ぶ。",
+      "basis_ref": "docs/helix-harness/L5-detail-design/verification-discipline.json#/failure_rules/74/preserve"
     },
     {
       "code": "na_decider_missing",
@@ -8635,7 +8785,9 @@
       "condition": "TDD N/A判定者を除去",
       "backflow_owner": "CORE009",
       "preserve": "N/Aの原判断不足を保持。",
-      "contract_ref": "HARNESS-L5-005-N01"
+      "contract_ref": "HARNESS-L5-005-N01",
+      "expected": "N/Aの原判断不足を保持。",
+      "basis_ref": "docs/helix-harness/L5-detail-design/verification-discipline.json#/failure_rules/75/preserve"
     },
     {
       "code": "na_revision_wrong",
@@ -8643,7 +8795,9 @@
       "condition": "TDD N/A対象revisionをr0へ変更",
       "backflow_owner": "CORE009",
       "preserve": "r1へN/A継承しない。",
-      "contract_ref": "HARNESS-L5-005-N01"
+      "contract_ref": "HARNESS-L5-005-N01",
+      "expected": "r1へN/A継承しない。",
+      "basis_ref": "docs/helix-harness/L5-detail-design/verification-discipline.json#/failure_rules/76/preserve"
     },
     {
       "code": "na_reevaluation_missing",
@@ -8651,7 +8805,9 @@
       "condition": "TDD N/A再評価条件を除去",
       "backflow_owner": "CORE009",
       "preserve": "N/A消込にせず不足を残す。",
-      "contract_ref": "HARNESS-L5-005-N01"
+      "contract_ref": "HARNESS-L5-005-N01",
+      "expected": "N/A消込にせず不足を残す。",
+      "basis_ref": "docs/helix-harness/L5-detail-design/verification-discipline.json#/failure_rules/77/preserve"
     },
     {
       "code": "unseen_as_proven",
@@ -8659,7 +8815,9 @@
       "condition": "未公開検証未実行を成功へ変更",
       "backflow_owner": "independent-verification-owner",
       "preserve": "未観測/未実行を維持し新一律gateを追加しない。",
-      "contract_ref": "HARNESS-L5-005-N01"
+      "contract_ref": "HARNESS-L5-005-N01",
+      "expected": "未観測/未実行を維持し新一律gateを追加しない。",
+      "basis_ref": "docs/helix-harness/L5-detail-design/verification-discipline.json#/failure_rules/78/preserve"
     },
     {
       "code": "backup_as_restore",
@@ -8667,7 +8825,9 @@
       "condition": "backup/snapshot存在でrestore成功を主張",
       "backflow_owner": "product-verification-owner",
       "preserve": "restore未実行を保持。",
-      "contract_ref": "HARNESS-L5-005-N02"
+      "contract_ref": "HARNESS-L5-005-N02",
+      "expected": "restore未実行を保持。",
+      "basis_ref": "docs/helix-harness/L5-detail-design/verification-discipline.json#/failure_rules/79/preserve"
     },
     {
       "code": "rollback_as_permanent",
@@ -8675,7 +8835,9 @@
       "condition": "rollback成功で恒久修復完了を主張",
       "backflow_owner": "product-verification-owner",
       "preserve": "恒久修復の別結果不足を保持。",
-      "contract_ref": "HARNESS-L5-005-N02"
+      "contract_ref": "HARNESS-L5-005-N02",
+      "expected": "恒久修復の別結果不足を保持。",
+      "basis_ref": "docs/helix-harness/L5-detail-design/verification-discipline.json#/failure_rules/80/preserve"
     },
     {
       "code": "rollback_as_prevention",
@@ -8683,7 +8845,9 @@
       "condition": "rollback成功で再発防止完了を主張",
       "backflow_owner": "product-verification-owner",
       "preserve": "再発防止未実行を保持。",
-      "contract_ref": "HARNESS-L5-005-N02"
+      "contract_ref": "HARNESS-L5-005-N02",
+      "expected": "再発防止未実行を保持。",
+      "basis_ref": "docs/helix-harness/L5-detail-design/verification-discipline.json#/failure_rules/81/preserve"
     },
     {
       "code": "foreign_environment_recovery",
@@ -8691,7 +8855,9 @@
       "condition": "別環境restore結果を今回へ転用",
       "backflow_owner": "product-verification-owner",
       "preserve": "対象環境のrestore不足を保持。",
-      "contract_ref": "HARNESS-L5-005-N02"
+      "contract_ref": "HARNESS-L5-005-N02",
+      "expected": "対象環境のrestore不足を保持。",
+      "basis_ref": "docs/helix-harness/L5-detail-design/verification-discipline.json#/failure_rules/82/preserve"
     },
     {
       "code": "fixed_global_rto",
@@ -8699,7 +8865,9 @@
       "condition": "規範から全製品同じRTO/RPOを生成",
       "backflow_owner": "product-requirement-owner",
       "preserve": "個別製品値未供給と元結果を維持。",
-      "contract_ref": "HARNESS-L5-005-N02"
+      "contract_ref": "HARNESS-L5-005-N02",
+      "expected": "個別製品値未供給と元結果を維持。",
+      "basis_ref": "docs/helix-harness/L5-detail-design/verification-discipline.json#/failure_rules/83/preserve"
     }
   ],
   "storage_boundary": {
