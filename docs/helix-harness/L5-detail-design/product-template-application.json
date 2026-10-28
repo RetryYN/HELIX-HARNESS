@@ -4885,6 +4885,7 @@
       },
       "selected_design_ja": "B02-NEG-01/02の単軸差をfixtureの任意RawValue keyで推測しないため、ApplicationInputへ独立optional ai_name:string|nullとlanguage_name:string|nullを設計候補として追加する。nonsemantic_metadata:RawValueは閉じずopaqueに保持し、RawValue key allowlist/aliasは追加しない。現source implementation/producer/validator/consumerは未変更で、接続・独立review前は両case停止を維持する。B02の承認済み意味やL3/L10は変更しない。",
       "basis_kind_design_ja": "SemanticComparisonへoptional closed basis_kind=semantic_meaning|count_only候補を追加する。欠落値は旧consumerでは旧SemanticComparison契約の解釈を保つが、新FN8 pair callerでは明示basisを証明しない。このlabelだけでsource資格、same_meaningの真偽、binding、集合対応を証明しない。basis_kind=nullまたは未定義文字列はclosed enum/schema違反として入力不適合にし、意味根拠に使わない。same_meaningの欠落/nullは従来どおりunknownで、true/falseの証拠へ補完しない。count_onlyはsame_meaning=true/falseのいずれでも意味比較として消費しない。",
+      "consumer_candidate_scope_ja": "次の各consumerの扱いは設計候補であり、現行のfunctions/1、functions/3、functions/7の凍結済み関数契約をこの節で変更しない。各関数へのbasis_kind反映は、対象L5関数契約とfailure_ruleおよびL8 U-IDを整合させ、generate-freezeによる再凍結と独立reviewを経た後にRed→Greenで実装する。",
       "consumer_candidate_semantics": {
         "application_required_axes.py": "SemanticComparisonがbasis_kind=count_onlyならsame_meaning true/falseを意味相反判定へ使わない。独立したmatching AxisFactの値差による既存conflictはそのまま判定可能。basis_kind欠落は既存recordとして既存動作を保持し、same_meaning=falseのみ既存どおり候補端が一致する場合に相反、true/null/missingでは相反にしない。new pair callerではbasis_kind欠落recordを明示semantic basisと認めない。",
         "application_applicability_condition_evaluation.py": "qualified comparison missing/invalid referenceは既存どおりunresolved。legacy basis_kind absentは互換のため既存same_meaning=true=>true、false=>false、null/missing=>unknownを保持。basis_kind=count_onlyはsame_meaning=true/falseのいずれもcondition truthへ使わずunresolved（semantic basis不足）とする。basis_kind=semantic_meaningはqualification/endpointsが成立する場合だけ既存真偽分岐へ渡す。",
@@ -4914,7 +4915,7 @@
         "ApplicationInputを保持・射影するwire/native crosswalkとCoreApplicationInputはoptional memberを落とさず、既存unknown/opaque handlingと整合するか再照合する。現source検索ではnonsemantic_metadataのnested keyを読む実装consumerは未発見。",
         "tests/fixtures/application_input.jsonとtest_compare_semantic_equivalence.py、test_compare_required_axes.py、test_compare_applicability.py、test_compare_meaning_impacts.pyを、L5設計の実装・test作業で更新範囲として再照合する。本WR158ではfixture/test/sourceは変更しない。"
       ],
-      "reentry_condition": "L5設計候補の独立review後、既存source input producer/validatorへnullable typed fieldsを接続し、全consumerが保存・解釈境界を守って実snapshotへ供給するまでNEG-01/02はstopped_missing_typed_metadata_memberを維持する。count_only追加時は既存same_meaning consumerをsemantic basisへ昇格させないguardを接続する。人の判断は上流意味を変える場合、またはauthority-state modelが対象revisionのdecisionを要求する場合に限る。この記載は別承認gateを追加しない。"
+      "reentry_condition": "L5設計候補の独立review後、既存source input producer/validatorへnullable typed fieldsを接続し、全consumerが保存・解釈境界を守って実snapshotへ供給するまでNEG-01/02はstopped_missing_typed_metadata_memberを維持する。fn1/fn3/fn7へのbasis_kind反映は、それぞれのL5 functions契約・failure_rule・L8 U-IDを整合しgenerate-freezeで再凍結し、独立review後にRed→Greenで実装する。それまではconsumer_candidate_semanticsを当該関数の現行契約と読み替えない。人の判断は上流意味を変える場合、またはauthority-state modelが対象revisionのdecisionを要求する場合に限る。この記載は別承認gateを追加しない。"
     },
     "legacy_and_failure_basis": [
       {
