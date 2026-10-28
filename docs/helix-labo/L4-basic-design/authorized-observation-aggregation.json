@@ -195,7 +195,41 @@
         "episode/要求/ticket/責務/製品/機構/Worker/provider/model/configuration/artifact/CI-test/release/deployment/runtime/failure/rework/cost/time/resultを結べる表現を持つ。未発生と欠落を区別し、ない値を0/成功/推測へ変換しない。",
         "権限外やsecret dataを取込対象にしない。source/SEC ownerへ不足を戻し該当観測を保留する。"
       ],
-      "representation_limit": "合成参照/state/未発生/欠落の内容例。正式schema/実source/全接続を採用しない。"
+      "representation_limit": "合成参照/state/未発生/欠落の内容例。正式schema/実source/全接続を採用しない。",
+      "oracle_ref": "HELIXLABO-L9-001-F01",
+      "integration_case_refs": [
+        "LABO001-F01-TWO-SOURCES-DIFFERENT-OWNERS",
+        "LABO001-F01-SOURCE-identity-MISSING",
+        "LABO001-F01-SOURCE-revision-MISSING",
+        "LABO001-F01-SOURCE-provenance_ref-MISSING",
+        "LABO001-F01-FIELD-episode_id-UNOBSERVED",
+        "LABO001-F01-FIELD-requirement_revision-UNOBSERVED",
+        "LABO001-F01-FIELD-ticket_id-UNOBSERVED",
+        "LABO001-F01-FIELD-responsibility_id-UNOBSERVED",
+        "LABO001-F01-FIELD-product-UNOBSERVED",
+        "LABO001-F01-FIELD-mechanism-UNOBSERVED",
+        "LABO001-F01-FIELD-worker-UNOBSERVED",
+        "LABO001-F01-FIELD-provider-UNOBSERVED",
+        "LABO001-F01-FIELD-model-UNOBSERVED",
+        "LABO001-F01-FIELD-configuration-UNOBSERVED",
+        "LABO001-F01-FIELD-artifact-UNOBSERVED",
+        "LABO001-F01-FIELD-CI_test-UNOBSERVED",
+        "LABO001-F01-FIELD-release-UNOBSERVED",
+        "LABO001-F01-FIELD-deployment-UNOBSERVED",
+        "LABO001-F01-FIELD-runtime-UNOBSERVED",
+        "LABO001-F01-FIELD-failure-UNOBSERVED",
+        "LABO001-F01-FIELD-rework-UNOBSERVED",
+        "LABO001-F01-FIELD-cost-UNOBSERVED",
+        "LABO001-F01-FIELD-time-UNOBSERVED",
+        "LABO001-F01-FIELD-result-UNOBSERVED",
+        "LABO001-F01-RELEASE-NOT-OCCURRED-EXPLICIT",
+        "LABO001-F01-PERMISSION-OUTSIDE-SCOPE",
+        "LABO001-F01-CLASSIFICATION-NOT-PERMITTED",
+        "LABO001-F01-REJECT-missing_revision_is_current",
+        "LABO001-F01-REJECT-secret_ingestion_allowed",
+        "LABO001-F01-REJECT-invent_provenance",
+        "LABO001-F01-OTHER-KNOWN-SCOPE-REVISION"
+      ]
     },
     {
       "id": "HELIXLABO-L4-001-F02",
@@ -341,7 +375,41 @@
           "expected_domain": "product_result"
         }
       ],
-      "shared_case_reason": "21領域を全件対応付ける。Worker領域はSTATE-failureの原入力 original_sources[0].domain=Worker（Worker実行結果）で検証する。同一入力のDOMAIN-Workerを別件へ増やさず、Worker領域とfailure原状態の二義務をこの同一例で確認する。field worker の存在だけを被覆根拠にしない。"
+      "shared_case_reason": "21領域を全件対応付ける。Worker領域はSTATE-failureの原入力 original_sources[0].domain=Worker（Worker実行結果）で検証する。同一入力のDOMAIN-Workerを別件へ増やさず、Worker領域とfailure原状態の二義務をこの同一例で確認する。field worker の存在だけを被覆根拠にしない。",
+      "oracle_ref": "HELIXLABO-L9-001-F02",
+      "integration_case_refs": [
+        "LABO001-F02-STATE-success",
+        "LABO001-F02-STATE-failure",
+        "LABO001-F02-STATE-rejected",
+        "LABO001-F02-STATE-cancelled",
+        "LABO001-F02-STATE-blocked",
+        "LABO001-F02-STATE-unknown",
+        "LABO001-F02-STATE-not_observed",
+        "LABO001-F02-DOMAIN-development",
+        "LABO001-F02-DOMAIN-AI_judgment",
+        "LABO001-F02-DOMAIN-CI",
+        "LABO001-F02-DOMAIN-test",
+        "LABO001-F02-DOMAIN-review",
+        "LABO001-F02-DOMAIN-backflow",
+        "LABO001-F02-DOMAIN-recovery",
+        "LABO001-F02-DOMAIN-incident",
+        "LABO001-F02-DOMAIN-refactor",
+        "LABO001-F02-DOMAIN-release",
+        "LABO001-F02-DOMAIN-deployment",
+        "LABO001-F02-DOMAIN-runtime",
+        "LABO001-F02-DOMAIN-usage",
+        "LABO001-F02-DOMAIN-rework",
+        "LABO001-F02-DOMAIN-cost",
+        "LABO001-F02-DOMAIN-token_API",
+        "LABO001-F02-DOMAIN-model_provider",
+        "LABO001-F02-DOMAIN-correction",
+        "LABO001-F02-DOMAIN-rollback",
+        "LABO001-F02-DOMAIN-product_result",
+        "LABO001-F02-SOURCE-NOT-OCCURRED",
+        "LABO001-F02-REJECT-success_only_filter",
+        "LABO001-F02-REJECT-unknown_is_success",
+        "LABO001-F02-REJECT-not_observed_is_observed"
+      ]
     },
     {
       "id": "HELIXLABO-L4-001-N01",
@@ -358,7 +426,24 @@
         "要求revision、選択source exact set、source-result-contract revision、操作/scope/状態と受領・評価証拠の参照を結ぶ。未見版/別scope/一境界の許可・receipt欠落を未観測のまま返す。",
         "field存在/件数/fixture greenを全source完成、評価完了や別scopeの成功へ外挿しない。未実行/評価不能/適用限界を保持する。"
       ],
-      "representation_limit": "合成参照/state/未発生/欠落の内容例。正式schema/実source/全接続を採用しない。"
+      "representation_limit": "合成参照/state/未発生/欠落の内容例。正式schema/実source/全接続を採用しない。",
+      "oracle_ref": "HELIXLABO-L9-001-N01",
+      "integration_case_refs": [
+        "LABO001-N01-EXACT-SCOPE-RECEIPT",
+        "LABO001-N01-RECEIPT-requirement_revision-FOREIGN",
+        "LABO001-N01-RECEIPT-sources-FOREIGN",
+        "LABO001-N01-RECEIPT-source_result_revision-FOREIGN",
+        "LABO001-N01-RECEIPT-contract_revision-FOREIGN",
+        "LABO001-N01-RECEIPT-operation-FOREIGN",
+        "LABO001-N01-RECEIPT-scope-FOREIGN",
+        "LABO001-N01-RECEIPT-state-FOREIGN",
+        "LABO001-N01-permission-MISSING",
+        "LABO001-N01-receipt-MISSING",
+        "LABO001-N01-SOURCE-REVISION-UNSEEN",
+        "LABO001-N01-REJECT-count_is_all_complete",
+        "LABO001-N01-REJECT-foreign_scope_inherits_success",
+        "LABO001-N01-REJECT-field_presence_is_evaluation"
+      ]
     },
     {
       "id": "HELIXLABO-L4-001-B01",
@@ -375,7 +460,17 @@
         "原記録とLABO observationを別identity/ownerへ保持し、source正本/state/authorityを書き換えない。",
         "観測取込の内容成立を評価、assignment/実行許可、全source能力完成にしない。不成立はsource/SEC/OSの該当ownerへ返す。"
       ],
-      "representation_limit": "合成参照/state/未発生/欠落の内容例。正式schema/実source/全接続を採用しない。"
+      "representation_limit": "合成参照/state/未発生/欠落の内容例。正式schema/実source/全接続を採用しない。",
+      "oracle_ref": "HELIXLABO-L9-001-B01",
+      "integration_case_refs": [
+        "LABO001-B01-SOURCE-OBSERVATION-SEPARATE",
+        "LABO001-B01-OBSERVATION-USES-SOURCE-IDENTITY",
+        "LABO001-B01-OBSERVATION-OWNER-IS-SOURCE",
+        "LABO001-B01-REJECT-labo_source_writeback",
+        "LABO001-B01-REJECT-observation_grants_assignment",
+        "LABO001-B01-REJECT-ingestion_is_evaluation",
+        "LABO001-B01-REJECT-all_source_capabilities_complete"
+      ]
     }
   ]
 }
