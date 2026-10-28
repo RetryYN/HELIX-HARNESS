@@ -1,0 +1,554 @@
+{
+  "schema": "helix-os002-owner-input-path-feasibility-audit-v1",
+  "audit_id": "OS002-WR166-OWNER-INPUT-PATH-FEASIBILITY-2026-10-29",
+  "request_id": "WR166-OS002-OWNER-INPUT-PATHS",
+  "basis_commit": "0eb9a606591061b2904586d96e17cc832426d8dd",
+  "recorded_at_utc": "2026-10-28T21:03:22Z",
+  "evidence_kind": "bounded_static_owner_input_path_audit",
+  "authority_effect": "none",
+  "status": "incomplete_owner_material_routes",
+  "scope": {
+    "mechanism": "HELIX-OS",
+    "pair": "OS002",
+    "cases": [
+      {
+        "id": "HELIXOS-L8-002-B02",
+        "paths": [
+          "/cases/1/negative_cases/3",
+          "/cases/1/negative_cases/4"
+        ],
+        "source_refs": [
+          "HELIXOS-L3-002-F02",
+          "HELIXOS-L10-002-F02",
+          "HELIXOS-L4-002-B02",
+          "HELIXOS-L9-002-B02"
+        ],
+        "L4_pointer": "/contracts/1",
+        "L9_pointer": "/cases/1"
+      },
+      {
+        "id": "HELIXOS-L8-002-F07",
+        "paths": [
+          "/cases/8/negative_cases/3"
+        ],
+        "source_refs": [
+          "HELIXOS-L3-002-F07",
+          "HELIXOS-L10-002-F07",
+          "HELIXOS-L4-002-F07",
+          "HELIXOS-L9-002-F07"
+        ],
+        "L4_pointer": "/contracts/8",
+        "L9_pointer": "/cases/8"
+      },
+      {
+        "id": "HELIXOS-L8-002-F08",
+        "paths": [
+          "/cases/9/negative_cases/5"
+        ],
+        "source_refs": [
+          "HELIXOS-L3-002-F08",
+          "HELIXOS-L10-002-F08",
+          "HELIXOS-L4-002-F08",
+          "HELIXOS-L9-002-F08"
+        ],
+        "L4_pointer": "/contracts/9",
+        "L9_pointer": "/cases/9"
+      }
+    ],
+    "changes_to_formal_design": false,
+    "execution_or_runtime_evidence": false,
+    "freeze_generation": false
+  },
+  "requirement_basis": [
+    {
+      "id": "HELIXOS-L3-002-F02",
+      "path": "docs/helix-os/L3-requirements/functional-requirements.json#/requirements/9",
+      "obligation": "project/製品scope、要求identity/revision、HARNESS契約版、CORE009の選択/判定/義務/不足/意味影響候補と根拠、BRAIN template identity/version/意味契約revision/利用状態を照合する。提案set・案件が選択したset・実際に使用したsetを分け、各記録の所属setを示す。"
+    },
+    {
+      "id": "HELIXOS-L10-002-F02",
+      "path": "docs/helix-os/L10-verification/functional-verification.json#/cases/9",
+      "expectation": "異なる三集合とその根拠/選択/使用の出所を与えて再構築する。"
+    },
+    {
+      "id": "HELIXOS-L3-002-F07",
+      "path": "docs/helix-os/L3-requirements/functional-requirements.json#/requirements/14",
+      "obligation": "同projectの使用template旧新版とCOREの意味影響対象/理由を再評価する要求・義務・成果・pairのrevision/scopeへ結ぶ。旧版利用/stale/再評価待ち/影響Unknownを区別する。意味影響をOSが独自算出せず、無関係な有効scopeを保持する。"
+    },
+    {
+      "id": "HELIXOS-L10-002-F07",
+      "path": "docs/helix-os/L10-verification/functional-verification.json#/cases/14",
+      "expectation": "意味変更と意味不変のview変更、影響scope内外の入力とCOREの結果を照合する。"
+    },
+    {
+      "id": "HELIXOS-L3-002-F08",
+      "path": "docs/helix-os/L3-requirements/functional-requirements.json#/requirements/15",
+      "obligation": "005/024を通じLABOへ渡す選択評価scopeについてproject・要求revision・使用template版・期間、原記録集合と抽出根拠、包含/除外対象と理由、重複/再送の対応、未接続/未観測/未回収/比較不能を結ぶ。LABO指定/合意の範囲と必要入力が未決なら不完全として示す。"
+    },
+    {
+      "id": "HELIXOS-L10-002-F08",
+      "path": "docs/helix-os/L10-verification/functional-verification.json#/cases/15",
+      "expectation": "二project以上と異なるtemplate版/期間を与え、選択評価scopeに対する原記録集合と欠測/除外/重複を再構築する。"
+    }
+  ],
+  "owner_findings": [
+    {
+      "owner": "HARNESS009",
+      "sources": [
+        {
+          "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+          "document_id": "HARNESS-L4-009-PRODUCT-TEMPLATE-APPLICATION",
+          "source_main": "af8ebde536860ef45bf8213b3cdc86e76079ed5e",
+          "status": "draft_candidate_not_independently_reviewed",
+          "file_sha256_at_basis": "4330847017a409ef45500e14d73dfc1170489549b23d0f642f6927322d6bb4b3",
+          "pointers": [
+            "/contracts/0",
+            "/contracts/1",
+            "/contracts/2",
+            "/contracts/3",
+            "/contracts/8"
+          ]
+        },
+        {
+          "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+          "document_id": "HARNESS-L5-009-PRODUCT-TEMPLATE-APPLICATION",
+          "source_main": "1b50e0e105f0d51b902b26ba0e48d66381705360",
+          "status": "draft_candidate_not_independently_reviewed",
+          "file_sha256_at_basis": "8eaf2ec3914857c08191831423259c417927e61e30caee53d2fd9dd6af162dfb",
+          "pointers": [
+            "/type_contract/types/ApplicationAnalysis",
+            "/type_contract/types/CandidateUniverseMaterial",
+            "/type_contract/types/ApplicabilityMaterial",
+            "/functions/2",
+            "/functions/3",
+            "/functions/10",
+            "/contracts/1",
+            "/contracts/2",
+            "/contracts/3",
+            "/contracts/8"
+          ]
+        }
+      ],
+      "available_material": "候補set・適用候補・義務/不足/影響等の論理material型と関数設計はある。ApplicationAnalysisの意味は候補materialのみで、selected/used/採択/実受領/OS完了を出力しない。L4/L5とも独立review前の候補設計で、実producer/runtimeの成立を示さない。",
+      "not_available": "OS002が選択・使用したtemplate set/版の成立を示すHARNESS owner出力、選択操作と同一identity/revision/scopeのCORE適用済み出力を供給するレビュー済み公開型・実取得路は確認できない。候補logical typeを既存の正式consumer型へ昇格しない。",
+      "reentry": "HARNESS/COREが同一bindingに結ぶowner出力と取得路を既存公開契約として成立させ、独立review後にOS002入力型・caseを再照合する。OS002は候補を選択済み/適用済みへ変換しない。"
+    },
+    {
+      "owner": "BRAIN032",
+      "sources": [
+        {
+          "path": "docs/helix-brain/L4-basic-design/template-semantic-supply.json",
+          "document_id": "HELIXBRAIN-L4-032-TEMPLATE-SEMANTIC-SUPPLY",
+          "source_main": "a7b2cd9130f404a3c496b2f0212e6cb882f80f28",
+          "status": "candidate_pending_independent_review",
+          "file_sha256_at_basis": "eae6011c70b310c68b5b28c43aeb48402da2a711bfa4a577c8af39b88b1a2b50",
+          "pointers": [
+            "/authority_boundary",
+            "/adopted_knowledge_inputs",
+            "/contracts/0",
+            "/contracts/1",
+            "/contracts/2"
+          ]
+        },
+        {
+          "path": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
+          "document_id": "HELIXBRAIN-L5-032-TEMPLATE-SEMANTIC-SUPPLY",
+          "source_main": "fabd7834720a6ddc3f02553034de25b51ac4fc5a",
+          "status": "draft_candidate_not_independently_reviewed",
+          "file_sha256_at_basis": "7528975453b57c3bd34bdf5c9ffacfa0dc0467d2dee2e69d8bd6683bae965bc0",
+          "pointers": [
+            "/type_contract/types/SupplyAnalysis",
+            "/type_contract/types/MeaningFact",
+            "/type_contract/types/DescriptorSlot",
+            "/type_contract/types/ApplicabilityRecord",
+            "/functions/2",
+            "/contracts/0",
+            "/contracts/1"
+          ]
+        }
+      ],
+      "available_material": "意味fact/descriptor/applicabilityと候補供給analysisの論理型がある。これはtemplateの意味素材であり、OS選択・使用、HARNESS適用、CORE適用済み出力を示さない。BRAIN L4/L5とも候補状態で独立review未了。",
+      "not_available": "同一OS operationに供給したtemplate set/版・意味契約を、選択/使用済みとして確立する既存のレビュー済みowner outputと取得路は確認できない。",
+      "reentry": "BRAINが既存公開契約内でowner sourceのidentity/revision/scopeと取得路を確立し、HARNESS/CORE出力との結合が独立reviewされた後に再照合する。"
+    },
+    {
+      "owner": "LABO001",
+      "sources": [
+        {
+          "path": "docs/helix-labo/L4-basic-design/authorized-observation-aggregation.json",
+          "document_id": "HELIXLABO-L4-001",
+          "source_main": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+          "status": "draft_basic_content_pending_qualification_and_detail",
+          "implementation_readiness": "not_ready",
+          "file_sha256_at_basis": "49b031666173cae38aa53e488cc6c771b50692367c025346cb122566ee49ad9b",
+          "pointers": [
+            "/scope",
+            "/contracts/0",
+            "/contracts/1",
+            "/contracts/3"
+          ]
+        },
+        {
+          "path": "docs/helix-labo/L5-detail-design/authorized-observation-aggregation.json",
+          "document_ids": [
+            "HELIXLABO-L5-001-F01",
+            "HELIXLABO-L5-001-F02",
+            "HELIXLABO-L5-001-B01"
+          ],
+          "source_main": "baf666ae1e3800323b4451cf8473129e5fa464e1",
+          "status": "draft_logical_detail_pending_independent_review",
+          "implementation_readiness": "not_ready",
+          "file_sha256_at_basis": "6c8dac4170e062b1e9b040e559d490da8d1af7ae1a8e41ef9ca870c14f16797e",
+          "pointers": [
+            "/logical_type_definitions/2",
+            "/logical_type_definitions/6",
+            "/logical_type_definitions/7",
+            "/logical_type_definitions/11",
+            "/unclosed"
+          ]
+        }
+      ],
+      "available_material": "ScopeTuple, SourceRecord, PermissionRecord, ObservationPacket等のlogical raw observation shapeはある。これらは選択sourceの観測・provenance/stateを保持する論理契約で、正式schema/codec、実source資格、実permission、実取込、実評価、L11受入は未成立。PermissionRecordは原permission素材欄の形を保持するがLABOが許可を発行・成立させない。",
+      "not_available": "F08選択評価operationに対するレビュー済みLABO公開型でのrequired_record_refs/required_set_source_ref供給、選択scope・必要集合のowner取得路、実際の評価入力束は確認できない。OSのF08RecordInputLABOscopeにあるref/binding/period/required_record_refs/required_set_source_refはconsumer-side representationであり、それだけではLABO source routeを構成しない。",
+      "reentry": "LABOが、既存の選択scope契約に沿ってsource identity/revision/qualification/provenanceとrequired set/source pointerを供給し、独立review後にOS L5/L8へ結合可能と確認できた時点で再照合する。OSはscopeや必要集合を推定しない。"
+    },
+    {
+      "owner": "SECURITY008/016",
+      "sources": [
+        {
+          "path": "docs/helix-security/L4-basic-design/operation-authority-reuse.json",
+          "document_id": "HELIXSECURITY-L4-008",
+          "source_main": "902fc3429aaaa01523774be4bad30a1e6c133a47",
+          "status": "draft_basic_contracts_and_synthetic_cases_pending_independent_review",
+          "implementation_readiness": "not_ready",
+          "file_sha256_at_basis": "b7ccddc646d070ab2dd7f82feac699a154e3d76cdc9131d8fbdf7b64e4a91086",
+          "pointers": [
+            "/scope",
+            "/authority_effect",
+            "/operation_effect"
+          ]
+        },
+        {
+          "path": "docs/helix-security/L5-detail-design/operation-authority-reuse.json",
+          "document_id": "HELIXSECURITY-L5-008",
+          "source_main": "70b969db432e81e9a6fd4463e743544cfec860a7",
+          "approved_revision": "0f9b1a0ec7554cd5a2ec85a3002a897a649383d3",
+          "status": "draft_candidate_static_checks_passed_pending_independent_review",
+          "implementation_readiness": "not_ready",
+          "file_sha256_at_basis": "3bd065154c15368a3c8661a5cff77ce105373f4afa8da75c7629b6ab3160ac5d",
+          "pointers": [
+            "/type_contract/types/AuthorityMaterial",
+            "/type_contract/types/AuthoritySourceBinding",
+            "/type_contract/types/AuthorityMaterialAnalysis",
+            "/authority_effect",
+            "/operation_effect"
+          ]
+        },
+        {
+          "path": "docs/helix-security/L4-basic-design/data-use-classification.json",
+          "document_id": "HELIXSECURITY-L4-016-BASIC-DESIGN",
+          "source_main": "c00695600ab1fed30718d89880b92a6358422131",
+          "status": "draft_basic_pair_pending_parent_static_review_and_independent_review",
+          "implementation_readiness": "not_ready",
+          "file_sha256_at_basis": "7313b8155d18a4cf6d0acba51beea492eb0fddc2738d10d9710d2b139561457d",
+          "pointers": [
+            "/scope",
+            "/authority_effect",
+            "/operation_effect",
+            "/contracts/0",
+            "/contracts/1"
+          ]
+        },
+        {
+          "path": "docs/helix-security/L5-detail-design/data-use-classification.json",
+          "document_id": "HELIXSECURITY-L5-016",
+          "source_main": "17078480664a1e444dc2216808f5d577f08dd6fa",
+          "approved_revision": "0f9b1a0ec7554cd5a2ec85a3002a897a649383d3",
+          "status": "draft_logical_detail_and_fixed_raw_oracles_pending_independent_review",
+          "implementation_readiness": "not_ready",
+          "file_sha256_at_basis": "ed176502846e16726e9f7c367a41b6a69cb73cf41a5333b143b36809453fe238",
+          "pointers": [
+            "/functions/6",
+            "/consumer_boundaries",
+            "/authority_effect",
+            "/operation_effect"
+          ]
+        }
+      ],
+      "current_decision_meaning": "SECURITY008 L4/L5は既決authority素材の操作別照合・再利用設計であり、実allow/approval/issuer/lease/認可設定/操作を生成しない。L5 AuthorityMaterialAnalysisはmaterial条件の分析だけを返し、actual_authority_issued=false、actual_operation_invoked=false、actual_authorization_verified=false。AuthoritySourceBindingの正式root/qualification/custodyは未閉包。SECURITY016は六分類語彙とunknownの記録基盤で、分類をdata-use permissionへ変換せず、data-use permissionは独立owner sourceである。",
+      "not_available": "B02選択evaluation operationの同一scope/operationに対する実際のSECURITY利用許可根拠と、その公開型・取得路・資格/custodyは確認できない。SECURITY008素材分析やSECURITY016分類を許可証拠として扱わない。",
+      "reentry": "SECURITYの既存authority/data-use owner sourceが同一scope/operationへ結ばれる正式な出力型・取得路・独立review evidenceを供給した後に再照合する。OS002は認可意味・判定・設定を新設しない。"
+    },
+    {
+      "owner": "CORE",
+      "sources": [
+        {
+          "path": "docs/helix-os/L5-detail-design/project-template-trace.json",
+          "source_main": "6e064ff5b29c25f86edd331f035f9467df3937c6",
+          "file_sha256_at_basis": "351dde4bbc080fba64f0b6ca2d90efab6a81165b45d074c574e95d1781b7ec18",
+          "pointers": [
+            "/type_contract/types/F07RecordInputCOREimpactsItem",
+            "/functions/9",
+            "/contracts/8"
+          ]
+        }
+      ],
+      "available_material": "OS F07 input has CORE_output_ref, binding, target_obligation_ref, state, reason, old_used_ref, new_candidate_ref; the comparator retains affected/unknown/unaffected from CORE source. This is the OS consumer-side shape, not a CORE owner source/type. The current repository search across docs/helix-os and docs/helix-harness did not find a CORE output member or acquisition path that represents reassessment-pending distinctly.",
+      "not_available": "CORE re-evaluation-pending source member/enum and owner acquisition route are absent from the inspected public contracts. Existing state string and generic CORE_output_ref do not prove pending status or resolve source route.",
+      "reentry": "CORE must publish an existing-owner output member and route for reassessment-pending bound to affected obligation, used/candidate refs, revision and scope; then OS L5/L8 can be reconsidered. Do not infer pending from unknown, migration receipt absence, or L8/L10 oracle text."
+    }
+  ],
+  "existing_os_consumer_shapes": {
+    "L5": {
+      "path": "docs/helix-os/L5-detail-design/project-template-trace.json",
+      "source_main": "6e064ff5b29c25f86edd331f035f9467df3937c6",
+      "file_sha256_at_basis": "351dde4bbc080fba64f0b6ca2d90efab6a81165b45d074c574e95d1781b7ec18",
+      "pointers": [
+        "/type_contract/types/B02RecordInput",
+        "/type_contract/types/F07RecordInput",
+        "/type_contract/types/F07RecordInputCOREimpactsItem",
+        "/type_contract/types/F08RecordInput",
+        "/type_contract/types/F08RecordInputLABOscope",
+        "/functions/2",
+        "/functions/9",
+        "/functions/10"
+      ],
+      "finding": "B02RecordInput has no owner-material fields for selected template set/version/CORE output or LABO/SECURITY material. F07 has a generic CORE_output_ref and affected/unknown/unaffected string state but no pending member. F08RecordInputLABOscope can hold ref/binding/period/required_record_refs/required_set_source_ref, but those are consumer-side slots with no eligible LABO acquisition route established by reviewed owner contract. Existing fields are not proof that the absent owner output exists."
+    },
+    "L8": {
+      "path": "docs/helix-os/L8-unit-verification/project-template-trace.json",
+      "source_main": "6e064ff5b29c25f86edd331f035f9467df3937c6",
+      "file_sha256_at_basis": "8143e23723d97c12f6257c6bc104839e26b813d8583fd58bcaa620b071404f24",
+      "pointers": [
+        "/cases/1/negative_cases/3",
+        "/cases/1/negative_cases/4",
+        "/cases/8/negative_cases/3",
+        "/cases/9/negative_cases/5"
+      ],
+      "finding": "対象4 U-IDはexecution_state=not_executedで、owner_material_coverage/owner_and_reentryに現行入力にないowner materialを明示している。意味oracleやfixtureの参照だけで、所有者output/source routeやL7 expected_materialの存在を推定しない。"
+    }
+  },
+  "legacy_and_failure_search": {
+    "search_scope": [
+      "archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/",
+      "archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/",
+      "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/security-engagement-authority-requirements.md",
+      "archive/legacy-generation-2026-09-14/root/docs/governance/predecessor-harness-full-weakness-audit-2026-07-20.md"
+    ],
+    "search_terms": [
+      "reassessment",
+      "CORE impact",
+      "selected template",
+      "scope",
+      "permission",
+      "data-use",
+      "authorization",
+      "evaluation",
+      "owner output"
+    ],
+    "assets": [
+      {
+        "asset_id": "LEGACY-ASSET-4F5A1F0739EC1111D91D",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/design-template-json-authority.md",
+        "lines": "36-41, 48-59, 80-91",
+        "disposition_record": "docs/governance/legacy-asset-disposition.jsonl:508",
+        "recorded_disposition": "historical/unresolved",
+        "result": "Generic candidate registry/applicability and selected-set boundaries; no OS002 owner-output or acquisition route for the four U-ID conditions."
+      },
+      {
+        "asset_id": "LEGACY-ASSET-98372FEE8A3AC8F9C299",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/design-template-json-authority.md",
+        "lines": "33-63, 65-99",
+        "disposition_record": "docs/governance/legacy-asset-disposition.jsonl:550",
+        "recorded_disposition": "historical/unresolved",
+        "result": "Generic template field/identity/applicability/completion proposal only; no current OS/HARNESS/BRAIN selected/used output source."
+      },
+      {
+        "asset_id": "LEGACY-ASSET-C3DE79BA9451172F3E43",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/product-data-connector.md",
+        "lines": "33-57, 61-91, 113-126",
+        "disposition_record": "docs/governance/legacy-asset-disposition.jsonl:574",
+        "recorded_disposition": "historical/unresolved",
+        "result": "Legacy connector draft distinguishes read material/classification from write/authorization; external connection and qualification not established. Not reused as a present LABO or SECURITY permission route."
+      },
+      {
+        "asset_id": "LEGACY-ASSET-D461943347D372ECF6DA",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/security-engagement-authority-requirements.md",
+        "lines": "15-18, 24-29, 46-56",
+        "disposition_record": "docs/governance/legacy-asset-disposition.jsonl:869",
+        "recorded_disposition": "historical/unresolved; L3 candidate states it is not current authority before independent review/freeze",
+        "result": "Historical proposed SecurityAuthorization and invocation constraints; not adopted to create OS002 permission semantics or an input route."
+      }
+    ],
+    "failure_basis": {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/predecessor-harness-full-weakness-audit-2026-07-20.md",
+      "lines": "80, 86-87",
+      "meaning": "UTW014 absence-to-empty and UTW020/021 aggregate/claim-only completion risks support retaining missing/partial owner material visibly. They do not authorize creating an owner output, runtime route, or permission gate."
+    },
+    "conclusion": "Old template assets provide generic candidate concepts but no exact route for these current inputs. Historical Security candidate is unresolved and non-authoritative. No legacy runtime, test, hook, or CI was executed."
+  },
+  "security_meaning_report": {
+    "SECURITY008": "既決authority素材の操作別照合・再利用の論理設計。実allow/approval/issuer/lease/認可設定/操作を生成しない。AuthorityMaterialAnalysisのactual_authority_issued、actual_operation_invoked、actual_authorization_verifiedはfalse。正式root/qualification/custodyは未閉包。",
+    "SECURITY016": "既存六分類とunknownの記録基盤。classificationをdata-use permissionまたはoperation authorityに変換しない。data-use permissionは独立owner source。",
+    "OS002_consequence": "selected evaluation operationのSECURITY利用許可根拠の欠落を未確認として保持し、OSが許可意味/判定/設定を作らない。"
+  },
+  "conclusion": {
+    "formal_design_changed": false,
+    "new_owner_member_or_acquisition_route_added": false,
+    "execution_ready": false,
+    "required_reentry": [
+      "BRAIN/HARNESS/CORE: 同一operation identity/revision/scopeに対する選択・使用・適用owner出力と取得路を既存公開契約で成立させ独立reviewする。",
+      "LABO: 選択evaluation scopeと必要原record集合/source rootをowner公開型・取得路で供給し独立reviewする。",
+      "SECURITY: 同一scope/operationに対する既存data-use/authority source outputと資格・取得路を提示する。OS002は認可意味を生成しない。",
+      "CORE: 再評価待ちを識別するowner出力memberと取得路を提示する。unknownやreceipt欠落から再評価待ちを推測しない。",
+      "Owner outputが確認されたら既存OS L4/L9とL5/L8の意味・型・同一性を照合し、未実行状態とowner boundaryを維持したうえで対象freeze可否を再評価する。"
+    ]
+  },
+  "source_pins": [
+    {
+      "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+      "revision": "0eb9a606591061b2904586d96e17cc832426d8dd",
+      "sha256": "e86254a35b476ed71ebb112e41ccd2b48f89a8d0393e6495dc11cac7a7cf4e02"
+    },
+    {
+      "path": "docs/helix-os/L10-verification/functional-verification.json",
+      "revision": "0eb9a606591061b2904586d96e17cc832426d8dd",
+      "sha256": "583020f951672e48bc37fcd35cb916de5ccd9866f41dd04731f6519325ae500a"
+    },
+    {
+      "path": "docs/helix-os/L4-basic-design/project-template-trace.json",
+      "revision": "0eb9a606591061b2904586d96e17cc832426d8dd",
+      "sha256": "9f4c08530cb3830dccdd147cffaebffaa4e027b6ec72e1519c656132dda51737"
+    },
+    {
+      "path": "docs/helix-os/L5-detail-design/project-template-trace.json",
+      "revision": "0eb9a606591061b2904586d96e17cc832426d8dd",
+      "sha256": "351dde4bbc080fba64f0b6ca2d90efab6a81165b45d074c574e95d1781b7ec18"
+    },
+    {
+      "path": "docs/helix-os/L8-unit-verification/project-template-trace.json",
+      "revision": "0eb9a606591061b2904586d96e17cc832426d8dd",
+      "sha256": "8143e23723d97c12f6257c6bc104839e26b813d8583fd58bcaa620b071404f24"
+    },
+    {
+      "path": "docs/helix-os/L9-integration-verification/project-template-trace.json",
+      "revision": "0eb9a606591061b2904586d96e17cc832426d8dd",
+      "sha256": "4c3ad78c0701ec3df177428c6ab236141d9ce17cdcb1fd5c083b384ef92af035"
+    },
+    {
+      "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+      "revision": "0eb9a606591061b2904586d96e17cc832426d8dd",
+      "sha256": "4330847017a409ef45500e14d73dfc1170489549b23d0f642f6927322d6bb4b3",
+      "owner_source_main": "af8ebde536860ef45bf8213b3cdc86e76079ed5e",
+      "document_id": "HARNESS-L4-009-PRODUCT-TEMPLATE-APPLICATION"
+    },
+    {
+      "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+      "revision": "0eb9a606591061b2904586d96e17cc832426d8dd",
+      "sha256": "8eaf2ec3914857c08191831423259c417927e61e30caee53d2fd9dd6af162dfb",
+      "owner_source_main": "1b50e0e105f0d51b902b26ba0e48d66381705360",
+      "document_id": "HARNESS-L5-009-PRODUCT-TEMPLATE-APPLICATION"
+    },
+    {
+      "path": "docs/helix-brain/L4-basic-design/template-semantic-supply.json",
+      "revision": "0eb9a606591061b2904586d96e17cc832426d8dd",
+      "sha256": "eae6011c70b310c68b5b28c43aeb48402da2a711bfa4a577c8af39b88b1a2b50",
+      "owner_source_main": "a7b2cd9130f404a3c496b2f0212e6cb882f80f28",
+      "document_id": "HELIXBRAIN-L4-032-TEMPLATE-SEMANTIC-SUPPLY"
+    },
+    {
+      "path": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
+      "revision": "0eb9a606591061b2904586d96e17cc832426d8dd",
+      "sha256": "7528975453b57c3bd34bdf5c9ffacfa0dc0467d2dee2e69d8bd6683bae965bc0",
+      "owner_source_main": "fabd7834720a6ddc3f02553034de25b51ac4fc5a",
+      "document_id": "HELIXBRAIN-L5-032-TEMPLATE-SEMANTIC-SUPPLY"
+    },
+    {
+      "path": "docs/helix-labo/L4-basic-design/authorized-observation-aggregation.json",
+      "revision": "0eb9a606591061b2904586d96e17cc832426d8dd",
+      "sha256": "49b031666173cae38aa53e488cc6c771b50692367c025346cb122566ee49ad9b",
+      "owner_source_main": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "document_id": "HELIXLABO-L4-001"
+    },
+    {
+      "path": "docs/helix-labo/L5-detail-design/authorized-observation-aggregation.json",
+      "revision": "0eb9a606591061b2904586d96e17cc832426d8dd",
+      "sha256": "6c8dac4170e062b1e9b040e559d490da8d1af7ae1a8e41ef9ca870c14f16797e",
+      "owner_source_main": "baf666ae1e3800323b4451cf8473129e5fa464e1",
+      "document_id": [
+        "HELIXLABO-L5-001-F01",
+        "HELIXLABO-L5-001-F02",
+        "HELIXLABO-L5-001-B01"
+      ]
+    },
+    {
+      "path": "docs/helix-security/L4-basic-design/operation-authority-reuse.json",
+      "revision": "0eb9a606591061b2904586d96e17cc832426d8dd",
+      "sha256": "b7ccddc646d070ab2dd7f82feac699a154e3d76cdc9131d8fbdf7b64e4a91086",
+      "owner_source_main": "902fc3429aaaa01523774be4bad30a1e6c133a47",
+      "document_id": "HELIXSECURITY-L4-008"
+    },
+    {
+      "path": "docs/helix-security/L5-detail-design/operation-authority-reuse.json",
+      "revision": "0eb9a606591061b2904586d96e17cc832426d8dd",
+      "sha256": "3bd065154c15368a3c8661a5cff77ce105373f4afa8da75c7629b6ab3160ac5d",
+      "owner_source_main": "70b969db432e81e9a6fd4463e743544cfec860a7",
+      "document_id": "HELIXSECURITY-L5-008"
+    },
+    {
+      "path": "docs/helix-security/L4-basic-design/data-use-classification.json",
+      "revision": "0eb9a606591061b2904586d96e17cc832426d8dd",
+      "sha256": "7313b8155d18a4cf6d0acba51beea492eb0fddc2738d10d9710d2b139561457d",
+      "owner_source_main": "c00695600ab1fed30718d89880b92a6358422131",
+      "document_id": "HELIXSECURITY-L4-016-BASIC-DESIGN"
+    },
+    {
+      "path": "docs/helix-security/L5-detail-design/data-use-classification.json",
+      "revision": "0eb9a606591061b2904586d96e17cc832426d8dd",
+      "sha256": "ed176502846e16726e9f7c367a41b6a69cb73cf41a5333b143b36809453fe238",
+      "owner_source_main": "17078480664a1e444dc2216808f5d577f08dd6fa",
+      "document_id": "HELIXSECURITY-L5-016"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/design-template-json-authority.md",
+      "revision": "legacy-generation-2026-09-14",
+      "sha256": "e254d995d1d9fbbcc74bb53b3356b4499ac20cca2280eeafde1412d08630c4cb"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/design-template-json-authority.md",
+      "revision": "legacy-generation-2026-09-14",
+      "sha256": "3015d4f3d65cd1f8205f88f29dd59c4f1f7ef42c729d8144f2319e49fe20d830"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/product-data-connector.md",
+      "revision": "legacy-generation-2026-09-14",
+      "sha256": "2b42c26f7e4d387a6e2b178de05c2c27ac946646f266faee95aa08a65e803b04"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/security-engagement-authority-requirements.md",
+      "revision": "legacy-generation-2026-09-14",
+      "sha256": "38a68e48ca26cb277b6f5d88439b33b58aecf48f5b650f7596aec04e438b6b16"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/predecessor-harness-full-weakness-audit-2026-07-20.md",
+      "revision": "legacy-generation-2026-09-14",
+      "sha256": "bab121404c956a0a4b403e589bea1c414af59b5996989bea5fab9f98f42f6872"
+    },
+    {
+      "path": "docs/governance/legacy-asset-disposition.jsonl",
+      "revision": "0eb9a606591061b2904586d96e17cc832426d8dd",
+      "sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c"
+    }
+  ],
+  "verification": {
+    "mode": "bounded_static_only",
+    "json_parse": "passed: python3 -m json.tool on this audit record",
+    "source_pin_and_pointer_check": "passed: 22 source SHA-256 pins, 56 owner pointers, and 12 L3/L10 plus L4/L9 pointers resolved with no errors",
+    "check_pair": "passed: design_verification_checker.py check-pair; L4/L9 pair 13/13, no failures",
+    "check_child": "passed: design_verification_checker.py check-child; L4/L9/L5/L8 negative rows 77 each, 77 matched, no failures",
+    "diff_check": "passed: git diff --check",
+    "generate_freeze": "not_run; no eligible owner member/acquisition path was found, and no freeze claim is made",
+    "legacy_runtime_test_ci": "not_run",
+    "unresolved": "The requested executable owner-input design and freeze remain incomplete until owner output types and acquisition routes are established and independently reviewed."
+  }
+}
