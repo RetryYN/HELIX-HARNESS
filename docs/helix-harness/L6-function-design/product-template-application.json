@@ -295,6 +295,32 @@
         "pointer": "/target_bindings/public_functions/0"
       },
       "state_event_meaning_ja": "同意味条件でAI/言語/project表示名だけから義務を増減せず、domain/risk/scope差と未評価を保持する。件数/hashで意味同等性を成立させない。",
+      "stopped_semantic_subassertions": [
+        {
+          "case_id": "HARNESS-L8-009-B02-NEG-01",
+          "failure_rule_ref": "HARNESS-L5-009-R-ai_name_changes_obligations",
+          "status": "stopped_missing_qualified_material",
+          "missing_qualified_material_ja": "同scope・同意味・同適用契約のAI名だけの差について、具体的な期待/返却義務集合の対と、それらを結ぶqualifiedなSemanticComparisonがない。Claimの自己申告は代替根拠にしない。"
+        },
+        {
+          "case_id": "HARNESS-L8-009-B02-NEG-02",
+          "failure_rule_ref": "HARNESS-L5-009-R-language_changes_obligations",
+          "status": "stopped_missing_qualified_material",
+          "missing_qualified_material_ja": "同scope・同意味・同適用契約の言語だけの差について、省略前後の具体的な義務集合の対と、それらを結ぶqualifiedなSemanticComparisonがない。Claimの自己申告は代替根拠にしない。"
+        },
+        {
+          "case_id": "HARNESS-L8-009-B02-NEG-03",
+          "failure_rule_ref": "HARNESS-L5-009-R-different_domain_forced_equal",
+          "status": "stopped_missing_qualified_material",
+          "missing_qualified_material_ja": "異なるdomain/risk/scopeを示す別binding、対応するqualified candidate set、および境界を比較するqualifiedなSemanticComparisonがない。"
+        },
+        {
+          "case_id": "HARNESS-L8-009-B02-NEG-04",
+          "failure_rule_ref": "HARNESS-L5-009-R-count_as_semantic_equivalence",
+          "status": "stopped_missing_qualified_material",
+          "missing_qualified_material_ja": "同件数で内容が異なることを示す2つのqualified義務集合と、件数だけで同等としないためのqualifiedなSemanticComparisonがない。"
+        }
+      ],
       "l7_test_ref": {
         "path": "docs/helix-harness/L7-function-verification/product-template-application.json",
         "pointer": "/cases/3"
