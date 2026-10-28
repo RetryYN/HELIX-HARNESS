@@ -13,14 +13,56 @@ _SOURCE_KEYS = {
     },
     "reference_only": {"binding", "reference_target", "reference_context"},
 }
+_OTHER_PRODUCER_CLAIM_KINDS = {
+    "absolute_product_choice",
+    "design_completion",
+    "no_gaps",
+    "os_obligation_discharge",
+    "product_template_adoption",
+    "requirements_agreement",
+    "return_definition_known",
+    "return_field_applicable",
+    "return_received",
+    "return_source_observed",
+    "return_value_supplied",
+    "same_template_identity",
+    "project_obligation_discharge",
+    "field_not_applicable",
+    "definition_missing_from_receipt",
+    "upstream_authority",
+    "require_before_supply",
+    "labo_evaluated",
+}
+_CLOSED_CLAIM_FIELDS = {
+    "subject_ref",
+    "binding",
+    "actor",
+    "kind",
+    "proposed_value",
+    "basis_refs",
+}
+
+
+def _valid_other_producer_claim(claim, binding):
+    from descriptor_definitions import _binding_same, _ref_same
+
+    return (
+        isinstance(claim, dict)
+        and set(claim) <= _CLOSED_CLAIM_FIELDS
+        and "proposed_value" in claim
+        and isinstance(claim.get("basis_refs"), list)
+        and _ref_same(claim.get("subject_ref"), claim.get("subject_ref"))
+        and _binding_same(claim.get("binding"), binding)
+    )
 
 
 def is_zero_operand_carry(raw, target_reads=None):
     """Observe only structural absence; do not infer qualification or meaning.
 
-    The sole supplied-Claim case is the L4 finite fill_definition branch: explicit
-    null needs only its same-call target read, while non-null needs a resolved
-    non-target address. Nonempty meaning carriers remain outside this partial
+    Supplied Claims in the finite carry branch are either eligible fill_definition
+    claims (explicit null or resolved non-target address) or closed other-producer
+    claims from L4 claim_dispatch/3 (which form no FN4 Claim operand and consume
+    no target_read). Nonempty meaning carriers remain outside this partial
     implementation. Missing descriptor definitions are carried from original fn1.
     """
     from descriptor_definitions import _APPROVED_KINDS
@@ -29,16 +71,27 @@ def is_zero_operand_carry(raw, target_reads=None):
     claims = raw.get("claims", [])
     if not isinstance(claims, list):
         return False
+    binding = raw.get("binding")
     if claims:
-        if not isinstance(target_reads, list) or len(target_reads) != len(claims):
+        if not isinstance(target_reads, list):
             return False
-        for index, (claim, target_read) in enumerate(zip(claims, target_reads)):
-            if (
-                not isinstance(claim, dict)
-                or claim.get("kind") != "fill_definition"
-                or "proposed_value" not in claim
-            ):
+        fill_claims = []
+        for index, claim in enumerate(claims):
+            if not isinstance(claim, dict):
                 return False
+            kind = claim.get("kind")
+            if kind == "fill_definition":
+                if "proposed_value" not in claim:
+                    return False
+                fill_claims.append((index, claim))
+            elif kind in _OTHER_PRODUCER_CLAIM_KINDS:
+                if not _valid_other_producer_claim(claim, binding):
+                    return False
+            else:
+                return False
+        if len(target_reads) != len(fill_claims):
+            return False
+        for (index, claim), target_read in zip(fill_claims, target_reads):
             if (
                 not isinstance(target_read, dict)
                 or target_read.get("claim_locator") != f"/claims/{index}"
