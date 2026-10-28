@@ -2251,15 +2251,46 @@ def _check_negative_equivalence_mode(
                             case_id=row["id"],
                             reason="rule_contract_ref_unresolved",
                         )
-                    elif l5_contract.get("basic_design_ref") != next(
-                        iter(parent_contract_refs)
-                    ):
-                        fail(
-                            "contract_ref",
-                            layer="L4",
-                            case_id=row["id"],
-                            reason="rule_contract_ref_disagrees_with_l4_parent",
-                        )
+                    else:
+                        declared_l4_refs: list[str] = []
+                        for field in ("l4_contract_ref", "basic_design_ref"):
+                            if field not in l5_contract:
+                                continue
+                            value = l5_contract[field]
+                            if not isinstance(value, str) or not value.strip():
+                                fail(
+                                    "contract_ref",
+                                    layer="L5",
+                                    case_id=row["id"],
+                                    reason="rule_l4_parent_ref_invalid",
+                                )
+                            else:
+                                declared_l4_refs.append(value)
+                        if not declared_l4_refs:
+                            fail(
+                                "contract_ref",
+                                layer="L5",
+                                case_id=row["id"],
+                                reason="rule_l4_parent_ref_missing",
+                            )
+                        if len(set(declared_l4_refs)) > 1:
+                            fail(
+                                "contract_ref",
+                                layer="L5",
+                                case_id=row["id"],
+                                reason="rule_l4_parent_refs_disagree",
+                            )
+                        if (
+                            len(parent_contract_refs) == 1
+                            and declared_l4_refs
+                            and next(iter(parent_contract_refs)) != declared_l4_refs[0]
+                        ):
+                            fail(
+                                "contract_ref",
+                                layer="L4",
+                                case_id=row["id"],
+                                reason="rule_contract_ref_disagrees_with_l4_parent",
+                            )
             else:
                 fail(
                     "owner_ref",

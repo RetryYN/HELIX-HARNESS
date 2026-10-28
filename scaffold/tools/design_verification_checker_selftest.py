@@ -480,7 +480,7 @@ class DesignVerificationCheckerSelfTest(unittest.TestCase):
         l5["contracts"] = [
             {
                 "id": "L5-CONTRACT-A",
-                "basic_design_ref": "L4-CONTRACT-A",
+                "l4_contract_ref": "L4-CONTRACT-A",
                 "requirement_ref": "REQ-A",
             }
         ]
@@ -543,7 +543,7 @@ class DesignVerificationCheckerSelfTest(unittest.TestCase):
             l5["contracts"].append(
                 {
                     "id": "L5-CONTRACT-B",
-                    "basic_design_ref": "L4-CONTRACT-B",
+                    "l4_contract_ref": "L4-CONTRACT-B",
                     "requirement_ref": "REQ-B",
                 }
             )
@@ -661,6 +661,45 @@ class DesignVerificationCheckerSelfTest(unittest.TestCase):
             msg=result,
         )
 
+    def test_chk_neg_4way_l4_contract_ref_accepts_os015_contract_shape(self) -> None:
+        """The parent field matches OS015 at e5232d331 L5 /contracts/1."""
+        # Source evidence: docs/helix-os/L5-detail-design/
+        # management-authority-source-record.json#/contracts/1 has
+        # l4_contract_ref=HELIXOS-L4-015-F01; its parent is
+        # docs/helix-os/L4-basic-design/management-authority-source-record.json
+        # #/contracts/1, id=HELIXOS-L4-015-F01 (e5232d331).
+        layers = self._contract_owned_equivalence_layers()
+        l4, _l9, l8, l5 = layers
+        l4["contracts"][0]["id"] = "HELIXOS-L4-015-F01"
+        l5["contracts"][0].update(
+            {
+                "id": "HELIXOS-L5-015-P-F01",
+                "l4_contract_ref": "HELIXOS-L4-015-F01",
+                "requirement_ref": "HELIXOS-L3-015-F01",
+            }
+        )
+        next(row for row in l5["failure_rules"] if row["id"] == "L5-RULE-UNKNOWN")[
+            "contract_ref"
+        ] = "HELIXOS-L5-015-P-F01"
+        for row in l8["unit_cases"]:
+            if row.get("rule_ref") == "L5-RULE-UNKNOWN":
+                if "contract_ref" in row:
+                    row["contract_ref"] = "HELIXOS-L5-015-P-F01"
+                if "requirement_trace" in row:
+                    row["requirement_trace"] = ["HELIXOS-L3-015-F01"]
+        result = dvc.check_neg_4way_match(
+            REPO_ROOT,
+            "L4",
+            "L9",
+            "L8",
+            "L5",
+            layers[0],
+            layers[1],
+            layers[2],
+            layers[3],
+        )
+        self.assertTrue(result["passed"], msg=result)
+
     def test_chk_neg_4way_explicit_owner_ref_separates_same_five_key_contracts(
         self,
     ) -> None:
@@ -746,6 +785,21 @@ class DesignVerificationCheckerSelfTest(unittest.TestCase):
             (
                 "l4_integration_case_owner_rule_contract_must_match_l4_parent",
                 l4_parent_contract_mismatch,
+                "contract_ref",
+            )
+        )
+
+        conflicting_l4_parent_refs = copy.deepcopy(baseline)
+        l5_contract = next(
+            row
+            for row in conflicting_l4_parent_refs[3]["contracts"]
+            if row["id"] == "L5-CONTRACT-A"
+        )
+        l5_contract["basic_design_ref"] = "L4-CONTRACT-CONFLICT"
+        mutations.append(
+            (
+                "l4_contract_ref_and_basic_design_ref_conflict",
+                conflicting_l4_parent_refs,
                 "contract_ref",
             )
         )
