@@ -9900,12 +9900,9 @@
     ]
    }
   ],
-  "reconstruction": {
-   "seed": "source_basis[3]の固定git L8全documentを読む。各caseのinput_recipe.root_pointerを原入力seed、expected_recipe.root_pointerを独立した元期待seedとし、各rfc6902_operationsを記載順にそれぞれ適用する。",
-   "independence": "期待は手著述literalであり、候補意味評価器や入力判定から生成しない。前段依存は既存normal input_preparationの同snapshot条件を保持し、cached期待を実際の比較結果へ流用しない。",
-   "local_paths": "contrast.provenance等のlocal pathは著述訂正の来歴だけ。全3caseはこのsectionの埋込patchと固定git seedで再構成でき、local driver又はignored fileを要しない。",
-   "canonical_hash": "input/expected及びselected objectはensure_ascii=False,sort_keys=True,separators=(comma,colon)のUTF8 SHA256。",
-   "source_hash": "source.content_bytesは固定原文字列literalのUTF8 bytesをhashする。body parse値のcanonical hashへ置換しない。"
+  "test_material_ref": {
+   "path": "docs/helix-harness/L7-function-verification/product-template-application.json",
+   "pointer": "/reconstruction"
   },
   "expected_output_rule": {
    "fixed_reference": "canonicalは手著述参照literalの再構成値であり、許容出力を自然文のbyte一致だけで定める値ではない。",
