@@ -23316,6 +23316,96 @@
     ],
     "positive_case_scope": "L8の既存casesとL9のnormal_casesは元配列に保持する。negative equivalenceだけを対象とするため、normal caseはnegative rowへ重複登録しない。",
     "checker_limit": "L8/L9 case rowが未形成のためexplicit negative-class modeは使わず、現checkerはlegacy modeで未対応件数を報告する。explicit modeは供給行のみ比較し、同時省略を検出しない。",
-    "preservation": "L8/L9の元cases配列は、182件のnegative source rowを含めて変更せず保持する。"
+    "preservation": "L8/L9の元cases配列は、182件のnegative source rowを含めて変更せず保持する。",
+    "upper_classification_count_by_contract": {
+      "B01": 4,
+      "F01": 4,
+      "F02": 4,
+      "F03": 4,
+      "F05": 5,
+      "N01": 6,
+      "F04": 7
+    },
+    "upper_rule_count_by_contract": {
+      "B01": 4,
+      "F01": 4,
+      "F02": 4,
+      "F03": 4,
+      "F05": 5,
+      "N01": 6,
+      "F04": 7
+    },
+    "upper_classification_scope": {
+      "B01": {
+        "formed_codes": [
+          "B01_REQUIRED_EVIDENCE_MISSING",
+          "B01_SCOPE_APPLICABILITY_UNKNOWN",
+          "B01_SOURCE_ROLE_CONFLICT",
+          "B01_SOURCE_REVISION_STALE"
+        ],
+        "unformed_summary": "根拠role×具体fieldごとの独立ケース分類は未形成。上記はL4 local_returnのstate別familyであり、role/field全組合せを網羅しない。"
+      },
+      "F01": {
+        "formed_codes": [
+          "F01_REQUIRED_CONDITION_MISSING",
+          "F01_CONDITION_DEFINITION_UNKNOWN",
+          "F01_ROLE_AUTHORITY_CONFLICT",
+          "F01_CONDITION_TARGET_STALE"
+        ],
+        "unformed_summary": "action×ConditionIdentity×native kindごとの個別classは未形成。上記はmembership/profile/authority/target failure familyまで。"
+      },
+      "F02": {
+        "formed_codes": [
+          "F02_APPLICABILITY_UNKNOWN",
+          "F02_APPLICABLE_RESULT_MISSING",
+          "F02_ADOPTION_CLAIM_CONFLICT",
+          "F02_RESULTLESS_RETURN_CHAIN_CONFLICT"
+        ],
+        "unformed_summary": "両N/Aの6属性およびBackflow/008/Decide/合意/対再凍結のstage別classは未形成。"
+      },
+      "F03": {
+        "formed_codes": [
+          "F03_REQUIRED_PAIR_MISSING",
+          "F03_L9_DIMENSION_UNKNOWN",
+          "F03_PAIR_SCOPE_CONFLICT",
+          "F03_TICKET_REVERSE_EFFECT_CONFLICT"
+        ],
+        "unformed_summary": "谷、10個のL9観点、pair組、origin/trace、各reverse trigger/改善種別の個別classは未形成。"
+      },
+      "F05": {
+        "formed_codes": [
+          "F05_REQUIRED_PORT_FIELD_MISSING",
+          "F05_EXISTING_AUTHORITY_UNKNOWN",
+          "F05_RETURN_TARGET_UNKNOWN",
+          "F05_OPERATION_EFFECT_CONFLICT",
+          "F05_COMPLETION_BACKFILL_CONFLICT"
+        ],
+        "unformed_summary": "8個のPort field、各Incident/backfill layer、再開/凍結条件の個別classは未形成。"
+      },
+      "N01": {
+        "formed_codes": [
+          "N01_QUALITY_APPLICABILITY_UNKNOWN",
+          "N01_QUALITY_STAGE_EVIDENCE_MISSING",
+          "N01_HEALTH_OBSERVATION_UNKNOWN",
+          "N01_TARGET_ENVIRONMENT_EVIDENCE_MISSING",
+          "N01_SECURITY_AUTHORITY_CONFLICT",
+          "N01_NUMERIC_TARGET_UNKNOWN"
+        ],
+        "unformed_summary": "5 quality stage、6 finding stage、各metric/対象/environment/security fieldの個別classは未形成。"
+      },
+      "F04": {
+        "formed_codes": [
+          "F04_STATE_PROVISIONAL_PROOF_MISSING",
+          "F04_STATE_INTEGRATED_PROOF_MISSING",
+          "F04_STATE_VERIFIED_PROOF_MISSING",
+          "F04_STATE_ACCEPTED_PROOF_MISSING",
+          "F04_STATE_RELEASE-ELIGIBLE_PROOF_MISSING",
+          "F04_STATE_DEPLOYED_PROOF_MISSING",
+          "F04_STATE_OBSERVED_PROOF_MISSING"
+        ],
+        "unformed_summary": "Working initial-state root-proof classは未形成。今回のF04分類はprior_stateを持つ7 progression stateのみ。"
+      }
+    },
+    "case_alignment_note": "L4/L5分類は上流から形成。L8/L9のcase期待/findingを生成せず、全182 negative rowを未対応として保持する。期待一致7件にもL9 original ordered finding/return ownerがないためcase連結しない。"
   }
 }
