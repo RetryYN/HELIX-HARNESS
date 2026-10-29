@@ -421,7 +421,7 @@
   "source_pair_pins": [
     {
       "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
-      "revision": "33b518adcf7ced5c12b92a916f8f6460b9f5bb75",
+      "revision": "4f98f23b1300ba1f344b32cf3317a8f9300738b5",
       "sha256": "e2e92c62217f70203752ab4f79ed7a92831d94cb813c6947153f237c83c8576b"
     },
     {
