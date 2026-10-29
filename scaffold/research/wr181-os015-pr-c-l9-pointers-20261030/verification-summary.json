@@ -150,7 +150,7 @@
   "diff_check": "PASS",
   "latest_main_trial": {
     "base_revision": "ff8afa258391992ebd04336a19f7064e967d12bb",
-    "candidate_commit": "9aab8559eeeedbab9c9f604e4ae6dc6830ae62b2",
+    "candidate_commit": "4c338c10dc4bf6b5221587a10189db6d67381eb9",
     "merge_result": "競合なし。候補8 pathsをstageしたno-commit trial merge。",
     "changed_paths_overlap": false,
     "static_validator": "PASS; trial output byte-identical to candidate static-validation.json",
