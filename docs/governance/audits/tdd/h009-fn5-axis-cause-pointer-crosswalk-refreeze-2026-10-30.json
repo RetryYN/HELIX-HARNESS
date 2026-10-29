@@ -198,13 +198,13 @@
       "target": "f05_definition_axis_projection_cause_writer_contract",
       "l5_pointer": "L5#/f05_detail_contract/definition_axis_projection_cause_writer_contract",
       "status": "pending_human_or_independent_semantic_review",
-      "judgment_required": "Confirm private detail boundary and reentry slice/owner assignment preserve caller contract without premature public freeze (#3763 R1-m1)."
+      "judgment_required": "private detail境界とreentry slice/ownerの割当てがcaller contractを保ち、public freezeを早めないことを確認する（#3763 R1-m1）。"
     },
     {
       "check": "CHK-L3-OBLIGATION-MAP",
       "item_id": "O2-definition-axis-projection",
       "status": "pending_human_or_independent_semantic_review",
-      "judgment_required": "Confirm O1..On decomposition has no natural-language semantic omission from parent L3 requirement text (#3759 R1-m1)."
+      "judgment_required": "O1..Onの分解で、親L3 requirement本文にある自然言語の意味が抜けていないことを確認する（#3759 R1-m1）。"
     }
   ],
   "verification": {
@@ -608,12 +608,12 @@
   "basic_pair_bindings": [],
   "scope": {
     "included": [
-      "D-Axis-0 declaration_unresolved semantic-to-native pointer crosswalk",
-      "projection_unformed semantic-to-native pointer crosswalk"
+      "D-Axis-0のdeclaration_unresolvedをsemanticからnative pointerへ対応づけるcrosswalk",
+      "projection_unformedをsemanticからnative pointerへ対応づけるcrosswalk"
     ],
     "excluded": [
-      "L4/L9 meaning, expected values, and pointers",
-      "producer implementation and runtime/test execution",
+      "L4/L9の意味、期待値、pointer",
+      "producer実装およびruntime/testの実行",
       "other F05 causes"
     ]
   },
@@ -627,7 +627,7 @@
     }
   ],
   "independent_expectation_trace": {
-    "method": "DT-VT-105: derive L8 expected condition from upper requirement L3F#/requirements/27 and L10F#/cases/27, specialize semantic expected from L4/L9 and compare the separate L5 native output shape; do not copy L9 expected or generate expected from L5.",
+    "method": "DT-VT-105: L3F#/requirements/27とL10F#/cases/27の上位requirementからL8 expected conditionを導出し、L4/L9からsemantic expectedを具体化したうえで、L5 native output shapeを別に照合する。L9 expectedをコピーせず、L5からexpectedを生成しない。",
     "upper_requirement": [
       "L3F#/requirements/27",
       "L10F#/cases/27"
@@ -690,7 +690,7 @@
       "finding_ja": "L8 U-IDはL9のbasic rule_pointerをL5へコピーせず、case内のL5 technical expectationへ別のnative rule_pointerを保持している。実L8期待がL3/L10、L4/L9から独立に導出されたとの意味判定は独立review待ち。"
     },
     "all_l3_obligation_elements_in_scope": {
-      "scope": "D-Axis-0 declaration_unresolved / projection_unformed only; not all of HARNESS-L3-009-F05.",
+      "scope": "D-Axis-0のdeclaration_unresolved / projection_unformedのみ。HARNESS-L3-009-F05全体ではない。",
       "elements": [
         {
           "element_id": "O2-definition-axis-projection",
@@ -715,9 +715,9 @@
     "latest_main_base": "fe6e4b493e503ba121ced68aa531c5335661ba66",
     "candidate_head": "c20b489bc506add5b94f641baa7ffe554961847f",
     "target_record_set": {
-      "selection": "Base ee8 TDD records whose filename contains freeze/refreeze (excluding checker-reconcile reports) and whose JSON contains at least one exact L5/L8/L9 product-template-application path; the 34 base-selected paths below are replayed unchanged on the candidate trial.",
+      "selection": "ee8のTDD監査記録から、ファイル名にfreezeまたはrefreezeを含み（checker-reconcile報告を除外）、JSON本文でL5/L8/L9のproduct-template-application文書の完全pathを1つ以上参照する記録を選んだ。下記34件をtrialでも同じ集合として再実行した。",
       "selection_base_revision": "ee8e5141b61c6bf5424302ca2ae01fc29a3204fe",
-      "excluded": "checker-reconcile report files are not freeze records for this comparison.",
+      "excluded": "checker-reconcile報告ファイルはこの比較対象のfreeze記録に含めない。",
       "count": 34,
       "record_paths": [
         "docs/governance/audits/tdd/h009-b01-function-pair-freeze-2026-10-28.json",
@@ -755,7 +755,7 @@
         "docs/governance/audits/tdd/os002-t1c-f02-proposal-receiving-freeze-2026-10-28.json",
         "docs/governance/audits/tdd/os002-t2a-f04-projection-member-freeze-2026-10-28.json"
       ],
-      "execution_mode": "python3 scaffold/tools/design_verification_checker.py check-freeze --worktree --root <worktree> <the same 34 record_paths>",
+      "execution_mode": "python3 scaffold/tools/design_verification_checker.py check-freeze --worktree --root <worktree> <record_pathsに列挙した34件>",
       "base_worktree_revision": "ee8e5141b61c6bf5424302ca2ae01fc29a3204fe",
       "candidate_worktree_revision": "fe6e4b493e503ba121ced68aa531c5335661ba66",
       "candidate_trial_merge_head": "c20b489bc506add5b94f641baa7ffe554961847f",
@@ -842,6 +842,6 @@
       "diff_check": "passed",
       "superseding_refreeze_check_freeze_passed": true
     },
-    "artifact_status": "static checker evidence; not independent semantic review, U-ID execution, or full F05 freeze."
+    "artifact_status": "静的checkerの証拠。独立意味review、U-ID実行、F05全体freezeを示すものではない。"
   }
 }
