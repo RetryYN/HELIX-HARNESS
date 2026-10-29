@@ -61,4 +61,4 @@ python3 scaffold/tools/scfctl.py validate
 python3 scaffold/tools/scfctl.py stale
 ```
 
-候補branchはdd578をHEADにし、未commitでroot検収待ちとする。ADD-46の実行、fixture全体、producer、L9期待、独立意味review、pair freezeは未成立。
+候補branchはdd578を基点にし、commit `1ae1bb27a97364ba913c3226ed00bb462c80d5b7` に記録した。pushはしていない。ADD-46の実行、fixture全体、producer、L9期待、独立意味review、pair freezeは未成立。
