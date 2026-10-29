@@ -410,11 +410,6 @@
       "path": "docs/helix-os/L3-requirements/functional-requirements.json",
       "file_sha256": "e86254a35b476ed71ebb112e41ccd2b48f89a8d0393e6495dc11cac7a7cf4e02",
       "role": "対象8wholeの現行所在。file全内容の採択を意味しない。"
-    },
-    {
-      "path": "docs/helix-os/L9-integration-verification/management-authority-source-record.json",
-      "revision": "e5232d3311801fad5e51b029e66cfcdd614daa9f",
-      "file_sha256": "5205895c94b44677c579fe5393503979ca670c3fe1961ed3bdd91979c309d9e6"
     }
   ],
   "legacy_comparison": {
