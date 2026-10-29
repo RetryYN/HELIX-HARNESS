@@ -479,7 +479,9 @@
         "OS015-NEG-unresolved_history_lost",
         "OS015-NEG-unresolved_history_unresolved",
         "OS015-NEG-first_classification_prior_present",
-        "OS015-NEG-first_classification_prior_unresolved"
+        "OS015-NEG-first_classification_prior_unresolved",
+        "OS015-NEG-COMPOSITE-07c9fd844a293140f5dc77476ab8ed90116889361788956739abfdcf65b874c4",
+        "OS015-NEG-COMPOSITE-4e0c28b06920d3a9665cbe4beeaf48cea44d7b0d350dddfaec9c8471de1e86b5"
       ]
     },
     {
@@ -2192,6 +2194,98 @@
             "/diagnostic_contract/aggregation",
             "/diagnostic_contract/raw_retention",
             "/diagnostic_contract/condition_values"
+          ]
+        }
+      ]
+    },
+    {
+      "class_id": "OS015-NEG-COMPOSITE-07c9fd844a293140f5dc77476ab8ed90116889361788956739abfdcf65b874c4",
+      "code": "management_material_violation",
+      "design_ref": "HELIXOS-L4-015-F02",
+      "condition": "inspectでoriginal_eventの比較対象fieldの既知値が不一致となり、原event全体も独立contextと異なる",
+      "expected_classification": "management_material_violation",
+      "expected": {
+        "finding_codes": [
+          "original_event_mutated",
+          "source_conflict"
+        ]
+      },
+      "expected_preserved": {
+        "original_event": "原event wholeとrevisionを不変に保持する",
+        "original_classification": "旧分類とrevisionを保持し新旧を上書きしない",
+        "source_authority": "対象/source/authorityの元scopeと出所を保持する",
+        "unresolved_history": "未解決履歴と無関係な有効対象を保持する"
+      },
+      "expected_axis": "original_event",
+      "expected_state": "violation",
+      "backflow_owner": "management-authority-owner",
+      "side_effect_count": 0,
+      "source_pointers": [
+        {
+          "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+          "pointers": [
+            "/requirements/25"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
+          "pointers": [
+            "/contracts/2",
+            "/diagnostic_contract/event_fields",
+            "/diagnostic_contract/codes/1",
+            "/diagnostic_contract/codes/3",
+            "/diagnostic_contract/comparison_facets",
+            "/diagnostic_contract/algorithm_python_document_text",
+            "/diagnostic_contract/mutation_rule",
+            "/diagnostic_contract/aggregation",
+            "/diagnostic_contract/condition_values",
+            "/diagnostic_contract/return_owner"
+          ]
+        }
+      ]
+    },
+    {
+      "class_id": "OS015-NEG-COMPOSITE-4e0c28b06920d3a9665cbe4beeaf48cea44d7b0d350dddfaec9c8471de1e86b5",
+      "code": "management_material_violation",
+      "design_ref": "HELIXOS-L4-015-F02",
+      "condition": "inspectでoriginal_eventの比較operandがunknownとなり、原event全体も独立contextと異なる",
+      "expected_classification": "management_material_violation",
+      "expected": {
+        "finding_codes": [
+          "original_event_mutated",
+          "source_unresolved"
+        ]
+      },
+      "expected_preserved": {
+        "original_event": "原event wholeとrevisionを不変に保持する",
+        "original_classification": "旧分類とrevisionを保持し新旧を上書きしない",
+        "source_authority": "対象/source/authorityの元scopeと出所を保持する",
+        "unresolved_history": "未解決履歴と無関係な有効対象を保持する"
+      },
+      "expected_axis": "original_event",
+      "expected_state": "violation",
+      "backflow_owner": "management-authority-owner",
+      "side_effect_count": 0,
+      "source_pointers": [
+        {
+          "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+          "pointers": [
+            "/requirements/25"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
+          "pointers": [
+            "/contracts/2",
+            "/diagnostic_contract/event_fields",
+            "/diagnostic_contract/codes/0",
+            "/diagnostic_contract/codes/3",
+            "/diagnostic_contract/comparison_facets",
+            "/diagnostic_contract/algorithm_python_document_text",
+            "/diagnostic_contract/mutation_rule",
+            "/diagnostic_contract/aggregation",
+            "/diagnostic_contract/condition_values",
+            "/diagnostic_contract/return_owner"
           ]
         }
       ]

@@ -6,7 +6,7 @@
   "product": "HELIX-OS",
   "owner_candidate": "HELIX-OS OS015 管理record/source projection設計",
   "state": "registered",
-  "reason": "WR181作業依頼 (1) に基づき、承認済みOS015 L4/L5のfacet順序・aggregation・condition_valuesから複合負例class形成規則を具体化し、残余negative caseのL7固定入力材料を静的に一覧する。case所属の独立した手動導出は未完了のため、複合case class rowとrefを追加しない。",
+  "reason": "既存のL4/L5 class形成規則と固定入力inventoryを保持する。PR-AではL4の2分類とL9の29ケースprojectionだけを追加し、L5 rule/L8 unit projectionは後続PR-Bへ分ける。",
   "role": "OS015複合negative-equivalence-class形成規則の下流設計記録とL7固定入力の静的inventory",
   "upstream": [
     {
@@ -21,8 +21,8 @@
     },
     {
       "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
-      "sha256": "e2e92c62217f70203752ab4f79ed7a92831d94cb813c6947153f237c83c8576b",
-      "note": "L4のfixed input domain、finding、aggregation、condition_values、同層内の複合finding projection。複合case rowは未形成。"
+      "sha256": "9146ffd557bc5da60f79cdcd462578b38edf6ec524143a705ab07eeb34c7997b",
+      "note": "L4 fixed input domain、finding/aggregation、condition_valuesと、PR-Aで追加する2 composite classificationを固定。L5 failure_ruleとL8 projectionは別PR-Bまで未形成。PR-A候補pinの対象path bytes。"
     },
     {
       "path": "docs/helix-os/L5-detail-design/management-authority-source-record.json",

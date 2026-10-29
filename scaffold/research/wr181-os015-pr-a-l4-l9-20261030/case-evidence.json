@@ -1,0 +1,635 @@
+{
+  "scope": "PR-A: HELIX-OS OS015 L4/L9 only; 29 independent assignments and 2 classes.",
+  "base_revision": "821a655ad6949b2a7a5344b26e3c170cccc353a6",
+  "method": "L7 given.input raw stimulus hash/pointer and hand-recorded L4 finding assignment; compare L9 links only. No L5/L8 projection or expected-value calculation.",
+  "source_pins": {
+    "docs/helix-os/L4-basic-design/management-authority-source-record.json": {
+      "base_sha256": "e2e92c62217f70203752ab4f79ed7a92831d94cb813c6947153f237c83c8576b",
+      "candidate_sha256": "9146ffd557bc5da60f79cdcd462578b38edf6ec524143a705ab07eeb34c7997b"
+    },
+    "docs/helix-os/L7-function-verification/management-authority-source-record.json": {
+      "base_sha256": "b2a71c3d2a99c5268275e183f21c2b1bbc4b21ad79d577af42573a079e920a09",
+      "candidate_sha256": "b2a71c3d2a99c5268275e183f21c2b1bbc4b21ad79d577af42573a079e920a09"
+    },
+    "docs/helix-os/L9-integration-verification/management-authority-source-record.json": {
+      "base_sha256": "0b310db53887fd22d2fa5a3154099fdc0587bceed61dc85544f57549b2cbec51",
+      "candidate_sha256": "392417ce60ff10beed23d1aee27aadc7afaaf4062fb1dc04473325e30ad2c7e5"
+    },
+    "docs/helix-os/L3-requirements/functional-requirements.json": {
+      "base_sha256": "e86254a35b476ed71ebb112e41ccd2b48f89a8d0393e6495dc11cac7a7cf4e02",
+      "candidate_sha256": "e86254a35b476ed71ebb112e41ccd2b48f89a8d0393e6495dc11cac7a7cf4e02"
+    }
+  },
+  "class_definitions": {
+    "OS015-NEG-COMPOSITE-07c9fd844a293140f5dc77476ab8ed90116889361788956739abfdcf65b874c4": {
+      "l4_pointer": "/failure_classifications/31",
+      "finding_codes": [
+        "original_event_mutated",
+        "source_conflict"
+      ],
+      "axis": "original_event",
+      "state": "violation",
+      "owner": "management-authority-owner"
+    },
+    "OS015-NEG-COMPOSITE-4e0c28b06920d3a9665cbe4beeaf48cea44d7b0d350dddfaec9c8471de1e86b5": {
+      "l4_pointer": "/failure_classifications/32",
+      "finding_codes": [
+        "original_event_mutated",
+        "source_unresolved"
+      ],
+      "axis": "original_event",
+      "state": "violation",
+      "owner": "management-authority-owner"
+    }
+  },
+  "case_count": 29,
+  "class_counts": {
+    "OS015-NEG-COMPOSITE-07c9fd844a293140f5dc77476ab8ed90116889361788956739abfdcf65b874c4": 15,
+    "OS015-NEG-COMPOSITE-4e0c28b06920d3a9665cbe4beeaf48cea44d7b0d350dddfaec9c8471de1e86b5": 14
+  },
+  "case_assignments": [
+    {
+      "case_id": "HELIXOS-L9-015-C0045",
+      "l7_input_pointer": "/connection_materials/OS015/case/cases/44/given/input",
+      "stimulus_path": "/records/target_a/original_event/event_id",
+      "stimulus_value": "FOREIGN-event_id",
+      "expanded_input_sha256": "602f907fadef66b20be2f4549e2bb316829697d2114936ff87f3dc081b0359fa",
+      "l4_findings": [
+        {
+          "code": "original_event_mutated",
+          "pointer": "/records/target_a/original_event"
+        },
+        {
+          "code": "source_conflict",
+          "pointer": "/records/target_a/original_event/event_id"
+        }
+      ],
+      "class_id": "OS015-NEG-COMPOSITE-07c9fd844a293140f5dc77476ab8ed90116889361788956739abfdcf65b874c4",
+      "l9_case_pointer": "/integration_cases/44",
+      "manual_assignment_basis": "比較operand双方が既知で不一致となり、L4 condition_values上のviolation側となる"
+    },
+    {
+      "case_id": "HELIXOS-L9-015-C0046",
+      "l7_input_pointer": "/connection_materials/OS015/case/cases/45/given/input",
+      "stimulus_path": "/records/target_a/original_event/event_revision",
+      "stimulus_value": null,
+      "expanded_input_sha256": "42096ec3ec4aefe788555ad5c90fae637cd9971d41d4d59fd794c631f996e38d",
+      "l4_findings": [
+        {
+          "code": "original_event_mutated",
+          "pointer": "/records/target_a/original_event"
+        },
+        {
+          "code": "source_unresolved",
+          "pointer": "/records/target_a/original_event/event_revision"
+        }
+      ],
+      "class_id": "OS015-NEG-COMPOSITE-4e0c28b06920d3a9665cbe4beeaf48cea44d7b0d350dddfaec9c8471de1e86b5",
+      "l9_case_pointer": "/integration_cases/45",
+      "manual_assignment_basis": "比較operandにnullがあり、L4 condition_values上のunknown側となる"
+    },
+    {
+      "case_id": "HELIXOS-L9-015-C0047",
+      "l7_input_pointer": "/connection_materials/OS015/case/cases/46/given/input",
+      "stimulus_path": "/records/target_a/original_event/event_revision",
+      "stimulus_value": "FOREIGN-event_revision",
+      "expanded_input_sha256": "5d67d3faa223a8eb6e02b526ef8f7a0305e924b890a458f70cc72212a6075f4d",
+      "l4_findings": [
+        {
+          "code": "original_event_mutated",
+          "pointer": "/records/target_a/original_event"
+        },
+        {
+          "code": "source_conflict",
+          "pointer": "/records/target_a/original_event/event_revision"
+        }
+      ],
+      "class_id": "OS015-NEG-COMPOSITE-07c9fd844a293140f5dc77476ab8ed90116889361788956739abfdcf65b874c4",
+      "l9_case_pointer": "/integration_cases/46",
+      "manual_assignment_basis": "比較operand双方が既知で不一致となり、L4 condition_values上のviolation側となる"
+    },
+    {
+      "case_id": "HELIXOS-L9-015-C0048",
+      "l7_input_pointer": "/connection_materials/OS015/case/cases/47/given/input",
+      "stimulus_path": "/records/target_a/original_event/source_ref",
+      "stimulus_value": null,
+      "expanded_input_sha256": "687297318754805fb0f1bd456a5fdadbaf6a9ddb2bfceaa19b8580a1fc863ed2",
+      "l4_findings": [
+        {
+          "code": "original_event_mutated",
+          "pointer": "/records/target_a/original_event"
+        },
+        {
+          "code": "source_unresolved",
+          "pointer": "/records/target_a/original_event/source_ref"
+        }
+      ],
+      "class_id": "OS015-NEG-COMPOSITE-4e0c28b06920d3a9665cbe4beeaf48cea44d7b0d350dddfaec9c8471de1e86b5",
+      "l9_case_pointer": "/integration_cases/47",
+      "manual_assignment_basis": "比較operandにnullがあり、L4 condition_values上のunknown側となる"
+    },
+    {
+      "case_id": "HELIXOS-L9-015-C0049",
+      "l7_input_pointer": "/connection_materials/OS015/case/cases/48/given/input",
+      "stimulus_path": "/records/target_a/original_event/source_ref",
+      "stimulus_value": "FOREIGN-source_ref",
+      "expanded_input_sha256": "d313327b9c8ab0c654000763fa3dd77eb1fd3c780b7806e40b0595d73d243dfa",
+      "l4_findings": [
+        {
+          "code": "original_event_mutated",
+          "pointer": "/records/target_a/original_event"
+        },
+        {
+          "code": "source_conflict",
+          "pointer": "/records/target_a/original_event/source_ref"
+        }
+      ],
+      "class_id": "OS015-NEG-COMPOSITE-07c9fd844a293140f5dc77476ab8ed90116889361788956739abfdcf65b874c4",
+      "l9_case_pointer": "/integration_cases/48",
+      "manual_assignment_basis": "比較operand双方が既知で不一致となり、L4 condition_values上のviolation側となる"
+    },
+    {
+      "case_id": "HELIXOS-L9-015-C0050",
+      "l7_input_pointer": "/connection_materials/OS015/case/cases/49/given/input",
+      "stimulus_path": "/records/target_a/original_event/source_revision",
+      "stimulus_value": null,
+      "expanded_input_sha256": "c1bd38948d4b5eacfd15b3190181702650fbc45454a6376818b0d8d735c84c11",
+      "l4_findings": [
+        {
+          "code": "original_event_mutated",
+          "pointer": "/records/target_a/original_event"
+        },
+        {
+          "code": "source_unresolved",
+          "pointer": "/records/target_a/original_event/source_revision"
+        }
+      ],
+      "class_id": "OS015-NEG-COMPOSITE-4e0c28b06920d3a9665cbe4beeaf48cea44d7b0d350dddfaec9c8471de1e86b5",
+      "l9_case_pointer": "/integration_cases/49",
+      "manual_assignment_basis": "比較operandにnullがあり、L4 condition_values上のunknown側となる"
+    },
+    {
+      "case_id": "HELIXOS-L9-015-C0051",
+      "l7_input_pointer": "/connection_materials/OS015/case/cases/50/given/input",
+      "stimulus_path": "/records/target_a/original_event/source_revision",
+      "stimulus_value": "FOREIGN-source_revision",
+      "expanded_input_sha256": "3f693c3b0ce5819727f447f6f9e0166698945c50d550be15627614aacf486c73",
+      "l4_findings": [
+        {
+          "code": "original_event_mutated",
+          "pointer": "/records/target_a/original_event"
+        },
+        {
+          "code": "source_conflict",
+          "pointer": "/records/target_a/original_event/source_revision"
+        }
+      ],
+      "class_id": "OS015-NEG-COMPOSITE-07c9fd844a293140f5dc77476ab8ed90116889361788956739abfdcf65b874c4",
+      "l9_case_pointer": "/integration_cases/50",
+      "manual_assignment_basis": "比較operand双方が既知で不一致となり、L4 condition_values上のviolation側となる"
+    },
+    {
+      "case_id": "HELIXOS-L9-015-C0052",
+      "l7_input_pointer": "/connection_materials/OS015/case/cases/51/given/input",
+      "stimulus_path": "/records/target_a/original_event/source_digest",
+      "stimulus_value": null,
+      "expanded_input_sha256": "82d1e9ed5ff174b62836c86e022d8aafd903f653f2c93805e49641c4dbe2cb21",
+      "l4_findings": [
+        {
+          "code": "original_event_mutated",
+          "pointer": "/records/target_a/original_event"
+        },
+        {
+          "code": "source_unresolved",
+          "pointer": "/records/target_a/original_event/source_digest"
+        }
+      ],
+      "class_id": "OS015-NEG-COMPOSITE-4e0c28b06920d3a9665cbe4beeaf48cea44d7b0d350dddfaec9c8471de1e86b5",
+      "l9_case_pointer": "/integration_cases/51",
+      "manual_assignment_basis": "比較operandにnullがあり、L4 condition_values上のunknown側となる"
+    },
+    {
+      "case_id": "HELIXOS-L9-015-C0053",
+      "l7_input_pointer": "/connection_materials/OS015/case/cases/52/given/input",
+      "stimulus_path": "/records/target_a/original_event/source_digest",
+      "stimulus_value": "FOREIGN-source_digest",
+      "expanded_input_sha256": "a0d58bfd455ac00dbdf7721816a32415377ed872d816977394d326cb6f38e182",
+      "l4_findings": [
+        {
+          "code": "original_event_mutated",
+          "pointer": "/records/target_a/original_event"
+        },
+        {
+          "code": "source_conflict",
+          "pointer": "/records/target_a/original_event/source_digest"
+        }
+      ],
+      "class_id": "OS015-NEG-COMPOSITE-07c9fd844a293140f5dc77476ab8ed90116889361788956739abfdcf65b874c4",
+      "l9_case_pointer": "/integration_cases/52",
+      "manual_assignment_basis": "比較operand双方が既知で不一致となり、L4 condition_values上のviolation側となる"
+    },
+    {
+      "case_id": "HELIXOS-L9-015-C0054",
+      "l7_input_pointer": "/connection_materials/OS015/case/cases/53/given/input",
+      "stimulus_path": "/records/target_a/original_event/actor_ref",
+      "stimulus_value": null,
+      "expanded_input_sha256": "7a30d66c817f16876e6a327872e5df53906a7cbdfe837a7690f98f6e64963c56",
+      "l4_findings": [
+        {
+          "code": "original_event_mutated",
+          "pointer": "/records/target_a/original_event"
+        },
+        {
+          "code": "source_unresolved",
+          "pointer": "/records/target_a/original_event/actor_ref"
+        }
+      ],
+      "class_id": "OS015-NEG-COMPOSITE-4e0c28b06920d3a9665cbe4beeaf48cea44d7b0d350dddfaec9c8471de1e86b5",
+      "l9_case_pointer": "/integration_cases/53",
+      "manual_assignment_basis": "比較operandにnullがあり、L4 condition_values上のunknown側となる"
+    },
+    {
+      "case_id": "HELIXOS-L9-015-C0055",
+      "l7_input_pointer": "/connection_materials/OS015/case/cases/54/given/input",
+      "stimulus_path": "/records/target_a/original_event/actor_ref",
+      "stimulus_value": "FOREIGN-actor_ref",
+      "expanded_input_sha256": "7d8a6577697f3e8732a62b21a39119d3fd5134fd43a676e9056937b4f566ae95",
+      "l4_findings": [
+        {
+          "code": "original_event_mutated",
+          "pointer": "/records/target_a/original_event"
+        },
+        {
+          "code": "source_conflict",
+          "pointer": "/records/target_a/original_event/actor_ref"
+        }
+      ],
+      "class_id": "OS015-NEG-COMPOSITE-07c9fd844a293140f5dc77476ab8ed90116889361788956739abfdcf65b874c4",
+      "l9_case_pointer": "/integration_cases/54",
+      "manual_assignment_basis": "比較operand双方が既知で不一致となり、L4 condition_values上のviolation側となる"
+    },
+    {
+      "case_id": "HELIXOS-L9-015-C0056",
+      "l7_input_pointer": "/connection_materials/OS015/case/cases/55/given/input",
+      "stimulus_path": "/records/target_a/original_event/observed_at_ref",
+      "stimulus_value": null,
+      "expanded_input_sha256": "7e456dae7b3f14b81b288dae6f4b9e6260e5862feb4617c37d2f6ab1ec803ce1",
+      "l4_findings": [
+        {
+          "code": "original_event_mutated",
+          "pointer": "/records/target_a/original_event"
+        },
+        {
+          "code": "source_unresolved",
+          "pointer": "/records/target_a/original_event/observed_at_ref"
+        }
+      ],
+      "class_id": "OS015-NEG-COMPOSITE-4e0c28b06920d3a9665cbe4beeaf48cea44d7b0d350dddfaec9c8471de1e86b5",
+      "l9_case_pointer": "/integration_cases/55",
+      "manual_assignment_basis": "比較operandにnullがあり、L4 condition_values上のunknown側となる"
+    },
+    {
+      "case_id": "HELIXOS-L9-015-C0057",
+      "l7_input_pointer": "/connection_materials/OS015/case/cases/56/given/input",
+      "stimulus_path": "/records/target_a/original_event/observed_at_ref",
+      "stimulus_value": "FOREIGN-observed_at_ref",
+      "expanded_input_sha256": "b4e073e74bf86ff00d46a765e4a115f003332d298ba97030b4486dd066f6db7d",
+      "l4_findings": [
+        {
+          "code": "original_event_mutated",
+          "pointer": "/records/target_a/original_event"
+        },
+        {
+          "code": "source_conflict",
+          "pointer": "/records/target_a/original_event/observed_at_ref"
+        }
+      ],
+      "class_id": "OS015-NEG-COMPOSITE-07c9fd844a293140f5dc77476ab8ed90116889361788956739abfdcf65b874c4",
+      "l9_case_pointer": "/integration_cases/56",
+      "manual_assignment_basis": "比較operand双方が既知で不一致となり、L4 condition_values上のviolation側となる"
+    },
+    {
+      "case_id": "HELIXOS-L9-015-C0058",
+      "l7_input_pointer": "/connection_materials/OS015/case/cases/57/given/input",
+      "stimulus_path": "/records/target_a/original_event/causal_id",
+      "stimulus_value": null,
+      "expanded_input_sha256": "342794618867d6b259f2fe69aee88172aa4a8d0479fe1c368fe0578a87edceab",
+      "l4_findings": [
+        {
+          "code": "original_event_mutated",
+          "pointer": "/records/target_a/original_event"
+        },
+        {
+          "code": "source_unresolved",
+          "pointer": "/records/target_a/original_event/causal_id"
+        }
+      ],
+      "class_id": "OS015-NEG-COMPOSITE-4e0c28b06920d3a9665cbe4beeaf48cea44d7b0d350dddfaec9c8471de1e86b5",
+      "l9_case_pointer": "/integration_cases/57",
+      "manual_assignment_basis": "比較operandにnullがあり、L4 condition_values上のunknown側となる"
+    },
+    {
+      "case_id": "HELIXOS-L9-015-C0059",
+      "l7_input_pointer": "/connection_materials/OS015/case/cases/58/given/input",
+      "stimulus_path": "/records/target_a/original_event/causal_id",
+      "stimulus_value": "FOREIGN-causal_id",
+      "expanded_input_sha256": "b0c2ca705456f2f3984c09f7f430b066a6be8470865f41d05bcac0e5960bc701",
+      "l4_findings": [
+        {
+          "code": "original_event_mutated",
+          "pointer": "/records/target_a/original_event"
+        },
+        {
+          "code": "source_conflict",
+          "pointer": "/records/target_a/original_event/causal_id"
+        }
+      ],
+      "class_id": "OS015-NEG-COMPOSITE-07c9fd844a293140f5dc77476ab8ed90116889361788956739abfdcf65b874c4",
+      "l9_case_pointer": "/integration_cases/58",
+      "manual_assignment_basis": "比較operand双方が既知で不一致となり、L4 condition_values上のviolation側となる"
+    },
+    {
+      "case_id": "HELIXOS-L9-015-C0060",
+      "l7_input_pointer": "/connection_materials/OS015/case/cases/59/given/input",
+      "stimulus_path": "/records/target_a/original_event/payload_ref",
+      "stimulus_value": null,
+      "expanded_input_sha256": "f610c8cd98a93f92d1f5ea2ce9b09bc2e931729e0119cc938ddfdbb0a4fc8aa9",
+      "l4_findings": [
+        {
+          "code": "original_event_mutated",
+          "pointer": "/records/target_a/original_event"
+        },
+        {
+          "code": "source_unresolved",
+          "pointer": "/records/target_a/original_event/payload_ref"
+        }
+      ],
+      "class_id": "OS015-NEG-COMPOSITE-4e0c28b06920d3a9665cbe4beeaf48cea44d7b0d350dddfaec9c8471de1e86b5",
+      "l9_case_pointer": "/integration_cases/59",
+      "manual_assignment_basis": "比較operandにnullがあり、L4 condition_values上のunknown側となる"
+    },
+    {
+      "case_id": "HELIXOS-L9-015-C0061",
+      "l7_input_pointer": "/connection_materials/OS015/case/cases/60/given/input",
+      "stimulus_path": "/records/target_a/original_event/payload_ref",
+      "stimulus_value": "FOREIGN-payload_ref",
+      "expanded_input_sha256": "0e4186545cadecf917aeb5429e3c77781ac1b5ff2f93f7a025de6597eacd66eb",
+      "l4_findings": [
+        {
+          "code": "original_event_mutated",
+          "pointer": "/records/target_a/original_event"
+        },
+        {
+          "code": "source_conflict",
+          "pointer": "/records/target_a/original_event/payload_ref"
+        }
+      ],
+      "class_id": "OS015-NEG-COMPOSITE-07c9fd844a293140f5dc77476ab8ed90116889361788956739abfdcf65b874c4",
+      "l9_case_pointer": "/integration_cases/60",
+      "manual_assignment_basis": "比較operand双方が既知で不一致となり、L4 condition_values上のviolation側となる"
+    },
+    {
+      "case_id": "HELIXOS-L9-015-C0102",
+      "l7_input_pointer": "/connection_materials/OS015/case/cases/101/given/input",
+      "stimulus_path": "/context/records/target_a/original_event/event_id",
+      "stimulus_value": null,
+      "expanded_input_sha256": "490232b5ae8a2a15df2701467bcf9acf35e008406c9664fe0942803e47f897b2",
+      "l4_findings": [
+        {
+          "code": "original_event_mutated",
+          "pointer": "/records/target_a/original_event"
+        },
+        {
+          "code": "source_unresolved",
+          "pointer": "/context/records/target_a/original_event/event_id"
+        }
+      ],
+      "class_id": "OS015-NEG-COMPOSITE-4e0c28b06920d3a9665cbe4beeaf48cea44d7b0d350dddfaec9c8471de1e86b5",
+      "l9_case_pointer": "/integration_cases/101",
+      "manual_assignment_basis": "比較operandにnullがあり、L4 condition_values上のunknown側となる"
+    },
+    {
+      "case_id": "HELIXOS-L9-015-C0103",
+      "l7_input_pointer": "/connection_materials/OS015/case/cases/102/given/input",
+      "stimulus_path": "/context/records/target_a/original_event/event_id",
+      "stimulus_value": "FOREIGN-event_id",
+      "expanded_input_sha256": "0236e1839080ff72bdddc9415ac0add173bc04aaa40079c9c247413bff890232",
+      "l4_findings": [
+        {
+          "code": "original_event_mutated",
+          "pointer": "/records/target_a/original_event"
+        },
+        {
+          "code": "source_conflict",
+          "pointer": "/records/target_a/original_event/event_id"
+        }
+      ],
+      "class_id": "OS015-NEG-COMPOSITE-07c9fd844a293140f5dc77476ab8ed90116889361788956739abfdcf65b874c4",
+      "l9_case_pointer": "/integration_cases/102",
+      "manual_assignment_basis": "比較operand双方が既知で不一致となり、L4 condition_values上のviolation側となる"
+    },
+    {
+      "case_id": "HELIXOS-L9-015-C0104",
+      "l7_input_pointer": "/connection_materials/OS015/case/cases/103/given/input",
+      "stimulus_path": "/context/records/target_a/original_event/event_revision",
+      "stimulus_value": null,
+      "expanded_input_sha256": "10351b741b3e4af281711575fa203998a1bba314a2d6888512d37425e2140a9f",
+      "l4_findings": [
+        {
+          "code": "original_event_mutated",
+          "pointer": "/records/target_a/original_event"
+        },
+        {
+          "code": "source_unresolved",
+          "pointer": "/context/records/target_a/original_event/event_revision"
+        }
+      ],
+      "class_id": "OS015-NEG-COMPOSITE-4e0c28b06920d3a9665cbe4beeaf48cea44d7b0d350dddfaec9c8471de1e86b5",
+      "l9_case_pointer": "/integration_cases/103",
+      "manual_assignment_basis": "比較operandにnullがあり、L4 condition_values上のunknown側となる"
+    },
+    {
+      "case_id": "HELIXOS-L9-015-C0105",
+      "l7_input_pointer": "/connection_materials/OS015/case/cases/104/given/input",
+      "stimulus_path": "/context/records/target_a/original_event/event_revision",
+      "stimulus_value": "FOREIGN-event_revision",
+      "expanded_input_sha256": "9a957572177829fa1e5343d1aeeccda5f4ad3d9b269bfac7fb8146539bf0cb61",
+      "l4_findings": [
+        {
+          "code": "original_event_mutated",
+          "pointer": "/records/target_a/original_event"
+        },
+        {
+          "code": "source_conflict",
+          "pointer": "/records/target_a/original_event/event_revision"
+        }
+      ],
+      "class_id": "OS015-NEG-COMPOSITE-07c9fd844a293140f5dc77476ab8ed90116889361788956739abfdcf65b874c4",
+      "l9_case_pointer": "/integration_cases/104",
+      "manual_assignment_basis": "比較operand双方が既知で不一致となり、L4 condition_values上のviolation側となる"
+    },
+    {
+      "case_id": "HELIXOS-L9-015-C0106",
+      "l7_input_pointer": "/connection_materials/OS015/case/cases/105/given/input",
+      "stimulus_path": "/context/records/target_a/original_event/source_ref",
+      "stimulus_value": null,
+      "expanded_input_sha256": "bb8c912ea37929756375589e31fff27fc58109a339daed3833f3be74d1bc7d61",
+      "l4_findings": [
+        {
+          "code": "original_event_mutated",
+          "pointer": "/records/target_a/original_event"
+        },
+        {
+          "code": "source_unresolved",
+          "pointer": "/context/records/target_a/original_event/source_ref"
+        }
+      ],
+      "class_id": "OS015-NEG-COMPOSITE-4e0c28b06920d3a9665cbe4beeaf48cea44d7b0d350dddfaec9c8471de1e86b5",
+      "l9_case_pointer": "/integration_cases/105",
+      "manual_assignment_basis": "比較operandにnullがあり、L4 condition_values上のunknown側となる"
+    },
+    {
+      "case_id": "HELIXOS-L9-015-C0107",
+      "l7_input_pointer": "/connection_materials/OS015/case/cases/106/given/input",
+      "stimulus_path": "/context/records/target_a/original_event/source_ref",
+      "stimulus_value": "FOREIGN-source_ref",
+      "expanded_input_sha256": "196aad04d0337a741587b264ed386ae6d8deb4761ef5645529ca437f3053f3a3",
+      "l4_findings": [
+        {
+          "code": "original_event_mutated",
+          "pointer": "/records/target_a/original_event"
+        },
+        {
+          "code": "source_conflict",
+          "pointer": "/records/target_a/original_event/source_ref"
+        }
+      ],
+      "class_id": "OS015-NEG-COMPOSITE-07c9fd844a293140f5dc77476ab8ed90116889361788956739abfdcf65b874c4",
+      "l9_case_pointer": "/integration_cases/106",
+      "manual_assignment_basis": "比較operand双方が既知で不一致となり、L4 condition_values上のviolation側となる"
+    },
+    {
+      "case_id": "HELIXOS-L9-015-C0108",
+      "l7_input_pointer": "/connection_materials/OS015/case/cases/107/given/input",
+      "stimulus_path": "/context/records/target_a/original_event/source_revision",
+      "stimulus_value": null,
+      "expanded_input_sha256": "03f2f975d459784eda1fbb3a285c32daef85576154e372055c34ff3541278a21",
+      "l4_findings": [
+        {
+          "code": "original_event_mutated",
+          "pointer": "/records/target_a/original_event"
+        },
+        {
+          "code": "source_unresolved",
+          "pointer": "/context/records/target_a/original_event/source_revision"
+        }
+      ],
+      "class_id": "OS015-NEG-COMPOSITE-4e0c28b06920d3a9665cbe4beeaf48cea44d7b0d350dddfaec9c8471de1e86b5",
+      "l9_case_pointer": "/integration_cases/107",
+      "manual_assignment_basis": "比較operandにnullがあり、L4 condition_values上のunknown側となる"
+    },
+    {
+      "case_id": "HELIXOS-L9-015-C0109",
+      "l7_input_pointer": "/connection_materials/OS015/case/cases/108/given/input",
+      "stimulus_path": "/context/records/target_a/original_event/source_revision",
+      "stimulus_value": "FOREIGN-source_revision",
+      "expanded_input_sha256": "4c524f586fa614564277e9ee7ba9dd263b05d28f4a6e46050b7d94ca9c6013cf",
+      "l4_findings": [
+        {
+          "code": "original_event_mutated",
+          "pointer": "/records/target_a/original_event"
+        },
+        {
+          "code": "source_conflict",
+          "pointer": "/records/target_a/original_event/source_revision"
+        }
+      ],
+      "class_id": "OS015-NEG-COMPOSITE-07c9fd844a293140f5dc77476ab8ed90116889361788956739abfdcf65b874c4",
+      "l9_case_pointer": "/integration_cases/108",
+      "manual_assignment_basis": "比較operand双方が既知で不一致となり、L4 condition_values上のviolation側となる"
+    },
+    {
+      "case_id": "HELIXOS-L9-015-C0110",
+      "l7_input_pointer": "/connection_materials/OS015/case/cases/109/given/input",
+      "stimulus_path": "/context/records/target_a/original_event/source_digest",
+      "stimulus_value": null,
+      "expanded_input_sha256": "98edcaa3a1f793b43040a797114a20d91b22180579f58cfe6f36dea0335b60d8",
+      "l4_findings": [
+        {
+          "code": "original_event_mutated",
+          "pointer": "/records/target_a/original_event"
+        },
+        {
+          "code": "source_unresolved",
+          "pointer": "/context/records/target_a/original_event/source_digest"
+        }
+      ],
+      "class_id": "OS015-NEG-COMPOSITE-4e0c28b06920d3a9665cbe4beeaf48cea44d7b0d350dddfaec9c8471de1e86b5",
+      "l9_case_pointer": "/integration_cases/109",
+      "manual_assignment_basis": "比較operandにnullがあり、L4 condition_values上のunknown側となる"
+    },
+    {
+      "case_id": "HELIXOS-L9-015-C0111",
+      "l7_input_pointer": "/connection_materials/OS015/case/cases/110/given/input",
+      "stimulus_path": "/context/records/target_a/original_event/source_digest",
+      "stimulus_value": "FOREIGN-source_digest",
+      "expanded_input_sha256": "92aa853e6420f5a03bbb46a0fd39e2213e37c6f47d3da59046249ad06b1fc8a4",
+      "l4_findings": [
+        {
+          "code": "original_event_mutated",
+          "pointer": "/records/target_a/original_event"
+        },
+        {
+          "code": "source_conflict",
+          "pointer": "/records/target_a/original_event/source_digest"
+        }
+      ],
+      "class_id": "OS015-NEG-COMPOSITE-07c9fd844a293140f5dc77476ab8ed90116889361788956739abfdcf65b874c4",
+      "l9_case_pointer": "/integration_cases/110",
+      "manual_assignment_basis": "比較operand双方が既知で不一致となり、L4 condition_values上のviolation側となる"
+    },
+    {
+      "case_id": "HELIXOS-L9-015-C0112",
+      "l7_input_pointer": "/connection_materials/OS015/case/cases/111/given/input",
+      "stimulus_path": "/context/records/target_a/original_event/actor_ref",
+      "stimulus_value": null,
+      "expanded_input_sha256": "151f559cc59fda012850d7f770d2d302ba362ca228ae02e71f8452beadd79e2f",
+      "l4_findings": [
+        {
+          "code": "original_event_mutated",
+          "pointer": "/records/target_a/original_event"
+        },
+        {
+          "code": "source_unresolved",
+          "pointer": "/context/records/target_a/original_event/actor_ref"
+        }
+      ],
+      "class_id": "OS015-NEG-COMPOSITE-4e0c28b06920d3a9665cbe4beeaf48cea44d7b0d350dddfaec9c8471de1e86b5",
+      "l9_case_pointer": "/integration_cases/111",
+      "manual_assignment_basis": "比較operandにnullがあり、L4 condition_values上のunknown側となる"
+    },
+    {
+      "case_id": "HELIXOS-L9-015-C0113",
+      "l7_input_pointer": "/connection_materials/OS015/case/cases/112/given/input",
+      "stimulus_path": "/context/records/target_a/original_event/actor_ref",
+      "stimulus_value": "FOREIGN-actor_ref",
+      "expanded_input_sha256": "bd03c53f26f4049ee498685200dd853e6b2b206ba482ad73b11c1b4da0d6f76f",
+      "l4_findings": [
+        {
+          "code": "original_event_mutated",
+          "pointer": "/records/target_a/original_event"
+        },
+        {
+          "code": "source_conflict",
+          "pointer": "/records/target_a/original_event/actor_ref"
+        }
+      ],
+      "class_id": "OS015-NEG-COMPOSITE-07c9fd844a293140f5dc77476ab8ed90116889361788956739abfdcf65b874c4",
+      "l9_case_pointer": "/integration_cases/112",
+      "manual_assignment_basis": "比較operand双方が既知で不一致となり、L4 condition_values上のviolation側となる"
+    }
+  ],
+  "case_expectation_preservation": "L9全583行でmaterial_refとnegative_class_ref以外をbaseとcanonical比較し、既存expected/conditionは変更しない。L8は本PRの対象外で未変更。",
+  "unformed_remainder": "29件は独立確認済み。C0044を含む残112件は未割当。L5/L8のpair projectionはPR-B、L9のL5 failure-rule source pointers追記はPR-Cに残す。全4層negative matchとfreezeは未成立。",
+  "assignment_provenance": "独立手動照合済みのC0045-C0061とC0102-C0113のみ。元case expectationを参照せず、L7 given.inputと上流L4から記録した。"
+}
