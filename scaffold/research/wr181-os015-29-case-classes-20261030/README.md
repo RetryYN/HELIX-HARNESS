@@ -4,14 +4,14 @@
 
 ## 上流からのclass形成
 
-L5規則に従い、class IDはcanonical key object `{expected_classification, finding_codes, backflow_owner, expected_axis, expected_state, owner_ref:{kind,id}}` のUTF-8 SHA-256全64桁とした。可読名はIDに含めず、次表の説明列で示す。静的validatorも同じ正規化でdigestを再計算する。
+L5規則に従い、class IDは `OS015-NEG-COMPOSITE-` にcanonical key object `{expected_classification, finding_codes, backflow_owner, expected_axis, expected_state, owner_ref:{kind,id}}` のUTF-8 SHA-256全64桁を続けて形成した。可読名はIDに含めず、次表の説明列で示す。静的validatorも同じ正規化でdigestを再計算する。
 
 L4 `failure_classifications` とL5 `failure_rules` に次の2 classを追加した。両方とも `HELIXOS-L3-015-F02` とL4の診断契約が定める原event保持・field比較を基礎とし、L4のfinding順・violation優先集約・condition値域を使う。L5側は `FN-OS015-01` の既存functionと入力境界を根拠に同じfield比較とreturnを定義した。unknown operand時のfinding pointerはunknown側operand、known conflict時はL4 algorithmどおりactual `records`側を指す。
 
 | class | canonical class ID (SHA-256) | L4/L5 finding順 | 軸・状態・owner | 導出条件 |
 |---|---|---|---|
-| known conflict | `07c9fd844a293140f5dc77476ab8ed90116889361788956739abfdcf65b874c4` | `original_event_mutated`, `source_conflict` | `original_event`, `violation`, `management-authority-owner` | original_event全体が独立contextと異なり、比較対象fieldの両operandが既知値で不一致。 |
-| unknown operand | `4e0c28b06920d3a9665cbe4beeaf48cea44d7b0d350dddfaec9c8471de1e86b5` | `original_event_mutated`, `source_unresolved` | `original_event`, `violation`, `management-authority-owner` | original_event全体が独立contextと異なり、比較対象fieldにunknown operandがある。 |
+| known conflict | `OS015-NEG-COMPOSITE-07c9fd844a293140f5dc77476ab8ed90116889361788956739abfdcf65b874c4` | `original_event_mutated`, `source_conflict` | `original_event`, `violation`, `management-authority-owner` | original_event全体が独立contextと異なり、比較対象fieldの両operandが既知値で不一致。 |
+| unknown operand | `OS015-NEG-COMPOSITE-4e0c28b06920d3a9665cbe4beeaf48cea44d7b0d350dddfaec9c8471de1e86b5` | `original_event_mutated`, `source_unresolved` | `original_event`, `violation`, `management-authority-owner` | original_event全体が独立contextと異なり、比較対象fieldにunknown operandがある。 |
 
 根拠pointerは各L4/L5 class rowの `source_pointers` に記録した。class形成にL8/L9の観測や期待は使っていない。L8/L9にはL4/L5 class rowとL7固定入力へのstructured source pointerを置いた。
 
@@ -48,8 +48,8 @@ pinは次の順に確定した。いずれも候補branchの祖先commitであ�
 
 | 対象 | 確定commit | 対象pathのSHA-256 |
 |---|---|---|
-| L4・L9 | `cbb5d2d246ca4a18a0892759830e9bdc51538578` | L4 `01735cffe39ccb512d09cc53b69aed285c9c670cd6492a67826f8d4b408d6cd6`、L9 `3ecf720b12782b8b3ce35930b00bd255da8dc34a6d3eb2fd00fd0b459b914485` |
-| L5のpair pin | `898cf3dfea2bed9c4592a0624e5cc5f32b713e37` | L5 `a9b79b4b718a841dacc44724feb40571c69544d16848fd147b554e4aabb5d7da` |
-| L8のL5候補pin | `e321fa97b5edc2d4a2edc4555b31864a884d0476` 内のL8文書が、L5確定commit `898cf3df…` と上記L5 hashを指す | L8 `8661f4fe5e09586b5cf58b4d863632495576735bd842f710c3ca05a5a5fa07d2` |
+| L4・L9 | `d7256639d16b0128d247b175eec9e3d74349d5a4` | L4 `9146ffd557bc5da60f79cdcd462578b38edf6ec524143a705ab07eeb34c7997b`、L9 `f120e354c6de0bc537ca7897cf7b8c88290ec76c8c56f7bda75e9a60cb44726d` |
+| L5のpair pin | `73e3b247931625c4ae94648e6bcbfefa0c63b0f7` | L5 `bc55c335b74d20ef68943a740b6d2cd26466536120501999291692518c75eada` |
+| L8のL5候補pin | `7ff6c5b3ca51316287246db39568b040752f910b` 内のL8文書が、L5確定commit `73e3b247…` と上記L5 hashを指す | L8 `5aa0046d3bc42c93debfd3a3d8abe66881fa484b29fe7fa20caa8fb92f1665aa` |
 
 最終静的validatorはL5/L8の `source_pair_pins`、L8の `candidate_l5_bytes` について、対象revision内のpath hashと現在HEADからの祖先到達性を検証する。旧 `reproduce.py` を含むcommitはclean branchの履歴へ含めず、入力から分類を再計算しない最終静的validatorだけを保持した。

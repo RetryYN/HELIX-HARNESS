@@ -15,13 +15,13 @@
     },
     {
       "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
-      "sha256": "01735cffe39ccb512d09cc53b69aed285c9c670cd6492a67826f8d4b408d6cd6",
-      "note": "現行候補のL4 bytes。class起草時のclean base dd5787507a9ef3b69f411074e2fcbc7710ca1d62はSHA-256=e2e92c62217f70203752ab4f79ed7a92831d94cb813c6947153f237c83c8576b。2 classは基点の原event comparison、finding順、aggregation、condition_valuesから形成。 pin revision=cbb5d2d246ca4a18a0892759830e9bdc51538578."
+      "sha256": "9146ffd557bc5da60f79cdcd462578b38edf6ec524143a705ab07eeb34c7997b",
+      "note": "現行候補のL4 bytes。class起草時のclean base dd5787507a9ef3b69f411074e2fcbc7710ca1d62はSHA-256=e2e92c62217f70203752ab4f79ed7a92831d94cb813c6947153f237c83c8576b。2 classは基点の原event comparison、finding順、aggregation、condition_valuesから形成。 pin revision=d7256639d16b0128d247b175eec9e3d74349d5a4."
     },
     {
       "path": "docs/helix-os/L5-detail-design/management-authority-source-record.json",
-      "sha256": "a9b79b4b718a841dacc44724feb40571c69544d16848fd147b554e4aabb5d7da",
-      "note": "現行候補のL5 bytes。rule起草時のclean base dd5787507a9ef3b69f411074e2fcbc7710ca1d62はSHA-256=6d313e6faaf56c0806c1964ac2bece5da0699de1d82dcc804fc77962f679275e。FN-OS015-01の既存入力境界、field comparison、return設計から独立形成した。 pin revision=898cf3dfea2bed9c4592a0624e5cc5f32b713e37."
+      "sha256": "bc55c335b74d20ef68943a740b6d2cd26466536120501999291692518c75eada",
+      "note": "現行候補のL5 bytes。rule起草時のclean base dd5787507a9ef3b69f411074e2fcbc7710ca1d62はSHA-256=6d313e6faaf56c0806c1964ac2bece5da0699de1d82dcc804fc77962f679275e。FN-OS015-01の既存入力境界、field comparison、return設計から独立形成した。 pin revision=73e3b247931625c4ae94648e6bcbfefa0c63b0f7."
     },
     {
       "path": "docs/helix-os/L7-function-verification/management-authority-source-record.json",
@@ -35,13 +35,13 @@
     },
     {
       "path": "docs/helix-os/L8-unit-verification/management-authority-source-record.json",
-      "sha256": "8661f4fe5e09586b5cf58b4d863632495576735bd842f710c3ca05a5a5fa07d2",
-      "note": "現行候補のL8 bytes。clean base dd5787507a9ef3b69f411074e2fcbc7710ca1d62ではSHA-256=897ad52df1b7899102aedc4a9b8a5676034a6ad144ec7fe4909d738990b7b2a9。583 unit casesを保持し、既存expected不変の29件にrefsを投影。 pin revision=e321fa97b5edc2d4a2edc4555b31864a884d0476."
+      "sha256": "5aa0046d3bc42c93debfd3a3d8abe66881fa484b29fe7fa20caa8fb92f1665aa",
+      "note": "現行候補のL8 bytes。clean base dd5787507a9ef3b69f411074e2fcbc7710ca1d62ではSHA-256=897ad52df1b7899102aedc4a9b8a5676034a6ad144ec7fe4909d738990b7b2a9。583 unit casesを保持し、既存expected不変の29件にrefsを投影。 pin revision=7ff6c5b3ca51316287246db39568b040752f910b."
     },
     {
       "path": "docs/helix-os/L9-integration-verification/management-authority-source-record.json",
-      "sha256": "3ecf720b12782b8b3ce35930b00bd255da8dc34a6d3eb2fd00fd0b459b914485",
-      "note": "現行候補のL9 bytes。clean base dd5787507a9ef3b69f411074e2fcbc7710ca1d62ではSHA-256=0b310db53887fd22d2fa5a3154099fdc0587bceed61dc85544f57549b2cbec51。583 integration casesを保持し、既存expected不変の29件にrefsを投影。 pin revision=cbb5d2d246ca4a18a0892759830e9bdc51538578."
+      "sha256": "f120e354c6de0bc537ca7897cf7b8c88290ec76c8c56f7bda75e9a60cb44726d",
+      "note": "現行候補のL9 bytes。clean base dd5787507a9ef3b69f411074e2fcbc7710ca1d62ではSHA-256=0b310db53887fd22d2fa5a3154099fdc0587bceed61dc85544f57549b2cbec51。583 integration casesを保持し、既存expected不変の29件にrefsを投影。 pin revision=d7256639d16b0128d247b175eec9e3d74349d5a4."
     }
   ],
   "role": "独立確認済み29件の手作業case/finding宣言とL4/L5上流class、L8/L9の限定projectionおよび静的照合証拠を保持する。",

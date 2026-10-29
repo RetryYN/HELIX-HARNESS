@@ -21,13 +21,13 @@
     },
     {
       "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
-      "sha256": "01735cffe39ccb512d09cc53b69aed285c9c670cd6492a67826f8d4b408d6cd6",
-      "note": "L4のfixed input domain、finding、aggregation、condition_valuesと、後続SCF-B-0172で追加した2 composite classを含む現行候補。設計起点のclean base dd5787507a9ef3b69f411074e2fcbc7710ca1d62ではSHA-256=e2e92c62217f70203752ab4f79ed7a92831d94cb813c6947153f237c83c8576b。case割当は29件のみ。 class IDはL5 canonical key SHA-256。candidate revision=cbb5d2d246ca4a18a0892759830e9bdc51538578."
+      "sha256": "9146ffd557bc5da60f79cdcd462578b38edf6ec524143a705ab07eeb34c7997b",
+      "note": "L4のfixed input domain、finding、aggregation、condition_valuesと、後続SCF-B-0172で追加した2 composite classを含む現行候補。設計起点のclean base dd5787507a9ef3b69f411074e2fcbc7710ca1d62ではSHA-256=e2e92c62217f70203752ab4f79ed7a92831d94cb813c6947153f237c83c8576b。case割当は29件のみ。 class IDはL5 canonical key SHA-256。pin revision=d7256639d16b0128d247b175eec9e3d74349d5a4."
     },
     {
       "path": "docs/helix-os/L5-detail-design/management-authority-source-record.json",
-      "sha256": "a9b79b4b718a841dacc44724feb40571c69544d16848fd147b554e4aabb5d7da",
-      "note": "固定carrierとfield比較、finding/retention、既存failure rulesと後続SCF-B-0172の2 composite rulesを含む現行候補。設計起点のclean base dd5787507a9ef3b69f411074e2fcbc7710ca1d62ではSHA-256=6d313e6faaf56c0806c1964ac2bece5da0699de1d82dcc804fc77962f679275e。L9由来の逆生成はない。 canonical class IDs pinned at candidate revision=898cf3dfea2bed9c4592a0624e5cc5f32b713e37."
+      "sha256": "bc55c335b74d20ef68943a740b6d2cd26466536120501999291692518c75eada",
+      "note": "固定carrierとfield比較、finding/retention、既存failure rulesと後続SCF-B-0172の2 composite rulesを含む現行候補。設計起点のclean base dd5787507a9ef3b69f411074e2fcbc7710ca1d62ではSHA-256=6d313e6faaf56c0806c1964ac2bece5da0699de1d82dcc804fc77962f679275e。L9由来の逆生成はない。 canonical class IDs pinned at pin revision=73e3b247931625c4ae94648e6bcbfefa0c63b0f7."
     },
     {
       "path": "docs/helix-os/L7-function-verification/management-authority-source-record.json",

@@ -182,16 +182,16 @@
     "scope": "手作業割当データのraw input hash/pointer、宣言済みclass/linkの構造対応、RFC 6901 source pointer、L8/L9全583行の期待不変を確認。input predicateからclass/findingを計算しない。"
   },
   "pin_chain": {
-    "l4_l9_parent_commit": "cbb5d2d246ca4a18a0892759830e9bdc51538578",
-    "l5_pin_commit": "898cf3dfea2bed9c4592a0624e5cc5f32b713e37",
-    "l8_candidate_commit": "e321fa97b5edc2d4a2edc4555b31864a884d0476",
-    "l4_sha256": "01735cffe39ccb512d09cc53b69aed285c9c670cd6492a67826f8d4b408d6cd6",
-    "l9_sha256": "3ecf720b12782b8b3ce35930b00bd255da8dc34a6d3eb2fd00fd0b459b914485",
-    "l5_sha256": "a9b79b4b718a841dacc44724feb40571c69544d16848fd147b554e4aabb5d7da",
-    "l8_sha256": "8661f4fe5e09586b5cf58b4d863632495576735bd842f710c3ca05a5a5fa07d2",
+    "l4_l9_parent_commit": "d7256639d16b0128d247b175eec9e3d74349d5a4",
+    "l5_pin_commit": "73e3b247931625c4ae94648e6bcbfefa0c63b0f7",
+    "l8_candidate_commit": "7ff6c5b3ca51316287246db39568b040752f910b",
+    "l4_sha256": "9146ffd557bc5da60f79cdcd462578b38edf6ec524143a705ab07eeb34c7997b",
+    "l9_sha256": "f120e354c6de0bc537ca7897cf7b8c88290ec76c8c56f7bda75e9a60cb44726d",
+    "l5_sha256": "bc55c335b74d20ef68943a740b6d2cd26466536120501999291692518c75eada",
+    "l8_sha256": "5aa0046d3bc42c93debfd3a3d8abe66881fa484b29fe7fa20caa8fb92f1665aa",
     "canonical_class_ids": {
-      "known_conflict": "07c9fd844a293140f5dc77476ab8ed90116889361788956739abfdcf65b874c4",
-      "unknown_operand": "4e0c28b06920d3a9665cbe4beeaf48cea44d7b0d350dddfaec9c8471de1e86b5"
+      "known_conflict": "OS015-NEG-COMPOSITE-07c9fd844a293140f5dc77476ab8ed90116889361788956739abfdcf65b874c4",
+      "unknown_operand": "OS015-NEG-COMPOSITE-4e0c28b06920d3a9665cbe4beeaf48cea44d7b0d350dddfaec9c8471de1e86b5"
     },
     "revision_path_hash_and_ancestor_validation": "PASS; validate_static_evidence.py",
     "clean_history": "L4/L9→L5→L8 ordered ancestor pins; no reproduce.py implementation commit in this clean branch"
