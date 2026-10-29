@@ -28864,22 +28864,16 @@
     "status": "原sourceに結び付いた有限の接続検証条件。runtimeの観測ではない。",
     "current_l4_binding": {
       "document": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
-      "file_sha256": "3ef0816e6a1d1156a970f1230da5e3199076210862463a348a7058772d67bf25",
-      "pointer": "/private_composition_contracts/0",
-      "object_canonical_sha256": "c1865e886685fb099417baaff79f08b93cbcd86424dd2bf74200bcad4863f91e"
+      "pointer": "/private_composition_contracts/0"
     },
     "candidate_l5_binding": {
       "document": "docs/helix-security/L5-detail-design/project-scope-isolation.json",
-      "file_sha256": "1b6e50cd2db88e86ae88723589e12170b0651650cf5dbb280b99c673180ea108",
       "pointer": "/functions/12",
-      "object_canonical_sha256": "9d99c26d17c8d40e31628e5352d68b10bca6e12189875653dcff7710dad82f8f",
       "binding_kind": "current_candidate_file_and_object"
     },
     "candidate_l8_binding": {
       "document": "docs/helix-security/L8-unit-verification/project-scope-isolation.json",
-      "file_sha256": "d4e1f973672ad063f404fbb8ada2b844f895760f88d3f6e0dfc1bbe0e45293c7",
-      "pointer": "/same_frame_invocation_contract",
-      "object_canonical_sha256": "5169fc349fcc23a97b957001bdeb62e13eccd17d7c0ea890836e2aa050c1008f"
+      "pointer": "/same_frame_invocation_contract"
     },
     "conditions": [
       {
@@ -28893,16 +28887,11 @@
         "given": {
           "input_recipe_ref": {
             "document": "docs/helix-security/L8-unit-verification/project-scope-isolation.json",
-            "file_sha256": "d4e1f973672ad063f404fbb8ada2b844f895760f88d3f6e0dfc1bbe0e45293c7",
-            "pointer": "/same_frame_invocation_contract/cases/0/input_recipe",
-            "object_canonical_sha256": "039a078c4c9c0d396d198ac646ce6e57b36b2dec1f9e56c66bdea6cda8d6f9c6"
+            "pointer": "/same_frame_invocation_contract/cases/0/input_recipe"
           },
           "expected_result_recipe_ref": {
             "document": "docs/helix-security/L8-unit-verification/project-scope-isolation.json",
-            "file_sha256": "d4e1f973672ad063f404fbb8ada2b844f895760f88d3f6e0dfc1bbe0e45293c7",
-            "pointer": "/same_frame_invocation_contract/cases/0/expected_result_recipe",
-            "object_canonical_sha256": "27dad57e3e5fb30b501b0ecef45c77a9cd09a4994f12561b4bee499a1415050b",
-            "expected_whole_canonical_sha256": "855b35e2bc74a02e26ca8ff6f891b768c9abf317c595ed166e56a40fc7590c18"
+            "pointer": "/same_frame_invocation_contract/cases/0/expected_result_recipe"
           }
         },
         "when": "同じMaterialized<ProposalInput>をcompose_scope_proposal_and_backflowへ渡した場合のsource-level期待。",
@@ -28915,7 +28904,6 @@
           "operation_correspondence",
           "invocation"
         ],
-        "expected_whole_canonical_sha256": "855b35e2bc74a02e26ca8ff6f891b768c9abf317c595ed166e56a40fc7590c18",
         "execution_state": "not_executed",
         "actual_observation": null,
         "authority_effect": "none",
@@ -28932,16 +28920,11 @@
         "given": {
           "input_recipe_ref": {
             "document": "docs/helix-security/L8-unit-verification/project-scope-isolation.json",
-            "file_sha256": "d4e1f973672ad063f404fbb8ada2b844f895760f88d3f6e0dfc1bbe0e45293c7",
-            "pointer": "/same_frame_invocation_contract/cases/1/input_recipe",
-            "object_canonical_sha256": "9a420447dbfb3d2259fa90612a8841374379a32a43525afa1f90eb0f17c5d759"
+            "pointer": "/same_frame_invocation_contract/cases/1/input_recipe"
           },
           "expected_result_recipe_ref": {
             "document": "docs/helix-security/L8-unit-verification/project-scope-isolation.json",
-            "file_sha256": "d4e1f973672ad063f404fbb8ada2b844f895760f88d3f6e0dfc1bbe0e45293c7",
-            "pointer": "/same_frame_invocation_contract/cases/1/expected_result_recipe",
-            "object_canonical_sha256": "9ef06422cb28bf2be724633d6bbb8e87f5ff0644b4ece87e63800cf6fd0a95ba",
-            "expected_whole_canonical_sha256": "6e11854c30140220e1642aed2340de232e0a827c926c99bf03b17ee171457897"
+            "pointer": "/same_frame_invocation_contract/cases/1/expected_result_recipe"
           }
         },
         "when": "同じMaterialized<ProposalInput>をcompose_scope_proposal_and_backflowへ渡した場合のsource-level期待。",
@@ -28954,7 +28937,6 @@
           "operation_correspondence",
           "invocation"
         ],
-        "expected_whole_canonical_sha256": "6e11854c30140220e1642aed2340de232e0a827c926c99bf03b17ee171457897",
         "execution_state": "not_executed",
         "actual_observation": null,
         "authority_effect": "none",
@@ -28971,16 +28953,11 @@
         "given": {
           "input_recipe_ref": {
             "document": "docs/helix-security/L8-unit-verification/project-scope-isolation.json",
-            "file_sha256": "d4e1f973672ad063f404fbb8ada2b844f895760f88d3f6e0dfc1bbe0e45293c7",
-            "pointer": "/same_frame_invocation_contract/cases/2/input_recipe",
-            "object_canonical_sha256": "41ec5204389d19437b3d7cfbec86129bf2042c2bdee15a64b78259ad472d1635"
+            "pointer": "/same_frame_invocation_contract/cases/2/input_recipe"
           },
           "expected_result_recipe_ref": {
             "document": "docs/helix-security/L8-unit-verification/project-scope-isolation.json",
-            "file_sha256": "d4e1f973672ad063f404fbb8ada2b844f895760f88d3f6e0dfc1bbe0e45293c7",
-            "pointer": "/same_frame_invocation_contract/cases/2/expected_result_recipe",
-            "object_canonical_sha256": "02203adf7ba48a57d526291261246636fd930e76ee63923bc3d87ec9ab8a9da8",
-            "expected_whole_canonical_sha256": "98dad6cd529bc88a48a5eaf03ce407c01aa83ae4873fc6a63c28edae39e17c08"
+            "pointer": "/same_frame_invocation_contract/cases/2/expected_result_recipe"
           }
         },
         "when": "同じMaterialized<ProposalInput>をcompose_scope_proposal_and_backflowへ渡した場合のsource-level期待。",
@@ -28993,7 +28970,6 @@
           "operation_correspondence",
           "invocation"
         ],
-        "expected_whole_canonical_sha256": "98dad6cd529bc88a48a5eaf03ce407c01aa83ae4873fc6a63c28edae39e17c08",
         "execution_state": "not_executed",
         "actual_observation": null,
         "authority_effect": "none",
@@ -29010,16 +28986,11 @@
         "given": {
           "input_recipe_ref": {
             "document": "docs/helix-security/L8-unit-verification/project-scope-isolation.json",
-            "file_sha256": "d4e1f973672ad063f404fbb8ada2b844f895760f88d3f6e0dfc1bbe0e45293c7",
-            "pointer": "/same_frame_invocation_contract/cases/3/input_recipe",
-            "object_canonical_sha256": "9c74b988cdfd5f32eb810b1b27e2f698212a5637d4620d601e40797a5609caaf"
+            "pointer": "/same_frame_invocation_contract/cases/3/input_recipe"
           },
           "expected_result_recipe_ref": {
             "document": "docs/helix-security/L8-unit-verification/project-scope-isolation.json",
-            "file_sha256": "d4e1f973672ad063f404fbb8ada2b844f895760f88d3f6e0dfc1bbe0e45293c7",
-            "pointer": "/same_frame_invocation_contract/cases/3/expected_result_recipe",
-            "object_canonical_sha256": "9a7757dd8bf8f6c3fc4f86bfe16cc595340064c353e8a7cc04916fa640242739",
-            "expected_whole_canonical_sha256": "815485dbbe8183d2810b38c171c2dc2e63102e8d1835cb1ccfe34225dad03313"
+            "pointer": "/same_frame_invocation_contract/cases/3/expected_result_recipe"
           }
         },
         "when": "同じMaterialized<ProposalInput>をcompose_scope_proposal_and_backflowへ渡した場合のsource-level期待。",
@@ -29032,7 +29003,6 @@
           "operation_correspondence",
           "invocation"
         ],
-        "expected_whole_canonical_sha256": "815485dbbe8183d2810b38c171c2dc2e63102e8d1835cb1ccfe34225dad03313",
         "execution_state": "not_executed",
         "actual_observation": null,
         "authority_effect": "none",
@@ -29049,16 +29019,11 @@
         "given": {
           "input_recipe_ref": {
             "document": "docs/helix-security/L8-unit-verification/project-scope-isolation.json",
-            "file_sha256": "d4e1f973672ad063f404fbb8ada2b844f895760f88d3f6e0dfc1bbe0e45293c7",
-            "pointer": "/same_frame_invocation_contract/cases/4/input_recipe",
-            "object_canonical_sha256": "2588e25300ab47a330186f198d6cdcd4805844768f56f722d17296b869f2b7f6"
+            "pointer": "/same_frame_invocation_contract/cases/4/input_recipe"
           },
           "expected_result_recipe_ref": {
             "document": "docs/helix-security/L8-unit-verification/project-scope-isolation.json",
-            "file_sha256": "d4e1f973672ad063f404fbb8ada2b844f895760f88d3f6e0dfc1bbe0e45293c7",
-            "pointer": "/same_frame_invocation_contract/cases/4/expected_result_recipe",
-            "object_canonical_sha256": "24a08ae6cdc3cdaa7b164119ef36b44225796182441b4c18998cc06bb038ea21",
-            "expected_whole_canonical_sha256": "3b57c290cc40b5481afa0f85e6c0de007b0d2977a121e3e6bcbb97ebd1482981"
+            "pointer": "/same_frame_invocation_contract/cases/4/expected_result_recipe"
           }
         },
         "when": "同じMaterialized<ProposalInput>をcompose_scope_proposal_and_backflowへ渡した場合のsource-level期待。",
@@ -29071,7 +29036,6 @@
           "operation_correspondence",
           "invocation"
         ],
-        "expected_whole_canonical_sha256": "3b57c290cc40b5481afa0f85e6c0de007b0d2977a121e3e6bcbb97ebd1482981",
         "execution_state": "not_executed",
         "actual_observation": null,
         "authority_effect": "none",
@@ -29088,16 +29052,11 @@
         "given": {
           "input_recipe_ref": {
             "document": "docs/helix-security/L8-unit-verification/project-scope-isolation.json",
-            "file_sha256": "d4e1f973672ad063f404fbb8ada2b844f895760f88d3f6e0dfc1bbe0e45293c7",
-            "pointer": "/same_frame_invocation_contract/cases/5/input_recipe",
-            "object_canonical_sha256": "58d9bead65a062290e3130170df448763bca7d8fd55a834eec062d2a0b3ffe73"
+            "pointer": "/same_frame_invocation_contract/cases/5/input_recipe"
           },
           "expected_result_recipe_ref": {
             "document": "docs/helix-security/L8-unit-verification/project-scope-isolation.json",
-            "file_sha256": "d4e1f973672ad063f404fbb8ada2b844f895760f88d3f6e0dfc1bbe0e45293c7",
-            "pointer": "/same_frame_invocation_contract/cases/5/expected_result_recipe",
-            "object_canonical_sha256": "f0af773844eb19e7f875444b28014c7878b4f6ad6d27f89a0b4bfd15007bbb45",
-            "expected_whole_canonical_sha256": "b8edb6d3bd340bf4c4366f34743a798e079bee927ec0dbcc3f24a762bd9f62fb"
+            "pointer": "/same_frame_invocation_contract/cases/5/expected_result_recipe"
           }
         },
         "when": "同じMaterialized<ProposalInput>をcompose_scope_proposal_and_backflowへ渡した場合のsource-level期待。",
@@ -29110,7 +29069,6 @@
           "operation_correspondence",
           "invocation"
         ],
-        "expected_whole_canonical_sha256": "b8edb6d3bd340bf4c4366f34743a798e079bee927ec0dbcc3f24a762bd9f62fb",
         "execution_state": "not_executed",
         "actual_observation": null,
         "authority_effect": "none",
@@ -29127,16 +29085,11 @@
         "given": {
           "input_recipe_ref": {
             "document": "docs/helix-security/L8-unit-verification/project-scope-isolation.json",
-            "file_sha256": "d4e1f973672ad063f404fbb8ada2b844f895760f88d3f6e0dfc1bbe0e45293c7",
-            "pointer": "/same_frame_invocation_contract/cases/6/input_recipe",
-            "object_canonical_sha256": "f183f8ea19e01a4c8980fe581b7bc554914d3294d0b46acc735c9351fe3a770c"
+            "pointer": "/same_frame_invocation_contract/cases/6/input_recipe"
           },
           "expected_result_recipe_ref": {
             "document": "docs/helix-security/L8-unit-verification/project-scope-isolation.json",
-            "file_sha256": "d4e1f973672ad063f404fbb8ada2b844f895760f88d3f6e0dfc1bbe0e45293c7",
-            "pointer": "/same_frame_invocation_contract/cases/6/expected_result_recipe",
-            "object_canonical_sha256": "557564f3c641b4b7b0ed19cfd516ee1f4f5e0c5d4d50465c653990b05280b495",
-            "expected_whole_canonical_sha256": "2327e875b952aed12b6e64ca3d10f7857969796871d61ffb2c58ddc0cad83f0c"
+            "pointer": "/same_frame_invocation_contract/cases/6/expected_result_recipe"
           }
         },
         "when": "同じMaterialized<ProposalInput>をcompose_scope_proposal_and_backflowへ渡した場合のsource-level期待。",
@@ -29149,7 +29102,6 @@
           "operation_correspondence",
           "invocation"
         ],
-        "expected_whole_canonical_sha256": "2327e875b952aed12b6e64ca3d10f7857969796871d61ffb2c58ddc0cad83f0c",
         "execution_state": "not_executed",
         "actual_observation": null,
         "authority_effect": "none",
@@ -29166,16 +29118,11 @@
         "given": {
           "input_recipe_ref": {
             "document": "docs/helix-security/L8-unit-verification/project-scope-isolation.json",
-            "file_sha256": "d4e1f973672ad063f404fbb8ada2b844f895760f88d3f6e0dfc1bbe0e45293c7",
-            "pointer": "/same_frame_invocation_contract/cases/7/input_recipe",
-            "object_canonical_sha256": "85bb59a5c2c24e48a903ea0c7d0c237f47ce36f72785fb5e43925e49dd8cd1a4"
+            "pointer": "/same_frame_invocation_contract/cases/7/input_recipe"
           },
           "expected_result_recipe_ref": {
             "document": "docs/helix-security/L8-unit-verification/project-scope-isolation.json",
-            "file_sha256": "d4e1f973672ad063f404fbb8ada2b844f895760f88d3f6e0dfc1bbe0e45293c7",
-            "pointer": "/same_frame_invocation_contract/cases/7/expected_result_recipe",
-            "object_canonical_sha256": "c1be1c4da1842d9f18b8828e3f26beeecd9ab60389e930313630243609081951",
-            "expected_whole_canonical_sha256": "cb9af5f9607c07bf4e02be3921bfb9ca0637aa0594e523ed1cba576f46ae0ae8"
+            "pointer": "/same_frame_invocation_contract/cases/7/expected_result_recipe"
           }
         },
         "when": "同じMaterialized<ProposalInput>をcompose_scope_proposal_and_backflowへ渡した場合のsource-level期待。",
@@ -29188,7 +29135,6 @@
           "operation_correspondence",
           "invocation"
         ],
-        "expected_whole_canonical_sha256": "cb9af5f9607c07bf4e02be3921bfb9ca0637aa0594e523ed1cba576f46ae0ae8",
         "execution_state": "not_executed",
         "actual_observation": null,
         "authority_effect": "none",
@@ -29205,16 +29151,11 @@
         "given": {
           "input_recipe_ref": {
             "document": "docs/helix-security/L8-unit-verification/project-scope-isolation.json",
-            "file_sha256": "d4e1f973672ad063f404fbb8ada2b844f895760f88d3f6e0dfc1bbe0e45293c7",
-            "pointer": "/same_frame_invocation_contract/cases/8/input_recipe",
-            "object_canonical_sha256": "d380ea857d9adb541f891d36dad9c32b54857ea6775fdd2c07750210349858f2"
+            "pointer": "/same_frame_invocation_contract/cases/8/input_recipe"
           },
           "expected_result_recipe_ref": {
             "document": "docs/helix-security/L8-unit-verification/project-scope-isolation.json",
-            "file_sha256": "d4e1f973672ad063f404fbb8ada2b844f895760f88d3f6e0dfc1bbe0e45293c7",
-            "pointer": "/same_frame_invocation_contract/cases/8/expected_result_recipe",
-            "object_canonical_sha256": "6e3347538c5ff132af5b6cd15444d0d465a3ab063cc11d72ad72e19f25119633",
-            "expected_whole_canonical_sha256": "6208176da88af94370e00834ef70b8fb93ad697087caa92c069318ec52e266d6"
+            "pointer": "/same_frame_invocation_contract/cases/8/expected_result_recipe"
           }
         },
         "when": "同じMaterialized<ProposalInput>をcompose_scope_proposal_and_backflowへ渡した場合のsource-level期待。",
@@ -29227,7 +29168,6 @@
           "operation_correspondence",
           "invocation"
         ],
-        "expected_whole_canonical_sha256": "6208176da88af94370e00834ef70b8fb93ad697087caa92c069318ec52e266d6",
         "execution_state": "not_executed",
         "actual_observation": null,
         "authority_effect": "none",
@@ -29244,16 +29184,11 @@
         "given": {
           "input_recipe_ref": {
             "document": "docs/helix-security/L8-unit-verification/project-scope-isolation.json",
-            "file_sha256": "d4e1f973672ad063f404fbb8ada2b844f895760f88d3f6e0dfc1bbe0e45293c7",
-            "pointer": "/same_frame_invocation_contract/cases/9/input_recipe",
-            "object_canonical_sha256": "9bf654b0d30d28d29a1d040447a89642ff484151d9bf317893fc281e2e2fd557"
+            "pointer": "/same_frame_invocation_contract/cases/9/input_recipe"
           },
           "expected_result_recipe_ref": {
             "document": "docs/helix-security/L8-unit-verification/project-scope-isolation.json",
-            "file_sha256": "d4e1f973672ad063f404fbb8ada2b844f895760f88d3f6e0dfc1bbe0e45293c7",
-            "pointer": "/same_frame_invocation_contract/cases/9/expected_result_recipe",
-            "object_canonical_sha256": "5ef7339f0a3ff8aaea60c48e5e3042f23cf696a163fd4ff863a7980d8301d922",
-            "expected_whole_canonical_sha256": "0fccc4b78d5fae9791a52bd54298ba82fb4879eae8383d6f98e60d5b0b90cccf"
+            "pointer": "/same_frame_invocation_contract/cases/9/expected_result_recipe"
           }
         },
         "when": "同じMaterialized<ProposalInput>をcompose_scope_proposal_and_backflowへ渡した場合のsource-level期待。",
@@ -29266,7 +29201,6 @@
           "operation_correspondence",
           "invocation"
         ],
-        "expected_whole_canonical_sha256": "0fccc4b78d5fae9791a52bd54298ba82fb4879eae8383d6f98e60d5b0b90cccf",
         "execution_state": "not_executed",
         "actual_observation": null,
         "authority_effect": "none",
@@ -29283,16 +29217,11 @@
         "given": {
           "input_recipe_ref": {
             "document": "docs/helix-security/L8-unit-verification/project-scope-isolation.json",
-            "file_sha256": "d4e1f973672ad063f404fbb8ada2b844f895760f88d3f6e0dfc1bbe0e45293c7",
-            "pointer": "/same_frame_invocation_contract/cases/10/input_recipe",
-            "object_canonical_sha256": "13fbd26c0f0cf5b3cb2ba11aaa43a2e978409800849511dbbb8cb9fcec352b58"
+            "pointer": "/same_frame_invocation_contract/cases/10/input_recipe"
           },
           "expected_result_recipe_ref": {
             "document": "docs/helix-security/L8-unit-verification/project-scope-isolation.json",
-            "file_sha256": "d4e1f973672ad063f404fbb8ada2b844f895760f88d3f6e0dfc1bbe0e45293c7",
-            "pointer": "/same_frame_invocation_contract/cases/10/expected_result_recipe",
-            "object_canonical_sha256": "10bc0255a23217e20d51edec0f841b339fce35e46cd20c3d2af0cc8e8392351c",
-            "expected_whole_canonical_sha256": "cb3fb7f0cb48f87a362679d90b6debd823001adb6d9be85a8f5f72cc9fa0b4f3"
+            "pointer": "/same_frame_invocation_contract/cases/10/expected_result_recipe"
           }
         },
         "when": "同じMaterialized<ProposalInput>をcompose_scope_proposal_and_backflowへ渡した場合のsource-level期待。",
@@ -29305,7 +29234,6 @@
           "operation_correspondence",
           "invocation"
         ],
-        "expected_whole_canonical_sha256": "cb3fb7f0cb48f87a362679d90b6debd823001adb6d9be85a8f5f72cc9fa0b4f3",
         "execution_state": "not_executed",
         "actual_observation": null,
         "authority_effect": "none",
@@ -29322,16 +29250,11 @@
         "given": {
           "input_recipe_ref": {
             "document": "docs/helix-security/L8-unit-verification/project-scope-isolation.json",
-            "file_sha256": "d4e1f973672ad063f404fbb8ada2b844f895760f88d3f6e0dfc1bbe0e45293c7",
-            "pointer": "/same_frame_invocation_contract/cases/11/input_recipe",
-            "object_canonical_sha256": "924e82fa7cd8958e862f598fe251e40f2d3c97111131d814b235934feaa44597"
+            "pointer": "/same_frame_invocation_contract/cases/11/input_recipe"
           },
           "expected_result_recipe_ref": {
             "document": "docs/helix-security/L8-unit-verification/project-scope-isolation.json",
-            "file_sha256": "d4e1f973672ad063f404fbb8ada2b844f895760f88d3f6e0dfc1bbe0e45293c7",
-            "pointer": "/same_frame_invocation_contract/cases/11/expected_result_recipe",
-            "object_canonical_sha256": "d9441b2d30cf9f6732d516c6a6b0dab4009e7b407907f6eb8b1daba65af70cd6",
-            "expected_whole_canonical_sha256": "97d45c7982f20963fc48c024fcff6bf64962136af2442396308200edab616bce"
+            "pointer": "/same_frame_invocation_contract/cases/11/expected_result_recipe"
           }
         },
         "when": "同じMaterialized<ProposalInput>をcompose_scope_proposal_and_backflowへ渡した場合のsource-level期待。",
@@ -29344,7 +29267,6 @@
           "operation_correspondence",
           "invocation"
         ],
-        "expected_whole_canonical_sha256": "97d45c7982f20963fc48c024fcff6bf64962136af2442396308200edab616bce",
         "execution_state": "not_executed",
         "actual_observation": null,
         "authority_effect": "none",
@@ -29361,16 +29283,11 @@
         "given": {
           "input_recipe_ref": {
             "document": "docs/helix-security/L8-unit-verification/project-scope-isolation.json",
-            "file_sha256": "d4e1f973672ad063f404fbb8ada2b844f895760f88d3f6e0dfc1bbe0e45293c7",
-            "pointer": "/same_frame_invocation_contract/cases/12/input_recipe",
-            "object_canonical_sha256": "90721ae40d08a20c0023232049af59eb10367e9bb6a77a1c4ecfdf341559a70b"
+            "pointer": "/same_frame_invocation_contract/cases/12/input_recipe"
           },
           "expected_result_recipe_ref": {
             "document": "docs/helix-security/L8-unit-verification/project-scope-isolation.json",
-            "file_sha256": "d4e1f973672ad063f404fbb8ada2b844f895760f88d3f6e0dfc1bbe0e45293c7",
-            "pointer": "/same_frame_invocation_contract/cases/12/expected_result_recipe",
-            "object_canonical_sha256": "692c990a817b9f30c633c1e7947cd60b3da2d4cd15587d2dec19685dd965c806",
-            "expected_whole_canonical_sha256": "998e7ac09e9f8494ba223bd1d79a8409b2283f1da657a4f48a852fe1db752312"
+            "pointer": "/same_frame_invocation_contract/cases/12/expected_result_recipe"
           }
         },
         "when": "同じMaterialized<ProposalInput>をcompose_scope_proposal_and_backflowへ渡した場合のsource-level期待。",
@@ -29383,7 +29300,6 @@
           "operation_correspondence",
           "invocation"
         ],
-        "expected_whole_canonical_sha256": "998e7ac09e9f8494ba223bd1d79a8409b2283f1da657a4f48a852fe1db752312",
         "execution_state": "not_executed",
         "actual_observation": null,
         "authority_effect": "none",
@@ -29400,16 +29316,11 @@
         "given": {
           "input_recipe_ref": {
             "document": "docs/helix-security/L8-unit-verification/project-scope-isolation.json",
-            "file_sha256": "d4e1f973672ad063f404fbb8ada2b844f895760f88d3f6e0dfc1bbe0e45293c7",
-            "pointer": "/same_frame_invocation_contract/cases/13/input_recipe",
-            "object_canonical_sha256": "94212833157c461cfa0664c1d6c8bdf472110b707922b7ce1204095125915fa8"
+            "pointer": "/same_frame_invocation_contract/cases/13/input_recipe"
           },
           "expected_result_recipe_ref": {
             "document": "docs/helix-security/L8-unit-verification/project-scope-isolation.json",
-            "file_sha256": "d4e1f973672ad063f404fbb8ada2b844f895760f88d3f6e0dfc1bbe0e45293c7",
-            "pointer": "/same_frame_invocation_contract/cases/13/expected_result_recipe",
-            "object_canonical_sha256": "b8ab76e69e55ddbe0bf727c34b3c184d324d59abc1063643b7f55674abf2d0d8",
-            "expected_whole_canonical_sha256": "92d5250574e55584d0c95667bb6cee91f86c521830de2eba5e1fab6f8771d944"
+            "pointer": "/same_frame_invocation_contract/cases/13/expected_result_recipe"
           }
         },
         "when": "同じMaterialized<ProposalInput>をcompose_scope_proposal_and_backflowへ渡した場合のsource-level期待。",
@@ -29422,7 +29333,6 @@
           "operation_correspondence",
           "invocation"
         ],
-        "expected_whole_canonical_sha256": "92d5250574e55584d0c95667bb6cee91f86c521830de2eba5e1fab6f8771d944",
         "execution_state": "not_executed",
         "actual_observation": null,
         "authority_effect": "none",
@@ -29439,16 +29349,11 @@
         "given": {
           "input_recipe_ref": {
             "document": "docs/helix-security/L8-unit-verification/project-scope-isolation.json",
-            "file_sha256": "d4e1f973672ad063f404fbb8ada2b844f895760f88d3f6e0dfc1bbe0e45293c7",
-            "pointer": "/same_frame_invocation_contract/cases/14/input_recipe",
-            "object_canonical_sha256": "d249d5c8f79dad6255095ae6465b6086a672622d6f12c26ac72af5aa5cf17b84"
+            "pointer": "/same_frame_invocation_contract/cases/14/input_recipe"
           },
           "expected_result_recipe_ref": {
             "document": "docs/helix-security/L8-unit-verification/project-scope-isolation.json",
-            "file_sha256": "d4e1f973672ad063f404fbb8ada2b844f895760f88d3f6e0dfc1bbe0e45293c7",
-            "pointer": "/same_frame_invocation_contract/cases/14/expected_result_recipe",
-            "object_canonical_sha256": "2dd3119bf1e4d11745dafb3d95ecefffac9fcdbf9a7d0742b21835c5aaf75cb8",
-            "expected_whole_canonical_sha256": "817a01940006e3a6532e8f397fc79a93b9c23dd2f038088299b4295ccd649e12"
+            "pointer": "/same_frame_invocation_contract/cases/14/expected_result_recipe"
           }
         },
         "when": "同じMaterialized<ProposalInput>をcompose_scope_proposal_and_backflowへ渡した場合のsource-level期待。",
@@ -29461,7 +29366,6 @@
           "operation_correspondence",
           "invocation"
         ],
-        "expected_whole_canonical_sha256": "817a01940006e3a6532e8f397fc79a93b9c23dd2f038088299b4295ccd649e12",
         "execution_state": "not_executed",
         "actual_observation": null,
         "authority_effect": "none",
@@ -29672,15 +29576,11 @@
       "status": "L5私有型/writerと限定L8正常1件・境界12件の追補参照。全10条件の閉包ではない。",
       "current_l5_binding": {
         "document": "docs/helix-security/L5-detail-design/project-scope-isolation.json",
-        "file_sha256": "1b6e50cd2db88e86ae88723589e12170b0651650cf5dbb280b99c673180ea108",
-        "pointer": "/owner_context_detail_contract",
-        "object_canonical_sha256": "cfb420f4dbe664dbcb18134a16436f9d7aa5d434bd7bc5d87266333a781b3451"
+        "pointer": "/owner_context_detail_contract"
       },
       "current_l8_binding": {
         "document": "docs/helix-security/L8-unit-verification/project-scope-isolation.json",
-        "file_sha256": "d4e1f973672ad063f404fbb8ada2b844f895760f88d3f6e0dfc1bbe0e45293c7",
-        "pointer": "/owner_context_binding_verification",
-        "object_canonical_sha256": "b4dace2915af9db00169b5e3059ba5a567ceed6b4ed4fac9f8637d358d565472"
+        "pointer": "/owner_context_binding_verification"
       },
       "fixed_normal_unit_case_ids": [
         "SEC003-L8-OWNER-CONTEXT-N01-NORMAL"
@@ -29703,5 +29603,13 @@
       ],
       "boundary_coverage": "正常1件と境界12件は有限の入力/全返却期待で、L8 source_condition_mappingへ対応を明示する。C08の既知revision差は部分例で、欠落member補完拒否など原条件の全閉包を表さない。"
     }
+  },
+  "removed_materials": {
+    "decision_ref": "https://github.com/RetryYN/HELIX-HARNESS/issues/3510#issuecomment-6447665479",
+    "git_commit": "88d8b2516400e80da9d15ec864264af42b8dfb74",
+    "path": "docs/helix-security/L9-integration-verification/project-scope-isolation.json",
+    "meaning": "実装前のL9結合検証文書に埋め込まれていたsame_frame_invocation_conditionsおよびowner_context_port_conditions.detailed_design_followup内の固定source参照以外の*_sha256（file_sha256/object_canonical_sha256/expected_whole_canonical_sha256計100件）。全205件のcases（given.inputの反例定義およびexpected_proposalの期待観測）、same_frame_invocation_conditions 15件およびowner_context_port_conditions 10件の条件定義は全件保持",
+    "removed_key_rule": "allowlist_with_semantic_echo_and_non_source_pin_sha256_removal",
+    "use_boundary": "履歴参照はgit_commitとpathで行う。現行L9の検証または実装入力として再注入しない"
   }
 }
