@@ -4417,7 +4417,9 @@ class DesignVerificationCheckerSelfTest(unittest.TestCase):
         self,
     ) -> None:
         l5_path = "docs/helix-os/L5-detail-design/ticket-workflow-derivation.json"
-        l7_path = "docs/helix-os/L7-function-verification/ticket-workflow-derivation.json"
+        l7_path = (
+            "docs/helix-os/L7-function-verification/ticket-workflow-derivation.json"
+        )
         l8_path = "docs/helix-os/L8-unit-verification/ticket-workflow-derivation.json"
 
         l5_doc = dvc._load_json(REPO_ROOT, l5_path)
@@ -4425,17 +4427,23 @@ class DesignVerificationCheckerSelfTest(unittest.TestCase):
         l8_doc = dvc._load_json(REPO_ROOT, l8_path)
 
         pair_res = dvc.check_pair_bidir_id(REPO_ROOT, l5_path, l8_path, l5_doc, l8_doc)
-        self.assertTrue(pair_res["passed"], f"Expected OS017 L5<->L8 pass, got {pair_res}")
+        self.assertTrue(
+            pair_res["passed"], f"Expected OS017 L5<->L8 pass, got {pair_res}"
+        )
         self.assertEqual(pair_res["left_count"], 4)
         self.assertEqual(pair_res["right_count"], 4)
         self.assertEqual(pair_res["failures"], [])
 
         cap_l8 = dvc.check_ownership_cap(REPO_ROOT, l8_path, l8_doc, layer="L8")
-        self.assertTrue(cap_l8["passed"], f"Expected OS017 L8 ownership cap pass, got {cap_l8}")
+        self.assertTrue(
+            cap_l8["passed"], f"Expected OS017 L8 ownership cap pass, got {cap_l8}"
+        )
         self.assertEqual(cap_l8["failures"], [])
 
         ptr_l8 = dvc.check_json_pointer(REPO_ROOT, l8_path, l8_doc)
-        self.assertTrue(ptr_l8["passed"], f"Expected OS017 L8 pointer pass, got {ptr_l8}")
+        self.assertTrue(
+            ptr_l8["passed"], f"Expected OS017 L8 pointer pass, got {ptr_l8}"
+        )
         self.assertEqual(ptr_l8["checked_count"], 238)
 
         pin_l7 = dvc.check_pin_sha256(REPO_ROOT, l7_path, l7_doc)
@@ -4447,9 +4455,7 @@ class DesignVerificationCheckerSelfTest(unittest.TestCase):
         bad_l8["objects"] = {"h": {"expected_return": {}, "canonical_sha256": "0" * 64}}
         bad_cap = dvc.check_ownership_cap(REPO_ROOT, l8_path, bad_l8, layer="L8")
         self.assertFalse(bad_cap["passed"])
-        self.assertTrue(
-            any(f["key"] == "expected_return" for f in bad_cap["failures"])
-        )
+        self.assertTrue(any(f["key"] == "expected_return" for f in bad_cap["failures"]))
         self.assertTrue(
             any(f["key"] == "canonical_sha256" for f in bad_cap["failures"])
         )
