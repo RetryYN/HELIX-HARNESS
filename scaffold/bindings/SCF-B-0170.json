@@ -6,7 +6,7 @@
   "product": "HELIX-OS",
   "owner_candidate": "HELIX-OS OS015 管理record/source projection設計",
   "state": "registered",
-  "reason": "既存のL4/L5 class形成規則と固定入力inventoryを保持する。PR-AではL4の2分類とL9の29ケースprojectionだけを追加し、L5 rule/L8 unit projectionは後続PR-Bへ分ける。",
+  "reason": "既存のL4/L5 class形成規則と固定入力inventoryを保持する。PR-AでL4分類とL9の29件projectionを追加し、PR-BではL5 failure ruleとL8 unit projectionを追加した。L9 class source pointer追記はPR-Cの残件。",
   "role": "OS015複合negative-equivalence-class形成規則の下流設計記録とL7固定入力の静的inventory",
   "upstream": [
     {
@@ -22,12 +22,12 @@
     {
       "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
       "sha256": "9146ffd557bc5da60f79cdcd462578b38edf6ec524143a705ab07eeb34c7997b",
-      "note": "L4 fixed input domain、finding/aggregation、condition_valuesと、PR-Aで追加する2 composite classificationを固定。L5 failure_ruleとL8 projectionは別PR-Bまで未形成。PR-A候補pinの対象path bytes。"
+      "note": "L4 fixed input domain、finding/aggregation、condition_valuesと、PR-Aで追加した2 composite classificationを固定。L5 failure_ruleとL8 projectionは別PR-Bまで未形成。PR-A候補pinの対象path bytes。"
     },
     {
       "path": "docs/helix-os/L5-detail-design/management-authority-source-record.json",
-      "sha256": "6d313e6faaf56c0806c1964ac2bece5da0699de1d82dcc804fc77962f679275e",
-      "note": "固定carrierとfield比較、finding/retention、31既存failure rules、L4投影からのcomposite key/owner_ref解決。複合case rowsは未形成。"
+      "sha256": "c7d979d397f7ebc9b82b1cb5fa3e32f82737956c6a54adc2080342b729607c7f",
+      "note": "固定carrierとfield比較、finding/retention、33 failure rules、およびL4投影からの2 composite ruleを含むPR-B L5 bytes。"
     },
     {
       "path": "docs/helix-os/L7-function-verification/management-authority-source-record.json",
@@ -70,7 +70,7 @@
     "L4 facet order/within-facet and whole-result aggregation/condition_valuesから、single-axis class fieldへの明示的投影規則を記録する。",
     "L4 fixed carrierとbounded finding positionsから組合せ上限を計算し、full universeを列挙しない理由を記録する。",
     "L4 algorithmからsingletonとして成立しない6 finding classを特定し、併発所見の根拠を示す。",
-    "L9 observation combinationsをclass formation sourceとして使わない。case単位class assignmentは独立した手動照合が終わるまで未形成とする。"
+    "L9観測の組合せからclass形成や期待を逆生成しない。独立手動照合済み29件をL8へ投影し、残る112件は未割当として保持する。"
   ],
   "connections": {
     "consumers": [
@@ -104,7 +104,11 @@
     "scaffold/research/wr181-os015-composite-class-formation-20261030/residual-population-141.json",
     "scaffold/research/wr181-os015-composite-class-formation-20261030/inventory_141.py",
     "scaffold/research/wr181-os015-composite-class-formation-20261030/l7-fixed-input-inventory-141.json",
-    "scaffold/bindings/SCF-B-0170.json"
+    "scaffold/bindings/SCF-B-0170.json",
+    "scaffold/research/wr181-os015-pr-b-l5-l8-20261030/README.md",
+    "scaffold/research/wr181-os015-pr-b-l5-l8-20261030/validate_static_projection.py",
+    "scaffold/research/wr181-os015-pr-b-l5-l8-20261030/verification-summary.json",
+    "scaffold/research/wr181-os015-pr-b-l5-l8-20261030/static-validation.json"
   ],
   "verification": {
     "evidence_kind": "scaffold",
