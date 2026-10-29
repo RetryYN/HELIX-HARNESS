@@ -63227,11 +63227,7 @@
                 "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
                 "pointer": "/cases/0/negative_cases/0/mutation"
               }
-            ],
-            "expected_property": {
-              "path": "/cases/0/cases/1/expected_partial_values",
-              "source": "L8自身のexpected_partial_valuesを指す。期待値は複製・編集せず、L9 expected_materialから生成しない。"
-            }
+            ]
           }
         },
         {
@@ -63468,11 +63464,7 @@
                 "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
                 "pointer": "/cases/0/negative_cases/1/mutation"
               }
-            ],
-            "expected_property": {
-              "path": "/cases/0/cases/2/expected_partial_values",
-              "source": "L8自身のexpected_partial_valuesを指す。期待値は複製・編集せず、L9 expected_materialから生成しない。"
-            }
+            ]
           }
         },
         {
@@ -63709,11 +63701,7 @@
                 "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
                 "pointer": "/cases/0/negative_cases/2/mutation"
               }
-            ],
-            "expected_property": {
-              "path": "/cases/0/cases/3/expected_partial_values",
-              "source": "L8自身のexpected_partial_valuesを指す。期待値は複製・編集せず、L9 expected_materialから生成しない。"
-            }
+            ]
           }
         },
         {
@@ -63950,11 +63938,7 @@
                 "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
                 "pointer": "/cases/0/negative_cases/3/mutation"
               }
-            ],
-            "expected_property": {
-              "path": "/cases/0/cases/4/expected_partial_values",
-              "source": "L8自身のexpected_partial_valuesを指す。期待値は複製・編集せず、L9 expected_materialから生成しない。"
-            }
+            ]
           }
         },
         {
@@ -64191,11 +64175,7 @@
                 "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
                 "pointer": "/cases/0/negative_cases/4/mutation"
               }
-            ],
-            "expected_property": {
-              "path": "/cases/0/cases/5/expected_partial_values",
-              "source": "L8自身のexpected_partial_valuesを指す。期待値は複製・編集せず、L9 expected_materialから生成しない。"
-            }
+            ]
           }
         },
         {
@@ -64430,11 +64410,7 @@
                 "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
                 "pointer": "/cases/0/negative_cases/5/mutation"
               }
-            ],
-            "expected_property": {
-              "path": "/cases/0/cases/6/expected_partial_values",
-              "source": "L8自身のexpected_partial_valuesを指す。期待値は複製・編集せず、L9 expected_materialから生成しない。"
-            }
+            ]
           }
         },
         {
@@ -64669,11 +64645,7 @@
                 "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
                 "pointer": "/cases/0/negative_cases/6/mutation"
               }
-            ],
-            "expected_property": {
-              "path": "/cases/0/cases/7/expected_partial_values",
-              "source": "L8自身のexpected_partial_valuesを指す。期待値は複製・編集せず、L9 expected_materialから生成しない。"
-            }
+            ]
           }
         },
         {
@@ -64908,11 +64880,7 @@
                 "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
                 "pointer": "/cases/0/negative_cases/7/mutation"
               }
-            ],
-            "expected_property": {
-              "path": "/cases/0/cases/8/expected_partial_values",
-              "source": "L8自身のexpected_partial_valuesを指す。期待値は複製・編集せず、L9 expected_materialから生成しない。"
-            }
+            ]
           }
         },
         {
@@ -65157,11 +65125,7 @@
                 "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
                 "pointer": "/cases/0/negative_cases/8/mutation"
               }
-            ],
-            "expected_property": {
-              "path": "/cases/0/cases/9/expected_partial_values",
-              "source": "L8自身のexpected_partial_valuesを指す。期待値は複製・編集せず、L9 expected_materialから生成しない。"
-            }
+            ]
           }
         },
         {
@@ -65622,11 +65586,7 @@
                 "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
                 "pointer": "/cases/0/negative_cases/10/mutation"
               }
-            ],
-            "expected_property": {
-              "path": "/cases/0/cases/11/expected_partial_values",
-              "source": "L8自身のexpected_partial_valuesを指す。期待値は複製・編集せず、L9 expected_materialから生成しない。"
-            }
+            ]
           }
         },
         {
@@ -66747,11 +66707,7 @@
                 "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
                 "pointer": "/cases/0/negative_cases/15/mutation"
               }
-            ],
-            "expected_property": {
-              "path": "/cases/0/cases/16/expected_partial_values",
-              "source": "L8自身のexpected_partial_valuesを指す。期待値は複製・編集せず、L9 expected_materialから生成しない。"
-            }
+            ]
           }
         },
         {
@@ -83659,11 +83615,7 @@
                 "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
                 "pointer": "/cases/1/negative_cases/0/mutation"
               }
-            ],
-            "expected_property": {
-              "path": "/cases/1/cases/5/expected_partial_values",
-              "source": "L8自身のexpected_partial_valuesを指す。期待値は複製・編集せず、L9 expected_materialから生成しない。"
-            }
+            ]
           }
         },
         {
@@ -83834,11 +83786,7 @@
                 "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
                 "pointer": "/cases/1/negative_cases/1/mutation"
               }
-            ],
-            "expected_property": {
-              "path": "/cases/1/cases/6/expected_partial_values",
-              "source": "L8自身のexpected_partial_valuesを指す。期待値は複製・編集せず、L9 expected_materialから生成しない。"
-            }
+            ]
           }
         },
         {
@@ -84009,11 +83957,7 @@
                 "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
                 "pointer": "/cases/1/negative_cases/2/mutation"
               }
-            ],
-            "expected_property": {
-              "path": "/cases/1/cases/7/expected_partial_values",
-              "source": "L8自身のexpected_partial_valuesを指す。期待値は複製・編集せず、L9 expected_materialから生成しない。"
-            }
+            ]
           }
         },
         {
@@ -84184,11 +84128,7 @@
                 "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
                 "pointer": "/cases/1/negative_cases/3/mutation"
               }
-            ],
-            "expected_property": {
-              "path": "/cases/1/cases/8/expected_partial_values",
-              "source": "L8自身のexpected_partial_valuesを指す。期待値は複製・編集せず、L9 expected_materialから生成しない。"
-            }
+            ]
           }
         },
         {
@@ -84359,11 +84299,7 @@
                 "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
                 "pointer": "/cases/1/negative_cases/4/mutation"
               }
-            ],
-            "expected_property": {
-              "path": "/cases/1/cases/9/expected_partial_values",
-              "source": "L8自身のexpected_partial_valuesを指す。期待値は複製・編集せず、L9 expected_materialから生成しない。"
-            }
+            ]
           }
         },
         {
@@ -84534,11 +84470,7 @@
                 "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
                 "pointer": "/cases/1/negative_cases/5/mutation"
               }
-            ],
-            "expected_property": {
-              "path": "/cases/1/cases/10/expected_partial_values",
-              "source": "L8自身のexpected_partial_valuesを指す。期待値は複製・編集せず、L9 expected_materialから生成しない。"
-            }
+            ]
           }
         },
         {
@@ -84709,11 +84641,7 @@
                 "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
                 "pointer": "/cases/1/negative_cases/6/mutation"
               }
-            ],
-            "expected_property": {
-              "path": "/cases/1/cases/11/expected_partial_values",
-              "source": "L8自身のexpected_partial_valuesを指す。期待値は複製・編集せず、L9 expected_materialから生成しない。"
-            }
+            ]
           }
         },
         {
@@ -84884,11 +84812,7 @@
                 "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
                 "pointer": "/cases/1/negative_cases/7/mutation"
               }
-            ],
-            "expected_property": {
-              "path": "/cases/1/cases/12/expected_partial_values",
-              "source": "L8自身のexpected_partial_valuesを指す。期待値は複製・編集せず、L9 expected_materialから生成しない。"
-            }
+            ]
           }
         },
         {
@@ -85059,11 +84983,7 @@
                 "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
                 "pointer": "/cases/1/negative_cases/8/mutation"
               }
-            ],
-            "expected_property": {
-              "path": "/cases/1/cases/13/expected_partial_values",
-              "source": "L8自身のexpected_partial_valuesを指す。期待値は複製・編集せず、L9 expected_materialから生成しない。"
-            }
+            ]
           }
         },
         {
@@ -85234,11 +85154,7 @@
                 "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
                 "pointer": "/cases/1/negative_cases/9/mutation"
               }
-            ],
-            "expected_property": {
-              "path": "/cases/1/cases/14/expected_partial_values",
-              "source": "L8自身のexpected_partial_valuesを指す。期待値は複製・編集せず、L9 expected_materialから生成しない。"
-            }
+            ]
           }
         },
         {
@@ -85412,11 +85328,7 @@
                 "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
                 "pointer": "/cases/1/negative_cases/10/mutation"
               }
-            ],
-            "expected_property": {
-              "path": "/cases/1/cases/15/expected_partial_values",
-              "source": "L8自身のexpected_partial_valuesを指す。期待値は複製・編集せず、L9 expected_materialから生成しない。"
-            }
+            ]
           }
         },
         {
@@ -85746,11 +85658,7 @@
                 "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
                 "pointer": "/cases/1/negative_cases/12/mutation"
               }
-            ],
-            "expected_property": {
-              "path": "/cases/1/cases/17/expected_partial_values",
-              "source": "L8自身のexpected_partial_valuesを指す。期待値は複製・編集せず、L9 expected_materialから生成しない。"
-            }
+            ]
           }
         },
         {
@@ -85945,11 +85853,7 @@
                 "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
                 "pointer": "/cases/1/negative_cases/13/mutation"
               }
-            ],
-            "expected_property": {
-              "path": "/cases/1/cases/18/expected_partial_values",
-              "source": "L8自身のexpected_partial_valuesを指す。期待値は複製・編集せず、L9 expected_materialから生成しない。"
-            }
+            ]
           }
         },
         {
@@ -86321,11 +86225,7 @@
                 "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
                 "pointer": "/cases/1/negative_cases/15/mutation"
               }
-            ],
-            "expected_property": {
-              "path": "/cases/1/cases/20/expected_partial_values",
-              "source": "L8自身のexpected_partial_valuesを指す。期待値は複製・編集せず、L9 expected_materialから生成しない。"
-            }
+            ]
           }
         },
         {
@@ -86496,11 +86396,7 @@
                 "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
                 "pointer": "/cases/1/negative_cases/16/mutation"
               }
-            ],
-            "expected_property": {
-              "path": "/cases/1/cases/21/expected_partial_values",
-              "source": "L8自身のexpected_partial_valuesを指す。期待値は複製・編集せず、L9 expected_materialから生成しない。"
-            }
+            ]
           }
         }
       ],
@@ -100744,11 +100640,7 @@
                 "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
                 "pointer": "/cases/2/negative_cases/2/mutation"
               }
-            ],
-            "expected_property": {
-              "path": "/cases/2/cases/5/expected_partial_values",
-              "source": "L8自身のexpected_partial_valuesを指す。期待値は複製・編集せず、L9 expected_materialから生成しない。"
-            }
+            ]
           }
         },
         {
@@ -102588,11 +102480,7 @@
                 "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
                 "pointer": "/cases/2/negative_cases/10/mutation"
               }
-            ],
-            "expected_property": {
-              "path": "/cases/2/cases/13/expected_partial_values",
-              "source": "L8自身のexpected_partial_valuesを指す。期待値は複製・編集せず、L9 expected_materialから生成しない。"
-            }
+            ]
           }
         },
         {
@@ -102836,11 +102724,7 @@
                 "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
                 "pointer": "/cases/2/negative_cases/11/mutation"
               }
-            ],
-            "expected_property": {
-              "path": "/cases/2/cases/14/expected_partial_values",
-              "source": "L8自身のexpected_partial_valuesを指す。期待値は複製・編集せず、L9 expected_materialから生成しない。"
-            }
+            ]
           }
         },
         {
@@ -103087,11 +102971,7 @@
                 "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
                 "pointer": "/cases/2/negative_cases/12/mutation"
               }
-            ],
-            "expected_property": {
-              "path": "/cases/2/cases/15/expected_partial_values",
-              "source": "L8自身のexpected_partial_valuesを指す。期待値は複製・編集せず、L9 expected_materialから生成しない。"
-            }
+            ]
           }
         },
         {
@@ -103338,11 +103218,7 @@
                 "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
                 "pointer": "/cases/2/negative_cases/13/mutation"
               }
-            ],
-            "expected_property": {
-              "path": "/cases/2/cases/16/expected_partial_values",
-              "source": "L8自身のexpected_partial_valuesを指す。期待値は複製・編集せず、L9 expected_materialから生成しない。"
-            }
+            ]
           }
         },
         {
@@ -103589,11 +103465,7 @@
                 "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
                 "pointer": "/cases/2/negative_cases/14/mutation"
               }
-            ],
-            "expected_property": {
-              "path": "/cases/2/cases/17/expected_partial_values",
-              "source": "L8自身のexpected_partial_valuesを指す。期待値は複製・編集せず、L9 expected_materialから生成しない。"
-            }
+            ]
           }
         },
         {
@@ -103840,11 +103712,7 @@
                 "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
                 "pointer": "/cases/2/negative_cases/15/mutation"
               }
-            ],
-            "expected_property": {
-              "path": "/cases/2/cases/18/expected_partial_values",
-              "source": "L8自身のexpected_partial_valuesを指す。期待値は複製・編集せず、L9 expected_materialから生成しない。"
-            }
+            ]
           }
         },
         {
@@ -104088,11 +103956,7 @@
                 "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
                 "pointer": "/cases/2/negative_cases/16/mutation"
               }
-            ],
-            "expected_property": {
-              "path": "/cases/2/cases/19/expected_partial_values",
-              "source": "L8自身のexpected_partial_valuesを指す。期待値は複製・編集せず、L9 expected_materialから生成しない。"
-            }
+            ]
           }
         },
         {
@@ -104336,11 +104200,7 @@
                 "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
                 "pointer": "/cases/2/negative_cases/17/mutation"
               }
-            ],
-            "expected_property": {
-              "path": "/cases/2/cases/20/expected_partial_values",
-              "source": "L8自身のexpected_partial_valuesを指す。期待値は複製・編集せず、L9 expected_materialから生成しない。"
-            }
+            ]
           }
         },
         {
@@ -104584,11 +104444,7 @@
                 "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
                 "pointer": "/cases/2/negative_cases/18/mutation"
               }
-            ],
-            "expected_property": {
-              "path": "/cases/2/cases/21/expected_partial_values",
-              "source": "L8自身のexpected_partial_valuesを指す。期待値は複製・編集せず、L9 expected_materialから生成しない。"
-            }
+            ]
           }
         },
         {
@@ -104832,11 +104688,7 @@
                 "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
                 "pointer": "/cases/2/negative_cases/19/mutation"
               }
-            ],
-            "expected_property": {
-              "path": "/cases/2/cases/22/expected_partial_values",
-              "source": "L8自身のexpected_partial_valuesを指す。期待値は複製・編集せず、L9 expected_materialから生成しない。"
-            }
+            ]
           }
         },
         {
@@ -105080,11 +104932,7 @@
                 "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
                 "pointer": "/cases/2/negative_cases/20/mutation"
               }
-            ],
-            "expected_property": {
-              "path": "/cases/2/cases/23/expected_partial_values",
-              "source": "L8自身のexpected_partial_valuesを指す。期待値は複製・編集せず、L9 expected_materialから生成しない。"
-            }
+            ]
           }
         }
       ],
@@ -125632,11 +125480,7 @@
                 "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
                 "pointer": "/cases/3/negative_cases/0/mutation"
               }
-            ],
-            "expected_property": {
-              "path": "/cases/3/cases/4/expected_partial_values",
-              "source": "L8自身のexpected_partial_valuesを指す。期待値は複製・編集せず、L9 expected_materialから生成しない。"
-            }
+            ]
           }
         },
         {
@@ -126350,11 +126194,7 @@
                 "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
                 "pointer": "/cases/3/negative_cases/2/mutation"
               }
-            ],
-            "expected_property": {
-              "path": "/cases/3/cases/6/expected_partial_values",
-              "source": "L8自身のexpected_partial_valuesを指す。期待値は複製・編集せず、L9 expected_materialから生成しない。"
-            }
+            ]
           }
         },
         {
@@ -129168,11 +129008,7 @@
                 "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
                 "pointer": "/cases/3/negative_cases/10/mutation"
               }
-            ],
-            "expected_property": {
-              "path": "/cases/3/cases/14/expected_partial_values",
-              "source": "L8自身のexpected_partial_valuesを指す。期待値は複製・編集せず、L9 expected_materialから生成しない。"
-            }
+            ]
           }
         },
         {
@@ -129886,11 +129722,7 @@
                 "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
                 "pointer": "/cases/3/negative_cases/12/mutation"
               }
-            ],
-            "expected_property": {
-              "path": "/cases/3/cases/16/expected_partial_values",
-              "source": "L8自身のexpected_partial_valuesを指す。期待値は複製・編集せず、L9 expected_materialから生成しない。"
-            }
+            ]
           }
         },
         {
@@ -130256,11 +130088,7 @@
                 "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
                 "pointer": "/cases/3/negative_cases/13/mutation"
               }
-            ],
-            "expected_property": {
-              "path": "/cases/3/cases/17/expected_partial_values",
-              "source": "L8自身のexpected_partial_valuesを指す。期待値は複製・編集せず、L9 expected_materialから生成しない。"
-            }
+            ]
           }
         },
         {
@@ -130626,11 +130454,7 @@
                 "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
                 "pointer": "/cases/3/negative_cases/14/mutation"
               }
-            ],
-            "expected_property": {
-              "path": "/cases/3/cases/18/expected_partial_values",
-              "source": "L8自身のexpected_partial_valuesを指す。期待値は複製・編集せず、L9 expected_materialから生成しない。"
-            }
+            ]
           }
         },
         {
@@ -130996,11 +130820,7 @@
                 "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
                 "pointer": "/cases/3/negative_cases/15/mutation"
               }
-            ],
-            "expected_property": {
-              "path": "/cases/3/cases/19/expected_partial_values",
-              "source": "L8自身のexpected_partial_valuesを指す。期待値は複製・編集せず、L9 expected_materialから生成しない。"
-            }
+            ]
           }
         },
         {
@@ -131366,11 +131186,7 @@
                 "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
                 "pointer": "/cases/3/negative_cases/16/mutation"
               }
-            ],
-            "expected_property": {
-              "path": "/cases/3/cases/20/expected_partial_values",
-              "source": "L8自身のexpected_partial_valuesを指す。期待値は複製・編集せず、L9 expected_materialから生成しない。"
-            }
+            ]
           }
         },
         {
@@ -131736,11 +131552,7 @@
                 "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
                 "pointer": "/cases/3/negative_cases/17/mutation"
               }
-            ],
-            "expected_property": {
-              "path": "/cases/3/cases/21/expected_partial_values",
-              "source": "L8自身のexpected_partial_valuesを指す。期待値は複製・編集せず、L9 expected_materialから生成しない。"
-            }
+            ]
           }
         },
         {
@@ -132106,11 +131918,7 @@
                 "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
                 "pointer": "/cases/3/negative_cases/18/mutation"
               }
-            ],
-            "expected_property": {
-              "path": "/cases/3/cases/22/expected_partial_values",
-              "source": "L8自身のexpected_partial_valuesを指す。期待値は複製・編集せず、L9 expected_materialから生成しない。"
-            }
+            ]
           }
         },
         {
@@ -132476,11 +132284,7 @@
                 "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
                 "pointer": "/cases/3/negative_cases/19/mutation"
               }
-            ],
-            "expected_property": {
-              "path": "/cases/3/cases/23/expected_partial_values",
-              "source": "L8自身のexpected_partial_valuesを指す。期待値は複製・編集せず、L9 expected_materialから生成しない。"
-            }
+            ]
           }
         },
         {
@@ -132846,11 +132650,7 @@
                 "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
                 "pointer": "/cases/3/negative_cases/20/mutation"
               }
-            ],
-            "expected_property": {
-              "path": "/cases/3/cases/24/expected_partial_values",
-              "source": "L8自身のexpected_partial_valuesを指す。期待値は複製・編集せず、L9 expected_materialから生成しない。"
-            }
+            ]
           }
         },
         {
@@ -133216,11 +133016,7 @@
                 "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
                 "pointer": "/cases/3/negative_cases/21/mutation"
               }
-            ],
-            "expected_property": {
-              "path": "/cases/3/cases/25/expected_partial_values",
-              "source": "L8自身のexpected_partial_valuesを指す。期待値は複製・編集せず、L9 expected_materialから生成しない。"
-            }
+            ]
           }
         },
         {
@@ -137104,11 +136900,7 @@
                 "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
                 "pointer": "/cases/3/negative_cases/32/mutation"
               }
-            ],
-            "expected_property": {
-              "path": "/cases/3/cases/36/expected_partial_values",
-              "source": "L8自身のexpected_partial_valuesを指す。期待値は複製・編集せず、L9 expected_materialから生成しない。"
-            }
+            ]
           }
         },
         {
@@ -138174,11 +137966,7 @@
                 "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
                 "pointer": "/cases/3/negative_cases/35/mutation"
               }
-            ],
-            "expected_property": {
-              "path": "/cases/3/cases/39/expected_partial_values",
-              "source": "L8自身のexpected_partial_valuesを指す。期待値は複製・編集せず、L9 expected_materialから生成しない。"
-            }
+            ]
           }
         },
         {
@@ -138892,11 +138680,7 @@
                 "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
                 "pointer": "/cases/3/negative_cases/37/mutation"
               }
-            ],
-            "expected_property": {
-              "path": "/cases/3/cases/41/expected_partial_values",
-              "source": "L8自身のexpected_partial_valuesを指す。期待値は複製・編集せず、L9 expected_materialから生成しない。"
-            }
+            ]
           }
         },
         {
@@ -159469,11 +159253,7 @@
                 "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
                 "pointer": "/cases/4/negative_cases/1/mutation"
               }
-            ],
-            "expected_property": {
-              "path": "/cases/4/cases/9/expected_partial_values",
-              "source": "L8自身のexpected_partial_valuesを指す。期待値は複製・編集せず、L9 expected_materialから生成しない。"
-            }
+            ]
           }
         },
         {
@@ -159675,11 +159455,7 @@
                 "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
                 "pointer": "/cases/4/negative_cases/2/mutation"
               }
-            ],
-            "expected_property": {
-              "path": "/cases/4/cases/10/expected_partial_values",
-              "source": "L8自身のexpected_partial_valuesを指す。期待値は複製・編集せず、L9 expected_materialから生成しない。"
-            }
+            ]
           }
         },
         {
@@ -159881,11 +159657,7 @@
                 "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
                 "pointer": "/cases/4/negative_cases/3/mutation"
               }
-            ],
-            "expected_property": {
-              "path": "/cases/4/cases/11/expected_partial_values",
-              "source": "L8自身のexpected_partial_valuesを指す。期待値は複製・編集せず、L9 expected_materialから生成しない。"
-            }
+            ]
           }
         },
         {
@@ -160087,11 +159859,7 @@
                 "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
                 "pointer": "/cases/4/negative_cases/4/mutation"
               }
-            ],
-            "expected_property": {
-              "path": "/cases/4/cases/12/expected_partial_values",
-              "source": "L8自身のexpected_partial_valuesを指す。期待値は複製・編集せず、L9 expected_materialから生成しない。"
-            }
+            ]
           }
         },
         {
@@ -160293,11 +160061,7 @@
                 "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
                 "pointer": "/cases/4/negative_cases/5/mutation"
               }
-            ],
-            "expected_property": {
-              "path": "/cases/4/cases/13/expected_partial_values",
-              "source": "L8自身のexpected_partial_valuesを指す。期待値は複製・編集せず、L9 expected_materialから生成しない。"
-            }
+            ]
           }
         },
         {
@@ -160499,11 +160263,7 @@
                 "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
                 "pointer": "/cases/4/negative_cases/6/mutation"
               }
-            ],
-            "expected_property": {
-              "path": "/cases/4/cases/14/expected_partial_values",
-              "source": "L8自身のexpected_partial_valuesを指す。期待値は複製・編集せず、L9 expected_materialから生成しない。"
-            }
+            ]
           }
         },
         {
@@ -160705,11 +160465,7 @@
                 "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
                 "pointer": "/cases/4/negative_cases/7/mutation"
               }
-            ],
-            "expected_property": {
-              "path": "/cases/4/cases/15/expected_partial_values",
-              "source": "L8自身のexpected_partial_valuesを指す。期待値は複製・編集せず、L9 expected_materialから生成しない。"
-            }
+            ]
           }
         },
         {
@@ -160914,11 +160670,7 @@
                 "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
                 "pointer": "/cases/4/negative_cases/8/mutation"
               }
-            ],
-            "expected_property": {
-              "path": "/cases/4/cases/16/expected_partial_values",
-              "source": "L8自身のexpected_partial_valuesを指す。期待値は複製・編集せず、L9 expected_materialから生成しない。"
-            }
+            ]
           }
         },
         {
@@ -161123,11 +160875,7 @@
                 "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
                 "pointer": "/cases/4/negative_cases/9/mutation"
               }
-            ],
-            "expected_property": {
-              "path": "/cases/4/cases/17/expected_partial_values",
-              "source": "L8自身のexpected_partial_valuesを指す。期待値は複製・編集せず、L9 expected_materialから生成しない。"
-            }
+            ]
           }
         },
         {
@@ -161332,11 +161080,7 @@
                 "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
                 "pointer": "/cases/4/negative_cases/10/mutation"
               }
-            ],
-            "expected_property": {
-              "path": "/cases/4/cases/18/expected_partial_values",
-              "source": "L8自身のexpected_partial_valuesを指す。期待値は複製・編集せず、L9 expected_materialから生成しない。"
-            }
+            ]
           }
         },
         {
@@ -161541,11 +161285,7 @@
                 "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
                 "pointer": "/cases/4/negative_cases/11/mutation"
               }
-            ],
-            "expected_property": {
-              "path": "/cases/4/cases/19/expected_partial_values",
-              "source": "L8自身のexpected_partial_valuesを指す。期待値は複製・編集せず、L9 expected_materialから生成しない。"
-            }
+            ]
           }
         },
         {
@@ -161750,11 +161490,7 @@
                 "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
                 "pointer": "/cases/4/negative_cases/12/mutation"
               }
-            ],
-            "expected_property": {
-              "path": "/cases/4/cases/20/expected_partial_values",
-              "source": "L8自身のexpected_partial_valuesを指す。期待値は複製・編集せず、L9 expected_materialから生成しない。"
-            }
+            ]
           }
         },
         {
@@ -162146,11 +161882,7 @@
                 "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
                 "pointer": "/cases/4/negative_cases/14/mutation"
               }
-            ],
-            "expected_property": {
-              "path": "/cases/4/cases/22/expected_partial_values",
-              "source": "L8自身のexpected_partial_valuesを指す。期待値は複製・編集せず、L9 expected_materialから生成しない。"
-            }
+            ]
           }
         },
         {
@@ -162355,11 +162087,7 @@
                 "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
                 "pointer": "/cases/4/negative_cases/15/mutation"
               }
-            ],
-            "expected_property": {
-              "path": "/cases/4/cases/23/expected_partial_values",
-              "source": "L8自身のexpected_partial_valuesを指す。期待値は複製・編集せず、L9 expected_materialから生成しない。"
-            }
+            ]
           }
         },
         {
@@ -162564,11 +162292,7 @@
                 "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
                 "pointer": "/cases/4/negative_cases/16/mutation"
               }
-            ],
-            "expected_property": {
-              "path": "/cases/4/cases/24/expected_partial_values",
-              "source": "L8自身のexpected_partial_valuesを指す。期待値は複製・編集せず、L9 expected_materialから生成しない。"
-            }
+            ]
           }
         },
         {
@@ -162773,11 +162497,7 @@
                 "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
                 "pointer": "/cases/4/negative_cases/17/mutation"
               }
-            ],
-            "expected_property": {
-              "path": "/cases/4/cases/25/expected_partial_values",
-              "source": "L8自身のexpected_partial_valuesを指す。期待値は複製・編集せず、L9 expected_materialから生成しない。"
-            }
+            ]
           }
         },
         {
@@ -162982,11 +162702,7 @@
                 "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
                 "pointer": "/cases/4/negative_cases/18/mutation"
               }
-            ],
-            "expected_property": {
-              "path": "/cases/4/cases/26/expected_partial_values",
-              "source": "L8自身のexpected_partial_valuesを指す。期待値は複製・編集せず、L9 expected_materialから生成しない。"
-            }
+            ]
           }
         },
         {
@@ -163191,11 +162907,7 @@
                 "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
                 "pointer": "/cases/4/negative_cases/19/mutation"
               }
-            ],
-            "expected_property": {
-              "path": "/cases/4/cases/27/expected_partial_values",
-              "source": "L8自身のexpected_partial_valuesを指す。期待値は複製・編集せず、L9 expected_materialから生成しない。"
-            }
+            ]
           }
         },
         {
@@ -163400,11 +163112,7 @@
                 "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
                 "pointer": "/cases/4/negative_cases/20/mutation"
               }
-            ],
-            "expected_property": {
-              "path": "/cases/4/cases/28/expected_partial_values",
-              "source": "L8自身のexpected_partial_valuesを指す。期待値は複製・編集せず、L9 expected_materialから生成しない。"
-            }
+            ]
           }
         },
         {
@@ -163609,11 +163317,7 @@
                 "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
                 "pointer": "/cases/4/negative_cases/21/mutation"
               }
-            ],
-            "expected_property": {
-              "path": "/cases/4/cases/29/expected_partial_values",
-              "source": "L8自身のexpected_partial_valuesを指す。期待値は複製・編集せず、L9 expected_materialから生成しない。"
-            }
+            ]
           }
         },
         {
@@ -193270,11 +192974,7 @@
                 "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
                 "pointer": "/cases/5/negative_cases/0/mutation"
               }
-            ],
-            "expected_property": {
-              "path": "/cases/5/cases/3/expected_partial_values",
-              "source": "L8自身のexpected_partial_valuesを指す。期待値は複製・編集せず、L9 expected_materialから生成しない。"
-            }
+            ]
           }
         },
         {
@@ -193787,11 +193487,7 @@
                 "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
                 "pointer": "/cases/5/negative_cases/1/mutation"
               }
-            ],
-            "expected_property": {
-              "path": "/cases/5/cases/4/expected_partial_values",
-              "source": "L8自身のexpected_partial_valuesを指す。期待値は複製・編集せず、L9 expected_materialから生成しない。"
-            }
+            ]
           }
         },
         {
@@ -194304,11 +194000,7 @@
                 "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
                 "pointer": "/cases/5/negative_cases/2/mutation"
               }
-            ],
-            "expected_property": {
-              "path": "/cases/5/cases/5/expected_partial_values",
-              "source": "L8自身のexpected_partial_valuesを指す。期待値は複製・編集せず、L9 expected_materialから生成しない。"
-            }
+            ]
           }
         },
         {
@@ -194821,11 +194513,7 @@
                 "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
                 "pointer": "/cases/5/negative_cases/3/mutation"
               }
-            ],
-            "expected_property": {
-              "path": "/cases/5/cases/6/expected_partial_values",
-              "source": "L8自身のexpected_partial_valuesを指す。期待値は複製・編集せず、L9 expected_materialから生成しない。"
-            }
+            ]
           }
         },
         {
@@ -195338,11 +195026,7 @@
                 "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
                 "pointer": "/cases/5/negative_cases/4/mutation"
               }
-            ],
-            "expected_property": {
-              "path": "/cases/5/cases/7/expected_partial_values",
-              "source": "L8自身のexpected_partial_valuesを指す。期待値は複製・編集せず、L9 expected_materialから生成しない。"
-            }
+            ]
           }
         },
         {
@@ -195855,11 +195539,7 @@
                 "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
                 "pointer": "/cases/5/negative_cases/5/mutation"
               }
-            ],
-            "expected_property": {
-              "path": "/cases/5/cases/8/expected_partial_values",
-              "source": "L8自身のexpected_partial_valuesを指す。期待値は複製・編集せず、L9 expected_materialから生成しない。"
-            }
+            ]
           }
         },
         {
@@ -196372,11 +196052,7 @@
                 "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
                 "pointer": "/cases/5/negative_cases/6/mutation"
               }
-            ],
-            "expected_property": {
-              "path": "/cases/5/cases/9/expected_partial_values",
-              "source": "L8自身のexpected_partial_valuesを指す。期待値は複製・編集せず、L9 expected_materialから生成しない。"
-            }
+            ]
           }
         },
         {
@@ -196889,11 +196565,7 @@
                 "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
                 "pointer": "/cases/5/negative_cases/7/mutation"
               }
-            ],
-            "expected_property": {
-              "path": "/cases/5/cases/10/expected_partial_values",
-              "source": "L8自身のexpected_partial_valuesを指す。期待値は複製・編集せず、L9 expected_materialから生成しない。"
-            }
+            ]
           }
         },
         {
@@ -197406,11 +197078,7 @@
                 "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
                 "pointer": "/cases/5/negative_cases/8/mutation"
               }
-            ],
-            "expected_property": {
-              "path": "/cases/5/cases/11/expected_partial_values",
-              "source": "L8自身のexpected_partial_valuesを指す。期待値は複製・編集せず、L9 expected_materialから生成しない。"
-            }
+            ]
           }
         },
         {
@@ -198911,11 +198579,7 @@
                 "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
                 "pointer": "/cases/5/negative_cases/11/mutation"
               }
-            ],
-            "expected_property": {
-              "path": "/cases/5/cases/14/expected_partial_values",
-              "source": "L8自身のexpected_partial_valuesを指す。期待値は複製・編集せず、L9 expected_materialから生成しない。"
-            }
+            ]
           }
         },
         {
@@ -201897,11 +201561,7 @@
                 "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
                 "pointer": "/cases/5/negative_cases/17/mutation"
               }
-            ],
-            "expected_property": {
-              "path": "/cases/5/cases/20/expected_partial_values",
-              "source": "L8自身のexpected_partial_valuesを指す。期待値は複製・編集せず、L9 expected_materialから生成しない。"
-            }
+            ]
           }
         },
         {
@@ -202415,11 +202075,7 @@
                 "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
                 "pointer": "/cases/5/negative_cases/18/mutation"
               }
-            ],
-            "expected_property": {
-              "path": "/cases/5/cases/21/expected_partial_values",
-              "source": "L8自身のexpected_partial_valuesを指す。期待値は複製・編集せず、L9 expected_materialから生成しない。"
-            }
+            ]
           }
         },
         {
@@ -202933,11 +202589,7 @@
                 "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
                 "pointer": "/cases/5/negative_cases/19/mutation"
               }
-            ],
-            "expected_property": {
-              "path": "/cases/5/cases/22/expected_partial_values",
-              "source": "L8自身のexpected_partial_valuesを指す。期待値は複製・編集せず、L9 expected_materialから生成しない。"
-            }
+            ]
           }
         },
         {
@@ -203451,11 +203103,7 @@
                 "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
                 "pointer": "/cases/5/negative_cases/20/mutation"
               }
-            ],
-            "expected_property": {
-              "path": "/cases/5/cases/23/expected_partial_values",
-              "source": "L8自身のexpected_partial_valuesを指す。期待値は複製・編集せず、L9 expected_materialから生成しない。"
-            }
+            ]
           }
         },
         {
@@ -203969,11 +203617,7 @@
                 "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
                 "pointer": "/cases/5/negative_cases/21/mutation"
               }
-            ],
-            "expected_property": {
-              "path": "/cases/5/cases/24/expected_partial_values",
-              "source": "L8自身のexpected_partial_valuesを指す。期待値は複製・編集せず、L9 expected_materialから生成しない。"
-            }
+            ]
           }
         },
         {
@@ -204484,11 +204128,7 @@
                 "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
                 "pointer": "/cases/5/negative_cases/22/mutation"
               }
-            ],
-            "expected_property": {
-              "path": "/cases/5/cases/25/expected_partial_values",
-              "source": "L8自身のexpected_partial_valuesを指す。期待値は複製・編集せず、L9 expected_materialから生成しない。"
-            }
+            ]
           }
         },
         {
@@ -210918,11 +210558,7 @@
                 "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
                 "pointer": "/cases/6/negative_cases/0/mutation"
               }
-            ],
-            "expected_property": {
-              "path": "/cases/6/cases/3/expected_partial_values",
-              "source": "L8自身のexpected_partial_valuesを指す。期待値は複製・編集せず、L9 expected_materialから生成しない。"
-            }
+            ]
           }
         },
         {
@@ -212234,11 +211870,7 @@
                 "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
                 "pointer": "/cases/6/negative_cases/2/mutation"
               }
-            ],
-            "expected_property": {
-              "path": "/cases/6/cases/5/expected_partial_values",
-              "source": "L8自身のexpected_partial_valuesを指す。期待値は複製・編集せず、L9 expected_materialから生成しない。"
-            }
+            ]
           }
         },
         {
@@ -212903,11 +212535,7 @@
                 "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
                 "pointer": "/cases/6/negative_cases/3/mutation"
               }
-            ],
-            "expected_property": {
-              "path": "/cases/6/cases/6/expected_partial_values",
-              "source": "L8自身のexpected_partial_valuesを指す。期待値は複製・編集せず、L9 expected_materialから生成しない。"
-            }
+            ]
           }
         },
         {
@@ -213572,11 +213200,7 @@
                 "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
                 "pointer": "/cases/6/negative_cases/4/mutation"
               }
-            ],
-            "expected_property": {
-              "path": "/cases/6/cases/7/expected_partial_values",
-              "source": "L8自身のexpected_partial_valuesを指す。期待値は複製・編集せず、L9 expected_materialから生成しない。"
-            }
+            ]
           }
         },
         {
@@ -214888,11 +214512,7 @@
                 "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
                 "pointer": "/cases/6/negative_cases/6/mutation"
               }
-            ],
-            "expected_property": {
-              "path": "/cases/6/cases/9/expected_partial_values",
-              "source": "L8自身のexpected_partial_valuesを指す。期待値は複製・編集せず、L9 expected_materialから生成しない。"
-            }
+            ]
           }
         },
         {
@@ -216854,11 +216474,7 @@
                 "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
                 "pointer": "/cases/6/negative_cases/9/mutation"
               }
-            ],
-            "expected_property": {
-              "path": "/cases/6/cases/12/expected_partial_values",
-              "source": "L8自身のexpected_partial_valuesを指す。期待値は複製・編集せず、L9 expected_materialから生成しない。"
-            }
+            ]
           }
         },
         {
@@ -217526,11 +217142,7 @@
                 "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
                 "pointer": "/cases/6/negative_cases/10/mutation"
               }
-            ],
-            "expected_property": {
-              "path": "/cases/6/cases/13/expected_partial_values",
-              "source": "L8自身のexpected_partial_valuesを指す。期待値は複製・編集せず、L9 expected_materialから生成しない。"
-            }
+            ]
           }
         },
         {
@@ -218198,11 +217810,7 @@
                 "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
                 "pointer": "/cases/6/negative_cases/11/mutation"
               }
-            ],
-            "expected_property": {
-              "path": "/cases/6/cases/14/expected_partial_values",
-              "source": "L8自身のexpected_partial_valuesを指す。期待値は複製・編集せず、L9 expected_materialから生成しない。"
-            }
+            ]
           }
         },
         {
@@ -219520,11 +219128,7 @@
                 "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
                 "pointer": "/cases/6/negative_cases/13/mutation"
               }
-            ],
-            "expected_property": {
-              "path": "/cases/6/cases/16/expected_partial_values",
-              "source": "L8自身のexpected_partial_valuesを指す。期待値は複製・編集せず、L9 expected_materialから生成しない。"
-            }
+            ]
           }
         },
         {
@@ -220192,11 +219796,7 @@
                 "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
                 "pointer": "/cases/6/negative_cases/14/mutation"
               }
-            ],
-            "expected_property": {
-              "path": "/cases/6/cases/17/expected_partial_values",
-              "source": "L8自身のexpected_partial_valuesを指す。期待値は複製・編集せず、L9 expected_materialから生成しない。"
-            }
+            ]
           }
         },
         {
@@ -220864,11 +220464,7 @@
                 "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
                 "pointer": "/cases/6/negative_cases/15/mutation"
               }
-            ],
-            "expected_property": {
-              "path": "/cases/6/cases/18/expected_partial_values",
-              "source": "L8自身のexpected_partial_valuesを指す。期待値は複製・編集せず、L9 expected_materialから生成しない。"
-            }
+            ]
           }
         },
         {
@@ -221536,11 +221132,7 @@
                 "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
                 "pointer": "/cases/6/negative_cases/16/mutation"
               }
-            ],
-            "expected_property": {
-              "path": "/cases/6/cases/19/expected_partial_values",
-              "source": "L8自身のexpected_partial_valuesを指す。期待値は複製・編集せず、L9 expected_materialから生成しない。"
-            }
+            ]
           }
         },
         {
@@ -225458,11 +225050,7 @@
                 "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
                 "pointer": "/cases/6/negative_cases/22/mutation"
               }
-            ],
-            "expected_property": {
-              "path": "/cases/6/cases/25/expected_partial_values",
-              "source": "L8自身のexpected_partial_valuesを指す。期待値は複製・編集せず、L9 expected_materialから生成しない。"
-            }
+            ]
           }
         },
         {
@@ -226130,11 +225718,7 @@
                 "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
                 "pointer": "/cases/6/negative_cases/23/mutation"
               }
-            ],
-            "expected_property": {
-              "path": "/cases/6/cases/26/expected_partial_values",
-              "source": "L8自身のexpected_partial_valuesを指す。期待値は複製・編集せず、L9 expected_materialから生成しない。"
-            }
+            ]
           }
         },
         {
@@ -226802,11 +226386,7 @@
                 "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
                 "pointer": "/cases/6/negative_cases/24/mutation"
               }
-            ],
-            "expected_property": {
-              "path": "/cases/6/cases/27/expected_partial_values",
-              "source": "L8自身のexpected_partial_valuesを指す。期待値は複製・編集せず、L9 expected_materialから生成しない。"
-            }
+            ]
           }
         },
         {
@@ -227474,11 +227054,7 @@
                 "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
                 "pointer": "/cases/6/negative_cases/25/mutation"
               }
-            ],
-            "expected_property": {
-              "path": "/cases/6/cases/28/expected_partial_values",
-              "source": "L8自身のexpected_partial_valuesを指す。期待値は複製・編集せず、L9 expected_materialから生成しない。"
-            }
+            ]
           }
         },
         {
@@ -228143,11 +227719,7 @@
                 "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
                 "pointer": "/cases/6/negative_cases/26/mutation"
               }
-            ],
-            "expected_property": {
-              "path": "/cases/6/cases/29/expected_partial_values",
-              "source": "L8自身のexpected_partial_valuesを指す。期待値は複製・編集せず、L9 expected_materialから生成しない。"
-            }
+            ]
           }
         },
         {
@@ -228812,11 +228384,7 @@
                 "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
                 "pointer": "/cases/6/negative_cases/27/mutation"
               }
-            ],
-            "expected_property": {
-              "path": "/cases/6/cases/30/expected_partial_values",
-              "source": "L8自身のexpected_partial_valuesを指す。期待値は複製・編集せず、L9 expected_materialから生成しない。"
-            }
+            ]
           }
         },
         {
@@ -230128,11 +229696,7 @@
                 "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
                 "pointer": "/cases/6/negative_cases/29/mutation"
               }
-            ],
-            "expected_property": {
-              "path": "/cases/6/cases/32/expected_partial_values",
-              "source": "L8自身のexpected_partial_valuesを指す。期待値は複製・編集せず、L9 expected_materialから生成しない。"
-            }
+            ]
           }
         },
         {
@@ -230797,11 +230361,7 @@
                 "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
                 "pointer": "/cases/6/negative_cases/30/mutation"
               }
-            ],
-            "expected_property": {
-              "path": "/cases/6/cases/33/expected_partial_values",
-              "source": "L8自身のexpected_partial_valuesを指す。期待値は複製・編集せず、L9 expected_materialから生成しない。"
-            }
+            ]
           }
         },
         {
@@ -232113,11 +231673,7 @@
                 "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
                 "pointer": "/cases/6/negative_cases/32/mutation"
               }
-            ],
-            "expected_property": {
-              "path": "/cases/6/cases/35/expected_partial_values",
-              "source": "L8自身のexpected_partial_valuesを指す。期待値は複製・編集せず、L9 expected_materialから生成しない。"
-            }
+            ]
           }
         },
         {
@@ -232782,11 +232338,7 @@
                 "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
                 "pointer": "/cases/6/negative_cases/33/mutation"
               }
-            ],
-            "expected_property": {
-              "path": "/cases/6/cases/36/expected_partial_values",
-              "source": "L8自身のexpected_partial_valuesを指す。期待値は複製・編集せず、L9 expected_materialから生成しない。"
-            }
+            ]
           }
         },
         {
@@ -233451,11 +233003,7 @@
                 "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
                 "pointer": "/cases/6/negative_cases/34/mutation"
               }
-            ],
-            "expected_property": {
-              "path": "/cases/6/cases/37/expected_partial_values",
-              "source": "L8自身のexpected_partial_valuesを指す。期待値は複製・編集せず、L9 expected_materialから生成しない。"
-            }
+            ]
           }
         }
       ],
