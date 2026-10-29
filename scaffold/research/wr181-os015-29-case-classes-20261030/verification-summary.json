@@ -128,14 +128,9 @@
       "CHK-PUBLIC-FN-FREEZE": {
         "failures": 8
       },
-      "CHK-L3-OBLIGATION-MAP": "not_evaluated:no_l3_obligations_found",
-      "raw_output_sha256": "cc4bd1a42fcde81c9b38c3d9f68af3531cab8a235811fb937e2a57f35d320003"
+      "CHK-L3-OBLIGATION-MAP": "not_evaluated:no_l3_obligations_found"
     },
     "interpretation": "最新main試行でも同一hashの旧freezeを読み取り実行。mechanical FAIL、前回と同じ件数・理由で、既存freeze recordは変更していない。",
-    "raw_output_sha256": {
-      "before": "cc4bd1a42fcde81c9b38c3d9f68af3531cab8a235811fb937e2a57f35d320003",
-      "after": "cc4bd1a42fcde81c9b38c3d9f68af3531cab8a235811fb937e2a57f35d320003"
-    },
     "latest_main_trial": {
       "all_mechanical_matched": false,
       "CHK-PIN-SHA256": "not_evaluated:no_pinned_inputs_found",
@@ -147,10 +142,8 @@
       "CHK-PUBLIC-FN-FREEZE": {
         "failures": 8
       },
-      "CHK-L3-OBLIGATION-MAP": "not_evaluated:no_l3_obligations_found",
-      "raw_output_sha256": "cc4bd1a42fcde81c9b38c3d9f68af3531cab8a235811fb937e2a57f35d320003"
-    },
-    "raw_output_sha256_candidate_and_latest_main_trial": "cc4bd1a42fcde81c9b38c3d9f68af3531cab8a235811fb937e2a57f35d320003"
+      "CHK-L3-OBLIGATION-MAP": "not_evaluated:no_l3_obligations_found"
+    }
   },
   "scfctl": {
     "validate_bindings": 162,
@@ -168,11 +161,16 @@
     "L4 comparator再実装・実行によるcase分類の再現"
   ],
   "latest_main_trial_evidence": {
-    "check_child": "scaffold/research/wr181-os015-29-case-classes-20261030/check-child-current-main-trial.json",
-    "scfctl_validate": "scaffold/research/wr181-os015-29-case-classes-20261030/scfctl-validate-current-main-trial.txt",
-    "scfctl_stale": "scaffold/research/wr181-os015-29-case-classes-20261030/scfctl-stale-current-main-trial.txt",
-    "static_validation": "scaffold/research/wr181-os015-29-case-classes-20261030/static-evidence-validation.txt",
-    "check_freeze": "scaffold/research/wr181-os015-29-case-classes-20261030/check-freeze-candidate.json"
+    "summary": "scaffold/research/wr181-os015-29-case-classes-20261030/verification-summary.json",
+    "human_report": "scaffold/research/wr181-os015-29-case-classes-20261030/README.md",
+    "raw_checker_outputs_committed": false,
+    "omitted_regenerable_outputs": [
+      "check-child",
+      "check-freeze",
+      "scfctl validate",
+      "scfctl stale"
+    ],
+    "fresh_r1_trial": "pending"
   },
   "static_verification_scope": "手作業assignmentは宣言データとして読む。静的validatorはL7 hash/pointer、L4/L5 class rowとL8/L9 refsの構造対応、source pointer解決、583 case期待不変のみ確認し、L4 comparator/finding/classを入力値から再計算しない。",
   "static_evidence_validation": {
@@ -184,15 +182,19 @@
     "scope": "手作業割当データのraw input hash/pointer、宣言済みclass/linkの構造対応、RFC 6901 source pointer、L8/L9全583行の期待不変を確認。input predicateからclass/findingを計算しない。"
   },
   "pin_chain": {
-    "l4_l9_parent_commit": "746071b8f77cc0b07212dde2127f3d4d2c87f647",
-    "l5_pin_commit": "5111d246ce7945f1fa195ab5cdbab7cdc3f4ca78",
-    "l8_candidate_commit": "db44bcc3396a37f9f3259dbc5f34cb809a3b2c58",
-    "l4_sha256": "0c9b85fe91483fcf2cf8630739e9a07b231d90aac20f42174d807268eddbda56",
-    "l9_sha256": "66fd4c44b4dd0aec0e1419dbd885c26462bc6465838fd99ed653db8f86477a76",
-    "l5_sha256": "bd4bb190c608f6e6555c0a01b969ddc3b7f12617cef592b2fdba2f00d62e1ef7",
+    "l4_l9_parent_commit": "cbb5d2d246ca4a18a0892759830e9bdc51538578",
+    "l5_pin_commit": "898cf3dfea2bed9c4592a0624e5cc5f32b713e37",
+    "l8_candidate_commit": "e321fa97b5edc2d4a2edc4555b31864a884d0476",
+    "l4_sha256": "01735cffe39ccb512d09cc53b69aed285c9c670cd6492a67826f8d4b408d6cd6",
+    "l9_sha256": "3ecf720b12782b8b3ce35930b00bd255da8dc34a6d3eb2fd00fd0b459b914485",
+    "l5_sha256": "a9b79b4b718a841dacc44724feb40571c69544d16848fd147b554e4aabb5d7da",
+    "l8_sha256": "8661f4fe5e09586b5cf58b4d863632495576735bd842f710c3ca05a5a5fa07d2",
+    "canonical_class_ids": {
+      "known_conflict": "07c9fd844a293140f5dc77476ab8ed90116889361788956739abfdcf65b874c4",
+      "unknown_operand": "4e0c28b06920d3a9665cbe4beeaf48cea44d7b0d350dddfaec9c8471de1e86b5"
+    },
     "revision_path_hash_and_ancestor_validation": "PASS; validate_static_evidence.py",
-    "trial_main_merge_commit": "4894c0d09072b6bdf734460bbd01a4543e5b438c",
-    "history_note": "Clean branch starts at dd578; no previous reproduce.py implementation commit is in candidate ancestry. Final validate_static_evidence.py checks declared data and pins statically.",
-    "candidate_commit_used_for_trial": "91e95153257c8699a1bd240740394b501198f5b0"
-  }
+    "clean_history": "L4/L9→L5→L8 ordered ancestor pins; no reproduce.py implementation commit in this clean branch"
+  },
+  "raw_checker_outputs_committed": false
 }

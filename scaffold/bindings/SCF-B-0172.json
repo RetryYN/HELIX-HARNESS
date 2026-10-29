@@ -15,13 +15,13 @@
     },
     {
       "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
-      "sha256": "0c9b85fe91483fcf2cf8630739e9a07b231d90aac20f42174d807268eddbda56",
-      "note": "現行候補のL4 bytes。class起草時のclean base dd5787507a9ef3b69f411074e2fcbc7710ca1d62はSHA-256=e2e92c62217f70203752ab4f79ed7a92831d94cb813c6947153f237c83c8576b。2 classは基点の原event comparison、finding順、aggregation、condition_valuesから形成。"
+      "sha256": "01735cffe39ccb512d09cc53b69aed285c9c670cd6492a67826f8d4b408d6cd6",
+      "note": "現行候補のL4 bytes。class起草時のclean base dd5787507a9ef3b69f411074e2fcbc7710ca1d62はSHA-256=e2e92c62217f70203752ab4f79ed7a92831d94cb813c6947153f237c83c8576b。2 classは基点の原event comparison、finding順、aggregation、condition_valuesから形成。 pin revision=cbb5d2d246ca4a18a0892759830e9bdc51538578."
     },
     {
       "path": "docs/helix-os/L5-detail-design/management-authority-source-record.json",
-      "sha256": "bd4bb190c608f6e6555c0a01b969ddc3b7f12617cef592b2fdba2f00d62e1ef7",
-      "note": "現行候補のL5 bytes。rule起草時のclean base dd5787507a9ef3b69f411074e2fcbc7710ca1d62はSHA-256=6d313e6faaf56c0806c1964ac2bece5da0699de1d82dcc804fc77962f679275e。FN-OS015-01の既存入力境界、field comparison、return設計から独立形成した。 clean candidate pin revision=5111d246ce7945f1fa195ab5cdbab7cdc3f4ca78."
+      "sha256": "a9b79b4b718a841dacc44724feb40571c69544d16848fd147b554e4aabb5d7da",
+      "note": "現行候補のL5 bytes。rule起草時のclean base dd5787507a9ef3b69f411074e2fcbc7710ca1d62はSHA-256=6d313e6faaf56c0806c1964ac2bece5da0699de1d82dcc804fc77962f679275e。FN-OS015-01の既存入力境界、field comparison、return設計から独立形成した。 pin revision=898cf3dfea2bed9c4592a0624e5cc5f32b713e37."
     },
     {
       "path": "docs/helix-os/L7-function-verification/management-authority-source-record.json",
@@ -35,13 +35,13 @@
     },
     {
       "path": "docs/helix-os/L8-unit-verification/management-authority-source-record.json",
-      "sha256": "6cfd2feb4927838b6c871a530c291efbb32c26b183fca08e97c5e972e719b9b3",
-      "note": "現行候補のL8 bytes。clean base dd5787507a9ef3b69f411074e2fcbc7710ca1d62ではSHA-256=897ad52df1b7899102aedc4a9b8a5676034a6ad144ec7fe4909d738990b7b2a9。583 unit casesを保持し、既存expected不変の29件にrefsを投影。 clean candidate pin revision=db44bcc3396a37f9f3259dbc5f34cb809a3b2c58."
+      "sha256": "8661f4fe5e09586b5cf58b4d863632495576735bd842f710c3ca05a5a5fa07d2",
+      "note": "現行候補のL8 bytes。clean base dd5787507a9ef3b69f411074e2fcbc7710ca1d62ではSHA-256=897ad52df1b7899102aedc4a9b8a5676034a6ad144ec7fe4909d738990b7b2a9。583 unit casesを保持し、既存expected不変の29件にrefsを投影。 pin revision=e321fa97b5edc2d4a2edc4555b31864a884d0476."
     },
     {
       "path": "docs/helix-os/L9-integration-verification/management-authority-source-record.json",
-      "sha256": "66fd4c44b4dd0aec0e1419dbd885c26462bc6465838fd99ed653db8f86477a76",
-      "note": "現行候補のL9 bytes。clean base dd5787507a9ef3b69f411074e2fcbc7710ca1d62ではSHA-256=0b310db53887fd22d2fa5a3154099fdc0587bceed61dc85544f57549b2cbec51。583 integration casesを保持し、既存expected不変の29件にrefsを投影。"
+      "sha256": "3ecf720b12782b8b3ce35930b00bd255da8dc34a6d3eb2fd00fd0b459b914485",
+      "note": "現行候補のL9 bytes。clean base dd5787507a9ef3b69f411074e2fcbc7710ca1d62ではSHA-256=0b310db53887fd22d2fa5a3154099fdc0587bceed61dc85544f57549b2cbec51。583 integration casesを保持し、既存expected不変の29件にrefsを投影。 pin revision=cbb5d2d246ca4a18a0892759830e9bdc51538578."
     }
   ],
   "role": "独立確認済み29件の手作業case/finding宣言とL4/L5上流class、L8/L9の限定projectionおよび静的照合証拠を保持する。",
@@ -89,17 +89,8 @@
     "scaffold/research/wr181-os015-29-case-classes-20261030/static-evidence-validation.txt",
     "scaffold/research/wr181-os015-29-case-classes-20261030/case-evidence.json",
     "scaffold/research/wr181-os015-29-case-classes-20261030/verification-summary.json",
-    "scaffold/research/wr181-os015-29-case-classes-20261030/check-child-before.json",
-    "scaffold/research/wr181-os015-29-case-classes-20261030/check-child-candidate.json",
-    "scaffold/research/wr181-os015-29-case-classes-20261030/check-child-current-main-trial.json",
-    "scaffold/research/wr181-os015-29-case-classes-20261030/scfctl-validate.txt",
-    "scaffold/research/wr181-os015-29-case-classes-20261030/scfctl-stale.txt",
-    "scaffold/research/wr181-os015-29-case-classes-20261030/scfctl-validate-current-main-trial.txt",
-    "scaffold/research/wr181-os015-29-case-classes-20261030/scfctl-stale-current-main-trial.txt",
-    "scaffold/research/wr181-os015-29-case-classes-20261030/scfctl-stale-before.txt",
     "scaffold/research/wr181-os015-29-case-classes-20261030/diff-check.json",
-    "scaffold/bindings/SCF-B-0172.json",
-    "scaffold/research/wr181-os015-29-case-classes-20261030/check-freeze-candidate.json"
+    "scaffold/bindings/SCF-B-0172.json"
   ],
   "verification": {
     "evidence_kind": "scaffold",

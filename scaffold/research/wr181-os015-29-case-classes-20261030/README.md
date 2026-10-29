@@ -4,12 +4,14 @@
 
 ## 上流からのclass形成
 
+L5規則に従い、class IDはcanonical key object `{expected_classification, finding_codes, backflow_owner, expected_axis, expected_state, owner_ref:{kind,id}}` のUTF-8 SHA-256全64桁とした。可読名はIDに含めず、次表の説明列で示す。静的validatorも同じ正規化でdigestを再計算する。
+
 L4 `failure_classifications` とL5 `failure_rules` に次の2 classを追加した。両方とも `HELIXOS-L3-015-F02` とL4の診断契約が定める原event保持・field比較を基礎とし、L4のfinding順・violation優先集約・condition値域を使う。L5側は `FN-OS015-01` の既存functionと入力境界を根拠に同じfield比較とreturnを定義した。unknown operand時のfinding pointerはunknown側operand、known conflict時はL4 algorithmどおりactual `records`側を指す。
 
-| class ID | L4/L5 finding順 | 軸・状態・owner | 導出条件 |
+| class | canonical class ID (SHA-256) | L4/L5 finding順 | 軸・状態・owner | 導出条件 |
 |---|---|---|---|
-| `OS015-NEG-composite-original_event_mutated-source_conflict-original_event` | `original_event_mutated`, `source_conflict` | `original_event`, `violation`, `management-authority-owner` | original_event全体が独立contextと異なり、比較対象fieldの両operandが既知値で不一致。 |
-| `OS015-NEG-composite-original_event_mutated-source_unresolved-original_event` | `original_event_mutated`, `source_unresolved` | `original_event`, `violation`, `management-authority-owner` | original_event全体が独立contextと異なり、比較対象fieldにunknown operandがある。 |
+| known conflict | `07c9fd844a293140f5dc77476ab8ed90116889361788956739abfdcf65b874c4` | `original_event_mutated`, `source_conflict` | `original_event`, `violation`, `management-authority-owner` | original_event全体が独立contextと異なり、比較対象fieldの両operandが既知値で不一致。 |
+| unknown operand | `4e0c28b06920d3a9665cbe4beeaf48cea44d7b0d350dddfaec9c8471de1e86b5` | `original_event_mutated`, `source_unresolved` | `original_event`, `violation`, `management-authority-owner` | original_event全体が独立contextと異なり、比較対象fieldにunknown operandがある。 |
 
 根拠pointerは各L4/L5 class rowの `source_pointers` に記録した。class形成にL8/L9の観測や期待は使っていない。L8/L9にはL4/L5 class rowとL7固定入力へのstructured source pointerを置いた。
 
@@ -37,7 +39,7 @@ python3 scaffold/research/wr181-os015-29-case-classes-20261030/validate_static_e
 - `check-child` は編集前・候補・最新main trialともL4/L9 pairとL5/L8 pairがPASS。negative 4-wayは候補2 classと29割当が整合する一方、L4/L5=33 class、L8/L9=27 class、583 caseずつ、paired 460件、全体FAILを維持する。残余はL8に112 missing case refs（C0044を含む）と6 class keyのL8/L9各不在、計136 failure。
 - 旧freeze `os007-os015-function-pair-freeze-2026-10-28.json` は変更前後とも `all_mechanical_matched=false`。CHK-PIN-SHA256はpinned inputなし、CHK-JSON-POINTERは67確認・2421失敗、CHK-NEG-4WAY-MATCHとCHK-L3-OBLIGATION-MAPはnot evaluated、public function freezeは8失敗。候補はfreezeを生成せず、旧freezeも変更しない。
 - `scfctl validate`: bindings=162, fail=0。`scfctl stale`: stale=0。SCF-B-0170/0172のL4/L5 pinは現行候補shaを固定し、clean base `dd578...` のshaと根拠をnote/evidenceへ併記した。
-- 最新GitHub mainは `1b91e01d30ab40b5023b06d72f1fd83039ce7590`（`git ls-remote` とfetch後の `FETCH_HEAD` で照合）。dd578からの差分はWR154/WR171/WR184/WR185/OS security関連の別pathのみで、OS015対象層・checkerと重複しない。clean trialへ候補を3-way適用し、静的validator・check-child・scfctl validate/stale・`git diff --check` を実測。check-childの部分一致/FAILとscfctlの結果は候補worktreeと同じ。証拠は `check-child-current-main-trial.json`、`static-evidence-validation.txt`、`scfctl-validate-current-main-trial.txt`、`scfctl-stale-current-main-trial.txt`。
+- 最新GitHub mainは `821a655ad6949b2a7a5344b26e3c170cccc353a6`（`git ls-remote` とfetch後の `FETCH_HEAD` で照合）。dd578からの差分はWR154/WR171/WR184/WR185/OS security関連の別pathのみで、OS015対象層・checkerと重複しない。clean trialへ候補を3-way適用し、静的validator・check-child・scfctl validate/stale・`git diff --check` を実測。check-childの部分一致/FAILとscfctlの結果は候補worktreeと同じ。個別生出力は保持せず、実行コマンド・target revision・件数と結果を `verification-summary.json` に集約した。
 - `git diff --check` は空出力で成功。既存CI、runtime、testは起動していない。
 
 ## pinと履歴の確認
@@ -46,8 +48,8 @@ pinは次の順に確定した。いずれも候補branchの祖先commitであ�
 
 | 対象 | 確定commit | 対象pathのSHA-256 |
 |---|---|---|
-| L4・L9 | `746071b8f77cc0b07212dde2127f3d4d2c87f647` | L4 `0c9b85fe91483fcf2cf8630739e9a07b231d90aac20f42174d807268eddbda56`、L9 `66fd4c44b4dd0aec0e1419dbd885c26462bc6465838fd99ed653db8f86477a76` |
-| L5のpair pin | `5111d246ce7945f1fa195ab5cdbab7cdc3f4ca78` | L5 `bd4bb190c608f6e6555c0a01b969ddc3b7f12617cef592b2fdba2f00d62e1ef7` |
-| L8のL5候補pin | `db44bcc3396a37f9f3259dbc5f34cb809a3b2c58` 内のL8文書が、L5確定commit `5111d246…` と上記L5 hashを指す | — |
+| L4・L9 | `cbb5d2d246ca4a18a0892759830e9bdc51538578` | L4 `01735cffe39ccb512d09cc53b69aed285c9c670cd6492a67826f8d4b408d6cd6`、L9 `3ecf720b12782b8b3ce35930b00bd255da8dc34a6d3eb2fd00fd0b459b914485` |
+| L5のpair pin | `898cf3dfea2bed9c4592a0624e5cc5f32b713e37` | L5 `a9b79b4b718a841dacc44724feb40571c69544d16848fd147b554e4aabb5d7da` |
+| L8のL5候補pin | `e321fa97b5edc2d4a2edc4555b31864a884d0476` 内のL8文書が、L5確定commit `898cf3df…` と上記L5 hashを指す | L8 `8661f4fe5e09586b5cf58b4d863632495576735bd842f710c3ca05a5a5fa07d2` |
 
 最終静的validatorはL5/L8の `source_pair_pins`、L8の `candidate_l5_bytes` について、対象revision内のpath hashと現在HEADからの祖先到達性を検証する。旧 `reproduce.py` を含むcommitはclean branchの履歴へ含めず、入力から分類を再計算しない最終静的validatorだけを保持した。

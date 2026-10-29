@@ -18,8 +18,8 @@ L3 = "docs/helix-os/L3-requirements/functional-requirements.json"
 L7 = "docs/helix-os/L7-function-verification/management-authority-source-record.json"
 L8 = "docs/helix-os/L8-unit-verification/management-authority-source-record.json"
 L9 = "docs/helix-os/L9-integration-verification/management-authority-source-record.json"
-CLASS_CONFLICT = "OS015-NEG-composite-original_event_mutated-source_conflict-original_event"
-CLASS_UNRESOLVED = "OS015-NEG-composite-original_event_mutated-source_unresolved-original_event"
+CLASS_CONFLICT = "07c9fd844a293140f5dc77476ab8ed90116889361788956739abfdcf65b874c4"
+CLASS_UNRESOLVED = "4e0c28b06920d3a9665cbe4beeaf48cea44d7b0d350dddfaec9c8471de1e86b5"
 SELECTED_IDS = [
     *(f"HELIXOS-L9-015-C{i:04d}" for i in range(45, 62)),
     *(f"HELIXOS-L9-015-C{i:04d}" for i in range(102, 114)),
@@ -68,6 +68,19 @@ def canonical_hash(value) -> str:
     return sha256(json.dumps(value, sort_keys=True, separators=(",", ":")).encode())
 
 
+def canonical_class_id(l4_row, l5_row) -> str:
+    key = {
+        "expected_classification": l4_row["expected_classification"],
+        "finding_codes": l4_row["expected"]["finding_codes"],
+        "backflow_owner": l4_row["backflow_owner"],
+        "expected_axis": l4_row["expected_axis"],
+        "expected_state": l4_row["expected_state"],
+        "owner_ref": {"kind": "function_ref", "id": l5_row["function_ref"]},
+    }
+    canonical = json.dumps(key, ensure_ascii=False, sort_keys=True, separators=(",", ":")).encode("utf-8")
+    return sha256(canonical)
+
+
 def strip_links(row, fields):
     clone = json.loads(json.dumps(row))
     for field in fields:
@@ -108,6 +121,8 @@ def main():
     assert set(definitions) == {CLASS_CONFLICT, CLASS_UNRESOLVED}
     for class_id, definition in definitions.items():
         l4_row, l5_row = l4_classes[class_id], l5_rules[class_id]
+        assert class_id == l5_row["id"] == canonical_class_id(l4_row, l5_row), class_id
+        assert len(class_id) == 64 and all(ch in "0123456789abcdef" for ch in class_id), class_id
         declared = {
             "finding_codes": l4_row["expected"]["finding_codes"],
             "axis": l4_row["expected_axis"],
