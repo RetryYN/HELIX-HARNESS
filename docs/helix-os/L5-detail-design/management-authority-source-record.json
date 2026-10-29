@@ -421,13 +421,13 @@
   "source_pair_pins": [
     {
       "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
-      "revision": "2bc4d9385b3d1c6a1245c11bd391463539da82bc",
-      "sha256": "cd22661c06fd93795986ba3f34563911a355a92e9766553f72629199eb988de1"
+      "revision": "4f98f23b1300ba1f344b32cf3317a8f9300738b5",
+      "sha256": "e2e92c62217f70203752ab4f79ed7a92831d94cb813c6947153f237c83c8576b"
     },
     {
       "path": "docs/helix-os/L9-integration-verification/management-authority-source-record.json",
-      "revision": "2bc4d9385b3d1c6a1245c11bd391463539da82bc",
-      "sha256": "d7a13e4644e70da1e799026e6607c4fff8b1a071a500ad242979788b80591c92"
+      "revision": "7388047362a594dd285f134efbb06cd93f54143e",
+      "sha256": "0b310db53887fd22d2fa5a3154099fdc0587bceed61dc85544f57549b2cbec51"
     }
   ],
   "document_id": "HELIXOS-L5-015",
@@ -1525,6 +1525,24 @@
   ],
   "formal_reference": {
     "meaning": "全比較path/優先/所見順/保持/返却候補の唯一の計算規範はdefinitions。読取器に業務分岐を置かず、case ID/expected lookupで返却を選ばない。",
+    "composite_class_formation": {
+      "source": "docs/helix-os/L4-basic-design/management-authority-source-record.json#/diagnostic_contract/composite_class_formation",
+      "finding_codes": "L4の最終sort済findingsからcodeを同順に全件投影し、同codeの異pointer occurrenceも保持する。",
+      "expected_classification": "L4全体conditionを同値写像する。",
+      "axis_state": "L4 global findingがあればglobal優先。なければL4 facet順の最初のnon-corresponding facetを選び、その全target aggregate stateを使う。expected_stateは選択axis局所値で、全体conditionとは別。",
+      "owner_ref_resolution": "各ordered finding codeを既存failure_rulesへ一意joinする。すべて同じfunction_ref/contract_refへ解決したときだけowner_refを形成する。欠落または複数ownerならそのclassをformed扱いせず、未解決として残す。現行OS015 26 codeは全件FN-OS015-01へ一意解決する。",
+      "class_id": "このL5 composite class key objectをUTF-8 ensure_ascii=false, sort_keys=true, separators=(\",\",\":\")で直列化したSHA-256全64桁から形成する。",
+      "side_effect_count": 0,
+      "global_basis": "L4 global codeはtargetを特定しない。L5 resolution_contract priorityはglobal所見のreferenceをAbsentとし対象を推測しないため、primary axisをglobalへ優先してもtarget ownerやrecipientを捏造しない。",
+      "l4_projection_fields": [
+        "expected_classification",
+        "ordered_expected.finding_codes",
+        "backflow_owner",
+        "expected_axis",
+        "expected_state"
+      ],
+      "composite_key_fields": "L4 projection fieldsにowner_ref(kind,id)を加えたcanonical class keyを形成する。"
+    },
     "language": "JSON構造化純AST。FunctionDef/局所関数/式/短絡条件/配列順ループ/安定sort/辞書内包とsource値copyだけ。",
     "constants": {
       "phases": [
