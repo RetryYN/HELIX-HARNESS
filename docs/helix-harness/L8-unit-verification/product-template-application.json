@@ -5914,7 +5914,42 @@
    },
    "expected_side_effect_count": 0,
    "execution_state": "not_executed",
-   "fixture_refinement": "U-ID設計のみ。実fixture・全返却・hashは未作成、未実行。"
+   "fixture_refinement": "U-ID設計のみ。実fixture・全返却・hashは未作成、未実行。",
+   "fixed_writer_case": {
+    "scope_ja": "L5 writers/1が生成するBodyOccurrenceのsource_body_mismatch Cause leafだけを固定する。F05DetailedReturn、ValidationSourceObservation全体、source資格、field/proposal集約の期待ではない。",
+    "input_provenance": {
+     "revision": "ac6e74c7965352571b4ae05041fc3c4f11a0494d",
+     "path": "docs/helix-harness/L8-unit-verification/product-template-application.json",
+     "pointer": "/additional_unit_cases/46/fixed_writer_case/input_slice",
+     "use_ja": "ADD-46で固定済みのfield inputと元SemanticRecordを刺激として再利用する。そこに含まれるsources=[]だけを、下記の同Ref SourceEnvelope/body entry一件へ置換する。期待値はL4/L5 writer契約から独立に記述し、L9 expectedや旧producer出力を参照しない。"
+    },
+    "input_delta": {
+     "base_input_pointer": "/additional_unit_cases/46/fixed_writer_case/input_slice",
+     "replacement": {
+      "pointer": "/sources",
+      "value_rule": "一件のSourceEnvelopeを供給し、role=semantic_sourceとする。refはbase semantic_records[0].source_refと完全一致させる。body.records[0]はcollection=semantic_records、ref=base semantic_records[0].refとし、payloadはbase semantic_records[0]からsource_refだけを除いた全memberを保持する。payload.meaningだけを{\"meaning\":\"異なる合成source body meaning\"}へ置換し、他member/presenceは一致させる。qualification等の未供給memberを生成しない。bodyはその供給値自体として扱い、content_bytesは供給しないためsource usability/digest成立を主張しない。"
+     }
+    },
+    "l8_expected_writer_leaf": {
+     "kind": "source_body_mismatch",
+     "target_location": {
+      "root": "validation_input",
+      "pointer": "/sources/0/body/records/0/payload"
+     },
+     "left_original_read_pointer": "/semantic_records/0",
+     "right_original_read_pointer": "/sources/0/body/records/0/payload",
+     "rule_pointer": "/f05_detail_contract/field_content_source_failure_writer_contract/writers/1",
+     "storage_type_pointer": "/f05_detail_contract/types/BodyOccurrence/members/causes",
+     "interpretation_ja": "このcaseはCauseKind/target/original Read/rule_pointerだけを固定する。上記pointerはfixture内のoperand locatorであり、実Return内のarray indexや親返却shapeを指定しない。"
+    },
+    "nonclaims_ja": [
+     "body entryの既存collection/ref/payload対応と差分のみを対象にする。body entryの欠落枝をsource_body_mismatchとして扱わない。",
+     "Cause左右Readは元SemanticRecord全体とpayload全体の実値/presenceを指し、差異一箇所だけへ縮約しない。",
+     "content_bytes、digest、Qualification、独立rootが未供給のためsource usabilityや定義evidenceのformedを期待しない。Cause leaf以外の返却状態は未形成のまま。",
+     "実producer実行、U-ID成立、L9接続、pair freeze、全F05 producer完了を主張しない。"
+    ],
+    "execution_state": "not_executed"
+   }
   },
   {
    "id": "HARNESS-L8-009-ADD-48",
