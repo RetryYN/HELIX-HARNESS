@@ -9412,8 +9412,5 @@
         "pointer": "/failure_rules"
       }
     ]
-  },
-  "negative_equivalence_classes": {
-    "source_rows": "failure_rules"
   }
 }
