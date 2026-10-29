@@ -4381,7 +4381,7 @@
     "source_pointers": [
      "/f05_detail_contract/definition_axis_projection_cause_writer_contract/declaration_failure_cause",
      "/f05_detail_contract/projection_contract/failure",
-      "/f05_detail_contract/cause_kind_crosswalk/values/15",
+     "/f05_detail_contract/cause_kind_crosswalk/values/15",
      "/f05_detail_contract/types/Formation/variants/unformed/causes"
     ],
     "cause_shape": {
@@ -5323,6 +5323,349 @@
    "expected_side_effect_count": 0,
    "execution_state": "not_executed",
    "fixture_refinement": "U-ID設計のみ。実fixture・全返却・hashは未作成、未実行。"
+  },
+  {
+   "id": "HARNESS-L8-009-ADD-48",
+   "function_ref": "HARNESS-L5-009-compare_requirement_gaps",
+   "name": "field-scope-optional-reason-reentry-presence",
+   "input_fixture_ref": "意味条件を記述した有限U-ID設計行。fixture未作成。",
+   "l9_scenario_refs": [
+    "HARNESS-L9-009-SCOPE-S16A",
+    "HARNESS-L9-009-SCOPE-S16B",
+    "HARNESS-L9-009-SCOPE-S16C",
+    "HARNESS-L9-009-SCOPE-S16D",
+    "HARNESS-L9-009-SCOPE-S16E",
+    "HARNESS-L9-009-SCOPE-S17A",
+    "HARNESS-L9-009-SCOPE-S17B",
+    "HARNESS-L9-009-SCOPE-S17C",
+    "HARNESS-L9-009-SCOPE-S17D",
+    "HARNESS-L9-009-SCOPE-S17E"
+   ],
+   "source_basis": [
+    {
+     "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+     "pointer": "/requirements/27"
+    },
+    {
+     "path": "docs/helix-harness/L10-verification/functional-verification.json",
+     "pointer": "/cases/27"
+    },
+    {
+     "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+     "pointer": "/field_obligation_scope_contract"
+    },
+    {
+     "path": "docs/helix-harness/L9-integration-verification/product-template-application.json",
+     "pointer": "/field_obligation_scope_verification"
+    },
+    {
+     "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+     "pointer": "/f05_detail_contract/field_obligation_scope_writer_contract"
+    }
+   ],
+   "l4_l5_basis_ja": "For reason and reentry_condition independently, absent/null/false/0/string remain distinguishable in raw Read/whole while formed scope operands and classification do not change solely from the optional member. U-ID design only; no full return or fixture.",
+   "typed_mutation_plan": "新しいdomain meaning/causeは作らず、同一fieldの明示source/record条件だけを一つずつ変えるU-ID設計。fixture/reader/runtimeは未作成。",
+   "expected_observation": "L4 FieldObligationScopeBody has five required members; reason/reentry_condition remain optional original members outside that projection. L5 retains raw whole/Read and does not use either optional member as basis.",
+   "expected_side_effect_count": 0,
+   "execution_state": "not_executed",
+   "fixture_refinement": "U-ID設計行のみ。具体fixture・全返却・hashはなく、未実行。",
+   "l9_case_pointers": [
+    "/field_obligation_scope_verification/cases/16",
+    "/field_obligation_scope_verification/cases/17",
+    "/field_obligation_scope_verification/cases/18",
+    "/field_obligation_scope_verification/cases/19",
+    "/field_obligation_scope_verification/cases/20",
+    "/field_obligation_scope_verification/cases/21",
+    "/field_obligation_scope_verification/cases/22",
+    "/field_obligation_scope_verification/cases/23",
+    "/field_obligation_scope_verification/cases/24",
+    "/field_obligation_scope_verification/cases/25"
+   ]
+  },
+  {
+   "id": "HARNESS-L8-009-ADD-49",
+   "function_ref": "HARNESS-L5-009-compare_requirement_gaps",
+   "name": "field-scope-original-column-order-difference",
+   "input_fixture_ref": "意味条件を記述した有限U-ID設計行。fixture未作成。",
+   "l9_scenario_refs": [
+    "HARNESS-L9-009-SCOPE-S18"
+   ],
+   "source_basis": [
+    {
+     "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+     "pointer": "/requirements/27"
+    },
+    {
+     "path": "docs/helix-harness/L10-verification/functional-verification.json",
+     "pointer": "/cases/27"
+    },
+    {
+     "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+     "pointer": "/field_obligation_scope_contract"
+    },
+    {
+     "path": "docs/helix-harness/L9-integration-verification/product-template-application.json",
+     "pointer": "/field_obligation_scope_verification"
+    },
+    {
+     "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+     "pointer": "/f05_detail_contract/field_obligation_scope_writer_contract"
+    }
+   ],
+   "l4_l5_basis_ja": "L4 guards_and_order/3 and L5 cause_patterns/different_scope_columns.",
+   "typed_mutation_plan": "新しいdomain meaning/causeは作らず、同一fieldの明示source/record条件だけを一つずつ変えるU-ID設計。fixture/reader/runtimeは未作成。",
+   "expected_observation": "Two formed same-field supports with unfinished refs [a,b] and [b,a] remain in source order; aggregate is unestablished with the existing aggregation_unestablished Cause (left first support Read, right next support Read, exact L5 pointer). No sorting/canonicalization.",
+   "expected_side_effect_count": 0,
+   "execution_state": "not_executed",
+   "fixture_refinement": "U-ID設計行のみ。具体fixture・全返却・hashはなく、未実行。",
+   "l9_case_pointers": [
+    "/field_obligation_scope_verification/cases/26"
+   ],
+   "l5_technical_expectation": {
+    "cause_shape": {
+     "kind": "aggregation_unestablished",
+     "target": {
+      "root": "validation_input",
+      "pointer": "/field_inputs/i"
+     },
+     "left": {
+      "tag": "original",
+      "read_location": "最初の実formed支持列Read"
+     },
+     "right": {
+      "tag": "original",
+      "read_location": "相反する次の実formed支持列Read"
+     },
+     "rule_pointer": "/f05_detail_contract/field_obligation_scope_writer_contract/cause_patterns/different_scope_columns"
+    },
+    "cause_copy_rule": "L5の実Cause全leafをfield result/親へ既定順でcopyする。意味Causeを作り替えない。"
+   }
+  },
+  {
+   "id": "HARNESS-L8-009-ADD-50",
+   "function_ref": "HARNESS-L5-009-compare_requirement_gaps",
+   "name": "field-scope-cross-support-multiplicity-difference",
+   "input_fixture_ref": "意味条件を記述した有限U-ID設計行。fixture未作成。",
+   "l9_scenario_refs": [
+    "HARNESS-L9-009-SCOPE-S19"
+   ],
+   "source_basis": [
+    {
+     "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+     "pointer": "/requirements/27"
+    },
+    {
+     "path": "docs/helix-harness/L10-verification/functional-verification.json",
+     "pointer": "/cases/27"
+    },
+    {
+     "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+     "pointer": "/field_obligation_scope_contract"
+    },
+    {
+     "path": "docs/helix-harness/L9-integration-verification/product-template-application.json",
+     "pointer": "/field_obligation_scope_verification"
+    },
+    {
+     "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+     "pointer": "/f05_detail_contract/field_obligation_scope_writer_contract"
+    }
+   ],
+   "l4_l5_basis_ja": "L4 guards_and_order/3 and L5 cause_patterns/different_scope_columns.",
+   "typed_mutation_plan": "新しいdomain meaning/causeは作らず、同一fieldの明示source/record条件だけを一つずつ変えるU-ID設計。fixture/reader/runtimeは未作成。",
+   "expected_observation": "Two formed same-field supports [u] and [u,u] preserve both source rows and raw multiplicity; aggregate is unestablished with that existing Cause pattern. S14 within-column repetition alone does not cover this comparison.",
+   "expected_side_effect_count": 0,
+   "execution_state": "not_executed",
+   "fixture_refinement": "U-ID設計行のみ。具体fixture・全返却・hashはなく、未実行。",
+   "l9_case_pointers": [
+    "/field_obligation_scope_verification/cases/27"
+   ],
+   "l5_technical_expectation": {
+    "cause_shape": {
+     "kind": "aggregation_unestablished",
+     "target": {
+      "root": "validation_input",
+      "pointer": "/field_inputs/i"
+     },
+     "left": {
+      "tag": "original",
+      "read_location": "最初の実formed支持列Read"
+     },
+     "right": {
+      "tag": "original",
+      "read_location": "相反する次の実formed支持列Read"
+     },
+     "rule_pointer": "/f05_detail_contract/field_obligation_scope_writer_contract/cause_patterns/different_scope_columns"
+    },
+    "cause_copy_rule": "L5の実Cause全leafをfield result/親へ既定順でcopyする。意味Causeを作り替えない。"
+   }
+  },
+  {
+   "id": "HARNESS-L8-009-ADD-51",
+   "function_ref": "HARNESS-L5-009-compare_requirement_gaps",
+   "name": "field-scope-empty-null-absent-column",
+   "input_fixture_ref": "意味条件を記述した有限U-ID設計行。fixture未作成。",
+   "l9_scenario_refs": [
+    "HARNESS-L9-009-SCOPE-S02",
+    "HARNESS-L9-009-SCOPE-S07",
+    "HARNESS-L9-009-SCOPE-S08"
+   ],
+   "source_basis": [
+    {
+     "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+     "pointer": "/requirements/27"
+    },
+    {
+     "path": "docs/helix-harness/L10-verification/functional-verification.json",
+     "pointer": "/cases/27"
+    },
+    {
+     "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+     "pointer": "/field_obligation_scope_contract"
+    },
+    {
+     "path": "docs/helix-harness/L9-integration-verification/product-template-application.json",
+     "pointer": "/field_obligation_scope_verification"
+    },
+    {
+     "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+     "pointer": "/f05_detail_contract/field_obligation_scope_writer_contract"
+    }
+   ],
+   "l4_l5_basis_ja": "L4 guards_and_order/1 and L5 cause_patterns/body_ref_column_unformed plus source_origin_member_writers/refs_read.",
+   "typed_mutation_plan": "新しいdomain meaning/causeは作らず、同一fieldの明示source/record条件だけを一つずつ変えるU-ID設計。fixture/reader/runtimeは未作成。",
+   "expected_observation": "Explicit [] is a formed empty source column; null and absent stay distinct raw Reads and do not form required Ref[] body projection. For null/absent, only existing body_unformed Cause pattern is expected; no gap kind, domain unknown/missing, or completed obligation is generated.",
+   "expected_side_effect_count": 0,
+   "execution_state": "not_executed",
+   "fixture_refinement": "U-ID設計行のみ。具体fixture・全返却・hashはなく、未実行。",
+   "l9_case_pointers": [
+    "/field_obligation_scope_verification/cases/1",
+    "/field_obligation_scope_verification/cases/6",
+    "/field_obligation_scope_verification/cases/7"
+   ],
+   "l5_technical_expectation": {
+    "cause_shape": {
+     "kind": "body_unformed",
+     "target": {
+      "root": "validation_input",
+      "pointer": "/semantic_records/k/meaning/unfinished_obligation_refs"
+     },
+     "left": {
+      "tag": "original",
+      "read_location": {
+       "root": "validation_input",
+       "pointer": "/semantic_records/k/meaning/unfinished_obligation_refs"
+      }
+     },
+     "right": {
+      "tag": "normative_literal",
+      "value": "CoreRef[]",
+      "rule_pointer": "/f05_detail_contract/field_obligation_scope_writer_contract/cause_patterns/body_ref_column_unformed/right/value"
+     },
+     "rule_pointer": "/f05_detail_contract/field_obligation_scope_writer_contract/cause_patterns/body_ref_column_unformed"
+    }
+   }
+  },
+  {
+   "id": "HARNESS-L8-009-ADD-52",
+   "function_ref": "HARNESS-L5-009-compare_requirement_gaps",
+   "name": "field-scope-same-ref-source-equality-and-conflict",
+   "input_fixture_ref": "意味条件を記述した有限U-ID設計行。fixture未作成。",
+   "l9_scenario_refs": [
+    "HARNESS-L9-009-SCOPE-S05",
+    "HARNESS-L9-009-SCOPE-S20"
+   ],
+   "source_basis": [
+    {
+     "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+     "pointer": "/requirements/27"
+    },
+    {
+     "path": "docs/helix-harness/L10-verification/functional-verification.json",
+     "pointer": "/cases/27"
+    },
+    {
+     "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+     "pointer": "/field_obligation_scope_contract"
+    },
+    {
+     "path": "docs/helix-harness/L9-integration-verification/product-template-application.json",
+     "pointer": "/field_obligation_scope_verification"
+    },
+    {
+     "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+     "pointer": "/f05_detail_contract/field_obligation_scope_writer_contract"
+    }
+   ],
+   "l4_l5_basis_ja": "L4 cause_patterns/same_statement_conflict and L5 same_statement_conflict/cause_pattern_binding.",
+   "typed_mutation_plan": "新しいdomain meaning/causeは作らず、同一fieldの明示source/record条件だけを一つずつ変えるU-ID設計。fixture/reader/runtimeは未作成。",
+   "expected_observation": "Same Ref/equal meaning preserves all source occurrences and adds no new Cause. Same Ref/different meaning preserves both raw statements and emits only existing statement_source_conflict pair Cause at exact rule pointer. It does not make domain field state conflict.",
+   "expected_side_effect_count": 0,
+   "execution_state": "not_executed",
+   "fixture_refinement": "U-ID設計行のみ。具体fixture・全返却・hashはなく、未実行。",
+   "l9_case_pointers": [
+    "/field_obligation_scope_verification/cases/4",
+    "/field_obligation_scope_verification/cases/28"
+   ],
+   "l5_technical_expectation": {
+    "conflict_cause_shape": {
+     "kind": "statement_source_conflict",
+     "target": {
+      "root": "validation_input",
+      "pointer": "/semantic_records/k"
+     },
+     "left": {
+      "tag": "original",
+      "read_location": "同声明Refに対する先の実meaning Read"
+     },
+     "right": {
+      "tag": "original",
+      "read_location": "同声明Refに対する次の実meaning Read"
+     },
+     "rule_pointer": "/f05_detail_contract/field_obligation_scope_writer_contract/cause_patterns/same_statement_conflict"
+    },
+    "equal_support_rule": "同値原meaningでは新Cause無し。すべてのsource occurrence保持。"
+   }
+  },
+  {
+   "id": "HARNESS-L8-009-ADD-53",
+   "function_ref": "HARNESS-L5-009-compare_requirement_gaps",
+   "name": "field-scope-legacy-prefix-and-sibling-locality",
+   "input_fixture_ref": "意味条件を記述した有限U-ID設計行。fixture未作成。",
+   "l9_scenario_refs": [
+    "HARNESS-L9-009-SCOPE-S13"
+   ],
+   "source_basis": [
+    {
+     "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+     "pointer": "/requirements/27"
+    },
+    {
+     "path": "docs/helix-harness/L10-verification/functional-verification.json",
+     "pointer": "/cases/27"
+    },
+    {
+     "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+     "pointer": "/field_obligation_scope_contract"
+    },
+    {
+     "path": "docs/helix-harness/L9-integration-verification/product-template-application.json",
+     "pointer": "/field_obligation_scope_verification"
+    },
+    {
+     "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+     "pointer": "/f05_detail_contract/field_obligation_scope_writer_contract"
+    }
+   ],
+   "l4_l5_basis_ja": "L4 guards_and_order/4 and global_retention; L5 entry_and_order/origin_index/cause_storage_and_order.",
+   "typed_mutation_plan": "新しいdomain meaning/causeは作らず、同一fieldの明示source/record条件だけを一つずつ変えるU-ID設計。fixture/reader/runtimeは未作成。",
+   "expected_observation": "Legacy F14 origin rows remain unchanged prefix; new scope_source rows follow raw semantic-record order; scope_assessment rows follow evaluated field order. An unformed sibling scope keeps its local Cause and does not cancel/overwrite a formed sibling; global returned refs and proposal unfinished refs remain separate. U-ID design only; no full 5member golden.",
+   "expected_side_effect_count": 0,
+   "execution_state": "not_executed",
+   "fixture_refinement": "U-ID設計行のみ。具体fixture・全返却・hashはなく、未実行。",
+   "l9_case_pointers": [
+    "/field_obligation_scope_verification/cases/13"
+   ]
   }
  ],
  "normal_function_oracles": [
@@ -11126,15 +11469,17 @@
   "purpose_ja": "元rawと同call前提のFN1〜FN4 fixed materialsを保持した一件について、候補ObligationOrigin unionのscope_source/scope_assessment枝を含むF05DetailedReturn全5memberを固定JSON literal/RFC6902で期待化する有限設計対照。L5候補の全型・全writer・全分岐や実runtimeを完了扱いしない。",
   "source_basis": [
    {
-    "role": "current_L4_scope_meaning",
-    "revision": "1c8865d879482f7088c5f1765fc63b60be0b72d5",
+    "role": "current_main_L4_scope_meaning",
+    "revision": "a97fc209dd3d2048460b4b6cd583468192d38e4f",
     "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
-    "file_sha256": "77c1e3e4f1f29d4ccabc9c8b47f5c311874c131153223fd0eb8de76c282eae5a",
+    "file_sha256": "009da68d79547770e32a91362a410e014ed1951e0cfe9f67a6f6b31fd4c16824",
     "selected_objects": [
      {
-      "pointer": "/field_obligation_scope_contract"
+      "pointer": "/field_obligation_scope_contract",
+      "canonical_sha256": "b3759fc559fc152c16c17bb5fe526cd6e782e982086dc37bc1b93b862ac26fb6"
      }
-    ]
+    ],
+    "authority_scope": "F05 selected L3/L10 objectに限る技術候補。現在L4全体の採択/独立review/実装許可を示さない。"
    },
    {
     "role": "current_candidate_L5_native_scope_writer_binding",
@@ -11282,10 +11627,10 @@
    "reason": "既存generic normalのold logical knownは未宣言source meaningを含むため、新positive declaration caseを別fixed fixtureで明示する。L4 scope要件とUTW-014/020/021の原source保持に沿う有限対照で、新承認/新gateは作らない。"
   },
   "limitations_ja": [
-   "一件のsource-authored known/known field scopeに対する有限5member期待（9 source×19 check、152 qualification_check_links）を記載済み（B）。独立意味reviewはreviewレーン（C）、L9 field_obligation_scope_verification（21件）とのU-ID対照と関数別凍結はA（Q-H009-2、D-H009-T2c-2）へ渡す。",
-   "source/qualification/rootの値は固定synthetic literalであり、実trust取得又は同一callでのproducer実行はSECURITY/CONNECT・下流L6/L7（C）へ戻す。",
-   "本caseは一件positive scopeの有限全5member期待（B）。obligation_scope_boundary等の残branch U-ID対照はA（D-H009-T2c-1/T2c-2）へ渡し、全組合せfixture展開は下流L6/L7（C）へ戻す。",
-   "実reader/意味評価器/validator/codec/runtime/product test/CIの実装・実行は下流L6/L7（C）へ戻す。"
+   "現候補は9-source positive full-five-member例1件のみ。L9 field_obligation_scope_verificationは29件の意味scenario rowsへ拡張したが、各rowに固定input/expected literalはなく全返却oracleではない。",
+   "L8 ADD-48..53はL5 writerの閉じたCause/presence/order/locality規則を狙うU-ID設計行であり、fixture、全返却、hash、runtime、実資格を作らず、未実行である。",
+   "L4/L5/L8/L9の独立review、F05全source/assessment生成、全lookup missing/multiple、nullable owner全形、同source複数body、Read.unreached、実source/trust/owner取得、非null reentry、knowledge版不足、B019/030 typed接続及びnative consumer全域は未閉包。",
+   "実call/同call producer資格、source root/custody、runtime/CI動作は条件付き合成oracleで認定しない。"
   ],
   "static_source_resolution_evidence": {
    "proof_path": "/home/tenni/HELIX-HARNESS/scaffold/review-handoff/local/core009-f05-nine-source-root-all152-checklink-resolution-1c8865d8.json",
