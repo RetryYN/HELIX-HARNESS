@@ -30,8 +30,8 @@
     },
     {
       "path": "docs/helix-harness/L8-unit-verification/product-template-application.json",
-      "sha256": "d6b802563c312a272e89f7482e73d874ded32ec0ab4d0237748629d4fb989df7",
-      "note": "F05/F10 candidate source; exact JSON pointer set is recorded in scaffold/research/wr154-f10-gap-selection-design-20261030/README.md. Pin is read-only and does not adopt the source."
+      "sha256": "65aa4c2e120e6636cc3f3eb260fec32b06b1b44a6f17b21f785dc0d63fa767ce",
+      "note": "L8全体の現行source hash。既存L8参照の対象はF10 README記載pointerに限定し、ADD-47 fixed writer追加はF05 body mismatch leafの参照資料としてのみ読んだ。候補採用や下流実行を示さない。"
     }
   ],
   "role": "F05 gap proposal selection joinおよびtyped operand writerの未採用技術候補を保持する。",
