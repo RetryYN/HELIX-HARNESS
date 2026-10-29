@@ -2093,6 +2093,18 @@
       "path": "docs/helix-harness/L8-unit-verification/product-template-application.json",
       "file_sha256": "65aa4c2e120e6636cc3f3eb260fec32b06b1b44a6f17b21f785dc0d63fa767ce",
       "selected_pointers": [
+        "/cases/6",
+        "/additional_unit_cases/14",
+        "/additional_unit_cases/15",
+        "/f05_explicit_skip_binding_absent_full_return_oracle",
+        "/f05_g1_g2_collection_read_partial_oracle",
+        "/f05_native_normal_full_return_oracle",
+        "/f05_native_nine_source_known_known_scope_full_five_return_oracle",
+        "/input_scope_knowledge_gap_native_oracle",
+        "/f05_native_seven_member_caller_full_return_oracle",
+        "/f05_same_scan_argument_binding_verification",
+        "/f13_knowledge_recipient_leaf_verification",
+        "/additional_unit_cases/47",
         "/additional_unit_cases/46/fixed_writer_case/input_slice",
         "/additional_unit_cases/47/fixed_writer_case"
       ]

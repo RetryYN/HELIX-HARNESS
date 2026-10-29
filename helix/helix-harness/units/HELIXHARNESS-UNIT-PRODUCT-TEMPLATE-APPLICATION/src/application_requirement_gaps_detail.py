@@ -1197,7 +1197,9 @@ def _present_input_array(input_value, member):
         }
     value = input_value[member]
     if not isinstance(value, list):
-        raise NotImplementedError(f"WR154-P2 F02 malformed {member} shape is pending")
+        raise NotImplementedError(
+            f"WR154-R2-STOP-F02-INPUT-COLLECTION-SHAPE-01:{member}"
+        )
     return _present(_ROOT_INPUT, pointer, value)
 
 
@@ -1449,8 +1451,57 @@ def compare_requirement_gaps_detail(request, input_scope_scan):
         return stopped
 
     input_value = request["validation"]["validated"]["input"]
+    scan_records_read = input_scope_scan["semantic_records_read"]
+    semantic_records = input_value.get("semantic_records")
+    expected_scan_indices = (
+        list(range(len(semantic_records)))
+        if isinstance(semantic_records, list)
+        else None
+    )
+    if (
+        scan_records_read.get("tag") != "present"
+        or scan_records_read.get("location")
+        != {
+            "root": "validation_return",
+            "pointer": "/validated/input/semantic_records",
+        }
+        or not isinstance(semantic_records, list)
+        or not _json_equal(scan_records_read.get("value"), semantic_records)
+        or input_scope_scan["semantic_record_indices"] != expected_scan_indices
+    ):
+        raise NotImplementedError("WR154-R2-STOP-F13-SCAN-D-BOUNDARY-01")
+    profile_indices = [
+        index
+        for index, record in enumerate(semantic_records)
+        if isinstance(record, dict)
+        and (
+            record.get("kind") == "f05_knowledge_revision_gap_evidence"
+            or (
+                isinstance(record.get("meaning"), dict)
+                and record["meaning"].get("profile_id")
+                == "f05_knowledge_revision_gap_evidence"
+            )
+        )
+    ]
+    if profile_indices and not input_scope_scan["profile_observations"]:
+        raise NotImplementedError("WR154-R2-STOP-F13-PROFILE-SCAN-CANDIDATE-OMITTED-01")
+    if input_scope_scan["profile_observations"]:
+        raise NotImplementedError("WR154-R2-STOP-F13-PROFILE-CONSUMER-01")
     field_inputs_read = _present_input_array(input_value, "field_inputs")
     gap_proposals_read = _present_input_array(input_value, "gap_proposals")
+    if field_inputs_read["tag"] != "present" or gap_proposals_read["tag"] != "present":
+        absent_members = [
+            member
+            for member, read in (
+                ("field_inputs", field_inputs_read),
+                ("gap_proposals", gap_proposals_read),
+            )
+            if read["tag"] != "present"
+        ]
+        raise NotImplementedError(
+            "WR154-R2-STOP-F02-INPUT-COLLECTION-ABSENT-01:"
+            + ",".join(absent_members)
+        )
     fields = field_inputs_read["value"]
     proposals = gap_proposals_read["value"]
     source_observations = request["validation"].get("source_observations")

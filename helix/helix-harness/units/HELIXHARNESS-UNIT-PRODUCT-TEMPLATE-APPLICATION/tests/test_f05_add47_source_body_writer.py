@@ -172,6 +172,30 @@ class TestF05Add47SourceBodyWriter(unittest.TestCase):
         self.assertEqual(body["causes"], [])
         self.assertNotIn("source_body_mismatch", [cause["kind"] for cause in occurrence["causes"]])
 
+    def test_legacy_normal_input_does_not_promote_raw_definition_to_known(self):
+        raw = _resolve_recipe_raw("CORE-NORMAL-UNIT-REQUIRED")
+        _, request, scan = _request_and_scan(raw)
+
+        result = compare_requirement_gaps_detail(request, scan)
+
+        self.assertEqual(
+            set(result),
+            {
+                "original_request",
+                "context_formation",
+                "header_formation",
+                "comparison",
+                "owner_material",
+            },
+        )
+        self.assertEqual(result["comparison"]["tag"], "unformed")
+        field = result["owner_material"]["field_results"][0]["value"]
+        self.assertEqual(field["field_check"]["tag"], "unformed")
+        self.assertEqual(
+            field["definition_assessment"]["judgment"]["causes"][0]["rule_pointer"],
+            "/f05_detail_contract/field_summary_and_custody_writer_contract/patterns/0",
+        )
+
     def test_unestablished_selection_cannot_form_empty_comparison(self):
         raw = _resolve_recipe_raw("CORE-NORMAL-UNIT-REQUIRED")
         raw.pop("application_policies", None)
@@ -197,6 +221,19 @@ class TestF05Add47SourceBodyWriter(unittest.TestCase):
         ):
             compare_requirement_gaps_detail(request, scan)
 
+    def test_absent_input_collections_do_not_default_to_empty(self):
+        for member in ("field_inputs", "gap_proposals"):
+            with self.subTest(member=member):
+                raw = _resolve_recipe_raw("CORE-NORMAL-UNIT-REQUIRED")
+                raw.pop(member)
+                _, request, scan = _request_and_scan(raw)
+
+                with self.assertRaisesRegex(
+                    NotImplementedError,
+                    f"WR154-R2-STOP-F02-INPUT-COLLECTION-ABSENT-01:{member}",
+                ):
+                    compare_requirement_gaps_detail(request, scan)
+
     def test_unimplemented_f13_profile_scan_stops_at_public_entry(self):
         raw = _resolve_recipe_raw("CORE-NORMAL-UNIT-REQUIRED")
         _, request, scan = _request_and_scan(raw)
@@ -205,6 +242,28 @@ class TestF05Add47SourceBodyWriter(unittest.TestCase):
         with self.assertRaisesRegex(
             NotImplementedError,
             "WR154-R2-STOP-F13-PROFILE-CONSUMER-01",
+        ):
+            compare_requirement_gaps_detail(request, scan)
+
+    def test_f13_scan_must_bind_to_same_validation_semantic_records(self):
+        raw = _resolve_recipe_raw("CORE-NORMAL-UNIT-REQUIRED")
+        _, request, scan = _request_and_scan(raw)
+        scan["semantic_records_read"]["value"] = []
+
+        with self.assertRaisesRegex(
+            NotImplementedError,
+            "WR154-R2-STOP-F13-SCAN-D-BOUNDARY-01",
+        ):
+            compare_requirement_gaps_detail(request, scan)
+
+    def test_f13_profile_candidate_cannot_be_dropped_from_empty_scan(self):
+        raw = _resolve_recipe_raw("CORE-NORMAL-UNIT-REQUIRED")
+        raw["semantic_records"][0]["kind"] = "f05_knowledge_revision_gap_evidence"
+        _, request, scan = _request_and_scan(raw)
+
+        with self.assertRaisesRegex(
+            NotImplementedError,
+            "WR154-R2-STOP-F13-PROFILE-SCAN-CANDIDATE-OMITTED-01",
         ):
             compare_requirement_gaps_detail(request, scan)
 
