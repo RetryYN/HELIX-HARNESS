@@ -1,11 +1,11 @@
 {
   "schema": "wr181-os015-residual-l4-l9-summary.v1",
   "base_revision": "64d3cf379335e0a4b034f7295a9a225a2d755986",
-  "base_main_merge_base": "2d7cabb70861f4cc40d4d2e850d35c6b09083034",
-  "latest_main_revision": "2cdcb5594e46d2b0cd57fe20f469ca16604aebeb",
+  "base_main_merge_base": "64d3cf379335e0a4b034f7295a9a225a2d755986",
+  "latest_main_revision": "ca4bd911142cc17789366ae6f9f1f0fee8c7c589",
   "latest_main_fetch_matches_ls_remote": true,
   "pr_3923_head": "64d3cf379335e0a4b034f7295a9a225a2d755986",
-  "pr_3923_state": "OPEN",
+  "pr_3923_state": "MERGED",
   "pr_3923_mergeable": "UNKNOWN",
   "main_changed_paths_from_merge_base": [
     "docs/helix-harness/L6-function-design/product-template-application.json",
@@ -13,6 +13,7 @@
     "docs/helix-harness/L9-integration-verification/process-state-port.json",
     "docs/helix-os/L7-function-verification/ticket-workflow-derivation.json",
     "docs/helix-security/L4-basic-design/revoke-quarantine-propagation.json",
+    "docs/helix-security/L8-unit-verification/data-use-classification.json",
     "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
     "helix/helix-harness/units/HELIXHARNESS-UNIT-PRODUCT-TEMPLATE-APPLICATION/src/application_general_proposal_exchange.py",
     "helix/helix-harness/units/HELIXHARNESS-UNIT-PRODUCT-TEMPLATE-APPLICATION/src/general_proposal_exchange_body.py",
@@ -112,10 +113,10 @@
     ]
   },
   "latest_main_trial": {
-    "status": "PASS no-conflict no-commit merge trial",
-    "base_revision": "2cdcb5594e46d2b0cd57fe20f469ca16604aebeb",
-    "merge_base": "2d7cabb70861f4cc40d4d2e850d35c6b09083034",
-    "candidate_commit": "ff5b1f4a15a072b9f78bac291a7a41cbf899b502",
+    "status": "PASS no-conflict no-commit merge trial after PR-C merge",
+    "base_revision": "ca4bd911142cc17789366ae6f9f1f0fee8c7c589",
+    "merge_base": "64d3cf379335e0a4b034f7295a9a225a2d755986",
+    "candidate_commit": "91081d49cc610db679998ced1eca0a990f34510e",
     "merge_result": "Automatic merge went well; stopped before committing as requested",
     "main_changed_paths_from_merge_base": [
       "docs/helix-harness/L6-function-design/product-template-application.json",
@@ -123,6 +124,7 @@
       "docs/helix-harness/L9-integration-verification/process-state-port.json",
       "docs/helix-os/L7-function-verification/ticket-workflow-derivation.json",
       "docs/helix-security/L4-basic-design/revoke-quarantine-propagation.json",
+      "docs/helix-security/L8-unit-verification/data-use-classification.json",
       "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
       "helix/helix-harness/units/HELIXHARNESS-UNIT-PRODUCT-TEMPLATE-APPLICATION/src/application_general_proposal_exchange.py",
       "helix/helix-harness/units/HELIXHARNESS-UNIT-PRODUCT-TEMPLATE-APPLICATION/src/general_proposal_exchange_body.py",
@@ -148,10 +150,6 @@
       "scaffold/bindings/SCF-B-0175.json",
       "scaffold/bindings/SCF-B-0176.json",
       "scaffold/bindings/SCF-B-0177.json",
-      "scaffold/research/wr181-os015-pr-c-l9-pointers-20261030/README.md",
-      "scaffold/research/wr181-os015-pr-c-l9-pointers-20261030/static-validation.json",
-      "scaffold/research/wr181-os015-pr-c-l9-pointers-20261030/validate_prc_l9_pointers.py",
-      "scaffold/research/wr181-os015-pr-c-l9-pointers-20261030/verification-summary.json",
       "scaffold/research/wr181-os015-residual-l4-l9-20261030/README.md",
       "scaffold/research/wr181-os015-residual-l4-l9-20261030/build_projection.py",
       "scaffold/research/wr181-os015-residual-l4-l9-20261030/manual-case-audit-05614.md",
@@ -161,7 +159,9 @@
       "scaffold/research/wr181-os015-residual-l4-l9-20261030/verification-summary.json"
     ],
     "changed_paths_overlap": false,
-    "static_validator": "PASS; trial output byte-identical to static-validation.json",
+    "trial_staged_paths_equal_candidate_paths": true,
+    "static_validator": "PASS",
+    "static_validator_sha256": "5806597ad4ddf64f8479e78ccb5d70994c7fc58b667924a26ef61c00eba86190",
     "check_child": {
       "exit": 1,
       "overall_passed": false,
@@ -177,26 +177,33 @@
         "L5": 33
       },
       "matched_case_count": 460,
-      "same_as_candidate": true
+      "raw_report_sha256": "c0a31f0bad616229824fc7b08fcd6616f7aa6c44db9f31685575ef68c69517a5"
     },
     "check_freeze": {
       "exit": 1,
       "mechanical_match": false,
-      "results_count": 1,
-      "same_as_candidate": true,
       "json_pointer_failures": 2421,
-      "public_function_failures": 8
+      "public_function_failures": 8,
+      "raw_report_sha256": "cc4bd1a42fcde81c9b38c3d9f68af3531cab8a235811fb937e2a57f35d320003"
     },
     "scfctl_validate": "PASS (bindings=166 fail=0)",
     "scfctl_stale": "PASS (stale=0)",
-    "cached_diff_check": "PASS",
-    "raw_reports_sha256": {
-      "check_child": "c0a31f0bad616229824fc7b08fcd6616f7aa6c44db9f31685575ef68c69517a5",
-      "check_freeze": "cc4bd1a42fcde81c9b38c3d9f68af3531cab8a235811fb937e2a57f35d320003",
-      "scfctl_validate": "64b9e99f869979292bc487884f864cbb968e8132f4e61ea5d6c1a8e9a34c799e",
-      "scfctl_stale": "87a3b1b935511a85473d742a599e5f4e976e2504e9b0e25e6203da661cd9bb49",
-      "static_validator": "5806597ad4ddf64f8479e78ccb5d70994c7fc58b667924a26ef61c00eba86190",
-      "diff_check": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    "SCF-B-0174": "preserved from latest main; sha256=a9389e170ad9acbdd3fe3dcbc9f09820687f9f26de5e9d7828734b80582da137",
+    "diff_check": "PASS (git diff --cached --check on trial; git diff --check 64d3cf379335e0a4b034f7295a9a225a2d755986..candidate)",
+    "main_only_baseline": {
+      "check_child_failures": 136,
+      "counts": {
+        "L4": 33,
+        "L9": 27,
+        "L8": 27,
+        "L5": 33
+      },
+      "matched_case_count": 460,
+      "freeze_mechanical_match": false,
+      "json_pointer_failures": 2421,
+      "public_function_failures": 8,
+      "scfctl_validate": "bindings=165 fail=0",
+      "scfctl_stale": "stale=0"
     }
   },
   "remaining": [
@@ -216,5 +223,6 @@
   },
   "static_validation_sha256": "5806597ad4ddf64f8479e78ccb5d70994c7fc58b667924a26ef61c00eba86190",
   "builder_sha256": "6bd9e8b35bf65e6d359743a9084c56ff3bd347109b6295ae153805b2158ac8c6",
-  "validator_sha256": "d544305c145019ed2620718cec125f85d84adf7f89f1d4cad1899d657ce507e2"
+  "validator_sha256": "d544305c145019ed2620718cec125f85d84adf7f89f1d4cad1899d657ce507e2",
+  "pr_3923_merge_commit": "ca4bd911142cc17789366ae6f9f1f0fee8c7c589"
 }

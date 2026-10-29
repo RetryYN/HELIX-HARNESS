@@ -42,7 +42,7 @@ L9 `negative_equivalence_classes`にはL4 class rowからexpected keyを順方�
 
 ## 最新mainとの関係と残件
 
-GitHub mainは再fetch時点で`2cdcb5594e46d2b0cd57fe20f469ca16604aebeb`（`FETCH_HEAD`と`git ls-remote`一致）、PR-Cとmainの共通merge-baseは`2d7cabb70861f4cc40d4d2e850d35c6b09083034`。共通baseからmainへの変更は`verification-summary.json`に全列挙し、本候補の変更pathとは重複しない。以前の`64d3cf3..main`直接diffではPR-C枝の未merge変更が逆向きに現れるため、衝突判定には使わない。GitHub PR #3923はOPEN、mergeableはUNKNOWN。最新mainへの隔離no-commit試行mergeは競合なし。静的validator、check-child、check-freeze、scfctl validate/stale、diff-checkの結果とraw report hashを`verification-summary.json`に記録する。
+GitHub mainは再fetch時点で`ca4bd911142cc17789366ae6f9f1f0fee8c7c589`（`FETCH_HEAD`と`git ls-remote`一致）。PR #3923はこのmainへmerge済みで、候補基点`64d3cf379335e0a4b034f7295a9a225a2d755986`はmainの祖先。したがって共通merge-baseは基点そのもの。そこからmainへの変更と候補への変更を個別に全列挙して比較し、path交差なし。最新mainへの隔離no-commit試行mergeは競合せず、stageされたpathは候補pathと一致。mainに追加されたSCF-B-0174も試行後に保持され、`scfctl validate`で166 bindings全件が有効、stale=0。main単体と試行後のcheck-child/check-freeze、static validator、diff-checkの実測は`verification-summary.json`に記録する。
 
 既存6 singleton-less classはL8/L9に形成しない: `OS015-NEG-source_unresolved-original_event`, `OS015-NEG-source_conflict-original_event`, `OS015-NEG-original_event_mutated`, `OS015-NEG-unresolved_promoted_to_current`, `OS015-NEG-first_classification_prior_present`, `OS015-NEG-first_classification_prior_unresolved`。本候補後もL5/L8 pair projectionは未実施で、L9の112 linksはL8にまだ反映されない。negative-4wayのFAIL、checkerが同時省略を検出しない限界、旧freezeの不一致を残件として記録し、全182件の完了・全体PASS・freeze成立とは呼ばない。
 
