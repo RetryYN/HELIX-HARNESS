@@ -47685,8 +47685,8 @@
           "actual_memory_retired": false
         }
       },
-      "negative_class_ref": "OS007-NEG-feedback-original_finding_changed",
-      "rule_ref": "OS007-NEG-feedback-original_finding_changed"
+      "negative_class_ref": "OS007-NEG-feedback-comp-02-field_conflict_original_finding_changed",
+      "rule_ref": "OS007-NEG-feedback-comp-02-field_conflict_original_finding_changed"
     },
     {
       "case_id": "HELIXOS-L9-007-C0376",
@@ -47775,8 +47775,8 @@
           "actual_memory_retired": false
         }
       },
-      "negative_class_ref": "OS007-NEG-feedback-original_finding_changed",
-      "rule_ref": "OS007-NEG-feedback-original_finding_changed"
+      "negative_class_ref": "OS007-NEG-feedback-comp-02-field_conflict_original_finding_changed",
+      "rule_ref": "OS007-NEG-feedback-comp-02-field_conflict_original_finding_changed"
     },
     {
       "case_id": "HELIXOS-L9-007-C0378",
@@ -47865,8 +47865,8 @@
           "actual_memory_retired": false
         }
       },
-      "negative_class_ref": "OS007-NEG-feedback-original_finding_changed",
-      "rule_ref": "OS007-NEG-feedback-original_finding_changed"
+      "negative_class_ref": "OS007-NEG-feedback-comp-02-field_conflict_original_finding_changed",
+      "rule_ref": "OS007-NEG-feedback-comp-02-field_conflict_original_finding_changed"
     },
     {
       "case_id": "HELIXOS-L9-007-C0380",
@@ -47955,8 +47955,8 @@
           "actual_memory_retired": false
         }
       },
-      "negative_class_ref": "OS007-NEG-feedback-original_finding_changed",
-      "rule_ref": "OS007-NEG-feedback-original_finding_changed"
+      "negative_class_ref": "OS007-NEG-feedback-comp-02-field_conflict_original_finding_changed",
+      "rule_ref": "OS007-NEG-feedback-comp-02-field_conflict_original_finding_changed"
     },
     {
       "case_id": "HELIXOS-L9-007-C0382",
@@ -48045,8 +48045,8 @@
           "actual_memory_retired": false
         }
       },
-      "negative_class_ref": "OS007-NEG-feedback-original_finding_changed",
-      "rule_ref": "OS007-NEG-feedback-original_finding_changed"
+      "negative_class_ref": "OS007-NEG-feedback-comp-02-field_conflict_original_finding_changed",
+      "rule_ref": "OS007-NEG-feedback-comp-02-field_conflict_original_finding_changed"
     },
     {
       "case_id": "HELIXOS-L9-007-C0384",
@@ -48135,8 +48135,8 @@
           "actual_memory_retired": false
         }
       },
-      "negative_class_ref": "OS007-NEG-feedback-original_finding_changed",
-      "rule_ref": "OS007-NEG-feedback-original_finding_changed"
+      "negative_class_ref": "OS007-NEG-feedback-comp-02-field_conflict_original_finding_changed",
+      "rule_ref": "OS007-NEG-feedback-comp-02-field_conflict_original_finding_changed"
     },
     {
       "case_id": "HELIXOS-L9-007-C0386",
@@ -48225,8 +48225,8 @@
           "actual_memory_retired": false
         }
       },
-      "negative_class_ref": "OS007-NEG-feedback-original_finding_changed",
-      "rule_ref": "OS007-NEG-feedback-original_finding_changed"
+      "negative_class_ref": "OS007-NEG-feedback-comp-02-field_conflict_original_finding_changed",
+      "rule_ref": "OS007-NEG-feedback-comp-02-field_conflict_original_finding_changed"
     },
     {
       "case_id": "HELIXOS-L9-007-C0388",
@@ -48358,8 +48358,8 @@
           "actual_memory_retired": false
         }
       },
-      "negative_class_ref": "OS007-NEG-feedback-original_finding_changed",
-      "rule_ref": "OS007-NEG-feedback-original_finding_changed"
+      "negative_class_ref": "OS007-NEG-feedback-comp-02-field_conflict_original_finding_changed",
+      "rule_ref": "OS007-NEG-feedback-comp-02-field_conflict_original_finding_changed"
     },
     {
       "case_id": "HELIXOS-L9-007-C0391",
@@ -48448,8 +48448,8 @@
           "actual_memory_retired": false
         }
       },
-      "negative_class_ref": "OS007-NEG-feedback-original_finding_changed",
-      "rule_ref": "OS007-NEG-feedback-original_finding_changed"
+      "negative_class_ref": "OS007-NEG-feedback-comp-02-field_conflict_original_finding_changed",
+      "rule_ref": "OS007-NEG-feedback-comp-02-field_conflict_original_finding_changed"
     },
     {
       "case_id": "HELIXOS-L9-007-C0393",
@@ -48538,8 +48538,8 @@
           "actual_memory_retired": false
         }
       },
-      "negative_class_ref": "OS007-NEG-feedback-original_finding_changed",
-      "rule_ref": "OS007-NEG-feedback-original_finding_changed"
+      "negative_class_ref": "OS007-NEG-feedback-comp-02-field_conflict_original_finding_changed",
+      "rule_ref": "OS007-NEG-feedback-comp-02-field_conflict_original_finding_changed"
     },
     {
       "case_id": "HELIXOS-L9-007-C0395",
@@ -48628,8 +48628,8 @@
           "actual_memory_retired": false
         }
       },
-      "negative_class_ref": "OS007-NEG-feedback-original_finding_changed",
-      "rule_ref": "OS007-NEG-feedback-original_finding_changed"
+      "negative_class_ref": "OS007-NEG-feedback-comp-02-field_conflict_original_finding_changed",
+      "rule_ref": "OS007-NEG-feedback-comp-02-field_conflict_original_finding_changed"
     },
     {
       "case_id": "HELIXOS-L9-007-C0397",
@@ -48722,8 +48722,8 @@
           "actual_memory_retired": false
         }
       },
-      "negative_class_ref": "OS007-NEG-feedback-comp-02-field_conflict_original_finding_changed",
-      "rule_ref": "OS007-NEG-feedback-comp-02-field_conflict_original_finding_changed"
+      "negative_class_ref": "OS007-NEG-feedback-comp-03-field_conflict_original_finding_changed",
+      "rule_ref": "OS007-NEG-feedback-comp-03-field_conflict_original_finding_changed"
     },
     {
       "case_id": "HELIXOS-L9-007-C0399",
@@ -48812,8 +48812,8 @@
           "actual_memory_retired": false
         }
       },
-      "negative_class_ref": "OS007-NEG-feedback-original_finding_changed",
-      "rule_ref": "OS007-NEG-feedback-original_finding_changed"
+      "negative_class_ref": "OS007-NEG-feedback-comp-02-field_conflict_original_finding_changed",
+      "rule_ref": "OS007-NEG-feedback-comp-02-field_conflict_original_finding_changed"
     },
     {
       "case_id": "HELIXOS-L9-007-C0401",
@@ -48902,8 +48902,8 @@
           "actual_memory_retired": false
         }
       },
-      "negative_class_ref": "OS007-NEG-feedback-original_finding_changed",
-      "rule_ref": "OS007-NEG-feedback-original_finding_changed"
+      "negative_class_ref": "OS007-NEG-feedback-comp-02-field_conflict_original_finding_changed",
+      "rule_ref": "OS007-NEG-feedback-comp-02-field_conflict_original_finding_changed"
     },
     {
       "case_id": "HELIXOS-L9-007-C0403",
@@ -49197,8 +49197,8 @@
           "actual_memory_retired": false
         }
       },
-      "negative_class_ref": "OS007-NEG-feedback-original_finding_changed",
-      "rule_ref": "OS007-NEG-feedback-original_finding_changed"
+      "negative_class_ref": "OS007-NEG-feedback-comp-02-field_conflict_original_finding_changed",
+      "rule_ref": "OS007-NEG-feedback-comp-02-field_conflict_original_finding_changed"
     },
     {
       "case_id": "HELIXOS-L9-007-C0409",
@@ -49287,8 +49287,8 @@
           "actual_memory_retired": false
         }
       },
-      "negative_class_ref": "OS007-NEG-feedback-original_finding_changed",
-      "rule_ref": "OS007-NEG-feedback-original_finding_changed"
+      "negative_class_ref": "OS007-NEG-feedback-comp-02-field_conflict_original_finding_changed",
+      "rule_ref": "OS007-NEG-feedback-comp-02-field_conflict_original_finding_changed"
     },
     {
       "case_id": "HELIXOS-L9-007-C0411",
@@ -49377,8 +49377,8 @@
           "actual_memory_retired": false
         }
       },
-      "negative_class_ref": "OS007-NEG-feedback-original_finding_changed",
-      "rule_ref": "OS007-NEG-feedback-original_finding_changed"
+      "negative_class_ref": "OS007-NEG-feedback-comp-02-field_conflict_original_finding_changed",
+      "rule_ref": "OS007-NEG-feedback-comp-02-field_conflict_original_finding_changed"
     },
     {
       "case_id": "HELIXOS-L9-007-C0413",
@@ -49467,8 +49467,8 @@
           "actual_memory_retired": false
         }
       },
-      "negative_class_ref": "OS007-NEG-feedback-original_finding_changed",
-      "rule_ref": "OS007-NEG-feedback-original_finding_changed"
+      "negative_class_ref": "OS007-NEG-feedback-comp-02-field_conflict_original_finding_changed",
+      "rule_ref": "OS007-NEG-feedback-comp-02-field_conflict_original_finding_changed"
     },
     {
       "case_id": "HELIXOS-L9-007-C0415",
@@ -49557,8 +49557,8 @@
           "actual_memory_retired": false
         }
       },
-      "negative_class_ref": "OS007-NEG-feedback-original_finding_changed",
-      "rule_ref": "OS007-NEG-feedback-original_finding_changed"
+      "negative_class_ref": "OS007-NEG-feedback-comp-02-field_conflict_original_finding_changed",
+      "rule_ref": "OS007-NEG-feedback-comp-02-field_conflict_original_finding_changed"
     },
     {
       "case_id": "HELIXOS-L9-007-C0417",
@@ -49647,8 +49647,8 @@
           "actual_memory_retired": false
         }
       },
-      "negative_class_ref": "OS007-NEG-feedback-original_finding_changed",
-      "rule_ref": "OS007-NEG-feedback-original_finding_changed"
+      "negative_class_ref": "OS007-NEG-feedback-comp-02-field_conflict_original_finding_changed",
+      "rule_ref": "OS007-NEG-feedback-comp-02-field_conflict_original_finding_changed"
     },
     {
       "case_id": "HELIXOS-L9-007-C0419",
@@ -49737,8 +49737,8 @@
           "actual_memory_retired": false
         }
       },
-      "negative_class_ref": "OS007-NEG-feedback-original_finding_changed",
-      "rule_ref": "OS007-NEG-feedback-original_finding_changed"
+      "negative_class_ref": "OS007-NEG-feedback-comp-02-field_conflict_original_finding_changed",
+      "rule_ref": "OS007-NEG-feedback-comp-02-field_conflict_original_finding_changed"
     },
     {
       "case_id": "HELIXOS-L9-007-C0421",
@@ -49870,8 +49870,8 @@
           "actual_memory_retired": false
         }
       },
-      "negative_class_ref": "OS007-NEG-feedback-original_finding_changed",
-      "rule_ref": "OS007-NEG-feedback-original_finding_changed"
+      "negative_class_ref": "OS007-NEG-feedback-comp-02-field_conflict_original_finding_changed",
+      "rule_ref": "OS007-NEG-feedback-comp-02-field_conflict_original_finding_changed"
     },
     {
       "case_id": "HELIXOS-L9-007-C0424",
@@ -49960,8 +49960,8 @@
           "actual_memory_retired": false
         }
       },
-      "negative_class_ref": "OS007-NEG-feedback-original_finding_changed",
-      "rule_ref": "OS007-NEG-feedback-original_finding_changed"
+      "negative_class_ref": "OS007-NEG-feedback-comp-02-field_conflict_original_finding_changed",
+      "rule_ref": "OS007-NEG-feedback-comp-02-field_conflict_original_finding_changed"
     },
     {
       "case_id": "HELIXOS-L9-007-C0426",
@@ -50050,8 +50050,8 @@
           "actual_memory_retired": false
         }
       },
-      "negative_class_ref": "OS007-NEG-feedback-original_finding_changed",
-      "rule_ref": "OS007-NEG-feedback-original_finding_changed"
+      "negative_class_ref": "OS007-NEG-feedback-comp-02-field_conflict_original_finding_changed",
+      "rule_ref": "OS007-NEG-feedback-comp-02-field_conflict_original_finding_changed"
     },
     {
       "case_id": "HELIXOS-L9-007-C0428",
@@ -50140,8 +50140,8 @@
           "actual_memory_retired": false
         }
       },
-      "negative_class_ref": "OS007-NEG-feedback-original_finding_changed",
-      "rule_ref": "OS007-NEG-feedback-original_finding_changed"
+      "negative_class_ref": "OS007-NEG-feedback-comp-02-field_conflict_original_finding_changed",
+      "rule_ref": "OS007-NEG-feedback-comp-02-field_conflict_original_finding_changed"
     },
     {
       "case_id": "HELIXOS-L9-007-C0430",
@@ -50238,8 +50238,8 @@
           "actual_memory_retired": false
         }
       },
-      "negative_class_ref": "OS007-NEG-feedback-comp-03-field_conflict_original_finding_changed",
-      "rule_ref": "OS007-NEG-feedback-comp-03-field_conflict_original_finding_changed"
+      "negative_class_ref": "OS007-NEG-feedback-comp-04-field_conflict_original_finding_changed",
+      "rule_ref": "OS007-NEG-feedback-comp-04-field_conflict_original_finding_changed"
     },
     {
       "case_id": "HELIXOS-L9-007-C0432",
@@ -50328,8 +50328,8 @@
           "actual_memory_retired": false
         }
       },
-      "negative_class_ref": "OS007-NEG-feedback-original_finding_changed",
-      "rule_ref": "OS007-NEG-feedback-original_finding_changed"
+      "negative_class_ref": "OS007-NEG-feedback-comp-02-field_conflict_original_finding_changed",
+      "rule_ref": "OS007-NEG-feedback-comp-02-field_conflict_original_finding_changed"
     },
     {
       "case_id": "HELIXOS-L9-007-C0434",
@@ -50418,8 +50418,8 @@
           "actual_memory_retired": false
         }
       },
-      "negative_class_ref": "OS007-NEG-feedback-original_finding_changed",
-      "rule_ref": "OS007-NEG-feedback-original_finding_changed"
+      "negative_class_ref": "OS007-NEG-feedback-comp-02-field_conflict_original_finding_changed",
+      "rule_ref": "OS007-NEG-feedback-comp-02-field_conflict_original_finding_changed"
     },
     {
       "case_id": "HELIXOS-L9-007-C0436",
@@ -50670,8 +50670,8 @@
           "actual_memory_retired": false
         }
       },
-      "negative_class_ref": "OS007-NEG-feedback-comp-04-field_unknown_original_finding_changed_unresolved_claimed_resolved",
-      "rule_ref": "OS007-NEG-feedback-comp-04-field_unknown_original_finding_changed_unresolved_claimed_resolved"
+      "negative_class_ref": "OS007-NEG-feedback-comp-05-field_unknown_original_finding_changed_unresolved_claimed_resolved",
+      "rule_ref": "OS007-NEG-feedback-comp-05-field_unknown_original_finding_changed_unresolved_claimed_resolved"
     },
     {
       "case_id": "HELIXOS-L9-007-C0441",
@@ -50717,8 +50717,8 @@
           "actual_memory_retired": false
         }
       },
-      "negative_class_ref": "OS007-NEG-feedback-comp-05-field_conflict_original_finding_changed_unresolved_claimed_resolved",
-      "rule_ref": "OS007-NEG-feedback-comp-05-field_conflict_original_finding_changed_unresolved_claimed_resolved"
+      "negative_class_ref": "OS007-NEG-feedback-comp-06-field_conflict_original_finding_changed_unresolved_claimed_resolved",
+      "rule_ref": "OS007-NEG-feedback-comp-06-field_conflict_original_finding_changed_unresolved_claimed_resolved"
     },
     {
       "case_id": "HELIXOS-L9-007-C0442",
@@ -50764,8 +50764,8 @@
           "actual_memory_retired": false
         }
       },
-      "negative_class_ref": "OS007-NEG-feedback-comp-04-field_unknown_original_finding_changed_unresolved_claimed_resolved",
-      "rule_ref": "OS007-NEG-feedback-comp-04-field_unknown_original_finding_changed_unresolved_claimed_resolved"
+      "negative_class_ref": "OS007-NEG-feedback-comp-05-field_unknown_original_finding_changed_unresolved_claimed_resolved",
+      "rule_ref": "OS007-NEG-feedback-comp-05-field_unknown_original_finding_changed_unresolved_claimed_resolved"
     },
     {
       "case_id": "HELIXOS-L9-007-C0443",
@@ -50811,8 +50811,8 @@
           "actual_memory_retired": false
         }
       },
-      "negative_class_ref": "OS007-NEG-feedback-comp-05-field_conflict_original_finding_changed_unresolved_claimed_resolved",
-      "rule_ref": "OS007-NEG-feedback-comp-05-field_conflict_original_finding_changed_unresolved_claimed_resolved"
+      "negative_class_ref": "OS007-NEG-feedback-comp-06-field_conflict_original_finding_changed_unresolved_claimed_resolved",
+      "rule_ref": "OS007-NEG-feedback-comp-06-field_conflict_original_finding_changed_unresolved_claimed_resolved"
     },
     {
       "case_id": "HELIXOS-L9-007-C0444",
@@ -50858,8 +50858,8 @@
           "actual_memory_retired": false
         }
       },
-      "negative_class_ref": "OS007-NEG-feedback-comp-04-field_unknown_original_finding_changed_unresolved_claimed_resolved",
-      "rule_ref": "OS007-NEG-feedback-comp-04-field_unknown_original_finding_changed_unresolved_claimed_resolved"
+      "negative_class_ref": "OS007-NEG-feedback-comp-05-field_unknown_original_finding_changed_unresolved_claimed_resolved",
+      "rule_ref": "OS007-NEG-feedback-comp-05-field_unknown_original_finding_changed_unresolved_claimed_resolved"
     },
     {
       "case_id": "HELIXOS-L9-007-C0445",
@@ -50905,8 +50905,8 @@
           "actual_memory_retired": false
         }
       },
-      "negative_class_ref": "OS007-NEG-feedback-comp-05-field_conflict_original_finding_changed_unresolved_claimed_resolved",
-      "rule_ref": "OS007-NEG-feedback-comp-05-field_conflict_original_finding_changed_unresolved_claimed_resolved"
+      "negative_class_ref": "OS007-NEG-feedback-comp-06-field_conflict_original_finding_changed_unresolved_claimed_resolved",
+      "rule_ref": "OS007-NEG-feedback-comp-06-field_conflict_original_finding_changed_unresolved_claimed_resolved"
     },
     {
       "case_id": "HELIXOS-L9-007-C0446",
@@ -50952,8 +50952,8 @@
           "actual_memory_retired": false
         }
       },
-      "negative_class_ref": "OS007-NEG-feedback-comp-04-field_unknown_original_finding_changed_unresolved_claimed_resolved",
-      "rule_ref": "OS007-NEG-feedback-comp-04-field_unknown_original_finding_changed_unresolved_claimed_resolved"
+      "negative_class_ref": "OS007-NEG-feedback-comp-05-field_unknown_original_finding_changed_unresolved_claimed_resolved",
+      "rule_ref": "OS007-NEG-feedback-comp-05-field_unknown_original_finding_changed_unresolved_claimed_resolved"
     },
     {
       "case_id": "HELIXOS-L9-007-C0447",
@@ -50999,8 +50999,8 @@
           "actual_memory_retired": false
         }
       },
-      "negative_class_ref": "OS007-NEG-feedback-comp-05-field_conflict_original_finding_changed_unresolved_claimed_resolved",
-      "rule_ref": "OS007-NEG-feedback-comp-05-field_conflict_original_finding_changed_unresolved_claimed_resolved"
+      "negative_class_ref": "OS007-NEG-feedback-comp-06-field_conflict_original_finding_changed_unresolved_claimed_resolved",
+      "rule_ref": "OS007-NEG-feedback-comp-06-field_conflict_original_finding_changed_unresolved_claimed_resolved"
     },
     {
       "case_id": "HELIXOS-L9-007-C0448",
@@ -51046,8 +51046,8 @@
           "actual_memory_retired": false
         }
       },
-      "negative_class_ref": "OS007-NEG-feedback-comp-04-field_unknown_original_finding_changed_unresolved_claimed_resolved",
-      "rule_ref": "OS007-NEG-feedback-comp-04-field_unknown_original_finding_changed_unresolved_claimed_resolved"
+      "negative_class_ref": "OS007-NEG-feedback-comp-05-field_unknown_original_finding_changed_unresolved_claimed_resolved",
+      "rule_ref": "OS007-NEG-feedback-comp-05-field_unknown_original_finding_changed_unresolved_claimed_resolved"
     },
     {
       "case_id": "HELIXOS-L9-007-C0449",
@@ -51093,8 +51093,8 @@
           "actual_memory_retired": false
         }
       },
-      "negative_class_ref": "OS007-NEG-feedback-comp-05-field_conflict_original_finding_changed_unresolved_claimed_resolved",
-      "rule_ref": "OS007-NEG-feedback-comp-05-field_conflict_original_finding_changed_unresolved_claimed_resolved"
+      "negative_class_ref": "OS007-NEG-feedback-comp-06-field_conflict_original_finding_changed_unresolved_claimed_resolved",
+      "rule_ref": "OS007-NEG-feedback-comp-06-field_conflict_original_finding_changed_unresolved_claimed_resolved"
     },
     {
       "case_id": "HELIXOS-L9-007-C0450",
@@ -51140,8 +51140,8 @@
           "actual_memory_retired": false
         }
       },
-      "negative_class_ref": "OS007-NEG-feedback-comp-04-field_unknown_original_finding_changed_unresolved_claimed_resolved",
-      "rule_ref": "OS007-NEG-feedback-comp-04-field_unknown_original_finding_changed_unresolved_claimed_resolved"
+      "negative_class_ref": "OS007-NEG-feedback-comp-05-field_unknown_original_finding_changed_unresolved_claimed_resolved",
+      "rule_ref": "OS007-NEG-feedback-comp-05-field_unknown_original_finding_changed_unresolved_claimed_resolved"
     },
     {
       "case_id": "HELIXOS-L9-007-C0451",
@@ -51187,8 +51187,8 @@
           "actual_memory_retired": false
         }
       },
-      "negative_class_ref": "OS007-NEG-feedback-comp-05-field_conflict_original_finding_changed_unresolved_claimed_resolved",
-      "rule_ref": "OS007-NEG-feedback-comp-05-field_conflict_original_finding_changed_unresolved_claimed_resolved"
+      "negative_class_ref": "OS007-NEG-feedback-comp-06-field_conflict_original_finding_changed_unresolved_claimed_resolved",
+      "rule_ref": "OS007-NEG-feedback-comp-06-field_conflict_original_finding_changed_unresolved_claimed_resolved"
     },
     {
       "case_id": "HELIXOS-L9-007-C0452",
@@ -51234,8 +51234,8 @@
           "actual_memory_retired": false
         }
       },
-      "negative_class_ref": "OS007-NEG-feedback-comp-04-field_unknown_original_finding_changed_unresolved_claimed_resolved",
-      "rule_ref": "OS007-NEG-feedback-comp-04-field_unknown_original_finding_changed_unresolved_claimed_resolved"
+      "negative_class_ref": "OS007-NEG-feedback-comp-05-field_unknown_original_finding_changed_unresolved_claimed_resolved",
+      "rule_ref": "OS007-NEG-feedback-comp-05-field_unknown_original_finding_changed_unresolved_claimed_resolved"
     },
     {
       "case_id": "HELIXOS-L9-007-C0453",
@@ -51281,8 +51281,8 @@
           "actual_memory_retired": false
         }
       },
-      "negative_class_ref": "OS007-NEG-feedback-comp-05-field_conflict_original_finding_changed_unresolved_claimed_resolved",
-      "rule_ref": "OS007-NEG-feedback-comp-05-field_conflict_original_finding_changed_unresolved_claimed_resolved"
+      "negative_class_ref": "OS007-NEG-feedback-comp-06-field_conflict_original_finding_changed_unresolved_claimed_resolved",
+      "rule_ref": "OS007-NEG-feedback-comp-06-field_conflict_original_finding_changed_unresolved_claimed_resolved"
     },
     {
       "case_id": "HELIXOS-L9-007-C0454",
@@ -51326,8 +51326,8 @@
           "actual_memory_retired": false
         }
       },
-      "negative_class_ref": "OS007-NEG-feedback-comp-06-finding_missing_unresolved_claimed_resolved",
-      "rule_ref": "OS007-NEG-feedback-comp-06-finding_missing_unresolved_claimed_resolved"
+      "negative_class_ref": "OS007-NEG-feedback-comp-07-finding_missing_unresolved_claimed_resolved",
+      "rule_ref": "OS007-NEG-feedback-comp-07-finding_missing_unresolved_claimed_resolved"
     },
     {
       "case_id": "HELIXOS-L9-007-C0455",
@@ -51373,8 +51373,8 @@
           "actual_memory_retired": false
         }
       },
-      "negative_class_ref": "OS007-NEG-feedback-comp-04-field_unknown_original_finding_changed_unresolved_claimed_resolved",
-      "rule_ref": "OS007-NEG-feedback-comp-04-field_unknown_original_finding_changed_unresolved_claimed_resolved"
+      "negative_class_ref": "OS007-NEG-feedback-comp-05-field_unknown_original_finding_changed_unresolved_claimed_resolved",
+      "rule_ref": "OS007-NEG-feedback-comp-05-field_unknown_original_finding_changed_unresolved_claimed_resolved"
     },
     {
       "case_id": "HELIXOS-L9-007-C0456",
@@ -51420,8 +51420,8 @@
           "actual_memory_retired": false
         }
       },
-      "negative_class_ref": "OS007-NEG-feedback-comp-05-field_conflict_original_finding_changed_unresolved_claimed_resolved",
-      "rule_ref": "OS007-NEG-feedback-comp-05-field_conflict_original_finding_changed_unresolved_claimed_resolved"
+      "negative_class_ref": "OS007-NEG-feedback-comp-06-field_conflict_original_finding_changed_unresolved_claimed_resolved",
+      "rule_ref": "OS007-NEG-feedback-comp-06-field_conflict_original_finding_changed_unresolved_claimed_resolved"
     },
     {
       "case_id": "HELIXOS-L9-007-C0457",
@@ -51467,8 +51467,8 @@
           "actual_memory_retired": false
         }
       },
-      "negative_class_ref": "OS007-NEG-feedback-comp-04-field_unknown_original_finding_changed_unresolved_claimed_resolved",
-      "rule_ref": "OS007-NEG-feedback-comp-04-field_unknown_original_finding_changed_unresolved_claimed_resolved"
+      "negative_class_ref": "OS007-NEG-feedback-comp-05-field_unknown_original_finding_changed_unresolved_claimed_resolved",
+      "rule_ref": "OS007-NEG-feedback-comp-05-field_unknown_original_finding_changed_unresolved_claimed_resolved"
     },
     {
       "case_id": "HELIXOS-L9-007-C0458",
@@ -51514,8 +51514,8 @@
           "actual_memory_retired": false
         }
       },
-      "negative_class_ref": "OS007-NEG-feedback-comp-05-field_conflict_original_finding_changed_unresolved_claimed_resolved",
-      "rule_ref": "OS007-NEG-feedback-comp-05-field_conflict_original_finding_changed_unresolved_claimed_resolved"
+      "negative_class_ref": "OS007-NEG-feedback-comp-06-field_conflict_original_finding_changed_unresolved_claimed_resolved",
+      "rule_ref": "OS007-NEG-feedback-comp-06-field_conflict_original_finding_changed_unresolved_claimed_resolved"
     },
     {
       "case_id": "HELIXOS-L9-007-C0459",
@@ -51561,8 +51561,8 @@
           "actual_memory_retired": false
         }
       },
-      "negative_class_ref": "OS007-NEG-feedback-comp-04-field_unknown_original_finding_changed_unresolved_claimed_resolved",
-      "rule_ref": "OS007-NEG-feedback-comp-04-field_unknown_original_finding_changed_unresolved_claimed_resolved"
+      "negative_class_ref": "OS007-NEG-feedback-comp-05-field_unknown_original_finding_changed_unresolved_claimed_resolved",
+      "rule_ref": "OS007-NEG-feedback-comp-05-field_unknown_original_finding_changed_unresolved_claimed_resolved"
     },
     {
       "case_id": "HELIXOS-L9-007-C0460",
@@ -51608,8 +51608,8 @@
           "actual_memory_retired": false
         }
       },
-      "negative_class_ref": "OS007-NEG-feedback-comp-05-field_conflict_original_finding_changed_unresolved_claimed_resolved",
-      "rule_ref": "OS007-NEG-feedback-comp-05-field_conflict_original_finding_changed_unresolved_claimed_resolved"
+      "negative_class_ref": "OS007-NEG-feedback-comp-06-field_conflict_original_finding_changed_unresolved_claimed_resolved",
+      "rule_ref": "OS007-NEG-feedback-comp-06-field_conflict_original_finding_changed_unresolved_claimed_resolved"
     },
     {
       "case_id": "HELIXOS-L9-007-C0461",
@@ -51655,8 +51655,8 @@
           "actual_memory_retired": false
         }
       },
-      "negative_class_ref": "OS007-NEG-feedback-comp-04-field_unknown_original_finding_changed_unresolved_claimed_resolved",
-      "rule_ref": "OS007-NEG-feedback-comp-04-field_unknown_original_finding_changed_unresolved_claimed_resolved"
+      "negative_class_ref": "OS007-NEG-feedback-comp-05-field_unknown_original_finding_changed_unresolved_claimed_resolved",
+      "rule_ref": "OS007-NEG-feedback-comp-05-field_unknown_original_finding_changed_unresolved_claimed_resolved"
     },
     {
       "case_id": "HELIXOS-L9-007-C0462",
@@ -51702,8 +51702,8 @@
           "actual_memory_retired": false
         }
       },
-      "negative_class_ref": "OS007-NEG-feedback-comp-05-field_conflict_original_finding_changed_unresolved_claimed_resolved",
-      "rule_ref": "OS007-NEG-feedback-comp-05-field_conflict_original_finding_changed_unresolved_claimed_resolved"
+      "negative_class_ref": "OS007-NEG-feedback-comp-06-field_conflict_original_finding_changed_unresolved_claimed_resolved",
+      "rule_ref": "OS007-NEG-feedback-comp-06-field_conflict_original_finding_changed_unresolved_claimed_resolved"
     },
     {
       "case_id": "HELIXOS-L9-007-C0463",
@@ -51749,8 +51749,8 @@
           "actual_memory_retired": false
         }
       },
-      "negative_class_ref": "OS007-NEG-feedback-comp-04-field_unknown_original_finding_changed_unresolved_claimed_resolved",
-      "rule_ref": "OS007-NEG-feedback-comp-04-field_unknown_original_finding_changed_unresolved_claimed_resolved"
+      "negative_class_ref": "OS007-NEG-feedback-comp-05-field_unknown_original_finding_changed_unresolved_claimed_resolved",
+      "rule_ref": "OS007-NEG-feedback-comp-05-field_unknown_original_finding_changed_unresolved_claimed_resolved"
     },
     {
       "case_id": "HELIXOS-L9-007-C0464",
@@ -51804,8 +51804,8 @@
           "actual_memory_retired": false
         }
       },
-      "negative_class_ref": "OS007-NEG-feedback-comp-07-field_conflict_original_finding_changed_unresolved_claimed_resolved",
-      "rule_ref": "OS007-NEG-feedback-comp-07-field_conflict_original_finding_changed_unresolved_claimed_resolved"
+      "negative_class_ref": "OS007-NEG-feedback-comp-08-field_conflict_original_finding_changed_unresolved_claimed_resolved",
+      "rule_ref": "OS007-NEG-feedback-comp-08-field_conflict_original_finding_changed_unresolved_claimed_resolved"
     },
     {
       "case_id": "HELIXOS-L9-007-C0465",
@@ -51851,8 +51851,8 @@
           "actual_memory_retired": false
         }
       },
-      "negative_class_ref": "OS007-NEG-feedback-comp-04-field_unknown_original_finding_changed_unresolved_claimed_resolved",
-      "rule_ref": "OS007-NEG-feedback-comp-04-field_unknown_original_finding_changed_unresolved_claimed_resolved"
+      "negative_class_ref": "OS007-NEG-feedback-comp-05-field_unknown_original_finding_changed_unresolved_claimed_resolved",
+      "rule_ref": "OS007-NEG-feedback-comp-05-field_unknown_original_finding_changed_unresolved_claimed_resolved"
     },
     {
       "case_id": "HELIXOS-L9-007-C0466",
@@ -51898,8 +51898,8 @@
           "actual_memory_retired": false
         }
       },
-      "negative_class_ref": "OS007-NEG-feedback-comp-05-field_conflict_original_finding_changed_unresolved_claimed_resolved",
-      "rule_ref": "OS007-NEG-feedback-comp-05-field_conflict_original_finding_changed_unresolved_claimed_resolved"
+      "negative_class_ref": "OS007-NEG-feedback-comp-06-field_conflict_original_finding_changed_unresolved_claimed_resolved",
+      "rule_ref": "OS007-NEG-feedback-comp-06-field_conflict_original_finding_changed_unresolved_claimed_resolved"
     },
     {
       "case_id": "HELIXOS-L9-007-C0467",
@@ -51945,8 +51945,8 @@
           "actual_memory_retired": false
         }
       },
-      "negative_class_ref": "OS007-NEG-feedback-comp-04-field_unknown_original_finding_changed_unresolved_claimed_resolved",
-      "rule_ref": "OS007-NEG-feedback-comp-04-field_unknown_original_finding_changed_unresolved_claimed_resolved"
+      "negative_class_ref": "OS007-NEG-feedback-comp-05-field_unknown_original_finding_changed_unresolved_claimed_resolved",
+      "rule_ref": "OS007-NEG-feedback-comp-05-field_unknown_original_finding_changed_unresolved_claimed_resolved"
     },
     {
       "case_id": "HELIXOS-L9-007-C0468",
@@ -51992,8 +51992,8 @@
           "actual_memory_retired": false
         }
       },
-      "negative_class_ref": "OS007-NEG-feedback-comp-05-field_conflict_original_finding_changed_unresolved_claimed_resolved",
-      "rule_ref": "OS007-NEG-feedback-comp-05-field_conflict_original_finding_changed_unresolved_claimed_resolved"
+      "negative_class_ref": "OS007-NEG-feedback-comp-06-field_conflict_original_finding_changed_unresolved_claimed_resolved",
+      "rule_ref": "OS007-NEG-feedback-comp-06-field_conflict_original_finding_changed_unresolved_claimed_resolved"
     },
     {
       "case_id": "HELIXOS-L9-007-C0469",
@@ -52037,8 +52037,8 @@
           "actual_memory_retired": false
         }
       },
-      "negative_class_ref": "OS007-NEG-feedback-comp-06-finding_missing_unresolved_claimed_resolved",
-      "rule_ref": "OS007-NEG-feedback-comp-06-finding_missing_unresolved_claimed_resolved"
+      "negative_class_ref": "OS007-NEG-feedback-comp-07-finding_missing_unresolved_claimed_resolved",
+      "rule_ref": "OS007-NEG-feedback-comp-07-finding_missing_unresolved_claimed_resolved"
     },
     {
       "case_id": "HELIXOS-L9-007-C0470",
@@ -52082,8 +52082,8 @@
           "actual_memory_retired": false
         }
       },
-      "negative_class_ref": "OS007-NEG-feedback-comp-08-finding_discard_forbidden_unresolved_claimed_resolved",
-      "rule_ref": "OS007-NEG-feedback-comp-08-finding_discard_forbidden_unresolved_claimed_resolved"
+      "negative_class_ref": "OS007-NEG-feedback-comp-09-finding_discard_forbidden_unresolved_claimed_resolved",
+      "rule_ref": "OS007-NEG-feedback-comp-09-finding_discard_forbidden_unresolved_claimed_resolved"
     },
     {
       "case_id": "HELIXOS-L9-007-C0471",
@@ -52127,8 +52127,8 @@
           "actual_memory_retired": false
         }
       },
-      "negative_class_ref": "OS007-NEG-feedback-comp-09-boolean_unknown_unresolved_claimed_resolved",
-      "rule_ref": "OS007-NEG-feedback-comp-09-boolean_unknown_unresolved_claimed_resolved"
+      "negative_class_ref": "OS007-NEG-feedback-comp-10-boolean_unknown_unresolved_claimed_resolved",
+      "rule_ref": "OS007-NEG-feedback-comp-10-boolean_unknown_unresolved_claimed_resolved"
     },
     {
       "case_id": "HELIXOS-L9-007-C0472",
@@ -52248,8 +52248,8 @@
           "actual_memory_retired": false
         }
       },
-      "negative_class_ref": "OS007-NEG-feedback-comp-09-boolean_unknown_unresolved_claimed_resolved",
-      "rule_ref": "OS007-NEG-feedback-comp-09-boolean_unknown_unresolved_claimed_resolved"
+      "negative_class_ref": "OS007-NEG-feedback-comp-10-boolean_unknown_unresolved_claimed_resolved",
+      "rule_ref": "OS007-NEG-feedback-comp-10-boolean_unknown_unresolved_claimed_resolved"
     },
     {
       "case_id": "HELIXOS-L9-007-C0474",
@@ -52295,8 +52295,8 @@
           "actual_memory_retired": false
         }
       },
-      "negative_class_ref": "OS007-NEG-feedback-comp-10-boolean_conflict_stage_unrecorded_ref_present_unresolved_claimed_resolved",
-      "rule_ref": "OS007-NEG-feedback-comp-10-boolean_conflict_stage_unrecorded_ref_present_unresolved_claimed_resolved"
+      "negative_class_ref": "OS007-NEG-feedback-comp-11-boolean_conflict_stage_unrecorded_ref_present_unresolved_claimed_resolved",
+      "rule_ref": "OS007-NEG-feedback-comp-11-boolean_conflict_stage_unrecorded_ref_present_unresolved_claimed_resolved"
     },
     {
       "case_id": "HELIXOS-L9-007-C0475",
@@ -52340,8 +52340,8 @@
           "actual_memory_retired": false
         }
       },
-      "negative_class_ref": "OS007-NEG-feedback-comp-11-field_unknown_unresolved_claimed_resolved",
-      "rule_ref": "OS007-NEG-feedback-comp-11-field_unknown_unresolved_claimed_resolved"
+      "negative_class_ref": "OS007-NEG-feedback-comp-12-field_unknown_unresolved_claimed_resolved",
+      "rule_ref": "OS007-NEG-feedback-comp-12-field_unknown_unresolved_claimed_resolved"
     },
     {
       "case_id": "HELIXOS-L9-007-C0476",
@@ -52385,8 +52385,8 @@
           "actual_memory_retired": false
         }
       },
-      "negative_class_ref": "OS007-NEG-feedback-comp-12-field_conflict_unresolved_claimed_resolved",
-      "rule_ref": "OS007-NEG-feedback-comp-12-field_conflict_unresolved_claimed_resolved"
+      "negative_class_ref": "OS007-NEG-feedback-comp-13-field_conflict_unresolved_claimed_resolved",
+      "rule_ref": "OS007-NEG-feedback-comp-13-field_conflict_unresolved_claimed_resolved"
     },
     {
       "case_id": "HELIXOS-L9-007-C0477",
@@ -52430,8 +52430,8 @@
           "actual_memory_retired": false
         }
       },
-      "negative_class_ref": "OS007-NEG-feedback-comp-11-field_unknown_unresolved_claimed_resolved",
-      "rule_ref": "OS007-NEG-feedback-comp-11-field_unknown_unresolved_claimed_resolved"
+      "negative_class_ref": "OS007-NEG-feedback-comp-12-field_unknown_unresolved_claimed_resolved",
+      "rule_ref": "OS007-NEG-feedback-comp-12-field_unknown_unresolved_claimed_resolved"
     },
     {
       "case_id": "HELIXOS-L9-007-C0478",
@@ -52475,8 +52475,8 @@
           "actual_memory_retired": false
         }
       },
-      "negative_class_ref": "OS007-NEG-feedback-comp-12-field_conflict_unresolved_claimed_resolved",
-      "rule_ref": "OS007-NEG-feedback-comp-12-field_conflict_unresolved_claimed_resolved"
+      "negative_class_ref": "OS007-NEG-feedback-comp-13-field_conflict_unresolved_claimed_resolved",
+      "rule_ref": "OS007-NEG-feedback-comp-13-field_conflict_unresolved_claimed_resolved"
     },
     {
       "case_id": "HELIXOS-L9-007-C0479",
@@ -52520,8 +52520,8 @@
           "actual_memory_retired": false
         }
       },
-      "negative_class_ref": "OS007-NEG-feedback-comp-11-field_unknown_unresolved_claimed_resolved",
-      "rule_ref": "OS007-NEG-feedback-comp-11-field_unknown_unresolved_claimed_resolved"
+      "negative_class_ref": "OS007-NEG-feedback-comp-12-field_unknown_unresolved_claimed_resolved",
+      "rule_ref": "OS007-NEG-feedback-comp-12-field_unknown_unresolved_claimed_resolved"
     },
     {
       "case_id": "HELIXOS-L9-007-C0480",
@@ -52565,8 +52565,8 @@
           "actual_memory_retired": false
         }
       },
-      "negative_class_ref": "OS007-NEG-feedback-comp-12-field_conflict_unresolved_claimed_resolved",
-      "rule_ref": "OS007-NEG-feedback-comp-12-field_conflict_unresolved_claimed_resolved"
+      "negative_class_ref": "OS007-NEG-feedback-comp-13-field_conflict_unresolved_claimed_resolved",
+      "rule_ref": "OS007-NEG-feedback-comp-13-field_conflict_unresolved_claimed_resolved"
     },
     {
       "case_id": "HELIXOS-L9-007-C0481",
@@ -52610,8 +52610,8 @@
           "actual_memory_retired": false
         }
       },
-      "negative_class_ref": "OS007-NEG-feedback-comp-11-field_unknown_unresolved_claimed_resolved",
-      "rule_ref": "OS007-NEG-feedback-comp-11-field_unknown_unresolved_claimed_resolved"
+      "negative_class_ref": "OS007-NEG-feedback-comp-12-field_unknown_unresolved_claimed_resolved",
+      "rule_ref": "OS007-NEG-feedback-comp-12-field_unknown_unresolved_claimed_resolved"
     },
     {
       "case_id": "HELIXOS-L9-007-C0482",
@@ -52655,8 +52655,8 @@
           "actual_memory_retired": false
         }
       },
-      "negative_class_ref": "OS007-NEG-feedback-comp-12-field_conflict_unresolved_claimed_resolved",
-      "rule_ref": "OS007-NEG-feedback-comp-12-field_conflict_unresolved_claimed_resolved"
+      "negative_class_ref": "OS007-NEG-feedback-comp-13-field_conflict_unresolved_claimed_resolved",
+      "rule_ref": "OS007-NEG-feedback-comp-13-field_conflict_unresolved_claimed_resolved"
     },
     {
       "case_id": "HELIXOS-L9-007-C0483",
@@ -52700,8 +52700,8 @@
           "actual_memory_retired": false
         }
       },
-      "negative_class_ref": "OS007-NEG-feedback-comp-09-boolean_unknown_unresolved_claimed_resolved",
-      "rule_ref": "OS007-NEG-feedback-comp-09-boolean_unknown_unresolved_claimed_resolved"
+      "negative_class_ref": "OS007-NEG-feedback-comp-10-boolean_unknown_unresolved_claimed_resolved",
+      "rule_ref": "OS007-NEG-feedback-comp-10-boolean_unknown_unresolved_claimed_resolved"
     },
     {
       "case_id": "HELIXOS-L9-007-C0484",
@@ -52747,8 +52747,8 @@
           "actual_memory_retired": false
         }
       },
-      "negative_class_ref": "OS007-NEG-feedback-comp-10-boolean_conflict_stage_unrecorded_ref_present_unresolved_claimed_resolved",
-      "rule_ref": "OS007-NEG-feedback-comp-10-boolean_conflict_stage_unrecorded_ref_present_unresolved_claimed_resolved"
+      "negative_class_ref": "OS007-NEG-feedback-comp-11-boolean_conflict_stage_unrecorded_ref_present_unresolved_claimed_resolved",
+      "rule_ref": "OS007-NEG-feedback-comp-11-boolean_conflict_stage_unrecorded_ref_present_unresolved_claimed_resolved"
     },
     {
       "case_id": "HELIXOS-L9-007-C0485",
@@ -52792,8 +52792,8 @@
           "actual_memory_retired": false
         }
       },
-      "negative_class_ref": "OS007-NEG-feedback-comp-11-field_unknown_unresolved_claimed_resolved",
-      "rule_ref": "OS007-NEG-feedback-comp-11-field_unknown_unresolved_claimed_resolved"
+      "negative_class_ref": "OS007-NEG-feedback-comp-12-field_unknown_unresolved_claimed_resolved",
+      "rule_ref": "OS007-NEG-feedback-comp-12-field_unknown_unresolved_claimed_resolved"
     },
     {
       "case_id": "HELIXOS-L9-007-C0486",
@@ -52837,8 +52837,8 @@
           "actual_memory_retired": false
         }
       },
-      "negative_class_ref": "OS007-NEG-feedback-comp-12-field_conflict_unresolved_claimed_resolved",
-      "rule_ref": "OS007-NEG-feedback-comp-12-field_conflict_unresolved_claimed_resolved"
+      "negative_class_ref": "OS007-NEG-feedback-comp-13-field_conflict_unresolved_claimed_resolved",
+      "rule_ref": "OS007-NEG-feedback-comp-13-field_conflict_unresolved_claimed_resolved"
     },
     {
       "case_id": "HELIXOS-L9-007-C0487",
@@ -52882,8 +52882,8 @@
           "actual_memory_retired": false
         }
       },
-      "negative_class_ref": "OS007-NEG-feedback-comp-11-field_unknown_unresolved_claimed_resolved",
-      "rule_ref": "OS007-NEG-feedback-comp-11-field_unknown_unresolved_claimed_resolved"
+      "negative_class_ref": "OS007-NEG-feedback-comp-12-field_unknown_unresolved_claimed_resolved",
+      "rule_ref": "OS007-NEG-feedback-comp-12-field_unknown_unresolved_claimed_resolved"
     },
     {
       "case_id": "HELIXOS-L9-007-C0488",
@@ -52927,8 +52927,8 @@
           "actual_memory_retired": false
         }
       },
-      "negative_class_ref": "OS007-NEG-feedback-comp-12-field_conflict_unresolved_claimed_resolved",
-      "rule_ref": "OS007-NEG-feedback-comp-12-field_conflict_unresolved_claimed_resolved"
+      "negative_class_ref": "OS007-NEG-feedback-comp-13-field_conflict_unresolved_claimed_resolved",
+      "rule_ref": "OS007-NEG-feedback-comp-13-field_conflict_unresolved_claimed_resolved"
     },
     {
       "case_id": "HELIXOS-L9-007-C0489",
@@ -52972,8 +52972,8 @@
           "actual_memory_retired": false
         }
       },
-      "negative_class_ref": "OS007-NEG-feedback-comp-11-field_unknown_unresolved_claimed_resolved",
-      "rule_ref": "OS007-NEG-feedback-comp-11-field_unknown_unresolved_claimed_resolved"
+      "negative_class_ref": "OS007-NEG-feedback-comp-12-field_unknown_unresolved_claimed_resolved",
+      "rule_ref": "OS007-NEG-feedback-comp-12-field_unknown_unresolved_claimed_resolved"
     },
     {
       "case_id": "HELIXOS-L9-007-C0490",
@@ -53017,8 +53017,8 @@
           "actual_memory_retired": false
         }
       },
-      "negative_class_ref": "OS007-NEG-feedback-comp-12-field_conflict_unresolved_claimed_resolved",
-      "rule_ref": "OS007-NEG-feedback-comp-12-field_conflict_unresolved_claimed_resolved"
+      "negative_class_ref": "OS007-NEG-feedback-comp-13-field_conflict_unresolved_claimed_resolved",
+      "rule_ref": "OS007-NEG-feedback-comp-13-field_conflict_unresolved_claimed_resolved"
     },
     {
       "case_id": "HELIXOS-L9-007-C0491",
@@ -53062,8 +53062,8 @@
           "actual_memory_retired": false
         }
       },
-      "negative_class_ref": "OS007-NEG-feedback-comp-11-field_unknown_unresolved_claimed_resolved",
-      "rule_ref": "OS007-NEG-feedback-comp-11-field_unknown_unresolved_claimed_resolved"
+      "negative_class_ref": "OS007-NEG-feedback-comp-12-field_unknown_unresolved_claimed_resolved",
+      "rule_ref": "OS007-NEG-feedback-comp-12-field_unknown_unresolved_claimed_resolved"
     },
     {
       "case_id": "HELIXOS-L9-007-C0492",
@@ -53107,8 +53107,8 @@
           "actual_memory_retired": false
         }
       },
-      "negative_class_ref": "OS007-NEG-feedback-comp-12-field_conflict_unresolved_claimed_resolved",
-      "rule_ref": "OS007-NEG-feedback-comp-12-field_conflict_unresolved_claimed_resolved"
+      "negative_class_ref": "OS007-NEG-feedback-comp-13-field_conflict_unresolved_claimed_resolved",
+      "rule_ref": "OS007-NEG-feedback-comp-13-field_conflict_unresolved_claimed_resolved"
     },
     {
       "case_id": "HELIXOS-L9-007-C0493",
@@ -53152,8 +53152,8 @@
           "actual_memory_retired": false
         }
       },
-      "negative_class_ref": "OS007-NEG-feedback-comp-09-boolean_unknown_unresolved_claimed_resolved",
-      "rule_ref": "OS007-NEG-feedback-comp-09-boolean_unknown_unresolved_claimed_resolved"
+      "negative_class_ref": "OS007-NEG-feedback-comp-10-boolean_unknown_unresolved_claimed_resolved",
+      "rule_ref": "OS007-NEG-feedback-comp-10-boolean_unknown_unresolved_claimed_resolved"
     },
     {
       "case_id": "HELIXOS-L9-007-C0494",
@@ -53199,8 +53199,8 @@
           "actual_memory_retired": false
         }
       },
-      "negative_class_ref": "OS007-NEG-feedback-comp-10-boolean_conflict_stage_unrecorded_ref_present_unresolved_claimed_resolved",
-      "rule_ref": "OS007-NEG-feedback-comp-10-boolean_conflict_stage_unrecorded_ref_present_unresolved_claimed_resolved"
+      "negative_class_ref": "OS007-NEG-feedback-comp-11-boolean_conflict_stage_unrecorded_ref_present_unresolved_claimed_resolved",
+      "rule_ref": "OS007-NEG-feedback-comp-11-boolean_conflict_stage_unrecorded_ref_present_unresolved_claimed_resolved"
     },
     {
       "case_id": "HELIXOS-L9-007-C0495",
@@ -53244,8 +53244,8 @@
           "actual_memory_retired": false
         }
       },
-      "negative_class_ref": "OS007-NEG-feedback-comp-11-field_unknown_unresolved_claimed_resolved",
-      "rule_ref": "OS007-NEG-feedback-comp-11-field_unknown_unresolved_claimed_resolved"
+      "negative_class_ref": "OS007-NEG-feedback-comp-12-field_unknown_unresolved_claimed_resolved",
+      "rule_ref": "OS007-NEG-feedback-comp-12-field_unknown_unresolved_claimed_resolved"
     },
     {
       "case_id": "HELIXOS-L9-007-C0496",
@@ -53289,8 +53289,8 @@
           "actual_memory_retired": false
         }
       },
-      "negative_class_ref": "OS007-NEG-feedback-comp-12-field_conflict_unresolved_claimed_resolved",
-      "rule_ref": "OS007-NEG-feedback-comp-12-field_conflict_unresolved_claimed_resolved"
+      "negative_class_ref": "OS007-NEG-feedback-comp-13-field_conflict_unresolved_claimed_resolved",
+      "rule_ref": "OS007-NEG-feedback-comp-13-field_conflict_unresolved_claimed_resolved"
     },
     {
       "case_id": "HELIXOS-L9-007-C0497",
@@ -53334,8 +53334,8 @@
           "actual_memory_retired": false
         }
       },
-      "negative_class_ref": "OS007-NEG-feedback-comp-11-field_unknown_unresolved_claimed_resolved",
-      "rule_ref": "OS007-NEG-feedback-comp-11-field_unknown_unresolved_claimed_resolved"
+      "negative_class_ref": "OS007-NEG-feedback-comp-12-field_unknown_unresolved_claimed_resolved",
+      "rule_ref": "OS007-NEG-feedback-comp-12-field_unknown_unresolved_claimed_resolved"
     },
     {
       "case_id": "HELIXOS-L9-007-C0498",
@@ -53379,8 +53379,8 @@
           "actual_memory_retired": false
         }
       },
-      "negative_class_ref": "OS007-NEG-feedback-comp-12-field_conflict_unresolved_claimed_resolved",
-      "rule_ref": "OS007-NEG-feedback-comp-12-field_conflict_unresolved_claimed_resolved"
+      "negative_class_ref": "OS007-NEG-feedback-comp-13-field_conflict_unresolved_claimed_resolved",
+      "rule_ref": "OS007-NEG-feedback-comp-13-field_conflict_unresolved_claimed_resolved"
     },
     {
       "case_id": "HELIXOS-L9-007-C0499",
@@ -53424,8 +53424,8 @@
           "actual_memory_retired": false
         }
       },
-      "negative_class_ref": "OS007-NEG-feedback-comp-11-field_unknown_unresolved_claimed_resolved",
-      "rule_ref": "OS007-NEG-feedback-comp-11-field_unknown_unresolved_claimed_resolved"
+      "negative_class_ref": "OS007-NEG-feedback-comp-12-field_unknown_unresolved_claimed_resolved",
+      "rule_ref": "OS007-NEG-feedback-comp-12-field_unknown_unresolved_claimed_resolved"
     },
     {
       "case_id": "HELIXOS-L9-007-C0500",
@@ -53469,8 +53469,8 @@
           "actual_memory_retired": false
         }
       },
-      "negative_class_ref": "OS007-NEG-feedback-comp-12-field_conflict_unresolved_claimed_resolved",
-      "rule_ref": "OS007-NEG-feedback-comp-12-field_conflict_unresolved_claimed_resolved"
+      "negative_class_ref": "OS007-NEG-feedback-comp-13-field_conflict_unresolved_claimed_resolved",
+      "rule_ref": "OS007-NEG-feedback-comp-13-field_conflict_unresolved_claimed_resolved"
     },
     {
       "case_id": "HELIXOS-L9-007-C0501",
@@ -53514,8 +53514,8 @@
           "actual_memory_retired": false
         }
       },
-      "negative_class_ref": "OS007-NEG-feedback-comp-11-field_unknown_unresolved_claimed_resolved",
-      "rule_ref": "OS007-NEG-feedback-comp-11-field_unknown_unresolved_claimed_resolved"
+      "negative_class_ref": "OS007-NEG-feedback-comp-12-field_unknown_unresolved_claimed_resolved",
+      "rule_ref": "OS007-NEG-feedback-comp-12-field_unknown_unresolved_claimed_resolved"
     },
     {
       "case_id": "HELIXOS-L9-007-C0502",
@@ -53559,8 +53559,8 @@
           "actual_memory_retired": false
         }
       },
-      "negative_class_ref": "OS007-NEG-feedback-comp-12-field_conflict_unresolved_claimed_resolved",
-      "rule_ref": "OS007-NEG-feedback-comp-12-field_conflict_unresolved_claimed_resolved"
+      "negative_class_ref": "OS007-NEG-feedback-comp-13-field_conflict_unresolved_claimed_resolved",
+      "rule_ref": "OS007-NEG-feedback-comp-13-field_conflict_unresolved_claimed_resolved"
     },
     {
       "case_id": "HELIXOS-L9-007-C0503",
@@ -53604,8 +53604,8 @@
           "actual_memory_retired": false
         }
       },
-      "negative_class_ref": "OS007-NEG-feedback-comp-09-boolean_unknown_unresolved_claimed_resolved",
-      "rule_ref": "OS007-NEG-feedback-comp-09-boolean_unknown_unresolved_claimed_resolved"
+      "negative_class_ref": "OS007-NEG-feedback-comp-10-boolean_unknown_unresolved_claimed_resolved",
+      "rule_ref": "OS007-NEG-feedback-comp-10-boolean_unknown_unresolved_claimed_resolved"
     },
     {
       "case_id": "HELIXOS-L9-007-C0504",
@@ -53665,8 +53665,8 @@
           "actual_memory_retired": false
         }
       },
-      "negative_class_ref": "OS007-NEG-feedback-comp-13-boolean_conflict_field_unknown_unresolved_claimed_resolved",
-      "rule_ref": "OS007-NEG-feedback-comp-13-boolean_conflict_field_unknown_unresolved_claimed_resolved"
+      "negative_class_ref": "OS007-NEG-feedback-comp-14-boolean_conflict_field_unknown_unresolved_claimed_resolved",
+      "rule_ref": "OS007-NEG-feedback-comp-14-boolean_conflict_field_unknown_unresolved_claimed_resolved"
     },
     {
       "case_id": "HELIXOS-L9-007-C0505",
@@ -53710,8 +53710,8 @@
           "actual_memory_retired": false
         }
       },
-      "negative_class_ref": "OS007-NEG-feedback-comp-09-boolean_unknown_unresolved_claimed_resolved",
-      "rule_ref": "OS007-NEG-feedback-comp-09-boolean_unknown_unresolved_claimed_resolved"
+      "negative_class_ref": "OS007-NEG-feedback-comp-10-boolean_unknown_unresolved_claimed_resolved",
+      "rule_ref": "OS007-NEG-feedback-comp-10-boolean_unknown_unresolved_claimed_resolved"
     },
     {
       "case_id": "HELIXOS-L9-007-C0506",
@@ -53757,8 +53757,8 @@
           "actual_memory_retired": false
         }
       },
-      "negative_class_ref": "OS007-NEG-feedback-comp-10-boolean_conflict_stage_unrecorded_ref_present_unresolved_claimed_resolved",
-      "rule_ref": "OS007-NEG-feedback-comp-10-boolean_conflict_stage_unrecorded_ref_present_unresolved_claimed_resolved"
+      "negative_class_ref": "OS007-NEG-feedback-comp-11-boolean_conflict_stage_unrecorded_ref_present_unresolved_claimed_resolved",
+      "rule_ref": "OS007-NEG-feedback-comp-11-boolean_conflict_stage_unrecorded_ref_present_unresolved_claimed_resolved"
     },
     {
       "case_id": "HELIXOS-L9-007-C0507",
@@ -53802,8 +53802,8 @@
           "actual_memory_retired": false
         }
       },
-      "negative_class_ref": "OS007-NEG-feedback-comp-11-field_unknown_unresolved_claimed_resolved",
-      "rule_ref": "OS007-NEG-feedback-comp-11-field_unknown_unresolved_claimed_resolved"
+      "negative_class_ref": "OS007-NEG-feedback-comp-12-field_unknown_unresolved_claimed_resolved",
+      "rule_ref": "OS007-NEG-feedback-comp-12-field_unknown_unresolved_claimed_resolved"
     },
     {
       "case_id": "HELIXOS-L9-007-C0508",
@@ -53847,8 +53847,8 @@
           "actual_memory_retired": false
         }
       },
-      "negative_class_ref": "OS007-NEG-feedback-comp-12-field_conflict_unresolved_claimed_resolved",
-      "rule_ref": "OS007-NEG-feedback-comp-12-field_conflict_unresolved_claimed_resolved"
+      "negative_class_ref": "OS007-NEG-feedback-comp-13-field_conflict_unresolved_claimed_resolved",
+      "rule_ref": "OS007-NEG-feedback-comp-13-field_conflict_unresolved_claimed_resolved"
     },
     {
       "case_id": "HELIXOS-L9-007-C0509",
@@ -53892,8 +53892,8 @@
           "actual_memory_retired": false
         }
       },
-      "negative_class_ref": "OS007-NEG-feedback-comp-11-field_unknown_unresolved_claimed_resolved",
-      "rule_ref": "OS007-NEG-feedback-comp-11-field_unknown_unresolved_claimed_resolved"
+      "negative_class_ref": "OS007-NEG-feedback-comp-12-field_unknown_unresolved_claimed_resolved",
+      "rule_ref": "OS007-NEG-feedback-comp-12-field_unknown_unresolved_claimed_resolved"
     },
     {
       "case_id": "HELIXOS-L9-007-C0510",
@@ -53937,8 +53937,8 @@
           "actual_memory_retired": false
         }
       },
-      "negative_class_ref": "OS007-NEG-feedback-comp-12-field_conflict_unresolved_claimed_resolved",
-      "rule_ref": "OS007-NEG-feedback-comp-12-field_conflict_unresolved_claimed_resolved"
+      "negative_class_ref": "OS007-NEG-feedback-comp-13-field_conflict_unresolved_claimed_resolved",
+      "rule_ref": "OS007-NEG-feedback-comp-13-field_conflict_unresolved_claimed_resolved"
     },
     {
       "case_id": "HELIXOS-L9-007-C0511",
@@ -53982,8 +53982,8 @@
           "actual_memory_retired": false
         }
       },
-      "negative_class_ref": "OS007-NEG-feedback-comp-11-field_unknown_unresolved_claimed_resolved",
-      "rule_ref": "OS007-NEG-feedback-comp-11-field_unknown_unresolved_claimed_resolved"
+      "negative_class_ref": "OS007-NEG-feedback-comp-12-field_unknown_unresolved_claimed_resolved",
+      "rule_ref": "OS007-NEG-feedback-comp-12-field_unknown_unresolved_claimed_resolved"
     },
     {
       "case_id": "HELIXOS-L9-007-C0512",
@@ -54027,8 +54027,8 @@
           "actual_memory_retired": false
         }
       },
-      "negative_class_ref": "OS007-NEG-feedback-comp-12-field_conflict_unresolved_claimed_resolved",
-      "rule_ref": "OS007-NEG-feedback-comp-12-field_conflict_unresolved_claimed_resolved"
+      "negative_class_ref": "OS007-NEG-feedback-comp-13-field_conflict_unresolved_claimed_resolved",
+      "rule_ref": "OS007-NEG-feedback-comp-13-field_conflict_unresolved_claimed_resolved"
     },
     {
       "case_id": "HELIXOS-L9-007-C0513",
@@ -54072,8 +54072,8 @@
           "actual_memory_retired": false
         }
       },
-      "negative_class_ref": "OS007-NEG-feedback-comp-11-field_unknown_unresolved_claimed_resolved",
-      "rule_ref": "OS007-NEG-feedback-comp-11-field_unknown_unresolved_claimed_resolved"
+      "negative_class_ref": "OS007-NEG-feedback-comp-12-field_unknown_unresolved_claimed_resolved",
+      "rule_ref": "OS007-NEG-feedback-comp-12-field_unknown_unresolved_claimed_resolved"
     },
     {
       "case_id": "HELIXOS-L9-007-C0514",
@@ -54117,8 +54117,8 @@
           "actual_memory_retired": false
         }
       },
-      "negative_class_ref": "OS007-NEG-feedback-comp-12-field_conflict_unresolved_claimed_resolved",
-      "rule_ref": "OS007-NEG-feedback-comp-12-field_conflict_unresolved_claimed_resolved"
+      "negative_class_ref": "OS007-NEG-feedback-comp-13-field_conflict_unresolved_claimed_resolved",
+      "rule_ref": "OS007-NEG-feedback-comp-13-field_conflict_unresolved_claimed_resolved"
     },
     {
       "case_id": "HELIXOS-L9-007-C0515",
@@ -54162,8 +54162,8 @@
           "actual_memory_retired": false
         }
       },
-      "negative_class_ref": "OS007-NEG-feedback-comp-09-boolean_unknown_unresolved_claimed_resolved",
-      "rule_ref": "OS007-NEG-feedback-comp-09-boolean_unknown_unresolved_claimed_resolved"
+      "negative_class_ref": "OS007-NEG-feedback-comp-10-boolean_unknown_unresolved_claimed_resolved",
+      "rule_ref": "OS007-NEG-feedback-comp-10-boolean_unknown_unresolved_claimed_resolved"
     },
     {
       "case_id": "HELIXOS-L9-007-C0516",
@@ -54209,8 +54209,8 @@
           "actual_memory_retired": false
         }
       },
-      "negative_class_ref": "OS007-NEG-feedback-comp-10-boolean_conflict_stage_unrecorded_ref_present_unresolved_claimed_resolved",
-      "rule_ref": "OS007-NEG-feedback-comp-10-boolean_conflict_stage_unrecorded_ref_present_unresolved_claimed_resolved"
+      "negative_class_ref": "OS007-NEG-feedback-comp-11-boolean_conflict_stage_unrecorded_ref_present_unresolved_claimed_resolved",
+      "rule_ref": "OS007-NEG-feedback-comp-11-boolean_conflict_stage_unrecorded_ref_present_unresolved_claimed_resolved"
     },
     {
       "case_id": "HELIXOS-L9-007-C0517",
@@ -54254,8 +54254,8 @@
           "actual_memory_retired": false
         }
       },
-      "negative_class_ref": "OS007-NEG-feedback-comp-11-field_unknown_unresolved_claimed_resolved",
-      "rule_ref": "OS007-NEG-feedback-comp-11-field_unknown_unresolved_claimed_resolved"
+      "negative_class_ref": "OS007-NEG-feedback-comp-12-field_unknown_unresolved_claimed_resolved",
+      "rule_ref": "OS007-NEG-feedback-comp-12-field_unknown_unresolved_claimed_resolved"
     },
     {
       "case_id": "HELIXOS-L9-007-C0518",
@@ -54299,8 +54299,8 @@
           "actual_memory_retired": false
         }
       },
-      "negative_class_ref": "OS007-NEG-feedback-comp-12-field_conflict_unresolved_claimed_resolved",
-      "rule_ref": "OS007-NEG-feedback-comp-12-field_conflict_unresolved_claimed_resolved"
+      "negative_class_ref": "OS007-NEG-feedback-comp-13-field_conflict_unresolved_claimed_resolved",
+      "rule_ref": "OS007-NEG-feedback-comp-13-field_conflict_unresolved_claimed_resolved"
     },
     {
       "case_id": "HELIXOS-L9-007-C0519",
@@ -54344,8 +54344,8 @@
           "actual_memory_retired": false
         }
       },
-      "negative_class_ref": "OS007-NEG-feedback-comp-11-field_unknown_unresolved_claimed_resolved",
-      "rule_ref": "OS007-NEG-feedback-comp-11-field_unknown_unresolved_claimed_resolved"
+      "negative_class_ref": "OS007-NEG-feedback-comp-12-field_unknown_unresolved_claimed_resolved",
+      "rule_ref": "OS007-NEG-feedback-comp-12-field_unknown_unresolved_claimed_resolved"
     },
     {
       "case_id": "HELIXOS-L9-007-C0520",
@@ -54389,8 +54389,8 @@
           "actual_memory_retired": false
         }
       },
-      "negative_class_ref": "OS007-NEG-feedback-comp-12-field_conflict_unresolved_claimed_resolved",
-      "rule_ref": "OS007-NEG-feedback-comp-12-field_conflict_unresolved_claimed_resolved"
+      "negative_class_ref": "OS007-NEG-feedback-comp-13-field_conflict_unresolved_claimed_resolved",
+      "rule_ref": "OS007-NEG-feedback-comp-13-field_conflict_unresolved_claimed_resolved"
     },
     {
       "case_id": "HELIXOS-L9-007-C0521",
@@ -54434,8 +54434,8 @@
           "actual_memory_retired": false
         }
       },
-      "negative_class_ref": "OS007-NEG-feedback-comp-11-field_unknown_unresolved_claimed_resolved",
-      "rule_ref": "OS007-NEG-feedback-comp-11-field_unknown_unresolved_claimed_resolved"
+      "negative_class_ref": "OS007-NEG-feedback-comp-12-field_unknown_unresolved_claimed_resolved",
+      "rule_ref": "OS007-NEG-feedback-comp-12-field_unknown_unresolved_claimed_resolved"
     },
     {
       "case_id": "HELIXOS-L9-007-C0522",
@@ -54479,8 +54479,8 @@
           "actual_memory_retired": false
         }
       },
-      "negative_class_ref": "OS007-NEG-feedback-comp-12-field_conflict_unresolved_claimed_resolved",
-      "rule_ref": "OS007-NEG-feedback-comp-12-field_conflict_unresolved_claimed_resolved"
+      "negative_class_ref": "OS007-NEG-feedback-comp-13-field_conflict_unresolved_claimed_resolved",
+      "rule_ref": "OS007-NEG-feedback-comp-13-field_conflict_unresolved_claimed_resolved"
     },
     {
       "case_id": "HELIXOS-L9-007-C0523",
@@ -54524,8 +54524,8 @@
           "actual_memory_retired": false
         }
       },
-      "negative_class_ref": "OS007-NEG-feedback-comp-11-field_unknown_unresolved_claimed_resolved",
-      "rule_ref": "OS007-NEG-feedback-comp-11-field_unknown_unresolved_claimed_resolved"
+      "negative_class_ref": "OS007-NEG-feedback-comp-12-field_unknown_unresolved_claimed_resolved",
+      "rule_ref": "OS007-NEG-feedback-comp-12-field_unknown_unresolved_claimed_resolved"
     },
     {
       "case_id": "HELIXOS-L9-007-C0524",
@@ -54569,8 +54569,8 @@
           "actual_memory_retired": false
         }
       },
-      "negative_class_ref": "OS007-NEG-feedback-comp-12-field_conflict_unresolved_claimed_resolved",
-      "rule_ref": "OS007-NEG-feedback-comp-12-field_conflict_unresolved_claimed_resolved"
+      "negative_class_ref": "OS007-NEG-feedback-comp-13-field_conflict_unresolved_claimed_resolved",
+      "rule_ref": "OS007-NEG-feedback-comp-13-field_conflict_unresolved_claimed_resolved"
     },
     {
       "case_id": "HELIXOS-L9-007-C0525",
@@ -54614,8 +54614,8 @@
           "actual_memory_retired": false
         }
       },
-      "negative_class_ref": "OS007-NEG-feedback-comp-09-boolean_unknown_unresolved_claimed_resolved",
-      "rule_ref": "OS007-NEG-feedback-comp-09-boolean_unknown_unresolved_claimed_resolved"
+      "negative_class_ref": "OS007-NEG-feedback-comp-10-boolean_unknown_unresolved_claimed_resolved",
+      "rule_ref": "OS007-NEG-feedback-comp-10-boolean_unknown_unresolved_claimed_resolved"
     },
     {
       "case_id": "HELIXOS-L9-007-C0526",
@@ -54661,8 +54661,8 @@
           "actual_memory_retired": false
         }
       },
-      "negative_class_ref": "OS007-NEG-feedback-comp-10-boolean_conflict_stage_unrecorded_ref_present_unresolved_claimed_resolved",
-      "rule_ref": "OS007-NEG-feedback-comp-10-boolean_conflict_stage_unrecorded_ref_present_unresolved_claimed_resolved"
+      "negative_class_ref": "OS007-NEG-feedback-comp-11-boolean_conflict_stage_unrecorded_ref_present_unresolved_claimed_resolved",
+      "rule_ref": "OS007-NEG-feedback-comp-11-boolean_conflict_stage_unrecorded_ref_present_unresolved_claimed_resolved"
     },
     {
       "case_id": "HELIXOS-L9-007-C0527",
@@ -54706,8 +54706,8 @@
           "actual_memory_retired": false
         }
       },
-      "negative_class_ref": "OS007-NEG-feedback-comp-11-field_unknown_unresolved_claimed_resolved",
-      "rule_ref": "OS007-NEG-feedback-comp-11-field_unknown_unresolved_claimed_resolved"
+      "negative_class_ref": "OS007-NEG-feedback-comp-12-field_unknown_unresolved_claimed_resolved",
+      "rule_ref": "OS007-NEG-feedback-comp-12-field_unknown_unresolved_claimed_resolved"
     },
     {
       "case_id": "HELIXOS-L9-007-C0528",
@@ -54751,8 +54751,8 @@
           "actual_memory_retired": false
         }
       },
-      "negative_class_ref": "OS007-NEG-feedback-comp-12-field_conflict_unresolved_claimed_resolved",
-      "rule_ref": "OS007-NEG-feedback-comp-12-field_conflict_unresolved_claimed_resolved"
+      "negative_class_ref": "OS007-NEG-feedback-comp-13-field_conflict_unresolved_claimed_resolved",
+      "rule_ref": "OS007-NEG-feedback-comp-13-field_conflict_unresolved_claimed_resolved"
     },
     {
       "case_id": "HELIXOS-L9-007-C0529",
@@ -54796,8 +54796,8 @@
           "actual_memory_retired": false
         }
       },
-      "negative_class_ref": "OS007-NEG-feedback-comp-11-field_unknown_unresolved_claimed_resolved",
-      "rule_ref": "OS007-NEG-feedback-comp-11-field_unknown_unresolved_claimed_resolved"
+      "negative_class_ref": "OS007-NEG-feedback-comp-12-field_unknown_unresolved_claimed_resolved",
+      "rule_ref": "OS007-NEG-feedback-comp-12-field_unknown_unresolved_claimed_resolved"
     },
     {
       "case_id": "HELIXOS-L9-007-C0530",
@@ -54841,8 +54841,8 @@
           "actual_memory_retired": false
         }
       },
-      "negative_class_ref": "OS007-NEG-feedback-comp-12-field_conflict_unresolved_claimed_resolved",
-      "rule_ref": "OS007-NEG-feedback-comp-12-field_conflict_unresolved_claimed_resolved"
+      "negative_class_ref": "OS007-NEG-feedback-comp-13-field_conflict_unresolved_claimed_resolved",
+      "rule_ref": "OS007-NEG-feedback-comp-13-field_conflict_unresolved_claimed_resolved"
     },
     {
       "case_id": "HELIXOS-L9-007-C0531",
@@ -54886,8 +54886,8 @@
           "actual_memory_retired": false
         }
       },
-      "negative_class_ref": "OS007-NEG-feedback-comp-11-field_unknown_unresolved_claimed_resolved",
-      "rule_ref": "OS007-NEG-feedback-comp-11-field_unknown_unresolved_claimed_resolved"
+      "negative_class_ref": "OS007-NEG-feedback-comp-12-field_unknown_unresolved_claimed_resolved",
+      "rule_ref": "OS007-NEG-feedback-comp-12-field_unknown_unresolved_claimed_resolved"
     },
     {
       "case_id": "HELIXOS-L9-007-C0532",
@@ -54931,8 +54931,8 @@
           "actual_memory_retired": false
         }
       },
-      "negative_class_ref": "OS007-NEG-feedback-comp-12-field_conflict_unresolved_claimed_resolved",
-      "rule_ref": "OS007-NEG-feedback-comp-12-field_conflict_unresolved_claimed_resolved"
+      "negative_class_ref": "OS007-NEG-feedback-comp-13-field_conflict_unresolved_claimed_resolved",
+      "rule_ref": "OS007-NEG-feedback-comp-13-field_conflict_unresolved_claimed_resolved"
     },
     {
       "case_id": "HELIXOS-L9-007-C0533",
@@ -54976,8 +54976,8 @@
           "actual_memory_retired": false
         }
       },
-      "negative_class_ref": "OS007-NEG-feedback-comp-11-field_unknown_unresolved_claimed_resolved",
-      "rule_ref": "OS007-NEG-feedback-comp-11-field_unknown_unresolved_claimed_resolved"
+      "negative_class_ref": "OS007-NEG-feedback-comp-12-field_unknown_unresolved_claimed_resolved",
+      "rule_ref": "OS007-NEG-feedback-comp-12-field_unknown_unresolved_claimed_resolved"
     },
     {
       "case_id": "HELIXOS-L9-007-C0534",
@@ -55021,8 +55021,8 @@
           "actual_memory_retired": false
         }
       },
-      "negative_class_ref": "OS007-NEG-feedback-comp-12-field_conflict_unresolved_claimed_resolved",
-      "rule_ref": "OS007-NEG-feedback-comp-12-field_conflict_unresolved_claimed_resolved"
+      "negative_class_ref": "OS007-NEG-feedback-comp-13-field_conflict_unresolved_claimed_resolved",
+      "rule_ref": "OS007-NEG-feedback-comp-13-field_conflict_unresolved_claimed_resolved"
     },
     {
       "case_id": "HELIXOS-L9-007-C0535",
@@ -55066,8 +55066,8 @@
           "actual_memory_retired": false
         }
       },
-      "negative_class_ref": "OS007-NEG-feedback-comp-09-boolean_unknown_unresolved_claimed_resolved",
-      "rule_ref": "OS007-NEG-feedback-comp-09-boolean_unknown_unresolved_claimed_resolved"
+      "negative_class_ref": "OS007-NEG-feedback-comp-10-boolean_unknown_unresolved_claimed_resolved",
+      "rule_ref": "OS007-NEG-feedback-comp-10-boolean_unknown_unresolved_claimed_resolved"
     },
     {
       "case_id": "HELIXOS-L9-007-C0536",
@@ -55113,8 +55113,8 @@
           "actual_memory_retired": false
         }
       },
-      "negative_class_ref": "OS007-NEG-feedback-comp-10-boolean_conflict_stage_unrecorded_ref_present_unresolved_claimed_resolved",
-      "rule_ref": "OS007-NEG-feedback-comp-10-boolean_conflict_stage_unrecorded_ref_present_unresolved_claimed_resolved"
+      "negative_class_ref": "OS007-NEG-feedback-comp-11-boolean_conflict_stage_unrecorded_ref_present_unresolved_claimed_resolved",
+      "rule_ref": "OS007-NEG-feedback-comp-11-boolean_conflict_stage_unrecorded_ref_present_unresolved_claimed_resolved"
     },
     {
       "case_id": "HELIXOS-L9-007-C0537",
@@ -55158,8 +55158,8 @@
           "actual_memory_retired": false
         }
       },
-      "negative_class_ref": "OS007-NEG-feedback-comp-11-field_unknown_unresolved_claimed_resolved",
-      "rule_ref": "OS007-NEG-feedback-comp-11-field_unknown_unresolved_claimed_resolved"
+      "negative_class_ref": "OS007-NEG-feedback-comp-12-field_unknown_unresolved_claimed_resolved",
+      "rule_ref": "OS007-NEG-feedback-comp-12-field_unknown_unresolved_claimed_resolved"
     },
     {
       "case_id": "HELIXOS-L9-007-C0538",
@@ -55203,8 +55203,8 @@
           "actual_memory_retired": false
         }
       },
-      "negative_class_ref": "OS007-NEG-feedback-comp-12-field_conflict_unresolved_claimed_resolved",
-      "rule_ref": "OS007-NEG-feedback-comp-12-field_conflict_unresolved_claimed_resolved"
+      "negative_class_ref": "OS007-NEG-feedback-comp-13-field_conflict_unresolved_claimed_resolved",
+      "rule_ref": "OS007-NEG-feedback-comp-13-field_conflict_unresolved_claimed_resolved"
     },
     {
       "case_id": "HELIXOS-L9-007-C0539",
@@ -55248,8 +55248,8 @@
           "actual_memory_retired": false
         }
       },
-      "negative_class_ref": "OS007-NEG-feedback-comp-11-field_unknown_unresolved_claimed_resolved",
-      "rule_ref": "OS007-NEG-feedback-comp-11-field_unknown_unresolved_claimed_resolved"
+      "negative_class_ref": "OS007-NEG-feedback-comp-12-field_unknown_unresolved_claimed_resolved",
+      "rule_ref": "OS007-NEG-feedback-comp-12-field_unknown_unresolved_claimed_resolved"
     },
     {
       "case_id": "HELIXOS-L9-007-C0540",
@@ -55293,8 +55293,8 @@
           "actual_memory_retired": false
         }
       },
-      "negative_class_ref": "OS007-NEG-feedback-comp-12-field_conflict_unresolved_claimed_resolved",
-      "rule_ref": "OS007-NEG-feedback-comp-12-field_conflict_unresolved_claimed_resolved"
+      "negative_class_ref": "OS007-NEG-feedback-comp-13-field_conflict_unresolved_claimed_resolved",
+      "rule_ref": "OS007-NEG-feedback-comp-13-field_conflict_unresolved_claimed_resolved"
     },
     {
       "case_id": "HELIXOS-L9-007-C0541",
@@ -55338,8 +55338,8 @@
           "actual_memory_retired": false
         }
       },
-      "negative_class_ref": "OS007-NEG-feedback-comp-11-field_unknown_unresolved_claimed_resolved",
-      "rule_ref": "OS007-NEG-feedback-comp-11-field_unknown_unresolved_claimed_resolved"
+      "negative_class_ref": "OS007-NEG-feedback-comp-12-field_unknown_unresolved_claimed_resolved",
+      "rule_ref": "OS007-NEG-feedback-comp-12-field_unknown_unresolved_claimed_resolved"
     },
     {
       "case_id": "HELIXOS-L9-007-C0542",
@@ -55383,8 +55383,8 @@
           "actual_memory_retired": false
         }
       },
-      "negative_class_ref": "OS007-NEG-feedback-comp-12-field_conflict_unresolved_claimed_resolved",
-      "rule_ref": "OS007-NEG-feedback-comp-12-field_conflict_unresolved_claimed_resolved"
+      "negative_class_ref": "OS007-NEG-feedback-comp-13-field_conflict_unresolved_claimed_resolved",
+      "rule_ref": "OS007-NEG-feedback-comp-13-field_conflict_unresolved_claimed_resolved"
     },
     {
       "case_id": "HELIXOS-L9-007-C0543",
@@ -55428,8 +55428,8 @@
           "actual_memory_retired": false
         }
       },
-      "negative_class_ref": "OS007-NEG-feedback-comp-11-field_unknown_unresolved_claimed_resolved",
-      "rule_ref": "OS007-NEG-feedback-comp-11-field_unknown_unresolved_claimed_resolved"
+      "negative_class_ref": "OS007-NEG-feedback-comp-12-field_unknown_unresolved_claimed_resolved",
+      "rule_ref": "OS007-NEG-feedback-comp-12-field_unknown_unresolved_claimed_resolved"
     },
     {
       "case_id": "HELIXOS-L9-007-C0544",
@@ -55473,8 +55473,8 @@
           "actual_memory_retired": false
         }
       },
-      "negative_class_ref": "OS007-NEG-feedback-comp-12-field_conflict_unresolved_claimed_resolved",
-      "rule_ref": "OS007-NEG-feedback-comp-12-field_conflict_unresolved_claimed_resolved"
+      "negative_class_ref": "OS007-NEG-feedback-comp-13-field_conflict_unresolved_claimed_resolved",
+      "rule_ref": "OS007-NEG-feedback-comp-13-field_conflict_unresolved_claimed_resolved"
     },
     {
       "case_id": "HELIXOS-L9-007-C0545",
@@ -55518,8 +55518,8 @@
           "actual_memory_retired": false
         }
       },
-      "negative_class_ref": "OS007-NEG-feedback-comp-09-boolean_unknown_unresolved_claimed_resolved",
-      "rule_ref": "OS007-NEG-feedback-comp-09-boolean_unknown_unresolved_claimed_resolved"
+      "negative_class_ref": "OS007-NEG-feedback-comp-10-boolean_unknown_unresolved_claimed_resolved",
+      "rule_ref": "OS007-NEG-feedback-comp-10-boolean_unknown_unresolved_claimed_resolved"
     },
     {
       "case_id": "HELIXOS-L9-007-C0546",
@@ -55579,8 +55579,8 @@
           "actual_memory_retired": false
         }
       },
-      "negative_class_ref": "OS007-NEG-feedback-comp-13-boolean_conflict_field_unknown_unresolved_claimed_resolved",
-      "rule_ref": "OS007-NEG-feedback-comp-13-boolean_conflict_field_unknown_unresolved_claimed_resolved"
+      "negative_class_ref": "OS007-NEG-feedback-comp-14-boolean_conflict_field_unknown_unresolved_claimed_resolved",
+      "rule_ref": "OS007-NEG-feedback-comp-14-boolean_conflict_field_unknown_unresolved_claimed_resolved"
     },
     {
       "case_id": "HELIXOS-L9-007-C0547",
@@ -55624,8 +55624,8 @@
           "actual_memory_retired": false
         }
       },
-      "negative_class_ref": "OS007-NEG-feedback-comp-09-boolean_unknown_unresolved_claimed_resolved",
-      "rule_ref": "OS007-NEG-feedback-comp-09-boolean_unknown_unresolved_claimed_resolved"
+      "negative_class_ref": "OS007-NEG-feedback-comp-10-boolean_unknown_unresolved_claimed_resolved",
+      "rule_ref": "OS007-NEG-feedback-comp-10-boolean_unknown_unresolved_claimed_resolved"
     },
     {
       "case_id": "HELIXOS-L9-007-C0548",
@@ -55671,8 +55671,8 @@
           "actual_memory_retired": false
         }
       },
-      "negative_class_ref": "OS007-NEG-feedback-comp-10-boolean_conflict_stage_unrecorded_ref_present_unresolved_claimed_resolved",
-      "rule_ref": "OS007-NEG-feedback-comp-10-boolean_conflict_stage_unrecorded_ref_present_unresolved_claimed_resolved"
+      "negative_class_ref": "OS007-NEG-feedback-comp-11-boolean_conflict_stage_unrecorded_ref_present_unresolved_claimed_resolved",
+      "rule_ref": "OS007-NEG-feedback-comp-11-boolean_conflict_stage_unrecorded_ref_present_unresolved_claimed_resolved"
     },
     {
       "case_id": "HELIXOS-L9-007-C0549",
@@ -55716,8 +55716,8 @@
           "actual_memory_retired": false
         }
       },
-      "negative_class_ref": "OS007-NEG-feedback-comp-11-field_unknown_unresolved_claimed_resolved",
-      "rule_ref": "OS007-NEG-feedback-comp-11-field_unknown_unresolved_claimed_resolved"
+      "negative_class_ref": "OS007-NEG-feedback-comp-12-field_unknown_unresolved_claimed_resolved",
+      "rule_ref": "OS007-NEG-feedback-comp-12-field_unknown_unresolved_claimed_resolved"
     },
     {
       "case_id": "HELIXOS-L9-007-C0550",
@@ -55761,8 +55761,8 @@
           "actual_memory_retired": false
         }
       },
-      "negative_class_ref": "OS007-NEG-feedback-comp-12-field_conflict_unresolved_claimed_resolved",
-      "rule_ref": "OS007-NEG-feedback-comp-12-field_conflict_unresolved_claimed_resolved"
+      "negative_class_ref": "OS007-NEG-feedback-comp-13-field_conflict_unresolved_claimed_resolved",
+      "rule_ref": "OS007-NEG-feedback-comp-13-field_conflict_unresolved_claimed_resolved"
     },
     {
       "case_id": "HELIXOS-L9-007-C0551",
@@ -55806,8 +55806,8 @@
           "actual_memory_retired": false
         }
       },
-      "negative_class_ref": "OS007-NEG-feedback-comp-11-field_unknown_unresolved_claimed_resolved",
-      "rule_ref": "OS007-NEG-feedback-comp-11-field_unknown_unresolved_claimed_resolved"
+      "negative_class_ref": "OS007-NEG-feedback-comp-12-field_unknown_unresolved_claimed_resolved",
+      "rule_ref": "OS007-NEG-feedback-comp-12-field_unknown_unresolved_claimed_resolved"
     },
     {
       "case_id": "HELIXOS-L9-007-C0552",
@@ -55851,8 +55851,8 @@
           "actual_memory_retired": false
         }
       },
-      "negative_class_ref": "OS007-NEG-feedback-comp-12-field_conflict_unresolved_claimed_resolved",
-      "rule_ref": "OS007-NEG-feedback-comp-12-field_conflict_unresolved_claimed_resolved"
+      "negative_class_ref": "OS007-NEG-feedback-comp-13-field_conflict_unresolved_claimed_resolved",
+      "rule_ref": "OS007-NEG-feedback-comp-13-field_conflict_unresolved_claimed_resolved"
     },
     {
       "case_id": "HELIXOS-L9-007-C0553",
@@ -55896,8 +55896,8 @@
           "actual_memory_retired": false
         }
       },
-      "negative_class_ref": "OS007-NEG-feedback-comp-11-field_unknown_unresolved_claimed_resolved",
-      "rule_ref": "OS007-NEG-feedback-comp-11-field_unknown_unresolved_claimed_resolved"
+      "negative_class_ref": "OS007-NEG-feedback-comp-12-field_unknown_unresolved_claimed_resolved",
+      "rule_ref": "OS007-NEG-feedback-comp-12-field_unknown_unresolved_claimed_resolved"
     },
     {
       "case_id": "HELIXOS-L9-007-C0554",
@@ -55941,8 +55941,8 @@
           "actual_memory_retired": false
         }
       },
-      "negative_class_ref": "OS007-NEG-feedback-comp-12-field_conflict_unresolved_claimed_resolved",
-      "rule_ref": "OS007-NEG-feedback-comp-12-field_conflict_unresolved_claimed_resolved"
+      "negative_class_ref": "OS007-NEG-feedback-comp-13-field_conflict_unresolved_claimed_resolved",
+      "rule_ref": "OS007-NEG-feedback-comp-13-field_conflict_unresolved_claimed_resolved"
     },
     {
       "case_id": "HELIXOS-L9-007-C0555",
@@ -55986,8 +55986,8 @@
           "actual_memory_retired": false
         }
       },
-      "negative_class_ref": "OS007-NEG-feedback-comp-11-field_unknown_unresolved_claimed_resolved",
-      "rule_ref": "OS007-NEG-feedback-comp-11-field_unknown_unresolved_claimed_resolved"
+      "negative_class_ref": "OS007-NEG-feedback-comp-12-field_unknown_unresolved_claimed_resolved",
+      "rule_ref": "OS007-NEG-feedback-comp-12-field_unknown_unresolved_claimed_resolved"
     },
     {
       "case_id": "HELIXOS-L9-007-C0556",
@@ -56031,8 +56031,8 @@
           "actual_memory_retired": false
         }
       },
-      "negative_class_ref": "OS007-NEG-feedback-comp-12-field_conflict_unresolved_claimed_resolved",
-      "rule_ref": "OS007-NEG-feedback-comp-12-field_conflict_unresolved_claimed_resolved"
+      "negative_class_ref": "OS007-NEG-feedback-comp-13-field_conflict_unresolved_claimed_resolved",
+      "rule_ref": "OS007-NEG-feedback-comp-13-field_conflict_unresolved_claimed_resolved"
     },
     {
       "case_id": "HELIXOS-L9-007-C0557",
@@ -56121,8 +56121,8 @@
           "actual_memory_retired": false
         }
       },
-      "negative_class_ref": "OS007-NEG-feedback-comp-14-field_conflict_resolution_origin_forbidden_unresolved_claimed_resolved",
-      "rule_ref": "OS007-NEG-feedback-comp-14-field_conflict_resolution_origin_forbidden_unresolved_claimed_resolved"
+      "negative_class_ref": "OS007-NEG-feedback-comp-15-field_conflict_resolution_origin_forbidden_unresolved_claimed_resolved",
+      "rule_ref": "OS007-NEG-feedback-comp-15-field_conflict_resolution_origin_forbidden_unresolved_claimed_resolved"
     },
     {
       "case_id": "HELIXOS-L9-007-C0559",
@@ -56166,8 +56166,8 @@
           "actual_memory_retired": false
         }
       },
-      "negative_class_ref": "OS007-NEG-feedback-comp-12-field_conflict_unresolved_claimed_resolved",
-      "rule_ref": "OS007-NEG-feedback-comp-12-field_conflict_unresolved_claimed_resolved"
+      "negative_class_ref": "OS007-NEG-feedback-comp-13-field_conflict_unresolved_claimed_resolved",
+      "rule_ref": "OS007-NEG-feedback-comp-13-field_conflict_unresolved_claimed_resolved"
     },
     {
       "case_id": "HELIXOS-L9-007-C0560",
@@ -56211,8 +56211,8 @@
           "actual_memory_retired": false
         }
       },
-      "negative_class_ref": "OS007-NEG-feedback-comp-15-resolution_origin_forbidden_unresolved_claimed_resolved",
-      "rule_ref": "OS007-NEG-feedback-comp-15-resolution_origin_forbidden_unresolved_claimed_resolved"
+      "negative_class_ref": "OS007-NEG-feedback-comp-16-resolution_origin_forbidden_unresolved_claimed_resolved",
+      "rule_ref": "OS007-NEG-feedback-comp-16-resolution_origin_forbidden_unresolved_claimed_resolved"
     },
     {
       "case_id": "HELIXOS-L9-007-C0561",
@@ -56258,8 +56258,8 @@
           "actual_memory_retired": false
         }
       },
-      "negative_class_ref": "OS007-NEG-feedback-comp-14-field_conflict_resolution_origin_forbidden_unresolved_claimed_resolved",
-      "rule_ref": "OS007-NEG-feedback-comp-14-field_conflict_resolution_origin_forbidden_unresolved_claimed_resolved"
+      "negative_class_ref": "OS007-NEG-feedback-comp-15-field_conflict_resolution_origin_forbidden_unresolved_claimed_resolved",
+      "rule_ref": "OS007-NEG-feedback-comp-15-field_conflict_resolution_origin_forbidden_unresolved_claimed_resolved"
     },
     {
       "case_id": "HELIXOS-L9-007-C0562",
@@ -56303,8 +56303,8 @@
           "actual_memory_retired": false
         }
       },
-      "negative_class_ref": "OS007-NEG-feedback-comp-12-field_conflict_unresolved_claimed_resolved",
-      "rule_ref": "OS007-NEG-feedback-comp-12-field_conflict_unresolved_claimed_resolved"
+      "negative_class_ref": "OS007-NEG-feedback-comp-13-field_conflict_unresolved_claimed_resolved",
+      "rule_ref": "OS007-NEG-feedback-comp-13-field_conflict_unresolved_claimed_resolved"
     },
     {
       "case_id": "HELIXOS-L9-007-C0563",
@@ -56348,8 +56348,8 @@
           "actual_memory_retired": false
         }
       },
-      "negative_class_ref": "OS007-NEG-feedback-comp-15-resolution_origin_forbidden_unresolved_claimed_resolved",
-      "rule_ref": "OS007-NEG-feedback-comp-15-resolution_origin_forbidden_unresolved_claimed_resolved"
+      "negative_class_ref": "OS007-NEG-feedback-comp-16-resolution_origin_forbidden_unresolved_claimed_resolved",
+      "rule_ref": "OS007-NEG-feedback-comp-16-resolution_origin_forbidden_unresolved_claimed_resolved"
     },
     {
       "case_id": "HELIXOS-L9-007-C0564",
@@ -56395,8 +56395,8 @@
           "actual_memory_retired": false
         }
       },
-      "negative_class_ref": "OS007-NEG-feedback-comp-14-field_conflict_resolution_origin_forbidden_unresolved_claimed_resolved",
-      "rule_ref": "OS007-NEG-feedback-comp-14-field_conflict_resolution_origin_forbidden_unresolved_claimed_resolved"
+      "negative_class_ref": "OS007-NEG-feedback-comp-15-field_conflict_resolution_origin_forbidden_unresolved_claimed_resolved",
+      "rule_ref": "OS007-NEG-feedback-comp-15-field_conflict_resolution_origin_forbidden_unresolved_claimed_resolved"
     },
     {
       "case_id": "HELIXOS-L9-007-C0565",
@@ -56440,8 +56440,8 @@
           "actual_memory_retired": false
         }
       },
-      "negative_class_ref": "OS007-NEG-feedback-comp-12-field_conflict_unresolved_claimed_resolved",
-      "rule_ref": "OS007-NEG-feedback-comp-12-field_conflict_unresolved_claimed_resolved"
+      "negative_class_ref": "OS007-NEG-feedback-comp-13-field_conflict_unresolved_claimed_resolved",
+      "rule_ref": "OS007-NEG-feedback-comp-13-field_conflict_unresolved_claimed_resolved"
     },
     {
       "case_id": "HELIXOS-L9-007-C0566",
@@ -56485,8 +56485,8 @@
           "actual_memory_retired": false
         }
       },
-      "negative_class_ref": "OS007-NEG-feedback-comp-15-resolution_origin_forbidden_unresolved_claimed_resolved",
-      "rule_ref": "OS007-NEG-feedback-comp-15-resolution_origin_forbidden_unresolved_claimed_resolved"
+      "negative_class_ref": "OS007-NEG-feedback-comp-16-resolution_origin_forbidden_unresolved_claimed_resolved",
+      "rule_ref": "OS007-NEG-feedback-comp-16-resolution_origin_forbidden_unresolved_claimed_resolved"
     },
     {
       "case_id": "HELIXOS-L9-007-C0567",
@@ -56532,8 +56532,8 @@
           "actual_memory_retired": false
         }
       },
-      "negative_class_ref": "OS007-NEG-feedback-comp-14-field_conflict_resolution_origin_forbidden_unresolved_claimed_resolved",
-      "rule_ref": "OS007-NEG-feedback-comp-14-field_conflict_resolution_origin_forbidden_unresolved_claimed_resolved"
+      "negative_class_ref": "OS007-NEG-feedback-comp-15-field_conflict_resolution_origin_forbidden_unresolved_claimed_resolved",
+      "rule_ref": "OS007-NEG-feedback-comp-15-field_conflict_resolution_origin_forbidden_unresolved_claimed_resolved"
     },
     {
       "case_id": "HELIXOS-L9-007-C0568",
@@ -56577,8 +56577,8 @@
           "actual_memory_retired": false
         }
       },
-      "negative_class_ref": "OS007-NEG-feedback-comp-12-field_conflict_unresolved_claimed_resolved",
-      "rule_ref": "OS007-NEG-feedback-comp-12-field_conflict_unresolved_claimed_resolved"
+      "negative_class_ref": "OS007-NEG-feedback-comp-13-field_conflict_unresolved_claimed_resolved",
+      "rule_ref": "OS007-NEG-feedback-comp-13-field_conflict_unresolved_claimed_resolved"
     },
     {
       "case_id": "HELIXOS-L9-007-C0569",
@@ -56622,8 +56622,8 @@
           "actual_memory_retired": false
         }
       },
-      "negative_class_ref": "OS007-NEG-feedback-comp-15-resolution_origin_forbidden_unresolved_claimed_resolved",
-      "rule_ref": "OS007-NEG-feedback-comp-15-resolution_origin_forbidden_unresolved_claimed_resolved"
+      "negative_class_ref": "OS007-NEG-feedback-comp-16-resolution_origin_forbidden_unresolved_claimed_resolved",
+      "rule_ref": "OS007-NEG-feedback-comp-16-resolution_origin_forbidden_unresolved_claimed_resolved"
     },
     {
       "case_id": "HELIXOS-L9-007-C0570",
@@ -56669,8 +56669,8 @@
           "actual_memory_retired": false
         }
       },
-      "negative_class_ref": "OS007-NEG-feedback-comp-14-field_conflict_resolution_origin_forbidden_unresolved_claimed_resolved",
-      "rule_ref": "OS007-NEG-feedback-comp-14-field_conflict_resolution_origin_forbidden_unresolved_claimed_resolved"
+      "negative_class_ref": "OS007-NEG-feedback-comp-15-field_conflict_resolution_origin_forbidden_unresolved_claimed_resolved",
+      "rule_ref": "OS007-NEG-feedback-comp-15-field_conflict_resolution_origin_forbidden_unresolved_claimed_resolved"
     },
     {
       "case_id": "HELIXOS-L9-007-C0571",
@@ -56714,8 +56714,8 @@
           "actual_memory_retired": false
         }
       },
-      "negative_class_ref": "OS007-NEG-feedback-comp-12-field_conflict_unresolved_claimed_resolved",
-      "rule_ref": "OS007-NEG-feedback-comp-12-field_conflict_unresolved_claimed_resolved"
+      "negative_class_ref": "OS007-NEG-feedback-comp-13-field_conflict_unresolved_claimed_resolved",
+      "rule_ref": "OS007-NEG-feedback-comp-13-field_conflict_unresolved_claimed_resolved"
     },
     {
       "case_id": "HELIXOS-L9-007-C0572",
@@ -56759,8 +56759,8 @@
           "actual_memory_retired": false
         }
       },
-      "negative_class_ref": "OS007-NEG-feedback-comp-15-resolution_origin_forbidden_unresolved_claimed_resolved",
-      "rule_ref": "OS007-NEG-feedback-comp-15-resolution_origin_forbidden_unresolved_claimed_resolved"
+      "negative_class_ref": "OS007-NEG-feedback-comp-16-resolution_origin_forbidden_unresolved_claimed_resolved",
+      "rule_ref": "OS007-NEG-feedback-comp-16-resolution_origin_forbidden_unresolved_claimed_resolved"
     },
     {
       "case_id": "HELIXOS-L9-007-C0573",
@@ -56804,8 +56804,8 @@
           "actual_memory_retired": false
         }
       },
-      "negative_class_ref": "OS007-NEG-feedback-comp-16-resolution_origin_unknown_unresolved_claimed_resolved",
-      "rule_ref": "OS007-NEG-feedback-comp-16-resolution_origin_unknown_unresolved_claimed_resolved"
+      "negative_class_ref": "OS007-NEG-feedback-comp-17-resolution_origin_unknown_unresolved_claimed_resolved",
+      "rule_ref": "OS007-NEG-feedback-comp-17-resolution_origin_unknown_unresolved_claimed_resolved"
     },
     {
       "case_id": "HELIXOS-L9-007-C0574",
@@ -56849,8 +56849,8 @@
           "actual_memory_retired": false
         }
       },
-      "negative_class_ref": "OS007-NEG-feedback-comp-16-resolution_origin_unknown_unresolved_claimed_resolved",
-      "rule_ref": "OS007-NEG-feedback-comp-16-resolution_origin_unknown_unresolved_claimed_resolved"
+      "negative_class_ref": "OS007-NEG-feedback-comp-17-resolution_origin_unknown_unresolved_claimed_resolved",
+      "rule_ref": "OS007-NEG-feedback-comp-17-resolution_origin_unknown_unresolved_claimed_resolved"
     },
     {
       "case_id": "HELIXOS-L9-007-C0575",
@@ -56896,8 +56896,8 @@
           "actual_memory_retired": false
         }
       },
-      "negative_class_ref": "OS007-NEG-feedback-comp-17-resolution_origin_unknown_unresolved_claimed_resolved",
-      "rule_ref": "OS007-NEG-feedback-comp-17-resolution_origin_unknown_unresolved_claimed_resolved"
+      "negative_class_ref": "OS007-NEG-feedback-comp-18-resolution_origin_unknown_unresolved_claimed_resolved",
+      "rule_ref": "OS007-NEG-feedback-comp-18-resolution_origin_unknown_unresolved_claimed_resolved"
     },
     {
       "case_id": "HELIXOS-L9-007-C0576",
@@ -56941,8 +56941,8 @@
           "actual_memory_retired": false
         }
       },
-      "negative_class_ref": "OS007-NEG-feedback-comp-16-resolution_origin_unknown_unresolved_claimed_resolved",
-      "rule_ref": "OS007-NEG-feedback-comp-16-resolution_origin_unknown_unresolved_claimed_resolved"
+      "negative_class_ref": "OS007-NEG-feedback-comp-17-resolution_origin_unknown_unresolved_claimed_resolved",
+      "rule_ref": "OS007-NEG-feedback-comp-17-resolution_origin_unknown_unresolved_claimed_resolved"
     },
     {
       "case_id": "HELIXOS-L9-007-C0577",
@@ -56986,8 +56986,8 @@
           "actual_memory_retired": false
         }
       },
-      "negative_class_ref": "OS007-NEG-feedback-comp-16-resolution_origin_unknown_unresolved_claimed_resolved",
-      "rule_ref": "OS007-NEG-feedback-comp-16-resolution_origin_unknown_unresolved_claimed_resolved"
+      "negative_class_ref": "OS007-NEG-feedback-comp-17-resolution_origin_unknown_unresolved_claimed_resolved",
+      "rule_ref": "OS007-NEG-feedback-comp-17-resolution_origin_unknown_unresolved_claimed_resolved"
     },
     {
       "case_id": "HELIXOS-L9-007-C0578",
@@ -57033,8 +57033,8 @@
           "actual_memory_retired": false
         }
       },
-      "negative_class_ref": "OS007-NEG-feedback-comp-17-resolution_origin_unknown_unresolved_claimed_resolved",
-      "rule_ref": "OS007-NEG-feedback-comp-17-resolution_origin_unknown_unresolved_claimed_resolved"
+      "negative_class_ref": "OS007-NEG-feedback-comp-18-resolution_origin_unknown_unresolved_claimed_resolved",
+      "rule_ref": "OS007-NEG-feedback-comp-18-resolution_origin_unknown_unresolved_claimed_resolved"
     },
     {
       "case_id": "HELIXOS-L9-007-C0579",
@@ -57250,8 +57250,8 @@
           "actual_memory_retired": false
         }
       },
-      "negative_class_ref": "OS007-NEG-feedback-comp-18-finding_missing",
-      "rule_ref": "OS007-NEG-feedback-comp-18-finding_missing"
+      "negative_class_ref": "OS007-NEG-feedback-comp-19-finding_missing",
+      "rule_ref": "OS007-NEG-feedback-comp-19-finding_missing"
     },
     {
       "case_id": "HELIXOS-L9-007-C0584",
@@ -70243,8 +70243,8 @@
           "actual_memory_retired": false
         }
       },
-      "negative_class_ref": "OS007-NEG-memory-retirement_basis_unknown",
-      "rule_ref": "OS007-NEG-memory-retirement_basis_unknown"
+      "negative_class_ref": "OS007-NEG-memory-comp-11-boolean_unknown_retirement_basis_unknown",
+      "rule_ref": "OS007-NEG-memory-comp-11-boolean_unknown_retirement_basis_unknown"
     },
     {
       "case_id": "HELIXOS-L9-007-C0884",
@@ -70417,8 +70417,8 @@
           "actual_memory_retired": false
         }
       },
-      "negative_class_ref": "OS007-NEG-memory-comp-11-order_conflict_reflection_not_before_retire",
-      "rule_ref": "OS007-NEG-memory-comp-11-order_conflict_reflection_not_before_retire"
+      "negative_class_ref": "OS007-NEG-memory-comp-12-order_conflict_reflection_not_before_retire",
+      "rule_ref": "OS007-NEG-memory-comp-12-order_conflict_reflection_not_before_retire"
     },
     {
       "case_id": "HELIXOS-L9-007-C0888",
@@ -71408,8 +71408,8 @@
           "actual_memory_retired": false
         }
       },
-      "negative_class_ref": "OS007-NEG-memory-boolean_conflict",
-      "rule_ref": "OS007-NEG-memory-boolean_conflict"
+      "negative_class_ref": "OS007-NEG-memory-comp-13-boolean_conflict_reflection_unrecorded_ref_present",
+      "rule_ref": "OS007-NEG-memory-comp-13-boolean_conflict_reflection_unrecorded_ref_present"
     },
     {
       "case_id": "HELIXOS-L9-007-C0911",
@@ -72057,8 +72057,8 @@
           "actual_memory_retired": false
         }
       },
-      "negative_class_ref": "OS007-NEG-memory-comp-12-consume_without_delivery_duplicate_successful_use_use_state_conflict",
-      "rule_ref": "OS007-NEG-memory-comp-12-consume_without_delivery_duplicate_successful_use_use_state_conflict"
+      "negative_class_ref": "OS007-NEG-memory-comp-14-consume_without_delivery_duplicate_successful_use_use_state_conflict",
+      "rule_ref": "OS007-NEG-memory-comp-14-consume_without_delivery_duplicate_successful_use_use_state_conflict"
     },
     {
       "case_id": "HELIXOS-L9-007-C0926",
@@ -72145,8 +72145,8 @@
           "actual_memory_retired": false
         }
       },
-      "negative_class_ref": "OS007-NEG-memory-comp-13-consume_without_delivery_duplicate_successful_use",
-      "rule_ref": "OS007-NEG-memory-comp-13-consume_without_delivery_duplicate_successful_use"
+      "negative_class_ref": "OS007-NEG-memory-comp-15-consume_without_delivery_duplicate_successful_use",
+      "rule_ref": "OS007-NEG-memory-comp-15-consume_without_delivery_duplicate_successful_use"
     },
     {
       "case_id": "HELIXOS-L9-007-C0928",
@@ -72233,8 +72233,8 @@
           "actual_memory_retired": false
         }
       },
-      "negative_class_ref": "OS007-NEG-memory-comp-13-consume_without_delivery_duplicate_successful_use",
-      "rule_ref": "OS007-NEG-memory-comp-13-consume_without_delivery_duplicate_successful_use"
+      "negative_class_ref": "OS007-NEG-memory-comp-15-consume_without_delivery_duplicate_successful_use",
+      "rule_ref": "OS007-NEG-memory-comp-15-consume_without_delivery_duplicate_successful_use"
     },
     {
       "case_id": "HELIXOS-L9-007-C0930",
@@ -72321,8 +72321,8 @@
           "actual_memory_retired": false
         }
       },
-      "negative_class_ref": "OS007-NEG-memory-comp-13-consume_without_delivery_duplicate_successful_use",
-      "rule_ref": "OS007-NEG-memory-comp-13-consume_without_delivery_duplicate_successful_use"
+      "negative_class_ref": "OS007-NEG-memory-comp-15-consume_without_delivery_duplicate_successful_use",
+      "rule_ref": "OS007-NEG-memory-comp-15-consume_without_delivery_duplicate_successful_use"
     },
     {
       "case_id": "HELIXOS-L9-007-C0932",
@@ -72581,8 +72581,8 @@
           "actual_memory_retired": false
         }
       },
-      "negative_class_ref": "OS007-NEG-logs-log_kind_conflict",
-      "rule_ref": "OS007-NEG-logs-log_kind_conflict"
+      "negative_class_ref": "OS007-NEG-logs-comp-05-log_kind_conflict",
+      "rule_ref": "OS007-NEG-logs-comp-05-log_kind_conflict"
     },
     {
       "case_id": "HELIXOS-L9-007-C0938",
@@ -72626,8 +72626,8 @@
           "actual_memory_retired": false
         }
       },
-      "negative_class_ref": "OS007-NEG-logs-log_kind_conflict",
-      "rule_ref": "OS007-NEG-logs-log_kind_conflict"
+      "negative_class_ref": "OS007-NEG-logs-comp-05-log_kind_conflict",
+      "rule_ref": "OS007-NEG-logs-comp-05-log_kind_conflict"
     },
     {
       "case_id": "HELIXOS-L9-007-C0939",
@@ -72671,8 +72671,8 @@
           "actual_memory_retired": false
         }
       },
-      "negative_class_ref": "OS007-NEG-logs-log_kind_conflict",
-      "rule_ref": "OS007-NEG-logs-log_kind_conflict"
+      "negative_class_ref": "OS007-NEG-logs-comp-05-log_kind_conflict",
+      "rule_ref": "OS007-NEG-logs-comp-05-log_kind_conflict"
     },
     {
       "case_id": "HELIXOS-L9-007-C0940",
@@ -72716,8 +72716,8 @@
           "actual_memory_retired": false
         }
       },
-      "negative_class_ref": "OS007-NEG-logs-log_kind_conflict",
-      "rule_ref": "OS007-NEG-logs-log_kind_conflict"
+      "negative_class_ref": "OS007-NEG-logs-comp-05-log_kind_conflict",
+      "rule_ref": "OS007-NEG-logs-comp-05-log_kind_conflict"
     },
     {
       "case_id": "HELIXOS-L9-007-C0941",
@@ -72775,8 +72775,8 @@
           "actual_memory_retired": false
         }
       },
-      "negative_class_ref": "OS007-NEG-feedback-boolean_conflict",
-      "rule_ref": "OS007-NEG-feedback-boolean_conflict"
+      "negative_class_ref": "OS007-NEG-feedback-comp-20-boolean_conflict_field_unknown",
+      "rule_ref": "OS007-NEG-feedback-comp-20-boolean_conflict_field_unknown"
     },
     {
       "case_id": "HELIXOS-L9-007-C0942",
@@ -72820,8 +72820,8 @@
           "actual_memory_retired": false
         }
       },
-      "negative_class_ref": "OS007-NEG-feedback-comp-19-resolution_origin_unknown",
-      "rule_ref": "OS007-NEG-feedback-comp-19-resolution_origin_unknown"
+      "negative_class_ref": "OS007-NEG-feedback-comp-21-resolution_origin_unknown",
+      "rule_ref": "OS007-NEG-feedback-comp-21-resolution_origin_unknown"
     },
     {
       "case_id": "HELIXOS-L9-007-C0943",
@@ -73425,42 +73425,6 @@
       ]
     },
     {
-      "class_id": "OS007-NEG-logs-log_kind_conflict",
-      "expected_classification": "record_material_violation",
-      "expected": {
-        "finding_codes": [
-          "log_kind_conflict",
-          "log_kind_conflict"
-        ]
-      },
-      "expected_axis": "logs",
-      "expected_state": "violation",
-      "side_effect_count": 0,
-      "source_pointers": [
-        {
-          "path": "docs/helix-os/L8-unit-verification/log-feedback-memory-lineage.json",
-          "pointers": [
-            "/unit_cases/936/expected",
-            "/unit_cases/936/condition",
-            "/unit_cases/936/function_ref"
-          ]
-        },
-        {
-          "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
-          "pointers": [
-            "/failure_classifications/3"
-          ]
-        },
-        {
-          "path": "docs/helix-os/L5-detail-design/log-feedback-memory-lineage.json",
-          "pointers": [
-            "/failure_rules/3",
-            "/functions/0"
-          ]
-        }
-      ]
-    },
-    {
       "class_id": "OS007-NEG-logs-log_state_unknown",
       "expected_classification": "record_material_unknown",
       "expected": {
@@ -73776,49 +73740,6 @@
       ]
     },
     {
-      "class_id": "OS007-NEG-feedback-boolean_conflict",
-      "expected_classification": "record_material_violation",
-      "expected": {
-        "finding_codes": [
-          "boolean_conflict",
-          "field_unknown",
-          "field_unknown",
-          "field_unknown",
-          "field_unknown",
-          "field_unknown",
-          "field_unknown",
-          "field_unknown",
-          "field_unknown"
-        ]
-      },
-      "expected_axis": "feedback",
-      "expected_state": "violation",
-      "side_effect_count": 0,
-      "source_pointers": [
-        {
-          "path": "docs/helix-os/L8-unit-verification/log-feedback-memory-lineage.json",
-          "pointers": [
-            "/unit_cases/940/expected",
-            "/unit_cases/940/condition",
-            "/unit_cases/940/function_ref"
-          ]
-        },
-        {
-          "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
-          "pointers": [
-            "/failure_classifications/13"
-          ]
-        },
-        {
-          "path": "docs/helix-os/L5-detail-design/log-feedback-memory-lineage.json",
-          "pointers": [
-            "/failure_rules/13",
-            "/functions/1"
-          ]
-        }
-      ]
-    },
-    {
       "class_id": "OS007-NEG-feedback-finding_missing",
       "expected_classification": "record_material_unknown",
       "expected": {
@@ -73848,42 +73769,6 @@
           "path": "docs/helix-os/L5-detail-design/log-feedback-memory-lineage.json",
           "pointers": [
             "/failure_rules/14",
-            "/functions/1"
-          ]
-        }
-      ]
-    },
-    {
-      "class_id": "OS007-NEG-feedback-original_finding_changed",
-      "expected_classification": "record_material_violation",
-      "expected": {
-        "finding_codes": [
-          "field_conflict",
-          "original_finding_changed"
-        ]
-      },
-      "expected_axis": "feedback",
-      "expected_state": "violation",
-      "side_effect_count": 0,
-      "source_pointers": [
-        {
-          "path": "docs/helix-os/L8-unit-verification/log-feedback-memory-lineage.json",
-          "pointers": [
-            "/unit_cases/374/expected",
-            "/unit_cases/374/condition",
-            "/unit_cases/374/function_ref"
-          ]
-        },
-        {
-          "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
-          "pointers": [
-            "/failure_classifications/15"
-          ]
-        },
-        {
-          "path": "docs/helix-os/L5-detail-design/log-feedback-memory-lineage.json",
-          "pointers": [
-            "/failure_rules/15",
             "/functions/1"
           ]
         }
@@ -74164,42 +74049,6 @@
           "path": "docs/helix-os/L5-detail-design/log-feedback-memory-lineage.json",
           "pointers": [
             "/failure_rules/23",
-            "/functions/2"
-          ]
-        }
-      ]
-    },
-    {
-      "class_id": "OS007-NEG-memory-boolean_conflict",
-      "expected_classification": "record_material_violation",
-      "expected": {
-        "finding_codes": [
-          "boolean_conflict",
-          "reflection_unrecorded_ref_present"
-        ]
-      },
-      "expected_axis": "memory",
-      "expected_state": "violation",
-      "side_effect_count": 0,
-      "source_pointers": [
-        {
-          "path": "docs/helix-os/L8-unit-verification/log-feedback-memory-lineage.json",
-          "pointers": [
-            "/unit_cases/909/expected",
-            "/unit_cases/909/condition",
-            "/unit_cases/909/function_ref"
-          ]
-        },
-        {
-          "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
-          "pointers": [
-            "/failure_classifications/24"
-          ]
-        },
-        {
-          "path": "docs/helix-os/L5-detail-design/log-feedback-memory-lineage.json",
-          "pointers": [
-            "/failure_rules/24",
             "/functions/2"
           ]
         }
@@ -74696,42 +74545,6 @@
       ]
     },
     {
-      "class_id": "OS007-NEG-memory-retirement_basis_unknown",
-      "expected_classification": "record_material_unknown",
-      "expected": {
-        "finding_codes": [
-          "boolean_unknown",
-          "retirement_basis_unknown"
-        ]
-      },
-      "expected_axis": "memory",
-      "expected_state": "unknown",
-      "side_effect_count": 0,
-      "source_pointers": [
-        {
-          "path": "docs/helix-os/L8-unit-verification/log-feedback-memory-lineage.json",
-          "pointers": [
-            "/unit_cases/882/expected",
-            "/unit_cases/882/condition",
-            "/unit_cases/882/function_ref"
-          ]
-        },
-        {
-          "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
-          "pointers": [
-            "/failure_classifications/39"
-          ]
-        },
-        {
-          "path": "docs/helix-os/L5-detail-design/log-feedback-memory-lineage.json",
-          "pointers": [
-            "/failure_rules/39",
-            "/functions/2"
-          ]
-        }
-      ]
-    },
-    {
       "class_id": "OS007-NEG-memory-consume_without_delivery",
       "expected_classification": "record_material_violation",
       "expected": {
@@ -75057,6 +74870,42 @@
       "expected": {
         "finding_codes": [
           "field_conflict",
+          "original_finding_changed"
+        ]
+      },
+      "expected_axis": "feedback",
+      "expected_state": "violation",
+      "side_effect_count": 0,
+      "source_pointers": [
+        {
+          "path": "docs/helix-os/L8-unit-verification/log-feedback-memory-lineage.json",
+          "pointers": [
+            "/unit_cases/374/expected",
+            "/unit_cases/374/condition",
+            "/unit_cases/374/function_ref"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
+          "pointers": [
+            "/failure_classifications/49"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L5-detail-design/log-feedback-memory-lineage.json",
+          "pointers": [
+            "/failure_rules/49",
+            "/functions/1"
+          ]
+        }
+      ]
+    },
+    {
+      "class_id": "OS007-NEG-feedback-comp-03-field_conflict_original_finding_changed",
+      "expected_classification": "record_material_violation",
+      "expected": {
+        "finding_codes": [
+          "field_conflict",
           "field_conflict",
           "field_conflict",
           "original_finding_changed"
@@ -75077,20 +74926,20 @@
         {
           "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
           "pointers": [
-            "/failure_classifications/49"
+            "/failure_classifications/50"
           ]
         },
         {
           "path": "docs/helix-os/L5-detail-design/log-feedback-memory-lineage.json",
           "pointers": [
-            "/failure_rules/49",
+            "/failure_rules/50",
             "/functions/1"
           ]
         }
       ]
     },
     {
-      "class_id": "OS007-NEG-feedback-comp-03-field_conflict_original_finding_changed",
+      "class_id": "OS007-NEG-feedback-comp-04-field_conflict_original_finding_changed",
       "expected_classification": "record_material_violation",
       "expected": {
         "finding_codes": [
@@ -75117,20 +74966,20 @@
         {
           "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
           "pointers": [
-            "/failure_classifications/50"
+            "/failure_classifications/51"
           ]
         },
         {
           "path": "docs/helix-os/L5-detail-design/log-feedback-memory-lineage.json",
           "pointers": [
-            "/failure_rules/50",
+            "/failure_rules/51",
             "/functions/1"
           ]
         }
       ]
     },
     {
-      "class_id": "OS007-NEG-feedback-comp-04-field_unknown_original_finding_changed_unresolved_claimed_resolved",
+      "class_id": "OS007-NEG-feedback-comp-05-field_unknown_original_finding_changed_unresolved_claimed_resolved",
       "expected_classification": "record_material_violation",
       "expected": {
         "finding_codes": [
@@ -75154,20 +75003,20 @@
         {
           "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
           "pointers": [
-            "/failure_classifications/51"
+            "/failure_classifications/52"
           ]
         },
         {
           "path": "docs/helix-os/L5-detail-design/log-feedback-memory-lineage.json",
           "pointers": [
-            "/failure_rules/51",
+            "/failure_rules/52",
             "/functions/1"
           ]
         }
       ]
     },
     {
-      "class_id": "OS007-NEG-feedback-comp-05-field_conflict_original_finding_changed_unresolved_claimed_resolved",
+      "class_id": "OS007-NEG-feedback-comp-06-field_conflict_original_finding_changed_unresolved_claimed_resolved",
       "expected_classification": "record_material_violation",
       "expected": {
         "finding_codes": [
@@ -75191,20 +75040,20 @@
         {
           "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
           "pointers": [
-            "/failure_classifications/52"
+            "/failure_classifications/53"
           ]
         },
         {
           "path": "docs/helix-os/L5-detail-design/log-feedback-memory-lineage.json",
           "pointers": [
-            "/failure_rules/52",
+            "/failure_rules/53",
             "/functions/1"
           ]
         }
       ]
     },
     {
-      "class_id": "OS007-NEG-feedback-comp-06-finding_missing_unresolved_claimed_resolved",
+      "class_id": "OS007-NEG-feedback-comp-07-finding_missing_unresolved_claimed_resolved",
       "expected_classification": "record_material_violation",
       "expected": {
         "finding_codes": [
@@ -75227,20 +75076,20 @@
         {
           "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
           "pointers": [
-            "/failure_classifications/53"
+            "/failure_classifications/54"
           ]
         },
         {
           "path": "docs/helix-os/L5-detail-design/log-feedback-memory-lineage.json",
           "pointers": [
-            "/failure_rules/53",
+            "/failure_rules/54",
             "/functions/1"
           ]
         }
       ]
     },
     {
-      "class_id": "OS007-NEG-feedback-comp-07-field_conflict_original_finding_changed_unresolved_claimed_resolved",
+      "class_id": "OS007-NEG-feedback-comp-08-field_conflict_original_finding_changed_unresolved_claimed_resolved",
       "expected_classification": "record_material_violation",
       "expected": {
         "finding_codes": [
@@ -75268,20 +75117,20 @@
         {
           "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
           "pointers": [
-            "/failure_classifications/54"
+            "/failure_classifications/55"
           ]
         },
         {
           "path": "docs/helix-os/L5-detail-design/log-feedback-memory-lineage.json",
           "pointers": [
-            "/failure_rules/54",
+            "/failure_rules/55",
             "/functions/1"
           ]
         }
       ]
     },
     {
-      "class_id": "OS007-NEG-feedback-comp-08-finding_discard_forbidden_unresolved_claimed_resolved",
+      "class_id": "OS007-NEG-feedback-comp-09-finding_discard_forbidden_unresolved_claimed_resolved",
       "expected_classification": "record_material_violation",
       "expected": {
         "finding_codes": [
@@ -75304,20 +75153,20 @@
         {
           "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
           "pointers": [
-            "/failure_classifications/55"
+            "/failure_classifications/56"
           ]
         },
         {
           "path": "docs/helix-os/L5-detail-design/log-feedback-memory-lineage.json",
           "pointers": [
-            "/failure_rules/55",
+            "/failure_rules/56",
             "/functions/1"
           ]
         }
       ]
     },
     {
-      "class_id": "OS007-NEG-feedback-comp-09-boolean_unknown_unresolved_claimed_resolved",
+      "class_id": "OS007-NEG-feedback-comp-10-boolean_unknown_unresolved_claimed_resolved",
       "expected_classification": "record_material_violation",
       "expected": {
         "finding_codes": [
@@ -75340,20 +75189,20 @@
         {
           "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
           "pointers": [
-            "/failure_classifications/56"
+            "/failure_classifications/57"
           ]
         },
         {
           "path": "docs/helix-os/L5-detail-design/log-feedback-memory-lineage.json",
           "pointers": [
-            "/failure_rules/56",
+            "/failure_rules/57",
             "/functions/1"
           ]
         }
       ]
     },
     {
-      "class_id": "OS007-NEG-feedback-comp-10-boolean_conflict_stage_unrecorded_ref_present_unresolved_claimed_resolved",
+      "class_id": "OS007-NEG-feedback-comp-11-boolean_conflict_stage_unrecorded_ref_present_unresolved_claimed_resolved",
       "expected_classification": "record_material_violation",
       "expected": {
         "finding_codes": [
@@ -75377,20 +75226,20 @@
         {
           "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
           "pointers": [
-            "/failure_classifications/57"
+            "/failure_classifications/58"
           ]
         },
         {
           "path": "docs/helix-os/L5-detail-design/log-feedback-memory-lineage.json",
           "pointers": [
-            "/failure_rules/57",
+            "/failure_rules/58",
             "/functions/1"
           ]
         }
       ]
     },
     {
-      "class_id": "OS007-NEG-feedback-comp-11-field_unknown_unresolved_claimed_resolved",
+      "class_id": "OS007-NEG-feedback-comp-12-field_unknown_unresolved_claimed_resolved",
       "expected_classification": "record_material_violation",
       "expected": {
         "finding_codes": [
@@ -75413,20 +75262,20 @@
         {
           "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
           "pointers": [
-            "/failure_classifications/58"
+            "/failure_classifications/59"
           ]
         },
         {
           "path": "docs/helix-os/L5-detail-design/log-feedback-memory-lineage.json",
           "pointers": [
-            "/failure_rules/58",
+            "/failure_rules/59",
             "/functions/1"
           ]
         }
       ]
     },
     {
-      "class_id": "OS007-NEG-feedback-comp-12-field_conflict_unresolved_claimed_resolved",
+      "class_id": "OS007-NEG-feedback-comp-13-field_conflict_unresolved_claimed_resolved",
       "expected_classification": "record_material_violation",
       "expected": {
         "finding_codes": [
@@ -75449,20 +75298,20 @@
         {
           "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
           "pointers": [
-            "/failure_classifications/59"
+            "/failure_classifications/60"
           ]
         },
         {
           "path": "docs/helix-os/L5-detail-design/log-feedback-memory-lineage.json",
           "pointers": [
-            "/failure_rules/59",
+            "/failure_rules/60",
             "/functions/1"
           ]
         }
       ]
     },
     {
-      "class_id": "OS007-NEG-feedback-comp-13-boolean_conflict_field_unknown_unresolved_claimed_resolved",
+      "class_id": "OS007-NEG-feedback-comp-14-boolean_conflict_field_unknown_unresolved_claimed_resolved",
       "expected_classification": "record_material_violation",
       "expected": {
         "finding_codes": [
@@ -75493,20 +75342,20 @@
         {
           "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
           "pointers": [
-            "/failure_classifications/60"
+            "/failure_classifications/61"
           ]
         },
         {
           "path": "docs/helix-os/L5-detail-design/log-feedback-memory-lineage.json",
           "pointers": [
-            "/failure_rules/60",
+            "/failure_rules/61",
             "/functions/1"
           ]
         }
       ]
     },
     {
-      "class_id": "OS007-NEG-feedback-comp-14-field_conflict_resolution_origin_forbidden_unresolved_claimed_resolved",
+      "class_id": "OS007-NEG-feedback-comp-15-field_conflict_resolution_origin_forbidden_unresolved_claimed_resolved",
       "expected_classification": "record_material_violation",
       "expected": {
         "finding_codes": [
@@ -75530,20 +75379,20 @@
         {
           "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
           "pointers": [
-            "/failure_classifications/61"
+            "/failure_classifications/62"
           ]
         },
         {
           "path": "docs/helix-os/L5-detail-design/log-feedback-memory-lineage.json",
           "pointers": [
-            "/failure_rules/61",
+            "/failure_rules/62",
             "/functions/1"
           ]
         }
       ]
     },
     {
-      "class_id": "OS007-NEG-feedback-comp-15-resolution_origin_forbidden_unresolved_claimed_resolved",
+      "class_id": "OS007-NEG-feedback-comp-16-resolution_origin_forbidden_unresolved_claimed_resolved",
       "expected_classification": "record_material_violation",
       "expected": {
         "finding_codes": [
@@ -75561,42 +75410,6 @@
             "/unit_cases/559/expected",
             "/unit_cases/559/condition",
             "/unit_cases/559/function_ref"
-          ]
-        },
-        {
-          "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
-          "pointers": [
-            "/failure_classifications/62"
-          ]
-        },
-        {
-          "path": "docs/helix-os/L5-detail-design/log-feedback-memory-lineage.json",
-          "pointers": [
-            "/failure_rules/62",
-            "/functions/1"
-          ]
-        }
-      ]
-    },
-    {
-      "class_id": "OS007-NEG-feedback-comp-16-resolution_origin_unknown_unresolved_claimed_resolved",
-      "expected_classification": "record_material_violation",
-      "expected": {
-        "finding_codes": [
-          "resolution_origin_unknown",
-          "unresolved_claimed_resolved"
-        ]
-      },
-      "expected_axis": "feedback",
-      "expected_state": "violation",
-      "side_effect_count": 0,
-      "source_pointers": [
-        {
-          "path": "docs/helix-os/L8-unit-verification/log-feedback-memory-lineage.json",
-          "pointers": [
-            "/unit_cases/572/expected",
-            "/unit_cases/572/condition",
-            "/unit_cases/572/function_ref"
           ]
         },
         {
@@ -75620,6 +75433,42 @@
       "expected": {
         "finding_codes": [
           "resolution_origin_unknown",
+          "unresolved_claimed_resolved"
+        ]
+      },
+      "expected_axis": "feedback",
+      "expected_state": "violation",
+      "side_effect_count": 0,
+      "source_pointers": [
+        {
+          "path": "docs/helix-os/L8-unit-verification/log-feedback-memory-lineage.json",
+          "pointers": [
+            "/unit_cases/572/expected",
+            "/unit_cases/572/condition",
+            "/unit_cases/572/function_ref"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
+          "pointers": [
+            "/failure_classifications/64"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L5-detail-design/log-feedback-memory-lineage.json",
+          "pointers": [
+            "/failure_rules/64",
+            "/functions/1"
+          ]
+        }
+      ]
+    },
+    {
+      "class_id": "OS007-NEG-feedback-comp-18-resolution_origin_unknown_unresolved_claimed_resolved",
+      "expected_classification": "record_material_violation",
+      "expected": {
+        "finding_codes": [
+          "resolution_origin_unknown",
           "resolution_origin_unknown",
           "unresolved_claimed_resolved"
         ]
@@ -75639,20 +75488,20 @@
         {
           "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
           "pointers": [
-            "/failure_classifications/64"
+            "/failure_classifications/65"
           ]
         },
         {
           "path": "docs/helix-os/L5-detail-design/log-feedback-memory-lineage.json",
           "pointers": [
-            "/failure_rules/64",
+            "/failure_rules/65",
             "/functions/1"
           ]
         }
       ]
     },
     {
-      "class_id": "OS007-NEG-feedback-comp-18-finding_missing",
+      "class_id": "OS007-NEG-feedback-comp-19-finding_missing",
       "expected_classification": "record_material_unknown",
       "expected": {
         "finding_codes": [
@@ -75675,13 +75524,13 @@
         {
           "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
           "pointers": [
-            "/failure_classifications/65"
+            "/failure_classifications/66"
           ]
         },
         {
           "path": "docs/helix-os/L5-detail-design/log-feedback-memory-lineage.json",
           "pointers": [
-            "/failure_rules/65",
+            "/failure_rules/66",
             "/functions/1"
           ]
         }
@@ -75711,13 +75560,13 @@
         {
           "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
           "pointers": [
-            "/failure_classifications/66"
+            "/failure_classifications/67"
           ]
         },
         {
           "path": "docs/helix-os/L5-detail-design/log-feedback-memory-lineage.json",
           "pointers": [
-            "/failure_rules/66",
+            "/failure_rules/67",
             "/functions/2"
           ]
         }
@@ -75750,13 +75599,13 @@
         {
           "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
           "pointers": [
-            "/failure_classifications/67"
+            "/failure_classifications/68"
           ]
         },
         {
           "path": "docs/helix-os/L5-detail-design/log-feedback-memory-lineage.json",
           "pointers": [
-            "/failure_rules/67",
+            "/failure_rules/68",
             "/functions/2"
           ]
         }
@@ -75786,13 +75635,13 @@
         {
           "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
           "pointers": [
-            "/failure_classifications/68"
+            "/failure_classifications/69"
           ]
         },
         {
           "path": "docs/helix-os/L5-detail-design/log-feedback-memory-lineage.json",
           "pointers": [
-            "/failure_rules/68",
+            "/failure_rules/69",
             "/functions/2"
           ]
         }
@@ -75822,13 +75671,13 @@
         {
           "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
           "pointers": [
-            "/failure_classifications/69"
+            "/failure_classifications/70"
           ]
         },
         {
           "path": "docs/helix-os/L5-detail-design/log-feedback-memory-lineage.json",
           "pointers": [
-            "/failure_rules/69",
+            "/failure_rules/70",
             "/functions/2"
           ]
         }
@@ -75858,13 +75707,13 @@
         {
           "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
           "pointers": [
-            "/failure_classifications/70"
+            "/failure_classifications/71"
           ]
         },
         {
           "path": "docs/helix-os/L5-detail-design/log-feedback-memory-lineage.json",
           "pointers": [
-            "/failure_rules/70",
+            "/failure_rules/71",
             "/functions/2"
           ]
         }
@@ -75896,13 +75745,13 @@
         {
           "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
           "pointers": [
-            "/failure_classifications/71"
+            "/failure_classifications/72"
           ]
         },
         {
           "path": "docs/helix-os/L5-detail-design/log-feedback-memory-lineage.json",
           "pointers": [
-            "/failure_rules/71",
+            "/failure_rules/72",
             "/functions/2"
           ]
         }
@@ -75933,13 +75782,13 @@
         {
           "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
           "pointers": [
-            "/failure_classifications/72"
+            "/failure_classifications/73"
           ]
         },
         {
           "path": "docs/helix-os/L5-detail-design/log-feedback-memory-lineage.json",
           "pointers": [
-            "/failure_rules/72",
+            "/failure_rules/73",
             "/functions/2"
           ]
         }
@@ -75969,13 +75818,13 @@
         {
           "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
           "pointers": [
-            "/failure_classifications/73"
+            "/failure_classifications/74"
           ]
         },
         {
           "path": "docs/helix-os/L5-detail-design/log-feedback-memory-lineage.json",
           "pointers": [
-            "/failure_rules/73",
+            "/failure_rules/74",
             "/functions/2"
           ]
         }
@@ -76005,13 +75854,13 @@
         {
           "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
           "pointers": [
-            "/failure_classifications/74"
+            "/failure_classifications/75"
           ]
         },
         {
           "path": "docs/helix-os/L5-detail-design/log-feedback-memory-lineage.json",
           "pointers": [
-            "/failure_rules/74",
+            "/failure_rules/75",
             "/functions/2"
           ]
         }
@@ -76042,20 +75891,56 @@
         {
           "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
           "pointers": [
-            "/failure_classifications/75"
+            "/failure_classifications/76"
           ]
         },
         {
           "path": "docs/helix-os/L5-detail-design/log-feedback-memory-lineage.json",
           "pointers": [
-            "/failure_rules/75",
+            "/failure_rules/76",
             "/functions/2"
           ]
         }
       ]
     },
     {
-      "class_id": "OS007-NEG-memory-comp-11-order_conflict_reflection_not_before_retire",
+      "class_id": "OS007-NEG-memory-comp-11-boolean_unknown_retirement_basis_unknown",
+      "expected_classification": "record_material_unknown",
+      "expected": {
+        "finding_codes": [
+          "boolean_unknown",
+          "retirement_basis_unknown"
+        ]
+      },
+      "expected_axis": "memory",
+      "expected_state": "unknown",
+      "side_effect_count": 0,
+      "source_pointers": [
+        {
+          "path": "docs/helix-os/L8-unit-verification/log-feedback-memory-lineage.json",
+          "pointers": [
+            "/unit_cases/882/expected",
+            "/unit_cases/882/condition",
+            "/unit_cases/882/function_ref"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
+          "pointers": [
+            "/failure_classifications/77"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L5-detail-design/log-feedback-memory-lineage.json",
+          "pointers": [
+            "/failure_rules/77",
+            "/functions/2"
+          ]
+        }
+      ]
+    },
+    {
+      "class_id": "OS007-NEG-memory-comp-12-order_conflict_reflection_not_before_retire",
       "expected_classification": "record_material_violation",
       "expected": {
         "finding_codes": [
@@ -76078,20 +75963,56 @@
         {
           "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
           "pointers": [
-            "/failure_classifications/76"
+            "/failure_classifications/78"
           ]
         },
         {
           "path": "docs/helix-os/L5-detail-design/log-feedback-memory-lineage.json",
           "pointers": [
-            "/failure_rules/76",
+            "/failure_rules/78",
             "/functions/2"
           ]
         }
       ]
     },
     {
-      "class_id": "OS007-NEG-memory-comp-12-consume_without_delivery_duplicate_successful_use_use_state_conflict",
+      "class_id": "OS007-NEG-memory-comp-13-boolean_conflict_reflection_unrecorded_ref_present",
+      "expected_classification": "record_material_violation",
+      "expected": {
+        "finding_codes": [
+          "boolean_conflict",
+          "reflection_unrecorded_ref_present"
+        ]
+      },
+      "expected_axis": "memory",
+      "expected_state": "violation",
+      "side_effect_count": 0,
+      "source_pointers": [
+        {
+          "path": "docs/helix-os/L8-unit-verification/log-feedback-memory-lineage.json",
+          "pointers": [
+            "/unit_cases/909/expected",
+            "/unit_cases/909/condition",
+            "/unit_cases/909/function_ref"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
+          "pointers": [
+            "/failure_classifications/79"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L5-detail-design/log-feedback-memory-lineage.json",
+          "pointers": [
+            "/failure_rules/79",
+            "/functions/2"
+          ]
+        }
+      ]
+    },
+    {
+      "class_id": "OS007-NEG-memory-comp-14-consume_without_delivery_duplicate_successful_use_use_state_conflict",
       "expected_classification": "record_material_violation",
       "expected": {
         "finding_codes": [
@@ -76115,20 +76036,20 @@
         {
           "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
           "pointers": [
-            "/failure_classifications/77"
+            "/failure_classifications/80"
           ]
         },
         {
           "path": "docs/helix-os/L5-detail-design/log-feedback-memory-lineage.json",
           "pointers": [
-            "/failure_rules/77",
+            "/failure_rules/80",
             "/functions/2"
           ]
         }
       ]
     },
     {
-      "class_id": "OS007-NEG-memory-comp-13-consume_without_delivery_duplicate_successful_use",
+      "class_id": "OS007-NEG-memory-comp-15-consume_without_delivery_duplicate_successful_use",
       "expected_classification": "record_material_violation",
       "expected": {
         "finding_codes": [
@@ -76151,20 +76072,99 @@
         {
           "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
           "pointers": [
-            "/failure_classifications/78"
+            "/failure_classifications/81"
           ]
         },
         {
           "path": "docs/helix-os/L5-detail-design/log-feedback-memory-lineage.json",
           "pointers": [
-            "/failure_rules/78",
+            "/failure_rules/81",
             "/functions/2"
           ]
         }
       ]
     },
     {
-      "class_id": "OS007-NEG-feedback-comp-19-resolution_origin_unknown",
+      "class_id": "OS007-NEG-logs-comp-05-log_kind_conflict",
+      "expected_classification": "record_material_violation",
+      "expected": {
+        "finding_codes": [
+          "log_kind_conflict",
+          "log_kind_conflict"
+        ]
+      },
+      "expected_axis": "logs",
+      "expected_state": "violation",
+      "side_effect_count": 0,
+      "source_pointers": [
+        {
+          "path": "docs/helix-os/L8-unit-verification/log-feedback-memory-lineage.json",
+          "pointers": [
+            "/unit_cases/936/expected",
+            "/unit_cases/936/condition",
+            "/unit_cases/936/function_ref"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
+          "pointers": [
+            "/failure_classifications/82"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L5-detail-design/log-feedback-memory-lineage.json",
+          "pointers": [
+            "/failure_rules/82",
+            "/functions/0"
+          ]
+        }
+      ]
+    },
+    {
+      "class_id": "OS007-NEG-feedback-comp-20-boolean_conflict_field_unknown",
+      "expected_classification": "record_material_violation",
+      "expected": {
+        "finding_codes": [
+          "boolean_conflict",
+          "field_unknown",
+          "field_unknown",
+          "field_unknown",
+          "field_unknown",
+          "field_unknown",
+          "field_unknown",
+          "field_unknown",
+          "field_unknown"
+        ]
+      },
+      "expected_axis": "feedback",
+      "expected_state": "violation",
+      "side_effect_count": 0,
+      "source_pointers": [
+        {
+          "path": "docs/helix-os/L8-unit-verification/log-feedback-memory-lineage.json",
+          "pointers": [
+            "/unit_cases/940/expected",
+            "/unit_cases/940/condition",
+            "/unit_cases/940/function_ref"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
+          "pointers": [
+            "/failure_classifications/83"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L5-detail-design/log-feedback-memory-lineage.json",
+          "pointers": [
+            "/failure_rules/83",
+            "/functions/1"
+          ]
+        }
+      ]
+    },
+    {
+      "class_id": "OS007-NEG-feedback-comp-21-resolution_origin_unknown",
       "expected_classification": "record_material_unknown",
       "expected": {
         "finding_codes": [
@@ -76187,13 +76187,13 @@
         {
           "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
           "pointers": [
-            "/failure_classifications/79"
+            "/failure_classifications/84"
           ]
         },
         {
           "path": "docs/helix-os/L5-detail-design/log-feedback-memory-lineage.json",
           "pointers": [
-            "/failure_rules/79",
+            "/failure_rules/84",
             "/functions/1"
           ]
         }
@@ -76206,8 +76206,152 @@
       "path": "docs/helix-os/L7-function-verification/log-feedback-memory-lineage.json",
       "pointer": "/l9_material_bundle/case/case_materials"
     },
-    "method": "L7の基準入力(/l9_material_bundle/case/source_packets/records/input)と各caseのinput.replacementsのみから入力を展開し、L4 diagnostic_contract (R01..R12) とL5 formal_programを順方向評価してfindings・condition・facet・function_refを導出する。L8/L9の既存expectedから逆生成しない（DT-VT-105）。",
+    "method": "L7の基準入力(/l9_material_bundle/case/source_packets/records/input)と各caseのinput.replacementsのみから入力を展開し、L4 diagnostic_contract (R01..R12) とL5 formal_programを順方向評価してfindings・condition・facet・function_refを導出する。L8/L9の既存expectedから逆生成しない（DT-VT-105）。既存の単一分類44件は元のkeyのまま保持し、L4規則上単独発火しない5分類はmember 0件の理由付き残件として記録する。",
     "c0935_c0936_function_ref_correction": "HELIXOS-L9-007-C0935およびHELIXOS-L9-007-C0936の刺激はwhole_completion_claimであり、L4 R12 (/diagnostic_contract/rules/11) とL5 assemble_evidence_record (/functions/3, /formal_program/functions/assemble_evidence_record/boundary_steps/0..1) の入力である。既存case期待値を一切変更せず、L8 unit_cases[934..935].function_refをassess_memory_materialからassemble_evidence_recordへ訂正する。",
-    "singleton_forward_formation": "L4/L5で単一finding発火が可能なfeedback 3分類（OS007-NEG-feedback-field_unknown, OS007-NEG-feedback-field_conflict, OS007-NEG-feedback-resolution_origin_unknown）について、L4 R01/R05/R06とL5 assess_feedback_materialから順方向にHELIXOS-L9-007-C0946..C0948を形成し、L8では被検関数assess_feedback_materialの出力型FeedbackAssessmentに存在するfieldのみをexpected_function_output_projectionに記録する。"
+    "singleton_forward_formation": "L4/L5で単一finding発火が可能なfeedback 3分類（OS007-NEG-feedback-field_unknown, OS007-NEG-feedback-field_conflict, OS007-NEG-feedback-resolution_origin_unknown）について、L4 R01/R05/R06とL5 assess_feedback_materialから順方向にHELIXOS-L9-007-C0946..C0948を形成し、L8では被検関数assess_feedback_materialの出力型FeedbackAssessmentに存在するfieldのみをexpected_function_output_projectionに記録する。",
+    "non_occurring_singleton_residuals": [
+      {
+        "class_id": "OS007-NEG-logs-log_kind_conflict",
+        "single_finding_code": "log_kind_conflict",
+        "member_count": 0,
+        "co_occurring_rules_and_reason": "L4 R02 (/diagnostic_contract/rules/1) と L5 assess_log_material/steps/1..3 は actual.logs.<slot>.kind と context.logs.<slot>.kind の一致比較 (compare_known_values -> field_conflict) と、actual/context 両側の slot 名一致検証 (validate_equals_iteration_key -> log_kind_conflict) を同時に実行する。actual.kind == context.kind かつ slot 名と異なる場合は actual/context 両側で log_kind_conflict が2件発火し (C0937..C0940)、片側のみ slot 名と異なる場合は actual.kind != context.kind により field_conflict が必ず共起するため、単一1件の log_kind_conflict は単独では発火しない。",
+        "l4_pointers": [
+          "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/failure_classifications/3",
+          "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/codes/3",
+          "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/rules/0",
+          "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/rules/1",
+          "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/rules/11"
+        ],
+        "l5_pointers": [
+          "docs/helix-os/L5-detail-design/log-feedback-memory-lineage.json#/failure_rules/3",
+          "docs/helix-os/L5-detail-design/log-feedback-memory-lineage.json#/finite_domains/diagnostic_codes/3",
+          "docs/helix-os/L5-detail-design/log-feedback-memory-lineage.json#/algorithm/ordered_rules/0",
+          "docs/helix-os/L5-detail-design/log-feedback-memory-lineage.json#/algorithm/ordered_rules/1",
+          "docs/helix-os/L5-detail-design/log-feedback-memory-lineage.json#/algorithm/ordered_rules/11",
+          "docs/helix-os/L5-detail-design/log-feedback-memory-lineage.json#/formal_program/functions/assess_log_material/steps/1",
+          "docs/helix-os/L5-detail-design/log-feedback-memory-lineage.json#/formal_program/functions/assess_log_material/steps/2",
+          "docs/helix-os/L5-detail-design/log-feedback-memory-lineage.json#/formal_program/functions/assess_log_material/steps/3"
+        ],
+        "realized_composite_class_ids": [
+          "OS007-NEG-logs-comp-01-field_conflict_log_kind_conflict",
+          "OS007-NEG-logs-comp-05-log_kind_conflict"
+        ]
+      },
+      {
+        "class_id": "OS007-NEG-feedback-boolean_conflict",
+        "single_finding_code": "boolean_conflict",
+        "member_count": 0,
+        "co_occurring_rules_and_reason": "L4 R01, R05 (/diagnostic_contract/rules/0, /diagnostic_contract/rules/4) と L5 assess_feedback_material/steps/5 は stages.<stage>.recorded の boolean 不一致 (true vs false) で boolean_conflict を発火させると同時に、少なくとも片側が true であるため compare_fields_when_either_true と compare_join_when_either_true を必ず実行する。recorded=false 側の stage_fields が null なら field_unknown が共起し (C0941)、非 null なら unrecorded_nonnull_fields により stage_unrecorded_ref_present (または resolved_claim=true で unresolved_claimed_resolved) が必ず共起するため、feedback facet で単一の boolean_conflict は単独では発火しない。",
+        "l4_pointers": [
+          "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/failure_classifications/13",
+          "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/codes/10",
+          "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/rules/0",
+          "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/rules/3",
+          "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/rules/4",
+          "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/rules/11"
+        ],
+        "l5_pointers": [
+          "docs/helix-os/L5-detail-design/log-feedback-memory-lineage.json#/failure_rules/13",
+          "docs/helix-os/L5-detail-design/log-feedback-memory-lineage.json#/finite_domains/diagnostic_codes/10",
+          "docs/helix-os/L5-detail-design/log-feedback-memory-lineage.json#/algorithm/ordered_rules/0",
+          "docs/helix-os/L5-detail-design/log-feedback-memory-lineage.json#/algorithm/ordered_rules/3",
+          "docs/helix-os/L5-detail-design/log-feedback-memory-lineage.json#/algorithm/ordered_rules/4",
+          "docs/helix-os/L5-detail-design/log-feedback-memory-lineage.json#/algorithm/ordered_rules/11",
+          "docs/helix-os/L5-detail-design/log-feedback-memory-lineage.json#/formal_program/functions/assess_feedback_material/steps/5"
+        ],
+        "realized_composite_class_ids": [
+          "OS007-NEG-feedback-comp-11-boolean_conflict_stage_unrecorded_ref_present_unresolved_claimed_resolved",
+          "OS007-NEG-feedback-comp-14-boolean_conflict_field_unknown_unresolved_claimed_resolved",
+          "OS007-NEG-feedback-comp-20-boolean_conflict_field_unknown"
+        ]
+      },
+      {
+        "class_id": "OS007-NEG-feedback-original_finding_changed",
+        "single_finding_code": "original_finding_changed",
+        "member_count": 0,
+        "co_occurring_rules_and_reason": "L4 R01, R04 (/diagnostic_contract/rules/0, /diagnostic_contract/rules/3) と L5 assess_feedback_material/steps/1..2 は actual.original_finding と context.original_finding が共に object で不一致のとき original_finding_changed を発火させると同時に、固定7 feedback_fields (finding_id, project_id, requirement_revision, scope, source_head, source_ref, source_digest) を compare_fields_if_both_objects で個別比較する。固定7 field 構造の object 間で不一致が生じるには少なくとも1つの field が異なるか null/非文字列である必要があり、必ず field_conflict または field_unknown が共起する (C0374..C0425) ため、単一の original_finding_changed は単独では発火しない。",
+        "l4_pointers": [
+          "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/failure_classifications/15",
+          "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/codes/12",
+          "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/rules/0",
+          "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/rules/3",
+          "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/rules/11"
+        ],
+        "l5_pointers": [
+          "docs/helix-os/L5-detail-design/log-feedback-memory-lineage.json#/failure_rules/15",
+          "docs/helix-os/L5-detail-design/log-feedback-memory-lineage.json#/finite_domains/diagnostic_codes/12",
+          "docs/helix-os/L5-detail-design/log-feedback-memory-lineage.json#/algorithm/ordered_rules/0",
+          "docs/helix-os/L5-detail-design/log-feedback-memory-lineage.json#/algorithm/ordered_rules/3",
+          "docs/helix-os/L5-detail-design/log-feedback-memory-lineage.json#/algorithm/ordered_rules/11",
+          "docs/helix-os/L5-detail-design/log-feedback-memory-lineage.json#/formal_program/functions/assess_feedback_material/steps/1",
+          "docs/helix-os/L5-detail-design/log-feedback-memory-lineage.json#/formal_program/functions/assess_feedback_material/steps/2"
+        ],
+        "realized_composite_class_ids": [
+          "OS007-NEG-feedback-comp-01-field_unknown_original_finding_changed",
+          "OS007-NEG-feedback-comp-02-field_conflict_original_finding_changed",
+          "OS007-NEG-feedback-comp-03-field_conflict_original_finding_changed",
+          "OS007-NEG-feedback-comp-04-field_conflict_original_finding_changed",
+          "OS007-NEG-feedback-comp-05-field_unknown_original_finding_changed_unresolved_claimed_resolved",
+          "OS007-NEG-feedback-comp-06-field_conflict_original_finding_changed_unresolved_claimed_resolved",
+          "OS007-NEG-feedback-comp-08-field_conflict_original_finding_changed_unresolved_claimed_resolved"
+        ]
+      },
+      {
+        "class_id": "OS007-NEG-memory-boolean_conflict",
+        "single_finding_code": "boolean_conflict",
+        "member_count": 0,
+        "co_occurring_rules_and_reason": "L4 R01, R08 (/diagnostic_contract/rules/0, /diagnostic_contract/rules/7) と L5 assess_memory_material/steps/5..9 は reflection.recorded の boolean 不一致 (true vs false) で boolean_conflict を発火させると同時に、片側が true であるため compare_fields_when_either_true・compare_field_when_either_recorded・order_checks を実行し、かつ recorded=false 側に対し unrecorded_nonnull_fields を実行する。recorded=false 側の reflection_fields/order が null なら field_unknown/order_unknown が共起し、非 null の有効値なら reflection_unrecorded_ref_present が共起する (C0910) ため、memory facet で単一の boolean_conflict は単独では発火しない。",
+        "l4_pointers": [
+          "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/failure_classifications/24",
+          "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/codes/10",
+          "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/rules/0",
+          "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/rules/7",
+          "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/rules/11"
+        ],
+        "l5_pointers": [
+          "docs/helix-os/L5-detail-design/log-feedback-memory-lineage.json#/failure_rules/24",
+          "docs/helix-os/L5-detail-design/log-feedback-memory-lineage.json#/finite_domains/diagnostic_codes/10",
+          "docs/helix-os/L5-detail-design/log-feedback-memory-lineage.json#/algorithm/ordered_rules/0",
+          "docs/helix-os/L5-detail-design/log-feedback-memory-lineage.json#/algorithm/ordered_rules/7",
+          "docs/helix-os/L5-detail-design/log-feedback-memory-lineage.json#/algorithm/ordered_rules/11",
+          "docs/helix-os/L5-detail-design/log-feedback-memory-lineage.json#/formal_program/functions/assess_memory_material/steps/5",
+          "docs/helix-os/L5-detail-design/log-feedback-memory-lineage.json#/formal_program/functions/assess_memory_material/steps/6",
+          "docs/helix-os/L5-detail-design/log-feedback-memory-lineage.json#/formal_program/functions/assess_memory_material/steps/7",
+          "docs/helix-os/L5-detail-design/log-feedback-memory-lineage.json#/formal_program/functions/assess_memory_material/steps/8",
+          "docs/helix-os/L5-detail-design/log-feedback-memory-lineage.json#/formal_program/functions/assess_memory_material/steps/9"
+        ],
+        "realized_composite_class_ids": [
+          "OS007-NEG-memory-comp-10-boolean_conflict_reflection_unrecorded_ref_present_retire_before_reflection",
+          "OS007-NEG-memory-comp-13-boolean_conflict_reflection_unrecorded_ref_present"
+        ]
+      },
+      {
+        "class_id": "OS007-NEG-memory-retirement_basis_unknown",
+        "single_finding_code": "retirement_basis_unknown",
+        "member_count": 0,
+        "co_occurring_rules_and_reason": "L4 R08, R09 (/diagnostic_contract/rules/7, /diagnostic_contract/rules/8) と L5 assess_memory_material/steps/5, 10 において、retirement_basis_unknown は actual.state == 'retired' かつ actual.reflection.recorded が boolean (true/false) でないときにのみ発火するが、先行する step 5 (compare_fields on reflection.recorded with boolean_value) が actual.reflection.recorded の非 boolean に対して必ず boolean_unknown を発火させる (C0883) ため、単一の retirement_basis_unknown は単独では発火しない。",
+        "l4_pointers": [
+          "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/failure_classifications/39",
+          "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/codes/34",
+          "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/rules/0",
+          "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/rules/7",
+          "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/rules/8",
+          "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/rules/11"
+        ],
+        "l5_pointers": [
+          "docs/helix-os/L5-detail-design/log-feedback-memory-lineage.json#/failure_rules/39",
+          "docs/helix-os/L5-detail-design/log-feedback-memory-lineage.json#/finite_domains/diagnostic_codes/34",
+          "docs/helix-os/L5-detail-design/log-feedback-memory-lineage.json#/algorithm/ordered_rules/0",
+          "docs/helix-os/L5-detail-design/log-feedback-memory-lineage.json#/algorithm/ordered_rules/7",
+          "docs/helix-os/L5-detail-design/log-feedback-memory-lineage.json#/algorithm/ordered_rules/8",
+          "docs/helix-os/L5-detail-design/log-feedback-memory-lineage.json#/algorithm/ordered_rules/11",
+          "docs/helix-os/L5-detail-design/log-feedback-memory-lineage.json#/formal_program/functions/assess_memory_material/steps/5",
+          "docs/helix-os/L5-detail-design/log-feedback-memory-lineage.json#/formal_program/functions/assess_memory_material/steps/10"
+        ],
+        "realized_composite_class_ids": [
+          "OS007-NEG-memory-comp-11-boolean_unknown_retirement_basis_unknown"
+        ]
+      }
+    ]
   }
 }
