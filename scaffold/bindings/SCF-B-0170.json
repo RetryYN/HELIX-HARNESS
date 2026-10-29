@@ -21,13 +21,13 @@
     },
     {
       "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
-      "sha256": "dc3cf283059c0d4d6f890e93728ce0f75088a6e8980fe937b22ef9afeb117ec5",
-      "note": "固定input domain、6 facets、code/disposition、aggregation、condition_values、algorithm、31既存failure classifications、追加した複合class形成契約。複合case rowsは未形成。"
+      "sha256": "e2e92c62217f70203752ab4f79ed7a92831d94cb813c6947153f237c83c8576b",
+      "note": "L4のfixed input domain、finding、aggregation、condition_values、同層内の複合finding projection。複合case rowは未形成。"
     },
     {
       "path": "docs/helix-os/L5-detail-design/management-authority-source-record.json",
-      "sha256": "90e9df83f3c64788453579789060e090396097c10f127075115daa4bda5dd895",
-      "note": "形式化した固定carrier、全field比較、finding/retention、31既存failure rules、追加した複合class形成契約。複合case rowsは未形成。"
+      "sha256": "bd68cff4495e1cfd25af730ba7fca235cd1ca95f6ed46a97ec3a67a289b2128a",
+      "note": "固定carrierとfield比較、finding/retention、31既存failure rules、L4投影からのcomposite key/owner_ref解決。複合case rowsは未形成。"
     },
     {
       "path": "docs/helix-os/L7-function-verification/management-authority-source-record.json",
