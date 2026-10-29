@@ -25,8 +25,8 @@
     },
     {
       "path": "docs/helix-os/L9-integration-verification/management-authority-source-record.json",
-      "sha256": "392417ce60ff10beed23d1aee27aadc7afaaf4062fb1dc04473325e30ad2c7e5",
-      "note": "PR-AのL9 class refsとL7 material pointersを含むL9 bytes。"
+      "sha256": "a4a186902d29330d5d88bdb8366e70b8678a31d3e2e750b8e2e7e46e83b5776c",
+      "note": "PR-A/B時点のL9 bytes hash 392417ce60ff10beed23d1aee27aadc7afaaf4062fb1dc04473325e30ad2c7e5から、PR-Cが既存2 composite rowへL5 /failure_rules/31,/32 pointerを各1件追記した現在のL9 bytes。583 integration_casesと既存class/link/expectationは維持。current sha256=a4a186902d29330d5d88bdb8366e70b8678a31d3e2e750b8e2e7e46e83b5776c。"
     },
     {
       "path": "scaffold/tools/design_verification_checker.py",
@@ -37,7 +37,7 @@
   "role": "OS015 L4/L9限定候補の固定sourceと静的照合証拠。",
   "obligations": [
     "元candidate 02e177494316f6ccb3ff669f79477fbe8fc29b01の独立確認済み29ケースと2 classを維持する。",
-    "L4 class source pointersはL3/L4に限定し、L9 class source pointersはL4/L7に限定する。",
+    "PR-A時点のL4 class source pointersはL3/L4、L9 class source pointersはL4/L7。後続PR-Cは同じ2 L9 class rowsに対応するL5 failure_rules pointerだけを追記し、既存source pointersを保持する。",
     "L7 given.inputの固定hash/pointer、L4手動finding記録とL9 linkを静的照合する。",
     "L9の583行でmaterial_ref/negative_class_ref以外を変更せず既存期待を保持する。",
     "C0044を含む112件、L5/L8 pair projectionおよびL9 L5 rule source pointersは残件として維持する。",
@@ -52,7 +52,7 @@
       "HELIXOS-L4-015-F02 diagnostic_contract",
       "OS015 L7 connection_materials/OS015/case"
     ],
-    "boundary": "このPR-AはL4/L9 pairのみ。後続PR-BでL5/L8 pairを追加し、merge後PR-CでL9 class source_pointersへL5 failure_rules /31,/32を追記する。"
+    "boundary": "この証拠はPR-AのL4/L9 pair範囲を記録する。PR-BでL5/L8が追加され、別PR-CでL9の2 class source_pointersへL5 failure_rules /31,/32が追記された。全体PASS・freeze成立を主張しない。"
   },
   "operations": {
     "allowed": [
@@ -95,9 +95,9 @@
       "git diff --check"
     ],
     "negative_cases": [
-      "L5/L8 pair未形成のためnegative-4wayはFAILのまま。",
-      "C0044を含む112件は未割当。",
-      "旧freezeは本PRで成立させない。"
+      "PR-A時点ではL5/L8 pairが未形成であり、PR-Aの中間negative-4wayはFAIL。後続PR-BでL5/L8は形成済み。",
+      "C0044を含む112件は本29件の範囲外の未割当残件として維持。",
+      "PR-Cは2つのL9 source pointerだけを追記し、negative checker結果や旧freezeを成立させない。"
     ]
   },
   "replacement": {

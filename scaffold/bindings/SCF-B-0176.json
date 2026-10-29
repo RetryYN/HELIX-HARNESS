@@ -1,0 +1,134 @@
+{
+  "schema_revision": 1,
+  "id": "SCF-B-0176",
+  "kind": "scaffold",
+  "title": "WR181 OS015 PR-C L9 source pointer 2件候補",
+  "product": "HELIX-OS",
+  "owner_candidate": "HELIX-OS OS015 管理record/source projection設計",
+  "state": "registered",
+  "reason": "PR class design_verification のOS015 L4/L9 pair内で、既存2 composite class rowへ対応するL5 failure_rules source pointerを各1件追記する候補。",
+  "upstream": [
+    {
+      "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+      "sha256": "e86254a35b476ed71ebb112e41ccd2b48f89a8d0393e6495dc11cac7a7cf4e02",
+      "note": "L3 F02上流要件。期待値の生成元にはしない。"
+    },
+    {
+      "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
+      "sha256": "9146ffd557bc5da60f79cdcd462578b38edf6ec524143a705ab07eeb34c7997b",
+      "note": "PR-A merge revisionの2 composite classification。"
+    },
+    {
+      "path": "docs/helix-os/L5-detail-design/management-authority-source-record.json",
+      "sha256": "c7d979d397f7ebc9b82b1cb5fa3e32f82737956c6a54adc2080342b729607c7f",
+      "note": "PR-Bで33 failure rulesを保持する候補L5 bytes。"
+    },
+    {
+      "path": "docs/helix-os/L7-function-verification/management-authority-source-record.json",
+      "sha256": "b2a71c3d2a99c5268275e183f21c2b1bbc4b21ad79d577af42573a079e920a09",
+      "note": "29件のfixed given.inputとfixture_inputs。"
+    },
+    {
+      "path": "docs/helix-os/L8-unit-verification/management-authority-source-record.json",
+      "sha256": "63fc2084a2a41cce1c84ac0db7a437ce25a0525f9f24d060f47bcf61357aa621",
+      "note": "583 rowsを保持し29件だけlinkを追加する候補L8 bytes。"
+    },
+    {
+      "path": "scaffold/tools/design_verification_checker.py",
+      "sha256": "211e39ff48ec96adf37f948db91dd63795435c53671e16576b39eb0e3a0538d6",
+      "note": "現行document checker。変更せず、明示照合に使用。"
+    },
+    {
+      "path": "scaffold/research/wr181-os015-pr-a-l4-l9-20261030/case-evidence.json",
+      "sha256": "46540a6e40238eeee2d3c5f2cb7866ba7035c12217cd0f5fd5344430ecd92cbc",
+      "note": "先行独立手動照合29件の原証拠。"
+    },
+    {
+      "path": "scaffold/bindings/SCF-B-0170.json",
+      "sha256": "9b925b4ecc8de86841f222c49149cb3e2bb156ae4e1106d90d1feffa95fbe204",
+      "note": "固定入力inventoryとclass形成根拠のbinding。"
+    },
+    {
+      "path": "docs/helix-os/L9-integration-verification/management-authority-source-record.json",
+      "sha256": "a4a186902d29330d5d88bdb8366e70b8678a31d3e2e750b8e2e7e46e83b5776c",
+      "note": "PR-C候補L9 bytes。既存2 composite class rowへL5 /failure_rules/31,/32 pointerを各1件追加。583件のcase rows・既存期待・class linksは不変。"
+    }
+  ],
+  "role": "OS015 L9の2 source pointer追記と29件の先行pair被覆を静的に記録する。",
+  "obligations": [
+    "L9の既存2 composite class rowへ対応するL5 failure_rules pointerを1件ずつ追加し、他のL9内容を保つ。",
+    "L5 rule IDと各L9 class IDの対応、JSON Pointerの解決、既存pointer保持を静的に照合する。",
+    "PR-A/Bで接続された29件のcase linkとL7 material pointerを照合し、L9の583 case rowsと全期待を変更しない。",
+    "C0044を含む残112件、6 singleton-less class、negative-4way FAILを残件として明示し、freeze成立や全体PASSを主張しない。"
+  ],
+  "connections": {
+    "consumers": [
+      "OS015 L4/L9 pair design verification"
+    ],
+    "dependencies": [
+      "PR-A merge 36947baf69999c99d5370d804d69ee2f3acaed72",
+      "PR-B merge 2d7cabb70861f4cc40d4d2e850d35c6b09083034",
+      "L7 fixed input/manual case evidence"
+    ],
+    "boundary": "PR-CはL9の2 class source pointer追記だけを対象とする。PR-A/Bで保持された29件のcase linkを静的に照合するが、checker全体PASS、残件解消、freeze成立を意味しない。"
+  },
+  "operations": {
+    "allowed": [
+      "JSON文書・pin・case link・既存期待の静的照合",
+      "既存document checkerの明示的照合",
+      "scfctl validate / stale",
+      "git diff --check"
+    ],
+    "forbidden": [
+      "L4/L5/L7/L8文書を編集する",
+      "L9の既存期待・case rows・既存source pointersを変更する",
+      "既存checker/runtime/test/CIを変更または実行する",
+      "raw inputからfinding/classを実行・算出する",
+      "旧HELIX CLI/runtime/test/CIを実行する"
+    ]
+  },
+  "artifacts": [
+    "scaffold/research/wr181-os015-pr-c-l9-pointers-20261030/README.md",
+    "scaffold/research/wr181-os015-pr-c-l9-pointers-20261030/validate_prc_l9_pointers.py",
+    "scaffold/research/wr181-os015-pr-c-l9-pointers-20261030/static-validation.json",
+    "scaffold/research/wr181-os015-pr-c-l9-pointers-20261030/verification-summary.json",
+    "scaffold/research/wr181-os015-pr-a-l4-l9-20261030/case-evidence.json",
+    "scaffold/bindings/SCF-B-0170.json",
+    "scaffold/bindings/SCF-B-0173.json",
+    "scaffold/bindings/SCF-B-0175.json"
+  ],
+  "verification": {
+    "evidence_kind": "scaffold",
+    "scope": [
+      "schema_interface",
+      "source_revision_stale",
+      "negative_case",
+      "forbidden_write_scope"
+    ],
+    "oracles": [
+      "python3 scaffold/research/wr181-os015-pr-c-l9-pointers-20261030/validate_prc_l9_pointers.py",
+      "python3 scaffold/tools/design_verification_checker.py check-child --root . --l4 docs/helix-os/L4-basic-design/management-authority-source-record.json --l5 docs/helix-os/L5-detail-design/management-authority-source-record.json --l8 docs/helix-os/L8-unit-verification/management-authority-source-record.json --l9 docs/helix-os/L9-integration-verification/management-authority-source-record.json",
+      "python3 scaffold/tools/design_verification_checker.py check-freeze --root . --worktree docs/governance/audits/tdd/os007-os015-function-pair-freeze-2026-10-28.json",
+      "python3 -B scaffold/tools/scfctl.py validate",
+      "python3 -B scaffold/tools/scfctl.py stale",
+      "git diff --check"
+    ],
+    "negative_cases": [
+      "L9 residual 112件（C0044を含む）は未割当のまま。",
+      "6 singleton-less classは未形成で、negative-4wayはFAILのまま。",
+      "PR-Cはcheckerが読まないL9 source_pointersを追記するものであり、negative PASSやfreeze成立を生成しない。"
+    ]
+  },
+  "replacement": {
+    "role_target": "OS015 L4/L9限定scaffold候補",
+    "formal_artifacts": [],
+    "issue": 0,
+    "status": "pending",
+    "transfer": null,
+    "target_revisions": {},
+    "confirmation_ref": null,
+    "confirmation_digest": null
+  },
+  "created": "2026-10-30",
+  "updated": "2026-10-30"
+}

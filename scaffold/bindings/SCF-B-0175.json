@@ -6,7 +6,7 @@
   "product": "HELIX-OS",
   "owner_candidate": "HELIX-OS OS015 管理record/source projection設計",
   "state": "registered",
-  "reason": "PR class design_verification のOS015 L5/L8 pair候補。PR-A main merge後のL4/L9 bytesをL5/L8からpinし、L5をcommitしてからL8がそのL5 ancestor bytesをpinする。L9は変更せず、L9へのL5 pointer追加はPR-Cの残件。",
+  "reason": "PR class design_verification のOS015 L5/L8 pair候補。PR-B時点でPR-A main merge後のL4/L9 bytesをpinし、L5をcommitしてからL8がそのL5 ancestor bytesをpinした。後続PR-CはL9の既存2 composite rowsへL5 source pointerを別PRで追加。",
   "upstream": [
     {
       "path": "docs/helix-os/L3-requirements/functional-requirements.json",
@@ -35,8 +35,8 @@
     },
     {
       "path": "docs/helix-os/L9-integration-verification/management-authority-source-record.json",
-      "sha256": "392417ce60ff10beed23d1aee27aadc7afaaf4062fb1dc04473325e30ad2c7e5",
-      "note": "PR-A merge revisionのL9 bytes。PR-Bでは変更しない。"
+      "sha256": "a4a186902d29330d5d88bdb8366e70b8678a31d3e2e750b8e2e7e46e83b5776c",
+      "note": "PR-A/B時点のL9 bytes hash 392417ce60ff10beed23d1aee27aadc7afaaf4062fb1dc04473325e30ad2c7e5から、PR-Cが既存2 composite rowへL5 /failure_rules/31,/32 pointerを各1件追記した現在のL9 bytes。583 integration_casesと既存class/link/expectationは維持。current sha256=a4a186902d29330d5d88bdb8366e70b8678a31d3e2e750b8e2e7e46e83b5776c。"
     },
     {
       "path": "scaffold/tools/design_verification_checker.py",
@@ -60,7 +60,7 @@
     "L5 source_pair_pinsはPR-A merge 36947baf69999c99d5370d804d69ee2f3acaed72のL4/L9 bytesを指し、L8は同じpair bytesを指す。",
     "L8 candidate_l5_bytesは到達可能なL5 commit d0b9aadf37a53a182bf6188495771c17fd06e16cとそのpath hashを指す。",
     "既存583 L8 caseのcondition/expected/expected_preservedを保持し、29件のlink fieldだけを追加する。",
-    "L9のL5 source pointer追加はPR-Cの残件として扱い、negative全体PASSやfreeze成立を主張しない。",
+    "PR-BはL9を変更しなかった。後続PR-Cは2つのL9 composite class rowsへ対応するL5 source_pointersだけを追記し、他の期待・case refsを保つ。",
     "C0044を含む112件と6 singleton-less classの残件を明記する。"
   ],
   "connections": {
@@ -71,7 +71,7 @@
       "PR-A OS015 L4/L9 merge 36947baf69999c99d5370d804d69ee2f3acaed72",
       "L7 fixed input/manual case evidence"
     ],
-    "boundary": "PR-BはOS015 L5/L8 pairのみ。L9は変更せず、L9の2 composite rowへのL5 /failure_rules/31,/32 source pointer追加はPR-Cで行う。negative-4wayはL8の112未割当caseと6 singleton-less class不在によるL8/L9 mismatchを残す。"
+    "boundary": "PR-BはOS015 L5/L8 pairのみを記録する。後続PR-CはOS015 L4/L9 pair内のL9 source pointer追記であり、このbindingにはPR-B時点の検証結果を保持する。negative-4wayは112未割当caseと6 singleton-less class不在によりFAIL。"
   },
   "operations": {
     "allowed": [
@@ -112,9 +112,9 @@
       "git diff --check"
     ],
     "negative_cases": [
-      "112件のL8 case refsは未割当のまま。",
-      "6 singleton-less classがL8/L9に不在で、negative-4wayはFAILのまま。",
-      "PR-CでL9の2 composite rowへL5 rule pointerを加える残件がある。",
+      "PR-B時点でL8の112 case refsは未割当。",
+      "6 singleton-less classがL8/L9に不在で、negative-4wayはFAIL。",
+      "PR-BではL9のL5 source pointerは残件であり、別PR-Cが2 pointerを追記する。",
       "旧freezeは成立せず、更新しない。"
     ]
   },

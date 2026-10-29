@@ -1,0 +1,164 @@
+{
+  "schema": "wr181-pr-c-verification-summary.v1",
+  "base_revision": "2d7cabb70861f4cc40d4d2e850d35c6b09083034",
+  "latest_main_revision": "ff8afa258391992ebd04336a19f7064e967d12bb",
+  "latest_main_fetch_verified": true,
+  "latest_main_changed_paths": [
+    "helix/helix-harness/units/HELIXHARNESS-UNIT-PRODUCT-TEMPLATE-APPLICATION/src/application_general_proposal_exchange.py",
+    "helix/helix-harness/units/HELIXHARNESS-UNIT-PRODUCT-TEMPLATE-APPLICATION/src/general_proposal_exchange_body.py",
+    "helix/helix-harness/units/HELIXHARNESS-UNIT-PRODUCT-TEMPLATE-APPLICATION/src/general_proposal_exchange_f02_detail.py",
+    "helix/helix-harness/units/HELIXHARNESS-UNIT-PRODUCT-TEMPLATE-APPLICATION/src/general_proposal_exchange_native.py",
+    "helix/helix-harness/units/HELIXHARNESS-UNIT-PRODUCT-TEMPLATE-APPLICATION/src/general_proposal_exchange_publication.py",
+    "helix/helix-harness/units/HELIXHARNESS-UNIT-PRODUCT-TEMPLATE-APPLICATION/src/product_template_application.py",
+    "helix/helix-harness/units/HELIXHARNESS-UNIT-PRODUCT-TEMPLATE-APPLICATION/tests/fixtures/general_proposal_exchange.json",
+    "helix/helix-harness/units/HELIXHARNESS-UNIT-PRODUCT-TEMPLATE-APPLICATION/tests/gpe_case_support.py",
+    "helix/helix-harness/units/HELIXHARNESS-UNIT-PRODUCT-TEMPLATE-APPLICATION/tests/test_general_proposal_exchange.py"
+  ],
+  "latest_main_overlap_with_candidate_paths": false,
+  "l9_candidate_sha256": "a4a186902d29330d5d88bdb8366e70b8678a31d3e2e750b8e2e7e46e83b5776c",
+  "l9_change": "既存2 composite class rowsへ対応L5 pointerを各1件追記",
+  "pointer_map": {
+    "OS015-NEG-COMPOSITE-07c9fd844a293140f5dc77476ab8ed90116889361788956739abfdcf65b874c4": "/failure_rules/31",
+    "OS015-NEG-COMPOSITE-4e0c28b06920d3a9665cbe4beeaf48cea44d7b0d350dddfaec9c8471de1e86b5": "/failure_rules/32"
+  },
+  "case_rows": 583,
+  "case_expectations_unchanged": true,
+  "case_links_unchanged": true,
+  "other_layers_changed": false,
+  "pr_a_pr_b_pr_c_coverage": {
+    "case_count": 29,
+    "class_count": 2,
+    "case_ids": [
+      "C0045-C0061",
+      "C0102-C0113"
+    ]
+  },
+  "check_child": {
+    "before_exit": 1,
+    "after_exit": 1,
+    "before_passed": false,
+    "after_passed": false,
+    "l4_l9_pair_passed": true,
+    "l5_l8_pair_passed": true,
+    "negative_4way_passed": false,
+    "negative_4way_failure_count": 136,
+    "negative_4way_counts": {
+      "L4": 33,
+      "L9": 27,
+      "L8": 27,
+      "L5": 33
+    },
+    "matched_case_count": 460,
+    "ownership_caps_all_passed": true,
+    "pins_all_passed": true
+  },
+  "check_freeze": {
+    "before_exit": 1,
+    "after_exit": 1,
+    "before_mechanical_match": false,
+    "after_mechanical_match": false,
+    "before_checks": {
+      "CHK-PIN-SHA256": {
+        "passed": false,
+        "status": "not_evaluated",
+        "failure_count": 1
+      },
+      "CHK-JSON-POINTER": {
+        "passed": false,
+        "status": "evaluated",
+        "failure_count": 2421
+      },
+      "CHK-NEG-4WAY-MATCH": {
+        "passed": false,
+        "status": "not_evaluated",
+        "failure_count": 1
+      },
+      "CHK-PAIR-BIDIR-ID": {
+        "passed": true,
+        "status": null,
+        "failure_count": 0
+      },
+      "CHK-PUBLIC-FN-FREEZE": {
+        "passed": false,
+        "status": "evaluated",
+        "failure_count": 8
+      },
+      "CHK-L3-OBLIGATION-MAP": {
+        "passed": false,
+        "status": "not_evaluated",
+        "failure_count": 1
+      },
+      "CHK-OWNERSHIP-CAP-L8": {
+        "passed": true,
+        "status": null,
+        "failure_count": 0
+      },
+      "CHK-OWNERSHIP-CAP-L8-DIFF": {
+        "passed": null,
+        "status": null,
+        "failure_count": 0
+      }
+    },
+    "after_checks": {
+      "CHK-PIN-SHA256": {
+        "passed": false,
+        "status": "not_evaluated",
+        "failure_count": 1
+      },
+      "CHK-JSON-POINTER": {
+        "passed": false,
+        "status": "evaluated",
+        "failure_count": 2421
+      },
+      "CHK-NEG-4WAY-MATCH": {
+        "passed": false,
+        "status": "not_evaluated",
+        "failure_count": 1
+      },
+      "CHK-PAIR-BIDIR-ID": {
+        "passed": true,
+        "status": null,
+        "failure_count": 0
+      },
+      "CHK-PUBLIC-FN-FREEZE": {
+        "passed": false,
+        "status": "evaluated",
+        "failure_count": 8
+      },
+      "CHK-L3-OBLIGATION-MAP": {
+        "passed": false,
+        "status": "not_evaluated",
+        "failure_count": 1
+      },
+      "CHK-OWNERSHIP-CAP-L8": {
+        "passed": true,
+        "status": null,
+        "failure_count": 0
+      },
+      "CHK-OWNERSHIP-CAP-L8-DIFF": {
+        "passed": null,
+        "status": null,
+        "failure_count": 0
+      }
+    }
+  },
+  "scfctl": {
+    "bindings": "164",
+    "validate": "pending summary artifact registration rerun",
+    "stale": "0"
+  },
+  "diff_check": "PASS",
+  "latest_main_trial": "pending",
+  "residuals": [
+    "L9の未割当112件（C0044を含む）",
+    "6 singleton-less class未形成",
+    "negative-4wayは136件のfailureでFAIL",
+    "PR-CはL9 source_pointersをcheckerが照合しないため全体PASSやfreeze成立を示さない"
+  ],
+  "raw_check_report_sha256": {
+    "child_before": "ab17c2c12750a0641cdfe66db3c2c8b350c5f52ab57103ee3a71ea6ec1ab46be",
+    "child_after": "ab17c2c12750a0641cdfe66db3c2c8b350c5f52ab57103ee3a71ea6ec1ab46be",
+    "freeze_before": "cc4bd1a42fcde81c9b38c3d9f68af3531cab8a235811fb937e2a57f35d320003",
+    "freeze_after": "cc4bd1a42fcde81c9b38c3d9f68af3531cab8a235811fb937e2a57f35d320003"
+  }
+}
