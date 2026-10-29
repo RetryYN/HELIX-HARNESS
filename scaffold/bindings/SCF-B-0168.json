@@ -65,8 +65,7 @@
       "L2/L3 semantics or Cause vocabulary changes",
       "generating a Cause without an existing L5 writer",
       "runtime/tests/CI execution or claiming pass",
-      "function-pair freeze generation",
-      "PR/push/notification/merge"
+      "function-pair freeze generation"
     ]
   },
   "artifacts": [
