@@ -1,0 +1,165 @@
+{
+  "scope": "WR181 OS015: 独立確認済み29件のみ。全体negative coverage/freezeは未成立。",
+  "candidate_base": "dd5787507a9ef3b69f411074e2fcbc7710ca1d62",
+  "latest_main": "1b91e01d30ab40b5023b06d72f1fd83039ce7590",
+  "latest_main_verified_by": "git ls-remote origin refs/heads/main and fetch origin main; FETCH_HEAD matched",
+  "latest_main_changed_paths_from_base": [
+    "docs/governance/audits/build_wr154_add46_limited_refreeze.py",
+    "docs/governance/audits/build_wr154_r2_add46_fixed_writer_case.py",
+    "docs/governance/audits/tdd/h009-fn5-axis-cause-pointer-crosswalk-add46-refreeze-2026-10-30.json",
+    "docs/governance/audits/wr154-r2-add46-post-dd578-refreeze-2026-10-30.md",
+    "docs/governance/audits/wr185-security-credential-value-boundary-slim-2026-10-30.json",
+    "docs/helix-harness/L8-unit-verification/product-template-application.json",
+    "docs/helix-harness/L8-unit-verification/requirement-formation-semantic-core.json",
+    "docs/helix-harness/L9-integration-verification/requirement-formation-semantic-core.json",
+    "docs/helix-security/L8-unit-verification/credential-value-boundary.json",
+    "docs/helix-security/L8-unit-verification/revoke-quarantine-propagation.json",
+    "docs/helix-security/L9-integration-verification/credential-value-boundary.json",
+    "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+    "scaffold/bindings/SCF-B-0168.json",
+    "scaffold/bindings/SCF-B-0169.json",
+    "scaffold/tools/verify_security_credential_value_boundary_slim.py"
+  ],
+  "no_overlap_with_os015_candidate_paths": true,
+  "commands": {
+    "check_child": "python3 scaffold/tools/design_verification_checker.py check-child --root . --l4 docs/helix-os/L4-basic-design/management-authority-source-record.json --l5 docs/helix-os/L5-detail-design/management-authority-source-record.json --l8 docs/helix-os/L8-unit-verification/management-authority-source-record.json --l9 docs/helix-os/L9-integration-verification/management-authority-source-record.json",
+    "check_freeze": "python3 scaffold/tools/design_verification_checker.py check-freeze --root . --worktree docs/governance/audits/tdd/os007-os015-function-pair-freeze-2026-10-28.json",
+    "scf_validate": "python3 -B scaffold/tools/scfctl.py validate",
+    "scf_stale": "python3 -B scaffold/tools/scfctl.py stale",
+    "diff_check": "git diff --check",
+    "static_evidence_check": "python3 scaffold/research/wr181-os015-29-case-classes-20261030/validate_static_evidence.py",
+    "static_evidence_output": "scaffold/research/wr181-os015-29-case-classes-20261030/static-evidence-validation.txt"
+  },
+  "check_child": {
+    "before": {
+      "overall": "FAIL",
+      "pair_l4_l9": "PASS",
+      "pair_l5_l8": "PASS",
+      "class_counts": {
+        "L4": 31,
+        "L5": 31,
+        "L8": 25,
+        "L9": 25
+      },
+      "case_rows": {
+        "L8": 583,
+        "L9": 583
+      },
+      "matched_cases": 431,
+      "missing_l8_case_refs": 141,
+      "missing_class_key_layer_entries": {
+        "L8": 12,
+        "L9": 12
+      },
+      "failure_count": 165
+    },
+    "candidate": {
+      "overall": "FAIL",
+      "pair_l4_l9": "PASS",
+      "pair_l5_l8": "PASS",
+      "class_counts": {
+        "L4": 33,
+        "L5": 33,
+        "L8": 27,
+        "L9": 27
+      },
+      "case_rows": {
+        "L8": 583,
+        "L9": 583
+      },
+      "matched_cases": 460,
+      "missing_l8_case_refs": 112,
+      "missing_class_key_layer_entries": {
+        "L8": 12,
+        "L9": 12
+      },
+      "failure_count": 136
+    },
+    "latest_main_trial": {
+      "revision": "1b91e01d30ab40b5023b06d72f1fd83039ce7590",
+      "overall": "FAIL",
+      "pair_l4_l9": "PASS",
+      "pair_l5_l8": "PASS",
+      "class_counts": {
+        "L4": 33,
+        "L5": 33,
+        "L8": 27,
+        "L9": 27
+      },
+      "case_rows": {
+        "L8": 583,
+        "L9": 583
+      },
+      "matched_cases": 460,
+      "missing_l8_case_refs": 112,
+      "missing_class_key_layer_entries": {
+        "L8": 12,
+        "L9": 12
+      },
+      "failure_count": 136
+    }
+  },
+  "check_freeze": {
+    "before": {
+      "all_mechanical_matched": false,
+      "CHK-PIN-SHA256": "not_evaluated:no_pinned_inputs_found",
+      "CHK-JSON-POINTER": {
+        "checked": 67,
+        "failures": 2421
+      },
+      "CHK-NEG-4WAY-MATCH": "not_evaluated:missing_or_unparsed_layer_documents",
+      "CHK-PUBLIC-FN-FREEZE": {
+        "failures": 8
+      },
+      "CHK-L3-OBLIGATION-MAP": "not_evaluated:no_l3_obligations_found"
+    },
+    "after": {
+      "all_mechanical_matched": false,
+      "CHK-PIN-SHA256": "not_evaluated:no_pinned_inputs_found",
+      "CHK-JSON-POINTER": {
+        "checked": 67,
+        "failures": 2421
+      },
+      "CHK-NEG-4WAY-MATCH": "not_evaluated:missing_or_unparsed_layer_documents",
+      "CHK-PUBLIC-FN-FREEZE": {
+        "failures": 8
+      },
+      "CHK-L3-OBLIGATION-MAP": "not_evaluated:no_l3_obligations_found"
+    },
+    "interpretation": "旧freezeは候補編集前からmechanical FAIL。前後に差はなく、recordは変更していない。",
+    "raw_output_sha256": {
+      "before": "cc4bd1a42fcde81c9b38c3d9f68af3531cab8a235811fb937e2a57f35d320003",
+      "after": "cc4bd1a42fcde81c9b38c3d9f68af3531cab8a235811fb937e2a57f35d320003"
+    }
+  },
+  "scfctl": {
+    "validate_bindings": 162,
+    "validation_failures": 0,
+    "stale_before_base": "0",
+    "stale_candidate": "0",
+    "stale_latest_main_trial": "0"
+  },
+  "not_claimed": [
+    "未確認112件の割当",
+    "negative全体PASS",
+    "全体coverage",
+    "freeze成立",
+    "runtime/test/CI実行",
+    "L4 comparator再実装・実行によるcase分類の再現"
+  ],
+  "latest_main_trial_evidence": {
+    "check_child": "scaffold/research/wr181-os015-29-case-classes-20261030/check-child-current-main-trial.json",
+    "scfctl_validate": "scaffold/research/wr181-os015-29-case-classes-20261030/scfctl-validate-current-main-trial.txt",
+    "scfctl_stale": "scaffold/research/wr181-os015-29-case-classes-20261030/scfctl-stale-current-main-trial.txt",
+    "static_validation": "scaffold/research/wr181-os015-29-case-classes-20261030/static-evidence-validation.txt"
+  },
+  "static_verification_scope": "手作業assignmentは宣言データとして読む。静的validatorはL7 hash/pointer、L4/L5 class rowとL8/L9 refsの構造対応、source pointer解決、583 case期待不変のみ確認し、L4 comparator/finding/classを入力値から再計算しない。",
+  "static_evidence_validation": {
+    "case_count": 29,
+    "conflict": 15,
+    "unresolved": 14,
+    "l8_l9_expected_preservation": "583件ずつ全行でlink field以外同一",
+    "source_pointers": "追加class rowの全RFC 6901 source_pointers解決",
+    "scope": "手作業割当データのraw input hash/pointer、宣言済みclass/linkの構造対応、RFC 6901 source pointer、L8/L9全583行の期待不変を確認。input predicateからclass/findingを計算しない。"
+  }
+}

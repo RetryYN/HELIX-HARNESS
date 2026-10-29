@@ -1,0 +1,138 @@
+{
+  "schema_revision": 1,
+  "id": "SCF-B-0172",
+  "kind": "scaffold",
+  "title": "WR181 OS015 独立確認済み29件の複合negative class投影候補",
+  "product": "HELIX-OS",
+  "owner_candidate": "HELIX-OS OS015 管理record/source projection設計",
+  "state": "registered",
+  "reason": "WR181の追加指示に基づき、L4/L5から独立形成した2複合negative classを、独立確認済みの29件に限ってL7 raw stimulusから照合しL8/L9へ順方向に投影する。その他112件、うちC0044を含む残余は未割当で保持する。",
+  "upstream": [
+    {
+      "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+      "sha256": "e86254a35b476ed71ebb112e41ccd2b48f89a8d0393e6495dc11cac7a7cf4e02",
+      "note": "dd578基点のOS015 F02要件。複合classの上流意味を確認する。"
+    },
+    {
+      "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
+      "sha256": "0c9b85fe91483fcf2cf8630739e9a07b231d90aac20f42174d807268eddbda56",
+      "note": "現行候補のL4 bytes。class起草時のclean base dd5787507a9ef3b69f411074e2fcbc7710ca1d62はSHA-256=e2e92c62217f70203752ab4f79ed7a92831d94cb813c6947153f237c83c8576b。2 classは基点の原event comparison、finding順、aggregation、condition_valuesから形成。"
+    },
+    {
+      "path": "docs/helix-os/L5-detail-design/management-authority-source-record.json",
+      "sha256": "bd4bb190c608f6e6555c0a01b969ddc3b7f12617cef592b2fdba2f00d62e1ef7",
+      "note": "現行候補のL5 bytes。rule起草時のclean base dd5787507a9ef3b69f411074e2fcbc7710ca1d62はSHA-256=6d313e6faaf56c0806c1964ac2bece5da0699de1d82dcc804fc77962f679275e。FN-OS015-01の既存入力境界、field comparison、return設計から独立形成した。 clean candidate pin revision=5111d246ce7945f1fa195ab5cdbab7cdc3f4ca78."
+    },
+    {
+      "path": "docs/helix-os/L7-function-verification/management-authority-source-record.json",
+      "sha256": "b2a71c3d2a99c5268275e183f21c2b1bbc4b21ad79d577af42573a079e920a09",
+      "note": "dd578基点の29件のgiven.input raw stimulusとfixture_inputs。expected_proposalはclass導出に使わない。"
+    },
+    {
+      "path": "scaffold/tools/design_verification_checker.py",
+      "sha256": "211e39ff48ec96adf37f948db91dd63795435c53671e16576b39eb0e3a0538d6",
+      "note": "dd578基点の現行explicit negative modeとcheck-child。checker本体は変更しない。"
+    },
+    {
+      "path": "docs/helix-os/L8-unit-verification/management-authority-source-record.json",
+      "sha256": "6cfd2feb4927838b6c871a530c291efbb32c26b183fca08e97c5e972e719b9b3",
+      "note": "現行候補のL8 bytes。clean base dd5787507a9ef3b69f411074e2fcbc7710ca1d62ではSHA-256=897ad52df1b7899102aedc4a9b8a5676034a6ad144ec7fe4909d738990b7b2a9。583 unit casesを保持し、既存expected不変の29件にrefsを投影。 clean candidate pin revision=db44bcc3396a37f9f3259dbc5f34cb809a3b2c58."
+    },
+    {
+      "path": "docs/helix-os/L9-integration-verification/management-authority-source-record.json",
+      "sha256": "66fd4c44b4dd0aec0e1419dbd885c26462bc6465838fd99ed653db8f86477a76",
+      "note": "現行候補のL9 bytes。clean base dd5787507a9ef3b69f411074e2fcbc7710ca1d62ではSHA-256=0b310db53887fd22d2fa5a3154099fdc0587bceed61dc85544f57549b2cbec51。583 integration casesを保持し、既存expected不変の29件にrefsを投影。"
+    }
+  ],
+  "role": "独立確認済み29件の手作業case/finding宣言とL4/L5上流class、L8/L9の限定projectionおよび静的照合証拠を保持する。",
+  "obligations": [
+    "L4/L5で2 composite classを先に形成し、L8/L9観測からclass定義を逆生成しない。",
+    "L7 fixture_inputs.inspectと各caseのsingle given.input replacementから29刺激を再構成し、記録済み入力hashと照合する。",
+    "case/finding assignmentは独立手作業で記録し、validatorはraw inputからclass/findingを再計算しない。",
+    "L8/L9の既存583 caseについて、明示的link field以外が基点と同一であることを確認する。",
+    "C0044およびその他112件を未割当で保持し、6個の未観測class keyと全体checker FAILを明記する。",
+    "全negative coverage、negative PASS、freeze成立を主張しない。"
+  ],
+  "connections": {
+    "consumers": [
+      "OS015 L8 unit verification negative-equivalence-class projection",
+      "OS015 L9 integration verification negative-equivalence-class projection"
+    ],
+    "dependencies": [
+      "HELIXOS-L3-015-F02",
+      "HELIXOS-L4-015-F02 diagnostic_contract",
+      "HELIXOS-L5-015-P-F02 / FN-OS015-01",
+      "OS015 L7 connection_materials/OS015/case/fixture_inputs/inspect"
+    ],
+    "boundary": "独立確認済み29件だけの部分候補。112件未割当を含み、check-child全体FAIL、freeze未成立。L8/L9 expected、checker、L7 source、上流要求意味を変更しない。"
+  },
+  "operations": {
+    "allowed": [
+      "対象JSONとchecker sourceの静的読取",
+      "L7 raw stimulus再構成とSHA-256照合",
+      "RFC 6901 pointerの静的解決",
+      "明示依頼に基づくcheck-child/check-freeze/scfctlの文書照合",
+      "git diff --check"
+    ],
+    "forbidden": [
+      "L8/L9 expectedから上流taxonomyや相互期待を生成する",
+      "C0044または未確認caseを推測で割り当てる",
+      "L4 comparatorや製品動作を実行・再実装し、raw input predicateからfinding/classを計算する",
+      "checker、runtime、test、CIを変更・実行する",
+      "旧HELIX CLI・hook・runtime・test・CIを実行する",
+      "negative全体PASSまたはfreezeを生成する"
+    ]
+  },
+  "artifacts": [
+    "scaffold/research/wr181-os015-29-case-classes-20261030/README.md",
+    "scaffold/research/wr181-os015-29-case-classes-20261030/validate_static_evidence.py",
+    "scaffold/research/wr181-os015-29-case-classes-20261030/static-evidence-validation.txt",
+    "scaffold/research/wr181-os015-29-case-classes-20261030/case-evidence.json",
+    "scaffold/research/wr181-os015-29-case-classes-20261030/verification-summary.json",
+    "scaffold/research/wr181-os015-29-case-classes-20261030/check-child-before.json",
+    "scaffold/research/wr181-os015-29-case-classes-20261030/check-child-candidate.json",
+    "scaffold/research/wr181-os015-29-case-classes-20261030/check-child-current-main-trial.json",
+    "scaffold/research/wr181-os015-29-case-classes-20261030/scfctl-validate.txt",
+    "scaffold/research/wr181-os015-29-case-classes-20261030/scfctl-stale.txt",
+    "scaffold/research/wr181-os015-29-case-classes-20261030/scfctl-validate-current-main-trial.txt",
+    "scaffold/research/wr181-os015-29-case-classes-20261030/scfctl-stale-current-main-trial.txt",
+    "scaffold/research/wr181-os015-29-case-classes-20261030/scfctl-stale-before.txt",
+    "scaffold/research/wr181-os015-29-case-classes-20261030/diff-check.json",
+    "scaffold/bindings/SCF-B-0172.json",
+    "scaffold/research/wr181-os015-29-case-classes-20261030/check-freeze-candidate.json"
+  ],
+  "verification": {
+    "evidence_kind": "scaffold",
+    "scope": [
+      "schema_interface",
+      "source_revision_stale",
+      "negative_case",
+      "forbidden_write_scope"
+    ],
+    "oracles": [
+      "python3 scaffold/research/wr181-os015-29-case-classes-20261030/validate_static_evidence.py",
+      "python3 scaffold/tools/design_verification_checker.py check-child --root . --l4 docs/helix-os/L4-basic-design/management-authority-source-record.json --l5 docs/helix-os/L5-detail-design/management-authority-source-record.json --l8 docs/helix-os/L8-unit-verification/management-authority-source-record.json --l9 docs/helix-os/L9-integration-verification/management-authority-source-record.json",
+      "python3 -B scaffold/tools/scfctl.py validate",
+      "python3 -B scaffold/tools/scfctl.py stale",
+      "git diff --check"
+    ],
+    "negative_cases": [
+      "C0044のexpected_proposalは独立導出に利用しないため未割当に残す。",
+      "その他の未確認112件もcase-specificな固定入力導出を行っていないため未割当に残す。",
+      "六つの既存L4/L5 class keyがL8/L9で未観測のままであり、全体check-childはFAILとなる。",
+      "L8とL9の元expectedは保持し、互いのexpected生成元にしない。"
+    ]
+  },
+  "replacement": {
+    "role_target": "正式採用の判断後にOS015 L4/L5のcomposite classとL8/L9のcase projectionへ反映する技術候補",
+    "formal_artifacts": [],
+    "issue": 0,
+    "status": "pending",
+    "transfer": null,
+    "target_revisions": {},
+    "confirmation_ref": null,
+    "confirmation_digest": null
+  },
+  "created": "2026-10-30",
+  "updated": "2026-10-30"
+}

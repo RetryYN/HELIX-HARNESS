@@ -6,7 +6,7 @@
   "product": "HELIX-OS",
   "owner_candidate": "HELIX-OS OS015 管理record/source projection設計",
   "state": "registered",
-  "reason": "WR181作業依頼 (1) に基づき、承認済みOS015 L4/L5のfacet順序・aggregation・condition_valuesから複合負例class形成規則を具体化し、残余negative caseのL7固定入力材料を静的に一覧する。case所属の独立した手動導出は未完了のため、複合case class rowとrefを追加しない。",
+  "reason": "WR181作業依頼 (1) に基づき、承認済みOS015 L4/L5のfacet順序・aggregation・condition_valuesから複合負例class形成規則を具体化し、残余negative caseのL7固定入力材料を静的に一覧する。後続SCF-B-0172で独立確認済み29件だけのcase class row/refを追加した。C0044を含む112件は未割当のまま。",
   "role": "OS015複合negative-equivalence-class形成規則の下流設計記録とL7固定入力の静的inventory",
   "upstream": [
     {
@@ -21,13 +21,13 @@
     },
     {
       "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
-      "sha256": "e2e92c62217f70203752ab4f79ed7a92831d94cb813c6947153f237c83c8576b",
-      "note": "L4のfixed input domain、finding、aggregation、condition_values、同層内の複合finding projection。複合case rowは未形成。"
+      "sha256": "0c9b85fe91483fcf2cf8630739e9a07b231d90aac20f42174d807268eddbda56",
+      "note": "L4のfixed input domain、finding、aggregation、condition_valuesと、後続SCF-B-0172で追加した2 composite classを含む現行候補。設計起点のclean base dd5787507a9ef3b69f411074e2fcbc7710ca1d62ではSHA-256=e2e92c62217f70203752ab4f79ed7a92831d94cb813c6947153f237c83c8576b。case割当は29件のみ。"
     },
     {
       "path": "docs/helix-os/L5-detail-design/management-authority-source-record.json",
-      "sha256": "6d313e6faaf56c0806c1964ac2bece5da0699de1d82dcc804fc77962f679275e",
-      "note": "固定carrierとfield比較、finding/retention、31既存failure rules、L4投影からのcomposite key/owner_ref解決。複合case rowsは未形成。"
+      "sha256": "bd4bb190c608f6e6555c0a01b969ddc3b7f12617cef592b2fdba2f00d62e1ef7",
+      "note": "固定carrierとfield比較、finding/retention、既存failure rulesと後続SCF-B-0172の2 composite rulesを含む現行候補。設計起点のclean base dd5787507a9ef3b69f411074e2fcbc7710ca1d62ではSHA-256=6d313e6faaf56c0806c1964ac2bece5da0699de1d82dcc804fc77962f679275e。L9由来の逆生成はない。 clean candidate pin revision=5111d246ce7945f1fa195ab5cdbab7cdc3f4ca78."
     },
     {
       "path": "docs/helix-os/L7-function-verification/management-authority-source-record.json",
@@ -70,7 +70,7 @@
     "L4 facet order/within-facet and whole-result aggregation/condition_valuesから、single-axis class fieldへの明示的投影規則を記録する。",
     "L4 fixed carrierとbounded finding positionsから組合せ上限を計算し、full universeを列挙しない理由を記録する。",
     "L4 algorithmからsingletonとして成立しない6 finding classを特定し、併発所見の根拠を示す。",
-    "L9 observation combinationsをclass formation sourceとして使わない。case単位class assignmentは独立した手動照合が終わるまで未形成とする。"
+    "L9 observation combinationsをclass formation sourceとして使わない。独立確認済み29件だけのcase assignmentはSCF-B-0172に保持し、C0044を含む112件は未割当とする。"
   ],
   "connections": {
     "consumers": [
@@ -104,7 +104,8 @@
     "scaffold/research/wr181-os015-composite-class-formation-20261030/residual-population-141.json",
     "scaffold/research/wr181-os015-composite-class-formation-20261030/inventory_141.py",
     "scaffold/research/wr181-os015-composite-class-formation-20261030/l7-fixed-input-inventory-141.json",
-    "scaffold/bindings/SCF-B-0170.json"
+    "scaffold/bindings/SCF-B-0170.json",
+    "scaffold/bindings/SCF-B-0172.json"
   ],
   "verification": {
     "evidence_kind": "scaffold",

@@ -1,0 +1,13 @@
+{
+  "command": "git diff --check",
+  "candidate_worktree": {
+    "base": "dd5787507a9ef3b69f411074e2fcbc7710ca1d62",
+    "exit_code": 0,
+    "output": ""
+  },
+  "latest_main_trial": {
+    "base": "1b91e01d30ab40b5023b06d72f1fd83039ce7590",
+    "exit_code": 0,
+    "output": ""
+  }
+}
