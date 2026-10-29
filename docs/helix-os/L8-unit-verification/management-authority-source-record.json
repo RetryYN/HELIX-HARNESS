@@ -421,12 +421,12 @@
   "source_pair_pins": [
     {
       "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
-      "revision": "c5f80e634a3e41f1a268ab3e945bbd1e6b1ece37",
-      "sha256": "dc3cf283059c0d4d6f890e93728ce0f75088a6e8980fe937b22ef9afeb117ec5"
+      "revision": "33b518adcf7ced5c12b92a916f8f6460b9f5bb75",
+      "sha256": "e2e92c62217f70203752ab4f79ed7a92831d94cb813c6947153f237c83c8576b"
     },
     {
       "path": "docs/helix-os/L9-integration-verification/management-authority-source-record.json",
-      "revision": "c5f80e634a3e41f1a268ab3e945bbd1e6b1ece37",
+      "revision": "a0ad8cfd662dbab39cc1f983d91b20be8a228b64",
       "sha256": "0b310db53887fd22d2fa5a3154099fdc0587bceed61dc85544f57549b2cbec51"
     }
   ],
@@ -435,9 +435,9 @@
   "pair": "HELIXOS-L5-015",
   "candidate_l5_bytes": {
     "path": "docs/helix-os/L5-detail-design/management-authority-source-record.json",
-    "revision": "3069bd9a5e58259e8826f9cc25f4486f390c6e15",
+    "revision": "14fd013cd70ceea6b04aadbc8e61bb62cd8db9f6",
     "same_candidate": true,
-    "sha256": "90e9df83f3c64788453579789060e090396097c10f127075115daa4bda5dd895"
+    "sha256": "f07526ccf29f3f959e8c43260e5e966757c0949fa317af7d479d128a6f8febc0"
   },
   "shared_route_expectations": {
     "l7_material_ref": {
@@ -50193,5 +50193,15 @@
         }
       ]
     }
-  ]
+  ],
+  "composite_class_formation_verification": {
+    "source": "docs/helix-os/L5-detail-design/management-authority-source-record.json#/formal_reference/composite_class_formation",
+    "population_source": {
+      "path": "docs/helix-os/L7-function-verification/management-authority-source-record.json",
+      "pointer": "/connection_materials/OS015/case/cases"
+    },
+    "method": "各固定L7刺激とgiven.input replacementsから入力を手で静的に解決し、L4 structured predicateとL5 owner joinを前向きに照合する。L7 expected_proposal、L8/L9既存expected・observation・class refは導出根拠に使わない。",
+    "coverage": "本候補は複合case class rowを宣言せず、case coverageを主張しない。全固定入力の割当は独立根拠が揃った行のみ記録し、意味が閉じない行は未割当のまま保持する。可能class universe全体の列挙は対象外。",
+    "preservation": "既存L8/L9 case単位expected・retention・observationは維持し、複合class key導出元として使用しない。"
+  }
 }
