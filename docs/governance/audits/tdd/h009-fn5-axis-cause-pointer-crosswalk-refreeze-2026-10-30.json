@@ -711,17 +711,98 @@
     }
   },
   "freeze_impact_review": {
-    "latest_main_base": "ee8e5141b61c6bf5424302ca2ae01fc29a3204fe",
-    "candidate_head": "7f63a3cb3fc9f9b9ae59bbc2502a2f67bb093df3",
+    "recomputed_at_utc": "2026-10-29T17:42:07+00:00",
+    "latest_main_base": "fe6e4b493e503ba121ced68aa531c5335661ba66",
+    "candidate_head": "c20b489bc506add5b94f641baa7ffe554961847f",
     "target_record_set": {
-      "selection": "all TDD audit JSON records with both L5_post_sha256 and L8_post_sha256 pins",
+      "selection": "Base ee8 TDD records whose filename contains freeze/refreeze (excluding checker-reconcile reports) and whose JSON contains at least one exact L5/L8/L9 product-template-application path; the 34 base-selected paths below are replayed unchanged on the candidate trial.",
+      "selection_base_revision": "ee8e5141b61c6bf5424302ca2ae01fc29a3204fe",
+      "excluded": "checker-reconcile report files are not freeze records for this comparison.",
       "count": 34,
+      "record_paths": [
+        "docs/governance/audits/tdd/h009-b01-function-pair-freeze-2026-10-28.json",
+        "docs/governance/audits/tdd/h009-b02-function-pair-freeze-2026-10-28.json",
+        "docs/governance/audits/tdd/h009-b02-function-pair-refreeze-2026-10-29.json",
+        "docs/governance/audits/tdd/h009-f01-function-pair-freeze-2026-10-28.json",
+        "docs/governance/audits/tdd/h009-f02a-function-pair-freeze-2026-10-28.json",
+        "docs/governance/audits/tdd/h009-f02a-function-pair-refreeze-2026-10-29.json",
+        "docs/governance/audits/tdd/h009-f02b-general-proposal-exchange-freeze-2026-10-28.json",
+        "docs/governance/audits/tdd/h009-f02b-general-proposal-exchange-refreeze-2026-10-29.json",
+        "docs/governance/audits/tdd/h009-fn10-function-pair-freeze-2026-10-28.json",
+        "docs/governance/audits/tdd/h009-fn10-function-pair-refreeze-2026-10-29.json",
+        "docs/governance/audits/tdd/h009-fn12-function-pair-freeze-2026-10-28.json",
+        "docs/governance/audits/tdd/h009-fn12-function-pair-refreeze-2026-10-29.json",
+        "docs/governance/audits/tdd/h009-fn2-function-pair-freeze-2026-10-29.json",
+        "docs/governance/audits/tdd/h009-fn3-function-pair-freeze-2026-10-28.json",
+        "docs/governance/audits/tdd/h009-fn3-function-pair-refreeze-2026-10-29.json",
+        "docs/governance/audits/tdd/h009-fn4-function-pair-freeze-2026-10-28.json",
+        "docs/governance/audits/tdd/h009-fn4-function-pair-freeze-2026-10-29.json",
+        "docs/governance/audits/tdd/h009-fn5-application-contract-recipient-refreeze-2026-10-29.json",
+        "docs/governance/audits/tdd/h009-fn5-axis-cause-pointer-crosswalk-freeze-2026-10-29.json",
+        "docs/governance/audits/tdd/h009-fn5-function-pair-freeze-2026-10-28.json",
+        "docs/governance/audits/tdd/h009-fn5-owner-axis-cause-freeze-2026-10-29.json",
+        "docs/governance/audits/tdd/h009-fn5-source-content-failure-writer-pr-candidate-freeze-2026-10-29.json",
+        "docs/governance/audits/tdd/h009-fn6-function-pair-freeze-2026-10-28.json",
+        "docs/governance/audits/tdd/h009-fn6-function-pair-refreeze-2026-10-29.json",
+        "docs/governance/audits/tdd/h009-fn7-function-pair-freeze-2026-10-28.json",
+        "docs/governance/audits/tdd/h009-fn9-function-pair-freeze-2026-10-28.json",
+        "docs/governance/audits/tdd/h009-fn9-function-pair-refreeze-2026-10-29.json",
+        "docs/governance/audits/tdd/os002-b1-f04-basic-freeze-2026-10-28.json",
+        "docs/governance/audits/tdd/os002-b1-f04-basic-freeze-id-correction-2026-10-29.json",
+        "docs/governance/audits/tdd/os002-t1a-b02-consumer-members-freeze-2026-10-29.json",
+        "docs/governance/audits/tdd/os002-t1a-b02-consumer-members-r1-freeze-2026-10-29.json",
+        "docs/governance/audits/tdd/os002-t1a-b02-consumer-members-r2-freeze-2026-10-29.json",
+        "docs/governance/audits/tdd/os002-t1c-f02-proposal-receiving-freeze-2026-10-28.json",
+        "docs/governance/audits/tdd/os002-t2a-f04-projection-member-freeze-2026-10-28.json"
+      ],
+      "execution_mode": "python3 scaffold/tools/design_verification_checker.py check-freeze --worktree --root <worktree> <the same 34 record_paths>",
+      "base_worktree_revision": "ee8e5141b61c6bf5424302ca2ae01fc29a3204fe",
+      "candidate_worktree_revision": "fe6e4b493e503ba121ced68aa531c5335661ba66",
+      "candidate_trial_merge_head": "c20b489bc506add5b94f641baa7ffe554961847f",
+      "candidate_merge_result": "clean_no_commit",
+      "base_result_count": 34,
+      "candidate_result_count": 34,
       "base_check_freeze_all_mechanical_matched": false,
       "candidate_check_freeze_all_mechanical_matched": false,
-      "mechanical_match_count_base": 2,
-      "mechanical_match_count_candidate": 1,
-      "changed_result_count": 28,
-      "unchanged_result_count": 6
+      "mechanical_match_count_base": 3,
+      "mechanical_match_count_candidate": 2,
+      "mechanical_match_boolean_transition_count": 1,
+      "mechanical_match_boolean_transition_ja": "旧axis crosswalk recordだけがtrue→false。source-content candidateはfalse→falseのまま。",
+      "targeted_diagnostic_record_count": 2,
+      "targeted_diagnostic_records": [
+        {
+          "path": "docs/governance/audits/tdd/h009-fn5-axis-cause-pointer-crosswalk-freeze-2026-10-29.json",
+          "base_mechanical_match": true,
+          "candidate_mechanical_match": false,
+          "base_pin_failure_count": 0,
+          "candidate_pin_failure_count": 2
+        },
+        {
+          "path": "docs/governance/audits/tdd/h009-fn5-source-content-failure-writer-pr-candidate-freeze-2026-10-29.json",
+          "base_mechanical_match": false,
+          "candidate_mechanical_match": false,
+          "base_pin_failure_count": 2,
+          "candidate_pin_failure_count": 3,
+          "new_candidate_failure": "/pins/L9_post_sha256"
+        }
+      ],
+      "raw_report_comparison": {
+        "base_bytes": 605628,
+        "base_sha256": "34e0625b6fda5a04e493cfb5705d71970ccd186503d74d9882fe471ec4b574bc",
+        "candidate_bytes": 609313,
+        "candidate_sha256": "fe9f8e65aeae2a7cf7a99682cc927f7aff9f11d0789cf6110c7d8e594f4ea07e",
+        "result_object_diff_count": 26,
+        "result_object_unchanged_count": 8,
+        "pin_diagnostic_rows_changed": 24,
+        "head_entity_count_diff_rows_changed": 26,
+        "interpretation_ja": "raw report全体・row objectの差分数はmechanical match/failの件数変化を意味しない。対象L5/L8のactual SHAとL8 case count (48→54) の反映で複数の既存FAIL診断行が変化する。reviewerの「2件」は個別に追跡するaxis/source-content診断record数で、pass/fail boolean遷移数は1件。"
+      }
+    },
+    "count_discrepancy_ja": "以前の2→1、28 changed/6 unchangedは、L5/L8 post pin keyだけで作った別の34-path setの集計で、reviewerが指定したL5/L8/L9 product-template-application freeze setと一致していなかったため撤回する。raw result object差分とmechanical pass/failを混同しない。",
+    "superseding_refreeze_check": {
+      "path": "docs/governance/audits/tdd/h009-fn5-axis-cause-pointer-crosswalk-refreeze-2026-10-30.json",
+      "included_in_fixed_34_comparison": false,
+      "reason_ja": "base ee8には存在しないcandidate追加記録のため、同一34-path比較の対象から分離してtrial上で単独check-freezeする。"
     },
     "axis_crosswalk_old_record": {
       "base_mechanical_match": true,
@@ -749,14 +830,17 @@
       },
       "treatment_ja": "別candidate freezeの残件としてFAILを記録し、本recordで修正・再freezeしたとは扱わない。"
     },
-    "count_discrepancy_ja": "34件はL5/L8 post pinを両方持つ記録。L9 post pinのみのOS002 basic-pair記録1件を加えた35件scanではunchangedが7件となる。",
     "latest_main_trial": {
       "merge_result": "clean_no_commit",
+      "base_revision": "ee8e5141b61c6bf5424302ca2ae01fc29a3204fe",
+      "latest_main_revision": "fe6e4b493e503ba121ced68aa531c5335661ba66",
+      "candidate_head": "c20b489bc506add5b94f641baa7ffe554961847f",
       "base_child_passed": true,
       "candidate_child_passed": true,
       "stale_base": 0,
       "stale_candidate": 0,
-      "diff_check": "passed"
+      "diff_check": "passed",
+      "superseding_refreeze_check_freeze_passed": true
     },
     "artifact_status": "static checker evidence; not independent semantic review, U-ID execution, or full F05 freeze."
   }
