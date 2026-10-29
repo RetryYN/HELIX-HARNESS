@@ -236144,5 +236144,170 @@
     "meaning": "L8/L9各層の実行fixture/input/source packetを同層の変更前snapshotから辿れるよう外部化した。元case ID、source_case_refs、expected*、execution_state、effect、既存fixture関係の参照は維持した。L7からL8/L9の期待を生成・置換していない。 Ownership-cap修正で固定source参照ではない sha256/*_sha256 のみ追加撤去。expected object、effect、execution_state、ID、固定source pinは維持。",
     "removed_key_rule": "CHK-OWNERSHIP-CAP-L8L9: remove non-fixed-reference sha256/*_sha256 fields; preserve fixed path+revision/source pins. Removed key counts: argument_snapshot_sha256=48, base_basic_case_sha256=14, baseline_source_case_sha256=11, baseline_source_packet_sha256=1, baseline_typed_case_sha256=2, baseline_whole_cases_prefix_sha256=2, basic_case_sha256=209, basic_oracle_sha256=7, byte_sha256=15, candidate_observation_sha256=144, canonical_owner_byte_sha256=24, expanded_whole_sha256=366, input_canonical_sha256=6, l4_contract_canonical_sha256=6, l4_expected_value_sha256=144, original_source_packet_sha256=209, patch_value_canonical_sha256=7, sha256=10, source_basic_case_sha256=43, source_case_sha256=6, source_cell_snapshot_sha256=48, source_observation_sha256=144, source_packet_byte_sha256=42, source_packet_sha256=6, source_value_sha256=238, typed_case_sha256=5",
     "use_boundary": "固定した変更前同層sourceはcase materialの再構成・比較に限る。期待値の生成、下位層oracle、承認を意味しない。"
+  },
+  "negative_output_projection_audit": {
+    "mode": "audit_only_no_checker_marker",
+    "source_population_count": 182,
+    "source_population_pointer": "/cases/4/cases",
+    "case_projection_rows_added": 0,
+    "single_finding_candidates": [
+      {
+        "case_id": "H003-F04-MISSING-Accepted",
+        "class_code": "F04_STATE_ACCEPTED_PROOF_MISSING",
+        "same_layer_source_pointers": [
+          {
+            "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+            "pointer": "/cases/4/cases/12/input_rule"
+          },
+          {
+            "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+            "pointer": "/cases/4/cases/12/expected_partial_values"
+          }
+        ],
+        "single_finding_candidate": {
+          "condition": "F04_STATE_ACCEPTED_PROOF_MISSING",
+          "finding_codes": [
+            "F04_STATE_ACCEPTED_PROOF_MISSING"
+          ]
+        }
+      },
+      {
+        "case_id": "H003-F04-MISSING-Deployed",
+        "class_code": "F04_STATE_DEPLOYED_PROOF_MISSING",
+        "same_layer_source_pointers": [
+          {
+            "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+            "pointer": "/cases/4/cases/14/input_rule"
+          },
+          {
+            "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+            "pointer": "/cases/4/cases/14/expected_partial_values"
+          }
+        ],
+        "single_finding_candidate": {
+          "condition": "F04_STATE_DEPLOYED_PROOF_MISSING",
+          "finding_codes": [
+            "F04_STATE_DEPLOYED_PROOF_MISSING"
+          ]
+        }
+      },
+      {
+        "case_id": "H003-F04-MISSING-Integrated",
+        "class_code": "F04_STATE_INTEGRATED_PROOF_MISSING",
+        "same_layer_source_pointers": [
+          {
+            "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+            "pointer": "/cases/4/cases/10/input_rule"
+          },
+          {
+            "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+            "pointer": "/cases/4/cases/10/expected_partial_values"
+          }
+        ],
+        "single_finding_candidate": {
+          "condition": "F04_STATE_INTEGRATED_PROOF_MISSING",
+          "finding_codes": [
+            "F04_STATE_INTEGRATED_PROOF_MISSING"
+          ]
+        }
+      },
+      {
+        "case_id": "H003-F04-MISSING-Observed",
+        "class_code": "F04_STATE_OBSERVED_PROOF_MISSING",
+        "same_layer_source_pointers": [
+          {
+            "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+            "pointer": "/cases/4/cases/15/input_rule"
+          },
+          {
+            "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+            "pointer": "/cases/4/cases/15/expected_partial_values"
+          }
+        ],
+        "single_finding_candidate": {
+          "condition": "F04_STATE_OBSERVED_PROOF_MISSING",
+          "finding_codes": [
+            "F04_STATE_OBSERVED_PROOF_MISSING"
+          ]
+        }
+      },
+      {
+        "case_id": "H003-F04-MISSING-Provisional",
+        "class_code": "F04_STATE_PROVISIONAL_PROOF_MISSING",
+        "same_layer_source_pointers": [
+          {
+            "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+            "pointer": "/cases/4/cases/9/input_rule"
+          },
+          {
+            "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+            "pointer": "/cases/4/cases/9/expected_partial_values"
+          }
+        ],
+        "single_finding_candidate": {
+          "condition": "F04_STATE_PROVISIONAL_PROOF_MISSING",
+          "finding_codes": [
+            "F04_STATE_PROVISIONAL_PROOF_MISSING"
+          ]
+        }
+      },
+      {
+        "case_id": "H003-F04-MISSING-Release-eligible",
+        "class_code": "F04_STATE_RELEASE-ELIGIBLE_PROOF_MISSING",
+        "same_layer_source_pointers": [
+          {
+            "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+            "pointer": "/cases/4/cases/13/input_rule"
+          },
+          {
+            "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+            "pointer": "/cases/4/cases/13/expected_partial_values"
+          }
+        ],
+        "single_finding_candidate": {
+          "condition": "F04_STATE_RELEASE-ELIGIBLE_PROOF_MISSING",
+          "finding_codes": [
+            "F04_STATE_RELEASE-ELIGIBLE_PROOF_MISSING"
+          ]
+        }
+      },
+      {
+        "case_id": "H003-F04-MISSING-Verified",
+        "class_code": "F04_STATE_VERIFIED_PROOF_MISSING",
+        "same_layer_source_pointers": [
+          {
+            "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+            "pointer": "/cases/4/cases/11/input_rule"
+          },
+          {
+            "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+            "pointer": "/cases/4/cases/11/expected_partial_values"
+          }
+        ],
+        "single_finding_candidate": {
+          "condition": "F04_STATE_VERIFIED_PROOF_MISSING",
+          "finding_codes": [
+            "F04_STATE_VERIFIED_PROOF_MISSING"
+          ]
+        }
+      }
+    ],
+    "single_finding_candidate_count": 7,
+    "unformed_case_count": 175,
+    "unformed_case_handling": "元L8/L9 casesを正本として保ち、unknown行を重複生成しない。全L5 ruleの発火有無とordered outputが閉じないため、候補出力を置かない。",
+    "upper_classification_count": 34,
+    "candidate_classification_count": 7,
+    "not_formed_classification_count": 27,
+    "no_member_classifications": [
+      {
+        "code": "B01_SCOPE_APPLICABILITY_UNKNOWN",
+        "case_count": 0
+      },
+      {
+        "code": "F02_RESULTLESS_RETURN_CHAIN_CONFLICT",
+        "case_count": 0
+      }
+    ],
+    "coverage_boundary": "7件は監査候補。残り175 caseと27分類は未形成。legacy checker結果のみを実worktree結果として報告し、explicit-mode結果は別実験として区別する。"
   }
 }
