@@ -25,12 +25,12 @@
     },
     {
       "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
-      "sha256": "010395ecc67291c77496a7f5688e0ddf4961ab86a4afa9f029ef33fbdcb3645c",
+      "sha256": "f5da0e585b3bb91cf5b07d7d3c1e124b9584718395d8b07704cede6e2523ce1c",
       "note": "F05/F10 candidate source; exact JSON pointer set is recorded in scaffold/research/wr154-f10-gap-selection-design-20261030/README.md. Pin is read-only and does not adopt the source."
     },
     {
       "path": "docs/helix-harness/L8-unit-verification/product-template-application.json",
-      "sha256": "ff8a248a0e955f587ea96380c0ecf88ed3c617372f51340a960abb80c1bf2cdb",
+      "sha256": "75e5aa65453f1812f7b5decafcdab823b49783e03014f18b68c97b4e06386efd",
       "note": "F05/F10 candidate source; exact JSON pointer set is recorded in scaffold/research/wr154-f10-gap-selection-design-20261030/README.md. Pin is read-only and does not adopt the source."
     }
   ],

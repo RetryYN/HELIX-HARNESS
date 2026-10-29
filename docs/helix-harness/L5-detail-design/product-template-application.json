@@ -1800,7 +1800,13 @@
         "HARNESS-L8-009-ADD-25",
         "HARNESS-L8-009-ADD-45",
         "HARNESS-L8-009-ADD-46",
-        "HARNESS-L8-009-ADD-47"
+        "HARNESS-L8-009-ADD-47",
+        "HARNESS-L8-009-ADD-48",
+        "HARNESS-L8-009-ADD-49",
+        "HARNESS-L8-009-ADD-50",
+        "HARNESS-L8-009-ADD-51",
+        "HARNESS-L8-009-ADD-52",
+        "HARNESS-L8-009-ADD-53"
       ],
       "oracle_ref": "HARNESS-L8-009-NORMAL-compare_requirement_gaps",
       "logical_producer_symbol": "compare_requirement_gaps",
@@ -15962,6 +15968,14 @@
         {
           "source_basis_ref": "/f05_detail_contract/legacy_and_failure_binding/sources",
           "role": "旧L4/L5 JSONauthority/UTW014020021の原identity/未取得/全個別原因/未完消込禁止を保持。新gate/裁定権を作らない。"
+        },
+        {
+          "revision": "a97fc209dd3d2048460b4b6cd583468192d38e4f",
+          "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+          "sha256": "009da68d79547770e32a91362a410e014ed1951e0cfe9f67a6f6b31fd4c16824",
+          "pointer": "/field_obligation_scope_contract",
+          "canonical_sha256": "b3759fc559fc152c16c17bb5fe526cd6e782e982086dc37bc1b93b862ac26fb6",
+          "role": "最新main a97fc209のcurrent L4 field-scope meaning binding。歴史的1c886 sourceを保持し、現行object差分をこの候補照合へ加える。authority/adoptionを生成しない。"
         }
       ],
       "applies_to": [

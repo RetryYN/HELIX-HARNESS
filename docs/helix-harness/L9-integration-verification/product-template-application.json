@@ -13255,7 +13255,7 @@
   "requirement_ref": "HARNESS-L3-009-F05",
   "system_oracle_ref": "HARNESS-L10-009-F05",
   "design_ref": "HARNESS-L4-009-F05-FIELD-OBLIGATION-SCOPE",
-  "status": "candidate",
+  "status": "meaning_scenario_matrix_candidate_exact_input_expected_pending_independent_review",
   "source_basis": [
    {
     "revision": "e509851ce7c27c09f85cb1a6e3b9a1d231885de3",
@@ -13297,33 +13297,35 @@
    }
   ],
   "oracle_boundary": {
-   "kind": "conditional_closed_basic_scope_view",
+   "kind": "meaning_scenario_matrix_only_not_materialized_return_oracle",
    "C_instantiation": "unbound",
    "premises": [
-    "case.raw/元target selection/原globalRef fragmentが同Cに対応する。opaque C文字列/偽Comparison/{}をproduct dataへ入れない。",
-    "新case source body/text/hash/Qualification/root原値は入力patchで全値化。局所qualification relationは同fn0に従う本case条件であり実trust/実認証でない。",
-    "新profileは原関係ownerによる供給を仮定する合成資料。consumer発行又はowner名だけで資格生成するケースではない。"
+    "各caseはL4 rule pointerに結ぶ意味scenario labelであり、case-specific input/expected patchを保持しない。",
+    "source/body/qualification/root relationはscenario条件として記述し、実trust/実認証としない。",
+    "L5 cause shapeを主張するのは明示されたL5 cause patternがあるscenarioだけ。"
    ],
-   "asserted": "各case /__scope_basic_case/expected のScopeReturn全closed member/leaf。",
+   "asserted": "各caseのcase_meaningとmeaning_rule_pointersの対応。ScopeReturnの全closed member/leafはassertしない。",
    "not_instantiated": [
-    "Cのvalidated/二Comparison/native source観測/診断の全whole",
+    "case-specific fixed input patch",
+    "case-specific exact expected patch",
+    "ScopeReturn exact output",
+    "Cのvalidated/二Comparison/native source観測/診断全whole",
     "実call/実trust/実owner認証",
     "nativeF05全5member/実装CI"
    ],
-   "numeric_boundary": "logical JSONのfalseと0は別原値として保持。native numeric profile又はcodecを実行しない。"
+   "numeric_boundary": "logical JSONのfalseと0は別原値として扱う。native numeric profile又はcodecを実行しない。"
   },
   "fixed_evaluation_root": {
    "revision": "c9fcb23c010ede88c528c4959929b8bdfedb730e",
    "path": "docs/helix-harness/L8-unit-verification/product-template-application.json",
-   "sha256": "00e5bba38cbf0fb9a67b2ebe8e6f2a32fcd5317731e2b6119dca5e946ab1f97d"
+   "sha256": "00e5bba38cbf0fb9a67b2ebe8e6f2a32fcd5317731e2b6119dca5e946ab1f97d",
+   "role": "歴史的synthetic seedへの参照。新しいscenario rowsのfixed input/expected rootではない。"
   },
-  "reconstruction": "各caseは同fixed L8全documentを独立seedとし、input_patch→expected_patchの順に固定RFC6902を適用する。generic evaluator/selectorで期待を計算しない。input_patchの標準JSON text/hashは著述された原sourceのliteral。expected state/原因はcase表の手著述固定literal、全Read.value/rawwholeは実input nodeへの固定copy。",
+  "reconstruction": "この節は意味scenario matrixであり、case別input_patch/expected_patchやRFC6902再構成を持たない。従前の/__scope_basic_case/input|expectedはroot/patchに存在しなかったため撤去した。各scenarioはL4 rule pointerとの静的対応だけを示し、固定全返却oracle化は未成立。",
   "cases": [
    {
     "id": "HARNESS-L9-009-SCOPE-S01",
-    "source_condition": "同C snapshotの元raw/field selection/globalRef viewに下記inputが対応し、source/body/資格の局所関係は本case記載どおりという条件付きbasic view。実C全whole/実trustは未束縛。",
-    "input_pointer": "/__scope_basic_case/input",
-    "expected_pointer": "/__scope_basic_case/expected",
+    "source_condition": "case_meaningが示す同C snapshotの元raw/field selection/globalRef viewに関する条件付き意味scenario。実input/patchは未形成であり、source/body/資格relationを本行で物質化しない。実C全whole/実trustは未束縛。",
     "case_meaning": {
      "id": "S01",
      "refs": [
@@ -13331,25 +13333,27 @@
      ],
      "field": "formed"
     },
-    "case_meaning_boundary": "case_meaning.fieldはこのscope判断の有限著述区分。conflict/same_ref_conflictはscope列集約未形成又は同Ref原source相反を表し、domain field定義/値のconflict状態を生成しない。"
+    "case_meaning_boundary": "case_meaning.fieldはこのscope判断の有限著述区分。conflict/same_ref_conflictはscope列集約未形成又は同Ref原source相反を表し、domain field定義/値のconflict状態を生成しない。",
+    "meaning_rule_pointers": [
+     "/field_obligation_scope_contract/guards_and_order/0"
+    ]
    },
    {
     "id": "HARNESS-L9-009-SCOPE-S02",
-    "source_condition": "同C snapshotの元raw/field selection/globalRef viewに下記inputが対応し、source/body/資格の局所関係は本case記載どおりという条件付きbasic view。実C全whole/実trustは未束縛。",
-    "input_pointer": "/__scope_basic_case/input",
-    "expected_pointer": "/__scope_basic_case/expected",
+    "source_condition": "case_meaningが示す同C snapshotの元raw/field selection/globalRef viewに関する条件付き意味scenario。実input/patchは未形成であり、source/body/資格relationを本行で物質化しない。実C全whole/実trustは未束縛。",
     "case_meaning": {
      "id": "S02",
      "refs": [],
      "field": "formed"
     },
-    "case_meaning_boundary": "case_meaning.fieldはこのscope判断の有限著述区分。conflict/same_ref_conflictはscope列集約未形成又は同Ref原source相反を表し、domain field定義/値のconflict状態を生成しない。"
+    "case_meaning_boundary": "case_meaning.fieldはこのscope判断の有限著述区分。conflict/same_ref_conflictはscope列集約未形成又は同Ref原source相反を表し、domain field定義/値のconflict状態を生成しない。",
+    "meaning_rule_pointers": [
+     "/field_obligation_scope_contract/guards_and_order/1"
+    ]
    },
    {
     "id": "HARNESS-L9-009-SCOPE-S03",
-    "source_condition": "同C snapshotの元raw/field selection/globalRef viewに下記inputが対応し、source/body/資格の局所関係は本case記載どおりという条件付きbasic view。実C全whole/実trustは未束縛。",
-    "input_pointer": "/__scope_basic_case/input",
-    "expected_pointer": "/__scope_basic_case/expected",
+    "source_condition": "case_meaningが示す同C snapshotの元raw/field selection/globalRef viewに関する条件付き意味scenario。実input/patchは未形成であり、source/body/資格relationを本行で物質化しない。実C全whole/実trustは未束縛。",
     "case_meaning": {
      "id": "S03",
      "refs": [
@@ -13360,13 +13364,14 @@
      ],
      "field": "formed"
     },
-    "case_meaning_boundary": "case_meaning.fieldはこのscope判断の有限著述区分。conflict/same_ref_conflictはscope列集約未形成又は同Ref原source相反を表し、domain field定義/値のconflict状態を生成しない。"
+    "case_meaning_boundary": "case_meaning.fieldはこのscope判断の有限著述区分。conflict/same_ref_conflictはscope列集約未形成又は同Ref原source相反を表し、domain field定義/値のconflict状態を生成しない。",
+    "meaning_rule_pointers": [
+     "/field_obligation_scope_contract/guards_and_order/0"
+    ]
    },
    {
     "id": "HARNESS-L9-009-SCOPE-S04",
-    "source_condition": "同C snapshotの元raw/field selection/globalRef viewに下記inputが対応し、source/body/資格の局所関係は本case記載どおりという条件付きbasic view。実C全whole/実trustは未束縛。",
-    "input_pointer": "/__scope_basic_case/input",
-    "expected_pointer": "/__scope_basic_case/expected",
+    "source_condition": "case_meaningが示す同C snapshotの元raw/field selection/globalRef viewに関する条件付き意味scenario。実input/patchは未形成であり、source/body/資格relationを本行で物質化しない。実C全whole/実trustは未束縛。",
     "case_meaning": {
      "id": "S04",
      "refs": [
@@ -13375,13 +13380,14 @@
      "second": [],
      "field": "conflict"
     },
-    "case_meaning_boundary": "case_meaning.fieldはこのscope判断の有限著述区分。conflict/same_ref_conflictはscope列集約未形成又は同Ref原source相反を表し、domain field定義/値のconflict状態を生成しない。"
+    "case_meaning_boundary": "case_meaning.fieldはこのscope判断の有限著述区分。conflict/same_ref_conflictはscope列集約未形成又は同Ref原source相反を表し、domain field定義/値のconflict状態を生成しない。",
+    "meaning_rule_pointers": [
+     "/field_obligation_scope_contract/guards_and_order/3"
+    ]
    },
    {
     "id": "HARNESS-L9-009-SCOPE-S05",
-    "source_condition": "同C snapshotの元raw/field selection/globalRef viewに下記inputが対応し、source/body/資格の局所関係は本case記載どおりという条件付きbasic view。実C全whole/実trustは未束縛。",
-    "input_pointer": "/__scope_basic_case/input",
-    "expected_pointer": "/__scope_basic_case/expected",
+    "source_condition": "case_meaningが示す同C snapshotの元raw/field selection/globalRef viewに関する条件付き意味scenario。実input/patchは未形成であり、source/body/資格relationを本行で物質化しない。実C全whole/実trustは未束縛。",
     "case_meaning": {
      "id": "S05",
      "refs": [
@@ -13391,13 +13397,14 @@
      "same_ref": true,
      "field": "same_ref_conflict"
     },
-    "case_meaning_boundary": "case_meaning.fieldはこのscope判断の有限著述区分。conflict/same_ref_conflictはscope列集約未形成又は同Ref原source相反を表し、domain field定義/値のconflict状態を生成しない。"
+    "case_meaning_boundary": "case_meaning.fieldはこのscope判断の有限著述区分。conflict/same_ref_conflictはscope列集約未形成又は同Ref原source相反を表し、domain field定義/値のconflict状態を生成しない。",
+    "meaning_rule_pointers": [
+     "/field_obligation_scope_contract/cause_patterns/statement_source_conflict"
+    ]
    },
    {
     "id": "HARNESS-L9-009-SCOPE-S06",
-    "source_condition": "同C snapshotの元raw/field selection/globalRef viewに下記inputが対応し、source/body/資格の局所関係は本case記載どおりという条件付きbasic view。実C全whole/実trustは未束縛。",
-    "input_pointer": "/__scope_basic_case/input",
-    "expected_pointer": "/__scope_basic_case/expected",
+    "source_condition": "case_meaningが示す同C snapshotの元raw/field selection/globalRef viewに関する条件付き意味scenario。実input/patchは未形成であり、source/body/資格relationを本行で物質化しない。実C全whole/実trustは未束縛。",
     "case_meaning": {
      "id": "S06",
      "refs": [
@@ -13406,37 +13413,40 @@
      "qual_bad": true,
      "field": "qualification"
     },
-    "case_meaning_boundary": "case_meaning.fieldはこのscope判断の有限著述区分。conflict/same_ref_conflictはscope列集約未形成又は同Ref原source相反を表し、domain field定義/値のconflict状態を生成しない。"
+    "case_meaning_boundary": "case_meaning.fieldはこのscope判断の有限著述区分。conflict/same_ref_conflictはscope列集約未形成又は同Ref原source相反を表し、domain field定義/値のconflict状態を生成しない。",
+    "meaning_rule_pointers": [
+     "/field_obligation_scope_contract/role_owner_binding"
+    ]
    },
    {
     "id": "HARNESS-L9-009-SCOPE-S07",
-    "source_condition": "同C snapshotの元raw/field selection/globalRef viewに下記inputが対応し、source/body/資格の局所関係は本case記載どおりという条件付きbasic view。実C全whole/実trustは未束縛。",
-    "input_pointer": "/__scope_basic_case/input",
-    "expected_pointer": "/__scope_basic_case/expected",
+    "source_condition": "case_meaningが示す同C snapshotの元raw/field selection/globalRef viewに関する条件付き意味scenario。実input/patchは未形成であり、source/body/資格relationを本行で物質化しない。実C全whole/実trustは未束縛。",
     "case_meaning": {
      "id": "S07",
      "refs": null,
      "field": "null"
     },
-    "case_meaning_boundary": "case_meaning.fieldはこのscope判断の有限著述区分。conflict/same_ref_conflictはscope列集約未形成又は同Ref原source相反を表し、domain field定義/値のconflict状態を生成しない。"
+    "case_meaning_boundary": "case_meaning.fieldはこのscope判断の有限著述区分。conflict/same_ref_conflictはscope列集約未形成又は同Ref原source相反を表し、domain field定義/値のconflict状態を生成しない。",
+    "meaning_rule_pointers": [
+     "/field_obligation_scope_contract/guards_and_order/1"
+    ]
    },
    {
     "id": "HARNESS-L9-009-SCOPE-S08",
-    "source_condition": "同C snapshotの元raw/field selection/globalRef viewに下記inputが対応し、source/body/資格の局所関係は本case記載どおりという条件付きbasic view。実C全whole/実trustは未束縛。",
-    "input_pointer": "/__scope_basic_case/input",
-    "expected_pointer": "/__scope_basic_case/expected",
+    "source_condition": "case_meaningが示す同C snapshotの元raw/field selection/globalRef viewに関する条件付き意味scenario。実input/patchは未形成であり、source/body/資格relationを本行で物質化しない。実C全whole/実trustは未束縛。",
     "case_meaning": {
      "id": "S08",
      "refs": "ABSENT",
      "field": "absent"
     },
-    "case_meaning_boundary": "case_meaning.fieldはこのscope判断の有限著述区分。conflict/same_ref_conflictはscope列集約未形成又は同Ref原source相反を表し、domain field定義/値のconflict状態を生成しない。"
+    "case_meaning_boundary": "case_meaning.fieldはこのscope判断の有限著述区分。conflict/same_ref_conflictはscope列集約未形成又は同Ref原source相反を表し、domain field定義/値のconflict状態を生成しない。",
+    "meaning_rule_pointers": [
+     "/field_obligation_scope_contract/guards_and_order/1"
+    ]
    },
    {
     "id": "HARNESS-L9-009-SCOPE-S09",
-    "source_condition": "同C snapshotの元raw/field selection/globalRef viewに下記inputが対応し、source/body/資格の局所関係は本case記載どおりという条件付きbasic view。実C全whole/実trustは未束縛。",
-    "input_pointer": "/__scope_basic_case/input",
-    "expected_pointer": "/__scope_basic_case/expected",
+    "source_condition": "case_meaningが示す同C snapshotの元raw/field selection/globalRef viewに関する条件付き意味scenario。実input/patchは未形成であり、source/body/資格relationを本行で物質化しない。実C全whole/実trustは未束縛。",
     "case_meaning": {
      "id": "S09",
      "refs": [
@@ -13445,13 +13455,14 @@
      "outside": true,
      "field": "no_source"
     },
-    "case_meaning_boundary": "case_meaning.fieldはこのscope判断の有限著述区分。conflict/same_ref_conflictはscope列集約未形成又は同Ref原source相反を表し、domain field定義/値のconflict状態を生成しない。"
+    "case_meaning_boundary": "case_meaning.fieldはこのscope判断の有限著述区分。conflict/same_ref_conflictはscope列集約未形成又は同Ref原source相反を表し、domain field定義/値のconflict状態を生成しない。",
+    "meaning_rule_pointers": [
+     "/field_obligation_scope_contract/carrier/selection_boundary"
+    ]
    },
    {
     "id": "HARNESS-L9-009-SCOPE-S09B",
-    "source_condition": "同C snapshotの元raw/field selection/globalRef viewに下記inputが対応し、source/body/資格の局所関係は本case記載どおりという条件付きbasic view。実C全whole/実trustは未束縛。",
-    "input_pointer": "/__scope_basic_case/input",
-    "expected_pointer": "/__scope_basic_case/expected",
+    "source_condition": "case_meaningが示す同C snapshotの元raw/field selection/globalRef viewに関する条件付き意味scenario。実input/patchは未形成であり、source/body/資格relationを本行で物質化しない。実C全whole/実trustは未束縛。",
     "case_meaning": {
      "id": "S09B",
      "refs": [
@@ -13460,13 +13471,14 @@
      "foreign_binding": true,
      "field": "no_source"
     },
-    "case_meaning_boundary": "case_meaning.fieldはこのscope判断の有限著述区分。conflict/same_ref_conflictはscope列集約未形成又は同Ref原source相反を表し、domain field定義/値のconflict状態を生成しない。"
+    "case_meaning_boundary": "case_meaning.fieldはこのscope判断の有限著述区分。conflict/same_ref_conflictはscope列集約未形成又は同Ref原source相反を表し、domain field定義/値のconflict状態を生成しない。",
+    "meaning_rule_pointers": [
+     "/field_obligation_scope_contract/role_owner_binding/limits"
+    ]
    },
    {
     "id": "HARNESS-L9-009-SCOPE-S10",
-    "source_condition": "同C snapshotの元raw/field selection/globalRef viewに下記inputが対応し、source/body/資格の局所関係は本case記載どおりという条件付きbasic view。実C全whole/実trustは未束縛。",
-    "input_pointer": "/__scope_basic_case/input",
-    "expected_pointer": "/__scope_basic_case/expected",
+    "source_condition": "case_meaningが示す同C snapshotの元raw/field selection/globalRef viewに関する条件付き意味scenario。実input/patchは未形成であり、source/body/資格relationを本行で物質化しない。実C全whole/実trustは未束縛。",
     "case_meaning": {
      "id": "S10",
      "refs": [
@@ -13475,13 +13487,14 @@
      "wrong_owner": true,
      "field": "owner"
     },
-    "case_meaning_boundary": "case_meaning.fieldはこのscope判断の有限著述区分。conflict/same_ref_conflictはscope列集約未形成又は同Ref原source相反を表し、domain field定義/値のconflict状態を生成しない。"
+    "case_meaning_boundary": "case_meaning.fieldはこのscope判断の有限著述区分。conflict/same_ref_conflictはscope列集約未形成又は同Ref原source相反を表し、domain field定義/値のconflict状態を生成しない。",
+    "meaning_rule_pointers": [
+     "/field_obligation_scope_contract/role_owner_binding/combination"
+    ]
    },
    {
     "id": "HARNESS-L9-009-SCOPE-S11",
-    "source_condition": "同C snapshotの元raw/field selection/globalRef viewに下記inputが対応し、source/body/資格の局所関係は本case記載どおりという条件付きbasic view。実C全whole/実trustは未束縛。",
-    "input_pointer": "/__scope_basic_case/input",
-    "expected_pointer": "/__scope_basic_case/expected",
+    "source_condition": "case_meaningが示す同C snapshotの元raw/field selection/globalRef viewに関する条件付き意味scenario。実input/patchは未形成であり、source/body/資格relationを本行で物質化しない。実C全whole/実trustは未束縛。",
     "case_meaning": {
      "id": "S11",
      "proposal": true,
@@ -13490,13 +13503,14 @@
      ],
      "field": "no_source"
     },
-    "case_meaning_boundary": "case_meaning.fieldはこのscope判断の有限著述区分。conflict/same_ref_conflictはscope列集約未形成又は同Ref原source相反を表し、domain field定義/値のconflict状態を生成しない。"
+    "case_meaning_boundary": "case_meaning.fieldはこのscope判断の有限著述区分。conflict/same_ref_conflictはscope列集約未形成又は同Ref原source相反を表し、domain field定義/値のconflict状態を生成しない。",
+    "meaning_rule_pointers": [
+     "/field_obligation_scope_contract/proposal_preservation"
+    ]
    },
    {
     "id": "HARNESS-L9-009-SCOPE-S12",
-    "source_condition": "同C snapshotの元raw/field selection/globalRef viewに下記inputが対応し、source/body/資格の局所関係は本case記載どおりという条件付きbasic view。実C全whole/実trustは未束縛。",
-    "input_pointer": "/__scope_basic_case/input",
-    "expected_pointer": "/__scope_basic_case/expected",
+    "source_condition": "case_meaningが示す同C snapshotの元raw/field selection/globalRef viewに関する条件付き意味scenario。実input/patchは未形成であり、source/body/資格relationを本行で物質化しない。実C全whole/実trustは未束縛。",
     "case_meaning": {
      "id": "S12",
      "proposal": true,
@@ -13505,13 +13519,14 @@
      ],
      "field": "no_source"
     },
-    "case_meaning_boundary": "case_meaning.fieldはこのscope判断の有限著述区分。conflict/same_ref_conflictはscope列集約未形成又は同Ref原source相反を表し、domain field定義/値のconflict状態を生成しない。"
+    "case_meaning_boundary": "case_meaning.fieldはこのscope判断の有限著述区分。conflict/same_ref_conflictはscope列集約未形成又は同Ref原source相反を表し、domain field定義/値のconflict状態を生成しない。",
+    "meaning_rule_pointers": [
+     "/field_obligation_scope_contract/proposal_preservation"
+    ]
    },
    {
     "id": "HARNESS-L9-009-SCOPE-S13",
-    "source_condition": "同C snapshotの元raw/field selection/globalRef viewに下記inputが対応し、source/body/資格の局所関係は本case記載どおりという条件付きbasic view。実C全whole/実trustは未束縛。",
-    "input_pointer": "/__scope_basic_case/input",
-    "expected_pointer": "/__scope_basic_case/expected",
+    "source_condition": "case_meaningが示す同C snapshotの元raw/field selection/globalRef viewに関する条件付き意味scenario。実input/patchは未形成であり、source/body/資格relationを本行で物質化しない。実C全whole/実trustは未束縛。",
     "case_meaning": {
      "id": "S13",
      "refs": [
@@ -13523,13 +13538,14 @@
      "two_fields": true,
      "field": "formed"
     },
-    "case_meaning_boundary": "case_meaning.fieldはこのscope判断の有限著述区分。conflict/same_ref_conflictはscope列集約未形成又は同Ref原source相反を表し、domain field定義/値のconflict状態を生成しない。"
+    "case_meaning_boundary": "case_meaning.fieldはこのscope判断の有限著述区分。conflict/same_ref_conflictはscope列集約未形成又は同Ref原source相反を表し、domain field定義/値のconflict状態を生成しない。",
+    "meaning_rule_pointers": [
+     "/field_obligation_scope_contract/guards_and_order/0"
+    ]
    },
    {
     "id": "HARNESS-L9-009-SCOPE-S14",
-    "source_condition": "同C snapshotの元raw/field selection/globalRef viewに下記inputが対応し、source/body/資格の局所関係は本case記載どおりという条件付きbasic view。実C全whole/実trustは未束縛。",
-    "input_pointer": "/__scope_basic_case/input",
-    "expected_pointer": "/__scope_basic_case/expected",
+    "source_condition": "case_meaningが示す同C snapshotの元raw/field selection/globalRef viewに関する条件付き意味scenario。実input/patchは未形成であり、source/body/資格relationを本行で物質化しない。実C全whole/実trustは未束縛。",
     "case_meaning": {
      "id": "S14",
      "refs": [
@@ -13538,13 +13554,14 @@
      ],
      "field": "formed"
     },
-    "case_meaning_boundary": "case_meaning.fieldはこのscope判断の有限著述区分。conflict/same_ref_conflictはscope列集約未形成又は同Ref原source相反を表し、domain field定義/値のconflict状態を生成しない。"
+    "case_meaning_boundary": "case_meaning.fieldはこのscope判断の有限著述区分。conflict/same_ref_conflictはscope列集約未形成又は同Ref原source相反を表し、domain field定義/値のconflict状態を生成しない。",
+    "meaning_rule_pointers": [
+     "/field_obligation_scope_contract/guards_and_order/0"
+    ]
    },
    {
     "id": "HARNESS-L9-009-SCOPE-S15",
-    "source_condition": "同C snapshotの元raw/field selection/globalRef viewに下記inputが対応し、source/body/資格の局所関係は本case記載どおりという条件付きbasic view。実C全whole/実trustは未束縛。",
-    "input_pointer": "/__scope_basic_case/input",
-    "expected_pointer": "/__scope_basic_case/expected",
+    "source_condition": "case_meaningが示す同C snapshotの元raw/field selection/globalRef viewに関する条件付き意味scenario。実input/patchは未形成であり、source/body/資格relationを本行で物質化しない。実C全whole/実trustは未束縛。",
     "case_meaning": {
      "id": "S15",
      "refs": [
@@ -13552,82 +13569,223 @@
      ],
      "field": "lookup"
     },
-    "case_meaning_boundary": "case_meaning.fieldはこのscope判断の有限著述区分。conflict/same_ref_conflictはscope列集約未形成又は同Ref原source相反を表し、domain field定義/値のconflict状態を生成しない。"
+    "case_meaning_boundary": "case_meaning.fieldはこのscope判断の有限著述区分。conflict/same_ref_conflictはscope列集約未形成又は同Ref原source相反を表し、domain field定義/値のconflict状態を生成しない。",
+    "meaning_rule_pointers": [
+     "/field_obligation_scope_contract/guards_and_order/0"
+    ]
    },
    {
     "id": "HARNESS-L9-009-SCOPE-S16A",
-    "source_condition": "同C snapshotの元raw/field selection/globalRef viewに下記inputが対応し、source/body/資格の局所関係は本case記載どおりという条件付きbasic view。実C全whole/実trustは未束縛。",
-    "input_pointer": "/__scope_basic_case/input",
-    "expected_pointer": "/__scope_basic_case/expected",
+    "source_condition": "case_meaningが示す同C snapshotの元raw/field selection/globalRef viewに関する条件付き意味scenario。実input/patchは未形成であり、source/body/資格relationを本行で物質化しない。実C全whole/実trustは未束縛。",
     "case_meaning": {
      "id": "S16A",
      "refs": [
       "u"
      ],
      "field": "formed",
-     "optional": "ABSENT"
+     "reentry_condition": "ABSENT"
     },
-    "case_meaning_boundary": "case_meaning.fieldはこのscope判断の有限著述区分。conflict/same_ref_conflictはscope列集約未形成又は同Ref原source相反を表し、domain field定義/値のconflict状態を生成しない。"
+    "case_meaning_boundary": "case_meaning.fieldはこのscope判断の有限著述区分。conflict/same_ref_conflictはscope列集約未形成又は同Ref原source相反を表し、domain field定義/値のconflict状態を生成しない。",
+    "meaning_rule_pointers": [
+     "/field_obligation_scope_contract/carrier/optional_original_members/1"
+    ]
    },
    {
     "id": "HARNESS-L9-009-SCOPE-S16B",
-    "source_condition": "同C snapshotの元raw/field selection/globalRef viewに下記inputが対応し、source/body/資格の局所関係は本case記載どおりという条件付きbasic view。実C全whole/実trustは未束縛。",
-    "input_pointer": "/__scope_basic_case/input",
-    "expected_pointer": "/__scope_basic_case/expected",
+    "source_condition": "case_meaningが示す同C snapshotの元raw/field selection/globalRef viewに関する条件付き意味scenario。実input/patchは未形成であり、source/body/資格relationを本行で物質化しない。実C全whole/実trustは未束縛。",
     "case_meaning": {
      "id": "S16B",
      "refs": [
       "u"
      ],
      "field": "formed",
-     "optional": null
+     "reentry_condition": null
     },
-    "case_meaning_boundary": "case_meaning.fieldはこのscope判断の有限著述区分。conflict/same_ref_conflictはscope列集約未形成又は同Ref原source相反を表し、domain field定義/値のconflict状態を生成しない。"
+    "case_meaning_boundary": "case_meaning.fieldはこのscope判断の有限著述区分。conflict/same_ref_conflictはscope列集約未形成又は同Ref原source相反を表し、domain field定義/値のconflict状態を生成しない。",
+    "meaning_rule_pointers": [
+     "/field_obligation_scope_contract/carrier/optional_original_members/1"
+    ]
    },
    {
     "id": "HARNESS-L9-009-SCOPE-S16C",
-    "source_condition": "同C snapshotの元raw/field selection/globalRef viewに下記inputが対応し、source/body/資格の局所関係は本case記載どおりという条件付きbasic view。実C全whole/実trustは未束縛。",
-    "input_pointer": "/__scope_basic_case/input",
-    "expected_pointer": "/__scope_basic_case/expected",
+    "source_condition": "case_meaningが示す同C snapshotの元raw/field selection/globalRef viewに関する条件付き意味scenario。実input/patchは未形成であり、source/body/資格relationを本行で物質化しない。実C全whole/実trustは未束縛。",
     "case_meaning": {
      "id": "S16C",
      "refs": [
       "u"
      ],
      "field": "formed",
-     "optional": false
+     "reentry_condition": false
     },
-    "case_meaning_boundary": "case_meaning.fieldはこのscope判断の有限著述区分。conflict/same_ref_conflictはscope列集約未形成又は同Ref原source相反を表し、domain field定義/値のconflict状態を生成しない。"
+    "case_meaning_boundary": "case_meaning.fieldはこのscope判断の有限著述区分。conflict/same_ref_conflictはscope列集約未形成又は同Ref原source相反を表し、domain field定義/値のconflict状態を生成しない。",
+    "meaning_rule_pointers": [
+     "/field_obligation_scope_contract/carrier/optional_original_members/1"
+    ]
    },
    {
     "id": "HARNESS-L9-009-SCOPE-S16D",
-    "source_condition": "同C snapshotの元raw/field selection/globalRef viewに下記inputが対応し、source/body/資格の局所関係は本case記載どおりという条件付きbasic view。実C全whole/実trustは未束縛。",
-    "input_pointer": "/__scope_basic_case/input",
-    "expected_pointer": "/__scope_basic_case/expected",
+    "source_condition": "case_meaningが示す同C snapshotの元raw/field selection/globalRef viewに関する条件付き意味scenario。実input/patchは未形成であり、source/body/資格relationを本行で物質化しない。実C全whole/実trustは未束縛。",
     "case_meaning": {
      "id": "S16D",
      "refs": [
       "u"
      ],
      "field": "formed",
-     "optional": 0
+     "reentry_condition": 0
     },
-    "case_meaning_boundary": "case_meaning.fieldはこのscope判断の有限著述区分。conflict/same_ref_conflictはscope列集約未形成又は同Ref原source相反を表し、domain field定義/値のconflict状態を生成しない。"
+    "case_meaning_boundary": "case_meaning.fieldはこのscope判断の有限著述区分。conflict/same_ref_conflictはscope列集約未形成又は同Ref原source相反を表し、domain field定義/値のconflict状態を生成しない。",
+    "meaning_rule_pointers": [
+     "/field_obligation_scope_contract/carrier/optional_original_members/1"
+    ]
    },
    {
     "id": "HARNESS-L9-009-SCOPE-S16E",
-    "source_condition": "同C snapshotの元raw/field selection/globalRef viewに下記inputが対応し、source/body/資格の局所関係は本case記載どおりという条件付きbasic view。実C全whole/実trustは未束縛。",
-    "input_pointer": "/__scope_basic_case/input",
-    "expected_pointer": "/__scope_basic_case/expected",
+    "source_condition": "case_meaningが示す同C snapshotの元raw/field selection/globalRef viewに関する条件付き意味scenario。実input/patchは未形成であり、source/body/資格relationを本行で物質化しない。実C全whole/実trustは未束縛。",
     "case_meaning": {
      "id": "S16E",
      "refs": [
       "u"
      ],
      "field": "formed",
-     "optional": "元再評価条件"
+     "reentry_condition": "元再評価条件"
     },
-    "case_meaning_boundary": "case_meaning.fieldはこのscope判断の有限著述区分。conflict/same_ref_conflictはscope列集約未形成又は同Ref原source相反を表し、domain field定義/値のconflict状態を生成しない。"
+    "case_meaning_boundary": "case_meaning.fieldはこのscope判断の有限著述区分。conflict/same_ref_conflictはscope列集約未形成又は同Ref原source相反を表し、domain field定義/値のconflict状態を生成しない。",
+    "meaning_rule_pointers": [
+     "/field_obligation_scope_contract/carrier/optional_original_members/1"
+    ]
+   },
+   {
+    "id": "HARNESS-L9-009-SCOPE-S17A",
+    "source_condition": "case_meaningが示す同C snapshotの元raw/field selection/globalRef viewに関する条件付き意味scenario。実input/patchは未形成であり、source/body/資格relationを本行で物質化しない。実C全whole/実trustは未束縛。",
+    "case_meaning": {
+     "id": "S17A",
+     "refs": [
+      "u"
+     ],
+     "field": "formed",
+     "reason": "ABSENT"
+    },
+    "case_meaning_boundary": "case_meaning.fieldはscope列の成立/未形成区分であり、domain field definition/value stateではない。Causeの厳密shapeを主張する場合はL5 field-scope writerの明示patternだけを使う。",
+    "meaning_rule_pointers": [
+     "/field_obligation_scope_contract/carrier/optional_original_members/0"
+    ]
+   },
+   {
+    "id": "HARNESS-L9-009-SCOPE-S17B",
+    "source_condition": "case_meaningが示す同C snapshotの元raw/field selection/globalRef viewに関する条件付き意味scenario。実input/patchは未形成であり、source/body/資格relationを本行で物質化しない。実C全whole/実trustは未束縛。",
+    "case_meaning": {
+     "id": "S17B",
+     "refs": [
+      "u"
+     ],
+     "field": "formed",
+     "reason": null
+    },
+    "case_meaning_boundary": "case_meaning.fieldはscope列の成立/未形成区分であり、domain field definition/value stateではない。Causeの厳密shapeを主張する場合はL5 field-scope writerの明示patternだけを使う。",
+    "meaning_rule_pointers": [
+     "/field_obligation_scope_contract/carrier/optional_original_members/0"
+    ]
+   },
+   {
+    "id": "HARNESS-L9-009-SCOPE-S17C",
+    "source_condition": "case_meaningが示す同C snapshotの元raw/field selection/globalRef viewに関する条件付き意味scenario。実input/patchは未形成であり、source/body/資格relationを本行で物質化しない。実C全whole/実trustは未束縛。",
+    "case_meaning": {
+     "id": "S17C",
+     "refs": [
+      "u"
+     ],
+     "field": "formed",
+     "reason": false
+    },
+    "case_meaning_boundary": "case_meaning.fieldはscope列の成立/未形成区分であり、domain field definition/value stateではない。Causeの厳密shapeを主張する場合はL5 field-scope writerの明示patternだけを使う。",
+    "meaning_rule_pointers": [
+     "/field_obligation_scope_contract/carrier/optional_original_members/0"
+    ]
+   },
+   {
+    "id": "HARNESS-L9-009-SCOPE-S17D",
+    "source_condition": "case_meaningが示す同C snapshotの元raw/field selection/globalRef viewに関する条件付き意味scenario。実input/patchは未形成であり、source/body/資格relationを本行で物質化しない。実C全whole/実trustは未束縛。",
+    "case_meaning": {
+     "id": "S17D",
+     "refs": [
+      "u"
+     ],
+     "field": "formed",
+     "reason": 0
+    },
+    "case_meaning_boundary": "case_meaning.fieldはscope列の成立/未形成区分であり、domain field definition/value stateではない。Causeの厳密shapeを主張する場合はL5 field-scope writerの明示patternだけを使う。",
+    "meaning_rule_pointers": [
+     "/field_obligation_scope_contract/carrier/optional_original_members/0"
+    ]
+   },
+   {
+    "id": "HARNESS-L9-009-SCOPE-S17E",
+    "source_condition": "case_meaningが示す同C snapshotの元raw/field selection/globalRef viewに関する条件付き意味scenario。実input/patchは未形成であり、source/body/資格relationを本行で物質化しない。実C全whole/実trustは未束縛。",
+    "case_meaning": {
+     "id": "S17E",
+     "refs": [
+      "u"
+     ],
+     "field": "formed",
+     "reason": "原理由"
+    },
+    "case_meaning_boundary": "case_meaning.fieldはscope列の成立/未形成区分であり、domain field definition/value stateではない。Causeの厳密shapeを主張する場合はL5 field-scope writerの明示patternだけを使う。",
+    "meaning_rule_pointers": [
+     "/field_obligation_scope_contract/carrier/optional_original_members/0"
+    ]
+   },
+   {
+    "id": "HARNESS-L9-009-SCOPE-S18",
+    "source_condition": "case_meaningが示す同C snapshotの元raw/field selection/globalRef viewに関する条件付き意味scenario。実input/patchは未形成であり、source/body/資格relationを本行で物質化しない。実C全whole/実trustは未束縛。",
+    "case_meaning": {
+     "id": "S18",
+     "first_refs": [
+      "a",
+      "b"
+     ],
+     "second_refs": [
+      "b",
+      "a"
+     ],
+     "field": "conflict"
+    },
+    "case_meaning_boundary": "case_meaning.fieldはscope列の成立/未形成区分であり、domain field definition/value stateではない。Causeの厳密shapeを主張する場合はL5 field-scope writerの明示patternだけを使う。",
+    "meaning_rule_pointers": [
+     "/field_obligation_scope_contract/guards_and_order/3"
+    ]
+   },
+   {
+    "id": "HARNESS-L9-009-SCOPE-S19",
+    "source_condition": "case_meaningが示す同C snapshotの元raw/field selection/globalRef viewに関する条件付き意味scenario。実input/patchは未形成であり、source/body/資格relationを本行で物質化しない。実C全whole/実trustは未束縛。",
+    "case_meaning": {
+     "id": "S19",
+     "first_refs": [
+      "u"
+     ],
+     "second_refs": [
+      "u",
+      "u"
+     ],
+     "field": "conflict"
+    },
+    "case_meaning_boundary": "case_meaning.fieldはscope列の成立/未形成区分であり、domain field definition/value stateではない。Causeの厳密shapeを主張する場合はL5 field-scope writerの明示patternだけを使う。",
+    "meaning_rule_pointers": [
+     "/field_obligation_scope_contract/guards_and_order/3"
+    ]
+   },
+   {
+    "id": "HARNESS-L9-009-SCOPE-S20",
+    "source_condition": "case_meaningが示す同C snapshotの元raw/field selection/globalRef viewに関する条件付き意味scenario。実input/patchは未形成であり、source/body/資格relationを本行で物質化しない。実C全whole/実trustは未束縛。",
+    "case_meaning": {
+     "id": "S20",
+     "same_ref": true,
+     "same_meaning": true,
+     "field": "formed"
+    },
+    "case_meaning_boundary": "case_meaning.fieldはscope列の成立/未形成区分であり、domain field definition/value stateではない。Causeの厳密shapeを主張する場合はL5 field-scope writerの明示patternだけを使う。",
+    "meaning_rule_pointers": [
+     "/field_obligation_scope_contract/cause_patterns/statement_source_conflict"
+    ]
    }
   ],
   "coverage": {
@@ -13647,29 +13805,164 @@
     "S13",
     "S14",
     "S15",
-    "S16"
+    "S16",
+    "S17A",
+    "S17B",
+    "S17C",
+    "S17D",
+    "S17E",
+    "S18",
+    "S19",
+    "S20"
    ],
-   "case_count": 21,
-   "expanded": "S09Bは別binding、S16A..Eはoptional原presence/値差。",
+   "case_count": 29,
+   "expanded": "S09B別binding。旧S16A..Eのcase_meaning.optionalはL4 optional_original_members.reentry_conditionへ読み替え、値/presenceを維持。S17A..EはL4 optional_original_members.reasonを独立memberとしてscenario化。S18原列順差、S19支持間の反復数差、S20同Ref同本文。",
    "unexercised": [
-    "source/qual/root lookupの全missing/multiple経路",
+    "source/qualification/root lookupの全missing/multiple経路",
     "nullable ownerの全供給形",
     "同一source bodyの複数matching entry",
     "未知field collection/raw input=null/Context未形成",
     "全role owner候補/全Ref numeric leaf",
-    "ScopeOrigin nativeclosedshapeと全実consumer",
-    "[a,b]対[b,a]の原unfinished列順序差",
-    "別支持出現をまたぐ[u]対[u,u]の反復数差（S14の列内反復保持とは別）",
-    "Read.unreached枝の全値期待"
+    "ScopeOrigin native closed shapeと全実consumer",
+    "[a,b]対[b,a]および支持間[u]対[u,u]はS18/S19の意味scenarioを追加したが、固定input/expected patchがなく未物質化",
+    "Read.unreached枝の全値期待",
+    "全29 scenarioのcase-specific input/expected literalとScopeReturn exact output"
    ]
   },
   "preservation": "既存field_source_materialization7cases、field_semantic_evidence9cases、f05_validation_material_call5casesのinput/expected全値は変更しない。新sectionを追加し、既存のcurrent L4 file bindingはL9の4件（source_basis3件とR3 candidate_l4_binding1件）及びL8の5件を追随更新する。既存field_semantic_evidenceのselected object canonical1件も更新する。新section自身のcurrent L4 file/selected object bindingは別に一致させる。固定歴史pinsは変更しない。",
   "execution_state": "not_executed",
-  "verification_method": "standardJSON parse/serialization/hashと手著述fixedRFCcopy/add/replaceの材料化、実pointer/全値hash確認だけ。候補reader/meaning/validator/sort/codec/test/CI未実装未実行。",
+  "verification_method": "意味scenario ID・L4 pointerの静的対応確認のみ。case input/expected pointer解決、固定RFC6902再構成、candidate reader/meaning/validator/sort/codec/test/CIは未実装・未実行。",
   "source_text_authoring_profile": {
-   "source_text": "追加sourceのcontent_bytesは固定した原JSON文字列literal。そのUTF-8 bytesそのもののSHA-256がref.sha256であり、照合時にbodyを再serializeして置換しない。",
-   "authoring": "この有限caseの追加25 source literalはbodyをkey挿入順のままensure_ascii=False, sort_keys=False, separators=(',',':')でJSON text化した。",
-   "object_canonical": "input/expected/selected objectのcanonical_sha256はensure_ascii=False, sort_keys=True, separators=(',',':')のUTF-8 bytes。source文字列digestとは別のdomain。"
+   "source_text": "この節にはcase-specific source literalを格納しない。",
+   "authoring": "case_meaningはscenario labelであり、raw source bytes/hash又はexpected output materializerではない。",
+   "object_canonical": "current L4 bindingのobject canonical hashとscenario label本文を区別する。"
+  },
+  "authoring_review_boundary": "このcrosswalkとscenario追加は候補文書の作成側による静的対応付けであり、L9独立意味review、L5/L8独立pair review、承認・採用・freezeではない。reviewerは対象L3/L10 selected object、current L4 rule pointer、L5 cause writer、L8 U-ID境界をexact revisionで再照合する。",
+  "legacy_and_failure_basis": [
+   {
+    "asset_id": "LEGACY-ASSET-4F5A1F0739EC1111D91D",
+    "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/design-template-json-authority.md",
+    "lines": "83–91",
+    "relation_ja": "検証期待は対象revision/field coverage/trace/oracle等を実際にたどれることが必要。現scenario rowが固定input/expected objectを持たない事実を隠さず、旧registry/runtime/schemaを移植せず、pointer未解決を成立期待にしない。"
+   },
+   {
+    "asset_id": "LEGACY-ASSET-98372FEE8A3AC8F9C299",
+    "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/design-template-json-authority.md",
+    "lines": "74–77, 103–108",
+    "relation_ja": "unknown/fail-closeとexact registry/ref semanticsの歴史を参照。現候補では旧schema/lifecycle/registryを再導入せず、実際に定義されているL4/L5 cause/presence規則だけをL8 U-IDへ写す。"
+   },
+   {
+    "asset_id": "LEGACY-ASSET-A127DEC3EEE6ED63CF17",
+    "path": "archive/legacy-generation-2026-09-14/root/docs/governance/predecessor-harness-full-weakness-audit-2026-07-20.md",
+    "lines": "80, 86–87",
+    "failure_ids": [
+     "UTW-014",
+     "UTW-020",
+     "UTW-021"
+    ],
+    "relation_ja": "欠落sourceの空集合化、aggregateが部分失敗を隠すこと、時刻/prose/hashを完了とみなす失敗を再発防止の参照にする。今回のscenario-only化は空成功・CAUSE削除・完了主張を作らず、未 materialized を明示する。"
+   },
+   {
+    "path": "docs/helix-harness/L8-unit-verification/product-template-application.json",
+    "pointer": "/f05_native_nine_source_known_known_scope_full_five_return_oracle/fixed_recipe_correction",
+    "relation_ja": "既存の修正記録は空RecordOccurrence残存で型不成立となったcaseを示す。link/canonical検査だけではexact expected成立を示せないため、root不在のL9 pointerを成立oracleと主張せずscenario matrixへ限定する。"
+   },
+   {
+    "path": "docs/governance/audits/tdd/h009-l5l8-remaining-disposition-t2t3-2026-10-28.json",
+    "pointer": "/questions/1",
+    "relation_ja": "D15のL5/L8 U-ID対照scopeとL9 field_obligation_scope_verification coverageを起点にする。新U-IDは対照候補でありfreeze/review済み記録ではない。"
+   }
+  ],
+  "prechange_pointer_resolution": {
+   "inspected_main_revision": "a97fc209dd3d2048460b4b6cd583468192d38e4f",
+   "l9_source": {
+    "path": "docs/helix-harness/L9-integration-verification/product-template-application.json",
+    "sha256": "2384d2fec666055a1fbef2f5ff3e4752ba2dd60a12543b7663fae8f814332b94",
+    "pointer": "/field_obligation_scope_verification/cases",
+    "case_count": 21,
+    "input_pointer_claims": 21,
+    "expected_pointer_claims": 21,
+    "input_patch_objects": 0,
+    "expected_patch_objects": 0
+   },
+   "declared_case_roots": [
+    "/__scope_basic_case/input",
+    "/__scope_basic_case/expected"
+   ],
+   "fixed_l8_root": {
+    "revision": "c9fcb23c010ede88c528c4959929b8bdfedb730e",
+    "path": "docs/helix-harness/L8-unit-verification/product-template-application.json",
+    "sha256": "00e5bba38cbf0fb9a67b2ebe8e6f2a32fcd5317731e2b6119dca5e946ab1f97d",
+    "root_is_present": false,
+    "nested_root_is_present": false
+   },
+   "resolution": "all 42 declared case pointers had no materialized target under the claimed fixed L8 root; L9 rows had no input/expected patches. The source/expected objects could not be reconstructed from the recorded files.",
+   "change": "remove unresolved input_pointer/expected_pointer claims and keep 29 rows as L4-linked semantic scenario labels. No expected output is inferred and no previous executed coverage is removed; execution_state remains not_executed."
+  },
+  "authority_state_boundary": {
+   "source_object_scope": {
+    "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+    "pointer": "/requirements/27",
+    "selected_revision": "e509851ce7c27c09f85cb1a6e3b9a1d231885de3",
+    "canonical_sha256": "9f92a42b7454792107df930671f190c8c8f9ffa4027dc64f384cbf65863cdb54"
+   },
+   "delegated_decision_record": {
+    "path": "docs/governance/decisions/helix-harness-core009-prerequisite-l3-l10-delegated-decision-2026-10-12.md",
+    "decision_status": "recorded_pending_final_review_and_main_admission",
+    "authority_effect": "effective_when_this_record_is_admitted_to_main"
+   },
+   "current_l3_l10_metadata": "draft_not_approved / none_until_exact_revision_delegated_approval",
+   "candidate_layer_status": "L4/L5/L8/L9 remain draft/candidate and independently unreviewed; F10/F13 scaffold bindings remain registered candidates.",
+   "work_scope": "Selected L3/L10 object is used only as the stated meaning reference for this technical candidate. No product implementation, requirement meaning change, adoption, pair freeze, or execution is claimed."
+  },
+  "case_meaning_change_record": {
+   "legacy_optional_member_read": {
+    "prior_case_meaning_member": "optional",
+    "current_case_meaning_member": "reentry_condition",
+    "case_ids": [
+     "S16A",
+     "S16B",
+     "S16C",
+     "S16D",
+     "S16E"
+    ],
+    "case_meaning_values_preserved": [
+     "ABSENT",
+     null,
+     false,
+     0,
+     "元再評価条件"
+    ],
+    "basis": {
+     "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+     "pointer": "/field_obligation_scope_contract/carrier/optional_original_members/1"
+    },
+    "reason_ja": "旧optionalはS16Eの「元再評価条件」が示すreentryの意味を持ち、L4 carrierがoptional原memberとしてreentry_conditionを明示するため、member名を明示名へ読み替えた。S16A..EのID、refs、field、case_meaning値は保ち、optional原memberのpresence/valueを型変換・truthiness解釈しない。",
+    "boundary_ja": "意味scenarioのmember名対応であり、case-specific input/expected、実source観測、実行結果を追加しない。"
+   },
+   "reason_member_split": {
+    "case_ids": [
+     "S17A",
+     "S17B",
+     "S17C",
+     "S17D",
+     "S17E"
+    ],
+    "case_meaning_member": "reason",
+    "case_meaning_values": [
+     "ABSENT",
+     null,
+     false,
+     0,
+     "原理由"
+    ],
+    "basis": {
+     "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+     "pointer": "/field_obligation_scope_contract/carrier/optional_original_members/0"
+    },
+    "reason_ja": "L4はreasonをreentry_conditionとは別のoptional原memberとして定義する。そこでreasonのpresence/value scenarioをS17A..Eに分け、S16のreentry_conditionと混同・合成しない。",
+    "boundary_ja": "S17は独立memberの意味scenarioであり、L4/L5 cause shapeやcase-specific input/expectedの形成を主張しない。"
+   }
   }
  },
  "input_scope_knowledge_gap_verification": {

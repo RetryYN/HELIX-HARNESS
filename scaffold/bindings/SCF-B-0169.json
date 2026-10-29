@@ -25,17 +25,17 @@
     },
     {
       "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
-      "sha256": "010395ecc67291c77496a7f5688e0ddf4961ab86a4afa9f029ef33fbdcb3645c",
+      "sha256": "f5da0e585b3bb91cf5b07d7d3c1e124b9584718395d8b07704cede6e2523ce1c",
       "note": "F13/F14 candidate source。対象pointerとauthority境界はscaffold/research/wr154-f13-recipient-design-20261030/README.md。read-only pinで採用を示さない。"
     },
     {
       "path": "docs/helix-harness/L8-unit-verification/product-template-application.json",
-      "sha256": "ff8a248a0e955f587ea96380c0ecf88ed3c617372f51340a960abb80c1bf2cdb",
+      "sha256": "75e5aa65453f1812f7b5decafcdab823b49783e03014f18b68c97b4e06386efd",
       "note": "F13/F14 candidate source。対象pointerとauthority境界はscaffold/research/wr154-f13-recipient-design-20261030/README.md。read-only pinで採用を示さない。"
     },
     {
       "path": "docs/helix-harness/L9-integration-verification/product-template-application.json",
-      "sha256": "2384d2fec666055a1fbef2f5ff3e4752ba2dd60a12543b7663fae8f814332b94",
+      "sha256": "4d94e1d4e98c69dbad830b9bb699cdebaab2b8ad51e24e6733ef8b798ad35cef",
       "note": "F13/F14 candidate source。対象pointerとauthority境界はscaffold/research/wr154-f13-recipient-design-20261030/README.md。read-only pinで採用を示さない。"
     }
   ],
@@ -43,7 +43,7 @@
   "obligations": [
     "F13 field/gap/knowledge recipient branchを既存L5 writerの意味と原出現順に対応付ける。",
     "F14 candidate scope assessmentを同call inputとして扱う条件とauthority・independent review pending境界を明示する。",
-    "L8 F13 two direct leaf casesとF14 one positive scope oracle/21 L9 candidatesのnot_executed範囲を保持する。",
+    "L8 F13 S12/S13 direct leaf rowsとF14 one-case positive full-return、L9 29 scenario-only rows（固定input/expectedなし）のnot_executed範囲を保持する。",
     "L2/L3意味、Cause vocabulary、recipient受信/Backflow/承認/義務消込を追加しない。"
   ],
   "connections": {
@@ -96,7 +96,7 @@
       "field/value assessment failures remain independent and cause rows do not cross-suppress",
       "F14 candidate is never treated as adopted authority or proof of actual field scope",
       "unobserved scope is not classified as no profile; U0 guard remains conditional",
-      "F13 S12/S13 and F14 one-case/21-case expectations remain not_executed"
+      "F13 S12/S13、F14 one-case full return、L9 29 scenario-only rows、L8 ADD-48..53はnot_executedで、実source/authority/recipient/pair freezeを示さない。"
     ]
   },
   "replacement": {
