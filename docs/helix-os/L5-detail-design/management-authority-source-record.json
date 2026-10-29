@@ -421,13 +421,13 @@
   "source_pair_pins": [
     {
       "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
-      "revision": "746071b8f77cc0b07212dde2127f3d4d2c87f647",
-      "sha256": "0c9b85fe91483fcf2cf8630739e9a07b231d90aac20f42174d807268eddbda56"
+      "revision": "cbb5d2d246ca4a18a0892759830e9bdc51538578",
+      "sha256": "01735cffe39ccb512d09cc53b69aed285c9c670cd6492a67826f8d4b408d6cd6"
     },
     {
       "path": "docs/helix-os/L9-integration-verification/management-authority-source-record.json",
-      "revision": "746071b8f77cc0b07212dde2127f3d4d2c87f647",
-      "sha256": "66fd4c44b4dd0aec0e1419dbd885c26462bc6465838fd99ed653db8f86477a76"
+      "revision": "cbb5d2d246ca4a18a0892759830e9bdc51538578",
+      "sha256": "3ecf720b12782b8b3ce35930b00bd255da8dc34a6d3eb2fd00fd0b459b914485"
     }
   ],
   "document_id": "HELIXOS-L5-015",
@@ -13918,7 +13918,7 @@
       ]
     },
     {
-      "id": "OS015-NEG-composite-original_event_mutated-source_conflict-original_event",
+      "id": "07c9fd844a293140f5dc77476ab8ed90116889361788956739abfdcf65b874c4",
       "code": "management_material_violation",
       "expected_classification": "management_material_violation",
       "function_ref": "FN-OS015-01",
@@ -13965,7 +13965,7 @@
       ]
     },
     {
-      "id": "OS015-NEG-composite-original_event_mutated-source_unresolved-original_event",
+      "id": "4e0c28b06920d3a9665cbe4beeaf48cea44d7b0d350dddfaec9c8471de1e86b5",
       "code": "management_material_violation",
       "expected_classification": "management_material_violation",
       "function_ref": "FN-OS015-01",
