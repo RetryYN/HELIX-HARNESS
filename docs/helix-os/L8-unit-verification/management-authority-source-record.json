@@ -421,13 +421,13 @@
   "source_pair_pins": [
     {
       "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
-      "revision": "cbb5d2d246ca4a18a0892759830e9bdc51538578",
-      "sha256": "01735cffe39ccb512d09cc53b69aed285c9c670cd6492a67826f8d4b408d6cd6"
+      "revision": "d7256639d16b0128d247b175eec9e3d74349d5a4",
+      "sha256": "9146ffd557bc5da60f79cdcd462578b38edf6ec524143a705ab07eeb34c7997b"
     },
     {
       "path": "docs/helix-os/L9-integration-verification/management-authority-source-record.json",
-      "revision": "cbb5d2d246ca4a18a0892759830e9bdc51538578",
-      "sha256": "3ecf720b12782b8b3ce35930b00bd255da8dc34a6d3eb2fd00fd0b459b914485"
+      "revision": "d7256639d16b0128d247b175eec9e3d74349d5a4",
+      "sha256": "f120e354c6de0bc537ca7897cf7b8c88290ec76c8c56f7bda75e9a60cb44726d"
     }
   ],
   "document_id": "HELIXOS-L8-015",
@@ -435,9 +435,9 @@
   "pair": "HELIXOS-L5-015",
   "candidate_l5_bytes": {
     "path": "docs/helix-os/L5-detail-design/management-authority-source-record.json",
-    "revision": "898cf3dfea2bed9c4592a0624e5cc5f32b713e37",
+    "revision": "73e3b247931625c4ae94648e6bcbfefa0c63b0f7",
     "same_candidate": true,
-    "sha256": "a9b79b4b718a841dacc44724feb40571c69544d16848fd147b554e4aabb5d7da"
+    "sha256": "bc55c335b74d20ef68943a740b6d2cd26466536120501999291692518c75eada"
   },
   "shared_route_expectations": {
     "l7_material_ref": {
@@ -8186,8 +8186,8 @@
           "new": "not_evaluated"
         }
       },
-      "negative_class_ref": "07c9fd844a293140f5dc77476ab8ed90116889361788956739abfdcf65b874c4",
-      "rule_ref": "07c9fd844a293140f5dc77476ab8ed90116889361788956739abfdcf65b874c4",
+      "negative_class_ref": "OS015-NEG-COMPOSITE-07c9fd844a293140f5dc77476ab8ed90116889361788956739abfdcf65b874c4",
+      "rule_ref": "OS015-NEG-COMPOSITE-07c9fd844a293140f5dc77476ab8ed90116889361788956739abfdcf65b874c4",
       "function_ref": "FN-OS015-01"
     },
     {
@@ -8277,8 +8277,8 @@
           "new": "not_evaluated"
         }
       },
-      "negative_class_ref": "4e0c28b06920d3a9665cbe4beeaf48cea44d7b0d350dddfaec9c8471de1e86b5",
-      "rule_ref": "4e0c28b06920d3a9665cbe4beeaf48cea44d7b0d350dddfaec9c8471de1e86b5",
+      "negative_class_ref": "OS015-NEG-COMPOSITE-4e0c28b06920d3a9665cbe4beeaf48cea44d7b0d350dddfaec9c8471de1e86b5",
+      "rule_ref": "OS015-NEG-COMPOSITE-4e0c28b06920d3a9665cbe4beeaf48cea44d7b0d350dddfaec9c8471de1e86b5",
       "function_ref": "FN-OS015-01"
     },
     {
@@ -8368,8 +8368,8 @@
           "new": "not_evaluated"
         }
       },
-      "negative_class_ref": "07c9fd844a293140f5dc77476ab8ed90116889361788956739abfdcf65b874c4",
-      "rule_ref": "07c9fd844a293140f5dc77476ab8ed90116889361788956739abfdcf65b874c4",
+      "negative_class_ref": "OS015-NEG-COMPOSITE-07c9fd844a293140f5dc77476ab8ed90116889361788956739abfdcf65b874c4",
+      "rule_ref": "OS015-NEG-COMPOSITE-07c9fd844a293140f5dc77476ab8ed90116889361788956739abfdcf65b874c4",
       "function_ref": "FN-OS015-01"
     },
     {
@@ -8459,8 +8459,8 @@
           "new": "not_evaluated"
         }
       },
-      "negative_class_ref": "4e0c28b06920d3a9665cbe4beeaf48cea44d7b0d350dddfaec9c8471de1e86b5",
-      "rule_ref": "4e0c28b06920d3a9665cbe4beeaf48cea44d7b0d350dddfaec9c8471de1e86b5",
+      "negative_class_ref": "OS015-NEG-COMPOSITE-4e0c28b06920d3a9665cbe4beeaf48cea44d7b0d350dddfaec9c8471de1e86b5",
+      "rule_ref": "OS015-NEG-COMPOSITE-4e0c28b06920d3a9665cbe4beeaf48cea44d7b0d350dddfaec9c8471de1e86b5",
       "function_ref": "FN-OS015-01"
     },
     {
@@ -8550,8 +8550,8 @@
           "new": "not_evaluated"
         }
       },
-      "negative_class_ref": "07c9fd844a293140f5dc77476ab8ed90116889361788956739abfdcf65b874c4",
-      "rule_ref": "07c9fd844a293140f5dc77476ab8ed90116889361788956739abfdcf65b874c4",
+      "negative_class_ref": "OS015-NEG-COMPOSITE-07c9fd844a293140f5dc77476ab8ed90116889361788956739abfdcf65b874c4",
+      "rule_ref": "OS015-NEG-COMPOSITE-07c9fd844a293140f5dc77476ab8ed90116889361788956739abfdcf65b874c4",
       "function_ref": "FN-OS015-01"
     },
     {
@@ -8641,8 +8641,8 @@
           "new": "not_evaluated"
         }
       },
-      "negative_class_ref": "4e0c28b06920d3a9665cbe4beeaf48cea44d7b0d350dddfaec9c8471de1e86b5",
-      "rule_ref": "4e0c28b06920d3a9665cbe4beeaf48cea44d7b0d350dddfaec9c8471de1e86b5",
+      "negative_class_ref": "OS015-NEG-COMPOSITE-4e0c28b06920d3a9665cbe4beeaf48cea44d7b0d350dddfaec9c8471de1e86b5",
+      "rule_ref": "OS015-NEG-COMPOSITE-4e0c28b06920d3a9665cbe4beeaf48cea44d7b0d350dddfaec9c8471de1e86b5",
       "function_ref": "FN-OS015-01"
     },
     {
@@ -8732,8 +8732,8 @@
           "new": "not_evaluated"
         }
       },
-      "negative_class_ref": "07c9fd844a293140f5dc77476ab8ed90116889361788956739abfdcf65b874c4",
-      "rule_ref": "07c9fd844a293140f5dc77476ab8ed90116889361788956739abfdcf65b874c4",
+      "negative_class_ref": "OS015-NEG-COMPOSITE-07c9fd844a293140f5dc77476ab8ed90116889361788956739abfdcf65b874c4",
+      "rule_ref": "OS015-NEG-COMPOSITE-07c9fd844a293140f5dc77476ab8ed90116889361788956739abfdcf65b874c4",
       "function_ref": "FN-OS015-01"
     },
     {
@@ -8823,8 +8823,8 @@
           "new": "not_evaluated"
         }
       },
-      "negative_class_ref": "4e0c28b06920d3a9665cbe4beeaf48cea44d7b0d350dddfaec9c8471de1e86b5",
-      "rule_ref": "4e0c28b06920d3a9665cbe4beeaf48cea44d7b0d350dddfaec9c8471de1e86b5",
+      "negative_class_ref": "OS015-NEG-COMPOSITE-4e0c28b06920d3a9665cbe4beeaf48cea44d7b0d350dddfaec9c8471de1e86b5",
+      "rule_ref": "OS015-NEG-COMPOSITE-4e0c28b06920d3a9665cbe4beeaf48cea44d7b0d350dddfaec9c8471de1e86b5",
       "function_ref": "FN-OS015-01"
     },
     {
@@ -8914,8 +8914,8 @@
           "new": "not_evaluated"
         }
       },
-      "negative_class_ref": "07c9fd844a293140f5dc77476ab8ed90116889361788956739abfdcf65b874c4",
-      "rule_ref": "07c9fd844a293140f5dc77476ab8ed90116889361788956739abfdcf65b874c4",
+      "negative_class_ref": "OS015-NEG-COMPOSITE-07c9fd844a293140f5dc77476ab8ed90116889361788956739abfdcf65b874c4",
+      "rule_ref": "OS015-NEG-COMPOSITE-07c9fd844a293140f5dc77476ab8ed90116889361788956739abfdcf65b874c4",
       "function_ref": "FN-OS015-01"
     },
     {
@@ -9005,8 +9005,8 @@
           "new": "not_evaluated"
         }
       },
-      "negative_class_ref": "4e0c28b06920d3a9665cbe4beeaf48cea44d7b0d350dddfaec9c8471de1e86b5",
-      "rule_ref": "4e0c28b06920d3a9665cbe4beeaf48cea44d7b0d350dddfaec9c8471de1e86b5",
+      "negative_class_ref": "OS015-NEG-COMPOSITE-4e0c28b06920d3a9665cbe4beeaf48cea44d7b0d350dddfaec9c8471de1e86b5",
+      "rule_ref": "OS015-NEG-COMPOSITE-4e0c28b06920d3a9665cbe4beeaf48cea44d7b0d350dddfaec9c8471de1e86b5",
       "function_ref": "FN-OS015-01"
     },
     {
@@ -9096,8 +9096,8 @@
           "new": "not_evaluated"
         }
       },
-      "negative_class_ref": "07c9fd844a293140f5dc77476ab8ed90116889361788956739abfdcf65b874c4",
-      "rule_ref": "07c9fd844a293140f5dc77476ab8ed90116889361788956739abfdcf65b874c4",
+      "negative_class_ref": "OS015-NEG-COMPOSITE-07c9fd844a293140f5dc77476ab8ed90116889361788956739abfdcf65b874c4",
+      "rule_ref": "OS015-NEG-COMPOSITE-07c9fd844a293140f5dc77476ab8ed90116889361788956739abfdcf65b874c4",
       "function_ref": "FN-OS015-01"
     },
     {
@@ -9187,8 +9187,8 @@
           "new": "not_evaluated"
         }
       },
-      "negative_class_ref": "4e0c28b06920d3a9665cbe4beeaf48cea44d7b0d350dddfaec9c8471de1e86b5",
-      "rule_ref": "4e0c28b06920d3a9665cbe4beeaf48cea44d7b0d350dddfaec9c8471de1e86b5",
+      "negative_class_ref": "OS015-NEG-COMPOSITE-4e0c28b06920d3a9665cbe4beeaf48cea44d7b0d350dddfaec9c8471de1e86b5",
+      "rule_ref": "OS015-NEG-COMPOSITE-4e0c28b06920d3a9665cbe4beeaf48cea44d7b0d350dddfaec9c8471de1e86b5",
       "function_ref": "FN-OS015-01"
     },
     {
@@ -9278,8 +9278,8 @@
           "new": "not_evaluated"
         }
       },
-      "negative_class_ref": "07c9fd844a293140f5dc77476ab8ed90116889361788956739abfdcf65b874c4",
-      "rule_ref": "07c9fd844a293140f5dc77476ab8ed90116889361788956739abfdcf65b874c4",
+      "negative_class_ref": "OS015-NEG-COMPOSITE-07c9fd844a293140f5dc77476ab8ed90116889361788956739abfdcf65b874c4",
+      "rule_ref": "OS015-NEG-COMPOSITE-07c9fd844a293140f5dc77476ab8ed90116889361788956739abfdcf65b874c4",
       "function_ref": "FN-OS015-01"
     },
     {
@@ -9369,8 +9369,8 @@
           "new": "not_evaluated"
         }
       },
-      "negative_class_ref": "4e0c28b06920d3a9665cbe4beeaf48cea44d7b0d350dddfaec9c8471de1e86b5",
-      "rule_ref": "4e0c28b06920d3a9665cbe4beeaf48cea44d7b0d350dddfaec9c8471de1e86b5",
+      "negative_class_ref": "OS015-NEG-COMPOSITE-4e0c28b06920d3a9665cbe4beeaf48cea44d7b0d350dddfaec9c8471de1e86b5",
+      "rule_ref": "OS015-NEG-COMPOSITE-4e0c28b06920d3a9665cbe4beeaf48cea44d7b0d350dddfaec9c8471de1e86b5",
       "function_ref": "FN-OS015-01"
     },
     {
@@ -9460,8 +9460,8 @@
           "new": "not_evaluated"
         }
       },
-      "negative_class_ref": "07c9fd844a293140f5dc77476ab8ed90116889361788956739abfdcf65b874c4",
-      "rule_ref": "07c9fd844a293140f5dc77476ab8ed90116889361788956739abfdcf65b874c4",
+      "negative_class_ref": "OS015-NEG-COMPOSITE-07c9fd844a293140f5dc77476ab8ed90116889361788956739abfdcf65b874c4",
+      "rule_ref": "OS015-NEG-COMPOSITE-07c9fd844a293140f5dc77476ab8ed90116889361788956739abfdcf65b874c4",
       "function_ref": "FN-OS015-01"
     },
     {
@@ -9551,8 +9551,8 @@
           "new": "not_evaluated"
         }
       },
-      "negative_class_ref": "4e0c28b06920d3a9665cbe4beeaf48cea44d7b0d350dddfaec9c8471de1e86b5",
-      "rule_ref": "4e0c28b06920d3a9665cbe4beeaf48cea44d7b0d350dddfaec9c8471de1e86b5",
+      "negative_class_ref": "OS015-NEG-COMPOSITE-4e0c28b06920d3a9665cbe4beeaf48cea44d7b0d350dddfaec9c8471de1e86b5",
+      "rule_ref": "OS015-NEG-COMPOSITE-4e0c28b06920d3a9665cbe4beeaf48cea44d7b0d350dddfaec9c8471de1e86b5",
       "function_ref": "FN-OS015-01"
     },
     {
@@ -9642,8 +9642,8 @@
           "new": "not_evaluated"
         }
       },
-      "negative_class_ref": "07c9fd844a293140f5dc77476ab8ed90116889361788956739abfdcf65b874c4",
-      "rule_ref": "07c9fd844a293140f5dc77476ab8ed90116889361788956739abfdcf65b874c4",
+      "negative_class_ref": "OS015-NEG-COMPOSITE-07c9fd844a293140f5dc77476ab8ed90116889361788956739abfdcf65b874c4",
+      "rule_ref": "OS015-NEG-COMPOSITE-07c9fd844a293140f5dc77476ab8ed90116889361788956739abfdcf65b874c4",
       "function_ref": "FN-OS015-01"
     },
     {
@@ -12573,8 +12573,8 @@
           "new": "not_evaluated"
         }
       },
-      "negative_class_ref": "4e0c28b06920d3a9665cbe4beeaf48cea44d7b0d350dddfaec9c8471de1e86b5",
-      "rule_ref": "4e0c28b06920d3a9665cbe4beeaf48cea44d7b0d350dddfaec9c8471de1e86b5",
+      "negative_class_ref": "OS015-NEG-COMPOSITE-4e0c28b06920d3a9665cbe4beeaf48cea44d7b0d350dddfaec9c8471de1e86b5",
+      "rule_ref": "OS015-NEG-COMPOSITE-4e0c28b06920d3a9665cbe4beeaf48cea44d7b0d350dddfaec9c8471de1e86b5",
       "function_ref": "FN-OS015-01"
     },
     {
@@ -12664,8 +12664,8 @@
           "new": "not_evaluated"
         }
       },
-      "negative_class_ref": "07c9fd844a293140f5dc77476ab8ed90116889361788956739abfdcf65b874c4",
-      "rule_ref": "07c9fd844a293140f5dc77476ab8ed90116889361788956739abfdcf65b874c4",
+      "negative_class_ref": "OS015-NEG-COMPOSITE-07c9fd844a293140f5dc77476ab8ed90116889361788956739abfdcf65b874c4",
+      "rule_ref": "OS015-NEG-COMPOSITE-07c9fd844a293140f5dc77476ab8ed90116889361788956739abfdcf65b874c4",
       "function_ref": "FN-OS015-01"
     },
     {
@@ -12755,8 +12755,8 @@
           "new": "not_evaluated"
         }
       },
-      "negative_class_ref": "4e0c28b06920d3a9665cbe4beeaf48cea44d7b0d350dddfaec9c8471de1e86b5",
-      "rule_ref": "4e0c28b06920d3a9665cbe4beeaf48cea44d7b0d350dddfaec9c8471de1e86b5",
+      "negative_class_ref": "OS015-NEG-COMPOSITE-4e0c28b06920d3a9665cbe4beeaf48cea44d7b0d350dddfaec9c8471de1e86b5",
+      "rule_ref": "OS015-NEG-COMPOSITE-4e0c28b06920d3a9665cbe4beeaf48cea44d7b0d350dddfaec9c8471de1e86b5",
       "function_ref": "FN-OS015-01"
     },
     {
@@ -12846,8 +12846,8 @@
           "new": "not_evaluated"
         }
       },
-      "negative_class_ref": "07c9fd844a293140f5dc77476ab8ed90116889361788956739abfdcf65b874c4",
-      "rule_ref": "07c9fd844a293140f5dc77476ab8ed90116889361788956739abfdcf65b874c4",
+      "negative_class_ref": "OS015-NEG-COMPOSITE-07c9fd844a293140f5dc77476ab8ed90116889361788956739abfdcf65b874c4",
+      "rule_ref": "OS015-NEG-COMPOSITE-07c9fd844a293140f5dc77476ab8ed90116889361788956739abfdcf65b874c4",
       "function_ref": "FN-OS015-01"
     },
     {
@@ -12937,8 +12937,8 @@
           "new": "not_evaluated"
         }
       },
-      "negative_class_ref": "4e0c28b06920d3a9665cbe4beeaf48cea44d7b0d350dddfaec9c8471de1e86b5",
-      "rule_ref": "4e0c28b06920d3a9665cbe4beeaf48cea44d7b0d350dddfaec9c8471de1e86b5",
+      "negative_class_ref": "OS015-NEG-COMPOSITE-4e0c28b06920d3a9665cbe4beeaf48cea44d7b0d350dddfaec9c8471de1e86b5",
+      "rule_ref": "OS015-NEG-COMPOSITE-4e0c28b06920d3a9665cbe4beeaf48cea44d7b0d350dddfaec9c8471de1e86b5",
       "function_ref": "FN-OS015-01"
     },
     {
@@ -13028,8 +13028,8 @@
           "new": "not_evaluated"
         }
       },
-      "negative_class_ref": "07c9fd844a293140f5dc77476ab8ed90116889361788956739abfdcf65b874c4",
-      "rule_ref": "07c9fd844a293140f5dc77476ab8ed90116889361788956739abfdcf65b874c4",
+      "negative_class_ref": "OS015-NEG-COMPOSITE-07c9fd844a293140f5dc77476ab8ed90116889361788956739abfdcf65b874c4",
+      "rule_ref": "OS015-NEG-COMPOSITE-07c9fd844a293140f5dc77476ab8ed90116889361788956739abfdcf65b874c4",
       "function_ref": "FN-OS015-01"
     },
     {
@@ -13119,8 +13119,8 @@
           "new": "not_evaluated"
         }
       },
-      "negative_class_ref": "4e0c28b06920d3a9665cbe4beeaf48cea44d7b0d350dddfaec9c8471de1e86b5",
-      "rule_ref": "4e0c28b06920d3a9665cbe4beeaf48cea44d7b0d350dddfaec9c8471de1e86b5",
+      "negative_class_ref": "OS015-NEG-COMPOSITE-4e0c28b06920d3a9665cbe4beeaf48cea44d7b0d350dddfaec9c8471de1e86b5",
+      "rule_ref": "OS015-NEG-COMPOSITE-4e0c28b06920d3a9665cbe4beeaf48cea44d7b0d350dddfaec9c8471de1e86b5",
       "function_ref": "FN-OS015-01"
     },
     {
@@ -13210,8 +13210,8 @@
           "new": "not_evaluated"
         }
       },
-      "negative_class_ref": "07c9fd844a293140f5dc77476ab8ed90116889361788956739abfdcf65b874c4",
-      "rule_ref": "07c9fd844a293140f5dc77476ab8ed90116889361788956739abfdcf65b874c4",
+      "negative_class_ref": "OS015-NEG-COMPOSITE-07c9fd844a293140f5dc77476ab8ed90116889361788956739abfdcf65b874c4",
+      "rule_ref": "OS015-NEG-COMPOSITE-07c9fd844a293140f5dc77476ab8ed90116889361788956739abfdcf65b874c4",
       "function_ref": "FN-OS015-01"
     },
     {
@@ -13301,8 +13301,8 @@
           "new": "not_evaluated"
         }
       },
-      "negative_class_ref": "4e0c28b06920d3a9665cbe4beeaf48cea44d7b0d350dddfaec9c8471de1e86b5",
-      "rule_ref": "4e0c28b06920d3a9665cbe4beeaf48cea44d7b0d350dddfaec9c8471de1e86b5",
+      "negative_class_ref": "OS015-NEG-COMPOSITE-4e0c28b06920d3a9665cbe4beeaf48cea44d7b0d350dddfaec9c8471de1e86b5",
+      "rule_ref": "OS015-NEG-COMPOSITE-4e0c28b06920d3a9665cbe4beeaf48cea44d7b0d350dddfaec9c8471de1e86b5",
       "function_ref": "FN-OS015-01"
     },
     {
@@ -13392,8 +13392,8 @@
           "new": "not_evaluated"
         }
       },
-      "negative_class_ref": "07c9fd844a293140f5dc77476ab8ed90116889361788956739abfdcf65b874c4",
-      "rule_ref": "07c9fd844a293140f5dc77476ab8ed90116889361788956739abfdcf65b874c4",
+      "negative_class_ref": "OS015-NEG-COMPOSITE-07c9fd844a293140f5dc77476ab8ed90116889361788956739abfdcf65b874c4",
+      "rule_ref": "OS015-NEG-COMPOSITE-07c9fd844a293140f5dc77476ab8ed90116889361788956739abfdcf65b874c4",
       "function_ref": "FN-OS015-01"
     },
     {
@@ -13483,8 +13483,8 @@
           "new": "not_evaluated"
         }
       },
-      "negative_class_ref": "4e0c28b06920d3a9665cbe4beeaf48cea44d7b0d350dddfaec9c8471de1e86b5",
-      "rule_ref": "4e0c28b06920d3a9665cbe4beeaf48cea44d7b0d350dddfaec9c8471de1e86b5",
+      "negative_class_ref": "OS015-NEG-COMPOSITE-4e0c28b06920d3a9665cbe4beeaf48cea44d7b0d350dddfaec9c8471de1e86b5",
+      "rule_ref": "OS015-NEG-COMPOSITE-4e0c28b06920d3a9665cbe4beeaf48cea44d7b0d350dddfaec9c8471de1e86b5",
       "function_ref": "FN-OS015-01"
     },
     {
@@ -13574,8 +13574,8 @@
           "new": "not_evaluated"
         }
       },
-      "negative_class_ref": "07c9fd844a293140f5dc77476ab8ed90116889361788956739abfdcf65b874c4",
-      "rule_ref": "07c9fd844a293140f5dc77476ab8ed90116889361788956739abfdcf65b874c4",
+      "negative_class_ref": "OS015-NEG-COMPOSITE-07c9fd844a293140f5dc77476ab8ed90116889361788956739abfdcf65b874c4",
+      "rule_ref": "OS015-NEG-COMPOSITE-07c9fd844a293140f5dc77476ab8ed90116889361788956739abfdcf65b874c4",
       "function_ref": "FN-OS015-01"
     },
     {
@@ -50281,7 +50281,7 @@
       ]
     },
     {
-      "class_id": "07c9fd844a293140f5dc77476ab8ed90116889361788956739abfdcf65b874c4",
+      "class_id": "OS015-NEG-COMPOSITE-07c9fd844a293140f5dc77476ab8ed90116889361788956739abfdcf65b874c4",
       "expected_classification": "management_material_violation",
       "expected": {
         "finding_codes": [
@@ -50405,7 +50405,7 @@
       ]
     },
     {
-      "class_id": "4e0c28b06920d3a9665cbe4beeaf48cea44d7b0d350dddfaec9c8471de1e86b5",
+      "class_id": "OS015-NEG-COMPOSITE-4e0c28b06920d3a9665cbe4beeaf48cea44d7b0d350dddfaec9c8471de1e86b5",
       "expected_classification": "management_material_violation",
       "expected": {
         "finding_codes": [
