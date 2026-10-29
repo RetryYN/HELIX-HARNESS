@@ -56,6 +56,58 @@ def _request_and_scan(raw):
 
 
 class TestF05Add47SourceBodyWriter(unittest.TestCase):
+    def test_add46_empty_source_collection_writes_only_unresolved_source_cause(self):
+        l8 = json.loads(L8_PATH.read_text(encoding="utf-8"))
+        case = l8["additional_unit_cases"][46]
+        self.assertEqual(case["id"], "HARNESS-L8-009-ADD-46")
+        fixed = case["fixed_writer_case"]
+        raw = _resolve_recipe_raw("CORE-NORMAL-UNIT-REQUIRED")
+        raw["binding"] = copy.deepcopy(fixed["input_slice"]["field_inputs"][0]["binding"])
+        raw["field_inputs"] = copy.deepcopy(fixed["input_slice"]["field_inputs"])
+        raw["semantic_records"] = copy.deepcopy(fixed["input_slice"]["semantic_records"])
+        raw["sources"] = []
+        validation, request, scan = _request_and_scan(raw)
+
+        result = compare_requirement_gaps_detail(request, scan)
+
+        self.assertEqual(result["comparison"]["tag"], "unformed")
+        field = result["owner_material"]["field_results"][0]["value"]
+        occurrence = field["definition_material"]["operands"][0]["operand"]["record_occurrences"][0]
+        expected = fixed["expected_record_occurrence"]
+        self.assertEqual(occurrence["source_ref_read"], expected["source_ref_read"])
+        self.assertEqual(occurrence["causes"], expected["causes"])
+        self.assertEqual(occurrence["source_observation_indices"], [])
+        self.assertEqual(occurrence["body_occurrences"], [])
+        self.assertEqual(occurrence["owner_bindings"], [])
+        self.assertEqual(
+            validation["source_observations"]["source_occurrences"], []
+        )
+        attempt = field["definition_material"]["operands"][0]["projection_attempts"][0]
+        self.assertEqual(attempt["result"]["tag"], "unformed")
+        self.assertIn(occurrence["causes"][0], attempt["result"]["causes"])
+
+    def test_add46_does_not_infer_unresolved_cause_from_absent_or_null_source_ref(self):
+        l8 = json.loads(L8_PATH.read_text(encoding="utf-8"))
+        base = l8["additional_unit_cases"][46]["fixed_writer_case"]["input_slice"]
+        for state in ("absent", "null"):
+            with self.subTest(source_ref=state):
+                raw = _resolve_recipe_raw("CORE-NORMAL-UNIT-REQUIRED")
+                raw["binding"] = copy.deepcopy(base["field_inputs"][0]["binding"])
+                raw["field_inputs"] = copy.deepcopy(base["field_inputs"])
+                raw["semantic_records"] = copy.deepcopy(base["semantic_records"])
+                raw["sources"] = []
+                if state == "absent":
+                    raw["semantic_records"][0].pop("source_ref")
+                else:
+                    raw["semantic_records"][0]["source_ref"] = None
+                _, request, scan = _request_and_scan(raw)
+
+                with self.assertRaisesRegex(
+                    NotImplementedError,
+                    "WR154-P2 F03 source-unresolved cause is pending",
+                ):
+                    compare_requirement_gaps_detail(request, scan)
+
     def test_source_body_payload_difference_is_retained_as_local_cause(self):
         raw = _resolve_recipe_raw("CORE-NORMAL-UNIT-REQUIRED")
         l8 = json.loads(L8_PATH.read_text(encoding="utf-8"))
