@@ -5819,7 +5819,7 @@
       },
       "population_state": "negative",
       "integration_case_ref": "HELIXOS-L9-015-C0045",
-      "negative_class_ref": "07c9fd844a293140f5dc77476ab8ed90116889361788956739abfdcf65b874c4"
+      "negative_class_ref": "OS015-NEG-COMPOSITE-07c9fd844a293140f5dc77476ab8ed90116889361788956739abfdcf65b874c4"
     },
     {
       "id": "HELIXOS-L9-015-C0046",
@@ -5889,7 +5889,7 @@
       },
       "population_state": "negative",
       "integration_case_ref": "HELIXOS-L9-015-C0046",
-      "negative_class_ref": "4e0c28b06920d3a9665cbe4beeaf48cea44d7b0d350dddfaec9c8471de1e86b5"
+      "negative_class_ref": "OS015-NEG-COMPOSITE-4e0c28b06920d3a9665cbe4beeaf48cea44d7b0d350dddfaec9c8471de1e86b5"
     },
     {
       "id": "HELIXOS-L9-015-C0047",
@@ -5959,7 +5959,7 @@
       },
       "population_state": "negative",
       "integration_case_ref": "HELIXOS-L9-015-C0047",
-      "negative_class_ref": "07c9fd844a293140f5dc77476ab8ed90116889361788956739abfdcf65b874c4"
+      "negative_class_ref": "OS015-NEG-COMPOSITE-07c9fd844a293140f5dc77476ab8ed90116889361788956739abfdcf65b874c4"
     },
     {
       "id": "HELIXOS-L9-015-C0048",
@@ -6029,7 +6029,7 @@
       },
       "population_state": "negative",
       "integration_case_ref": "HELIXOS-L9-015-C0048",
-      "negative_class_ref": "4e0c28b06920d3a9665cbe4beeaf48cea44d7b0d350dddfaec9c8471de1e86b5"
+      "negative_class_ref": "OS015-NEG-COMPOSITE-4e0c28b06920d3a9665cbe4beeaf48cea44d7b0d350dddfaec9c8471de1e86b5"
     },
     {
       "id": "HELIXOS-L9-015-C0049",
@@ -6099,7 +6099,7 @@
       },
       "population_state": "negative",
       "integration_case_ref": "HELIXOS-L9-015-C0049",
-      "negative_class_ref": "07c9fd844a293140f5dc77476ab8ed90116889361788956739abfdcf65b874c4"
+      "negative_class_ref": "OS015-NEG-COMPOSITE-07c9fd844a293140f5dc77476ab8ed90116889361788956739abfdcf65b874c4"
     },
     {
       "id": "HELIXOS-L9-015-C0050",
@@ -6169,7 +6169,7 @@
       },
       "population_state": "negative",
       "integration_case_ref": "HELIXOS-L9-015-C0050",
-      "negative_class_ref": "4e0c28b06920d3a9665cbe4beeaf48cea44d7b0d350dddfaec9c8471de1e86b5"
+      "negative_class_ref": "OS015-NEG-COMPOSITE-4e0c28b06920d3a9665cbe4beeaf48cea44d7b0d350dddfaec9c8471de1e86b5"
     },
     {
       "id": "HELIXOS-L9-015-C0051",
@@ -6239,7 +6239,7 @@
       },
       "population_state": "negative",
       "integration_case_ref": "HELIXOS-L9-015-C0051",
-      "negative_class_ref": "07c9fd844a293140f5dc77476ab8ed90116889361788956739abfdcf65b874c4"
+      "negative_class_ref": "OS015-NEG-COMPOSITE-07c9fd844a293140f5dc77476ab8ed90116889361788956739abfdcf65b874c4"
     },
     {
       "id": "HELIXOS-L9-015-C0052",
@@ -6309,7 +6309,7 @@
       },
       "population_state": "negative",
       "integration_case_ref": "HELIXOS-L9-015-C0052",
-      "negative_class_ref": "4e0c28b06920d3a9665cbe4beeaf48cea44d7b0d350dddfaec9c8471de1e86b5"
+      "negative_class_ref": "OS015-NEG-COMPOSITE-4e0c28b06920d3a9665cbe4beeaf48cea44d7b0d350dddfaec9c8471de1e86b5"
     },
     {
       "id": "HELIXOS-L9-015-C0053",
@@ -6379,7 +6379,7 @@
       },
       "population_state": "negative",
       "integration_case_ref": "HELIXOS-L9-015-C0053",
-      "negative_class_ref": "07c9fd844a293140f5dc77476ab8ed90116889361788956739abfdcf65b874c4"
+      "negative_class_ref": "OS015-NEG-COMPOSITE-07c9fd844a293140f5dc77476ab8ed90116889361788956739abfdcf65b874c4"
     },
     {
       "id": "HELIXOS-L9-015-C0054",
@@ -6449,7 +6449,7 @@
       },
       "population_state": "negative",
       "integration_case_ref": "HELIXOS-L9-015-C0054",
-      "negative_class_ref": "4e0c28b06920d3a9665cbe4beeaf48cea44d7b0d350dddfaec9c8471de1e86b5"
+      "negative_class_ref": "OS015-NEG-COMPOSITE-4e0c28b06920d3a9665cbe4beeaf48cea44d7b0d350dddfaec9c8471de1e86b5"
     },
     {
       "id": "HELIXOS-L9-015-C0055",
@@ -6519,7 +6519,7 @@
       },
       "population_state": "negative",
       "integration_case_ref": "HELIXOS-L9-015-C0055",
-      "negative_class_ref": "07c9fd844a293140f5dc77476ab8ed90116889361788956739abfdcf65b874c4"
+      "negative_class_ref": "OS015-NEG-COMPOSITE-07c9fd844a293140f5dc77476ab8ed90116889361788956739abfdcf65b874c4"
     },
     {
       "id": "HELIXOS-L9-015-C0056",
@@ -6589,7 +6589,7 @@
       },
       "population_state": "negative",
       "integration_case_ref": "HELIXOS-L9-015-C0056",
-      "negative_class_ref": "4e0c28b06920d3a9665cbe4beeaf48cea44d7b0d350dddfaec9c8471de1e86b5"
+      "negative_class_ref": "OS015-NEG-COMPOSITE-4e0c28b06920d3a9665cbe4beeaf48cea44d7b0d350dddfaec9c8471de1e86b5"
     },
     {
       "id": "HELIXOS-L9-015-C0057",
@@ -6659,7 +6659,7 @@
       },
       "population_state": "negative",
       "integration_case_ref": "HELIXOS-L9-015-C0057",
-      "negative_class_ref": "07c9fd844a293140f5dc77476ab8ed90116889361788956739abfdcf65b874c4"
+      "negative_class_ref": "OS015-NEG-COMPOSITE-07c9fd844a293140f5dc77476ab8ed90116889361788956739abfdcf65b874c4"
     },
     {
       "id": "HELIXOS-L9-015-C0058",
@@ -6729,7 +6729,7 @@
       },
       "population_state": "negative",
       "integration_case_ref": "HELIXOS-L9-015-C0058",
-      "negative_class_ref": "4e0c28b06920d3a9665cbe4beeaf48cea44d7b0d350dddfaec9c8471de1e86b5"
+      "negative_class_ref": "OS015-NEG-COMPOSITE-4e0c28b06920d3a9665cbe4beeaf48cea44d7b0d350dddfaec9c8471de1e86b5"
     },
     {
       "id": "HELIXOS-L9-015-C0059",
@@ -6799,7 +6799,7 @@
       },
       "population_state": "negative",
       "integration_case_ref": "HELIXOS-L9-015-C0059",
-      "negative_class_ref": "07c9fd844a293140f5dc77476ab8ed90116889361788956739abfdcf65b874c4"
+      "negative_class_ref": "OS015-NEG-COMPOSITE-07c9fd844a293140f5dc77476ab8ed90116889361788956739abfdcf65b874c4"
     },
     {
       "id": "HELIXOS-L9-015-C0060",
@@ -6869,7 +6869,7 @@
       },
       "population_state": "negative",
       "integration_case_ref": "HELIXOS-L9-015-C0060",
-      "negative_class_ref": "4e0c28b06920d3a9665cbe4beeaf48cea44d7b0d350dddfaec9c8471de1e86b5"
+      "negative_class_ref": "OS015-NEG-COMPOSITE-4e0c28b06920d3a9665cbe4beeaf48cea44d7b0d350dddfaec9c8471de1e86b5"
     },
     {
       "id": "HELIXOS-L9-015-C0061",
@@ -6939,7 +6939,7 @@
       },
       "population_state": "negative",
       "integration_case_ref": "HELIXOS-L9-015-C0061",
-      "negative_class_ref": "07c9fd844a293140f5dc77476ab8ed90116889361788956739abfdcf65b874c4"
+      "negative_class_ref": "OS015-NEG-COMPOSITE-07c9fd844a293140f5dc77476ab8ed90116889361788956739abfdcf65b874c4"
     },
     {
       "id": "HELIXOS-L9-015-C0062",
@@ -9569,7 +9569,7 @@
       },
       "population_state": "negative",
       "integration_case_ref": "HELIXOS-L9-015-C0102",
-      "negative_class_ref": "4e0c28b06920d3a9665cbe4beeaf48cea44d7b0d350dddfaec9c8471de1e86b5"
+      "negative_class_ref": "OS015-NEG-COMPOSITE-4e0c28b06920d3a9665cbe4beeaf48cea44d7b0d350dddfaec9c8471de1e86b5"
     },
     {
       "id": "HELIXOS-L9-015-C0103",
@@ -9639,7 +9639,7 @@
       },
       "population_state": "negative",
       "integration_case_ref": "HELIXOS-L9-015-C0103",
-      "negative_class_ref": "07c9fd844a293140f5dc77476ab8ed90116889361788956739abfdcf65b874c4"
+      "negative_class_ref": "OS015-NEG-COMPOSITE-07c9fd844a293140f5dc77476ab8ed90116889361788956739abfdcf65b874c4"
     },
     {
       "id": "HELIXOS-L9-015-C0104",
@@ -9709,7 +9709,7 @@
       },
       "population_state": "negative",
       "integration_case_ref": "HELIXOS-L9-015-C0104",
-      "negative_class_ref": "4e0c28b06920d3a9665cbe4beeaf48cea44d7b0d350dddfaec9c8471de1e86b5"
+      "negative_class_ref": "OS015-NEG-COMPOSITE-4e0c28b06920d3a9665cbe4beeaf48cea44d7b0d350dddfaec9c8471de1e86b5"
     },
     {
       "id": "HELIXOS-L9-015-C0105",
@@ -9779,7 +9779,7 @@
       },
       "population_state": "negative",
       "integration_case_ref": "HELIXOS-L9-015-C0105",
-      "negative_class_ref": "07c9fd844a293140f5dc77476ab8ed90116889361788956739abfdcf65b874c4"
+      "negative_class_ref": "OS015-NEG-COMPOSITE-07c9fd844a293140f5dc77476ab8ed90116889361788956739abfdcf65b874c4"
     },
     {
       "id": "HELIXOS-L9-015-C0106",
@@ -9849,7 +9849,7 @@
       },
       "population_state": "negative",
       "integration_case_ref": "HELIXOS-L9-015-C0106",
-      "negative_class_ref": "4e0c28b06920d3a9665cbe4beeaf48cea44d7b0d350dddfaec9c8471de1e86b5"
+      "negative_class_ref": "OS015-NEG-COMPOSITE-4e0c28b06920d3a9665cbe4beeaf48cea44d7b0d350dddfaec9c8471de1e86b5"
     },
     {
       "id": "HELIXOS-L9-015-C0107",
@@ -9919,7 +9919,7 @@
       },
       "population_state": "negative",
       "integration_case_ref": "HELIXOS-L9-015-C0107",
-      "negative_class_ref": "07c9fd844a293140f5dc77476ab8ed90116889361788956739abfdcf65b874c4"
+      "negative_class_ref": "OS015-NEG-COMPOSITE-07c9fd844a293140f5dc77476ab8ed90116889361788956739abfdcf65b874c4"
     },
     {
       "id": "HELIXOS-L9-015-C0108",
@@ -9989,7 +9989,7 @@
       },
       "population_state": "negative",
       "integration_case_ref": "HELIXOS-L9-015-C0108",
-      "negative_class_ref": "4e0c28b06920d3a9665cbe4beeaf48cea44d7b0d350dddfaec9c8471de1e86b5"
+      "negative_class_ref": "OS015-NEG-COMPOSITE-4e0c28b06920d3a9665cbe4beeaf48cea44d7b0d350dddfaec9c8471de1e86b5"
     },
     {
       "id": "HELIXOS-L9-015-C0109",
@@ -10059,7 +10059,7 @@
       },
       "population_state": "negative",
       "integration_case_ref": "HELIXOS-L9-015-C0109",
-      "negative_class_ref": "07c9fd844a293140f5dc77476ab8ed90116889361788956739abfdcf65b874c4"
+      "negative_class_ref": "OS015-NEG-COMPOSITE-07c9fd844a293140f5dc77476ab8ed90116889361788956739abfdcf65b874c4"
     },
     {
       "id": "HELIXOS-L9-015-C0110",
@@ -10129,7 +10129,7 @@
       },
       "population_state": "negative",
       "integration_case_ref": "HELIXOS-L9-015-C0110",
-      "negative_class_ref": "4e0c28b06920d3a9665cbe4beeaf48cea44d7b0d350dddfaec9c8471de1e86b5"
+      "negative_class_ref": "OS015-NEG-COMPOSITE-4e0c28b06920d3a9665cbe4beeaf48cea44d7b0d350dddfaec9c8471de1e86b5"
     },
     {
       "id": "HELIXOS-L9-015-C0111",
@@ -10199,7 +10199,7 @@
       },
       "population_state": "negative",
       "integration_case_ref": "HELIXOS-L9-015-C0111",
-      "negative_class_ref": "07c9fd844a293140f5dc77476ab8ed90116889361788956739abfdcf65b874c4"
+      "negative_class_ref": "OS015-NEG-COMPOSITE-07c9fd844a293140f5dc77476ab8ed90116889361788956739abfdcf65b874c4"
     },
     {
       "id": "HELIXOS-L9-015-C0112",
@@ -10269,7 +10269,7 @@
       },
       "population_state": "negative",
       "integration_case_ref": "HELIXOS-L9-015-C0112",
-      "negative_class_ref": "4e0c28b06920d3a9665cbe4beeaf48cea44d7b0d350dddfaec9c8471de1e86b5"
+      "negative_class_ref": "OS015-NEG-COMPOSITE-4e0c28b06920d3a9665cbe4beeaf48cea44d7b0d350dddfaec9c8471de1e86b5"
     },
     {
       "id": "HELIXOS-L9-015-C0113",
@@ -10339,7 +10339,7 @@
       },
       "population_state": "negative",
       "integration_case_ref": "HELIXOS-L9-015-C0113",
-      "negative_class_ref": "07c9fd844a293140f5dc77476ab8ed90116889361788956739abfdcf65b874c4"
+      "negative_class_ref": "OS015-NEG-COMPOSITE-07c9fd844a293140f5dc77476ab8ed90116889361788956739abfdcf65b874c4"
     },
     {
       "id": "HELIXOS-L9-015-C0114",
@@ -42218,7 +42218,7 @@
       ]
     },
     {
-      "class_id": "07c9fd844a293140f5dc77476ab8ed90116889361788956739abfdcf65b874c4",
+      "class_id": "OS015-NEG-COMPOSITE-07c9fd844a293140f5dc77476ab8ed90116889361788956739abfdcf65b874c4",
       "expected_classification": "management_material_violation",
       "expected": {
         "finding_codes": [
@@ -42342,7 +42342,7 @@
       ]
     },
     {
-      "class_id": "4e0c28b06920d3a9665cbe4beeaf48cea44d7b0d350dddfaec9c8471de1e86b5",
+      "class_id": "OS015-NEG-COMPOSITE-4e0c28b06920d3a9665cbe4beeaf48cea44d7b0d350dddfaec9c8471de1e86b5",
       "expected_classification": "management_material_violation",
       "expected": {
         "finding_codes": [
