@@ -37,7 +37,10 @@
     "input_source": "L7 connection_materials/OS015/case/cases/*/given/input",
     "l9_source_pointers": "L4/L7 only; no L5 pointers",
     "L9_case_rows": 583,
-    "L9_expected_preservation": "全583行でmaterial_refとnegative_class_refを除く既存fieldがbaseとcanonical比較一致"
+    "L9_expected_preservation": "全583行でmaterial_refとnegative_class_refを除く既存fieldがbaseとcanonical比較一致",
+    "unassigned_l9_case_refs": 112,
+    "unlinked_l8_case_refs": 141,
+    "unassigned_scope_note": "112はL9側のcase refs。L8はPR-A対象外で未変更のため141 case refsが未割当。"
   },
   "commands": {
     "static_evidence": "python3 scaffold/research/wr181-os015-pr-a-l4-l9-20261030/validate_static_evidence.py",
@@ -177,11 +180,15 @@
   "not_claimed": [
     "L5/L8 pair completion",
     "L9 L5 failure-rule source pointers",
-    "112 unassigned cases",
+    "L9側の未割当112 cases",
     "negative overall PASS",
-    "full coverage",
+    "L8側141 case refsの未割当を含む全coverage",
     "freeze established",
     "runtime/test/CI execution"
   ],
-  "raw_checker_outputs_committed": false
+  "raw_checker_outputs_committed": false,
+  "latest_main_trial_record_scope": "Trialはcandidate 1928259790b0b9e87e85a959c6d1b2f008a9acdcを含むmerge 683964eb8477edea3ae2c6a13c04acea819890b7で実行。その後の95688e78bfbf16c4d35ab059a7a6e7e06c787b87および本件commitはREADME/verification-summaryのみを変更し、L4/L9とbinding bytesは不変。",
+  "post_trial_document_only_commits": [
+    "95688e78bfbf16c4d35ab059a7a6e7e06c787b87"
+  ]
 }
