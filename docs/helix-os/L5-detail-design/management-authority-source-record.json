@@ -12605,5 +12605,50 @@
       "source": "L4 contracts[2]、批准L3/L10-F02の旧event/分類と新revision/訂正根拠の保持。",
       "inputs": "input.recordsの分類原値と同inputからのmaterial.selected_phase/target_correspondence。"
     }
-  }
+  },
+  "contracts": [
+    {
+      "id": "HELIXOS-L5-015-P-B01",
+      "l4_contract_ref": "HELIXOS-L4-015-B01",
+      "oracle_ref": "HELIXOS-L8-015-P-B01",
+      "requirement_ref": "HELIXOS-L3-015-B01",
+      "source_signature_pointers": [
+        "/signatures/0",
+        "/signatures/2"
+      ]
+    },
+    {
+      "id": "HELIXOS-L5-015-P-F01",
+      "l4_contract_ref": "HELIXOS-L4-015-F01",
+      "oracle_ref": "HELIXOS-L8-015-P-F01",
+      "requirement_ref": "HELIXOS-L3-015-F01",
+      "source_signature_pointers": [
+        "/signatures/0",
+        "/signatures/1",
+        "/signatures/2"
+      ]
+    },
+    {
+      "id": "HELIXOS-L5-015-P-F02",
+      "l4_contract_ref": "HELIXOS-L4-015-F02",
+      "oracle_ref": "HELIXOS-L8-015-P-F02",
+      "requirement_ref": "HELIXOS-L3-015-F02",
+      "source_signature_pointers": [
+        "/signatures/0",
+        "/signatures/2",
+        "/signatures/3"
+      ]
+    },
+    {
+      "id": "HELIXOS-L5-015-P-F03",
+      "l4_contract_ref": "HELIXOS-L4-015-F03",
+      "oracle_ref": "HELIXOS-L8-015-P-F03",
+      "requirement_ref": "HELIXOS-L3-015-F03",
+      "source_signature_pointers": [
+        "/signatures/0",
+        "/signatures/1",
+        "/signatures/2"
+      ]
+    }
+  ]
 }
