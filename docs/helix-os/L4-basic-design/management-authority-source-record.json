@@ -480,8 +480,8 @@
         "OS015-NEG-unresolved_history_unresolved",
         "OS015-NEG-first_classification_prior_present",
         "OS015-NEG-first_classification_prior_unresolved",
-        "OS015-NEG-composite-original_event_mutated-source_conflict-original_event",
-        "OS015-NEG-composite-original_event_mutated-source_unresolved-original_event"
+        "07c9fd844a293140f5dc77476ab8ed90116889361788956739abfdcf65b874c4",
+        "4e0c28b06920d3a9665cbe4beeaf48cea44d7b0d350dddfaec9c8471de1e86b5"
       ]
     },
     {
@@ -2199,7 +2199,7 @@
       ]
     },
     {
-      "class_id": "OS015-NEG-composite-original_event_mutated-source_conflict-original_event",
+      "class_id": "07c9fd844a293140f5dc77476ab8ed90116889361788956739abfdcf65b874c4",
       "code": "management_material_violation",
       "design_ref": "HELIXOS-L4-015-F02",
       "condition": "inspectでoriginal_eventの比較対象fieldの既知値が不一致となり、原event全体も独立contextと異なる",
@@ -2245,7 +2245,7 @@
       ]
     },
     {
-      "class_id": "OS015-NEG-composite-original_event_mutated-source_unresolved-original_event",
+      "class_id": "4e0c28b06920d3a9665cbe4beeaf48cea44d7b0d350dddfaec9c8471de1e86b5",
       "code": "management_material_violation",
       "design_ref": "HELIXOS-L4-015-F02",
       "condition": "inspectでoriginal_eventの比較operandがunknownとなり、原event全体も独立contextと異なる",
