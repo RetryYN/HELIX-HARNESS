@@ -1,0 +1,138 @@
+{
+  "schema_revision": 1,
+  "id": "SCF-B-0170",
+  "kind": "scaffold",
+  "title": "WR181 OS015 複合負例class形成規則と固定入力の静的根拠",
+  "product": "HELIX-OS",
+  "owner_candidate": "HELIX-OS OS015 管理record/source projection設計",
+  "state": "registered",
+  "reason": "WR181作業依頼 (1) に基づき、承認済みOS015 L4/L5のfacet順序・aggregation・condition_valuesから複合負例class形成規則を具体化し、残余negative caseのL7固定入力材料を静的に一覧する。case所属の独立した手動導出は未完了のため、複合case class rowとrefを追加しない。",
+  "role": "OS015複合negative-equivalence-class形成規則の下流設計記録とL7固定入力の静的inventory",
+  "upstream": [
+    {
+      "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+      "sha256": "e86254a35b476ed71ebb112e41ccd2b48f89a8d0393e6495dc11cac7a7cf4e02",
+      "note": "OS015 F01-F03: source identity/authority、original event保持、local conflictを未解決で保持する上流要件。"
+    },
+    {
+      "path": "docs/helix-os/L10-verification/functional-verification.json",
+      "sha256": "583020f951672e48bc37fcd35cb916de5ccd9866f41dd04731f6519325ae500a",
+      "note": "OS015 F01-F03の対となるsource照合・原event保持・conflict局所保持の検証意図。候補classの期待生成元にはしない。"
+    },
+    {
+      "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
+      "sha256": "dc3cf283059c0d4d6f890e93728ce0f75088a6e8980fe937b22ef9afeb117ec5",
+      "note": "固定input domain、6 facets、code/disposition、aggregation、condition_values、algorithm、31既存failure classifications、追加した複合class形成契約。複合case rowsは未形成。"
+    },
+    {
+      "path": "docs/helix-os/L5-detail-design/management-authority-source-record.json",
+      "sha256": "90e9df83f3c64788453579789060e090396097c10f127075115daa4bda5dd895",
+      "note": "形式化した固定carrier、全field比較、finding/retention、31既存failure rules、追加した複合class形成契約。複合case rowsは未形成。"
+    },
+    {
+      "path": "docs/helix-os/L7-function-verification/management-authority-source-record.json",
+      "sha256": "b2a71c3d2a99c5268275e183f21c2b1bbc4b21ad79d577af42573a079e920a09",
+      "note": "対象141件のfixed fixture_inputsとcase given.input replacements。expected_proposalは独立class導出元にしない。"
+    },
+    {
+      "path": "scaffold/tools/design_verification_checker.py",
+      "sha256": "211e39ff48ec96adf37f948db91dd63795435c53671e16576b39eb0e3a0538d6",
+      "note": "explicit_negative_equivalence_classesのclass keyと全L4/L5/L8/L9 rows比較の現行実装。候補はcheckerを変更しない。"
+    },
+    {
+      "path": "docs/governance/legacy-asset-disposition.jsonl",
+      "sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+      "note": "旧HELIX資産の対応・authority状態を確認。"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-requirements.md",
+      "sha256": "f0d0d33a1cced1ad7c1bab061f0a36bcdb5bad122dc58c7e8e43b47032f37d6b",
+      "note": "LEGACY-ASSET-3A15E5645D2D2A59DFF5。historical/unresolvedの旧ExecutionTicket候補であり、現行OS015のclass要求へ移植しない。静的read-only参照のみ。archive内source・runtime・CLI・test・CIは実行しない。"
+    },
+    {
+      "path": "AGENTS.md",
+      "sha256": "e9bf270eea4288b55ebd66d9d153d43d9c85220bd611281782af99a3c3b853a7",
+      "note": "現行作業規則と旧資産の読取境界。"
+    },
+    {
+      "path": "CLAUDE.md",
+      "sha256": "9a676d8a3d8ef5edb9e1c6c3fb77ce4b6851c7c6c223613bf46307d906eda96c",
+      "note": "共有project context。"
+    },
+    {
+      "path": "docs/governance/new-generation-start-here.md",
+      "sha256": "09a5a870ce1cd9cc1098fc3bc1a084c85f32e351137c488f502004468a37a3dc",
+      "note": "authority状態・現行層・許可範囲の必須入口。"
+    }
+  ],
+  "obligations": [
+    "L4全findingをpointer別に保持し、同codeの重複もclass keyへ写す形成規則を記録する。",
+    "L4 facet order/within-facet and whole-result aggregation/condition_valuesから、single-axis class fieldへの明示的投影規則を記録する。",
+    "L4 fixed carrierとbounded finding positionsから組合せ上限を計算し、full universeを列挙しない理由を記録する。",
+    "L4 algorithmからsingletonとして成立しない6 finding classを特定し、併発所見の根拠を示す。",
+    "L9 observation combinationsをclass formation sourceとして使わない。case単位class assignmentは独立した手動照合が終わるまで未形成とする。"
+  ],
+  "connections": {
+    "consumers": [
+      "WR181 OS015 L4/L5複合class形成規則とL7固定入力のcase単位静的照合"
+    ],
+    "dependencies": [
+      "OS015 L4 diagnostic_contract",
+      "OS015 L5 formal_reference/input_boundary",
+      "explicit_negative_equivalence_classes checker key contract"
+    ],
+    "boundary": "L4/L5の下流設計とL7固定入力の静的inventory。case単位expectedとcheckerは変更しない。明示依頼に基づきdocument checkerを静的照合に使う。freeze recordは生成しない。runtime、test、CIは起動しない。"
+  },
+  "operations": {
+    "allowed": [
+      "文書とchecker sourceの静的読取",
+      "L7 fixed inputを再構成し刺激/field/predicate candidateだけを列挙する静的script作成",
+      "JSON sourceの件数・pointer・hashの静的照合",
+      "明示依頼に基づくdocument checkerの静的実行",
+      "git diff --check"
+    ],
+    "forbidden": [
+      "L9 observationからclass/keyを逆生成する",
+      "checkerまたは既存case expectedを変更する。product runtime、test、CIは起動しない。",
+      "要求意味・approval・authorityを変更する",
+      "旧archiveは実行しない"
+    ]
+  },
+  "artifacts": [
+    "scaffold/research/wr181-os015-composite-class-formation-20261030/README.md",
+    "scaffold/research/wr181-os015-composite-class-formation-20261030/analyze_bounds.py",
+    "scaffold/research/wr181-os015-composite-class-formation-20261030/residual-population-141.json",
+    "scaffold/research/wr181-os015-composite-class-formation-20261030/inventory_141.py",
+    "scaffold/research/wr181-os015-composite-class-formation-20261030/l7-fixed-input-inventory-141.json",
+    "scaffold/bindings/SCF-B-0170.json"
+  ],
+  "verification": {
+    "evidence_kind": "scaffold",
+    "scope": [
+      "schema_interface",
+      "source_revision_stale"
+    ],
+    "oracles": [
+      "python3 scaffold/research/wr181-os015-composite-class-formation-20261030/analyze_bounds.py",
+      "python3 scaffold/research/wr181-os015-composite-class-formation-20261030/inventory_141.py",
+      "git diff --check"
+    ],
+    "negative_cases": [
+      "多層でfinding_codesをcode set化すると、同codeが異なるpointerに出るケースのmultiplicityが失われるため不採用。",
+      "L9に現れた組合せをL4/L5 class sourceへ逆輸入する経路は対象外。",
+      "全理論class universeを明示rowとして列挙することは有限性の根拠があっても上限規模から実施しない。"
+    ]
+  },
+  "replacement": {
+    "role_target": "正式なHELIX-OS OS015 L4/L5複合class形成契約",
+    "formal_artifacts": [],
+    "issue": 0,
+    "status": "pending",
+    "transfer": null,
+    "target_revisions": {},
+    "confirmation_ref": null,
+    "confirmation_digest": null
+  },
+  "created": "2026-10-30",
+  "updated": "2026-10-30"
+}

@@ -421,13 +421,13 @@
   "source_pair_pins": [
     {
       "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
-      "revision": "2bc4d9385b3d1c6a1245c11bd391463539da82bc",
-      "sha256": "cd22661c06fd93795986ba3f34563911a355a92e9766553f72629199eb988de1"
+      "revision": "c5f80e634a3e41f1a268ab3e945bbd1e6b1ece37",
+      "sha256": "dc3cf283059c0d4d6f890e93728ce0f75088a6e8980fe937b22ef9afeb117ec5"
     },
     {
       "path": "docs/helix-os/L9-integration-verification/management-authority-source-record.json",
-      "revision": "2bc4d9385b3d1c6a1245c11bd391463539da82bc",
-      "sha256": "d7a13e4644e70da1e799026e6607c4fff8b1a071a500ad242979788b80591c92"
+      "revision": "c5f80e634a3e41f1a268ab3e945bbd1e6b1ece37",
+      "sha256": "0b310db53887fd22d2fa5a3154099fdc0587bceed61dc85544f57549b2cbec51"
     }
   ],
   "document_id": "HELIXOS-L8-015",
@@ -435,9 +435,9 @@
   "pair": "HELIXOS-L5-015",
   "candidate_l5_bytes": {
     "path": "docs/helix-os/L5-detail-design/management-authority-source-record.json",
-    "revision": "64d7c51aea3db7e4aa9ebd95cffae8848ca2b232",
+    "revision": "3069bd9a5e58259e8826f9cc25f4486f390c6e15",
     "same_candidate": true,
-    "sha256": "8fd4c6fcb006475c99716f9de5b2df6d66eefe48e256decc33dffd7274a3db73"
+    "sha256": "90e9df83f3c64788453579789060e090396097c10f127075115daa4bda5dd895"
   },
   "shared_route_expectations": {
     "l7_material_ref": {

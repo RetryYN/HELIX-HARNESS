@@ -1,0 +1,4043 @@
+{
+  "evidence_kind": "scaffold",
+  "authority_effect": "none",
+  "scope": "141 IDs captured as classless negative cases at the WR181 base revision, matched to L7 fixed input materials; no expected outputs or L9 data read",
+  "method": "resolve only L7 fixture_inputs + given.input replacement recipes; verify expanded_input_sha256; list changed fields and L4 predicate source pointers for human forward review",
+  "not_done": [
+    "L4 predicates are not evaluated",
+    "no finding codes, class keys, or expected values are derived",
+    "L7 expected_proposal is not read",
+    "L9 data, output, and class combinations are not read"
+  ],
+  "case_count": 141,
+  "population_source": {
+    "path": "scaffold/research/wr181-os015-composite-class-formation-20261030/residual-population-141.json",
+    "source_revision": "70b91c73c864b4de1c7b7d591dcf49cdc047c18a",
+    "source_sha256": "78b49e86b75251759d238f9ca501243e0de6575f0da44c05fc14706ee3c7e0f2"
+  },
+  "cases": [
+    {
+      "case_id": "HELIXOS-L9-015-C0044",
+      "l7_input_pointer": "/connection_materials/OS015/case/cases/43/given/input",
+      "base_ref": "inspect",
+      "expanded_input_sha256": "9975567cf158a570be3f1d62cbf9af619c2166d78e5fdaef7908d9ee06088148",
+      "changes": [
+        {
+          "path": [
+            "records",
+            "target_a",
+            "original_event",
+            "event_id"
+          ],
+          "before": "SYNTHETIC-EVENT_ID-target_a",
+          "after": null,
+          "l4_predicate_candidates": [
+            "/diagnostic_contract/event_fields",
+            "/diagnostic_contract/algorithm_dependencies/ef",
+            "/diagnostic_contract/mutation_rule",
+            "/diagnostic_contract/comparison_facets",
+            "/diagnostic_contract/aggregation",
+            "/diagnostic_contract/condition_values"
+          ]
+        }
+      ]
+    },
+    {
+      "case_id": "HELIXOS-L9-015-C0045",
+      "l7_input_pointer": "/connection_materials/OS015/case/cases/44/given/input",
+      "base_ref": "inspect",
+      "expanded_input_sha256": "602f907fadef66b20be2f4549e2bb316829697d2114936ff87f3dc081b0359fa",
+      "changes": [
+        {
+          "path": [
+            "records",
+            "target_a",
+            "original_event",
+            "event_id"
+          ],
+          "before": "SYNTHETIC-EVENT_ID-target_a",
+          "after": "FOREIGN-event_id",
+          "l4_predicate_candidates": [
+            "/diagnostic_contract/event_fields",
+            "/diagnostic_contract/algorithm_dependencies/ef",
+            "/diagnostic_contract/mutation_rule",
+            "/diagnostic_contract/comparison_facets",
+            "/diagnostic_contract/aggregation",
+            "/diagnostic_contract/condition_values"
+          ]
+        }
+      ]
+    },
+    {
+      "case_id": "HELIXOS-L9-015-C0046",
+      "l7_input_pointer": "/connection_materials/OS015/case/cases/45/given/input",
+      "base_ref": "inspect",
+      "expanded_input_sha256": "42096ec3ec4aefe788555ad5c90fae637cd9971d41d4d59fd794c631f996e38d",
+      "changes": [
+        {
+          "path": [
+            "records",
+            "target_a",
+            "original_event",
+            "event_revision"
+          ],
+          "before": "EVENT-r1",
+          "after": null,
+          "l4_predicate_candidates": [
+            "/diagnostic_contract/event_fields",
+            "/diagnostic_contract/algorithm_dependencies/ef",
+            "/diagnostic_contract/mutation_rule",
+            "/diagnostic_contract/comparison_facets",
+            "/diagnostic_contract/aggregation",
+            "/diagnostic_contract/condition_values"
+          ]
+        }
+      ]
+    },
+    {
+      "case_id": "HELIXOS-L9-015-C0047",
+      "l7_input_pointer": "/connection_materials/OS015/case/cases/46/given/input",
+      "base_ref": "inspect",
+      "expanded_input_sha256": "5d67d3faa223a8eb6e02b526ef8f7a0305e924b890a458f70cc72212a6075f4d",
+      "changes": [
+        {
+          "path": [
+            "records",
+            "target_a",
+            "original_event",
+            "event_revision"
+          ],
+          "before": "EVENT-r1",
+          "after": "FOREIGN-event_revision",
+          "l4_predicate_candidates": [
+            "/diagnostic_contract/event_fields",
+            "/diagnostic_contract/algorithm_dependencies/ef",
+            "/diagnostic_contract/mutation_rule",
+            "/diagnostic_contract/comparison_facets",
+            "/diagnostic_contract/aggregation",
+            "/diagnostic_contract/condition_values"
+          ]
+        }
+      ]
+    },
+    {
+      "case_id": "HELIXOS-L9-015-C0048",
+      "l7_input_pointer": "/connection_materials/OS015/case/cases/47/given/input",
+      "base_ref": "inspect",
+      "expanded_input_sha256": "687297318754805fb0f1bd456a5fdadbaf6a9ddb2bfceaa19b8580a1fc863ed2",
+      "changes": [
+        {
+          "path": [
+            "records",
+            "target_a",
+            "original_event",
+            "source_ref"
+          ],
+          "before": "SYNTHETIC-SOURCE_REF-target_a",
+          "after": null,
+          "l4_predicate_candidates": [
+            "/diagnostic_contract/event_fields",
+            "/diagnostic_contract/algorithm_dependencies/ef",
+            "/diagnostic_contract/mutation_rule",
+            "/diagnostic_contract/comparison_facets",
+            "/diagnostic_contract/aggregation",
+            "/diagnostic_contract/condition_values"
+          ]
+        }
+      ]
+    },
+    {
+      "case_id": "HELIXOS-L9-015-C0049",
+      "l7_input_pointer": "/connection_materials/OS015/case/cases/48/given/input",
+      "base_ref": "inspect",
+      "expanded_input_sha256": "d313327b9c8ab0c654000763fa3dd77eb1fd3c780b7806e40b0595d73d243dfa",
+      "changes": [
+        {
+          "path": [
+            "records",
+            "target_a",
+            "original_event",
+            "source_ref"
+          ],
+          "before": "SYNTHETIC-SOURCE_REF-target_a",
+          "after": "FOREIGN-source_ref",
+          "l4_predicate_candidates": [
+            "/diagnostic_contract/event_fields",
+            "/diagnostic_contract/algorithm_dependencies/ef",
+            "/diagnostic_contract/mutation_rule",
+            "/diagnostic_contract/comparison_facets",
+            "/diagnostic_contract/aggregation",
+            "/diagnostic_contract/condition_values"
+          ]
+        }
+      ]
+    },
+    {
+      "case_id": "HELIXOS-L9-015-C0050",
+      "l7_input_pointer": "/connection_materials/OS015/case/cases/49/given/input",
+      "base_ref": "inspect",
+      "expanded_input_sha256": "c1bd38948d4b5eacfd15b3190181702650fbc45454a6376818b0d8d735c84c11",
+      "changes": [
+        {
+          "path": [
+            "records",
+            "target_a",
+            "original_event",
+            "source_revision"
+          ],
+          "before": "SYNTHETIC-SOURCE_REVISION-target_a",
+          "after": null,
+          "l4_predicate_candidates": [
+            "/diagnostic_contract/event_fields",
+            "/diagnostic_contract/algorithm_dependencies/ef",
+            "/diagnostic_contract/mutation_rule",
+            "/diagnostic_contract/comparison_facets",
+            "/diagnostic_contract/aggregation",
+            "/diagnostic_contract/condition_values"
+          ]
+        }
+      ]
+    },
+    {
+      "case_id": "HELIXOS-L9-015-C0051",
+      "l7_input_pointer": "/connection_materials/OS015/case/cases/50/given/input",
+      "base_ref": "inspect",
+      "expanded_input_sha256": "3f693c3b0ce5819727f447f6f9e0166698945c50d550be15627614aacf486c73",
+      "changes": [
+        {
+          "path": [
+            "records",
+            "target_a",
+            "original_event",
+            "source_revision"
+          ],
+          "before": "SYNTHETIC-SOURCE_REVISION-target_a",
+          "after": "FOREIGN-source_revision",
+          "l4_predicate_candidates": [
+            "/diagnostic_contract/event_fields",
+            "/diagnostic_contract/algorithm_dependencies/ef",
+            "/diagnostic_contract/mutation_rule",
+            "/diagnostic_contract/comparison_facets",
+            "/diagnostic_contract/aggregation",
+            "/diagnostic_contract/condition_values"
+          ]
+        }
+      ]
+    },
+    {
+      "case_id": "HELIXOS-L9-015-C0052",
+      "l7_input_pointer": "/connection_materials/OS015/case/cases/51/given/input",
+      "base_ref": "inspect",
+      "expanded_input_sha256": "82d1e9ed5ff174b62836c86e022d8aafd903f653f2c93805e49641c4dbe2cb21",
+      "changes": [
+        {
+          "path": [
+            "records",
+            "target_a",
+            "original_event",
+            "source_digest"
+          ],
+          "before": "SYNTHETIC-SOURCE_DIGEST-target_a",
+          "after": null,
+          "l4_predicate_candidates": [
+            "/diagnostic_contract/event_fields",
+            "/diagnostic_contract/algorithm_dependencies/ef",
+            "/diagnostic_contract/mutation_rule",
+            "/diagnostic_contract/comparison_facets",
+            "/diagnostic_contract/aggregation",
+            "/diagnostic_contract/condition_values"
+          ]
+        }
+      ]
+    },
+    {
+      "case_id": "HELIXOS-L9-015-C0053",
+      "l7_input_pointer": "/connection_materials/OS015/case/cases/52/given/input",
+      "base_ref": "inspect",
+      "expanded_input_sha256": "a0d58bfd455ac00dbdf7721816a32415377ed872d816977394d326cb6f38e182",
+      "changes": [
+        {
+          "path": [
+            "records",
+            "target_a",
+            "original_event",
+            "source_digest"
+          ],
+          "before": "SYNTHETIC-SOURCE_DIGEST-target_a",
+          "after": "FOREIGN-source_digest",
+          "l4_predicate_candidates": [
+            "/diagnostic_contract/event_fields",
+            "/diagnostic_contract/algorithm_dependencies/ef",
+            "/diagnostic_contract/mutation_rule",
+            "/diagnostic_contract/comparison_facets",
+            "/diagnostic_contract/aggregation",
+            "/diagnostic_contract/condition_values"
+          ]
+        }
+      ]
+    },
+    {
+      "case_id": "HELIXOS-L9-015-C0054",
+      "l7_input_pointer": "/connection_materials/OS015/case/cases/53/given/input",
+      "base_ref": "inspect",
+      "expanded_input_sha256": "7a30d66c817f16876e6a327872e5df53906a7cbdfe837a7690f98f6e64963c56",
+      "changes": [
+        {
+          "path": [
+            "records",
+            "target_a",
+            "original_event",
+            "actor_ref"
+          ],
+          "before": "SYNTHETIC-ACTOR_REF-target_a",
+          "after": null,
+          "l4_predicate_candidates": [
+            "/diagnostic_contract/event_fields",
+            "/diagnostic_contract/algorithm_dependencies/ef",
+            "/diagnostic_contract/mutation_rule",
+            "/diagnostic_contract/comparison_facets",
+            "/diagnostic_contract/aggregation",
+            "/diagnostic_contract/condition_values"
+          ]
+        }
+      ]
+    },
+    {
+      "case_id": "HELIXOS-L9-015-C0055",
+      "l7_input_pointer": "/connection_materials/OS015/case/cases/54/given/input",
+      "base_ref": "inspect",
+      "expanded_input_sha256": "7d8a6577697f3e8732a62b21a39119d3fd5134fd43a676e9056937b4f566ae95",
+      "changes": [
+        {
+          "path": [
+            "records",
+            "target_a",
+            "original_event",
+            "actor_ref"
+          ],
+          "before": "SYNTHETIC-ACTOR_REF-target_a",
+          "after": "FOREIGN-actor_ref",
+          "l4_predicate_candidates": [
+            "/diagnostic_contract/event_fields",
+            "/diagnostic_contract/algorithm_dependencies/ef",
+            "/diagnostic_contract/mutation_rule",
+            "/diagnostic_contract/comparison_facets",
+            "/diagnostic_contract/aggregation",
+            "/diagnostic_contract/condition_values"
+          ]
+        }
+      ]
+    },
+    {
+      "case_id": "HELIXOS-L9-015-C0056",
+      "l7_input_pointer": "/connection_materials/OS015/case/cases/55/given/input",
+      "base_ref": "inspect",
+      "expanded_input_sha256": "7e456dae7b3f14b81b288dae6f4b9e6260e5862feb4617c37d2f6ab1ec803ce1",
+      "changes": [
+        {
+          "path": [
+            "records",
+            "target_a",
+            "original_event",
+            "observed_at_ref"
+          ],
+          "before": "SYNTHETIC-OBSERVED_AT_REF-target_a",
+          "after": null,
+          "l4_predicate_candidates": [
+            "/diagnostic_contract/event_fields",
+            "/diagnostic_contract/algorithm_dependencies/ef",
+            "/diagnostic_contract/mutation_rule",
+            "/diagnostic_contract/comparison_facets",
+            "/diagnostic_contract/aggregation",
+            "/diagnostic_contract/condition_values"
+          ]
+        }
+      ]
+    },
+    {
+      "case_id": "HELIXOS-L9-015-C0057",
+      "l7_input_pointer": "/connection_materials/OS015/case/cases/56/given/input",
+      "base_ref": "inspect",
+      "expanded_input_sha256": "b4e073e74bf86ff00d46a765e4a115f003332d298ba97030b4486dd066f6db7d",
+      "changes": [
+        {
+          "path": [
+            "records",
+            "target_a",
+            "original_event",
+            "observed_at_ref"
+          ],
+          "before": "SYNTHETIC-OBSERVED_AT_REF-target_a",
+          "after": "FOREIGN-observed_at_ref",
+          "l4_predicate_candidates": [
+            "/diagnostic_contract/event_fields",
+            "/diagnostic_contract/algorithm_dependencies/ef",
+            "/diagnostic_contract/mutation_rule",
+            "/diagnostic_contract/comparison_facets",
+            "/diagnostic_contract/aggregation",
+            "/diagnostic_contract/condition_values"
+          ]
+        }
+      ]
+    },
+    {
+      "case_id": "HELIXOS-L9-015-C0058",
+      "l7_input_pointer": "/connection_materials/OS015/case/cases/57/given/input",
+      "base_ref": "inspect",
+      "expanded_input_sha256": "342794618867d6b259f2fe69aee88172aa4a8d0479fe1c368fe0578a87edceab",
+      "changes": [
+        {
+          "path": [
+            "records",
+            "target_a",
+            "original_event",
+            "causal_id"
+          ],
+          "before": "SYNTHETIC-CAUSAL_ID-target_a",
+          "after": null,
+          "l4_predicate_candidates": [
+            "/diagnostic_contract/event_fields",
+            "/diagnostic_contract/algorithm_dependencies/ef",
+            "/diagnostic_contract/mutation_rule",
+            "/diagnostic_contract/comparison_facets",
+            "/diagnostic_contract/aggregation",
+            "/diagnostic_contract/condition_values"
+          ]
+        }
+      ]
+    },
+    {
+      "case_id": "HELIXOS-L9-015-C0059",
+      "l7_input_pointer": "/connection_materials/OS015/case/cases/58/given/input",
+      "base_ref": "inspect",
+      "expanded_input_sha256": "b0c2ca705456f2f3984c09f7f430b066a6be8470865f41d05bcac0e5960bc701",
+      "changes": [
+        {
+          "path": [
+            "records",
+            "target_a",
+            "original_event",
+            "causal_id"
+          ],
+          "before": "SYNTHETIC-CAUSAL_ID-target_a",
+          "after": "FOREIGN-causal_id",
+          "l4_predicate_candidates": [
+            "/diagnostic_contract/event_fields",
+            "/diagnostic_contract/algorithm_dependencies/ef",
+            "/diagnostic_contract/mutation_rule",
+            "/diagnostic_contract/comparison_facets",
+            "/diagnostic_contract/aggregation",
+            "/diagnostic_contract/condition_values"
+          ]
+        }
+      ]
+    },
+    {
+      "case_id": "HELIXOS-L9-015-C0060",
+      "l7_input_pointer": "/connection_materials/OS015/case/cases/59/given/input",
+      "base_ref": "inspect",
+      "expanded_input_sha256": "f610c8cd98a93f92d1f5ea2ce9b09bc2e931729e0119cc938ddfdbb0a4fc8aa9",
+      "changes": [
+        {
+          "path": [
+            "records",
+            "target_a",
+            "original_event",
+            "payload_ref"
+          ],
+          "before": "SYNTHETIC-PAYLOAD_REF-target_a",
+          "after": null,
+          "l4_predicate_candidates": [
+            "/diagnostic_contract/event_fields",
+            "/diagnostic_contract/algorithm_dependencies/ef",
+            "/diagnostic_contract/mutation_rule",
+            "/diagnostic_contract/comparison_facets",
+            "/diagnostic_contract/aggregation",
+            "/diagnostic_contract/condition_values"
+          ]
+        }
+      ]
+    },
+    {
+      "case_id": "HELIXOS-L9-015-C0061",
+      "l7_input_pointer": "/connection_materials/OS015/case/cases/60/given/input",
+      "base_ref": "inspect",
+      "expanded_input_sha256": "0e4186545cadecf917aeb5429e3c77781ac1b5ff2f93f7a025de6597eacd66eb",
+      "changes": [
+        {
+          "path": [
+            "records",
+            "target_a",
+            "original_event",
+            "payload_ref"
+          ],
+          "before": "SYNTHETIC-PAYLOAD_REF-target_a",
+          "after": "FOREIGN-payload_ref",
+          "l4_predicate_candidates": [
+            "/diagnostic_contract/event_fields",
+            "/diagnostic_contract/algorithm_dependencies/ef",
+            "/diagnostic_contract/mutation_rule",
+            "/diagnostic_contract/comparison_facets",
+            "/diagnostic_contract/aggregation",
+            "/diagnostic_contract/condition_values"
+          ]
+        }
+      ]
+    },
+    {
+      "case_id": "HELIXOS-L9-015-C0102",
+      "l7_input_pointer": "/connection_materials/OS015/case/cases/101/given/input",
+      "base_ref": "inspect",
+      "expanded_input_sha256": "490232b5ae8a2a15df2701467bcf9acf35e008406c9664fe0942803e47f897b2",
+      "changes": [
+        {
+          "path": [
+            "context",
+            "records",
+            "target_a",
+            "original_event",
+            "event_id"
+          ],
+          "before": "SYNTHETIC-EVENT_ID-target_a",
+          "after": null,
+          "l4_predicate_candidates": [
+            "/diagnostic_contract/event_fields",
+            "/diagnostic_contract/algorithm_dependencies/ef",
+            "/diagnostic_contract/mutation_rule",
+            "/diagnostic_contract/comparison_facets",
+            "/diagnostic_contract/aggregation",
+            "/diagnostic_contract/condition_values"
+          ]
+        }
+      ]
+    },
+    {
+      "case_id": "HELIXOS-L9-015-C0103",
+      "l7_input_pointer": "/connection_materials/OS015/case/cases/102/given/input",
+      "base_ref": "inspect",
+      "expanded_input_sha256": "0236e1839080ff72bdddc9415ac0add173bc04aaa40079c9c247413bff890232",
+      "changes": [
+        {
+          "path": [
+            "context",
+            "records",
+            "target_a",
+            "original_event",
+            "event_id"
+          ],
+          "before": "SYNTHETIC-EVENT_ID-target_a",
+          "after": "FOREIGN-event_id",
+          "l4_predicate_candidates": [
+            "/diagnostic_contract/event_fields",
+            "/diagnostic_contract/algorithm_dependencies/ef",
+            "/diagnostic_contract/mutation_rule",
+            "/diagnostic_contract/comparison_facets",
+            "/diagnostic_contract/aggregation",
+            "/diagnostic_contract/condition_values"
+          ]
+        }
+      ]
+    },
+    {
+      "case_id": "HELIXOS-L9-015-C0104",
+      "l7_input_pointer": "/connection_materials/OS015/case/cases/103/given/input",
+      "base_ref": "inspect",
+      "expanded_input_sha256": "10351b741b3e4af281711575fa203998a1bba314a2d6888512d37425e2140a9f",
+      "changes": [
+        {
+          "path": [
+            "context",
+            "records",
+            "target_a",
+            "original_event",
+            "event_revision"
+          ],
+          "before": "EVENT-r1",
+          "after": null,
+          "l4_predicate_candidates": [
+            "/diagnostic_contract/event_fields",
+            "/diagnostic_contract/algorithm_dependencies/ef",
+            "/diagnostic_contract/mutation_rule",
+            "/diagnostic_contract/comparison_facets",
+            "/diagnostic_contract/aggregation",
+            "/diagnostic_contract/condition_values"
+          ]
+        }
+      ]
+    },
+    {
+      "case_id": "HELIXOS-L9-015-C0105",
+      "l7_input_pointer": "/connection_materials/OS015/case/cases/104/given/input",
+      "base_ref": "inspect",
+      "expanded_input_sha256": "9a957572177829fa1e5343d1aeeccda5f4ad3d9b269bfac7fb8146539bf0cb61",
+      "changes": [
+        {
+          "path": [
+            "context",
+            "records",
+            "target_a",
+            "original_event",
+            "event_revision"
+          ],
+          "before": "EVENT-r1",
+          "after": "FOREIGN-event_revision",
+          "l4_predicate_candidates": [
+            "/diagnostic_contract/event_fields",
+            "/diagnostic_contract/algorithm_dependencies/ef",
+            "/diagnostic_contract/mutation_rule",
+            "/diagnostic_contract/comparison_facets",
+            "/diagnostic_contract/aggregation",
+            "/diagnostic_contract/condition_values"
+          ]
+        }
+      ]
+    },
+    {
+      "case_id": "HELIXOS-L9-015-C0106",
+      "l7_input_pointer": "/connection_materials/OS015/case/cases/105/given/input",
+      "base_ref": "inspect",
+      "expanded_input_sha256": "bb8c912ea37929756375589e31fff27fc58109a339daed3833f3be74d1bc7d61",
+      "changes": [
+        {
+          "path": [
+            "context",
+            "records",
+            "target_a",
+            "original_event",
+            "source_ref"
+          ],
+          "before": "SYNTHETIC-SOURCE_REF-target_a",
+          "after": null,
+          "l4_predicate_candidates": [
+            "/diagnostic_contract/event_fields",
+            "/diagnostic_contract/algorithm_dependencies/ef",
+            "/diagnostic_contract/mutation_rule",
+            "/diagnostic_contract/comparison_facets",
+            "/diagnostic_contract/aggregation",
+            "/diagnostic_contract/condition_values"
+          ]
+        }
+      ]
+    },
+    {
+      "case_id": "HELIXOS-L9-015-C0107",
+      "l7_input_pointer": "/connection_materials/OS015/case/cases/106/given/input",
+      "base_ref": "inspect",
+      "expanded_input_sha256": "196aad04d0337a741587b264ed386ae6d8deb4761ef5645529ca437f3053f3a3",
+      "changes": [
+        {
+          "path": [
+            "context",
+            "records",
+            "target_a",
+            "original_event",
+            "source_ref"
+          ],
+          "before": "SYNTHETIC-SOURCE_REF-target_a",
+          "after": "FOREIGN-source_ref",
+          "l4_predicate_candidates": [
+            "/diagnostic_contract/event_fields",
+            "/diagnostic_contract/algorithm_dependencies/ef",
+            "/diagnostic_contract/mutation_rule",
+            "/diagnostic_contract/comparison_facets",
+            "/diagnostic_contract/aggregation",
+            "/diagnostic_contract/condition_values"
+          ]
+        }
+      ]
+    },
+    {
+      "case_id": "HELIXOS-L9-015-C0108",
+      "l7_input_pointer": "/connection_materials/OS015/case/cases/107/given/input",
+      "base_ref": "inspect",
+      "expanded_input_sha256": "03f2f975d459784eda1fbb3a285c32daef85576154e372055c34ff3541278a21",
+      "changes": [
+        {
+          "path": [
+            "context",
+            "records",
+            "target_a",
+            "original_event",
+            "source_revision"
+          ],
+          "before": "SYNTHETIC-SOURCE_REVISION-target_a",
+          "after": null,
+          "l4_predicate_candidates": [
+            "/diagnostic_contract/event_fields",
+            "/diagnostic_contract/algorithm_dependencies/ef",
+            "/diagnostic_contract/mutation_rule",
+            "/diagnostic_contract/comparison_facets",
+            "/diagnostic_contract/aggregation",
+            "/diagnostic_contract/condition_values"
+          ]
+        }
+      ]
+    },
+    {
+      "case_id": "HELIXOS-L9-015-C0109",
+      "l7_input_pointer": "/connection_materials/OS015/case/cases/108/given/input",
+      "base_ref": "inspect",
+      "expanded_input_sha256": "4c524f586fa614564277e9ee7ba9dd263b05d28f4a6e46050b7d94ca9c6013cf",
+      "changes": [
+        {
+          "path": [
+            "context",
+            "records",
+            "target_a",
+            "original_event",
+            "source_revision"
+          ],
+          "before": "SYNTHETIC-SOURCE_REVISION-target_a",
+          "after": "FOREIGN-source_revision",
+          "l4_predicate_candidates": [
+            "/diagnostic_contract/event_fields",
+            "/diagnostic_contract/algorithm_dependencies/ef",
+            "/diagnostic_contract/mutation_rule",
+            "/diagnostic_contract/comparison_facets",
+            "/diagnostic_contract/aggregation",
+            "/diagnostic_contract/condition_values"
+          ]
+        }
+      ]
+    },
+    {
+      "case_id": "HELIXOS-L9-015-C0110",
+      "l7_input_pointer": "/connection_materials/OS015/case/cases/109/given/input",
+      "base_ref": "inspect",
+      "expanded_input_sha256": "98edcaa3a1f793b43040a797114a20d91b22180579f58cfe6f36dea0335b60d8",
+      "changes": [
+        {
+          "path": [
+            "context",
+            "records",
+            "target_a",
+            "original_event",
+            "source_digest"
+          ],
+          "before": "SYNTHETIC-SOURCE_DIGEST-target_a",
+          "after": null,
+          "l4_predicate_candidates": [
+            "/diagnostic_contract/event_fields",
+            "/diagnostic_contract/algorithm_dependencies/ef",
+            "/diagnostic_contract/mutation_rule",
+            "/diagnostic_contract/comparison_facets",
+            "/diagnostic_contract/aggregation",
+            "/diagnostic_contract/condition_values"
+          ]
+        }
+      ]
+    },
+    {
+      "case_id": "HELIXOS-L9-015-C0111",
+      "l7_input_pointer": "/connection_materials/OS015/case/cases/110/given/input",
+      "base_ref": "inspect",
+      "expanded_input_sha256": "92aa853e6420f5a03bbb46a0fd39e2213e37c6f47d3da59046249ad06b1fc8a4",
+      "changes": [
+        {
+          "path": [
+            "context",
+            "records",
+            "target_a",
+            "original_event",
+            "source_digest"
+          ],
+          "before": "SYNTHETIC-SOURCE_DIGEST-target_a",
+          "after": "FOREIGN-source_digest",
+          "l4_predicate_candidates": [
+            "/diagnostic_contract/event_fields",
+            "/diagnostic_contract/algorithm_dependencies/ef",
+            "/diagnostic_contract/mutation_rule",
+            "/diagnostic_contract/comparison_facets",
+            "/diagnostic_contract/aggregation",
+            "/diagnostic_contract/condition_values"
+          ]
+        }
+      ]
+    },
+    {
+      "case_id": "HELIXOS-L9-015-C0112",
+      "l7_input_pointer": "/connection_materials/OS015/case/cases/111/given/input",
+      "base_ref": "inspect",
+      "expanded_input_sha256": "151f559cc59fda012850d7f770d2d302ba362ca228ae02e71f8452beadd79e2f",
+      "changes": [
+        {
+          "path": [
+            "context",
+            "records",
+            "target_a",
+            "original_event",
+            "actor_ref"
+          ],
+          "before": "SYNTHETIC-ACTOR_REF-target_a",
+          "after": null,
+          "l4_predicate_candidates": [
+            "/diagnostic_contract/event_fields",
+            "/diagnostic_contract/algorithm_dependencies/ef",
+            "/diagnostic_contract/mutation_rule",
+            "/diagnostic_contract/comparison_facets",
+            "/diagnostic_contract/aggregation",
+            "/diagnostic_contract/condition_values"
+          ]
+        }
+      ]
+    },
+    {
+      "case_id": "HELIXOS-L9-015-C0113",
+      "l7_input_pointer": "/connection_materials/OS015/case/cases/112/given/input",
+      "base_ref": "inspect",
+      "expanded_input_sha256": "bd03c53f26f4049ee498685200dd853e6b2b206ba482ad73b11c1b4da0d6f76f",
+      "changes": [
+        {
+          "path": [
+            "context",
+            "records",
+            "target_a",
+            "original_event",
+            "actor_ref"
+          ],
+          "before": "SYNTHETIC-ACTOR_REF-target_a",
+          "after": "FOREIGN-actor_ref",
+          "l4_predicate_candidates": [
+            "/diagnostic_contract/event_fields",
+            "/diagnostic_contract/algorithm_dependencies/ef",
+            "/diagnostic_contract/mutation_rule",
+            "/diagnostic_contract/comparison_facets",
+            "/diagnostic_contract/aggregation",
+            "/diagnostic_contract/condition_values"
+          ]
+        }
+      ]
+    },
+    {
+      "case_id": "HELIXOS-L9-015-C0114",
+      "l7_input_pointer": "/connection_materials/OS015/case/cases/113/given/input",
+      "base_ref": "inspect",
+      "expanded_input_sha256": "21382fce55af1091542e04914d6dd6e91258dc9e3f7c01923c84c5eea2e542b9",
+      "changes": [
+        {
+          "path": [
+            "context",
+            "records",
+            "target_a",
+            "original_event",
+            "observed_at_ref"
+          ],
+          "before": "SYNTHETIC-OBSERVED_AT_REF-target_a",
+          "after": null,
+          "l4_predicate_candidates": [
+            "/diagnostic_contract/event_fields",
+            "/diagnostic_contract/algorithm_dependencies/ef",
+            "/diagnostic_contract/mutation_rule",
+            "/diagnostic_contract/comparison_facets",
+            "/diagnostic_contract/aggregation",
+            "/diagnostic_contract/condition_values"
+          ]
+        }
+      ]
+    },
+    {
+      "case_id": "HELIXOS-L9-015-C0115",
+      "l7_input_pointer": "/connection_materials/OS015/case/cases/114/given/input",
+      "base_ref": "inspect",
+      "expanded_input_sha256": "a962bc0e11548e2c4dbc739a6b2ee5316820426f990cd9ccf75b86fdfde8827e",
+      "changes": [
+        {
+          "path": [
+            "context",
+            "records",
+            "target_a",
+            "original_event",
+            "observed_at_ref"
+          ],
+          "before": "SYNTHETIC-OBSERVED_AT_REF-target_a",
+          "after": "FOREIGN-observed_at_ref",
+          "l4_predicate_candidates": [
+            "/diagnostic_contract/event_fields",
+            "/diagnostic_contract/algorithm_dependencies/ef",
+            "/diagnostic_contract/mutation_rule",
+            "/diagnostic_contract/comparison_facets",
+            "/diagnostic_contract/aggregation",
+            "/diagnostic_contract/condition_values"
+          ]
+        }
+      ]
+    },
+    {
+      "case_id": "HELIXOS-L9-015-C0116",
+      "l7_input_pointer": "/connection_materials/OS015/case/cases/115/given/input",
+      "base_ref": "inspect",
+      "expanded_input_sha256": "64c9bc61744d4d8fb1a8d6162374f2c05d1a243d37f3ecde3115235b99555cf8",
+      "changes": [
+        {
+          "path": [
+            "context",
+            "records",
+            "target_a",
+            "original_event",
+            "causal_id"
+          ],
+          "before": "SYNTHETIC-CAUSAL_ID-target_a",
+          "after": null,
+          "l4_predicate_candidates": [
+            "/diagnostic_contract/event_fields",
+            "/diagnostic_contract/algorithm_dependencies/ef",
+            "/diagnostic_contract/mutation_rule",
+            "/diagnostic_contract/comparison_facets",
+            "/diagnostic_contract/aggregation",
+            "/diagnostic_contract/condition_values"
+          ]
+        }
+      ]
+    },
+    {
+      "case_id": "HELIXOS-L9-015-C0117",
+      "l7_input_pointer": "/connection_materials/OS015/case/cases/116/given/input",
+      "base_ref": "inspect",
+      "expanded_input_sha256": "015b96d8b0a3421bfca07451d4f9a50b3041a482ce432686a5c7aa3459baf248",
+      "changes": [
+        {
+          "path": [
+            "context",
+            "records",
+            "target_a",
+            "original_event",
+            "causal_id"
+          ],
+          "before": "SYNTHETIC-CAUSAL_ID-target_a",
+          "after": "FOREIGN-causal_id",
+          "l4_predicate_candidates": [
+            "/diagnostic_contract/event_fields",
+            "/diagnostic_contract/algorithm_dependencies/ef",
+            "/diagnostic_contract/mutation_rule",
+            "/diagnostic_contract/comparison_facets",
+            "/diagnostic_contract/aggregation",
+            "/diagnostic_contract/condition_values"
+          ]
+        }
+      ]
+    },
+    {
+      "case_id": "HELIXOS-L9-015-C0118",
+      "l7_input_pointer": "/connection_materials/OS015/case/cases/117/given/input",
+      "base_ref": "inspect",
+      "expanded_input_sha256": "b87fadcbd343625232780e5c5210afda1f7482306122039bec917d6b326de486",
+      "changes": [
+        {
+          "path": [
+            "context",
+            "records",
+            "target_a",
+            "original_event",
+            "payload_ref"
+          ],
+          "before": "SYNTHETIC-PAYLOAD_REF-target_a",
+          "after": null,
+          "l4_predicate_candidates": [
+            "/diagnostic_contract/event_fields",
+            "/diagnostic_contract/algorithm_dependencies/ef",
+            "/diagnostic_contract/mutation_rule",
+            "/diagnostic_contract/comparison_facets",
+            "/diagnostic_contract/aggregation",
+            "/diagnostic_contract/condition_values"
+          ]
+        }
+      ]
+    },
+    {
+      "case_id": "HELIXOS-L9-015-C0119",
+      "l7_input_pointer": "/connection_materials/OS015/case/cases/118/given/input",
+      "base_ref": "inspect",
+      "expanded_input_sha256": "b77a347b0d8c3f2e44af7fceaf8c1d2118d03a017007f5f6d2c7bb8cd12e56a0",
+      "changes": [
+        {
+          "path": [
+            "context",
+            "records",
+            "target_a",
+            "original_event",
+            "payload_ref"
+          ],
+          "before": "SYNTHETIC-PAYLOAD_REF-target_a",
+          "after": "FOREIGN-payload_ref",
+          "l4_predicate_candidates": [
+            "/diagnostic_contract/event_fields",
+            "/diagnostic_contract/algorithm_dependencies/ef",
+            "/diagnostic_contract/mutation_rule",
+            "/diagnostic_contract/comparison_facets",
+            "/diagnostic_contract/aggregation",
+            "/diagnostic_contract/condition_values"
+          ]
+        }
+      ]
+    },
+    {
+      "case_id": "HELIXOS-L9-015-C0160",
+      "l7_input_pointer": "/connection_materials/OS015/case/cases/159/given/input",
+      "base_ref": "classify",
+      "expanded_input_sha256": "debb32bd8c05b134e585870261382e5adf29f407231ccbb7b4c56cd75f726962",
+      "changes": [
+        {
+          "path": [
+            "records",
+            "target_a",
+            "original_event",
+            "event_id"
+          ],
+          "before": "SYNTHETIC-EVENT_ID-target_a",
+          "after": null,
+          "l4_predicate_candidates": [
+            "/diagnostic_contract/event_fields",
+            "/diagnostic_contract/algorithm_dependencies/ef",
+            "/diagnostic_contract/mutation_rule",
+            "/diagnostic_contract/comparison_facets",
+            "/diagnostic_contract/aggregation",
+            "/diagnostic_contract/condition_values"
+          ]
+        }
+      ]
+    },
+    {
+      "case_id": "HELIXOS-L9-015-C0161",
+      "l7_input_pointer": "/connection_materials/OS015/case/cases/160/given/input",
+      "base_ref": "classify",
+      "expanded_input_sha256": "55c62b87a5e396dc652d679e370cb6eafea49e95806f8170c28331707ee9e8a2",
+      "changes": [
+        {
+          "path": [
+            "records",
+            "target_a",
+            "original_event",
+            "event_id"
+          ],
+          "before": "SYNTHETIC-EVENT_ID-target_a",
+          "after": "FOREIGN-event_id",
+          "l4_predicate_candidates": [
+            "/diagnostic_contract/event_fields",
+            "/diagnostic_contract/algorithm_dependencies/ef",
+            "/diagnostic_contract/mutation_rule",
+            "/diagnostic_contract/comparison_facets",
+            "/diagnostic_contract/aggregation",
+            "/diagnostic_contract/condition_values"
+          ]
+        }
+      ]
+    },
+    {
+      "case_id": "HELIXOS-L9-015-C0162",
+      "l7_input_pointer": "/connection_materials/OS015/case/cases/161/given/input",
+      "base_ref": "classify",
+      "expanded_input_sha256": "eae82e977265806178bcf09f0de0638c8cfd28d5fc175b63d7bf90780e82a566",
+      "changes": [
+        {
+          "path": [
+            "records",
+            "target_a",
+            "original_event",
+            "event_revision"
+          ],
+          "before": "EVENT-r1",
+          "after": null,
+          "l4_predicate_candidates": [
+            "/diagnostic_contract/event_fields",
+            "/diagnostic_contract/algorithm_dependencies/ef",
+            "/diagnostic_contract/mutation_rule",
+            "/diagnostic_contract/comparison_facets",
+            "/diagnostic_contract/aggregation",
+            "/diagnostic_contract/condition_values"
+          ]
+        }
+      ]
+    },
+    {
+      "case_id": "HELIXOS-L9-015-C0163",
+      "l7_input_pointer": "/connection_materials/OS015/case/cases/162/given/input",
+      "base_ref": "classify",
+      "expanded_input_sha256": "5b372bd9a7e73868fc6fb9a1a02fc45d657616621721ca37ad729469467aaa78",
+      "changes": [
+        {
+          "path": [
+            "records",
+            "target_a",
+            "original_event",
+            "event_revision"
+          ],
+          "before": "EVENT-r1",
+          "after": "FOREIGN-event_revision",
+          "l4_predicate_candidates": [
+            "/diagnostic_contract/event_fields",
+            "/diagnostic_contract/algorithm_dependencies/ef",
+            "/diagnostic_contract/mutation_rule",
+            "/diagnostic_contract/comparison_facets",
+            "/diagnostic_contract/aggregation",
+            "/diagnostic_contract/condition_values"
+          ]
+        }
+      ]
+    },
+    {
+      "case_id": "HELIXOS-L9-015-C0164",
+      "l7_input_pointer": "/connection_materials/OS015/case/cases/163/given/input",
+      "base_ref": "classify",
+      "expanded_input_sha256": "3020347c0ecd4a5bf317633b784d54b53f911ba16b348318a3ef2e7ea814a75c",
+      "changes": [
+        {
+          "path": [
+            "records",
+            "target_a",
+            "original_event",
+            "source_ref"
+          ],
+          "before": "SYNTHETIC-SOURCE_REF-target_a",
+          "after": null,
+          "l4_predicate_candidates": [
+            "/diagnostic_contract/event_fields",
+            "/diagnostic_contract/algorithm_dependencies/ef",
+            "/diagnostic_contract/mutation_rule",
+            "/diagnostic_contract/comparison_facets",
+            "/diagnostic_contract/aggregation",
+            "/diagnostic_contract/condition_values"
+          ]
+        }
+      ]
+    },
+    {
+      "case_id": "HELIXOS-L9-015-C0165",
+      "l7_input_pointer": "/connection_materials/OS015/case/cases/164/given/input",
+      "base_ref": "classify",
+      "expanded_input_sha256": "d1b9358310e901eb45089ff903f6f9e7fdbb091dd30daec70616e96c4d20858a",
+      "changes": [
+        {
+          "path": [
+            "records",
+            "target_a",
+            "original_event",
+            "source_ref"
+          ],
+          "before": "SYNTHETIC-SOURCE_REF-target_a",
+          "after": "FOREIGN-source_ref",
+          "l4_predicate_candidates": [
+            "/diagnostic_contract/event_fields",
+            "/diagnostic_contract/algorithm_dependencies/ef",
+            "/diagnostic_contract/mutation_rule",
+            "/diagnostic_contract/comparison_facets",
+            "/diagnostic_contract/aggregation",
+            "/diagnostic_contract/condition_values"
+          ]
+        }
+      ]
+    },
+    {
+      "case_id": "HELIXOS-L9-015-C0166",
+      "l7_input_pointer": "/connection_materials/OS015/case/cases/165/given/input",
+      "base_ref": "classify",
+      "expanded_input_sha256": "3b62034fc5ea7e5c6be545eaca24a0b67402b2a7bc88d4ea153917a5aed4a6bc",
+      "changes": [
+        {
+          "path": [
+            "records",
+            "target_a",
+            "original_event",
+            "source_revision"
+          ],
+          "before": "SYNTHETIC-SOURCE_REVISION-target_a",
+          "after": null,
+          "l4_predicate_candidates": [
+            "/diagnostic_contract/event_fields",
+            "/diagnostic_contract/algorithm_dependencies/ef",
+            "/diagnostic_contract/mutation_rule",
+            "/diagnostic_contract/comparison_facets",
+            "/diagnostic_contract/aggregation",
+            "/diagnostic_contract/condition_values"
+          ]
+        }
+      ]
+    },
+    {
+      "case_id": "HELIXOS-L9-015-C0167",
+      "l7_input_pointer": "/connection_materials/OS015/case/cases/166/given/input",
+      "base_ref": "classify",
+      "expanded_input_sha256": "56044b5ad7d9e10e3047c8c207b5dfc6f6a26799ed5f8826008f2f010e45ef65",
+      "changes": [
+        {
+          "path": [
+            "records",
+            "target_a",
+            "original_event",
+            "source_revision"
+          ],
+          "before": "SYNTHETIC-SOURCE_REVISION-target_a",
+          "after": "FOREIGN-source_revision",
+          "l4_predicate_candidates": [
+            "/diagnostic_contract/event_fields",
+            "/diagnostic_contract/algorithm_dependencies/ef",
+            "/diagnostic_contract/mutation_rule",
+            "/diagnostic_contract/comparison_facets",
+            "/diagnostic_contract/aggregation",
+            "/diagnostic_contract/condition_values"
+          ]
+        }
+      ]
+    },
+    {
+      "case_id": "HELIXOS-L9-015-C0168",
+      "l7_input_pointer": "/connection_materials/OS015/case/cases/167/given/input",
+      "base_ref": "classify",
+      "expanded_input_sha256": "0b28a23d8db1eb467e309cbe93b89d47da95ce63d528ae0f03806cd608527794",
+      "changes": [
+        {
+          "path": [
+            "records",
+            "target_a",
+            "original_event",
+            "source_digest"
+          ],
+          "before": "SYNTHETIC-SOURCE_DIGEST-target_a",
+          "after": null,
+          "l4_predicate_candidates": [
+            "/diagnostic_contract/event_fields",
+            "/diagnostic_contract/algorithm_dependencies/ef",
+            "/diagnostic_contract/mutation_rule",
+            "/diagnostic_contract/comparison_facets",
+            "/diagnostic_contract/aggregation",
+            "/diagnostic_contract/condition_values"
+          ]
+        }
+      ]
+    },
+    {
+      "case_id": "HELIXOS-L9-015-C0169",
+      "l7_input_pointer": "/connection_materials/OS015/case/cases/168/given/input",
+      "base_ref": "classify",
+      "expanded_input_sha256": "d292ec73f42afb09ea91bc3ec51b2e3f4a3efce5ff048853429fb406efb92d9a",
+      "changes": [
+        {
+          "path": [
+            "records",
+            "target_a",
+            "original_event",
+            "source_digest"
+          ],
+          "before": "SYNTHETIC-SOURCE_DIGEST-target_a",
+          "after": "FOREIGN-source_digest",
+          "l4_predicate_candidates": [
+            "/diagnostic_contract/event_fields",
+            "/diagnostic_contract/algorithm_dependencies/ef",
+            "/diagnostic_contract/mutation_rule",
+            "/diagnostic_contract/comparison_facets",
+            "/diagnostic_contract/aggregation",
+            "/diagnostic_contract/condition_values"
+          ]
+        }
+      ]
+    },
+    {
+      "case_id": "HELIXOS-L9-015-C0170",
+      "l7_input_pointer": "/connection_materials/OS015/case/cases/169/given/input",
+      "base_ref": "classify",
+      "expanded_input_sha256": "3fd2dc9f22157dfa13fedd9655a15328f2aa112c7cea61788f01ef6bab77b849",
+      "changes": [
+        {
+          "path": [
+            "records",
+            "target_a",
+            "original_event",
+            "actor_ref"
+          ],
+          "before": "SYNTHETIC-ACTOR_REF-target_a",
+          "after": null,
+          "l4_predicate_candidates": [
+            "/diagnostic_contract/event_fields",
+            "/diagnostic_contract/algorithm_dependencies/ef",
+            "/diagnostic_contract/mutation_rule",
+            "/diagnostic_contract/comparison_facets",
+            "/diagnostic_contract/aggregation",
+            "/diagnostic_contract/condition_values"
+          ]
+        }
+      ]
+    },
+    {
+      "case_id": "HELIXOS-L9-015-C0171",
+      "l7_input_pointer": "/connection_materials/OS015/case/cases/170/given/input",
+      "base_ref": "classify",
+      "expanded_input_sha256": "b1542cf50bcb8ba058d05f7b885c56848a7f8933bf01a1d899a079c3467f796e",
+      "changes": [
+        {
+          "path": [
+            "records",
+            "target_a",
+            "original_event",
+            "actor_ref"
+          ],
+          "before": "SYNTHETIC-ACTOR_REF-target_a",
+          "after": "FOREIGN-actor_ref",
+          "l4_predicate_candidates": [
+            "/diagnostic_contract/event_fields",
+            "/diagnostic_contract/algorithm_dependencies/ef",
+            "/diagnostic_contract/mutation_rule",
+            "/diagnostic_contract/comparison_facets",
+            "/diagnostic_contract/aggregation",
+            "/diagnostic_contract/condition_values"
+          ]
+        }
+      ]
+    },
+    {
+      "case_id": "HELIXOS-L9-015-C0172",
+      "l7_input_pointer": "/connection_materials/OS015/case/cases/171/given/input",
+      "base_ref": "classify",
+      "expanded_input_sha256": "4d6dd92fd47eeb0869ccba056c16e75e642c9d819777f7a862c237414ed27d40",
+      "changes": [
+        {
+          "path": [
+            "records",
+            "target_a",
+            "original_event",
+            "observed_at_ref"
+          ],
+          "before": "SYNTHETIC-OBSERVED_AT_REF-target_a",
+          "after": null,
+          "l4_predicate_candidates": [
+            "/diagnostic_contract/event_fields",
+            "/diagnostic_contract/algorithm_dependencies/ef",
+            "/diagnostic_contract/mutation_rule",
+            "/diagnostic_contract/comparison_facets",
+            "/diagnostic_contract/aggregation",
+            "/diagnostic_contract/condition_values"
+          ]
+        }
+      ]
+    },
+    {
+      "case_id": "HELIXOS-L9-015-C0173",
+      "l7_input_pointer": "/connection_materials/OS015/case/cases/172/given/input",
+      "base_ref": "classify",
+      "expanded_input_sha256": "6cc0f12871c9815cd14f2cff6679f8761b3e4b7133399d1b02890246046b4e80",
+      "changes": [
+        {
+          "path": [
+            "records",
+            "target_a",
+            "original_event",
+            "observed_at_ref"
+          ],
+          "before": "SYNTHETIC-OBSERVED_AT_REF-target_a",
+          "after": "FOREIGN-observed_at_ref",
+          "l4_predicate_candidates": [
+            "/diagnostic_contract/event_fields",
+            "/diagnostic_contract/algorithm_dependencies/ef",
+            "/diagnostic_contract/mutation_rule",
+            "/diagnostic_contract/comparison_facets",
+            "/diagnostic_contract/aggregation",
+            "/diagnostic_contract/condition_values"
+          ]
+        }
+      ]
+    },
+    {
+      "case_id": "HELIXOS-L9-015-C0174",
+      "l7_input_pointer": "/connection_materials/OS015/case/cases/173/given/input",
+      "base_ref": "classify",
+      "expanded_input_sha256": "1eb5308d0d7ee4709b96c4275e29f5c8462f09a1edfb4a7d5926b8e2b275085f",
+      "changes": [
+        {
+          "path": [
+            "records",
+            "target_a",
+            "original_event",
+            "causal_id"
+          ],
+          "before": "SYNTHETIC-CAUSAL_ID-target_a",
+          "after": null,
+          "l4_predicate_candidates": [
+            "/diagnostic_contract/event_fields",
+            "/diagnostic_contract/algorithm_dependencies/ef",
+            "/diagnostic_contract/mutation_rule",
+            "/diagnostic_contract/comparison_facets",
+            "/diagnostic_contract/aggregation",
+            "/diagnostic_contract/condition_values"
+          ]
+        }
+      ]
+    },
+    {
+      "case_id": "HELIXOS-L9-015-C0175",
+      "l7_input_pointer": "/connection_materials/OS015/case/cases/174/given/input",
+      "base_ref": "classify",
+      "expanded_input_sha256": "878ba8af0788789feb689dc7e81b478c78121150cb6c758c19bb15f5a2c2f9df",
+      "changes": [
+        {
+          "path": [
+            "records",
+            "target_a",
+            "original_event",
+            "causal_id"
+          ],
+          "before": "SYNTHETIC-CAUSAL_ID-target_a",
+          "after": "FOREIGN-causal_id",
+          "l4_predicate_candidates": [
+            "/diagnostic_contract/event_fields",
+            "/diagnostic_contract/algorithm_dependencies/ef",
+            "/diagnostic_contract/mutation_rule",
+            "/diagnostic_contract/comparison_facets",
+            "/diagnostic_contract/aggregation",
+            "/diagnostic_contract/condition_values"
+          ]
+        }
+      ]
+    },
+    {
+      "case_id": "HELIXOS-L9-015-C0176",
+      "l7_input_pointer": "/connection_materials/OS015/case/cases/175/given/input",
+      "base_ref": "classify",
+      "expanded_input_sha256": "e1a9bbb4f2feb0d33d30c87a0452f4e351dd9201c343eca5ee8d7edae4c64683",
+      "changes": [
+        {
+          "path": [
+            "records",
+            "target_a",
+            "original_event",
+            "payload_ref"
+          ],
+          "before": "SYNTHETIC-PAYLOAD_REF-target_a",
+          "after": null,
+          "l4_predicate_candidates": [
+            "/diagnostic_contract/event_fields",
+            "/diagnostic_contract/algorithm_dependencies/ef",
+            "/diagnostic_contract/mutation_rule",
+            "/diagnostic_contract/comparison_facets",
+            "/diagnostic_contract/aggregation",
+            "/diagnostic_contract/condition_values"
+          ]
+        }
+      ]
+    },
+    {
+      "case_id": "HELIXOS-L9-015-C0177",
+      "l7_input_pointer": "/connection_materials/OS015/case/cases/176/given/input",
+      "base_ref": "classify",
+      "expanded_input_sha256": "bff72017527bd881fcdba042e197cfddde9c1489a5d2bd0f04b4cc1a89f34b0d",
+      "changes": [
+        {
+          "path": [
+            "records",
+            "target_a",
+            "original_event",
+            "payload_ref"
+          ],
+          "before": "SYNTHETIC-PAYLOAD_REF-target_a",
+          "after": "FOREIGN-payload_ref",
+          "l4_predicate_candidates": [
+            "/diagnostic_contract/event_fields",
+            "/diagnostic_contract/algorithm_dependencies/ef",
+            "/diagnostic_contract/mutation_rule",
+            "/diagnostic_contract/comparison_facets",
+            "/diagnostic_contract/aggregation",
+            "/diagnostic_contract/condition_values"
+          ]
+        }
+      ]
+    },
+    {
+      "case_id": "HELIXOS-L9-015-C0179",
+      "l7_input_pointer": "/connection_materials/OS015/case/cases/178/given/input",
+      "base_ref": "classify",
+      "expanded_input_sha256": "7add75b704e43588e01c88ff807e2767326c41f84161d731182e13fe8be0111e",
+      "changes": [
+        {
+          "path": [
+            "context",
+            "records",
+            "target_a",
+            "source",
+            "target_id"
+          ],
+          "before": "SYNTHETIC-TARGET_ID-target_a",
+          "after": "FOREIGN-target_id",
+          "l4_predicate_candidates": [
+            "/diagnostic_contract/source_fields",
+            "/diagnostic_contract/algorithm_dependencies/sf",
+            "/diagnostic_contract/comparison_facets",
+            "/diagnostic_contract/aggregation",
+            "/diagnostic_contract/condition_values"
+          ]
+        }
+      ]
+    },
+    {
+      "case_id": "HELIXOS-L9-015-C0185",
+      "l7_input_pointer": "/connection_materials/OS015/case/cases/184/given/input",
+      "base_ref": "classify",
+      "expanded_input_sha256": "6468179f85a11567d0f54d947c337d149a0e472d8b02dae4a6d01f304d61e37b",
+      "changes": [
+        {
+          "path": [
+            "context",
+            "records",
+            "target_a",
+            "source",
+            "scope"
+          ],
+          "before": "SYNTHETIC-SCOPE-target_a",
+          "after": "FOREIGN-scope",
+          "l4_predicate_candidates": [
+            "/diagnostic_contract/source_fields",
+            "/diagnostic_contract/algorithm_dependencies/sf",
+            "/diagnostic_contract/comparison_facets",
+            "/diagnostic_contract/aggregation",
+            "/diagnostic_contract/condition_values"
+          ]
+        }
+      ]
+    },
+    {
+      "case_id": "HELIXOS-L9-015-C0218",
+      "l7_input_pointer": "/connection_materials/OS015/case/cases/217/given/input",
+      "base_ref": "classify",
+      "expanded_input_sha256": "83a2e95e90c965ff498378e9f2907c441d52bfeee2ce7d296e9d9d48be649dce",
+      "changes": [
+        {
+          "path": [
+            "context",
+            "records",
+            "target_a",
+            "original_event",
+            "event_id"
+          ],
+          "before": "SYNTHETIC-EVENT_ID-target_a",
+          "after": null,
+          "l4_predicate_candidates": [
+            "/diagnostic_contract/event_fields",
+            "/diagnostic_contract/algorithm_dependencies/ef",
+            "/diagnostic_contract/mutation_rule",
+            "/diagnostic_contract/comparison_facets",
+            "/diagnostic_contract/aggregation",
+            "/diagnostic_contract/condition_values"
+          ]
+        }
+      ]
+    },
+    {
+      "case_id": "HELIXOS-L9-015-C0219",
+      "l7_input_pointer": "/connection_materials/OS015/case/cases/218/given/input",
+      "base_ref": "classify",
+      "expanded_input_sha256": "c3788fc02eb6797fbd9ab3e254823043a99a0cc08da520825a00574dc7f81899",
+      "changes": [
+        {
+          "path": [
+            "context",
+            "records",
+            "target_a",
+            "original_event",
+            "event_id"
+          ],
+          "before": "SYNTHETIC-EVENT_ID-target_a",
+          "after": "FOREIGN-event_id",
+          "l4_predicate_candidates": [
+            "/diagnostic_contract/event_fields",
+            "/diagnostic_contract/algorithm_dependencies/ef",
+            "/diagnostic_contract/mutation_rule",
+            "/diagnostic_contract/comparison_facets",
+            "/diagnostic_contract/aggregation",
+            "/diagnostic_contract/condition_values"
+          ]
+        }
+      ]
+    },
+    {
+      "case_id": "HELIXOS-L9-015-C0220",
+      "l7_input_pointer": "/connection_materials/OS015/case/cases/219/given/input",
+      "base_ref": "classify",
+      "expanded_input_sha256": "627873ba23e05bbe5b6b3ed4e2690865e91841d023ceb3b097b8f96be11319ce",
+      "changes": [
+        {
+          "path": [
+            "context",
+            "records",
+            "target_a",
+            "original_event",
+            "event_revision"
+          ],
+          "before": "EVENT-r1",
+          "after": null,
+          "l4_predicate_candidates": [
+            "/diagnostic_contract/event_fields",
+            "/diagnostic_contract/algorithm_dependencies/ef",
+            "/diagnostic_contract/mutation_rule",
+            "/diagnostic_contract/comparison_facets",
+            "/diagnostic_contract/aggregation",
+            "/diagnostic_contract/condition_values"
+          ]
+        }
+      ]
+    },
+    {
+      "case_id": "HELIXOS-L9-015-C0221",
+      "l7_input_pointer": "/connection_materials/OS015/case/cases/220/given/input",
+      "base_ref": "classify",
+      "expanded_input_sha256": "aea1cda7956a764897e42b3b7c48b3b8a0c30439249d7fa80a6c63863d7d3316",
+      "changes": [
+        {
+          "path": [
+            "context",
+            "records",
+            "target_a",
+            "original_event",
+            "event_revision"
+          ],
+          "before": "EVENT-r1",
+          "after": "FOREIGN-event_revision",
+          "l4_predicate_candidates": [
+            "/diagnostic_contract/event_fields",
+            "/diagnostic_contract/algorithm_dependencies/ef",
+            "/diagnostic_contract/mutation_rule",
+            "/diagnostic_contract/comparison_facets",
+            "/diagnostic_contract/aggregation",
+            "/diagnostic_contract/condition_values"
+          ]
+        }
+      ]
+    },
+    {
+      "case_id": "HELIXOS-L9-015-C0222",
+      "l7_input_pointer": "/connection_materials/OS015/case/cases/221/given/input",
+      "base_ref": "classify",
+      "expanded_input_sha256": "3df1bcbf61012f973af287c0d02dd4a86e3bf4d9c0561f01610954f4807d4216",
+      "changes": [
+        {
+          "path": [
+            "context",
+            "records",
+            "target_a",
+            "original_event",
+            "source_ref"
+          ],
+          "before": "SYNTHETIC-SOURCE_REF-target_a",
+          "after": null,
+          "l4_predicate_candidates": [
+            "/diagnostic_contract/event_fields",
+            "/diagnostic_contract/algorithm_dependencies/ef",
+            "/diagnostic_contract/mutation_rule",
+            "/diagnostic_contract/comparison_facets",
+            "/diagnostic_contract/aggregation",
+            "/diagnostic_contract/condition_values"
+          ]
+        }
+      ]
+    },
+    {
+      "case_id": "HELIXOS-L9-015-C0223",
+      "l7_input_pointer": "/connection_materials/OS015/case/cases/222/given/input",
+      "base_ref": "classify",
+      "expanded_input_sha256": "24ec8b41d397ee0299010b2e7d5e81306031cf8709a007ab6bdf25230c277978",
+      "changes": [
+        {
+          "path": [
+            "context",
+            "records",
+            "target_a",
+            "original_event",
+            "source_ref"
+          ],
+          "before": "SYNTHETIC-SOURCE_REF-target_a",
+          "after": "FOREIGN-source_ref",
+          "l4_predicate_candidates": [
+            "/diagnostic_contract/event_fields",
+            "/diagnostic_contract/algorithm_dependencies/ef",
+            "/diagnostic_contract/mutation_rule",
+            "/diagnostic_contract/comparison_facets",
+            "/diagnostic_contract/aggregation",
+            "/diagnostic_contract/condition_values"
+          ]
+        }
+      ]
+    },
+    {
+      "case_id": "HELIXOS-L9-015-C0224",
+      "l7_input_pointer": "/connection_materials/OS015/case/cases/223/given/input",
+      "base_ref": "classify",
+      "expanded_input_sha256": "1d1d3fee1f4e766b8ce69c32d79410ded531823d880aa6a0ee376e3ec32dcb8e",
+      "changes": [
+        {
+          "path": [
+            "context",
+            "records",
+            "target_a",
+            "original_event",
+            "source_revision"
+          ],
+          "before": "SYNTHETIC-SOURCE_REVISION-target_a",
+          "after": null,
+          "l4_predicate_candidates": [
+            "/diagnostic_contract/event_fields",
+            "/diagnostic_contract/algorithm_dependencies/ef",
+            "/diagnostic_contract/mutation_rule",
+            "/diagnostic_contract/comparison_facets",
+            "/diagnostic_contract/aggregation",
+            "/diagnostic_contract/condition_values"
+          ]
+        }
+      ]
+    },
+    {
+      "case_id": "HELIXOS-L9-015-C0225",
+      "l7_input_pointer": "/connection_materials/OS015/case/cases/224/given/input",
+      "base_ref": "classify",
+      "expanded_input_sha256": "1a86f042afe3a1cae410435e6f0acd33fdeb3b51f86c89269dc60f7f62c4ab59",
+      "changes": [
+        {
+          "path": [
+            "context",
+            "records",
+            "target_a",
+            "original_event",
+            "source_revision"
+          ],
+          "before": "SYNTHETIC-SOURCE_REVISION-target_a",
+          "after": "FOREIGN-source_revision",
+          "l4_predicate_candidates": [
+            "/diagnostic_contract/event_fields",
+            "/diagnostic_contract/algorithm_dependencies/ef",
+            "/diagnostic_contract/mutation_rule",
+            "/diagnostic_contract/comparison_facets",
+            "/diagnostic_contract/aggregation",
+            "/diagnostic_contract/condition_values"
+          ]
+        }
+      ]
+    },
+    {
+      "case_id": "HELIXOS-L9-015-C0226",
+      "l7_input_pointer": "/connection_materials/OS015/case/cases/225/given/input",
+      "base_ref": "classify",
+      "expanded_input_sha256": "77b82ff4a2e2c20677c16918c4f6f7a17c1299fb604621041976dc817371a53e",
+      "changes": [
+        {
+          "path": [
+            "context",
+            "records",
+            "target_a",
+            "original_event",
+            "source_digest"
+          ],
+          "before": "SYNTHETIC-SOURCE_DIGEST-target_a",
+          "after": null,
+          "l4_predicate_candidates": [
+            "/diagnostic_contract/event_fields",
+            "/diagnostic_contract/algorithm_dependencies/ef",
+            "/diagnostic_contract/mutation_rule",
+            "/diagnostic_contract/comparison_facets",
+            "/diagnostic_contract/aggregation",
+            "/diagnostic_contract/condition_values"
+          ]
+        }
+      ]
+    },
+    {
+      "case_id": "HELIXOS-L9-015-C0227",
+      "l7_input_pointer": "/connection_materials/OS015/case/cases/226/given/input",
+      "base_ref": "classify",
+      "expanded_input_sha256": "2e3804c6f8473e1e33861bc9bc7042324dc51ca97b749d33c19972d80b86a4c7",
+      "changes": [
+        {
+          "path": [
+            "context",
+            "records",
+            "target_a",
+            "original_event",
+            "source_digest"
+          ],
+          "before": "SYNTHETIC-SOURCE_DIGEST-target_a",
+          "after": "FOREIGN-source_digest",
+          "l4_predicate_candidates": [
+            "/diagnostic_contract/event_fields",
+            "/diagnostic_contract/algorithm_dependencies/ef",
+            "/diagnostic_contract/mutation_rule",
+            "/diagnostic_contract/comparison_facets",
+            "/diagnostic_contract/aggregation",
+            "/diagnostic_contract/condition_values"
+          ]
+        }
+      ]
+    },
+    {
+      "case_id": "HELIXOS-L9-015-C0228",
+      "l7_input_pointer": "/connection_materials/OS015/case/cases/227/given/input",
+      "base_ref": "classify",
+      "expanded_input_sha256": "a55514cf48f86e783ed6f2e62563a83e02c5c7053fb1c0f72d6ffe3dbb653ae1",
+      "changes": [
+        {
+          "path": [
+            "context",
+            "records",
+            "target_a",
+            "original_event",
+            "actor_ref"
+          ],
+          "before": "SYNTHETIC-ACTOR_REF-target_a",
+          "after": null,
+          "l4_predicate_candidates": [
+            "/diagnostic_contract/event_fields",
+            "/diagnostic_contract/algorithm_dependencies/ef",
+            "/diagnostic_contract/mutation_rule",
+            "/diagnostic_contract/comparison_facets",
+            "/diagnostic_contract/aggregation",
+            "/diagnostic_contract/condition_values"
+          ]
+        }
+      ]
+    },
+    {
+      "case_id": "HELIXOS-L9-015-C0229",
+      "l7_input_pointer": "/connection_materials/OS015/case/cases/228/given/input",
+      "base_ref": "classify",
+      "expanded_input_sha256": "6cfc18f666bb5dd592da08405424c671c906494a1c22eeb3a3ffff5b9a622b82",
+      "changes": [
+        {
+          "path": [
+            "context",
+            "records",
+            "target_a",
+            "original_event",
+            "actor_ref"
+          ],
+          "before": "SYNTHETIC-ACTOR_REF-target_a",
+          "after": "FOREIGN-actor_ref",
+          "l4_predicate_candidates": [
+            "/diagnostic_contract/event_fields",
+            "/diagnostic_contract/algorithm_dependencies/ef",
+            "/diagnostic_contract/mutation_rule",
+            "/diagnostic_contract/comparison_facets",
+            "/diagnostic_contract/aggregation",
+            "/diagnostic_contract/condition_values"
+          ]
+        }
+      ]
+    },
+    {
+      "case_id": "HELIXOS-L9-015-C0230",
+      "l7_input_pointer": "/connection_materials/OS015/case/cases/229/given/input",
+      "base_ref": "classify",
+      "expanded_input_sha256": "4ddd38a237719c331d7fce1ab54a5a5c9e27a8962d62be34ea55e1f227ee5b0e",
+      "changes": [
+        {
+          "path": [
+            "context",
+            "records",
+            "target_a",
+            "original_event",
+            "observed_at_ref"
+          ],
+          "before": "SYNTHETIC-OBSERVED_AT_REF-target_a",
+          "after": null,
+          "l4_predicate_candidates": [
+            "/diagnostic_contract/event_fields",
+            "/diagnostic_contract/algorithm_dependencies/ef",
+            "/diagnostic_contract/mutation_rule",
+            "/diagnostic_contract/comparison_facets",
+            "/diagnostic_contract/aggregation",
+            "/diagnostic_contract/condition_values"
+          ]
+        }
+      ]
+    },
+    {
+      "case_id": "HELIXOS-L9-015-C0231",
+      "l7_input_pointer": "/connection_materials/OS015/case/cases/230/given/input",
+      "base_ref": "classify",
+      "expanded_input_sha256": "dfbd53e882a39fe34eaf15a000135463d4e30c5de5fd49cae53d63fd3bc68ea0",
+      "changes": [
+        {
+          "path": [
+            "context",
+            "records",
+            "target_a",
+            "original_event",
+            "observed_at_ref"
+          ],
+          "before": "SYNTHETIC-OBSERVED_AT_REF-target_a",
+          "after": "FOREIGN-observed_at_ref",
+          "l4_predicate_candidates": [
+            "/diagnostic_contract/event_fields",
+            "/diagnostic_contract/algorithm_dependencies/ef",
+            "/diagnostic_contract/mutation_rule",
+            "/diagnostic_contract/comparison_facets",
+            "/diagnostic_contract/aggregation",
+            "/diagnostic_contract/condition_values"
+          ]
+        }
+      ]
+    },
+    {
+      "case_id": "HELIXOS-L9-015-C0232",
+      "l7_input_pointer": "/connection_materials/OS015/case/cases/231/given/input",
+      "base_ref": "classify",
+      "expanded_input_sha256": "ae4cf6b11f0c41d962379152375e67739efea3acb3bfb71b6fd756921b3572a0",
+      "changes": [
+        {
+          "path": [
+            "context",
+            "records",
+            "target_a",
+            "original_event",
+            "causal_id"
+          ],
+          "before": "SYNTHETIC-CAUSAL_ID-target_a",
+          "after": null,
+          "l4_predicate_candidates": [
+            "/diagnostic_contract/event_fields",
+            "/diagnostic_contract/algorithm_dependencies/ef",
+            "/diagnostic_contract/mutation_rule",
+            "/diagnostic_contract/comparison_facets",
+            "/diagnostic_contract/aggregation",
+            "/diagnostic_contract/condition_values"
+          ]
+        }
+      ]
+    },
+    {
+      "case_id": "HELIXOS-L9-015-C0233",
+      "l7_input_pointer": "/connection_materials/OS015/case/cases/232/given/input",
+      "base_ref": "classify",
+      "expanded_input_sha256": "470510a8ec801fc1906a584b009933a7f494320e6c695e021c421e8971e50dce",
+      "changes": [
+        {
+          "path": [
+            "context",
+            "records",
+            "target_a",
+            "original_event",
+            "causal_id"
+          ],
+          "before": "SYNTHETIC-CAUSAL_ID-target_a",
+          "after": "FOREIGN-causal_id",
+          "l4_predicate_candidates": [
+            "/diagnostic_contract/event_fields",
+            "/diagnostic_contract/algorithm_dependencies/ef",
+            "/diagnostic_contract/mutation_rule",
+            "/diagnostic_contract/comparison_facets",
+            "/diagnostic_contract/aggregation",
+            "/diagnostic_contract/condition_values"
+          ]
+        }
+      ]
+    },
+    {
+      "case_id": "HELIXOS-L9-015-C0234",
+      "l7_input_pointer": "/connection_materials/OS015/case/cases/233/given/input",
+      "base_ref": "classify",
+      "expanded_input_sha256": "02ba974cac026c90897c0aa085f142b7fa7cbc1b98846e84dfd43d4197be5e17",
+      "changes": [
+        {
+          "path": [
+            "context",
+            "records",
+            "target_a",
+            "original_event",
+            "payload_ref"
+          ],
+          "before": "SYNTHETIC-PAYLOAD_REF-target_a",
+          "after": null,
+          "l4_predicate_candidates": [
+            "/diagnostic_contract/event_fields",
+            "/diagnostic_contract/algorithm_dependencies/ef",
+            "/diagnostic_contract/mutation_rule",
+            "/diagnostic_contract/comparison_facets",
+            "/diagnostic_contract/aggregation",
+            "/diagnostic_contract/condition_values"
+          ]
+        }
+      ]
+    },
+    {
+      "case_id": "HELIXOS-L9-015-C0235",
+      "l7_input_pointer": "/connection_materials/OS015/case/cases/234/given/input",
+      "base_ref": "classify",
+      "expanded_input_sha256": "9769d035f04adc2402716127874230cf2e4a938faaac652530d9131b68d45290",
+      "changes": [
+        {
+          "path": [
+            "context",
+            "records",
+            "target_a",
+            "original_event",
+            "payload_ref"
+          ],
+          "before": "SYNTHETIC-PAYLOAD_REF-target_a",
+          "after": "FOREIGN-payload_ref",
+          "l4_predicate_candidates": [
+            "/diagnostic_contract/event_fields",
+            "/diagnostic_contract/algorithm_dependencies/ef",
+            "/diagnostic_contract/mutation_rule",
+            "/diagnostic_contract/comparison_facets",
+            "/diagnostic_contract/aggregation",
+            "/diagnostic_contract/condition_values"
+          ]
+        }
+      ]
+    },
+    {
+      "case_id": "HELIXOS-L9-015-C0276",
+      "l7_input_pointer": "/connection_materials/OS015/case/cases/275/given/input",
+      "base_ref": "correct",
+      "expanded_input_sha256": "292d412075cd8873011585e7a6b8537fd46c6be4580a25f8de85a35d9bce54b3",
+      "changes": [
+        {
+          "path": [
+            "records",
+            "target_a",
+            "original_event",
+            "event_id"
+          ],
+          "before": "SYNTHETIC-EVENT_ID-target_a",
+          "after": null,
+          "l4_predicate_candidates": [
+            "/diagnostic_contract/event_fields",
+            "/diagnostic_contract/algorithm_dependencies/ef",
+            "/diagnostic_contract/mutation_rule",
+            "/diagnostic_contract/comparison_facets",
+            "/diagnostic_contract/aggregation",
+            "/diagnostic_contract/condition_values"
+          ]
+        }
+      ]
+    },
+    {
+      "case_id": "HELIXOS-L9-015-C0277",
+      "l7_input_pointer": "/connection_materials/OS015/case/cases/276/given/input",
+      "base_ref": "correct",
+      "expanded_input_sha256": "cb9e42d6fd47cc61e1a0e97c908d05918e88b03ac5ded7b851f3e372b27c04c8",
+      "changes": [
+        {
+          "path": [
+            "records",
+            "target_a",
+            "original_event",
+            "event_id"
+          ],
+          "before": "SYNTHETIC-EVENT_ID-target_a",
+          "after": "FOREIGN-event_id",
+          "l4_predicate_candidates": [
+            "/diagnostic_contract/event_fields",
+            "/diagnostic_contract/algorithm_dependencies/ef",
+            "/diagnostic_contract/mutation_rule",
+            "/diagnostic_contract/comparison_facets",
+            "/diagnostic_contract/aggregation",
+            "/diagnostic_contract/condition_values"
+          ]
+        }
+      ]
+    },
+    {
+      "case_id": "HELIXOS-L9-015-C0278",
+      "l7_input_pointer": "/connection_materials/OS015/case/cases/277/given/input",
+      "base_ref": "correct",
+      "expanded_input_sha256": "ba82d7e295780d9de316a7fca24fbd699ac69103425d56b4f11cc567f7f1f184",
+      "changes": [
+        {
+          "path": [
+            "records",
+            "target_a",
+            "original_event",
+            "event_revision"
+          ],
+          "before": "EVENT-r1",
+          "after": null,
+          "l4_predicate_candidates": [
+            "/diagnostic_contract/event_fields",
+            "/diagnostic_contract/algorithm_dependencies/ef",
+            "/diagnostic_contract/mutation_rule",
+            "/diagnostic_contract/comparison_facets",
+            "/diagnostic_contract/aggregation",
+            "/diagnostic_contract/condition_values"
+          ]
+        }
+      ]
+    },
+    {
+      "case_id": "HELIXOS-L9-015-C0279",
+      "l7_input_pointer": "/connection_materials/OS015/case/cases/278/given/input",
+      "base_ref": "correct",
+      "expanded_input_sha256": "efd701f3940a49155d1d451955bd87915dd43436ff25f3f6fe224024339f5863",
+      "changes": [
+        {
+          "path": [
+            "records",
+            "target_a",
+            "original_event",
+            "event_revision"
+          ],
+          "before": "EVENT-r1",
+          "after": "FOREIGN-event_revision",
+          "l4_predicate_candidates": [
+            "/diagnostic_contract/event_fields",
+            "/diagnostic_contract/algorithm_dependencies/ef",
+            "/diagnostic_contract/mutation_rule",
+            "/diagnostic_contract/comparison_facets",
+            "/diagnostic_contract/aggregation",
+            "/diagnostic_contract/condition_values"
+          ]
+        }
+      ]
+    },
+    {
+      "case_id": "HELIXOS-L9-015-C0280",
+      "l7_input_pointer": "/connection_materials/OS015/case/cases/279/given/input",
+      "base_ref": "correct",
+      "expanded_input_sha256": "82214cd163518ea8c075be96a487308761a3265ba71aac15c183dcb90d8e89e1",
+      "changes": [
+        {
+          "path": [
+            "records",
+            "target_a",
+            "original_event",
+            "source_ref"
+          ],
+          "before": "SYNTHETIC-SOURCE_REF-target_a",
+          "after": null,
+          "l4_predicate_candidates": [
+            "/diagnostic_contract/event_fields",
+            "/diagnostic_contract/algorithm_dependencies/ef",
+            "/diagnostic_contract/mutation_rule",
+            "/diagnostic_contract/comparison_facets",
+            "/diagnostic_contract/aggregation",
+            "/diagnostic_contract/condition_values"
+          ]
+        }
+      ]
+    },
+    {
+      "case_id": "HELIXOS-L9-015-C0281",
+      "l7_input_pointer": "/connection_materials/OS015/case/cases/280/given/input",
+      "base_ref": "correct",
+      "expanded_input_sha256": "c8f870ef4274fc9d3db68f9004e8d0ffd9ba9d2d42dfb57a66706de95b670dab",
+      "changes": [
+        {
+          "path": [
+            "records",
+            "target_a",
+            "original_event",
+            "source_ref"
+          ],
+          "before": "SYNTHETIC-SOURCE_REF-target_a",
+          "after": "FOREIGN-source_ref",
+          "l4_predicate_candidates": [
+            "/diagnostic_contract/event_fields",
+            "/diagnostic_contract/algorithm_dependencies/ef",
+            "/diagnostic_contract/mutation_rule",
+            "/diagnostic_contract/comparison_facets",
+            "/diagnostic_contract/aggregation",
+            "/diagnostic_contract/condition_values"
+          ]
+        }
+      ]
+    },
+    {
+      "case_id": "HELIXOS-L9-015-C0282",
+      "l7_input_pointer": "/connection_materials/OS015/case/cases/281/given/input",
+      "base_ref": "correct",
+      "expanded_input_sha256": "f381021b41a1259817460f9b44e402eedaec6bd5c2135bcd2a4379749715452a",
+      "changes": [
+        {
+          "path": [
+            "records",
+            "target_a",
+            "original_event",
+            "source_revision"
+          ],
+          "before": "SYNTHETIC-SOURCE_REVISION-target_a",
+          "after": null,
+          "l4_predicate_candidates": [
+            "/diagnostic_contract/event_fields",
+            "/diagnostic_contract/algorithm_dependencies/ef",
+            "/diagnostic_contract/mutation_rule",
+            "/diagnostic_contract/comparison_facets",
+            "/diagnostic_contract/aggregation",
+            "/diagnostic_contract/condition_values"
+          ]
+        }
+      ]
+    },
+    {
+      "case_id": "HELIXOS-L9-015-C0283",
+      "l7_input_pointer": "/connection_materials/OS015/case/cases/282/given/input",
+      "base_ref": "correct",
+      "expanded_input_sha256": "8cb4d48c74275026c1ea5e398ab89e0b3248489eac393e5afef72d7f5730c3b4",
+      "changes": [
+        {
+          "path": [
+            "records",
+            "target_a",
+            "original_event",
+            "source_revision"
+          ],
+          "before": "SYNTHETIC-SOURCE_REVISION-target_a",
+          "after": "FOREIGN-source_revision",
+          "l4_predicate_candidates": [
+            "/diagnostic_contract/event_fields",
+            "/diagnostic_contract/algorithm_dependencies/ef",
+            "/diagnostic_contract/mutation_rule",
+            "/diagnostic_contract/comparison_facets",
+            "/diagnostic_contract/aggregation",
+            "/diagnostic_contract/condition_values"
+          ]
+        }
+      ]
+    },
+    {
+      "case_id": "HELIXOS-L9-015-C0284",
+      "l7_input_pointer": "/connection_materials/OS015/case/cases/283/given/input",
+      "base_ref": "correct",
+      "expanded_input_sha256": "27d139aaa4c6473299ca048a8da6918642b4ccd427a21a3ccd897f5e94afe8b3",
+      "changes": [
+        {
+          "path": [
+            "records",
+            "target_a",
+            "original_event",
+            "source_digest"
+          ],
+          "before": "SYNTHETIC-SOURCE_DIGEST-target_a",
+          "after": null,
+          "l4_predicate_candidates": [
+            "/diagnostic_contract/event_fields",
+            "/diagnostic_contract/algorithm_dependencies/ef",
+            "/diagnostic_contract/mutation_rule",
+            "/diagnostic_contract/comparison_facets",
+            "/diagnostic_contract/aggregation",
+            "/diagnostic_contract/condition_values"
+          ]
+        }
+      ]
+    },
+    {
+      "case_id": "HELIXOS-L9-015-C0285",
+      "l7_input_pointer": "/connection_materials/OS015/case/cases/284/given/input",
+      "base_ref": "correct",
+      "expanded_input_sha256": "0ded7219a7b66b36f79f0aa1ca552860649551b969e78ae9a1ac3a0e71849006",
+      "changes": [
+        {
+          "path": [
+            "records",
+            "target_a",
+            "original_event",
+            "source_digest"
+          ],
+          "before": "SYNTHETIC-SOURCE_DIGEST-target_a",
+          "after": "FOREIGN-source_digest",
+          "l4_predicate_candidates": [
+            "/diagnostic_contract/event_fields",
+            "/diagnostic_contract/algorithm_dependencies/ef",
+            "/diagnostic_contract/mutation_rule",
+            "/diagnostic_contract/comparison_facets",
+            "/diagnostic_contract/aggregation",
+            "/diagnostic_contract/condition_values"
+          ]
+        }
+      ]
+    },
+    {
+      "case_id": "HELIXOS-L9-015-C0286",
+      "l7_input_pointer": "/connection_materials/OS015/case/cases/285/given/input",
+      "base_ref": "correct",
+      "expanded_input_sha256": "564995fa6ef1bb1d78727bf4b471a9e8b3737f6e2c8e76e75e50e5740b9e1535",
+      "changes": [
+        {
+          "path": [
+            "records",
+            "target_a",
+            "original_event",
+            "actor_ref"
+          ],
+          "before": "SYNTHETIC-ACTOR_REF-target_a",
+          "after": null,
+          "l4_predicate_candidates": [
+            "/diagnostic_contract/event_fields",
+            "/diagnostic_contract/algorithm_dependencies/ef",
+            "/diagnostic_contract/mutation_rule",
+            "/diagnostic_contract/comparison_facets",
+            "/diagnostic_contract/aggregation",
+            "/diagnostic_contract/condition_values"
+          ]
+        }
+      ]
+    },
+    {
+      "case_id": "HELIXOS-L9-015-C0287",
+      "l7_input_pointer": "/connection_materials/OS015/case/cases/286/given/input",
+      "base_ref": "correct",
+      "expanded_input_sha256": "b904fb858758dda5af3ec7c1ee89f5cbdf06ca71ebb47c8c6ded1b2b17df4eda",
+      "changes": [
+        {
+          "path": [
+            "records",
+            "target_a",
+            "original_event",
+            "actor_ref"
+          ],
+          "before": "SYNTHETIC-ACTOR_REF-target_a",
+          "after": "FOREIGN-actor_ref",
+          "l4_predicate_candidates": [
+            "/diagnostic_contract/event_fields",
+            "/diagnostic_contract/algorithm_dependencies/ef",
+            "/diagnostic_contract/mutation_rule",
+            "/diagnostic_contract/comparison_facets",
+            "/diagnostic_contract/aggregation",
+            "/diagnostic_contract/condition_values"
+          ]
+        }
+      ]
+    },
+    {
+      "case_id": "HELIXOS-L9-015-C0288",
+      "l7_input_pointer": "/connection_materials/OS015/case/cases/287/given/input",
+      "base_ref": "correct",
+      "expanded_input_sha256": "6476166f1e24c8287f8cf1e8b9318706a634b76d7a17df633b5b77cb82aed3c0",
+      "changes": [
+        {
+          "path": [
+            "records",
+            "target_a",
+            "original_event",
+            "observed_at_ref"
+          ],
+          "before": "SYNTHETIC-OBSERVED_AT_REF-target_a",
+          "after": null,
+          "l4_predicate_candidates": [
+            "/diagnostic_contract/event_fields",
+            "/diagnostic_contract/algorithm_dependencies/ef",
+            "/diagnostic_contract/mutation_rule",
+            "/diagnostic_contract/comparison_facets",
+            "/diagnostic_contract/aggregation",
+            "/diagnostic_contract/condition_values"
+          ]
+        }
+      ]
+    },
+    {
+      "case_id": "HELIXOS-L9-015-C0289",
+      "l7_input_pointer": "/connection_materials/OS015/case/cases/288/given/input",
+      "base_ref": "correct",
+      "expanded_input_sha256": "aea2a7cfa672f466b7b56c5239a4e3b93387e9a01e55bc38be9820e4f6aeeb9c",
+      "changes": [
+        {
+          "path": [
+            "records",
+            "target_a",
+            "original_event",
+            "observed_at_ref"
+          ],
+          "before": "SYNTHETIC-OBSERVED_AT_REF-target_a",
+          "after": "FOREIGN-observed_at_ref",
+          "l4_predicate_candidates": [
+            "/diagnostic_contract/event_fields",
+            "/diagnostic_contract/algorithm_dependencies/ef",
+            "/diagnostic_contract/mutation_rule",
+            "/diagnostic_contract/comparison_facets",
+            "/diagnostic_contract/aggregation",
+            "/diagnostic_contract/condition_values"
+          ]
+        }
+      ]
+    },
+    {
+      "case_id": "HELIXOS-L9-015-C0290",
+      "l7_input_pointer": "/connection_materials/OS015/case/cases/289/given/input",
+      "base_ref": "correct",
+      "expanded_input_sha256": "4f7cc61a364be60b4b62bd24d7cbb3bb9c292eca107e6c6c0b284fc63f6b1973",
+      "changes": [
+        {
+          "path": [
+            "records",
+            "target_a",
+            "original_event",
+            "causal_id"
+          ],
+          "before": "SYNTHETIC-CAUSAL_ID-target_a",
+          "after": null,
+          "l4_predicate_candidates": [
+            "/diagnostic_contract/event_fields",
+            "/diagnostic_contract/algorithm_dependencies/ef",
+            "/diagnostic_contract/mutation_rule",
+            "/diagnostic_contract/comparison_facets",
+            "/diagnostic_contract/aggregation",
+            "/diagnostic_contract/condition_values"
+          ]
+        }
+      ]
+    },
+    {
+      "case_id": "HELIXOS-L9-015-C0291",
+      "l7_input_pointer": "/connection_materials/OS015/case/cases/290/given/input",
+      "base_ref": "correct",
+      "expanded_input_sha256": "7c620be2961f13bb13acd1f80fdbb16467a5b5e1a787b96f3f91eee7463ac43b",
+      "changes": [
+        {
+          "path": [
+            "records",
+            "target_a",
+            "original_event",
+            "causal_id"
+          ],
+          "before": "SYNTHETIC-CAUSAL_ID-target_a",
+          "after": "FOREIGN-causal_id",
+          "l4_predicate_candidates": [
+            "/diagnostic_contract/event_fields",
+            "/diagnostic_contract/algorithm_dependencies/ef",
+            "/diagnostic_contract/mutation_rule",
+            "/diagnostic_contract/comparison_facets",
+            "/diagnostic_contract/aggregation",
+            "/diagnostic_contract/condition_values"
+          ]
+        }
+      ]
+    },
+    {
+      "case_id": "HELIXOS-L9-015-C0292",
+      "l7_input_pointer": "/connection_materials/OS015/case/cases/291/given/input",
+      "base_ref": "correct",
+      "expanded_input_sha256": "ee98756b572e8c724ff21056e7bff4197f4ba14cf0d554a96afe3ca461e1b958",
+      "changes": [
+        {
+          "path": [
+            "records",
+            "target_a",
+            "original_event",
+            "payload_ref"
+          ],
+          "before": "SYNTHETIC-PAYLOAD_REF-target_a",
+          "after": null,
+          "l4_predicate_candidates": [
+            "/diagnostic_contract/event_fields",
+            "/diagnostic_contract/algorithm_dependencies/ef",
+            "/diagnostic_contract/mutation_rule",
+            "/diagnostic_contract/comparison_facets",
+            "/diagnostic_contract/aggregation",
+            "/diagnostic_contract/condition_values"
+          ]
+        }
+      ]
+    },
+    {
+      "case_id": "HELIXOS-L9-015-C0293",
+      "l7_input_pointer": "/connection_materials/OS015/case/cases/292/given/input",
+      "base_ref": "correct",
+      "expanded_input_sha256": "a5c15b48df677f05e3ae6c193a761e8952f7cbd21b42c5423405b7e36c8fb5e5",
+      "changes": [
+        {
+          "path": [
+            "records",
+            "target_a",
+            "original_event",
+            "payload_ref"
+          ],
+          "before": "SYNTHETIC-PAYLOAD_REF-target_a",
+          "after": "FOREIGN-payload_ref",
+          "l4_predicate_candidates": [
+            "/diagnostic_contract/event_fields",
+            "/diagnostic_contract/algorithm_dependencies/ef",
+            "/diagnostic_contract/mutation_rule",
+            "/diagnostic_contract/comparison_facets",
+            "/diagnostic_contract/aggregation",
+            "/diagnostic_contract/condition_values"
+          ]
+        }
+      ]
+    },
+    {
+      "case_id": "HELIXOS-L9-015-C0295",
+      "l7_input_pointer": "/connection_materials/OS015/case/cases/294/given/input",
+      "base_ref": "correct",
+      "expanded_input_sha256": "1f3d817c242c79c9696a879befedf44f2026511623fb0ce02ebed4fa5f809afe",
+      "changes": [
+        {
+          "path": [
+            "context",
+            "records",
+            "target_a",
+            "source",
+            "target_id"
+          ],
+          "before": "SYNTHETIC-TARGET_ID-target_a",
+          "after": "FOREIGN-target_id",
+          "l4_predicate_candidates": [
+            "/diagnostic_contract/source_fields",
+            "/diagnostic_contract/algorithm_dependencies/sf",
+            "/diagnostic_contract/comparison_facets",
+            "/diagnostic_contract/aggregation",
+            "/diagnostic_contract/condition_values"
+          ]
+        }
+      ]
+    },
+    {
+      "case_id": "HELIXOS-L9-015-C0301",
+      "l7_input_pointer": "/connection_materials/OS015/case/cases/300/given/input",
+      "base_ref": "correct",
+      "expanded_input_sha256": "a3bd0401d8118fcecc5b2584574a134ffa19f6027d21c354ad91ce2507fd4a4e",
+      "changes": [
+        {
+          "path": [
+            "context",
+            "records",
+            "target_a",
+            "source",
+            "scope"
+          ],
+          "before": "SYNTHETIC-SCOPE-target_a",
+          "after": "FOREIGN-scope",
+          "l4_predicate_candidates": [
+            "/diagnostic_contract/source_fields",
+            "/diagnostic_contract/algorithm_dependencies/sf",
+            "/diagnostic_contract/comparison_facets",
+            "/diagnostic_contract/aggregation",
+            "/diagnostic_contract/condition_values"
+          ]
+        }
+      ]
+    },
+    {
+      "case_id": "HELIXOS-L9-015-C0334",
+      "l7_input_pointer": "/connection_materials/OS015/case/cases/333/given/input",
+      "base_ref": "correct",
+      "expanded_input_sha256": "67a51425956c8f9fb3c840e67dda99d6bc3aac26ae9e29e4e0c051d3c14db1c1",
+      "changes": [
+        {
+          "path": [
+            "context",
+            "records",
+            "target_a",
+            "original_event",
+            "event_id"
+          ],
+          "before": "SYNTHETIC-EVENT_ID-target_a",
+          "after": null,
+          "l4_predicate_candidates": [
+            "/diagnostic_contract/event_fields",
+            "/diagnostic_contract/algorithm_dependencies/ef",
+            "/diagnostic_contract/mutation_rule",
+            "/diagnostic_contract/comparison_facets",
+            "/diagnostic_contract/aggregation",
+            "/diagnostic_contract/condition_values"
+          ]
+        }
+      ]
+    },
+    {
+      "case_id": "HELIXOS-L9-015-C0335",
+      "l7_input_pointer": "/connection_materials/OS015/case/cases/334/given/input",
+      "base_ref": "correct",
+      "expanded_input_sha256": "f23ee125144eb4b7c4fa6c644b5b3f1e3465fd7bc3bbc5a1f83e6ac7acb0728d",
+      "changes": [
+        {
+          "path": [
+            "context",
+            "records",
+            "target_a",
+            "original_event",
+            "event_id"
+          ],
+          "before": "SYNTHETIC-EVENT_ID-target_a",
+          "after": "FOREIGN-event_id",
+          "l4_predicate_candidates": [
+            "/diagnostic_contract/event_fields",
+            "/diagnostic_contract/algorithm_dependencies/ef",
+            "/diagnostic_contract/mutation_rule",
+            "/diagnostic_contract/comparison_facets",
+            "/diagnostic_contract/aggregation",
+            "/diagnostic_contract/condition_values"
+          ]
+        }
+      ]
+    },
+    {
+      "case_id": "HELIXOS-L9-015-C0336",
+      "l7_input_pointer": "/connection_materials/OS015/case/cases/335/given/input",
+      "base_ref": "correct",
+      "expanded_input_sha256": "0125062143af3f22a0c97cb079585416c9c852a16601175f1965d4e5f6ca9f5b",
+      "changes": [
+        {
+          "path": [
+            "context",
+            "records",
+            "target_a",
+            "original_event",
+            "event_revision"
+          ],
+          "before": "EVENT-r1",
+          "after": null,
+          "l4_predicate_candidates": [
+            "/diagnostic_contract/event_fields",
+            "/diagnostic_contract/algorithm_dependencies/ef",
+            "/diagnostic_contract/mutation_rule",
+            "/diagnostic_contract/comparison_facets",
+            "/diagnostic_contract/aggregation",
+            "/diagnostic_contract/condition_values"
+          ]
+        }
+      ]
+    },
+    {
+      "case_id": "HELIXOS-L9-015-C0337",
+      "l7_input_pointer": "/connection_materials/OS015/case/cases/336/given/input",
+      "base_ref": "correct",
+      "expanded_input_sha256": "62a05bd0310e5e9a6f31ce412300c10d68fca644b69843ff7b36057b85894df2",
+      "changes": [
+        {
+          "path": [
+            "context",
+            "records",
+            "target_a",
+            "original_event",
+            "event_revision"
+          ],
+          "before": "EVENT-r1",
+          "after": "FOREIGN-event_revision",
+          "l4_predicate_candidates": [
+            "/diagnostic_contract/event_fields",
+            "/diagnostic_contract/algorithm_dependencies/ef",
+            "/diagnostic_contract/mutation_rule",
+            "/diagnostic_contract/comparison_facets",
+            "/diagnostic_contract/aggregation",
+            "/diagnostic_contract/condition_values"
+          ]
+        }
+      ]
+    },
+    {
+      "case_id": "HELIXOS-L9-015-C0338",
+      "l7_input_pointer": "/connection_materials/OS015/case/cases/337/given/input",
+      "base_ref": "correct",
+      "expanded_input_sha256": "a6cfa61bb87d94bf73f219f6a443aaa38db42e6823a615dec2dac372c9af4d17",
+      "changes": [
+        {
+          "path": [
+            "context",
+            "records",
+            "target_a",
+            "original_event",
+            "source_ref"
+          ],
+          "before": "SYNTHETIC-SOURCE_REF-target_a",
+          "after": null,
+          "l4_predicate_candidates": [
+            "/diagnostic_contract/event_fields",
+            "/diagnostic_contract/algorithm_dependencies/ef",
+            "/diagnostic_contract/mutation_rule",
+            "/diagnostic_contract/comparison_facets",
+            "/diagnostic_contract/aggregation",
+            "/diagnostic_contract/condition_values"
+          ]
+        }
+      ]
+    },
+    {
+      "case_id": "HELIXOS-L9-015-C0339",
+      "l7_input_pointer": "/connection_materials/OS015/case/cases/338/given/input",
+      "base_ref": "correct",
+      "expanded_input_sha256": "1265deed2a3ae1a91d8032bb7b7287592d2c99ea84e539cb379403046b302293",
+      "changes": [
+        {
+          "path": [
+            "context",
+            "records",
+            "target_a",
+            "original_event",
+            "source_ref"
+          ],
+          "before": "SYNTHETIC-SOURCE_REF-target_a",
+          "after": "FOREIGN-source_ref",
+          "l4_predicate_candidates": [
+            "/diagnostic_contract/event_fields",
+            "/diagnostic_contract/algorithm_dependencies/ef",
+            "/diagnostic_contract/mutation_rule",
+            "/diagnostic_contract/comparison_facets",
+            "/diagnostic_contract/aggregation",
+            "/diagnostic_contract/condition_values"
+          ]
+        }
+      ]
+    },
+    {
+      "case_id": "HELIXOS-L9-015-C0340",
+      "l7_input_pointer": "/connection_materials/OS015/case/cases/339/given/input",
+      "base_ref": "correct",
+      "expanded_input_sha256": "fccc66c4f48c4fb7058151e1280b1f1a6904ecf58f9af287363a0f6f7e73879a",
+      "changes": [
+        {
+          "path": [
+            "context",
+            "records",
+            "target_a",
+            "original_event",
+            "source_revision"
+          ],
+          "before": "SYNTHETIC-SOURCE_REVISION-target_a",
+          "after": null,
+          "l4_predicate_candidates": [
+            "/diagnostic_contract/event_fields",
+            "/diagnostic_contract/algorithm_dependencies/ef",
+            "/diagnostic_contract/mutation_rule",
+            "/diagnostic_contract/comparison_facets",
+            "/diagnostic_contract/aggregation",
+            "/diagnostic_contract/condition_values"
+          ]
+        }
+      ]
+    },
+    {
+      "case_id": "HELIXOS-L9-015-C0341",
+      "l7_input_pointer": "/connection_materials/OS015/case/cases/340/given/input",
+      "base_ref": "correct",
+      "expanded_input_sha256": "4976b715449414e88ffc0059d7468e5c76c5957537a7679700ff1a11479f3899",
+      "changes": [
+        {
+          "path": [
+            "context",
+            "records",
+            "target_a",
+            "original_event",
+            "source_revision"
+          ],
+          "before": "SYNTHETIC-SOURCE_REVISION-target_a",
+          "after": "FOREIGN-source_revision",
+          "l4_predicate_candidates": [
+            "/diagnostic_contract/event_fields",
+            "/diagnostic_contract/algorithm_dependencies/ef",
+            "/diagnostic_contract/mutation_rule",
+            "/diagnostic_contract/comparison_facets",
+            "/diagnostic_contract/aggregation",
+            "/diagnostic_contract/condition_values"
+          ]
+        }
+      ]
+    },
+    {
+      "case_id": "HELIXOS-L9-015-C0342",
+      "l7_input_pointer": "/connection_materials/OS015/case/cases/341/given/input",
+      "base_ref": "correct",
+      "expanded_input_sha256": "21503bdae7a2ecee562e4249833f3647fac48553fec404240b35e8bb5181dabe",
+      "changes": [
+        {
+          "path": [
+            "context",
+            "records",
+            "target_a",
+            "original_event",
+            "source_digest"
+          ],
+          "before": "SYNTHETIC-SOURCE_DIGEST-target_a",
+          "after": null,
+          "l4_predicate_candidates": [
+            "/diagnostic_contract/event_fields",
+            "/diagnostic_contract/algorithm_dependencies/ef",
+            "/diagnostic_contract/mutation_rule",
+            "/diagnostic_contract/comparison_facets",
+            "/diagnostic_contract/aggregation",
+            "/diagnostic_contract/condition_values"
+          ]
+        }
+      ]
+    },
+    {
+      "case_id": "HELIXOS-L9-015-C0343",
+      "l7_input_pointer": "/connection_materials/OS015/case/cases/342/given/input",
+      "base_ref": "correct",
+      "expanded_input_sha256": "46d7ac4fe6687882ff5702005fd2efbc65aec562ea6dae761f04640b43747882",
+      "changes": [
+        {
+          "path": [
+            "context",
+            "records",
+            "target_a",
+            "original_event",
+            "source_digest"
+          ],
+          "before": "SYNTHETIC-SOURCE_DIGEST-target_a",
+          "after": "FOREIGN-source_digest",
+          "l4_predicate_candidates": [
+            "/diagnostic_contract/event_fields",
+            "/diagnostic_contract/algorithm_dependencies/ef",
+            "/diagnostic_contract/mutation_rule",
+            "/diagnostic_contract/comparison_facets",
+            "/diagnostic_contract/aggregation",
+            "/diagnostic_contract/condition_values"
+          ]
+        }
+      ]
+    },
+    {
+      "case_id": "HELIXOS-L9-015-C0344",
+      "l7_input_pointer": "/connection_materials/OS015/case/cases/343/given/input",
+      "base_ref": "correct",
+      "expanded_input_sha256": "6ce8af04534a40787ebdb1f997d640e02cd8daa10e84ed61e5038fbf68f39f53",
+      "changes": [
+        {
+          "path": [
+            "context",
+            "records",
+            "target_a",
+            "original_event",
+            "actor_ref"
+          ],
+          "before": "SYNTHETIC-ACTOR_REF-target_a",
+          "after": null,
+          "l4_predicate_candidates": [
+            "/diagnostic_contract/event_fields",
+            "/diagnostic_contract/algorithm_dependencies/ef",
+            "/diagnostic_contract/mutation_rule",
+            "/diagnostic_contract/comparison_facets",
+            "/diagnostic_contract/aggregation",
+            "/diagnostic_contract/condition_values"
+          ]
+        }
+      ]
+    },
+    {
+      "case_id": "HELIXOS-L9-015-C0345",
+      "l7_input_pointer": "/connection_materials/OS015/case/cases/344/given/input",
+      "base_ref": "correct",
+      "expanded_input_sha256": "eaea385023908ddca32195306ce545294f8f07746ff6338aee0e909c4c763180",
+      "changes": [
+        {
+          "path": [
+            "context",
+            "records",
+            "target_a",
+            "original_event",
+            "actor_ref"
+          ],
+          "before": "SYNTHETIC-ACTOR_REF-target_a",
+          "after": "FOREIGN-actor_ref",
+          "l4_predicate_candidates": [
+            "/diagnostic_contract/event_fields",
+            "/diagnostic_contract/algorithm_dependencies/ef",
+            "/diagnostic_contract/mutation_rule",
+            "/diagnostic_contract/comparison_facets",
+            "/diagnostic_contract/aggregation",
+            "/diagnostic_contract/condition_values"
+          ]
+        }
+      ]
+    },
+    {
+      "case_id": "HELIXOS-L9-015-C0346",
+      "l7_input_pointer": "/connection_materials/OS015/case/cases/345/given/input",
+      "base_ref": "correct",
+      "expanded_input_sha256": "f11d3125c637a910cce04ae6c1cba6e0694f0629363c05e3ce2c2bd2d9358bb7",
+      "changes": [
+        {
+          "path": [
+            "context",
+            "records",
+            "target_a",
+            "original_event",
+            "observed_at_ref"
+          ],
+          "before": "SYNTHETIC-OBSERVED_AT_REF-target_a",
+          "after": null,
+          "l4_predicate_candidates": [
+            "/diagnostic_contract/event_fields",
+            "/diagnostic_contract/algorithm_dependencies/ef",
+            "/diagnostic_contract/mutation_rule",
+            "/diagnostic_contract/comparison_facets",
+            "/diagnostic_contract/aggregation",
+            "/diagnostic_contract/condition_values"
+          ]
+        }
+      ]
+    },
+    {
+      "case_id": "HELIXOS-L9-015-C0347",
+      "l7_input_pointer": "/connection_materials/OS015/case/cases/346/given/input",
+      "base_ref": "correct",
+      "expanded_input_sha256": "f034312e184edf632c376fe0498a3f3ca28a56417090ef89352d3985ee4f6fb6",
+      "changes": [
+        {
+          "path": [
+            "context",
+            "records",
+            "target_a",
+            "original_event",
+            "observed_at_ref"
+          ],
+          "before": "SYNTHETIC-OBSERVED_AT_REF-target_a",
+          "after": "FOREIGN-observed_at_ref",
+          "l4_predicate_candidates": [
+            "/diagnostic_contract/event_fields",
+            "/diagnostic_contract/algorithm_dependencies/ef",
+            "/diagnostic_contract/mutation_rule",
+            "/diagnostic_contract/comparison_facets",
+            "/diagnostic_contract/aggregation",
+            "/diagnostic_contract/condition_values"
+          ]
+        }
+      ]
+    },
+    {
+      "case_id": "HELIXOS-L9-015-C0348",
+      "l7_input_pointer": "/connection_materials/OS015/case/cases/347/given/input",
+      "base_ref": "correct",
+      "expanded_input_sha256": "dc3ac5311ec9d82ec14f210c0aebdc88a96cd0944b21402b9f72578735fe3187",
+      "changes": [
+        {
+          "path": [
+            "context",
+            "records",
+            "target_a",
+            "original_event",
+            "causal_id"
+          ],
+          "before": "SYNTHETIC-CAUSAL_ID-target_a",
+          "after": null,
+          "l4_predicate_candidates": [
+            "/diagnostic_contract/event_fields",
+            "/diagnostic_contract/algorithm_dependencies/ef",
+            "/diagnostic_contract/mutation_rule",
+            "/diagnostic_contract/comparison_facets",
+            "/diagnostic_contract/aggregation",
+            "/diagnostic_contract/condition_values"
+          ]
+        }
+      ]
+    },
+    {
+      "case_id": "HELIXOS-L9-015-C0349",
+      "l7_input_pointer": "/connection_materials/OS015/case/cases/348/given/input",
+      "base_ref": "correct",
+      "expanded_input_sha256": "0817049ae44158be884b2dfdcbd993bd44bb689b3affcf2c8737c1fa3e59d8d1",
+      "changes": [
+        {
+          "path": [
+            "context",
+            "records",
+            "target_a",
+            "original_event",
+            "causal_id"
+          ],
+          "before": "SYNTHETIC-CAUSAL_ID-target_a",
+          "after": "FOREIGN-causal_id",
+          "l4_predicate_candidates": [
+            "/diagnostic_contract/event_fields",
+            "/diagnostic_contract/algorithm_dependencies/ef",
+            "/diagnostic_contract/mutation_rule",
+            "/diagnostic_contract/comparison_facets",
+            "/diagnostic_contract/aggregation",
+            "/diagnostic_contract/condition_values"
+          ]
+        }
+      ]
+    },
+    {
+      "case_id": "HELIXOS-L9-015-C0350",
+      "l7_input_pointer": "/connection_materials/OS015/case/cases/349/given/input",
+      "base_ref": "correct",
+      "expanded_input_sha256": "a029bba0ebd48687b033823a6af45b95b4a23bd55ca94d298fc0cd7c9f1057fe",
+      "changes": [
+        {
+          "path": [
+            "context",
+            "records",
+            "target_a",
+            "original_event",
+            "payload_ref"
+          ],
+          "before": "SYNTHETIC-PAYLOAD_REF-target_a",
+          "after": null,
+          "l4_predicate_candidates": [
+            "/diagnostic_contract/event_fields",
+            "/diagnostic_contract/algorithm_dependencies/ef",
+            "/diagnostic_contract/mutation_rule",
+            "/diagnostic_contract/comparison_facets",
+            "/diagnostic_contract/aggregation",
+            "/diagnostic_contract/condition_values"
+          ]
+        }
+      ]
+    },
+    {
+      "case_id": "HELIXOS-L9-015-C0351",
+      "l7_input_pointer": "/connection_materials/OS015/case/cases/350/given/input",
+      "base_ref": "correct",
+      "expanded_input_sha256": "72c8fc118915250b672cd603c7d348d31a69c527ad39dffbfe9bc7a9b88707ac",
+      "changes": [
+        {
+          "path": [
+            "context",
+            "records",
+            "target_a",
+            "original_event",
+            "payload_ref"
+          ],
+          "before": "SYNTHETIC-PAYLOAD_REF-target_a",
+          "after": "FOREIGN-payload_ref",
+          "l4_predicate_candidates": [
+            "/diagnostic_contract/event_fields",
+            "/diagnostic_contract/algorithm_dependencies/ef",
+            "/diagnostic_contract/mutation_rule",
+            "/diagnostic_contract/comparison_facets",
+            "/diagnostic_contract/aggregation",
+            "/diagnostic_contract/condition_values"
+          ]
+        }
+      ]
+    },
+    {
+      "case_id": "HELIXOS-L9-015-C0364",
+      "l7_input_pointer": "/connection_materials/OS015/case/cases/363/given/input",
+      "base_ref": "classify",
+      "expanded_input_sha256": "4302bfd933f10d415523a9b2ba8bcf055b03da1a4bdf8018847510fbd902fbb4",
+      "changes": [
+        {
+          "path": [
+            "records",
+            "target_a",
+            "new_classification",
+            "kind"
+          ],
+          "before": "new_kind",
+          "after": null,
+          "l4_predicate_candidates": [
+            "/diagnostic_contract/classification_fields",
+            "/diagnostic_contract/algorithm_dependencies/cf",
+            "/diagnostic_contract/phases",
+            "/diagnostic_contract/comparison_facets",
+            "/diagnostic_contract/aggregation"
+          ]
+        }
+      ]
+    },
+    {
+      "case_id": "HELIXOS-L9-015-C0365",
+      "l7_input_pointer": "/connection_materials/OS015/case/cases/364/given/input",
+      "base_ref": "classify",
+      "expanded_input_sha256": "0f7b4851c29c6dc13bd714dfac7d4a53422b6b7015f83f127fdfbed5a2222971",
+      "changes": [
+        {
+          "path": [
+            "records",
+            "target_a",
+            "new_classification",
+            "kind"
+          ],
+          "before": "new_kind",
+          "after": "FOREIGN-kind",
+          "l4_predicate_candidates": [
+            "/diagnostic_contract/classification_fields",
+            "/diagnostic_contract/algorithm_dependencies/cf",
+            "/diagnostic_contract/phases",
+            "/diagnostic_contract/comparison_facets",
+            "/diagnostic_contract/aggregation"
+          ]
+        }
+      ]
+    },
+    {
+      "case_id": "HELIXOS-L9-015-C0414",
+      "l7_input_pointer": "/connection_materials/OS015/case/cases/413/given/input",
+      "base_ref": "correct",
+      "expanded_input_sha256": "4c757081eb77048ba54f226478df2a4c8d18e3606cf2ffe4926a0e68e34d1b6c",
+      "changes": [
+        {
+          "path": [
+            "records",
+            "target_a",
+            "new_classification",
+            "kind"
+          ],
+          "before": "new_kind",
+          "after": null,
+          "l4_predicate_candidates": [
+            "/diagnostic_contract/classification_fields",
+            "/diagnostic_contract/algorithm_dependencies/cf",
+            "/diagnostic_contract/phases",
+            "/diagnostic_contract/comparison_facets",
+            "/diagnostic_contract/aggregation"
+          ]
+        }
+      ]
+    },
+    {
+      "case_id": "HELIXOS-L9-015-C0415",
+      "l7_input_pointer": "/connection_materials/OS015/case/cases/414/given/input",
+      "base_ref": "correct",
+      "expanded_input_sha256": "78cf60434b2e3becb2e98dfb32c89bd88ed837be6e8ee74a01dd85c7303d6460",
+      "changes": [
+        {
+          "path": [
+            "records",
+            "target_a",
+            "new_classification",
+            "kind"
+          ],
+          "before": "new_kind",
+          "after": "FOREIGN-kind",
+          "l4_predicate_candidates": [
+            "/diagnostic_contract/classification_fields",
+            "/diagnostic_contract/algorithm_dependencies/cf",
+            "/diagnostic_contract/phases",
+            "/diagnostic_contract/comparison_facets",
+            "/diagnostic_contract/aggregation"
+          ]
+        }
+      ]
+    },
+    {
+      "case_id": "HELIXOS-L9-015-C0460",
+      "l7_input_pointer": "/connection_materials/OS015/case/cases/459/given/input",
+      "base_ref": "correct",
+      "expanded_input_sha256": "9c4e99d9ea183324f8b938e5413f50d546440070dad14768b198fa66e8a5b849",
+      "changes": [
+        {
+          "path": [
+            "records",
+            "target_a",
+            "authority_origin"
+          ],
+          "before": "canonical_source",
+          "after": "issue",
+          "l4_predicate_candidates": [
+            "/diagnostic_contract/codes/6",
+            "/diagnostic_contract/codes/5",
+            "/diagnostic_contract/aggregation",
+            "/diagnostic_contract/condition_values"
+          ]
+        }
+      ]
+    },
+    {
+      "case_id": "HELIXOS-L9-015-C0463",
+      "l7_input_pointer": "/connection_materials/OS015/case/cases/462/given/input",
+      "base_ref": "correct",
+      "expanded_input_sha256": "5fef6a05d5a33f1d49d0894d29081f0bc493f79e2373ed1d7f813ee0f440d0a2",
+      "changes": [
+        {
+          "path": [
+            "records",
+            "target_a",
+            "authority_origin"
+          ],
+          "before": "canonical_source",
+          "after": "pr",
+          "l4_predicate_candidates": [
+            "/diagnostic_contract/codes/6",
+            "/diagnostic_contract/codes/5",
+            "/diagnostic_contract/aggregation",
+            "/diagnostic_contract/condition_values"
+          ]
+        }
+      ]
+    },
+    {
+      "case_id": "HELIXOS-L9-015-C0466",
+      "l7_input_pointer": "/connection_materials/OS015/case/cases/465/given/input",
+      "base_ref": "correct",
+      "expanded_input_sha256": "d10c6515b0daa1dc1aa720a39dbb41241548aa1139290f0ff84cf9b11416a675",
+      "changes": [
+        {
+          "path": [
+            "records",
+            "target_a",
+            "authority_origin"
+          ],
+          "before": "canonical_source",
+          "after": "ci",
+          "l4_predicate_candidates": [
+            "/diagnostic_contract/codes/6",
+            "/diagnostic_contract/codes/5",
+            "/diagnostic_contract/aggregation",
+            "/diagnostic_contract/condition_values"
+          ]
+        }
+      ]
+    },
+    {
+      "case_id": "HELIXOS-L9-015-C0469",
+      "l7_input_pointer": "/connection_materials/OS015/case/cases/468/given/input",
+      "base_ref": "correct",
+      "expanded_input_sha256": "20f12b9393cc44e98ed1823888e918bc8e88a7f4b5d94e21f50a68b28c6263a0",
+      "changes": [
+        {
+          "path": [
+            "records",
+            "target_a",
+            "authority_origin"
+          ],
+          "before": "canonical_source",
+          "after": "memory",
+          "l4_predicate_candidates": [
+            "/diagnostic_contract/codes/6",
+            "/diagnostic_contract/codes/5",
+            "/diagnostic_contract/aggregation",
+            "/diagnostic_contract/condition_values"
+          ]
+        }
+      ]
+    },
+    {
+      "case_id": "HELIXOS-L9-015-C0472",
+      "l7_input_pointer": "/connection_materials/OS015/case/cases/471/given/input",
+      "base_ref": "correct",
+      "expanded_input_sha256": "a0d1e5e26d53137fe912f084ec32b900569bd86d53f07e31590fd4c3bcd67569",
+      "changes": [
+        {
+          "path": [
+            "records",
+            "target_a",
+            "authority_origin"
+          ],
+          "before": "canonical_source",
+          "after": "management_record",
+          "l4_predicate_candidates": [
+            "/diagnostic_contract/codes/6",
+            "/diagnostic_contract/codes/5",
+            "/diagnostic_contract/aggregation",
+            "/diagnostic_contract/condition_values"
+          ]
+        }
+      ]
+    },
+    {
+      "case_id": "HELIXOS-L9-015-C0477",
+      "l7_input_pointer": "/connection_materials/OS015/case/cases/476/given/input",
+      "base_ref": "correct",
+      "expanded_input_sha256": "6c4da25b9830ed40121b6a772c9558c149e7d3136d4f4f4b9adbdd57c6eb511f",
+      "changes": [
+        {
+          "path": [
+            "records",
+            "target_a",
+            "authority_origin"
+          ],
+          "before": "canonical_source",
+          "after": null,
+          "l4_predicate_candidates": [
+            "/diagnostic_contract/codes/6",
+            "/diagnostic_contract/codes/5",
+            "/diagnostic_contract/aggregation",
+            "/diagnostic_contract/condition_values"
+          ]
+        },
+        {
+          "path": [
+            "context",
+            "records",
+            "target_a",
+            "authority_origin"
+          ],
+          "before": "canonical_source",
+          "after": null,
+          "l4_predicate_candidates": [
+            "/diagnostic_contract/codes/6",
+            "/diagnostic_contract/codes/5",
+            "/diagnostic_contract/aggregation",
+            "/diagnostic_contract/condition_values"
+          ]
+        }
+      ]
+    },
+    {
+      "case_id": "HELIXOS-L9-015-C0480",
+      "l7_input_pointer": "/connection_materials/OS015/case/cases/479/given/input",
+      "base_ref": "correct",
+      "expanded_input_sha256": "9455a362e5f8a40c71e68f2264b87bcf5d4fbf49f83dc4b4c5d37370825d9cbd",
+      "changes": [
+        {
+          "path": [
+            "records",
+            "target_a",
+            "authority_origin"
+          ],
+          "before": "canonical_source",
+          "after": "unknown_origin",
+          "l4_predicate_candidates": [
+            "/diagnostic_contract/codes/6",
+            "/diagnostic_contract/codes/5",
+            "/diagnostic_contract/aggregation",
+            "/diagnostic_contract/condition_values"
+          ]
+        },
+        {
+          "path": [
+            "context",
+            "records",
+            "target_a",
+            "authority_origin"
+          ],
+          "before": "canonical_source",
+          "after": "unknown_origin",
+          "l4_predicate_candidates": [
+            "/diagnostic_contract/codes/6",
+            "/diagnostic_contract/codes/5",
+            "/diagnostic_contract/aggregation",
+            "/diagnostic_contract/condition_values"
+          ]
+        }
+      ]
+    },
+    {
+      "case_id": "HELIXOS-L9-015-C0481",
+      "l7_input_pointer": "/connection_materials/OS015/case/cases/480/given/input",
+      "base_ref": "correct",
+      "expanded_input_sha256": "f43e8ce0fe9d3c11bdaeb0aaaf55539fc6e04c3c40d1b926aa398e4e0a08b604",
+      "changes": [
+        {
+          "path": [
+            "records",
+            "target_a",
+            "authority_state"
+          ],
+          "before": "current_material",
+          "after": "stale_material",
+          "l4_predicate_candidates": [
+            "/diagnostic_contract/codes/9",
+            "/diagnostic_contract/codes/7",
+            "/diagnostic_contract/codes/8",
+            "/diagnostic_contract/aggregation",
+            "/diagnostic_contract/condition_values"
+          ]
+        }
+      ]
+    },
+    {
+      "case_id": "HELIXOS-L9-015-C0484",
+      "l7_input_pointer": "/connection_materials/OS015/case/cases/483/given/input",
+      "base_ref": "correct",
+      "expanded_input_sha256": "a13587285be055d701feb9e9465eaa90279a2b29db655fa44fd0d6d9bc7ceee6",
+      "changes": [
+        {
+          "path": [
+            "records",
+            "target_a",
+            "authority_state"
+          ],
+          "before": "current_material",
+          "after": "conflict_material",
+          "l4_predicate_candidates": [
+            "/diagnostic_contract/codes/9",
+            "/diagnostic_contract/codes/7",
+            "/diagnostic_contract/codes/8",
+            "/diagnostic_contract/aggregation",
+            "/diagnostic_contract/condition_values"
+          ]
+        }
+      ]
+    },
+    {
+      "case_id": "HELIXOS-L9-015-C0487",
+      "l7_input_pointer": "/connection_materials/OS015/case/cases/486/given/input",
+      "base_ref": "correct",
+      "expanded_input_sha256": "94db73cbdc8aa4989b55c1caebaaee6355657eb16241284b631324440e6aacf0",
+      "changes": [
+        {
+          "path": [
+            "records",
+            "target_a",
+            "authority_state"
+          ],
+          "before": "current_material",
+          "after": "unresolved",
+          "l4_predicate_candidates": [
+            "/diagnostic_contract/codes/9",
+            "/diagnostic_contract/codes/7",
+            "/diagnostic_contract/codes/8",
+            "/diagnostic_contract/aggregation",
+            "/diagnostic_contract/condition_values"
+          ]
+        }
+      ]
+    },
+    {
+      "case_id": "HELIXOS-L9-015-C0492",
+      "l7_input_pointer": "/connection_materials/OS015/case/cases/491/given/input",
+      "base_ref": "correct",
+      "expanded_input_sha256": "31343937280ddbb8d473f0602263dc9816a3edd13618c7e0edc12ff6a3d237e0",
+      "changes": [
+        {
+          "path": [
+            "records",
+            "target_a",
+            "authority_state"
+          ],
+          "before": "current_material",
+          "after": null,
+          "l4_predicate_candidates": [
+            "/diagnostic_contract/codes/9",
+            "/diagnostic_contract/codes/7",
+            "/diagnostic_contract/codes/8",
+            "/diagnostic_contract/aggregation",
+            "/diagnostic_contract/condition_values"
+          ]
+        },
+        {
+          "path": [
+            "context",
+            "records",
+            "target_a",
+            "authority_state"
+          ],
+          "before": "current_material",
+          "after": null,
+          "l4_predicate_candidates": [
+            "/diagnostic_contract/codes/9",
+            "/diagnostic_contract/codes/7",
+            "/diagnostic_contract/codes/8",
+            "/diagnostic_contract/aggregation",
+            "/diagnostic_contract/condition_values"
+          ]
+        }
+      ]
+    },
+    {
+      "case_id": "HELIXOS-L9-015-C0495",
+      "l7_input_pointer": "/connection_materials/OS015/case/cases/494/given/input",
+      "base_ref": "correct",
+      "expanded_input_sha256": "305263aca5bba535fdc0f07b660894734093ef09faa9b65bbd291ba8cf1dc0dd",
+      "changes": [
+        {
+          "path": [
+            "records",
+            "target_a",
+            "authority_state"
+          ],
+          "before": "current_material",
+          "after": "unknown_state",
+          "l4_predicate_candidates": [
+            "/diagnostic_contract/codes/9",
+            "/diagnostic_contract/codes/7",
+            "/diagnostic_contract/codes/8",
+            "/diagnostic_contract/aggregation",
+            "/diagnostic_contract/condition_values"
+          ]
+        },
+        {
+          "path": [
+            "context",
+            "records",
+            "target_a",
+            "authority_state"
+          ],
+          "before": "current_material",
+          "after": "unknown_state",
+          "l4_predicate_candidates": [
+            "/diagnostic_contract/codes/9",
+            "/diagnostic_contract/codes/7",
+            "/diagnostic_contract/codes/8",
+            "/diagnostic_contract/aggregation",
+            "/diagnostic_contract/condition_values"
+          ]
+        }
+      ]
+    },
+    {
+      "case_id": "HELIXOS-L9-015-C0505",
+      "l7_input_pointer": "/connection_materials/OS015/case/cases/504/given/input",
+      "base_ref": "inspect",
+      "expanded_input_sha256": "66d00bb9f5d67a780d6a097ed31d585b35333007c2221804b18353ef056d5436",
+      "changes": [
+        {
+          "path": [
+            "records",
+            "target_a",
+            "source",
+            "source_digest"
+          ],
+          "before": "SYNTHETIC-SOURCE_DIGEST-target_a",
+          "after": null,
+          "l4_predicate_candidates": [
+            "/diagnostic_contract/source_fields",
+            "/diagnostic_contract/algorithm_dependencies/sf",
+            "/diagnostic_contract/comparison_facets",
+            "/diagnostic_contract/aggregation",
+            "/diagnostic_contract/condition_values"
+          ]
+        },
+        {
+          "path": [
+            "records",
+            "target_a",
+            "current_material_claim"
+          ],
+          "before": false,
+          "after": true,
+          "l4_predicate_candidates": [
+            "/diagnostic_contract/codes/11",
+            "/diagnostic_contract/codes/10",
+            "/diagnostic_contract/current_material_limit"
+          ]
+        }
+      ]
+    },
+    {
+      "case_id": "HELIXOS-L9-015-C0522",
+      "l7_input_pointer": "/connection_materials/OS015/case/cases/521/given/input",
+      "base_ref": "classify",
+      "expanded_input_sha256": "78bc52c3428970b3f718dd40d67a2a4c86101dc913d574460b202d9cc5fa0e9e",
+      "changes": [
+        {
+          "path": [
+            "records",
+            "target_a",
+            "source",
+            "source_digest"
+          ],
+          "before": "SYNTHETIC-SOURCE_DIGEST-target_a",
+          "after": null,
+          "l4_predicate_candidates": [
+            "/diagnostic_contract/source_fields",
+            "/diagnostic_contract/algorithm_dependencies/sf",
+            "/diagnostic_contract/comparison_facets",
+            "/diagnostic_contract/aggregation",
+            "/diagnostic_contract/condition_values"
+          ]
+        },
+        {
+          "path": [
+            "records",
+            "target_a",
+            "current_material_claim"
+          ],
+          "before": false,
+          "after": true,
+          "l4_predicate_candidates": [
+            "/diagnostic_contract/codes/11",
+            "/diagnostic_contract/codes/10",
+            "/diagnostic_contract/current_material_limit"
+          ]
+        }
+      ]
+    },
+    {
+      "case_id": "HELIXOS-L9-015-C0539",
+      "l7_input_pointer": "/connection_materials/OS015/case/cases/538/given/input",
+      "base_ref": "correct",
+      "expanded_input_sha256": "ce364a4e77349fc6c8b793004ccf787c1d55fe745080dac7e83e447872fb1e23",
+      "changes": [
+        {
+          "path": [
+            "records",
+            "target_a",
+            "source",
+            "source_digest"
+          ],
+          "before": "SYNTHETIC-SOURCE_DIGEST-target_a",
+          "after": null,
+          "l4_predicate_candidates": [
+            "/diagnostic_contract/source_fields",
+            "/diagnostic_contract/algorithm_dependencies/sf",
+            "/diagnostic_contract/comparison_facets",
+            "/diagnostic_contract/aggregation",
+            "/diagnostic_contract/condition_values"
+          ]
+        },
+        {
+          "path": [
+            "records",
+            "target_a",
+            "current_material_claim"
+          ],
+          "before": false,
+          "after": true,
+          "l4_predicate_candidates": [
+            "/diagnostic_contract/codes/11",
+            "/diagnostic_contract/codes/10",
+            "/diagnostic_contract/current_material_limit"
+          ]
+        }
+      ]
+    },
+    {
+      "case_id": "HELIXOS-L9-015-C0573",
+      "l7_input_pointer": "/connection_materials/OS015/case/cases/572/given/input",
+      "base_ref": "classify",
+      "expanded_input_sha256": "0caa9c9666add694384805bc5abf26bd5790a99ede3f636e89082e81a20e3ae3",
+      "changes": [
+        {
+          "path": [
+            "records",
+            "target_a",
+            "original_classification"
+          ],
+          "before": null,
+          "after": {
+            "classification_ref": "OLD-CLASS-target_a",
+            "classification_revision": "CLASS-r1",
+            "event_id": "SYNTHETIC-EVENT_ID-target_a",
+            "event_revision": "EVENT-r1",
+            "kind": "old_kind",
+            "source_ref": "OLD-CLASS-SOURCE-target_a"
+          },
+          "l4_predicate_candidates": [
+            "/diagnostic_contract/codes/4",
+            "/diagnostic_contract/codes/24",
+            "/diagnostic_contract/codes/25",
+            "/diagnostic_contract/phases",
+            "/diagnostic_contract/mutation_rule"
+          ]
+        }
+      ]
+    },
+    {
+      "case_id": "HELIXOS-L9-015-C0574",
+      "l7_input_pointer": "/connection_materials/OS015/case/cases/573/given/input",
+      "base_ref": "classify",
+      "expanded_input_sha256": "5a7948fcd5626fa63379a7ae0db44e8b742fdaa11719aeab6b30124985f274c1",
+      "changes": [
+        {
+          "path": [
+            "context",
+            "records",
+            "target_a",
+            "original_classification"
+          ],
+          "before": null,
+          "after": {
+            "classification_ref": "OLD-CLASS-target_a",
+            "classification_revision": "CLASS-r1",
+            "event_id": "SYNTHETIC-EVENT_ID-target_a",
+            "event_revision": "EVENT-r1",
+            "kind": "old_kind",
+            "source_ref": "OLD-CLASS-SOURCE-target_a"
+          },
+          "l4_predicate_candidates": [
+            "/diagnostic_contract/codes/4",
+            "/diagnostic_contract/codes/24",
+            "/diagnostic_contract/codes/25",
+            "/diagnostic_contract/phases",
+            "/diagnostic_contract/mutation_rule"
+          ]
+        }
+      ]
+    },
+    {
+      "case_id": "HELIXOS-L9-015-C0575",
+      "l7_input_pointer": "/connection_materials/OS015/case/cases/574/given/input",
+      "base_ref": "classify",
+      "expanded_input_sha256": "99b66273f06831b5fd3295c4fdf49b34806da85d580f98e20c8afb74fb1bfd1f",
+      "changes": [
+        {
+          "path": [
+            "records",
+            "target_a",
+            "original_classification"
+          ],
+          "before": null,
+          "after": {
+            "classification_ref": "OLD-CLASS-target_a",
+            "classification_revision": "CLASS-r1",
+            "event_id": "SYNTHETIC-EVENT_ID-target_a",
+            "event_revision": "EVENT-r1",
+            "kind": "old_kind",
+            "source_ref": "OLD-CLASS-SOURCE-target_a"
+          },
+          "l4_predicate_candidates": [
+            "/diagnostic_contract/codes/4",
+            "/diagnostic_contract/codes/24",
+            "/diagnostic_contract/codes/25",
+            "/diagnostic_contract/phases",
+            "/diagnostic_contract/mutation_rule"
+          ]
+        },
+        {
+          "path": [
+            "context",
+            "records",
+            "target_a",
+            "original_classification"
+          ],
+          "before": null,
+          "after": {
+            "classification_ref": "OLD-CLASS-target_a",
+            "classification_revision": "CLASS-r1",
+            "event_id": "SYNTHETIC-EVENT_ID-target_a",
+            "event_revision": "EVENT-r1",
+            "kind": "old_kind",
+            "source_ref": "OLD-CLASS-SOURCE-target_a"
+          },
+          "l4_predicate_candidates": [
+            "/diagnostic_contract/codes/4",
+            "/diagnostic_contract/codes/24",
+            "/diagnostic_contract/codes/25",
+            "/diagnostic_contract/phases",
+            "/diagnostic_contract/mutation_rule"
+          ]
+        }
+      ]
+    },
+    {
+      "case_id": "HELIXOS-L9-015-C0576",
+      "l7_input_pointer": "/connection_materials/OS015/case/cases/575/given/input",
+      "base_ref": "classify",
+      "expanded_input_sha256": "a272cd166d470aed32ba7bbc07bebbc5a5fa85f68837f767ffb078209f36c73e",
+      "changes": [
+        {
+          "path": [
+            "records",
+            "target_a",
+            "original_classification"
+          ],
+          "before": null,
+          "after": {},
+          "l4_predicate_candidates": [
+            "/diagnostic_contract/codes/4",
+            "/diagnostic_contract/codes/24",
+            "/diagnostic_contract/codes/25",
+            "/diagnostic_contract/phases",
+            "/diagnostic_contract/mutation_rule"
+          ]
+        }
+      ]
+    },
+    {
+      "case_id": "HELIXOS-L9-015-C0577",
+      "l7_input_pointer": "/connection_materials/OS015/case/cases/576/given/input",
+      "base_ref": "classify",
+      "expanded_input_sha256": "39593fb283cb22badf86c59a265a9449d36bf4aaab9c29144709a5fe2482f7ce",
+      "changes": [
+        {
+          "path": [
+            "context",
+            "records",
+            "target_a",
+            "original_classification"
+          ],
+          "before": null,
+          "after": {},
+          "l4_predicate_candidates": [
+            "/diagnostic_contract/codes/4",
+            "/diagnostic_contract/codes/24",
+            "/diagnostic_contract/codes/25",
+            "/diagnostic_contract/phases",
+            "/diagnostic_contract/mutation_rule"
+          ]
+        }
+      ]
+    },
+    {
+      "case_id": "HELIXOS-L9-015-C0578",
+      "l7_input_pointer": "/connection_materials/OS015/case/cases/577/given/input",
+      "base_ref": "classify",
+      "expanded_input_sha256": "89f3fd01ece80c9576841b2b5c7556393198e1fb070aabaac0ef26da8b686fd9",
+      "changes": [
+        {
+          "path": [
+            "records",
+            "target_a",
+            "original_classification"
+          ],
+          "before": null,
+          "after": {},
+          "l4_predicate_candidates": [
+            "/diagnostic_contract/codes/4",
+            "/diagnostic_contract/codes/24",
+            "/diagnostic_contract/codes/25",
+            "/diagnostic_contract/phases",
+            "/diagnostic_contract/mutation_rule"
+          ]
+        },
+        {
+          "path": [
+            "context",
+            "records",
+            "target_a",
+            "original_classification"
+          ],
+          "before": null,
+          "after": {},
+          "l4_predicate_candidates": [
+            "/diagnostic_contract/codes/4",
+            "/diagnostic_contract/codes/24",
+            "/diagnostic_contract/codes/25",
+            "/diagnostic_contract/phases",
+            "/diagnostic_contract/mutation_rule"
+          ]
+        }
+      ]
+    },
+    {
+      "case_id": "HELIXOS-L9-015-C0579",
+      "l7_input_pointer": "/connection_materials/OS015/case/cases/578/given/input",
+      "base_ref": "classify",
+      "expanded_input_sha256": "b807d7c40121ac266011d10c9a5ce316c750eca0ee8c0548e17935c95e895009",
+      "changes": [
+        {
+          "path": [
+            "records",
+            "target_a",
+            "original_classification"
+          ],
+          "before": null,
+          "after": "UNKNOWN-PRIOR",
+          "l4_predicate_candidates": [
+            "/diagnostic_contract/codes/4",
+            "/diagnostic_contract/codes/24",
+            "/diagnostic_contract/codes/25",
+            "/diagnostic_contract/phases",
+            "/diagnostic_contract/mutation_rule"
+          ]
+        }
+      ]
+    },
+    {
+      "case_id": "HELIXOS-L9-015-C0580",
+      "l7_input_pointer": "/connection_materials/OS015/case/cases/579/given/input",
+      "base_ref": "classify",
+      "expanded_input_sha256": "d034a0faa908957715bba295565cc97d9542a44949478323adf1eb613350e9b6",
+      "changes": [
+        {
+          "path": [
+            "context",
+            "records",
+            "target_a",
+            "original_classification"
+          ],
+          "before": null,
+          "after": "UNKNOWN-PRIOR",
+          "l4_predicate_candidates": [
+            "/diagnostic_contract/codes/4",
+            "/diagnostic_contract/codes/24",
+            "/diagnostic_contract/codes/25",
+            "/diagnostic_contract/phases",
+            "/diagnostic_contract/mutation_rule"
+          ]
+        }
+      ]
+    },
+    {
+      "case_id": "HELIXOS-L9-015-C0581",
+      "l7_input_pointer": "/connection_materials/OS015/case/cases/580/given/input",
+      "base_ref": "classify",
+      "expanded_input_sha256": "876b14318dbe2118931db728413bb1162334edcf0fb2daa7841f80f1d3b12f81",
+      "changes": [
+        {
+          "path": [
+            "records",
+            "target_a",
+            "original_classification"
+          ],
+          "before": null,
+          "after": "UNKNOWN-PRIOR",
+          "l4_predicate_candidates": [
+            "/diagnostic_contract/codes/4",
+            "/diagnostic_contract/codes/24",
+            "/diagnostic_contract/codes/25",
+            "/diagnostic_contract/phases",
+            "/diagnostic_contract/mutation_rule"
+          ]
+        },
+        {
+          "path": [
+            "context",
+            "records",
+            "target_a",
+            "original_classification"
+          ],
+          "before": null,
+          "after": "UNKNOWN-PRIOR",
+          "l4_predicate_candidates": [
+            "/diagnostic_contract/codes/4",
+            "/diagnostic_contract/codes/24",
+            "/diagnostic_contract/codes/25",
+            "/diagnostic_contract/phases",
+            "/diagnostic_contract/mutation_rule"
+          ]
+        }
+      ]
+    },
+    {
+      "case_id": "HELIXOS-L9-015-C0582",
+      "l7_input_pointer": "/connection_materials/OS015/case/cases/581/given/input",
+      "base_ref": "classify",
+      "expanded_input_sha256": "f29a638488f00dc7c9b2e19875ddaf2ba05f4f3e458dadb7e94b1fd214969801",
+      "changes": [
+        {
+          "path": [
+            "records",
+            "target_a",
+            "original_classification"
+          ],
+          "before": null,
+          "after": {
+            "classification_ref": "OLD-CLASS-target_a",
+            "classification_revision": "CLASS-r1",
+            "event_id": "SYNTHETIC-EVENT_ID-target_a",
+            "event_revision": "EVENT-r1",
+            "kind": "old_kind",
+            "source_ref": "OLD-CLASS-SOURCE-target_a"
+          },
+          "l4_predicate_candidates": [
+            "/diagnostic_contract/codes/4",
+            "/diagnostic_contract/codes/24",
+            "/diagnostic_contract/codes/25",
+            "/diagnostic_contract/phases",
+            "/diagnostic_contract/mutation_rule"
+          ]
+        },
+        {
+          "path": [
+            "records",
+            "target_a",
+            "new_classification",
+            "classification_ref"
+          ],
+          "before": "NEW-CLASS-target_a",
+          "after": "OLD-CLASS-target_a",
+          "l4_predicate_candidates": [
+            "/diagnostic_contract/classification_fields",
+            "/diagnostic_contract/algorithm_dependencies/cf",
+            "/diagnostic_contract/phases",
+            "/diagnostic_contract/comparison_facets",
+            "/diagnostic_contract/aggregation"
+          ]
+        },
+        {
+          "path": [
+            "records",
+            "target_a",
+            "new_classification",
+            "prior_classification_ref"
+          ],
+          "before": null,
+          "after": "OLD-CLASS-target_a",
+          "l4_predicate_candidates": [
+            "/diagnostic_contract/classification_fields",
+            "/diagnostic_contract/algorithm_dependencies/cf",
+            "/diagnostic_contract/phases",
+            "/diagnostic_contract/comparison_facets",
+            "/diagnostic_contract/aggregation"
+          ]
+        },
+        {
+          "path": [
+            "records",
+            "target_a",
+            "new_classification",
+            "classification_revision"
+          ],
+          "before": "CLASS-r2",
+          "after": "CLASS-r1",
+          "l4_predicate_candidates": [
+            "/diagnostic_contract/classification_fields",
+            "/diagnostic_contract/algorithm_dependencies/cf",
+            "/diagnostic_contract/phases",
+            "/diagnostic_contract/comparison_facets",
+            "/diagnostic_contract/aggregation"
+          ]
+        },
+        {
+          "path": [
+            "records",
+            "target_a",
+            "new_classification",
+            "prior_classification_revision"
+          ],
+          "before": null,
+          "after": "CLASS-r1",
+          "l4_predicate_candidates": [
+            "/diagnostic_contract/classification_fields",
+            "/diagnostic_contract/algorithm_dependencies/cf",
+            "/diagnostic_contract/phases",
+            "/diagnostic_contract/comparison_facets",
+            "/diagnostic_contract/aggregation"
+          ]
+        },
+        {
+          "path": [
+            "context",
+            "records",
+            "target_a",
+            "original_classification"
+          ],
+          "before": null,
+          "after": {
+            "classification_ref": "OLD-CLASS-target_a",
+            "classification_revision": "CLASS-r1",
+            "event_id": "SYNTHETIC-EVENT_ID-target_a",
+            "event_revision": "EVENT-r1",
+            "kind": "old_kind",
+            "source_ref": "OLD-CLASS-SOURCE-target_a"
+          },
+          "l4_predicate_candidates": [
+            "/diagnostic_contract/codes/4",
+            "/diagnostic_contract/codes/24",
+            "/diagnostic_contract/codes/25",
+            "/diagnostic_contract/phases",
+            "/diagnostic_contract/mutation_rule"
+          ]
+        },
+        {
+          "path": [
+            "context",
+            "records",
+            "target_a",
+            "new_classification",
+            "classification_ref"
+          ],
+          "before": "NEW-CLASS-target_a",
+          "after": "OLD-CLASS-target_a",
+          "l4_predicate_candidates": [
+            "/diagnostic_contract/classification_fields",
+            "/diagnostic_contract/algorithm_dependencies/cf",
+            "/diagnostic_contract/phases",
+            "/diagnostic_contract/comparison_facets",
+            "/diagnostic_contract/aggregation"
+          ]
+        },
+        {
+          "path": [
+            "context",
+            "records",
+            "target_a",
+            "new_classification",
+            "prior_classification_ref"
+          ],
+          "before": null,
+          "after": "OLD-CLASS-target_a",
+          "l4_predicate_candidates": [
+            "/diagnostic_contract/classification_fields",
+            "/diagnostic_contract/algorithm_dependencies/cf",
+            "/diagnostic_contract/phases",
+            "/diagnostic_contract/comparison_facets",
+            "/diagnostic_contract/aggregation"
+          ]
+        },
+        {
+          "path": [
+            "context",
+            "records",
+            "target_a",
+            "new_classification",
+            "classification_revision"
+          ],
+          "before": "CLASS-r2",
+          "after": "CLASS-r1",
+          "l4_predicate_candidates": [
+            "/diagnostic_contract/classification_fields",
+            "/diagnostic_contract/algorithm_dependencies/cf",
+            "/diagnostic_contract/phases",
+            "/diagnostic_contract/comparison_facets",
+            "/diagnostic_contract/aggregation"
+          ]
+        },
+        {
+          "path": [
+            "context",
+            "records",
+            "target_a",
+            "new_classification",
+            "prior_classification_revision"
+          ],
+          "before": null,
+          "after": "CLASS-r1",
+          "l4_predicate_candidates": [
+            "/diagnostic_contract/classification_fields",
+            "/diagnostic_contract/algorithm_dependencies/cf",
+            "/diagnostic_contract/phases",
+            "/diagnostic_contract/comparison_facets",
+            "/diagnostic_contract/aggregation"
+          ]
+        }
+      ]
+    }
+  ]
+}
