@@ -308,6 +308,78 @@ class TestF05Add47SourceBodyWriter(unittest.TestCase):
             field["definition_assessment"]["judgment"]["causes"][0]["rule_pointer"],
             "/f05_detail_contract/field_summary_and_custody_writer_contract/patterns/0",
         )
+        field_input = raw["field_inputs"][0]
+        definition_cause = {
+            "kind": "aggregation_unestablished",
+            "target": {
+                "root": "validation_input",
+                "pointer": "/field_inputs/0/definition_refs",
+            },
+            "left": {
+                "tag": "original",
+                "read": {
+                    "tag": "present",
+                    "location": {
+                        "root": "validation_input",
+                        "pointer": "/field_inputs/0",
+                    },
+                    "value": field_input,
+                },
+            },
+            "right": {
+                "tag": "normative_literal",
+                "value": "formed local field_definition_evidence judgment",
+                "rule_pointer": "/f05_detail_contract/field_summary_and_custody_writer_contract/patterns/0/cause/right/value",
+            },
+            "rule_pointer": "/f05_detail_contract/field_summary_and_custody_writer_contract/patterns/0",
+        }
+        value_cause = {
+            "kind": "declaration_unresolved",
+            "target": {
+                "root": "validation_input",
+                "pointer": "/field_inputs/0/value_fact_refs/0",
+            },
+            "left": {
+                "tag": "original",
+                "read": {
+                    "tag": "present",
+                    "location": {
+                        "root": "validation_input",
+                        "pointer": "/semantic_records/10/meaning",
+                    },
+                    "value": raw["semantic_records"][10]["meaning"],
+                },
+            },
+            "right": {
+                "tag": "normative_literal",
+                "value": "original product_value role/form/value_role basis",
+                "rule_pointer": "/f05_detail_contract/field_summary_and_custody_writer_contract/patterns/1/cause/right/value",
+            },
+            "rule_pointer": "/f05_detail_contract/field_summary_and_custody_writer_contract/patterns/1",
+        }
+        self.assertEqual(field["definition_assessment"]["judgment"]["causes"], [definition_cause])
+        self.assertEqual(field["definition_assessment"]["causes"], [definition_cause])
+        self.assertEqual(field["definition_assessment"]["evidence_interpretations"], [])
+        self.assertEqual(field["definition_assessment"]["basis_occurrences"], [])
+        self.assertEqual(field["definition_material"]["causes"], [])
+        self.assertEqual(field["definition_material"]["aggregate"]["tag"], "formed")
+        self.assertEqual(field["value_material"]["causes"], [value_cause])
+        self.assertEqual(field["value_material"]["aggregate"]["tag"], "unformed")
+        self.assertEqual(field["value_material"]["aggregate"]["causes"], [value_cause])
+        self.assertEqual(field["value_assessment"]["judgment"]["causes"], [value_cause])
+        self.assertEqual(field["value_assessment"]["causes"], [value_cause])
+        self.assertEqual(
+            field["value_material"]["operands"][0]["projection_attempts"],
+            [],
+        )
+        self.assertEqual(
+            [cause["kind"] for cause in field["field_check"]["causes"]],
+            ["aggregation_unestablished", "declaration_unresolved"],
+        )
+        self.assertEqual(
+            [cause["kind"] for cause in field["causes"]],
+            ["declaration_unresolved", "aggregation_unestablished"],
+        )
 
     def test_unestablished_selection_cannot_form_empty_comparison(self):
         raw = _resolve_recipe_raw("CORE-NORMAL-UNIT-REQUIRED")
