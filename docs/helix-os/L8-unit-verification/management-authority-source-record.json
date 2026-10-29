@@ -646,11 +646,7 @@
         }
       ],
       "source_case_count": 48,
-      "unknown_case_refs": [
-        "HELIXOS-L9-015-C0502",
-        "HELIXOS-L9-015-C0519",
-        "HELIXOS-L9-015-C0536"
-      ]
+      "unknown_case_refs": []
     },
     {
       "id": "HELIXOS-L8-015-P-F01",
@@ -2056,9 +2052,7 @@
         }
       ],
       "source_case_count": 349,
-      "unknown_case_refs": [
-        "HELIXOS-L9-015-C0001"
-      ]
+      "unknown_case_refs": []
     },
     {
       "id": "HELIXOS-L8-015-P-F02",
@@ -2696,15 +2690,7 @@
         }
       ],
       "source_case_count": 157,
-      "unknown_case_refs": [
-        "HELIXOS-L9-015-C0002",
-        "HELIXOS-L9-015-C0003",
-        "HELIXOS-L9-015-C0511",
-        "HELIXOS-L9-015-C0528",
-        "HELIXOS-L9-015-C0545",
-        "HELIXOS-L9-015-C0551",
-        "HELIXOS-L9-015-C0557"
-      ]
+      "unknown_case_refs": []
     },
     {
       "id": "HELIXOS-L8-015-P-F03",
@@ -5009,7 +4995,36 @@
       "case_id": "HELIXOS-L9-015-C0001",
       "integration_case_ref": "HELIXOS-L9-015-C0001",
       "contract_ref": "HELIXOS-L5-015-P-F01",
-      "population_state": "unknown"
+      "population_state": "positive",
+      "condition": "management_material_corresponding",
+      "expected": {
+        "finding_codes": []
+      },
+      "expected_preserved": true,
+      "source_pointers": [
+        {
+          "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+          "pointers": [
+            "/requirements/24"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
+          "pointers": [
+            "/contracts/1",
+            "/diagnostic_contract/raw_retention",
+            "/diagnostic_contract/phases/inspect"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L5-detail-design/management-authority-source-record.json",
+          "pointers": [
+            "/contracts/1",
+            "/signatures/0",
+            "/return_root_trace/FN-OS015-01"
+          ]
+        }
+      ]
     },
     {
       "id": "HELIXOS-L9-015-C0002",
@@ -5050,7 +5065,40 @@
       "case_id": "HELIXOS-L9-015-C0002",
       "integration_case_ref": "HELIXOS-L9-015-C0002",
       "contract_ref": "HELIXOS-L5-015-P-F02",
-      "population_state": "unknown"
+      "population_state": "positive",
+      "condition": "management_material_corresponding",
+      "expected": {
+        "finding_codes": []
+      },
+      "expected_preserved": true,
+      "source_pointers": [
+        {
+          "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+          "pointers": [
+            "/requirements/25"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
+          "pointers": [
+            "/contracts/2",
+            "/diagnostic_contract/raw_retention",
+            "/diagnostic_contract/phases/classify",
+            "/diagnostic_contract/algorithm_python_document_text"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L5-detail-design/management-authority-source-record.json",
+          "pointers": [
+            "/contracts/2",
+            "/signatures/0",
+            "/return_root_trace/FN-OS015-01",
+            "/signatures/3",
+            "/return_root_trace/FN-OS015-04",
+            "/classification_retention_contract"
+          ]
+        }
+      ]
     },
     {
       "id": "HELIXOS-L9-015-C0003",
@@ -5091,7 +5139,40 @@
       "case_id": "HELIXOS-L9-015-C0003",
       "integration_case_ref": "HELIXOS-L9-015-C0003",
       "contract_ref": "HELIXOS-L5-015-P-F02",
-      "population_state": "unknown"
+      "population_state": "positive",
+      "condition": "management_material_corresponding",
+      "expected": {
+        "finding_codes": []
+      },
+      "expected_preserved": true,
+      "source_pointers": [
+        {
+          "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+          "pointers": [
+            "/requirements/25"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
+          "pointers": [
+            "/contracts/2",
+            "/diagnostic_contract/raw_retention",
+            "/diagnostic_contract/phases/correct",
+            "/diagnostic_contract/algorithm_python_document_text"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L5-detail-design/management-authority-source-record.json",
+          "pointers": [
+            "/contracts/2",
+            "/signatures/0",
+            "/return_root_trace/FN-OS015-01",
+            "/signatures/3",
+            "/return_root_trace/FN-OS015-04",
+            "/classification_retention_contract"
+          ]
+        }
+      ]
     },
     {
       "id": "HELIXOS-L9-015-C0004",
@@ -41636,7 +41717,36 @@
       "case_id": "HELIXOS-L9-015-C0502",
       "integration_case_ref": "HELIXOS-L9-015-C0502",
       "contract_ref": "HELIXOS-L5-015-P-B01",
-      "population_state": "unknown"
+      "population_state": "positive",
+      "condition": "management_material_corresponding",
+      "expected": {
+        "finding_codes": []
+      },
+      "expected_preserved": true,
+      "source_pointers": [
+        {
+          "path": "docs/helix-os/L3-requirements/business-requirements.json",
+          "pointers": [
+            "/requirements/4"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
+          "pointers": [
+            "/contracts/0",
+            "/diagnostic_contract/raw_retention",
+            "/diagnostic_contract/algorithm_python_document_text"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L5-detail-design/management-authority-source-record.json",
+          "pointers": [
+            "/contracts/0",
+            "/signatures/0",
+            "/return_root_trace/FN-OS015-01"
+          ]
+        }
+      ]
     },
     {
       "id": "HELIXOS-L9-015-C0503",
@@ -42241,7 +42351,36 @@
       "case_id": "HELIXOS-L9-015-C0511",
       "integration_case_ref": "HELIXOS-L9-015-C0511",
       "contract_ref": "HELIXOS-L5-015-P-F02",
-      "population_state": "unknown"
+      "population_state": "positive",
+      "condition": "management_material_corresponding",
+      "expected": {
+        "finding_codes": []
+      },
+      "expected_preserved": true,
+      "source_pointers": [
+        {
+          "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+          "pointers": [
+            "/requirements/25"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
+          "pointers": [
+            "/contracts/2",
+            "/diagnostic_contract/raw_retention",
+            "/diagnostic_contract/algorithm_python_document_text"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L5-detail-design/management-authority-source-record.json",
+          "pointers": [
+            "/contracts/2",
+            "/signatures/0",
+            "/return_root_trace/FN-OS015-01"
+          ]
+        }
+      ]
     },
     {
       "id": "HELIXOS-L9-015-C0512",
@@ -42758,7 +42897,40 @@
       "case_id": "HELIXOS-L9-015-C0519",
       "integration_case_ref": "HELIXOS-L9-015-C0519",
       "contract_ref": "HELIXOS-L5-015-P-B01",
-      "population_state": "unknown"
+      "population_state": "positive",
+      "condition": "management_material_corresponding",
+      "expected": {
+        "finding_codes": []
+      },
+      "expected_preserved": true,
+      "source_pointers": [
+        {
+          "path": "docs/helix-os/L3-requirements/business-requirements.json",
+          "pointers": [
+            "/requirements/4"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
+          "pointers": [
+            "/contracts/0",
+            "/diagnostic_contract/raw_retention",
+            "/diagnostic_contract/phases/classify",
+            "/diagnostic_contract/algorithm_python_document_text"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L5-detail-design/management-authority-source-record.json",
+          "pointers": [
+            "/contracts/0",
+            "/signatures/0",
+            "/return_root_trace/FN-OS015-01",
+            "/signatures/3",
+            "/return_root_trace/FN-OS015-04",
+            "/classification_retention_contract"
+          ]
+        }
+      ]
     },
     {
       "id": "HELIXOS-L9-015-C0520",
@@ -43363,7 +43535,40 @@
       "case_id": "HELIXOS-L9-015-C0528",
       "integration_case_ref": "HELIXOS-L9-015-C0528",
       "contract_ref": "HELIXOS-L5-015-P-F02",
-      "population_state": "unknown"
+      "population_state": "positive",
+      "condition": "management_material_corresponding",
+      "expected": {
+        "finding_codes": []
+      },
+      "expected_preserved": true,
+      "source_pointers": [
+        {
+          "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+          "pointers": [
+            "/requirements/25"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
+          "pointers": [
+            "/contracts/2",
+            "/diagnostic_contract/raw_retention",
+            "/diagnostic_contract/phases/classify",
+            "/diagnostic_contract/algorithm_python_document_text"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L5-detail-design/management-authority-source-record.json",
+          "pointers": [
+            "/contracts/2",
+            "/signatures/0",
+            "/return_root_trace/FN-OS015-01",
+            "/signatures/3",
+            "/return_root_trace/FN-OS015-04",
+            "/classification_retention_contract"
+          ]
+        }
+      ]
     },
     {
       "id": "HELIXOS-L9-015-C0529",
@@ -43880,7 +44085,40 @@
       "case_id": "HELIXOS-L9-015-C0536",
       "integration_case_ref": "HELIXOS-L9-015-C0536",
       "contract_ref": "HELIXOS-L5-015-P-B01",
-      "population_state": "unknown"
+      "population_state": "positive",
+      "condition": "management_material_corresponding",
+      "expected": {
+        "finding_codes": []
+      },
+      "expected_preserved": true,
+      "source_pointers": [
+        {
+          "path": "docs/helix-os/L3-requirements/business-requirements.json",
+          "pointers": [
+            "/requirements/4"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
+          "pointers": [
+            "/contracts/0",
+            "/diagnostic_contract/raw_retention",
+            "/diagnostic_contract/phases/correct",
+            "/diagnostic_contract/algorithm_python_document_text"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L5-detail-design/management-authority-source-record.json",
+          "pointers": [
+            "/contracts/0",
+            "/signatures/0",
+            "/return_root_trace/FN-OS015-01",
+            "/signatures/3",
+            "/return_root_trace/FN-OS015-04",
+            "/classification_retention_contract"
+          ]
+        }
+      ]
     },
     {
       "id": "HELIXOS-L9-015-C0537",
@@ -44485,7 +44723,40 @@
       "case_id": "HELIXOS-L9-015-C0545",
       "integration_case_ref": "HELIXOS-L9-015-C0545",
       "contract_ref": "HELIXOS-L5-015-P-F02",
-      "population_state": "unknown"
+      "population_state": "positive",
+      "condition": "management_material_corresponding",
+      "expected": {
+        "finding_codes": []
+      },
+      "expected_preserved": true,
+      "source_pointers": [
+        {
+          "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+          "pointers": [
+            "/requirements/25"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
+          "pointers": [
+            "/contracts/2",
+            "/diagnostic_contract/raw_retention",
+            "/diagnostic_contract/phases/correct",
+            "/diagnostic_contract/algorithm_python_document_text"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L5-detail-design/management-authority-source-record.json",
+          "pointers": [
+            "/contracts/2",
+            "/signatures/0",
+            "/return_root_trace/FN-OS015-01",
+            "/signatures/3",
+            "/return_root_trace/FN-OS015-04",
+            "/classification_retention_contract"
+          ]
+        }
+      ]
     },
     {
       "id": "HELIXOS-L9-015-C0546",
@@ -44866,7 +45137,40 @@
       "case_id": "HELIXOS-L9-015-C0551",
       "integration_case_ref": "HELIXOS-L9-015-C0551",
       "contract_ref": "HELIXOS-L5-015-P-F02",
-      "population_state": "unknown"
+      "population_state": "positive",
+      "condition": "management_material_corresponding",
+      "expected": {
+        "finding_codes": []
+      },
+      "expected_preserved": true,
+      "source_pointers": [
+        {
+          "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+          "pointers": [
+            "/requirements/25"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
+          "pointers": [
+            "/contracts/2",
+            "/diagnostic_contract/raw_retention",
+            "/diagnostic_contract/phases/classify",
+            "/diagnostic_contract/algorithm_python_document_text"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L5-detail-design/management-authority-source-record.json",
+          "pointers": [
+            "/contracts/2",
+            "/signatures/0",
+            "/return_root_trace/FN-OS015-01",
+            "/signatures/3",
+            "/return_root_trace/FN-OS015-04",
+            "/classification_retention_contract"
+          ]
+        }
+      ]
     },
     {
       "id": "HELIXOS-L9-015-C0552",
@@ -45247,7 +45551,40 @@
       "case_id": "HELIXOS-L9-015-C0557",
       "integration_case_ref": "HELIXOS-L9-015-C0557",
       "contract_ref": "HELIXOS-L5-015-P-F02",
-      "population_state": "unknown"
+      "population_state": "positive",
+      "condition": "management_material_corresponding",
+      "expected": {
+        "finding_codes": []
+      },
+      "expected_preserved": true,
+      "source_pointers": [
+        {
+          "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+          "pointers": [
+            "/requirements/25"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
+          "pointers": [
+            "/contracts/2",
+            "/diagnostic_contract/raw_retention",
+            "/diagnostic_contract/phases/correct",
+            "/diagnostic_contract/algorithm_python_document_text"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L5-detail-design/management-authority-source-record.json",
+          "pointers": [
+            "/contracts/2",
+            "/signatures/0",
+            "/return_root_trace/FN-OS015-01",
+            "/signatures/3",
+            "/return_root_trace/FN-OS015-04",
+            "/classification_retention_contract"
+          ]
+        }
+      ]
     },
     {
       "id": "HELIXOS-L9-015-C0558",
