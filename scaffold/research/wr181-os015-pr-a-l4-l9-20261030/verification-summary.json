@@ -4,7 +4,7 @@
   "pair": "OS015 L4/L9",
   "base_revision": "821a655ad6949b2a7a5344b26e3c170cccc353a6",
   "source_candidate_revision": "02e177494316f6ccb3ff669f79477fbe8fc29b01",
-  "candidate_revision": "pending_commit",
+  "candidate_revision": "2a739ab4abdf9c88ad13e7ef1b8622ef6249a38e",
   "latest_main": "821a655ad6949b2a7a5344b26e3c170cccc353a6",
   "latest_main_verified_by": "git ls-remote origin refs/heads/main",
   "changed_paths": [
@@ -53,18 +53,38 @@
       "overall": "FAIL",
       "L4_L9_pair": "PASS",
       "L5_L8_pair": "PASS",
-      "class_counts": {"L4": 31, "L5": 31, "L8": 25, "L9": 25},
-      "case_rows": {"L8": 583, "L9": 583},
+      "class_counts": {
+        "L4": 31,
+        "L5": 31,
+        "L8": 25,
+        "L9": 25
+      },
+      "case_rows": {
+        "L8": 583,
+        "L9": 583
+      },
       "matched_cases": 431,
       "failure_count": 165,
-      "failure_reasons": {"negative_case_class_ref_missing_or_unresolved:L8": 141, "class_key_missing_from_layer:L8": 12, "class_key_missing_from_layer:L9": 12}
+      "failure_reasons": {
+        "negative_case_class_ref_missing_or_unresolved:L8": 141,
+        "class_key_missing_from_layer:L8": 12,
+        "class_key_missing_from_layer:L9": 12
+      }
     },
     "candidate": {
       "overall": "FAIL",
       "L4_L9_pair": "PASS",
       "L5_L8_pair": "PASS",
-      "class_counts": {"L4": 33, "L5": 31, "L8": 25, "L9": 27},
-      "case_rows": {"L8": 583, "L9": 583},
+      "class_counts": {
+        "L4": 33,
+        "L5": 31,
+        "L8": 25,
+        "L9": 27
+      },
+      "case_rows": {
+        "L8": 583,
+        "L9": 583
+      },
       "matched_cases": 431,
       "failure_count": 175,
       "failure_increase": 10,
@@ -83,23 +103,52 @@
     "before": {
       "all_mechanical_matched": false,
       "CHK-PIN-SHA256": "not_evaluated:no_pinned_inputs_found",
-      "CHK-JSON-POINTER": {"checked": 67, "failures": 2421},
+      "CHK-JSON-POINTER": {
+        "checked": 67,
+        "failures": 2421
+      },
       "CHK-NEG-4WAY-MATCH": "not_evaluated:missing_or_unparsed_layer_documents",
-      "CHK-PUBLIC-FN-FREEZE": {"failures": 8},
+      "CHK-PUBLIC-FN-FREEZE": {
+        "failures": 8
+      },
       "CHK-L3-OBLIGATION-MAP": "not_evaluated:no_l3_obligations_found"
     },
     "after": {
       "all_mechanical_matched": false,
       "CHK-PIN-SHA256": "not_evaluated:no_pinned_inputs_found",
-      "CHK-JSON-POINTER": {"checked": 67, "failures": 2421},
+      "CHK-JSON-POINTER": {
+        "checked": 67,
+        "failures": 2421
+      },
       "CHK-NEG-4WAY-MATCH": "not_evaluated:missing_or_unparsed_layer_documents",
-      "CHK-PUBLIC-FN-FREEZE": {"failures": 8},
+      "CHK-PUBLIC-FN-FREEZE": {
+        "failures": 8
+      },
       "CHK-L3-OBLIGATION-MAP": "not_evaluated:no_l3_obligations_found"
     },
     "existing_record_unchanged": true
   },
-  "scfctl": {"validate_bindings": 163, "validation_failures": "pending", "stale": "0"},
-  "diff_check": {"candidate": "pending", "latest_main_trial": "pending"},
-  "not_claimed": ["L5/L8 pair completion", "L9 L5 failure-rule source pointers", "112 unassigned cases", "negative overall PASS", "full coverage", "freeze established", "runtime/test/CI execution"],
+  "scfctl": {
+    "validate_bindings": 162,
+    "validation_failures": 0,
+    "stale": 0
+  },
+  "diff_check": {
+    "candidate": {
+      "base": "821a655ad6949b2a7a5344b26e3c170cccc353a6",
+      "exit_code": 0,
+      "output": ""
+    },
+    "latest_main_trial": "pending"
+  },
+  "not_claimed": [
+    "L5/L8 pair completion",
+    "L9 L5 failure-rule source pointers",
+    "112 unassigned cases",
+    "negative overall PASS",
+    "full coverage",
+    "freeze established",
+    "runtime/test/CI execution"
+  ],
   "raw_checker_outputs_committed": false
 }
