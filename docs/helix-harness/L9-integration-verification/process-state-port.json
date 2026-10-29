@@ -20674,5 +20674,2648 @@
     "meaning": "L8/L9各層の実行fixture/input/source packetを同層の変更前snapshotから辿れるよう外部化した。元case ID、source_case_refs、expected*、execution_state、effect、既存fixture関係の参照は維持した。L7からL8/L9の期待を生成・置換していない。 Ownership-cap修正で固定source参照ではない sha256/*_sha256 のみ追加撤去。expected object、effect、execution_state、ID、固定source pinは維持。",
     "removed_key_rule": "CHK-OWNERSHIP-CAP-L8L9: remove non-fixed-reference sha256/*_sha256 fields; preserve fixed path+revision/source pins. Removed key counts: expected_canonical_sha256=1, input_canonical_sha256=1",
     "use_boundary": "固定した変更前同層sourceはcase materialの再構成・比較に限る。期待値の生成、下位層oracle、承認を意味しない。"
+  },
+  "negative_alignment_audit": {
+    "source_population_count": 182,
+    "expectation_equal_but_unprojected_count": 7,
+    "checker_alignment_case_count": 0,
+    "unmatched_source_case_count": 182,
+    "projection_scope": "L9の元expected_materialにはcheckerが必要とするordered finding codeとreturn ownerがないため、L8/L9 case projectionは未形成。",
+    "unmatched_cases": [
+      {
+        "id": "H003-B01-GROUNDING-MISSING-purpose",
+        "reason": "normalized_expectations_differ",
+        "l8_state_value": null,
+        "l9_state_value": null,
+        "l8_source_pointer": {
+          "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+          "pointer": "/cases/0/cases/1/expected_partial_values"
+        },
+        "l9_source_pointer": {
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "pointer": "/cases/0/negative_cases/0/expected_material"
+        }
+      },
+      {
+        "id": "H003-B01-GROUNDING-MISSING-premises",
+        "reason": "normalized_expectations_differ",
+        "l8_state_value": null,
+        "l9_state_value": null,
+        "l8_source_pointer": {
+          "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+          "pointer": "/cases/0/cases/2/expected_partial_values"
+        },
+        "l9_source_pointer": {
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "pointer": "/cases/0/negative_cases/1/expected_material"
+        }
+      },
+      {
+        "id": "H003-B01-GROUNDING-MISSING-legacy_assets",
+        "reason": "normalized_expectations_differ",
+        "l8_state_value": null,
+        "l9_state_value": null,
+        "l8_source_pointer": {
+          "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+          "pointer": "/cases/0/cases/3/expected_partial_values"
+        },
+        "l9_source_pointer": {
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "pointer": "/cases/0/negative_cases/2/expected_material"
+        }
+      },
+      {
+        "id": "H003-B01-GROUNDING-MISSING-external_examples",
+        "reason": "normalized_expectations_differ",
+        "l8_state_value": null,
+        "l9_state_value": null,
+        "l8_source_pointer": {
+          "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+          "pointer": "/cases/0/cases/4/expected_partial_values"
+        },
+        "l9_source_pointer": {
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "pointer": "/cases/0/negative_cases/3/expected_material"
+        }
+      },
+      {
+        "id": "H003-B01-GROUNDING-MISSING-comparison",
+        "reason": "normalized_expectations_differ",
+        "l8_state_value": null,
+        "l9_state_value": null,
+        "l8_source_pointer": {
+          "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+          "pointer": "/cases/0/cases/5/expected_partial_values"
+        },
+        "l9_source_pointer": {
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "pointer": "/cases/0/negative_cases/4/expected_material"
+        }
+      },
+      {
+        "id": "H003-B01-QUALITY-DOUBLE-WRITER",
+        "reason": "normalized_expectations_differ",
+        "l8_state_value": null,
+        "l9_state_value": null,
+        "l8_source_pointer": {
+          "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+          "pointer": "/cases/0/cases/6/expected_partial_values"
+        },
+        "l9_source_pointer": {
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "pointer": "/cases/0/negative_cases/5/expected_material"
+        }
+      },
+      {
+        "id": "H003-B01-QUALITY-NOT-EXECUTED",
+        "reason": "normalized_expectations_differ",
+        "l8_state_value": null,
+        "l9_state_value": null,
+        "l8_source_pointer": {
+          "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+          "pointer": "/cases/0/cases/7/expected_partial_values"
+        },
+        "l9_source_pointer": {
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "pointer": "/cases/0/negative_cases/6/expected_material"
+        }
+      },
+      {
+        "id": "H003-B01-QUALITY-FOREIGN-REVISION",
+        "reason": "normalized_expectations_differ",
+        "l8_state_value": null,
+        "l9_state_value": null,
+        "l8_source_pointer": {
+          "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+          "pointer": "/cases/0/cases/8/expected_partial_values"
+        },
+        "l9_source_pointer": {
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "pointer": "/cases/0/negative_cases/7/expected_material"
+        }
+      },
+      {
+        "id": "H003-B01-HUMAN-MISSING",
+        "reason": "normalized_expectations_differ",
+        "l8_state_value": null,
+        "l9_state_value": null,
+        "l8_source_pointer": {
+          "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+          "pointer": "/cases/0/cases/9/expected_partial_values"
+        },
+        "l9_source_pointer": {
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "pointer": "/cases/0/negative_cases/8/expected_material"
+        }
+      },
+      {
+        "id": "H003-B01-HUMAN-UNACCEPTED-AXIS",
+        "reason": "normalized_expectations_differ",
+        "l8_state_value": null,
+        "l9_state_value": null,
+        "l8_source_pointer": {
+          "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+          "pointer": "/cases/0/cases/10/expected_partial_values"
+        },
+        "l9_source_pointer": {
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "pointer": "/cases/0/negative_cases/9/expected_material"
+        }
+      },
+      {
+        "id": "H003-B01-AI-AS-ORIGINAL",
+        "reason": "normalized_expectations_differ",
+        "l8_state_value": null,
+        "l9_state_value": null,
+        "l8_source_pointer": {
+          "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+          "pointer": "/cases/0/cases/11/expected_partial_values"
+        },
+        "l9_source_pointer": {
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "pointer": "/cases/0/negative_cases/10/expected_material"
+        }
+      },
+      {
+        "id": "H003-B01-HUMAN-FOREIGN-SCOPE",
+        "reason": "normalized_expectations_differ",
+        "l8_state_value": null,
+        "l9_state_value": null,
+        "l8_source_pointer": {
+          "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+          "pointer": "/cases/0/cases/12/expected_partial_values"
+        },
+        "l9_source_pointer": {
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "pointer": "/cases/0/negative_cases/11/expected_material"
+        }
+      },
+      {
+        "id": "H003-B01-UNRESOLVED-FINDING",
+        "reason": "normalized_expectations_differ",
+        "l8_state_value": null,
+        "l9_state_value": null,
+        "l8_source_pointer": {
+          "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+          "pointer": "/cases/0/cases/13/expected_partial_values"
+        },
+        "l9_source_pointer": {
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "pointer": "/cases/0/negative_cases/12/expected_material"
+        }
+      },
+      {
+        "id": "H003-B01-MANAGEMENT-DIRECT-WRITE",
+        "reason": "normalized_expectations_differ",
+        "l8_state_value": null,
+        "l9_state_value": null,
+        "l8_source_pointer": {
+          "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+          "pointer": "/cases/0/cases/14/expected_partial_values"
+        },
+        "l9_source_pointer": {
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "pointer": "/cases/0/negative_cases/13/expected_material"
+        }
+      },
+      {
+        "id": "H003-B01-REQUEST-AS-APPROVAL",
+        "reason": "normalized_expectations_differ",
+        "l8_state_value": null,
+        "l9_state_value": null,
+        "l8_source_pointer": {
+          "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+          "pointer": "/cases/0/cases/15/expected_partial_values"
+        },
+        "l9_source_pointer": {
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "pointer": "/cases/0/negative_cases/14/expected_material"
+        }
+      },
+      {
+        "id": "H003-B01-AI-AS-HUMAN",
+        "reason": "normalized_expectations_differ",
+        "l8_state_value": null,
+        "l9_state_value": null,
+        "l8_source_pointer": {
+          "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+          "pointer": "/cases/0/cases/16/expected_partial_values"
+        },
+        "l9_source_pointer": {
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "pointer": "/cases/0/negative_cases/15/expected_material"
+        }
+      },
+      {
+        "id": "H003-B01-ERASE-ACCEPTED-AXES",
+        "reason": "normalized_expectations_differ",
+        "l8_state_value": null,
+        "l9_state_value": null,
+        "l8_source_pointer": {
+          "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+          "pointer": "/cases/0/cases/17/expected_partial_values"
+        },
+        "l9_source_pointer": {
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "pointer": "/cases/0/negative_cases/16/expected_material"
+        }
+      },
+      {
+        "id": "H003-B01-DESIGN-AXES-AS-L11",
+        "reason": "normalized_expectations_differ",
+        "l8_state_value": null,
+        "l9_state_value": null,
+        "l8_source_pointer": {
+          "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+          "pointer": "/cases/0/cases/18/expected_partial_values"
+        },
+        "l9_source_pointer": {
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "pointer": "/cases/0/negative_cases/17/expected_material"
+        }
+      },
+      {
+        "id": "H003-B01-REQUEST-AS-COMPLETION",
+        "reason": "normalized_expectations_differ",
+        "l8_state_value": null,
+        "l9_state_value": null,
+        "l8_source_pointer": {
+          "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+          "pointer": "/cases/0/cases/19/expected_partial_values"
+        },
+        "l9_source_pointer": {
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "pointer": "/cases/0/negative_cases/18/expected_material"
+        }
+      },
+      {
+        "id": "H003-B01-REACTION-AS-REQUIREMENT-APPROVAL",
+        "reason": "normalized_expectations_differ",
+        "l8_state_value": null,
+        "l9_state_value": null,
+        "l8_source_pointer": {
+          "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+          "pointer": "/cases/0/cases/20/expected_partial_values"
+        },
+        "l9_source_pointer": {
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "pointer": "/cases/0/negative_cases/19/expected_material"
+        }
+      },
+      {
+        "id": "H003-B01-MANAGEMENT-URGENCY-MISSING-PAIR",
+        "reason": "normalized_expectations_differ",
+        "l8_state_value": null,
+        "l9_state_value": null,
+        "l8_source_pointer": {
+          "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+          "pointer": "/cases/0/cases/21/expected_partial_values"
+        },
+        "l9_source_pointer": {
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "pointer": "/cases/0/negative_cases/20/expected_material"
+        }
+      },
+      {
+        "id": "H003-B01-MANAGEMENT-URGENCY-MISSING-ACCEPTANCE",
+        "reason": "normalized_expectations_differ",
+        "l8_state_value": null,
+        "l9_state_value": null,
+        "l8_source_pointer": {
+          "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+          "pointer": "/cases/0/cases/22/expected_partial_values"
+        },
+        "l9_source_pointer": {
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "pointer": "/cases/0/negative_cases/21/expected_material"
+        }
+      },
+      {
+        "id": "H003-F01-MISSING-agreement",
+        "reason": "normalized_expectations_differ",
+        "l8_state_value": null,
+        "l9_state_value": null,
+        "l8_source_pointer": {
+          "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+          "pointer": "/cases/1/cases/5/expected_partial_values"
+        },
+        "l9_source_pointer": {
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "pointer": "/cases/1/negative_cases/0/expected_material"
+        }
+      },
+      {
+        "id": "H003-F01-MISSING-requirements_approval",
+        "reason": "normalized_expectations_differ",
+        "l8_state_value": null,
+        "l9_state_value": null,
+        "l8_source_pointer": {
+          "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+          "pointer": "/cases/1/cases/6/expected_partial_values"
+        },
+        "l9_source_pointer": {
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "pointer": "/cases/1/negative_cases/1/expected_material"
+        }
+      },
+      {
+        "id": "H003-F01-MISSING-pair",
+        "reason": "normalized_expectations_differ",
+        "l8_state_value": null,
+        "l9_state_value": null,
+        "l8_source_pointer": {
+          "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+          "pointer": "/cases/1/cases/7/expected_partial_values"
+        },
+        "l9_source_pointer": {
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "pointer": "/cases/1/negative_cases/2/expected_material"
+        }
+      },
+      {
+        "id": "H003-F01-FOREIGN-APPROVAL",
+        "reason": "normalized_expectations_differ",
+        "l8_state_value": null,
+        "l9_state_value": null,
+        "l8_source_pointer": {
+          "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+          "pointer": "/cases/1/cases/8/expected_partial_values"
+        },
+        "l9_source_pointer": {
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "pointer": "/cases/1/negative_cases/3/expected_material"
+        }
+      },
+      {
+        "id": "H003-F01-CONSULTATION-AS-APPROVAL",
+        "reason": "normalized_expectations_differ",
+        "l8_state_value": null,
+        "l9_state_value": null,
+        "l8_source_pointer": {
+          "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+          "pointer": "/cases/1/cases/9/expected_partial_values"
+        },
+        "l9_source_pointer": {
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "pointer": "/cases/1/negative_cases/4/expected_material"
+        }
+      },
+      {
+        "id": "H003-F01-WORK_REQUEST-AS-APPROVAL",
+        "reason": "normalized_expectations_differ",
+        "l8_state_value": null,
+        "l9_state_value": null,
+        "l8_source_pointer": {
+          "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+          "pointer": "/cases/1/cases/10/expected_partial_values"
+        },
+        "l9_source_pointer": {
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "pointer": "/cases/1/negative_cases/5/expected_material"
+        }
+      },
+      {
+        "id": "H003-F01-SELECTION-AS-APPROVAL",
+        "reason": "normalized_expectations_differ",
+        "l8_state_value": null,
+        "l9_state_value": null,
+        "l8_source_pointer": {
+          "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+          "pointer": "/cases/1/cases/11/expected_partial_values"
+        },
+        "l9_source_pointer": {
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "pointer": "/cases/1/negative_cases/6/expected_material"
+        }
+      },
+      {
+        "id": "H003-F01-OPERATION_AUTHORIZATION-AS-APPROVAL",
+        "reason": "normalized_expectations_differ",
+        "l8_state_value": null,
+        "l9_state_value": null,
+        "l8_source_pointer": {
+          "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+          "pointer": "/cases/1/cases/12/expected_partial_values"
+        },
+        "l9_source_pointer": {
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "pointer": "/cases/1/negative_cases/7/expected_material"
+        }
+      },
+      {
+        "id": "H003-F01-UNDELEGATED-MEANING",
+        "reason": "normalized_expectations_differ",
+        "l8_state_value": null,
+        "l9_state_value": null,
+        "l8_source_pointer": {
+          "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+          "pointer": "/cases/1/cases/13/expected_partial_values"
+        },
+        "l9_source_pointer": {
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "pointer": "/cases/1/negative_cases/8/expected_material"
+        }
+      },
+      {
+        "id": "H003-F01-UNDELEGATED-AUTHORITY",
+        "reason": "normalized_expectations_differ",
+        "l8_state_value": null,
+        "l9_state_value": null,
+        "l8_source_pointer": {
+          "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+          "pointer": "/cases/1/cases/14/expected_partial_values"
+        },
+        "l9_source_pointer": {
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "pointer": "/cases/1/negative_cases/9/expected_material"
+        }
+      },
+      {
+        "id": "H003-F01-REPEAT-APPROVAL-FOR-DETAIL",
+        "reason": "normalized_expectations_differ",
+        "l8_state_value": null,
+        "l9_state_value": null,
+        "l8_source_pointer": {
+          "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+          "pointer": "/cases/1/cases/15/expected_partial_values"
+        },
+        "l9_source_pointer": {
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "pointer": "/cases/1/negative_cases/10/expected_material"
+        }
+      },
+      {
+        "id": "H003-F01-IMPLEMENTATION-AS-COMPLETION",
+        "reason": "normalized_expectations_differ",
+        "l8_state_value": null,
+        "l9_state_value": null,
+        "l8_source_pointer": {
+          "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+          "pointer": "/cases/1/cases/16/expected_partial_values"
+        },
+        "l9_source_pointer": {
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "pointer": "/cases/1/negative_cases/11/expected_material"
+        }
+      },
+      {
+        "id": "H003-F01-CONSULTATION-AS-ACTUAL-APPROVAL",
+        "reason": "normalized_expectations_differ",
+        "l8_state_value": null,
+        "l9_state_value": null,
+        "l8_source_pointer": {
+          "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+          "pointer": "/cases/1/cases/17/expected_partial_values"
+        },
+        "l9_source_pointer": {
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "pointer": "/cases/1/negative_cases/12/expected_material"
+        }
+      },
+      {
+        "id": "H003-F01-FREEZE-VERIFICATION",
+        "reason": "normalized_expectations_differ",
+        "l8_state_value": null,
+        "l9_state_value": null,
+        "l8_source_pointer": {
+          "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+          "pointer": "/cases/1/cases/18/expected_partial_values"
+        },
+        "l9_source_pointer": {
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "pointer": "/cases/1/negative_cases/13/expected_material"
+        }
+      },
+      {
+        "id": "H003-F01-REOPEN-UNRESOLVED",
+        "reason": "normalized_expectations_differ",
+        "l8_state_value": null,
+        "l9_state_value": null,
+        "l8_source_pointer": {
+          "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+          "pointer": "/cases/1/cases/19/expected_partial_values"
+        },
+        "l9_source_pointer": {
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "pointer": "/cases/1/negative_cases/14/expected_material"
+        }
+      },
+      {
+        "id": "H003-F01-COMPLETE-PAIR",
+        "reason": "normalized_expectations_differ",
+        "l8_state_value": null,
+        "l9_state_value": null,
+        "l8_source_pointer": {
+          "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+          "pointer": "/cases/1/cases/20/expected_partial_values"
+        },
+        "l9_source_pointer": {
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "pointer": "/cases/1/negative_cases/15/expected_material"
+        }
+      },
+      {
+        "id": "H003-F01-APPROVAL-UNKNOWN",
+        "reason": "normalized_expectations_differ",
+        "l8_state_value": null,
+        "l9_state_value": null,
+        "l8_source_pointer": {
+          "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+          "pointer": "/cases/1/cases/21/expected_partial_values"
+        },
+        "l9_source_pointer": {
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "pointer": "/cases/1/negative_cases/16/expected_material"
+        }
+      },
+      {
+        "id": "H003-F02-L2-MISSING",
+        "reason": "normalized_expectations_differ",
+        "l8_state_value": null,
+        "l9_state_value": null,
+        "l8_source_pointer": {
+          "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+          "pointer": "/cases/2/cases/3/expected_partial_values"
+        },
+        "l9_source_pointer": {
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "pointer": "/cases/2/negative_cases/0/expected_material"
+        }
+      },
+      {
+        "id": "H003-F02-POC-SKIPPED-BY-NO-SCREEN",
+        "reason": "normalized_expectations_differ",
+        "l8_state_value": null,
+        "l9_state_value": null,
+        "l8_source_pointer": {
+          "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+          "pointer": "/cases/2/cases/4/expected_partial_values"
+        },
+        "l9_source_pointer": {
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "pointer": "/cases/2/negative_cases/1/expected_material"
+        }
+      },
+      {
+        "id": "H003-F02-POC-RESULT-MISSING",
+        "reason": "normalized_expectations_differ",
+        "l8_state_value": null,
+        "l9_state_value": null,
+        "l8_source_pointer": {
+          "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+          "pointer": "/cases/2/cases/5/expected_partial_values"
+        },
+        "l9_source_pointer": {
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "pointer": "/cases/2/negative_cases/2/expected_material"
+        }
+      },
+      {
+        "id": "H003-F02-POC-RESULT-FAIL",
+        "reason": "normalized_expectations_differ",
+        "l8_state_value": null,
+        "l9_state_value": null,
+        "l8_source_pointer": {
+          "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+          "pointer": "/cases/2/cases/6/expected_partial_values"
+        },
+        "l9_source_pointer": {
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "pointer": "/cases/2/negative_cases/3/expected_material"
+        }
+      },
+      {
+        "id": "H003-F02-RETURN-MISSING-backflow",
+        "reason": "normalized_expectations_differ",
+        "l8_state_value": null,
+        "l9_state_value": null,
+        "l8_source_pointer": {
+          "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+          "pointer": "/cases/2/cases/7/expected_partial_values"
+        },
+        "l9_source_pointer": {
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "pointer": "/cases/2/negative_cases/4/expected_material"
+        }
+      },
+      {
+        "id": "H003-F02-RETURN-MISSING-secondary_008",
+        "reason": "normalized_expectations_differ",
+        "l8_state_value": null,
+        "l9_state_value": null,
+        "l8_source_pointer": {
+          "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+          "pointer": "/cases/2/cases/8/expected_partial_values"
+        },
+        "l9_source_pointer": {
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "pointer": "/cases/2/negative_cases/5/expected_material"
+        }
+      },
+      {
+        "id": "H003-F02-RETURN-MISSING-decide",
+        "reason": "normalized_expectations_differ",
+        "l8_state_value": null,
+        "l9_state_value": null,
+        "l8_source_pointer": {
+          "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+          "pointer": "/cases/2/cases/9/expected_partial_values"
+        },
+        "l9_source_pointer": {
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "pointer": "/cases/2/negative_cases/6/expected_material"
+        }
+      },
+      {
+        "id": "H003-F02-RETURN-MISSING-agreement",
+        "reason": "normalized_expectations_differ",
+        "l8_state_value": null,
+        "l9_state_value": null,
+        "l8_source_pointer": {
+          "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+          "pointer": "/cases/2/cases/10/expected_partial_values"
+        },
+        "l9_source_pointer": {
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "pointer": "/cases/2/negative_cases/7/expected_material"
+        }
+      },
+      {
+        "id": "H003-F02-RETURN-MISSING-pair_refreeze",
+        "reason": "normalized_expectations_differ",
+        "l8_state_value": null,
+        "l9_state_value": null,
+        "l8_source_pointer": {
+          "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+          "pointer": "/cases/2/cases/11/expected_partial_values"
+        },
+        "l9_source_pointer": {
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "pointer": "/cases/2/negative_cases/8/expected_material"
+        }
+      },
+      {
+        "id": "H003-F02-OLD-AGREEMENT",
+        "reason": "normalized_expectations_differ",
+        "l8_state_value": null,
+        "l9_state_value": null,
+        "l8_source_pointer": {
+          "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+          "pointer": "/cases/2/cases/12/expected_partial_values"
+        },
+        "l9_source_pointer": {
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "pointer": "/cases/2/negative_cases/9/expected_material"
+        }
+      },
+      {
+        "id": "H003-F02-AI-AS-DECIDE",
+        "reason": "normalized_expectations_differ",
+        "l8_state_value": null,
+        "l9_state_value": null,
+        "l8_source_pointer": {
+          "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+          "pointer": "/cases/2/cases/13/expected_partial_values"
+        },
+        "l9_source_pointer": {
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "pointer": "/cases/2/negative_cases/10/expected_material"
+        }
+      },
+      {
+        "id": "H003-F02-NA-WITHOUT-REASON",
+        "reason": "normalized_expectations_differ",
+        "l8_state_value": null,
+        "l9_state_value": null,
+        "l8_source_pointer": {
+          "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+          "pointer": "/cases/2/cases/14/expected_partial_values"
+        },
+        "l9_source_pointer": {
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "pointer": "/cases/2/negative_cases/11/expected_material"
+        }
+      },
+      {
+        "id": "H003-F02-POC-AS-L3-FREEZE",
+        "reason": "normalized_expectations_differ",
+        "l8_state_value": null,
+        "l9_state_value": null,
+        "l8_source_pointer": {
+          "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+          "pointer": "/cases/2/cases/15/expected_partial_values"
+        },
+        "l9_source_pointer": {
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "pointer": "/cases/2/negative_cases/12/expected_material"
+        }
+      },
+      {
+        "id": "H003-F02-RESULT-AS-ADOPTION",
+        "reason": "normalized_expectations_differ",
+        "l8_state_value": null,
+        "l9_state_value": null,
+        "l8_source_pointer": {
+          "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+          "pointer": "/cases/2/cases/16/expected_partial_values"
+        },
+        "l9_source_pointer": {
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "pointer": "/cases/2/negative_cases/13/expected_material"
+        }
+      },
+      {
+        "id": "H003-F02-RESULT-AS-APPROVAL",
+        "reason": "normalized_expectations_differ",
+        "l8_state_value": null,
+        "l9_state_value": null,
+        "l8_source_pointer": {
+          "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+          "pointer": "/cases/2/cases/17/expected_partial_values"
+        },
+        "l9_source_pointer": {
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "pointer": "/cases/2/negative_cases/14/expected_material"
+        }
+      },
+      {
+        "id": "H003-F02-RETURN-AS-COMPLETION",
+        "reason": "normalized_expectations_differ",
+        "l8_state_value": null,
+        "l9_state_value": null,
+        "l8_source_pointer": {
+          "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+          "pointer": "/cases/2/cases/18/expected_partial_values"
+        },
+        "l9_source_pointer": {
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "pointer": "/cases/2/negative_cases/15/expected_material"
+        }
+      },
+      {
+        "id": "H003-F02-DECIDER-NA-MISSING",
+        "reason": "normalized_expectations_differ",
+        "l8_state_value": null,
+        "l9_state_value": null,
+        "l8_source_pointer": {
+          "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+          "pointer": "/cases/2/cases/19/expected_partial_values"
+        },
+        "l9_source_pointer": {
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "pointer": "/cases/2/negative_cases/16/expected_material"
+        }
+      },
+      {
+        "id": "H003-F02-TARGET_HEAD-NA-MISSING",
+        "reason": "normalized_expectations_differ",
+        "l8_state_value": null,
+        "l9_state_value": null,
+        "l8_source_pointer": {
+          "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+          "pointer": "/cases/2/cases/20/expected_partial_values"
+        },
+        "l9_source_pointer": {
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "pointer": "/cases/2/negative_cases/17/expected_material"
+        }
+      },
+      {
+        "id": "H003-F02-REQUIREMENT_IMPACT-NA-MISSING",
+        "reason": "normalized_expectations_differ",
+        "l8_state_value": null,
+        "l9_state_value": null,
+        "l8_source_pointer": {
+          "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+          "pointer": "/cases/2/cases/21/expected_partial_values"
+        },
+        "l9_source_pointer": {
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "pointer": "/cases/2/negative_cases/18/expected_material"
+        }
+      },
+      {
+        "id": "H003-F02-REEVALUATION-NA-MISSING",
+        "reason": "normalized_expectations_differ",
+        "l8_state_value": null,
+        "l9_state_value": null,
+        "l8_source_pointer": {
+          "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+          "pointer": "/cases/2/cases/22/expected_partial_values"
+        },
+        "l9_source_pointer": {
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "pointer": "/cases/2/negative_cases/19/expected_material"
+        }
+      },
+      {
+        "id": "H003-F02-NOT_APPLICABLE-NA-MISSING",
+        "reason": "normalized_expectations_differ",
+        "l8_state_value": null,
+        "l9_state_value": null,
+        "l8_source_pointer": {
+          "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+          "pointer": "/cases/2/cases/23/expected_partial_values"
+        },
+        "l9_source_pointer": {
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "pointer": "/cases/2/negative_cases/20/expected_material"
+        }
+      },
+      {
+        "id": "H003-F03-ORIGIN-MISSING",
+        "reason": "normalized_expectations_differ",
+        "l8_state_value": null,
+        "l9_state_value": null,
+        "l8_source_pointer": {
+          "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+          "pointer": "/cases/3/cases/4/expected_partial_values"
+        },
+        "l9_source_pointer": {
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "pointer": "/cases/3/negative_cases/0/expected_material"
+        }
+      },
+      {
+        "id": "H003-F03-LEGACY-ASSET",
+        "reason": "normalized_expectations_differ",
+        "l8_state_value": null,
+        "l9_state_value": null,
+        "l8_source_pointer": {
+          "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+          "pointer": "/cases/3/cases/5/expected_partial_values"
+        },
+        "l9_source_pointer": {
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "pointer": "/cases/3/negative_cases/1/expected_material"
+        }
+      },
+      {
+        "id": "H003-F03-TRACE-MISSING",
+        "reason": "normalized_expectations_differ",
+        "l8_state_value": null,
+        "l9_state_value": null,
+        "l8_source_pointer": {
+          "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+          "pointer": "/cases/3/cases/6/expected_partial_values"
+        },
+        "l9_source_pointer": {
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "pointer": "/cases/3/negative_cases/2/expected_material"
+        }
+      },
+      {
+        "id": "H003-F03-DESIGN-DISPUTED",
+        "reason": "normalized_expectations_differ",
+        "l8_state_value": null,
+        "l9_state_value": null,
+        "l8_source_pointer": {
+          "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+          "pointer": "/cases/3/cases/7/expected_partial_values"
+        },
+        "l9_source_pointer": {
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "pointer": "/cases/3/negative_cases/3/expected_material"
+        }
+      },
+      {
+        "id": "H003-F03-LARGE-DEVIATION",
+        "reason": "normalized_expectations_differ",
+        "l8_state_value": null,
+        "l9_state_value": null,
+        "l8_source_pointer": {
+          "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+          "pointer": "/cases/3/cases/8/expected_partial_values"
+        },
+        "l9_source_pointer": {
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "pointer": "/cases/3/negative_cases/4/expected_material"
+        }
+      },
+      {
+        "id": "H003-F03-DESIGN-IMPLEMENTATION-DRIFT",
+        "reason": "normalized_expectations_differ",
+        "l8_state_value": null,
+        "l9_state_value": null,
+        "l8_source_pointer": {
+          "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+          "pointer": "/cases/3/cases/9/expected_partial_values"
+        },
+        "l9_source_pointer": {
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "pointer": "/cases/3/negative_cases/5/expected_material"
+        }
+      },
+      {
+        "id": "H003-F03-FINDING-RECURRENCE",
+        "reason": "normalized_expectations_differ",
+        "l8_state_value": null,
+        "l9_state_value": null,
+        "l8_source_pointer": {
+          "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+          "pointer": "/cases/3/cases/10/expected_partial_values"
+        },
+        "l9_source_pointer": {
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "pointer": "/cases/3/negative_cases/6/expected_material"
+        }
+      },
+      {
+        "id": "H003-F03-PERFORMANCE-REGRESSION",
+        "reason": "normalized_expectations_differ",
+        "l8_state_value": null,
+        "l9_state_value": null,
+        "l8_source_pointer": {
+          "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+          "pointer": "/cases/3/cases/11/expected_partial_values"
+        },
+        "l9_source_pointer": {
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "pointer": "/cases/3/negative_cases/7/expected_material"
+        }
+      },
+      {
+        "id": "H003-F03-INCIDENT-PERMANENT-REMEDY",
+        "reason": "normalized_expectations_differ",
+        "l8_state_value": null,
+        "l9_state_value": null,
+        "l8_source_pointer": {
+          "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+          "pointer": "/cases/3/cases/12/expected_partial_values"
+        },
+        "l9_source_pointer": {
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "pointer": "/cases/3/negative_cases/8/expected_material"
+        }
+      },
+      {
+        "id": "H003-F03-SCRUM-CHECKPOINT",
+        "reason": "normalized_expectations_differ",
+        "l8_state_value": null,
+        "l9_state_value": null,
+        "l8_source_pointer": {
+          "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+          "pointer": "/cases/3/cases/13/expected_partial_values"
+        },
+        "l9_source_pointer": {
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "pointer": "/cases/3/negative_cases/9/expected_material"
+        }
+      },
+      {
+        "id": "H003-F03-WRONG-L9-PAIR",
+        "reason": "normalized_expectations_differ",
+        "l8_state_value": null,
+        "l9_state_value": null,
+        "l8_source_pointer": {
+          "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+          "pointer": "/cases/3/cases/14/expected_partial_values"
+        },
+        "l9_source_pointer": {
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "pointer": "/cases/3/negative_cases/10/expected_material"
+        }
+      },
+      {
+        "id": "H003-F03-FOREIGN-PAIR-REVISION",
+        "reason": "normalized_expectations_differ",
+        "l8_state_value": null,
+        "l9_state_value": null,
+        "l8_source_pointer": {
+          "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+          "pointer": "/cases/3/cases/15/expected_partial_values"
+        },
+        "l9_source_pointer": {
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "pointer": "/cases/3/negative_cases/11/expected_material"
+        }
+      },
+      {
+        "id": "H003-F03-L9-MISSING-interface",
+        "reason": "normalized_expectations_differ",
+        "l8_state_value": null,
+        "l9_state_value": null,
+        "l8_source_pointer": {
+          "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+          "pointer": "/cases/3/cases/16/expected_partial_values"
+        },
+        "l9_source_pointer": {
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "pointer": "/cases/3/negative_cases/12/expected_material"
+        }
+      },
+      {
+        "id": "H003-F03-L9-MISSING-dependency_direction",
+        "reason": "normalized_expectations_differ",
+        "l8_state_value": null,
+        "l9_state_value": null,
+        "l8_source_pointer": {
+          "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+          "pointer": "/cases/3/cases/17/expected_partial_values"
+        },
+        "l9_source_pointer": {
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "pointer": "/cases/3/negative_cases/13/expected_material"
+        }
+      },
+      {
+        "id": "H003-F03-L9-MISSING-state_data_ownership",
+        "reason": "normalized_expectations_differ",
+        "l8_state_value": null,
+        "l9_state_value": null,
+        "l8_source_pointer": {
+          "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+          "pointer": "/cases/3/cases/18/expected_partial_values"
+        },
+        "l9_source_pointer": {
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "pointer": "/cases/3/negative_cases/14/expected_material"
+        }
+      },
+      {
+        "id": "H003-F03-L9-MISSING-transaction",
+        "reason": "normalized_expectations_differ",
+        "l8_state_value": null,
+        "l9_state_value": null,
+        "l8_source_pointer": {
+          "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+          "pointer": "/cases/3/cases/19/expected_partial_values"
+        },
+        "l9_source_pointer": {
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "pointer": "/cases/3/negative_cases/15/expected_material"
+        }
+      },
+      {
+        "id": "H003-F03-L9-MISSING-failure_propagation",
+        "reason": "normalized_expectations_differ",
+        "l8_state_value": null,
+        "l9_state_value": null,
+        "l8_source_pointer": {
+          "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+          "pointer": "/cases/3/cases/20/expected_partial_values"
+        },
+        "l9_source_pointer": {
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "pointer": "/cases/3/negative_cases/16/expected_material"
+        }
+      },
+      {
+        "id": "H003-F03-L9-MISSING-retry",
+        "reason": "normalized_expectations_differ",
+        "l8_state_value": null,
+        "l9_state_value": null,
+        "l8_source_pointer": {
+          "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+          "pointer": "/cases/3/cases/21/expected_partial_values"
+        },
+        "l9_source_pointer": {
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "pointer": "/cases/3/negative_cases/17/expected_material"
+        }
+      },
+      {
+        "id": "H003-F03-L9-MISSING-timeout",
+        "reason": "normalized_expectations_differ",
+        "l8_state_value": null,
+        "l9_state_value": null,
+        "l8_source_pointer": {
+          "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+          "pointer": "/cases/3/cases/22/expected_partial_values"
+        },
+        "l9_source_pointer": {
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "pointer": "/cases/3/negative_cases/18/expected_material"
+        }
+      },
+      {
+        "id": "H003-F03-L9-MISSING-idempotency",
+        "reason": "normalized_expectations_differ",
+        "l8_state_value": null,
+        "l9_state_value": null,
+        "l8_source_pointer": {
+          "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+          "pointer": "/cases/3/cases/23/expected_partial_values"
+        },
+        "l9_source_pointer": {
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "pointer": "/cases/3/negative_cases/19/expected_material"
+        }
+      },
+      {
+        "id": "H003-F03-L9-MISSING-coupling",
+        "reason": "normalized_expectations_differ",
+        "l8_state_value": null,
+        "l9_state_value": null,
+        "l8_source_pointer": {
+          "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+          "pointer": "/cases/3/cases/24/expected_partial_values"
+        },
+        "l9_source_pointer": {
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "pointer": "/cases/3/negative_cases/20/expected_material"
+        }
+      },
+      {
+        "id": "H003-F03-L9-MISSING-responsibility_duplication",
+        "reason": "normalized_expectations_differ",
+        "l8_state_value": null,
+        "l9_state_value": null,
+        "l8_source_pointer": {
+          "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+          "pointer": "/cases/3/cases/25/expected_partial_values"
+        },
+        "l9_source_pointer": {
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "pointer": "/cases/3/negative_cases/21/expected_material"
+        }
+      },
+      {
+        "id": "H003-F03-STATE-OWNER-CONFLICT",
+        "reason": "normalized_expectations_differ",
+        "l8_state_value": null,
+        "l9_state_value": null,
+        "l8_source_pointer": {
+          "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+          "pointer": "/cases/3/cases/26/expected_partial_values"
+        },
+        "l9_source_pointer": {
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "pointer": "/cases/3/negative_cases/22/expected_material"
+        }
+      },
+      {
+        "id": "H003-F03-PRE-BODY-RED-ABSENT",
+        "reason": "normalized_expectations_differ",
+        "l8_state_value": null,
+        "l9_state_value": null,
+        "l8_source_pointer": {
+          "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+          "pointer": "/cases/3/cases/27/expected_partial_values"
+        },
+        "l9_source_pointer": {
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "pointer": "/cases/3/negative_cases/23/expected_material"
+        }
+      },
+      {
+        "id": "H003-F03-PUBLIC-MEANING-CHANGE",
+        "reason": "normalized_expectations_differ",
+        "l8_state_value": null,
+        "l9_state_value": null,
+        "l8_source_pointer": {
+          "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+          "pointer": "/cases/3/cases/28/expected_partial_values"
+        },
+        "l9_source_pointer": {
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "pointer": "/cases/3/negative_cases/24/expected_material"
+        }
+      },
+      {
+        "id": "H003-F03-ARCHITECTURE-MEANING-CHANGE",
+        "reason": "normalized_expectations_differ",
+        "l8_state_value": null,
+        "l9_state_value": null,
+        "l8_source_pointer": {
+          "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+          "pointer": "/cases/3/cases/29/expected_partial_values"
+        },
+        "l9_source_pointer": {
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "pointer": "/cases/3/negative_cases/25/expected_material"
+        }
+      },
+      {
+        "id": "H003-F03-NORMAL-AS-FULL-REVERSE",
+        "reason": "normalized_expectations_differ",
+        "l8_state_value": null,
+        "l9_state_value": null,
+        "l8_source_pointer": {
+          "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+          "pointer": "/cases/3/cases/30/expected_partial_values"
+        },
+        "l9_source_pointer": {
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "pointer": "/cases/3/negative_cases/26/expected_material"
+        }
+      },
+      {
+        "id": "H003-F03-NORMAL-AS-REVERSE-TICKET",
+        "reason": "normalized_expectations_differ",
+        "l8_state_value": null,
+        "l9_state_value": null,
+        "l8_source_pointer": {
+          "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+          "pointer": "/cases/3/cases/31/expected_partial_values"
+        },
+        "l9_source_pointer": {
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "pointer": "/cases/3/negative_cases/27/expected_material"
+        }
+      },
+      {
+        "id": "H003-F03-HARNESS-AS-ISSUER",
+        "reason": "normalized_expectations_differ",
+        "l8_state_value": null,
+        "l9_state_value": null,
+        "l8_source_pointer": {
+          "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+          "pointer": "/cases/3/cases/32/expected_partial_values"
+        },
+        "l9_source_pointer": {
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "pointer": "/cases/3/negative_cases/28/expected_material"
+        }
+      },
+      {
+        "id": "H003-F03-VALLEY-AS-QUALITY",
+        "reason": "normalized_expectations_differ",
+        "l8_state_value": null,
+        "l9_state_value": null,
+        "l8_source_pointer": {
+          "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+          "pointer": "/cases/3/cases/33/expected_partial_values"
+        },
+        "l9_source_pointer": {
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "pointer": "/cases/3/negative_cases/29/expected_material"
+        }
+      },
+      {
+        "id": "H003-F03-VALLEY-AS-USER-ACCEPTANCE",
+        "reason": "normalized_expectations_differ",
+        "l8_state_value": null,
+        "l9_state_value": null,
+        "l8_source_pointer": {
+          "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+          "pointer": "/cases/3/cases/34/expected_partial_values"
+        },
+        "l9_source_pointer": {
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "pointer": "/cases/3/negative_cases/30/expected_material"
+        }
+      },
+      {
+        "id": "H003-F03-VALLEY-AS-RELEASE",
+        "reason": "normalized_expectations_differ",
+        "l8_state_value": null,
+        "l9_state_value": null,
+        "l8_source_pointer": {
+          "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+          "pointer": "/cases/3/cases/35/expected_partial_values"
+        },
+        "l9_source_pointer": {
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "pointer": "/cases/3/negative_cases/31/expected_material"
+        }
+      },
+      {
+        "id": "H003-F03-REVERSE-AS-EXECUTED",
+        "reason": "normalized_expectations_differ",
+        "l8_state_value": null,
+        "l9_state_value": null,
+        "l8_source_pointer": {
+          "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+          "pointer": "/cases/3/cases/36/expected_partial_values"
+        },
+        "l9_source_pointer": {
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "pointer": "/cases/3/negative_cases/32/expected_material"
+        }
+      },
+      {
+        "id": "H003-F03-REQUIREMENT-MEANING-CHANGE",
+        "reason": "normalized_expectations_differ",
+        "l8_state_value": null,
+        "l9_state_value": null,
+        "l8_source_pointer": {
+          "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+          "pointer": "/cases/3/cases/37/expected_partial_values"
+        },
+        "l9_source_pointer": {
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "pointer": "/cases/3/negative_cases/33/expected_material"
+        }
+      },
+      {
+        "id": "H003-F03-STATE-MEANING-CHANGE",
+        "reason": "normalized_expectations_differ",
+        "l8_state_value": null,
+        "l9_state_value": null,
+        "l8_source_pointer": {
+          "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+          "pointer": "/cases/3/cases/38/expected_partial_values"
+        },
+        "l9_source_pointer": {
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "pointer": "/cases/3/negative_cases/34/expected_material"
+        }
+      },
+      {
+        "id": "H003-F03-L8-WRONG-PAIR",
+        "reason": "normalized_expectations_differ",
+        "l8_state_value": null,
+        "l9_state_value": null,
+        "l8_source_pointer": {
+          "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+          "pointer": "/cases/3/cases/39/expected_partial_values"
+        },
+        "l9_source_pointer": {
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "pointer": "/cases/3/negative_cases/35/expected_material"
+        }
+      },
+      {
+        "id": "H003-F03-L8-FOREIGN-REVISION",
+        "reason": "normalized_expectations_differ",
+        "l8_state_value": null,
+        "l9_state_value": null,
+        "l8_source_pointer": {
+          "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+          "pointer": "/cases/3/cases/40/expected_partial_values"
+        },
+        "l9_source_pointer": {
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "pointer": "/cases/3/negative_cases/36/expected_material"
+        }
+      },
+      {
+        "id": "H003-F03-L10-WRONG-PAIR",
+        "reason": "normalized_expectations_differ",
+        "l8_state_value": null,
+        "l9_state_value": null,
+        "l8_source_pointer": {
+          "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+          "pointer": "/cases/3/cases/41/expected_partial_values"
+        },
+        "l9_source_pointer": {
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "pointer": "/cases/3/negative_cases/37/expected_material"
+        }
+      },
+      {
+        "id": "H003-F03-L10-FOREIGN-REVISION",
+        "reason": "normalized_expectations_differ",
+        "l8_state_value": null,
+        "l9_state_value": null,
+        "l8_source_pointer": {
+          "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+          "pointer": "/cases/3/cases/42/expected_partial_values"
+        },
+        "l9_source_pointer": {
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "pointer": "/cases/3/negative_cases/38/expected_material"
+        }
+      },
+      {
+        "id": "H003-F04-MISSING-Working",
+        "reason": "normalized_expectations_differ",
+        "l8_state_value": [
+          "Working"
+        ],
+        "l9_state_value": [
+          "Working"
+        ],
+        "l8_source_pointer": {
+          "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+          "pointer": "/cases/4/cases/8/expected_partial_values"
+        },
+        "l9_source_pointer": {
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "pointer": "/cases/4/negative_cases/0/expected_material"
+        }
+      },
+      {
+        "id": "H003-F04-MISSING-Provisional",
+        "reason": "expectations_equal_but_l9_has_no_ordered_findings_or_return_owner",
+        "l8_source_pointer": {
+          "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+          "pointer": "/cases/4/cases/9/expected_partial_values"
+        },
+        "l9_source_pointer": {
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "pointer": "/cases/4/negative_cases/1/expected_material"
+        }
+      },
+      {
+        "id": "H003-F04-MISSING-Integrated",
+        "reason": "expectations_equal_but_l9_has_no_ordered_findings_or_return_owner",
+        "l8_source_pointer": {
+          "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+          "pointer": "/cases/4/cases/10/expected_partial_values"
+        },
+        "l9_source_pointer": {
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "pointer": "/cases/4/negative_cases/2/expected_material"
+        }
+      },
+      {
+        "id": "H003-F04-MISSING-Verified",
+        "reason": "expectations_equal_but_l9_has_no_ordered_findings_or_return_owner",
+        "l8_source_pointer": {
+          "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+          "pointer": "/cases/4/cases/11/expected_partial_values"
+        },
+        "l9_source_pointer": {
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "pointer": "/cases/4/negative_cases/3/expected_material"
+        }
+      },
+      {
+        "id": "H003-F04-MISSING-Accepted",
+        "reason": "expectations_equal_but_l9_has_no_ordered_findings_or_return_owner",
+        "l8_source_pointer": {
+          "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+          "pointer": "/cases/4/cases/12/expected_partial_values"
+        },
+        "l9_source_pointer": {
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "pointer": "/cases/4/negative_cases/4/expected_material"
+        }
+      },
+      {
+        "id": "H003-F04-MISSING-Release-eligible",
+        "reason": "expectations_equal_but_l9_has_no_ordered_findings_or_return_owner",
+        "l8_source_pointer": {
+          "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+          "pointer": "/cases/4/cases/13/expected_partial_values"
+        },
+        "l9_source_pointer": {
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "pointer": "/cases/4/negative_cases/5/expected_material"
+        }
+      },
+      {
+        "id": "H003-F04-MISSING-Deployed",
+        "reason": "expectations_equal_but_l9_has_no_ordered_findings_or_return_owner",
+        "l8_source_pointer": {
+          "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+          "pointer": "/cases/4/cases/14/expected_partial_values"
+        },
+        "l9_source_pointer": {
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "pointer": "/cases/4/negative_cases/6/expected_material"
+        }
+      },
+      {
+        "id": "H003-F04-MISSING-Observed",
+        "reason": "expectations_equal_but_l9_has_no_ordered_findings_or_return_owner",
+        "l8_source_pointer": {
+          "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+          "pointer": "/cases/4/cases/15/expected_partial_values"
+        },
+        "l9_source_pointer": {
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "pointer": "/cases/4/negative_cases/7/expected_material"
+        }
+      },
+      {
+        "id": "H003-F04-FOREIGN-REVISION",
+        "reason": "normalized_expectations_differ",
+        "l8_state_value": [],
+        "l9_state_value": [],
+        "l8_source_pointer": {
+          "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+          "pointer": "/cases/4/cases/16/expected_partial_values"
+        },
+        "l9_source_pointer": {
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "pointer": "/cases/4/negative_cases/8/expected_material"
+        }
+      },
+      {
+        "id": "H003-F04-FOREIGN-SCOPE",
+        "reason": "normalized_expectations_differ",
+        "l8_state_value": [],
+        "l9_state_value": [],
+        "l8_source_pointer": {
+          "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+          "pointer": "/cases/4/cases/17/expected_partial_values"
+        },
+        "l9_source_pointer": {
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "pointer": "/cases/4/negative_cases/9/expected_material"
+        }
+      },
+      {
+        "id": "H003-F04-FOREIGN-ENVIRONMENT",
+        "reason": "normalized_expectations_differ",
+        "l8_state_value": [],
+        "l9_state_value": [],
+        "l8_source_pointer": {
+          "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+          "pointer": "/cases/4/cases/18/expected_partial_values"
+        },
+        "l9_source_pointer": {
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "pointer": "/cases/4/negative_cases/10/expected_material"
+        }
+      },
+      {
+        "id": "H003-F04-DOC-AS-ATOMIC-CI",
+        "reason": "normalized_expectations_differ",
+        "l8_state_value": [],
+        "l9_state_value": [],
+        "l8_source_pointer": {
+          "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+          "pointer": "/cases/4/cases/19/expected_partial_values"
+        },
+        "l9_source_pointer": {
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "pointer": "/cases/4/negative_cases/11/expected_material"
+        }
+      },
+      {
+        "id": "H003-F04-PRE-BODY-RED-ABSENT",
+        "reason": "normalized_expectations_differ",
+        "l8_state_value": [],
+        "l9_state_value": [],
+        "l8_source_pointer": {
+          "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+          "pointer": "/cases/4/cases/20/expected_partial_values"
+        },
+        "l9_source_pointer": {
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "pointer": "/cases/4/negative_cases/12/expected_material"
+        }
+      },
+      {
+        "id": "H003-F04-BOUNDARY-DOUBLE-OWNER",
+        "reason": "normalized_expectations_differ",
+        "l8_state_value": [],
+        "l9_state_value": [],
+        "l8_source_pointer": {
+          "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+          "pointer": "/cases/4/cases/21/expected_partial_values"
+        },
+        "l9_source_pointer": {
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "pointer": "/cases/4/negative_cases/13/expected_material"
+        }
+      },
+      {
+        "id": "H003-F04-SYSTEM-DIFFERENCE-MISSING",
+        "reason": "normalized_expectations_differ",
+        "l8_state_value": [],
+        "l9_state_value": [],
+        "l8_source_pointer": {
+          "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+          "pointer": "/cases/4/cases/22/expected_partial_values"
+        },
+        "l9_source_pointer": {
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "pointer": "/cases/4/negative_cases/14/expected_material"
+        }
+      },
+      {
+        "id": "H003-F04-SYSTEM-OBSERVATION-FAIL",
+        "reason": "normalized_expectations_differ",
+        "l8_state_value": [],
+        "l9_state_value": [],
+        "l8_source_pointer": {
+          "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+          "pointer": "/cases/4/cases/23/expected_partial_values"
+        },
+        "l9_source_pointer": {
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "pointer": "/cases/4/negative_cases/15/expected_material"
+        }
+      },
+      {
+        "id": "H003-F04-L10-AS-HUMAN-ACCEPTANCE",
+        "reason": "normalized_expectations_differ",
+        "l8_state_value": [],
+        "l9_state_value": [],
+        "l8_source_pointer": {
+          "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+          "pointer": "/cases/4/cases/24/expected_partial_values"
+        },
+        "l9_source_pointer": {
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "pointer": "/cases/4/negative_cases/16/expected_material"
+        }
+      },
+      {
+        "id": "H003-F04-AI-AS-HUMAN-ACCEPTANCE",
+        "reason": "normalized_expectations_differ",
+        "l8_state_value": [],
+        "l9_state_value": [],
+        "l8_source_pointer": {
+          "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+          "pointer": "/cases/4/cases/25/expected_partial_values"
+        },
+        "l9_source_pointer": {
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "pointer": "/cases/4/negative_cases/17/expected_material"
+        }
+      },
+      {
+        "id": "H003-F04-PORT-ROLLBACK-MISSING",
+        "reason": "normalized_expectations_differ",
+        "l8_state_value": [],
+        "l9_state_value": [],
+        "l8_source_pointer": {
+          "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+          "pointer": "/cases/4/cases/26/expected_partial_values"
+        },
+        "l9_source_pointer": {
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "pointer": "/cases/4/negative_cases/18/expected_material"
+        }
+      },
+      {
+        "id": "H003-F04-DEPLOY-AS-OBSERVED",
+        "reason": "normalized_expectations_differ",
+        "l8_state_value": [],
+        "l9_state_value": [],
+        "l8_source_pointer": {
+          "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+          "pointer": "/cases/4/cases/27/expected_partial_values"
+        },
+        "l9_source_pointer": {
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "pointer": "/cases/4/negative_cases/19/expected_material"
+        }
+      },
+      {
+        "id": "H003-F04-FOREIGN-ARTIFACT",
+        "reason": "normalized_expectations_differ",
+        "l8_state_value": [],
+        "l9_state_value": [],
+        "l8_source_pointer": {
+          "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+          "pointer": "/cases/4/cases/28/expected_partial_values"
+        },
+        "l9_source_pointer": {
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "pointer": "/cases/4/negative_cases/20/expected_material"
+        }
+      },
+      {
+        "id": "H003-F04-UNTRUSTED-CLAIM-ONLY",
+        "reason": "normalized_expectations_differ",
+        "l8_state_value": [],
+        "l9_state_value": [],
+        "l8_source_pointer": {
+          "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+          "pointer": "/cases/4/cases/29/expected_partial_values"
+        },
+        "l9_source_pointer": {
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "pointer": "/cases/4/negative_cases/21/expected_material"
+        }
+      },
+      {
+        "id": "H003-F05-MISSING-proofs",
+        "reason": "normalized_expectations_differ",
+        "l8_state_value": null,
+        "l9_state_value": null,
+        "l8_source_pointer": {
+          "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+          "pointer": "/cases/5/cases/3/expected_partial_values"
+        },
+        "l9_source_pointer": {
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "pointer": "/cases/5/negative_cases/0/expected_material"
+        }
+      },
+      {
+        "id": "H003-F05-MISSING-artifact_identity",
+        "reason": "normalized_expectations_differ",
+        "l8_state_value": null,
+        "l9_state_value": null,
+        "l8_source_pointer": {
+          "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+          "pointer": "/cases/5/cases/4/expected_partial_values"
+        },
+        "l9_source_pointer": {
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "pointer": "/cases/5/negative_cases/1/expected_material"
+        }
+      },
+      {
+        "id": "H003-F05-MISSING-environment",
+        "reason": "normalized_expectations_differ",
+        "l8_state_value": null,
+        "l9_state_value": null,
+        "l8_source_pointer": {
+          "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+          "pointer": "/cases/5/cases/5/expected_partial_values"
+        },
+        "l9_source_pointer": {
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "pointer": "/cases/5/negative_cases/2/expected_material"
+        }
+      },
+      {
+        "id": "H003-F05-MISSING-dependencies",
+        "reason": "normalized_expectations_differ",
+        "l8_state_value": null,
+        "l9_state_value": null,
+        "l8_source_pointer": {
+          "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+          "pointer": "/cases/5/cases/6/expected_partial_values"
+        },
+        "l9_source_pointer": {
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "pointer": "/cases/5/negative_cases/3/expected_material"
+        }
+      },
+      {
+        "id": "H003-F05-MISSING-security",
+        "reason": "normalized_expectations_differ",
+        "l8_state_value": null,
+        "l9_state_value": null,
+        "l8_source_pointer": {
+          "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+          "pointer": "/cases/5/cases/7/expected_partial_values"
+        },
+        "l9_source_pointer": {
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "pointer": "/cases/5/negative_cases/4/expected_material"
+        }
+      },
+      {
+        "id": "H003-F05-MISSING-rollback",
+        "reason": "normalized_expectations_differ",
+        "l8_state_value": null,
+        "l9_state_value": null,
+        "l8_source_pointer": {
+          "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+          "pointer": "/cases/5/cases/8/expected_partial_values"
+        },
+        "l9_source_pointer": {
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "pointer": "/cases/5/negative_cases/5/expected_material"
+        }
+      },
+      {
+        "id": "H003-F05-MISSING-deployment_conditions",
+        "reason": "normalized_expectations_differ",
+        "l8_state_value": null,
+        "l9_state_value": null,
+        "l8_source_pointer": {
+          "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+          "pointer": "/cases/5/cases/9/expected_partial_values"
+        },
+        "l9_source_pointer": {
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "pointer": "/cases/5/negative_cases/6/expected_material"
+        }
+      },
+      {
+        "id": "H003-F05-MISSING-acceptance",
+        "reason": "normalized_expectations_differ",
+        "l8_state_value": null,
+        "l9_state_value": null,
+        "l8_source_pointer": {
+          "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+          "pointer": "/cases/5/cases/10/expected_partial_values"
+        },
+        "l9_source_pointer": {
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "pointer": "/cases/5/negative_cases/7/expected_material"
+        }
+      },
+      {
+        "id": "H003-F05-PORT-AFTER-START",
+        "reason": "normalized_expectations_differ",
+        "l8_state_value": null,
+        "l9_state_value": null,
+        "l8_source_pointer": {
+          "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+          "pointer": "/cases/5/cases/11/expected_partial_values"
+        },
+        "l9_source_pointer": {
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "pointer": "/cases/5/negative_cases/8/expected_material"
+        }
+      },
+      {
+        "id": "H003-F05-FOREIGN-ARTIFACT",
+        "reason": "normalized_expectations_differ",
+        "l8_state_value": null,
+        "l9_state_value": null,
+        "l8_source_pointer": {
+          "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+          "pointer": "/cases/5/cases/12/expected_partial_values"
+        },
+        "l9_source_pointer": {
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "pointer": "/cases/5/negative_cases/9/expected_material"
+        }
+      },
+      {
+        "id": "H003-F05-FOREIGN-ENVIRONMENT",
+        "reason": "normalized_expectations_differ",
+        "l8_state_value": null,
+        "l9_state_value": null,
+        "l8_source_pointer": {
+          "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+          "pointer": "/cases/5/cases/13/expected_partial_values"
+        },
+        "l9_source_pointer": {
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "pointer": "/cases/5/negative_cases/10/expected_material"
+        }
+      },
+      {
+        "id": "H003-F05-AUTHORITY-MISSING",
+        "reason": "normalized_expectations_differ",
+        "l8_state_value": null,
+        "l9_state_value": null,
+        "l8_source_pointer": {
+          "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+          "pointer": "/cases/5/cases/14/expected_partial_values"
+        },
+        "l9_source_pointer": {
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "pointer": "/cases/5/negative_cases/11/expected_material"
+        }
+      },
+      {
+        "id": "H003-F05-AUTHORITY-FOREIGN-OP",
+        "reason": "normalized_expectations_differ",
+        "l8_state_value": null,
+        "l9_state_value": null,
+        "l8_source_pointer": {
+          "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+          "pointer": "/cases/5/cases/15/expected_partial_values"
+        },
+        "l9_source_pointer": {
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "pointer": "/cases/5/negative_cases/12/expected_material"
+        }
+      },
+      {
+        "id": "H003-F05-AUTHORITY-EXPIRED",
+        "reason": "normalized_expectations_differ",
+        "l8_state_value": null,
+        "l9_state_value": null,
+        "l8_source_pointer": {
+          "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+          "pointer": "/cases/5/cases/16/expected_partial_values"
+        },
+        "l9_source_pointer": {
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "pointer": "/cases/5/negative_cases/13/expected_material"
+        }
+      },
+      {
+        "id": "H003-F05-AUTHORITY-REVOKED",
+        "reason": "normalized_expectations_differ",
+        "l8_state_value": null,
+        "l9_state_value": null,
+        "l8_source_pointer": {
+          "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+          "pointer": "/cases/5/cases/17/expected_partial_values"
+        },
+        "l9_source_pointer": {
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "pointer": "/cases/5/negative_cases/14/expected_material"
+        }
+      },
+      {
+        "id": "H003-F05-CONVERGENCE-FAILED",
+        "reason": "normalized_expectations_differ",
+        "l8_state_value": null,
+        "l9_state_value": null,
+        "l8_source_pointer": {
+          "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+          "pointer": "/cases/5/cases/18/expected_partial_values"
+        },
+        "l9_source_pointer": {
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "pointer": "/cases/5/negative_cases/15/expected_material"
+        }
+      },
+      {
+        "id": "H003-F05-URGENT-RELEASE",
+        "reason": "normalized_expectations_differ",
+        "l8_state_value": null,
+        "l9_state_value": null,
+        "l8_source_pointer": {
+          "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+          "pointer": "/cases/5/cases/19/expected_partial_values"
+        },
+        "l9_source_pointer": {
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "pointer": "/cases/5/negative_cases/16/expected_material"
+        }
+      },
+      {
+        "id": "H003-F05-DEPLOY-AS-PERMANENT",
+        "reason": "normalized_expectations_differ",
+        "l8_state_value": null,
+        "l9_state_value": null,
+        "l8_source_pointer": {
+          "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+          "pointer": "/cases/5/cases/20/expected_partial_values"
+        },
+        "l9_source_pointer": {
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "pointer": "/cases/5/negative_cases/17/expected_material"
+        }
+      },
+      {
+        "id": "H003-F05-ISSUE-CLOSE-AS-BACKFILL",
+        "reason": "normalized_expectations_differ",
+        "l8_state_value": null,
+        "l9_state_value": null,
+        "l8_source_pointer": {
+          "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+          "pointer": "/cases/5/cases/21/expected_partial_values"
+        },
+        "l9_source_pointer": {
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "pointer": "/cases/5/negative_cases/18/expected_material"
+        }
+      },
+      {
+        "id": "H003-F05-UNKNOWN-RETURN-FILLED",
+        "reason": "normalized_expectations_differ",
+        "l8_state_value": null,
+        "l9_state_value": null,
+        "l8_source_pointer": {
+          "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+          "pointer": "/cases/5/cases/22/expected_partial_values"
+        },
+        "l9_source_pointer": {
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "pointer": "/cases/5/negative_cases/19/expected_material"
+        }
+      },
+      {
+        "id": "H003-F05-FULLBACK-AS-EXECUTED",
+        "reason": "normalized_expectations_differ",
+        "l8_state_value": null,
+        "l9_state_value": null,
+        "l8_source_pointer": {
+          "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+          "pointer": "/cases/5/cases/23/expected_partial_values"
+        },
+        "l9_source_pointer": {
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "pointer": "/cases/5/negative_cases/20/expected_material"
+        }
+      },
+      {
+        "id": "H003-F05-PORT-AS-NEW-APPROVAL",
+        "reason": "normalized_expectations_differ",
+        "l8_state_value": null,
+        "l9_state_value": null,
+        "l8_source_pointer": {
+          "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+          "pointer": "/cases/5/cases/24/expected_partial_values"
+        },
+        "l9_source_pointer": {
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "pointer": "/cases/5/negative_cases/21/expected_material"
+        }
+      },
+      {
+        "id": "H003-F05-CLOSED-ISSUE",
+        "reason": "normalized_expectations_differ",
+        "l8_state_value": null,
+        "l9_state_value": null,
+        "l8_source_pointer": {
+          "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+          "pointer": "/cases/5/cases/25/expected_partial_values"
+        },
+        "l9_source_pointer": {
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "pointer": "/cases/5/negative_cases/22/expected_material"
+        }
+      },
+      {
+        "id": "H003-F05-SYSTEM-BALANCE-FAIL",
+        "reason": "normalized_expectations_differ",
+        "l8_state_value": null,
+        "l9_state_value": null,
+        "l8_source_pointer": {
+          "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+          "pointer": "/cases/5/cases/26/expected_partial_values"
+        },
+        "l9_source_pointer": {
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "pointer": "/cases/5/negative_cases/23/expected_material"
+        }
+      },
+      {
+        "id": "H003-F05-ROLLBACK-OBSERVATION-FAIL",
+        "reason": "normalized_expectations_differ",
+        "l8_state_value": null,
+        "l9_state_value": null,
+        "l8_source_pointer": {
+          "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+          "pointer": "/cases/5/cases/27/expected_partial_values"
+        },
+        "l9_source_pointer": {
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "pointer": "/cases/5/negative_cases/24/expected_material"
+        }
+      },
+      {
+        "id": "H003-F05-AI-AS-ACCEPTANCE",
+        "reason": "normalized_expectations_differ",
+        "l8_state_value": null,
+        "l9_state_value": null,
+        "l8_source_pointer": {
+          "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+          "pointer": "/cases/5/cases/28/expected_partial_values"
+        },
+        "l9_source_pointer": {
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "pointer": "/cases/5/negative_cases/25/expected_material"
+        }
+      },
+      {
+        "id": "H003-N01-DESIGN-FOREIGN-ENVIRONMENT",
+        "reason": "normalized_expectations_differ",
+        "l8_state_value": null,
+        "l9_state_value": null,
+        "l8_source_pointer": {
+          "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+          "pointer": "/cases/6/cases/3/expected_partial_values"
+        },
+        "l9_source_pointer": {
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "pointer": "/cases/6/negative_cases/0/expected_material"
+        }
+      },
+      {
+        "id": "H003-N01-DESIGN-DOUBLE-OWNER",
+        "reason": "normalized_expectations_differ",
+        "l8_state_value": null,
+        "l9_state_value": null,
+        "l8_source_pointer": {
+          "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+          "pointer": "/cases/6/cases/4/expected_partial_values"
+        },
+        "l9_source_pointer": {
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "pointer": "/cases/6/negative_cases/1/expected_material"
+        }
+      },
+      {
+        "id": "H003-N01-DESIGN-MISSING",
+        "reason": "normalized_expectations_differ",
+        "l8_state_value": null,
+        "l9_state_value": null,
+        "l8_source_pointer": {
+          "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+          "pointer": "/cases/6/cases/5/expected_partial_values"
+        },
+        "l9_source_pointer": {
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "pointer": "/cases/6/negative_cases/2/expected_material"
+        }
+      },
+      {
+        "id": "H003-N01-APPLICABILITY-UNKNOWN",
+        "reason": "normalized_expectations_differ",
+        "l8_state_value": null,
+        "l9_state_value": null,
+        "l8_source_pointer": {
+          "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+          "pointer": "/cases/6/cases/6/expected_partial_values"
+        },
+        "l9_source_pointer": {
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "pointer": "/cases/6/negative_cases/3/expected_material"
+        }
+      },
+      {
+        "id": "H003-N01-NA-WITHOUT-REASON",
+        "reason": "normalized_expectations_differ",
+        "l8_state_value": null,
+        "l9_state_value": null,
+        "l8_source_pointer": {
+          "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+          "pointer": "/cases/6/cases/7/expected_partial_values"
+        },
+        "l9_source_pointer": {
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "pointer": "/cases/6/negative_cases/4/expected_material"
+        }
+      },
+      {
+        "id": "H003-N01-SECURITY-FOREIGN-ENVIRONMENT",
+        "reason": "normalized_expectations_differ",
+        "l8_state_value": null,
+        "l9_state_value": null,
+        "l8_source_pointer": {
+          "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+          "pointer": "/cases/6/cases/8/expected_partial_values"
+        },
+        "l9_source_pointer": {
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "pointer": "/cases/6/negative_cases/5/expected_material"
+        }
+      },
+      {
+        "id": "H003-N01-SECURITY-AS-OS-POLICY",
+        "reason": "normalized_expectations_differ",
+        "l8_state_value": null,
+        "l9_state_value": null,
+        "l8_source_pointer": {
+          "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+          "pointer": "/cases/6/cases/9/expected_partial_values"
+        },
+        "l9_source_pointer": {
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "pointer": "/cases/6/negative_cases/6/expected_material"
+        }
+      },
+      {
+        "id": "H003-N01-HARNESS-AS-TICKET-OWNER",
+        "reason": "normalized_expectations_differ",
+        "l8_state_value": null,
+        "l9_state_value": null,
+        "l8_source_pointer": {
+          "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+          "pointer": "/cases/6/cases/10/expected_partial_values"
+        },
+        "l9_source_pointer": {
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "pointer": "/cases/6/negative_cases/7/expected_material"
+        }
+      },
+      {
+        "id": "H003-N01-INFERENCE-FOREIGN-SCOPE",
+        "reason": "normalized_expectations_differ",
+        "l8_state_value": null,
+        "l9_state_value": null,
+        "l8_source_pointer": {
+          "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+          "pointer": "/cases/6/cases/11/expected_partial_values"
+        },
+        "l9_source_pointer": {
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "pointer": "/cases/6/negative_cases/8/expected_material"
+        }
+      },
+      {
+        "id": "H003-N01-UNOBSERVED-AS-HEALTHY",
+        "reason": "normalized_expectations_differ",
+        "l8_state_value": null,
+        "l9_state_value": null,
+        "l8_source_pointer": {
+          "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+          "pointer": "/cases/6/cases/12/expected_partial_values"
+        },
+        "l9_source_pointer": {
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "pointer": "/cases/6/negative_cases/9/expected_material"
+        }
+      },
+      {
+        "id": "H003-N01-DESIGN-AS-OPERATION",
+        "reason": "normalized_expectations_differ",
+        "l8_state_value": null,
+        "l9_state_value": null,
+        "l8_source_pointer": {
+          "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+          "pointer": "/cases/6/cases/13/expected_partial_values"
+        },
+        "l9_source_pointer": {
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "pointer": "/cases/6/negative_cases/10/expected_material"
+        }
+      },
+      {
+        "id": "H003-N01-REFERENCE-AS-PERMISSION",
+        "reason": "normalized_expectations_differ",
+        "l8_state_value": null,
+        "l9_state_value": null,
+        "l8_source_pointer": {
+          "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+          "pointer": "/cases/6/cases/14/expected_partial_values"
+        },
+        "l9_source_pointer": {
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "pointer": "/cases/6/negative_cases/11/expected_material"
+        }
+      },
+      {
+        "id": "H003-N01-DESIGN-AS-COMPLETION",
+        "reason": "normalized_expectations_differ",
+        "l8_state_value": null,
+        "l9_state_value": null,
+        "l8_source_pointer": {
+          "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+          "pointer": "/cases/6/cases/15/expected_partial_values"
+        },
+        "l9_source_pointer": {
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "pointer": "/cases/6/negative_cases/12/expected_material"
+        }
+      },
+      {
+        "id": "H003-N01-DESIGN-AS-IMPLEMENTED",
+        "reason": "normalized_expectations_differ",
+        "l8_state_value": null,
+        "l9_state_value": null,
+        "l8_source_pointer": {
+          "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+          "pointer": "/cases/6/cases/16/expected_partial_values"
+        },
+        "l9_source_pointer": {
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "pointer": "/cases/6/negative_cases/13/expected_material"
+        }
+      },
+      {
+        "id": "H003-N01-DESIGN-AS-VERIFIED",
+        "reason": "normalized_expectations_differ",
+        "l8_state_value": null,
+        "l9_state_value": null,
+        "l8_source_pointer": {
+          "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+          "pointer": "/cases/6/cases/17/expected_partial_values"
+        },
+        "l9_source_pointer": {
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "pointer": "/cases/6/negative_cases/14/expected_material"
+        }
+      },
+      {
+        "id": "H003-N01-DESIGN-AS-OBSERVED",
+        "reason": "normalized_expectations_differ",
+        "l8_state_value": null,
+        "l9_state_value": null,
+        "l8_source_pointer": {
+          "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+          "pointer": "/cases/6/cases/18/expected_partial_values"
+        },
+        "l9_source_pointer": {
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "pointer": "/cases/6/negative_cases/15/expected_material"
+        }
+      },
+      {
+        "id": "H003-N01-DESIGN-AS-OPERATED",
+        "reason": "normalized_expectations_differ",
+        "l8_state_value": null,
+        "l9_state_value": null,
+        "l8_source_pointer": {
+          "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+          "pointer": "/cases/6/cases/19/expected_partial_values"
+        },
+        "l9_source_pointer": {
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "pointer": "/cases/6/negative_cases/16/expected_material"
+        }
+      },
+      {
+        "id": "H003-N01-INFERENCE-AS-REPRODUCED",
+        "reason": "normalized_expectations_differ",
+        "l8_state_value": null,
+        "l9_state_value": null,
+        "l8_source_pointer": {
+          "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+          "pointer": "/cases/6/cases/20/expected_partial_values"
+        },
+        "l9_source_pointer": {
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "pointer": "/cases/6/negative_cases/17/expected_material"
+        }
+      },
+      {
+        "id": "H003-N01-INFERENCE-AS-VERIFIED",
+        "reason": "normalized_expectations_differ",
+        "l8_state_value": null,
+        "l9_state_value": null,
+        "l8_source_pointer": {
+          "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+          "pointer": "/cases/6/cases/21/expected_partial_values"
+        },
+        "l9_source_pointer": {
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "pointer": "/cases/6/negative_cases/18/expected_material"
+        }
+      },
+      {
+        "id": "H003-N01-INFERENCE-AS-REPAIRED",
+        "reason": "normalized_expectations_differ",
+        "l8_state_value": null,
+        "l9_state_value": null,
+        "l8_source_pointer": {
+          "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+          "pointer": "/cases/6/cases/22/expected_partial_values"
+        },
+        "l9_source_pointer": {
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "pointer": "/cases/6/negative_cases/19/expected_material"
+        }
+      },
+      {
+        "id": "H003-N01-INFERENCE-AS-REVERIFIED",
+        "reason": "normalized_expectations_differ",
+        "l8_state_value": null,
+        "l9_state_value": null,
+        "l8_source_pointer": {
+          "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+          "pointer": "/cases/6/cases/23/expected_partial_values"
+        },
+        "l9_source_pointer": {
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "pointer": "/cases/6/negative_cases/20/expected_material"
+        }
+      },
+      {
+        "id": "H003-N01-INFERENCE-AS-OPERATED",
+        "reason": "normalized_expectations_differ",
+        "l8_state_value": null,
+        "l9_state_value": null,
+        "l8_source_pointer": {
+          "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+          "pointer": "/cases/6/cases/24/expected_partial_values"
+        },
+        "l9_source_pointer": {
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "pointer": "/cases/6/negative_cases/21/expected_material"
+        }
+      },
+      {
+        "id": "H003-N01-INVENT-SLO",
+        "reason": "normalized_expectations_differ",
+        "l8_state_value": null,
+        "l9_state_value": null,
+        "l8_source_pointer": {
+          "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+          "pointer": "/cases/6/cases/25/expected_partial_values"
+        },
+        "l9_source_pointer": {
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "pointer": "/cases/6/negative_cases/22/expected_material"
+        }
+      },
+      {
+        "id": "H003-N01-INVENT-RTO",
+        "reason": "normalized_expectations_differ",
+        "l8_state_value": null,
+        "l9_state_value": null,
+        "l8_source_pointer": {
+          "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+          "pointer": "/cases/6/cases/26/expected_partial_values"
+        },
+        "l9_source_pointer": {
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "pointer": "/cases/6/negative_cases/23/expected_material"
+        }
+      },
+      {
+        "id": "H003-N01-INVENT-RPO",
+        "reason": "normalized_expectations_differ",
+        "l8_state_value": null,
+        "l9_state_value": null,
+        "l8_source_pointer": {
+          "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+          "pointer": "/cases/6/cases/27/expected_partial_values"
+        },
+        "l9_source_pointer": {
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "pointer": "/cases/6/negative_cases/24/expected_material"
+        }
+      },
+      {
+        "id": "H003-N01-INVENT-RETENTION",
+        "reason": "normalized_expectations_differ",
+        "l8_state_value": null,
+        "l9_state_value": null,
+        "l8_source_pointer": {
+          "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+          "pointer": "/cases/6/cases/28/expected_partial_values"
+        },
+        "l9_source_pointer": {
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "pointer": "/cases/6/negative_cases/25/expected_material"
+        }
+      },
+      {
+        "id": "H003-N01-OBSERVED-FOREIGN-ENVIRONMENT",
+        "reason": "normalized_expectations_differ",
+        "l8_state_value": null,
+        "l9_state_value": null,
+        "l8_source_pointer": {
+          "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+          "pointer": "/cases/6/cases/29/expected_partial_values"
+        },
+        "l9_source_pointer": {
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "pointer": "/cases/6/negative_cases/26/expected_material"
+        }
+      },
+      {
+        "id": "H003-N01-OBSERVED-NOT-EXECUTED",
+        "reason": "normalized_expectations_differ",
+        "l8_state_value": null,
+        "l9_state_value": null,
+        "l8_source_pointer": {
+          "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+          "pointer": "/cases/6/cases/30/expected_partial_values"
+        },
+        "l9_source_pointer": {
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "pointer": "/cases/6/negative_cases/27/expected_material"
+        }
+      },
+      {
+        "id": "H003-N01-OBSERVED-OWNER-CONTENT-CONFLICT",
+        "reason": "normalized_expectations_differ",
+        "l8_state_value": null,
+        "l9_state_value": null,
+        "l8_source_pointer": {
+          "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+          "pointer": "/cases/6/cases/31/expected_partial_values"
+        },
+        "l9_source_pointer": {
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "pointer": "/cases/6/negative_cases/28/expected_material"
+        }
+      },
+      {
+        "id": "H003-N01-OPERATED-FOREIGN-ENVIRONMENT",
+        "reason": "normalized_expectations_differ",
+        "l8_state_value": null,
+        "l9_state_value": null,
+        "l8_source_pointer": {
+          "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+          "pointer": "/cases/6/cases/32/expected_partial_values"
+        },
+        "l9_source_pointer": {
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "pointer": "/cases/6/negative_cases/29/expected_material"
+        }
+      },
+      {
+        "id": "H003-N01-OPERATED-NOT-EXECUTED",
+        "reason": "normalized_expectations_differ",
+        "l8_state_value": null,
+        "l9_state_value": null,
+        "l8_source_pointer": {
+          "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+          "pointer": "/cases/6/cases/33/expected_partial_values"
+        },
+        "l9_source_pointer": {
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "pointer": "/cases/6/negative_cases/30/expected_material"
+        }
+      },
+      {
+        "id": "H003-N01-OPERATED-OWNER-CONTENT-CONFLICT",
+        "reason": "normalized_expectations_differ",
+        "l8_state_value": null,
+        "l9_state_value": null,
+        "l8_source_pointer": {
+          "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+          "pointer": "/cases/6/cases/34/expected_partial_values"
+        },
+        "l9_source_pointer": {
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "pointer": "/cases/6/negative_cases/31/expected_material"
+        }
+      },
+      {
+        "id": "H003-N01-OPERATED-LEGACY_BROKER",
+        "reason": "normalized_expectations_differ",
+        "l8_state_value": null,
+        "l9_state_value": null,
+        "l8_source_pointer": {
+          "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+          "pointer": "/cases/6/cases/35/expected_partial_values"
+        },
+        "l9_source_pointer": {
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "pointer": "/cases/6/negative_cases/32/expected_material"
+        }
+      },
+      {
+        "id": "H003-N01-OPERATED-LEGACY_PROVIDER",
+        "reason": "normalized_expectations_differ",
+        "l8_state_value": null,
+        "l9_state_value": null,
+        "l8_source_pointer": {
+          "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+          "pointer": "/cases/6/cases/36/expected_partial_values"
+        },
+        "l9_source_pointer": {
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "pointer": "/cases/6/negative_cases/33/expected_material"
+        }
+      },
+      {
+        "id": "H003-N01-OPERATED-LEGACY_CI",
+        "reason": "normalized_expectations_differ",
+        "l8_state_value": null,
+        "l9_state_value": null,
+        "l8_source_pointer": {
+          "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+          "pointer": "/cases/6/cases/37/expected_partial_values"
+        },
+        "l9_source_pointer": {
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "pointer": "/cases/6/negative_cases/34/expected_material"
+        }
+      }
+    ],
+    "expectation_equal_but_unprojected_cases": [
+      {
+        "id": "H003-F04-MISSING-Provisional",
+        "state": "Provisional",
+        "reason": "expectations_equal_but_l9_has_no_ordered_findings_or_return_owner",
+        "l8_source_pointer": {
+          "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+          "pointer": "/cases/4/cases/9/expected_partial_values"
+        },
+        "l9_source_pointer": {
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "pointer": "/cases/4/negative_cases/1/expected_material"
+        }
+      },
+      {
+        "id": "H003-F04-MISSING-Integrated",
+        "state": "Integrated",
+        "reason": "expectations_equal_but_l9_has_no_ordered_findings_or_return_owner",
+        "l8_source_pointer": {
+          "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+          "pointer": "/cases/4/cases/10/expected_partial_values"
+        },
+        "l9_source_pointer": {
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "pointer": "/cases/4/negative_cases/2/expected_material"
+        }
+      },
+      {
+        "id": "H003-F04-MISSING-Verified",
+        "state": "Verified",
+        "reason": "expectations_equal_but_l9_has_no_ordered_findings_or_return_owner",
+        "l8_source_pointer": {
+          "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+          "pointer": "/cases/4/cases/11/expected_partial_values"
+        },
+        "l9_source_pointer": {
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "pointer": "/cases/4/negative_cases/3/expected_material"
+        }
+      },
+      {
+        "id": "H003-F04-MISSING-Accepted",
+        "state": "Accepted",
+        "reason": "expectations_equal_but_l9_has_no_ordered_findings_or_return_owner",
+        "l8_source_pointer": {
+          "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+          "pointer": "/cases/4/cases/12/expected_partial_values"
+        },
+        "l9_source_pointer": {
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "pointer": "/cases/4/negative_cases/4/expected_material"
+        }
+      },
+      {
+        "id": "H003-F04-MISSING-Release-eligible",
+        "state": "Release-eligible",
+        "reason": "expectations_equal_but_l9_has_no_ordered_findings_or_return_owner",
+        "l8_source_pointer": {
+          "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+          "pointer": "/cases/4/cases/13/expected_partial_values"
+        },
+        "l9_source_pointer": {
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "pointer": "/cases/4/negative_cases/5/expected_material"
+        }
+      },
+      {
+        "id": "H003-F04-MISSING-Deployed",
+        "state": "Deployed",
+        "reason": "expectations_equal_but_l9_has_no_ordered_findings_or_return_owner",
+        "l8_source_pointer": {
+          "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+          "pointer": "/cases/4/cases/14/expected_partial_values"
+        },
+        "l9_source_pointer": {
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "pointer": "/cases/4/negative_cases/6/expected_material"
+        }
+      },
+      {
+        "id": "H003-F04-MISSING-Observed",
+        "state": "Observed",
+        "reason": "expectations_equal_but_l9_has_no_ordered_findings_or_return_owner",
+        "l8_source_pointer": {
+          "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+          "pointer": "/cases/4/cases/15/expected_partial_values"
+        },
+        "l9_source_pointer": {
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "pointer": "/cases/4/negative_cases/7/expected_material"
+        }
+      }
+    ],
+    "positive_case_scope": "L8の既存casesとL9のnormal_casesは元配列に保持する。negative equivalenceだけを対象とするため、normal caseはnegative rowへ重複登録しない。",
+    "checker_limit": "L8/L9 case rowが未形成のためexplicit negative-class modeは使わず、現checkerはlegacy modeで未対応件数を報告する。explicit modeは供給行のみ比較し、同時省略を検出しない。",
+    "preservation": "L8/L9の元cases配列は、182件のnegative source rowを含めて変更せず保持する。"
   }
 }

@@ -454,8 +454,7 @@
     "F03/F04のproducer契約/原target association境界は本pairへ固定。015/022を含むrole閉型/selector/純粋関数/実provider・実資格のbindingは後続L5/L8と実装で残る",
     "独立exact HEAD意味review・main admission",
     "L5/L8の型・関数・証拠資格・エラー・case凍結",
-    "正式実装/実認可/実証拠/CI/実物PO受入",
-    "STOP-WR177-L4-001: 上の7つの契約単位failure familyはL3義務と対応L4のfailure_return/invariants/connection detailから形成済み。個別CHK class rowsに必要な閉じたcode/finding_codes、expected_axis、case単位expected_state/expected tuple/backflow_ownerとfamily→182 lower caseの対応は上流資料にないため未形成。negative_classificationsは追加しない。L8/L9から逆生成しない。"
+    "正式実装/実認可/実証拠/CI/実物PO受入"
   ],
   "layer": "L4",
   "pair": "L9",
@@ -491,7 +490,7 @@
         "人の発言とAI解釈を別原記録identityにする",
         "一方の成功で他方の不足を消さない"
       ],
-      "failure_return": "不足の条件・対象revision/scope・元証拠・理由・当該ownerを保持。該当しない有効scopeを全停止しない。 契約固有: 技術品質と人の原反応を相殺せず、受容済み軸と未解決findingを別に保持する。 根拠（base 827c4ea924a15b6b54bbe9d1f5d2f9fbdefa65de）: docs/helix-harness/L3-requirements/business-requirements.json#/requirements/14/obligation; docs/helix-harness/L4-basic-design/process-state-port.json#/contracts/0/invariants; docs/helix-harness/L4-basic-design/process-state-port.json#/contracts/0/connection_detail/preservation; docs/helix-harness/L4-basic-design/process-state-port.json#/contracts/0/connection_detail/management_return.",
+      "failure_return": "不足の条件・対象revision/scope・元証拠・理由・当該ownerを保持。該当しない有効scopeを全停止しない。 契約固有: 技術品質と人の原反応を相殺せず、受容済み軸と未解決findingを別に保持する。",
       "connection_detail": {
         "original_reaction_owner": "OS",
         "technical_evidence_owner": "技術検証owner",
@@ -553,7 +552,29 @@
         "qualification_returns": "B01の原state/source_ref/reasonの3fieldを保持する。",
         "definition_return": "このB01出力ではabsent。scope/意味不足はowner_returnsへ保持する。",
         "readable_original_materials": "物理的に読めた原資料を保持する。資格known一覧ではない。"
-      }
+      },
+      "source_pointers": [
+        {
+          "path": "docs/helix-harness/L3-requirements/business-requirements.json",
+          "pointer": "/requirements/14/obligation",
+          "revision": "827c4ea924a15b6b54bbe9d1f5d2f9fbdefa65de"
+        },
+        {
+          "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
+          "pointer": "/contracts/0/invariants",
+          "revision": "827c4ea924a15b6b54bbe9d1f5d2f9fbdefa65de"
+        },
+        {
+          "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
+          "pointer": "/contracts/0/connection_detail/preservation",
+          "revision": "827c4ea924a15b6b54bbe9d1f5d2f9fbdefa65de"
+        },
+        {
+          "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
+          "pointer": "/contracts/0/connection_detail/management_return",
+          "revision": "827c4ea924a15b6b54bbe9d1f5d2f9fbdefa65de"
+        }
+      ]
     },
     {
       "id": "HARNESS-L4-003-F01",
@@ -586,7 +607,7 @@
         "相談・依頼・採択・要件承認・操作認可は別役割で結合",
         "同revision/scopeを外れた根拠は当該条件を成立させない"
       ],
-      "failure_return": "不足の条件・対象revision/scope・元証拠・理由・当該ownerを保持。該当しない有効scopeを全停止しない。 契約固有: 相談・依頼・採択・要件承認・操作認可を別役割として扱い、同revision/scope外の根拠で当該条件を成立させない。委任内の技術具体化へ追加承認を設けず、未委任の意味/権限変更は当該ownerへ返す。 根拠（base 827c4ea924a15b6b54bbe9d1f5d2f9fbdefa65de）: docs/helix-harness/L3-requirements/functional-requirements.json#/requirements/64/obligation; docs/helix-harness/L4-basic-design/process-state-port.json#/contracts/1/invariants; docs/helix-harness/L4-basic-design/process-state-port.json#/contracts/1/connection_detail/operation_distinction; docs/helix-harness/L4-basic-design/process-state-port.json#/contracts/1/connection_detail/delegation.",
+      "failure_return": "不足の条件・対象revision/scope・元証拠・理由・当該ownerを保持。該当しない有効scopeを全停止しない。 契約固有: 相談・依頼・採択・要件承認・操作認可を別役割として扱い、同revision/scope外の根拠で当該条件を成立させない。委任内の技術具体化へ追加承認を設けず、未委任の意味/権限変更は当該ownerへ返す。",
       "connection_detail": {
         "condition_provider": "当該工程の承認済み契約owner",
         "condition_comparison_owner": "HARNESS",
@@ -646,7 +667,29 @@
         "qualification_returns": "F01既存7field（qualification_state/original_source_ref/target_binding/required_for_action/owner_target/reason/operation_effect）を全て保持する。owner_target原観測を別ownerや推定recipientで補わない。",
         "definition_return": "原phase/action又は必要profile定義が未解決ならstate/元参照/対象/理由/owner_target状態・値/noneの7fieldをpresentで返し、他はabsent。",
         "readable_original_materials": "物理的に読めた材料identityを保持する。既知membershipや資格known一覧とは別に返す。"
-      }
+      },
+      "source_pointers": [
+        {
+          "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+          "pointer": "/requirements/64/obligation",
+          "revision": "827c4ea924a15b6b54bbe9d1f5d2f9fbdefa65de"
+        },
+        {
+          "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
+          "pointer": "/contracts/1/invariants",
+          "revision": "827c4ea924a15b6b54bbe9d1f5d2f9fbdefa65de"
+        },
+        {
+          "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
+          "pointer": "/contracts/1/connection_detail/operation_distinction",
+          "revision": "827c4ea924a15b6b54bbe9d1f5d2f9fbdefa65de"
+        },
+        {
+          "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
+          "pointer": "/contracts/1/connection_detail/delegation",
+          "revision": "827c4ea924a15b6b54bbe9d1f5d2f9fbdefa65de"
+        }
+      ]
     },
     {
       "id": "HARNESS-L4-003-F02",
@@ -679,7 +722,7 @@
         "成功したPoC/Prototypeを要求採用や要件承認に読み替えない",
         "非UIからPoC非適用やL2省略を導かない"
       ],
-      "failure_return": "不足の条件・対象revision/scope・元証拠・理由・当該ownerを保持。該当しない有効scopeを全停止しない。 契約固有: PoC/Prototypeの成功を要求採用・要件承認へ読み替えず、非UIを非適用理由にしない。結果なしの場合はL2と両N/Aの6属性を保持し、L2.5結果のない還流chainを作らない。 根拠（base 827c4ea924a15b6b54bbe9d1f5d2f9fbdefa65de）: docs/helix-harness/L3-requirements/functional-requirements.json#/requirements/65/obligation; docs/helix-harness/L4-basic-design/process-state-port.json#/contracts/2/invariants; docs/helix-harness/L4-basic-design/process-state-port.json#/contracts/2/connection_detail/no_result_case; docs/helix-harness/L4-basic-design/process-state-port.json#/contracts/2/connection_detail/condition_limit.",
+      "failure_return": "不足の条件・対象revision/scope・元証拠・理由・当該ownerを保持。該当しない有効scopeを全停止しない。 契約固有: PoC/Prototypeの成功を要求採用・要件承認へ読み替えず、非UIを非適用理由にしない。結果なしの場合はL2と両N/Aの6属性を保持し、L2.5結果のない還流chainを作らない。",
       "connection_detail": {
         "applicability_source": "001 Prototype/PoC独立判定",
         "result_owner": "L2.5原実験/Prototype owner",
@@ -694,7 +737,29 @@
         "actual_operation_owner": "OS",
         "no_result_case": "両方非適用時だけL2.5を省略し、L2と両N/Aの6属性を保持。未実施L2.5結果への還流chainを捏造しない。",
         "condition_limit": "実要求採用/要件承認/凍結は別原記録と既存authorityから確認する。合成条件例はそれらを成立させない。"
-      }
+      },
+      "source_pointers": [
+        {
+          "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+          "pointer": "/requirements/65/obligation",
+          "revision": "827c4ea924a15b6b54bbe9d1f5d2f9fbdefa65de"
+        },
+        {
+          "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
+          "pointer": "/contracts/2/invariants",
+          "revision": "827c4ea924a15b6b54bbe9d1f5d2f9fbdefa65de"
+        },
+        {
+          "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
+          "pointer": "/contracts/2/connection_detail/no_result_case",
+          "revision": "827c4ea924a15b6b54bbe9d1f5d2f9fbdefa65de"
+        },
+        {
+          "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
+          "pointer": "/contracts/2/connection_detail/condition_limit",
+          "revision": "827c4ea924a15b6b54bbe9d1f5d2f9fbdefa65de"
+        }
+      ]
     },
     {
       "id": "HARNESS-L4-003-F03",
@@ -729,7 +794,7 @@
         "小さな境界Refactorは今のForward内、独立した構造/横断/architecture改善は独立ticket",
         "実発行とReverse実行成功をHARNESSの照合結果から生成しない"
       ],
-      "failure_return": "不足の条件・対象revision/scope・元証拠・理由・当該ownerを保持。該当しない有効scopeを全停止しない。 契約固有: L8↔L5・L9↔L4・L10↔L3のpairを維持し、scopeに関する部分結果を保持する。正規由来が結べる変更はScoped Reverse候補、復旧条件を持つ変更はFull Reverse候補として区別し、照合からticket発行やReverse実行成功を生成しない。 根拠（base 827c4ea924a15b6b54bbe9d1f5d2f9fbdefa65de）: docs/helix-harness/L3-requirements/functional-requirements.json#/requirements/66/obligation; docs/helix-harness/L4-basic-design/process-state-port.json#/contracts/3/invariants; docs/helix-harness/L4-basic-design/process-state-port.json#/contracts/3/connection_detail/scope_policy; docs/helix-harness/L4-basic-design/process-state-port.json#/contracts/3/connection_detail/partial_results; docs/helix-harness/L4-basic-design/process-state-port.json#/contracts/3/connection_detail/backflow_axes.",
+      "failure_return": "不足の条件・対象revision/scope・元証拠・理由・当該ownerを保持。該当しない有効scopeを全停止しない。 契約固有: L8↔L5・L9↔L4・L10↔L3のpairを維持し、scopeに関する部分結果を保持する。正規由来が結べる変更はScoped Reverse候補、復旧条件を持つ変更はFull Reverse候補として区別し、照合からticket発行やReverse実行成功を生成しない。",
       "connection_detail": {
         "evidence_producers": [
           "005/015の実行証拠owner",
@@ -1284,7 +1349,34 @@
           "absence_and_locality": "endpointの選択・解決不能はtarget_stateへ局所化する。別の独立raw scope source/comparandが解決できる場合、そのscope比較は続ける。scope軸で必要な比較元自体が欠落ならmissing、null/型外/不正pointerならunknown。未選択endpointを推測してscope値を作らない。",
           "endpoint_and_revision_locality": "022のbinding.producer_target又は独立operation.producer_target全体が欠落する場合、そのendpoint対応をtarget_state=missingへ局所化する。全体が明示null/型外ならtarget_state=unknown。同endpoint内だけに依存するidentity/scope/revisionの子比較は実施せず、container不在から追加の子missing/unknownを生成しない。独立SystemDifferenceInput.context、独立Context.target、別endpoint、選択Material/Evidenceから読めるartifact_revision/requirement_revision/scope比較は継続し、それぞれの軸内規則で集約する。endpoint object自体が存在する場合のartifact_revision/requirement_revision member欠落はSB02どおり該当revision軸のmissing、明示null/型外はunknownとする。"
         }
-      }
+      },
+      "source_pointers": [
+        {
+          "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+          "pointer": "/requirements/66/obligation",
+          "revision": "827c4ea924a15b6b54bbe9d1f5d2f9fbdefa65de"
+        },
+        {
+          "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
+          "pointer": "/contracts/3/invariants",
+          "revision": "827c4ea924a15b6b54bbe9d1f5d2f9fbdefa65de"
+        },
+        {
+          "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
+          "pointer": "/contracts/3/connection_detail/scope_policy",
+          "revision": "827c4ea924a15b6b54bbe9d1f5d2f9fbdefa65de"
+        },
+        {
+          "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
+          "pointer": "/contracts/3/connection_detail/partial_results",
+          "revision": "827c4ea924a15b6b54bbe9d1f5d2f9fbdefa65de"
+        },
+        {
+          "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
+          "pointer": "/contracts/3/connection_detail/backflow_axes",
+          "revision": "827c4ea924a15b6b54bbe9d1f5d2f9fbdefa65de"
+        }
+      ]
     },
     {
       "id": "HARNESS-L4-003-F04",
@@ -1318,7 +1410,7 @@
         "状態の実保存/更新はOS、状態条件の意味はHARNESS",
         "CI・L10・受入・配備を互いの代替にしない"
       ],
-      "failure_return": "不足の条件・対象revision/scope・元証拠・理由・当該ownerを保持。該当しない有効scopeを全停止しない。 契約固有: 八状態の成立根拠を別に扱い、前状態の成立から次状態を推定しない。CI・L10・受入・配備を相互代替せず、状態の実保存/更新はOSに残す。 根拠（base 827c4ea924a15b6b54bbe9d1f5d2f9fbdefa65de）: docs/helix-harness/L3-requirements/functional-requirements.json#/requirements/67/obligation; docs/helix-harness/L4-basic-design/process-state-port.json#/contracts/4/invariants.",
+      "failure_return": "不足の条件・対象revision/scope・元証拠・理由・当該ownerを保持。該当しない有効scopeを全停止しない。 契約固有: 八状態の成立根拠を別に扱い、前状態の成立から次状態を推定しない。CI・L10・受入・配備を相互代替せず、状態の実保存/更新はOSに残す。",
       "source_binding_connection": {
         "shared_contract_pointer": "/contracts/3/source_binding_connection",
         "roles_by_state": {
@@ -1333,7 +1425,268 @@
         },
         "independence": "各状態固有の既存条件・独立原証拠を維持する。source-binding対応を上位stateのproofへ代用しない。",
         "l9_pointer": "/verification_obligations/4/source_binding_oracles"
-      }
+      },
+      "source_pointers": [
+        {
+          "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+          "pointer": "/requirements/67/obligation",
+          "revision": "827c4ea924a15b6b54bbe9d1f5d2f9fbdefa65de"
+        },
+        {
+          "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
+          "pointer": "/contracts/4/invariants",
+          "revision": "827c4ea924a15b6b54bbe9d1f5d2f9fbdefa65de"
+        },
+        {
+          "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+          "pointer": "/requirements/67/obligation"
+        },
+        {
+          "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
+          "pointer": "/contracts/4/invariants"
+        },
+        {
+          "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
+          "pointer": "/artifact_state_basis"
+        },
+        {
+          "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
+          "pointer": "/state_evidence_connection"
+        }
+      ],
+      "negative_classifications": [
+        {
+          "code": "F04_STATE_PROVISIONAL_PROOF_MISSING",
+          "change": "Provisional固有の原証拠が不足。前状態/後続状態の証拠で補わず、独立に読めた他stateの証拠は保持する。",
+          "axis": "state_Provisional_basis",
+          "state": "missing",
+          "backflow_owner": "当該状態の原証拠owner",
+          "expected": "Provisional固有の原証拠が不足。前状態/後続状態の証拠で補わず、独立に読めた他stateの証拠は保持する。 状態更新は行わない。",
+          "expected_preserved": {
+            "target": "対象revision/scope・元証拠・理由・当該ownerを保持",
+            "unaffected_scope": "該当しない有効scopeを全停止しない",
+            "later_proofs": "先行証拠が不足しても独立に読めた後続原証拠を保持する",
+            "state_update": "照合は状態条件材料のみで実状態更新を行わない"
+          },
+          "expected_side_effect_count": 0,
+          "source_pointers": [
+            {
+              "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+              "pointer": "/requirements/67/obligation"
+            },
+            {
+              "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
+              "pointer": "/artifact_state_basis/1"
+            },
+            {
+              "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
+              "pointer": "/contracts/4/invariants"
+            },
+            {
+              "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
+              "pointer": "/state_evidence_connection"
+            }
+          ]
+        },
+        {
+          "code": "F04_STATE_INTEGRATED_PROOF_MISSING",
+          "change": "Integrated固有の原証拠が不足。前状態/後続状態の証拠で補わず、独立に読めた他stateの証拠は保持する。",
+          "axis": "state_Integrated_basis",
+          "state": "missing",
+          "backflow_owner": "当該状態の原証拠owner",
+          "expected": "Integrated固有の原証拠が不足。前状態/後続状態の証拠で補わず、独立に読めた他stateの証拠は保持する。 状態更新は行わない。",
+          "expected_preserved": {
+            "target": "対象revision/scope・元証拠・理由・当該ownerを保持",
+            "unaffected_scope": "該当しない有効scopeを全停止しない",
+            "later_proofs": "先行証拠が不足しても独立に読めた後続原証拠を保持する",
+            "state_update": "照合は状態条件材料のみで実状態更新を行わない"
+          },
+          "expected_side_effect_count": 0,
+          "source_pointers": [
+            {
+              "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+              "pointer": "/requirements/67/obligation"
+            },
+            {
+              "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
+              "pointer": "/artifact_state_basis/2"
+            },
+            {
+              "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
+              "pointer": "/contracts/4/invariants"
+            },
+            {
+              "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
+              "pointer": "/state_evidence_connection"
+            }
+          ]
+        },
+        {
+          "code": "F04_STATE_VERIFIED_PROOF_MISSING",
+          "change": "Verified固有の原証拠が不足。前状態/後続状態の証拠で補わず、独立に読めた他stateの証拠は保持する。",
+          "axis": "state_Verified_basis",
+          "state": "missing",
+          "backflow_owner": "当該状態の原証拠owner",
+          "expected": "Verified固有の原証拠が不足。前状態/後続状態の証拠で補わず、独立に読めた他stateの証拠は保持する。 状態更新は行わない。",
+          "expected_preserved": {
+            "target": "対象revision/scope・元証拠・理由・当該ownerを保持",
+            "unaffected_scope": "該当しない有効scopeを全停止しない",
+            "later_proofs": "先行証拠が不足しても独立に読めた後続原証拠を保持する",
+            "state_update": "照合は状態条件材料のみで実状態更新を行わない"
+          },
+          "expected_side_effect_count": 0,
+          "source_pointers": [
+            {
+              "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+              "pointer": "/requirements/67/obligation"
+            },
+            {
+              "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
+              "pointer": "/artifact_state_basis/3"
+            },
+            {
+              "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
+              "pointer": "/contracts/4/invariants"
+            },
+            {
+              "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
+              "pointer": "/state_evidence_connection"
+            }
+          ]
+        },
+        {
+          "code": "F04_STATE_ACCEPTED_PROOF_MISSING",
+          "change": "Accepted固有の原証拠が不足。前状態/後続状態の証拠で補わず、独立に読めた他stateの証拠は保持する。",
+          "axis": "state_Accepted_basis",
+          "state": "missing",
+          "backflow_owner": "当該状態の原証拠owner",
+          "expected": "Accepted固有の原証拠が不足。前状態/後続状態の証拠で補わず、独立に読めた他stateの証拠は保持する。 状態更新は行わない。",
+          "expected_preserved": {
+            "target": "対象revision/scope・元証拠・理由・当該ownerを保持",
+            "unaffected_scope": "該当しない有効scopeを全停止しない",
+            "later_proofs": "先行証拠が不足しても独立に読めた後続原証拠を保持する",
+            "state_update": "照合は状態条件材料のみで実状態更新を行わない"
+          },
+          "expected_side_effect_count": 0,
+          "source_pointers": [
+            {
+              "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+              "pointer": "/requirements/67/obligation"
+            },
+            {
+              "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
+              "pointer": "/artifact_state_basis/4"
+            },
+            {
+              "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
+              "pointer": "/contracts/4/invariants"
+            },
+            {
+              "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
+              "pointer": "/state_evidence_connection"
+            }
+          ]
+        },
+        {
+          "code": "F04_STATE_RELEASE-ELIGIBLE_PROOF_MISSING",
+          "change": "Release-eligible固有の原証拠が不足。前状態/後続状態の証拠で補わず、独立に読めた他stateの証拠は保持する。",
+          "axis": "state_Release-eligible_basis",
+          "state": "missing",
+          "backflow_owner": "当該状態の原証拠owner",
+          "expected": "Release-eligible固有の原証拠が不足。前状態/後続状態の証拠で補わず、独立に読めた他stateの証拠は保持する。 状態更新は行わない。",
+          "expected_preserved": {
+            "target": "対象revision/scope・元証拠・理由・当該ownerを保持",
+            "unaffected_scope": "該当しない有効scopeを全停止しない",
+            "later_proofs": "先行証拠が不足しても独立に読めた後続原証拠を保持する",
+            "state_update": "照合は状態条件材料のみで実状態更新を行わない"
+          },
+          "expected_side_effect_count": 0,
+          "source_pointers": [
+            {
+              "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+              "pointer": "/requirements/67/obligation"
+            },
+            {
+              "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
+              "pointer": "/artifact_state_basis/5"
+            },
+            {
+              "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
+              "pointer": "/contracts/4/invariants"
+            },
+            {
+              "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
+              "pointer": "/state_evidence_connection"
+            }
+          ]
+        },
+        {
+          "code": "F04_STATE_DEPLOYED_PROOF_MISSING",
+          "change": "Deployed固有の原証拠が不足。前状態/後続状態の証拠で補わず、独立に読めた他stateの証拠は保持する。",
+          "axis": "state_Deployed_basis",
+          "state": "missing",
+          "backflow_owner": "当該状態の原証拠owner",
+          "expected": "Deployed固有の原証拠が不足。前状態/後続状態の証拠で補わず、独立に読めた他stateの証拠は保持する。 状態更新は行わない。",
+          "expected_preserved": {
+            "target": "対象revision/scope・元証拠・理由・当該ownerを保持",
+            "unaffected_scope": "該当しない有効scopeを全停止しない",
+            "later_proofs": "先行証拠が不足しても独立に読めた後続原証拠を保持する",
+            "state_update": "照合は状態条件材料のみで実状態更新を行わない"
+          },
+          "expected_side_effect_count": 0,
+          "source_pointers": [
+            {
+              "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+              "pointer": "/requirements/67/obligation"
+            },
+            {
+              "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
+              "pointer": "/artifact_state_basis/6"
+            },
+            {
+              "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
+              "pointer": "/contracts/4/invariants"
+            },
+            {
+              "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
+              "pointer": "/state_evidence_connection"
+            }
+          ]
+        },
+        {
+          "code": "F04_STATE_OBSERVED_PROOF_MISSING",
+          "change": "Observed固有の原証拠が不足。前状態/後続状態の証拠で補わず、独立に読めた他stateの証拠は保持する。",
+          "axis": "state_Observed_basis",
+          "state": "missing",
+          "backflow_owner": "当該状態の原証拠owner",
+          "expected": "Observed固有の原証拠が不足。前状態/後続状態の証拠で補わず、独立に読めた他stateの証拠は保持する。 状態更新は行わない。",
+          "expected_preserved": {
+            "target": "対象revision/scope・元証拠・理由・当該ownerを保持",
+            "unaffected_scope": "該当しない有効scopeを全停止しない",
+            "later_proofs": "先行証拠が不足しても独立に読めた後続原証拠を保持する",
+            "state_update": "照合は状態条件材料のみで実状態更新を行わない"
+          },
+          "expected_side_effect_count": 0,
+          "source_pointers": [
+            {
+              "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+              "pointer": "/requirements/67/obligation"
+            },
+            {
+              "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
+              "pointer": "/artifact_state_basis/7"
+            },
+            {
+              "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
+              "pointer": "/contracts/4/invariants"
+            },
+            {
+              "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
+              "pointer": "/state_evidence_connection"
+            }
+          ]
+        }
+      ]
     },
     {
       "id": "HARNESS-L4-003-F05",
@@ -1368,7 +1721,7 @@
         "Port成立は操作の実施/新許可の生成ではない",
         "配備/Issue closeから恒久対策/backfill完了を導かない"
       ],
-      "failure_return": "不足の条件・対象revision/scope・元証拠・理由・当該ownerを保持。該当しない有効scopeを全停止しない。 契約固有: 初回scopeで実release/Incident運転を選択しない。Port成立から操作実施や新許可を生成せず、配備/Issue closeから恒久対策/backfill完了を導かない。 根拠（base 827c4ea924a15b6b54bbe9d1f5d2f9fbdefa65de）: docs/helix-harness/L3-requirements/functional-requirements.json#/requirements/68/obligation; docs/helix-harness/L4-basic-design/process-state-port.json#/contracts/5/invariants; docs/helix-harness/L4-basic-design/process-state-port.json#/contracts/5/connection_detail/initial_order; docs/helix-harness/L4-basic-design/process-state-port.json#/contracts/5/connection_detail/completion_axes; docs/helix-harness/L4-basic-design/process-state-port.json#/contracts/5/connection_detail/return.",
+      "failure_return": "不足の条件・対象revision/scope・元証拠・理由・当該ownerを保持。該当しない有効scopeを全停止しない。 契約固有: 初回scopeで実release/Incident運転を選択しない。Port成立から操作実施や新許可を生成せず、配備/Issue closeから恒久対策/backfill完了を導かない。",
       "connection_detail": {
         "port_definition_owner": "HARNESS",
         "operation_and_original_record_owner": "OS",
@@ -1393,7 +1746,34 @@
           "選択方式の該当層への復帰"
         ],
         "return": "戻り先unknownは当該ownerへ不足として返し、F01の再開/凍結条件で照合。実運転はOSが持つ。"
-      }
+      },
+      "source_pointers": [
+        {
+          "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+          "pointer": "/requirements/68/obligation",
+          "revision": "827c4ea924a15b6b54bbe9d1f5d2f9fbdefa65de"
+        },
+        {
+          "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
+          "pointer": "/contracts/5/invariants",
+          "revision": "827c4ea924a15b6b54bbe9d1f5d2f9fbdefa65de"
+        },
+        {
+          "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
+          "pointer": "/contracts/5/connection_detail/initial_order",
+          "revision": "827c4ea924a15b6b54bbe9d1f5d2f9fbdefa65de"
+        },
+        {
+          "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
+          "pointer": "/contracts/5/connection_detail/completion_axes",
+          "revision": "827c4ea924a15b6b54bbe9d1f5d2f9fbdefa65de"
+        },
+        {
+          "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
+          "pointer": "/contracts/5/connection_detail/return",
+          "revision": "827c4ea924a15b6b54bbe9d1f5d2f9fbdefa65de"
+        }
+      ]
     },
     {
       "id": "HARNESS-L4-003-N01",
@@ -1428,7 +1808,7 @@
         "別環境や旧provider/CIで証拠不足を相殺しない",
         "SLO/RTO/RPO/保持期間/認可を工程から生成しない"
       ],
-      "failure_return": "不足の条件・対象revision/scope・元証拠・理由・当該ownerを保持。該当しない有効scopeを全停止しない。 契約固有: 未観測をhealthyにせず、別環境や旧provider/CIで不足を相殺しない。SLO/RTO/RPO/保持期間/認可を工程から生成せず、対象別・環境別の不足と無関係な有効scopeを保持する。 根拠（base 827c4ea924a15b6b54bbe9d1f5d2f9fbdefa65de）: docs/helix-harness/L3-requirements/nfr-grade.json#/requirements/11/obligation; docs/helix-harness/L4-basic-design/process-state-port.json#/contracts/6/invariants; docs/helix-harness/L4-basic-design/process-state-port.json#/contracts/6/connection_detail/unknown_numeric_return; docs/helix-harness/L4-basic-design/process-state-port.json#/contracts/6/connection_detail/partial_preservation.",
+      "failure_return": "不足の条件・対象revision/scope・元証拠・理由・当該ownerを保持。該当しない有効scopeを全停止しない。 契約固有: 未観測をhealthyにせず、別環境や旧provider/CIで不足を相殺しない。SLO/RTO/RPO/保持期間/認可を工程から生成せず、対象別・環境別の不足と無関係な有効scopeを保持する。",
       "connection_detail": {
         "product_applicability_owner": "対象製品の要求/品質owner",
         "security_policy_authority_owner": "SECURITY",
@@ -1450,7 +1830,29 @@
         ],
         "unknown_numeric_return": "対象製品要求/Release owner",
         "partial_preservation": "対象別・環境別の不足を保持し、無関係な有効scopeを消さない。"
-      }
+      },
+      "source_pointers": [
+        {
+          "path": "docs/helix-harness/L3-requirements/nfr-grade.json",
+          "pointer": "/requirements/11/obligation",
+          "revision": "827c4ea924a15b6b54bbe9d1f5d2f9fbdefa65de"
+        },
+        {
+          "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
+          "pointer": "/contracts/6/invariants",
+          "revision": "827c4ea924a15b6b54bbe9d1f5d2f9fbdefa65de"
+        },
+        {
+          "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
+          "pointer": "/contracts/6/connection_detail/unknown_numeric_return",
+          "revision": "827c4ea924a15b6b54bbe9d1f5d2f9fbdefa65de"
+        },
+        {
+          "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
+          "pointer": "/contracts/6/connection_detail/partial_preservation",
+          "revision": "827c4ea924a15b6b54bbe9d1f5d2f9fbdefa65de"
+        }
+      ]
     }
   ],
   "reverse_triggers": [
