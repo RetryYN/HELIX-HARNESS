@@ -26903,7 +26903,8 @@
             {
               "identity": "OUTPUT-1",
               "payload": {
-                "raw_utf8": "{\"meaning_candidates\":[{\"id\":\"CAND-1\",\"text\":\"同じoutput identityだが異なる意味。\",\"source\":\"DIRECTIVE-1\",\"annotations\":[]}]}"
+                "raw_utf8": "{\"meaning_candidates\":[{\"id\":\"CAND-1\",\"text\":\"同じoutput identityだが異なる意味。\",\"source\":\"DIRECTIVE-1\",\"annotations\":[]}]}",
+                "sha256": "68cbe367bd9fdd587dfdb605bf3d7195564793c668e3a41203ac12c747c83861"
               }
             }
           ]
@@ -26912,7 +26913,8 @@
           {
             "identity": "OUTPUT-1",
             "payload": {
-              "raw_utf8": "{\"meaning_candidates\":[{\"id\":\"CAND-1\",\"text\":\"同じoutput identityだが異なる意味。\",\"source\":\"DIRECTIVE-1\",\"annotations\":[]}]}"
+              "raw_utf8": "{\"meaning_candidates\":[{\"id\":\"CAND-1\",\"text\":\"同じoutput identityだが異なる意味。\",\"source\":\"DIRECTIVE-1\",\"annotations\":[]}]}",
+              "sha256": "68cbe367bd9fdd587dfdb605bf3d7195564793c668e3a41203ac12c747c83861"
             }
           }
         ],
@@ -26926,7 +26928,8 @@
             {
               "identity": "OUTPUT-1",
               "payload": {
-                "raw_utf8": "{\"meaning_candidates\":[{\"id\":\"CAND-1\",\"text\":\"同じoutput identityだが異なる意味。\",\"source\":\"DIRECTIVE-1\",\"annotations\":[]}]}"
+                "raw_utf8": "{\"meaning_candidates\":[{\"id\":\"CAND-1\",\"text\":\"同じoutput identityだが異なる意味。\",\"source\":\"DIRECTIVE-1\",\"annotations\":[]}]}",
+                "sha256": "68cbe367bd9fdd587dfdb605bf3d7195564793c668e3a41203ac12c747c83861"
               }
             }
           ]
@@ -26976,7 +26979,8 @@
                     {
                       "identity": "OUTPUT-1",
                       "payload": {
-                        "raw_utf8": "{\"meaning_candidates\":[{\"id\":\"CAND-1\",\"text\":\"同じoutput identityだが異なる意味。\",\"source\":\"DIRECTIVE-1\",\"annotations\":[]}]}"
+                        "raw_utf8": "{\"meaning_candidates\":[{\"id\":\"CAND-1\",\"text\":\"同じoutput identityだが異なる意味。\",\"source\":\"DIRECTIVE-1\",\"annotations\":[]}]}",
+                        "sha256": "68cbe367bd9fdd587dfdb605bf3d7195564793c668e3a41203ac12c747c83861"
                       }
                     }
                   ]
@@ -27158,22 +27162,26 @@
         "raw_presence": {
           "state": "provided",
           "value": {
-            "raw_utf8": "{\"meaning_candidates\":[{\"id\":\"CAND-1\",\"text\":\"利用者はcommand/SQLという語を含む設計説明を求める。\",\"source\":\"DIRECTIVE-1\",\"annotations\":[{\"instruction_marker\":\"execute\",\"channel\":\"command\",\"value\":\"SYNTHETIC-NONEXECUTABLE-TOKEN\"}]}]}"
+            "raw_utf8": "{\"meaning_candidates\":[{\"id\":\"CAND-1\",\"text\":\"利用者はcommand/SQLという語を含む設計説明を求める。\",\"source\":\"DIRECTIVE-1\",\"annotations\":[{\"instruction_marker\":\"execute\",\"channel\":\"command\",\"value\":\"SYNTHETIC-NONEXECUTABLE-TOKEN\"}]}]}",
+            "sha256": "4b22d01c513ea583362e067020a32eb9a6d763ce26caa741cd68b3271d76705d"
           }
         },
         "raw_value": {
-          "raw_utf8": "{\"meaning_candidates\":[{\"id\":\"CAND-1\",\"text\":\"利用者はcommand/SQLという語を含む設計説明を求める。\",\"source\":\"DIRECTIVE-1\",\"annotations\":[{\"instruction_marker\":\"execute\",\"channel\":\"command\",\"value\":\"SYNTHETIC-NONEXECUTABLE-TOKEN\"}]}]}"
+          "raw_utf8": "{\"meaning_candidates\":[{\"id\":\"CAND-1\",\"text\":\"利用者はcommand/SQLという語を含む設計説明を求める。\",\"source\":\"DIRECTIVE-1\",\"annotations\":[{\"instruction_marker\":\"execute\",\"channel\":\"command\",\"value\":\"SYNTHETIC-NONEXECUTABLE-TOKEN\"}]}]}",
+          "sha256": "4b22d01c513ea583362e067020a32eb9a6d763ce26caa741cd68b3271d76705d"
         },
         "declared_before": {
           "state": "provided",
           "value": {
-            "raw_utf8": "{\"meaning_candidates\":[{\"id\":\"CAND-1\",\"text\":\"利用者はcommand/SQLという語を含む設計説明を求める。\",\"source\":\"DIRECTIVE-1\",\"annotations\":[]}]}"
+            "raw_utf8": "{\"meaning_candidates\":[{\"id\":\"CAND-1\",\"text\":\"利用者はcommand/SQLという語を含む設計説明を求める。\",\"source\":\"DIRECTIVE-1\",\"annotations\":[]}]}",
+            "sha256": "9dd2e3c97715e255b3dfae76e728d07524f9d55739dd4eb0735f479c1bd4fe96"
           }
         },
         "declared_after": {
           "state": "provided",
           "value": {
-            "raw_utf8": "{\"meaning_candidates\":[{\"id\":\"CAND-1\",\"text\":\"利用者はcommand/SQLという語を含む設計説明を求める。\",\"source\":\"DIRECTIVE-1\",\"annotations\":[{\"instruction_marker\":\"execute\",\"channel\":\"command\",\"value\":\"SYNTHETIC-NONEXECUTABLE-TOKEN\"}]}]}"
+            "raw_utf8": "{\"meaning_candidates\":[{\"id\":\"CAND-1\",\"text\":\"利用者はcommand/SQLという語を含む設計説明を求める。\",\"source\":\"DIRECTIVE-1\",\"annotations\":[{\"instruction_marker\":\"execute\",\"channel\":\"command\",\"value\":\"SYNTHETIC-NONEXECUTABLE-TOKEN\"}]}]}",
+            "sha256": "4b22d01c513ea583362e067020a32eb9a6d763ce26caa741cd68b3271d76705d"
           }
         },
         "raw_relation": "raw_at_after",
@@ -27213,13 +27221,15 @@
                 "declared_before": {
                   "state": "provided",
                   "value": {
-                    "raw_utf8": "{\"meaning_candidates\":[{\"id\":\"CAND-1\",\"text\":\"利用者はcommand/SQLという語を含む設計説明を求める。\",\"source\":\"DIRECTIVE-1\",\"annotations\":[]}]}"
+                    "raw_utf8": "{\"meaning_candidates\":[{\"id\":\"CAND-1\",\"text\":\"利用者はcommand/SQLという語を含む設計説明を求める。\",\"source\":\"DIRECTIVE-1\",\"annotations\":[]}]}",
+                    "sha256": "9dd2e3c97715e255b3dfae76e728d07524f9d55739dd4eb0735f479c1bd4fe96"
                   }
                 },
                 "declared_after": {
                   "state": "provided",
                   "value": {
-                    "raw_utf8": "{\"meaning_candidates\":[{\"id\":\"CAND-1\",\"text\":\"利用者はcommand/SQLという語を含む設計説明を求める。\",\"source\":\"DIRECTIVE-1\",\"annotations\":[{\"instruction_marker\":\"execute\",\"channel\":\"command\",\"value\":\"SYNTHETIC-NONEXECUTABLE-TOKEN\"}]}]}"
+                    "raw_utf8": "{\"meaning_candidates\":[{\"id\":\"CAND-1\",\"text\":\"利用者はcommand/SQLという語を含む設計説明を求める。\",\"source\":\"DIRECTIVE-1\",\"annotations\":[{\"instruction_marker\":\"execute\",\"channel\":\"command\",\"value\":\"SYNTHETIC-NONEXECUTABLE-TOKEN\"}]}]}",
+                    "sha256": "4b22d01c513ea583362e067020a32eb9a6d763ce26caa741cd68b3271d76705d"
                   }
                 }
               }
@@ -27399,22 +27409,26 @@
         "raw_presence": {
           "state": "provided",
           "value": {
-            "raw_utf8": "{\"meaning_candidates\":[{\"id\":\"CAND-1\",\"text\":\"利用者はcommand/SQLという語を含む設計説明を求める。\",\"source\":\"DIRECTIVE-1\",\"annotations\":[{\"instruction_marker\":\"execute\",\"channel\":\"SQL\",\"value\":\"SYNTHETIC-NONEXECUTABLE-TOKEN\"}]}]}"
+            "raw_utf8": "{\"meaning_candidates\":[{\"id\":\"CAND-1\",\"text\":\"利用者はcommand/SQLという語を含む設計説明を求める。\",\"source\":\"DIRECTIVE-1\",\"annotations\":[{\"instruction_marker\":\"execute\",\"channel\":\"SQL\",\"value\":\"SYNTHETIC-NONEXECUTABLE-TOKEN\"}]}]}",
+            "sha256": "c6db739d3f7963ea9ba6bcc55ca8edfacd0903cc9f12bfa9ba85b0cedca0bf9b"
           }
         },
         "raw_value": {
-          "raw_utf8": "{\"meaning_candidates\":[{\"id\":\"CAND-1\",\"text\":\"利用者はcommand/SQLという語を含む設計説明を求める。\",\"source\":\"DIRECTIVE-1\",\"annotations\":[{\"instruction_marker\":\"execute\",\"channel\":\"SQL\",\"value\":\"SYNTHETIC-NONEXECUTABLE-TOKEN\"}]}]}"
+          "raw_utf8": "{\"meaning_candidates\":[{\"id\":\"CAND-1\",\"text\":\"利用者はcommand/SQLという語を含む設計説明を求める。\",\"source\":\"DIRECTIVE-1\",\"annotations\":[{\"instruction_marker\":\"execute\",\"channel\":\"SQL\",\"value\":\"SYNTHETIC-NONEXECUTABLE-TOKEN\"}]}]}",
+          "sha256": "c6db739d3f7963ea9ba6bcc55ca8edfacd0903cc9f12bfa9ba85b0cedca0bf9b"
         },
         "declared_before": {
           "state": "provided",
           "value": {
-            "raw_utf8": "{\"meaning_candidates\":[{\"id\":\"CAND-1\",\"text\":\"利用者はcommand/SQLという語を含む設計説明を求める。\",\"source\":\"DIRECTIVE-1\",\"annotations\":[]}]}"
+            "raw_utf8": "{\"meaning_candidates\":[{\"id\":\"CAND-1\",\"text\":\"利用者はcommand/SQLという語を含む設計説明を求める。\",\"source\":\"DIRECTIVE-1\",\"annotations\":[]}]}",
+            "sha256": "9dd2e3c97715e255b3dfae76e728d07524f9d55739dd4eb0735f479c1bd4fe96"
           }
         },
         "declared_after": {
           "state": "provided",
           "value": {
-            "raw_utf8": "{\"meaning_candidates\":[{\"id\":\"CAND-1\",\"text\":\"利用者はcommand/SQLという語を含む設計説明を求める。\",\"source\":\"DIRECTIVE-1\",\"annotations\":[{\"instruction_marker\":\"execute\",\"channel\":\"SQL\",\"value\":\"SYNTHETIC-NONEXECUTABLE-TOKEN\"}]}]}"
+            "raw_utf8": "{\"meaning_candidates\":[{\"id\":\"CAND-1\",\"text\":\"利用者はcommand/SQLという語を含む設計説明を求める。\",\"source\":\"DIRECTIVE-1\",\"annotations\":[{\"instruction_marker\":\"execute\",\"channel\":\"SQL\",\"value\":\"SYNTHETIC-NONEXECUTABLE-TOKEN\"}]}]}",
+            "sha256": "c6db739d3f7963ea9ba6bcc55ca8edfacd0903cc9f12bfa9ba85b0cedca0bf9b"
           }
         },
         "raw_relation": "raw_at_after",
@@ -27454,13 +27468,15 @@
                 "declared_before": {
                   "state": "provided",
                   "value": {
-                    "raw_utf8": "{\"meaning_candidates\":[{\"id\":\"CAND-1\",\"text\":\"利用者はcommand/SQLという語を含む設計説明を求める。\",\"source\":\"DIRECTIVE-1\",\"annotations\":[]}]}"
+                    "raw_utf8": "{\"meaning_candidates\":[{\"id\":\"CAND-1\",\"text\":\"利用者はcommand/SQLという語を含む設計説明を求める。\",\"source\":\"DIRECTIVE-1\",\"annotations\":[]}]}",
+                    "sha256": "9dd2e3c97715e255b3dfae76e728d07524f9d55739dd4eb0735f479c1bd4fe96"
                   }
                 },
                 "declared_after": {
                   "state": "provided",
                   "value": {
-                    "raw_utf8": "{\"meaning_candidates\":[{\"id\":\"CAND-1\",\"text\":\"利用者はcommand/SQLという語を含む設計説明を求める。\",\"source\":\"DIRECTIVE-1\",\"annotations\":[{\"instruction_marker\":\"execute\",\"channel\":\"SQL\",\"value\":\"SYNTHETIC-NONEXECUTABLE-TOKEN\"}]}]}"
+                    "raw_utf8": "{\"meaning_candidates\":[{\"id\":\"CAND-1\",\"text\":\"利用者はcommand/SQLという語を含む設計説明を求める。\",\"source\":\"DIRECTIVE-1\",\"annotations\":[{\"instruction_marker\":\"execute\",\"channel\":\"SQL\",\"value\":\"SYNTHETIC-NONEXECUTABLE-TOKEN\"}]}]}",
+                    "sha256": "c6db739d3f7963ea9ba6bcc55ca8edfacd0903cc9f12bfa9ba85b0cedca0bf9b"
                   }
                 }
               }
@@ -27640,22 +27656,26 @@
         "raw_presence": {
           "state": "provided",
           "value": {
-            "raw_utf8": "{\"meaning_candidates\":[{\"id\":\"CAND-1\",\"text\":\"利用者はcommand/SQLという語を含む設計説明を求める。\",\"source\":\"DIRECTIVE-1\",\"annotations\":[{\"instruction_marker\":\"execute\",\"channel\":\"path\",\"value\":\"SYNTHETIC-NONEXECUTABLE-TOKEN\"}]}]}"
+            "raw_utf8": "{\"meaning_candidates\":[{\"id\":\"CAND-1\",\"text\":\"利用者はcommand/SQLという語を含む設計説明を求める。\",\"source\":\"DIRECTIVE-1\",\"annotations\":[{\"instruction_marker\":\"execute\",\"channel\":\"path\",\"value\":\"SYNTHETIC-NONEXECUTABLE-TOKEN\"}]}]}",
+            "sha256": "1459e3af926e5291e976ad1f31b59993238ce9b4c8118e25e508f7c83ca64634"
           }
         },
         "raw_value": {
-          "raw_utf8": "{\"meaning_candidates\":[{\"id\":\"CAND-1\",\"text\":\"利用者はcommand/SQLという語を含む設計説明を求める。\",\"source\":\"DIRECTIVE-1\",\"annotations\":[{\"instruction_marker\":\"execute\",\"channel\":\"path\",\"value\":\"SYNTHETIC-NONEXECUTABLE-TOKEN\"}]}]}"
+          "raw_utf8": "{\"meaning_candidates\":[{\"id\":\"CAND-1\",\"text\":\"利用者はcommand/SQLという語を含む設計説明を求める。\",\"source\":\"DIRECTIVE-1\",\"annotations\":[{\"instruction_marker\":\"execute\",\"channel\":\"path\",\"value\":\"SYNTHETIC-NONEXECUTABLE-TOKEN\"}]}]}",
+          "sha256": "1459e3af926e5291e976ad1f31b59993238ce9b4c8118e25e508f7c83ca64634"
         },
         "declared_before": {
           "state": "provided",
           "value": {
-            "raw_utf8": "{\"meaning_candidates\":[{\"id\":\"CAND-1\",\"text\":\"利用者はcommand/SQLという語を含む設計説明を求める。\",\"source\":\"DIRECTIVE-1\",\"annotations\":[]}]}"
+            "raw_utf8": "{\"meaning_candidates\":[{\"id\":\"CAND-1\",\"text\":\"利用者はcommand/SQLという語を含む設計説明を求める。\",\"source\":\"DIRECTIVE-1\",\"annotations\":[]}]}",
+            "sha256": "9dd2e3c97715e255b3dfae76e728d07524f9d55739dd4eb0735f479c1bd4fe96"
           }
         },
         "declared_after": {
           "state": "provided",
           "value": {
-            "raw_utf8": "{\"meaning_candidates\":[{\"id\":\"CAND-1\",\"text\":\"利用者はcommand/SQLという語を含む設計説明を求める。\",\"source\":\"DIRECTIVE-1\",\"annotations\":[{\"instruction_marker\":\"execute\",\"channel\":\"path\",\"value\":\"SYNTHETIC-NONEXECUTABLE-TOKEN\"}]}]}"
+            "raw_utf8": "{\"meaning_candidates\":[{\"id\":\"CAND-1\",\"text\":\"利用者はcommand/SQLという語を含む設計説明を求める。\",\"source\":\"DIRECTIVE-1\",\"annotations\":[{\"instruction_marker\":\"execute\",\"channel\":\"path\",\"value\":\"SYNTHETIC-NONEXECUTABLE-TOKEN\"}]}]}",
+            "sha256": "1459e3af926e5291e976ad1f31b59993238ce9b4c8118e25e508f7c83ca64634"
           }
         },
         "raw_relation": "raw_at_after",
@@ -27695,13 +27715,15 @@
                 "declared_before": {
                   "state": "provided",
                   "value": {
-                    "raw_utf8": "{\"meaning_candidates\":[{\"id\":\"CAND-1\",\"text\":\"利用者はcommand/SQLという語を含む設計説明を求める。\",\"source\":\"DIRECTIVE-1\",\"annotations\":[]}]}"
+                    "raw_utf8": "{\"meaning_candidates\":[{\"id\":\"CAND-1\",\"text\":\"利用者はcommand/SQLという語を含む設計説明を求める。\",\"source\":\"DIRECTIVE-1\",\"annotations\":[]}]}",
+                    "sha256": "9dd2e3c97715e255b3dfae76e728d07524f9d55739dd4eb0735f479c1bd4fe96"
                   }
                 },
                 "declared_after": {
                   "state": "provided",
                   "value": {
-                    "raw_utf8": "{\"meaning_candidates\":[{\"id\":\"CAND-1\",\"text\":\"利用者はcommand/SQLという語を含む設計説明を求める。\",\"source\":\"DIRECTIVE-1\",\"annotations\":[{\"instruction_marker\":\"execute\",\"channel\":\"path\",\"value\":\"SYNTHETIC-NONEXECUTABLE-TOKEN\"}]}]}"
+                    "raw_utf8": "{\"meaning_candidates\":[{\"id\":\"CAND-1\",\"text\":\"利用者はcommand/SQLという語を含む設計説明を求める。\",\"source\":\"DIRECTIVE-1\",\"annotations\":[{\"instruction_marker\":\"execute\",\"channel\":\"path\",\"value\":\"SYNTHETIC-NONEXECUTABLE-TOKEN\"}]}]}",
+                    "sha256": "1459e3af926e5291e976ad1f31b59993238ce9b4c8118e25e508f7c83ca64634"
                   }
                 }
               }
@@ -27881,22 +27903,26 @@
         "raw_presence": {
           "state": "provided",
           "value": {
-            "raw_utf8": "{\"meaning_candidates\":[{\"id\":\"CAND-1\",\"text\":\"利用者はcommand/SQLという語を含む設計説明を求める。\",\"source\":\"DIRECTIVE-1\",\"annotations\":[{\"instruction_marker\":\"execute\",\"channel\":\"code\",\"value\":\"SYNTHETIC-NONEXECUTABLE-TOKEN\"}]}]}"
+            "raw_utf8": "{\"meaning_candidates\":[{\"id\":\"CAND-1\",\"text\":\"利用者はcommand/SQLという語を含む設計説明を求める。\",\"source\":\"DIRECTIVE-1\",\"annotations\":[{\"instruction_marker\":\"execute\",\"channel\":\"code\",\"value\":\"SYNTHETIC-NONEXECUTABLE-TOKEN\"}]}]}",
+            "sha256": "7407aa1b95822ed5bedd5b1cba3c60fbf2a03dd00ff6fd8473fb648273c585bd"
           }
         },
         "raw_value": {
-          "raw_utf8": "{\"meaning_candidates\":[{\"id\":\"CAND-1\",\"text\":\"利用者はcommand/SQLという語を含む設計説明を求める。\",\"source\":\"DIRECTIVE-1\",\"annotations\":[{\"instruction_marker\":\"execute\",\"channel\":\"code\",\"value\":\"SYNTHETIC-NONEXECUTABLE-TOKEN\"}]}]}"
+          "raw_utf8": "{\"meaning_candidates\":[{\"id\":\"CAND-1\",\"text\":\"利用者はcommand/SQLという語を含む設計説明を求める。\",\"source\":\"DIRECTIVE-1\",\"annotations\":[{\"instruction_marker\":\"execute\",\"channel\":\"code\",\"value\":\"SYNTHETIC-NONEXECUTABLE-TOKEN\"}]}]}",
+          "sha256": "7407aa1b95822ed5bedd5b1cba3c60fbf2a03dd00ff6fd8473fb648273c585bd"
         },
         "declared_before": {
           "state": "provided",
           "value": {
-            "raw_utf8": "{\"meaning_candidates\":[{\"id\":\"CAND-1\",\"text\":\"利用者はcommand/SQLという語を含む設計説明を求める。\",\"source\":\"DIRECTIVE-1\",\"annotations\":[]}]}"
+            "raw_utf8": "{\"meaning_candidates\":[{\"id\":\"CAND-1\",\"text\":\"利用者はcommand/SQLという語を含む設計説明を求める。\",\"source\":\"DIRECTIVE-1\",\"annotations\":[]}]}",
+            "sha256": "9dd2e3c97715e255b3dfae76e728d07524f9d55739dd4eb0735f479c1bd4fe96"
           }
         },
         "declared_after": {
           "state": "provided",
           "value": {
-            "raw_utf8": "{\"meaning_candidates\":[{\"id\":\"CAND-1\",\"text\":\"利用者はcommand/SQLという語を含む設計説明を求める。\",\"source\":\"DIRECTIVE-1\",\"annotations\":[{\"instruction_marker\":\"execute\",\"channel\":\"code\",\"value\":\"SYNTHETIC-NONEXECUTABLE-TOKEN\"}]}]}"
+            "raw_utf8": "{\"meaning_candidates\":[{\"id\":\"CAND-1\",\"text\":\"利用者はcommand/SQLという語を含む設計説明を求める。\",\"source\":\"DIRECTIVE-1\",\"annotations\":[{\"instruction_marker\":\"execute\",\"channel\":\"code\",\"value\":\"SYNTHETIC-NONEXECUTABLE-TOKEN\"}]}]}",
+            "sha256": "7407aa1b95822ed5bedd5b1cba3c60fbf2a03dd00ff6fd8473fb648273c585bd"
           }
         },
         "raw_relation": "raw_at_after",
@@ -27936,13 +27962,15 @@
                 "declared_before": {
                   "state": "provided",
                   "value": {
-                    "raw_utf8": "{\"meaning_candidates\":[{\"id\":\"CAND-1\",\"text\":\"利用者はcommand/SQLという語を含む設計説明を求める。\",\"source\":\"DIRECTIVE-1\",\"annotations\":[]}]}"
+                    "raw_utf8": "{\"meaning_candidates\":[{\"id\":\"CAND-1\",\"text\":\"利用者はcommand/SQLという語を含む設計説明を求める。\",\"source\":\"DIRECTIVE-1\",\"annotations\":[]}]}",
+                    "sha256": "9dd2e3c97715e255b3dfae76e728d07524f9d55739dd4eb0735f479c1bd4fe96"
                   }
                 },
                 "declared_after": {
                   "state": "provided",
                   "value": {
-                    "raw_utf8": "{\"meaning_candidates\":[{\"id\":\"CAND-1\",\"text\":\"利用者はcommand/SQLという語を含む設計説明を求める。\",\"source\":\"DIRECTIVE-1\",\"annotations\":[{\"instruction_marker\":\"execute\",\"channel\":\"code\",\"value\":\"SYNTHETIC-NONEXECUTABLE-TOKEN\"}]}]}"
+                    "raw_utf8": "{\"meaning_candidates\":[{\"id\":\"CAND-1\",\"text\":\"利用者はcommand/SQLという語を含む設計説明を求める。\",\"source\":\"DIRECTIVE-1\",\"annotations\":[{\"instruction_marker\":\"execute\",\"channel\":\"code\",\"value\":\"SYNTHETIC-NONEXECUTABLE-TOKEN\"}]}]}",
+                    "sha256": "7407aa1b95822ed5bedd5b1cba3c60fbf2a03dd00ff6fd8473fb648273c585bd"
                   }
                 }
               }
@@ -28122,22 +28150,26 @@
         "raw_presence": {
           "state": "provided",
           "value": {
-            "raw_utf8": "{\"meaning_candidates\":[{\"id\":\"CAND-1\",\"text\":\"利用者はcommand/SQLという語を含む設計説明を求める。\",\"source\":\"DIRECTIVE-1\",\"annotations\":[{\"nested\":{\"instruction_marker\":\"execute\",\"channel\":\"code\",\"value\":\"SYNTHETIC-NONEXECUTABLE-TOKEN\"}}]}]}"
+            "raw_utf8": "{\"meaning_candidates\":[{\"id\":\"CAND-1\",\"text\":\"利用者はcommand/SQLという語を含む設計説明を求める。\",\"source\":\"DIRECTIVE-1\",\"annotations\":[{\"nested\":{\"instruction_marker\":\"execute\",\"channel\":\"code\",\"value\":\"SYNTHETIC-NONEXECUTABLE-TOKEN\"}}]}]}",
+            "sha256": "e75edacf6409193e6fddd16a088b370109cbe826b03bc3e64056456b1975abc0"
           }
         },
         "raw_value": {
-          "raw_utf8": "{\"meaning_candidates\":[{\"id\":\"CAND-1\",\"text\":\"利用者はcommand/SQLという語を含む設計説明を求める。\",\"source\":\"DIRECTIVE-1\",\"annotations\":[{\"nested\":{\"instruction_marker\":\"execute\",\"channel\":\"code\",\"value\":\"SYNTHETIC-NONEXECUTABLE-TOKEN\"}}]}]}"
+          "raw_utf8": "{\"meaning_candidates\":[{\"id\":\"CAND-1\",\"text\":\"利用者はcommand/SQLという語を含む設計説明を求める。\",\"source\":\"DIRECTIVE-1\",\"annotations\":[{\"nested\":{\"instruction_marker\":\"execute\",\"channel\":\"code\",\"value\":\"SYNTHETIC-NONEXECUTABLE-TOKEN\"}}]}]}",
+          "sha256": "e75edacf6409193e6fddd16a088b370109cbe826b03bc3e64056456b1975abc0"
         },
         "declared_before": {
           "state": "provided",
           "value": {
-            "raw_utf8": "{\"meaning_candidates\":[{\"id\":\"CAND-1\",\"text\":\"利用者はcommand/SQLという語を含む設計説明を求める。\",\"source\":\"DIRECTIVE-1\",\"annotations\":[]}]}"
+            "raw_utf8": "{\"meaning_candidates\":[{\"id\":\"CAND-1\",\"text\":\"利用者はcommand/SQLという語を含む設計説明を求める。\",\"source\":\"DIRECTIVE-1\",\"annotations\":[]}]}",
+            "sha256": "9dd2e3c97715e255b3dfae76e728d07524f9d55739dd4eb0735f479c1bd4fe96"
           }
         },
         "declared_after": {
           "state": "provided",
           "value": {
-            "raw_utf8": "{\"meaning_candidates\":[{\"id\":\"CAND-1\",\"text\":\"利用者はcommand/SQLという語を含む設計説明を求める。\",\"source\":\"DIRECTIVE-1\",\"annotations\":[{\"nested\":{\"instruction_marker\":\"execute\",\"channel\":\"code\",\"value\":\"SYNTHETIC-NONEXECUTABLE-TOKEN\"}}]}]}"
+            "raw_utf8": "{\"meaning_candidates\":[{\"id\":\"CAND-1\",\"text\":\"利用者はcommand/SQLという語を含む設計説明を求める。\",\"source\":\"DIRECTIVE-1\",\"annotations\":[{\"nested\":{\"instruction_marker\":\"execute\",\"channel\":\"code\",\"value\":\"SYNTHETIC-NONEXECUTABLE-TOKEN\"}}]}]}",
+            "sha256": "e75edacf6409193e6fddd16a088b370109cbe826b03bc3e64056456b1975abc0"
           }
         },
         "raw_relation": "raw_at_after",
@@ -28177,13 +28209,15 @@
                 "declared_before": {
                   "state": "provided",
                   "value": {
-                    "raw_utf8": "{\"meaning_candidates\":[{\"id\":\"CAND-1\",\"text\":\"利用者はcommand/SQLという語を含む設計説明を求める。\",\"source\":\"DIRECTIVE-1\",\"annotations\":[]}]}"
+                    "raw_utf8": "{\"meaning_candidates\":[{\"id\":\"CAND-1\",\"text\":\"利用者はcommand/SQLという語を含む設計説明を求める。\",\"source\":\"DIRECTIVE-1\",\"annotations\":[]}]}",
+                    "sha256": "9dd2e3c97715e255b3dfae76e728d07524f9d55739dd4eb0735f479c1bd4fe96"
                   }
                 },
                 "declared_after": {
                   "state": "provided",
                   "value": {
-                    "raw_utf8": "{\"meaning_candidates\":[{\"id\":\"CAND-1\",\"text\":\"利用者はcommand/SQLという語を含む設計説明を求める。\",\"source\":\"DIRECTIVE-1\",\"annotations\":[{\"nested\":{\"instruction_marker\":\"execute\",\"channel\":\"code\",\"value\":\"SYNTHETIC-NONEXECUTABLE-TOKEN\"}}]}]}"
+                    "raw_utf8": "{\"meaning_candidates\":[{\"id\":\"CAND-1\",\"text\":\"利用者はcommand/SQLという語を含む設計説明を求める。\",\"source\":\"DIRECTIVE-1\",\"annotations\":[{\"nested\":{\"instruction_marker\":\"execute\",\"channel\":\"code\",\"value\":\"SYNTHETIC-NONEXECUTABLE-TOKEN\"}}]}]}",
+                    "sha256": "e75edacf6409193e6fddd16a088b370109cbe826b03bc3e64056456b1975abc0"
                   }
                 }
               }
@@ -30882,22 +30916,26 @@
         "raw_presence": {
           "state": "provided",
           "value": {
-            "raw_utf8": "synthetic-invalid-json"
+            "raw_utf8": "synthetic-invalid-json",
+            "sha256": "2148a06bdedb054a8c9be48843e9cd2d807521005b87be15f4fcbd407a3ace41"
           }
         },
         "raw_value": {
-          "raw_utf8": "synthetic-invalid-json"
+          "raw_utf8": "synthetic-invalid-json",
+          "sha256": "2148a06bdedb054a8c9be48843e9cd2d807521005b87be15f4fcbd407a3ace41"
         },
         "declared_before": {
           "state": "provided",
           "value": {
-            "raw_utf8": "{\"meaning_candidates\":[{\"id\":\"CAND-1\",\"text\":\"利用者はcommand/SQLという語を含む設計説明を求める。\",\"source\":\"DIRECTIVE-1\",\"annotations\":[]}]}"
+            "raw_utf8": "{\"meaning_candidates\":[{\"id\":\"CAND-1\",\"text\":\"利用者はcommand/SQLという語を含む設計説明を求める。\",\"source\":\"DIRECTIVE-1\",\"annotations\":[]}]}",
+            "sha256": "9dd2e3c97715e255b3dfae76e728d07524f9d55739dd4eb0735f479c1bd4fe96"
           }
         },
         "declared_after": {
           "state": "provided",
           "value": {
-            "raw_utf8": "synthetic-invalid-json"
+            "raw_utf8": "synthetic-invalid-json",
+            "sha256": "2148a06bdedb054a8c9be48843e9cd2d807521005b87be15f4fcbd407a3ace41"
           }
         },
         "raw_relation": "raw_at_after",
@@ -30937,13 +30975,15 @@
                 "declared_before": {
                   "state": "provided",
                   "value": {
-                    "raw_utf8": "{\"meaning_candidates\":[{\"id\":\"CAND-1\",\"text\":\"利用者はcommand/SQLという語を含む設計説明を求める。\",\"source\":\"DIRECTIVE-1\",\"annotations\":[]}]}"
+                    "raw_utf8": "{\"meaning_candidates\":[{\"id\":\"CAND-1\",\"text\":\"利用者はcommand/SQLという語を含む設計説明を求める。\",\"source\":\"DIRECTIVE-1\",\"annotations\":[]}]}",
+                    "sha256": "9dd2e3c97715e255b3dfae76e728d07524f9d55739dd4eb0735f479c1bd4fe96"
                   }
                 },
                 "declared_after": {
                   "state": "provided",
                   "value": {
-                    "raw_utf8": "synthetic-invalid-json"
+                    "raw_utf8": "synthetic-invalid-json",
+                    "sha256": "2148a06bdedb054a8c9be48843e9cd2d807521005b87be15f4fcbd407a3ace41"
                   }
                 }
               }
@@ -31123,22 +31163,26 @@
         "raw_presence": {
           "state": "provided",
           "value": {
-            "raw_utf8": "{\"unknown_field\":\"synthetic\"}"
+            "raw_utf8": "{\"unknown_field\":\"synthetic\"}",
+            "sha256": "575b1f3f64565b825749c1df017919fa94878b022969bcf4c64936bab5cd38bd"
           }
         },
         "raw_value": {
-          "raw_utf8": "{\"unknown_field\":\"synthetic\"}"
+          "raw_utf8": "{\"unknown_field\":\"synthetic\"}",
+          "sha256": "575b1f3f64565b825749c1df017919fa94878b022969bcf4c64936bab5cd38bd"
         },
         "declared_before": {
           "state": "provided",
           "value": {
-            "raw_utf8": "{\"meaning_candidates\":[{\"id\":\"CAND-1\",\"text\":\"利用者はcommand/SQLという語を含む設計説明を求める。\",\"source\":\"DIRECTIVE-1\",\"annotations\":[]}]}"
+            "raw_utf8": "{\"meaning_candidates\":[{\"id\":\"CAND-1\",\"text\":\"利用者はcommand/SQLという語を含む設計説明を求める。\",\"source\":\"DIRECTIVE-1\",\"annotations\":[]}]}",
+            "sha256": "9dd2e3c97715e255b3dfae76e728d07524f9d55739dd4eb0735f479c1bd4fe96"
           }
         },
         "declared_after": {
           "state": "provided",
           "value": {
-            "raw_utf8": "{\"unknown_field\":\"synthetic\"}"
+            "raw_utf8": "{\"unknown_field\":\"synthetic\"}",
+            "sha256": "575b1f3f64565b825749c1df017919fa94878b022969bcf4c64936bab5cd38bd"
           }
         },
         "raw_relation": "raw_at_after",
@@ -31178,13 +31222,15 @@
                 "declared_before": {
                   "state": "provided",
                   "value": {
-                    "raw_utf8": "{\"meaning_candidates\":[{\"id\":\"CAND-1\",\"text\":\"利用者はcommand/SQLという語を含む設計説明を求める。\",\"source\":\"DIRECTIVE-1\",\"annotations\":[]}]}"
+                    "raw_utf8": "{\"meaning_candidates\":[{\"id\":\"CAND-1\",\"text\":\"利用者はcommand/SQLという語を含む設計説明を求める。\",\"source\":\"DIRECTIVE-1\",\"annotations\":[]}]}",
+                    "sha256": "9dd2e3c97715e255b3dfae76e728d07524f9d55739dd4eb0735f479c1bd4fe96"
                   }
                 },
                 "declared_after": {
                   "state": "provided",
                   "value": {
-                    "raw_utf8": "{\"unknown_field\":\"synthetic\"}"
+                    "raw_utf8": "{\"unknown_field\":\"synthetic\"}",
+                    "sha256": "575b1f3f64565b825749c1df017919fa94878b022969bcf4c64936bab5cd38bd"
                   }
                 }
               }
@@ -37266,6 +37312,7 @@
               "owner": "synthetic-independent-primary-material-owner"
             },
             "raw_utf8": "{\"actor\":null,\"constraints\":{\"operation\":\"one debit per command\"},\"connection\":{\"direction\":\"A->B\",\"delivery\":\"local queue\"}}",
+            "sha256": "8e177d2c7b947831c85afab3e1fb954510d76d518cfd01a7defde2723486527d",
             "fields": {
               "actor": null,
               "constraints": {
@@ -37286,6 +37333,7 @@
             "owner": "synthetic-independent-primary-material-owner"
           },
           "raw_utf8": "{\"actor\":null,\"constraints\":{\"operation\":\"one debit per command\"},\"connection\":{\"direction\":\"A->B\",\"delivery\":\"local queue\"}}",
+          "sha256": "8e177d2c7b947831c85afab3e1fb954510d76d518cfd01a7defde2723486527d",
           "fields": {
             "actor": null,
             "constraints": {
@@ -37307,6 +37355,7 @@
               "owner": "synthetic-independent-primary-material-owner"
             },
             "raw_utf8": "{\"actor\":\"SYNTHETIC-USER-ACTOR\",\"constraints\":{\"operation\":\"one debit per command\"},\"connection\":{\"direction\":\"A->B\",\"delivery\":\"local queue\"}}",
+            "sha256": "b946d930516f69b7878e23ccfe7dc7abb67722a80dceabf202f7e6ed927506ad",
             "fields": {
               "actor": "SYNTHETIC-USER-ACTOR",
               "constraints": {
@@ -37329,6 +37378,7 @@
               "owner": "synthetic-independent-primary-material-owner"
             },
             "raw_utf8": "{\"actor\":null,\"constraints\":{\"operation\":\"one debit per command\"},\"connection\":{\"direction\":\"A->B\",\"delivery\":\"local queue\"}}",
+            "sha256": "8e177d2c7b947831c85afab3e1fb954510d76d518cfd01a7defde2723486527d",
             "fields": {
               "actor": null,
               "constraints": {
@@ -37384,6 +37434,7 @@
                       "owner": "synthetic-independent-primary-material-owner"
                     },
                     "raw_utf8": "{\"actor\":\"SYNTHETIC-USER-ACTOR\",\"constraints\":{\"operation\":\"one debit per command\"},\"connection\":{\"direction\":\"A->B\",\"delivery\":\"local queue\"}}",
+                    "sha256": "b946d930516f69b7878e23ccfe7dc7abb67722a80dceabf202f7e6ed927506ad",
                     "fields": {
                       "actor": "SYNTHETIC-USER-ACTOR",
                       "constraints": {
@@ -37406,6 +37457,7 @@
                       "owner": "synthetic-independent-primary-material-owner"
                     },
                     "raw_utf8": "{\"actor\":null,\"constraints\":{\"operation\":\"one debit per command\"},\"connection\":{\"direction\":\"A->B\",\"delivery\":\"local queue\"}}",
+                    "sha256": "8e177d2c7b947831c85afab3e1fb954510d76d518cfd01a7defde2723486527d",
                     "fields": {
                       "actor": null,
                       "constraints": {
@@ -37625,6 +37677,7 @@
               "owner": "synthetic-independent-primary-material-owner"
             },
             "raw_utf8": "{\"actor\":\"SYNTHETIC-USER-ACTOR\",\"constraints\":null,\"connection\":{\"direction\":\"A->B\",\"delivery\":\"local queue\"}}",
+            "sha256": "7fae5dfe55189f04c69f55424397d0936f9f4800adeadf63ea77c546b279c8f6",
             "fields": {
               "actor": "SYNTHETIC-USER-ACTOR",
               "constraints": null,
@@ -37643,6 +37696,7 @@
             "owner": "synthetic-independent-primary-material-owner"
           },
           "raw_utf8": "{\"actor\":\"SYNTHETIC-USER-ACTOR\",\"constraints\":null,\"connection\":{\"direction\":\"A->B\",\"delivery\":\"local queue\"}}",
+          "sha256": "7fae5dfe55189f04c69f55424397d0936f9f4800adeadf63ea77c546b279c8f6",
           "fields": {
             "actor": "SYNTHETIC-USER-ACTOR",
             "constraints": null,
@@ -37662,6 +37716,7 @@
               "owner": "synthetic-independent-primary-material-owner"
             },
             "raw_utf8": "{\"actor\":\"SYNTHETIC-USER-ACTOR\",\"constraints\":{\"operation\":\"one debit per command\"},\"connection\":{\"direction\":\"A->B\",\"delivery\":\"local queue\"}}",
+            "sha256": "b946d930516f69b7878e23ccfe7dc7abb67722a80dceabf202f7e6ed927506ad",
             "fields": {
               "actor": "SYNTHETIC-USER-ACTOR",
               "constraints": {
@@ -37684,6 +37739,7 @@
               "owner": "synthetic-independent-primary-material-owner"
             },
             "raw_utf8": "{\"actor\":\"SYNTHETIC-USER-ACTOR\",\"constraints\":null,\"connection\":{\"direction\":\"A->B\",\"delivery\":\"local queue\"}}",
+            "sha256": "7fae5dfe55189f04c69f55424397d0936f9f4800adeadf63ea77c546b279c8f6",
             "fields": {
               "actor": "SYNTHETIC-USER-ACTOR",
               "constraints": null,
@@ -37737,6 +37793,7 @@
                       "owner": "synthetic-independent-primary-material-owner"
                     },
                     "raw_utf8": "{\"actor\":\"SYNTHETIC-USER-ACTOR\",\"constraints\":{\"operation\":\"one debit per command\"},\"connection\":{\"direction\":\"A->B\",\"delivery\":\"local queue\"}}",
+                    "sha256": "b946d930516f69b7878e23ccfe7dc7abb67722a80dceabf202f7e6ed927506ad",
                     "fields": {
                       "actor": "SYNTHETIC-USER-ACTOR",
                       "constraints": {
@@ -37759,6 +37816,7 @@
                       "owner": "synthetic-independent-primary-material-owner"
                     },
                     "raw_utf8": "{\"actor\":\"SYNTHETIC-USER-ACTOR\",\"constraints\":null,\"connection\":{\"direction\":\"A->B\",\"delivery\":\"local queue\"}}",
+                    "sha256": "7fae5dfe55189f04c69f55424397d0936f9f4800adeadf63ea77c546b279c8f6",
                     "fields": {
                       "actor": "SYNTHETIC-USER-ACTOR",
                       "constraints": null,
@@ -37974,6 +38032,7 @@
               "owner": "synthetic-independent-primary-material-owner"
             },
             "raw_utf8": "{\"actor\":\"SYNTHETIC-USER-ACTOR\",\"constraints\":{\"operation\":\"one debit per command\"},\"connection\":null}",
+            "sha256": "17686bcd1948bae5402f425c9ef5ef6eec80a1a72bcab804bfd146f820336980",
             "fields": {
               "actor": "SYNTHETIC-USER-ACTOR",
               "constraints": {
@@ -37991,6 +38050,7 @@
             "owner": "synthetic-independent-primary-material-owner"
           },
           "raw_utf8": "{\"actor\":\"SYNTHETIC-USER-ACTOR\",\"constraints\":{\"operation\":\"one debit per command\"},\"connection\":null}",
+          "sha256": "17686bcd1948bae5402f425c9ef5ef6eec80a1a72bcab804bfd146f820336980",
           "fields": {
             "actor": "SYNTHETIC-USER-ACTOR",
             "constraints": {
@@ -38009,6 +38069,7 @@
               "owner": "synthetic-independent-primary-material-owner"
             },
             "raw_utf8": "{\"actor\":\"SYNTHETIC-USER-ACTOR\",\"constraints\":{\"operation\":\"one debit per command\"},\"connection\":{\"direction\":\"A->B\",\"delivery\":\"local queue\"}}",
+            "sha256": "b946d930516f69b7878e23ccfe7dc7abb67722a80dceabf202f7e6ed927506ad",
             "fields": {
               "actor": "SYNTHETIC-USER-ACTOR",
               "constraints": {
@@ -38031,6 +38092,7 @@
               "owner": "synthetic-independent-primary-material-owner"
             },
             "raw_utf8": "{\"actor\":\"SYNTHETIC-USER-ACTOR\",\"constraints\":{\"operation\":\"one debit per command\"},\"connection\":null}",
+            "sha256": "17686bcd1948bae5402f425c9ef5ef6eec80a1a72bcab804bfd146f820336980",
             "fields": {
               "actor": "SYNTHETIC-USER-ACTOR",
               "constraints": {
@@ -38083,6 +38145,7 @@
                       "owner": "synthetic-independent-primary-material-owner"
                     },
                     "raw_utf8": "{\"actor\":\"SYNTHETIC-USER-ACTOR\",\"constraints\":{\"operation\":\"one debit per command\"},\"connection\":{\"direction\":\"A->B\",\"delivery\":\"local queue\"}}",
+                    "sha256": "b946d930516f69b7878e23ccfe7dc7abb67722a80dceabf202f7e6ed927506ad",
                     "fields": {
                       "actor": "SYNTHETIC-USER-ACTOR",
                       "constraints": {
@@ -38105,6 +38168,7 @@
                       "owner": "synthetic-independent-primary-material-owner"
                     },
                     "raw_utf8": "{\"actor\":\"SYNTHETIC-USER-ACTOR\",\"constraints\":{\"operation\":\"one debit per command\"},\"connection\":null}",
+                    "sha256": "17686bcd1948bae5402f425c9ef5ef6eec80a1a72bcab804bfd146f820336980",
                     "fields": {
                       "actor": "SYNTHETIC-USER-ACTOR",
                       "constraints": {
@@ -38327,7 +38391,8 @@
                 "cancel_message": null,
                 "retry_limit": 0
               },
-              "raw_utf8": "{\"cancel_message\":null,\"retry_limit\":0}"
+              "raw_utf8": "{\"cancel_message\":null,\"retry_limit\":0}",
+              "sha256": "a24841f5a30fcab40019921c37dcdf09c43b104c36a4ea68ec1ff01a8fc3a47a"
             },
             "experiments": {
               "prototype": {
@@ -38450,7 +38515,8 @@
               "cancel_message": null,
               "retry_limit": 0
             },
-            "raw_utf8": "{\"cancel_message\":null,\"retry_limit\":0}"
+            "raw_utf8": "{\"cancel_message\":null,\"retry_limit\":0}",
+            "sha256": "a24841f5a30fcab40019921c37dcdf09c43b104c36a4ea68ec1ff01a8fc3a47a"
           },
           "actual_primary_overwritten": false
         },
@@ -38468,7 +38534,8 @@
               "cancel_message": null,
               "retry_limit": 0
             },
-            "raw_utf8": "{\"cancel_message\":null,\"retry_limit\":0}"
+            "raw_utf8": "{\"cancel_message\":null,\"retry_limit\":0}",
+            "sha256": "a24841f5a30fcab40019921c37dcdf09c43b104c36a4ea68ec1ff01a8fc3a47a"
           },
           "experiment_conditions": {
             "prototype": "supported_synthetic_material",
@@ -38667,7 +38734,8 @@
               "cancel_message": null,
               "retry_limit": 0
             },
-            "raw_utf8": "{\"cancel_message\":null,\"retry_limit\":0}"
+            "raw_utf8": "{\"cancel_message\":null,\"retry_limit\":0}",
+            "sha256": "a24841f5a30fcab40019921c37dcdf09c43b104c36a4ea68ec1ff01a8fc3a47a"
           },
           "actual_primary_overwritten": false
         },
@@ -38685,7 +38753,8 @@
               "cancel_message": null,
               "retry_limit": 0
             },
-            "raw_utf8": "{\"cancel_message\":null,\"retry_limit\":0}"
+            "raw_utf8": "{\"cancel_message\":null,\"retry_limit\":0}",
+            "sha256": "a24841f5a30fcab40019921c37dcdf09c43b104c36a4ea68ec1ff01a8fc3a47a"
           },
           "experiment_conditions": {
             "prototype": "supported_synthetic_material",
@@ -38881,7 +38950,8 @@
               "cancel_message": null,
               "retry_limit": 0
             },
-            "raw_utf8": "{\"cancel_message\":null,\"retry_limit\":0}"
+            "raw_utf8": "{\"cancel_message\":null,\"retry_limit\":0}",
+            "sha256": "a24841f5a30fcab40019921c37dcdf09c43b104c36a4ea68ec1ff01a8fc3a47a"
           },
           "actual_primary_overwritten": false
         },
@@ -38899,7 +38969,8 @@
               "cancel_message": null,
               "retry_limit": 0
             },
-            "raw_utf8": "{\"cancel_message\":null,\"retry_limit\":0}"
+            "raw_utf8": "{\"cancel_message\":null,\"retry_limit\":0}",
+            "sha256": "a24841f5a30fcab40019921c37dcdf09c43b104c36a4ea68ec1ff01a8fc3a47a"
           },
           "experiment_conditions": {
             "prototype": "supported_synthetic_material",
@@ -39095,7 +39166,8 @@
               "cancel_message": null,
               "retry_limit": 0
             },
-            "raw_utf8": "{\"cancel_message\":null,\"retry_limit\":0}"
+            "raw_utf8": "{\"cancel_message\":null,\"retry_limit\":0}",
+            "sha256": "a24841f5a30fcab40019921c37dcdf09c43b104c36a4ea68ec1ff01a8fc3a47a"
           },
           "actual_primary_overwritten": false
         },
@@ -39113,7 +39185,8 @@
               "cancel_message": null,
               "retry_limit": 0
             },
-            "raw_utf8": "{\"cancel_message\":null,\"retry_limit\":0}"
+            "raw_utf8": "{\"cancel_message\":null,\"retry_limit\":0}",
+            "sha256": "a24841f5a30fcab40019921c37dcdf09c43b104c36a4ea68ec1ff01a8fc3a47a"
           },
           "experiment_conditions": {
             "prototype": "supported_synthetic_material",
@@ -39309,7 +39382,8 @@
               "cancel_message": null,
               "retry_limit": 0
             },
-            "raw_utf8": "{\"cancel_message\":null,\"retry_limit\":0}"
+            "raw_utf8": "{\"cancel_message\":null,\"retry_limit\":0}",
+            "sha256": "a24841f5a30fcab40019921c37dcdf09c43b104c36a4ea68ec1ff01a8fc3a47a"
           },
           "actual_primary_overwritten": false
         },
@@ -39327,7 +39401,8 @@
               "cancel_message": null,
               "retry_limit": 0
             },
-            "raw_utf8": "{\"cancel_message\":null,\"retry_limit\":0}"
+            "raw_utf8": "{\"cancel_message\":null,\"retry_limit\":0}",
+            "sha256": "a24841f5a30fcab40019921c37dcdf09c43b104c36a4ea68ec1ff01a8fc3a47a"
           },
           "experiment_conditions": {
             "prototype": "supported_synthetic_material",
@@ -39526,7 +39601,8 @@
               "cancel_message": null,
               "retry_limit": 0
             },
-            "raw_utf8": "{\"cancel_message\":null,\"retry_limit\":0}"
+            "raw_utf8": "{\"cancel_message\":null,\"retry_limit\":0}",
+            "sha256": "a24841f5a30fcab40019921c37dcdf09c43b104c36a4ea68ec1ff01a8fc3a47a"
           },
           "actual_primary_overwritten": false
         },
@@ -39544,7 +39620,8 @@
               "cancel_message": null,
               "retry_limit": 0
             },
-            "raw_utf8": "{\"cancel_message\":null,\"retry_limit\":0}"
+            "raw_utf8": "{\"cancel_message\":null,\"retry_limit\":0}",
+            "sha256": "a24841f5a30fcab40019921c37dcdf09c43b104c36a4ea68ec1ff01a8fc3a47a"
           },
           "experiment_conditions": {
             "prototype": "supported_synthetic_material",
@@ -39743,7 +39820,8 @@
               "cancel_message": null,
               "retry_limit": 0
             },
-            "raw_utf8": "{\"cancel_message\":null,\"retry_limit\":0}"
+            "raw_utf8": "{\"cancel_message\":null,\"retry_limit\":0}",
+            "sha256": "a24841f5a30fcab40019921c37dcdf09c43b104c36a4ea68ec1ff01a8fc3a47a"
           },
           "actual_primary_overwritten": false
         },
@@ -39761,7 +39839,8 @@
               "cancel_message": null,
               "retry_limit": 0
             },
-            "raw_utf8": "{\"cancel_message\":null,\"retry_limit\":0}"
+            "raw_utf8": "{\"cancel_message\":null,\"retry_limit\":0}",
+            "sha256": "a24841f5a30fcab40019921c37dcdf09c43b104c36a4ea68ec1ff01a8fc3a47a"
           },
           "experiment_conditions": {
             "prototype": "not_applicable_synthetic_material",
@@ -39989,7 +40068,8 @@
               "cancel_message": null,
               "retry_limit": 0
             },
-            "raw_utf8": "{\"cancel_message\":null,\"retry_limit\":0}"
+            "raw_utf8": "{\"cancel_message\":null,\"retry_limit\":0}",
+            "sha256": "a24841f5a30fcab40019921c37dcdf09c43b104c36a4ea68ec1ff01a8fc3a47a"
           },
           "actual_primary_overwritten": false
         },
@@ -40007,7 +40087,8 @@
               "cancel_message": null,
               "retry_limit": 0
             },
-            "raw_utf8": "{\"cancel_message\":null,\"retry_limit\":0}"
+            "raw_utf8": "{\"cancel_message\":null,\"retry_limit\":0}",
+            "sha256": "a24841f5a30fcab40019921c37dcdf09c43b104c36a4ea68ec1ff01a8fc3a47a"
           },
           "experiment_conditions": {
             "prototype": "supported_synthetic_material",
@@ -40236,7 +40317,8 @@
               "cancel_message": null,
               "retry_limit": 0
             },
-            "raw_utf8": "{\"cancel_message\":null,\"retry_limit\":0}"
+            "raw_utf8": "{\"cancel_message\":null,\"retry_limit\":0}",
+            "sha256": "a24841f5a30fcab40019921c37dcdf09c43b104c36a4ea68ec1ff01a8fc3a47a"
           },
           "actual_primary_overwritten": false
         },
@@ -40254,7 +40336,8 @@
               "cancel_message": null,
               "retry_limit": 0
             },
-            "raw_utf8": "{\"cancel_message\":null,\"retry_limit\":0}"
+            "raw_utf8": "{\"cancel_message\":null,\"retry_limit\":0}",
+            "sha256": "a24841f5a30fcab40019921c37dcdf09c43b104c36a4ea68ec1ff01a8fc3a47a"
           },
           "experiment_conditions": {
             "prototype": "supported_synthetic_material",
@@ -40483,7 +40566,8 @@
               "cancel_message": null,
               "retry_limit": 0
             },
-            "raw_utf8": "{\"cancel_message\":null,\"retry_limit\":0}"
+            "raw_utf8": "{\"cancel_message\":null,\"retry_limit\":0}",
+            "sha256": "a24841f5a30fcab40019921c37dcdf09c43b104c36a4ea68ec1ff01a8fc3a47a"
           },
           "actual_primary_overwritten": false
         },
@@ -40501,7 +40585,8 @@
               "cancel_message": null,
               "retry_limit": 0
             },
-            "raw_utf8": "{\"cancel_message\":null,\"retry_limit\":0}"
+            "raw_utf8": "{\"cancel_message\":null,\"retry_limit\":0}",
+            "sha256": "a24841f5a30fcab40019921c37dcdf09c43b104c36a4ea68ec1ff01a8fc3a47a"
           },
           "experiment_conditions": {
             "prototype": "supported_synthetic_material",
@@ -40733,7 +40818,8 @@
               "cancel_message": null,
               "retry_limit": 0
             },
-            "raw_utf8": "{\"cancel_message\":null,\"retry_limit\":0}"
+            "raw_utf8": "{\"cancel_message\":null,\"retry_limit\":0}",
+            "sha256": "a24841f5a30fcab40019921c37dcdf09c43b104c36a4ea68ec1ff01a8fc3a47a"
           },
           "actual_primary_overwritten": false
         },
@@ -40751,7 +40837,8 @@
               "cancel_message": null,
               "retry_limit": 0
             },
-            "raw_utf8": "{\"cancel_message\":null,\"retry_limit\":0}"
+            "raw_utf8": "{\"cancel_message\":null,\"retry_limit\":0}",
+            "sha256": "a24841f5a30fcab40019921c37dcdf09c43b104c36a4ea68ec1ff01a8fc3a47a"
           },
           "experiment_conditions": {
             "prototype": "supported_synthetic_material",
@@ -40980,7 +41067,8 @@
               "cancel_message": null,
               "retry_limit": 0
             },
-            "raw_utf8": "{\"cancel_message\":null,\"retry_limit\":0}"
+            "raw_utf8": "{\"cancel_message\":null,\"retry_limit\":0}",
+            "sha256": "a24841f5a30fcab40019921c37dcdf09c43b104c36a4ea68ec1ff01a8fc3a47a"
           },
           "actual_primary_overwritten": false
         },
@@ -40998,7 +41086,8 @@
               "cancel_message": null,
               "retry_limit": 0
             },
-            "raw_utf8": "{\"cancel_message\":null,\"retry_limit\":0}"
+            "raw_utf8": "{\"cancel_message\":null,\"retry_limit\":0}",
+            "sha256": "a24841f5a30fcab40019921c37dcdf09c43b104c36a4ea68ec1ff01a8fc3a47a"
           },
           "experiment_conditions": {
             "prototype": "supported_synthetic_material",
@@ -41229,7 +41318,8 @@
               "cancel_message": null,
               "retry_limit": 0
             },
-            "raw_utf8": "{\"cancel_message\":null,\"retry_limit\":0}"
+            "raw_utf8": "{\"cancel_message\":null,\"retry_limit\":0}",
+            "sha256": "a24841f5a30fcab40019921c37dcdf09c43b104c36a4ea68ec1ff01a8fc3a47a"
           },
           "actual_primary_overwritten": false
         },
@@ -41247,7 +41337,8 @@
               "cancel_message": null,
               "retry_limit": 0
             },
-            "raw_utf8": "{\"cancel_message\":null,\"retry_limit\":0}"
+            "raw_utf8": "{\"cancel_message\":null,\"retry_limit\":0}",
+            "sha256": "a24841f5a30fcab40019921c37dcdf09c43b104c36a4ea68ec1ff01a8fc3a47a"
           },
           "experiment_conditions": {
             "prototype": "supported_synthetic_material",
@@ -41474,7 +41565,8 @@
               "cancel_message": null,
               "retry_limit": 0
             },
-            "raw_utf8": "{\"cancel_message\":null,\"retry_limit\":0}"
+            "raw_utf8": "{\"cancel_message\":null,\"retry_limit\":0}",
+            "sha256": "a24841f5a30fcab40019921c37dcdf09c43b104c36a4ea68ec1ff01a8fc3a47a"
           },
           "actual_primary_overwritten": false
         },
@@ -41492,7 +41584,8 @@
               "cancel_message": null,
               "retry_limit": 0
             },
-            "raw_utf8": "{\"cancel_message\":null,\"retry_limit\":0}"
+            "raw_utf8": "{\"cancel_message\":null,\"retry_limit\":0}",
+            "sha256": "a24841f5a30fcab40019921c37dcdf09c43b104c36a4ea68ec1ff01a8fc3a47a"
           },
           "experiment_conditions": {
             "prototype": "supported_synthetic_material",
@@ -41684,7 +41777,8 @@
                     "cancel_message": null,
                     "retry_limit": 0
                   },
-                  "raw_utf8": "{\"cancel_message\":null,\"retry_limit\":0}"
+                  "raw_utf8": "{\"cancel_message\":null,\"retry_limit\":0}",
+                  "sha256": "a24841f5a30fcab40019921c37dcdf09c43b104c36a4ea68ec1ff01a8fc3a47a"
                 },
                 "experiment_conditions": {
                   "prototype": "supported_synthetic_material",
@@ -41762,7 +41856,8 @@
               "cancel_message": null,
               "retry_limit": 0
             },
-            "raw_utf8": "{\"cancel_message\":null,\"retry_limit\":0}"
+            "raw_utf8": "{\"cancel_message\":null,\"retry_limit\":0}",
+            "sha256": "a24841f5a30fcab40019921c37dcdf09c43b104c36a4ea68ec1ff01a8fc3a47a"
           },
           "actual_primary_overwritten": false
         },
@@ -41780,7 +41875,8 @@
               "cancel_message": null,
               "retry_limit": 0
             },
-            "raw_utf8": "{\"cancel_message\":null,\"retry_limit\":0}"
+            "raw_utf8": "{\"cancel_message\":null,\"retry_limit\":0}",
+            "sha256": "a24841f5a30fcab40019921c37dcdf09c43b104c36a4ea68ec1ff01a8fc3a47a"
           },
           "experiment_conditions": {
             "prototype": "supported_synthetic_material",
@@ -41983,7 +42079,8 @@
                     "cancel_message": null,
                     "retry_limit": 0
                   },
-                  "raw_utf8": "{\"cancel_message\":null,\"retry_limit\":0}"
+                  "raw_utf8": "{\"cancel_message\":null,\"retry_limit\":0}",
+                  "sha256": "a24841f5a30fcab40019921c37dcdf09c43b104c36a4ea68ec1ff01a8fc3a47a"
                 },
                 "experiment_conditions": {
                   "prototype": "supported_synthetic_material",
@@ -42061,7 +42158,8 @@
               "cancel_message": null,
               "retry_limit": 0
             },
-            "raw_utf8": "{\"cancel_message\":null,\"retry_limit\":0}"
+            "raw_utf8": "{\"cancel_message\":null,\"retry_limit\":0}",
+            "sha256": "a24841f5a30fcab40019921c37dcdf09c43b104c36a4ea68ec1ff01a8fc3a47a"
           },
           "actual_primary_overwritten": false
         },
@@ -42079,7 +42177,8 @@
               "cancel_message": null,
               "retry_limit": 0
             },
-            "raw_utf8": "{\"cancel_message\":null,\"retry_limit\":0}"
+            "raw_utf8": "{\"cancel_message\":null,\"retry_limit\":0}",
+            "sha256": "a24841f5a30fcab40019921c37dcdf09c43b104c36a4ea68ec1ff01a8fc3a47a"
           },
           "experiment_conditions": {
             "prototype": "supported_synthetic_material",
@@ -42284,7 +42383,8 @@
                     "cancel_message": null,
                     "retry_limit": 2
                   },
-                  "raw_utf8": "{\"cancel_message\":null,\"retry_limit\":0}"
+                  "raw_utf8": "{\"cancel_message\":null,\"retry_limit\":0}",
+                  "sha256": "a24841f5a30fcab40019921c37dcdf09c43b104c36a4ea68ec1ff01a8fc3a47a"
                 },
                 "experiment_conditions": {
                   "prototype": "supported_synthetic_material",
@@ -42364,7 +42464,8 @@
               "cancel_message": null,
               "retry_limit": 0
             },
-            "raw_utf8": "{\"cancel_message\":null,\"retry_limit\":0}"
+            "raw_utf8": "{\"cancel_message\":null,\"retry_limit\":0}",
+            "sha256": "a24841f5a30fcab40019921c37dcdf09c43b104c36a4ea68ec1ff01a8fc3a47a"
           },
           "actual_primary_overwritten": false
         },
@@ -42382,7 +42483,8 @@
               "cancel_message": null,
               "retry_limit": 0
             },
-            "raw_utf8": "{\"cancel_message\":null,\"retry_limit\":0}"
+            "raw_utf8": "{\"cancel_message\":null,\"retry_limit\":0}",
+            "sha256": "a24841f5a30fcab40019921c37dcdf09c43b104c36a4ea68ec1ff01a8fc3a47a"
           },
           "experiment_conditions": {
             "prototype": "supported_synthetic_material",
@@ -42589,7 +42691,8 @@
                     "cancel_message": null,
                     "retry_limit": 0
                   },
-                  "raw_utf8": "{\"cancel_message\":null,\"retry_limit\":0}"
+                  "raw_utf8": "{\"cancel_message\":null,\"retry_limit\":0}",
+                  "sha256": "a24841f5a30fcab40019921c37dcdf09c43b104c36a4ea68ec1ff01a8fc3a47a"
                 },
                 "experiment_conditions": {
                   "prototype": "supported_synthetic_material",
@@ -42664,7 +42767,8 @@
               "cancel_message": null,
               "retry_limit": 0
             },
-            "raw_utf8": "{\"cancel_message\":null,\"retry_limit\":0}"
+            "raw_utf8": "{\"cancel_message\":null,\"retry_limit\":0}",
+            "sha256": "a24841f5a30fcab40019921c37dcdf09c43b104c36a4ea68ec1ff01a8fc3a47a"
           },
           "actual_primary_overwritten": false
         },
@@ -42682,7 +42786,8 @@
               "cancel_message": null,
               "retry_limit": 0
             },
-            "raw_utf8": "{\"cancel_message\":null,\"retry_limit\":0}"
+            "raw_utf8": "{\"cancel_message\":null,\"retry_limit\":0}",
+            "sha256": "a24841f5a30fcab40019921c37dcdf09c43b104c36a4ea68ec1ff01a8fc3a47a"
           },
           "experiment_conditions": {
             "prototype": "supported_synthetic_material",
@@ -42882,7 +42987,8 @@
                     "cancel_message": null,
                     "retry_limit": 0
                   },
-                  "raw_utf8": "{\"cancel_message\":null,\"retry_limit\":0}"
+                  "raw_utf8": "{\"cancel_message\":null,\"retry_limit\":0}",
+                  "sha256": "a24841f5a30fcab40019921c37dcdf09c43b104c36a4ea68ec1ff01a8fc3a47a"
                 },
                 "experiment_conditions": {
                   "prototype": "supported_synthetic_material",
@@ -42957,7 +43063,8 @@
               "cancel_message": null,
               "retry_limit": 0
             },
-            "raw_utf8": "{\"cancel_message\":null,\"retry_limit\":0}"
+            "raw_utf8": "{\"cancel_message\":null,\"retry_limit\":0}",
+            "sha256": "a24841f5a30fcab40019921c37dcdf09c43b104c36a4ea68ec1ff01a8fc3a47a"
           },
           "actual_primary_overwritten": false
         },
@@ -42975,7 +43082,8 @@
               "cancel_message": null,
               "retry_limit": 0
             },
-            "raw_utf8": "{\"cancel_message\":null,\"retry_limit\":0}"
+            "raw_utf8": "{\"cancel_message\":null,\"retry_limit\":0}",
+            "sha256": "a24841f5a30fcab40019921c37dcdf09c43b104c36a4ea68ec1ff01a8fc3a47a"
           },
           "experiment_conditions": {
             "prototype": "supported_synthetic_material",
@@ -43177,7 +43285,8 @@
                     "cancel_message": null,
                     "retry_limit": 0
                   },
-                  "raw_utf8": "{\"cancel_message\":null,\"retry_limit\":0}"
+                  "raw_utf8": "{\"cancel_message\":null,\"retry_limit\":0}",
+                  "sha256": "a24841f5a30fcab40019921c37dcdf09c43b104c36a4ea68ec1ff01a8fc3a47a"
                 },
                 "experiment_conditions": {
                   "prototype": "supported_synthetic_material",
@@ -43257,7 +43366,8 @@
               "cancel_message": null,
               "retry_limit": 0
             },
-            "raw_utf8": "{\"cancel_message\":null,\"retry_limit\":0}"
+            "raw_utf8": "{\"cancel_message\":null,\"retry_limit\":0}",
+            "sha256": "a24841f5a30fcab40019921c37dcdf09c43b104c36a4ea68ec1ff01a8fc3a47a"
           },
           "actual_primary_overwritten": false
         },
@@ -43275,7 +43385,8 @@
               "cancel_message": null,
               "retry_limit": 0
             },
-            "raw_utf8": "{\"cancel_message\":null,\"retry_limit\":0}"
+            "raw_utf8": "{\"cancel_message\":null,\"retry_limit\":0}",
+            "sha256": "a24841f5a30fcab40019921c37dcdf09c43b104c36a4ea68ec1ff01a8fc3a47a"
           },
           "experiment_conditions": {
             "prototype": "supported_synthetic_material",
@@ -43482,7 +43593,8 @@
                     "cancel_message": null,
                     "retry_limit": 0
                   },
-                  "raw_utf8": "{\"cancel_message\":null,\"retry_limit\":0}"
+                  "raw_utf8": "{\"cancel_message\":null,\"retry_limit\":0}",
+                  "sha256": "a24841f5a30fcab40019921c37dcdf09c43b104c36a4ea68ec1ff01a8fc3a47a"
                 },
                 "experiment_conditions": {
                   "prototype": "supported_synthetic_material",
@@ -43564,7 +43676,8 @@
               "cancel_message": null,
               "retry_limit": 0
             },
-            "raw_utf8": "{\"cancel_message\":null,\"retry_limit\":0}"
+            "raw_utf8": "{\"cancel_message\":null,\"retry_limit\":0}",
+            "sha256": "a24841f5a30fcab40019921c37dcdf09c43b104c36a4ea68ec1ff01a8fc3a47a"
           },
           "actual_primary_overwritten": false
         },
@@ -43582,7 +43695,8 @@
               "cancel_message": null,
               "retry_limit": 0
             },
-            "raw_utf8": "{\"cancel_message\":null,\"retry_limit\":0}"
+            "raw_utf8": "{\"cancel_message\":null,\"retry_limit\":0}",
+            "sha256": "a24841f5a30fcab40019921c37dcdf09c43b104c36a4ea68ec1ff01a8fc3a47a"
           },
           "experiment_conditions": {
             "prototype": "supported_synthetic_material",
@@ -43790,7 +43904,8 @@
                     "cancel_message": null,
                     "retry_limit": 0
                   },
-                  "raw_utf8": "{\"cancel_message\":null,\"retry_limit\":0}"
+                  "raw_utf8": "{\"cancel_message\":null,\"retry_limit\":0}",
+                  "sha256": "a24841f5a30fcab40019921c37dcdf09c43b104c36a4ea68ec1ff01a8fc3a47a"
                 },
                 "experiment_conditions": {
                   "prototype": "supported_synthetic_material",
@@ -43868,7 +43983,8 @@
               "cancel_message": null,
               "retry_limit": 0
             },
-            "raw_utf8": "{\"cancel_message\":null,\"retry_limit\":0}"
+            "raw_utf8": "{\"cancel_message\":null,\"retry_limit\":0}",
+            "sha256": "a24841f5a30fcab40019921c37dcdf09c43b104c36a4ea68ec1ff01a8fc3a47a"
           },
           "actual_primary_overwritten": false
         },
@@ -43886,7 +44002,8 @@
               "cancel_message": null,
               "retry_limit": 0
             },
-            "raw_utf8": "{\"cancel_message\":null,\"retry_limit\":0}"
+            "raw_utf8": "{\"cancel_message\":null,\"retry_limit\":0}",
+            "sha256": "a24841f5a30fcab40019921c37dcdf09c43b104c36a4ea68ec1ff01a8fc3a47a"
           },
           "experiment_conditions": {
             "prototype": "supported_synthetic_material",
@@ -44089,7 +44206,8 @@
                     "cancel_message": null,
                     "retry_limit": 0
                   },
-                  "raw_utf8": "{\"cancel_message\":null,\"retry_limit\":0}"
+                  "raw_utf8": "{\"cancel_message\":null,\"retry_limit\":0}",
+                  "sha256": "a24841f5a30fcab40019921c37dcdf09c43b104c36a4ea68ec1ff01a8fc3a47a"
                 },
                 "experiment_conditions": {
                   "prototype": "supported_synthetic_material",
@@ -44167,7 +44285,8 @@
               "cancel_message": null,
               "retry_limit": 0
             },
-            "raw_utf8": "{\"cancel_message\":null,\"retry_limit\":0}"
+            "raw_utf8": "{\"cancel_message\":null,\"retry_limit\":0}",
+            "sha256": "a24841f5a30fcab40019921c37dcdf09c43b104c36a4ea68ec1ff01a8fc3a47a"
           },
           "actual_primary_overwritten": false
         },
@@ -44185,7 +44304,8 @@
               "cancel_message": null,
               "retry_limit": 0
             },
-            "raw_utf8": "{\"cancel_message\":null,\"retry_limit\":0}"
+            "raw_utf8": "{\"cancel_message\":null,\"retry_limit\":0}",
+            "sha256": "a24841f5a30fcab40019921c37dcdf09c43b104c36a4ea68ec1ff01a8fc3a47a"
           },
           "experiment_conditions": {
             "prototype": "supported_synthetic_material",
@@ -44346,6 +44466,7 @@
               "cancel_message": "show cancellation",
               "retry_limit": 3
             },
+            "candidate_sha256": "563877dd50f4b1f129925149c6f25d07d6c3c6ba3789f55748f0a2efd9734e90",
             "state": "synthetic_explicit_agreement_material_not_actual_authority",
             "source": {
               "identity": "AGREEMENT-SOURCE",
@@ -44362,6 +44483,7 @@
             "cancel_message": "show cancellation",
             "retry_limit": 3
           },
+          "candidate_sha256": "563877dd50f4b1f129925149c6f25d07d6c3c6ba3789f55748f0a2efd9734e90",
           "state": "synthetic_explicit_agreement_material_not_actual_authority",
           "source": {
             "identity": "AGREEMENT-SOURCE",
@@ -44379,6 +44501,7 @@
               "cancel_message": "show cancellation",
               "retry_limit": 2
             },
+            "candidate_sha256": "38789c47644ed188f29c658696e726a6e240897585ef7e0c22094bd1c29c9dd8",
             "state": "synthetic_explicit_agreement_material_not_actual_authority",
             "source": {
               "identity": "AGREEMENT-SOURCE",
@@ -44397,6 +44520,7 @@
               "cancel_message": "show cancellation",
               "retry_limit": 3
             },
+            "candidate_sha256": "563877dd50f4b1f129925149c6f25d07d6c3c6ba3789f55748f0a2efd9734e90",
             "state": "synthetic_explicit_agreement_material_not_actual_authority",
             "source": {
               "identity": "AGREEMENT-SOURCE",
@@ -44448,6 +44572,7 @@
                       "cancel_message": "show cancellation",
                       "retry_limit": 2
                     },
+                    "candidate_sha256": "38789c47644ed188f29c658696e726a6e240897585ef7e0c22094bd1c29c9dd8",
                     "state": "synthetic_explicit_agreement_material_not_actual_authority",
                     "source": {
                       "identity": "AGREEMENT-SOURCE",
@@ -44466,6 +44591,7 @@
                       "cancel_message": "show cancellation",
                       "retry_limit": 3
                     },
+                    "candidate_sha256": "563877dd50f4b1f129925149c6f25d07d6c3c6ba3789f55748f0a2efd9734e90",
                     "state": "synthetic_explicit_agreement_material_not_actual_authority",
                     "source": {
                       "identity": "AGREEMENT-SOURCE",
@@ -44503,7 +44629,8 @@
               "cancel_message": null,
               "retry_limit": 0
             },
-            "raw_utf8": "{\"cancel_message\":null,\"retry_limit\":0}"
+            "raw_utf8": "{\"cancel_message\":null,\"retry_limit\":0}",
+            "sha256": "a24841f5a30fcab40019921c37dcdf09c43b104c36a4ea68ec1ff01a8fc3a47a"
           },
           "actual_primary_overwritten": false
         },
@@ -44521,7 +44648,8 @@
               "cancel_message": null,
               "retry_limit": 0
             },
-            "raw_utf8": "{\"cancel_message\":null,\"retry_limit\":0}"
+            "raw_utf8": "{\"cancel_message\":null,\"retry_limit\":0}",
+            "sha256": "a24841f5a30fcab40019921c37dcdf09c43b104c36a4ea68ec1ff01a8fc3a47a"
           },
           "experiment_conditions": {
             "prototype": "supported_synthetic_material",
@@ -44674,6 +44802,7 @@
               "cancel_message": "show cancellation",
               "retry_limit": 2
             },
+            "candidate_sha256": "38789c47644ed188f29c658696e726a6e240897585ef7e0c22094bd1c29c9dd8",
             "state": "synthetic_explicit_agreement_material_not_actual_authority",
             "source": {
               "identity": "AGREEMENT-SOURCE",
@@ -44690,6 +44819,7 @@
             "cancel_message": "show cancellation",
             "retry_limit": 2
           },
+          "candidate_sha256": "38789c47644ed188f29c658696e726a6e240897585ef7e0c22094bd1c29c9dd8",
           "state": "synthetic_explicit_agreement_material_not_actual_authority",
           "source": {
             "identity": "AGREEMENT-SOURCE",
@@ -44710,6 +44840,7 @@
               "cancel_message": "show cancellation",
               "retry_limit": 2
             },
+            "candidate_sha256": "38789c47644ed188f29c658696e726a6e240897585ef7e0c22094bd1c29c9dd8",
             "state": "synthetic_explicit_agreement_material_not_actual_authority",
             "source": {
               "identity": "AGREEMENT-SOURCE",
@@ -44764,6 +44895,7 @@
                       "cancel_message": "show cancellation",
                       "retry_limit": 2
                     },
+                    "candidate_sha256": "38789c47644ed188f29c658696e726a6e240897585ef7e0c22094bd1c29c9dd8",
                     "state": "synthetic_explicit_agreement_material_not_actual_authority",
                     "source": {
                       "identity": "AGREEMENT-SOURCE",
@@ -44801,7 +44933,8 @@
               "cancel_message": null,
               "retry_limit": 0
             },
-            "raw_utf8": "{\"cancel_message\":null,\"retry_limit\":0}"
+            "raw_utf8": "{\"cancel_message\":null,\"retry_limit\":0}",
+            "sha256": "a24841f5a30fcab40019921c37dcdf09c43b104c36a4ea68ec1ff01a8fc3a47a"
           },
           "actual_primary_overwritten": false
         },
@@ -44819,7 +44952,8 @@
               "cancel_message": null,
               "retry_limit": 0
             },
-            "raw_utf8": "{\"cancel_message\":null,\"retry_limit\":0}"
+            "raw_utf8": "{\"cancel_message\":null,\"retry_limit\":0}",
+            "sha256": "a24841f5a30fcab40019921c37dcdf09c43b104c36a4ea68ec1ff01a8fc3a47a"
           },
           "experiment_conditions": {
             "prototype": "supported_synthetic_material",
@@ -44969,6 +45103,7 @@
               "cancel_message": "show cancellation",
               "retry_limit": 2
             },
+            "candidate_sha256": "38789c47644ed188f29c658696e726a6e240897585ef7e0c22094bd1c29c9dd8",
             "state": "synthetic_explicit_agreement_material_not_actual_authority",
             "source": {
               "identity": "AGREEMENT-SOURCE",
@@ -44985,6 +45120,7 @@
             "cancel_message": "show cancellation",
             "retry_limit": 2
           },
+          "candidate_sha256": "38789c47644ed188f29c658696e726a6e240897585ef7e0c22094bd1c29c9dd8",
           "state": "synthetic_explicit_agreement_material_not_actual_authority",
           "source": {
             "identity": "AGREEMENT-SOURCE",
@@ -45005,6 +45141,7 @@
               "cancel_message": "show cancellation",
               "retry_limit": 2
             },
+            "candidate_sha256": "38789c47644ed188f29c658696e726a6e240897585ef7e0c22094bd1c29c9dd8",
             "state": "synthetic_explicit_agreement_material_not_actual_authority",
             "source": {
               "identity": "AGREEMENT-SOURCE",
@@ -45059,6 +45196,7 @@
                       "cancel_message": "show cancellation",
                       "retry_limit": 2
                     },
+                    "candidate_sha256": "38789c47644ed188f29c658696e726a6e240897585ef7e0c22094bd1c29c9dd8",
                     "state": "synthetic_explicit_agreement_material_not_actual_authority",
                     "source": {
                       "identity": "AGREEMENT-SOURCE",
@@ -45096,7 +45234,8 @@
               "cancel_message": null,
               "retry_limit": 0
             },
-            "raw_utf8": "{\"cancel_message\":null,\"retry_limit\":0}"
+            "raw_utf8": "{\"cancel_message\":null,\"retry_limit\":0}",
+            "sha256": "a24841f5a30fcab40019921c37dcdf09c43b104c36a4ea68ec1ff01a8fc3a47a"
           },
           "actual_primary_overwritten": false
         },
@@ -45114,7 +45253,8 @@
               "cancel_message": null,
               "retry_limit": 0
             },
-            "raw_utf8": "{\"cancel_message\":null,\"retry_limit\":0}"
+            "raw_utf8": "{\"cancel_message\":null,\"retry_limit\":0}",
+            "sha256": "a24841f5a30fcab40019921c37dcdf09c43b104c36a4ea68ec1ff01a8fc3a47a"
           },
           "experiment_conditions": {
             "prototype": "supported_synthetic_material",
@@ -45343,7 +45483,8 @@
               "cancel_message": null,
               "retry_limit": 0
             },
-            "raw_utf8": "{\"cancel_message\":null,\"retry_limit\":0}"
+            "raw_utf8": "{\"cancel_message\":null,\"retry_limit\":0}",
+            "sha256": "a24841f5a30fcab40019921c37dcdf09c43b104c36a4ea68ec1ff01a8fc3a47a"
           },
           "actual_primary_overwritten": false
         },
@@ -45361,7 +45502,8 @@
               "cancel_message": null,
               "retry_limit": 0
             },
-            "raw_utf8": "{\"cancel_message\":null,\"retry_limit\":0}"
+            "raw_utf8": "{\"cancel_message\":null,\"retry_limit\":0}",
+            "sha256": "a24841f5a30fcab40019921c37dcdf09c43b104c36a4ea68ec1ff01a8fc3a47a"
           },
           "experiment_conditions": {
             "prototype": "missing",
@@ -126817,7 +126959,8 @@
           "cancel_message": null,
           "retry_limit": 0
         },
-        "raw_utf8": "{\"cancel_message\":null,\"retry_limit\":0}"
+        "raw_utf8": "{\"cancel_message\":null,\"retry_limit\":0}",
+        "sha256": "a24841f5a30fcab40019921c37dcdf09c43b104c36a4ea68ec1ff01a8fc3a47a"
       },
       "experiment_conditions": {
         "prototype": "supported_synthetic_material",
@@ -126865,7 +127008,8 @@
           "cancel_message": null,
           "retry_limit": 0
         },
-        "raw_utf8": "{\"cancel_message\":null,\"retry_limit\":0}"
+        "raw_utf8": "{\"cancel_message\":null,\"retry_limit\":0}",
+        "sha256": "a24841f5a30fcab40019921c37dcdf09c43b104c36a4ea68ec1ff01a8fc3a47a"
       },
       "experiment_conditions": {
         "prototype": "supported_synthetic_material",
@@ -126910,7 +127054,8 @@
           "cancel_message": null,
           "retry_limit": 0
         },
-        "raw_utf8": "{\"cancel_message\":null,\"retry_limit\":0}"
+        "raw_utf8": "{\"cancel_message\":null,\"retry_limit\":0}",
+        "sha256": "a24841f5a30fcab40019921c37dcdf09c43b104c36a4ea68ec1ff01a8fc3a47a"
       },
       "experiment_conditions": {
         "prototype": "supported_synthetic_material",
@@ -126955,7 +127100,8 @@
           "cancel_message": null,
           "retry_limit": 0
         },
-        "raw_utf8": "{\"cancel_message\":null,\"retry_limit\":0}"
+        "raw_utf8": "{\"cancel_message\":null,\"retry_limit\":0}",
+        "sha256": "a24841f5a30fcab40019921c37dcdf09c43b104c36a4ea68ec1ff01a8fc3a47a"
       },
       "experiment_conditions": {
         "prototype": "supported_synthetic_material",
@@ -127000,7 +127146,8 @@
           "cancel_message": null,
           "retry_limit": 0
         },
-        "raw_utf8": "{\"cancel_message\":null,\"retry_limit\":0}"
+        "raw_utf8": "{\"cancel_message\":null,\"retry_limit\":0}",
+        "sha256": "a24841f5a30fcab40019921c37dcdf09c43b104c36a4ea68ec1ff01a8fc3a47a"
       },
       "experiment_conditions": {
         "prototype": "supported_synthetic_material",
@@ -127048,7 +127195,8 @@
           "cancel_message": null,
           "retry_limit": 0
         },
-        "raw_utf8": "{\"cancel_message\":null,\"retry_limit\":0}"
+        "raw_utf8": "{\"cancel_message\":null,\"retry_limit\":0}",
+        "sha256": "a24841f5a30fcab40019921c37dcdf09c43b104c36a4ea68ec1ff01a8fc3a47a"
       },
       "experiment_conditions": {
         "prototype": "supported_synthetic_material",
@@ -127096,7 +127244,8 @@
           "cancel_message": null,
           "retry_limit": 0
         },
-        "raw_utf8": "{\"cancel_message\":null,\"retry_limit\":0}"
+        "raw_utf8": "{\"cancel_message\":null,\"retry_limit\":0}",
+        "sha256": "a24841f5a30fcab40019921c37dcdf09c43b104c36a4ea68ec1ff01a8fc3a47a"
       },
       "experiment_conditions": {
         "prototype": "not_applicable_synthetic_material",
@@ -127135,7 +127284,8 @@
           "cancel_message": null,
           "retry_limit": 0
         },
-        "raw_utf8": "{\"cancel_message\":null,\"retry_limit\":0}"
+        "raw_utf8": "{\"cancel_message\":null,\"retry_limit\":0}",
+        "sha256": "a24841f5a30fcab40019921c37dcdf09c43b104c36a4ea68ec1ff01a8fc3a47a"
       },
       "experiment_conditions": {
         "prototype": "supported_synthetic_material",
@@ -127182,7 +127332,8 @@
           "cancel_message": null,
           "retry_limit": 0
         },
-        "raw_utf8": "{\"cancel_message\":null,\"retry_limit\":0}"
+        "raw_utf8": "{\"cancel_message\":null,\"retry_limit\":0}",
+        "sha256": "a24841f5a30fcab40019921c37dcdf09c43b104c36a4ea68ec1ff01a8fc3a47a"
       },
       "experiment_conditions": {
         "prototype": "supported_synthetic_material",
@@ -127229,7 +127380,8 @@
           "cancel_message": null,
           "retry_limit": 0
         },
-        "raw_utf8": "{\"cancel_message\":null,\"retry_limit\":0}"
+        "raw_utf8": "{\"cancel_message\":null,\"retry_limit\":0}",
+        "sha256": "a24841f5a30fcab40019921c37dcdf09c43b104c36a4ea68ec1ff01a8fc3a47a"
       },
       "experiment_conditions": {
         "prototype": "supported_synthetic_material",
@@ -127276,7 +127428,8 @@
           "cancel_message": null,
           "retry_limit": 0
         },
-        "raw_utf8": "{\"cancel_message\":null,\"retry_limit\":0}"
+        "raw_utf8": "{\"cancel_message\":null,\"retry_limit\":0}",
+        "sha256": "a24841f5a30fcab40019921c37dcdf09c43b104c36a4ea68ec1ff01a8fc3a47a"
       },
       "experiment_conditions": {
         "prototype": "supported_synthetic_material",
@@ -127323,7 +127476,8 @@
           "cancel_message": null,
           "retry_limit": 0
         },
-        "raw_utf8": "{\"cancel_message\":null,\"retry_limit\":0}"
+        "raw_utf8": "{\"cancel_message\":null,\"retry_limit\":0}",
+        "sha256": "a24841f5a30fcab40019921c37dcdf09c43b104c36a4ea68ec1ff01a8fc3a47a"
       },
       "experiment_conditions": {
         "prototype": "supported_synthetic_material",
@@ -127467,7 +127621,8 @@
           "cancel_message": null,
           "retry_limit": 0
         },
-        "raw_utf8": "{\"cancel_message\":null,\"retry_limit\":0}"
+        "raw_utf8": "{\"cancel_message\":null,\"retry_limit\":0}",
+        "sha256": "a24841f5a30fcab40019921c37dcdf09c43b104c36a4ea68ec1ff01a8fc3a47a"
       },
       "experiment_conditions": {
         "prototype": "supported_synthetic_material",
@@ -127515,7 +127670,8 @@
           "cancel_message": null,
           "retry_limit": 0
         },
-        "raw_utf8": "{\"cancel_message\":null,\"retry_limit\":0}"
+        "raw_utf8": "{\"cancel_message\":null,\"retry_limit\":0}",
+        "sha256": "a24841f5a30fcab40019921c37dcdf09c43b104c36a4ea68ec1ff01a8fc3a47a"
       },
       "experiment_conditions": {
         "prototype": "supported_synthetic_material",
@@ -127560,7 +127716,8 @@
           "cancel_message": null,
           "retry_limit": 0
         },
-        "raw_utf8": "{\"cancel_message\":null,\"retry_limit\":0}"
+        "raw_utf8": "{\"cancel_message\":null,\"retry_limit\":0}",
+        "sha256": "a24841f5a30fcab40019921c37dcdf09c43b104c36a4ea68ec1ff01a8fc3a47a"
       },
       "experiment_conditions": {
         "prototype": "supported_synthetic_material",
@@ -127608,7 +127765,8 @@
           "cancel_message": null,
           "retry_limit": 0
         },
-        "raw_utf8": "{\"cancel_message\":null,\"retry_limit\":0}"
+        "raw_utf8": "{\"cancel_message\":null,\"retry_limit\":0}",
+        "sha256": "a24841f5a30fcab40019921c37dcdf09c43b104c36a4ea68ec1ff01a8fc3a47a"
       },
       "experiment_conditions": {
         "prototype": "missing",
@@ -134614,7 +134772,8 @@
               "cancel_message": null,
               "retry_limit": 0
             },
-            "raw_utf8": "{\"cancel_message\":null,\"retry_limit\":0}"
+            "raw_utf8": "{\"cancel_message\":null,\"retry_limit\":0}",
+            "sha256": "a24841f5a30fcab40019921c37dcdf09c43b104c36a4ea68ec1ff01a8fc3a47a"
           },
           "experiments": {
             "prototype": {
@@ -134701,7 +134860,8 @@
               "cancel_message": null,
               "retry_limit": 0
             },
-            "raw_utf8": "{\"cancel_message\":null,\"retry_limit\":0}"
+            "raw_utf8": "{\"cancel_message\":null,\"retry_limit\":0}",
+            "sha256": "a24841f5a30fcab40019921c37dcdf09c43b104c36a4ea68ec1ff01a8fc3a47a"
           },
           "experiment_conditions": {
             "prototype": "supported_synthetic_material",
@@ -134760,7 +134920,8 @@
               "cancel_message": null,
               "retry_limit": 0
             },
-            "raw_utf8": "{\"cancel_message\":null,\"retry_limit\":0}"
+            "raw_utf8": "{\"cancel_message\":null,\"retry_limit\":0}",
+            "sha256": "a24841f5a30fcab40019921c37dcdf09c43b104c36a4ea68ec1ff01a8fc3a47a"
           },
           "experiments": {
             "prototype": {
@@ -134847,7 +135008,8 @@
               "cancel_message": null,
               "retry_limit": 0
             },
-            "raw_utf8": "{\"cancel_message\":null,\"retry_limit\":0}"
+            "raw_utf8": "{\"cancel_message\":null,\"retry_limit\":0}",
+            "sha256": "a24841f5a30fcab40019921c37dcdf09c43b104c36a4ea68ec1ff01a8fc3a47a"
           },
           "experiment_conditions": {
             "prototype": "supported_synthetic_material",
@@ -134905,7 +135067,8 @@
               "cancel_message": null,
               "retry_limit": 0
             },
-            "raw_utf8": "{\"cancel_message\":null,\"retry_limit\":0}"
+            "raw_utf8": "{\"cancel_message\":null,\"retry_limit\":0}",
+            "sha256": "a24841f5a30fcab40019921c37dcdf09c43b104c36a4ea68ec1ff01a8fc3a47a"
           },
           "experiments": {
             "prototype": {
@@ -134991,7 +135154,8 @@
               "cancel_message": null,
               "retry_limit": 0
             },
-            "raw_utf8": "{\"cancel_message\":null,\"retry_limit\":0}"
+            "raw_utf8": "{\"cancel_message\":null,\"retry_limit\":0}",
+            "sha256": "a24841f5a30fcab40019921c37dcdf09c43b104c36a4ea68ec1ff01a8fc3a47a"
           },
           "experiment_conditions": {
             "prototype": "supported_synthetic_material",
@@ -135050,7 +135214,8 @@
               "cancel_message": null,
               "retry_limit": 0
             },
-            "raw_utf8": "{\"cancel_message\":null,\"retry_limit\":0}"
+            "raw_utf8": "{\"cancel_message\":null,\"retry_limit\":0}",
+            "sha256": "a24841f5a30fcab40019921c37dcdf09c43b104c36a4ea68ec1ff01a8fc3a47a"
           },
           "experiments": {
             "prototype": {
@@ -135137,7 +135302,8 @@
               "cancel_message": null,
               "retry_limit": 0
             },
-            "raw_utf8": "{\"cancel_message\":null,\"retry_limit\":0}"
+            "raw_utf8": "{\"cancel_message\":null,\"retry_limit\":0}",
+            "sha256": "a24841f5a30fcab40019921c37dcdf09c43b104c36a4ea68ec1ff01a8fc3a47a"
           },
           "experiment_conditions": {
             "prototype": "supported_synthetic_material",
@@ -135190,7 +135356,8 @@
               "cancel_message": null,
               "retry_limit": 0
             },
-            "raw_utf8": "{\"cancel_message\":null,\"retry_limit\":0}"
+            "raw_utf8": "{\"cancel_message\":null,\"retry_limit\":0}",
+            "sha256": "a24841f5a30fcab40019921c37dcdf09c43b104c36a4ea68ec1ff01a8fc3a47a"
           },
           "experiments": {
             "prototype": {
@@ -135277,7 +135444,8 @@
               "cancel_message": null,
               "retry_limit": 0
             },
-            "raw_utf8": "{\"cancel_message\":null,\"retry_limit\":0}"
+            "raw_utf8": "{\"cancel_message\":null,\"retry_limit\":0}",
+            "sha256": "a24841f5a30fcab40019921c37dcdf09c43b104c36a4ea68ec1ff01a8fc3a47a"
           },
           "experiment_conditions": {
             "prototype": "supported_synthetic_material",
@@ -135342,7 +135510,8 @@
               "cancel_message": null,
               "retry_limit": 0
             },
-            "raw_utf8": "{\"cancel_message\":null,\"retry_limit\":0}"
+            "raw_utf8": "{\"cancel_message\":null,\"retry_limit\":0}",
+            "sha256": "a24841f5a30fcab40019921c37dcdf09c43b104c36a4ea68ec1ff01a8fc3a47a"
           },
           "experiments": {
             "prototype": {
@@ -135429,7 +135598,8 @@
               "cancel_message": null,
               "retry_limit": 0
             },
-            "raw_utf8": "{\"cancel_message\":null,\"retry_limit\":0}"
+            "raw_utf8": "{\"cancel_message\":null,\"retry_limit\":0}",
+            "sha256": "a24841f5a30fcab40019921c37dcdf09c43b104c36a4ea68ec1ff01a8fc3a47a"
           },
           "experiment_conditions": {
             "prototype": "supported_synthetic_material",
@@ -135475,8 +135645,8 @@
     "decision_ref": "https://github.com/RetryYN/HELIX-HARNESS/issues/3510#issuecomment-6447665479",
     "git_commit": "a0ad8cfd662dbab39cc1f983d91b20be8a228b64",
     "path": "docs/helix-harness/L8-unit-verification/requirement-formation-semantic-core.json",
-    "meaning": "実装前L8軽量化（#3510）により、実ファイルと照合済みの上流L3/L10全文の写し（approved_requirements 10件、approved_system_oracles 10件）、L9と展開比較で完全一致を確かめた写し（cases[0..138,140..400].function_io.typed_arguments.input 400件、cases[*].source_packet 401件、cases[*].expected_material_source 401件、cases[*].candidate_submission 401件、cases[*].candidate_mutation 401件）、およびsource pin以外の*_sha256/sha256（計7,968件）を撤去し、反例入力（typed_arguments.candidate、mutation_projection、required_path_presence_projection、applicability_state_correction.cases[*].input）、関数ごとのoracleと中間期待（expected_output_projection、independent_oracle_ref、local_expected_values、local_producer_joins、candidate_comparison_projection、source_comparison_projection、applicability_state_correction.cases[*].expected_output）、recipeの写しとpatch（applicability_state_correction.cases[*].base_input_pointer/input_patchおよび参照先/cases/139/function_io/typed_arguments/input）、全pointer、および参照先local_values全337件を保持した。",
-    "removed_key_rule": "approved_requirements、approved_system_oracles、cases[0..138,140..400].function_io.typed_arguments.input、cases[*].(source_packet/expected_material_source/candidate_submission/candidate_mutation)、およびsource pin以外の*_sha256/sha256（value_canonical_sha256 3,252件、canonical_sha256 2,406件、raw_utf8_sha256 1,203件、parsed_source_canonical_sha256 802件、sha256 271件、candidate_sha256 22件、input_canonical_sha256 6件、expected_output_canonical_sha256 6件）を撤去。",
-    "use_boundary": "撤去した上流L3/L10全文複写・L9重複写し・非source-pin digestを完了証拠に使わない。単体検証は保持された関数別oracle・中間期待・反例入力・recipe/patch・pointerおよびlocal_values/L9参照先を用いて検証する。"
+    "meaning": "実装前L8軽量化（#3510）により、実ファイルと照合済みの上流L3/L10全文の写し（approved_requirements 10件、approved_system_oracles 10件）、L9と展開比較で完全一致を確かめた写し（cases[0..138,140..400].function_io.typed_arguments.input 400件、cases[*].source_packet 401件、cases[*].expected_material_source 401件、cases[*].candidate_submission 401件、cases[*].candidate_mutation 401件）、および文書側で照合用に付与されたメタデータdigest（value_canonical_sha256 3,252件、canonical_sha256 2,005件、raw_utf8_sha256 802件、parsed_source_canonical_sha256 401件、input_canonical_sha256 6件、expected_output_canonical_sha256 6件、計6,472件；重複写しブロック内の1,326件と合わせ計7,798件）を撤去し、L4/L5 semantic coreが照合対象とするfixture値そのもののsha256/candidate_sha256（計170件）、反例入力（typed_arguments.candidate、mutation_projection、required_path_presence_projection、applicability_state_correction.cases[*].input）、関数ごとのoracleと中間期待（expected_output_projection、independent_oracle_ref、local_expected_values、local_producer_joins、candidate_comparison_projection、source_comparison_projection、applicability_state_correction.cases[*].expected_output）、recipeの写しとpatch（applicability_state_correction.cases[*].base_input_pointer/input_patchおよび参照先/cases/139/function_io/typed_arguments/input）、全pointer、および参照先local_values全337件を完全保持した。",
+    "removed_key_rule": "approved_requirements、approved_system_oracles、cases[0..138,140..400].function_io.typed_arguments.input、cases[*].(source_packet/expected_material_source/candidate_submission/candidate_mutation)、およびsource pin以外の文書側照合用メタデータdigest（canonical_sha256 / *_canonical_sha256 / raw_utf8_sha256、残存構造内で計6,472件）を撤去。fixture値であるsha256（156件）・candidate_sha256（14件）は保持。",
+    "use_boundary": "撤去した上流L3/L10全文複写・L9重複写し・文書側照合用メタデータdigestを完了証拠に使わない。単体検証は保持された関数別oracle・中間期待・反例入力（宣言digestを含む）・recipe/patch・pointerおよびlocal_values/L9参照先を用いて検証する。"
   }
 }
