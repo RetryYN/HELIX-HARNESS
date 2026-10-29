@@ -6,7 +6,7 @@
   "product": "HELIX-HARNESS",
   "owner_candidate": "HELIX-HARNESS CORE003 design_verification (L4/L9)",
   "state": "registered",
-  "reason": "HARNESS L4/L9 process-state-portのF03 14件・F05 8件について、固定L9入力とL3/L4/L5の静的照合根拠を一度だけ保持する研究用scaffold。既存期待、正式projection row、checker marker、freeze、関数実行、製品テストを変更・生成しない。",
+  "reason": "HARNESS L4/L9 process-state-portのF03 14件・F05 8件について、固定L9入力とL3/L4 classificationからの静的照合根拠を一度だけ保持する研究用scaffold。L5は一致照合のみ。既存期待、formal projection row、checker marker、freeze、関数実行、製品テストを変更・生成しない。",
   "upstream": [
     {
       "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
@@ -21,7 +21,7 @@
     {
       "path": "docs/helix-harness/L5-detail-design/process-state-port.json",
       "sha256": "8d361927ba36ec0599f267f4bf10824cacc160e9f37feb2db383283ea3b28622",
-      "note": "F03/F05 ordered rules and conditions; predicates are not implemented or executed."
+      "note": "L5 failure rule/output contractはL4のclassification code・ownerとの一致確認に限る。候補期待やL9 output orderの出典ではない。"
     },
     {
       "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
@@ -31,8 +31,8 @@
   ],
   "role": "HARNESS L4/L9 design_verification pair向けに、process-state-port負例22件のL9入力由来とrule照合候補を記録する。",
   "obligations": [
-    "F03の14件についてL9自身のbase_case_ref/mutation、固定raw hash、L3/L4/L5 source pointers、発火・非発火rule、ordered finding候補を保持する。",
-    "F05の8件についてL9自身のbase_case_ref/mutation、固定raw hash、L3/L4/L5 source pointers、発火・非発火rule、ordered finding候補を保持する。",
+    "F03の14件について、L3/L4 classと固定L9入力からsingleton code/ownerまたはunordered finding setを記録する。L5は一致照合だけに使い、L4が順序を定めない3件のL9 output orderはunknownに保つ。",
+    "F05の8件について、L3/L4 classと固定L9入力からsingleton code/ownerおよび不発火根拠を記録する。L5は一致照合だけに使う。",
     "既存の182件case population・expected valuesを保持し、formal projection rowsを追加せず、checker markerを無効のままにする。",
     "残る175件の未形成とexisting negative checker 223 FAILを明示し、部分候補を全体PASSと扱わない。"
   ],
@@ -43,7 +43,7 @@
     "dependencies": [
       "HARNESS L3 F03/F05 obligations",
       "HARNESS L4 process-state-port contracts and classifications",
-      "HARNESS L5 process-state-port ordered failure rules",
+      "HARNESS L5 process-state-port contracts for concordance only",
       "fixed L9 raw source snapshot ed3981e7b9419d796adf1981f8990c6b626ecabe"
     ],
     "boundary": "design_verification（HARNESS L4/L9）の静的監査のみ。L9 source、期待値、ケース母集団を変更せず、正式projection row、checker marker、freeze、関数実行、製品テスト、CI結果を生成しない。"

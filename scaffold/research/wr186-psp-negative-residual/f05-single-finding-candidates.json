@@ -14,28 +14,24 @@
     "contract_pointer": "/contracts/5",
     "classification_pointer": "/contracts/5/negative_classifications/0",
     "port_fields_pointer": "/contracts/5/connection_detail/port_fields",
-    "initial_order_pointer": "/contracts/5/connection_detail/initial_order"
+    "initial_order_pointer": "/contracts/5/connection_detail/initial_order",
+    "expected_origin": "L4 class membership, finding code, state and backflow_owner; all cases are singleton."
   },
-  "l5_source": {
-    "path": "docs/helix-harness/L5-detail-design/process-state-port.json",
-    "function_pointer": "/functions/5",
-    "output_contract_pointer": "/functions/5/failure_output_contract",
-    "rule_pointer": "/failure_rules/23",
-    "rule_order_pointer": "/functions/5/failure_output_contract/ordered_rule_refs"
-  },
-  "method": "independent_manual_rule_fire_nonfire_review_static_refs_only",
+  "l5_source": null,
+  "method": "independent_manual_L3_L4_classification_and_fixed_L9_raw_review; L5_concordance_only",
   "excluded_inputs": [
     "L9 expected_material",
     "negative_class_assignment",
-    "既存checker出力"
+    "checker output",
+    "L5-generated expected output"
   ],
   "shared_review": {
-    "firing_rule": "固定L9 rawでport.defined_seq=0、development_start_seq=1。port.requiredに対象fieldがあり、port.observationsの同じfieldがnull。L4の開始時定義順と必須port_fields、F05_REQUIRED_PORT_FIELD_MISSINGのclass/ruleに一致する。各caseで対象fieldだけが欠落し、他のrequired observationは非null。",
+    "firing_rule": "固定L9 rawでport.defined_seq=0、development_start_seq=1。port.requiredに対象fieldがあり、port.observationsの同じfieldがnull。L4の開始時定義順と必須port_fields、F05_REQUIRED_PORT_FIELD_MISSINGのL4 classificationに一致する。各caseで対象fieldだけが欠落し、他のrequired observationは非null。",
     "non_firing_authority": "existing_authority.qualificationはsynthetic_reference_not_actual_permissionだが、initial_scopeのactual_release_selectedとactual_incident_operation_selectedはいずれもfalse。原rawは実操作を許可・実行扱いしていないため、未決authorityを実操作許可扱いする条件ではない。",
     "non_firing_return_target": "incident.reverse_fullback.stateはnot_executed、incident.return_layerはnull。戻り先をunknownのまま保持し、既定層への補完がないためF05_RETURN_TARGET_UNKNOWNの誤処理条件に当たらない。",
     "non_firing_operation_effect": "初回scopeの実release/Incident運転選択はfalseで、actual release/deployment/approval/completionの値もない。Port照合を実作用として扱っていない。",
     "non_firing_completion": "permanent_remedyはnull、current_backfillのL1-L12は全てnull、issue_closedはfalse。配備/closeから恒久対策やbackfill完了を導いていない。",
-    "l9_input_and_output": "各L9 case自身のbase_case_ref/mutationと固定source packetを刺激として保持し、L3/L4/L5契約からL9 ordered finding候補を独立に記録する。既存L9 expected_materialは参照しない。"
+    "l9_input_and_output": "各L9 case自身のbase_case_ref/mutationと固定source packetを刺激として保持し、L3要求・L4 classificationからsingleton code/owner候補を独立に記録する。L5は一致照合のみで、既存L9 expected_materialは参照しない。"
   },
   "candidate_count": 8,
   "checker_marker_enabled": false,
@@ -47,23 +43,40 @@
       "l9_raw_pointer": "/verification_obligations/5/negative_cases/0/independent_source_packet/raw_utf8",
       "l9_mutation_pointer": "/cases/5/negative_cases/0/mutation",
       "raw_sha256": "264db0c55e04e7e6151ec20aa7e3603888619fbd1931eb473e9adf12095dbc70",
-      "firing_rules": [
+      "firing_class_set": [
         "F05_REQUIRED_PORT_FIELD_MISSING"
       ],
-      "not_firing_rules": [
+      "not_firing_class_set": [
+        "F05_COMPLETION_BACKFILL_CONFLICT",
         "F05_EXISTING_AUTHORITY_UNKNOWN",
-        "F05_RETURN_TARGET_UNKNOWN",
         "F05_OPERATION_EFFECT_CONFLICT",
-        "F05_COMPLETION_BACKFILL_CONFLICT"
+        "F05_RETURN_TARGET_UNKNOWN"
       ],
-      "l9_candidate": {
-        "ordered_findings": [
-          {
-            "code": "F05_REQUIRED_PORT_FIELD_MISSING",
-            "return_owner": "HARNESS"
-          }
+      "l4_expected_finding_set": {
+        "semantics": "unordered_set",
+        "codes": [
+          "F05_REQUIRED_PORT_FIELD_MISSING"
+        ],
+        "source_pointers": [
+          "/contracts/5/negative_classifications/0"
         ]
-      }
+      },
+      "l4_singleton_expected": {
+        "code": "F05_REQUIRED_PORT_FIELD_MISSING",
+        "return_owner": "HARNESS",
+        "source_pointer": "/contracts/5/negative_classifications/0"
+      },
+      "l9_candidate_singleton_output": [
+        {
+          "code": "F05_REQUIRED_PORT_FIELD_MISSING",
+          "return_owner": "HARNESS"
+        }
+      ],
+      "l9_output_order": {
+        "status": "trivial_singleton_from_L4"
+      },
+      "class_set_semantics": "unordered",
+      "expected_origin": "L3 requirement meaning + L4 classification + this fixed L9 raw input"
     },
     {
       "case_id": "H003-F05-MISSING-artifact_identity",
@@ -71,23 +84,40 @@
       "l9_raw_pointer": "/verification_obligations/5/negative_cases/1/independent_source_packet/raw_utf8",
       "l9_mutation_pointer": "/cases/5/negative_cases/1/mutation",
       "raw_sha256": "53504110f22564264aa099ea7f2b818913e28c145e5189f1fd72f07d932903c1",
-      "firing_rules": [
+      "firing_class_set": [
         "F05_REQUIRED_PORT_FIELD_MISSING"
       ],
-      "not_firing_rules": [
+      "not_firing_class_set": [
+        "F05_COMPLETION_BACKFILL_CONFLICT",
         "F05_EXISTING_AUTHORITY_UNKNOWN",
-        "F05_RETURN_TARGET_UNKNOWN",
         "F05_OPERATION_EFFECT_CONFLICT",
-        "F05_COMPLETION_BACKFILL_CONFLICT"
+        "F05_RETURN_TARGET_UNKNOWN"
       ],
-      "l9_candidate": {
-        "ordered_findings": [
-          {
-            "code": "F05_REQUIRED_PORT_FIELD_MISSING",
-            "return_owner": "HARNESS"
-          }
+      "l4_expected_finding_set": {
+        "semantics": "unordered_set",
+        "codes": [
+          "F05_REQUIRED_PORT_FIELD_MISSING"
+        ],
+        "source_pointers": [
+          "/contracts/5/negative_classifications/0"
         ]
-      }
+      },
+      "l4_singleton_expected": {
+        "code": "F05_REQUIRED_PORT_FIELD_MISSING",
+        "return_owner": "HARNESS",
+        "source_pointer": "/contracts/5/negative_classifications/0"
+      },
+      "l9_candidate_singleton_output": [
+        {
+          "code": "F05_REQUIRED_PORT_FIELD_MISSING",
+          "return_owner": "HARNESS"
+        }
+      ],
+      "l9_output_order": {
+        "status": "trivial_singleton_from_L4"
+      },
+      "class_set_semantics": "unordered",
+      "expected_origin": "L3 requirement meaning + L4 classification + this fixed L9 raw input"
     },
     {
       "case_id": "H003-F05-MISSING-environment",
@@ -95,23 +125,40 @@
       "l9_raw_pointer": "/verification_obligations/5/negative_cases/2/independent_source_packet/raw_utf8",
       "l9_mutation_pointer": "/cases/5/negative_cases/2/mutation",
       "raw_sha256": "e087e3ddba4edf2f7413806d29200164b01b464b8ee0ccf2349ebea6e8211617",
-      "firing_rules": [
+      "firing_class_set": [
         "F05_REQUIRED_PORT_FIELD_MISSING"
       ],
-      "not_firing_rules": [
+      "not_firing_class_set": [
+        "F05_COMPLETION_BACKFILL_CONFLICT",
         "F05_EXISTING_AUTHORITY_UNKNOWN",
-        "F05_RETURN_TARGET_UNKNOWN",
         "F05_OPERATION_EFFECT_CONFLICT",
-        "F05_COMPLETION_BACKFILL_CONFLICT"
+        "F05_RETURN_TARGET_UNKNOWN"
       ],
-      "l9_candidate": {
-        "ordered_findings": [
-          {
-            "code": "F05_REQUIRED_PORT_FIELD_MISSING",
-            "return_owner": "HARNESS"
-          }
+      "l4_expected_finding_set": {
+        "semantics": "unordered_set",
+        "codes": [
+          "F05_REQUIRED_PORT_FIELD_MISSING"
+        ],
+        "source_pointers": [
+          "/contracts/5/negative_classifications/0"
         ]
-      }
+      },
+      "l4_singleton_expected": {
+        "code": "F05_REQUIRED_PORT_FIELD_MISSING",
+        "return_owner": "HARNESS",
+        "source_pointer": "/contracts/5/negative_classifications/0"
+      },
+      "l9_candidate_singleton_output": [
+        {
+          "code": "F05_REQUIRED_PORT_FIELD_MISSING",
+          "return_owner": "HARNESS"
+        }
+      ],
+      "l9_output_order": {
+        "status": "trivial_singleton_from_L4"
+      },
+      "class_set_semantics": "unordered",
+      "expected_origin": "L3 requirement meaning + L4 classification + this fixed L9 raw input"
     },
     {
       "case_id": "H003-F05-MISSING-dependencies",
@@ -119,23 +166,40 @@
       "l9_raw_pointer": "/verification_obligations/5/negative_cases/3/independent_source_packet/raw_utf8",
       "l9_mutation_pointer": "/cases/5/negative_cases/3/mutation",
       "raw_sha256": "6a1d7b9dfdbcf247745c69bdd94fa08ff38c021e512a2776760b00996b41ac49",
-      "firing_rules": [
+      "firing_class_set": [
         "F05_REQUIRED_PORT_FIELD_MISSING"
       ],
-      "not_firing_rules": [
+      "not_firing_class_set": [
+        "F05_COMPLETION_BACKFILL_CONFLICT",
         "F05_EXISTING_AUTHORITY_UNKNOWN",
-        "F05_RETURN_TARGET_UNKNOWN",
         "F05_OPERATION_EFFECT_CONFLICT",
-        "F05_COMPLETION_BACKFILL_CONFLICT"
+        "F05_RETURN_TARGET_UNKNOWN"
       ],
-      "l9_candidate": {
-        "ordered_findings": [
-          {
-            "code": "F05_REQUIRED_PORT_FIELD_MISSING",
-            "return_owner": "HARNESS"
-          }
+      "l4_expected_finding_set": {
+        "semantics": "unordered_set",
+        "codes": [
+          "F05_REQUIRED_PORT_FIELD_MISSING"
+        ],
+        "source_pointers": [
+          "/contracts/5/negative_classifications/0"
         ]
-      }
+      },
+      "l4_singleton_expected": {
+        "code": "F05_REQUIRED_PORT_FIELD_MISSING",
+        "return_owner": "HARNESS",
+        "source_pointer": "/contracts/5/negative_classifications/0"
+      },
+      "l9_candidate_singleton_output": [
+        {
+          "code": "F05_REQUIRED_PORT_FIELD_MISSING",
+          "return_owner": "HARNESS"
+        }
+      ],
+      "l9_output_order": {
+        "status": "trivial_singleton_from_L4"
+      },
+      "class_set_semantics": "unordered",
+      "expected_origin": "L3 requirement meaning + L4 classification + this fixed L9 raw input"
     },
     {
       "case_id": "H003-F05-MISSING-security",
@@ -143,23 +207,40 @@
       "l9_raw_pointer": "/verification_obligations/5/negative_cases/4/independent_source_packet/raw_utf8",
       "l9_mutation_pointer": "/cases/5/negative_cases/4/mutation",
       "raw_sha256": "c490b15502c00f5a90125552e1f0b1d88f19f77775e4cb888b0ddabfc0b9d193",
-      "firing_rules": [
+      "firing_class_set": [
         "F05_REQUIRED_PORT_FIELD_MISSING"
       ],
-      "not_firing_rules": [
+      "not_firing_class_set": [
+        "F05_COMPLETION_BACKFILL_CONFLICT",
         "F05_EXISTING_AUTHORITY_UNKNOWN",
-        "F05_RETURN_TARGET_UNKNOWN",
         "F05_OPERATION_EFFECT_CONFLICT",
-        "F05_COMPLETION_BACKFILL_CONFLICT"
+        "F05_RETURN_TARGET_UNKNOWN"
       ],
-      "l9_candidate": {
-        "ordered_findings": [
-          {
-            "code": "F05_REQUIRED_PORT_FIELD_MISSING",
-            "return_owner": "HARNESS"
-          }
+      "l4_expected_finding_set": {
+        "semantics": "unordered_set",
+        "codes": [
+          "F05_REQUIRED_PORT_FIELD_MISSING"
+        ],
+        "source_pointers": [
+          "/contracts/5/negative_classifications/0"
         ]
-      }
+      },
+      "l4_singleton_expected": {
+        "code": "F05_REQUIRED_PORT_FIELD_MISSING",
+        "return_owner": "HARNESS",
+        "source_pointer": "/contracts/5/negative_classifications/0"
+      },
+      "l9_candidate_singleton_output": [
+        {
+          "code": "F05_REQUIRED_PORT_FIELD_MISSING",
+          "return_owner": "HARNESS"
+        }
+      ],
+      "l9_output_order": {
+        "status": "trivial_singleton_from_L4"
+      },
+      "class_set_semantics": "unordered",
+      "expected_origin": "L3 requirement meaning + L4 classification + this fixed L9 raw input"
     },
     {
       "case_id": "H003-F05-MISSING-rollback",
@@ -167,23 +248,40 @@
       "l9_raw_pointer": "/verification_obligations/5/negative_cases/5/independent_source_packet/raw_utf8",
       "l9_mutation_pointer": "/cases/5/negative_cases/5/mutation",
       "raw_sha256": "ebe6142b9306ad7f541f7ca24001bc607094a06672ee488c88a51bc10e5e3fe1",
-      "firing_rules": [
+      "firing_class_set": [
         "F05_REQUIRED_PORT_FIELD_MISSING"
       ],
-      "not_firing_rules": [
+      "not_firing_class_set": [
+        "F05_COMPLETION_BACKFILL_CONFLICT",
         "F05_EXISTING_AUTHORITY_UNKNOWN",
-        "F05_RETURN_TARGET_UNKNOWN",
         "F05_OPERATION_EFFECT_CONFLICT",
-        "F05_COMPLETION_BACKFILL_CONFLICT"
+        "F05_RETURN_TARGET_UNKNOWN"
       ],
-      "l9_candidate": {
-        "ordered_findings": [
-          {
-            "code": "F05_REQUIRED_PORT_FIELD_MISSING",
-            "return_owner": "HARNESS"
-          }
+      "l4_expected_finding_set": {
+        "semantics": "unordered_set",
+        "codes": [
+          "F05_REQUIRED_PORT_FIELD_MISSING"
+        ],
+        "source_pointers": [
+          "/contracts/5/negative_classifications/0"
         ]
-      }
+      },
+      "l4_singleton_expected": {
+        "code": "F05_REQUIRED_PORT_FIELD_MISSING",
+        "return_owner": "HARNESS",
+        "source_pointer": "/contracts/5/negative_classifications/0"
+      },
+      "l9_candidate_singleton_output": [
+        {
+          "code": "F05_REQUIRED_PORT_FIELD_MISSING",
+          "return_owner": "HARNESS"
+        }
+      ],
+      "l9_output_order": {
+        "status": "trivial_singleton_from_L4"
+      },
+      "class_set_semantics": "unordered",
+      "expected_origin": "L3 requirement meaning + L4 classification + this fixed L9 raw input"
     },
     {
       "case_id": "H003-F05-MISSING-deployment_conditions",
@@ -191,23 +289,40 @@
       "l9_raw_pointer": "/verification_obligations/5/negative_cases/6/independent_source_packet/raw_utf8",
       "l9_mutation_pointer": "/cases/5/negative_cases/6/mutation",
       "raw_sha256": "7696c06fd4acbfbd5ae718ff3dd160335a36a010793a1a724d9bcc14e1688323",
-      "firing_rules": [
+      "firing_class_set": [
         "F05_REQUIRED_PORT_FIELD_MISSING"
       ],
-      "not_firing_rules": [
+      "not_firing_class_set": [
+        "F05_COMPLETION_BACKFILL_CONFLICT",
         "F05_EXISTING_AUTHORITY_UNKNOWN",
-        "F05_RETURN_TARGET_UNKNOWN",
         "F05_OPERATION_EFFECT_CONFLICT",
-        "F05_COMPLETION_BACKFILL_CONFLICT"
+        "F05_RETURN_TARGET_UNKNOWN"
       ],
-      "l9_candidate": {
-        "ordered_findings": [
-          {
-            "code": "F05_REQUIRED_PORT_FIELD_MISSING",
-            "return_owner": "HARNESS"
-          }
+      "l4_expected_finding_set": {
+        "semantics": "unordered_set",
+        "codes": [
+          "F05_REQUIRED_PORT_FIELD_MISSING"
+        ],
+        "source_pointers": [
+          "/contracts/5/negative_classifications/0"
         ]
-      }
+      },
+      "l4_singleton_expected": {
+        "code": "F05_REQUIRED_PORT_FIELD_MISSING",
+        "return_owner": "HARNESS",
+        "source_pointer": "/contracts/5/negative_classifications/0"
+      },
+      "l9_candidate_singleton_output": [
+        {
+          "code": "F05_REQUIRED_PORT_FIELD_MISSING",
+          "return_owner": "HARNESS"
+        }
+      ],
+      "l9_output_order": {
+        "status": "trivial_singleton_from_L4"
+      },
+      "class_set_semantics": "unordered",
+      "expected_origin": "L3 requirement meaning + L4 classification + this fixed L9 raw input"
     },
     {
       "case_id": "H003-F05-MISSING-acceptance",
@@ -215,24 +330,49 @@
       "l9_raw_pointer": "/verification_obligations/5/negative_cases/7/independent_source_packet/raw_utf8",
       "l9_mutation_pointer": "/cases/5/negative_cases/7/mutation",
       "raw_sha256": "45797625df2c95275e5d9021ac509a011c6819e43e8d078bd8aa5f43309ab474",
-      "firing_rules": [
+      "firing_class_set": [
         "F05_REQUIRED_PORT_FIELD_MISSING"
       ],
-      "not_firing_rules": [
+      "not_firing_class_set": [
+        "F05_COMPLETION_BACKFILL_CONFLICT",
         "F05_EXISTING_AUTHORITY_UNKNOWN",
-        "F05_RETURN_TARGET_UNKNOWN",
         "F05_OPERATION_EFFECT_CONFLICT",
-        "F05_COMPLETION_BACKFILL_CONFLICT"
+        "F05_RETURN_TARGET_UNKNOWN"
       ],
-      "l9_candidate": {
-        "ordered_findings": [
-          {
-            "code": "F05_REQUIRED_PORT_FIELD_MISSING",
-            "return_owner": "HARNESS"
-          }
+      "l4_expected_finding_set": {
+        "semantics": "unordered_set",
+        "codes": [
+          "F05_REQUIRED_PORT_FIELD_MISSING"
+        ],
+        "source_pointers": [
+          "/contracts/5/negative_classifications/0"
         ]
-      }
+      },
+      "l4_singleton_expected": {
+        "code": "F05_REQUIRED_PORT_FIELD_MISSING",
+        "return_owner": "HARNESS",
+        "source_pointer": "/contracts/5/negative_classifications/0"
+      },
+      "l9_candidate_singleton_output": [
+        {
+          "code": "F05_REQUIRED_PORT_FIELD_MISSING",
+          "return_owner": "HARNESS"
+        }
+      ],
+      "l9_output_order": {
+        "status": "trivial_singleton_from_L4"
+      },
+      "class_set_semantics": "unordered",
+      "expected_origin": "L3 requirement meaning + L4 classification + this fixed L9 raw input"
     }
   ],
-  "fixed_source_sha256": "91d0bcd34b8b451bc8e81f5d13d0c5f413de3ad5f7c70ba90a704134c4af3735"
+  "fixed_source_sha256": "91d0bcd34b8b451bc8e81f5d13d0c5f413de3ad5f7c70ba90a704134c4af3735",
+  "l5_concordance": {
+    "path": "docs/helix-harness/L5-detail-design/process-state-port.json",
+    "function_pointer": "/functions/5",
+    "output_contract_pointer": "/functions/5/failure_output_contract",
+    "rule_order_pointer": "/functions/5/failure_output_contract/ordered_rule_refs",
+    "role": "L4-derived code/ownerとの一致確認のみ。L9 singleton outputの生成元ではない。",
+    "ordered_rule_refs_are_expectation_source": false
+  }
 }

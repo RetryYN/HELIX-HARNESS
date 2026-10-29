@@ -13,6 +13,8 @@ RAW_REVISION = "ed3981e7b9419d796adf1981f8990c6b626ecabe"
 RAW_PATH = "docs/helix-harness/L9-integration-verification/process-state-port.json"
 L3_REVISION = "827c4ea924a15b6b54bbe9d1f5d2f9fbdefa65de"
 L3_PATH = "docs/helix-harness/L3-requirements/functional-requirements.json"
+L4_PATH = "docs/helix-harness/L4-basic-design/process-state-port.json"
+L5_PATH = "docs/helix-harness/L5-detail-design/process-state-port.json"
 AUDIT_DIR = Path(__file__).parent
 F03_PATH = AUDIT_DIR / "manual-projection-candidates.json"
 F05_PATH = AUDIT_DIR / "f05-single-finding-candidates.json"
@@ -37,18 +39,33 @@ def by_id(items, item_id):
     return matches[0]
 
 
+def l4_classification(l4, pointer: str, code: str):
+    row = resolve(l4, pointer)
+    assert row["code"] == code
+    assert row["expected"]["finding_codes"] == [code]
+    return row
+
+
+def check_l5_concordance(l5, l5_pointer: str, code: str, owner: str):
+    """L5 is read only to compare its declared rule with L4-derived data."""
+    row = resolve(l5, l5_pointer)
+    assert row["code"] == code
+    assert row["backflow_owner"] == owner
+    return row
+
+
 def main() -> None:
     f03 = json.loads(F03_PATH.read_text())
     f05 = json.loads(F05_PATH.read_text())
-    current_l9_bytes = L9_PATH.read_bytes()
-    l9 = json.loads(current_l9_bytes)
+    l9 = json.loads(L9_PATH.read_bytes())
     base_l9 = json.loads(git_bytes(BASE, RAW_PATH))
     fixed_raw_bytes = git_bytes(RAW_REVISION, RAW_PATH)
     fixed_raw = json.loads(fixed_raw_bytes)
     l3 = json.loads((ROOT / L3_PATH).read_text())
     pinned_l3 = json.loads(git_bytes(L3_REVISION, L3_PATH))
-    l4 = json.loads((ROOT / "docs/helix-harness/L4-basic-design/process-state-port.json").read_text())
-    l5 = json.loads((ROOT / "docs/helix-harness/L5-detail-design/process-state-port.json").read_text())
+    l4 = json.loads(git_bytes(BASE, L4_PATH))
+    current_l4 = json.loads((ROOT / L4_PATH).read_text())
+    l5 = json.loads((ROOT / L5_PATH).read_text())
 
     assert hashlib.sha256(fixed_raw_bytes).hexdigest() == f03["fixed_raw_source"]["sha256"]
     assert hashlib.sha256(fixed_raw_bytes).hexdigest() == f05["fixed_source_sha256"]
@@ -77,12 +94,33 @@ def main() -> None:
 
     assert resolve(pinned_l3, f03["l3_source"]["pointer"]) == resolve(l3, f03["l3_source"]["pointer"])
     assert resolve(pinned_l3, f05["l3_source"]["pointer"]) == resolve(l3, f05["l3_source"]["pointer"])
-    assert resolve(l4, f03["l4_source"]["pointer"]) is not None
-    assert resolve(l5, f03["l5_source"]["pointer"]) is not None
-    assert resolve(l4, f05["l4_source"]["classification_pointer"])["code"] == "F05_REQUIRED_PORT_FIELD_MISSING"
-    assert resolve(l5, f05["l5_source"]["rule_pointer"])["code"] == "F05_REQUIRED_PORT_FIELD_MISSING"
+    f03_l4_contract = resolve(l4, f03["l4_source"]["contract_pointer"])
+    f05_l4_contract = resolve(l4, f05["l4_source"]["contract_pointer"])
+    assert f03_l4_contract == resolve(current_l4, f03["l4_source"]["contract_pointer"])
+    assert f05_l4_contract == resolve(current_l4, f05["l4_source"]["contract_pointer"])
+    assert f03["l5_concordance"]["ordered_rule_refs_are_expectation_source"] is False
+    assert f05["l5_concordance"]["ordered_rule_refs_are_expectation_source"] is False
+
+    f03_classes = {x["code"]: x for x in f03_l4_contract["negative_classifications"]}
+    f05_classes = {x["code"]: x for x in f05_l4_contract["negative_classifications"]}
+    f03_refs = f03["rule_sources"]
+    for code, source in f03_refs.items():
+        row = l4_classification(l4, source["l4_classification_pointer"], code)
+        assert row == f03_classes[code]
+        assert row["backflow_owner"] == source["l4_backflow_owner"]
+        check_l5_concordance(l5, source["l5_concordance_rule_pointer"], code, row["backflow_owner"])
+
+    # L5 contracts are read as a concordance only; the L4 class map forms all expected members.
+    f03_l5_contract = resolve(l5, f03["l5_concordance"]["pointer"])
+    l5_f03_order = [ref.removeprefix("RULE-") for ref in f03_l5_contract["ordered_rule_refs"]]
+    assert l5_f03_order == f03["l5_concordance"]["observed_order_not_adopted"]
+    f05_l5_contract = resolve(l5, f05["l5_concordance"]["output_contract_pointer"])
+    assert {ref.removeprefix("RULE-") for ref in f05_l5_contract["ordered_rule_refs"]} == set(f05_classes)
+    for i, code in enumerate(f05_classes):
+        check_l5_concordance(l5, f"/failure_rules/{23+i}", code, f05_classes[code]["backflow_owner"])
 
     seen = set()
+    compound_unknown = 0
     for candidate in f03["candidates"]:
         cid = candidate["case_id"]
         seen.add(cid)
@@ -94,9 +132,31 @@ def main() -> None:
         assert resolve(fixed_raw, candidate["raw_source_pointer"]["pointer"]) == historical["independent_source_packet"]["raw_utf8"]
         raw = historical["independent_source_packet"]["raw_utf8"].encode("utf-8")
         assert hashlib.sha256(raw).hexdigest() == candidate["raw_sha256"]
-        assert candidate["l9_ordered_findings"]
-        assert [x["code"] for x in candidate["l9_ordered_findings"]] == candidate["firing_rules"]
-    assert len(seen) == 14
+        assert candidate["class_set_semantics"] == "unordered"
+        codes = candidate["firing_class_set"]
+        assert codes == sorted(codes)
+        assert candidate["l4_expected_finding_set"]["codes"] == codes
+        assert candidate["l4_expected_finding_set"]["semantics"] == "unordered_set"
+        assert candidate["l4_expected_finding_set"]["source_pointers"] == [f03_refs[code]["l4_classification_pointer"] for code in codes]
+        assert all(code in f03_classes for code in codes)
+        if len(codes) == 1:
+            code = codes[0]
+            owner = f03_classes[code]["backflow_owner"]
+            expected = {"code": code, "return_owner": owner, "source_pointer": f03_refs[code]["l4_classification_pointer"]}
+            assert candidate["l4_singleton_expected"] == expected
+            assert candidate["l9_candidate_singleton_output"] == [{"code": code, "return_owner": owner}]
+            assert candidate["l9_output_order"]["status"] == "trivial_singleton_from_L4"
+            assert "l5_concordance_observed_codes" not in candidate
+        else:
+            compound_unknown += 1
+            assert set(codes) == {"F03_REQUIRED_PAIR_MISSING", "F03_PAIR_SCOPE_CONFLICT"}
+            assert candidate["l9_output_order"]["status"] == "unknown"
+            assert "l9_candidate_singleton_output" not in candidate
+            assert "l9_ordered_findings" not in candidate
+            assert candidate["l5_concordance_observed_codes_adopted_as_expected"] is False
+            observed = [code for code in l5_f03_order if code in set(codes)]
+            assert candidate["l5_concordance_observed_codes"] == observed
+    assert len(seen) == 14 and compound_unknown == 3
 
     f05_seen = set()
     for candidate in f05["candidates"]:
@@ -110,15 +170,24 @@ def main() -> None:
         assert resolve(fixed_raw, candidate["l9_raw_pointer"]) == packet["raw_utf8"]
         assert current["base_case_ref"] == historical["base_case_ref"]
         assert resolve(l9, candidate["l9_mutation_pointer"]) == current["mutation"]
-        assert candidate["firing_rules"] == ["F05_REQUIRED_PORT_FIELD_MISSING"]
-        assert candidate["l9_candidate"]["ordered_findings"][0]["code"] == candidate["firing_rules"][0]
+        assert candidate["firing_class_set"] == ["F05_REQUIRED_PORT_FIELD_MISSING"]
+        assert candidate["not_firing_class_set"] == sorted(set(f05_classes) - set(candidate["firing_class_set"]))
+        assert candidate["class_set_semantics"] == "unordered"
+        assert candidate["l4_expected_finding_set"] == {
+            "semantics":"unordered_set",
+            "codes":["F05_REQUIRED_PORT_FIELD_MISSING"],
+            "source_pointers":["/contracts/5/negative_classifications/0"],
+        }
+        owner = f05_classes["F05_REQUIRED_PORT_FIELD_MISSING"]["backflow_owner"]
+        assert candidate["l4_singleton_expected"] == {
+            "code":"F05_REQUIRED_PORT_FIELD_MISSING","return_owner":owner,
+            "source_pointer":"/contracts/5/negative_classifications/0",
+        }
+        assert candidate["l9_candidate_singleton_output"] == [{"code":"F05_REQUIRED_PORT_FIELD_MISSING","return_owner":owner}]
+        assert candidate["l9_output_order"]["status"] == "trivial_singleton_from_L4"
     assert len(f05_seen) == 8
     assert len(seen | f05_seen) == 22
-
-    # Candidate-side artifacts contain no other-layer expected/output fields.
-    assert all(not any(k.lower().startswith("l8_") for k in c) for c in f03["candidates"])
-    assert all(not any(k.lower().startswith("l8_") for k in c) for c in f05["candidates"])
-    print(f"L9 static source/pointer/case checks: PASS; independent_inputs={len(seen | f05_seen)}; population=182; formal_rows=0; marker=off")
+    print(f"L9 static source/pointer/case checks: PASS; L3/L4-derived_singletons=19; L4_unordered_compounds=3; L5_concordance_only=PASS; inputs=22; population=182; formal_rows=0; marker=off")
 
 
 if __name__ == "__main__":
