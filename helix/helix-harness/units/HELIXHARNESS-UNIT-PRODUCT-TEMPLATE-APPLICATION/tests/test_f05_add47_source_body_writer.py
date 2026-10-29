@@ -18,6 +18,43 @@ from product_template_application import compare_requirement_gaps_detail
 from test_compare_requirement_gaps import _resolve_recipe_raw
 
 
+def _request_and_scan(raw):
+    validation = validate_application_input_detail({"raw": copy.deepcopy(raw)})
+    validated = validation["validated"]
+    applicability = compare_applicability({"validated": validated})
+    trace = compare_kind_obligation_trace(
+        {"validated": validated, "compare_applicability": applicability}
+    )
+    request = {
+        "validation": validation,
+        "compare_applicability": {
+            "tag": "returned",
+            "producer": "compare_applicability",
+            "comparison": applicability,
+        },
+        "compare_kind_obligation_trace": {
+            "tag": "returned",
+            "producer": "compare_kind_obligation_trace",
+            "comparison": trace,
+        },
+    }
+    semantic_records = validated["input"]["semantic_records"]
+    scan = {
+        "tag": "scanned",
+        "profile_observations": [],
+        "semantic_record_indices": list(range(len(semantic_records))),
+        "semantic_records_read": {
+            "tag": "present",
+            "location": {
+                "root": "validation_return",
+                "pointer": "/validated/input/semantic_records",
+            },
+            "value": copy.deepcopy(semantic_records),
+        },
+    }
+    return validation, request, scan
+
+
 class TestF05Add47SourceBodyWriter(unittest.TestCase):
     def test_source_body_payload_difference_is_retained_as_local_cause(self):
         raw = _resolve_recipe_raw("CORE-NORMAL-UNIT-REQUIRED")
@@ -50,41 +87,11 @@ class TestF05Add47SourceBodyWriter(unittest.TestCase):
                 },
             }
         ]
-        validation = validate_application_input_detail({"raw": copy.deepcopy(raw)})
-        validated = validation["validated"]
-        applicability = compare_applicability({"validated": validated})
-        trace = compare_kind_obligation_trace(
-            {"validated": validated, "compare_applicability": applicability}
-        )
-        request = {
-            "validation": validation,
-            "compare_applicability": {
-                "tag": "returned",
-                "producer": "compare_applicability",
-                "comparison": applicability,
-            },
-            "compare_kind_obligation_trace": {
-                "tag": "returned",
-                "producer": "compare_kind_obligation_trace",
-                "comparison": trace,
-            },
-        }
-        scan = {
-            "tag": "scanned",
-            "profile_observations": [],
-            "semantic_record_indices": list(range(len(validated["input"]["semantic_records"]))),
-            "semantic_records_read": {
-                "tag": "present",
-                "location": {
-                    "root": "validation_return",
-                    "pointer": "/validated/input/semantic_records",
-                },
-                "value": copy.deepcopy(validated["input"]["semantic_records"]),
-            },
-        }
+        validation, request, scan = _request_and_scan(raw)
 
         result = compare_requirement_gaps_detail(request, scan)
 
+        self.assertEqual(result["comparison"]["tag"], "unformed")
         field = result["owner_material"]["field_results"][0]["value"]
         occurrence = field["definition_material"]["operands"][0]["operand"]["record_occurrences"][0]
         body = occurrence["body_occurrences"][0]
@@ -125,3 +132,117 @@ class TestF05Add47SourceBodyWriter(unittest.TestCase):
         attempt = field["definition_material"]["operands"][0]["projection_attempts"][0]
         self.assertEqual(attempt["result"]["tag"], "unformed")
         self.assertIn(body["causes"][0], attempt["result"]["causes"])
+
+    def test_matching_body_payload_has_no_mismatch_cause(self):
+        raw = _resolve_recipe_raw("CORE-NORMAL-UNIT-REQUIRED")
+        l8 = json.loads(L8_PATH.read_text(encoding="utf-8"))
+        base = l8["additional_unit_cases"][46]["fixed_writer_case"]["input_slice"]
+        record = copy.deepcopy(base["semantic_records"][0])
+        raw["binding"] = copy.deepcopy(base["field_inputs"][0]["binding"])
+        raw["field_inputs"] = copy.deepcopy(base["field_inputs"])
+        raw["semantic_records"] = [record]
+        raw["sources"] = [
+            {
+                "ref": copy.deepcopy(record["source_ref"]),
+                "role": "semantic_source",
+                "body": {
+                    "records": [
+                        {
+                            "collection": "semantic_records",
+                            "ref": copy.deepcopy(record["ref"]),
+                            "payload": {
+                                key: copy.deepcopy(value)
+                                for key, value in record.items()
+                                if key != "source_ref"
+                            },
+                        }
+                    ]
+                },
+            }
+        ]
+        _, request, scan = _request_and_scan(raw)
+
+        result = compare_requirement_gaps_detail(request, scan)
+
+        self.assertEqual(result["comparison"]["tag"], "unformed")
+        field = result["owner_material"]["field_results"][0]["value"]
+        occurrence = field["definition_material"]["operands"][0]["operand"]["record_occurrences"][0]
+        body = occurrence["body_occurrences"][0]
+        self.assertEqual(body["payload_relation"], "corresponding")
+        self.assertEqual(body["causes"], [])
+        self.assertNotIn("source_body_mismatch", [cause["kind"] for cause in occurrence["causes"]])
+
+    def test_unestablished_selection_cannot_form_empty_comparison(self):
+        raw = _resolve_recipe_raw("CORE-NORMAL-UNIT-REQUIRED")
+        raw.pop("application_policies", None)
+        _, request, scan = _request_and_scan(raw)
+
+        with self.assertRaisesRegex(
+            NotImplementedError,
+            "WR154-R2-STOP-F02-SELECTION-UNESTABLISHED-CAUSE-01",
+        ):
+            compare_requirement_gaps_detail(request, scan)
+
+    def test_unresolved_gap_proposal_cannot_be_omitted_from_formed_comparison(self):
+        raw = _resolve_recipe_raw("CORE-NORMAL-UNIT-REQUIRED")
+        raw.pop("application_policies", None)
+        raw["gap_proposals"] = copy.deepcopy(
+            _resolve_recipe_raw("CORE-SUPPORT-GAP-FOUR")["gap_proposals"][:1]
+        )
+        _, request, scan = _request_and_scan(raw)
+
+        with self.assertRaisesRegex(
+            NotImplementedError,
+            "WR154-R2-STOP-F10-GAP-PROPOSITION-ABSENT-01",
+        ):
+            compare_requirement_gaps_detail(request, scan)
+
+    def test_unimplemented_f13_profile_scan_stops_at_public_entry(self):
+        raw = _resolve_recipe_raw("CORE-NORMAL-UNIT-REQUIRED")
+        _, request, scan = _request_and_scan(raw)
+        scan["profile_observations"] = [{"case_only": True}]
+
+        with self.assertRaisesRegex(
+            NotImplementedError,
+            "WR154-R2-STOP-F13-PROFILE-CONSUMER-01",
+        ):
+            compare_requirement_gaps_detail(request, scan)
+
+    def test_missing_body_entry_retains_contract_stop(self):
+        raw = _resolve_recipe_raw("CORE-NORMAL-UNIT-REQUIRED")
+        l8 = json.loads(L8_PATH.read_text(encoding="utf-8"))
+        base = l8["additional_unit_cases"][46]["fixed_writer_case"]["input_slice"]
+        record = copy.deepcopy(base["semantic_records"][0])
+        raw["binding"] = copy.deepcopy(base["field_inputs"][0]["binding"])
+        raw["field_inputs"] = copy.deepcopy(base["field_inputs"])
+        raw["semantic_records"] = [record]
+        raw["sources"] = [
+            {
+                "ref": copy.deepcopy(record["source_ref"]),
+                "role": "semantic_source",
+                "body": {"records": []},
+            }
+        ]
+        _, request, scan = _request_and_scan(raw)
+
+        with self.assertRaisesRegex(
+            NotImplementedError,
+            "WR154-R2-STOP-F05-BODY-ENTRY-ABSENT-01",
+        ):
+            compare_requirement_gaps_detail(request, scan)
+
+    def test_native_context_mismatch_returns_original_cause(self):
+        raw = _resolve_recipe_raw("CORE-NORMAL-UNIT-REQUIRED")
+        _, request, scan = _request_and_scan(raw)
+        request["compare_applicability"]["comparison"]["producer_symbol"] = "wrong"
+
+        result = compare_requirement_gaps_detail(request, scan)
+
+        self.assertEqual(result["context_formation"]["result"]["tag"], "unformed")
+        cause = result["context_formation"]["result"]["causes"][0]
+        self.assertEqual(cause["kind"], "target_mismatch")
+        self.assertEqual(
+            cause["rule_pointer"],
+            "/f05_detail_contract/context_header_cause_contract/context_patterns/1",
+        )
+        self.assertEqual(result["comparison"]["tag"], "unformed")

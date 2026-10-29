@@ -1010,6 +1010,10 @@
         {
           "path": "docs/helix-harness/L8-unit-verification/product-template-application.json",
           "pointer": "/f13_knowledge_recipient_leaf_verification"
+        },
+        {
+          "path": "docs/helix-harness/L8-unit-verification/product-template-application.json",
+          "pointer": "/additional_unit_cases/47"
         }
       ],
       "test_design_ref": {
@@ -1057,8 +1061,8 @@
       ],
       "execution_state": "not_executed",
       "source_pin_refs": [
-        "#/source_pins/0",
-        "#/source_pins/1",
+        "#/source_pins/75",
+        "#/source_pins/76",
         "#/source_pins/4"
       ]
     },
@@ -2074,6 +2078,24 @@
       "path": "helix/helix-harness/units/HELIXHARNESS-UNIT-PRODUCT-TEMPLATE-APPLICATION/src/application_candidate_universe.py",
       "file_sha256": "c4931b2bbb026bc609a40c7d32882fd8544fff2504f75ee3c322e7e5b35bcd4a",
       "role": "stopped_tdd_candidate_src"
+    },
+    {
+      "revision": "821a655ad6949b2a7a5344b26e3c170cccc353a6",
+      "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+      "file_sha256": "f5da0e585b3bb91cf5b07d7d3c1e124b9584718395d8b07704cede6e2523ce1c",
+      "selected_pointers": [
+        "/functions/5",
+        "/f05_detail_contract/field_content_source_failure_writer_contract"
+      ]
+    },
+    {
+      "revision": "821a655ad6949b2a7a5344b26e3c170cccc353a6",
+      "path": "docs/helix-harness/L8-unit-verification/product-template-application.json",
+      "file_sha256": "65aa4c2e120e6636cc3f3eb260fec32b06b1b44a6f17b21f785dc0d63fa767ce",
+      "selected_pointers": [
+        "/additional_unit_cases/46/fixed_writer_case/input_slice",
+        "/additional_unit_cases/47/fixed_writer_case"
+      ]
     }
   ],
   "source_pin_ref_rule_ja": "FN03〜FN07の各行source_pin_refsは同じ文書のsource_pinsを指す。L5/L8 pinは確認対象HEADの全file SHAと選択pointer集合を束縛し、各freeze pinはrecord追加commitの全file SHAとtarget binding pointerを束縛する。 FN07の現行source_pinsはL5 /functions/7、L8 /normal_function_oracles/7とfreeze unit_case_pointers（/cases/8、/cases/9、/additional_unit_cases/17、/additional_unit_cases/18）を束縛し、freeze source pinは記録追加commitのrevision・全file SHA・target binding pointerを束縛する。 FN08のTDD source_pin_refsは、Red test/fixture、Red基点の公開entrypoint、Green source moduleおよび公開entrypointのcommit別whole-file SHAを束縛する。 FN08のlocator_intermediate_observationは、Red testをcore実装・locator保持前のsource commitへ適用した単独FAILの再現可能なcommit・command・観測結果と、同revisionのsource whole-file SHAを結ぶ。 FN11のsource_pinsはtest_only追加commit・Red test-only commit・Green src-only commitの各file SHAを束縛し、tdd_history_refsは各test_only追加・Red時点の直接test名を列挙する。test_only履歴entryはred_commit/green_commitをnullとする。 FN08のlimited_metamorphic_test_observationはtest-only commitとtest file SHAをsource_pinsで束縛し、初回Greenの限定観測を記録するがformal execution_stateはnot_executedのまま維持する。 FN00 validation detail TDDはL5 V01–V07/diagnostic writer、L8 six oracle群、test-only Redとbase同一source hash、Green source-only各module SHA、fixture SHAをrevision別に束縛する。 FN00 validation detailのGreen後metamorphic testは、別のtest-only revision/whole-file SHAで追加観測を束縛し、旧Red/Green列を遡及変更しない。 FN00〜FN02のsource_pin_refsは、stopped_tdd_history_candidatesが記録する導入候補commitの各変更file（src/test/fixture）のwhole-file SHAを束縛する。",

@@ -1153,6 +1153,19 @@ def _gap_result(input_value, proposal, index):
 def _field_check_causes(field_results):
     causes = []
     for result in field_results:
+        if result["tag"] == "raw_only":
+            selection = result.get("selection")
+            if isinstance(selection, dict) and selection.get("tag") == "unestablished":
+                selection_causes = selection.get("causes")
+                if not isinstance(selection_causes, list):
+                    raise NotImplementedError(
+                        "WR154-R2-STOP-F02-SELECTION-CAUSE-SHAPE-01"
+                    )
+                if not selection_causes:
+                    raise NotImplementedError(
+                        "WR154-R2-STOP-F02-SELECTION-UNESTABLISHED-CAUSE-01"
+                    )
+                causes.extend(copy.deepcopy(selection_causes))
         if result["tag"] == "evaluated" and result["value"]["field_check"]["tag"] == "unformed":
             causes.extend(copy.deepcopy(result["value"]["field_check"]["causes"]))
             field = result["value"]["original_field"]
@@ -1418,8 +1431,17 @@ def _obligation_material(request, input_value, proposals):
 
 
 def compare_requirement_gaps_detail(request, input_scope_scan):
-    """Produce the staged F05 detailed return for the F01-F02 raw-only slice."""
-    del input_scope_scan  # The F13 scan consumer is a later writer in this branch.
+    """Produce the staged F05 detailed return for the implemented bounded slice."""
+    if (
+        not isinstance(input_scope_scan, dict)
+        or input_scope_scan.get("tag") != "scanned"
+        or not isinstance(input_scope_scan.get("profile_observations"), list)
+        or not isinstance(input_scope_scan.get("semantic_record_indices"), list)
+        or not isinstance(input_scope_scan.get("semantic_records_read"), dict)
+    ):
+        raise NotImplementedError("WR154-R2-STOP-F13-INPUT-SCOPE-SCAN-SHAPE-01")
+    if input_scope_scan["profile_observations"]:
+        raise NotImplementedError("WR154-R2-STOP-F13-PROFILE-CONSUMER-01")
     context = _context_formation(request)
     header = _header_formation(request)
     stopped = _f01_stopped(request, context, header)
