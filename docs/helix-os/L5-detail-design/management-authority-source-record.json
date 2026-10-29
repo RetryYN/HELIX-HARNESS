@@ -12650,5 +12650,1303 @@
         "/signatures/2"
       ]
     }
+  ],
+  "failure_rules": [
+    {
+      "id": "OS015-NEG-source_unresolved-source",
+      "code": "management_material_unknown",
+      "expected_classification": "management_material_unknown",
+      "function_ref": "FN-OS015-01",
+      "expected": {
+        "finding_codes": [
+          "source_unresolved"
+        ]
+      },
+      "expected_axis": "source",
+      "expected_state": "unknown",
+      "backflow_owner": "management-authority-owner",
+      "side_effect_count": 0,
+      "handling": "FN-OS015-01のsource比較経路はL4の対応code/facet/dispositionに従う。元event/classification/historyを含む入力を保持し、operation_effectはnone。",
+      "source_pointers": [
+        {
+          "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+          "pointers": [
+            "/requirements/24"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
+          "pointers": [
+            "/contracts/1",
+            "/diagnostic_contract/codes/0",
+            "/diagnostic_contract/comparison_facets",
+            "/diagnostic_contract/algorithm_python_document_text",
+            "/diagnostic_contract/aggregation",
+            "/diagnostic_contract/condition_values"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L5-detail-design/management-authority-source-record.json",
+          "pointers": [
+            "/signatures/0"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "OS015-NEG-source_unresolved-original_event",
+      "code": "management_material_unknown",
+      "expected_classification": "management_material_unknown",
+      "function_ref": "FN-OS015-01",
+      "expected": {
+        "finding_codes": [
+          "source_unresolved"
+        ]
+      },
+      "expected_axis": "original_event",
+      "expected_state": "unknown",
+      "backflow_owner": "management-authority-owner",
+      "side_effect_count": 0,
+      "handling": "FN-OS015-01のoriginal_event比較経路はL4の対応code/facet/dispositionに従う。元event/classification/historyを含む入力を保持し、operation_effectはnone。",
+      "source_pointers": [
+        {
+          "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+          "pointers": [
+            "/requirements/25"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
+          "pointers": [
+            "/contracts/2",
+            "/diagnostic_contract/codes/0",
+            "/diagnostic_contract/comparison_facets",
+            "/diagnostic_contract/algorithm_python_document_text",
+            "/diagnostic_contract/aggregation",
+            "/diagnostic_contract/condition_values"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L5-detail-design/management-authority-source-record.json",
+          "pointers": [
+            "/signatures/0"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "OS015-NEG-source_unresolved-classification",
+      "code": "management_material_unknown",
+      "expected_classification": "management_material_unknown",
+      "function_ref": "FN-OS015-01",
+      "expected": {
+        "finding_codes": [
+          "source_unresolved"
+        ]
+      },
+      "expected_axis": "classification",
+      "expected_state": "unknown",
+      "backflow_owner": "management-authority-owner",
+      "side_effect_count": 0,
+      "handling": "FN-OS015-01のclassification比較経路はL4の対応code/facet/dispositionに従う。元event/classification/historyを含む入力を保持し、operation_effectはnone。",
+      "source_pointers": [
+        {
+          "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+          "pointers": [
+            "/requirements/25"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
+          "pointers": [
+            "/contracts/2",
+            "/diagnostic_contract/codes/0",
+            "/diagnostic_contract/comparison_facets",
+            "/diagnostic_contract/algorithm_python_document_text",
+            "/diagnostic_contract/aggregation",
+            "/diagnostic_contract/condition_values"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L5-detail-design/management-authority-source-record.json",
+          "pointers": [
+            "/signatures/0"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "OS015-NEG-source_conflict-source",
+      "code": "management_material_violation",
+      "expected_classification": "management_material_violation",
+      "function_ref": "FN-OS015-01",
+      "expected": {
+        "finding_codes": [
+          "source_conflict"
+        ]
+      },
+      "expected_axis": "source",
+      "expected_state": "violation",
+      "backflow_owner": "management-authority-owner",
+      "side_effect_count": 0,
+      "handling": "FN-OS015-01のsource比較経路はL4の対応code/facet/dispositionに従う。元event/classification/historyを含む入力を保持し、operation_effectはnone。",
+      "source_pointers": [
+        {
+          "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+          "pointers": [
+            "/requirements/24"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
+          "pointers": [
+            "/contracts/1",
+            "/diagnostic_contract/codes/1",
+            "/diagnostic_contract/comparison_facets",
+            "/diagnostic_contract/algorithm_python_document_text",
+            "/diagnostic_contract/aggregation",
+            "/diagnostic_contract/condition_values"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L5-detail-design/management-authority-source-record.json",
+          "pointers": [
+            "/signatures/0"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "OS015-NEG-source_conflict-original_event",
+      "code": "management_material_violation",
+      "expected_classification": "management_material_violation",
+      "function_ref": "FN-OS015-01",
+      "expected": {
+        "finding_codes": [
+          "source_conflict"
+        ]
+      },
+      "expected_axis": "original_event",
+      "expected_state": "violation",
+      "backflow_owner": "management-authority-owner",
+      "side_effect_count": 0,
+      "handling": "FN-OS015-01のoriginal_event比較経路はL4の対応code/facet/dispositionに従う。元event/classification/historyを含む入力を保持し、operation_effectはnone。",
+      "source_pointers": [
+        {
+          "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+          "pointers": [
+            "/requirements/25"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
+          "pointers": [
+            "/contracts/2",
+            "/diagnostic_contract/codes/1",
+            "/diagnostic_contract/comparison_facets",
+            "/diagnostic_contract/algorithm_python_document_text",
+            "/diagnostic_contract/aggregation",
+            "/diagnostic_contract/condition_values"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L5-detail-design/management-authority-source-record.json",
+          "pointers": [
+            "/signatures/0"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "OS015-NEG-source_conflict-classification",
+      "code": "management_material_violation",
+      "expected_classification": "management_material_violation",
+      "function_ref": "FN-OS015-01",
+      "expected": {
+        "finding_codes": [
+          "source_conflict"
+        ]
+      },
+      "expected_axis": "classification",
+      "expected_state": "violation",
+      "backflow_owner": "management-authority-owner",
+      "side_effect_count": 0,
+      "handling": "FN-OS015-01のclassification比較経路はL4の対応code/facet/dispositionに従う。元event/classification/historyを含む入力を保持し、operation_effectはnone。",
+      "source_pointers": [
+        {
+          "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+          "pointers": [
+            "/requirements/25"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
+          "pointers": [
+            "/contracts/2",
+            "/diagnostic_contract/codes/1",
+            "/diagnostic_contract/comparison_facets",
+            "/diagnostic_contract/algorithm_python_document_text",
+            "/diagnostic_contract/aggregation",
+            "/diagnostic_contract/condition_values"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L5-detail-design/management-authority-source-record.json",
+          "pointers": [
+            "/signatures/0"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "OS015-NEG-source_conflict-authority",
+      "code": "management_material_violation",
+      "expected_classification": "management_material_violation",
+      "function_ref": "FN-OS015-01",
+      "expected": {
+        "finding_codes": [
+          "source_conflict"
+        ]
+      },
+      "expected_axis": "authority",
+      "expected_state": "violation",
+      "backflow_owner": "management-authority-owner",
+      "side_effect_count": 0,
+      "handling": "FN-OS015-01のauthority比較経路はL4の対応code/facet/dispositionに従う。元event/classification/historyを含む入力を保持し、operation_effectはnone。",
+      "source_pointers": [
+        {
+          "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+          "pointers": [
+            "/requirements/26"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
+          "pointers": [
+            "/contracts/3",
+            "/diagnostic_contract/codes/1",
+            "/diagnostic_contract/comparison_facets",
+            "/diagnostic_contract/algorithm_python_document_text",
+            "/diagnostic_contract/aggregation",
+            "/diagnostic_contract/condition_values"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L5-detail-design/management-authority-source-record.json",
+          "pointers": [
+            "/signatures/0"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "OS015-NEG-phase_unresolved",
+      "code": "management_material_unknown",
+      "expected_classification": "management_material_unknown",
+      "function_ref": "FN-OS015-01",
+      "expected": {
+        "finding_codes": [
+          "phase_unresolved"
+        ]
+      },
+      "expected_axis": "global",
+      "expected_state": "unknown",
+      "backflow_owner": "management-authority-owner",
+      "side_effect_count": 0,
+      "handling": "FN-OS015-01はL4診断code/facet/dispositionに従って所見を返し、元対象/source/event/classification/history全値と不一致位置を保持する。operation_effectはnone。",
+      "source_pointers": [
+        {
+          "path": "docs/helix-os/L3-requirements/business-requirements.json",
+          "pointers": [
+            "/requirements/4"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
+          "pointers": [
+            "/contracts/0",
+            "/diagnostic_contract/codes/2",
+            "/diagnostic_contract/aggregation",
+            "/diagnostic_contract/raw_retention",
+            "/diagnostic_contract/condition_values"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L5-detail-design/management-authority-source-record.json",
+          "pointers": [
+            "/signatures/0"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "OS015-NEG-original_event_mutated",
+      "code": "management_material_violation",
+      "expected_classification": "management_material_violation",
+      "function_ref": "FN-OS015-01",
+      "expected": {
+        "finding_codes": [
+          "original_event_mutated"
+        ]
+      },
+      "expected_axis": "original_event",
+      "expected_state": "violation",
+      "backflow_owner": "management-authority-owner",
+      "side_effect_count": 0,
+      "handling": "FN-OS015-01はL4診断code/facet/dispositionに従って所見を返し、元対象/source/event/classification/history全値と不一致位置を保持する。operation_effectはnone。",
+      "source_pointers": [
+        {
+          "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+          "pointers": [
+            "/requirements/25"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
+          "pointers": [
+            "/contracts/2",
+            "/diagnostic_contract/codes/3",
+            "/diagnostic_contract/aggregation",
+            "/diagnostic_contract/raw_retention",
+            "/diagnostic_contract/condition_values"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L5-detail-design/management-authority-source-record.json",
+          "pointers": [
+            "/signatures/0"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "OS015-NEG-original_classification_mutated",
+      "code": "management_material_violation",
+      "expected_classification": "management_material_violation",
+      "function_ref": "FN-OS015-01",
+      "expected": {
+        "finding_codes": [
+          "original_classification_mutated"
+        ]
+      },
+      "expected_axis": "history",
+      "expected_state": "violation",
+      "backflow_owner": "management-authority-owner",
+      "side_effect_count": 0,
+      "handling": "FN-OS015-01はL4診断code/facet/dispositionに従って所見を返し、元対象/source/event/classification/history全値と不一致位置を保持する。operation_effectはnone。",
+      "source_pointers": [
+        {
+          "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+          "pointers": [
+            "/requirements/25"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
+          "pointers": [
+            "/contracts/2",
+            "/diagnostic_contract/codes/4",
+            "/diagnostic_contract/aggregation",
+            "/diagnostic_contract/raw_retention",
+            "/diagnostic_contract/condition_values"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L5-detail-design/management-authority-source-record.json",
+          "pointers": [
+            "/signatures/0"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "OS015-NEG-authority_origin_forbidden",
+      "code": "management_material_violation",
+      "expected_classification": "management_material_violation",
+      "function_ref": "FN-OS015-01",
+      "expected": {
+        "finding_codes": [
+          "authority_origin_forbidden"
+        ]
+      },
+      "expected_axis": "authority",
+      "expected_state": "violation",
+      "backflow_owner": "management-authority-owner",
+      "side_effect_count": 0,
+      "handling": "FN-OS015-01はL4診断code/facet/dispositionに従って所見を返し、元対象/source/event/classification/history全値と不一致位置を保持する。operation_effectはnone。",
+      "source_pointers": [
+        {
+          "path": "docs/helix-os/L3-requirements/business-requirements.json",
+          "pointers": [
+            "/requirements/4"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
+          "pointers": [
+            "/contracts/0",
+            "/diagnostic_contract/codes/5",
+            "/diagnostic_contract/aggregation",
+            "/diagnostic_contract/raw_retention",
+            "/diagnostic_contract/condition_values"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L5-detail-design/management-authority-source-record.json",
+          "pointers": [
+            "/signatures/0"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "OS015-NEG-authority_origin_unresolved",
+      "code": "management_material_unknown",
+      "expected_classification": "management_material_unknown",
+      "function_ref": "FN-OS015-01",
+      "expected": {
+        "finding_codes": [
+          "authority_origin_unresolved"
+        ]
+      },
+      "expected_axis": "authority",
+      "expected_state": "unknown",
+      "backflow_owner": "management-authority-owner",
+      "side_effect_count": 0,
+      "handling": "FN-OS015-01はL4診断code/facet/dispositionに従って所見を返し、元対象/source/event/classification/history全値と不一致位置を保持する。operation_effectはnone。",
+      "source_pointers": [
+        {
+          "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+          "pointers": [
+            "/requirements/26"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
+          "pointers": [
+            "/contracts/3",
+            "/diagnostic_contract/codes/6",
+            "/diagnostic_contract/aggregation",
+            "/diagnostic_contract/raw_retention",
+            "/diagnostic_contract/condition_values"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L5-detail-design/management-authority-source-record.json",
+          "pointers": [
+            "/signatures/0"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "OS015-NEG-authority_stale",
+      "code": "management_material_unknown",
+      "expected_classification": "management_material_unknown",
+      "function_ref": "FN-OS015-01",
+      "expected": {
+        "finding_codes": [
+          "authority_stale"
+        ]
+      },
+      "expected_axis": "authority",
+      "expected_state": "unknown",
+      "backflow_owner": "management-authority-owner",
+      "side_effect_count": 0,
+      "handling": "FN-OS015-01はL4診断code/facet/dispositionに従って所見を返し、元対象/source/event/classification/history全値と不一致位置を保持する。operation_effectはnone。",
+      "source_pointers": [
+        {
+          "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+          "pointers": [
+            "/requirements/26"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
+          "pointers": [
+            "/contracts/3",
+            "/diagnostic_contract/codes/7",
+            "/diagnostic_contract/aggregation",
+            "/diagnostic_contract/raw_retention",
+            "/diagnostic_contract/condition_values"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L5-detail-design/management-authority-source-record.json",
+          "pointers": [
+            "/signatures/0"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "OS015-NEG-authority_conflict",
+      "code": "management_material_violation",
+      "expected_classification": "management_material_violation",
+      "function_ref": "FN-OS015-01",
+      "expected": {
+        "finding_codes": [
+          "authority_conflict"
+        ]
+      },
+      "expected_axis": "authority",
+      "expected_state": "violation",
+      "backflow_owner": "management-authority-owner",
+      "side_effect_count": 0,
+      "handling": "FN-OS015-01はL4診断code/facet/dispositionに従って所見を返し、元対象/source/event/classification/history全値と不一致位置を保持する。operation_effectはnone。",
+      "source_pointers": [
+        {
+          "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+          "pointers": [
+            "/requirements/26"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
+          "pointers": [
+            "/contracts/3",
+            "/diagnostic_contract/codes/8",
+            "/diagnostic_contract/aggregation",
+            "/diagnostic_contract/raw_retention",
+            "/diagnostic_contract/condition_values"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L5-detail-design/management-authority-source-record.json",
+          "pointers": [
+            "/signatures/0"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "OS015-NEG-authority_state_unresolved",
+      "code": "management_material_unknown",
+      "expected_classification": "management_material_unknown",
+      "function_ref": "FN-OS015-01",
+      "expected": {
+        "finding_codes": [
+          "authority_state_unresolved"
+        ]
+      },
+      "expected_axis": "authority",
+      "expected_state": "unknown",
+      "backflow_owner": "management-authority-owner",
+      "side_effect_count": 0,
+      "handling": "FN-OS015-01はL4診断code/facet/dispositionに従って所見を返し、元対象/source/event/classification/history全値と不一致位置を保持する。operation_effectはnone。",
+      "source_pointers": [
+        {
+          "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+          "pointers": [
+            "/requirements/26"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
+          "pointers": [
+            "/contracts/3",
+            "/diagnostic_contract/codes/9",
+            "/diagnostic_contract/aggregation",
+            "/diagnostic_contract/raw_retention",
+            "/diagnostic_contract/condition_values"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L5-detail-design/management-authority-source-record.json",
+          "pointers": [
+            "/signatures/0"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "OS015-NEG-unresolved_promoted_to_current",
+      "code": "management_material_violation",
+      "expected_classification": "management_material_violation",
+      "function_ref": "FN-OS015-01",
+      "expected": {
+        "finding_codes": [
+          "unresolved_promoted_to_current"
+        ]
+      },
+      "expected_axis": "authority",
+      "expected_state": "violation",
+      "backflow_owner": "management-authority-owner",
+      "side_effect_count": 0,
+      "handling": "FN-OS015-01はL4診断code/facet/dispositionに従って所見を返し、元対象/source/event/classification/history全値と不一致位置を保持する。operation_effectはnone。",
+      "source_pointers": [
+        {
+          "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+          "pointers": [
+            "/requirements/26"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
+          "pointers": [
+            "/contracts/3",
+            "/diagnostic_contract/codes/10",
+            "/diagnostic_contract/aggregation",
+            "/diagnostic_contract/raw_retention",
+            "/diagnostic_contract/condition_values"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L5-detail-design/management-authority-source-record.json",
+          "pointers": [
+            "/signatures/0"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "OS015-NEG-current_material_claim_unresolved",
+      "code": "management_material_unknown",
+      "expected_classification": "management_material_unknown",
+      "function_ref": "FN-OS015-01",
+      "expected": {
+        "finding_codes": [
+          "current_material_claim_unresolved"
+        ]
+      },
+      "expected_axis": "authority",
+      "expected_state": "unknown",
+      "backflow_owner": "management-authority-owner",
+      "side_effect_count": 0,
+      "handling": "FN-OS015-01はL4診断code/facet/dispositionに従って所見を返し、元対象/source/event/classification/history全値と不一致位置を保持する。operation_effectはnone。",
+      "source_pointers": [
+        {
+          "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+          "pointers": [
+            "/requirements/26"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
+          "pointers": [
+            "/contracts/3",
+            "/diagnostic_contract/codes/11",
+            "/diagnostic_contract/aggregation",
+            "/diagnostic_contract/raw_retention",
+            "/diagnostic_contract/condition_values"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L5-detail-design/management-authority-source-record.json",
+          "pointers": [
+            "/signatures/0"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "OS015-NEG-new_classification_unresolved",
+      "code": "management_material_unknown",
+      "expected_classification": "management_material_unknown",
+      "function_ref": "FN-OS015-01",
+      "expected": {
+        "finding_codes": [
+          "new_classification_unresolved"
+        ]
+      },
+      "expected_axis": "classification",
+      "expected_state": "unknown",
+      "backflow_owner": "management-authority-owner",
+      "side_effect_count": 0,
+      "handling": "FN-OS015-01はL4診断code/facet/dispositionに従って所見を返し、元対象/source/event/classification/history全値と不一致位置を保持する。operation_effectはnone。",
+      "source_pointers": [
+        {
+          "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+          "pointers": [
+            "/requirements/25"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
+          "pointers": [
+            "/contracts/2",
+            "/diagnostic_contract/codes/12",
+            "/diagnostic_contract/aggregation",
+            "/diagnostic_contract/raw_retention",
+            "/diagnostic_contract/condition_values"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L5-detail-design/management-authority-source-record.json",
+          "pointers": [
+            "/signatures/0"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "OS015-NEG-prior_classification_unresolved",
+      "code": "management_material_unknown",
+      "expected_classification": "management_material_unknown",
+      "function_ref": "FN-OS015-01",
+      "expected": {
+        "finding_codes": [
+          "prior_classification_unresolved"
+        ]
+      },
+      "expected_axis": "classification",
+      "expected_state": "unknown",
+      "backflow_owner": "management-authority-owner",
+      "side_effect_count": 0,
+      "handling": "FN-OS015-01はL4診断code/facet/dispositionに従って所見を返し、元対象/source/event/classification/history全値と不一致位置を保持する。operation_effectはnone。",
+      "source_pointers": [
+        {
+          "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+          "pointers": [
+            "/requirements/25"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
+          "pointers": [
+            "/contracts/2",
+            "/diagnostic_contract/codes/13",
+            "/diagnostic_contract/aggregation",
+            "/diagnostic_contract/raw_retention",
+            "/diagnostic_contract/condition_values"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L5-detail-design/management-authority-source-record.json",
+          "pointers": [
+            "/signatures/0"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "OS015-NEG-classification_revision_collapsed",
+      "code": "management_material_violation",
+      "expected_classification": "management_material_violation",
+      "function_ref": "FN-OS015-01",
+      "expected": {
+        "finding_codes": [
+          "classification_revision_collapsed"
+        ]
+      },
+      "expected_axis": "classification",
+      "expected_state": "violation",
+      "backflow_owner": "management-authority-owner",
+      "side_effect_count": 0,
+      "handling": "FN-OS015-01はL4診断code/facet/dispositionに従って所見を返し、元対象/source/event/classification/history全値と不一致位置を保持する。operation_effectはnone。",
+      "source_pointers": [
+        {
+          "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+          "pointers": [
+            "/requirements/25"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
+          "pointers": [
+            "/contracts/2",
+            "/diagnostic_contract/codes/14",
+            "/diagnostic_contract/aggregation",
+            "/diagnostic_contract/raw_retention",
+            "/diagnostic_contract/condition_values"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L5-detail-design/management-authority-source-record.json",
+          "pointers": [
+            "/signatures/0"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "OS015-NEG-classification_kind_unresolved",
+      "code": "management_material_unknown",
+      "expected_classification": "management_material_unknown",
+      "function_ref": "FN-OS015-01",
+      "expected": {
+        "finding_codes": [
+          "classification_kind_unresolved"
+        ]
+      },
+      "expected_axis": "classification",
+      "expected_state": "unknown",
+      "backflow_owner": "management-authority-owner",
+      "side_effect_count": 0,
+      "handling": "FN-OS015-01はL4診断code/facet/dispositionに従って所見を返し、元対象/source/event/classification/history全値と不一致位置を保持する。operation_effectはnone。",
+      "source_pointers": [
+        {
+          "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+          "pointers": [
+            "/requirements/25"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
+          "pointers": [
+            "/contracts/2",
+            "/diagnostic_contract/codes/15",
+            "/diagnostic_contract/aggregation",
+            "/diagnostic_contract/raw_retention",
+            "/diagnostic_contract/condition_values"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L5-detail-design/management-authority-source-record.json",
+          "pointers": [
+            "/signatures/0"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "OS015-NEG-history_unresolved",
+      "code": "management_material_unknown",
+      "expected_classification": "management_material_unknown",
+      "function_ref": "FN-OS015-01",
+      "expected": {
+        "finding_codes": [
+          "history_unresolved"
+        ]
+      },
+      "expected_axis": "history",
+      "expected_state": "unknown",
+      "backflow_owner": "management-authority-owner",
+      "side_effect_count": 0,
+      "handling": "FN-OS015-01はL4診断code/facet/dispositionに従って所見を返し、元対象/source/event/classification/history全値と不一致位置を保持する。operation_effectはnone。",
+      "source_pointers": [
+        {
+          "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+          "pointers": [
+            "/requirements/25"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
+          "pointers": [
+            "/contracts/2",
+            "/diagnostic_contract/codes/16",
+            "/diagnostic_contract/aggregation",
+            "/diagnostic_contract/raw_retention",
+            "/diagnostic_contract/condition_values"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L5-detail-design/management-authority-source-record.json",
+          "pointers": [
+            "/signatures/0"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "OS015-NEG-history_entry_lost",
+      "code": "management_material_violation",
+      "expected_classification": "management_material_violation",
+      "function_ref": "FN-OS015-01",
+      "expected": {
+        "finding_codes": [
+          "history_entry_lost"
+        ]
+      },
+      "expected_axis": "history",
+      "expected_state": "violation",
+      "backflow_owner": "management-authority-owner",
+      "side_effect_count": 0,
+      "handling": "FN-OS015-01はL4診断code/facet/dispositionに従って所見を返し、元対象/source/event/classification/history全値と不一致位置を保持する。operation_effectはnone。",
+      "source_pointers": [
+        {
+          "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+          "pointers": [
+            "/requirements/25"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
+          "pointers": [
+            "/contracts/2",
+            "/diagnostic_contract/codes/17",
+            "/diagnostic_contract/aggregation",
+            "/diagnostic_contract/raw_retention",
+            "/diagnostic_contract/condition_values"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L5-detail-design/management-authority-source-record.json",
+          "pointers": [
+            "/signatures/0"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "OS015-NEG-unresolved_history_lost",
+      "code": "management_material_violation",
+      "expected_classification": "management_material_violation",
+      "function_ref": "FN-OS015-01",
+      "expected": {
+        "finding_codes": [
+          "unresolved_history_lost"
+        ]
+      },
+      "expected_axis": "history",
+      "expected_state": "violation",
+      "backflow_owner": "management-authority-owner",
+      "side_effect_count": 0,
+      "handling": "FN-OS015-01はL4診断code/facet/dispositionに従って所見を返し、元対象/source/event/classification/history全値と不一致位置を保持する。operation_effectはnone。",
+      "source_pointers": [
+        {
+          "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+          "pointers": [
+            "/requirements/25"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
+          "pointers": [
+            "/contracts/2",
+            "/diagnostic_contract/codes/18",
+            "/diagnostic_contract/aggregation",
+            "/diagnostic_contract/raw_retention",
+            "/diagnostic_contract/condition_values"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L5-detail-design/management-authority-source-record.json",
+          "pointers": [
+            "/signatures/0"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "OS015-NEG-unresolved_history_unresolved",
+      "code": "management_material_unknown",
+      "expected_classification": "management_material_unknown",
+      "function_ref": "FN-OS015-01",
+      "expected": {
+        "finding_codes": [
+          "unresolved_history_unresolved"
+        ]
+      },
+      "expected_axis": "history",
+      "expected_state": "unknown",
+      "backflow_owner": "management-authority-owner",
+      "side_effect_count": 0,
+      "handling": "FN-OS015-01はL4診断code/facet/dispositionに従って所見を返し、元対象/source/event/classification/history全値と不一致位置を保持する。operation_effectはnone。",
+      "source_pointers": [
+        {
+          "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+          "pointers": [
+            "/requirements/25"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
+          "pointers": [
+            "/contracts/2",
+            "/diagnostic_contract/codes/19",
+            "/diagnostic_contract/aggregation",
+            "/diagnostic_contract/raw_retention",
+            "/diagnostic_contract/condition_values"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L5-detail-design/management-authority-source-record.json",
+          "pointers": [
+            "/signatures/0"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "OS015-NEG-generated_authority_forbidden",
+      "code": "management_material_violation",
+      "expected_classification": "management_material_violation",
+      "function_ref": "FN-OS015-01",
+      "expected": {
+        "finding_codes": [
+          "generated_authority_forbidden"
+        ]
+      },
+      "expected_axis": "boundary",
+      "expected_state": "violation",
+      "backflow_owner": "management-authority-owner",
+      "side_effect_count": 0,
+      "handling": "FN-OS015-01はL4診断code/facet/dispositionに従って所見を返し、元対象/source/event/classification/history全値と不一致位置を保持する。operation_effectはnone。",
+      "source_pointers": [
+        {
+          "path": "docs/helix-os/L3-requirements/business-requirements.json",
+          "pointers": [
+            "/requirements/4"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
+          "pointers": [
+            "/contracts/0",
+            "/diagnostic_contract/codes/20",
+            "/diagnostic_contract/aggregation",
+            "/diagnostic_contract/raw_retention",
+            "/diagnostic_contract/condition_values"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L5-detail-design/management-authority-source-record.json",
+          "pointers": [
+            "/signatures/0"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "OS015-NEG-generated_authority_claim_unresolved",
+      "code": "management_material_unknown",
+      "expected_classification": "management_material_unknown",
+      "function_ref": "FN-OS015-01",
+      "expected": {
+        "finding_codes": [
+          "generated_authority_claim_unresolved"
+        ]
+      },
+      "expected_axis": "boundary",
+      "expected_state": "unknown",
+      "backflow_owner": "management-authority-owner",
+      "side_effect_count": 0,
+      "handling": "FN-OS015-01はL4診断code/facet/dispositionに従って所見を返し、元対象/source/event/classification/history全値と不一致位置を保持する。operation_effectはnone。",
+      "source_pointers": [
+        {
+          "path": "docs/helix-os/L3-requirements/business-requirements.json",
+          "pointers": [
+            "/requirements/4"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
+          "pointers": [
+            "/contracts/0",
+            "/diagnostic_contract/codes/21",
+            "/diagnostic_contract/aggregation",
+            "/diagnostic_contract/raw_retention",
+            "/diagnostic_contract/condition_values"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L5-detail-design/management-authority-source-record.json",
+          "pointers": [
+            "/signatures/0"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "OS015-NEG-whole_registry_claim_unproven",
+      "code": "management_material_violation",
+      "expected_classification": "management_material_violation",
+      "function_ref": "FN-OS015-01",
+      "expected": {
+        "finding_codes": [
+          "whole_registry_claim_unproven"
+        ]
+      },
+      "expected_axis": "global",
+      "expected_state": "violation",
+      "backflow_owner": "management-authority-owner",
+      "side_effect_count": 0,
+      "handling": "FN-OS015-01はL4診断code/facet/dispositionに従って所見を返し、元対象/source/event/classification/history全値と不一致位置を保持する。operation_effectはnone。",
+      "source_pointers": [
+        {
+          "path": "docs/helix-os/L3-requirements/business-requirements.json",
+          "pointers": [
+            "/requirements/4"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
+          "pointers": [
+            "/contracts/0",
+            "/diagnostic_contract/codes/22",
+            "/diagnostic_contract/aggregation",
+            "/diagnostic_contract/raw_retention",
+            "/diagnostic_contract/condition_values"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L5-detail-design/management-authority-source-record.json",
+          "pointers": [
+            "/signatures/0"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "OS015-NEG-whole_registry_claim_unresolved",
+      "code": "management_material_unknown",
+      "expected_classification": "management_material_unknown",
+      "function_ref": "FN-OS015-01",
+      "expected": {
+        "finding_codes": [
+          "whole_registry_claim_unresolved"
+        ]
+      },
+      "expected_axis": "global",
+      "expected_state": "unknown",
+      "backflow_owner": "management-authority-owner",
+      "side_effect_count": 0,
+      "handling": "FN-OS015-01はL4診断code/facet/dispositionに従って所見を返し、元対象/source/event/classification/history全値と不一致位置を保持する。operation_effectはnone。",
+      "source_pointers": [
+        {
+          "path": "docs/helix-os/L3-requirements/business-requirements.json",
+          "pointers": [
+            "/requirements/4"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
+          "pointers": [
+            "/contracts/0",
+            "/diagnostic_contract/codes/23",
+            "/diagnostic_contract/aggregation",
+            "/diagnostic_contract/raw_retention",
+            "/diagnostic_contract/condition_values"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L5-detail-design/management-authority-source-record.json",
+          "pointers": [
+            "/signatures/0"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "OS015-NEG-first_classification_prior_present",
+      "code": "management_material_violation",
+      "expected_classification": "management_material_violation",
+      "function_ref": "FN-OS015-01",
+      "expected": {
+        "finding_codes": [
+          "first_classification_prior_present"
+        ]
+      },
+      "expected_axis": "classification",
+      "expected_state": "violation",
+      "backflow_owner": "management-authority-owner",
+      "side_effect_count": 0,
+      "handling": "FN-OS015-01はL4診断code/facet/dispositionに従って所見を返し、元対象/source/event/classification/history全値と不一致位置を保持する。operation_effectはnone。",
+      "source_pointers": [
+        {
+          "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+          "pointers": [
+            "/requirements/25"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
+          "pointers": [
+            "/contracts/2",
+            "/diagnostic_contract/codes/24",
+            "/diagnostic_contract/aggregation",
+            "/diagnostic_contract/raw_retention",
+            "/diagnostic_contract/condition_values"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L5-detail-design/management-authority-source-record.json",
+          "pointers": [
+            "/signatures/0"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "OS015-NEG-first_classification_prior_unresolved",
+      "code": "management_material_unknown",
+      "expected_classification": "management_material_unknown",
+      "function_ref": "FN-OS015-01",
+      "expected": {
+        "finding_codes": [
+          "first_classification_prior_unresolved"
+        ]
+      },
+      "expected_axis": "classification",
+      "expected_state": "unknown",
+      "backflow_owner": "management-authority-owner",
+      "side_effect_count": 0,
+      "handling": "FN-OS015-01はL4診断code/facet/dispositionに従って所見を返し、元対象/source/event/classification/history全値と不一致位置を保持する。operation_effectはnone。",
+      "source_pointers": [
+        {
+          "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+          "pointers": [
+            "/requirements/25"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
+          "pointers": [
+            "/contracts/2",
+            "/diagnostic_contract/codes/25",
+            "/diagnostic_contract/aggregation",
+            "/diagnostic_contract/raw_retention",
+            "/diagnostic_contract/condition_values"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L5-detail-design/management-authority-source-record.json",
+          "pointers": [
+            "/signatures/0"
+          ]
+        }
+      ]
+    }
+  ],
+  "negative_equivalence_classes": {
+    "source_rows": "failure_rules"
+  },
+  "functions": [
+    {
+      "id": "FN-OS015-01",
+      "source_pointers": [
+        {
+          "path": "docs/helix-os/L5-detail-design/management-authority-source-record.json",
+          "pointers": [
+            "/signatures/0"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "FN-OS015-02",
+      "source_pointers": [
+        {
+          "path": "docs/helix-os/L5-detail-design/management-authority-source-record.json",
+          "pointers": [
+            "/signatures/1"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "FN-OS015-03",
+      "source_pointers": [
+        {
+          "path": "docs/helix-os/L5-detail-design/management-authority-source-record.json",
+          "pointers": [
+            "/signatures/2"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "FN-OS015-04",
+      "source_pointers": [
+        {
+          "path": "docs/helix-os/L5-detail-design/management-authority-source-record.json",
+          "pointers": [
+            "/signatures/3"
+          ]
+        }
+      ]
+    }
   ]
 }

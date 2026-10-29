@@ -646,11 +646,7 @@
         }
       ],
       "source_case_count": 48,
-      "unknown_case_refs": [
-        "HELIXOS-L9-015-C0502",
-        "HELIXOS-L9-015-C0519",
-        "HELIXOS-L9-015-C0536"
-      ]
+      "unknown_case_refs": []
     },
     {
       "id": "HELIXOS-L8-015-P-F01",
@@ -2056,9 +2052,7 @@
         }
       ],
       "source_case_count": 349,
-      "unknown_case_refs": [
-        "HELIXOS-L9-015-C0001"
-      ]
+      "unknown_case_refs": []
     },
     {
       "id": "HELIXOS-L8-015-P-F02",
@@ -2696,15 +2690,7 @@
         }
       ],
       "source_case_count": 157,
-      "unknown_case_refs": [
-        "HELIXOS-L9-015-C0002",
-        "HELIXOS-L9-015-C0003",
-        "HELIXOS-L9-015-C0511",
-        "HELIXOS-L9-015-C0528",
-        "HELIXOS-L9-015-C0545",
-        "HELIXOS-L9-015-C0551",
-        "HELIXOS-L9-015-C0557"
-      ]
+      "unknown_case_refs": []
     },
     {
       "id": "HELIXOS-L8-015-P-F03",
@@ -5009,7 +4995,35 @@
       "case_id": "HELIXOS-L9-015-C0001",
       "integration_case_ref": "HELIXOS-L9-015-C0001",
       "contract_ref": "HELIXOS-L5-015-P-F01",
-      "population_state": "unknown"
+      "population_state": "positive",
+      "condition": "management_material_corresponding",
+      "expected": {
+        "finding_codes": []
+      },
+      "expected_preserved": true,
+      "source_pointers": [
+        {
+          "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+          "pointers": [
+            "/requirements/24"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
+          "pointers": [
+            "/contracts/1",
+            "/diagnostic_contract/raw_retention",
+            "/diagnostic_contract/phases/inspect"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L5-detail-design/management-authority-source-record.json",
+          "pointers": [
+            "/contracts/1",
+            "/signatures/0"
+          ]
+        }
+      ]
     },
     {
       "id": "HELIXOS-L9-015-C0002",
@@ -5050,7 +5064,39 @@
       "case_id": "HELIXOS-L9-015-C0002",
       "integration_case_ref": "HELIXOS-L9-015-C0002",
       "contract_ref": "HELIXOS-L5-015-P-F02",
-      "population_state": "unknown"
+      "population_state": "positive",
+      "condition": "management_material_corresponding",
+      "expected": {
+        "finding_codes": []
+      },
+      "expected_preserved": true,
+      "source_pointers": [
+        {
+          "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+          "pointers": [
+            "/requirements/25"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
+          "pointers": [
+            "/contracts/2",
+            "/diagnostic_contract/raw_retention",
+            "/diagnostic_contract/phases/classify",
+            "/diagnostic_contract/algorithm_python_document_text"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L5-detail-design/management-authority-source-record.json",
+          "pointers": [
+            "/contracts/2",
+            "/signatures/0",
+            "/signatures/3",
+            "/return_root_trace/FN-OS015-04",
+            "/classification_retention_contract"
+          ]
+        }
+      ]
     },
     {
       "id": "HELIXOS-L9-015-C0003",
@@ -5091,7 +5137,39 @@
       "case_id": "HELIXOS-L9-015-C0003",
       "integration_case_ref": "HELIXOS-L9-015-C0003",
       "contract_ref": "HELIXOS-L5-015-P-F02",
-      "population_state": "unknown"
+      "population_state": "positive",
+      "condition": "management_material_corresponding",
+      "expected": {
+        "finding_codes": []
+      },
+      "expected_preserved": true,
+      "source_pointers": [
+        {
+          "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+          "pointers": [
+            "/requirements/25"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
+          "pointers": [
+            "/contracts/2",
+            "/diagnostic_contract/raw_retention",
+            "/diagnostic_contract/phases/correct",
+            "/diagnostic_contract/algorithm_python_document_text"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L5-detail-design/management-authority-source-record.json",
+          "pointers": [
+            "/contracts/2",
+            "/signatures/0",
+            "/signatures/3",
+            "/return_root_trace/FN-OS015-04",
+            "/classification_retention_contract"
+          ]
+        }
+      ]
     },
     {
       "id": "HELIXOS-L9-015-C0004",
@@ -5159,7 +5237,10 @@
           "original": "not_evaluated",
           "new": "not_evaluated"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_unresolved-source",
+      "rule_ref": "OS015-NEG-source_unresolved-source",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0005",
@@ -5227,7 +5308,10 @@
           "original": "not_evaluated",
           "new": "not_evaluated"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_conflict-source",
+      "rule_ref": "OS015-NEG-source_conflict-source",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0006",
@@ -5295,7 +5379,10 @@
           "original": "not_evaluated",
           "new": "not_evaluated"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_unresolved-source",
+      "rule_ref": "OS015-NEG-source_unresolved-source",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0007",
@@ -5363,7 +5450,10 @@
           "original": "not_evaluated",
           "new": "not_evaluated"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_conflict-source",
+      "rule_ref": "OS015-NEG-source_conflict-source",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0008",
@@ -5431,7 +5521,10 @@
           "original": "not_evaluated",
           "new": "not_evaluated"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_unresolved-source",
+      "rule_ref": "OS015-NEG-source_unresolved-source",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0009",
@@ -5499,7 +5592,10 @@
           "original": "not_evaluated",
           "new": "not_evaluated"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_conflict-source",
+      "rule_ref": "OS015-NEG-source_conflict-source",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0010",
@@ -5567,7 +5663,10 @@
           "original": "not_evaluated",
           "new": "not_evaluated"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_unresolved-source",
+      "rule_ref": "OS015-NEG-source_unresolved-source",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0011",
@@ -5635,7 +5734,10 @@
           "original": "not_evaluated",
           "new": "not_evaluated"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_conflict-source",
+      "rule_ref": "OS015-NEG-source_conflict-source",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0012",
@@ -5703,7 +5805,10 @@
           "original": "not_evaluated",
           "new": "not_evaluated"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_unresolved-source",
+      "rule_ref": "OS015-NEG-source_unresolved-source",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0013",
@@ -5771,7 +5876,10 @@
           "original": "not_evaluated",
           "new": "not_evaluated"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_conflict-source",
+      "rule_ref": "OS015-NEG-source_conflict-source",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0014",
@@ -5839,7 +5947,10 @@
           "original": "not_evaluated",
           "new": "not_evaluated"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_unresolved-source",
+      "rule_ref": "OS015-NEG-source_unresolved-source",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0015",
@@ -5907,7 +6018,10 @@
           "original": "not_evaluated",
           "new": "not_evaluated"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_conflict-source",
+      "rule_ref": "OS015-NEG-source_conflict-source",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0016",
@@ -5975,7 +6089,10 @@
           "original": "not_evaluated",
           "new": "not_evaluated"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_unresolved-source",
+      "rule_ref": "OS015-NEG-source_unresolved-source",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0017",
@@ -6043,7 +6160,10 @@
           "original": "not_evaluated",
           "new": "not_evaluated"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_conflict-source",
+      "rule_ref": "OS015-NEG-source_conflict-source",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0018",
@@ -6111,7 +6231,10 @@
           "original": "not_evaluated",
           "new": "not_evaluated"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_unresolved-source",
+      "rule_ref": "OS015-NEG-source_unresolved-source",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0019",
@@ -6179,7 +6302,10 @@
           "original": "not_evaluated",
           "new": "not_evaluated"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_conflict-source",
+      "rule_ref": "OS015-NEG-source_conflict-source",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0020",
@@ -6247,7 +6373,10 @@
           "original": "not_evaluated",
           "new": "not_evaluated"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_unresolved-source",
+      "rule_ref": "OS015-NEG-source_unresolved-source",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0021",
@@ -6315,7 +6444,10 @@
           "original": "not_evaluated",
           "new": "not_evaluated"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_conflict-source",
+      "rule_ref": "OS015-NEG-source_conflict-source",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0022",
@@ -6383,7 +6515,10 @@
           "original": "not_evaluated",
           "new": "not_evaluated"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_unresolved-source",
+      "rule_ref": "OS015-NEG-source_unresolved-source",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0023",
@@ -6451,7 +6586,10 @@
           "original": "not_evaluated",
           "new": "not_evaluated"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_conflict-source",
+      "rule_ref": "OS015-NEG-source_conflict-source",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0024",
@@ -6519,7 +6657,10 @@
           "original": "not_evaluated",
           "new": "not_evaluated"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_unresolved-source",
+      "rule_ref": "OS015-NEG-source_unresolved-source",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0025",
@@ -6587,7 +6728,10 @@
           "original": "not_evaluated",
           "new": "not_evaluated"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_conflict-source",
+      "rule_ref": "OS015-NEG-source_conflict-source",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0026",
@@ -6655,7 +6799,10 @@
           "original": "not_evaluated",
           "new": "not_evaluated"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_unresolved-source",
+      "rule_ref": "OS015-NEG-source_unresolved-source",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0027",
@@ -6723,7 +6870,10 @@
           "original": "not_evaluated",
           "new": "not_evaluated"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_conflict-source",
+      "rule_ref": "OS015-NEG-source_conflict-source",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0028",
@@ -6791,7 +6941,10 @@
           "original": "not_evaluated",
           "new": "not_evaluated"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_unresolved-source",
+      "rule_ref": "OS015-NEG-source_unresolved-source",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0029",
@@ -6859,7 +7012,10 @@
           "original": "not_evaluated",
           "new": "not_evaluated"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_conflict-source",
+      "rule_ref": "OS015-NEG-source_conflict-source",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0030",
@@ -6927,7 +7083,10 @@
           "original": "not_evaluated",
           "new": "not_evaluated"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_unresolved-source",
+      "rule_ref": "OS015-NEG-source_unresolved-source",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0031",
@@ -6995,7 +7154,10 @@
           "original": "not_evaluated",
           "new": "not_evaluated"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_conflict-source",
+      "rule_ref": "OS015-NEG-source_conflict-source",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0032",
@@ -7063,7 +7225,10 @@
           "original": "not_evaluated",
           "new": "not_evaluated"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_unresolved-source",
+      "rule_ref": "OS015-NEG-source_unresolved-source",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0033",
@@ -7131,7 +7296,10 @@
           "original": "not_evaluated",
           "new": "not_evaluated"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_conflict-source",
+      "rule_ref": "OS015-NEG-source_conflict-source",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0034",
@@ -7199,7 +7367,10 @@
           "original": "not_evaluated",
           "new": "not_evaluated"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_unresolved-source",
+      "rule_ref": "OS015-NEG-source_unresolved-source",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0035",
@@ -7267,7 +7438,10 @@
           "original": "not_evaluated",
           "new": "not_evaluated"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_conflict-source",
+      "rule_ref": "OS015-NEG-source_conflict-source",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0036",
@@ -7335,7 +7509,10 @@
           "original": "not_evaluated",
           "new": "not_evaluated"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_unresolved-source",
+      "rule_ref": "OS015-NEG-source_unresolved-source",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0037",
@@ -7403,7 +7580,10 @@
           "original": "not_evaluated",
           "new": "not_evaluated"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_conflict-source",
+      "rule_ref": "OS015-NEG-source_conflict-source",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0038",
@@ -7471,7 +7651,10 @@
           "original": "not_evaluated",
           "new": "not_evaluated"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_unresolved-source",
+      "rule_ref": "OS015-NEG-source_unresolved-source",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0039",
@@ -7539,7 +7722,10 @@
           "original": "not_evaluated",
           "new": "not_evaluated"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_conflict-source",
+      "rule_ref": "OS015-NEG-source_conflict-source",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0040",
@@ -7607,7 +7793,10 @@
           "original": "not_evaluated",
           "new": "not_evaluated"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_unresolved-source",
+      "rule_ref": "OS015-NEG-source_unresolved-source",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0041",
@@ -7675,7 +7864,10 @@
           "original": "not_evaluated",
           "new": "not_evaluated"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_conflict-source",
+      "rule_ref": "OS015-NEG-source_conflict-source",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0042",
@@ -7743,7 +7935,10 @@
           "original": "not_evaluated",
           "new": "not_evaluated"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_unresolved-source",
+      "rule_ref": "OS015-NEG-source_unresolved-source",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0043",
@@ -7811,7 +8006,10 @@
           "original": "not_evaluated",
           "new": "not_evaluated"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_conflict-source",
+      "rule_ref": "OS015-NEG-source_conflict-source",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0044",
@@ -9463,7 +9661,10 @@
           "original": "not_evaluated",
           "new": "not_evaluated"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_unresolved-source",
+      "rule_ref": "OS015-NEG-source_unresolved-source",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0063",
@@ -9531,7 +9732,10 @@
           "original": "not_evaluated",
           "new": "not_evaluated"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_conflict-source",
+      "rule_ref": "OS015-NEG-source_conflict-source",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0064",
@@ -9599,7 +9803,10 @@
           "original": "not_evaluated",
           "new": "not_evaluated"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_unresolved-source",
+      "rule_ref": "OS015-NEG-source_unresolved-source",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0065",
@@ -9667,7 +9874,10 @@
           "original": "not_evaluated",
           "new": "not_evaluated"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_conflict-source",
+      "rule_ref": "OS015-NEG-source_conflict-source",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0066",
@@ -9735,7 +9945,10 @@
           "original": "not_evaluated",
           "new": "not_evaluated"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_unresolved-source",
+      "rule_ref": "OS015-NEG-source_unresolved-source",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0067",
@@ -9803,7 +10016,10 @@
           "original": "not_evaluated",
           "new": "not_evaluated"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_conflict-source",
+      "rule_ref": "OS015-NEG-source_conflict-source",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0068",
@@ -9871,7 +10087,10 @@
           "original": "not_evaluated",
           "new": "not_evaluated"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_unresolved-source",
+      "rule_ref": "OS015-NEG-source_unresolved-source",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0069",
@@ -9939,7 +10158,10 @@
           "original": "not_evaluated",
           "new": "not_evaluated"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_conflict-source",
+      "rule_ref": "OS015-NEG-source_conflict-source",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0070",
@@ -10007,7 +10229,10 @@
           "original": "not_evaluated",
           "new": "not_evaluated"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_unresolved-source",
+      "rule_ref": "OS015-NEG-source_unresolved-source",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0071",
@@ -10075,7 +10300,10 @@
           "original": "not_evaluated",
           "new": "not_evaluated"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_conflict-source",
+      "rule_ref": "OS015-NEG-source_conflict-source",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0072",
@@ -10143,7 +10371,10 @@
           "original": "not_evaluated",
           "new": "not_evaluated"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_unresolved-source",
+      "rule_ref": "OS015-NEG-source_unresolved-source",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0073",
@@ -10211,7 +10442,10 @@
           "original": "not_evaluated",
           "new": "not_evaluated"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_conflict-source",
+      "rule_ref": "OS015-NEG-source_conflict-source",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0074",
@@ -10279,7 +10513,10 @@
           "original": "not_evaluated",
           "new": "not_evaluated"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_unresolved-source",
+      "rule_ref": "OS015-NEG-source_unresolved-source",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0075",
@@ -10347,7 +10584,10 @@
           "original": "not_evaluated",
           "new": "not_evaluated"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_conflict-source",
+      "rule_ref": "OS015-NEG-source_conflict-source",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0076",
@@ -10415,7 +10655,10 @@
           "original": "not_evaluated",
           "new": "not_evaluated"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_unresolved-source",
+      "rule_ref": "OS015-NEG-source_unresolved-source",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0077",
@@ -10483,7 +10726,10 @@
           "original": "not_evaluated",
           "new": "not_evaluated"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_conflict-source",
+      "rule_ref": "OS015-NEG-source_conflict-source",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0078",
@@ -10551,7 +10797,10 @@
           "original": "not_evaluated",
           "new": "not_evaluated"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_unresolved-source",
+      "rule_ref": "OS015-NEG-source_unresolved-source",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0079",
@@ -10619,7 +10868,10 @@
           "original": "not_evaluated",
           "new": "not_evaluated"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_conflict-source",
+      "rule_ref": "OS015-NEG-source_conflict-source",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0080",
@@ -10687,7 +10939,10 @@
           "original": "not_evaluated",
           "new": "not_evaluated"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_unresolved-source",
+      "rule_ref": "OS015-NEG-source_unresolved-source",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0081",
@@ -10755,7 +11010,10 @@
           "original": "not_evaluated",
           "new": "not_evaluated"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_conflict-source",
+      "rule_ref": "OS015-NEG-source_conflict-source",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0082",
@@ -10823,7 +11081,10 @@
           "original": "not_evaluated",
           "new": "not_evaluated"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_unresolved-source",
+      "rule_ref": "OS015-NEG-source_unresolved-source",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0083",
@@ -10891,7 +11152,10 @@
           "original": "not_evaluated",
           "new": "not_evaluated"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_conflict-source",
+      "rule_ref": "OS015-NEG-source_conflict-source",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0084",
@@ -10959,7 +11223,10 @@
           "original": "not_evaluated",
           "new": "not_evaluated"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_unresolved-source",
+      "rule_ref": "OS015-NEG-source_unresolved-source",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0085",
@@ -11027,7 +11294,10 @@
           "original": "not_evaluated",
           "new": "not_evaluated"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_conflict-source",
+      "rule_ref": "OS015-NEG-source_conflict-source",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0086",
@@ -11095,7 +11365,10 @@
           "original": "not_evaluated",
           "new": "not_evaluated"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_unresolved-source",
+      "rule_ref": "OS015-NEG-source_unresolved-source",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0087",
@@ -11163,7 +11436,10 @@
           "original": "not_evaluated",
           "new": "not_evaluated"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_conflict-source",
+      "rule_ref": "OS015-NEG-source_conflict-source",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0088",
@@ -11231,7 +11507,10 @@
           "original": "not_evaluated",
           "new": "not_evaluated"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_unresolved-source",
+      "rule_ref": "OS015-NEG-source_unresolved-source",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0089",
@@ -11299,7 +11578,10 @@
           "original": "not_evaluated",
           "new": "not_evaluated"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_conflict-source",
+      "rule_ref": "OS015-NEG-source_conflict-source",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0090",
@@ -11367,7 +11649,10 @@
           "original": "not_evaluated",
           "new": "not_evaluated"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_unresolved-source",
+      "rule_ref": "OS015-NEG-source_unresolved-source",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0091",
@@ -11435,7 +11720,10 @@
           "original": "not_evaluated",
           "new": "not_evaluated"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_conflict-source",
+      "rule_ref": "OS015-NEG-source_conflict-source",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0092",
@@ -11503,7 +11791,10 @@
           "original": "not_evaluated",
           "new": "not_evaluated"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_unresolved-source",
+      "rule_ref": "OS015-NEG-source_unresolved-source",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0093",
@@ -11571,7 +11862,10 @@
           "original": "not_evaluated",
           "new": "not_evaluated"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_conflict-source",
+      "rule_ref": "OS015-NEG-source_conflict-source",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0094",
@@ -11639,7 +11933,10 @@
           "original": "not_evaluated",
           "new": "not_evaluated"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_unresolved-source",
+      "rule_ref": "OS015-NEG-source_unresolved-source",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0095",
@@ -11707,7 +12004,10 @@
           "original": "not_evaluated",
           "new": "not_evaluated"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_conflict-source",
+      "rule_ref": "OS015-NEG-source_conflict-source",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0096",
@@ -11775,7 +12075,10 @@
           "original": "not_evaluated",
           "new": "not_evaluated"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_unresolved-source",
+      "rule_ref": "OS015-NEG-source_unresolved-source",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0097",
@@ -11843,7 +12146,10 @@
           "original": "not_evaluated",
           "new": "not_evaluated"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_conflict-source",
+      "rule_ref": "OS015-NEG-source_conflict-source",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0098",
@@ -11911,7 +12217,10 @@
           "original": "not_evaluated",
           "new": "not_evaluated"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_unresolved-source",
+      "rule_ref": "OS015-NEG-source_unresolved-source",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0099",
@@ -11979,7 +12288,10 @@
           "original": "not_evaluated",
           "new": "not_evaluated"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_conflict-source",
+      "rule_ref": "OS015-NEG-source_conflict-source",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0100",
@@ -12047,7 +12359,10 @@
           "original": "not_evaluated",
           "new": "not_evaluated"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_unresolved-source",
+      "rule_ref": "OS015-NEG-source_unresolved-source",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0101",
@@ -12115,7 +12430,10 @@
           "original": "not_evaluated",
           "new": "not_evaluated"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_conflict-source",
+      "rule_ref": "OS015-NEG-source_conflict-source",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0102",
@@ -13767,7 +14085,10 @@
           "original": "unclassified_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_unresolved-source",
+      "rule_ref": "OS015-NEG-source_unresolved-source",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0121",
@@ -13835,7 +14156,10 @@
           "original": "unclassified_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_conflict-source",
+      "rule_ref": "OS015-NEG-source_conflict-source",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0122",
@@ -13903,7 +14227,10 @@
           "original": "unclassified_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_unresolved-source",
+      "rule_ref": "OS015-NEG-source_unresolved-source",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0123",
@@ -13971,7 +14298,10 @@
           "original": "unclassified_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_conflict-source",
+      "rule_ref": "OS015-NEG-source_conflict-source",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0124",
@@ -14039,7 +14369,10 @@
           "original": "unclassified_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_unresolved-source",
+      "rule_ref": "OS015-NEG-source_unresolved-source",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0125",
@@ -14107,7 +14440,10 @@
           "original": "unclassified_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_conflict-source",
+      "rule_ref": "OS015-NEG-source_conflict-source",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0126",
@@ -14175,7 +14511,10 @@
           "original": "unclassified_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_unresolved-source",
+      "rule_ref": "OS015-NEG-source_unresolved-source",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0127",
@@ -14243,7 +14582,10 @@
           "original": "unclassified_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_conflict-source",
+      "rule_ref": "OS015-NEG-source_conflict-source",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0128",
@@ -14311,7 +14653,10 @@
           "original": "unclassified_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_unresolved-source",
+      "rule_ref": "OS015-NEG-source_unresolved-source",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0129",
@@ -14379,7 +14724,10 @@
           "original": "unclassified_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_conflict-source",
+      "rule_ref": "OS015-NEG-source_conflict-source",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0130",
@@ -14447,7 +14795,10 @@
           "original": "unclassified_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_unresolved-source",
+      "rule_ref": "OS015-NEG-source_unresolved-source",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0131",
@@ -14515,7 +14866,10 @@
           "original": "unclassified_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_conflict-source",
+      "rule_ref": "OS015-NEG-source_conflict-source",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0132",
@@ -14583,7 +14937,10 @@
           "original": "unclassified_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_unresolved-source",
+      "rule_ref": "OS015-NEG-source_unresolved-source",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0133",
@@ -14651,7 +15008,10 @@
           "original": "unclassified_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_conflict-source",
+      "rule_ref": "OS015-NEG-source_conflict-source",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0134",
@@ -14719,7 +15079,10 @@
           "original": "unclassified_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_unresolved-source",
+      "rule_ref": "OS015-NEG-source_unresolved-source",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0135",
@@ -14787,7 +15150,10 @@
           "original": "unclassified_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_conflict-source",
+      "rule_ref": "OS015-NEG-source_conflict-source",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0136",
@@ -14855,7 +15221,10 @@
           "original": "unclassified_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_unresolved-source",
+      "rule_ref": "OS015-NEG-source_unresolved-source",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0137",
@@ -14923,7 +15292,10 @@
           "original": "unclassified_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_conflict-source",
+      "rule_ref": "OS015-NEG-source_conflict-source",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0138",
@@ -14991,7 +15363,10 @@
           "original": "unclassified_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_unresolved-source",
+      "rule_ref": "OS015-NEG-source_unresolved-source",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0139",
@@ -15059,7 +15434,10 @@
           "original": "unclassified_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_conflict-source",
+      "rule_ref": "OS015-NEG-source_conflict-source",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0140",
@@ -15127,7 +15505,10 @@
           "original": "unclassified_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_unresolved-source",
+      "rule_ref": "OS015-NEG-source_unresolved-source",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0141",
@@ -15195,7 +15576,10 @@
           "original": "unclassified_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_conflict-source",
+      "rule_ref": "OS015-NEG-source_conflict-source",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0142",
@@ -15263,7 +15647,10 @@
           "original": "unclassified_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_unresolved-source",
+      "rule_ref": "OS015-NEG-source_unresolved-source",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0143",
@@ -15331,7 +15718,10 @@
           "original": "unclassified_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_conflict-source",
+      "rule_ref": "OS015-NEG-source_conflict-source",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0144",
@@ -15399,7 +15789,10 @@
           "original": "unclassified_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_unresolved-source",
+      "rule_ref": "OS015-NEG-source_unresolved-source",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0145",
@@ -15467,7 +15860,10 @@
           "original": "unclassified_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_conflict-source",
+      "rule_ref": "OS015-NEG-source_conflict-source",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0146",
@@ -15535,7 +15931,10 @@
           "original": "unclassified_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_unresolved-source",
+      "rule_ref": "OS015-NEG-source_unresolved-source",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0147",
@@ -15603,7 +16002,10 @@
           "original": "unclassified_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_conflict-source",
+      "rule_ref": "OS015-NEG-source_conflict-source",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0148",
@@ -15671,7 +16073,10 @@
           "original": "unclassified_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_unresolved-source",
+      "rule_ref": "OS015-NEG-source_unresolved-source",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0149",
@@ -15739,7 +16144,10 @@
           "original": "unclassified_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_conflict-source",
+      "rule_ref": "OS015-NEG-source_conflict-source",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0150",
@@ -15807,7 +16215,10 @@
           "original": "unclassified_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_unresolved-source",
+      "rule_ref": "OS015-NEG-source_unresolved-source",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0151",
@@ -15875,7 +16286,10 @@
           "original": "unclassified_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_conflict-source",
+      "rule_ref": "OS015-NEG-source_conflict-source",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0152",
@@ -15943,7 +16357,10 @@
           "original": "unclassified_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_unresolved-source",
+      "rule_ref": "OS015-NEG-source_unresolved-source",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0153",
@@ -16011,7 +16428,10 @@
           "original": "unclassified_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_conflict-source",
+      "rule_ref": "OS015-NEG-source_conflict-source",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0154",
@@ -16079,7 +16499,10 @@
           "original": "unclassified_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_unresolved-source",
+      "rule_ref": "OS015-NEG-source_unresolved-source",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0155",
@@ -16147,7 +16570,10 @@
           "original": "unclassified_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_conflict-source",
+      "rule_ref": "OS015-NEG-source_conflict-source",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0156",
@@ -16215,7 +16641,10 @@
           "original": "unclassified_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_unresolved-source",
+      "rule_ref": "OS015-NEG-source_unresolved-source",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0157",
@@ -16283,7 +16712,10 @@
           "original": "unclassified_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_conflict-source",
+      "rule_ref": "OS015-NEG-source_conflict-source",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0158",
@@ -16351,7 +16783,10 @@
           "original": "unclassified_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_unresolved-source",
+      "rule_ref": "OS015-NEG-source_unresolved-source",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0159",
@@ -16419,7 +16854,10 @@
           "original": "unclassified_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_conflict-source",
+      "rule_ref": "OS015-NEG-source_conflict-source",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0160",
@@ -18071,7 +18509,10 @@
           "original": "unclassified_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_unresolved-source",
+      "rule_ref": "OS015-NEG-source_unresolved-source",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0179",
@@ -18227,7 +18668,10 @@
           "original": "unclassified_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_unresolved-source",
+      "rule_ref": "OS015-NEG-source_unresolved-source",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0181",
@@ -18295,7 +18739,10 @@
           "original": "unclassified_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_conflict-source",
+      "rule_ref": "OS015-NEG-source_conflict-source",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0182",
@@ -18363,7 +18810,10 @@
           "original": "unclassified_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_unresolved-source",
+      "rule_ref": "OS015-NEG-source_unresolved-source",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0183",
@@ -18431,7 +18881,10 @@
           "original": "unclassified_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_conflict-source",
+      "rule_ref": "OS015-NEG-source_conflict-source",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0184",
@@ -18499,7 +18952,10 @@
           "original": "unclassified_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_unresolved-source",
+      "rule_ref": "OS015-NEG-source_unresolved-source",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0185",
@@ -18655,7 +19111,10 @@
           "original": "unclassified_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_unresolved-source",
+      "rule_ref": "OS015-NEG-source_unresolved-source",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0187",
@@ -18723,7 +19182,10 @@
           "original": "unclassified_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_conflict-source",
+      "rule_ref": "OS015-NEG-source_conflict-source",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0188",
@@ -18791,7 +19253,10 @@
           "original": "unclassified_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_unresolved-source",
+      "rule_ref": "OS015-NEG-source_unresolved-source",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0189",
@@ -18859,7 +19324,10 @@
           "original": "unclassified_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_conflict-source",
+      "rule_ref": "OS015-NEG-source_conflict-source",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0190",
@@ -18927,7 +19395,10 @@
           "original": "unclassified_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_unresolved-source",
+      "rule_ref": "OS015-NEG-source_unresolved-source",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0191",
@@ -18995,7 +19466,10 @@
           "original": "unclassified_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_conflict-source",
+      "rule_ref": "OS015-NEG-source_conflict-source",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0192",
@@ -19063,7 +19537,10 @@
           "original": "unclassified_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_unresolved-source",
+      "rule_ref": "OS015-NEG-source_unresolved-source",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0193",
@@ -19131,7 +19608,10 @@
           "original": "unclassified_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_conflict-source",
+      "rule_ref": "OS015-NEG-source_conflict-source",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0194",
@@ -19199,7 +19679,10 @@
           "original": "unclassified_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_unresolved-source",
+      "rule_ref": "OS015-NEG-source_unresolved-source",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0195",
@@ -19267,7 +19750,10 @@
           "original": "unclassified_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_conflict-source",
+      "rule_ref": "OS015-NEG-source_conflict-source",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0196",
@@ -19335,7 +19821,10 @@
           "original": "unclassified_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_unresolved-source",
+      "rule_ref": "OS015-NEG-source_unresolved-source",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0197",
@@ -19403,7 +19892,10 @@
           "original": "unclassified_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_conflict-source",
+      "rule_ref": "OS015-NEG-source_conflict-source",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0198",
@@ -19471,7 +19963,10 @@
           "original": "unclassified_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_unresolved-source",
+      "rule_ref": "OS015-NEG-source_unresolved-source",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0199",
@@ -19539,7 +20034,10 @@
           "original": "unclassified_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_conflict-source",
+      "rule_ref": "OS015-NEG-source_conflict-source",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0200",
@@ -19607,7 +20105,10 @@
           "original": "unclassified_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_unresolved-source",
+      "rule_ref": "OS015-NEG-source_unresolved-source",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0201",
@@ -19675,7 +20176,10 @@
           "original": "unclassified_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_conflict-source",
+      "rule_ref": "OS015-NEG-source_conflict-source",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0202",
@@ -19743,7 +20247,10 @@
           "original": "unclassified_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_unresolved-source",
+      "rule_ref": "OS015-NEG-source_unresolved-source",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0203",
@@ -19811,7 +20318,10 @@
           "original": "unclassified_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_conflict-source",
+      "rule_ref": "OS015-NEG-source_conflict-source",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0204",
@@ -19879,7 +20389,10 @@
           "original": "unclassified_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_unresolved-source",
+      "rule_ref": "OS015-NEG-source_unresolved-source",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0205",
@@ -19947,7 +20460,10 @@
           "original": "unclassified_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_conflict-source",
+      "rule_ref": "OS015-NEG-source_conflict-source",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0206",
@@ -20015,7 +20531,10 @@
           "original": "unclassified_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_unresolved-source",
+      "rule_ref": "OS015-NEG-source_unresolved-source",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0207",
@@ -20083,7 +20602,10 @@
           "original": "unclassified_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_conflict-source",
+      "rule_ref": "OS015-NEG-source_conflict-source",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0208",
@@ -20151,7 +20673,10 @@
           "original": "unclassified_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_unresolved-source",
+      "rule_ref": "OS015-NEG-source_unresolved-source",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0209",
@@ -20219,7 +20744,10 @@
           "original": "unclassified_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_conflict-source",
+      "rule_ref": "OS015-NEG-source_conflict-source",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0210",
@@ -20287,7 +20815,10 @@
           "original": "unclassified_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_unresolved-source",
+      "rule_ref": "OS015-NEG-source_unresolved-source",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0211",
@@ -20355,7 +20886,10 @@
           "original": "unclassified_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_conflict-source",
+      "rule_ref": "OS015-NEG-source_conflict-source",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0212",
@@ -20423,7 +20957,10 @@
           "original": "unclassified_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_unresolved-source",
+      "rule_ref": "OS015-NEG-source_unresolved-source",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0213",
@@ -20491,7 +21028,10 @@
           "original": "unclassified_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_conflict-source",
+      "rule_ref": "OS015-NEG-source_conflict-source",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0214",
@@ -20559,7 +21099,10 @@
           "original": "unclassified_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_unresolved-source",
+      "rule_ref": "OS015-NEG-source_unresolved-source",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0215",
@@ -20627,7 +21170,10 @@
           "original": "unclassified_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_conflict-source",
+      "rule_ref": "OS015-NEG-source_conflict-source",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0216",
@@ -20695,7 +21241,10 @@
           "original": "unclassified_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_unresolved-source",
+      "rule_ref": "OS015-NEG-source_unresolved-source",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0217",
@@ -20763,7 +21312,10 @@
           "original": "unclassified_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_conflict-source",
+      "rule_ref": "OS015-NEG-source_conflict-source",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0218",
@@ -22455,7 +23007,10 @@
           "original": "stale_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_unresolved-source",
+      "rule_ref": "OS015-NEG-source_unresolved-source",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0237",
@@ -22523,7 +23078,10 @@
           "original": "stale_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_conflict-source",
+      "rule_ref": "OS015-NEG-source_conflict-source",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0238",
@@ -22591,7 +23149,10 @@
           "original": "stale_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_unresolved-source",
+      "rule_ref": "OS015-NEG-source_unresolved-source",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0239",
@@ -22659,7 +23220,10 @@
           "original": "stale_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_conflict-source",
+      "rule_ref": "OS015-NEG-source_conflict-source",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0240",
@@ -22727,7 +23291,10 @@
           "original": "stale_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_unresolved-source",
+      "rule_ref": "OS015-NEG-source_unresolved-source",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0241",
@@ -22795,7 +23362,10 @@
           "original": "stale_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_conflict-source",
+      "rule_ref": "OS015-NEG-source_conflict-source",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0242",
@@ -22863,7 +23433,10 @@
           "original": "stale_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_unresolved-source",
+      "rule_ref": "OS015-NEG-source_unresolved-source",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0243",
@@ -22931,7 +23504,10 @@
           "original": "stale_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_conflict-source",
+      "rule_ref": "OS015-NEG-source_conflict-source",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0244",
@@ -22999,7 +23575,10 @@
           "original": "stale_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_unresolved-source",
+      "rule_ref": "OS015-NEG-source_unresolved-source",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0245",
@@ -23067,7 +23646,10 @@
           "original": "stale_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_conflict-source",
+      "rule_ref": "OS015-NEG-source_conflict-source",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0246",
@@ -23135,7 +23717,10 @@
           "original": "stale_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_unresolved-source",
+      "rule_ref": "OS015-NEG-source_unresolved-source",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0247",
@@ -23203,7 +23788,10 @@
           "original": "stale_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_conflict-source",
+      "rule_ref": "OS015-NEG-source_conflict-source",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0248",
@@ -23271,7 +23859,10 @@
           "original": "stale_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_unresolved-source",
+      "rule_ref": "OS015-NEG-source_unresolved-source",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0249",
@@ -23339,7 +23930,10 @@
           "original": "stale_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_conflict-source",
+      "rule_ref": "OS015-NEG-source_conflict-source",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0250",
@@ -23407,7 +24001,10 @@
           "original": "stale_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_unresolved-source",
+      "rule_ref": "OS015-NEG-source_unresolved-source",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0251",
@@ -23475,7 +24072,10 @@
           "original": "stale_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_conflict-source",
+      "rule_ref": "OS015-NEG-source_conflict-source",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0252",
@@ -23543,7 +24143,10 @@
           "original": "stale_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_unresolved-source",
+      "rule_ref": "OS015-NEG-source_unresolved-source",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0253",
@@ -23611,7 +24214,10 @@
           "original": "stale_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_conflict-source",
+      "rule_ref": "OS015-NEG-source_conflict-source",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0254",
@@ -23679,7 +24285,10 @@
           "original": "stale_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_unresolved-source",
+      "rule_ref": "OS015-NEG-source_unresolved-source",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0255",
@@ -23747,7 +24356,10 @@
           "original": "stale_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_conflict-source",
+      "rule_ref": "OS015-NEG-source_conflict-source",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0256",
@@ -23815,7 +24427,10 @@
           "original": "stale_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_unresolved-source",
+      "rule_ref": "OS015-NEG-source_unresolved-source",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0257",
@@ -23883,7 +24498,10 @@
           "original": "stale_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_conflict-source",
+      "rule_ref": "OS015-NEG-source_conflict-source",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0258",
@@ -23951,7 +24569,10 @@
           "original": "stale_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_unresolved-source",
+      "rule_ref": "OS015-NEG-source_unresolved-source",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0259",
@@ -24019,7 +24640,10 @@
           "original": "stale_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_conflict-source",
+      "rule_ref": "OS015-NEG-source_conflict-source",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0260",
@@ -24087,7 +24711,10 @@
           "original": "stale_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_unresolved-source",
+      "rule_ref": "OS015-NEG-source_unresolved-source",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0261",
@@ -24155,7 +24782,10 @@
           "original": "stale_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_conflict-source",
+      "rule_ref": "OS015-NEG-source_conflict-source",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0262",
@@ -24223,7 +24853,10 @@
           "original": "stale_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_unresolved-source",
+      "rule_ref": "OS015-NEG-source_unresolved-source",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0263",
@@ -24291,7 +24924,10 @@
           "original": "stale_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_conflict-source",
+      "rule_ref": "OS015-NEG-source_conflict-source",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0264",
@@ -24359,7 +24995,10 @@
           "original": "stale_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_unresolved-source",
+      "rule_ref": "OS015-NEG-source_unresolved-source",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0265",
@@ -24427,7 +25066,10 @@
           "original": "stale_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_conflict-source",
+      "rule_ref": "OS015-NEG-source_conflict-source",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0266",
@@ -24495,7 +25137,10 @@
           "original": "stale_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_unresolved-source",
+      "rule_ref": "OS015-NEG-source_unresolved-source",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0267",
@@ -24563,7 +25208,10 @@
           "original": "stale_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_conflict-source",
+      "rule_ref": "OS015-NEG-source_conflict-source",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0268",
@@ -24631,7 +25279,10 @@
           "original": "stale_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_unresolved-source",
+      "rule_ref": "OS015-NEG-source_unresolved-source",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0269",
@@ -24699,7 +25350,10 @@
           "original": "stale_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_conflict-source",
+      "rule_ref": "OS015-NEG-source_conflict-source",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0270",
@@ -24767,7 +25421,10 @@
           "original": "stale_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_unresolved-source",
+      "rule_ref": "OS015-NEG-source_unresolved-source",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0271",
@@ -24835,7 +25492,10 @@
           "original": "stale_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_conflict-source",
+      "rule_ref": "OS015-NEG-source_conflict-source",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0272",
@@ -24903,7 +25563,10 @@
           "original": "stale_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_unresolved-source",
+      "rule_ref": "OS015-NEG-source_unresolved-source",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0273",
@@ -24971,7 +25634,10 @@
           "original": "stale_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_conflict-source",
+      "rule_ref": "OS015-NEG-source_conflict-source",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0274",
@@ -25039,7 +25705,10 @@
           "original": "stale_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_unresolved-source",
+      "rule_ref": "OS015-NEG-source_unresolved-source",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0275",
@@ -25107,7 +25776,10 @@
           "original": "stale_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_conflict-source",
+      "rule_ref": "OS015-NEG-source_conflict-source",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0276",
@@ -26759,7 +27431,10 @@
           "original": "stale_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_unresolved-source",
+      "rule_ref": "OS015-NEG-source_unresolved-source",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0295",
@@ -26915,7 +27590,10 @@
           "original": "stale_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_unresolved-source",
+      "rule_ref": "OS015-NEG-source_unresolved-source",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0297",
@@ -26983,7 +27661,10 @@
           "original": "stale_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_conflict-source",
+      "rule_ref": "OS015-NEG-source_conflict-source",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0298",
@@ -27051,7 +27732,10 @@
           "original": "stale_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_unresolved-source",
+      "rule_ref": "OS015-NEG-source_unresolved-source",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0299",
@@ -27119,7 +27803,10 @@
           "original": "stale_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_conflict-source",
+      "rule_ref": "OS015-NEG-source_conflict-source",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0300",
@@ -27187,7 +27874,10 @@
           "original": "stale_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_unresolved-source",
+      "rule_ref": "OS015-NEG-source_unresolved-source",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0301",
@@ -27343,7 +28033,10 @@
           "original": "stale_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_unresolved-source",
+      "rule_ref": "OS015-NEG-source_unresolved-source",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0303",
@@ -27411,7 +28104,10 @@
           "original": "stale_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_conflict-source",
+      "rule_ref": "OS015-NEG-source_conflict-source",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0304",
@@ -27479,7 +28175,10 @@
           "original": "stale_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_unresolved-source",
+      "rule_ref": "OS015-NEG-source_unresolved-source",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0305",
@@ -27547,7 +28246,10 @@
           "original": "stale_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_conflict-source",
+      "rule_ref": "OS015-NEG-source_conflict-source",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0306",
@@ -27615,7 +28317,10 @@
           "original": "stale_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_unresolved-source",
+      "rule_ref": "OS015-NEG-source_unresolved-source",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0307",
@@ -27683,7 +28388,10 @@
           "original": "stale_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_conflict-source",
+      "rule_ref": "OS015-NEG-source_conflict-source",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0308",
@@ -27751,7 +28459,10 @@
           "original": "stale_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_unresolved-source",
+      "rule_ref": "OS015-NEG-source_unresolved-source",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0309",
@@ -27819,7 +28530,10 @@
           "original": "stale_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_conflict-source",
+      "rule_ref": "OS015-NEG-source_conflict-source",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0310",
@@ -27887,7 +28601,10 @@
           "original": "stale_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_unresolved-source",
+      "rule_ref": "OS015-NEG-source_unresolved-source",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0311",
@@ -27955,7 +28672,10 @@
           "original": "stale_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_conflict-source",
+      "rule_ref": "OS015-NEG-source_conflict-source",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0312",
@@ -28023,7 +28743,10 @@
           "original": "stale_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_unresolved-source",
+      "rule_ref": "OS015-NEG-source_unresolved-source",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0313",
@@ -28091,7 +28814,10 @@
           "original": "stale_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_conflict-source",
+      "rule_ref": "OS015-NEG-source_conflict-source",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0314",
@@ -28159,7 +28885,10 @@
           "original": "stale_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_unresolved-source",
+      "rule_ref": "OS015-NEG-source_unresolved-source",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0315",
@@ -28227,7 +28956,10 @@
           "original": "stale_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_conflict-source",
+      "rule_ref": "OS015-NEG-source_conflict-source",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0316",
@@ -28295,7 +29027,10 @@
           "original": "stale_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_unresolved-source",
+      "rule_ref": "OS015-NEG-source_unresolved-source",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0317",
@@ -28363,7 +29098,10 @@
           "original": "stale_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_conflict-source",
+      "rule_ref": "OS015-NEG-source_conflict-source",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0318",
@@ -28431,7 +29169,10 @@
           "original": "stale_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_unresolved-source",
+      "rule_ref": "OS015-NEG-source_unresolved-source",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0319",
@@ -28499,7 +29240,10 @@
           "original": "stale_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_conflict-source",
+      "rule_ref": "OS015-NEG-source_conflict-source",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0320",
@@ -28567,7 +29311,10 @@
           "original": "stale_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_unresolved-source",
+      "rule_ref": "OS015-NEG-source_unresolved-source",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0321",
@@ -28635,7 +29382,10 @@
           "original": "stale_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_conflict-source",
+      "rule_ref": "OS015-NEG-source_conflict-source",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0322",
@@ -28703,7 +29453,10 @@
           "original": "stale_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_unresolved-source",
+      "rule_ref": "OS015-NEG-source_unresolved-source",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0323",
@@ -28771,7 +29524,10 @@
           "original": "stale_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_conflict-source",
+      "rule_ref": "OS015-NEG-source_conflict-source",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0324",
@@ -28839,7 +29595,10 @@
           "original": "stale_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_unresolved-source",
+      "rule_ref": "OS015-NEG-source_unresolved-source",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0325",
@@ -28907,7 +29666,10 @@
           "original": "stale_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_conflict-source",
+      "rule_ref": "OS015-NEG-source_conflict-source",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0326",
@@ -28975,7 +29737,10 @@
           "original": "stale_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_unresolved-source",
+      "rule_ref": "OS015-NEG-source_unresolved-source",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0327",
@@ -29043,7 +29808,10 @@
           "original": "stale_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_conflict-source",
+      "rule_ref": "OS015-NEG-source_conflict-source",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0328",
@@ -29111,7 +29879,10 @@
           "original": "stale_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_unresolved-source",
+      "rule_ref": "OS015-NEG-source_unresolved-source",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0329",
@@ -29179,7 +29950,10 @@
           "original": "stale_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_conflict-source",
+      "rule_ref": "OS015-NEG-source_conflict-source",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0330",
@@ -29247,7 +30021,10 @@
           "original": "stale_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_unresolved-source",
+      "rule_ref": "OS015-NEG-source_unresolved-source",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0331",
@@ -29315,7 +30092,10 @@
           "original": "stale_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_conflict-source",
+      "rule_ref": "OS015-NEG-source_conflict-source",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0332",
@@ -29383,7 +30163,10 @@
           "original": "stale_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_unresolved-source",
+      "rule_ref": "OS015-NEG-source_unresolved-source",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0333",
@@ -29451,7 +30234,10 @@
           "original": "stale_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_conflict-source",
+      "rule_ref": "OS015-NEG-source_conflict-source",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0334",
@@ -31143,7 +31929,10 @@
           "original": "unclassified_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_unresolved-classification",
+      "rule_ref": "OS015-NEG-source_unresolved-classification",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0353",
@@ -31211,7 +32000,10 @@
           "original": "unclassified_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_conflict-classification",
+      "rule_ref": "OS015-NEG-source_conflict-classification",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0354",
@@ -31279,7 +32071,10 @@
           "original": "unclassified_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_unresolved-classification",
+      "rule_ref": "OS015-NEG-source_unresolved-classification",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0355",
@@ -31347,7 +32142,10 @@
           "original": "unclassified_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_conflict-classification",
+      "rule_ref": "OS015-NEG-source_conflict-classification",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0356",
@@ -31415,7 +32213,10 @@
           "original": "unclassified_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_unresolved-classification",
+      "rule_ref": "OS015-NEG-source_unresolved-classification",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0357",
@@ -31483,7 +32284,10 @@
           "original": "unclassified_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_conflict-classification",
+      "rule_ref": "OS015-NEG-source_conflict-classification",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0358",
@@ -31551,7 +32355,10 @@
           "original": "unclassified_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_unresolved-classification",
+      "rule_ref": "OS015-NEG-source_unresolved-classification",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0359",
@@ -31619,7 +32426,10 @@
           "original": "unclassified_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_conflict-classification",
+      "rule_ref": "OS015-NEG-source_conflict-classification",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0360",
@@ -31687,7 +32497,10 @@
           "original": "unclassified_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_unresolved-classification",
+      "rule_ref": "OS015-NEG-source_unresolved-classification",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0361",
@@ -31755,7 +32568,10 @@
           "original": "unclassified_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_conflict-classification",
+      "rule_ref": "OS015-NEG-source_conflict-classification",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0362",
@@ -31823,7 +32639,10 @@
           "original": "unclassified_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_unresolved-classification",
+      "rule_ref": "OS015-NEG-source_unresolved-classification",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0363",
@@ -31891,7 +32710,10 @@
           "original": "unclassified_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_conflict-classification",
+      "rule_ref": "OS015-NEG-source_conflict-classification",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0364",
@@ -32135,7 +32957,10 @@
           "original": "unclassified_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_unresolved-classification",
+      "rule_ref": "OS015-NEG-source_unresolved-classification",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0367",
@@ -32203,7 +33028,10 @@
           "original": "unclassified_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_conflict-classification",
+      "rule_ref": "OS015-NEG-source_conflict-classification",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0368",
@@ -32271,7 +33099,10 @@
           "original": "unclassified_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_unresolved-classification",
+      "rule_ref": "OS015-NEG-source_unresolved-classification",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0369",
@@ -32339,7 +33170,10 @@
           "original": "unclassified_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_conflict-classification",
+      "rule_ref": "OS015-NEG-source_conflict-classification",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0370",
@@ -32407,7 +33241,10 @@
           "original": "unclassified_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_unresolved-classification",
+      "rule_ref": "OS015-NEG-source_unresolved-classification",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0371",
@@ -32475,7 +33312,10 @@
           "original": "unclassified_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_conflict-classification",
+      "rule_ref": "OS015-NEG-source_conflict-classification",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0372",
@@ -32543,7 +33383,10 @@
           "original": "unclassified_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_unresolved-classification",
+      "rule_ref": "OS015-NEG-source_unresolved-classification",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0373",
@@ -32611,7 +33454,10 @@
           "original": "unclassified_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_conflict-classification",
+      "rule_ref": "OS015-NEG-source_conflict-classification",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0374",
@@ -32679,7 +33525,10 @@
           "original": "unclassified_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_unresolved-classification",
+      "rule_ref": "OS015-NEG-source_unresolved-classification",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0375",
@@ -32747,7 +33596,10 @@
           "original": "unclassified_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_conflict-classification",
+      "rule_ref": "OS015-NEG-source_conflict-classification",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0376",
@@ -32815,7 +33667,10 @@
           "original": "unclassified_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-new_classification_unresolved",
+      "rule_ref": "OS015-NEG-new_classification_unresolved",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0377",
@@ -32883,7 +33738,10 @@
           "original": "unclassified_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_unresolved-classification",
+      "rule_ref": "OS015-NEG-source_unresolved-classification",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0378",
@@ -32951,7 +33809,10 @@
           "original": "unclassified_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_conflict-classification",
+      "rule_ref": "OS015-NEG-source_conflict-classification",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0379",
@@ -33019,7 +33880,10 @@
           "original": "unclassified_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_unresolved-classification",
+      "rule_ref": "OS015-NEG-source_unresolved-classification",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0380",
@@ -33087,7 +33951,10 @@
           "original": "unclassified_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_conflict-classification",
+      "rule_ref": "OS015-NEG-source_conflict-classification",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0381",
@@ -33155,7 +34022,10 @@
           "original": "unclassified_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_unresolved-classification",
+      "rule_ref": "OS015-NEG-source_unresolved-classification",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0382",
@@ -33223,7 +34093,10 @@
           "original": "unclassified_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_conflict-classification",
+      "rule_ref": "OS015-NEG-source_conflict-classification",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0383",
@@ -33291,7 +34164,10 @@
           "original": "unclassified_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_unresolved-classification",
+      "rule_ref": "OS015-NEG-source_unresolved-classification",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0384",
@@ -33359,7 +34235,10 @@
           "original": "unclassified_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_conflict-classification",
+      "rule_ref": "OS015-NEG-source_conflict-classification",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0385",
@@ -33427,7 +34306,10 @@
           "original": "unclassified_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_unresolved-classification",
+      "rule_ref": "OS015-NEG-source_unresolved-classification",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0386",
@@ -33495,7 +34377,10 @@
           "original": "unclassified_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_conflict-classification",
+      "rule_ref": "OS015-NEG-source_conflict-classification",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0387",
@@ -33563,7 +34448,10 @@
           "original": "unclassified_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_unresolved-classification",
+      "rule_ref": "OS015-NEG-source_unresolved-classification",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0388",
@@ -33631,7 +34519,10 @@
           "original": "unclassified_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_conflict-classification",
+      "rule_ref": "OS015-NEG-source_conflict-classification",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0389",
@@ -33699,7 +34590,10 @@
           "original": "unclassified_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_unresolved-classification",
+      "rule_ref": "OS015-NEG-source_unresolved-classification",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0390",
@@ -33767,7 +34661,10 @@
           "original": "unclassified_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_conflict-classification",
+      "rule_ref": "OS015-NEG-source_conflict-classification",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0391",
@@ -33835,7 +34732,10 @@
           "original": "unclassified_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_unresolved-classification",
+      "rule_ref": "OS015-NEG-source_unresolved-classification",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0392",
@@ -33903,7 +34803,10 @@
           "original": "unclassified_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_conflict-classification",
+      "rule_ref": "OS015-NEG-source_conflict-classification",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0393",
@@ -33971,7 +34874,10 @@
           "original": "unclassified_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_unresolved-classification",
+      "rule_ref": "OS015-NEG-source_unresolved-classification",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0394",
@@ -34039,7 +34945,10 @@
           "original": "unclassified_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_conflict-classification",
+      "rule_ref": "OS015-NEG-source_conflict-classification",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0395",
@@ -34107,7 +35016,10 @@
           "original": "unclassified_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_unresolved-classification",
+      "rule_ref": "OS015-NEG-source_unresolved-classification",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0396",
@@ -34175,7 +35087,10 @@
           "original": "unclassified_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_conflict-classification",
+      "rule_ref": "OS015-NEG-source_conflict-classification",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0397",
@@ -34243,7 +35158,10 @@
           "original": "unclassified_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_unresolved-classification",
+      "rule_ref": "OS015-NEG-source_unresolved-classification",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0398",
@@ -34311,7 +35229,10 @@
           "original": "unclassified_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_conflict-classification",
+      "rule_ref": "OS015-NEG-source_conflict-classification",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0399",
@@ -34379,7 +35300,10 @@
           "original": "unclassified_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_unresolved-classification",
+      "rule_ref": "OS015-NEG-source_unresolved-classification",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0400",
@@ -34447,7 +35371,10 @@
           "original": "unclassified_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_conflict-classification",
+      "rule_ref": "OS015-NEG-source_conflict-classification",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0401",
@@ -34515,7 +35442,10 @@
           "original": "unclassified_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-new_classification_unresolved",
+      "rule_ref": "OS015-NEG-new_classification_unresolved",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0402",
@@ -34583,7 +35513,10 @@
           "original": "stale_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_unresolved-classification",
+      "rule_ref": "OS015-NEG-source_unresolved-classification",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0403",
@@ -34651,7 +35584,10 @@
           "original": "stale_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_conflict-classification",
+      "rule_ref": "OS015-NEG-source_conflict-classification",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0404",
@@ -34719,7 +35655,10 @@
           "original": "stale_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_unresolved-classification",
+      "rule_ref": "OS015-NEG-source_unresolved-classification",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0405",
@@ -34787,7 +35726,10 @@
           "original": "stale_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_conflict-classification",
+      "rule_ref": "OS015-NEG-source_conflict-classification",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0406",
@@ -34855,7 +35797,10 @@
           "original": "stale_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_unresolved-classification",
+      "rule_ref": "OS015-NEG-source_unresolved-classification",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0407",
@@ -34923,7 +35868,10 @@
           "original": "stale_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_conflict-classification",
+      "rule_ref": "OS015-NEG-source_conflict-classification",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0408",
@@ -34991,7 +35939,10 @@
           "original": "stale_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_unresolved-classification",
+      "rule_ref": "OS015-NEG-source_unresolved-classification",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0409",
@@ -35059,7 +36010,10 @@
           "original": "stale_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_conflict-classification",
+      "rule_ref": "OS015-NEG-source_conflict-classification",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0410",
@@ -35127,7 +36081,10 @@
           "original": "stale_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_unresolved-classification",
+      "rule_ref": "OS015-NEG-source_unresolved-classification",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0411",
@@ -35195,7 +36152,10 @@
           "original": "stale_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_conflict-classification",
+      "rule_ref": "OS015-NEG-source_conflict-classification",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0412",
@@ -35263,7 +36223,10 @@
           "original": "stale_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_unresolved-classification",
+      "rule_ref": "OS015-NEG-source_unresolved-classification",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0413",
@@ -35331,7 +36294,10 @@
           "original": "stale_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_conflict-classification",
+      "rule_ref": "OS015-NEG-source_conflict-classification",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0414",
@@ -35575,7 +36541,10 @@
           "original": "stale_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_unresolved-classification",
+      "rule_ref": "OS015-NEG-source_unresolved-classification",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0417",
@@ -35643,7 +36612,10 @@
           "original": "stale_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_conflict-classification",
+      "rule_ref": "OS015-NEG-source_conflict-classification",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0418",
@@ -35711,7 +36683,10 @@
           "original": "stale_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_unresolved-classification",
+      "rule_ref": "OS015-NEG-source_unresolved-classification",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0419",
@@ -35779,7 +36754,10 @@
           "original": "stale_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_conflict-classification",
+      "rule_ref": "OS015-NEG-source_conflict-classification",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0420",
@@ -35847,7 +36825,10 @@
           "original": "stale_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_unresolved-classification",
+      "rule_ref": "OS015-NEG-source_unresolved-classification",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0421",
@@ -35915,7 +36896,10 @@
           "original": "stale_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_conflict-classification",
+      "rule_ref": "OS015-NEG-source_conflict-classification",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0422",
@@ -35983,7 +36967,10 @@
           "original": "stale_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_unresolved-classification",
+      "rule_ref": "OS015-NEG-source_unresolved-classification",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0423",
@@ -36051,7 +37038,10 @@
           "original": "stale_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_conflict-classification",
+      "rule_ref": "OS015-NEG-source_conflict-classification",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0424",
@@ -36119,7 +37109,10 @@
           "original": "stale_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_unresolved-classification",
+      "rule_ref": "OS015-NEG-source_unresolved-classification",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0425",
@@ -36187,7 +37180,10 @@
           "original": "stale_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_conflict-classification",
+      "rule_ref": "OS015-NEG-source_conflict-classification",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0426",
@@ -36255,7 +37251,10 @@
           "original": "stale_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_unresolved-classification",
+      "rule_ref": "OS015-NEG-source_unresolved-classification",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0427",
@@ -36323,7 +37322,10 @@
           "original": "stale_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_conflict-classification",
+      "rule_ref": "OS015-NEG-source_conflict-classification",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0428",
@@ -36391,7 +37393,10 @@
           "original": "stale_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_unresolved-classification",
+      "rule_ref": "OS015-NEG-source_unresolved-classification",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0429",
@@ -36459,7 +37464,10 @@
           "original": "stale_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_conflict-classification",
+      "rule_ref": "OS015-NEG-source_conflict-classification",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0430",
@@ -36527,7 +37535,10 @@
           "original": "stale_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-new_classification_unresolved",
+      "rule_ref": "OS015-NEG-new_classification_unresolved",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0431",
@@ -36595,7 +37606,10 @@
           "original": "stale_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_unresolved-classification",
+      "rule_ref": "OS015-NEG-source_unresolved-classification",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0432",
@@ -36663,7 +37677,10 @@
           "original": "stale_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_conflict-classification",
+      "rule_ref": "OS015-NEG-source_conflict-classification",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0433",
@@ -36731,7 +37748,10 @@
           "original": "stale_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_unresolved-classification",
+      "rule_ref": "OS015-NEG-source_unresolved-classification",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0434",
@@ -36799,7 +37819,10 @@
           "original": "stale_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_conflict-classification",
+      "rule_ref": "OS015-NEG-source_conflict-classification",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0435",
@@ -36867,7 +37890,10 @@
           "original": "stale_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_unresolved-classification",
+      "rule_ref": "OS015-NEG-source_unresolved-classification",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0436",
@@ -36935,7 +37961,10 @@
           "original": "stale_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_conflict-classification",
+      "rule_ref": "OS015-NEG-source_conflict-classification",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0437",
@@ -37003,7 +38032,10 @@
           "original": "stale_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_unresolved-classification",
+      "rule_ref": "OS015-NEG-source_unresolved-classification",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0438",
@@ -37071,7 +38103,10 @@
           "original": "stale_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_conflict-classification",
+      "rule_ref": "OS015-NEG-source_conflict-classification",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0439",
@@ -37139,7 +38174,10 @@
           "original": "stale_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_unresolved-classification",
+      "rule_ref": "OS015-NEG-source_unresolved-classification",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0440",
@@ -37207,7 +38245,10 @@
           "original": "stale_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_conflict-classification",
+      "rule_ref": "OS015-NEG-source_conflict-classification",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0441",
@@ -37275,7 +38316,10 @@
           "original": "stale_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_unresolved-classification",
+      "rule_ref": "OS015-NEG-source_unresolved-classification",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0442",
@@ -37343,7 +38387,10 @@
           "original": "stale_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_conflict-classification",
+      "rule_ref": "OS015-NEG-source_conflict-classification",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0443",
@@ -37411,7 +38458,10 @@
           "original": "stale_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_unresolved-classification",
+      "rule_ref": "OS015-NEG-source_unresolved-classification",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0444",
@@ -37479,7 +38529,10 @@
           "original": "stale_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_conflict-classification",
+      "rule_ref": "OS015-NEG-source_conflict-classification",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0445",
@@ -37547,7 +38600,10 @@
           "original": "stale_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_unresolved-classification",
+      "rule_ref": "OS015-NEG-source_unresolved-classification",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0446",
@@ -37615,7 +38671,10 @@
           "original": "stale_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_conflict-classification",
+      "rule_ref": "OS015-NEG-source_conflict-classification",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0447",
@@ -37683,7 +38742,10 @@
           "original": "stale_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_unresolved-classification",
+      "rule_ref": "OS015-NEG-source_unresolved-classification",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0448",
@@ -37751,7 +38813,10 @@
           "original": "stale_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_conflict-classification",
+      "rule_ref": "OS015-NEG-source_conflict-classification",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0449",
@@ -37819,7 +38884,10 @@
           "original": "stale_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_unresolved-classification",
+      "rule_ref": "OS015-NEG-source_unresolved-classification",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0450",
@@ -37887,7 +38955,10 @@
           "original": "stale_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_conflict-classification",
+      "rule_ref": "OS015-NEG-source_conflict-classification",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0451",
@@ -37955,7 +39026,10 @@
           "original": "stale_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_unresolved-classification",
+      "rule_ref": "OS015-NEG-source_unresolved-classification",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0452",
@@ -38023,7 +39097,10 @@
           "original": "stale_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_conflict-classification",
+      "rule_ref": "OS015-NEG-source_conflict-classification",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0453",
@@ -38091,7 +39168,10 @@
           "original": "stale_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_unresolved-classification",
+      "rule_ref": "OS015-NEG-source_unresolved-classification",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0454",
@@ -38159,7 +39239,10 @@
           "original": "stale_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_conflict-classification",
+      "rule_ref": "OS015-NEG-source_conflict-classification",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0455",
@@ -38227,7 +39310,10 @@
           "original": "stale_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_unresolved-classification",
+      "rule_ref": "OS015-NEG-source_unresolved-classification",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0456",
@@ -38295,7 +39381,10 @@
           "original": "stale_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_conflict-classification",
+      "rule_ref": "OS015-NEG-source_conflict-classification",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0457",
@@ -38363,7 +39452,10 @@
           "original": "stale_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_unresolved-classification",
+      "rule_ref": "OS015-NEG-source_unresolved-classification",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0458",
@@ -38431,7 +39523,10 @@
           "original": "stale_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_conflict-classification",
+      "rule_ref": "OS015-NEG-source_conflict-classification",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0459",
@@ -38499,7 +39594,10 @@
           "original": "stale_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-new_classification_unresolved",
+      "rule_ref": "OS015-NEG-new_classification_unresolved",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0460",
@@ -38655,7 +39753,10 @@
           "original": "stale_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_conflict-authority",
+      "rule_ref": "OS015-NEG-source_conflict-authority",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0462",
@@ -38723,7 +39824,10 @@
           "original": "stale_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-authority_origin_forbidden",
+      "rule_ref": "OS015-NEG-authority_origin_forbidden",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0463",
@@ -38879,7 +39983,10 @@
           "original": "stale_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_conflict-authority",
+      "rule_ref": "OS015-NEG-source_conflict-authority",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0465",
@@ -38947,7 +40054,10 @@
           "original": "stale_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-authority_origin_forbidden",
+      "rule_ref": "OS015-NEG-authority_origin_forbidden",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0466",
@@ -39103,7 +40213,10 @@
           "original": "stale_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_conflict-authority",
+      "rule_ref": "OS015-NEG-source_conflict-authority",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0468",
@@ -39171,7 +40284,10 @@
           "original": "stale_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-authority_origin_forbidden",
+      "rule_ref": "OS015-NEG-authority_origin_forbidden",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0469",
@@ -39327,7 +40443,10 @@
           "original": "stale_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_conflict-authority",
+      "rule_ref": "OS015-NEG-source_conflict-authority",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0471",
@@ -39395,7 +40514,10 @@
           "original": "stale_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-authority_origin_forbidden",
+      "rule_ref": "OS015-NEG-authority_origin_forbidden",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0472",
@@ -39551,7 +40673,10 @@
           "original": "stale_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_conflict-authority",
+      "rule_ref": "OS015-NEG-source_conflict-authority",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0474",
@@ -39619,7 +40744,10 @@
           "original": "stale_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-authority_origin_forbidden",
+      "rule_ref": "OS015-NEG-authority_origin_forbidden",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0475",
@@ -39687,7 +40815,10 @@
           "original": "stale_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-authority_origin_unresolved",
+      "rule_ref": "OS015-NEG-authority_origin_unresolved",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0476",
@@ -39755,7 +40886,10 @@
           "original": "stale_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-authority_origin_unresolved",
+      "rule_ref": "OS015-NEG-authority_origin_unresolved",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0477",
@@ -39911,7 +41045,10 @@
           "original": "stale_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-authority_origin_unresolved",
+      "rule_ref": "OS015-NEG-authority_origin_unresolved",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0479",
@@ -39979,7 +41116,10 @@
           "original": "stale_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-authority_origin_unresolved",
+      "rule_ref": "OS015-NEG-authority_origin_unresolved",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0480",
@@ -40223,7 +41363,10 @@
           "original": "stale_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_conflict-authority",
+      "rule_ref": "OS015-NEG-source_conflict-authority",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0483",
@@ -40291,7 +41434,10 @@
           "original": "stale_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-authority_stale",
+      "rule_ref": "OS015-NEG-authority_stale",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0484",
@@ -40447,7 +41593,10 @@
           "original": "stale_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_conflict-authority",
+      "rule_ref": "OS015-NEG-source_conflict-authority",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0486",
@@ -40515,7 +41664,10 @@
           "original": "stale_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-authority_conflict",
+      "rule_ref": "OS015-NEG-authority_conflict",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0487",
@@ -40671,7 +41823,10 @@
           "original": "stale_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_conflict-authority",
+      "rule_ref": "OS015-NEG-source_conflict-authority",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0489",
@@ -40739,7 +41894,10 @@
           "original": "stale_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-authority_state_unresolved",
+      "rule_ref": "OS015-NEG-authority_state_unresolved",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0490",
@@ -40807,7 +41965,10 @@
           "original": "stale_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-authority_state_unresolved",
+      "rule_ref": "OS015-NEG-authority_state_unresolved",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0491",
@@ -40875,7 +42036,10 @@
           "original": "stale_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-authority_state_unresolved",
+      "rule_ref": "OS015-NEG-authority_state_unresolved",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0492",
@@ -41031,7 +42195,10 @@
           "original": "stale_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-authority_state_unresolved",
+      "rule_ref": "OS015-NEG-authority_state_unresolved",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0494",
@@ -41099,7 +42266,10 @@
           "original": "stale_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-authority_state_unresolved",
+      "rule_ref": "OS015-NEG-authority_state_unresolved",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0495",
@@ -41255,7 +42425,10 @@
           "original": "not_evaluated",
           "new": "not_evaluated"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-generated_authority_forbidden",
+      "rule_ref": "OS015-NEG-generated_authority_forbidden",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0497",
@@ -41323,7 +42496,10 @@
           "original": "not_evaluated",
           "new": "not_evaluated"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-generated_authority_claim_unresolved",
+      "rule_ref": "OS015-NEG-generated_authority_claim_unresolved",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0498",
@@ -41391,7 +42567,10 @@
           "original": "not_evaluated",
           "new": "not_evaluated"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-generated_authority_forbidden",
+      "rule_ref": "OS015-NEG-generated_authority_forbidden",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0499",
@@ -41459,7 +42638,10 @@
           "original": "not_evaluated",
           "new": "not_evaluated"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-generated_authority_claim_unresolved",
+      "rule_ref": "OS015-NEG-generated_authority_claim_unresolved",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0500",
@@ -41527,7 +42709,10 @@
           "original": "not_evaluated",
           "new": "not_evaluated"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-generated_authority_forbidden",
+      "rule_ref": "OS015-NEG-generated_authority_forbidden",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0501",
@@ -41595,7 +42780,10 @@
           "original": "not_evaluated",
           "new": "not_evaluated"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-generated_authority_claim_unresolved",
+      "rule_ref": "OS015-NEG-generated_authority_claim_unresolved",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0502",
@@ -41636,7 +42824,35 @@
       "case_id": "HELIXOS-L9-015-C0502",
       "integration_case_ref": "HELIXOS-L9-015-C0502",
       "contract_ref": "HELIXOS-L5-015-P-B01",
-      "population_state": "unknown"
+      "population_state": "positive",
+      "condition": "management_material_corresponding",
+      "expected": {
+        "finding_codes": []
+      },
+      "expected_preserved": true,
+      "source_pointers": [
+        {
+          "path": "docs/helix-os/L3-requirements/business-requirements.json",
+          "pointers": [
+            "/requirements/4"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
+          "pointers": [
+            "/contracts/0",
+            "/diagnostic_contract/raw_retention",
+            "/diagnostic_contract/algorithm_python_document_text"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L5-detail-design/management-authority-source-record.json",
+          "pointers": [
+            "/contracts/0",
+            "/signatures/0"
+          ]
+        }
+      ]
     },
     {
       "id": "HELIXOS-L9-015-C0503",
@@ -41704,7 +42920,10 @@
           "original": "not_evaluated",
           "new": "not_evaluated"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-whole_registry_claim_unproven",
+      "rule_ref": "OS015-NEG-whole_registry_claim_unproven",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0504",
@@ -41772,7 +42991,10 @@
           "original": "not_evaluated",
           "new": "not_evaluated"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-whole_registry_claim_unresolved",
+      "rule_ref": "OS015-NEG-whole_registry_claim_unresolved",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0505",
@@ -41928,7 +43150,10 @@
           "original": "not_evaluated",
           "new": "not_evaluated"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-current_material_claim_unresolved",
+      "rule_ref": "OS015-NEG-current_material_claim_unresolved",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0507",
@@ -41996,7 +43221,10 @@
           "original": "not_evaluated",
           "new": "not_evaluated"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-unresolved_history_unresolved",
+      "rule_ref": "OS015-NEG-unresolved_history_unresolved",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0508",
@@ -42064,7 +43292,10 @@
           "original": "not_evaluated",
           "new": "not_evaluated"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-unresolved_history_lost",
+      "rule_ref": "OS015-NEG-unresolved_history_lost",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0509",
@@ -42132,7 +43363,10 @@
           "original": "not_evaluated",
           "new": "not_evaluated"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-unresolved_history_unresolved",
+      "rule_ref": "OS015-NEG-unresolved_history_unresolved",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0510",
@@ -42200,7 +43434,10 @@
           "original": "not_evaluated",
           "new": "not_evaluated"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-unresolved_history_unresolved",
+      "rule_ref": "OS015-NEG-unresolved_history_unresolved",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0511",
@@ -42241,7 +43478,35 @@
       "case_id": "HELIXOS-L9-015-C0511",
       "integration_case_ref": "HELIXOS-L9-015-C0511",
       "contract_ref": "HELIXOS-L5-015-P-F02",
-      "population_state": "unknown"
+      "population_state": "positive",
+      "condition": "management_material_corresponding",
+      "expected": {
+        "finding_codes": []
+      },
+      "expected_preserved": true,
+      "source_pointers": [
+        {
+          "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+          "pointers": [
+            "/requirements/25"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
+          "pointers": [
+            "/contracts/2",
+            "/diagnostic_contract/raw_retention",
+            "/diagnostic_contract/algorithm_python_document_text"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L5-detail-design/management-authority-source-record.json",
+          "pointers": [
+            "/contracts/2",
+            "/signatures/0"
+          ]
+        }
+      ]
     },
     {
       "id": "HELIXOS-L9-015-C0512",
@@ -42309,7 +43574,10 @@
           "original": "not_evaluated",
           "new": "not_evaluated"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-unresolved_history_unresolved",
+      "rule_ref": "OS015-NEG-unresolved_history_unresolved",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0513",
@@ -42377,7 +43645,10 @@
           "original": "unclassified_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-generated_authority_forbidden",
+      "rule_ref": "OS015-NEG-generated_authority_forbidden",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0514",
@@ -42445,7 +43716,10 @@
           "original": "unclassified_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-generated_authority_claim_unresolved",
+      "rule_ref": "OS015-NEG-generated_authority_claim_unresolved",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0515",
@@ -42513,7 +43787,10 @@
           "original": "unclassified_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-generated_authority_forbidden",
+      "rule_ref": "OS015-NEG-generated_authority_forbidden",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0516",
@@ -42581,7 +43858,10 @@
           "original": "unclassified_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-generated_authority_claim_unresolved",
+      "rule_ref": "OS015-NEG-generated_authority_claim_unresolved",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0517",
@@ -42649,7 +43929,10 @@
           "original": "unclassified_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-generated_authority_forbidden",
+      "rule_ref": "OS015-NEG-generated_authority_forbidden",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0518",
@@ -42717,7 +44000,10 @@
           "original": "unclassified_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-generated_authority_claim_unresolved",
+      "rule_ref": "OS015-NEG-generated_authority_claim_unresolved",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0519",
@@ -42758,7 +44044,39 @@
       "case_id": "HELIXOS-L9-015-C0519",
       "integration_case_ref": "HELIXOS-L9-015-C0519",
       "contract_ref": "HELIXOS-L5-015-P-B01",
-      "population_state": "unknown"
+      "population_state": "positive",
+      "condition": "management_material_corresponding",
+      "expected": {
+        "finding_codes": []
+      },
+      "expected_preserved": true,
+      "source_pointers": [
+        {
+          "path": "docs/helix-os/L3-requirements/business-requirements.json",
+          "pointers": [
+            "/requirements/4"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
+          "pointers": [
+            "/contracts/0",
+            "/diagnostic_contract/raw_retention",
+            "/diagnostic_contract/phases/classify",
+            "/diagnostic_contract/algorithm_python_document_text"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L5-detail-design/management-authority-source-record.json",
+          "pointers": [
+            "/contracts/0",
+            "/signatures/0",
+            "/signatures/3",
+            "/return_root_trace/FN-OS015-04",
+            "/classification_retention_contract"
+          ]
+        }
+      ]
     },
     {
       "id": "HELIXOS-L9-015-C0520",
@@ -42826,7 +44144,10 @@
           "original": "unclassified_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-whole_registry_claim_unproven",
+      "rule_ref": "OS015-NEG-whole_registry_claim_unproven",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0521",
@@ -42894,7 +44215,10 @@
           "original": "unclassified_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-whole_registry_claim_unresolved",
+      "rule_ref": "OS015-NEG-whole_registry_claim_unresolved",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0522",
@@ -43050,7 +44374,10 @@
           "original": "unclassified_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-current_material_claim_unresolved",
+      "rule_ref": "OS015-NEG-current_material_claim_unresolved",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0524",
@@ -43118,7 +44445,10 @@
           "original": "unclassified_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-unresolved_history_unresolved",
+      "rule_ref": "OS015-NEG-unresolved_history_unresolved",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0525",
@@ -43186,7 +44516,10 @@
           "original": "unclassified_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-unresolved_history_lost",
+      "rule_ref": "OS015-NEG-unresolved_history_lost",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0526",
@@ -43254,7 +44587,10 @@
           "original": "unclassified_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-unresolved_history_unresolved",
+      "rule_ref": "OS015-NEG-unresolved_history_unresolved",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0527",
@@ -43322,7 +44658,10 @@
           "original": "unclassified_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-unresolved_history_unresolved",
+      "rule_ref": "OS015-NEG-unresolved_history_unresolved",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0528",
@@ -43363,7 +44702,39 @@
       "case_id": "HELIXOS-L9-015-C0528",
       "integration_case_ref": "HELIXOS-L9-015-C0528",
       "contract_ref": "HELIXOS-L5-015-P-F02",
-      "population_state": "unknown"
+      "population_state": "positive",
+      "condition": "management_material_corresponding",
+      "expected": {
+        "finding_codes": []
+      },
+      "expected_preserved": true,
+      "source_pointers": [
+        {
+          "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+          "pointers": [
+            "/requirements/25"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
+          "pointers": [
+            "/contracts/2",
+            "/diagnostic_contract/raw_retention",
+            "/diagnostic_contract/phases/classify",
+            "/diagnostic_contract/algorithm_python_document_text"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L5-detail-design/management-authority-source-record.json",
+          "pointers": [
+            "/contracts/2",
+            "/signatures/0",
+            "/signatures/3",
+            "/return_root_trace/FN-OS015-04",
+            "/classification_retention_contract"
+          ]
+        }
+      ]
     },
     {
       "id": "HELIXOS-L9-015-C0529",
@@ -43431,7 +44802,10 @@
           "original": "unclassified_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-unresolved_history_unresolved",
+      "rule_ref": "OS015-NEG-unresolved_history_unresolved",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0530",
@@ -43499,7 +44873,10 @@
           "original": "stale_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-generated_authority_forbidden",
+      "rule_ref": "OS015-NEG-generated_authority_forbidden",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0531",
@@ -43567,7 +44944,10 @@
           "original": "stale_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-generated_authority_claim_unresolved",
+      "rule_ref": "OS015-NEG-generated_authority_claim_unresolved",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0532",
@@ -43635,7 +45015,10 @@
           "original": "stale_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-generated_authority_forbidden",
+      "rule_ref": "OS015-NEG-generated_authority_forbidden",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0533",
@@ -43703,7 +45086,10 @@
           "original": "stale_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-generated_authority_claim_unresolved",
+      "rule_ref": "OS015-NEG-generated_authority_claim_unresolved",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0534",
@@ -43771,7 +45157,10 @@
           "original": "stale_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-generated_authority_forbidden",
+      "rule_ref": "OS015-NEG-generated_authority_forbidden",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0535",
@@ -43839,7 +45228,10 @@
           "original": "stale_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-generated_authority_claim_unresolved",
+      "rule_ref": "OS015-NEG-generated_authority_claim_unresolved",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0536",
@@ -43880,7 +45272,39 @@
       "case_id": "HELIXOS-L9-015-C0536",
       "integration_case_ref": "HELIXOS-L9-015-C0536",
       "contract_ref": "HELIXOS-L5-015-P-B01",
-      "population_state": "unknown"
+      "population_state": "positive",
+      "condition": "management_material_corresponding",
+      "expected": {
+        "finding_codes": []
+      },
+      "expected_preserved": true,
+      "source_pointers": [
+        {
+          "path": "docs/helix-os/L3-requirements/business-requirements.json",
+          "pointers": [
+            "/requirements/4"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
+          "pointers": [
+            "/contracts/0",
+            "/diagnostic_contract/raw_retention",
+            "/diagnostic_contract/phases/correct",
+            "/diagnostic_contract/algorithm_python_document_text"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L5-detail-design/management-authority-source-record.json",
+          "pointers": [
+            "/contracts/0",
+            "/signatures/0",
+            "/signatures/3",
+            "/return_root_trace/FN-OS015-04",
+            "/classification_retention_contract"
+          ]
+        }
+      ]
     },
     {
       "id": "HELIXOS-L9-015-C0537",
@@ -43948,7 +45372,10 @@
           "original": "stale_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-whole_registry_claim_unproven",
+      "rule_ref": "OS015-NEG-whole_registry_claim_unproven",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0538",
@@ -44016,7 +45443,10 @@
           "original": "stale_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-whole_registry_claim_unresolved",
+      "rule_ref": "OS015-NEG-whole_registry_claim_unresolved",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0539",
@@ -44172,7 +45602,10 @@
           "original": "stale_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-current_material_claim_unresolved",
+      "rule_ref": "OS015-NEG-current_material_claim_unresolved",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0541",
@@ -44240,7 +45673,10 @@
           "original": "stale_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-unresolved_history_unresolved",
+      "rule_ref": "OS015-NEG-unresolved_history_unresolved",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0542",
@@ -44308,7 +45744,10 @@
           "original": "stale_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-unresolved_history_lost",
+      "rule_ref": "OS015-NEG-unresolved_history_lost",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0543",
@@ -44376,7 +45815,10 @@
           "original": "stale_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-unresolved_history_unresolved",
+      "rule_ref": "OS015-NEG-unresolved_history_unresolved",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0544",
@@ -44444,7 +45886,10 @@
           "original": "stale_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-unresolved_history_unresolved",
+      "rule_ref": "OS015-NEG-unresolved_history_unresolved",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0545",
@@ -44485,7 +45930,39 @@
       "case_id": "HELIXOS-L9-015-C0545",
       "integration_case_ref": "HELIXOS-L9-015-C0545",
       "contract_ref": "HELIXOS-L5-015-P-F02",
-      "population_state": "unknown"
+      "population_state": "positive",
+      "condition": "management_material_corresponding",
+      "expected": {
+        "finding_codes": []
+      },
+      "expected_preserved": true,
+      "source_pointers": [
+        {
+          "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+          "pointers": [
+            "/requirements/25"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
+          "pointers": [
+            "/contracts/2",
+            "/diagnostic_contract/raw_retention",
+            "/diagnostic_contract/phases/correct",
+            "/diagnostic_contract/algorithm_python_document_text"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L5-detail-design/management-authority-source-record.json",
+          "pointers": [
+            "/contracts/2",
+            "/signatures/0",
+            "/signatures/3",
+            "/return_root_trace/FN-OS015-04",
+            "/classification_retention_contract"
+          ]
+        }
+      ]
     },
     {
       "id": "HELIXOS-L9-015-C0546",
@@ -44553,7 +46030,10 @@
           "original": "stale_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-unresolved_history_unresolved",
+      "rule_ref": "OS015-NEG-unresolved_history_unresolved",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0547",
@@ -44621,7 +46101,10 @@
           "original": "unclassified_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-history_unresolved",
+      "rule_ref": "OS015-NEG-history_unresolved",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0548",
@@ -44689,7 +46172,10 @@
           "original": "unclassified_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-history_entry_lost",
+      "rule_ref": "OS015-NEG-history_entry_lost",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0549",
@@ -44757,7 +46243,10 @@
           "original": "unclassified_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-history_unresolved",
+      "rule_ref": "OS015-NEG-history_unresolved",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0550",
@@ -44825,7 +46314,10 @@
           "original": "unclassified_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-history_unresolved",
+      "rule_ref": "OS015-NEG-history_unresolved",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0551",
@@ -44866,7 +46358,39 @@
       "case_id": "HELIXOS-L9-015-C0551",
       "integration_case_ref": "HELIXOS-L9-015-C0551",
       "contract_ref": "HELIXOS-L5-015-P-F02",
-      "population_state": "unknown"
+      "population_state": "positive",
+      "condition": "management_material_corresponding",
+      "expected": {
+        "finding_codes": []
+      },
+      "expected_preserved": true,
+      "source_pointers": [
+        {
+          "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+          "pointers": [
+            "/requirements/25"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
+          "pointers": [
+            "/contracts/2",
+            "/diagnostic_contract/raw_retention",
+            "/diagnostic_contract/phases/classify",
+            "/diagnostic_contract/algorithm_python_document_text"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L5-detail-design/management-authority-source-record.json",
+          "pointers": [
+            "/contracts/2",
+            "/signatures/0",
+            "/signatures/3",
+            "/return_root_trace/FN-OS015-04",
+            "/classification_retention_contract"
+          ]
+        }
+      ]
     },
     {
       "id": "HELIXOS-L9-015-C0552",
@@ -44934,7 +46458,10 @@
           "original": "unclassified_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-history_unresolved",
+      "rule_ref": "OS015-NEG-history_unresolved",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0553",
@@ -45002,7 +46529,10 @@
           "original": "stale_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-history_unresolved",
+      "rule_ref": "OS015-NEG-history_unresolved",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0554",
@@ -45070,7 +46600,10 @@
           "original": "stale_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-history_entry_lost",
+      "rule_ref": "OS015-NEG-history_entry_lost",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0555",
@@ -45138,7 +46671,10 @@
           "original": "stale_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-history_unresolved",
+      "rule_ref": "OS015-NEG-history_unresolved",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0556",
@@ -45206,7 +46742,10 @@
           "original": "stale_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-history_unresolved",
+      "rule_ref": "OS015-NEG-history_unresolved",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0557",
@@ -45247,7 +46786,39 @@
       "case_id": "HELIXOS-L9-015-C0557",
       "integration_case_ref": "HELIXOS-L9-015-C0557",
       "contract_ref": "HELIXOS-L5-015-P-F02",
-      "population_state": "unknown"
+      "population_state": "positive",
+      "condition": "management_material_corresponding",
+      "expected": {
+        "finding_codes": []
+      },
+      "expected_preserved": true,
+      "source_pointers": [
+        {
+          "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+          "pointers": [
+            "/requirements/25"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
+          "pointers": [
+            "/contracts/2",
+            "/diagnostic_contract/raw_retention",
+            "/diagnostic_contract/phases/correct",
+            "/diagnostic_contract/algorithm_python_document_text"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L5-detail-design/management-authority-source-record.json",
+          "pointers": [
+            "/contracts/2",
+            "/signatures/0",
+            "/signatures/3",
+            "/return_root_trace/FN-OS015-04",
+            "/classification_retention_contract"
+          ]
+        }
+      ]
     },
     {
       "id": "HELIXOS-L9-015-C0558",
@@ -45315,7 +46886,10 @@
           "original": "stale_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-history_unresolved",
+      "rule_ref": "OS015-NEG-history_unresolved",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0559",
@@ -45383,7 +46957,10 @@
           "original": "stale_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-original_classification_mutated",
+      "rule_ref": "OS015-NEG-original_classification_mutated",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0560",
@@ -45451,7 +47028,10 @@
           "original": "stale_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-prior_classification_unresolved",
+      "rule_ref": "OS015-NEG-prior_classification_unresolved",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0561",
@@ -45519,7 +47099,10 @@
           "original": "stale_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-classification_revision_collapsed",
+      "rule_ref": "OS015-NEG-classification_revision_collapsed",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0562",
@@ -45587,7 +47170,10 @@
           "original": "stale_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-classification_kind_unresolved",
+      "rule_ref": "OS015-NEG-classification_kind_unresolved",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0563",
@@ -45655,7 +47241,10 @@
           "original": "unclassified_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_conflict-classification",
+      "rule_ref": "OS015-NEG-source_conflict-classification",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0564",
@@ -45723,7 +47312,10 @@
           "original": "unclassified_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_conflict-classification",
+      "rule_ref": "OS015-NEG-source_conflict-classification",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0565",
@@ -45791,7 +47383,10 @@
           "original": "not_evaluated",
           "new": "not_evaluated"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-phase_unresolved",
+      "rule_ref": "OS015-NEG-phase_unresolved",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0566",
@@ -45859,7 +47454,10 @@
           "original": "not_evaluated",
           "new": "not_evaluated"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-phase_unresolved",
+      "rule_ref": "OS015-NEG-phase_unresolved",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0567",
@@ -45927,7 +47525,10 @@
           "original": "stale_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_conflict-source",
+      "rule_ref": "OS015-NEG-source_conflict-source",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0568",
@@ -45995,7 +47596,10 @@
           "original": "stale_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_conflict-source",
+      "rule_ref": "OS015-NEG-source_conflict-source",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0569",
@@ -46063,7 +47667,10 @@
           "original": "stale_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_conflict-source",
+      "rule_ref": "OS015-NEG-source_conflict-source",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0570",
@@ -46131,7 +47738,10 @@
           "original": "stale_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_conflict-source",
+      "rule_ref": "OS015-NEG-source_conflict-source",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0571",
@@ -46199,7 +47809,10 @@
           "original": "stale_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_conflict-source",
+      "rule_ref": "OS015-NEG-source_conflict-source",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0572",
@@ -46267,7 +47880,10 @@
           "original": "stale_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-source_conflict-source",
+      "rule_ref": "OS015-NEG-source_conflict-source",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0573",
@@ -47695,7 +49311,887 @@
           "original": "unclassified_material",
           "new": "current_material"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-new_classification_unresolved",
+      "rule_ref": "OS015-NEG-new_classification_unresolved",
+      "function_ref": "FN-OS015-01"
+    }
+  ],
+  "negative_equivalence_classes": [
+    {
+      "class_id": "OS015-NEG-source_unresolved-source",
+      "expected_classification": "management_material_unknown",
+      "expected": {
+        "finding_codes": [
+          "source_unresolved"
+        ]
+      },
+      "expected_axis": "source",
+      "expected_state": "unknown",
+      "side_effect_count": 0,
+      "source_pointers": [
+        {
+          "path": "docs/helix-os/L8-unit-verification/management-authority-source-record.json",
+          "pointers": [
+            "/unit_cases/3/expected",
+            "/unit_cases/3/condition",
+            "/unit_cases/3/counterexample_summary/FN02_candidate_contrast/0"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
+          "pointers": [
+            "/failure_classifications/0"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L5-detail-design/management-authority-source-record.json",
+          "pointers": [
+            "/failure_rules/0",
+            "/functions/0"
+          ]
+        }
+      ]
+    },
+    {
+      "class_id": "OS015-NEG-source_unresolved-classification",
+      "expected_classification": "management_material_unknown",
+      "expected": {
+        "finding_codes": [
+          "source_unresolved"
+        ]
+      },
+      "expected_axis": "classification",
+      "expected_state": "unknown",
+      "side_effect_count": 0,
+      "source_pointers": [
+        {
+          "path": "docs/helix-os/L8-unit-verification/management-authority-source-record.json",
+          "pointers": [
+            "/unit_cases/351/expected",
+            "/unit_cases/351/condition",
+            "/unit_cases/351/counterexample_summary/FN02_candidate_contrast/0"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
+          "pointers": [
+            "/failure_classifications/2"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L5-detail-design/management-authority-source-record.json",
+          "pointers": [
+            "/failure_rules/2",
+            "/functions/0"
+          ]
+        }
+      ]
+    },
+    {
+      "class_id": "OS015-NEG-source_conflict-source",
+      "expected_classification": "management_material_violation",
+      "expected": {
+        "finding_codes": [
+          "source_conflict"
+        ]
+      },
+      "expected_axis": "source",
+      "expected_state": "violation",
+      "side_effect_count": 0,
+      "source_pointers": [
+        {
+          "path": "docs/helix-os/L8-unit-verification/management-authority-source-record.json",
+          "pointers": [
+            "/unit_cases/4/expected",
+            "/unit_cases/4/condition",
+            "/unit_cases/4/counterexample_summary/FN02_candidate_contrast/0"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
+          "pointers": [
+            "/failure_classifications/3"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L5-detail-design/management-authority-source-record.json",
+          "pointers": [
+            "/failure_rules/3",
+            "/functions/0"
+          ]
+        }
+      ]
+    },
+    {
+      "class_id": "OS015-NEG-source_conflict-classification",
+      "expected_classification": "management_material_violation",
+      "expected": {
+        "finding_codes": [
+          "source_conflict"
+        ]
+      },
+      "expected_axis": "classification",
+      "expected_state": "violation",
+      "side_effect_count": 0,
+      "source_pointers": [
+        {
+          "path": "docs/helix-os/L8-unit-verification/management-authority-source-record.json",
+          "pointers": [
+            "/unit_cases/352/expected",
+            "/unit_cases/352/condition",
+            "/unit_cases/352/counterexample_summary/FN02_candidate_contrast/0"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
+          "pointers": [
+            "/failure_classifications/5"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L5-detail-design/management-authority-source-record.json",
+          "pointers": [
+            "/failure_rules/5",
+            "/functions/0"
+          ]
+        }
+      ]
+    },
+    {
+      "class_id": "OS015-NEG-source_conflict-authority",
+      "expected_classification": "management_material_violation",
+      "expected": {
+        "finding_codes": [
+          "source_conflict"
+        ]
+      },
+      "expected_axis": "authority",
+      "expected_state": "violation",
+      "side_effect_count": 0,
+      "source_pointers": [
+        {
+          "path": "docs/helix-os/L8-unit-verification/management-authority-source-record.json",
+          "pointers": [
+            "/unit_cases/460/expected",
+            "/unit_cases/460/condition",
+            "/unit_cases/460/counterexample_summary/FN02_candidate_contrast/0"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
+          "pointers": [
+            "/failure_classifications/6"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L5-detail-design/management-authority-source-record.json",
+          "pointers": [
+            "/failure_rules/6",
+            "/functions/0"
+          ]
+        }
+      ]
+    },
+    {
+      "class_id": "OS015-NEG-phase_unresolved",
+      "expected_classification": "management_material_unknown",
+      "expected": {
+        "finding_codes": [
+          "phase_unresolved"
+        ]
+      },
+      "expected_axis": "global",
+      "expected_state": "unknown",
+      "side_effect_count": 0,
+      "source_pointers": [
+        {
+          "path": "docs/helix-os/L8-unit-verification/management-authority-source-record.json",
+          "pointers": [
+            "/unit_cases/564/expected",
+            "/unit_cases/564/condition",
+            "/unit_cases/564/counterexample_summary/FN02_candidate_contrast/0"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
+          "pointers": [
+            "/failure_classifications/7"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L5-detail-design/management-authority-source-record.json",
+          "pointers": [
+            "/failure_rules/7",
+            "/functions/0"
+          ]
+        }
+      ]
+    },
+    {
+      "class_id": "OS015-NEG-original_classification_mutated",
+      "expected_classification": "management_material_violation",
+      "expected": {
+        "finding_codes": [
+          "original_classification_mutated"
+        ]
+      },
+      "expected_axis": "history",
+      "expected_state": "violation",
+      "side_effect_count": 0,
+      "source_pointers": [
+        {
+          "path": "docs/helix-os/L8-unit-verification/management-authority-source-record.json",
+          "pointers": [
+            "/unit_cases/558/expected",
+            "/unit_cases/558/condition",
+            "/unit_cases/558/counterexample_summary/FN02_candidate_contrast/0"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
+          "pointers": [
+            "/failure_classifications/9"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L5-detail-design/management-authority-source-record.json",
+          "pointers": [
+            "/failure_rules/9",
+            "/functions/0"
+          ]
+        }
+      ]
+    },
+    {
+      "class_id": "OS015-NEG-authority_origin_forbidden",
+      "expected_classification": "management_material_violation",
+      "expected": {
+        "finding_codes": [
+          "authority_origin_forbidden"
+        ]
+      },
+      "expected_axis": "authority",
+      "expected_state": "violation",
+      "side_effect_count": 0,
+      "source_pointers": [
+        {
+          "path": "docs/helix-os/L8-unit-verification/management-authority-source-record.json",
+          "pointers": [
+            "/unit_cases/461/expected",
+            "/unit_cases/461/condition",
+            "/unit_cases/461/counterexample_summary/FN02_candidate_contrast/0"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
+          "pointers": [
+            "/failure_classifications/10"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L5-detail-design/management-authority-source-record.json",
+          "pointers": [
+            "/failure_rules/10",
+            "/functions/0"
+          ]
+        }
+      ]
+    },
+    {
+      "class_id": "OS015-NEG-authority_origin_unresolved",
+      "expected_classification": "management_material_unknown",
+      "expected": {
+        "finding_codes": [
+          "authority_origin_unresolved"
+        ]
+      },
+      "expected_axis": "authority",
+      "expected_state": "unknown",
+      "side_effect_count": 0,
+      "source_pointers": [
+        {
+          "path": "docs/helix-os/L8-unit-verification/management-authority-source-record.json",
+          "pointers": [
+            "/unit_cases/474/expected",
+            "/unit_cases/474/condition",
+            "/unit_cases/474/counterexample_summary/FN02_candidate_contrast/0"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
+          "pointers": [
+            "/failure_classifications/11"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L5-detail-design/management-authority-source-record.json",
+          "pointers": [
+            "/failure_rules/11",
+            "/functions/0"
+          ]
+        }
+      ]
+    },
+    {
+      "class_id": "OS015-NEG-authority_stale",
+      "expected_classification": "management_material_unknown",
+      "expected": {
+        "finding_codes": [
+          "authority_stale"
+        ]
+      },
+      "expected_axis": "authority",
+      "expected_state": "unknown",
+      "side_effect_count": 0,
+      "source_pointers": [
+        {
+          "path": "docs/helix-os/L8-unit-verification/management-authority-source-record.json",
+          "pointers": [
+            "/unit_cases/482/expected",
+            "/unit_cases/482/condition",
+            "/unit_cases/482/counterexample_summary/FN02_candidate_contrast/0"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
+          "pointers": [
+            "/failure_classifications/12"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L5-detail-design/management-authority-source-record.json",
+          "pointers": [
+            "/failure_rules/12",
+            "/functions/0"
+          ]
+        }
+      ]
+    },
+    {
+      "class_id": "OS015-NEG-authority_conflict",
+      "expected_classification": "management_material_violation",
+      "expected": {
+        "finding_codes": [
+          "authority_conflict"
+        ]
+      },
+      "expected_axis": "authority",
+      "expected_state": "violation",
+      "side_effect_count": 0,
+      "source_pointers": [
+        {
+          "path": "docs/helix-os/L8-unit-verification/management-authority-source-record.json",
+          "pointers": [
+            "/unit_cases/485/expected",
+            "/unit_cases/485/condition",
+            "/unit_cases/485/counterexample_summary/FN02_candidate_contrast/0"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
+          "pointers": [
+            "/failure_classifications/13"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L5-detail-design/management-authority-source-record.json",
+          "pointers": [
+            "/failure_rules/13",
+            "/functions/0"
+          ]
+        }
+      ]
+    },
+    {
+      "class_id": "OS015-NEG-authority_state_unresolved",
+      "expected_classification": "management_material_unknown",
+      "expected": {
+        "finding_codes": [
+          "authority_state_unresolved"
+        ]
+      },
+      "expected_axis": "authority",
+      "expected_state": "unknown",
+      "side_effect_count": 0,
+      "source_pointers": [
+        {
+          "path": "docs/helix-os/L8-unit-verification/management-authority-source-record.json",
+          "pointers": [
+            "/unit_cases/488/expected",
+            "/unit_cases/488/condition",
+            "/unit_cases/488/counterexample_summary/FN02_candidate_contrast/0"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
+          "pointers": [
+            "/failure_classifications/14"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L5-detail-design/management-authority-source-record.json",
+          "pointers": [
+            "/failure_rules/14",
+            "/functions/0"
+          ]
+        }
+      ]
+    },
+    {
+      "class_id": "OS015-NEG-current_material_claim_unresolved",
+      "expected_classification": "management_material_unknown",
+      "expected": {
+        "finding_codes": [
+          "current_material_claim_unresolved"
+        ]
+      },
+      "expected_axis": "authority",
+      "expected_state": "unknown",
+      "side_effect_count": 0,
+      "source_pointers": [
+        {
+          "path": "docs/helix-os/L8-unit-verification/management-authority-source-record.json",
+          "pointers": [
+            "/unit_cases/505/expected",
+            "/unit_cases/505/condition",
+            "/unit_cases/505/counterexample_summary/FN02_candidate_contrast/0"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
+          "pointers": [
+            "/failure_classifications/16"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L5-detail-design/management-authority-source-record.json",
+          "pointers": [
+            "/failure_rules/16",
+            "/functions/0"
+          ]
+        }
+      ]
+    },
+    {
+      "class_id": "OS015-NEG-new_classification_unresolved",
+      "expected_classification": "management_material_unknown",
+      "expected": {
+        "finding_codes": [
+          "new_classification_unresolved"
+        ]
+      },
+      "expected_axis": "classification",
+      "expected_state": "unknown",
+      "side_effect_count": 0,
+      "source_pointers": [
+        {
+          "path": "docs/helix-os/L8-unit-verification/management-authority-source-record.json",
+          "pointers": [
+            "/unit_cases/375/expected",
+            "/unit_cases/375/condition",
+            "/unit_cases/375/counterexample_summary/FN02_candidate_contrast/0"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
+          "pointers": [
+            "/failure_classifications/17"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L5-detail-design/management-authority-source-record.json",
+          "pointers": [
+            "/failure_rules/17",
+            "/functions/0"
+          ]
+        }
+      ]
+    },
+    {
+      "class_id": "OS015-NEG-prior_classification_unresolved",
+      "expected_classification": "management_material_unknown",
+      "expected": {
+        "finding_codes": [
+          "prior_classification_unresolved"
+        ]
+      },
+      "expected_axis": "classification",
+      "expected_state": "unknown",
+      "side_effect_count": 0,
+      "source_pointers": [
+        {
+          "path": "docs/helix-os/L8-unit-verification/management-authority-source-record.json",
+          "pointers": [
+            "/unit_cases/559/expected",
+            "/unit_cases/559/condition",
+            "/unit_cases/559/counterexample_summary/FN02_candidate_contrast/0"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
+          "pointers": [
+            "/failure_classifications/18"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L5-detail-design/management-authority-source-record.json",
+          "pointers": [
+            "/failure_rules/18",
+            "/functions/0"
+          ]
+        }
+      ]
+    },
+    {
+      "class_id": "OS015-NEG-classification_revision_collapsed",
+      "expected_classification": "management_material_violation",
+      "expected": {
+        "finding_codes": [
+          "classification_revision_collapsed"
+        ]
+      },
+      "expected_axis": "classification",
+      "expected_state": "violation",
+      "side_effect_count": 0,
+      "source_pointers": [
+        {
+          "path": "docs/helix-os/L8-unit-verification/management-authority-source-record.json",
+          "pointers": [
+            "/unit_cases/560/expected",
+            "/unit_cases/560/condition",
+            "/unit_cases/560/counterexample_summary/FN02_candidate_contrast/0"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
+          "pointers": [
+            "/failure_classifications/19"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L5-detail-design/management-authority-source-record.json",
+          "pointers": [
+            "/failure_rules/19",
+            "/functions/0"
+          ]
+        }
+      ]
+    },
+    {
+      "class_id": "OS015-NEG-classification_kind_unresolved",
+      "expected_classification": "management_material_unknown",
+      "expected": {
+        "finding_codes": [
+          "classification_kind_unresolved"
+        ]
+      },
+      "expected_axis": "classification",
+      "expected_state": "unknown",
+      "side_effect_count": 0,
+      "source_pointers": [
+        {
+          "path": "docs/helix-os/L8-unit-verification/management-authority-source-record.json",
+          "pointers": [
+            "/unit_cases/561/expected",
+            "/unit_cases/561/condition",
+            "/unit_cases/561/counterexample_summary/FN02_candidate_contrast/0"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
+          "pointers": [
+            "/failure_classifications/20"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L5-detail-design/management-authority-source-record.json",
+          "pointers": [
+            "/failure_rules/20",
+            "/functions/0"
+          ]
+        }
+      ]
+    },
+    {
+      "class_id": "OS015-NEG-history_unresolved",
+      "expected_classification": "management_material_unknown",
+      "expected": {
+        "finding_codes": [
+          "history_unresolved"
+        ]
+      },
+      "expected_axis": "history",
+      "expected_state": "unknown",
+      "side_effect_count": 0,
+      "source_pointers": [
+        {
+          "path": "docs/helix-os/L8-unit-verification/management-authority-source-record.json",
+          "pointers": [
+            "/unit_cases/546/expected",
+            "/unit_cases/546/condition",
+            "/unit_cases/546/counterexample_summary/FN02_candidate_contrast/0"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
+          "pointers": [
+            "/failure_classifications/21"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L5-detail-design/management-authority-source-record.json",
+          "pointers": [
+            "/failure_rules/21",
+            "/functions/0"
+          ]
+        }
+      ]
+    },
+    {
+      "class_id": "OS015-NEG-history_entry_lost",
+      "expected_classification": "management_material_violation",
+      "expected": {
+        "finding_codes": [
+          "history_entry_lost"
+        ]
+      },
+      "expected_axis": "history",
+      "expected_state": "violation",
+      "side_effect_count": 0,
+      "source_pointers": [
+        {
+          "path": "docs/helix-os/L8-unit-verification/management-authority-source-record.json",
+          "pointers": [
+            "/unit_cases/547/expected",
+            "/unit_cases/547/condition",
+            "/unit_cases/547/counterexample_summary/FN02_candidate_contrast/0"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
+          "pointers": [
+            "/failure_classifications/22"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L5-detail-design/management-authority-source-record.json",
+          "pointers": [
+            "/failure_rules/22",
+            "/functions/0"
+          ]
+        }
+      ]
+    },
+    {
+      "class_id": "OS015-NEG-unresolved_history_lost",
+      "expected_classification": "management_material_violation",
+      "expected": {
+        "finding_codes": [
+          "unresolved_history_lost"
+        ]
+      },
+      "expected_axis": "history",
+      "expected_state": "violation",
+      "side_effect_count": 0,
+      "source_pointers": [
+        {
+          "path": "docs/helix-os/L8-unit-verification/management-authority-source-record.json",
+          "pointers": [
+            "/unit_cases/507/expected",
+            "/unit_cases/507/condition",
+            "/unit_cases/507/counterexample_summary/FN02_candidate_contrast/0"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
+          "pointers": [
+            "/failure_classifications/23"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L5-detail-design/management-authority-source-record.json",
+          "pointers": [
+            "/failure_rules/23",
+            "/functions/0"
+          ]
+        }
+      ]
+    },
+    {
+      "class_id": "OS015-NEG-unresolved_history_unresolved",
+      "expected_classification": "management_material_unknown",
+      "expected": {
+        "finding_codes": [
+          "unresolved_history_unresolved"
+        ]
+      },
+      "expected_axis": "history",
+      "expected_state": "unknown",
+      "side_effect_count": 0,
+      "source_pointers": [
+        {
+          "path": "docs/helix-os/L8-unit-verification/management-authority-source-record.json",
+          "pointers": [
+            "/unit_cases/506/expected",
+            "/unit_cases/506/condition",
+            "/unit_cases/506/counterexample_summary/FN02_candidate_contrast/0"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
+          "pointers": [
+            "/failure_classifications/24"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L5-detail-design/management-authority-source-record.json",
+          "pointers": [
+            "/failure_rules/24",
+            "/functions/0"
+          ]
+        }
+      ]
+    },
+    {
+      "class_id": "OS015-NEG-generated_authority_forbidden",
+      "expected_classification": "management_material_violation",
+      "expected": {
+        "finding_codes": [
+          "generated_authority_forbidden"
+        ]
+      },
+      "expected_axis": "boundary",
+      "expected_state": "violation",
+      "side_effect_count": 0,
+      "source_pointers": [
+        {
+          "path": "docs/helix-os/L8-unit-verification/management-authority-source-record.json",
+          "pointers": [
+            "/unit_cases/495/expected",
+            "/unit_cases/495/condition",
+            "/unit_cases/495/counterexample_summary/FN02_candidate_contrast/0"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
+          "pointers": [
+            "/failure_classifications/25"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L5-detail-design/management-authority-source-record.json",
+          "pointers": [
+            "/failure_rules/25",
+            "/functions/0"
+          ]
+        }
+      ]
+    },
+    {
+      "class_id": "OS015-NEG-generated_authority_claim_unresolved",
+      "expected_classification": "management_material_unknown",
+      "expected": {
+        "finding_codes": [
+          "generated_authority_claim_unresolved"
+        ]
+      },
+      "expected_axis": "boundary",
+      "expected_state": "unknown",
+      "side_effect_count": 0,
+      "source_pointers": [
+        {
+          "path": "docs/helix-os/L8-unit-verification/management-authority-source-record.json",
+          "pointers": [
+            "/unit_cases/496/expected",
+            "/unit_cases/496/condition",
+            "/unit_cases/496/counterexample_summary/FN02_candidate_contrast/0"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
+          "pointers": [
+            "/failure_classifications/26"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L5-detail-design/management-authority-source-record.json",
+          "pointers": [
+            "/failure_rules/26",
+            "/functions/0"
+          ]
+        }
+      ]
+    },
+    {
+      "class_id": "OS015-NEG-whole_registry_claim_unproven",
+      "expected_classification": "management_material_violation",
+      "expected": {
+        "finding_codes": [
+          "whole_registry_claim_unproven"
+        ]
+      },
+      "expected_axis": "global",
+      "expected_state": "violation",
+      "side_effect_count": 0,
+      "source_pointers": [
+        {
+          "path": "docs/helix-os/L8-unit-verification/management-authority-source-record.json",
+          "pointers": [
+            "/unit_cases/502/expected",
+            "/unit_cases/502/condition",
+            "/unit_cases/502/counterexample_summary/FN02_candidate_contrast/0"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
+          "pointers": [
+            "/failure_classifications/27"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L5-detail-design/management-authority-source-record.json",
+          "pointers": [
+            "/failure_rules/27",
+            "/functions/0"
+          ]
+        }
+      ]
+    },
+    {
+      "class_id": "OS015-NEG-whole_registry_claim_unresolved",
+      "expected_classification": "management_material_unknown",
+      "expected": {
+        "finding_codes": [
+          "whole_registry_claim_unresolved"
+        ]
+      },
+      "expected_axis": "global",
+      "expected_state": "unknown",
+      "side_effect_count": 0,
+      "source_pointers": [
+        {
+          "path": "docs/helix-os/L8-unit-verification/management-authority-source-record.json",
+          "pointers": [
+            "/unit_cases/503/expected",
+            "/unit_cases/503/condition",
+            "/unit_cases/503/counterexample_summary/FN02_candidate_contrast/0"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
+          "pointers": [
+            "/failure_classifications/28"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L5-detail-design/management-authority-source-record.json",
+          "pointers": [
+            "/failure_rules/28",
+            "/functions/0"
+          ]
+        }
+      ]
     }
   ]
 }

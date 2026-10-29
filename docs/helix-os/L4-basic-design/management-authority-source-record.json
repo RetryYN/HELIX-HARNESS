@@ -434,7 +434,15 @@
       "oracle_ref": "HELIXOS-L9-015-P-B01",
       "contract": "管理recordはcanonical sourceを参照する。Issue/PR/CI/memory/管理recordをauthority出所にせず、projection close/merge/greenの表示変更は入力sourceと判断を変えない。",
       "remaining": "合成二対象上の文書対応のみ。正式qualification/全shape/全consumerの成立証拠ではない。",
-      "system_oracle_ref": "HELIXOS-L10-015-B01"
+      "system_oracle_ref": "HELIXOS-L10-015-B01",
+      "negative_class_refs": [
+        "OS015-NEG-phase_unresolved",
+        "OS015-NEG-authority_origin_forbidden",
+        "OS015-NEG-generated_authority_forbidden",
+        "OS015-NEG-generated_authority_claim_unresolved",
+        "OS015-NEG-whole_registry_claim_unproven",
+        "OS015-NEG-whole_registry_claim_unresolved"
+      ]
     },
     {
       "id": "HELIXOS-L4-015-F01",
@@ -442,7 +450,11 @@
       "oracle_ref": "HELIXOS-L9-015-P-F01",
       "contract": "対象・sourceのidentity/revision/digest、actor/時点、Concept/L1/要求/採否/合意のrevision、正本/判断/責務を独立contextへ照合する。inspectでは未分類原eventと因果を保全し、未だ存在しない分類receiptを必須にしない。",
       "remaining": "合成二対象上の文書対応のみ。正式qualification/全shape/全consumerの成立証拠ではない。",
-      "system_oracle_ref": "HELIXOS-L10-015-F01"
+      "system_oracle_ref": "HELIXOS-L10-015-F01",
+      "negative_class_refs": [
+        "OS015-NEG-source_unresolved-source",
+        "OS015-NEG-source_conflict-source"
+      ]
     },
     {
       "id": "HELIXOS-L4-015-F02",
@@ -450,7 +462,25 @@
       "oracle_ref": "HELIXOS-L9-015-P-F02",
       "contract": "原eventと訂正前分類を改変しない。新分類は原event ID/revisionと対象scopeへ結び、correctでは新旧分類revisionを分け、旧分類/stale、新分類/current_material、訂正理由/authority差分・未解決履歴を保持する。",
       "remaining": "合成二対象上の文書対応のみ。正式qualification/全shape/全consumerの成立証拠ではない。",
-      "system_oracle_ref": "HELIXOS-L10-015-F02"
+      "system_oracle_ref": "HELIXOS-L10-015-F02",
+      "negative_class_refs": [
+        "OS015-NEG-source_unresolved-original_event",
+        "OS015-NEG-source_unresolved-classification",
+        "OS015-NEG-source_conflict-original_event",
+        "OS015-NEG-source_conflict-classification",
+        "OS015-NEG-original_event_mutated",
+        "OS015-NEG-original_classification_mutated",
+        "OS015-NEG-new_classification_unresolved",
+        "OS015-NEG-prior_classification_unresolved",
+        "OS015-NEG-classification_revision_collapsed",
+        "OS015-NEG-classification_kind_unresolved",
+        "OS015-NEG-history_unresolved",
+        "OS015-NEG-history_entry_lost",
+        "OS015-NEG-unresolved_history_lost",
+        "OS015-NEG-unresolved_history_unresolved",
+        "OS015-NEG-first_classification_prior_present",
+        "OS015-NEG-first_classification_prior_unresolved"
+      ]
     },
     {
       "id": "HELIXOS-L4-015-F03",
@@ -458,7 +488,16 @@
       "oracle_ref": "HELIXOS-L9-015-P-F03",
       "contract": "known nonempty identityの不一致はviolation、欠落/未観測はunknown。staleはunknown、明示conflictはviolation。いずれも対象・pointer・source出所へ返し、別scopeの有効判断で補完しない。他対象は独立に保持する。",
       "remaining": "合成二対象上の文書対応のみ。正式qualification/全shape/全consumerの成立証拠ではない。",
-      "system_oracle_ref": "HELIXOS-L10-015-F03"
+      "system_oracle_ref": "HELIXOS-L10-015-F03",
+      "negative_class_refs": [
+        "OS015-NEG-source_conflict-authority",
+        "OS015-NEG-authority_origin_unresolved",
+        "OS015-NEG-authority_stale",
+        "OS015-NEG-authority_conflict",
+        "OS015-NEG-authority_state_unresolved",
+        "OS015-NEG-unresolved_promoted_to_current",
+        "OS015-NEG-current_material_claim_unresolved"
+      ]
     }
   ],
   "diagnostic_contract": {
@@ -870,5 +909,1257 @@
       ]
     },
     "new_classification_absence_reporting": "actual new_classificationが非dictならactual pointerを返す。actualがdictのときだけcontext側の非dictを診断する（同時非dictを二重診断しない）。"
+  },
+  "failure_classifications": [
+    {
+      "class_id": "OS015-NEG-source_unresolved-source",
+      "code": "management_material_unknown",
+      "design_ref": "HELIXOS-L4-015-F01",
+      "condition": "比較対象のsource operand",
+      "expected_classification": "management_material_unknown",
+      "expected": {
+        "finding_codes": [
+          "source_unresolved"
+        ]
+      },
+      "expected_preserved": {
+        "original_event": "原event wholeとrevisionを不変に保持する",
+        "original_classification": "旧分類とrevisionを保持し新旧を上書きしない",
+        "source_authority": "対象/source/authorityの元scopeと出所を保持する",
+        "unresolved_history": "未解決履歴と無関係な有効対象を保持する"
+      },
+      "expected_axis": "source",
+      "expected_state": "unknown",
+      "backflow_owner": "management-authority-owner",
+      "side_effect_count": 0,
+      "source_pointers": [
+        {
+          "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+          "pointers": [
+            "/requirements/24"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
+          "pointers": [
+            "/contracts/1",
+            "/diagnostic_contract/codes/0",
+            "/diagnostic_contract/comparison_facets",
+            "/diagnostic_contract/algorithm_python_document_text",
+            "/diagnostic_contract/aggregation",
+            "/diagnostic_contract/condition_values"
+          ]
+        }
+      ]
+    },
+    {
+      "class_id": "OS015-NEG-source_unresolved-original_event",
+      "code": "management_material_unknown",
+      "design_ref": "HELIXOS-L4-015-F02",
+      "condition": "比較対象のoriginal_event operand",
+      "expected_classification": "management_material_unknown",
+      "expected": {
+        "finding_codes": [
+          "source_unresolved"
+        ]
+      },
+      "expected_preserved": {
+        "original_event": "原event wholeとrevisionを不変に保持する",
+        "original_classification": "旧分類とrevisionを保持し新旧を上書きしない",
+        "source_authority": "対象/source/authorityの元scopeと出所を保持する",
+        "unresolved_history": "未解決履歴と無関係な有効対象を保持する"
+      },
+      "expected_axis": "original_event",
+      "expected_state": "unknown",
+      "backflow_owner": "management-authority-owner",
+      "side_effect_count": 0,
+      "source_pointers": [
+        {
+          "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+          "pointers": [
+            "/requirements/25"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
+          "pointers": [
+            "/contracts/2",
+            "/diagnostic_contract/codes/0",
+            "/diagnostic_contract/comparison_facets",
+            "/diagnostic_contract/algorithm_python_document_text",
+            "/diagnostic_contract/aggregation",
+            "/diagnostic_contract/condition_values"
+          ]
+        }
+      ]
+    },
+    {
+      "class_id": "OS015-NEG-source_unresolved-classification",
+      "code": "management_material_unknown",
+      "design_ref": "HELIXOS-L4-015-F02",
+      "condition": "比較対象のclassification operand",
+      "expected_classification": "management_material_unknown",
+      "expected": {
+        "finding_codes": [
+          "source_unresolved"
+        ]
+      },
+      "expected_preserved": {
+        "original_event": "原event wholeとrevisionを不変に保持する",
+        "original_classification": "旧分類とrevisionを保持し新旧を上書きしない",
+        "source_authority": "対象/source/authorityの元scopeと出所を保持する",
+        "unresolved_history": "未解決履歴と無関係な有効対象を保持する"
+      },
+      "expected_axis": "classification",
+      "expected_state": "unknown",
+      "backflow_owner": "management-authority-owner",
+      "side_effect_count": 0,
+      "source_pointers": [
+        {
+          "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+          "pointers": [
+            "/requirements/25"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
+          "pointers": [
+            "/contracts/2",
+            "/diagnostic_contract/codes/0",
+            "/diagnostic_contract/comparison_facets",
+            "/diagnostic_contract/algorithm_python_document_text",
+            "/diagnostic_contract/aggregation",
+            "/diagnostic_contract/condition_values"
+          ]
+        }
+      ]
+    },
+    {
+      "class_id": "OS015-NEG-source_conflict-source",
+      "code": "management_material_violation",
+      "design_ref": "HELIXOS-L4-015-F01",
+      "condition": "sourceと独立contextのknown値不一致",
+      "expected_classification": "management_material_violation",
+      "expected": {
+        "finding_codes": [
+          "source_conflict"
+        ]
+      },
+      "expected_preserved": {
+        "original_event": "原event wholeとrevisionを不変に保持する",
+        "original_classification": "旧分類とrevisionを保持し新旧を上書きしない",
+        "source_authority": "対象/source/authorityの元scopeと出所を保持する",
+        "unresolved_history": "未解決履歴と無関係な有効対象を保持する"
+      },
+      "expected_axis": "source",
+      "expected_state": "violation",
+      "backflow_owner": "management-authority-owner",
+      "side_effect_count": 0,
+      "source_pointers": [
+        {
+          "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+          "pointers": [
+            "/requirements/24"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
+          "pointers": [
+            "/contracts/1",
+            "/diagnostic_contract/codes/1",
+            "/diagnostic_contract/comparison_facets",
+            "/diagnostic_contract/algorithm_python_document_text",
+            "/diagnostic_contract/aggregation",
+            "/diagnostic_contract/condition_values"
+          ]
+        }
+      ]
+    },
+    {
+      "class_id": "OS015-NEG-source_conflict-original_event",
+      "code": "management_material_violation",
+      "design_ref": "HELIXOS-L4-015-F02",
+      "condition": "original_eventと独立contextのknown値不一致",
+      "expected_classification": "management_material_violation",
+      "expected": {
+        "finding_codes": [
+          "source_conflict"
+        ]
+      },
+      "expected_preserved": {
+        "original_event": "原event wholeとrevisionを不変に保持する",
+        "original_classification": "旧分類とrevisionを保持し新旧を上書きしない",
+        "source_authority": "対象/source/authorityの元scopeと出所を保持する",
+        "unresolved_history": "未解決履歴と無関係な有効対象を保持する"
+      },
+      "expected_axis": "original_event",
+      "expected_state": "violation",
+      "backflow_owner": "management-authority-owner",
+      "side_effect_count": 0,
+      "source_pointers": [
+        {
+          "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+          "pointers": [
+            "/requirements/25"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
+          "pointers": [
+            "/contracts/2",
+            "/diagnostic_contract/codes/1",
+            "/diagnostic_contract/comparison_facets",
+            "/diagnostic_contract/algorithm_python_document_text",
+            "/diagnostic_contract/aggregation",
+            "/diagnostic_contract/condition_values"
+          ]
+        }
+      ]
+    },
+    {
+      "class_id": "OS015-NEG-source_conflict-classification",
+      "code": "management_material_violation",
+      "design_ref": "HELIXOS-L4-015-F02",
+      "condition": "classificationと独立contextのknown値不一致",
+      "expected_classification": "management_material_violation",
+      "expected": {
+        "finding_codes": [
+          "source_conflict"
+        ]
+      },
+      "expected_preserved": {
+        "original_event": "原event wholeとrevisionを不変に保持する",
+        "original_classification": "旧分類とrevisionを保持し新旧を上書きしない",
+        "source_authority": "対象/source/authorityの元scopeと出所を保持する",
+        "unresolved_history": "未解決履歴と無関係な有効対象を保持する"
+      },
+      "expected_axis": "classification",
+      "expected_state": "violation",
+      "backflow_owner": "management-authority-owner",
+      "side_effect_count": 0,
+      "source_pointers": [
+        {
+          "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+          "pointers": [
+            "/requirements/25"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
+          "pointers": [
+            "/contracts/2",
+            "/diagnostic_contract/codes/1",
+            "/diagnostic_contract/comparison_facets",
+            "/diagnostic_contract/algorithm_python_document_text",
+            "/diagnostic_contract/aggregation",
+            "/diagnostic_contract/condition_values"
+          ]
+        }
+      ]
+    },
+    {
+      "class_id": "OS015-NEG-source_conflict-authority",
+      "code": "management_material_violation",
+      "design_ref": "HELIXOS-L4-015-F03",
+      "condition": "authority_originまたはauthority_stateのknown値不一致",
+      "expected_classification": "management_material_violation",
+      "expected": {
+        "finding_codes": [
+          "source_conflict"
+        ]
+      },
+      "expected_preserved": {
+        "original_event": "原event wholeとrevisionを不変に保持する",
+        "original_classification": "旧分類とrevisionを保持し新旧を上書きしない",
+        "source_authority": "対象/source/authorityの元scopeと出所を保持する",
+        "unresolved_history": "未解決履歴と無関係な有効対象を保持する"
+      },
+      "expected_axis": "authority",
+      "expected_state": "violation",
+      "backflow_owner": "management-authority-owner",
+      "side_effect_count": 0,
+      "source_pointers": [
+        {
+          "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+          "pointers": [
+            "/requirements/26"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
+          "pointers": [
+            "/contracts/3",
+            "/diagnostic_contract/codes/1",
+            "/diagnostic_contract/comparison_facets",
+            "/diagnostic_contract/algorithm_python_document_text",
+            "/diagnostic_contract/aggregation",
+            "/diagnostic_contract/condition_values"
+          ]
+        }
+      ]
+    },
+    {
+      "class_id": "OS015-NEG-phase_unresolved",
+      "code": "management_material_unknown",
+      "design_ref": "HELIXOS-L4-015-B01",
+      "condition": "phaseが固定されたinspect/classify/correctのいずれでもない",
+      "expected_classification": "management_material_unknown",
+      "expected": {
+        "finding_codes": [
+          "phase_unresolved"
+        ]
+      },
+      "expected_preserved": {
+        "original_event": "原event wholeとrevisionを不変に保持する",
+        "original_classification": "旧分類とrevisionを保持し新旧を上書きしない",
+        "source_authority": "対象/source/authorityの元scopeと出所を保持する",
+        "unresolved_history": "未解決履歴と無関係な有効対象を保持する"
+      },
+      "expected_axis": "global",
+      "expected_state": "unknown",
+      "backflow_owner": "management-authority-owner",
+      "side_effect_count": 0,
+      "source_pointers": [
+        {
+          "path": "docs/helix-os/L3-requirements/business-requirements.json",
+          "pointers": [
+            "/requirements/4"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
+          "pointers": [
+            "/contracts/0",
+            "/diagnostic_contract/codes/2",
+            "/diagnostic_contract/aggregation",
+            "/diagnostic_contract/raw_retention",
+            "/diagnostic_contract/condition_values"
+          ]
+        }
+      ]
+    },
+    {
+      "class_id": "OS015-NEG-original_event_mutated",
+      "code": "management_material_violation",
+      "design_ref": "HELIXOS-L4-015-F02",
+      "condition": "actual original_event wholeが独立contextと異なる",
+      "expected_classification": "management_material_violation",
+      "expected": {
+        "finding_codes": [
+          "original_event_mutated"
+        ]
+      },
+      "expected_preserved": {
+        "original_event": "原event wholeとrevisionを不変に保持する",
+        "original_classification": "旧分類とrevisionを保持し新旧を上書きしない",
+        "source_authority": "対象/source/authorityの元scopeと出所を保持する",
+        "unresolved_history": "未解決履歴と無関係な有効対象を保持する"
+      },
+      "expected_axis": "original_event",
+      "expected_state": "violation",
+      "backflow_owner": "management-authority-owner",
+      "side_effect_count": 0,
+      "source_pointers": [
+        {
+          "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+          "pointers": [
+            "/requirements/25"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
+          "pointers": [
+            "/contracts/2",
+            "/diagnostic_contract/codes/3",
+            "/diagnostic_contract/aggregation",
+            "/diagnostic_contract/raw_retention",
+            "/diagnostic_contract/condition_values"
+          ]
+        }
+      ]
+    },
+    {
+      "class_id": "OS015-NEG-original_classification_mutated",
+      "code": "management_material_violation",
+      "design_ref": "HELIXOS-L4-015-F02",
+      "condition": "actual original_classificationが独立contextと異なる",
+      "expected_classification": "management_material_violation",
+      "expected": {
+        "finding_codes": [
+          "original_classification_mutated"
+        ]
+      },
+      "expected_preserved": {
+        "original_event": "原event wholeとrevisionを不変に保持する",
+        "original_classification": "旧分類とrevisionを保持し新旧を上書きしない",
+        "source_authority": "対象/source/authorityの元scopeと出所を保持する",
+        "unresolved_history": "未解決履歴と無関係な有効対象を保持する"
+      },
+      "expected_axis": "history",
+      "expected_state": "violation",
+      "backflow_owner": "management-authority-owner",
+      "side_effect_count": 0,
+      "source_pointers": [
+        {
+          "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+          "pointers": [
+            "/requirements/25"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
+          "pointers": [
+            "/contracts/2",
+            "/diagnostic_contract/codes/4",
+            "/diagnostic_contract/aggregation",
+            "/diagnostic_contract/raw_retention",
+            "/diagnostic_contract/condition_values"
+          ]
+        }
+      ]
+    },
+    {
+      "class_id": "OS015-NEG-authority_origin_forbidden",
+      "code": "management_material_violation",
+      "design_ref": "HELIXOS-L4-015-B01",
+      "condition": "canonical_source以外のIssue/PR/CI/memory/management_recordをauthority originとする",
+      "expected_classification": "management_material_violation",
+      "expected": {
+        "finding_codes": [
+          "authority_origin_forbidden"
+        ]
+      },
+      "expected_preserved": {
+        "original_event": "原event wholeとrevisionを不変に保持する",
+        "original_classification": "旧分類とrevisionを保持し新旧を上書きしない",
+        "source_authority": "対象/source/authorityの元scopeと出所を保持する",
+        "unresolved_history": "未解決履歴と無関係な有効対象を保持する"
+      },
+      "expected_axis": "authority",
+      "expected_state": "violation",
+      "backflow_owner": "management-authority-owner",
+      "side_effect_count": 0,
+      "source_pointers": [
+        {
+          "path": "docs/helix-os/L3-requirements/business-requirements.json",
+          "pointers": [
+            "/requirements/4"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
+          "pointers": [
+            "/contracts/0",
+            "/diagnostic_contract/codes/5",
+            "/diagnostic_contract/aggregation",
+            "/diagnostic_contract/raw_retention",
+            "/diagnostic_contract/condition_values"
+          ]
+        }
+      ]
+    },
+    {
+      "class_id": "OS015-NEG-authority_origin_unresolved",
+      "code": "management_material_unknown",
+      "design_ref": "HELIXOS-L4-015-F03",
+      "condition": "authority originが許可された既知集合に解決しない",
+      "expected_classification": "management_material_unknown",
+      "expected": {
+        "finding_codes": [
+          "authority_origin_unresolved"
+        ]
+      },
+      "expected_preserved": {
+        "original_event": "原event wholeとrevisionを不変に保持する",
+        "original_classification": "旧分類とrevisionを保持し新旧を上書きしない",
+        "source_authority": "対象/source/authorityの元scopeと出所を保持する",
+        "unresolved_history": "未解決履歴と無関係な有効対象を保持する"
+      },
+      "expected_axis": "authority",
+      "expected_state": "unknown",
+      "backflow_owner": "management-authority-owner",
+      "side_effect_count": 0,
+      "source_pointers": [
+        {
+          "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+          "pointers": [
+            "/requirements/26"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
+          "pointers": [
+            "/contracts/3",
+            "/diagnostic_contract/codes/6",
+            "/diagnostic_contract/aggregation",
+            "/diagnostic_contract/raw_retention",
+            "/diagnostic_contract/condition_values"
+          ]
+        }
+      ]
+    },
+    {
+      "class_id": "OS015-NEG-authority_stale",
+      "code": "management_material_unknown",
+      "design_ref": "HELIXOS-L4-015-F03",
+      "condition": "authority_stateがstale_materialである",
+      "expected_classification": "management_material_unknown",
+      "expected": {
+        "finding_codes": [
+          "authority_stale"
+        ]
+      },
+      "expected_preserved": {
+        "original_event": "原event wholeとrevisionを不変に保持する",
+        "original_classification": "旧分類とrevisionを保持し新旧を上書きしない",
+        "source_authority": "対象/source/authorityの元scopeと出所を保持する",
+        "unresolved_history": "未解決履歴と無関係な有効対象を保持する"
+      },
+      "expected_axis": "authority",
+      "expected_state": "unknown",
+      "backflow_owner": "management-authority-owner",
+      "side_effect_count": 0,
+      "source_pointers": [
+        {
+          "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+          "pointers": [
+            "/requirements/26"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
+          "pointers": [
+            "/contracts/3",
+            "/diagnostic_contract/codes/7",
+            "/diagnostic_contract/aggregation",
+            "/diagnostic_contract/raw_retention",
+            "/diagnostic_contract/condition_values"
+          ]
+        }
+      ]
+    },
+    {
+      "class_id": "OS015-NEG-authority_conflict",
+      "code": "management_material_violation",
+      "design_ref": "HELIXOS-L4-015-F03",
+      "condition": "authority_stateがconflict_materialである",
+      "expected_classification": "management_material_violation",
+      "expected": {
+        "finding_codes": [
+          "authority_conflict"
+        ]
+      },
+      "expected_preserved": {
+        "original_event": "原event wholeとrevisionを不変に保持する",
+        "original_classification": "旧分類とrevisionを保持し新旧を上書きしない",
+        "source_authority": "対象/source/authorityの元scopeと出所を保持する",
+        "unresolved_history": "未解決履歴と無関係な有効対象を保持する"
+      },
+      "expected_axis": "authority",
+      "expected_state": "violation",
+      "backflow_owner": "management-authority-owner",
+      "side_effect_count": 0,
+      "source_pointers": [
+        {
+          "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+          "pointers": [
+            "/requirements/26"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
+          "pointers": [
+            "/contracts/3",
+            "/diagnostic_contract/codes/8",
+            "/diagnostic_contract/aggregation",
+            "/diagnostic_contract/raw_retention",
+            "/diagnostic_contract/condition_values"
+          ]
+        }
+      ]
+    },
+    {
+      "class_id": "OS015-NEG-authority_state_unresolved",
+      "code": "management_material_unknown",
+      "design_ref": "HELIXOS-L4-015-F03",
+      "condition": "authority_stateが定義済み状態集合へ解決しない",
+      "expected_classification": "management_material_unknown",
+      "expected": {
+        "finding_codes": [
+          "authority_state_unresolved"
+        ]
+      },
+      "expected_preserved": {
+        "original_event": "原event wholeとrevisionを不変に保持する",
+        "original_classification": "旧分類とrevisionを保持し新旧を上書きしない",
+        "source_authority": "対象/source/authorityの元scopeと出所を保持する",
+        "unresolved_history": "未解決履歴と無関係な有効対象を保持する"
+      },
+      "expected_axis": "authority",
+      "expected_state": "unknown",
+      "backflow_owner": "management-authority-owner",
+      "side_effect_count": 0,
+      "source_pointers": [
+        {
+          "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+          "pointers": [
+            "/requirements/26"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
+          "pointers": [
+            "/contracts/3",
+            "/diagnostic_contract/codes/9",
+            "/diagnostic_contract/aggregation",
+            "/diagnostic_contract/raw_retention",
+            "/diagnostic_contract/condition_values"
+          ]
+        }
+      ]
+    },
+    {
+      "class_id": "OS015-NEG-unresolved_promoted_to_current",
+      "code": "management_material_violation",
+      "design_ref": "HELIXOS-L4-015-F03",
+      "condition": "source/event/authorityの問題がある対象をcurrent_materialとclaimする",
+      "expected_classification": "management_material_violation",
+      "expected": {
+        "finding_codes": [
+          "unresolved_promoted_to_current"
+        ]
+      },
+      "expected_preserved": {
+        "original_event": "原event wholeとrevisionを不変に保持する",
+        "original_classification": "旧分類とrevisionを保持し新旧を上書きしない",
+        "source_authority": "対象/source/authorityの元scopeと出所を保持する",
+        "unresolved_history": "未解決履歴と無関係な有効対象を保持する"
+      },
+      "expected_axis": "authority",
+      "expected_state": "violation",
+      "backflow_owner": "management-authority-owner",
+      "side_effect_count": 0,
+      "source_pointers": [
+        {
+          "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+          "pointers": [
+            "/requirements/26"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
+          "pointers": [
+            "/contracts/3",
+            "/diagnostic_contract/codes/10",
+            "/diagnostic_contract/aggregation",
+            "/diagnostic_contract/raw_retention",
+            "/diagnostic_contract/condition_values"
+          ]
+        }
+      ]
+    },
+    {
+      "class_id": "OS015-NEG-current_material_claim_unresolved",
+      "code": "management_material_unknown",
+      "design_ref": "HELIXOS-L4-015-F03",
+      "condition": "current_material_claimがbooleanでない",
+      "expected_classification": "management_material_unknown",
+      "expected": {
+        "finding_codes": [
+          "current_material_claim_unresolved"
+        ]
+      },
+      "expected_preserved": {
+        "original_event": "原event wholeとrevisionを不変に保持する",
+        "original_classification": "旧分類とrevisionを保持し新旧を上書きしない",
+        "source_authority": "対象/source/authorityの元scopeと出所を保持する",
+        "unresolved_history": "未解決履歴と無関係な有効対象を保持する"
+      },
+      "expected_axis": "authority",
+      "expected_state": "unknown",
+      "backflow_owner": "management-authority-owner",
+      "side_effect_count": 0,
+      "source_pointers": [
+        {
+          "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+          "pointers": [
+            "/requirements/26"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
+          "pointers": [
+            "/contracts/3",
+            "/diagnostic_contract/codes/11",
+            "/diagnostic_contract/aggregation",
+            "/diagnostic_contract/raw_retention",
+            "/diagnostic_contract/condition_values"
+          ]
+        }
+      ]
+    },
+    {
+      "class_id": "OS015-NEG-new_classification_unresolved",
+      "code": "management_material_unknown",
+      "design_ref": "HELIXOS-L4-015-F02",
+      "condition": "classify/correctでnew_classificationがobjectとして形成されない",
+      "expected_classification": "management_material_unknown",
+      "expected": {
+        "finding_codes": [
+          "new_classification_unresolved"
+        ]
+      },
+      "expected_preserved": {
+        "original_event": "原event wholeとrevisionを不変に保持する",
+        "original_classification": "旧分類とrevisionを保持し新旧を上書きしない",
+        "source_authority": "対象/source/authorityの元scopeと出所を保持する",
+        "unresolved_history": "未解決履歴と無関係な有効対象を保持する"
+      },
+      "expected_axis": "classification",
+      "expected_state": "unknown",
+      "backflow_owner": "management-authority-owner",
+      "side_effect_count": 0,
+      "source_pointers": [
+        {
+          "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+          "pointers": [
+            "/requirements/25"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
+          "pointers": [
+            "/contracts/2",
+            "/diagnostic_contract/codes/12",
+            "/diagnostic_contract/aggregation",
+            "/diagnostic_contract/raw_retention",
+            "/diagnostic_contract/condition_values"
+          ]
+        }
+      ]
+    },
+    {
+      "class_id": "OS015-NEG-prior_classification_unresolved",
+      "code": "management_material_unknown",
+      "design_ref": "HELIXOS-L4-015-F02",
+      "condition": "correctでoriginal_classificationがobjectとして形成されない",
+      "expected_classification": "management_material_unknown",
+      "expected": {
+        "finding_codes": [
+          "prior_classification_unresolved"
+        ]
+      },
+      "expected_preserved": {
+        "original_event": "原event wholeとrevisionを不変に保持する",
+        "original_classification": "旧分類とrevisionを保持し新旧を上書きしない",
+        "source_authority": "対象/source/authorityの元scopeと出所を保持する",
+        "unresolved_history": "未解決履歴と無関係な有効対象を保持する"
+      },
+      "expected_axis": "classification",
+      "expected_state": "unknown",
+      "backflow_owner": "management-authority-owner",
+      "side_effect_count": 0,
+      "source_pointers": [
+        {
+          "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+          "pointers": [
+            "/requirements/25"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
+          "pointers": [
+            "/contracts/2",
+            "/diagnostic_contract/codes/13",
+            "/diagnostic_contract/aggregation",
+            "/diagnostic_contract/raw_retention",
+            "/diagnostic_contract/condition_values"
+          ]
+        }
+      ]
+    },
+    {
+      "class_id": "OS015-NEG-classification_revision_collapsed",
+      "code": "management_material_violation",
+      "design_ref": "HELIXOS-L4-015-F02",
+      "condition": "correctの新旧classification_revisionが既知一致する",
+      "expected_classification": "management_material_violation",
+      "expected": {
+        "finding_codes": [
+          "classification_revision_collapsed"
+        ]
+      },
+      "expected_preserved": {
+        "original_event": "原event wholeとrevisionを不変に保持する",
+        "original_classification": "旧分類とrevisionを保持し新旧を上書きしない",
+        "source_authority": "対象/source/authorityの元scopeと出所を保持する",
+        "unresolved_history": "未解決履歴と無関係な有効対象を保持する"
+      },
+      "expected_axis": "classification",
+      "expected_state": "violation",
+      "backflow_owner": "management-authority-owner",
+      "side_effect_count": 0,
+      "source_pointers": [
+        {
+          "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+          "pointers": [
+            "/requirements/25"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
+          "pointers": [
+            "/contracts/2",
+            "/diagnostic_contract/codes/14",
+            "/diagnostic_contract/aggregation",
+            "/diagnostic_contract/raw_retention",
+            "/diagnostic_contract/condition_values"
+          ]
+        }
+      ]
+    },
+    {
+      "class_id": "OS015-NEG-classification_kind_unresolved",
+      "code": "management_material_unknown",
+      "design_ref": "HELIXOS-L4-015-F02",
+      "condition": "new_classification.kindがold_kind/new_kind/unknown_kindへ解決しない",
+      "expected_classification": "management_material_unknown",
+      "expected": {
+        "finding_codes": [
+          "classification_kind_unresolved"
+        ]
+      },
+      "expected_preserved": {
+        "original_event": "原event wholeとrevisionを不変に保持する",
+        "original_classification": "旧分類とrevisionを保持し新旧を上書きしない",
+        "source_authority": "対象/source/authorityの元scopeと出所を保持する",
+        "unresolved_history": "未解決履歴と無関係な有効対象を保持する"
+      },
+      "expected_axis": "classification",
+      "expected_state": "unknown",
+      "backflow_owner": "management-authority-owner",
+      "side_effect_count": 0,
+      "source_pointers": [
+        {
+          "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+          "pointers": [
+            "/requirements/25"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
+          "pointers": [
+            "/contracts/2",
+            "/diagnostic_contract/codes/15",
+            "/diagnostic_contract/aggregation",
+            "/diagnostic_contract/raw_retention",
+            "/diagnostic_contract/condition_values"
+          ]
+        }
+      ]
+    },
+    {
+      "class_id": "OS015-NEG-history_unresolved",
+      "code": "management_material_unknown",
+      "design_ref": "HELIXOS-L4-015-F02",
+      "condition": "classify/correctのhistoryが既知文字列集合として形成されない",
+      "expected_classification": "management_material_unknown",
+      "expected": {
+        "finding_codes": [
+          "history_unresolved"
+        ]
+      },
+      "expected_preserved": {
+        "original_event": "原event wholeとrevisionを不変に保持する",
+        "original_classification": "旧分類とrevisionを保持し新旧を上書きしない",
+        "source_authority": "対象/source/authorityの元scopeと出所を保持する",
+        "unresolved_history": "未解決履歴と無関係な有効対象を保持する"
+      },
+      "expected_axis": "history",
+      "expected_state": "unknown",
+      "backflow_owner": "management-authority-owner",
+      "side_effect_count": 0,
+      "source_pointers": [
+        {
+          "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+          "pointers": [
+            "/requirements/25"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
+          "pointers": [
+            "/contracts/2",
+            "/diagnostic_contract/codes/16",
+            "/diagnostic_contract/aggregation",
+            "/diagnostic_contract/raw_retention",
+            "/diagnostic_contract/condition_values"
+          ]
+        }
+      ]
+    },
+    {
+      "class_id": "OS015-NEG-history_entry_lost",
+      "code": "management_material_violation",
+      "design_ref": "HELIXOS-L4-015-F02",
+      "condition": "actual historyからcontext historyのentryが失われる",
+      "expected_classification": "management_material_violation",
+      "expected": {
+        "finding_codes": [
+          "history_entry_lost"
+        ]
+      },
+      "expected_preserved": {
+        "original_event": "原event wholeとrevisionを不変に保持する",
+        "original_classification": "旧分類とrevisionを保持し新旧を上書きしない",
+        "source_authority": "対象/source/authorityの元scopeと出所を保持する",
+        "unresolved_history": "未解決履歴と無関係な有効対象を保持する"
+      },
+      "expected_axis": "history",
+      "expected_state": "violation",
+      "backflow_owner": "management-authority-owner",
+      "side_effect_count": 0,
+      "source_pointers": [
+        {
+          "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+          "pointers": [
+            "/requirements/25"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
+          "pointers": [
+            "/contracts/2",
+            "/diagnostic_contract/codes/17",
+            "/diagnostic_contract/aggregation",
+            "/diagnostic_contract/raw_retention",
+            "/diagnostic_contract/condition_values"
+          ]
+        }
+      ]
+    },
+    {
+      "class_id": "OS015-NEG-unresolved_history_lost",
+      "code": "management_material_violation",
+      "design_ref": "HELIXOS-L4-015-F02",
+      "condition": "actual unresolved_historyからcontext entryが失われる",
+      "expected_classification": "management_material_violation",
+      "expected": {
+        "finding_codes": [
+          "unresolved_history_lost"
+        ]
+      },
+      "expected_preserved": {
+        "original_event": "原event wholeとrevisionを不変に保持する",
+        "original_classification": "旧分類とrevisionを保持し新旧を上書きしない",
+        "source_authority": "対象/source/authorityの元scopeと出所を保持する",
+        "unresolved_history": "未解決履歴と無関係な有効対象を保持する"
+      },
+      "expected_axis": "history",
+      "expected_state": "violation",
+      "backflow_owner": "management-authority-owner",
+      "side_effect_count": 0,
+      "source_pointers": [
+        {
+          "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+          "pointers": [
+            "/requirements/25"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
+          "pointers": [
+            "/contracts/2",
+            "/diagnostic_contract/codes/18",
+            "/diagnostic_contract/aggregation",
+            "/diagnostic_contract/raw_retention",
+            "/diagnostic_contract/condition_values"
+          ]
+        }
+      ]
+    },
+    {
+      "class_id": "OS015-NEG-unresolved_history_unresolved",
+      "code": "management_material_unknown",
+      "design_ref": "HELIXOS-L4-015-F02",
+      "condition": "unresolved_historyが既知文字列集合として形成されない",
+      "expected_classification": "management_material_unknown",
+      "expected": {
+        "finding_codes": [
+          "unresolved_history_unresolved"
+        ]
+      },
+      "expected_preserved": {
+        "original_event": "原event wholeとrevisionを不変に保持する",
+        "original_classification": "旧分類とrevisionを保持し新旧を上書きしない",
+        "source_authority": "対象/source/authorityの元scopeと出所を保持する",
+        "unresolved_history": "未解決履歴と無関係な有効対象を保持する"
+      },
+      "expected_axis": "history",
+      "expected_state": "unknown",
+      "backflow_owner": "management-authority-owner",
+      "side_effect_count": 0,
+      "source_pointers": [
+        {
+          "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+          "pointers": [
+            "/requirements/25"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
+          "pointers": [
+            "/contracts/2",
+            "/diagnostic_contract/codes/19",
+            "/diagnostic_contract/aggregation",
+            "/diagnostic_contract/raw_retention",
+            "/diagnostic_contract/condition_values"
+          ]
+        }
+      ]
+    },
+    {
+      "class_id": "OS015-NEG-generated_authority_forbidden",
+      "code": "management_material_violation",
+      "design_ref": "HELIXOS-L4-015-B01",
+      "condition": "requirement_meaning/human_decision/implementation_permissionのtrueを生成claimする",
+      "expected_classification": "management_material_violation",
+      "expected": {
+        "finding_codes": [
+          "generated_authority_forbidden"
+        ]
+      },
+      "expected_preserved": {
+        "original_event": "原event wholeとrevisionを不変に保持する",
+        "original_classification": "旧分類とrevisionを保持し新旧を上書きしない",
+        "source_authority": "対象/source/authorityの元scopeと出所を保持する",
+        "unresolved_history": "未解決履歴と無関係な有効対象を保持する"
+      },
+      "expected_axis": "boundary",
+      "expected_state": "violation",
+      "backflow_owner": "management-authority-owner",
+      "side_effect_count": 0,
+      "source_pointers": [
+        {
+          "path": "docs/helix-os/L3-requirements/business-requirements.json",
+          "pointers": [
+            "/requirements/4"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
+          "pointers": [
+            "/contracts/0",
+            "/diagnostic_contract/codes/20",
+            "/diagnostic_contract/aggregation",
+            "/diagnostic_contract/raw_retention",
+            "/diagnostic_contract/condition_values"
+          ]
+        }
+      ]
+    },
+    {
+      "class_id": "OS015-NEG-generated_authority_claim_unresolved",
+      "code": "management_material_unknown",
+      "design_ref": "HELIXOS-L4-015-B01",
+      "condition": "生成authority claimがbooleanへ解決しない",
+      "expected_classification": "management_material_unknown",
+      "expected": {
+        "finding_codes": [
+          "generated_authority_claim_unresolved"
+        ]
+      },
+      "expected_preserved": {
+        "original_event": "原event wholeとrevisionを不変に保持する",
+        "original_classification": "旧分類とrevisionを保持し新旧を上書きしない",
+        "source_authority": "対象/source/authorityの元scopeと出所を保持する",
+        "unresolved_history": "未解決履歴と無関係な有効対象を保持する"
+      },
+      "expected_axis": "boundary",
+      "expected_state": "unknown",
+      "backflow_owner": "management-authority-owner",
+      "side_effect_count": 0,
+      "source_pointers": [
+        {
+          "path": "docs/helix-os/L3-requirements/business-requirements.json",
+          "pointers": [
+            "/requirements/4"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
+          "pointers": [
+            "/contracts/0",
+            "/diagnostic_contract/codes/21",
+            "/diagnostic_contract/aggregation",
+            "/diagnostic_contract/raw_retention",
+            "/diagnostic_contract/condition_values"
+          ]
+        }
+      ]
+    },
+    {
+      "class_id": "OS015-NEG-whole_registry_claim_unproven",
+      "code": "management_material_violation",
+      "design_ref": "HELIXOS-L4-015-B01",
+      "condition": "whole_registry_claim=trueで有限対象を全registry検証済みとclaimする",
+      "expected_classification": "management_material_violation",
+      "expected": {
+        "finding_codes": [
+          "whole_registry_claim_unproven"
+        ]
+      },
+      "expected_preserved": {
+        "original_event": "原event wholeとrevisionを不変に保持する",
+        "original_classification": "旧分類とrevisionを保持し新旧を上書きしない",
+        "source_authority": "対象/source/authorityの元scopeと出所を保持する",
+        "unresolved_history": "未解決履歴と無関係な有効対象を保持する"
+      },
+      "expected_axis": "global",
+      "expected_state": "violation",
+      "backflow_owner": "management-authority-owner",
+      "side_effect_count": 0,
+      "source_pointers": [
+        {
+          "path": "docs/helix-os/L3-requirements/business-requirements.json",
+          "pointers": [
+            "/requirements/4"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
+          "pointers": [
+            "/contracts/0",
+            "/diagnostic_contract/codes/22",
+            "/diagnostic_contract/aggregation",
+            "/diagnostic_contract/raw_retention",
+            "/diagnostic_contract/condition_values"
+          ]
+        }
+      ]
+    },
+    {
+      "class_id": "OS015-NEG-whole_registry_claim_unresolved",
+      "code": "management_material_unknown",
+      "design_ref": "HELIXOS-L4-015-B01",
+      "condition": "whole_registry_claimがbooleanへ解決しない",
+      "expected_classification": "management_material_unknown",
+      "expected": {
+        "finding_codes": [
+          "whole_registry_claim_unresolved"
+        ]
+      },
+      "expected_preserved": {
+        "original_event": "原event wholeとrevisionを不変に保持する",
+        "original_classification": "旧分類とrevisionを保持し新旧を上書きしない",
+        "source_authority": "対象/source/authorityの元scopeと出所を保持する",
+        "unresolved_history": "未解決履歴と無関係な有効対象を保持する"
+      },
+      "expected_axis": "global",
+      "expected_state": "unknown",
+      "backflow_owner": "management-authority-owner",
+      "side_effect_count": 0,
+      "source_pointers": [
+        {
+          "path": "docs/helix-os/L3-requirements/business-requirements.json",
+          "pointers": [
+            "/requirements/4"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
+          "pointers": [
+            "/contracts/0",
+            "/diagnostic_contract/codes/23",
+            "/diagnostic_contract/aggregation",
+            "/diagnostic_contract/raw_retention",
+            "/diagnostic_contract/condition_values"
+          ]
+        }
+      ]
+    },
+    {
+      "class_id": "OS015-NEG-first_classification_prior_present",
+      "code": "management_material_violation",
+      "design_ref": "HELIXOS-L4-015-F02",
+      "condition": "未分類原eventの初回classifyでprior classificationを供給する",
+      "expected_classification": "management_material_violation",
+      "expected": {
+        "finding_codes": [
+          "first_classification_prior_present"
+        ]
+      },
+      "expected_preserved": {
+        "original_event": "原event wholeとrevisionを不変に保持する",
+        "original_classification": "旧分類とrevisionを保持し新旧を上書きしない",
+        "source_authority": "対象/source/authorityの元scopeと出所を保持する",
+        "unresolved_history": "未解決履歴と無関係な有効対象を保持する"
+      },
+      "expected_axis": "classification",
+      "expected_state": "violation",
+      "backflow_owner": "management-authority-owner",
+      "side_effect_count": 0,
+      "source_pointers": [
+        {
+          "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+          "pointers": [
+            "/requirements/25"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
+          "pointers": [
+            "/contracts/2",
+            "/diagnostic_contract/codes/24",
+            "/diagnostic_contract/aggregation",
+            "/diagnostic_contract/raw_retention",
+            "/diagnostic_contract/condition_values"
+          ]
+        }
+      ]
+    },
+    {
+      "class_id": "OS015-NEG-first_classification_prior_unresolved",
+      "code": "management_material_unknown",
+      "design_ref": "HELIXOS-L4-015-F02",
+      "condition": "初回classify時の既存prior値がclassification ref/revisionへ解決しない",
+      "expected_classification": "management_material_unknown",
+      "expected": {
+        "finding_codes": [
+          "first_classification_prior_unresolved"
+        ]
+      },
+      "expected_preserved": {
+        "original_event": "原event wholeとrevisionを不変に保持する",
+        "original_classification": "旧分類とrevisionを保持し新旧を上書きしない",
+        "source_authority": "対象/source/authorityの元scopeと出所を保持する",
+        "unresolved_history": "未解決履歴と無関係な有効対象を保持する"
+      },
+      "expected_axis": "classification",
+      "expected_state": "unknown",
+      "backflow_owner": "management-authority-owner",
+      "side_effect_count": 0,
+      "source_pointers": [
+        {
+          "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+          "pointers": [
+            "/requirements/25"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
+          "pointers": [
+            "/contracts/2",
+            "/diagnostic_contract/codes/25",
+            "/diagnostic_contract/aggregation",
+            "/diagnostic_contract/raw_retention",
+            "/diagnostic_contract/condition_values"
+          ]
+        }
+      ]
+    }
+  ],
+  "negative_equivalence_classes": {
+    "source_rows": "failure_classifications"
   }
 }
