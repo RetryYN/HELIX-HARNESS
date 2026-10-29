@@ -97,7 +97,33 @@
       },
       "interpretation": "PR-Aの2 class定義はL4/L9で形成された。対応するL5 failure rulesとL8 class rowsがPR-Aにないため中間negative-4way FAILとなる。"
     },
-    "latest_main_trial": "pending"
+    "latest_main_trial": {
+      "base_revision": "821a655ad6949b2a7a5344b26e3c170cccc353a6",
+      "trial_revision": "683964eb8477edea3ae2c6a13c04acea819890b7",
+      "candidate_revision": "1928259790b0b9e87e85a959c6d1b2f008a9acdc",
+      "overall": "FAIL",
+      "L4_L9_pair": "PASS",
+      "L5_L8_pair": "PASS",
+      "class_counts": {
+        "L4": 33,
+        "L5": 31,
+        "L8": 25,
+        "L9": 27
+      },
+      "case_rows": {
+        "L8": 583,
+        "L9": 583
+      },
+      "matched_cases": 431,
+      "failure_count": 175,
+      "failure_reasons": {
+        "negative_case_class_ref_missing_or_unresolved:L8": 141,
+        "class_key_missing_from_layer:L8": 16,
+        "class_key_missing_from_layer:L9": 12,
+        "class_key_missing_from_layer:L5": 4,
+        "class_owner_ref_unresolved:L4": 2
+      }
+    }
   },
   "check_freeze": {
     "before": {
@@ -131,7 +157,8 @@
   "scfctl": {
     "validate_bindings": 162,
     "validation_failures": 0,
-    "stale": 0
+    "stale": 0,
+    "latest_main_trial": "same"
   },
   "diff_check": {
     "candidate": {
@@ -139,7 +166,13 @@
       "exit_code": 0,
       "output": ""
     },
-    "latest_main_trial": "pending"
+    "latest_main_trial": {
+      "base": "821a655ad6949b2a7a5344b26e3c170cccc353a6",
+      "trial_revision": "683964eb8477edea3ae2c6a13c04acea819890b7",
+      "candidate_revision": "1928259790b0b9e87e85a959c6d1b2f008a9acdc",
+      "exit_code": 0,
+      "output": ""
+    }
   },
   "not_claimed": [
     "L5/L8 pair completion",
