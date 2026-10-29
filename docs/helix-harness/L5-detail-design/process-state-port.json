@@ -1285,7 +1285,7 @@
             "code": "B01_REQUIRED_EVIDENCE_MISSING",
             "axis": "required_sources",
             "state": "missing",
-            "condition_source": "各根拠roleの原sourceまたは技術/人間原証拠が欠落し、他方の成功で補完する。 failure stateはmissing。",
+            "condition_source": "各根拠roleの原資料または技術/人間原証拠が欠落し、他方の成功で補完する。 （状態値はmissing）。",
             "source_pointers": [
               {
                 "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
@@ -1302,7 +1302,7 @@
             "code": "B01_SCOPE_APPLICABILITY_UNKNOWN",
             "axis": "grounding_scope",
             "state": "unknown",
-            "condition_source": "scopeの適用条件・理由・出典が未決なのにrequired/not_required/N/Aへ補う。 failure stateはunknown。",
+            "condition_source": "対象範囲の適用条件・理由・出典が未決のままなのにrequired/not_required/N/Aへ補う。（状態値はunknown）。",
             "source_pointers": [
               {
                 "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
@@ -1319,7 +1319,7 @@
             "code": "B01_SOURCE_ROLE_CONFLICT",
             "axis": "source_role_identity",
             "state": "conflict",
-            "condition_source": "人の発言・AI解釈・技術品質を別原記録identityとして扱わず、受容済み軸と未解決findingを相殺する。 failure stateはconflict。",
+            "condition_source": "人の発言・AI解釈・技術品質を別の原記録識別子として扱わず、受容済み軸と未解決の指摘を相殺する。（状態値はconflict）。",
             "source_pointers": [
               {
                 "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
@@ -1336,7 +1336,7 @@
             "code": "B01_SOURCE_REVISION_STALE",
             "axis": "source_target_revision_scope",
             "state": "stale",
-            "condition_source": "同scopeの別revisionに属する所見または原材料を当該対象の根拠として結ぶ。 failure stateはstale。",
+            "condition_source": "同じ対象範囲の別の改訂に属する所見または原材料を当該対象の根拠として結ぶ。（状態値はstale）。",
             "source_pointers": [
               {
                 "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
@@ -1349,8 +1349,8 @@
             ]
           }
         ],
-        "emission": "Emit one {code, return_owner} entry per established matching rule, in ordered_rule_refs order. Preserve simultaneous independent findings; do not invent a code when its condition is unresolved.",
-        "owner_semantics": "return_owner exactly preserves failure_rules.backflow_owner as a semantic owner-role label; existing typed owner_returns/LogicalOwnerReference is preserved separately. No actual receiver qualification or delivery is formed.",
+        "emission": "成立が確認された各ruleについて、ordered_rule_refsの順に{code, return_owner}の要素を1件出力する。独立して同時に成立した複数のfindingはそれぞれ保持する。条件の成立が不明なcodeを作らない。",
+        "owner_semantics": "return_ownerはfailure_rules.backflow_ownerに記載された意味上のowner役割ラベルをそのまま保持する。既存の型付きowner_returns/LogicalOwnerReferenceは別に維持する。実際の受信資格や配送は形成しない。",
         "side_effect": "none"
       }
     },
@@ -1576,7 +1576,7 @@
             "code": "F01_REQUIRED_CONDITION_MISSING",
             "axis": "action_required_condition",
             "state": "missing",
-            "condition_source": "当該actionの必要条件またはその原材料が未供給のまま成立扱いになる。 failure stateはmissing。",
+            "condition_source": "当該actionの必要条件またはその原材料が未供給のまま成立したものとして扱う。 （状態値はmissing）。",
             "source_pointers": [
               {
                 "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
@@ -1593,7 +1593,7 @@
             "code": "F01_CONDITION_DEFINITION_UNKNOWN",
             "axis": "condition_profile_definition",
             "state": "unknown",
-            "condition_source": "必要profile・比較対象・role/kind定義が未供給または未対応なのに既定値や近いroleへ置換する。 failure stateはunknown。",
+            "condition_source": "必要profile・比較対象・role/kind定義が未供給または未対応なのに既定値や近いroleへ置換する。（状態値はunknown）。",
             "source_pointers": [
               {
                 "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
@@ -1610,7 +1610,7 @@
             "code": "F01_ROLE_AUTHORITY_CONFLICT",
             "axis": "role_authority_separation",
             "state": "conflict",
-            "condition_source": "相談・依頼・採択・要件承認・操作認可を同一roleへ読み替える、または委任内の技術具体化へ承認を追加する。 failure stateはconflict。",
+            "condition_source": "相談・依頼・採択・要件承認・操作認可を同一roleへ読み替える、または委任内の技術具体化へ承認を追加する。（状態値はconflict）。",
             "source_pointers": [
               {
                 "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
@@ -1627,7 +1627,7 @@
             "code": "F01_CONDITION_TARGET_STALE",
             "axis": "condition_target_revision_scope",
             "state": "stale",
-            "condition_source": "別revision/scopeの合意・承認・pairを当該phase条件の成立根拠にする。 failure stateはstale。",
+            "condition_source": "別の改訂/scopeの合意・承認・pairを当該phase条件の成立根拠にする。（状態値はstale）。",
             "source_pointers": [
               {
                 "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
@@ -1640,8 +1640,8 @@
             ]
           }
         ],
-        "emission": "Emit one {code, return_owner} entry per established matching rule, in ordered_rule_refs order. Preserve simultaneous independent findings; do not invent a code when its condition is unresolved.",
-        "owner_semantics": "return_owner exactly preserves failure_rules.backflow_owner as a semantic owner-role label; existing typed owner_returns/LogicalOwnerReference is preserved separately. No actual receiver qualification or delivery is formed.",
+        "emission": "成立が確認された各ruleについて、ordered_rule_refsの順に{code, return_owner}の要素を1件出力する。独立して同時に成立した複数のfindingはそれぞれ保持する。条件の成立が不明なcodeを作らない。",
+        "owner_semantics": "return_ownerはfailure_rules.backflow_ownerに記載された意味上のowner役割ラベルをそのまま保持する。既存の型付きowner_returns/LogicalOwnerReferenceは別に維持する。実際の受信資格や配送は形成しない。",
         "side_effect": "none"
       }
     },
@@ -1846,7 +1846,7 @@
             "code": "F02_APPLICABILITY_UNKNOWN",
             "axis": "prototype_poc_applicability",
             "state": "unknown",
-            "condition_source": "Prototype/PoCの独立適用statusまたは理由が未決なのに非適用へ補う。 failure stateはunknown。",
+            "condition_source": "Prototype/PoCの独立適用状態または理由が未決のままなのに非適用へ補う。（状態値はunknown）。",
             "source_pointers": [
               {
                 "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
@@ -1863,7 +1863,7 @@
             "code": "F02_APPLICABLE_RESULT_MISSING",
             "axis": "prototype_poc_result",
             "state": "missing",
-            "condition_source": "適用対象のL2.5原結果がない状態を、他方の成功やnon-UI判断で補う。 failure stateはmissing。",
+            "condition_source": "適用対象のL2.5原結果がない状態を、他方の成功や非UIの判断で補う。 （状態値はmissing）。",
             "source_pointers": [
               {
                 "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
@@ -1880,7 +1880,7 @@
             "code": "F02_ADOPTION_CLAIM_CONFLICT",
             "axis": "adoption_authority",
             "state": "conflict",
-            "condition_source": "PoC/Prototype成功を要求採用・要件承認・凍結・完了として扱う。 failure stateはconflict。",
+            "condition_source": "PoC/Prototype成功を要求採用・要件承認・凍結・完了として扱う。（状態値はconflict）。",
             "source_pointers": [
               {
                 "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
@@ -1897,7 +1897,7 @@
             "code": "F02_RESULTLESS_RETURN_CHAIN_CONFLICT",
             "axis": "return_chain_without_result",
             "state": "conflict",
-            "condition_source": "L2.5結果がないcaseにBackflowから対再凍結までの還流chainを構成する。 failure stateはconflict。",
+            "condition_source": "L2.5結果がないcaseにBackflowから対の再凍結までの還流経路を構成する。（状態値はconflict）。",
             "source_pointers": [
               {
                 "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
@@ -1910,8 +1910,8 @@
             ]
           }
         ],
-        "emission": "Emit one {code, return_owner} entry per established matching rule, in ordered_rule_refs order. Preserve simultaneous independent findings; do not invent a code when its condition is unresolved.",
-        "owner_semantics": "return_owner exactly preserves failure_rules.backflow_owner as a semantic owner-role label; existing typed owner_returns/LogicalOwnerReference is preserved separately. No actual receiver qualification or delivery is formed.",
+        "emission": "成立が確認された各ruleについて、ordered_rule_refsの順に{code, return_owner}の要素を1件出力する。独立して同時に成立した複数のfindingはそれぞれ保持する。条件の成立が不明なcodeを作らない。",
+        "owner_semantics": "return_ownerはfailure_rules.backflow_ownerに記載された意味上のowner役割ラベルをそのまま保持する。既存の型付きowner_returns/LogicalOwnerReferenceは別に維持する。実際の受信資格や配送は形成しない。",
         "side_effect": "none"
       }
     },
@@ -2404,7 +2404,7 @@
             "code": "F03_REQUIRED_PAIR_MISSING",
             "axis": "pair_trace",
             "state": "missing",
-            "condition_source": "L8↔L5、L9↔L4、L10↔L3の必要pairまたはその原traceが未供給なのに成立扱いになる。 failure stateはmissing。",
+            "condition_source": "L8↔L5、L9↔L4、L10↔L3の必要pairまたはその原traceが供給されていないのに成立したものとして扱う。 （状態値はmissing）。",
             "source_pointers": [
               {
                 "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
@@ -2421,7 +2421,7 @@
             "code": "F03_L9_DIMENSION_UNKNOWN",
             "axis": "l9_system_observation",
             "state": "unknown",
-            "condition_source": "L9の10観点の原期待/観測が未決なのに成功または空観測へ補われる。 failure stateはunknown。",
+            "condition_source": "L9の10観点の原期待/観測が未決のままなのに成功または空観測へ補われる。（状態値はunknown）。",
             "source_pointers": [
               {
                 "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
@@ -2438,7 +2438,7 @@
             "code": "F03_PAIR_SCOPE_CONFLICT",
             "axis": "pair_target_scope",
             "state": "conflict",
-            "condition_source": "pairの左右revision/scopeまたは設計対象の対応が一致しないのに同一pairとして比較される。 failure stateはconflict。",
+            "condition_source": "pairの左右revision/scopeまたは設計対象の対応が一致しないのに同一pairとして比較される。（状態値はconflict）。",
             "source_pointers": [
               {
                 "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
@@ -2455,7 +2455,7 @@
             "code": "F03_TICKET_REVERSE_EFFECT_CONFLICT",
             "axis": "actual_ticket_reverse_effect",
             "state": "conflict",
-            "condition_source": "通常照合から実ticket発行またはReverse実行成功を生成する。 failure stateはconflict。",
+            "condition_source": "通常照合から実ticket発行またはReverse実行成功を生成する。（状態値はconflict）。",
             "source_pointers": [
               {
                 "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
@@ -2468,8 +2468,8 @@
             ]
           }
         ],
-        "emission": "Emit one {code, return_owner} entry per established matching rule, in ordered_rule_refs order. Preserve simultaneous independent findings; do not invent a code when its condition is unresolved.",
-        "owner_semantics": "return_owner exactly preserves failure_rules.backflow_owner as a semantic owner-role label; existing typed owner_returns/LogicalOwnerReference is preserved separately. No actual receiver qualification or delivery is formed.",
+        "emission": "成立が確認された各ruleについて、ordered_rule_refsの順に{code, return_owner}の要素を1件出力する。独立して同時に成立した複数のfindingはそれぞれ保持する。条件の成立が不明なcodeを作らない。",
+        "owner_semantics": "return_ownerはfailure_rules.backflow_ownerに記載された意味上のowner役割ラベルをそのまま保持する。既存の型付きowner_returns/LogicalOwnerReferenceは別に維持する。実際の受信資格や配送は形成しない。",
         "side_effect": "none"
       }
     },
@@ -3089,8 +3089,8 @@
             ]
           }
         ],
-        "emission": "Emit one {code, return_owner} entry per established matching rule, in ordered_rule_refs order. Preserve simultaneous independent findings; do not invent a code when its condition is unresolved.",
-        "owner_semantics": "return_owner exactly preserves failure_rules.backflow_owner as a semantic owner-role label; existing typed owner_returns/LogicalOwnerReference is preserved separately. No actual receiver qualification or delivery is formed.",
+        "emission": "成立が確認された各ruleについて、ordered_rule_refsの順に{code, return_owner}の要素を1件出力する。独立して同時に成立した複数のfindingはそれぞれ保持する。条件の成立が不明なcodeを作らない。",
+        "owner_semantics": "return_ownerはfailure_rules.backflow_ownerに記載された意味上のowner役割ラベルをそのまま保持する。既存の型付きowner_returns/LogicalOwnerReferenceは別に維持する。実際の受信資格や配送は形成しない。",
         "side_effect": "none"
       }
     },
@@ -4346,7 +4346,7 @@
             "code": "F05_REQUIRED_PORT_FIELD_MISSING",
             "axis": "port_required_fields",
             "state": "missing",
-            "condition_source": "開発開始時から義務を持つPort必須fieldまたは原観測が欠落したままRelease-eligible扱いになる。 failure stateはmissing。",
+            "condition_source": "開発開始時から義務を持つPort必須fieldまたは原観測が欠落したままRelease-eligible扱いになる。 （状態値はmissing）。",
             "source_pointers": [
               {
                 "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
@@ -4363,7 +4363,7 @@
             "code": "F05_EXISTING_AUTHORITY_UNKNOWN",
             "axis": "existing_operation_authority",
             "state": "unknown",
-            "condition_source": "既存の操作authorityが未決なのに実操作を許可扱いにする。 failure stateはunknown。",
+            "condition_source": "既存の操作authorityが未決のままなのに実操作を許可扱いにする。（状態値はunknown）。",
             "source_pointers": [
               {
                 "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
@@ -4380,7 +4380,7 @@
             "code": "F05_RETURN_TARGET_UNKNOWN",
             "axis": "backfill_return_target",
             "state": "unknown",
-            "condition_source": "Reverse fullback実結果または対象選択方式から戻り先を確定できないのに既定層へ補う。 failure stateはunknown。",
+            "condition_source": "Reverse fullbackの実結果または対象選択方式から戻り先を確定できないのに既定の層で補う。（状態値はunknown）。",
             "source_pointers": [
               {
                 "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
@@ -4397,7 +4397,7 @@
             "code": "F05_OPERATION_EFFECT_CONFLICT",
             "axis": "release_incident_operation_effect",
             "state": "conflict",
-            "condition_source": "Port成立を実release/Incident/配備/operation approvalの実作用として扱う。 failure stateはconflict。",
+            "condition_source": "Portの成立を、実際のrelease/Incident/配備/operation approvalの実作用として扱う。（状態値はconflict）。",
             "source_pointers": [
               {
                 "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
@@ -4414,7 +4414,7 @@
             "code": "F05_COMPLETION_BACKFILL_CONFLICT",
             "axis": "incident_completion_backfill",
             "state": "conflict",
-            "condition_source": "配備成功またはIssue closeを恒久対策・current L1–L12 backfill・backfull完了として扱う。 failure stateはconflict。",
+            "condition_source": "配備成功またはIssueのcloseを恒久対策・現行L1–L12へのbackfill・backfullの完了として扱う。（状態値はconflict）。",
             "source_pointers": [
               {
                 "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
@@ -4427,8 +4427,8 @@
             ]
           }
         ],
-        "emission": "Emit one {code, return_owner} entry per established matching rule, in ordered_rule_refs order. Preserve simultaneous independent findings; do not invent a code when its condition is unresolved.",
-        "owner_semantics": "return_owner exactly preserves failure_rules.backflow_owner as a semantic owner-role label; existing typed owner_returns/LogicalOwnerReference is preserved separately. No actual receiver qualification or delivery is formed.",
+        "emission": "成立が確認された各ruleについて、ordered_rule_refsの順に{code, return_owner}の要素を1件出力する。独立して同時に成立した複数のfindingはそれぞれ保持する。条件の成立が不明なcodeを作らない。",
+        "owner_semantics": "return_ownerはfailure_rules.backflow_ownerに記載された意味上のowner役割ラベルをそのまま保持する。既存の型付きowner_returns/LogicalOwnerReferenceは別に維持する。実際の受信資格や配送は形成しない。",
         "side_effect": "none"
       }
     },
@@ -7519,7 +7519,7 @@
             "code": "N01_QUALITY_APPLICABILITY_UNKNOWN",
             "axis": "quality_applicability",
             "state": "unknown",
-            "condition_source": "対象製品の品質領域適用性またはN/A理由/原根拠が未決なのに空集合/N/Aへ補う。 failure stateはunknown。",
+            "condition_source": "対象製品の品質領域適用性またはN/A理由/原根拠が未決のままなのに空集合/N/Aへ補う。（状態値はunknown）。",
             "source_pointers": [
               {
                 "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
@@ -7536,7 +7536,7 @@
             "code": "N01_QUALITY_STAGE_EVIDENCE_MISSING",
             "axis": "quality_stage_evidence",
             "state": "missing",
-            "condition_source": "designed/implemented/verified/observed/operatedの固有原証拠が欠落したまま後段stateで補完される。 failure stateはmissing。",
+            "condition_source": "designed/implemented/verified/observed/operatedの固有原証拠が欠落したまま後段stateで補完される。 （状態値はmissing）。",
             "source_pointers": [
               {
                 "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
@@ -7553,7 +7553,7 @@
             "code": "N01_HEALTH_OBSERVATION_UNKNOWN",
             "axis": "health_observation",
             "state": "unknown",
-            "condition_source": "必要適用性または実観測が未確定なのにhealthy/unhealthyへ確定する。 failure stateはunknown。",
+            "condition_source": "必要適用性または実観測が未確定なのにhealthy/unhealthyへ確定する。（状態値はunknown）。",
             "source_pointers": [
               {
                 "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
@@ -7570,7 +7570,7 @@
             "code": "N01_TARGET_ENVIRONMENT_EVIDENCE_MISSING",
             "axis": "target_environment_binding",
             "state": "missing",
-            "condition_source": "別環境や旧provider/CIの証拠だけで対象環境の観測不足を相殺する。 failure stateはmissing。",
+            "condition_source": "別環境や旧provider/CIの証拠だけで対象環境の観測不足を相殺する。 （状態値はmissing）。",
             "source_pointers": [
               {
                 "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
@@ -7587,7 +7587,7 @@
             "code": "N01_SECURITY_AUTHORITY_CONFLICT",
             "axis": "security_policy_authority",
             "state": "conflict",
-            "condition_source": "工程条件またはOS運転からsecurity policy、credential、認可を生成する。 failure stateはconflict。",
+            "condition_source": "工程条件またはOS運転からセキュリティ方針、認証情報、認可を生成する。（状態値はconflict）。",
             "source_pointers": [
               {
                 "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
@@ -7604,7 +7604,7 @@
             "code": "N01_NUMERIC_TARGET_UNKNOWN",
             "axis": "numeric_target_basis",
             "state": "unknown",
-            "condition_source": "SLO/RTO/RPO/保持期間の要求/Release根拠が未決なのに工程規則や他対象値から既定値を生成する。 failure stateはunknown。",
+            "condition_source": "SLO/RTO/RPO/保持期間の要求/Release根拠が未決のままなのに工程規則や他対象値から既定値を生成する。（状態値はunknown）。",
             "source_pointers": [
               {
                 "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
@@ -7617,8 +7617,8 @@
             ]
           }
         ],
-        "emission": "Emit one {code, return_owner} entry per established matching rule, in ordered_rule_refs order. Preserve simultaneous independent findings; do not invent a code when its condition is unresolved.",
-        "owner_semantics": "return_owner exactly preserves failure_rules.backflow_owner as a semantic owner-role label; existing typed owner_returns/LogicalOwnerReference is preserved separately. No actual receiver qualification or delivery is formed.",
+        "emission": "成立が確認された各ruleについて、ordered_rule_refsの順に{code, return_owner}の要素を1件出力する。独立して同時に成立した複数のfindingはそれぞれ保持する。条件の成立が不明なcodeを作らない。",
+        "owner_semantics": "return_ownerはfailure_rules.backflow_ownerに記載された意味上のowner役割ラベルをそのまま保持する。既存の型付きowner_returns/LogicalOwnerReferenceは別に維持する。実際の受信資格や配送は形成しない。",
         "side_effect": "none"
       }
     }

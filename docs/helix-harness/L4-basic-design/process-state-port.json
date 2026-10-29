@@ -3091,11 +3091,11 @@
   },
   "failure_output_projection": {
     "member": "L5.functions[].output.failure_findings",
-    "source": "L4.contracts[].negative_classifications[].code/change/axis/state paired with the exact L5.failure_rules row for that code.",
-    "order": "Each function emits matching rules in the ascending order in the existing L5.failure_rules array. Multiple independent matches remain separate entries; no sorting by code and no deduplication.",
-    "condition": "Emit one entry only when the corresponding L4 condition is established at its stated axis/state by the function evaluation. An unresolved/missing classification condition does not generate a guessed code or an implicit no-failure result.",
-    "return_owner": "Text is the exact L5.failure_rules.backflow_owner semantic owner-role label. It is not an actor identity, recipient qualification, routing proof, or delivery result.",
-    "preservation": "This projection supplements existing output fields. Existing owner_returns and typed LogicalOwnerReference remain authoritative for structured meaning-owner references and are not replaced or inferred from the string label.",
+    "source": "L4の各negative_classificationsのcode/change/axis/stateと、同じcodeを持つL5.failure_rulesの行を対応付ける。",
+    "order": "各関数は、既存L5.failure_rules配列で対応ruleが現れる順にfindingを出力する。独立して成立する複数のfindingは別々の要素として保持し、code順への並び替えや重複除去はしない。",
+    "condition": "関数評価で対応するL4条件が指定のaxis/stateで成立した場合のみ1件を出力する。条件成立が不明な場合にcodeを推定したり、failureなしと暗黙に判定したりしない。",
+    "return_owner": "文字列にはL5.failure_rules.backflow_ownerに記載された意味上のowner役割ラベルをそのまま使う。実actorの識別、受信資格、配送の証明、配送結果を表さない。",
+    "preservation": "この投影は既存のoutput fieldsを補足する。既存のowner_returnsと型付きLogicalOwnerReferenceは、構造化された意味上のowner参照の正本として保持し、文字列ラベルで置換したり推定したりしない。",
     "effect": "none",
     "source_pointers": [
       {
