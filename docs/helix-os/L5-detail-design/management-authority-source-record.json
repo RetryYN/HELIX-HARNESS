@@ -421,12 +421,12 @@
   "source_pair_pins": [
     {
       "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
-      "revision": "c5f80e634a3e41f1a268ab3e945bbd1e6b1ece37",
-      "sha256": "dc3cf283059c0d4d6f890e93728ce0f75088a6e8980fe937b22ef9afeb117ec5"
+      "revision": "33b518adcf7ced5c12b92a916f8f6460b9f5bb75",
+      "sha256": "e2e92c62217f70203752ab4f79ed7a92831d94cb813c6947153f237c83c8576b"
     },
     {
       "path": "docs/helix-os/L9-integration-verification/management-authority-source-record.json",
-      "revision": "c5f80e634a3e41f1a268ab3e945bbd1e6b1ece37",
+      "revision": "a0ad8cfd662dbab39cc1f983d91b20be8a228b64",
       "sha256": "0b310db53887fd22d2fa5a3154099fdc0587bceed61dc85544f57549b2cbec51"
     }
   ],
@@ -1527,17 +1527,21 @@
     "meaning": "全比較path/優先/所見順/保持/返却候補の唯一の計算規範はdefinitions。読取器に業務分岐を置かず、case ID/expected lookupで返却を選ばない。",
     "composite_class_formation": {
       "source": "docs/helix-os/L4-basic-design/management-authority-source-record.json#/diagnostic_contract/composite_class_formation",
-      "method": "L7 connection_materialsのfixed fixture_inputsとcase given.input replacementsから入力値を解決しhashを照合する。L4 structured predicateへ前向きに照合する。L7 expected_proposalはindependent oracleでないためkey導出元にしない。L9 expected/observation/negative_class_refの組合せからkeyを作らない。",
       "finding_codes": "L4の最終sort済findingsからcodeを同順に全件投影し、同codeの異pointer occurrenceも保持する。",
       "expected_classification": "L4全体conditionを同値写像する。",
       "axis_state": "L4 global findingがあればglobal優先。なければL4 facet順の最初のnon-corresponding facetを選び、その全target aggregate stateを使う。expected_stateは選択axis局所値で、全体conditionとは別。",
       "owner_ref_resolution": "各ordered finding codeを既存failure_rulesへ一意joinする。すべて同じfunction_ref/contract_refへ解決したときだけowner_refを形成する。欠落または複数ownerならそのclassをformed扱いせず、未解決として残す。現行OS015 26 codeは全件FN-OS015-01へ一意解決する。",
-      "class_id": "L4 class_idと同じcanonical class key JSONのSHA-256全64桁から形成する。",
+      "class_id": "このL5 composite class key objectをUTF-8 ensure_ascii=false, sort_keys=true, separators=(\",\",\":\")で直列化したSHA-256全64桁から形成する。",
       "side_effect_count": 0,
-      "coverage_scope": "本候補は複合case class rowを宣言せず、case coverageを主張しない。class rowを追加する場合は、各L7 fixed inputとL4 predicateの独立したcase単位静的照合根拠を必要とする。固定carrierの可能class universe全体を列挙するものでもない。",
-      "preservation": "L7/L8/L9の既存case単位expected・retention・observationは不変に保つ。既存expectedを複合class keyの導出元にしない。",
       "global_basis": "L4 global codeはtargetを特定しない。L5 resolution_contract priorityはglobal所見のreferenceをAbsentとし対象を推測しないため、primary axisをglobalへ優先してもtarget ownerやrecipientを捏造しない。",
-      "finite_domain_basis": "L4 fixed carrierによるfindings最大250件、code multiset上限C(276,26)-1。有限だが全宇宙の明示列挙を避け、対象固定入力のみ処理する。"
+      "l4_projection_fields": [
+        "expected_classification",
+        "ordered_expected.finding_codes",
+        "backflow_owner",
+        "expected_axis",
+        "expected_state"
+      ],
+      "composite_key_fields": "L4 projection fieldsにowner_ref(kind,id)を加えたcanonical class keyを形成する。"
     },
     "language": "JSON構造化純AST。FunctionDef/局所関数/式/短絡条件/配列順ループ/安定sort/辞書内包とsource値copyだけ。",
     "constants": {
