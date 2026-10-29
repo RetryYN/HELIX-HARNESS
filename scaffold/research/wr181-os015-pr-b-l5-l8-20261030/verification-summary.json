@@ -1,0 +1,178 @@
+{
+  "scope": "WR181 PR-B: HELIX-OS OS015 L5/L8に2 composite rule/classと29件のcase linkを追加。L9は変更しない。",
+  "pr_class": "design_verification",
+  "pair": "OS015 L5/L8",
+  "latest_main_revision": "97e0ee18a98d6f9714e29fa0fae3a3c58cdeead1",
+  "latest_main_source": "git fetch origin main後のFETCH_HEADとgit ls-remote origin refs/heads/mainが一致",
+  "latest_main_change_review": {
+    "from_revision": "1d12ab087e9ffb1935ee23da85a6bd4ee51538f6",
+    "to_revision": "97e0ee18a98d6f9714e29fa0fae3a3c58cdeead1",
+    "changed_paths": [
+      "docs/helix-security/L8-unit-verification/configuration-revision-integrity.json"
+    ],
+    "overlap_with_os015_target_or_bindings": false,
+    "l8_comparison_baseline_hash_equals_latest_main": true
+  },
+  "candidate_commits": {
+    "base": "97e0ee18a98d6f9714e29fa0fae3a3c58cdeead1",
+    "l5": "d0b9aadf37a53a182bf6188495771c17fd06e16c",
+    "l8": "a261a3f0073058b6db2c8f12a7f9445d1b3e7371"
+  },
+  "pair_pins": {
+    "revision": "36947baf69999c99d5370d804d69ee2f3acaed72",
+    "revision_reachable_from_candidate": true,
+    "l4_path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
+    "l4_sha256": "9146ffd557bc5da60f79cdcd462578b38edf6ec524143a705ab07eeb34c7997b",
+    "l9_path": "docs/helix-os/L9-integration-verification/management-authority-source-record.json",
+    "l9_sha256": "392417ce60ff10beed23d1aee27aadc7afaaf4062fb1dc04473325e30ad2c7e5"
+  },
+  "candidate_documents": {
+    "l5_path": "docs/helix-os/L5-detail-design/management-authority-source-record.json",
+    "l5_sha256": "c7d979d397f7ebc9b82b1cb5fa3e32f82737956c6a54adc2080342b729607c7f",
+    "l5_failure_rules_before_after": [
+      31,
+      33
+    ],
+    "l5_candidate_revision_pinned_by_l8": "d0b9aadf37a53a182bf6188495771c17fd06e16c",
+    "l8_path": "docs/helix-os/L8-unit-verification/management-authority-source-record.json",
+    "l8_sha256": "63fc2084a2a41cce1c84ac0db7a437ce25a0525f9f24d060f47bcf61357aa621",
+    "l8_candidate_l5_sha256": "c7d979d397f7ebc9b82b1cb5fa3e32f82737956c6a54adc2080342b729607c7f",
+    "l8_classes_before_after": [
+      25,
+      27
+    ],
+    "l8_case_rows_before_after": [
+      583,
+      583
+    ],
+    "l8_condition_expected_expected_preserved_unchanged_rows": 583,
+    "linked_cases": {
+      "count": 29,
+      "ids": [
+        "HELIXOS-L9-015-C0045..C0061",
+        "HELIXOS-L9-015-C0102..C0113"
+      ],
+      "class_counts": {
+        "OS015-NEG-COMPOSITE-07c9fd844a293140f5dc77476ab8ed90116889361788956739abfdcf65b874c4": 15,
+        "OS015-NEG-COMPOSITE-4e0c28b06920d3a9665cbe4beeaf48cea44d7b0d350dddfaec9c8471de1e86b5": 14
+      }
+    },
+    "l9_changed": false,
+    "l9_sha256": "392417ce60ff10beed23d1aee27aadc7afaaf4062fb1dc04473325e30ad2c7e5"
+  },
+  "static_validation": {
+    "status": "PASS",
+    "command": "python3 scaffold/research/wr181-os015-pr-b-l5-l8-20261030/validate_static_projection.py",
+    "case_mapping_source": "PR-Aの独立手動case-evidence.jsonをL8 linksへ静的照合。raw inputからfinding/classを計算しない。",
+    "prior_case_evidence_validation": "PASS: 29 cases, 2 classes, 583 L9 rows; L9 expected preservation",
+    "source_pointer_resolution": "追加L5/L8 class rowの全source_pointersをRFC6901 resolverで解決。L9 pointerはPR-Cまで未追加。"
+  },
+  "check_child": {
+    "command": "python3 scaffold/tools/design_verification_checker.py check-child --root . --l4 docs/helix-os/L4-basic-design/management-authority-source-record.json --l5 docs/helix-os/L5-detail-design/management-authority-source-record.json --l8 docs/helix-os/L8-unit-verification/management-authority-source-record.json --l9 docs/helix-os/L9-integration-verification/management-authority-source-record.json",
+    "baseline_latest_main": {
+      "overall": "FAIL",
+      "l4_l9_pair": "PASS",
+      "l5_l8_pair": "PASS",
+      "class_counts_l4_l5_l8_l9": [
+        33,
+        31,
+        25,
+        27
+      ],
+      "l8_l9_case_rows": [
+        583,
+        583
+      ],
+      "matched_cases": 431,
+      "negative_4way_failure_count": 175,
+      "failure_reasons": {
+        "L8 case reference unresolved": 141,
+        "L8 class key mismatch": 16,
+        "L9 class key mismatch": 12,
+        "L5 class key mismatch": 4,
+        "L4 owner reference unresolved": 2
+      }
+    },
+    "candidate_latest_main": {
+      "overall": "FAIL",
+      "l4_l9_pair": "PASS",
+      "l5_l8_pair": "PASS",
+      "class_counts_l4_l5_l8_l9": [
+        33,
+        33,
+        27,
+        27
+      ],
+      "l8_l9_case_rows": [
+        583,
+        583
+      ],
+      "matched_cases": 460,
+      "negative_4way_failure_count": 136,
+      "failure_reasons": {
+        "L8 case reference unresolved": 112,
+        "L8 class key mismatch": 12,
+        "L9 class key mismatch": 12
+      }
+    },
+    "interpretation": "29件のcase linkと2 class rowは反映された。残る112件はL8未割当。6 singleton-less classの不一致がL8/L9に各12 failureを残す。negative-4way全体はFAIL。"
+  },
+  "check_freeze": {
+    "command": "python3 scaffold/tools/design_verification_checker.py check-freeze --root . --worktree docs/governance/audits/tdd/os007-os015-function-pair-freeze-2026-10-28.json",
+    "baseline_latest_main": {
+      "mechanical_match": false,
+      "pin_sha256": "not_evaluated; no_pinned_inputs_found",
+      "json_pointer_checked_failures": [
+        67,
+        2421
+      ],
+      "negative_4way": "not_evaluated; missing_or_unparsed_layer_documents",
+      "public_function_freeze_failures": 8,
+      "l3_obligation_map": "not_evaluated; no_l3_obligations_found"
+    },
+    "candidate_latest_main": {
+      "mechanical_match": false,
+      "pin_sha256": "not_evaluated; no_pinned_inputs_found",
+      "json_pointer_checked_failures": [
+        67,
+        2421
+      ],
+      "negative_4way": "not_evaluated; missing_or_unparsed_layer_documents",
+      "public_function_freeze_failures": 8,
+      "l3_obligation_map": "not_evaluated; no_l3_obligations_found"
+    },
+    "freeze_record_changed": false
+  },
+  "scfctl": {
+    "baseline_validate": "PASS: 162 bindings, 0 failures",
+    "candidate_validate": "PASS: 163 bindings, 0 failures",
+    "baseline_stale": "PASS: stale=0",
+    "candidate_stale": "PASS: stale=0"
+  },
+  "diff_check": {
+    "command": "git diff --check 97e0ee18a98d6f9714e29fa0fae3a3c58cdeead1..HEAD",
+    "status": "PASS"
+  },
+  "remaining": [
+    "L8の112件は未割当。C0044を含む。",
+    "6 singleton-less classはL8/L9に未形成であり、checker mismatchとして残る。",
+    "PR-CでL9の2 composite class rowにL5 /failure_rules/31,/32 pointerを追加する。",
+    "negative-4way全体FAIL。full coverage、PASS、freeze成立を主張しない。"
+  ],
+  "changed_paths": [
+    "docs/helix-os/L5-detail-design/management-authority-source-record.json",
+    "docs/helix-os/L8-unit-verification/management-authority-source-record.json",
+    "scaffold/bindings/SCF-B-0170.json",
+    "scaffold/bindings/SCF-B-0175.json",
+    "scaffold/research/wr181-os015-pr-b-l5-l8-20261030/README.md",
+    "scaffold/research/wr181-os015-pr-b-l5-l8-20261030/validate_static_projection.py",
+    "scaffold/research/wr181-os015-pr-b-l5-l8-20261030/static-validation.json",
+    "scaffold/research/wr181-os015-pr-b-l5-l8-20261030/verification-summary.json"
+  ],
+  "latest_main_trial": {
+    "base_revision": "97e0ee18a98d6f9714e29fa0fae3a3c58cdeead1",
+    "l5_revision": "d0b9aadf37a53a182bf6188495771c17fd06e16c",
+    "l8_revision": "a261a3f0073058b6db2c8f12a7f9445d1b3e7371",
+    "result": "L5/L8 commits applied on latest main without conflicts; both source pair pins point to PR-A merge ancestor; L8 candidate_l5_bytes points to reachable L5 commit and matches its path hash."
+  }
+}

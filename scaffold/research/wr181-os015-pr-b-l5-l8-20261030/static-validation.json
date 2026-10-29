@@ -1,0 +1,25 @@
+{
+  "status": "PASS",
+  "base_revision": "1d12ab087e9ffb1935ee23da85a6bd4ee51538f6",
+  "latest_main_revision": "97e0ee18a98d6f9714e29fa0fae3a3c58cdeead1",
+  "pair_pin_revision": "36947baf69999c99d5370d804d69ee2f3acaed72",
+  "l5_candidate_revision": "d0b9aadf37a53a182bf6188495771c17fd06e16c",
+  "class_ids": [
+    "OS015-NEG-COMPOSITE-07c9fd844a293140f5dc77476ab8ed90116889361788956739abfdcf65b874c4",
+    "OS015-NEG-COMPOSITE-4e0c28b06920d3a9665cbe4beeaf48cea44d7b0d350dddfaec9c8471de1e86b5"
+  ],
+  "selected_l8_case_count": 29,
+  "class_case_counts": {
+    "OS015-NEG-COMPOSITE-07c9fd844a293140f5dc77476ab8ed90116889361788956739abfdcf65b874c4": 15,
+    "OS015-NEG-COMPOSITE-4e0c28b06920d3a9665cbe4beeaf48cea44d7b0d350dddfaec9c8471de1e86b5": 14
+  },
+  "l8_case_rows": 583,
+  "l8_existing_expectations_preserved": 583,
+  "l4_l5_l8_l9_class_counts": [
+    33,
+    33,
+    27,
+    27
+  ],
+  "l9_changed": false
+}
