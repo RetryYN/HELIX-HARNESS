@@ -56,6 +56,40 @@ def _request_and_scan(raw):
 
 
 class TestF05Add47SourceBodyWriter(unittest.TestCase):
+    def test_f05_collection_reads_preserve_fixed_input_order_and_whole_values(self):
+        raw = _resolve_recipe_raw("CORE-NORMAL-UNIT-REQUIRED")
+        validation, request, scan = _request_and_scan(raw)
+        validation_input = validation["validated"]["input"]
+        self.assertEqual(validation_input["field_inputs"], raw["field_inputs"])
+        self.assertEqual(validation_input["gap_proposals"], raw["gap_proposals"])
+
+        result = compare_requirement_gaps_detail(request, scan)
+
+        owner_material = result["owner_material"]
+        self.assertEqual(owner_material["tag"], "evaluated")
+        self.assertEqual(
+            owner_material["field_inputs_read"],
+            {
+                "tag": "present",
+                "location": {
+                    "root": "validation_input",
+                    "pointer": "/field_inputs",
+                },
+                "value": raw["field_inputs"],
+            },
+        )
+        self.assertEqual(
+            owner_material["gap_proposals_read"],
+            {
+                "tag": "present",
+                "location": {
+                    "root": "validation_input",
+                    "pointer": "/gap_proposals",
+                },
+                "value": raw["gap_proposals"],
+            },
+        )
+
     def test_add46_empty_source_collection_writes_only_unresolved_source_cause(self):
         l8 = json.loads(L8_PATH.read_text(encoding="utf-8"))
         case = l8["additional_unit_cases"][46]
