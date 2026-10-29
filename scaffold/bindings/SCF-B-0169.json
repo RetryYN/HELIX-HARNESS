@@ -1,0 +1,110 @@
+{
+  "schema_revision": 1,
+  "id": "SCF-B-0169",
+  "kind": "scaffold",
+  "title": "F13 recipient writer と F14 scope candidate 接続技術候補",
+  "product": "HELIX-HARNESS",
+  "owner_candidate": "HELIX-HARNESS CORE009 F05 detail design owner",
+  "state": "registered",
+  "reason": "WR154 F05 producer設計調査。既存F13 recipient typed writerとF14 finite field-scope candidateの接続・未形成境界を、独立review可能な技術候補として記録する。L3/L10意味、F14 authority、実recipient受領を変更・生成しない。",
+  "upstream": [
+    {
+      "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+      "sha256": "a3b907cdc316117d4684632f9a1cbf36125eb6e6172f9cfc286060617583d7be",
+      "note": "F13/F14 candidate source。対象pointerとauthority境界はscaffold/research/wr154-f13-recipient-design-20261030/README.md。read-only pinで採用を示さない。"
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/functional-verification.json",
+      "sha256": "fc58ad2268746d7924ac9be33e8f3f75e6d3c2cc619e27fbc1ddc34edd065cb2",
+      "note": "F13/F14 candidate source。対象pointerとauthority境界はscaffold/research/wr154-f13-recipient-design-20261030/README.md。read-only pinで採用を示さない。"
+    },
+    {
+      "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+      "sha256": "009da68d79547770e32a91362a410e014ed1951e0cfe9f67a6f6b31fd4c16824",
+      "note": "F13/F14 candidate source。対象pointerとauthority境界はscaffold/research/wr154-f13-recipient-design-20261030/README.md。read-only pinで採用を示さない。"
+    },
+    {
+      "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+      "sha256": "010395ecc67291c77496a7f5688e0ddf4961ab86a4afa9f029ef33fbdcb3645c",
+      "note": "F13/F14 candidate source。対象pointerとauthority境界はscaffold/research/wr154-f13-recipient-design-20261030/README.md。read-only pinで採用を示さない。"
+    },
+    {
+      "path": "docs/helix-harness/L8-unit-verification/product-template-application.json",
+      "sha256": "ff8a248a0e955f587ea96380c0ecf88ed3c617372f51340a960abb80c1bf2cdb",
+      "note": "F13/F14 candidate source。対象pointerとauthority境界はscaffold/research/wr154-f13-recipient-design-20261030/README.md。read-only pinで採用を示さない。"
+    },
+    {
+      "path": "docs/helix-harness/L9-integration-verification/product-template-application.json",
+      "sha256": "2384d2fec666055a1fbef2f5ff3e4752ba2dd60a12543b7663fae8f814332b94",
+      "note": "F13/F14 candidate source。対象pointerとauthority境界はscaffold/research/wr154-f13-recipient-design-20261030/README.md。read-only pinで採用を示さない。"
+    }
+  ],
+  "role": "F13 recipient writerの有限分岐、F14 candidate inputのauthority制約、未形成/原因伝播境界を研究候補として記録する。",
+  "obligations": [
+    "F13 field/gap/knowledge recipient branchを既存L5 writerの意味と原出現順に対応付ける。",
+    "F14 candidate scope assessmentを同call inputとして扱う条件とauthority・independent review pending境界を明示する。",
+    "L8 F13 two direct leaf casesとF14 one positive scope oracle/21 L9 candidatesのnot_executed範囲を保持する。",
+    "L2/L3意味、Cause vocabulary、recipient受信/Backflow/承認/義務消込を追加しない。"
+  ],
+  "connections": {
+    "consumers": [
+      "HARNESS-L5-009 F05 recipient/scope writer candidate",
+      "HARNESS-L8-009 F13 recipient leaf and F14 scope verification candidate"
+    ],
+    "dependencies": [
+      "HARNESS-L3-009-F05 / HARNESS-L10-009-F05",
+      "HARNESS L4/L5/L8/L9 F05/F13/F14 JSON contracts",
+      "UTW-014/020/021 historical failure context"
+    ],
+    "boundary": "scaffold research only; F14 source is not adopted authority; no recipient delivery, requirement acceptance, implementation, test/CI, or function-pair freeze."
+  },
+  "operations": {
+    "allowed": [
+      "read-only JSON/pointer/source-hash inspection",
+      "git diff --check",
+      "python3 -m json.tool <changed-json>",
+      "python3 -B scaffold/tools/scfctl.py validate"
+    ],
+    "forbidden": [
+      "旧CLI・旧hook・旧runtime・旧test・旧CIの実行",
+      "runtime/test/CI execution or claiming pass",
+      "L2/L3 semantics or Cause vocabulary changes",
+      "F14 candidate authority promotion",
+      "fabricating owner/source/body/recipient evidence",
+      "function-pair freeze generation"
+    ]
+  },
+  "artifacts": [
+    "scaffold/research/wr154-f13-recipient-design-20261030/README.md",
+    "scaffold/bindings/SCF-B-0169.json"
+  ],
+  "verification": {
+    "evidence_kind": "scaffold",
+    "scope": [
+      "schema_interface",
+      "source_revision_stale",
+      "negative_case",
+      "forbidden_write_scope"
+    ],
+    "oracles": [
+      "python3 -B scaffold/tools/scfctl.py validate",
+      "git diff --check",
+      "python3 -m json.tool scaffold/bindings/SCF-B-0169.json"
+    ],
+    "negative_cases": [
+      "unformed statement never gets fabricated body/index/owner/reason or a new Cause",
+      "field/value assessment failures remain independent and cause rows do not cross-suppress",
+      "F14 candidate is never treated as adopted authority or proof of actual field scope",
+      "unobserved scope is not classified as no profile; U0 guard remains conditional",
+      "F13 S12/S13 and F14 one-case/21-case expectations remain not_executed"
+    ]
+  },
+  "replacement": {
+    "role_target": "採用後にL5 F05 recipient/scope design candidateと対応L8/L9 verification candidateへ反映する技術仕様",
+    "formal_artifacts": [],
+    "issue": 1866,
+    "status": "pending"
+  },
+  "created": "2026-10-30",
+  "updated": "2026-10-30"
+}
