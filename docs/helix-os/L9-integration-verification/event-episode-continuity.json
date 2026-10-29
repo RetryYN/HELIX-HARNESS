@@ -141,68 +141,55 @@
       "selected_line_quotes": [
         {
           "line": 16,
-          "text": "会話にしかない未保存情報、撤回・旧版、不明へ分類する。文書やdigestの存在だけで意味保存済みとせず、",
-          "utf8_sha256": "a06fd3a0728a8b6a662ce085db5acd9e4316b12de4fdbff5e22f0f7eb514e041"
+          "text": "会話にしかない未保存情報、撤回・旧版、不明へ分類する。文書やdigestの存在だけで意味保存済みとせず、"
         },
         {
           "line": 17,
-          "text": "重要情報が未保存または不明なら自動切替を保留する。",
-          "utf8_sha256": "a9b85921280fe08436e59fa179adef71b4763d9d2659b6b4f6b9dd16a3fc0f33"
+          "text": "重要情報が未保存または不明なら自動切替を保留する。"
         },
         {
           "line": 21,
-          "text": "要求、判断、code、test、実行証跡、現在地は既存の責務所有先へ保存する。会話にしかない人間の意図は",
-          "utf8_sha256": "50b7c1b274ed530ea43c3691572b22017a66e76b1e7deaa0c8f3b0b902f964a5"
+          "text": "要求、判断、code、test、実行証跡、現在地は既存の責務所有先へ保存する。会話にしかない人間の意図は"
         },
         {
           "line": 22,
-          "text": "出典付き原文または必要部分として、仮説・棄却理由は未確定情報として保持する。checkpointは論理作業、PLAN、",
-          "utf8_sha256": "962b9f13aa4d084d7cca628265ae10955c67ffb79222dfeeba2d6dcd9fd79885"
+          "text": "出典付き原文または必要部分として、仮説・棄却理由は未確定情報として保持する。checkpointは論理作業、PLAN、"
         },
         {
           "line": 23,
-          "text": "repo／branch／worktree／HEAD、未commit・未追跡変更、契約版、未完義務、実行中worker／CI／外部操作、証拠、",
-          "utf8_sha256": "4269c9896a87949d28129e934a634709f7ec46c52f769bcdcb158c15bcfd17a8"
+          "text": "repo／branch／worktree／HEAD、未commit・未追跡変更、契約版、未完義務、実行中worker／CI／外部操作、証拠、"
         },
         {
           "line": 24,
-          "text": "累積予算と失敗回数を必要範囲で束縛する派生viewとし、第二正本にしない。未承認意図を正式要求へ昇格しない。",
-          "utf8_sha256": "33eaf4df813e98ee7b61d3c4ef6e24e25746332aae2d60ac96e7e34e70a6d019"
+          "text": "累積予算と失敗回数を必要範囲で束縛する派生viewとし、第二正本にしない。未承認意図を正式要求へ昇格しない。"
         },
         {
           "line": 28,
-          "text": "必要情報の保存、後続consumerでの再取得、版・意味・未完義務の対応、安全な切替可能性が確認できたscopeだけを",
-          "utf8_sha256": "18098c3324b0444836f5d1e22c722593fc67b6951d0e366f5721a2dd53c3c260"
+          "text": "必要情報の保存、後続consumerでの再取得、版・意味・未完義務の対応、安全な切替可能性が確認できたscopeだけを"
         },
         {
           "line": 29,
-          "text": "次回以降のmodel inputから外す。会話原本、Git履歴、監査証拠の削除を意味せず、反復要約を正本にしない。",
-          "utf8_sha256": "a993cb00dcab5b95b1518ffabf28a70a2cc72358ef332b9f3a8860d3258720af"
+          "text": "次回以降のmodel inputから外す。会話原本、Git履歴、監査証拠の削除を意味せず、反復要約を正本にしない。"
         },
         {
           "line": 39,
-          "text": "safe point、save/read-after、旧writer停止またはhandover、successor再束縛、再構成確認の順を守る。",
-          "utf8_sha256": "6c0085507621adf628beacfd25b63ef27c5898619e41ba0ee832bd33ad808ce5"
+          "text": "safe point、save/read-after、旧writer停止またはhandover、successor再束縛、再構成確認の順を守る。"
         },
         {
           "line": 40,
-          "text": "assignment、lease/fence、operation ID、author history、budget、deadline、retry、未完義務をsession切替で初期化せず、",
-          "utf8_sha256": "db6aa391c5eb25873b7e989171843393ad8c6354a8c894d6f7c0c297faf6a91b"
+          "text": "assignment、lease/fence、operation ID、author history、budget、deadline、retry、未完義務をsession切替で初期化せず、"
         },
         {
           "line": 41,
-          "text": "同一branchの二重writerと二重副作用を防ぐ。新sessionを独立reviewer成立の根拠にしない。",
-          "utf8_sha256": "55b5edf605de10878d6ceae9b7a45116d16cf8b4e8cb132ed6d9585359e7261d"
+          "text": "同一branchの二重writerと二重副作用を防ぐ。新sessionを独立reviewer成立の根拠にしない。"
         },
         {
           "line": 46,
-          "text": "上限超過時に必須情報を黙って切らず分割取得または切替保留へ送る。撤回claim、取消権限、secret、private reasoning、",
-          "utf8_sha256": "1bef2dc42573cab1e853cec4050173916c7d061ce0c540b48bedae7d732fc1f4"
+          "text": "上限超過時に必須情報を黙って切らず分割取得または切替保留へ送る。撤回claim、取消権限、secret、private reasoning、"
         },
         {
           "line": 47,
-          "text": "他案件情報、作成側の結論誘導を混入させない。",
-          "utf8_sha256": "cddc11edbb836c146a69531550dc4f273df7ec4810d3306f59b52b3a724f84a3"
+          "text": "他案件情報、作成側の結論誘導を混入させない。"
         }
       ],
       "reuse_class": "semantic_rederivation",
@@ -216,48 +203,39 @@
       "selected_line_quotes": [
         {
           "line": 83,
-          "text": "| Assignment | 実行者・実行場所・予算・lease/fenceとTicketのbinding | Ticketの目的・scopeの独自変更 |",
-          "utf8_sha256": "4975c587c7883b50b63d9a09ba61fb37bff3e0e608ef57c3735617cf88e63523"
+          "text": "| Assignment | 実行者・実行場所・予算・lease/fenceとTicketのbinding | Ticketの目的・scopeの独自変更 |"
         },
         {
           "line": 84,
-          "text": "| ExecutionAttempt | 一回の実行条件・観測・結果・retry lineage | 永続的な仕事の意味 |",
-          "utf8_sha256": "efacf6e415dcc4ab7eb0264412844fe5a1299c3d3105cbbf13036162e013fdea"
+          "text": "| ExecutionAttempt | 一回の実行条件・観測・結果・retry lineage | 永続的な仕事の意味 |"
         },
         {
           "line": 141,
-          "text": "AssignmentはTicket ref、owner/lane/runtime descriptor、execution namespace、branch/worktree、base/head、予算、capability snapshot、lease/fenceを持つ。read-only/evaluation経路で不要なbranch等は、明示的なprofile上の`not_applicable`として扱い、欠落と区別する。",
-          "utf8_sha256": "c9c49e587fa1799e343bc92f39e7ea9bd48741d5835480b0ab2b2a000fbf556f"
+          "text": "AssignmentはTicket ref、owner/lane/runtime descriptor、execution namespace、branch/worktree、base/head、予算、capability snapshot、lease/fenceを持つ。read-only/evaluation経路で不要なbranch等は、明示的なprofile上の`not_applicable`として扱い、欠落と区別する。"
         },
         {
           "line": 143,
-          "text": "Attemptは`attempt_id / assignment_ref / ticket_ref / started_at / completed_at / outcome / retry_lineage / actual_execution_snapshot / receipt_refs`を持つ。起動前拒否は`InvocationDenied`等として記録し、実際にproviderが起動したというreceiptを作らない。実行後にmodelやprofileが判明した場合は出典付き追補を行い、当初のrequested値を上書きしない。",
-          "utf8_sha256": "58ad3196d64f86bba744509ee4aa6fceab121aa2e2a7c20fce095fdf614e8adc"
+          "text": "Attemptは`attempt_id / assignment_ref / ticket_ref / started_at / completed_at / outcome / retry_lineage / actual_execution_snapshot / receipt_refs`を持つ。起動前拒否は`InvocationDenied`等として記録し、実際にproviderが起動したというreceiptを作らない。実行後にmodelやprofileが判明した場合は出典付き追補を行い、当初のrequested値を上書きしない。"
         },
         {
           "line": 242,
-          "text": "連続失敗・retry budgetはdurable eventと既存Recovery policyから導出する。session再開を初回扱いしない。台帳取得不能・上限超過は新規retryを止め、理由に応じてRecovery/Reverse/Requirement Re-entry/Human Requiredへ戻す。実験retryは本線retryと別budgetで数える。",
-          "utf8_sha256": "a25826895972b79062aeedfe4bb058326101a2bed8f9b093231fd58c1e32f113"
+          "text": "連続失敗・retry budgetはdurable eventと既存Recovery policyから導出する。session再開を初回扱いしない。台帳取得不能・上限超過は新規retryを止め、理由に応じてRecovery/Reverse/Requirement Re-entry/Human Requiredへ戻す。実験retryは本線retryと別budgetで数える。"
         },
         {
           "line": 246,
-          "text": "通常変更のcloseはcurrent Ticket/Assignment、必要なexact-head CI/oracle/独立review、scope/lease/fence、証拠本体、必要なGitHub/DB read-afterで判定する。PR merge、CI green、LLM申告だけでは閉じない。測定eventのdurable記録は必要だが、分析dashboard更新・shadow結果・後日観測窓の終了は一般closeの待ち条件にしない。明示Release qualificationは既存Release policyに従う。",
-          "utf8_sha256": "37ccc180665552a8f61585e71d3a98e2382d59fb1e2b9b8a3e48a613ecfd320d"
+          "text": "通常変更のcloseはcurrent Ticket/Assignment、必要なexact-head CI/oracle/独立review、scope/lease/fence、証拠本体、必要なGitHub/DB read-afterで判定する。PR merge、CI green、LLM申告だけでは閉じない。測定eventのdurable記録は必要だが、分析dashboard更新・shadow結果・後日観測窓の終了は一般closeの待ち条件にしない。明示Release qualificationは既存Release policyに従う。"
         },
         {
           "line": 258,
-          "text": "正規Ticket/Assignment/Attempt/PR/CI/review/closure factsから進行を導出する。LLM申告、コメント時刻、Issue open率、branch数、手入力%を完成根拠にしない。Bench measurement coverage、実行成功率、要求完成率は異なる分母として表示する。",
-          "utf8_sha256": "c8812991162488f15d83b46542ac621e930a737bd6fc97d64c3757c543020d20"
+          "text": "正規Ticket/Assignment/Attempt/PR/CI/review/closure factsから進行を導出する。LLM申告、コメント時刻、Issue open率、branch数、手入力%を完成根拠にしない。Bench measurement coverage、実行成功率、要求完成率は異なる分母として表示する。"
         },
         {
           "line": 298,
-          "text": "",
-          "utf8_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          "text": ""
         },
         {
           "line": 450,
-          "text": "",
-          "utf8_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          "text": ""
         }
       ],
       "reuse_class": "semantic_rederivation",
@@ -271,13 +249,11 @@
       "selected_line_quotes": [
         {
           "line": 289,
-          "text": "| `HR-FR-HYB-005` | memory v2はwrite/list/surfaceに加え、expiry、takeover、one-shot deliver/consume、長期層のfenced/idempotent retire、compaction fenceを持つ。active harness/project memoryは正本へ追突後にbody-free receiptへretireし、stale instructionを再提示しない | `HR-AC-HYB-005`: retire前の未反映memory、二重deliver、期限切れtakeover、lost update、terminal receiptのactive再表示を拒否する |",
-          "utf8_sha256": "787a77ff8b6b8d378fb2b652c2688523ba64094595e76cdf7634200fcfa21f96"
+          "text": "| `HR-FR-HYB-005` | memory v2はwrite/list/surfaceに加え、expiry、takeover、one-shot deliver/consume、長期層のfenced/idempotent retire、compaction fenceを持つ。active harness/project memoryは正本へ追突後にbody-free receiptへretireし、stale instructionを再提示しない | `HR-AC-HYB-005`: retire前の未反映memory、二重deliver、期限切れtakeover、lost update、terminal receiptのactive再表示を拒否する |"
         },
         {
           "line": 290,
-          "text": "| `HR-FR-HYB-006` | feedback lifecycleはintake、classify、ack、pending、reverse-candidate、resolution、SessionStart surfaceをevent/projectionで管理する | `HR-AC-HYB-006`: 未ack findingの消失、prose handoverだけの解決、source HEAD不一致を拒否する |",
-          "utf8_sha256": "2125ab8a351eea42abeb00975c7ff99a80fed5fe914b5c84a50bf6ca4945b931"
+          "text": "| `HR-FR-HYB-006` | feedback lifecycleはintake、classify、ack、pending、reverse-candidate、resolution、SessionStart surfaceをevent/projectionで管理する | `HR-AC-HYB-006`: 未ack findingの消失、prose handoverだけの解決、source HEAD不一致を拒否する |"
         }
       ],
       "reuse_class": "semantic_rederivation",
@@ -141902,7 +141878,6 @@
       "path": "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json",
       "id_field": "requirement_id",
       "file_sha256": "80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688",
-      "object_canonical_sha256": "c0e380cbbcba0edbe323b16b9e1ed64c42283d90d2cd5bcf2480aac066366951",
       "source_status": "specified",
       "use": "管理・authority/原子正本・履歴保持の間接規範/consumer source。共有consumer全範囲・旧Markdown正本/runtime/旧test合格を019へ移植/昇格しない。"
     },
@@ -141911,7 +141886,6 @@
       "path": "archive/legacy-generation-2026-09-14/root/requirements-ir/system_contracts.json",
       "id_field": "system_contract_id",
       "file_sha256": "2a7df673138568526e714342679ce2982238966b42f2d1967b2da92e9dbf02ab",
-      "object_canonical_sha256": "90b11611fb15b9ffcdde1063f69b4b56aa558fd9b644ff77243bea97ed01288f",
       "source_status": "specified",
       "use": "管理・authority/原子正本・履歴保持の間接規範/consumer source。共有consumer全範囲・旧Markdown正本/runtime/旧test合格を019へ移植/昇格しない。"
     },
@@ -141920,7 +141894,6 @@
       "path": "archive/legacy-generation-2026-09-14/root/requirements-ir/acceptance_cases.json",
       "id_field": "acceptance_id",
       "file_sha256": "4fabf58db6619ceaa5d0943fd295f5b0ec127be39f245428d203c6a3b366ae19",
-      "object_canonical_sha256": "197edc6b5eaed43751c6af42944e129524ad375d1a7bc4883b0cf7ae4d910b57",
       "source_status": "specified",
       "use": "管理・authority/原子正本・履歴保持の間接規範/consumer source。共有consumer全範囲・旧Markdown正本/runtime/旧test合格を019へ移植/昇格しない。"
     },
@@ -141929,7 +141902,6 @@
       "path": "archive/legacy-generation-2026-09-14/root/requirements-ir/acceptance_cases.json",
       "id_field": "acceptance_id",
       "file_sha256": "4fabf58db6619ceaa5d0943fd295f5b0ec127be39f245428d203c6a3b366ae19",
-      "object_canonical_sha256": "8737efa3243a47fb23234edef20b4f5403d0d71151ca66d63be17fdf20d22da6",
       "source_status": "specified",
       "use": "管理・authority/原子正本・履歴保持の間接規範/consumer source。共有consumer全範囲・旧Markdown正本/runtime/旧test合格を019へ移植/昇格しない。"
     },
@@ -141938,7 +141910,6 @@
       "path": "archive/legacy-generation-2026-09-14/root/requirements-ir/acceptance_cases.json",
       "id_field": "acceptance_id",
       "file_sha256": "4fabf58db6619ceaa5d0943fd295f5b0ec127be39f245428d203c6a3b366ae19",
-      "object_canonical_sha256": "1b7cc7b4809cf781c866d071fc0bf5d1a81bd810ebd6aa7e0fbf7d628b2b245e",
       "source_status": "specified",
       "use": "管理・authority/原子正本・履歴保持の間接規範/consumer source。共有consumer全範囲・旧Markdown正本/runtime/旧test合格を019へ移植/昇格しない。"
     },
@@ -141947,9 +141918,16 @@
       "path": "archive/legacy-generation-2026-09-14/root/requirements-ir/system_tests.json",
       "id_field": "system_test_id",
       "file_sha256": "7ff2a798c120f7622d77dff2aba83992c03fb5a40cfa3b491572b4e8558c191a",
-      "object_canonical_sha256": "256f22745af197e88d2ef8b8fe1cea80589af36a4f4240ceeba90481f450f190",
       "source_status": "designed_not_implemented",
       "use": "管理・authority/原子正本・履歴保持の間接規範/consumer source。共有consumer全範囲・旧Markdown正本/runtime/旧test合格を019へ移植/昇格しない。"
     }
-  ]
+  ],
+  "removed_materials": {
+    "decision_ref": "https://github.com/RetryYN/HELIX-HARNESS/issues/3510#issuecomment-6447665479",
+    "git_commit": "17a2a3513c988e47fb307895dce8592ba31285a1",
+    "path": "docs/helix-os/L9-integration-verification/event-episode-continuity.json",
+    "meaning": "実装前L9軽量化（#3510）により、legacy_comparison[*].selected_line_quotes[*].utf8_sha256（24件）およびlegacy_normative_objects[*].object_canonical_sha256（6件）の固定source参照以外のsha256を撤去し、source_pins/legacy_comparison.file_sha256/legacy_normative_objects.file_sha256、fixture_contract、および全323件のcases（反例定義givenと期待観測expected_proposal）を完全保持した。",
+    "removed_key_rule": "legacy_comparison[*].selected_line_quotes[*].utf8_sha256、legacy_normative_objects[*].object_canonical_sha256を撤去。",
+    "use_boundary": "撤去した非source-pin sha256を完了証拠に使わない。固定source参照はsource_pinsおよびfile_sha256で検証し、統合検証は保持された全323件の反例定義と期待観測を用いる。"
+  }
 }
