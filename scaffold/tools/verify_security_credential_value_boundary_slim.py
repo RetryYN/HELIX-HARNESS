@@ -24,6 +24,25 @@ SOURCE_PIN_CONTAINERS = {
 }
 MISSING = object()
 
+AUTHORIZED_L8_TEXT_UPDATES = {
+    ("source_pin_limit",): (
+        "全文hash/quote/object一致と原値静的照合だけ。実source資格/意味完成を証明しない。",
+        "固定path/revision source pinのwhole_file_sha256/raw_sha256を参照元bytesと照合する。その他のobject/引用本文はJSON pointerと原値の静的比較に限る。実source資格/意味完成を証明しない。",
+    ),
+    ("oracle_contract", "meaning"): (
+        "原87case input/expectedを変更せずnative pointer/hashで保持。静的checkerがraw→宣言型/domain→各step→組立15rootを独立照合。製品runtime/TDD/実資格の証明ではない。 追補：literal_materialization_contractがある物理表現では、raw_materialization.expected_argument／expected_declared_member_presence／元argument hash・型・各step・全期待照合より前に、宣言した標準RFC6902 object-member copyを全体へ一度展開する。raw_utf8/raw_sha256は再生成せず、保存用nullは展開後に消え元全値を読む。",
+        "原87case input/expectedを変更せず、固定L9 source pin、raw_utf8、宣言型/domain、各step、独立期待およびpointerで保持する。静的checkerはraw_utf8→宣言型/domain→各step→組立15rootを独立照合する。製品runtime/TDD/実資格の証明ではない。追補：literal_materialization_contractがある物理表現では、宣言済みRFC6902 copyを全体へ一度適用して保存用null placeholderを展開してから、raw_utf8、展開済みraw_materialization.expected_argument／expected_declared_member_presence、宣言型/domain、各step、独立期待、pointerを照合する。",
+    ),
+    ("literal_materialization_contract", "note"): (
+        "14箇所の同値member(7 caseのraw_materialization+expected_declared_member_presence)をcase0 anchorから標準RFC6902 object-member copyで復元する提案。保存用null placeholderを製品入力のnullへ解釈しない。raw_materialization/expected_argument/元argument hash・型・各step・全期待照合より前に全体へ一度展開。typed引数渡し・遅延resolver・新authorityではない 追補：case61 source_frameを同じ役割のanchorとしてcase64 source_frameを標準copyで復元する。raw_utf8・original.raw・全expected・原hashは不変。 両方のsource_frameは同じCredentialFrame型の入力fieldであり、別関数の全引数・全返却の同値を主張しない。全15copyを元hash/型/各step/独立期待より前に展開し、原raw_utf8は各caseのliteralを保持する。実装readerの成立証拠ではない。",
+        "14箇所の同値member(7 caseのraw_materialization+expected_declared_member_presence)をcase0 anchorから標準RFC6902 object-member copyで復元する提案。保存用null placeholderを製品入力のnullへ解釈しない。全体へのcopy適用後に、raw_utf8・展開後のargument/member presence・型/domain・各step・独立期待・pointerを照合する。typed引数渡し・遅延resolver・新authorityではない。追補：case61 source_frameを同じ役割のanchorとしてcase64 source_frameを標準copyで復元する。raw_utf8・original.raw・全expectedは不変。両方のsource_frameは同じCredentialFrame型の入力fieldであり、別関数の全引数・全返却の同値を主張しない。全15copyを適用して保存用placeholderを展開した後、raw_utf8、型/domain、各step、独立期待、pointerを照合する。実装readerの成立証拠ではない。",
+    ),
+    ("literal_materialization_contract", "restoration_order"): (
+        "copy適用→既存のraw_materialization/expected_argument/元hash・型・各step・全期待照合を従来順に行う",
+        "copy適用→raw_utf8と展開後argument/member presence→宣言型/domain→各step→独立期待・pointer照合",
+    ),
+}
+
 
 def git_bytes(root: Path, revision: str, path: str) -> bytes:
     return subprocess.check_output(
@@ -479,9 +498,22 @@ def canonical_sha256(value: Any) -> str:
     return hashlib.sha256(raw).hexdigest()
 
 
-def is_source_pin_hash(path: tuple[str, ...], key: str) -> bool:
+def apply_authorized_l8_text_updates(document: dict[str, Any]) -> list[str]:
+    applied: list[str] = []
+    for pointer, (before, after) in AUTHORIZED_L8_TEXT_UPDATES.items():
+        current = pointer_value(document, "/" + "/".join(pointer))
+        if current != before:
+            raise ValueError(f"unexpected base text at /{'/'.join(pointer)}")
+        set_pointer(document, "/" + "/".join(pointer), after)
+        applied.append("/" + "/".join(pointer))
+    return applied
+
+
+def is_source_pin_hash(path: tuple[str, ...], key: str, parent: Any) -> bool:
     if any(part in SOURCE_PIN_CONTAINERS for part in path):
         return True
+    if path == ("original_case_chains", "source") and key == "whole_file_sha256":
+        return isinstance(parent, dict) and isinstance(parent.get("path"), str) and isinstance(parent.get("revision"), str)
     if path[:1] == ("approved_whole_objects",) and key == "whole_file_sha256":
         return True
     if path[:1] == ("legacy_comparison",) and key in {
@@ -506,7 +538,7 @@ def prune_non_source_pin_hashes(value: Any, path: tuple[str, ...] = ()) -> int:
         for key in list(value):
             child = value[key]
             if (key.endswith("_sha256") or key == "sha256") and not is_source_pin_hash(
-                path, key
+                path, key, value
             ):
                 del value[key]
                 removed += 1
@@ -577,7 +609,9 @@ def verify_pinned_files(root: Path, document: dict[str, Any]) -> dict[str, Any]:
         if isinstance(value, dict):
             source_path = value.get("path")
             revision = value.get("revision")
-            expected = value.get("whole_file_sha256", value.get("sha256"))
+            expected = value.get(
+                "whole_file_sha256", value.get("sha256", value.get("raw_sha256"))
+            )
             if isinstance(source_path, str) and isinstance(revision, str) and isinstance(
                 expected, str
             ):
@@ -655,6 +689,9 @@ def main() -> int:
         expected = json.loads(base_raw)
         removed_hashes = prune_non_source_pin_hashes(expected)
         removed_upstream = strip_released_upstream_copies(expected) if path == L8 else 0
+        authorized_text_updates = (
+            apply_authorized_l8_text_updates(expected) if path == L8 else []
+        )
         current_doc = json.loads(current_raw)
         base_docs[path] = base_doc
         current_docs[path] = current_doc
@@ -664,6 +701,7 @@ def main() -> int:
             "bytes_removed": len(base_raw) - len(current_raw),
             "non_source_pin_hashes_removed": removed_hashes,
             "verified_l3_l10_whole_object_copies_removed": removed_upstream,
+            "authorized_text_updates": authorized_text_updates,
             "semantic_projection_matches_expected": current_doc == expected,
             "top_level_keys_preserved": list(current_doc) == list(base_doc),
         }
@@ -679,9 +717,18 @@ def main() -> int:
             ),
         }
         pin_report = verify_pinned_files(root, base_doc)
+        candidate_pin_report = verify_pinned_files(root, current_doc)
+        pin_report["candidate_pinned_file_count"] = candidate_pin_report["pinned_file_count"]
+        pin_report["candidate_all_pinned_file_hashes_match"] = candidate_pin_report[
+            "all_pinned_file_hashes_match"
+        ]
+        pin_report["candidate_mismatches"] = candidate_pin_report["mismatches"]
+        pin_report["base_candidate_pin_counts_equal"] = (
+            pin_report["pinned_file_count"] == candidate_pin_report["pinned_file_count"]
+        )
         report.setdefault("source_pin_reconciliation", {})[path] = pin_report
-        if pin_report["mismatches"]:
-            failures.extend(pin_report["mismatches"])
+        if pin_report["mismatches"] or candidate_pin_report["mismatches"]:
+            failures.extend(pin_report["mismatches"] + candidate_pin_report["mismatches"])
 
     l8_base = base_docs[L8]
     l8_current = current_docs[L8]
