@@ -1531,7 +1531,9 @@ def compare_requirement_gaps_detail(request, input_scope_scan):
                 "material": {
                     "field_checks": [],
                     "candidate_proposals": [],
-                    "unfinished_obligation_refs": [],
+                    "unfinished_obligation_refs": copy.deepcopy(
+                        obligation_material["returned_refs"]
+                    ),
                 },
             },
         }

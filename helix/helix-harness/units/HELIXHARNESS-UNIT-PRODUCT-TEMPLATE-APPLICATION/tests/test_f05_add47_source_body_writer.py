@@ -117,6 +117,33 @@ class TestF05Add47SourceBodyWriter(unittest.TestCase):
                 )
         self.assertEqual(obligation_material["proposal_refs"], [])
 
+    def test_empty_field_and_proposal_collections_preserve_global_trace_refs(self):
+        raw = _resolve_recipe_raw("CORE-NORMAL-UNIT-REQUIRED")
+        raw["field_inputs"] = []
+        raw["gap_proposals"] = []
+        _, request, scan = _request_and_scan(raw)
+        expected_refs = [
+            copy.deepcopy(obligation["ref"])
+            for obligation in request["compare_kind_obligation_trace"]["comparison"][
+                "material"
+            ]["obligations"]
+        ]
+        self.assertTrue(expected_refs)
+
+        result = compare_requirement_gaps_detail(request, scan)
+
+        self.assertEqual(result["comparison"]["tag"], "formed")
+        self.assertEqual(
+            result["comparison"]["value"]["material"][
+                "unfinished_obligation_refs"
+            ],
+            expected_refs,
+        )
+        self.assertEqual(
+            result["owner_material"]["obligation_material"]["returned_refs"],
+            expected_refs,
+        )
+
     def test_add46_empty_source_collection_writes_only_unresolved_source_cause(self):
         l8 = json.loads(L8_PATH.read_text(encoding="utf-8"))
         case = l8["additional_unit_cases"][46]
