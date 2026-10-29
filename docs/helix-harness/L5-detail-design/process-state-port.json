@@ -1023,7 +1023,8 @@
     "正式schema/codec/resolver/実owner・authority・隔離/資源",
     "独立reviewと所見閉包",
     "実oracle凍結→本体実装前Red→最小Green→Refactor/再検証",
-    "実CI/L9/L10/計測/PO L11受入、全限定範囲の実装準備"
+    "実CI/L9/L10/計測/PO L11受入、全限定範囲の実装準備",
+    "STOP-WR177-L5-001: 上の7つの関数単位failure handlingは対応L4 familyと各functionのinternal_steps/detail_stateに沿って形成済み。check-childへ供給するcase-level failure_rulesは、上流class keyとcase-level expected tupleが未形成のため未形成のまま。failure_rulesを空配列として置かず、L8/L9期待から逆生成しない。"
   ],
   "document_id": "HARNESS-L5-003",
   "layer": "L5",
@@ -1082,7 +1083,8 @@
       "internal_steps": [
         "既存qualified source portからimmutable comparison引数を受ける。共通ProcessContextとtrace2Refをaliasしない。独立target対応はb01_f01_comparison_contract.target_bindingsに従う。",
         "B01はscope適用条件→必要roleだけの原資料/意味所見対応→集約。F01は原action必要membership→当該必要材料/独立profile→委任→集約。非必要資料の診断を全停止へ変換しない。",
-        "元partial_values/owner返却/資格診断/定義返却/読めた資料/無関係scopeを先に組み立て、明示candidate claimとの差だけを追加する。9memberを返し、実作用はnone。"
+        "元partial_values/owner返却/資格診断/定義返却/読めた資料/無関係scopeを先に組み立て、明示candidate claimとの差だけを追加する。9memberを返し、実作用はnone。",
+        "WR177 failure family: B01では必要roleだけの原資料/意味所見対応を行い、partial values・owner返却・資格診断・無関係scopeを候補比較より先に保持する。実作用はnoneとする。 根拠（base 827c4ea924a15b6b54bbe9d1f5d2f9fbdefa65de）: docs/helix-harness/L4-basic-design/process-state-port.json#/contracts/0/invariants; 根拠（base 827c4ea924a15b6b54bbe9d1f5d2f9fbdefa65de）: docs/helix-harness/L4-basic-design/process-state-port.json#/contracts/0/connection_detail/preservation; docs/helix-harness/L5-detail-design/process-state-port.json#/functions/0/internal_steps/0; #/functions/0/internal_steps/1; #/functions/0/internal_steps/2."
       ],
       "detail_state": "draft_concrete_typed_cases_pending_semantic_review",
       "qualification_detail": {
@@ -1261,7 +1263,8 @@
       "internal_steps": [
         "既存qualified source portからimmutable comparison引数を受ける。共通ProcessContextとtrace2Refをaliasしない。独立target対応はb01_f01_comparison_contract.target_bindingsに従う。",
         "B01はscope適用条件→必要roleだけの原資料/意味所見対応→集約。F01は原action必要membership→当該必要材料/独立profile→委任→集約。非必要資料の診断を全停止へ変換しない。",
-        "元partial_values/owner返却/資格診断/定義返却/読めた資料/無関係scopeを先に組み立て、明示candidate claimとの差だけを追加する。9memberを返し、実作用はnone。"
+        "元partial_values/owner返却/資格診断/定義返却/読めた資料/無関係scopeを先に組み立て、明示candidate claimとの差だけを追加する。9memberを返し、実作用はnone。",
+        "WR177 failure family: F01ではactionの必要membership、必要材料、独立profile、委任を照合し、partial values・owner返却・定義返却・無関係scopeを保持する。実作用はnoneとする。 根拠（base 827c4ea924a15b6b54bbe9d1f5d2f9fbdefa65de）: docs/helix-harness/L4-basic-design/process-state-port.json#/contracts/1/invariants; 根拠（base 827c4ea924a15b6b54bbe9d1f5d2f9fbdefa65de）: docs/helix-harness/L4-basic-design/process-state-port.json#/contracts/1/connection_detail/operation_distinction; 根拠（base 827c4ea924a15b6b54bbe9d1f5d2f9fbdefa65de）: docs/helix-harness/L4-basic-design/process-state-port.json#/contracts/1/connection_detail/delegation; docs/helix-harness/L5-detail-design/process-state-port.json#/functions/1/internal_steps/0; #/functions/1/internal_steps/1; #/functions/1/internal_steps/2."
       ],
       "detail_state": "draft_basic_typed_qualification_and_content_cases_pending_semantic_review",
       "progression_detail": {
@@ -1439,7 +1442,8 @@
         "結果がある対象はBackflow→008二次形成→Decide採用/不採用/方針変更→対象合意→対再凍結条件を各原source内容・role・対象revision/scopeで照合する。Decideを実験担当AI解釈から生成しない。",
         "還流の必要membershipと各段の未解決を分けて返す。既知集合の不足段だけをstate/nullにし、読めた他段とunresolved_return_fieldsを保持する。未知membershipを空集合/全not_requiredへ変換しない。",
         "要求/設計変更に影響する合意と対のrevisionを再照合し、古い合意をstaleとして対象ownerへ戻す。影響しないscopeの有効材料を一括停止しない。",
-        "candidateを原資料と別に比較する。PoC/Prototype成功・還流成立から要求採用/要件承認/L3凍結/完了を生成せず、関数の実作用はnoneに保つ。"
+        "candidateを原資料と別に比較する。PoC/Prototype成功・還流成立から要求採用/要件承認/L3凍結/完了を生成せず、関数の実作用はnoneに保つ。",
+        "WR177 failure family: Prototype/PoC適用判定・N/A属性・個別結果・還流各段を分け、両方が独立N/Aの場合だけ結果なしをnot_requiredにする。欠落段と読めた他段を保持する。 根拠（base 827c4ea924a15b6b54bbe9d1f5d2f9fbdefa65de）: docs/helix-harness/L4-basic-design/process-state-port.json#/contracts/2/invariants; 根拠（base 827c4ea924a15b6b54bbe9d1f5d2f9fbdefa65de）: docs/helix-harness/L4-basic-design/process-state-port.json#/contracts/2/connection_detail/no_result_case; docs/helix-harness/L5-detail-design/process-state-port.json#/functions/2/internal_steps/0; #/functions/2/internal_steps/1; #/functions/2/internal_steps/2; #/functions/2/internal_steps/3; #/functions/2/internal_steps/4; #/functions/2/internal_steps/5; #/functions/2/internal_steps/6; #/functions/2/internal_steps/7."
       ],
       "detail_state": "draft_basic_typed_content_and_qualification_cases_pending_semantic_review",
       "backflow_detail": {
@@ -1580,7 +1584,8 @@
         "小さな意味保存境界Refactorはcurrent_Forward、独立構造/横断/architecture/性能改善はRefactor/Design-refactor/Performance-refactor候補。behavior/architecture/requirement/stateの意味差はBackflowへ返し、当該上流ownerの意味を局所Refactorで上書きしない。",
         "candidateを原資料と別に照合し、通常照合で全体Reverse/新ticket、HARNESS発行、谷から品質/Accepted/Release、候補からReverse実行成功を生成しない。ticket_issuerは責務意味OS、実発行と実記録はOSが保持する。",
         "L4 source-binding roleを既存stateから選び、source_binding_detailに従って原SourceCell.target_operation内のrequest_association・qualification sidecarを別々に解決する。各producerを固定typed argumentsでeffect:none呼出しし、完全actual returnをraw SourceCellと別のprivate same-call recordへ結ぶ。",
-        "source-binding missing/unknown/conflictは対応するF03/F04状態の既存PartialValue依存だけへ伝播する。候補、上位/後続proof、他roleの既知call returnを欠落値の補完に使わない。"
+        "source-binding missing/unknown/conflictは対応するF03/F04状態の既存PartialValue依存だけへ伝播する。候補、上位/後続proof、他roleの既知call returnを欠落値の補完に使わない。",
+        "WR177 failure family: valley、pair、10個のL9観点、origin/traceとtriggerを個別に照合し、他pairの結果を保持する。通常照合と実ticket発行/Reverse実行を区別する。 根拠（base 827c4ea924a15b6b54bbe9d1f5d2f9fbdefa65de）: docs/helix-harness/L4-basic-design/process-state-port.json#/contracts/3/invariants; 根拠（base 827c4ea924a15b6b54bbe9d1f5d2f9fbdefa65de）: docs/helix-harness/L4-basic-design/process-state-port.json#/contracts/3/connection_detail/partial_results; 根拠（base 827c4ea924a15b6b54bbe9d1f5d2f9fbdefa65de）: docs/helix-harness/L4-basic-design/process-state-port.json#/contracts/3/connection_detail/scope_policy; docs/helix-harness/L5-detail-design/process-state-port.json#/functions/3/internal_steps/0; #/functions/3/internal_steps/1; #/functions/3/internal_steps/2; #/functions/3/internal_steps/3; #/functions/3/internal_steps/4; #/functions/3/internal_steps/5; #/functions/3/internal_steps/6; #/functions/3/internal_steps/7; #/functions/3/internal_steps/8; #/functions/3/internal_steps/9; #/functions/3/internal_steps/10."
       ],
       "detail_state": "draft_basic_typed_qualification_and_valley_content_pending_review",
       "reverse_detail": {
@@ -1977,7 +1982,8 @@
         "既知状態集合のmissing/conflictを個別に列挙し、該当原証拠/理由/ownerへ返却候補を渡す。未知集合/source資格を空集合/falseへ補わず、無関係scopeを一括停止しない。",
         "照合結果は状態成立の条件材料のみで、actual_state_update/actual_completionはfalse、operation_effectはnone。状態の実保存/実更新はOS、受入や配備の実作用は当該ownerが所有する。",
         "L4 source-binding roleを既存stateから選び、source_binding_detailに従って原SourceCell.target_operation内のrequest_association・qualification sidecarを別々に解決する。各producerを固定typed argumentsでeffect:none呼出しし、完全actual returnをraw SourceCellと別のprivate same-call recordへ結ぶ。",
-        "source-binding missing/unknown/conflictは対応するF03/F04状態の既存PartialValue依存だけへ伝播する。候補、上位/後続proof、他roleの既知call returnを欠落値の補完に使わない。"
+        "source-binding missing/unknown/conflictは対応するF03/F04状態の既存PartialValue依存だけへ伝播する。候補、上位/後続proof、他roleの既知call returnを欠落値の補完に使わない。",
+        "WR177 failure family: 各stateのown proofを照合し、必要状態の連続frontierを返す。途中の不足より後の原証拠も保持するが、前段の穴埋めには使わず状態更新を行わない。 根拠（base 827c4ea924a15b6b54bbe9d1f5d2f9fbdefa65de）: docs/helix-harness/L4-basic-design/process-state-port.json#/contracts/4/invariants; docs/helix-harness/L5-detail-design/process-state-port.json#/functions/4/internal_steps/0; #/functions/4/internal_steps/1; #/functions/4/internal_steps/2; #/functions/4/internal_steps/3; #/functions/4/internal_steps/4; #/functions/4/internal_steps/5; #/functions/4/internal_steps/6; #/functions/4/internal_steps/7; #/functions/4/internal_steps/8; #/functions/4/internal_steps/9."
       ],
       "detail_state": "draft_basic_typed_and_parameterized_qualification_pending_content_and_review",
       "state_detail": {
@@ -2417,7 +2423,8 @@
         "検出原観測、暫定対処、収束、postmortemの残原因、L12 feedbackを個別に比較し、暫定改善と恒久対策原証拠を区別する。配備成功とIssue closeは恒久対策/未完還流の原資料を変更しない。",
         "current L1〜L12 backfillの各原成果物と対成立条件を独立に比較し、欠落を個別state/nullで保持する。全層membershipや資格が未知なら空集合/全完了に補完しない。",
         "Reverse fullbackの原実結果と対象選択方式の原資料から戻り先を照合する。not_executedを成功にせず、戻り層unknownを適当な層へ補完せず当該ownerへ返す。再開/凍結条件はF01へ結ぶ。",
-        "candidateを原資料と別に比較し、当該義務/原資料/理由/該当ownerへの返却候補と無関係scopeの有効材料を保持する。実Incident/配備/記録/ticketはOS、既存認可はSECURITY、方式の意味は要求ownerが保持する。"
+        "candidateを原資料と別に比較し、当該義務/原資料/理由/該当ownerへの返却候補と無関係scopeの有効材料を保持する。実Incident/配備/記録/ticketはOS、既存認可はSECURITY、方式の意味は要求ownerが保持する。",
+        "WR177 failure family: Portの開始時定義と必須field、既存authority、Incident/backfill、戻り先を個別に照合し、missing/unknownを保持する。初回scopeで実運転を選ばず、実作用はnoneとする。 根拠（base 827c4ea924a15b6b54bbe9d1f5d2f9fbdefa65de）: docs/helix-harness/L4-basic-design/process-state-port.json#/contracts/5/invariants; 根拠（base 827c4ea924a15b6b54bbe9d1f5d2f9fbdefa65de）: docs/helix-harness/L4-basic-design/process-state-port.json#/contracts/5/connection_detail/port_fields; 根拠（base 827c4ea924a15b6b54bbe9d1f5d2f9fbdefa65de）: docs/helix-harness/L4-basic-design/process-state-port.json#/contracts/5/connection_detail/initial_order; 根拠（base 827c4ea924a15b6b54bbe9d1f5d2f9fbdefa65de）: docs/helix-harness/L4-basic-design/process-state-port.json#/contracts/5/connection_detail/completion_axes; 根拠（base 827c4ea924a15b6b54bbe9d1f5d2f9fbdefa65de）: docs/helix-harness/L4-basic-design/process-state-port.json#/contracts/5/connection_detail/return; docs/helix-harness/L5-detail-design/process-state-port.json#/functions/5/internal_steps/0; #/functions/5/internal_steps/1; #/functions/5/internal_steps/2; #/functions/5/internal_steps/3; #/functions/5/internal_steps/4; #/functions/5/internal_steps/5; #/functions/5/internal_steps/6; #/functions/5/internal_steps/7; #/functions/5/internal_steps/8."
       ],
       "detail_state": "draft_basic_typed_and_parameterized_qualification_pending_content_and_review",
       "port_detail": {
@@ -3566,7 +3573,8 @@
         "SLO/RTO/RPO/retentionは当該製品要求/Release原根拠へ照合する。未決値はunknown/nullで保持し、工程規則や他対象の値から既定数値を生成しない。",
         "target_resultsの各対象/段階/領域のPartialValueを保持する。必要集合または各適用/実観測が未確定ならhealthyはunknown/nullとし、健康とも不健康とも確定しない。合成basicのhealthy=falseはhealthy主張未成立であり、未観測をfalseの実診断へ変換しない。",
         "candidateを原資料と別に比較し、設計→実装/観測/運用、推定→修復、参照→実認可、数値根拠なし目標への差分を当該fieldで返す。未決は当該製品要求/Release owner、方針/認可はSECURITY、割当/運転はOSへ不足として返す。",
-        "関数は実security操作・認可生成・状態更新・完了を実施しない。actual_security_operation/actual_operation_approved/actual_completionはfalse、operation_effectはnone。"
+        "関数は実security操作・認可生成・状態更新・完了を実施しない。actual_security_operation/actual_operation_approved/actual_completionはfalse、operation_effectはnone。",
+        "WR177 failure family: 対象・環境・品質/finding段階を分けてpartial resultを保持する。未観測をhealthyにせず、security authorityやnumeric targetsを工程から生成しない。 根拠（base 827c4ea924a15b6b54bbe9d1f5d2f9fbdefa65de）: docs/helix-harness/L4-basic-design/process-state-port.json#/contracts/6/invariants; 根拠（base 827c4ea924a15b6b54bbe9d1f5d2f9fbdefa65de）: docs/helix-harness/L4-basic-design/process-state-port.json#/contracts/6/connection_detail/quality_stages; 根拠（base 827c4ea924a15b6b54bbe9d1f5d2f9fbdefa65de）: docs/helix-harness/L4-basic-design/process-state-port.json#/contracts/6/connection_detail/finding_stages; 根拠（base 827c4ea924a15b6b54bbe9d1f5d2f9fbdefa65de）: docs/helix-harness/L4-basic-design/process-state-port.json#/contracts/6/connection_detail/partial_preservation; docs/helix-harness/L5-detail-design/process-state-port.json#/functions/6/internal_steps/0; #/functions/6/internal_steps/1; #/functions/6/internal_steps/2; #/functions/6/internal_steps/3; #/functions/6/internal_steps/4; #/functions/6/internal_steps/5; #/functions/6/internal_steps/6; #/functions/6/internal_steps/7; #/functions/6/internal_steps/8."
       ],
       "detail_state": "draft_basic_typed_and_parameterized_qualification_pending_content_and_review",
       "quality_detail": {
