@@ -1,0 +1,105 @@
+{
+  "schema_revision": 1,
+  "id": "SCF-B-0174",
+  "kind": "scaffold",
+  "title": "WR186 HARNESS L4/L9 process-state-port F03/F05監査証拠",
+  "product": "HELIX-HARNESS",
+  "owner_candidate": "HELIX-HARNESS CORE003 design_verification (L4/L9)",
+  "state": "registered",
+  "reason": "HARNESS L4/L9 process-state-portのF03 14件・F05 8件について、固定L9入力とL3/L4/L5の静的照合根拠を一度だけ保持する研究用scaffold。既存期待、正式projection row、checker marker、freeze、関数実行、製品テストを変更・生成しない。",
+  "upstream": [
+    {
+      "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+      "sha256": "a3b907cdc316117d4684632f9a1cbf36125eb6e6172f9cfc286060617583d7be",
+      "note": "HARNESS-L3-003-F03/F05 obligation; candidate manifest pins fixed source pointers."
+    },
+    {
+      "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
+      "sha256": "eb0f43e23906d04b9554786a2574c94d01de85faa75f7fb1f33e08eb3276f464",
+      "note": "F03/F05 classes, scope and contract clauses; manual static comparison only."
+    },
+    {
+      "path": "docs/helix-harness/L5-detail-design/process-state-port.json",
+      "sha256": "8d361927ba36ec0599f267f4bf10824cacc160e9f37feb2db383283ea3b28622",
+      "note": "F03/F05 ordered rules and conditions; predicates are not implemented or executed."
+    },
+    {
+      "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+      "sha256": "8be3dd6c1de709aea4aebe39f9f9fe8fe1776807198f318b11c523f09637f298",
+      "note": "Formal L9 document path; retains the audit reference, 182-case population and existing expectations. Fixed raw input snapshot: ed3981e7b9419d796adf1981f8990c6b626ecabe, full-file SHA-256 91d0bcd34b8b451bc8e81f5d13d0c5f413de3ad5f7c70ba90a704134c4af3735."
+    }
+  ],
+  "role": "HARNESS L4/L9 design_verification pair向けに、process-state-port負例22件のL9入力由来とrule照合候補を記録する。",
+  "obligations": [
+    "F03の14件についてL9自身のbase_case_ref/mutation、固定raw hash、L3/L4/L5 source pointers、発火・非発火rule、ordered finding候補を保持する。",
+    "F05の8件についてL9自身のbase_case_ref/mutation、固定raw hash、L3/L4/L5 source pointers、発火・非発火rule、ordered finding候補を保持する。",
+    "既存の182件case population・expected valuesを保持し、formal projection rowsを追加せず、checker markerを無効のままにする。",
+    "残る175件の未形成とexisting negative checker 223 FAILを明示し、部分候補を全体PASSと扱わない。"
+  ],
+  "connections": {
+    "consumers": [
+      "docs/helix-harness/L9-integration-verification/process-state-port.json#/negative_output_projection_audit"
+    ],
+    "dependencies": [
+      "HARNESS L3 F03/F05 obligations",
+      "HARNESS L4 process-state-port contracts and classifications",
+      "HARNESS L5 process-state-port ordered failure rules",
+      "fixed L9 raw source snapshot ed3981e7b9419d796adf1981f8990c6b626ecabe"
+    ],
+    "boundary": "design_verification（HARNESS L4/L9）の静的監査のみ。L9 source、期待値、ケース母集団を変更せず、正式projection row、checker marker、freeze、関数実行、製品テスト、CI結果を生成しない。"
+  },
+  "operations": {
+    "allowed": [
+      "python3 scaffold/research/wr186-psp-negative-residual/validate_l9.py",
+      "python3 -B scaffold/tools/scfctl.py validate",
+      "python3 -B scaffold/tools/scfctl.py stale",
+      "git diff --check",
+      "python3 -m json.tool <changed-json>"
+    ],
+    "forbidden": [
+      "変更されていない期待値からcandidate outputを導く",
+      "L4/L5 predicateをコード化・実行する",
+      "checker markerまたはformal projection rowを追加する",
+      "function-pair freezeを生成する",
+      "旧CLI・旧hook・旧runtime・旧test・旧CIの実行",
+      "製品runtime、test、CIを実行する"
+    ]
+  },
+  "artifacts": [
+    "docs/helix-harness/L9-integration-verification/process-state-port.json",
+    "scaffold/research/wr186-psp-negative-residual/README.md",
+    "scaffold/research/wr186-psp-negative-residual/manual-projection-candidates.json",
+    "scaffold/research/wr186-psp-negative-residual/f05-single-finding-candidates.json",
+    "scaffold/research/wr186-psp-negative-residual/independent-manual-review.md",
+    "scaffold/research/wr186-psp-negative-residual/validate_l9.py"
+  ],
+  "verification": {
+    "evidence_kind": "scaffold",
+    "scope": [
+      "schema_interface",
+      "source_revision_stale",
+      "negative_case"
+    ],
+    "oracles": [
+      "python3 scaffold/research/wr186-psp-negative-residual/validate_l9.py",
+      "python3 -B scaffold/tools/scfctl.py validate",
+      "python3 -B scaffold/tools/scfctl.py stale",
+      "git diff --check",
+      "scaffold/research/wr186-psp-negative-residual/independent-manual-review.md"
+    ],
+    "negative_cases": [
+      "L9 expected_material and negative_class_assignment are excluded from derivation.",
+      "The 22 candidates remain audit-only; all 175 unformed cases remain visible.",
+      "The 182-case population and existing expected values remain unchanged; no formal row or checker marker is added.",
+      "Existing negative checker residual 223 FAIL and freeze state are reported separately from these static candidates."
+    ]
+  },
+  "replacement": {
+    "role_target": "正式なHARNESS L4/L9 process-state-port負例投影監査と検証coverage記録",
+    "formal_artifacts": [],
+    "issue": 1866,
+    "status": "pending"
+  },
+  "created": "2026-10-30",
+  "updated": "2026-10-30"
+}

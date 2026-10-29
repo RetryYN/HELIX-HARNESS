@@ -27389,6 +27389,187 @@
         "case_count": 0
       }
     ],
-    "coverage_boundary": "7件は監査候補。残り175 caseと27分類は未形成。legacy checker結果のみを実worktree結果として報告し、explicit-mode結果は別実験として区別する。"
+    "coverage_boundary": "7件はF04単一findingの既存監査候補。WR186はF03 14件・F05 8件のL9向け監査候補を追加する。正規projection rowは0件、case期待は未変更、未形成175件を維持する。checker markerは無効のままで、部分候補を全体PASSとして扱わない。",
+    "manual_projection_candidate_count": 14,
+    "manual_projection_candidates": [
+      {
+        "case_id": "H003-F03-TRACE-MISSING",
+        "candidate_ref": {
+          "path": "scaffold/research/wr186-psp-negative-residual/manual-projection-candidates.json",
+          "candidate_id": "H003-F03-TRACE-MISSING",
+          "field": "l9_input_derivation"
+        },
+        "mutation_pointer": {
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "pointer": "/cases/3/negative_cases/2/mutation"
+        }
+      },
+      {
+        "case_id": "H003-F03-L9-MISSING-interface",
+        "candidate_ref": {
+          "path": "scaffold/research/wr186-psp-negative-residual/manual-projection-candidates.json",
+          "candidate_id": "H003-F03-L9-MISSING-interface",
+          "field": "l9_input_derivation"
+        },
+        "mutation_pointer": {
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "pointer": "/cases/3/negative_cases/12/mutation"
+        }
+      },
+      {
+        "case_id": "H003-F03-L9-MISSING-dependency_direction",
+        "candidate_ref": {
+          "path": "scaffold/research/wr186-psp-negative-residual/manual-projection-candidates.json",
+          "candidate_id": "H003-F03-L9-MISSING-dependency_direction",
+          "field": "l9_input_derivation"
+        },
+        "mutation_pointer": {
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "pointer": "/cases/3/negative_cases/13/mutation"
+        }
+      },
+      {
+        "case_id": "H003-F03-L9-MISSING-state_data_ownership",
+        "candidate_ref": {
+          "path": "scaffold/research/wr186-psp-negative-residual/manual-projection-candidates.json",
+          "candidate_id": "H003-F03-L9-MISSING-state_data_ownership",
+          "field": "l9_input_derivation"
+        },
+        "mutation_pointer": {
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "pointer": "/cases/3/negative_cases/14/mutation"
+        }
+      },
+      {
+        "case_id": "H003-F03-L9-MISSING-transaction",
+        "candidate_ref": {
+          "path": "scaffold/research/wr186-psp-negative-residual/manual-projection-candidates.json",
+          "candidate_id": "H003-F03-L9-MISSING-transaction",
+          "field": "l9_input_derivation"
+        },
+        "mutation_pointer": {
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "pointer": "/cases/3/negative_cases/15/mutation"
+        }
+      },
+      {
+        "case_id": "H003-F03-L9-MISSING-failure_propagation",
+        "candidate_ref": {
+          "path": "scaffold/research/wr186-psp-negative-residual/manual-projection-candidates.json",
+          "candidate_id": "H003-F03-L9-MISSING-failure_propagation",
+          "field": "l9_input_derivation"
+        },
+        "mutation_pointer": {
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "pointer": "/cases/3/negative_cases/16/mutation"
+        }
+      },
+      {
+        "case_id": "H003-F03-L9-MISSING-retry",
+        "candidate_ref": {
+          "path": "scaffold/research/wr186-psp-negative-residual/manual-projection-candidates.json",
+          "candidate_id": "H003-F03-L9-MISSING-retry",
+          "field": "l9_input_derivation"
+        },
+        "mutation_pointer": {
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "pointer": "/cases/3/negative_cases/17/mutation"
+        }
+      },
+      {
+        "case_id": "H003-F03-L9-MISSING-timeout",
+        "candidate_ref": {
+          "path": "scaffold/research/wr186-psp-negative-residual/manual-projection-candidates.json",
+          "candidate_id": "H003-F03-L9-MISSING-timeout",
+          "field": "l9_input_derivation"
+        },
+        "mutation_pointer": {
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "pointer": "/cases/3/negative_cases/18/mutation"
+        }
+      },
+      {
+        "case_id": "H003-F03-L9-MISSING-idempotency",
+        "candidate_ref": {
+          "path": "scaffold/research/wr186-psp-negative-residual/manual-projection-candidates.json",
+          "candidate_id": "H003-F03-L9-MISSING-idempotency",
+          "field": "l9_input_derivation"
+        },
+        "mutation_pointer": {
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "pointer": "/cases/3/negative_cases/19/mutation"
+        }
+      },
+      {
+        "case_id": "H003-F03-L9-MISSING-coupling",
+        "candidate_ref": {
+          "path": "scaffold/research/wr186-psp-negative-residual/manual-projection-candidates.json",
+          "candidate_id": "H003-F03-L9-MISSING-coupling",
+          "field": "l9_input_derivation"
+        },
+        "mutation_pointer": {
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "pointer": "/cases/3/negative_cases/20/mutation"
+        }
+      },
+      {
+        "case_id": "H003-F03-L9-MISSING-responsibility_duplication",
+        "candidate_ref": {
+          "path": "scaffold/research/wr186-psp-negative-residual/manual-projection-candidates.json",
+          "candidate_id": "H003-F03-L9-MISSING-responsibility_duplication",
+          "field": "l9_input_derivation"
+        },
+        "mutation_pointer": {
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "pointer": "/cases/3/negative_cases/21/mutation"
+        }
+      },
+      {
+        "case_id": "H003-F03-WRONG-L9-PAIR",
+        "candidate_ref": {
+          "path": "scaffold/research/wr186-psp-negative-residual/manual-projection-candidates.json",
+          "candidate_id": "H003-F03-WRONG-L9-PAIR",
+          "field": "l9_input_derivation"
+        },
+        "mutation_pointer": {
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "pointer": "/cases/3/negative_cases/10/mutation"
+        }
+      },
+      {
+        "case_id": "H003-F03-L8-WRONG-PAIR",
+        "candidate_ref": {
+          "path": "scaffold/research/wr186-psp-negative-residual/manual-projection-candidates.json",
+          "candidate_id": "H003-F03-L8-WRONG-PAIR",
+          "field": "l9_input_derivation"
+        },
+        "mutation_pointer": {
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "pointer": "/cases/3/negative_cases/35/mutation"
+        }
+      },
+      {
+        "case_id": "H003-F03-L10-WRONG-PAIR",
+        "candidate_ref": {
+          "path": "scaffold/research/wr186-psp-negative-residual/manual-projection-candidates.json",
+          "candidate_id": "H003-F03-L10-WRONG-PAIR",
+          "field": "l9_input_derivation"
+        },
+        "mutation_pointer": {
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "pointer": "/cases/3/negative_cases/37/mutation"
+        }
+      }
+    ],
+    "manual_projection_candidate_manifest": "scaffold/research/wr186-psp-negative-residual/manual-projection-candidates.json",
+    "supplemental_candidate_manifests": [
+      {
+        "family": "F05",
+        "candidate_count": 8,
+        "path": "scaffold/research/wr186-psp-negative-residual/f05-single-finding-candidates.json",
+        "layer_input_pointer_field": "l9_raw_pointer",
+        "formal_projection_rows_added": 0
+      }
+    ]
   }
 }
