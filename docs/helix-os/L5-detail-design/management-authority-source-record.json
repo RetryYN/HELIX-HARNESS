@@ -13892,5 +13892,54 @@
         }
       ]
     }
+  ],
+  "negative_equivalence_classes": {
+    "source_rows": "failure_rules"
+  },
+  "functions": [
+    {
+      "id": "FN-OS015-01",
+      "source_pointers": [
+        {
+          "path": "docs/helix-os/L5-detail-design/management-authority-source-record.json",
+          "pointers": [
+            "/signatures/0"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "FN-OS015-02",
+      "source_pointers": [
+        {
+          "path": "docs/helix-os/L5-detail-design/management-authority-source-record.json",
+          "pointers": [
+            "/signatures/1"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "FN-OS015-03",
+      "source_pointers": [
+        {
+          "path": "docs/helix-os/L5-detail-design/management-authority-source-record.json",
+          "pointers": [
+            "/signatures/2"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "FN-OS015-04",
+      "source_pointers": [
+        {
+          "path": "docs/helix-os/L5-detail-design/management-authority-source-record.json",
+          "pointers": [
+            "/signatures/3"
+          ]
+        }
+      ]
+    }
   ]
 }

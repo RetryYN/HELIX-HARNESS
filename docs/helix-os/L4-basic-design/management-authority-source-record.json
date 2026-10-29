@@ -2120,5 +2120,8 @@
         }
       ]
     }
-  ]
+  ],
+  "negative_equivalence_classes": {
+    "source_rows": "failure_classifications"
+  }
 }

@@ -2913,8 +2913,7 @@
           "path": "docs/helix-os/L5-detail-design/management-authority-source-record.json",
           "pointers": [
             "/contracts/1",
-            "/signatures/0",
-            "/return_root_trace/FN-OS015-01"
+            "/signatures/0"
           ]
         }
       ]
@@ -3014,7 +3013,6 @@
           "pointers": [
             "/contracts/2",
             "/signatures/0",
-            "/return_root_trace/FN-OS015-01",
             "/signatures/3",
             "/return_root_trace/FN-OS015-04",
             "/classification_retention_contract"
@@ -3117,7 +3115,6 @@
           "pointers": [
             "/contracts/2",
             "/signatures/0",
-            "/return_root_trace/FN-OS015-01",
             "/signatures/3",
             "/return_root_trace/FN-OS015-04",
             "/classification_retention_contract"
@@ -3186,7 +3183,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0004"
+      "integration_case_ref": "HELIXOS-L9-015-C0004",
+      "negative_class_ref": "OS015-NEG-source_unresolved-source"
     },
     {
       "id": "HELIXOS-L9-015-C0005",
@@ -3249,7 +3247,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0005"
+      "integration_case_ref": "HELIXOS-L9-015-C0005",
+      "negative_class_ref": "OS015-NEG-source_conflict-source"
     },
     {
       "id": "HELIXOS-L9-015-C0006",
@@ -3312,7 +3311,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0006"
+      "integration_case_ref": "HELIXOS-L9-015-C0006",
+      "negative_class_ref": "OS015-NEG-source_unresolved-source"
     },
     {
       "id": "HELIXOS-L9-015-C0007",
@@ -3375,7 +3375,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0007"
+      "integration_case_ref": "HELIXOS-L9-015-C0007",
+      "negative_class_ref": "OS015-NEG-source_conflict-source"
     },
     {
       "id": "HELIXOS-L9-015-C0008",
@@ -3438,7 +3439,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0008"
+      "integration_case_ref": "HELIXOS-L9-015-C0008",
+      "negative_class_ref": "OS015-NEG-source_unresolved-source"
     },
     {
       "id": "HELIXOS-L9-015-C0009",
@@ -3501,7 +3503,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0009"
+      "integration_case_ref": "HELIXOS-L9-015-C0009",
+      "negative_class_ref": "OS015-NEG-source_conflict-source"
     },
     {
       "id": "HELIXOS-L9-015-C0010",
@@ -3564,7 +3567,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0010"
+      "integration_case_ref": "HELIXOS-L9-015-C0010",
+      "negative_class_ref": "OS015-NEG-source_unresolved-source"
     },
     {
       "id": "HELIXOS-L9-015-C0011",
@@ -3627,7 +3631,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0011"
+      "integration_case_ref": "HELIXOS-L9-015-C0011",
+      "negative_class_ref": "OS015-NEG-source_conflict-source"
     },
     {
       "id": "HELIXOS-L9-015-C0012",
@@ -3690,7 +3695,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0012"
+      "integration_case_ref": "HELIXOS-L9-015-C0012",
+      "negative_class_ref": "OS015-NEG-source_unresolved-source"
     },
     {
       "id": "HELIXOS-L9-015-C0013",
@@ -3753,7 +3759,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0013"
+      "integration_case_ref": "HELIXOS-L9-015-C0013",
+      "negative_class_ref": "OS015-NEG-source_conflict-source"
     },
     {
       "id": "HELIXOS-L9-015-C0014",
@@ -3816,7 +3823,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0014"
+      "integration_case_ref": "HELIXOS-L9-015-C0014",
+      "negative_class_ref": "OS015-NEG-source_unresolved-source"
     },
     {
       "id": "HELIXOS-L9-015-C0015",
@@ -3879,7 +3887,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0015"
+      "integration_case_ref": "HELIXOS-L9-015-C0015",
+      "negative_class_ref": "OS015-NEG-source_conflict-source"
     },
     {
       "id": "HELIXOS-L9-015-C0016",
@@ -3942,7 +3951,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0016"
+      "integration_case_ref": "HELIXOS-L9-015-C0016",
+      "negative_class_ref": "OS015-NEG-source_unresolved-source"
     },
     {
       "id": "HELIXOS-L9-015-C0017",
@@ -4005,7 +4015,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0017"
+      "integration_case_ref": "HELIXOS-L9-015-C0017",
+      "negative_class_ref": "OS015-NEG-source_conflict-source"
     },
     {
       "id": "HELIXOS-L9-015-C0018",
@@ -4068,7 +4079,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0018"
+      "integration_case_ref": "HELIXOS-L9-015-C0018",
+      "negative_class_ref": "OS015-NEG-source_unresolved-source"
     },
     {
       "id": "HELIXOS-L9-015-C0019",
@@ -4131,7 +4143,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0019"
+      "integration_case_ref": "HELIXOS-L9-015-C0019",
+      "negative_class_ref": "OS015-NEG-source_conflict-source"
     },
     {
       "id": "HELIXOS-L9-015-C0020",
@@ -4194,7 +4207,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0020"
+      "integration_case_ref": "HELIXOS-L9-015-C0020",
+      "negative_class_ref": "OS015-NEG-source_unresolved-source"
     },
     {
       "id": "HELIXOS-L9-015-C0021",
@@ -4257,7 +4271,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0021"
+      "integration_case_ref": "HELIXOS-L9-015-C0021",
+      "negative_class_ref": "OS015-NEG-source_conflict-source"
     },
     {
       "id": "HELIXOS-L9-015-C0022",
@@ -4320,7 +4335,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0022"
+      "integration_case_ref": "HELIXOS-L9-015-C0022",
+      "negative_class_ref": "OS015-NEG-source_unresolved-source"
     },
     {
       "id": "HELIXOS-L9-015-C0023",
@@ -4383,7 +4399,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0023"
+      "integration_case_ref": "HELIXOS-L9-015-C0023",
+      "negative_class_ref": "OS015-NEG-source_conflict-source"
     },
     {
       "id": "HELIXOS-L9-015-C0024",
@@ -4446,7 +4463,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0024"
+      "integration_case_ref": "HELIXOS-L9-015-C0024",
+      "negative_class_ref": "OS015-NEG-source_unresolved-source"
     },
     {
       "id": "HELIXOS-L9-015-C0025",
@@ -4509,7 +4527,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0025"
+      "integration_case_ref": "HELIXOS-L9-015-C0025",
+      "negative_class_ref": "OS015-NEG-source_conflict-source"
     },
     {
       "id": "HELIXOS-L9-015-C0026",
@@ -4572,7 +4591,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0026"
+      "integration_case_ref": "HELIXOS-L9-015-C0026",
+      "negative_class_ref": "OS015-NEG-source_unresolved-source"
     },
     {
       "id": "HELIXOS-L9-015-C0027",
@@ -4635,7 +4655,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0027"
+      "integration_case_ref": "HELIXOS-L9-015-C0027",
+      "negative_class_ref": "OS015-NEG-source_conflict-source"
     },
     {
       "id": "HELIXOS-L9-015-C0028",
@@ -4698,7 +4719,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0028"
+      "integration_case_ref": "HELIXOS-L9-015-C0028",
+      "negative_class_ref": "OS015-NEG-source_unresolved-source"
     },
     {
       "id": "HELIXOS-L9-015-C0029",
@@ -4761,7 +4783,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0029"
+      "integration_case_ref": "HELIXOS-L9-015-C0029",
+      "negative_class_ref": "OS015-NEG-source_conflict-source"
     },
     {
       "id": "HELIXOS-L9-015-C0030",
@@ -4824,7 +4847,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0030"
+      "integration_case_ref": "HELIXOS-L9-015-C0030",
+      "negative_class_ref": "OS015-NEG-source_unresolved-source"
     },
     {
       "id": "HELIXOS-L9-015-C0031",
@@ -4887,7 +4911,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0031"
+      "integration_case_ref": "HELIXOS-L9-015-C0031",
+      "negative_class_ref": "OS015-NEG-source_conflict-source"
     },
     {
       "id": "HELIXOS-L9-015-C0032",
@@ -4950,7 +4975,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0032"
+      "integration_case_ref": "HELIXOS-L9-015-C0032",
+      "negative_class_ref": "OS015-NEG-source_unresolved-source"
     },
     {
       "id": "HELIXOS-L9-015-C0033",
@@ -5013,7 +5039,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0033"
+      "integration_case_ref": "HELIXOS-L9-015-C0033",
+      "negative_class_ref": "OS015-NEG-source_conflict-source"
     },
     {
       "id": "HELIXOS-L9-015-C0034",
@@ -5076,7 +5103,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0034"
+      "integration_case_ref": "HELIXOS-L9-015-C0034",
+      "negative_class_ref": "OS015-NEG-source_unresolved-source"
     },
     {
       "id": "HELIXOS-L9-015-C0035",
@@ -5139,7 +5167,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0035"
+      "integration_case_ref": "HELIXOS-L9-015-C0035",
+      "negative_class_ref": "OS015-NEG-source_conflict-source"
     },
     {
       "id": "HELIXOS-L9-015-C0036",
@@ -5202,7 +5231,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0036"
+      "integration_case_ref": "HELIXOS-L9-015-C0036",
+      "negative_class_ref": "OS015-NEG-source_unresolved-source"
     },
     {
       "id": "HELIXOS-L9-015-C0037",
@@ -5265,7 +5295,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0037"
+      "integration_case_ref": "HELIXOS-L9-015-C0037",
+      "negative_class_ref": "OS015-NEG-source_conflict-source"
     },
     {
       "id": "HELIXOS-L9-015-C0038",
@@ -5328,7 +5359,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0038"
+      "integration_case_ref": "HELIXOS-L9-015-C0038",
+      "negative_class_ref": "OS015-NEG-source_unresolved-source"
     },
     {
       "id": "HELIXOS-L9-015-C0039",
@@ -5391,7 +5423,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0039"
+      "integration_case_ref": "HELIXOS-L9-015-C0039",
+      "negative_class_ref": "OS015-NEG-source_conflict-source"
     },
     {
       "id": "HELIXOS-L9-015-C0040",
@@ -5454,7 +5487,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0040"
+      "integration_case_ref": "HELIXOS-L9-015-C0040",
+      "negative_class_ref": "OS015-NEG-source_unresolved-source"
     },
     {
       "id": "HELIXOS-L9-015-C0041",
@@ -5517,7 +5551,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0041"
+      "integration_case_ref": "HELIXOS-L9-015-C0041",
+      "negative_class_ref": "OS015-NEG-source_conflict-source"
     },
     {
       "id": "HELIXOS-L9-015-C0042",
@@ -5580,7 +5615,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0042"
+      "integration_case_ref": "HELIXOS-L9-015-C0042",
+      "negative_class_ref": "OS015-NEG-source_unresolved-source"
     },
     {
       "id": "HELIXOS-L9-015-C0043",
@@ -5643,7 +5679,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0043"
+      "integration_case_ref": "HELIXOS-L9-015-C0043",
+      "negative_class_ref": "OS015-NEG-source_conflict-source"
     },
     {
       "id": "HELIXOS-L9-015-C0044",
@@ -6948,7 +6985,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0062"
+      "integration_case_ref": "HELIXOS-L9-015-C0062",
+      "negative_class_ref": "OS015-NEG-source_unresolved-source"
     },
     {
       "id": "HELIXOS-L9-015-C0063",
@@ -7011,7 +7049,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0063"
+      "integration_case_ref": "HELIXOS-L9-015-C0063",
+      "negative_class_ref": "OS015-NEG-source_conflict-source"
     },
     {
       "id": "HELIXOS-L9-015-C0064",
@@ -7074,7 +7113,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0064"
+      "integration_case_ref": "HELIXOS-L9-015-C0064",
+      "negative_class_ref": "OS015-NEG-source_unresolved-source"
     },
     {
       "id": "HELIXOS-L9-015-C0065",
@@ -7137,7 +7177,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0065"
+      "integration_case_ref": "HELIXOS-L9-015-C0065",
+      "negative_class_ref": "OS015-NEG-source_conflict-source"
     },
     {
       "id": "HELIXOS-L9-015-C0066",
@@ -7200,7 +7241,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0066"
+      "integration_case_ref": "HELIXOS-L9-015-C0066",
+      "negative_class_ref": "OS015-NEG-source_unresolved-source"
     },
     {
       "id": "HELIXOS-L9-015-C0067",
@@ -7263,7 +7305,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0067"
+      "integration_case_ref": "HELIXOS-L9-015-C0067",
+      "negative_class_ref": "OS015-NEG-source_conflict-source"
     },
     {
       "id": "HELIXOS-L9-015-C0068",
@@ -7326,7 +7369,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0068"
+      "integration_case_ref": "HELIXOS-L9-015-C0068",
+      "negative_class_ref": "OS015-NEG-source_unresolved-source"
     },
     {
       "id": "HELIXOS-L9-015-C0069",
@@ -7389,7 +7433,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0069"
+      "integration_case_ref": "HELIXOS-L9-015-C0069",
+      "negative_class_ref": "OS015-NEG-source_conflict-source"
     },
     {
       "id": "HELIXOS-L9-015-C0070",
@@ -7452,7 +7497,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0070"
+      "integration_case_ref": "HELIXOS-L9-015-C0070",
+      "negative_class_ref": "OS015-NEG-source_unresolved-source"
     },
     {
       "id": "HELIXOS-L9-015-C0071",
@@ -7515,7 +7561,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0071"
+      "integration_case_ref": "HELIXOS-L9-015-C0071",
+      "negative_class_ref": "OS015-NEG-source_conflict-source"
     },
     {
       "id": "HELIXOS-L9-015-C0072",
@@ -7578,7 +7625,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0072"
+      "integration_case_ref": "HELIXOS-L9-015-C0072",
+      "negative_class_ref": "OS015-NEG-source_unresolved-source"
     },
     {
       "id": "HELIXOS-L9-015-C0073",
@@ -7641,7 +7689,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0073"
+      "integration_case_ref": "HELIXOS-L9-015-C0073",
+      "negative_class_ref": "OS015-NEG-source_conflict-source"
     },
     {
       "id": "HELIXOS-L9-015-C0074",
@@ -7704,7 +7753,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0074"
+      "integration_case_ref": "HELIXOS-L9-015-C0074",
+      "negative_class_ref": "OS015-NEG-source_unresolved-source"
     },
     {
       "id": "HELIXOS-L9-015-C0075",
@@ -7767,7 +7817,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0075"
+      "integration_case_ref": "HELIXOS-L9-015-C0075",
+      "negative_class_ref": "OS015-NEG-source_conflict-source"
     },
     {
       "id": "HELIXOS-L9-015-C0076",
@@ -7830,7 +7881,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0076"
+      "integration_case_ref": "HELIXOS-L9-015-C0076",
+      "negative_class_ref": "OS015-NEG-source_unresolved-source"
     },
     {
       "id": "HELIXOS-L9-015-C0077",
@@ -7893,7 +7945,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0077"
+      "integration_case_ref": "HELIXOS-L9-015-C0077",
+      "negative_class_ref": "OS015-NEG-source_conflict-source"
     },
     {
       "id": "HELIXOS-L9-015-C0078",
@@ -7956,7 +8009,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0078"
+      "integration_case_ref": "HELIXOS-L9-015-C0078",
+      "negative_class_ref": "OS015-NEG-source_unresolved-source"
     },
     {
       "id": "HELIXOS-L9-015-C0079",
@@ -8019,7 +8073,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0079"
+      "integration_case_ref": "HELIXOS-L9-015-C0079",
+      "negative_class_ref": "OS015-NEG-source_conflict-source"
     },
     {
       "id": "HELIXOS-L9-015-C0080",
@@ -8082,7 +8137,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0080"
+      "integration_case_ref": "HELIXOS-L9-015-C0080",
+      "negative_class_ref": "OS015-NEG-source_unresolved-source"
     },
     {
       "id": "HELIXOS-L9-015-C0081",
@@ -8145,7 +8201,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0081"
+      "integration_case_ref": "HELIXOS-L9-015-C0081",
+      "negative_class_ref": "OS015-NEG-source_conflict-source"
     },
     {
       "id": "HELIXOS-L9-015-C0082",
@@ -8208,7 +8265,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0082"
+      "integration_case_ref": "HELIXOS-L9-015-C0082",
+      "negative_class_ref": "OS015-NEG-source_unresolved-source"
     },
     {
       "id": "HELIXOS-L9-015-C0083",
@@ -8271,7 +8329,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0083"
+      "integration_case_ref": "HELIXOS-L9-015-C0083",
+      "negative_class_ref": "OS015-NEG-source_conflict-source"
     },
     {
       "id": "HELIXOS-L9-015-C0084",
@@ -8334,7 +8393,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0084"
+      "integration_case_ref": "HELIXOS-L9-015-C0084",
+      "negative_class_ref": "OS015-NEG-source_unresolved-source"
     },
     {
       "id": "HELIXOS-L9-015-C0085",
@@ -8397,7 +8457,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0085"
+      "integration_case_ref": "HELIXOS-L9-015-C0085",
+      "negative_class_ref": "OS015-NEG-source_conflict-source"
     },
     {
       "id": "HELIXOS-L9-015-C0086",
@@ -8460,7 +8521,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0086"
+      "integration_case_ref": "HELIXOS-L9-015-C0086",
+      "negative_class_ref": "OS015-NEG-source_unresolved-source"
     },
     {
       "id": "HELIXOS-L9-015-C0087",
@@ -8523,7 +8585,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0087"
+      "integration_case_ref": "HELIXOS-L9-015-C0087",
+      "negative_class_ref": "OS015-NEG-source_conflict-source"
     },
     {
       "id": "HELIXOS-L9-015-C0088",
@@ -8586,7 +8649,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0088"
+      "integration_case_ref": "HELIXOS-L9-015-C0088",
+      "negative_class_ref": "OS015-NEG-source_unresolved-source"
     },
     {
       "id": "HELIXOS-L9-015-C0089",
@@ -8649,7 +8713,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0089"
+      "integration_case_ref": "HELIXOS-L9-015-C0089",
+      "negative_class_ref": "OS015-NEG-source_conflict-source"
     },
     {
       "id": "HELIXOS-L9-015-C0090",
@@ -8712,7 +8777,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0090"
+      "integration_case_ref": "HELIXOS-L9-015-C0090",
+      "negative_class_ref": "OS015-NEG-source_unresolved-source"
     },
     {
       "id": "HELIXOS-L9-015-C0091",
@@ -8775,7 +8841,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0091"
+      "integration_case_ref": "HELIXOS-L9-015-C0091",
+      "negative_class_ref": "OS015-NEG-source_conflict-source"
     },
     {
       "id": "HELIXOS-L9-015-C0092",
@@ -8838,7 +8905,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0092"
+      "integration_case_ref": "HELIXOS-L9-015-C0092",
+      "negative_class_ref": "OS015-NEG-source_unresolved-source"
     },
     {
       "id": "HELIXOS-L9-015-C0093",
@@ -8901,7 +8969,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0093"
+      "integration_case_ref": "HELIXOS-L9-015-C0093",
+      "negative_class_ref": "OS015-NEG-source_conflict-source"
     },
     {
       "id": "HELIXOS-L9-015-C0094",
@@ -8964,7 +9033,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0094"
+      "integration_case_ref": "HELIXOS-L9-015-C0094",
+      "negative_class_ref": "OS015-NEG-source_unresolved-source"
     },
     {
       "id": "HELIXOS-L9-015-C0095",
@@ -9027,7 +9097,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0095"
+      "integration_case_ref": "HELIXOS-L9-015-C0095",
+      "negative_class_ref": "OS015-NEG-source_conflict-source"
     },
     {
       "id": "HELIXOS-L9-015-C0096",
@@ -9090,7 +9161,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0096"
+      "integration_case_ref": "HELIXOS-L9-015-C0096",
+      "negative_class_ref": "OS015-NEG-source_unresolved-source"
     },
     {
       "id": "HELIXOS-L9-015-C0097",
@@ -9153,7 +9225,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0097"
+      "integration_case_ref": "HELIXOS-L9-015-C0097",
+      "negative_class_ref": "OS015-NEG-source_conflict-source"
     },
     {
       "id": "HELIXOS-L9-015-C0098",
@@ -9216,7 +9289,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0098"
+      "integration_case_ref": "HELIXOS-L9-015-C0098",
+      "negative_class_ref": "OS015-NEG-source_unresolved-source"
     },
     {
       "id": "HELIXOS-L9-015-C0099",
@@ -9279,7 +9353,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0099"
+      "integration_case_ref": "HELIXOS-L9-015-C0099",
+      "negative_class_ref": "OS015-NEG-source_conflict-source"
     },
     {
       "id": "HELIXOS-L9-015-C0100",
@@ -9342,7 +9417,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0100"
+      "integration_case_ref": "HELIXOS-L9-015-C0100",
+      "negative_class_ref": "OS015-NEG-source_unresolved-source"
     },
     {
       "id": "HELIXOS-L9-015-C0101",
@@ -9405,7 +9481,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0101"
+      "integration_case_ref": "HELIXOS-L9-015-C0101",
+      "negative_class_ref": "OS015-NEG-source_conflict-source"
     },
     {
       "id": "HELIXOS-L9-015-C0102",
@@ -10710,7 +10787,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0120"
+      "integration_case_ref": "HELIXOS-L9-015-C0120",
+      "negative_class_ref": "OS015-NEG-source_unresolved-source"
     },
     {
       "id": "HELIXOS-L9-015-C0121",
@@ -10773,7 +10851,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0121"
+      "integration_case_ref": "HELIXOS-L9-015-C0121",
+      "negative_class_ref": "OS015-NEG-source_conflict-source"
     },
     {
       "id": "HELIXOS-L9-015-C0122",
@@ -10836,7 +10915,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0122"
+      "integration_case_ref": "HELIXOS-L9-015-C0122",
+      "negative_class_ref": "OS015-NEG-source_unresolved-source"
     },
     {
       "id": "HELIXOS-L9-015-C0123",
@@ -10899,7 +10979,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0123"
+      "integration_case_ref": "HELIXOS-L9-015-C0123",
+      "negative_class_ref": "OS015-NEG-source_conflict-source"
     },
     {
       "id": "HELIXOS-L9-015-C0124",
@@ -10962,7 +11043,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0124"
+      "integration_case_ref": "HELIXOS-L9-015-C0124",
+      "negative_class_ref": "OS015-NEG-source_unresolved-source"
     },
     {
       "id": "HELIXOS-L9-015-C0125",
@@ -11025,7 +11107,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0125"
+      "integration_case_ref": "HELIXOS-L9-015-C0125",
+      "negative_class_ref": "OS015-NEG-source_conflict-source"
     },
     {
       "id": "HELIXOS-L9-015-C0126",
@@ -11088,7 +11171,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0126"
+      "integration_case_ref": "HELIXOS-L9-015-C0126",
+      "negative_class_ref": "OS015-NEG-source_unresolved-source"
     },
     {
       "id": "HELIXOS-L9-015-C0127",
@@ -11151,7 +11235,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0127"
+      "integration_case_ref": "HELIXOS-L9-015-C0127",
+      "negative_class_ref": "OS015-NEG-source_conflict-source"
     },
     {
       "id": "HELIXOS-L9-015-C0128",
@@ -11214,7 +11299,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0128"
+      "integration_case_ref": "HELIXOS-L9-015-C0128",
+      "negative_class_ref": "OS015-NEG-source_unresolved-source"
     },
     {
       "id": "HELIXOS-L9-015-C0129",
@@ -11277,7 +11363,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0129"
+      "integration_case_ref": "HELIXOS-L9-015-C0129",
+      "negative_class_ref": "OS015-NEG-source_conflict-source"
     },
     {
       "id": "HELIXOS-L9-015-C0130",
@@ -11340,7 +11427,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0130"
+      "integration_case_ref": "HELIXOS-L9-015-C0130",
+      "negative_class_ref": "OS015-NEG-source_unresolved-source"
     },
     {
       "id": "HELIXOS-L9-015-C0131",
@@ -11403,7 +11491,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0131"
+      "integration_case_ref": "HELIXOS-L9-015-C0131",
+      "negative_class_ref": "OS015-NEG-source_conflict-source"
     },
     {
       "id": "HELIXOS-L9-015-C0132",
@@ -11466,7 +11555,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0132"
+      "integration_case_ref": "HELIXOS-L9-015-C0132",
+      "negative_class_ref": "OS015-NEG-source_unresolved-source"
     },
     {
       "id": "HELIXOS-L9-015-C0133",
@@ -11529,7 +11619,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0133"
+      "integration_case_ref": "HELIXOS-L9-015-C0133",
+      "negative_class_ref": "OS015-NEG-source_conflict-source"
     },
     {
       "id": "HELIXOS-L9-015-C0134",
@@ -11592,7 +11683,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0134"
+      "integration_case_ref": "HELIXOS-L9-015-C0134",
+      "negative_class_ref": "OS015-NEG-source_unresolved-source"
     },
     {
       "id": "HELIXOS-L9-015-C0135",
@@ -11655,7 +11747,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0135"
+      "integration_case_ref": "HELIXOS-L9-015-C0135",
+      "negative_class_ref": "OS015-NEG-source_conflict-source"
     },
     {
       "id": "HELIXOS-L9-015-C0136",
@@ -11718,7 +11811,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0136"
+      "integration_case_ref": "HELIXOS-L9-015-C0136",
+      "negative_class_ref": "OS015-NEG-source_unresolved-source"
     },
     {
       "id": "HELIXOS-L9-015-C0137",
@@ -11781,7 +11875,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0137"
+      "integration_case_ref": "HELIXOS-L9-015-C0137",
+      "negative_class_ref": "OS015-NEG-source_conflict-source"
     },
     {
       "id": "HELIXOS-L9-015-C0138",
@@ -11844,7 +11939,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0138"
+      "integration_case_ref": "HELIXOS-L9-015-C0138",
+      "negative_class_ref": "OS015-NEG-source_unresolved-source"
     },
     {
       "id": "HELIXOS-L9-015-C0139",
@@ -11907,7 +12003,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0139"
+      "integration_case_ref": "HELIXOS-L9-015-C0139",
+      "negative_class_ref": "OS015-NEG-source_conflict-source"
     },
     {
       "id": "HELIXOS-L9-015-C0140",
@@ -11970,7 +12067,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0140"
+      "integration_case_ref": "HELIXOS-L9-015-C0140",
+      "negative_class_ref": "OS015-NEG-source_unresolved-source"
     },
     {
       "id": "HELIXOS-L9-015-C0141",
@@ -12033,7 +12131,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0141"
+      "integration_case_ref": "HELIXOS-L9-015-C0141",
+      "negative_class_ref": "OS015-NEG-source_conflict-source"
     },
     {
       "id": "HELIXOS-L9-015-C0142",
@@ -12096,7 +12195,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0142"
+      "integration_case_ref": "HELIXOS-L9-015-C0142",
+      "negative_class_ref": "OS015-NEG-source_unresolved-source"
     },
     {
       "id": "HELIXOS-L9-015-C0143",
@@ -12159,7 +12259,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0143"
+      "integration_case_ref": "HELIXOS-L9-015-C0143",
+      "negative_class_ref": "OS015-NEG-source_conflict-source"
     },
     {
       "id": "HELIXOS-L9-015-C0144",
@@ -12222,7 +12323,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0144"
+      "integration_case_ref": "HELIXOS-L9-015-C0144",
+      "negative_class_ref": "OS015-NEG-source_unresolved-source"
     },
     {
       "id": "HELIXOS-L9-015-C0145",
@@ -12285,7 +12387,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0145"
+      "integration_case_ref": "HELIXOS-L9-015-C0145",
+      "negative_class_ref": "OS015-NEG-source_conflict-source"
     },
     {
       "id": "HELIXOS-L9-015-C0146",
@@ -12348,7 +12451,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0146"
+      "integration_case_ref": "HELIXOS-L9-015-C0146",
+      "negative_class_ref": "OS015-NEG-source_unresolved-source"
     },
     {
       "id": "HELIXOS-L9-015-C0147",
@@ -12411,7 +12515,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0147"
+      "integration_case_ref": "HELIXOS-L9-015-C0147",
+      "negative_class_ref": "OS015-NEG-source_conflict-source"
     },
     {
       "id": "HELIXOS-L9-015-C0148",
@@ -12474,7 +12579,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0148"
+      "integration_case_ref": "HELIXOS-L9-015-C0148",
+      "negative_class_ref": "OS015-NEG-source_unresolved-source"
     },
     {
       "id": "HELIXOS-L9-015-C0149",
@@ -12537,7 +12643,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0149"
+      "integration_case_ref": "HELIXOS-L9-015-C0149",
+      "negative_class_ref": "OS015-NEG-source_conflict-source"
     },
     {
       "id": "HELIXOS-L9-015-C0150",
@@ -12600,7 +12707,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0150"
+      "integration_case_ref": "HELIXOS-L9-015-C0150",
+      "negative_class_ref": "OS015-NEG-source_unresolved-source"
     },
     {
       "id": "HELIXOS-L9-015-C0151",
@@ -12663,7 +12771,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0151"
+      "integration_case_ref": "HELIXOS-L9-015-C0151",
+      "negative_class_ref": "OS015-NEG-source_conflict-source"
     },
     {
       "id": "HELIXOS-L9-015-C0152",
@@ -12726,7 +12835,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0152"
+      "integration_case_ref": "HELIXOS-L9-015-C0152",
+      "negative_class_ref": "OS015-NEG-source_unresolved-source"
     },
     {
       "id": "HELIXOS-L9-015-C0153",
@@ -12789,7 +12899,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0153"
+      "integration_case_ref": "HELIXOS-L9-015-C0153",
+      "negative_class_ref": "OS015-NEG-source_conflict-source"
     },
     {
       "id": "HELIXOS-L9-015-C0154",
@@ -12852,7 +12963,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0154"
+      "integration_case_ref": "HELIXOS-L9-015-C0154",
+      "negative_class_ref": "OS015-NEG-source_unresolved-source"
     },
     {
       "id": "HELIXOS-L9-015-C0155",
@@ -12915,7 +13027,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0155"
+      "integration_case_ref": "HELIXOS-L9-015-C0155",
+      "negative_class_ref": "OS015-NEG-source_conflict-source"
     },
     {
       "id": "HELIXOS-L9-015-C0156",
@@ -12978,7 +13091,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0156"
+      "integration_case_ref": "HELIXOS-L9-015-C0156",
+      "negative_class_ref": "OS015-NEG-source_unresolved-source"
     },
     {
       "id": "HELIXOS-L9-015-C0157",
@@ -13041,7 +13155,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0157"
+      "integration_case_ref": "HELIXOS-L9-015-C0157",
+      "negative_class_ref": "OS015-NEG-source_conflict-source"
     },
     {
       "id": "HELIXOS-L9-015-C0158",
@@ -13104,7 +13219,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0158"
+      "integration_case_ref": "HELIXOS-L9-015-C0158",
+      "negative_class_ref": "OS015-NEG-source_unresolved-source"
     },
     {
       "id": "HELIXOS-L9-015-C0159",
@@ -13167,7 +13283,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0159"
+      "integration_case_ref": "HELIXOS-L9-015-C0159",
+      "negative_class_ref": "OS015-NEG-source_conflict-source"
     },
     {
       "id": "HELIXOS-L9-015-C0160",
@@ -14472,7 +14589,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0178"
+      "integration_case_ref": "HELIXOS-L9-015-C0178",
+      "negative_class_ref": "OS015-NEG-source_unresolved-source"
     },
     {
       "id": "HELIXOS-L9-015-C0179",
@@ -14604,7 +14722,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0180"
+      "integration_case_ref": "HELIXOS-L9-015-C0180",
+      "negative_class_ref": "OS015-NEG-source_unresolved-source"
     },
     {
       "id": "HELIXOS-L9-015-C0181",
@@ -14667,7 +14786,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0181"
+      "integration_case_ref": "HELIXOS-L9-015-C0181",
+      "negative_class_ref": "OS015-NEG-source_conflict-source"
     },
     {
       "id": "HELIXOS-L9-015-C0182",
@@ -14730,7 +14850,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0182"
+      "integration_case_ref": "HELIXOS-L9-015-C0182",
+      "negative_class_ref": "OS015-NEG-source_unresolved-source"
     },
     {
       "id": "HELIXOS-L9-015-C0183",
@@ -14793,7 +14914,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0183"
+      "integration_case_ref": "HELIXOS-L9-015-C0183",
+      "negative_class_ref": "OS015-NEG-source_conflict-source"
     },
     {
       "id": "HELIXOS-L9-015-C0184",
@@ -14856,7 +14978,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0184"
+      "integration_case_ref": "HELIXOS-L9-015-C0184",
+      "negative_class_ref": "OS015-NEG-source_unresolved-source"
     },
     {
       "id": "HELIXOS-L9-015-C0185",
@@ -14988,7 +15111,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0186"
+      "integration_case_ref": "HELIXOS-L9-015-C0186",
+      "negative_class_ref": "OS015-NEG-source_unresolved-source"
     },
     {
       "id": "HELIXOS-L9-015-C0187",
@@ -15051,7 +15175,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0187"
+      "integration_case_ref": "HELIXOS-L9-015-C0187",
+      "negative_class_ref": "OS015-NEG-source_conflict-source"
     },
     {
       "id": "HELIXOS-L9-015-C0188",
@@ -15114,7 +15239,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0188"
+      "integration_case_ref": "HELIXOS-L9-015-C0188",
+      "negative_class_ref": "OS015-NEG-source_unresolved-source"
     },
     {
       "id": "HELIXOS-L9-015-C0189",
@@ -15177,7 +15303,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0189"
+      "integration_case_ref": "HELIXOS-L9-015-C0189",
+      "negative_class_ref": "OS015-NEG-source_conflict-source"
     },
     {
       "id": "HELIXOS-L9-015-C0190",
@@ -15240,7 +15367,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0190"
+      "integration_case_ref": "HELIXOS-L9-015-C0190",
+      "negative_class_ref": "OS015-NEG-source_unresolved-source"
     },
     {
       "id": "HELIXOS-L9-015-C0191",
@@ -15303,7 +15431,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0191"
+      "integration_case_ref": "HELIXOS-L9-015-C0191",
+      "negative_class_ref": "OS015-NEG-source_conflict-source"
     },
     {
       "id": "HELIXOS-L9-015-C0192",
@@ -15366,7 +15495,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0192"
+      "integration_case_ref": "HELIXOS-L9-015-C0192",
+      "negative_class_ref": "OS015-NEG-source_unresolved-source"
     },
     {
       "id": "HELIXOS-L9-015-C0193",
@@ -15429,7 +15559,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0193"
+      "integration_case_ref": "HELIXOS-L9-015-C0193",
+      "negative_class_ref": "OS015-NEG-source_conflict-source"
     },
     {
       "id": "HELIXOS-L9-015-C0194",
@@ -15492,7 +15623,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0194"
+      "integration_case_ref": "HELIXOS-L9-015-C0194",
+      "negative_class_ref": "OS015-NEG-source_unresolved-source"
     },
     {
       "id": "HELIXOS-L9-015-C0195",
@@ -15555,7 +15687,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0195"
+      "integration_case_ref": "HELIXOS-L9-015-C0195",
+      "negative_class_ref": "OS015-NEG-source_conflict-source"
     },
     {
       "id": "HELIXOS-L9-015-C0196",
@@ -15618,7 +15751,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0196"
+      "integration_case_ref": "HELIXOS-L9-015-C0196",
+      "negative_class_ref": "OS015-NEG-source_unresolved-source"
     },
     {
       "id": "HELIXOS-L9-015-C0197",
@@ -15681,7 +15815,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0197"
+      "integration_case_ref": "HELIXOS-L9-015-C0197",
+      "negative_class_ref": "OS015-NEG-source_conflict-source"
     },
     {
       "id": "HELIXOS-L9-015-C0198",
@@ -15744,7 +15879,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0198"
+      "integration_case_ref": "HELIXOS-L9-015-C0198",
+      "negative_class_ref": "OS015-NEG-source_unresolved-source"
     },
     {
       "id": "HELIXOS-L9-015-C0199",
@@ -15807,7 +15943,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0199"
+      "integration_case_ref": "HELIXOS-L9-015-C0199",
+      "negative_class_ref": "OS015-NEG-source_conflict-source"
     },
     {
       "id": "HELIXOS-L9-015-C0200",
@@ -15870,7 +16007,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0200"
+      "integration_case_ref": "HELIXOS-L9-015-C0200",
+      "negative_class_ref": "OS015-NEG-source_unresolved-source"
     },
     {
       "id": "HELIXOS-L9-015-C0201",
@@ -15933,7 +16071,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0201"
+      "integration_case_ref": "HELIXOS-L9-015-C0201",
+      "negative_class_ref": "OS015-NEG-source_conflict-source"
     },
     {
       "id": "HELIXOS-L9-015-C0202",
@@ -15996,7 +16135,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0202"
+      "integration_case_ref": "HELIXOS-L9-015-C0202",
+      "negative_class_ref": "OS015-NEG-source_unresolved-source"
     },
     {
       "id": "HELIXOS-L9-015-C0203",
@@ -16059,7 +16199,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0203"
+      "integration_case_ref": "HELIXOS-L9-015-C0203",
+      "negative_class_ref": "OS015-NEG-source_conflict-source"
     },
     {
       "id": "HELIXOS-L9-015-C0204",
@@ -16122,7 +16263,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0204"
+      "integration_case_ref": "HELIXOS-L9-015-C0204",
+      "negative_class_ref": "OS015-NEG-source_unresolved-source"
     },
     {
       "id": "HELIXOS-L9-015-C0205",
@@ -16185,7 +16327,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0205"
+      "integration_case_ref": "HELIXOS-L9-015-C0205",
+      "negative_class_ref": "OS015-NEG-source_conflict-source"
     },
     {
       "id": "HELIXOS-L9-015-C0206",
@@ -16248,7 +16391,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0206"
+      "integration_case_ref": "HELIXOS-L9-015-C0206",
+      "negative_class_ref": "OS015-NEG-source_unresolved-source"
     },
     {
       "id": "HELIXOS-L9-015-C0207",
@@ -16311,7 +16455,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0207"
+      "integration_case_ref": "HELIXOS-L9-015-C0207",
+      "negative_class_ref": "OS015-NEG-source_conflict-source"
     },
     {
       "id": "HELIXOS-L9-015-C0208",
@@ -16374,7 +16519,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0208"
+      "integration_case_ref": "HELIXOS-L9-015-C0208",
+      "negative_class_ref": "OS015-NEG-source_unresolved-source"
     },
     {
       "id": "HELIXOS-L9-015-C0209",
@@ -16437,7 +16583,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0209"
+      "integration_case_ref": "HELIXOS-L9-015-C0209",
+      "negative_class_ref": "OS015-NEG-source_conflict-source"
     },
     {
       "id": "HELIXOS-L9-015-C0210",
@@ -16500,7 +16647,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0210"
+      "integration_case_ref": "HELIXOS-L9-015-C0210",
+      "negative_class_ref": "OS015-NEG-source_unresolved-source"
     },
     {
       "id": "HELIXOS-L9-015-C0211",
@@ -16563,7 +16711,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0211"
+      "integration_case_ref": "HELIXOS-L9-015-C0211",
+      "negative_class_ref": "OS015-NEG-source_conflict-source"
     },
     {
       "id": "HELIXOS-L9-015-C0212",
@@ -16626,7 +16775,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0212"
+      "integration_case_ref": "HELIXOS-L9-015-C0212",
+      "negative_class_ref": "OS015-NEG-source_unresolved-source"
     },
     {
       "id": "HELIXOS-L9-015-C0213",
@@ -16689,7 +16839,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0213"
+      "integration_case_ref": "HELIXOS-L9-015-C0213",
+      "negative_class_ref": "OS015-NEG-source_conflict-source"
     },
     {
       "id": "HELIXOS-L9-015-C0214",
@@ -16752,7 +16903,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0214"
+      "integration_case_ref": "HELIXOS-L9-015-C0214",
+      "negative_class_ref": "OS015-NEG-source_unresolved-source"
     },
     {
       "id": "HELIXOS-L9-015-C0215",
@@ -16815,7 +16967,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0215"
+      "integration_case_ref": "HELIXOS-L9-015-C0215",
+      "negative_class_ref": "OS015-NEG-source_conflict-source"
     },
     {
       "id": "HELIXOS-L9-015-C0216",
@@ -16878,7 +17031,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0216"
+      "integration_case_ref": "HELIXOS-L9-015-C0216",
+      "negative_class_ref": "OS015-NEG-source_unresolved-source"
     },
     {
       "id": "HELIXOS-L9-015-C0217",
@@ -16941,7 +17095,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0217"
+      "integration_case_ref": "HELIXOS-L9-015-C0217",
+      "negative_class_ref": "OS015-NEG-source_conflict-source"
     },
     {
       "id": "HELIXOS-L9-015-C0218",
@@ -18258,7 +18413,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0236"
+      "integration_case_ref": "HELIXOS-L9-015-C0236",
+      "negative_class_ref": "OS015-NEG-source_unresolved-source"
     },
     {
       "id": "HELIXOS-L9-015-C0237",
@@ -18321,7 +18477,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0237"
+      "integration_case_ref": "HELIXOS-L9-015-C0237",
+      "negative_class_ref": "OS015-NEG-source_conflict-source"
     },
     {
       "id": "HELIXOS-L9-015-C0238",
@@ -18384,7 +18541,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0238"
+      "integration_case_ref": "HELIXOS-L9-015-C0238",
+      "negative_class_ref": "OS015-NEG-source_unresolved-source"
     },
     {
       "id": "HELIXOS-L9-015-C0239",
@@ -18447,7 +18605,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0239"
+      "integration_case_ref": "HELIXOS-L9-015-C0239",
+      "negative_class_ref": "OS015-NEG-source_conflict-source"
     },
     {
       "id": "HELIXOS-L9-015-C0240",
@@ -18510,7 +18669,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0240"
+      "integration_case_ref": "HELIXOS-L9-015-C0240",
+      "negative_class_ref": "OS015-NEG-source_unresolved-source"
     },
     {
       "id": "HELIXOS-L9-015-C0241",
@@ -18573,7 +18733,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0241"
+      "integration_case_ref": "HELIXOS-L9-015-C0241",
+      "negative_class_ref": "OS015-NEG-source_conflict-source"
     },
     {
       "id": "HELIXOS-L9-015-C0242",
@@ -18636,7 +18797,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0242"
+      "integration_case_ref": "HELIXOS-L9-015-C0242",
+      "negative_class_ref": "OS015-NEG-source_unresolved-source"
     },
     {
       "id": "HELIXOS-L9-015-C0243",
@@ -18699,7 +18861,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0243"
+      "integration_case_ref": "HELIXOS-L9-015-C0243",
+      "negative_class_ref": "OS015-NEG-source_conflict-source"
     },
     {
       "id": "HELIXOS-L9-015-C0244",
@@ -18762,7 +18925,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0244"
+      "integration_case_ref": "HELIXOS-L9-015-C0244",
+      "negative_class_ref": "OS015-NEG-source_unresolved-source"
     },
     {
       "id": "HELIXOS-L9-015-C0245",
@@ -18825,7 +18989,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0245"
+      "integration_case_ref": "HELIXOS-L9-015-C0245",
+      "negative_class_ref": "OS015-NEG-source_conflict-source"
     },
     {
       "id": "HELIXOS-L9-015-C0246",
@@ -18888,7 +19053,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0246"
+      "integration_case_ref": "HELIXOS-L9-015-C0246",
+      "negative_class_ref": "OS015-NEG-source_unresolved-source"
     },
     {
       "id": "HELIXOS-L9-015-C0247",
@@ -18951,7 +19117,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0247"
+      "integration_case_ref": "HELIXOS-L9-015-C0247",
+      "negative_class_ref": "OS015-NEG-source_conflict-source"
     },
     {
       "id": "HELIXOS-L9-015-C0248",
@@ -19014,7 +19181,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0248"
+      "integration_case_ref": "HELIXOS-L9-015-C0248",
+      "negative_class_ref": "OS015-NEG-source_unresolved-source"
     },
     {
       "id": "HELIXOS-L9-015-C0249",
@@ -19077,7 +19245,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0249"
+      "integration_case_ref": "HELIXOS-L9-015-C0249",
+      "negative_class_ref": "OS015-NEG-source_conflict-source"
     },
     {
       "id": "HELIXOS-L9-015-C0250",
@@ -19140,7 +19309,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0250"
+      "integration_case_ref": "HELIXOS-L9-015-C0250",
+      "negative_class_ref": "OS015-NEG-source_unresolved-source"
     },
     {
       "id": "HELIXOS-L9-015-C0251",
@@ -19203,7 +19373,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0251"
+      "integration_case_ref": "HELIXOS-L9-015-C0251",
+      "negative_class_ref": "OS015-NEG-source_conflict-source"
     },
     {
       "id": "HELIXOS-L9-015-C0252",
@@ -19266,7 +19437,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0252"
+      "integration_case_ref": "HELIXOS-L9-015-C0252",
+      "negative_class_ref": "OS015-NEG-source_unresolved-source"
     },
     {
       "id": "HELIXOS-L9-015-C0253",
@@ -19329,7 +19501,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0253"
+      "integration_case_ref": "HELIXOS-L9-015-C0253",
+      "negative_class_ref": "OS015-NEG-source_conflict-source"
     },
     {
       "id": "HELIXOS-L9-015-C0254",
@@ -19392,7 +19565,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0254"
+      "integration_case_ref": "HELIXOS-L9-015-C0254",
+      "negative_class_ref": "OS015-NEG-source_unresolved-source"
     },
     {
       "id": "HELIXOS-L9-015-C0255",
@@ -19455,7 +19629,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0255"
+      "integration_case_ref": "HELIXOS-L9-015-C0255",
+      "negative_class_ref": "OS015-NEG-source_conflict-source"
     },
     {
       "id": "HELIXOS-L9-015-C0256",
@@ -19518,7 +19693,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0256"
+      "integration_case_ref": "HELIXOS-L9-015-C0256",
+      "negative_class_ref": "OS015-NEG-source_unresolved-source"
     },
     {
       "id": "HELIXOS-L9-015-C0257",
@@ -19581,7 +19757,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0257"
+      "integration_case_ref": "HELIXOS-L9-015-C0257",
+      "negative_class_ref": "OS015-NEG-source_conflict-source"
     },
     {
       "id": "HELIXOS-L9-015-C0258",
@@ -19644,7 +19821,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0258"
+      "integration_case_ref": "HELIXOS-L9-015-C0258",
+      "negative_class_ref": "OS015-NEG-source_unresolved-source"
     },
     {
       "id": "HELIXOS-L9-015-C0259",
@@ -19707,7 +19885,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0259"
+      "integration_case_ref": "HELIXOS-L9-015-C0259",
+      "negative_class_ref": "OS015-NEG-source_conflict-source"
     },
     {
       "id": "HELIXOS-L9-015-C0260",
@@ -19770,7 +19949,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0260"
+      "integration_case_ref": "HELIXOS-L9-015-C0260",
+      "negative_class_ref": "OS015-NEG-source_unresolved-source"
     },
     {
       "id": "HELIXOS-L9-015-C0261",
@@ -19833,7 +20013,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0261"
+      "integration_case_ref": "HELIXOS-L9-015-C0261",
+      "negative_class_ref": "OS015-NEG-source_conflict-source"
     },
     {
       "id": "HELIXOS-L9-015-C0262",
@@ -19896,7 +20077,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0262"
+      "integration_case_ref": "HELIXOS-L9-015-C0262",
+      "negative_class_ref": "OS015-NEG-source_unresolved-source"
     },
     {
       "id": "HELIXOS-L9-015-C0263",
@@ -19959,7 +20141,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0263"
+      "integration_case_ref": "HELIXOS-L9-015-C0263",
+      "negative_class_ref": "OS015-NEG-source_conflict-source"
     },
     {
       "id": "HELIXOS-L9-015-C0264",
@@ -20022,7 +20205,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0264"
+      "integration_case_ref": "HELIXOS-L9-015-C0264",
+      "negative_class_ref": "OS015-NEG-source_unresolved-source"
     },
     {
       "id": "HELIXOS-L9-015-C0265",
@@ -20085,7 +20269,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0265"
+      "integration_case_ref": "HELIXOS-L9-015-C0265",
+      "negative_class_ref": "OS015-NEG-source_conflict-source"
     },
     {
       "id": "HELIXOS-L9-015-C0266",
@@ -20148,7 +20333,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0266"
+      "integration_case_ref": "HELIXOS-L9-015-C0266",
+      "negative_class_ref": "OS015-NEG-source_unresolved-source"
     },
     {
       "id": "HELIXOS-L9-015-C0267",
@@ -20211,7 +20397,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0267"
+      "integration_case_ref": "HELIXOS-L9-015-C0267",
+      "negative_class_ref": "OS015-NEG-source_conflict-source"
     },
     {
       "id": "HELIXOS-L9-015-C0268",
@@ -20274,7 +20461,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0268"
+      "integration_case_ref": "HELIXOS-L9-015-C0268",
+      "negative_class_ref": "OS015-NEG-source_unresolved-source"
     },
     {
       "id": "HELIXOS-L9-015-C0269",
@@ -20337,7 +20525,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0269"
+      "integration_case_ref": "HELIXOS-L9-015-C0269",
+      "negative_class_ref": "OS015-NEG-source_conflict-source"
     },
     {
       "id": "HELIXOS-L9-015-C0270",
@@ -20400,7 +20589,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0270"
+      "integration_case_ref": "HELIXOS-L9-015-C0270",
+      "negative_class_ref": "OS015-NEG-source_unresolved-source"
     },
     {
       "id": "HELIXOS-L9-015-C0271",
@@ -20463,7 +20653,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0271"
+      "integration_case_ref": "HELIXOS-L9-015-C0271",
+      "negative_class_ref": "OS015-NEG-source_conflict-source"
     },
     {
       "id": "HELIXOS-L9-015-C0272",
@@ -20526,7 +20717,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0272"
+      "integration_case_ref": "HELIXOS-L9-015-C0272",
+      "negative_class_ref": "OS015-NEG-source_unresolved-source"
     },
     {
       "id": "HELIXOS-L9-015-C0273",
@@ -20589,7 +20781,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0273"
+      "integration_case_ref": "HELIXOS-L9-015-C0273",
+      "negative_class_ref": "OS015-NEG-source_conflict-source"
     },
     {
       "id": "HELIXOS-L9-015-C0274",
@@ -20652,7 +20845,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0274"
+      "integration_case_ref": "HELIXOS-L9-015-C0274",
+      "negative_class_ref": "OS015-NEG-source_unresolved-source"
     },
     {
       "id": "HELIXOS-L9-015-C0275",
@@ -20715,7 +20909,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0275"
+      "integration_case_ref": "HELIXOS-L9-015-C0275",
+      "negative_class_ref": "OS015-NEG-source_conflict-source"
     },
     {
       "id": "HELIXOS-L9-015-C0276",
@@ -22020,7 +22215,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0294"
+      "integration_case_ref": "HELIXOS-L9-015-C0294",
+      "negative_class_ref": "OS015-NEG-source_unresolved-source"
     },
     {
       "id": "HELIXOS-L9-015-C0295",
@@ -22152,7 +22348,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0296"
+      "integration_case_ref": "HELIXOS-L9-015-C0296",
+      "negative_class_ref": "OS015-NEG-source_unresolved-source"
     },
     {
       "id": "HELIXOS-L9-015-C0297",
@@ -22215,7 +22412,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0297"
+      "integration_case_ref": "HELIXOS-L9-015-C0297",
+      "negative_class_ref": "OS015-NEG-source_conflict-source"
     },
     {
       "id": "HELIXOS-L9-015-C0298",
@@ -22278,7 +22476,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0298"
+      "integration_case_ref": "HELIXOS-L9-015-C0298",
+      "negative_class_ref": "OS015-NEG-source_unresolved-source"
     },
     {
       "id": "HELIXOS-L9-015-C0299",
@@ -22341,7 +22540,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0299"
+      "integration_case_ref": "HELIXOS-L9-015-C0299",
+      "negative_class_ref": "OS015-NEG-source_conflict-source"
     },
     {
       "id": "HELIXOS-L9-015-C0300",
@@ -22404,7 +22604,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0300"
+      "integration_case_ref": "HELIXOS-L9-015-C0300",
+      "negative_class_ref": "OS015-NEG-source_unresolved-source"
     },
     {
       "id": "HELIXOS-L9-015-C0301",
@@ -22536,7 +22737,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0302"
+      "integration_case_ref": "HELIXOS-L9-015-C0302",
+      "negative_class_ref": "OS015-NEG-source_unresolved-source"
     },
     {
       "id": "HELIXOS-L9-015-C0303",
@@ -22599,7 +22801,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0303"
+      "integration_case_ref": "HELIXOS-L9-015-C0303",
+      "negative_class_ref": "OS015-NEG-source_conflict-source"
     },
     {
       "id": "HELIXOS-L9-015-C0304",
@@ -22662,7 +22865,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0304"
+      "integration_case_ref": "HELIXOS-L9-015-C0304",
+      "negative_class_ref": "OS015-NEG-source_unresolved-source"
     },
     {
       "id": "HELIXOS-L9-015-C0305",
@@ -22725,7 +22929,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0305"
+      "integration_case_ref": "HELIXOS-L9-015-C0305",
+      "negative_class_ref": "OS015-NEG-source_conflict-source"
     },
     {
       "id": "HELIXOS-L9-015-C0306",
@@ -22788,7 +22993,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0306"
+      "integration_case_ref": "HELIXOS-L9-015-C0306",
+      "negative_class_ref": "OS015-NEG-source_unresolved-source"
     },
     {
       "id": "HELIXOS-L9-015-C0307",
@@ -22851,7 +23057,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0307"
+      "integration_case_ref": "HELIXOS-L9-015-C0307",
+      "negative_class_ref": "OS015-NEG-source_conflict-source"
     },
     {
       "id": "HELIXOS-L9-015-C0308",
@@ -22914,7 +23121,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0308"
+      "integration_case_ref": "HELIXOS-L9-015-C0308",
+      "negative_class_ref": "OS015-NEG-source_unresolved-source"
     },
     {
       "id": "HELIXOS-L9-015-C0309",
@@ -22977,7 +23185,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0309"
+      "integration_case_ref": "HELIXOS-L9-015-C0309",
+      "negative_class_ref": "OS015-NEG-source_conflict-source"
     },
     {
       "id": "HELIXOS-L9-015-C0310",
@@ -23040,7 +23249,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0310"
+      "integration_case_ref": "HELIXOS-L9-015-C0310",
+      "negative_class_ref": "OS015-NEG-source_unresolved-source"
     },
     {
       "id": "HELIXOS-L9-015-C0311",
@@ -23103,7 +23313,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0311"
+      "integration_case_ref": "HELIXOS-L9-015-C0311",
+      "negative_class_ref": "OS015-NEG-source_conflict-source"
     },
     {
       "id": "HELIXOS-L9-015-C0312",
@@ -23166,7 +23377,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0312"
+      "integration_case_ref": "HELIXOS-L9-015-C0312",
+      "negative_class_ref": "OS015-NEG-source_unresolved-source"
     },
     {
       "id": "HELIXOS-L9-015-C0313",
@@ -23229,7 +23441,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0313"
+      "integration_case_ref": "HELIXOS-L9-015-C0313",
+      "negative_class_ref": "OS015-NEG-source_conflict-source"
     },
     {
       "id": "HELIXOS-L9-015-C0314",
@@ -23292,7 +23505,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0314"
+      "integration_case_ref": "HELIXOS-L9-015-C0314",
+      "negative_class_ref": "OS015-NEG-source_unresolved-source"
     },
     {
       "id": "HELIXOS-L9-015-C0315",
@@ -23355,7 +23569,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0315"
+      "integration_case_ref": "HELIXOS-L9-015-C0315",
+      "negative_class_ref": "OS015-NEG-source_conflict-source"
     },
     {
       "id": "HELIXOS-L9-015-C0316",
@@ -23418,7 +23633,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0316"
+      "integration_case_ref": "HELIXOS-L9-015-C0316",
+      "negative_class_ref": "OS015-NEG-source_unresolved-source"
     },
     {
       "id": "HELIXOS-L9-015-C0317",
@@ -23481,7 +23697,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0317"
+      "integration_case_ref": "HELIXOS-L9-015-C0317",
+      "negative_class_ref": "OS015-NEG-source_conflict-source"
     },
     {
       "id": "HELIXOS-L9-015-C0318",
@@ -23544,7 +23761,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0318"
+      "integration_case_ref": "HELIXOS-L9-015-C0318",
+      "negative_class_ref": "OS015-NEG-source_unresolved-source"
     },
     {
       "id": "HELIXOS-L9-015-C0319",
@@ -23607,7 +23825,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0319"
+      "integration_case_ref": "HELIXOS-L9-015-C0319",
+      "negative_class_ref": "OS015-NEG-source_conflict-source"
     },
     {
       "id": "HELIXOS-L9-015-C0320",
@@ -23670,7 +23889,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0320"
+      "integration_case_ref": "HELIXOS-L9-015-C0320",
+      "negative_class_ref": "OS015-NEG-source_unresolved-source"
     },
     {
       "id": "HELIXOS-L9-015-C0321",
@@ -23733,7 +23953,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0321"
+      "integration_case_ref": "HELIXOS-L9-015-C0321",
+      "negative_class_ref": "OS015-NEG-source_conflict-source"
     },
     {
       "id": "HELIXOS-L9-015-C0322",
@@ -23796,7 +24017,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0322"
+      "integration_case_ref": "HELIXOS-L9-015-C0322",
+      "negative_class_ref": "OS015-NEG-source_unresolved-source"
     },
     {
       "id": "HELIXOS-L9-015-C0323",
@@ -23859,7 +24081,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0323"
+      "integration_case_ref": "HELIXOS-L9-015-C0323",
+      "negative_class_ref": "OS015-NEG-source_conflict-source"
     },
     {
       "id": "HELIXOS-L9-015-C0324",
@@ -23922,7 +24145,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0324"
+      "integration_case_ref": "HELIXOS-L9-015-C0324",
+      "negative_class_ref": "OS015-NEG-source_unresolved-source"
     },
     {
       "id": "HELIXOS-L9-015-C0325",
@@ -23985,7 +24209,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0325"
+      "integration_case_ref": "HELIXOS-L9-015-C0325",
+      "negative_class_ref": "OS015-NEG-source_conflict-source"
     },
     {
       "id": "HELIXOS-L9-015-C0326",
@@ -24048,7 +24273,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0326"
+      "integration_case_ref": "HELIXOS-L9-015-C0326",
+      "negative_class_ref": "OS015-NEG-source_unresolved-source"
     },
     {
       "id": "HELIXOS-L9-015-C0327",
@@ -24111,7 +24337,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0327"
+      "integration_case_ref": "HELIXOS-L9-015-C0327",
+      "negative_class_ref": "OS015-NEG-source_conflict-source"
     },
     {
       "id": "HELIXOS-L9-015-C0328",
@@ -24174,7 +24401,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0328"
+      "integration_case_ref": "HELIXOS-L9-015-C0328",
+      "negative_class_ref": "OS015-NEG-source_unresolved-source"
     },
     {
       "id": "HELIXOS-L9-015-C0329",
@@ -24237,7 +24465,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0329"
+      "integration_case_ref": "HELIXOS-L9-015-C0329",
+      "negative_class_ref": "OS015-NEG-source_conflict-source"
     },
     {
       "id": "HELIXOS-L9-015-C0330",
@@ -24300,7 +24529,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0330"
+      "integration_case_ref": "HELIXOS-L9-015-C0330",
+      "negative_class_ref": "OS015-NEG-source_unresolved-source"
     },
     {
       "id": "HELIXOS-L9-015-C0331",
@@ -24363,7 +24593,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0331"
+      "integration_case_ref": "HELIXOS-L9-015-C0331",
+      "negative_class_ref": "OS015-NEG-source_conflict-source"
     },
     {
       "id": "HELIXOS-L9-015-C0332",
@@ -24426,7 +24657,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0332"
+      "integration_case_ref": "HELIXOS-L9-015-C0332",
+      "negative_class_ref": "OS015-NEG-source_unresolved-source"
     },
     {
       "id": "HELIXOS-L9-015-C0333",
@@ -24489,7 +24721,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0333"
+      "integration_case_ref": "HELIXOS-L9-015-C0333",
+      "negative_class_ref": "OS015-NEG-source_conflict-source"
     },
     {
       "id": "HELIXOS-L9-015-C0334",
@@ -25806,7 +26039,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0352"
+      "integration_case_ref": "HELIXOS-L9-015-C0352",
+      "negative_class_ref": "OS015-NEG-source_unresolved-classification"
     },
     {
       "id": "HELIXOS-L9-015-C0353",
@@ -25869,7 +26103,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0353"
+      "integration_case_ref": "HELIXOS-L9-015-C0353",
+      "negative_class_ref": "OS015-NEG-source_conflict-classification"
     },
     {
       "id": "HELIXOS-L9-015-C0354",
@@ -25932,7 +26167,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0354"
+      "integration_case_ref": "HELIXOS-L9-015-C0354",
+      "negative_class_ref": "OS015-NEG-source_unresolved-classification"
     },
     {
       "id": "HELIXOS-L9-015-C0355",
@@ -25995,7 +26231,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0355"
+      "integration_case_ref": "HELIXOS-L9-015-C0355",
+      "negative_class_ref": "OS015-NEG-source_conflict-classification"
     },
     {
       "id": "HELIXOS-L9-015-C0356",
@@ -26058,7 +26295,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0356"
+      "integration_case_ref": "HELIXOS-L9-015-C0356",
+      "negative_class_ref": "OS015-NEG-source_unresolved-classification"
     },
     {
       "id": "HELIXOS-L9-015-C0357",
@@ -26121,7 +26359,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0357"
+      "integration_case_ref": "HELIXOS-L9-015-C0357",
+      "negative_class_ref": "OS015-NEG-source_conflict-classification"
     },
     {
       "id": "HELIXOS-L9-015-C0358",
@@ -26184,7 +26423,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0358"
+      "integration_case_ref": "HELIXOS-L9-015-C0358",
+      "negative_class_ref": "OS015-NEG-source_unresolved-classification"
     },
     {
       "id": "HELIXOS-L9-015-C0359",
@@ -26247,7 +26487,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0359"
+      "integration_case_ref": "HELIXOS-L9-015-C0359",
+      "negative_class_ref": "OS015-NEG-source_conflict-classification"
     },
     {
       "id": "HELIXOS-L9-015-C0360",
@@ -26310,7 +26551,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0360"
+      "integration_case_ref": "HELIXOS-L9-015-C0360",
+      "negative_class_ref": "OS015-NEG-source_unresolved-classification"
     },
     {
       "id": "HELIXOS-L9-015-C0361",
@@ -26373,7 +26615,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0361"
+      "integration_case_ref": "HELIXOS-L9-015-C0361",
+      "negative_class_ref": "OS015-NEG-source_conflict-classification"
     },
     {
       "id": "HELIXOS-L9-015-C0362",
@@ -26436,7 +26679,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0362"
+      "integration_case_ref": "HELIXOS-L9-015-C0362",
+      "negative_class_ref": "OS015-NEG-source_unresolved-classification"
     },
     {
       "id": "HELIXOS-L9-015-C0363",
@@ -26499,7 +26743,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0363"
+      "integration_case_ref": "HELIXOS-L9-015-C0363",
+      "negative_class_ref": "OS015-NEG-source_conflict-classification"
     },
     {
       "id": "HELIXOS-L9-015-C0364",
@@ -26700,7 +26945,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0366"
+      "integration_case_ref": "HELIXOS-L9-015-C0366",
+      "negative_class_ref": "OS015-NEG-source_unresolved-classification"
     },
     {
       "id": "HELIXOS-L9-015-C0367",
@@ -26763,7 +27009,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0367"
+      "integration_case_ref": "HELIXOS-L9-015-C0367",
+      "negative_class_ref": "OS015-NEG-source_conflict-classification"
     },
     {
       "id": "HELIXOS-L9-015-C0368",
@@ -26826,7 +27073,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0368"
+      "integration_case_ref": "HELIXOS-L9-015-C0368",
+      "negative_class_ref": "OS015-NEG-source_unresolved-classification"
     },
     {
       "id": "HELIXOS-L9-015-C0369",
@@ -26889,7 +27137,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0369"
+      "integration_case_ref": "HELIXOS-L9-015-C0369",
+      "negative_class_ref": "OS015-NEG-source_conflict-classification"
     },
     {
       "id": "HELIXOS-L9-015-C0370",
@@ -26952,7 +27201,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0370"
+      "integration_case_ref": "HELIXOS-L9-015-C0370",
+      "negative_class_ref": "OS015-NEG-source_unresolved-classification"
     },
     {
       "id": "HELIXOS-L9-015-C0371",
@@ -27015,7 +27265,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0371"
+      "integration_case_ref": "HELIXOS-L9-015-C0371",
+      "negative_class_ref": "OS015-NEG-source_conflict-classification"
     },
     {
       "id": "HELIXOS-L9-015-C0372",
@@ -27078,7 +27329,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0372"
+      "integration_case_ref": "HELIXOS-L9-015-C0372",
+      "negative_class_ref": "OS015-NEG-source_unresolved-classification"
     },
     {
       "id": "HELIXOS-L9-015-C0373",
@@ -27141,7 +27393,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0373"
+      "integration_case_ref": "HELIXOS-L9-015-C0373",
+      "negative_class_ref": "OS015-NEG-source_conflict-classification"
     },
     {
       "id": "HELIXOS-L9-015-C0374",
@@ -27204,7 +27457,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0374"
+      "integration_case_ref": "HELIXOS-L9-015-C0374",
+      "negative_class_ref": "OS015-NEG-source_unresolved-classification"
     },
     {
       "id": "HELIXOS-L9-015-C0375",
@@ -27267,7 +27521,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0375"
+      "integration_case_ref": "HELIXOS-L9-015-C0375",
+      "negative_class_ref": "OS015-NEG-source_conflict-classification"
     },
     {
       "id": "HELIXOS-L9-015-C0376",
@@ -27330,7 +27585,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0376"
+      "integration_case_ref": "HELIXOS-L9-015-C0376",
+      "negative_class_ref": "OS015-NEG-new_classification_unresolved"
     },
     {
       "id": "HELIXOS-L9-015-C0377",
@@ -27393,7 +27649,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0377"
+      "integration_case_ref": "HELIXOS-L9-015-C0377",
+      "negative_class_ref": "OS015-NEG-source_unresolved-classification"
     },
     {
       "id": "HELIXOS-L9-015-C0378",
@@ -27456,7 +27713,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0378"
+      "integration_case_ref": "HELIXOS-L9-015-C0378",
+      "negative_class_ref": "OS015-NEG-source_conflict-classification"
     },
     {
       "id": "HELIXOS-L9-015-C0379",
@@ -27519,7 +27777,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0379"
+      "integration_case_ref": "HELIXOS-L9-015-C0379",
+      "negative_class_ref": "OS015-NEG-source_unresolved-classification"
     },
     {
       "id": "HELIXOS-L9-015-C0380",
@@ -27582,7 +27841,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0380"
+      "integration_case_ref": "HELIXOS-L9-015-C0380",
+      "negative_class_ref": "OS015-NEG-source_conflict-classification"
     },
     {
       "id": "HELIXOS-L9-015-C0381",
@@ -27645,7 +27905,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0381"
+      "integration_case_ref": "HELIXOS-L9-015-C0381",
+      "negative_class_ref": "OS015-NEG-source_unresolved-classification"
     },
     {
       "id": "HELIXOS-L9-015-C0382",
@@ -27708,7 +27969,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0382"
+      "integration_case_ref": "HELIXOS-L9-015-C0382",
+      "negative_class_ref": "OS015-NEG-source_conflict-classification"
     },
     {
       "id": "HELIXOS-L9-015-C0383",
@@ -27771,7 +28033,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0383"
+      "integration_case_ref": "HELIXOS-L9-015-C0383",
+      "negative_class_ref": "OS015-NEG-source_unresolved-classification"
     },
     {
       "id": "HELIXOS-L9-015-C0384",
@@ -27834,7 +28097,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0384"
+      "integration_case_ref": "HELIXOS-L9-015-C0384",
+      "negative_class_ref": "OS015-NEG-source_conflict-classification"
     },
     {
       "id": "HELIXOS-L9-015-C0385",
@@ -27897,7 +28161,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0385"
+      "integration_case_ref": "HELIXOS-L9-015-C0385",
+      "negative_class_ref": "OS015-NEG-source_unresolved-classification"
     },
     {
       "id": "HELIXOS-L9-015-C0386",
@@ -27960,7 +28225,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0386"
+      "integration_case_ref": "HELIXOS-L9-015-C0386",
+      "negative_class_ref": "OS015-NEG-source_conflict-classification"
     },
     {
       "id": "HELIXOS-L9-015-C0387",
@@ -28023,7 +28289,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0387"
+      "integration_case_ref": "HELIXOS-L9-015-C0387",
+      "negative_class_ref": "OS015-NEG-source_unresolved-classification"
     },
     {
       "id": "HELIXOS-L9-015-C0388",
@@ -28086,7 +28353,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0388"
+      "integration_case_ref": "HELIXOS-L9-015-C0388",
+      "negative_class_ref": "OS015-NEG-source_conflict-classification"
     },
     {
       "id": "HELIXOS-L9-015-C0389",
@@ -28149,7 +28417,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0389"
+      "integration_case_ref": "HELIXOS-L9-015-C0389",
+      "negative_class_ref": "OS015-NEG-source_unresolved-classification"
     },
     {
       "id": "HELIXOS-L9-015-C0390",
@@ -28212,7 +28481,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0390"
+      "integration_case_ref": "HELIXOS-L9-015-C0390",
+      "negative_class_ref": "OS015-NEG-source_conflict-classification"
     },
     {
       "id": "HELIXOS-L9-015-C0391",
@@ -28275,7 +28545,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0391"
+      "integration_case_ref": "HELIXOS-L9-015-C0391",
+      "negative_class_ref": "OS015-NEG-source_unresolved-classification"
     },
     {
       "id": "HELIXOS-L9-015-C0392",
@@ -28338,7 +28609,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0392"
+      "integration_case_ref": "HELIXOS-L9-015-C0392",
+      "negative_class_ref": "OS015-NEG-source_conflict-classification"
     },
     {
       "id": "HELIXOS-L9-015-C0393",
@@ -28401,7 +28673,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0393"
+      "integration_case_ref": "HELIXOS-L9-015-C0393",
+      "negative_class_ref": "OS015-NEG-source_unresolved-classification"
     },
     {
       "id": "HELIXOS-L9-015-C0394",
@@ -28464,7 +28737,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0394"
+      "integration_case_ref": "HELIXOS-L9-015-C0394",
+      "negative_class_ref": "OS015-NEG-source_conflict-classification"
     },
     {
       "id": "HELIXOS-L9-015-C0395",
@@ -28527,7 +28801,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0395"
+      "integration_case_ref": "HELIXOS-L9-015-C0395",
+      "negative_class_ref": "OS015-NEG-source_unresolved-classification"
     },
     {
       "id": "HELIXOS-L9-015-C0396",
@@ -28590,7 +28865,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0396"
+      "integration_case_ref": "HELIXOS-L9-015-C0396",
+      "negative_class_ref": "OS015-NEG-source_conflict-classification"
     },
     {
       "id": "HELIXOS-L9-015-C0397",
@@ -28653,7 +28929,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0397"
+      "integration_case_ref": "HELIXOS-L9-015-C0397",
+      "negative_class_ref": "OS015-NEG-source_unresolved-classification"
     },
     {
       "id": "HELIXOS-L9-015-C0398",
@@ -28716,7 +28993,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0398"
+      "integration_case_ref": "HELIXOS-L9-015-C0398",
+      "negative_class_ref": "OS015-NEG-source_conflict-classification"
     },
     {
       "id": "HELIXOS-L9-015-C0399",
@@ -28779,7 +29057,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0399"
+      "integration_case_ref": "HELIXOS-L9-015-C0399",
+      "negative_class_ref": "OS015-NEG-source_unresolved-classification"
     },
     {
       "id": "HELIXOS-L9-015-C0400",
@@ -28842,7 +29121,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0400"
+      "integration_case_ref": "HELIXOS-L9-015-C0400",
+      "negative_class_ref": "OS015-NEG-source_conflict-classification"
     },
     {
       "id": "HELIXOS-L9-015-C0401",
@@ -28905,7 +29185,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0401"
+      "integration_case_ref": "HELIXOS-L9-015-C0401",
+      "negative_class_ref": "OS015-NEG-new_classification_unresolved"
     },
     {
       "id": "HELIXOS-L9-015-C0402",
@@ -28968,7 +29249,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0402"
+      "integration_case_ref": "HELIXOS-L9-015-C0402",
+      "negative_class_ref": "OS015-NEG-source_unresolved-classification"
     },
     {
       "id": "HELIXOS-L9-015-C0403",
@@ -29031,7 +29313,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0403"
+      "integration_case_ref": "HELIXOS-L9-015-C0403",
+      "negative_class_ref": "OS015-NEG-source_conflict-classification"
     },
     {
       "id": "HELIXOS-L9-015-C0404",
@@ -29094,7 +29377,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0404"
+      "integration_case_ref": "HELIXOS-L9-015-C0404",
+      "negative_class_ref": "OS015-NEG-source_unresolved-classification"
     },
     {
       "id": "HELIXOS-L9-015-C0405",
@@ -29157,7 +29441,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0405"
+      "integration_case_ref": "HELIXOS-L9-015-C0405",
+      "negative_class_ref": "OS015-NEG-source_conflict-classification"
     },
     {
       "id": "HELIXOS-L9-015-C0406",
@@ -29220,7 +29505,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0406"
+      "integration_case_ref": "HELIXOS-L9-015-C0406",
+      "negative_class_ref": "OS015-NEG-source_unresolved-classification"
     },
     {
       "id": "HELIXOS-L9-015-C0407",
@@ -29283,7 +29569,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0407"
+      "integration_case_ref": "HELIXOS-L9-015-C0407",
+      "negative_class_ref": "OS015-NEG-source_conflict-classification"
     },
     {
       "id": "HELIXOS-L9-015-C0408",
@@ -29346,7 +29633,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0408"
+      "integration_case_ref": "HELIXOS-L9-015-C0408",
+      "negative_class_ref": "OS015-NEG-source_unresolved-classification"
     },
     {
       "id": "HELIXOS-L9-015-C0409",
@@ -29409,7 +29697,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0409"
+      "integration_case_ref": "HELIXOS-L9-015-C0409",
+      "negative_class_ref": "OS015-NEG-source_conflict-classification"
     },
     {
       "id": "HELIXOS-L9-015-C0410",
@@ -29472,7 +29761,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0410"
+      "integration_case_ref": "HELIXOS-L9-015-C0410",
+      "negative_class_ref": "OS015-NEG-source_unresolved-classification"
     },
     {
       "id": "HELIXOS-L9-015-C0411",
@@ -29535,7 +29825,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0411"
+      "integration_case_ref": "HELIXOS-L9-015-C0411",
+      "negative_class_ref": "OS015-NEG-source_conflict-classification"
     },
     {
       "id": "HELIXOS-L9-015-C0412",
@@ -29598,7 +29889,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0412"
+      "integration_case_ref": "HELIXOS-L9-015-C0412",
+      "negative_class_ref": "OS015-NEG-source_unresolved-classification"
     },
     {
       "id": "HELIXOS-L9-015-C0413",
@@ -29661,7 +29953,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0413"
+      "integration_case_ref": "HELIXOS-L9-015-C0413",
+      "negative_class_ref": "OS015-NEG-source_conflict-classification"
     },
     {
       "id": "HELIXOS-L9-015-C0414",
@@ -29862,7 +30155,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0416"
+      "integration_case_ref": "HELIXOS-L9-015-C0416",
+      "negative_class_ref": "OS015-NEG-source_unresolved-classification"
     },
     {
       "id": "HELIXOS-L9-015-C0417",
@@ -29925,7 +30219,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0417"
+      "integration_case_ref": "HELIXOS-L9-015-C0417",
+      "negative_class_ref": "OS015-NEG-source_conflict-classification"
     },
     {
       "id": "HELIXOS-L9-015-C0418",
@@ -29988,7 +30283,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0418"
+      "integration_case_ref": "HELIXOS-L9-015-C0418",
+      "negative_class_ref": "OS015-NEG-source_unresolved-classification"
     },
     {
       "id": "HELIXOS-L9-015-C0419",
@@ -30051,7 +30347,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0419"
+      "integration_case_ref": "HELIXOS-L9-015-C0419",
+      "negative_class_ref": "OS015-NEG-source_conflict-classification"
     },
     {
       "id": "HELIXOS-L9-015-C0420",
@@ -30114,7 +30411,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0420"
+      "integration_case_ref": "HELIXOS-L9-015-C0420",
+      "negative_class_ref": "OS015-NEG-source_unresolved-classification"
     },
     {
       "id": "HELIXOS-L9-015-C0421",
@@ -30177,7 +30475,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0421"
+      "integration_case_ref": "HELIXOS-L9-015-C0421",
+      "negative_class_ref": "OS015-NEG-source_conflict-classification"
     },
     {
       "id": "HELIXOS-L9-015-C0422",
@@ -30240,7 +30539,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0422"
+      "integration_case_ref": "HELIXOS-L9-015-C0422",
+      "negative_class_ref": "OS015-NEG-source_unresolved-classification"
     },
     {
       "id": "HELIXOS-L9-015-C0423",
@@ -30303,7 +30603,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0423"
+      "integration_case_ref": "HELIXOS-L9-015-C0423",
+      "negative_class_ref": "OS015-NEG-source_conflict-classification"
     },
     {
       "id": "HELIXOS-L9-015-C0424",
@@ -30366,7 +30667,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0424"
+      "integration_case_ref": "HELIXOS-L9-015-C0424",
+      "negative_class_ref": "OS015-NEG-source_unresolved-classification"
     },
     {
       "id": "HELIXOS-L9-015-C0425",
@@ -30429,7 +30731,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0425"
+      "integration_case_ref": "HELIXOS-L9-015-C0425",
+      "negative_class_ref": "OS015-NEG-source_conflict-classification"
     },
     {
       "id": "HELIXOS-L9-015-C0426",
@@ -30492,7 +30795,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0426"
+      "integration_case_ref": "HELIXOS-L9-015-C0426",
+      "negative_class_ref": "OS015-NEG-source_unresolved-classification"
     },
     {
       "id": "HELIXOS-L9-015-C0427",
@@ -30555,7 +30859,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0427"
+      "integration_case_ref": "HELIXOS-L9-015-C0427",
+      "negative_class_ref": "OS015-NEG-source_conflict-classification"
     },
     {
       "id": "HELIXOS-L9-015-C0428",
@@ -30618,7 +30923,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0428"
+      "integration_case_ref": "HELIXOS-L9-015-C0428",
+      "negative_class_ref": "OS015-NEG-source_unresolved-classification"
     },
     {
       "id": "HELIXOS-L9-015-C0429",
@@ -30681,7 +30987,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0429"
+      "integration_case_ref": "HELIXOS-L9-015-C0429",
+      "negative_class_ref": "OS015-NEG-source_conflict-classification"
     },
     {
       "id": "HELIXOS-L9-015-C0430",
@@ -30744,7 +31051,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0430"
+      "integration_case_ref": "HELIXOS-L9-015-C0430",
+      "negative_class_ref": "OS015-NEG-new_classification_unresolved"
     },
     {
       "id": "HELIXOS-L9-015-C0431",
@@ -30807,7 +31115,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0431"
+      "integration_case_ref": "HELIXOS-L9-015-C0431",
+      "negative_class_ref": "OS015-NEG-source_unresolved-classification"
     },
     {
       "id": "HELIXOS-L9-015-C0432",
@@ -30870,7 +31179,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0432"
+      "integration_case_ref": "HELIXOS-L9-015-C0432",
+      "negative_class_ref": "OS015-NEG-source_conflict-classification"
     },
     {
       "id": "HELIXOS-L9-015-C0433",
@@ -30933,7 +31243,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0433"
+      "integration_case_ref": "HELIXOS-L9-015-C0433",
+      "negative_class_ref": "OS015-NEG-source_unresolved-classification"
     },
     {
       "id": "HELIXOS-L9-015-C0434",
@@ -30996,7 +31307,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0434"
+      "integration_case_ref": "HELIXOS-L9-015-C0434",
+      "negative_class_ref": "OS015-NEG-source_conflict-classification"
     },
     {
       "id": "HELIXOS-L9-015-C0435",
@@ -31059,7 +31371,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0435"
+      "integration_case_ref": "HELIXOS-L9-015-C0435",
+      "negative_class_ref": "OS015-NEG-source_unresolved-classification"
     },
     {
       "id": "HELIXOS-L9-015-C0436",
@@ -31122,7 +31435,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0436"
+      "integration_case_ref": "HELIXOS-L9-015-C0436",
+      "negative_class_ref": "OS015-NEG-source_conflict-classification"
     },
     {
       "id": "HELIXOS-L9-015-C0437",
@@ -31185,7 +31499,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0437"
+      "integration_case_ref": "HELIXOS-L9-015-C0437",
+      "negative_class_ref": "OS015-NEG-source_unresolved-classification"
     },
     {
       "id": "HELIXOS-L9-015-C0438",
@@ -31248,7 +31563,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0438"
+      "integration_case_ref": "HELIXOS-L9-015-C0438",
+      "negative_class_ref": "OS015-NEG-source_conflict-classification"
     },
     {
       "id": "HELIXOS-L9-015-C0439",
@@ -31311,7 +31627,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0439"
+      "integration_case_ref": "HELIXOS-L9-015-C0439",
+      "negative_class_ref": "OS015-NEG-source_unresolved-classification"
     },
     {
       "id": "HELIXOS-L9-015-C0440",
@@ -31374,7 +31691,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0440"
+      "integration_case_ref": "HELIXOS-L9-015-C0440",
+      "negative_class_ref": "OS015-NEG-source_conflict-classification"
     },
     {
       "id": "HELIXOS-L9-015-C0441",
@@ -31437,7 +31755,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0441"
+      "integration_case_ref": "HELIXOS-L9-015-C0441",
+      "negative_class_ref": "OS015-NEG-source_unresolved-classification"
     },
     {
       "id": "HELIXOS-L9-015-C0442",
@@ -31500,7 +31819,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0442"
+      "integration_case_ref": "HELIXOS-L9-015-C0442",
+      "negative_class_ref": "OS015-NEG-source_conflict-classification"
     },
     {
       "id": "HELIXOS-L9-015-C0443",
@@ -31563,7 +31883,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0443"
+      "integration_case_ref": "HELIXOS-L9-015-C0443",
+      "negative_class_ref": "OS015-NEG-source_unresolved-classification"
     },
     {
       "id": "HELIXOS-L9-015-C0444",
@@ -31626,7 +31947,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0444"
+      "integration_case_ref": "HELIXOS-L9-015-C0444",
+      "negative_class_ref": "OS015-NEG-source_conflict-classification"
     },
     {
       "id": "HELIXOS-L9-015-C0445",
@@ -31689,7 +32011,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0445"
+      "integration_case_ref": "HELIXOS-L9-015-C0445",
+      "negative_class_ref": "OS015-NEG-source_unresolved-classification"
     },
     {
       "id": "HELIXOS-L9-015-C0446",
@@ -31752,7 +32075,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0446"
+      "integration_case_ref": "HELIXOS-L9-015-C0446",
+      "negative_class_ref": "OS015-NEG-source_conflict-classification"
     },
     {
       "id": "HELIXOS-L9-015-C0447",
@@ -31815,7 +32139,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0447"
+      "integration_case_ref": "HELIXOS-L9-015-C0447",
+      "negative_class_ref": "OS015-NEG-source_unresolved-classification"
     },
     {
       "id": "HELIXOS-L9-015-C0448",
@@ -31878,7 +32203,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0448"
+      "integration_case_ref": "HELIXOS-L9-015-C0448",
+      "negative_class_ref": "OS015-NEG-source_conflict-classification"
     },
     {
       "id": "HELIXOS-L9-015-C0449",
@@ -31941,7 +32267,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0449"
+      "integration_case_ref": "HELIXOS-L9-015-C0449",
+      "negative_class_ref": "OS015-NEG-source_unresolved-classification"
     },
     {
       "id": "HELIXOS-L9-015-C0450",
@@ -32004,7 +32331,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0450"
+      "integration_case_ref": "HELIXOS-L9-015-C0450",
+      "negative_class_ref": "OS015-NEG-source_conflict-classification"
     },
     {
       "id": "HELIXOS-L9-015-C0451",
@@ -32067,7 +32395,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0451"
+      "integration_case_ref": "HELIXOS-L9-015-C0451",
+      "negative_class_ref": "OS015-NEG-source_unresolved-classification"
     },
     {
       "id": "HELIXOS-L9-015-C0452",
@@ -32130,7 +32459,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0452"
+      "integration_case_ref": "HELIXOS-L9-015-C0452",
+      "negative_class_ref": "OS015-NEG-source_conflict-classification"
     },
     {
       "id": "HELIXOS-L9-015-C0453",
@@ -32193,7 +32523,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0453"
+      "integration_case_ref": "HELIXOS-L9-015-C0453",
+      "negative_class_ref": "OS015-NEG-source_unresolved-classification"
     },
     {
       "id": "HELIXOS-L9-015-C0454",
@@ -32256,7 +32587,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0454"
+      "integration_case_ref": "HELIXOS-L9-015-C0454",
+      "negative_class_ref": "OS015-NEG-source_conflict-classification"
     },
     {
       "id": "HELIXOS-L9-015-C0455",
@@ -32319,7 +32651,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0455"
+      "integration_case_ref": "HELIXOS-L9-015-C0455",
+      "negative_class_ref": "OS015-NEG-source_unresolved-classification"
     },
     {
       "id": "HELIXOS-L9-015-C0456",
@@ -32382,7 +32715,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0456"
+      "integration_case_ref": "HELIXOS-L9-015-C0456",
+      "negative_class_ref": "OS015-NEG-source_conflict-classification"
     },
     {
       "id": "HELIXOS-L9-015-C0457",
@@ -32445,7 +32779,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0457"
+      "integration_case_ref": "HELIXOS-L9-015-C0457",
+      "negative_class_ref": "OS015-NEG-source_unresolved-classification"
     },
     {
       "id": "HELIXOS-L9-015-C0458",
@@ -32508,7 +32843,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0458"
+      "integration_case_ref": "HELIXOS-L9-015-C0458",
+      "negative_class_ref": "OS015-NEG-source_conflict-classification"
     },
     {
       "id": "HELIXOS-L9-015-C0459",
@@ -32571,7 +32907,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0459"
+      "integration_case_ref": "HELIXOS-L9-015-C0459",
+      "negative_class_ref": "OS015-NEG-new_classification_unresolved"
     },
     {
       "id": "HELIXOS-L9-015-C0460",
@@ -32703,7 +33040,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0461"
+      "integration_case_ref": "HELIXOS-L9-015-C0461",
+      "negative_class_ref": "OS015-NEG-source_conflict-authority"
     },
     {
       "id": "HELIXOS-L9-015-C0462",
@@ -32766,7 +33104,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0462"
+      "integration_case_ref": "HELIXOS-L9-015-C0462",
+      "negative_class_ref": "OS015-NEG-authority_origin_forbidden"
     },
     {
       "id": "HELIXOS-L9-015-C0463",
@@ -32898,7 +33237,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0464"
+      "integration_case_ref": "HELIXOS-L9-015-C0464",
+      "negative_class_ref": "OS015-NEG-source_conflict-authority"
     },
     {
       "id": "HELIXOS-L9-015-C0465",
@@ -32961,7 +33301,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0465"
+      "integration_case_ref": "HELIXOS-L9-015-C0465",
+      "negative_class_ref": "OS015-NEG-authority_origin_forbidden"
     },
     {
       "id": "HELIXOS-L9-015-C0466",
@@ -33093,7 +33434,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0467"
+      "integration_case_ref": "HELIXOS-L9-015-C0467",
+      "negative_class_ref": "OS015-NEG-source_conflict-authority"
     },
     {
       "id": "HELIXOS-L9-015-C0468",
@@ -33156,7 +33498,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0468"
+      "integration_case_ref": "HELIXOS-L9-015-C0468",
+      "negative_class_ref": "OS015-NEG-authority_origin_forbidden"
     },
     {
       "id": "HELIXOS-L9-015-C0469",
@@ -33288,7 +33631,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0470"
+      "integration_case_ref": "HELIXOS-L9-015-C0470",
+      "negative_class_ref": "OS015-NEG-source_conflict-authority"
     },
     {
       "id": "HELIXOS-L9-015-C0471",
@@ -33351,7 +33695,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0471"
+      "integration_case_ref": "HELIXOS-L9-015-C0471",
+      "negative_class_ref": "OS015-NEG-authority_origin_forbidden"
     },
     {
       "id": "HELIXOS-L9-015-C0472",
@@ -33483,7 +33828,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0473"
+      "integration_case_ref": "HELIXOS-L9-015-C0473",
+      "negative_class_ref": "OS015-NEG-source_conflict-authority"
     },
     {
       "id": "HELIXOS-L9-015-C0474",
@@ -33546,7 +33892,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0474"
+      "integration_case_ref": "HELIXOS-L9-015-C0474",
+      "negative_class_ref": "OS015-NEG-authority_origin_forbidden"
     },
     {
       "id": "HELIXOS-L9-015-C0475",
@@ -33609,7 +33956,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0475"
+      "integration_case_ref": "HELIXOS-L9-015-C0475",
+      "negative_class_ref": "OS015-NEG-authority_origin_unresolved"
     },
     {
       "id": "HELIXOS-L9-015-C0476",
@@ -33672,7 +34020,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0476"
+      "integration_case_ref": "HELIXOS-L9-015-C0476",
+      "negative_class_ref": "OS015-NEG-authority_origin_unresolved"
     },
     {
       "id": "HELIXOS-L9-015-C0477",
@@ -33804,7 +34153,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0478"
+      "integration_case_ref": "HELIXOS-L9-015-C0478",
+      "negative_class_ref": "OS015-NEG-authority_origin_unresolved"
     },
     {
       "id": "HELIXOS-L9-015-C0479",
@@ -33867,7 +34217,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0479"
+      "integration_case_ref": "HELIXOS-L9-015-C0479",
+      "negative_class_ref": "OS015-NEG-authority_origin_unresolved"
     },
     {
       "id": "HELIXOS-L9-015-C0480",
@@ -34068,7 +34419,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0482"
+      "integration_case_ref": "HELIXOS-L9-015-C0482",
+      "negative_class_ref": "OS015-NEG-source_conflict-authority"
     },
     {
       "id": "HELIXOS-L9-015-C0483",
@@ -34131,7 +34483,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0483"
+      "integration_case_ref": "HELIXOS-L9-015-C0483",
+      "negative_class_ref": "OS015-NEG-authority_stale"
     },
     {
       "id": "HELIXOS-L9-015-C0484",
@@ -34263,7 +34616,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0485"
+      "integration_case_ref": "HELIXOS-L9-015-C0485",
+      "negative_class_ref": "OS015-NEG-source_conflict-authority"
     },
     {
       "id": "HELIXOS-L9-015-C0486",
@@ -34326,7 +34680,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0486"
+      "integration_case_ref": "HELIXOS-L9-015-C0486",
+      "negative_class_ref": "OS015-NEG-authority_conflict"
     },
     {
       "id": "HELIXOS-L9-015-C0487",
@@ -34458,7 +34813,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0488"
+      "integration_case_ref": "HELIXOS-L9-015-C0488",
+      "negative_class_ref": "OS015-NEG-source_conflict-authority"
     },
     {
       "id": "HELIXOS-L9-015-C0489",
@@ -34521,7 +34877,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0489"
+      "integration_case_ref": "HELIXOS-L9-015-C0489",
+      "negative_class_ref": "OS015-NEG-authority_state_unresolved"
     },
     {
       "id": "HELIXOS-L9-015-C0490",
@@ -34584,7 +34941,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0490"
+      "integration_case_ref": "HELIXOS-L9-015-C0490",
+      "negative_class_ref": "OS015-NEG-authority_state_unresolved"
     },
     {
       "id": "HELIXOS-L9-015-C0491",
@@ -34647,7 +35005,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0491"
+      "integration_case_ref": "HELIXOS-L9-015-C0491",
+      "negative_class_ref": "OS015-NEG-authority_state_unresolved"
     },
     {
       "id": "HELIXOS-L9-015-C0492",
@@ -34779,7 +35138,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0493"
+      "integration_case_ref": "HELIXOS-L9-015-C0493",
+      "negative_class_ref": "OS015-NEG-authority_state_unresolved"
     },
     {
       "id": "HELIXOS-L9-015-C0494",
@@ -34842,7 +35202,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0494"
+      "integration_case_ref": "HELIXOS-L9-015-C0494",
+      "negative_class_ref": "OS015-NEG-authority_state_unresolved"
     },
     {
       "id": "HELIXOS-L9-015-C0495",
@@ -34974,7 +35335,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0496"
+      "integration_case_ref": "HELIXOS-L9-015-C0496",
+      "negative_class_ref": "OS015-NEG-generated_authority_forbidden"
     },
     {
       "id": "HELIXOS-L9-015-C0497",
@@ -35037,7 +35399,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0497"
+      "integration_case_ref": "HELIXOS-L9-015-C0497",
+      "negative_class_ref": "OS015-NEG-generated_authority_claim_unresolved"
     },
     {
       "id": "HELIXOS-L9-015-C0498",
@@ -35100,7 +35463,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0498"
+      "integration_case_ref": "HELIXOS-L9-015-C0498",
+      "negative_class_ref": "OS015-NEG-generated_authority_forbidden"
     },
     {
       "id": "HELIXOS-L9-015-C0499",
@@ -35163,7 +35527,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0499"
+      "integration_case_ref": "HELIXOS-L9-015-C0499",
+      "negative_class_ref": "OS015-NEG-generated_authority_claim_unresolved"
     },
     {
       "id": "HELIXOS-L9-015-C0500",
@@ -35226,7 +35591,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0500"
+      "integration_case_ref": "HELIXOS-L9-015-C0500",
+      "negative_class_ref": "OS015-NEG-generated_authority_forbidden"
     },
     {
       "id": "HELIXOS-L9-015-C0501",
@@ -35289,7 +35655,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0501"
+      "integration_case_ref": "HELIXOS-L9-015-C0501",
+      "negative_class_ref": "OS015-NEG-generated_authority_claim_unresolved"
     },
     {
       "id": "HELIXOS-L9-015-C0502",
@@ -35384,8 +35751,7 @@
           "path": "docs/helix-os/L5-detail-design/management-authority-source-record.json",
           "pointers": [
             "/contracts/0",
-            "/signatures/0",
-            "/return_root_trace/FN-OS015-01"
+            "/signatures/0"
           ]
         }
       ]
@@ -35451,7 +35817,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0503"
+      "integration_case_ref": "HELIXOS-L9-015-C0503",
+      "negative_class_ref": "OS015-NEG-whole_registry_claim_unproven"
     },
     {
       "id": "HELIXOS-L9-015-C0504",
@@ -35514,7 +35881,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0504"
+      "integration_case_ref": "HELIXOS-L9-015-C0504",
+      "negative_class_ref": "OS015-NEG-whole_registry_claim_unresolved"
     },
     {
       "id": "HELIXOS-L9-015-C0505",
@@ -35646,7 +36014,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0506"
+      "integration_case_ref": "HELIXOS-L9-015-C0506",
+      "negative_class_ref": "OS015-NEG-current_material_claim_unresolved"
     },
     {
       "id": "HELIXOS-L9-015-C0507",
@@ -35709,7 +36078,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0507"
+      "integration_case_ref": "HELIXOS-L9-015-C0507",
+      "negative_class_ref": "OS015-NEG-unresolved_history_unresolved"
     },
     {
       "id": "HELIXOS-L9-015-C0508",
@@ -35772,7 +36142,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0508"
+      "integration_case_ref": "HELIXOS-L9-015-C0508",
+      "negative_class_ref": "OS015-NEG-unresolved_history_lost"
     },
     {
       "id": "HELIXOS-L9-015-C0509",
@@ -35835,7 +36206,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0509"
+      "integration_case_ref": "HELIXOS-L9-015-C0509",
+      "negative_class_ref": "OS015-NEG-unresolved_history_unresolved"
     },
     {
       "id": "HELIXOS-L9-015-C0510",
@@ -35898,7 +36270,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0510"
+      "integration_case_ref": "HELIXOS-L9-015-C0510",
+      "negative_class_ref": "OS015-NEG-unresolved_history_unresolved"
     },
     {
       "id": "HELIXOS-L9-015-C0511",
@@ -35973,8 +36346,7 @@
           "path": "docs/helix-os/L5-detail-design/management-authority-source-record.json",
           "pointers": [
             "/contracts/2",
-            "/signatures/0",
-            "/return_root_trace/FN-OS015-01"
+            "/signatures/0"
           ]
         }
       ]
@@ -36040,7 +36412,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0512"
+      "integration_case_ref": "HELIXOS-L9-015-C0512",
+      "negative_class_ref": "OS015-NEG-unresolved_history_unresolved"
     },
     {
       "id": "HELIXOS-L9-015-C0513",
@@ -36103,7 +36476,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0513"
+      "integration_case_ref": "HELIXOS-L9-015-C0513",
+      "negative_class_ref": "OS015-NEG-generated_authority_forbidden"
     },
     {
       "id": "HELIXOS-L9-015-C0514",
@@ -36166,7 +36540,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0514"
+      "integration_case_ref": "HELIXOS-L9-015-C0514",
+      "negative_class_ref": "OS015-NEG-generated_authority_claim_unresolved"
     },
     {
       "id": "HELIXOS-L9-015-C0515",
@@ -36229,7 +36604,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0515"
+      "integration_case_ref": "HELIXOS-L9-015-C0515",
+      "negative_class_ref": "OS015-NEG-generated_authority_forbidden"
     },
     {
       "id": "HELIXOS-L9-015-C0516",
@@ -36292,7 +36668,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0516"
+      "integration_case_ref": "HELIXOS-L9-015-C0516",
+      "negative_class_ref": "OS015-NEG-generated_authority_claim_unresolved"
     },
     {
       "id": "HELIXOS-L9-015-C0517",
@@ -36355,7 +36732,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0517"
+      "integration_case_ref": "HELIXOS-L9-015-C0517",
+      "negative_class_ref": "OS015-NEG-generated_authority_forbidden"
     },
     {
       "id": "HELIXOS-L9-015-C0518",
@@ -36418,7 +36796,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0518"
+      "integration_case_ref": "HELIXOS-L9-015-C0518",
+      "negative_class_ref": "OS015-NEG-generated_authority_claim_unresolved"
     },
     {
       "id": "HELIXOS-L9-015-C0519",
@@ -36515,7 +36894,6 @@
           "pointers": [
             "/contracts/0",
             "/signatures/0",
-            "/return_root_trace/FN-OS015-01",
             "/signatures/3",
             "/return_root_trace/FN-OS015-04",
             "/classification_retention_contract"
@@ -36584,7 +36962,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0520"
+      "integration_case_ref": "HELIXOS-L9-015-C0520",
+      "negative_class_ref": "OS015-NEG-whole_registry_claim_unproven"
     },
     {
       "id": "HELIXOS-L9-015-C0521",
@@ -36647,7 +37026,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0521"
+      "integration_case_ref": "HELIXOS-L9-015-C0521",
+      "negative_class_ref": "OS015-NEG-whole_registry_claim_unresolved"
     },
     {
       "id": "HELIXOS-L9-015-C0522",
@@ -36779,7 +37159,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0523"
+      "integration_case_ref": "HELIXOS-L9-015-C0523",
+      "negative_class_ref": "OS015-NEG-current_material_claim_unresolved"
     },
     {
       "id": "HELIXOS-L9-015-C0524",
@@ -36842,7 +37223,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0524"
+      "integration_case_ref": "HELIXOS-L9-015-C0524",
+      "negative_class_ref": "OS015-NEG-unresolved_history_unresolved"
     },
     {
       "id": "HELIXOS-L9-015-C0525",
@@ -36905,7 +37287,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0525"
+      "integration_case_ref": "HELIXOS-L9-015-C0525",
+      "negative_class_ref": "OS015-NEG-unresolved_history_lost"
     },
     {
       "id": "HELIXOS-L9-015-C0526",
@@ -36968,7 +37351,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0526"
+      "integration_case_ref": "HELIXOS-L9-015-C0526",
+      "negative_class_ref": "OS015-NEG-unresolved_history_unresolved"
     },
     {
       "id": "HELIXOS-L9-015-C0527",
@@ -37031,7 +37415,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0527"
+      "integration_case_ref": "HELIXOS-L9-015-C0527",
+      "negative_class_ref": "OS015-NEG-unresolved_history_unresolved"
     },
     {
       "id": "HELIXOS-L9-015-C0528",
@@ -37108,7 +37493,6 @@
           "pointers": [
             "/contracts/2",
             "/signatures/0",
-            "/return_root_trace/FN-OS015-01",
             "/signatures/3",
             "/return_root_trace/FN-OS015-04",
             "/classification_retention_contract"
@@ -37177,7 +37561,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0529"
+      "integration_case_ref": "HELIXOS-L9-015-C0529",
+      "negative_class_ref": "OS015-NEG-unresolved_history_unresolved"
     },
     {
       "id": "HELIXOS-L9-015-C0530",
@@ -37240,7 +37625,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0530"
+      "integration_case_ref": "HELIXOS-L9-015-C0530",
+      "negative_class_ref": "OS015-NEG-generated_authority_forbidden"
     },
     {
       "id": "HELIXOS-L9-015-C0531",
@@ -37303,7 +37689,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0531"
+      "integration_case_ref": "HELIXOS-L9-015-C0531",
+      "negative_class_ref": "OS015-NEG-generated_authority_claim_unresolved"
     },
     {
       "id": "HELIXOS-L9-015-C0532",
@@ -37366,7 +37753,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0532"
+      "integration_case_ref": "HELIXOS-L9-015-C0532",
+      "negative_class_ref": "OS015-NEG-generated_authority_forbidden"
     },
     {
       "id": "HELIXOS-L9-015-C0533",
@@ -37429,7 +37817,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0533"
+      "integration_case_ref": "HELIXOS-L9-015-C0533",
+      "negative_class_ref": "OS015-NEG-generated_authority_claim_unresolved"
     },
     {
       "id": "HELIXOS-L9-015-C0534",
@@ -37492,7 +37881,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0534"
+      "integration_case_ref": "HELIXOS-L9-015-C0534",
+      "negative_class_ref": "OS015-NEG-generated_authority_forbidden"
     },
     {
       "id": "HELIXOS-L9-015-C0535",
@@ -37555,7 +37945,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0535"
+      "integration_case_ref": "HELIXOS-L9-015-C0535",
+      "negative_class_ref": "OS015-NEG-generated_authority_claim_unresolved"
     },
     {
       "id": "HELIXOS-L9-015-C0536",
@@ -37652,7 +38043,6 @@
           "pointers": [
             "/contracts/0",
             "/signatures/0",
-            "/return_root_trace/FN-OS015-01",
             "/signatures/3",
             "/return_root_trace/FN-OS015-04",
             "/classification_retention_contract"
@@ -37721,7 +38111,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0537"
+      "integration_case_ref": "HELIXOS-L9-015-C0537",
+      "negative_class_ref": "OS015-NEG-whole_registry_claim_unproven"
     },
     {
       "id": "HELIXOS-L9-015-C0538",
@@ -37784,7 +38175,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0538"
+      "integration_case_ref": "HELIXOS-L9-015-C0538",
+      "negative_class_ref": "OS015-NEG-whole_registry_claim_unresolved"
     },
     {
       "id": "HELIXOS-L9-015-C0539",
@@ -37916,7 +38308,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0540"
+      "integration_case_ref": "HELIXOS-L9-015-C0540",
+      "negative_class_ref": "OS015-NEG-current_material_claim_unresolved"
     },
     {
       "id": "HELIXOS-L9-015-C0541",
@@ -37979,7 +38372,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0541"
+      "integration_case_ref": "HELIXOS-L9-015-C0541",
+      "negative_class_ref": "OS015-NEG-unresolved_history_unresolved"
     },
     {
       "id": "HELIXOS-L9-015-C0542",
@@ -38042,7 +38436,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0542"
+      "integration_case_ref": "HELIXOS-L9-015-C0542",
+      "negative_class_ref": "OS015-NEG-unresolved_history_lost"
     },
     {
       "id": "HELIXOS-L9-015-C0543",
@@ -38105,7 +38500,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0543"
+      "integration_case_ref": "HELIXOS-L9-015-C0543",
+      "negative_class_ref": "OS015-NEG-unresolved_history_unresolved"
     },
     {
       "id": "HELIXOS-L9-015-C0544",
@@ -38168,7 +38564,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0544"
+      "integration_case_ref": "HELIXOS-L9-015-C0544",
+      "negative_class_ref": "OS015-NEG-unresolved_history_unresolved"
     },
     {
       "id": "HELIXOS-L9-015-C0545",
@@ -38245,7 +38642,6 @@
           "pointers": [
             "/contracts/2",
             "/signatures/0",
-            "/return_root_trace/FN-OS015-01",
             "/signatures/3",
             "/return_root_trace/FN-OS015-04",
             "/classification_retention_contract"
@@ -38314,7 +38710,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0546"
+      "integration_case_ref": "HELIXOS-L9-015-C0546",
+      "negative_class_ref": "OS015-NEG-unresolved_history_unresolved"
     },
     {
       "id": "HELIXOS-L9-015-C0547",
@@ -38377,7 +38774,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0547"
+      "integration_case_ref": "HELIXOS-L9-015-C0547",
+      "negative_class_ref": "OS015-NEG-history_unresolved"
     },
     {
       "id": "HELIXOS-L9-015-C0548",
@@ -38440,7 +38838,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0548"
+      "integration_case_ref": "HELIXOS-L9-015-C0548",
+      "negative_class_ref": "OS015-NEG-history_entry_lost"
     },
     {
       "id": "HELIXOS-L9-015-C0549",
@@ -38503,7 +38902,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0549"
+      "integration_case_ref": "HELIXOS-L9-015-C0549",
+      "negative_class_ref": "OS015-NEG-history_unresolved"
     },
     {
       "id": "HELIXOS-L9-015-C0550",
@@ -38566,7 +38966,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0550"
+      "integration_case_ref": "HELIXOS-L9-015-C0550",
+      "negative_class_ref": "OS015-NEG-history_unresolved"
     },
     {
       "id": "HELIXOS-L9-015-C0551",
@@ -38643,7 +39044,6 @@
           "pointers": [
             "/contracts/2",
             "/signatures/0",
-            "/return_root_trace/FN-OS015-01",
             "/signatures/3",
             "/return_root_trace/FN-OS015-04",
             "/classification_retention_contract"
@@ -38712,7 +39112,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0552"
+      "integration_case_ref": "HELIXOS-L9-015-C0552",
+      "negative_class_ref": "OS015-NEG-history_unresolved"
     },
     {
       "id": "HELIXOS-L9-015-C0553",
@@ -38775,7 +39176,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0553"
+      "integration_case_ref": "HELIXOS-L9-015-C0553",
+      "negative_class_ref": "OS015-NEG-history_unresolved"
     },
     {
       "id": "HELIXOS-L9-015-C0554",
@@ -38838,7 +39240,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0554"
+      "integration_case_ref": "HELIXOS-L9-015-C0554",
+      "negative_class_ref": "OS015-NEG-history_entry_lost"
     },
     {
       "id": "HELIXOS-L9-015-C0555",
@@ -38901,7 +39304,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0555"
+      "integration_case_ref": "HELIXOS-L9-015-C0555",
+      "negative_class_ref": "OS015-NEG-history_unresolved"
     },
     {
       "id": "HELIXOS-L9-015-C0556",
@@ -38964,7 +39368,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0556"
+      "integration_case_ref": "HELIXOS-L9-015-C0556",
+      "negative_class_ref": "OS015-NEG-history_unresolved"
     },
     {
       "id": "HELIXOS-L9-015-C0557",
@@ -39041,7 +39446,6 @@
           "pointers": [
             "/contracts/2",
             "/signatures/0",
-            "/return_root_trace/FN-OS015-01",
             "/signatures/3",
             "/return_root_trace/FN-OS015-04",
             "/classification_retention_contract"
@@ -39110,7 +39514,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0558"
+      "integration_case_ref": "HELIXOS-L9-015-C0558",
+      "negative_class_ref": "OS015-NEG-history_unresolved"
     },
     {
       "id": "HELIXOS-L9-015-C0559",
@@ -39173,7 +39578,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0559"
+      "integration_case_ref": "HELIXOS-L9-015-C0559",
+      "negative_class_ref": "OS015-NEG-original_classification_mutated"
     },
     {
       "id": "HELIXOS-L9-015-C0560",
@@ -39236,7 +39642,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0560"
+      "integration_case_ref": "HELIXOS-L9-015-C0560",
+      "negative_class_ref": "OS015-NEG-prior_classification_unresolved"
     },
     {
       "id": "HELIXOS-L9-015-C0561",
@@ -39299,7 +39706,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0561"
+      "integration_case_ref": "HELIXOS-L9-015-C0561",
+      "negative_class_ref": "OS015-NEG-classification_revision_collapsed"
     },
     {
       "id": "HELIXOS-L9-015-C0562",
@@ -39362,7 +39770,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0562"
+      "integration_case_ref": "HELIXOS-L9-015-C0562",
+      "negative_class_ref": "OS015-NEG-classification_kind_unresolved"
     },
     {
       "id": "HELIXOS-L9-015-C0563",
@@ -39425,7 +39834,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0563"
+      "integration_case_ref": "HELIXOS-L9-015-C0563",
+      "negative_class_ref": "OS015-NEG-source_conflict-classification"
     },
     {
       "id": "HELIXOS-L9-015-C0564",
@@ -39488,7 +39898,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0564"
+      "integration_case_ref": "HELIXOS-L9-015-C0564",
+      "negative_class_ref": "OS015-NEG-source_conflict-classification"
     },
     {
       "id": "HELIXOS-L9-015-C0565",
@@ -39551,7 +39962,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0565"
+      "integration_case_ref": "HELIXOS-L9-015-C0565",
+      "negative_class_ref": "OS015-NEG-phase_unresolved"
     },
     {
       "id": "HELIXOS-L9-015-C0566",
@@ -39614,7 +40026,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0566"
+      "integration_case_ref": "HELIXOS-L9-015-C0566",
+      "negative_class_ref": "OS015-NEG-phase_unresolved"
     },
     {
       "id": "HELIXOS-L9-015-C0567",
@@ -39677,7 +40090,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0567"
+      "integration_case_ref": "HELIXOS-L9-015-C0567",
+      "negative_class_ref": "OS015-NEG-source_conflict-source"
     },
     {
       "id": "HELIXOS-L9-015-C0568",
@@ -39740,7 +40154,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0568"
+      "integration_case_ref": "HELIXOS-L9-015-C0568",
+      "negative_class_ref": "OS015-NEG-source_conflict-source"
     },
     {
       "id": "HELIXOS-L9-015-C0569",
@@ -39803,7 +40218,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0569"
+      "integration_case_ref": "HELIXOS-L9-015-C0569",
+      "negative_class_ref": "OS015-NEG-source_conflict-source"
     },
     {
       "id": "HELIXOS-L9-015-C0570",
@@ -39866,7 +40282,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0570"
+      "integration_case_ref": "HELIXOS-L9-015-C0570",
+      "negative_class_ref": "OS015-NEG-source_conflict-source"
     },
     {
       "id": "HELIXOS-L9-015-C0571",
@@ -39929,7 +40346,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0571"
+      "integration_case_ref": "HELIXOS-L9-015-C0571",
+      "negative_class_ref": "OS015-NEG-source_conflict-source"
     },
     {
       "id": "HELIXOS-L9-015-C0572",
@@ -39992,7 +40410,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0572"
+      "integration_case_ref": "HELIXOS-L9-015-C0572",
+      "negative_class_ref": "OS015-NEG-source_conflict-source"
     },
     {
       "id": "HELIXOS-L9-015-C0573",
@@ -40889,7 +41308,885 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0583"
+      "integration_case_ref": "HELIXOS-L9-015-C0583",
+      "negative_class_ref": "OS015-NEG-new_classification_unresolved"
+    }
+  ],
+  "negative_equivalence_classes": [
+    {
+      "class_id": "OS015-NEG-source_unresolved-source",
+      "expected_classification": "source_unresolved",
+      "expected": {
+        "finding_codes": [
+          "source_unresolved"
+        ]
+      },
+      "expected_axis": "source",
+      "expected_state": "unknown",
+      "backflow_owner": "management-authority-owner",
+      "side_effect_count": 0,
+      "source_pointers": [
+        {
+          "path": "docs/helix-os/L9-integration-verification/management-authority-source-record.json",
+          "pointers": [
+            "/integration_cases/3/expected",
+            "/integration_cases/3/condition",
+            "/integration_cases/3/compact_whole_observation/ordered_findings/0"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
+          "pointers": [
+            "/failure_classifications/0"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L5-detail-design/management-authority-source-record.json",
+          "pointers": [
+            "/failure_rules/0"
+          ]
+        }
+      ]
+    },
+    {
+      "class_id": "OS015-NEG-source_unresolved-classification",
+      "expected_classification": "source_unresolved",
+      "expected": {
+        "finding_codes": [
+          "source_unresolved"
+        ]
+      },
+      "expected_axis": "classification",
+      "expected_state": "unknown",
+      "backflow_owner": "management-authority-owner",
+      "side_effect_count": 0,
+      "source_pointers": [
+        {
+          "path": "docs/helix-os/L9-integration-verification/management-authority-source-record.json",
+          "pointers": [
+            "/integration_cases/351/expected",
+            "/integration_cases/351/condition",
+            "/integration_cases/351/compact_whole_observation/ordered_findings/0"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
+          "pointers": [
+            "/failure_classifications/2"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L5-detail-design/management-authority-source-record.json",
+          "pointers": [
+            "/failure_rules/2"
+          ]
+        }
+      ]
+    },
+    {
+      "class_id": "OS015-NEG-source_conflict-source",
+      "expected_classification": "source_conflict",
+      "expected": {
+        "finding_codes": [
+          "source_conflict"
+        ]
+      },
+      "expected_axis": "source",
+      "expected_state": "violation",
+      "backflow_owner": "management-authority-owner",
+      "side_effect_count": 0,
+      "source_pointers": [
+        {
+          "path": "docs/helix-os/L9-integration-verification/management-authority-source-record.json",
+          "pointers": [
+            "/integration_cases/4/expected",
+            "/integration_cases/4/condition",
+            "/integration_cases/4/compact_whole_observation/ordered_findings/0"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
+          "pointers": [
+            "/failure_classifications/3"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L5-detail-design/management-authority-source-record.json",
+          "pointers": [
+            "/failure_rules/3"
+          ]
+        }
+      ]
+    },
+    {
+      "class_id": "OS015-NEG-source_conflict-classification",
+      "expected_classification": "source_conflict",
+      "expected": {
+        "finding_codes": [
+          "source_conflict"
+        ]
+      },
+      "expected_axis": "classification",
+      "expected_state": "violation",
+      "backflow_owner": "management-authority-owner",
+      "side_effect_count": 0,
+      "source_pointers": [
+        {
+          "path": "docs/helix-os/L9-integration-verification/management-authority-source-record.json",
+          "pointers": [
+            "/integration_cases/352/expected",
+            "/integration_cases/352/condition",
+            "/integration_cases/352/compact_whole_observation/ordered_findings/0"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
+          "pointers": [
+            "/failure_classifications/5"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L5-detail-design/management-authority-source-record.json",
+          "pointers": [
+            "/failure_rules/5"
+          ]
+        }
+      ]
+    },
+    {
+      "class_id": "OS015-NEG-source_conflict-authority",
+      "expected_classification": "source_conflict",
+      "expected": {
+        "finding_codes": [
+          "source_conflict"
+        ]
+      },
+      "expected_axis": "authority",
+      "expected_state": "violation",
+      "backflow_owner": "management-authority-owner",
+      "side_effect_count": 0,
+      "source_pointers": [
+        {
+          "path": "docs/helix-os/L9-integration-verification/management-authority-source-record.json",
+          "pointers": [
+            "/integration_cases/460/expected",
+            "/integration_cases/460/condition",
+            "/integration_cases/460/compact_whole_observation/ordered_findings/0"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
+          "pointers": [
+            "/failure_classifications/6"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L5-detail-design/management-authority-source-record.json",
+          "pointers": [
+            "/failure_rules/6"
+          ]
+        }
+      ]
+    },
+    {
+      "class_id": "OS015-NEG-phase_unresolved",
+      "expected_classification": "phase_unresolved",
+      "expected": {
+        "finding_codes": [
+          "phase_unresolved"
+        ]
+      },
+      "expected_axis": "global",
+      "expected_state": "unknown",
+      "backflow_owner": "management-authority-owner",
+      "side_effect_count": 0,
+      "source_pointers": [
+        {
+          "path": "docs/helix-os/L9-integration-verification/management-authority-source-record.json",
+          "pointers": [
+            "/integration_cases/564/expected",
+            "/integration_cases/564/condition",
+            "/integration_cases/564/compact_whole_observation/ordered_findings/0"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
+          "pointers": [
+            "/failure_classifications/7"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L5-detail-design/management-authority-source-record.json",
+          "pointers": [
+            "/failure_rules/7"
+          ]
+        }
+      ]
+    },
+    {
+      "class_id": "OS015-NEG-original_classification_mutated",
+      "expected_classification": "original_classification_mutated",
+      "expected": {
+        "finding_codes": [
+          "original_classification_mutated"
+        ]
+      },
+      "expected_axis": "history",
+      "expected_state": "violation",
+      "backflow_owner": "management-authority-owner",
+      "side_effect_count": 0,
+      "source_pointers": [
+        {
+          "path": "docs/helix-os/L9-integration-verification/management-authority-source-record.json",
+          "pointers": [
+            "/integration_cases/558/expected",
+            "/integration_cases/558/condition",
+            "/integration_cases/558/compact_whole_observation/ordered_findings/0"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
+          "pointers": [
+            "/failure_classifications/9"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L5-detail-design/management-authority-source-record.json",
+          "pointers": [
+            "/failure_rules/9"
+          ]
+        }
+      ]
+    },
+    {
+      "class_id": "OS015-NEG-authority_origin_forbidden",
+      "expected_classification": "authority_origin_forbidden",
+      "expected": {
+        "finding_codes": [
+          "authority_origin_forbidden"
+        ]
+      },
+      "expected_axis": "authority",
+      "expected_state": "violation",
+      "backflow_owner": "management-authority-owner",
+      "side_effect_count": 0,
+      "source_pointers": [
+        {
+          "path": "docs/helix-os/L9-integration-verification/management-authority-source-record.json",
+          "pointers": [
+            "/integration_cases/461/expected",
+            "/integration_cases/461/condition",
+            "/integration_cases/461/compact_whole_observation/ordered_findings/0"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
+          "pointers": [
+            "/failure_classifications/10"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L5-detail-design/management-authority-source-record.json",
+          "pointers": [
+            "/failure_rules/10"
+          ]
+        }
+      ]
+    },
+    {
+      "class_id": "OS015-NEG-authority_origin_unresolved",
+      "expected_classification": "authority_origin_unresolved",
+      "expected": {
+        "finding_codes": [
+          "authority_origin_unresolved"
+        ]
+      },
+      "expected_axis": "authority",
+      "expected_state": "unknown",
+      "backflow_owner": "management-authority-owner",
+      "side_effect_count": 0,
+      "source_pointers": [
+        {
+          "path": "docs/helix-os/L9-integration-verification/management-authority-source-record.json",
+          "pointers": [
+            "/integration_cases/474/expected",
+            "/integration_cases/474/condition",
+            "/integration_cases/474/compact_whole_observation/ordered_findings/0"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
+          "pointers": [
+            "/failure_classifications/11"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L5-detail-design/management-authority-source-record.json",
+          "pointers": [
+            "/failure_rules/11"
+          ]
+        }
+      ]
+    },
+    {
+      "class_id": "OS015-NEG-authority_stale",
+      "expected_classification": "authority_stale",
+      "expected": {
+        "finding_codes": [
+          "authority_stale"
+        ]
+      },
+      "expected_axis": "authority",
+      "expected_state": "unknown",
+      "backflow_owner": "management-authority-owner",
+      "side_effect_count": 0,
+      "source_pointers": [
+        {
+          "path": "docs/helix-os/L9-integration-verification/management-authority-source-record.json",
+          "pointers": [
+            "/integration_cases/482/expected",
+            "/integration_cases/482/condition",
+            "/integration_cases/482/compact_whole_observation/ordered_findings/0"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
+          "pointers": [
+            "/failure_classifications/12"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L5-detail-design/management-authority-source-record.json",
+          "pointers": [
+            "/failure_rules/12"
+          ]
+        }
+      ]
+    },
+    {
+      "class_id": "OS015-NEG-authority_conflict",
+      "expected_classification": "authority_conflict",
+      "expected": {
+        "finding_codes": [
+          "authority_conflict"
+        ]
+      },
+      "expected_axis": "authority",
+      "expected_state": "violation",
+      "backflow_owner": "management-authority-owner",
+      "side_effect_count": 0,
+      "source_pointers": [
+        {
+          "path": "docs/helix-os/L9-integration-verification/management-authority-source-record.json",
+          "pointers": [
+            "/integration_cases/485/expected",
+            "/integration_cases/485/condition",
+            "/integration_cases/485/compact_whole_observation/ordered_findings/0"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
+          "pointers": [
+            "/failure_classifications/13"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L5-detail-design/management-authority-source-record.json",
+          "pointers": [
+            "/failure_rules/13"
+          ]
+        }
+      ]
+    },
+    {
+      "class_id": "OS015-NEG-authority_state_unresolved",
+      "expected_classification": "authority_state_unresolved",
+      "expected": {
+        "finding_codes": [
+          "authority_state_unresolved"
+        ]
+      },
+      "expected_axis": "authority",
+      "expected_state": "unknown",
+      "backflow_owner": "management-authority-owner",
+      "side_effect_count": 0,
+      "source_pointers": [
+        {
+          "path": "docs/helix-os/L9-integration-verification/management-authority-source-record.json",
+          "pointers": [
+            "/integration_cases/488/expected",
+            "/integration_cases/488/condition",
+            "/integration_cases/488/compact_whole_observation/ordered_findings/0"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
+          "pointers": [
+            "/failure_classifications/14"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L5-detail-design/management-authority-source-record.json",
+          "pointers": [
+            "/failure_rules/14"
+          ]
+        }
+      ]
+    },
+    {
+      "class_id": "OS015-NEG-current_material_claim_unresolved",
+      "expected_classification": "current_material_claim_unresolved",
+      "expected": {
+        "finding_codes": [
+          "current_material_claim_unresolved"
+        ]
+      },
+      "expected_axis": "authority",
+      "expected_state": "unknown",
+      "backflow_owner": "management-authority-owner",
+      "side_effect_count": 0,
+      "source_pointers": [
+        {
+          "path": "docs/helix-os/L9-integration-verification/management-authority-source-record.json",
+          "pointers": [
+            "/integration_cases/505/expected",
+            "/integration_cases/505/condition",
+            "/integration_cases/505/compact_whole_observation/ordered_findings/0"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
+          "pointers": [
+            "/failure_classifications/16"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L5-detail-design/management-authority-source-record.json",
+          "pointers": [
+            "/failure_rules/16"
+          ]
+        }
+      ]
+    },
+    {
+      "class_id": "OS015-NEG-new_classification_unresolved",
+      "expected_classification": "new_classification_unresolved",
+      "expected": {
+        "finding_codes": [
+          "new_classification_unresolved"
+        ]
+      },
+      "expected_axis": "classification",
+      "expected_state": "unknown",
+      "backflow_owner": "management-authority-owner",
+      "side_effect_count": 0,
+      "source_pointers": [
+        {
+          "path": "docs/helix-os/L9-integration-verification/management-authority-source-record.json",
+          "pointers": [
+            "/integration_cases/375/expected",
+            "/integration_cases/375/condition",
+            "/integration_cases/375/compact_whole_observation/ordered_findings/0"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
+          "pointers": [
+            "/failure_classifications/17"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L5-detail-design/management-authority-source-record.json",
+          "pointers": [
+            "/failure_rules/17"
+          ]
+        }
+      ]
+    },
+    {
+      "class_id": "OS015-NEG-prior_classification_unresolved",
+      "expected_classification": "prior_classification_unresolved",
+      "expected": {
+        "finding_codes": [
+          "prior_classification_unresolved"
+        ]
+      },
+      "expected_axis": "classification",
+      "expected_state": "unknown",
+      "backflow_owner": "management-authority-owner",
+      "side_effect_count": 0,
+      "source_pointers": [
+        {
+          "path": "docs/helix-os/L9-integration-verification/management-authority-source-record.json",
+          "pointers": [
+            "/integration_cases/559/expected",
+            "/integration_cases/559/condition",
+            "/integration_cases/559/compact_whole_observation/ordered_findings/0"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
+          "pointers": [
+            "/failure_classifications/18"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L5-detail-design/management-authority-source-record.json",
+          "pointers": [
+            "/failure_rules/18"
+          ]
+        }
+      ]
+    },
+    {
+      "class_id": "OS015-NEG-classification_revision_collapsed",
+      "expected_classification": "classification_revision_collapsed",
+      "expected": {
+        "finding_codes": [
+          "classification_revision_collapsed"
+        ]
+      },
+      "expected_axis": "classification",
+      "expected_state": "violation",
+      "backflow_owner": "management-authority-owner",
+      "side_effect_count": 0,
+      "source_pointers": [
+        {
+          "path": "docs/helix-os/L9-integration-verification/management-authority-source-record.json",
+          "pointers": [
+            "/integration_cases/560/expected",
+            "/integration_cases/560/condition",
+            "/integration_cases/560/compact_whole_observation/ordered_findings/0"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
+          "pointers": [
+            "/failure_classifications/19"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L5-detail-design/management-authority-source-record.json",
+          "pointers": [
+            "/failure_rules/19"
+          ]
+        }
+      ]
+    },
+    {
+      "class_id": "OS015-NEG-classification_kind_unresolved",
+      "expected_classification": "classification_kind_unresolved",
+      "expected": {
+        "finding_codes": [
+          "classification_kind_unresolved"
+        ]
+      },
+      "expected_axis": "classification",
+      "expected_state": "unknown",
+      "backflow_owner": "management-authority-owner",
+      "side_effect_count": 0,
+      "source_pointers": [
+        {
+          "path": "docs/helix-os/L9-integration-verification/management-authority-source-record.json",
+          "pointers": [
+            "/integration_cases/561/expected",
+            "/integration_cases/561/condition",
+            "/integration_cases/561/compact_whole_observation/ordered_findings/0"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
+          "pointers": [
+            "/failure_classifications/20"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L5-detail-design/management-authority-source-record.json",
+          "pointers": [
+            "/failure_rules/20"
+          ]
+        }
+      ]
+    },
+    {
+      "class_id": "OS015-NEG-history_unresolved",
+      "expected_classification": "history_unresolved",
+      "expected": {
+        "finding_codes": [
+          "history_unresolved"
+        ]
+      },
+      "expected_axis": "history",
+      "expected_state": "unknown",
+      "backflow_owner": "management-authority-owner",
+      "side_effect_count": 0,
+      "source_pointers": [
+        {
+          "path": "docs/helix-os/L9-integration-verification/management-authority-source-record.json",
+          "pointers": [
+            "/integration_cases/546/expected",
+            "/integration_cases/546/condition",
+            "/integration_cases/546/compact_whole_observation/ordered_findings/0"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
+          "pointers": [
+            "/failure_classifications/21"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L5-detail-design/management-authority-source-record.json",
+          "pointers": [
+            "/failure_rules/21"
+          ]
+        }
+      ]
+    },
+    {
+      "class_id": "OS015-NEG-history_entry_lost",
+      "expected_classification": "history_entry_lost",
+      "expected": {
+        "finding_codes": [
+          "history_entry_lost"
+        ]
+      },
+      "expected_axis": "history",
+      "expected_state": "violation",
+      "backflow_owner": "management-authority-owner",
+      "side_effect_count": 0,
+      "source_pointers": [
+        {
+          "path": "docs/helix-os/L9-integration-verification/management-authority-source-record.json",
+          "pointers": [
+            "/integration_cases/547/expected",
+            "/integration_cases/547/condition",
+            "/integration_cases/547/compact_whole_observation/ordered_findings/0"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
+          "pointers": [
+            "/failure_classifications/22"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L5-detail-design/management-authority-source-record.json",
+          "pointers": [
+            "/failure_rules/22"
+          ]
+        }
+      ]
+    },
+    {
+      "class_id": "OS015-NEG-unresolved_history_lost",
+      "expected_classification": "unresolved_history_lost",
+      "expected": {
+        "finding_codes": [
+          "unresolved_history_lost"
+        ]
+      },
+      "expected_axis": "history",
+      "expected_state": "violation",
+      "backflow_owner": "management-authority-owner",
+      "side_effect_count": 0,
+      "source_pointers": [
+        {
+          "path": "docs/helix-os/L9-integration-verification/management-authority-source-record.json",
+          "pointers": [
+            "/integration_cases/507/expected",
+            "/integration_cases/507/condition",
+            "/integration_cases/507/compact_whole_observation/ordered_findings/0"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
+          "pointers": [
+            "/failure_classifications/23"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L5-detail-design/management-authority-source-record.json",
+          "pointers": [
+            "/failure_rules/23"
+          ]
+        }
+      ]
+    },
+    {
+      "class_id": "OS015-NEG-unresolved_history_unresolved",
+      "expected_classification": "unresolved_history_unresolved",
+      "expected": {
+        "finding_codes": [
+          "unresolved_history_unresolved"
+        ]
+      },
+      "expected_axis": "history",
+      "expected_state": "unknown",
+      "backflow_owner": "management-authority-owner",
+      "side_effect_count": 0,
+      "source_pointers": [
+        {
+          "path": "docs/helix-os/L9-integration-verification/management-authority-source-record.json",
+          "pointers": [
+            "/integration_cases/506/expected",
+            "/integration_cases/506/condition",
+            "/integration_cases/506/compact_whole_observation/ordered_findings/0"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
+          "pointers": [
+            "/failure_classifications/24"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L5-detail-design/management-authority-source-record.json",
+          "pointers": [
+            "/failure_rules/24"
+          ]
+        }
+      ]
+    },
+    {
+      "class_id": "OS015-NEG-generated_authority_forbidden",
+      "expected_classification": "generated_authority_forbidden",
+      "expected": {
+        "finding_codes": [
+          "generated_authority_forbidden"
+        ]
+      },
+      "expected_axis": "boundary",
+      "expected_state": "violation",
+      "backflow_owner": "management-authority-owner",
+      "side_effect_count": 0,
+      "source_pointers": [
+        {
+          "path": "docs/helix-os/L9-integration-verification/management-authority-source-record.json",
+          "pointers": [
+            "/integration_cases/495/expected",
+            "/integration_cases/495/condition",
+            "/integration_cases/495/compact_whole_observation/ordered_findings/0"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
+          "pointers": [
+            "/failure_classifications/25"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L5-detail-design/management-authority-source-record.json",
+          "pointers": [
+            "/failure_rules/25"
+          ]
+        }
+      ]
+    },
+    {
+      "class_id": "OS015-NEG-generated_authority_claim_unresolved",
+      "expected_classification": "generated_authority_claim_unresolved",
+      "expected": {
+        "finding_codes": [
+          "generated_authority_claim_unresolved"
+        ]
+      },
+      "expected_axis": "boundary",
+      "expected_state": "unknown",
+      "backflow_owner": "management-authority-owner",
+      "side_effect_count": 0,
+      "source_pointers": [
+        {
+          "path": "docs/helix-os/L9-integration-verification/management-authority-source-record.json",
+          "pointers": [
+            "/integration_cases/496/expected",
+            "/integration_cases/496/condition",
+            "/integration_cases/496/compact_whole_observation/ordered_findings/0"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
+          "pointers": [
+            "/failure_classifications/26"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L5-detail-design/management-authority-source-record.json",
+          "pointers": [
+            "/failure_rules/26"
+          ]
+        }
+      ]
+    },
+    {
+      "class_id": "OS015-NEG-whole_registry_claim_unproven",
+      "expected_classification": "whole_registry_claim_unproven",
+      "expected": {
+        "finding_codes": [
+          "whole_registry_claim_unproven"
+        ]
+      },
+      "expected_axis": "global",
+      "expected_state": "violation",
+      "backflow_owner": "management-authority-owner",
+      "side_effect_count": 0,
+      "source_pointers": [
+        {
+          "path": "docs/helix-os/L9-integration-verification/management-authority-source-record.json",
+          "pointers": [
+            "/integration_cases/502/expected",
+            "/integration_cases/502/condition",
+            "/integration_cases/502/compact_whole_observation/ordered_findings/0"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
+          "pointers": [
+            "/failure_classifications/27"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L5-detail-design/management-authority-source-record.json",
+          "pointers": [
+            "/failure_rules/27"
+          ]
+        }
+      ]
+    },
+    {
+      "class_id": "OS015-NEG-whole_registry_claim_unresolved",
+      "expected_classification": "whole_registry_claim_unresolved",
+      "expected": {
+        "finding_codes": [
+          "whole_registry_claim_unresolved"
+        ]
+      },
+      "expected_axis": "global",
+      "expected_state": "unknown",
+      "backflow_owner": "management-authority-owner",
+      "side_effect_count": 0,
+      "source_pointers": [
+        {
+          "path": "docs/helix-os/L9-integration-verification/management-authority-source-record.json",
+          "pointers": [
+            "/integration_cases/503/expected",
+            "/integration_cases/503/condition",
+            "/integration_cases/503/compact_whole_observation/ordered_findings/0"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
+          "pointers": [
+            "/failure_classifications/28"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L5-detail-design/management-authority-source-record.json",
+          "pointers": [
+            "/failure_rules/28"
+          ]
+        }
+      ]
     }
   ]
 }
