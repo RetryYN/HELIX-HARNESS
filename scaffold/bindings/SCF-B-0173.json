@@ -30,7 +30,7 @@
     },
     {
       "path": "scaffold/tools/design_verification_checker.py",
-      "sha256": "211e39ff48ec96adf37f948db91dd63795435c53671e16576b39eb0e3a0538d6",
+      "sha256": "35e099477414a87de7abd47bac49386120e76f0845a0df00eaf02411db9b8b9f",
       "note": "main 821aの未変更checker。"
     }
   ],
