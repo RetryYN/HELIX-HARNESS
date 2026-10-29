@@ -63210,7 +63210,25 @@
           },
           "candidate_constraint": {},
           "effect": "none",
-          "execution_state": "not_executed"
+          "execution_state": "not_executed",
+          "negative_class_assignment": {
+            "classification": "B01_REQUIRED_EVIDENCE_MISSING",
+            "reason": "指定rootの原source/技術観測/人間原反応が欠落し、同じケースの期待も当該roleのmissingを保持する。",
+            "source_pointers": [
+              {
+                "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+                "pointer": "/cases/0/cases/1/input_rule"
+              },
+              {
+                "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+                "pointer": "/cases/0/cases/1/expected_partial_values"
+              },
+              {
+                "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+                "pointer": "/cases/0/negative_cases/0/mutation"
+              }
+            ]
+          }
         },
         {
           "id": "H003-L8-B01-GROUNDING-MISSING-premises",
@@ -63429,7 +63447,25 @@
           },
           "candidate_constraint": {},
           "effect": "none",
-          "execution_state": "not_executed"
+          "execution_state": "not_executed",
+          "negative_class_assignment": {
+            "classification": "B01_REQUIRED_EVIDENCE_MISSING",
+            "reason": "指定rootの原source/技術観測/人間原反応が欠落し、同じケースの期待も当該roleのmissingを保持する。",
+            "source_pointers": [
+              {
+                "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+                "pointer": "/cases/0/cases/2/input_rule"
+              },
+              {
+                "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+                "pointer": "/cases/0/cases/2/expected_partial_values"
+              },
+              {
+                "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+                "pointer": "/cases/0/negative_cases/1/mutation"
+              }
+            ]
+          }
         },
         {
           "id": "H003-L8-B01-GROUNDING-MISSING-legacy_assets",
@@ -63648,7 +63684,25 @@
           },
           "candidate_constraint": {},
           "effect": "none",
-          "execution_state": "not_executed"
+          "execution_state": "not_executed",
+          "negative_class_assignment": {
+            "classification": "B01_REQUIRED_EVIDENCE_MISSING",
+            "reason": "指定rootの原source/技術観測/人間原反応が欠落し、同じケースの期待も当該roleのmissingを保持する。",
+            "source_pointers": [
+              {
+                "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+                "pointer": "/cases/0/cases/3/input_rule"
+              },
+              {
+                "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+                "pointer": "/cases/0/cases/3/expected_partial_values"
+              },
+              {
+                "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+                "pointer": "/cases/0/negative_cases/2/mutation"
+              }
+            ]
+          }
         },
         {
           "id": "H003-L8-B01-GROUNDING-MISSING-external_examples",
@@ -63867,7 +63921,25 @@
           },
           "candidate_constraint": {},
           "effect": "none",
-          "execution_state": "not_executed"
+          "execution_state": "not_executed",
+          "negative_class_assignment": {
+            "classification": "B01_REQUIRED_EVIDENCE_MISSING",
+            "reason": "指定rootの原source/技術観測/人間原反応が欠落し、同じケースの期待も当該roleのmissingを保持する。",
+            "source_pointers": [
+              {
+                "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+                "pointer": "/cases/0/cases/4/input_rule"
+              },
+              {
+                "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+                "pointer": "/cases/0/cases/4/expected_partial_values"
+              },
+              {
+                "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+                "pointer": "/cases/0/negative_cases/3/mutation"
+              }
+            ]
+          }
         },
         {
           "id": "H003-L8-B01-GROUNDING-MISSING-comparison",
@@ -64086,7 +64158,25 @@
           },
           "candidate_constraint": {},
           "effect": "none",
-          "execution_state": "not_executed"
+          "execution_state": "not_executed",
+          "negative_class_assignment": {
+            "classification": "B01_REQUIRED_EVIDENCE_MISSING",
+            "reason": "指定rootの原source/技術観測/人間原反応が欠落し、同じケースの期待も当該roleのmissingを保持する。",
+            "source_pointers": [
+              {
+                "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+                "pointer": "/cases/0/cases/5/input_rule"
+              },
+              {
+                "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+                "pointer": "/cases/0/cases/5/expected_partial_values"
+              },
+              {
+                "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+                "pointer": "/cases/0/negative_cases/4/mutation"
+              }
+            ]
+          }
         },
         {
           "id": "H003-L8-B01-QUALITY-DOUBLE-WRITER",
@@ -64303,7 +64393,25 @@
           },
           "candidate_constraint": {},
           "effect": "none",
-          "execution_state": "not_executed"
+          "execution_state": "not_executed",
+          "negative_class_assignment": {
+            "classification": "B01_SOURCE_ROLE_CONFLICT",
+            "reason": "mutationが技術/human provenanceを混同し、元期待が当該source identityのconflictを示す。",
+            "source_pointers": [
+              {
+                "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+                "pointer": "/cases/0/cases/6/input_rule"
+              },
+              {
+                "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+                "pointer": "/cases/0/cases/6/expected_partial_values"
+              },
+              {
+                "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+                "pointer": "/cases/0/negative_cases/5/mutation"
+              }
+            ]
+          }
         },
         {
           "id": "H003-L8-B01-QUALITY-NOT-EXECUTED",
@@ -64520,7 +64628,25 @@
           },
           "candidate_constraint": {},
           "effect": "none",
-          "execution_state": "not_executed"
+          "execution_state": "not_executed",
+          "negative_class_assignment": {
+            "classification": "B01_REQUIRED_EVIDENCE_MISSING",
+            "reason": "指定rootの原source/技術観測/人間原反応が欠落し、同じケースの期待も当該roleのmissingを保持する。",
+            "source_pointers": [
+              {
+                "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+                "pointer": "/cases/0/cases/7/input_rule"
+              },
+              {
+                "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+                "pointer": "/cases/0/cases/7/expected_partial_values"
+              },
+              {
+                "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+                "pointer": "/cases/0/negative_cases/6/mutation"
+              }
+            ]
+          }
         },
         {
           "id": "H003-L8-B01-QUALITY-FOREIGN-REVISION",
@@ -64737,7 +64863,25 @@
           },
           "candidate_constraint": {},
           "effect": "none",
-          "execution_state": "not_executed"
+          "execution_state": "not_executed",
+          "negative_class_assignment": {
+            "classification": "B01_SOURCE_REVISION_STALE",
+            "reason": "同じtechnical-quality evidenceのbinding revisionをr1からr0へ置換し、期待がstaleを示す。",
+            "source_pointers": [
+              {
+                "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+                "pointer": "/cases/0/cases/8/input_rule"
+              },
+              {
+                "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+                "pointer": "/cases/0/cases/8/expected_partial_values"
+              },
+              {
+                "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+                "pointer": "/cases/0/negative_cases/7/mutation"
+              }
+            ]
+          }
         },
         {
           "id": "H003-L8-B01-HUMAN-MISSING",
@@ -64964,6 +65108,24 @@
             "projection_scope": "このexact basic_case/hashのこのfieldだけ。一般のknown false/空集合/nullをunknownへ変換しない。",
             "upstream_effect": "L9 raw bytes/flat期待は無改変で保全。後続比較はこの写像を明示して行い、L9とL8の生の表現を直接同値としない。",
             "authority_effect": "none"
+          },
+          "negative_class_assignment": {
+            "classification": "B01_REQUIRED_EVIDENCE_MISSING",
+            "reason": "指定rootの原source/技術観測/人間原反応が欠落し、同じケースの期待も当該roleのmissingを保持する。",
+            "source_pointers": [
+              {
+                "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+                "pointer": "/cases/0/cases/9/input_rule"
+              },
+              {
+                "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+                "pointer": "/cases/0/cases/9/expected_partial_values"
+              },
+              {
+                "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+                "pointer": "/cases/0/negative_cases/8/mutation"
+              }
+            ]
           }
         },
         {
@@ -65407,6 +65569,24 @@
             "projection_scope": "このexact basic_case/hashのこのfieldだけ。一般のknown false/空集合/nullをunknownへ変換しない。",
             "upstream_effect": "L9 raw bytes/flat期待は無改変で保全。後続比較はこの写像を明示して行い、L9とL8の生の表現を直接同値としない。",
             "authority_effect": "none"
+          },
+          "negative_class_assignment": {
+            "classification": "B01_SOURCE_ROLE_CONFLICT",
+            "reason": "mutationが技術/human provenanceを混同し、元期待が当該source identityのconflictを示す。",
+            "source_pointers": [
+              {
+                "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+                "pointer": "/cases/0/cases/11/input_rule"
+              },
+              {
+                "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+                "pointer": "/cases/0/cases/11/expected_partial_values"
+              },
+              {
+                "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+                "pointer": "/cases/0/negative_cases/10/mutation"
+              }
+            ]
           }
         },
         {
@@ -66510,7 +66690,25 @@
             "candidate_conflicting_field": "ai_interpretation_is_human"
           },
           "effect": "none",
-          "execution_state": "not_executed"
+          "execution_state": "not_executed",
+          "negative_class_assignment": {
+            "classification": "B01_SOURCE_ROLE_CONFLICT",
+            "reason": "mutationが技術/human provenanceを混同し、元期待が当該source identityのconflictを示す。",
+            "source_pointers": [
+              {
+                "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+                "pointer": "/cases/0/cases/16/input_rule"
+              },
+              {
+                "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+                "pointer": "/cases/0/cases/16/expected_partial_values"
+              },
+              {
+                "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+                "pointer": "/cases/0/negative_cases/15/mutation"
+              }
+            ]
+          }
         },
         {
           "id": "H003-L8-B01-ERASE-ACCEPTED-AXES",
@@ -83400,7 +83598,25 @@
           },
           "candidate_constraint": {},
           "effect": "none",
-          "execution_state": "not_executed"
+          "execution_state": "not_executed",
+          "negative_class_assignment": {
+            "classification": "F01_REQUIRED_CONDITION_MISSING",
+            "reason": "工程が要求するagreement/approval/pair/verificationの原資料をmutationが除去し、proceed_conditionがmissingとなる。",
+            "source_pointers": [
+              {
+                "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+                "pointer": "/cases/1/cases/5/input_rule"
+              },
+              {
+                "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+                "pointer": "/cases/1/cases/5/expected_partial_values"
+              },
+              {
+                "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+                "pointer": "/cases/1/negative_cases/0/mutation"
+              }
+            ]
+          }
         },
         {
           "id": "H003-L8-F01-MISSING-requirements_approval",
@@ -83553,7 +83769,25 @@
           },
           "candidate_constraint": {},
           "effect": "none",
-          "execution_state": "not_executed"
+          "execution_state": "not_executed",
+          "negative_class_assignment": {
+            "classification": "F01_REQUIRED_CONDITION_MISSING",
+            "reason": "工程が要求するagreement/approval/pair/verificationの原資料をmutationが除去し、proceed_conditionがmissingとなる。",
+            "source_pointers": [
+              {
+                "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+                "pointer": "/cases/1/cases/6/input_rule"
+              },
+              {
+                "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+                "pointer": "/cases/1/cases/6/expected_partial_values"
+              },
+              {
+                "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+                "pointer": "/cases/1/negative_cases/1/mutation"
+              }
+            ]
+          }
         },
         {
           "id": "H003-L8-F01-MISSING-pair",
@@ -83706,7 +83940,25 @@
           },
           "candidate_constraint": {},
           "effect": "none",
-          "execution_state": "not_executed"
+          "execution_state": "not_executed",
+          "negative_class_assignment": {
+            "classification": "F01_REQUIRED_CONDITION_MISSING",
+            "reason": "工程が要求するagreement/approval/pair/verificationの原資料をmutationが除去し、proceed_conditionがmissingとなる。",
+            "source_pointers": [
+              {
+                "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+                "pointer": "/cases/1/cases/7/input_rule"
+              },
+              {
+                "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+                "pointer": "/cases/1/cases/7/expected_partial_values"
+              },
+              {
+                "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+                "pointer": "/cases/1/negative_cases/2/mutation"
+              }
+            ]
+          }
         },
         {
           "id": "H003-L8-F01-FOREIGN-APPROVAL",
@@ -83859,7 +84111,25 @@
           },
           "candidate_constraint": {},
           "effect": "none",
-          "execution_state": "not_executed"
+          "execution_state": "not_executed",
+          "negative_class_assignment": {
+            "classification": "F01_CONDITION_TARGET_STALE",
+            "reason": "requirements approvalのtarget revisionをr1からr0へ置換し、元期待がstaleを示す。",
+            "source_pointers": [
+              {
+                "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+                "pointer": "/cases/1/cases/8/input_rule"
+              },
+              {
+                "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+                "pointer": "/cases/1/cases/8/expected_partial_values"
+              },
+              {
+                "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+                "pointer": "/cases/1/negative_cases/3/mutation"
+              }
+            ]
+          }
         },
         {
           "id": "H003-L8-F01-CONSULTATION-AS-APPROVAL",
@@ -84012,7 +84282,25 @@
           },
           "candidate_constraint": {},
           "effect": "none",
-          "execution_state": "not_executed"
+          "execution_state": "not_executed",
+          "negative_class_assignment": {
+            "classification": "F01_ROLE_AUTHORITY_CONFLICT",
+            "reason": "approval kind/authority/delegation mutationが判断role境界を越え、元期待がconflictまたは当該ownerへのreturnを示す。",
+            "source_pointers": [
+              {
+                "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+                "pointer": "/cases/1/cases/9/input_rule"
+              },
+              {
+                "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+                "pointer": "/cases/1/cases/9/expected_partial_values"
+              },
+              {
+                "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+                "pointer": "/cases/1/negative_cases/4/mutation"
+              }
+            ]
+          }
         },
         {
           "id": "H003-L8-F01-WORK_REQUEST-AS-APPROVAL",
@@ -84165,7 +84453,25 @@
           },
           "candidate_constraint": {},
           "effect": "none",
-          "execution_state": "not_executed"
+          "execution_state": "not_executed",
+          "negative_class_assignment": {
+            "classification": "F01_ROLE_AUTHORITY_CONFLICT",
+            "reason": "approval kind/authority/delegation mutationが判断role境界を越え、元期待がconflictまたは当該ownerへのreturnを示す。",
+            "source_pointers": [
+              {
+                "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+                "pointer": "/cases/1/cases/10/input_rule"
+              },
+              {
+                "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+                "pointer": "/cases/1/cases/10/expected_partial_values"
+              },
+              {
+                "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+                "pointer": "/cases/1/negative_cases/5/mutation"
+              }
+            ]
+          }
         },
         {
           "id": "H003-L8-F01-SELECTION-AS-APPROVAL",
@@ -84318,7 +84624,25 @@
           },
           "candidate_constraint": {},
           "effect": "none",
-          "execution_state": "not_executed"
+          "execution_state": "not_executed",
+          "negative_class_assignment": {
+            "classification": "F01_ROLE_AUTHORITY_CONFLICT",
+            "reason": "approval kind/authority/delegation mutationが判断role境界を越え、元期待がconflictまたは当該ownerへのreturnを示す。",
+            "source_pointers": [
+              {
+                "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+                "pointer": "/cases/1/cases/11/input_rule"
+              },
+              {
+                "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+                "pointer": "/cases/1/cases/11/expected_partial_values"
+              },
+              {
+                "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+                "pointer": "/cases/1/negative_cases/6/mutation"
+              }
+            ]
+          }
         },
         {
           "id": "H003-L8-F01-OPERATION_AUTHORIZATION-AS-APPROVAL",
@@ -84471,7 +84795,25 @@
           },
           "candidate_constraint": {},
           "effect": "none",
-          "execution_state": "not_executed"
+          "execution_state": "not_executed",
+          "negative_class_assignment": {
+            "classification": "F01_ROLE_AUTHORITY_CONFLICT",
+            "reason": "approval kind/authority/delegation mutationが判断role境界を越え、元期待がconflictまたは当該ownerへのreturnを示す。",
+            "source_pointers": [
+              {
+                "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+                "pointer": "/cases/1/cases/12/input_rule"
+              },
+              {
+                "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+                "pointer": "/cases/1/cases/12/expected_partial_values"
+              },
+              {
+                "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+                "pointer": "/cases/1/negative_cases/7/mutation"
+              }
+            ]
+          }
         },
         {
           "id": "H003-L8-F01-UNDELEGATED-MEANING",
@@ -84624,7 +84966,25 @@
           },
           "candidate_constraint": {},
           "effect": "none",
-          "execution_state": "not_executed"
+          "execution_state": "not_executed",
+          "negative_class_assignment": {
+            "classification": "F01_ROLE_AUTHORITY_CONFLICT",
+            "reason": "approval kind/authority/delegation mutationが判断role境界を越え、元期待がconflictまたは当該ownerへのreturnを示す。",
+            "source_pointers": [
+              {
+                "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+                "pointer": "/cases/1/cases/13/input_rule"
+              },
+              {
+                "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+                "pointer": "/cases/1/cases/13/expected_partial_values"
+              },
+              {
+                "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+                "pointer": "/cases/1/negative_cases/8/mutation"
+              }
+            ]
+          }
         },
         {
           "id": "H003-L8-F01-UNDELEGATED-AUTHORITY",
@@ -84777,7 +85137,25 @@
           },
           "candidate_constraint": {},
           "effect": "none",
-          "execution_state": "not_executed"
+          "execution_state": "not_executed",
+          "negative_class_assignment": {
+            "classification": "F01_ROLE_AUTHORITY_CONFLICT",
+            "reason": "approval kind/authority/delegation mutationが判断role境界を越え、元期待がconflictまたは当該ownerへのreturnを示す。",
+            "source_pointers": [
+              {
+                "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+                "pointer": "/cases/1/cases/14/input_rule"
+              },
+              {
+                "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+                "pointer": "/cases/1/cases/14/expected_partial_values"
+              },
+              {
+                "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+                "pointer": "/cases/1/negative_cases/9/mutation"
+              }
+            ]
+          }
         },
         {
           "id": "H003-L8-F01-REPEAT-APPROVAL-FOR-DETAIL",
@@ -84933,7 +85311,25 @@
             "candidate_conflicting_field": "additional_approval_needed"
           },
           "effect": "none",
-          "execution_state": "not_executed"
+          "execution_state": "not_executed",
+          "negative_class_assignment": {
+            "classification": "F01_ROLE_AUTHORITY_CONFLICT",
+            "reason": "approval kind/authority/delegation mutationが判断role境界を越え、元期待がconflictまたは当該ownerへのreturnを示す。",
+            "source_pointers": [
+              {
+                "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+                "pointer": "/cases/1/cases/15/input_rule"
+              },
+              {
+                "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+                "pointer": "/cases/1/cases/15/expected_partial_values"
+              },
+              {
+                "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+                "pointer": "/cases/1/negative_cases/10/mutation"
+              }
+            ]
+          }
         },
         {
           "id": "H003-L8-F01-IMPLEMENTATION-AS-COMPLETION",
@@ -85245,7 +85641,25 @@
             "candidate_conflicting_field": "actual_approval_created"
           },
           "effect": "none",
-          "execution_state": "not_executed"
+          "execution_state": "not_executed",
+          "negative_class_assignment": {
+            "classification": "F01_ROLE_AUTHORITY_CONFLICT",
+            "reason": "approval kind/authority/delegation mutationが判断role境界を越え、元期待がconflictまたは当該ownerへのreturnを示す。",
+            "source_pointers": [
+              {
+                "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+                "pointer": "/cases/1/cases/17/input_rule"
+              },
+              {
+                "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+                "pointer": "/cases/1/cases/17/expected_partial_values"
+              },
+              {
+                "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+                "pointer": "/cases/1/negative_cases/12/mutation"
+              }
+            ]
+          }
         },
         {
           "id": "H003-L8-F01-FREEZE-VERIFICATION",
@@ -85422,7 +85836,25 @@
           },
           "candidate_constraint": {},
           "effect": "none",
-          "execution_state": "not_executed"
+          "execution_state": "not_executed",
+          "negative_class_assignment": {
+            "classification": "F01_REQUIRED_CONDITION_MISSING",
+            "reason": "工程が要求するagreement/approval/pair/verificationの原資料をmutationが除去し、proceed_conditionがmissingとなる。",
+            "source_pointers": [
+              {
+                "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+                "pointer": "/cases/1/cases/18/input_rule"
+              },
+              {
+                "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+                "pointer": "/cases/1/cases/18/expected_partial_values"
+              },
+              {
+                "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+                "pointer": "/cases/1/negative_cases/13/mutation"
+              }
+            ]
+          }
         },
         {
           "id": "H003-L8-F01-REOPEN-UNRESOLVED",
@@ -85776,7 +86208,25 @@
           },
           "candidate_constraint": {},
           "effect": "none",
-          "execution_state": "not_executed"
+          "execution_state": "not_executed",
+          "negative_class_assignment": {
+            "classification": "F01_REQUIRED_CONDITION_MISSING",
+            "reason": "工程が要求するagreement/approval/pair/verificationの原資料をmutationが除去し、proceed_conditionがmissingとなる。",
+            "source_pointers": [
+              {
+                "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+                "pointer": "/cases/1/cases/20/input_rule"
+              },
+              {
+                "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+                "pointer": "/cases/1/cases/20/expected_partial_values"
+              },
+              {
+                "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+                "pointer": "/cases/1/negative_cases/15/mutation"
+              }
+            ]
+          }
         },
         {
           "id": "H003-L8-F01-APPROVAL-UNKNOWN",
@@ -85929,7 +86379,25 @@
           },
           "candidate_constraint": {},
           "effect": "none",
-          "execution_state": "not_executed"
+          "execution_state": "not_executed",
+          "negative_class_assignment": {
+            "classification": "F01_CONDITION_DEFINITION_UNKNOWN",
+            "reason": "requirements approvalのcontentをunknown stateに置換し、元期待がproceed condition unknownを示す。",
+            "source_pointers": [
+              {
+                "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+                "pointer": "/cases/1/cases/21/input_rule"
+              },
+              {
+                "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+                "pointer": "/cases/1/cases/21/expected_partial_values"
+              },
+              {
+                "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+                "pointer": "/cases/1/negative_cases/16/mutation"
+              }
+            ]
+          }
         }
       ],
       "remaining": [
@@ -100155,7 +100623,25 @@
           },
           "candidate_constraint": {},
           "execution_state": "not_executed",
-          "effect": "none"
+          "effect": "none",
+          "negative_class_assignment": {
+            "classification": "F02_APPLICABLE_RESULT_MISSING",
+            "reason": "適用対象のL2.5 PoC原結果そのものを除去し、poc_result missingを期待する。",
+            "source_pointers": [
+              {
+                "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+                "pointer": "/cases/2/cases/5/input_rule"
+              },
+              {
+                "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+                "pointer": "/cases/2/cases/5/expected_partial_values"
+              },
+              {
+                "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+                "pointer": "/cases/2/negative_cases/2/mutation"
+              }
+            ]
+          }
         },
         {
           "id": "H003-L8-F02-POC-RESULT-FAIL",
@@ -101977,7 +102463,25 @@
           },
           "candidate_constraint": {},
           "execution_state": "not_executed",
-          "effect": "none"
+          "effect": "none",
+          "negative_class_assignment": {
+            "classification": "F02_ADOPTION_CLAIM_CONFLICT",
+            "reason": "PoC/決裁の根拠から実凍結・採用・承認・完了または判断ownerを生成するmutationで、元期待がconflictを示す。",
+            "source_pointers": [
+              {
+                "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+                "pointer": "/cases/2/cases/13/input_rule"
+              },
+              {
+                "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+                "pointer": "/cases/2/cases/13/expected_partial_values"
+              },
+              {
+                "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+                "pointer": "/cases/2/negative_cases/10/mutation"
+              }
+            ]
+          }
         },
         {
           "id": "H003-L8-F02-NA-WITHOUT-REASON",
@@ -102203,7 +102707,25 @@
           },
           "candidate_constraint": {},
           "execution_state": "not_executed",
-          "effect": "none"
+          "effect": "none",
+          "negative_class_assignment": {
+            "classification": "F02_APPLICABILITY_UNKNOWN",
+            "reason": "PrototypeのN/A statusに必要な原属性/理由を欠落させ、元期待のN/A resultをmissingにする。",
+            "source_pointers": [
+              {
+                "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+                "pointer": "/cases/2/cases/14/input_rule"
+              },
+              {
+                "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+                "pointer": "/cases/2/cases/14/expected_partial_values"
+              },
+              {
+                "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+                "pointer": "/cases/2/negative_cases/11/mutation"
+              }
+            ]
+          }
         },
         {
           "id": "H003-L8-F02-POC-AS-L3-FREEZE",
@@ -102432,7 +102954,25 @@
             "candidate_conflicting_field": "actual_l3_frozen"
           },
           "execution_state": "not_executed",
-          "effect": "none"
+          "effect": "none",
+          "negative_class_assignment": {
+            "classification": "F02_ADOPTION_CLAIM_CONFLICT",
+            "reason": "PoC/決裁の根拠から実凍結・採用・承認・完了または判断ownerを生成するmutationで、元期待がconflictを示す。",
+            "source_pointers": [
+              {
+                "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+                "pointer": "/cases/2/cases/15/input_rule"
+              },
+              {
+                "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+                "pointer": "/cases/2/cases/15/expected_partial_values"
+              },
+              {
+                "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+                "pointer": "/cases/2/negative_cases/12/mutation"
+              }
+            ]
+          }
         },
         {
           "id": "H003-L8-F02-RESULT-AS-ADOPTION",
@@ -102661,7 +103201,25 @@
             "candidate_conflicting_field": "actual_requirement_adopted"
           },
           "execution_state": "not_executed",
-          "effect": "none"
+          "effect": "none",
+          "negative_class_assignment": {
+            "classification": "F02_ADOPTION_CLAIM_CONFLICT",
+            "reason": "PoC/決裁の根拠から実凍結・採用・承認・完了または判断ownerを生成するmutationで、元期待がconflictを示す。",
+            "source_pointers": [
+              {
+                "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+                "pointer": "/cases/2/cases/16/input_rule"
+              },
+              {
+                "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+                "pointer": "/cases/2/cases/16/expected_partial_values"
+              },
+              {
+                "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+                "pointer": "/cases/2/negative_cases/13/mutation"
+              }
+            ]
+          }
         },
         {
           "id": "H003-L8-F02-RESULT-AS-APPROVAL",
@@ -102890,7 +103448,25 @@
             "candidate_conflicting_field": "actual_requirements_approved"
           },
           "execution_state": "not_executed",
-          "effect": "none"
+          "effect": "none",
+          "negative_class_assignment": {
+            "classification": "F02_ADOPTION_CLAIM_CONFLICT",
+            "reason": "PoC/決裁の根拠から実凍結・採用・承認・完了または判断ownerを生成するmutationで、元期待がconflictを示す。",
+            "source_pointers": [
+              {
+                "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+                "pointer": "/cases/2/cases/17/input_rule"
+              },
+              {
+                "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+                "pointer": "/cases/2/cases/17/expected_partial_values"
+              },
+              {
+                "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+                "pointer": "/cases/2/negative_cases/14/mutation"
+              }
+            ]
+          }
         },
         {
           "id": "H003-L8-F02-RETURN-AS-COMPLETION",
@@ -103119,7 +103695,25 @@
             "candidate_conflicting_field": "actual_completion"
           },
           "execution_state": "not_executed",
-          "effect": "none"
+          "effect": "none",
+          "negative_class_assignment": {
+            "classification": "F02_ADOPTION_CLAIM_CONFLICT",
+            "reason": "PoC/決裁の根拠から実凍結・採用・承認・完了または判断ownerを生成するmutationで、元期待がconflictを示す。",
+            "source_pointers": [
+              {
+                "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+                "pointer": "/cases/2/cases/18/input_rule"
+              },
+              {
+                "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+                "pointer": "/cases/2/cases/18/expected_partial_values"
+              },
+              {
+                "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+                "pointer": "/cases/2/negative_cases/15/mutation"
+              }
+            ]
+          }
         },
         {
           "id": "H003-L8-F02-DECIDER-NA-MISSING",
@@ -103345,7 +103939,25 @@
           },
           "candidate_constraint": {},
           "execution_state": "not_executed",
-          "effect": "none"
+          "effect": "none",
+          "negative_class_assignment": {
+            "classification": "F02_APPLICABILITY_UNKNOWN",
+            "reason": "PrototypeのN/A statusに必要な原属性/理由を欠落させ、元期待のN/A resultをmissingにする。",
+            "source_pointers": [
+              {
+                "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+                "pointer": "/cases/2/cases/19/input_rule"
+              },
+              {
+                "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+                "pointer": "/cases/2/cases/19/expected_partial_values"
+              },
+              {
+                "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+                "pointer": "/cases/2/negative_cases/16/mutation"
+              }
+            ]
+          }
         },
         {
           "id": "H003-L8-F02-TARGET_HEAD-NA-MISSING",
@@ -103571,7 +104183,25 @@
           },
           "candidate_constraint": {},
           "execution_state": "not_executed",
-          "effect": "none"
+          "effect": "none",
+          "negative_class_assignment": {
+            "classification": "F02_APPLICABILITY_UNKNOWN",
+            "reason": "PrototypeのN/A statusに必要な原属性/理由を欠落させ、元期待のN/A resultをmissingにする。",
+            "source_pointers": [
+              {
+                "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+                "pointer": "/cases/2/cases/20/input_rule"
+              },
+              {
+                "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+                "pointer": "/cases/2/cases/20/expected_partial_values"
+              },
+              {
+                "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+                "pointer": "/cases/2/negative_cases/17/mutation"
+              }
+            ]
+          }
         },
         {
           "id": "H003-L8-F02-REQUIREMENT_IMPACT-NA-MISSING",
@@ -103797,7 +104427,25 @@
           },
           "candidate_constraint": {},
           "execution_state": "not_executed",
-          "effect": "none"
+          "effect": "none",
+          "negative_class_assignment": {
+            "classification": "F02_APPLICABILITY_UNKNOWN",
+            "reason": "PrototypeのN/A statusに必要な原属性/理由を欠落させ、元期待のN/A resultをmissingにする。",
+            "source_pointers": [
+              {
+                "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+                "pointer": "/cases/2/cases/21/input_rule"
+              },
+              {
+                "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+                "pointer": "/cases/2/cases/21/expected_partial_values"
+              },
+              {
+                "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+                "pointer": "/cases/2/negative_cases/18/mutation"
+              }
+            ]
+          }
         },
         {
           "id": "H003-L8-F02-REEVALUATION-NA-MISSING",
@@ -104023,7 +104671,25 @@
           },
           "candidate_constraint": {},
           "execution_state": "not_executed",
-          "effect": "none"
+          "effect": "none",
+          "negative_class_assignment": {
+            "classification": "F02_APPLICABILITY_UNKNOWN",
+            "reason": "PrototypeのN/A statusに必要な原属性/理由を欠落させ、元期待のN/A resultをmissingにする。",
+            "source_pointers": [
+              {
+                "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+                "pointer": "/cases/2/cases/22/input_rule"
+              },
+              {
+                "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+                "pointer": "/cases/2/cases/22/expected_partial_values"
+              },
+              {
+                "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+                "pointer": "/cases/2/negative_cases/19/mutation"
+              }
+            ]
+          }
         },
         {
           "id": "H003-L8-F02-NOT_APPLICABLE-NA-MISSING",
@@ -104249,7 +104915,25 @@
           },
           "candidate_constraint": {},
           "execution_state": "not_executed",
-          "effect": "none"
+          "effect": "none",
+          "negative_class_assignment": {
+            "classification": "F02_APPLICABILITY_UNKNOWN",
+            "reason": "PrototypeのN/A statusに必要な原属性/理由を欠落させ、元期待のN/A resultをmissingにする。",
+            "source_pointers": [
+              {
+                "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+                "pointer": "/cases/2/cases/23/input_rule"
+              },
+              {
+                "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+                "pointer": "/cases/2/cases/23/expected_partial_values"
+              },
+              {
+                "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+                "pointer": "/cases/2/negative_cases/20/mutation"
+              }
+            ]
+          }
         }
       ],
       "remaining": [
@@ -124779,7 +125463,25 @@
           },
           "candidate_constraint": {},
           "effect": "none",
-          "execution_state": "not_executed"
+          "execution_state": "not_executed",
+          "negative_class_assignment": {
+            "classification": "F03_REQUIRED_PAIR_MISSING",
+            "reason": "originまたはtraceの必要原材料を直接除去し、pair/trace証拠欠落を期待する。",
+            "source_pointers": [
+              {
+                "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+                "pointer": "/cases/3/cases/4/input_rule"
+              },
+              {
+                "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+                "pointer": "/cases/3/cases/4/expected_partial_values"
+              },
+              {
+                "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+                "pointer": "/cases/3/negative_cases/0/mutation"
+              }
+            ]
+          }
         },
         {
           "id": "H003-L8-F03-LEGACY-ASSET",
@@ -125475,7 +126177,25 @@
           },
           "candidate_constraint": {},
           "effect": "none",
-          "execution_state": "not_executed"
+          "execution_state": "not_executed",
+          "negative_class_assignment": {
+            "classification": "F03_REQUIRED_PAIR_MISSING",
+            "reason": "originまたはtraceの必要原材料を直接除去し、pair/trace証拠欠落を期待する。",
+            "source_pointers": [
+              {
+                "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+                "pointer": "/cases/3/cases/6/input_rule"
+              },
+              {
+                "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+                "pointer": "/cases/3/cases/6/expected_partial_values"
+              },
+              {
+                "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+                "pointer": "/cases/3/negative_cases/2/mutation"
+              }
+            ]
+          }
         },
         {
           "id": "H003-L8-F03-DESIGN-DISPUTED",
@@ -128271,7 +128991,25 @@
           },
           "candidate_constraint": {},
           "effect": "none",
-          "execution_state": "not_executed"
+          "execution_state": "not_executed",
+          "negative_class_assignment": {
+            "classification": "F03_PAIR_SCOPE_CONFLICT",
+            "reason": "paired_comparisonsの当該L8↔L5、L9↔L4、L10↔L3の左pairを別layerへ置換し、元期待がconflictを示す。",
+            "source_pointers": [
+              {
+                "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+                "pointer": "/cases/3/cases/14/input_rule"
+              },
+              {
+                "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+                "pointer": "/cases/3/cases/14/expected_partial_values"
+              },
+              {
+                "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+                "pointer": "/cases/3/negative_cases/10/mutation"
+              }
+            ]
+          }
         },
         {
           "id": "H003-L8-F03-FOREIGN-PAIR-REVISION",
@@ -128967,7 +129705,25 @@
           },
           "candidate_constraint": {},
           "effect": "none",
-          "execution_state": "not_executed"
+          "execution_state": "not_executed",
+          "negative_class_assignment": {
+            "classification": "F03_L9_DIMENSION_UNKNOWN",
+            "reason": "mutationがL9 dimensions配列の該当indexの観点を直接対象にし、当該観点の未観測を期待する。",
+            "source_pointers": [
+              {
+                "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+                "pointer": "/cases/3/cases/16/input_rule"
+              },
+              {
+                "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+                "pointer": "/cases/3/cases/16/expected_partial_values"
+              },
+              {
+                "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+                "pointer": "/cases/3/negative_cases/12/mutation"
+              }
+            ]
+          }
         },
         {
           "id": "H003-L8-F03-L9-MISSING-dependency_direction",
@@ -129315,7 +130071,25 @@
           },
           "candidate_constraint": {},
           "effect": "none",
-          "execution_state": "not_executed"
+          "execution_state": "not_executed",
+          "negative_class_assignment": {
+            "classification": "F03_L9_DIMENSION_UNKNOWN",
+            "reason": "mutationがL9 dimensions配列の該当indexの観点を直接対象にし、当該観点の未観測を期待する。",
+            "source_pointers": [
+              {
+                "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+                "pointer": "/cases/3/cases/17/input_rule"
+              },
+              {
+                "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+                "pointer": "/cases/3/cases/17/expected_partial_values"
+              },
+              {
+                "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+                "pointer": "/cases/3/negative_cases/13/mutation"
+              }
+            ]
+          }
         },
         {
           "id": "H003-L8-F03-L9-MISSING-state_data_ownership",
@@ -129663,7 +130437,25 @@
           },
           "candidate_constraint": {},
           "effect": "none",
-          "execution_state": "not_executed"
+          "execution_state": "not_executed",
+          "negative_class_assignment": {
+            "classification": "F03_L9_DIMENSION_UNKNOWN",
+            "reason": "mutationがL9 dimensions配列の該当indexの観点を直接対象にし、当該観点の未観測を期待する。",
+            "source_pointers": [
+              {
+                "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+                "pointer": "/cases/3/cases/18/input_rule"
+              },
+              {
+                "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+                "pointer": "/cases/3/cases/18/expected_partial_values"
+              },
+              {
+                "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+                "pointer": "/cases/3/negative_cases/14/mutation"
+              }
+            ]
+          }
         },
         {
           "id": "H003-L8-F03-L9-MISSING-transaction",
@@ -130011,7 +130803,25 @@
           },
           "candidate_constraint": {},
           "effect": "none",
-          "execution_state": "not_executed"
+          "execution_state": "not_executed",
+          "negative_class_assignment": {
+            "classification": "F03_L9_DIMENSION_UNKNOWN",
+            "reason": "mutationがL9 dimensions配列の該当indexの観点を直接対象にし、当該観点の未観測を期待する。",
+            "source_pointers": [
+              {
+                "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+                "pointer": "/cases/3/cases/19/input_rule"
+              },
+              {
+                "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+                "pointer": "/cases/3/cases/19/expected_partial_values"
+              },
+              {
+                "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+                "pointer": "/cases/3/negative_cases/15/mutation"
+              }
+            ]
+          }
         },
         {
           "id": "H003-L8-F03-L9-MISSING-failure_propagation",
@@ -130359,7 +131169,25 @@
           },
           "candidate_constraint": {},
           "effect": "none",
-          "execution_state": "not_executed"
+          "execution_state": "not_executed",
+          "negative_class_assignment": {
+            "classification": "F03_L9_DIMENSION_UNKNOWN",
+            "reason": "mutationがL9 dimensions配列の該当indexの観点を直接対象にし、当該観点の未観測を期待する。",
+            "source_pointers": [
+              {
+                "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+                "pointer": "/cases/3/cases/20/input_rule"
+              },
+              {
+                "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+                "pointer": "/cases/3/cases/20/expected_partial_values"
+              },
+              {
+                "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+                "pointer": "/cases/3/negative_cases/16/mutation"
+              }
+            ]
+          }
         },
         {
           "id": "H003-L8-F03-L9-MISSING-retry",
@@ -130707,7 +131535,25 @@
           },
           "candidate_constraint": {},
           "effect": "none",
-          "execution_state": "not_executed"
+          "execution_state": "not_executed",
+          "negative_class_assignment": {
+            "classification": "F03_L9_DIMENSION_UNKNOWN",
+            "reason": "mutationがL9 dimensions配列の該当indexの観点を直接対象にし、当該観点の未観測を期待する。",
+            "source_pointers": [
+              {
+                "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+                "pointer": "/cases/3/cases/21/input_rule"
+              },
+              {
+                "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+                "pointer": "/cases/3/cases/21/expected_partial_values"
+              },
+              {
+                "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+                "pointer": "/cases/3/negative_cases/17/mutation"
+              }
+            ]
+          }
         },
         {
           "id": "H003-L8-F03-L9-MISSING-timeout",
@@ -131055,7 +131901,25 @@
           },
           "candidate_constraint": {},
           "effect": "none",
-          "execution_state": "not_executed"
+          "execution_state": "not_executed",
+          "negative_class_assignment": {
+            "classification": "F03_L9_DIMENSION_UNKNOWN",
+            "reason": "mutationがL9 dimensions配列の該当indexの観点を直接対象にし、当該観点の未観測を期待する。",
+            "source_pointers": [
+              {
+                "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+                "pointer": "/cases/3/cases/22/input_rule"
+              },
+              {
+                "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+                "pointer": "/cases/3/cases/22/expected_partial_values"
+              },
+              {
+                "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+                "pointer": "/cases/3/negative_cases/18/mutation"
+              }
+            ]
+          }
         },
         {
           "id": "H003-L8-F03-L9-MISSING-idempotency",
@@ -131403,7 +132267,25 @@
           },
           "candidate_constraint": {},
           "effect": "none",
-          "execution_state": "not_executed"
+          "execution_state": "not_executed",
+          "negative_class_assignment": {
+            "classification": "F03_L9_DIMENSION_UNKNOWN",
+            "reason": "mutationがL9 dimensions配列の該当indexの観点を直接対象にし、当該観点の未観測を期待する。",
+            "source_pointers": [
+              {
+                "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+                "pointer": "/cases/3/cases/23/input_rule"
+              },
+              {
+                "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+                "pointer": "/cases/3/cases/23/expected_partial_values"
+              },
+              {
+                "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+                "pointer": "/cases/3/negative_cases/19/mutation"
+              }
+            ]
+          }
         },
         {
           "id": "H003-L8-F03-L9-MISSING-coupling",
@@ -131751,7 +132633,25 @@
           },
           "candidate_constraint": {},
           "effect": "none",
-          "execution_state": "not_executed"
+          "execution_state": "not_executed",
+          "negative_class_assignment": {
+            "classification": "F03_L9_DIMENSION_UNKNOWN",
+            "reason": "mutationがL9 dimensions配列の該当indexの観点を直接対象にし、当該観点の未観測を期待する。",
+            "source_pointers": [
+              {
+                "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+                "pointer": "/cases/3/cases/24/input_rule"
+              },
+              {
+                "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+                "pointer": "/cases/3/cases/24/expected_partial_values"
+              },
+              {
+                "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+                "pointer": "/cases/3/negative_cases/20/mutation"
+              }
+            ]
+          }
         },
         {
           "id": "H003-L8-F03-L9-MISSING-responsibility_duplication",
@@ -132099,7 +132999,25 @@
           },
           "candidate_constraint": {},
           "effect": "none",
-          "execution_state": "not_executed"
+          "execution_state": "not_executed",
+          "negative_class_assignment": {
+            "classification": "F03_L9_DIMENSION_UNKNOWN",
+            "reason": "mutationがL9 dimensions配列の該当indexの観点を直接対象にし、当該観点の未観測を期待する。",
+            "source_pointers": [
+              {
+                "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+                "pointer": "/cases/3/cases/25/input_rule"
+              },
+              {
+                "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+                "pointer": "/cases/3/cases/25/expected_partial_values"
+              },
+              {
+                "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+                "pointer": "/cases/3/negative_cases/21/mutation"
+              }
+            ]
+          }
         },
         {
           "id": "H003-L8-F03-STATE-OWNER-CONFLICT",
@@ -135965,7 +136883,25 @@
             "candidate_conflicting_field": "actual_reverse_executed"
           },
           "effect": "none",
-          "execution_state": "not_executed"
+          "execution_state": "not_executed",
+          "negative_class_assignment": {
+            "classification": "F03_TICKET_REVERSE_EFFECT_CONFLICT",
+            "reason": "実Reverse未実施を示すactual_reverse_executed fieldをtrueへ変更し、元期待がcandidate conflictを示す。",
+            "source_pointers": [
+              {
+                "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+                "pointer": "/cases/3/cases/36/input_rule"
+              },
+              {
+                "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+                "pointer": "/cases/3/cases/36/expected_partial_values"
+              },
+              {
+                "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+                "pointer": "/cases/3/negative_cases/32/mutation"
+              }
+            ]
+          }
         },
         {
           "id": "H003-L8-F03-REQUIREMENT-MEANING-CHANGE",
@@ -137013,7 +137949,25 @@
           },
           "candidate_constraint": {},
           "effect": "none",
-          "execution_state": "not_executed"
+          "execution_state": "not_executed",
+          "negative_class_assignment": {
+            "classification": "F03_PAIR_SCOPE_CONFLICT",
+            "reason": "paired_comparisonsの当該L8↔L5、L9↔L4、L10↔L3の左pairを別layerへ置換し、元期待がconflictを示す。",
+            "source_pointers": [
+              {
+                "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+                "pointer": "/cases/3/cases/39/input_rule"
+              },
+              {
+                "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+                "pointer": "/cases/3/cases/39/expected_partial_values"
+              },
+              {
+                "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+                "pointer": "/cases/3/negative_cases/35/mutation"
+              }
+            ]
+          }
         },
         {
           "id": "H003-L8-F03-L8-FOREIGN-REVISION",
@@ -137709,7 +138663,25 @@
           },
           "candidate_constraint": {},
           "effect": "none",
-          "execution_state": "not_executed"
+          "execution_state": "not_executed",
+          "negative_class_assignment": {
+            "classification": "F03_PAIR_SCOPE_CONFLICT",
+            "reason": "paired_comparisonsの当該L8↔L5、L9↔L4、L10↔L3の左pairを別layerへ置換し、元期待がconflictを示す。",
+            "source_pointers": [
+              {
+                "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+                "pointer": "/cases/3/cases/41/input_rule"
+              },
+              {
+                "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+                "pointer": "/cases/3/cases/41/expected_partial_values"
+              },
+              {
+                "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+                "pointer": "/cases/3/negative_cases/37/mutation"
+              }
+            ]
+          }
         },
         {
           "id": "H003-L8-F03-L10-FOREIGN-REVISION",
@@ -158264,7 +159236,25 @@
           },
           "failure_return_constraint": {},
           "effect": "none",
-          "execution_state": "not_executed"
+          "execution_state": "not_executed",
+          "negative_class_assignment": {
+            "classification": "F04_STATE_PROVISIONAL_PROOF_MISSING",
+            "reason": "Provisional固有proofを除去/CI文書に置換し、またはpre-body-red proofを欠落させるmutationである。",
+            "source_pointers": [
+              {
+                "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+                "pointer": "/cases/4/cases/9/input_rule"
+              },
+              {
+                "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+                "pointer": "/cases/4/cases/9/expected_partial_values"
+              },
+              {
+                "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+                "pointer": "/cases/4/negative_cases/1/mutation"
+              }
+            ]
+          }
         },
         {
           "id": "H003-L8-F04-MISSING-Integrated",
@@ -158448,7 +159438,25 @@
           },
           "failure_return_constraint": {},
           "effect": "none",
-          "execution_state": "not_executed"
+          "execution_state": "not_executed",
+          "negative_class_assignment": {
+            "classification": "F04_STATE_INTEGRATED_PROOF_MISSING",
+            "reason": "Integrated proofを除去、またはそのbindingを別revisionへ変更する。",
+            "source_pointers": [
+              {
+                "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+                "pointer": "/cases/4/cases/10/input_rule"
+              },
+              {
+                "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+                "pointer": "/cases/4/cases/10/expected_partial_values"
+              },
+              {
+                "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+                "pointer": "/cases/4/negative_cases/2/mutation"
+              }
+            ]
+          }
         },
         {
           "id": "H003-L8-F04-MISSING-Verified",
@@ -158632,7 +159640,25 @@
           },
           "failure_return_constraint": {},
           "effect": "none",
-          "execution_state": "not_executed"
+          "execution_state": "not_executed",
+          "negative_class_assignment": {
+            "classification": "F04_STATE_VERIFIED_PROOF_MISSING",
+            "reason": "Verified proofを除去/未確定claimへ置換する、または必要system proofの欠落/不一致を起こす。",
+            "source_pointers": [
+              {
+                "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+                "pointer": "/cases/4/cases/11/input_rule"
+              },
+              {
+                "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+                "pointer": "/cases/4/cases/11/expected_partial_values"
+              },
+              {
+                "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+                "pointer": "/cases/4/negative_cases/3/mutation"
+              }
+            ]
+          }
         },
         {
           "id": "H003-L8-F04-MISSING-Accepted",
@@ -158816,7 +159842,25 @@
           },
           "failure_return_constraint": {},
           "effect": "none",
-          "execution_state": "not_executed"
+          "execution_state": "not_executed",
+          "negative_class_assignment": {
+            "classification": "F04_STATE_ACCEPTED_PROOF_MISSING",
+            "reason": "Accepted stateのhuman originalをL10/AI由来へ置換し、対象stateの人間原証拠を欠く。",
+            "source_pointers": [
+              {
+                "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+                "pointer": "/cases/4/cases/12/input_rule"
+              },
+              {
+                "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+                "pointer": "/cases/4/cases/12/expected_partial_values"
+              },
+              {
+                "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+                "pointer": "/cases/4/negative_cases/4/mutation"
+              }
+            ]
+          }
         },
         {
           "id": "H003-L8-F04-MISSING-Release-eligible",
@@ -159000,7 +160044,25 @@
           },
           "failure_return_constraint": {},
           "effect": "none",
-          "execution_state": "not_executed"
+          "execution_state": "not_executed",
+          "negative_class_assignment": {
+            "classification": "F04_STATE_RELEASE-ELIGIBLE_PROOF_MISSING",
+            "reason": "Release-eligible proofを除去、または必須rollback observationを欠落させる。",
+            "source_pointers": [
+              {
+                "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+                "pointer": "/cases/4/cases/13/input_rule"
+              },
+              {
+                "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+                "pointer": "/cases/4/cases/13/expected_partial_values"
+              },
+              {
+                "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+                "pointer": "/cases/4/negative_cases/5/mutation"
+              }
+            ]
+          }
         },
         {
           "id": "H003-L8-F04-MISSING-Deployed",
@@ -159184,7 +160246,25 @@
           },
           "failure_return_constraint": {},
           "effect": "none",
-          "execution_state": "not_executed"
+          "execution_state": "not_executed",
+          "negative_class_assignment": {
+            "classification": "F04_STATE_DEPLOYED_PROOF_MISSING",
+            "reason": "Deployed proofを除去、またはproofのenvironment/artifact bindingを別対象へ変える。",
+            "source_pointers": [
+              {
+                "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+                "pointer": "/cases/4/cases/14/input_rule"
+              },
+              {
+                "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+                "pointer": "/cases/4/cases/14/expected_partial_values"
+              },
+              {
+                "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+                "pointer": "/cases/4/negative_cases/6/mutation"
+              }
+            ]
+          }
         },
         {
           "id": "H003-L8-F04-MISSING-Observed",
@@ -159368,7 +160448,25 @@
           },
           "failure_return_constraint": {},
           "effect": "none",
-          "execution_state": "not_executed"
+          "execution_state": "not_executed",
+          "negative_class_assignment": {
+            "classification": "F04_STATE_OBSERVED_PROOF_MISSING",
+            "reason": "Observed state proofを除去/実deploymentに置換し、運用観測の原証拠を欠く。",
+            "source_pointers": [
+              {
+                "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+                "pointer": "/cases/4/cases/15/input_rule"
+              },
+              {
+                "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+                "pointer": "/cases/4/cases/15/expected_partial_values"
+              },
+              {
+                "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+                "pointer": "/cases/4/negative_cases/7/mutation"
+              }
+            ]
+          }
         },
         {
           "id": "H003-L8-F04-FOREIGN-REVISION",
@@ -159555,7 +160653,25 @@
             "backflow_owner": "integration-owner"
           },
           "effect": "none",
-          "execution_state": "not_executed"
+          "execution_state": "not_executed",
+          "negative_class_assignment": {
+            "classification": "F04_STATE_INTEGRATED_PROOF_MISSING",
+            "reason": "Integrated proofを除去、またはそのbindingを別revisionへ変更する。",
+            "source_pointers": [
+              {
+                "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+                "pointer": "/cases/4/cases/16/input_rule"
+              },
+              {
+                "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+                "pointer": "/cases/4/cases/16/expected_partial_values"
+              },
+              {
+                "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+                "pointer": "/cases/4/negative_cases/8/mutation"
+              }
+            ]
+          }
         },
         {
           "id": "H003-L8-F04-FOREIGN-SCOPE",
@@ -159742,7 +160858,25 @@
             "backflow_owner": "system-verification-owner"
           },
           "effect": "none",
-          "execution_state": "not_executed"
+          "execution_state": "not_executed",
+          "negative_class_assignment": {
+            "classification": "F04_STATE_VERIFIED_PROOF_MISSING",
+            "reason": "Verified proofを除去/未確定claimへ置換する、または必要system proofの欠落/不一致を起こす。",
+            "source_pointers": [
+              {
+                "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+                "pointer": "/cases/4/cases/17/input_rule"
+              },
+              {
+                "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+                "pointer": "/cases/4/cases/17/expected_partial_values"
+              },
+              {
+                "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+                "pointer": "/cases/4/negative_cases/9/mutation"
+              }
+            ]
+          }
         },
         {
           "id": "H003-L8-F04-FOREIGN-ENVIRONMENT",
@@ -159929,7 +161063,25 @@
             "backflow_owner": "OS-deployment-original-record"
           },
           "effect": "none",
-          "execution_state": "not_executed"
+          "execution_state": "not_executed",
+          "negative_class_assignment": {
+            "classification": "F04_STATE_DEPLOYED_PROOF_MISSING",
+            "reason": "Deployed proofを除去、またはproofのenvironment/artifact bindingを別対象へ変える。",
+            "source_pointers": [
+              {
+                "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+                "pointer": "/cases/4/cases/18/input_rule"
+              },
+              {
+                "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+                "pointer": "/cases/4/cases/18/expected_partial_values"
+              },
+              {
+                "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+                "pointer": "/cases/4/negative_cases/10/mutation"
+              }
+            ]
+          }
         },
         {
           "id": "H003-L8-F04-DOC-AS-ATOMIC-CI",
@@ -160116,7 +161268,25 @@
             "backflow_owner": "execution-owner"
           },
           "effect": "none",
-          "execution_state": "not_executed"
+          "execution_state": "not_executed",
+          "negative_class_assignment": {
+            "classification": "F04_STATE_PROVISIONAL_PROOF_MISSING",
+            "reason": "Provisional固有proofを除去/CI文書に置換し、またはpre-body-red proofを欠落させるmutationである。",
+            "source_pointers": [
+              {
+                "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+                "pointer": "/cases/4/cases/19/input_rule"
+              },
+              {
+                "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+                "pointer": "/cases/4/cases/19/expected_partial_values"
+              },
+              {
+                "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+                "pointer": "/cases/4/negative_cases/11/mutation"
+              }
+            ]
+          }
         },
         {
           "id": "H003-L8-F04-PRE-BODY-RED-ABSENT",
@@ -160303,7 +161473,25 @@
             "backflow_owner": "execution-owner"
           },
           "effect": "none",
-          "execution_state": "not_executed"
+          "execution_state": "not_executed",
+          "negative_class_assignment": {
+            "classification": "F04_STATE_PROVISIONAL_PROOF_MISSING",
+            "reason": "Provisional固有proofを除去/CI文書に置換し、またはpre-body-red proofを欠落させるmutationである。",
+            "source_pointers": [
+              {
+                "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+                "pointer": "/cases/4/cases/20/input_rule"
+              },
+              {
+                "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+                "pointer": "/cases/4/cases/20/expected_partial_values"
+              },
+              {
+                "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+                "pointer": "/cases/4/negative_cases/12/mutation"
+              }
+            ]
+          }
         },
         {
           "id": "H003-L8-F04-BOUNDARY-DOUBLE-OWNER",
@@ -160677,7 +161865,25 @@
             "backflow_owner": "system-verification-owner"
           },
           "effect": "none",
-          "execution_state": "not_executed"
+          "execution_state": "not_executed",
+          "negative_class_assignment": {
+            "classification": "F04_STATE_VERIFIED_PROOF_MISSING",
+            "reason": "Verified proofを除去/未確定claimへ置換する、または必要system proofの欠落/不一致を起こす。",
+            "source_pointers": [
+              {
+                "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+                "pointer": "/cases/4/cases/22/input_rule"
+              },
+              {
+                "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+                "pointer": "/cases/4/cases/22/expected_partial_values"
+              },
+              {
+                "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+                "pointer": "/cases/4/negative_cases/14/mutation"
+              }
+            ]
+          }
         },
         {
           "id": "H003-L8-F04-SYSTEM-OBSERVATION-FAIL",
@@ -160864,7 +162070,25 @@
             "backflow_owner": "system-verification-owner"
           },
           "effect": "none",
-          "execution_state": "not_executed"
+          "execution_state": "not_executed",
+          "negative_class_assignment": {
+            "classification": "F04_STATE_VERIFIED_PROOF_MISSING",
+            "reason": "Verified proofを除去/未確定claimへ置換する、または必要system proofの欠落/不一致を起こす。",
+            "source_pointers": [
+              {
+                "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+                "pointer": "/cases/4/cases/23/input_rule"
+              },
+              {
+                "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+                "pointer": "/cases/4/cases/23/expected_partial_values"
+              },
+              {
+                "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+                "pointer": "/cases/4/negative_cases/15/mutation"
+              }
+            ]
+          }
         },
         {
           "id": "H003-L8-F04-L10-AS-HUMAN-ACCEPTANCE",
@@ -161051,7 +162275,25 @@
             "backflow_owner": "OS-original-acceptance-record"
           },
           "effect": "none",
-          "execution_state": "not_executed"
+          "execution_state": "not_executed",
+          "negative_class_assignment": {
+            "classification": "F04_STATE_ACCEPTED_PROOF_MISSING",
+            "reason": "Accepted stateのhuman originalをL10/AI由来へ置換し、対象stateの人間原証拠を欠く。",
+            "source_pointers": [
+              {
+                "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+                "pointer": "/cases/4/cases/24/input_rule"
+              },
+              {
+                "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+                "pointer": "/cases/4/cases/24/expected_partial_values"
+              },
+              {
+                "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+                "pointer": "/cases/4/negative_cases/16/mutation"
+              }
+            ]
+          }
         },
         {
           "id": "H003-L8-F04-AI-AS-HUMAN-ACCEPTANCE",
@@ -161238,7 +162480,25 @@
             "backflow_owner": "OS-original-acceptance-record"
           },
           "effect": "none",
-          "execution_state": "not_executed"
+          "execution_state": "not_executed",
+          "negative_class_assignment": {
+            "classification": "F04_STATE_ACCEPTED_PROOF_MISSING",
+            "reason": "Accepted stateのhuman originalをL10/AI由来へ置換し、対象stateの人間原証拠を欠く。",
+            "source_pointers": [
+              {
+                "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+                "pointer": "/cases/4/cases/25/input_rule"
+              },
+              {
+                "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+                "pointer": "/cases/4/cases/25/expected_partial_values"
+              },
+              {
+                "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+                "pointer": "/cases/4/negative_cases/17/mutation"
+              }
+            ]
+          }
         },
         {
           "id": "H003-L8-F04-PORT-ROLLBACK-MISSING",
@@ -161425,7 +162685,25 @@
             "backflow_owner": "port-evidence-owner"
           },
           "effect": "none",
-          "execution_state": "not_executed"
+          "execution_state": "not_executed",
+          "negative_class_assignment": {
+            "classification": "F04_STATE_RELEASE-ELIGIBLE_PROOF_MISSING",
+            "reason": "Release-eligible proofを除去、または必須rollback observationを欠落させる。",
+            "source_pointers": [
+              {
+                "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+                "pointer": "/cases/4/cases/26/input_rule"
+              },
+              {
+                "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+                "pointer": "/cases/4/cases/26/expected_partial_values"
+              },
+              {
+                "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+                "pointer": "/cases/4/negative_cases/18/mutation"
+              }
+            ]
+          }
         },
         {
           "id": "H003-L8-F04-DEPLOY-AS-OBSERVED",
@@ -161612,7 +162890,25 @@
             "backflow_owner": "L12-operation-evaluation-owner"
           },
           "effect": "none",
-          "execution_state": "not_executed"
+          "execution_state": "not_executed",
+          "negative_class_assignment": {
+            "classification": "F04_STATE_OBSERVED_PROOF_MISSING",
+            "reason": "Observed state proofを除去/実deploymentに置換し、運用観測の原証拠を欠く。",
+            "source_pointers": [
+              {
+                "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+                "pointer": "/cases/4/cases/27/input_rule"
+              },
+              {
+                "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+                "pointer": "/cases/4/cases/27/expected_partial_values"
+              },
+              {
+                "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+                "pointer": "/cases/4/negative_cases/19/mutation"
+              }
+            ]
+          }
         },
         {
           "id": "H003-L8-F04-FOREIGN-ARTIFACT",
@@ -161799,7 +163095,25 @@
             "backflow_owner": "OS-deployment-original-record"
           },
           "effect": "none",
-          "execution_state": "not_executed"
+          "execution_state": "not_executed",
+          "negative_class_assignment": {
+            "classification": "F04_STATE_DEPLOYED_PROOF_MISSING",
+            "reason": "Deployed proofを除去、またはproofのenvironment/artifact bindingを別対象へ変える。",
+            "source_pointers": [
+              {
+                "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+                "pointer": "/cases/4/cases/28/input_rule"
+              },
+              {
+                "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+                "pointer": "/cases/4/cases/28/expected_partial_values"
+              },
+              {
+                "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+                "pointer": "/cases/4/negative_cases/20/mutation"
+              }
+            ]
+          }
         },
         {
           "id": "H003-L8-F04-UNTRUSTED-CLAIM-ONLY",
@@ -161986,7 +163300,25 @@
             "backflow_owner": "system-verification-owner"
           },
           "effect": "none",
-          "execution_state": "not_executed"
+          "execution_state": "not_executed",
+          "negative_class_assignment": {
+            "classification": "F04_STATE_VERIFIED_PROOF_MISSING",
+            "reason": "Verified proofを除去/未確定claimへ置換する、または必要system proofの欠落/不一致を起こす。",
+            "source_pointers": [
+              {
+                "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+                "pointer": "/cases/4/cases/29/input_rule"
+              },
+              {
+                "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+                "pointer": "/cases/4/cases/29/expected_partial_values"
+              },
+              {
+                "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+                "pointer": "/cases/4/negative_cases/21/mutation"
+              }
+            ]
+          }
         },
         {
           "id": "H003-L8-F04-PROVISIONAL-WHOLE",
@@ -191625,7 +192957,25 @@
           },
           "candidate_constraint": {},
           "effect": "none",
-          "execution_state": "not_executed"
+          "execution_state": "not_executed",
+          "negative_class_assignment": {
+            "classification": "F05_REQUIRED_PORT_FIELD_MISSING",
+            "reason": "Port義務fieldまたは初期定義順の原資料を欠落/後置し、port missing/conflictを期待する。",
+            "source_pointers": [
+              {
+                "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+                "pointer": "/cases/5/cases/3/input_rule"
+              },
+              {
+                "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+                "pointer": "/cases/5/cases/3/expected_partial_values"
+              },
+              {
+                "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+                "pointer": "/cases/5/negative_cases/0/mutation"
+              }
+            ]
+          }
         },
         {
           "id": "H003-L8-F05-MISSING-artifact_identity",
@@ -192120,7 +193470,25 @@
           },
           "candidate_constraint": {},
           "effect": "none",
-          "execution_state": "not_executed"
+          "execution_state": "not_executed",
+          "negative_class_assignment": {
+            "classification": "F05_REQUIRED_PORT_FIELD_MISSING",
+            "reason": "Port義務fieldまたは初期定義順の原資料を欠落/後置し、port missing/conflictを期待する。",
+            "source_pointers": [
+              {
+                "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+                "pointer": "/cases/5/cases/4/input_rule"
+              },
+              {
+                "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+                "pointer": "/cases/5/cases/4/expected_partial_values"
+              },
+              {
+                "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+                "pointer": "/cases/5/negative_cases/1/mutation"
+              }
+            ]
+          }
         },
         {
           "id": "H003-L8-F05-MISSING-environment",
@@ -192615,7 +193983,25 @@
           },
           "candidate_constraint": {},
           "effect": "none",
-          "execution_state": "not_executed"
+          "execution_state": "not_executed",
+          "negative_class_assignment": {
+            "classification": "F05_REQUIRED_PORT_FIELD_MISSING",
+            "reason": "Port義務fieldまたは初期定義順の原資料を欠落/後置し、port missing/conflictを期待する。",
+            "source_pointers": [
+              {
+                "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+                "pointer": "/cases/5/cases/5/input_rule"
+              },
+              {
+                "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+                "pointer": "/cases/5/cases/5/expected_partial_values"
+              },
+              {
+                "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+                "pointer": "/cases/5/negative_cases/2/mutation"
+              }
+            ]
+          }
         },
         {
           "id": "H003-L8-F05-MISSING-dependencies",
@@ -193110,7 +194496,25 @@
           },
           "candidate_constraint": {},
           "effect": "none",
-          "execution_state": "not_executed"
+          "execution_state": "not_executed",
+          "negative_class_assignment": {
+            "classification": "F05_REQUIRED_PORT_FIELD_MISSING",
+            "reason": "Port義務fieldまたは初期定義順の原資料を欠落/後置し、port missing/conflictを期待する。",
+            "source_pointers": [
+              {
+                "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+                "pointer": "/cases/5/cases/6/input_rule"
+              },
+              {
+                "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+                "pointer": "/cases/5/cases/6/expected_partial_values"
+              },
+              {
+                "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+                "pointer": "/cases/5/negative_cases/3/mutation"
+              }
+            ]
+          }
         },
         {
           "id": "H003-L8-F05-MISSING-security",
@@ -193605,7 +195009,25 @@
           },
           "candidate_constraint": {},
           "effect": "none",
-          "execution_state": "not_executed"
+          "execution_state": "not_executed",
+          "negative_class_assignment": {
+            "classification": "F05_REQUIRED_PORT_FIELD_MISSING",
+            "reason": "Port義務fieldまたは初期定義順の原資料を欠落/後置し、port missing/conflictを期待する。",
+            "source_pointers": [
+              {
+                "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+                "pointer": "/cases/5/cases/7/input_rule"
+              },
+              {
+                "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+                "pointer": "/cases/5/cases/7/expected_partial_values"
+              },
+              {
+                "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+                "pointer": "/cases/5/negative_cases/4/mutation"
+              }
+            ]
+          }
         },
         {
           "id": "H003-L8-F05-MISSING-rollback",
@@ -194100,7 +195522,25 @@
           },
           "candidate_constraint": {},
           "effect": "none",
-          "execution_state": "not_executed"
+          "execution_state": "not_executed",
+          "negative_class_assignment": {
+            "classification": "F05_REQUIRED_PORT_FIELD_MISSING",
+            "reason": "Port義務fieldまたは初期定義順の原資料を欠落/後置し、port missing/conflictを期待する。",
+            "source_pointers": [
+              {
+                "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+                "pointer": "/cases/5/cases/8/input_rule"
+              },
+              {
+                "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+                "pointer": "/cases/5/cases/8/expected_partial_values"
+              },
+              {
+                "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+                "pointer": "/cases/5/negative_cases/5/mutation"
+              }
+            ]
+          }
         },
         {
           "id": "H003-L8-F05-MISSING-deployment_conditions",
@@ -194595,7 +196035,25 @@
           },
           "candidate_constraint": {},
           "effect": "none",
-          "execution_state": "not_executed"
+          "execution_state": "not_executed",
+          "negative_class_assignment": {
+            "classification": "F05_REQUIRED_PORT_FIELD_MISSING",
+            "reason": "Port義務fieldまたは初期定義順の原資料を欠落/後置し、port missing/conflictを期待する。",
+            "source_pointers": [
+              {
+                "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+                "pointer": "/cases/5/cases/9/input_rule"
+              },
+              {
+                "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+                "pointer": "/cases/5/cases/9/expected_partial_values"
+              },
+              {
+                "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+                "pointer": "/cases/5/negative_cases/6/mutation"
+              }
+            ]
+          }
         },
         {
           "id": "H003-L8-F05-MISSING-acceptance",
@@ -195090,7 +196548,25 @@
           },
           "candidate_constraint": {},
           "effect": "none",
-          "execution_state": "not_executed"
+          "execution_state": "not_executed",
+          "negative_class_assignment": {
+            "classification": "F05_REQUIRED_PORT_FIELD_MISSING",
+            "reason": "Port義務fieldまたは初期定義順の原資料を欠落/後置し、port missing/conflictを期待する。",
+            "source_pointers": [
+              {
+                "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+                "pointer": "/cases/5/cases/10/input_rule"
+              },
+              {
+                "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+                "pointer": "/cases/5/cases/10/expected_partial_values"
+              },
+              {
+                "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+                "pointer": "/cases/5/negative_cases/7/mutation"
+              }
+            ]
+          }
         },
         {
           "id": "H003-L8-F05-PORT-AFTER-START",
@@ -195585,7 +197061,25 @@
           },
           "candidate_constraint": {},
           "effect": "none",
-          "execution_state": "not_executed"
+          "execution_state": "not_executed",
+          "negative_class_assignment": {
+            "classification": "F05_REQUIRED_PORT_FIELD_MISSING",
+            "reason": "Port義務fieldまたは初期定義順の原資料を欠落/後置し、port missing/conflictを期待する。",
+            "source_pointers": [
+              {
+                "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+                "pointer": "/cases/5/cases/11/input_rule"
+              },
+              {
+                "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+                "pointer": "/cases/5/cases/11/expected_partial_values"
+              },
+              {
+                "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+                "pointer": "/cases/5/negative_cases/8/mutation"
+              }
+            ]
+          }
         },
         {
           "id": "H003-L8-F05-FOREIGN-ARTIFACT",
@@ -197068,7 +198562,25 @@
           },
           "candidate_constraint": {},
           "effect": "none",
-          "execution_state": "not_executed"
+          "execution_state": "not_executed",
+          "negative_class_assignment": {
+            "classification": "F05_EXISTING_AUTHORITY_UNKNOWN",
+            "reason": "既存release authority原記録を除去し、authority_result missingで未確定を返す。",
+            "source_pointers": [
+              {
+                "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+                "pointer": "/cases/5/cases/14/input_rule"
+              },
+              {
+                "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+                "pointer": "/cases/5/cases/14/expected_partial_values"
+              },
+              {
+                "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+                "pointer": "/cases/5/negative_cases/11/mutation"
+              }
+            ]
+          }
         },
         {
           "id": "H003-L8-F05-AUTHORITY-FOREIGN-OP",
@@ -200032,7 +201544,25 @@
             "candidate_conflicting_field": "permanent_remedy_result"
           },
           "effect": "none",
-          "execution_state": "not_executed"
+          "execution_state": "not_executed",
+          "negative_class_assignment": {
+            "classification": "F05_COMPLETION_BACKFILL_CONFLICT",
+            "reason": "deployment/Issue close/Reverse fullbackを恒久対策・backfill・完了へ昇格し、元期待は未完了/conflictを保つ。",
+            "source_pointers": [
+              {
+                "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+                "pointer": "/cases/5/cases/20/input_rule"
+              },
+              {
+                "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+                "pointer": "/cases/5/cases/20/expected_partial_values"
+              },
+              {
+                "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+                "pointer": "/cases/5/negative_cases/17/mutation"
+              }
+            ]
+          }
         },
         {
           "id": "H003-L8-F05-ISSUE-CLOSE-AS-BACKFILL",
@@ -200528,7 +202058,25 @@
             "candidate_conflicting_field": "backfill_missing"
           },
           "effect": "none",
-          "execution_state": "not_executed"
+          "execution_state": "not_executed",
+          "negative_class_assignment": {
+            "classification": "F05_COMPLETION_BACKFILL_CONFLICT",
+            "reason": "deployment/Issue close/Reverse fullbackを恒久対策・backfill・完了へ昇格し、元期待は未完了/conflictを保つ。",
+            "source_pointers": [
+              {
+                "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+                "pointer": "/cases/5/cases/21/input_rule"
+              },
+              {
+                "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+                "pointer": "/cases/5/cases/21/expected_partial_values"
+              },
+              {
+                "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+                "pointer": "/cases/5/negative_cases/18/mutation"
+              }
+            ]
+          }
         },
         {
           "id": "H003-L8-F05-UNKNOWN-RETURN-FILLED",
@@ -201024,7 +202572,25 @@
             "candidate_conflicting_field": "return_layer_result"
           },
           "effect": "none",
-          "execution_state": "not_executed"
+          "execution_state": "not_executed",
+          "negative_class_assignment": {
+            "classification": "F05_RETURN_TARGET_UNKNOWN",
+            "reason": "return_layer_result unknownを未根拠のL4へ埋めるmutationだが、元期待はunknownを保持する。",
+            "source_pointers": [
+              {
+                "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+                "pointer": "/cases/5/cases/22/input_rule"
+              },
+              {
+                "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+                "pointer": "/cases/5/cases/22/expected_partial_values"
+              },
+              {
+                "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+                "pointer": "/cases/5/negative_cases/19/mutation"
+              }
+            ]
+          }
         },
         {
           "id": "H003-L8-F05-FULLBACK-AS-EXECUTED",
@@ -201520,7 +203086,25 @@
             "candidate_conflicting_field": "reverse_fullback_result"
           },
           "effect": "none",
-          "execution_state": "not_executed"
+          "execution_state": "not_executed",
+          "negative_class_assignment": {
+            "classification": "F05_COMPLETION_BACKFILL_CONFLICT",
+            "reason": "deployment/Issue close/Reverse fullbackを恒久対策・backfill・完了へ昇格し、元期待は未完了/conflictを保つ。",
+            "source_pointers": [
+              {
+                "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+                "pointer": "/cases/5/cases/23/input_rule"
+              },
+              {
+                "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+                "pointer": "/cases/5/cases/23/expected_partial_values"
+              },
+              {
+                "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+                "pointer": "/cases/5/negative_cases/20/mutation"
+              }
+            ]
+          }
         },
         {
           "id": "H003-L8-F05-PORT-AS-NEW-APPROVAL",
@@ -202016,7 +203600,25 @@
             "candidate_conflicting_field": "actual_approval_created"
           },
           "effect": "none",
-          "execution_state": "not_executed"
+          "execution_state": "not_executed",
+          "negative_class_assignment": {
+            "classification": "F05_OPERATION_EFFECT_CONFLICT",
+            "reason": "Portからactual_approval_created=trueを生成し、元期待はoperation effectをconflictとする。",
+            "source_pointers": [
+              {
+                "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+                "pointer": "/cases/5/cases/24/input_rule"
+              },
+              {
+                "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+                "pointer": "/cases/5/cases/24/expected_partial_values"
+              },
+              {
+                "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+                "pointer": "/cases/5/negative_cases/21/mutation"
+              }
+            ]
+          }
         },
         {
           "id": "H003-L8-F05-CLOSED-ISSUE",
@@ -202509,7 +204111,25 @@
           },
           "candidate_constraint": {},
           "effect": "none",
-          "execution_state": "not_executed"
+          "execution_state": "not_executed",
+          "negative_class_assignment": {
+            "classification": "F05_COMPLETION_BACKFILL_CONFLICT",
+            "reason": "deployment/Issue close/Reverse fullbackを恒久対策・backfill・完了へ昇格し、元期待は未完了/conflictを保つ。",
+            "source_pointers": [
+              {
+                "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+                "pointer": "/cases/5/cases/25/input_rule"
+              },
+              {
+                "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+                "pointer": "/cases/5/cases/25/expected_partial_values"
+              },
+              {
+                "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+                "pointer": "/cases/5/negative_cases/22/mutation"
+              }
+            ]
+          }
         },
         {
           "id": "H003-L8-F05-SYSTEM-BALANCE-FAIL",
@@ -208921,6 +210541,24 @@
             "projection_scope": "このexact basic_case/hashのこのfieldだけ。一般のknown false/空集合/nullをunknownへ変換しない。",
             "upstream_effect": "L9 raw bytes/flat期待は無改変で保全。後続比較はこの写像を明示して行い、L9とL8の生の表現を直接同値としない。",
             "authority_effect": "none"
+          },
+          "negative_class_assignment": {
+            "classification": "N01_TARGET_ENVIRONMENT_EVIDENCE_MISSING",
+            "reason": "対象環境quality evidenceを別environment/legacy provider/CI evidenceで置換し、対象環境の証拠が欠ける。",
+            "source_pointers": [
+              {
+                "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+                "pointer": "/cases/6/cases/3/input_rule"
+              },
+              {
+                "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+                "pointer": "/cases/6/cases/3/expected_partial_values"
+              },
+              {
+                "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+                "pointer": "/cases/6/negative_cases/0/mutation"
+              }
+            ]
           }
         },
         {
@@ -210215,6 +211853,24 @@
             "projection_scope": "このexact basic_case/hashのこのfieldだけ。一般のknown false/空集合/nullをunknownへ変換しない。",
             "upstream_effect": "L9 raw bytes/flat期待は無改変で保全。後続比較はこの写像を明示して行い、L9とL8の生の表現を直接同値としない。",
             "authority_effect": "none"
+          },
+          "negative_class_assignment": {
+            "classification": "N01_QUALITY_STAGE_EVIDENCE_MISSING",
+            "reason": "designed/implemented/verified/observed/operatedの自段階evidenceを除去または別段階で代用する。",
+            "source_pointers": [
+              {
+                "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+                "pointer": "/cases/6/cases/5/input_rule"
+              },
+              {
+                "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+                "pointer": "/cases/6/cases/5/expected_partial_values"
+              },
+              {
+                "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+                "pointer": "/cases/6/negative_cases/2/mutation"
+              }
+            ]
           }
         },
         {
@@ -210862,6 +212518,24 @@
             "projection_scope": "このexact basic_case/hashのこのfieldだけ。一般のknown false/空集合/nullをunknownへ変換しない。",
             "upstream_effect": "L9 raw bytes/flat期待は無改変で保全。後続比較はこの写像を明示して行い、L9とL8の生の表現を直接同値としない。",
             "authority_effect": "none"
+          },
+          "negative_class_assignment": {
+            "classification": "N01_QUALITY_APPLICABILITY_UNKNOWN",
+            "reason": "quality applicabilityをunknownへ変えるか、N/A理由を除去しunknown basisを生む。",
+            "source_pointers": [
+              {
+                "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+                "pointer": "/cases/6/cases/6/input_rule"
+              },
+              {
+                "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+                "pointer": "/cases/6/cases/6/expected_partial_values"
+              },
+              {
+                "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+                "pointer": "/cases/6/negative_cases/3/mutation"
+              }
+            ]
           }
         },
         {
@@ -211509,6 +213183,24 @@
             "projection_scope": "このexact basic_case/hashのこのfieldだけ。一般のknown false/空集合/nullをunknownへ変換しない。",
             "upstream_effect": "L9 raw bytes/flat期待は無改変で保全。後続比較はこの写像を明示して行い、L9とL8の生の表現を直接同値としない。",
             "authority_effect": "none"
+          },
+          "negative_class_assignment": {
+            "classification": "N01_QUALITY_APPLICABILITY_UNKNOWN",
+            "reason": "quality applicabilityをunknownへ変えるか、N/A理由を除去しunknown basisを生む。",
+            "source_pointers": [
+              {
+                "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+                "pointer": "/cases/6/cases/7/input_rule"
+              },
+              {
+                "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+                "pointer": "/cases/6/cases/7/expected_partial_values"
+              },
+              {
+                "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+                "pointer": "/cases/6/negative_cases/4/mutation"
+              }
+            ]
           }
         },
         {
@@ -212803,6 +214495,24 @@
             "projection_scope": "このexact basic_case/hashのこのfieldだけ。一般のknown false/空集合/nullをunknownへ変換しない。",
             "upstream_effect": "L9 raw bytes/flat期待は無改変で保全。後続比較はこの写像を明示して行い、L9とL8の生の表現を直接同値としない。",
             "authority_effect": "none"
+          },
+          "negative_class_assignment": {
+            "classification": "N01_SECURITY_AUTHORITY_CONFLICT",
+            "reason": "OS/process/design referenceからSECURITY policy/operation authorizationを生成するmutationである。",
+            "source_pointers": [
+              {
+                "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+                "pointer": "/cases/6/cases/9/input_rule"
+              },
+              {
+                "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+                "pointer": "/cases/6/cases/9/expected_partial_values"
+              },
+              {
+                "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+                "pointer": "/cases/6/negative_cases/6/mutation"
+              }
+            ]
           }
         },
         {
@@ -214747,6 +216457,24 @@
             "projection_scope": "このexact basic_case/hashのこのfieldだけ。一般のknown false/空集合/nullをunknownへ変換しない。",
             "upstream_effect": "L9 raw bytes/flat期待は無改変で保全。後続比較はこの写像を明示して行い、L9とL8の生の表現を直接同値としない。",
             "authority_effect": "none"
+          },
+          "negative_class_assignment": {
+            "classification": "N01_HEALTH_OBSERVATION_UNKNOWN",
+            "reason": "実観測がない状態でhealthy=trueを主張し、元期待がそのclaimをconflictとして返す。",
+            "source_pointers": [
+              {
+                "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+                "pointer": "/cases/6/cases/12/input_rule"
+              },
+              {
+                "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+                "pointer": "/cases/6/cases/12/expected_partial_values"
+              },
+              {
+                "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+                "pointer": "/cases/6/negative_cases/9/mutation"
+              }
+            ]
           }
         },
         {
@@ -215397,6 +217125,24 @@
             "projection_scope": "このexact basic_case/hashのこのfieldだけ。一般のknown false/空集合/nullをunknownへ変換しない。",
             "upstream_effect": "L9 raw bytes/flat期待は無改変で保全。後続比較はこの写像を明示して行い、L9とL8の生の表現を直接同値としない。",
             "authority_effect": "none"
+          },
+          "negative_class_assignment": {
+            "classification": "N01_SECURITY_AUTHORITY_CONFLICT",
+            "reason": "OS/process/design referenceからSECURITY policy/operation authorizationを生成するmutationである。",
+            "source_pointers": [
+              {
+                "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+                "pointer": "/cases/6/cases/13/input_rule"
+              },
+              {
+                "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+                "pointer": "/cases/6/cases/13/expected_partial_values"
+              },
+              {
+                "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+                "pointer": "/cases/6/negative_cases/10/mutation"
+              }
+            ]
           }
         },
         {
@@ -216047,6 +217793,24 @@
             "projection_scope": "このexact basic_case/hashのこのfieldだけ。一般のknown false/空集合/nullをunknownへ変換しない。",
             "upstream_effect": "L9 raw bytes/flat期待は無改変で保全。後続比較はこの写像を明示して行い、L9とL8の生の表現を直接同値としない。",
             "authority_effect": "none"
+          },
+          "negative_class_assignment": {
+            "classification": "N01_SECURITY_AUTHORITY_CONFLICT",
+            "reason": "OS/process/design referenceからSECURITY policy/operation authorizationを生成するmutationである。",
+            "source_pointers": [
+              {
+                "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+                "pointer": "/cases/6/cases/14/input_rule"
+              },
+              {
+                "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+                "pointer": "/cases/6/cases/14/expected_partial_values"
+              },
+              {
+                "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+                "pointer": "/cases/6/negative_cases/11/mutation"
+              }
+            ]
           }
         },
         {
@@ -217347,6 +219111,24 @@
             "projection_scope": "このexact basic_case/hashのこのfieldだけ。一般のknown false/空集合/nullをunknownへ変換しない。",
             "upstream_effect": "L9 raw bytes/flat期待は無改変で保全。後続比較はこの写像を明示して行い、L9とL8の生の表現を直接同値としない。",
             "authority_effect": "none"
+          },
+          "negative_class_assignment": {
+            "classification": "N01_QUALITY_STAGE_EVIDENCE_MISSING",
+            "reason": "designed/implemented/verified/observed/operatedの自段階evidenceを除去または別段階で代用する。",
+            "source_pointers": [
+              {
+                "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+                "pointer": "/cases/6/cases/16/input_rule"
+              },
+              {
+                "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+                "pointer": "/cases/6/cases/16/expected_partial_values"
+              },
+              {
+                "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+                "pointer": "/cases/6/negative_cases/13/mutation"
+              }
+            ]
           }
         },
         {
@@ -217997,6 +219779,24 @@
             "projection_scope": "このexact basic_case/hashのこのfieldだけ。一般のknown false/空集合/nullをunknownへ変換しない。",
             "upstream_effect": "L9 raw bytes/flat期待は無改変で保全。後続比較はこの写像を明示して行い、L9とL8の生の表現を直接同値としない。",
             "authority_effect": "none"
+          },
+          "negative_class_assignment": {
+            "classification": "N01_QUALITY_STAGE_EVIDENCE_MISSING",
+            "reason": "designed/implemented/verified/observed/operatedの自段階evidenceを除去または別段階で代用する。",
+            "source_pointers": [
+              {
+                "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+                "pointer": "/cases/6/cases/17/input_rule"
+              },
+              {
+                "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+                "pointer": "/cases/6/cases/17/expected_partial_values"
+              },
+              {
+                "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+                "pointer": "/cases/6/negative_cases/14/mutation"
+              }
+            ]
           }
         },
         {
@@ -218647,6 +220447,24 @@
             "projection_scope": "このexact basic_case/hashのこのfieldだけ。一般のknown false/空集合/nullをunknownへ変換しない。",
             "upstream_effect": "L9 raw bytes/flat期待は無改変で保全。後続比較はこの写像を明示して行い、L9とL8の生の表現を直接同値としない。",
             "authority_effect": "none"
+          },
+          "negative_class_assignment": {
+            "classification": "N01_QUALITY_STAGE_EVIDENCE_MISSING",
+            "reason": "designed/implemented/verified/observed/operatedの自段階evidenceを除去または別段階で代用する。",
+            "source_pointers": [
+              {
+                "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+                "pointer": "/cases/6/cases/18/input_rule"
+              },
+              {
+                "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+                "pointer": "/cases/6/cases/18/expected_partial_values"
+              },
+              {
+                "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+                "pointer": "/cases/6/negative_cases/15/mutation"
+              }
+            ]
           }
         },
         {
@@ -219297,6 +221115,24 @@
             "projection_scope": "このexact basic_case/hashのこのfieldだけ。一般のknown false/空集合/nullをunknownへ変換しない。",
             "upstream_effect": "L9 raw bytes/flat期待は無改変で保全。後続比較はこの写像を明示して行い、L9とL8の生の表現を直接同値としない。",
             "authority_effect": "none"
+          },
+          "negative_class_assignment": {
+            "classification": "N01_QUALITY_STAGE_EVIDENCE_MISSING",
+            "reason": "designed/implemented/verified/observed/operatedの自段階evidenceを除去または別段階で代用する。",
+            "source_pointers": [
+              {
+                "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+                "pointer": "/cases/6/cases/19/input_rule"
+              },
+              {
+                "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+                "pointer": "/cases/6/cases/19/expected_partial_values"
+              },
+              {
+                "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+                "pointer": "/cases/6/negative_cases/16/mutation"
+              }
+            ]
           }
         },
         {
@@ -223197,6 +225033,24 @@
             "projection_scope": "このexact basic_case/hashのこのfieldだけ。一般のknown false/空集合/nullをunknownへ変換しない。",
             "upstream_effect": "L9 raw bytes/flat期待は無改変で保全。後続比較はこの写像を明示して行い、L9とL8の生の表現を直接同値としない。",
             "authority_effect": "none"
+          },
+          "negative_class_assignment": {
+            "classification": "N01_NUMERIC_TARGET_UNKNOWN",
+            "reason": "承認済み根拠なしのSLO/RTO/RPO/retentionをtarget_resultsへ注入し、元期待がclaimをconflictとする。",
+            "source_pointers": [
+              {
+                "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+                "pointer": "/cases/6/cases/25/input_rule"
+              },
+              {
+                "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+                "pointer": "/cases/6/cases/25/expected_partial_values"
+              },
+              {
+                "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+                "pointer": "/cases/6/negative_cases/22/mutation"
+              }
+            ]
           }
         },
         {
@@ -223847,6 +225701,24 @@
             "projection_scope": "このexact basic_case/hashのこのfieldだけ。一般のknown false/空集合/nullをunknownへ変換しない。",
             "upstream_effect": "L9 raw bytes/flat期待は無改変で保全。後続比較はこの写像を明示して行い、L9とL8の生の表現を直接同値としない。",
             "authority_effect": "none"
+          },
+          "negative_class_assignment": {
+            "classification": "N01_NUMERIC_TARGET_UNKNOWN",
+            "reason": "承認済み根拠なしのSLO/RTO/RPO/retentionをtarget_resultsへ注入し、元期待がclaimをconflictとする。",
+            "source_pointers": [
+              {
+                "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+                "pointer": "/cases/6/cases/26/input_rule"
+              },
+              {
+                "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+                "pointer": "/cases/6/cases/26/expected_partial_values"
+              },
+              {
+                "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+                "pointer": "/cases/6/negative_cases/23/mutation"
+              }
+            ]
           }
         },
         {
@@ -224497,6 +226369,24 @@
             "projection_scope": "このexact basic_case/hashのこのfieldだけ。一般のknown false/空集合/nullをunknownへ変換しない。",
             "upstream_effect": "L9 raw bytes/flat期待は無改変で保全。後続比較はこの写像を明示して行い、L9とL8の生の表現を直接同値としない。",
             "authority_effect": "none"
+          },
+          "negative_class_assignment": {
+            "classification": "N01_NUMERIC_TARGET_UNKNOWN",
+            "reason": "承認済み根拠なしのSLO/RTO/RPO/retentionをtarget_resultsへ注入し、元期待がclaimをconflictとする。",
+            "source_pointers": [
+              {
+                "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+                "pointer": "/cases/6/cases/27/input_rule"
+              },
+              {
+                "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+                "pointer": "/cases/6/cases/27/expected_partial_values"
+              },
+              {
+                "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+                "pointer": "/cases/6/negative_cases/24/mutation"
+              }
+            ]
           }
         },
         {
@@ -225147,6 +227037,24 @@
             "projection_scope": "このexact basic_case/hashのこのfieldだけ。一般のknown false/空集合/nullをunknownへ変換しない。",
             "upstream_effect": "L9 raw bytes/flat期待は無改変で保全。後続比較はこの写像を明示して行い、L9とL8の生の表現を直接同値としない。",
             "authority_effect": "none"
+          },
+          "negative_class_assignment": {
+            "classification": "N01_NUMERIC_TARGET_UNKNOWN",
+            "reason": "承認済み根拠なしのSLO/RTO/RPO/retentionをtarget_resultsへ注入し、元期待がclaimをconflictとする。",
+            "source_pointers": [
+              {
+                "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+                "pointer": "/cases/6/cases/28/input_rule"
+              },
+              {
+                "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+                "pointer": "/cases/6/cases/28/expected_partial_values"
+              },
+              {
+                "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+                "pointer": "/cases/6/negative_cases/25/mutation"
+              }
+            ]
           }
         },
         {
@@ -225794,6 +227702,24 @@
             "projection_scope": "このexact basic_case/hashのこのfieldだけ。一般のknown false/空集合/nullをunknownへ変換しない。",
             "upstream_effect": "L9 raw bytes/flat期待は無改変で保全。後続比較はこの写像を明示して行い、L9とL8の生の表現を直接同値としない。",
             "authority_effect": "none"
+          },
+          "negative_class_assignment": {
+            "classification": "N01_TARGET_ENVIRONMENT_EVIDENCE_MISSING",
+            "reason": "対象環境quality evidenceを別environment/legacy provider/CI evidenceで置換し、対象環境の証拠が欠ける。",
+            "source_pointers": [
+              {
+                "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+                "pointer": "/cases/6/cases/29/input_rule"
+              },
+              {
+                "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+                "pointer": "/cases/6/cases/29/expected_partial_values"
+              },
+              {
+                "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+                "pointer": "/cases/6/negative_cases/26/mutation"
+              }
+            ]
           }
         },
         {
@@ -226441,6 +228367,24 @@
             "projection_scope": "このexact basic_case/hashのこのfieldだけ。一般のknown false/空集合/nullをunknownへ変換しない。",
             "upstream_effect": "L9 raw bytes/flat期待は無改変で保全。後続比較はこの写像を明示して行い、L9とL8の生の表現を直接同値としない。",
             "authority_effect": "none"
+          },
+          "negative_class_assignment": {
+            "classification": "N01_QUALITY_STAGE_EVIDENCE_MISSING",
+            "reason": "designed/implemented/verified/observed/operatedの自段階evidenceを除去または別段階で代用する。",
+            "source_pointers": [
+              {
+                "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+                "pointer": "/cases/6/cases/30/input_rule"
+              },
+              {
+                "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+                "pointer": "/cases/6/cases/30/expected_partial_values"
+              },
+              {
+                "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+                "pointer": "/cases/6/negative_cases/27/mutation"
+              }
+            ]
           }
         },
         {
@@ -227735,6 +229679,24 @@
             "projection_scope": "このexact basic_case/hashのこのfieldだけ。一般のknown false/空集合/nullをunknownへ変換しない。",
             "upstream_effect": "L9 raw bytes/flat期待は無改変で保全。後続比較はこの写像を明示して行い、L9とL8の生の表現を直接同値としない。",
             "authority_effect": "none"
+          },
+          "negative_class_assignment": {
+            "classification": "N01_TARGET_ENVIRONMENT_EVIDENCE_MISSING",
+            "reason": "対象環境quality evidenceを別environment/legacy provider/CI evidenceで置換し、対象環境の証拠が欠ける。",
+            "source_pointers": [
+              {
+                "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+                "pointer": "/cases/6/cases/32/input_rule"
+              },
+              {
+                "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+                "pointer": "/cases/6/cases/32/expected_partial_values"
+              },
+              {
+                "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+                "pointer": "/cases/6/negative_cases/29/mutation"
+              }
+            ]
           }
         },
         {
@@ -228382,6 +230344,24 @@
             "projection_scope": "このexact basic_case/hashのこのfieldだけ。一般のknown false/空集合/nullをunknownへ変換しない。",
             "upstream_effect": "L9 raw bytes/flat期待は無改変で保全。後続比較はこの写像を明示して行い、L9とL8の生の表現を直接同値としない。",
             "authority_effect": "none"
+          },
+          "negative_class_assignment": {
+            "classification": "N01_QUALITY_STAGE_EVIDENCE_MISSING",
+            "reason": "designed/implemented/verified/observed/operatedの自段階evidenceを除去または別段階で代用する。",
+            "source_pointers": [
+              {
+                "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+                "pointer": "/cases/6/cases/33/input_rule"
+              },
+              {
+                "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+                "pointer": "/cases/6/cases/33/expected_partial_values"
+              },
+              {
+                "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+                "pointer": "/cases/6/negative_cases/30/mutation"
+              }
+            ]
           }
         },
         {
@@ -229676,6 +231656,24 @@
             "projection_scope": "このexact basic_case/hashのこのfieldだけ。一般のknown false/空集合/nullをunknownへ変換しない。",
             "upstream_effect": "L9 raw bytes/flat期待は無改変で保全。後続比較はこの写像を明示して行い、L9とL8の生の表現を直接同値としない。",
             "authority_effect": "none"
+          },
+          "negative_class_assignment": {
+            "classification": "N01_TARGET_ENVIRONMENT_EVIDENCE_MISSING",
+            "reason": "対象環境quality evidenceを別environment/legacy provider/CI evidenceで置換し、対象環境の証拠が欠ける。",
+            "source_pointers": [
+              {
+                "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+                "pointer": "/cases/6/cases/35/input_rule"
+              },
+              {
+                "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+                "pointer": "/cases/6/cases/35/expected_partial_values"
+              },
+              {
+                "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+                "pointer": "/cases/6/negative_cases/32/mutation"
+              }
+            ]
           }
         },
         {
@@ -230323,6 +232321,24 @@
             "projection_scope": "このexact basic_case/hashのこのfieldだけ。一般のknown false/空集合/nullをunknownへ変換しない。",
             "upstream_effect": "L9 raw bytes/flat期待は無改変で保全。後続比較はこの写像を明示して行い、L9とL8の生の表現を直接同値としない。",
             "authority_effect": "none"
+          },
+          "negative_class_assignment": {
+            "classification": "N01_TARGET_ENVIRONMENT_EVIDENCE_MISSING",
+            "reason": "対象環境quality evidenceを別environment/legacy provider/CI evidenceで置換し、対象環境の証拠が欠ける。",
+            "source_pointers": [
+              {
+                "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+                "pointer": "/cases/6/cases/36/input_rule"
+              },
+              {
+                "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+                "pointer": "/cases/6/cases/36/expected_partial_values"
+              },
+              {
+                "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+                "pointer": "/cases/6/negative_cases/33/mutation"
+              }
+            ]
           }
         },
         {
@@ -230970,6 +232986,24 @@
             "projection_scope": "このexact basic_case/hashのこのfieldだけ。一般のknown false/空集合/nullをunknownへ変換しない。",
             "upstream_effect": "L9 raw bytes/flat期待は無改変で保全。後続比較はこの写像を明示して行い、L9とL8の生の表現を直接同値としない。",
             "authority_effect": "none"
+          },
+          "negative_class_assignment": {
+            "classification": "N01_TARGET_ENVIRONMENT_EVIDENCE_MISSING",
+            "reason": "対象環境quality evidenceを別environment/legacy provider/CI evidenceで置換し、対象環境の証拠が欠ける。",
+            "source_pointers": [
+              {
+                "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+                "pointer": "/cases/6/cases/37/input_rule"
+              },
+              {
+                "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+                "pointer": "/cases/6/cases/37/expected_partial_values"
+              },
+              {
+                "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+                "pointer": "/cases/6/negative_cases/34/mutation"
+              }
+            ]
           }
         }
       ],

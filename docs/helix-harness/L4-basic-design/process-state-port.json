@@ -561,18 +561,15 @@
         },
         {
           "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
-          "pointer": "/contracts/0/invariants",
-          "revision": "827c4ea924a15b6b54bbe9d1f5d2f9fbdefa65de"
+          "pointer": "/contracts/0/invariants"
         },
         {
           "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
-          "pointer": "/contracts/0/connection_detail/preservation",
-          "revision": "827c4ea924a15b6b54bbe9d1f5d2f9fbdefa65de"
+          "pointer": "/contracts/0/connection_detail/preservation"
         },
         {
           "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
-          "pointer": "/contracts/0/connection_detail/management_return",
-          "revision": "827c4ea924a15b6b54bbe9d1f5d2f9fbdefa65de"
+          "pointer": "/contracts/0/connection_detail/management_return"
         }
       ],
       "negative_classifications": [
@@ -814,18 +811,15 @@
         },
         {
           "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
-          "pointer": "/contracts/1/invariants",
-          "revision": "827c4ea924a15b6b54bbe9d1f5d2f9fbdefa65de"
+          "pointer": "/contracts/1/invariants"
         },
         {
           "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
-          "pointer": "/contracts/1/connection_detail/operation_distinction",
-          "revision": "827c4ea924a15b6b54bbe9d1f5d2f9fbdefa65de"
+          "pointer": "/contracts/1/connection_detail/operation_distinction"
         },
         {
           "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
-          "pointer": "/contracts/1/connection_detail/delegation",
-          "revision": "827c4ea924a15b6b54bbe9d1f5d2f9fbdefa65de"
+          "pointer": "/contracts/1/connection_detail/delegation"
         }
       ],
       "negative_classifications": [
@@ -1022,18 +1016,15 @@
         },
         {
           "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
-          "pointer": "/contracts/2/invariants",
-          "revision": "827c4ea924a15b6b54bbe9d1f5d2f9fbdefa65de"
+          "pointer": "/contracts/2/invariants"
         },
         {
           "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
-          "pointer": "/contracts/2/connection_detail/no_result_case",
-          "revision": "827c4ea924a15b6b54bbe9d1f5d2f9fbdefa65de"
+          "pointer": "/contracts/2/connection_detail/no_result_case"
         },
         {
           "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
-          "pointer": "/contracts/2/connection_detail/condition_limit",
-          "revision": "827c4ea924a15b6b54bbe9d1f5d2f9fbdefa65de"
+          "pointer": "/contracts/2/connection_detail/condition_limit"
         }
       ],
       "negative_classifications": [
@@ -1768,23 +1759,19 @@
         },
         {
           "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
-          "pointer": "/contracts/3/invariants",
-          "revision": "827c4ea924a15b6b54bbe9d1f5d2f9fbdefa65de"
+          "pointer": "/contracts/3/invariants"
         },
         {
           "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
-          "pointer": "/contracts/3/connection_detail/scope_policy",
-          "revision": "827c4ea924a15b6b54bbe9d1f5d2f9fbdefa65de"
+          "pointer": "/contracts/3/connection_detail/scope_policy"
         },
         {
           "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
-          "pointer": "/contracts/3/connection_detail/partial_results",
-          "revision": "827c4ea924a15b6b54bbe9d1f5d2f9fbdefa65de"
+          "pointer": "/contracts/3/connection_detail/partial_results"
         },
         {
           "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
-          "pointer": "/contracts/3/connection_detail/backflow_axes",
-          "revision": "827c4ea924a15b6b54bbe9d1f5d2f9fbdefa65de"
+          "pointer": "/contracts/3/connection_detail/backflow_axes"
         }
       ],
       "negative_classifications": [
@@ -1975,16 +1962,6 @@
         "l9_pointer": "/verification_obligations/4/source_binding_oracles"
       },
       "source_pointers": [
-        {
-          "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
-          "pointer": "/requirements/67/obligation",
-          "revision": "827c4ea924a15b6b54bbe9d1f5d2f9fbdefa65de"
-        },
-        {
-          "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
-          "pointer": "/contracts/4/invariants",
-          "revision": "827c4ea924a15b6b54bbe9d1f5d2f9fbdefa65de"
-        },
         {
           "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
           "pointer": "/requirements/67/obligation"
@@ -2303,23 +2280,19 @@
         },
         {
           "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
-          "pointer": "/contracts/5/invariants",
-          "revision": "827c4ea924a15b6b54bbe9d1f5d2f9fbdefa65de"
+          "pointer": "/contracts/5/invariants"
         },
         {
           "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
-          "pointer": "/contracts/5/connection_detail/initial_order",
-          "revision": "827c4ea924a15b6b54bbe9d1f5d2f9fbdefa65de"
+          "pointer": "/contracts/5/connection_detail/initial_order"
         },
         {
           "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
-          "pointer": "/contracts/5/connection_detail/completion_axes",
-          "revision": "827c4ea924a15b6b54bbe9d1f5d2f9fbdefa65de"
+          "pointer": "/contracts/5/connection_detail/completion_axes"
         },
         {
           "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
-          "pointer": "/contracts/5/connection_detail/return",
-          "revision": "827c4ea924a15b6b54bbe9d1f5d2f9fbdefa65de"
+          "pointer": "/contracts/5/connection_detail/return"
         }
       ],
       "negative_classifications": [
@@ -2555,18 +2528,15 @@
         },
         {
           "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
-          "pointer": "/contracts/6/invariants",
-          "revision": "827c4ea924a15b6b54bbe9d1f5d2f9fbdefa65de"
+          "pointer": "/contracts/6/invariants"
         },
         {
           "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
-          "pointer": "/contracts/6/connection_detail/unknown_numeric_return",
-          "revision": "827c4ea924a15b6b54bbe9d1f5d2f9fbdefa65de"
+          "pointer": "/contracts/6/connection_detail/unknown_numeric_return"
         },
         {
           "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
-          "pointer": "/contracts/6/connection_detail/partial_preservation",
-          "revision": "827c4ea924a15b6b54bbe9d1f5d2f9fbdefa65de"
+          "pointer": "/contracts/6/connection_detail/partial_preservation"
         }
       ],
       "negative_classifications": [

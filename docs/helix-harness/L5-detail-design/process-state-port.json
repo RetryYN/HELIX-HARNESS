@@ -1230,18 +1230,15 @@
         },
         {
           "path": "docs/helix-harness/L5-detail-design/process-state-port.json",
-          "pointer": "/functions/0/internal_steps/0",
-          "revision": "827c4ea924a15b6b54bbe9d1f5d2f9fbdefa65de"
+          "pointer": "/functions/0/internal_steps/0"
         },
         {
           "path": "docs/helix-harness/L5-detail-design/process-state-port.json",
-          "pointer": "/functions/0/internal_steps/1",
-          "revision": "827c4ea924a15b6b54bbe9d1f5d2f9fbdefa65de"
+          "pointer": "/functions/0/internal_steps/1"
         },
         {
           "path": "docs/helix-harness/L5-detail-design/process-state-port.json",
-          "pointer": "/functions/0/internal_steps/2",
-          "revision": "827c4ea924a15b6b54bbe9d1f5d2f9fbdefa65de"
+          "pointer": "/functions/0/internal_steps/2"
         }
       ]
     },
@@ -1435,18 +1432,15 @@
         },
         {
           "path": "docs/helix-harness/L5-detail-design/process-state-port.json",
-          "pointer": "/functions/1/internal_steps/0",
-          "revision": "827c4ea924a15b6b54bbe9d1f5d2f9fbdefa65de"
+          "pointer": "/functions/1/internal_steps/0"
         },
         {
           "path": "docs/helix-harness/L5-detail-design/process-state-port.json",
-          "pointer": "/functions/1/internal_steps/1",
-          "revision": "827c4ea924a15b6b54bbe9d1f5d2f9fbdefa65de"
+          "pointer": "/functions/1/internal_steps/1"
         },
         {
           "path": "docs/helix-harness/L5-detail-design/process-state-port.json",
-          "pointer": "/functions/1/internal_steps/2",
-          "revision": "827c4ea924a15b6b54bbe9d1f5d2f9fbdefa65de"
+          "pointer": "/functions/1/internal_steps/2"
         }
       ]
     },
@@ -1599,43 +1593,35 @@
         },
         {
           "path": "docs/helix-harness/L5-detail-design/process-state-port.json",
-          "pointer": "/functions/2/internal_steps/0",
-          "revision": "827c4ea924a15b6b54bbe9d1f5d2f9fbdefa65de"
+          "pointer": "/functions/2/internal_steps/0"
         },
         {
           "path": "docs/helix-harness/L5-detail-design/process-state-port.json",
-          "pointer": "/functions/2/internal_steps/1",
-          "revision": "827c4ea924a15b6b54bbe9d1f5d2f9fbdefa65de"
+          "pointer": "/functions/2/internal_steps/1"
         },
         {
           "path": "docs/helix-harness/L5-detail-design/process-state-port.json",
-          "pointer": "/functions/2/internal_steps/2",
-          "revision": "827c4ea924a15b6b54bbe9d1f5d2f9fbdefa65de"
+          "pointer": "/functions/2/internal_steps/2"
         },
         {
           "path": "docs/helix-harness/L5-detail-design/process-state-port.json",
-          "pointer": "/functions/2/internal_steps/3",
-          "revision": "827c4ea924a15b6b54bbe9d1f5d2f9fbdefa65de"
+          "pointer": "/functions/2/internal_steps/3"
         },
         {
           "path": "docs/helix-harness/L5-detail-design/process-state-port.json",
-          "pointer": "/functions/2/internal_steps/4",
-          "revision": "827c4ea924a15b6b54bbe9d1f5d2f9fbdefa65de"
+          "pointer": "/functions/2/internal_steps/4"
         },
         {
           "path": "docs/helix-harness/L5-detail-design/process-state-port.json",
-          "pointer": "/functions/2/internal_steps/5",
-          "revision": "827c4ea924a15b6b54bbe9d1f5d2f9fbdefa65de"
+          "pointer": "/functions/2/internal_steps/5"
         },
         {
           "path": "docs/helix-harness/L5-detail-design/process-state-port.json",
-          "pointer": "/functions/2/internal_steps/6",
-          "revision": "827c4ea924a15b6b54bbe9d1f5d2f9fbdefa65de"
+          "pointer": "/functions/2/internal_steps/6"
         },
         {
           "path": "docs/helix-harness/L5-detail-design/process-state-port.json",
-          "pointer": "/functions/2/internal_steps/7",
-          "revision": "827c4ea924a15b6b54bbe9d1f5d2f9fbdefa65de"
+          "pointer": "/functions/2/internal_steps/7"
         }
       ]
     },
@@ -2064,58 +2050,47 @@
         },
         {
           "path": "docs/helix-harness/L5-detail-design/process-state-port.json",
-          "pointer": "/functions/3/internal_steps/0",
-          "revision": "827c4ea924a15b6b54bbe9d1f5d2f9fbdefa65de"
+          "pointer": "/functions/3/internal_steps/0"
         },
         {
           "path": "docs/helix-harness/L5-detail-design/process-state-port.json",
-          "pointer": "/functions/3/internal_steps/1",
-          "revision": "827c4ea924a15b6b54bbe9d1f5d2f9fbdefa65de"
+          "pointer": "/functions/3/internal_steps/1"
         },
         {
           "path": "docs/helix-harness/L5-detail-design/process-state-port.json",
-          "pointer": "/functions/3/internal_steps/2",
-          "revision": "827c4ea924a15b6b54bbe9d1f5d2f9fbdefa65de"
+          "pointer": "/functions/3/internal_steps/2"
         },
         {
           "path": "docs/helix-harness/L5-detail-design/process-state-port.json",
-          "pointer": "/functions/3/internal_steps/3",
-          "revision": "827c4ea924a15b6b54bbe9d1f5d2f9fbdefa65de"
+          "pointer": "/functions/3/internal_steps/3"
         },
         {
           "path": "docs/helix-harness/L5-detail-design/process-state-port.json",
-          "pointer": "/functions/3/internal_steps/4",
-          "revision": "827c4ea924a15b6b54bbe9d1f5d2f9fbdefa65de"
+          "pointer": "/functions/3/internal_steps/4"
         },
         {
           "path": "docs/helix-harness/L5-detail-design/process-state-port.json",
-          "pointer": "/functions/3/internal_steps/5",
-          "revision": "827c4ea924a15b6b54bbe9d1f5d2f9fbdefa65de"
+          "pointer": "/functions/3/internal_steps/5"
         },
         {
           "path": "docs/helix-harness/L5-detail-design/process-state-port.json",
-          "pointer": "/functions/3/internal_steps/6",
-          "revision": "827c4ea924a15b6b54bbe9d1f5d2f9fbdefa65de"
+          "pointer": "/functions/3/internal_steps/6"
         },
         {
           "path": "docs/helix-harness/L5-detail-design/process-state-port.json",
-          "pointer": "/functions/3/internal_steps/7",
-          "revision": "827c4ea924a15b6b54bbe9d1f5d2f9fbdefa65de"
+          "pointer": "/functions/3/internal_steps/7"
         },
         {
           "path": "docs/helix-harness/L5-detail-design/process-state-port.json",
-          "pointer": "/functions/3/internal_steps/8",
-          "revision": "827c4ea924a15b6b54bbe9d1f5d2f9fbdefa65de"
+          "pointer": "/functions/3/internal_steps/8"
         },
         {
           "path": "docs/helix-harness/L5-detail-design/process-state-port.json",
-          "pointer": "/functions/3/internal_steps/9",
-          "revision": "827c4ea924a15b6b54bbe9d1f5d2f9fbdefa65de"
+          "pointer": "/functions/3/internal_steps/9"
         },
         {
           "path": "docs/helix-harness/L5-detail-design/process-state-port.json",
-          "pointer": "/functions/3/internal_steps/10",
-          "revision": "827c4ea924a15b6b54bbe9d1f5d2f9fbdefa65de"
+          "pointer": "/functions/3/internal_steps/10"
         }
       ]
     },
@@ -2554,53 +2529,43 @@
         },
         {
           "path": "docs/helix-harness/L5-detail-design/process-state-port.json",
-          "pointer": "/functions/4/internal_steps/0",
-          "revision": "827c4ea924a15b6b54bbe9d1f5d2f9fbdefa65de"
+          "pointer": "/functions/4/internal_steps/0"
         },
         {
           "path": "docs/helix-harness/L5-detail-design/process-state-port.json",
-          "pointer": "/functions/4/internal_steps/1",
-          "revision": "827c4ea924a15b6b54bbe9d1f5d2f9fbdefa65de"
+          "pointer": "/functions/4/internal_steps/1"
         },
         {
           "path": "docs/helix-harness/L5-detail-design/process-state-port.json",
-          "pointer": "/functions/4/internal_steps/2",
-          "revision": "827c4ea924a15b6b54bbe9d1f5d2f9fbdefa65de"
+          "pointer": "/functions/4/internal_steps/2"
         },
         {
           "path": "docs/helix-harness/L5-detail-design/process-state-port.json",
-          "pointer": "/functions/4/internal_steps/3",
-          "revision": "827c4ea924a15b6b54bbe9d1f5d2f9fbdefa65de"
+          "pointer": "/functions/4/internal_steps/3"
         },
         {
           "path": "docs/helix-harness/L5-detail-design/process-state-port.json",
-          "pointer": "/functions/4/internal_steps/4",
-          "revision": "827c4ea924a15b6b54bbe9d1f5d2f9fbdefa65de"
+          "pointer": "/functions/4/internal_steps/4"
         },
         {
           "path": "docs/helix-harness/L5-detail-design/process-state-port.json",
-          "pointer": "/functions/4/internal_steps/5",
-          "revision": "827c4ea924a15b6b54bbe9d1f5d2f9fbdefa65de"
+          "pointer": "/functions/4/internal_steps/5"
         },
         {
           "path": "docs/helix-harness/L5-detail-design/process-state-port.json",
-          "pointer": "/functions/4/internal_steps/6",
-          "revision": "827c4ea924a15b6b54bbe9d1f5d2f9fbdefa65de"
+          "pointer": "/functions/4/internal_steps/6"
         },
         {
           "path": "docs/helix-harness/L5-detail-design/process-state-port.json",
-          "pointer": "/functions/4/internal_steps/7",
-          "revision": "827c4ea924a15b6b54bbe9d1f5d2f9fbdefa65de"
+          "pointer": "/functions/4/internal_steps/7"
         },
         {
           "path": "docs/helix-harness/L5-detail-design/process-state-port.json",
-          "pointer": "/functions/4/internal_steps/8",
-          "revision": "827c4ea924a15b6b54bbe9d1f5d2f9fbdefa65de"
+          "pointer": "/functions/4/internal_steps/8"
         },
         {
           "path": "docs/helix-harness/L5-detail-design/process-state-port.json",
-          "pointer": "/functions/4/internal_steps/9",
-          "revision": "827c4ea924a15b6b54bbe9d1f5d2f9fbdefa65de"
+          "pointer": "/functions/4/internal_steps/9"
         }
       ]
     },
@@ -3798,48 +3763,39 @@
         },
         {
           "path": "docs/helix-harness/L5-detail-design/process-state-port.json",
-          "pointer": "/functions/5/internal_steps/0",
-          "revision": "827c4ea924a15b6b54bbe9d1f5d2f9fbdefa65de"
+          "pointer": "/functions/5/internal_steps/0"
         },
         {
           "path": "docs/helix-harness/L5-detail-design/process-state-port.json",
-          "pointer": "/functions/5/internal_steps/1",
-          "revision": "827c4ea924a15b6b54bbe9d1f5d2f9fbdefa65de"
+          "pointer": "/functions/5/internal_steps/1"
         },
         {
           "path": "docs/helix-harness/L5-detail-design/process-state-port.json",
-          "pointer": "/functions/5/internal_steps/2",
-          "revision": "827c4ea924a15b6b54bbe9d1f5d2f9fbdefa65de"
+          "pointer": "/functions/5/internal_steps/2"
         },
         {
           "path": "docs/helix-harness/L5-detail-design/process-state-port.json",
-          "pointer": "/functions/5/internal_steps/3",
-          "revision": "827c4ea924a15b6b54bbe9d1f5d2f9fbdefa65de"
+          "pointer": "/functions/5/internal_steps/3"
         },
         {
           "path": "docs/helix-harness/L5-detail-design/process-state-port.json",
-          "pointer": "/functions/5/internal_steps/4",
-          "revision": "827c4ea924a15b6b54bbe9d1f5d2f9fbdefa65de"
+          "pointer": "/functions/5/internal_steps/4"
         },
         {
           "path": "docs/helix-harness/L5-detail-design/process-state-port.json",
-          "pointer": "/functions/5/internal_steps/5",
-          "revision": "827c4ea924a15b6b54bbe9d1f5d2f9fbdefa65de"
+          "pointer": "/functions/5/internal_steps/5"
         },
         {
           "path": "docs/helix-harness/L5-detail-design/process-state-port.json",
-          "pointer": "/functions/5/internal_steps/6",
-          "revision": "827c4ea924a15b6b54bbe9d1f5d2f9fbdefa65de"
+          "pointer": "/functions/5/internal_steps/6"
         },
         {
           "path": "docs/helix-harness/L5-detail-design/process-state-port.json",
-          "pointer": "/functions/5/internal_steps/7",
-          "revision": "827c4ea924a15b6b54bbe9d1f5d2f9fbdefa65de"
+          "pointer": "/functions/5/internal_steps/7"
         },
         {
           "path": "docs/helix-harness/L5-detail-design/process-state-port.json",
-          "pointer": "/functions/5/internal_steps/8",
-          "revision": "827c4ea924a15b6b54bbe9d1f5d2f9fbdefa65de"
+          "pointer": "/functions/5/internal_steps/8"
         }
       ]
     },
@@ -6870,48 +6826,39 @@
         },
         {
           "path": "docs/helix-harness/L5-detail-design/process-state-port.json",
-          "pointer": "/functions/6/internal_steps/0",
-          "revision": "827c4ea924a15b6b54bbe9d1f5d2f9fbdefa65de"
+          "pointer": "/functions/6/internal_steps/0"
         },
         {
           "path": "docs/helix-harness/L5-detail-design/process-state-port.json",
-          "pointer": "/functions/6/internal_steps/1",
-          "revision": "827c4ea924a15b6b54bbe9d1f5d2f9fbdefa65de"
+          "pointer": "/functions/6/internal_steps/1"
         },
         {
           "path": "docs/helix-harness/L5-detail-design/process-state-port.json",
-          "pointer": "/functions/6/internal_steps/2",
-          "revision": "827c4ea924a15b6b54bbe9d1f5d2f9fbdefa65de"
+          "pointer": "/functions/6/internal_steps/2"
         },
         {
           "path": "docs/helix-harness/L5-detail-design/process-state-port.json",
-          "pointer": "/functions/6/internal_steps/3",
-          "revision": "827c4ea924a15b6b54bbe9d1f5d2f9fbdefa65de"
+          "pointer": "/functions/6/internal_steps/3"
         },
         {
           "path": "docs/helix-harness/L5-detail-design/process-state-port.json",
-          "pointer": "/functions/6/internal_steps/4",
-          "revision": "827c4ea924a15b6b54bbe9d1f5d2f9fbdefa65de"
+          "pointer": "/functions/6/internal_steps/4"
         },
         {
           "path": "docs/helix-harness/L5-detail-design/process-state-port.json",
-          "pointer": "/functions/6/internal_steps/5",
-          "revision": "827c4ea924a15b6b54bbe9d1f5d2f9fbdefa65de"
+          "pointer": "/functions/6/internal_steps/5"
         },
         {
           "path": "docs/helix-harness/L5-detail-design/process-state-port.json",
-          "pointer": "/functions/6/internal_steps/6",
-          "revision": "827c4ea924a15b6b54bbe9d1f5d2f9fbdefa65de"
+          "pointer": "/functions/6/internal_steps/6"
         },
         {
           "path": "docs/helix-harness/L5-detail-design/process-state-port.json",
-          "pointer": "/functions/6/internal_steps/7",
-          "revision": "827c4ea924a15b6b54bbe9d1f5d2f9fbdefa65de"
+          "pointer": "/functions/6/internal_steps/7"
         },
         {
           "path": "docs/helix-harness/L5-detail-design/process-state-port.json",
-          "pointer": "/functions/6/internal_steps/8",
-          "revision": "827c4ea924a15b6b54bbe9d1f5d2f9fbdefa65de"
+          "pointer": "/functions/6/internal_steps/8"
         }
       ]
     }
