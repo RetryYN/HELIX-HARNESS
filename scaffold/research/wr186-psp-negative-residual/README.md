@@ -28,7 +28,7 @@ L3 `/requirements/66/obligation`、L4 `/contracts/3/negative_classifications/0..
 
 ## 現行checkerの前後比較とfreeze
 
-`design_verification_checker.py check-child` をmain `821a655ad6949b2a7a5344b26e3c170cccc353a6` のbaseと、この候補で同じ4つの明示path（L4/L9/L5/L8）を指定して比較した。両方の出力でL4↔L9とL5↔L8のpairはPASS、ownership caps 4件とpin 4件もPASS。negative 4-wayは両方 `L4=34, L9=182, L8=0, L5=34; matched=0` で223 FAIL、failure detail配列も完全一致した。全体checker結果は223 FAILを含むためFAILのままで、候補22件を4-way coverageへ算入しない。
+`design_verification_checker.py check-child` を最新main `97e0ee18a98d6f9714e29fa0fae3a3c58cdeead1` のbaseと、このcandidateをそのmainへ統合したno-commit trialで同じ4つの明示path（L4/L9/L5/L8）を指定して比較した。両方の出力でL4↔L9とL5↔L8のpairはPASS、ownership caps 4件とpin 4件もPASS。negative 4-wayは両方 `L4=34, L9=182, L8=0, L5=34; matched=0` で223 FAIL、failure detail配列も完全一致した。全体checker結果は223 FAILを含むためFAILのままで、候補22件を4-way coverageへ算入しない。
 
 `docs/governance/audits/tdd` をprocess-state-portのpathとHARNESS-L4/L5/L8/L9-003-F03/F05 IDで照合したが、対象pairのfreeze recordは見つからなかった。よってfreeze前後比較の対象はなく、この候補からfreezeも生成しない。
 
