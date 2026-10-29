@@ -4380,12 +4380,17 @@ class DesignVerificationCheckerSelfTest(unittest.TestCase):
 
             bad_flat = copy.deepcopy(doc_flat)
             bad_flat["source_pins"]["docs/target2.md"] = "a" * 64
+            bad_flat["source_pins"]["docs/tilde~file.md"] = "c" * 64
             res_bad_flat = dvc.check_pin_sha256(root, "flat.json", bad_flat)
             self.assertFalse(res_bad_flat["passed"])
-            self.assertEqual(len(res_bad_flat["failures"]), 1)
+            self.assertEqual(len(res_bad_flat["failures"]), 2)
             self.assertEqual(
                 res_bad_flat["failures"][0]["pointer"],
-                "/source_pins/docs/target2.md",
+                "/source_pins/docs~1target2.md",
+            )
+            self.assertEqual(
+                res_bad_flat["failures"][1]["pointer"],
+                "/source_pins/docs~1tilde~0file.md",
             )
 
             # 3. Nested containers under source_basis/*

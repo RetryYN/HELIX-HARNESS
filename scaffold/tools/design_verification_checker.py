@@ -577,11 +577,12 @@ def check_pin_sha256(
                         else "missing"
                     )
                     if act != v:
+                        esc_k = k.replace("~", "~0").replace("/", "~1")
                         failures.append(
                             {
                                 "check": "CHK-PIN-SHA256",
                                 "file": file_path,
-                                "pointer": f"{ptr}/{k}",
+                                "pointer": f"{ptr}/{esc_k}",
                                 "target_path": k,
                                 "revision": flat_rev or "WORKTREE",
                                 "expected_sha256": v,

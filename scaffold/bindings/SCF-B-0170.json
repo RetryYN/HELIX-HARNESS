@@ -36,7 +36,7 @@
     },
     {
       "path": "scaffold/tools/design_verification_checker.py",
-      "sha256": "35e099477414a87de7abd47bac49386120e76f0845a0df00eaf02411db9b8b9f",
+      "sha256": "cfd12c5bc4a1dd45351858488b476af0025d35deca7027da35bb1373818b129d",
       "note": "explicit_negative_equivalence_classesのclass keyと全L4/L5/L8/L9 rows比較の現行実装。候補はcheckerを変更しない。"
     },
     {
