@@ -41315,7 +41315,7 @@
   "negative_equivalence_classes": [
     {
       "class_id": "OS015-NEG-source_unresolved-source",
-      "expected_classification": "source_unresolved",
+      "expected_classification": "management_material_unknown",
       "expected": {
         "finding_codes": [
           "source_unresolved"
@@ -41350,7 +41350,7 @@
     },
     {
       "class_id": "OS015-NEG-source_unresolved-classification",
-      "expected_classification": "source_unresolved",
+      "expected_classification": "management_material_unknown",
       "expected": {
         "finding_codes": [
           "source_unresolved"
@@ -41385,7 +41385,7 @@
     },
     {
       "class_id": "OS015-NEG-source_conflict-source",
-      "expected_classification": "source_conflict",
+      "expected_classification": "management_material_violation",
       "expected": {
         "finding_codes": [
           "source_conflict"
@@ -41420,7 +41420,7 @@
     },
     {
       "class_id": "OS015-NEG-source_conflict-classification",
-      "expected_classification": "source_conflict",
+      "expected_classification": "management_material_violation",
       "expected": {
         "finding_codes": [
           "source_conflict"
@@ -41455,7 +41455,7 @@
     },
     {
       "class_id": "OS015-NEG-source_conflict-authority",
-      "expected_classification": "source_conflict",
+      "expected_classification": "management_material_violation",
       "expected": {
         "finding_codes": [
           "source_conflict"
@@ -41490,7 +41490,7 @@
     },
     {
       "class_id": "OS015-NEG-phase_unresolved",
-      "expected_classification": "phase_unresolved",
+      "expected_classification": "management_material_unknown",
       "expected": {
         "finding_codes": [
           "phase_unresolved"
@@ -41525,7 +41525,7 @@
     },
     {
       "class_id": "OS015-NEG-original_classification_mutated",
-      "expected_classification": "original_classification_mutated",
+      "expected_classification": "management_material_violation",
       "expected": {
         "finding_codes": [
           "original_classification_mutated"
@@ -41560,7 +41560,7 @@
     },
     {
       "class_id": "OS015-NEG-authority_origin_forbidden",
-      "expected_classification": "authority_origin_forbidden",
+      "expected_classification": "management_material_violation",
       "expected": {
         "finding_codes": [
           "authority_origin_forbidden"
@@ -41595,7 +41595,7 @@
     },
     {
       "class_id": "OS015-NEG-authority_origin_unresolved",
-      "expected_classification": "authority_origin_unresolved",
+      "expected_classification": "management_material_unknown",
       "expected": {
         "finding_codes": [
           "authority_origin_unresolved"
@@ -41630,7 +41630,7 @@
     },
     {
       "class_id": "OS015-NEG-authority_stale",
-      "expected_classification": "authority_stale",
+      "expected_classification": "management_material_unknown",
       "expected": {
         "finding_codes": [
           "authority_stale"
@@ -41665,7 +41665,7 @@
     },
     {
       "class_id": "OS015-NEG-authority_conflict",
-      "expected_classification": "authority_conflict",
+      "expected_classification": "management_material_violation",
       "expected": {
         "finding_codes": [
           "authority_conflict"
@@ -41700,7 +41700,7 @@
     },
     {
       "class_id": "OS015-NEG-authority_state_unresolved",
-      "expected_classification": "authority_state_unresolved",
+      "expected_classification": "management_material_unknown",
       "expected": {
         "finding_codes": [
           "authority_state_unresolved"
@@ -41735,7 +41735,7 @@
     },
     {
       "class_id": "OS015-NEG-current_material_claim_unresolved",
-      "expected_classification": "current_material_claim_unresolved",
+      "expected_classification": "management_material_unknown",
       "expected": {
         "finding_codes": [
           "current_material_claim_unresolved"
@@ -41770,7 +41770,7 @@
     },
     {
       "class_id": "OS015-NEG-new_classification_unresolved",
-      "expected_classification": "new_classification_unresolved",
+      "expected_classification": "management_material_unknown",
       "expected": {
         "finding_codes": [
           "new_classification_unresolved"
@@ -41805,7 +41805,7 @@
     },
     {
       "class_id": "OS015-NEG-prior_classification_unresolved",
-      "expected_classification": "prior_classification_unresolved",
+      "expected_classification": "management_material_unknown",
       "expected": {
         "finding_codes": [
           "prior_classification_unresolved"
@@ -41840,7 +41840,7 @@
     },
     {
       "class_id": "OS015-NEG-classification_revision_collapsed",
-      "expected_classification": "classification_revision_collapsed",
+      "expected_classification": "management_material_violation",
       "expected": {
         "finding_codes": [
           "classification_revision_collapsed"
@@ -41875,7 +41875,7 @@
     },
     {
       "class_id": "OS015-NEG-classification_kind_unresolved",
-      "expected_classification": "classification_kind_unresolved",
+      "expected_classification": "management_material_unknown",
       "expected": {
         "finding_codes": [
           "classification_kind_unresolved"
@@ -41910,7 +41910,7 @@
     },
     {
       "class_id": "OS015-NEG-history_unresolved",
-      "expected_classification": "history_unresolved",
+      "expected_classification": "management_material_unknown",
       "expected": {
         "finding_codes": [
           "history_unresolved"
@@ -41945,7 +41945,7 @@
     },
     {
       "class_id": "OS015-NEG-history_entry_lost",
-      "expected_classification": "history_entry_lost",
+      "expected_classification": "management_material_violation",
       "expected": {
         "finding_codes": [
           "history_entry_lost"
@@ -41980,7 +41980,7 @@
     },
     {
       "class_id": "OS015-NEG-unresolved_history_lost",
-      "expected_classification": "unresolved_history_lost",
+      "expected_classification": "management_material_violation",
       "expected": {
         "finding_codes": [
           "unresolved_history_lost"
@@ -42015,7 +42015,7 @@
     },
     {
       "class_id": "OS015-NEG-unresolved_history_unresolved",
-      "expected_classification": "unresolved_history_unresolved",
+      "expected_classification": "management_material_unknown",
       "expected": {
         "finding_codes": [
           "unresolved_history_unresolved"
@@ -42050,7 +42050,7 @@
     },
     {
       "class_id": "OS015-NEG-generated_authority_forbidden",
-      "expected_classification": "generated_authority_forbidden",
+      "expected_classification": "management_material_violation",
       "expected": {
         "finding_codes": [
           "generated_authority_forbidden"
@@ -42085,7 +42085,7 @@
     },
     {
       "class_id": "OS015-NEG-generated_authority_claim_unresolved",
-      "expected_classification": "generated_authority_claim_unresolved",
+      "expected_classification": "management_material_unknown",
       "expected": {
         "finding_codes": [
           "generated_authority_claim_unresolved"
@@ -42120,7 +42120,7 @@
     },
     {
       "class_id": "OS015-NEG-whole_registry_claim_unproven",
-      "expected_classification": "whole_registry_claim_unproven",
+      "expected_classification": "management_material_violation",
       "expected": {
         "finding_codes": [
           "whole_registry_claim_unproven"
@@ -42155,7 +42155,7 @@
     },
     {
       "class_id": "OS015-NEG-whole_registry_claim_unresolved",
-      "expected_classification": "whole_registry_claim_unresolved",
+      "expected_classification": "management_material_unknown",
       "expected": {
         "finding_codes": [
           "whole_registry_claim_unresolved"

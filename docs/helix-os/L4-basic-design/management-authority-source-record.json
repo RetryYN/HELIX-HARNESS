@@ -913,10 +913,10 @@
   "failure_classifications": [
     {
       "class_id": "OS015-NEG-source_unresolved-source",
-      "code": "source_unresolved",
+      "code": "management_material_unknown",
       "design_ref": "HELIXOS-L4-015-F01",
       "condition": "比較対象のsource operand",
-      "expected_classification": "source_unresolved",
+      "expected_classification": "management_material_unknown",
       "expected": {
         "finding_codes": [
           "source_unresolved"
@@ -945,17 +945,19 @@
             "/contracts/1",
             "/diagnostic_contract/codes/0",
             "/diagnostic_contract/comparison_facets",
-            "/diagnostic_contract/algorithm_python_document_text"
+            "/diagnostic_contract/algorithm_python_document_text",
+            "/diagnostic_contract/aggregation",
+            "/diagnostic_contract/condition_values"
           ]
         }
       ]
     },
     {
       "class_id": "OS015-NEG-source_unresolved-original_event",
-      "code": "source_unresolved",
+      "code": "management_material_unknown",
       "design_ref": "HELIXOS-L4-015-F02",
       "condition": "比較対象のoriginal_event operand",
-      "expected_classification": "source_unresolved",
+      "expected_classification": "management_material_unknown",
       "expected": {
         "finding_codes": [
           "source_unresolved"
@@ -984,17 +986,19 @@
             "/contracts/2",
             "/diagnostic_contract/codes/0",
             "/diagnostic_contract/comparison_facets",
-            "/diagnostic_contract/algorithm_python_document_text"
+            "/diagnostic_contract/algorithm_python_document_text",
+            "/diagnostic_contract/aggregation",
+            "/diagnostic_contract/condition_values"
           ]
         }
       ]
     },
     {
       "class_id": "OS015-NEG-source_unresolved-classification",
-      "code": "source_unresolved",
+      "code": "management_material_unknown",
       "design_ref": "HELIXOS-L4-015-F02",
       "condition": "比較対象のclassification operand",
-      "expected_classification": "source_unresolved",
+      "expected_classification": "management_material_unknown",
       "expected": {
         "finding_codes": [
           "source_unresolved"
@@ -1023,17 +1027,19 @@
             "/contracts/2",
             "/diagnostic_contract/codes/0",
             "/diagnostic_contract/comparison_facets",
-            "/diagnostic_contract/algorithm_python_document_text"
+            "/diagnostic_contract/algorithm_python_document_text",
+            "/diagnostic_contract/aggregation",
+            "/diagnostic_contract/condition_values"
           ]
         }
       ]
     },
     {
       "class_id": "OS015-NEG-source_conflict-source",
-      "code": "source_conflict",
+      "code": "management_material_violation",
       "design_ref": "HELIXOS-L4-015-F01",
       "condition": "sourceと独立contextのknown値不一致",
-      "expected_classification": "source_conflict",
+      "expected_classification": "management_material_violation",
       "expected": {
         "finding_codes": [
           "source_conflict"
@@ -1062,17 +1068,19 @@
             "/contracts/1",
             "/diagnostic_contract/codes/1",
             "/diagnostic_contract/comparison_facets",
-            "/diagnostic_contract/algorithm_python_document_text"
+            "/diagnostic_contract/algorithm_python_document_text",
+            "/diagnostic_contract/aggregation",
+            "/diagnostic_contract/condition_values"
           ]
         }
       ]
     },
     {
       "class_id": "OS015-NEG-source_conflict-original_event",
-      "code": "source_conflict",
+      "code": "management_material_violation",
       "design_ref": "HELIXOS-L4-015-F02",
       "condition": "original_eventと独立contextのknown値不一致",
-      "expected_classification": "source_conflict",
+      "expected_classification": "management_material_violation",
       "expected": {
         "finding_codes": [
           "source_conflict"
@@ -1101,17 +1109,19 @@
             "/contracts/2",
             "/diagnostic_contract/codes/1",
             "/diagnostic_contract/comparison_facets",
-            "/diagnostic_contract/algorithm_python_document_text"
+            "/diagnostic_contract/algorithm_python_document_text",
+            "/diagnostic_contract/aggregation",
+            "/diagnostic_contract/condition_values"
           ]
         }
       ]
     },
     {
       "class_id": "OS015-NEG-source_conflict-classification",
-      "code": "source_conflict",
+      "code": "management_material_violation",
       "design_ref": "HELIXOS-L4-015-F02",
       "condition": "classificationと独立contextのknown値不一致",
-      "expected_classification": "source_conflict",
+      "expected_classification": "management_material_violation",
       "expected": {
         "finding_codes": [
           "source_conflict"
@@ -1140,17 +1150,19 @@
             "/contracts/2",
             "/diagnostic_contract/codes/1",
             "/diagnostic_contract/comparison_facets",
-            "/diagnostic_contract/algorithm_python_document_text"
+            "/diagnostic_contract/algorithm_python_document_text",
+            "/diagnostic_contract/aggregation",
+            "/diagnostic_contract/condition_values"
           ]
         }
       ]
     },
     {
       "class_id": "OS015-NEG-source_conflict-authority",
-      "code": "source_conflict",
+      "code": "management_material_violation",
       "design_ref": "HELIXOS-L4-015-F03",
       "condition": "authority_originまたはauthority_stateのknown値不一致",
-      "expected_classification": "source_conflict",
+      "expected_classification": "management_material_violation",
       "expected": {
         "finding_codes": [
           "source_conflict"
@@ -1179,17 +1191,19 @@
             "/contracts/3",
             "/diagnostic_contract/codes/1",
             "/diagnostic_contract/comparison_facets",
-            "/diagnostic_contract/algorithm_python_document_text"
+            "/diagnostic_contract/algorithm_python_document_text",
+            "/diagnostic_contract/aggregation",
+            "/diagnostic_contract/condition_values"
           ]
         }
       ]
     },
     {
       "class_id": "OS015-NEG-phase_unresolved",
-      "code": "phase_unresolved",
+      "code": "management_material_unknown",
       "design_ref": "HELIXOS-L4-015-B01",
       "condition": "phaseが固定されたinspect/classify/correctのいずれでもない",
-      "expected_classification": "phase_unresolved",
+      "expected_classification": "management_material_unknown",
       "expected": {
         "finding_codes": [
           "phase_unresolved"
@@ -1218,17 +1232,18 @@
             "/contracts/0",
             "/diagnostic_contract/codes/2",
             "/diagnostic_contract/aggregation",
-            "/diagnostic_contract/raw_retention"
+            "/diagnostic_contract/raw_retention",
+            "/diagnostic_contract/condition_values"
           ]
         }
       ]
     },
     {
       "class_id": "OS015-NEG-original_event_mutated",
-      "code": "original_event_mutated",
+      "code": "management_material_violation",
       "design_ref": "HELIXOS-L4-015-F02",
       "condition": "actual original_event wholeが独立contextと異なる",
-      "expected_classification": "original_event_mutated",
+      "expected_classification": "management_material_violation",
       "expected": {
         "finding_codes": [
           "original_event_mutated"
@@ -1257,17 +1272,18 @@
             "/contracts/2",
             "/diagnostic_contract/codes/3",
             "/diagnostic_contract/aggregation",
-            "/diagnostic_contract/raw_retention"
+            "/diagnostic_contract/raw_retention",
+            "/diagnostic_contract/condition_values"
           ]
         }
       ]
     },
     {
       "class_id": "OS015-NEG-original_classification_mutated",
-      "code": "original_classification_mutated",
+      "code": "management_material_violation",
       "design_ref": "HELIXOS-L4-015-F02",
       "condition": "actual original_classificationが独立contextと異なる",
-      "expected_classification": "original_classification_mutated",
+      "expected_classification": "management_material_violation",
       "expected": {
         "finding_codes": [
           "original_classification_mutated"
@@ -1296,17 +1312,18 @@
             "/contracts/2",
             "/diagnostic_contract/codes/4",
             "/diagnostic_contract/aggregation",
-            "/diagnostic_contract/raw_retention"
+            "/diagnostic_contract/raw_retention",
+            "/diagnostic_contract/condition_values"
           ]
         }
       ]
     },
     {
       "class_id": "OS015-NEG-authority_origin_forbidden",
-      "code": "authority_origin_forbidden",
+      "code": "management_material_violation",
       "design_ref": "HELIXOS-L4-015-B01",
       "condition": "canonical_source以外のIssue/PR/CI/memory/management_recordをauthority originとする",
-      "expected_classification": "authority_origin_forbidden",
+      "expected_classification": "management_material_violation",
       "expected": {
         "finding_codes": [
           "authority_origin_forbidden"
@@ -1335,17 +1352,18 @@
             "/contracts/0",
             "/diagnostic_contract/codes/5",
             "/diagnostic_contract/aggregation",
-            "/diagnostic_contract/raw_retention"
+            "/diagnostic_contract/raw_retention",
+            "/diagnostic_contract/condition_values"
           ]
         }
       ]
     },
     {
       "class_id": "OS015-NEG-authority_origin_unresolved",
-      "code": "authority_origin_unresolved",
+      "code": "management_material_unknown",
       "design_ref": "HELIXOS-L4-015-F03",
       "condition": "authority originが許可された既知集合に解決しない",
-      "expected_classification": "authority_origin_unresolved",
+      "expected_classification": "management_material_unknown",
       "expected": {
         "finding_codes": [
           "authority_origin_unresolved"
@@ -1374,17 +1392,18 @@
             "/contracts/3",
             "/diagnostic_contract/codes/6",
             "/diagnostic_contract/aggregation",
-            "/diagnostic_contract/raw_retention"
+            "/diagnostic_contract/raw_retention",
+            "/diagnostic_contract/condition_values"
           ]
         }
       ]
     },
     {
       "class_id": "OS015-NEG-authority_stale",
-      "code": "authority_stale",
+      "code": "management_material_unknown",
       "design_ref": "HELIXOS-L4-015-F03",
       "condition": "authority_stateがstale_materialである",
-      "expected_classification": "authority_stale",
+      "expected_classification": "management_material_unknown",
       "expected": {
         "finding_codes": [
           "authority_stale"
@@ -1413,17 +1432,18 @@
             "/contracts/3",
             "/diagnostic_contract/codes/7",
             "/diagnostic_contract/aggregation",
-            "/diagnostic_contract/raw_retention"
+            "/diagnostic_contract/raw_retention",
+            "/diagnostic_contract/condition_values"
           ]
         }
       ]
     },
     {
       "class_id": "OS015-NEG-authority_conflict",
-      "code": "authority_conflict",
+      "code": "management_material_violation",
       "design_ref": "HELIXOS-L4-015-F03",
       "condition": "authority_stateがconflict_materialである",
-      "expected_classification": "authority_conflict",
+      "expected_classification": "management_material_violation",
       "expected": {
         "finding_codes": [
           "authority_conflict"
@@ -1452,17 +1472,18 @@
             "/contracts/3",
             "/diagnostic_contract/codes/8",
             "/diagnostic_contract/aggregation",
-            "/diagnostic_contract/raw_retention"
+            "/diagnostic_contract/raw_retention",
+            "/diagnostic_contract/condition_values"
           ]
         }
       ]
     },
     {
       "class_id": "OS015-NEG-authority_state_unresolved",
-      "code": "authority_state_unresolved",
+      "code": "management_material_unknown",
       "design_ref": "HELIXOS-L4-015-F03",
       "condition": "authority_stateが定義済み状態集合へ解決しない",
-      "expected_classification": "authority_state_unresolved",
+      "expected_classification": "management_material_unknown",
       "expected": {
         "finding_codes": [
           "authority_state_unresolved"
@@ -1491,17 +1512,18 @@
             "/contracts/3",
             "/diagnostic_contract/codes/9",
             "/diagnostic_contract/aggregation",
-            "/diagnostic_contract/raw_retention"
+            "/diagnostic_contract/raw_retention",
+            "/diagnostic_contract/condition_values"
           ]
         }
       ]
     },
     {
       "class_id": "OS015-NEG-unresolved_promoted_to_current",
-      "code": "unresolved_promoted_to_current",
+      "code": "management_material_violation",
       "design_ref": "HELIXOS-L4-015-F03",
       "condition": "source/event/authorityの問題がある対象をcurrent_materialとclaimする",
-      "expected_classification": "unresolved_promoted_to_current",
+      "expected_classification": "management_material_violation",
       "expected": {
         "finding_codes": [
           "unresolved_promoted_to_current"
@@ -1530,17 +1552,18 @@
             "/contracts/3",
             "/diagnostic_contract/codes/10",
             "/diagnostic_contract/aggregation",
-            "/diagnostic_contract/raw_retention"
+            "/diagnostic_contract/raw_retention",
+            "/diagnostic_contract/condition_values"
           ]
         }
       ]
     },
     {
       "class_id": "OS015-NEG-current_material_claim_unresolved",
-      "code": "current_material_claim_unresolved",
+      "code": "management_material_unknown",
       "design_ref": "HELIXOS-L4-015-F03",
       "condition": "current_material_claimがbooleanでない",
-      "expected_classification": "current_material_claim_unresolved",
+      "expected_classification": "management_material_unknown",
       "expected": {
         "finding_codes": [
           "current_material_claim_unresolved"
@@ -1569,17 +1592,18 @@
             "/contracts/3",
             "/diagnostic_contract/codes/11",
             "/diagnostic_contract/aggregation",
-            "/diagnostic_contract/raw_retention"
+            "/diagnostic_contract/raw_retention",
+            "/diagnostic_contract/condition_values"
           ]
         }
       ]
     },
     {
       "class_id": "OS015-NEG-new_classification_unresolved",
-      "code": "new_classification_unresolved",
+      "code": "management_material_unknown",
       "design_ref": "HELIXOS-L4-015-F02",
       "condition": "classify/correctでnew_classificationがobjectとして形成されない",
-      "expected_classification": "new_classification_unresolved",
+      "expected_classification": "management_material_unknown",
       "expected": {
         "finding_codes": [
           "new_classification_unresolved"
@@ -1608,17 +1632,18 @@
             "/contracts/2",
             "/diagnostic_contract/codes/12",
             "/diagnostic_contract/aggregation",
-            "/diagnostic_contract/raw_retention"
+            "/diagnostic_contract/raw_retention",
+            "/diagnostic_contract/condition_values"
           ]
         }
       ]
     },
     {
       "class_id": "OS015-NEG-prior_classification_unresolved",
-      "code": "prior_classification_unresolved",
+      "code": "management_material_unknown",
       "design_ref": "HELIXOS-L4-015-F02",
       "condition": "correctでoriginal_classificationがobjectとして形成されない",
-      "expected_classification": "prior_classification_unresolved",
+      "expected_classification": "management_material_unknown",
       "expected": {
         "finding_codes": [
           "prior_classification_unresolved"
@@ -1647,17 +1672,18 @@
             "/contracts/2",
             "/diagnostic_contract/codes/13",
             "/diagnostic_contract/aggregation",
-            "/diagnostic_contract/raw_retention"
+            "/diagnostic_contract/raw_retention",
+            "/diagnostic_contract/condition_values"
           ]
         }
       ]
     },
     {
       "class_id": "OS015-NEG-classification_revision_collapsed",
-      "code": "classification_revision_collapsed",
+      "code": "management_material_violation",
       "design_ref": "HELIXOS-L4-015-F02",
       "condition": "correctの新旧classification_revisionが既知一致する",
-      "expected_classification": "classification_revision_collapsed",
+      "expected_classification": "management_material_violation",
       "expected": {
         "finding_codes": [
           "classification_revision_collapsed"
@@ -1686,17 +1712,18 @@
             "/contracts/2",
             "/diagnostic_contract/codes/14",
             "/diagnostic_contract/aggregation",
-            "/diagnostic_contract/raw_retention"
+            "/diagnostic_contract/raw_retention",
+            "/diagnostic_contract/condition_values"
           ]
         }
       ]
     },
     {
       "class_id": "OS015-NEG-classification_kind_unresolved",
-      "code": "classification_kind_unresolved",
+      "code": "management_material_unknown",
       "design_ref": "HELIXOS-L4-015-F02",
       "condition": "new_classification.kindがold_kind/new_kind/unknown_kindへ解決しない",
-      "expected_classification": "classification_kind_unresolved",
+      "expected_classification": "management_material_unknown",
       "expected": {
         "finding_codes": [
           "classification_kind_unresolved"
@@ -1725,17 +1752,18 @@
             "/contracts/2",
             "/diagnostic_contract/codes/15",
             "/diagnostic_contract/aggregation",
-            "/diagnostic_contract/raw_retention"
+            "/diagnostic_contract/raw_retention",
+            "/diagnostic_contract/condition_values"
           ]
         }
       ]
     },
     {
       "class_id": "OS015-NEG-history_unresolved",
-      "code": "history_unresolved",
+      "code": "management_material_unknown",
       "design_ref": "HELIXOS-L4-015-F02",
       "condition": "classify/correctのhistoryが既知文字列集合として形成されない",
-      "expected_classification": "history_unresolved",
+      "expected_classification": "management_material_unknown",
       "expected": {
         "finding_codes": [
           "history_unresolved"
@@ -1764,17 +1792,18 @@
             "/contracts/2",
             "/diagnostic_contract/codes/16",
             "/diagnostic_contract/aggregation",
-            "/diagnostic_contract/raw_retention"
+            "/diagnostic_contract/raw_retention",
+            "/diagnostic_contract/condition_values"
           ]
         }
       ]
     },
     {
       "class_id": "OS015-NEG-history_entry_lost",
-      "code": "history_entry_lost",
+      "code": "management_material_violation",
       "design_ref": "HELIXOS-L4-015-F02",
       "condition": "actual historyからcontext historyのentryが失われる",
-      "expected_classification": "history_entry_lost",
+      "expected_classification": "management_material_violation",
       "expected": {
         "finding_codes": [
           "history_entry_lost"
@@ -1803,17 +1832,18 @@
             "/contracts/2",
             "/diagnostic_contract/codes/17",
             "/diagnostic_contract/aggregation",
-            "/diagnostic_contract/raw_retention"
+            "/diagnostic_contract/raw_retention",
+            "/diagnostic_contract/condition_values"
           ]
         }
       ]
     },
     {
       "class_id": "OS015-NEG-unresolved_history_lost",
-      "code": "unresolved_history_lost",
+      "code": "management_material_violation",
       "design_ref": "HELIXOS-L4-015-F02",
       "condition": "actual unresolved_historyからcontext entryが失われる",
-      "expected_classification": "unresolved_history_lost",
+      "expected_classification": "management_material_violation",
       "expected": {
         "finding_codes": [
           "unresolved_history_lost"
@@ -1842,17 +1872,18 @@
             "/contracts/2",
             "/diagnostic_contract/codes/18",
             "/diagnostic_contract/aggregation",
-            "/diagnostic_contract/raw_retention"
+            "/diagnostic_contract/raw_retention",
+            "/diagnostic_contract/condition_values"
           ]
         }
       ]
     },
     {
       "class_id": "OS015-NEG-unresolved_history_unresolved",
-      "code": "unresolved_history_unresolved",
+      "code": "management_material_unknown",
       "design_ref": "HELIXOS-L4-015-F02",
       "condition": "unresolved_historyが既知文字列集合として形成されない",
-      "expected_classification": "unresolved_history_unresolved",
+      "expected_classification": "management_material_unknown",
       "expected": {
         "finding_codes": [
           "unresolved_history_unresolved"
@@ -1881,17 +1912,18 @@
             "/contracts/2",
             "/diagnostic_contract/codes/19",
             "/diagnostic_contract/aggregation",
-            "/diagnostic_contract/raw_retention"
+            "/diagnostic_contract/raw_retention",
+            "/diagnostic_contract/condition_values"
           ]
         }
       ]
     },
     {
       "class_id": "OS015-NEG-generated_authority_forbidden",
-      "code": "generated_authority_forbidden",
+      "code": "management_material_violation",
       "design_ref": "HELIXOS-L4-015-B01",
       "condition": "requirement_meaning/human_decision/implementation_permissionのtrueを生成claimする",
-      "expected_classification": "generated_authority_forbidden",
+      "expected_classification": "management_material_violation",
       "expected": {
         "finding_codes": [
           "generated_authority_forbidden"
@@ -1920,17 +1952,18 @@
             "/contracts/0",
             "/diagnostic_contract/codes/20",
             "/diagnostic_contract/aggregation",
-            "/diagnostic_contract/raw_retention"
+            "/diagnostic_contract/raw_retention",
+            "/diagnostic_contract/condition_values"
           ]
         }
       ]
     },
     {
       "class_id": "OS015-NEG-generated_authority_claim_unresolved",
-      "code": "generated_authority_claim_unresolved",
+      "code": "management_material_unknown",
       "design_ref": "HELIXOS-L4-015-B01",
       "condition": "生成authority claimがbooleanへ解決しない",
-      "expected_classification": "generated_authority_claim_unresolved",
+      "expected_classification": "management_material_unknown",
       "expected": {
         "finding_codes": [
           "generated_authority_claim_unresolved"
@@ -1959,17 +1992,18 @@
             "/contracts/0",
             "/diagnostic_contract/codes/21",
             "/diagnostic_contract/aggregation",
-            "/diagnostic_contract/raw_retention"
+            "/diagnostic_contract/raw_retention",
+            "/diagnostic_contract/condition_values"
           ]
         }
       ]
     },
     {
       "class_id": "OS015-NEG-whole_registry_claim_unproven",
-      "code": "whole_registry_claim_unproven",
+      "code": "management_material_violation",
       "design_ref": "HELIXOS-L4-015-B01",
       "condition": "whole_registry_claim=trueで有限対象を全registry検証済みとclaimする",
-      "expected_classification": "whole_registry_claim_unproven",
+      "expected_classification": "management_material_violation",
       "expected": {
         "finding_codes": [
           "whole_registry_claim_unproven"
@@ -1998,17 +2032,18 @@
             "/contracts/0",
             "/diagnostic_contract/codes/22",
             "/diagnostic_contract/aggregation",
-            "/diagnostic_contract/raw_retention"
+            "/diagnostic_contract/raw_retention",
+            "/diagnostic_contract/condition_values"
           ]
         }
       ]
     },
     {
       "class_id": "OS015-NEG-whole_registry_claim_unresolved",
-      "code": "whole_registry_claim_unresolved",
+      "code": "management_material_unknown",
       "design_ref": "HELIXOS-L4-015-B01",
       "condition": "whole_registry_claimがbooleanへ解決しない",
-      "expected_classification": "whole_registry_claim_unresolved",
+      "expected_classification": "management_material_unknown",
       "expected": {
         "finding_codes": [
           "whole_registry_claim_unresolved"
@@ -2037,17 +2072,18 @@
             "/contracts/0",
             "/diagnostic_contract/codes/23",
             "/diagnostic_contract/aggregation",
-            "/diagnostic_contract/raw_retention"
+            "/diagnostic_contract/raw_retention",
+            "/diagnostic_contract/condition_values"
           ]
         }
       ]
     },
     {
       "class_id": "OS015-NEG-first_classification_prior_present",
-      "code": "first_classification_prior_present",
+      "code": "management_material_violation",
       "design_ref": "HELIXOS-L4-015-F02",
       "condition": "未分類原eventの初回classifyでprior classificationを供給する",
-      "expected_classification": "first_classification_prior_present",
+      "expected_classification": "management_material_violation",
       "expected": {
         "finding_codes": [
           "first_classification_prior_present"
@@ -2076,17 +2112,18 @@
             "/contracts/2",
             "/diagnostic_contract/codes/24",
             "/diagnostic_contract/aggregation",
-            "/diagnostic_contract/raw_retention"
+            "/diagnostic_contract/raw_retention",
+            "/diagnostic_contract/condition_values"
           ]
         }
       ]
     },
     {
       "class_id": "OS015-NEG-first_classification_prior_unresolved",
-      "code": "first_classification_prior_unresolved",
+      "code": "management_material_unknown",
       "design_ref": "HELIXOS-L4-015-F02",
       "condition": "初回classify時の既存prior値がclassification ref/revisionへ解決しない",
-      "expected_classification": "first_classification_prior_unresolved",
+      "expected_classification": "management_material_unknown",
       "expected": {
         "finding_codes": [
           "first_classification_prior_unresolved"
@@ -2115,7 +2152,8 @@
             "/contracts/2",
             "/diagnostic_contract/codes/25",
             "/diagnostic_contract/aggregation",
-            "/diagnostic_contract/raw_retention"
+            "/diagnostic_contract/raw_retention",
+            "/diagnostic_contract/condition_values"
           ]
         }
       ]
