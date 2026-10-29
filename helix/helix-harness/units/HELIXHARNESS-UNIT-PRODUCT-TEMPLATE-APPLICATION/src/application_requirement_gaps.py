@@ -598,6 +598,3 @@ def compare_requirement_gaps(context):
             "unfinished_obligation_refs": unfinished_obligation_refs,
         },
     }
-
-
-compare_requirement_gaps_detail = compare_requirement_gaps
