@@ -408,6 +408,11 @@
       "path": "docs/helix-os/L3-requirements/functional-requirements.json",
       "file_sha256": "e86254a35b476ed71ebb112e41ccd2b48f89a8d0393e6495dc11cac7a7cf4e02",
       "role": "対象8wholeの現行所在。file全内容の採択を意味しない。"
+    },
+    {
+      "path": "docs/helix-os/L5-detail-design/management-authority-source-record.json",
+      "revision": "e5232d3311801fad5e51b029e66cfcdd614daa9f",
+      "file_sha256": "b70c3cb052f8cd9b2c88f190d1d61f7c2a914cac5ba3245e69c675e648aa4476"
     }
   ],
   "legacy_comparison": {
@@ -12605,5 +12610,31 @@
       "source": "L4 contracts[2]、批准L3/L10-F02の旧event/分類と新revision/訂正根拠の保持。",
       "inputs": "input.recordsの分類原値と同inputからのmaterial.selected_phase/target_correspondence。"
     }
-  }
+  },
+  "contracts": [
+    {
+      "id": "HELIXOS-L5-015-P-B01",
+      "l4_contract_ref": "HELIXOS-L4-015-B01",
+      "oracle_ref": "HELIXOS-L8-015-P-B01",
+      "requirement_ref": "HELIXOS-L3-015-B01"
+    },
+    {
+      "id": "HELIXOS-L5-015-P-F01",
+      "l4_contract_ref": "HELIXOS-L4-015-F01",
+      "oracle_ref": "HELIXOS-L8-015-P-F01",
+      "requirement_ref": "HELIXOS-L3-015-F01"
+    },
+    {
+      "id": "HELIXOS-L5-015-P-F02",
+      "l4_contract_ref": "HELIXOS-L4-015-F02",
+      "oracle_ref": "HELIXOS-L8-015-P-F02",
+      "requirement_ref": "HELIXOS-L3-015-F02"
+    },
+    {
+      "id": "HELIXOS-L5-015-P-F03",
+      "l4_contract_ref": "HELIXOS-L4-015-F03",
+      "oracle_ref": "HELIXOS-L8-015-P-F03",
+      "requirement_ref": "HELIXOS-L3-015-F03"
+    }
+  ]
 }
