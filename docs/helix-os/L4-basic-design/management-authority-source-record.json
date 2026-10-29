@@ -699,7 +699,7 @@
     "comparison_facets": "source_unresolved/source_conflictは比較箇所のsource/original_event/authority/classification facetへ入れる。",
     "aggregation": "facetと全体でviolation > unknown > corresponding。source/event/authorityの不備だけがcurrent_source_materialをfalseにする。分類不備も全体判定には反映する。",
     "composite_class_formation": {
-      "purpose": "複数findingを4層のnegative equivalence classへ対応付けるL4側の形成規則。新しいfinding、判定、authorityは生成しない。",
+      "purpose": "複数findingからL4 result内の期待表現を形成する規則。新しいfinding、判定、authorityは生成しない。",
       "finding_sequence": "findingsの最終sort順(code, pointer, return_owner)を保持し、各findingのcodeを同順で写す。同codeでもpointerが異なるfindingは同じcodeを重複して残す。code集合への縮約は禁止。",
       "overall_classification": {
         "source": "evaluate result.condition",
@@ -727,20 +727,13 @@
           "ordered_expected.finding_codes",
           "backflow_owner",
           "expected_axis",
-          "expected_state",
-          "owner_ref(kind,id)"
+          "expected_state"
         ],
-        "backflow_owner": "L4 finding.return_ownerの共通値を写す。",
-        "owner_ref": "L5が全finding codeの一意なrule ownerから解決する。"
+        "backflow_owner": "L4 finding.return_ownerの共通値を写す。"
       },
-      "class_id": "key fieldsをJSON objectにし、UTF-8 ensure_ascii=false, sort_keys=true, separators=(',',':')で直列化したSHA-256全64桁をOS015-NEG-COMPOSITE-の後へ付す。",
-      "case_population": "class rowを宣言する場合は、L7 fixed input stimulusとL4 predicateをcase単位で独立に静的照合した根拠を併記する。本候補には複合case class rowを宣言せず、case coverageを主張しない。全negative domainの完全列挙・網羅も対象外。",
       "finite_domain_bound": "algorithm_dependenciesの2 targets、3 phases、20/9/14 field、6 facets、26 code alphabetは固定。L4固定分岐のput位置から1 target当たり最大124 finding、全体最大250 finding。code multiset数上限はC(276,26)-1で有限だが、全key universeを列挙しない。",
       "non_goals": [
-        "L9観測からclass keyを逆生成しない",
-        "L8/L9 case単位expectedをclass形成の根拠にしない",
-        "functionが出力しないfindingやownerを期待へ追加しない",
-        "全理論class universeを明示rowへ展開しない"
+        "functionが出力しないfindingやownerを期待へ追加しない"
       ]
     },
     "current_material_limit": "current_materialは合成入力が文書上対応したという表示。承認、正式な有効性、操作許可を生成しない。",
