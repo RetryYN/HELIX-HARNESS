@@ -1,0 +1,105 @@
+{
+  "schema_revision": 1,
+  "id": "SCF-B-0168",
+  "kind": "scaffold",
+  "title": "F05 gap selection・typed operand writer 技術候補",
+  "product": "HELIX-HARNESS",
+  "owner_candidate": "HELIX-HARNESS CORE009 F05 detail design owner",
+  "state": "registered",
+  "reason": "WR154 F05 producer workにおけるL5/L8契約照合候補。selection join、typed operandsと既存Cause境界の具体化をレビュー可能にする。L3/L10意味変更・実装・authorityを生成しない。",
+  "upstream": [
+    {
+      "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+      "sha256": "a3b907cdc316117d4684632f9a1cbf36125eb6e6172f9cfc286060617583d7be",
+      "note": "F05/F10 candidate source; exact JSON pointer set is recorded in scaffold/research/wr154-f10-gap-selection-design-20261030/README.md. Pin is read-only and does not adopt the source."
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/functional-verification.json",
+      "sha256": "fc58ad2268746d7924ac9be33e8f3f75e6d3c2cc619e27fbc1ddc34edd065cb2",
+      "note": "F05/F10 candidate source; exact JSON pointer set is recorded in scaffold/research/wr154-f10-gap-selection-design-20261030/README.md. Pin is read-only and does not adopt the source."
+    },
+    {
+      "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+      "sha256": "009da68d79547770e32a91362a410e014ed1951e0cfe9f67a6f6b31fd4c16824",
+      "note": "F05/F10 candidate source; exact JSON pointer set is recorded in scaffold/research/wr154-f10-gap-selection-design-20261030/README.md. Pin is read-only and does not adopt the source."
+    },
+    {
+      "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+      "sha256": "010395ecc67291c77496a7f5688e0ddf4961ab86a4afa9f029ef33fbdcb3645c",
+      "note": "F05/F10 candidate source; exact JSON pointer set is recorded in scaffold/research/wr154-f10-gap-selection-design-20261030/README.md. Pin is read-only and does not adopt the source."
+    },
+    {
+      "path": "docs/helix-harness/L8-unit-verification/product-template-application.json",
+      "sha256": "ff8a248a0e955f587ea96380c0ecf88ed3c617372f51340a960abb80c1bf2cdb",
+      "note": "F05/F10 candidate source; exact JSON pointer set is recorded in scaffold/research/wr154-f10-gap-selection-design-20261030/README.md. Pin is read-only and does not adopt the source."
+    }
+  ],
+  "role": "F05 gap proposal selection joinおよびtyped operand writerの未採用技術候補を保持する。",
+  "obligations": [
+    "proposalの原index/whole/presenceとsame-call field Selection joinの有限条件、曖昧/未取得時raw-only境界を記録する。",
+    "question/contradiction/derived_requirement_candidate/na_candidateの既存L5 typed operands、source/body/owner/binding条件を実装可能な順序で記録する。",
+    "既存の2 Cause writer以外にCauseを追加せず、L5 STOPを未形成のまま記録する。",
+    "U-ID候補をnot_executedとし、runtime/test/CI/pair freezeの実施済み状態を生成しない。"
+  ],
+  "connections": {
+    "consumers": [
+      "HARNESS-L5-009-compare_requirement_gaps候補",
+      "HARNESS-L8-009 F05 finite verification候補"
+    ],
+    "dependencies": [
+      "L3/L10 HARNESS-009-F05",
+      "L4/L5 F05 source, selection, gap contracts",
+      "UTW-014/020/021 historical failure context"
+    ],
+    "boundary": "scaffold research artifact only. L2/L3 semantics, adoption, source trust, Cause vocabulary, runtime, external delivery, requirement completion and freeze are outside scope."
+  },
+  "operations": {
+    "allowed": [
+      "read-only JSON/pointer/source-hash inspection",
+      "git diff --check",
+      "python3 -m json.tool <changed-json>",
+      "python3 -B scaffold/tools/scfctl.py validate"
+    ],
+    "forbidden": [
+      "旧CLI・旧hook・旧runtime・旧test・旧CIの実行",
+      "L2/L3 semantics or Cause vocabulary changes",
+      "generating a Cause without an existing L5 writer",
+      "runtime/tests/CI execution or claiming pass",
+      "function-pair freeze generation",
+      "PR/push/notification/merge"
+    ]
+  },
+  "artifacts": [
+    "scaffold/research/wr154-f10-gap-selection-design-20261030/README.md",
+    "scaffold/bindings/SCF-B-0168.json"
+  ],
+  "verification": {
+    "evidence_kind": "scaffold",
+    "scope": [
+      "schema_interface",
+      "source_revision_stale",
+      "negative_case",
+      "forbidden_write_scope"
+    ],
+    "oracles": [
+      "python3 -B scaffold/tools/scfctl.py validate",
+      "git diff --check",
+      "python3 -m json.tool scaffold/bindings/SCF-B-0168.json"
+    ],
+    "negative_cases": [
+      "unmatched or ambiguous selection remains unestablished/raw-only without fabricated Cause or target",
+      "proposition body absent has no fabricated occurrence index",
+      "source/body miss never becomes empty successful evidence",
+      "only source_unresolved/source_body_mismatch writers with their exact existing guard and operand shapes may emit Cause",
+      "U-ID rows remain not_executed and do not imply L9 oracle or pair freeze"
+    ]
+  },
+  "replacement": {
+    "role_target": "採用後にL5 F05 detailed contractと対のL8 verification candidateへ統合する技術仕様",
+    "formal_artifacts": [],
+    "issue": 1866,
+    "status": "pending"
+  },
+  "created": "2026-10-30",
+  "updated": "2026-10-30"
+}
