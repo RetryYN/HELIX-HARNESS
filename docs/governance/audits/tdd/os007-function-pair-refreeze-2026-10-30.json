@@ -1,0 +1,731 @@
+{
+  "schema": "function-pair-judgment-manifest.v1",
+  "record_id": "OS007-FUNCTION-PAIR-REFREEZE-2026-10-30",
+  "record_kind": "function_scoped_l5_l8_pair_freeze_record",
+  "slice_id": "D-OS007-FUNCTION-PAIR-REFREEZE",
+  "request_id": "WR183-OS007-NEG-RESIDUAL-FREEZE",
+  "record_path": "docs/governance/audits/tdd/os007-function-pair-refreeze-2026-10-30.json",
+  "decision_ref": "https://github.com/RetryYN/HELIX-HARNESS/issues/3510#issuecomment-6478770815",
+  "source_main": "fe6e4b493e503ba121ced68aa531c5335661ba66",
+  "request_base_sha": "fe6e4b493e503ba121ced68aa531c5335661ba66",
+  "recorded_at_utc": "2026-10-29T18:55:00+00:00",
+  "path_aliases": {
+    "L3F": "docs/helix-os/L3-requirements/functional-requirements.json",
+    "L10F": "docs/helix-os/L10-verification/functional-verification.json",
+    "L4": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
+    "L9": "docs/helix-os/L9-integration-verification/log-feedback-memory-lineage.json",
+    "L5": "docs/helix-os/L5-detail-design/log-feedback-memory-lineage.json",
+    "L8": "docs/helix-os/L8-unit-verification/log-feedback-memory-lineage.json"
+  },
+  "modified_aliases": [
+    "L4",
+    "L9",
+    "L5",
+    "L8"
+  ],
+  "legacy_and_failure_basis": [
+    {
+      "target_pair": "HELIXOS-L2-007 (B/T:309-311, HELIXOS-L3-007-F01..F03)",
+      "reuse_class": "semantic_rederive",
+      "source_refs": [
+        "docs/helix-os/L5-detail-design/log-feedback-memory-lineage.json#/legacy_comparison",
+        "docs/governance/decisions/helix-os-management-evidence-prerequisite-l3-l10-delegated-decision-2026-10-12.md"
+      ],
+      "preserved": "旧feedbackの原source・未解決finding・同世代終端の非復活、およびmemoryの正本反映後retireとdelivery/consumeの区別を保持。",
+      "changed": "L4 diagnostic_contract (R01..R12) とL5 formal_program (HELIX-PURE-RULE-TABLE/1) から順方向に複合・複数発火負例規則を定式化し、C0935/C0936のfunction_refをassemble_evidence_recordへ整合させ、feedback単一負例3件（C0946..C0948）を順方向形成してCHK-NEG-4WAY-MATCH残余FAIL 289件を0件へ解消。",
+      "prevented_failure": "Issue #3510 / PR #3897 merge後のOS007 CHK-NEG-4WAY-MATCH残余FAIL 289件（複合負例236件・同一code複数発火11件・C0935/C0936のfunction_ref不整合2件・singleton未形成10分類）および旧os007-os015 freezeの未評価・pointer不整合を解消。"
+    }
+  ],
+  "target_bindings": {
+    "public_functions": [
+      {
+        "l5_function_pointer": "L5#/functions/0",
+        "function_id": "assess_log_material",
+        "symbol": "assess_log_material",
+        "visibility": "public"
+      },
+      {
+        "l5_function_pointer": "L5#/functions/1",
+        "function_id": "assess_feedback_material",
+        "symbol": "assess_feedback_material",
+        "visibility": "public"
+      },
+      {
+        "l5_function_pointer": "L5#/functions/2",
+        "function_id": "assess_memory_material",
+        "symbol": "assess_memory_material",
+        "visibility": "public"
+      },
+      {
+        "l5_function_pointer": "L5#/functions/3",
+        "function_id": "assemble_evidence_record",
+        "symbol": "assemble_evidence_record",
+        "visibility": "public"
+      }
+    ],
+    "private_detail_contract_pairs": [
+      {
+        "entry_kind": "private_detail_contract_pair",
+        "detail_pointer": "L5#/formal_program",
+        "symbol": "formal_program_pure_rule_table",
+        "visibility": "private_detail_contract_for_os007_public_functions",
+        "owner": "HELIX-OS",
+        "reentry_slice": "D-OS007-L6L7-FORMAL-CLOSURE",
+        "bound_public_functions": [
+          "L5#/functions/0",
+          "L5#/functions/1",
+          "L5#/functions/2",
+          "L5#/functions/3"
+        ],
+        "l8_verification_pointers": [
+          "L8#/function_invocations/0",
+          "L8#/function_invocations/1",
+          "L8#/function_invocations/2",
+          "L8#/function_invocations/3",
+          "L8#/composite_class_formation_verification"
+        ],
+        "disposition": "HELIX-PURE-RULE-TABLE/1による4公開関数（assess_log_material, assess_feedback_material, assess_memory_material, assemble_evidence_record）の内部規則表とcomposite_class_formation規則。公開関数境界はL5#/functions/0..3で完結し、実source資格・正式codec/schema・実処理への接続は別スライスD-OS007-L6L7-FORMAL-CLOSURE（owner: HELIX-OS）で扱う（自スライスD-OS007-FUNCTION-PAIR-REFREEZEを戻し先にしない）。"
+      }
+    ]
+  },
+  "l3_obligation_decomposition": [
+    {
+      "element_id": "O1-F01-logs-material-and-causal-order",
+      "obligation_ja": "HELIXOS-L3-007-F01: decision/execution/auditの共通4項目照合、log_kind/state検査、重複・陳腐化・未観測・成功主張禁止・因果順序違反を検出しcommon-log-ownerへ返却する。",
+      "l3_pointers": [
+        "L3F#/requirements/21"
+      ],
+      "l10_pointers": [
+        "L10F#/cases/21"
+      ],
+      "l4_pointers": [
+        "L4#/contracts/0",
+        "L4#/diagnostic_contract/rules/0",
+        "L4#/diagnostic_contract/rules/1",
+        "L4#/diagnostic_contract/rules/2",
+        "L4#/failure_classifications/0",
+        "L4#/failure_classifications/3",
+        "L4#/failure_classifications/44"
+      ],
+      "l9_pointers": [
+        "L9#/cases/0",
+        "L9#/integration_cases/0",
+        "L9#/integration_cases/1",
+        "L9#/integration_cases/936"
+      ],
+      "l5_pointers": [
+        "L5#/contracts/0",
+        "L5#/functions/0",
+        "L5#/formal_program/functions/assess_log_material",
+        "L5#/failure_rules/0",
+        "L5#/failure_rules/3",
+        "L5#/failure_rules/44"
+      ],
+      "l8_pointers": [
+        "L8#/cases/0",
+        "L8#/unit_cases/0",
+        "L8#/unit_cases/1",
+        "L8#/unit_cases/936",
+        "L8#/independent_boundary_probes/probes/0",
+        "L8#/independent_boundary_probes/probes/1"
+      ]
+    },
+    {
+      "element_id": "O2-F02-feedback-5stage-and-resolution-source",
+      "obligation_ja": "HELIXOS-L3-007-F02: unacked/acked_pending/resolvedのoriginal_finding不変・破棄禁止、5段階(intake..resolution)記録整合、canonical_resolution_source以外の解決根拠拒否、未解決の解決主張禁止を検出しfeedback-source-ownerへ返却する。",
+      "l3_pointers": [
+        "L3F#/requirements/22"
+      ],
+      "l10_pointers": [
+        "L10F#/cases/22"
+      ],
+      "l4_pointers": [
+        "L4#/contracts/1",
+        "L4#/diagnostic_contract/rules/0",
+        "L4#/diagnostic_contract/rules/3",
+        "L4#/diagnostic_contract/rules/4",
+        "L4#/diagnostic_contract/rules/5",
+        "L4#/diagnostic_contract/rules/6",
+        "L4#/failure_classifications/10",
+        "L4#/failure_classifications/11",
+        "L4#/failure_classifications/13",
+        "L4#/failure_classifications/15",
+        "L4#/failure_classifications/17",
+        "L4#/failure_classifications/48"
+      ],
+      "l9_pointers": [
+        "L9#/cases/1",
+        "L9#/integration_cases/372",
+        "L9#/integration_cases/373",
+        "L9#/integration_cases/940",
+        "L9#/integration_cases/942",
+        "L9#/integration_cases/945",
+        "L9#/integration_cases/946",
+        "L9#/integration_cases/947"
+      ],
+      "l5_pointers": [
+        "L5#/contracts/1",
+        "L5#/functions/1",
+        "L5#/formal_program/functions/assess_feedback_material",
+        "L5#/failure_rules/10",
+        "L5#/failure_rules/11",
+        "L5#/failure_rules/13",
+        "L5#/failure_rules/15",
+        "L5#/failure_rules/17",
+        "L5#/failure_rules/48"
+      ],
+      "l8_pointers": [
+        "L8#/cases/1",
+        "L8#/unit_cases/372",
+        "L8#/unit_cases/373",
+        "L8#/unit_cases/940",
+        "L8#/unit_cases/942",
+        "L8#/unit_cases/945",
+        "L8#/unit_cases/946",
+        "L8#/unit_cases/947",
+        "L8#/independent_boundary_probes/probes/2"
+      ]
+    },
+    {
+      "element_id": "O3-F03-memory-reflection-retire-and-use-counts",
+      "obligation_ja": "HELIXOS-L3-007-F03: pending_reflection/retiredのsource照合、state/freshness、正本反映後retire順序、終端指示の再浮上禁止、deliver/consume回数整合、provider memoryのauthority昇格禁止を検出しmemory-lineage-ownerへ返却する。",
+      "l3_pointers": [
+        "L3F#/requirements/23"
+      ],
+      "l10_pointers": [
+        "L10F#/cases/23"
+      ],
+      "l4_pointers": [
+        "L4#/contracts/2",
+        "L4#/diagnostic_contract/rules/0",
+        "L4#/diagnostic_contract/rules/7",
+        "L4#/diagnostic_contract/rules/8",
+        "L4#/diagnostic_contract/rules/9",
+        "L4#/diagnostic_contract/rules/10",
+        "L4#/failure_classifications/21",
+        "L4#/failure_classifications/24",
+        "L4#/failure_classifications/32",
+        "L4#/failure_classifications/67"
+      ],
+      "l9_pointers": [
+        "L9#/cases/2",
+        "L9#/integration_cases/582",
+        "L9#/integration_cases/882",
+        "L9#/integration_cases/909",
+        "L9#/integration_cases/943",
+        "L9#/integration_cases/944"
+      ],
+      "l5_pointers": [
+        "L5#/contracts/2",
+        "L5#/functions/2",
+        "L5#/formal_program/functions/assess_memory_material",
+        "L5#/failure_rules/21",
+        "L5#/failure_rules/24",
+        "L5#/failure_rules/32",
+        "L5#/failure_rules/67"
+      ],
+      "l8_pointers": [
+        "L8#/cases/2",
+        "L8#/unit_cases/582",
+        "L8#/unit_cases/882",
+        "L8#/unit_cases/909",
+        "L8#/unit_cases/943",
+        "L8#/unit_cases/944",
+        "L8#/independent_boundary_probes/probes/3"
+      ]
+    },
+    {
+      "element_id": "O4-F01F03-boundary-whole-completion-and-retention",
+      "obligation_ja": "HELIXOS-L3-007-F01..F03共通境界(R12): logs/feedback/memory三系列の診断集約、whole_completion_claimによる管理完了主張の拒否(whole_completion_forbidden / whole_claim_unknown)、およびretained_actual_recordsとretained_reference_recordsの分離保持・operation_effect=noneを保証する。",
+      "l3_pointers": [
+        "L3F#/requirements/21",
+        "L3F#/requirements/22",
+        "L3F#/requirements/23"
+      ],
+      "l10_pointers": [
+        "L10F#/cases/21",
+        "L10F#/cases/22",
+        "L10F#/cases/23"
+      ],
+      "l4_pointers": [
+        "L4#/contracts/0",
+        "L4#/contracts/1",
+        "L4#/contracts/2",
+        "L4#/diagnostic_contract/rules/11",
+        "L4#/diagnostic_contract/composite_class_formation",
+        "L4#/failure_classifications/42",
+        "L4#/failure_classifications/43"
+      ],
+      "l9_pointers": [
+        "L9#/integration_cases/0",
+        "L9#/integration_cases/934",
+        "L9#/integration_cases/935"
+      ],
+      "l5_pointers": [
+        "L5#/functions/3",
+        "L5#/formal_program/functions/assemble_evidence_record",
+        "L5#/formal_program/assembly",
+        "L5#/formal_program/composite_class_formation",
+        "L5#/failure_rules/42",
+        "L5#/failure_rules/43"
+      ],
+      "l8_pointers": [
+        "L8#/unit_cases/0",
+        "L8#/unit_cases/934",
+        "L8#/unit_cases/935",
+        "L8#/independent_whole_probes/cases/0",
+        "L8#/independent_whole_probes/cases/1",
+        "L8#/independent_whole_probes/cases/2"
+      ]
+    }
+  ],
+  "independent_expectation_trace": {
+    "method": "DT-VT-105: L3F#/requirements/21..23とL10F#/cases/21..23の上位要件からL4 diagnostic_contract (R01..R12) とL5 formal_program (HELIX-PURE-RULE-TABLE/1) を経て、L7の固定刺激入力に対して順方向評価のみでfindings・condition・expected_axis・function_refを導出する。L8/L9の観測結果からの逆生成を行わない。",
+    "upper_requirement": [
+      "L3F#/requirements/21",
+      "L3F#/requirements/22",
+      "L3F#/requirements/23",
+      "L10F#/cases/21",
+      "L10F#/cases/22",
+      "L10F#/cases/23"
+    ],
+    "forward_resolved_items": {
+      "c0935_c0936_boundary_function_ref": {
+        "l4_rule": "L4#/diagnostic_contract/rules/11",
+        "l5_function": "L5#/functions/3",
+        "l8_cases": [
+          "L8#/unit_cases/934",
+          "L8#/unit_cases/935"
+        ],
+        "resolution": "whole_completion_claimを検査するL5 boundary_stepsはassemble_evidence_recordに属するため、既存case期待値を変えずにL8 function_refをassemble_evidence_recordへ訂正。"
+      },
+      "singleton_forward_cases": {
+        "l4_rules": [
+          "L4#/diagnostic_contract/rules/0",
+          "L4#/diagnostic_contract/rules/4",
+          "L4#/diagnostic_contract/rules/5"
+        ],
+        "l5_function": "L5#/functions/1",
+        "l8_cases": [
+          "L8#/unit_cases/945",
+          "L8#/unit_cases/946",
+          "L8#/unit_cases/947"
+        ],
+        "l9_cases": [
+          "L9#/integration_cases/945",
+          "L9#/integration_cases/946",
+          "L9#/integration_cases/947"
+        ],
+        "resolution": "feedbackの単一finding発火が可能な3分類（field_unknown, field_conflict, resolution_origin_unknown）を順方向形成し、L8にはassess_feedback_materialの出力型FeedbackAssessmentに存在するfieldのみをexpected_function_output_projectionとして記録。"
+      },
+      "composite_and_coupled_classes": {
+        "l4_basis": "L4#/diagnostic_contract/composite_class_formation",
+        "l5_basis": "L5#/formal_program/composite_class_formation",
+        "l8_basis": "L8#/composite_class_formation_verification",
+        "resolution": "構造的共起5分類のfinding_codesをR01..R09の最小共起列へ更新し、順方向導出した複合・複数発火36分類を追加して全80分類・全948 case（正例7・負例941）の4層完全一致（残余0）を確立。"
+      }
+    }
+  },
+  "condition_verification": {
+    "dt_vt_105": {
+      "status": "static_source_trace_present_independent_review_pending",
+      "upper_source_pointers": [
+        "L3F#/requirements/21",
+        "L3F#/requirements/22",
+        "L3F#/requirements/23",
+        "L10F#/cases/21",
+        "L10F#/cases/22",
+        "L10F#/cases/23"
+      ],
+      "semantic_pointers": [
+        "L4#/contracts/0",
+        "L4#/contracts/1",
+        "L4#/contracts/2",
+        "L4#/diagnostic_contract/composite_class_formation",
+        "L9#/cases/0",
+        "L9#/cases/1",
+        "L9#/cases/2"
+      ],
+      "l8_expectation_pointers": [
+        "L8#/cases/0",
+        "L8#/cases/1",
+        "L8#/cases/2",
+        "L8#/unit_cases/934",
+        "L8#/unit_cases/935",
+        "L8#/unit_cases/945",
+        "L8#/unit_cases/946",
+        "L8#/unit_cases/947"
+      ],
+      "l5_technical_pointers": [
+        "L5#/functions/0",
+        "L5#/functions/1",
+        "L5#/functions/2",
+        "L5#/functions/3",
+        "L5#/formal_program/composite_class_formation"
+      ],
+      "finding_ja": "L8のunit_casesとnegative_equivalence_classesはL9からの逆生成ではなく、L3/L10およびL4 diagnostic_contract (R01..R12)・L5 formal_programから順方向導出されている。C0946..C0948のL8期待は被検関数assess_feedback_materialの出力型FeedbackAssessmentに存在するfieldのみに限定されている。独立意味review待ち。"
+    },
+    "all_l3_obligation_elements_in_scope": {
+      "scope": "HELIXOS-L2-007（HELIXOS-L3-007-F01..F03）の4公開関数と対のL8検証ケース群（計948 case、80負例同値類）。",
+      "elements": [
+        {
+          "element_id": "O1-F01-logs-material-and-causal-order",
+          "l8_u_ids": [
+            "HELIXOS-L8-007-P-F01",
+            "HELIXOS-L9-007-C0001",
+            "HELIXOS-L9-007-C0002",
+            "HELIXOS-L9-007-C0937"
+          ]
+        },
+        {
+          "element_id": "O2-F02-feedback-5stage-and-resolution-source",
+          "l8_u_ids": [
+            "HELIXOS-L8-007-P-F02",
+            "HELIXOS-L9-007-C0373",
+            "HELIXOS-L9-007-C0374",
+            "HELIXOS-L9-007-C0941",
+            "HELIXOS-L9-007-C0943",
+            "HELIXOS-L9-007-C0946",
+            "HELIXOS-L9-007-C0947",
+            "HELIXOS-L9-007-C0948"
+          ]
+        },
+        {
+          "element_id": "O3-F03-memory-reflection-retire-and-use-counts",
+          "l8_u_ids": [
+            "HELIXOS-L8-007-P-F03",
+            "HELIXOS-L9-007-C0583",
+            "HELIXOS-L9-007-C0883",
+            "HELIXOS-L9-007-C0910",
+            "HELIXOS-L9-007-C0944",
+            "HELIXOS-L9-007-C0945"
+          ]
+        },
+        {
+          "element_id": "O4-F01F03-boundary-whole-completion-and-retention",
+          "l8_u_ids": [
+            "HELIXOS-L9-007-C0001",
+            "HELIXOS-L9-007-C0935",
+            "HELIXOS-L9-007-C0936"
+          ]
+        }
+      ],
+      "status": "all_slice_elements_have_explicit_l8_u_ids",
+      "execution_state": "both_not_executed"
+    },
+    "private_reentry": {
+      "detail_pointer": "L5#/formal_program",
+      "reentry_slice": "D-OS007-L6L7-FORMAL-CLOSURE",
+      "freeze_slice": "D-OS007-FUNCTION-PAIR-REFREEZE",
+      "status": "distinct_slices"
+    }
+  },
+  "supersedes_records": [
+    {
+      "record_id": "OS007-OS015-FUNCTION-PAIR-FREEZE-2026-10-28",
+      "record_path": "docs/governance/audits/tdd/os007-os015-function-pair-freeze-2026-10-28.json",
+      "supersession_scope": "HELIXOS-L2-007（OS007-PAIR-FN01..FN04）のL4/L5/L8/L9 pin・count・4層負例同値類検証のみを本記録でsupersedeする。旧record本文およびOS015部分の歴史証拠は書き換えず保持する。"
+    }
+  ],
+  "freeze_impact_review": {
+    "recomputed_at_utc": "2026-10-29T18:55:00+00:00",
+    "selection": "docs/governance/audits/tdd/ 内で docs/helix-os/{L4-basic-design,L5-detail-design,L8-unit-verification,L9-integration-verification}/log-feedback-memory-lineage.json を参照する既存freeze記録全件（計1件）。",
+    "record_paths": [
+      "docs/governance/audits/tdd/os007-os015-function-pair-freeze-2026-10-28.json"
+    ],
+    "old_record_comparison": {
+      "path": "docs/governance/audits/tdd/os007-os015-function-pair-freeze-2026-10-28.json",
+      "base_mechanical_match": false,
+      "candidate_mechanical_match": false,
+      "base_pin_failures": 1,
+      "candidate_pin_failures": 1,
+      "base_neg_4way_passed": false,
+      "candidate_neg_4way_passed": false,
+      "note_ja": "旧os007-os015-function-pair-freeze-2026-10-28.jsonはpath_aliases等導入前の旧形式記録であり、base/candidateともにmechanical_match=false（false→false、boolean遷移0件）。本PRでOS007単独の新freeze記録を作成しcheck-freeze全項目PASS（mechanical_match=true）を確認した。"
+    }
+  },
+  "evidence_kind": "slice_level_function_pair_freeze",
+  "authority_effect": "none",
+  "pins": {
+    "L3F_sha256": "e86254a35b476ed71ebb112e41ccd2b48f89a8d0393e6495dc11cac7a7cf4e02",
+    "L10F_sha256": "583020f951672e48bc37fcd35cb916de5ccd9866f41dd04731f6519325ae500a",
+    "L4_pre_sha256": "4676a2978dd2e64045f523c1af788f4edc6a6de1429d2d5e33de9f913288529b",
+    "L4_post_sha256": "268b4806930888b12c24c87a9d487485ce4cca027bebf0f64abcb3ae15dde8e2",
+    "L9_pre_sha256": "93aa8212f5d0664bb05c1cb62f5d8e345aa31a32db2ad4ed9416fe121b021021",
+    "L9_post_sha256": "1bf368e6207a2c58e12d1c14a938e1e26e692358fbef27741a8f8c4b3dec28c2",
+    "L5_pre_sha256": "b2a648a1271a03119ccae18a6a930178a1a61b949456a01149021efec3d210f2",
+    "L5_post_sha256": "a1412a0318d1b064b6a84f9f3f2dee3ebbe93d1ef138486277c655a56aa3c90a",
+    "L8_pre_sha256": "c4ac82000bcee64e4762a503923206c34fcd9d709e7d62e8994b630faf19dcec",
+    "L8_post_sha256": "7b0268545dc0bd41780de79fa9886feeebf05f13b53693e82bf2497f71e0041f"
+  },
+  "head_entity_counts": {
+    "L5_contracts": 3,
+    "L5_functions": 4,
+    "L5_failure_rules": 80,
+    "L8_cases": 3,
+    "L8_negative_cases_total": 0,
+    "L8_normal_function_oracles": 0,
+    "L8_additional_unit_cases": 0,
+    "L5_source_pins": 11,
+    "L8_source_pins": 11
+  },
+  "pointer_resolution_summary": {
+    "checked_count": 193,
+    "expanded_target_count": 200,
+    "unresolved_count": 0,
+    "passed": true
+  },
+  "negative_case_4way_verification": {
+    "counts": {
+      "L4": 80,
+      "L9": 80,
+      "L8": 80,
+      "L5": 80
+    },
+    "matched_case_count": 941,
+    "failure_count": 0,
+    "passed": true,
+    "parent_link_mode": "new_parent_link",
+    "comparison_mode": "explicit_negative_equivalence_classes",
+    "comparison_scope": {
+      "class_key": [
+        "expected_classification↔code",
+        "ordered_expected.finding_codes",
+        "backflow_owner",
+        "expected_axis",
+        "expected_state",
+        "owner_ref(kind, id); L5 function_ref wins over contract_ref"
+      ],
+      "class_invariants": [
+        "class_rows_only; negative cases inherit by negative_class_ref",
+        "expected_axis",
+        "expected_state",
+        "side_effect_count=0"
+      ],
+      "class_rows": {
+        "L4": "all failure_classifications rows",
+        "L5": "all failure_rules rows",
+        "L8": "all negative_equivalence_classes rows",
+        "L9": "all negative_equivalence_classes rows"
+      },
+      "case_rows": [
+        "L8.unit_cases",
+        "L9.integration_cases"
+      ],
+      "case_attributes": [
+        "change↔condition",
+        "expected",
+        "expected_preserved",
+        "integration_case_ref",
+        "negative_class_ref→class key (case key fields optional; if present, exact match)",
+        "L8.expected_property (optional class projection; if present, exact match)"
+      ],
+      "case_references": [
+        "L8.rule_ref(string ID)→L5.failure_rules.id",
+        "function-owned rule: L8.function_ref(string ID)→L5.functions.id and equals rule.function_ref",
+        "contract-only rule: L8.contract_ref or L8.requirement_trace→L5 rule.contract_ref and its declared requirement_ref; L8.function_ref is not required",
+        "rule declaring both refs: function_ref determines owner_ref; contract_ref must resolve and its declared function must match",
+        "L5.failure_rules.code↔case class"
+      ],
+      "case_population": "only_supplied_rows; simultaneous_omission_is_not_detected",
+      "not_checked": [
+        "full_legacy_per_case_four_layer_attribute_tuple"
+      ]
+    },
+    "count_unit": "unique_equivalence_class_keys_per_layer",
+    "matched_case_count_unit": "paired_negative_L8_L9_case_rows",
+    "class_row_counts": {
+      "L4": 80,
+      "L9": 80,
+      "L8": 80,
+      "L5": 80
+    },
+    "case_row_counts": {
+      "L8": 948,
+      "L9": 948
+    }
+  },
+  "resolved_function_rows": [
+    {
+      "kind": "public_function",
+      "symbol": "assess_log_material",
+      "id": "assess_log_material",
+      "l5_pointer": "L5#/functions/0",
+      "visibility": "public",
+      "input_type": null,
+      "output_type": null,
+      "oracle_ref": "HELIXOS-L8-007-P-F01",
+      "unit_case_refs_count": 377,
+      "unresolved_unit_case_refs": []
+    },
+    {
+      "kind": "public_function",
+      "symbol": "assess_feedback_material",
+      "id": "assess_feedback_material",
+      "l5_pointer": "L5#/functions/1",
+      "visibility": "public",
+      "input_type": null,
+      "output_type": null,
+      "oracle_ref": "HELIXOS-L8-007-P-F02",
+      "unit_case_refs_count": 216,
+      "unresolved_unit_case_refs": []
+    },
+    {
+      "kind": "public_function",
+      "symbol": "assess_memory_material",
+      "id": "assess_memory_material",
+      "l5_pointer": "L5#/functions/2",
+      "visibility": "public",
+      "input_type": null,
+      "output_type": null,
+      "oracle_ref": "HELIXOS-L8-007-P-F03",
+      "unit_case_refs_count": 353,
+      "unresolved_unit_case_refs": []
+    },
+    {
+      "kind": "public_function",
+      "symbol": "assemble_evidence_record",
+      "id": "assemble_evidence_record",
+      "l5_pointer": "L5#/functions/3",
+      "visibility": "public",
+      "input_type": null,
+      "output_type": null,
+      "oracle_ref": "HELIXOS-L9-007-C0001",
+      "unit_case_refs_count": 8,
+      "unresolved_unit_case_refs": []
+    },
+    {
+      "kind": "private_detail_contract_pair",
+      "symbol": "formal_program_pure_rule_table",
+      "l5_pointer": "L5#/formal_program",
+      "visibility": "private_detail_contract_for_os007_public_functions",
+      "has_owner_or_caller_disposition": true
+    }
+  ],
+  "human_judgment_pending": [
+    {
+      "check": "CHK-PUBLIC-FN-FREEZE",
+      "target": "assess_log_material",
+      "l5_pointer": "L5#/functions/0",
+      "status": "pending_human_or_independent_semantic_review",
+      "judgment_required": "Confirm L5 precondition/postcondition/invariant and L8 U-ID expectations are independently derived from L3/L10 and L4/L9 (DT-VT-105)."
+    },
+    {
+      "check": "CHK-PUBLIC-FN-FREEZE",
+      "target": "assess_feedback_material",
+      "l5_pointer": "L5#/functions/1",
+      "status": "pending_human_or_independent_semantic_review",
+      "judgment_required": "Confirm L5 precondition/postcondition/invariant and L8 U-ID expectations are independently derived from L3/L10 and L4/L9 (DT-VT-105)."
+    },
+    {
+      "check": "CHK-PUBLIC-FN-FREEZE",
+      "target": "assess_memory_material",
+      "l5_pointer": "L5#/functions/2",
+      "status": "pending_human_or_independent_semantic_review",
+      "judgment_required": "Confirm L5 precondition/postcondition/invariant and L8 U-ID expectations are independently derived from L3/L10 and L4/L9 (DT-VT-105)."
+    },
+    {
+      "check": "CHK-PUBLIC-FN-FREEZE",
+      "target": "assemble_evidence_record",
+      "l5_pointer": "L5#/functions/3",
+      "status": "pending_human_or_independent_semantic_review",
+      "judgment_required": "Confirm L5 precondition/postcondition/invariant and L8 U-ID expectations are independently derived from L3/L10 and L4/L9 (DT-VT-105)."
+    },
+    {
+      "check": "CHK-PUBLIC-FN-FREEZE",
+      "target": "formal_program_pure_rule_table",
+      "l5_pointer": "L5#/formal_program",
+      "status": "pending_human_or_independent_semantic_review",
+      "judgment_required": "Confirm private detail boundary and reentry slice/owner assignment preserve caller contract without premature public freeze (#3763 R1-m1)."
+    },
+    {
+      "check": "CHK-L3-OBLIGATION-MAP",
+      "item_id": "O1-F01-logs-material-and-causal-order",
+      "status": "pending_human_or_independent_semantic_review",
+      "judgment_required": "Confirm O1..On decomposition has no natural-language semantic omission from parent L3 requirement text (#3759 R1-m1)."
+    },
+    {
+      "check": "CHK-L3-OBLIGATION-MAP",
+      "item_id": "O2-F02-feedback-5stage-and-resolution-source",
+      "status": "pending_human_or_independent_semantic_review",
+      "judgment_required": "Confirm O1..On decomposition has no natural-language semantic omission from parent L3 requirement text (#3759 R1-m1)."
+    },
+    {
+      "check": "CHK-L3-OBLIGATION-MAP",
+      "item_id": "O3-F03-memory-reflection-retire-and-use-counts",
+      "status": "pending_human_or_independent_semantic_review",
+      "judgment_required": "Confirm O1..On decomposition has no natural-language semantic omission from parent L3 requirement text (#3759 R1-m1)."
+    },
+    {
+      "check": "CHK-L3-OBLIGATION-MAP",
+      "item_id": "O4-F01F03-boundary-whole-completion-and-retention",
+      "status": "pending_human_or_independent_semantic_review",
+      "judgment_required": "Confirm O1..On decomposition has no natural-language semantic omission from parent L3 requirement text (#3759 R1-m1)."
+    }
+  ],
+  "verification": {
+    "all_pointers_resolved": true,
+    "negative_4way_matched_count": 941,
+    "negative_4way_parent_link_mode": "new_parent_link",
+    "negative_4way_comparison_mode": "explicit_negative_equivalence_classes",
+    "negative_4way_comparison_scope": {
+      "class_key": [
+        "expected_classification↔code",
+        "ordered_expected.finding_codes",
+        "backflow_owner",
+        "expected_axis",
+        "expected_state",
+        "owner_ref(kind, id); L5 function_ref wins over contract_ref"
+      ],
+      "class_invariants": [
+        "class_rows_only; negative cases inherit by negative_class_ref",
+        "expected_axis",
+        "expected_state",
+        "side_effect_count=0"
+      ],
+      "class_rows": {
+        "L4": "all failure_classifications rows",
+        "L5": "all failure_rules rows",
+        "L8": "all negative_equivalence_classes rows",
+        "L9": "all negative_equivalence_classes rows"
+      },
+      "case_rows": [
+        "L8.unit_cases",
+        "L9.integration_cases"
+      ],
+      "case_attributes": [
+        "change↔condition",
+        "expected",
+        "expected_preserved",
+        "integration_case_ref",
+        "negative_class_ref→class key (case key fields optional; if present, exact match)",
+        "L8.expected_property (optional class projection; if present, exact match)"
+      ],
+      "case_references": [
+        "L8.rule_ref(string ID)→L5.failure_rules.id",
+        "function-owned rule: L8.function_ref(string ID)→L5.functions.id and equals rule.function_ref",
+        "contract-only rule: L8.contract_ref or L8.requirement_trace→L5 rule.contract_ref and its declared requirement_ref; L8.function_ref is not required",
+        "rule declaring both refs: function_ref determines owner_ref; contract_ref must resolve and its declared function must match",
+        "L5.failure_rules.code↔case class"
+      ],
+      "case_population": "only_supplied_rows; simultaneous_omission_is_not_detected",
+      "not_checked": [
+        "full_legacy_per_case_four_layer_attribute_tuple"
+      ]
+    },
+    "negative_4way_count_unit": "unique_equivalence_class_keys_per_layer",
+    "negative_4way_matched_count_unit": "paired_negative_L8_L9_case_rows",
+    "negative_4way_class_row_counts": {
+      "L4": 80,
+      "L9": 80,
+      "L8": 80,
+      "L5": 80
+    },
+    "negative_4way_case_row_counts": {
+      "L8": 948,
+      "L9": 948
+    },
+    "l8_full_return_or_fixture_or_hash_added": false,
+    "scfctl_stale_count": 0
+  }
+}

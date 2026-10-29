@@ -769,7 +769,387 @@
           "R02",
           "R03"
         ]
-      }
+      },
+      "oracle_ref": "HELIXOS-L8-007-P-F01",
+      "unit_case_refs": [
+        "HELIXOS-L9-007-C0001",
+        "HELIXOS-L9-007-C0002",
+        "HELIXOS-L9-007-C0003",
+        "HELIXOS-L9-007-C0004",
+        "HELIXOS-L9-007-C0005",
+        "HELIXOS-L9-007-C0006",
+        "HELIXOS-L9-007-C0007",
+        "HELIXOS-L9-007-C0008",
+        "HELIXOS-L9-007-C0009",
+        "HELIXOS-L9-007-C0010",
+        "HELIXOS-L9-007-C0011",
+        "HELIXOS-L9-007-C0012",
+        "HELIXOS-L9-007-C0013",
+        "HELIXOS-L9-007-C0014",
+        "HELIXOS-L9-007-C0015",
+        "HELIXOS-L9-007-C0016",
+        "HELIXOS-L9-007-C0017",
+        "HELIXOS-L9-007-C0018",
+        "HELIXOS-L9-007-C0019",
+        "HELIXOS-L9-007-C0020",
+        "HELIXOS-L9-007-C0021",
+        "HELIXOS-L9-007-C0022",
+        "HELIXOS-L9-007-C0023",
+        "HELIXOS-L9-007-C0024",
+        "HELIXOS-L9-007-C0025",
+        "HELIXOS-L9-007-C0026",
+        "HELIXOS-L9-007-C0027",
+        "HELIXOS-L9-007-C0028",
+        "HELIXOS-L9-007-C0029",
+        "HELIXOS-L9-007-C0030",
+        "HELIXOS-L9-007-C0031",
+        "HELIXOS-L9-007-C0032",
+        "HELIXOS-L9-007-C0033",
+        "HELIXOS-L9-007-C0034",
+        "HELIXOS-L9-007-C0035",
+        "HELIXOS-L9-007-C0036",
+        "HELIXOS-L9-007-C0037",
+        "HELIXOS-L9-007-C0038",
+        "HELIXOS-L9-007-C0039",
+        "HELIXOS-L9-007-C0040",
+        "HELIXOS-L9-007-C0041",
+        "HELIXOS-L9-007-C0042",
+        "HELIXOS-L9-007-C0043",
+        "HELIXOS-L9-007-C0044",
+        "HELIXOS-L9-007-C0045",
+        "HELIXOS-L9-007-C0046",
+        "HELIXOS-L9-007-C0047",
+        "HELIXOS-L9-007-C0048",
+        "HELIXOS-L9-007-C0049",
+        "HELIXOS-L9-007-C0050",
+        "HELIXOS-L9-007-C0051",
+        "HELIXOS-L9-007-C0052",
+        "HELIXOS-L9-007-C0053",
+        "HELIXOS-L9-007-C0054",
+        "HELIXOS-L9-007-C0055",
+        "HELIXOS-L9-007-C0056",
+        "HELIXOS-L9-007-C0057",
+        "HELIXOS-L9-007-C0058",
+        "HELIXOS-L9-007-C0059",
+        "HELIXOS-L9-007-C0060",
+        "HELIXOS-L9-007-C0061",
+        "HELIXOS-L9-007-C0062",
+        "HELIXOS-L9-007-C0063",
+        "HELIXOS-L9-007-C0064",
+        "HELIXOS-L9-007-C0065",
+        "HELIXOS-L9-007-C0066",
+        "HELIXOS-L9-007-C0067",
+        "HELIXOS-L9-007-C0068",
+        "HELIXOS-L9-007-C0069",
+        "HELIXOS-L9-007-C0070",
+        "HELIXOS-L9-007-C0071",
+        "HELIXOS-L9-007-C0072",
+        "HELIXOS-L9-007-C0073",
+        "HELIXOS-L9-007-C0074",
+        "HELIXOS-L9-007-C0075",
+        "HELIXOS-L9-007-C0076",
+        "HELIXOS-L9-007-C0077",
+        "HELIXOS-L9-007-C0078",
+        "HELIXOS-L9-007-C0079",
+        "HELIXOS-L9-007-C0080",
+        "HELIXOS-L9-007-C0081",
+        "HELIXOS-L9-007-C0082",
+        "HELIXOS-L9-007-C0083",
+        "HELIXOS-L9-007-C0084",
+        "HELIXOS-L9-007-C0085",
+        "HELIXOS-L9-007-C0086",
+        "HELIXOS-L9-007-C0087",
+        "HELIXOS-L9-007-C0088",
+        "HELIXOS-L9-007-C0089",
+        "HELIXOS-L9-007-C0090",
+        "HELIXOS-L9-007-C0091",
+        "HELIXOS-L9-007-C0092",
+        "HELIXOS-L9-007-C0093",
+        "HELIXOS-L9-007-C0094",
+        "HELIXOS-L9-007-C0095",
+        "HELIXOS-L9-007-C0096",
+        "HELIXOS-L9-007-C0097",
+        "HELIXOS-L9-007-C0098",
+        "HELIXOS-L9-007-C0099",
+        "HELIXOS-L9-007-C0100",
+        "HELIXOS-L9-007-C0101",
+        "HELIXOS-L9-007-C0102",
+        "HELIXOS-L9-007-C0103",
+        "HELIXOS-L9-007-C0104",
+        "HELIXOS-L9-007-C0105",
+        "HELIXOS-L9-007-C0106",
+        "HELIXOS-L9-007-C0107",
+        "HELIXOS-L9-007-C0108",
+        "HELIXOS-L9-007-C0109",
+        "HELIXOS-L9-007-C0110",
+        "HELIXOS-L9-007-C0111",
+        "HELIXOS-L9-007-C0112",
+        "HELIXOS-L9-007-C0113",
+        "HELIXOS-L9-007-C0114",
+        "HELIXOS-L9-007-C0115",
+        "HELIXOS-L9-007-C0116",
+        "HELIXOS-L9-007-C0117",
+        "HELIXOS-L9-007-C0118",
+        "HELIXOS-L9-007-C0119",
+        "HELIXOS-L9-007-C0120",
+        "HELIXOS-L9-007-C0121",
+        "HELIXOS-L9-007-C0122",
+        "HELIXOS-L9-007-C0123",
+        "HELIXOS-L9-007-C0124",
+        "HELIXOS-L9-007-C0125",
+        "HELIXOS-L9-007-C0126",
+        "HELIXOS-L9-007-C0127",
+        "HELIXOS-L9-007-C0128",
+        "HELIXOS-L9-007-C0129",
+        "HELIXOS-L9-007-C0130",
+        "HELIXOS-L9-007-C0131",
+        "HELIXOS-L9-007-C0132",
+        "HELIXOS-L9-007-C0133",
+        "HELIXOS-L9-007-C0134",
+        "HELIXOS-L9-007-C0135",
+        "HELIXOS-L9-007-C0136",
+        "HELIXOS-L9-007-C0137",
+        "HELIXOS-L9-007-C0138",
+        "HELIXOS-L9-007-C0139",
+        "HELIXOS-L9-007-C0140",
+        "HELIXOS-L9-007-C0141",
+        "HELIXOS-L9-007-C0142",
+        "HELIXOS-L9-007-C0143",
+        "HELIXOS-L9-007-C0144",
+        "HELIXOS-L9-007-C0145",
+        "HELIXOS-L9-007-C0146",
+        "HELIXOS-L9-007-C0147",
+        "HELIXOS-L9-007-C0148",
+        "HELIXOS-L9-007-C0149",
+        "HELIXOS-L9-007-C0150",
+        "HELIXOS-L9-007-C0151",
+        "HELIXOS-L9-007-C0152",
+        "HELIXOS-L9-007-C0153",
+        "HELIXOS-L9-007-C0154",
+        "HELIXOS-L9-007-C0155",
+        "HELIXOS-L9-007-C0156",
+        "HELIXOS-L9-007-C0157",
+        "HELIXOS-L9-007-C0158",
+        "HELIXOS-L9-007-C0159",
+        "HELIXOS-L9-007-C0160",
+        "HELIXOS-L9-007-C0161",
+        "HELIXOS-L9-007-C0162",
+        "HELIXOS-L9-007-C0163",
+        "HELIXOS-L9-007-C0164",
+        "HELIXOS-L9-007-C0165",
+        "HELIXOS-L9-007-C0166",
+        "HELIXOS-L9-007-C0167",
+        "HELIXOS-L9-007-C0168",
+        "HELIXOS-L9-007-C0169",
+        "HELIXOS-L9-007-C0170",
+        "HELIXOS-L9-007-C0171",
+        "HELIXOS-L9-007-C0172",
+        "HELIXOS-L9-007-C0173",
+        "HELIXOS-L9-007-C0174",
+        "HELIXOS-L9-007-C0175",
+        "HELIXOS-L9-007-C0176",
+        "HELIXOS-L9-007-C0177",
+        "HELIXOS-L9-007-C0178",
+        "HELIXOS-L9-007-C0179",
+        "HELIXOS-L9-007-C0180",
+        "HELIXOS-L9-007-C0181",
+        "HELIXOS-L9-007-C0182",
+        "HELIXOS-L9-007-C0183",
+        "HELIXOS-L9-007-C0184",
+        "HELIXOS-L9-007-C0185",
+        "HELIXOS-L9-007-C0186",
+        "HELIXOS-L9-007-C0187",
+        "HELIXOS-L9-007-C0188",
+        "HELIXOS-L9-007-C0189",
+        "HELIXOS-L9-007-C0190",
+        "HELIXOS-L9-007-C0191",
+        "HELIXOS-L9-007-C0192",
+        "HELIXOS-L9-007-C0193",
+        "HELIXOS-L9-007-C0194",
+        "HELIXOS-L9-007-C0195",
+        "HELIXOS-L9-007-C0196",
+        "HELIXOS-L9-007-C0197",
+        "HELIXOS-L9-007-C0198",
+        "HELIXOS-L9-007-C0199",
+        "HELIXOS-L9-007-C0200",
+        "HELIXOS-L9-007-C0201",
+        "HELIXOS-L9-007-C0202",
+        "HELIXOS-L9-007-C0203",
+        "HELIXOS-L9-007-C0204",
+        "HELIXOS-L9-007-C0205",
+        "HELIXOS-L9-007-C0206",
+        "HELIXOS-L9-007-C0207",
+        "HELIXOS-L9-007-C0208",
+        "HELIXOS-L9-007-C0209",
+        "HELIXOS-L9-007-C0210",
+        "HELIXOS-L9-007-C0211",
+        "HELIXOS-L9-007-C0212",
+        "HELIXOS-L9-007-C0213",
+        "HELIXOS-L9-007-C0214",
+        "HELIXOS-L9-007-C0215",
+        "HELIXOS-L9-007-C0216",
+        "HELIXOS-L9-007-C0217",
+        "HELIXOS-L9-007-C0218",
+        "HELIXOS-L9-007-C0219",
+        "HELIXOS-L9-007-C0220",
+        "HELIXOS-L9-007-C0221",
+        "HELIXOS-L9-007-C0222",
+        "HELIXOS-L9-007-C0223",
+        "HELIXOS-L9-007-C0224",
+        "HELIXOS-L9-007-C0225",
+        "HELIXOS-L9-007-C0226",
+        "HELIXOS-L9-007-C0227",
+        "HELIXOS-L9-007-C0228",
+        "HELIXOS-L9-007-C0229",
+        "HELIXOS-L9-007-C0230",
+        "HELIXOS-L9-007-C0231",
+        "HELIXOS-L9-007-C0232",
+        "HELIXOS-L9-007-C0233",
+        "HELIXOS-L9-007-C0234",
+        "HELIXOS-L9-007-C0235",
+        "HELIXOS-L9-007-C0236",
+        "HELIXOS-L9-007-C0237",
+        "HELIXOS-L9-007-C0238",
+        "HELIXOS-L9-007-C0239",
+        "HELIXOS-L9-007-C0240",
+        "HELIXOS-L9-007-C0241",
+        "HELIXOS-L9-007-C0242",
+        "HELIXOS-L9-007-C0243",
+        "HELIXOS-L9-007-C0244",
+        "HELIXOS-L9-007-C0245",
+        "HELIXOS-L9-007-C0246",
+        "HELIXOS-L9-007-C0247",
+        "HELIXOS-L9-007-C0248",
+        "HELIXOS-L9-007-C0249",
+        "HELIXOS-L9-007-C0250",
+        "HELIXOS-L9-007-C0251",
+        "HELIXOS-L9-007-C0252",
+        "HELIXOS-L9-007-C0253",
+        "HELIXOS-L9-007-C0254",
+        "HELIXOS-L9-007-C0255",
+        "HELIXOS-L9-007-C0256",
+        "HELIXOS-L9-007-C0257",
+        "HELIXOS-L9-007-C0258",
+        "HELIXOS-L9-007-C0259",
+        "HELIXOS-L9-007-C0260",
+        "HELIXOS-L9-007-C0261",
+        "HELIXOS-L9-007-C0262",
+        "HELIXOS-L9-007-C0263",
+        "HELIXOS-L9-007-C0264",
+        "HELIXOS-L9-007-C0265",
+        "HELIXOS-L9-007-C0266",
+        "HELIXOS-L9-007-C0267",
+        "HELIXOS-L9-007-C0268",
+        "HELIXOS-L9-007-C0269",
+        "HELIXOS-L9-007-C0270",
+        "HELIXOS-L9-007-C0271",
+        "HELIXOS-L9-007-C0272",
+        "HELIXOS-L9-007-C0273",
+        "HELIXOS-L9-007-C0274",
+        "HELIXOS-L9-007-C0275",
+        "HELIXOS-L9-007-C0276",
+        "HELIXOS-L9-007-C0277",
+        "HELIXOS-L9-007-C0278",
+        "HELIXOS-L9-007-C0279",
+        "HELIXOS-L9-007-C0280",
+        "HELIXOS-L9-007-C0281",
+        "HELIXOS-L9-007-C0282",
+        "HELIXOS-L9-007-C0283",
+        "HELIXOS-L9-007-C0284",
+        "HELIXOS-L9-007-C0285",
+        "HELIXOS-L9-007-C0286",
+        "HELIXOS-L9-007-C0287",
+        "HELIXOS-L9-007-C0288",
+        "HELIXOS-L9-007-C0289",
+        "HELIXOS-L9-007-C0290",
+        "HELIXOS-L9-007-C0291",
+        "HELIXOS-L9-007-C0292",
+        "HELIXOS-L9-007-C0293",
+        "HELIXOS-L9-007-C0294",
+        "HELIXOS-L9-007-C0295",
+        "HELIXOS-L9-007-C0296",
+        "HELIXOS-L9-007-C0297",
+        "HELIXOS-L9-007-C0298",
+        "HELIXOS-L9-007-C0299",
+        "HELIXOS-L9-007-C0300",
+        "HELIXOS-L9-007-C0301",
+        "HELIXOS-L9-007-C0302",
+        "HELIXOS-L9-007-C0303",
+        "HELIXOS-L9-007-C0304",
+        "HELIXOS-L9-007-C0305",
+        "HELIXOS-L9-007-C0306",
+        "HELIXOS-L9-007-C0307",
+        "HELIXOS-L9-007-C0308",
+        "HELIXOS-L9-007-C0309",
+        "HELIXOS-L9-007-C0310",
+        "HELIXOS-L9-007-C0311",
+        "HELIXOS-L9-007-C0312",
+        "HELIXOS-L9-007-C0313",
+        "HELIXOS-L9-007-C0314",
+        "HELIXOS-L9-007-C0315",
+        "HELIXOS-L9-007-C0316",
+        "HELIXOS-L9-007-C0317",
+        "HELIXOS-L9-007-C0318",
+        "HELIXOS-L9-007-C0319",
+        "HELIXOS-L9-007-C0320",
+        "HELIXOS-L9-007-C0321",
+        "HELIXOS-L9-007-C0322",
+        "HELIXOS-L9-007-C0323",
+        "HELIXOS-L9-007-C0324",
+        "HELIXOS-L9-007-C0325",
+        "HELIXOS-L9-007-C0326",
+        "HELIXOS-L9-007-C0327",
+        "HELIXOS-L9-007-C0328",
+        "HELIXOS-L9-007-C0329",
+        "HELIXOS-L9-007-C0330",
+        "HELIXOS-L9-007-C0331",
+        "HELIXOS-L9-007-C0332",
+        "HELIXOS-L9-007-C0333",
+        "HELIXOS-L9-007-C0334",
+        "HELIXOS-L9-007-C0335",
+        "HELIXOS-L9-007-C0336",
+        "HELIXOS-L9-007-C0337",
+        "HELIXOS-L9-007-C0338",
+        "HELIXOS-L9-007-C0339",
+        "HELIXOS-L9-007-C0340",
+        "HELIXOS-L9-007-C0341",
+        "HELIXOS-L9-007-C0342",
+        "HELIXOS-L9-007-C0343",
+        "HELIXOS-L9-007-C0344",
+        "HELIXOS-L9-007-C0345",
+        "HELIXOS-L9-007-C0346",
+        "HELIXOS-L9-007-C0347",
+        "HELIXOS-L9-007-C0348",
+        "HELIXOS-L9-007-C0349",
+        "HELIXOS-L9-007-C0350",
+        "HELIXOS-L9-007-C0351",
+        "HELIXOS-L9-007-C0352",
+        "HELIXOS-L9-007-C0353",
+        "HELIXOS-L9-007-C0354",
+        "HELIXOS-L9-007-C0355",
+        "HELIXOS-L9-007-C0356",
+        "HELIXOS-L9-007-C0357",
+        "HELIXOS-L9-007-C0358",
+        "HELIXOS-L9-007-C0359",
+        "HELIXOS-L9-007-C0360",
+        "HELIXOS-L9-007-C0361",
+        "HELIXOS-L9-007-C0362",
+        "HELIXOS-L9-007-C0363",
+        "HELIXOS-L9-007-C0364",
+        "HELIXOS-L9-007-C0365",
+        "HELIXOS-L9-007-C0366",
+        "HELIXOS-L9-007-C0367",
+        "HELIXOS-L9-007-C0368",
+        "HELIXOS-L9-007-C0369",
+        "HELIXOS-L9-007-C0370",
+        "HELIXOS-L9-007-C0371",
+        "HELIXOS-L9-007-C0372",
+        "HELIXOS-L9-007-C0373",
+        "HELIXOS-L9-007-C0937",
+        "HELIXOS-L9-007-C0938",
+        "HELIXOS-L9-007-C0939",
+        "HELIXOS-L9-007-C0940"
+      ]
     },
     {
       "id": "assess_feedback_material",
@@ -805,7 +1185,226 @@
           "R06",
           "R07"
         ]
-      }
+      },
+      "oracle_ref": "HELIXOS-L8-007-P-F02",
+      "unit_case_refs": [
+        "HELIXOS-L9-007-C0374",
+        "HELIXOS-L9-007-C0375",
+        "HELIXOS-L9-007-C0376",
+        "HELIXOS-L9-007-C0377",
+        "HELIXOS-L9-007-C0378",
+        "HELIXOS-L9-007-C0379",
+        "HELIXOS-L9-007-C0380",
+        "HELIXOS-L9-007-C0381",
+        "HELIXOS-L9-007-C0382",
+        "HELIXOS-L9-007-C0383",
+        "HELIXOS-L9-007-C0384",
+        "HELIXOS-L9-007-C0385",
+        "HELIXOS-L9-007-C0386",
+        "HELIXOS-L9-007-C0387",
+        "HELIXOS-L9-007-C0388",
+        "HELIXOS-L9-007-C0389",
+        "HELIXOS-L9-007-C0390",
+        "HELIXOS-L9-007-C0391",
+        "HELIXOS-L9-007-C0392",
+        "HELIXOS-L9-007-C0393",
+        "HELIXOS-L9-007-C0394",
+        "HELIXOS-L9-007-C0395",
+        "HELIXOS-L9-007-C0396",
+        "HELIXOS-L9-007-C0397",
+        "HELIXOS-L9-007-C0398",
+        "HELIXOS-L9-007-C0399",
+        "HELIXOS-L9-007-C0400",
+        "HELIXOS-L9-007-C0401",
+        "HELIXOS-L9-007-C0402",
+        "HELIXOS-L9-007-C0403",
+        "HELIXOS-L9-007-C0404",
+        "HELIXOS-L9-007-C0405",
+        "HELIXOS-L9-007-C0406",
+        "HELIXOS-L9-007-C0407",
+        "HELIXOS-L9-007-C0408",
+        "HELIXOS-L9-007-C0409",
+        "HELIXOS-L9-007-C0410",
+        "HELIXOS-L9-007-C0411",
+        "HELIXOS-L9-007-C0412",
+        "HELIXOS-L9-007-C0413",
+        "HELIXOS-L9-007-C0414",
+        "HELIXOS-L9-007-C0415",
+        "HELIXOS-L9-007-C0416",
+        "HELIXOS-L9-007-C0417",
+        "HELIXOS-L9-007-C0418",
+        "HELIXOS-L9-007-C0419",
+        "HELIXOS-L9-007-C0420",
+        "HELIXOS-L9-007-C0421",
+        "HELIXOS-L9-007-C0422",
+        "HELIXOS-L9-007-C0423",
+        "HELIXOS-L9-007-C0424",
+        "HELIXOS-L9-007-C0425",
+        "HELIXOS-L9-007-C0426",
+        "HELIXOS-L9-007-C0427",
+        "HELIXOS-L9-007-C0428",
+        "HELIXOS-L9-007-C0429",
+        "HELIXOS-L9-007-C0430",
+        "HELIXOS-L9-007-C0431",
+        "HELIXOS-L9-007-C0432",
+        "HELIXOS-L9-007-C0433",
+        "HELIXOS-L9-007-C0434",
+        "HELIXOS-L9-007-C0435",
+        "HELIXOS-L9-007-C0436",
+        "HELIXOS-L9-007-C0437",
+        "HELIXOS-L9-007-C0438",
+        "HELIXOS-L9-007-C0439",
+        "HELIXOS-L9-007-C0440",
+        "HELIXOS-L9-007-C0441",
+        "HELIXOS-L9-007-C0442",
+        "HELIXOS-L9-007-C0443",
+        "HELIXOS-L9-007-C0444",
+        "HELIXOS-L9-007-C0445",
+        "HELIXOS-L9-007-C0446",
+        "HELIXOS-L9-007-C0447",
+        "HELIXOS-L9-007-C0448",
+        "HELIXOS-L9-007-C0449",
+        "HELIXOS-L9-007-C0450",
+        "HELIXOS-L9-007-C0451",
+        "HELIXOS-L9-007-C0452",
+        "HELIXOS-L9-007-C0453",
+        "HELIXOS-L9-007-C0454",
+        "HELIXOS-L9-007-C0455",
+        "HELIXOS-L9-007-C0456",
+        "HELIXOS-L9-007-C0457",
+        "HELIXOS-L9-007-C0458",
+        "HELIXOS-L9-007-C0459",
+        "HELIXOS-L9-007-C0460",
+        "HELIXOS-L9-007-C0461",
+        "HELIXOS-L9-007-C0462",
+        "HELIXOS-L9-007-C0463",
+        "HELIXOS-L9-007-C0464",
+        "HELIXOS-L9-007-C0465",
+        "HELIXOS-L9-007-C0466",
+        "HELIXOS-L9-007-C0467",
+        "HELIXOS-L9-007-C0468",
+        "HELIXOS-L9-007-C0469",
+        "HELIXOS-L9-007-C0470",
+        "HELIXOS-L9-007-C0471",
+        "HELIXOS-L9-007-C0472",
+        "HELIXOS-L9-007-C0473",
+        "HELIXOS-L9-007-C0474",
+        "HELIXOS-L9-007-C0475",
+        "HELIXOS-L9-007-C0476",
+        "HELIXOS-L9-007-C0477",
+        "HELIXOS-L9-007-C0478",
+        "HELIXOS-L9-007-C0479",
+        "HELIXOS-L9-007-C0480",
+        "HELIXOS-L9-007-C0481",
+        "HELIXOS-L9-007-C0482",
+        "HELIXOS-L9-007-C0483",
+        "HELIXOS-L9-007-C0484",
+        "HELIXOS-L9-007-C0485",
+        "HELIXOS-L9-007-C0486",
+        "HELIXOS-L9-007-C0487",
+        "HELIXOS-L9-007-C0488",
+        "HELIXOS-L9-007-C0489",
+        "HELIXOS-L9-007-C0490",
+        "HELIXOS-L9-007-C0491",
+        "HELIXOS-L9-007-C0492",
+        "HELIXOS-L9-007-C0493",
+        "HELIXOS-L9-007-C0494",
+        "HELIXOS-L9-007-C0495",
+        "HELIXOS-L9-007-C0496",
+        "HELIXOS-L9-007-C0497",
+        "HELIXOS-L9-007-C0498",
+        "HELIXOS-L9-007-C0499",
+        "HELIXOS-L9-007-C0500",
+        "HELIXOS-L9-007-C0501",
+        "HELIXOS-L9-007-C0502",
+        "HELIXOS-L9-007-C0503",
+        "HELIXOS-L9-007-C0504",
+        "HELIXOS-L9-007-C0505",
+        "HELIXOS-L9-007-C0506",
+        "HELIXOS-L9-007-C0507",
+        "HELIXOS-L9-007-C0508",
+        "HELIXOS-L9-007-C0509",
+        "HELIXOS-L9-007-C0510",
+        "HELIXOS-L9-007-C0511",
+        "HELIXOS-L9-007-C0512",
+        "HELIXOS-L9-007-C0513",
+        "HELIXOS-L9-007-C0514",
+        "HELIXOS-L9-007-C0515",
+        "HELIXOS-L9-007-C0516",
+        "HELIXOS-L9-007-C0517",
+        "HELIXOS-L9-007-C0518",
+        "HELIXOS-L9-007-C0519",
+        "HELIXOS-L9-007-C0520",
+        "HELIXOS-L9-007-C0521",
+        "HELIXOS-L9-007-C0522",
+        "HELIXOS-L9-007-C0523",
+        "HELIXOS-L9-007-C0524",
+        "HELIXOS-L9-007-C0525",
+        "HELIXOS-L9-007-C0526",
+        "HELIXOS-L9-007-C0527",
+        "HELIXOS-L9-007-C0528",
+        "HELIXOS-L9-007-C0529",
+        "HELIXOS-L9-007-C0530",
+        "HELIXOS-L9-007-C0531",
+        "HELIXOS-L9-007-C0532",
+        "HELIXOS-L9-007-C0533",
+        "HELIXOS-L9-007-C0534",
+        "HELIXOS-L9-007-C0535",
+        "HELIXOS-L9-007-C0536",
+        "HELIXOS-L9-007-C0537",
+        "HELIXOS-L9-007-C0538",
+        "HELIXOS-L9-007-C0539",
+        "HELIXOS-L9-007-C0540",
+        "HELIXOS-L9-007-C0541",
+        "HELIXOS-L9-007-C0542",
+        "HELIXOS-L9-007-C0543",
+        "HELIXOS-L9-007-C0544",
+        "HELIXOS-L9-007-C0545",
+        "HELIXOS-L9-007-C0546",
+        "HELIXOS-L9-007-C0547",
+        "HELIXOS-L9-007-C0548",
+        "HELIXOS-L9-007-C0549",
+        "HELIXOS-L9-007-C0550",
+        "HELIXOS-L9-007-C0551",
+        "HELIXOS-L9-007-C0552",
+        "HELIXOS-L9-007-C0553",
+        "HELIXOS-L9-007-C0554",
+        "HELIXOS-L9-007-C0555",
+        "HELIXOS-L9-007-C0556",
+        "HELIXOS-L9-007-C0557",
+        "HELIXOS-L9-007-C0558",
+        "HELIXOS-L9-007-C0559",
+        "HELIXOS-L9-007-C0560",
+        "HELIXOS-L9-007-C0561",
+        "HELIXOS-L9-007-C0562",
+        "HELIXOS-L9-007-C0563",
+        "HELIXOS-L9-007-C0564",
+        "HELIXOS-L9-007-C0565",
+        "HELIXOS-L9-007-C0566",
+        "HELIXOS-L9-007-C0567",
+        "HELIXOS-L9-007-C0568",
+        "HELIXOS-L9-007-C0569",
+        "HELIXOS-L9-007-C0570",
+        "HELIXOS-L9-007-C0571",
+        "HELIXOS-L9-007-C0572",
+        "HELIXOS-L9-007-C0573",
+        "HELIXOS-L9-007-C0574",
+        "HELIXOS-L9-007-C0575",
+        "HELIXOS-L9-007-C0576",
+        "HELIXOS-L9-007-C0577",
+        "HELIXOS-L9-007-C0578",
+        "HELIXOS-L9-007-C0579",
+        "HELIXOS-L9-007-C0580",
+        "HELIXOS-L9-007-C0581",
+        "HELIXOS-L9-007-C0582",
+        "HELIXOS-L9-007-C0583",
+        "HELIXOS-L9-007-C0941",
+        "HELIXOS-L9-007-C0942",
+        "HELIXOS-L9-007-C0943",
+        "HELIXOS-L9-007-C0946",
+        "HELIXOS-L9-007-C0947",
+        "HELIXOS-L9-007-C0948"
+      ]
     },
     {
       "id": "assess_memory_material",
@@ -841,7 +1440,363 @@
           "R10",
           "R11"
         ]
-      }
+      },
+      "oracle_ref": "HELIXOS-L8-007-P-F03",
+      "unit_case_refs": [
+        "HELIXOS-L9-007-C0584",
+        "HELIXOS-L9-007-C0585",
+        "HELIXOS-L9-007-C0586",
+        "HELIXOS-L9-007-C0587",
+        "HELIXOS-L9-007-C0588",
+        "HELIXOS-L9-007-C0589",
+        "HELIXOS-L9-007-C0590",
+        "HELIXOS-L9-007-C0591",
+        "HELIXOS-L9-007-C0592",
+        "HELIXOS-L9-007-C0593",
+        "HELIXOS-L9-007-C0594",
+        "HELIXOS-L9-007-C0595",
+        "HELIXOS-L9-007-C0596",
+        "HELIXOS-L9-007-C0597",
+        "HELIXOS-L9-007-C0598",
+        "HELIXOS-L9-007-C0599",
+        "HELIXOS-L9-007-C0600",
+        "HELIXOS-L9-007-C0601",
+        "HELIXOS-L9-007-C0602",
+        "HELIXOS-L9-007-C0603",
+        "HELIXOS-L9-007-C0604",
+        "HELIXOS-L9-007-C0605",
+        "HELIXOS-L9-007-C0606",
+        "HELIXOS-L9-007-C0607",
+        "HELIXOS-L9-007-C0608",
+        "HELIXOS-L9-007-C0609",
+        "HELIXOS-L9-007-C0610",
+        "HELIXOS-L9-007-C0611",
+        "HELIXOS-L9-007-C0612",
+        "HELIXOS-L9-007-C0613",
+        "HELIXOS-L9-007-C0614",
+        "HELIXOS-L9-007-C0615",
+        "HELIXOS-L9-007-C0616",
+        "HELIXOS-L9-007-C0617",
+        "HELIXOS-L9-007-C0618",
+        "HELIXOS-L9-007-C0619",
+        "HELIXOS-L9-007-C0620",
+        "HELIXOS-L9-007-C0621",
+        "HELIXOS-L9-007-C0622",
+        "HELIXOS-L9-007-C0623",
+        "HELIXOS-L9-007-C0624",
+        "HELIXOS-L9-007-C0625",
+        "HELIXOS-L9-007-C0626",
+        "HELIXOS-L9-007-C0627",
+        "HELIXOS-L9-007-C0628",
+        "HELIXOS-L9-007-C0629",
+        "HELIXOS-L9-007-C0630",
+        "HELIXOS-L9-007-C0631",
+        "HELIXOS-L9-007-C0632",
+        "HELIXOS-L9-007-C0633",
+        "HELIXOS-L9-007-C0634",
+        "HELIXOS-L9-007-C0635",
+        "HELIXOS-L9-007-C0636",
+        "HELIXOS-L9-007-C0637",
+        "HELIXOS-L9-007-C0638",
+        "HELIXOS-L9-007-C0639",
+        "HELIXOS-L9-007-C0640",
+        "HELIXOS-L9-007-C0641",
+        "HELIXOS-L9-007-C0642",
+        "HELIXOS-L9-007-C0643",
+        "HELIXOS-L9-007-C0644",
+        "HELIXOS-L9-007-C0645",
+        "HELIXOS-L9-007-C0646",
+        "HELIXOS-L9-007-C0647",
+        "HELIXOS-L9-007-C0648",
+        "HELIXOS-L9-007-C0649",
+        "HELIXOS-L9-007-C0650",
+        "HELIXOS-L9-007-C0651",
+        "HELIXOS-L9-007-C0652",
+        "HELIXOS-L9-007-C0653",
+        "HELIXOS-L9-007-C0654",
+        "HELIXOS-L9-007-C0655",
+        "HELIXOS-L9-007-C0656",
+        "HELIXOS-L9-007-C0657",
+        "HELIXOS-L9-007-C0658",
+        "HELIXOS-L9-007-C0659",
+        "HELIXOS-L9-007-C0660",
+        "HELIXOS-L9-007-C0661",
+        "HELIXOS-L9-007-C0662",
+        "HELIXOS-L9-007-C0663",
+        "HELIXOS-L9-007-C0664",
+        "HELIXOS-L9-007-C0665",
+        "HELIXOS-L9-007-C0666",
+        "HELIXOS-L9-007-C0667",
+        "HELIXOS-L9-007-C0668",
+        "HELIXOS-L9-007-C0669",
+        "HELIXOS-L9-007-C0670",
+        "HELIXOS-L9-007-C0671",
+        "HELIXOS-L9-007-C0672",
+        "HELIXOS-L9-007-C0673",
+        "HELIXOS-L9-007-C0674",
+        "HELIXOS-L9-007-C0675",
+        "HELIXOS-L9-007-C0676",
+        "HELIXOS-L9-007-C0677",
+        "HELIXOS-L9-007-C0678",
+        "HELIXOS-L9-007-C0679",
+        "HELIXOS-L9-007-C0680",
+        "HELIXOS-L9-007-C0681",
+        "HELIXOS-L9-007-C0682",
+        "HELIXOS-L9-007-C0683",
+        "HELIXOS-L9-007-C0684",
+        "HELIXOS-L9-007-C0685",
+        "HELIXOS-L9-007-C0686",
+        "HELIXOS-L9-007-C0687",
+        "HELIXOS-L9-007-C0688",
+        "HELIXOS-L9-007-C0689",
+        "HELIXOS-L9-007-C0690",
+        "HELIXOS-L9-007-C0691",
+        "HELIXOS-L9-007-C0692",
+        "HELIXOS-L9-007-C0693",
+        "HELIXOS-L9-007-C0694",
+        "HELIXOS-L9-007-C0695",
+        "HELIXOS-L9-007-C0696",
+        "HELIXOS-L9-007-C0697",
+        "HELIXOS-L9-007-C0698",
+        "HELIXOS-L9-007-C0699",
+        "HELIXOS-L9-007-C0700",
+        "HELIXOS-L9-007-C0701",
+        "HELIXOS-L9-007-C0702",
+        "HELIXOS-L9-007-C0703",
+        "HELIXOS-L9-007-C0704",
+        "HELIXOS-L9-007-C0705",
+        "HELIXOS-L9-007-C0706",
+        "HELIXOS-L9-007-C0707",
+        "HELIXOS-L9-007-C0708",
+        "HELIXOS-L9-007-C0709",
+        "HELIXOS-L9-007-C0710",
+        "HELIXOS-L9-007-C0711",
+        "HELIXOS-L9-007-C0712",
+        "HELIXOS-L9-007-C0713",
+        "HELIXOS-L9-007-C0714",
+        "HELIXOS-L9-007-C0715",
+        "HELIXOS-L9-007-C0716",
+        "HELIXOS-L9-007-C0717",
+        "HELIXOS-L9-007-C0718",
+        "HELIXOS-L9-007-C0719",
+        "HELIXOS-L9-007-C0720",
+        "HELIXOS-L9-007-C0721",
+        "HELIXOS-L9-007-C0722",
+        "HELIXOS-L9-007-C0723",
+        "HELIXOS-L9-007-C0724",
+        "HELIXOS-L9-007-C0725",
+        "HELIXOS-L9-007-C0726",
+        "HELIXOS-L9-007-C0727",
+        "HELIXOS-L9-007-C0728",
+        "HELIXOS-L9-007-C0729",
+        "HELIXOS-L9-007-C0730",
+        "HELIXOS-L9-007-C0731",
+        "HELIXOS-L9-007-C0732",
+        "HELIXOS-L9-007-C0733",
+        "HELIXOS-L9-007-C0734",
+        "HELIXOS-L9-007-C0735",
+        "HELIXOS-L9-007-C0736",
+        "HELIXOS-L9-007-C0737",
+        "HELIXOS-L9-007-C0738",
+        "HELIXOS-L9-007-C0739",
+        "HELIXOS-L9-007-C0740",
+        "HELIXOS-L9-007-C0741",
+        "HELIXOS-L9-007-C0742",
+        "HELIXOS-L9-007-C0743",
+        "HELIXOS-L9-007-C0744",
+        "HELIXOS-L9-007-C0745",
+        "HELIXOS-L9-007-C0746",
+        "HELIXOS-L9-007-C0747",
+        "HELIXOS-L9-007-C0748",
+        "HELIXOS-L9-007-C0749",
+        "HELIXOS-L9-007-C0750",
+        "HELIXOS-L9-007-C0751",
+        "HELIXOS-L9-007-C0752",
+        "HELIXOS-L9-007-C0753",
+        "HELIXOS-L9-007-C0754",
+        "HELIXOS-L9-007-C0755",
+        "HELIXOS-L9-007-C0756",
+        "HELIXOS-L9-007-C0757",
+        "HELIXOS-L9-007-C0758",
+        "HELIXOS-L9-007-C0759",
+        "HELIXOS-L9-007-C0760",
+        "HELIXOS-L9-007-C0761",
+        "HELIXOS-L9-007-C0762",
+        "HELIXOS-L9-007-C0763",
+        "HELIXOS-L9-007-C0764",
+        "HELIXOS-L9-007-C0765",
+        "HELIXOS-L9-007-C0766",
+        "HELIXOS-L9-007-C0767",
+        "HELIXOS-L9-007-C0768",
+        "HELIXOS-L9-007-C0769",
+        "HELIXOS-L9-007-C0770",
+        "HELIXOS-L9-007-C0771",
+        "HELIXOS-L9-007-C0772",
+        "HELIXOS-L9-007-C0773",
+        "HELIXOS-L9-007-C0774",
+        "HELIXOS-L9-007-C0775",
+        "HELIXOS-L9-007-C0776",
+        "HELIXOS-L9-007-C0777",
+        "HELIXOS-L9-007-C0778",
+        "HELIXOS-L9-007-C0779",
+        "HELIXOS-L9-007-C0780",
+        "HELIXOS-L9-007-C0781",
+        "HELIXOS-L9-007-C0782",
+        "HELIXOS-L9-007-C0783",
+        "HELIXOS-L9-007-C0784",
+        "HELIXOS-L9-007-C0785",
+        "HELIXOS-L9-007-C0786",
+        "HELIXOS-L9-007-C0787",
+        "HELIXOS-L9-007-C0788",
+        "HELIXOS-L9-007-C0789",
+        "HELIXOS-L9-007-C0790",
+        "HELIXOS-L9-007-C0791",
+        "HELIXOS-L9-007-C0792",
+        "HELIXOS-L9-007-C0793",
+        "HELIXOS-L9-007-C0794",
+        "HELIXOS-L9-007-C0795",
+        "HELIXOS-L9-007-C0796",
+        "HELIXOS-L9-007-C0797",
+        "HELIXOS-L9-007-C0798",
+        "HELIXOS-L9-007-C0799",
+        "HELIXOS-L9-007-C0800",
+        "HELIXOS-L9-007-C0801",
+        "HELIXOS-L9-007-C0802",
+        "HELIXOS-L9-007-C0803",
+        "HELIXOS-L9-007-C0804",
+        "HELIXOS-L9-007-C0805",
+        "HELIXOS-L9-007-C0806",
+        "HELIXOS-L9-007-C0807",
+        "HELIXOS-L9-007-C0808",
+        "HELIXOS-L9-007-C0809",
+        "HELIXOS-L9-007-C0810",
+        "HELIXOS-L9-007-C0811",
+        "HELIXOS-L9-007-C0812",
+        "HELIXOS-L9-007-C0813",
+        "HELIXOS-L9-007-C0814",
+        "HELIXOS-L9-007-C0815",
+        "HELIXOS-L9-007-C0816",
+        "HELIXOS-L9-007-C0817",
+        "HELIXOS-L9-007-C0818",
+        "HELIXOS-L9-007-C0819",
+        "HELIXOS-L9-007-C0820",
+        "HELIXOS-L9-007-C0821",
+        "HELIXOS-L9-007-C0822",
+        "HELIXOS-L9-007-C0823",
+        "HELIXOS-L9-007-C0824",
+        "HELIXOS-L9-007-C0825",
+        "HELIXOS-L9-007-C0826",
+        "HELIXOS-L9-007-C0827",
+        "HELIXOS-L9-007-C0828",
+        "HELIXOS-L9-007-C0829",
+        "HELIXOS-L9-007-C0830",
+        "HELIXOS-L9-007-C0831",
+        "HELIXOS-L9-007-C0832",
+        "HELIXOS-L9-007-C0833",
+        "HELIXOS-L9-007-C0834",
+        "HELIXOS-L9-007-C0835",
+        "HELIXOS-L9-007-C0836",
+        "HELIXOS-L9-007-C0837",
+        "HELIXOS-L9-007-C0838",
+        "HELIXOS-L9-007-C0839",
+        "HELIXOS-L9-007-C0840",
+        "HELIXOS-L9-007-C0841",
+        "HELIXOS-L9-007-C0842",
+        "HELIXOS-L9-007-C0843",
+        "HELIXOS-L9-007-C0844",
+        "HELIXOS-L9-007-C0845",
+        "HELIXOS-L9-007-C0846",
+        "HELIXOS-L9-007-C0847",
+        "HELIXOS-L9-007-C0848",
+        "HELIXOS-L9-007-C0849",
+        "HELIXOS-L9-007-C0850",
+        "HELIXOS-L9-007-C0851",
+        "HELIXOS-L9-007-C0852",
+        "HELIXOS-L9-007-C0853",
+        "HELIXOS-L9-007-C0854",
+        "HELIXOS-L9-007-C0855",
+        "HELIXOS-L9-007-C0856",
+        "HELIXOS-L9-007-C0857",
+        "HELIXOS-L9-007-C0858",
+        "HELIXOS-L9-007-C0859",
+        "HELIXOS-L9-007-C0860",
+        "HELIXOS-L9-007-C0861",
+        "HELIXOS-L9-007-C0862",
+        "HELIXOS-L9-007-C0863",
+        "HELIXOS-L9-007-C0864",
+        "HELIXOS-L9-007-C0865",
+        "HELIXOS-L9-007-C0866",
+        "HELIXOS-L9-007-C0867",
+        "HELIXOS-L9-007-C0868",
+        "HELIXOS-L9-007-C0869",
+        "HELIXOS-L9-007-C0870",
+        "HELIXOS-L9-007-C0871",
+        "HELIXOS-L9-007-C0872",
+        "HELIXOS-L9-007-C0873",
+        "HELIXOS-L9-007-C0874",
+        "HELIXOS-L9-007-C0875",
+        "HELIXOS-L9-007-C0876",
+        "HELIXOS-L9-007-C0877",
+        "HELIXOS-L9-007-C0878",
+        "HELIXOS-L9-007-C0879",
+        "HELIXOS-L9-007-C0880",
+        "HELIXOS-L9-007-C0881",
+        "HELIXOS-L9-007-C0882",
+        "HELIXOS-L9-007-C0883",
+        "HELIXOS-L9-007-C0884",
+        "HELIXOS-L9-007-C0885",
+        "HELIXOS-L9-007-C0886",
+        "HELIXOS-L9-007-C0887",
+        "HELIXOS-L9-007-C0888",
+        "HELIXOS-L9-007-C0889",
+        "HELIXOS-L9-007-C0890",
+        "HELIXOS-L9-007-C0891",
+        "HELIXOS-L9-007-C0892",
+        "HELIXOS-L9-007-C0893",
+        "HELIXOS-L9-007-C0894",
+        "HELIXOS-L9-007-C0895",
+        "HELIXOS-L9-007-C0896",
+        "HELIXOS-L9-007-C0897",
+        "HELIXOS-L9-007-C0898",
+        "HELIXOS-L9-007-C0899",
+        "HELIXOS-L9-007-C0900",
+        "HELIXOS-L9-007-C0901",
+        "HELIXOS-L9-007-C0902",
+        "HELIXOS-L9-007-C0903",
+        "HELIXOS-L9-007-C0904",
+        "HELIXOS-L9-007-C0905",
+        "HELIXOS-L9-007-C0906",
+        "HELIXOS-L9-007-C0907",
+        "HELIXOS-L9-007-C0908",
+        "HELIXOS-L9-007-C0909",
+        "HELIXOS-L9-007-C0910",
+        "HELIXOS-L9-007-C0911",
+        "HELIXOS-L9-007-C0912",
+        "HELIXOS-L9-007-C0913",
+        "HELIXOS-L9-007-C0914",
+        "HELIXOS-L9-007-C0915",
+        "HELIXOS-L9-007-C0916",
+        "HELIXOS-L9-007-C0917",
+        "HELIXOS-L9-007-C0918",
+        "HELIXOS-L9-007-C0919",
+        "HELIXOS-L9-007-C0920",
+        "HELIXOS-L9-007-C0921",
+        "HELIXOS-L9-007-C0922",
+        "HELIXOS-L9-007-C0923",
+        "HELIXOS-L9-007-C0924",
+        "HELIXOS-L9-007-C0925",
+        "HELIXOS-L9-007-C0926",
+        "HELIXOS-L9-007-C0927",
+        "HELIXOS-L9-007-C0928",
+        "HELIXOS-L9-007-C0929",
+        "HELIXOS-L9-007-C0930",
+        "HELIXOS-L9-007-C0931",
+        "HELIXOS-L9-007-C0932",
+        "HELIXOS-L9-007-C0933",
+        "HELIXOS-L9-007-C0934",
+        "HELIXOS-L9-007-C0944",
+        "HELIXOS-L9-007-C0945"
+      ]
     },
     {
       "id": "assemble_evidence_record",
@@ -884,7 +1839,18 @@
         "specific_rule_refs": [
           "R12"
         ]
-      }
+      },
+      "oracle_ref": "HELIXOS-L9-007-C0001",
+      "unit_case_refs": [
+        "HELIXOS-L8-007-P-F01",
+        "HELIXOS-L8-007-P-F02",
+        "HELIXOS-L8-007-P-F03",
+        "HELIXOS-L9-007-C0001",
+        "HELIXOS-L9-007-C0373",
+        "HELIXOS-L9-007-C0583",
+        "HELIXOS-L9-007-C0935",
+        "HELIXOS-L9-007-C0936"
+      ]
     }
   ],
   "algorithm": {
@@ -3987,6 +4953,34 @@
       "root_prefix": "collection関数のactual_item/context_itemにはactual_path/context_pathをitem束縛後に用い、組立actualは空path。",
       "path_tokens": "各tokenの変数を現在のlexical環境で解決し、~を~0、/を~1に置換して/で連結し先頭/を付ける。",
       "conflict_side": "left/rightのみ。predicate不成立は該当側pointer、両側成立かつ不一致は指定side pointer。"
+    },
+    "composite_class_formation": {
+      "source": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/composite_class_formation",
+      "finding_codes": "各facet関数（assess_log_material, assess_feedback_material, assess_memory_material）およびassemble_evidence_recordのboundary_stepsが生成しunique_sort_findingsで整列したfindingsからcode列を順序・重複保持で投影する。",
+      "expected_classification": "status_from_valuesとstatus_to_conditionによる全体condition（record_material_violation / record_material_unknown）をfailure_rules[].codeおよびexpected_classificationへ同値写像する。",
+      "function_and_owner_resolution": {
+        "logs": {
+          "function_ref": "assess_log_material",
+          "backflow_owner": "common-log-owner",
+          "contract_index": 0
+        },
+        "feedback": {
+          "function_ref": "assess_feedback_material",
+          "backflow_owner": "feedback-source-owner",
+          "contract_index": 1
+        },
+        "memory": {
+          "function_ref": "assess_memory_material",
+          "backflow_owner": "memory-lineage-owner",
+          "contract_index": 2
+        },
+        "boundary": {
+          "function_ref": "assemble_evidence_record",
+          "backflow_owner": "management-authority-owner",
+          "contract_index": 2
+        }
+      },
+      "side_effect_count": 0
     }
   },
   "approval_admission_evidence": {
@@ -4216,6 +5210,7 @@
       "function_ref": "assess_log_material",
       "expected": {
         "finding_codes": [
+          "log_kind_conflict",
           "log_kind_conflict"
         ]
       },
@@ -4243,6 +5238,7 @@
             "/diagnostic_contract/owner_by_facet/logs",
             "/diagnostic_contract/rules/1",
             "/diagnostic_contract/rules/11",
+            "/diagnostic_contract/composite_class_formation",
             "/failure_classifications/3"
           ]
         },
@@ -4255,7 +5251,8 @@
             "/finite_domains/owner_by_facet/logs",
             "/algorithm/ordered_rules/1",
             "/algorithm/ordered_rules/11",
-            "/formal_program/functions/assess_log_material/steps/3"
+            "/formal_program/functions/assess_log_material/steps/3",
+            "/formal_program/composite_class_formation"
           ]
         }
       ]
@@ -4740,7 +5737,15 @@
       "function_ref": "assess_feedback_material",
       "expected": {
         "finding_codes": [
-          "boolean_conflict"
+          "boolean_conflict",
+          "field_unknown",
+          "field_unknown",
+          "field_unknown",
+          "field_unknown",
+          "field_unknown",
+          "field_unknown",
+          "field_unknown",
+          "field_unknown"
         ]
       },
       "expected_preserved": {
@@ -4763,10 +5768,14 @@
           "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
           "pointers": [
             "/contracts/1",
-            "/diagnostic_contract/codes/10",
+            "/diagnostic_contract/codes/0",
+            "/diagnostic_contract/codes/9",
             "/diagnostic_contract/owner_by_facet/feedback",
             "/diagnostic_contract/rules/0",
+            "/diagnostic_contract/rules/3",
+            "/diagnostic_contract/rules/4",
             "/diagnostic_contract/rules/11",
+            "/diagnostic_contract/composite_class_formation",
             "/failure_classifications/13"
           ]
         },
@@ -4775,11 +5784,15 @@
           "pointers": [
             "/contracts/1",
             "/functions/1",
-            "/finite_domains/diagnostic_codes/10",
+            "/finite_domains/diagnostic_codes/0",
+            "/finite_domains/diagnostic_codes/9",
             "/finite_domains/owner_by_facet/feedback",
             "/algorithm/ordered_rules/0",
+            "/algorithm/ordered_rules/3",
+            "/algorithm/ordered_rules/4",
             "/algorithm/ordered_rules/11",
-            "/formal_program/functions/assess_feedback_material/steps/5"
+            "/formal_program/functions/assess_feedback_material/steps/5",
+            "/formal_program/composite_class_formation"
           ]
         }
       ]
@@ -4842,6 +5855,7 @@
       "function_ref": "assess_feedback_material",
       "expected": {
         "finding_codes": [
+          "field_conflict",
           "original_finding_changed"
         ]
       },
@@ -4865,10 +5879,13 @@
           "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
           "pointers": [
             "/contracts/1",
-            "/diagnostic_contract/codes/12",
+            "/diagnostic_contract/codes/1",
+            "/diagnostic_contract/codes/11",
             "/diagnostic_contract/owner_by_facet/feedback",
-            "/diagnostic_contract/rules/3",
+            "/diagnostic_contract/rules/0",
+            "/diagnostic_contract/rules/4",
             "/diagnostic_contract/rules/11",
+            "/diagnostic_contract/composite_class_formation",
             "/failure_classifications/15"
           ]
         },
@@ -4877,11 +5894,15 @@
           "pointers": [
             "/contracts/1",
             "/functions/1",
-            "/finite_domains/diagnostic_codes/12",
+            "/finite_domains/diagnostic_codes/1",
+            "/finite_domains/diagnostic_codes/11",
             "/finite_domains/owner_by_facet/feedback",
-            "/algorithm/ordered_rules/3",
+            "/algorithm/ordered_rules/0",
+            "/algorithm/ordered_rules/4",
             "/algorithm/ordered_rules/11",
-            "/formal_program/functions/assess_feedback_material/steps/1"
+            "/formal_program/functions/assess_feedback_material/steps/1",
+            "/formal_program/functions/assess_feedback_material/steps/2",
+            "/formal_program/composite_class_formation"
           ]
         }
       ]
@@ -5309,7 +6330,8 @@
       "function_ref": "assess_memory_material",
       "expected": {
         "finding_codes": [
-          "boolean_conflict"
+          "boolean_conflict",
+          "reflection_unrecorded_ref_present"
         ]
       },
       "expected_preserved": {
@@ -5332,10 +6354,12 @@
           "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
           "pointers": [
             "/contracts/2",
-            "/diagnostic_contract/codes/10",
+            "/diagnostic_contract/codes/9",
+            "/diagnostic_contract/codes/21",
             "/diagnostic_contract/owner_by_facet/memory",
-            "/diagnostic_contract/rules/0",
+            "/diagnostic_contract/rules/7",
             "/diagnostic_contract/rules/11",
+            "/diagnostic_contract/composite_class_formation",
             "/failure_classifications/24"
           ]
         },
@@ -5345,10 +6369,13 @@
             "/contracts/2",
             "/functions/2",
             "/finite_domains/diagnostic_codes/10",
+            "/finite_domains/diagnostic_codes/21",
             "/finite_domains/owner_by_facet/memory",
-            "/algorithm/ordered_rules/0",
+            "/algorithm/ordered_rules/7",
             "/algorithm/ordered_rules/11",
-            "/formal_program/functions/assess_memory_material/steps/5"
+            "/formal_program/functions/assess_memory_material/steps/5",
+            "/formal_program/functions/assess_memory_material/steps/6",
+            "/formal_program/composite_class_formation"
           ]
         }
       ]
@@ -6075,6 +7102,7 @@
       "function_ref": "assess_memory_material",
       "expected": {
         "finding_codes": [
+          "boolean_unknown",
           "retirement_basis_unknown"
         ]
       },
@@ -6098,10 +7126,13 @@
           "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
           "pointers": [
             "/contracts/2",
-            "/diagnostic_contract/codes/34",
+            "/diagnostic_contract/codes/8",
+            "/diagnostic_contract/codes/21",
             "/diagnostic_contract/owner_by_facet/memory",
+            "/diagnostic_contract/rules/7",
             "/diagnostic_contract/rules/8",
             "/diagnostic_contract/rules/11",
+            "/diagnostic_contract/composite_class_formation",
             "/failure_classifications/39"
           ]
         },
@@ -6110,11 +7141,15 @@
           "pointers": [
             "/contracts/2",
             "/functions/2",
-            "/finite_domains/diagnostic_codes/34",
+            "/finite_domains/diagnostic_codes/8",
+            "/finite_domains/diagnostic_codes/21",
             "/finite_domains/owner_by_facet/memory",
+            "/algorithm/ordered_rules/7",
             "/algorithm/ordered_rules/8",
             "/algorithm/ordered_rules/11",
-            "/formal_program/functions/assess_memory_material/steps/10"
+            "/formal_program/functions/assess_memory_material/steps/5",
+            "/formal_program/functions/assess_memory_material/steps/10",
+            "/formal_program/composite_class_formation"
           ]
         }
       ]
@@ -6315,6 +7350,2216 @@
             "/finite_domains/owner_by_facet/boundary",
             "/algorithm/ordered_rules/11",
             "/formal_program/functions/assemble_evidence_record/boundary_steps/1"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "OS007-NEG-logs-comp-01-field_conflict_log_kind_conflict",
+      "code": "record_material_violation",
+      "expected_classification": "record_material_violation",
+      "function_ref": "assess_log_material",
+      "expected": {
+        "finding_codes": [
+          "field_conflict",
+          "log_kind_conflict"
+        ]
+      },
+      "expected_preserved": {
+        "actual_records_equal_expanded_input_records": true,
+        "reference_records_equal_expanded_context_records": true
+      },
+      "expected_axis": "logs",
+      "expected_state": "violation",
+      "backflow_owner": "common-log-owner",
+      "side_effect_count": 0,
+      "handling": "assess_log_materialのlogs比較規則が[field_conflict, log_kind_conflict]を検出し、common-log-ownerへ返却する。retained_actual_recordsとretained_reference_recordsを別々に保持し、operation_effectはnone。",
+      "source_pointers": [
+        {
+          "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+          "pointers": [
+            "/requirements/21"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
+          "pointers": [
+            "/contracts/0",
+            "/diagnostic_contract/codes/1",
+            "/diagnostic_contract/codes/3",
+            "/diagnostic_contract/owner_by_facet/logs",
+            "/diagnostic_contract/rules/0",
+            "/diagnostic_contract/rules/1",
+            "/diagnostic_contract/rules/11",
+            "/diagnostic_contract/composite_class_formation",
+            "/failure_classifications/44"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L5-detail-design/log-feedback-memory-lineage.json",
+          "pointers": [
+            "/contracts/0",
+            "/functions/0",
+            "/finite_domains/diagnostic_codes/1",
+            "/finite_domains/diagnostic_codes/3",
+            "/finite_domains/owner_by_facet/logs",
+            "/algorithm/ordered_rules/0",
+            "/algorithm/ordered_rules/1",
+            "/algorithm/ordered_rules/11",
+            "/formal_program/functions/assess_log_material/steps/0",
+            "/formal_program/functions/assess_log_material/steps/2",
+            "/formal_program/functions/assess_log_material/steps/3",
+            "/formal_program/composite_class_formation"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "OS007-NEG-logs-comp-02-log_duplicate_log_state_conflict",
+      "code": "record_material_violation",
+      "expected_classification": "record_material_violation",
+      "function_ref": "assess_log_material",
+      "expected": {
+        "finding_codes": [
+          "log_duplicate",
+          "log_state_conflict"
+        ]
+      },
+      "expected_preserved": {
+        "actual_records_equal_expanded_input_records": true,
+        "reference_records_equal_expanded_context_records": true
+      },
+      "expected_axis": "logs",
+      "expected_state": "violation",
+      "backflow_owner": "common-log-owner",
+      "side_effect_count": 0,
+      "handling": "assess_log_materialのlogs比較規則が[log_duplicate, log_state_conflict]を検出し、common-log-ownerへ返却する。retained_actual_recordsとretained_reference_recordsを別々に保持し、operation_effectはnone。",
+      "source_pointers": [
+        {
+          "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+          "pointers": [
+            "/requirements/21"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
+          "pointers": [
+            "/contracts/0",
+            "/diagnostic_contract/codes/6",
+            "/diagnostic_contract/codes/5",
+            "/diagnostic_contract/owner_by_facet/logs",
+            "/diagnostic_contract/rules/1",
+            "/diagnostic_contract/rules/11",
+            "/diagnostic_contract/composite_class_formation",
+            "/failure_classifications/45"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L5-detail-design/log-feedback-memory-lineage.json",
+          "pointers": [
+            "/contracts/0",
+            "/functions/0",
+            "/finite_domains/diagnostic_codes/6",
+            "/finite_domains/diagnostic_codes/5",
+            "/finite_domains/owner_by_facet/logs",
+            "/algorithm/ordered_rules/1",
+            "/algorithm/ordered_rules/11",
+            "/formal_program/functions/assess_log_material/steps/5",
+            "/formal_program/functions/assess_log_material/steps/6",
+            "/formal_program/composite_class_formation"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "OS007-NEG-logs-comp-03-log_stale_log_state_conflict",
+      "code": "record_material_violation",
+      "expected_classification": "record_material_violation",
+      "function_ref": "assess_log_material",
+      "expected": {
+        "finding_codes": [
+          "log_stale",
+          "log_state_conflict"
+        ]
+      },
+      "expected_preserved": {
+        "actual_records_equal_expanded_input_records": true,
+        "reference_records_equal_expanded_context_records": true
+      },
+      "expected_axis": "logs",
+      "expected_state": "violation",
+      "backflow_owner": "common-log-owner",
+      "side_effect_count": 0,
+      "handling": "assess_log_materialのlogs比較規則が[log_stale, log_state_conflict]を検出し、common-log-ownerへ返却する。retained_actual_recordsとretained_reference_recordsを別々に保持し、operation_effectはnone。",
+      "source_pointers": [
+        {
+          "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+          "pointers": [
+            "/requirements/21"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
+          "pointers": [
+            "/contracts/0",
+            "/diagnostic_contract/codes/7",
+            "/diagnostic_contract/codes/5",
+            "/diagnostic_contract/owner_by_facet/logs",
+            "/diagnostic_contract/rules/1",
+            "/diagnostic_contract/rules/11",
+            "/diagnostic_contract/composite_class_formation",
+            "/failure_classifications/46"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L5-detail-design/log-feedback-memory-lineage.json",
+          "pointers": [
+            "/contracts/0",
+            "/functions/0",
+            "/finite_domains/diagnostic_codes/7",
+            "/finite_domains/diagnostic_codes/5",
+            "/finite_domains/owner_by_facet/logs",
+            "/algorithm/ordered_rules/1",
+            "/algorithm/ordered_rules/11",
+            "/formal_program/functions/assess_log_material/steps/5",
+            "/formal_program/functions/assess_log_material/steps/7",
+            "/formal_program/composite_class_formation"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "OS007-NEG-logs-comp-04-log_state_conflict_log_state_unknown",
+      "code": "record_material_violation",
+      "expected_classification": "record_material_violation",
+      "function_ref": "assess_log_material",
+      "expected": {
+        "finding_codes": [
+          "log_state_conflict",
+          "log_state_unknown"
+        ]
+      },
+      "expected_preserved": {
+        "actual_records_equal_expanded_input_records": true,
+        "reference_records_equal_expanded_context_records": true
+      },
+      "expected_axis": "logs",
+      "expected_state": "violation",
+      "backflow_owner": "common-log-owner",
+      "side_effect_count": 0,
+      "handling": "assess_log_materialのlogs比較規則が[log_state_conflict, log_state_unknown]を検出し、common-log-ownerへ返却する。retained_actual_recordsとretained_reference_recordsを別々に保持し、operation_effectはnone。",
+      "source_pointers": [
+        {
+          "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+          "pointers": [
+            "/requirements/21"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
+          "pointers": [
+            "/contracts/0",
+            "/diagnostic_contract/codes/5",
+            "/diagnostic_contract/codes/4",
+            "/diagnostic_contract/owner_by_facet/logs",
+            "/diagnostic_contract/rules/1",
+            "/diagnostic_contract/rules/11",
+            "/diagnostic_contract/composite_class_formation",
+            "/failure_classifications/47"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L5-detail-design/log-feedback-memory-lineage.json",
+          "pointers": [
+            "/contracts/0",
+            "/functions/0",
+            "/finite_domains/diagnostic_codes/5",
+            "/finite_domains/diagnostic_codes/4",
+            "/finite_domains/owner_by_facet/logs",
+            "/algorithm/ordered_rules/1",
+            "/algorithm/ordered_rules/11",
+            "/formal_program/functions/assess_log_material/steps/4",
+            "/formal_program/functions/assess_log_material/steps/5",
+            "/formal_program/functions/assess_log_material/steps/8",
+            "/formal_program/composite_class_formation"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "OS007-NEG-feedback-comp-01-field_unknown_original_finding_changed",
+      "code": "record_material_violation",
+      "expected_classification": "record_material_violation",
+      "function_ref": "assess_feedback_material",
+      "expected": {
+        "finding_codes": [
+          "field_unknown",
+          "original_finding_changed"
+        ]
+      },
+      "expected_preserved": {
+        "actual_records_equal_expanded_input_records": true,
+        "reference_records_equal_expanded_context_records": true
+      },
+      "expected_axis": "feedback",
+      "expected_state": "violation",
+      "backflow_owner": "feedback-source-owner",
+      "side_effect_count": 0,
+      "handling": "assess_feedback_materialのfeedback比較規則が[field_unknown, original_finding_changed]を検出し、feedback-source-ownerへ返却する。retained_actual_recordsとretained_reference_recordsを別々に保持し、operation_effectはnone。",
+      "source_pointers": [
+        {
+          "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+          "pointers": [
+            "/requirements/22"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
+          "pointers": [
+            "/contracts/1",
+            "/diagnostic_contract/codes/0",
+            "/diagnostic_contract/codes/12",
+            "/diagnostic_contract/owner_by_facet/feedback",
+            "/diagnostic_contract/rules/0",
+            "/diagnostic_contract/rules/3",
+            "/diagnostic_contract/rules/4",
+            "/diagnostic_contract/rules/11",
+            "/diagnostic_contract/composite_class_formation",
+            "/failure_classifications/48"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L5-detail-design/log-feedback-memory-lineage.json",
+          "pointers": [
+            "/contracts/1",
+            "/functions/1",
+            "/finite_domains/diagnostic_codes/0",
+            "/finite_domains/diagnostic_codes/12",
+            "/finite_domains/owner_by_facet/feedback",
+            "/algorithm/ordered_rules/0",
+            "/algorithm/ordered_rules/3",
+            "/algorithm/ordered_rules/4",
+            "/algorithm/ordered_rules/11",
+            "/formal_program/functions/assess_feedback_material/steps/1",
+            "/formal_program/functions/assess_feedback_material/steps/2",
+            "/formal_program/functions/assess_feedback_material/steps/5",
+            "/formal_program/composite_class_formation"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "OS007-NEG-feedback-comp-02-field_conflict_original_finding_changed",
+      "code": "record_material_violation",
+      "expected_classification": "record_material_violation",
+      "function_ref": "assess_feedback_material",
+      "expected": {
+        "finding_codes": [
+          "field_conflict",
+          "field_conflict",
+          "field_conflict",
+          "original_finding_changed"
+        ]
+      },
+      "expected_preserved": {
+        "actual_records_equal_expanded_input_records": true,
+        "reference_records_equal_expanded_context_records": true
+      },
+      "expected_axis": "feedback",
+      "expected_state": "violation",
+      "backflow_owner": "feedback-source-owner",
+      "side_effect_count": 0,
+      "handling": "assess_feedback_materialのfeedback比較規則が[field_conflictx3, original_finding_changed]を検出し、feedback-source-ownerへ返却する。retained_actual_recordsとretained_reference_recordsを別々に保持し、operation_effectはnone。",
+      "source_pointers": [
+        {
+          "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+          "pointers": [
+            "/requirements/22"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
+          "pointers": [
+            "/contracts/1",
+            "/diagnostic_contract/codes/1",
+            "/diagnostic_contract/codes/12",
+            "/diagnostic_contract/owner_by_facet/feedback",
+            "/diagnostic_contract/rules/0",
+            "/diagnostic_contract/rules/4",
+            "/diagnostic_contract/rules/5",
+            "/diagnostic_contract/rules/11",
+            "/diagnostic_contract/composite_class_formation",
+            "/failure_classifications/49"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L5-detail-design/log-feedback-memory-lineage.json",
+          "pointers": [
+            "/contracts/1",
+            "/functions/1",
+            "/finite_domains/diagnostic_codes/1",
+            "/finite_domains/diagnostic_codes/12",
+            "/finite_domains/owner_by_facet/feedback",
+            "/algorithm/ordered_rules/0",
+            "/algorithm/ordered_rules/4",
+            "/algorithm/ordered_rules/5",
+            "/algorithm/ordered_rules/11",
+            "/formal_program/functions/assess_feedback_material/steps/1",
+            "/formal_program/functions/assess_feedback_material/steps/2",
+            "/formal_program/functions/assess_feedback_material/steps/5",
+            "/formal_program/functions/assess_feedback_material/steps/6",
+            "/formal_program/composite_class_formation"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "OS007-NEG-feedback-comp-03-field_conflict_original_finding_changed",
+      "code": "record_material_violation",
+      "expected_classification": "record_material_violation",
+      "function_ref": "assess_feedback_material",
+      "expected": {
+        "finding_codes": [
+          "field_conflict",
+          "field_conflict",
+          "field_conflict",
+          "field_conflict",
+          "field_conflict",
+          "original_finding_changed"
+        ]
+      },
+      "expected_preserved": {
+        "actual_records_equal_expanded_input_records": true,
+        "reference_records_equal_expanded_context_records": true
+      },
+      "expected_axis": "feedback",
+      "expected_state": "violation",
+      "backflow_owner": "feedback-source-owner",
+      "side_effect_count": 0,
+      "handling": "assess_feedback_materialのfeedback比較規則が[field_conflictx5, original_finding_changed]を検出し、feedback-source-ownerへ返却する。retained_actual_recordsとretained_reference_recordsを別々に保持し、operation_effectはnone。",
+      "source_pointers": [
+        {
+          "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+          "pointers": [
+            "/requirements/22"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
+          "pointers": [
+            "/contracts/1",
+            "/diagnostic_contract/codes/1",
+            "/diagnostic_contract/codes/12",
+            "/diagnostic_contract/owner_by_facet/feedback",
+            "/diagnostic_contract/rules/0",
+            "/diagnostic_contract/rules/4",
+            "/diagnostic_contract/rules/5",
+            "/diagnostic_contract/rules/11",
+            "/diagnostic_contract/composite_class_formation",
+            "/failure_classifications/50"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L5-detail-design/log-feedback-memory-lineage.json",
+          "pointers": [
+            "/contracts/1",
+            "/functions/1",
+            "/finite_domains/diagnostic_codes/1",
+            "/finite_domains/diagnostic_codes/12",
+            "/finite_domains/owner_by_facet/feedback",
+            "/algorithm/ordered_rules/0",
+            "/algorithm/ordered_rules/4",
+            "/algorithm/ordered_rules/5",
+            "/algorithm/ordered_rules/11",
+            "/formal_program/functions/assess_feedback_material/steps/1",
+            "/formal_program/functions/assess_feedback_material/steps/2",
+            "/formal_program/functions/assess_feedback_material/steps/5",
+            "/formal_program/functions/assess_feedback_material/steps/6",
+            "/formal_program/composite_class_formation"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "OS007-NEG-feedback-comp-04-field_unknown_original_finding_changed_unresolved_claimed_resolved",
+      "code": "record_material_violation",
+      "expected_classification": "record_material_violation",
+      "function_ref": "assess_feedback_material",
+      "expected": {
+        "finding_codes": [
+          "field_unknown",
+          "original_finding_changed",
+          "unresolved_claimed_resolved"
+        ]
+      },
+      "expected_preserved": {
+        "actual_records_equal_expanded_input_records": true,
+        "reference_records_equal_expanded_context_records": true
+      },
+      "expected_axis": "feedback",
+      "expected_state": "violation",
+      "backflow_owner": "feedback-source-owner",
+      "side_effect_count": 0,
+      "handling": "assess_feedback_materialのfeedback比較規則が[field_unknown, original_finding_changed, unresolved_claimed_resolved]を検出し、feedback-source-ownerへ返却する。retained_actual_recordsとretained_reference_recordsを別々に保持し、operation_effectはnone。",
+      "source_pointers": [
+        {
+          "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+          "pointers": [
+            "/requirements/22"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
+          "pointers": [
+            "/contracts/1",
+            "/diagnostic_contract/codes/0",
+            "/diagnostic_contract/codes/12",
+            "/diagnostic_contract/codes/16",
+            "/diagnostic_contract/owner_by_facet/feedback",
+            "/diagnostic_contract/rules/0",
+            "/diagnostic_contract/rules/3",
+            "/diagnostic_contract/rules/4",
+            "/diagnostic_contract/rules/5",
+            "/diagnostic_contract/rules/11",
+            "/diagnostic_contract/composite_class_formation",
+            "/failure_classifications/51"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L5-detail-design/log-feedback-memory-lineage.json",
+          "pointers": [
+            "/contracts/1",
+            "/functions/1",
+            "/finite_domains/diagnostic_codes/0",
+            "/finite_domains/diagnostic_codes/12",
+            "/finite_domains/diagnostic_codes/16",
+            "/finite_domains/owner_by_facet/feedback",
+            "/algorithm/ordered_rules/0",
+            "/algorithm/ordered_rules/3",
+            "/algorithm/ordered_rules/4",
+            "/algorithm/ordered_rules/5",
+            "/algorithm/ordered_rules/11",
+            "/formal_program/functions/assess_feedback_material/steps/1",
+            "/formal_program/functions/assess_feedback_material/steps/2",
+            "/formal_program/functions/assess_feedback_material/steps/5",
+            "/formal_program/functions/assess_feedback_material/steps/8",
+            "/formal_program/composite_class_formation"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "OS007-NEG-feedback-comp-05-field_conflict_original_finding_changed_unresolved_claimed_resolved",
+      "code": "record_material_violation",
+      "expected_classification": "record_material_violation",
+      "function_ref": "assess_feedback_material",
+      "expected": {
+        "finding_codes": [
+          "field_conflict",
+          "original_finding_changed",
+          "unresolved_claimed_resolved"
+        ]
+      },
+      "expected_preserved": {
+        "actual_records_equal_expanded_input_records": true,
+        "reference_records_equal_expanded_context_records": true
+      },
+      "expected_axis": "feedback",
+      "expected_state": "violation",
+      "backflow_owner": "feedback-source-owner",
+      "side_effect_count": 0,
+      "handling": "assess_feedback_materialのfeedback比較規則が[field_conflict, original_finding_changed, unresolved_claimed_resolved]を検出し、feedback-source-ownerへ返却する。retained_actual_recordsとretained_reference_recordsを別々に保持し、operation_effectはnone。",
+      "source_pointers": [
+        {
+          "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+          "pointers": [
+            "/requirements/22"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
+          "pointers": [
+            "/contracts/1",
+            "/diagnostic_contract/codes/1",
+            "/diagnostic_contract/codes/12",
+            "/diagnostic_contract/codes/16",
+            "/diagnostic_contract/owner_by_facet/feedback",
+            "/diagnostic_contract/rules/0",
+            "/diagnostic_contract/rules/4",
+            "/diagnostic_contract/rules/5",
+            "/diagnostic_contract/rules/11",
+            "/diagnostic_contract/composite_class_formation",
+            "/failure_classifications/52"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L5-detail-design/log-feedback-memory-lineage.json",
+          "pointers": [
+            "/contracts/1",
+            "/functions/1",
+            "/finite_domains/diagnostic_codes/1",
+            "/finite_domains/diagnostic_codes/12",
+            "/finite_domains/diagnostic_codes/16",
+            "/finite_domains/owner_by_facet/feedback",
+            "/algorithm/ordered_rules/0",
+            "/algorithm/ordered_rules/4",
+            "/algorithm/ordered_rules/5",
+            "/algorithm/ordered_rules/11",
+            "/formal_program/functions/assess_feedback_material/steps/1",
+            "/formal_program/functions/assess_feedback_material/steps/2",
+            "/formal_program/functions/assess_feedback_material/steps/5",
+            "/formal_program/functions/assess_feedback_material/steps/6",
+            "/formal_program/functions/assess_feedback_material/steps/8",
+            "/formal_program/composite_class_formation"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "OS007-NEG-feedback-comp-06-finding_missing_unresolved_claimed_resolved",
+      "code": "record_material_violation",
+      "expected_classification": "record_material_violation",
+      "function_ref": "assess_feedback_material",
+      "expected": {
+        "finding_codes": [
+          "finding_missing",
+          "unresolved_claimed_resolved"
+        ]
+      },
+      "expected_preserved": {
+        "actual_records_equal_expanded_input_records": true,
+        "reference_records_equal_expanded_context_records": true
+      },
+      "expected_axis": "feedback",
+      "expected_state": "violation",
+      "backflow_owner": "feedback-source-owner",
+      "side_effect_count": 0,
+      "handling": "assess_feedback_materialのfeedback比較規則が[finding_missing, unresolved_claimed_resolved]を検出し、feedback-source-ownerへ返却する。retained_actual_recordsとretained_reference_recordsを別々に保持し、operation_effectはnone。",
+      "source_pointers": [
+        {
+          "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+          "pointers": [
+            "/requirements/22"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
+          "pointers": [
+            "/contracts/1",
+            "/diagnostic_contract/codes/11",
+            "/diagnostic_contract/codes/16",
+            "/diagnostic_contract/owner_by_facet/feedback",
+            "/diagnostic_contract/rules/3",
+            "/diagnostic_contract/rules/5",
+            "/diagnostic_contract/rules/11",
+            "/diagnostic_contract/composite_class_formation",
+            "/failure_classifications/53"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L5-detail-design/log-feedback-memory-lineage.json",
+          "pointers": [
+            "/contracts/1",
+            "/functions/1",
+            "/finite_domains/diagnostic_codes/11",
+            "/finite_domains/diagnostic_codes/16",
+            "/finite_domains/owner_by_facet/feedback",
+            "/algorithm/ordered_rules/3",
+            "/algorithm/ordered_rules/5",
+            "/algorithm/ordered_rules/11",
+            "/formal_program/functions/assess_feedback_material/steps/0",
+            "/formal_program/functions/assess_feedback_material/steps/8",
+            "/formal_program/composite_class_formation"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "OS007-NEG-feedback-comp-07-field_conflict_original_finding_changed_unresolved_claimed_resolved",
+      "code": "record_material_violation",
+      "expected_classification": "record_material_violation",
+      "function_ref": "assess_feedback_material",
+      "expected": {
+        "finding_codes": [
+          "field_conflict",
+          "field_conflict",
+          "field_conflict",
+          "field_conflict",
+          "field_conflict",
+          "original_finding_changed",
+          "unresolved_claimed_resolved"
+        ]
+      },
+      "expected_preserved": {
+        "actual_records_equal_expanded_input_records": true,
+        "reference_records_equal_expanded_context_records": true
+      },
+      "expected_axis": "feedback",
+      "expected_state": "violation",
+      "backflow_owner": "feedback-source-owner",
+      "side_effect_count": 0,
+      "handling": "assess_feedback_materialのfeedback比較規則が[field_conflictx5, original_finding_changed, unresolved_claimed_resolved]を検出し、feedback-source-ownerへ返却する。retained_actual_recordsとretained_reference_recordsを別々に保持し、operation_effectはnone。",
+      "source_pointers": [
+        {
+          "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+          "pointers": [
+            "/requirements/22"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
+          "pointers": [
+            "/contracts/1",
+            "/diagnostic_contract/codes/1",
+            "/diagnostic_contract/codes/12",
+            "/diagnostic_contract/codes/16",
+            "/diagnostic_contract/owner_by_facet/feedback",
+            "/diagnostic_contract/rules/0",
+            "/diagnostic_contract/rules/4",
+            "/diagnostic_contract/rules/5",
+            "/diagnostic_contract/rules/11",
+            "/diagnostic_contract/composite_class_formation",
+            "/failure_classifications/54"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L5-detail-design/log-feedback-memory-lineage.json",
+          "pointers": [
+            "/contracts/1",
+            "/functions/1",
+            "/finite_domains/diagnostic_codes/1",
+            "/finite_domains/diagnostic_codes/12",
+            "/finite_domains/diagnostic_codes/16",
+            "/finite_domains/owner_by_facet/feedback",
+            "/algorithm/ordered_rules/0",
+            "/algorithm/ordered_rules/4",
+            "/algorithm/ordered_rules/5",
+            "/algorithm/ordered_rules/11",
+            "/formal_program/functions/assess_feedback_material/steps/1",
+            "/formal_program/functions/assess_feedback_material/steps/2",
+            "/formal_program/functions/assess_feedback_material/steps/5",
+            "/formal_program/functions/assess_feedback_material/steps/6",
+            "/formal_program/functions/assess_feedback_material/steps/8",
+            "/formal_program/composite_class_formation"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "OS007-NEG-feedback-comp-08-finding_discard_forbidden_unresolved_claimed_resolved",
+      "code": "record_material_violation",
+      "expected_classification": "record_material_violation",
+      "function_ref": "assess_feedback_material",
+      "expected": {
+        "finding_codes": [
+          "finding_discard_forbidden",
+          "unresolved_claimed_resolved"
+        ]
+      },
+      "expected_preserved": {
+        "actual_records_equal_expanded_input_records": true,
+        "reference_records_equal_expanded_context_records": true
+      },
+      "expected_axis": "feedback",
+      "expected_state": "violation",
+      "backflow_owner": "feedback-source-owner",
+      "side_effect_count": 0,
+      "handling": "assess_feedback_materialのfeedback比較規則が[finding_discard_forbidden, unresolved_claimed_resolved]を検出し、feedback-source-ownerへ返却する。retained_actual_recordsとretained_reference_recordsを別々に保持し、operation_effectはnone。",
+      "source_pointers": [
+        {
+          "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+          "pointers": [
+            "/requirements/22"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
+          "pointers": [
+            "/contracts/1",
+            "/diagnostic_contract/codes/30",
+            "/diagnostic_contract/codes/16",
+            "/diagnostic_contract/owner_by_facet/feedback",
+            "/diagnostic_contract/rules/3",
+            "/diagnostic_contract/rules/5",
+            "/diagnostic_contract/rules/11",
+            "/diagnostic_contract/composite_class_formation",
+            "/failure_classifications/55"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L5-detail-design/log-feedback-memory-lineage.json",
+          "pointers": [
+            "/contracts/1",
+            "/functions/1",
+            "/finite_domains/diagnostic_codes/30",
+            "/finite_domains/diagnostic_codes/16",
+            "/finite_domains/owner_by_facet/feedback",
+            "/algorithm/ordered_rules/3",
+            "/algorithm/ordered_rules/5",
+            "/algorithm/ordered_rules/11",
+            "/formal_program/functions/assess_feedback_material/steps/3",
+            "/formal_program/functions/assess_feedback_material/steps/8",
+            "/formal_program/composite_class_formation"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "OS007-NEG-feedback-comp-09-boolean_unknown_unresolved_claimed_resolved",
+      "code": "record_material_violation",
+      "expected_classification": "record_material_violation",
+      "function_ref": "assess_feedback_material",
+      "expected": {
+        "finding_codes": [
+          "boolean_unknown",
+          "unresolved_claimed_resolved"
+        ]
+      },
+      "expected_preserved": {
+        "actual_records_equal_expanded_input_records": true,
+        "reference_records_equal_expanded_context_records": true
+      },
+      "expected_axis": "feedback",
+      "expected_state": "violation",
+      "backflow_owner": "feedback-source-owner",
+      "side_effect_count": 0,
+      "handling": "assess_feedback_materialのfeedback比較規則が[boolean_unknown, unresolved_claimed_resolved]を検出し、feedback-source-ownerへ返却する。retained_actual_recordsとretained_reference_recordsを別々に保持し、operation_effectはnone。",
+      "source_pointers": [
+        {
+          "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+          "pointers": [
+            "/requirements/22"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
+          "pointers": [
+            "/contracts/1",
+            "/diagnostic_contract/codes/9",
+            "/diagnostic_contract/codes/16",
+            "/diagnostic_contract/owner_by_facet/feedback",
+            "/diagnostic_contract/rules/0",
+            "/diagnostic_contract/rules/3",
+            "/diagnostic_contract/rules/5",
+            "/diagnostic_contract/rules/11",
+            "/diagnostic_contract/composite_class_formation",
+            "/failure_classifications/56"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L5-detail-design/log-feedback-memory-lineage.json",
+          "pointers": [
+            "/contracts/1",
+            "/functions/1",
+            "/finite_domains/diagnostic_codes/9",
+            "/finite_domains/diagnostic_codes/16",
+            "/finite_domains/owner_by_facet/feedback",
+            "/algorithm/ordered_rules/0",
+            "/algorithm/ordered_rules/3",
+            "/algorithm/ordered_rules/5",
+            "/algorithm/ordered_rules/11",
+            "/formal_program/functions/assess_feedback_material/steps/4",
+            "/formal_program/functions/assess_feedback_material/steps/5",
+            "/formal_program/functions/assess_feedback_material/steps/7",
+            "/formal_program/functions/assess_feedback_material/steps/8",
+            "/formal_program/composite_class_formation"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "OS007-NEG-feedback-comp-10-boolean_conflict_stage_unrecorded_ref_present_unresolved_claimed_resolved",
+      "code": "record_material_violation",
+      "expected_classification": "record_material_violation",
+      "function_ref": "assess_feedback_material",
+      "expected": {
+        "finding_codes": [
+          "boolean_conflict",
+          "stage_unrecorded_ref_present",
+          "unresolved_claimed_resolved"
+        ]
+      },
+      "expected_preserved": {
+        "actual_records_equal_expanded_input_records": true,
+        "reference_records_equal_expanded_context_records": true
+      },
+      "expected_axis": "feedback",
+      "expected_state": "violation",
+      "backflow_owner": "feedback-source-owner",
+      "side_effect_count": 0,
+      "handling": "assess_feedback_materialのfeedback比較規則が[boolean_conflict, stage_unrecorded_ref_present, unresolved_claimed_resolved]を検出し、feedback-source-ownerへ返却する。retained_actual_recordsとretained_reference_recordsを別々に保持し、operation_effectはnone。",
+      "source_pointers": [
+        {
+          "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+          "pointers": [
+            "/requirements/22"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
+          "pointers": [
+            "/contracts/1",
+            "/diagnostic_contract/codes/10",
+            "/diagnostic_contract/codes/13",
+            "/diagnostic_contract/codes/16",
+            "/diagnostic_contract/owner_by_facet/feedback",
+            "/diagnostic_contract/rules/0",
+            "/diagnostic_contract/rules/3",
+            "/diagnostic_contract/rules/4",
+            "/diagnostic_contract/rules/5",
+            "/diagnostic_contract/rules/11",
+            "/diagnostic_contract/composite_class_formation",
+            "/failure_classifications/57"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L5-detail-design/log-feedback-memory-lineage.json",
+          "pointers": [
+            "/contracts/1",
+            "/functions/1",
+            "/finite_domains/diagnostic_codes/10",
+            "/finite_domains/diagnostic_codes/13",
+            "/finite_domains/diagnostic_codes/16",
+            "/finite_domains/owner_by_facet/feedback",
+            "/algorithm/ordered_rules/0",
+            "/algorithm/ordered_rules/3",
+            "/algorithm/ordered_rules/4",
+            "/algorithm/ordered_rules/5",
+            "/algorithm/ordered_rules/11",
+            "/formal_program/functions/assess_feedback_material/steps/5",
+            "/formal_program/functions/assess_feedback_material/steps/8",
+            "/formal_program/composite_class_formation"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "OS007-NEG-feedback-comp-11-field_unknown_unresolved_claimed_resolved",
+      "code": "record_material_violation",
+      "expected_classification": "record_material_violation",
+      "function_ref": "assess_feedback_material",
+      "expected": {
+        "finding_codes": [
+          "field_unknown",
+          "unresolved_claimed_resolved"
+        ]
+      },
+      "expected_preserved": {
+        "actual_records_equal_expanded_input_records": true,
+        "reference_records_equal_expanded_context_records": true
+      },
+      "expected_axis": "feedback",
+      "expected_state": "violation",
+      "backflow_owner": "feedback-source-owner",
+      "side_effect_count": 0,
+      "handling": "assess_feedback_materialのfeedback比較規則が[field_unknown, unresolved_claimed_resolved]を検出し、feedback-source-ownerへ返却する。retained_actual_recordsとretained_reference_recordsを別々に保持し、operation_effectはnone。",
+      "source_pointers": [
+        {
+          "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+          "pointers": [
+            "/requirements/22"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
+          "pointers": [
+            "/contracts/1",
+            "/diagnostic_contract/codes/0",
+            "/diagnostic_contract/codes/16",
+            "/diagnostic_contract/owner_by_facet/feedback",
+            "/diagnostic_contract/rules/0",
+            "/diagnostic_contract/rules/3",
+            "/diagnostic_contract/rules/4",
+            "/diagnostic_contract/rules/5",
+            "/diagnostic_contract/rules/11",
+            "/diagnostic_contract/composite_class_formation",
+            "/failure_classifications/58"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L5-detail-design/log-feedback-memory-lineage.json",
+          "pointers": [
+            "/contracts/1",
+            "/functions/1",
+            "/finite_domains/diagnostic_codes/0",
+            "/finite_domains/diagnostic_codes/16",
+            "/finite_domains/owner_by_facet/feedback",
+            "/algorithm/ordered_rules/0",
+            "/algorithm/ordered_rules/3",
+            "/algorithm/ordered_rules/4",
+            "/algorithm/ordered_rules/5",
+            "/algorithm/ordered_rules/11",
+            "/formal_program/functions/assess_feedback_material/steps/2",
+            "/formal_program/functions/assess_feedback_material/steps/5",
+            "/formal_program/functions/assess_feedback_material/steps/8",
+            "/formal_program/composite_class_formation"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "OS007-NEG-feedback-comp-12-field_conflict_unresolved_claimed_resolved",
+      "code": "record_material_violation",
+      "expected_classification": "record_material_violation",
+      "function_ref": "assess_feedback_material",
+      "expected": {
+        "finding_codes": [
+          "field_conflict",
+          "unresolved_claimed_resolved"
+        ]
+      },
+      "expected_preserved": {
+        "actual_records_equal_expanded_input_records": true,
+        "reference_records_equal_expanded_context_records": true
+      },
+      "expected_axis": "feedback",
+      "expected_state": "violation",
+      "backflow_owner": "feedback-source-owner",
+      "side_effect_count": 0,
+      "handling": "assess_feedback_materialのfeedback比較規則が[field_conflict, unresolved_claimed_resolved]を検出し、feedback-source-ownerへ返却する。retained_actual_recordsとretained_reference_recordsを別々に保持し、operation_effectはnone。",
+      "source_pointers": [
+        {
+          "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+          "pointers": [
+            "/requirements/22"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
+          "pointers": [
+            "/contracts/1",
+            "/diagnostic_contract/codes/1",
+            "/diagnostic_contract/codes/16",
+            "/diagnostic_contract/owner_by_facet/feedback",
+            "/diagnostic_contract/rules/0",
+            "/diagnostic_contract/rules/4",
+            "/diagnostic_contract/rules/5",
+            "/diagnostic_contract/rules/11",
+            "/diagnostic_contract/composite_class_formation",
+            "/failure_classifications/59"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L5-detail-design/log-feedback-memory-lineage.json",
+          "pointers": [
+            "/contracts/1",
+            "/functions/1",
+            "/finite_domains/diagnostic_codes/1",
+            "/finite_domains/diagnostic_codes/16",
+            "/finite_domains/owner_by_facet/feedback",
+            "/algorithm/ordered_rules/0",
+            "/algorithm/ordered_rules/4",
+            "/algorithm/ordered_rules/5",
+            "/algorithm/ordered_rules/11",
+            "/formal_program/functions/assess_feedback_material/steps/1",
+            "/formal_program/functions/assess_feedback_material/steps/2",
+            "/formal_program/functions/assess_feedback_material/steps/5",
+            "/formal_program/functions/assess_feedback_material/steps/6",
+            "/formal_program/functions/assess_feedback_material/steps/8",
+            "/formal_program/composite_class_formation"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "OS007-NEG-feedback-comp-13-boolean_conflict_field_unknown_unresolved_claimed_resolved",
+      "code": "record_material_violation",
+      "expected_classification": "record_material_violation",
+      "function_ref": "assess_feedback_material",
+      "expected": {
+        "finding_codes": [
+          "boolean_conflict",
+          "field_unknown",
+          "field_unknown",
+          "field_unknown",
+          "field_unknown",
+          "field_unknown",
+          "field_unknown",
+          "field_unknown",
+          "field_unknown",
+          "unresolved_claimed_resolved"
+        ]
+      },
+      "expected_preserved": {
+        "actual_records_equal_expanded_input_records": true,
+        "reference_records_equal_expanded_context_records": true
+      },
+      "expected_axis": "feedback",
+      "expected_state": "violation",
+      "backflow_owner": "feedback-source-owner",
+      "side_effect_count": 0,
+      "handling": "assess_feedback_materialのfeedback比較規則が[boolean_conflict, field_unknownx8, unresolved_claimed_resolved]を検出し、feedback-source-ownerへ返却する。retained_actual_recordsとretained_reference_recordsを別々に保持し、operation_effectはnone。",
+      "source_pointers": [
+        {
+          "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+          "pointers": [
+            "/requirements/22"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
+          "pointers": [
+            "/contracts/1",
+            "/diagnostic_contract/codes/10",
+            "/diagnostic_contract/codes/0",
+            "/diagnostic_contract/codes/16",
+            "/diagnostic_contract/owner_by_facet/feedback",
+            "/diagnostic_contract/rules/0",
+            "/diagnostic_contract/rules/3",
+            "/diagnostic_contract/rules/4",
+            "/diagnostic_contract/rules/5",
+            "/diagnostic_contract/rules/11",
+            "/diagnostic_contract/composite_class_formation",
+            "/failure_classifications/60"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L5-detail-design/log-feedback-memory-lineage.json",
+          "pointers": [
+            "/contracts/1",
+            "/functions/1",
+            "/finite_domains/diagnostic_codes/10",
+            "/finite_domains/diagnostic_codes/0",
+            "/finite_domains/diagnostic_codes/16",
+            "/finite_domains/owner_by_facet/feedback",
+            "/algorithm/ordered_rules/0",
+            "/algorithm/ordered_rules/3",
+            "/algorithm/ordered_rules/4",
+            "/algorithm/ordered_rules/5",
+            "/algorithm/ordered_rules/11",
+            "/formal_program/functions/assess_feedback_material/steps/2",
+            "/formal_program/functions/assess_feedback_material/steps/5",
+            "/formal_program/functions/assess_feedback_material/steps/8",
+            "/formal_program/composite_class_formation"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "OS007-NEG-feedback-comp-14-field_conflict_resolution_origin_forbidden_unresolved_claimed_resolved",
+      "code": "record_material_violation",
+      "expected_classification": "record_material_violation",
+      "function_ref": "assess_feedback_material",
+      "expected": {
+        "finding_codes": [
+          "field_conflict",
+          "resolution_origin_forbidden",
+          "unresolved_claimed_resolved"
+        ]
+      },
+      "expected_preserved": {
+        "actual_records_equal_expanded_input_records": true,
+        "reference_records_equal_expanded_context_records": true
+      },
+      "expected_axis": "feedback",
+      "expected_state": "violation",
+      "backflow_owner": "feedback-source-owner",
+      "side_effect_count": 0,
+      "handling": "assess_feedback_materialのfeedback比較規則が[field_conflict, resolution_origin_forbidden, unresolved_claimed_resolved]を検出し、feedback-source-ownerへ返却する。retained_actual_recordsとretained_reference_recordsを別々に保持し、operation_effectはnone。",
+      "source_pointers": [
+        {
+          "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+          "pointers": [
+            "/requirements/22"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
+          "pointers": [
+            "/contracts/1",
+            "/diagnostic_contract/codes/1",
+            "/diagnostic_contract/codes/15",
+            "/diagnostic_contract/codes/16",
+            "/diagnostic_contract/owner_by_facet/feedback",
+            "/diagnostic_contract/rules/0",
+            "/diagnostic_contract/rules/4",
+            "/diagnostic_contract/rules/5",
+            "/diagnostic_contract/rules/11",
+            "/diagnostic_contract/composite_class_formation",
+            "/failure_classifications/61"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L5-detail-design/log-feedback-memory-lineage.json",
+          "pointers": [
+            "/contracts/1",
+            "/functions/1",
+            "/finite_domains/diagnostic_codes/1",
+            "/finite_domains/diagnostic_codes/15",
+            "/finite_domains/diagnostic_codes/16",
+            "/finite_domains/owner_by_facet/feedback",
+            "/algorithm/ordered_rules/0",
+            "/algorithm/ordered_rules/4",
+            "/algorithm/ordered_rules/5",
+            "/algorithm/ordered_rules/11",
+            "/formal_program/functions/assess_feedback_material/steps/1",
+            "/formal_program/functions/assess_feedback_material/steps/2",
+            "/formal_program/functions/assess_feedback_material/steps/5",
+            "/formal_program/functions/assess_feedback_material/steps/6",
+            "/formal_program/functions/assess_feedback_material/steps/8",
+            "/formal_program/composite_class_formation"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "OS007-NEG-feedback-comp-15-resolution_origin_forbidden_unresolved_claimed_resolved",
+      "code": "record_material_violation",
+      "expected_classification": "record_material_violation",
+      "function_ref": "assess_feedback_material",
+      "expected": {
+        "finding_codes": [
+          "resolution_origin_forbidden",
+          "unresolved_claimed_resolved"
+        ]
+      },
+      "expected_preserved": {
+        "actual_records_equal_expanded_input_records": true,
+        "reference_records_equal_expanded_context_records": true
+      },
+      "expected_axis": "feedback",
+      "expected_state": "violation",
+      "backflow_owner": "feedback-source-owner",
+      "side_effect_count": 0,
+      "handling": "assess_feedback_materialのfeedback比較規則が[resolution_origin_forbidden, unresolved_claimed_resolved]を検出し、feedback-source-ownerへ返却する。retained_actual_recordsとretained_reference_recordsを別々に保持し、operation_effectはnone。",
+      "source_pointers": [
+        {
+          "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+          "pointers": [
+            "/requirements/22"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
+          "pointers": [
+            "/contracts/1",
+            "/diagnostic_contract/codes/15",
+            "/diagnostic_contract/codes/16",
+            "/diagnostic_contract/owner_by_facet/feedback",
+            "/diagnostic_contract/rules/5",
+            "/diagnostic_contract/rules/11",
+            "/diagnostic_contract/composite_class_formation",
+            "/failure_classifications/62"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L5-detail-design/log-feedback-memory-lineage.json",
+          "pointers": [
+            "/contracts/1",
+            "/functions/1",
+            "/finite_domains/diagnostic_codes/15",
+            "/finite_domains/diagnostic_codes/16",
+            "/finite_domains/owner_by_facet/feedback",
+            "/algorithm/ordered_rules/5",
+            "/algorithm/ordered_rules/11",
+            "/formal_program/functions/assess_feedback_material/steps/6",
+            "/formal_program/functions/assess_feedback_material/steps/8",
+            "/formal_program/composite_class_formation"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "OS007-NEG-feedback-comp-16-resolution_origin_unknown_unresolved_claimed_resolved",
+      "code": "record_material_violation",
+      "expected_classification": "record_material_violation",
+      "function_ref": "assess_feedback_material",
+      "expected": {
+        "finding_codes": [
+          "resolution_origin_unknown",
+          "unresolved_claimed_resolved"
+        ]
+      },
+      "expected_preserved": {
+        "actual_records_equal_expanded_input_records": true,
+        "reference_records_equal_expanded_context_records": true
+      },
+      "expected_axis": "feedback",
+      "expected_state": "violation",
+      "backflow_owner": "feedback-source-owner",
+      "side_effect_count": 0,
+      "handling": "assess_feedback_materialのfeedback比較規則が[resolution_origin_unknown, unresolved_claimed_resolved]を検出し、feedback-source-ownerへ返却する。retained_actual_recordsとretained_reference_recordsを別々に保持し、operation_effectはnone。",
+      "source_pointers": [
+        {
+          "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+          "pointers": [
+            "/requirements/22"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
+          "pointers": [
+            "/contracts/1",
+            "/diagnostic_contract/codes/14",
+            "/diagnostic_contract/codes/16",
+            "/diagnostic_contract/owner_by_facet/feedback",
+            "/diagnostic_contract/rules/5",
+            "/diagnostic_contract/rules/11",
+            "/diagnostic_contract/composite_class_formation",
+            "/failure_classifications/63"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L5-detail-design/log-feedback-memory-lineage.json",
+          "pointers": [
+            "/contracts/1",
+            "/functions/1",
+            "/finite_domains/diagnostic_codes/14",
+            "/finite_domains/diagnostic_codes/16",
+            "/finite_domains/owner_by_facet/feedback",
+            "/algorithm/ordered_rules/5",
+            "/algorithm/ordered_rules/11",
+            "/formal_program/functions/assess_feedback_material/steps/6",
+            "/formal_program/functions/assess_feedback_material/steps/8",
+            "/formal_program/composite_class_formation"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "OS007-NEG-feedback-comp-17-resolution_origin_unknown_unresolved_claimed_resolved",
+      "code": "record_material_violation",
+      "expected_classification": "record_material_violation",
+      "function_ref": "assess_feedback_material",
+      "expected": {
+        "finding_codes": [
+          "resolution_origin_unknown",
+          "resolution_origin_unknown",
+          "unresolved_claimed_resolved"
+        ]
+      },
+      "expected_preserved": {
+        "actual_records_equal_expanded_input_records": true,
+        "reference_records_equal_expanded_context_records": true
+      },
+      "expected_axis": "feedback",
+      "expected_state": "violation",
+      "backflow_owner": "feedback-source-owner",
+      "side_effect_count": 0,
+      "handling": "assess_feedback_materialのfeedback比較規則が[resolution_origin_unknownx2, unresolved_claimed_resolved]を検出し、feedback-source-ownerへ返却する。retained_actual_recordsとretained_reference_recordsを別々に保持し、operation_effectはnone。",
+      "source_pointers": [
+        {
+          "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+          "pointers": [
+            "/requirements/22"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
+          "pointers": [
+            "/contracts/1",
+            "/diagnostic_contract/codes/14",
+            "/diagnostic_contract/codes/16",
+            "/diagnostic_contract/owner_by_facet/feedback",
+            "/diagnostic_contract/rules/5",
+            "/diagnostic_contract/rules/11",
+            "/diagnostic_contract/composite_class_formation",
+            "/failure_classifications/64"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L5-detail-design/log-feedback-memory-lineage.json",
+          "pointers": [
+            "/contracts/1",
+            "/functions/1",
+            "/finite_domains/diagnostic_codes/14",
+            "/finite_domains/diagnostic_codes/16",
+            "/finite_domains/owner_by_facet/feedback",
+            "/algorithm/ordered_rules/5",
+            "/algorithm/ordered_rules/11",
+            "/formal_program/functions/assess_feedback_material/steps/6",
+            "/formal_program/functions/assess_feedback_material/steps/8",
+            "/formal_program/composite_class_formation"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "OS007-NEG-feedback-comp-18-finding_missing",
+      "code": "record_material_unknown",
+      "expected_classification": "record_material_unknown",
+      "function_ref": "assess_feedback_material",
+      "expected": {
+        "finding_codes": [
+          "finding_missing",
+          "finding_missing"
+        ]
+      },
+      "expected_preserved": {
+        "actual_records_equal_expanded_input_records": true,
+        "reference_records_equal_expanded_context_records": true
+      },
+      "expected_axis": "feedback",
+      "expected_state": "unknown",
+      "backflow_owner": "feedback-source-owner",
+      "side_effect_count": 0,
+      "handling": "assess_feedback_materialのfeedback比較規則が[finding_missingx2]を検出し、feedback-source-ownerへ返却する。retained_actual_recordsとretained_reference_recordsを別々に保持し、operation_effectはnone。",
+      "source_pointers": [
+        {
+          "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+          "pointers": [
+            "/requirements/22"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
+          "pointers": [
+            "/contracts/1",
+            "/diagnostic_contract/codes/11",
+            "/diagnostic_contract/owner_by_facet/feedback",
+            "/diagnostic_contract/rules/3",
+            "/diagnostic_contract/rules/11",
+            "/diagnostic_contract/composite_class_formation",
+            "/failure_classifications/65"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L5-detail-design/log-feedback-memory-lineage.json",
+          "pointers": [
+            "/contracts/1",
+            "/functions/1",
+            "/finite_domains/diagnostic_codes/11",
+            "/finite_domains/owner_by_facet/feedback",
+            "/algorithm/ordered_rules/3",
+            "/algorithm/ordered_rules/11",
+            "/formal_program/functions/assess_feedback_material/steps/0",
+            "/formal_program/composite_class_formation"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "OS007-NEG-memory-comp-01-memory_state_unknown_terminal_instruction_resurfaced",
+      "code": "record_material_violation",
+      "expected_classification": "record_material_violation",
+      "function_ref": "assess_memory_material",
+      "expected": {
+        "finding_codes": [
+          "memory_state_unknown",
+          "terminal_instruction_resurfaced"
+        ]
+      },
+      "expected_preserved": {
+        "actual_records_equal_expanded_input_records": true,
+        "reference_records_equal_expanded_context_records": true
+      },
+      "expected_axis": "memory",
+      "expected_state": "violation",
+      "backflow_owner": "memory-canonical-owner",
+      "side_effect_count": 0,
+      "handling": "assess_memory_materialのmemory比較規則が[memory_state_unknown, terminal_instruction_resurfaced]を検出し、memory-canonical-ownerへ返却する。retained_actual_recordsとretained_reference_recordsを別々に保持し、operation_effectはnone。",
+      "source_pointers": [
+        {
+          "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+          "pointers": [
+            "/requirements/23"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
+          "pointers": [
+            "/contracts/2",
+            "/diagnostic_contract/codes/17",
+            "/diagnostic_contract/codes/23",
+            "/diagnostic_contract/owner_by_facet/memory",
+            "/diagnostic_contract/rules/7",
+            "/diagnostic_contract/rules/9",
+            "/diagnostic_contract/rules/11",
+            "/diagnostic_contract/composite_class_formation",
+            "/failure_classifications/66"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L5-detail-design/log-feedback-memory-lineage.json",
+          "pointers": [
+            "/contracts/2",
+            "/functions/2",
+            "/finite_domains/diagnostic_codes/17",
+            "/finite_domains/diagnostic_codes/23",
+            "/finite_domains/owner_by_facet/memory",
+            "/algorithm/ordered_rules/7",
+            "/algorithm/ordered_rules/9",
+            "/algorithm/ordered_rules/11",
+            "/formal_program/functions/assess_memory_material/steps/1",
+            "/formal_program/functions/assess_memory_material/steps/12",
+            "/formal_program/composite_class_formation"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "OS007-NEG-memory-comp-02-memory_state_conflict_order_unknown_retire_before_reflection",
+      "code": "record_material_violation",
+      "expected_classification": "record_material_violation",
+      "function_ref": "assess_memory_material",
+      "expected": {
+        "finding_codes": [
+          "memory_state_conflict",
+          "order_unknown",
+          "order_unknown",
+          "retire_before_reflection",
+          "terminal_instruction_resurfaced"
+        ]
+      },
+      "expected_preserved": {
+        "actual_records_equal_expanded_input_records": true,
+        "reference_records_equal_expanded_context_records": true
+      },
+      "expected_axis": "memory",
+      "expected_state": "violation",
+      "backflow_owner": "memory-canonical-owner",
+      "side_effect_count": 0,
+      "handling": "assess_memory_materialのmemory比較規則が[memory_state_conflict, order_unknownx2, retire_before_reflection, terminal_instruction_resurfaced]を検出し、memory-canonical-ownerへ返却する。retained_actual_recordsとretained_reference_recordsを別々に保持し、operation_effectはnone。",
+      "source_pointers": [
+        {
+          "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+          "pointers": [
+            "/requirements/23"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
+          "pointers": [
+            "/contracts/2",
+            "/diagnostic_contract/codes/18",
+            "/diagnostic_contract/codes/31",
+            "/diagnostic_contract/codes/22",
+            "/diagnostic_contract/codes/23",
+            "/diagnostic_contract/owner_by_facet/memory",
+            "/diagnostic_contract/rules/7",
+            "/diagnostic_contract/rules/8",
+            "/diagnostic_contract/rules/9",
+            "/diagnostic_contract/rules/11",
+            "/diagnostic_contract/composite_class_formation",
+            "/failure_classifications/67"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L5-detail-design/log-feedback-memory-lineage.json",
+          "pointers": [
+            "/contracts/2",
+            "/functions/2",
+            "/finite_domains/diagnostic_codes/18",
+            "/finite_domains/diagnostic_codes/31",
+            "/finite_domains/diagnostic_codes/22",
+            "/finite_domains/diagnostic_codes/23",
+            "/finite_domains/owner_by_facet/memory",
+            "/algorithm/ordered_rules/7",
+            "/algorithm/ordered_rules/8",
+            "/algorithm/ordered_rules/9",
+            "/algorithm/ordered_rules/11",
+            "/formal_program/functions/assess_memory_material/steps/2",
+            "/formal_program/functions/assess_memory_material/steps/10",
+            "/formal_program/functions/assess_memory_material/steps/12",
+            "/formal_program/composite_class_formation"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "OS007-NEG-memory-comp-03-memory_freshness_unknown_terminal_instruction_resurfaced",
+      "code": "record_material_violation",
+      "expected_classification": "record_material_violation",
+      "function_ref": "assess_memory_material",
+      "expected": {
+        "finding_codes": [
+          "memory_freshness_unknown",
+          "terminal_instruction_resurfaced"
+        ]
+      },
+      "expected_preserved": {
+        "actual_records_equal_expanded_input_records": true,
+        "reference_records_equal_expanded_context_records": true
+      },
+      "expected_axis": "memory",
+      "expected_state": "violation",
+      "backflow_owner": "memory-canonical-owner",
+      "side_effect_count": 0,
+      "handling": "assess_memory_materialのmemory比較規則が[memory_freshness_unknown, terminal_instruction_resurfaced]を検出し、memory-canonical-ownerへ返却する。retained_actual_recordsとretained_reference_recordsを別々に保持し、operation_effectはnone。",
+      "source_pointers": [
+        {
+          "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+          "pointers": [
+            "/requirements/23"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
+          "pointers": [
+            "/contracts/2",
+            "/diagnostic_contract/codes/19",
+            "/diagnostic_contract/codes/23",
+            "/diagnostic_contract/owner_by_facet/memory",
+            "/diagnostic_contract/rules/7",
+            "/diagnostic_contract/rules/9",
+            "/diagnostic_contract/rules/11",
+            "/diagnostic_contract/composite_class_formation",
+            "/failure_classifications/68"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L5-detail-design/log-feedback-memory-lineage.json",
+          "pointers": [
+            "/contracts/2",
+            "/functions/2",
+            "/finite_domains/diagnostic_codes/19",
+            "/finite_domains/diagnostic_codes/23",
+            "/finite_domains/owner_by_facet/memory",
+            "/algorithm/ordered_rules/7",
+            "/algorithm/ordered_rules/9",
+            "/algorithm/ordered_rules/11",
+            "/formal_program/functions/assess_memory_material/steps/3",
+            "/formal_program/functions/assess_memory_material/steps/12",
+            "/formal_program/composite_class_formation"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "OS007-NEG-memory-comp-04-memory_freshness_conflict_terminal_instruction_resurfaced",
+      "code": "record_material_violation",
+      "expected_classification": "record_material_violation",
+      "function_ref": "assess_memory_material",
+      "expected": {
+        "finding_codes": [
+          "memory_freshness_conflict",
+          "terminal_instruction_resurfaced"
+        ]
+      },
+      "expected_preserved": {
+        "actual_records_equal_expanded_input_records": true,
+        "reference_records_equal_expanded_context_records": true
+      },
+      "expected_axis": "memory",
+      "expected_state": "violation",
+      "backflow_owner": "memory-canonical-owner",
+      "side_effect_count": 0,
+      "handling": "assess_memory_materialのmemory比較規則が[memory_freshness_conflict, terminal_instruction_resurfaced]を検出し、memory-canonical-ownerへ返却する。retained_actual_recordsとretained_reference_recordsを別々に保持し、operation_effectはnone。",
+      "source_pointers": [
+        {
+          "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+          "pointers": [
+            "/requirements/23"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
+          "pointers": [
+            "/contracts/2",
+            "/diagnostic_contract/codes/20",
+            "/diagnostic_contract/codes/23",
+            "/diagnostic_contract/owner_by_facet/memory",
+            "/diagnostic_contract/rules/7",
+            "/diagnostic_contract/rules/9",
+            "/diagnostic_contract/rules/11",
+            "/diagnostic_contract/composite_class_formation",
+            "/failure_classifications/69"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L5-detail-design/log-feedback-memory-lineage.json",
+          "pointers": [
+            "/contracts/2",
+            "/functions/2",
+            "/finite_domains/diagnostic_codes/20",
+            "/finite_domains/diagnostic_codes/23",
+            "/finite_domains/owner_by_facet/memory",
+            "/algorithm/ordered_rules/7",
+            "/algorithm/ordered_rules/9",
+            "/algorithm/ordered_rules/11",
+            "/formal_program/functions/assess_memory_material/steps/4",
+            "/formal_program/functions/assess_memory_material/steps/12",
+            "/formal_program/composite_class_formation"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "OS007-NEG-memory-comp-05-duplicate_successful_use_use_count_conflict",
+      "code": "record_material_violation",
+      "expected_classification": "record_material_violation",
+      "function_ref": "assess_memory_material",
+      "expected": {
+        "finding_codes": [
+          "duplicate_successful_use",
+          "use_count_conflict"
+        ]
+      },
+      "expected_preserved": {
+        "actual_records_equal_expanded_input_records": true,
+        "reference_records_equal_expanded_context_records": true
+      },
+      "expected_axis": "memory",
+      "expected_state": "violation",
+      "backflow_owner": "memory-canonical-owner",
+      "side_effect_count": 0,
+      "handling": "assess_memory_materialのmemory比較規則が[duplicate_successful_use, use_count_conflict]を検出し、memory-canonical-ownerへ返却する。retained_actual_recordsとretained_reference_recordsを別々に保持し、operation_effectはnone。",
+      "source_pointers": [
+        {
+          "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+          "pointers": [
+            "/requirements/23"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
+          "pointers": [
+            "/contracts/2",
+            "/diagnostic_contract/codes/26",
+            "/diagnostic_contract/codes/25",
+            "/diagnostic_contract/owner_by_facet/memory",
+            "/diagnostic_contract/rules/9",
+            "/diagnostic_contract/rules/11",
+            "/diagnostic_contract/composite_class_formation",
+            "/failure_classifications/70"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L5-detail-design/log-feedback-memory-lineage.json",
+          "pointers": [
+            "/contracts/2",
+            "/functions/2",
+            "/finite_domains/diagnostic_codes/26",
+            "/finite_domains/diagnostic_codes/25",
+            "/finite_domains/owner_by_facet/memory",
+            "/algorithm/ordered_rules/9",
+            "/algorithm/ordered_rules/11",
+            "/formal_program/functions/assess_memory_material/steps/13",
+            "/formal_program/functions/assess_memory_material/steps/14",
+            "/formal_program/composite_class_formation"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "OS007-NEG-memory-comp-06-consume_without_delivery_duplicate_successful_use_use_count_conflict",
+      "code": "record_material_violation",
+      "expected_classification": "record_material_violation",
+      "function_ref": "assess_memory_material",
+      "expected": {
+        "finding_codes": [
+          "consume_without_delivery",
+          "duplicate_successful_use",
+          "use_count_conflict",
+          "use_state_conflict"
+        ]
+      },
+      "expected_preserved": {
+        "actual_records_equal_expanded_input_records": true,
+        "reference_records_equal_expanded_context_records": true
+      },
+      "expected_axis": "memory",
+      "expected_state": "violation",
+      "backflow_owner": "memory-canonical-owner",
+      "side_effect_count": 0,
+      "handling": "assess_memory_materialのmemory比較規則が[consume_without_delivery, duplicate_successful_use, use_count_conflict, use_state_conflict]を検出し、memory-canonical-ownerへ返却する。retained_actual_recordsとretained_reference_recordsを別々に保持し、operation_effectはnone。",
+      "source_pointers": [
+        {
+          "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+          "pointers": [
+            "/requirements/23"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
+          "pointers": [
+            "/contracts/2",
+            "/diagnostic_contract/codes/35",
+            "/diagnostic_contract/codes/26",
+            "/diagnostic_contract/codes/25",
+            "/diagnostic_contract/codes/36",
+            "/diagnostic_contract/owner_by_facet/memory",
+            "/diagnostic_contract/rules/9",
+            "/diagnostic_contract/rules/11",
+            "/diagnostic_contract/composite_class_formation",
+            "/failure_classifications/71"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L5-detail-design/log-feedback-memory-lineage.json",
+          "pointers": [
+            "/contracts/2",
+            "/functions/2",
+            "/finite_domains/diagnostic_codes/35",
+            "/finite_domains/diagnostic_codes/26",
+            "/finite_domains/diagnostic_codes/25",
+            "/finite_domains/diagnostic_codes/36",
+            "/finite_domains/owner_by_facet/memory",
+            "/algorithm/ordered_rules/9",
+            "/algorithm/ordered_rules/11",
+            "/formal_program/functions/assess_memory_material/steps/13",
+            "/formal_program/functions/assess_memory_material/steps/14",
+            "/formal_program/functions/assess_memory_material/steps/15",
+            "/formal_program/functions/assess_memory_material/steps/16",
+            "/formal_program/composite_class_formation"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "OS007-NEG-memory-comp-07-consume_without_delivery_duplicate_successful_use_use_count_conflict",
+      "code": "record_material_violation",
+      "expected_classification": "record_material_violation",
+      "function_ref": "assess_memory_material",
+      "expected": {
+        "finding_codes": [
+          "consume_without_delivery",
+          "duplicate_successful_use",
+          "use_count_conflict"
+        ]
+      },
+      "expected_preserved": {
+        "actual_records_equal_expanded_input_records": true,
+        "reference_records_equal_expanded_context_records": true
+      },
+      "expected_axis": "memory",
+      "expected_state": "violation",
+      "backflow_owner": "memory-canonical-owner",
+      "side_effect_count": 0,
+      "handling": "assess_memory_materialのmemory比較規則が[consume_without_delivery, duplicate_successful_use, use_count_conflict]を検出し、memory-canonical-ownerへ返却する。retained_actual_recordsとretained_reference_recordsを別々に保持し、operation_effectはnone。",
+      "source_pointers": [
+        {
+          "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+          "pointers": [
+            "/requirements/23"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
+          "pointers": [
+            "/contracts/2",
+            "/diagnostic_contract/codes/35",
+            "/diagnostic_contract/codes/26",
+            "/diagnostic_contract/codes/25",
+            "/diagnostic_contract/owner_by_facet/memory",
+            "/diagnostic_contract/rules/9",
+            "/diagnostic_contract/rules/11",
+            "/diagnostic_contract/composite_class_formation",
+            "/failure_classifications/72"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L5-detail-design/log-feedback-memory-lineage.json",
+          "pointers": [
+            "/contracts/2",
+            "/functions/2",
+            "/finite_domains/diagnostic_codes/35",
+            "/finite_domains/diagnostic_codes/26",
+            "/finite_domains/diagnostic_codes/25",
+            "/finite_domains/owner_by_facet/memory",
+            "/algorithm/ordered_rules/9",
+            "/algorithm/ordered_rules/11",
+            "/formal_program/functions/assess_memory_material/steps/13",
+            "/formal_program/functions/assess_memory_material/steps/14",
+            "/formal_program/functions/assess_memory_material/steps/15",
+            "/formal_program/composite_class_formation"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "OS007-NEG-memory-comp-08-field_conflict",
+      "code": "record_material_violation",
+      "expected_classification": "record_material_violation",
+      "function_ref": "assess_memory_material",
+      "expected": {
+        "finding_codes": [
+          "field_conflict",
+          "field_conflict"
+        ]
+      },
+      "expected_preserved": {
+        "actual_records_equal_expanded_input_records": true,
+        "reference_records_equal_expanded_context_records": true
+      },
+      "expected_axis": "memory",
+      "expected_state": "violation",
+      "backflow_owner": "memory-canonical-owner",
+      "side_effect_count": 0,
+      "handling": "assess_memory_materialのmemory比較規則が[field_conflictx2]を検出し、memory-canonical-ownerへ返却する。retained_actual_recordsとretained_reference_recordsを別々に保持し、operation_effectはnone。",
+      "source_pointers": [
+        {
+          "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+          "pointers": [
+            "/requirements/23"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
+          "pointers": [
+            "/contracts/2",
+            "/diagnostic_contract/codes/1",
+            "/diagnostic_contract/owner_by_facet/memory",
+            "/diagnostic_contract/rules/0",
+            "/diagnostic_contract/rules/11",
+            "/diagnostic_contract/composite_class_formation",
+            "/failure_classifications/73"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L5-detail-design/log-feedback-memory-lineage.json",
+          "pointers": [
+            "/contracts/2",
+            "/functions/2",
+            "/finite_domains/diagnostic_codes/1",
+            "/finite_domains/owner_by_facet/memory",
+            "/algorithm/ordered_rules/0",
+            "/algorithm/ordered_rules/11",
+            "/formal_program/functions/assess_memory_material/steps/0",
+            "/formal_program/functions/assess_memory_material/steps/8",
+            "/formal_program/functions/assess_memory_material/steps/9",
+            "/formal_program/composite_class_formation"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "OS007-NEG-memory-comp-09-memory_state_conflict_use_state_conflict",
+      "code": "record_material_violation",
+      "expected_classification": "record_material_violation",
+      "function_ref": "assess_memory_material",
+      "expected": {
+        "finding_codes": [
+          "memory_state_conflict",
+          "use_state_conflict"
+        ]
+      },
+      "expected_preserved": {
+        "actual_records_equal_expanded_input_records": true,
+        "reference_records_equal_expanded_context_records": true
+      },
+      "expected_axis": "memory",
+      "expected_state": "violation",
+      "backflow_owner": "memory-canonical-owner",
+      "side_effect_count": 0,
+      "handling": "assess_memory_materialのmemory比較規則が[memory_state_conflict, use_state_conflict]を検出し、memory-canonical-ownerへ返却する。retained_actual_recordsとretained_reference_recordsを別々に保持し、operation_effectはnone。",
+      "source_pointers": [
+        {
+          "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+          "pointers": [
+            "/requirements/23"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
+          "pointers": [
+            "/contracts/2",
+            "/diagnostic_contract/codes/18",
+            "/diagnostic_contract/codes/36",
+            "/diagnostic_contract/owner_by_facet/memory",
+            "/diagnostic_contract/rules/7",
+            "/diagnostic_contract/rules/9",
+            "/diagnostic_contract/rules/11",
+            "/diagnostic_contract/composite_class_formation",
+            "/failure_classifications/74"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L5-detail-design/log-feedback-memory-lineage.json",
+          "pointers": [
+            "/contracts/2",
+            "/functions/2",
+            "/finite_domains/diagnostic_codes/18",
+            "/finite_domains/diagnostic_codes/36",
+            "/finite_domains/owner_by_facet/memory",
+            "/algorithm/ordered_rules/7",
+            "/algorithm/ordered_rules/9",
+            "/algorithm/ordered_rules/11",
+            "/formal_program/functions/assess_memory_material/steps/2",
+            "/formal_program/functions/assess_memory_material/steps/16",
+            "/formal_program/composite_class_formation"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "OS007-NEG-memory-comp-10-boolean_conflict_reflection_unrecorded_ref_present_retire_before_reflection",
+      "code": "record_material_violation",
+      "expected_classification": "record_material_violation",
+      "function_ref": "assess_memory_material",
+      "expected": {
+        "finding_codes": [
+          "boolean_conflict",
+          "reflection_unrecorded_ref_present",
+          "retire_before_reflection"
+        ]
+      },
+      "expected_preserved": {
+        "actual_records_equal_expanded_input_records": true,
+        "reference_records_equal_expanded_context_records": true
+      },
+      "expected_axis": "memory",
+      "expected_state": "violation",
+      "backflow_owner": "memory-canonical-owner",
+      "side_effect_count": 0,
+      "handling": "assess_memory_materialのmemory比較規則が[boolean_conflict, reflection_unrecorded_ref_present, retire_before_reflection]を検出し、memory-canonical-ownerへ返却する。retained_actual_recordsとretained_reference_recordsを別々に保持し、operation_effectはnone。",
+      "source_pointers": [
+        {
+          "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+          "pointers": [
+            "/requirements/23"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
+          "pointers": [
+            "/contracts/2",
+            "/diagnostic_contract/codes/10",
+            "/diagnostic_contract/codes/21",
+            "/diagnostic_contract/codes/22",
+            "/diagnostic_contract/owner_by_facet/memory",
+            "/diagnostic_contract/rules/7",
+            "/diagnostic_contract/rules/8",
+            "/diagnostic_contract/rules/11",
+            "/diagnostic_contract/composite_class_formation",
+            "/failure_classifications/75"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L5-detail-design/log-feedback-memory-lineage.json",
+          "pointers": [
+            "/contracts/2",
+            "/functions/2",
+            "/finite_domains/diagnostic_codes/10",
+            "/finite_domains/diagnostic_codes/21",
+            "/finite_domains/diagnostic_codes/22",
+            "/finite_domains/owner_by_facet/memory",
+            "/algorithm/ordered_rules/7",
+            "/algorithm/ordered_rules/8",
+            "/algorithm/ordered_rules/11",
+            "/formal_program/functions/assess_memory_material/steps/5",
+            "/formal_program/functions/assess_memory_material/steps/6",
+            "/formal_program/functions/assess_memory_material/steps/7",
+            "/formal_program/functions/assess_memory_material/steps/10",
+            "/formal_program/composite_class_formation"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "OS007-NEG-memory-comp-11-order_conflict_reflection_not_before_retire",
+      "code": "record_material_violation",
+      "expected_classification": "record_material_violation",
+      "function_ref": "assess_memory_material",
+      "expected": {
+        "finding_codes": [
+          "order_conflict",
+          "reflection_not_before_retire"
+        ]
+      },
+      "expected_preserved": {
+        "actual_records_equal_expanded_input_records": true,
+        "reference_records_equal_expanded_context_records": true
+      },
+      "expected_axis": "memory",
+      "expected_state": "violation",
+      "backflow_owner": "memory-canonical-owner",
+      "side_effect_count": 0,
+      "handling": "assess_memory_materialのmemory比較規則が[order_conflict, reflection_not_before_retire]を検出し、memory-canonical-ownerへ返却する。retained_actual_recordsとretained_reference_recordsを別々に保持し、operation_effectはnone。",
+      "source_pointers": [
+        {
+          "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+          "pointers": [
+            "/requirements/23"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
+          "pointers": [
+            "/contracts/2",
+            "/diagnostic_contract/codes/32",
+            "/diagnostic_contract/codes/33",
+            "/diagnostic_contract/owner_by_facet/memory",
+            "/diagnostic_contract/rules/8",
+            "/diagnostic_contract/rules/11",
+            "/diagnostic_contract/composite_class_formation",
+            "/failure_classifications/76"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L5-detail-design/log-feedback-memory-lineage.json",
+          "pointers": [
+            "/contracts/2",
+            "/functions/2",
+            "/finite_domains/diagnostic_codes/32",
+            "/finite_domains/diagnostic_codes/33",
+            "/finite_domains/owner_by_facet/memory",
+            "/algorithm/ordered_rules/8",
+            "/algorithm/ordered_rules/11",
+            "/formal_program/functions/assess_memory_material/steps/10",
+            "/formal_program/composite_class_formation"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "OS007-NEG-memory-comp-12-consume_without_delivery_duplicate_successful_use_use_state_conflict",
+      "code": "record_material_violation",
+      "expected_classification": "record_material_violation",
+      "function_ref": "assess_memory_material",
+      "expected": {
+        "finding_codes": [
+          "consume_without_delivery",
+          "duplicate_successful_use",
+          "use_state_conflict"
+        ]
+      },
+      "expected_preserved": {
+        "actual_records_equal_expanded_input_records": true,
+        "reference_records_equal_expanded_context_records": true
+      },
+      "expected_axis": "memory",
+      "expected_state": "violation",
+      "backflow_owner": "memory-canonical-owner",
+      "side_effect_count": 0,
+      "handling": "assess_memory_materialのmemory比較規則が[consume_without_delivery, duplicate_successful_use, use_state_conflict]を検出し、memory-canonical-ownerへ返却する。retained_actual_recordsとretained_reference_recordsを別々に保持し、operation_effectはnone。",
+      "source_pointers": [
+        {
+          "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+          "pointers": [
+            "/requirements/23"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
+          "pointers": [
+            "/contracts/2",
+            "/diagnostic_contract/codes/35",
+            "/diagnostic_contract/codes/26",
+            "/diagnostic_contract/codes/36",
+            "/diagnostic_contract/owner_by_facet/memory",
+            "/diagnostic_contract/rules/9",
+            "/diagnostic_contract/rules/11",
+            "/diagnostic_contract/composite_class_formation",
+            "/failure_classifications/77"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L5-detail-design/log-feedback-memory-lineage.json",
+          "pointers": [
+            "/contracts/2",
+            "/functions/2",
+            "/finite_domains/diagnostic_codes/35",
+            "/finite_domains/diagnostic_codes/26",
+            "/finite_domains/diagnostic_codes/36",
+            "/finite_domains/owner_by_facet/memory",
+            "/algorithm/ordered_rules/9",
+            "/algorithm/ordered_rules/11",
+            "/formal_program/functions/assess_memory_material/steps/14",
+            "/formal_program/functions/assess_memory_material/steps/15",
+            "/formal_program/functions/assess_memory_material/steps/16",
+            "/formal_program/composite_class_formation"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "OS007-NEG-memory-comp-13-consume_without_delivery_duplicate_successful_use",
+      "code": "record_material_violation",
+      "expected_classification": "record_material_violation",
+      "function_ref": "assess_memory_material",
+      "expected": {
+        "finding_codes": [
+          "consume_without_delivery",
+          "duplicate_successful_use"
+        ]
+      },
+      "expected_preserved": {
+        "actual_records_equal_expanded_input_records": true,
+        "reference_records_equal_expanded_context_records": true
+      },
+      "expected_axis": "memory",
+      "expected_state": "violation",
+      "backflow_owner": "memory-canonical-owner",
+      "side_effect_count": 0,
+      "handling": "assess_memory_materialのmemory比較規則が[consume_without_delivery, duplicate_successful_use]を検出し、memory-canonical-ownerへ返却する。retained_actual_recordsとretained_reference_recordsを別々に保持し、operation_effectはnone。",
+      "source_pointers": [
+        {
+          "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+          "pointers": [
+            "/requirements/23"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
+          "pointers": [
+            "/contracts/2",
+            "/diagnostic_contract/codes/35",
+            "/diagnostic_contract/codes/26",
+            "/diagnostic_contract/owner_by_facet/memory",
+            "/diagnostic_contract/rules/9",
+            "/diagnostic_contract/rules/11",
+            "/diagnostic_contract/composite_class_formation",
+            "/failure_classifications/78"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L5-detail-design/log-feedback-memory-lineage.json",
+          "pointers": [
+            "/contracts/2",
+            "/functions/2",
+            "/finite_domains/diagnostic_codes/35",
+            "/finite_domains/diagnostic_codes/26",
+            "/finite_domains/owner_by_facet/memory",
+            "/algorithm/ordered_rules/9",
+            "/algorithm/ordered_rules/11",
+            "/formal_program/functions/assess_memory_material/steps/14",
+            "/formal_program/functions/assess_memory_material/steps/15",
+            "/formal_program/composite_class_formation"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "OS007-NEG-feedback-comp-19-resolution_origin_unknown",
+      "code": "record_material_unknown",
+      "expected_classification": "record_material_unknown",
+      "function_ref": "assess_feedback_material",
+      "expected": {
+        "finding_codes": [
+          "resolution_origin_unknown",
+          "resolution_origin_unknown"
+        ]
+      },
+      "expected_preserved": {
+        "actual_records_equal_expanded_input_records": true,
+        "reference_records_equal_expanded_context_records": true
+      },
+      "expected_axis": "feedback",
+      "expected_state": "unknown",
+      "backflow_owner": "feedback-source-owner",
+      "side_effect_count": 0,
+      "handling": "assess_feedback_materialのfeedback比較規則が[resolution_origin_unknownx2]を検出し、feedback-source-ownerへ返却する。retained_actual_recordsとretained_reference_recordsを別々に保持し、operation_effectはnone。",
+      "source_pointers": [
+        {
+          "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+          "pointers": [
+            "/requirements/22"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
+          "pointers": [
+            "/contracts/1",
+            "/diagnostic_contract/codes/14",
+            "/diagnostic_contract/owner_by_facet/feedback",
+            "/diagnostic_contract/rules/5",
+            "/diagnostic_contract/rules/11",
+            "/diagnostic_contract/composite_class_formation",
+            "/failure_classifications/79"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L5-detail-design/log-feedback-memory-lineage.json",
+          "pointers": [
+            "/contracts/1",
+            "/functions/1",
+            "/finite_domains/diagnostic_codes/14",
+            "/finite_domains/owner_by_facet/feedback",
+            "/algorithm/ordered_rules/5",
+            "/algorithm/ordered_rules/11",
+            "/formal_program/functions/assess_feedback_material/steps/6",
+            "/formal_program/composite_class_formation"
           ]
         }
       ]
