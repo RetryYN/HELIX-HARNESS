@@ -35,7 +35,7 @@
     },
     {
       "path": "docs/helix-harness/L9-integration-verification/product-template-application.json",
-      "sha256": "bee498df770ec044134de8e739d6b73687f03f9a1bb4a5dadbfee91599d5aab0",
+      "sha256": "57d230b361aeb6499d40859c64bba34ddba76f739f2157c5c784422f17c376c9",
       "note": "F13/F14 candidate source。対象pointerとauthority境界はscaffold/research/wr154-f13-recipient-design-20261030/README.md。read-only pinで採用を示さない。"
     }
   ],
