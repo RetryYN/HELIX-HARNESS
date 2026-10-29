@@ -42332,6 +42332,12 @@
           "pointers": [
             "/connection_materials/OS015/case/cases/112/given/input"
           ]
+        },
+        {
+          "path": "docs/helix-os/L5-detail-design/management-authority-source-record.json",
+          "pointers": [
+            "/failure_rules/31"
+          ]
         }
       ]
     },
@@ -42443,6 +42449,12 @@
           "path": "docs/helix-os/L7-function-verification/management-authority-source-record.json",
           "pointers": [
             "/connection_materials/OS015/case/cases/111/given/input"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L5-detail-design/management-authority-source-record.json",
+          "pointers": [
+            "/failure_rules/32"
           ]
         }
       ]
