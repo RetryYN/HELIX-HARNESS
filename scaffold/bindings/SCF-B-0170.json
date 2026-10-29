@@ -26,7 +26,7 @@
     },
     {
       "path": "docs/helix-os/L5-detail-design/management-authority-source-record.json",
-      "sha256": "bd68cff4495e1cfd25af730ba7fca235cd1ca95f6ed46a97ec3a67a289b2128a",
+      "sha256": "6d313e6faaf56c0806c1964ac2bece5da0699de1d82dcc804fc77962f679275e",
       "note": "固定carrierとfield比較、finding/retention、31既存failure rules、L4投影からのcomposite key/owner_ref解決。複合case rowsは未形成。"
     },
     {
