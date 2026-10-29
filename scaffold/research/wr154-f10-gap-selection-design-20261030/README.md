@@ -15,9 +15,9 @@ F05のGapProposalを、同じ呼出しで形成されたfield Selectionへ結び
 ### 上流契約
 
 - L3 `HARNESS-L3-009-F05` `/requirements/27`、L10 `HARNESS-L10-009-F05` `/cases/27`。不足を質問・矛盾・derived requirement candidate・N/A判断候補へ区別し、元revision/scopeと返却先を辿れる材料にする。ここに新しい意味・gateは加えない。
-- L4 `docs/helix-harness/L4-basic-design/product-template-application.json`: `/field_source_materialization_contract/ordered_source_materialization/2..3`、`/field_semantic_evidence_contract/field_definition_evidence_body/absent_guard`、`/field_semantic_evidence_contract/wrapper_and_source_contract/source_payload`、`/field_semantic_evidence_contract/basic_candidate_return/cause_vocabulary`。
+- L4 `docs/helix-harness/L4-basic-design/product-template-application.json`: `/field_source_materialization_contract/ordered_source_materialization/2`、`/field_source_materialization_contract/ordered_source_materialization/3`、`/field_semantic_evidence_contract/field_definition_evidence_body/absent_guard`、`/field_semantic_evidence_contract/wrapper_and_source_contract/source_payload`、`/field_semantic_evidence_contract/basic_candidate_return/cause_vocabulary`。
 - 現行L5 `docs/helix-harness/L5-detail-design/product-template-application.json`（本文SHA-256はSCF-B-0168のupstream pinを参照）: `/f05_detail_contract/selection_contract`、`/f05_detail_contract/gap_contract`、`/f05_detail_contract/types/Selection`、`/f05_detail_contract/types/GapResult`、`/f05_detail_contract/types/GapOwnerResult`、`/f05_detail_contract/types/GapInterpretation`、`/f05_detail_contract/types/QuestionOperands`、`/f05_detail_contract/types/ContradictionOperands`、`/f05_detail_contract/types/DerivedOperands`、`/f05_detail_contract/types/NAOperands`、`/f05_detail_contract/field_content_source_failure_writer_contract`、`/f05_detail_contract/recipient_leaf_writer_contract`。
-- 現行L8 `docs/helix-harness/L8-unit-verification/product-template-application.json`: `/additional_unit_cases/15..16`（既存gap枝の限界）、`/additional_unit_cases/25`（F05のcaller consumer境界）、`/additional_unit_cases/45..47`（定義source未形成の例）、`/f13_knowledge_recipient_leaf_verification`。この候補のU-ID行は同文書へ未統合で、全件`not_executed`。
+- 現行L8 `docs/helix-harness/L8-unit-verification/product-template-application.json`: `/additional_unit_cases/15`（既存gap枝の限界: ADD-16）、`/additional_unit_cases/16`（ADD-17）、`/additional_unit_cases/25`（F05のcaller consumer境界）、`/additional_unit_cases/45`（定義Ref取得失敗）、`/additional_unit_cases/46`（SemanticRecord source_ref取得失敗）、`/additional_unit_cases/47`（body payload不一致）、`/f13_knowledge_recipient_leaf_verification`。この候補のU-ID行は同文書へ未統合で、全件`not_executed`。
 - 対応L9の独立意味oracleは本件の全join・全typed operand組合せを確定していない。L5 `/f05_detail_contract/remaining_and_nonclaims` の分類を保ち、L8 technical caseの追加だけでL9意味oracleやpair freezeが成立したとは扱わない。
 
 ### 旧HELIXと失敗事例
@@ -40,7 +40,7 @@ F05のGapProposalを、同じ呼出しで形成されたfield Selectionへ結び
 ### 2. source/body・Cause境界
 
 - Ref検索missは、検索collectionの実Readを保持する。source観測は同call `ValidationDetailedReturn.source_observations`の実indexだけを参照し、missing/null/invalid/unobservedを評価済み空配列として扱わない。
-- L5が閉じるwriterは二つに限る。 (a) SemanticRecordの`source_ref`がpresent non-null Ref、同snapshot `sources` collectionが観測済みで同RefのSourceEnvelopeが0件なら`source_unresolved`。target=実`source_ref` Read.location、left=元SemanticRecord.source_ref Read、right=実sources collection Read、rule=`/f05_detail_contract/field_content_source_failure_writer_contract/writers/0`。(b) 実body entryがありcollection/refは一致するがpayloadが既知differentなら`source_body_mismatch`。target=payload location、left=元record全体、right=実payload、rule=`.../writers/1`。どちらも発生record/source/body occurrenceへ一件格納し、既定順で親へcopyする。
+- L5が閉じるwriterは二つに限る。 (a) SemanticRecordの`source_ref`がpresent non-null Ref、同snapshot `sources` collectionが観測済みで同RefのSourceEnvelopeが0件なら`source_unresolved`。target=実`source_ref` Read.location、left=元SemanticRecord.source_ref Read、right=実sources collection Read、rule=`/f05_detail_contract/field_content_source_failure_writer_contract/writers/0`。(b) 実body entryがありcollection/refは一致するがpayloadが既知differentなら`source_body_mismatch`。target=payload location、left=元record全体、right=実payload、rule=`/f05_detail_contract/field_content_source_failure_writer_contract/writers/1`。どちらも発生record/source/body occurrenceへ一件格納し、既定順で親へcopyする。
 - 上記条件が閉じない場合は既存原因だけを保持して該当`Formation`をunformedとする。特にbody entry 0件、proposal/body不在、proposition operand miss、constraint mismatchにはこの候補からCauseを作らない。L5の`STOP-F05-BODY-ENTRY-ABSENT-01`、`STOP-F05-GAP-PROPOSAL-BODY-ORACLE-01`、`STOP-F05-CAUSE-PROPOSITION-OPERAND-01`、`STOP-F05-CAUSE-CONSTRAINT-MISMATCH-01`を維持する。
 - Causesは生成occurrenceの順で局所へcopyし、値同値dedupしない。子へcopyしたCauseを親集約時に再flattenしない。未形成の空`causes`だけを根拠にformedへ昇格しない。
 
@@ -70,7 +70,7 @@ unknown role, 未知constraint relation, body/owner/source不足、部分的なo
 | F10-GS-05 | contradictionのleft/rightとtyped mutually-exclusive constraintが全て対応 | 左右、constraint、左右endpoint relationsを分離保持し、formed contradiction judgment一件。 |
 | F10-GS-06 | derived antecedent列に同Ref反復、constraint left_refsも同順反復。positive proposal wholeがtyped equalityで対応 | antecedent occurrence/order/repetitionとproposed relationを保持。文章推論なし。 |
 | F10-GS-07 | N/A policy/NARecord/basisのsource/bodyは対応するがowner binding一端だけ absent/unreached | 当該interpretation unformed、実owner Read/presenceと既存Causeを保持。missing owner Causeを発明せず、policy/NA等値にまとめない。 |
-| F10-GS-08 | SemanticRecord.source_refはpresent non-null、sources collection observed、matching envelopeなし | L5 `/field_content_source_failure_writer_contract/writers/0`のsource_unresolved shapeだけを出す。target/left/right/rule pointerと親への一回copyを確認。 |
+| F10-GS-08 | SemanticRecord.source_refはpresent non-null、sources collection observed、matching envelopeなし | L5 `/f05_detail_contract/field_content_source_failure_writer_contract/writers/0`のsource_unresolved shapeだけを出す。target/left/right/rule pointerと親への一回copyを確認。 |
 
 ## 未形成のまま残すもの
 
