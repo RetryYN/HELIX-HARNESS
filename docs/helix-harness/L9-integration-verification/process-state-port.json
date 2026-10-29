@@ -27394,181 +27394,708 @@
     "manual_projection_candidates": [
       {
         "case_id": "H003-F03-TRACE-MISSING",
-        "candidate_ref": {
-          "path": "scaffold/research/wr186-psp-negative-residual/manual-projection-candidates.json",
-          "candidate_id": "H003-F03-TRACE-MISSING",
-          "field": "l9_input_derivation"
-        },
         "mutation_pointer": {
           "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
           "pointer": "/cases/3/negative_cases/2/mutation"
+        },
+        "candidate_finding_set_semantics": "unordered_set",
+        "candidate_finding_set": [
+          {
+            "code": "F03_REQUIRED_PAIR_MISSING",
+            "return_owner": "HARNESS",
+            "source_pointer": {
+              "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
+              "pointer": "/contracts/3/negative_classifications/0"
+            }
+          }
+        ],
+        "candidate_order_status": "trivial_singleton_from_L4",
+        "l3_source_pointer": {
+          "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+          "revision": "827c4ea924a15b6b54bbe9d1f5d2f9fbdefa65de",
+          "pointer": "/requirements/66/obligation"
+        },
+        "raw_input_source": {
+          "revision": "ed3981e7b9419d796adf1981f8990c6b626ecabe",
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "pointer": "/verification_obligations/3/negative_cases/2/independent_source_packet/raw_utf8",
+          "sha256": "c03c68481e5d4367bc890c5da4f5a61918ca528f8939928d5915693ccc428505"
         }
       },
       {
         "case_id": "H003-F03-L9-MISSING-interface",
-        "candidate_ref": {
-          "path": "scaffold/research/wr186-psp-negative-residual/manual-projection-candidates.json",
-          "candidate_id": "H003-F03-L9-MISSING-interface",
-          "field": "l9_input_derivation"
-        },
         "mutation_pointer": {
           "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
           "pointer": "/cases/3/negative_cases/12/mutation"
+        },
+        "candidate_finding_set_semantics": "unordered_set",
+        "candidate_finding_set": [
+          {
+            "code": "F03_L9_DIMENSION_UNKNOWN",
+            "return_owner": "L9各観点の原観測owner",
+            "source_pointer": {
+              "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
+              "pointer": "/contracts/3/negative_classifications/1"
+            }
+          }
+        ],
+        "candidate_order_status": "trivial_singleton_from_L4",
+        "l3_source_pointer": {
+          "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+          "revision": "827c4ea924a15b6b54bbe9d1f5d2f9fbdefa65de",
+          "pointer": "/requirements/66/obligation"
+        },
+        "raw_input_source": {
+          "revision": "ed3981e7b9419d796adf1981f8990c6b626ecabe",
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "pointer": "/verification_obligations/3/negative_cases/12/independent_source_packet/raw_utf8",
+          "sha256": "8ac6eead9f11c32547dbd21e4bb8736f5d55bd304c8293340a269515469c44b9"
         }
       },
       {
         "case_id": "H003-F03-L9-MISSING-dependency_direction",
-        "candidate_ref": {
-          "path": "scaffold/research/wr186-psp-negative-residual/manual-projection-candidates.json",
-          "candidate_id": "H003-F03-L9-MISSING-dependency_direction",
-          "field": "l9_input_derivation"
-        },
         "mutation_pointer": {
           "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
           "pointer": "/cases/3/negative_cases/13/mutation"
+        },
+        "candidate_finding_set_semantics": "unordered_set",
+        "candidate_finding_set": [
+          {
+            "code": "F03_L9_DIMENSION_UNKNOWN",
+            "return_owner": "L9各観点の原観測owner",
+            "source_pointer": {
+              "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
+              "pointer": "/contracts/3/negative_classifications/1"
+            }
+          }
+        ],
+        "candidate_order_status": "trivial_singleton_from_L4",
+        "l3_source_pointer": {
+          "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+          "revision": "827c4ea924a15b6b54bbe9d1f5d2f9fbdefa65de",
+          "pointer": "/requirements/66/obligation"
+        },
+        "raw_input_source": {
+          "revision": "ed3981e7b9419d796adf1981f8990c6b626ecabe",
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "pointer": "/verification_obligations/3/negative_cases/13/independent_source_packet/raw_utf8",
+          "sha256": "3e7705dcb86f927d8d100287397a87f88b479ffd613a28cd205593e71f7be55f"
         }
       },
       {
         "case_id": "H003-F03-L9-MISSING-state_data_ownership",
-        "candidate_ref": {
-          "path": "scaffold/research/wr186-psp-negative-residual/manual-projection-candidates.json",
-          "candidate_id": "H003-F03-L9-MISSING-state_data_ownership",
-          "field": "l9_input_derivation"
-        },
         "mutation_pointer": {
           "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
           "pointer": "/cases/3/negative_cases/14/mutation"
+        },
+        "candidate_finding_set_semantics": "unordered_set",
+        "candidate_finding_set": [
+          {
+            "code": "F03_L9_DIMENSION_UNKNOWN",
+            "return_owner": "L9各観点の原観測owner",
+            "source_pointer": {
+              "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
+              "pointer": "/contracts/3/negative_classifications/1"
+            }
+          }
+        ],
+        "candidate_order_status": "trivial_singleton_from_L4",
+        "l3_source_pointer": {
+          "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+          "revision": "827c4ea924a15b6b54bbe9d1f5d2f9fbdefa65de",
+          "pointer": "/requirements/66/obligation"
+        },
+        "raw_input_source": {
+          "revision": "ed3981e7b9419d796adf1981f8990c6b626ecabe",
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "pointer": "/verification_obligations/3/negative_cases/14/independent_source_packet/raw_utf8",
+          "sha256": "125b088a7cc96ced50d36ffcc9374777c47b56e8ae0268181e984f63c2595cfd"
         }
       },
       {
         "case_id": "H003-F03-L9-MISSING-transaction",
-        "candidate_ref": {
-          "path": "scaffold/research/wr186-psp-negative-residual/manual-projection-candidates.json",
-          "candidate_id": "H003-F03-L9-MISSING-transaction",
-          "field": "l9_input_derivation"
-        },
         "mutation_pointer": {
           "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
           "pointer": "/cases/3/negative_cases/15/mutation"
+        },
+        "candidate_finding_set_semantics": "unordered_set",
+        "candidate_finding_set": [
+          {
+            "code": "F03_L9_DIMENSION_UNKNOWN",
+            "return_owner": "L9各観点の原観測owner",
+            "source_pointer": {
+              "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
+              "pointer": "/contracts/3/negative_classifications/1"
+            }
+          }
+        ],
+        "candidate_order_status": "trivial_singleton_from_L4",
+        "l3_source_pointer": {
+          "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+          "revision": "827c4ea924a15b6b54bbe9d1f5d2f9fbdefa65de",
+          "pointer": "/requirements/66/obligation"
+        },
+        "raw_input_source": {
+          "revision": "ed3981e7b9419d796adf1981f8990c6b626ecabe",
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "pointer": "/verification_obligations/3/negative_cases/15/independent_source_packet/raw_utf8",
+          "sha256": "0eeeba7f2fe08354a7a01ae35a0001e929284547c245b97cab4af2780ed1abab"
         }
       },
       {
         "case_id": "H003-F03-L9-MISSING-failure_propagation",
-        "candidate_ref": {
-          "path": "scaffold/research/wr186-psp-negative-residual/manual-projection-candidates.json",
-          "candidate_id": "H003-F03-L9-MISSING-failure_propagation",
-          "field": "l9_input_derivation"
-        },
         "mutation_pointer": {
           "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
           "pointer": "/cases/3/negative_cases/16/mutation"
+        },
+        "candidate_finding_set_semantics": "unordered_set",
+        "candidate_finding_set": [
+          {
+            "code": "F03_L9_DIMENSION_UNKNOWN",
+            "return_owner": "L9各観点の原観測owner",
+            "source_pointer": {
+              "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
+              "pointer": "/contracts/3/negative_classifications/1"
+            }
+          }
+        ],
+        "candidate_order_status": "trivial_singleton_from_L4",
+        "l3_source_pointer": {
+          "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+          "revision": "827c4ea924a15b6b54bbe9d1f5d2f9fbdefa65de",
+          "pointer": "/requirements/66/obligation"
+        },
+        "raw_input_source": {
+          "revision": "ed3981e7b9419d796adf1981f8990c6b626ecabe",
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "pointer": "/verification_obligations/3/negative_cases/16/independent_source_packet/raw_utf8",
+          "sha256": "82289037f0987d6715db652e89bafc6b69c4ea9161a58719b712017d980702dd"
         }
       },
       {
         "case_id": "H003-F03-L9-MISSING-retry",
-        "candidate_ref": {
-          "path": "scaffold/research/wr186-psp-negative-residual/manual-projection-candidates.json",
-          "candidate_id": "H003-F03-L9-MISSING-retry",
-          "field": "l9_input_derivation"
-        },
         "mutation_pointer": {
           "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
           "pointer": "/cases/3/negative_cases/17/mutation"
+        },
+        "candidate_finding_set_semantics": "unordered_set",
+        "candidate_finding_set": [
+          {
+            "code": "F03_L9_DIMENSION_UNKNOWN",
+            "return_owner": "L9各観点の原観測owner",
+            "source_pointer": {
+              "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
+              "pointer": "/contracts/3/negative_classifications/1"
+            }
+          }
+        ],
+        "candidate_order_status": "trivial_singleton_from_L4",
+        "l3_source_pointer": {
+          "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+          "revision": "827c4ea924a15b6b54bbe9d1f5d2f9fbdefa65de",
+          "pointer": "/requirements/66/obligation"
+        },
+        "raw_input_source": {
+          "revision": "ed3981e7b9419d796adf1981f8990c6b626ecabe",
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "pointer": "/verification_obligations/3/negative_cases/17/independent_source_packet/raw_utf8",
+          "sha256": "8ca73db36255ac7a201f5823f85709d7faf3d2e78d5a13e972d699270dd190e4"
         }
       },
       {
         "case_id": "H003-F03-L9-MISSING-timeout",
-        "candidate_ref": {
-          "path": "scaffold/research/wr186-psp-negative-residual/manual-projection-candidates.json",
-          "candidate_id": "H003-F03-L9-MISSING-timeout",
-          "field": "l9_input_derivation"
-        },
         "mutation_pointer": {
           "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
           "pointer": "/cases/3/negative_cases/18/mutation"
+        },
+        "candidate_finding_set_semantics": "unordered_set",
+        "candidate_finding_set": [
+          {
+            "code": "F03_L9_DIMENSION_UNKNOWN",
+            "return_owner": "L9各観点の原観測owner",
+            "source_pointer": {
+              "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
+              "pointer": "/contracts/3/negative_classifications/1"
+            }
+          }
+        ],
+        "candidate_order_status": "trivial_singleton_from_L4",
+        "l3_source_pointer": {
+          "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+          "revision": "827c4ea924a15b6b54bbe9d1f5d2f9fbdefa65de",
+          "pointer": "/requirements/66/obligation"
+        },
+        "raw_input_source": {
+          "revision": "ed3981e7b9419d796adf1981f8990c6b626ecabe",
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "pointer": "/verification_obligations/3/negative_cases/18/independent_source_packet/raw_utf8",
+          "sha256": "a965f818d4ed012b706f2b28436e89061f682b9daebe352b8d870f272b665530"
         }
       },
       {
         "case_id": "H003-F03-L9-MISSING-idempotency",
-        "candidate_ref": {
-          "path": "scaffold/research/wr186-psp-negative-residual/manual-projection-candidates.json",
-          "candidate_id": "H003-F03-L9-MISSING-idempotency",
-          "field": "l9_input_derivation"
-        },
         "mutation_pointer": {
           "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
           "pointer": "/cases/3/negative_cases/19/mutation"
+        },
+        "candidate_finding_set_semantics": "unordered_set",
+        "candidate_finding_set": [
+          {
+            "code": "F03_L9_DIMENSION_UNKNOWN",
+            "return_owner": "L9各観点の原観測owner",
+            "source_pointer": {
+              "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
+              "pointer": "/contracts/3/negative_classifications/1"
+            }
+          }
+        ],
+        "candidate_order_status": "trivial_singleton_from_L4",
+        "l3_source_pointer": {
+          "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+          "revision": "827c4ea924a15b6b54bbe9d1f5d2f9fbdefa65de",
+          "pointer": "/requirements/66/obligation"
+        },
+        "raw_input_source": {
+          "revision": "ed3981e7b9419d796adf1981f8990c6b626ecabe",
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "pointer": "/verification_obligations/3/negative_cases/19/independent_source_packet/raw_utf8",
+          "sha256": "a020e1d9941cc62fddd55009734a969a837687071e06945814e69bbedf82d491"
         }
       },
       {
         "case_id": "H003-F03-L9-MISSING-coupling",
-        "candidate_ref": {
-          "path": "scaffold/research/wr186-psp-negative-residual/manual-projection-candidates.json",
-          "candidate_id": "H003-F03-L9-MISSING-coupling",
-          "field": "l9_input_derivation"
-        },
         "mutation_pointer": {
           "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
           "pointer": "/cases/3/negative_cases/20/mutation"
+        },
+        "candidate_finding_set_semantics": "unordered_set",
+        "candidate_finding_set": [
+          {
+            "code": "F03_L9_DIMENSION_UNKNOWN",
+            "return_owner": "L9各観点の原観測owner",
+            "source_pointer": {
+              "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
+              "pointer": "/contracts/3/negative_classifications/1"
+            }
+          }
+        ],
+        "candidate_order_status": "trivial_singleton_from_L4",
+        "l3_source_pointer": {
+          "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+          "revision": "827c4ea924a15b6b54bbe9d1f5d2f9fbdefa65de",
+          "pointer": "/requirements/66/obligation"
+        },
+        "raw_input_source": {
+          "revision": "ed3981e7b9419d796adf1981f8990c6b626ecabe",
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "pointer": "/verification_obligations/3/negative_cases/20/independent_source_packet/raw_utf8",
+          "sha256": "260e2575494befac39c72a2ddb6a57763723018c704da81954cd0c69d12b104d"
         }
       },
       {
         "case_id": "H003-F03-L9-MISSING-responsibility_duplication",
-        "candidate_ref": {
-          "path": "scaffold/research/wr186-psp-negative-residual/manual-projection-candidates.json",
-          "candidate_id": "H003-F03-L9-MISSING-responsibility_duplication",
-          "field": "l9_input_derivation"
-        },
         "mutation_pointer": {
           "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
           "pointer": "/cases/3/negative_cases/21/mutation"
+        },
+        "candidate_finding_set_semantics": "unordered_set",
+        "candidate_finding_set": [
+          {
+            "code": "F03_L9_DIMENSION_UNKNOWN",
+            "return_owner": "L9各観点の原観測owner",
+            "source_pointer": {
+              "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
+              "pointer": "/contracts/3/negative_classifications/1"
+            }
+          }
+        ],
+        "candidate_order_status": "trivial_singleton_from_L4",
+        "l3_source_pointer": {
+          "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+          "revision": "827c4ea924a15b6b54bbe9d1f5d2f9fbdefa65de",
+          "pointer": "/requirements/66/obligation"
+        },
+        "raw_input_source": {
+          "revision": "ed3981e7b9419d796adf1981f8990c6b626ecabe",
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "pointer": "/verification_obligations/3/negative_cases/21/independent_source_packet/raw_utf8",
+          "sha256": "9e79e0cb18cd86f39e61d717c5c47c28f166a6ebaee83ffbf1274b708f2417b3"
         }
       },
       {
         "case_id": "H003-F03-WRONG-L9-PAIR",
-        "candidate_ref": {
-          "path": "scaffold/research/wr186-psp-negative-residual/manual-projection-candidates.json",
-          "candidate_id": "H003-F03-WRONG-L9-PAIR",
-          "field": "l9_input_derivation"
-        },
         "mutation_pointer": {
           "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
           "pointer": "/cases/3/negative_cases/10/mutation"
+        },
+        "candidate_finding_set_semantics": "unordered_set",
+        "candidate_finding_set": [
+          {
+            "code": "F03_PAIR_SCOPE_CONFLICT",
+            "return_owner": "HARNESS",
+            "source_pointer": {
+              "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
+              "pointer": "/contracts/3/negative_classifications/2"
+            }
+          },
+          {
+            "code": "F03_REQUIRED_PAIR_MISSING",
+            "return_owner": "HARNESS",
+            "source_pointer": {
+              "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
+              "pointer": "/contracts/3/negative_classifications/0"
+            }
+          }
+        ],
+        "candidate_order_status": "unknown",
+        "l3_source_pointer": {
+          "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+          "revision": "827c4ea924a15b6b54bbe9d1f5d2f9fbdefa65de",
+          "pointer": "/requirements/66/obligation"
+        },
+        "raw_input_source": {
+          "revision": "ed3981e7b9419d796adf1981f8990c6b626ecabe",
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "pointer": "/verification_obligations/3/negative_cases/10/independent_source_packet/raw_utf8",
+          "sha256": "d449b4d23259a596403df19ee9597349f4a0ceaa51d07912afa559f68fc05157"
         }
       },
       {
         "case_id": "H003-F03-L8-WRONG-PAIR",
-        "candidate_ref": {
-          "path": "scaffold/research/wr186-psp-negative-residual/manual-projection-candidates.json",
-          "candidate_id": "H003-F03-L8-WRONG-PAIR",
-          "field": "l9_input_derivation"
-        },
         "mutation_pointer": {
           "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
           "pointer": "/cases/3/negative_cases/35/mutation"
+        },
+        "candidate_finding_set_semantics": "unordered_set",
+        "candidate_finding_set": [
+          {
+            "code": "F03_PAIR_SCOPE_CONFLICT",
+            "return_owner": "HARNESS",
+            "source_pointer": {
+              "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
+              "pointer": "/contracts/3/negative_classifications/2"
+            }
+          },
+          {
+            "code": "F03_REQUIRED_PAIR_MISSING",
+            "return_owner": "HARNESS",
+            "source_pointer": {
+              "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
+              "pointer": "/contracts/3/negative_classifications/0"
+            }
+          }
+        ],
+        "candidate_order_status": "unknown",
+        "l3_source_pointer": {
+          "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+          "revision": "827c4ea924a15b6b54bbe9d1f5d2f9fbdefa65de",
+          "pointer": "/requirements/66/obligation"
+        },
+        "raw_input_source": {
+          "revision": "ed3981e7b9419d796adf1981f8990c6b626ecabe",
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "pointer": "/verification_obligations/3/negative_cases/35/independent_source_packet/raw_utf8",
+          "sha256": "4cecfda181cbac509a6bcf18c13739e36dbc9df6a07e81e3b05082a80f8023d1"
         }
       },
       {
         "case_id": "H003-F03-L10-WRONG-PAIR",
-        "candidate_ref": {
-          "path": "scaffold/research/wr186-psp-negative-residual/manual-projection-candidates.json",
-          "candidate_id": "H003-F03-L10-WRONG-PAIR",
-          "field": "l9_input_derivation"
-        },
         "mutation_pointer": {
           "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
           "pointer": "/cases/3/negative_cases/37/mutation"
+        },
+        "candidate_finding_set_semantics": "unordered_set",
+        "candidate_finding_set": [
+          {
+            "code": "F03_PAIR_SCOPE_CONFLICT",
+            "return_owner": "HARNESS",
+            "source_pointer": {
+              "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
+              "pointer": "/contracts/3/negative_classifications/2"
+            }
+          },
+          {
+            "code": "F03_REQUIRED_PAIR_MISSING",
+            "return_owner": "HARNESS",
+            "source_pointer": {
+              "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
+              "pointer": "/contracts/3/negative_classifications/0"
+            }
+          }
+        ],
+        "candidate_order_status": "unknown",
+        "l3_source_pointer": {
+          "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+          "revision": "827c4ea924a15b6b54bbe9d1f5d2f9fbdefa65de",
+          "pointer": "/requirements/66/obligation"
+        },
+        "raw_input_source": {
+          "revision": "ed3981e7b9419d796adf1981f8990c6b626ecabe",
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "pointer": "/verification_obligations/3/negative_cases/37/independent_source_packet/raw_utf8",
+          "sha256": "4fbba5fce29cd3d18abcd053ed010b22526076f34b8d1df73b6af710f5a7f983"
         }
       }
     ],
-    "manual_projection_candidate_manifest": "scaffold/research/wr186-psp-negative-residual/manual-projection-candidates.json",
-    "supplemental_candidate_manifests": [
+    "fixed_raw_source": {
+      "revision": "ed3981e7b9419d796adf1981f8990c6b626ecabe",
+      "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+      "sha256": "91d0bcd34b8b451bc8e81f5d13d0c5f413de3ad5f7c70ba90a704134c4af3735",
+      "byte_count": 2586683,
+      "pointer_field": "independent_source_packet.raw_utf8"
+    },
+    "l3_candidate_sources": {
+      "F03": {
+        "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+        "revision": "827c4ea924a15b6b54bbe9d1f5d2f9fbdefa65de",
+        "pointer": "/requirements/66/obligation"
+      },
+      "F05": {
+        "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+        "revision": "827c4ea924a15b6b54bbe9d1f5d2f9fbdefa65de",
+        "pointer": "/requirements/68/obligation"
+      }
+    },
+    "supplemental_candidate_cases": [
       {
-        "family": "F05",
-        "candidate_count": 8,
-        "path": "scaffold/research/wr186-psp-negative-residual/f05-single-finding-candidates.json",
-        "layer_input_pointer_field": "l9_raw_pointer",
-        "formal_projection_rows_added": 0
+        "case_id": "H003-F05-MISSING-proofs",
+        "l3_source_pointer": {
+          "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+          "revision": "827c4ea924a15b6b54bbe9d1f5d2f9fbdefa65de",
+          "pointer": "/requirements/68/obligation"
+        },
+        "raw_input_source": {
+          "revision": "ed3981e7b9419d796adf1981f8990c6b626ecabe",
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "pointer": "/verification_obligations/5/negative_cases/0/independent_source_packet/raw_utf8",
+          "sha256": "264db0c55e04e7e6151ec20aa7e3603888619fbd1931eb473e9adf12095dbc70"
+        },
+        "mutation_pointer": {
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "pointer": "/cases/5/negative_cases/0/mutation"
+        },
+        "candidate_finding_set_semantics": "unordered_set",
+        "candidate_finding_set": [
+          {
+            "code": "F05_REQUIRED_PORT_FIELD_MISSING",
+            "return_owner": "HARNESS",
+            "source_pointer": {
+              "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
+              "pointer": "/contracts/5/negative_classifications/0"
+            }
+          }
+        ],
+        "candidate_order_status": "trivial_singleton_from_L4"
+      },
+      {
+        "case_id": "H003-F05-MISSING-artifact_identity",
+        "l3_source_pointer": {
+          "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+          "revision": "827c4ea924a15b6b54bbe9d1f5d2f9fbdefa65de",
+          "pointer": "/requirements/68/obligation"
+        },
+        "raw_input_source": {
+          "revision": "ed3981e7b9419d796adf1981f8990c6b626ecabe",
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "pointer": "/verification_obligations/5/negative_cases/1/independent_source_packet/raw_utf8",
+          "sha256": "53504110f22564264aa099ea7f2b818913e28c145e5189f1fd72f07d932903c1"
+        },
+        "mutation_pointer": {
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "pointer": "/cases/5/negative_cases/1/mutation"
+        },
+        "candidate_finding_set_semantics": "unordered_set",
+        "candidate_finding_set": [
+          {
+            "code": "F05_REQUIRED_PORT_FIELD_MISSING",
+            "return_owner": "HARNESS",
+            "source_pointer": {
+              "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
+              "pointer": "/contracts/5/negative_classifications/0"
+            }
+          }
+        ],
+        "candidate_order_status": "trivial_singleton_from_L4"
+      },
+      {
+        "case_id": "H003-F05-MISSING-environment",
+        "l3_source_pointer": {
+          "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+          "revision": "827c4ea924a15b6b54bbe9d1f5d2f9fbdefa65de",
+          "pointer": "/requirements/68/obligation"
+        },
+        "raw_input_source": {
+          "revision": "ed3981e7b9419d796adf1981f8990c6b626ecabe",
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "pointer": "/verification_obligations/5/negative_cases/2/independent_source_packet/raw_utf8",
+          "sha256": "e087e3ddba4edf2f7413806d29200164b01b464b8ee0ccf2349ebea6e8211617"
+        },
+        "mutation_pointer": {
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "pointer": "/cases/5/negative_cases/2/mutation"
+        },
+        "candidate_finding_set_semantics": "unordered_set",
+        "candidate_finding_set": [
+          {
+            "code": "F05_REQUIRED_PORT_FIELD_MISSING",
+            "return_owner": "HARNESS",
+            "source_pointer": {
+              "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
+              "pointer": "/contracts/5/negative_classifications/0"
+            }
+          }
+        ],
+        "candidate_order_status": "trivial_singleton_from_L4"
+      },
+      {
+        "case_id": "H003-F05-MISSING-dependencies",
+        "l3_source_pointer": {
+          "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+          "revision": "827c4ea924a15b6b54bbe9d1f5d2f9fbdefa65de",
+          "pointer": "/requirements/68/obligation"
+        },
+        "raw_input_source": {
+          "revision": "ed3981e7b9419d796adf1981f8990c6b626ecabe",
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "pointer": "/verification_obligations/5/negative_cases/3/independent_source_packet/raw_utf8",
+          "sha256": "6a1d7b9dfdbcf247745c69bdd94fa08ff38c021e512a2776760b00996b41ac49"
+        },
+        "mutation_pointer": {
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "pointer": "/cases/5/negative_cases/3/mutation"
+        },
+        "candidate_finding_set_semantics": "unordered_set",
+        "candidate_finding_set": [
+          {
+            "code": "F05_REQUIRED_PORT_FIELD_MISSING",
+            "return_owner": "HARNESS",
+            "source_pointer": {
+              "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
+              "pointer": "/contracts/5/negative_classifications/0"
+            }
+          }
+        ],
+        "candidate_order_status": "trivial_singleton_from_L4"
+      },
+      {
+        "case_id": "H003-F05-MISSING-security",
+        "l3_source_pointer": {
+          "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+          "revision": "827c4ea924a15b6b54bbe9d1f5d2f9fbdefa65de",
+          "pointer": "/requirements/68/obligation"
+        },
+        "raw_input_source": {
+          "revision": "ed3981e7b9419d796adf1981f8990c6b626ecabe",
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "pointer": "/verification_obligations/5/negative_cases/4/independent_source_packet/raw_utf8",
+          "sha256": "c490b15502c00f5a90125552e1f0b1d88f19f77775e4cb888b0ddabfc0b9d193"
+        },
+        "mutation_pointer": {
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "pointer": "/cases/5/negative_cases/4/mutation"
+        },
+        "candidate_finding_set_semantics": "unordered_set",
+        "candidate_finding_set": [
+          {
+            "code": "F05_REQUIRED_PORT_FIELD_MISSING",
+            "return_owner": "HARNESS",
+            "source_pointer": {
+              "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
+              "pointer": "/contracts/5/negative_classifications/0"
+            }
+          }
+        ],
+        "candidate_order_status": "trivial_singleton_from_L4"
+      },
+      {
+        "case_id": "H003-F05-MISSING-rollback",
+        "l3_source_pointer": {
+          "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+          "revision": "827c4ea924a15b6b54bbe9d1f5d2f9fbdefa65de",
+          "pointer": "/requirements/68/obligation"
+        },
+        "raw_input_source": {
+          "revision": "ed3981e7b9419d796adf1981f8990c6b626ecabe",
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "pointer": "/verification_obligations/5/negative_cases/5/independent_source_packet/raw_utf8",
+          "sha256": "ebe6142b9306ad7f541f7ca24001bc607094a06672ee488c88a51bc10e5e3fe1"
+        },
+        "mutation_pointer": {
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "pointer": "/cases/5/negative_cases/5/mutation"
+        },
+        "candidate_finding_set_semantics": "unordered_set",
+        "candidate_finding_set": [
+          {
+            "code": "F05_REQUIRED_PORT_FIELD_MISSING",
+            "return_owner": "HARNESS",
+            "source_pointer": {
+              "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
+              "pointer": "/contracts/5/negative_classifications/0"
+            }
+          }
+        ],
+        "candidate_order_status": "trivial_singleton_from_L4"
+      },
+      {
+        "case_id": "H003-F05-MISSING-deployment_conditions",
+        "l3_source_pointer": {
+          "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+          "revision": "827c4ea924a15b6b54bbe9d1f5d2f9fbdefa65de",
+          "pointer": "/requirements/68/obligation"
+        },
+        "raw_input_source": {
+          "revision": "ed3981e7b9419d796adf1981f8990c6b626ecabe",
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "pointer": "/verification_obligations/5/negative_cases/6/independent_source_packet/raw_utf8",
+          "sha256": "7696c06fd4acbfbd5ae718ff3dd160335a36a010793a1a724d9bcc14e1688323"
+        },
+        "mutation_pointer": {
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "pointer": "/cases/5/negative_cases/6/mutation"
+        },
+        "candidate_finding_set_semantics": "unordered_set",
+        "candidate_finding_set": [
+          {
+            "code": "F05_REQUIRED_PORT_FIELD_MISSING",
+            "return_owner": "HARNESS",
+            "source_pointer": {
+              "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
+              "pointer": "/contracts/5/negative_classifications/0"
+            }
+          }
+        ],
+        "candidate_order_status": "trivial_singleton_from_L4"
+      },
+      {
+        "case_id": "H003-F05-MISSING-acceptance",
+        "l3_source_pointer": {
+          "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+          "revision": "827c4ea924a15b6b54bbe9d1f5d2f9fbdefa65de",
+          "pointer": "/requirements/68/obligation"
+        },
+        "raw_input_source": {
+          "revision": "ed3981e7b9419d796adf1981f8990c6b626ecabe",
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "pointer": "/verification_obligations/5/negative_cases/7/independent_source_packet/raw_utf8",
+          "sha256": "45797625df2c95275e5d9021ac509a011c6819e43e8d078bd8aa5f43309ab474"
+        },
+        "mutation_pointer": {
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "pointer": "/cases/5/negative_cases/7/mutation"
+        },
+        "candidate_finding_set_semantics": "unordered_set",
+        "candidate_finding_set": [
+          {
+            "code": "F05_REQUIRED_PORT_FIELD_MISSING",
+            "return_owner": "HARNESS",
+            "source_pointer": {
+              "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
+              "pointer": "/contracts/5/negative_classifications/0"
+            }
+          }
+        ],
+        "candidate_order_status": "trivial_singleton_from_L4"
       }
     ]
   }

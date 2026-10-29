@@ -25,8 +25,8 @@
     },
     {
       "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
-      "sha256": "8be3dd6c1de709aea4aebe39f9f9fe8fe1776807198f318b11c523f09637f298",
-      "note": "Formal L9 document path; retains the audit reference, 182-case population and existing expectations. Fixed raw input snapshot: ed3981e7b9419d796adf1981f8990c6b626ecabe, full-file SHA-256 91d0bcd34b8b451bc8e81f5d13d0c5f413de3ad5f7c70ba90a704134c4af3735."
+      "sha256": "b5f95dba1076daa0e1a8ef9aaa52bd657ac471b580eddf538be756efb22ba526",
+      "note": "Formal L9 document consumer; carries inline L3/L4 candidate finding sets, input pointers, 182-case population and existing expectations. Fixed raw input snapshot: ed3981e7b9419d796adf1981f8990c6b626ecabe, full-file SHA-256 91d0bcd34b8b451bc8e81f5d13d0c5f413de3ad5f7c70ba90a704134c4af3735."
     }
   ],
   "role": "HARNESS L4/L9 design_verification pair向けに、process-state-port負例22件のL9入力由来とrule照合候補を記録する。",

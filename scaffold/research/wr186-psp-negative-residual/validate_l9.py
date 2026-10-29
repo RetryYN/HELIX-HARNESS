@@ -76,12 +76,22 @@ def main() -> None:
     assert audit["case_projection_rows_added"] == 0
     assert audit["manual_projection_candidate_count"] == 14
     assert len(audit["manual_projection_candidates"]) == 14
-    assert audit["supplemental_candidate_manifests"] == [{
-        "family": "F05", "candidate_count": 8,
-        "path": "scaffold/research/wr186-psp-negative-residual/f05-single-finding-candidates.json",
-        "layer_input_pointer_field": "l9_raw_pointer",
-        "formal_projection_rows_added": 0,
-    }]
+    assert "scaffold/research/wr186-psp-negative-residual/" not in json.dumps(audit)
+    assert "candidate_ref" not in json.dumps(audit)
+    fixed_source = f03["fixed_raw_source"]
+    assert audit["fixed_raw_source"] == {
+        "revision": fixed_source["revision"],
+        "path": fixed_source["path"],
+        "sha256": fixed_source["sha256"],
+        "byte_count": fixed_source["byte_count"],
+        "pointer_field": "independent_source_packet.raw_utf8",
+    }
+    assert audit["l3_candidate_sources"] == {
+        "F03": {k: f03["l3_source"][k] for k in ("path", "revision", "pointer")},
+        "F05": {k: f05["l3_source"][k] for k in ("path", "revision", "pointer")},
+    }
+    f05_audit_by_id = {x["case_id"]: x for x in audit["supplemental_candidate_cases"]}
+    assert len(f05_audit_by_id) == 8
 
     f03_group = by_id(l9["cases"], "HARNESS-L9-003-F03")["negative_cases"]
     f05_group = by_id(l9["cases"], "HARNESS-L9-003-F05")["negative_cases"]
@@ -104,6 +114,8 @@ def main() -> None:
     f03_classes = {x["code"]: x for x in f03_l4_contract["negative_classifications"]}
     f05_classes = {x["code"]: x for x in f05_l4_contract["negative_classifications"]}
     f03_refs = f03["rule_sources"]
+    f03_audit_by_id = {x["case_id"]: x for x in audit["manual_projection_candidates"]}
+    assert len(f03_audit_by_id) == 14
     for code, source in f03_refs.items():
         row = l4_classification(l4, source["l4_classification_pointer"], code)
         assert row == f03_classes[code]
@@ -139,6 +151,33 @@ def main() -> None:
         assert candidate["l4_expected_finding_set"]["semantics"] == "unordered_set"
         assert candidate["l4_expected_finding_set"]["source_pointers"] == [f03_refs[code]["l4_classification_pointer"] for code in codes]
         assert all(code in f03_classes for code in codes)
+        audit_row = f03_audit_by_id[cid]
+        assert audit_row["l3_source_pointer"] == {
+            "path": f03["l3_source"]["path"],
+            "revision": f03["l3_source"]["revision"],
+            "pointer": f03["l3_source"]["pointer"],
+        }
+        raw_source = candidate["raw_source_pointer"]
+        assert audit_row["raw_input_source"] == {
+            "revision": raw_source["revision"], "path": raw_source["path"],
+            "pointer": raw_source["pointer"], "sha256": candidate["raw_sha256"],
+        }
+        assert audit_row["mutation_pointer"]["path"] == RAW_PATH
+        assert resolve(l9, audit_row["mutation_pointer"]["pointer"]) == current["mutation"]
+        assert audit_row["candidate_finding_set_semantics"] == "unordered_set"
+        assert audit_row["candidate_order_status"] == candidate["l9_output_order"]["status"]
+        expected_members = [
+            {
+                "code": code,
+                "return_owner": f03_classes[code]["backflow_owner"],
+                "source_pointer": {
+                    "path": L4_PATH,
+                    "pointer": f03_refs[code]["l4_classification_pointer"],
+                },
+            }
+            for code in codes
+        ]
+        assert audit_row["candidate_finding_set"] == expected_members
         if len(codes) == 1:
             code = codes[0]
             owner = f03_classes[code]["backflow_owner"]
@@ -185,6 +224,31 @@ def main() -> None:
         }
         assert candidate["l9_candidate_singleton_output"] == [{"code":"F05_REQUIRED_PORT_FIELD_MISSING","return_owner":owner}]
         assert candidate["l9_output_order"]["status"] == "trivial_singleton_from_L4"
+        audit_row = f05_audit_by_id[cid]
+        assert audit_row["l3_source_pointer"] == {
+            "path": f05["l3_source"]["path"],
+            "revision": f05["l3_source"]["revision"],
+            "pointer": f05["l3_source"]["pointer"],
+        }
+        assert audit_row["raw_input_source"] == {
+            "revision": f05["fixed_source_revision"],
+            "path": f05["fixed_source_path"],
+            "pointer": candidate["l9_raw_pointer"],
+            "sha256": candidate["raw_sha256"],
+        }
+        assert audit_row["mutation_pointer"]["path"] == RAW_PATH
+        assert audit_row["mutation_pointer"]["pointer"] == candidate["l9_mutation_pointer"].split("#", 1)[-1]
+        assert resolve(l9, audit_row["mutation_pointer"]["pointer"]) == current["mutation"]
+        assert audit_row["candidate_finding_set_semantics"] == "unordered_set"
+        assert audit_row["candidate_order_status"] == "trivial_singleton_from_L4"
+        assert audit_row["candidate_finding_set"] == [{
+            "code": "F05_REQUIRED_PORT_FIELD_MISSING",
+            "return_owner": owner,
+            "source_pointer": {
+                "path": L4_PATH,
+                "pointer": "/contracts/5/negative_classifications/0",
+            },
+        }]
     assert len(f05_seen) == 8
     assert len(seen | f05_seen) == 22
     print(f"L9 static source/pointer/case checks: PASS; L3/L4-derived_singletons=19; L4_unordered_compounds=3; L5_concordance_only=PASS; inputs=22; population=182; formal_rows=0; marker=off")
