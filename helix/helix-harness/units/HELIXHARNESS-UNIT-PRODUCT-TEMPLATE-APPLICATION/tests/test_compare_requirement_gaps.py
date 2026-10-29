@@ -20,7 +20,6 @@ from product_template_application import (  # noqa: E402
     compare_applicability,
     compare_kind_obligation_trace,
     compare_requirement_gaps,
-    compare_requirement_gaps_detail,
     validate_application_input,
 )
 from test_application_input import (  # noqa: E402
@@ -615,7 +614,7 @@ class TestCompareRequirementGaps(unittest.TestCase):
         bad_trace = copy.deepcopy(kind_trace)
         bad_trace["producer_symbol"] = "wrong_producer"
         try:
-            res = compare_requirement_gaps_detail(
+            res = compare_requirement_gaps(
                 {
                     "validated": validated,
                     "compare_applicability": applicability,
