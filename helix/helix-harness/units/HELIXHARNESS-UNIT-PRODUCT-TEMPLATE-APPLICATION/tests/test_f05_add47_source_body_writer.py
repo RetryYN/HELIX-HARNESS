@@ -238,6 +238,15 @@ class TestF05Add47SourceBodyWriter(unittest.TestCase):
         source_observation = validation["source_observations"]["source_occurrences"][
             occurrence["source_observation_indices"][0]
         ]
+        expected_leaf = case["fixed_writer_case"]["l8_expected_writer_leaf"]
+        expected_right_read = {
+            "tag": "present",
+            "location": {
+                "root": "validation_input",
+                "pointer": expected_leaf["right_original_read_pointer"],
+            },
+            "value": copy.deepcopy(body_payload),
+        }
         self.assertEqual(source_observation["usability"]["tag"], "unestablished")
         self.assertEqual(body["payload_relation"], "different")
         self.assertEqual(
@@ -247,7 +256,7 @@ class TestF05Add47SourceBodyWriter(unittest.TestCase):
                     "kind": "source_body_mismatch",
                     "target": {
                         "root": "validation_input",
-                        "pointer": "/sources/0/body/records/0/payload",
+                        "pointer": expected_leaf["target_location"]["pointer"],
                     },
                     "left": {
                         "tag": "original",
@@ -255,16 +264,18 @@ class TestF05Add47SourceBodyWriter(unittest.TestCase):
                             "tag": "present",
                             "location": {
                                 "root": "validation_input",
-                                "pointer": "/semantic_records/0",
+                                "pointer": expected_leaf[
+                                    "left_original_read_pointer"
+                                ],
                             },
                             "value": raw["semantic_records"][0],
                         },
                     },
                     "right": {
                         "tag": "original",
-                        "read": body["payload_read"],
+                        "read": expected_right_read,
                     },
-                    "rule_pointer": "/f05_detail_contract/field_content_source_failure_writer_contract/writers/1",
+                    "rule_pointer": expected_leaf["rule_pointer"],
                 }
             ],
         )
