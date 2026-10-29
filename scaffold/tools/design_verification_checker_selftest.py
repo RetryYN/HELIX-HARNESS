@@ -4325,6 +4325,135 @@ class DesignVerificationCheckerSelfTest(unittest.TestCase):
             )
         )
 
+    def test_chk_pin_sha256_qa_section4_input_contract_shapes(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            f1 = root / "docs" / "target1.json"
+            f2 = root / "docs" / "target2.md"
+            f1.parent.mkdir(parents=True)
+            b1 = b'{"x": 1}\n'
+            b2 = b"# Section\ncontent\n"
+            f1.write_bytes(b1)
+            f2.write_bytes(b2)
+            sha1 = hashlib.sha256(b1).hexdigest()
+            sha2 = hashlib.sha256(b2).hexdigest()
+
+            # 1. whole_file_sha256 & working_bytes_sha256 + 4. path#fragment target
+            doc_variants = {
+                "source_pins": [
+                    {"path": "docs/target1.json", "whole_file_sha256": sha1},
+                    {"path": "docs/target1.json", "working_bytes_sha256": sha1},
+                    {"path": "docs/target2.md#SEC-01", "whole_sha256": sha2},
+                ]
+            }
+            res_var = dvc.check_pin_sha256(root, "doc.json", doc_variants)
+            self.assertTrue(res_var["passed"], f"Expected pass, got {res_var}")
+            self.assertEqual(res_var["checked_count"], 3)
+            self.assertEqual(res_var["failures"], [])
+
+            # Counterexample for whole_file_sha256 / path#fragment
+            bad_var = copy.deepcopy(doc_variants)
+            bad_var["source_pins"][0]["whole_file_sha256"] = "0" * 64
+            bad_var["source_pins"][2]["whole_sha256"] = "f" * 64
+            res_bad_var = dvc.check_pin_sha256(root, "doc.json", bad_var)
+            self.assertFalse(res_bad_var["passed"])
+            self.assertEqual(len(res_bad_var["failures"]), 2)
+            self.assertEqual(
+                res_bad_var["failures"][0]["pointer"],
+                "/source_pins/0/whole_file_sha256",
+            )
+            self.assertEqual(
+                res_bad_var["failures"][1]["pointer"],
+                "/source_pins/2/whole_sha256",
+            )
+
+            # 2. Flat /source_pins/<path> map
+            doc_flat = {
+                "source_pins": {
+                    "docs/target1.json": sha1,
+                    "docs/target2.md": sha2,
+                }
+            }
+            res_flat = dvc.check_pin_sha256(root, "flat.json", doc_flat)
+            self.assertTrue(res_flat["passed"], f"Expected pass, got {res_flat}")
+            self.assertEqual(res_flat["checked_count"], 2)
+
+            bad_flat = copy.deepcopy(doc_flat)
+            bad_flat["source_pins"]["docs/target2.md"] = "a" * 64
+            res_bad_flat = dvc.check_pin_sha256(root, "flat.json", bad_flat)
+            self.assertFalse(res_bad_flat["passed"])
+            self.assertEqual(len(res_bad_flat["failures"]), 1)
+            self.assertEqual(
+                res_bad_flat["failures"][0]["pointer"],
+                "/source_pins/docs/target2.md",
+            )
+
+            # 3. Nested containers under source_basis/*
+            doc_nested = {
+                "source_basis": {
+                    "existing_source_pins": [
+                        {"path": "docs/target1.json", "sha256": sha1}
+                    ],
+                    "current_basic_pair": {
+                        "l4": {"path": "docs/target2.md", "sha256": sha2}
+                    },
+                }
+            }
+            res_nested = dvc.check_pin_sha256(root, "nested.json", doc_nested)
+            self.assertTrue(res_nested["passed"], f"Expected pass, got {res_nested}")
+            self.assertEqual(res_nested["checked_count"], 2)
+
+            bad_nested = copy.deepcopy(doc_nested)
+            bad_nested["source_basis"]["current_basic_pair"]["l4"]["sha256"] = "b" * 64
+            res_bad_nested = dvc.check_pin_sha256(root, "nested.json", bad_nested)
+            self.assertFalse(res_bad_nested["passed"])
+            self.assertEqual(len(res_bad_nested["failures"]), 1)
+            self.assertEqual(
+                res_bad_nested["failures"][0]["pointer"],
+                "/source_basis/current_basic_pair/l4/sha256",
+            )
+
+    def test_os017_ticket_workflow_derivation_l7_material_relocation_and_l5l8_pair(
+        self,
+    ) -> None:
+        l5_path = "docs/helix-os/L5-detail-design/ticket-workflow-derivation.json"
+        l7_path = "docs/helix-os/L7-function-verification/ticket-workflow-derivation.json"
+        l8_path = "docs/helix-os/L8-unit-verification/ticket-workflow-derivation.json"
+
+        l5_doc = dvc._load_json(REPO_ROOT, l5_path)
+        l7_doc = dvc._load_json(REPO_ROOT, l7_path)
+        l8_doc = dvc._load_json(REPO_ROOT, l8_path)
+
+        pair_res = dvc.check_pair_bidir_id(REPO_ROOT, l5_path, l8_path, l5_doc, l8_doc)
+        self.assertTrue(pair_res["passed"], f"Expected OS017 L5<->L8 pass, got {pair_res}")
+        self.assertEqual(pair_res["left_count"], 4)
+        self.assertEqual(pair_res["right_count"], 4)
+        self.assertEqual(pair_res["failures"], [])
+
+        cap_l8 = dvc.check_ownership_cap(REPO_ROOT, l8_path, l8_doc, layer="L8")
+        self.assertTrue(cap_l8["passed"], f"Expected OS017 L8 ownership cap pass, got {cap_l8}")
+        self.assertEqual(cap_l8["failures"], [])
+
+        ptr_l8 = dvc.check_json_pointer(REPO_ROOT, l8_path, l8_doc)
+        self.assertTrue(ptr_l8["passed"], f"Expected OS017 L8 pointer pass, got {ptr_l8}")
+        self.assertEqual(ptr_l8["checked_count"], 238)
+
+        pin_l7 = dvc.check_pin_sha256(REPO_ROOT, l7_path, l7_doc)
+        self.assertTrue(pin_l7["passed"], f"Expected OS017 L7 pin pass, got {pin_l7}")
+        self.assertEqual(pin_l7["checked_count"], 24)
+
+        # Counterexample: re-adding forbidden key `expected_return` or unanchored `canonical_sha256` to L8 must fail CHK-OWNERSHIP-CAP
+        bad_l8 = copy.deepcopy(l8_doc)
+        bad_l8["objects"] = {"h": {"expected_return": {}, "canonical_sha256": "0" * 64}}
+        bad_cap = dvc.check_ownership_cap(REPO_ROOT, l8_path, bad_l8, layer="L8")
+        self.assertFalse(bad_cap["passed"])
+        self.assertTrue(
+            any(f["key"] == "expected_return" for f in bad_cap["failures"])
+        )
+        self.assertTrue(
+            any(f["key"] == "canonical_sha256" for f in bad_cap["failures"])
+        )
+
 
 if __name__ == "__main__":
     unittest.main()
