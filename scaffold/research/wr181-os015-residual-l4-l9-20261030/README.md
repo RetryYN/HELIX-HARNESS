@@ -42,7 +42,7 @@ L9 `negative_equivalence_classes`にはL4 class rowからexpected keyを順方�
 
 ## 最新mainとの関係と残件
 
-GitHub mainは再fetch時点で`c24f3a662b6f50d28875f4b090969b144cab3538`、PR-Cとmainの共通merge-baseは`2d7cabb70861f4cc40d4d2e850d35c6b09083034`。共通baseからmainへの変更はsecurityのL4/L9 2 pathsとProduct Template Application 9 pathsで、本候補L4/L9/binding pathsと重ならない。`64d3cf3..c24f3a6`でL9/017xの変更が逆向きに見えるのは、PR-Cがまだmainへ入っていないため。GitHub PR #3923のmergeable表示は計測時に`UNKNOWN`。試行mergeの実測は`verification-summary.json`に記録する。
+GitHub mainは再fetch時点で`2cdcb5594e46d2b0cd57fe20f469ca16604aebeb`（`FETCH_HEAD`と`git ls-remote`一致）、PR-Cとmainの共通merge-baseは`2d7cabb70861f4cc40d4d2e850d35c6b09083034`。共通baseからmainへの変更は`verification-summary.json`に全列挙し、本候補の変更pathとは重複しない。以前の`64d3cf3..main`直接diffではPR-C枝の未merge変更が逆向きに現れるため、衝突判定には使わない。GitHub PR #3923はOPEN、mergeableはUNKNOWN。最新mainへの隔離no-commit試行mergeは競合なし。静的validator、check-child、check-freeze、scfctl validate/stale、diff-checkの結果とraw report hashを`verification-summary.json`に記録する。
 
 既存6 singleton-less classはL8/L9に形成しない: `OS015-NEG-source_unresolved-original_event`, `OS015-NEG-source_conflict-original_event`, `OS015-NEG-original_event_mutated`, `OS015-NEG-unresolved_promoted_to_current`, `OS015-NEG-first_classification_prior_present`, `OS015-NEG-first_classification_prior_unresolved`。本候補後もL5/L8 pair projectionは未実施で、L9の112 linksはL8にまだ反映されない。negative-4wayのFAIL、checkerが同時省略を検出しない限界、旧freezeの不一致を残件として記録し、全182件の完了・全体PASS・freeze成立とは呼ばない。
 
