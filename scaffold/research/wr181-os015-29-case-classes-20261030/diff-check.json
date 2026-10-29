@@ -7,6 +7,7 @@
   },
   "latest_main_trial": {
     "base": "821a655ad6949b2a7a5344b26e3c170cccc353a6",
+    "trial_revision": "084dd063c29db3128f97d74febdc0c3c5755cdb1",
     "exit_code": 0,
     "output": ""
   }

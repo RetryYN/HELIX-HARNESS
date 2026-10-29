@@ -77,10 +77,12 @@
         "L9": 12
       },
       "failure_count": 136,
-      "revision": "91e95153257c8699a1bd240740394b501198f5b0"
+      "revision": "4f32952b9b070a9ef2c9064a3a27b71a8e342fc6"
     },
     "latest_main_trial": {
-      "revision": "821a655ad6949b2a7a5344b26e3c170cccc353a6",
+      "base_revision": "821a655ad6949b2a7a5344b26e3c170cccc353a6",
+      "revision": "084dd063c29db3128f97d74febdc0c3c5755cdb1",
+      "candidate_revision": "4f32952b9b070a9ef2c9064a3a27b71a8e342fc6",
       "overall": "FAIL",
       "pair_l4_l9": "PASS",
       "pair_l5_l8": "PASS",
@@ -100,7 +102,9 @@
         "L8": 12,
         "L9": 12
       },
-      "failure_count": 136
+      "failure_count": 136,
+      "ownership_caps": "4/4 PASS",
+      "pins": "4/4 PASS"
     }
   },
   "check_freeze": {
@@ -132,6 +136,7 @@
     },
     "interpretation": "最新main試行でも同一hashの旧freezeを読み取り実行。mechanical FAIL、前回と同じ件数・理由で、既存freeze recordは変更していない。",
     "latest_main_trial": {
+      "revision": "084dd063c29db3128f97d74febdc0c3c5755cdb1",
       "all_mechanical_matched": false,
       "CHK-PIN-SHA256": "not_evaluated:no_pinned_inputs_found",
       "CHK-JSON-POINTER": {
@@ -170,7 +175,13 @@
       "scfctl validate",
       "scfctl stale"
     ],
-    "fresh_r1_trial": "pending"
+    "fresh_r1_trial": {
+      "base_revision": "821a655ad6949b2a7a5344b26e3c170cccc353a6",
+      "trial_revision": "084dd063c29db3128f97d74febdc0c3c5755cdb1",
+      "candidate_revision": "4f32952b9b070a9ef2c9064a3a27b71a8e342fc6",
+      "result": "check-child overall FAIL with both required pair checks, all 4 caps and all 4 pins PASS; existing freeze remains mechanical FAIL",
+      "raw_outputs": "not committed; regenerated only in the trial"
+    }
   },
   "static_verification_scope": "手作業assignmentは宣言データとして読む。静的validatorはL7 hash/pointer、L4/L5 class rowとL8/L9 refsの構造対応、source pointer解決、583 case期待不変のみ確認し、L4 comparator/finding/classを入力値から再計算しない。",
   "static_evidence_validation": {
