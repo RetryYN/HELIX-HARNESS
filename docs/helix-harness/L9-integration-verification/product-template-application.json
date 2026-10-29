@@ -13587,7 +13587,7 @@
     },
     "case_meaning_boundary": "case_meaning.fieldはこのscope判断の有限著述区分。conflict/same_ref_conflictはscope列集約未形成又は同Ref原source相反を表し、domain field定義/値のconflict状態を生成しない。",
     "meaning_rule_pointers": [
-     "/field_obligation_scope_contract/carrier/optional_original_members"
+     "/field_obligation_scope_contract/carrier/optional_original_members/1"
     ]
    },
    {
@@ -13603,7 +13603,7 @@
     },
     "case_meaning_boundary": "case_meaning.fieldはこのscope判断の有限著述区分。conflict/same_ref_conflictはscope列集約未形成又は同Ref原source相反を表し、domain field定義/値のconflict状態を生成しない。",
     "meaning_rule_pointers": [
-     "/field_obligation_scope_contract/carrier/optional_original_members"
+     "/field_obligation_scope_contract/carrier/optional_original_members/1"
     ]
    },
    {
@@ -13619,7 +13619,7 @@
     },
     "case_meaning_boundary": "case_meaning.fieldはこのscope判断の有限著述区分。conflict/same_ref_conflictはscope列集約未形成又は同Ref原source相反を表し、domain field定義/値のconflict状態を生成しない。",
     "meaning_rule_pointers": [
-     "/field_obligation_scope_contract/carrier/optional_original_members"
+     "/field_obligation_scope_contract/carrier/optional_original_members/1"
     ]
    },
    {
@@ -13635,7 +13635,7 @@
     },
     "case_meaning_boundary": "case_meaning.fieldはこのscope判断の有限著述区分。conflict/same_ref_conflictはscope列集約未形成又は同Ref原source相反を表し、domain field定義/値のconflict状態を生成しない。",
     "meaning_rule_pointers": [
-     "/field_obligation_scope_contract/carrier/optional_original_members"
+     "/field_obligation_scope_contract/carrier/optional_original_members/1"
     ]
    },
    {
@@ -13651,7 +13651,7 @@
     },
     "case_meaning_boundary": "case_meaning.fieldはこのscope判断の有限著述区分。conflict/same_ref_conflictはscope列集約未形成又は同Ref原source相反を表し、domain field定義/値のconflict状態を生成しない。",
     "meaning_rule_pointers": [
-     "/field_obligation_scope_contract/carrier/optional_original_members"
+     "/field_obligation_scope_contract/carrier/optional_original_members/1"
     ]
    },
    {
@@ -13667,7 +13667,7 @@
     },
     "case_meaning_boundary": "case_meaning.fieldはscope列の成立/未形成区分であり、domain field definition/value stateではない。Causeの厳密shapeを主張する場合はL5 field-scope writerの明示patternだけを使う。",
     "meaning_rule_pointers": [
-     "/field_obligation_scope_contract/carrier/optional_original_members"
+     "/field_obligation_scope_contract/carrier/optional_original_members/0"
     ]
    },
    {
@@ -13683,7 +13683,7 @@
     },
     "case_meaning_boundary": "case_meaning.fieldはscope列の成立/未形成区分であり、domain field definition/value stateではない。Causeの厳密shapeを主張する場合はL5 field-scope writerの明示patternだけを使う。",
     "meaning_rule_pointers": [
-     "/field_obligation_scope_contract/carrier/optional_original_members"
+     "/field_obligation_scope_contract/carrier/optional_original_members/0"
     ]
    },
    {
@@ -13699,7 +13699,7 @@
     },
     "case_meaning_boundary": "case_meaning.fieldはscope列の成立/未形成区分であり、domain field definition/value stateではない。Causeの厳密shapeを主張する場合はL5 field-scope writerの明示patternだけを使う。",
     "meaning_rule_pointers": [
-     "/field_obligation_scope_contract/carrier/optional_original_members"
+     "/field_obligation_scope_contract/carrier/optional_original_members/0"
     ]
    },
    {
@@ -13715,7 +13715,7 @@
     },
     "case_meaning_boundary": "case_meaning.fieldはscope列の成立/未形成区分であり、domain field definition/value stateではない。Causeの厳密shapeを主張する場合はL5 field-scope writerの明示patternだけを使う。",
     "meaning_rule_pointers": [
-     "/field_obligation_scope_contract/carrier/optional_original_members"
+     "/field_obligation_scope_contract/carrier/optional_original_members/0"
     ]
    },
    {
@@ -13731,7 +13731,7 @@
     },
     "case_meaning_boundary": "case_meaning.fieldはscope列の成立/未形成区分であり、domain field definition/value stateではない。Causeの厳密shapeを主張する場合はL5 field-scope writerの明示patternだけを使う。",
     "meaning_rule_pointers": [
-     "/field_obligation_scope_contract/carrier/optional_original_members"
+     "/field_obligation_scope_contract/carrier/optional_original_members/0"
     ]
    },
    {
@@ -13816,7 +13816,7 @@
     "S20"
    ],
    "case_count": 29,
-   "expanded": "S09B別binding、S16A..E optional reentry_condition、S17A..E optional reason、S18原列順差、S19支持間の反復数差、S20同Ref同本文。",
+   "expanded": "S09B別binding。旧S16A..Eのcase_meaning.optionalはL4 optional_original_members.reentry_conditionへ読み替え、値/presenceを維持。S17A..EはL4 optional_original_members.reasonを独立memberとしてscenario化。S18原列順差、S19支持間の反復数差、S20同Ref同本文。",
    "unexercised": [
     "source/qualification/root lookupの全missing/multiple経路",
     "nullable ownerの全供給形",
@@ -13914,6 +13914,55 @@
    "current_l3_l10_metadata": "draft_not_approved / none_until_exact_revision_delegated_approval",
    "candidate_layer_status": "L4/L5/L8/L9 remain draft/candidate and independently unreviewed; F10/F13 scaffold bindings remain registered candidates.",
    "work_scope": "Selected L3/L10 object is used only as the stated meaning reference for this technical candidate. No product implementation, requirement meaning change, adoption, pair freeze, or execution is claimed."
+  },
+  "case_meaning_change_record": {
+   "legacy_optional_member_read": {
+    "prior_case_meaning_member": "optional",
+    "current_case_meaning_member": "reentry_condition",
+    "case_ids": [
+     "S16A",
+     "S16B",
+     "S16C",
+     "S16D",
+     "S16E"
+    ],
+    "case_meaning_values_preserved": [
+     "ABSENT",
+     null,
+     false,
+     0,
+     "元再評価条件"
+    ],
+    "basis": {
+     "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+     "pointer": "/field_obligation_scope_contract/carrier/optional_original_members/1"
+    },
+    "reason_ja": "旧optionalはS16Eの「元再評価条件」が示すreentryの意味を持ち、L4 carrierがoptional原memberとしてreentry_conditionを明示するため、member名を明示名へ読み替えた。S16A..EのID、refs、field、case_meaning値は保ち、optional原memberのpresence/valueを型変換・truthiness解釈しない。",
+    "boundary_ja": "意味scenarioのmember名対応であり、case-specific input/expected、実source観測、実行結果を追加しない。"
+   },
+   "reason_member_split": {
+    "case_ids": [
+     "S17A",
+     "S17B",
+     "S17C",
+     "S17D",
+     "S17E"
+    ],
+    "case_meaning_member": "reason",
+    "case_meaning_values": [
+     "ABSENT",
+     null,
+     false,
+     0,
+     "原理由"
+    ],
+    "basis": {
+     "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+     "pointer": "/field_obligation_scope_contract/carrier/optional_original_members/0"
+    },
+    "reason_ja": "L4はreasonをreentry_conditionとは別のoptional原memberとして定義する。そこでreasonのpresence/value scenarioをS17A..Eに分け、S16のreentry_conditionと混同・合成しない。",
+    "boundary_ja": "S17は独立memberの意味scenarioであり、L4/L5 cause shapeやcase-specific input/expectedの形成を主張しない。"
+   }
   }
  },
  "input_scope_knowledge_gap_verification": {
