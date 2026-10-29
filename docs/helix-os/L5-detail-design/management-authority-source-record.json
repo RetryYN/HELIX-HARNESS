@@ -421,13 +421,13 @@
   "source_pair_pins": [
     {
       "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
-      "revision": "4f98f23b1300ba1f344b32cf3317a8f9300738b5",
-      "sha256": "e2e92c62217f70203752ab4f79ed7a92831d94cb813c6947153f237c83c8576b"
+      "revision": "746071b8f77cc0b07212dde2127f3d4d2c87f647",
+      "sha256": "0c9b85fe91483fcf2cf8630739e9a07b231d90aac20f42174d807268eddbda56"
     },
     {
       "path": "docs/helix-os/L9-integration-verification/management-authority-source-record.json",
-      "revision": "7388047362a594dd285f134efbb06cd93f54143e",
-      "sha256": "0b310db53887fd22d2fa5a3154099fdc0587bceed61dc85544f57549b2cbec51"
+      "revision": "746071b8f77cc0b07212dde2127f3d4d2c87f647",
+      "sha256": "66fd4c44b4dd0aec0e1419dbd885c26462bc6465838fd99ed653db8f86477a76"
     }
   ],
   "document_id": "HELIXOS-L5-015",
@@ -13913,6 +13913,100 @@
           "path": "docs/helix-os/L5-detail-design/management-authority-source-record.json",
           "pointers": [
             "/signatures/0"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "OS015-NEG-composite-original_event_mutated-source_conflict-original_event",
+      "code": "management_material_violation",
+      "expected_classification": "management_material_violation",
+      "function_ref": "FN-OS015-01",
+      "expected": {
+        "finding_codes": [
+          "original_event_mutated",
+          "source_conflict"
+        ]
+      },
+      "expected_axis": "original_event",
+      "expected_state": "violation",
+      "backflow_owner": "management-authority-owner",
+      "side_effect_count": 0,
+      "handling": "FN-OS015-01は同一inspect入力で、原event全体の差分とoriginal_event fieldの既知値不一致を各pointerへ返す。 raw eventと他のscopeを保持し、operation_effectはnone。L4のviolation優先で複合conditionはmanagement_material_violationとなる。",
+      "source_pointers": [
+        {
+          "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+          "pointers": [
+            "/requirements/25"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
+          "pointers": [
+            "/contracts/2",
+            "/diagnostic_contract/event_fields",
+            "/diagnostic_contract/codes/1",
+            "/diagnostic_contract/codes/3",
+            "/diagnostic_contract/comparison_facets",
+            "/diagnostic_contract/algorithm_python_document_text",
+            "/diagnostic_contract/mutation_rule",
+            "/diagnostic_contract/aggregation",
+            "/diagnostic_contract/condition_values",
+            "/diagnostic_contract/return_owner"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L5-detail-design/management-authority-source-record.json",
+          "pointers": [
+            "/signatures/0",
+            "/formal_reference/composite_class_formation"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "OS015-NEG-composite-original_event_mutated-source_unresolved-original_event",
+      "code": "management_material_violation",
+      "expected_classification": "management_material_violation",
+      "function_ref": "FN-OS015-01",
+      "expected": {
+        "finding_codes": [
+          "original_event_mutated",
+          "source_unresolved"
+        ]
+      },
+      "expected_axis": "original_event",
+      "expected_state": "violation",
+      "backflow_owner": "management-authority-owner",
+      "side_effect_count": 0,
+      "handling": "FN-OS015-01は同一inspect入力で、原event全体の差分とoriginal_event field operandのunknownを各pointerへ返す。 raw eventと他のscopeを保持し、operation_effectはnone。L4のviolation優先で複合conditionはmanagement_material_violationとなる。",
+      "source_pointers": [
+        {
+          "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+          "pointers": [
+            "/requirements/25"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
+          "pointers": [
+            "/contracts/2",
+            "/diagnostic_contract/event_fields",
+            "/diagnostic_contract/codes/0",
+            "/diagnostic_contract/codes/3",
+            "/diagnostic_contract/comparison_facets",
+            "/diagnostic_contract/algorithm_python_document_text",
+            "/diagnostic_contract/mutation_rule",
+            "/diagnostic_contract/aggregation",
+            "/diagnostic_contract/condition_values",
+            "/diagnostic_contract/return_owner"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L5-detail-design/management-authority-source-record.json",
+          "pointers": [
+            "/signatures/0",
+            "/formal_reference/composite_class_formation"
           ]
         }
       ]
