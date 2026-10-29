@@ -1,0 +1,194 @@
+{
+  "scope": "PR-A: HELIX-OS OS015 L4/L9のみ。独立確認済み29件・2 class。",
+  "pr_class": "design_verification",
+  "pair": "OS015 L4/L9",
+  "base_revision": "821a655ad6949b2a7a5344b26e3c170cccc353a6",
+  "source_candidate_revision": "02e177494316f6ccb3ff669f79477fbe8fc29b01",
+  "candidate_revision": "2a739ab4abdf9c88ad13e7ef1b8622ef6249a38e",
+  "latest_main": "821a655ad6949b2a7a5344b26e3c170cccc353a6",
+  "latest_main_verified_by": "git ls-remote origin refs/heads/main",
+  "changed_paths": [
+    "docs/helix-os/L4-basic-design/management-authority-source-record.json",
+    "docs/helix-os/L9-integration-verification/management-authority-source-record.json",
+    "scaffold/bindings/SCF-B-0170.json",
+    "scaffold/bindings/SCF-B-0173.json",
+    "scaffold/research/wr181-os015-pr-a-l4-l9-20261030/README.md",
+    "scaffold/research/wr181-os015-pr-a-l4-l9-20261030/case-evidence.json",
+    "scaffold/research/wr181-os015-pr-a-l4-l9-20261030/validate_static_evidence.py",
+    "scaffold/research/wr181-os015-pr-a-l4-l9-20261030/verification-summary.json"
+  ],
+  "document_sha256": {
+    "L3": "e86254a35b476ed71ebb112e41ccd2b48f89a8d0393e6495dc11cac7a7cf4e02",
+    "L4_base": "e2e92c62217f70203752ab4f79ed7a92831d94cb813c6947153f237c83c8576b",
+    "L4_candidate": "9146ffd557bc5da60f79cdcd462578b38edf6ec524143a705ab07eeb34c7997b",
+    "L7": "b2a71c3d2a99c5268275e183f21c2b1bbc4b21ad79d577af42573a079e920a09",
+    "L9_base": "0b310db53887fd22d2fa5a3154099fdc0587bceed61dc85544f57549b2cbec51",
+    "L9_candidate": "392417ce60ff10beed23d1aee27aadc7afaaf4062fb1dc04473325e30ad2c7e5"
+  },
+  "class_ids": [
+    "OS015-NEG-COMPOSITE-07c9fd844a293140f5dc77476ab8ed90116889361788956739abfdcf65b874c4",
+    "OS015-NEG-COMPOSITE-4e0c28b06920d3a9665cbe4beeaf48cea44d7b0d350dddfaec9c8471de1e86b5"
+  ],
+  "case_evidence": {
+    "count": 29,
+    "known_conflict": 15,
+    "unknown_operand": 14,
+    "unassigned": 112,
+    "input_source": "L7 connection_materials/OS015/case/cases/*/given/input",
+    "l9_source_pointers": "L4/L7 only; no L5 pointers",
+    "L9_case_rows": 583,
+    "L9_expected_preservation": "全583行でmaterial_refとnegative_class_refを除く既存fieldがbaseとcanonical比較一致",
+    "unassigned_l9_case_refs": 112,
+    "unlinked_l8_case_refs": 141,
+    "unassigned_scope_note": "112はL9側のcase refs。L8はPR-A対象外で未変更のため141 case refsが未割当。"
+  },
+  "commands": {
+    "static_evidence": "python3 scaffold/research/wr181-os015-pr-a-l4-l9-20261030/validate_static_evidence.py",
+    "check_child": "python3 scaffold/tools/design_verification_checker.py check-child --root . --l4 docs/helix-os/L4-basic-design/management-authority-source-record.json --l5 docs/helix-os/L5-detail-design/management-authority-source-record.json --l8 docs/helix-os/L8-unit-verification/management-authority-source-record.json --l9 docs/helix-os/L9-integration-verification/management-authority-source-record.json",
+    "check_freeze": "python3 scaffold/tools/design_verification_checker.py check-freeze --root . --worktree docs/governance/audits/tdd/os007-os015-function-pair-freeze-2026-10-28.json",
+    "scf_validate": "python3 -B scaffold/tools/scfctl.py validate",
+    "scf_stale": "python3 -B scaffold/tools/scfctl.py stale",
+    "diff_check": "git diff --check",
+    "base_to_head_diff_check": "git diff --check 821a655ad6949b2a7a5344b26e3c170cccc353a6..HEAD"
+  },
+  "check_child": {
+    "before": {
+      "overall": "FAIL",
+      "L4_L9_pair": "PASS",
+      "L5_L8_pair": "PASS",
+      "class_counts": {
+        "L4": 31,
+        "L5": 31,
+        "L8": 25,
+        "L9": 25
+      },
+      "case_rows": {
+        "L8": 583,
+        "L9": 583
+      },
+      "matched_cases": 431,
+      "failure_count": 165,
+      "failure_reasons": {
+        "negative_case_class_ref_missing_or_unresolved:L8": 141,
+        "class_key_missing_from_layer:L8": 12,
+        "class_key_missing_from_layer:L9": 12
+      }
+    },
+    "candidate": {
+      "overall": "FAIL",
+      "L4_L9_pair": "PASS",
+      "L5_L8_pair": "PASS",
+      "class_counts": {
+        "L4": 33,
+        "L5": 31,
+        "L8": 25,
+        "L9": 27
+      },
+      "case_rows": {
+        "L8": 583,
+        "L9": 583
+      },
+      "matched_cases": 431,
+      "failure_count": 175,
+      "failure_increase": 10,
+      "failure_reasons": {
+        "negative_case_class_ref_missing_or_unresolved:L8": 141,
+        "class_key_missing_from_layer:L8": 16,
+        "class_key_missing_from_layer:L9": 12,
+        "class_key_missing_from_layer:L5": 4,
+        "class_owner_ref_unresolved:L4": 2
+      },
+      "interpretation": "PR-Aの2 class定義はL4/L9で形成された。対応するL5 failure rulesとL8 class rowsがPR-Aにないため中間negative-4way FAILとなる。"
+    },
+    "latest_main_trial": {
+      "base_revision": "821a655ad6949b2a7a5344b26e3c170cccc353a6",
+      "trial_revision": "683964eb8477edea3ae2c6a13c04acea819890b7",
+      "candidate_revision": "1928259790b0b9e87e85a959c6d1b2f008a9acdc",
+      "overall": "FAIL",
+      "L4_L9_pair": "PASS",
+      "L5_L8_pair": "PASS",
+      "class_counts": {
+        "L4": 33,
+        "L5": 31,
+        "L8": 25,
+        "L9": 27
+      },
+      "case_rows": {
+        "L8": 583,
+        "L9": 583
+      },
+      "matched_cases": 431,
+      "failure_count": 175,
+      "failure_reasons": {
+        "negative_case_class_ref_missing_or_unresolved:L8": 141,
+        "class_key_missing_from_layer:L8": 16,
+        "class_key_missing_from_layer:L9": 12,
+        "class_key_missing_from_layer:L5": 4,
+        "class_owner_ref_unresolved:L4": 2
+      }
+    }
+  },
+  "check_freeze": {
+    "before": {
+      "all_mechanical_matched": false,
+      "CHK-PIN-SHA256": "not_evaluated:no_pinned_inputs_found",
+      "CHK-JSON-POINTER": {
+        "checked": 67,
+        "failures": 2421
+      },
+      "CHK-NEG-4WAY-MATCH": "not_evaluated:missing_or_unparsed_layer_documents",
+      "CHK-PUBLIC-FN-FREEZE": {
+        "failures": 8
+      },
+      "CHK-L3-OBLIGATION-MAP": "not_evaluated:no_l3_obligations_found"
+    },
+    "after": {
+      "all_mechanical_matched": false,
+      "CHK-PIN-SHA256": "not_evaluated:no_pinned_inputs_found",
+      "CHK-JSON-POINTER": {
+        "checked": 67,
+        "failures": 2421
+      },
+      "CHK-NEG-4WAY-MATCH": "not_evaluated:missing_or_unparsed_layer_documents",
+      "CHK-PUBLIC-FN-FREEZE": {
+        "failures": 8
+      },
+      "CHK-L3-OBLIGATION-MAP": "not_evaluated:no_l3_obligations_found"
+    },
+    "existing_record_unchanged": true
+  },
+  "scfctl": {
+    "validate_bindings": 162,
+    "validation_failures": 0,
+    "stale": 0,
+    "latest_main_trial": "same"
+  },
+  "diff_check": {
+    "candidate": {
+      "base": "821a655ad6949b2a7a5344b26e3c170cccc353a6",
+      "exit_code": 0,
+      "output": ""
+    },
+    "latest_main_trial": {
+      "base": "821a655ad6949b2a7a5344b26e3c170cccc353a6",
+      "trial_revision": "683964eb8477edea3ae2c6a13c04acea819890b7",
+      "candidate_revision": "1928259790b0b9e87e85a959c6d1b2f008a9acdc",
+      "exit_code": 0,
+      "output": ""
+    }
+  },
+  "not_claimed": [
+    "L5/L8 pair completion",
+    "L9 L5 failure-rule source pointers",
+    "L9側の未割当112 cases",
+    "negative overall PASS",
+    "L8側141 case refsの未割当を含む全coverage",
+    "freeze established",
+    "runtime/test/CI execution"
+  ],
+  "raw_checker_outputs_committed": false,
+  "latest_main_trial_record_scope": "Trialはcandidate 1928259790b0b9e87e85a959c6d1b2f008a9acdcを含むmerge 683964eb8477edea3ae2c6a13c04acea819890b7で実行。その後の95688e78bfbf16c4d35ab059a7a6e7e06c787b87および本件commitはREADME/verification-summaryのみを変更し、L4/L9とbinding bytesは不変。",
+  "post_trial_document_only_commits": [
+    "95688e78bfbf16c4d35ab059a7a6e7e06c787b87"
+  ]
+}
