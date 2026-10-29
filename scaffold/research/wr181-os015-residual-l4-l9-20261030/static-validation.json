@@ -1,0 +1,58 @@
+{
+  "status": "PASS",
+  "base_revision": "64d3cf379335e0a4b034f7295a9a225a2d755986",
+  "manual_audit_revision": "05614def4e0427f9390c2b6535e520f5c7c26590",
+  "manual_audit_sha256": "eaa14a609b08f58b12078f68fdbb02921df3805d9d977668c0b9bd9a5f4c73dd",
+  "class_count": 17,
+  "new_l4_and_l9_classes": 15,
+  "case_link_count": 112,
+  "existing_class_case_count": 75,
+  "new_class_case_count": 37,
+  "c0044_independently_derived": true,
+  "prior_29_case_links_unchanged": true,
+  "l9_case_rows": 583,
+  "case_expected_condition_preserved_unchanged": true,
+  "l4_new_class_pointers_resolve": true,
+  "l9_new_class_pointers_resolve_and_only_l4_l7": true,
+  "l5_l8_document_bytes_unchanged": true,
+  "current_l4_sha256": "a1746eea4b021e6d370fca76125179c38c8c241413044e31984e6b549ed0a38a",
+  "current_l9_sha256": "ab875f72dfef9f1afaa72b04dd1c8b341d5fc13c4320c1640f42f58f91798c90",
+  "pin_impacts": [
+    {
+      "binding": "SCF-B-0170",
+      "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
+      "sha256": "a1746eea4b021e6d370fca76125179c38c8c241413044e31984e6b549ed0a38a"
+    },
+    {
+      "binding": "SCF-B-0173",
+      "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
+      "sha256": "a1746eea4b021e6d370fca76125179c38c8c241413044e31984e6b549ed0a38a"
+    },
+    {
+      "binding": "SCF-B-0173",
+      "path": "docs/helix-os/L9-integration-verification/management-authority-source-record.json",
+      "sha256": "ab875f72dfef9f1afaa72b04dd1c8b341d5fc13c4320c1640f42f58f91798c90"
+    },
+    {
+      "binding": "SCF-B-0175",
+      "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
+      "sha256": "a1746eea4b021e6d370fca76125179c38c8c241413044e31984e6b549ed0a38a"
+    },
+    {
+      "binding": "SCF-B-0175",
+      "path": "docs/helix-os/L9-integration-verification/management-authority-source-record.json",
+      "sha256": "ab875f72dfef9f1afaa72b04dd1c8b341d5fc13c4320c1640f42f58f91798c90"
+    },
+    {
+      "binding": "SCF-B-0176",
+      "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
+      "sha256": "a1746eea4b021e6d370fca76125179c38c8c241413044e31984e6b549ed0a38a"
+    },
+    {
+      "binding": "SCF-B-0176",
+      "path": "docs/helix-os/L9-integration-verification/management-authority-source-record.json",
+      "sha256": "ab875f72dfef9f1afaa72b04dd1c8b341d5fc13c4320c1640f42f58f91798c90"
+    }
+  ],
+  "checker_or_runtime_executed": false
+}

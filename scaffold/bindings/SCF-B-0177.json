@@ -1,0 +1,171 @@
+{
+  "schema_revision": 1,
+  "id": "SCF-B-0177",
+  "kind": "scaffold",
+  "title": "WR181 OS015 残112件 L4/L9 class候補",
+  "product": "HELIX-OS",
+  "owner_candidate": "HELIX-OS OS015 管理record/source projection設計",
+  "state": "registered",
+  "reason": "PR class design_verification のOS015 L4/L9 V-pair候補。独立手動auditとC0044独立導出から75件を既存2 classへ、37件を新15 classへ結び、L9の残112 caseへraw-input参照とclass refを追加する。",
+  "upstream": [
+    {
+      "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+      "sha256": "e86254a35b476ed71ebb112e41ccd2b48f89a8d0393e6495dc11cac7a7cf4e02",
+      "note": "HELIXOS-L3-015-F02要件。要件本文を変更しない。"
+    },
+    {
+      "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
+      "sha256": "a1746eea4b021e6d370fca76125179c38c8c241413044e31984e6b549ed0a38a",
+      "note": "候補L4分類行15件とF02 negative_class_refs。hashを含むsource pinsはverification-summaryで記録。"
+    },
+    {
+      "path": "docs/helix-os/L5-detail-design/management-authority-source-record.json",
+      "sha256": "c7d979d397f7ebc9b82b1cb5fa3e32f82737956c6a54adc2080342b729607c7f",
+      "note": "手動監査でowner_refを確認したsource。L5文書は変更しない。"
+    },
+    {
+      "path": "docs/helix-os/L7-function-verification/management-authority-source-record.json",
+      "sha256": "b2a71c3d2a99c5268275e183f21c2b1bbc4b21ad79d577af42573a079e920a09",
+      "note": "141固定刺激のsource。manual auditとC0044独立入力をgiven.inputから照合。"
+    },
+    {
+      "path": "docs/helix-os/L8-unit-verification/management-authority-source-record.json",
+      "sha256": "63fc2084a2a41cce1c84ac0db7a437ce25a0525f9f24d060f47bcf61357aa621",
+      "note": "既存583 unit case期待を保持したことの比較source。L8文書は変更しない。"
+    },
+    {
+      "path": "docs/helix-os/L9-integration-verification/management-authority-source-record.json",
+      "sha256": "ab875f72dfef9f1afaa72b04dd1c8b341d5fc13c4320c1640f42f58f91798c90",
+      "note": "候補L9の15 class rowsと112 case refs。case期待は入力生成元にしない。"
+    },
+    {
+      "path": "scaffold/tools/design_verification_checker.py",
+      "sha256": "211e39ff48ec96adf37f948db91dd63795435c53671e16576b39eb0e3a0538d6",
+      "note": "現行checkerを変更せずchecker後結果の計測だけに使用。"
+    },
+    {
+      "path": "scaffold/research/wr181-os015-residual-l4-l9-20261030/manual-case-audit-05614.md",
+      "sha256": "eaa14a609b08f58b12078f68fdbb02921df3805d9d977668c0b9bd9a5f4c73dd",
+      "note": "commit 05614の独立手動監査記録をbyte一致で複製。C0044は含まない。"
+    },
+    {
+      "path": "scaffold/research/wr181-os015-residual-l4-l9-20261030/projection-manifest.json",
+      "sha256": "fb1f66d47da9bd89ba28de16e2b2f429d8c211fe8f13d3c4ed69c542469b5efb",
+      "note": "17 class key群・112 case IDの手動根拠を構造化した候補manifest。"
+    },
+    {
+      "path": "scaffold/research/wr181-os015-pr-a-l4-l9-20261030/case-evidence.json",
+      "sha256": "46540a6e40238eeee2d3c5f2cb7866ba7035c12217cd0f5fd5344430ecd92cbc",
+      "note": "先行29 case割当てと独立確認の参照。"
+    },
+    {
+      "path": "scaffold/bindings/SCF-B-0170.json",
+      "sha256": "a721f60003ebb36d2cd317cce9be5ff510fec938c75d7915b85a1648b27b2038",
+      "note": "本候補のL4/L9追補後にhashを更新した前段binding。歴史差分と更新理由は各binding noteに保持。"
+    },
+    {
+      "path": "scaffold/bindings/SCF-B-0173.json",
+      "sha256": "940ff5cba37a9ce311246223bd3f36eb9c304f97ad73ec1dc8b1b52f2420fea8",
+      "note": "本候補のL4/L9追補後にhashを更新した前段binding。歴史差分と更新理由は各binding noteに保持。"
+    },
+    {
+      "path": "scaffold/bindings/SCF-B-0175.json",
+      "sha256": "349db474c38c3c533f2399435746f01d9847c81bb099eb68a0ab1f2fe244da7d",
+      "note": "本候補のL4/L9追補後にhashを更新した前段binding。歴史差分と更新理由は各binding noteに保持。"
+    },
+    {
+      "path": "scaffold/bindings/SCF-B-0176.json",
+      "sha256": "26cc5703cbb9845c31dcf64d064e864d9958d23e9e1ddac76b1695b73aced8ad",
+      "note": "本候補のL4/L9追補後にhashを更新した前段binding。歴史差分と更新理由は各binding noteに保持。"
+    }
+  ],
+  "role": "OS015の独立形成済み15 classと残112件L9 projectionのstatic candidate evidence。",
+  "obligations": [
+    "manual audit 05614の17 key群を独立に出典保持し、追加classは15件に限定する。",
+    "既存2 classに75件、手動根拠ある新15 classに37件を結び、L9に112 raw-input case linksを追加する。",
+    "C0044はL7 given.inputとL4契約のみから独立導出し、L7 expected_proposalやL8/L9 expectedを使わない。",
+    "L4 parent refs、L4/L9 class source pointers、case-level入力pointerとclass IDを静的に解決する。",
+    "L8/L9の全583 case condition/expected/expected_preserved、既存29 assignments、L5/L8 documentsは不変に保つ。",
+    "L5/L8 pair projectionは未実施、残る6 singleton-less classは未形成として維持する。"
+  ],
+  "connections": {
+    "consumers": [
+      "OS015 L4/L9 pair design verification"
+    ],
+    "dependencies": [
+      "PR-A #3912 merge 36947baf69999c99d5370d804d69ee2f3acaed72",
+      "PR-B #3917 merge 2d7cabb70861f4cc40d4d2e850d35c6b09083034",
+      "PR-C #3923 candidate 64d3cf379335e0a4b034f7295a9a225a2d755986",
+      "手動監査 05614def4e0427f9390c2b6535e520f5c7c26590",
+      "L7 fixed given.input"
+    ],
+    "boundary": "PR-Cは未mergeの前提で候補作業を行う。L4/L9以外の設計layer、全体negative PASS、freeze成立、182件全完了を主張しない。"
+  },
+  "operations": {
+    "allowed": [
+      "JSON document/pointer/hash static checks",
+      "既存checker check-child/check-freezeを計測として実行",
+      "scfctl validate/stale",
+      "git diff --check"
+    ],
+    "forbidden": [
+      "checkerの変更",
+      "L4 algorithm/product runtime、test、CIの実装または実行",
+      "L7 expected_proposal、L8/L9 case expectedからclass/findingを導出",
+      "L5/L8文書の変更",
+      "既存case condition/expected/expected_preservedの変更",
+      "旧HELIX CLI/runtime/test/CIの実行"
+    ]
+  },
+  "artifacts": [
+    "scaffold/research/wr181-os015-residual-l4-l9-20261030/README.md",
+    "scaffold/research/wr181-os015-residual-l4-l9-20261030/manual-case-audit-05614.md",
+    "scaffold/research/wr181-os015-residual-l4-l9-20261030/projection-manifest.json",
+    "scaffold/research/wr181-os015-residual-l4-l9-20261030/build_projection.py",
+    "scaffold/research/wr181-os015-residual-l4-l9-20261030/validate_projection.py",
+    "scaffold/research/wr181-os015-residual-l4-l9-20261030/static-validation.json",
+    "scaffold/research/wr181-os015-residual-l4-l9-20261030/verification-summary.json",
+    "scaffold/research/wr181-os015-pr-a-l4-l9-20261030/case-evidence.json",
+    "scaffold/bindings/SCF-B-0170.json",
+    "scaffold/bindings/SCF-B-0173.json",
+    "scaffold/bindings/SCF-B-0175.json",
+    "scaffold/bindings/SCF-B-0176.json"
+  ],
+  "verification": {
+    "evidence_kind": "scaffold",
+    "scope": [
+      "schema_interface",
+      "source_revision_stale",
+      "negative_case",
+      "forbidden_write_scope"
+    ],
+    "oracles": [
+      "python3 scaffold/research/wr181-os015-residual-l4-l9-20261030/build_projection.py",
+      "python3 scaffold/research/wr181-os015-residual-l4-l9-20261030/validate_projection.py",
+      "python3 scaffold/tools/design_verification_checker.py check-child --root . --l4 docs/helix-os/L4-basic-design/management-authority-source-record.json --l5 docs/helix-os/L5-detail-design/management-authority-source-record.json --l8 docs/helix-os/L8-unit-verification/management-authority-source-record.json --l9 docs/helix-os/L9-integration-verification/management-authority-source-record.json",
+      "python3 scaffold/tools/design_verification_checker.py check-freeze --root . --worktree docs/governance/audits/tdd/os007-os015-function-pair-freeze-2026-10-28.json",
+      "python3 -B scaffold/tools/scfctl.py validate",
+      "python3 -B scaffold/tools/scfctl.py stale",
+      "git diff --check"
+    ],
+    "negative_cases": [
+      "112 case refsはL9に追加したがL8には未追加であり、negative-4wayはFAIL。",
+      "L5/L8 projectionを行っていないため新15 classのL5/L8 owner/key matchは未形成。",
+      "6 singleton-less classはL8/L9に存在しない。",
+      "旧freezeはmechanical matchせず、今回の候補で成立したとは扱わない。",
+      "checkerのsupplied-row比較は同時省略を検出しない。"
+    ]
+  },
+  "replacement": {
+    "role_target": "正式OS015 L4/L9 design record and paired verification",
+    "formal_artifacts": [],
+    "issue": 0,
+    "status": "pending",
+    "transfer": null,
+    "target_revisions": {},
+    "confirmation_ref": null,
+    "confirmation_digest": null
+  },
+  "created": "2026-10-30",
+  "updated": "2026-10-30"
+}
