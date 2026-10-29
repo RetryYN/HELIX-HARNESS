@@ -70715,7 +70715,5 @@
         }
       }
     }
-  ],
-  "negative_equivalence_classes": [],
-  "negative_equivalence_scope_note": "L8自身のcase expectationsはunit_casesに保持する。L4/L5の負例分類・failure ruleがないためclassを推定せず、negative 4層FAILを残す。"
+  ]
 }

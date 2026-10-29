@@ -60556,7 +60556,5 @@
       ],
       "population_state": "positive"
     }
-  ],
-  "negative_equivalence_classes": [],
-  "negative_equivalence_scope_note": "L4/L5に分類・failure ruleがないためclassを逆生成しない。L9自身のcase expectationsはintegration_casesに保持し、4層照合FAILを残す。"
+  ]
 }

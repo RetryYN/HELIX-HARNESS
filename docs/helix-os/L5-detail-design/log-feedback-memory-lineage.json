@@ -4048,9 +4048,5 @@
       ],
       "l4_contract_ref": "HELIXOS-L4-007-F03"
     }
-  ],
-  "negative_equivalence_classes": {
-    "source_rows": "failure_rules"
-  },
-  "failure_rules": []
+  ]
 }

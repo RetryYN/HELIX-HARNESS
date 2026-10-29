@@ -1173,9 +1173,5 @@
       "operation_effect"
     ],
     "limit": "sourceの対応を示す*_material/eligible/usableは正式受入/承認/成功証拠ではない。authorityは既存ownerへ戻し、裸owner名から資格を生成しない。"
-  },
-  "negative_equivalence_classes": {
-    "source_rows": "failure_classifications"
-  },
-  "failure_classifications": []
+  }
 }
