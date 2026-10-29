@@ -183,7 +183,9 @@
       "exit": 1,
       "mechanical_match": false,
       "results_count": 1,
-      "same_as_candidate": true
+      "same_as_candidate": true,
+      "json_pointer_failures": 2421,
+      "public_function_failures": 8
     },
     "scfctl_validate": "PASS (bindings=166 fail=0)",
     "scfctl_stale": "PASS (stale=0)",
