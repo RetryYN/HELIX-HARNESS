@@ -1,7 +1,7 @@
 # F13 recipient writer と F14 scope candidate の接続技術候補
 
-status: scaffold candidate（未採用・未review・未実装）  
-authority_effect: none  
+status: scaffold candidate（未採用・未review・未実装）
+authority_effect: none
 source_main: `88d8b2516400e80da9d15ec864264af42b8dfb74`
 
 ## 目的と境界
