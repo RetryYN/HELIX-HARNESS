@@ -1,0 +1,517 @@
+{
+  "source_provenance": {
+    "revision": "cbe8c777c518df577c66628bc04caef3d8fd396e",
+    "path": "docs/helix-harness/L8-unit-verification/product-template-application/general-proposal-exchange-fixtures.json",
+    "whole_file_sha256": "bc38675105788e14fe99b0af544d0738374c51104c999ec564f230ea51499a3f",
+    "secondary_sources": [
+      {
+        "revision": "929a862c60309502e2b5935fadabbf290fc36185",
+        "path": "docs/helix-harness/L9-integration-verification/product-template-application.json",
+        "whole_file_sha256": "5bc7d2626a4efafc2ae8a35ab53575ab6e6cf425b7b661a6ce7ab58d508d50d3"
+      },
+      {
+        "revision": "dd5787507a9ef3b69f411074e2fcbc7710ca1d62",
+        "path": "docs/helix-harness/L8-unit-verification/product-template-application.json",
+        "whole_file_sha256": "75e5aa65453f1812f7b5decafcdab823b49783e03014f18b68c97b4e06386efd"
+      },
+      {
+        "revision": "dd5787507a9ef3b69f411074e2fcbc7710ca1d62",
+        "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+        "whole_file_sha256": "f5da0e585b3bb91cf5b07d7d3c1e124b9584718395d8b07704cede6e2523ce1c"
+      }
+    ],
+    "source_pointers": {
+      "raw_provider_request_seed": "/cases/3/original_operation_proposal_provider_oracles/cases/0/input_recipe/raw_provider_request_seed",
+      "operation_record_seed": "/cases/3/original_operation_proposal_provider_oracles/raw_source_json_utf8_literals/0",
+      "target_source1_literal": "/cases/3/original_operation_proposal_provider_oracles/raw_source_json_utf8_literals/1",
+      "target_source2_literal": "/cases/3/original_operation_proposal_provider_oracles/raw_source_json_utf8_literals/2",
+      "independent_owner_port_fixture": "/parts/publication/independent_owner_port_fixture",
+      "binding_domain_validation_input": "/cases/3/original_operation_proposal_provider_oracles/total_attempt_oracles/binding_array_domain_native_oracle/frozen_spec/source_mounts/1"
+    },
+    "material_kind": "L8/L9 historical synthetic general proposal exchange raw request seeds and source record literals; expected outputs and branch probe variants are derived in test modules from L4/L5/L8/L9 rules. No qualification or runtime evidence."
+  },
+  "raw_provider_request_seed": {
+    "operation_source_occurrence_index": 0,
+    "source_occurrences": [
+      {
+        "source_ref": {
+          "identity": "SOURCE-F02-CORE",
+          "revision": "source1",
+          "scope": {
+            "project": "P",
+            "tenant": "synthetic-T",
+            "environment": "synthetic-test"
+          },
+          "owner": "CORE"
+        },
+        "owner": "CORE",
+        "source_json_utf8": null,
+        "source_sha256": "4878679ebad35741ae7402f7a39ddf724c366881771778a881ece2269acc0b2f",
+        "qualification_ref": {
+          "identity": "QUAL-F02-CORE",
+          "revision": "qual1",
+          "scope": {
+            "project": "P",
+            "tenant": "synthetic-T",
+            "environment": "synthetic-test"
+          },
+          "owner": "CORE"
+        }
+      },
+      {
+        "source_ref": {
+          "identity": "SOURCE-F03-OS-original-owner",
+          "revision": "source1",
+          "scope": {
+            "project": "P",
+            "tenant": "synthetic-T",
+            "environment": "synthetic-test"
+          },
+          "owner": "OS-original-owner"
+        },
+        "owner": "OS-original-owner",
+        "source_json_utf8": null,
+        "source_sha256": "802e5d35fa8a6838d361aad35c8ad7e7f2b2d55aa39c49bf30ad8aa9f7240c70",
+        "qualification_ref": {
+          "identity": "QUAL-F03-OS-original-owner",
+          "revision": "qual1",
+          "scope": {
+            "project": "P",
+            "tenant": "synthetic-T",
+            "environment": "synthetic-test"
+          },
+          "owner": "OS-original-owner"
+        }
+      },
+      {
+        "source_ref": {
+          "identity": "SOURCE-F03-OS-original-owner",
+          "revision": "source1",
+          "scope": {
+            "project": "P",
+            "tenant": "synthetic-T",
+            "environment": "synthetic-test"
+          },
+          "owner": "OS-original-owner"
+        },
+        "owner": "OS-original-owner",
+        "source_json_utf8": null,
+        "source_sha256": "bc3faf029a962221688674850abe93fd1b56002582b2de623515d6bd3bce5866",
+        "qualification_ref": {
+          "identity": "QUAL-F03-OS-original-owner",
+          "revision": "qual1",
+          "scope": {
+            "project": "P",
+            "tenant": "synthetic-T",
+            "environment": "synthetic-test"
+          },
+          "owner": "OS-original-owner"
+        }
+      }
+    ],
+    "qualification_inputs": [
+      {
+        "ref": {
+          "identity": "QUAL-F02-CORE",
+          "revision": "qual1",
+          "scope": {
+            "project": "P",
+            "tenant": "synthetic-T",
+            "environment": "synthetic-test"
+          },
+          "owner": "CORE"
+        },
+        "root_ref": {
+          "identity": "ROOT-F02-CORE",
+          "revision": "root1",
+          "scope": {
+            "project": "P",
+            "tenant": "synthetic-T",
+            "environment": "synthetic-test"
+          },
+          "owner": "CORE"
+        },
+        "source_ref": {
+          "identity": "SOURCE-F02-CORE",
+          "revision": "source1",
+          "scope": {
+            "project": "P",
+            "tenant": "synthetic-T",
+            "environment": "synthetic-test"
+          },
+          "owner": "CORE"
+        },
+        "owner": "CORE",
+        "subject_refs": [
+          {
+            "identity": "FIXTURE-F02-CORE",
+            "revision": "source1",
+            "scope": {
+              "project": "P",
+              "tenant": "synthetic-T",
+              "environment": "synthetic-test"
+            },
+            "owner": "CORE"
+          }
+        ],
+        "source_sha256": "4878679ebad35741ae7402f7a39ddf724c366881771778a881ece2269acc0b2f"
+      },
+      {
+        "ref": {
+          "identity": "QUAL-F03-OS-original-owner",
+          "revision": "qual1",
+          "scope": {
+            "project": "P",
+            "tenant": "synthetic-T",
+            "environment": "synthetic-test"
+          },
+          "owner": "OS-original-owner"
+        },
+        "root_ref": {
+          "identity": "ROOT-F03-OS-original-owner",
+          "revision": "root1",
+          "scope": {
+            "project": "P",
+            "tenant": "synthetic-T",
+            "environment": "synthetic-test"
+          },
+          "owner": "OS-original-owner"
+        },
+        "source_ref": {
+          "identity": "SOURCE-F03-OS-original-owner",
+          "revision": "source1",
+          "scope": {
+            "project": "P",
+            "tenant": "synthetic-T",
+            "environment": "synthetic-test"
+          },
+          "owner": "OS-original-owner"
+        },
+        "owner": "OS-original-owner",
+        "subject_refs": [
+          {
+            "identity": "FIXTURE-F03-OS-original-owner",
+            "owner": "OS-original-owner",
+            "revision": "source1",
+            "scope": {
+              "environment": "synthetic-test",
+              "project": "P",
+              "tenant": "synthetic-T"
+            }
+          }
+        ],
+        "source_sha256": "bc3faf029a962221688674850abe93fd1b56002582b2de623515d6bd3bce5866"
+      }
+    ],
+    "qualification_root_inputs": [
+      {
+        "ref": {
+          "identity": "ROOT-F02-CORE",
+          "revision": "root1",
+          "scope": {
+            "project": "P",
+            "tenant": "synthetic-T",
+            "environment": "synthetic-test"
+          },
+          "owner": "CORE"
+        },
+        "owner": "CORE",
+        "allowed_subject_refs": [
+          {
+            "identity": "FIXTURE-F02-CORE",
+            "revision": "source1",
+            "scope": {
+              "project": "P",
+              "tenant": "synthetic-T",
+              "environment": "synthetic-test"
+            },
+            "owner": "CORE"
+          }
+        ],
+        "allowed_source_ref": {
+          "identity": "SOURCE-F02-CORE",
+          "revision": "source1",
+          "scope": {
+            "project": "P",
+            "tenant": "synthetic-T",
+            "environment": "synthetic-test"
+          },
+          "owner": "CORE"
+        },
+        "allowed_source_sha256": "4878679ebad35741ae7402f7a39ddf724c366881771778a881ece2269acc0b2f"
+      },
+      {
+        "ref": {
+          "identity": "ROOT-F03-OS-original-owner",
+          "revision": "root1",
+          "scope": {
+            "project": "P",
+            "tenant": "synthetic-T",
+            "environment": "synthetic-test"
+          },
+          "owner": "OS-original-owner"
+        },
+        "owner": "OS-original-owner",
+        "allowed_subject_refs": [
+          {
+            "identity": "FIXTURE-F03-OS-original-owner",
+            "owner": "OS-original-owner",
+            "revision": "source1",
+            "scope": {
+              "environment": "synthetic-test",
+              "project": "P",
+              "tenant": "synthetic-T"
+            }
+          }
+        ],
+        "allowed_source_ref": {
+          "identity": "SOURCE-F03-OS-original-owner",
+          "revision": "source1",
+          "scope": {
+            "project": "P",
+            "tenant": "synthetic-T",
+            "environment": "synthetic-test"
+          },
+          "owner": "OS-original-owner"
+        },
+        "allowed_source_sha256": "bc3faf029a962221688674850abe93fd1b56002582b2de623515d6bd3bce5866"
+      }
+    ]
+  },
+  "operation_record_seed": {
+    "subject_ref": {
+      "identity": "FIXTURE-F02-CORE",
+      "revision": "source1",
+      "scope": {
+        "project": "P",
+        "tenant": "synthetic-T",
+        "environment": "synthetic-test"
+      },
+      "owner": "CORE"
+    },
+    "section_key": "F02",
+    "record_kind": "original_trace_section",
+    "owner": "CORE",
+    "proposed_source": {
+      "identity": "CORE-P1",
+      "revision": "core1",
+      "scope": {
+        "project": "P",
+        "tenant": "synthetic-T",
+        "environment": "synthetic-test"
+      },
+      "owner": "CORE"
+    },
+    "relation_occurrences": [
+      {
+        "core_ref6_key": {
+          "identity": "SYNTHETIC-T-unit",
+          "revision": "synthetic-A",
+          "scope": {
+            "product": "SYNTHETIC-P",
+            "tenant": "SYNTHETIC-T",
+            "environment": "SYNTHETIC-E"
+          },
+          "owner": "synthetic-brain-owner",
+          "source_locator": null,
+          "sha256": null
+        },
+        "native_ref4_locator": {
+          "source_occurrence_index": 2,
+          "source_ref": {
+            "identity": "SOURCE-F03-OS-original-owner",
+            "revision": "source1",
+            "scope": {
+              "project": "P",
+              "tenant": "synthetic-T",
+              "environment": "synthetic-test"
+            },
+            "owner": "OS-original-owner"
+          },
+          "record_index": 0,
+          "subject_ref": {
+            "identity": "FIXTURE-F03-OS-original-owner",
+            "owner": "OS-original-owner",
+            "revision": "source1",
+            "scope": {
+              "environment": "synthetic-test",
+              "project": "P",
+              "tenant": "synthetic-T"
+            }
+          },
+          "payload_pointer": "/events/0/binding/template_ref"
+        }
+      }
+    ],
+    "source_result_reference_projection": {
+      "tag": "present",
+      "location": {
+        "root": "caller_inputs",
+        "pointer": "/source_result_reference_projection"
+      },
+      "value": null
+    }
+  },
+  "target_source1_literal": {
+    "id": "raw-01",
+    "source_json_utf8": "{\"records\":[{\"owner\":\"OS-original-owner\",\"payload\":{\"events\":[{\"actor_ref\":{\"identity\":\"ACTOR-1\",\"owner\":\"actor-owner\",\"revision\":\"actor1\",\"scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"}},\"artifact_ref\":{\"identity\":\"D-U1\",\"owner\":\"design-owner\",\"revision\":\"d1\",\"scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"}},\"binding\":{\"HARNESS_contract_ref\":{\"identity\":\"HARNESS-CONTRACT\",\"owner\":\"HARNESS\",\"revision\":\"h1\",\"scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"}},\"project_scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"},\"requirement_ref\":{\"identity\":\"R\",\"owner\":\"requirement-owner\",\"revision\":\"r1\",\"scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"}},\"semantic_contract_ref\":{\"identity\":\"MEANING-T1\",\"owner\":\"BRAIN\",\"revision\":\"m1\",\"scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"}},\"template_ref\":{\"identity\":\"T1\",\"owner\":\"BRAIN\",\"revision\":\"v1\",\"scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"}}},\"correlation_ref\":{\"identity\":\"CORRELATION-1\",\"owner\":\"OS-original-owner\",\"revision\":\"c1\",\"scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"}},\"event_ref\":{\"identity\":\"EVENT-1\",\"owner\":\"OS-original-owner\",\"revision\":\"e1\",\"scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"}},\"nonrelated_basis\":null,\"obligation_ref\":{\"identity\":\"U1\",\"owner\":\"OS-original-owner\",\"revision\":\"u1\",\"scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"}},\"original_state\":\"synthetic twin source with distinct bytes; no qualification attached\",\"pair_ref\":{\"identity\":\"V-U1\",\"owner\":\"oracle-owner\",\"revision\":\"o1\",\"scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"}},\"record_kind\":\"application\",\"source_ref\":{\"identity\":\"SOURCE-EVENTS\",\"owner\":\"OS-original-owner\",\"revision\":\"source1\",\"scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"}}},{\"actor_ref\":{\"identity\":\"ACTOR-1\",\"owner\":\"actor-owner\",\"revision\":\"actor1\",\"scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"}},\"artifact_ref\":{\"identity\":\"D-C1\",\"owner\":\"design-owner\",\"revision\":\"d1\",\"scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"}},\"binding\":{\"HARNESS_contract_ref\":{\"identity\":\"HARNESS-CONTRACT\",\"owner\":\"HARNESS\",\"revision\":\"h1\",\"scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"}},\"project_scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"},\"requirement_ref\":{\"identity\":\"R\",\"owner\":\"requirement-owner\",\"revision\":\"r1\",\"scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"}},\"semantic_contract_ref\":{\"identity\":\"MEANING-T1\",\"owner\":\"BRAIN\",\"revision\":\"m1\",\"scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"}},\"template_ref\":{\"identity\":\"T1\",\"owner\":\"BRAIN\",\"revision\":\"v1\",\"scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"}}},\"correlation_ref\":{\"identity\":\"CORRELATION-1\",\"owner\":\"OS-original-owner\",\"revision\":\"c1\",\"scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"}},\"event_ref\":{\"identity\":\"EVENT-2\",\"owner\":\"OS-original-owner\",\"revision\":\"e1\",\"scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"}},\"nonrelated_basis\":null,\"obligation_ref\":{\"identity\":\"C1\",\"owner\":\"OS-original-owner\",\"revision\":\"c1\",\"scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"}},\"original_state\":\"synthetic source supplied, no completion asserted\",\"pair_ref\":{\"identity\":\"V-C1\",\"owner\":\"oracle-owner\",\"revision\":\"o1\",\"scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"}},\"record_kind\":\"obligation-generation\",\"source_ref\":{\"identity\":\"SOURCE-EVENTS\",\"owner\":\"OS-original-owner\",\"revision\":\"source1\",\"scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"}}},{\"actor_ref\":{\"identity\":\"ACTOR-1\",\"owner\":\"actor-owner\",\"revision\":\"actor1\",\"scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"}},\"artifact_ref\":{\"identity\":\"D-S1\",\"owner\":\"design-owner\",\"revision\":\"d1\",\"scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"}},\"binding\":{\"HARNESS_contract_ref\":{\"identity\":\"HARNESS-CONTRACT\",\"owner\":\"HARNESS\",\"revision\":\"h1\",\"scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"}},\"project_scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"},\"requirement_ref\":{\"identity\":\"R\",\"owner\":\"requirement-owner\",\"revision\":\"r1\",\"scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"}},\"semantic_contract_ref\":{\"identity\":\"MEANING-T1\",\"owner\":\"BRAIN\",\"revision\":\"m1\",\"scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"}},\"template_ref\":{\"identity\":\"T1\",\"owner\":\"BRAIN\",\"revision\":\"v1\",\"scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"}}},\"correlation_ref\":{\"identity\":\"CORRELATION-1\",\"owner\":\"OS-original-owner\",\"revision\":\"c1\",\"scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"}},\"event_ref\":{\"identity\":\"EVENT-3\",\"owner\":\"OS-original-owner\",\"revision\":\"e1\",\"scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"}},\"nonrelated_basis\":null,\"obligation_ref\":{\"identity\":\"S1\",\"owner\":\"OS-original-owner\",\"revision\":\"s1\",\"scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"}},\"original_state\":\"synthetic source supplied, no completion asserted\",\"pair_ref\":{\"identity\":\"V-S1\",\"owner\":\"oracle-owner\",\"revision\":\"o1\",\"scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"}},\"record_kind\":\"obligation-discharge\",\"source_ref\":{\"identity\":\"SOURCE-EVENTS\",\"owner\":\"OS-original-owner\",\"revision\":\"source1\",\"scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"}}},{\"actor_ref\":{\"identity\":\"ACTOR-1\",\"owner\":\"actor-owner\",\"revision\":\"actor1\",\"scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"}},\"artifact_ref\":null,\"binding\":{\"HARNESS_contract_ref\":{\"identity\":\"HARNESS-CONTRACT\",\"owner\":\"HARNESS\",\"revision\":\"h1\",\"scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"}},\"project_scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"},\"requirement_ref\":{\"identity\":\"R\",\"owner\":\"requirement-owner\",\"revision\":\"r1\",\"scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"}},\"semantic_contract_ref\":{\"identity\":\"MEANING-T1\",\"owner\":\"BRAIN\",\"revision\":\"m1\",\"scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"}},\"template_ref\":{\"identity\":\"T1\",\"owner\":\"BRAIN\",\"revision\":\"v1\",\"scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"}}},\"correlation_ref\":{\"identity\":\"CORRELATION-1\",\"owner\":\"OS-original-owner\",\"revision\":\"c1\",\"scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"}},\"event_ref\":{\"identity\":\"EVENT-4\",\"owner\":\"OS-original-owner\",\"revision\":\"e1\",\"scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"}},\"nonrelated_basis\":{\"reason\":\"原N/A判断の対象義務では具体設計成果と対検証を適用しない原理由。未供給をN/Aにした理由ではない。\",\"source_ref\":{\"identity\":\"SOURCE-EVENTS\",\"owner\":\"OS-original-owner\",\"revision\":\"source1\",\"scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"}}},\"obligation_ref\":{\"identity\":\"U1\",\"owner\":\"OS-original-owner\",\"revision\":\"u1\",\"scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"}},\"original_state\":\"synthetic source supplied, no completion asserted\",\"pair_ref\":null,\"record_kind\":\"NA\",\"source_ref\":{\"identity\":\"SOURCE-EVENTS\",\"owner\":\"OS-original-owner\",\"revision\":\"source1\",\"scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"}}},{\"actor_ref\":{\"identity\":\"ACTOR-1\",\"owner\":\"actor-owner\",\"revision\":\"actor1\",\"scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"}},\"artifact_ref\":{\"identity\":\"D-C1\",\"owner\":\"design-owner\",\"revision\":\"d1\",\"scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"}},\"binding\":{\"HARNESS_contract_ref\":{\"identity\":\"HARNESS-CONTRACT\",\"owner\":\"HARNESS\",\"revision\":\"h1\",\"scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"}},\"project_scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"},\"requirement_ref\":{\"identity\":\"R\",\"owner\":\"requirement-owner\",\"revision\":\"r1\",\"scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"}},\"semantic_contract_ref\":{\"identity\":\"MEANING-T1\",\"owner\":\"BRAIN\",\"revision\":\"m1\",\"scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"}},\"template_ref\":{\"identity\":\"T1\",\"owner\":\"BRAIN\",\"revision\":\"v1\",\"scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"}}},\"correlation_ref\":{\"identity\":\"CORRELATION-1\",\"owner\":\"OS-original-owner\",\"revision\":\"c1\",\"scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"}},\"event_ref\":{\"identity\":\"EVENT-5\",\"owner\":\"OS-original-owner\",\"revision\":\"e1\",\"scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"}},\"nonrelated_basis\":null,\"obligation_ref\":{\"identity\":\"C1\",\"owner\":\"OS-original-owner\",\"revision\":\"c1\",\"scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"}},\"original_state\":\"synthetic source supplied, no completion asserted\",\"pair_ref\":{\"identity\":\"V-C1\",\"owner\":\"oracle-owner\",\"revision\":\"o1\",\"scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"}},\"record_kind\":\"Backflow\",\"source_ref\":{\"identity\":\"SOURCE-EVENTS\",\"owner\":\"OS-original-owner\",\"revision\":\"source1\",\"scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"}}},{\"actor_ref\":{\"identity\":\"ACTOR-1\",\"owner\":\"actor-owner\",\"revision\":\"actor1\",\"scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"}},\"artifact_ref\":{\"identity\":\"D-S1\",\"owner\":\"design-owner\",\"revision\":\"d1\",\"scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"}},\"binding\":{\"HARNESS_contract_ref\":{\"identity\":\"HARNESS-CONTRACT\",\"owner\":\"HARNESS\",\"revision\":\"h1\",\"scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"}},\"project_scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"},\"requirement_ref\":{\"identity\":\"R\",\"owner\":\"requirement-owner\",\"revision\":\"r1\",\"scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"}},\"semantic_contract_ref\":{\"identity\":\"MEANING-T1\",\"owner\":\"BRAIN\",\"revision\":\"m1\",\"scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"}},\"template_ref\":{\"identity\":\"T1\",\"owner\":\"BRAIN\",\"revision\":\"v1\",\"scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"}}},\"correlation_ref\":{\"identity\":\"CORRELATION-1\",\"owner\":\"OS-original-owner\",\"revision\":\"c1\",\"scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"}},\"event_ref\":{\"identity\":\"EVENT-6\",\"owner\":\"OS-original-owner\",\"revision\":\"e1\",\"scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"}},\"nonrelated_basis\":null,\"obligation_ref\":{\"identity\":\"S1\",\"owner\":\"OS-original-owner\",\"revision\":\"s1\",\"scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"}},\"original_state\":\"synthetic source supplied, no completion asserted\",\"pair_ref\":{\"identity\":\"V-S1\",\"owner\":\"oracle-owner\",\"revision\":\"o1\",\"scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"}},\"record_kind\":\"design\",\"source_ref\":{\"identity\":\"SOURCE-EVENTS\",\"owner\":\"OS-original-owner\",\"revision\":\"source1\",\"scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"}}},{\"actor_ref\":{\"identity\":\"ACTOR-1\",\"owner\":\"actor-owner\",\"revision\":\"actor1\",\"scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"}},\"artifact_ref\":{\"identity\":\"D-U1\",\"owner\":\"design-owner\",\"revision\":\"d1\",\"scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"}},\"binding\":{\"HARNESS_contract_ref\":{\"identity\":\"HARNESS-CONTRACT\",\"owner\":\"HARNESS\",\"revision\":\"h1\",\"scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"}},\"project_scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"},\"requirement_ref\":{\"identity\":\"R\",\"owner\":\"requirement-owner\",\"revision\":\"r1\",\"scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"}},\"semantic_contract_ref\":{\"identity\":\"MEANING-T1\",\"owner\":\"BRAIN\",\"revision\":\"m1\",\"scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"}},\"template_ref\":{\"identity\":\"T1\",\"owner\":\"BRAIN\",\"revision\":\"v1\",\"scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"}}},\"correlation_ref\":{\"identity\":\"CORRELATION-1\",\"owner\":\"OS-original-owner\",\"revision\":\"c1\",\"scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"}},\"event_ref\":{\"identity\":\"EVENT-7\",\"owner\":\"OS-original-owner\",\"revision\":\"e1\",\"scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"}},\"nonrelated_basis\":null,\"obligation_ref\":{\"identity\":\"U1\",\"owner\":\"OS-original-owner\",\"revision\":\"u1\",\"scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"}},\"original_state\":\"synthetic source supplied, no completion asserted\",\"pair_ref\":{\"identity\":\"V-U1\",\"owner\":\"oracle-owner\",\"revision\":\"o1\",\"scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"}},\"record_kind\":\"finding\",\"source_ref\":{\"identity\":\"SOURCE-EVENTS\",\"owner\":\"OS-original-owner\",\"revision\":\"source1\",\"scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"}}},{\"actor_ref\":{\"identity\":\"ACTOR-1\",\"owner\":\"actor-owner\",\"revision\":\"actor1\",\"scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"}},\"artifact_ref\":{\"identity\":\"D-C1\",\"owner\":\"design-owner\",\"revision\":\"d1\",\"scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"}},\"binding\":{\"HARNESS_contract_ref\":{\"identity\":\"HARNESS-CONTRACT\",\"owner\":\"HARNESS\",\"revision\":\"h1\",\"scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"}},\"project_scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"},\"requirement_ref\":{\"identity\":\"R\",\"owner\":\"requirement-owner\",\"revision\":\"r1\",\"scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"}},\"semantic_contract_ref\":{\"identity\":\"MEANING-T1\",\"owner\":\"BRAIN\",\"revision\":\"m1\",\"scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"}},\"template_ref\":{\"identity\":\"T1\",\"owner\":\"BRAIN\",\"revision\":\"v1\",\"scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"}}},\"correlation_ref\":{\"identity\":\"CORRELATION-1\",\"owner\":\"OS-original-owner\",\"revision\":\"c1\",\"scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"}},\"event_ref\":{\"identity\":\"EVENT-8\",\"owner\":\"OS-original-owner\",\"revision\":\"e1\",\"scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"}},\"nonrelated_basis\":null,\"obligation_ref\":{\"identity\":\"C1\",\"owner\":\"OS-original-owner\",\"revision\":\"c1\",\"scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"}},\"original_state\":\"synthetic source supplied, no completion asserted\",\"pair_ref\":{\"identity\":\"V-C1\",\"owner\":\"oracle-owner\",\"revision\":\"o1\",\"scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"}},\"record_kind\":\"rework\",\"source_ref\":{\"identity\":\"SOURCE-EVENTS\",\"owner\":\"OS-original-owner\",\"revision\":\"source1\",\"scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"}}},{\"actor_ref\":{\"identity\":\"ACTOR-1\",\"owner\":\"actor-owner\",\"revision\":\"actor1\",\"scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"}},\"artifact_ref\":{\"identity\":\"D-S1\",\"owner\":\"design-owner\",\"revision\":\"d1\",\"scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"}},\"binding\":{\"HARNESS_contract_ref\":{\"identity\":\"HARNESS-CONTRACT\",\"owner\":\"HARNESS\",\"revision\":\"h1\",\"scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"}},\"project_scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"},\"requirement_ref\":{\"identity\":\"R\",\"owner\":\"requirement-owner\",\"revision\":\"r1\",\"scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"}},\"semantic_contract_ref\":{\"identity\":\"MEANING-T1\",\"owner\":\"BRAIN\",\"revision\":\"m1\",\"scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"}},\"template_ref\":{\"identity\":\"T1\",\"owner\":\"BRAIN\",\"revision\":\"v1\",\"scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"}}},\"correlation_ref\":{\"identity\":\"CORRELATION-1\",\"owner\":\"OS-original-owner\",\"revision\":\"c1\",\"scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"}},\"event_ref\":{\"identity\":\"EVENT-9\",\"owner\":\"OS-original-owner\",\"revision\":\"e1\",\"scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"}},\"nonrelated_basis\":null,\"obligation_ref\":{\"identity\":\"S1\",\"owner\":\"OS-original-owner\",\"revision\":\"s1\",\"scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"}},\"original_state\":\"synthetic source supplied, no completion asserted\",\"pair_ref\":{\"identity\":\"V-S1\",\"owner\":\"oracle-owner\",\"revision\":\"o1\",\"scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"}},\"record_kind\":\"acceptance\",\"source_ref\":{\"identity\":\"SOURCE-EVENTS\",\"owner\":\"OS-original-owner\",\"revision\":\"source1\",\"scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"}}},{\"actor_ref\":{\"identity\":\"ACTOR-1\",\"owner\":\"actor-owner\",\"revision\":\"actor1\",\"scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"}},\"artifact_ref\":{\"identity\":\"D-U1\",\"owner\":\"design-owner\",\"revision\":\"d1\",\"scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"}},\"binding\":{\"HARNESS_contract_ref\":{\"identity\":\"HARNESS-CONTRACT\",\"owner\":\"HARNESS\",\"revision\":\"h1\",\"scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"}},\"project_scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"},\"requirement_ref\":{\"identity\":\"R\",\"owner\":\"requirement-owner\",\"revision\":\"r1\",\"scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"}},\"semantic_contract_ref\":{\"identity\":\"MEANING-T1\",\"owner\":\"BRAIN\",\"revision\":\"m1\",\"scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"}},\"template_ref\":{\"identity\":\"T1\",\"owner\":\"BRAIN\",\"revision\":\"v1\",\"scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"}}},\"correlation_ref\":{\"identity\":\"CORRELATION-1\",\"owner\":\"OS-original-owner\",\"revision\":\"c1\",\"scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"}},\"event_ref\":{\"identity\":\"EVENT-10\",\"owner\":\"OS-original-owner\",\"revision\":\"e1\",\"scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"}},\"nonrelated_basis\":null,\"obligation_ref\":{\"identity\":\"U1\",\"owner\":\"OS-original-owner\",\"revision\":\"u1\",\"scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"}},\"original_state\":\"synthetic source supplied, no completion asserted\",\"pair_ref\":{\"identity\":\"V-U1\",\"owner\":\"oracle-owner\",\"revision\":\"o1\",\"scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"}},\"record_kind\":\"operation-result\",\"source_ref\":{\"identity\":\"SOURCE-EVENTS\",\"owner\":\"OS-original-owner\",\"revision\":\"source1\",\"scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"}}}],\"kind_obligations\":[{\"artifact_ref\":{\"identity\":\"D-U1\",\"owner\":\"design-owner\",\"revision\":\"d1\",\"scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"}},\"kind\":\"unit\",\"pair_ref\":{\"identity\":\"V-U1\",\"owner\":\"oracle-owner\",\"revision\":\"o1\",\"scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"}},\"ref\":{\"identity\":\"U1\",\"owner\":\"OS-original-owner\",\"revision\":\"u1\",\"scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"}},\"state\":\"not_evaluated\"},{\"artifact_ref\":{\"identity\":\"D-C1\",\"owner\":\"design-owner\",\"revision\":\"d1\",\"scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"}},\"kind\":\"connection\",\"pair_ref\":{\"identity\":\"V-C1\",\"owner\":\"oracle-owner\",\"revision\":\"o1\",\"scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"}},\"ref\":{\"identity\":\"C1\",\"owner\":\"OS-original-owner\",\"revision\":\"c1\",\"scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"}},\"state\":\"not_evaluated\"},{\"artifact_ref\":{\"identity\":\"D-S1\",\"owner\":\"design-owner\",\"revision\":\"d1\",\"scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"}},\"kind\":\"composite\",\"pair_ref\":{\"identity\":\"V-S1\",\"owner\":\"oracle-owner\",\"revision\":\"o1\",\"scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"}},\"ref\":{\"identity\":\"S1\",\"owner\":\"OS-original-owner\",\"revision\":\"s1\",\"scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"}},\"state\":\"not_evaluated\"}]},\"record_kind\":\"original_trace_section\",\"section_key\":\"F03\",\"subject_ref\":{\"identity\":\"FIXTURE-F03-OS-original-owner\",\"owner\":\"OS-original-owner\",\"revision\":\"source1\",\"scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"}}}]}",
+    "utf8_sha256": "802e5d35fa8a6838d361aad35c8ad7e7f2b2d55aa39c49bf30ad8aa9f7240c70",
+    "utf8_byte_length": 21420
+  },
+  "target_source2_literal": {
+    "id": "raw-02",
+    "source_json_utf8": "{\"records\":[{\"owner\":\"OS-original-owner\",\"payload\":{\"events\":[{\"actor_ref\":{\"identity\":\"ACTOR-1\",\"owner\":\"actor-owner\",\"revision\":\"actor1\",\"scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"}},\"artifact_ref\":{\"identity\":\"D-U1\",\"owner\":\"design-owner\",\"revision\":\"d1\",\"scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"}},\"binding\":{\"HARNESS_contract_ref\":{\"identity\":\"HARNESS-CONTRACT\",\"owner\":\"HARNESS\",\"revision\":\"h1\",\"scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"}},\"project_scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"},\"requirement_ref\":{\"identity\":\"R\",\"owner\":\"requirement-owner\",\"revision\":\"r1\",\"scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"}},\"semantic_contract_ref\":{\"identity\":\"MEANING-T1\",\"owner\":\"BRAIN\",\"revision\":\"m1\",\"scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"}},\"template_ref\":{\"identity\":\"T1\",\"owner\":\"BRAIN\",\"revision\":\"v1\",\"scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"}}},\"correlation_ref\":{\"identity\":\"CORRELATION-1\",\"owner\":\"OS-original-owner\",\"revision\":\"c1\",\"scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"}},\"event_ref\":{\"identity\":\"EVENT-1\",\"owner\":\"OS-original-owner\",\"revision\":\"e1\",\"scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"}},\"nonrelated_basis\":null,\"obligation_ref\":{\"identity\":\"U1\",\"owner\":\"OS-original-owner\",\"revision\":\"u1\",\"scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"}},\"original_state\":\"synthetic source supplied, no completion asserted\",\"pair_ref\":{\"identity\":\"V-U1\",\"owner\":\"oracle-owner\",\"revision\":\"o1\",\"scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"}},\"record_kind\":\"application\",\"source_ref\":{\"identity\":\"SOURCE-EVENTS\",\"owner\":\"OS-original-owner\",\"revision\":\"source1\",\"scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"}}},{\"actor_ref\":{\"identity\":\"ACTOR-1\",\"owner\":\"actor-owner\",\"revision\":\"actor1\",\"scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"}},\"artifact_ref\":{\"identity\":\"D-C1\",\"owner\":\"design-owner\",\"revision\":\"d1\",\"scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"}},\"binding\":{\"HARNESS_contract_ref\":{\"identity\":\"HARNESS-CONTRACT\",\"owner\":\"HARNESS\",\"revision\":\"h1\",\"scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"}},\"project_scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"},\"requirement_ref\":{\"identity\":\"R\",\"owner\":\"requirement-owner\",\"revision\":\"r1\",\"scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"}},\"semantic_contract_ref\":{\"identity\":\"MEANING-T1\",\"owner\":\"BRAIN\",\"revision\":\"m1\",\"scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"}},\"template_ref\":{\"identity\":\"T1\",\"owner\":\"BRAIN\",\"revision\":\"v1\",\"scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"}}},\"correlation_ref\":{\"identity\":\"CORRELATION-1\",\"owner\":\"OS-original-owner\",\"revision\":\"c1\",\"scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"}},\"event_ref\":{\"identity\":\"EVENT-2\",\"owner\":\"OS-original-owner\",\"revision\":\"e1\",\"scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"}},\"nonrelated_basis\":null,\"obligation_ref\":{\"identity\":\"C1\",\"owner\":\"OS-original-owner\",\"revision\":\"c1\",\"scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"}},\"original_state\":\"synthetic source supplied, no completion asserted\",\"pair_ref\":{\"identity\":\"V-C1\",\"owner\":\"oracle-owner\",\"revision\":\"o1\",\"scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"}},\"record_kind\":\"obligation-generation\",\"source_ref\":{\"identity\":\"SOURCE-EVENTS\",\"owner\":\"OS-original-owner\",\"revision\":\"source1\",\"scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"}}},{\"actor_ref\":{\"identity\":\"ACTOR-1\",\"owner\":\"actor-owner\",\"revision\":\"actor1\",\"scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"}},\"artifact_ref\":{\"identity\":\"D-S1\",\"owner\":\"design-owner\",\"revision\":\"d1\",\"scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"}},\"binding\":{\"HARNESS_contract_ref\":{\"identity\":\"HARNESS-CONTRACT\",\"owner\":\"HARNESS\",\"revision\":\"h1\",\"scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"}},\"project_scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"},\"requirement_ref\":{\"identity\":\"R\",\"owner\":\"requirement-owner\",\"revision\":\"r1\",\"scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"}},\"semantic_contract_ref\":{\"identity\":\"MEANING-T1\",\"owner\":\"BRAIN\",\"revision\":\"m1\",\"scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"}},\"template_ref\":{\"identity\":\"T1\",\"owner\":\"BRAIN\",\"revision\":\"v1\",\"scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"}}},\"correlation_ref\":{\"identity\":\"CORRELATION-1\",\"owner\":\"OS-original-owner\",\"revision\":\"c1\",\"scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"}},\"event_ref\":{\"identity\":\"EVENT-3\",\"owner\":\"OS-original-owner\",\"revision\":\"e1\",\"scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"}},\"nonrelated_basis\":null,\"obligation_ref\":{\"identity\":\"S1\",\"owner\":\"OS-original-owner\",\"revision\":\"s1\",\"scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"}},\"original_state\":\"synthetic source supplied, no completion asserted\",\"pair_ref\":{\"identity\":\"V-S1\",\"owner\":\"oracle-owner\",\"revision\":\"o1\",\"scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"}},\"record_kind\":\"obligation-discharge\",\"source_ref\":{\"identity\":\"SOURCE-EVENTS\",\"owner\":\"OS-original-owner\",\"revision\":\"source1\",\"scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"}}},{\"actor_ref\":{\"identity\":\"ACTOR-1\",\"owner\":\"actor-owner\",\"revision\":\"actor1\",\"scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"}},\"artifact_ref\":null,\"binding\":{\"HARNESS_contract_ref\":{\"identity\":\"HARNESS-CONTRACT\",\"owner\":\"HARNESS\",\"revision\":\"h1\",\"scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"}},\"project_scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"},\"requirement_ref\":{\"identity\":\"R\",\"owner\":\"requirement-owner\",\"revision\":\"r1\",\"scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"}},\"semantic_contract_ref\":{\"identity\":\"MEANING-T1\",\"owner\":\"BRAIN\",\"revision\":\"m1\",\"scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"}},\"template_ref\":{\"identity\":\"T1\",\"owner\":\"BRAIN\",\"revision\":\"v1\",\"scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"}}},\"correlation_ref\":{\"identity\":\"CORRELATION-1\",\"owner\":\"OS-original-owner\",\"revision\":\"c1\",\"scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"}},\"event_ref\":{\"identity\":\"EVENT-4\",\"owner\":\"OS-original-owner\",\"revision\":\"e1\",\"scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"}},\"nonrelated_basis\":{\"reason\":\"原N/A判断の対象義務では具体設計成果と対検証を適用しない原理由。未供給をN/Aにした理由ではない。\",\"source_ref\":{\"identity\":\"SOURCE-EVENTS\",\"owner\":\"OS-original-owner\",\"revision\":\"source1\",\"scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"}}},\"obligation_ref\":{\"identity\":\"U1\",\"owner\":\"OS-original-owner\",\"revision\":\"u1\",\"scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"}},\"original_state\":\"synthetic source supplied, no completion asserted\",\"pair_ref\":null,\"record_kind\":\"NA\",\"source_ref\":{\"identity\":\"SOURCE-EVENTS\",\"owner\":\"OS-original-owner\",\"revision\":\"source1\",\"scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"}}},{\"actor_ref\":{\"identity\":\"ACTOR-1\",\"owner\":\"actor-owner\",\"revision\":\"actor1\",\"scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"}},\"artifact_ref\":{\"identity\":\"D-C1\",\"owner\":\"design-owner\",\"revision\":\"d1\",\"scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"}},\"binding\":{\"HARNESS_contract_ref\":{\"identity\":\"HARNESS-CONTRACT\",\"owner\":\"HARNESS\",\"revision\":\"h1\",\"scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"}},\"project_scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"},\"requirement_ref\":{\"identity\":\"R\",\"owner\":\"requirement-owner\",\"revision\":\"r1\",\"scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"}},\"semantic_contract_ref\":{\"identity\":\"MEANING-T1\",\"owner\":\"BRAIN\",\"revision\":\"m1\",\"scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"}},\"template_ref\":{\"identity\":\"T1\",\"owner\":\"BRAIN\",\"revision\":\"v1\",\"scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"}}},\"correlation_ref\":{\"identity\":\"CORRELATION-1\",\"owner\":\"OS-original-owner\",\"revision\":\"c1\",\"scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"}},\"event_ref\":{\"identity\":\"EVENT-5\",\"owner\":\"OS-original-owner\",\"revision\":\"e1\",\"scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"}},\"nonrelated_basis\":null,\"obligation_ref\":{\"identity\":\"C1\",\"owner\":\"OS-original-owner\",\"revision\":\"c1\",\"scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"}},\"original_state\":\"synthetic source supplied, no completion asserted\",\"pair_ref\":{\"identity\":\"V-C1\",\"owner\":\"oracle-owner\",\"revision\":\"o1\",\"scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"}},\"record_kind\":\"Backflow\",\"source_ref\":{\"identity\":\"SOURCE-EVENTS\",\"owner\":\"OS-original-owner\",\"revision\":\"source1\",\"scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"}}},{\"actor_ref\":{\"identity\":\"ACTOR-1\",\"owner\":\"actor-owner\",\"revision\":\"actor1\",\"scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"}},\"artifact_ref\":{\"identity\":\"D-S1\",\"owner\":\"design-owner\",\"revision\":\"d1\",\"scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"}},\"binding\":{\"HARNESS_contract_ref\":{\"identity\":\"HARNESS-CONTRACT\",\"owner\":\"HARNESS\",\"revision\":\"h1\",\"scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"}},\"project_scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"},\"requirement_ref\":{\"identity\":\"R\",\"owner\":\"requirement-owner\",\"revision\":\"r1\",\"scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"}},\"semantic_contract_ref\":{\"identity\":\"MEANING-T1\",\"owner\":\"BRAIN\",\"revision\":\"m1\",\"scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"}},\"template_ref\":{\"identity\":\"T1\",\"owner\":\"BRAIN\",\"revision\":\"v1\",\"scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"}}},\"correlation_ref\":{\"identity\":\"CORRELATION-1\",\"owner\":\"OS-original-owner\",\"revision\":\"c1\",\"scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"}},\"event_ref\":{\"identity\":\"EVENT-6\",\"owner\":\"OS-original-owner\",\"revision\":\"e1\",\"scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"}},\"nonrelated_basis\":null,\"obligation_ref\":{\"identity\":\"S1\",\"owner\":\"OS-original-owner\",\"revision\":\"s1\",\"scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"}},\"original_state\":\"synthetic source supplied, no completion asserted\",\"pair_ref\":{\"identity\":\"V-S1\",\"owner\":\"oracle-owner\",\"revision\":\"o1\",\"scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"}},\"record_kind\":\"design\",\"source_ref\":{\"identity\":\"SOURCE-EVENTS\",\"owner\":\"OS-original-owner\",\"revision\":\"source1\",\"scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"}}},{\"actor_ref\":{\"identity\":\"ACTOR-1\",\"owner\":\"actor-owner\",\"revision\":\"actor1\",\"scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"}},\"artifact_ref\":{\"identity\":\"D-U1\",\"owner\":\"design-owner\",\"revision\":\"d1\",\"scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"}},\"binding\":{\"HARNESS_contract_ref\":{\"identity\":\"HARNESS-CONTRACT\",\"owner\":\"HARNESS\",\"revision\":\"h1\",\"scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"}},\"project_scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"},\"requirement_ref\":{\"identity\":\"R\",\"owner\":\"requirement-owner\",\"revision\":\"r1\",\"scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"}},\"semantic_contract_ref\":{\"identity\":\"MEANING-T1\",\"owner\":\"BRAIN\",\"revision\":\"m1\",\"scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"}},\"template_ref\":{\"identity\":\"T1\",\"owner\":\"BRAIN\",\"revision\":\"v1\",\"scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"}}},\"correlation_ref\":{\"identity\":\"CORRELATION-1\",\"owner\":\"OS-original-owner\",\"revision\":\"c1\",\"scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"}},\"event_ref\":{\"identity\":\"EVENT-7\",\"owner\":\"OS-original-owner\",\"revision\":\"e1\",\"scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"}},\"nonrelated_basis\":null,\"obligation_ref\":{\"identity\":\"U1\",\"owner\":\"OS-original-owner\",\"revision\":\"u1\",\"scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"}},\"original_state\":\"synthetic source supplied, no completion asserted\",\"pair_ref\":{\"identity\":\"V-U1\",\"owner\":\"oracle-owner\",\"revision\":\"o1\",\"scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"}},\"record_kind\":\"finding\",\"source_ref\":{\"identity\":\"SOURCE-EVENTS\",\"owner\":\"OS-original-owner\",\"revision\":\"source1\",\"scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"}}},{\"actor_ref\":{\"identity\":\"ACTOR-1\",\"owner\":\"actor-owner\",\"revision\":\"actor1\",\"scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"}},\"artifact_ref\":{\"identity\":\"D-C1\",\"owner\":\"design-owner\",\"revision\":\"d1\",\"scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"}},\"binding\":{\"HARNESS_contract_ref\":{\"identity\":\"HARNESS-CONTRACT\",\"owner\":\"HARNESS\",\"revision\":\"h1\",\"scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"}},\"project_scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"},\"requirement_ref\":{\"identity\":\"R\",\"owner\":\"requirement-owner\",\"revision\":\"r1\",\"scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"}},\"semantic_contract_ref\":{\"identity\":\"MEANING-T1\",\"owner\":\"BRAIN\",\"revision\":\"m1\",\"scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"}},\"template_ref\":{\"identity\":\"T1\",\"owner\":\"BRAIN\",\"revision\":\"v1\",\"scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"}}},\"correlation_ref\":{\"identity\":\"CORRELATION-1\",\"owner\":\"OS-original-owner\",\"revision\":\"c1\",\"scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"}},\"event_ref\":{\"identity\":\"EVENT-8\",\"owner\":\"OS-original-owner\",\"revision\":\"e1\",\"scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"}},\"nonrelated_basis\":null,\"obligation_ref\":{\"identity\":\"C1\",\"owner\":\"OS-original-owner\",\"revision\":\"c1\",\"scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"}},\"original_state\":\"synthetic source supplied, no completion asserted\",\"pair_ref\":{\"identity\":\"V-C1\",\"owner\":\"oracle-owner\",\"revision\":\"o1\",\"scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"}},\"record_kind\":\"rework\",\"source_ref\":{\"identity\":\"SOURCE-EVENTS\",\"owner\":\"OS-original-owner\",\"revision\":\"source1\",\"scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"}}},{\"actor_ref\":{\"identity\":\"ACTOR-1\",\"owner\":\"actor-owner\",\"revision\":\"actor1\",\"scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"}},\"artifact_ref\":{\"identity\":\"D-S1\",\"owner\":\"design-owner\",\"revision\":\"d1\",\"scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"}},\"binding\":{\"HARNESS_contract_ref\":{\"identity\":\"HARNESS-CONTRACT\",\"owner\":\"HARNESS\",\"revision\":\"h1\",\"scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"}},\"project_scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"},\"requirement_ref\":{\"identity\":\"R\",\"owner\":\"requirement-owner\",\"revision\":\"r1\",\"scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"}},\"semantic_contract_ref\":{\"identity\":\"MEANING-T1\",\"owner\":\"BRAIN\",\"revision\":\"m1\",\"scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"}},\"template_ref\":{\"identity\":\"T1\",\"owner\":\"BRAIN\",\"revision\":\"v1\",\"scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"}}},\"correlation_ref\":{\"identity\":\"CORRELATION-1\",\"owner\":\"OS-original-owner\",\"revision\":\"c1\",\"scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"}},\"event_ref\":{\"identity\":\"EVENT-9\",\"owner\":\"OS-original-owner\",\"revision\":\"e1\",\"scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"}},\"nonrelated_basis\":null,\"obligation_ref\":{\"identity\":\"S1\",\"owner\":\"OS-original-owner\",\"revision\":\"s1\",\"scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"}},\"original_state\":\"synthetic source supplied, no completion asserted\",\"pair_ref\":{\"identity\":\"V-S1\",\"owner\":\"oracle-owner\",\"revision\":\"o1\",\"scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"}},\"record_kind\":\"acceptance\",\"source_ref\":{\"identity\":\"SOURCE-EVENTS\",\"owner\":\"OS-original-owner\",\"revision\":\"source1\",\"scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"}}},{\"actor_ref\":{\"identity\":\"ACTOR-1\",\"owner\":\"actor-owner\",\"revision\":\"actor1\",\"scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"}},\"artifact_ref\":{\"identity\":\"D-U1\",\"owner\":\"design-owner\",\"revision\":\"d1\",\"scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"}},\"binding\":{\"HARNESS_contract_ref\":{\"identity\":\"HARNESS-CONTRACT\",\"owner\":\"HARNESS\",\"revision\":\"h1\",\"scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"}},\"project_scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"},\"requirement_ref\":{\"identity\":\"R\",\"owner\":\"requirement-owner\",\"revision\":\"r1\",\"scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"}},\"semantic_contract_ref\":{\"identity\":\"MEANING-T1\",\"owner\":\"BRAIN\",\"revision\":\"m1\",\"scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"}},\"template_ref\":{\"identity\":\"T1\",\"owner\":\"BRAIN\",\"revision\":\"v1\",\"scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"}}},\"correlation_ref\":{\"identity\":\"CORRELATION-1\",\"owner\":\"OS-original-owner\",\"revision\":\"c1\",\"scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"}},\"event_ref\":{\"identity\":\"EVENT-10\",\"owner\":\"OS-original-owner\",\"revision\":\"e1\",\"scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"}},\"nonrelated_basis\":null,\"obligation_ref\":{\"identity\":\"U1\",\"owner\":\"OS-original-owner\",\"revision\":\"u1\",\"scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"}},\"original_state\":\"synthetic source supplied, no completion asserted\",\"pair_ref\":{\"identity\":\"V-U1\",\"owner\":\"oracle-owner\",\"revision\":\"o1\",\"scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"}},\"record_kind\":\"operation-result\",\"source_ref\":{\"identity\":\"SOURCE-EVENTS\",\"owner\":\"OS-original-owner\",\"revision\":\"source1\",\"scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"}}}],\"kind_obligations\":[{\"artifact_ref\":{\"identity\":\"D-U1\",\"owner\":\"design-owner\",\"revision\":\"d1\",\"scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"}},\"kind\":\"unit\",\"pair_ref\":{\"identity\":\"V-U1\",\"owner\":\"oracle-owner\",\"revision\":\"o1\",\"scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"}},\"ref\":{\"identity\":\"U1\",\"owner\":\"OS-original-owner\",\"revision\":\"u1\",\"scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"}},\"state\":\"not_evaluated\"},{\"artifact_ref\":{\"identity\":\"D-C1\",\"owner\":\"design-owner\",\"revision\":\"d1\",\"scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"}},\"kind\":\"connection\",\"pair_ref\":{\"identity\":\"V-C1\",\"owner\":\"oracle-owner\",\"revision\":\"o1\",\"scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"}},\"ref\":{\"identity\":\"C1\",\"owner\":\"OS-original-owner\",\"revision\":\"c1\",\"scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"}},\"state\":\"not_evaluated\"},{\"artifact_ref\":{\"identity\":\"D-S1\",\"owner\":\"design-owner\",\"revision\":\"d1\",\"scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"}},\"kind\":\"composite\",\"pair_ref\":{\"identity\":\"V-S1\",\"owner\":\"oracle-owner\",\"revision\":\"o1\",\"scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"}},\"ref\":{\"identity\":\"S1\",\"owner\":\"OS-original-owner\",\"revision\":\"s1\",\"scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"}},\"state\":\"not_evaluated\"}]},\"record_kind\":\"original_trace_section\",\"section_key\":\"F03\",\"subject_ref\":{\"identity\":\"FIXTURE-F03-OS-original-owner\",\"owner\":\"OS-original-owner\",\"revision\":\"source1\",\"scope\":{\"environment\":\"synthetic-test\",\"project\":\"P\",\"tenant\":\"synthetic-T\"}}}]}",
+    "utf8_sha256": "bc3faf029a962221688674850abe93fd1b56002582b2de623515d6bd3bce5866",
+    "utf8_byte_length": 21401
+  },
+  "independent_owner_port_fixture": {
+    "header_raw_return": {
+      "source_ref": {
+        "identity": "SYNTHETIC-CORE-PUBLICATION-SOURCE",
+        "revision": "publication-A",
+        "scope": {
+          "project": "P",
+          "tenant": "synthetic-T",
+          "environment": "synthetic-test"
+        },
+        "owner": "CORE"
+      },
+      "subject_ref": {
+        "identity": "SYNTHETIC-CORE-PUBLICATION-SUBJECT",
+        "revision": "publication-A",
+        "scope": {
+          "project": "P",
+          "tenant": "synthetic-T",
+          "environment": "synthetic-test"
+        },
+        "owner": "CORE"
+      },
+      "owner": "CORE",
+      "qualification_ref": {
+        "identity": "SYNTHETIC-CORE-PUBLICATION-QUAL",
+        "revision": "publication-A",
+        "scope": {
+          "project": "P",
+          "tenant": "synthetic-T",
+          "environment": "synthetic-test"
+        },
+        "owner": "CORE"
+      },
+      "operation_source_ref": {
+        "identity": "SOURCE-F02-CORE",
+        "revision": "source1",
+        "scope": {
+          "project": "P",
+          "tenant": "synthetic-T",
+          "environment": "synthetic-test"
+        },
+        "owner": "CORE"
+      },
+      "operation_subject_ref": {
+        "identity": "FIXTURE-F02-CORE",
+        "revision": "source1",
+        "scope": {
+          "project": "P",
+          "tenant": "synthetic-T",
+          "environment": "synthetic-test"
+        },
+        "owner": "CORE"
+      }
+    },
+    "authority_raw_return": {
+      "qualifications": [
+        {
+          "ref": {
+            "identity": "SYNTHETIC-CORE-PUBLICATION-QUAL",
+            "revision": "publication-A",
+            "scope": {
+              "project": "P",
+              "tenant": "synthetic-T",
+              "environment": "synthetic-test"
+            },
+            "owner": "CORE"
+          },
+          "root_ref": {
+            "identity": "SYNTHETIC-CORE-PUBLICATION-ROOT",
+            "revision": "publication-A",
+            "scope": {
+              "project": "P",
+              "tenant": "synthetic-T",
+              "environment": "synthetic-test"
+            },
+            "owner": "CORE"
+          },
+          "source_ref": {
+            "identity": "SYNTHETIC-CORE-PUBLICATION-SOURCE",
+            "revision": "publication-A",
+            "scope": {
+              "project": "P",
+              "tenant": "synthetic-T",
+              "environment": "synthetic-test"
+            },
+            "owner": "CORE"
+          },
+          "owner": "CORE",
+          "subject_refs": [
+            {
+              "identity": "SYNTHETIC-CORE-PUBLICATION-SUBJECT",
+              "revision": "publication-A",
+              "scope": {
+                "project": "P",
+                "tenant": "synthetic-T",
+                "environment": "synthetic-test"
+              },
+              "owner": "CORE"
+            }
+          ],
+          "source_sha256": "06791fc34968101c32d526965c90a2abc83edaa0c2c3831f96717dae96f47b08"
+        }
+      ],
+      "qualification_roots": [
+        {
+          "ref": {
+            "identity": "SYNTHETIC-CORE-PUBLICATION-ROOT",
+            "revision": "publication-A",
+            "scope": {
+              "project": "P",
+              "tenant": "synthetic-T",
+              "environment": "synthetic-test"
+            },
+            "owner": "CORE"
+          },
+          "owner": "CORE",
+          "allowed_subject_refs": [
+            {
+              "identity": "SYNTHETIC-CORE-PUBLICATION-SUBJECT",
+              "revision": "publication-A",
+              "scope": {
+                "project": "P",
+                "tenant": "synthetic-T",
+                "environment": "synthetic-test"
+              },
+              "owner": "CORE"
+            }
+          ],
+          "allowed_source_ref": {
+            "identity": "SYNTHETIC-CORE-PUBLICATION-SOURCE",
+            "revision": "publication-A",
+            "scope": {
+              "project": "P",
+              "tenant": "synthetic-T",
+              "environment": "synthetic-test"
+            },
+            "owner": "CORE"
+          },
+          "allowed_source_sha256": "06791fc34968101c32d526965c90a2abc83edaa0c2c3831f96717dae96f47b08"
+        }
+      ]
+    },
+    "meaning_ja": "これらのopaque source/subject/qualification/root identityとprojectscopeは外部owner portの合成fixture原値。hash/path/旧operationroot/CoreRef6からidentityを生成するproduct規則ではない。operation両端は固定原operation資料と明示対応するfixture。CORE binding.product_scopeと当projectscopeは別roleであり同一視しない。独立rootの実trust/登録/資格供給成功は未観測。"
+  },
+  "binding_domain_validation_input": {
+    "tag": "native",
+    "raw": {
+      "binding": []
+    }
+  }
+}
