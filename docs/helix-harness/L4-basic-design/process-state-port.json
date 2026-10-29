@@ -463,6 +463,7 @@
       "id": "HARNESS-L4-003-B01",
       "requirement_ref": "HARNESS-L3-003-B01",
       "l9_ref": "HARNESS-L9-003-B01",
+      "oracle_ref": "HARNESS-L9-003-B01",
       "approved_requirement": {
         "id": "HARNESS-L3-003-B01",
         "parent": "HARNESS-L2-003",
@@ -557,6 +558,7 @@
       "id": "HARNESS-L4-003-F01",
       "requirement_ref": "HARNESS-L3-003-F01",
       "l9_ref": "HARNESS-L9-003-F01",
+      "oracle_ref": "HARNESS-L9-003-F01",
       "approved_requirement": {
         "id": "HARNESS-L3-003-F01",
         "parent": "HARNESS-L2-003",
@@ -649,6 +651,7 @@
       "id": "HARNESS-L4-003-F02",
       "requirement_ref": "HARNESS-L3-003-F02",
       "l9_ref": "HARNESS-L9-003-F02",
+      "oracle_ref": "HARNESS-L9-003-F02",
       "approved_requirement": {
         "id": "HARNESS-L3-003-F02",
         "parent": "HARNESS-L2-003",
@@ -696,6 +699,7 @@
       "id": "HARNESS-L4-003-F03",
       "requirement_ref": "HARNESS-L3-003-F03",
       "l9_ref": "HARNESS-L9-003-F03",
+      "oracle_ref": "HARNESS-L9-003-F03",
       "approved_requirement": {
         "id": "HARNESS-L3-003-F03",
         "parent": "HARNESS-L2-003",
@@ -1285,6 +1289,7 @@
       "id": "HARNESS-L4-003-F04",
       "requirement_ref": "HARNESS-L3-003-F04",
       "l9_ref": "HARNESS-L9-003-F04",
+      "oracle_ref": "HARNESS-L9-003-F04",
       "approved_requirement": {
         "id": "HARNESS-L3-003-F04",
         "parent": "HARNESS-L2-003",
@@ -1333,6 +1338,7 @@
       "id": "HARNESS-L4-003-F05",
       "requirement_ref": "HARNESS-L3-003-F05",
       "l9_ref": "HARNESS-L9-003-F05",
+      "oracle_ref": "HARNESS-L9-003-F05",
       "approved_requirement": {
         "id": "HARNESS-L3-003-F05",
         "parent": "HARNESS-L2-003",
@@ -1392,6 +1398,7 @@
       "id": "HARNESS-L4-003-N01",
       "requirement_ref": "HARNESS-L3-003-N01",
       "l9_ref": "HARNESS-L9-003-N01",
+      "oracle_ref": "HARNESS-L9-003-N01",
       "approved_requirement": {
         "id": "HARNESS-L3-003-N01",
         "parent": "HARNESS-L2-003",
