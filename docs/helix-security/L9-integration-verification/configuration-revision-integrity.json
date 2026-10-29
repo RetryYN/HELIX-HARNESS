@@ -87,28 +87,23 @@
       "selected_line_quotes": [
         {
           "line": 21,
-          "text": "`WorkerIsolationBroker`はcurrent descriptor admission、immutable wrapper execution、repository-owned runtime catalogが事前承認した",
-          "utf8_sha256": "b867e59a2fbd4590cfdaa6675c02792b6942e94a990ab5e5a66fb958530ddd1b"
+          "text": "`WorkerIsolationBroker`はcurrent descriptor admission、immutable wrapper execution、repository-owned runtime catalogが事前承認した"
         },
         {
           "line": 22,
-          "text": "backend/runtimeのexact path＋content digest、allowlisted input bytesを受け、repo外scratchへ",
-          "utf8_sha256": "90e3b565ec3548ef5100ee514e63237ff02eecdbcc186b9c32f0b5b1b78db44f"
+          "text": "backend/runtimeのexact path＋content digest、allowlisted input bytesを受け、repo外scratchへ"
         },
         {
           "line": 40,
-          "text": "| descriptor鮮度 | `isWorkerAdmissionCurrent` | 拒否済み／stale |",
-          "utf8_sha256": "352229f4cc9f1b343730ce2d519ffeeb226e3fddc915d63e5551e58d7d20543c"
+          "text": "| descriptor鮮度 | `isWorkerAdmissionCurrent` | 拒否済み／stale |"
         },
         {
           "line": 41,
-          "text": "| wrapper同一性 | `isWrapperLaunchExecution` | 未封印／複製／捏造execution |",
-          "utf8_sha256": "ad4b426664a6ebf62cd092f2dc96c6c4db76dea2e8fb803b03eb9cf169a3b99b"
+          "text": "| wrapper同一性 | `isWrapperLaunchExecution` | 未封印／複製／捏造execution |"
         },
         {
           "line": 43,
-          "text": "| Linux backend/runtime authority | 封印済みauthority capability＋exact content digest | Linux以外、欠落／複製／driftしたbackend/runtime |",
-          "utf8_sha256": "78a8c04b53e53232d26a2309b87952310387390d1dd27ef402a710c270d84265"
+          "text": "| Linux backend/runtime authority | 封印済みauthority capability＋exact content digest | Linux以外、欠落／複製／driftしたbackend/runtime |"
         }
       ],
       "reuse_class": "semantic_rederivation",
@@ -123,13 +118,11 @@
       "selected_line_quotes": [
         {
           "line": 21,
-          "text": "`WorkerIsolationPolicy`は、封印済みwrapper identityへtask sensitivity、write scope、egress policyを束縛する。",
-          "utf8_sha256": "115e4291b50c3230c92ac09703fe4edb4b7bad276f1cf4a1088d41367f1e868b"
+          "text": "`WorkerIsolationPolicy`は、封印済みwrapper identityへtask sensitivity、write scope、egress policyを束縛する。"
         },
         {
           "line": 38,
-          "text": "| policy attestor | wrapper object identity＋`origin_digest` | copied wrapper、secret／unknown、実token |",
-          "utf8_sha256": "ef86d2d9cff9788e4987dfa8ae25827d6bf1247c341dc58d9669915afd374cd6"
+          "text": "| policy attestor | wrapper object identity＋`origin_digest` | copied wrapper、secret／unknown、実token |"
         }
       ],
       "reuse_class": "semantic_rederivation",
@@ -42109,5 +42102,13 @@
   "completion": {
     "status": "unproven",
     "evidence": "366固定合成対照。実source/authority/設定採用・Hook実行/全scope/全coverage/実L9L10L11は未成立。"
+  },
+  "removed_materials": {
+    "decision_ref": "https://github.com/RetryYN/HELIX-HARNESS/issues/3510#issuecomment-6447665479",
+    "git_commit": "1b91e01d30ab40b5023b06d72f1fd83039ce7590",
+    "path": "docs/helix-security/L9-integration-verification/configuration-revision-integrity.json",
+    "meaning": "実装前L9軽量化（#3510）により、文書側で照合用に付与された選択行引用のメタデータdigest（legacy_comparison[*].selected_line_quotes[*].utf8_sha256 7件）を撤去し、反例入力（cases[0..365].given.input 全366件、fixture値そのものであるdigest/policy_digest 3,220件を含む）、期待出力（cases[0..365].expected_proposal 全366件およびfindings[*].pointer 396件）、ならびに固定source pin全14件（source_pins 12件、legacy_comparison[*].file_sha256 2件）を完全保持した。",
+    "removed_key_rule": "legacy_comparison[*].selected_line_quotes[*].utf8_sha256を撤去。",
+    "use_boundary": "撤去した文書側照合用メタデータdigestを完了証拠に使わない。結合検証は保持されたcases[0..365].given.input、expected_proposal、findings[*].pointer、およびsource pinを用いて検証する。"
   }
 }
