@@ -77,12 +77,12 @@
         "L9": 12
       },
       "failure_count": 136,
-      "revision": "4f32952b9b070a9ef2c9064a3a27b71a8e342fc6"
+      "revision": "73c8a26c62b3c5d4e24d603d274d315651ea62a8"
     },
     "latest_main_trial": {
       "base_revision": "821a655ad6949b2a7a5344b26e3c170cccc353a6",
-      "revision": "084dd063c29db3128f97d74febdc0c3c5755cdb1",
-      "candidate_revision": "4f32952b9b070a9ef2c9064a3a27b71a8e342fc6",
+      "revision": "b83847c48d2724a3e48c62cb62617d74ca398d66",
+      "candidate_revision": "73c8a26c62b3c5d4e24d603d274d315651ea62a8",
       "overall": "FAIL",
       "pair_l4_l9": "PASS",
       "pair_l5_l8": "PASS",
@@ -136,7 +136,7 @@
     },
     "interpretation": "最新main試行でも同一hashの旧freezeを読み取り実行。mechanical FAIL、前回と同じ件数・理由で、既存freeze recordは変更していない。",
     "latest_main_trial": {
-      "revision": "084dd063c29db3128f97d74febdc0c3c5755cdb1",
+      "revision": "b83847c48d2724a3e48c62cb62617d74ca398d66",
       "all_mechanical_matched": false,
       "CHK-PIN-SHA256": "not_evaluated:no_pinned_inputs_found",
       "CHK-JSON-POINTER": {
@@ -177,8 +177,8 @@
     ],
     "fresh_r1_trial": {
       "base_revision": "821a655ad6949b2a7a5344b26e3c170cccc353a6",
-      "trial_revision": "084dd063c29db3128f97d74febdc0c3c5755cdb1",
-      "candidate_revision": "4f32952b9b070a9ef2c9064a3a27b71a8e342fc6",
+      "trial_revision": "b83847c48d2724a3e48c62cb62617d74ca398d66",
+      "candidate_revision": "73c8a26c62b3c5d4e24d603d274d315651ea62a8",
       "result": "check-child overall FAIL with both required pair checks, all 4 caps and all 4 pins PASS; existing freeze remains mechanical FAIL",
       "raw_outputs": "not committed; regenerated only in the trial"
     }
