@@ -89,6 +89,33 @@ class TestF05Add47SourceBodyWriter(unittest.TestCase):
                 "value": raw["gap_proposals"],
             },
         )
+        obligation_material = owner_material["obligation_material"]
+        for member in (
+            "obligations",
+            "required_trace_refs",
+            "trace_edges",
+            "trace_requirements",
+        ):
+            with self.subTest(collection=member):
+                self.assertEqual(
+                    obligation_material[
+                        {
+                            "obligations": "original_obligations",
+                            "required_trace_refs": "required_trace_refs",
+                            "trace_edges": "trace_edges",
+                            "trace_requirements": "trace_requirements",
+                        }[member]
+                    ],
+                    {
+                        "tag": "present",
+                        "location": {
+                            "root": "validation_input",
+                            "pointer": f"/{member}",
+                        },
+                        "value": raw[member],
+                    },
+                )
+        self.assertEqual(obligation_material["proposal_refs"], [])
 
     def test_add46_empty_source_collection_writes_only_unresolved_source_cause(self):
         l8 = json.loads(L8_PATH.read_text(encoding="utf-8"))
