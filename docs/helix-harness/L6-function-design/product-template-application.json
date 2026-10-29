@@ -251,6 +251,35 @@
         "/validation_detail_native_eight_source_full_return_oracle"
       ],
       "role": "validation_detail_oracles"
+    },
+    {
+      "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+      "revision": "e4f178dd39e3fad1c0ae07a38b4a4d5fd9ab3a97",
+      "sha256": "f5da0e585b3bb91cf5b07d7d3c1e124b9584718395d8b07704cede6e2523ce1c",
+      "selected_pointers": [
+        "/functions/5",
+        "/f05_detail_contract/field_content_source_failure_writer_contract/writers/0",
+        "/f05_detail_contract/field_content_source_failure_writer_contract/writers/1",
+        "/f05_detail_contract/types/RecordOccurrence/members/causes",
+        "/f05_detail_contract/types/BodyOccurrence/members/causes"
+      ]
+    },
+    {
+      "path": "docs/helix-harness/L8-unit-verification/product-template-application.json",
+      "revision": "75a8e2ebec559c2cf272ca51444ce47f3185e4ae",
+      "sha256": "65aa4c2e120e6636cc3f3eb260fec32b06b1b44a6f17b21f785dc0d63fa767ce",
+      "selected_pointers": [
+        "/normal_function_oracles/5",
+        "/fixture_contract/normal_fixtures/0",
+        "/additional_unit_cases/46",
+        "/additional_unit_cases/46/fixed_writer_case",
+        "/additional_unit_cases/46/fixed_writer_case/expected_record_occurrence",
+        "/additional_unit_cases/47",
+        "/additional_unit_cases/47/fixed_writer_case/input_delta",
+        "/additional_unit_cases/47/fixed_writer_case/l8_expected_writer_leaf",
+        "/additional_unit_cases/47/fixed_writer_case/nonclaims_ja",
+        "/f05_g1_g2_collection_read_partial_oracle"
+      ]
     }
   ],
   "legacy_rederivation": {
@@ -526,8 +555,8 @@
         "pointer": "/cases/7"
       },
       "source_pin_refs": [
-        "#/source_pins/14",
-        "#/source_pins/15",
+        "#/source_pins/26",
+        "#/source_pins/27",
         "#/source_pins/18"
       ]
     },
@@ -591,5 +620,5 @@
     "reentry D-H009-T3bは対象外。",
     "runtime、正式wire schema、実source資格、OS登録/使用、Backflow ticket発行、L10 Verified、L11 Acceptedは生成しない。"
   ],
-  "source_pin_ref_rule_ja": "FN03〜FN07の各行source_pin_refsは同じ文書のsource_pinsを指す。L5/L8 pinは確認対象HEADの全file SHAと選択pointer集合を束縛し、各freeze pinはrecord追加commitの全file SHAとtarget binding pointerを束縛する。既存source_pins/0..13は既存5行の履歴pinのまま維持する。FN07の現行source_pinsはL5 /functions/7、L8 /normal_function_oracles/7とfreeze unit_case_pointers（/cases/8、/cases/9、/additional_unit_cases/17、/additional_unit_cases/18）を束縛し、freeze source pinは記録追加commitのrevision・全file SHA・target binding pointerを束縛する。 FN00のprivate_detail_extensionはL5 entry_pointとV01–V07、固定cause writer/public projectionを束縛し、L8の空/1-source/owner-difference/role-only/6-source/8-source oracleを同確認HEADの全file SHAとpointer集合で束縛する。"
+  "source_pin_ref_rule_ja": "FN03〜FN07の各行source_pin_refsは同じ文書のsource_pinsを指す。L5/L8 pinは確認対象HEADの全file SHAと選択pointer集合を束縛し、各freeze pinはrecord追加commitの全file SHAとtarget binding pointerを束縛する。既存source_pins/0..13は既存5行の履歴pinのまま維持する。FN07の現行source_pinsはL5 /functions/7、L8 /normal_function_oracles/7とfreeze unit_case_pointers（/cases/8、/cases/9、/additional_unit_cases/17、/additional_unit_cases/18）を束縛し、freeze source pinは記録追加commitのrevision・全file SHA・target binding pointerを束縛する。 FN00のprivate_detail_extensionはL5 entry_pointとV01–V07、固定cause writer/public projectionを束縛し、L8の空/1-source/owner-difference/role-only/6-source/8-source oracleを同確認HEADの全file SHAとpointer集合で束縛する。 FN05は既存14/15の共有履歴pinを保持し、現行L5/L8の詳細pointer pinを26/27へ追加する。L7の有限leaf観測と実装source/test pinはL7側で束縛し、FN05全域の承認・freezeを意味しない。 FN05の有限leaf観測はL7 cases/7/bounded_leaf_observationに限定し、Red base entrypoint・test bytes・merge source/test/fixture SHAを個別pinする。Red-only commitが無い場合はbase再現として明示し、tdd_history_refsへ架空commitを追加しない。"
 }
