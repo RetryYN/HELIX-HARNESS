@@ -421,13 +421,13 @@
   "source_pair_pins": [
     {
       "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
-      "revision": "4f98f23b1300ba1f344b32cf3317a8f9300738b5",
-      "sha256": "e2e92c62217f70203752ab4f79ed7a92831d94cb813c6947153f237c83c8576b"
+      "revision": "746071b8f77cc0b07212dde2127f3d4d2c87f647",
+      "sha256": "0c9b85fe91483fcf2cf8630739e9a07b231d90aac20f42174d807268eddbda56"
     },
     {
       "path": "docs/helix-os/L9-integration-verification/management-authority-source-record.json",
-      "revision": "7388047362a594dd285f134efbb06cd93f54143e",
-      "sha256": "0b310db53887fd22d2fa5a3154099fdc0587bceed61dc85544f57549b2cbec51"
+      "revision": "746071b8f77cc0b07212dde2127f3d4d2c87f647",
+      "sha256": "66fd4c44b4dd0aec0e1419dbd885c26462bc6465838fd99ed653db8f86477a76"
     }
   ],
   "document_id": "HELIXOS-L8-015",
@@ -435,9 +435,9 @@
   "pair": "HELIXOS-L5-015",
   "candidate_l5_bytes": {
     "path": "docs/helix-os/L5-detail-design/management-authority-source-record.json",
-    "revision": "02fcc27b57d777e2a9b5eabb8af3391989446269",
+    "revision": "5111d246ce7945f1fa195ab5cdbab7cdc3f4ca78",
     "same_candidate": true,
-    "sha256": "6d313e6faaf56c0806c1964ac2bece5da0699de1d82dcc804fc77962f679275e"
+    "sha256": "bd4bb190c608f6e6555c0a01b969ddc3b7f12617cef592b2fdba2f00d62e1ef7"
   },
   "shared_route_expectations": {
     "l7_material_ref": {
@@ -8151,7 +8151,7 @@
       },
       "l7_material_ref": {
         "path": "docs/helix-os/L7-function-verification/management-authority-source-record.json",
-        "pointer": "/derived_observations/cases/44"
+        "pointer": "/connection_materials/OS015/case/cases/44/given/input"
       },
       "case_id": "HELIXOS-L9-015-C0045",
       "integration_case_ref": "HELIXOS-L9-015-C0045",
@@ -8185,7 +8185,10 @@
           "original": "not_evaluated",
           "new": "not_evaluated"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-composite-original_event_mutated-source_conflict-original_event",
+      "rule_ref": "OS015-NEG-composite-original_event_mutated-source_conflict-original_event",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0046",
@@ -8239,7 +8242,7 @@
       },
       "l7_material_ref": {
         "path": "docs/helix-os/L7-function-verification/management-authority-source-record.json",
-        "pointer": "/derived_observations/cases/45"
+        "pointer": "/connection_materials/OS015/case/cases/45/given/input"
       },
       "case_id": "HELIXOS-L9-015-C0046",
       "integration_case_ref": "HELIXOS-L9-015-C0046",
@@ -8273,7 +8276,10 @@
           "original": "not_evaluated",
           "new": "not_evaluated"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-composite-original_event_mutated-source_unresolved-original_event",
+      "rule_ref": "OS015-NEG-composite-original_event_mutated-source_unresolved-original_event",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0047",
@@ -8327,7 +8333,7 @@
       },
       "l7_material_ref": {
         "path": "docs/helix-os/L7-function-verification/management-authority-source-record.json",
-        "pointer": "/derived_observations/cases/46"
+        "pointer": "/connection_materials/OS015/case/cases/46/given/input"
       },
       "case_id": "HELIXOS-L9-015-C0047",
       "integration_case_ref": "HELIXOS-L9-015-C0047",
@@ -8361,7 +8367,10 @@
           "original": "not_evaluated",
           "new": "not_evaluated"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-composite-original_event_mutated-source_conflict-original_event",
+      "rule_ref": "OS015-NEG-composite-original_event_mutated-source_conflict-original_event",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0048",
@@ -8415,7 +8424,7 @@
       },
       "l7_material_ref": {
         "path": "docs/helix-os/L7-function-verification/management-authority-source-record.json",
-        "pointer": "/derived_observations/cases/47"
+        "pointer": "/connection_materials/OS015/case/cases/47/given/input"
       },
       "case_id": "HELIXOS-L9-015-C0048",
       "integration_case_ref": "HELIXOS-L9-015-C0048",
@@ -8449,7 +8458,10 @@
           "original": "not_evaluated",
           "new": "not_evaluated"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-composite-original_event_mutated-source_unresolved-original_event",
+      "rule_ref": "OS015-NEG-composite-original_event_mutated-source_unresolved-original_event",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0049",
@@ -8503,7 +8515,7 @@
       },
       "l7_material_ref": {
         "path": "docs/helix-os/L7-function-verification/management-authority-source-record.json",
-        "pointer": "/derived_observations/cases/48"
+        "pointer": "/connection_materials/OS015/case/cases/48/given/input"
       },
       "case_id": "HELIXOS-L9-015-C0049",
       "integration_case_ref": "HELIXOS-L9-015-C0049",
@@ -8537,7 +8549,10 @@
           "original": "not_evaluated",
           "new": "not_evaluated"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-composite-original_event_mutated-source_conflict-original_event",
+      "rule_ref": "OS015-NEG-composite-original_event_mutated-source_conflict-original_event",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0050",
@@ -8591,7 +8606,7 @@
       },
       "l7_material_ref": {
         "path": "docs/helix-os/L7-function-verification/management-authority-source-record.json",
-        "pointer": "/derived_observations/cases/49"
+        "pointer": "/connection_materials/OS015/case/cases/49/given/input"
       },
       "case_id": "HELIXOS-L9-015-C0050",
       "integration_case_ref": "HELIXOS-L9-015-C0050",
@@ -8625,7 +8640,10 @@
           "original": "not_evaluated",
           "new": "not_evaluated"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-composite-original_event_mutated-source_unresolved-original_event",
+      "rule_ref": "OS015-NEG-composite-original_event_mutated-source_unresolved-original_event",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0051",
@@ -8679,7 +8697,7 @@
       },
       "l7_material_ref": {
         "path": "docs/helix-os/L7-function-verification/management-authority-source-record.json",
-        "pointer": "/derived_observations/cases/50"
+        "pointer": "/connection_materials/OS015/case/cases/50/given/input"
       },
       "case_id": "HELIXOS-L9-015-C0051",
       "integration_case_ref": "HELIXOS-L9-015-C0051",
@@ -8713,7 +8731,10 @@
           "original": "not_evaluated",
           "new": "not_evaluated"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-composite-original_event_mutated-source_conflict-original_event",
+      "rule_ref": "OS015-NEG-composite-original_event_mutated-source_conflict-original_event",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0052",
@@ -8767,7 +8788,7 @@
       },
       "l7_material_ref": {
         "path": "docs/helix-os/L7-function-verification/management-authority-source-record.json",
-        "pointer": "/derived_observations/cases/51"
+        "pointer": "/connection_materials/OS015/case/cases/51/given/input"
       },
       "case_id": "HELIXOS-L9-015-C0052",
       "integration_case_ref": "HELIXOS-L9-015-C0052",
@@ -8801,7 +8822,10 @@
           "original": "not_evaluated",
           "new": "not_evaluated"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-composite-original_event_mutated-source_unresolved-original_event",
+      "rule_ref": "OS015-NEG-composite-original_event_mutated-source_unresolved-original_event",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0053",
@@ -8855,7 +8879,7 @@
       },
       "l7_material_ref": {
         "path": "docs/helix-os/L7-function-verification/management-authority-source-record.json",
-        "pointer": "/derived_observations/cases/52"
+        "pointer": "/connection_materials/OS015/case/cases/52/given/input"
       },
       "case_id": "HELIXOS-L9-015-C0053",
       "integration_case_ref": "HELIXOS-L9-015-C0053",
@@ -8889,7 +8913,10 @@
           "original": "not_evaluated",
           "new": "not_evaluated"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-composite-original_event_mutated-source_conflict-original_event",
+      "rule_ref": "OS015-NEG-composite-original_event_mutated-source_conflict-original_event",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0054",
@@ -8943,7 +8970,7 @@
       },
       "l7_material_ref": {
         "path": "docs/helix-os/L7-function-verification/management-authority-source-record.json",
-        "pointer": "/derived_observations/cases/53"
+        "pointer": "/connection_materials/OS015/case/cases/53/given/input"
       },
       "case_id": "HELIXOS-L9-015-C0054",
       "integration_case_ref": "HELIXOS-L9-015-C0054",
@@ -8977,7 +9004,10 @@
           "original": "not_evaluated",
           "new": "not_evaluated"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-composite-original_event_mutated-source_unresolved-original_event",
+      "rule_ref": "OS015-NEG-composite-original_event_mutated-source_unresolved-original_event",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0055",
@@ -9031,7 +9061,7 @@
       },
       "l7_material_ref": {
         "path": "docs/helix-os/L7-function-verification/management-authority-source-record.json",
-        "pointer": "/derived_observations/cases/54"
+        "pointer": "/connection_materials/OS015/case/cases/54/given/input"
       },
       "case_id": "HELIXOS-L9-015-C0055",
       "integration_case_ref": "HELIXOS-L9-015-C0055",
@@ -9065,7 +9095,10 @@
           "original": "not_evaluated",
           "new": "not_evaluated"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-composite-original_event_mutated-source_conflict-original_event",
+      "rule_ref": "OS015-NEG-composite-original_event_mutated-source_conflict-original_event",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0056",
@@ -9119,7 +9152,7 @@
       },
       "l7_material_ref": {
         "path": "docs/helix-os/L7-function-verification/management-authority-source-record.json",
-        "pointer": "/derived_observations/cases/55"
+        "pointer": "/connection_materials/OS015/case/cases/55/given/input"
       },
       "case_id": "HELIXOS-L9-015-C0056",
       "integration_case_ref": "HELIXOS-L9-015-C0056",
@@ -9153,7 +9186,10 @@
           "original": "not_evaluated",
           "new": "not_evaluated"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-composite-original_event_mutated-source_unresolved-original_event",
+      "rule_ref": "OS015-NEG-composite-original_event_mutated-source_unresolved-original_event",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0057",
@@ -9207,7 +9243,7 @@
       },
       "l7_material_ref": {
         "path": "docs/helix-os/L7-function-verification/management-authority-source-record.json",
-        "pointer": "/derived_observations/cases/56"
+        "pointer": "/connection_materials/OS015/case/cases/56/given/input"
       },
       "case_id": "HELIXOS-L9-015-C0057",
       "integration_case_ref": "HELIXOS-L9-015-C0057",
@@ -9241,7 +9277,10 @@
           "original": "not_evaluated",
           "new": "not_evaluated"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-composite-original_event_mutated-source_conflict-original_event",
+      "rule_ref": "OS015-NEG-composite-original_event_mutated-source_conflict-original_event",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0058",
@@ -9295,7 +9334,7 @@
       },
       "l7_material_ref": {
         "path": "docs/helix-os/L7-function-verification/management-authority-source-record.json",
-        "pointer": "/derived_observations/cases/57"
+        "pointer": "/connection_materials/OS015/case/cases/57/given/input"
       },
       "case_id": "HELIXOS-L9-015-C0058",
       "integration_case_ref": "HELIXOS-L9-015-C0058",
@@ -9329,7 +9368,10 @@
           "original": "not_evaluated",
           "new": "not_evaluated"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-composite-original_event_mutated-source_unresolved-original_event",
+      "rule_ref": "OS015-NEG-composite-original_event_mutated-source_unresolved-original_event",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0059",
@@ -9383,7 +9425,7 @@
       },
       "l7_material_ref": {
         "path": "docs/helix-os/L7-function-verification/management-authority-source-record.json",
-        "pointer": "/derived_observations/cases/58"
+        "pointer": "/connection_materials/OS015/case/cases/58/given/input"
       },
       "case_id": "HELIXOS-L9-015-C0059",
       "integration_case_ref": "HELIXOS-L9-015-C0059",
@@ -9417,7 +9459,10 @@
           "original": "not_evaluated",
           "new": "not_evaluated"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-composite-original_event_mutated-source_conflict-original_event",
+      "rule_ref": "OS015-NEG-composite-original_event_mutated-source_conflict-original_event",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0060",
@@ -9471,7 +9516,7 @@
       },
       "l7_material_ref": {
         "path": "docs/helix-os/L7-function-verification/management-authority-source-record.json",
-        "pointer": "/derived_observations/cases/59"
+        "pointer": "/connection_materials/OS015/case/cases/59/given/input"
       },
       "case_id": "HELIXOS-L9-015-C0060",
       "integration_case_ref": "HELIXOS-L9-015-C0060",
@@ -9505,7 +9550,10 @@
           "original": "not_evaluated",
           "new": "not_evaluated"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-composite-original_event_mutated-source_unresolved-original_event",
+      "rule_ref": "OS015-NEG-composite-original_event_mutated-source_unresolved-original_event",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0061",
@@ -9559,7 +9607,7 @@
       },
       "l7_material_ref": {
         "path": "docs/helix-os/L7-function-verification/management-authority-source-record.json",
-        "pointer": "/derived_observations/cases/60"
+        "pointer": "/connection_materials/OS015/case/cases/60/given/input"
       },
       "case_id": "HELIXOS-L9-015-C0061",
       "integration_case_ref": "HELIXOS-L9-015-C0061",
@@ -9593,7 +9641,10 @@
           "original": "not_evaluated",
           "new": "not_evaluated"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-composite-original_event_mutated-source_conflict-original_event",
+      "rule_ref": "OS015-NEG-composite-original_event_mutated-source_conflict-original_event",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0062",
@@ -12487,7 +12538,7 @@
       },
       "l7_material_ref": {
         "path": "docs/helix-os/L7-function-verification/management-authority-source-record.json",
-        "pointer": "/derived_observations/cases/101"
+        "pointer": "/connection_materials/OS015/case/cases/101/given/input"
       },
       "case_id": "HELIXOS-L9-015-C0102",
       "integration_case_ref": "HELIXOS-L9-015-C0102",
@@ -12521,7 +12572,10 @@
           "original": "not_evaluated",
           "new": "not_evaluated"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-composite-original_event_mutated-source_unresolved-original_event",
+      "rule_ref": "OS015-NEG-composite-original_event_mutated-source_unresolved-original_event",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0103",
@@ -12575,7 +12629,7 @@
       },
       "l7_material_ref": {
         "path": "docs/helix-os/L7-function-verification/management-authority-source-record.json",
-        "pointer": "/derived_observations/cases/102"
+        "pointer": "/connection_materials/OS015/case/cases/102/given/input"
       },
       "case_id": "HELIXOS-L9-015-C0103",
       "integration_case_ref": "HELIXOS-L9-015-C0103",
@@ -12609,7 +12663,10 @@
           "original": "not_evaluated",
           "new": "not_evaluated"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-composite-original_event_mutated-source_conflict-original_event",
+      "rule_ref": "OS015-NEG-composite-original_event_mutated-source_conflict-original_event",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0104",
@@ -12663,7 +12720,7 @@
       },
       "l7_material_ref": {
         "path": "docs/helix-os/L7-function-verification/management-authority-source-record.json",
-        "pointer": "/derived_observations/cases/103"
+        "pointer": "/connection_materials/OS015/case/cases/103/given/input"
       },
       "case_id": "HELIXOS-L9-015-C0104",
       "integration_case_ref": "HELIXOS-L9-015-C0104",
@@ -12697,7 +12754,10 @@
           "original": "not_evaluated",
           "new": "not_evaluated"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-composite-original_event_mutated-source_unresolved-original_event",
+      "rule_ref": "OS015-NEG-composite-original_event_mutated-source_unresolved-original_event",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0105",
@@ -12751,7 +12811,7 @@
       },
       "l7_material_ref": {
         "path": "docs/helix-os/L7-function-verification/management-authority-source-record.json",
-        "pointer": "/derived_observations/cases/104"
+        "pointer": "/connection_materials/OS015/case/cases/104/given/input"
       },
       "case_id": "HELIXOS-L9-015-C0105",
       "integration_case_ref": "HELIXOS-L9-015-C0105",
@@ -12785,7 +12845,10 @@
           "original": "not_evaluated",
           "new": "not_evaluated"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-composite-original_event_mutated-source_conflict-original_event",
+      "rule_ref": "OS015-NEG-composite-original_event_mutated-source_conflict-original_event",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0106",
@@ -12839,7 +12902,7 @@
       },
       "l7_material_ref": {
         "path": "docs/helix-os/L7-function-verification/management-authority-source-record.json",
-        "pointer": "/derived_observations/cases/105"
+        "pointer": "/connection_materials/OS015/case/cases/105/given/input"
       },
       "case_id": "HELIXOS-L9-015-C0106",
       "integration_case_ref": "HELIXOS-L9-015-C0106",
@@ -12873,7 +12936,10 @@
           "original": "not_evaluated",
           "new": "not_evaluated"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-composite-original_event_mutated-source_unresolved-original_event",
+      "rule_ref": "OS015-NEG-composite-original_event_mutated-source_unresolved-original_event",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0107",
@@ -12927,7 +12993,7 @@
       },
       "l7_material_ref": {
         "path": "docs/helix-os/L7-function-verification/management-authority-source-record.json",
-        "pointer": "/derived_observations/cases/106"
+        "pointer": "/connection_materials/OS015/case/cases/106/given/input"
       },
       "case_id": "HELIXOS-L9-015-C0107",
       "integration_case_ref": "HELIXOS-L9-015-C0107",
@@ -12961,7 +13027,10 @@
           "original": "not_evaluated",
           "new": "not_evaluated"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-composite-original_event_mutated-source_conflict-original_event",
+      "rule_ref": "OS015-NEG-composite-original_event_mutated-source_conflict-original_event",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0108",
@@ -13015,7 +13084,7 @@
       },
       "l7_material_ref": {
         "path": "docs/helix-os/L7-function-verification/management-authority-source-record.json",
-        "pointer": "/derived_observations/cases/107"
+        "pointer": "/connection_materials/OS015/case/cases/107/given/input"
       },
       "case_id": "HELIXOS-L9-015-C0108",
       "integration_case_ref": "HELIXOS-L9-015-C0108",
@@ -13049,7 +13118,10 @@
           "original": "not_evaluated",
           "new": "not_evaluated"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-composite-original_event_mutated-source_unresolved-original_event",
+      "rule_ref": "OS015-NEG-composite-original_event_mutated-source_unresolved-original_event",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0109",
@@ -13103,7 +13175,7 @@
       },
       "l7_material_ref": {
         "path": "docs/helix-os/L7-function-verification/management-authority-source-record.json",
-        "pointer": "/derived_observations/cases/108"
+        "pointer": "/connection_materials/OS015/case/cases/108/given/input"
       },
       "case_id": "HELIXOS-L9-015-C0109",
       "integration_case_ref": "HELIXOS-L9-015-C0109",
@@ -13137,7 +13209,10 @@
           "original": "not_evaluated",
           "new": "not_evaluated"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-composite-original_event_mutated-source_conflict-original_event",
+      "rule_ref": "OS015-NEG-composite-original_event_mutated-source_conflict-original_event",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0110",
@@ -13191,7 +13266,7 @@
       },
       "l7_material_ref": {
         "path": "docs/helix-os/L7-function-verification/management-authority-source-record.json",
-        "pointer": "/derived_observations/cases/109"
+        "pointer": "/connection_materials/OS015/case/cases/109/given/input"
       },
       "case_id": "HELIXOS-L9-015-C0110",
       "integration_case_ref": "HELIXOS-L9-015-C0110",
@@ -13225,7 +13300,10 @@
           "original": "not_evaluated",
           "new": "not_evaluated"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-composite-original_event_mutated-source_unresolved-original_event",
+      "rule_ref": "OS015-NEG-composite-original_event_mutated-source_unresolved-original_event",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0111",
@@ -13279,7 +13357,7 @@
       },
       "l7_material_ref": {
         "path": "docs/helix-os/L7-function-verification/management-authority-source-record.json",
-        "pointer": "/derived_observations/cases/110"
+        "pointer": "/connection_materials/OS015/case/cases/110/given/input"
       },
       "case_id": "HELIXOS-L9-015-C0111",
       "integration_case_ref": "HELIXOS-L9-015-C0111",
@@ -13313,7 +13391,10 @@
           "original": "not_evaluated",
           "new": "not_evaluated"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-composite-original_event_mutated-source_conflict-original_event",
+      "rule_ref": "OS015-NEG-composite-original_event_mutated-source_conflict-original_event",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0112",
@@ -13367,7 +13448,7 @@
       },
       "l7_material_ref": {
         "path": "docs/helix-os/L7-function-verification/management-authority-source-record.json",
-        "pointer": "/derived_observations/cases/111"
+        "pointer": "/connection_materials/OS015/case/cases/111/given/input"
       },
       "case_id": "HELIXOS-L9-015-C0112",
       "integration_case_ref": "HELIXOS-L9-015-C0112",
@@ -13401,7 +13482,10 @@
           "original": "not_evaluated",
           "new": "not_evaluated"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-composite-original_event_mutated-source_unresolved-original_event",
+      "rule_ref": "OS015-NEG-composite-original_event_mutated-source_unresolved-original_event",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0113",
@@ -13455,7 +13539,7 @@
       },
       "l7_material_ref": {
         "path": "docs/helix-os/L7-function-verification/management-authority-source-record.json",
-        "pointer": "/derived_observations/cases/112"
+        "pointer": "/connection_materials/OS015/case/cases/112/given/input"
       },
       "case_id": "HELIXOS-L9-015-C0113",
       "integration_case_ref": "HELIXOS-L9-015-C0113",
@@ -13489,7 +13573,10 @@
           "original": "not_evaluated",
           "new": "not_evaluated"
         }
-      }
+      },
+      "negative_class_ref": "OS015-NEG-composite-original_event_mutated-source_conflict-original_event",
+      "rule_ref": "OS015-NEG-composite-original_event_mutated-source_conflict-original_event",
+      "function_ref": "FN-OS015-01"
     },
     {
       "id": "HELIXOS-L9-015-C0114",
@@ -50189,6 +50276,248 @@
           "pointers": [
             "/failure_rules/28",
             "/functions/0"
+          ]
+        }
+      ]
+    },
+    {
+      "class_id": "OS015-NEG-composite-original_event_mutated-source_conflict-original_event",
+      "expected_classification": "management_material_violation",
+      "expected": {
+        "finding_codes": [
+          "original_event_mutated",
+          "source_conflict"
+        ]
+      },
+      "expected_axis": "original_event",
+      "expected_state": "violation",
+      "backflow_owner": "management-authority-owner",
+      "side_effect_count": 0,
+      "source_pointers": [
+        {
+          "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
+          "pointers": [
+            "/failure_classifications/31"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L5-detail-design/management-authority-source-record.json",
+          "pointers": [
+            "/failure_rules/31"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L7-function-verification/management-authority-source-record.json",
+          "pointers": [
+            "/connection_materials/OS015/case/fixture_inputs/inspect"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L7-function-verification/management-authority-source-record.json",
+          "pointers": [
+            "/connection_materials/OS015/case/cases/44/given/input"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L7-function-verification/management-authority-source-record.json",
+          "pointers": [
+            "/connection_materials/OS015/case/cases/46/given/input"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L7-function-verification/management-authority-source-record.json",
+          "pointers": [
+            "/connection_materials/OS015/case/cases/48/given/input"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L7-function-verification/management-authority-source-record.json",
+          "pointers": [
+            "/connection_materials/OS015/case/cases/50/given/input"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L7-function-verification/management-authority-source-record.json",
+          "pointers": [
+            "/connection_materials/OS015/case/cases/52/given/input"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L7-function-verification/management-authority-source-record.json",
+          "pointers": [
+            "/connection_materials/OS015/case/cases/54/given/input"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L7-function-verification/management-authority-source-record.json",
+          "pointers": [
+            "/connection_materials/OS015/case/cases/56/given/input"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L7-function-verification/management-authority-source-record.json",
+          "pointers": [
+            "/connection_materials/OS015/case/cases/58/given/input"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L7-function-verification/management-authority-source-record.json",
+          "pointers": [
+            "/connection_materials/OS015/case/cases/60/given/input"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L7-function-verification/management-authority-source-record.json",
+          "pointers": [
+            "/connection_materials/OS015/case/cases/102/given/input"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L7-function-verification/management-authority-source-record.json",
+          "pointers": [
+            "/connection_materials/OS015/case/cases/104/given/input"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L7-function-verification/management-authority-source-record.json",
+          "pointers": [
+            "/connection_materials/OS015/case/cases/106/given/input"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L7-function-verification/management-authority-source-record.json",
+          "pointers": [
+            "/connection_materials/OS015/case/cases/108/given/input"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L7-function-verification/management-authority-source-record.json",
+          "pointers": [
+            "/connection_materials/OS015/case/cases/110/given/input"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L7-function-verification/management-authority-source-record.json",
+          "pointers": [
+            "/connection_materials/OS015/case/cases/112/given/input"
+          ]
+        }
+      ]
+    },
+    {
+      "class_id": "OS015-NEG-composite-original_event_mutated-source_unresolved-original_event",
+      "expected_classification": "management_material_violation",
+      "expected": {
+        "finding_codes": [
+          "original_event_mutated",
+          "source_unresolved"
+        ]
+      },
+      "expected_axis": "original_event",
+      "expected_state": "violation",
+      "backflow_owner": "management-authority-owner",
+      "side_effect_count": 0,
+      "source_pointers": [
+        {
+          "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
+          "pointers": [
+            "/failure_classifications/32"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L5-detail-design/management-authority-source-record.json",
+          "pointers": [
+            "/failure_rules/32"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L7-function-verification/management-authority-source-record.json",
+          "pointers": [
+            "/connection_materials/OS015/case/fixture_inputs/inspect"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L7-function-verification/management-authority-source-record.json",
+          "pointers": [
+            "/connection_materials/OS015/case/cases/45/given/input"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L7-function-verification/management-authority-source-record.json",
+          "pointers": [
+            "/connection_materials/OS015/case/cases/47/given/input"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L7-function-verification/management-authority-source-record.json",
+          "pointers": [
+            "/connection_materials/OS015/case/cases/49/given/input"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L7-function-verification/management-authority-source-record.json",
+          "pointers": [
+            "/connection_materials/OS015/case/cases/51/given/input"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L7-function-verification/management-authority-source-record.json",
+          "pointers": [
+            "/connection_materials/OS015/case/cases/53/given/input"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L7-function-verification/management-authority-source-record.json",
+          "pointers": [
+            "/connection_materials/OS015/case/cases/55/given/input"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L7-function-verification/management-authority-source-record.json",
+          "pointers": [
+            "/connection_materials/OS015/case/cases/57/given/input"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L7-function-verification/management-authority-source-record.json",
+          "pointers": [
+            "/connection_materials/OS015/case/cases/59/given/input"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L7-function-verification/management-authority-source-record.json",
+          "pointers": [
+            "/connection_materials/OS015/case/cases/101/given/input"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L7-function-verification/management-authority-source-record.json",
+          "pointers": [
+            "/connection_materials/OS015/case/cases/103/given/input"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L7-function-verification/management-authority-source-record.json",
+          "pointers": [
+            "/connection_materials/OS015/case/cases/105/given/input"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L7-function-verification/management-authority-source-record.json",
+          "pointers": [
+            "/connection_materials/OS015/case/cases/107/given/input"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L7-function-verification/management-authority-source-record.json",
+          "pointers": [
+            "/connection_materials/OS015/case/cases/109/given/input"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L7-function-verification/management-authority-source-record.json",
+          "pointers": [
+            "/connection_materials/OS015/case/cases/111/given/input"
           ]
         }
       ]
