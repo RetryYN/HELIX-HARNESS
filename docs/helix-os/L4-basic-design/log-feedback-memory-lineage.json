@@ -141,7 +141,7 @@
     },
     {
       "path": "docs/helix-os/L2-requirements/governance-requirements.md",
-      "file_sha256": "9ea8afbf83248ca6fda73cc78b8f6aa86a33e1003e79eb080986e613d8a04240",
+      "file_sha256": "810a068ab6077872ce6a85c0a6a3f3a434465cb71df6beb280c289b47fb71e84",
       "selected_line_quotes": [
         {
           "line": 60,
@@ -153,11 +153,14 @@
           "text": "| HELIXOS-L2-007 | 作業・判断・検証の原証拠と出典を保持する。feedbackはintake・classify・ack・pending・resolutionを区別し、未ack findingを消さない。memoryの内容を責務正本へ反映してからretireし、古い指示を再提示しない | HBR-P7／P9、v1.3 HR-FR-HYB-005／006 |",
           "utf8_sha256": "61b3cfdd51ffba2453abf1b98d554a3f85a47c5b6876be6acef706ca1bd8a119"
         }
-      ]
+      ],
+      "previous_file_sha256": "9ea8afbf83248ca6fda73cc78b8f6aa86a33e1003e79eb080986e613d8a04240",
+      "previous_revision": "5b4369cb951f534f4d961c55ad1853118bbc101f",
+      "revision": "6dd8528faad05dfed5f44c9302846c661f8bbafa"
     },
     {
       "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
-      "file_sha256": "976d27c80a8e262f59ff72f8dee90a3333a6ac770627161ceb475ece0efa0275",
+      "file_sha256": "bdc2eab702ff3d54733add5ffa9e2b63354c8238a0d81b356b351ad3a9293bc5",
       "selected_line_quotes": [
         {
           "line": 27,
@@ -169,7 +172,10 @@
           "text": "- HELIXOS-L2-007：未ack finding、未反映memory、重複配送、期限切れ通知を投入し、内容消失・二重利用・古い指示の再提示を拒否する。",
           "utf8_sha256": "16db6c4ece2aac5a78a9f4852df6a5aac718f863b965faee04faf666fd66599c"
         }
-      ]
+      ],
+      "previous_file_sha256": "976d27c80a8e262f59ff72f8dee90a3333a6ac770627161ceb475ece0efa0275",
+      "previous_revision": "5b4369cb951f534f4d961c55ad1853118bbc101f",
+      "revision": "6dd8528faad05dfed5f44c9302846c661f8bbafa"
     },
     {
       "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L6-function-design/feedback-lifecycle.md",
@@ -732,8 +738,11 @@
     },
     {
       "path": "docs/helix-harness/L4-basic-design/v12-layer-contract.json",
-      "file_sha256": "edca02e8ccabbf560058baab322928e23b419d9f4e37d68b35e3cabfb3ff9ae4",
-      "role": "対象参照所在の固定。file全体採択/精読を意味しない。"
+      "file_sha256": "7331a825d2f68801cd8f25a99cc5be97ca5f2c2cebf607793f4a4c7ab153b257",
+      "role": "対象参照所在の固定。file全体採択/精読を意味しない。",
+      "previous_file_sha256": "edca02e8ccabbf560058baab322928e23b419d9f4e37d68b35e3cabfb3ff9ae4",
+      "previous_revision": "2e22b5f9433eab135a60dfbddf9ba61761ccbbda",
+      "revision": "6dd8528faad05dfed5f44c9302846c661f8bbafa"
     },
     {
       "path": "docs/helix-os/L10-verification/functional-verification.json",
@@ -768,20 +777,23 @@
     {
       "id": "HELIXOS-L4-007-F01",
       "requirement_ref": "HELIXOS-L3-007-F01",
-      "oracle_ref": "HELIXOS-L10-007-F01",
-      "contract": "Worker/判断/操作/検証の原logを共通項目で辿り、project/要求revision/構成/能力/モデル/相関/episode/結果とsourceを結ぶ。原ログがあることと正式成功証拠を別にし、欠落形式・重複・stale・別HEADを黙示補完しない。"
+      "oracle_ref": "HELIXOS-L9-007-P-F01",
+      "contract": "Worker/判断/操作/検証の原logを共通項目で辿り、project/要求revision/構成/能力/モデル/相関/episode/結果とsourceを結ぶ。原ログがあることと正式成功証拠を別にし、欠落形式・重複・stale・別HEADを黙示補完しない。",
+      "system_oracle_ref": "HELIXOS-L10-007-F01"
     },
     {
       "id": "HELIXOS-L4-007-F02",
       "requirement_ref": "HELIXOS-L3-007-F02",
-      "oracle_ref": "HELIXOS-L10-007-F02",
-      "contract": "intake/classify/ack/pending/resolutionの記録を別に保持する。未ack findingも元source HEADと原記録を保ち、通知・表示消費で捨てない。ACK/分類/proseの出所だけをresolutionとして採用せず、独立した正本解決sourceに辿る。各段階は記録の照合であり、このpairから新たな承認者/強制工程順を足さない。"
+      "oracle_ref": "HELIXOS-L9-007-P-F02",
+      "contract": "intake/classify/ack/pending/resolutionの記録を別に保持する。未ack findingも元source HEADと原記録を保ち、通知・表示消費で捨てない。ACK/分類/proseの出所だけをresolutionとして採用せず、独立した正本解決sourceに辿る。各段階は記録の照合であり、このpairから新たな承認者/強制工程順を足さない。",
+      "system_oracle_ref": "HELIXOS-L10-007-F02"
     },
     {
       "id": "HELIXOS-L4-007-F03",
       "requirement_ref": "HELIXOS-L3-007-F03",
-      "oracle_ref": "HELIXOS-L10-007-F03",
-      "contract": "memory sourceと責務正本反映先のexact revision/digest/ownerを結び、同episodeの反映順序がretireより先であることを照合する。未反映内容を消さずretire/expired/consumed/stale instructionをactive再提示しない。論理成功の二重deliver/consume、delivery成功なしのconsume、provider memoryからのauthority生成を拒否する。"
+      "oracle_ref": "HELIXOS-L9-007-P-F03",
+      "contract": "memory sourceと責務正本反映先のexact revision/digest/ownerを結び、同episodeの反映順序がretireより先であることを照合する。未反映内容を消さずretire/expired/consumed/stale instructionをactive再提示しない。論理成功の二重deliver/consume、delivery成功なしのconsume、provider memoryからのauthority生成を拒否する。",
+      "system_oracle_ref": "HELIXOS-L10-007-F03"
     }
   ],
   "diagnostic_contract": {
