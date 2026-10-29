@@ -579,7 +579,11 @@
           "axis": "required_sources",
           "state": "missing",
           "backflow_owner": "当該原source owner",
-          "expected": "各根拠roleの原sourceまたは技術/人間原証拠が欠落し、他方の成功で補完する。 missingを保持し、反対の成立値で置き換えない。",
+          "expected": {
+            "finding_codes": [
+              "B01_REQUIRED_EVIDENCE_MISSING"
+            ]
+          },
           "expected_preserved": {
             "target": "対象revision/scope・元証拠・理由・当該ownerを保持",
             "unaffected_scope": "該当しない有効scopeを全停止しない",
@@ -605,7 +609,8 @@
               "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
               "pointer": "/contracts/0/connection_detail/grounding_meaning_input/preserve"
             }
-          ]
+          ],
+          "expected_text": "各根拠roleの原sourceまたは技術/人間原証拠が欠落し、他方の成功で補完する。 missingを保持し、反対の成立値で置き換えない。"
         },
         {
           "code": "B01_SCOPE_APPLICABILITY_UNKNOWN",
@@ -613,7 +618,11 @@
           "axis": "grounding_scope",
           "state": "unknown",
           "backflow_owner": "HARNESS",
-          "expected": "scopeの適用条件・理由・出典が未決なのにrequired/not_required/N/Aへ補う。 unknownを保持し、反対の成立値で置き換えない。",
+          "expected": {
+            "finding_codes": [
+              "B01_SCOPE_APPLICABILITY_UNKNOWN"
+            ]
+          },
           "expected_preserved": {
             "target": "対象revision/scope・元証拠・理由・当該ownerを保持",
             "unaffected_scope": "該当しない有効scopeを全停止しない",
@@ -639,7 +648,8 @@
               "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
               "pointer": "/contracts/0/connection_detail/grounding_meaning_input/applicability"
             }
-          ]
+          ],
+          "expected_text": "scopeの適用条件・理由・出典が未決なのにrequired/not_required/N/Aへ補う。 unknownを保持し、反対の成立値で置き換えない。"
         },
         {
           "code": "B01_SOURCE_ROLE_CONFLICT",
@@ -647,7 +657,11 @@
           "axis": "source_role_identity",
           "state": "conflict",
           "backflow_owner": "HARNESS",
-          "expected": "人の発言・AI解釈・技術品質を別原記録identityとして扱わず、受容済み軸と未解決findingを相殺する。 conflictを保持し、反対の成立値で置き換えない。",
+          "expected": {
+            "finding_codes": [
+              "B01_SOURCE_ROLE_CONFLICT"
+            ]
+          },
           "expected_preserved": {
             "target": "対象revision/scope・元証拠・理由・当該ownerを保持",
             "unaffected_scope": "該当しない有効scopeを全停止しない",
@@ -673,7 +687,8 @@
               "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
               "pointer": "/contracts/0/connection_detail/grounding_meaning_input/comparison_axes"
             }
-          ]
+          ],
+          "expected_text": "人の発言・AI解釈・技術品質を別原記録identityとして扱わず、受容済み軸と未解決findingを相殺する。 conflictを保持し、反対の成立値で置き換えない。"
         },
         {
           "code": "B01_SOURCE_REVISION_STALE",
@@ -681,7 +696,11 @@
           "axis": "source_target_revision_scope",
           "state": "stale",
           "backflow_owner": "HARNESS",
-          "expected": "同scopeの別revisionに属する所見または原材料を当該対象の根拠として結ぶ。 staleを保持し、反対の成立値で置き換えない。",
+          "expected": {
+            "finding_codes": [
+              "B01_SOURCE_REVISION_STALE"
+            ]
+          },
           "expected_preserved": {
             "target": "対象revision/scope・元証拠・理由・当該ownerを保持",
             "unaffected_scope": "該当しない有効scopeを全停止しない",
@@ -707,7 +726,8 @@
               "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
               "pointer": "/contracts/0/connection_detail/grounding_meaning_input/local_return"
             }
-          ]
+          ],
+          "expected_text": "同scopeの別revisionに属する所見または原材料を当該対象の根拠として結ぶ。 staleを保持し、反対の成立値で置き換えない。"
         }
       ]
     },
@@ -829,7 +849,11 @@
           "axis": "action_required_condition",
           "state": "missing",
           "backflow_owner": "HARNESS",
-          "expected": "当該actionの必要条件またはその原材料が未供給のまま成立扱いになる。 missingを保持し、反対の成立値で置き換えない。",
+          "expected": {
+            "finding_codes": [
+              "F01_REQUIRED_CONDITION_MISSING"
+            ]
+          },
           "expected_preserved": {
             "target": "対象revision/scope・元証拠・理由・当該ownerを保持",
             "unaffected_scope": "該当しない有効scopeを全停止しない",
@@ -855,7 +879,8 @@
               "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
               "pointer": "/contracts/1/connection_detail/condition_comparison_input/content_return"
             }
-          ]
+          ],
+          "expected_text": "当該actionの必要条件またはその原材料が未供給のまま成立扱いになる。 missingを保持し、反対の成立値で置き換えない。"
         },
         {
           "code": "F01_CONDITION_DEFINITION_UNKNOWN",
@@ -863,7 +888,11 @@
           "axis": "condition_profile_definition",
           "state": "unknown",
           "backflow_owner": "HARNESS",
-          "expected": "必要profile・比較対象・role/kind定義が未供給または未対応なのに既定値や近いroleへ置換する。 unknownを保持し、反対の成立値で置き換えない。",
+          "expected": {
+            "finding_codes": [
+              "F01_CONDITION_DEFINITION_UNKNOWN"
+            ]
+          },
           "expected_preserved": {
             "target": "対象revision/scope・元証拠・理由・当該ownerを保持",
             "unaffected_scope": "該当しない有効scopeを全停止しない",
@@ -889,7 +918,8 @@
               "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
               "pointer": "/contracts/1/connection_detail/condition_comparison_input/open_domain"
             }
-          ]
+          ],
+          "expected_text": "必要profile・比較対象・role/kind定義が未供給または未対応なのに既定値や近いroleへ置換する。 unknownを保持し、反対の成立値で置き換えない。"
         },
         {
           "code": "F01_ROLE_AUTHORITY_CONFLICT",
@@ -897,7 +927,11 @@
           "axis": "role_authority_separation",
           "state": "conflict",
           "backflow_owner": "対象判断/認可のowner",
-          "expected": "相談・依頼・採択・要件承認・操作認可を同一roleへ読み替える、または委任内の技術具体化へ承認を追加する。 conflictを保持し、反対の成立値で置き換えない。",
+          "expected": {
+            "finding_codes": [
+              "F01_ROLE_AUTHORITY_CONFLICT"
+            ]
+          },
           "expected_preserved": {
             "target": "対象revision/scope・元証拠・理由・当該ownerを保持",
             "unaffected_scope": "該当しない有効scopeを全停止しない",
@@ -927,7 +961,8 @@
               "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
               "pointer": "/contracts/1/connection_detail/condition_comparison_input/delegation_and_effect"
             }
-          ]
+          ],
+          "expected_text": "相談・依頼・採択・要件承認・操作認可を同一roleへ読み替える、または委任内の技術具体化へ承認を追加する。 conflictを保持し、反対の成立値で置き換えない。"
         },
         {
           "code": "F01_CONDITION_TARGET_STALE",
@@ -935,7 +970,11 @@
           "axis": "condition_target_revision_scope",
           "state": "stale",
           "backflow_owner": "HARNESS",
-          "expected": "別revision/scopeの合意・承認・pairを当該phase条件の成立根拠にする。 staleを保持し、反対の成立値で置き換えない。",
+          "expected": {
+            "finding_codes": [
+              "F01_CONDITION_TARGET_STALE"
+            ]
+          },
           "expected_preserved": {
             "target": "対象revision/scope・元証拠・理由・当該ownerを保持",
             "unaffected_scope": "該当しない有効scopeを全停止しない",
@@ -957,7 +996,8 @@
               "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
               "pointer": "/contracts/1/connection_detail/condition_comparison_input/content_return"
             }
-          ]
+          ],
+          "expected_text": "別revision/scopeの合意・承認・pairを当該phase条件の成立根拠にする。 staleを保持し、反対の成立値で置き換えない。"
         }
       ]
     },
@@ -1034,7 +1074,11 @@
           "axis": "prototype_poc_applicability",
           "state": "unknown",
           "backflow_owner": "001 Prototype/PoC独立判定",
-          "expected": "Prototype/PoCの独立適用statusまたは理由が未決なのに非適用へ補う。 unknownを保持し、反対の成立値で置き換えない。",
+          "expected": {
+            "finding_codes": [
+              "F02_APPLICABILITY_UNKNOWN"
+            ]
+          },
           "expected_preserved": {
             "target": "対象revision/scope・元証拠・理由・当該ownerを保持",
             "unaffected_scope": "該当しない有効scopeを全停止しない",
@@ -1060,7 +1104,8 @@
               "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
               "pointer": "/contracts/2/connection_detail/no_result_case"
             }
-          ]
+          ],
+          "expected_text": "Prototype/PoCの独立適用statusまたは理由が未決なのに非適用へ補う。 unknownを保持し、反対の成立値で置き換えない。"
         },
         {
           "code": "F02_APPLICABLE_RESULT_MISSING",
@@ -1068,7 +1113,11 @@
           "axis": "prototype_poc_result",
           "state": "missing",
           "backflow_owner": "L2.5原実験/Prototype owner",
-          "expected": "適用対象のL2.5原結果がない状態を、他方の成功やnon-UI判断で補う。 missingを保持し、反対の成立値で置き換えない。",
+          "expected": {
+            "finding_codes": [
+              "F02_APPLICABLE_RESULT_MISSING"
+            ]
+          },
           "expected_preserved": {
             "target": "対象revision/scope・元証拠・理由・当該ownerを保持",
             "unaffected_scope": "該当しない有効scopeを全停止しない",
@@ -1094,7 +1143,8 @@
               "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
               "pointer": "/contracts/2/connection_detail/no_result_case"
             }
-          ]
+          ],
+          "expected_text": "適用対象のL2.5原結果がない状態を、他方の成功やnon-UI判断で補う。 missingを保持し、反対の成立値で置き換えない。"
         },
         {
           "code": "F02_ADOPTION_CLAIM_CONFLICT",
@@ -1102,7 +1152,11 @@
           "axis": "adoption_authority",
           "state": "conflict",
           "backflow_owner": "当該採用/承認の原owner",
-          "expected": "PoC/Prototype成功を要求採用・要件承認・凍結・完了として扱う。 conflictを保持し、反対の成立値で置き換えない。",
+          "expected": {
+            "finding_codes": [
+              "F02_ADOPTION_CLAIM_CONFLICT"
+            ]
+          },
           "expected_preserved": {
             "target": "対象revision/scope・元証拠・理由・当該ownerを保持",
             "unaffected_scope": "該当しない有効scopeを全停止しない",
@@ -1124,7 +1178,8 @@
               "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
               "pointer": "/contracts/2/connection_detail/condition_limit"
             }
-          ]
+          ],
+          "expected_text": "PoC/Prototype成功を要求採用・要件承認・凍結・完了として扱う。 conflictを保持し、反対の成立値で置き換えない。"
         },
         {
           "code": "F02_RESULTLESS_RETURN_CHAIN_CONFLICT",
@@ -1132,7 +1187,11 @@
           "axis": "return_chain_without_result",
           "state": "conflict",
           "backflow_owner": "HARNESS",
-          "expected": "L2.5結果がないcaseにBackflowから対再凍結までの還流chainを構成する。 conflictを保持し、反対の成立値で置き換えない。",
+          "expected": {
+            "finding_codes": [
+              "F02_RESULTLESS_RETURN_CHAIN_CONFLICT"
+            ]
+          },
           "expected_preserved": {
             "target": "対象revision/scope・元証拠・理由・当該ownerを保持",
             "unaffected_scope": "該当しない有効scopeを全停止しない",
@@ -1158,7 +1217,8 @@
               "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
               "pointer": "/contracts/2/connection_detail/return_flow"
             }
-          ]
+          ],
+          "expected_text": "L2.5結果がないcaseにBackflowから対再凍結までの還流chainを構成する。 conflictを保持し、反対の成立値で置き換えない。"
         }
       ]
     },
@@ -1781,7 +1841,11 @@
           "axis": "pair_trace",
           "state": "missing",
           "backflow_owner": "HARNESS",
-          "expected": "L8↔L5、L9↔L4、L10↔L3の必要pairまたはその原traceが未供給なのに成立扱いになる。 missingを保持し、反対の成立値で置き換えない。",
+          "expected": {
+            "finding_codes": [
+              "F03_REQUIRED_PAIR_MISSING"
+            ]
+          },
           "expected_preserved": {
             "target": "対象revision/scope・元証拠・理由・当該ownerを保持",
             "unaffected_scope": "該当しない有効scopeを全停止しない",
@@ -1803,7 +1867,8 @@
               "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
               "pointer": "/contracts/3/connection_detail/partial_results"
             }
-          ]
+          ],
+          "expected_text": "L8↔L5、L9↔L4、L10↔L3の必要pairまたはその原traceが未供給なのに成立扱いになる。 missingを保持し、反対の成立値で置き換えない。"
         },
         {
           "code": "F03_L9_DIMENSION_UNKNOWN",
@@ -1811,7 +1876,11 @@
           "axis": "l9_system_observation",
           "state": "unknown",
           "backflow_owner": "L9各観点の原観測owner",
-          "expected": "L9の10観点の原期待/観測が未決なのに成功または空観測へ補われる。 unknownを保持し、反対の成立値で置き換えない。",
+          "expected": {
+            "finding_codes": [
+              "F03_L9_DIMENSION_UNKNOWN"
+            ]
+          },
           "expected_preserved": {
             "target": "対象revision/scope・元証拠・理由・当該ownerを保持",
             "unaffected_scope": "該当しない有効scopeを全停止しない",
@@ -1841,7 +1910,8 @@
               "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
               "pointer": "/l9_dimensions"
             }
-          ]
+          ],
+          "expected_text": "L9の10観点の原期待/観測が未決なのに成功または空観測へ補われる。 unknownを保持し、反対の成立値で置き換えない。"
         },
         {
           "code": "F03_PAIR_SCOPE_CONFLICT",
@@ -1849,7 +1919,11 @@
           "axis": "pair_target_scope",
           "state": "conflict",
           "backflow_owner": "HARNESS",
-          "expected": "pairの左右revision/scopeまたは設計対象の対応が一致しないのに同一pairとして比較される。 conflictを保持し、反対の成立値で置き換えない。",
+          "expected": {
+            "finding_codes": [
+              "F03_PAIR_SCOPE_CONFLICT"
+            ]
+          },
           "expected_preserved": {
             "target": "対象revision/scope・元証拠・理由・当該ownerを保持",
             "unaffected_scope": "該当しない有効scopeを全停止しない",
@@ -1875,7 +1949,8 @@
               "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
               "pointer": "/contracts/3/connection_detail/partial_results"
             }
-          ]
+          ],
+          "expected_text": "pairの左右revision/scopeまたは設計対象の対応が一致しないのに同一pairとして比較される。 conflictを保持し、反対の成立値で置き換えない。"
         },
         {
           "code": "F03_TICKET_REVERSE_EFFECT_CONFLICT",
@@ -1883,7 +1958,11 @@
           "axis": "actual_ticket_reverse_effect",
           "state": "conflict",
           "backflow_owner": "OS",
-          "expected": "通常照合から実ticket発行またはReverse実行成功を生成する。 conflictを保持し、反対の成立値で置き換えない。",
+          "expected": {
+            "finding_codes": [
+              "F03_TICKET_REVERSE_EFFECT_CONFLICT"
+            ]
+          },
           "expected_preserved": {
             "target": "対象revision/scope・元証拠・理由・当該ownerを保持",
             "unaffected_scope": "該当しない有効scopeを全停止しない",
@@ -1909,7 +1988,8 @@
               "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
               "pointer": "/contracts/3/connection_detail/scope_policy"
             }
-          ]
+          ],
+          "expected_text": "通常照合から実ticket発行またはReverse実行成功を生成する。 conflictを保持し、反対の成立値で置き換えない。"
         }
       ]
     },
@@ -1986,7 +2066,11 @@
           "axis": "state_Provisional_basis",
           "state": "missing",
           "backflow_owner": "当該状態の原証拠owner",
-          "expected": "Provisional固有の原証拠が不足。前状態/後続状態の証拠で補わず、独立に読めた他stateの証拠は保持する。 状態更新は行わない。",
+          "expected": {
+            "finding_codes": [
+              "F04_STATE_PROVISIONAL_PROOF_MISSING"
+            ]
+          },
           "expected_preserved": {
             "target": "対象revision/scope・元証拠・理由・当該ownerを保持",
             "unaffected_scope": "該当しない有効scopeを全停止しない",
@@ -2011,7 +2095,8 @@
               "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
               "pointer": "/state_evidence_connection"
             }
-          ]
+          ],
+          "expected_text": "Provisional固有の原証拠が不足。前状態/後続状態の証拠で補わず、独立に読めた他stateの証拠は保持する。 状態更新は行わない。"
         },
         {
           "code": "F04_STATE_INTEGRATED_PROOF_MISSING",
@@ -2019,7 +2104,11 @@
           "axis": "state_Integrated_basis",
           "state": "missing",
           "backflow_owner": "当該状態の原証拠owner",
-          "expected": "Integrated固有の原証拠が不足。前状態/後続状態の証拠で補わず、独立に読めた他stateの証拠は保持する。 状態更新は行わない。",
+          "expected": {
+            "finding_codes": [
+              "F04_STATE_INTEGRATED_PROOF_MISSING"
+            ]
+          },
           "expected_preserved": {
             "target": "対象revision/scope・元証拠・理由・当該ownerを保持",
             "unaffected_scope": "該当しない有効scopeを全停止しない",
@@ -2044,7 +2133,8 @@
               "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
               "pointer": "/state_evidence_connection"
             }
-          ]
+          ],
+          "expected_text": "Integrated固有の原証拠が不足。前状態/後続状態の証拠で補わず、独立に読めた他stateの証拠は保持する。 状態更新は行わない。"
         },
         {
           "code": "F04_STATE_VERIFIED_PROOF_MISSING",
@@ -2052,7 +2142,11 @@
           "axis": "state_Verified_basis",
           "state": "missing",
           "backflow_owner": "当該状態の原証拠owner",
-          "expected": "Verified固有の原証拠が不足。前状態/後続状態の証拠で補わず、独立に読めた他stateの証拠は保持する。 状態更新は行わない。",
+          "expected": {
+            "finding_codes": [
+              "F04_STATE_VERIFIED_PROOF_MISSING"
+            ]
+          },
           "expected_preserved": {
             "target": "対象revision/scope・元証拠・理由・当該ownerを保持",
             "unaffected_scope": "該当しない有効scopeを全停止しない",
@@ -2077,7 +2171,8 @@
               "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
               "pointer": "/state_evidence_connection"
             }
-          ]
+          ],
+          "expected_text": "Verified固有の原証拠が不足。前状態/後続状態の証拠で補わず、独立に読めた他stateの証拠は保持する。 状態更新は行わない。"
         },
         {
           "code": "F04_STATE_ACCEPTED_PROOF_MISSING",
@@ -2085,7 +2180,11 @@
           "axis": "state_Accepted_basis",
           "state": "missing",
           "backflow_owner": "当該状態の原証拠owner",
-          "expected": "Accepted固有の原証拠が不足。前状態/後続状態の証拠で補わず、独立に読めた他stateの証拠は保持する。 状態更新は行わない。",
+          "expected": {
+            "finding_codes": [
+              "F04_STATE_ACCEPTED_PROOF_MISSING"
+            ]
+          },
           "expected_preserved": {
             "target": "対象revision/scope・元証拠・理由・当該ownerを保持",
             "unaffected_scope": "該当しない有効scopeを全停止しない",
@@ -2110,7 +2209,8 @@
               "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
               "pointer": "/state_evidence_connection"
             }
-          ]
+          ],
+          "expected_text": "Accepted固有の原証拠が不足。前状態/後続状態の証拠で補わず、独立に読めた他stateの証拠は保持する。 状態更新は行わない。"
         },
         {
           "code": "F04_STATE_RELEASE-ELIGIBLE_PROOF_MISSING",
@@ -2118,7 +2218,11 @@
           "axis": "state_Release-eligible_basis",
           "state": "missing",
           "backflow_owner": "当該状態の原証拠owner",
-          "expected": "Release-eligible固有の原証拠が不足。前状態/後続状態の証拠で補わず、独立に読めた他stateの証拠は保持する。 状態更新は行わない。",
+          "expected": {
+            "finding_codes": [
+              "F04_STATE_RELEASE-ELIGIBLE_PROOF_MISSING"
+            ]
+          },
           "expected_preserved": {
             "target": "対象revision/scope・元証拠・理由・当該ownerを保持",
             "unaffected_scope": "該当しない有効scopeを全停止しない",
@@ -2143,7 +2247,8 @@
               "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
               "pointer": "/state_evidence_connection"
             }
-          ]
+          ],
+          "expected_text": "Release-eligible固有の原証拠が不足。前状態/後続状態の証拠で補わず、独立に読めた他stateの証拠は保持する。 状態更新は行わない。"
         },
         {
           "code": "F04_STATE_DEPLOYED_PROOF_MISSING",
@@ -2151,7 +2256,11 @@
           "axis": "state_Deployed_basis",
           "state": "missing",
           "backflow_owner": "当該状態の原証拠owner",
-          "expected": "Deployed固有の原証拠が不足。前状態/後続状態の証拠で補わず、独立に読めた他stateの証拠は保持する。 状態更新は行わない。",
+          "expected": {
+            "finding_codes": [
+              "F04_STATE_DEPLOYED_PROOF_MISSING"
+            ]
+          },
           "expected_preserved": {
             "target": "対象revision/scope・元証拠・理由・当該ownerを保持",
             "unaffected_scope": "該当しない有効scopeを全停止しない",
@@ -2176,7 +2285,8 @@
               "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
               "pointer": "/state_evidence_connection"
             }
-          ]
+          ],
+          "expected_text": "Deployed固有の原証拠が不足。前状態/後続状態の証拠で補わず、独立に読めた他stateの証拠は保持する。 状態更新は行わない。"
         },
         {
           "code": "F04_STATE_OBSERVED_PROOF_MISSING",
@@ -2184,7 +2294,11 @@
           "axis": "state_Observed_basis",
           "state": "missing",
           "backflow_owner": "当該状態の原証拠owner",
-          "expected": "Observed固有の原証拠が不足。前状態/後続状態の証拠で補わず、独立に読めた他stateの証拠は保持する。 状態更新は行わない。",
+          "expected": {
+            "finding_codes": [
+              "F04_STATE_OBSERVED_PROOF_MISSING"
+            ]
+          },
           "expected_preserved": {
             "target": "対象revision/scope・元証拠・理由・当該ownerを保持",
             "unaffected_scope": "該当しない有効scopeを全停止しない",
@@ -2209,7 +2323,8 @@
               "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
               "pointer": "/state_evidence_connection"
             }
-          ]
+          ],
+          "expected_text": "Observed固有の原証拠が不足。前状態/後続状態の証拠で補わず、独立に読めた他stateの証拠は保持する。 状態更新は行わない。"
         }
       ]
     },
@@ -2302,7 +2417,11 @@
           "axis": "port_required_fields",
           "state": "missing",
           "backflow_owner": "HARNESS",
-          "expected": "開発開始時から義務を持つPort必須fieldまたは原観測が欠落したままRelease-eligible扱いになる。 missingを保持し、反対の成立値で置き換えない。",
+          "expected": {
+            "finding_codes": [
+              "F05_REQUIRED_PORT_FIELD_MISSING"
+            ]
+          },
           "expected_preserved": {
             "target": "対象revision/scope・元証拠・理由・当該ownerを保持",
             "unaffected_scope": "該当しない有効scopeを全停止しない",
@@ -2328,7 +2447,8 @@
               "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
               "pointer": "/contracts/5/connection_detail/initial_order"
             }
-          ]
+          ],
+          "expected_text": "開発開始時から義務を持つPort必須fieldまたは原観測が欠落したままRelease-eligible扱いになる。 missingを保持し、反対の成立値で置き換えない。"
         },
         {
           "code": "F05_EXISTING_AUTHORITY_UNKNOWN",
@@ -2336,7 +2456,11 @@
           "axis": "existing_operation_authority",
           "state": "unknown",
           "backflow_owner": "SECURITY",
-          "expected": "既存の操作authorityが未決なのに実操作を許可扱いにする。 unknownを保持し、反対の成立値で置き換えない。",
+          "expected": {
+            "finding_codes": [
+              "F05_EXISTING_AUTHORITY_UNKNOWN"
+            ]
+          },
           "expected_preserved": {
             "target": "対象revision/scope・元証拠・理由・当該ownerを保持",
             "unaffected_scope": "該当しない有効scopeを全停止しない",
@@ -2358,7 +2482,8 @@
               "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
               "pointer": "/contracts/5/connection_detail/existing_authority_owner"
             }
-          ]
+          ],
+          "expected_text": "既存の操作authorityが未決なのに実操作を許可扱いにする。 unknownを保持し、反対の成立値で置き換えない。"
         },
         {
           "code": "F05_RETURN_TARGET_UNKNOWN",
@@ -2366,7 +2491,11 @@
           "axis": "backfill_return_target",
           "state": "unknown",
           "backflow_owner": "当該owner",
-          "expected": "Reverse fullback実結果または対象選択方式から戻り先を確定できないのに既定層へ補う。 unknownを保持し、反対の成立値で置き換えない。",
+          "expected": {
+            "finding_codes": [
+              "F05_RETURN_TARGET_UNKNOWN"
+            ]
+          },
           "expected_preserved": {
             "target": "対象revision/scope・元証拠・理由・当該ownerを保持",
             "unaffected_scope": "該当しない有効scopeを全停止しない",
@@ -2392,7 +2521,8 @@
               "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
               "pointer": "/contracts/5/connection_detail/return"
             }
-          ]
+          ],
+          "expected_text": "Reverse fullback実結果または対象選択方式から戻り先を確定できないのに既定層へ補う。 unknownを保持し、反対の成立値で置き換えない。"
         },
         {
           "code": "F05_OPERATION_EFFECT_CONFLICT",
@@ -2400,7 +2530,11 @@
           "axis": "release_incident_operation_effect",
           "state": "conflict",
           "backflow_owner": "OS",
-          "expected": "Port成立を実release/Incident/配備/operation approvalの実作用として扱う。 conflictを保持し、反対の成立値で置き換えない。",
+          "expected": {
+            "finding_codes": [
+              "F05_OPERATION_EFFECT_CONFLICT"
+            ]
+          },
           "expected_preserved": {
             "target": "対象revision/scope・元証拠・理由・当該ownerを保持",
             "unaffected_scope": "該当しない有効scopeを全停止しない",
@@ -2426,7 +2560,8 @@
               "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
               "pointer": "/contracts/5/connection_detail/existing_authority_owner"
             }
-          ]
+          ],
+          "expected_text": "Port成立を実release/Incident/配備/operation approvalの実作用として扱う。 conflictを保持し、反対の成立値で置き換えない。"
         },
         {
           "code": "F05_COMPLETION_BACKFILL_CONFLICT",
@@ -2434,7 +2569,11 @@
           "axis": "incident_completion_backfill",
           "state": "conflict",
           "backflow_owner": "OS",
-          "expected": "配備成功またはIssue closeを恒久対策・current L1–L12 backfill・backfull完了として扱う。 conflictを保持し、反対の成立値で置き換えない。",
+          "expected": {
+            "finding_codes": [
+              "F05_COMPLETION_BACKFILL_CONFLICT"
+            ]
+          },
           "expected_preserved": {
             "target": "対象revision/scope・元証拠・理由・当該ownerを保持",
             "unaffected_scope": "該当しない有効scopeを全停止しない",
@@ -2460,7 +2599,8 @@
               "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
               "pointer": "/contracts/5/connection_detail/return"
             }
-          ]
+          ],
+          "expected_text": "配備成功またはIssue closeを恒久対策・current L1–L12 backfill・backfull完了として扱う。 conflictを保持し、反対の成立値で置き換えない。"
         }
       ]
     },
@@ -2546,7 +2686,11 @@
           "axis": "quality_applicability",
           "state": "unknown",
           "backflow_owner": "対象製品の要求/品質owner",
-          "expected": "対象製品の品質領域適用性またはN/A理由/原根拠が未決なのに空集合/N/Aへ補う。 unknownを保持し、反対の成立値で置き換えない。",
+          "expected": {
+            "finding_codes": [
+              "N01_QUALITY_APPLICABILITY_UNKNOWN"
+            ]
+          },
           "expected_preserved": {
             "target": "対象revision/scope・元証拠・理由・当該ownerを保持",
             "unaffected_scope": "該当しない有効scopeを全停止しない",
@@ -2572,7 +2716,8 @@
               "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
               "pointer": "/contracts/6/connection_detail/partial_preservation"
             }
-          ]
+          ],
+          "expected_text": "対象製品の品質領域適用性またはN/A理由/原根拠が未決なのに空集合/N/Aへ補う。 unknownを保持し、反対の成立値で置き換えない。"
         },
         {
           "code": "N01_QUALITY_STAGE_EVIDENCE_MISSING",
@@ -2580,7 +2725,11 @@
           "axis": "quality_stage_evidence",
           "state": "missing",
           "backflow_owner": "対象製品の要求/品質owner",
-          "expected": "designed/implemented/verified/observed/operatedの固有原証拠が欠落したまま後段stateで補完される。 missingを保持し、反対の成立値で置き換えない。",
+          "expected": {
+            "finding_codes": [
+              "N01_QUALITY_STAGE_EVIDENCE_MISSING"
+            ]
+          },
           "expected_preserved": {
             "target": "対象revision/scope・元証拠・理由・当該ownerを保持",
             "unaffected_scope": "該当しない有効scopeを全停止しない",
@@ -2602,7 +2751,8 @@
               "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
               "pointer": "/contracts/6/connection_detail/quality_stages"
             }
-          ]
+          ],
+          "expected_text": "designed/implemented/verified/observed/operatedの固有原証拠が欠落したまま後段stateで補完される。 missingを保持し、反対の成立値で置き換えない。"
         },
         {
           "code": "N01_HEALTH_OBSERVATION_UNKNOWN",
@@ -2610,7 +2760,11 @@
           "axis": "health_observation",
           "state": "unknown",
           "backflow_owner": "対象製品の要求/品質owner",
-          "expected": "必要適用性または実観測が未確定なのにhealthy/unhealthyへ確定する。 unknownを保持し、反対の成立値で置き換えない。",
+          "expected": {
+            "finding_codes": [
+              "N01_HEALTH_OBSERVATION_UNKNOWN"
+            ]
+          },
           "expected_preserved": {
             "target": "対象revision/scope・元証拠・理由・当該ownerを保持",
             "unaffected_scope": "該当しない有効scopeを全停止しない",
@@ -2632,7 +2786,8 @@
               "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
               "pointer": "/contracts/6/connection_detail/partial_preservation"
             }
-          ]
+          ],
+          "expected_text": "必要適用性または実観測が未確定なのにhealthy/unhealthyへ確定する。 unknownを保持し、反対の成立値で置き換えない。"
         },
         {
           "code": "N01_TARGET_ENVIRONMENT_EVIDENCE_MISSING",
@@ -2640,7 +2795,11 @@
           "axis": "target_environment_binding",
           "state": "missing",
           "backflow_owner": "対象製品の要求/品質owner",
-          "expected": "別環境や旧provider/CIの証拠だけで対象環境の観測不足を相殺する。 missingを保持し、反対の成立値で置き換えない。",
+          "expected": {
+            "finding_codes": [
+              "N01_TARGET_ENVIRONMENT_EVIDENCE_MISSING"
+            ]
+          },
           "expected_preserved": {
             "target": "対象revision/scope・元証拠・理由・当該ownerを保持",
             "unaffected_scope": "該当しない有効scopeを全停止しない",
@@ -2662,7 +2821,8 @@
               "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
               "pointer": "/contracts/6/connection_detail/partial_preservation"
             }
-          ]
+          ],
+          "expected_text": "別環境や旧provider/CIの証拠だけで対象環境の観測不足を相殺する。 missingを保持し、反対の成立値で置き換えない。"
         },
         {
           "code": "N01_SECURITY_AUTHORITY_CONFLICT",
@@ -2670,7 +2830,11 @@
           "axis": "security_policy_authority",
           "state": "conflict",
           "backflow_owner": "SECURITY",
-          "expected": "工程条件またはOS運転からsecurity policy、credential、認可を生成する。 conflictを保持し、反対の成立値で置き換えない。",
+          "expected": {
+            "finding_codes": [
+              "N01_SECURITY_AUTHORITY_CONFLICT"
+            ]
+          },
           "expected_preserved": {
             "target": "対象revision/scope・元証拠・理由・当該ownerを保持",
             "unaffected_scope": "該当しない有効scopeを全停止しない",
@@ -2692,7 +2856,8 @@
               "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
               "pointer": "/contracts/6/connection_detail/security_policy_authority_owner"
             }
-          ]
+          ],
+          "expected_text": "工程条件またはOS運転からsecurity policy、credential、認可を生成する。 conflictを保持し、反対の成立値で置き換えない。"
         },
         {
           "code": "N01_NUMERIC_TARGET_UNKNOWN",
@@ -2700,7 +2865,11 @@
           "axis": "numeric_target_basis",
           "state": "unknown",
           "backflow_owner": "対象製品要求/Release owner",
-          "expected": "SLO/RTO/RPO/保持期間の要求/Release根拠が未決なのに工程規則や他対象値から既定値を生成する。 unknownを保持し、反対の成立値で置き換えない。",
+          "expected": {
+            "finding_codes": [
+              "N01_NUMERIC_TARGET_UNKNOWN"
+            ]
+          },
           "expected_preserved": {
             "target": "対象revision/scope・元証拠・理由・当該ownerを保持",
             "unaffected_scope": "該当しない有効scopeを全停止しない",
@@ -2722,7 +2891,8 @@
               "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
               "pointer": "/contracts/6/connection_detail/unknown_numeric_return"
             }
-          ]
+          ],
+          "expected_text": "SLO/RTO/RPO/保持期間の要求/Release根拠が未決なのに工程規則や他対象値から既定値を生成する。 unknownを保持し、反対の成立値で置き換えない。"
         }
       ]
     }

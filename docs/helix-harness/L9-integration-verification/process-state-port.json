@@ -638,6 +638,22 @@
                 "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
                 "pointer": "/cases/0/negative_cases/0/expected_material"
               }
+            ],
+            "ordered_findings": [
+              {
+                "code": "B01_REQUIRED_EVIDENCE_MISSING",
+                "return_owner": "当該原source owner",
+                "source_pointers": [
+                  {
+                    "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
+                    "pointer": "/contracts/0/negative_classifications/0"
+                  },
+                  {
+                    "path": "docs/helix-harness/L5-detail-design/process-state-port.json",
+                    "pointer": "/failure_rules/7"
+                  }
+                ]
+              }
             ]
           }
         },
@@ -702,6 +718,22 @@
               {
                 "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
                 "pointer": "/cases/0/negative_cases/1/expected_material"
+              }
+            ],
+            "ordered_findings": [
+              {
+                "code": "B01_REQUIRED_EVIDENCE_MISSING",
+                "return_owner": "当該原source owner",
+                "source_pointers": [
+                  {
+                    "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
+                    "pointer": "/contracts/0/negative_classifications/0"
+                  },
+                  {
+                    "path": "docs/helix-harness/L5-detail-design/process-state-port.json",
+                    "pointer": "/failure_rules/7"
+                  }
+                ]
               }
             ]
           }
@@ -769,6 +801,22 @@
                 "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
                 "pointer": "/cases/0/negative_cases/2/expected_material"
               }
+            ],
+            "ordered_findings": [
+              {
+                "code": "B01_REQUIRED_EVIDENCE_MISSING",
+                "return_owner": "当該原source owner",
+                "source_pointers": [
+                  {
+                    "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
+                    "pointer": "/contracts/0/negative_classifications/0"
+                  },
+                  {
+                    "path": "docs/helix-harness/L5-detail-design/process-state-port.json",
+                    "pointer": "/failure_rules/7"
+                  }
+                ]
+              }
             ]
           }
         },
@@ -834,6 +882,22 @@
               {
                 "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
                 "pointer": "/cases/0/negative_cases/3/expected_material"
+              }
+            ],
+            "ordered_findings": [
+              {
+                "code": "B01_REQUIRED_EVIDENCE_MISSING",
+                "return_owner": "当該原source owner",
+                "source_pointers": [
+                  {
+                    "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
+                    "pointer": "/contracts/0/negative_classifications/0"
+                  },
+                  {
+                    "path": "docs/helix-harness/L5-detail-design/process-state-port.json",
+                    "pointer": "/failure_rules/7"
+                  }
+                ]
               }
             ]
           }
@@ -904,6 +968,22 @@
               {
                 "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
                 "pointer": "/cases/0/negative_cases/4/expected_material"
+              }
+            ],
+            "ordered_findings": [
+              {
+                "code": "B01_REQUIRED_EVIDENCE_MISSING",
+                "return_owner": "当該原source owner",
+                "source_pointers": [
+                  {
+                    "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
+                    "pointer": "/contracts/0/negative_classifications/0"
+                  },
+                  {
+                    "path": "docs/helix-harness/L5-detail-design/process-state-port.json",
+                    "pointer": "/failure_rules/7"
+                  }
+                ]
               }
             ]
           }
@@ -976,6 +1056,22 @@
                 "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
                 "pointer": "/cases/0/negative_cases/5/expected_material"
               }
+            ],
+            "ordered_findings": [
+              {
+                "code": "B01_SOURCE_ROLE_CONFLICT",
+                "return_owner": "HARNESS",
+                "source_pointers": [
+                  {
+                    "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
+                    "pointer": "/contracts/0/negative_classifications/2"
+                  },
+                  {
+                    "path": "docs/helix-harness/L5-detail-design/process-state-port.json",
+                    "pointer": "/failure_rules/9"
+                  }
+                ]
+              }
             ]
           }
         },
@@ -1041,6 +1137,22 @@
               {
                 "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
                 "pointer": "/cases/0/negative_cases/6/expected_material"
+              }
+            ],
+            "ordered_findings": [
+              {
+                "code": "B01_REQUIRED_EVIDENCE_MISSING",
+                "return_owner": "当該原source owner",
+                "source_pointers": [
+                  {
+                    "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
+                    "pointer": "/contracts/0/negative_classifications/0"
+                  },
+                  {
+                    "path": "docs/helix-harness/L5-detail-design/process-state-port.json",
+                    "pointer": "/failure_rules/7"
+                  }
+                ]
               }
             ]
           }
@@ -1108,6 +1220,22 @@
               {
                 "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
                 "pointer": "/cases/0/negative_cases/7/expected_material"
+              }
+            ],
+            "ordered_findings": [
+              {
+                "code": "B01_SOURCE_REVISION_STALE",
+                "return_owner": "HARNESS",
+                "source_pointers": [
+                  {
+                    "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
+                    "pointer": "/contracts/0/negative_classifications/3"
+                  },
+                  {
+                    "path": "docs/helix-harness/L5-detail-design/process-state-port.json",
+                    "pointer": "/failure_rules/10"
+                  }
+                ]
               }
             ]
           }
@@ -1177,6 +1305,22 @@
               {
                 "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
                 "pointer": "/cases/0/negative_cases/8/expected_material"
+              }
+            ],
+            "ordered_findings": [
+              {
+                "code": "B01_REQUIRED_EVIDENCE_MISSING",
+                "return_owner": "当該原source owner",
+                "source_pointers": [
+                  {
+                    "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
+                    "pointer": "/contracts/0/negative_classifications/0"
+                  },
+                  {
+                    "path": "docs/helix-harness/L5-detail-design/process-state-port.json",
+                    "pointer": "/failure_rules/7"
+                  }
+                ]
               }
             ]
           }
@@ -1300,6 +1444,22 @@
               {
                 "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
                 "pointer": "/cases/0/negative_cases/10/expected_material"
+              }
+            ],
+            "ordered_findings": [
+              {
+                "code": "B01_SOURCE_ROLE_CONFLICT",
+                "return_owner": "HARNESS",
+                "source_pointers": [
+                  {
+                    "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
+                    "pointer": "/contracts/0/negative_classifications/2"
+                  },
+                  {
+                    "path": "docs/helix-harness/L5-detail-design/process-state-port.json",
+                    "pointer": "/failure_rules/9"
+                  }
+                ]
               }
             ]
           }
@@ -1547,6 +1707,22 @@
               {
                 "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
                 "pointer": "/cases/0/negative_cases/15/expected_material"
+              }
+            ],
+            "ordered_findings": [
+              {
+                "code": "B01_SOURCE_ROLE_CONFLICT",
+                "return_owner": "HARNESS",
+                "source_pointers": [
+                  {
+                    "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
+                    "pointer": "/contracts/0/negative_classifications/2"
+                  },
+                  {
+                    "path": "docs/helix-harness/L5-detail-design/process-state-port.json",
+                    "pointer": "/failure_rules/9"
+                  }
+                ]
               }
             ]
           }
@@ -2137,6 +2313,22 @@
                 "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
                 "pointer": "/cases/1/negative_cases/0/expected_material"
               }
+            ],
+            "ordered_findings": [
+              {
+                "code": "F01_REQUIRED_CONDITION_MISSING",
+                "return_owner": "HARNESS",
+                "source_pointers": [
+                  {
+                    "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
+                    "pointer": "/contracts/1/negative_classifications/0"
+                  },
+                  {
+                    "path": "docs/helix-harness/L5-detail-design/process-state-port.json",
+                    "pointer": "/failure_rules/11"
+                  }
+                ]
+              }
             ]
           }
         },
@@ -2204,6 +2396,22 @@
               {
                 "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
                 "pointer": "/cases/1/negative_cases/1/expected_material"
+              }
+            ],
+            "ordered_findings": [
+              {
+                "code": "F01_REQUIRED_CONDITION_MISSING",
+                "return_owner": "HARNESS",
+                "source_pointers": [
+                  {
+                    "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
+                    "pointer": "/contracts/1/negative_classifications/0"
+                  },
+                  {
+                    "path": "docs/helix-harness/L5-detail-design/process-state-port.json",
+                    "pointer": "/failure_rules/11"
+                  }
+                ]
               }
             ]
           }
@@ -2274,6 +2482,22 @@
                 "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
                 "pointer": "/cases/1/negative_cases/2/expected_material"
               }
+            ],
+            "ordered_findings": [
+              {
+                "code": "F01_REQUIRED_CONDITION_MISSING",
+                "return_owner": "HARNESS",
+                "source_pointers": [
+                  {
+                    "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
+                    "pointer": "/contracts/1/negative_classifications/0"
+                  },
+                  {
+                    "path": "docs/helix-harness/L5-detail-design/process-state-port.json",
+                    "pointer": "/failure_rules/11"
+                  }
+                ]
+              }
             ]
           }
         },
@@ -2339,6 +2563,22 @@
                 "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
                 "pointer": "/cases/1/negative_cases/3/expected_material"
               }
+            ],
+            "ordered_findings": [
+              {
+                "code": "F01_CONDITION_TARGET_STALE",
+                "return_owner": "HARNESS",
+                "source_pointers": [
+                  {
+                    "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
+                    "pointer": "/contracts/1/negative_classifications/3"
+                  },
+                  {
+                    "path": "docs/helix-harness/L5-detail-design/process-state-port.json",
+                    "pointer": "/failure_rules/14"
+                  }
+                ]
+              }
             ]
           }
         },
@@ -2402,6 +2642,22 @@
               {
                 "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
                 "pointer": "/cases/1/negative_cases/4/expected_material"
+              }
+            ],
+            "ordered_findings": [
+              {
+                "code": "F01_ROLE_AUTHORITY_CONFLICT",
+                "return_owner": "対象判断/認可のowner",
+                "source_pointers": [
+                  {
+                    "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
+                    "pointer": "/contracts/1/negative_classifications/2"
+                  },
+                  {
+                    "path": "docs/helix-harness/L5-detail-design/process-state-port.json",
+                    "pointer": "/failure_rules/13"
+                  }
+                ]
               }
             ]
           }
@@ -2467,6 +2723,22 @@
                 "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
                 "pointer": "/cases/1/negative_cases/5/expected_material"
               }
+            ],
+            "ordered_findings": [
+              {
+                "code": "F01_ROLE_AUTHORITY_CONFLICT",
+                "return_owner": "対象判断/認可のowner",
+                "source_pointers": [
+                  {
+                    "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
+                    "pointer": "/contracts/1/negative_classifications/2"
+                  },
+                  {
+                    "path": "docs/helix-harness/L5-detail-design/process-state-port.json",
+                    "pointer": "/failure_rules/13"
+                  }
+                ]
+              }
             ]
           }
         },
@@ -2530,6 +2802,22 @@
               {
                 "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
                 "pointer": "/cases/1/negative_cases/6/expected_material"
+              }
+            ],
+            "ordered_findings": [
+              {
+                "code": "F01_ROLE_AUTHORITY_CONFLICT",
+                "return_owner": "対象判断/認可のowner",
+                "source_pointers": [
+                  {
+                    "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
+                    "pointer": "/contracts/1/negative_classifications/2"
+                  },
+                  {
+                    "path": "docs/helix-harness/L5-detail-design/process-state-port.json",
+                    "pointer": "/failure_rules/13"
+                  }
+                ]
               }
             ]
           }
@@ -2595,6 +2883,22 @@
                 "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
                 "pointer": "/cases/1/negative_cases/7/expected_material"
               }
+            ],
+            "ordered_findings": [
+              {
+                "code": "F01_ROLE_AUTHORITY_CONFLICT",
+                "return_owner": "対象判断/認可のowner",
+                "source_pointers": [
+                  {
+                    "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
+                    "pointer": "/contracts/1/negative_classifications/2"
+                  },
+                  {
+                    "path": "docs/helix-harness/L5-detail-design/process-state-port.json",
+                    "pointer": "/failure_rules/13"
+                  }
+                ]
+              }
             ]
           }
         },
@@ -2645,6 +2949,22 @@
               {
                 "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
                 "pointer": "/cases/1/negative_cases/8/expected_material"
+              }
+            ],
+            "ordered_findings": [
+              {
+                "code": "F01_ROLE_AUTHORITY_CONFLICT",
+                "return_owner": "対象判断/認可のowner",
+                "source_pointers": [
+                  {
+                    "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
+                    "pointer": "/contracts/1/negative_classifications/2"
+                  },
+                  {
+                    "path": "docs/helix-harness/L5-detail-design/process-state-port.json",
+                    "pointer": "/failure_rules/13"
+                  }
+                ]
               }
             ]
           }
@@ -2697,6 +3017,22 @@
                 "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
                 "pointer": "/cases/1/negative_cases/9/expected_material"
               }
+            ],
+            "ordered_findings": [
+              {
+                "code": "F01_ROLE_AUTHORITY_CONFLICT",
+                "return_owner": "対象判断/認可のowner",
+                "source_pointers": [
+                  {
+                    "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
+                    "pointer": "/contracts/1/negative_classifications/2"
+                  },
+                  {
+                    "path": "docs/helix-harness/L5-detail-design/process-state-port.json",
+                    "pointer": "/failure_rules/13"
+                  }
+                ]
+              }
             ]
           }
         },
@@ -2748,6 +3084,22 @@
               {
                 "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
                 "pointer": "/cases/1/negative_cases/10/expected_material"
+              }
+            ],
+            "ordered_findings": [
+              {
+                "code": "F01_ROLE_AUTHORITY_CONFLICT",
+                "return_owner": "対象判断/認可のowner",
+                "source_pointers": [
+                  {
+                    "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
+                    "pointer": "/contracts/1/negative_classifications/2"
+                  },
+                  {
+                    "path": "docs/helix-harness/L5-detail-design/process-state-port.json",
+                    "pointer": "/failure_rules/13"
+                  }
+                ]
               }
             ]
           }
@@ -2839,6 +3191,22 @@
                 "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
                 "pointer": "/cases/1/negative_cases/12/expected_material"
               }
+            ],
+            "ordered_findings": [
+              {
+                "code": "F01_ROLE_AUTHORITY_CONFLICT",
+                "return_owner": "対象判断/認可のowner",
+                "source_pointers": [
+                  {
+                    "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
+                    "pointer": "/contracts/1/negative_classifications/2"
+                  },
+                  {
+                    "path": "docs/helix-harness/L5-detail-design/process-state-port.json",
+                    "pointer": "/failure_rules/13"
+                  }
+                ]
+              }
             ]
           }
         },
@@ -2913,6 +3281,22 @@
               {
                 "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
                 "pointer": "/cases/1/negative_cases/13/expected_material"
+              }
+            ],
+            "ordered_findings": [
+              {
+                "code": "F01_REQUIRED_CONDITION_MISSING",
+                "return_owner": "HARNESS",
+                "source_pointers": [
+                  {
+                    "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
+                    "pointer": "/contracts/1/negative_classifications/0"
+                  },
+                  {
+                    "path": "docs/helix-harness/L5-detail-design/process-state-port.json",
+                    "pointer": "/failure_rules/11"
+                  }
+                ]
               }
             ]
           }
@@ -3058,6 +3442,22 @@
                 "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
                 "pointer": "/cases/1/negative_cases/15/expected_material"
               }
+            ],
+            "ordered_findings": [
+              {
+                "code": "F01_REQUIRED_CONDITION_MISSING",
+                "return_owner": "HARNESS",
+                "source_pointers": [
+                  {
+                    "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
+                    "pointer": "/contracts/1/negative_classifications/0"
+                  },
+                  {
+                    "path": "docs/helix-harness/L5-detail-design/process-state-port.json",
+                    "pointer": "/failure_rules/11"
+                  }
+                ]
+              }
             ]
           }
         },
@@ -3127,6 +3527,22 @@
               {
                 "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
                 "pointer": "/cases/1/negative_cases/16/expected_material"
+              }
+            ],
+            "ordered_findings": [
+              {
+                "code": "F01_CONDITION_DEFINITION_UNKNOWN",
+                "return_owner": "HARNESS",
+                "source_pointers": [
+                  {
+                    "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
+                    "pointer": "/contracts/1/negative_classifications/1"
+                  },
+                  {
+                    "path": "docs/helix-harness/L5-detail-design/process-state-port.json",
+                    "pointer": "/failure_rules/12"
+                  }
+                ]
               }
             ]
           }
@@ -3475,6 +3891,22 @@
               {
                 "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
                 "pointer": "/cases/2/negative_cases/2/expected_material"
+              }
+            ],
+            "ordered_findings": [
+              {
+                "code": "F02_APPLICABLE_RESULT_MISSING",
+                "return_owner": "L2.5原実験/Prototype owner",
+                "source_pointers": [
+                  {
+                    "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
+                    "pointer": "/contracts/2/negative_classifications/1"
+                  },
+                  {
+                    "path": "docs/helix-harness/L5-detail-design/process-state-port.json",
+                    "pointer": "/failure_rules/16"
+                  }
+                ]
               }
             ]
           }
@@ -3930,6 +4362,22 @@
                 "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
                 "pointer": "/cases/2/negative_cases/10/expected_material"
               }
+            ],
+            "ordered_findings": [
+              {
+                "code": "F02_ADOPTION_CLAIM_CONFLICT",
+                "return_owner": "当該採用/承認の原owner",
+                "source_pointers": [
+                  {
+                    "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
+                    "pointer": "/contracts/2/negative_classifications/2"
+                  },
+                  {
+                    "path": "docs/helix-harness/L5-detail-design/process-state-port.json",
+                    "pointer": "/failure_rules/17"
+                  }
+                ]
+              }
             ]
           }
         },
@@ -3984,6 +4432,22 @@
                 "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
                 "pointer": "/cases/2/negative_cases/11/expected_material"
               }
+            ],
+            "ordered_findings": [
+              {
+                "code": "F02_APPLICABILITY_UNKNOWN",
+                "return_owner": "001 Prototype/PoC独立判定",
+                "source_pointers": [
+                  {
+                    "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
+                    "pointer": "/contracts/2/negative_classifications/0"
+                  },
+                  {
+                    "path": "docs/helix-harness/L5-detail-design/process-state-port.json",
+                    "pointer": "/failure_rules/15"
+                  }
+                ]
+              }
             ]
           }
         },
@@ -4036,6 +4500,22 @@
               {
                 "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
                 "pointer": "/cases/2/negative_cases/12/expected_material"
+              }
+            ],
+            "ordered_findings": [
+              {
+                "code": "F02_ADOPTION_CLAIM_CONFLICT",
+                "return_owner": "当該採用/承認の原owner",
+                "source_pointers": [
+                  {
+                    "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
+                    "pointer": "/contracts/2/negative_classifications/2"
+                  },
+                  {
+                    "path": "docs/helix-harness/L5-detail-design/process-state-port.json",
+                    "pointer": "/failure_rules/17"
+                  }
+                ]
               }
             ]
           }
@@ -4090,6 +4570,22 @@
                 "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
                 "pointer": "/cases/2/negative_cases/13/expected_material"
               }
+            ],
+            "ordered_findings": [
+              {
+                "code": "F02_ADOPTION_CLAIM_CONFLICT",
+                "return_owner": "当該採用/承認の原owner",
+                "source_pointers": [
+                  {
+                    "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
+                    "pointer": "/contracts/2/negative_classifications/2"
+                  },
+                  {
+                    "path": "docs/helix-harness/L5-detail-design/process-state-port.json",
+                    "pointer": "/failure_rules/17"
+                  }
+                ]
+              }
             ]
           }
         },
@@ -4142,6 +4638,22 @@
               {
                 "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
                 "pointer": "/cases/2/negative_cases/14/expected_material"
+              }
+            ],
+            "ordered_findings": [
+              {
+                "code": "F02_ADOPTION_CLAIM_CONFLICT",
+                "return_owner": "当該採用/承認の原owner",
+                "source_pointers": [
+                  {
+                    "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
+                    "pointer": "/contracts/2/negative_classifications/2"
+                  },
+                  {
+                    "path": "docs/helix-harness/L5-detail-design/process-state-port.json",
+                    "pointer": "/failure_rules/17"
+                  }
+                ]
               }
             ]
           }
@@ -4196,6 +4708,22 @@
                 "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
                 "pointer": "/cases/2/negative_cases/15/expected_material"
               }
+            ],
+            "ordered_findings": [
+              {
+                "code": "F02_ADOPTION_CLAIM_CONFLICT",
+                "return_owner": "当該採用/承認の原owner",
+                "source_pointers": [
+                  {
+                    "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
+                    "pointer": "/contracts/2/negative_classifications/2"
+                  },
+                  {
+                    "path": "docs/helix-harness/L5-detail-design/process-state-port.json",
+                    "pointer": "/failure_rules/17"
+                  }
+                ]
+              }
             ]
           }
         },
@@ -4248,6 +4776,22 @@
               {
                 "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
                 "pointer": "/cases/2/negative_cases/16/expected_material"
+              }
+            ],
+            "ordered_findings": [
+              {
+                "code": "F02_APPLICABILITY_UNKNOWN",
+                "return_owner": "001 Prototype/PoC独立判定",
+                "source_pointers": [
+                  {
+                    "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
+                    "pointer": "/contracts/2/negative_classifications/0"
+                  },
+                  {
+                    "path": "docs/helix-harness/L5-detail-design/process-state-port.json",
+                    "pointer": "/failure_rules/15"
+                  }
+                ]
               }
             ]
           }
@@ -4302,6 +4846,22 @@
                 "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
                 "pointer": "/cases/2/negative_cases/17/expected_material"
               }
+            ],
+            "ordered_findings": [
+              {
+                "code": "F02_APPLICABILITY_UNKNOWN",
+                "return_owner": "001 Prototype/PoC独立判定",
+                "source_pointers": [
+                  {
+                    "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
+                    "pointer": "/contracts/2/negative_classifications/0"
+                  },
+                  {
+                    "path": "docs/helix-harness/L5-detail-design/process-state-port.json",
+                    "pointer": "/failure_rules/15"
+                  }
+                ]
+              }
             ]
           }
         },
@@ -4354,6 +4914,22 @@
               {
                 "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
                 "pointer": "/cases/2/negative_cases/18/expected_material"
+              }
+            ],
+            "ordered_findings": [
+              {
+                "code": "F02_APPLICABILITY_UNKNOWN",
+                "return_owner": "001 Prototype/PoC独立判定",
+                "source_pointers": [
+                  {
+                    "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
+                    "pointer": "/contracts/2/negative_classifications/0"
+                  },
+                  {
+                    "path": "docs/helix-harness/L5-detail-design/process-state-port.json",
+                    "pointer": "/failure_rules/15"
+                  }
+                ]
               }
             ]
           }
@@ -4408,6 +4984,22 @@
                 "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
                 "pointer": "/cases/2/negative_cases/19/expected_material"
               }
+            ],
+            "ordered_findings": [
+              {
+                "code": "F02_APPLICABILITY_UNKNOWN",
+                "return_owner": "001 Prototype/PoC独立判定",
+                "source_pointers": [
+                  {
+                    "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
+                    "pointer": "/contracts/2/negative_classifications/0"
+                  },
+                  {
+                    "path": "docs/helix-harness/L5-detail-design/process-state-port.json",
+                    "pointer": "/failure_rules/15"
+                  }
+                ]
+              }
             ]
           }
         },
@@ -4460,6 +5052,22 @@
               {
                 "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
                 "pointer": "/cases/2/negative_cases/20/expected_material"
+              }
+            ],
+            "ordered_findings": [
+              {
+                "code": "F02_APPLICABILITY_UNKNOWN",
+                "return_owner": "001 Prototype/PoC独立判定",
+                "source_pointers": [
+                  {
+                    "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
+                    "pointer": "/contracts/2/negative_classifications/0"
+                  },
+                  {
+                    "path": "docs/helix-harness/L5-detail-design/process-state-port.json",
+                    "pointer": "/failure_rules/15"
+                  }
+                ]
               }
             ]
           }
@@ -4727,6 +5335,22 @@
                 "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
                 "pointer": "/cases/3/negative_cases/0/expected_material"
               }
+            ],
+            "ordered_findings": [
+              {
+                "code": "F03_REQUIRED_PAIR_MISSING",
+                "return_owner": "HARNESS",
+                "source_pointers": [
+                  {
+                    "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
+                    "pointer": "/contracts/3/negative_classifications/0"
+                  },
+                  {
+                    "path": "docs/helix-harness/L5-detail-design/process-state-port.json",
+                    "pointer": "/failure_rules/19"
+                  }
+                ]
+              }
             ]
           }
         },
@@ -4849,6 +5473,22 @@
               {
                 "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
                 "pointer": "/cases/3/negative_cases/2/expected_material"
+              }
+            ],
+            "ordered_findings": [
+              {
+                "code": "F03_REQUIRED_PAIR_MISSING",
+                "return_owner": "HARNESS",
+                "source_pointers": [
+                  {
+                    "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
+                    "pointer": "/contracts/3/negative_classifications/0"
+                  },
+                  {
+                    "path": "docs/helix-harness/L5-detail-design/process-state-port.json",
+                    "pointer": "/failure_rules/19"
+                  }
+                ]
               }
             ]
           }
@@ -5311,6 +5951,22 @@
                 "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
                 "pointer": "/cases/3/negative_cases/10/expected_material"
               }
+            ],
+            "ordered_findings": [
+              {
+                "code": "F03_PAIR_SCOPE_CONFLICT",
+                "return_owner": "HARNESS",
+                "source_pointers": [
+                  {
+                    "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
+                    "pointer": "/contracts/3/negative_classifications/2"
+                  },
+                  {
+                    "path": "docs/helix-harness/L5-detail-design/process-state-port.json",
+                    "pointer": "/failure_rules/21"
+                  }
+                ]
+              }
             ]
           }
         },
@@ -5473,6 +6129,22 @@
                 "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
                 "pointer": "/cases/3/negative_cases/12/expected_material"
               }
+            ],
+            "ordered_findings": [
+              {
+                "code": "F03_L9_DIMENSION_UNKNOWN",
+                "return_owner": "L9各観点の原観測owner",
+                "source_pointers": [
+                  {
+                    "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
+                    "pointer": "/contracts/3/negative_classifications/1"
+                  },
+                  {
+                    "path": "docs/helix-harness/L5-detail-design/process-state-port.json",
+                    "pointer": "/failure_rules/20"
+                  }
+                ]
+              }
             ]
           }
         },
@@ -5572,6 +6244,22 @@
                 "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
                 "pointer": "/cases/3/negative_cases/13/expected_material"
               }
+            ],
+            "ordered_findings": [
+              {
+                "code": "F03_L9_DIMENSION_UNKNOWN",
+                "return_owner": "L9各観点の原観測owner",
+                "source_pointers": [
+                  {
+                    "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
+                    "pointer": "/contracts/3/negative_classifications/1"
+                  },
+                  {
+                    "path": "docs/helix-harness/L5-detail-design/process-state-port.json",
+                    "pointer": "/failure_rules/20"
+                  }
+                ]
+              }
             ]
           }
         },
@@ -5661,6 +6349,22 @@
               {
                 "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
                 "pointer": "/cases/3/negative_cases/14/expected_material"
+              }
+            ],
+            "ordered_findings": [
+              {
+                "code": "F03_L9_DIMENSION_UNKNOWN",
+                "return_owner": "L9各観点の原観測owner",
+                "source_pointers": [
+                  {
+                    "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
+                    "pointer": "/contracts/3/negative_classifications/1"
+                  },
+                  {
+                    "path": "docs/helix-harness/L5-detail-design/process-state-port.json",
+                    "pointer": "/failure_rules/20"
+                  }
+                ]
               }
             ]
           }
@@ -5755,6 +6459,22 @@
                 "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
                 "pointer": "/cases/3/negative_cases/15/expected_material"
               }
+            ],
+            "ordered_findings": [
+              {
+                "code": "F03_L9_DIMENSION_UNKNOWN",
+                "return_owner": "L9各観点の原観測owner",
+                "source_pointers": [
+                  {
+                    "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
+                    "pointer": "/contracts/3/negative_classifications/1"
+                  },
+                  {
+                    "path": "docs/helix-harness/L5-detail-design/process-state-port.json",
+                    "pointer": "/failure_rules/20"
+                  }
+                ]
+              }
             ]
           }
         },
@@ -5847,6 +6567,22 @@
               {
                 "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
                 "pointer": "/cases/3/negative_cases/16/expected_material"
+              }
+            ],
+            "ordered_findings": [
+              {
+                "code": "F03_L9_DIMENSION_UNKNOWN",
+                "return_owner": "L9各観点の原観測owner",
+                "source_pointers": [
+                  {
+                    "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
+                    "pointer": "/contracts/3/negative_classifications/1"
+                  },
+                  {
+                    "path": "docs/helix-harness/L5-detail-design/process-state-port.json",
+                    "pointer": "/failure_rules/20"
+                  }
+                ]
               }
             ]
           }
@@ -5944,6 +6680,22 @@
                 "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
                 "pointer": "/cases/3/negative_cases/17/expected_material"
               }
+            ],
+            "ordered_findings": [
+              {
+                "code": "F03_L9_DIMENSION_UNKNOWN",
+                "return_owner": "L9各観点の原観測owner",
+                "source_pointers": [
+                  {
+                    "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
+                    "pointer": "/contracts/3/negative_classifications/1"
+                  },
+                  {
+                    "path": "docs/helix-harness/L5-detail-design/process-state-port.json",
+                    "pointer": "/failure_rules/20"
+                  }
+                ]
+              }
             ]
           }
         },
@@ -6036,6 +6788,22 @@
               {
                 "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
                 "pointer": "/cases/3/negative_cases/18/expected_material"
+              }
+            ],
+            "ordered_findings": [
+              {
+                "code": "F03_L9_DIMENSION_UNKNOWN",
+                "return_owner": "L9各観点の原観測owner",
+                "source_pointers": [
+                  {
+                    "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
+                    "pointer": "/contracts/3/negative_classifications/1"
+                  },
+                  {
+                    "path": "docs/helix-harness/L5-detail-design/process-state-port.json",
+                    "pointer": "/failure_rules/20"
+                  }
+                ]
               }
             ]
           }
@@ -6139,6 +6907,22 @@
                 "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
                 "pointer": "/cases/3/negative_cases/19/expected_material"
               }
+            ],
+            "ordered_findings": [
+              {
+                "code": "F03_L9_DIMENSION_UNKNOWN",
+                "return_owner": "L9各観点の原観測owner",
+                "source_pointers": [
+                  {
+                    "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
+                    "pointer": "/contracts/3/negative_classifications/1"
+                  },
+                  {
+                    "path": "docs/helix-harness/L5-detail-design/process-state-port.json",
+                    "pointer": "/failure_rules/20"
+                  }
+                ]
+              }
             ]
           }
         },
@@ -6240,6 +7024,22 @@
               {
                 "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
                 "pointer": "/cases/3/negative_cases/20/expected_material"
+              }
+            ],
+            "ordered_findings": [
+              {
+                "code": "F03_L9_DIMENSION_UNKNOWN",
+                "return_owner": "L9各観点の原観測owner",
+                "source_pointers": [
+                  {
+                    "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
+                    "pointer": "/contracts/3/negative_classifications/1"
+                  },
+                  {
+                    "path": "docs/helix-harness/L5-detail-design/process-state-port.json",
+                    "pointer": "/failure_rules/20"
+                  }
+                ]
               }
             ]
           }
@@ -6351,6 +7151,22 @@
               {
                 "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
                 "pointer": "/cases/3/negative_cases/21/expected_material"
+              }
+            ],
+            "ordered_findings": [
+              {
+                "code": "F03_L9_DIMENSION_UNKNOWN",
+                "return_owner": "L9各観点の原観測owner",
+                "source_pointers": [
+                  {
+                    "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
+                    "pointer": "/contracts/3/negative_classifications/1"
+                  },
+                  {
+                    "path": "docs/helix-harness/L5-detail-design/process-state-port.json",
+                    "pointer": "/failure_rules/20"
+                  }
+                ]
               }
             ]
           }
@@ -6952,6 +7768,22 @@
                 "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
                 "pointer": "/cases/3/negative_cases/32/expected_material"
               }
+            ],
+            "ordered_findings": [
+              {
+                "code": "F03_TICKET_REVERSE_EFFECT_CONFLICT",
+                "return_owner": "OS",
+                "source_pointers": [
+                  {
+                    "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
+                    "pointer": "/contracts/3/negative_classifications/3"
+                  },
+                  {
+                    "path": "docs/helix-harness/L5-detail-design/process-state-port.json",
+                    "pointer": "/failure_rules/22"
+                  }
+                ]
+              }
             ]
           }
         },
@@ -7112,6 +7944,22 @@
                 "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
                 "pointer": "/cases/3/negative_cases/35/expected_material"
               }
+            ],
+            "ordered_findings": [
+              {
+                "code": "F03_PAIR_SCOPE_CONFLICT",
+                "return_owner": "HARNESS",
+                "source_pointers": [
+                  {
+                    "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
+                    "pointer": "/contracts/3/negative_classifications/2"
+                  },
+                  {
+                    "path": "docs/helix-harness/L5-detail-design/process-state-port.json",
+                    "pointer": "/failure_rules/21"
+                  }
+                ]
+              }
             ]
           }
         },
@@ -7221,6 +8069,22 @@
               {
                 "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
                 "pointer": "/cases/3/negative_cases/37/expected_material"
+              }
+            ],
+            "ordered_findings": [
+              {
+                "code": "F03_PAIR_SCOPE_CONFLICT",
+                "return_owner": "HARNESS",
+                "source_pointers": [
+                  {
+                    "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
+                    "pointer": "/contracts/3/negative_classifications/2"
+                  },
+                  {
+                    "path": "docs/helix-harness/L5-detail-design/process-state-port.json",
+                    "pointer": "/failure_rules/21"
+                  }
+                ]
               }
             ]
           }
@@ -9583,6 +10447,22 @@
                 "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
                 "pointer": "/cases/4/negative_cases/1/expected_material"
               }
+            ],
+            "ordered_findings": [
+              {
+                "code": "F04_STATE_PROVISIONAL_PROOF_MISSING",
+                "return_owner": "当該状態の原証拠owner",
+                "source_pointers": [
+                  {
+                    "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
+                    "pointer": "/contracts/4/negative_classifications/0"
+                  },
+                  {
+                    "path": "docs/helix-harness/L5-detail-design/process-state-port.json",
+                    "pointer": "/failure_rules/0"
+                  }
+                ]
+              }
             ]
           }
         },
@@ -9922,6 +10802,22 @@
                 "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
                 "pointer": "/cases/4/negative_cases/2/expected_material"
               }
+            ],
+            "ordered_findings": [
+              {
+                "code": "F04_STATE_INTEGRATED_PROOF_MISSING",
+                "return_owner": "当該状態の原証拠owner",
+                "source_pointers": [
+                  {
+                    "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
+                    "pointer": "/contracts/4/negative_classifications/1"
+                  },
+                  {
+                    "path": "docs/helix-harness/L5-detail-design/process-state-port.json",
+                    "pointer": "/failure_rules/1"
+                  }
+                ]
+              }
             ]
           }
         },
@@ -10015,6 +10911,22 @@
                 "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
                 "pointer": "/cases/4/negative_cases/3/expected_material"
               }
+            ],
+            "ordered_findings": [
+              {
+                "code": "F04_STATE_VERIFIED_PROOF_MISSING",
+                "return_owner": "当該状態の原証拠owner",
+                "source_pointers": [
+                  {
+                    "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
+                    "pointer": "/contracts/4/negative_classifications/2"
+                  },
+                  {
+                    "path": "docs/helix-harness/L5-detail-design/process-state-port.json",
+                    "pointer": "/failure_rules/2"
+                  }
+                ]
+              }
             ]
           }
         },
@@ -10107,6 +11019,22 @@
               {
                 "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
                 "pointer": "/cases/4/negative_cases/4/expected_material"
+              }
+            ],
+            "ordered_findings": [
+              {
+                "code": "F04_STATE_ACCEPTED_PROOF_MISSING",
+                "return_owner": "当該状態の原証拠owner",
+                "source_pointers": [
+                  {
+                    "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
+                    "pointer": "/contracts/4/negative_classifications/3"
+                  },
+                  {
+                    "path": "docs/helix-harness/L5-detail-design/process-state-port.json",
+                    "pointer": "/failure_rules/3"
+                  }
+                ]
               }
             ]
           }
@@ -10225,6 +11153,22 @@
                 "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
                 "pointer": "/cases/4/negative_cases/5/expected_material"
               }
+            ],
+            "ordered_findings": [
+              {
+                "code": "F04_STATE_RELEASE-ELIGIBLE_PROOF_MISSING",
+                "return_owner": "当該状態の原証拠owner",
+                "source_pointers": [
+                  {
+                    "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
+                    "pointer": "/contracts/4/negative_classifications/4"
+                  },
+                  {
+                    "path": "docs/helix-harness/L5-detail-design/process-state-port.json",
+                    "pointer": "/failure_rules/4"
+                  }
+                ]
+              }
             ]
           }
         },
@@ -10294,6 +11238,22 @@
               {
                 "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
                 "pointer": "/cases/4/negative_cases/6/expected_material"
+              }
+            ],
+            "ordered_findings": [
+              {
+                "code": "F04_STATE_DEPLOYED_PROOF_MISSING",
+                "return_owner": "当該状態の原証拠owner",
+                "source_pointers": [
+                  {
+                    "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
+                    "pointer": "/contracts/4/negative_classifications/5"
+                  },
+                  {
+                    "path": "docs/helix-harness/L5-detail-design/process-state-port.json",
+                    "pointer": "/failure_rules/5"
+                  }
+                ]
               }
             ]
           }
@@ -10370,6 +11330,22 @@
                 "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
                 "pointer": "/cases/4/negative_cases/7/expected_material"
               }
+            ],
+            "ordered_findings": [
+              {
+                "code": "F04_STATE_OBSERVED_PROOF_MISSING",
+                "return_owner": "当該状態の原証拠owner",
+                "source_pointers": [
+                  {
+                    "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
+                    "pointer": "/contracts/4/negative_classifications/6"
+                  },
+                  {
+                    "path": "docs/helix-harness/L5-detail-design/process-state-port.json",
+                    "pointer": "/failure_rules/6"
+                  }
+                ]
+              }
             ]
           }
         },
@@ -10434,6 +11410,22 @@
               {
                 "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
                 "pointer": "/cases/4/negative_cases/8/expected_material"
+              }
+            ],
+            "ordered_findings": [
+              {
+                "code": "F04_STATE_INTEGRATED_PROOF_MISSING",
+                "return_owner": "当該状態の原証拠owner",
+                "source_pointers": [
+                  {
+                    "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
+                    "pointer": "/contracts/4/negative_classifications/1"
+                  },
+                  {
+                    "path": "docs/helix-harness/L5-detail-design/process-state-port.json",
+                    "pointer": "/failure_rules/1"
+                  }
+                ]
               }
             ]
           }
@@ -10500,6 +11492,22 @@
                 "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
                 "pointer": "/cases/4/negative_cases/9/expected_material"
               }
+            ],
+            "ordered_findings": [
+              {
+                "code": "F04_STATE_VERIFIED_PROOF_MISSING",
+                "return_owner": "当該状態の原証拠owner",
+                "source_pointers": [
+                  {
+                    "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
+                    "pointer": "/contracts/4/negative_classifications/2"
+                  },
+                  {
+                    "path": "docs/helix-harness/L5-detail-design/process-state-port.json",
+                    "pointer": "/failure_rules/2"
+                  }
+                ]
+              }
             ]
           }
         },
@@ -10564,6 +11572,22 @@
               {
                 "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
                 "pointer": "/cases/4/negative_cases/10/expected_material"
+              }
+            ],
+            "ordered_findings": [
+              {
+                "code": "F04_STATE_DEPLOYED_PROOF_MISSING",
+                "return_owner": "当該状態の原証拠owner",
+                "source_pointers": [
+                  {
+                    "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
+                    "pointer": "/contracts/4/negative_classifications/5"
+                  },
+                  {
+                    "path": "docs/helix-harness/L5-detail-design/process-state-port.json",
+                    "pointer": "/failure_rules/5"
+                  }
+                ]
               }
             ]
           }
@@ -10733,6 +11757,22 @@
                 "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
                 "pointer": "/cases/4/negative_cases/11/expected_material"
               }
+            ],
+            "ordered_findings": [
+              {
+                "code": "F04_STATE_PROVISIONAL_PROOF_MISSING",
+                "return_owner": "当該状態の原証拠owner",
+                "source_pointers": [
+                  {
+                    "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
+                    "pointer": "/contracts/4/negative_classifications/0"
+                  },
+                  {
+                    "path": "docs/helix-harness/L5-detail-design/process-state-port.json",
+                    "pointer": "/failure_rules/0"
+                  }
+                ]
+              }
             ]
           }
         },
@@ -10812,6 +11852,22 @@
               {
                 "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
                 "pointer": "/cases/4/negative_cases/12/expected_material"
+              }
+            ],
+            "ordered_findings": [
+              {
+                "code": "F04_STATE_PROVISIONAL_PROOF_MISSING",
+                "return_owner": "当該状態の原証拠owner",
+                "source_pointers": [
+                  {
+                    "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
+                    "pointer": "/contracts/4/negative_classifications/0"
+                  },
+                  {
+                    "path": "docs/helix-harness/L5-detail-design/process-state-port.json",
+                    "pointer": "/failure_rules/0"
+                  }
+                ]
               }
             ]
           }
@@ -10939,6 +11995,22 @@
                 "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
                 "pointer": "/cases/4/negative_cases/14/expected_material"
               }
+            ],
+            "ordered_findings": [
+              {
+                "code": "F04_STATE_VERIFIED_PROOF_MISSING",
+                "return_owner": "当該状態の原証拠owner",
+                "source_pointers": [
+                  {
+                    "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
+                    "pointer": "/contracts/4/negative_classifications/2"
+                  },
+                  {
+                    "path": "docs/helix-harness/L5-detail-design/process-state-port.json",
+                    "pointer": "/failure_rules/2"
+                  }
+                ]
+              }
             ]
           }
         },
@@ -11005,6 +12077,22 @@
               {
                 "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
                 "pointer": "/cases/4/negative_cases/15/expected_material"
+              }
+            ],
+            "ordered_findings": [
+              {
+                "code": "F04_STATE_VERIFIED_PROOF_MISSING",
+                "return_owner": "当該状態の原証拠owner",
+                "source_pointers": [
+                  {
+                    "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
+                    "pointer": "/contracts/4/negative_classifications/2"
+                  },
+                  {
+                    "path": "docs/helix-harness/L5-detail-design/process-state-port.json",
+                    "pointer": "/failure_rules/2"
+                  }
+                ]
               }
             ]
           }
@@ -11094,6 +12182,22 @@
                 "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
                 "pointer": "/cases/4/negative_cases/16/expected_material"
               }
+            ],
+            "ordered_findings": [
+              {
+                "code": "F04_STATE_ACCEPTED_PROOF_MISSING",
+                "return_owner": "当該状態の原証拠owner",
+                "source_pointers": [
+                  {
+                    "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
+                    "pointer": "/contracts/4/negative_classifications/3"
+                  },
+                  {
+                    "path": "docs/helix-harness/L5-detail-design/process-state-port.json",
+                    "pointer": "/failure_rules/3"
+                  }
+                ]
+              }
             ]
           }
         },
@@ -11182,6 +12286,22 @@
                 "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
                 "pointer": "/cases/4/negative_cases/17/expected_material"
               }
+            ],
+            "ordered_findings": [
+              {
+                "code": "F04_STATE_ACCEPTED_PROOF_MISSING",
+                "return_owner": "当該状態の原証拠owner",
+                "source_pointers": [
+                  {
+                    "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
+                    "pointer": "/contracts/4/negative_classifications/3"
+                  },
+                  {
+                    "path": "docs/helix-harness/L5-detail-design/process-state-port.json",
+                    "pointer": "/failure_rules/3"
+                  }
+                ]
+              }
             ]
           }
         },
@@ -11255,6 +12375,22 @@
               {
                 "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
                 "pointer": "/cases/4/negative_cases/18/expected_material"
+              }
+            ],
+            "ordered_findings": [
+              {
+                "code": "F04_STATE_RELEASE-ELIGIBLE_PROOF_MISSING",
+                "return_owner": "当該状態の原証拠owner",
+                "source_pointers": [
+                  {
+                    "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
+                    "pointer": "/contracts/4/negative_classifications/4"
+                  },
+                  {
+                    "path": "docs/helix-harness/L5-detail-design/process-state-port.json",
+                    "pointer": "/failure_rules/4"
+                  }
+                ]
               }
             ]
           }
@@ -11339,6 +12475,22 @@
                 "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
                 "pointer": "/cases/4/negative_cases/19/expected_material"
               }
+            ],
+            "ordered_findings": [
+              {
+                "code": "F04_STATE_OBSERVED_PROOF_MISSING",
+                "return_owner": "当該状態の原証拠owner",
+                "source_pointers": [
+                  {
+                    "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
+                    "pointer": "/contracts/4/negative_classifications/6"
+                  },
+                  {
+                    "path": "docs/helix-harness/L5-detail-design/process-state-port.json",
+                    "pointer": "/failure_rules/6"
+                  }
+                ]
+              }
             ]
           }
         },
@@ -11403,6 +12555,22 @@
               {
                 "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
                 "pointer": "/cases/4/negative_cases/20/expected_material"
+              }
+            ],
+            "ordered_findings": [
+              {
+                "code": "F04_STATE_DEPLOYED_PROOF_MISSING",
+                "return_owner": "当該状態の原証拠owner",
+                "source_pointers": [
+                  {
+                    "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
+                    "pointer": "/contracts/4/negative_classifications/5"
+                  },
+                  {
+                    "path": "docs/helix-harness/L5-detail-design/process-state-port.json",
+                    "pointer": "/failure_rules/5"
+                  }
+                ]
               }
             ]
           }
@@ -11500,6 +12668,22 @@
               {
                 "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
                 "pointer": "/cases/4/negative_cases/21/expected_material"
+              }
+            ],
+            "ordered_findings": [
+              {
+                "code": "F04_STATE_VERIFIED_PROOF_MISSING",
+                "return_owner": "当該状態の原証拠owner",
+                "source_pointers": [
+                  {
+                    "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
+                    "pointer": "/contracts/4/negative_classifications/2"
+                  },
+                  {
+                    "path": "docs/helix-harness/L5-detail-design/process-state-port.json",
+                    "pointer": "/failure_rules/2"
+                  }
+                ]
               }
             ]
           }
@@ -14601,6 +15785,22 @@
                 "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
                 "pointer": "/cases/5/negative_cases/0/expected_material"
               }
+            ],
+            "ordered_findings": [
+              {
+                "code": "F05_REQUIRED_PORT_FIELD_MISSING",
+                "return_owner": "HARNESS",
+                "source_pointers": [
+                  {
+                    "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
+                    "pointer": "/contracts/5/negative_classifications/0"
+                  },
+                  {
+                    "path": "docs/helix-harness/L5-detail-design/process-state-port.json",
+                    "pointer": "/failure_rules/23"
+                  }
+                ]
+              }
             ]
           }
         },
@@ -14697,6 +15897,22 @@
                 "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
                 "pointer": "/cases/5/negative_cases/1/expected_material"
               }
+            ],
+            "ordered_findings": [
+              {
+                "code": "F05_REQUIRED_PORT_FIELD_MISSING",
+                "return_owner": "HARNESS",
+                "source_pointers": [
+                  {
+                    "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
+                    "pointer": "/contracts/5/negative_classifications/0"
+                  },
+                  {
+                    "path": "docs/helix-harness/L5-detail-design/process-state-port.json",
+                    "pointer": "/failure_rules/23"
+                  }
+                ]
+              }
             ]
           }
         },
@@ -14792,6 +16008,22 @@
               {
                 "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
                 "pointer": "/cases/5/negative_cases/2/expected_material"
+              }
+            ],
+            "ordered_findings": [
+              {
+                "code": "F05_REQUIRED_PORT_FIELD_MISSING",
+                "return_owner": "HARNESS",
+                "source_pointers": [
+                  {
+                    "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
+                    "pointer": "/contracts/5/negative_classifications/0"
+                  },
+                  {
+                    "path": "docs/helix-harness/L5-detail-design/process-state-port.json",
+                    "pointer": "/failure_rules/23"
+                  }
+                ]
               }
             ]
           }
@@ -14893,6 +16125,22 @@
                 "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
                 "pointer": "/cases/5/negative_cases/3/expected_material"
               }
+            ],
+            "ordered_findings": [
+              {
+                "code": "F05_REQUIRED_PORT_FIELD_MISSING",
+                "return_owner": "HARNESS",
+                "source_pointers": [
+                  {
+                    "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
+                    "pointer": "/contracts/5/negative_classifications/0"
+                  },
+                  {
+                    "path": "docs/helix-harness/L5-detail-design/process-state-port.json",
+                    "pointer": "/failure_rules/23"
+                  }
+                ]
+              }
             ]
           }
         },
@@ -14991,6 +16239,22 @@
                 "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
                 "pointer": "/cases/5/negative_cases/4/expected_material"
               }
+            ],
+            "ordered_findings": [
+              {
+                "code": "F05_REQUIRED_PORT_FIELD_MISSING",
+                "return_owner": "HARNESS",
+                "source_pointers": [
+                  {
+                    "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
+                    "pointer": "/contracts/5/negative_classifications/0"
+                  },
+                  {
+                    "path": "docs/helix-harness/L5-detail-design/process-state-port.json",
+                    "pointer": "/failure_rules/23"
+                  }
+                ]
+              }
             ]
           }
         },
@@ -15087,6 +16351,22 @@
               {
                 "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
                 "pointer": "/cases/5/negative_cases/5/expected_material"
+              }
+            ],
+            "ordered_findings": [
+              {
+                "code": "F05_REQUIRED_PORT_FIELD_MISSING",
+                "return_owner": "HARNESS",
+                "source_pointers": [
+                  {
+                    "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
+                    "pointer": "/contracts/5/negative_classifications/0"
+                  },
+                  {
+                    "path": "docs/helix-harness/L5-detail-design/process-state-port.json",
+                    "pointer": "/failure_rules/23"
+                  }
+                ]
               }
             ]
           }
@@ -15186,6 +16466,22 @@
               {
                 "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
                 "pointer": "/cases/5/negative_cases/6/expected_material"
+              }
+            ],
+            "ordered_findings": [
+              {
+                "code": "F05_REQUIRED_PORT_FIELD_MISSING",
+                "return_owner": "HARNESS",
+                "source_pointers": [
+                  {
+                    "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
+                    "pointer": "/contracts/5/negative_classifications/0"
+                  },
+                  {
+                    "path": "docs/helix-harness/L5-detail-design/process-state-port.json",
+                    "pointer": "/failure_rules/23"
+                  }
+                ]
               }
             ]
           }
@@ -15288,6 +16584,22 @@
                 "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
                 "pointer": "/cases/5/negative_cases/7/expected_material"
               }
+            ],
+            "ordered_findings": [
+              {
+                "code": "F05_REQUIRED_PORT_FIELD_MISSING",
+                "return_owner": "HARNESS",
+                "source_pointers": [
+                  {
+                    "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
+                    "pointer": "/contracts/5/negative_classifications/0"
+                  },
+                  {
+                    "path": "docs/helix-harness/L5-detail-design/process-state-port.json",
+                    "pointer": "/failure_rules/23"
+                  }
+                ]
+              }
             ]
           }
         },
@@ -15362,6 +16674,22 @@
               {
                 "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
                 "pointer": "/cases/5/negative_cases/8/expected_material"
+              }
+            ],
+            "ordered_findings": [
+              {
+                "code": "F05_REQUIRED_PORT_FIELD_MISSING",
+                "return_owner": "HARNESS",
+                "source_pointers": [
+                  {
+                    "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
+                    "pointer": "/contracts/5/negative_classifications/0"
+                  },
+                  {
+                    "path": "docs/helix-harness/L5-detail-design/process-state-port.json",
+                    "pointer": "/failure_rules/23"
+                  }
+                ]
               }
             ]
           }
@@ -15591,6 +16919,22 @@
               {
                 "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
                 "pointer": "/cases/5/negative_cases/11/expected_material"
+              }
+            ],
+            "ordered_findings": [
+              {
+                "code": "F05_EXISTING_AUTHORITY_UNKNOWN",
+                "return_owner": "SECURITY",
+                "source_pointers": [
+                  {
+                    "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
+                    "pointer": "/contracts/5/negative_classifications/1"
+                  },
+                  {
+                    "path": "docs/helix-harness/L5-detail-design/process-state-port.json",
+                    "pointer": "/failure_rules/24"
+                  }
+                ]
               }
             ]
           }
@@ -15942,6 +17286,22 @@
                 "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
                 "pointer": "/cases/5/negative_cases/17/expected_material"
               }
+            ],
+            "ordered_findings": [
+              {
+                "code": "F05_COMPLETION_BACKFILL_CONFLICT",
+                "return_owner": "OS",
+                "source_pointers": [
+                  {
+                    "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
+                    "pointer": "/contracts/5/negative_classifications/4"
+                  },
+                  {
+                    "path": "docs/helix-harness/L5-detail-design/process-state-port.json",
+                    "pointer": "/failure_rules/27"
+                  }
+                ]
+              }
             ]
           }
         },
@@ -16018,6 +17378,22 @@
                 "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
                 "pointer": "/cases/5/negative_cases/18/expected_material"
               }
+            ],
+            "ordered_findings": [
+              {
+                "code": "F05_COMPLETION_BACKFILL_CONFLICT",
+                "return_owner": "OS",
+                "source_pointers": [
+                  {
+                    "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
+                    "pointer": "/contracts/5/negative_classifications/4"
+                  },
+                  {
+                    "path": "docs/helix-harness/L5-detail-design/process-state-port.json",
+                    "pointer": "/failure_rules/27"
+                  }
+                ]
+              }
             ]
           }
         },
@@ -16080,6 +17456,22 @@
               {
                 "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
                 "pointer": "/cases/5/negative_cases/19/expected_material"
+              }
+            ],
+            "ordered_findings": [
+              {
+                "code": "F05_RETURN_TARGET_UNKNOWN",
+                "return_owner": "当該owner",
+                "source_pointers": [
+                  {
+                    "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
+                    "pointer": "/contracts/5/negative_classifications/2"
+                  },
+                  {
+                    "path": "docs/helix-harness/L5-detail-design/process-state-port.json",
+                    "pointer": "/failure_rules/25"
+                  }
+                ]
               }
             ]
           }
@@ -16144,6 +17536,22 @@
                 "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
                 "pointer": "/cases/5/negative_cases/20/expected_material"
               }
+            ],
+            "ordered_findings": [
+              {
+                "code": "F05_COMPLETION_BACKFILL_CONFLICT",
+                "return_owner": "OS",
+                "source_pointers": [
+                  {
+                    "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
+                    "pointer": "/contracts/5/negative_classifications/4"
+                  },
+                  {
+                    "path": "docs/helix-harness/L5-detail-design/process-state-port.json",
+                    "pointer": "/failure_rules/27"
+                  }
+                ]
+              }
             ]
           }
         },
@@ -16207,6 +17615,22 @@
                 "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
                 "pointer": "/cases/5/negative_cases/21/expected_material"
               }
+            ],
+            "ordered_findings": [
+              {
+                "code": "F05_OPERATION_EFFECT_CONFLICT",
+                "return_owner": "OS",
+                "source_pointers": [
+                  {
+                    "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
+                    "pointer": "/contracts/5/negative_classifications/3"
+                  },
+                  {
+                    "path": "docs/helix-harness/L5-detail-design/process-state-port.json",
+                    "pointer": "/failure_rules/26"
+                  }
+                ]
+              }
             ]
           }
         },
@@ -16268,6 +17692,22 @@
               {
                 "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
                 "pointer": "/cases/5/negative_cases/22/expected_material"
+              }
+            ],
+            "ordered_findings": [
+              {
+                "code": "F05_COMPLETION_BACKFILL_CONFLICT",
+                "return_owner": "OS",
+                "source_pointers": [
+                  {
+                    "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
+                    "pointer": "/contracts/5/negative_classifications/4"
+                  },
+                  {
+                    "path": "docs/helix-harness/L5-detail-design/process-state-port.json",
+                    "pointer": "/failure_rules/27"
+                  }
+                ]
               }
             ]
           }
@@ -16980,6 +18420,22 @@
                 "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
                 "pointer": "/cases/6/negative_cases/0/expected_material"
               }
+            ],
+            "ordered_findings": [
+              {
+                "code": "N01_TARGET_ENVIRONMENT_EVIDENCE_MISSING",
+                "return_owner": "対象製品の要求/品質owner",
+                "source_pointers": [
+                  {
+                    "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
+                    "pointer": "/contracts/6/negative_classifications/3"
+                  },
+                  {
+                    "path": "docs/helix-harness/L5-detail-design/process-state-port.json",
+                    "pointer": "/failure_rules/31"
+                  }
+                ]
+              }
             ]
           }
         },
@@ -17214,6 +18670,22 @@
                 "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
                 "pointer": "/cases/6/negative_cases/2/expected_material"
               }
+            ],
+            "ordered_findings": [
+              {
+                "code": "N01_QUALITY_STAGE_EVIDENCE_MISSING",
+                "return_owner": "対象製品の要求/品質owner",
+                "source_pointers": [
+                  {
+                    "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
+                    "pointer": "/contracts/6/negative_classifications/1"
+                  },
+                  {
+                    "path": "docs/helix-harness/L5-detail-design/process-state-port.json",
+                    "pointer": "/failure_rules/29"
+                  }
+                ]
+              }
             ]
           }
         },
@@ -17333,6 +18805,22 @@
                 "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
                 "pointer": "/cases/6/negative_cases/3/expected_material"
               }
+            ],
+            "ordered_findings": [
+              {
+                "code": "N01_QUALITY_APPLICABILITY_UNKNOWN",
+                "return_owner": "対象製品の要求/品質owner",
+                "source_pointers": [
+                  {
+                    "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
+                    "pointer": "/contracts/6/negative_classifications/0"
+                  },
+                  {
+                    "path": "docs/helix-harness/L5-detail-design/process-state-port.json",
+                    "pointer": "/failure_rules/28"
+                  }
+                ]
+              }
             ]
           }
         },
@@ -17451,6 +18939,22 @@
               {
                 "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
                 "pointer": "/cases/6/negative_cases/4/expected_material"
+              }
+            ],
+            "ordered_findings": [
+              {
+                "code": "N01_QUALITY_APPLICABILITY_UNKNOWN",
+                "return_owner": "対象製品の要求/品質owner",
+                "source_pointers": [
+                  {
+                    "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
+                    "pointer": "/contracts/6/negative_classifications/0"
+                  },
+                  {
+                    "path": "docs/helix-harness/L5-detail-design/process-state-port.json",
+                    "pointer": "/failure_rules/28"
+                  }
+                ]
               }
             ]
           }
@@ -17646,6 +19150,22 @@
               {
                 "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
                 "pointer": "/cases/6/negative_cases/6/expected_material"
+              }
+            ],
+            "ordered_findings": [
+              {
+                "code": "N01_SECURITY_AUTHORITY_CONFLICT",
+                "return_owner": "SECURITY",
+                "source_pointers": [
+                  {
+                    "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
+                    "pointer": "/contracts/6/negative_classifications/4"
+                  },
+                  {
+                    "path": "docs/helix-harness/L5-detail-design/process-state-port.json",
+                    "pointer": "/failure_rules/32"
+                  }
+                ]
               }
             ]
           }
@@ -17945,6 +19465,22 @@
                 "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
                 "pointer": "/cases/6/negative_cases/9/expected_material"
               }
+            ],
+            "ordered_findings": [
+              {
+                "code": "N01_HEALTH_OBSERVATION_UNKNOWN",
+                "return_owner": "対象製品の要求/品質owner",
+                "source_pointers": [
+                  {
+                    "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
+                    "pointer": "/contracts/6/negative_classifications/2"
+                  },
+                  {
+                    "path": "docs/helix-harness/L5-detail-design/process-state-port.json",
+                    "pointer": "/failure_rules/30"
+                  }
+                ]
+              }
             ]
           }
         },
@@ -18048,6 +19584,22 @@
                 "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
                 "pointer": "/cases/6/negative_cases/10/expected_material"
               }
+            ],
+            "ordered_findings": [
+              {
+                "code": "N01_SECURITY_AUTHORITY_CONFLICT",
+                "return_owner": "SECURITY",
+                "source_pointers": [
+                  {
+                    "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
+                    "pointer": "/contracts/6/negative_classifications/4"
+                  },
+                  {
+                    "path": "docs/helix-harness/L5-detail-design/process-state-port.json",
+                    "pointer": "/failure_rules/32"
+                  }
+                ]
+              }
             ]
           }
         },
@@ -18150,6 +19702,22 @@
               {
                 "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
                 "pointer": "/cases/6/negative_cases/11/expected_material"
+              }
+            ],
+            "ordered_findings": [
+              {
+                "code": "N01_SECURITY_AUTHORITY_CONFLICT",
+                "return_owner": "SECURITY",
+                "source_pointers": [
+                  {
+                    "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
+                    "pointer": "/contracts/6/negative_classifications/4"
+                  },
+                  {
+                    "path": "docs/helix-harness/L5-detail-design/process-state-port.json",
+                    "pointer": "/failure_rules/32"
+                  }
+                ]
               }
             ]
           }
@@ -18469,6 +20037,22 @@
                 "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
                 "pointer": "/cases/6/negative_cases/13/expected_material"
               }
+            ],
+            "ordered_findings": [
+              {
+                "code": "N01_QUALITY_STAGE_EVIDENCE_MISSING",
+                "return_owner": "対象製品の要求/品質owner",
+                "source_pointers": [
+                  {
+                    "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
+                    "pointer": "/contracts/6/negative_classifications/1"
+                  },
+                  {
+                    "path": "docs/helix-harness/L5-detail-design/process-state-port.json",
+                    "pointer": "/failure_rules/29"
+                  }
+                ]
+              }
             ]
           }
         },
@@ -18697,6 +20281,22 @@
               {
                 "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
                 "pointer": "/cases/6/negative_cases/14/expected_material"
+              }
+            ],
+            "ordered_findings": [
+              {
+                "code": "N01_QUALITY_STAGE_EVIDENCE_MISSING",
+                "return_owner": "対象製品の要求/品質owner",
+                "source_pointers": [
+                  {
+                    "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
+                    "pointer": "/contracts/6/negative_classifications/1"
+                  },
+                  {
+                    "path": "docs/helix-harness/L5-detail-design/process-state-port.json",
+                    "pointer": "/failure_rules/29"
+                  }
+                ]
               }
             ]
           }
@@ -18927,6 +20527,22 @@
                 "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
                 "pointer": "/cases/6/negative_cases/15/expected_material"
               }
+            ],
+            "ordered_findings": [
+              {
+                "code": "N01_QUALITY_STAGE_EVIDENCE_MISSING",
+                "return_owner": "対象製品の要求/品質owner",
+                "source_pointers": [
+                  {
+                    "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
+                    "pointer": "/contracts/6/negative_classifications/1"
+                  },
+                  {
+                    "path": "docs/helix-harness/L5-detail-design/process-state-port.json",
+                    "pointer": "/failure_rules/29"
+                  }
+                ]
+              }
             ]
           }
         },
@@ -19155,6 +20771,22 @@
               {
                 "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
                 "pointer": "/cases/6/negative_cases/16/expected_material"
+              }
+            ],
+            "ordered_findings": [
+              {
+                "code": "N01_QUALITY_STAGE_EVIDENCE_MISSING",
+                "return_owner": "対象製品の要求/品質owner",
+                "source_pointers": [
+                  {
+                    "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
+                    "pointer": "/contracts/6/negative_classifications/1"
+                  },
+                  {
+                    "path": "docs/helix-harness/L5-detail-design/process-state-port.json",
+                    "pointer": "/failure_rules/29"
+                  }
+                ]
               }
             ]
           }
@@ -20460,6 +22092,22 @@
                 "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
                 "pointer": "/cases/6/negative_cases/22/expected_material"
               }
+            ],
+            "ordered_findings": [
+              {
+                "code": "N01_NUMERIC_TARGET_UNKNOWN",
+                "return_owner": "対象製品要求/Release owner",
+                "source_pointers": [
+                  {
+                    "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
+                    "pointer": "/contracts/6/negative_classifications/5"
+                  },
+                  {
+                    "path": "docs/helix-harness/L5-detail-design/process-state-port.json",
+                    "pointer": "/failure_rules/33"
+                  }
+                ]
+              }
             ]
           }
         },
@@ -20688,6 +22336,22 @@
               {
                 "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
                 "pointer": "/cases/6/negative_cases/23/expected_material"
+              }
+            ],
+            "ordered_findings": [
+              {
+                "code": "N01_NUMERIC_TARGET_UNKNOWN",
+                "return_owner": "対象製品要求/Release owner",
+                "source_pointers": [
+                  {
+                    "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
+                    "pointer": "/contracts/6/negative_classifications/5"
+                  },
+                  {
+                    "path": "docs/helix-harness/L5-detail-design/process-state-port.json",
+                    "pointer": "/failure_rules/33"
+                  }
+                ]
               }
             ]
           }
@@ -20918,6 +22582,22 @@
                 "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
                 "pointer": "/cases/6/negative_cases/24/expected_material"
               }
+            ],
+            "ordered_findings": [
+              {
+                "code": "N01_NUMERIC_TARGET_UNKNOWN",
+                "return_owner": "対象製品要求/Release owner",
+                "source_pointers": [
+                  {
+                    "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
+                    "pointer": "/contracts/6/negative_classifications/5"
+                  },
+                  {
+                    "path": "docs/helix-harness/L5-detail-design/process-state-port.json",
+                    "pointer": "/failure_rules/33"
+                  }
+                ]
+              }
             ]
           }
         },
@@ -21147,6 +22827,22 @@
                 "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
                 "pointer": "/cases/6/negative_cases/25/expected_material"
               }
+            ],
+            "ordered_findings": [
+              {
+                "code": "N01_NUMERIC_TARGET_UNKNOWN",
+                "return_owner": "対象製品要求/Release owner",
+                "source_pointers": [
+                  {
+                    "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
+                    "pointer": "/contracts/6/negative_classifications/5"
+                  },
+                  {
+                    "path": "docs/helix-harness/L5-detail-design/process-state-port.json",
+                    "pointer": "/failure_rules/33"
+                  }
+                ]
+              }
             ]
           }
         },
@@ -21267,6 +22963,22 @@
                 "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
                 "pointer": "/cases/6/negative_cases/26/expected_material"
               }
+            ],
+            "ordered_findings": [
+              {
+                "code": "N01_TARGET_ENVIRONMENT_EVIDENCE_MISSING",
+                "return_owner": "対象製品の要求/品質owner",
+                "source_pointers": [
+                  {
+                    "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
+                    "pointer": "/contracts/6/negative_classifications/3"
+                  },
+                  {
+                    "path": "docs/helix-harness/L5-detail-design/process-state-port.json",
+                    "pointer": "/failure_rules/31"
+                  }
+                ]
+              }
             ]
           }
         },
@@ -21385,6 +23097,22 @@
               {
                 "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
                 "pointer": "/cases/6/negative_cases/27/expected_material"
+              }
+            ],
+            "ordered_findings": [
+              {
+                "code": "N01_QUALITY_STAGE_EVIDENCE_MISSING",
+                "return_owner": "対象製品の要求/品質owner",
+                "source_pointers": [
+                  {
+                    "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
+                    "pointer": "/contracts/6/negative_classifications/1"
+                  },
+                  {
+                    "path": "docs/helix-harness/L5-detail-design/process-state-port.json",
+                    "pointer": "/failure_rules/29"
+                  }
+                ]
               }
             ]
           }
@@ -21616,6 +23344,22 @@
                 "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
                 "pointer": "/cases/6/negative_cases/29/expected_material"
               }
+            ],
+            "ordered_findings": [
+              {
+                "code": "N01_TARGET_ENVIRONMENT_EVIDENCE_MISSING",
+                "return_owner": "対象製品の要求/品質owner",
+                "source_pointers": [
+                  {
+                    "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
+                    "pointer": "/contracts/6/negative_classifications/3"
+                  },
+                  {
+                    "path": "docs/helix-harness/L5-detail-design/process-state-port.json",
+                    "pointer": "/failure_rules/31"
+                  }
+                ]
+              }
             ]
           }
         },
@@ -21734,6 +23478,22 @@
               {
                 "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
                 "pointer": "/cases/6/negative_cases/30/expected_material"
+              }
+            ],
+            "ordered_findings": [
+              {
+                "code": "N01_QUALITY_STAGE_EVIDENCE_MISSING",
+                "return_owner": "対象製品の要求/品質owner",
+                "source_pointers": [
+                  {
+                    "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
+                    "pointer": "/contracts/6/negative_classifications/1"
+                  },
+                  {
+                    "path": "docs/helix-harness/L5-detail-design/process-state-port.json",
+                    "pointer": "/failure_rules/29"
+                  }
+                ]
               }
             ]
           }
@@ -21964,6 +23724,22 @@
                 "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
                 "pointer": "/cases/6/negative_cases/32/expected_material"
               }
+            ],
+            "ordered_findings": [
+              {
+                "code": "N01_TARGET_ENVIRONMENT_EVIDENCE_MISSING",
+                "return_owner": "対象製品の要求/品質owner",
+                "source_pointers": [
+                  {
+                    "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
+                    "pointer": "/contracts/6/negative_classifications/3"
+                  },
+                  {
+                    "path": "docs/helix-harness/L5-detail-design/process-state-port.json",
+                    "pointer": "/failure_rules/31"
+                  }
+                ]
+              }
             ]
           }
         },
@@ -22083,6 +23859,22 @@
                 "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
                 "pointer": "/cases/6/negative_cases/33/expected_material"
               }
+            ],
+            "ordered_findings": [
+              {
+                "code": "N01_TARGET_ENVIRONMENT_EVIDENCE_MISSING",
+                "return_owner": "対象製品の要求/品質owner",
+                "source_pointers": [
+                  {
+                    "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
+                    "pointer": "/contracts/6/negative_classifications/3"
+                  },
+                  {
+                    "path": "docs/helix-harness/L5-detail-design/process-state-port.json",
+                    "pointer": "/failure_rules/31"
+                  }
+                ]
+              }
             ]
           }
         },
@@ -22201,6 +23993,22 @@
               {
                 "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
                 "pointer": "/cases/6/negative_cases/34/expected_material"
+              }
+            ],
+            "ordered_findings": [
+              {
+                "code": "N01_TARGET_ENVIRONMENT_EVIDENCE_MISSING",
+                "return_owner": "対象製品の要求/品質owner",
+                "source_pointers": [
+                  {
+                    "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
+                    "pointer": "/contracts/6/negative_classifications/3"
+                  },
+                  {
+                    "path": "docs/helix-harness/L5-detail-design/process-state-port.json",
+                    "pointer": "/failure_rules/31"
+                  }
+                ]
               }
             ]
           }
@@ -24897,7 +26705,7 @@
       }
     ],
     "positive_case_scope": "L8の既存casesとL9のnormal_casesは元配列に保持する。negative equivalenceだけを対象とするため、normal caseはnegative rowへ重複登録しない。",
-    "checker_limit": "L8/L9 case rowが未形成のためexplicit negative-class modeは使わず、現checkerはlegacy modeで未対応件数を報告する。explicit modeは供給行のみ比較し、同時省略を検出しない。",
+    "checker_limit": "旧方式の完全一致照合結果。checker explicit modeの対象外であり、現在の割当件数や意味oracle review状態を表さない。",
     "preservation": "L8/L9の元cases配列は、182件のnegative source rowを含めて変更せず保持する。",
     "upper_classification_count_by_contract": {
       "B01": 4,
@@ -24988,7 +26796,9 @@
         "unformed_summary": "Working initial-state root-proof classは未形成。今回のF04分類はprior_stateを持つ7 progression stateのみ。"
       }
     },
-    "case_alignment_note": "L4/L5分類は上流から形成。L8/L9のcase期待/findingを生成せず、全182 negative rowを未対応として保持する。期待一致7件にもL9 original ordered finding/return ownerがないためcase連結しない。"
+    "case_alignment_note": "この監査は旧方式（L8/L9全体期待の正規化完全一致）を記録する。182件を全て未割当とした値はその旧方式の結果であり、現在のL4/L5 class assignment監査の件数ではない。分類割当の現状は/negative_class_assignment_auditを参照する。",
+    "audit_status": "historical_exact_expectation_projection_superseded_for_assignment_census",
+    "superseded_by": "/negative_class_assignment_audit"
   },
   "negative_class_assignment_audit": {
     "source_population_count": 182,
@@ -25374,8 +27184,8 @@
       }
     ],
     "projection_scope": "L4/L5の全34分類・ruleをcase照合より先に固定した。caseのcontract、mutation root/operation、L8入力と期待、L9期待を独立に照合し、適用条件が証明できたcaseだけにclassification参照を追加した。",
-    "preservation": "L8/L9各caseの既存input/expected_partial_values/expected_materialは変更していない。L8 assignmentはL8自身のinputとexpected_partial_values、L9 assignmentはL9自身のmutationとexpected_materialを参照する。L8期待からL9期待を生成していない。",
-    "checker_limit": "このfieldはaudit annotationでありchecker explicit mode markerは設定していない。legacy checkerの結果は別途記録する。subset対応を182件全体の完了とは扱わない。",
+    "preservation": "L8/L9の元input/expected_partial_values/expected_materialは827c baseから不変。L8のexpected_propertyはL8自身のexpected_partial_valuesへの参照だけを追加し、値を複製・変換しない。L9のordered_findingsはL4 class codeとL5 return ownerから導出し、L9 expected_materialから生成しない。",
+    "checker_limit": "explicit_negative_class_assignment.v1 markerは限定静的annotation checkerを有効にする。checkerが確かめるのはcase identity、pointer解決、L4/L5 codeとownerの一致だけで、L8/L9期待がclass意味を独立に表すことや製品動作を証明しない。未割当69件と未表現2分類は残件として保持する。",
     "independent_derivation_example": {
       "case_id": "H003-B01-HUMAN-MISSING",
       "classification": "B01_REQUIRED_EVIDENCE_MISSING",
@@ -27155,6 +28965,35 @@
       "F05": 16,
       "N01": 23
     },
-    "reason_classes": "unmatchedケースはmutation root、case-specific expected status、固定済みclass conditionのどこが一致しないかをreason/source pointerで残す。"
+    "reason_classes": "unmatchedケースはmutation root、case-specific expected status、固定済みclass conditionのどこが一致しないかをreason/source pointerで残す。",
+    "checker_mode": "explicit_negative_class_assignment.v1",
+    "checker_marker_enabled": true,
+    "checker_result": {
+      "evidence_kind": "static_pointer_and_taxonomy_consistency",
+      "assigned_case_pairs": 113,
+      "l8_expected_property_pointers_resolved": 113,
+      "l9_ordered_findings_rows_resolved": 113,
+      "l4_l5_class_code_pairs_consistent": 34,
+      "source_cases_unassigned": 69,
+      "classifications_unrepresented": 2,
+      "semantic_oracle_independently_reviewed": false,
+      "runtime_or_test_executed": false,
+      "result": "限定静的照合に合格。未割当・未表現の残件あり。",
+      "reproduction_method": {
+        "base_revision": "827c4ea924a15b6b54bbe9d1f5d2f9fbdefa65de",
+        "case_join": "L9 negative_cases[].idをL8 cases[].basic_case_refへ完全一致で結合する。",
+        "taxonomy_join": "L4 negative_classifications[].codeとL5 failure_rules[].code、L5 backflow_ownerを照合する。",
+        "L8_expected_property": "結合済みL8 case自身のexpected_partial_valuesへのJSON Pointer。期待値そのものは編集・複製しない。",
+        "L9_ordered_findings": "対応L9 negative_class_assignmentへ、L4 code・L5 backflow_owner・両source pointerを1行で記録する。L9 expected_materialは参照元にしない。",
+        "checks": [
+          "全4 JSONをparseする",
+          "34件のL4 class/L5 rule codeとexpected.finding_codesを照合する",
+          "113組のcase identity、L8 expected_property pointer、L9 ordered_findingsとL4/L5 pointer・ownerを解決する",
+          "未割当69件と未表現2分類を残件として数える",
+          "L8 expected_partial_valuesとL9 expected_materialがbaseと不変であることを確認する"
+        ],
+        "scope_limit": "静的な参照とannotation整合のみ。期待の意味oracle独立review、runtime、test、CIは未実施。"
+      }
+    }
   }
 }
