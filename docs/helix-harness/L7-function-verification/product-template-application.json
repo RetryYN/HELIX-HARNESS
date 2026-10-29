@@ -1010,6 +1010,14 @@
         {
           "path": "docs/helix-harness/L8-unit-verification/product-template-application.json",
           "pointer": "/f13_knowledge_recipient_leaf_verification"
+        },
+        {
+          "path": "docs/helix-harness/L8-unit-verification/product-template-application.json",
+          "pointer": "/additional_unit_cases/46"
+        },
+        {
+          "path": "docs/helix-harness/L8-unit-verification/product-template-application.json",
+          "pointer": "/additional_unit_cases/47"
         }
       ],
       "test_design_ref": {
@@ -1057,10 +1065,120 @@
       ],
       "execution_state": "not_executed",
       "source_pin_refs": [
-        "#/source_pins/0",
-        "#/source_pins/1",
-        "#/source_pins/4"
-      ]
+        "#/source_pins/4",
+        "#/source_pins/75",
+        "#/source_pins/76",
+        "#/source_pins/77",
+        "#/source_pins/78",
+        "#/source_pins/79",
+        "#/source_pins/80",
+        "#/source_pins/81",
+        "#/source_pins/82",
+        "#/source_pins/83",
+        "#/source_pins/84",
+        "#/source_pins/85",
+        "#/source_pins/86",
+        "#/source_pins/87",
+        "#/source_pins/88",
+        "#/source_pins/89",
+        "#/source_pins/90"
+      ],
+      "bounded_leaf_observation": {
+        "scope_ja": "ADD-46のRecordOccurrence source_unresolved leafとabsent/null境界、ADD-47のsource_body_mismatch BodyOccurrence leaf、対応payload一致の負例対照、body entry absentの明示STOPだけを記録する。Comparison/owner全返却、field/proposal scope、F13/F10、全F05実行を評価しない。",
+        "l5_writer_refs": [
+          {
+            "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+            "pointer": "/f05_detail_contract/field_content_source_failure_writer_contract/writers/0"
+          },
+          {
+            "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+            "pointer": "/f05_detail_contract/field_content_source_failure_writer_contract/writers/1"
+          },
+          {
+            "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+            "pointer": "/f05_detail_contract/types/RecordOccurrence/members/causes"
+          },
+          {
+            "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+            "pointer": "/f05_detail_contract/types/BodyOccurrence/members/causes"
+          }
+        ],
+        "l8_case_refs": [
+          {
+            "path": "docs/helix-harness/L8-unit-verification/product-template-application.json",
+            "pointer": "/additional_unit_cases/46/fixed_writer_case"
+          },
+          {
+            "path": "docs/helix-harness/L8-unit-verification/product-template-application.json",
+            "pointer": "/additional_unit_cases/47/fixed_writer_case"
+          }
+        ],
+        "red_reproduction": {
+          "base_source_revision": "821a655ad6949b2a7a5344b26e3c170cccc353a6",
+          "base_entrypoint_source_pin_ref": "#/source_pins/77",
+          "test_source_revision": "860e9c8ff5607f8b00890a04393b147f1c142f2d",
+          "test_file_source_pin_ref": "#/source_pins/86",
+          "reproduction_ja": "使い捨てdetached worktreeを821a655で作成し、merge時点のtest_f05_add47_source_body_writer.py bytesだけをtestsへoverlayした。worktreeは結果取得後に削除し、Red専用commitは作成していない。",
+          "bounded_command": "PYTHONPATH=src:tests python3 -B -m unittest test_f05_add47_source_body_writer.TestF05Add47SourceBodyWriter.test_add46_empty_source_collection_writes_only_unresolved_source_cause test_f05_add47_source_body_writer.TestF05Add47SourceBodyWriter.test_source_body_payload_difference_is_retained_as_local_cause",
+          "observed_result": "Ran 2 tests; FAILED (errors=2)。両方ともnative detail呼出しで TypeError: compare_requirement_gaps() takes 1 positional argument but 2 were given。",
+          "interpretation_limit_ja": "これは821の公開detail aliasがnative 2引数入口でないことだけを示す。個別Cause writerの意味差を測ったRedではない。Red専用commitや過去のcommit-bound Red historyとは記録しない。",
+          "test_support_source_pin_refs": [
+            "#/source_pins/90",
+            "#/source_pins/87",
+            "#/source_pins/88",
+            "#/source_pins/89"
+          ],
+          "working_directory": "helix/helix-harness/units/HELIXHARNESS-UNIT-PRODUCT-TEMPLATE-APPLICATION"
+        },
+        "green_observation": {
+          "merge_revision": "860e9c8ff5607f8b00890a04393b147f1c142f2d",
+          "implementation_source_pin_refs": [
+            "#/source_pins/78",
+            "#/source_pins/79",
+            "#/source_pins/80",
+            "#/source_pins/81",
+            "#/source_pins/82",
+            "#/source_pins/83",
+            "#/source_pins/84"
+          ],
+          "test_source_pin_refs": [
+            "#/source_pins/85",
+            "#/source_pins/86",
+            "#/source_pins/87",
+            "#/source_pins/88",
+            "#/source_pins/89"
+          ],
+          "bounded_command": "PYTHONPATH=src:tests python3 -B -m unittest test_f05_add47_source_body_writer.TestF05Add47SourceBodyWriter.test_add46_empty_source_collection_writes_only_unresolved_source_cause test_f05_add47_source_body_writer.TestF05Add47SourceBodyWriter.test_add46_does_not_infer_unresolved_cause_from_absent_or_null_source_ref test_f05_add47_source_body_writer.TestF05Add47SourceBodyWriter.test_source_body_payload_difference_is_retained_as_local_cause test_f05_add47_source_body_writer.TestF05Add47SourceBodyWriter.test_matching_body_payload_has_no_mismatch_cause test_f05_add47_source_body_writer.TestF05Add47SourceBodyWriter.test_missing_body_entry_retains_contract_stop",
+          "test_names": [
+            "test_add46_empty_source_collection_writes_only_unresolved_source_cause",
+            "test_add46_does_not_infer_unresolved_cause_from_absent_or_null_source_ref",
+            "test_source_body_payload_difference_is_retained_as_local_cause",
+            "test_matching_body_payload_has_no_mismatch_cause",
+            "test_missing_body_entry_retains_contract_stop"
+          ],
+          "observed_result": "Ran 5 tests in 0.191s; OK.",
+          "measurement_ja": "ADD-46はpresent non-null Refのlookup miss Cause、absent/nullでCauseを捏造しない境界を確認。ADD-47は実body payload mismatch Causeの原target/左右Read/rule leaf、matching payloadでCauseなし、body entry absentはWR154-R2-STOP-F05-BODY-ENTRY-ABSENT-01停止を確認。",
+          "working_directory": "helix/helix-harness/units/HELIXHARNESS-UNIT-PRODUCT-TEMPLATE-APPLICATION"
+        },
+        "excluded_noncoverage": {
+          "global_ref": {
+            "l5_contract_ref": {
+              "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+              "pointer": "/f05_detail_contract/recipient_and_obligation_contract/obligations"
+            },
+            "l8_oracle_ref": {
+              "path": "docs/helix-harness/L8-unit-verification/product-template-application.json",
+              "pointer": "/f05_g1_g2_collection_read_partial_oracle"
+            },
+            "l8_state": "candidate_reader_owner_material_classifier_and_product_tests_not_run",
+            "reason_ja": "global obligation Ref保全には既存の修正・test履歴があるが、このoracleは専用の固定expected Ref列を持たずcandidate未実行。今回bounded ADD46/47 case refs・測定件数に含めない。"
+          },
+          "other_f05_branches_ja": "F13/F10/F14、F06/F07、全Comparison/OwnerMaterial、未形成source/body/owner枝、F05全域の実行・受入・freezeは測定対象外。"
+        },
+        "history_note_ja": "Git履歴にはRed-only commitがない。最初のF05 producer commitはsrcとtestを同時導入した。ここに記録したbase Redはmerge後test bytesを隔離worktreeへ一時overlayした再現であり、commit historyを書き換えず、Red-only commitを主張しない。",
+        "formal_execution_state_ja": "cases/7 execution_state=not_executedを維持する。ここに記す5 testsは限定leaf observationだけであり、L7 FN05全域・L8/L9実行・freeze成立・F05 producer完了を意味しない。",
+        "existing_full_return_links_nonclaim_ja": "cases/7の既存l8_oracle_ref=/normal_function_oracles/5と従来の全返却candidate refsは文書参照として保持する。いずれも未実行candidateであり、このbounded observationのoracle・採択・coverageには使わない。実測範囲は明記したADD-46/47のfixed_writer_case leafだけ。"
+      }
     },
     {
       "id": "HARNESS-L7-009-FN06-compare_selected_knowledge",
@@ -2074,9 +2192,126 @@
       "path": "helix/helix-harness/units/HELIXHARNESS-UNIT-PRODUCT-TEMPLATE-APPLICATION/src/application_candidate_universe.py",
       "file_sha256": "c4931b2bbb026bc609a40c7d32882fd8544fff2504f75ee3c322e7e5b35bcd4a",
       "role": "stopped_tdd_candidate_src"
+    },
+    {
+      "revision": "e4f178dd39e3fad1c0ae07a38b4a4d5fd9ab3a97",
+      "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+      "file_sha256": "f5da0e585b3bb91cf5b07d7d3c1e124b9584718395d8b07704cede6e2523ce1c",
+      "selected_pointers": [
+        "/functions/5",
+        "/f05_detail_contract/field_content_source_failure_writer_contract/writers/0",
+        "/f05_detail_contract/field_content_source_failure_writer_contract/writers/1",
+        "/f05_detail_contract/types/RecordOccurrence/members/causes",
+        "/f05_detail_contract/types/BodyOccurrence/members/causes"
+      ]
+    },
+    {
+      "revision": "75a8e2ebec559c2cf272ca51444ce47f3185e4ae",
+      "path": "docs/helix-harness/L8-unit-verification/product-template-application.json",
+      "file_sha256": "65aa4c2e120e6636cc3f3eb260fec32b06b1b44a6f17b21f785dc0d63fa767ce",
+      "selected_pointers": [
+        "/normal_function_oracles/5",
+        "/fixture_contract/normal_fixtures/0",
+        "/additional_unit_cases/46",
+        "/additional_unit_cases/46/fixed_writer_case",
+        "/additional_unit_cases/46/fixed_writer_case/expected_record_occurrence",
+        "/additional_unit_cases/47",
+        "/additional_unit_cases/47/fixed_writer_case/input_delta",
+        "/additional_unit_cases/47/fixed_writer_case/l8_expected_writer_leaf",
+        "/additional_unit_cases/47/fixed_writer_case/nonclaims_ja",
+        "/f05_g1_g2_collection_read_partial_oracle"
+      ]
+    },
+    {
+      "revision": "821a655ad6949b2a7a5344b26e3c170cccc353a6",
+      "path": "helix/helix-harness/units/HELIXHARNESS-UNIT-PRODUCT-TEMPLATE-APPLICATION/src/product_template_application.py",
+      "file_sha256": "d1cc3710deb586dcc7d3cba137851f37a7636e1a8824f6a19be8543a1f04f32c",
+      "role": "pre_native_entrypoint_source"
+    },
+    {
+      "revision": "860e9c8ff5607f8b00890a04393b147f1c142f2d",
+      "path": "helix/helix-harness/units/HELIXHARNESS-UNIT-PRODUCT-TEMPLATE-APPLICATION/src/application_requirement_gaps.py",
+      "file_sha256": "5a475e9fcf164a71fa4721ac7203142e878c05efa0f7caaa6886d863a6ce194c",
+      "role": "merged_implementation_source"
+    },
+    {
+      "revision": "860e9c8ff5607f8b00890a04393b147f1c142f2d",
+      "path": "helix/helix-harness/units/HELIXHARNESS-UNIT-PRODUCT-TEMPLATE-APPLICATION/src/application_requirement_gaps_detail.py",
+      "file_sha256": "5ee4c41bc2e469e252dfd6197adea3e49486be314b4d93982231ec906ff2a612",
+      "role": "merged_implementation_source"
+    },
+    {
+      "revision": "860e9c8ff5607f8b00890a04393b147f1c142f2d",
+      "path": "helix/helix-harness/units/HELIXHARNESS-UNIT-PRODUCT-TEMPLATE-APPLICATION/src/application_requirement_gaps_occurrences.py",
+      "file_sha256": "dec36313f8f9da22e902e713e528bc0bc31b5789a7e45deaf8a0aee500cccaef",
+      "role": "merged_implementation_source"
+    },
+    {
+      "revision": "860e9c8ff5607f8b00890a04393b147f1c142f2d",
+      "path": "helix/helix-harness/units/HELIXHARNESS-UNIT-PRODUCT-TEMPLATE-APPLICATION/src/application_requirement_gaps_owner_bindings.py",
+      "file_sha256": "8a28c4b106c8b575be9308c1f0aa4706bc0ef592dd557c997266b7583dfe417c",
+      "role": "merged_implementation_source"
+    },
+    {
+      "revision": "860e9c8ff5607f8b00890a04393b147f1c142f2d",
+      "path": "helix/helix-harness/units/HELIXHARNESS-UNIT-PRODUCT-TEMPLATE-APPLICATION/src/application_requirement_gaps_projection.py",
+      "file_sha256": "72da1e4537ca86b5bf9243770f1818029d31581418e93145ff5da9846ef5a1bf",
+      "role": "merged_implementation_source"
+    },
+    {
+      "revision": "860e9c8ff5607f8b00890a04393b147f1c142f2d",
+      "path": "helix/helix-harness/units/HELIXHARNESS-UNIT-PRODUCT-TEMPLATE-APPLICATION/src/application_requirement_gaps_selection.py",
+      "file_sha256": "79b86d8a4d557010d66b91344b7f865cdeaefda026a0450194a4cc4033637d3b",
+      "role": "merged_implementation_source"
+    },
+    {
+      "revision": "860e9c8ff5607f8b00890a04393b147f1c142f2d",
+      "path": "helix/helix-harness/units/HELIXHARNESS-UNIT-PRODUCT-TEMPLATE-APPLICATION/src/product_template_application.py",
+      "file_sha256": "5f70cf842a22136f9a8b6574fb747f9a8e94e93bf398d844237b6bf38eb3ee61",
+      "role": "merged_implementation_source"
+    },
+    {
+      "revision": "860e9c8ff5607f8b00890a04393b147f1c142f2d",
+      "path": "helix/helix-harness/units/HELIXHARNESS-UNIT-PRODUCT-TEMPLATE-APPLICATION/tests/test_compare_requirement_gaps.py",
+      "file_sha256": "a6ad54ef09a157663a151f8d118e9d0908f4c5809036b08763dd41f3604521d0",
+      "role": "merged_test_source"
+    },
+    {
+      "revision": "860e9c8ff5607f8b00890a04393b147f1c142f2d",
+      "path": "helix/helix-harness/units/HELIXHARNESS-UNIT-PRODUCT-TEMPLATE-APPLICATION/tests/test_f05_add47_source_body_writer.py",
+      "file_sha256": "48839968fbdaa84a25e7917f6b37cde1bea7343444e3abe11c200d96ec19efc0",
+      "role": "merged_test_source"
+    },
+    {
+      "revision": "6cc54f6dbdded6cf31f3be2e27b0ad8048e8df53",
+      "path": "helix/helix-harness/units/HELIXHARNESS-UNIT-PRODUCT-TEMPLATE-APPLICATION/tests/fixtures/application_input.json",
+      "file_sha256": "f290418075c7d6cf8949f9239b69b3b5581211b3a83e264aa5cbd4a0ae9a7499",
+      "selected_pointers": [
+        "/normal_input",
+        "/source_provenance"
+      ],
+      "role": "test_fixture"
+    },
+    {
+      "revision": "7905fffa2b687ff8a1a30895d46f9bf9f0e9e380",
+      "path": "helix/helix-harness/units/HELIXHARNESS-UNIT-PRODUCT-TEMPLATE-APPLICATION/tests/test_application_input.py",
+      "file_sha256": "d6a76876d76bedca27a62adee3328d9042a0c05fc90a46dd59d71ff044284dac",
+      "role": "test_support"
+    },
+    {
+      "revision": "1dbb7305980770e943a79e128fb35cca16562b94",
+      "path": "helix/helix-harness/units/HELIXHARNESS-UNIT-PRODUCT-TEMPLATE-APPLICATION/tests/_requirement_gaps_test_helpers.py",
+      "file_sha256": "08f9194ed92ad26f7e261ddff2185d998ca1e26383e706f30fe8c6e20c8433cd",
+      "role": "test_support"
+    },
+    {
+      "revision": "821a655ad6949b2a7a5344b26e3c170cccc353a6",
+      "path": "helix/helix-harness/units/HELIXHARNESS-UNIT-PRODUCT-TEMPLATE-APPLICATION/tests/test_compare_requirement_gaps.py",
+      "file_sha256": "0c745f1e9d6cd2680671d5a11946c7c528344646c316df254e81083e26f0e07f",
+      "role": "red_base_test_support"
     }
   ],
-  "source_pin_ref_rule_ja": "FN03〜FN07の各行source_pin_refsは同じ文書のsource_pinsを指す。L5/L8 pinは確認対象HEADの全file SHAと選択pointer集合を束縛し、各freeze pinはrecord追加commitの全file SHAとtarget binding pointerを束縛する。 FN07の現行source_pinsはL5 /functions/7、L8 /normal_function_oracles/7とfreeze unit_case_pointers（/cases/8、/cases/9、/additional_unit_cases/17、/additional_unit_cases/18）を束縛し、freeze source pinは記録追加commitのrevision・全file SHA・target binding pointerを束縛する。 FN08のTDD source_pin_refsは、Red test/fixture、Red基点の公開entrypoint、Green source moduleおよび公開entrypointのcommit別whole-file SHAを束縛する。 FN08のlocator_intermediate_observationは、Red testをcore実装・locator保持前のsource commitへ適用した単独FAILの再現可能なcommit・command・観測結果と、同revisionのsource whole-file SHAを結ぶ。 FN11のsource_pinsはtest_only追加commit・Red test-only commit・Green src-only commitの各file SHAを束縛し、tdd_history_refsは各test_only追加・Red時点の直接test名を列挙する。test_only履歴entryはred_commit/green_commitをnullとする。 FN08のlimited_metamorphic_test_observationはtest-only commitとtest file SHAをsource_pinsで束縛し、初回Greenの限定観測を記録するがformal execution_stateはnot_executedのまま維持する。 FN00 validation detail TDDはL5 V01–V07/diagnostic writer、L8 six oracle群、test-only Redとbase同一source hash、Green source-only各module SHA、fixture SHAをrevision別に束縛する。 FN00 validation detailのGreen後metamorphic testは、別のtest-only revision/whole-file SHAで追加観測を束縛し、旧Red/Green列を遡及変更しない。 FN00〜FN02のsource_pin_refsは、stopped_tdd_history_candidatesが記録する導入候補commitの各変更file（src/test/fixture）のwhole-file SHAを束縛する。",
+  "source_pin_ref_rule_ja": "FN03〜FN07の各行source_pin_refsは同じ文書のsource_pinsを指す。L5/L8 pinは確認対象HEADの全file SHAと選択pointer集合を束縛し、各freeze pinはrecord追加commitの全file SHAとtarget binding pointerを束縛する。 FN07の現行source_pinsはL5 /functions/7、L8 /normal_function_oracles/7とfreeze unit_case_pointers（/cases/8、/cases/9、/additional_unit_cases/17、/additional_unit_cases/18）を束縛し、freeze source pinは記録追加commitのrevision・全file SHA・target binding pointerを束縛する。 FN08のTDD source_pin_refsは、Red test/fixture、Red基点の公開entrypoint、Green source moduleおよび公開entrypointのcommit別whole-file SHAを束縛する。 FN08のlocator_intermediate_observationは、Red testをcore実装・locator保持前のsource commitへ適用した単独FAILの再現可能なcommit・command・観測結果と、同revisionのsource whole-file SHAを結ぶ。 FN11のsource_pinsはtest_only追加commit・Red test-only commit・Green src-only commitの各file SHAを束縛し、tdd_history_refsは各test_only追加・Red時点の直接test名を列挙する。test_only履歴entryはred_commit/green_commitをnullとする。 FN08のlimited_metamorphic_test_observationはtest-only commitとtest file SHAをsource_pinsで束縛し、初回Greenの限定観測を記録するがformal execution_stateはnot_executedのまま維持する。 FN00 validation detail TDDはL5 V01–V07/diagnostic writer、L8 six oracle群、test-only Redとbase同一source hash、Green source-only各module SHA、fixture SHAをrevision別に束縛する。 FN00 validation detailのGreen後metamorphic testは、別のtest-only revision/whole-file SHAで追加観測を束縛し、旧Red/Green列を遡及変更しない。 FN00〜FN02のsource_pin_refsは、stopped_tdd_history_candidatesが記録する導入候補commitの各変更file（src/test/fixture）のwhole-file SHAを束縛する。 FN05 cases/7の有限leaf観測は追加source_pins/75..90でL5/L8の実revision・selected pointers、Red base entrypoint、merge時source/test/fixture whole-file SHAを束縛する。Red-only commitが無い履歴はbounded_leaf_observationにbase再現として記し、tdd_history_refsへ架空commitを追加しない。限定観測はformal execution_state not_executedを変えず、明示されたleafを越えるcoverageを主張しない。",
   "validate_application_input_detail_tdd": {
     "function_design_ref": "HARNESS-L6-009-FN00-validate_application_input",
     "l5_entry_ref": {
