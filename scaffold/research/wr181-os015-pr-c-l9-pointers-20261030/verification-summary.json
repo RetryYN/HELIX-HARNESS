@@ -144,11 +144,44 @@
   },
   "scfctl": {
     "bindings": "164",
-    "validate": "pending summary artifact registration rerun",
-    "stale": "0"
+    "validate": "PASS (fail=0)",
+    "stale": "PASS (stale=0)"
   },
   "diff_check": "PASS",
-  "latest_main_trial": "pending",
+  "latest_main_trial": {
+    "base_revision": "ff8afa258391992ebd04336a19f7064e967d12bb",
+    "candidate_commit": "2551c030189fce90f34d2b0987cd2af664e0676f",
+    "merge_result": "競合なし。候補8 pathsをstageしたno-commit trial merge。",
+    "changed_paths_overlap": false,
+    "static_validator": "PASS; trial output byte-identical to candidate static-validation.json",
+    "check_child": {
+      "exit": 1,
+      "overall_passed": false,
+      "L4_L9_pair_passed": true,
+      "L5_L8_pair_passed": true,
+      "negative_4way_passed": false,
+      "negative_4way_failures": 136,
+      "negative_4way_counts": {
+        "L4": 33,
+        "L9": 27,
+        "L8": 27,
+        "L5": 33
+      },
+      "matched_case_count": 460,
+      "ownership_caps_passed": true,
+      "pins_passed": true
+    },
+    "check_freeze": {
+      "exit": 1,
+      "mechanical_match": false,
+      "CHK-JSON-POINTER_failures": 2421,
+      "CHK-PUBLIC-FN-FREEZE_failures": 8,
+      "result_same_as_candidate_and_base": true
+    },
+    "scfctl_validate": "PASS (bindings=164 fail=0)",
+    "scfctl_stale": "PASS (stale=0)",
+    "cached_diff_check": "PASS"
+  },
   "residuals": [
     "L9の未割当112件（C0044を含む）",
     "6 singleton-less class未形成",
@@ -160,5 +193,6 @@
     "child_after": "ab17c2c12750a0641cdfe66db3c2c8b350c5f52ab57103ee3a71ea6ec1ab46be",
     "freeze_before": "cc4bd1a42fcde81c9b38c3d9f68af3531cab8a235811fb937e2a57f35d320003",
     "freeze_after": "cc4bd1a42fcde81c9b38c3d9f68af3531cab8a235811fb937e2a57f35d320003"
-  }
+  },
+  "base_to_candidate_diff_check": "PASS"
 }
