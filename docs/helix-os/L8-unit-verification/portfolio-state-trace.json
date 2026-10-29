@@ -49030,7 +49030,7 @@
     }
   },
   "removed_materials": {
-    "decision_ref": "https://github.com/isoten0413-create/HELIX-HARNESS/issues/3510#issuecomment-6447665479",
+    "decision_ref": "https://github.com/RetryYN/HELIX-HARNESS/issues/3510#issuecomment-6447665479",
     "git_commit": "6d7967238ab09da7bdbb6cc296cd4b44850129a3",
     "path": "docs/helix-os/L8-unit-verification/portfolio-state-trace.json",
     "meaning": "実装前のL8単体検証文書に埋め込まれていたliteral_materialization_contract、approved_whole_objects/legacy_normative_objectsのobject丸ごと複製、domain_probes/selected_domain_profile/os015_origin_caller_verificationの入力エコー（retained_source_records/retained_state_trace/original_materials/material_sources.*.value）と静的diagnostic_contract複製、および固定source参照以外の*_sha256/sha256",
