@@ -232,14 +232,7 @@
       "l10_ref": "HARNESS-L10-008-B01",
       "approved_l10": {
         "id": "HARNESS-L10-008-B01",
-        "parent": "HARNESS-L2-008",
-        "title": "意味提供と管理登録のowner",
-        "requirement_ref": "HARNESS-L3-008-B01",
-        "positive_input": "同じ意味出力を合意有/無、OS登録有/無、相談のみの条件で比較する。",
-        "expected_observation": "知識提供/適用/意味候補/登録/合意と操作認可の違いが辿れる。",
-        "negative_input": "OS内に別要求エンジン、BRAINによるticket発行、proposal自動canonical化、logから学習許可、改善scoreで要求承認。",
-        "failure_observation": "各不足を元ownerへ返し、出力の存在を完了/権限にしない。",
-        "execution_state": "not_executed"
+        "requirement_ref": "HARNESS-L3-008-B01"
       },
       "connection_oracle": {
         "input": "production意味入力と独立した原意味/期待/未見fixtureを同revision/scopeへ束縛する。",
@@ -8258,14 +8251,7 @@
       "l10_ref": "HARNESS-L10-008-B02",
       "approved_l10": {
         "id": "HARNESS-L10-008-B02",
-        "parent": "HARNESS-L2-008",
-        "title": "consumer再検証の契約",
-        "requirement_ref": "HARNESS-L3-008-B02",
-        "positive_input": "正しいrevisionの候補、失効/重複/別schema版、実行を誘導するpayloadを比較する条件を定める。",
-        "expected_observation": "consumerが再検証対象と不足を識別し、意味候補と登録成立を分ける。",
-        "negative_input": "旧schemaの存在で互換、staleをcurrent、payloadのcommand実行、consumer再検証を省略、外部consumerにOS導入必須。",
-        "failure_observation": "再検証失敗を返し、外部commit/要求採用を生成しない。",
-        "execution_state": "not_executed"
+        "requirement_ref": "HARNESS-L3-008-B02"
       },
       "connection_oracle": {
         "input": "production意味入力と独立した原意味/期待/未見fixtureを同revision/scopeへ束縛する。",
@@ -11356,14 +11342,7 @@
       "l10_ref": "HARNESS-L10-008-F01",
       "approved_l10": {
         "id": "HARNESS-L10-008-F01",
-        "parent": "HARNESS-L2-008",
-        "title": "設計パターンへの質問と一次形成",
-        "requirement_ref": "HARNESS-L3-008-F01",
-        "positive_input": "actor/制約/接続条件が欠ける同scope指示と必要入力が揃う指示を比較する。",
-        "expected_observation": "不足と質問の根拠、参照知識/pack版、一次要求候補が辿れる。",
-        "negative_input": "パターンを先に選び不足を捏造、BRAINを稼働判断主体とする、template適用で要求合意。",
-        "failure_observation": "不足inputとowner/戻し先を示し、未回答を合意済みにしない。",
-        "execution_state": "not_executed"
+        "requirement_ref": "HARNESS-L3-008-F01"
       },
       "connection_oracle": {
         "input": "production意味入力と独立した原意味/期待/未見fixtureを同revision/scopeへ束縛する。",
@@ -14318,14 +14297,7 @@
       "l10_ref": "HARNESS-L10-008-F02",
       "approved_l10": {
         "id": "HARNESS-L10-008-F02",
-        "parent": "HARNESS-L2-008",
-        "title": "二次形成と合意の分離",
-        "requirement_ref": "HARNESS-L3-008-F02",
-        "positive_input": "同一次入力へPoC finding、取消、保留、対象製品変更と人の訂正を与える。",
-        "expected_observation": "一次/二次差分と根拠、合意の有無、保持すべきfindingが識別できる。",
-        "negative_input": "PoC成功で要求合意、二次結果を一次へ上書き、取消/保留後も旧候補採用、沈黙承認。",
-        "failure_observation": "対象meaning ownerへ訂正/合意待ちを返し、必要な対設計/検証の再導出へ結ぶ。",
-        "execution_state": "not_executed"
+        "requirement_ref": "HARNESS-L3-008-F02"
       },
       "connection_oracle": {
         "input": "production意味入力と独立した原意味/期待/未見fixtureを同revision/scopeへ束縛する。",
@@ -17143,14 +17115,7 @@
       "l10_ref": "HARNESS-L10-008-F03",
       "approved_l10": {
         "id": "HARNESS-L10-008-F03",
-        "parent": "HARNESS-L2-008",
-        "title": "意味単位の比較とidentity",
-        "requirement_ref": "HARNESS-L3-008-F03",
-        "positive_input": "同義表現、部分欠落、指示外制約、別製品規則、否定と曖昧な対象を個別に与える。",
-        "expected_observation": "同義identityと各意味差分/未確定事項を根拠へ辿れる。",
-        "negative_input": "異なる意味を同語で統合、同義を別要求へ増殖、企画外制約や別製品規則を採用、unknown補完。",
-        "failure_observation": "質問/訂正/再抽出へ戻し、元要求を黙って変更しない。",
-        "execution_state": "not_executed"
+        "requirement_ref": "HARNESS-L3-008-F03"
       },
       "connection_oracle": {
         "input": "production意味入力と独立した原意味/期待/未見fixtureを同revision/scopeへ束縛する。",
@@ -18991,14 +18956,7 @@
       "l10_ref": "HARNESS-L10-008-F04",
       "approved_l10": {
         "id": "HARNESS-L10-008-F04",
-        "parent": "HARNESS-L2-008",
-        "title": "単体・接続・構成体の要求",
-        "requirement_ref": "HARNESS-L3-008-F04",
-        "positive_input": "A/B/C単体だけ成立した構成にA→B/B→Cの順序/data/timeout/部分失敗/回復不足を与える。",
-        "expected_observation": "kind別の要求と固有義務、接続の未検証が保持される。",
-        "negative_input": "全単体成功で接続成立、接続固有failure欠落、複数kindを一要求へ混載、単体要求の複製を接続要求扱い。",
-        "failure_observation": "不足した接続義務とownerを明示して要求形成へ戻す。",
-        "execution_state": "not_executed"
+        "requirement_ref": "HARNESS-L3-008-F04"
       },
       "connection_oracle": {
         "input": "production意味入力と独立した原意味/期待/未見fixtureを同revision/scopeへ束縛する。",
@@ -25510,14 +25468,7 @@
       "l10_ref": "HARNESS-L10-008-F05",
       "approved_l10": {
         "id": "HARNESS-L10-008-F05",
-        "parent": "HARNESS-L2-008",
-        "title": "構成体固有義務と非適用",
-        "requirement_ref": "HARNESS-L3-008-F05",
-        "positive_input": "単体/接続が成功でも全体応答未観測、性能budget超過、trust boundary違反、不完全N/Aを与える。",
-        "expected_observation": "下位proofと全体固有義務/未評価/非適用根拠が辿れる。",
-        "negative_input": "分解で全体要求消去、子の性能/security成功で全体成立、固有oracle未実行をpass、N/A四根拠欠落。",
-        "failure_observation": "構成体の不足と必要な差分証明を保持し、全体受入を生成しない。",
-        "execution_state": "not_executed"
+        "requirement_ref": "HARNESS-L3-008-F05"
       },
       "connection_oracle": {
         "input": "production意味入力と独立した原意味/期待/未見fixtureを同revision/scopeへ束縛する。",
@@ -33177,14 +33128,7 @@
       "l10_ref": "HARNESS-L10-008-F06",
       "approved_l10": {
         "id": "HARNESS-L10-008-F06",
-        "parent": "HARNESS-L2-008",
-        "title": "変更影響とkind再形成",
-        "requirement_ref": "HARNESS-L3-008-F06",
-        "positive_input": "単体interface変更、構成体budget変更、接続問題の新finding、relation不明、無関係対象を与える。同じfindingでも対象revisionと既存成果の再利用可/不可/未確認を別々に与える。",
-        "expected_observation": "影響集合、原finding、kind再形成と必要な再合意/対再導出が辿れる。再分類の元/新kind、対象revisionと既存成果の再利用判断根拠が辿れる。",
-        "negative_input": "元単体要求を黙って接続へ変更、finding消去、全構成失効、unknownを影響なし、変更影響から成立state生成。対象revision無しで再分類、既存成果を無条件に破棄/流用、再利用可否未確認を利用可へ補完。",
-        "failure_observation": "必要な意味判断を既存要求形成へ戻し、影響/成立を分ける。",
-        "execution_state": "not_executed"
+        "requirement_ref": "HARNESS-L3-008-F06"
       },
       "connection_oracle": {
         "input": "production意味入力と独立した原意味/期待/未見fixtureを同revision/scopeへ束縛する。",
@@ -38822,14 +38766,7 @@
       "l10_ref": "HARNESS-L10-008-F07",
       "approved_l10": {
         "id": "HARNESS-L10-008-F07",
-        "parent": "HARNESS-L2-008",
-        "title": "Python意味コアの再現と分離",
-        "requirement_ref": "HARNESS-L3-008-F07",
-        "positive_input": "同じ版付きinputの繰返し、別製品pack、外部権限を与えない入力条件を定義する。",
-        "expected_observation": "同一条件の結果が一致し、製品間規則漏れと外部作用を識別する。",
-        "negative_input": "network/DB access必須、Pythonによる外部write、別製品規則の漏れ、同input/版で結果相違、旧Python/TS greenを成立証拠。",
-        "failure_observation": "不一致/依存を局所findingとし、engine/pack/inputの原因候補と該当ownerへ返す。",
-        "execution_state": "not_executed"
+        "requirement_ref": "HARNESS-L3-008-F07"
       },
       "connection_oracle": {
         "input": "production意味入力と独立した原意味/期待/未見fixtureを同revision/scopeへ束縛する。",
@@ -41468,14 +41405,7 @@
       "l10_ref": "HARNESS-L10-008-N01",
       "approved_l10": {
         "id": "HARNESS-L10-008-N01",
-        "parent": "HARNESS-L2-008",
-        "title": "未見の意味差と観測限界",
-        "requirement_ref": "HARNESS-L3-008-N01",
-        "positive_input": "伏せた同scope指示、別scope規則、判断待ち/未評価のfixtureを与える条件を定める。",
-        "expected_observation": "意味一致の範囲と未評価、質問/訂正と合意の違いが辿れる。",
-        "negative_input": "fixture正答漏洩、未評価を成功、必要な質問を省略、限定結果を全製品保証、必須判断をscoreで閉じる。",
-        "failure_observation": "当該不足と再評価条件を保持し、実測/学習/実物受入の成立を生成しない。",
-        "execution_state": "not_executed"
+        "requirement_ref": "HARNESS-L3-008-N01"
       },
       "connection_oracle": {
         "input": "production意味入力と独立した原意味/期待/未見fixtureを同revision/scopeへ束縛する。",
@@ -44959,5 +44889,13 @@
     "revision_rule": "fixture-sha256- + SHA-256(対象nodeから当該ref/source/basis fieldだけを除いた内容をUTF-8 sorted-key compact JSONへserializeしたbytes)。raw_utf8/宣言digestを含む。不一致digestの負例を修復しない。",
     "mutation_preparation": "本文変異と別のreference_preparationで当該合成参照revisionだけを準備し、意図した原意味変異とcandidate-only変異を保持する。",
     "limit": "正式canonical encoding/実owner資格/authorityを採用した証拠ではない。"
+  },
+  "removed_materials": {
+    "decision_ref": "https://github.com/RetryYN/HELIX-HARNESS/issues/3510#issuecomment-6447665479",
+    "git_commit": "a0ad8cfd662dbab39cc1f983d91b20be8a228b64",
+    "path": "docs/helix-harness/L9-integration-verification/requirement-formation-semantic-core.json",
+    "meaning": "実装前L9軽量化（#3510）により、実ファイルと照合済みの上流L10全文の写し（verification_obligations[0..9].approved_l10の本文7キー×10件；idとrequirement_refは保持）を撤去し、比較先となるL9の全10契約・全401件（normal_cases 39件、negative_cases 362件）のindependent_source_packet（raw_utf8・宣言sha256全401件）・expected_material（preserved_primary.sha256 27件を含む）・mutation（before/afterのsha256 21件・candidate_sha256 4件を含む）・submitted_candidate（preserved_primary.sha256 9件を含む）・original_materialおよびsource_pins/legacy_comparisonを完全保持した。",
+    "removed_key_rule": "verification_obligations[*].approved_l10.(parent/title/positive_input/expected_observation/negative_input/failure_observation/execution_state)を撤去。fixture値であるsha256（458件）・candidate_sha256（4件）の計462件は保持。",
+    "use_boundary": "撤去した上流L10全文複写を完了証拠に使わない。結合検証およびL8からの参照解決は保持されたverification_obligations全401件（宣言digest・mutation値を含む）を用いて検証する。"
   }
 }
