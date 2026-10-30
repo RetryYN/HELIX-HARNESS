@@ -30,7 +30,7 @@
     },
     {
       "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
-      "sha256": "c468e6cd85c26a6d8fa18d44c000ce32a8e607d48ff77241e233f251ea394a81",
+      "sha256": "17df9676bfcc82d8d4cd93cc14ae77b5d4b4df2c83d6e7cab015817126bc6103",
       "note": "OS015 contracts and diagnostic prose/tables plus source unresolved/conflict classifications; embedded algorithm body excluded."
     },
     {
