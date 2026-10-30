@@ -31,7 +31,7 @@
     {
       "path": "docs/helix-os/L4-basic-design/ticket-workflow-derivation.json",
       "sha256": "042b09df96082a9f04e43016bb70928ceef2e807d84b0bbc958210283582fa15",
-      "note": "L4 current source pin 45cca359a390061fb63291f10b482c8b643345b6c5f5fe45093fc62d8574dde2; previous pin df533df843f0742b66ebe9f1b71673e0e9ab9778e4931ea9e9351858835583b0 is preserved in binding history. Existing input classes remain byte-identical; OS017 B01 ownership class is separately evidenced by SCF-B-0184. Updated for compact role witness references; prior pin: 45cca359a390061fb63291f10b482c8b643345b6c5f5fe45093fc62d8574dde2."
+      "note": "L4 current source pin 042b09df96082a9f04e43016bb70928ceef2e807d84b0bbc958210283582fa15; previous pin df533df843f0742b66ebe9f1b71673e0e9ab9778e4931ea9e9351858835583b0 is preserved in binding history. Existing input classes remain byte-identical; OS017 B01 ownership class is separately evidenced by SCF-B-0184. Updated for compact role witness references; prior pin: 45cca359a390061fb63291f10b482c8b643345b6c5f5fe45093fc62d8574dde2."
     },
     {
       "path": "docs/helix-os/L7-function-verification/ticket-workflow-derivation.json",
