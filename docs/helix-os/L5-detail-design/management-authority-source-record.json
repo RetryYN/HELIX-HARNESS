@@ -421,13 +421,13 @@
   "source_pair_pins": [
     {
       "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
-      "revision": "e3a16010cce138001d33df19afef92e3fa049d81",
-      "sha256": "c468e6cd85c26a6d8fa18d44c000ce32a8e607d48ff77241e233f251ea394a81"
+      "revision": "f38ee6f21a680a82ef5ecc1c6c4c25ba2f0bda52",
+      "sha256": "17df9676bfcc82d8d4cd93cc14ae77b5d4b4df2c83d6e7cab015817126bc6103"
     },
     {
       "path": "docs/helix-os/L9-integration-verification/management-authority-source-record.json",
-      "revision": "e3a16010cce138001d33df19afef92e3fa049d81",
-      "sha256": "637f2499479913a629a15ddab80e46b383121d38a0dd1482bc1a1ca2d66ee84b"
+      "revision": "b8bd81be5a439cf8dd1d4c5272d6a20872edafc3",
+      "sha256": "5ee151eeb68209835cf08baa856c2443538e4dac2a46bc64b9e30427abaa99cc"
     }
   ],
   "document_id": "HELIXOS-L5-015",
@@ -12404,7 +12404,7 @@
     },
     "source_equation_binding": {
       "document": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
-      "revision": "2bc4d9385b3d1c6a1245c11bd391463539da82bc",
+      "revision": "f38ee6f21a680a82ef5ecc1c6c4c25ba2f0bda52",
       "pointer": "/diagnostic_contract/algorithm_python_document_text",
       "value_utf8_sha256": "1db123ea37259742eda71073ad3d9634a6e60a2e5044e5fc176d7ae914cbc957",
       "difference": "原L4文書式からcopy.deepcopyをjson_copyへ表記置換。whole改変2箇所をL4 mutation_ruleと同文書equalの型付きJSON等値へ整合し、correctの旧分類member不足を.getのnull読取りからunknownへ返す。原583期待不変。別の純関数でsource返却先候補と分類保持3rootを追補。"
