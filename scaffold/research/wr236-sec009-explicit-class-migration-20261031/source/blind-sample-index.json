@@ -1,0 +1,159 @@
+{
+  "schema": "wr236-stratified-input-index.v1",
+  "source_revision": "4ba3f600df75aa6e860e0ddf53db68644e1edf98",
+  "source_path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+  "source_sha256": "ed74cdc558bd8ba9cad5d8b075eee137bafba9c65e9a4a18bb862c728b646b4f",
+  "selection": "30 case pointers stratified by existing 30 class assignments; labels and expected values withheld from independent author.",
+  "cases": [
+    {
+      "case_id": "SEC009-CATEGORY-CONFLICT",
+      "raw_case_pointer": "/cases/323",
+      "allowed_input_pointer": "/cases/323/given/input"
+    },
+    {
+      "case_id": "SEC009-CATEGORY-UNKNOWN",
+      "raw_case_pointer": "/cases/322",
+      "allowed_input_pointer": "/cases/322/given/input"
+    },
+    {
+      "case_id": "SEC009-EXPECTED-UNKNOWN",
+      "raw_case_pointer": "/cases/320",
+      "allowed_input_pointer": "/cases/320/given/input"
+    },
+    {
+      "case_id": "SEC009-GLOBAL-STOP",
+      "raw_case_pointer": "/cases/321",
+      "allowed_input_pointer": "/cases/321/given/input"
+    },
+    {
+      "case_id": "SEC009-ISOLATION-EVENT_ID-CONFLICT",
+      "raw_case_pointer": "/cases/285",
+      "allowed_input_pointer": "/cases/285/given/input"
+    },
+    {
+      "case_id": "SEC009-ISOLATION-EVENT_ID-MISSING",
+      "raw_case_pointer": "/cases/284",
+      "allowed_input_pointer": "/cases/284/given/input"
+    },
+    {
+      "case_id": "SEC009-ISOLATION-STATE-NOT_ISOLATED",
+      "raw_case_pointer": "/cases/299",
+      "allowed_input_pointer": "/cases/299/given/input"
+    },
+    {
+      "case_id": "SEC009-ISOLATION-STATE-UNKNOWN",
+      "raw_case_pointer": "/cases/298",
+      "allowed_input_pointer": "/cases/298/given/input"
+    },
+    {
+      "case_id": "SEC009-OS_ASSIGNMENT-ACTIONS-DUPLICATE",
+      "raw_case_pointer": "/cases/341",
+      "allowed_input_pointer": "/cases/341/given/input"
+    },
+    {
+      "case_id": "SEC009-OS_ASSIGNMENT-ACTIONS-EMPTY",
+      "raw_case_pointer": "/cases/109",
+      "allowed_input_pointer": "/cases/109/given/input"
+    },
+    {
+      "case_id": "SEC009-OS_ASSIGNMENT-INSTRUCTIONS-EVENT_ID-CONFLICT",
+      "raw_case_pointer": "/cases/76",
+      "allowed_input_pointer": "/cases/76/given/input"
+    },
+    {
+      "case_id": "SEC009-OS_ASSIGNMENT-INSTRUCTIONS-EVENT_ID-MISSING",
+      "raw_case_pointer": "/cases/75",
+      "allowed_input_pointer": "/cases/75/given/input"
+    },
+    {
+      "case_id": "SEC009-OS_ASSIGNMENT-INSTRUCTIONS-MISSING",
+      "raw_case_pointer": "/cases/74",
+      "allowed_input_pointer": "/cases/74/given/input"
+    },
+    {
+      "case_id": "SEC009-OS_ASSIGNMENT-NEW_ASSIGNMENT_CONTINUES-NONE",
+      "raw_case_pointer": "/cases/108",
+      "allowed_input_pointer": "/cases/108/given/input"
+    },
+    {
+      "case_id": "SEC009-OS_ASSIGNMENT-NEW_ASSIGNMENT_CONTINUES-TRUE",
+      "raw_case_pointer": "/cases/107",
+      "allowed_input_pointer": "/cases/107/given/input"
+    },
+    {
+      "case_id": "SEC009-OS_ASSIGNMENT-RECEIPT-NOT_DELIVERED",
+      "raw_case_pointer": "/cases/102",
+      "allowed_input_pointer": "/cases/102/given/input"
+    },
+    {
+      "case_id": "SEC009-OS_ASSIGNMENT-RECEIPT-UNKNOWN",
+      "raw_case_pointer": "/cases/103",
+      "allowed_input_pointer": "/cases/103/given/input"
+    },
+    {
+      "case_id": "SEC009-OS_ASSIGNMENT-REPORTS-EVENT_ID-CONFLICT",
+      "raw_case_pointer": "/cases/89",
+      "allowed_input_pointer": "/cases/89/given/input"
+    },
+    {
+      "case_id": "SEC009-OS_ASSIGNMENT-REPORTS-EVENT_ID-MISSING",
+      "raw_case_pointer": "/cases/88",
+      "allowed_input_pointer": "/cases/88/given/input"
+    },
+    {
+      "case_id": "SEC009-OS_ASSIGNMENT-REPORTS-MISSING",
+      "raw_case_pointer": "/cases/87",
+      "allowed_input_pointer": "/cases/87/given/input"
+    },
+    {
+      "case_id": "SEC009-OS_ASSIGNMENT-STOP_NEW_ASSIGNMENT-NOT_APPLIED",
+      "raw_case_pointer": "/cases/104",
+      "allowed_input_pointer": "/cases/104/given/input"
+    },
+    {
+      "case_id": "SEC009-OS_ASSIGNMENT-STOP_NEW_ASSIGNMENT-NOT_OBSERVED",
+      "raw_case_pointer": "/cases/105",
+      "allowed_input_pointer": "/cases/105/given/input"
+    },
+    {
+      "case_id": "SEC009-POLICY-EVENT_ID-CONFLICT",
+      "raw_case_pointer": "/cases/65",
+      "allowed_input_pointer": "/cases/65/given/input"
+    },
+    {
+      "case_id": "SEC009-POLICY-EVENT_ID-MISSING",
+      "raw_case_pointer": "/cases/64",
+      "allowed_input_pointer": "/cases/64/given/input"
+    },
+    {
+      "case_id": "SEC009-POLICY-OMISSION",
+      "raw_case_pointer": "/cases/318",
+      "allowed_input_pointer": "/cases/318/given/input"
+    },
+    {
+      "case_id": "SEC009-RECOVERY-EVENT_ID-CONFLICT",
+      "raw_case_pointer": "/cases/302",
+      "allowed_input_pointer": "/cases/302/given/input"
+    },
+    {
+      "case_id": "SEC009-RECOVERY-EVENT_ID-MISSING",
+      "raw_case_pointer": "/cases/301",
+      "allowed_input_pointer": "/cases/301/given/input"
+    },
+    {
+      "case_id": "SEC009-RECOVERY-STATE-PARTIAL",
+      "raw_case_pointer": "/cases/316",
+      "allowed_input_pointer": "/cases/316/given/input"
+    },
+    {
+      "case_id": "SEC009-RECOVERY-STATE-UNKNOWN",
+      "raw_case_pointer": "/cases/315",
+      "allowed_input_pointer": "/cases/315/given/input"
+    },
+    {
+      "case_id": "SEC009-SAFETY-STOP-SCOPE-NULL",
+      "raw_case_pointer": "/cases/339",
+      "allowed_input_pointer": "/cases/339/given/input"
+    }
+  ]
+}
