@@ -15,8 +15,8 @@
     },
     {
       "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
-      "sha256": "17df9676bfcc82d8d4cd93cc14ae77b5d4b4df2c83d6e7cab015817126bc6103",
-      "note": "候補L4: 6 singleton rowsをsource-witness付きresidual registryへ移し、F03 event/authority promotion compositeを追加。algorithm/codes保持。 2026-10-31 residual witness correction repin: prior=d958b3c4df05520a2f52e7cbfe3dc01a4fb9a47ed74c638dada913d438945750; current=17df9676bfcc82d8d4cd93cc14ae77b5d4b4df2c83d6e7cab015817126bc6103; single-finding key/facet/pointer cross-check and actual/context equality cases are recorded in singleton-residual-update-20261031.md."
+      "sha256": "b4ddae2bce581b9850f23d3926032e295bf1ed0b1fbd257761ad090f3234ff8a",
+      "note": "候補L4: 6 singleton rowsをsource-witness付きresidual registryへ移し、F03 event/authority promotion compositeを追加。algorithm/codes保持。 2026-10-31 residual witness correction repin: prior=d958b3c4df05520a2f52e7cbfe3dc01a4fb9a47ed74c638dada913d438945750; current=b4ddae2bce581b9850f23d3926032e295bf1ed0b1fbd257761ad090f3234ff8a; single-finding key/facet/pointer cross-check and actual/context equality cases are recorded in singleton-residual-update-20261031.md."
     },
     {
       "path": "docs/helix-os/L5-detail-design/management-authority-source-record.json",
@@ -35,7 +35,7 @@
     },
     {
       "path": "docs/helix-os/L9-integration-verification/management-authority-source-record.json",
-      "sha256": "5ee151eeb68209835cf08baa856c2443538e4dac2a46bc64b9e30427abaa99cc",
+      "sha256": "d18c14b38e4d89ff4e9bbf498794041387eff80dd40ffac14bd8aec72c886ee5",
       "note": "候補L9: existing 583 cases保持、C0584/C0585 forward stimulusを追加。F03 refs=31、synthetic_case_count=585。L7 fixture hashは不変。"
     }
   ],

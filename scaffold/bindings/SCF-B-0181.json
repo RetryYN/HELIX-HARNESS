@@ -50,7 +50,7 @@
     },
     {
       "path": "docs/helix-os/L9-integration-verification/management-authority-source-record.json",
-      "sha256": "5ee151eeb68209835cf08baa856c2443538e4dac2a46bc64b9e30427abaa99cc",
+      "sha256": "d18c14b38e4d89ff4e9bbf498794041387eff80dd40ffac14bd8aec72c886ee5",
       "note": "Current main byte pin (f5d51184); L9 negative_class_ref resolves to same-document negative_equivalence_classes class_id. OS015 precedent used only for shape semantics."
     }
   ],
