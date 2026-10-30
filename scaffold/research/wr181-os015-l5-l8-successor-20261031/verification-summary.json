@@ -1,17 +1,17 @@
 {
   "schema": "wr181-os015-l5-l8-successor-summary.v1",
   "base_revision": "0dd2045801e9e30def00913b57a6177d8d9be3a8",
-  "l5_candidate_commit": "1ca2b32ec87f820d95f0453b0ff4b9f7c5ccae38",
-  "l5_sha256": "25bd183b3725fce8a994d24710e29280b00ed27b83efe3a0f989d62641d61d94",
+  "l5_candidate_commit": "34f315ea69522e113433f3b16ef71ddb262e2b80",
+  "l5_sha256": "4d686c07580eb0aef0a580dec5e2fa666c14476dcf81facdc469cde05719015d",
   "l8_candidate_l5_pin": {
-    "revision": "1ca2b32ec87f820d95f0453b0ff4b9f7c5ccae38",
-    "sha256": "25bd183b3725fce8a994d24710e29280b00ed27b83efe3a0f989d62641d61d94"
+    "revision": "34f315ea69522e113433f3b16ef71ddb262e2b80",
+    "sha256": "4d686c07580eb0aef0a580dec5e2fa666c14476dcf81facdc469cde05719015d"
   },
-  "l8_sha256": "04eb8f8ffcc0b5d7676e8c319ed5d368e6ec816ae111084058722e19f6e152b1",
+  "l8_sha256": "c3b6640290314b8d03cbcc7f4908768e7ff89d9b10d2582dff73e59ae3fa4ca5",
   "pair_pins": {
-    "revision": "0dd2045801e9e30def00913b57a6177d8d9be3a8",
-    "L4_sha256": "5038893210d772bc46fa75802757a90d9658ec4f427f76adcc3cf8a6702ce96f",
-    "L9_sha256": "1e2bac6a7cabe48b11ba17736c7081fcbe27c35de79f835c75a1a709d5891b39"
+    "revision": "be407b48779ea1125f12a1a78f998c73316ed2e7",
+    "L4_sha256": "32e4a7b6432e7454d242277b37a0948916dc876b6e8e008ad8e4f8c2d7207081",
+    "L9_sha256": "365b89c9131e5edd9b64d474438ff780360118819cc651ee535f64a70aa5ff1d"
   },
   "projection": {
     "L4_classes": 51,
@@ -67,20 +67,21 @@
   "static_validation": {
     "status": "PASS",
     "report": "scaffold/research/wr181-os015-l5-l8-successor-20261031/static-validation.json",
-    "report_sha256": "6dbec22025a6fff8f8d55c20bf17141102e7356f6d583867c208994c0e3e6f84"
+    "report_sha256": "4a7cfc826f3fee99aae3031adca03cb4fe925946503c9dcb80e33778113711d9"
   },
   "baseline_before_successor": {
+    "main_revision": "be407b48779ea1125f12a1a78f998c73316ed2e7",
     "child": {
       "passed": false,
       "negative_4way_failures": 226,
       "counts": {
         "L4": 51,
-        "L5": 33,
+        "L9": 45,
         "L8": 27,
-        "L9": 45
+        "L5": 33
       },
       "matched_case_count": 460,
-      "report_sha256": "7fdb5e2e5a460988a1a2c7d259f9c9a086c74c6d18f612c7f130948c7fc73184",
+      "report_sha256": "95a3077c343c26040ab2111852bdd4392f328f9f820420b3170cb5377c4ee4fa",
       "L4_L9_pair": true,
       "L5_L8_pair": true
     },
@@ -99,9 +100,9 @@
       "negative_4way_failures": 24,
       "counts": {
         "L4": 51,
-        "L5": 51,
+        "L9": 45,
         "L8": 45,
-        "L9": 45
+        "L5": 51
       },
       "matched_case_count": 572,
       "report_sha256": "891346d27500bafab821487aae67f463db7aae0ad38b18e608d548c551fd37f0",
@@ -136,5 +137,31 @@
     "scfctl_validate": "bindings=167 fail=0",
     "scfctl_stale": "stale=0",
     "diff_check": "PASS"
+  },
+  "latest_main_trial": {
+    "main_revision": "be407b48779ea1125f12a1a78f998c73316ed2e7",
+    "main_fetch_matches_ls_remote": true,
+    "candidate_head_before_summary_update": "5abd8dd7f8327a2dca77e753f658fbe03af54f29",
+    "merge_base": "5e7286c6def741df3f8abfabdb1f2058eaaedd07",
+    "merge_conflicts": [],
+    "candidate_changed_path_count": 12,
+    "main_changed_path_count": 17,
+    "path_overlap_count": 0,
+    "formal_document_diff": [
+      "docs/helix-os/L5-detail-design/management-authority-source-record.json",
+      "docs/helix-os/L8-unit-verification/management-authority-source-record.json"
+    ],
+    "static_validator": "PASS (51 L4/L5 classes, 45 L8 classes, 112 new links, 29 prior links, 583 case expectations preserved)",
+    "child_baseline_failures": 226,
+    "child_trial_failures": 24,
+    "child_pairs": "L4/L9 PASS; L5/L8 PASS",
+    "child_matched_cases": 572,
+    "freeze_baseline_trial_same_hash": true,
+    "freeze_report_sha256": "cc4bd1a42fcde81c9b38c3d9f68af3531cab8a235811fb937e2a57f35d320003",
+    "freeze_mechanical_match": false,
+    "freeze_json_pointer_failures": 2421,
+    "freeze_public_function_failures": 8,
+    "scfctl_baseline": "166 bindings valid; stale=0",
+    "scfctl_trial": "167 bindings valid; stale=0"
   }
 }

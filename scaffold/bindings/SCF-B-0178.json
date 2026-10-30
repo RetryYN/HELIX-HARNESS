@@ -80,8 +80,8 @@
     },
     {
       "path": "scaffold/research/wr181-os015-l5-l8-successor-20261031/verification-summary.json",
-      "sha256": "7878597c619b497bbeafb382c00ebc4ae6b9fd094962d1b7a9f901933a5e9ff2",
-      "note": "Before/after child and freeze measurements and SCF counts."
+      "sha256": "fa965411316f376713caef13fe7802a8cd3a0b6d8ede94366ae226816cb501c9",
+      "note": "Before/after child and freeze measurements and SCF counts. Latest-main trial record updated: prior pin=7878597c619b497bbeafb382c00ebc4ae6b9fd094962d1b7a9f901933a5e9ff2; current=fa965411316f376713caef13fe7802a8cd3a0b6d8ede94366ae226816cb501c9; main=be407b48, child residual=24, freeze residual unchanged."
     },
     {
       "path": "scaffold/bindings/SCF-B-0170.json",

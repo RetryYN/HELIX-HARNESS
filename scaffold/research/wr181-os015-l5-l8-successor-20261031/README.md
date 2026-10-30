@@ -41,4 +41,4 @@ python3 -B scaffold/tools/scfctl.py stale
 git diff --check
 ```
 
-checker結果とfreeze比較は`verification-summary.json`、現候補の静的検証報告は`static-validation.json`に記録する。
+最新main `be407b48779ea1125f12a1a78f998c73316ed2e7`へのno-commit trialは競合なし、merge-base `5e7286c6`からpath overlapなし（候補12、main17）。product design文書の差分はL5/L8 pairだけ。静的検証PASS、childはbaseline 226→trial24 failures（L4/L9、L5/L8 pair PASS、matched 572）、freeze hashは不変でmechanical matchなし、pointer 2421/public function 8。SCFはbaseline 166、trial 167 valid、stale=0。詳細は`verification-summary.json`。
