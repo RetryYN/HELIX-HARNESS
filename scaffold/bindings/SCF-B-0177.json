@@ -20,8 +20,8 @@
     },
     {
       "path": "docs/helix-os/L5-detail-design/management-authority-source-record.json",
-      "sha256": "c7d979d397f7ebc9b82b1cb5fa3e32f82737956c6a54adc2080342b729607c7f",
-      "note": "手動監査でowner_refを確認したsource。L5文書は変更しない。"
+      "sha256": "25bd183b3725fce8a994d24710e29280b00ed27b83efe3a0f989d62641d61d94",
+      "note": "手動監査でowner_refを確認したsource。L5文書は変更しない。 #3927 L4/L9 audit時のL5 snapshot pin=c7d979d397f7ebc9b82b1cb5fa3e32f82737956c6a54adc2080342b729607c7f。後続successor L5 current bytes=25bd183b3725fce8a994d24710e29280b00ed27b83efe3a0f989d62641d61d94; 0177 audit scope remains the 0dd204 snapshot."
     },
     {
       "path": "docs/helix-os/L7-function-verification/management-authority-source-record.json",
@@ -60,7 +60,7 @@
     },
     {
       "path": "scaffold/bindings/SCF-B-0170.json",
-      "sha256": "a79c2d79c53d84cc4aacaaaea49a9a3dcdbb193b300330d56fc571885592ab8b",
+      "sha256": "944ace0f511b468650996698a4694d97a0b9ebcc5e945d63de1a48bb918ba139",
       "note": "本候補のL4/L9追補後にhashを更新した前段binding。歴史差分と更新理由は各binding noteに保持。"
     },
     {
@@ -70,12 +70,12 @@
     },
     {
       "path": "scaffold/bindings/SCF-B-0175.json",
-      "sha256": "e4f57b9afaf44a23a4cc5c30fb76741695aeaeef1bf43f2f60890bd930441b0a",
+      "sha256": "86d61eac488f5960bfb25bf607ba655f277153bafa9e06d2f61b6f08068fb472",
       "note": "本候補のL4/L9追補後にhashを更新した前段binding。歴史差分と更新理由は各binding noteに保持。"
     },
     {
       "path": "scaffold/bindings/SCF-B-0176.json",
-      "sha256": "96acec08440dde7a1fa50294d4b2d7f9d88808521fe7fa9eb9bf480e5a79304d",
+      "sha256": "61fd8c6ce0375540ab0f61b17874a3cb44bee5a13d79e0ef376482d8bd0e1909",
       "note": "本候補のL4/L9追補後にhashを更新した前段binding。歴史差分と更新理由は各binding noteに保持。"
     },
     {

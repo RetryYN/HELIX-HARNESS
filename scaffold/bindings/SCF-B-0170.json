@@ -26,8 +26,8 @@
     },
     {
       "path": "docs/helix-os/L5-detail-design/management-authority-source-record.json",
-      "sha256": "c7d979d397f7ebc9b82b1cb5fa3e32f82737956c6a54adc2080342b729607c7f",
-      "note": "固定carrierとfield比較、finding/retention、33 failure rules、およびL4投影からの2 composite ruleを含むPR-B L5 bytes。"
+      "sha256": "25bd183b3725fce8a994d24710e29280b00ed27b83efe3a0f989d62641d61d94",
+      "note": "固定carrierとfield比較、finding/retention、33 failure rules、およびL4投影からの2 composite ruleを含むPR-B L5 bytes。 旧pin=c7d979d397f7ebc9b82b1cb5fa3e32f82737956c6a54adc2080342b729607c7f。#3927 corrected head 0dd204をsource pair pinとし、L4/L7-derived 18 class ruleを追加したsuccessor L5 bytes。"
     },
     {
       "path": "docs/helix-os/L7-function-verification/management-authority-source-record.json",
