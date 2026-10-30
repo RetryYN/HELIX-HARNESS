@@ -60,7 +60,7 @@
       "旧HELIX CLI/runtime/test/hook/CIまたは新世代runtime/test/CIの起動",
       "L4/L9、既存L9 input/expected、formal expectationの変更",
       "checkerを通すためだけのfunction alias/class marker/空class追加",
-      "push、Draft PR作成、merge、外部設定変更"
+      "本候補から承認・merge admission・実装完了を生成すること"
     ]
   },
   "artifacts": [
