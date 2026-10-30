@@ -1,0 +1,172 @@
+{
+  "schema_revision": 1,
+  "id": "SCF-B-0189",
+  "kind": "scaffold",
+  "title": "WR221 OS017 L5/L8候補class links",
+  "product": "HELIX-OS",
+  "owner_candidate": "HELIXOS-017 ticket-workflow candidate projection responsibility",
+  "state": "registered",
+  "reason": "WR221 OS017 L4 four-class candidate and existing 63 L8 unit-row correspondences are recorded as partial scaffold evidence. Formal L5/L8 files remain byte-identical to base; per-U-ID oracle identity, test citation, and L5 class-output crosswalk remain unformed.",
+  "upstream": [
+    {
+      "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+      "sha256": "e86254a35b476ed71ebb112e41ccd2b48f89a8d0393e6495dc11cac7a7cf4e02",
+      "note": "L3 F01/F02/F03 approved objects; target row is compared to the delegated reviewed revision."
+    },
+    {
+      "path": "docs/helix-os/L10-verification/functional-verification.json",
+      "sha256": "583020f951672e48bc37fcd35cb916de5ccd9866f41dd04731f6519325ae500a",
+      "note": "L10 F01/F02/F03 approved objects; execution metadata remains not_executed."
+    },
+    {
+      "path": "docs/helix-os/L3-requirements/business-requirements.json",
+      "sha256": "0df11c612e3e0b531d2103d058471d5be2be8b8df965d10b69e06b0e506488c7",
+      "note": "L3 B01 approved object; draft metadata remains unchanged."
+    },
+    {
+      "path": "docs/helix-os/L10-verification/business-verification.json",
+      "sha256": "215e1d4a99f73151aa4b3225947a65567fbc3b97bec0cf9eac8d1a6456cbc3dd",
+      "note": "L10 B01 approved object; execution metadata remains not_executed."
+    },
+    {
+      "path": "docs/helix-os/L4-basic-design/ticket-workflow-derivation.json",
+      "sha256": "3fb45708d58866de46cff0695a1d3f64b2fbe15bb11283bda5594a4b6d01e6ea",
+      "note": "Existing four candidate classifications and their L7 case pointers."
+    },
+    {
+      "path": "docs/helix-os/L5-detail-design/ticket-workflow-derivation.json",
+      "sha256": "1f4c0791ba416d3fab607058acb8b70381d2950aa4cc483b70c94f0dc9557ffc",
+      "note": "Existing L5 contracts and functions are reference inputs; formal file is not modified."
+    },
+    {
+      "path": "docs/helix-os/L7-function-verification/ticket-workflow-derivation.json",
+      "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146",
+      "note": "Raw given_input_ref graph and function_call records; no execution or expected generation."
+    },
+    {
+      "path": "docs/helix-os/L8-unit-verification/ticket-workflow-derivation.json",
+      "sha256": "7b2f15b8fb131f3e346dff4825f74696cc0b3a3f727515cd901019278bad60ad",
+      "note": "Existing U-ID rows, compact expectations, function-call refs, contract/case memberships; formal file is not modified."
+    },
+    {
+      "path": "docs/helix-os/L9-integration-verification/ticket-workflow-derivation.json",
+      "sha256": "fe7d7fc5b23ec66042c1db5e0f45004c095b5703faa2d6284e442fdb81f81225",
+      "note": "Consistency comparison only; not used to derive L8 expected values."
+    },
+    {
+      "path": "docs/governance/decisions/helix-os-workflow-prerequisite-l3-l10-delegated-decision-2026-10-12.md",
+      "sha256": "f6f4a3476cf9314621dbcb9f34d720baad3967d0a40a7eeef6fc72e5f1da30ff",
+      "note": "Exact approved scope and retained draft/not_executed metadata."
+    },
+    {
+      "path": "docs/governance/audits/prerequisite-l3-l10-definition-audit-2026-10-12.json",
+      "sha256": "6ae8be6b586679e5ea9a79b80e95679bf9473ea37a89bb2dc028133e79b0396a",
+      "note": "PR #2952 independent review, exact reviewed head, merge admission record."
+    },
+    {
+      "path": "docs/governance/design-verification-quality-assurance.md",
+      "sha256": "f5751e236dc073fe67114c1fcb4b0f64b3d746290b25d75b61e60a08e3c99c85",
+      "note": "QA §3 U-ID fields and explicit-class boundary."
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-requirements.md",
+      "sha256": "f0d0d33a1cced1ad7c1bab061f0a36bcdb5bad122dc58c7e8e43b47032f37d6b",
+      "note": "LEGACY-ASSET-3A15E5645D2D2A59DFF5 §4/HXT-FR-001..003; read-only source.。静的read-only参照のみ。archiveは実行しない。"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/predecessor-harness-full-weakness-audit-2026-07-20.md",
+      "sha256": "bab121404c956a0a4b403e589bea1c414af59b5996989bea5fab9f98f42f6872",
+      "note": "LEGACY-ASSET-A127DEC3EEE6ED63CF17 UTW-002/005/021; read-only failure evidence.。静的read-only参照のみ。archiveは実行しない。"
+    },
+    {
+      "path": "docs/governance/authority-state-model.md",
+      "sha256": "1c0336ec838d3603231ffe6689175e9422c9cb1d19476159f88ab27f6a6233eb",
+      "note": "Target authority state is distinct from document status and projection state."
+    },
+    {
+      "path": "docs/governance/github-upstream-operating-model.md",
+      "sha256": "637f4c4b8ba76ebd4b722a3d36cfa1f7faed45f0228f7528e56c072bc288f2d3",
+      "note": "L3/L10 delegated review, merge-admission, and post-merge read-after operation record."
+    }
+  ],
+  "role": "OS017 candidate-only L4 class to U-ID correspondence evidence; partial and incomplete under QA §3.",
+  "obligations": [
+    "Record four L4 candidates and 63 existing L8 unit rows with source pointers and candidate compact expected values in scaffold research.",
+    "Resolve each L7 raw given_input_ref and seven function-call references per U-ID to existing L5 functions without executing algorithms.",
+    "Preserve existing L5 contract membership including three multi-contract input-unknown U-IDs; do not infer a class-output crosswalk.",
+    "Keep per-U-ID QA oracle identity and test citations unresolved where source does not supply them; do not create formal membership or 4way completion."
+  ],
+  "connections": {
+    "consumers": [
+      "WR221 OS017 L5/L8 source-linked candidate review"
+    ],
+    "dependencies": [
+      "OS017 L3/L10 delegated decision exact reviewed objects",
+      "OS017 L4 candidate classifications",
+      "OS017 L5 existing contract/function inventory",
+      "OS017 L7 raw case and function-call graphs",
+      "OS017 L8 existing unit rows and contract memberships",
+      "OS017 L9 consistency references only",
+      "QA §3 U-ID record definition"
+    ],
+    "boundary": "Scaffold evidence only. L5/L8 formal documents remain byte-identical to task base. Candidate references are not formal crosswalk, negative_class_ref membership, execution, acceptance, or 4way PASS."
+  },
+  "operations": {
+    "allowed": [
+      "scaffold research evidence edits",
+      "source object and RFC6901 pointer resolution",
+      "static JSON and upstream pin validation",
+      "scfctl validate/stale",
+      "design-verification check-child",
+      "git diff --check"
+    ],
+    "forbidden": [
+      "L4 or L5 algorithm execution",
+      "old or new runtime/test/CI execution",
+      "changing L3/L10/L4/L7/L9 requirement or expected values",
+      "inventing per-U-ID oracle IDs or test citations",
+      "claiming complete QA §3 rows or formal four-layer membership",
+      "旧archiveは実行しない"
+    ]
+  },
+  "artifacts": [
+    "scaffold/research/wr221-os017-l5l8-projection-20261031/README.md",
+    "scaffold/research/wr221-os017-l5l8-projection-20261031/u-id-candidate-projection.json",
+    "scaffold/research/wr221-os017-l5l8-projection-20261031/validate_candidate.py",
+    "scaffold/research/wr221-os017-l5l8-projection-20261031/verification-summary.json"
+  ],
+  "verification": {
+    "evidence_kind": "scaffold",
+    "scope": [
+      "schema_interface",
+      "source_revision_stale",
+      "negative_case",
+      "forbidden_write_scope"
+    ],
+    "oracles": [
+      "PR #2952 review comment 6113847591 and admission audit bind delegated exact-head approval to main merge 2945b75bc5a71c19885a62a867b0a884399bffae.",
+      "Current L3/L10 F01/B01 rows are compared object-for-object to approved whole objects at the reviewed revision; metadata remains unchanged.",
+      "L4 candidate fields and L7 raw given_input_ref graph are the source for candidate class/value correspondence.",
+      "Each existing L8 unit row expected is compared to the L4 candidate fields; L9 values are consistency comparison only.",
+      "L7 function_call IDs resolve to target function IDs present in L5; they are not test citations.",
+      "QA §3 requires target, counterexample/expected, oracle ID, and test citation; per-U-ID oracle assignment and test citations remain unresolved.",
+      "Formal L5 and L8 JSON bytes are required to match task base exactly."
+    ],
+    "negative_cases": [
+      "A unit ID list alone does not satisfy QA §3 U-ID row contents.",
+      "Do not promote contract-level oracle references to per-U-ID oracle IDs without source basis.",
+      "Do not treat L7 function_call IDs as test citations.",
+      "Do not collapse the three input-unknown U-IDs with multiple existing L5 contract references to a single L5 target.",
+      "Do not infer L5 class-output mapping from shared diagnostic vocabulary.",
+      "Do not treat candidate evidence as formal class membership or 4way PASS."
+    ]
+  },
+  "replacement": {
+    "role_target": "OS017 formal L5 classification crosswalk and four-layer unit/integration projection after its authority and design conditions are met",
+    "formal_artifacts": [],
+    "issue": 3510,
+    "status": "pending"
+  },
+  "created": "2026-10-31",
+  "updated": "2026-10-31"
+}
