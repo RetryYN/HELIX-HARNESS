@@ -1,0 +1,471 @@
+{
+  "schema": "wr218-f05-content-unresolved-remaining-audit.v1",
+  "evidence_kind": "scaffold",
+  "authority_effect": "none",
+  "pr_class": "design_verification",
+  "work_item_id": "WR218-F05-CONTENT-UNRESOLVED-REMAINING",
+  "issue": 3510,
+  "wreq_payload_sha256": "a799a04ba346316a7c59ac459e0d40420f7f1d902baeae9c73b501bec2f6dbe0",
+  "wreq_base_sha": "3082abb893bbec7c919d4ed88a927e5100874372",
+  "target_stop_id": "STOP-F05-CONTENT-UNRESOLVED-CAUSE-PAIR-01",
+  "step_a_pre_comparison_freeze": {
+    "artifact_path": "scaffold/research/wr218-f05-content-unresolved-remaining-20261031/blind-derivation.json",
+    "sha256": "30930545318afe6ed1d2e208670b72dfa4dda8c2ac1bf38ad00026d3e4c50cf5",
+    "issue_comment_url": "https://github.com/RetryYN/HELIX-HARNESS/issues/3510#issuecomment-6534822649",
+    "frozen_at_utc": "2026-10-30T22:25:00Z",
+    "derived_by_subagent": "11b4f6c6-3a44-4e7e-82ef-ab029f8816a5",
+    "bytes_modified_after_freeze": false
+  },
+  "branch_closure_summary": {
+    "total_remaining_branches_in_stop": 3,
+    "branches_uniquely_determined_from_upstream": 0,
+    "branches_closed_in_this_pr": [],
+    "branches_kept_in_stop": [
+      "(a) matching=unestablished",
+      "(b) 同Refで binding_relation=different|unestablished",
+      "(c) 片側/両側collection未観測"
+    ],
+    "stop_closed": false,
+    "v_pair_separation_note": "3枝すべてが承認済みL3/L10 F05およびL4散文からは一意に決まらない（uniquely_determined: false）ため、#3942→#3948で閉じたexact all-different枝以外の追加L4/L9ケースまたはL5/L8 writerは作成せず、3枝とも根拠を記録してSTOP-F05-CONTENT-UNRESOLVED-CAUSE-PAIR-01に残す。L4/L9およびL5/L8の正本JSONは変更しないため、1 PR 1 V-pair制約および既存#3948 refreeze manifestとの整合を維持する。"
+  },
+  "source_pins_at_comparison": {
+    "L3_functional": {
+      "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+      "sha256": "a3b907cdc316117d4684632f9a1cbf36125eb6e6172f9cfc286060617583d7be",
+      "pointers": [
+        "/requirements/23",
+        "/requirements/27"
+      ]
+    },
+    "L3_business": {
+      "path": "docs/helix-harness/L3-requirements/business-requirements.json",
+      "sha256": "25e0e8f8ee8acbc220483ab6854155218193861086cf757f933e2cd6263f444d",
+      "pointers": [
+        "/requirements/4",
+        "/requirements/5"
+      ]
+    },
+    "L10_functional": {
+      "path": "docs/helix-harness/L10-verification/functional-verification.json",
+      "sha256": "fc58ad2268746d7924ac9be33e8f3f75e6d3c2cc619e27fbc1ddc34edd065cb2",
+      "pointers": [
+        "/cases/23",
+        "/cases/27"
+      ]
+    },
+    "L10_business": {
+      "path": "docs/helix-harness/L10-verification/business-verification.json",
+      "sha256": "3a9982ef2e59e3d027ce8e5cd72b9879b6224a8e4ea74b657bf9b67c90934319",
+      "pointers": [
+        "/cases/4",
+        "/cases/5"
+      ]
+    },
+    "L4_basic_design": {
+      "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+      "sha256": "4a770515153fb97e2f5915af8308868450a22014d5739b996bc0ebf4a62db7db",
+      "pointers": [
+        "/field_source_materialization_contract",
+        "/field_semantic_evidence_contract",
+        "/field_obligation_scope_contract/cause_patterns/content_unresolved"
+      ]
+    },
+    "L5_detail_design": {
+      "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+      "sha256": "b53f8754dfac2c069e36c6427ce1b151398c4b1ea1c81cf9185c4a38b0bb32ce",
+      "pointers": [
+        "/f05_detail_contract/field_content_source_failure_writer_contract/writers/3",
+        "/f05_detail_contract/field_content_source_failure_writer_contract/unclosed_stops/0"
+      ]
+    },
+    "L8_unit_verification": {
+      "path": "docs/helix-harness/L8-unit-verification/product-template-application.json",
+      "sha256": "da37ff653d24eb3432aea09e4aea92005050cd95316da9949ef00658c77b8a21",
+      "pointers": [
+        "/additional_unit_cases/45"
+      ]
+    },
+    "L9_integration_verification": {
+      "path": "docs/helix-harness/L9-integration-verification/product-template-application.json",
+      "sha256": "06c255043e143a0ddd23da750fede31ff6d3b4b1c94d854de22d07ff109c0d8b",
+      "pointers": [
+        "/field_semantic_evidence_verification/cases/3"
+      ]
+    }
+  },
+  "post_freeze_comparison_by_branch": [
+    {
+      "branch_id": "(a)",
+      "branch_label": "matching=unestablished",
+      "step_a_blind_conclusion": {
+        "uniquely_determined": false,
+        "decision": "keep_in_stop",
+        "non_uniqueness_reasons": [
+          "CauseKind非一意: L4散文はdefinition_refsの未解決を大枠でcontent_unresolvedとする一方、Ref比較端不足（identity/revision/scope/owner欠落・null・型外や供給digest不成立）の局所CauseKindをcontent_unresolved・target_unformed・target_mismatch・比較軸別Causeのいずれにするか規定していない。",
+          "左右Read非一意: Cause.leftをdefinition_refs[j]全体Readとするか不足member Readとするか、Cause.rightを候補record.ref Read・不足member Read・collection全体ReadのいずれとするかがL4散文に未規定。",
+          "件数非一意: axis_factsとsemantic_recordsの双方が絡む際、1 operand_refあたりか、matching=unestablishedとなった候補record出現ごとか、不足比較軸ごとかがL4散文だけでは決まらない。"
+        ]
+      },
+      "step_b_comparison_with_l4_l9_l5_l8": {
+        "l9_cases_3_comparison": "L9 /field_semantic_evidence_verification/cases/3 (HARNESS-L9-009-F05-EVIDENCE-DEF-LOOKUP-MISS) はpresent non-nullのfull Refと観測済み両collectionの全record不一致（0件）のみを対象とし、比較端不足（matching=unestablished）を対象外としている。",
+        "l5_writers_3_and_stop_0_comparison": "L5 writers/3のtrigger_ja除外(2)およびunclosed_stops/0 (STOP-F05-CONTENT-UNRESOLVED-CAUSE-PAIR-01) は、『候補record又はdefinition_refs[j]のRef比較端不足によりreference_and_collection_rules/matchingがunestablishedとなる場合、RefOperand.causes又はRecordOccurrence.causesへどのCauseKind・左右Read・件数を格納するかはL4及びL9 cases/3だけでは一意に決まらないため、writers/3のcontent_unresolved 2件へ丸めず未形成として止める』と記録しており、Step Aの独立導出結論と完全一致する。",
+        "l8_add_45_comparison": "L8 /additional_unit_cases/45 (HARNESS-L8-009-ADD-45) もmatching=differentが確定するexact lookup missのみを検証対象とし、matching=unestablishedを除外している。",
+        "post_comparison_action": "keep_in_stop (STOP-F05-CONTENT-UNRESOLVED-CAUSE-PAIR-01に残す)"
+      }
+    },
+    {
+      "branch_id": "(b)",
+      "branch_label": "同Refで binding_relation=different|unestablished",
+      "step_a_blind_conclusion": {
+        "uniquely_determined": false,
+        "decision": "keep_in_stop",
+        "non_uniqueness_reasons": [
+          "CauseKind非一意: L4 ordered_source_materialization/3は同Refでもbindingが異なる出現を保持すると定めるが、局所CauseKindをcontent_unresolved・target_mismatch・target_unformedのいずれにするか（differentとunestablishedで分けるか）がL4散文だけでは一意でない。",
+          "左右Read非一意: Cause.left/rightにFieldInput.bindingと候補record.binding全体Readを置くか、不一致/未確立の個別binding member（requirement_ref, product_scope, process_contract_ref, application_contract_ref, template_ref, knowledge_ref, oracle_ref）のReadを置くか、definition_refs[j]と候補record全体を置くかがL4散文に未規定。",
+          "件数非一意: RecordOccurrence.causesとRefOperand.causesのどちら（または両方）に、不一致binding member数・同Ref候補record数・collection数のどの粒度で何件生成するかがL4散文だけでは決まらない。"
+        ]
+      },
+      "step_b_comparison_with_l4_l9_l5_l8": {
+        "l9_cases_3_comparison": "L9 cases/3は両collectionに当該Ref一致recordが0件のケースに限定しており、同Refでbindingが異なる/未確立の候補recordが存在するケースを含まない。",
+        "l5_writers_3_and_stop_0_comparison": "L5 writers/3のtrigger_ja除外(2)およびunclosed_stops/0は、『同一Ref（ref_relation=corresponding）のrecordが存在するがbinding_relationがdifferent（field.binding既知差target_mismatch）又はunestablishedとなる場合（F03によりRecordOccurrence自体は保持）、RecordOccurrence.causes/RefOperand.causes上の局所Cause leaf表現はL4及びL9 cases/3だけでは決まらないためSTOP-F05-CONTENT-UNRESOLVED-CAUSE-PAIR-01に残す』と記録しており、Step Aの独立導出結論と完全一致する。",
+        "l8_add_45_comparison": "L8 /additional_unit_cases/45 (HARNESS-L8-009-ADD-45) も同Ref・binding不一致/未確立ケースを対象外としている。",
+        "post_comparison_action": "keep_in_stop (STOP-F05-CONTENT-UNRESOLVED-CAUSE-PAIR-01に残す)"
+      }
+    },
+    {
+      "branch_id": "(c)",
+      "branch_label": "片側/両側collection未観測",
+      "step_a_blind_conclusion": {
+        "uniquely_determined": false,
+        "decision": "keep_in_stop",
+        "non_uniqueness_reasons": [
+          "CauseKind非一意: L4 common_target_guards/0はcollection未供給/null/型外を未観測またはtarget unformedとし空正常にしないと定めるが、F05 operand解決時の局所CauseKindをcontent_unresolved・input_unobserved・target_unformed/body_unformedのいずれにするかがL4散文に未規定。",
+          "左右Read非一意: L4で唯一content_unresolvedの左右Readを明示する /field_obligation_scope_contract/cause_patterns/content_unresolved は単一collection（raw.obligations）参照であるのに対し、F05はaxis_factsとsemantic_recordsの2 collectionを横断する。片側のみ未観測で他方が0件一致のとき、あるいは両側未観測のとき、単一Read<CoreJsonValue>のCause.rightにどのReadを置くかがL4散文だけでは決まらない。",
+          "件数非一意: 未観測collection分のみ1件か、観測済み0件collectionと合わせて2件か、ValidationSourceObservations側のinput_unobservedへの委譲のみとするかがL4散文だけでは決まらない。"
+        ]
+      },
+      "step_b_comparison_with_l4_l9_l5_l8": {
+        "l9_cases_3_comparison": "L9 cases/3のinput_mutation_jaは『input.axis_factsおよびinput.semantic_recordsの双方を実配列（Read.present）として供給する...collection自体の欠落/null/型外とは混ぜない』と明記し、片側/両側collection未観測を除外している。",
+        "l5_writers_3_and_stop_0_comparison": "L5 writers/3のtrigger_ja除外(3)(4)およびunclosed_stops/0は、『axis_factsがnull（Read.present(null)）/未供給（Read.absent）又はsemantic_recordsが未供給（Read.absent）である片側/両側collection未観測の場合に、RefOperand.causes又はRecordOccurrence.causesへどのCauseKind・左右Read・件数を格納するかはL4及びL9 cases/3だけでは一意に決まらないため、writers/3のcontent_unresolved 2件へ丸めず未形成として止める』と記録しており、Step Aの独立導出結論と完全一致する。",
+        "l8_add_45_comparison": "L8 /additional_unit_cases/45 (HARNESS-L8-009-ADD-45) も両collectionがRead.present配列である前提に限定している。",
+        "post_comparison_action": "keep_in_stop (STOP-F05-CONTENT-UNRESOLVED-CAUSE-PAIR-01に残す)"
+      }
+    }
+  ],
+  "verified_l5_pointers_in_writer_contract": [
+    {
+      "pointer": "L5:/f05_detail_contract/context_header_cause_contract/header_read_and_patterns/0",
+      "resolved_in_l5": true,
+      "target_json_type": "dict"
+    },
+    {
+      "pointer": "L5:/f05_detail_contract/field_summary_and_custody_writer_contract/cause_propagation_order",
+      "resolved_in_l5": true,
+      "target_json_type": "dict"
+    },
+    {
+      "pointer": "L5:/f05_detail_contract/field_summary_and_custody_writer_contract/patterns/0",
+      "resolved_in_l5": true,
+      "target_json_type": "dict"
+    },
+    {
+      "pointer": "L5:/f05_detail_contract/field_summary_and_custody_writer_contract/patterns/2",
+      "resolved_in_l5": true,
+      "target_json_type": "dict"
+    },
+    {
+      "pointer": "L5:/f05_detail_contract/leaf_writer_ledger/0",
+      "resolved_in_l5": true,
+      "target_json_type": "dict"
+    },
+    {
+      "pointer": "L5:/f05_detail_contract/leaf_writer_ledger/1",
+      "resolved_in_l5": true,
+      "target_json_type": "dict"
+    },
+    {
+      "pointer": "L5:/f05_detail_contract/leaf_writer_ledger/13",
+      "resolved_in_l5": true,
+      "target_json_type": "dict"
+    },
+    {
+      "pointer": "L5:/f05_detail_contract/leaf_writer_ledger/14",
+      "resolved_in_l5": true,
+      "target_json_type": "dict"
+    },
+    {
+      "pointer": "L5:/f05_detail_contract/leaf_writer_ledger/15",
+      "resolved_in_l5": true,
+      "target_json_type": "dict"
+    },
+    {
+      "pointer": "L5:/f05_detail_contract/leaf_writer_ledger/2",
+      "resolved_in_l5": true,
+      "target_json_type": "dict"
+    },
+    {
+      "pointer": "L5:/f05_detail_contract/leaf_writer_ledger/6",
+      "resolved_in_l5": true,
+      "target_json_type": "dict"
+    },
+    {
+      "pointer": "L5:/f05_detail_contract/leaf_writer_ledger/7",
+      "resolved_in_l5": true,
+      "target_json_type": "dict"
+    },
+    {
+      "pointer": "L5:/f05_detail_contract/leaf_writer_ledger/9",
+      "resolved_in_l5": true,
+      "target_json_type": "dict"
+    },
+    {
+      "pointer": "L5:/f05_detail_contract/presence_and_decode_rules",
+      "resolved_in_l5": true,
+      "target_json_type": "list"
+    },
+    {
+      "pointer": "L5:/f05_detail_contract/recipient_leaf_writer_contract/cause_copy_and_order",
+      "resolved_in_l5": true,
+      "target_json_type": "str"
+    },
+    {
+      "pointer": "L5:/f05_detail_contract/reference_and_collection_rules/binding",
+      "resolved_in_l5": true,
+      "target_json_type": "str"
+    },
+    {
+      "pointer": "L5:/f05_detail_contract/reference_and_collection_rules/matching",
+      "resolved_in_l5": true,
+      "target_json_type": "str"
+    },
+    {
+      "pointer": "L5:/f05_detail_contract/reference_and_collection_rules/order",
+      "resolved_in_l5": true,
+      "target_json_type": "str"
+    },
+    {
+      "pointer": "L5:/f05_detail_contract/reference_and_collection_rules/records",
+      "resolved_in_l5": true,
+      "target_json_type": "str"
+    },
+    {
+      "pointer": "L5:/f05_detail_contract/source_observation_contract/operand_pair_order",
+      "resolved_in_l5": true,
+      "target_json_type": "str"
+    },
+    {
+      "pointer": "L5:/f05_detail_contract/validation_cause_diagnostic_contract/input_unobserved_pattern",
+      "resolved_in_l5": true,
+      "target_json_type": "dict"
+    },
+    {
+      "pointer": "/f05_detail_contract/context_header_cause_contract/header_read_and_patterns/0",
+      "resolved_in_l5": true,
+      "target_json_type": "dict"
+    },
+    {
+      "pointer": "/f05_detail_contract/context_header_cause_contract/propagation",
+      "resolved_in_l5": true,
+      "target_json_type": "dict"
+    },
+    {
+      "pointer": "/f05_detail_contract/field_content_source_failure_writer_contract/writers/0",
+      "resolved_in_l5": true,
+      "target_json_type": "dict"
+    },
+    {
+      "pointer": "/f05_detail_contract/field_content_source_failure_writer_contract/writers/1",
+      "resolved_in_l5": true,
+      "target_json_type": "dict"
+    },
+    {
+      "pointer": "/f05_detail_contract/field_content_source_failure_writer_contract/writers/2",
+      "resolved_in_l5": true,
+      "target_json_type": "dict"
+    },
+    {
+      "pointer": "/f05_detail_contract/field_content_source_failure_writer_contract/writers/3",
+      "resolved_in_l5": true,
+      "target_json_type": "dict"
+    },
+    {
+      "pointer": "/f05_detail_contract/field_summary_and_custody_writer_contract/cause_propagation_order",
+      "resolved_in_l5": true,
+      "target_json_type": "dict"
+    },
+    {
+      "pointer": "/f05_detail_contract/field_summary_and_custody_writer_contract/cause_propagation_order/field_owner",
+      "resolved_in_l5": true,
+      "target_json_type": "str"
+    },
+    {
+      "pointer": "/f05_detail_contract/field_summary_and_custody_writer_contract/patterns/0",
+      "resolved_in_l5": true,
+      "target_json_type": "dict"
+    },
+    {
+      "pointer": "/f05_detail_contract/field_summary_and_custody_writer_contract/patterns/0/storage_ja",
+      "resolved_in_l5": true,
+      "target_json_type": "str"
+    },
+    {
+      "pointer": "/f05_detail_contract/field_summary_and_custody_writer_contract/patterns/2",
+      "resolved_in_l5": true,
+      "target_json_type": "dict"
+    },
+    {
+      "pointer": "/f05_detail_contract/field_summary_and_custody_writer_contract/summary_projection_applicability/attempt_without_basis",
+      "resolved_in_l5": true,
+      "target_json_type": "str"
+    },
+    {
+      "pointer": "/f05_detail_contract/leaf_writer_ledger/0",
+      "resolved_in_l5": true,
+      "target_json_type": "dict"
+    },
+    {
+      "pointer": "/f05_detail_contract/leaf_writer_ledger/1",
+      "resolved_in_l5": true,
+      "target_json_type": "dict"
+    },
+    {
+      "pointer": "/f05_detail_contract/leaf_writer_ledger/13",
+      "resolved_in_l5": true,
+      "target_json_type": "dict"
+    },
+    {
+      "pointer": "/f05_detail_contract/leaf_writer_ledger/14",
+      "resolved_in_l5": true,
+      "target_json_type": "dict"
+    },
+    {
+      "pointer": "/f05_detail_contract/leaf_writer_ledger/15",
+      "resolved_in_l5": true,
+      "target_json_type": "dict"
+    },
+    {
+      "pointer": "/f05_detail_contract/leaf_writer_ledger/2",
+      "resolved_in_l5": true,
+      "target_json_type": "dict"
+    },
+    {
+      "pointer": "/f05_detail_contract/leaf_writer_ledger/6",
+      "resolved_in_l5": true,
+      "target_json_type": "dict"
+    },
+    {
+      "pointer": "/f05_detail_contract/leaf_writer_ledger/7",
+      "resolved_in_l5": true,
+      "target_json_type": "dict"
+    },
+    {
+      "pointer": "/f05_detail_contract/leaf_writer_ledger/9",
+      "resolved_in_l5": true,
+      "target_json_type": "dict"
+    },
+    {
+      "pointer": "/f05_detail_contract/native_comparison_projection/formation",
+      "resolved_in_l5": true,
+      "target_json_type": "str"
+    },
+    {
+      "pointer": "/f05_detail_contract/presence_and_decode_rules/1",
+      "resolved_in_l5": true,
+      "target_json_type": "str"
+    },
+    {
+      "pointer": "/f05_detail_contract/presence_and_decode_rules/3",
+      "resolved_in_l5": true,
+      "target_json_type": "str"
+    },
+    {
+      "pointer": "/f05_detail_contract/presence_and_decode_rules/4",
+      "resolved_in_l5": true,
+      "target_json_type": "str"
+    },
+    {
+      "pointer": "/f05_detail_contract/recipient_leaf_writer_contract/cause_copy_and_order",
+      "resolved_in_l5": true,
+      "target_json_type": "str"
+    },
+    {
+      "pointer": "/f05_detail_contract/reference_and_collection_rules/binding",
+      "resolved_in_l5": true,
+      "target_json_type": "str"
+    },
+    {
+      "pointer": "/f05_detail_contract/reference_and_collection_rules/matching",
+      "resolved_in_l5": true,
+      "target_json_type": "str"
+    },
+    {
+      "pointer": "/f05_detail_contract/source_material_leaf_writer_contract/record_and_body_occurrence_leaf",
+      "resolved_in_l5": true,
+      "target_json_type": "dict"
+    },
+    {
+      "pointer": "/f05_detail_contract/validation_cause_diagnostic_contract/input_unobserved_pattern",
+      "resolved_in_l5": true,
+      "target_json_type": "dict"
+    },
+    {
+      "pointer": "/f05_detail_contract/validation_cause_diagnostic_contract/validated_input_issue_writer/native_shape",
+      "resolved_in_l5": true,
+      "target_json_type": "str"
+    }
+  ],
+  "refreeze_and_checker_measurements": {
+    "check_child": "passed: true (L4/L9=true, L5/L8=true, negative_4way=true)",
+    "check_freeze_writer_add45": {
+      "manifest": "docs/governance/audits/tdd/h009-fn5-source-content-failure-writer-add45-refreeze-2026-10-31.json",
+      "all_mechanical_matched": true
+    },
+    "check_freeze_crosswalk_add45": {
+      "manifest": "docs/governance/audits/tdd/h009-fn5-axis-cause-pointer-crosswalk-add45-refreeze-2026-10-31.json",
+      "all_mechanical_matched": true
+    }
+  },
+  "legacy_correspondence_and_failure_cases": {
+    "reuse_classification": "semantic_rederivation",
+    "legacy_sources": [
+      {
+        "asset_id": "LEGACY-ASSET-4F5A1F0739EC1111D91D",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/design-template-json-authority.md",
+        "lines": "16-60, 81-92",
+        "file_sha256": "e254d995d1d9fbbcc74bb53b3356b4499ac20cca2280eeafde1412d08630c4cb",
+        "kept": "JSON正本における参照整合と未解決参照を空正常に畳まない設計契約の意味。",
+        "changed": "旧世代の単一スキーマ検査ではなく、H009 F05のaxis_facts/semantic_records 2コレクション横断解決と局所Cause/STOP境界として再導出。"
+      },
+      {
+        "asset_id": "LEGACY-ASSET-98372FEE8A3AC8F9C299",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/design-template-json-authority.md",
+        "lines": "33-108",
+        "file_sha256": "3015d4f3d65cd1f8205f88f29dd59c4f1f7ef42c729d8144f2319e49fe20d830",
+        "kept": "詳細設計における有限分岐writerと未規定分岐の停止境界の分離。",
+        "changed": "上流L3/L10/L4から一意に決まらない枝（(a), (b), (c)）を推測でwriter化せず、STOP-F05-CONTENT-UNRESOLVED-CAUSE-PAIR-01に保持。"
+      },
+      {
+        "asset_id": "LEGACY-ASSET-A127DEC3EEE6ED63CF17",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/predecessor-harness-full-weakness-audit-2026-07-20.md",
+        "lines": "80, 86-87",
+        "file_sha256": "bab121404c956a0a4b403e589bea1c414af59b5996989bea5fab9f98f42f6872",
+        "kept": "UTW-014（未取得・欠損sourceを空集合・成功へ縮退させるabsence blindnessの防止）、UTW-020（異なる失敗原因を単一バケットへ丸める集約損失の防止）、UTW-021（自己申告完了の防止）。",
+        "changed": "3枝が閉じていない段階でSTOP解消と記載せず、一意に決まらない3枝をcontent_unresolved 2件へ丸めずにSTOPへ残す統制として適用。"
+      }
+    ],
+    "similar_failure_cases": [
+      {
+        "reference": "PR #3942 (WR196 Part 1: L9 cases/3) & PR #3948 (WR196 Part 2: L5 writers/3 + L8 ADD-45)",
+        "lesson": "STOP-F05-CONTENT-UNRESOLVED-CAUSE-PAIR-01のうち、上流から一意に決まる『present non-null Ref × 観測済み両collection全record比較different確定』の1枝のみをL4/L9→L5/L8の順で閉じ、残る(a)(b)(c)の3枝をSTOPへ残した直接の先行事例。PR #3948 R1/R2ではL5: pointer誤記（field_obligation_scope_writer_contract vs recipient_leaf_writer_contract）の指摘・修正が行われたため、本監査でも全L5: pointerの実在を検証した。"
+      },
+      {
+        "reference": "PR #3933 (WR198 STOP-F05-GAP-PROPOSAL-BODY-ORACLE-01 audit)",
+        "lesson": "上流から有限oracleが一意に定まらない場合に、L4/L9/L5/L8の既存契約・Stopを変更せず、検索・導出根拠と再進入条件をscaffold/researchとScaffold Bindingに記録するdesign_verificationの先例。"
+      },
+      {
+        "reference": "PR #3949 (WR181) / PR #3961 (WR217)",
+        "lesson": "既存L5/L8/L9を見る前にStep Aのsource-only独立導出を#3510へSHA-256固定し、Step Bで値合わせせずに比較・記録する2段階プロトコルの先例。"
+      }
+    ]
+  }
+}

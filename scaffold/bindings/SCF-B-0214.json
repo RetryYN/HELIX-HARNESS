@@ -1,0 +1,123 @@
+{
+  "schema_revision": 1,
+  "id": "SCF-B-0214",
+  "kind": "scaffold",
+  "title": "WR218 H009 F05 STOP-F05-CONTENT-UNRESOLVED-CAUSE-PAIR-01 remaining 3 branches audit record",
+  "product": "HELIX-HARNESS",
+  "owner_candidate": "HELIX-HARNESS CORE009 F05 detail design owner",
+  "state": "registered",
+  "reason": "Issue #3510 WR218-F05-CONTENT-UNRESOLVED-REMAINING: preserve the fixed Step A independent source-only derivation (#issuecomment-6534822649) and Step B post-freeze comparison showing that all 3 remaining branches (a) matching=unestablished, (b) same-Ref binding_relation=different|unestablished, and (c) single/both collection unobserved are not uniquely determined from approved L3/L10 F05 and L4 prose alone (0 branches closed; all 3 remain in STOP-F05-CONTENT-UNRESOLVED-CAUSE-PAIR-01).",
+  "upstream": [
+    {
+      "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+      "sha256": "a3b907cdc316117d4684632f9a1cbf36125eb6e6172f9cfc286060617583d7be",
+      "note": "HARNESS-009-F05 /requirements/23, /requirements/27 requirement source."
+    },
+    {
+      "path": "docs/helix-harness/L3-requirements/business-requirements.json",
+      "sha256": "25e0e8f8ee8acbc220483ab6854155218193861086cf757f933e2cd6263f444d",
+      "note": "HARNESS-009 /requirements/4, /requirements/5 business requirement source."
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/functional-verification.json",
+      "sha256": "fc58ad2268746d7924ac9be33e8f3f75e6d3c2cc619e27fbc1ddc34edd065cb2",
+      "note": "HARNESS-009-F05 /cases/23, /cases/27 verification oracle source."
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/business-verification.json",
+      "sha256": "3a9982ef2e59e3d027ce8e5cd72b9879b6224a8e4ea74b657bf9b67c90934319",
+      "note": "HARNESS-009 /cases/4, /cases/5 business verification oracle source."
+    },
+    {
+      "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+      "sha256": "4a770515153fb97e2f5915af8308868450a22014d5739b996bc0ebf4a62db7db",
+      "note": "HARNESS-009 L4 prose read in Step A without algorithm execution; unchanged."
+    },
+    {
+      "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+      "sha256": "b53f8754dfac2c069e36c6427ce1b151398c4b1ea1c81cf9185c4a38b0bb32ce",
+      "note": "HARNESS-009 L5 writers/3 and unclosed_stops/0 (STOP-F05-CONTENT-UNRESOLVED-CAUSE-PAIR-01) compared in Step B; all 52 L5 pointers verified; unchanged."
+    },
+    {
+      "path": "docs/helix-harness/L8-unit-verification/product-template-application.json",
+      "sha256": "da37ff653d24eb3432aea09e4aea92005050cd95316da9949ef00658c77b8a21",
+      "note": "HARNESS-009 L8 ADD-45 technical row compared in Step B; unchanged."
+    },
+    {
+      "path": "docs/helix-harness/L9-integration-verification/product-template-application.json",
+      "sha256": "06c255043e143a0ddd23da750fede31ff6d3b4b1c94d854de22d07ff109c0d8b",
+      "note": "HARNESS-009 L9 cases/3 (HARNESS-L9-009-F05-EVIDENCE-DEF-LOOKUP-MISS) compared in Step B; unchanged."
+    }
+  ],
+  "role": "Step A blind derivation and Step B post-freeze comparison & non-uniqueness rationale for keeping all 3 remaining branches in STOP-F05-CONTENT-UNRESOLVED-CAUSE-PAIR-01.",
+  "obligations": [
+    "Preserve fixed Step A blind-derivation.json raw bytes and SHA-256 30930545318afe6ed1d2e208670b72dfa4dda8c2ac1bf38ad00026d3e4c50cf5 (Issue #3510 comment 6534822649).",
+    "Advance only branches uniquely determined from upstream L3/L10 F05 and L4 prose, and leave undetermined branches (a), (b), (c) in STOP-F05-CONTENT-UNRESOLVED-CAUSE-PAIR-01 with recorded rationale (0 of 3 branches closed).",
+    "Do not claim STOP-F05-CONTENT-UNRESOLVED-CAUSE-PAIR-01 is closed unless all 3 remaining branches are closed.",
+    "Verify existence of all L5: pointers in /f05_detail_contract/field_content_source_failure_writer_contract and preserve #3948 refreeze manifests.",
+    "Record legacy HELIX sources and similar failure cases (#3942, #3948, #3933, #3949, #3961) without executing L4/L5 algorithms or legacy runtime/CLI/test/CI."
+  ],
+  "connections": {
+    "consumers": [
+      "HARNESS-009 F05 L4/L9 and L5/L8 design_verification review for Issue #3510"
+    ],
+    "dependencies": [
+      "Fixed Step A blind derivation artifact scaffold/research/wr218-f05-content-unresolved-remaining-20261031/blind-derivation.json SHA-256 30930545318afe6ed1d2e208670b72dfa4dda8c2ac1bf38ad00026d3e4c50cf5; Issue #3510 comment 6534822649.",
+      "HARNESS L3 /requirements/23,27 and L10 /cases/23,27",
+      "HARNESS-009 L4/L9 (#3942) and L5/L8 (#3948) contracts and STOP-F05-CONTENT-UNRESOLVED-CAUSE-PAIR-01"
+    ],
+    "boundary": "Scaffold audit evidence only; 0 of 3 remaining branches closed; STOP-F05-CONTENT-UNRESOLVED-CAUSE-PAIR-01 remains open for (a), (b), (c); no L3/L10 semantics change, no fabricated CauseKind/Read pair/count for undetermined branches, and no execution of algorithms or legacy/new runtime/test/CI."
+  },
+  "operations": {
+    "allowed": [
+      "Read-only source/hash/pointer inspection and L5: pointer existence verification",
+      "scfctl validate/stale",
+      "design_verification_checker.py check-child and check-freeze static verification",
+      "git diff --check"
+    ],
+    "forbidden": [
+      "Altering any byte of blind-derivation.json after Issue #3510 freeze",
+      "Fabricating CauseKind, left/right Read, or count for undetermined branches (a), (b), (c)",
+      "Claiming STOP-F05-CONTENT-UNRESOLVED-CAUSE-PAIR-01 is closed when 3 branches remain open",
+      "Mixing L4/L9 and L5/L8 V-pairs in a single PR",
+      "Executing L4/L5 algorithms, old CLI/hook/runtime/test/CI, or new runtime/test/CI"
+    ]
+  },
+  "artifacts": [
+    "scaffold/research/wr218-f05-content-unresolved-remaining-20261031/blind-derivation.json",
+    "scaffold/research/wr218-f05-content-unresolved-remaining-20261031/comparison-audit.json",
+    "scaffold/research/wr218-f05-content-unresolved-remaining-20261031/README.md"
+  ],
+  "verification": {
+    "evidence_kind": "scaffold",
+    "scope": [
+      "schema_interface",
+      "source_revision_stale",
+      "negative_case"
+    ],
+    "oracles": [
+      "Fixed blind-derivation.json raw-byte SHA-256 30930545318afe6ed1d2e208670b72dfa4dda8c2ac1bf38ad00026d3e4c50cf5 and Issue #3510 comment 6534822649.",
+      "All 52 L5: and /f05_detail_contract/... pointers in field_content_source_failure_writer_contract verified to exist in L5.",
+      "scfctl stale, scfctl validate, design_verification_checker check-child, and check-freeze on #3948 ADD-45 refreeze manifests."
+    ],
+    "negative_cases": [
+      "Do not alter blind-derivation.json after Issue #3510 freeze.",
+      "Do not advance branches (a), (b), (c) without unique upstream determination.",
+      "Do not claim STOP-F05-CONTENT-UNRESOLVED-CAUSE-PAIR-01 is closed.",
+      "Do not execute L4/L5 algorithms, legacy archive assets, runtimes, tests, or CI."
+    ]
+  },
+  "replacement": {
+    "role_target": "Explicit L4/L5 CauseKind, left/right Read, and cardinality design plus matching L9 semantic cases and L8 technical rows for branches (a), (b), (c) of STOP-F05-CONTENT-UNRESOLVED-CAUSE-PAIR-01",
+    "formal_artifacts": [
+      "docs/helix-harness/L4-basic-design/product-template-application.json",
+      "docs/helix-harness/L9-integration-verification/product-template-application.json",
+      "docs/helix-harness/L5-detail-design/product-template-application.json",
+      "docs/helix-harness/L8-unit-verification/product-template-application.json"
+    ],
+    "issue": 3510,
+    "status": "pending"
+  },
+  "created": "2026-10-31",
+  "updated": "2026-10-31"
+}
