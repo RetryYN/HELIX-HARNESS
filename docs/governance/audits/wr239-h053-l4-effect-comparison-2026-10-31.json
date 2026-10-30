@@ -1,0 +1,516 @@
+{
+  "artifact_id": "WR239-H053-REMAINING-32-EFFECT-CANDIDATE-2026-10-31",
+  "evidence_kind": "append_only_l4_l9_comparison_record",
+  "authority_effect": "none",
+  "base_revision": "73193d8d37845a23e57330db99dd53bbc0e7004c",
+  "fixed_blind_artifact": {
+    "path": "docs/governance/audits/wr239-h053-source-only-2026-10-31.json",
+    "issue": 3510,
+    "comment_id": 6533432579,
+    "sha256": "c30e17f928ae329f87a73bca41f746b6aab085e4586897326c0a67ec4fbea98d",
+    "bytes_copied_unchanged": true
+  },
+  "source_revisions": {
+    "revision": "73193d8d37845a23e57330db99dd53bbc0e7004c",
+    "sha256_by_path": {
+      "docs/helix-harness/L3-requirements/functional-requirements.json": "a3b907cdc316117d4684632f9a1cbf36125eb6e6172f9cfc286060617583d7be",
+      "docs/helix-harness/L3-requirements/nfr-grade.json": "b62f823d1c2edfd192ba8aeccb71159f3322aab17fa991d7ceb85712d8fbd486",
+      "docs/helix-harness/L3-requirements/business-requirements.json": "25e0e8f8ee8acbc220483ab6854155218193861086cf757f933e2cd6263f444d",
+      "docs/helix-harness/L10-verification/functional-verification.json": "fc58ad2268746d7924ac9be33e8f3f75e6d3c2cc619e27fbc1ddc34edd065cb2",
+      "docs/helix-harness/L10-verification/nfr-verification.json": "578b1b368bdd3878ade8fcab77cc47320b8acc1d2d967af1708b333bea2f36b0",
+      "docs/helix-harness/L10-verification/business-verification.json": "3a9982ef2e59e3d027ce8e5cd72b9879b6224a8e4ea74b657bf9b67c90934319",
+      "docs/helix-harness/L4-basic-design/semantic-asset-lineage.json": "9fd27d90c3bc8610e7d132bf075a9b2ea6e5ac570e55ea2e0741947576eafbc7",
+      "docs/helix-harness/L9-integration-verification/semantic-asset-lineage.json": "ab18e7965f1210eb638501178db9ccc886feb86fdafa7572f6f71cae1c2e268a",
+      "docs/helix-harness/L8-unit-verification/semantic-asset-lineage.json": "6365651422b2aa7cc4ae3d7596c445cc854eea140daabeddb8990da6c57d7bd2",
+      "docs/governance/design-verification-quality-assurance.md": "f5751e236dc073fe67114c1fcb4b0f64b3d746290b25d75b61e60a08e3c99c85"
+    }
+  },
+  "l4_change": {
+    "path": "docs/helix-harness/L4-basic-design/semantic-asset-lineage.json",
+    "before_sha256": "9fd27d90c3bc8610e7d132bf075a9b2ea6e5ac570e55ea2e0741947576eafbc7",
+    "after_sha256": "de500a64e60588344a01e7f04fe1b9613e2cbe48ae216b5b0f9fe736cccb0e14",
+    "effect_rows_updated": 32,
+    "representative_rows_unchanged": [
+      "authority_mapping_missing",
+      "lineage_endpoint_missing",
+      "location_as_semantic",
+      "path_identity_inference",
+      "record_as_persistence",
+      "reference_meaning_mismatch"
+    ],
+    "only_effect_fields_changed": true
+  },
+  "l9_comparison": {
+    "path": "docs/helix-harness/L9-integration-verification/semantic-asset-lineage.json",
+    "sha256_unchanged": "ab18e7965f1210eb638501178db9ccc886feb86fdafa7572f6f71cae1c2e268a",
+    "l4_rows": 38,
+    "l9_negative_rows": 38,
+    "unique_l4_oracle_refs": 38,
+    "l4_oracle_refs_missing_from_l9": [],
+    "l9_negative_rows_unreferenced": 0,
+    "fixture_values_copied_to_l4_effect": false
+  },
+  "row_comparison": [
+    {
+      "code": "authority_mapping_unknown",
+      "l4_pointer": "/docs/helix-harness/L4-basic-design/semantic-asset-lineage.json#/failure_classifications/1/effect",
+      "l4_contract_pointer": "/docs/helix-harness/L4-basic-design/semantic-asset-lineage.json#/contracts/3",
+      "l9_case_ref": "HARNESS-L9-053-F04-NEG-04",
+      "source_only_candidate_records": [
+        "H053-S14",
+        "H053-S17"
+      ],
+      "source_match_note": "一致/関連",
+      "effect_decision": "上流義務とL4設計散文から導ける一般効果を記載。fixture値・構造化期待値は転記しない。"
+    },
+    {
+      "code": "authority_procedure_added",
+      "l4_pointer": "/docs/helix-harness/L4-basic-design/semantic-asset-lineage.json#/failure_classifications/2/effect",
+      "l4_contract_pointer": "/docs/helix-harness/L4-basic-design/semantic-asset-lineage.json#/contracts/5",
+      "l9_case_ref": "HARNESS-L9-053-B01-NEG-08",
+      "source_only_candidate_records": [
+        "H053-S29"
+      ],
+      "source_match_note": "関連",
+      "effect_decision": "上流義務とL4設計散文から導ける一般効果を記載。fixture値・構造化期待値は転記しない。"
+    },
+    {
+      "code": "base_revision_mismatch",
+      "l4_pointer": "/docs/helix-harness/L4-basic-design/semantic-asset-lineage.json#/failure_classifications/3/effect",
+      "l4_contract_pointer": "/docs/helix-harness/L4-basic-design/semantic-asset-lineage.json#/contracts/2",
+      "l9_case_ref": "HARNESS-L9-053-F03-NEG-04",
+      "source_only_candidate_records": [
+        "H053-S13"
+      ],
+      "source_match_note": "一致",
+      "effect_decision": "上流義務とL4設計散文から導ける一般効果を記載。fixture値・構造化期待値は転記しない。"
+    },
+    {
+      "code": "fixture_as_rollback",
+      "l4_pointer": "/docs/helix-harness/L4-basic-design/semantic-asset-lineage.json#/failure_classifications/4/effect",
+      "l4_contract_pointer": "/docs/helix-harness/L4-basic-design/semantic-asset-lineage.json#/contracts/5",
+      "l9_case_ref": "HARNESS-L9-053-B01-NEG-02",
+      "source_only_candidate_records": [
+        "H053-S28"
+      ],
+      "source_match_note": "一致",
+      "effect_decision": "上流義務とL4設計散文から導ける一般効果を記載。fixture値・構造化期待値は転記しない。"
+    },
+    {
+      "code": "global_stop_added",
+      "l4_pointer": "/docs/helix-harness/L4-basic-design/semantic-asset-lineage.json#/failure_classifications/5/effect",
+      "l4_contract_pointer": "/docs/helix-harness/L4-basic-design/semantic-asset-lineage.json#/contracts/4",
+      "l9_case_ref": "HARNESS-L9-053-N01-NEG-05",
+      "source_only_candidate_records": [
+        "H053-S26"
+      ],
+      "source_match_note": "一致",
+      "effect_decision": "上流義務とL4設計散文から導ける一般効果を記載。fixture値・構造化期待値は転記しない。"
+    },
+    {
+      "code": "hash_identity_inference",
+      "l4_pointer": "/docs/helix-harness/L4-basic-design/semantic-asset-lineage.json#/failure_classifications/6/effect",
+      "l4_contract_pointer": "/docs/helix-harness/L4-basic-design/semantic-asset-lineage.json#/contracts/0",
+      "l9_case_ref": "HARNESS-L9-053-F01-NEG-06",
+      "source_only_candidate_records": [
+        "H053-S03"
+      ],
+      "source_match_note": "関連・hash方式の意味は未決",
+      "effect_decision": "上流義務とL4設計散文から導ける一般効果を記載。fixture値・構造化期待値は転記しない。"
+    },
+    {
+      "code": "history_mapping_missing",
+      "l4_pointer": "/docs/helix-harness/L4-basic-design/semantic-asset-lineage.json#/failure_classifications/7/effect",
+      "l4_contract_pointer": "/docs/helix-harness/L4-basic-design/semantic-asset-lineage.json#/contracts/2",
+      "l9_case_ref": "HARNESS-L9-053-F03-NEG-01",
+      "source_only_candidate_records": [
+        "H053-S10",
+        "H053-S11",
+        "H053-S12"
+      ],
+      "source_match_note": "関連・前後history対応",
+      "effect_decision": "上流義務とL4設計散文から導ける一般効果を記載。fixture値・構造化期待値は転記しない。"
+    },
+    {
+      "code": "identity_conflict",
+      "l4_pointer": "/docs/helix-harness/L4-basic-design/semantic-asset-lineage.json#/failure_classifications/8/effect",
+      "l4_contract_pointer": "/docs/helix-harness/L4-basic-design/semantic-asset-lineage.json#/contracts/0",
+      "l9_case_ref": "HARNESS-L9-053-F01-NEG-03",
+      "source_only_candidate_records": [
+        "H053-S03"
+      ],
+      "source_match_note": "一致",
+      "effect_decision": "上流義務とL4設計散文から導ける一般効果を記載。fixture値・構造化期待値は転記しない。"
+    },
+    {
+      "code": "identity_missing",
+      "l4_pointer": "/docs/helix-harness/L4-basic-design/semantic-asset-lineage.json#/failure_classifications/9/effect",
+      "l4_contract_pointer": "/docs/helix-harness/L4-basic-design/semantic-asset-lineage.json#/contracts/0",
+      "l9_case_ref": "HARNESS-L9-053-F01-NEG-04",
+      "source_only_candidate_records": [
+        "H053-S01",
+        "H053-S03"
+      ],
+      "source_match_note": "関連",
+      "effect_decision": "上流義務とL4設計散文から導ける一般効果を記載。fixture値・構造化期待値は転記しない。"
+    },
+    {
+      "code": "legacy_completion_claim",
+      "l4_pointer": "/docs/helix-harness/L4-basic-design/semantic-asset-lineage.json#/failure_classifications/10/effect",
+      "l4_contract_pointer": "/docs/helix-harness/L4-basic-design/semantic-asset-lineage.json#/contracts/5",
+      "l9_case_ref": "HARNESS-L9-053-B01-NEG-05",
+      "source_only_candidate_records": [],
+      "source_match_note": "artifact内に同一leafなし。L3/L10 B01から直接導出",
+      "effect_decision": "上流義務とL4設計散文から導ける一般効果を記載。fixture値・構造化期待値は転記しない。"
+    },
+    {
+      "code": "lineage_as_authority_transfer",
+      "l4_pointer": "/docs/helix-harness/L4-basic-design/semantic-asset-lineage.json#/failure_classifications/11/effect",
+      "l4_contract_pointer": "/docs/helix-harness/L4-basic-design/semantic-asset-lineage.json#/contracts/2",
+      "l9_case_ref": "HARNESS-L9-053-F03-NEG-06",
+      "source_only_candidate_records": [
+        "H053-S08",
+        "H053-S09"
+      ],
+      "source_match_note": "関連・location対応とauthorityを分離",
+      "effect_decision": "上流義務とL4設計散文から導ける一般効果を記載。fixture値・構造化期待値は転記しない。"
+    },
+    {
+      "code": "lineage_target_missing",
+      "l4_pointer": "/docs/helix-harness/L4-basic-design/semantic-asset-lineage.json#/failure_classifications/13/effect",
+      "l4_contract_pointer": "/docs/helix-harness/L4-basic-design/semantic-asset-lineage.json#/contracts/2",
+      "l9_case_ref": "HARNESS-L9-053-F03-NEG-05",
+      "source_only_candidate_records": [
+        "H053-S13"
+      ],
+      "source_match_note": "一致",
+      "effect_decision": "上流義務とL4設計散文から導ける一般効果を記載。fixture値・構造化期待値は転記しない。"
+    },
+    {
+      "code": "local_as_global_completion",
+      "l4_pointer": "/docs/helix-harness/L4-basic-design/semantic-asset-lineage.json#/failure_classifications/14/effect",
+      "l4_contract_pointer": "/docs/helix-harness/L4-basic-design/semantic-asset-lineage.json#/contracts/4",
+      "l9_case_ref": "HARNESS-L9-053-N01-NEG-04",
+      "source_only_candidate_records": [
+        "H053-S26"
+      ],
+      "source_match_note": "一致",
+      "effect_decision": "上流義務とL4設計散文から導ける一般効果を記載。fixture値・構造化期待値は転記しない。"
+    },
+    {
+      "code": "location_identity_change",
+      "l4_pointer": "/docs/helix-harness/L4-basic-design/semantic-asset-lineage.json#/failure_classifications/16/effect",
+      "l4_contract_pointer": "/docs/helix-harness/L4-basic-design/semantic-asset-lineage.json#/contracts/0",
+      "l9_case_ref": "HARNESS-L9-053-F01-NEG-05",
+      "source_only_candidate_records": [
+        "H053-S01"
+      ],
+      "source_match_note": "関連・path推論を禁止",
+      "effect_decision": "上流義務とL4設計散文から導ける一般効果を記載。fixture値・構造化期待値は転記しない。"
+    },
+    {
+      "code": "name_identity_inference",
+      "l4_pointer": "/docs/helix-harness/L4-basic-design/semantic-asset-lineage.json#/failure_classifications/17/effect",
+      "l4_contract_pointer": "/docs/helix-harness/L4-basic-design/semantic-asset-lineage.json#/contracts/0",
+      "l9_case_ref": "HARNESS-L9-053-F01-NEG-02",
+      "source_only_candidate_records": [
+        "H053-S02"
+      ],
+      "source_match_note": "一致",
+      "effect_decision": "上流義務とL4設計散文から導ける一般効果を記載。fixture値・構造化期待値は転記しない。"
+    },
+    {
+      "code": "new_precondition",
+      "l4_pointer": "/docs/helix-harness/L4-basic-design/semantic-asset-lineage.json#/failure_classifications/18/effect",
+      "l4_contract_pointer": "/docs/helix-harness/L4-basic-design/semantic-asset-lineage.json#/contracts/5",
+      "l9_case_ref": "HARNESS-L9-053-B01-NEG-07",
+      "source_only_candidate_records": [
+        "H053-S32"
+      ],
+      "source_match_note": "一致",
+      "effect_decision": "上流義務とL4設計散文から導ける一般効果を記載。fixture値・構造化期待値は転記しない。"
+    },
+    {
+      "code": "oracle_mapping_missing",
+      "l4_pointer": "/docs/helix-harness/L4-basic-design/semantic-asset-lineage.json#/failure_classifications/19/effect",
+      "l4_contract_pointer": "/docs/helix-harness/L4-basic-design/semantic-asset-lineage.json#/contracts/3",
+      "l9_case_ref": "HARNESS-L9-053-F04-NEG-02",
+      "source_only_candidate_records": [
+        "H053-S15",
+        "H053-S17"
+      ],
+      "source_match_note": "一致/関連",
+      "effect_decision": "上流義務とL4設計散文から導ける一般効果を記載。fixture値・構造化期待値は転記しない。"
+    },
+    {
+      "code": "oracle_revision_mismatch",
+      "l4_pointer": "/docs/helix-harness/L4-basic-design/semantic-asset-lineage.json#/failure_classifications/20/effect",
+      "l4_contract_pointer": "/docs/helix-harness/L4-basic-design/semantic-asset-lineage.json#/contracts/3",
+      "l9_case_ref": "HARNESS-L9-053-F04-NEG-05",
+      "source_only_candidate_records": [
+        "H053-S15"
+      ],
+      "source_match_note": "関連・revision対応",
+      "effect_decision": "上流義務とL4設計散文から導ける一般効果を記載。fixture値・構造化期待値は転記しない。"
+    },
+    {
+      "code": "owner_boundary_change",
+      "l4_pointer": "/docs/helix-harness/L4-basic-design/semantic-asset-lineage.json#/failure_classifications/21/effect",
+      "l4_contract_pointer": "/docs/helix-harness/L4-basic-design/semantic-asset-lineage.json#/contracts/5",
+      "l9_case_ref": "HARNESS-L9-053-B01-NEG-06",
+      "source_only_candidate_records": [
+        "H053-S31"
+      ],
+      "source_match_note": "一致",
+      "effect_decision": "上流義務とL4設計散文から導ける一般効果を記載。fixture値・構造化期待値は転記しない。"
+    },
+    {
+      "code": "record_as_acceptance",
+      "l4_pointer": "/docs/helix-harness/L4-basic-design/semantic-asset-lineage.json#/failure_classifications/23/effect",
+      "l4_contract_pointer": "/docs/helix-harness/L4-basic-design/semantic-asset-lineage.json#/contracts/5",
+      "l9_case_ref": "HARNESS-L9-053-B01-NEG-04",
+      "source_only_candidate_records": [
+        "H053-S30"
+      ],
+      "source_match_note": "一致",
+      "effect_decision": "上流義務とL4設計散文から導ける一般効果を記載。fixture値・構造化期待値は転記しない。"
+    },
+    {
+      "code": "record_as_permission",
+      "l4_pointer": "/docs/helix-harness/L4-basic-design/semantic-asset-lineage.json#/failure_classifications/24/effect",
+      "l4_contract_pointer": "/docs/helix-harness/L4-basic-design/semantic-asset-lineage.json#/contracts/5",
+      "l9_case_ref": "HARNESS-L9-053-B01-NEG-03",
+      "source_only_candidate_records": [
+        "H053-S29"
+      ],
+      "source_match_note": "一致",
+      "effect_decision": "上流義務とL4設計散文から導ける一般効果を記載。fixture値・構造化期待値は転記しない。"
+    },
+    {
+      "code": "reference_substitution",
+      "l4_pointer": "/docs/helix-harness/L4-basic-design/semantic-asset-lineage.json#/failure_classifications/27/effect",
+      "l4_contract_pointer": "/docs/helix-harness/L4-basic-design/semantic-asset-lineage.json#/contracts/4",
+      "l9_case_ref": "HARNESS-L9-053-N01-NEG-02",
+      "source_only_candidate_records": [
+        "H053-S19"
+      ],
+      "source_match_note": "一致",
+      "effect_decision": "上流義務とL4設計散文から導ける一般効果を記載。fixture値・構造化期待値は転記しない。"
+    },
+    {
+      "code": "relation_kind_missing",
+      "l4_pointer": "/docs/helix-harness/L4-basic-design/semantic-asset-lineage.json#/failure_classifications/28/effect",
+      "l4_contract_pointer": "/docs/helix-harness/L4-basic-design/semantic-asset-lineage.json#/contracts/2",
+      "l9_case_ref": "HARNESS-L9-053-F03-NEG-03",
+      "source_only_candidate_records": [
+        "H053-S13"
+      ],
+      "source_match_note": "一致",
+      "effect_decision": "上流義務とL4設計散文から導ける一般効果を記載。fixture値・構造化期待値は転記しない。"
+    },
+    {
+      "code": "revision_conflict",
+      "l4_pointer": "/docs/helix-harness/L4-basic-design/semantic-asset-lineage.json#/failure_classifications/29/effect",
+      "l4_contract_pointer": "/docs/helix-harness/L4-basic-design/semantic-asset-lineage.json#/contracts/1",
+      "l9_case_ref": "HARNESS-L9-053-F02-NEG-06",
+      "source_only_candidate_records": [],
+      "source_match_note": "artifact内に同一leafなし。L3/L10 F02のrevision/diff要件から一般効果を導出",
+      "effect_decision": "上流義務とL4設計散文から導ける一般効果を記載。fixture値・構造化期待値は転記しない。"
+    },
+    {
+      "code": "scope_cross_binding",
+      "l4_pointer": "/docs/helix-harness/L4-basic-design/semantic-asset-lineage.json#/failure_classifications/30/effect",
+      "l4_contract_pointer": "/docs/helix-harness/L4-basic-design/semantic-asset-lineage.json#/contracts/2",
+      "l9_case_ref": "HARNESS-L9-053-F03-NEG-07",
+      "source_only_candidate_records": [],
+      "source_match_note": "artifact内に同一leafなし。L4の要求scope入力から一般効果を導出し、tenant固有意味は追加しない",
+      "effect_decision": "上流義務とL4設計散文から導ける一般効果を記載。fixture値・構造化期待値は転記しない。"
+    },
+    {
+      "code": "semantic_as_location",
+      "l4_pointer": "/docs/helix-harness/L4-basic-design/semantic-asset-lineage.json#/failure_classifications/31/effect",
+      "l4_contract_pointer": "/docs/helix-harness/L4-basic-design/semantic-asset-lineage.json#/contracts/1",
+      "l9_case_ref": "HARNESS-L9-053-F02-NEG-02",
+      "source_only_candidate_records": [
+        "H053-S05"
+      ],
+      "source_match_note": "一致",
+      "effect_decision": "上流義務とL4設計散文から導ける一般効果を記載。fixture値・構造化期待値は転記しない。"
+    },
+    {
+      "code": "semantic_identity_change",
+      "l4_pointer": "/docs/helix-harness/L4-basic-design/semantic-asset-lineage.json#/failure_classifications/32/effect",
+      "l4_contract_pointer": "/docs/helix-harness/L4-basic-design/semantic-asset-lineage.json#/contracts/1",
+      "l9_case_ref": "HARNESS-L9-053-F02-NEG-03",
+      "source_only_candidate_records": [
+        "H053-S05"
+      ],
+      "source_match_note": "関連・同一identity上のrevision差",
+      "effect_decision": "上流義務とL4設計散文から導ける一般効果を記載。fixture値・構造化期待値は転記しない。"
+    },
+    {
+      "code": "semantic_impact_missing",
+      "l4_pointer": "/docs/helix-harness/L4-basic-design/semantic-asset-lineage.json#/failure_classifications/33/effect",
+      "l4_contract_pointer": "/docs/helix-harness/L4-basic-design/semantic-asset-lineage.json#/contracts/1",
+      "l9_case_ref": "HARNESS-L9-053-F02-NEG-05",
+      "source_only_candidate_records": [
+        "H053-S06",
+        "H053-S07"
+      ],
+      "source_match_note": "一致",
+      "effect_decision": "上流義務とL4設計散文から導ける一般効果を記載。fixture値・構造化期待値は転記しない。"
+    },
+    {
+      "code": "semantic_source_missing",
+      "l4_pointer": "/docs/helix-harness/L4-basic-design/semantic-asset-lineage.json#/failure_classifications/34/effect",
+      "l4_contract_pointer": "/docs/helix-harness/L4-basic-design/semantic-asset-lineage.json#/contracts/1",
+      "l9_case_ref": "HARNESS-L9-053-F02-NEG-04",
+      "source_only_candidate_records": [],
+      "source_match_note": "artifact内に同一leafなし。L4のexact source snapshot入力とL3/L10 F02から一般効果を導出",
+      "effect_decision": "上流義務とL4設計散文から導ける一般効果を記載。fixture値・構造化期待値は転記しない。"
+    },
+    {
+      "code": "typed_edge_kind_mismatch",
+      "l4_pointer": "/docs/helix-harness/L4-basic-design/semantic-asset-lineage.json#/failure_classifications/35/effect",
+      "l4_contract_pointer": "/docs/helix-harness/L4-basic-design/semantic-asset-lineage.json#/contracts/3",
+      "l9_case_ref": "HARNESS-L9-053-F04-NEG-06",
+      "source_only_candidate_records": [
+        "H053-S16",
+        "H053-S17"
+      ],
+      "source_match_note": "関連・kind mismatch自体はL3 F04の対応不明",
+      "effect_decision": "上流義務とL4設計散文から導ける一般効果を記載。fixture値・構造化期待値は転記しない。"
+    },
+    {
+      "code": "typed_edge_mapping_missing",
+      "l4_pointer": "/docs/helix-harness/L4-basic-design/semantic-asset-lineage.json#/failure_classifications/36/effect",
+      "l4_contract_pointer": "/docs/helix-harness/L4-basic-design/semantic-asset-lineage.json#/contracts/3",
+      "l9_case_ref": "HARNESS-L9-053-F04-NEG-03",
+      "source_only_candidate_records": [
+        "H053-S16",
+        "H053-S17"
+      ],
+      "source_match_note": "一致/関連",
+      "effect_decision": "上流義務とL4設計散文から導ける一般効果を記載。fixture値・構造化期待値は転記しない。"
+    },
+    {
+      "code": "unselected_operation",
+      "l4_pointer": "/docs/helix-harness/L4-basic-design/semantic-asset-lineage.json#/failure_classifications/37/effect",
+      "l4_contract_pointer": "/docs/helix-harness/L4-basic-design/semantic-asset-lineage.json#/contracts/4",
+      "l9_case_ref": "HARNESS-L9-053-N01-NEG-03",
+      "source_only_candidate_records": [
+        "H053-S22"
+      ],
+      "source_match_note": "一致・既存行が扱うsplit branchのみ",
+      "effect_decision": "上流義務とL4設計散文から導ける一般効果を記載。fixture値・構造化期待値は転記しない。"
+    }
+  ],
+  "deduplication": {
+    "rule": "leafは入力条件・誤推論・保持/保留結果・影響scopeがすべて同一の場合だけ重複としてまとめる。",
+    "not_collapsed": "authority/oracle/typed edgeの独立欠落、異なる関係種別、identity/revision軸、operation kindは同一unknown outcomeでも別leafを保持する。",
+    "count_warning": "固定artifactの32分岐とL4残り32行は総数が偶然一致するだけで、分類別件数は異なる。総数から行対応を推定していない。",
+    "unrepresented_operation_branches": "固定source artifactにはrename/move/split/merge/supersede/Design Refactor別の分岐があるが、既存L4のunselected_operation rowはsplit条件のみを持つ。この範囲では他operation用rowを追加していない。"
+  },
+  "unresolved": [
+    "F01のasset ID採番/符号化/永続化方式はL3/L4で後続設計へ残されている。hashの具体的なID意味を決めず、effectをimmutable asset IDによる識別の一般記述に留めた。",
+    "既存expected_claim_stateのconflict/unknown対応はL3/L10/F03散文だけでは全行について一意に再定義しない。構造化expectedはすべて不変。",
+    "固定artifactでclaim_stateがunknownの枝や影響scopeが一意に決まらない枝はunknownのまま扱い、effectから別enumへ昇格させない。",
+    "tenant固有の意味やsourceにないrevision/order判定規則は追加していない。"
+  ],
+  "preserved": [
+    "全38行のcondition、expected_record_axes、expected_claim_state、operation/reference state、expected_side_effect_countは変更していない。",
+    "全32更新行のeffectに、旧common effectの「関係のない既知axisまで消さない」「実変換/保存/権限発行0」を残した。全38行のexpected_side_effect_countは0のまま。",
+    "WR234の代表6行、L9のcase/expected、L5/L8本文・期待・assignment、freeze、bindings、source pinsは変更していない。",
+    "L4 algorithm・旧runtime/test/CIは実行していない。"
+  ],
+  "legacy_sources_read_read_only": [
+    {
+      "asset_id": "LEGACY-ASSET-A4DD57E39031B1402494",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L4-basic-design/data.md",
+      "lines": "44,183",
+      "sha256": "b94e3ec801d6275af18976abdd88eaff44da23494ce654dbde9c3fa2ebaae1c6",
+      "finding": "旧A-90/ADR-004はroster/skill catalogをfilesystem正本からscan-on-demandする非entityとし、永続stateを持たせない。"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-310E87378AFE8095809C",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L5-detailed-design/physical-data.md",
+      "lines": "256,292",
+      "sha256": "a3064a3b705adcf0a5f76c3210aa431d87b7971aed2fe88f948a323a40c7772f",
+      "finding": "旧automation_assetsはasset_idとpath等およびsource/evidence pathを記録する。新053のpath非依存identityと同一視しない。"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-36AC5308AB06DEF9DE4B",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/reference/system-review-triage-2026-07-12.md",
+      "line": "26",
+      "failure": "IMP-002",
+      "sha256": "06596828ece169f54cbb17c4a3f34bc68042a873846ef98bae6de082354cecc1",
+      "finding": "重複ID定義検出lintの欠落。identity競合に隣接するが直接原因とは断定しない。"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-CCA6C60FBB1D735EC38E",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/reference/quality-sweep4-2026-07-12.md",
+      "line": "28",
+      "failure": "Q8",
+      "sha256": "364b9d70fa027525bd67f76b2b5256381eb2ef6a14867ead6f88ad267a0791be",
+      "finding": "micro utility重複とdrift。semantic lineageの直接原因とは断定しない。"
+    }
+  ],
+  "four_way_resolution": {
+    "qa_pointer": "docs/governance/design-verification-quality-assurance.md §3 / CHK-NEG-4WAY-MATCH",
+    "qa_sha256": "f5751e236dc073fe67114c1fcb4b0f64b3d746290b25d75b61e60a08e3c99c85",
+    "decision": "explicit_negative_equivalence_classesは4層すべてに明示markerが揃う場合のみ。L4/L9だけのmarker追加や部分更新は適用しない。",
+    "precedent": {
+      "commit": "8125b6fee699dd22d14161f04c0a25e6416586b2",
+      "pull_request": 3888,
+      "files": [
+        "L4",
+        "L5",
+        "L8",
+        "L9"
+      ],
+      "applicability": "4層を同時に変更した事例であり、本件のL4/L9限定scopeに4層markerを正当化しない。"
+    },
+    "operation_model": "GitHub上流運用モデルのPR原子性では対象V-pairまでを一つのPRにまとめる。L5/L8変更を含める4層PRとは異なるため、本件はL4/L9一対に限定。"
+  },
+  "l8_hash_cap_research": {
+    "path": "docs/helix-harness/L8-unit-verification/semantic-asset-lineage.json",
+    "sha256": "6365651422b2aa7cc4ae3d7596c445cc854eea140daabeddb8990da6c57d7bd2",
+    "subject_sha256_count": 30,
+    "unique_subject_sha256_count": 9,
+    "source_pin_count": 17,
+    "subject_values_matching_source_pins": 0,
+    "disposition": "調査のみ。L8は変更せず、hash名の改変等でownership capを回避しない。別PR残件。"
+  },
+  "verification": {
+    "baseline": {
+      "scfctl_validate": "bindings=182 fail=0",
+      "scfctl_stale": "stale=0",
+      "check_child": {
+        "exit_code": 1,
+        "L4_L9_pair": "PASS 6/6",
+        "L5_L8_pair": "PASS 6/6",
+        "negative_4way": "legacy_casewise_four_layer; L4/L9/L8/L5=38 each; matched=0; failures=76",
+        "L8_ownership_cap_failures": 30
+      }
+    },
+    "after_change": {
+      "scfctl_validate": "bindings=182 fail=0",
+      "scfctl_stale": "stale=0",
+      "check_child": {
+        "exit_code": 1,
+        "L4_L9_pair": "PASS 6/6",
+        "L5_L8_pair": "PASS 6/6",
+        "negative_4way": "legacy_casewise_four_layer; L4/L9/L8/L5=38 each; matched=0; failures=76",
+        "L8_ownership_cap_failures": 30
+      },
+      "L4_L9_check_pair": "PASS"
+    },
+    "static_checks": [
+      "JSON parse",
+      "effect-only invariant check",
+      "fixed artifact SHA-256",
+      "git diff --check"
+    ],
+    "algorithm_or_legacy_execution": "none"
+  }
+}

@@ -1,0 +1,658 @@
+{
+  "artifact_id": "WR239-H053-AXIS-STATE-ALIGNMENT-ADDENDUM-2026-10-31",
+  "evidence_kind": "append_only_structured_axis_alignment_record",
+  "authority_effect": "none",
+  "previous_comparison_record": {
+    "path": "docs/governance/audits/wr239-h053-l4-effect-comparison-2026-10-31.json",
+    "sha256": "9a5028031849a1f012c316c174bd77fff9d73fc52fd5cbbc6df095559b41f87d"
+  },
+  "fixed_blind_artifact": {
+    "path": "docs/governance/audits/wr239-h053-source-only-2026-10-31.json",
+    "sha256": "c30e17f928ae329f87a73bca41f746b6aab085e4586897326c0a67ec4fbea98d",
+    "bytes_unchanged": true
+  },
+  "revision_history": {
+    "base_revision": "73193d8d37845a23e57330db99dd53bbc0e7004c",
+    "prior_candidate_l4_sha256": "de500a64e60588344a01e7f04fe1b9613e2cbe48ae216b5b0f9fe736cccb0e14",
+    "current_worktree_l4_sha256": "39de34bd5630e945908ba6608e2eb64efa75fe8841afab883b6dfee18a14f934",
+    "current_change_is_uncommitted": true
+  },
+  "change_scope": {
+    "path": "docs/helix-harness/L4-basic-design/semantic-asset-lineage.json",
+    "rows_reviewed": 32,
+    "effect_rows_reworded": [
+      "base_revision_mismatch",
+      "history_mapping_missing",
+      "identity_conflict",
+      "identity_missing",
+      "lineage_target_missing",
+      "name_identity_inference",
+      "oracle_mapping_missing",
+      "oracle_revision_mismatch",
+      "relation_kind_missing",
+      "semantic_impact_missing",
+      "semantic_source_missing",
+      "typed_edge_kind_mismatch",
+      "typed_edge_mapping_missing"
+    ],
+    "rows_reviewed_without_text_change": [
+      "authority_mapping_unknown",
+      "authority_procedure_added",
+      "fixture_as_rollback",
+      "global_stop_added",
+      "hash_identity_inference",
+      "legacy_completion_claim",
+      "lineage_as_authority_transfer",
+      "local_as_global_completion",
+      "location_identity_change",
+      "new_precondition",
+      "owner_boundary_change",
+      "record_as_acceptance",
+      "record_as_permission",
+      "reference_substitution",
+      "revision_conflict",
+      "scope_cross_binding",
+      "semantic_as_location",
+      "semantic_identity_change",
+      "unselected_operation"
+    ],
+    "representative_six_unchanged": [
+      "authority_mapping_missing",
+      "lineage_endpoint_missing",
+      "location_as_semantic",
+      "path_identity_inference",
+      "record_as_persistence",
+      "reference_meaning_mismatch"
+    ]
+  },
+  "row_state_review": [
+    {
+      "code": "authority_mapping_unknown",
+      "pointer": "docs/helix-harness/L4-basic-design/semantic-asset-lineage.json#/failure_classifications/1/effect",
+      "structured_axes_unchanged": [
+        {
+          "subject": "LS",
+          "axis": "authority_mapping",
+          "state": "unknown"
+        }
+      ],
+      "expected_claim_state_unchanged": "unknown",
+      "axis_language": "既存effectにaxis stateとの矛盾がなく、状態の再分類をしていない。"
+    },
+    {
+      "code": "authority_procedure_added",
+      "pointer": "docs/helix-harness/L4-basic-design/semantic-asset-lineage.json#/failure_classifications/2/effect",
+      "structured_axes_unchanged": [
+        {
+          "subject": "LS",
+          "axis": "authority_mapping",
+          "state": "matched"
+        }
+      ],
+      "expected_claim_state_unchanged": "conflict",
+      "axis_language": "既存effectにaxis stateとの矛盾がなく、状態の再分類をしていない。"
+    },
+    {
+      "code": "base_revision_mismatch",
+      "pointer": "docs/helix-harness/L4-basic-design/semantic-asset-lineage.json#/failure_classifications/3/effect",
+      "structured_axes_unchanged": [
+        {
+          "subject": "LS A/r1 vs r2",
+          "axis": "semantic_revision",
+          "state": "conflict"
+        },
+        {
+          "subject": "LS",
+          "axis": "history_mapping",
+          "state": "conflict"
+        }
+      ],
+      "expected_claim_state_unchanged": "conflict",
+      "axis_language": "状態記述はstructured axisの欠落/不整合/unknownに合わせ、claim-state enumを設定しない。"
+    },
+    {
+      "code": "fixture_as_rollback",
+      "pointer": "docs/helix-harness/L4-basic-design/semantic-asset-lineage.json#/failure_classifications/4/effect",
+      "structured_axes_unchanged": [
+        {
+          "subject": "LS",
+          "axis": "lineage_relation",
+          "state": "matched"
+        }
+      ],
+      "expected_claim_state_unchanged": "unknown",
+      "axis_language": "既存effectにaxis stateとの矛盾がなく、状態の再分類をしていない。"
+    },
+    {
+      "code": "global_stop_added",
+      "pointer": "docs/helix-harness/L4-basic-design/semantic-asset-lineage.json#/failure_classifications/5/effect",
+      "structured_axes_unchanged": [
+        {
+          "subject": "A/B",
+          "axis": "identity",
+          "state": "matched"
+        }
+      ],
+      "expected_claim_state_unchanged": "conflict",
+      "axis_language": "既存effectにaxis stateとの矛盾がなく、状態の再分類をしていない。"
+    },
+    {
+      "code": "hash_identity_inference",
+      "pointer": "docs/helix-harness/L4-basic-design/semantic-asset-lineage.json#/failure_classifications/6/effect",
+      "structured_axes_unchanged": [
+        {
+          "subject": "A/B",
+          "axis": "identity",
+          "state": "matched"
+        }
+      ],
+      "expected_claim_state_unchanged": "conflict",
+      "axis_language": "既存effectにaxis stateとの矛盾がなく、状態の再分類をしていない。"
+    },
+    {
+      "code": "history_mapping_missing",
+      "pointer": "docs/helix-harness/L4-basic-design/semantic-asset-lineage.json#/failure_classifications/7/effect",
+      "structured_axes_unchanged": [
+        {
+          "subject": "LS",
+          "axis": "history_mapping",
+          "state": "missing"
+        }
+      ],
+      "expected_claim_state_unchanged": "unknown",
+      "axis_language": "状態記述はstructured axisの欠落/不整合/unknownに合わせ、claim-state enumを設定しない。"
+    },
+    {
+      "code": "identity_conflict",
+      "pointer": "docs/helix-harness/L4-basic-design/semantic-asset-lineage.json#/failure_classifications/8/effect",
+      "structured_axes_unchanged": [
+        {
+          "subject": "A/r1",
+          "axis": "identity",
+          "state": "conflict"
+        }
+      ],
+      "expected_claim_state_unchanged": "conflict",
+      "axis_language": "状態記述はstructured axisの欠落/不整合/unknownに合わせ、claim-state enumを設定しない。"
+    },
+    {
+      "code": "identity_missing",
+      "pointer": "docs/helix-harness/L4-basic-design/semantic-asset-lineage.json#/failure_classifications/9/effect",
+      "structured_axes_unchanged": [
+        {
+          "subject": "A record slot",
+          "axis": "identity",
+          "state": "missing"
+        }
+      ],
+      "expected_claim_state_unchanged": "unknown",
+      "axis_language": "状態記述はstructured axisの欠落/不整合/unknownに合わせ、claim-state enumを設定しない。"
+    },
+    {
+      "code": "legacy_completion_claim",
+      "pointer": "docs/helix-harness/L4-basic-design/semantic-asset-lineage.json#/failure_classifications/10/effect",
+      "structured_axes_unchanged": [
+        {
+          "subject": "LS",
+          "axis": "lineage_relation",
+          "state": "matched"
+        }
+      ],
+      "expected_claim_state_unchanged": "unknown",
+      "axis_language": "既存effectにaxis stateとの矛盾がなく、状態の再分類をしていない。"
+    },
+    {
+      "code": "lineage_as_authority_transfer",
+      "pointer": "docs/helix-harness/L4-basic-design/semantic-asset-lineage.json#/failure_classifications/11/effect",
+      "structured_axes_unchanged": [
+        {
+          "subject": "A/r1 rename",
+          "axis": "location_history",
+          "state": "matched"
+        }
+      ],
+      "expected_claim_state_unchanged": "unknown",
+      "axis_language": "既存effectにaxis stateとの矛盾がなく、状態の再分類をしていない。"
+    },
+    {
+      "code": "lineage_target_missing",
+      "pointer": "docs/helix-harness/L4-basic-design/semantic-asset-lineage.json#/failure_classifications/13/effect",
+      "structured_axes_unchanged": [
+        {
+          "subject": "LX D/d1",
+          "axis": "identity",
+          "state": "missing"
+        },
+        {
+          "subject": "LX",
+          "axis": "lineage_relation",
+          "state": "unknown"
+        }
+      ],
+      "expected_claim_state_unchanged": "unknown",
+      "axis_language": "状態記述はstructured axisの欠落/不整合/unknownに合わせ、claim-state enumを設定しない。"
+    },
+    {
+      "code": "local_as_global_completion",
+      "pointer": "docs/helix-harness/L4-basic-design/semantic-asset-lineage.json#/failure_classifications/14/effect",
+      "structured_axes_unchanged": [
+        {
+          "subject": "A/B",
+          "axis": "identity",
+          "state": "matched"
+        }
+      ],
+      "expected_claim_state_unchanged": "unknown",
+      "axis_language": "既存effectにaxis stateとの矛盾がなく、状態の再分類をしていない。"
+    },
+    {
+      "code": "location_identity_change",
+      "pointer": "docs/helix-harness/L4-basic-design/semantic-asset-lineage.json#/failure_classifications/16/effect",
+      "structured_axes_unchanged": [
+        {
+          "subject": "A/r1",
+          "axis": "identity",
+          "state": "matched"
+        },
+        {
+          "subject": "A/r1",
+          "axis": "location_history",
+          "state": "matched"
+        }
+      ],
+      "expected_claim_state_unchanged": "conflict",
+      "axis_language": "既存effectにaxis stateとの矛盾がなく、状態の再分類をしていない。"
+    },
+    {
+      "code": "name_identity_inference",
+      "pointer": "docs/helix-harness/L4-basic-design/semantic-asset-lineage.json#/failure_classifications/17/effect",
+      "structured_axes_unchanged": [
+        {
+          "subject": "A/B",
+          "axis": "identity",
+          "state": "matched"
+        }
+      ],
+      "expected_claim_state_unchanged": "conflict",
+      "axis_language": "状態記述はstructured axisの欠落/不整合/unknownに合わせ、claim-state enumを設定しない。"
+    },
+    {
+      "code": "new_precondition",
+      "pointer": "docs/helix-harness/L4-basic-design/semantic-asset-lineage.json#/failure_classifications/18/effect",
+      "structured_axes_unchanged": [
+        {
+          "subject": "A/B",
+          "axis": "identity",
+          "state": "matched"
+        }
+      ],
+      "expected_claim_state_unchanged": "conflict",
+      "axis_language": "既存effectにaxis stateとの矛盾がなく、状態の再分類をしていない。"
+    },
+    {
+      "code": "oracle_mapping_missing",
+      "pointer": "docs/helix-harness/L4-basic-design/semantic-asset-lineage.json#/failure_classifications/19/effect",
+      "structured_axes_unchanged": [
+        {
+          "subject": "LS",
+          "axis": "oracle_mapping",
+          "state": "missing"
+        },
+        {
+          "subject": "LS",
+          "axis": "authority_mapping",
+          "state": "matched"
+        },
+        {
+          "subject": "LS",
+          "axis": "typed_edge_mapping",
+          "state": "matched"
+        }
+      ],
+      "expected_claim_state_unchanged": "unknown",
+      "axis_language": "状態記述はstructured axisの欠落/不整合/unknownに合わせ、claim-state enumを設定しない。"
+    },
+    {
+      "code": "oracle_revision_mismatch",
+      "pointer": "docs/helix-harness/L4-basic-design/semantic-asset-lineage.json#/failure_classifications/20/effect",
+      "structured_axes_unchanged": [
+        {
+          "subject": "LS",
+          "axis": "oracle_mapping",
+          "state": "conflict"
+        }
+      ],
+      "expected_claim_state_unchanged": "conflict",
+      "axis_language": "状態記述はstructured axisの欠落/不整合/unknownに合わせ、claim-state enumを設定しない。"
+    },
+    {
+      "code": "owner_boundary_change",
+      "pointer": "docs/helix-harness/L4-basic-design/semantic-asset-lineage.json#/failure_classifications/21/effect",
+      "structured_axes_unchanged": [
+        {
+          "subject": "LS",
+          "axis": "lineage_relation",
+          "state": "matched"
+        }
+      ],
+      "expected_claim_state_unchanged": "conflict",
+      "axis_language": "既存effectにaxis stateとの矛盾がなく、状態の再分類をしていない。"
+    },
+    {
+      "code": "record_as_acceptance",
+      "pointer": "docs/helix-harness/L4-basic-design/semantic-asset-lineage.json#/failure_classifications/23/effect",
+      "structured_axes_unchanged": [
+        {
+          "subject": "LS",
+          "axis": "lineage_relation",
+          "state": "matched"
+        }
+      ],
+      "expected_claim_state_unchanged": "unknown",
+      "axis_language": "既存effectにaxis stateとの矛盾がなく、状態の再分類をしていない。"
+    },
+    {
+      "code": "record_as_permission",
+      "pointer": "docs/helix-harness/L4-basic-design/semantic-asset-lineage.json#/failure_classifications/24/effect",
+      "structured_axes_unchanged": [
+        {
+          "subject": "LS",
+          "axis": "authority_mapping",
+          "state": "matched"
+        }
+      ],
+      "expected_claim_state_unchanged": "unknown",
+      "axis_language": "既存effectにaxis stateとの矛盾がなく、状態の再分類をしていない。"
+    },
+    {
+      "code": "reference_substitution",
+      "pointer": "docs/helix-harness/L4-basic-design/semantic-asset-lineage.json#/failure_classifications/27/effect",
+      "structured_axes_unchanged": [
+        {
+          "subject": "A/B",
+          "axis": "identity",
+          "state": "matched"
+        }
+      ],
+      "expected_claim_state_unchanged": "conflict",
+      "axis_language": "既存effectにaxis stateとの矛盾がなく、状態の再分類をしていない。"
+    },
+    {
+      "code": "relation_kind_missing",
+      "pointer": "docs/helix-harness/L4-basic-design/semantic-asset-lineage.json#/failure_classifications/28/effect",
+      "structured_axes_unchanged": [
+        {
+          "subject": "LX",
+          "axis": "lineage_relation",
+          "state": "missing"
+        }
+      ],
+      "expected_claim_state_unchanged": "unknown",
+      "axis_language": "状態記述はstructured axisの欠落/不整合/unknownに合わせ、claim-state enumを設定しない。"
+    },
+    {
+      "code": "revision_conflict",
+      "pointer": "docs/helix-harness/L4-basic-design/semantic-asset-lineage.json#/failure_classifications/29/effect",
+      "structured_axes_unchanged": [
+        {
+          "subject": "A/r1",
+          "axis": "semantic_revision",
+          "state": "conflict"
+        }
+      ],
+      "expected_claim_state_unchanged": "conflict",
+      "axis_language": "既存effectにaxis stateとの矛盾がなく、状態の再分類をしていない。"
+    },
+    {
+      "code": "scope_cross_binding",
+      "pointer": "docs/helix-harness/L4-basic-design/semantic-asset-lineage.json#/failure_classifications/30/effect",
+      "structured_axes_unchanged": [
+        {
+          "subject": "LS",
+          "axis": "lineage_relation",
+          "state": "unknown"
+        },
+        {
+          "subject": "LS",
+          "axis": "history_mapping",
+          "state": "unknown"
+        },
+        {
+          "subject": "LS",
+          "axis": "authority_mapping",
+          "state": "unknown"
+        },
+        {
+          "subject": "LS",
+          "axis": "oracle_mapping",
+          "state": "unknown"
+        },
+        {
+          "subject": "LS",
+          "axis": "typed_edge_mapping",
+          "state": "unknown"
+        }
+      ],
+      "expected_claim_state_unchanged": "conflict",
+      "axis_language": "既存effectにaxis stateとの矛盾がなく、状態の再分類をしていない。"
+    },
+    {
+      "code": "semantic_as_location",
+      "pointer": "docs/helix-harness/L4-basic-design/semantic-asset-lineage.json#/failure_classifications/31/effect",
+      "structured_axes_unchanged": [
+        {
+          "subject": "A/r1→r2",
+          "axis": "semantic_revision",
+          "state": "matched"
+        },
+        {
+          "subject": "A/r1→r2",
+          "axis": "oracle_mapping",
+          "state": "matched"
+        },
+        {
+          "subject": "A/r1→r2",
+          "axis": "typed_edge_mapping",
+          "state": "matched"
+        }
+      ],
+      "expected_claim_state_unchanged": "conflict",
+      "axis_language": "既存effectにaxis stateとの矛盾がなく、状態の再分類をしていない。"
+    },
+    {
+      "code": "semantic_identity_change",
+      "pointer": "docs/helix-harness/L4-basic-design/semantic-asset-lineage.json#/failure_classifications/32/effect",
+      "structured_axes_unchanged": [
+        {
+          "subject": "A/r1→r2",
+          "axis": "identity",
+          "state": "matched"
+        },
+        {
+          "subject": "A/r1→r2",
+          "axis": "semantic_revision",
+          "state": "matched"
+        }
+      ],
+      "expected_claim_state_unchanged": "conflict",
+      "axis_language": "既存effectにaxis stateとの矛盾がなく、状態の再分類をしていない。"
+    },
+    {
+      "code": "semantic_impact_missing",
+      "pointer": "docs/helix-harness/L4-basic-design/semantic-asset-lineage.json#/failure_classifications/33/effect",
+      "structured_axes_unchanged": [
+        {
+          "subject": "A/r1→r2",
+          "axis": "semantic_revision",
+          "state": "matched"
+        },
+        {
+          "subject": "A/r1→r2",
+          "axis": "oracle_mapping",
+          "state": "missing"
+        },
+        {
+          "subject": "A/r1→r2",
+          "axis": "typed_edge_mapping",
+          "state": "missing"
+        }
+      ],
+      "expected_claim_state_unchanged": "unknown",
+      "axis_language": "状態記述はstructured axisの欠落/不整合/unknownに合わせ、claim-state enumを設定しない。"
+    },
+    {
+      "code": "semantic_source_missing",
+      "pointer": "docs/helix-harness/L4-basic-design/semantic-asset-lineage.json#/failure_classifications/34/effect",
+      "structured_axes_unchanged": [
+        {
+          "subject": "A/r1 before",
+          "axis": "semantic_revision",
+          "state": "missing"
+        }
+      ],
+      "expected_claim_state_unchanged": "unknown",
+      "axis_language": "状態記述はstructured axisの欠落/不整合/unknownに合わせ、claim-state enumを設定しない。"
+    },
+    {
+      "code": "typed_edge_kind_mismatch",
+      "pointer": "docs/helix-harness/L4-basic-design/semantic-asset-lineage.json#/failure_classifications/35/effect",
+      "structured_axes_unchanged": [
+        {
+          "subject": "LS",
+          "axis": "typed_edge_mapping",
+          "state": "conflict"
+        }
+      ],
+      "expected_claim_state_unchanged": "conflict",
+      "axis_language": "状態記述はstructured axisの欠落/不整合/unknownに合わせ、claim-state enumを設定しない。"
+    },
+    {
+      "code": "typed_edge_mapping_missing",
+      "pointer": "docs/helix-harness/L4-basic-design/semantic-asset-lineage.json#/failure_classifications/36/effect",
+      "structured_axes_unchanged": [
+        {
+          "subject": "LS",
+          "axis": "typed_edge_mapping",
+          "state": "missing"
+        },
+        {
+          "subject": "LS",
+          "axis": "authority_mapping",
+          "state": "matched"
+        },
+        {
+          "subject": "LS",
+          "axis": "oracle_mapping",
+          "state": "matched"
+        }
+      ],
+      "expected_claim_state_unchanged": "unknown",
+      "axis_language": "状態記述はstructured axisの欠落/不整合/unknownに合わせ、claim-state enumを設定しない。"
+    },
+    {
+      "code": "unselected_operation",
+      "pointer": "docs/helix-harness/L4-basic-design/semantic-asset-lineage.json#/failure_classifications/37/effect",
+      "structured_axes_unchanged": [
+        {
+          "subject": "LS",
+          "axis": "lineage_relation",
+          "state": "matched"
+        }
+      ],
+      "expected_claim_state_unchanged": "conflict",
+      "axis_language": "既存effectにaxis stateとの矛盾がなく、状態の再分類をしていない。"
+    }
+  ],
+  "effect_corrections": [
+    {
+      "code": "base_revision_mismatch",
+      "before_effect": "対象revisionに一致しないlineageを対応済みとせず、不足/不整合の関係と履歴をunknownとしてrecord ownerへ返す。 関係のない既知axisまで消さない。実変換/保存/権限発行0。",
+      "after_effect": "対象revisionとの不一致を不整合として保全し、対応履歴として補わずrecord ownerへ返す。 関係のない既知axisまで消さない。実変換/保存/権限発行0。"
+    },
+    {
+      "code": "history_mapping_missing",
+      "before_effect": "relation/impact historyの不足をunknownとして保持し、全履歴保持を主張せずrecord ownerへ返す。 関係のない既知axisまで消さない。実変換/保存/権限発行0。",
+      "after_effect": "lineage historyの欠落を欠落のまま保全し、全履歴保持を主張せずrecord ownerへ返す。 関係のない既知axisまで消さない。実変換/保存/権限発行0。"
+    },
+    {
+      "code": "identity_conflict",
+      "before_effect": "相反するidentity対応を単一の対応として確定せず、identity状態をunknownに保ちrecord ownerへ返す。 関係のない既知axisまで消さない。実変換/保存/権限発行0。",
+      "after_effect": "相反するidentity対応を矛盾として保全し、単一identityへ併合せずrecord ownerへ返す。 関係のない既知axisまで消さない。実変換/保存/権限発行0。"
+    },
+    {
+      "code": "identity_missing",
+      "before_effect": "immutable asset IDの欠落をpath/nameから補わず、identityをunknownとしてrecord ownerへ返す。採番方式は後続設計へ残す。 関係のない既知axisまで消さない。実変換/保存/権限発行0。",
+      "after_effect": "immutable asset IDの欠落をpath/nameから補わず、ID欠落をrecord ownerへ返す。採番方式は後続設計へ残す。 関係のない既知axisまで消さない。実変換/保存/権限発行0。"
+    },
+    {
+      "code": "lineage_target_missing",
+      "before_effect": "記録にないlineage endpointを推測で補わず、該当関係/履歴をunknownとしてrecord ownerへ返す。 関係のない既知axisまで消さない。実変換/保存/権限発行0。",
+      "after_effect": "lineage endpointのidentity欠落を推測で補わず、relation対応はunknownとしてrecord ownerへ返す。 関係のない既知axisまで消さない。実変換/保存/権限発行0。"
+    },
+    {
+      "code": "name_identity_inference",
+      "before_effect": "nameの一致・変更だけでidentityを推定せず、asset IDと履歴に結び、対応が不明ならrecord ownerへ返す。 関係のない既知axisまで消さない。実変換/保存/権限発行0。",
+      "after_effect": "nameの一致・変更だけからidentityを推定せず、供給済みのasset ID・履歴で別々に照合する。 関係のない既知axisまで消さない。実変換/保存/権限発行0。"
+    },
+    {
+      "code": "oracle_mapping_missing",
+      "before_effect": "acceptance oracle対応の欠落・不明をunknown/不成立として返し、別項目で受入可能へ補わずoracle ownerへ返す。 関係のない既知axisまで消さない。実変換/保存/権限発行0。",
+      "after_effect": "acceptance oracle対応の欠落をそのまま返し、別項目で受入可能へ補わずoracle ownerへ返す。 関係のない既知axisまで消さない。実変換/保存/権限発行0。"
+    },
+    {
+      "code": "oracle_revision_mismatch",
+      "before_effect": "対象revisionに対応しないoracleを受入根拠として扱わず、oracle対応の不明をoracle ownerへ返す。 関係のない既知axisまで消さない。実変換/保存/権限発行0。",
+      "after_effect": "対象revisionとのoracle対応の不一致を不整合として保全し、受入根拠として扱わずoracle ownerへ返す。 関係のない既知axisまで消さない。実変換/保存/権限発行0。"
+    },
+    {
+      "code": "relation_kind_missing",
+      "before_effect": "relation種別の欠落を他のID/revision一致で補わず、対応関係をunknownとしてrecord ownerへ返す。 関係のない既知axisまで消さない。実変換/保存/権限発行0。",
+      "after_effect": "relation種別の欠落を他のID/revision一致で補わず、欠落のままrecord ownerへ返す。 関係のない既知axisまで消さない。実変換/保存/権限発行0。"
+    },
+    {
+      "code": "semantic_impact_missing",
+      "before_effect": "semantic diffの影響oracle/typed edgeに欠落・不明があれば該当項目をunknown/不成立とし、差分だけでclosureを主張しない。 関係のない既知axisまで消さない。実変換/保存/権限発行0。",
+      "after_effect": "semantic revisionの対応を保ちつつ、影響するoracle/typed edgeの欠落を個別に保持し、diffだけでclosureを主張しない。 関係のない既知axisまで消さない。実変換/保存/権限発行0。"
+    },
+    {
+      "code": "semantic_source_missing",
+      "before_effect": "before sourceが欠ける状態を差分なしと扱わず、revision/diffの判定を未決としてrecord ownerへ返す。 関係のない既知axisまで消さない。実変換/保存/権限発行0。",
+      "after_effect": "before sourceの欠落を保全し、差分なしとは扱わずrevision/diffの判定根拠として補わない。record ownerへ返す。 関係のない既知axisまで消さない。実変換/保存/権限発行0。"
+    },
+    {
+      "code": "typed_edge_kind_mismatch",
+      "before_effect": "typed edgeの関係種別が整合しない場合、ID一致だけで対応成立とせず、該当edgeをunknown/不成立としてtrace ownerへ返す。 関係のない既知axisまで消さない。実変換/保存/権限発行0。",
+      "after_effect": "typed edgeの関係種別の不一致を不整合として保全し、ID一致だけで対応成立とせずtrace ownerへ返す。 関係のない既知axisまで消さない。実変換/保存/権限発行0。"
+    },
+    {
+      "code": "typed_edge_mapping_missing",
+      "before_effect": "typed edgeの欠落/不明をreceiptや他項目で補わず、該当edgeをunknown/不成立としてtrace ownerへ返す。 関係のない既知axisまで消さない。実変換/保存/権限発行0。",
+      "after_effect": "typed edgeの欠落をreceiptや他項目で補わず、欠落のままtrace ownerへ返す。 関係のない既知axisまで消さない。実変換/保存/権限発行0。"
+    }
+  ],
+  "interpretation": {
+    "missing": "structured stateがmissingのaxisはeffectで「欠落」と表し、unknown/不成立へ置き換えない。",
+    "conflict": "structured stateがconflictのaxisはeffectで不一致・矛盾・不整合を保全し、unknownと呼ばない。",
+    "unknown": "structured stateがunknownのaxisのみunknownのまま記述し、別の既知axis stateを上書きしない。",
+    "matched": "structured stateがmatchedのaxisをeffectで欠落・不明へ再分類せず、別の未確認操作やclosureと分けて記述する。",
+    "claim_state": "全32行のexpected_claim_stateは変更せず、effect proseからclaim-state enumを新たに設定しない。"
+  },
+  "preserved": [
+    "全38行のcondition、expected_record_axes、expected_claim_state、operation/reference state、expected_side_effect_countは変更していない。",
+    "前回の代表6行、L9、L5/L8、fixed blind artifact、bindings、freeze、source pinsは変更していない。",
+    "各32行のeffectに無関係な既知axis保持と実変換/保存/権限発行0を残した。"
+  ],
+  "verification": {
+    "static_only": true,
+    "checks": [
+      "JSON parse",
+      "32行のaxis/effect語照合",
+      "effect欄以外の不変確認",
+      "expected_side_effect_count=0",
+      "固定artifact SHA-256",
+      "前回比較記録SHA-256",
+      "git diff --check"
+    ],
+    "algorithm_or_legacy_execution": "none"
+  }
+}

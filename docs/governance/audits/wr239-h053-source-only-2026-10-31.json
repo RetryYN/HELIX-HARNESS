@@ -1,0 +1,548 @@
+{
+  "record_type": "source-only semantic derivation",
+  "scope": "HARNESS-053 semantic-asset-lineage; blinded from existing L4 failure_classifications/effect rows and L5/L8/L9 content",
+  "base_revision": "73193d8d37845a23e57330db99dd53bbc0e7004c",
+  "sources": [
+    {
+      "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+      "sha256": "a3b907cdc316117d4684632f9a1cbf36125eb6e6172f9cfc286060617583d7be",
+      "pointers": [
+        "/requirements/19",
+        "/requirements/20",
+        "/requirements/21",
+        "/requirements/22"
+      ]
+    },
+    {
+      "path": "docs/helix-harness/L3-requirements/nfr-grade.json",
+      "sha256": "b62f823d1c2edfd192ba8aeccb71159f3322aab17fa991d7ceb85712d8fbd486",
+      "pointers": [
+        "/requirements/3"
+      ]
+    },
+    {
+      "path": "docs/helix-harness/L3-requirements/business-requirements.json",
+      "sha256": "25e0e8f8ee8acbc220483ab6854155218193861086cf757f933e2cd6263f444d",
+      "pointers": [
+        "/requirements/3"
+      ]
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/functional-verification.json",
+      "sha256": "fc58ad2268746d7924ac9be33e8f3f75e6d3c2cc619e27fbc1ddc34edd065cb2",
+      "pointers": [
+        "/cases/19",
+        "/cases/20",
+        "/cases/21",
+        "/cases/22"
+      ]
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/nfr-verification.json",
+      "sha256": "578b1b368bdd3878ade8fcab77cc47320b8acc1d2d967af1708b333bea2f36b0",
+      "pointers": [
+        "/cases/3"
+      ]
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/business-verification.json",
+      "sha256": "3a9982ef2e59e3d027ce8e5cd72b9879b6224a8e4ea74b657bf9b67c90934319",
+      "pointers": [
+        "/cases/3"
+      ]
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "sha256": "592aa87623b2e29c712d1241e11c2290ec0c5fd2c4e3a9ab2bce8da89e1be835",
+      "pointers": [
+        "HARNESS-L10-053-F01",
+        "HARNESS-L10-053-F02",
+        "HARNESS-L10-053-F03",
+        "HARNESS-L10-053-F04"
+      ]
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/nfr-verification.md",
+      "sha256": "2e2ad49d2b61dd465cd34437138e042ee438cf57ce63cb681db340e0a93646e4",
+      "pointers": [
+        "HARNESS-L10-053-N01"
+      ]
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/business-verification.md",
+      "sha256": "dc80b8a615d81314b2cb0a6e615cccfad56459a04662ca061b4ece2382d0f430",
+      "pointers": [
+        "HARNESS-L10-053-B01"
+      ]
+    },
+    {
+      "path": "docs/helix-harness/L4-basic-design/semantic-asset-lineage.json",
+      "sha256": "9fd27d90c3bc8610e7d132bf075a9b2ea6e5ac570e55ea2e0741947576eafbc7",
+      "pointers": [
+        "/contracts/0",
+        "/contracts/1",
+        "/contracts/2",
+        "/contracts/3",
+        "/contracts/4",
+        "/contracts/5"
+      ]
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L4-basic-design/data.md",
+      "sha256": "b94e3ec801d6275af18976abdd88eaff44da23494ce654dbde9c3fa2ebaae1c6",
+      "legacy_asset_id": "LEGACY-ASSET-A4DD57E39031B1402494"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L5-detailed-design/physical-data.md",
+      "sha256": "a3064a3b705adcf0a5f76c3210aa431d87b7971aed2fe88f948a323a40c7772f",
+      "legacy_asset_id": "LEGACY-ASSET-310E87378AFE8095809C"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/reference/system-review-triage-2026-07-12.md",
+      "sha256": "06596828ece169f54cbb17c4a3f34bc68042a873846ef98bae6de082354cecc1",
+      "legacy_asset_id": "LEGACY-ASSET-36AC5308AB06DEF9DE4B",
+      "failure_reference": "IMP-002: duplicate-ID definition detection absent"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/reference/quality-sweep4-2026-07-12.md",
+      "sha256": "364b9d70fa027525bd67f76b2b5256381eb2ef6a14867ead6f88ad267a0791be",
+      "legacy_asset_id": "LEGACY-ASSET-CCA6C60FBB1D735EC38E",
+      "failure_reference": "Q8: duplicated micro utilities with drift"
+    }
+  ],
+  "derivation": {
+    "allowed_source_content": "JSON source extraction displayed id/title and input/behavior/output/boundary prose, plus the same-source fields described in exposure_note. L10 case prose was read from corresponding 053 markdown sections after JSON pointer mapping.",
+    "effect_basis": "Only explicit L3 obligation, L10 expected_observation/failure_observation, and L4 contracts/0..5 behavior, inputs, outputs, and boundary prose. No implementation behavior inferred.",
+    "claim_state_rule": "Use supported only when the exact branch and outcome are stated by the cited requirement/case/contract. Use unknown if the branch outcome, affected scope, or applicable owner cannot be uniquely resolved from those sources; do not fill gaps from analogous leaves.",
+    "deduplication_rule": "Collapse leaves only when input condition, incorrect inference, retained/held outcome, and affected scope are all identical. Keep separately named operation kinds, identity/revision axes, or independently missing authority/oracle/typed-edge components separate even where the general outcome is unknown.",
+    "unresolved_limits": [
+      "No design choice for ID encoding, numbering, or persistence.",
+      "No authority transfer, acceptance, storage/rollback, or transformation operation is inferred from a record match.",
+      "No claim about L5/L8/L9 behavior or existing comparative effect rows."
+    ],
+    "exposure_note": "初期抽出でL3 requirementのparent・obligation・oracle_refとL4 contractのrefs・backflowを追加表示した。これらは同じ許可されたL3/L4 sourceの範囲内であり、既存L4 failure_classifications、対象L5/L8/L9本文・期待・比較は表示していない。",
+    "prefreeze_provenance_correction": {
+      "previous_sha256": "1408aefe3c78c44ba705e5bdcb3b5842515857f66cd21820ef9f8eea8e2eff96",
+      "change": "rootが担当者の申告に従い閲覧範囲の注記のみ訂正。32件の導出内容は変更しない。"
+    }
+  },
+  "records": [
+    {
+      "id": "H053-S01",
+      "contract": "HARNESS-L4-053-F01",
+      "negative_condition": "異なるasset IDが同じpathを再利用する",
+      "expected_effect": "pathの再利用だけでは旧identityへ併合せず、競合/対応不明をunknownとして同一性を成立扱いしない",
+      "claim_state": "supported",
+      "source_pointers": [
+        "/requirements/19",
+        "/cases/19",
+        "/contracts/0"
+      ]
+    },
+    {
+      "id": "H053-S02",
+      "contract": "HARNESS-L4-053-F01",
+      "negative_condition": "同名異義の記録を同じassetとして扱う",
+      "expected_effect": "名称一致で同一と返さず、asset IDと履歴に結ぶ",
+      "claim_state": "supported",
+      "source_pointers": [
+        "/requirements/19",
+        "/cases/19",
+        "/contracts/0"
+      ]
+    },
+    {
+      "id": "H053-S03",
+      "contract": "HARNESS-L4-053-F01",
+      "negative_condition": "identity重複または対応競合を隠し、単一identityを返す",
+      "expected_effect": "競合/対応不明をunknownに保持し、path/nameのみの同一視を成立させない",
+      "claim_state": "supported",
+      "source_pointers": [
+        "/requirements/19",
+        "/cases/19",
+        "/contracts/0"
+      ]
+    },
+    {
+      "id": "H053-S04",
+      "contract": "HARNESS-L4-053-F02",
+      "negative_condition": "意味不変のlocation変更だけで新しいsemantic revisionを発行する",
+      "expected_effect": "意味revisionとせず同一identityのlocation履歴として分類する",
+      "claim_state": "supported",
+      "source_pointers": [
+        "/requirements/20",
+        "/cases/20",
+        "/contracts/1"
+      ]
+    },
+    {
+      "id": "H053-S05",
+      "contract": "HARNESS-L4-053-F02",
+      "negative_condition": "実際の意味差分をlocation履歴だけとして隠す",
+      "expected_effect": "誤ったrevision分類を成立扱いせず、意味軸の差分と影響を返す",
+      "claim_state": "supported",
+      "source_pointers": [
+        "/requirements/20",
+        "/cases/20",
+        "/contracts/1"
+      ]
+    },
+    {
+      "id": "H053-S06",
+      "contract": "HARNESS-L4-053-F02",
+      "negative_condition": "semantic diffを作るが影響するoracleへの結び付けを欠く",
+      "expected_effect": "oracle影響の不足をunknown/不成立として残し、差分だけでclosureを主張しない",
+      "claim_state": "unknown",
+      "source_pointers": [
+        "/requirements/20",
+        "/cases/20",
+        "/contracts/1"
+      ]
+    },
+    {
+      "id": "H053-S07",
+      "contract": "HARNESS-L4-053-F02",
+      "negative_condition": "semantic diffを作るが影響するtyped edgeへの結び付けを欠く",
+      "expected_effect": "typed-edge影響の不足をunknown/不成立として残し、差分だけでclosureを主張しない",
+      "claim_state": "unknown",
+      "source_pointers": [
+        "/requirements/20",
+        "/cases/20",
+        "/contracts/1"
+      ]
+    },
+    {
+      "id": "H053-S08",
+      "contract": "HARNESS-L4-053-F03",
+      "negative_condition": "供給されたrename履歴を別identityの生成として対応付ける",
+      "expected_effect": "rename履歴は同identityのlocation履歴へ対応させ、実変換成立とは扱わない",
+      "claim_state": "supported",
+      "source_pointers": [
+        "/requirements/21",
+        "/cases/21",
+        "/contracts/2"
+      ]
+    },
+    {
+      "id": "H053-S09",
+      "contract": "HARNESS-L4-053-F03",
+      "negative_condition": "供給されたmove履歴を別identityの生成として対応付ける",
+      "expected_effect": "move履歴は同identityのlocation履歴へ対応させ、実変換成立とは扱わない",
+      "claim_state": "supported",
+      "source_pointers": [
+        "/requirements/21",
+        "/cases/21",
+        "/contracts/2"
+      ]
+    },
+    {
+      "id": "H053-S10",
+      "contract": "HARNESS-L4-053-F03",
+      "negative_condition": "split記録で前後identity/revisionの対応が切れている",
+      "expected_effect": "不足する親子関係と影響historyをunknownへ残し、全履歴保持を主張しない",
+      "claim_state": "supported",
+      "source_pointers": [
+        "/requirements/21",
+        "/cases/21",
+        "/contracts/2"
+      ]
+    },
+    {
+      "id": "H053-S11",
+      "contract": "HARNESS-L4-053-F03",
+      "negative_condition": "merge記録で統合元と統合先の対応が切れている",
+      "expected_effect": "不足する統合関係をunknownへ残し、全履歴保持を主張しない",
+      "claim_state": "supported",
+      "source_pointers": [
+        "/requirements/21",
+        "/cases/21",
+        "/contracts/2"
+      ]
+    },
+    {
+      "id": "H053-S12",
+      "contract": "HARNESS-L4-053-F03",
+      "negative_condition": "supersede記録で後継identity/revisionの対応が切れている",
+      "expected_effect": "不足する後継関係をunknownへ残し、全履歴保持を主張しない",
+      "claim_state": "supported",
+      "source_pointers": [
+        "/requirements/21",
+        "/cases/21",
+        "/contracts/2"
+      ]
+    },
+    {
+      "id": "H053-S13",
+      "contract": "HARNESS-L4-053-F03",
+      "negative_condition": "関係種別が欠ける、lineage先がない、またはbase revisionが一致しない",
+      "expected_effect": "不足関係と影響historyをunknownへ残し、実操作成功を主張しない",
+      "claim_state": "supported",
+      "source_pointers": [
+        "/requirements/21",
+        "/cases/21",
+        "/contracts/2"
+      ]
+    },
+    {
+      "id": "H053-S14",
+      "contract": "HARNESS-L4-053-F04",
+      "negative_condition": "lineage記録からauthority対応だけが欠ける/不明",
+      "expected_effect": "authority項目をunknown/不成立で返し、history等でauthority保持へ補わない",
+      "claim_state": "supported",
+      "source_pointers": [
+        "/requirements/22",
+        "/cases/22",
+        "/contracts/3"
+      ]
+    },
+    {
+      "id": "H053-S15",
+      "contract": "HARNESS-L4-053-F04",
+      "negative_condition": "lineage記録からacceptance oracleだけが欠ける/不明",
+      "expected_effect": "oracle項目をunknown/不成立で返し、authority等で受入可能へ補わない",
+      "claim_state": "supported",
+      "source_pointers": [
+        "/requirements/22",
+        "/cases/22",
+        "/contracts/3"
+      ]
+    },
+    {
+      "id": "H053-S16",
+      "contract": "HARNESS-L4-053-F04",
+      "negative_condition": "lineage記録からtyped edgeだけが欠ける/不明",
+      "expected_effect": "typed-edge項目をunknown/不成立で返し、receipt等でlineage closureへ補わない",
+      "claim_state": "supported",
+      "source_pointers": [
+        "/requirements/22",
+        "/cases/22",
+        "/contracts/3"
+      ]
+    },
+    {
+      "id": "H053-S17",
+      "contract": "HARNESS-L4-053-F04",
+      "negative_condition": "receiptまたは他の成立項目を欠落項目の代替証拠とする",
+      "expected_effect": "該当項目のunknownを保持し、別項目の成立から全closure成功へ昇格しない",
+      "claim_state": "supported",
+      "source_pointers": [
+        "/requirements/22",
+        "/cases/22",
+        "/contracts/3"
+      ]
+    },
+    {
+      "id": "H053-S18",
+      "contract": "HARNESS-L4-053-N01",
+      "negative_condition": "053→042のsource revision/再現可能性の意味不整合を解決済みとして消す",
+      "expected_effect": "参照不整合を未決として保持し、042をprovenance保証として消費しない",
+      "claim_state": "supported",
+      "source_pointers": [
+        "/requirements/3",
+        "/cases/3",
+        "/contracts/4"
+      ]
+    },
+    {
+      "id": "H053-S19",
+      "contract": "HARNESS-L4-053-N01",
+      "negative_condition": "未決参照の代替asset IDを推測する",
+      "expected_effect": "代替IDを生成せず、ownerの参照訂正/適用判断まで未決を保持する",
+      "claim_state": "supported",
+      "source_pointers": [
+        "/requirements/3",
+        "/cases/3",
+        "/contracts/4"
+      ]
+    },
+    {
+      "id": "H053-S20",
+      "contract": "HARNESS-L4-053-N01",
+      "negative_condition": "初回照合からrename実操作を選ぶ/開始する",
+      "expected_effect": "操作を初回選択せず、053 ownerの参照訂正/適用判断まで保留する",
+      "claim_state": "supported",
+      "source_pointers": [
+        "/requirements/3",
+        "/cases/3",
+        "/contracts/4"
+      ]
+    },
+    {
+      "id": "H053-S21",
+      "contract": "HARNESS-L4-053-N01",
+      "negative_condition": "初回照合からmove実操作を選ぶ/開始する",
+      "expected_effect": "操作を初回選択せず、053 ownerの参照訂正/適用判断まで保留する",
+      "claim_state": "supported",
+      "source_pointers": [
+        "/requirements/3",
+        "/cases/3",
+        "/contracts/4"
+      ]
+    },
+    {
+      "id": "H053-S22",
+      "contract": "HARNESS-L4-053-N01",
+      "negative_condition": "初回照合からsplit実操作を選ぶ/開始する",
+      "expected_effect": "操作を初回選択せず、053 ownerの参照訂正/適用判断まで保留する",
+      "claim_state": "supported",
+      "source_pointers": [
+        "/requirements/3",
+        "/cases/3",
+        "/contracts/4"
+      ]
+    },
+    {
+      "id": "H053-S23",
+      "contract": "HARNESS-L4-053-N01",
+      "negative_condition": "初回照合からmerge実操作を選ぶ/開始する",
+      "expected_effect": "操作を初回選択せず、053 ownerの参照訂正/適用判断まで保留する",
+      "claim_state": "supported",
+      "source_pointers": [
+        "/requirements/3",
+        "/cases/3",
+        "/contracts/4"
+      ]
+    },
+    {
+      "id": "H053-S24",
+      "contract": "HARNESS-L4-053-N01",
+      "negative_condition": "初回照合からsupersede実操作を選ぶ/開始する",
+      "expected_effect": "操作を初回選択せず、053 ownerの参照訂正/適用判断まで保留する",
+      "claim_state": "supported",
+      "source_pointers": [
+        "/requirements/3",
+        "/cases/3",
+        "/contracts/4"
+      ]
+    },
+    {
+      "id": "H053-S25",
+      "contract": "HARNESS-L4-053-N01",
+      "negative_condition": "初回照合からDesign Refactor実操作を選ぶ/開始する",
+      "expected_effect": "操作を初回選択せず、053 ownerの参照訂正/適用判断まで保留する",
+      "claim_state": "supported",
+      "source_pointers": [
+        "/requirements/3",
+        "/cases/3",
+        "/contracts/4"
+      ]
+    },
+    {
+      "id": "H053-S26",
+      "contract": "HARNESS-L4-053-N01",
+      "negative_condition": "未決依存操作を開始する、または局所照合も全停止/全成立へ一律化する",
+      "expected_effect": "依存する操作だけ理由/owner付きで保留し、無関係な局所照合は区別して保持する",
+      "claim_state": "supported",
+      "source_pointers": [
+        "/requirements/3",
+        "/cases/3",
+        "/contracts/4"
+      ]
+    },
+    {
+      "id": "H053-S27",
+      "contract": "HARNESS-L4-053-B01",
+      "negative_condition": "対応記録だけから永続保存の成立を主張する",
+      "expected_effect": "保存は記録成果から生成せず、実保存ownerに残す",
+      "claim_state": "supported",
+      "source_pointers": [
+        "/requirements/3",
+        "/cases/3",
+        "/contracts/5"
+      ]
+    },
+    {
+      "id": "H053-S28",
+      "contract": "HARNESS-L4-053-B01",
+      "negative_condition": "対応記録だけからrollbackの成立を主張する",
+      "expected_effect": "rollbackは記録成果から生成せず、実操作ownerに残す",
+      "claim_state": "supported",
+      "source_pointers": [
+        "/requirements/3",
+        "/cases/3",
+        "/contracts/5"
+      ]
+    },
+    {
+      "id": "H053-S29",
+      "contract": "HARNESS-L4-053-B01",
+      "negative_condition": "対応記録だけから権限またはauthority移転を主張する",
+      "expected_effect": "実権限/authority裁定を記録成果で代替しない。項目別ownerの判断を残す",
+      "claim_state": "supported",
+      "source_pointers": [
+        "/requirements/3",
+        "/cases/3",
+        "/contracts/5"
+      ]
+    },
+    {
+      "id": "H053-S30",
+      "contract": "HARNESS-L4-053-B01",
+      "negative_condition": "対応記録だけから要求採択/受入を主張する",
+      "expected_effect": "採択とPO受入を記録成果から生成せず、既存ownerに残す",
+      "claim_state": "supported",
+      "source_pointers": [
+        "/requirements/3",
+        "/cases/3",
+        "/contracts/5"
+      ]
+    },
+    {
+      "id": "H053-S31",
+      "contract": "HARNESS-L4-053-B01",
+      "negative_condition": "053記録で003/004/016のrevision/trace/stale/diff条件を再定義する",
+      "expected_effect": "既存条件を再定義しない。具体的な既存適用差は今回の許可sourceのみでは一意に定まらずunknown",
+      "claim_state": "unknown",
+      "source_pointers": [
+        "/requirements/3",
+        "/cases/3",
+        "/contracts/5"
+      ]
+    },
+    {
+      "id": "H053-S32",
+      "contract": "HARNESS-L4-053-B01",
+      "negative_condition": "052の採択または実施順序を前提として追加する",
+      "expected_effect": "052の採択/順序を新設前提とせず、実施順序の具体値はunknown",
+      "claim_state": "unknown",
+      "source_pointers": [
+        "/requirements/3",
+        "/cases/3",
+        "/contracts/5"
+      ]
+    }
+  ],
+  "legacy_comparison": {
+    "assets_read_read_only": [
+      {
+        "asset_id": "LEGACY-ASSET-A4DD57E39031B1402494",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L4-basic-design/data.md",
+        "lines": "44,183",
+        "observation": "旧A-90/ADR-004はroster/skill catalogをfilesystem正本からscan-on-demandする非entityと決定し、永続stateを持たせない。"
+      },
+      {
+        "asset_id": "LEGACY-ASSET-310E87378AFE8095809C",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L5-detailed-design/physical-data.md",
+        "lines": "256,292",
+        "observation": "旧automation_assetsはasset_idに加えてpath等を記録し、source/evidence pathを要求する。新053のpath非依存identityや意味revision契約と同一視しない。"
+      }
+    ],
+    "failure_records_read_read_only": [
+      {
+        "asset_id": "LEGACY-ASSET-36AC5308AB06DEF9DE4B",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/reference/system-review-triage-2026-07-12.md",
+        "line": "26",
+        "reference": "IMP-002",
+        "observation": "重複ID定義検出用lintが無いという失敗/欠陥記録。053のidentity競合条件に隣接する根拠だが、同一原因とは断定しない。"
+      },
+      {
+        "asset_id": "LEGACY-ASSET-CCA6C60FBB1D735EC38E",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/reference/quality-sweep4-2026-07-12.md",
+        "line": "28",
+        "reference": "Q8",
+        "observation": "micro utility重複と実装driftの記録。資産重複・差分可視性に隣接するが、semantic lineageの直接事例とは断定しない。"
+      }
+    ],
+    "preserve_and_change": "旧のpath/catalog参照と重複検出の問題を履歴証拠として保持する。新053は承認済みsource proseに従いimmutable asset IDとlocation履歴、意味revision、供給済み関係記録、unknown/holdを区別する。旧runtime/DB/schema/test/CIの機構を再利用・実行しない。直接対応する失敗原因はunknownのまま。"
+  }
+}
