@@ -1,0 +1,269 @@
+{
+  "evidence_id": "WR231-F01-SCFB0192-binding-recheck-20261031",
+  "evidence_kind": "scaffold_static_comparison_after",
+  "authority_effect": "none",
+  "binding_id": "SCF-B-0192",
+  "binding_scope": "Retain WR223 L5/L8 expectations and BASE history; record the later WR231 L4/L9 source delta and correct artifact-reference placement.",
+  "point_in_time_artifacts": [
+    {
+      "path": "scaffold/research/wr223-f01-l5-l8-20261031/README.md",
+      "sha256": "7e5fe7f82acac693785d4589f9e14752d632dc6ae414c6b652dd03c467d9f60c",
+      "status": "restored byte-for-byte from pre-WR231 HEAD; historical snapshot unchanged"
+    },
+    {
+      "path": "scaffold/research/wr223-f01-l5-l8-20261031/verification-summary.json",
+      "sha256": "7f2f84406dffde75ab351eed7c436031c6e01fc8ce1939d9c258606d0fda6ad4",
+      "status": "restored byte-for-byte from pre-WR231 HEAD; historical snapshot unchanged"
+    }
+  ],
+  "fixed_base": {
+    "revision": "dd5931cfff4ff786da2ced44de2a40529edf7b71",
+    "l4_path": "docs/helix-harness/L4-basic-design/tdd-development-flow.json",
+    "l4_sha256": "8dfbe628d7beb9b449a3ec48e98b7ed89ebbb4be1ea9b3f061dfd02ba464ea2f",
+    "l9_path": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json",
+    "l9_sha256": "3d2257ee9d0f33f367377a3c379af9852973dc11d87c1f23f8f193724adebeb2",
+    "prior_observation": "At this BASE, five F01 negative rows existed and the r2 sixth untraceable condition had no L4/L9 row."
+  },
+  "current_sources": [
+    {
+      "path": "docs/helix-harness/L4-basic-design/tdd-development-flow.json",
+      "sha256": "0636c1e7609777eea2811fbcb7dd980e5bae764c622ce57784dce50da5aa152e"
+    },
+    {
+      "path": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json",
+      "sha256": "4f64977ee8b2900733a823d5b9755f567952caef8cf323036a9b0776202d2462"
+    }
+  ],
+  "fixed_wr231_artifact": {
+    "path": "scaffold/research/wr231-tdd-f01-untraceable-l4l9-20261031/source/f01-blind-retry.json",
+    "sha256": "2a53b965d023d81e6add971f8693cf633cfd6152c700e863a13da65568de3983",
+    "issue_comment": "https://github.com/RetryYN/HELIX-HARNESS/issues/3510#issuecomment-6532785305",
+    "candidate_failure_codes": [
+      "unknown",
+      "unknown"
+    ]
+  },
+  "comparison": {
+    "method": "Run the WR223 static candidate validator: pin and parse exact BASE L4/L9 bytes; remove only the two named WR231 witness ids from current F01 rows; compare complete current JSON structures with BASE.",
+    "result": "pass",
+    "only_delta": "Exactly two compact WR231 F01 witness rows appended to L4 and L9.",
+    "existing_material": "BASE L4 five negative rows, failure conditions, output contract; BASE L9 five negative rows, normal fixture and expected material remain structurally identical.",
+    "four_way": "No L5/L8 mapping or candidate expected projection added. Classification remains unresolved; this comparison does not establish four-way completion."
+  },
+  "binding_reference_correction": {
+    "prior_committed_state_revision": "c8f20a4f91456f6d5e5c16e1be0083c34aab6651",
+    "prior_scaffold_upstream_reference": {
+      "path": "scaffold/research/wr223-f01-l5-l8-20261031/source/f01-blind-draft-r2.json",
+      "sha256": "fa047d5d871913b696ba5e01d9227ce13a68bc827ff6e8c66cc29d8e69d7e647"
+    },
+    "later_wr231_scaffold_reference_removed_from_upstream": {
+      "path": "scaffold/research/wr231-tdd-f01-untraceable-l4l9-20261031/source/f01-blind-retry.json",
+      "sha256": "2a53b965d023d81e6add971f8693cf633cfd6152c700e863a13da65568de3983"
+    },
+    "final_placement": "Both scaffold references are retained as exact candidate-artifact SHA entries in SCF-B-0192 verification.oracles; no scaffold path remains in its upstream array.",
+    "current_l4_l9_pins": "SCF-B-0192 upstream pins now resolve to current L4/L9 bytes; previous BASE hashes and the prior no-row fact are retained in their pin notes.",
+    "prior_binding_file_sha256": "9ea72bb4bb3724bddf3cee06c5558a838c2aabb06e7068b4a89c5319508b71d7",
+    "upstream_scope_validation": "pass: SCF-B-0192 upstream contains no scaffold path; fixed r2 and WR231 bytes are retained as verification.oracles artifact SHA entries.",
+    "additional_bindings": {
+      "SCF-B-0185": {
+        "pre_correction_worktree_sha256": "7c65f4caab414b0b7b113582f79681a94ab74614fbfbb39c8779693419dbaf09",
+        "pre_worktree_HEAD_sha256": "19544b30e5fd0fed8dea8070c217ee3f99e2726ddb07bf2ab96c35edd6e5618a",
+        "removed_upstream_reference": {
+          "path": "scaffold/research/wr206-tdd-flow-neg-4way-pr-a-20261031/README.md",
+          "sha256": "d5d227bc777b2161c10f470bbd9c80daa6c73d58398c382d99fcdf8cf37825ee"
+        },
+        "final_placement": "verification.oracles exact candidate artifact SHA-256; README artifact bytes unchanged",
+        "historical_candidate_files": [
+          {
+            "path": "docs/helix-harness/L5-detail-design/tdd-development-flow.json",
+            "revision": "4c0e29b6d18a8943514ffd25a27cd4e83c11cff0",
+            "sha256": "426a0b4299a76eaf7a097d33ab56e16244a69163c878ddb265f8bdc4b465b742"
+          },
+          {
+            "path": "docs/helix-harness/L8-unit-verification/tdd-development-flow.json",
+            "revision": "92cb38ffb792151ddd8029d654ca700126d02681",
+            "sha256": "9f52fe3f90769cdacee9d147dceb0fabb2c3639086ed6b7"
+          }
+        ]
+      },
+      "SCF-B-0193": {
+        "pre_correction_worktree_sha256": "eb0fe311ea5e24f6a9669b7ce258e21e71e63b77822a3e437ea39f2ea7c55887",
+        "removed_upstream_references": [
+          {
+            "path": "scaffold/research/wr231-tdd-f01-untraceable-l4l9-20261031/source/f01-blind-retry.json",
+            "sha256": "2a53b965d023d81e6add971f8693cf633cfd6152c700e863a13da65568de3983"
+          },
+          {
+            "path": "scaffold/research/wr231-tdd-f01-untraceable-l4l9-20261031/README.md",
+            "sha256": "21bcdb8d411159eb9e3b682d85d433b35e24ff223bb7cfd69abceb3cd606cfa9"
+          }
+        ],
+        "final_placement": "both exact SHA references are in verification.oracles; source and README bytes unchanged"
+      }
+    },
+    "current_wr223_f01_sources": [
+      {
+        "path": "docs/helix-harness/L5-detail-design/tdd-development-flow.json",
+        "revision": "87e5d15cdb909e88fd5d132ae7ad1d32c14b71d5",
+        "sha256": "fce881931580d26381df12721dc740a82b685e29c2039a5e1ff838475824c176"
+      },
+      {
+        "path": "docs/helix-harness/L8-unit-verification/tdd-development-flow.json",
+        "revision": "07b3462402992d51337b583f9f3d1f895c82e7c8",
+        "sha256": "ee1648c067009e819d41f869733290042e103c39e41c0980d29dcdb46c107392"
+      }
+    ],
+    "note": "SCF-B-0185 historical WR206 L5/L8 file hashes are preserved as exact artifact oracles and checked against their fixed revisions. Current L5/L8 documents include later WR223 F01 candidate material; WR206 F02 validator binds the current exact WR223 revisions and verifies the F02 row/canonical unit cases remain unchanged.",
+    "historical_wr223_delta": {
+      "WR206_BASE_revision": "fa3d2d515ce8df79c0a74d5360a4d1254863a6f1",
+      "WR206_BASE_L4_sha256": "8dfbe628d7beb9b449a3ec48e98b7ed89ebbb4be1ea9b3f061dfd02ba464ea2f",
+      "WR206_BASE_L9_sha256": "3d2257ee9d0f33f367377a3c379af9852973dc11d87c1f23f8f193724adebeb2",
+      "later_change": "WR223 adds only L8 F01 candidate_unit_design versus WR206 BASE; fixed L8 revision 07b3462402992d51337b583f9f3d1f895c82e7c8 SHA ee1648c067009e819d41f869733290042e103c39e41c0980d29dcdb46c107392 is byte-compared. All other L8 fields/canonical unit cases match BASE.",
+      "L5": "current WR223 L5 bytes fixed at 87e5d15cdb909e88fd5d132ae7ad1d32c14b71d5 SHA fce881931580d26381df12721dc740a82b685e29c2039a5e1ff838475824c176; WR206 F02 contract is separately compared with its BASE row and historical hash retained."
+    }
+  },
+  "validation": {
+    "wr223_validator_path": "scaffold/research/wr223-f01-l5-l8-20261031/validate_static_candidate.py",
+    "wr223_validator_sha256": "13351edd53a8754ea9342c401469746d6aa8fbc06fbba4d96789b9ce90e8ee60",
+    "wr223_validator_result": "pass: original BASE checks retained, exactly two WR231 witness rows removed before full L4/L9 structural comparison; L8 candidate_unit_design fixed revision check preserved.",
+    "scfctl_validate": "pass: bindings=181 fail=0",
+    "scfctl_stale": "pass: stale=0 after 3 affected bindings were rebound to current L4/L9 bytes following fixed-BASE/exact-delta verification; L5/L8 semantic mapping remains unresolved.",
+    "git_diff_check": "pass",
+    "not_run": [
+      "L4/L5 algorithms",
+      "old/new runtime, test suites, CI"
+    ],
+    "remaining_unresolved": [
+      "L5/L8 semantic recompare to the two WR231 witnesses",
+      "failure-code meaning/classification",
+      "formal four-way completion"
+    ],
+    "design_verification_checker_check_child": {
+      "exit_code": 1,
+      "overall_passed": false,
+      "L4_L9_pair": "pass",
+      "L5_L8_pair": "pass",
+      "negative_4way": {
+        "passed": false,
+        "counts": {
+          "L4": 30,
+          "L9": 30,
+          "L8": 0,
+          "L5": 0
+        },
+        "matched": 0,
+        "failure_count": 35
+      },
+      "ownership_cap_failures": {
+        "L9": 35,
+        "L8": 1647
+      },
+      "pins": "all four groups pass (15/14/25/25)",
+      "meaning": "L5/L8 semantic mappings remain unresolved; no 4-way completion is asserted."
+    },
+    "all_three_bindings_upstream_scope": "pass: upstream paths in SCF-B-0185/0192/0193 remain outside scaffold; fixed artifact byte SHA refs in verification.oracles resolve exactly.",
+    "wr206_validator_path": "scaffold/research/wr206-f02-l5-l8-pr-b-20261031/validate_static_candidate.py",
+    "wr206_validator_sha256": "12fcb70eb60a574af1811e159fb669297bf3c9888a1d953e5f4a7fde736a3d52",
+    "wr206_validator_result": "pass: fixed BASE and historical WR206 hashes retained; exact two WR231 rows stripped; fixed WR223 L8 F01 candidate_unit_design and all unrelated L8 fields pinned.",
+    "wr231_validator_path": "scaffold/research/wr231-tdd-f01-untraceable-l4l9-20261031/validate_static_candidate.py",
+    "wr231_validator_sha256": "a9a6d81e45c0a2c4bf6f46c9798fb6729373b1b31c7b9d671a3c5c11292a9c52",
+    "wr231_validator_result": "pass: verifies candidate semantics, exact two-row delta, binding artifact SHA pins, and current source bytes.",
+    "existing_validator_history": {
+      "WR223": {
+        "pre_wr231_revision": "c8f20a4f91456f6d5e5c16e1be0083c34aab6651",
+        "pre_wr231_sha256": "60e8fdc132be18131f42e48f6a617e6391a883efb7e3deb4f6086c3db8029307",
+        "current_sha256": "aea6ec23e5824b390fc23004ab4f06fc7e7610f7e468c2746a5016e08a972a79",
+        "result": "pass; fixed BASE checks retained and only two WR231 witness rows excluded for full structural comparison."
+      },
+      "WR206": {
+        "pre_wr231_revision": "c8f20a4f91456f6d5e5c16e1be0083c34aab6651",
+        "pre_wr231_sha256": "0f71c5fce995ca7defecfcec7f9ae8ef572c5b78a91c70313ec2649c75626323",
+        "current_sha256": "8358e231ea64708aac569fa54b2a0ecff2f712a0c02e750ad9f23cd3b2d408a0",
+        "result": "pass; fixed WR206 BASE hashes, WR223 exact L5/L8 revision pins, candidate_unit_design exact field, and all unrelated L8 fields checked."
+      },
+      "old_bytes_retrievable_from": "c8f20a4f91456f6d5e5c16e1be0083c34aab6651 path blobs with the recorded SHA-256; no old validator bytes lost."
+    },
+    "stale_after_r1_rebind": {
+      "SCF-B-0185": "current L4/L9 hashes match verified bytes; stale=0",
+      "SCF-B-0192": "current L4/L9 hashes match verified bytes; stale=0",
+      "SCF-B-0193": "current L4/L9 hashes match verified bytes; stale=0"
+    },
+    "candidate_state_correction": {
+      "fixed_blind_sha256": "2a53b965d023d81e6add971f8693cf633cfd6152c700e863a13da65568de3983",
+      "both_rows": "expected_state=missing; failure_code_status=unknown; expected_side_effect_count=0; no pair-freeze/TDD/implementation success generation; axis-selection status explicitly uncertain.",
+      "L9_non_target": "not asserted because fixed blind provides no non-target material.",
+      "four_way": "unchanged; candidate rows remain outside canonical L5/L8 expected rows."
+    },
+    "readme_sha256": "a250b1fe93702c140a45071f4ba81f4bd2244f5215ef08dde1a3b89e4ead7e5d"
+  },
+  "review_followup": {
+    "issue": "https://github.com/RetryYN/HELIX-HARNESS/pull/3975",
+    "review_comment": "https://github.com/RetryYN/HELIX-HARNESS/pull/3975#issuecomment-6533283057",
+    "reviewed_head": "174d40a6de56eebcffff9f23fe8781171de6b43a",
+    "findings_addressed": {
+      "F1": "The existing L4 vocabulary says required evidence/comparison-axis not supplied is missing. Both blind rows contain null for required target or design/oracle revision references; like freeze_missing, these are missing, not unknown. failure_code_status remains unknown because the blind did not establish a code.",
+      "F2": "Both L4/L9 rows record expected_side_effect_count=0, no pair-freeze/TDD-success/implementation-success generation, axis_selection_status=l4_design_choice_not_unique_from_source, and L9 execution_state=not_executed. non_target_preserved is explicitly not asserted because fixed blind has no non-target material.",
+      "F3": "github-upstream-operating-model.md line 264 explicitly requires upstream[].path outside scaffold/. Existing main bindings that violate this do not override the rule. Fixed artifact SHA references remain verification.oracles and are checked by WR231 validator; prior scaffold references and hashes remain in binding_reference_correction history.",
+      "F4": "The pre-WR231 validator revision and SHA-256 are recorded below and the original bytes remain retrievable from that Git revision. Existing validator paths retain their extended static checks, with WR231 R1 state checks added; a separate WR231 validator independently checks the same fixed-BASE/two-row comparison."
+    },
+    "binding_rule_source": {
+      "path": "docs/governance/github-upstream-operating-model.md",
+      "line": 264,
+      "meaning": "Scaffold Binding upstream[].path must be outside scaffold/; applicable to any PR class.",
+      "historical_observation": "The R1 review observed 122 main bindings with scaffold upstream paths. This historical nonconformance is not authority to override the explicit line 264 rule.",
+      "placement": "Fixed artifact byte digests remain in verification.oracles and are asserted by the WR231 static validator.",
+      "binding_pins_before_rebind": {
+        "SCF-B-0185": {
+          "path": "docs/helix-harness/L4-basic-design/tdd-development-flow.json",
+          "pinned_sha256": "36ba5cad0b3f49b9424635a670e6d309e8379bb44bb1f056e556f26ad44507f4",
+          "current_sha256": "0636c1e7609777eea2811fbcb7dd980e5bae764c622ce57784dce50da5aa152e"
+        },
+        "SCF-B-0192": {
+          "path": "docs/helix-harness/L4-basic-design/tdd-development-flow.json",
+          "pinned_sha256": "36ba5cad0b3f49b9424635a670e6d309e8379bb44bb1f056e556f26ad44507f4",
+          "current_sha256": "0636c1e7609777eea2811fbcb7dd980e5bae764c622ce57784dce50da5aa152e"
+        },
+        "SCF-B-0193": {
+          "path": "docs/helix-harness/L4-basic-design/tdd-development-flow.json",
+          "pinned_sha256": "36ba5cad0b3f49b9424635a670e6d309e8379bb44bb1f056e556f26ad44507f4",
+          "current_sha256": "0636c1e7609777eea2811fbcb7dd980e5bae764c622ce57784dce50da5aa152e",
+          "also_stale_l9": {
+            "path": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json",
+            "pinned_sha256": "6626dab873e21bf560f427729caa73addc48146bf50fbeb4883dddf742bd06fc",
+            "current_sha256": "4f64977ee8b2900733a823d5b9755f567952caef8cf323036a9b0776202d2462"
+          }
+        }
+      },
+      "binding_pins_after_verified_rebind": "SCF-B-0185/0192/0193 upstream L4/L9 SHA pins now equal current bytes after the three static validators checked the two-row delta; scfctl stale=0. L5/L8 semantic recompare remains unresolved."
+    },
+    "validator_history": {
+      "pre_wr231_revision": "c8f20a4f91456f6d5e5c16e1be0083c34aab6651",
+      "wr223": {
+        "path": "scaffold/research/wr223-f01-l5-l8-20261031/validate_static_candidate.py",
+        "change_reason": "R1 correction extends the existing static validator while preserving fixed BASE checks and prior candidate checks; old bytes are recoverable from the pre-WR231 Git revision/SHA.",
+        "current_sha256": "13351edd53a8754ea9342c401469746d6aa8fbc06fbba4d96789b9ce90e8ee60",
+        "restored": false,
+        "result": "pass on the current verified candidate tree",
+        "historical_pre_wr231_sha256": "60e8fdc132be18131f42e48f6a617e6391a883efb7e3deb4f6086c3db8029307"
+      },
+      "wr206": {
+        "path": "scaffold/research/wr206-f02-l5-l8-pr-b-20261031/validate_static_candidate.py",
+        "change_reason": "R1 correction extends the existing static validator while preserving fixed BASE checks and prior candidate checks; old bytes are recoverable from the pre-WR231 Git revision/SHA.",
+        "current_sha256": "12fcb70eb60a574af1811e159fb669297bf3c9888a1d953e5f4a7fde736a3d52",
+        "restored": false,
+        "result": "pass on the current verified candidate tree",
+        "historical_pre_wr231_sha256": "0f71c5fce995ca7defecfcec7f9ae8ef572c5b78a91c70313ec2649c75626323"
+      },
+      "wr231_validator": "scaffold/research/wr231-tdd-f01-untraceable-l4l9-20261031/validate_static_candidate.py",
+      "SCF-B-0185_L8_historical_oracle_correction": {
+        "prior_binding_oracle": "9f52fe3f90769cdacee9d147dceb0fabb2c3639086ed6b7",
+        "length": 47,
+        "fixed_revision": "92cb38ffb792151ddd8029d654ca700126d02681",
+        "revision_bytes_sha256": "9f52fe3f90769cdacee9d147dceb0fabb2c36386839f39fdcb2d4039086ed6b7",
+        "action": "Corrected the malformed historical artifact digest to the exact SHA-256 of the already pinned revision; no candidate source bytes changed."
+      },
+      "wr231_validator_sha256": "a9a6d81e45c0a2c4bf6f46c9798fb6729373b1b31c7b9d671a3c5c11292a9c52"
+    },
+    "stale_disposition": "After static verification established the exact two-row L4/L9 delta and preserved WR206/WR223 historical contracts, all three affected L4/L9 pins were rebound to current bytes. scfctl stale=0. This does not establish L5/L8 semantic mapping or four-way completion."
+  }
+}

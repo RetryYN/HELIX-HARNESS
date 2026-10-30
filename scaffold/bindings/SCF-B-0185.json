@@ -20,13 +20,8 @@
     },
     {
       "path": "docs/helix-harness/L4-basic-design/tdd-development-flow.json",
-      "sha256": "8dfbe628d7beb9b449a3ec48e98b7ed89ebbb4be1ea9b3f061dfd02ba464ea2f",
-      "note": "現行main L4 F02 candidate contract、negative classifications、output contract。各axis/stateは本候補の設計選択で、L4承認を意味しない。"
-    },
-    {
-      "path": "scaffold/research/wr206-tdd-flow-neg-4way-pr-a-20261031/README.md",
-      "sha256": "d5d227bc777b2161c10f470bbd9c80daa6c73d58398c382d99fcdf8cf37825ee",
-      "note": "WR206 PR-Aの限界・child/ownership residualの記録。"
+      "sha256": "347bfd83b7685b52c45f62b5ee6f336fd74338ee65e67327e6e810d6eb489a16",
+      "note": "現行main L4 F02 candidate contract、negative classifications、output contract。各axis/stateは本候補の設計選択で、L4承認を意味しない。 WR231 F01 only; F02 row exact content unchanged. Reviewed and re-pinned 8dfbe628d7beb9b449a3ec48e98b7ed89ebbb4be1ea9b3f061dfd02ba464ea2f -> 232df1c3532f9e338a5628f1ac464c655cb6c6f2d7ead6e62fafa2d3de4067a6; F02 obligations/history retained. Re-pinned after WR231 compact F01 candidate-row correction; F02 row remains exact. R1 F1/F2 state correction verified against fixed BASE and exact WR231 candidate rows; prior pin 36ba5cad0b3f49b9424635a670e6d309e8379bb44bb1f056e556f26ad44507f4 retained in WR231 comparison evidence. Rebound to current bytes 0636c1e7609777eea2811fbcb7dd980e5bae764c622ce57784dce50da5aa152e. R2 corrected the second WR231 classification_basis from the first-row target-missing statement to absent design/oracle revision evidence; previous digest 0636c1e7609777eea2811fbcb7dd980e5bae764c622ce57784dce50da5aa152e is preserved in WR231 comparison evidence. Rebound to validated current SHA-256 347bfd83b7685b52c45f62b5ee6f336fd74338ee65e67327e6e810d6eb489a16."
     }
   ],
   "role": "WR206 PR-BのHARNESS-015 F02 L5/L8 candidate classifier述語と手動unit input/expected設計、source provenance、未決限界をレビュー可能に記録する。",
@@ -89,7 +84,10 @@
       "scfctl validate/stale and PR-scope diff check",
       "candidate artifact SHA-256: docs/helix-harness/L5-detail-design/tdd-development-flow.json=426a0b4299a76eaf7a097d33ab56e16244a69163c878ddb265f8bdc4b465b742",
       "candidate artifact SHA-256: docs/helix-harness/L8-unit-verification/tdd-development-flow.json=9f52fe3f90769cdacee9d147dceb0fabb2c36386839f39fdcb2d4039086ed6b7",
-      "candidate artifact SHA-256: scaffold/research/wr206-f02-l5-l8-pr-b-20261031/source/f02-candidate-input-facts.json=2bc3059606c992ca07bb012bc3ca1ecd195a4ad2e1aafb180e5fa3e68f2b7b0f"
+      "candidate artifact SHA-256: scaffold/research/wr206-f02-l5-l8-pr-b-20261031/source/f02-candidate-input-facts.json=2bc3059606c992ca07bb012bc3ca1ecd195a4ad2e1aafb180e5fa3e68f2b7b0f",
+      "candidate artifact SHA-256: scaffold/research/wr206-tdd-flow-neg-4way-pr-a-20261031/README.md=d5d227bc777b2161c10f470bbd9c80daa6c73d58398c382d99fcdf8cf37825ee",
+      "candidate artifact SHA-256: scaffold/research/wr206-f02-l5-l8-pr-b-20261031/validate_static_candidate.py=03e98e0e029e38bc8820fd066d8f29837053ce6f0e8be84529f1dfe1d1b56f18",
+      "candidate artifact SHA-256: scaffold/research/wr231-tdd-f01-untraceable-l4l9-20261031/r2-classification-basis-correction-20261031.json=b6104eff006fb835de7b910fe600fb9935c831d224ed5dd913cb48b740b6d746"
     ],
     "negative_cases": [
       "Do not present chosen axis/state/schema as upstream approval or independent oracle.",

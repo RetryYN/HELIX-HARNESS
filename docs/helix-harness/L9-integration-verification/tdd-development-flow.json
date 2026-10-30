@@ -4472,6 +4472,68 @@
           "expected_axis": "freeze_before_body",
           "expected_state": "missing",
           "backflow_owner": "FrozenContractIntake"
+        },
+        {
+          "id": "WR231-F01-target-binding-unavailable",
+          "condition": "凍結対象のidentity・revision・scopeが未供給で、対象に結ぶ根拠がない。",
+          "failure_code_status": "unknown",
+          "expected_axis": "pair_binding",
+          "expected_state": "missing",
+          "backflow_owner": "FrozenContractIntake",
+          "source_reference": {
+            "path": "scaffold/research/wr231-tdd-f01-untraceable-l4l9-20261031/source/f01-blind-retry.json",
+            "sha256": "2a53b965d023d81e6add971f8693cf633cfd6152c700e863a13da65568de3983",
+            "pointer": "/negative_inputs/0",
+            "issue_comment": "https://github.com/RetryYN/HELIX-HARNESS/issues/3510#issuecomment-6532785305"
+          },
+          "expected_side_effect_count": 0,
+          "expected_issue": "対象または対象への設計/oracle revision traceの必須根拠が未供給。pair freeze/TDD success/implementation successを生成しない。",
+          "expected_partial_material": {
+            "field": "pair_binding",
+            "state": "missing",
+            "reason": "固定blindの期待はunproven/incompleteを保持し、成功や一致oracleを推論しない。",
+            "no_actual_completion": true
+          },
+          "non_target_preserved": "not_asserted: fixed blind input contains no non-target material; no preservation claim is made.",
+          "execution_state": "not_executed",
+          "axis_selection_status": "l4_design_choice_not_unique_from_source",
+          "expected_non_generation": [
+            "pair_freeze_established",
+            "TDD success",
+            "implementation_success"
+          ],
+          "expected_non_generation_status": "not_generated; preserve as unproven/incomplete"
+        },
+        {
+          "id": "WR231-F01-design-oracle-revision-untraceable",
+          "condition": "対象は識別できるが、設計またはoracleのrevisionを対象へ辿れない。",
+          "failure_code_status": "unknown",
+          "expected_axis": "pair_binding",
+          "expected_state": "missing",
+          "backflow_owner": "FrozenContractIntake",
+          "source_reference": {
+            "path": "scaffold/research/wr231-tdd-f01-untraceable-l4l9-20261031/source/f01-blind-retry.json",
+            "sha256": "2a53b965d023d81e6add971f8693cf633cfd6152c700e863a13da65568de3983",
+            "pointer": "/negative_inputs/1",
+            "issue_comment": "https://github.com/RetryYN/HELIX-HARNESS/issues/3510#issuecomment-6532785305"
+          },
+          "expected_side_effect_count": 0,
+          "expected_issue": "対象または対象への設計/oracle revision traceの必須根拠が未供給。pair freeze/TDD success/implementation successを生成しない。",
+          "expected_partial_material": {
+            "field": "pair_binding",
+            "state": "missing",
+            "reason": "固定blindの期待はunproven/incompleteを保持し、成功や一致oracleを推論しない。",
+            "no_actual_completion": true
+          },
+          "non_target_preserved": "not_asserted: fixed blind input contains no non-target material; no preservation claim is made.",
+          "execution_state": "not_executed",
+          "axis_selection_status": "l4_design_choice_not_unique_from_source",
+          "expected_non_generation": [
+            "pair_freeze_established",
+            "TDD success",
+            "implementation_success"
+          ],
+          "expected_non_generation_status": "not_generated; preserve as unproven/incomplete"
         }
       ],
       "execution_state": "not_executed",

@@ -22,16 +22,65 @@ R1 = "scaffold/research/wr223-f01-l5-l8-20261031/source/f01-blind-draft-r1.json"
 R2 = "scaffold/research/wr223-f01-l5-l8-20261031/source/f01-blind-draft-r2.json"
 FACTS = "scaffold/research/wr223-f01-l5-l8-20261031/source/f01-candidate-input-facts.json"
 BINDING = "scaffold/bindings/SCF-B-0192.json"
+ALL_BINDINGS = (
+    "scaffold/bindings/SCF-B-0185.json",
+    "scaffold/bindings/SCF-B-0192.json",
+    "scaffold/bindings/SCF-B-0193.json",
+)
 COMMENT = "https://github.com/RetryYN/HELIX-HARNESS/issues/3510#issuecomment-6531844362"
 R1_SHA = "e4f7be9befded4f2398209eac0d3ef226c0cd62cefa5e47d013a18e87f265bbd"
 R2_SHA = "fa047d5d871913b696ba5e01d9227ce13a68bc827ff6e8c66cc29d8e69d7e647"
+L4_BASE_SHA = "8dfbe628d7beb9b449a3ec48e98b7ed89ebbb4be1ea9b3f061dfd02ba464ea2f"
 L9_SHA = "3d2257ee9d0f33f367377a3c379af9852973dc11d87c1f23f8f193724adebeb2"
+WR231_ARTIFACT = "scaffold/research/wr231-tdd-f01-untraceable-l4l9-20261031/source/f01-blind-retry.json"
+WR231_SHA = "2a53b965d023d81e6add971f8693cf633cfd6152c700e863a13da65568de3983"
+WR231_IDS = {"WR231-F01-target-binding-unavailable", "WR231-F01-design-oracle-revision-untraceable"}
+WR231_SECOND_BASIS = 'L3 F01はL6/L5と対test/oracleを定義・凍結し、対象identity/revision/scopeへ結ぶことを要求する。固定blind /negative_inputs/1 ではtarget_identity=target-A、target_revision=target-r2、scope=scope-A、test_revision=test-r2、expected_result_revision=expect-r2が供給されている一方、design_revisionとoracle_revisionがnullで必須の設計/oracle版traceが未供給。L10 F01は設計/対oracleの版を対象へ辿るよう求め、固定blindも一致/current oracleを推論せずunproven/incompleteを保つ。よって既存state vocabularyに沿いmissingを候補とする。pair_binding軸はL4の設計選択でsourceから一意でない。failure_code_status=unknownはfailure codeの意味が未確定であることを示し、stateとは別。'
+WR223_README_SHA = "7e5fe7f82acac693785d4589f9e14752d632dc6ae414c6b652dd03c467d9f60c"
+WR223_SUMMARY_SHA = "7f2f84406dffde75ab351eed7c436031c6e01fc8ce1939d9c258606d0fda6ad4"
 L5_SHA = "fce881931580d26381df12721dc740a82b685e29c2039a5e1ff838475824c176"
 FACTS_SHA = "f16de2d4cb641c34a7289a81496e4618ff5a4a88eb8be3da1896123920db21de"
 
 
 def sha(data: bytes) -> str:
     return hashlib.sha256(data).hexdigest()
+
+
+CORRECTION_PATH = "scaffold/research/wr231-tdd-f01-untraceable-l4l9-20261031/r2-classification-basis-correction-20261031.json"
+CORRECTION_SHA = "b6104eff006fb835de7b910fe600fb9935c831d224ed5dd913cb48b740b6d746"
+POST_AUDIT_PATH = "scaffold/research/wr231-tdd-f01-untraceable-l4l9-20261031/post-wr223-binding-recheck-20261031.json"
+POST_AUDIT_SHA = "70271a76f37eea270fdcad92c8405d0332c757463ac680b2cc289e70578b5728"
+
+
+def verify_r2_correction(wr231: dict) -> None:
+    correction_bytes = (ROOT / CORRECTION_PATH).read_bytes()
+    assert sha(correction_bytes) == CORRECTION_SHA
+    assert sha((ROOT / POST_AUDIT_PATH).read_bytes()) == POST_AUDIT_SHA
+    correction = json.loads(correction_bytes)
+    assert correction["immutable_point_in_time_audit"]["path"] == POST_AUDIT_PATH
+    assert correction["immutable_point_in_time_audit"]["sha256"] == POST_AUDIT_SHA
+    target = correction["corrected_target"]
+    assert target["row_id"] == "WR231-F01-design-oracle-revision-untraceable"
+    assert target["field"] == "classification_basis"
+    assert target["corrected_value"] == WR231_SECOND_BASIS
+    assert target["current_artifact_sha256"] == sha((ROOT / L4).read_bytes())
+    blind_row = wr231["negative_inputs"][1]["synthetic_input"]
+    expected_fields = {key: blind_row.get(key) for key in (
+        "target_identity", "target_revision", "scope", "test_revision",
+        "expected_result_revision", "design_revision", "oracle_revision", "freeze_record"
+    )}
+    assert correction["observed_blind_fields"] == expected_fields
+    assert expected_fields == {
+        "target_identity": "target-A", "target_revision": "target-r2", "scope": "scope-A",
+        "test_revision": "test-r2", "expected_result_revision": "expect-r2",
+        "design_revision": None, "oracle_revision": None, "freeze_record": "present"
+    }
+    line = f"candidate artifact SHA-256: {CORRECTION_PATH}={CORRECTION_SHA}"
+    for binding_path in ALL_BINDINGS:
+        binding = read_json(binding_path)
+        assert line in binding["verification"]["oracles"], binding_path
+    binding_0193 = read_json("scaffold/bindings/SCF-B-0193.json")
+    assert f"candidate artifact SHA-256: {POST_AUDIT_PATH}={POST_AUDIT_SHA}" in binding_0193["verification"]["oracles"]
 
 
 def git_bytes(revision: str, path: str) -> bytes:
@@ -126,6 +175,13 @@ def main() -> None:
     l5_base = json.loads(git_bytes(BASE, L5))
     l8_base = json.loads(git_bytes(BASE, L8))
     l4_base_bytes, l9_base_bytes = git_bytes(BASE, L4), git_bytes(BASE, L9)
+    l4_base, l9_base = json.loads(l4_base_bytes), json.loads(l9_base_bytes)
+    assert sha(l4_base_bytes) == L4_BASE_SHA
+    assert sha(l9_base_bytes) == L9_SHA
+    wr231_bytes = (ROOT / WR231_ARTIFACT).read_bytes()
+    assert sha(wr231_bytes) == WR231_SHA
+    wr231 = json.loads(wr231_bytes)
+    verify_r2_correction(wr231)
     facts = read_json(FACTS)
     binding = read_json(BINDING)
     assert sha((ROOT / FACTS).read_bytes()) == FACTS_SHA
@@ -189,8 +245,57 @@ def main() -> None:
 
     l4_f01 = one(l4["contracts"], "HARNESS-L4-015-F01")
     l9_f01 = one(l9["cases"], "HARNESS-L9-015-F01")
-    assert (ROOT / L4).read_bytes() == l4_base_bytes
-    assert (ROOT / L9).read_bytes() == l9_base_bytes
+    l4_f01_base = one(l4_base["contracts"], "HARNESS-L4-015-F01")
+    l9_f01_base = one(l9_base["cases"], "HARNESS-L9-015-F01")
+    l4_rows = [row for row in l4_f01["negative_classifications"] if row.get("id") in WR231_IDS]
+    l9_rows = [row for row in l9_f01["negative_cases"] if row.get("id") in WR231_IDS]
+    assert {row["id"] for row in l4_rows} == WR231_IDS
+    assert {row["id"] for row in l9_rows} == WR231_IDS
+    assert len(l4_f01["negative_classifications"]) == len(l4_f01_base["negative_classifications"]) + 2 == 7
+    assert len(l9_f01["negative_cases"]) == len(l9_f01_base["negative_cases"]) + 2 == 7
+    assert l4_f01["failure_conditions"] == l4_f01_base["failure_conditions"]
+    assert l4_f01["output_contract"] == l4_f01_base["output_contract"]
+    assert l9_f01["expected_material"] == l9_f01_base["expected_material"]
+    assert l9_f01["normal_fixture"] == l9_f01_base["normal_fixture"]
+    l4_by_id = {row["id"]: row for row in l4_rows}
+    l9_by_id = {row["id"]: row for row in l9_rows}
+    for row_id in WR231_IDS:
+        l4_row, l9_row = l4_by_id[row_id], l9_by_id[row_id]
+        assert "code" not in l4_row and "code" not in l9_row
+        assert l4_row["failure_code_status"] == l9_row["failure_code_status"] == "unknown"
+        assert l4_row["expected_axis"] == l9_row["expected_axis"] == "pair_binding"
+        assert l4_row["expected_state"] == l9_row["expected_state"] == "missing"
+        if row_id == "WR231-F01-design-oracle-revision-untraceable":
+            assert l4_row["classification_basis"] == WR231_SECOND_BASIS
+        assert l4_row["expected_side_effect_count"] == l9_row["expected_side_effect_count"] == 0
+        assert l4_row["axis_selection_status"] == l9_row["axis_selection_status"] == "l4_design_choice_not_unique_from_source"
+        assert l9_row["execution_state"] == "not_executed"
+        assert l9_row["non_target_preserved"].startswith("not_asserted:")
+        assert l4_row["expected_non_generation"] == l9_row["expected_non_generation"] == [
+            "pair_freeze_established", "TDD success", "implementation_success"
+        ]
+    l4_by_id, l9_by_id = ({row["id"]: row for row in rows} for rows in (l4_rows, l9_rows))
+    expected_source_pointers = {
+        "WR231-F01-target-binding-unavailable": "/negative_inputs/0",
+        "WR231-F01-design-oracle-revision-untraceable": "/negative_inputs/1",
+    }
+    assert {row["case_id"] for row in wr231["negative_inputs"]} == {
+        "target_binding_unavailable", "design_oracle_revision_untraceable", "timestamp_only_freeze"
+    }
+    for row_id, pointer in expected_source_pointers.items():
+        assert l4_by_id[row_id]["source_artifact"]["path"] == WR231_ARTIFACT
+        assert l4_by_id[row_id]["source_artifact"]["sha256"] == WR231_SHA
+        assert l4_by_id[row_id]["source_artifact"]["pointer"] == pointer
+        assert l9_by_id[row_id]["source_reference"]["path"] == WR231_ARTIFACT
+        assert l9_by_id[row_id]["source_reference"]["sha256"] == WR231_SHA
+        assert l9_by_id[row_id]["source_reference"]["pointer"] == pointer
+    l4_stripped, l9_stripped = json.loads(json.dumps(l4)), json.loads(json.dumps(l9))
+    current_l4_f01 = one(l4_stripped["contracts"], "HARNESS-L4-015-F01")
+    current_l9_f01 = one(l9_stripped["cases"], "HARNESS-L9-015-F01")
+    current_l4_f01["negative_classifications"] = [row for row in current_l4_f01["negative_classifications"] if row.get("id") not in WR231_IDS]
+    current_l9_f01["negative_cases"] = [row for row in current_l9_f01["negative_cases"] if row.get("id") not in WR231_IDS]
+    assert l4_stripped == l4_base, "current L4 differs from fixed BASE beyond the two WR231 witness rows"
+    assert l9_stripped == l9_base, "current L9 differs from fixed BASE beyond the two WR231 witness rows"
     positive, negative = candidate_l8["cases"][0], candidate_l8["cases"][1:]
     assert positive["polarity"] == "positive" and all(x["polarity"] == "negative" for x in negative)
     for index, row in enumerate(candidate_l8["cases"]):
@@ -215,12 +320,12 @@ def main() -> None:
     l9_path, l9_ptr = path_pointer_ref(pos_projection["l9_expected_ref"])
     assert l4_path == L4 and isinstance(at_pointer(l4, l4_ptr), dict)
     assert l9_path == L9 and isinstance(at_pointer(l9, l9_ptr), dict)
-    for index, (l4_ref, l9_ref) in enumerate(zip(l4_f01["negative_classifications"], l9_f01["negative_cases"])):
+    for index, (l4_ref, l9_ref) in enumerate(zip(l4_f01_base["negative_classifications"], l9_f01_base["negative_cases"])):
         projection = negative[index]["expected_projection"]
         l4_path, l4_ptr = path_pointer_ref(projection["l4_expected_ref"])
         l9_path, l9_ptr = path_pointer_ref(projection["l9_expected_ref"])
-        assert l4_path == L4 and at_pointer(l4, l4_ptr) is l4_ref
-        assert l9_path == L9 and at_pointer(l9, l9_ptr) is l9_ref
+        assert l4_path == L4 and at_pointer(l4, l4_ptr) == l4_ref
+        assert l9_path == L9 and at_pointer(l9, l9_ptr) == l9_ref
 
     canonical_ids, all_unit_ids = set(l8_f01["unit_case_ids"]), {x["id"] for x in l8["unit_cases"]}
     candidate_ids = {x["case_id"] for x in candidate_l8["cases"]}
@@ -229,6 +334,39 @@ def main() -> None:
     assert len(l8["unit_cases"]) == len(l8_base["unit_cases"]) == 35
 
     assert binding["id"] == "SCF-B-0192"
+    expected_artifacts = {
+        "scaffold/bindings/SCF-B-0185.json": {
+            "scaffold/research/wr206-tdd-flow-neg-4way-pr-a-20261031/README.md": "d5d227bc777b2161c10f470bbd9c80daa6c73d58398c382d99fcdf8cf37825ee",
+        },
+        "scaffold/bindings/SCF-B-0192.json": {
+            R2: R2_SHA,
+            WR231_ARTIFACT: WR231_SHA,
+        },
+        "scaffold/bindings/SCF-B-0193.json": {
+            WR231_ARTIFACT: WR231_SHA,
+            "scaffold/research/wr231-tdd-f01-untraceable-l4l9-20261031/README.md": "a250b1fe93702c140a45071f4ba81f4bd2244f5215ef08dde1a3b89e4ead7e5d",
+        },
+    }
+    for binding_path in ALL_BINDINGS:
+        scoped_binding = read_json(binding_path)
+        assert all(not row["path"].startswith("scaffold/") for row in scoped_binding["upstream"]), binding_path
+        scoped_pins = set(scoped_binding["verification"]["oracles"])
+        for artifact_path, digest in expected_artifacts[binding_path].items():
+            assert f"candidate artifact SHA-256: {artifact_path}={digest}" in scoped_pins, (binding_path, artifact_path)
+    assert sha((ROOT / "scaffold/research/wr223-f01-l5-l8-20261031/README.md").read_bytes()) == WR223_README_SHA
+    assert sha((ROOT / "scaffold/research/wr223-f01-l5-l8-20261031/verification-summary.json").read_bytes()) == WR223_SUMMARY_SHA
+    assert all(not row["path"].startswith("scaffold/") for row in binding["upstream"])
+    current_source_pins = {row["path"]: row for row in binding["upstream"]}
+    assert current_source_pins[L4]["sha256"] == sha((ROOT / L4).read_bytes())
+    assert current_source_pins[L9]["sha256"] == sha((ROOT / L9).read_bytes())
+    assert BASE in current_source_pins[L4]["note"] and L4_BASE_SHA in current_source_pins[L4]["note"]
+    assert BASE in current_source_pins[L9]["note"] and L9_SHA in current_source_pins[L9]["note"]
+    assert "no row" in current_source_pins[L4]["note"]
+    assert "no row" in current_source_pins[L9]["note"]
+    assert WR231_ARTIFACT not in current_source_pins
+    artifact_pins = set(binding["verification"]["oracles"])
+    assert f"candidate artifact SHA-256: {WR231_ARTIFACT}={WR231_SHA}" in artifact_pins
+    assert f"candidate artifact SHA-256: {R2}={R2_SHA}" in artifact_pins
     for evidence_pin in binding["verification"]["oracles"]:
         if not evidence_pin.startswith("candidate artifact SHA-256: "):
             continue
@@ -241,8 +379,10 @@ def main() -> None:
     print("L5 has six value-free negative predicates including r2's untraceable-ref meaning; sequence equality unresolved")
     print("Six scaffold facts re-resolve against base L9 owner_material: PASS")
     print("L8 U-ID rows contain compact fact references and short projections only; no raw owner_material/full return")
+    print("L4/L9 fixed BASE hashes and all existing rows preserved; current delta is exactly two WR231 witness rows")
+    print("WR231 witness rows retain unknown failure-code status, state=missing, zero side effects, and no success generation")
     print("L4/L9 pointers resolve; candidate projection expected-value equality is not checked")
-    print("L4/L9 bytes and existing L8 canonical cases unchanged; candidate contribution to four-way=0")
+    print("L4/L9 existing BASE bytes/rows preserved after removing exactly the two WR231 witness rows; existing L8 canonical cases unchanged; candidate contribution to four-way=0")
     print("SCF-B-0192 candidate artifact SHA pins resolve: PASS")
     print("No algorithm, runtime, test suite, or CI was executed.")
 

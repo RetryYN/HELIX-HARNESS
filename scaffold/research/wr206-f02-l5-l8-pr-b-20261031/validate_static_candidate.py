@@ -20,6 +20,23 @@ L9_PATH = "docs/helix-harness/L9-integration-verification/tdd-development-flow.j
 BLIND_PATH = "scaffold/research/wr206-f02-l5-l8-pr-b-20261031/source/f02-blind-draft.json"
 INPUT_FACTS_PATH = "scaffold/research/wr206-f02-l5-l8-pr-b-20261031/source/f02-candidate-input-facts.json"
 BINDING_PATH = "scaffold/bindings/SCF-B-0185.json"
+ALL_BINDINGS = (
+    "scaffold/bindings/SCF-B-0185.json",
+    "scaffold/bindings/SCF-B-0192.json",
+    "scaffold/bindings/SCF-B-0193.json",
+)
+WR231_IDS = {"WR231-F01-target-binding-unavailable", "WR231-F01-design-oracle-revision-untraceable"}
+WR231_SECOND_BASIS = 'L3 F01はL6/L5と対test/oracleを定義・凍結し、対象identity/revision/scopeへ結ぶことを要求する。固定blind /negative_inputs/1 ではtarget_identity=target-A、target_revision=target-r2、scope=scope-A、test_revision=test-r2、expected_result_revision=expect-r2が供給されている一方、design_revisionとoracle_revisionがnullで必須の設計/oracle版traceが未供給。L10 F01は設計/対oracleの版を対象へ辿るよう求め、固定blindも一致/current oracleを推論せずunproven/incompleteを保つ。よって既存state vocabularyに沿いmissingを候補とする。pair_binding軸はL4の設計選択でsourceから一意でない。failure_code_status=unknownはfailure codeの意味が未確定であることを示し、stateとは別。'
+L4_BASE_SHA = "8dfbe628d7beb9b449a3ec48e98b7ed89ebbb4be1ea9b3f061dfd02ba464ea2f"
+L9_BASE_SHA = "3d2257ee9d0f33f367377a3c379af9852973dc11d87c1f23f8f193724adebeb2"
+WR206_L5_REV = "4c0e29b6d18a8943514ffd25a27cd4e83c11cff0"
+WR206_L5_SHA = "426a0b4299a76eaf7a097d33ab56e16244a69163c878ddb265f8bdc4b465b742"
+WR206_L8_REV = "92cb38ffb792151ddd8029d654ca700126d02681"
+WR206_L8_SHA = "9f52fe3f90769cdacee9d147dceb0fabb2c36386839f39fdcb2d4039086ed6b7"
+WR223_L5_REV = "87e5d15cdb909e88fd5d132ae7ad1d32c14b71d5"
+WR223_L5_SHA = "fce881931580d26381df12721dc740a82b685e29c2039a5e1ff838475824c176"
+WR223_L8_REV = "07b3462402992d51337b583f9f3d1f895c82e7c8"
+WR223_L8_SHA = "ee1648c067009e819d41f869733290042e103c39e41c0980d29dcdb46c107392"
 
 
 def read_json(path: str) -> dict:
@@ -30,8 +47,49 @@ def base_bytes(path: str) -> bytes:
     return subprocess.check_output(["git", "show", f"{BASE}:{path}"], cwd=ROOT)
 
 
+def revision_bytes(revision: str, path: str) -> bytes:
+    return subprocess.check_output(["git", "show", f"{revision}:{path}"], cwd=ROOT)
+
+
 def sha(data: bytes) -> str:
     return hashlib.sha256(data).hexdigest()
+
+
+CORRECTION_PATH = "scaffold/research/wr231-tdd-f01-untraceable-l4l9-20261031/r2-classification-basis-correction-20261031.json"
+CORRECTION_SHA = "b6104eff006fb835de7b910fe600fb9935c831d224ed5dd913cb48b740b6d746"
+POST_AUDIT_PATH = "scaffold/research/wr231-tdd-f01-untraceable-l4l9-20261031/post-wr223-binding-recheck-20261031.json"
+POST_AUDIT_SHA = "70271a76f37eea270fdcad92c8405d0332c757463ac680b2cc289e70578b5728"
+
+
+def verify_r2_correction(wr231: dict) -> None:
+    correction_bytes = (ROOT / CORRECTION_PATH).read_bytes()
+    assert sha(correction_bytes) == CORRECTION_SHA
+    assert sha((ROOT / POST_AUDIT_PATH).read_bytes()) == POST_AUDIT_SHA
+    correction = json.loads(correction_bytes)
+    assert correction["immutable_point_in_time_audit"]["path"] == POST_AUDIT_PATH
+    assert correction["immutable_point_in_time_audit"]["sha256"] == POST_AUDIT_SHA
+    target = correction["corrected_target"]
+    assert target["row_id"] == "WR231-F01-design-oracle-revision-untraceable"
+    assert target["field"] == "classification_basis"
+    assert target["corrected_value"] == WR231_SECOND_BASIS
+    assert target["current_artifact_sha256"] == sha((ROOT / L4_PATH).read_bytes())
+    blind_row = wr231["negative_inputs"][1]["synthetic_input"]
+    expected_fields = {key: blind_row.get(key) for key in (
+        "target_identity", "target_revision", "scope", "test_revision",
+        "expected_result_revision", "design_revision", "oracle_revision", "freeze_record"
+    )}
+    assert correction["observed_blind_fields"] == expected_fields
+    assert expected_fields == {
+        "target_identity": "target-A", "target_revision": "target-r2", "scope": "scope-A",
+        "test_revision": "test-r2", "expected_result_revision": "expect-r2",
+        "design_revision": None, "oracle_revision": None, "freeze_record": "present"
+    }
+    line = f"candidate artifact SHA-256: {CORRECTION_PATH}={CORRECTION_SHA}"
+    for binding_path in ALL_BINDINGS:
+        binding = read_json(binding_path)
+        assert line in binding["verification"]["oracles"], binding_path
+    binding_0193 = read_json("scaffold/bindings/SCF-B-0193.json")
+    assert f"candidate artifact SHA-256: {POST_AUDIT_PATH}={POST_AUDIT_SHA}" in binding_0193["verification"]["oracles"]
 
 
 def at_revision_sha(pin: dict) -> str:
@@ -57,10 +115,40 @@ def one(rows: list[dict], identity: str) -> dict:
     return matches[0]
 
 
+def verify_binding_upstream_scope() -> None:
+    expected_artifacts = {
+        "scaffold/bindings/SCF-B-0185.json": {
+            "scaffold/research/wr206-tdd-flow-neg-4way-pr-a-20261031/README.md": "d5d227bc777b2161c10f470bbd9c80daa6c73d58398c382d99fcdf8cf37825ee",
+            L5_PATH: WR206_L5_SHA,
+            L8_PATH: WR206_L8_SHA,
+        },
+        "scaffold/bindings/SCF-B-0192.json": {
+            L5_PATH: WR223_L5_SHA,
+            L8_PATH: WR223_L8_SHA,
+            "scaffold/research/wr223-f01-l5-l8-20261031/source/f01-blind-draft-r2.json": "fa047d5d871913b696ba5e01d9227ce13a68bc827ff6e8c66cc29d8e69d7e647",
+            "scaffold/research/wr231-tdd-f01-untraceable-l4l9-20261031/source/f01-blind-retry.json": "2a53b965d023d81e6add971f8693cf633cfd6152c700e863a13da65568de3983",
+        },
+        "scaffold/bindings/SCF-B-0193.json": {
+            "scaffold/research/wr231-tdd-f01-untraceable-l4l9-20261031/source/f01-blind-retry.json": "2a53b965d023d81e6add971f8693cf633cfd6152c700e863a13da65568de3983",
+            "scaffold/research/wr231-tdd-f01-untraceable-l4l9-20261031/README.md": "a250b1fe93702c140a45071f4ba81f4bd2244f5215ef08dde1a3b89e4ead7e5d",
+        },
+    }
+    for path in ALL_BINDINGS:
+        binding = read_json(path)
+        assert all(not row["path"].startswith("scaffold/") for row in binding["upstream"]), path
+        pins = set(binding["verification"]["oracles"])
+        for artifact_path, digest in expected_artifacts[path].items():
+            assert f"candidate artifact SHA-256: {artifact_path}={digest}" in pins, (path, artifact_path)
+        if path == "scaffold/bindings/SCF-B-0185.json":
+            validator_path = "scaffold/research/wr206-f02-l5-l8-pr-b-20261031/validate_static_candidate.py"
+            assert f"candidate artifact SHA-256: {validator_path}={sha((ROOT / validator_path).read_bytes())}" in pins
+
+
 def main() -> None:
     l5 = read_json(L5_PATH)
     l8 = read_json(L8_PATH)
     l4 = read_json(L4_PATH)
+    l9 = read_json(L9_PATH)
     l5_base = json.loads(base_bytes(L5_PATH))
     l8_base = json.loads(base_bytes(L8_PATH))
 
@@ -78,25 +166,69 @@ def main() -> None:
 
     f8 = one(l8["cases"], "HARNESS-L8-015-F02")
     candidate_l8 = f8["candidate_unit_design"]
+    l8_f01_current = one(l8["cases"], "HARNESS-L8-015-F01")
+    l8_wr223_fixed = json.loads(revision_bytes(WR223_L8_REV, L8_PATH))
+    l8_f01_wr223_fixed = one(l8_wr223_fixed["cases"], "HARNESS-L8-015-F01")
+    assert l8_f01_current["candidate_unit_design"] == l8_f01_wr223_fixed["candidate_unit_design"]
+    assert (ROOT / L8_PATH).read_bytes() == revision_bytes(WR223_L8_REV, L8_PATH)
+    assert (ROOT / L5_PATH).read_bytes() == revision_bytes(WR223_L5_REV, L5_PATH)
     assert l8["unit_cases"] == l8_base["unit_cases"]
     for old_case in l8_base["cases"]:
         new_case = one(l8["cases"], old_case["id"])
         if old_case["id"] == "HARNESS-L8-015-F02":
             assert {key: value for key, value in new_case.items() if key != "candidate_unit_design"} == old_case
+        elif old_case["id"] == "HARNESS-L8-015-F01":
+            # Later WR223 adds only a candidate design field to F01; retain every BASE row field.
+            assert {key: value for key, value in new_case.items() if key != "candidate_unit_design"} == old_case
+            candidate_f01 = new_case.get("candidate_unit_design")
+            assert candidate_f01["status"] == "scaffold_candidate_only_not_approved_or_executed"
+            assert candidate_f01["fixed_artifact"]["sha256"] == "fa047d5d871913b696ba5e01d9227ce13a68bc827ff6e8c66cc29d8e69d7e647"
         else:
             assert new_case == old_case
 
-    for path in (L4_PATH, L9_PATH):
-        assert (ROOT / path).read_bytes() == base_bytes(path), f"out-of-scope file changed: {path}"
+    l4_base_bytes, l9_base_bytes = base_bytes(L4_PATH), base_bytes(L9_PATH)
+    assert sha(l4_base_bytes) == L4_BASE_SHA
+    assert sha(l9_base_bytes) == L9_BASE_SHA
+    l4_base, l9_base = json.loads(l4_base_bytes), json.loads(l9_base_bytes)
+    l4_current, l9_current = json.loads((ROOT / L4_PATH).read_bytes()), json.loads((ROOT / L9_PATH).read_bytes())
+    l4_f01 = one(l4_current["contracts"], "HARNESS-L4-015-F01")
+    l9_f01 = one(l9_current["cases"], "HARNESS-L9-015-F01")
+    assert {row.get("id") for row in l4_f01["negative_classifications"] if row.get("id") in WR231_IDS} == WR231_IDS
+    assert {row.get("id") for row in l9_f01["negative_cases"] if row.get("id") in WR231_IDS} == WR231_IDS
+    wr231_l4 = {row["id"]: row for row in l4_f01["negative_classifications"] if row.get("id") in WR231_IDS}
+    wr231_l9 = {row["id"]: row for row in l9_f01["negative_cases"] if row.get("id") in WR231_IDS}
+    for witness_id in WR231_IDS:
+        l4_row, l9_row = wr231_l4[witness_id], wr231_l9[witness_id]
+        assert l4_row["expected_state"] == l9_row["expected_state"] == "missing"
+        if witness_id == "WR231-F01-design-oracle-revision-untraceable":
+            assert l4_row["classification_basis"] == WR231_SECOND_BASIS
+        assert l4_row["failure_code_status"] == l9_row["failure_code_status"] == "unknown"
+        assert l4_row["expected_side_effect_count"] == l9_row["expected_side_effect_count"] == 0
+        assert l4_row["expected_non_generation"] == l9_row["expected_non_generation"] == ["pair_freeze_established", "TDD success", "implementation_success"]
+    l4_f01["negative_classifications"] = [row for row in l4_f01["negative_classifications"] if row.get("id") not in WR231_IDS]
+    l9_f01["negative_cases"] = [row for row in l9_f01["negative_cases"] if row.get("id") not in WR231_IDS]
+    assert l4_current == l4_base, "current L4 differs from fixed WR206 BASE beyond two WR231 witness rows"
+    assert l9_current == l9_base, "current L9 differs from fixed WR206 BASE beyond two WR231 witness rows"
 
     blind = (ROOT / BLIND_PATH).read_bytes()
     assert sha(blind) == BLIND_SHA
     candidate_facts = read_json(INPUT_FACTS_PATH)
     binding = read_json(BINDING_PATH)
     binding_hash_notes = binding["verification"]["oracles"]
-    for path in (L5_PATH, L8_PATH, INPUT_FACTS_PATH):
-        digest = sha((ROOT / path).read_bytes())
-        assert f"candidate artifact SHA-256: {path}={digest}" in binding_hash_notes, f"binding candidate artifact hash missing/mismatched: {path}"
+    verify_binding_upstream_scope()
+    wr231_evidence = read_json("scaffold/research/wr231-tdd-f01-untraceable-l4l9-20261031/source/f01-blind-retry.json")
+    verify_r2_correction(wr231_evidence)
+    assert sha(revision_bytes(WR206_L5_REV, L5_PATH)) == WR206_L5_SHA
+    assert sha(revision_bytes(WR206_L8_REV, L8_PATH)) == WR206_L8_SHA
+    for path, digest in ((L5_PATH, WR206_L5_SHA), (L8_PATH, WR206_L8_SHA)):
+        assert f"candidate artifact SHA-256: {path}={digest}" in binding_hash_notes, f"historical WR206 candidate hash missing: {path}"
+    for path, revision, digest in ((L5_PATH, WR223_L5_REV, WR223_L5_SHA), (L8_PATH, WR223_L8_REV, WR223_L8_SHA)):
+        current_bytes = (ROOT / path).read_bytes()
+        assert current_bytes == revision_bytes(revision, path), f"WR223 fixed source bytes drift: {path}@{revision}"
+        assert sha(current_bytes) == digest
+        assert f"candidate artifact SHA-256: {path}={digest}" in read_json("scaffold/bindings/SCF-B-0192.json")["verification"]["oracles"]
+    facts_digest = sha((ROOT / INPUT_FACTS_PATH).read_bytes())
+    assert f"candidate artifact SHA-256: {INPUT_FACTS_PATH}={facts_digest}" in binding_hash_notes, f"binding candidate artifact hash missing/mismatched: {INPUT_FACTS_PATH}"
     assert candidate_facts["status"].startswith("candidate_synthetic")
     assert candidate_facts["authority_effect"] == "none"
     assert len(candidate_facts["case_deltas"]) == 9
@@ -106,8 +238,8 @@ def main() -> None:
     for pin in candidate_l8["source_pins"]:
         assert at_revision_sha(pin) == pin["sha256"], f"L8 source pin revision/blob mismatch: {pin['path']}"
         if pin["path"] == L5_PATH:
-            assert sha((ROOT / L5_PATH).read_bytes()) == pin["sha256"], (
-                "L8 L5 source pin does not match current L5 bytes"
+            assert pin["revision"] == WR206_L5_REV and pin["sha256"] == WR206_L5_SHA, (
+                "L8 F02 historical L5 pin changed from its exact WR206 source revision"
             )
     for path, pointer, revision in (
         ("docs/helix-harness/L3-requirements/functional-requirements.json", "/requirements/41", "a715e777bd59291b26f09c0c1c5481273c6eba2e"),
@@ -198,9 +330,11 @@ def main() -> None:
     print("L5 F02 pre-existing contract: unchanged")
     print(f"L8 existing unit cases: unchanged ({len(l8_base['unit_cases'])})")
     print("L8 F02 candidate: only case/input refs and small semantic projections; synthetic input packet lives in scaffold research")
-    print("L4/L9 bytes: unchanged")
-    print("SCF-B-0185 candidate artifact pins: exact working-tree SHA match")
-    print("source pins: exact revision/blob SHA match; L8 L5 pin also matches current L5 bytes; reviewed L3/L10 F02 rows equal current rows")
+    print("L4/L9 fixed BASE hashes verified; only two WR231 witness rows are stripped for full-document comparison")
+    print("WR206 historical L5/L8 hashes verified at their fixed revisions; current WR223 L5/L8 hashes/bytes verified at fixed revisions")
+    print("WR223 L8 F01 candidate_unit_design equals the exact fixed revision candidate bytes; other F01 row fields equal BASE")
+    print("SCF-B-0185/0192/0193 upstream arrays contain no scaffold paths; moved artifact SHA oracles verified")
+    print("source pins: exact revision/blob SHA match; L8 F02 historical L5 pin remains at its exact WR206 revision; reviewed L3/L10 F02 rows equal current rows")
     print("candidate cases: positives=2 negatives=7 unique negative classes=5")
     print("after-body branches: H1 target revision; H0 late record kept distinct")
     print("L8 positive L4 output pointers: RFC6901 resolution PASS")
