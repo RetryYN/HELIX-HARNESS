@@ -585,81 +585,117 @@
     "condition_semantics": "conditionは選択phaseで適用した7facetの集約。violationが1つでもあればworkflow_material_violation、違反なしでunknownがあればworkflow_material_unknown、それ以外workflow_material_corresponding。workflow実適格性や実完了を意味しない。boolean workflow_material_correspondingは別の素材flagで、candidate phaseでは必ずfalse。candidate phaseのconditionがworkflow_material_correspondingでもworkflow instanceの成立を示さない。",
     "case_input_integrity": "givenの値をcaseごとに独立保持する。全caseをcanonical givenでgroup化し、同一入力ならexpected_proposal全field同値を静的に照合する。これは同入力決定性の文書整合証拠で、正式codec/実装oracle凍結を成立させない。",
     "primary_requirement_ref_semantics": "requirement_refsは親4要求の全体trace、primary_requirement_refsはcaseの直接検証concern。negativeは不成立facet→ownership/scope_limit:B01、inputs/ticket:F01、workflow:F02、backflow/continuity:F03。positiveは選択phaseの主目的、projectionと決定性/対象差はその直接concernを明示。絞込参照は全4要求の完了宣言ではない。",
-    "phase_facet_class_key_contract": {
-      "key_fields": [
-        "selected_phase",
-        "condition_facet",
-        "witness_field",
-        "comparison_status"
+    "source_qualified_negative_class_candidates": {
+      "status": "source_candidate_only_unmarked",
+      "mode_boundary": "この2行のL4/L9候補は4層 explicit_negative_equivalence_classes modeではない。片側markerを付けない。typed owner_refとL5/L8投影は別V-pairへ残し、現時点の4wayはlegacy/not_evaluatedのままでPASSではない。",
+      "class_key_fields": [
+        "code",
+        "expected.finding_codes",
+        "backflow_owner",
+        "expected_axis",
+        "expected_state",
+        "side_effect_count"
       ],
-      "key_format": "{selected_phase}:{condition_facet}:{witness_field}:{comparison_status}",
-      "scope": "class keyは既存comparison条件のselected phaseとcondition facetを保持する。末尾statusはwitness_fieldであるbinding.project比較一件の状態であり、condition facet全体の集約状態を表さない。条件やgateを追加しない。",
-      "class_keys": [
+      "phase_location": "phaseは各L9 integration caseに保持し、class keyには含めない。",
+      "positive_scope": "対応するOS017-NORMAL-RESUME入力は比較基準のみであり、負例classには含めない。",
+      "classes": [
         {
-          "key": "resume:inputs:binding.project:corresponding",
-          "selected_phase": "resume",
-          "condition_facet": "inputs",
-          "witness_rule": "このclassはresumeのinputs facet内にあるbinding.project比較だけを表す。binding.project と context.binding.project がともに非空文字列で一致し、同じbindingの他4 fieldも一致する固定witnessでのbinding.project比較の状態はcorresponding、局所findingはない。全体conditionと全findingはcase単位で記録する。",
-          "local_finding_signature": [],
+          "class_id": "OS017-NEG-inputs-source_unresolved",
+          "code": "workflow_material_unknown",
+          "condition": "resume phaseのinputs比較でbinding.project operandがunknown。固定入力の残りはsourceからcorrespondingと確認した。",
+          "expected": {
+            "finding_codes": [
+              "source_unresolved"
+            ]
+          },
+          "expected_axis": "inputs",
+          "expected_state": "unknown",
+          "backflow_owner": "ticket-workflow-owner",
+          "side_effect_count": 0,
+          "candidate_key_status": "owner_refはL5後続のowner projectionまで保留。この行はまだ4層keyではない。",
           "source_pointers": [
-            "/diagnostic_contract/condition_names",
-            "/diagnostic_contract/comparison_table/binding",
-            "/diagnostic_contract/algorithm/2",
-            "/diagnostic_contract/diagnostic_code_facets/source_unresolved",
-            "/diagnostic_contract/diagnostic_code_facets/source_conflict",
-            "/diagnostic_contract/return_owner"
-          ],
-          "witness_field": "binding.project",
-          "comparison_status": "corresponding"
+            {
+              "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+              "pointers": [
+                "/requirements/34"
+              ]
+            },
+            {
+              "path": "docs/helix-os/L10-verification/functional-verification.json",
+              "pointers": [
+                "/cases/34"
+              ]
+            },
+            {
+              "path": "docs/helix-os/L4-basic-design/ticket-workflow-derivation.json",
+              "pointers": [
+                "/contracts/0",
+                "/diagnostic_contract/comparison_table/binding",
+                "/diagnostic_contract/diagnostic_code_facets/source_unresolved",
+                "/diagnostic_contract/condition_names",
+                "/diagnostic_contract/condition_semantics",
+                "/diagnostic_contract/return_owner"
+              ]
+            },
+            {
+              "path": "docs/helix-os/L7-function-verification/ticket-workflow-derivation.json",
+              "pointers": [
+                "/cases/5/given_input_ref",
+                "/objects/349e48fcefb66a199a806b2b3fc531cc39192fe8680ecf9cfc73ad0da208ccd3/binding/project",
+                "/objects/349e48fcefb66a199a806b2b3fc531cc39192fe8680ecf9cfc73ad0da208ccd3/context/binding/project"
+              ]
+            }
+          ]
         },
         {
-          "key": "resume:inputs:binding.project:unknown",
-          "selected_phase": "resume",
-          "condition_facet": "inputs",
-          "witness_rule": "このclassはresumeのinputs facet内にあるbinding.project比較だけを表す。binding.project の一方が非空文字列でなく、他方は非空文字列の固定witnessでは、binding.project比較の状態はunknownとなり、L4 string比較は不足側の原pointerにsource_unresolvedを置く。全体conditionと全findingはcase単位で記録する。",
-          "local_finding_signature": [
-            {
-              "code": "source_unresolved",
-              "pointer": "/binding/project",
-              "return_owner": "ticket-workflow-owner"
-            }
-          ],
+          "class_id": "OS017-NEG-inputs-source_conflict",
+          "code": "workflow_material_violation",
+          "condition": "resume phaseのinputs比較でbinding.projectの既知operandが相反。固定入力の残りはsourceからcorrespondingと確認した。",
+          "expected": {
+            "finding_codes": [
+              "source_conflict"
+            ]
+          },
+          "expected_axis": "inputs",
+          "expected_state": "violation",
+          "backflow_owner": "ticket-workflow-owner",
+          "side_effect_count": 0,
+          "candidate_key_status": "owner_refはL5後続のowner projectionまで保留。この行はまだ4層keyではない。",
           "source_pointers": [
-            "/diagnostic_contract/condition_names",
-            "/diagnostic_contract/comparison_table/binding",
-            "/diagnostic_contract/algorithm/2",
-            "/diagnostic_contract/diagnostic_code_facets/source_unresolved",
-            "/diagnostic_contract/diagnostic_code_facets/source_conflict",
-            "/diagnostic_contract/return_owner"
-          ],
-          "witness_field": "binding.project",
-          "comparison_status": "unknown"
-        },
-        {
-          "key": "resume:inputs:binding.project:violation",
-          "selected_phase": "resume",
-          "condition_facet": "inputs",
-          "witness_rule": "このclassはresumeのinputs facet内にあるbinding.project比較だけを表す。binding.project と context.binding.project がともに非空文字列で相反する固定witnessでは、binding.project比較の状態はviolationとなり、L4 string比較はactual原pointerにsource_conflictを置く。全体conditionと全findingはcase単位で記録する。",
-          "local_finding_signature": [
             {
-              "code": "source_conflict",
-              "pointer": "/binding/project",
-              "return_owner": "ticket-workflow-owner"
+              "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+              "pointers": [
+                "/requirements/34"
+              ]
+            },
+            {
+              "path": "docs/helix-os/L10-verification/functional-verification.json",
+              "pointers": [
+                "/cases/34"
+              ]
+            },
+            {
+              "path": "docs/helix-os/L4-basic-design/ticket-workflow-derivation.json",
+              "pointers": [
+                "/contracts/0",
+                "/diagnostic_contract/comparison_table/binding",
+                "/diagnostic_contract/diagnostic_code_facets/source_conflict",
+                "/diagnostic_contract/condition_names",
+                "/diagnostic_contract/condition_semantics",
+                "/diagnostic_contract/return_owner"
+              ]
+            },
+            {
+              "path": "docs/helix-os/L7-function-verification/ticket-workflow-derivation.json",
+              "pointers": [
+                "/cases/6/given_input_ref",
+                "/objects/44d858290764eced3f62ba0d37593b228a6caee87290c022dc5ced1db2140c02/binding/project",
+                "/objects/44d858290764eced3f62ba0d37593b228a6caee87290c022dc5ced1db2140c02/context/binding/project"
+              ]
             }
-          ],
-          "source_pointers": [
-            "/diagnostic_contract/condition_names",
-            "/diagnostic_contract/comparison_table/binding",
-            "/diagnostic_contract/algorithm/2",
-            "/diagnostic_contract/diagnostic_code_facets/source_unresolved",
-            "/diagnostic_contract/diagnostic_code_facets/source_conflict",
-            "/diagnostic_contract/return_owner"
-          ],
-          "witness_field": "binding.project",
-          "comparison_status": "violation"
+          ]
         }
-      ],
-      "scope_limit": "このclass cohortはresume phaseのinputs condition facetにあるbinding.project comparisonだけを扱う。key末尾statusはこの比較一件の状態で、inputs facet全体の集約状態を主張しない。phase/facetの異なる負例や他fieldはこのcohortで形成しない。"
+      ]
     }
   }
 }

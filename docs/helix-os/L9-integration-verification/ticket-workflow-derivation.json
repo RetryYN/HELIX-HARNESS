@@ -310,7 +310,8 @@
     "全4要求の正式schema/codec/sourceとowner資格、HARNESS工程部品/遷移/義務のexact binding、ticket分解/atomicity/型付きdependency graphのcycle/方向/全terminal disposition、全数値単位・量/期限・time authorityはL5/L8で閉じる。",
     "複数ticketの中間result/typed Backflow route、元source影響評価/再導出、実回収・lease/実assignment/attempt/measurement、部分義務解消・全累積履歴/復旧/raceの正式契約は未成立。",
     "OS015016→017→018019020023/SEC/INFRA/INT/LABO全scopeのowner-qualified exact binding、全型/不正shape・未見独立実証・oracle凍結・実装前Red→最小Green→Refactor/再検証・実L9L10・PO実物L11は未成立。",
-    "全92親430対の基本/詳細閉包と最終独立二重監査・実装準備を継続。candidate素材/独立合成照合/mergeから実READY、実許可、Issue close、Release/Deployを生成しない。"
+    "全92親430対の基本/詳細閉包と最終独立二重監査・実装準備を継続。candidate素材/独立合成照合/mergeから実READY、実許可、Issue close、Release/Deployを生成しない。",
+    "WR204 R1 trancheはsource-qualifiedなL4/L9負例class候補2件のみを形成する。正例OS017-NORMAL-RESUMEは負例cohortの外に置く。L5/L8 projection、typed owner_ref、4層全てのexplicit markerは後続へ残し、このpairを4way PASSとしない。"
   ],
   "document_id": "HELIXOS-L9-017",
   "layer": "L9",
@@ -1157,11 +1158,6 @@
         "pointer": "/cases/3",
         "revision": "ec98a025d166a5e9f7811233498b7e7e31dbb145",
         "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146"
-      },
-      "l4_class_key_ref": {
-        "path": "docs/helix-os/L4-basic-design/ticket-workflow-derivation.json",
-        "pointer": "/diagnostic_contract/phase_facet_class_key_contract/class_keys/0",
-        "key": "resume:inputs:binding.project:corresponding"
       }
     },
     {
@@ -1220,10 +1216,10 @@
         "revision": "ec98a025d166a5e9f7811233498b7e7e31dbb145",
         "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146"
       },
-      "l4_class_key_ref": {
+      "l4_source_class_candidate_ref": {
         "path": "docs/helix-os/L4-basic-design/ticket-workflow-derivation.json",
-        "pointer": "/diagnostic_contract/phase_facet_class_key_contract/class_keys/1",
-        "key": "resume:inputs:binding.project:unknown"
+        "pointer": "/diagnostic_contract/source_qualified_negative_class_candidates/classes/0",
+        "class_id": "OS017-NEG-inputs-source_unresolved"
       }
     },
     {
@@ -1254,10 +1250,10 @@
         "revision": "ec98a025d166a5e9f7811233498b7e7e31dbb145",
         "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146"
       },
-      "l4_class_key_ref": {
+      "l4_source_class_candidate_ref": {
         "path": "docs/helix-os/L4-basic-design/ticket-workflow-derivation.json",
-        "pointer": "/diagnostic_contract/phase_facet_class_key_contract/class_keys/2",
-        "key": "resume:inputs:binding.project:violation"
+        "pointer": "/diagnostic_contract/source_qualified_negative_class_candidates/classes/1",
+        "class_id": "OS017-NEG-inputs-source_conflict"
       }
     },
     {
@@ -7361,280 +7357,5 @@
   "completion": {
     "status": "unproven",
     "evidence": "217固定metadata proposal。作者整合だけでは独立review/正式workflow/全閉包を証明しない。"
-  },
-  "manual_classification_audit": {
-    "method": "L4 comparison ruleを先に手で適用し、固定L7 caseのgiven_input_refで値を確認して各caseの全体condition・findingを手導出した。L7 original_expected_refは旧L9→旧L8→L7の移管lineageを持つため、独立oracleではなく既存期待とのhistorical consistency comparisonに限る。L9 inline expectedはL4導出に使っていない。L4/L5 algorithmは実行していない。",
-    "l7_source": {
-      "path": "docs/helix-os/L7-function-verification/ticket-workflow-derivation.json",
-      "revision": "ec98a025d166a5e9f7811233498b7e7e31dbb145",
-      "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146",
-      "expected_pointer_field": "/cases/{index}/original_expected_ref",
-      "expected_underlying_source": {
-        "path": "docs/helix-os/L8-unit-verification/ticket-workflow-derivation.json",
-        "revision": "821a655ad6949b2a7a5344b26e3c170cccc353a6",
-        "sha256": "5a08449810caf2fbd26746ecfebf77d4be34cb28499bd880f51759f225788aeb"
-      }
-    },
-    "l7_historical_expected_population": {
-      "case_count": 217,
-      "condition_counts": {
-        "workflow_material_corresponding": 19,
-        "workflow_material_unknown": 114,
-        "workflow_material_violation": 84
-      },
-      "interpretation": "旧L9→旧L8→L7の移管後に保持された既存期待の母集団数。独立oracleの件数ではなく、候補導出数でもない。"
-    },
-    "formed_cohort": [
-      {
-        "case_id": "OS017-NORMAL-RESUME",
-        "l7_case_pointer": "/cases/3",
-        "l7_given_input_ref": {
-          "pointer": "/objects/b4f43d1ac0d6043d665da7589693e8d180612bd7dc4210da0de17eb3edea7625",
-          "object_digest": "b4f43d1ac0d6043d665da7589693e8d180612bd7dc4210da0de17eb3edea7625"
-        },
-        "l7_original_expected_ref": {
-          "pointer": "/objects/d6cbbf1c33c5de23a15db9243b3c59b5c96da712d047a6de5e6d479ef50f75ba",
-          "object_digest": "d6cbbf1c33c5de23a15db9243b3c59b5c96da712d047a6de5e6d479ef50f75ba"
-        },
-        "l4_class_key_ref": {
-          "path": "docs/helix-os/L4-basic-design/ticket-workflow-derivation.json",
-          "pointer": "/diagnostic_contract/phase_facet_class_key_contract/class_keys/0",
-          "key": "resume:inputs:binding.project:corresponding"
-        },
-        "manual_derivation": {
-          "selected_phase": "resume",
-          "condition_facet": "inputs",
-          "comparison": "binding.project=SYNTHETIC-PROJECT と context.binding.project=SYNTHETIC-PROJECT。bindingの他4 fieldもcontextと一致する。",
-          "finding_signature": [],
-          "condition": "workflow_material_corresponding"
-        },
-        "l7_historical_expected_consistency": {
-          "selected_phase": "resume",
-          "condition": "workflow_material_corresponding",
-          "facet_correspondence": {
-            "ownership": "corresponding",
-            "inputs": "corresponding",
-            "ticket": "corresponding",
-            "workflow": "corresponding",
-            "backflow": "corresponding",
-            "continuity": "corresponding",
-            "scope_limit": "corresponding"
-          },
-          "findings": [],
-          "result": "L4手導出と既存期待が一致。来歴上、独立oracleではなくhistorical consistency comparison。"
-        }
-      },
-      {
-        "case_id": "OS017-BINDING-PROJECT-UNKNOWN",
-        "l7_case_pointer": "/cases/5",
-        "l7_given_input_ref": {
-          "pointer": "/objects/349e48fcefb66a199a806b2b3fc531cc39192fe8680ecf9cfc73ad0da208ccd3",
-          "object_digest": "349e48fcefb66a199a806b2b3fc531cc39192fe8680ecf9cfc73ad0da208ccd3"
-        },
-        "l7_original_expected_ref": {
-          "pointer": "/objects/6f77dde251ca10d46097530d463df1de80aaa046057a07bf16d3d53140982833",
-          "object_digest": "6f77dde251ca10d46097530d463df1de80aaa046057a07bf16d3d53140982833"
-        },
-        "l4_class_key_ref": {
-          "path": "docs/helix-os/L4-basic-design/ticket-workflow-derivation.json",
-          "pointer": "/diagnostic_contract/phase_facet_class_key_contract/class_keys/1",
-          "key": "resume:inputs:binding.project:unknown"
-        },
-        "manual_derivation": {
-          "selected_phase": "resume",
-          "condition_facet": "inputs",
-          "comparison": "binding.project=null、context.binding.project=SYNTHETIC-PROJECT。L4 string比較は片側未成立の原pointer /binding/project にsource_unresolved。bindingの他4 fieldと他のinput refsは基準caseと同一。",
-          "finding_signature": [
-            {
-              "code": "source_unresolved",
-              "pointer": "/binding/project",
-              "return_owner": "ticket-workflow-owner"
-            }
-          ],
-          "condition": "workflow_material_unknown"
-        },
-        "l7_historical_expected_consistency": {
-          "selected_phase": "resume",
-          "condition": "workflow_material_unknown",
-          "facet_correspondence": {
-            "ownership": "corresponding",
-            "inputs": "unknown",
-            "ticket": "corresponding",
-            "workflow": "corresponding",
-            "backflow": "corresponding",
-            "continuity": "corresponding",
-            "scope_limit": "corresponding"
-          },
-          "findings": [
-            {
-              "code": "source_unresolved",
-              "pointer": "/binding/project",
-              "return_owner": "ticket-workflow-owner"
-            }
-          ],
-          "result": "L4手導出と既存期待が一致。来歴上、独立oracleではなくhistorical consistency comparison。"
-        }
-      },
-      {
-        "case_id": "OS017-BINDING-PROJECT-CONFLICT",
-        "l7_case_pointer": "/cases/6",
-        "l7_given_input_ref": {
-          "pointer": "/objects/44d858290764eced3f62ba0d37593b228a6caee87290c022dc5ced1db2140c02",
-          "object_digest": "44d858290764eced3f62ba0d37593b228a6caee87290c022dc5ced1db2140c02"
-        },
-        "l7_original_expected_ref": {
-          "pointer": "/objects/e2028944c2d30c5f6a52cc55c1e25554df35cdd715ff51f5b9db6ec88483c9ca",
-          "object_digest": "e2028944c2d30c5f6a52cc55c1e25554df35cdd715ff51f5b9db6ec88483c9ca"
-        },
-        "l4_class_key_ref": {
-          "path": "docs/helix-os/L4-basic-design/ticket-workflow-derivation.json",
-          "pointer": "/diagnostic_contract/phase_facet_class_key_contract/class_keys/2",
-          "key": "resume:inputs:binding.project:violation"
-        },
-        "manual_derivation": {
-          "selected_phase": "resume",
-          "condition_facet": "inputs",
-          "comparison": "binding.project=OTHER-SOURCE、context.binding.project=SYNTHETIC-PROJECT。両側knownで相反するためactual原pointer /binding/project にsource_conflict。bindingの他4 fieldと他のinput refsは基準caseと同一。",
-          "finding_signature": [
-            {
-              "code": "source_conflict",
-              "pointer": "/binding/project",
-              "return_owner": "ticket-workflow-owner"
-            }
-          ],
-          "condition": "workflow_material_violation"
-        },
-        "l7_historical_expected_consistency": {
-          "selected_phase": "resume",
-          "condition": "workflow_material_violation",
-          "facet_correspondence": {
-            "ownership": "corresponding",
-            "inputs": "violation",
-            "ticket": "corresponding",
-            "workflow": "corresponding",
-            "backflow": "corresponding",
-            "continuity": "corresponding",
-            "scope_limit": "corresponding"
-          },
-          "findings": [
-            {
-              "code": "source_conflict",
-              "pointer": "/binding/project",
-              "return_owner": "ticket-workflow-owner"
-            }
-          ],
-          "result": "L4手導出と既存期待が一致。来歴上、独立oracleではなくhistorical consistency comparison。"
-        }
-      }
-    ],
-    "remaining_scope": {
-      "total_cases_not_in_this_cohort": 214,
-      "negative_cases_not_in_this_cohort": 196,
-      "remaining_l7_expected_conditions": {
-        "workflow_material_corresponding": 18,
-        "workflow_material_unknown": 113,
-        "workflow_material_violation": 83
-      },
-      "classification_state": "not formed by this tranche; retain source classification and input/expected unchanged",
-      "l5_l8_pair": "not changed; 4-way closure remains unestablished"
-    },
-    "preservation": {
-      "l7_given_inputs_unchanged": true,
-      "l7_original_expected_refs_unchanged": true,
-      "l9_inline_expected_values_unchanged": true,
-      "l9_case_population_unchanged": true,
-      "new_gate_added": false,
-      "actual_return_owner_generated_by_phase_or_facet": false
-    },
-    "failure_basis": [
-      {
-        "asset": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-requirements.md",
-        "asset_id": "LEGACY-ASSET-3A15E5645D2D2A59DFF5",
-        "references": "lines 80-85, 105, 190-210",
-        "preserved": "separate requirement/design/ticket/assignment/attempt/snapshot meanings; immutable input-derived ticket semantics",
-        "changed": "this candidate records existing L4 diagnostic classes in a phase/facet keyed form without reusing old runtime/schema or changing approved requirements"
-      },
-      {
-        "asset": "archive/legacy-generation-2026-09-14/root/docs/governance/predecessor-harness-full-weakness-audit-2026-07-20.md",
-        "references": "UTW-002, UTW-005, UTW-021",
-        "preserved": "exact source/ref binding, current-head evidence, and no self-asserted completion"
-      },
-      {
-        "asset": "archive/legacy-generation-2026-09-14/root/docs/governance/github-operations-reference-audit-2026-07-18.md",
-        "references": "lines 24-30, UT-GH-07; PR #104/#105",
-        "preserved": "trace and review evidence remain tied to the exact subject head; no green/pass claim is generated here"
-      }
-    ],
-    "boundary": "Only three resume/inputs cases (one corresponding, one unknown, one violation) map to these keys. Other 214 L7 cases, including 196 remaining negative cases, are not classified by this tranche. No L5/L8 change, no 4-way claim, no new gate, no runtime/test/CI execution.",
-    "authority_and_binding_boundary": {
-      "parent": "HELIXOS-L2-017",
-      "approved_requirement_revision": "5c62d19b78fca3be1964c0cd3157a540950150dc",
-      "approved_requirement_ids": [
-        "HELIXOS-L3-017-F01",
-        "HELIXOS-L3-017-F02",
-        "HELIXOS-L3-017-F03",
-        "HELIXOS-L3-017-B01"
-      ],
-      "pair_source_pins": {
-        "l4_l9_scope_approved_content_revision": "5c62d19b78fca3be1964c0cd3157a540950150dc",
-        "decision_pin_entries_match_top_level_source_pins": true,
-        "target_l4_l9_pair_revision_approval": "not asserted; this change does not create an approved L4/L9 target revision"
-      },
-      "work_request": {
-        "request_id": "WR204-OS017-L4L9-CLASS-FORMATION",
-        "issue": 3510,
-        "scope": [
-          "docs/helix-os/L4-basic-design/ticket-workflow-derivation.json",
-          "docs/helix-os/L9-integration-verification/ticket-workflow-derivation.json"
-        ],
-        "evidence_kind": "scaffold",
-        "authority_effect": "none",
-        "permitted_operation": "既存L4条件と固定入力を用いた限定的な手動分類記録および静的整合修正"
-      },
-      "target_authority_state": {
-        "l4_status": "draft_basic_contracts_and_synthetic_cases_pending_independent_review",
-        "l9_status": "draft_basic_contracts_and_synthetic_cases_pending_independent_review",
-        "implementation_readiness": "not_ready",
-        "authority_effect": "none",
-        "interpretation": "draft表示だけで承認/不承認を推定しない。対象pairは今回もdraftのまま、L3/L10の承認済み意味に対する限定候補形成である。"
-      },
-      "scaffold_binding_review": {
-        "binding_added": false,
-        "global_stale_is_registration_evidence": false,
-        "existing_related_bindings": [
-          {
-            "id": "SCF-B-0175",
-            "upstream_path": "docs/helix-os/L4-basic-design/management-authority-source-record.json"
-          },
-          {
-            "id": "SCF-B-0175",
-            "upstream_path": "docs/helix-os/L9-integration-verification/management-authority-source-record.json"
-          },
-          {
-            "id": "SCF-B-0178",
-            "upstream_path": "docs/helix-os/L4-basic-design/management-authority-source-record.json"
-          }
-        ],
-        "applicability": "reviewed the adjacent existing bindings; they do not bind the ticket-workflow-derivation pair. This candidate remains inside the requested L4/L9 draft documents with authority_effect none, rather than creating a separate temporary artifact under scaffold/. Registering a new binding would invent a substitute/role and expand the requested pair scope."
-      },
-      "decision_source_pins": [
-        {
-          "path": "docs/governance/decisions/helix-os-workflow-prerequisite-l3-l10-delegated-decision-2026-10-12.md",
-          "source_pin_pointer": "/source_pins/6",
-          "revision": "e3bd0bdb8d51a2af8f0554606b53f6693736cb01",
-          "recorded_status_at_pinned_revision": "recorded_pending_final_review_and_main_admission",
-          "recorded_effective_condition": "effective_when_this_record_is_admitted_to_main",
-          "admission_checked_main_revision": "f5d511841c665b3424e159c8c1029bde51434521"
-        },
-        {
-          "path": "docs/governance/decisions/requirements-entry-restart-po-decision-2026-10-12.md",
-          "source_pin_pointer": "/source_pins/7",
-          "revision": "e3bd0bdb8d51a2af8f0554606b53f6693736cb01",
-          "admitted_to_current_main": true,
-          "admission_checked_main_revision": "f5d511841c665b3424e159c8c1029bde51434521",
-          "boundary": "限定前提形成の順序とscopeを認める。下流pairの承認、実装許可、PO L11受入を成立させない。"
-        }
-      ]
-    }
   }
 }

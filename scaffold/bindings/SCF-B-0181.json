@@ -1,0 +1,126 @@
+{
+  "schema_revision": 1,
+  "id": "SCF-B-0181",
+  "kind": "scaffold",
+  "title": "WR204 OS017 source-qualified負例class候補",
+  "product": "HELIX-HARNESS",
+  "owner_candidate": "HELIX-OS OS017 L4/L9 candidate evidence",
+  "state": "registered",
+  "reason": "PR #3945 R1 M1/F2に応じ、OS017の2負例候補をL4設計テキストとL7 given inputから手導出した証跡をscaffoldに保持する。期待値由来のoracle、4層class marker、L5/L8投影、freeze成立を生成しない。",
+  "upstream": [
+    {
+      "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+      "sha256": "e86254a35b476ed71ebb112e41ccd2b48f89a8d0393e6495dc11cac7a7cf4e02",
+      "note": "OS017 F01; candidate requirement context."
+    },
+    {
+      "path": "docs/helix-os/L3-requirements/business-requirements.json",
+      "sha256": "0df11c612e3e0b531d2103d058471d5be2be8b8df965d10b69e06b0e506488c7",
+      "note": "OS017 B01; ownership boundary context."
+    },
+    {
+      "path": "docs/helix-os/L10-verification/functional-verification.json",
+      "sha256": "583020f951672e48bc37fcd35cb916de5ccd9866f41dd04731f6519325ae500a",
+      "note": "OS017 F01 static verification source."
+    },
+    {
+      "path": "docs/helix-os/L10-verification/business-verification.json",
+      "sha256": "215e1d4a99f73151aa4b3225947a65567fbc3b97bec0cf9eac8d1a6456cbc3dd",
+      "note": "OS017 B01 static verification source."
+    },
+    {
+      "path": "docs/helix-os/L4-basic-design/ticket-workflow-derivation.json",
+      "sha256": "8087d3da44345bff96444c69795eb2cfbaf2629c29ccc794697f68c0416e140a",
+      "note": "L4 source-qualified negative class candidates and source prose/tables."
+    },
+    {
+      "path": "docs/helix-os/L7-function-verification/ticket-workflow-derivation.json",
+      "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146",
+      "note": "Fixed given_input_ref source only; expected references were not used as derivation oracle."
+    },
+    {
+      "path": "docs/governance/design-verification-quality-assurance.md",
+      "sha256": "f5751e236dc073fe67114c1fcb4b0f64b3d746290b25d75b61e60a08e3c99c85",
+      "note": "CHK-NEG-4WAY-MATCH explicit mode boundary; all-four-layer marker and owner_ref projection remain deferred."
+    },
+    {
+      "path": "docs/helix-os/L9-integration-verification/ticket-workflow-derivation.json",
+      "sha256": "f833f93695c173fc37ad0025357f0a4ea45d08f898b7b9b967aa2c6f4edae5c0",
+      "note": "Candidate references and remaining scope; 217-case expected projection digest was checked for preservation only, not used to derive classes."
+    }
+  ],
+  "role": "WR204 OS017 L4/L9 source-qualified負例class候補の証拠。4層class登録ではない。",
+  "obligations": [
+    "L4設計テキストとL7 raw入力値から2つの候補classとsource pointerを手導出する。",
+    "対応する正例caseは負例candidate集合の外に置き、phaseはcase、inputsはexpected_axisとして保持する。",
+    "L9の217件についてcondition/expected/expected_preservedとL7 given入力参照を保持する。",
+    "owner_ref、L5/L8投影、4層explicit marker、4way PASSは後続へ残す。"
+  ],
+  "connections": {
+    "consumers": [
+      "WR204 OS017 L5/L8 successor V-pair"
+    ],
+    "dependencies": [
+      "PR #3945 R1 review comment 6528682356",
+      "WR204-OS017-L4L9-CLASS-FORMATION"
+    ],
+    "boundary": "scaffold証拠のみ。authority、approval、runtime実行、implementation completion、4way closure、freezeを主張しない。L5/L8およびexplicit markerは別作業に残す。"
+  },
+  "operations": {
+    "allowed": [
+      "L3/L10/L4のsource本文・表を読む",
+      "L7 given_input_refのraw値を調べる",
+      "JSON/document/hash/pointerの静的確認",
+      "scfctl validate/stale",
+      "既存design checker check-childによる静的測定",
+      "git diff --check"
+    ],
+    "forbidden": [
+      "L4/L5 algorithmを実行する",
+      "このV-pairでL5/L8文書を編集する",
+      "L7/L8/L9 expectedを導出oracleに使う",
+      "checker gateまたはfreeze generationを追加する",
+      "旧HELIX CLI/hook/runtime/test/CIを実行する"
+    ]
+  },
+  "artifacts": [
+    "docs/helix-os/L4-basic-design/ticket-workflow-derivation.json",
+    "docs/helix-os/L9-integration-verification/ticket-workflow-derivation.json",
+    "scaffold/research/wr204-os017-negative-classes-20261031/README.md",
+    "scaffold/research/wr204-os017-negative-classes-20261031/manual-derivation.json"
+  ],
+  "verification": {
+    "evidence_kind": "scaffold",
+    "scope": [
+      "schema_interface",
+      "source_revision_stale",
+      "negative_case",
+      "forbidden_write_scope"
+    ],
+    "oracles": [
+      "python3 -m json.tool <changed-json>",
+      "python3 scaffold/tools/design_verification_checker.py check-child --root . --l4 docs/helix-os/L4-basic-design/ticket-workflow-derivation.json --l5 docs/helix-os/L5-detail-design/ticket-workflow-derivation.json --l8 docs/helix-os/L8-unit-verification/ticket-workflow-derivation.json --l9 docs/helix-os/L9-integration-verification/ticket-workflow-derivation.json",
+      "python3 -B scaffold/tools/scfctl.py validate",
+      "python3 -B scaffold/tools/scfctl.py stale",
+      "git diff --check"
+    ],
+    "negative_cases": [
+      "OS017-NORMAL-RESUMEは負例候補集合の外に保持する。",
+      "片側だけのexplicit_negative_equivalence_classes markerを設定しない。",
+      "L9 expectedのdigestは保持確認だけに使い、classを導出しない。",
+      "4way checkはlegacy/not_evaluatedのままで、PASSと報告しない。"
+    ]
+  },
+  "replacement": {
+    "role_target": "L5 ownerとL8 case projectionを独立形成した後のformal OS017 L4/L9 negative equivalence classes",
+    "formal_artifacts": [],
+    "issue": 3510,
+    "status": "pending",
+    "transfer": null,
+    "target_revisions": {},
+    "confirmation_ref": null,
+    "confirmation_digest": null
+  },
+  "created": "2026-10-31",
+  "updated": "2026-10-31"
+}
