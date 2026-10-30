@@ -20,8 +20,8 @@
     },
     {
       "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
-      "sha256": "eb0f43e23906d04b9554786a2574c94d01de85faa75f7fb1f33e08eb3276f464",
-      "note": "固定base a0ce1ce787cff3b61664c12d62ae471969edb433, /contracts/3の指定散文。"
+      "sha256": "e6253059bb117446412ecb8b054ae533641054c8a1be4a535eb1f784017fa3e9",
+      "note": "固定base a0ce1ce787cff3b61664c12d62ae471969edb433, /contracts/3の指定散文。 Historical fixed source: revision a0ce1ce787cff3b61664c12d62ae471969edb433, SHA-256 eb0f43e23906d04b9554786a2574c94d01de85faa75f7fb1f33e08eb3276f464. Current digest refreshed to 21f5f0837225fd1c50015528e27fb530f60b6d93046d17877b5655eb4e751a4a for stale detection only; fixed comparison/audit remains tied to the historical revision and its frozen evidence. comparison.json retains the fixed a0ce source digests/pointers, blind artifact digest, and audit values; no comparison artifact is rewritten. Current digest at WR227 R1 candidate: 21f5f0837225fd1c50015528e27fb530f60b6d93046d17877b5655eb4e751a4a (stale-detection pin only); historical fixed comparison source remains recorded above. Current digest after R1 compact evidence split: a81f0ae25d937ce9aea830d65f61fd5d04027511acb51ff39a0be526d8bba98a (stale-detection pin only; historical fixed audit/revision unchanged). Current digest after Japanese prose cleanup: d49a2f89364b5a031220ef515988b25d8e02c2894c2602ab7ea316b9ab394a67 (stale-detection pin only; historical fixed source/audit unchanged). Current digest after Japanese wording, unmatched-row clarification, and pointer-centered audit: 2a4230d745cac2c9c9ee9500eba0efe028a16136bedd8b04b7d7d8f3eb382eb3 (stale-detection pin only; historical fixed source/audit unchanged). Current digest after R2 missing-boundary clarification and unresolved status-assignment disclosure: e6253059bb117446412ecb8b054ae533641054c8a1be4a535eb1f784017fa3e9 (stale-detection pin only; fixed historical sources unchanged)."
     },
     {
       "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
@@ -30,8 +30,8 @@
     },
     {
       "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
-      "sha256": "ccac38abfa3a204fdd1b5c325b67835e13957914f5a8f239e87efe55d190dff5",
-      "note": "固定base / refs/heads/main a0ce1ce787cff3b61664c12d62ae471969edb433。F03 /cases/3/negative_cases/0,2。"
+      "sha256": "60942b72d432a79e72b03ab42a616e264b442bfc60b5d53e3aeb54f9c84a847e",
+      "note": "固定base / refs/heads/main a0ce1ce787cff3b61664c12d62ae471969edb433。F03 /cases/3/negative_cases/0,2。 Historical fixed source: revision a0ce1ce787cff3b61664c12d62ae471969edb433, SHA-256 ccac38abfa3a204fdd1b5c325b67835e13957914f5a8f239e87efe55d190dff5. Current digest refreshed to 60942b72d432a79e72b03ab42a616e264b442bfc60b5d53e3aeb54f9c84a847e for stale detection only; fixed comparison/audit remains tied to the historical revision and its frozen evidence. comparison.json retains the fixed a0ce source digests/pointers, blind artifact digest, and audit values; no comparison artifact is rewritten."
     }
   ],
   "role": "WR219 F03のorigin-null / trace-empty synthetic witnessに関する固定blind derivationと既存L8/L9期待値の比較を保持する。",
@@ -72,7 +72,11 @@
     "scaffold/research/wr219-f03-pair-blind-20261031/README.md",
     "scaffold/research/wr219-f03-pair-blind-20261031/blind-derivation.json",
     "scaffold/research/wr219-f03-pair-blind-20261031/comparison.json",
-    "scaffold/bindings/SCF-B-0188.json"
+    "scaffold/bindings/SCF-B-0188.json",
+    "scaffold/research/wr219-f03-pair-blind-20261031/wr224-independent-blind-derivation.json",
+    "scaffold/research/wr219-f03-pair-blind-20261031/wr224-comparison-after-r1.md",
+    "scaffold/research/wr219-f03-pair-blind-20261031/wr227-f03-value-domain-audit.json",
+    "scaffold/research/wr186-psp-negative-residual/validate_l9.py"
   ],
   "verification": {
     "evidence_kind": "scaffold",
@@ -88,7 +92,11 @@
       "SHA-256 of comparison.json: 5a9881dcad1e4fcd3460eb57d4878f41a469e39940042550b9c2befe69587b49",
       "python3 -B scaffold/tools/scfctl.py validate",
       "python3 -B scaffold/tools/scfctl.py stale",
-      "git diff --check"
+      "git diff --check",
+      "SHA-256 of scaffold/research/wr219-f03-pair-blind-20261031/wr224-independent-blind-derivation.json equals c363ed8bfbf87130be01506092c91d6058c1ffb84452b00fc75cf578f5f79ef5 (byte copy of fixed Issue #3510 comment 6532068000 blind artifact).",
+      "SHA-256 of scaffold/research/wr219-f03-pair-blind-20261031/wr224-comparison-after-r1.md equals 4d4b77ca925a50f230c38f081c7cb98ab5fda5201d4218fbe946bb289b78d9a0 (comparison to fixed blind and PR #3970 R1 findings).",
+      "SHA-256 of scaffold/research/wr219-f03-pair-blind-20261031/wr227-f03-value-domain-audit.json equals bf7beab57f0878d6353e547395f3525d434afc1421dbc4d3f25180eead776a2f (scaffold-only exhaustive row/count/exception evidence).",
+      "SHA-256 of scaffold/research/wr186-psp-negative-residual/validate_l9.py equals 70d5ded675eb2eb14b91ebbcaf479b2498469d8353ced2572467fcbdd5ecf3eb (static row, count, exception, and historical L9 reason audit)."
     ],
     "negative_cases": [
       "Do not replace L4 state=missing with a supported/success value, or treat L8/L9 supported_synthetic_condition as actual pair success.",

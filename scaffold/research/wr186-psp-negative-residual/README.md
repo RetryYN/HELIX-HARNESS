@@ -2,7 +2,7 @@
 
 ## 対象と境界
 
-PR classは `design_verification`、対象V-pairは **HELIX-HARNESS L4/L9**。この記録はL9固定入力・mutation・source pointer/hashの監査に限る。L9の既存期待、case population、checker marker、formal projection row、freezeを変更しない。F04 7件すべてのfinding setはunknown/unformedであり、単一条件候補は形成しない。F03/F05監査から新しいfinding候補を形成しない。L8はWR186成果に含めない。
+PR classは `design_verification`、対象V-pairは **HELIX-HARNESS L4/L9**。この記録はL9固定入力・mutation・source pointer/hashの監査に限る。formal L9 output values、case population、checker marker、formal projection row、freezeは維持する。後続WR227で変更したF03説明reason 4箇所の旧新値は [wr227-l9-reason-edit-audit.json](../wr219-f03-pair-blind-20261031/wr227-l9-reason-edit-audit.json) に履歴として分離し、このvalidatorで正確な差分を照合する。F04 7件すべてのfinding setはunknown/unformedであり、単一条件候補は形成しない。F03/F05監査から新しいfinding候補を形成しない。L8はWR186成果に含めない。
 
 共有根拠は [SCF-B-0174](../../bindings/SCF-B-0174.json) と、この文書の隣にあるF03/F04/F05監査行に保持する。L9からscaffoldへの参照は置かず、scaffoldからL9監査箇所を参照する。
 
@@ -47,4 +47,10 @@ python3 -B scaffold/tools/scfctl.py validate
 python3 -B scaffold/tools/scfctl.py stale
 ```
 
-`validate_l9.py` は基準revisionのcase/expectation不変、固定raw bytesのhash、pointer解決、L9 mutation参照、F04の0 candidate/7 unknown-unformed分類、同形state_basis参照のL4/L5 pointerを静的照合する。L4/L5 predicateをコード化・実行せず、findingを算出しない。
+`validate_l9.py` はWR186/WR192両基準に対する全case照合（説明reason 4箇所だけ旧値へ戻す）と旧新audit一致、固定raw bytesのhash、pointer解決、L9 mutation参照、F04の0 candidate/7 unknown-unformed分類、同形state_basis参照のL4/L5 pointerを静的照合する。L4/L5 predicateをコード化・実行せず、findingを算出しない。
+
+## WR227の説明reason差分と検証境界
+
+WR227は、F03のorigin-null / trace-empty witnessで `expected_material.reason` と `negative_class_assignment.reason` の計4箇所だけを説明補足した。固定監査base `ca4bd911142cc17789366ae6f9f1f0fee8c7c589` およびWR192 base `62d7db6aa076d81c1b1f1fd584adeacf76c2f815` のreason原文と現行reasonの対応は `validate_l9.py` の `F03_REASON_EDITS` に明示する。validatorは現行L9を4箇所だけ旧値へ正規化して両baseの全 `cases` と比較し、他のcase内容・expected output・mutation・assignment分類が一致することを検査する。さらにL4の意味記録から参照されるscaffold reason auditの旧値・新値とも照合する。
+
+この差分は説明reasonに限り、期待するpair/valley・dimension・effect値、分類値、case母集団、mutation、projection audit、checker marker、freezeを変えない。旧raw snapshotと過去のL4/L9 source比較は固定revision・SHAを保持する。L4/L5 predicateは実行しない。

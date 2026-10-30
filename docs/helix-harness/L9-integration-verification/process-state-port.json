@@ -4695,7 +4695,7 @@
             "actual_user_accepted": false,
             "actual_release": false,
             "actual_completion": false,
-            "reason": "由来不明は局所の成功で補完しない。",
+            "reason": "由来不明は局所の成功で補完しない。pair_result/valley_resultのsupported_synthetic_conditionは、このorigin-null合成入力条件がfixture sourceにより支持されることを示す部分証拠で、正規由来・実pair/谷成立・Provisional更新を意味しない。",
             "retain_unaffected_material": true
           },
           "execution_state": "not_executed",
@@ -4717,7 +4717,7 @@
           },
           "negative_class_assignment": {
             "classification": "F03_REQUIRED_PAIR_MISSING",
-            "reason": "originまたはtraceの必要原材料を直接除去し、pair/trace証拠欠落を期待する。",
+            "reason": "origin原材料の除去に基づく候補分類annotation。実処理結果または形成済みfinding集合を示さず、supported_synthetic_conditionもmissing分類を相殺しない。",
             "source_pointers": [
               {
                 "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
@@ -4807,7 +4807,7 @@
             "actual_user_accepted": false,
             "actual_release": false,
             "actual_completion": false,
-            "reason": "設計trace欠落では正規局所由来を確かめられない。",
+            "reason": "設計trace欠落では正規局所由来を確かめられない。pair_result/valley_resultのsupported_synthetic_conditionは、このtrace-empty合成入力条件がfixture sourceにより支持されることを示す部分証拠で、pair/谷の実成立・Provisional更新を意味しない。",
             "retain_unaffected_material": true
           },
           "execution_state": "not_executed",
@@ -4840,7 +4840,7 @@
           },
           "negative_class_assignment": {
             "classification": "F03_REQUIRED_PAIR_MISSING",
-            "reason": "originまたはtraceの必要原材料を直接除去し、pair/trace証拠欠落を期待する。",
+            "reason": "trace原材料の除去に基づく候補分類annotation。実処理結果または形成済みfinding集合を示さず、L9 projection auditのunknown/unformedとinvalidated codeを取り消さない。",
             "source_pointers": [
               {
                 "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",

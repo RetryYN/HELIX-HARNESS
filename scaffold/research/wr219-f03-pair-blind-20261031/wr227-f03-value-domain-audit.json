@@ -1,0 +1,1411 @@
+{
+  "schema": "wr227-f03-value-domain-audit.v1",
+  "evidence_kind": "scaffold",
+  "authority_effect": "none",
+  "purpose": "Exhaustive static row inventory and recheck data supporting the concise L4 F03 partial-result value-domain contract.",
+  "source_files": [
+    {
+      "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+      "revision": "771dd7e802189506d88cf9d9570c42b94cf7b8fb",
+      "pointer": "/requirements/66/obligation",
+      "sha256": "5a0ccb8e75f59fb78cd67f211ef2bca8a41f73a440e36ac5374a53fe1dfcfe69"
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/functional-verification.json",
+      "revision": "771dd7e802189506d88cf9d9570c42b94cf7b8fb",
+      "pointer": "/cases/66",
+      "sha256": "6fea9190c60121d262572c821c7ef8f5e38429e01a98f75d644b2b59297514db"
+    },
+    {
+      "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
+      "revision": "0e0941444f099680ae227194d5ccfb31f1cbfc4c",
+      "pointer": "/contracts/3/negative_classifications/0",
+      "sha256": "eb0f43e23906d04b9554786a2574c94d01de85faa75f7fb1f33e08eb3276f464"
+    },
+    {
+      "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+      "revision": "a0ce1ce787cff3b61664c12d62ae471969edb433",
+      "pointer": "/cases/3",
+      "sha256": "ee564c12ea81158f14a0483bd0fd4d9d35352b62c8050bdf8686195f32df213f"
+    },
+    {
+      "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+      "revision": "a0ce1ce787cff3b61664c12d62ae471969edb433",
+      "pointer": "/cases/3",
+      "sha256": "ccac38abfa3a204fdd1b5c325b67835e13957914f5a8f239e87efe55d190dff5",
+      "note": "Expected field values are compared at this fixed base; the four explanatory reason edits are separately audited."
+    }
+  ],
+  "references": [
+    {
+      "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+      "revision": "771dd7e802189506d88cf9d9570c42b94cf7b8fb",
+      "pointer": "/requirements/66/obligation"
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/functional-verification.json",
+      "revision": "771dd7e802189506d88cf9d9570c42b94cf7b8fb",
+      "pointer": "/cases/66"
+    },
+    {
+      "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
+      "pointer": "/contracts/3/negative_classifications/0"
+    },
+    {
+      "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
+      "pointer": "/contracts/3/negative_classifications/2"
+    },
+    {
+      "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+      "pointer": "/cases/3/cases"
+    },
+    {
+      "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+      "pointer": "/cases/3/valley_content_counterexamples"
+    },
+    {
+      "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+      "pointer": "/cases/3/normal_cases"
+    },
+    {
+      "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+      "pointer": "/cases/3/negative_cases"
+    },
+    {
+      "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+      "pointer": "/cases/3/cases/14"
+    },
+    {
+      "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+      "pointer": "/cases/3/cases/15"
+    },
+    {
+      "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+      "pointer": "/cases/3/cases/27"
+    },
+    {
+      "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+      "pointer": "/cases/3/cases/39"
+    },
+    {
+      "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+      "pointer": "/cases/3/cases/40"
+    },
+    {
+      "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+      "pointer": "/cases/3/cases/41"
+    },
+    {
+      "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+      "pointer": "/cases/3/cases/42"
+    },
+    {
+      "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+      "pointer": "/cases/3/cases/44"
+    },
+    {
+      "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+      "pointer": "/cases/3/negative_cases/10"
+    },
+    {
+      "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+      "pointer": "/cases/3/negative_cases/11"
+    },
+    {
+      "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+      "pointer": "/cases/3/negative_cases/23"
+    },
+    {
+      "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+      "pointer": "/cases/3/negative_cases/35"
+    },
+    {
+      "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+      "pointer": "/cases/3/negative_cases/36"
+    },
+    {
+      "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+      "pointer": "/cases/3/negative_cases/37"
+    },
+    {
+      "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+      "pointer": "/cases/3/negative_cases/38"
+    },
+    {
+      "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+      "pointer": "/negative_output_projection_audit/manual_projection_audit_rows/11"
+    },
+    {
+      "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+      "pointer": "/negative_output_projection_audit/manual_projection_audit_rows/12"
+    },
+    {
+      "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+      "pointer": "/negative_output_projection_audit/manual_projection_audit_rows/13"
+    },
+    {
+      "reference": "RetryYN/HELIX-HARNESS Issue #3510 comment 6532068000",
+      "sha256": "c363ed8bfbf87130be01506092c91d6058c1ffb84452b00fc75cf578f5f79ef5",
+      "artifact": "scaffold/research/wr219-f03-pair-blind-20261031/wr224-independent-blind-derivation.json"
+    },
+    {
+      "reference": "RetryYN/HELIX-HARNESS Issue #3510 comment 6532122968",
+      "artifact": "scaffold/research/wr219-f03-pair-blind-20261031/wr224-comparison-after-r1.md"
+    },
+    {
+      "reference": "RetryYN/HELIX-HARNESS PR #3970 review comment 6532547942",
+      "finding": "R1 F1/F2/I1 scope corrected by full-domain inventory, fixed blind inclusion, and scaffold reason history."
+    }
+  ],
+  "usage_inventory": {
+    "l8_cases": "/cases/3/cases has 45 rows: pair_result state known=39, conflict=3, stale=3; valley_result state known=43, conflict=1, missing=1. Known values are supported_synthetic_condition.",
+    "l8_pair_results": "/cases/3/cases expected_partial_values/pair_results has 43 rows where each L8/L9/L10 nested pair is known/supported; the remaining wrong-pair and foreign-revision rows expose conflict/stale in their affected pair and keep other pairs supported. /cases/3/valley_content_counterexamples has 10 rows with pair_results all three known/supported.",
+    "l8_valley_counterexamples": "/cases/3/valley_content_counterexamples has 10 rows, each valley_result state=conflict/value=null; IDs H003-L8-F03-CONTENT-FREEZE-AFTER-RED, CONTENT-RED-NOT-EXECUTED, CONTENT-RED-ALREADY-GREEN, CONTENT-GREEN-DIFFERENT-ORACLE, CONTENT-REFACTOR-PUBLIC-MEANING-CHANGE, CONTENT-REVERIFY-BEFORE-REFACTOR, CONTENT-REVERIFY-NOT-EXECUTED, CONTENT-REVERIFY-REGRESSION, CONTENT-GREEN-NOT-EXECUTED, CONTENT-GREEN-REGRESSION.",
+    "l9_cases": "/cases/3/normal_cases has 4 rows: pair/valley support=4 each. /cases/3/negative_cases has 39 rows: pair support=33/conflict=3/stale=3; valley support=38/conflict=1."
+  },
+  "exception_rows": {
+    "pair_conflict": {
+      "meaning": "Expected pair is inconsistent with target pair after a left-layer substitution; L9 assignment remains candidate annotation F03_PAIR_SCOPE_CONFLICT.",
+      "rows": [
+        {
+          "case_id": "H003-L8-F03-WRONG-L9-PAIR",
+          "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+          "pointer": "/cases/3/cases/14",
+          "nested_pair_results_pointer": "/cases/3/cases/14/expected_partial_values/pair_results/value/L9",
+          "affected_pair_layer": "L9",
+          "unaffected_pairs": "the other two nested pair results remain known/supported_synthetic_condition"
+        },
+        {
+          "case_id": "H003-F03-WRONG-L9-PAIR",
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "pointer": "/cases/3/negative_cases/10"
+        },
+        {
+          "case_id": "H003-L8-F03-L8-WRONG-PAIR",
+          "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+          "pointer": "/cases/3/cases/39",
+          "nested_pair_results_pointer": "/cases/3/cases/39/expected_partial_values/pair_results/value/L8",
+          "affected_pair_layer": "L8",
+          "unaffected_pairs": "the other two nested pair results remain known/supported_synthetic_condition"
+        },
+        {
+          "case_id": "H003-F03-L8-WRONG-PAIR",
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "pointer": "/cases/3/negative_cases/35"
+        },
+        {
+          "case_id": "H003-L8-F03-L10-WRONG-PAIR",
+          "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+          "pointer": "/cases/3/cases/41",
+          "nested_pair_results_pointer": "/cases/3/cases/41/expected_partial_values/pair_results/value/L10",
+          "affected_pair_layer": "L10",
+          "unaffected_pairs": "the other two nested pair results remain known/supported_synthetic_condition"
+        },
+        {
+          "case_id": "H003-F03-L10-WRONG-PAIR",
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "pointer": "/cases/3/negative_cases/37"
+        }
+      ],
+      "audit": "L9 manual_projection_audit_rows/11-13 are unknown/unformed and invalidate prior candidate codes; assignments are not formed finding output."
+    },
+    "pair_stale": {
+      "meaning": "Fixture changes a compared requirement revision from REQ@r1 to REQ@r0; the material is not current for the target. No distinct stale code exists in L4 and no mapping is added.",
+      "rows": [
+        {
+          "case_id": "H003-L8-F03-FOREIGN-PAIR-REVISION",
+          "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+          "pointer": "/cases/3/cases/15",
+          "nested_pair_results_pointer": "/cases/3/cases/15/expected_partial_values/pair_results/value/L9",
+          "affected_pair_layer": "L9",
+          "unaffected_pairs": "the other two nested pair results remain known/supported_synthetic_condition"
+        },
+        {
+          "case_id": "H003-F03-FOREIGN-PAIR-REVISION",
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "pointer": "/cases/3/negative_cases/11"
+        },
+        {
+          "case_id": "H003-L8-F03-L8-FOREIGN-REVISION",
+          "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+          "pointer": "/cases/3/cases/40",
+          "nested_pair_results_pointer": "/cases/3/cases/40/expected_partial_values/pair_results/value/L8",
+          "affected_pair_layer": "L8",
+          "unaffected_pairs": "the other two nested pair results remain known/supported_synthetic_condition"
+        },
+        {
+          "case_id": "H003-F03-L8-FOREIGN-REVISION",
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "pointer": "/cases/3/negative_cases/36"
+        },
+        {
+          "case_id": "H003-L8-F03-L10-FOREIGN-REVISION",
+          "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+          "pointer": "/cases/3/cases/42",
+          "nested_pair_results_pointer": "/cases/3/cases/42/expected_partial_values/pair_results/value/L10",
+          "affected_pair_layer": "L10",
+          "unaffected_pairs": "the other two nested pair results remain known/supported_synthetic_condition"
+        },
+        {
+          "case_id": "H003-F03-L10-FOREIGN-REVISION",
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "pointer": "/cases/3/negative_cases/38"
+        }
+      ],
+      "audit": "No negative_class_assignment or matching projection-audit row is present for these stale cases; stale remains an expected fixture status and not a formed finding."
+    },
+    "valley_conflict": {
+      "meaning": "The fixture replaces pre_body_red with mutation_after_body; the expected valley conflict concerns absence of the required pre-implementation Red witness. L8 has ten additional content evidence conflicts.",
+      "rows": [
+        {
+          "case_id": "H003-L8-F03-PRE-BODY-RED-ABSENT",
+          "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+          "pointer": "/cases/3/cases/27"
+        },
+        {
+          "case_id": "H003-F03-PRE-BODY-RED-ABSENT",
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "pointer": "/cases/3/negative_cases/23"
+        },
+        {
+          "case_id": null,
+          "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+          "pointer": "/cases/3/valley_content_counterexamples/0"
+        },
+        {
+          "case_id": null,
+          "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+          "pointer": "/cases/3/valley_content_counterexamples/1"
+        },
+        {
+          "case_id": null,
+          "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+          "pointer": "/cases/3/valley_content_counterexamples/2"
+        },
+        {
+          "case_id": null,
+          "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+          "pointer": "/cases/3/valley_content_counterexamples/3"
+        },
+        {
+          "case_id": null,
+          "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+          "pointer": "/cases/3/valley_content_counterexamples/4"
+        },
+        {
+          "case_id": null,
+          "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+          "pointer": "/cases/3/valley_content_counterexamples/5"
+        },
+        {
+          "case_id": null,
+          "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+          "pointer": "/cases/3/valley_content_counterexamples/6"
+        },
+        {
+          "case_id": null,
+          "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+          "pointer": "/cases/3/valley_content_counterexamples/7"
+        },
+        {
+          "case_id": null,
+          "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+          "pointer": "/cases/3/valley_content_counterexamples/8"
+        },
+        {
+          "case_id": null,
+          "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+          "pointer": "/cases/3/valley_content_counterexamples/9"
+        }
+      ],
+      "audit": "No negative_class_assignment or matching projection-audit row is present for the L9 pre-body case. L8 content counterexamples remain in the separate L5/L8 scope.",
+      "counterexample_reasons": [
+        {
+          "case_id": "H003-L8-F03-CONTENT-FREEZE-AFTER-RED",
+          "pointer": "/cases/3/valley_content_counterexamples/0/expected_partial_values/valley_result",
+          "reason": "Freeze occurs after Red, so it cannot be the pre-implementation frozen oracle."
+        },
+        {
+          "case_id": "H003-L8-F03-CONTENT-RED-NOT-EXECUTED",
+          "pointer": "/cases/3/valley_content_counterexamples/1/expected_partial_values/valley_result",
+          "reason": "Expected failure is written but Red observation was not executed."
+        },
+        {
+          "case_id": "H003-L8-F03-CONTENT-RED-ALREADY-GREEN",
+          "pointer": "/cases/3/valley_content_counterexamples/2/expected_partial_values/valley_result",
+          "reason": "Red does not detect the intended duplicate-processing defect."
+        },
+        {
+          "case_id": "H003-L8-F03-CONTENT-GREEN-DIFFERENT-ORACLE",
+          "pointer": "/cases/3/valley_content_counterexamples/3/expected_partial_values/valley_result",
+          "reason": "Green uses a different oracle than the frozen one."
+        },
+        {
+          "case_id": "H003-L8-F03-CONTENT-REFACTOR-PUBLIC-MEANING-CHANGE",
+          "pointer": "/cases/3/valley_content_counterexamples/4/expected_partial_values/valley_result",
+          "reason": "Local refactor changes public contract meaning."
+        },
+        {
+          "case_id": "H003-L8-F03-CONTENT-REVERIFY-BEFORE-REFACTOR",
+          "pointer": "/cases/3/valley_content_counterexamples/5/expected_partial_values/valley_result",
+          "reason": "CI observation belongs to the pre-refactor HEAD."
+        },
+        {
+          "case_id": "H003-L8-F03-CONTENT-REVERIFY-NOT-EXECUTED",
+          "pointer": "/cases/3/valley_content_counterexamples/6/expected_partial_values/valley_result",
+          "reason": "Reverification after refactor was not executed."
+        },
+        {
+          "case_id": "H003-L8-F03-CONTENT-REVERIFY-REGRESSION",
+          "pointer": "/cases/3/valley_content_counterexamples/7/expected_partial_values/valley_result",
+          "reason": "Duplicate processing recurs after refactor."
+        },
+        {
+          "case_id": "H003-L8-F03-CONTENT-GREEN-NOT-EXECUTED",
+          "pointer": "/cases/3/valley_content_counterexamples/8/expected_partial_values/valley_result",
+          "reason": "No actual Green observation exists."
+        },
+        {
+          "case_id": "H003-L8-F03-CONTENT-GREEN-REGRESSION",
+          "pointer": "/cases/3/valley_content_counterexamples/9/expected_partial_values/valley_result",
+          "reason": "Green observation does not match the frozen oracle."
+        }
+      ]
+    },
+    "l8_unmatched_missing": {
+      "meaning": "An L8-only 005 binding-qualification case with valley_result state=missing/value=null; no same-ID L9 case exists. Preserve as a separate-layer gap.",
+      "rows": [
+        {
+          "case_id": "H003-L8-F03-005-BINDING-QUALIFICATION-MISSING-WHOLE",
+          "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+          "pointer": "/cases/3/cases/44"
+        }
+      ]
+    }
+  },
+  "alternatives_considered": [
+    {
+      "option": "All pair_result/valley_result values are actual pair or valley outcomes",
+      "decision": "reject",
+      "reason": "Every L8/L9 row is a synthetic expectation and not an executed result; this would turn fixtures into runtime evidence and conflict with not_executed/unknown-unformed audits."
+    },
+    {
+      "option": "Every value is only synthetic condition support",
+      "decision": "reject",
+      "reason": "L8 known/conflict/stale/missing state envelopes and L9 conflict/stale rows distinguish unsupported, mismatched, and foreign-revision conditions; support-only semantics cannot explain those rows."
+    },
+    {
+      "option": "Replace origin/trace supported values with missing/conflict or rewrite conflict/stale into supported",
+      "decision": "reject",
+      "reason": "Would edit expected values without an upstream L3/L10 rule and erase distinctions encoded by source_packet_ref, state tags, mutations, and per-row reasons. L4 missing finding requires a processing-result assertion that these fixtures do not contain."
+    },
+    {
+      "option": "既存fixtureのcase別期待値を保持し、mutation軸から一般規則を推定しない",
+      "decision": "select",
+      "reason": "承認済みL3/L10と許可L4散文に期待値変更または値割当規則の根拠がなく、実処理出力も観測されていない。固定source上の値・mutation対応を記録し、origin/traceとpair/valleyの書き分け原理は未解決として残す。"
+    }
+  ],
+  "prior_design_evidence": {
+    "selected_reason": "L3/L10と許可されたL4散文に期待値を書き換える根拠がなく、固定sourceに実処理結果もないため、既存値を保持する。固定行のmutationとexpected値の対応はstatus_assignment_rule_resolutionに列挙するが、その相関は値割当の一般規則を証明しない。origin/traceのsupport値はsource packetがsynthetic input conditionをsupportする期待値として残し、処理成功とは解釈しない。",
+    "l9_values_preserved": "両witnessのpair_result/valley_result/l9_dimension_results/meaning_backflow/actual_*、classification値、manual projection invalidation row、trigger/ticket候補は維持。説明reason 4箇所の旧新値はscaffoldのwr227-l9-reason-edit-audit.jsonに履歴として記録し、expected output valuesは変えていない。",
+    "comparison_history": [
+      {
+        "reference": "RetryYN/HELIX-HARNESS Issue #3510 comment 6532068000",
+        "artifact_sha256": "c363ed8bfbf87130be01506092c91d6058c1ffb84452b00fc75cf578f5f79ef5",
+        "artifact": "scaffold/research/wr219-f03-pair-blind-20261031/wr224-independent-blind-derivation.json"
+      },
+      {
+        "reference": "RetryYN/HELIX-HARNESS Issue #3510 comment 6532122968",
+        "artifact": "scaffold/research/wr219-f03-pair-blind-20261031/wr224-comparison-after-r1.md"
+      },
+      {
+        "reference": "RetryYN/HELIX-HARNESS PR #3970 comment 6532547942",
+        "finding": "F1 full value domain; F2 fixed blind and comparison pointers; I1 move old/new reason history to scaffold."
+      }
+    ],
+    "status_assignment_rule_resolution": {
+      "status": "unresolved",
+      "finding": "固定fixtureでは、pair_result conflict/staleの6行がpaired_comparisonsを変異させ、valley_result conflictの1行がvalley witnessを変異させる。origin/traceの2行はそれぞれorigin/traceを変異させ、pair_result/valley_resultをsupported_synthetic_conditionのまま記録する。",
+      "interpretation_limit": "この行別相関だけでは、pair_result/valley_resultの期待値割当が変異軸だけに反応するという一般則や、origin/trace欠落にsupport値を割り当てる規則は導けない。L3/L10と許可されたL4散文にもその規則はない。",
+      "preservation_basis": "上流要求の意味を変える根拠がなく、これらは未実行fixtureの期待値であるため、値は変更せず個別対応を保つ。",
+      "source_rows": [
+        {
+          "case_id": "H003-F03-ORIGIN-MISSING",
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "revision": "a0ce1ce787cff3b61664c12d62ae471969edb433",
+          "pointer": "/cases/3/negative_cases/0",
+          "mutation_path": [
+            "origin"
+          ],
+          "pair_result": "supported_synthetic_condition",
+          "valley_result": "supported_synthetic_condition"
+        },
+        {
+          "case_id": "H003-F03-TRACE-MISSING",
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "revision": "a0ce1ce787cff3b61664c12d62ae471969edb433",
+          "pointer": "/cases/3/negative_cases/2",
+          "mutation_path": [
+            "trace"
+          ],
+          "pair_result": "supported_synthetic_condition",
+          "valley_result": "supported_synthetic_condition"
+        },
+        {
+          "case_id": "H003-F03-WRONG-L9-PAIR",
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "revision": "a0ce1ce787cff3b61664c12d62ae471969edb433",
+          "pointer": "/cases/3/negative_cases/10",
+          "mutation_path": [
+            "paired_comparisons",
+            1,
+            "left"
+          ],
+          "pair_result": "conflict",
+          "valley_result": "supported_synthetic_condition"
+        },
+        {
+          "case_id": "H003-F03-FOREIGN-PAIR-REVISION",
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "revision": "a0ce1ce787cff3b61664c12d62ae471969edb433",
+          "pointer": "/cases/3/negative_cases/11",
+          "mutation_path": [
+            "paired_comparisons",
+            1,
+            "revision"
+          ],
+          "pair_result": "stale",
+          "valley_result": "supported_synthetic_condition"
+        },
+        {
+          "case_id": "H003-F03-L8-WRONG-PAIR",
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "revision": "a0ce1ce787cff3b61664c12d62ae471969edb433",
+          "pointer": "/cases/3/negative_cases/35",
+          "mutation_path": [
+            "paired_comparisons",
+            0,
+            "left"
+          ],
+          "pair_result": "conflict",
+          "valley_result": "supported_synthetic_condition"
+        },
+        {
+          "case_id": "H003-F03-L8-FOREIGN-REVISION",
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "revision": "a0ce1ce787cff3b61664c12d62ae471969edb433",
+          "pointer": "/cases/3/negative_cases/36",
+          "mutation_path": [
+            "paired_comparisons",
+            0,
+            "revision"
+          ],
+          "pair_result": "stale",
+          "valley_result": "supported_synthetic_condition"
+        },
+        {
+          "case_id": "H003-F03-L10-WRONG-PAIR",
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "revision": "a0ce1ce787cff3b61664c12d62ae471969edb433",
+          "pointer": "/cases/3/negative_cases/37",
+          "mutation_path": [
+            "paired_comparisons",
+            2,
+            "left"
+          ],
+          "pair_result": "conflict",
+          "valley_result": "supported_synthetic_condition"
+        },
+        {
+          "case_id": "H003-F03-L10-FOREIGN-REVISION",
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "revision": "a0ce1ce787cff3b61664c12d62ae471969edb433",
+          "pointer": "/cases/3/negative_cases/38",
+          "mutation_path": [
+            "paired_comparisons",
+            2,
+            "revision"
+          ],
+          "pair_result": "stale",
+          "valley_result": "supported_synthetic_condition"
+        },
+        {
+          "case_id": "H003-F03-PRE-BODY-RED-ABSENT",
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "revision": "a0ce1ce787cff3b61664c12d62ae471969edb433",
+          "pointer": "/cases/3/negative_cases/23",
+          "mutation_path": [
+            "valley",
+            "content",
+            "steps",
+            1
+          ],
+          "pair_result": "supported_synthetic_condition",
+          "valley_result": "conflict"
+        }
+      ]
+    }
+  },
+  "measured_counts": {
+    "l8_direct_fields": {
+      "cases.pair_result": [
+        {
+          "state": "conflict",
+          "value": null,
+          "count": 3
+        },
+        {
+          "state": "known",
+          "value": "supported_synthetic_condition",
+          "count": 39
+        },
+        {
+          "state": "stale",
+          "value": null,
+          "count": 3
+        }
+      ],
+      "cases.valley_result": [
+        {
+          "state": "conflict",
+          "value": null,
+          "count": 1
+        },
+        {
+          "state": "known",
+          "value": "supported_synthetic_condition",
+          "count": 43
+        },
+        {
+          "state": "missing",
+          "value": null,
+          "count": 1
+        }
+      ],
+      "valley_content_counterexamples.pair_result": [
+        {
+          "state": "known",
+          "value": "supported_synthetic_condition",
+          "count": 10
+        }
+      ],
+      "valley_content_counterexamples.valley_result": [
+        {
+          "state": "conflict",
+          "value": null,
+          "count": 10
+        }
+      ]
+    },
+    "l8_pair_results_per_layer": [
+      {
+        "group": "cases",
+        "layer": "L10",
+        "state": "conflict",
+        "value": null,
+        "count": 1
+      },
+      {
+        "group": "cases",
+        "layer": "L10",
+        "state": "known",
+        "value": "supported_synthetic_condition",
+        "count": 43
+      },
+      {
+        "group": "cases",
+        "layer": "L10",
+        "state": "stale",
+        "value": null,
+        "count": 1
+      },
+      {
+        "group": "cases",
+        "layer": "L8",
+        "state": "conflict",
+        "value": null,
+        "count": 1
+      },
+      {
+        "group": "cases",
+        "layer": "L8",
+        "state": "known",
+        "value": "supported_synthetic_condition",
+        "count": 43
+      },
+      {
+        "group": "cases",
+        "layer": "L8",
+        "state": "stale",
+        "value": null,
+        "count": 1
+      },
+      {
+        "group": "cases",
+        "layer": "L9",
+        "state": "conflict",
+        "value": null,
+        "count": 1
+      },
+      {
+        "group": "cases",
+        "layer": "L9",
+        "state": "known",
+        "value": "supported_synthetic_condition",
+        "count": 43
+      },
+      {
+        "group": "cases",
+        "layer": "L9",
+        "state": "stale",
+        "value": null,
+        "count": 1
+      },
+      {
+        "group": "valley_content_counterexamples",
+        "layer": "L10",
+        "state": "known",
+        "value": "supported_synthetic_condition",
+        "count": 10
+      },
+      {
+        "group": "valley_content_counterexamples",
+        "layer": "L8",
+        "state": "known",
+        "value": "supported_synthetic_condition",
+        "count": 10
+      },
+      {
+        "group": "valley_content_counterexamples",
+        "layer": "L9",
+        "state": "known",
+        "value": "supported_synthetic_condition",
+        "count": 10
+      }
+    ],
+    "l9_expected_material_fields": {
+      "normal_cases.pair_result": {
+        "supported_synthetic_condition": 4
+      },
+      "normal_cases.valley_result": {
+        "supported_synthetic_condition": 4
+      },
+      "negative_cases.pair_result": {
+        "conflict": 3,
+        "stale": 3,
+        "supported_synthetic_condition": 33
+      },
+      "negative_cases.valley_result": {
+        "conflict": 1,
+        "supported_synthetic_condition": 38
+      }
+    },
+    "row_counts": {
+      "l8_cases": 45,
+      "l8_valley_content_counterexamples": 10,
+      "l9_normal_cases": 4,
+      "l9_negative_cases": 39
+    }
+  },
+  "source_row_inventory": {
+    "l8": [
+      {
+        "group": "cases",
+        "index": 0,
+        "case_id": "H003-L8-F03-NORMAL",
+        "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+        "pointer": "/cases/3/cases/0"
+      },
+      {
+        "group": "cases",
+        "index": 1,
+        "case_id": "H003-L8-F03-NORMAL-Refactor",
+        "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+        "pointer": "/cases/3/cases/1"
+      },
+      {
+        "group": "cases",
+        "index": 2,
+        "case_id": "H003-L8-F03-NORMAL-Design-refactor",
+        "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+        "pointer": "/cases/3/cases/2"
+      },
+      {
+        "group": "cases",
+        "index": 3,
+        "case_id": "H003-L8-F03-NORMAL-Performance-refactor",
+        "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+        "pointer": "/cases/3/cases/3"
+      },
+      {
+        "group": "cases",
+        "index": 4,
+        "case_id": "H003-L8-F03-ORIGIN-MISSING",
+        "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+        "pointer": "/cases/3/cases/4"
+      },
+      {
+        "group": "cases",
+        "index": 5,
+        "case_id": "H003-L8-F03-LEGACY-ASSET",
+        "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+        "pointer": "/cases/3/cases/5"
+      },
+      {
+        "group": "cases",
+        "index": 6,
+        "case_id": "H003-L8-F03-TRACE-MISSING",
+        "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+        "pointer": "/cases/3/cases/6"
+      },
+      {
+        "group": "cases",
+        "index": 7,
+        "case_id": "H003-L8-F03-DESIGN-DISPUTED",
+        "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+        "pointer": "/cases/3/cases/7"
+      },
+      {
+        "group": "cases",
+        "index": 8,
+        "case_id": "H003-L8-F03-LARGE-DEVIATION",
+        "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+        "pointer": "/cases/3/cases/8"
+      },
+      {
+        "group": "cases",
+        "index": 9,
+        "case_id": "H003-L8-F03-DESIGN-IMPLEMENTATION-DRIFT",
+        "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+        "pointer": "/cases/3/cases/9"
+      },
+      {
+        "group": "cases",
+        "index": 10,
+        "case_id": "H003-L8-F03-FINDING-RECURRENCE",
+        "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+        "pointer": "/cases/3/cases/10"
+      },
+      {
+        "group": "cases",
+        "index": 11,
+        "case_id": "H003-L8-F03-PERFORMANCE-REGRESSION",
+        "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+        "pointer": "/cases/3/cases/11"
+      },
+      {
+        "group": "cases",
+        "index": 12,
+        "case_id": "H003-L8-F03-INCIDENT-PERMANENT-REMEDY",
+        "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+        "pointer": "/cases/3/cases/12"
+      },
+      {
+        "group": "cases",
+        "index": 13,
+        "case_id": "H003-L8-F03-SCRUM-CHECKPOINT",
+        "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+        "pointer": "/cases/3/cases/13"
+      },
+      {
+        "group": "cases",
+        "index": 14,
+        "case_id": "H003-L8-F03-WRONG-L9-PAIR",
+        "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+        "pointer": "/cases/3/cases/14"
+      },
+      {
+        "group": "cases",
+        "index": 15,
+        "case_id": "H003-L8-F03-FOREIGN-PAIR-REVISION",
+        "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+        "pointer": "/cases/3/cases/15"
+      },
+      {
+        "group": "cases",
+        "index": 16,
+        "case_id": "H003-L8-F03-L9-MISSING-interface",
+        "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+        "pointer": "/cases/3/cases/16"
+      },
+      {
+        "group": "cases",
+        "index": 17,
+        "case_id": "H003-L8-F03-L9-MISSING-dependency_direction",
+        "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+        "pointer": "/cases/3/cases/17"
+      },
+      {
+        "group": "cases",
+        "index": 18,
+        "case_id": "H003-L8-F03-L9-MISSING-state_data_ownership",
+        "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+        "pointer": "/cases/3/cases/18"
+      },
+      {
+        "group": "cases",
+        "index": 19,
+        "case_id": "H003-L8-F03-L9-MISSING-transaction",
+        "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+        "pointer": "/cases/3/cases/19"
+      },
+      {
+        "group": "cases",
+        "index": 20,
+        "case_id": "H003-L8-F03-L9-MISSING-failure_propagation",
+        "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+        "pointer": "/cases/3/cases/20"
+      },
+      {
+        "group": "cases",
+        "index": 21,
+        "case_id": "H003-L8-F03-L9-MISSING-retry",
+        "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+        "pointer": "/cases/3/cases/21"
+      },
+      {
+        "group": "cases",
+        "index": 22,
+        "case_id": "H003-L8-F03-L9-MISSING-timeout",
+        "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+        "pointer": "/cases/3/cases/22"
+      },
+      {
+        "group": "cases",
+        "index": 23,
+        "case_id": "H003-L8-F03-L9-MISSING-idempotency",
+        "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+        "pointer": "/cases/3/cases/23"
+      },
+      {
+        "group": "cases",
+        "index": 24,
+        "case_id": "H003-L8-F03-L9-MISSING-coupling",
+        "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+        "pointer": "/cases/3/cases/24"
+      },
+      {
+        "group": "cases",
+        "index": 25,
+        "case_id": "H003-L8-F03-L9-MISSING-responsibility_duplication",
+        "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+        "pointer": "/cases/3/cases/25"
+      },
+      {
+        "group": "cases",
+        "index": 26,
+        "case_id": "H003-L8-F03-STATE-OWNER-CONFLICT",
+        "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+        "pointer": "/cases/3/cases/26"
+      },
+      {
+        "group": "cases",
+        "index": 27,
+        "case_id": "H003-L8-F03-PRE-BODY-RED-ABSENT",
+        "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+        "pointer": "/cases/3/cases/27"
+      },
+      {
+        "group": "cases",
+        "index": 28,
+        "case_id": "H003-L8-F03-PUBLIC-MEANING-CHANGE",
+        "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+        "pointer": "/cases/3/cases/28"
+      },
+      {
+        "group": "cases",
+        "index": 29,
+        "case_id": "H003-L8-F03-ARCHITECTURE-MEANING-CHANGE",
+        "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+        "pointer": "/cases/3/cases/29"
+      },
+      {
+        "group": "cases",
+        "index": 30,
+        "case_id": "H003-L8-F03-NORMAL-AS-FULL-REVERSE",
+        "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+        "pointer": "/cases/3/cases/30"
+      },
+      {
+        "group": "cases",
+        "index": 31,
+        "case_id": "H003-L8-F03-NORMAL-AS-REVERSE-TICKET",
+        "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+        "pointer": "/cases/3/cases/31"
+      },
+      {
+        "group": "cases",
+        "index": 32,
+        "case_id": "H003-L8-F03-HARNESS-AS-ISSUER",
+        "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+        "pointer": "/cases/3/cases/32"
+      },
+      {
+        "group": "cases",
+        "index": 33,
+        "case_id": "H003-L8-F03-VALLEY-AS-QUALITY",
+        "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+        "pointer": "/cases/3/cases/33"
+      },
+      {
+        "group": "cases",
+        "index": 34,
+        "case_id": "H003-L8-F03-VALLEY-AS-USER-ACCEPTANCE",
+        "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+        "pointer": "/cases/3/cases/34"
+      },
+      {
+        "group": "cases",
+        "index": 35,
+        "case_id": "H003-L8-F03-VALLEY-AS-RELEASE",
+        "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+        "pointer": "/cases/3/cases/35"
+      },
+      {
+        "group": "cases",
+        "index": 36,
+        "case_id": "H003-L8-F03-REVERSE-AS-EXECUTED",
+        "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+        "pointer": "/cases/3/cases/36"
+      },
+      {
+        "group": "cases",
+        "index": 37,
+        "case_id": "H003-L8-F03-REQUIREMENT-MEANING-CHANGE",
+        "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+        "pointer": "/cases/3/cases/37"
+      },
+      {
+        "group": "cases",
+        "index": 38,
+        "case_id": "H003-L8-F03-STATE-MEANING-CHANGE",
+        "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+        "pointer": "/cases/3/cases/38"
+      },
+      {
+        "group": "cases",
+        "index": 39,
+        "case_id": "H003-L8-F03-L8-WRONG-PAIR",
+        "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+        "pointer": "/cases/3/cases/39"
+      },
+      {
+        "group": "cases",
+        "index": 40,
+        "case_id": "H003-L8-F03-L8-FOREIGN-REVISION",
+        "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+        "pointer": "/cases/3/cases/40"
+      },
+      {
+        "group": "cases",
+        "index": 41,
+        "case_id": "H003-L8-F03-L10-WRONG-PAIR",
+        "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+        "pointer": "/cases/3/cases/41"
+      },
+      {
+        "group": "cases",
+        "index": 42,
+        "case_id": "H003-L8-F03-L10-FOREIGN-REVISION",
+        "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+        "pointer": "/cases/3/cases/42"
+      },
+      {
+        "group": "cases",
+        "index": 43,
+        "case_id": "H003-L8-F03-NORMAL-WHOLE",
+        "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+        "pointer": "/cases/3/cases/43"
+      },
+      {
+        "group": "cases",
+        "index": 44,
+        "case_id": "H003-L8-F03-005-BINDING-QUALIFICATION-MISSING-WHOLE",
+        "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+        "pointer": "/cases/3/cases/44"
+      },
+      {
+        "group": "valley_content_counterexamples",
+        "index": 0,
+        "case_id": "H003-L8-F03-CONTENT-FREEZE-AFTER-RED",
+        "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+        "pointer": "/cases/3/valley_content_counterexamples/0"
+      },
+      {
+        "group": "valley_content_counterexamples",
+        "index": 1,
+        "case_id": "H003-L8-F03-CONTENT-RED-NOT-EXECUTED",
+        "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+        "pointer": "/cases/3/valley_content_counterexamples/1"
+      },
+      {
+        "group": "valley_content_counterexamples",
+        "index": 2,
+        "case_id": "H003-L8-F03-CONTENT-RED-ALREADY-GREEN",
+        "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+        "pointer": "/cases/3/valley_content_counterexamples/2"
+      },
+      {
+        "group": "valley_content_counterexamples",
+        "index": 3,
+        "case_id": "H003-L8-F03-CONTENT-GREEN-DIFFERENT-ORACLE",
+        "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+        "pointer": "/cases/3/valley_content_counterexamples/3"
+      },
+      {
+        "group": "valley_content_counterexamples",
+        "index": 4,
+        "case_id": "H003-L8-F03-CONTENT-REFACTOR-PUBLIC-MEANING-CHANGE",
+        "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+        "pointer": "/cases/3/valley_content_counterexamples/4"
+      },
+      {
+        "group": "valley_content_counterexamples",
+        "index": 5,
+        "case_id": "H003-L8-F03-CONTENT-REVERIFY-BEFORE-REFACTOR",
+        "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+        "pointer": "/cases/3/valley_content_counterexamples/5"
+      },
+      {
+        "group": "valley_content_counterexamples",
+        "index": 6,
+        "case_id": "H003-L8-F03-CONTENT-REVERIFY-NOT-EXECUTED",
+        "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+        "pointer": "/cases/3/valley_content_counterexamples/6"
+      },
+      {
+        "group": "valley_content_counterexamples",
+        "index": 7,
+        "case_id": "H003-L8-F03-CONTENT-REVERIFY-REGRESSION",
+        "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+        "pointer": "/cases/3/valley_content_counterexamples/7"
+      },
+      {
+        "group": "valley_content_counterexamples",
+        "index": 8,
+        "case_id": "H003-L8-F03-CONTENT-GREEN-NOT-EXECUTED",
+        "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+        "pointer": "/cases/3/valley_content_counterexamples/8"
+      },
+      {
+        "group": "valley_content_counterexamples",
+        "index": 9,
+        "case_id": "H003-L8-F03-CONTENT-GREEN-REGRESSION",
+        "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+        "pointer": "/cases/3/valley_content_counterexamples/9"
+      }
+    ],
+    "l9": [
+      {
+        "group": "normal_cases",
+        "index": 0,
+        "case_id": "H003-F03-NORMAL",
+        "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+        "pointer": "/cases/3/normal_cases/0"
+      },
+      {
+        "group": "normal_cases",
+        "index": 1,
+        "case_id": "H003-F03-NORMAL-Refactor",
+        "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+        "pointer": "/cases/3/normal_cases/1"
+      },
+      {
+        "group": "normal_cases",
+        "index": 2,
+        "case_id": "H003-F03-NORMAL-Design-refactor",
+        "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+        "pointer": "/cases/3/normal_cases/2"
+      },
+      {
+        "group": "normal_cases",
+        "index": 3,
+        "case_id": "H003-F03-NORMAL-Performance-refactor",
+        "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+        "pointer": "/cases/3/normal_cases/3"
+      },
+      {
+        "group": "negative_cases",
+        "index": 0,
+        "case_id": "H003-F03-ORIGIN-MISSING",
+        "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+        "pointer": "/cases/3/negative_cases/0"
+      },
+      {
+        "group": "negative_cases",
+        "index": 1,
+        "case_id": "H003-F03-LEGACY-ASSET",
+        "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+        "pointer": "/cases/3/negative_cases/1"
+      },
+      {
+        "group": "negative_cases",
+        "index": 2,
+        "case_id": "H003-F03-TRACE-MISSING",
+        "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+        "pointer": "/cases/3/negative_cases/2"
+      },
+      {
+        "group": "negative_cases",
+        "index": 3,
+        "case_id": "H003-F03-DESIGN-DISPUTED",
+        "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+        "pointer": "/cases/3/negative_cases/3"
+      },
+      {
+        "group": "negative_cases",
+        "index": 4,
+        "case_id": "H003-F03-LARGE-DEVIATION",
+        "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+        "pointer": "/cases/3/negative_cases/4"
+      },
+      {
+        "group": "negative_cases",
+        "index": 5,
+        "case_id": "H003-F03-DESIGN-IMPLEMENTATION-DRIFT",
+        "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+        "pointer": "/cases/3/negative_cases/5"
+      },
+      {
+        "group": "negative_cases",
+        "index": 6,
+        "case_id": "H003-F03-FINDING-RECURRENCE",
+        "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+        "pointer": "/cases/3/negative_cases/6"
+      },
+      {
+        "group": "negative_cases",
+        "index": 7,
+        "case_id": "H003-F03-PERFORMANCE-REGRESSION",
+        "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+        "pointer": "/cases/3/negative_cases/7"
+      },
+      {
+        "group": "negative_cases",
+        "index": 8,
+        "case_id": "H003-F03-INCIDENT-PERMANENT-REMEDY",
+        "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+        "pointer": "/cases/3/negative_cases/8"
+      },
+      {
+        "group": "negative_cases",
+        "index": 9,
+        "case_id": "H003-F03-SCRUM-CHECKPOINT",
+        "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+        "pointer": "/cases/3/negative_cases/9"
+      },
+      {
+        "group": "negative_cases",
+        "index": 10,
+        "case_id": "H003-F03-WRONG-L9-PAIR",
+        "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+        "pointer": "/cases/3/negative_cases/10"
+      },
+      {
+        "group": "negative_cases",
+        "index": 11,
+        "case_id": "H003-F03-FOREIGN-PAIR-REVISION",
+        "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+        "pointer": "/cases/3/negative_cases/11"
+      },
+      {
+        "group": "negative_cases",
+        "index": 12,
+        "case_id": "H003-F03-L9-MISSING-interface",
+        "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+        "pointer": "/cases/3/negative_cases/12"
+      },
+      {
+        "group": "negative_cases",
+        "index": 13,
+        "case_id": "H003-F03-L9-MISSING-dependency_direction",
+        "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+        "pointer": "/cases/3/negative_cases/13"
+      },
+      {
+        "group": "negative_cases",
+        "index": 14,
+        "case_id": "H003-F03-L9-MISSING-state_data_ownership",
+        "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+        "pointer": "/cases/3/negative_cases/14"
+      },
+      {
+        "group": "negative_cases",
+        "index": 15,
+        "case_id": "H003-F03-L9-MISSING-transaction",
+        "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+        "pointer": "/cases/3/negative_cases/15"
+      },
+      {
+        "group": "negative_cases",
+        "index": 16,
+        "case_id": "H003-F03-L9-MISSING-failure_propagation",
+        "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+        "pointer": "/cases/3/negative_cases/16"
+      },
+      {
+        "group": "negative_cases",
+        "index": 17,
+        "case_id": "H003-F03-L9-MISSING-retry",
+        "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+        "pointer": "/cases/3/negative_cases/17"
+      },
+      {
+        "group": "negative_cases",
+        "index": 18,
+        "case_id": "H003-F03-L9-MISSING-timeout",
+        "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+        "pointer": "/cases/3/negative_cases/18"
+      },
+      {
+        "group": "negative_cases",
+        "index": 19,
+        "case_id": "H003-F03-L9-MISSING-idempotency",
+        "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+        "pointer": "/cases/3/negative_cases/19"
+      },
+      {
+        "group": "negative_cases",
+        "index": 20,
+        "case_id": "H003-F03-L9-MISSING-coupling",
+        "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+        "pointer": "/cases/3/negative_cases/20"
+      },
+      {
+        "group": "negative_cases",
+        "index": 21,
+        "case_id": "H003-F03-L9-MISSING-responsibility_duplication",
+        "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+        "pointer": "/cases/3/negative_cases/21"
+      },
+      {
+        "group": "negative_cases",
+        "index": 22,
+        "case_id": "H003-F03-STATE-OWNER-CONFLICT",
+        "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+        "pointer": "/cases/3/negative_cases/22"
+      },
+      {
+        "group": "negative_cases",
+        "index": 23,
+        "case_id": "H003-F03-PRE-BODY-RED-ABSENT",
+        "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+        "pointer": "/cases/3/negative_cases/23"
+      },
+      {
+        "group": "negative_cases",
+        "index": 24,
+        "case_id": "H003-F03-PUBLIC-MEANING-CHANGE",
+        "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+        "pointer": "/cases/3/negative_cases/24"
+      },
+      {
+        "group": "negative_cases",
+        "index": 25,
+        "case_id": "H003-F03-ARCHITECTURE-MEANING-CHANGE",
+        "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+        "pointer": "/cases/3/negative_cases/25"
+      },
+      {
+        "group": "negative_cases",
+        "index": 26,
+        "case_id": "H003-F03-NORMAL-AS-FULL-REVERSE",
+        "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+        "pointer": "/cases/3/negative_cases/26"
+      },
+      {
+        "group": "negative_cases",
+        "index": 27,
+        "case_id": "H003-F03-NORMAL-AS-REVERSE-TICKET",
+        "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+        "pointer": "/cases/3/negative_cases/27"
+      },
+      {
+        "group": "negative_cases",
+        "index": 28,
+        "case_id": "H003-F03-HARNESS-AS-ISSUER",
+        "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+        "pointer": "/cases/3/negative_cases/28"
+      },
+      {
+        "group": "negative_cases",
+        "index": 29,
+        "case_id": "H003-F03-VALLEY-AS-QUALITY",
+        "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+        "pointer": "/cases/3/negative_cases/29"
+      },
+      {
+        "group": "negative_cases",
+        "index": 30,
+        "case_id": "H003-F03-VALLEY-AS-USER-ACCEPTANCE",
+        "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+        "pointer": "/cases/3/negative_cases/30"
+      },
+      {
+        "group": "negative_cases",
+        "index": 31,
+        "case_id": "H003-F03-VALLEY-AS-RELEASE",
+        "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+        "pointer": "/cases/3/negative_cases/31"
+      },
+      {
+        "group": "negative_cases",
+        "index": 32,
+        "case_id": "H003-F03-REVERSE-AS-EXECUTED",
+        "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+        "pointer": "/cases/3/negative_cases/32"
+      },
+      {
+        "group": "negative_cases",
+        "index": 33,
+        "case_id": "H003-F03-REQUIREMENT-MEANING-CHANGE",
+        "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+        "pointer": "/cases/3/negative_cases/33"
+      },
+      {
+        "group": "negative_cases",
+        "index": 34,
+        "case_id": "H003-F03-STATE-MEANING-CHANGE",
+        "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+        "pointer": "/cases/3/negative_cases/34"
+      },
+      {
+        "group": "negative_cases",
+        "index": 35,
+        "case_id": "H003-F03-L8-WRONG-PAIR",
+        "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+        "pointer": "/cases/3/negative_cases/35"
+      },
+      {
+        "group": "negative_cases",
+        "index": 36,
+        "case_id": "H003-F03-L8-FOREIGN-REVISION",
+        "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+        "pointer": "/cases/3/negative_cases/36"
+      },
+      {
+        "group": "negative_cases",
+        "index": 37,
+        "case_id": "H003-F03-L10-WRONG-PAIR",
+        "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+        "pointer": "/cases/3/negative_cases/37"
+      },
+      {
+        "group": "negative_cases",
+        "index": 38,
+        "case_id": "H003-F03-L10-FOREIGN-REVISION",
+        "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+        "pointer": "/cases/3/negative_cases/38"
+      }
+    ]
+  },
+  "reason_edit_audit_ref": "scaffold/research/wr219-f03-pair-blind-20261031/wr227-l9-reason-edit-audit.json",
+  "validation_contract": [
+    "Compare every listed L8/L9 F03 row and exact partial-result fields against the source pointer.",
+    "Recompute direct value counts and nested per-layer pair_results counts; compare them with measured_counts.",
+    "Resolve all source path/pointer entries and exception row pointers.",
+    "Confirm pair conflict, pair stale, valley conflict, and unmatched L8 missing cases retain the recorded row identities and statuses.",
+    "Keep full L9 case equality against the two fixed baselines after normalizing only the four reason edits.",
+    "Do not execute L4/L5 predicates or infer a runtime result from fixture expected values."
+  ]
+}

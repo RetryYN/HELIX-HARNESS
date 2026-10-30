@@ -30,8 +30,8 @@
     },
     {
       "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
-      "sha256": "eb0f43e23906d04b9554786a2574c94d01de85faa75f7fb1f33e08eb3276f464",
-      "note": "revision 3c2538a096b52fd6353770308831ee05de1d358d、local_returnのstate語彙。draft_pending_semantic_and_fixture_reviewの既存L4設計で、独立oracleとは扱わない。"
+      "sha256": "e6253059bb117446412ecb8b054ae533641054c8a1be4a535eb1f784017fa3e9",
+      "note": "revision 3c2538a096b52fd6353770308831ee05de1d358d、local_returnのstate語彙。draft_pending_semantic_and_fixture_reviewの既存L4設計で、独立oracleとは扱わない。 Historical fixed source: revision 3c2538a096b52fd6353770308831ee05de1d358d, SHA-256 eb0f43e23906d04b9554786a2574c94d01de85faa75f7fb1f33e08eb3276f464. Current digest refreshed to 21f5f0837225fd1c50015528e27fb530f60b6d93046d17877b5655eb4e751a4a for stale detection only; fixed comparison/audit remains tied to the historical revision and its frozen evidence. Existing local_return taxonomy and WR206 source comparison remain historical; this source refresh does not make the candidate an independent oracle. Current digest at WR227 R1 candidate: 21f5f0837225fd1c50015528e27fb530f60b6d93046d17877b5655eb4e751a4a (stale-detection pin only); historical fixed comparison source remains recorded above. Current digest after R1 compact evidence split: a81f0ae25d937ce9aea830d65f61fd5d04027511acb51ff39a0be526d8bba98a (stale-detection pin only; historical fixed audit/revision unchanged). Current digest after Japanese prose cleanup: d49a2f89364b5a031220ef515988b25d8e02c2894c2602ab7ea316b9ab394a67 (stale-detection pin only; historical fixed source/audit unchanged). Current digest after Japanese wording, unmatched-row clarification, and pointer-centered audit: 2a4230d745cac2c9c9ee9500eba0efe028a16136bedd8b04b7d7d8f3eb382eb3 (stale-detection pin only; historical fixed source/audit unchanged). Current digest after R2 missing-boundary clarification and unresolved status-assignment disclosure: e6253059bb117446412ecb8b054ae533641054c8a1be4a535eb1f784017fa3e9 (stale-detection pin only; fixed historical sources unchanged)."
     },
     {
       "path": "scaffold/tools/design_verification_checker.py",
