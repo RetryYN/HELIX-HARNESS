@@ -1,0 +1,111 @@
+{
+  "schema_revision": 1,
+  "id": "SCF-B-0188",
+  "kind": "scaffold",
+  "title": "WR219 F03 pair and trace source comparison",
+  "product": "HELIX-HARNESS",
+  "owner_candidate": "HELIX-HARNESS F03 pair/trace evidence review",
+  "state": "registered",
+  "reason": "固定したWR219 F03盲導出artifactと、固定baseのL8/L9二つのraw mutation期待値・分類注釈を対応づけ、上流で決まる候補範囲と未決事項を記録する。要求・設計・正式classification・ticket発行を生成しない。",
+  "upstream": [
+    {
+      "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+      "sha256": "a3b907cdc316117d4684632f9a1cbf36125eb6e6172f9cfc286060617583d7be",
+      "note": "Comparison checkout a0ce1ce787cff3b61664c12d62ae471969edb433 path digest for stale detection. Approved row bytes are pinned separately in comparison.json at revision 771dd7e802189506d88cf9d9570c42b94cf7b8fb."
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/functional-verification.json",
+      "sha256": "fc58ad2268746d7924ac9be33e8f3f75e6d3c2cc619e27fbc1ddc34edd065cb2",
+      "note": "Comparison checkout a0ce1ce787cff3b61664c12d62ae471969edb433 path digest for stale detection. Approved row bytes are pinned separately in comparison.json at revision 771dd7e802189506d88cf9d9570c42b94cf7b8fb."
+    },
+    {
+      "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
+      "sha256": "eb0f43e23906d04b9554786a2574c94d01de85faa75f7fb1f33e08eb3276f464",
+      "note": "固定base a0ce1ce787cff3b61664c12d62ae471969edb433, /contracts/3の指定散文。"
+    },
+    {
+      "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+      "sha256": "ee564c12ea81158f14a0483bd0fd4d9d35352b62c8050bdf8686195f32df213f",
+      "note": "固定base / refs/heads/main a0ce1ce787cff3b61664c12d62ae471969edb433。F03 /cases/3/cases/4,6。"
+    },
+    {
+      "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+      "sha256": "ccac38abfa3a204fdd1b5c325b67835e13957914f5a8f239e87efe55d190dff5",
+      "note": "固定base / refs/heads/main a0ce1ce787cff3b61664c12d62ae471969edb433。F03 /cases/3/negative_cases/0,2。"
+    }
+  ],
+  "role": "WR219 F03のorigin-null / trace-empty synthetic witnessに関する固定blind derivationと既存L8/L9期待値の比較を保持する。",
+  "obligations": [
+    "由来nullとtrace辺空を別のraw mutationとして記録する。",
+    "L8/L9に存在する期待値・同一の分類注釈・actual side-effect falseを出典pointer付きで保つ。",
+    "Full Reverse recovery candidateとactual ticket/reverseを区別し、未確定のtrigger、classification code、owner、serializationを未決として残す。",
+    "supported_synthetic_conditionを実観測または実pair成立へ昇格しない。"
+  ],
+  "connections": {
+    "consumers": [
+      "WR219 F03 review evidence / GitHub Issue #3510"
+    ],
+    "dependencies": [
+      "fixed blind artifact SHA-256 489d2aa4786436b7cfc10b3dc4be9f2c5019727c60291d82293822e341fe60e4",
+      "approved L3/L10 F03 source rows",
+      "L4/L8/L9 F03 source files",
+      "all-negative inventory: Issue #3510 comment 6531272911 (linked from comparison.json)"
+    ],
+    "boundary": "Scaffold evidence only. No canonical class membership, requirement meaning, design change, ticket issuance, reverse success, or acceptance is established."
+  },
+  "operations": {
+    "allowed": [
+      "Read pinned L3/L10 rows, L4 contract prose, and L8/L9 selected case expectations.",
+      "Static revision, path, pointer, and SHA-256 comparison.",
+      "python3 -m json.tool",
+      "python3 -B scaffold/tools/scfctl.py validate",
+      "git diff --check"
+    ],
+    "forbidden": [
+      "Execute any embedded algorithm, legacy runtime, test, hook, CLI, or CI.",
+      "Modify approved L3/L10 or existing L4/L8/L9 expected values, classifications, or meanings.",
+      "Treat candidate annotation, synthetic expectation, or scaffold validation as approval, canonical taxonomy, or completion."
+    ]
+  },
+  "artifacts": [
+    "scaffold/research/wr219-f03-pair-blind-20261031/README.md",
+    "scaffold/research/wr219-f03-pair-blind-20261031/blind-derivation.json",
+    "scaffold/research/wr219-f03-pair-blind-20261031/comparison.json",
+    "scaffold/bindings/SCF-B-0188.json"
+  ],
+  "verification": {
+    "evidence_kind": "scaffold",
+    "scope": [
+      "schema_interface",
+      "source_revision_stale",
+      "negative_case",
+      "forbidden_write_scope"
+    ],
+    "oracles": [
+      "python3 -m json.tool on blind-derivation.json, comparison.json, and SCF-B-0188.json",
+      "SHA-256 of blind-derivation.json equals fixed source artifact SHA-256 489d2aa4786436b7cfc10b3dc4be9f2c5019727c60291d82293822e341fe60e4",
+      "SHA-256 of comparison.json: 1a0e895ba580b25404eef5fef1701b497751e9a5e73a36cf8424d90f92be0dc3",
+      "python3 -B scaffold/tools/scfctl.py validate",
+      "python3 -B scaffold/tools/scfctl.py stale",
+      "git diff --check"
+    ],
+    "negative_cases": [
+      "Do not collapse origin-null and trace-empty observations into one root cause.",
+      "Do not infer a trace ticket trigger solely from the Full Reverse recovery candidate; keep the source wording gap visible.",
+      "Do not infer actual pair success from supported_synthetic_condition values.",
+      "Do not treat F03_REQUIRED_PAIR_MISSING as an approved canonical class; the base audit marks the annotations as candidate-only and checker-failing."
+    ]
+  },
+  "replacement": {
+    "role_target": null,
+    "formal_artifacts": [],
+    "issue": 3510,
+    "status": "pending",
+    "transfer": null,
+    "target_revisions": {},
+    "confirmation_ref": null,
+    "confirmation_digest": null
+  },
+  "created": "2026-10-31",
+  "updated": "2026-10-31"
+}
