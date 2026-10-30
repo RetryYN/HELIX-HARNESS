@@ -3,7 +3,7 @@
 ## 対象と根拠
 
 - PR class: `design_verification`、対象V-pair: HELIX-OS OS015 L4/L9
-- 候補基点はPR-C #3923 head `64d3cf379335e0a4b034f7295a9a225a2d755986`。PR-Cは作業時点でOPEN。candidateのpush/PRは行わない。
+- 候補基点はPR-C #3923 head `64d3cf379335e0a4b034f7295a9a225a2d755986`。PR-C #3923はmain `ca4bd911142cc17789366ae6f9f1f0fee8c7c589`へmerge済み。候補のpush/PRは行わない。
 - 既存手動監査はcommit `05614def4e0427f9390c2b6535e520f5c7c26590` の [`manual-case-audit-05614.md`](manual-case-audit-05614.md) に保存し、そのbytesを複製した。対象L4/L5/L7の元根拠revisionはdd5787507a9ef3b69f411074e2fcbc7710ca1d62。L4のdiagnostic_contract、L5の既存functionとfailure_rules先頭31件、L7 bytesが候補基点でも保持されていることを静的に確認する。
 - 手動監査のCandidate key一覧では、既存2 event-class keyに103件、新しいkey群15個に37件を記録する。既存29件はPR-Aのcase-evidenceにより既に接続済みなので、前者の残74件に含めない。そこへC0044を独立導出して加え、残りを75件とする。よって本候補は75件を既存2 class、37件を新15 classに結ぶ112件の投影。
 - 新しいclass keyは手動監査記録のfinding code列、全体condition、axis/state、共通backflow ownerとL5 function ownerから形成する。L4/L9のcase expected、L7 `expected_proposal`、checker出力からclassや期待を逆生成しない。
@@ -66,7 +66,7 @@ L9 `negative_equivalence_classes`にはL4 class rowからexpected keyを順方�
 
 ## 最新mainとの関係と残件
 
-GitHub mainは再fetch時点で`ca4bd911142cc17789366ae6f9f1f0fee8c7c589`（`FETCH_HEAD`と`git ls-remote`一致）。PR #3923はこのmainへmerge済みで、候補基点`64d3cf379335e0a4b034f7295a9a225a2d755986`はmainの祖先。したがって共通merge-baseは基点そのもの。そこからmainへの変更と候補への変更を個別に全列挙して比較し、path交差なし。最新mainへの隔離no-commit試行mergeは競合せず、stageされたpathは候補pathと一致。mainに追加されたSCF-B-0174も試行後に保持され、`scfctl validate`で166 bindings全件が有効、stale=0。main単体と試行後のcheck-child/check-freeze、static validator、diff-checkの実測は`verification-summary.json`に記録する。
+GitHub mainは再fetch時点で`ca4bd911142cc17789366ae6f9f1f0fee8c7c589`（`FETCH_HEAD`と`git ls-remote`一致）。PR #3923はこのmainへmerge済みで、候補基点`64d3cf379335e0a4b034f7295a9a225a2d755986`はmainの祖先。したがって共通merge-baseは基点そのもの。候補commit `395baadd42b5f658de203e7aba49c0f2ae295721`までのmain側・候補側の変更pathをmerge-baseから別々に列挙して比較し、path交差なし。最新mainへの隔離no-commit試行mergeは競合せず、stageされたpathは候補pathと一致した。mainに追加されたSCF-B-0174も保持され、試行後は`scfctl validate`が166 bindingsでPASS、stale=0。main単体と試行後のcheck-child/check-freeze、static validator、diff-checkの実測は`verification-summary.json`に記録する。
 
 既存6 singleton-less classはL8/L9に形成しない: `OS015-NEG-source_unresolved-original_event`, `OS015-NEG-source_conflict-original_event`, `OS015-NEG-original_event_mutated`, `OS015-NEG-unresolved_promoted_to_current`, `OS015-NEG-first_classification_prior_present`, `OS015-NEG-first_classification_prior_unresolved`。本候補後もL5/L8 pair projectionは未実施で、L9の112 linksはL8にまだ反映されない。negative-4wayのFAIL、checkerが同時省略を検出しない限界、旧freezeの不一致を残件として記録し、全182件の完了・全体PASS・freeze成立とは呼ばない。
 
