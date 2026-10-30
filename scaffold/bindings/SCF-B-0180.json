@@ -40,7 +40,7 @@
     },
     {
       "path": "docs/helix-os/L8-unit-verification/management-authority-source-record.json",
-      "sha256": "95a734ea83e7cae101c7d87edbcbaa0da8ffc15ef451b863664c7ea0ca8c3094",
+      "sha256": "e76ba498ac89f5b2e14361a31323cd43d647b576b0fef0d3e20ab5eded817c0d",
       "note": "L8 carries only provenance correction and pointer/status; no formal expectation change. R4 response: L8 comparison status only; prior=8f36fe5cd183be374bf59a23d38b5b169af156350f5fbd7a31ce9837c9761724; current=32784b1aefffbd2f5763d5e07c4d145ff866d4c2ab14dfecffafb469bba8dd8c; formal expectations unchanged."
     },
     {

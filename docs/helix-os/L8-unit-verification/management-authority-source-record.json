@@ -435,9 +435,9 @@
   "pair": "HELIXOS-L5-015",
   "candidate_l5_bytes": {
     "path": "docs/helix-os/L5-detail-design/management-authority-source-record.json",
-    "revision": "9a3c668c2f0a38a59b1523f00611741c9f7607a3",
+    "revision": "236fea9ad894104dd16dae6af54a5815fc33fbd6",
     "same_candidate": true,
-    "sha256": "f500e0e56411f26ab6f422b45a613191162139dff2be3c9386c00975ceb59140"
+    "sha256": "09ea8ca788a41f4208cbb66a8d007e5e1d65261baf88ceb781c573f2c67b70b2"
   },
   "shared_route_expectations": {
     "l7_material_ref": {
