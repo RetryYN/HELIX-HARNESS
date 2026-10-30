@@ -1,0 +1,16 @@
+{
+  "schema": "wr249-r1-review-correction.v1",
+  "evidence_kind": "scaffold",
+  "authority_effect": "none",
+  "review": "https://github.com/RetryYN/HELIX-HARNESS/pull/3995#issuecomment-6535291430",
+  "previous_head": "fd8c9c00aa405c74fc68a8c8657848119201cc42",
+  "finding": "B01 validator compared F03/F04 current content with historical predecessor and failed after the intentional U-ID split; original verification-summary did not include the B01 run.",
+  "correction": "Compare pre-WR249 B01 successor with predecessor for historical preservation, current with pre-WR249 after removing only F03/F04 candidate fields, and verify both historical and current hashes against WR249 correction.",
+  "validator": {
+    "path": "scaffold/research/wr243-tdd-b01-l5-l8-20261031/validate_b01_candidate.py",
+    "sha256": "1a5125dfd14b18bf53b85a302732d5dc29366e81d993d179565a721eab37ca31",
+    "passed": 28,
+    "total": 28
+  },
+  "historical_summary": "verification-summary.json is preserved as originally recorded; it did not report B01."
+}

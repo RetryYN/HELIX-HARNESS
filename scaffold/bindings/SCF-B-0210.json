@@ -102,7 +102,8 @@
     "scaffold/research/wr249-tdd-f03-f04-uid-split-20261031/uid-split-correction.json",
     "scaffold/research/wr249-tdd-f03-f04-uid-split-20261031/verification-summary.json",
     "scaffold/research/wr249-tdd-f03-f04-uid-split-20261031/validate_uid_split.py",
-    "scaffold/research/wr249-tdd-f03-f04-uid-split-20261031/source-only-draft.json"
+    "scaffold/research/wr249-tdd-f03-f04-uid-split-20261031/source-only-draft.json",
+    "scaffold/research/wr249-tdd-f03-f04-uid-split-20261031/review-r1-correction.json"
   ],
   "verification": {
     "evidence_kind": "scaffold",
@@ -117,7 +118,8 @@
       "All four B01 L4/L9 row conditions and comparison-only projections.",
       "L4/L9 exact bytes and canonical L8 unit IDs/rows unchanged; F03/F04 candidates/fixed evidence unchanged.",
       "Static B01/F03/F04 validators, check-child residual comparison, L8 cap/forbidden-key count, scfctl validate/stale.",
-      "F03/F04 merge-time L5/L8 raw SHA-256 and Git blob OIDs are recorded and re-read from Git objects by validator; current docs are compared with those snapshots after removing only the B01 candidate fields."
+      "F03/F04 merge-time L5/L8 raw SHA-256 and Git blob OIDs are recorded and re-read from Git objects by validator; current docs are compared with those snapshots after removing only the B01 candidate fields.",
+      "WR249 R1 correction preserves historical B01 comparison and verifies current F03/F04 U-ID split by recorded hashes; B01 validator 28/28 passes."
     ],
     "negative_cases": [
       "Do not create row-level oracle or test citation values.",
