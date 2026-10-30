@@ -30,8 +30,8 @@
     },
     {
       "path": "docs/helix-os/L8-unit-verification/management-authority-source-record.json",
-      "sha256": "04eb8f8ffcc0b5d7676e8c319ed5d368e6ec816ae111084058722e19f6e152b1",
-      "note": "Successor L8: 18 class rows and 112 links; all 583 condition/expected/expected_preserved values retained."
+      "sha256": "9bba916b62b32fbcc7ae40ea92ed90c5eb3e58e71e923e39efcf0ede6879d759",
+      "note": "Successor L8: 18 class rows and 112 links; all 583 condition/expected/expected_preserved values retained. successor correction update: prior pin=04eb8f8ffcc0b5d7676e8c319ed5d368e6ec816ae111084058722e19f6e152b1; current pin=9bba916b62b32fbcc7ae40ea92ed90c5eb3e58e71e923e39efcf0ede6879d759; class a0f8ffe7 local classification state unknown."
     },
     {
       "path": "scaffold/tools/design_verification_checker.py",
@@ -70,13 +70,13 @@
     },
     {
       "path": "scaffold/research/wr181-os015-l5-l8-successor-20261031/validate_successor.py",
-      "sha256": "de9e9d3be6bf7f6765f1a66774a3d1e21e186b05eae90423cebc3abd35cc0a05",
-      "note": "Static validator; does not load L9 document or case expectations. M1 successor alignment: retain prior pin=cb42a30015b2147a5e047911d78a145b5d87037ea67b44450b3777dae0422db9; current candidate pin=de9e9d3be6bf7f6765f1a66774a3d1e21e186b05eae90423cebc3abd35cc0a05; C0577/C0580 selected classification state is unknown while overall classification remains violation."
+      "sha256": "3c2dc5c0e5638e7726880605ff2b024041f94357ac163203a5b542020d2083a5",
+      "note": "Static validator; does not load L9 document or case expectations. M1 successor alignment: retain prior pin=cb42a30015b2147a5e047911d78a145b5d87037ea67b44450b3777dae0422db9; current candidate pin=de9e9d3be6bf7f6765f1a66774a3d1e21e186b05eae90423cebc3abd35cc0a05; C0577/C0580 selected classification state is unknown while overall classification remains violation. successor correction update: prior pin=de9e9d3be6bf7f6765f1a66774a3d1e21e186b05eae90423cebc3abd35cc0a05; current pin=3c2dc5c0e5638e7726880605ff2b024041f94357ac163203a5b542020d2083a5; class a0f8ffe7 local classification state unknown."
     },
     {
       "path": "scaffold/research/wr181-os015-l5-l8-successor-20261031/static-validation.json",
-      "sha256": "6dbec22025a6fff8f8d55c20bf17141102e7356f6d583867c208994c0e3e6f84",
-      "note": "PASS report for case coverage, pins, input pointers, expectations, and singleton preservation."
+      "sha256": "9cad45f271cf501434b9b06f188f24f6316a7c4683517360615ac08450938657",
+      "note": "PASS report for case coverage, pins, input pointers, expectations, and singleton preservation. successor correction update: prior pin=6dbec22025a6fff8f8d55c20bf17141102e7356f6d583867c208994c0e3e6f84; current pin=9cad45f271cf501434b9b06f188f24f6316a7c4683517360615ac08450938657; class a0f8ffe7 local classification state unknown."
     },
     {
       "path": "scaffold/research/wr181-os015-l5-l8-successor-20261031/verification-summary.json",
@@ -85,8 +85,8 @@
     },
     {
       "path": "scaffold/bindings/SCF-B-0170.json",
-      "sha256": "b43cb6c5848bae8b580859816f98ab06b6e929c724dbdd86d89500bbc19be037",
-      "note": "Predecessor source/inventory binding, current pins updated with history. M1 successor alignment: retain prior pin=944ace0f511b468650996698a4694d97a0b9ebcc5e945d63de1a48bb918ba139; current candidate pin=b43cb6c5848bae8b580859816f98ab06b6e929c724dbdd86d89500bbc19be037; C0577/C0580 selected classification state is unknown while overall classification remains violation."
+      "sha256": "83e3b0c53ada715ddef1cf4133785d143845f6bbd19592ffe6856e0ee7549866",
+      "note": "Predecessor source/inventory binding, current pins updated with history. M1 successor alignment: retain prior pin=944ace0f511b468650996698a4694d97a0b9ebcc5e945d63de1a48bb918ba139; current candidate pin=b43cb6c5848bae8b580859816f98ab06b6e929c724dbdd86d89500bbc19be037; C0577/C0580 selected classification state is unknown while overall classification remains violation. OS015 M1 successor update: retain prior pin=b43cb6c5848bae8b580859816f98ab06b6e929c724dbdd86d89500bbc19be037; current pin=83e3b0c53ada715ddef1cf4133785d143845f6bbd19592ffe6856e0ee7549866; L5/L8 projection carries class a0f8ffe7 as overall violation, classification local state unknown."
     },
     {
       "path": "scaffold/bindings/SCF-B-0173.json",
@@ -95,18 +95,18 @@
     },
     {
       "path": "scaffold/bindings/SCF-B-0175.json",
-      "sha256": "5bc13d1a478e157cc249468f5d6e64c0d79dacf69c5d62b3903eee87e2d52c10",
-      "note": "Predecessor PR-B L5/L8 29-case binding; prior snapshot hash retained in note. M1 successor alignment: retain prior pin=abec97a660ae4f2b1d3169f4464a187d9d76140c0f41b8376c33757db57a20ae; current candidate pin=5bc13d1a478e157cc249468f5d6e64c0d79dacf69c5d62b3903eee87e2d52c10; C0577/C0580 selected classification state is unknown while overall classification remains violation."
+      "sha256": "fa1a731465885330d7bc82bdcf3a590591903a9fd8086f4cb364df807e7fdb37",
+      "note": "Predecessor PR-B L5/L8 29-case binding; prior snapshot hash retained in note. M1 successor alignment: retain prior pin=abec97a660ae4f2b1d3169f4464a187d9d76140c0f41b8376c33757db57a20ae; current candidate pin=5bc13d1a478e157cc249468f5d6e64c0d79dacf69c5d62b3903eee87e2d52c10; C0577/C0580 selected classification state is unknown while overall classification remains violation. successor correction update: prior pin=5bc13d1a478e157cc249468f5d6e64c0d79dacf69c5d62b3903eee87e2d52c10; current pin=36747d56c6a218cddab6ed8e13cf734265ca981b3b5c2d427a5fb3d1759a030c; class a0f8ffe7 local classification state unknown. OS015 M1 successor update: retain prior pin=36747d56c6a218cddab6ed8e13cf734265ca981b3b5c2d427a5fb3d1759a030c; current pin=fa1a731465885330d7bc82bdcf3a590591903a9fd8086f4cb364df807e7fdb37; L5/L8 projection carries class a0f8ffe7 as overall violation, classification local state unknown."
     },
     {
       "path": "scaffold/bindings/SCF-B-0176.json",
-      "sha256": "c8938fea915e063db95864f1fe0d8603e95a8e743a22f1126f7aa346209ae846",
-      "note": "Predecessor PR-C L9 pointer binding; prior snapshot hash retained in note. M1 successor alignment: retain prior pin=51cd7f87d82b3c395b81592ca01b8357fc4caa9353b9b8a8928bf9bbbd2f4257; current candidate pin=c8938fea915e063db95864f1fe0d8603e95a8e743a22f1126f7aa346209ae846; C0577/C0580 selected classification state is unknown while overall classification remains violation."
+      "sha256": "024f634e6e665f92909bf09db57eae4609d1eacdbf287af059424e5192d955df",
+      "note": "Predecessor PR-C L9 pointer binding; prior snapshot hash retained in note. M1 successor alignment: retain prior pin=51cd7f87d82b3c395b81592ca01b8357fc4caa9353b9b8a8928bf9bbbd2f4257; current candidate pin=c8938fea915e063db95864f1fe0d8603e95a8e743a22f1126f7aa346209ae846; C0577/C0580 selected classification state is unknown while overall classification remains violation. successor correction update: prior pin=c8938fea915e063db95864f1fe0d8603e95a8e743a22f1126f7aa346209ae846; current pin=96495a7b144796c2e9f70e36fe5165c72bd7fa1bc90a95400b0c6e6d5d139582; class a0f8ffe7 local classification state unknown. OS015 M1 successor update: retain prior pin=96495a7b144796c2e9f70e36fe5165c72bd7fa1bc90a95400b0c6e6d5d139582; current pin=024f634e6e665f92909bf09db57eae4609d1eacdbf287af059424e5192d955df; L5/L8 projection carries class a0f8ffe7 as overall violation, classification local state unknown."
     },
     {
       "path": "scaffold/bindings/SCF-B-0177.json",
-      "sha256": "3904a37c49cb1cd3be5209027078f9cece34c28db2e8edd1452573e800cfa6ad",
-      "note": "Predecessor L4/L9 residual binding; prior snapshot hash retained in note. M1 successor alignment: retain prior pin=f123f5cac1fe2b5ea7a9d31fbbdcace285601374f4466e6439b0bc0a89cead9c; current candidate pin=3904a37c49cb1cd3be5209027078f9cece34c28db2e8edd1452573e800cfa6ad; C0577/C0580 selected classification state is unknown while overall classification remains violation."
+      "sha256": "dd80cae2e2be9be68a07c10e4fc5b8ed0e9f96d9633508282f6722f867df8d2d",
+      "note": "Predecessor L4/L9 residual binding; prior snapshot hash retained in note. M1 successor alignment: retain prior pin=f123f5cac1fe2b5ea7a9d31fbbdcace285601374f4466e6439b0bc0a89cead9c; current candidate pin=3904a37c49cb1cd3be5209027078f9cece34c28db2e8edd1452573e800cfa6ad; C0577/C0580 selected classification state is unknown while overall classification remains violation. successor correction update: prior pin=3904a37c49cb1cd3be5209027078f9cece34c28db2e8edd1452573e800cfa6ad; current pin=56d2ba69c88c41a92da4bdfd1f27d6be95a7d0e6cf97742fb12fcd4cc15e6909; class a0f8ffe7 local classification state unknown. OS015 M1 successor update: retain prior pin=56d2ba69c88c41a92da4bdfd1f27d6be95a7d0e6cf97742fb12fcd4cc15e6909; current pin=dd80cae2e2be9be68a07c10e4fc5b8ed0e9f96d9633508282f6722f867df8d2d; L5/L8 projection carries class a0f8ffe7 as overall violation, classification local state unknown."
     }
   ],
   "role": "OS015 corrected L4/L9後続のL5/L8 18-class・112-case static successor evidence。",

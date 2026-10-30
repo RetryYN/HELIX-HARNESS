@@ -15,6 +15,7 @@ CORRECTION = ROOT / "scaffold/research/wr181-os015-residual-l4-l9-20261030/class
 PR_A = ROOT / "scaffold/research/wr181-os015-pr-a-l4-l9-20261030/case-evidence.json"
 BASE = "0dd2045801e9e30def00913b57a6177d8d9be3a8"
 PAIR_REVISION = "5e7286c6def741df3f8abfabdb1f2058eaaedd07"
+L5_CANDIDATE_REVISION = "bfbec191fef79d315b37ec50f7051bcd1e1c6ede"
 L3 = "docs/helix-os/L3-requirements/functional-requirements.json"
 L4 = "docs/helix-os/L4-basic-design/management-authority-source-record.json"
 L5 = "docs/helix-os/L5-detail-design/management-authority-source-record.json"
@@ -110,7 +111,7 @@ def main() -> dict:
     candidate_l5 = l8["candidate_l5_bytes"]
     assert candidate_l5 == {
         "path": L5,
-        "revision": "1ca2b32ec87f820d95f0453b0ff4b9f7c5ccae38",
+        "revision": L5_CANDIDATE_REVISION,
         "same_candidate": True,
         "sha256": sha((ROOT / L5).read_bytes()),
     }
@@ -208,6 +209,12 @@ def main() -> dict:
 
     corrected = {case_id: cid for cid, cases in ((g["class_id"], g["case_ids"]) for g in correction["corrected_groups"]) for case_id in cases}
     correction_by_case = {row["case_id"]: row for row in correction["cases"]}
+    code_rows = {row["code"]: row for row in l4["diagnostic_contract"]["codes"]}
+    assert code_rows["original_classification_mutated"]["facet"] == "history"
+    assert code_rows["original_classification_mutated"]["disposition"] == "violation"
+    assert code_rows["first_classification_prior_unresolved"]["facet"] == "classification"
+    assert code_rows["first_classification_prior_unresolved"]["disposition"] == "unknown"
+    assert code_rows["source_unresolved"]["facet"] == "comparison"
     corrected_expected = {
         "HELIXOS-L9-015-C0574": (["first_classification_prior_present", "original_classification_mutated"] + ["source_unresolved"] * 4, "violation", "management_material_violation"),
         "HELIXOS-L9-015-C0575": (["first_classification_prior_present"] * 2 + ["source_unresolved"] * 4, "violation", "management_material_violation"),
@@ -233,6 +240,9 @@ def main() -> dict:
         assert group["key"]["expected_axis"] == "classification"
         assert group["key"]["expected_state"] == state
         assert group["key"]["expected_classification"] == overall
+        if case_id in {"HELIXOS-L9-015-C0577", "HELIXOS-L9-015-C0580"}:
+            assert cid == "OS015-NEG-COMPOSITE-a0f8ffe7cb48eb9237554e7c9344182b48c98fed14721acb96cafa89481c6429"
+            assert overall == "management_material_violation" and state == "unknown"
         assert case_current[case_id]["negative_class_ref"] == cid
 
     l4_ids = {row["class_id"] for row in l4["failure_classifications"]}
