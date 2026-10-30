@@ -10,8 +10,8 @@
   "upstream": [
     {
       "path": "docs/helix-security/L4-basic-design/revoke-quarantine-propagation.json",
-      "sha256": "c0a31c5c663d39854ed1df13b9bf2bfc439fdb46419d089bc617607d6e6ac5b6",
-      "note": "Current L4 source bytes used by the frozen blind and c8 candidate; source semantics unchanged."
+      "sha256": "d46e39cad2e2a90cfc532fa57226a4d650336e794a375f07e1cc2e6cbba15eb3",
+      "note": "Current L4 source bytes used by the frozen blind and c8 candidate; source semantics unchanged. 歴史検証の対象revision c8f20a4f91456f6d5e5c16e1be0083c34aab6651 とSHA-256 c0a31c5c663d39854ed1df13b9bf2bfc439fdb46419d089bc617607d6e6ac5b6 は固定比較値として保持。WR245 PR-A追補後の現行bytesへの参照を再束縛し、歴史artifactやその検証結果を更新しない。"
     },
     {
       "path": "docs/helix-security/L5-detail-design/revoke-quarantine-propagation.json",
@@ -25,8 +25,8 @@
     },
     {
       "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
-      "sha256": "62913b58577cfc0f3c7e6682ad160d8f236157a0ceed9c88ef71822330ed60fc",
-      "note": "Current grouped L9 expected/assignment source at c8; expected projections for the 30 sampled IDs match legacy source bytes."
+      "sha256": "166a86af69e4f9ab067631580752c2f154fddb10c4ed2e2c6bd6ed45b0c769b9",
+      "note": "Current grouped L9 expected/assignment source at c8; expected projections for the 30 sampled IDs match legacy source bytes. 歴史検証の対象revision c8f20a4f91456f6d5e5c16e1be0083c34aab6651 とSHA-256 62913b58577cfc0f3c7e6682ad160d8f236157a0ceed9c88ef71822330ed60fc は固定比較値として保持。WR245 PR-A追補後の現行bytesへの参照を再束縛し、歴史artifactやその検証結果を更新しない。"
     },
     {
       "path": "docs/helix-security/L3-requirements/functional-requirements.json",
@@ -81,7 +81,7 @@
       "QA §3",
       "current design-verification checker"
     ],
-    "boundary": "scaffold research only; no canonical L4/L5/L8/L9 or checker edit, no auth/authorization settings, credentials, real revoke/quarantine/recovery, production or external action."
+    "boundary": "scaffold research only; no canonical L4/L5/L8/L9 or checker edit, no auth/authorization settings, credentials, real revoke/quarantine/recovery, production or external action. WR245の後続L4/L9設計変更は別スコープであり、この時点証拠の履歴や権限を変更しない。"
   },
   "operations": {
     "allowed": [
@@ -127,7 +127,8 @@
       "legacy/current source revision and raw SHA-256 pins; all 30 sample case IDs resolve in both L9 representations",
       "expected projection comparison and blind class-to-current-assignment comparison recorded independently",
       "current static check-child result with explicit marker absence and legacy comparison mode",
-      "QA §3 owner_ref contract and one-V-pair operating rule compared with actual source and OS007 precedent"
+      "QA §3 owner_ref contract and one-V-pair operating rule compared with actual source and OS007 precedent",
+      "WR245 PR-A追補後の現行L4/L9 pinは現在bytesを参照する。c8の固定研究artifactとvalidatorは旧revision・旧SHAで評価し、現在の追加classやindexに対して過去検証が再度PASSしたとは主張しない。"
     ],
     "negative_cases": [
       "Do not reconcile the one blind/assignment mismatch by editing or remapping expected values.",

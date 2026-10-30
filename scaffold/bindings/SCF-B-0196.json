@@ -10,8 +10,8 @@
   "upstream": [
     {
       "path": "docs/helix-security/L4-basic-design/revoke-quarantine-propagation.json",
-      "sha256": "c0a31c5c663d39854ed1df13b9bf2bfc439fdb46419d089bc617607d6e6ac5b6",
-      "note": "Pinned current-main source at c8f20a4f91456f6d5e5c16e1be0083c34aab6651; SEC009 L4/L5/L9 and QA/authority context. Case-level source pointers are fixed in candidate compact-candidate.json."
+      "sha256": "d46e39cad2e2a90cfc532fa57226a4d650336e794a375f07e1cc2e6cbba15eb3",
+      "note": "Pinned current-main source at c8f20a4f91456f6d5e5c16e1be0083c34aab6651; SEC009 L4/L5/L9 and QA/authority context. Case-level source pointers are fixed in candidate compact-candidate.json. 歴史検証の対象revision c8f20a4f91456f6d5e5c16e1be0083c34aab6651 とSHA-256 c0a31c5c663d39854ed1df13b9bf2bfc439fdb46419d089bc617607d6e6ac5b6 は固定比較値として保持。WR245 PR-A追補後の現行bytesへの参照を再束縛し、歴史artifactやその検証結果を更新しない。"
     },
     {
       "path": "docs/helix-security/L5-detail-design/revoke-quarantine-propagation.json",
@@ -20,8 +20,8 @@
     },
     {
       "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
-      "sha256": "62913b58577cfc0f3c7e6682ad160d8f236157a0ceed9c88ef71822330ed60fc",
-      "note": "Pinned current-main source at c8f20a4f91456f6d5e5c16e1be0083c34aab6651; SEC009 L4/L5/L9 and QA/authority context. Case-level source pointers are fixed in candidate compact-candidate.json."
+      "sha256": "166a86af69e4f9ab067631580752c2f154fddb10c4ed2e2c6bd6ed45b0c769b9",
+      "note": "Pinned current-main source at c8f20a4f91456f6d5e5c16e1be0083c34aab6651; SEC009 L4/L5/L9 and QA/authority context. Case-level source pointers are fixed in candidate compact-candidate.json. 歴史検証の対象revision c8f20a4f91456f6d5e5c16e1be0083c34aab6651 とSHA-256 62913b58577cfc0f3c7e6682ad160d8f236157a0ceed9c88ef71822330ed60fc は固定比較値として保持。WR245 PR-A追補後の現行bytesへの参照を再束縛し、歴史artifactやその検証結果を更新しない。"
     },
     {
       "path": "docs/governance/design-verification-quality-assurance.md",
@@ -75,7 +75,7 @@
       "QA §3 CHK-NEG-4WAY-MATCH",
       "existing L9 negative_class_assignment_audit"
     ],
-    "boundary": "Candidateはscaffold/researchに限定。canonical L4/L5/L8/L9、checker、authority、認証/認可設定、credential、実revoke/quarantine/recovery、本番・外部作用に影響しない。"
+    "boundary": "Candidateはscaffold/researchに限定。canonical L4/L5/L8/L9、checker、authority、認証/認可設定、credential、実revoke/quarantine/recovery、本番・外部作用に影響しない。 WR245の後続L4/L9設計変更は別スコープであり、この時点証拠の履歴や権限を変更しない。"
   },
   "operations": {
     "allowed": [
@@ -112,7 +112,8 @@
       "All class and case pointers resolve and preserve fixed source ordering.",
       "30 unique six-attribute typed-owner keys and 275 recorded L9 assignments resolve without creating membership.",
       "All 356 expected proposals, IDs, phase, and trigger are recomputed from the pinned source and compared to current source.",
-      "Blind artifact SHA-256 is fixed; old and candidate L4 revisions/pointers are compared and the source difference is recorded without casewise value matching."
+      "Blind artifact SHA-256 is fixed; old and candidate L4 revisions/pointers are compared and the source difference is recorded without casewise value matching.",
+      "WR245 PR-A追補後の現行L4/L9 pinは現在bytesを参照する。c8の固定研究artifactとvalidatorは旧revision・旧SHAで評価し、現在の追加classやindexに対して過去検証が再度PASSしたとは主張しない。"
     ],
     "negative_cases": [
       "No case IDs, expected values, phases, triggers, or owners are copied into the compact candidate.",

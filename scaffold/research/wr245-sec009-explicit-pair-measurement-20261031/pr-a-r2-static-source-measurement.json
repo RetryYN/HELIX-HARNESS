@@ -1,0 +1,4511 @@
+{
+  "schema": "wr245-pr-a-r2-static-source-measurement.v1",
+  "evidence_kind": "scaffold",
+  "authority_effect": "none",
+  "operation_effect": "none",
+  "base_revision": "7382d9c749951074d54240c5473243841c4bc765",
+  "scope": "L4/L9 PR-A 30-class source-only proposal; 2 ambiguous cases remain unassigned; L5/L8 untouched",
+  "l4_projection": {
+    "existing_class_count": 30,
+    "new_composite_class_candidates": [
+      "SEC009_F01_RECIPIENT_COMPOUND_FAILURE",
+      "SEC009_F02_PRIOR_STATE_REFERENCE_UNRESOLVED"
+    ],
+    "total_class_count": 30,
+    "stable_existing_class_ids": true,
+    "existing_code_projection": "all 30 old top-level L4 code values projected to existing expected_classification; nested contract payloads unchanged",
+    "contract_ref_counts": {
+      "HELIXSECURITY-L4-009-B01": 4,
+      "HELIXSECURITY-L4-009-F01": 15,
+      "HELIXSECURITY-L4-009-F02": 13
+    },
+    "new_composite_class_candidates_not_formalized": [
+      "SEC009_F01_RECIPIENT_COMPOUND_FAILURE",
+      "SEC009_F02_PRIOR_STATE_REFERENCE_UNRESOLVED"
+    ],
+    "composite_class_disposition": "Neither combined pattern is independently defined by L3/L10/L4. Per-recipient/axis obligations support retaining findings and unknown axes, but do not define a reusable cross-recipient/cross-axis taxonomy key. Do not add new formal class rows from the singleton fixtures."
+  },
+  "l5_old_code_consumer_audit": {
+    "l5_unchanged_vs_base": true,
+    "rows": [
+      {
+        "class_id": "SEC009_B01_POLICY_BINDING_UNRESOLVED",
+        "contract_ref": "HELIXSECURITY-L4-009-B01",
+        "l4_old_code": "SEC009_B01_POLICY_BINDING_UNRESOLVED",
+        "l4_pr_a_code": "revoke_material_unknown",
+        "expected_classification": "revoke_material_unknown",
+        "finding_codes": [
+          "binding_unresolved"
+        ],
+        "l5_matching_rule_ids": [
+          "SEC009_B01_POLICY_BINDING_UNRESOLVED"
+        ],
+        "l5_matching_rule_codes": [
+          "SEC009_B01_POLICY_BINDING_UNRESOLVED"
+        ],
+        "l5_rule_owner_refs": [
+          {
+            "function_ref": "HELIXSECURITY-L5-009-FN-01",
+            "contract_ref": "HELIXSECURITY-L5-009-B01"
+          }
+        ]
+      },
+      {
+        "class_id": "SEC009_B01_POLICY_BINDING_CONFLICT",
+        "contract_ref": "HELIXSECURITY-L4-009-B01",
+        "l4_old_code": "SEC009_B01_POLICY_BINDING_CONFLICT",
+        "l4_pr_a_code": "revoke_material_violation",
+        "expected_classification": "revoke_material_violation",
+        "finding_codes": [
+          "binding_conflict"
+        ],
+        "l5_matching_rule_ids": [
+          "SEC009_B01_POLICY_BINDING_CONFLICT"
+        ],
+        "l5_matching_rule_codes": [
+          "SEC009_B01_POLICY_BINDING_CONFLICT"
+        ],
+        "l5_rule_owner_refs": [
+          {
+            "function_ref": "HELIXSECURITY-L5-009-FN-01",
+            "contract_ref": "HELIXSECURITY-L5-009-B01"
+          }
+        ]
+      },
+      {
+        "class_id": "SEC009_B01_RECIPIENT_SET_UNRESOLVED",
+        "contract_ref": "HELIXSECURITY-L4-009-B01",
+        "l4_old_code": "SEC009_B01_RECIPIENT_SET_UNRESOLVED",
+        "l4_pr_a_code": "revoke_material_unknown",
+        "expected_classification": "revoke_material_unknown",
+        "finding_codes": [
+          "recipient_set_unresolved"
+        ],
+        "l5_matching_rule_ids": [
+          "SEC009_B01_RECIPIENT_SET_UNRESOLVED"
+        ],
+        "l5_matching_rule_codes": [
+          "SEC009_B01_RECIPIENT_SET_UNRESOLVED"
+        ],
+        "l5_rule_owner_refs": [
+          {
+            "function_ref": "HELIXSECURITY-L5-009-FN-01",
+            "contract_ref": "HELIXSECURITY-L5-009-B01"
+          }
+        ]
+      },
+      {
+        "class_id": "SEC009_B01_RECIPIENT_SET_CONFLICT",
+        "contract_ref": "HELIXSECURITY-L4-009-B01",
+        "l4_old_code": "SEC009_B01_RECIPIENT_SET_CONFLICT",
+        "l4_pr_a_code": "revoke_material_violation",
+        "expected_classification": "revoke_material_violation",
+        "finding_codes": [
+          "recipient_set_conflict"
+        ],
+        "l5_matching_rule_ids": [
+          "SEC009_B01_RECIPIENT_SET_CONFLICT"
+        ],
+        "l5_matching_rule_codes": [
+          "SEC009_B01_RECIPIENT_SET_CONFLICT"
+        ],
+        "l5_rule_owner_refs": [
+          {
+            "function_ref": "HELIXSECURITY-L5-009-FN-01",
+            "contract_ref": "HELIXSECURITY-L5-009-B01"
+          }
+        ]
+      },
+      {
+        "class_id": "SEC009_F01_INSTRUCTION_UNRESOLVED",
+        "contract_ref": "HELIXSECURITY-L4-009-F01",
+        "l4_old_code": "SEC009_F01_INSTRUCTION_UNRESOLVED",
+        "l4_pr_a_code": "revoke_material_unknown",
+        "expected_classification": "revoke_material_unknown",
+        "finding_codes": [
+          "instruction_unresolved"
+        ],
+        "l5_matching_rule_ids": [
+          "SEC009_F01_INSTRUCTION_UNRESOLVED"
+        ],
+        "l5_matching_rule_codes": [
+          "SEC009_F01_INSTRUCTION_UNRESOLVED"
+        ],
+        "l5_rule_owner_refs": [
+          {
+            "function_ref": "HELIXSECURITY-L5-009-FN-02",
+            "contract_ref": "HELIXSECURITY-L5-009-F01"
+          }
+        ]
+      },
+      {
+        "class_id": "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED",
+        "contract_ref": "HELIXSECURITY-L4-009-F01",
+        "l4_old_code": "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED",
+        "l4_pr_a_code": "revoke_material_unknown",
+        "expected_classification": "revoke_material_unknown",
+        "finding_codes": [
+          "binding_unresolved"
+        ],
+        "l5_matching_rule_ids": [
+          "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED"
+        ],
+        "l5_matching_rule_codes": [
+          "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED"
+        ],
+        "l5_rule_owner_refs": [
+          {
+            "function_ref": "HELIXSECURITY-L5-009-FN-02",
+            "contract_ref": "HELIXSECURITY-L5-009-F01"
+          }
+        ]
+      },
+      {
+        "class_id": "SEC009_F01_INSTRUCTION_BINDING_CONFLICT",
+        "contract_ref": "HELIXSECURITY-L4-009-F01",
+        "l4_old_code": "SEC009_F01_INSTRUCTION_BINDING_CONFLICT",
+        "l4_pr_a_code": "revoke_material_violation",
+        "expected_classification": "revoke_material_violation",
+        "finding_codes": [
+          "binding_conflict"
+        ],
+        "l5_matching_rule_ids": [
+          "SEC009_F01_INSTRUCTION_BINDING_CONFLICT"
+        ],
+        "l5_matching_rule_codes": [
+          "SEC009_F01_INSTRUCTION_BINDING_CONFLICT"
+        ],
+        "l5_rule_owner_refs": [
+          {
+            "function_ref": "HELIXSECURITY-L5-009-FN-02",
+            "contract_ref": "HELIXSECURITY-L5-009-F01"
+          }
+        ]
+      },
+      {
+        "class_id": "SEC009_F01_RECIPIENT_ACTIONS_UNRESOLVED",
+        "contract_ref": "HELIXSECURITY-L4-009-F01",
+        "l4_old_code": "SEC009_F01_RECIPIENT_ACTIONS_UNRESOLVED",
+        "l4_pr_a_code": "revoke_material_unknown",
+        "expected_classification": "revoke_material_unknown",
+        "finding_codes": [
+          "recipient_actions_unresolved"
+        ],
+        "l5_matching_rule_ids": [
+          "SEC009_F01_RECIPIENT_ACTIONS_UNRESOLVED"
+        ],
+        "l5_matching_rule_codes": [
+          "SEC009_F01_RECIPIENT_ACTIONS_UNRESOLVED"
+        ],
+        "l5_rule_owner_refs": [
+          {
+            "function_ref": "HELIXSECURITY-L5-009-FN-02",
+            "contract_ref": "HELIXSECURITY-L5-009-F01"
+          }
+        ]
+      },
+      {
+        "class_id": "SEC009_F01_RECIPIENT_ACTIONS_CONFLICT",
+        "contract_ref": "HELIXSECURITY-L4-009-F01",
+        "l4_old_code": "SEC009_F01_RECIPIENT_ACTIONS_CONFLICT",
+        "l4_pr_a_code": "revoke_material_violation",
+        "expected_classification": "revoke_material_violation",
+        "finding_codes": [
+          "recipient_actions_conflict"
+        ],
+        "l5_matching_rule_ids": [
+          "SEC009_F01_RECIPIENT_ACTIONS_CONFLICT"
+        ],
+        "l5_matching_rule_codes": [
+          "SEC009_F01_RECIPIENT_ACTIONS_CONFLICT"
+        ],
+        "l5_rule_owner_refs": [
+          {
+            "function_ref": "HELIXSECURITY-L5-009-FN-02",
+            "contract_ref": "HELIXSECURITY-L5-009-F01"
+          }
+        ]
+      },
+      {
+        "class_id": "SEC009_F01_RECIPIENT_REPORT_UNRESOLVED",
+        "contract_ref": "HELIXSECURITY-L4-009-F01",
+        "l4_old_code": "SEC009_F01_RECIPIENT_REPORT_UNRESOLVED",
+        "l4_pr_a_code": "revoke_material_unknown",
+        "expected_classification": "revoke_material_unknown",
+        "finding_codes": [
+          "recipient_report_unresolved"
+        ],
+        "l5_matching_rule_ids": [
+          "SEC009_F01_RECIPIENT_REPORT_UNRESOLVED"
+        ],
+        "l5_matching_rule_codes": [
+          "SEC009_F01_RECIPIENT_REPORT_UNRESOLVED"
+        ],
+        "l5_rule_owner_refs": [
+          {
+            "function_ref": "HELIXSECURITY-L5-009-FN-02",
+            "contract_ref": "HELIXSECURITY-L5-009-F01"
+          }
+        ]
+      },
+      {
+        "class_id": "SEC009_F01_REPORT_BINDING_UNRESOLVED",
+        "contract_ref": "HELIXSECURITY-L4-009-F01",
+        "l4_old_code": "SEC009_F01_REPORT_BINDING_UNRESOLVED",
+        "l4_pr_a_code": "revoke_material_unknown",
+        "expected_classification": "revoke_material_unknown",
+        "finding_codes": [
+          "binding_unresolved"
+        ],
+        "l5_matching_rule_ids": [
+          "SEC009_F01_REPORT_BINDING_UNRESOLVED"
+        ],
+        "l5_matching_rule_codes": [
+          "SEC009_F01_REPORT_BINDING_UNRESOLVED"
+        ],
+        "l5_rule_owner_refs": [
+          {
+            "function_ref": "HELIXSECURITY-L5-009-FN-02",
+            "contract_ref": "HELIXSECURITY-L5-009-F01"
+          }
+        ]
+      },
+      {
+        "class_id": "SEC009_F01_REPORT_BINDING_CONFLICT",
+        "contract_ref": "HELIXSECURITY-L4-009-F01",
+        "l4_old_code": "SEC009_F01_REPORT_BINDING_CONFLICT",
+        "l4_pr_a_code": "revoke_material_violation",
+        "expected_classification": "revoke_material_violation",
+        "finding_codes": [
+          "binding_conflict"
+        ],
+        "l5_matching_rule_ids": [
+          "SEC009_F01_REPORT_BINDING_CONFLICT"
+        ],
+        "l5_matching_rule_codes": [
+          "SEC009_F01_REPORT_BINDING_CONFLICT"
+        ],
+        "l5_rule_owner_refs": [
+          {
+            "function_ref": "HELIXSECURITY-L5-009-FN-02",
+            "contract_ref": "HELIXSECURITY-L5-009-F01"
+          }
+        ]
+      },
+      {
+        "class_id": "SEC009_F01_RECIPIENT_RECEIPT_UNRESOLVED",
+        "contract_ref": "HELIXSECURITY-L4-009-F01",
+        "l4_old_code": "SEC009_F01_RECIPIENT_RECEIPT_UNRESOLVED",
+        "l4_pr_a_code": "revoke_material_unknown",
+        "expected_classification": "revoke_material_unknown",
+        "finding_codes": [
+          "recipient_receipt_unresolved"
+        ],
+        "l5_matching_rule_ids": [
+          "SEC009_F01_RECIPIENT_RECEIPT_UNRESOLVED"
+        ],
+        "l5_matching_rule_codes": [
+          "SEC009_F01_RECIPIENT_RECEIPT_UNRESOLVED"
+        ],
+        "l5_rule_owner_refs": [
+          {
+            "function_ref": "HELIXSECURITY-L5-009-FN-02",
+            "contract_ref": "HELIXSECURITY-L5-009-F01"
+          }
+        ]
+      },
+      {
+        "class_id": "SEC009_F01_RECIPIENT_NOT_DELIVERED",
+        "contract_ref": "HELIXSECURITY-L4-009-F01",
+        "l4_old_code": "SEC009_F01_RECIPIENT_NOT_DELIVERED",
+        "l4_pr_a_code": "revoke_material_violation",
+        "expected_classification": "revoke_material_violation",
+        "finding_codes": [
+          "recipient_not_delivered"
+        ],
+        "l5_matching_rule_ids": [
+          "SEC009_F01_RECIPIENT_NOT_DELIVERED"
+        ],
+        "l5_matching_rule_codes": [
+          "SEC009_F01_RECIPIENT_NOT_DELIVERED"
+        ],
+        "l5_rule_owner_refs": [
+          {
+            "function_ref": "HELIXSECURITY-L5-009-FN-02",
+            "contract_ref": "HELIXSECURITY-L5-009-F01"
+          }
+        ]
+      },
+      {
+        "class_id": "SEC009_F01_RECIPIENT_APPLICATION_UNRESOLVED",
+        "contract_ref": "HELIXSECURITY-L4-009-F01",
+        "l4_old_code": "SEC009_F01_RECIPIENT_APPLICATION_UNRESOLVED",
+        "l4_pr_a_code": "revoke_material_unknown",
+        "expected_classification": "revoke_material_unknown",
+        "finding_codes": [
+          "recipient_application_unresolved"
+        ],
+        "l5_matching_rule_ids": [
+          "SEC009_F01_RECIPIENT_APPLICATION_UNRESOLVED"
+        ],
+        "l5_matching_rule_codes": [
+          "SEC009_F01_RECIPIENT_APPLICATION_UNRESOLVED"
+        ],
+        "l5_rule_owner_refs": [
+          {
+            "function_ref": "HELIXSECURITY-L5-009-FN-02",
+            "contract_ref": "HELIXSECURITY-L5-009-F01"
+          }
+        ]
+      },
+      {
+        "class_id": "SEC009_F01_RECIPIENT_NOT_APPLIED",
+        "contract_ref": "HELIXSECURITY-L4-009-F01",
+        "l4_old_code": "SEC009_F01_RECIPIENT_NOT_APPLIED",
+        "l4_pr_a_code": "revoke_material_violation",
+        "expected_classification": "revoke_material_violation",
+        "finding_codes": [
+          "recipient_not_applied"
+        ],
+        "l5_matching_rule_ids": [
+          "SEC009_F01_RECIPIENT_NOT_APPLIED"
+        ],
+        "l5_matching_rule_codes": [
+          "SEC009_F01_RECIPIENT_NOT_APPLIED"
+        ],
+        "l5_rule_owner_refs": [
+          {
+            "function_ref": "HELIXSECURITY-L5-009-FN-02",
+            "contract_ref": "HELIXSECURITY-L5-009-F01"
+          }
+        ]
+      },
+      {
+        "class_id": "SEC009_F01_RECIPIENT_POST_STATE_UNRESOLVED",
+        "contract_ref": "HELIXSECURITY-L4-009-F01",
+        "l4_old_code": "SEC009_F01_RECIPIENT_POST_STATE_UNRESOLVED",
+        "l4_pr_a_code": "revoke_material_unknown",
+        "expected_classification": "revoke_material_unknown",
+        "finding_codes": [
+          "recipient_post_state_unresolved"
+        ],
+        "l5_matching_rule_ids": [
+          "SEC009_F01_RECIPIENT_POST_STATE_UNRESOLVED"
+        ],
+        "l5_matching_rule_codes": [
+          "SEC009_F01_RECIPIENT_POST_STATE_UNRESOLVED"
+        ],
+        "l5_rule_owner_refs": [
+          {
+            "function_ref": "HELIXSECURITY-L5-009-FN-02",
+            "contract_ref": "HELIXSECURITY-L5-009-F01"
+          }
+        ]
+      },
+      {
+        "class_id": "SEC009_F01_RECIPIENT_CONTINUES_AFTER_STOP",
+        "contract_ref": "HELIXSECURITY-L4-009-F01",
+        "l4_old_code": "SEC009_F01_RECIPIENT_CONTINUES_AFTER_STOP",
+        "l4_pr_a_code": "revoke_material_violation",
+        "expected_classification": "revoke_material_violation",
+        "finding_codes": [
+          "recipient_continues_after_stop"
+        ],
+        "l5_matching_rule_ids": [
+          "SEC009_F01_RECIPIENT_CONTINUES_AFTER_STOP"
+        ],
+        "l5_matching_rule_codes": [
+          "SEC009_F01_RECIPIENT_CONTINUES_AFTER_STOP"
+        ],
+        "l5_rule_owner_refs": [
+          {
+            "function_ref": "HELIXSECURITY-L5-009-FN-02",
+            "contract_ref": "HELIXSECURITY-L5-009-F01"
+          }
+        ]
+      },
+      {
+        "class_id": "SEC009_F02_TRIGGER_CATEGORY_UNRESOLVED",
+        "contract_ref": "HELIXSECURITY-L4-009-F02",
+        "l4_old_code": "SEC009_F02_TRIGGER_CATEGORY_UNRESOLVED",
+        "l4_pr_a_code": "revoke_material_unknown",
+        "expected_classification": "revoke_material_unknown",
+        "finding_codes": [
+          "trigger_category_unresolved"
+        ],
+        "l5_matching_rule_ids": [
+          "SEC009_F02_TRIGGER_CATEGORY_UNRESOLVED"
+        ],
+        "l5_matching_rule_codes": [
+          "SEC009_F02_TRIGGER_CATEGORY_UNRESOLVED"
+        ],
+        "l5_rule_owner_refs": [
+          {
+            "function_ref": "HELIXSECURITY-L5-009-FN-01",
+            "contract_ref": "HELIXSECURITY-L5-009-F02"
+          }
+        ]
+      },
+      {
+        "class_id": "SEC009_F02_TRIGGER_CATEGORY_CONFLICT",
+        "contract_ref": "HELIXSECURITY-L4-009-F02",
+        "l4_old_code": "SEC009_F02_TRIGGER_CATEGORY_CONFLICT",
+        "l4_pr_a_code": "revoke_material_violation",
+        "expected_classification": "revoke_material_violation",
+        "finding_codes": [
+          "trigger_category_conflict"
+        ],
+        "l5_matching_rule_ids": [
+          "SEC009_F02_TRIGGER_CATEGORY_CONFLICT"
+        ],
+        "l5_matching_rule_codes": [
+          "SEC009_F02_TRIGGER_CATEGORY_CONFLICT"
+        ],
+        "l5_rule_owner_refs": [
+          {
+            "function_ref": "HELIXSECURITY-L5-009-FN-01",
+            "contract_ref": "HELIXSECURITY-L5-009-F02"
+          }
+        ]
+      },
+      {
+        "class_id": "SEC009_F02_STOP_SCOPE_UNRESOLVED",
+        "contract_ref": "HELIXSECURITY-L4-009-F02",
+        "l4_old_code": "SEC009_F02_STOP_SCOPE_UNRESOLVED",
+        "l4_pr_a_code": "revoke_material_unknown",
+        "expected_classification": "revoke_material_unknown",
+        "finding_codes": [
+          "stop_scope_unresolved"
+        ],
+        "l5_matching_rule_ids": [
+          "SEC009_F02_STOP_SCOPE_UNRESOLVED"
+        ],
+        "l5_matching_rule_codes": [
+          "SEC009_F02_STOP_SCOPE_UNRESOLVED"
+        ],
+        "l5_rule_owner_refs": [
+          {
+            "function_ref": "HELIXSECURITY-L5-009-FN-01",
+            "contract_ref": "HELIXSECURITY-L5-009-F02"
+          }
+        ]
+      },
+      {
+        "class_id": "SEC009_F02_GLOBAL_STOP_EXPANSION",
+        "contract_ref": "HELIXSECURITY-L4-009-F02",
+        "l4_old_code": "SEC009_F02_GLOBAL_STOP_EXPANSION",
+        "l4_pr_a_code": "revoke_material_violation",
+        "expected_classification": "revoke_material_violation",
+        "finding_codes": [
+          "global_stop_expansion"
+        ],
+        "l5_matching_rule_ids": [
+          "SEC009_F02_GLOBAL_STOP_EXPANSION"
+        ],
+        "l5_matching_rule_codes": [
+          "SEC009_F02_GLOBAL_STOP_EXPANSION"
+        ],
+        "l5_rule_owner_refs": [
+          {
+            "function_ref": "HELIXSECURITY-L5-009-FN-01",
+            "contract_ref": "HELIXSECURITY-L5-009-F02"
+          }
+        ]
+      },
+      {
+        "class_id": "SEC009_F02_ISOLATION_BINDING_UNRESOLVED",
+        "contract_ref": "HELIXSECURITY-L4-009-F02",
+        "l4_old_code": "SEC009_F02_ISOLATION_BINDING_UNRESOLVED",
+        "l4_pr_a_code": "revoke_material_unknown",
+        "expected_classification": "revoke_material_unknown",
+        "finding_codes": [
+          "binding_unresolved"
+        ],
+        "l5_matching_rule_ids": [
+          "SEC009_F02_ISOLATION_BINDING_UNRESOLVED"
+        ],
+        "l5_matching_rule_codes": [
+          "SEC009_F02_ISOLATION_BINDING_UNRESOLVED"
+        ],
+        "l5_rule_owner_refs": [
+          {
+            "function_ref": "HELIXSECURITY-L5-009-FN-03",
+            "contract_ref": "HELIXSECURITY-L5-009-F02"
+          }
+        ]
+      },
+      {
+        "class_id": "SEC009_F02_ISOLATION_BINDING_CONFLICT",
+        "contract_ref": "HELIXSECURITY-L4-009-F02",
+        "l4_old_code": "SEC009_F02_ISOLATION_BINDING_CONFLICT",
+        "l4_pr_a_code": "revoke_material_violation",
+        "expected_classification": "revoke_material_violation",
+        "finding_codes": [
+          "binding_conflict"
+        ],
+        "l5_matching_rule_ids": [
+          "SEC009_F02_ISOLATION_BINDING_CONFLICT"
+        ],
+        "l5_matching_rule_codes": [
+          "SEC009_F02_ISOLATION_BINDING_CONFLICT"
+        ],
+        "l5_rule_owner_refs": [
+          {
+            "function_ref": "HELIXSECURITY-L5-009-FN-03",
+            "contract_ref": "HELIXSECURITY-L5-009-F02"
+          }
+        ]
+      },
+      {
+        "class_id": "SEC009_F02_ISOLATION_UNRESOLVED",
+        "contract_ref": "HELIXSECURITY-L4-009-F02",
+        "l4_old_code": "SEC009_F02_ISOLATION_UNRESOLVED",
+        "l4_pr_a_code": "revoke_material_unknown",
+        "expected_classification": "revoke_material_unknown",
+        "finding_codes": [
+          "isolation_unresolved"
+        ],
+        "l5_matching_rule_ids": [
+          "SEC009_F02_ISOLATION_UNRESOLVED"
+        ],
+        "l5_matching_rule_codes": [
+          "SEC009_F02_ISOLATION_UNRESOLVED"
+        ],
+        "l5_rule_owner_refs": [
+          {
+            "function_ref": "HELIXSECURITY-L5-009-FN-03",
+            "contract_ref": "HELIXSECURITY-L5-009-F02"
+          }
+        ]
+      },
+      {
+        "class_id": "SEC009_F02_ISOLATION_NOT_APPLIED",
+        "contract_ref": "HELIXSECURITY-L4-009-F02",
+        "l4_old_code": "SEC009_F02_ISOLATION_NOT_APPLIED",
+        "l4_pr_a_code": "revoke_material_violation",
+        "expected_classification": "revoke_material_violation",
+        "finding_codes": [
+          "isolation_not_applied"
+        ],
+        "l5_matching_rule_ids": [
+          "SEC009_F02_ISOLATION_NOT_APPLIED"
+        ],
+        "l5_matching_rule_codes": [
+          "SEC009_F02_ISOLATION_NOT_APPLIED"
+        ],
+        "l5_rule_owner_refs": [
+          {
+            "function_ref": "HELIXSECURITY-L5-009-FN-03",
+            "contract_ref": "HELIXSECURITY-L5-009-F02"
+          }
+        ]
+      },
+      {
+        "class_id": "SEC009_F02_RECOVERY_BINDING_UNRESOLVED",
+        "contract_ref": "HELIXSECURITY-L4-009-F02",
+        "l4_old_code": "SEC009_F02_RECOVERY_BINDING_UNRESOLVED",
+        "l4_pr_a_code": "revoke_material_unknown",
+        "expected_classification": "revoke_material_unknown",
+        "finding_codes": [
+          "binding_unresolved"
+        ],
+        "l5_matching_rule_ids": [
+          "SEC009_F02_RECOVERY_BINDING_UNRESOLVED"
+        ],
+        "l5_matching_rule_codes": [
+          "SEC009_F02_RECOVERY_BINDING_UNRESOLVED"
+        ],
+        "l5_rule_owner_refs": [
+          {
+            "function_ref": "HELIXSECURITY-L5-009-FN-03",
+            "contract_ref": "HELIXSECURITY-L5-009-F02"
+          }
+        ]
+      },
+      {
+        "class_id": "SEC009_F02_RECOVERY_BINDING_CONFLICT",
+        "contract_ref": "HELIXSECURITY-L4-009-F02",
+        "l4_old_code": "SEC009_F02_RECOVERY_BINDING_CONFLICT",
+        "l4_pr_a_code": "revoke_material_violation",
+        "expected_classification": "revoke_material_violation",
+        "finding_codes": [
+          "binding_conflict"
+        ],
+        "l5_matching_rule_ids": [
+          "SEC009_F02_RECOVERY_BINDING_CONFLICT"
+        ],
+        "l5_matching_rule_codes": [
+          "SEC009_F02_RECOVERY_BINDING_CONFLICT"
+        ],
+        "l5_rule_owner_refs": [
+          {
+            "function_ref": "HELIXSECURITY-L5-009-FN-03",
+            "contract_ref": "HELIXSECURITY-L5-009-F02"
+          }
+        ]
+      },
+      {
+        "class_id": "SEC009_F02_RECOVERY_UNRESOLVED",
+        "contract_ref": "HELIXSECURITY-L4-009-F02",
+        "l4_old_code": "SEC009_F02_RECOVERY_UNRESOLVED",
+        "l4_pr_a_code": "revoke_material_unknown",
+        "expected_classification": "revoke_material_unknown",
+        "finding_codes": [
+          "recovery_unresolved"
+        ],
+        "l5_matching_rule_ids": [
+          "SEC009_F02_RECOVERY_UNRESOLVED"
+        ],
+        "l5_matching_rule_codes": [
+          "SEC009_F02_RECOVERY_UNRESOLVED"
+        ],
+        "l5_rule_owner_refs": [
+          {
+            "function_ref": "HELIXSECURITY-L5-009-FN-03",
+            "contract_ref": "HELIXSECURITY-L5-009-F02"
+          }
+        ]
+      },
+      {
+        "class_id": "SEC009_F02_RECOVERY_INCOMPLETE",
+        "contract_ref": "HELIXSECURITY-L4-009-F02",
+        "l4_old_code": "SEC009_F02_RECOVERY_INCOMPLETE",
+        "l4_pr_a_code": "revoke_material_violation",
+        "expected_classification": "revoke_material_violation",
+        "finding_codes": [
+          "recovery_incomplete"
+        ],
+        "l5_matching_rule_ids": [
+          "SEC009_F02_RECOVERY_INCOMPLETE"
+        ],
+        "l5_matching_rule_codes": [
+          "SEC009_F02_RECOVERY_INCOMPLETE"
+        ],
+        "l5_rule_owner_refs": [
+          {
+            "function_ref": "HELIXSECURITY-L5-009-FN-03",
+            "contract_ref": "HELIXSECURITY-L5-009-F02"
+          }
+        ]
+      }
+    ],
+    "new_classes_without_l5_rule_yet": [],
+    "candidate_patterns_not_assigned": [
+      "SEC009-COMPOUND-OS-UNKNOWN-CREDENTIAL-UNAPPLIED-WORKER-CONTINUES",
+      "SEC009-RECOVERY-PRIOR-SOURCE-MISSING"
+    ]
+  },
+  "l9_case_semantic_invariance": {
+    "nested_case_rows_compared": 285,
+    "id_given_when_expected_proposal_exact_equal_to_base": true,
+    "multi_contract_residual_count": 71,
+    "multi_contract_residual_exact_equal_to_base": true,
+    "explicit_integration_rows": 283,
+    "explicit_population": {
+      "positive": 8,
+      "assigned_negative": 275,
+      "unassigned_ambiguous_excluded_from_explicit_table": 2
+    },
+    "unassigned_ambiguous_ids": [
+      "SEC009-COMPOUND-OS-UNKNOWN-CREDENTIAL-UNAPPLIED-WORKER-CONTINUES",
+      "SEC009-RECOVERY-PRIOR-SOURCE-MISSING"
+    ]
+  },
+  "consumer_pointer_audit": {
+    "L8": {
+      "pointer_count": 308,
+      "unique_pointer_count": 31,
+      "all_resolve_and_preserve_value_type_and_required_fields": true,
+      "references": [
+        {
+          "pointer": "/contracts/0/negative_classifications/0",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/0/negative_classifications/1",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/0/negative_classifications/0",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/0/negative_classifications/1",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/0/negative_classifications/0",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/0/negative_classifications/1",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/0/negative_classifications/0",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/0/negative_classifications/1",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/0/negative_classifications/0",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/0/negative_classifications/1",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/0/negative_classifications/3",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/0/negative_classifications/3",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/0/negative_classifications/2",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/0",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/1",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/2",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/1",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/2",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/1",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/2",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/1",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/2",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/1",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/2",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/1",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/2",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/5",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/6",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/7",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/6",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/7",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/6",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/7",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/6",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/7",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/6",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/7",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/6",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/7",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/1",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/6",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/9",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/8",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/11",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/10",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/10",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/13",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/12",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/4",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/0",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/1",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/2",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/1",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/2",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/1",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/2",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/1",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/2",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/1",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/2",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/1",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/2",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/1",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/2",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/1",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/2",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/5",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/6",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/7",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/6",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/7",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/6",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/7",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/6",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/7",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/6",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/7",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/6",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/7",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/6",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/7",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/6",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/7",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/1",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/6",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/9",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/8",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/11",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/10",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/10",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/11",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/10",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/10",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/13",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/12",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/13",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/12",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/4",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/0",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/1",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/2",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/1",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/2",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/1",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/2",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/1",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/2",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/1",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/2",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/1",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/2",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/1",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/2",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/5",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/6",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/7",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/6",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/7",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/6",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/7",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/6",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/7",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/6",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/7",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/6",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/7",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/6",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/7",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/1",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/6",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/9",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/8",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/11",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/10",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/10",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/13",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/12",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/4",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/0",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/1",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/2",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/1",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/2",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/1",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/2",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/1",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/2",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/1",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/2",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/1",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/2",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/1",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/2",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/5",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/6",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/7",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/6",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/7",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/6",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/7",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/6",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/7",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/6",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/7",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/6",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/7",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/6",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/7",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/1",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/6",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/9",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/8",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/11",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/10",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/10",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/13",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/12",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/4",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/0",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/1",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/2",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/1",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/2",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/1",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/2",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/1",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/2",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/1",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/2",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/1",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/2",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/1",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/2",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/5",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/6",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/7",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/6",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/7",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/6",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/7",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/6",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/7",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/6",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/7",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/6",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/7",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/6",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/7",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/1",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/6",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/9",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/8",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/11",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/10",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/10",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/13",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/12",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/4",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/3",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/3",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/3",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/3",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/3",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/3",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/3",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/3",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/3",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/3",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/3",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/3",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/3",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/3",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/3",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/2/negative_classifications/4",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/2/negative_classifications/5",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/2/negative_classifications/4",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/2/negative_classifications/5",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/2/negative_classifications/4",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/2/negative_classifications/5",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/2/negative_classifications/4",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/2/negative_classifications/5",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/2/negative_classifications/4",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/2/negative_classifications/5",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/2/negative_classifications/4",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/2/negative_classifications/5",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/2/negative_classifications/4",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/2/negative_classifications/5",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/2/negative_classifications/6",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/2/negative_classifications/7",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/2/negative_classifications/6",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/2/negative_classifications/8",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/2/negative_classifications/9",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/2/negative_classifications/8",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/2/negative_classifications/9",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/2/negative_classifications/8",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/2/negative_classifications/9",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/2/negative_classifications/8",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/2/negative_classifications/9",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/2/negative_classifications/8",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/2/negative_classifications/9",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/2/negative_classifications/8",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/2/negative_classifications/9",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/2/negative_classifications/8",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/2/negative_classifications/9",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/2/negative_classifications/10",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/2/negative_classifications/11",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/2/negative_classifications/10",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/2/negative_classifications/3",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/2/negative_classifications/0",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/2/negative_classifications/1",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/2/negative_classifications/3",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/2/negative_classifications/0",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/2/negative_classifications/1",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/2/negative_classifications/2",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/2/negative_classifications/2",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/0/negative_classifications/0",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/0/negative_classifications/1",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/0/negative_classifications/2",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/0/negative_classifications/3",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/0",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/1",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/2",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/3",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/4",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/5",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/6",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/7",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/8",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/9",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/10",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/11",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/12",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/13",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/2/negative_classifications/0",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/2/negative_classifications/1",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/2/negative_classifications/2",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/2/negative_classifications/3",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/2/negative_classifications/4",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/2/negative_classifications/5",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/2/negative_classifications/6",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/2/negative_classifications/7",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/2/negative_classifications/8",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/2/negative_classifications/9",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/2/negative_classifications/10",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/2/negative_classifications/11",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/2/negative_classifications/4",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/2/negative_classifications/8",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        }
+      ]
+    },
+    "L9": {
+      "pointer_count": 308,
+      "unique_pointer_count": 31,
+      "all_resolve_and_preserve_value_type_and_required_fields": true,
+      "references": [
+        {
+          "pointer": "/contracts/0/negative_classifications/0",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/0/negative_classifications/1",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/0/negative_classifications/0",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/0/negative_classifications/1",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/0/negative_classifications/0",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/0/negative_classifications/1",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/0/negative_classifications/0",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/0/negative_classifications/1",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/0/negative_classifications/0",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/0/negative_classifications/1",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/0/negative_classifications/3",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/0/negative_classifications/3",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/0/negative_classifications/2",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/0",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/1",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/2",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/1",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/2",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/1",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/2",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/1",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/2",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/1",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/2",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/1",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/2",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/5",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/6",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/7",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/6",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/7",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/6",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/7",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/6",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/7",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/6",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/7",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/6",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/7",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/1",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/6",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/9",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/8",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/11",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/10",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/10",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/13",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/12",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/4",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/0",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/1",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/2",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/1",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/2",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/1",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/2",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/1",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/2",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/1",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/2",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/1",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/2",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/1",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/2",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/1",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/2",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/5",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/6",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/7",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/6",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/7",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/6",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/7",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/6",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/7",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/6",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/7",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/6",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/7",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/6",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/7",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/6",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/7",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/1",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/6",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/9",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/8",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/11",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/10",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/10",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/11",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/10",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/10",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/13",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/12",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/13",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/12",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/4",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/0",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/1",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/2",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/1",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/2",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/1",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/2",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/1",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/2",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/1",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/2",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/1",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/2",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/1",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/2",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/5",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/6",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/7",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/6",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/7",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/6",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/7",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/6",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/7",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/6",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/7",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/6",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/7",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/6",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/7",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/1",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/6",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/9",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/8",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/11",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/10",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/10",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/13",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/12",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/4",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/0",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/1",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/2",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/1",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/2",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/1",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/2",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/1",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/2",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/1",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/2",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/1",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/2",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/1",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/2",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/5",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/6",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/7",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/6",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/7",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/6",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/7",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/6",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/7",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/6",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/7",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/6",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/7",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/6",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/7",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/1",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/6",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/9",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/8",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/11",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/10",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/10",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/13",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/12",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/4",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/0",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/1",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/2",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/1",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/2",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/1",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/2",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/1",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/2",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/1",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/2",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/1",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/2",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/1",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/2",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/5",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/6",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/7",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/6",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/7",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/6",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/7",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/6",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/7",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/6",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/7",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/6",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/7",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/6",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/7",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/1",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/6",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/9",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/8",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/11",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/10",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/10",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/13",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/12",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/4",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/3",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/3",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/3",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/3",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/3",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/3",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/3",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/3",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/3",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/3",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/3",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/3",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/3",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/3",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/3",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/2/negative_classifications/4",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/2/negative_classifications/5",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/2/negative_classifications/4",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/2/negative_classifications/5",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/2/negative_classifications/4",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/2/negative_classifications/5",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/2/negative_classifications/4",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/2/negative_classifications/5",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/2/negative_classifications/4",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/2/negative_classifications/5",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/2/negative_classifications/4",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/2/negative_classifications/5",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/2/negative_classifications/4",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/2/negative_classifications/5",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/2/negative_classifications/6",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/2/negative_classifications/7",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/2/negative_classifications/6",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/2/negative_classifications/8",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/2/negative_classifications/9",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/2/negative_classifications/8",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/2/negative_classifications/9",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/2/negative_classifications/8",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/2/negative_classifications/9",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/2/negative_classifications/8",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/2/negative_classifications/9",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/2/negative_classifications/8",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/2/negative_classifications/9",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/2/negative_classifications/8",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/2/negative_classifications/9",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/2/negative_classifications/8",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/2/negative_classifications/9",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/2/negative_classifications/10",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/2/negative_classifications/11",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/2/negative_classifications/10",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/2/negative_classifications/3",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/2/negative_classifications/0",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/2/negative_classifications/1",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/2/negative_classifications/3",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/2/negative_classifications/0",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/2/negative_classifications/1",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/2/negative_classifications/2",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/2/negative_classifications/2",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/0/negative_classifications/0",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/0/negative_classifications/1",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/0/negative_classifications/2",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/0/negative_classifications/3",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/0",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/1",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/2",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/3",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/4",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/5",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/6",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/7",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/8",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/9",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/10",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/11",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/12",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications/13",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/2/negative_classifications/0",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/2/negative_classifications/1",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/2/negative_classifications/2",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/2/negative_classifications/3",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/2/negative_classifications/4",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/2/negative_classifications/5",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/2/negative_classifications/6",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/2/negative_classifications/7",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/2/negative_classifications/8",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/2/negative_classifications/9",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/2/negative_classifications/10",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/2/negative_classifications/11",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/1/negative_classifications",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/2/negative_classifications/4",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        },
+        {
+          "pointer": "/contracts/2/negative_classifications/8",
+          "same_type": true,
+          "same_value": true,
+          "required_fields_present": true
+        }
+      ]
+    }
+  },
+  "prior_inventory_count_reconciliation": {
+    "frozen_measurement_claims_L8_308_L9_308": true,
+    "observed_occurrences": {
+      "L8": 308,
+      "L9": 308
+    },
+    "note": "Final R2 re-read of pinned base and current proposal confirms 308/308; an earlier temporary working projection omitted the three L9 nested pointers contained in the two unassigned audit rows and is superseded."
+  },
+  "checker_intermediate": {
+    "exit_code": 1,
+    "passed": false,
+    "comparison_mode": "explicit_negative_equivalence_classes",
+    "parent_link_mode": "new_parent_link",
+    "class_row_counts": {
+      "L4": 30,
+      "L9": 30,
+      "L8": 0,
+      "L5": 0
+    },
+    "case_row_counts": {
+      "L8": 0,
+      "L9": 283
+    },
+    "matched_case_count": 0,
+    "failure_count": 436,
+    "failure_counts": {
+      "L9:integration_case_not_referenced_from_l8": 283,
+      "L4:class_owner_ref_unresolved": 30,
+      "L8:class_key_missing_from_layer": 60,
+      "L5:class_key_missing_from_layer": 60,
+      "L5:class_source_marker_invalid": 1,
+      "L8:class_table_marker_missing": 1,
+      "L8:unit_cases_missing_or_not_array": 1
+    }
+  },
+  "candidate_semantics": {
+    "331": "F01 composite; worker continuation and credential not-applied are separate violation findings; OS receipt remains unknown as third finding.",
+    "335": "F02 composite; missing independent before-state reference leaves isolation and recovery binding unknown on both axes.",
+    "limit": "Each exact combo is singleton in source population; general condition is source-anchored but prevalence is unproven. 71 multi-contract rows remain untouched."
+  },
+  "unassigned_ambiguous_disposition": {
+    "cases": [
+      {
+        "id": "SEC009-COMPOUND-OS-UNKNOWN-CREDENTIAL-UNAPPLIED-WORKER-CONTINUES",
+        "source_pointer": "/cases/1/negative_cases/205",
+        "finding_codes": [
+          "recipient_continues_after_stop",
+          "recipient_not_applied",
+          "recipient_receipt_unresolved"
+        ],
+        "reason": "L3/L10/L4 separately support per-recipient continuation and application findings, plus unresolved receipt; they do not define that cross-recipient three-finding combination as a reusable class. The exact combination is singleton in the 356-row source fixture; leave unassigned pending a source-supported class, rather than creating a case-specific join key.",
+        "return_owner": "revoke-quarantine-owner",
+        "PR_B": "Keep in nested L9 source and unassigned audit. Exclude from both L8/L9 explicit membership until an upstream-grounded class exists; checker cannot detect simultaneous omission."
+      },
+      {
+        "id": "SEC009-RECOVERY-PRIOR-SOURCE-MISSING",
+        "source_pointer": "/cases/2/negative_cases/40",
+        "finding_codes": [
+          "binding_unresolved"
+        ],
+        "reason": "Missing context.before_state_ref makes both isolation and recovery comparisons unknown, but L4 defines separate axis classes and no joint reusable class for the two-axis bundle. The exact joint pattern is singleton; retain both unknown correspondences and leave unassigned.",
+        "return_owner": "revoke-quarantine-owner",
+        "PR_B": "Keep in nested L9 source and unassigned audit. Exclude from both L8/L9 explicit membership until an upstream-grounded class exists; checker cannot detect simultaneous omission."
+      }
+    ],
+    "upstream_conflict_found": false,
+    "meaning_change_required": false,
+    "human_gate": "None introduced. This is a downstream taxonomy-design limitation; no approved L3/L10/L4 semantics currently establishes a reusable composite category.",
+    "simultaneous_omission_limit": "checker case_population=only_supplied_rows; if omitted from both L8.unit_cases and L9.integration_cases, checker cannot detect the omission. Preserve the two source rows and independent unassigned audit."
+  },
+  "l8_l9_case_correspondence": {
+    "nested_id_set_bijection": true,
+    "L8_nested_rows": 285,
+    "L9_nested_rows": 285,
+    "source_and_expected_semantic_pair_checks_from_fixed_measurement": "285/285 match on source IDs and expected proposal dimensions; this proves correspondence dimensions only, not 4-layer class assignment or explicit-schema completion",
+    "PR_A_explicit_index": {
+      "L9_rows": 283,
+      "positive": 8,
+      "assigned_negative": 275,
+      "unassigned_ambiguous_omitted_from_explicit_table": 2,
+      "L8_explicit_unit_cases": 0,
+      "four_layer_correspondence": "not established in PR-A"
+    },
+    "PR_B_handling": "Add L8 unit_cases only for the 283 source-supported rows and exact integration_case_ref mapping to the 283 L9 integration_cases. Keep the two ambiguous rows in nested source/audit but out of both explicit memberships unless L3/L10/L4 later provides reusable class semantics; checker does not detect simultaneous omission. Keep all 71 multi-contract rows outside the single-contract class index."
+  }
+}

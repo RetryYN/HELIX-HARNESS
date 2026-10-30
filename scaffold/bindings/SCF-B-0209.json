@@ -6,7 +6,7 @@
   "product": "HELIX-HARNESS",
   "owner_candidate": "HELIX-SECURITY SEC009 L4/L9 source comparison evidence owner",
   "state": "registered",
-  "reason": "WR245の比較前固定blind bytes、入力/source再構成、既存L9との行別比較、L8/L9 pair測定を追試可能なsource-only scaffold evidenceとして保持する。",
+  "reason": "WR245 source-only blind comparison, L4/L9 explicit PR-A proposal, and audited R1/R2 source-semantic evidence; no authority or operation effect.",
   "upstream": [
     {
       "path": "docs/helix-security/L3-requirements/functional-requirements.json",
@@ -15,8 +15,8 @@
     },
     {
       "path": "docs/helix-security/L4-basic-design/revoke-quarantine-propagation.json",
-      "sha256": "c0a31c5c663d39854ed1df13b9bf2bfc439fdb46419d089bc617607d6e6ac5b6",
-      "note": "Base source for class meanings; no L4 algorithm executed and source bytes unchanged."
+      "sha256": "d46e39cad2e2a90cfc532fa57226a4d650336e794a375f07e1cc2e6cbba15eb3",
+      "note": "Historical L4 source hash c0a31c5c663d39854ed1df13b9bf2bfc439fdb46419d089bc617607d6e6ac5b6 at base 7382d9c749951074d54240c5473243841c4bc765 is retained as fixed evidence; current pin covers the 30 existing class code projections, no new composite classes, with nested payloads unchanged."
     },
     {
       "path": "docs/helix-security/L8-unit-verification/revoke-quarantine-propagation.json",
@@ -25,8 +25,8 @@
     },
     {
       "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
-      "sha256": "62913b58577cfc0f3c7e6682ad160d8f236157a0ceed9c88ef71822330ed60fc",
-      "note": "Existing assignments and nested case inventory measured read-only; expected values and assignment semantics unchanged."
+      "sha256": "166a86af69e4f9ab067631580752c2f154fddb10c4ed2e2c6bd6ed45b0c769b9",
+      "note": "Base L9 expectations were compared at 7382d9c and remain unchanged across 285 nested single-contract cases and all 71 multi-contract residuals; current digest pins the PR-A explicit class/case projection."
     },
     {
       "path": "docs/helix-security/L10-verification/functional-verification.json",
@@ -56,12 +56,14 @@
   ],
   "role": "WR245 source-only blind comparison and explicit L8/L9 pair measurement",
   "obligations": [
-    "Record the WR245 casewise blind artifact SHA and source-only input/reference pins before comparison.",
-    "Compare all 245 new blind rows with existing L9 assignments and preserve row-specific evidence.",
-    "Reuse the WR236 frozen blind 30 only as a separately counted population; preserve its one recorded mismatch and later review rationale without rewriting it.",
-    "Measure all nested L8/L9 case IDs and positive/negative contract groupings; do not infer explicit schema conformance from matching IDs alone.",
-    "Keep 2 ambiguous cases and 71 multi-contract residuals outside class assignments with their existing semantic return reasons.",
-    "Do not add four-layer markers, mutate L4/L9 expectations, touch L5/L8, execute old runtime/test/CI, or execute the L4 algorithm."
+    "Preserve the 245-row frozen blind bytes and the separate WR236 30-row comparison with its 29/1 split.",
+    "Keep stable class_id/rule IDs; R1 decision permits projecting L4/L5 code to expected_classification when source semantics remain stable.",
+    "Derive both ambiguous rows from source facts and L3/L10/L4 before checking L9 expected values; retain all findings/axes and singleton-pattern limitations.",
+    "Preserve all 71 multi-contract residuals without inferred single-contract class assignments.",
+    "Keep L9 nested source inputs, given/when, expected_proposal and operation semantics unchanged; explicit integration index is additive.",
+    "Keep existing L4 nested consumer payloads and all measured RFC6901 targets value/type-equivalent; retire nested payloads only after all consumer redirects and required-field audit.",
+    "L5/L8 remain unchanged in PR-A; partial 4-layer marker state is expected to FAIL until PR-B completes L5/L8 schema and case cross-references.",
+    "Do not execute old runtime/test/CI or L4 algorithm; no commit/push from this lane."
   ],
   "verification": {
     "evidence_kind": "scaffold",
@@ -76,25 +78,31 @@
       "Static validator verifies four phase references against historical L8 source pointers and REFERENCE-1 against L9 source pointer",
       "Static validator verifies 245 measurement rows against fixed blind bytes and compares recorded assignments to the base L9 source; it does not generate classifications, expected results, or assignments",
       "WR236 30-row frozen blind comparison independently counted as 29 matches and one preserved mismatch",
-      "L8/L9 nested case inventory exact ID bijection and contract/population split",
       "QA §3 explicit schema arrays and same-layer class marker presence measured separately",
-      "source-only before/after SHA-256 equality for L3/L4/L8/L9/L10 and operating references",
       "71 row-wise multi-contract and two ambiguous audit rows: source input/finding pointers and values, L3/L10/L4 target crosswalk, return owner, and PR-B disposition checked by static validator",
       "PR #3992 R1 F1 correction artifact records the as-committed measurement SHA typo and correct fixed-blind SHA; validator checks corrected field against fixed blind bytes without rewriting measurement.json",
-      "PR #3992 R1 F2 checker-trial inputs and reports are stored in scaffold; replay script verifies base source/checker/input SHAs and reproduces PR-A 438 failures plus PR-B shape-only matched 275",
-      "PR-B checker-shape PASS includes 30 L4 and 30 L5 code remaps and is not semantic approval or authorization for formal edits"
+      "PR-B checker-shape PASS includes 30 L4 and 30 L5 code remaps and is not semantic approval or authorization for formal edits",
+      "Source-first two ambiguous candidate validator checks historical input/source pins, L3/L10/L4 crosswalk, case input facts, class options, and singleton count; it does not execute algorithm or generate expected results.",
+      "R2 measures 30 existing classes, 283 explicit integration rows (8 positive and 275 assigned negative), two unassigned ambiguous cases, 285 unchanged nested expectations and 71 unchanged multi-contract residuals.",
+      "L8 and L9 each retain 308 RFC6901 references to unchanged L4 nested classification targets; value, type and required fields are checked.",
+      "Current PR-A partial marker checker: 436 failures, matched 0; PR #3992 historical trial remains fixed at its recorded 438 failures.",
+      "The simultaneous omission of two unassigned rows from explicit arrays is not detected by the checker; independently audit original nested inventory and do not claim full 285-row coverage."
     ],
     "negative_cases": [
-      "Do not report all 275 rows as blind matches; the combined reused population contains one frozen WR236 mismatch.",
-      "Do not infer formal explicit-mode readiness from the 285-row matching ID sets.",
-      "Do not alter ambiguous or multi-contract residual assignments to make counts align.",
-      "Do not alter expected values, case IDs, L5/L8, authentication settings, or runtime behavior.",
-      "Do not edit or regenerate the frozen WR245 blind bytes; validate their exact SHA-256 and pre-comparison comment reference."
+      "Do not report 275 rows as blind matches; WR236 frozen comparison includes one mismatch.",
+      "Do not equate 285 ID bijection with semantic equality or 4-layer readiness.",
+      "Do not alter the two source-derived candidate meanings or L9 expectations for checker counts; keep the 71 multi-contract residual unchanged.",
+      "Do not alter L5/L8 in PR-A, complete or claim the four-layer markers, or report intermediate FAIL as PASS.",
+      "Do not remove L4 nested class payloads until all consumers have explicit redirects and every target/required field is proven equivalent.",
+      "Do not modify frozen measurement.json, fixed blind bytes, post-freeze comparison, or prior checker/audit records."
     ]
   },
   "replacement": {
-    "role_target": "Follow-up explicit class tables after L5/L8 pair schema and four-layer marker readiness are established",
-    "formal_artifacts": [],
+    "role_target": "PR-B may address L5/L8 markers, rules and explicit links for 30 existing classes and 283 indexed rows. Two ambiguous rows remain unassigned and must not be silently omitted from a claim of complete correspondence.",
+    "formal_artifacts": [
+      "docs/helix-security/L4-basic-design/revoke-quarantine-propagation.json",
+      "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json"
+    ],
     "issue": 3510,
     "status": "pending"
   },
@@ -111,7 +119,7 @@
       "QA §3 explicit class mode",
       "existing SEC009 L8/L9 nested case inventories"
     ],
-    "boundary": "scaffold research only; canonical L4/L9 source bytes are unchanged; L5/L8 unchanged; no authority or operation effect."
+    "boundary": "scaffold evidence and L4/L9 PR-A proposal; no authority/operation effect; L5/L8 unchanged. The 2 ambiguous cases remain unassigned and checker omission is explicitly audited."
   },
   "operations": {
     "allowed": [
@@ -119,18 +127,23 @@
       "compare fixed opaque blind rows by case ID with existing L9 assignments",
       "measure nested L8/L9 ID uniqueness and set equality",
       "run scfctl validate and static source/hash checks",
-      "read pinned historical SEC009 case inputs, expected findings, and requirement/design/verification cross-layer pointers for residual disposition evidence"
+      "read pinned historical SEC009 case inputs, expected findings, and requirement/design/verification cross-layer pointers for residual disposition evidence",
+      "propose source-derived L4/L9 PR-A explicit projections in an isolated worktree while preserving the pinned base as evidence",
+      "run current static design checker to measure expected partial-marker FAIL",
+      "run scfctl validate/stale and static source/reference validators"
     ],
     "forbidden": [
       "edit L5 or L8",
-      "change L4 class semantics, L9 expectations or case assignments",
-      "add partial or complete explicit four-layer markers",
       "alter case IDs or fabricate/delete cases to fit the checker",
       "execute old-generation archive source/runtime/test/hook/adapter/CI",
       "execute L4 algorithm or any runtime/test/CI",
       "modify authentication, authorization, credentials, production systems or external services",
       "旧archiveは実行しない",
-      "assign a single class to multi-contract or ambiguous rows without source-supported one-to-one semantic evidence"
+      "change approved L3/L10 upstream meaning or L9 expected_proposal",
+      "assign any class to the 71 multi-contract residuals by inference",
+      "change L5/L8 in PR-A or claim four-layer PASS",
+      "remove/redirect L4 nested payloads without consumer proof",
+      "commit or push from the worker lane"
     ]
   },
   "artifacts": [
@@ -155,6 +168,11 @@
     "scaffold/research/wr245-sec009-explicit-pair-measurement-20261031/checker-trials/inputs/l8-probe-pr-b.json",
     "scaffold/research/wr245-sec009-explicit-pair-measurement-20261031/checker-trials/inputs/l9-probe-pr-b.json",
     "scaffold/research/wr245-sec009-explicit-pair-measurement-20261031/checker-trials/reports/pr-a-check-child-report.json",
-    "scaffold/research/wr245-sec009-explicit-pair-measurement-20261031/checker-trials/reports/pr-b-overlay-check-child-report.json"
+    "scaffold/research/wr245-sec009-explicit-pair-measurement-20261031/checker-trials/reports/pr-b-overlay-check-child-report.json",
+    "scaffold/research/wr245-sec009-explicit-pair-measurement-20261031/r2-ambiguous-source-first-design.json",
+    "scaffold/research/wr245-sec009-explicit-pair-measurement-20261031/validate_r2_ambiguous_source_first_design.py",
+    "scaffold/research/wr245-sec009-explicit-pair-measurement-20261031/pr-a-r2-static-source-measurement.json",
+    "scaffold/research/wr245-sec009-explicit-pair-measurement-20261031/validate_pr_a_r2_measurement.py",
+    "scaffold/research/wr245-sec009-explicit-pair-measurement-20261031/checker-trials/reports/pr-a-r2-check-child-report.json"
   ]
 }

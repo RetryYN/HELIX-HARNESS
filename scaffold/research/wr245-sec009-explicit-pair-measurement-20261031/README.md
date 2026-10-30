@@ -44,3 +44,17 @@ PR-B相当のL5/L8 draftを重ねるchecker試行では、L8/L9 explicit index�
 R1 F1のdigest転記訂正は`r1-correction.json`に追記しました。`measurement.json`の当時固定された値は書き換えず、誤値・正値・固定blind bytesのdigestを併記し、materialization validatorが訂正値とbytesを照合します。
 
 R1 F2向けのchecker trial入力、基底L5/L8 source revision/SHA、checker source SHA、保存report、再実行scriptは`checker-trials/`にあります。`python3 checker-trials/replay_checker_trials.py`でPR-A中間FAIL 438件（matched 0）とPR-B shape overlayのmatched 275（failure 0）を再現・照合します。PR-B試行ではL4 `code` 30件とL5 `code` 30件を安定IDから既存expected outcome値へ写しています。これはchecker形状の測定結果であり、formal L4/L5の意味承認や変更許可を示しません。R1の設計判断は安定`class_id`/rule `id`を保ち`code`を既存expected outcomeへ揃える downstream schema resolutionをAIが別途進められるとしています。既存試行draftは承認済みformal変更ではありません。
+
+
+## R2 independent review disposition: 2 ambiguous cases remain unassigned
+
+`r2-ambiguous-source-first-design.json` に残したsource-first案は、singleton patternから複合class候補を考えた設計ドラフトであり、上流にその組合せを独立分類するtaxonomyがあるかを過大評価していた。独立review後のformal PR-A案ではF01/F02複合classを追加せず、両caseを既存classへ割当てない。L3/L10/L4は331の継続・未適用・receipt未解決を個別recipientのfindingとして支持し、335のisolation/recovery両軸をunknownとして保つが、複数recipientまたは複数軸の組合せ自体を再利用可能なclassとする定義は見つからない。exact patternはいずれも元356件のsingletonである。新しい上流要求や人の承認gateは作らない。
+
+そのためPR-Aの明示表は既存30 class、L9 integration index 283行（positive 8、assigned negative 275）。曖昧2件はnested L9 sourceと`unassigned_single_contract_negative_cases` auditに保持し、L8/L9 explicit membershipには入れない。checkerは同時省略を検出できないため、この2件のsource inventory/auditを別途検証する。71 multi-contract残差は従来どおり完全保持。L9の285 nested given/when/expected_proposalは変更なし。
+
+このPR-A中間状態のchecker実測はexit 1、4-way FAIL、436 failures、matched 0。内訳はL9 integration未参照283、L4 owner未解決30、L5/L8 class key欠落各60、L5 marker不足1、L8 class table不足1、L8 `unit_cases`不足1。PR-BはL5/L8に既存30 classと283行のcase対応を実装してこの側の不足を解消できるが、2 ambiguousには上流根拠が追加されない限りclassを割当てない。
+
+
+### Pointer count reconciliation
+
+一時検討版ではunassigned audit rowを空配列にしたため、L9 nested pointer countを305と誤抽出した。最終案はbaseの2 unassigned audit rowとそこに含まれるL4 pointerを保持し、L8/L9とも308参照・31 unique pointer stringとなる。RFC6901の値・型・必要fieldは308/308で一致し、固定`measurement.json`の308/308と整合する。
