@@ -1,0 +1,117 @@
+{
+  "schema_revision": 1,
+  "id": "SCF-B-0212",
+  "kind": "scaffold",
+  "title": "WR252 HELIX-CONNECT L8 direction-order-feedback-relations U-ID table",
+  "product": "HELIX-HARNESS",
+  "owner_candidate": "HELIX-HARNESS repository scaffold evidence for the HELIX-CONNECT mechanism L8 record",
+  "state": "registered",
+  "reason": "WR252 requests an implementation-preparation L8 slim record and its source/consumer closure. The binding product enum uses HELIX-HARNESS as the repository-side management category; HELIX-CONNECT remains a mechanism, not a product. This record does not assign new authority, ownership, or requirement meaning.",
+  "upstream": [
+    {
+      "path": "docs/helix-connect/L3-requirements/functional-requirements.json",
+      "sha256": "fb04683632d92e5c51c46fdc2eecf388a58e406856f243b8105513e075a49421",
+      "note": "CONNECT009 approved functional requirement IDs referenced by the paired L10 oracle."
+    },
+    {
+      "path": "docs/helix-connect/L4-basic-design/direction-order-feedback-relations.json",
+      "sha256": "840d219dde4ce14327c5a64662060231fc22e35cf12e3b6ea5d53d87c474a6a1",
+      "note": "Current CONNECT009 basic-design source pin; no L4 content is changed."
+    },
+    {
+      "path": "docs/helix-connect/L5-detail-design/direction-order-feedback-relations.json",
+      "sha256": "bd97314daae8b147b23448d5c0d278f85a9d2843bc8da9c517b56d4738b4ffc8",
+      "note": "Current L5 function targets and 110 unit_case_refs consumers; L5 content is unchanged."
+    },
+    {
+      "path": "docs/helix-connect/L9-integration-verification/direction-order-feedback-relations.json",
+      "sha256": "11f86c7a0c4cba539f861038d781c6537442f03421ae2b7f8e923f117fb86af9",
+      "note": "Current L9 source scenarios are retained as audit-map references only; they are not L7 test citations and no L9 content is changed."
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.json",
+      "sha256": "8728cf7c2730a29375f3c7dad75c77157a119d603e52b46f775ede8f1eae474d",
+      "note": "CONNECT009 oracle IDs remain in the L8 rows; the corresponding L10 source pointers are audit-map references only, not test citations."
+    }
+  ],
+  "role": "Hold scaffold-only row mapping and static closure evidence for the compact CONNECT009 L8 U-ID table.",
+  "obligations": [
+    "Keep all 389 prior U-ID values as id and their numeric /cases/N positions one-to-one; do not generate replacement IDs, collapse cases, or alter L5/L4/L9/L3/L10 semantics.",
+    "Give every U-ID row a target, row-specific counterexample and expected result, and exact L10 oracle ID. Put shared fixture-only/no-effect boundaries once at document level; record row-specific preserved-state exceptions in that row.",
+    "Set test_citation to null unless a real L7 test-code reference exists; keep removed L9/L10 source refs in the scaffold audit map only.",
+    "Preserve the L5 110 unit_case_refs links by retaining array order and the prior id at each referenced pointer; update only the L8 L5 source pin to the exact current L5 bytes.",
+    "Keep removed_materials.decision_ref, git_commit, path, meaning, removed_key_rule, and use_boundary, with removed full material addressable only through Git history.",
+    "Record start and completion check-child measurements without converting existing not-evaluated pair findings into pass or changing unrelated L9 findings.",
+    "Keep this record scaffold-only; it does not create requirement approval, product test results, implementation readiness, or completion authority."
+  ],
+  "connections": {
+    "consumers": [
+      "docs/helix-connect/L5-detail-design/direction-order-feedback-relations.json /functions/1/unit_case_refs (51 references)",
+      "docs/helix-connect/L5-detail-design/direction-order-feedback-relations.json /functions/6/unit_case_refs (59 references)",
+      "docs/helix-connect/L8-unit-verification/direction-order-feedback-relations.json cases table"
+    ],
+    "dependencies": [
+      "WR252-CONNECT-DIRECTION-L8-SLIM / Issue #3510",
+      "#3510 comment 6447665479",
+      "L9 CONNECT009 verification scenarios and L10 CONNECT009 functional oracles"
+    ],
+    "boundary": "The scaffold is repository work evidence for one HELIX-CONNECT mechanism L8 record. The product field follows the HELIX-HARNESS repository-side schema category; CONNECT is not a product. No L3/L10, requirement meaning, authority, implementation, execution, or test-pass state is established."
+  },
+  "operations": {
+    "allowed": [
+      "Static JSON ID, pointer, source revision, pin, and row-summary comparison",
+      "Current scaffold scfctl validate and stale checks",
+      "Current design_verification_checker.py check-child as a structural measurement only",
+      "Diff inspection and whitespace check"
+    ],
+    "forbidden": [
+      "Old runtime, test, CI, CLI, hook, workflow, or L4 algorithm execution",
+      "Changing L3/L4/L5/L9/L10 requirement or design semantics",
+      "Copying raw fixture/return values, baseline-plus-patch material, or removed material under another name",
+      "Inferring product-test success, design admission, implementation readiness, requirement approval, or completion from this scaffold evidence"
+    ]
+  },
+  "artifacts": [
+    "docs/helix-connect/L8-unit-verification/direction-order-feedback-relations.json",
+    "scaffold/research/wr252-connect-l8-slim-20261031/README.md",
+    "scaffold/research/wr252-connect-l8-slim-20261031/case-row-map.json",
+    "scaffold/bindings/SCF-B-0212.json"
+  ],
+  "verification": {
+    "evidence_kind": "scaffold",
+    "scope": [
+      "schema_interface",
+      "source_revision_stale",
+      "negative_case",
+      "forbidden_write_scope",
+      "deterministic_behavior"
+    ],
+    "oracles": [
+      "case-row-map.json preserves each prior id and /cases/N position, prior input and expected digests, L10 oracle ID, audit-only L9/L10 source refs, and old/new expected-summary digests for all 389 rows.",
+      "All 110 current L5 unit_case_refs resolve at unchanged pointers to unchanged prior ids.",
+      "All 389 L8 test_citation values are null because no CONNECT L7 test-code reference was found; removed L9/L10 refs resolve only from the scaffold audit map.",
+      "The document-level common expectation boundary and all row-specific preserved-state exceptions are recorded; the audit map records the old/new expectation digest pair per row.",
+      "Start/end check-child measurements and the unchanged not-evaluated pair scope are recorded in the research README.",
+      "scfctl validate and stale are required static scaffold checks; they do not establish product behavior."
+    ],
+    "negative_cases": [
+      "Do not infer reverse permission from a forward registration or feedback relation.",
+      "Do not execute a successor before its declared predecessor condition is established.",
+      "Do not mark a parallel composite complete before its declared join; do not stop independently eligible edges only because join is missing.",
+      "Do not treat an unsent feedback relation as resolved or successful.",
+      "Do not create a new loop retry limit or retry under an unknown existing policy.",
+      "Do not let later-phase missing data revoke an independently eligible initial edge.",
+      "Do not send feedback when its own identity, contract, reverse connection, or authority is missing/unknown/stale/conflicting.",
+      "Do not let missing join data change independent edge eligibility.",
+      "Do not treat an absent or mismatched ACK as receipt or completion."
+    ]
+  },
+  "replacement": {
+    "role_target": "A future approved CONNECT L8 verification contract, if separately established; this research record is not a substitute for it.",
+    "formal_artifacts": [],
+    "issue": 3510,
+    "status": "pending"
+  },
+  "created": "2026-10-31",
+  "updated": "2026-10-31"
+}
