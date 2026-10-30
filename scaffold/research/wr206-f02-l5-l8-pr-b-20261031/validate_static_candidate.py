@@ -104,7 +104,11 @@ def main() -> None:
     for pin in candidate_l5["candidate_source_pins"]:
         assert at_revision_sha(pin) == pin["sha256"], f"L5 source pin mismatch: {pin['path']}"
     for pin in candidate_l8["source_pins"]:
-        assert at_revision_sha(pin) == pin["sha256"], f"L8 source pin mismatch: {pin['path']}"
+        assert at_revision_sha(pin) == pin["sha256"], f"L8 source pin revision/blob mismatch: {pin['path']}"
+        if pin["path"] == L5_PATH:
+            assert sha((ROOT / L5_PATH).read_bytes()) == pin["sha256"], (
+                "L8 L5 source pin does not match current L5 bytes"
+            )
     for path, pointer, revision in (
         ("docs/helix-harness/L3-requirements/functional-requirements.json", "/requirements/41", "a715e777bd59291b26f09c0c1c5481273c6eba2e"),
         ("docs/helix-harness/L10-verification/functional-verification.json", "/cases/41", "a715e777bd59291b26f09c0c1c5481273c6eba2e"),
@@ -196,7 +200,7 @@ def main() -> None:
     print("L8 F02 candidate: only case/input refs and small semantic projections; synthetic input packet lives in scaffold research")
     print("L4/L9 bytes: unchanged")
     print("SCF-B-0185 candidate artifact pins: exact working-tree SHA match")
-    print("source pins: exact revision/blob SHA match; reviewed L3/L10 F02 rows equal current rows")
+    print("source pins: exact revision/blob SHA match; L8 L5 pin also matches current L5 bytes; reviewed L3/L10 F02 rows equal current rows")
     print("candidate cases: positives=2 negatives=7 unique negative classes=5")
     print("after-body branches: H1 target revision; H0 late record kept distinct")
     print("L8 positive L4 output pointers: RFC6901 resolution PASS")

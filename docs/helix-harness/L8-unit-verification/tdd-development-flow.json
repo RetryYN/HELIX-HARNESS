@@ -1119,8 +1119,8 @@
           },
           {
             "path": "docs/helix-harness/L5-detail-design/tdd-development-flow.json",
-            "revision": "5cc48c7c7ceb72e55917833a4a2368e5323f73f9",
-            "sha256": "40d71e8c754d7a26d19f84c649f83189de95246aa6980eb61de7c6e62b66633c",
+            "revision": "4c0e29b6d18a8943514ffd25a27cd4e83c11cff0",
+            "sha256": "426a0b4299a76eaf7a097d33ab56e16244a69163c878ddb265f8bdc4b465b742",
             "pointer": "/contracts/2/candidate_classification_design"
           }
         ],

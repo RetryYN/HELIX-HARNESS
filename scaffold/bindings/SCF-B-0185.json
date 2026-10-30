@@ -88,7 +88,7 @@
       "check-child owner and 4way diagnostics, reported as residual",
       "scfctl validate/stale and PR-scope diff check",
       "candidate artifact SHA-256: docs/helix-harness/L5-detail-design/tdd-development-flow.json=426a0b4299a76eaf7a097d33ab56e16244a69163c878ddb265f8bdc4b465b742",
-      "candidate artifact SHA-256: docs/helix-harness/L8-unit-verification/tdd-development-flow.json=3e38a79b0b9bbc27526e6699fe8d4dfa0189a103300e85ec0c44e2531d2c2ba4",
+      "candidate artifact SHA-256: docs/helix-harness/L8-unit-verification/tdd-development-flow.json=9f52fe3f90769cdacee9d147dceb0fabb2c36386839f39fdcb2d4039086ed6b7",
       "candidate artifact SHA-256: scaffold/research/wr206-f02-l5-l8-pr-b-20261031/source/f02-candidate-input-facts.json=2bc3059606c992ca07bb012bc3ca1ecd195a4ad2e1aafb180e5fa3e68f2b7b0f"
     ],
     "negative_cases": [

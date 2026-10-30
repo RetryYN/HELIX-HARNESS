@@ -61,4 +61,4 @@ checkerの`CHK-OWNERSHIP-CAP-L8L9`は、禁止keyに基づく限定検査でbyte
 
 ## 静的検証
 
-再現用の静的validatorは [`validate_static_candidate.py`](validate_static_candidate.py)。L5述語を実行せず、候補source pin、fixture参照、候補出力projection、L8から指すL4 output contractのRFC6901 pointer解決、H0/H1の枝とsequence条件、既存L5/L8期待およびL4/L9 bytesの不変だけを照合する。L8のcase行にraw payloadを保持していないことも確認する。検証値は [`verification-summary.json`](verification-summary.json) に記録する。`check-child`のowner/4way残件、SCF validate/stale、PR範囲diffも静的文書構造の確認に限る。
+再現用の静的validatorは [`validate_static_candidate.py`](validate_static_candidate.py)。L5述語を実行せず、候補source pinについてrevision内blob SHAを照合し、L8のL5 pinはcurrent L5 bytesのSHAとも一致することを確認する。fixture参照、候補出力projection、L8から指すL4 output contractのRFC6901 pointer解決、H0/H1の枝とsequence条件、既存L5/L8期待およびL4/L9 bytesの不変だけを照合する。L8のcase行にraw payloadを保持していないことも確認する。検証値は [`verification-summary.json`](verification-summary.json) に記録する。`check-child`のowner/4way残件、SCF validate/stale、PR範囲diffも静的文書構造の確認に限る。
