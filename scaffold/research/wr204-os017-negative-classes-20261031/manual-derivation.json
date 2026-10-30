@@ -210,6 +210,11 @@
     },
     "explicit_mode_marker": "absent in L4/L5/L8/L9 by design until all four layers are complete",
     "l9_case_reference_field": "l4_source_class_candidate_ref; unmarked candidate reference, not negative_class_ref",
-    "owner_ref": "deferred to L5 successor"
+    "owner_ref": "deferred to L5 successor",
+    "class_scope": {
+      "phase_in_key": false,
+      "invariant": "全体condition、全体ordered finding signature、binding.project comparisonのaxis/stateがclass rowに記録した値と一致すること。別findingや異なる全体severityを持つcaseは同じclassへ含めない。",
+      "fixed_witness": "resume phaseはL7 fixed raw inputから導いたcase-specific witnessであり、class key/conditionの範囲をresumeへ限定しない。"
+    }
   }
 }

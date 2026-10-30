@@ -209,6 +209,23 @@ def validate_class_rows_and_unmarked_mode() -> None:
     rows = l4.get("failure_classifications")
     if not isinstance(rows, list) or [row.get("class_id") for row in rows] != expected_ids:
         raise AssertionError("L4 formal failure_classifications rows differ")
+    condition_invariants = [
+        ("workflow_material_unknown", ["source_unresolved"], "unknown"),
+        ("workflow_material_violation", ["source_conflict"], "violation"),
+    ]
+    for row, (overall_condition, finding_signature, comparison_state) in zip(rows, condition_invariants):
+        condition = row.get("condition", "")
+        if "Phase非依存" not in condition or "resume" in condition.lower():
+            raise AssertionError(f"class condition must be phase-independent: {row.get('class_id')}")
+        if (
+            row.get("code") != overall_condition
+            or row.get("expected", {}).get("finding_codes") != finding_signature
+            or row.get("expected_axis") != "inputs"
+            or row.get("expected_state") != comparison_state
+        ):
+            raise AssertionError(f"class-wide finding/condition invariant differs: {row.get('class_id')}")
+        if "全体finding signatureが異なるcaseは本classに含めない" not in condition:
+            raise AssertionError(f"class condition must constrain complete finding signature: {row.get('class_id')}")
     contract_refs = {contract["id"]: contract.get("negative_class_refs") for contract in l4["contracts"]}
     if contract_refs.get("HELIXOS-L4-017-F01") != expected_ids:
         raise AssertionError("L4 F01 reverse parent link differs")

@@ -30,8 +30,8 @@
     },
     {
       "path": "docs/helix-os/L4-basic-design/ticket-workflow-derivation.json",
-      "sha256": "cea0aed4af317a01693298ef57f79674d14ca6829ed923732a84fe267359d43a",
-      "note": "Formal failure_classifications rows, source-qualified evidence, and prose/table conditions for the two candidates."
+      "sha256": "38b5b763bb339310284d28449613e4d9ec13677a8cd2d7614d8e0092b66b0986",
+      "note": "Phase-independent source-qualified class conditions, formal failure_classifications rows, source evidence, and L4 prose/tables."
     },
     {
       "path": "docs/helix-os/L7-function-verification/ticket-workflow-derivation.json",
