@@ -20,6 +20,46 @@ for row in L4['failure_classifications']:
         assert row['class_id']=='OS015-NEG-COMPOSITE-'+hashlib.sha256(encoded).hexdigest()
 res=L4['diagnostic_contract']['composite_class_formation']['non_occurring_singleton_residuals']
 assert len(res)==6 and {x['class_id'] for x in res}==removed and all(x['member_count']==0 for x in res)
+l9classes={x['class_id']:x for x in L9['negative_equivalence_classes']}
+l4classes={x['class_id']:x for x in L4['failure_classifications']}
+axis_by_residual={
+ 'OS015-NEG-source_unresolved-original_event':{'original_event'},
+ 'OS015-NEG-source_conflict-original_event':{'original_event'},
+ 'OS015-NEG-original_event_mutated':{'original_event'},
+ 'OS015-NEG-unresolved_promoted_to_current':{'source','original_event','authority'},
+ 'OS015-NEG-first_classification_prior_present':{'classification'},
+ 'OS015-NEG-first_classification_prior_unresolved':{'classification'},
+}
+def resolve_pointer(document,pointer):
+    value=document
+    for token in pointer.strip('/').split('/') if pointer else []:
+        token=token.replace('~1','/').replace('~0','~')
+        value=value[int(token)] if isinstance(value,list) else value[token]
+    return value
+def pointer_witness(code,pointer):
+ if code in {'source_unresolved','source_conflict'}:
+  return ('/records/target_a/original_event/' in pointer or '/context/records/target_a/original_event/' in pointer or
+          (code=='source_conflict' and pointer.startswith('/records/target_a/new_classification/') and pointer.rsplit('/',1)[-1] in {'event_id','event_revision'}))
+ if code=='original_event_mutated': return pointer=='/records/target_a/original_event'
+ if code=='unresolved_promoted_to_current': return pointer=='/records/target_a/current_material_claim'
+ if code in {'first_classification_prior_present','first_classification_prior_unresolved'}:
+  return pointer in {'/records/target_a/original_classification','/context/records/target_a/original_classification'}
+ return False
+for residual in res:
+ code=residual['single_finding_code']
+ for cid in residual['realized_composite_class_ids']:
+  row=l9classes[cid]; l4row=l4classes[cid]
+  assert code in row['expected']['finding_codes']
+  assert row['expected_axis'] in axis_by_residual[residual['class_id']]
+  assert row['expected_classification']==l4row['expected_classification']
+  assert row['expected']['finding_codes']==l4row['expected']['finding_codes']
+  assert row['expected_axis']==l4row['expected_axis'] and row['expected_state']==l4row['expected_state']
+  assert any(src.get('path')=='docs/helix-os/L4-basic-design/management-authority-source-record.json' and any(resolve_pointer(L4,p)['class_id']==cid for p in src.get('pointers',[])) for src in row.get('source_pointers',[]))
+  linked=[c for c in L9['integration_cases'] if c.get('negative_class_ref')==cid]
+  assert linked, cid
+  hits=[(c['id'],f['pointer']) for c in linked for f in c.get('compact_whole_observation',{}).get('ordered_findings',[]) if f['code']==code and pointer_witness(code,f['pointer'])]
+  assert hits, (residual['class_id'],cid,code)
+  if code=='source_conflict': assert cid!='OS015-NEG-COMPOSITE-62fb66a6e279702c28b1aa4f8ee9380369f59c8322c999587e174c6c4992b558'
 assert len(L9['integration_cases'])==585 and L9['completion']['synthetic_case_count']==585
 assert len(L9['negative_equivalence_classes'])==47
 cases={x['id']:x for x in L9['integration_cases']}
@@ -35,4 +75,4 @@ for cid,axis,codes,pointers in [
  suite=next(x for x in L9['cases'] if x['id']=='HELIXOS-L9-015-P-F03')
 assert suite['source_case_count']==31
 assert [x for x in suite['source_case_refs'][-2:]]==[{'id':'HELIXOS-L9-015-C0584','index':583},{'id':'HELIXOS-L9-015-C0585','index':584}]
-print('PASS: L4/L9 structure, residual registry, two hand-derived promotion stimuli, F03 refs')
+print('PASS: L4/L9 structure, residual code/axis/pointer witnesses, two promotion stimuli, F03 refs')

@@ -756,7 +756,7 @@
           "class_id": "OS015-NEG-source_unresolved-original_event",
           "single_finding_code": "source_unresolved",
           "member_count": 0,
-          "co_occurring_rules_and_reason": "original_eventのevent field comparatorでoperandがnullならsource_unresolvedが当該operand pointerへ出る。同じactual original_eventがcontext wholeと異なるため、aggregationでoriginal_event_mutatedが必ず同時に立つ。singleton finding classは成立しない。",
+          "co_occurring_rules_and_reason": "original_event field comparatorでoperandがnullなら、そのactualまたはcontext pointerへsource_unresolvedが出る。片側だけnullで他方が既知値ならwhole actual/context original_eventも異なりoriginal_event_mutatedが共起する。両側が同じnullならwhole mutationは出ないが、cmp(None,None)がactual/contextの両pointerにsource_unresolvedを出す。したがっていずれもsingleton finding classは成立しない。",
           "l4_pointers": [
             "docs/helix-os/L4-basic-design/management-authority-source-record.json#/diagnostic_contract/codes/0",
             "docs/helix-os/L4-basic-design/management-authority-source-record.json#/diagnostic_contract/comparison_facets",
@@ -781,8 +781,7 @@
           ],
           "realized_composite_class_ids": [
             "OS015-NEG-COMPOSITE-07c9fd844a293140f5dc77476ab8ed90116889361788956739abfdcf65b874c4",
-            "OS015-NEG-COMPOSITE-9c5c0fb87d1b6f9fbdf5e2e825c9e600024bbcd3f5bac7a32e7c20423fca521c",
-            "OS015-NEG-COMPOSITE-62fb66a6e279702c28b1aa4f8ee9380369f59c8322c999587e174c6c4992b558"
+            "OS015-NEG-COMPOSITE-9c5c0fb87d1b6f9fbdf5e2e825c9e600024bbcd3f5bac7a32e7c20423fca521c"
           ]
         },
         {
@@ -826,7 +825,7 @@
           "class_id": "OS015-NEG-first_classification_prior_present",
           "single_finding_code": "first_classification_prior_present",
           "member_count": 0,
-          "co_occurring_rules_and_reason": "初回classifyのprior fieldに値があればprior-present findingが発火する。既存classification contextの比較・新classification prior fieldの比較条件によりmutationまたはsource_unresolvedが共起し、該当conditionはsingletonではない。",
+          "co_occurring_rules_and_reason": "初回classifyのprior fieldが既知の非nullなら、その側のprior-present findingが出る。actual/contextが同じ既知値でも両側pointerに2 findingが出る。片側のみ非nullまたは両側値が異なる場合はoriginal_classification whole mutationが共起し、L4条件によってnew-classification prior ref/revision comparisonのsource_unresolved×4が共起する場合もある。どの場合も単独のprior-present finding classは成立しない。",
           "l4_pointers": [
             "docs/helix-os/L4-basic-design/management-authority-source-record.json#/diagnostic_contract/codes/24",
             "docs/helix-os/L4-basic-design/management-authority-source-record.json#/diagnostic_contract/aggregation",
@@ -844,7 +843,7 @@
           "class_id": "OS015-NEG-first_classification_prior_unresolved",
           "single_finding_code": "first_classification_prior_unresolved",
           "member_count": 0,
-          "co_occurring_rules_and_reason": "初回classifyのactual/context original_classificationが未解決値ならprior-unresolved findingが出る。同じ対象のprior ref/revision比較が4つのsource_unresolvedを出す場合、またはoriginal classification whole mutationが共起するためsingletonではない。",
+          "co_occurring_rules_and_reason": "初回classifyのactual/context original_classificationが未解決なら、そのoperand側のprior-unresolved findingが出る。片側のみ未解決で他方が異なる場合はwhole original_classification mutationが共起する。actual/contextが同じ未解決値なら両pointerにprior-unresolvedが出て単独にはならず、new-classification prior ref/revisionが双方nullの場合はsource_unresolved×4も共起する。",
           "l4_pointers": [
             "docs/helix-os/L4-basic-design/management-authority-source-record.json#/diagnostic_contract/codes/25",
             "docs/helix-os/L4-basic-design/management-authority-source-record.json#/diagnostic_contract/aggregation",

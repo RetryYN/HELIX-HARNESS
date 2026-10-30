@@ -4,9 +4,8 @@
   "initial_main_base": "0fc143f1bc356b4b1e0ab410d974572b935bffa1",
   "latest_main_head": "de7908f1c9cb6d05531a339a0054ac577902b58c",
   "latest_main_overlap": "origin/main changes since initial base were SCF-B-0179 plus WR198 F05 audit files; no L4/L9/SCF-B-0177 overlap.",
-  "candidate_commit_at_trial": "26c7e067c5250e28179961ebd6cbe34b5937cbd4",
   "sha256": {
-    "docs/helix-os/L4-basic-design/management-authority-source-record.json": "d958b3c4df05520a2f52e7cbfe3dc01a4fb9a47ed74c638dada913d438945750",
+    "docs/helix-os/L4-basic-design/management-authority-source-record.json": "c468e6cd85c26a6d8fa18d44c000ce32a8e607d48ff77241e233f251ea394a81",
     "docs/helix-os/L9-integration-verification/management-authority-source-record.json": "637f2499479913a629a15ddab80e46b383121d38a0dd1482bc1a1ca2d66ee84b",
     "docs/helix-os/L5-detail-design/management-authority-source-record.json": "4d686c07580eb0aef0a580dec5e2fa666c14476dcf81facdc469cde05719015d",
     "docs/helix-os/L7-function-verification/management-authority-source-record.json": "b2a71c3d2a99c5268275e183f21c2b1bbc4b21ad79d577af42573a079e920a09",
@@ -20,7 +19,13 @@
     "f03_source_case_refs": 31,
     "l4_algorithm_and_codes_unchanged": true,
     "existing_l9_case_fields_preserved": 583,
-    "l5_l7_l8_bytes_unchanged": true
+    "l5_l7_l8_bytes_unchanged": true,
+    "residual_realized_class_code_axis_pointer_witnesses": "PASS",
+    "parent_review_corrections": [
+      "Removed event promotion composite 62fb... from source_conflict residual because it has source_unresolved and no source_conflict.",
+      "Recorded equal-null event operands as two source_unresolved findings without whole-event mutation.",
+      "Recorded equal-known prior-present and equal-unresolved prior-unresolved as two-side findings."
+    ]
   },
   "scf": {
     "validate": "PASS",
@@ -117,5 +122,7 @@
     },
     "interpretation": "The 2026-10-28 freeze remains mechanically unmatched; measured failure counts and not-evaluated reasons are unchanged from baseline."
   },
-  "scope": "L4/L9 records and SCF-B-0170/0173/0175/0176/0177/0178 binding pins only; no L5/L8 formal document edits."
+  "scope": "L4/L9 records and SCF-B-0170/0173/0175/0176/0177/0178 binding pins only; no L5/L8 formal document edits.",
+  "candidate_head_before_correction": "45dbb89412e064979fe0a3a8188dd7946af14efd",
+  "trial_state": "Latest-main child/freeze trial was rerun after residual correction in the candidate worktree; recorded layer SHA-256 values identify the exact measured content."
 }
