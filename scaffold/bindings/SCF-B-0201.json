@@ -20,8 +20,8 @@
     },
     {
       "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
-      "sha256": "aeb5bb56223abcd9b0f9e3b2004b3e05c54e4add204c4220096c538e11b94a6b",
-      "note": "Base 2684816... のL4設計を起点にWR244 R1でmarkerなしsource-derived negative rowsを追補。期待/oracle/authorization semanticsは不変。"
+      "sha256": "6f64b6d9654f596d5597a056b4ded9288854640411c8ffccc2b0e6822306193a",
+      "note": "Base 2684816... のL4設計を起点にWR244 R1のsource-backed negative rowsを追補。R2でknown absentのrequested_operation保存文言のみ訂正。期待/oracle/authorization semanticsは不変。"
     },
     {
       "path": "docs/helix-security/L9-integration-verification/project-scope-isolation.json",
@@ -91,7 +91,8 @@
     "scaffold/research/wr244-sec006-psi-l4l9-20261031/verification-summary.json",
     "scaffold/bindings/SCF-B-0201.json",
     "scaffold/research/wr244-sec006-psi-l4l9-20261031-r1/post-comparison-derivation.json",
-    "scaffold/research/wr244-sec006-psi-l4l9-20261031-r1/README.md"
+    "scaffold/research/wr244-sec006-psi-l4l9-20261031-r1/README.md",
+    "scaffold/research/wr244-sec006-psi-l4l9-20261031-r1/r2-review-corrections.json"
   ],
   "verification": {
     "evidence_kind": "scaffold",
