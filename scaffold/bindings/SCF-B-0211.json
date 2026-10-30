@@ -6,7 +6,7 @@
   "product": "HELIX-HARNESS",
   "owner_candidate": "HARNESS-048 L8 naming U-ID table responsibility owner candidate",
   "state": "registered",
-  "reason": "Issue #3510 WR251: remove L8-only fixtures, full returns, and hash/support material while preserving all 158 U-ID meanings and the upstream L3/L10, L4/L5/L9 boundaries in static scaffold evidence.",
+  "reason": "Issue #3510 WR251: remove L8-only fixture/full-return/hash material while preserving 158 row meanings, fixing the L5 fixed-revision consumer reference, and retaining the L3/L10 and L4/L5/L9 boundaries in scaffold audit evidence.",
   "upstream": [
     {
       "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
@@ -35,8 +35,8 @@
     },
     {
       "path": "docs/helix-harness/L5-detail-design/naming-identity-correspondence.json",
-      "sha256": "9eff8773b525f5bda1920026b7bca085ce8f4ea77ed04e6f9097435dd675296d",
-      "note": "WR251固定baseの要求・oracle・層pair・L8 ownership境界のsource。"
+      "sha256": "26d5c05984e2c67d3504f39b077c0a2f7ef7dc9f5e2b803a2dd60c7056ab60aa",
+      "note": "WR251固定baseの要求・oracle・層pair・L8 ownership境界のsource。 WR251 R1: 参照切れ修理としてretained_Q_probeのsource_revisionを撤去前commitへ固定。旧L5 pin 9eff8773b525f5bda1920026b7bca085ce8f4ea77ed04e6f9097435dd675296d、value hash不変。"
     },
     {
       "path": "docs/helix-harness/L9-integration-verification/naming-identity-correspondence.json",
@@ -52,18 +52,21 @@
   "role": "Temporary static evidence for WR251 L8 U-ID meaning preservation, removed-material provenance, consumer/pin audit, and before/after child-check comparison.",
   "obligations": [
     "L8 formal cases contain only id, subject, counterexample, expected_result, oracle_id, and test_citation; preserve all 158 U-IDs.",
-    "Preserve per-U-ID concrete subject IDs, baseline-relative input/output changes, L3 authority and L10 oracle identity; do not invent a row test citation.",
-    "Record removed material by fixed pre-edit commit/path, meaning, and use boundary; retain L4/L5/L9 formal contents and upstream source pins.",
+    "Preserve per-U-ID subject identities and only row-specific counterexample/expected outcome distinctions; keep L3 requirement and L10 oracle identity; do not invent test citations.",
+    "Record removed material by fixed pre-edit commit/path, meaning, and use boundary; retain L4/L5/L9 formal contents and applicable source pins.",
+    "Bind L5 retained_Q_probe to L8 at fixed source revision f1cc56731e8862589eada60892d21e4c12d2c0df and preserve canonical value hash f59c5e3cf545ec24b6b5c9ed14e483cd4ba126515971b95f181d3778fbec6160.",
+    "Keep the original verification-summary, u-id-meaning-mapping, and check-child snapshots immutable; record PR #3998 R1 corrections in separate append-only scaffold artifacts.",
     "Record child pair/cap/pin results before and after without presenting static scaffold checks as formal verification."
   ],
   "connections": {
     "consumers": [
-      "HARNESS-L5-048 paired document; repository search found no formal pointer or pin to the removed L8-only nodes."
+      "docs/helix-harness/L5-detail-design/naming-identity-correspondence.json: one retained_Q_probe pointer to the removed L8 node, now explicitly bound to fixed source revision f1cc56731e8862589eada60892d21e4c12d2c0df with unchanged canonical value hash; see R1 correction evidence."
     ],
     "dependencies": [
       "Issue #3510 comments 6408252809 and 6447665479; Issues #3988/#3911/#3924/#3929/#3930 reviewed as precedents.",
       "L3 F01-F04 and B01 requirements; L10 F01-F04 and B01 oracle rows.",
-      "L4/L5/L9 naming identity correspondence pair contracts and QA §3 L8 cap."
+      "L4/L5/L9 naming identity correspondence pair contracts and QA §3 L8 cap.",
+      "PR #3998 R1 review comment 6535403321; its F1 consumer correction and F2 row-delta audit are recorded separately from the initial committed evidence."
     ],
     "boundary": "L8 ownership-cap cleanup and scaffold audit only. No L3/L4/L5/L9 edits, no L4 algorithm, old runtime/test/CI, no test citation fabrication, no authority, approval, acceptance, or completion effect."
   },
@@ -87,7 +90,10 @@
     "scaffold/research/wr251-naming-l8-slim-20261031/verification-summary.json",
     "scaffold/bindings/SCF-B-0211.json",
     "scaffold/research/wr251-naming-l8-slim-20261031/evidence/check-child-before.json",
-    "scaffold/research/wr251-naming-l8-slim-20261031/evidence/check-child-after.json"
+    "scaffold/research/wr251-naming-l8-slim-20261031/evidence/check-child-after.json",
+    "scaffold/research/wr251-naming-l8-slim-20261031/r1-row-delta-audit.json",
+    "scaffold/research/wr251-naming-l8-slim-20261031/r1-correction-20261031.json",
+    "scaffold/research/wr251-naming-l8-slim-20261031/evidence/r1-check-child-after.json"
   ],
   "verification": {
     "evidence_kind": "scaffold",
@@ -100,7 +106,8 @@
       "Fixed pre-edit commit f1cc56731e8862589eada60892d21e4c12d2c0df and target file SHA-256 recorded in u-id-meaning-mapping.json.",
       "158 U-ID row mappings, L3/L10 source pointers, no invented test citations, L4/L5/L9 unchanged.",
       "Full check-child before/after pair, negative_4way, caps, and pin report.",
-      "scfctl validate/stale and forbidden ownership-material scan."
+      "scfctl validate/stale and forbidden ownership-material scan.",
+      "PR #3998 R1: L5 retained_Q_probe resolves at the fixed pre-removal L8 revision and retains canonical value SHA-256 f59c5e3cf545ec24b6b5c9ed14e483cd4ba126515971b95f181d3778fbec6160; row-delta audit covers all 158 U-IDs without full-return copies."
     ],
     "negative_cases": [
       "Do not execute old runtime/test/CI or L4/L5 algorithm.",

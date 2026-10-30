@@ -5653,7 +5653,7 @@
       "literal": "retained_Q_probe",
       "literal_origin": "独立local fixture入力Qの保持値",
       "source": "docs/helix-harness/L8-unit-verification/naming-identity-correspondence.json#/independent_context_values/retained_q_probe/value",
-      "source_revision_binding": "same_candidate_document",
+      "source_revision": "f1cc56731e8862589eada60892d21e4c12d2c0df",
       "value_canonical_sha256": "f59c5e3cf545ec24b6b5c9ed14e483cd4ba126515971b95f181d3778fbec6160",
       "boundary": "原L9 literalではない。実Q source/providerは未供給。"
     },

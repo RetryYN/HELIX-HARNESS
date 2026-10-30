@@ -3,7 +3,7 @@
   "status": "draft_limited_detail_pending_parent_and_independent_review",
   "source_main": "b52ad0e1e954790ebe57b2d87da46ea6712a07d9",
   "authority_effect": "none",
-  "operation_effect": "none",
+  "operation_effect": "U-ID行は比較結果のみ。各行で入力されたunaffected_Qはその値のまま維持し、rename、DesignRefactor、CI実行、merge、authority/canonical決定、設計完了、受入、global stopを実行・成立させない。",
   "source_pins": [
     {
       "path": "docs/helix-harness/L4-basic-design/naming-identity-correspondence.json",
@@ -159,8 +159,8 @@
           "OBJ-R"
         ]
       },
-      "counterexample": "context scope=PRODUCT-P, unaffected_Q=original_Q。role vocabulary=[Entity, ValueObject, Aggregate, DomainService, Policy, Specification, Command, Query, DomainEvent, Receipt, Port, Adapter, Repository]。照合対象: OBJ-P（name=lookup, declared_role=Query, meaning=値の照会, role_basis=読み取り操作, consumers=[C1], exception=未提示(null)）; OBJ-R（name=lookup, declared_role=Repository, meaning=永続objectの取得, role_basis=永続化境界, consumers=[C2], exception=未提示(null)）。evaluation_date=2030-01-01。",
-      "expected_result": "対象別結果: OBJ-P=candidate_only:Query; OBJ-R=candidate_only:Repository。canonical決定は本照合では行わない。unaffected_Q=original_Q。実rename・DesignRefactor・CI・merge・authority変更・設計完了・受入はすべてfalse。",
+      "counterexample": "OBJ-PとOBJ-Rは同名lookupだが、OBJ-PはQuery (consumer C1)、OBJ-RはRepository (consumer C2)の別対象。",
+      "expected_result": "OBJ-P: candidate_only:Query；OBJ-R: candidate_only:Repository",
       "oracle_id": "HARNESS-L10-048-F01",
       "test_citation": null
     },
@@ -174,8 +174,8 @@
           "OBJ-R"
         ]
       },
-      "counterexample": "context scope=PRODUCT-P, unaffected_Q=original_Q。role vocabulary=[Entity, ValueObject, Aggregate, DomainService, Policy, Specification, Command, Query, DomainEvent, Receipt, Port, Adapter, Repository]。照合対象: OBJ-P（name=Manager, declared_role=未提示(null), meaning=値の照会, role_basis=読み取り操作, consumers=[C1], exception=未提示(null)）; OBJ-R（name=lookup, declared_role=Repository, meaning=永続objectの取得, role_basis=永続化境界, consumers=[C2], exception=未提示(null)）。evaluation_date=2030-01-01。",
-      "expected_result": "対象別結果: OBJ-P=unknown_role; OBJ-R=candidate_only:Repository。canonical決定は本照合では行わない。unaffected_Q=original_Q。実rename・DesignRefactor・CI・merge・authority変更・設計完了・受入はすべてfalse。",
+      "counterexample": "OBJ-Pの宣言role=null。OBJ-Pの名称=Manager。",
+      "expected_result": "OBJ-P: unknown_role；OBJ-R: candidate_only:Repository",
       "oracle_id": "HARNESS-L10-048-F01",
       "test_citation": null
     },
@@ -189,8 +189,8 @@
           "OBJ-R"
         ]
       },
-      "counterexample": "context scope=PRODUCT-P, unaffected_Q=original_Q。role vocabulary=[Entity, ValueObject, Aggregate, DomainService, Policy, Specification, Command, Query, DomainEvent, Receipt, Port, Adapter, Repository]。照合対象: OBJ-P（name=Manager, declared_role=Query, meaning=値の照会, role_basis=未提示(null), consumers=[C1], exception=未提示(null)）; OBJ-R（name=lookup, declared_role=Repository, meaning=永続objectの取得, role_basis=永続化境界, consumers=[C2], exception=未提示(null)）。evaluation_date=2030-01-01。",
-      "expected_result": "対象別結果: OBJ-P=missing_basis; OBJ-R=candidate_only:Repository。canonical決定は本照合では行わない。unaffected_Q=original_Q。実rename・DesignRefactor・CI・merge・authority変更・設計完了・受入はすべてfalse。",
+      "counterexample": "OBJ-Pの名称=Manager。OBJ-Pのrole basis=null。",
+      "expected_result": "OBJ-P: missing_basis；OBJ-R: candidate_only:Repository",
       "oracle_id": "HARNESS-L10-048-F01",
       "test_citation": null
     },
@@ -204,8 +204,8 @@
           "OBJ-R"
         ]
       },
-      "counterexample": "context scope=PRODUCT-P, unaffected_Q=original_Q。role vocabulary=[Entity, ValueObject, Aggregate, DomainService, Policy, Specification, Command, Query, DomainEvent, Receipt, Port, Adapter, Repository]。照合対象: OBJ-P（name=Manager, declared_role=Query, meaning=値の照会, role_basis=読み取り操作, consumers=[], exception=未提示(null)）; OBJ-R（name=lookup, declared_role=Repository, meaning=永続objectの取得, role_basis=永続化境界, consumers=[C2], exception=未提示(null)）。evaluation_date=2030-01-01。",
-      "expected_result": "対象別結果: OBJ-P=missing_consumer; OBJ-R=candidate_only:Repository。canonical決定は本照合では行わない。unaffected_Q=original_Q。実rename・DesignRefactor・CI・merge・authority変更・設計完了・受入はすべてfalse。",
+      "counterexample": "OBJ-Pのconsumer=空。OBJ-Pの名称=Manager。",
+      "expected_result": "OBJ-P: missing_consumer；OBJ-R: candidate_only:Repository",
       "oracle_id": "HARNESS-L10-048-F01",
       "test_citation": null
     },
@@ -219,8 +219,8 @@
           "OBJ-R"
         ]
       },
-      "counterexample": "context scope=PRODUCT-P, unaffected_Q=original_Q。role vocabulary=[Entity, ValueObject, Aggregate, DomainService, Policy, Specification, Command, Query, DomainEvent, Receipt, Port, Adapter, Repository]。照合対象: OBJ-P（name=Manager, declared_role=Query, meaning=値の照会, role_basis=読み取り操作, consumers=[C1], exception={expiry=2030-02-01, owner=PRODUCT-P-owner, reason=既存利用者への段階移行, scope=PRODUCT-P}）; OBJ-R（name=lookup, declared_role=Repository, meaning=永続objectの取得, role_basis=永続化境界, consumers=[C2], exception=未提示(null)）。evaluation_date=2030-01-01。",
-      "expected_result": "対象別結果: OBJ-P=candidate_only:Query_with_scoped_exception; OBJ-R=candidate_only:Repository。canonical決定は本照合では行わない。unaffected_Q=original_Q。実rename・DesignRefactor・CI・merge・authority変更・設計完了・受入はすべてfalse。",
+      "counterexample": "OBJ-Pの例外 期限=2030-02-01。OBJ-Pの例外 owner=PRODUCT-P-owner。OBJ-Pの例外 理由=既存利用者への段階移行。OBJ-Pの例外 scope=PRODUCT-P。OBJ-Pの名称=Manager。",
+      "expected_result": "OBJ-P: candidate_only:Query_with_scoped_exception；OBJ-R: candidate_only:Repository",
       "oracle_id": "HARNESS-L10-048-F01",
       "test_citation": null
     },
@@ -234,8 +234,8 @@
           "OBJ-R"
         ]
       },
-      "counterexample": "context scope=PRODUCT-P, unaffected_Q=original_Q。role vocabulary=[Entity, ValueObject, Aggregate, DomainService, Policy, Specification, Command, Query, DomainEvent, Receipt, Port, Adapter, Repository]。照合対象: OBJ-P（name=Manager, declared_role=Query, meaning=値の照会, role_basis=読み取り操作, consumers=[C1], exception=未提示(null)）; OBJ-R（name=lookup, declared_role=Repository, meaning=永続objectの取得, role_basis=永続化境界, consumers=[C2], exception=未提示(null)）。evaluation_date=2030-01-01。",
-      "expected_result": "対象別結果: OBJ-P=missing_scoped_exception; OBJ-R=candidate_only:Repository。canonical決定は本照合では行わない。unaffected_Q=original_Q。実rename・DesignRefactor・CI・merge・authority変更・設計完了・受入はすべてfalse。",
+      "counterexample": "OBJ-Pの名称=Manager。",
+      "expected_result": "OBJ-P: missing_scoped_exception；OBJ-R: candidate_only:Repository",
       "oracle_id": "HARNESS-L10-048-F01",
       "test_citation": null
     },
@@ -248,8 +248,8 @@
           "OBJ-P"
         ]
       },
-      "counterexample": "context scope=PRODUCT-P, unaffected_Q=original_Q。operation=read, stable_object=OBJ-P, stable_oracle=ORACLE-P; before(object/symbol/oracle)={object=OBJ-P, oracle=ORACLE-P, symbol=oldLookup}; after(object/symbol/oracle)={object=OBJ-P, oracle=ORACLE-P, symbol=readValue}; symbol_edge={object=OBJ-P, operation=read, symbol=readValue}; oracle_edge={object=OBJ-P, operation=read, oracle=ORACLE-P}; pair={requirement_object=OBJ-P, verification_object=OBJ-P}。",
-      "expected_result": "edge_results={\"object_identity\":\"held\",\"oracle_identity\":\"held\",\"symbol_edge\":\"bound\",\"oracle_edge\":\"bound\",\"pair\":\"same_object\"}; symbol_change=candidate_only。unaffected_Q=original_Q。実rename・DesignRefactor・CI・merge・authority変更・設計完了・受入はすべてfalse。",
+      "counterexample": "OBJ-P/readのsymbolはoldLookupからreadValueへの候補変更。object=OBJ-P、oracle=ORACLE-Pを保ち、symbol/oracle edgeとrequirement/verification pairが同じ対象に結ぶ。",
+      "expected_result": "全identity/edge対応を保持。symbol変更は候補のみ。",
       "oracle_id": "HARNESS-L10-048-F02",
       "test_citation": null
     },
@@ -262,8 +262,8 @@
           "OBJ-P"
         ]
       },
-      "counterexample": "context scope=PRODUCT-P, unaffected_Q=original_Q。operation=read, stable_object=OBJ-P, stable_oracle=ORACLE-P; before(object/symbol/oracle)={object=OBJ-P, oracle=ORACLE-P, symbol=oldLookup}; after(object/symbol/oracle)={object=OBJ-X, oracle=ORACLE-P, symbol=readValue}; symbol_edge={object=OBJ-P, operation=read, symbol=readValue}; oracle_edge={object=OBJ-P, operation=read, oracle=ORACLE-P}; pair={requirement_object=OBJ-P, verification_object=OBJ-P}。",
-      "expected_result": "edge_results={\"object_identity\":\"conflict\",\"oracle_identity\":\"held\",\"symbol_edge\":\"bound\",\"oracle_edge\":\"bound\",\"pair\":\"same_object\"}; symbol_change=candidate_only。unaffected_Q=original_Q。実rename・DesignRefactor・CI・merge・authority変更・設計完了・受入はすべてfalse。",
+      "counterexample": "変更後 object=OBJ-X。",
+      "expected_result": "object_identity: conflict",
       "oracle_id": "HARNESS-L10-048-F02",
       "test_citation": null
     },
@@ -276,8 +276,8 @@
           "OBJ-P"
         ]
       },
-      "counterexample": "context scope=PRODUCT-P, unaffected_Q=original_Q。operation=read, stable_object=OBJ-P, stable_oracle=ORACLE-P; before(object/symbol/oracle)={object=OBJ-P, oracle=ORACLE-P, symbol=oldLookup}; after(object/symbol/oracle)={object=OBJ-P, oracle=ORACLE-X, symbol=readValue}; symbol_edge={object=OBJ-P, operation=read, symbol=readValue}; oracle_edge={object=OBJ-P, operation=read, oracle=ORACLE-P}; pair={requirement_object=OBJ-P, verification_object=OBJ-P}。",
-      "expected_result": "edge_results={\"object_identity\":\"held\",\"oracle_identity\":\"conflict\",\"symbol_edge\":\"bound\",\"oracle_edge\":\"bound\",\"pair\":\"same_object\"}; symbol_change=candidate_only。unaffected_Q=original_Q。実rename・DesignRefactor・CI・merge・authority変更・設計完了・受入はすべてfalse。",
+      "counterexample": "変更後 oracle=ORACLE-X。",
+      "expected_result": "oracle_identity: conflict",
       "oracle_id": "HARNESS-L10-048-F02",
       "test_citation": null
     },
@@ -290,8 +290,8 @@
           "OBJ-P"
         ]
       },
-      "counterexample": "context scope=PRODUCT-P, unaffected_Q=original_Q。operation=read, stable_object=OBJ-P, stable_oracle=ORACLE-P; before(object/symbol/oracle)={object=OBJ-P, oracle=ORACLE-P, symbol=oldLookup}; after(object/symbol/oracle)={object=OBJ-P, oracle=ORACLE-P, symbol=readValue}; symbol_edge=未提示(null); oracle_edge={object=OBJ-P, operation=read, oracle=ORACLE-P}; pair={requirement_object=OBJ-P, verification_object=OBJ-P}。",
-      "expected_result": "edge_results={\"object_identity\":\"held\",\"oracle_identity\":\"held\",\"symbol_edge\":\"missing\",\"oracle_edge\":\"bound\",\"pair\":\"same_object\"}; symbol_change=candidate_only。unaffected_Q=original_Q。実rename・DesignRefactor・CI・merge・authority変更・設計完了・受入はすべてfalse。",
+      "counterexample": "symbol edge=null。",
+      "expected_result": "symbol_edge: missing",
       "oracle_id": "HARNESS-L10-048-F02",
       "test_citation": null
     },
@@ -304,8 +304,8 @@
           "OBJ-P"
         ]
       },
-      "counterexample": "context scope=PRODUCT-P, unaffected_Q=original_Q。operation=read, stable_object=OBJ-P, stable_oracle=ORACLE-P; before(object/symbol/oracle)={object=OBJ-P, oracle=ORACLE-P, symbol=oldLookup}; after(object/symbol/oracle)={object=OBJ-P, oracle=ORACLE-P, symbol=readValue}; symbol_edge={object=OBJ-P, operation=read, symbol=readValue}; oracle_edge=未提示(null); pair={requirement_object=OBJ-P, verification_object=OBJ-P}。",
-      "expected_result": "edge_results={\"object_identity\":\"held\",\"oracle_identity\":\"held\",\"symbol_edge\":\"bound\",\"oracle_edge\":\"missing\",\"pair\":\"same_object\"}; symbol_change=candidate_only。unaffected_Q=original_Q。実rename・DesignRefactor・CI・merge・authority変更・設計完了・受入はすべてfalse。",
+      "counterexample": "oracle edge=null。",
+      "expected_result": "oracle_edge: missing",
       "oracle_id": "HARNESS-L10-048-F02",
       "test_citation": null
     },
@@ -318,8 +318,8 @@
           "OBJ-P"
         ]
       },
-      "counterexample": "context scope=PRODUCT-P, unaffected_Q=original_Q。operation=read, stable_object=OBJ-P, stable_oracle=ORACLE-P; before(object/symbol/oracle)={object=OBJ-P, oracle=ORACLE-P, symbol=oldLookup}; after(object/symbol/oracle)={object=OBJ-P, oracle=ORACLE-P, symbol=readValue}; symbol_edge={object=OBJ-P, operation=read, symbol=readValue}; oracle_edge={private_symbol=readValue}; pair={requirement_object=OBJ-P, verification_object=OBJ-P}。",
-      "expected_result": "edge_results={\"object_identity\":\"held\",\"oracle_identity\":\"held\",\"symbol_edge\":\"bound\",\"oracle_edge\":\"private_only_rejected\",\"pair\":\"same_object\"}; symbol_change=candidate_only。unaffected_Q=original_Q。実rename・DesignRefactor・CI・merge・authority変更・設計完了・受入はすべてfalse。",
+      "counterexample": "oracle edge objectが未提示。oracle edge operationが未提示。oracle edge oracleが未提示。oracle edge private symbol=readValue。",
+      "expected_result": "oracle_edge: private_only_rejected",
       "oracle_id": "HARNESS-L10-048-F02",
       "test_citation": null
     },
@@ -332,8 +332,8 @@
           "OBJ-P"
         ]
       },
-      "counterexample": "context scope=PRODUCT-P, unaffected_Q=original_Q。operation=read, stable_object=OBJ-P, stable_oracle=ORACLE-P; before(object/symbol/oracle)={object=OBJ-P, oracle=ORACLE-P, symbol=oldLookup}; after(object/symbol/oracle)={object=OBJ-P, oracle=ORACLE-P, symbol=readValue}; symbol_edge={object=OBJ-P, operation=read, symbol=readValue}; oracle_edge={object=OBJ-P, operation=read, oracle=ORACLE-P}; pair={requirement_object=OBJ-P, verification_object=OBJ-X}。",
-      "expected_result": "edge_results={\"object_identity\":\"held\",\"oracle_identity\":\"held\",\"symbol_edge\":\"bound\",\"oracle_edge\":\"bound\",\"pair\":\"conflict\"}; symbol_change=candidate_only。unaffected_Q=original_Q。実rename・DesignRefactor・CI・merge・authority変更・設計完了・受入はすべてfalse。",
+      "counterexample": "pair verification object=OBJ-X。",
+      "expected_result": "pair: conflict",
       "oracle_id": "HARNESS-L10-048-F02",
       "test_citation": null
     },
@@ -346,8 +346,8 @@
           "OBJ-P"
         ]
       },
-      "counterexample": "OBJ-Pのinternal symbol変更候補（context scope=PRODUCT-P、unaffected_Q=original_Q）。candidate symbol=readValue、canonical owner=PRODUCT-P-owner、decision revision=decision-P@r1、visibility=internal、required/observed consumers=C1,C2、signature before/after一致（inputs=value_id; outputs=value; effects=[]; failure=not_found; state_transition=unchanged; call_graph=port.read; C1/C2 contract=value-read@r1）、evidence_basis=content、minimum change=symbol edge only、rollback=OBJ-P/ORACLE-Pを保持しoldLookupへ復帰。behavior invariantはORACLE-Pで値・failure・effects不変、必要時rollbackはOBJ-P/ORACLE-Pを保持してoldLookupへ戻す。",
-      "expected_result": "condition_results={\"canonical\":\"supported_synthetic_condition\",\"internal\":\"supported_synthetic_condition\",\"consumers\":\"supported_synthetic_condition\",\"signature:inputs\":\"supported_synthetic_condition\",\"signature:outputs\":\"supported_synthetic_condition\",\"signature:effects\":\"supported_synthetic_condition\",\"signature:failure\":\"supported_synthetic_condition\",\"signature:state_transition\":\"supported_synthetic_condition\",\"signature:call_graph\":\"supported_synthetic_condition\",\"signature:consumer_contract\":\"supported_synthetic_condition\",\"behavior_invariant\":\"supported_synthetic_condition\",\"minimum_transform\":\"supported_synthetic_condition\",\"rollback\":\"supported_synthetic_condition\",\"semantic_basis\":\"supported_synthetic_condition\",\"operation_boundary\":\"supported_synthetic_condition\"}; candidate_presentable=true（合成条件の部分結果。L3/L4 qualificationやrenameではない）。unaffected_Q=original_Q。実rename・DesignRefactor・CI・merge・authority変更・設計完了・受入はすべてfalse。",
+      "counterexample": "OBJ-Pのinternal readValue候補。canonical owner=PRODUCT-P-owner / decision-P@r1、必須・観測consumer=C1,C2、before/after signature一致、ORACLE-Pの値/failure/effects不変、rollbackはoldLookupへ戻す。",
+      "expected_result": "全条件supported（合成条件）、candidate_presentable=true。",
       "oracle_id": "HARNESS-L10-048-F03",
       "test_citation": null
     },
@@ -360,8 +360,8 @@
           "OBJ-P"
         ]
       },
-      "counterexample": "OBJ-Pのinternal symbol変更候補（context scope=PRODUCT-P、unaffected_Q=original_Q）。canonical決定=未提示(null)。behavior invariantはORACLE-Pで値・failure・effects不変、必要時rollbackはOBJ-P/ORACLE-Pを保持してoldLookupへ戻す。",
-      "expected_result": "condition_results={\"canonical\":\"missing\",\"internal\":\"supported_synthetic_condition\",\"consumers\":\"supported_synthetic_condition\",\"signature:inputs\":\"supported_synthetic_condition\",\"signature:outputs\":\"supported_synthetic_condition\",\"signature:effects\":\"supported_synthetic_condition\",\"signature:failure\":\"supported_synthetic_condition\",\"signature:state_transition\":\"supported_synthetic_condition\",\"signature:call_graph\":\"supported_synthetic_condition\",\"signature:consumer_contract\":\"supported_synthetic_condition\",\"behavior_invariant\":\"supported_synthetic_condition\",\"minimum_transform\":\"supported_synthetic_condition\",\"rollback\":\"supported_synthetic_condition\",\"semantic_basis\":\"supported_synthetic_condition\",\"operation_boundary\":\"supported_synthetic_condition\"}; candidate_presentable=false（合成条件の部分結果。L3/L4 qualificationやrenameではない）。unaffected_Q=original_Q。実rename・DesignRefactor・CI・merge・authority変更・設計完了・受入はすべてfalse。",
+      "counterexample": "canonical決定=null。",
+      "expected_result": "提示不可。canonical: missing",
       "oracle_id": "HARNESS-L10-048-F03",
       "test_citation": null
     },
@@ -374,8 +374,8 @@
           "OBJ-P"
         ]
       },
-      "counterexample": "OBJ-Pのinternal symbol変更候補（context scope=PRODUCT-P、unaffected_Q=original_Q）。visibility=public_API。behavior invariantはORACLE-Pで値・failure・effects不変、必要時rollbackはOBJ-P/ORACLE-Pを保持してoldLookupへ戻す。",
-      "expected_result": "condition_results={\"canonical\":\"supported_synthetic_condition\",\"internal\":\"rejected\",\"consumers\":\"supported_synthetic_condition\",\"signature:inputs\":\"supported_synthetic_condition\",\"signature:outputs\":\"supported_synthetic_condition\",\"signature:effects\":\"supported_synthetic_condition\",\"signature:failure\":\"supported_synthetic_condition\",\"signature:state_transition\":\"supported_synthetic_condition\",\"signature:call_graph\":\"supported_synthetic_condition\",\"signature:consumer_contract\":\"supported_synthetic_condition\",\"behavior_invariant\":\"supported_synthetic_condition\",\"minimum_transform\":\"supported_synthetic_condition\",\"rollback\":\"supported_synthetic_condition\",\"semantic_basis\":\"supported_synthetic_condition\",\"operation_boundary\":\"supported_synthetic_condition\"}; candidate_presentable=false（合成条件の部分結果。L3/L4 qualificationやrenameではない）。unaffected_Q=original_Q。実rename・DesignRefactor・CI・merge・authority変更・設計完了・受入はすべてfalse。",
+      "counterexample": "visibility=public_API。",
+      "expected_result": "提示不可。internal: rejected",
       "oracle_id": "HARNESS-L10-048-F03",
       "test_citation": null
     },
@@ -388,8 +388,8 @@
           "OBJ-P"
         ]
       },
-      "counterexample": "OBJ-Pのinternal symbol変更候補（context scope=PRODUCT-P、unaffected_Q=original_Q）。観測consumer=[C1]。behavior invariantはORACLE-Pで値・failure・effects不変、必要時rollbackはOBJ-P/ORACLE-Pを保持してoldLookupへ戻す。",
-      "expected_result": "condition_results={\"canonical\":\"supported_synthetic_condition\",\"internal\":\"supported_synthetic_condition\",\"consumers\":\"missing\",\"signature:inputs\":\"supported_synthetic_condition\",\"signature:outputs\":\"supported_synthetic_condition\",\"signature:effects\":\"supported_synthetic_condition\",\"signature:failure\":\"supported_synthetic_condition\",\"signature:state_transition\":\"supported_synthetic_condition\",\"signature:call_graph\":\"supported_synthetic_condition\",\"signature:consumer_contract\":\"supported_synthetic_condition\",\"behavior_invariant\":\"supported_synthetic_condition\",\"minimum_transform\":\"supported_synthetic_condition\",\"rollback\":\"supported_synthetic_condition\",\"semantic_basis\":\"supported_synthetic_condition\",\"operation_boundary\":\"supported_synthetic_condition\"}; candidate_presentable=false（合成条件の部分結果。L3/L4 qualificationやrenameではない）。unaffected_Q=original_Q。実rename・DesignRefactor・CI・merge・authority変更・設計完了・受入はすべてfalse。",
+      "counterexample": "観測consumer=C1。",
+      "expected_result": "提示不可。consumers: missing",
       "oracle_id": "HARNESS-L10-048-F03",
       "test_citation": null
     },
@@ -402,8 +402,8 @@
           "OBJ-P"
         ]
       },
-      "counterexample": "OBJ-Pのinternal symbol変更候補（context scope=PRODUCT-P、unaffected_Q=original_Q）。観測consumer=[C1, CX]。behavior invariantはORACLE-Pで値・failure・effects不変、必要時rollbackはOBJ-P/ORACLE-Pを保持してoldLookupへ戻す。",
-      "expected_result": "condition_results={\"canonical\":\"supported_synthetic_condition\",\"internal\":\"supported_synthetic_condition\",\"consumers\":\"conflict\",\"signature:inputs\":\"supported_synthetic_condition\",\"signature:outputs\":\"supported_synthetic_condition\",\"signature:effects\":\"supported_synthetic_condition\",\"signature:failure\":\"supported_synthetic_condition\",\"signature:state_transition\":\"supported_synthetic_condition\",\"signature:call_graph\":\"supported_synthetic_condition\",\"signature:consumer_contract\":\"supported_synthetic_condition\",\"behavior_invariant\":\"supported_synthetic_condition\",\"minimum_transform\":\"supported_synthetic_condition\",\"rollback\":\"supported_synthetic_condition\",\"semantic_basis\":\"supported_synthetic_condition\",\"operation_boundary\":\"supported_synthetic_condition\"}; candidate_presentable=false（合成条件の部分結果。L3/L4 qualificationやrenameではない）。unaffected_Q=original_Q。実rename・DesignRefactor・CI・merge・authority変更・設計完了・受入はすべてfalse。",
+      "counterexample": "観測consumer=C1・CX。",
+      "expected_result": "提示不可。consumers: conflict",
       "oracle_id": "HARNESS-L10-048-F03",
       "test_citation": null
     },
@@ -416,8 +416,8 @@
           "OBJ-P"
         ]
       },
-      "counterexample": "OBJ-Pのinternal symbol変更候補（context scope=PRODUCT-P、unaffected_Q=original_Q）。behavior invariant=未提示(null)。behavior invariantはORACLE-Pで値・failure・effects不変、必要時rollbackはOBJ-P/ORACLE-Pを保持してoldLookupへ戻す。",
-      "expected_result": "condition_results={\"canonical\":\"supported_synthetic_condition\",\"internal\":\"supported_synthetic_condition\",\"consumers\":\"supported_synthetic_condition\",\"signature:inputs\":\"supported_synthetic_condition\",\"signature:outputs\":\"supported_synthetic_condition\",\"signature:effects\":\"supported_synthetic_condition\",\"signature:failure\":\"supported_synthetic_condition\",\"signature:state_transition\":\"supported_synthetic_condition\",\"signature:call_graph\":\"supported_synthetic_condition\",\"signature:consumer_contract\":\"supported_synthetic_condition\",\"behavior_invariant\":\"missing\",\"minimum_transform\":\"supported_synthetic_condition\",\"rollback\":\"supported_synthetic_condition\",\"semantic_basis\":\"supported_synthetic_condition\",\"operation_boundary\":\"supported_synthetic_condition\"}; candidate_presentable=false（合成条件の部分結果。L3/L4 qualificationやrenameではない）。unaffected_Q=original_Q。実rename・DesignRefactor・CI・merge・authority変更・設計完了・受入はすべてfalse。",
+      "counterexample": "behavior invariant=null。",
+      "expected_result": "提示不可。behavior_invariant: missing",
       "oracle_id": "HARNESS-L10-048-F03",
       "test_citation": null
     },
@@ -430,8 +430,8 @@
           "OBJ-P"
         ]
       },
-      "counterexample": "OBJ-Pのinternal symbol変更候補（context scope=PRODUCT-P、unaffected_Q=original_Q）。最小変更=未提示(null)。behavior invariantはORACLE-Pで値・failure・effects不変、必要時rollbackはOBJ-P/ORACLE-Pを保持してoldLookupへ戻す。",
-      "expected_result": "condition_results={\"canonical\":\"supported_synthetic_condition\",\"internal\":\"supported_synthetic_condition\",\"consumers\":\"supported_synthetic_condition\",\"signature:inputs\":\"supported_synthetic_condition\",\"signature:outputs\":\"supported_synthetic_condition\",\"signature:effects\":\"supported_synthetic_condition\",\"signature:failure\":\"supported_synthetic_condition\",\"signature:state_transition\":\"supported_synthetic_condition\",\"signature:call_graph\":\"supported_synthetic_condition\",\"signature:consumer_contract\":\"supported_synthetic_condition\",\"behavior_invariant\":\"supported_synthetic_condition\",\"minimum_transform\":\"missing\",\"rollback\":\"supported_synthetic_condition\",\"semantic_basis\":\"supported_synthetic_condition\",\"operation_boundary\":\"supported_synthetic_condition\"}; candidate_presentable=false（合成条件の部分結果。L3/L4 qualificationやrenameではない）。unaffected_Q=original_Q。実rename・DesignRefactor・CI・merge・authority変更・設計完了・受入はすべてfalse。",
+      "counterexample": "minimum transform=null。",
+      "expected_result": "提示不可。minimum_transform: missing",
       "oracle_id": "HARNESS-L10-048-F03",
       "test_citation": null
     },
@@ -444,8 +444,8 @@
           "OBJ-P"
         ]
       },
-      "counterexample": "OBJ-Pのinternal symbol変更候補（context scope=PRODUCT-P、unaffected_Q=original_Q）。rollback=未提示(null)。behavior invariantはORACLE-Pで値・failure・effects不変、必要時rollbackはOBJ-P/ORACLE-Pを保持してoldLookupへ戻す。",
-      "expected_result": "condition_results={\"canonical\":\"supported_synthetic_condition\",\"internal\":\"supported_synthetic_condition\",\"consumers\":\"supported_synthetic_condition\",\"signature:inputs\":\"supported_synthetic_condition\",\"signature:outputs\":\"supported_synthetic_condition\",\"signature:effects\":\"supported_synthetic_condition\",\"signature:failure\":\"supported_synthetic_condition\",\"signature:state_transition\":\"supported_synthetic_condition\",\"signature:call_graph\":\"supported_synthetic_condition\",\"signature:consumer_contract\":\"supported_synthetic_condition\",\"behavior_invariant\":\"supported_synthetic_condition\",\"minimum_transform\":\"supported_synthetic_condition\",\"rollback\":\"missing\",\"semantic_basis\":\"supported_synthetic_condition\",\"operation_boundary\":\"supported_synthetic_condition\"}; candidate_presentable=false（合成条件の部分結果。L3/L4 qualificationやrenameではない）。unaffected_Q=original_Q。実rename・DesignRefactor・CI・merge・authority変更・設計完了・受入はすべてfalse。",
+      "counterexample": "rollback=null。",
+      "expected_result": "提示不可。rollback: missing",
       "oracle_id": "HARNESS-L10-048-F03",
       "test_citation": null
     },
@@ -458,8 +458,8 @@
           "OBJ-P"
         ]
       },
-      "counterexample": "OBJ-Pのinternal symbol変更候補（context scope=PRODUCT-P、unaffected_Q=original_Q）。evidence basis=lexical_only。behavior invariantはORACLE-Pで値・failure・effects不変、必要時rollbackはOBJ-P/ORACLE-Pを保持してoldLookupへ戻す。",
-      "expected_result": "condition_results={\"canonical\":\"supported_synthetic_condition\",\"internal\":\"supported_synthetic_condition\",\"consumers\":\"supported_synthetic_condition\",\"signature:inputs\":\"supported_synthetic_condition\",\"signature:outputs\":\"supported_synthetic_condition\",\"signature:effects\":\"supported_synthetic_condition\",\"signature:failure\":\"supported_synthetic_condition\",\"signature:state_transition\":\"supported_synthetic_condition\",\"signature:call_graph\":\"supported_synthetic_condition\",\"signature:consumer_contract\":\"supported_synthetic_condition\",\"behavior_invariant\":\"supported_synthetic_condition\",\"minimum_transform\":\"supported_synthetic_condition\",\"rollback\":\"supported_synthetic_condition\",\"semantic_basis\":\"rejected\",\"operation_boundary\":\"supported_synthetic_condition\"}; candidate_presentable=false（合成条件の部分結果。L3/L4 qualificationやrenameではない）。unaffected_Q=original_Q。実rename・DesignRefactor・CI・merge・authority変更・設計完了・受入はすべてfalse。",
+      "counterexample": "根拠=lexical_only。",
+      "expected_result": "提示不可。semantic_basis: rejected",
       "oracle_id": "HARNESS-L10-048-F03",
       "test_citation": null
     },
@@ -472,8 +472,8 @@
           "OBJ-P"
         ]
       },
-      "counterexample": "OBJ-Pのinternal symbol変更候補（context scope=PRODUCT-P、unaffected_Q=original_Q）。要求effect=execute_rename。behavior invariantはORACLE-Pで値・failure・effects不変、必要時rollbackはOBJ-P/ORACLE-Pを保持してoldLookupへ戻す。",
-      "expected_result": "condition_results={\"canonical\":\"supported_synthetic_condition\",\"internal\":\"supported_synthetic_condition\",\"consumers\":\"supported_synthetic_condition\",\"signature:inputs\":\"supported_synthetic_condition\",\"signature:outputs\":\"supported_synthetic_condition\",\"signature:effects\":\"supported_synthetic_condition\",\"signature:failure\":\"supported_synthetic_condition\",\"signature:state_transition\":\"supported_synthetic_condition\",\"signature:call_graph\":\"supported_synthetic_condition\",\"signature:consumer_contract\":\"supported_synthetic_condition\",\"behavior_invariant\":\"supported_synthetic_condition\",\"minimum_transform\":\"supported_synthetic_condition\",\"rollback\":\"supported_synthetic_condition\",\"semantic_basis\":\"supported_synthetic_condition\",\"operation_boundary\":\"rejected\"}; candidate_presentable=false（合成条件の部分結果。L3/L4 qualificationやrenameではない）。unaffected_Q=original_Q。実rename・DesignRefactor・CI・merge・authority変更・設計完了・受入はすべてfalse。",
+      "counterexample": "要求effect=execute_rename。",
+      "expected_result": "提示不可。operation_boundary: rejected",
       "oracle_id": "HARNESS-L10-048-F03",
       "test_citation": null
     },
@@ -486,8 +486,8 @@
           "OBJ-P"
         ]
       },
-      "counterexample": "OBJ-Pのinternal symbol変更候補（context scope=PRODUCT-P、unaffected_Q=original_Q）。変更後signatureのinputs=未提示(null)。behavior invariantはORACLE-Pで値・failure・effects不変、必要時rollbackはOBJ-P/ORACLE-Pを保持してoldLookupへ戻す。",
-      "expected_result": "condition_results={\"canonical\":\"supported_synthetic_condition\",\"internal\":\"supported_synthetic_condition\",\"consumers\":\"supported_synthetic_condition\",\"signature:inputs\":\"missing\",\"signature:outputs\":\"supported_synthetic_condition\",\"signature:effects\":\"supported_synthetic_condition\",\"signature:failure\":\"supported_synthetic_condition\",\"signature:state_transition\":\"supported_synthetic_condition\",\"signature:call_graph\":\"supported_synthetic_condition\",\"signature:consumer_contract\":\"supported_synthetic_condition\",\"behavior_invariant\":\"supported_synthetic_condition\",\"minimum_transform\":\"supported_synthetic_condition\",\"rollback\":\"supported_synthetic_condition\",\"semantic_basis\":\"supported_synthetic_condition\",\"operation_boundary\":\"supported_synthetic_condition\"}; candidate_presentable=false（合成条件の部分結果。L3/L4 qualificationやrenameではない）。unaffected_Q=original_Q。実rename・DesignRefactor・CI・merge・authority変更・設計完了・受入はすべてfalse。",
+      "counterexample": "変更後signature inputs=null。",
+      "expected_result": "提示不可。signature:inputs: missing",
       "oracle_id": "HARNESS-L10-048-F03",
       "test_citation": null
     },
@@ -500,8 +500,8 @@
           "OBJ-P"
         ]
       },
-      "counterexample": "OBJ-Pのinternal symbol変更候補（context scope=PRODUCT-P、unaffected_Q=original_Q）。変更後signatureのinputs=foreign-signature-value。behavior invariantはORACLE-Pで値・failure・effects不変、必要時rollbackはOBJ-P/ORACLE-Pを保持してoldLookupへ戻す。",
-      "expected_result": "condition_results={\"canonical\":\"supported_synthetic_condition\",\"internal\":\"supported_synthetic_condition\",\"consumers\":\"supported_synthetic_condition\",\"signature:inputs\":\"conflict\",\"signature:outputs\":\"supported_synthetic_condition\",\"signature:effects\":\"supported_synthetic_condition\",\"signature:failure\":\"supported_synthetic_condition\",\"signature:state_transition\":\"supported_synthetic_condition\",\"signature:call_graph\":\"supported_synthetic_condition\",\"signature:consumer_contract\":\"supported_synthetic_condition\",\"behavior_invariant\":\"supported_synthetic_condition\",\"minimum_transform\":\"supported_synthetic_condition\",\"rollback\":\"supported_synthetic_condition\",\"semantic_basis\":\"supported_synthetic_condition\",\"operation_boundary\":\"supported_synthetic_condition\"}; candidate_presentable=false（合成条件の部分結果。L3/L4 qualificationやrenameではない）。unaffected_Q=original_Q。実rename・DesignRefactor・CI・merge・authority変更・設計完了・受入はすべてfalse。",
+      "counterexample": "変更後signature inputs=foreign-signature-value。",
+      "expected_result": "提示不可。signature:inputs: conflict",
       "oracle_id": "HARNESS-L10-048-F03",
       "test_citation": null
     },
@@ -514,8 +514,8 @@
           "OBJ-P"
         ]
       },
-      "counterexample": "OBJ-Pのinternal symbol変更候補（context scope=PRODUCT-P、unaffected_Q=original_Q）。変更後signatureのoutputs=未提示(null)。behavior invariantはORACLE-Pで値・failure・effects不変、必要時rollbackはOBJ-P/ORACLE-Pを保持してoldLookupへ戻す。",
-      "expected_result": "condition_results={\"canonical\":\"supported_synthetic_condition\",\"internal\":\"supported_synthetic_condition\",\"consumers\":\"supported_synthetic_condition\",\"signature:inputs\":\"supported_synthetic_condition\",\"signature:outputs\":\"missing\",\"signature:effects\":\"supported_synthetic_condition\",\"signature:failure\":\"supported_synthetic_condition\",\"signature:state_transition\":\"supported_synthetic_condition\",\"signature:call_graph\":\"supported_synthetic_condition\",\"signature:consumer_contract\":\"supported_synthetic_condition\",\"behavior_invariant\":\"supported_synthetic_condition\",\"minimum_transform\":\"supported_synthetic_condition\",\"rollback\":\"supported_synthetic_condition\",\"semantic_basis\":\"supported_synthetic_condition\",\"operation_boundary\":\"supported_synthetic_condition\"}; candidate_presentable=false（合成条件の部分結果。L3/L4 qualificationやrenameではない）。unaffected_Q=original_Q。実rename・DesignRefactor・CI・merge・authority変更・設計完了・受入はすべてfalse。",
+      "counterexample": "変更後signature outputs=null。",
+      "expected_result": "提示不可。signature:outputs: missing",
       "oracle_id": "HARNESS-L10-048-F03",
       "test_citation": null
     },
@@ -528,8 +528,8 @@
           "OBJ-P"
         ]
       },
-      "counterexample": "OBJ-Pのinternal symbol変更候補（context scope=PRODUCT-P、unaffected_Q=original_Q）。変更後signatureのoutputs=foreign-signature-value。behavior invariantはORACLE-Pで値・failure・effects不変、必要時rollbackはOBJ-P/ORACLE-Pを保持してoldLookupへ戻す。",
-      "expected_result": "condition_results={\"canonical\":\"supported_synthetic_condition\",\"internal\":\"supported_synthetic_condition\",\"consumers\":\"supported_synthetic_condition\",\"signature:inputs\":\"supported_synthetic_condition\",\"signature:outputs\":\"conflict\",\"signature:effects\":\"supported_synthetic_condition\",\"signature:failure\":\"supported_synthetic_condition\",\"signature:state_transition\":\"supported_synthetic_condition\",\"signature:call_graph\":\"supported_synthetic_condition\",\"signature:consumer_contract\":\"supported_synthetic_condition\",\"behavior_invariant\":\"supported_synthetic_condition\",\"minimum_transform\":\"supported_synthetic_condition\",\"rollback\":\"supported_synthetic_condition\",\"semantic_basis\":\"supported_synthetic_condition\",\"operation_boundary\":\"supported_synthetic_condition\"}; candidate_presentable=false（合成条件の部分結果。L3/L4 qualificationやrenameではない）。unaffected_Q=original_Q。実rename・DesignRefactor・CI・merge・authority変更・設計完了・受入はすべてfalse。",
+      "counterexample": "変更後signature outputs=foreign-signature-value。",
+      "expected_result": "提示不可。signature:outputs: conflict",
       "oracle_id": "HARNESS-L10-048-F03",
       "test_citation": null
     },
@@ -542,8 +542,8 @@
           "OBJ-P"
         ]
       },
-      "counterexample": "OBJ-Pのinternal symbol変更候補（context scope=PRODUCT-P、unaffected_Q=original_Q）。変更後signatureのeffects=未提示(null)。behavior invariantはORACLE-Pで値・failure・effects不変、必要時rollbackはOBJ-P/ORACLE-Pを保持してoldLookupへ戻す。",
-      "expected_result": "condition_results={\"canonical\":\"supported_synthetic_condition\",\"internal\":\"supported_synthetic_condition\",\"consumers\":\"supported_synthetic_condition\",\"signature:inputs\":\"supported_synthetic_condition\",\"signature:outputs\":\"supported_synthetic_condition\",\"signature:effects\":\"missing\",\"signature:failure\":\"supported_synthetic_condition\",\"signature:state_transition\":\"supported_synthetic_condition\",\"signature:call_graph\":\"supported_synthetic_condition\",\"signature:consumer_contract\":\"supported_synthetic_condition\",\"behavior_invariant\":\"supported_synthetic_condition\",\"minimum_transform\":\"supported_synthetic_condition\",\"rollback\":\"supported_synthetic_condition\",\"semantic_basis\":\"supported_synthetic_condition\",\"operation_boundary\":\"supported_synthetic_condition\"}; candidate_presentable=false（合成条件の部分結果。L3/L4 qualificationやrenameではない）。unaffected_Q=original_Q。実rename・DesignRefactor・CI・merge・authority変更・設計完了・受入はすべてfalse。",
+      "counterexample": "変更後signature effects=null。",
+      "expected_result": "提示不可。signature:effects: missing",
       "oracle_id": "HARNESS-L10-048-F03",
       "test_citation": null
     },
@@ -556,8 +556,8 @@
           "OBJ-P"
         ]
       },
-      "counterexample": "OBJ-Pのinternal symbol変更候補（context scope=PRODUCT-P、unaffected_Q=original_Q）。変更後signatureのeffects=foreign-signature-value。behavior invariantはORACLE-Pで値・failure・effects不変、必要時rollbackはOBJ-P/ORACLE-Pを保持してoldLookupへ戻す。",
-      "expected_result": "condition_results={\"canonical\":\"supported_synthetic_condition\",\"internal\":\"supported_synthetic_condition\",\"consumers\":\"supported_synthetic_condition\",\"signature:inputs\":\"supported_synthetic_condition\",\"signature:outputs\":\"supported_synthetic_condition\",\"signature:effects\":\"conflict\",\"signature:failure\":\"supported_synthetic_condition\",\"signature:state_transition\":\"supported_synthetic_condition\",\"signature:call_graph\":\"supported_synthetic_condition\",\"signature:consumer_contract\":\"supported_synthetic_condition\",\"behavior_invariant\":\"supported_synthetic_condition\",\"minimum_transform\":\"supported_synthetic_condition\",\"rollback\":\"supported_synthetic_condition\",\"semantic_basis\":\"supported_synthetic_condition\",\"operation_boundary\":\"supported_synthetic_condition\"}; candidate_presentable=false（合成条件の部分結果。L3/L4 qualificationやrenameではない）。unaffected_Q=original_Q。実rename・DesignRefactor・CI・merge・authority変更・設計完了・受入はすべてfalse。",
+      "counterexample": "変更後signature effects=foreign-signature-value。",
+      "expected_result": "提示不可。signature:effects: conflict",
       "oracle_id": "HARNESS-L10-048-F03",
       "test_citation": null
     },
@@ -570,8 +570,8 @@
           "OBJ-P"
         ]
       },
-      "counterexample": "OBJ-Pのinternal symbol変更候補（context scope=PRODUCT-P、unaffected_Q=original_Q）。変更後signatureのfailure=未提示(null)。behavior invariantはORACLE-Pで値・failure・effects不変、必要時rollbackはOBJ-P/ORACLE-Pを保持してoldLookupへ戻す。",
-      "expected_result": "condition_results={\"canonical\":\"supported_synthetic_condition\",\"internal\":\"supported_synthetic_condition\",\"consumers\":\"supported_synthetic_condition\",\"signature:inputs\":\"supported_synthetic_condition\",\"signature:outputs\":\"supported_synthetic_condition\",\"signature:effects\":\"supported_synthetic_condition\",\"signature:failure\":\"missing\",\"signature:state_transition\":\"supported_synthetic_condition\",\"signature:call_graph\":\"supported_synthetic_condition\",\"signature:consumer_contract\":\"supported_synthetic_condition\",\"behavior_invariant\":\"supported_synthetic_condition\",\"minimum_transform\":\"supported_synthetic_condition\",\"rollback\":\"supported_synthetic_condition\",\"semantic_basis\":\"supported_synthetic_condition\",\"operation_boundary\":\"supported_synthetic_condition\"}; candidate_presentable=false（合成条件の部分結果。L3/L4 qualificationやrenameではない）。unaffected_Q=original_Q。実rename・DesignRefactor・CI・merge・authority変更・設計完了・受入はすべてfalse。",
+      "counterexample": "変更後signature failure=null。",
+      "expected_result": "提示不可。signature:failure: missing",
       "oracle_id": "HARNESS-L10-048-F03",
       "test_citation": null
     },
@@ -584,8 +584,8 @@
           "OBJ-P"
         ]
       },
-      "counterexample": "OBJ-Pのinternal symbol変更候補（context scope=PRODUCT-P、unaffected_Q=original_Q）。変更後signatureのfailure=foreign-signature-value。behavior invariantはORACLE-Pで値・failure・effects不変、必要時rollbackはOBJ-P/ORACLE-Pを保持してoldLookupへ戻す。",
-      "expected_result": "condition_results={\"canonical\":\"supported_synthetic_condition\",\"internal\":\"supported_synthetic_condition\",\"consumers\":\"supported_synthetic_condition\",\"signature:inputs\":\"supported_synthetic_condition\",\"signature:outputs\":\"supported_synthetic_condition\",\"signature:effects\":\"supported_synthetic_condition\",\"signature:failure\":\"conflict\",\"signature:state_transition\":\"supported_synthetic_condition\",\"signature:call_graph\":\"supported_synthetic_condition\",\"signature:consumer_contract\":\"supported_synthetic_condition\",\"behavior_invariant\":\"supported_synthetic_condition\",\"minimum_transform\":\"supported_synthetic_condition\",\"rollback\":\"supported_synthetic_condition\",\"semantic_basis\":\"supported_synthetic_condition\",\"operation_boundary\":\"supported_synthetic_condition\"}; candidate_presentable=false（合成条件の部分結果。L3/L4 qualificationやrenameではない）。unaffected_Q=original_Q。実rename・DesignRefactor・CI・merge・authority変更・設計完了・受入はすべてfalse。",
+      "counterexample": "変更後signature failure=foreign-signature-value。",
+      "expected_result": "提示不可。signature:failure: conflict",
       "oracle_id": "HARNESS-L10-048-F03",
       "test_citation": null
     },
@@ -598,8 +598,8 @@
           "OBJ-P"
         ]
       },
-      "counterexample": "OBJ-Pのinternal symbol変更候補（context scope=PRODUCT-P、unaffected_Q=original_Q）。変更後signatureのstate transition=未提示(null)。behavior invariantはORACLE-Pで値・failure・effects不変、必要時rollbackはOBJ-P/ORACLE-Pを保持してoldLookupへ戻す。",
-      "expected_result": "condition_results={\"canonical\":\"supported_synthetic_condition\",\"internal\":\"supported_synthetic_condition\",\"consumers\":\"supported_synthetic_condition\",\"signature:inputs\":\"supported_synthetic_condition\",\"signature:outputs\":\"supported_synthetic_condition\",\"signature:effects\":\"supported_synthetic_condition\",\"signature:failure\":\"supported_synthetic_condition\",\"signature:state_transition\":\"missing\",\"signature:call_graph\":\"supported_synthetic_condition\",\"signature:consumer_contract\":\"supported_synthetic_condition\",\"behavior_invariant\":\"supported_synthetic_condition\",\"minimum_transform\":\"supported_synthetic_condition\",\"rollback\":\"supported_synthetic_condition\",\"semantic_basis\":\"supported_synthetic_condition\",\"operation_boundary\":\"supported_synthetic_condition\"}; candidate_presentable=false（合成条件の部分結果。L3/L4 qualificationやrenameではない）。unaffected_Q=original_Q。実rename・DesignRefactor・CI・merge・authority変更・設計完了・受入はすべてfalse。",
+      "counterexample": "変更後signature state transition=null。",
+      "expected_result": "提示不可。signature:state_transition: missing",
       "oracle_id": "HARNESS-L10-048-F03",
       "test_citation": null
     },
@@ -612,8 +612,8 @@
           "OBJ-P"
         ]
       },
-      "counterexample": "OBJ-Pのinternal symbol変更候補（context scope=PRODUCT-P、unaffected_Q=original_Q）。変更後signatureのstate transition=foreign-signature-value。behavior invariantはORACLE-Pで値・failure・effects不変、必要時rollbackはOBJ-P/ORACLE-Pを保持してoldLookupへ戻す。",
-      "expected_result": "condition_results={\"canonical\":\"supported_synthetic_condition\",\"internal\":\"supported_synthetic_condition\",\"consumers\":\"supported_synthetic_condition\",\"signature:inputs\":\"supported_synthetic_condition\",\"signature:outputs\":\"supported_synthetic_condition\",\"signature:effects\":\"supported_synthetic_condition\",\"signature:failure\":\"supported_synthetic_condition\",\"signature:state_transition\":\"conflict\",\"signature:call_graph\":\"supported_synthetic_condition\",\"signature:consumer_contract\":\"supported_synthetic_condition\",\"behavior_invariant\":\"supported_synthetic_condition\",\"minimum_transform\":\"supported_synthetic_condition\",\"rollback\":\"supported_synthetic_condition\",\"semantic_basis\":\"supported_synthetic_condition\",\"operation_boundary\":\"supported_synthetic_condition\"}; candidate_presentable=false（合成条件の部分結果。L3/L4 qualificationやrenameではない）。unaffected_Q=original_Q。実rename・DesignRefactor・CI・merge・authority変更・設計完了・受入はすべてfalse。",
+      "counterexample": "変更後signature state transition=foreign-signature-value。",
+      "expected_result": "提示不可。signature:state_transition: conflict",
       "oracle_id": "HARNESS-L10-048-F03",
       "test_citation": null
     },
@@ -626,8 +626,8 @@
           "OBJ-P"
         ]
       },
-      "counterexample": "OBJ-Pのinternal symbol変更候補（context scope=PRODUCT-P、unaffected_Q=original_Q）。変更後signatureのcall graph=未提示(null)。behavior invariantはORACLE-Pで値・failure・effects不変、必要時rollbackはOBJ-P/ORACLE-Pを保持してoldLookupへ戻す。",
-      "expected_result": "condition_results={\"canonical\":\"supported_synthetic_condition\",\"internal\":\"supported_synthetic_condition\",\"consumers\":\"supported_synthetic_condition\",\"signature:inputs\":\"supported_synthetic_condition\",\"signature:outputs\":\"supported_synthetic_condition\",\"signature:effects\":\"supported_synthetic_condition\",\"signature:failure\":\"supported_synthetic_condition\",\"signature:state_transition\":\"supported_synthetic_condition\",\"signature:call_graph\":\"missing\",\"signature:consumer_contract\":\"supported_synthetic_condition\",\"behavior_invariant\":\"supported_synthetic_condition\",\"minimum_transform\":\"supported_synthetic_condition\",\"rollback\":\"supported_synthetic_condition\",\"semantic_basis\":\"supported_synthetic_condition\",\"operation_boundary\":\"supported_synthetic_condition\"}; candidate_presentable=false（合成条件の部分結果。L3/L4 qualificationやrenameではない）。unaffected_Q=original_Q。実rename・DesignRefactor・CI・merge・authority変更・設計完了・受入はすべてfalse。",
+      "counterexample": "変更後signature call graph=null。",
+      "expected_result": "提示不可。signature:call_graph: missing",
       "oracle_id": "HARNESS-L10-048-F03",
       "test_citation": null
     },
@@ -640,8 +640,8 @@
           "OBJ-P"
         ]
       },
-      "counterexample": "OBJ-Pのinternal symbol変更候補（context scope=PRODUCT-P、unaffected_Q=original_Q）。変更後signatureのcall graph=foreign-signature-value。behavior invariantはORACLE-Pで値・failure・effects不変、必要時rollbackはOBJ-P/ORACLE-Pを保持してoldLookupへ戻す。",
-      "expected_result": "condition_results={\"canonical\":\"supported_synthetic_condition\",\"internal\":\"supported_synthetic_condition\",\"consumers\":\"supported_synthetic_condition\",\"signature:inputs\":\"supported_synthetic_condition\",\"signature:outputs\":\"supported_synthetic_condition\",\"signature:effects\":\"supported_synthetic_condition\",\"signature:failure\":\"supported_synthetic_condition\",\"signature:state_transition\":\"supported_synthetic_condition\",\"signature:call_graph\":\"conflict\",\"signature:consumer_contract\":\"supported_synthetic_condition\",\"behavior_invariant\":\"supported_synthetic_condition\",\"minimum_transform\":\"supported_synthetic_condition\",\"rollback\":\"supported_synthetic_condition\",\"semantic_basis\":\"supported_synthetic_condition\",\"operation_boundary\":\"supported_synthetic_condition\"}; candidate_presentable=false（合成条件の部分結果。L3/L4 qualificationやrenameではない）。unaffected_Q=original_Q。実rename・DesignRefactor・CI・merge・authority変更・設計完了・受入はすべてfalse。",
+      "counterexample": "変更後signature call graph=foreign-signature-value。",
+      "expected_result": "提示不可。signature:call_graph: conflict",
       "oracle_id": "HARNESS-L10-048-F03",
       "test_citation": null
     },
@@ -654,8 +654,8 @@
           "OBJ-P"
         ]
       },
-      "counterexample": "OBJ-Pのinternal symbol変更候補（context scope=PRODUCT-P、unaffected_Q=original_Q）。変更後signatureのconsumer contract=未提示(null)。behavior invariantはORACLE-Pで値・failure・effects不変、必要時rollbackはOBJ-P/ORACLE-Pを保持してoldLookupへ戻す。",
-      "expected_result": "condition_results={\"canonical\":\"supported_synthetic_condition\",\"internal\":\"supported_synthetic_condition\",\"consumers\":\"supported_synthetic_condition\",\"signature:inputs\":\"supported_synthetic_condition\",\"signature:outputs\":\"supported_synthetic_condition\",\"signature:effects\":\"supported_synthetic_condition\",\"signature:failure\":\"supported_synthetic_condition\",\"signature:state_transition\":\"supported_synthetic_condition\",\"signature:call_graph\":\"supported_synthetic_condition\",\"signature:consumer_contract\":\"missing\",\"behavior_invariant\":\"supported_synthetic_condition\",\"minimum_transform\":\"supported_synthetic_condition\",\"rollback\":\"supported_synthetic_condition\",\"semantic_basis\":\"supported_synthetic_condition\",\"operation_boundary\":\"supported_synthetic_condition\"}; candidate_presentable=false（合成条件の部分結果。L3/L4 qualificationやrenameではない）。unaffected_Q=original_Q。実rename・DesignRefactor・CI・merge・authority変更・設計完了・受入はすべてfalse。",
+      "counterexample": "変更後signature consumer contract=null。",
+      "expected_result": "提示不可。signature:consumer_contract: missing",
       "oracle_id": "HARNESS-L10-048-F03",
       "test_citation": null
     },
@@ -668,8 +668,8 @@
           "OBJ-P"
         ]
       },
-      "counterexample": "OBJ-Pのinternal symbol変更候補（context scope=PRODUCT-P、unaffected_Q=original_Q）。変更後signatureのconsumer contract=foreign-signature-value。behavior invariantはORACLE-Pで値・failure・effects不変、必要時rollbackはOBJ-P/ORACLE-Pを保持してoldLookupへ戻す。",
-      "expected_result": "condition_results={\"canonical\":\"supported_synthetic_condition\",\"internal\":\"supported_synthetic_condition\",\"consumers\":\"supported_synthetic_condition\",\"signature:inputs\":\"supported_synthetic_condition\",\"signature:outputs\":\"supported_synthetic_condition\",\"signature:effects\":\"supported_synthetic_condition\",\"signature:failure\":\"supported_synthetic_condition\",\"signature:state_transition\":\"supported_synthetic_condition\",\"signature:call_graph\":\"supported_synthetic_condition\",\"signature:consumer_contract\":\"conflict\",\"behavior_invariant\":\"supported_synthetic_condition\",\"minimum_transform\":\"supported_synthetic_condition\",\"rollback\":\"supported_synthetic_condition\",\"semantic_basis\":\"supported_synthetic_condition\",\"operation_boundary\":\"supported_synthetic_condition\"}; candidate_presentable=false（合成条件の部分結果。L3/L4 qualificationやrenameではない）。unaffected_Q=original_Q。実rename・DesignRefactor・CI・merge・authority変更・設計完了・受入はすべてfalse。",
+      "counterexample": "変更後signature consumer contract=foreign-signature-value。",
+      "expected_result": "提示不可。signature:consumer_contract: conflict",
       "oracle_id": "HARNESS-L10-048-F03",
       "test_citation": null
     },
@@ -682,8 +682,8 @@
           "OBJ-P"
         ]
       },
-      "counterexample": "context scope=PRODUCT-P, unaffected_Q=original_Q; scope=PRODUCT-P, boundary=internal, evaluation_date=2030-01-01; finding=(id=FIND-P, reason=role_unknown, impact=[OBJ-P], owner=PRODUCT-P-owner); exception={expiry=2030-02-01, owner=PRODUCT-P-owner, reason=役割確定まで既存利用を継続, scope=PRODUCT-P}; warning_requests_global_stop=false。",
-      "expected_result": "auto_rename=rejected; return_candidate=product_author; finding_retained=FIND-P; exception_result=valid_for_fixture_scope; local_continuation=true; global_stop=false。unaffected_Q=original_Q。実rename・DesignRefactor・CI・merge・authority変更・設計完了・受入はすべてfalse。",
+      "counterexample": "OBJ-Pのrole_unknown findingをinternal境界で扱う。PRODUCT-P-ownerの期限付き例外（役割確定まで既存利用を継続、2030-02-01、PRODUCT-P）。",
+      "expected_result": "FIND-Pはproduct_authorへの返却候補。例外有効、local continuation。",
       "oracle_id": "HARNESS-L10-048-F04",
       "test_citation": null
     },
@@ -696,8 +696,8 @@
           "OBJ-P"
         ]
       },
-      "counterexample": "context scope=PRODUCT-P, unaffected_Q=original_Q; scope=PRODUCT-P, boundary=internal, evaluation_date=2030-01-01; finding=(id=FIND-P, reason=role_unknown, impact=[OBJ-P], owner=PRODUCT-P-owner); exception={expiry=2030-02-01, owner=未提示(null), reason=役割確定まで既存利用を継続, scope=PRODUCT-P}; warning_requests_global_stop=false。",
-      "expected_result": "auto_rename=rejected; return_candidate=product_author; finding_retained=FIND-P; exception_result=missing_owner; local_continuation=false; global_stop=false。unaffected_Q=original_Q。実rename・DesignRefactor・CI・merge・authority変更・設計完了・受入はすべてfalse。",
+      "counterexample": "例外 owner=null。",
+      "expected_result": "例外: missing_owner；局所継続: false",
       "oracle_id": "HARNESS-L10-048-F04",
       "test_citation": null
     },
@@ -710,8 +710,8 @@
           "OBJ-P"
         ]
       },
-      "counterexample": "context scope=PRODUCT-P, unaffected_Q=original_Q; scope=PRODUCT-P, boundary=internal, evaluation_date=2030-01-01; finding=(id=FIND-P, reason=role_unknown, impact=[OBJ-P], owner=PRODUCT-P-owner); exception={expiry=未提示(null), owner=PRODUCT-P-owner, reason=役割確定まで既存利用を継続, scope=PRODUCT-P}; warning_requests_global_stop=false。",
-      "expected_result": "auto_rename=rejected; return_candidate=product_author; finding_retained=FIND-P; exception_result=missing_expiry; local_continuation=false; global_stop=false。unaffected_Q=original_Q。実rename・DesignRefactor・CI・merge・authority変更・設計完了・受入はすべてfalse。",
+      "counterexample": "例外 期限=null。",
+      "expected_result": "例外: missing_expiry；局所継続: false",
       "oracle_id": "HARNESS-L10-048-F04",
       "test_citation": null
     },
@@ -724,8 +724,8 @@
           "OBJ-P"
         ]
       },
-      "counterexample": "context scope=PRODUCT-P, unaffected_Q=original_Q; scope=PRODUCT-P, boundary=internal, evaluation_date=2030-01-01; finding=(id=FIND-P, reason=role_unknown, impact=[OBJ-P], owner=PRODUCT-P-owner); exception={expiry=2029-12-31, owner=PRODUCT-P-owner, reason=役割確定まで既存利用を継続, scope=PRODUCT-P}; warning_requests_global_stop=false。",
-      "expected_result": "auto_rename=rejected; return_candidate=product_author; finding_retained=FIND-P; exception_result=expired; local_continuation=false; global_stop=false。unaffected_Q=original_Q。実rename・DesignRefactor・CI・merge・authority変更・設計完了・受入はすべてfalse。",
+      "counterexample": "例外 期限=2029-12-31。",
+      "expected_result": "例外: expired；局所継続: false",
       "oracle_id": "HARNESS-L10-048-F04",
       "test_citation": null
     },
@@ -738,8 +738,8 @@
           "OBJ-P"
         ]
       },
-      "counterexample": "context scope=PRODUCT-P, unaffected_Q=original_Q; scope=PRODUCT-P, boundary=internal, evaluation_date=2030-01-01; finding=(id=FIND-P, reason=role_unknown, impact=[OBJ-P], owner=PRODUCT-P-owner); exception={expiry=2030-02-01, owner=PRODUCT-P-owner, reason=未提示(null), scope=PRODUCT-P}; warning_requests_global_stop=false。",
-      "expected_result": "auto_rename=rejected; return_candidate=product_author; finding_retained=FIND-P; exception_result=missing_reason; local_continuation=false; global_stop=false。unaffected_Q=original_Q。実rename・DesignRefactor・CI・merge・authority変更・設計完了・受入はすべてfalse。",
+      "counterexample": "例外 理由=null。",
+      "expected_result": "例外: missing_reason；局所継続: false",
       "oracle_id": "HARNESS-L10-048-F04",
       "test_citation": null
     },
@@ -752,8 +752,8 @@
           "OBJ-P"
         ]
       },
-      "counterexample": "context scope=PRODUCT-P, unaffected_Q=original_Q; scope=PRODUCT-P, boundary=internal, evaluation_date=2030-01-01; finding=(id=FIND-P, reason=role_unknown, impact=[OBJ-P], owner=PRODUCT-P-owner); exception={expiry=2030-02-01, owner=PRODUCT-P-owner, reason=役割確定まで既存利用を継続, scope=PRODUCT-Q}; warning_requests_global_stop=false。",
-      "expected_result": "auto_rename=rejected; return_candidate=product_author; finding_retained=FIND-P; exception_result=scope_conflict; local_continuation=false; global_stop=false。unaffected_Q=original_Q。実rename・DesignRefactor・CI・merge・authority変更・設計完了・受入はすべてfalse。",
+      "counterexample": "例外 scope=PRODUCT-Q。",
+      "expected_result": "例外: scope_conflict；局所継続: false",
       "oracle_id": "HARNESS-L10-048-F04",
       "test_citation": null
     },
@@ -766,8 +766,8 @@
           "OBJ-P"
         ]
       },
-      "counterexample": "context scope=PRODUCT-P, unaffected_Q=original_Q; scope=PRODUCT-P, boundary=public_API, evaluation_date=2030-01-01; finding=(id=FIND-P, reason=observable_contract_change, impact=[OBJ-P], owner=PRODUCT-P-owner); exception={expiry=2030-02-01, owner=PRODUCT-P-owner, reason=役割確定まで既存利用を継続, scope=PRODUCT-P}; warning_requests_global_stop=false。",
-      "expected_result": "auto_rename=rejected; return_candidate=Redesign_or_Retrofit_with_compatibility_migration; finding_retained=FIND-P; exception_result=valid_for_fixture_scope; local_continuation=true; global_stop=false。unaffected_Q=original_Q。実rename・DesignRefactor・CI・merge・authority変更・設計完了・受入はすべてfalse。",
+      "counterexample": "境界=public_API。finding 理由=observable_contract_change。",
+      "expected_result": "返却候補: Redesign_or_Retrofit_with_compatibility_migration",
       "oracle_id": "HARNESS-L10-048-F04",
       "test_citation": null
     },
@@ -780,8 +780,8 @@
           "OBJ-P"
         ]
       },
-      "counterexample": "context scope=PRODUCT-P, unaffected_Q=original_Q; scope=PRODUCT-P, boundary=public_CLI, evaluation_date=2030-01-01; finding=(id=FIND-P, reason=observable_contract_change, impact=[OBJ-P], owner=PRODUCT-P-owner); exception={expiry=2030-02-01, owner=PRODUCT-P-owner, reason=役割確定まで既存利用を継続, scope=PRODUCT-P}; warning_requests_global_stop=false。",
-      "expected_result": "auto_rename=rejected; return_candidate=Redesign_or_Retrofit_with_compatibility_migration; finding_retained=FIND-P; exception_result=valid_for_fixture_scope; local_continuation=true; global_stop=false。unaffected_Q=original_Q。実rename・DesignRefactor・CI・merge・authority変更・設計完了・受入はすべてfalse。",
+      "counterexample": "境界=public_CLI。finding 理由=observable_contract_change。",
+      "expected_result": "返却候補: Redesign_or_Retrofit_with_compatibility_migration",
       "oracle_id": "HARNESS-L10-048-F04",
       "test_citation": null
     },
@@ -794,8 +794,8 @@
           "OBJ-P"
         ]
       },
-      "counterexample": "context scope=PRODUCT-P, unaffected_Q=original_Q; scope=PRODUCT-P, boundary=persisted_field, evaluation_date=2030-01-01; finding=(id=FIND-P, reason=observable_contract_change, impact=[OBJ-P], owner=PRODUCT-P-owner); exception={expiry=2030-02-01, owner=PRODUCT-P-owner, reason=役割確定まで既存利用を継続, scope=PRODUCT-P}; warning_requests_global_stop=false。",
-      "expected_result": "auto_rename=rejected; return_candidate=Redesign_or_Retrofit_with_compatibility_migration; finding_retained=FIND-P; exception_result=valid_for_fixture_scope; local_continuation=true; global_stop=false。unaffected_Q=original_Q。実rename・DesignRefactor・CI・merge・authority変更・設計完了・受入はすべてfalse。",
+      "counterexample": "境界=persisted_field。finding 理由=observable_contract_change。",
+      "expected_result": "返却候補: Redesign_or_Retrofit_with_compatibility_migration",
       "oracle_id": "HARNESS-L10-048-F04",
       "test_citation": null
     },
@@ -808,8 +808,8 @@
           "OBJ-P"
         ]
       },
-      "counterexample": "context scope=PRODUCT-P, unaffected_Q=original_Q; scope=PRODUCT-P, boundary=persisted_event, evaluation_date=2030-01-01; finding=(id=FIND-P, reason=observable_contract_change, impact=[OBJ-P], owner=PRODUCT-P-owner); exception={expiry=2030-02-01, owner=PRODUCT-P-owner, reason=役割確定まで既存利用を継続, scope=PRODUCT-P}; warning_requests_global_stop=false。",
-      "expected_result": "auto_rename=rejected; return_candidate=Redesign_or_Retrofit_with_compatibility_migration; finding_retained=FIND-P; exception_result=valid_for_fixture_scope; local_continuation=true; global_stop=false。unaffected_Q=original_Q。実rename・DesignRefactor・CI・merge・authority変更・設計完了・受入はすべてfalse。",
+      "counterexample": "境界=persisted_event。finding 理由=observable_contract_change。",
+      "expected_result": "返却候補: Redesign_or_Retrofit_with_compatibility_migration",
       "oracle_id": "HARNESS-L10-048-F04",
       "test_citation": null
     },
@@ -822,8 +822,8 @@
           "OBJ-P"
         ]
       },
-      "counterexample": "context scope=PRODUCT-P, unaffected_Q=original_Q; scope=PRODUCT-P, boundary=direct_config_key, evaluation_date=2030-01-01; finding=(id=FIND-P, reason=observable_contract_change, impact=[OBJ-P], owner=PRODUCT-P-owner); exception={expiry=2030-02-01, owner=PRODUCT-P-owner, reason=役割確定まで既存利用を継続, scope=PRODUCT-P}; warning_requests_global_stop=false。",
-      "expected_result": "auto_rename=rejected; return_candidate=Redesign_or_Retrofit_with_compatibility_migration; finding_retained=FIND-P; exception_result=valid_for_fixture_scope; local_continuation=true; global_stop=false。unaffected_Q=original_Q。実rename・DesignRefactor・CI・merge・authority変更・設計完了・受入はすべてfalse。",
+      "counterexample": "境界=direct_config_key。finding 理由=observable_contract_change。",
+      "expected_result": "返却候補: Redesign_or_Retrofit_with_compatibility_migration",
       "oracle_id": "HARNESS-L10-048-F04",
       "test_citation": null
     },
@@ -836,8 +836,8 @@
           "OBJ-P"
         ]
       },
-      "counterexample": "context scope=PRODUCT-P, unaffected_Q=original_Q; scope=PRODUCT-P, boundary=internal, evaluation_date=2030-01-01; finding=(id=FIND-P, reason=consumer_incomplete, impact=[OBJ-P], owner=PRODUCT-P-owner); exception={expiry=2030-02-01, owner=PRODUCT-P-owner, reason=役割確定まで既存利用を継続, scope=PRODUCT-P}; warning_requests_global_stop=false。",
-      "expected_result": "auto_rename=rejected; return_candidate=product_author; finding_retained=FIND-P; exception_result=valid_for_fixture_scope; local_continuation=true; global_stop=false。unaffected_Q=original_Q。実rename・DesignRefactor・CI・merge・authority変更・設計完了・受入はすべてfalse。",
+      "counterexample": "finding 理由=consumer_incomplete。",
+      "expected_result": "FIND-Pはproduct_authorへの返却候補。例外有効、local continuation。",
       "oracle_id": "HARNESS-L10-048-F04",
       "test_citation": null
     },
@@ -850,8 +850,8 @@
           "OBJ-P"
         ]
       },
-      "counterexample": "context scope=PRODUCT-P, unaffected_Q=original_Q; scope=PRODUCT-P, boundary=internal, evaluation_date=2030-01-01; finding=(id=FIND-P, reason=signature_mismatch, impact=[OBJ-P], owner=PRODUCT-P-owner); exception={expiry=2030-02-01, owner=PRODUCT-P-owner, reason=役割確定まで既存利用を継続, scope=PRODUCT-P}; warning_requests_global_stop=false。",
-      "expected_result": "auto_rename=rejected; return_candidate=product_author; finding_retained=FIND-P; exception_result=valid_for_fixture_scope; local_continuation=true; global_stop=false。unaffected_Q=original_Q。実rename・DesignRefactor・CI・merge・authority変更・設計完了・受入はすべてfalse。",
+      "counterexample": "finding 理由=signature_mismatch。",
+      "expected_result": "FIND-Pはproduct_authorへの返却候補。例外有効、local continuation。",
       "oracle_id": "HARNESS-L10-048-F04",
       "test_citation": null
     },
@@ -864,8 +864,8 @@
           "OBJ-P"
         ]
       },
-      "counterexample": "context scope=PRODUCT-P, unaffected_Q=original_Q; scope=PRODUCT-P, boundary=internal, evaluation_date=2030-01-01; finding=(id=FIND-P, reason=role_unknown, impact=[OBJ-P], owner=PRODUCT-P-owner); exception={expiry=2030-02-01, owner=PRODUCT-P-owner, reason=役割確定まで既存利用を継続, scope=PRODUCT-P}; warning_requests_global_stop=true。",
-      "expected_result": "auto_rename=rejected; return_candidate=product_author; finding_retained=FIND-P; exception_result=valid_for_fixture_scope; local_continuation=true; global_stop=false。unaffected_Q=original_Q。実rename・DesignRefactor・CI・merge・authority変更・設計完了・受入はすべてfalse。",
+      "counterexample": "global stop要求=true。",
+      "expected_result": "global stopは開始しない。例外は有効でlocal continuation。",
       "oracle_id": "HARNESS-L10-048-F04",
       "test_citation": null
     },
@@ -878,8 +878,8 @@
           "REQ-P"
         ]
       },
-      "counterexample": "context scope=PRODUCT-P, unaffected_Q=original_Q。knowledge_source={content=Query is a read role, owner=BRAIN, decision revision=vocab@r1}; norm_source={content=candidate_and_findings_only, owner=HARNESS, decision revision=norm@r1}; product_decision={content=readValue, owner=PRODUCT-P-owner, decision revision=decision@r1}; proposal={CI effect=finding_only, norm content=candidate_and_findings_only, product name=readValue}; protected_before={採用本文=original, 機構role=OS, requirement ID=REQ-P}; protected_after={採用本文=original, 機構role=OS, requirement ID=REQ-P}。",
-      "expected_result": "boundary_results={\"norm\":\"held\",\"product_decision\":\"held\",\"CI\":\"candidate_only\",\"requirement_id\":\"held\",\"mechanism_role\":\"held\",\"adopted_body\":\"held\"}; owner_return_candidates=[]。unaffected_Q=original_Q。実rename・DesignRefactor・CI・merge・authority変更・設計完了・受入はすべてfalse。",
+      "counterexample": "BRAINのQuery/read語彙、HARNESSのcandidate_and_findings_only、PRODUCT-P-ownerのreadValue決定。CI提案はfinding_only、REQ-P / OS / original本文を保持。",
+      "expected_result": "norm / product decision / protected requirement-mechanism-bodyは保持。CIはfinding candidateのみ、owner returnなし。",
       "oracle_id": "HARNESS-L10-048-B01",
       "test_citation": null
     },
@@ -892,8 +892,8 @@
           "REQ-P"
         ]
       },
-      "counterexample": "context scope=PRODUCT-P, unaffected_Q=original_Q。knowledge_source={content=Query is a read role, owner=BRAIN, decision revision=vocab@r1}; norm_source={content=candidate_and_findings_only, owner=HARNESS, decision revision=norm@r1}; product_decision={content=readValue, owner=PRODUCT-P-owner, decision revision=decision@r1}; proposal={CI effect=finding_only, norm content=knowledge_overrides_norm, product name=readValue}; protected_before={採用本文=original, 機構role=OS, requirement ID=REQ-P}; protected_after={採用本文=original, 機構role=OS, requirement ID=REQ-P}。",
-      "expected_result": "boundary_results={\"norm\":\"rejected\",\"product_decision\":\"held\",\"CI\":\"candidate_only\",\"requirement_id\":\"held\",\"mechanism_role\":\"held\",\"adopted_body\":\"held\"}; owner_return_candidates=[HARNESS-norm-owner]。unaffected_Q=original_Q。実rename・DesignRefactor・CI・merge・authority変更・設計完了・受入はすべてfalse。",
+      "counterexample": "proposal norm content=knowledge_overrides_norm。",
+      "expected_result": "norm: rejected；owner return: HARNESS-norm-owner",
       "oracle_id": "HARNESS-L10-048-B01",
       "test_citation": null
     },
@@ -906,8 +906,8 @@
           "REQ-P"
         ]
       },
-      "counterexample": "context scope=PRODUCT-P, unaffected_Q=original_Q。knowledge_source={content=Query is a read role, owner=BRAIN, decision revision=vocab@r1}; norm_source={content=candidate_and_findings_only, owner=HARNESS, decision revision=norm@r1}; product_decision={content=readValue, owner=PRODUCT-P-owner, decision revision=decision@r1}; proposal={CI effect=finding_only, norm content=candidate_and_findings_only, product name=knowledgeChosenName}; protected_before={採用本文=original, 機構role=OS, requirement ID=REQ-P}; protected_after={採用本文=original, 機構role=OS, requirement ID=REQ-P}。",
-      "expected_result": "boundary_results={\"norm\":\"held\",\"product_decision\":\"rejected\",\"CI\":\"candidate_only\",\"requirement_id\":\"held\",\"mechanism_role\":\"held\",\"adopted_body\":\"held\"}; owner_return_candidates=[product-design-owner]。unaffected_Q=original_Q。実rename・DesignRefactor・CI・merge・authority変更・設計完了・受入はすべてfalse。",
+      "counterexample": "proposal product name=knowledgeChosenName。",
+      "expected_result": "product_decision: rejected；owner return: product-design-owner",
       "oracle_id": "HARNESS-L10-048-B01",
       "test_citation": null
     },
@@ -920,8 +920,8 @@
           "REQ-P"
         ]
       },
-      "counterexample": "context scope=PRODUCT-P, unaffected_Q=original_Q。knowledge_source={content=Query is a read role, owner=BRAIN, decision revision=vocab@r1}; norm_source={content=candidate_and_findings_only, owner=HARNESS, decision revision=norm@r1}; product_decision={content=readValue, owner=PRODUCT-P-owner, decision revision=decision@r1}; proposal={CI effect=adopt, norm content=candidate_and_findings_only, product name=readValue}; protected_before={採用本文=original, 機構role=OS, requirement ID=REQ-P}; protected_after={採用本文=original, 機構role=OS, requirement ID=REQ-P}。",
-      "expected_result": "boundary_results={\"norm\":\"held\",\"product_decision\":\"held\",\"CI\":\"rejected\",\"requirement_id\":\"held\",\"mechanism_role\":\"held\",\"adopted_body\":\"held\"}; owner_return_candidates=[CI-boundary-owner]。unaffected_Q=original_Q。実rename・DesignRefactor・CI・merge・authority変更・設計完了・受入はすべてfalse。",
+      "counterexample": "proposal CI effect=adopt。",
+      "expected_result": "CI: rejected；owner return: CI-boundary-owner",
       "oracle_id": "HARNESS-L10-048-B01",
       "test_citation": null
     },
@@ -934,8 +934,8 @@
           "REQ-P"
         ]
       },
-      "counterexample": "context scope=PRODUCT-P, unaffected_Q=original_Q。knowledge_source={content=Query is a read role, owner=BRAIN, decision revision=vocab@r1}; norm_source={content=candidate_and_findings_only, owner=HARNESS, decision revision=norm@r1}; product_decision={content=readValue, owner=PRODUCT-P-owner, decision revision=decision@r1}; proposal={CI effect=self_merge, norm content=candidate_and_findings_only, product name=readValue}; protected_before={採用本文=original, 機構role=OS, requirement ID=REQ-P}; protected_after={採用本文=original, 機構role=OS, requirement ID=REQ-P}。",
-      "expected_result": "boundary_results={\"norm\":\"held\",\"product_decision\":\"held\",\"CI\":\"rejected\",\"requirement_id\":\"held\",\"mechanism_role\":\"held\",\"adopted_body\":\"held\"}; owner_return_candidates=[CI-boundary-owner]。unaffected_Q=original_Q。実rename・DesignRefactor・CI・merge・authority変更・設計完了・受入はすべてfalse。",
+      "counterexample": "proposal CI effect=self_merge。",
+      "expected_result": "CI: rejected；owner return: CI-boundary-owner",
       "oracle_id": "HARNESS-L10-048-B01",
       "test_citation": null
     },
@@ -948,8 +948,8 @@
           "REQ-P"
         ]
       },
-      "counterexample": "context scope=PRODUCT-P, unaffected_Q=original_Q。knowledge_source={content=Query is a read role, owner=BRAIN, decision revision=vocab@r1}; norm_source={content=candidate_and_findings_only, owner=HARNESS, decision revision=norm@r1}; product_decision={content=readValue, owner=PRODUCT-P-owner, decision revision=decision@r1}; proposal={CI effect=finding_only, norm content=candidate_and_findings_only, product name=readValue}; protected_before={採用本文=original, 機構role=OS, requirement ID=REQ-P}; protected_after={採用本文=original, 機構role=OS, requirement ID=changed}。",
-      "expected_result": "boundary_results={\"norm\":\"held\",\"product_decision\":\"held\",\"CI\":\"candidate_only\",\"requirement_id\":\"out_of_scope_change_rejected\",\"mechanism_role\":\"held\",\"adopted_body\":\"held\"}; owner_return_candidates=[original-meaning-owner]。unaffected_Q=original_Q。実rename・DesignRefactor・CI・merge・authority変更・設計完了・受入はすべてfalse。",
+      "counterexample": "保護対象(after) requirement ID=changed。",
+      "expected_result": "requirement_id: out_of_scope_change_rejected；owner return: original-meaning-owner",
       "oracle_id": "HARNESS-L10-048-B01",
       "test_citation": null
     },
@@ -962,8 +962,8 @@
           "REQ-P"
         ]
       },
-      "counterexample": "context scope=PRODUCT-P, unaffected_Q=original_Q。knowledge_source={content=Query is a read role, owner=BRAIN, decision revision=vocab@r1}; norm_source={content=candidate_and_findings_only, owner=HARNESS, decision revision=norm@r1}; product_decision={content=readValue, owner=PRODUCT-P-owner, decision revision=decision@r1}; proposal={CI effect=finding_only, norm content=candidate_and_findings_only, product name=readValue}; protected_before={採用本文=original, 機構role=OS, requirement ID=REQ-P}; protected_after={採用本文=original, 機構role=changed, requirement ID=REQ-P}。",
-      "expected_result": "boundary_results={\"norm\":\"held\",\"product_decision\":\"held\",\"CI\":\"candidate_only\",\"requirement_id\":\"held\",\"mechanism_role\":\"out_of_scope_change_rejected\",\"adopted_body\":\"held\"}; owner_return_candidates=[original-meaning-owner]。unaffected_Q=original_Q。実rename・DesignRefactor・CI・merge・authority変更・設計完了・受入はすべてfalse。",
+      "counterexample": "保護対象(after) 機構role=changed。",
+      "expected_result": "mechanism_role: out_of_scope_change_rejected；owner return: original-meaning-owner",
       "oracle_id": "HARNESS-L10-048-B01",
       "test_citation": null
     },
@@ -976,8 +976,8 @@
           "REQ-P"
         ]
       },
-      "counterexample": "context scope=PRODUCT-P, unaffected_Q=original_Q。knowledge_source={content=Query is a read role, owner=BRAIN, decision revision=vocab@r1}; norm_source={content=candidate_and_findings_only, owner=HARNESS, decision revision=norm@r1}; product_decision={content=readValue, owner=PRODUCT-P-owner, decision revision=decision@r1}; proposal={CI effect=finding_only, norm content=candidate_and_findings_only, product name=readValue}; protected_before={採用本文=original, 機構role=OS, requirement ID=REQ-P}; protected_after={採用本文=changed, 機構role=OS, requirement ID=REQ-P}。",
-      "expected_result": "boundary_results={\"norm\":\"held\",\"product_decision\":\"held\",\"CI\":\"candidate_only\",\"requirement_id\":\"held\",\"mechanism_role\":\"held\",\"adopted_body\":\"out_of_scope_change_rejected\"}; owner_return_candidates=[original-meaning-owner]。unaffected_Q=original_Q。実rename・DesignRefactor・CI・merge・authority変更・設計完了・受入はすべてfalse。",
+      "counterexample": "保護対象(after) 採用本文=changed。",
+      "expected_result": "adopted_body: out_of_scope_change_rejected；owner return: original-meaning-owner",
       "oracle_id": "HARNESS-L10-048-B01",
       "test_citation": null
     },
@@ -991,8 +991,8 @@
           "B"
         ]
       },
-      "counterexample": "context scope=PRODUCT-P, unaffected_Q=original_Q。role vocabulary=[Entity, ValueObject, Aggregate, DomainService, Policy, Specification, Command, Query, DomainEvent, Receipt, Port, Adapter, Repository]。照合対象: A（name=Manager, declared_role=未提示(null), meaning=照会, role_basis=未提示(null), consumers=[], exception=未提示(null)）; B（name=Data, declared_role=Repository, meaning=保存境界, role_basis=永続境界, consumers=[], exception=未提示(null)）。evaluation_date=2030-01-01。",
-      "expected_result": "対象別結果: A=unknown_role; B=missing_consumer。canonical決定は本照合では行わない。unaffected_Q=original_Q。実rename・DesignRefactor・CI・merge・authority変更・設計完了・受入はすべてfalse。",
+      "counterexample": "Aのconsumer=空。Aの宣言role=null。AのID=A。Aの意味=照会。Aの名称=Manager。Aのrole basis=null。Bのconsumer=空。BのID=B。Bの意味=保存境界。Bの名称=Data。Bのrole basis=永続境界。",
+      "expected_result": "A: unknown_role；B: missing_consumer",
       "oracle_id": "HARNESS-L10-048-F01",
       "test_citation": null
     },
@@ -1006,8 +1006,8 @@
           "OBJ-R"
         ]
       },
-      "counterexample": "context scope=PRODUCT-P, unaffected_Q=original_Q。role vocabulary=[Entity, ValueObject, Aggregate, DomainService, Policy, Specification, Command, Query, DomainEvent, Receipt, Port, Adapter, Repository]。照合対象: OBJ-P（name=lookup, declared_role=Query, meaning=未提示(null), role_basis=読み取り操作, consumers=[C1], exception=未提示(null)）; OBJ-R（name=lookup, declared_role=Repository, meaning=永続objectの取得, role_basis=永続化境界, consumers=[C2], exception=未提示(null)）。evaluation_date=2030-01-01。",
-      "expected_result": "対象別結果: OBJ-P=missing_target_meaning; OBJ-R=candidate_only:Repository。canonical決定は本照合では行わない。unaffected_Q=original_Q。実rename・DesignRefactor・CI・merge・authority変更・設計完了・受入はすべてfalse。",
+      "counterexample": "OBJ-Pの意味=null。",
+      "expected_result": "OBJ-P: missing_target_meaning；OBJ-R: candidate_only:Repository",
       "oracle_id": "HARNESS-L10-048-F01",
       "test_citation": null
     },
@@ -1021,8 +1021,8 @@
           "OBJ-R"
         ]
       },
-      "counterexample": "context scope=PRODUCT-P, unaffected_Q=original_Q。role vocabulary=[Entity, ValueObject, Aggregate, DomainService, Policy, Specification, Command, Query, DomainEvent, Receipt, Port, Adapter, Repository]。照合対象: OBJ-P（name=lookup, declared_role=未提示(null), meaning=値の照会, role_basis=読み取り操作, consumers=[C1], exception=未提示(null)）; OBJ-R（name=lookup, declared_role=Repository, meaning=永続objectの取得, role_basis=永続化境界, consumers=[C2], exception=未提示(null)）。evaluation_date=2030-01-01。",
-      "expected_result": "対象別結果: OBJ-P=unknown_role; OBJ-R=candidate_only:Repository。canonical決定は本照合では行わない。unaffected_Q=original_Q。実rename・DesignRefactor・CI・merge・authority変更・設計完了・受入はすべてfalse。",
+      "counterexample": "OBJ-Pの宣言roleが未提示。",
+      "expected_result": "OBJ-P: unknown_role；OBJ-R: candidate_only:Repository",
       "oracle_id": "HARNESS-L10-048-F01",
       "test_citation": null
     },
@@ -1036,8 +1036,8 @@
           "OBJ-R"
         ]
       },
-      "counterexample": "context scope=PRODUCT-P, unaffected_Q=original_Q。role vocabulary=[Entity, ValueObject, Aggregate, DomainService, Policy, Specification, Command, Query, DomainEvent, Receipt, Port, Adapter, Repository]。照合対象: OBJ-P（name=Manager, declared_role=Query, meaning=値の照会, role_basis=読み取り操作, consumers=[C1], exception={reason=既存利用, owner=owner-P, expiry=2030-02-01, scope=PRODUCT-Q}）; OBJ-R（name=lookup, declared_role=Repository, meaning=永続objectの取得, role_basis=永続化境界, consumers=[C2], exception=未提示(null)）。evaluation_date=2030-01-01。",
-      "expected_result": "対象別結果: OBJ-P=missing_scoped_exception; OBJ-R=candidate_only:Repository。canonical決定は本照合では行わない。unaffected_Q=original_Q。実rename・DesignRefactor・CI・merge・authority変更・設計完了・受入はすべてfalse。",
+      "counterexample": "OBJ-Pの例外 期限=2030-02-01。OBJ-Pの例外 owner=owner-P。OBJ-Pの例外 理由=既存利用。OBJ-Pの例外 scope=PRODUCT-Q。OBJ-Pの名称=Manager。",
+      "expected_result": "OBJ-P: missing_scoped_exception；OBJ-R: candidate_only:Repository",
       "oracle_id": "HARNESS-L10-048-F01",
       "test_citation": null
     },
@@ -1050,8 +1050,8 @@
           "OBJ-P"
         ]
       },
-      "counterexample": "context scope=PRODUCT-P, unaffected_Q=original_Q。operation=read, stable_object=OBJ-P, stable_oracle=ORACLE-P; before(object/symbol/oracle)={object=OBJ-X, oracle=ORACLE-P, symbol=oldLookup}; after(object/symbol/oracle)={object=OBJ-P, oracle=ORACLE-P, symbol=readValue}; symbol_edge={object=OBJ-P, operation=write, symbol=readValue}; oracle_edge={object=OBJ-P, operation=read, oracle=ORACLE-X}; pair={requirement_object=OBJ-X, verification_object=OBJ-P}。",
-      "expected_result": "edge_results={\"object_identity\":\"conflict\",\"oracle_identity\":\"held\",\"symbol_edge\":\"conflict\",\"oracle_edge\":\"conflict\",\"pair\":\"conflict\"}; symbol_change=candidate_only。unaffected_Q=original_Q。実rename・DesignRefactor・CI・merge・authority変更・設計完了・受入はすべてfalse。",
+      "counterexample": "変更前 object=OBJ-X。oracle edge oracle=ORACLE-X。pair requirement object=OBJ-X。symbol edge operation=write。",
+      "expected_result": "object_identity: conflict；symbol_edge: conflict；oracle_edge: conflict；pair: conflict",
       "oracle_id": "HARNESS-L10-048-F02",
       "test_citation": null
     },
@@ -1064,8 +1064,8 @@
           "OBJ-P"
         ]
       },
-      "counterexample": "context scope=PRODUCT-P, unaffected_Q=original_Q。operation=read, stable_object=未提示(null), stable_oracle=ORACLE-P; before(object/symbol/oracle)={object=OBJ-P, oracle=ORACLE-P, symbol=oldLookup}; after(object/symbol/oracle)={object=OBJ-P, oracle=ORACLE-P, symbol=readValue}; symbol_edge={object=OBJ-P, operation=read, symbol=readValue}; oracle_edge=未提示(null); pair={requirement_object=OBJ-P, verification_object=OBJ-P}。",
-      "expected_result": "edge_results={\"object_identity\":\"missing\",\"oracle_identity\":\"held\",\"symbol_edge\":\"unknown\",\"oracle_edge\":\"missing\",\"pair\":\"unknown\"}; symbol_change=candidate_only。unaffected_Q=original_Q。実rename・DesignRefactor・CI・merge・authority変更・設計完了・受入はすべてfalse。",
+      "counterexample": "oracle edgeが未提示。stable object=null。",
+      "expected_result": "object_identity: missing；symbol_edge: unknown；oracle_edge: missing；pair: unknown",
       "oracle_id": "HARNESS-L10-048-F02",
       "test_citation": null
     },
@@ -1078,8 +1078,8 @@
           "OBJ-P"
         ]
       },
-      "counterexample": "context scope=PRODUCT-P, unaffected_Q=original_Q。operation=read, stable_object=OBJ-P, stable_oracle=ORACLE-P; before(object/symbol/oracle)={object=OBJ-P, oracle=ORACLE-P, symbol=oldLookup}; after(object/symbol/oracle)={object=OBJ-P, oracle=ORACLE-P, symbol=readValue}; symbol_edge={object=OBJ-P, operation=read, symbol=readValue}; oracle_edge={object=OBJ-P, operation=未提示(null), oracle=ORACLE-P}; pair={requirement_object=OBJ-P, verification_object=OBJ-P}。",
-      "expected_result": "edge_results={\"object_identity\":\"held\",\"oracle_identity\":\"held\",\"symbol_edge\":\"bound\",\"oracle_edge\":\"missing\",\"pair\":\"same_object\"}; symbol_change=candidate_only。unaffected_Q=original_Q。実rename・DesignRefactor・CI・merge・authority変更・設計完了・受入はすべてfalse。",
+      "counterexample": "oracle edge operation=null。",
+      "expected_result": "oracle_edge: missing",
       "oracle_id": "HARNESS-L10-048-F02",
       "test_citation": null
     },
@@ -1092,8 +1092,8 @@
           "OBJ-P"
         ]
       },
-      "counterexample": "OBJ-Pのinternal symbol変更候補（context scope=PRODUCT-P、unaffected_Q=original_Q）。canonical決定={name=readValue, owner=未提示(null), decision revision=decision-P@r1}。観測consumer=[C1, CX]。rollback=未提示(null)。変更後signatureのeffects=[write]。変更前signatureのoutputs=未提示(null)。behavior invariantはORACLE-Pで値・failure・effects不変、必要時rollbackはOBJ-P/ORACLE-Pを保持してoldLookupへ戻す。",
-      "expected_result": "condition_results={\"canonical\":\"missing\",\"internal\":\"supported_synthetic_condition\",\"consumers\":\"conflict\",\"signature:inputs\":\"supported_synthetic_condition\",\"signature:outputs\":\"missing\",\"signature:effects\":\"conflict\",\"signature:failure\":\"supported_synthetic_condition\",\"signature:state_transition\":\"supported_synthetic_condition\",\"signature:call_graph\":\"supported_synthetic_condition\",\"signature:consumer_contract\":\"supported_synthetic_condition\",\"behavior_invariant\":\"supported_synthetic_condition\",\"minimum_transform\":\"supported_synthetic_condition\",\"rollback\":\"missing\",\"semantic_basis\":\"supported_synthetic_condition\",\"operation_boundary\":\"supported_synthetic_condition\"}; candidate_presentable=false（合成条件の部分結果。L3/L4 qualificationやrenameではない）。unaffected_Q=original_Q。実rename・DesignRefactor・CI・merge・authority変更・設計完了・受入はすべてfalse。",
+      "counterexample": "canonical決定 owner=null。観測consumer=C1・CX。rollback=null。変更後signature effects=write。変更前signature outputs=null。",
+      "expected_result": "提示不可。canonical: missing；consumers: conflict；signature:outputs: missing；signature:effects: conflict；rollback: missing",
       "oracle_id": "HARNESS-L10-048-F03",
       "test_citation": null
     },
@@ -1106,8 +1106,8 @@
           "OBJ-P"
         ]
       },
-      "counterexample": "OBJ-Pのinternal symbol変更候補（context scope=PRODUCT-P、unaffected_Q=original_Q）。canonical決定={name=readValue, owner=PRODUCT-P-owner, decision revision=decision-P@old}。behavior invariantはORACLE-Pで値・failure・effects不変、必要時rollbackはOBJ-P/ORACLE-Pを保持してoldLookupへ戻す。",
-      "expected_result": "condition_results={\"canonical\":\"stale\",\"internal\":\"supported_synthetic_condition\",\"consumers\":\"supported_synthetic_condition\",\"signature:inputs\":\"supported_synthetic_condition\",\"signature:outputs\":\"supported_synthetic_condition\",\"signature:effects\":\"supported_synthetic_condition\",\"signature:failure\":\"supported_synthetic_condition\",\"signature:state_transition\":\"supported_synthetic_condition\",\"signature:call_graph\":\"supported_synthetic_condition\",\"signature:consumer_contract\":\"supported_synthetic_condition\",\"behavior_invariant\":\"supported_synthetic_condition\",\"minimum_transform\":\"supported_synthetic_condition\",\"rollback\":\"supported_synthetic_condition\",\"semantic_basis\":\"supported_synthetic_condition\",\"operation_boundary\":\"supported_synthetic_condition\"}; candidate_presentable=false（合成条件の部分結果。L3/L4 qualificationやrenameではない）。unaffected_Q=original_Q。実rename・DesignRefactor・CI・merge・authority変更・設計完了・受入はすべてfalse。",
+      "counterexample": "canonical決定 revision=decision-P@old。",
+      "expected_result": "提示不可。canonical: stale",
       "oracle_id": "HARNESS-L10-048-F03",
       "test_citation": null
     },
@@ -1120,8 +1120,8 @@
           "OBJ-P"
         ]
       },
-      "counterexample": "OBJ-Pのinternal symbol変更候補（context scope=PRODUCT-P、unaffected_Q=original_Q）。canonical決定={name=readValue, owner=FOREIGN, decision revision=decision-P@r1}。behavior invariantはORACLE-Pで値・failure・effects不変、必要時rollbackはOBJ-P/ORACLE-Pを保持してoldLookupへ戻す。",
-      "expected_result": "condition_results={\"canonical\":\"conflict\",\"internal\":\"supported_synthetic_condition\",\"consumers\":\"supported_synthetic_condition\",\"signature:inputs\":\"supported_synthetic_condition\",\"signature:outputs\":\"supported_synthetic_condition\",\"signature:effects\":\"supported_synthetic_condition\",\"signature:failure\":\"supported_synthetic_condition\",\"signature:state_transition\":\"supported_synthetic_condition\",\"signature:call_graph\":\"supported_synthetic_condition\",\"signature:consumer_contract\":\"supported_synthetic_condition\",\"behavior_invariant\":\"supported_synthetic_condition\",\"minimum_transform\":\"supported_synthetic_condition\",\"rollback\":\"supported_synthetic_condition\",\"semantic_basis\":\"supported_synthetic_condition\",\"operation_boundary\":\"supported_synthetic_condition\"}; candidate_presentable=false（合成条件の部分結果。L3/L4 qualificationやrenameではない）。unaffected_Q=original_Q。実rename・DesignRefactor・CI・merge・authority変更・設計完了・受入はすべてfalse。",
+      "counterexample": "canonical決定 owner=FOREIGN。",
+      "expected_result": "提示不可。canonical: conflict",
       "oracle_id": "HARNESS-L10-048-F03",
       "test_citation": null
     },
@@ -1134,8 +1134,8 @@
           "OBJ-P"
         ]
       },
-      "counterexample": "OBJ-Pのinternal symbol変更候補（context scope=PRODUCT-P、unaffected_Q=original_Q）。rollback={preserve_object=OBJ-P, preserve_oracle=FOREIGN, restore_symbol=oldLookup}。behavior invariantはORACLE-Pで値・failure・effects不変、必要時rollbackはOBJ-P/ORACLE-Pを保持してoldLookupへ戻す。",
-      "expected_result": "condition_results={\"canonical\":\"supported_synthetic_condition\",\"internal\":\"supported_synthetic_condition\",\"consumers\":\"supported_synthetic_condition\",\"signature:inputs\":\"supported_synthetic_condition\",\"signature:outputs\":\"supported_synthetic_condition\",\"signature:effects\":\"supported_synthetic_condition\",\"signature:failure\":\"supported_synthetic_condition\",\"signature:state_transition\":\"supported_synthetic_condition\",\"signature:call_graph\":\"supported_synthetic_condition\",\"signature:consumer_contract\":\"supported_synthetic_condition\",\"behavior_invariant\":\"supported_synthetic_condition\",\"minimum_transform\":\"supported_synthetic_condition\",\"rollback\":\"conflict\",\"semantic_basis\":\"supported_synthetic_condition\",\"operation_boundary\":\"supported_synthetic_condition\"}; candidate_presentable=false（合成条件の部分結果。L3/L4 qualificationやrenameではない）。unaffected_Q=original_Q。実rename・DesignRefactor・CI・merge・authority変更・設計完了・受入はすべてfalse。",
+      "counterexample": "rollback 保持oracle=FOREIGN。",
+      "expected_result": "提示不可。rollback: conflict",
       "oracle_id": "HARNESS-L10-048-F03",
       "test_citation": null
     },
@@ -1148,8 +1148,8 @@
           "OBJ-P"
         ]
       },
-      "counterexample": "OBJ-Pのinternal symbol変更候補（context scope=PRODUCT-P、unaffected_Q=original_Q）。behavior invariant={expected=same value/failure/effects, oracle=FOREIGN}。behavior invariantはORACLE-Pで値・failure・effects不変、必要時rollbackはOBJ-P/ORACLE-Pを保持してoldLookupへ戻す。",
-      "expected_result": "condition_results={\"canonical\":\"supported_synthetic_condition\",\"internal\":\"supported_synthetic_condition\",\"consumers\":\"supported_synthetic_condition\",\"signature:inputs\":\"supported_synthetic_condition\",\"signature:outputs\":\"supported_synthetic_condition\",\"signature:effects\":\"supported_synthetic_condition\",\"signature:failure\":\"supported_synthetic_condition\",\"signature:state_transition\":\"supported_synthetic_condition\",\"signature:call_graph\":\"supported_synthetic_condition\",\"signature:consumer_contract\":\"supported_synthetic_condition\",\"behavior_invariant\":\"conflict\",\"minimum_transform\":\"supported_synthetic_condition\",\"rollback\":\"supported_synthetic_condition\",\"semantic_basis\":\"supported_synthetic_condition\",\"operation_boundary\":\"supported_synthetic_condition\"}; candidate_presentable=false（合成条件の部分結果。L3/L4 qualificationやrenameではない）。unaffected_Q=original_Q。実rename・DesignRefactor・CI・merge・authority変更・設計完了・受入はすべてfalse。",
+      "counterexample": "behavior invariant oracle=FOREIGN。",
+      "expected_result": "提示不可。behavior_invariant: conflict",
       "oracle_id": "HARNESS-L10-048-F03",
       "test_citation": null
     },
@@ -1162,8 +1162,8 @@
           "OBJ-P"
         ]
       },
-      "counterexample": "OBJ-Pのinternal symbol変更候補（context scope=PRODUCT-P、unaffected_Q=original_Q）。変更前signature=未提示(null)。behavior invariantはORACLE-Pで値・failure・effects不変、必要時rollbackはOBJ-P/ORACLE-Pを保持してoldLookupへ戻す。",
-      "expected_result": "condition_results={\"canonical\":\"supported_synthetic_condition\",\"internal\":\"supported_synthetic_condition\",\"consumers\":\"supported_synthetic_condition\",\"signature:inputs\":\"missing\",\"signature:outputs\":\"missing\",\"signature:effects\":\"missing\",\"signature:failure\":\"missing\",\"signature:state_transition\":\"missing\",\"signature:call_graph\":\"missing\",\"signature:consumer_contract\":\"missing\",\"behavior_invariant\":\"supported_synthetic_condition\",\"minimum_transform\":\"supported_synthetic_condition\",\"rollback\":\"supported_synthetic_condition\",\"semantic_basis\":\"supported_synthetic_condition\",\"operation_boundary\":\"supported_synthetic_condition\"}; candidate_presentable=false（合成条件の部分結果。L3/L4 qualificationやrenameではない）。unaffected_Q=original_Q。実rename・DesignRefactor・CI・merge・authority変更・設計完了・受入はすべてfalse。",
+      "counterexample": "変更前signature=null。",
+      "expected_result": "提示不可。signature:inputs: missing；signature:outputs: missing；signature:effects: missing；signature:failure: missing；signature:state_transition: missing；signature:call_graph: missing；signature:consumer_contract: missing",
       "oracle_id": "HARNESS-L10-048-F03",
       "test_citation": null
     },
@@ -1176,8 +1176,8 @@
           "OBJ-P"
         ]
       },
-      "counterexample": "OBJ-Pのinternal symbol変更候補（context scope=PRODUCT-P、unaffected_Q=original_Q）。変更後signatureのinputs=欠落。behavior invariantはORACLE-Pで値・failure・effects不変、必要時rollbackはOBJ-P/ORACLE-Pを保持してoldLookupへ戻す。",
-      "expected_result": "condition_results={\"canonical\":\"supported_synthetic_condition\",\"internal\":\"supported_synthetic_condition\",\"consumers\":\"supported_synthetic_condition\",\"signature:inputs\":\"missing\",\"signature:outputs\":\"supported_synthetic_condition\",\"signature:effects\":\"supported_synthetic_condition\",\"signature:failure\":\"supported_synthetic_condition\",\"signature:state_transition\":\"supported_synthetic_condition\",\"signature:call_graph\":\"supported_synthetic_condition\",\"signature:consumer_contract\":\"supported_synthetic_condition\",\"behavior_invariant\":\"supported_synthetic_condition\",\"minimum_transform\":\"supported_synthetic_condition\",\"rollback\":\"supported_synthetic_condition\",\"semantic_basis\":\"supported_synthetic_condition\",\"operation_boundary\":\"supported_synthetic_condition\"}; candidate_presentable=false（合成条件の部分結果。L3/L4 qualificationやrenameではない）。unaffected_Q=original_Q。実rename・DesignRefactor・CI・merge・authority変更・設計完了・受入はすべてfalse。",
+      "counterexample": "変更後signature inputsが未提示。",
+      "expected_result": "提示不可。signature:inputs: missing",
       "oracle_id": "HARNESS-L10-048-F03",
       "test_citation": null
     },
@@ -1190,8 +1190,8 @@
           "OBJ-P"
         ]
       },
-      "counterexample": "context scope=PRODUCT-P, unaffected_Q=original_Q; scope=PRODUCT-P, boundary=public_API, evaluation_date=2030-01-01; finding=(id=FIND-P, reason=role_unknown, impact=[OBJ-P], owner=PRODUCT-P-owner); exception={expiry=未提示(null), owner=未提示(null), reason=役割確定まで既存利用を継続, scope=PRODUCT-P}; warning_requests_global_stop=true。",
-      "expected_result": "auto_rename=rejected; return_candidate=Redesign_or_Retrofit_with_compatibility_migration; finding_retained=FIND-P; exception_result=missing_owner; local_continuation=false; global_stop=false。unaffected_Q=original_Q。実rename・DesignRefactor・CI・merge・authority変更・設計完了・受入はすべてfalse。",
+      "counterexample": "境界=public_API。例外 期限=null。例外 owner=null。global stop要求=true。",
+      "expected_result": "例外: missing_owner；局所継続: false；返却候補: Redesign_or_Retrofit_with_compatibility_migration",
       "oracle_id": "HARNESS-L10-048-F04",
       "test_citation": null
     },
@@ -1204,8 +1204,8 @@
           "OBJ-P"
         ]
       },
-      "counterexample": "context scope=PRODUCT-P, unaffected_Q=original_Q; scope=PRODUCT-P, boundary=internal, evaluation_date=2030-01-01; finding=(id=FIND-P, reason=role_unknown, impact=[OBJ-P], owner=PRODUCT-P-owner); exception=未提示(null); warning_requests_global_stop=false。",
-      "expected_result": "auto_rename=rejected; return_candidate=product_author; finding_retained=FIND-P; exception_result=missing_exception; local_continuation=false; global_stop=false。unaffected_Q=original_Q。実rename・DesignRefactor・CI・merge・authority変更・設計完了・受入はすべてfalse。",
+      "counterexample": "例外が未提示。",
+      "expected_result": "例外: missing_exception；局所継続: false",
       "oracle_id": "HARNESS-L10-048-F04",
       "test_citation": null
     },
@@ -1218,8 +1218,8 @@
           "OBJ-P"
         ]
       },
-      "counterexample": "context scope=PRODUCT-P, unaffected_Q=original_Q; scope=PRODUCT-P, boundary=internal, evaluation_date=2030-01-01; finding=(id=FIND-P, reason=role_unknown, impact=[OBJ-P], owner=PRODUCT-P-owner); exception={expiry=2030-01-01, owner=PRODUCT-P-owner, reason=役割確定まで既存利用を継続, scope=PRODUCT-P}; warning_requests_global_stop=false。",
-      "expected_result": "auto_rename=rejected; return_candidate=product_author; finding_retained=FIND-P; exception_result=unknown; local_continuation=false; global_stop=false。unaffected_Q=original_Q。実rename・DesignRefactor・CI・merge・authority変更・設計完了・受入はすべてfalse。",
+      "counterexample": "例外 期限=2030-01-01。",
+      "expected_result": "例外: unknown；局所継続: false",
       "oracle_id": "HARNESS-L10-048-F04",
       "test_citation": null
     },
@@ -1232,8 +1232,8 @@
           "OBJ-P"
         ]
       },
-      "counterexample": "context scope=PRODUCT-P, unaffected_Q=original_Q; scope=PRODUCT-P, boundary=internal, evaluation_date=2030-01-01; finding=(id=未提示(null), reason=role_unknown, impact=[OBJ-P], owner=PRODUCT-P-owner); exception={expiry=2030-02-01, owner=PRODUCT-P-owner, reason=役割確定まで既存利用を継続, scope=PRODUCT-P}; warning_requests_global_stop=false。",
-      "expected_result": "auto_rename=rejected; return_candidate=product_author; finding_retained=未提示(null); exception_result=valid_for_fixture_scope; local_continuation=true; global_stop=false。unaffected_Q=original_Q。実rename・DesignRefactor・CI・merge・authority変更・設計完了・受入はすべてfalse。",
+      "counterexample": "finding ID=null。",
+      "expected_result": "finding保持: 未提示",
       "oracle_id": "HARNESS-L10-048-F04",
       "test_citation": null
     },
@@ -1246,8 +1246,8 @@
           "REQ-P"
         ]
       },
-      "counterexample": "context scope=PRODUCT-P, unaffected_Q=original_Q。knowledge_source={content=Query is a read role, owner=BRAIN, decision revision=vocab@r1}; norm_source={content=candidate_and_findings_only, owner=HARNESS, decision revision=norm@r1}; product_decision={content=readValue, owner=PRODUCT-P-owner, decision revision=decision@r1}; proposal={CI effect=self_merge, norm content=OVERRIDE, product name=FOREIGN}; protected_before={採用本文=original, 機構role=OS, requirement ID=REQ-P}; protected_after={採用本文=original, 機構role=CHANGED, requirement ID=CHANGED}。",
-      "expected_result": "boundary_results={\"norm\":\"rejected\",\"product_decision\":\"rejected\",\"CI\":\"rejected\",\"requirement_id\":\"out_of_scope_change_rejected\",\"mechanism_role\":\"out_of_scope_change_rejected\",\"adopted_body\":\"held\"}; owner_return_candidates=[HARNESS-norm-owner, product-design-owner, CI-boundary-owner, original-meaning-owner]。unaffected_Q=original_Q。実rename・DesignRefactor・CI・merge・authority変更・設計完了・受入はすべてfalse。",
+      "counterexample": "proposal CI effect=self_merge。proposal norm content=OVERRIDE。proposal product name=FOREIGN。保護対象(after) 機構role=CHANGED。保護対象(after) requirement ID=CHANGED。",
+      "expected_result": "norm: rejected；product_decision: rejected；CI: rejected；requirement_id: out_of_scope_change_rejected；mechanism_role: out_of_scope_change_rejected；owner return: HARNESS-norm-owner、product-design-owner、CI-boundary-owner、original-meaning-owner",
       "oracle_id": "HARNESS-L10-048-B01",
       "test_citation": null
     },
@@ -1260,8 +1260,8 @@
           "REQ-P"
         ]
       },
-      "counterexample": "context scope=PRODUCT-P, unaffected_Q=original_Q。knowledge_source={content=Query is a read role, owner=BRAIN, decision revision=vocab@r1}; norm_source={content=candidate_and_findings_only, owner=BRAIN, decision revision=norm@r1}; product_decision={content=readValue, owner=PRODUCT-P-owner, decision revision=decision@r1}; proposal={CI effect=finding_only, norm content=candidate_and_findings_only, product name=readValue}; protected_before={採用本文=original, 機構role=OS, requirement ID=REQ-P}; protected_after={採用本文=original, 機構role=OS, requirement ID=REQ-P}。",
-      "expected_result": "boundary_results={\"norm\":\"rejected\",\"product_decision\":\"held\",\"CI\":\"candidate_only\",\"requirement_id\":\"held\",\"mechanism_role\":\"held\",\"adopted_body\":\"held\"}; owner_return_candidates=[HARNESS-norm-owner]。unaffected_Q=original_Q。実rename・DesignRefactor・CI・merge・authority変更・設計完了・受入はすべてfalse。",
+      "counterexample": "norm source owner=BRAIN。",
+      "expected_result": "norm: rejected；owner return: HARNESS-norm-owner",
       "oracle_id": "HARNESS-L10-048-B01",
       "test_citation": null
     },
@@ -1274,8 +1274,8 @@
           "REQ-P"
         ]
       },
-      "counterexample": "context scope=PRODUCT-P, unaffected_Q=original_Q。knowledge_source={content=Query is a read role, owner=BRAIN, decision revision=vocab@r1}; norm_source={content=candidate_and_findings_only, owner=HARNESS, decision revision=norm@r1}; product_decision={content=readValue, owner=PRODUCT-P-owner, decision revision=decision@old}; proposal={CI effect=finding_only, norm content=candidate_and_findings_only, product name=readValue}; protected_before={採用本文=original, 機構role=OS, requirement ID=REQ-P}; protected_after={採用本文=original, 機構role=OS, requirement ID=REQ-P}。",
-      "expected_result": "boundary_results={\"norm\":\"held\",\"product_decision\":\"stale\",\"CI\":\"candidate_only\",\"requirement_id\":\"held\",\"mechanism_role\":\"held\",\"adopted_body\":\"held\"}; owner_return_candidates=[product-design-owner]。unaffected_Q=original_Q。実rename・DesignRefactor・CI・merge・authority変更・設計完了・受入はすべてfalse。",
+      "counterexample": "product decision revision=decision@old。",
+      "expected_result": "product_decision: stale；owner return: product-design-owner",
       "oracle_id": "HARNESS-L10-048-B01",
       "test_citation": null
     },
@@ -1288,8 +1288,8 @@
           "REQ-P"
         ]
       },
-      "counterexample": "context scope=PRODUCT-P, unaffected_Q=original_Q。knowledge_source={content=Query is a read role, owner=BRAIN, decision revision=vocab@r1}; norm_source=未提示(null); product_decision={content=readValue, owner=PRODUCT-P-owner, decision revision=decision@r1}; proposal={CI effect=未提示(null), norm content=candidate_and_findings_only, product name=readValue}; protected_before={機構role=OS, requirement ID=REQ-P}; protected_after={採用本文=original, 機構role=OS, requirement ID=REQ-P}。",
-      "expected_result": "boundary_results={\"norm\":\"missing\",\"product_decision\":\"held\",\"CI\":\"missing\",\"requirement_id\":\"held\",\"mechanism_role\":\"held\",\"adopted_body\":\"unknown\"}; owner_return_candidates=[HARNESS-norm-owner, CI-boundary-owner, original-meaning-owner]。unaffected_Q=original_Q。実rename・DesignRefactor・CI・merge・authority変更・設計完了・受入はすべてfalse。",
+      "counterexample": "norm source=null。proposal CI effect=null。保護対象(before) 採用本文が未提示。",
+      "expected_result": "norm: missing；CI: missing；adopted_body: unknown；owner return: HARNESS-norm-owner、CI-boundary-owner、original-meaning-owner",
       "oracle_id": "HARNESS-L10-048-B01",
       "test_citation": null
     },
@@ -1302,8 +1302,8 @@
           "対象ID未提示"
         ]
       },
-      "counterexample": "context scope=PRODUCT-P, unaffected_Q=original_Q。role vocabulary=[Entity, ValueObject, Aggregate, DomainService, Policy, Specification, Command, Query, DomainEvent, Receipt, Port, Adapter, Repository]。照合対象: 。evaluation_date=2030-01-01。",
-      "expected_result": "対象別結果: 。canonical決定は本照合では行わない。unaffected_Q=original_Q。実rename・DesignRefactor・CI・merge・authority変更・設計完了・受入はすべてfalse。",
+      "counterexample": "対象リストが空。",
+      "expected_result": "",
       "oracle_id": "HARNESS-L10-048-F01",
       "test_citation": null
     },
@@ -1317,8 +1317,8 @@
           "OBJ-R"
         ]
       },
-      "counterexample": "context scope=PRODUCT-P, unaffected_Q=original_Q。role vocabulary=未提示(null)。照合対象: OBJ-P（name=lookup, declared_role=Query, meaning=値の照会, role_basis=読み取り操作, consumers=[C1], exception=未提示(null)）; OBJ-R（name=lookup, declared_role=Repository, meaning=永続objectの取得, role_basis=永続化境界, consumers=[C2], exception=未提示(null)）。evaluation_date=2030-01-01。",
-      "expected_result": "対象別結果: OBJ-P=unknown_role; OBJ-R=unknown_role。canonical決定は本照合では行わない。unaffected_Q=original_Q。実rename・DesignRefactor・CI・merge・authority変更・設計完了・受入はすべてfalse。",
+      "counterexample": "role vocabularyが未提示。",
+      "expected_result": "OBJ-P: unknown_role；OBJ-R: unknown_role",
       "oracle_id": "HARNESS-L10-048-F01",
       "test_citation": null
     },
@@ -1332,8 +1332,8 @@
           "OBJ-R"
         ]
       },
-      "counterexample": "context scope=PRODUCT-P, unaffected_Q=original_Q。role vocabulary=[Entity, ValueObject, Aggregate, DomainService, Policy, Specification, Command, Query, DomainEvent, Receipt, Port, Adapter, Repository]。照合対象: OBJ-P（name=lookup, declared_role=Query, meaning=値の照会, role_basis=読み取り操作, consumers=未提示(null), exception=未提示(null)）; OBJ-R（name=lookup, declared_role=Repository, meaning=永続objectの取得, role_basis=永続化境界, consumers=[C2], exception=未提示(null)）。evaluation_date=2030-01-01。",
-      "expected_result": "対象別結果: OBJ-P=missing_consumer; OBJ-R=candidate_only:Repository。canonical決定は本照合では行わない。unaffected_Q=original_Q。実rename・DesignRefactor・CI・merge・authority変更・設計完了・受入はすべてfalse。",
+      "counterexample": "OBJ-Pのconsumer=null。",
+      "expected_result": "OBJ-P: missing_consumer；OBJ-R: candidate_only:Repository",
       "oracle_id": "HARNESS-L10-048-F01",
       "test_citation": null
     },
@@ -1347,8 +1347,8 @@
           "OBJ-R"
         ]
       },
-      "counterexample": "context scope=PRODUCT-Q, unaffected_Q=retained_Q_probe。role vocabulary=[Entity, ValueObject, Aggregate, DomainService, Policy, Specification, Command, Query, DomainEvent, Receipt, Port, Adapter, Repository]。照合対象: OBJ-P（name=Manager, declared_role=Query, meaning=値の照会, role_basis=読み取り操作, consumers=[C1], exception={expiry=2030-02-01, owner=PRODUCT-P-owner, reason=既存利用者への段階移行, scope=PRODUCT-P}）; OBJ-R（name=lookup, declared_role=Repository, meaning=永続objectの取得, role_basis=永続化境界, consumers=[C2], exception=未提示(null)）。evaluation_date=2030-01-01。",
-      "expected_result": "対象別結果: OBJ-P=missing_scoped_exception; OBJ-R=candidate_only:Repository。canonical決定は本照合では行わない。unaffected_Q=retained_Q_probe。実rename・DesignRefactor・CI・merge・authority変更・設計完了・受入はすべてfalse。",
+      "counterexample": "scope=PRODUCT-Q。unaffected_Q=retained_Q_probe。OBJ-Pの例外 期限=2030-02-01。OBJ-Pの例外 owner=PRODUCT-P-owner。OBJ-Pの例外 理由=既存利用者への段階移行。OBJ-Pの例外 scope=PRODUCT-P。OBJ-Pの名称=Manager。",
+      "expected_result": "OBJ-P: missing_scoped_exception；OBJ-R: candidate_only:Repository",
       "oracle_id": "HARNESS-L10-048-F01",
       "test_citation": null
     },
@@ -1361,8 +1361,8 @@
           "OBJ-P"
         ]
       },
-      "counterexample": "context scope=PRODUCT-P, unaffected_Q=original_Q。operation=read, stable_object=OBJ-P, stable_oracle=TBD; before(object/symbol/oracle)={object=OBJ-P, oracle=ORACLE-P, symbol=oldLookup}; after(object/symbol/oracle)={object=OBJ-P, oracle=ORACLE-P, symbol=readValue}; symbol_edge={object=OBJ-P, operation=read, symbol=readValue}; oracle_edge={object=OBJ-P, operation=read, oracle=ORACLE-P}; pair={requirement_object=OBJ-P, verification_object=OBJ-P}。",
-      "expected_result": "edge_results={\"object_identity\":\"held\",\"oracle_identity\":\"unknown\",\"symbol_edge\":\"bound\",\"oracle_edge\":\"unknown\",\"pair\":\"same_object\"}; symbol_change=candidate_only。unaffected_Q=original_Q。実rename・DesignRefactor・CI・merge・authority変更・設計完了・受入はすべてfalse。",
+      "counterexample": "stable oracle=TBD。",
+      "expected_result": "oracle_identity: unknown；oracle_edge: unknown",
       "oracle_id": "HARNESS-L10-048-F02",
       "test_citation": null
     },
@@ -1375,8 +1375,8 @@
           "OBJ-P"
         ]
       },
-      "counterexample": "context scope=PRODUCT-P, unaffected_Q=original_Q。operation=read, stable_object=OBJ-P, stable_oracle=ORACLE-P; before(object/symbol/oracle)={object=OBJ-P, oracle=ORACLE-P, symbol=oldLookup}; after(object/symbol/oracle)={object=OBJ-P, oracle=ORACLE-P, symbol=readValue}; symbol_edge={object=OBJ-P, operation=read, symbol=readValue}; oracle_edge={object=OBJ-P, operation=read, oracle=ORACLE-P}; pair=未提示(null)。",
-      "expected_result": "edge_results={\"object_identity\":\"held\",\"oracle_identity\":\"held\",\"symbol_edge\":\"bound\",\"oracle_edge\":\"bound\",\"pair\":\"missing\"}; symbol_change=candidate_only。unaffected_Q=original_Q。実rename・DesignRefactor・CI・merge・authority変更・設計完了・受入はすべてfalse。",
+      "counterexample": "pairが未提示。",
+      "expected_result": "pair: missing",
       "oracle_id": "HARNESS-L10-048-F02",
       "test_citation": null
     },
@@ -1389,8 +1389,8 @@
           "OBJ-P"
         ]
       },
-      "counterexample": "context scope=PRODUCT-P, unaffected_Q=original_Q。operation=read, stable_object=OBJ-P, stable_oracle=ORACLE-P; before(object/symbol/oracle)=未提示(null); after(object/symbol/oracle)={object=OBJ-P, oracle=ORACLE-P, symbol=readValue}; symbol_edge={object=OBJ-P, operation=read, symbol=readValue}; oracle_edge={object=OBJ-P, operation=read, oracle=ORACLE-P}; pair={requirement_object=OBJ-P, verification_object=OBJ-P}。",
-      "expected_result": "edge_results={\"object_identity\":\"missing\",\"oracle_identity\":\"missing\",\"symbol_edge\":\"bound\",\"oracle_edge\":\"bound\",\"pair\":\"same_object\"}; symbol_change=candidate_only。unaffected_Q=original_Q。実rename・DesignRefactor・CI・merge・authority変更・設計完了・受入はすべてfalse。",
+      "counterexample": "変更前=null。",
+      "expected_result": "object_identity: missing；oracle_identity: missing",
       "oracle_id": "HARNESS-L10-048-F02",
       "test_citation": null
     },
@@ -1403,8 +1403,8 @@
           "OBJ-P"
         ]
       },
-      "counterexample": "context scope=PRODUCT-P, unaffected_Q=original_Q。operation=read, stable_object=OBJ-P, stable_oracle=ORACLE-P; before(object/symbol/oracle)={object=OBJ-P, oracle=ORACLE-P, symbol=oldLookup}; after(object/symbol/oracle)={object=OBJ-P, oracle=ORACLE-P, symbol=readValue}; symbol_edge={object=OBJ-P, operation=read, symbol=readValue}; oracle_edge={object=OBJ-P, operation=read, oracle=TBD}; pair={requirement_object=OBJ-P, verification_object=OBJ-P}。",
-      "expected_result": "edge_results={\"object_identity\":\"held\",\"oracle_identity\":\"held\",\"symbol_edge\":\"bound\",\"oracle_edge\":\"unknown\",\"pair\":\"same_object\"}; symbol_change=candidate_only。unaffected_Q=original_Q。実rename・DesignRefactor・CI・merge・authority変更・設計完了・受入はすべてfalse。",
+      "counterexample": "oracle edge oracle=TBD。",
+      "expected_result": "oracle_edge: unknown",
       "oracle_id": "HARNESS-L10-048-F02",
       "test_citation": null
     },
@@ -1417,8 +1417,8 @@
           "OBJ-P"
         ]
       },
-      "counterexample": "OBJ-Pのinternal symbol変更候補（context scope=PRODUCT-P、unaffected_Q=original_Q）。canonical決定={name=readValue, owner=TBD, decision revision=decision-P@r1}。behavior invariantはORACLE-Pで値・failure・effects不変、必要時rollbackはOBJ-P/ORACLE-Pを保持してoldLookupへ戻す。",
-      "expected_result": "condition_results={\"canonical\":\"unknown\",\"internal\":\"supported_synthetic_condition\",\"consumers\":\"supported_synthetic_condition\",\"signature:inputs\":\"supported_synthetic_condition\",\"signature:outputs\":\"supported_synthetic_condition\",\"signature:effects\":\"supported_synthetic_condition\",\"signature:failure\":\"supported_synthetic_condition\",\"signature:state_transition\":\"supported_synthetic_condition\",\"signature:call_graph\":\"supported_synthetic_condition\",\"signature:consumer_contract\":\"supported_synthetic_condition\",\"behavior_invariant\":\"supported_synthetic_condition\",\"minimum_transform\":\"supported_synthetic_condition\",\"rollback\":\"supported_synthetic_condition\",\"semantic_basis\":\"supported_synthetic_condition\",\"operation_boundary\":\"supported_synthetic_condition\"}; candidate_presentable=false（合成条件の部分結果。L3/L4 qualificationやrenameではない）。unaffected_Q=original_Q。実rename・DesignRefactor・CI・merge・authority変更・設計完了・受入はすべてfalse。",
+      "counterexample": "canonical決定 owner=TBD。",
+      "expected_result": "提示不可。canonical: unknown",
       "oracle_id": "HARNESS-L10-048-F03",
       "test_citation": null
     },
@@ -1431,8 +1431,8 @@
           "OBJ-P"
         ]
       },
-      "counterexample": "OBJ-Pのinternal symbol変更候補（context scope=PRODUCT-P、unaffected_Q=original_Q）。visibilityは欠落。behavior invariantはORACLE-Pで値・failure・effects不変、必要時rollbackはOBJ-P/ORACLE-Pを保持してoldLookupへ戻す。",
-      "expected_result": "condition_results={\"canonical\":\"supported_synthetic_condition\",\"internal\":\"missing\",\"consumers\":\"supported_synthetic_condition\",\"signature:inputs\":\"supported_synthetic_condition\",\"signature:outputs\":\"supported_synthetic_condition\",\"signature:effects\":\"supported_synthetic_condition\",\"signature:failure\":\"supported_synthetic_condition\",\"signature:state_transition\":\"supported_synthetic_condition\",\"signature:call_graph\":\"supported_synthetic_condition\",\"signature:consumer_contract\":\"supported_synthetic_condition\",\"behavior_invariant\":\"supported_synthetic_condition\",\"minimum_transform\":\"supported_synthetic_condition\",\"rollback\":\"supported_synthetic_condition\",\"semantic_basis\":\"supported_synthetic_condition\",\"operation_boundary\":\"supported_synthetic_condition\"}; candidate_presentable=false（合成条件の部分結果。L3/L4 qualificationやrenameではない）。unaffected_Q=original_Q。実rename・DesignRefactor・CI・merge・authority変更・設計完了・受入はすべてfalse。",
+      "counterexample": "visibilityが未提示。",
+      "expected_result": "提示不可。internal: missing",
       "oracle_id": "HARNESS-L10-048-F03",
       "test_citation": null
     },
@@ -1445,8 +1445,8 @@
           "OBJ-P"
         ]
       },
-      "counterexample": "OBJ-Pのinternal symbol変更候補（context scope=PRODUCT-P、unaffected_Q=original_Q）。必須consumer=未提示(null)。behavior invariantはORACLE-Pで値・failure・effects不変、必要時rollbackはOBJ-P/ORACLE-Pを保持してoldLookupへ戻す。",
-      "expected_result": "condition_results={\"canonical\":\"supported_synthetic_condition\",\"internal\":\"supported_synthetic_condition\",\"consumers\":\"missing\",\"signature:inputs\":\"supported_synthetic_condition\",\"signature:outputs\":\"supported_synthetic_condition\",\"signature:effects\":\"supported_synthetic_condition\",\"signature:failure\":\"supported_synthetic_condition\",\"signature:state_transition\":\"supported_synthetic_condition\",\"signature:call_graph\":\"supported_synthetic_condition\",\"signature:consumer_contract\":\"supported_synthetic_condition\",\"behavior_invariant\":\"supported_synthetic_condition\",\"minimum_transform\":\"supported_synthetic_condition\",\"rollback\":\"supported_synthetic_condition\",\"semantic_basis\":\"supported_synthetic_condition\",\"operation_boundary\":\"supported_synthetic_condition\"}; candidate_presentable=false（合成条件の部分結果。L3/L4 qualificationやrenameではない）。unaffected_Q=original_Q。実rename・DesignRefactor・CI・merge・authority変更・設計完了・受入はすべてfalse。",
+      "counterexample": "必須consumer=null。",
+      "expected_result": "提示不可。consumers: missing",
       "oracle_id": "HARNESS-L10-048-F03",
       "test_citation": null
     },
@@ -1459,8 +1459,8 @@
           "OBJ-P"
         ]
       },
-      "counterexample": "OBJ-Pのinternal symbol変更候補（context scope=PRODUCT-P、unaffected_Q=original_Q）。必須consumer=[]。behavior invariantはORACLE-Pで値・failure・effects不変、必要時rollbackはOBJ-P/ORACLE-Pを保持してoldLookupへ戻す。",
-      "expected_result": "condition_results={\"canonical\":\"supported_synthetic_condition\",\"internal\":\"supported_synthetic_condition\",\"consumers\":\"unknown\",\"signature:inputs\":\"supported_synthetic_condition\",\"signature:outputs\":\"supported_synthetic_condition\",\"signature:effects\":\"supported_synthetic_condition\",\"signature:failure\":\"supported_synthetic_condition\",\"signature:state_transition\":\"supported_synthetic_condition\",\"signature:call_graph\":\"supported_synthetic_condition\",\"signature:consumer_contract\":\"supported_synthetic_condition\",\"behavior_invariant\":\"supported_synthetic_condition\",\"minimum_transform\":\"supported_synthetic_condition\",\"rollback\":\"supported_synthetic_condition\",\"semantic_basis\":\"supported_synthetic_condition\",\"operation_boundary\":\"supported_synthetic_condition\"}; candidate_presentable=false（合成条件の部分結果。L3/L4 qualificationやrenameではない）。unaffected_Q=original_Q。実rename・DesignRefactor・CI・merge・authority変更・設計完了・受入はすべてfalse。",
+      "counterexample": "必須consumer=空。",
+      "expected_result": "提示不可。consumers: unknown",
       "oracle_id": "HARNESS-L10-048-F03",
       "test_citation": null
     },
@@ -1473,8 +1473,8 @@
           "OBJ-P"
         ]
       },
-      "counterexample": "OBJ-Pのinternal symbol変更候補（context scope=PRODUCT-P、unaffected_Q=original_Q）。観測consumer=[TBD]。behavior invariantはORACLE-Pで値・failure・effects不変、必要時rollbackはOBJ-P/ORACLE-Pを保持してoldLookupへ戻す。",
-      "expected_result": "condition_results={\"canonical\":\"supported_synthetic_condition\",\"internal\":\"supported_synthetic_condition\",\"consumers\":\"unknown\",\"signature:inputs\":\"supported_synthetic_condition\",\"signature:outputs\":\"supported_synthetic_condition\",\"signature:effects\":\"supported_synthetic_condition\",\"signature:failure\":\"supported_synthetic_condition\",\"signature:state_transition\":\"supported_synthetic_condition\",\"signature:call_graph\":\"supported_synthetic_condition\",\"signature:consumer_contract\":\"supported_synthetic_condition\",\"behavior_invariant\":\"supported_synthetic_condition\",\"minimum_transform\":\"supported_synthetic_condition\",\"rollback\":\"supported_synthetic_condition\",\"semantic_basis\":\"supported_synthetic_condition\",\"operation_boundary\":\"supported_synthetic_condition\"}; candidate_presentable=false（合成条件の部分結果。L3/L4 qualificationやrenameではない）。unaffected_Q=original_Q。実rename・DesignRefactor・CI・merge・authority変更・設計完了・受入はすべてfalse。",
+      "counterexample": "観測consumer=TBD。",
+      "expected_result": "提示不可。consumers: unknown",
       "oracle_id": "HARNESS-L10-048-F03",
       "test_citation": null
     },
@@ -1487,8 +1487,8 @@
           "OBJ-P"
         ]
       },
-      "counterexample": "OBJ-Pのinternal symbol変更候補（context scope=PRODUCT-P、unaffected_Q=original_Q）。変更後signatureのeffects=[1]。変更前signatureのeffects=[true]。behavior invariantはORACLE-Pで値・failure・effects不変、必要時rollbackはOBJ-P/ORACLE-Pを保持してoldLookupへ戻す。",
-      "expected_result": "condition_results={\"canonical\":\"supported_synthetic_condition\",\"internal\":\"supported_synthetic_condition\",\"consumers\":\"supported_synthetic_condition\",\"signature:inputs\":\"supported_synthetic_condition\",\"signature:outputs\":\"supported_synthetic_condition\",\"signature:effects\":\"conflict\",\"signature:failure\":\"supported_synthetic_condition\",\"signature:state_transition\":\"supported_synthetic_condition\",\"signature:call_graph\":\"supported_synthetic_condition\",\"signature:consumer_contract\":\"supported_synthetic_condition\",\"behavior_invariant\":\"supported_synthetic_condition\",\"minimum_transform\":\"supported_synthetic_condition\",\"rollback\":\"supported_synthetic_condition\",\"semantic_basis\":\"supported_synthetic_condition\",\"operation_boundary\":\"supported_synthetic_condition\"}; candidate_presentable=false（合成条件の部分結果。L3/L4 qualificationやrenameではない）。unaffected_Q=original_Q。実rename・DesignRefactor・CI・merge・authority変更・設計完了・受入はすべてfalse。",
+      "counterexample": "変更後signature effects=1。変更前signature effects=true。",
+      "expected_result": "提示不可。signature:effects: conflict",
       "oracle_id": "HARNESS-L10-048-F03",
       "test_citation": null
     },
@@ -1501,8 +1501,8 @@
           "OBJ-P"
         ]
       },
-      "counterexample": "OBJ-Pのinternal symbol変更候補（context scope=PRODUCT-P、unaffected_Q=original_Q）。変更後signatureのC1={v=0}。変更後signatureのC2=欠落。変更前signatureのC1={v=false}。変更前signatureのC2=欠落。behavior invariantはORACLE-Pで値・failure・effects不変、必要時rollbackはOBJ-P/ORACLE-Pを保持してoldLookupへ戻す。",
-      "expected_result": "condition_results={\"canonical\":\"supported_synthetic_condition\",\"internal\":\"supported_synthetic_condition\",\"consumers\":\"supported_synthetic_condition\",\"signature:inputs\":\"supported_synthetic_condition\",\"signature:outputs\":\"supported_synthetic_condition\",\"signature:effects\":\"supported_synthetic_condition\",\"signature:failure\":\"supported_synthetic_condition\",\"signature:state_transition\":\"supported_synthetic_condition\",\"signature:call_graph\":\"supported_synthetic_condition\",\"signature:consumer_contract\":\"conflict\",\"behavior_invariant\":\"supported_synthetic_condition\",\"minimum_transform\":\"supported_synthetic_condition\",\"rollback\":\"supported_synthetic_condition\",\"semantic_basis\":\"supported_synthetic_condition\",\"operation_boundary\":\"supported_synthetic_condition\"}; candidate_presentable=false（合成条件の部分結果。L3/L4 qualificationやrenameではない）。unaffected_Q=original_Q。実rename・DesignRefactor・CI・merge・authority変更・設計完了・受入はすべてfalse。",
+      "counterexample": "変更後signature consumer contract C1 v=0。変更後signature consumer contract C2が未提示。変更前signature consumer contract C1 v=false。変更前signature consumer contract C2が未提示。",
+      "expected_result": "提示不可。signature:consumer_contract: conflict",
       "oracle_id": "HARNESS-L10-048-F03",
       "test_citation": null
     },
@@ -1515,8 +1515,8 @@
           "OBJ-P"
         ]
       },
-      "counterexample": "OBJ-Pのinternal symbol変更候補（context scope=PRODUCT-P、unaffected_Q=original_Q）。変更後signatureのoutputs=TBD。behavior invariantはORACLE-Pで値・failure・effects不変、必要時rollbackはOBJ-P/ORACLE-Pを保持してoldLookupへ戻す。",
-      "expected_result": "condition_results={\"canonical\":\"supported_synthetic_condition\",\"internal\":\"supported_synthetic_condition\",\"consumers\":\"supported_synthetic_condition\",\"signature:inputs\":\"supported_synthetic_condition\",\"signature:outputs\":\"unknown\",\"signature:effects\":\"supported_synthetic_condition\",\"signature:failure\":\"supported_synthetic_condition\",\"signature:state_transition\":\"supported_synthetic_condition\",\"signature:call_graph\":\"supported_synthetic_condition\",\"signature:consumer_contract\":\"supported_synthetic_condition\",\"behavior_invariant\":\"supported_synthetic_condition\",\"minimum_transform\":\"supported_synthetic_condition\",\"rollback\":\"supported_synthetic_condition\",\"semantic_basis\":\"supported_synthetic_condition\",\"operation_boundary\":\"supported_synthetic_condition\"}; candidate_presentable=false（合成条件の部分結果。L3/L4 qualificationやrenameではない）。unaffected_Q=original_Q。実rename・DesignRefactor・CI・merge・authority変更・設計完了・受入はすべてfalse。",
+      "counterexample": "変更後signature outputs=TBD。",
+      "expected_result": "提示不可。signature:outputs: unknown",
       "oracle_id": "HARNESS-L10-048-F03",
       "test_citation": null
     },
@@ -1529,8 +1529,8 @@
           "OBJ-P"
         ]
       },
-      "counterexample": "OBJ-Pのinternal symbol変更候補（context scope=PRODUCT-P、unaffected_Q=original_Q）。behavior invariant={expected=same value/failure/effects, oracle=TBD}。behavior invariantはORACLE-Pで値・failure・effects不変、必要時rollbackはOBJ-P/ORACLE-Pを保持してoldLookupへ戻す。",
-      "expected_result": "condition_results={\"canonical\":\"supported_synthetic_condition\",\"internal\":\"supported_synthetic_condition\",\"consumers\":\"supported_synthetic_condition\",\"signature:inputs\":\"supported_synthetic_condition\",\"signature:outputs\":\"supported_synthetic_condition\",\"signature:effects\":\"supported_synthetic_condition\",\"signature:failure\":\"supported_synthetic_condition\",\"signature:state_transition\":\"supported_synthetic_condition\",\"signature:call_graph\":\"supported_synthetic_condition\",\"signature:consumer_contract\":\"supported_synthetic_condition\",\"behavior_invariant\":\"unknown\",\"minimum_transform\":\"supported_synthetic_condition\",\"rollback\":\"supported_synthetic_condition\",\"semantic_basis\":\"supported_synthetic_condition\",\"operation_boundary\":\"supported_synthetic_condition\"}; candidate_presentable=false（合成条件の部分結果。L3/L4 qualificationやrenameではない）。unaffected_Q=original_Q。実rename・DesignRefactor・CI・merge・authority変更・設計完了・受入はすべてfalse。",
+      "counterexample": "behavior invariant oracle=TBD。",
+      "expected_result": "提示不可。behavior_invariant: unknown",
       "oracle_id": "HARNESS-L10-048-F03",
       "test_citation": null
     },
@@ -1543,8 +1543,8 @@
           "OBJ-P"
         ]
       },
-      "counterexample": "OBJ-Pのinternal symbol変更候補（context scope=PRODUCT-P、unaffected_Q=original_Q）。evidence basis=未提示(null)。要求effectは欠落。rollback=未提示(null)。behavior invariantはORACLE-Pで値・failure・effects不変、必要時rollbackはOBJ-P/ORACLE-Pを保持してoldLookupへ戻す。",
-      "expected_result": "condition_results={\"canonical\":\"supported_synthetic_condition\",\"internal\":\"supported_synthetic_condition\",\"consumers\":\"supported_synthetic_condition\",\"signature:inputs\":\"supported_synthetic_condition\",\"signature:outputs\":\"supported_synthetic_condition\",\"signature:effects\":\"supported_synthetic_condition\",\"signature:failure\":\"supported_synthetic_condition\",\"signature:state_transition\":\"supported_synthetic_condition\",\"signature:call_graph\":\"supported_synthetic_condition\",\"signature:consumer_contract\":\"supported_synthetic_condition\",\"behavior_invariant\":\"supported_synthetic_condition\",\"minimum_transform\":\"supported_synthetic_condition\",\"rollback\":\"missing\",\"semantic_basis\":\"missing\",\"operation_boundary\":\"missing\"}; candidate_presentable=false（合成条件の部分結果。L3/L4 qualificationやrenameではない）。unaffected_Q=original_Q。実rename・DesignRefactor・CI・merge・authority変更・設計完了・受入はすべてfalse。",
+      "counterexample": "根拠=null。要求effectが未提示。rollback=null。",
+      "expected_result": "提示不可。rollback: missing；semantic_basis: missing；operation_boundary: missing",
       "oracle_id": "HARNESS-L10-048-F03",
       "test_citation": null
     },
@@ -1557,8 +1557,8 @@
           "OBJ-P"
         ]
       },
-      "counterexample": "context scope=PRODUCT-P, unaffected_Q=original_Q; scope=PRODUCT-P, boundary=未提示(null), evaluation_date=2030-01-01; finding=(id=FIND-P, reason=role_unknown, impact=[OBJ-P], owner=PRODUCT-P-owner); exception=未提示(null); warning_requests_global_stop=false。",
-      "expected_result": "auto_rename=rejected; return_candidate=unknown; finding_retained=FIND-P; exception_result=missing_exception; local_continuation=false; global_stop=false。unaffected_Q=original_Q。実rename・DesignRefactor・CI・merge・authority変更・設計完了・受入はすべてfalse。",
+      "counterexample": "境界=null。例外=null。",
+      "expected_result": "例外: missing_exception；局所継続: false；返却候補: unknown",
       "oracle_id": "HARNESS-L10-048-F04",
       "test_citation": null
     },
@@ -1571,8 +1571,8 @@
           "OBJ-P"
         ]
       },
-      "counterexample": "context scope=PRODUCT-P, unaffected_Q=original_Q; scope=PRODUCT-P, boundary=internal, evaluation_date=2030-01-01; finding=(id=FIND-P, reason=role_unknown, impact=[OBJ-P], owner=PRODUCT-P-owner); exception={expiry=2030-02-01, owner=PRODUCT-P-owner, reason=役割確定まで既存利用を継続}; warning_requests_global_stop=false。",
-      "expected_result": "auto_rename=rejected; return_candidate=product_author; finding_retained=FIND-P; exception_result=missing_scope; local_continuation=false; global_stop=false。unaffected_Q=original_Q。実rename・DesignRefactor・CI・merge・authority変更・設計完了・受入はすべてfalse。",
+      "counterexample": "例外 scopeが未提示。",
+      "expected_result": "例外: missing_scope；局所継続: false",
       "oracle_id": "HARNESS-L10-048-F04",
       "test_citation": null
     },
@@ -1585,8 +1585,8 @@
           "OBJ-P"
         ]
       },
-      "counterexample": "context scope=PRODUCT-P, unaffected_Q=original_Q; scope=未提示(null), boundary=internal, evaluation_date=2030-01-01; finding=(id=FIND-P, reason=role_unknown, impact=[OBJ-P], owner=PRODUCT-P-owner); exception={expiry=2030-02-01, owner=PRODUCT-P-owner, reason=役割確定まで既存利用を継続, scope=PRODUCT-P}; warning_requests_global_stop=false。",
-      "expected_result": "auto_rename=rejected; return_candidate=product_author; finding_retained=FIND-P; exception_result=unknown; local_continuation=false; global_stop=false。unaffected_Q=original_Q。実rename・DesignRefactor・CI・merge・authority変更・設計完了・受入はすべてfalse。",
+      "counterexample": "scopeが未提示。",
+      "expected_result": "例外: unknown；局所継続: false",
       "oracle_id": "HARNESS-L10-048-F04",
       "test_citation": null
     },
@@ -1599,8 +1599,8 @@
           "OBJ-P"
         ]
       },
-      "counterexample": "context scope=PRODUCT-P, unaffected_Q=original_Q; scope=PRODUCT-P, boundary=internal, evaluation_date=2030-01-01; finding=(id=FIND-P, reason=role_unknown, impact=[OBJ-P], owner=PRODUCT-P-owner); exception={expiry=TBD, owner=PRODUCT-P-owner, reason=役割確定まで既存利用を継続, scope=PRODUCT-P}; warning_requests_global_stop=false。",
-      "expected_result": "auto_rename=rejected; return_candidate=product_author; finding_retained=FIND-P; exception_result=unknown; local_continuation=false; global_stop=false。unaffected_Q=original_Q。実rename・DesignRefactor・CI・merge・authority変更・設計完了・受入はすべてfalse。",
+      "counterexample": "例外 期限=TBD。",
+      "expected_result": "例外: unknown；局所継続: false",
       "oracle_id": "HARNESS-L10-048-F04",
       "test_citation": null
     },
@@ -1613,8 +1613,8 @@
           "OBJ-P"
         ]
       },
-      "counterexample": "context scope=PRODUCT-P, unaffected_Q=original_Q; scope=PRODUCT-P, boundary=internal, evaluation_date=2030-01-01; finding=(id=未提示(null), reason=role_unknown, impact=[OBJ-P], owner=PRODUCT-P-owner); exception={expiry=2030-02-01, owner=PRODUCT-P-owner, reason=役割確定まで既存利用を継続, scope=PRODUCT-P}; warning_requests_global_stop=false。",
-      "expected_result": "auto_rename=rejected; return_candidate=product_author; finding_retained=未提示(null); exception_result=valid_for_fixture_scope; local_continuation=true; global_stop=false。unaffected_Q=original_Q。実rename・DesignRefactor・CI・merge・authority変更・設計完了・受入はすべてfalse。",
+      "counterexample": "finding IDが未提示。",
+      "expected_result": "finding保持: 未提示",
       "oracle_id": "HARNESS-L10-048-F04",
       "test_citation": null
     },
@@ -1627,8 +1627,8 @@
           "OBJ-P"
         ]
       },
-      "counterexample": "context scope=PRODUCT-P, unaffected_Q=original_Q; scope=PRODUCT-P, boundary=internal, evaluation_date=2030-01-01; finding=(id=未提示(null), reason=未提示(null), impact=未提示(null), owner=未提示(null)); exception={expiry=2030-02-01, owner=PRODUCT-P-owner, reason=役割確定まで既存利用を継続, scope=PRODUCT-P}; warning_requests_global_stop=false。",
-      "expected_result": "auto_rename=rejected; return_candidate=product_author; finding_retained=未提示(null); exception_result=valid_for_fixture_scope; local_continuation=true; global_stop=false。unaffected_Q=original_Q。実rename・DesignRefactor・CI・merge・authority変更・設計完了・受入はすべてfalse。",
+      "counterexample": "finding=null。",
+      "expected_result": "finding保持: 未提示",
       "oracle_id": "HARNESS-L10-048-F04",
       "test_citation": null
     },
@@ -1641,8 +1641,8 @@
           "REQ-P"
         ]
       },
-      "counterexample": "context scope=PRODUCT-P, unaffected_Q=original_Q。knowledge_source={content=Query is a read role, owner=BRAIN, decision revision=vocab@r1}; norm_source={content=candidate_and_findings_only, owner=TBD, decision revision=norm@r1}; product_decision={content=readValue, owner=PRODUCT-P-owner, decision revision=TBD}; proposal={CI effect=TBD, norm content=candidate_and_findings_only, product name=readValue}; protected_before={採用本文=original, 機構role=OS, requirement ID=REQ-P}; protected_after={採用本文=original, 機構role=OS, requirement ID=REQ-P}。",
-      "expected_result": "boundary_results={\"norm\":\"unknown\",\"product_decision\":\"unknown\",\"CI\":\"unknown\",\"requirement_id\":\"held\",\"mechanism_role\":\"held\",\"adopted_body\":\"held\"}; owner_return_candidates=[HARNESS-norm-owner, product-design-owner, CI-boundary-owner]。unaffected_Q=original_Q。実rename・DesignRefactor・CI・merge・authority変更・設計完了・受入はすべてfalse。",
+      "counterexample": "norm source owner=TBD。product decision revision=TBD。proposal CI effect=TBD。",
+      "expected_result": "norm: unknown；product_decision: unknown；CI: unknown；owner return: HARNESS-norm-owner、product-design-owner、CI-boundary-owner",
       "oracle_id": "HARNESS-L10-048-B01",
       "test_citation": null
     },
@@ -1655,8 +1655,8 @@
           "REQ-P"
         ]
       },
-      "counterexample": "context scope=PRODUCT-P, unaffected_Q=original_Q。knowledge_source={content=Query is a read role, owner=BRAIN, decision revision=vocab@r1}; norm_source={content=candidate_and_findings_only, owner=HARNESS, decision revision=norm@r1}; product_decision={content=readValue, owner=PRODUCT-P-owner, decision revision=decision@r1}; proposal={CI effect=finding_only, norm content=candidate_and_findings_only, product name=readValue}; protected_before={採用本文=original, 機構role=OS, requirement ID=REQ-P}; protected_after=未提示(null)。",
-      "expected_result": "boundary_results={\"norm\":\"held\",\"product_decision\":\"held\",\"CI\":\"candidate_only\",\"requirement_id\":\"missing\",\"mechanism_role\":\"missing\",\"adopted_body\":\"missing\"}; owner_return_candidates=[original-meaning-owner]。unaffected_Q=original_Q。実rename・DesignRefactor・CI・merge・authority変更・設計完了・受入はすべてfalse。",
+      "counterexample": "保護対象(after)=null。",
+      "expected_result": "requirement_id: missing；mechanism_role: missing；adopted_body: missing；owner return: original-meaning-owner",
       "oracle_id": "HARNESS-L10-048-B01",
       "test_citation": null
     },
@@ -1669,8 +1669,8 @@
           "REQ-P"
         ]
       },
-      "counterexample": "context scope=PRODUCT-P, unaffected_Q=original_Q。knowledge_source={content=Query is a read role, owner=BRAIN, decision revision=vocab@r1}; norm_source=未提示(null); product_decision={content=readValue, owner=PRODUCT-P-owner, decision revision=decision@r1}; proposal=未提示(null); protected_before={採用本文=original, 機構role=OS, requirement ID=REQ-P}; protected_after={採用本文=original, 機構role=OS, requirement ID=REQ-P}。",
-      "expected_result": "boundary_results={\"norm\":\"missing\",\"product_decision\":\"missing\",\"CI\":\"missing\",\"requirement_id\":\"held\",\"mechanism_role\":\"held\",\"adopted_body\":\"held\"}; owner_return_candidates=[HARNESS-norm-owner, product-design-owner, CI-boundary-owner]。unaffected_Q=original_Q。実rename・DesignRefactor・CI・merge・authority変更・設計完了・受入はすべてfalse。",
+      "counterexample": "norm sourceが未提示。proposal=null。",
+      "expected_result": "norm: missing；product_decision: missing；CI: missing；owner return: HARNESS-norm-owner、product-design-owner、CI-boundary-owner",
       "oracle_id": "HARNESS-L10-048-B01",
       "test_citation": null
     },
@@ -1684,8 +1684,8 @@
           "OBJ-R"
         ]
       },
-      "counterexample": "context scope=PRODUCT-P, unaffected_Q=original_Q。role vocabulary=[Entity, ValueObject, Aggregate, DomainService, Policy, Specification, Command, Query, DomainEvent, Receipt, Port, Adapter, Repository]。照合対象: OBJ-P（name=UserManager, declared_role=Query, meaning=値の照会, role_basis=読み取り操作, consumers=[TBD], exception=未提示(null)）; OBJ-R（name=lookup, declared_role=Repository, meaning=永続objectの取得, role_basis=永続化境界, consumers=[C2], exception=未提示(null)）。evaluation_date=2030-01-01。",
-      "expected_result": "対象別結果: OBJ-P=unknown_consumer; OBJ-R=candidate_only:Repository。canonical決定は本照合では行わない。unaffected_Q=original_Q。実rename・DesignRefactor・CI・merge・authority変更・設計完了・受入はすべてfalse。",
+      "counterexample": "OBJ-Pのconsumer=TBD。OBJ-Pの名称=UserManager。",
+      "expected_result": "OBJ-P: unknown_consumer；OBJ-R: candidate_only:Repository",
       "oracle_id": "HARNESS-L10-048-F01",
       "test_citation": null
     },
@@ -1699,8 +1699,8 @@
           "OBJ-R"
         ]
       },
-      "counterexample": "context scope=PRODUCT-P, unaffected_Q=original_Q。role vocabulary=[Entity, ValueObject, Aggregate, DomainService, Policy, Specification, Command, Query, DomainEvent, Receipt, Port, Adapter, Repository]。照合対象: OBJ-P（name=lookup, declared_role=Query, meaning=値の照会, role_basis=読み取り操作, consumers=[], exception=未提示(null)）; OBJ-R（name=lookup, declared_role=Repository, meaning=永続objectの取得, role_basis=永続化境界, consumers=[C2], exception=未提示(null)）。evaluation_date=2030-01-01。",
-      "expected_result": "対象別結果: OBJ-P=missing_consumer; OBJ-R=candidate_only:Repository。canonical決定は本照合では行わない。unaffected_Q=original_Q。実rename・DesignRefactor・CI・merge・authority変更・設計完了・受入はすべてfalse。",
+      "counterexample": "OBJ-Pのconsumer=。",
+      "expected_result": "OBJ-P: missing_consumer；OBJ-R: candidate_only:Repository",
       "oracle_id": "HARNESS-L10-048-F01",
       "test_citation": null
     },
@@ -1714,8 +1714,8 @@
           "OBJ-R"
         ]
       },
-      "counterexample": "context scope=PRODUCT-P, unaffected_Q=original_Q。role vocabulary=[Entity, ValueObject, Aggregate, DomainService, Policy, Specification, Command, Query, DomainEvent, Receipt, Port, Adapter, Repository]。照合対象: OBJ-P（name=lookup, declared_role=TBD, meaning=値の照会, role_basis=読み取り操作, consumers=[C1], exception=未提示(null)）; OBJ-R（name=lookup, declared_role=Repository, meaning=永続objectの取得, role_basis=永続化境界, consumers=[C2], exception=未提示(null)）。evaluation_date=2030-01-01。",
-      "expected_result": "対象別結果: OBJ-P=unknown_role; OBJ-R=candidate_only:Repository。canonical決定は本照合では行わない。unaffected_Q=original_Q。実rename・DesignRefactor・CI・merge・authority変更・設計完了・受入はすべてfalse。",
+      "counterexample": "OBJ-Pの宣言role=TBD。",
+      "expected_result": "OBJ-P: unknown_role；OBJ-R: candidate_only:Repository",
       "oracle_id": "HARNESS-L10-048-F01",
       "test_citation": null
     },
@@ -1729,8 +1729,8 @@
           "OBJ-R"
         ]
       },
-      "counterexample": "context scope=PRODUCT-P, unaffected_Q=original_Q。role vocabulary=[Entity, ValueObject, Aggregate, DomainService, Policy, Specification, Command, Query, DomainEvent, Receipt, Port, Adapter, Repository]。照合対象: OBJ-P（name=lookup, declared_role=unknown, meaning=値の照会, role_basis=読み取り操作, consumers=[C1], exception=未提示(null)）; OBJ-R（name=lookup, declared_role=Repository, meaning=永続objectの取得, role_basis=永続化境界, consumers=[C2], exception=未提示(null)）。evaluation_date=2030-01-01。",
-      "expected_result": "対象別結果: OBJ-P=unknown_role; OBJ-R=candidate_only:Repository。canonical決定は本照合では行わない。unaffected_Q=original_Q。実rename・DesignRefactor・CI・merge・authority変更・設計完了・受入はすべてfalse。",
+      "counterexample": "OBJ-Pの宣言role=unknown。",
+      "expected_result": "OBJ-P: unknown_role；OBJ-R: candidate_only:Repository",
       "oracle_id": "HARNESS-L10-048-F01",
       "test_citation": null
     },
@@ -1744,8 +1744,8 @@
           "OBJ-R"
         ]
       },
-      "counterexample": "context scope=PRODUCT-P, unaffected_Q=original_Q。role vocabulary=[Entity, ValueObject, Aggregate, DomainService, Policy, Specification, Command, Query, DomainEvent, Receipt, Port, Adapter, Repository]。照合対象: OBJ-P（name=lookup, declared_role=Query, meaning=TBD, role_basis=読み取り操作, consumers=[C1], exception=未提示(null)）; OBJ-R（name=lookup, declared_role=Repository, meaning=永続objectの取得, role_basis=永続化境界, consumers=[C2], exception=未提示(null)）。evaluation_date=2030-01-01。",
-      "expected_result": "対象別結果: OBJ-P=missing_target_meaning; OBJ-R=candidate_only:Repository。canonical決定は本照合では行わない。unaffected_Q=original_Q。実rename・DesignRefactor・CI・merge・authority変更・設計完了・受入はすべてfalse。",
+      "counterexample": "OBJ-Pの意味=TBD。",
+      "expected_result": "OBJ-P: missing_target_meaning；OBJ-R: candidate_only:Repository",
       "oracle_id": "HARNESS-L10-048-F01",
       "test_citation": null
     },
@@ -1759,8 +1759,8 @@
           "OBJ-R"
         ]
       },
-      "counterexample": "context scope=PRODUCT-P, unaffected_Q=original_Q。role vocabulary=[Entity, ValueObject, Aggregate, DomainService, Policy, Specification, Command, Query, DomainEvent, Receipt, Port, Adapter, Repository]。照合対象: OBJ-P（name=lookup, declared_role=Query, meaning=値の照会, role_basis=TBD, consumers=[C1], exception=未提示(null)）; OBJ-R（name=lookup, declared_role=Repository, meaning=永続objectの取得, role_basis=永続化境界, consumers=[C2], exception=未提示(null)）。evaluation_date=2030-01-01。",
-      "expected_result": "対象別結果: OBJ-P=missing_basis; OBJ-R=candidate_only:Repository。canonical決定は本照合では行わない。unaffected_Q=original_Q。実rename・DesignRefactor・CI・merge・authority変更・設計完了・受入はすべてfalse。",
+      "counterexample": "OBJ-Pのrole basis=TBD。",
+      "expected_result": "OBJ-P: missing_basis；OBJ-R: candidate_only:Repository",
       "oracle_id": "HARNESS-L10-048-F01",
       "test_citation": null
     },
@@ -1774,8 +1774,8 @@
           "OBJ-R"
         ]
       },
-      "counterexample": "context scope=PRODUCT-P, unaffected_Q=original_Q。role vocabulary=[Entity, ValueObject, Aggregate, DomainService, Policy, Specification, Command, Query, DomainEvent, Receipt, Port, Adapter, Repository]。照合対象: OBJ-P（name=lookup, declared_role=Query, meaning=, role_basis=読み取り操作, consumers=[C1], exception=未提示(null)）; OBJ-R（name=lookup, declared_role=Repository, meaning=永続objectの取得, role_basis=永続化境界, consumers=[C2], exception=未提示(null)）。evaluation_date=2030-01-01。",
-      "expected_result": "対象別結果: OBJ-P=missing_target_meaning; OBJ-R=candidate_only:Repository。canonical決定は本照合では行わない。unaffected_Q=original_Q。実rename・DesignRefactor・CI・merge・authority変更・設計完了・受入はすべてfalse。",
+      "counterexample": "OBJ-Pの意味=。",
+      "expected_result": "OBJ-P: missing_target_meaning；OBJ-R: candidate_only:Repository",
       "oracle_id": "HARNESS-L10-048-F01",
       "test_citation": null
     },
@@ -1789,8 +1789,8 @@
           "OBJ-R"
         ]
       },
-      "counterexample": "context scope=PRODUCT-P, unaffected_Q=original_Q。role vocabulary=[Entity, ValueObject, Aggregate, DomainService, Policy, Specification, Command, Query, DomainEvent, Receipt, Port, Adapter, Repository]。照合対象: OBJ-P（name=Helper, declared_role=Query, meaning=値の照会, role_basis=読み取り操作, consumers=[C1], exception=未提示(null)）; OBJ-R（name=lookup, declared_role=Repository, meaning=永続objectの取得, role_basis=永続化境界, consumers=[C2], exception=未提示(null)）。evaluation_date=2030-01-01。",
-      "expected_result": "対象別結果: OBJ-P=missing_scoped_exception; OBJ-R=candidate_only:Repository。canonical決定は本照合では行わない。unaffected_Q=original_Q。実rename・DesignRefactor・CI・merge・authority変更・設計完了・受入はすべてfalse。",
+      "counterexample": "OBJ-Pの名称=Helper。",
+      "expected_result": "OBJ-P: missing_scoped_exception；OBJ-R: candidate_only:Repository",
       "oracle_id": "HARNESS-L10-048-F01",
       "test_citation": null
     },
@@ -1804,8 +1804,8 @@
           "OBJ-R"
         ]
       },
-      "counterexample": "context scope=PRODUCT-P, unaffected_Q=original_Q。role vocabulary=[Entity, ValueObject, Aggregate, DomainService, Policy, Specification, Command, Query, DomainEvent, Receipt, Port, Adapter, Repository]。照合対象: OBJ-P（name=Util, declared_role=Query, meaning=値の照会, role_basis=読み取り操作, consumers=[C1], exception=未提示(null)）; OBJ-R（name=lookup, declared_role=Repository, meaning=永続objectの取得, role_basis=永続化境界, consumers=[C2], exception=未提示(null)）。evaluation_date=2030-01-01。",
-      "expected_result": "対象別結果: OBJ-P=missing_scoped_exception; OBJ-R=candidate_only:Repository。canonical決定は本照合では行わない。unaffected_Q=original_Q。実rename・DesignRefactor・CI・merge・authority変更・設計完了・受入はすべてfalse。",
+      "counterexample": "OBJ-Pの名称=Util。",
+      "expected_result": "OBJ-P: missing_scoped_exception；OBJ-R: candidate_only:Repository",
       "oracle_id": "HARNESS-L10-048-F01",
       "test_citation": null
     },
@@ -1819,8 +1819,8 @@
           "OBJ-R"
         ]
       },
-      "counterexample": "context scope=PRODUCT-P, unaffected_Q=original_Q。role vocabulary=[Entity, ValueObject, Aggregate, DomainService, Policy, Specification, Command, Query, DomainEvent, Receipt, Port, Adapter, Repository]。照合対象: OBJ-P（name=Data, declared_role=Query, meaning=値の照会, role_basis=読み取り操作, consumers=[C1], exception=未提示(null)）; OBJ-R（name=lookup, declared_role=Repository, meaning=永続objectの取得, role_basis=永続化境界, consumers=[C2], exception=未提示(null)）。evaluation_date=2030-01-01。",
-      "expected_result": "対象別結果: OBJ-P=missing_scoped_exception; OBJ-R=candidate_only:Repository。canonical決定は本照合では行わない。unaffected_Q=original_Q。実rename・DesignRefactor・CI・merge・authority変更・設計完了・受入はすべてfalse。",
+      "counterexample": "OBJ-Pの名称=Data。",
+      "expected_result": "OBJ-P: missing_scoped_exception；OBJ-R: candidate_only:Repository",
       "oracle_id": "HARNESS-L10-048-F01",
       "test_citation": null
     },
@@ -1834,8 +1834,8 @@
           "OBJ-R"
         ]
       },
-      "counterexample": "context scope=PRODUCT-P, unaffected_Q=original_Q。role vocabulary=[Entity, ValueObject, Aggregate, DomainService, Policy, Specification, Command, Query, DomainEvent, Receipt, Port, Adapter, Repository]。照合対象: OBJ-P（name=lookup, declared_role=TBD, meaning=未提示(null), role_basis=未提示(null), consumers=[TBD], exception=未提示(null)）; OBJ-R（name=lookup, declared_role=Repository, meaning=永続objectの取得, role_basis=永続化境界, consumers=[C2], exception=未提示(null)）。evaluation_date=2030-01-01。",
-      "expected_result": "対象別結果: OBJ-P=unknown_role; OBJ-R=candidate_only:Repository。canonical決定は本照合では行わない。unaffected_Q=original_Q。実rename・DesignRefactor・CI・merge・authority変更・設計完了・受入はすべてfalse。",
+      "counterexample": "OBJ-Pのconsumer=TBD。OBJ-Pの宣言role=TBD。OBJ-Pの意味=null。OBJ-Pのrole basis=null。",
+      "expected_result": "OBJ-P: unknown_role；OBJ-R: candidate_only:Repository",
       "oracle_id": "HARNESS-L10-048-F01",
       "test_citation": null
     },
@@ -1849,8 +1849,8 @@
           "OBJ-R"
         ]
       },
-      "counterexample": "context scope=PRODUCT-P, unaffected_Q=original_Q。role vocabulary=[Entity, ValueObject, Aggregate, DomainService, Policy, Specification, Command, Query, DomainEvent, Receipt, Port, Adapter, Repository]。照合対象: OBJ-P（name=lookup, declared_role=Query, meaning=未提示(null), role_basis=未提示(null), consumers=[C1], exception=未提示(null)）; OBJ-R（name=lookup, declared_role=Repository, meaning=永続objectの取得, role_basis=永続化境界, consumers=[C2], exception=未提示(null)）。evaluation_date=2030-01-01。",
-      "expected_result": "対象別結果: OBJ-P=missing_target_meaning; OBJ-R=candidate_only:Repository。canonical決定は本照合では行わない。unaffected_Q=original_Q。実rename・DesignRefactor・CI・merge・authority変更・設計完了・受入はすべてfalse。",
+      "counterexample": "OBJ-Pの意味=null。OBJ-Pのrole basis=null。",
+      "expected_result": "OBJ-P: missing_target_meaning；OBJ-R: candidate_only:Repository",
       "oracle_id": "HARNESS-L10-048-F01",
       "test_citation": null
     },
@@ -1864,8 +1864,8 @@
           "OBJ-R"
         ]
       },
-      "counterexample": "context scope=PRODUCT-P, unaffected_Q=original_Q。role vocabulary=[Entity, ValueObject, Aggregate, DomainService, Policy, Specification, Command, Query, DomainEvent, Receipt, Port, Adapter, Repository]。照合対象: OBJ-P（name=lookup, declared_role=Query, meaning=値の照会, role_basis=未提示(null), consumers=[], exception=未提示(null)）; OBJ-R（name=lookup, declared_role=Repository, meaning=永続objectの取得, role_basis=永続化境界, consumers=[C2], exception=未提示(null)）。evaluation_date=2030-01-01。",
-      "expected_result": "対象別結果: OBJ-P=missing_basis; OBJ-R=candidate_only:Repository。canonical決定は本照合では行わない。unaffected_Q=original_Q。実rename・DesignRefactor・CI・merge・authority変更・設計完了・受入はすべてfalse。",
+      "counterexample": "OBJ-Pのconsumer=空。OBJ-Pのrole basis=null。",
+      "expected_result": "OBJ-P: missing_basis；OBJ-R: candidate_only:Repository",
       "oracle_id": "HARNESS-L10-048-F01",
       "test_citation": null
     },
@@ -1878,8 +1878,8 @@
           "OBJ-P"
         ]
       },
-      "counterexample": "context scope=PRODUCT-P, unaffected_Q=original_Q。operation=read, stable_object=OBJ-P, stable_oracle=ORACLE-P; before(object/symbol/oracle)={object=OBJ-P, oracle=ORACLE-P, symbol=oldLookup}; after(object/symbol/oracle)={object=OBJ-P, oracle=ORACLE-P, symbol=readValue}; symbol_edge={object=OBJ-P, operation=read, symbol=readValue}; oracle_edge={object=OBJ-Q, operation=read, oracle=ORACLE-P}; pair={requirement_object=OBJ-P, verification_object=OBJ-P}。",
-      "expected_result": "edge_results={\"object_identity\":\"held\",\"oracle_identity\":\"held\",\"symbol_edge\":\"bound\",\"oracle_edge\":\"conflict\",\"pair\":\"same_object\"}; symbol_change=candidate_only。unaffected_Q=original_Q。実rename・DesignRefactor・CI・merge・authority変更・設計完了・受入はすべてfalse。",
+      "counterexample": "oracle edge object=OBJ-Q。",
+      "expected_result": "oracle_edge: conflict",
       "oracle_id": "HARNESS-L10-048-F02",
       "test_citation": null
     },
@@ -1892,8 +1892,8 @@
           "OBJ-P"
         ]
       },
-      "counterexample": "context scope=PRODUCT-P, unaffected_Q=original_Q。operation=read, stable_object=OBJ-P, stable_oracle=ORACLE-P; before(object/symbol/oracle)={object=OBJ-P, oracle=ORACLE-P, symbol=oldLookup}; after(object/symbol/oracle)={object=OBJ-P, oracle=ORACLE-P, symbol=readValue}; symbol_edge={object=OBJ-P, operation=read, symbol=readValue}; oracle_edge={private_symbol=_lookup, object=未提示(null), operation=未提示(null), oracle=未提示(null)}; pair={requirement_object=OBJ-P, verification_object=OBJ-P}。",
-      "expected_result": "edge_results={\"object_identity\":\"held\",\"oracle_identity\":\"held\",\"symbol_edge\":\"bound\",\"oracle_edge\":\"missing\",\"pair\":\"same_object\"}; symbol_change=candidate_only。unaffected_Q=original_Q。実rename・DesignRefactor・CI・merge・authority変更・設計完了・受入はすべてfalse。",
+      "counterexample": "oracle edge object=null。oracle edge operation=null。oracle edge oracle=null。oracle edge private symbol=_lookup。",
+      "expected_result": "oracle_edge: missing",
       "oracle_id": "HARNESS-L10-048-F02",
       "test_citation": null
     },
@@ -1906,8 +1906,8 @@
           "OBJ-P"
         ]
       },
-      "counterexample": "OBJ-Pのinternal symbol変更候補（context scope=PRODUCT-P、unaffected_Q=original_Q）。最小変更={changes=[TBD]}。behavior invariantはORACLE-Pで値・failure・effects不変、必要時rollbackはOBJ-P/ORACLE-Pを保持してoldLookupへ戻す。",
-      "expected_result": "condition_results={\"canonical\":\"supported_synthetic_condition\",\"internal\":\"supported_synthetic_condition\",\"consumers\":\"supported_synthetic_condition\",\"signature:inputs\":\"supported_synthetic_condition\",\"signature:outputs\":\"supported_synthetic_condition\",\"signature:effects\":\"supported_synthetic_condition\",\"signature:failure\":\"supported_synthetic_condition\",\"signature:state_transition\":\"supported_synthetic_condition\",\"signature:call_graph\":\"supported_synthetic_condition\",\"signature:consumer_contract\":\"supported_synthetic_condition\",\"behavior_invariant\":\"supported_synthetic_condition\",\"minimum_transform\":\"unknown\",\"rollback\":\"supported_synthetic_condition\",\"semantic_basis\":\"supported_synthetic_condition\",\"operation_boundary\":\"supported_synthetic_condition\"}; candidate_presentable=false（合成条件の部分結果。L3/L4 qualificationやrenameではない）。unaffected_Q=original_Q。実rename・DesignRefactor・CI・merge・authority変更・設計完了・受入はすべてfalse。",
+      "counterexample": "minimum transform 変更=TBD。",
+      "expected_result": "提示不可。minimum_transform: unknown",
       "oracle_id": "HARNESS-L10-048-F03",
       "test_citation": null
     },
@@ -1920,8 +1920,8 @@
           "OBJ-P"
         ]
       },
-      "counterexample": "OBJ-Pのinternal symbol変更候補（context scope=PRODUCT-P、unaffected_Q=original_Q）。最小変更={changes=[symbol edge only, TBD]}。behavior invariantはORACLE-Pで値・failure・effects不変、必要時rollbackはOBJ-P/ORACLE-Pを保持してoldLookupへ戻す。",
-      "expected_result": "condition_results={\"canonical\":\"supported_synthetic_condition\",\"internal\":\"supported_synthetic_condition\",\"consumers\":\"supported_synthetic_condition\",\"signature:inputs\":\"supported_synthetic_condition\",\"signature:outputs\":\"supported_synthetic_condition\",\"signature:effects\":\"supported_synthetic_condition\",\"signature:failure\":\"supported_synthetic_condition\",\"signature:state_transition\":\"supported_synthetic_condition\",\"signature:call_graph\":\"supported_synthetic_condition\",\"signature:consumer_contract\":\"supported_synthetic_condition\",\"behavior_invariant\":\"supported_synthetic_condition\",\"minimum_transform\":\"unknown\",\"rollback\":\"supported_synthetic_condition\",\"semantic_basis\":\"supported_synthetic_condition\",\"operation_boundary\":\"supported_synthetic_condition\"}; candidate_presentable=false（合成条件の部分結果。L3/L4 qualificationやrenameではない）。unaffected_Q=original_Q。実rename・DesignRefactor・CI・merge・authority変更・設計完了・受入はすべてfalse。",
+      "counterexample": "minimum transform 変更=symbol edge only・TBD。",
+      "expected_result": "提示不可。minimum_transform: unknown",
       "oracle_id": "HARNESS-L10-048-F03",
       "test_citation": null
     },
@@ -1934,8 +1934,8 @@
           "OBJ-P"
         ]
       },
-      "counterexample": "OBJ-Pのinternal symbol変更候補（context scope=PRODUCT-P、unaffected_Q=original_Q）。最小変更={changes=[unknown]}。behavior invariantはORACLE-Pで値・failure・effects不変、必要時rollbackはOBJ-P/ORACLE-Pを保持してoldLookupへ戻す。",
-      "expected_result": "condition_results={\"canonical\":\"supported_synthetic_condition\",\"internal\":\"supported_synthetic_condition\",\"consumers\":\"supported_synthetic_condition\",\"signature:inputs\":\"supported_synthetic_condition\",\"signature:outputs\":\"supported_synthetic_condition\",\"signature:effects\":\"supported_synthetic_condition\",\"signature:failure\":\"supported_synthetic_condition\",\"signature:state_transition\":\"supported_synthetic_condition\",\"signature:call_graph\":\"supported_synthetic_condition\",\"signature:consumer_contract\":\"supported_synthetic_condition\",\"behavior_invariant\":\"supported_synthetic_condition\",\"minimum_transform\":\"unknown\",\"rollback\":\"supported_synthetic_condition\",\"semantic_basis\":\"supported_synthetic_condition\",\"operation_boundary\":\"supported_synthetic_condition\"}; candidate_presentable=false（合成条件の部分結果。L3/L4 qualificationやrenameではない）。unaffected_Q=original_Q。実rename・DesignRefactor・CI・merge・authority変更・設計完了・受入はすべてfalse。",
+      "counterexample": "minimum transform 変更=unknown。",
+      "expected_result": "提示不可。minimum_transform: unknown",
       "oracle_id": "HARNESS-L10-048-F03",
       "test_citation": null
     },
@@ -1948,8 +1948,8 @@
           "OBJ-P"
         ]
       },
-      "counterexample": "OBJ-Pのinternal symbol変更候補（context scope=PRODUCT-P、unaffected_Q=original_Q）。最小変更={changes=[]}。behavior invariantはORACLE-Pで値・failure・effects不変、必要時rollbackはOBJ-P/ORACLE-Pを保持してoldLookupへ戻す。",
-      "expected_result": "condition_results={\"canonical\":\"supported_synthetic_condition\",\"internal\":\"supported_synthetic_condition\",\"consumers\":\"supported_synthetic_condition\",\"signature:inputs\":\"supported_synthetic_condition\",\"signature:outputs\":\"supported_synthetic_condition\",\"signature:effects\":\"supported_synthetic_condition\",\"signature:failure\":\"supported_synthetic_condition\",\"signature:state_transition\":\"supported_synthetic_condition\",\"signature:call_graph\":\"supported_synthetic_condition\",\"signature:consumer_contract\":\"supported_synthetic_condition\",\"behavior_invariant\":\"supported_synthetic_condition\",\"minimum_transform\":\"missing\",\"rollback\":\"supported_synthetic_condition\",\"semantic_basis\":\"supported_synthetic_condition\",\"operation_boundary\":\"supported_synthetic_condition\"}; candidate_presentable=false（合成条件の部分結果。L3/L4 qualificationやrenameではない）。unaffected_Q=original_Q。実rename・DesignRefactor・CI・merge・authority変更・設計完了・受入はすべてfalse。",
+      "counterexample": "minimum transform 変更=。",
+      "expected_result": "提示不可。minimum_transform: missing",
       "oracle_id": "HARNESS-L10-048-F03",
       "test_citation": null
     },
@@ -1962,8 +1962,8 @@
           "OBJ-P"
         ]
       },
-      "counterexample": "OBJ-Pのinternal symbol変更候補（context scope=PRODUCT-P、unaffected_Q=original_Q）。最小変更={changes=[]}。behavior invariantはORACLE-Pで値・failure・effects不変、必要時rollbackはOBJ-P/ORACLE-Pを保持してoldLookupへ戻す。",
-      "expected_result": "condition_results={\"canonical\":\"supported_synthetic_condition\",\"internal\":\"supported_synthetic_condition\",\"consumers\":\"supported_synthetic_condition\",\"signature:inputs\":\"supported_synthetic_condition\",\"signature:outputs\":\"supported_synthetic_condition\",\"signature:effects\":\"supported_synthetic_condition\",\"signature:failure\":\"supported_synthetic_condition\",\"signature:state_transition\":\"supported_synthetic_condition\",\"signature:call_graph\":\"supported_synthetic_condition\",\"signature:consumer_contract\":\"supported_synthetic_condition\",\"behavior_invariant\":\"supported_synthetic_condition\",\"minimum_transform\":\"missing\",\"rollback\":\"supported_synthetic_condition\",\"semantic_basis\":\"supported_synthetic_condition\",\"operation_boundary\":\"supported_synthetic_condition\"}; candidate_presentable=false（合成条件の部分結果。L3/L4 qualificationやrenameではない）。unaffected_Q=original_Q。実rename・DesignRefactor・CI・merge・authority変更・設計完了・受入はすべてfalse。",
+      "counterexample": "minimum transform 変更=空。",
+      "expected_result": "提示不可。minimum_transform: missing",
       "oracle_id": "HARNESS-L10-048-F03",
       "test_citation": null
     },
@@ -1976,8 +1976,8 @@
           "OBJ-P"
         ]
       },
-      "counterexample": "OBJ-Pのinternal symbol変更候補（context scope=PRODUCT-P、unaffected_Q=original_Q）。canonical決定={owner=PRODUCT-P-owner, decision revision=decision-P@r1}。behavior invariantはORACLE-Pで値・failure・effects不変、必要時rollbackはOBJ-P/ORACLE-Pを保持してoldLookupへ戻す。",
-      "expected_result": "condition_results={\"canonical\":\"missing\",\"internal\":\"supported_synthetic_condition\",\"consumers\":\"supported_synthetic_condition\",\"signature:inputs\":\"supported_synthetic_condition\",\"signature:outputs\":\"supported_synthetic_condition\",\"signature:effects\":\"supported_synthetic_condition\",\"signature:failure\":\"supported_synthetic_condition\",\"signature:state_transition\":\"supported_synthetic_condition\",\"signature:call_graph\":\"supported_synthetic_condition\",\"signature:consumer_contract\":\"supported_synthetic_condition\",\"behavior_invariant\":\"supported_synthetic_condition\",\"minimum_transform\":\"supported_synthetic_condition\",\"rollback\":\"supported_synthetic_condition\",\"semantic_basis\":\"supported_synthetic_condition\",\"operation_boundary\":\"supported_synthetic_condition\"}; candidate_presentable=false（合成条件の部分結果。L3/L4 qualificationやrenameではない）。unaffected_Q=original_Q。実rename・DesignRefactor・CI・merge・authority変更・設計完了・受入はすべてfalse。",
+      "counterexample": "canonical決定 名称が未提示。",
+      "expected_result": "提示不可。canonical: missing",
       "oracle_id": "HARNESS-L10-048-F03",
       "test_citation": null
     },
@@ -1990,8 +1990,8 @@
           "OBJ-P"
         ]
       },
-      "counterexample": "OBJ-Pのinternal symbol変更候補（context scope=PRODUCT-P、unaffected_Q=original_Q）。visibility=TBD。behavior invariantはORACLE-Pで値・failure・effects不変、必要時rollbackはOBJ-P/ORACLE-Pを保持してoldLookupへ戻す。",
-      "expected_result": "condition_results={\"canonical\":\"supported_synthetic_condition\",\"internal\":\"unknown\",\"consumers\":\"supported_synthetic_condition\",\"signature:inputs\":\"supported_synthetic_condition\",\"signature:outputs\":\"supported_synthetic_condition\",\"signature:effects\":\"supported_synthetic_condition\",\"signature:failure\":\"supported_synthetic_condition\",\"signature:state_transition\":\"supported_synthetic_condition\",\"signature:call_graph\":\"supported_synthetic_condition\",\"signature:consumer_contract\":\"supported_synthetic_condition\",\"behavior_invariant\":\"supported_synthetic_condition\",\"minimum_transform\":\"supported_synthetic_condition\",\"rollback\":\"supported_synthetic_condition\",\"semantic_basis\":\"supported_synthetic_condition\",\"operation_boundary\":\"supported_synthetic_condition\"}; candidate_presentable=false（合成条件の部分結果。L3/L4 qualificationやrenameではない）。unaffected_Q=original_Q。実rename・DesignRefactor・CI・merge・authority変更・設計完了・受入はすべてfalse。",
+      "counterexample": "visibility=TBD。",
+      "expected_result": "提示不可。internal: unknown",
       "oracle_id": "HARNESS-L10-048-F03",
       "test_citation": null
     },
@@ -2004,8 +2004,8 @@
           "OBJ-P"
         ]
       },
-      "counterexample": "OBJ-Pのinternal symbol変更候補（context scope=PRODUCT-P、unaffected_Q=original_Q）。behavior invariant={oracle=ORACLE-P}。behavior invariantはORACLE-Pで値・failure・effects不変、必要時rollbackはOBJ-P/ORACLE-Pを保持してoldLookupへ戻す。",
-      "expected_result": "condition_results={\"canonical\":\"supported_synthetic_condition\",\"internal\":\"supported_synthetic_condition\",\"consumers\":\"supported_synthetic_condition\",\"signature:inputs\":\"supported_synthetic_condition\",\"signature:outputs\":\"supported_synthetic_condition\",\"signature:effects\":\"supported_synthetic_condition\",\"signature:failure\":\"supported_synthetic_condition\",\"signature:state_transition\":\"supported_synthetic_condition\",\"signature:call_graph\":\"supported_synthetic_condition\",\"signature:consumer_contract\":\"supported_synthetic_condition\",\"behavior_invariant\":\"missing\",\"minimum_transform\":\"supported_synthetic_condition\",\"rollback\":\"supported_synthetic_condition\",\"semantic_basis\":\"supported_synthetic_condition\",\"operation_boundary\":\"supported_synthetic_condition\"}; candidate_presentable=false（合成条件の部分結果。L3/L4 qualificationやrenameではない）。unaffected_Q=original_Q。実rename・DesignRefactor・CI・merge・authority変更・設計完了・受入はすべてfalse。",
+      "counterexample": "behavior invariant 期待が未提示。",
+      "expected_result": "提示不可。behavior_invariant: missing",
       "oracle_id": "HARNESS-L10-048-F03",
       "test_citation": null
     },
@@ -2018,8 +2018,8 @@
           "OBJ-P"
         ]
       },
-      "counterexample": "OBJ-Pのinternal symbol変更候補（context scope=PRODUCT-P、unaffected_Q=original_Q）。rollback={preserve_object=OBJ-P, preserve_oracle=ORACLE-P}。behavior invariantはORACLE-Pで値・failure・effects不変、必要時rollbackはOBJ-P/ORACLE-Pを保持してoldLookupへ戻す。",
-      "expected_result": "condition_results={\"canonical\":\"supported_synthetic_condition\",\"internal\":\"supported_synthetic_condition\",\"consumers\":\"supported_synthetic_condition\",\"signature:inputs\":\"supported_synthetic_condition\",\"signature:outputs\":\"supported_synthetic_condition\",\"signature:effects\":\"supported_synthetic_condition\",\"signature:failure\":\"supported_synthetic_condition\",\"signature:state_transition\":\"supported_synthetic_condition\",\"signature:call_graph\":\"supported_synthetic_condition\",\"signature:consumer_contract\":\"supported_synthetic_condition\",\"behavior_invariant\":\"supported_synthetic_condition\",\"minimum_transform\":\"supported_synthetic_condition\",\"rollback\":\"missing\",\"semantic_basis\":\"supported_synthetic_condition\",\"operation_boundary\":\"supported_synthetic_condition\"}; candidate_presentable=false（合成条件の部分結果。L3/L4 qualificationやrenameではない）。unaffected_Q=original_Q。実rename・DesignRefactor・CI・merge・authority変更・設計完了・受入はすべてfalse。",
+      "counterexample": "rollback 復帰symbolが未提示。",
+      "expected_result": "提示不可。rollback: missing",
       "oracle_id": "HARNESS-L10-048-F03",
       "test_citation": null
     },
@@ -2032,8 +2032,8 @@
           "OBJ-P"
         ]
       },
-      "counterexample": "OBJ-Pのinternal symbol変更候補（context scope=PRODUCT-P、unaffected_Q=original_Q）。観測consumer=[]。behavior invariantはORACLE-Pで値・failure・effects不変、必要時rollbackはOBJ-P/ORACLE-Pを保持してoldLookupへ戻す。",
-      "expected_result": "condition_results={\"canonical\":\"supported_synthetic_condition\",\"internal\":\"supported_synthetic_condition\",\"consumers\":\"unknown\",\"signature:inputs\":\"supported_synthetic_condition\",\"signature:outputs\":\"supported_synthetic_condition\",\"signature:effects\":\"supported_synthetic_condition\",\"signature:failure\":\"supported_synthetic_condition\",\"signature:state_transition\":\"supported_synthetic_condition\",\"signature:call_graph\":\"supported_synthetic_condition\",\"signature:consumer_contract\":\"supported_synthetic_condition\",\"behavior_invariant\":\"supported_synthetic_condition\",\"minimum_transform\":\"supported_synthetic_condition\",\"rollback\":\"supported_synthetic_condition\",\"semantic_basis\":\"supported_synthetic_condition\",\"operation_boundary\":\"supported_synthetic_condition\"}; candidate_presentable=false（合成条件の部分結果。L3/L4 qualificationやrenameではない）。unaffected_Q=original_Q。実rename・DesignRefactor・CI・merge・authority変更・設計完了・受入はすべてfalse。",
+      "counterexample": "観測consumer=。",
+      "expected_result": "提示不可。consumers: unknown",
       "oracle_id": "HARNESS-L10-048-F03",
       "test_citation": null
     },
@@ -2046,8 +2046,8 @@
           "OBJ-P"
         ]
       },
-      "counterexample": "OBJ-Pのinternal symbol変更候補（context scope=PRODUCT-P、unaffected_Q=original_Q）。canonical決定={name=foreign-uncompared-name, owner=PRODUCT-P-owner, decision revision=decision-P@r1}。behavior invariantはORACLE-Pで値・failure・effects不変、必要時rollbackはOBJ-P/ORACLE-Pを保持してoldLookupへ戻す。",
-      "expected_result": "condition_results={\"canonical\":\"supported_synthetic_condition\",\"internal\":\"supported_synthetic_condition\",\"consumers\":\"supported_synthetic_condition\",\"signature:inputs\":\"supported_synthetic_condition\",\"signature:outputs\":\"supported_synthetic_condition\",\"signature:effects\":\"supported_synthetic_condition\",\"signature:failure\":\"supported_synthetic_condition\",\"signature:state_transition\":\"supported_synthetic_condition\",\"signature:call_graph\":\"supported_synthetic_condition\",\"signature:consumer_contract\":\"supported_synthetic_condition\",\"behavior_invariant\":\"supported_synthetic_condition\",\"minimum_transform\":\"supported_synthetic_condition\",\"rollback\":\"supported_synthetic_condition\",\"semantic_basis\":\"supported_synthetic_condition\",\"operation_boundary\":\"supported_synthetic_condition\"}; candidate_presentable=true（合成条件の部分結果。L3/L4 qualificationやrenameではない）。unaffected_Q=original_Q。実rename・DesignRefactor・CI・merge・authority変更・設計完了・受入はすべてfalse。",
+      "counterexample": "canonical決定 名称=foreign-uncompared-name。",
+      "expected_result": "全条件supported（合成条件）、candidate_presentable=true。",
       "oracle_id": "HARNESS-L10-048-F03",
       "test_citation": null
     },
@@ -2060,8 +2060,8 @@
           "OBJ-P"
         ]
       },
-      "counterexample": "OBJ-Pのinternal symbol変更候補（context scope=PRODUCT-Q、unaffected_Q=original_Q）。candidate symbol=readValue、canonical owner=PRODUCT-P-owner、decision revision=decision-P@r1、visibility=internal、required/observed consumers=C1,C2、signature before/after一致（inputs=value_id; outputs=value; effects=[]; failure=not_found; state_transition=unchanged; call_graph=port.read; C1/C2 contract=value-read@r1）、evidence_basis=content、minimum change=symbol edge only、rollback=OBJ-P/ORACLE-Pを保持しoldLookupへ復帰。behavior invariantはORACLE-Pで値・failure・effects不変、必要時rollbackはOBJ-P/ORACLE-Pを保持してoldLookupへ戻す。",
-      "expected_result": "condition_results={\"canonical\":\"supported_synthetic_condition\",\"internal\":\"supported_synthetic_condition\",\"consumers\":\"supported_synthetic_condition\",\"signature:inputs\":\"supported_synthetic_condition\",\"signature:outputs\":\"supported_synthetic_condition\",\"signature:effects\":\"supported_synthetic_condition\",\"signature:failure\":\"supported_synthetic_condition\",\"signature:state_transition\":\"supported_synthetic_condition\",\"signature:call_graph\":\"supported_synthetic_condition\",\"signature:consumer_contract\":\"supported_synthetic_condition\",\"behavior_invariant\":\"supported_synthetic_condition\",\"minimum_transform\":\"supported_synthetic_condition\",\"rollback\":\"supported_synthetic_condition\",\"semantic_basis\":\"supported_synthetic_condition\",\"operation_boundary\":\"supported_synthetic_condition\"}; candidate_presentable=true（合成条件の部分結果。L3/L4 qualificationやrenameではない）。unaffected_Q=original_Q。実rename・DesignRefactor・CI・merge・authority変更・設計完了・受入はすべてfalse。",
+      "counterexample": "scope=PRODUCT-Q。",
+      "expected_result": "全条件supported（合成条件）、candidate_presentable=true。",
       "oracle_id": "HARNESS-L10-048-F03",
       "test_citation": null
     },
@@ -2074,8 +2074,8 @@
           "OBJ-P"
         ]
       },
-      "counterexample": "context scope=PRODUCT-P, unaffected_Q=original_Q; scope=PRODUCT-P, boundary=internal, evaluation_date=TBD; finding=(id=FIND-P, reason=role_unknown, impact=[OBJ-P], owner=PRODUCT-P-owner); exception={expiry=2030-02-01, owner=PRODUCT-P-owner, reason=役割確定まで既存利用を継続, scope=PRODUCT-P}; warning_requests_global_stop=false。",
-      "expected_result": "auto_rename=rejected; return_candidate=product_author; finding_retained=FIND-P; exception_result=unknown; local_continuation=false; global_stop=false。unaffected_Q=original_Q。実rename・DesignRefactor・CI・merge・authority変更・設計完了・受入はすべてfalse。",
+      "counterexample": "評価日=TBD。",
+      "expected_result": "例外: unknown；局所継続: false",
       "oracle_id": "HARNESS-L10-048-F04",
       "test_citation": null
     },
@@ -2088,8 +2088,8 @@
           "OBJ-P"
         ]
       },
-      "counterexample": "context scope=PRODUCT-P, unaffected_Q=original_Q; scope=PRODUCT-P, boundary=internal, evaluation_date=2030-01-01; finding=(id=FIND-P, reason=role_unknown, impact=[OBJ-P], owner=PRODUCT-P-owner); exception={expiry=unknown, owner=PRODUCT-P-owner, reason=役割確定まで既存利用を継続, scope=PRODUCT-P}; warning_requests_global_stop=false。",
-      "expected_result": "auto_rename=rejected; return_candidate=product_author; finding_retained=FIND-P; exception_result=unknown; local_continuation=false; global_stop=false。unaffected_Q=original_Q。実rename・DesignRefactor・CI・merge・authority変更・設計完了・受入はすべてfalse。",
+      "counterexample": "例外 期限=unknown。",
+      "expected_result": "例外: unknown；局所継続: false",
       "oracle_id": "HARNESS-L10-048-F04",
       "test_citation": null
     },
@@ -2102,8 +2102,8 @@
           "OBJ-P"
         ]
       },
-      "counterexample": "context scope=PRODUCT-P, unaffected_Q=original_Q; scope=PRODUCT-P, boundary=internal, evaluation_date=未提示(null); finding=(id=FIND-P, reason=role_unknown, impact=[OBJ-P], owner=PRODUCT-P-owner); exception={expiry=2030-02-01, owner=PRODUCT-P-owner, reason=役割確定まで既存利用を継続, scope=PRODUCT-P}; warning_requests_global_stop=false。",
-      "expected_result": "auto_rename=rejected; return_candidate=product_author; finding_retained=FIND-P; exception_result=unknown; local_continuation=false; global_stop=false。unaffected_Q=original_Q。実rename・DesignRefactor・CI・merge・authority変更・設計完了・受入はすべてfalse。",
+      "counterexample": "評価日=null。",
+      "expected_result": "例外: unknown；局所継続: false",
       "oracle_id": "HARNESS-L10-048-F04",
       "test_citation": null
     },
@@ -2116,8 +2116,8 @@
           "OBJ-P"
         ]
       },
-      "counterexample": "OBJ-Pのinternal symbol変更候補（context scope=PRODUCT-P、unaffected_Q=original_Q）。変更後signatureの0=TBD。変更前signatureの0=TBD。behavior invariantはORACLE-Pで値・failure・effects不変、必要時rollbackはOBJ-P/ORACLE-Pを保持してoldLookupへ戻す。",
-      "expected_result": "condition_results={\"canonical\":\"supported_synthetic_condition\",\"internal\":\"supported_synthetic_condition\",\"consumers\":\"supported_synthetic_condition\",\"signature:inputs\":\"unknown\",\"signature:outputs\":\"supported_synthetic_condition\",\"signature:effects\":\"supported_synthetic_condition\",\"signature:failure\":\"supported_synthetic_condition\",\"signature:state_transition\":\"supported_synthetic_condition\",\"signature:call_graph\":\"supported_synthetic_condition\",\"signature:consumer_contract\":\"supported_synthetic_condition\",\"behavior_invariant\":\"supported_synthetic_condition\",\"minimum_transform\":\"supported_synthetic_condition\",\"rollback\":\"supported_synthetic_condition\",\"semantic_basis\":\"supported_synthetic_condition\",\"operation_boundary\":\"supported_synthetic_condition\"}; candidate_presentable=false（合成条件の部分結果。L3/L4 qualificationやrenameではない）。unaffected_Q=original_Q。実rename・DesignRefactor・CI・merge・authority変更・設計完了・受入はすべてfalse。",
+      "counterexample": "変更後signature inputs=TBD。変更前signature inputs=TBD。",
+      "expected_result": "提示不可。signature:inputs: unknown",
       "oracle_id": "HARNESS-L10-048-F03",
       "test_citation": null
     },
@@ -2130,8 +2130,8 @@
           "OBJ-P"
         ]
       },
-      "counterexample": "OBJ-Pのinternal symbol変更候補（context scope=PRODUCT-P、unaffected_Q=original_Q）。変更後signatureの0=unknown。変更前signatureの0=unknown。behavior invariantはORACLE-Pで値・failure・effects不変、必要時rollbackはOBJ-P/ORACLE-Pを保持してoldLookupへ戻す。",
-      "expected_result": "condition_results={\"canonical\":\"supported_synthetic_condition\",\"internal\":\"supported_synthetic_condition\",\"consumers\":\"supported_synthetic_condition\",\"signature:inputs\":\"unknown\",\"signature:outputs\":\"supported_synthetic_condition\",\"signature:effects\":\"supported_synthetic_condition\",\"signature:failure\":\"supported_synthetic_condition\",\"signature:state_transition\":\"supported_synthetic_condition\",\"signature:call_graph\":\"supported_synthetic_condition\",\"signature:consumer_contract\":\"supported_synthetic_condition\",\"behavior_invariant\":\"supported_synthetic_condition\",\"minimum_transform\":\"supported_synthetic_condition\",\"rollback\":\"supported_synthetic_condition\",\"semantic_basis\":\"supported_synthetic_condition\",\"operation_boundary\":\"supported_synthetic_condition\"}; candidate_presentable=false（合成条件の部分結果。L3/L4 qualificationやrenameではない）。unaffected_Q=original_Q。実rename・DesignRefactor・CI・merge・authority変更・設計完了・受入はすべてfalse。",
+      "counterexample": "変更後signature inputs=unknown。変更前signature inputs=unknown。",
+      "expected_result": "提示不可。signature:inputs: unknown",
       "oracle_id": "HARNESS-L10-048-F03",
       "test_citation": null
     },
@@ -2144,8 +2144,8 @@
           "OBJ-P"
         ]
       },
-      "counterexample": "OBJ-Pのinternal symbol変更候補（context scope=PRODUCT-P、unaffected_Q=original_Q）。変更後signatureの0=TBD。変更前signatureの0=TBD。behavior invariantはORACLE-Pで値・failure・effects不変、必要時rollbackはOBJ-P/ORACLE-Pを保持してoldLookupへ戻す。",
-      "expected_result": "condition_results={\"canonical\":\"supported_synthetic_condition\",\"internal\":\"supported_synthetic_condition\",\"consumers\":\"supported_synthetic_condition\",\"signature:inputs\":\"supported_synthetic_condition\",\"signature:outputs\":\"unknown\",\"signature:effects\":\"supported_synthetic_condition\",\"signature:failure\":\"supported_synthetic_condition\",\"signature:state_transition\":\"supported_synthetic_condition\",\"signature:call_graph\":\"supported_synthetic_condition\",\"signature:consumer_contract\":\"supported_synthetic_condition\",\"behavior_invariant\":\"supported_synthetic_condition\",\"minimum_transform\":\"supported_synthetic_condition\",\"rollback\":\"supported_synthetic_condition\",\"semantic_basis\":\"supported_synthetic_condition\",\"operation_boundary\":\"supported_synthetic_condition\"}; candidate_presentable=false（合成条件の部分結果。L3/L4 qualificationやrenameではない）。unaffected_Q=original_Q。実rename・DesignRefactor・CI・merge・authority変更・設計完了・受入はすべてfalse。",
+      "counterexample": "変更後signature outputs=TBD。変更前signature outputs=TBD。",
+      "expected_result": "提示不可。signature:outputs: unknown",
       "oracle_id": "HARNESS-L10-048-F03",
       "test_citation": null
     },
@@ -2158,8 +2158,8 @@
           "OBJ-P"
         ]
       },
-      "counterexample": "OBJ-Pのinternal symbol変更候補（context scope=PRODUCT-P、unaffected_Q=original_Q）。変更後signatureの0=unknown。変更前signatureの0=unknown。behavior invariantはORACLE-Pで値・failure・effects不変、必要時rollbackはOBJ-P/ORACLE-Pを保持してoldLookupへ戻す。",
-      "expected_result": "condition_results={\"canonical\":\"supported_synthetic_condition\",\"internal\":\"supported_synthetic_condition\",\"consumers\":\"supported_synthetic_condition\",\"signature:inputs\":\"supported_synthetic_condition\",\"signature:outputs\":\"unknown\",\"signature:effects\":\"supported_synthetic_condition\",\"signature:failure\":\"supported_synthetic_condition\",\"signature:state_transition\":\"supported_synthetic_condition\",\"signature:call_graph\":\"supported_synthetic_condition\",\"signature:consumer_contract\":\"supported_synthetic_condition\",\"behavior_invariant\":\"supported_synthetic_condition\",\"minimum_transform\":\"supported_synthetic_condition\",\"rollback\":\"supported_synthetic_condition\",\"semantic_basis\":\"supported_synthetic_condition\",\"operation_boundary\":\"supported_synthetic_condition\"}; candidate_presentable=false（合成条件の部分結果。L3/L4 qualificationやrenameではない）。unaffected_Q=original_Q。実rename・DesignRefactor・CI・merge・authority変更・設計完了・受入はすべてfalse。",
+      "counterexample": "変更後signature outputs=unknown。変更前signature outputs=unknown。",
+      "expected_result": "提示不可。signature:outputs: unknown",
       "oracle_id": "HARNESS-L10-048-F03",
       "test_citation": null
     },
@@ -2172,8 +2172,8 @@
           "OBJ-P"
         ]
       },
-      "counterexample": "OBJ-Pのinternal symbol変更候補（context scope=PRODUCT-P、unaffected_Q=original_Q）。変更後signatureのeffects=[TBD]。変更前signatureのeffects=[TBD]。behavior invariantはORACLE-Pで値・failure・effects不変、必要時rollbackはOBJ-P/ORACLE-Pを保持してoldLookupへ戻す。",
-      "expected_result": "condition_results={\"canonical\":\"supported_synthetic_condition\",\"internal\":\"supported_synthetic_condition\",\"consumers\":\"supported_synthetic_condition\",\"signature:inputs\":\"supported_synthetic_condition\",\"signature:outputs\":\"supported_synthetic_condition\",\"signature:effects\":\"unknown\",\"signature:failure\":\"supported_synthetic_condition\",\"signature:state_transition\":\"supported_synthetic_condition\",\"signature:call_graph\":\"supported_synthetic_condition\",\"signature:consumer_contract\":\"supported_synthetic_condition\",\"behavior_invariant\":\"supported_synthetic_condition\",\"minimum_transform\":\"supported_synthetic_condition\",\"rollback\":\"supported_synthetic_condition\",\"semantic_basis\":\"supported_synthetic_condition\",\"operation_boundary\":\"supported_synthetic_condition\"}; candidate_presentable=false（合成条件の部分結果。L3/L4 qualificationやrenameではない）。unaffected_Q=original_Q。実rename・DesignRefactor・CI・merge・authority変更・設計完了・受入はすべてfalse。",
+      "counterexample": "変更後signature effects=TBD。変更前signature effects=TBD。",
+      "expected_result": "提示不可。signature:effects: unknown",
       "oracle_id": "HARNESS-L10-048-F03",
       "test_citation": null
     },
@@ -2186,8 +2186,8 @@
           "OBJ-P"
         ]
       },
-      "counterexample": "OBJ-Pのinternal symbol変更候補（context scope=PRODUCT-P、unaffected_Q=original_Q）。変更後signatureのeffects=[unknown]。変更前signatureのeffects=[unknown]。behavior invariantはORACLE-Pで値・failure・effects不変、必要時rollbackはOBJ-P/ORACLE-Pを保持してoldLookupへ戻す。",
-      "expected_result": "condition_results={\"canonical\":\"supported_synthetic_condition\",\"internal\":\"supported_synthetic_condition\",\"consumers\":\"supported_synthetic_condition\",\"signature:inputs\":\"supported_synthetic_condition\",\"signature:outputs\":\"supported_synthetic_condition\",\"signature:effects\":\"unknown\",\"signature:failure\":\"supported_synthetic_condition\",\"signature:state_transition\":\"supported_synthetic_condition\",\"signature:call_graph\":\"supported_synthetic_condition\",\"signature:consumer_contract\":\"supported_synthetic_condition\",\"behavior_invariant\":\"supported_synthetic_condition\",\"minimum_transform\":\"supported_synthetic_condition\",\"rollback\":\"supported_synthetic_condition\",\"semantic_basis\":\"supported_synthetic_condition\",\"operation_boundary\":\"supported_synthetic_condition\"}; candidate_presentable=false（合成条件の部分結果。L3/L4 qualificationやrenameではない）。unaffected_Q=original_Q。実rename・DesignRefactor・CI・merge・authority変更・設計完了・受入はすべてfalse。",
+      "counterexample": "変更後signature effects=unknown。変更前signature effects=unknown。",
+      "expected_result": "提示不可。signature:effects: unknown",
       "oracle_id": "HARNESS-L10-048-F03",
       "test_citation": null
     },
@@ -2200,8 +2200,8 @@
           "OBJ-P"
         ]
       },
-      "counterexample": "OBJ-Pのinternal symbol変更候補（context scope=PRODUCT-P、unaffected_Q=original_Q）。変更後signatureの0=TBD。変更前signatureの0=TBD。behavior invariantはORACLE-Pで値・failure・effects不変、必要時rollbackはOBJ-P/ORACLE-Pを保持してoldLookupへ戻す。",
-      "expected_result": "condition_results={\"canonical\":\"supported_synthetic_condition\",\"internal\":\"supported_synthetic_condition\",\"consumers\":\"supported_synthetic_condition\",\"signature:inputs\":\"supported_synthetic_condition\",\"signature:outputs\":\"supported_synthetic_condition\",\"signature:effects\":\"supported_synthetic_condition\",\"signature:failure\":\"unknown\",\"signature:state_transition\":\"supported_synthetic_condition\",\"signature:call_graph\":\"supported_synthetic_condition\",\"signature:consumer_contract\":\"supported_synthetic_condition\",\"behavior_invariant\":\"supported_synthetic_condition\",\"minimum_transform\":\"supported_synthetic_condition\",\"rollback\":\"supported_synthetic_condition\",\"semantic_basis\":\"supported_synthetic_condition\",\"operation_boundary\":\"supported_synthetic_condition\"}; candidate_presentable=false（合成条件の部分結果。L3/L4 qualificationやrenameではない）。unaffected_Q=original_Q。実rename・DesignRefactor・CI・merge・authority変更・設計完了・受入はすべてfalse。",
+      "counterexample": "変更後signature failure=TBD。変更前signature failure=TBD。",
+      "expected_result": "提示不可。signature:failure: unknown",
       "oracle_id": "HARNESS-L10-048-F03",
       "test_citation": null
     },
@@ -2214,8 +2214,8 @@
           "OBJ-P"
         ]
       },
-      "counterexample": "OBJ-Pのinternal symbol変更候補（context scope=PRODUCT-P、unaffected_Q=original_Q）。変更後signatureの0=unknown。変更前signatureの0=unknown。behavior invariantはORACLE-Pで値・failure・effects不変、必要時rollbackはOBJ-P/ORACLE-Pを保持してoldLookupへ戻す。",
-      "expected_result": "condition_results={\"canonical\":\"supported_synthetic_condition\",\"internal\":\"supported_synthetic_condition\",\"consumers\":\"supported_synthetic_condition\",\"signature:inputs\":\"supported_synthetic_condition\",\"signature:outputs\":\"supported_synthetic_condition\",\"signature:effects\":\"supported_synthetic_condition\",\"signature:failure\":\"unknown\",\"signature:state_transition\":\"supported_synthetic_condition\",\"signature:call_graph\":\"supported_synthetic_condition\",\"signature:consumer_contract\":\"supported_synthetic_condition\",\"behavior_invariant\":\"supported_synthetic_condition\",\"minimum_transform\":\"supported_synthetic_condition\",\"rollback\":\"supported_synthetic_condition\",\"semantic_basis\":\"supported_synthetic_condition\",\"operation_boundary\":\"supported_synthetic_condition\"}; candidate_presentable=false（合成条件の部分結果。L3/L4 qualificationやrenameではない）。unaffected_Q=original_Q。実rename・DesignRefactor・CI・merge・authority変更・設計完了・受入はすべてfalse。",
+      "counterexample": "変更後signature failure=unknown。変更前signature failure=unknown。",
+      "expected_result": "提示不可。signature:failure: unknown",
       "oracle_id": "HARNESS-L10-048-F03",
       "test_citation": null
     },
@@ -2228,8 +2228,8 @@
           "OBJ-P"
         ]
       },
-      "counterexample": "OBJ-Pのinternal symbol変更候補（context scope=PRODUCT-P、unaffected_Q=original_Q）。変更後signatureのstate transition=[TBD]。変更前signatureのstate transition=[TBD]。behavior invariantはORACLE-Pで値・failure・effects不変、必要時rollbackはOBJ-P/ORACLE-Pを保持してoldLookupへ戻す。",
-      "expected_result": "condition_results={\"canonical\":\"supported_synthetic_condition\",\"internal\":\"supported_synthetic_condition\",\"consumers\":\"supported_synthetic_condition\",\"signature:inputs\":\"supported_synthetic_condition\",\"signature:outputs\":\"supported_synthetic_condition\",\"signature:effects\":\"supported_synthetic_condition\",\"signature:failure\":\"supported_synthetic_condition\",\"signature:state_transition\":\"unknown\",\"signature:call_graph\":\"supported_synthetic_condition\",\"signature:consumer_contract\":\"supported_synthetic_condition\",\"behavior_invariant\":\"supported_synthetic_condition\",\"minimum_transform\":\"supported_synthetic_condition\",\"rollback\":\"supported_synthetic_condition\",\"semantic_basis\":\"supported_synthetic_condition\",\"operation_boundary\":\"supported_synthetic_condition\"}; candidate_presentable=false（合成条件の部分結果。L3/L4 qualificationやrenameではない）。unaffected_Q=original_Q。実rename・DesignRefactor・CI・merge・authority変更・設計完了・受入はすべてfalse。",
+      "counterexample": "変更後signature state transition=TBD。変更前signature state transition=TBD。",
+      "expected_result": "提示不可。signature:state_transition: unknown",
       "oracle_id": "HARNESS-L10-048-F03",
       "test_citation": null
     },
@@ -2242,8 +2242,8 @@
           "OBJ-P"
         ]
       },
-      "counterexample": "OBJ-Pのinternal symbol変更候補（context scope=PRODUCT-P、unaffected_Q=original_Q）。変更後signatureのstate transition=[unknown]。変更前signatureのstate transition=[unknown]。behavior invariantはORACLE-Pで値・failure・effects不変、必要時rollbackはOBJ-P/ORACLE-Pを保持してoldLookupへ戻す。",
-      "expected_result": "condition_results={\"canonical\":\"supported_synthetic_condition\",\"internal\":\"supported_synthetic_condition\",\"consumers\":\"supported_synthetic_condition\",\"signature:inputs\":\"supported_synthetic_condition\",\"signature:outputs\":\"supported_synthetic_condition\",\"signature:effects\":\"supported_synthetic_condition\",\"signature:failure\":\"supported_synthetic_condition\",\"signature:state_transition\":\"unknown\",\"signature:call_graph\":\"supported_synthetic_condition\",\"signature:consumer_contract\":\"supported_synthetic_condition\",\"behavior_invariant\":\"supported_synthetic_condition\",\"minimum_transform\":\"supported_synthetic_condition\",\"rollback\":\"supported_synthetic_condition\",\"semantic_basis\":\"supported_synthetic_condition\",\"operation_boundary\":\"supported_synthetic_condition\"}; candidate_presentable=false（合成条件の部分結果。L3/L4 qualificationやrenameではない）。unaffected_Q=original_Q。実rename・DesignRefactor・CI・merge・authority変更・設計完了・受入はすべてfalse。",
+      "counterexample": "変更後signature state transition=unknown。変更前signature state transition=unknown。",
+      "expected_result": "提示不可。signature:state_transition: unknown",
       "oracle_id": "HARNESS-L10-048-F03",
       "test_citation": null
     },
@@ -2256,8 +2256,8 @@
           "OBJ-P"
         ]
       },
-      "counterexample": "OBJ-Pのinternal symbol変更候補（context scope=PRODUCT-P、unaffected_Q=original_Q）。変更後signatureの0=TBD。変更前signatureの0=TBD。behavior invariantはORACLE-Pで値・failure・effects不変、必要時rollbackはOBJ-P/ORACLE-Pを保持してoldLookupへ戻す。",
-      "expected_result": "condition_results={\"canonical\":\"supported_synthetic_condition\",\"internal\":\"supported_synthetic_condition\",\"consumers\":\"supported_synthetic_condition\",\"signature:inputs\":\"supported_synthetic_condition\",\"signature:outputs\":\"supported_synthetic_condition\",\"signature:effects\":\"supported_synthetic_condition\",\"signature:failure\":\"supported_synthetic_condition\",\"signature:state_transition\":\"supported_synthetic_condition\",\"signature:call_graph\":\"unknown\",\"signature:consumer_contract\":\"supported_synthetic_condition\",\"behavior_invariant\":\"supported_synthetic_condition\",\"minimum_transform\":\"supported_synthetic_condition\",\"rollback\":\"supported_synthetic_condition\",\"semantic_basis\":\"supported_synthetic_condition\",\"operation_boundary\":\"supported_synthetic_condition\"}; candidate_presentable=false（合成条件の部分結果。L3/L4 qualificationやrenameではない）。unaffected_Q=original_Q。実rename・DesignRefactor・CI・merge・authority変更・設計完了・受入はすべてfalse。",
+      "counterexample": "変更後signature call graph=TBD。変更前signature call graph=TBD。",
+      "expected_result": "提示不可。signature:call_graph: unknown",
       "oracle_id": "HARNESS-L10-048-F03",
       "test_citation": null
     },
@@ -2270,8 +2270,8 @@
           "OBJ-P"
         ]
       },
-      "counterexample": "OBJ-Pのinternal symbol変更候補（context scope=PRODUCT-P、unaffected_Q=original_Q）。変更後signatureの0=unknown。変更前signatureの0=unknown。behavior invariantはORACLE-Pで値・failure・effects不変、必要時rollbackはOBJ-P/ORACLE-Pを保持してoldLookupへ戻す。",
-      "expected_result": "condition_results={\"canonical\":\"supported_synthetic_condition\",\"internal\":\"supported_synthetic_condition\",\"consumers\":\"supported_synthetic_condition\",\"signature:inputs\":\"supported_synthetic_condition\",\"signature:outputs\":\"supported_synthetic_condition\",\"signature:effects\":\"supported_synthetic_condition\",\"signature:failure\":\"supported_synthetic_condition\",\"signature:state_transition\":\"supported_synthetic_condition\",\"signature:call_graph\":\"unknown\",\"signature:consumer_contract\":\"supported_synthetic_condition\",\"behavior_invariant\":\"supported_synthetic_condition\",\"minimum_transform\":\"supported_synthetic_condition\",\"rollback\":\"supported_synthetic_condition\",\"semantic_basis\":\"supported_synthetic_condition\",\"operation_boundary\":\"supported_synthetic_condition\"}; candidate_presentable=false（合成条件の部分結果。L3/L4 qualificationやrenameではない）。unaffected_Q=original_Q。実rename・DesignRefactor・CI・merge・authority変更・設計完了・受入はすべてfalse。",
+      "counterexample": "変更後signature call graph=unknown。変更前signature call graph=unknown。",
+      "expected_result": "提示不可。signature:call_graph: unknown",
       "oracle_id": "HARNESS-L10-048-F03",
       "test_citation": null
     },
@@ -2284,8 +2284,8 @@
           "OBJ-P"
         ]
       },
-      "counterexample": "OBJ-Pのinternal symbol変更候補（context scope=PRODUCT-P、unaffected_Q=original_Q）。変更後signatureのconsumer contract=[TBD]。変更前signatureのconsumer contract=[TBD]。behavior invariantはORACLE-Pで値・failure・effects不変、必要時rollbackはOBJ-P/ORACLE-Pを保持してoldLookupへ戻す。",
-      "expected_result": "condition_results={\"canonical\":\"supported_synthetic_condition\",\"internal\":\"supported_synthetic_condition\",\"consumers\":\"supported_synthetic_condition\",\"signature:inputs\":\"supported_synthetic_condition\",\"signature:outputs\":\"supported_synthetic_condition\",\"signature:effects\":\"supported_synthetic_condition\",\"signature:failure\":\"supported_synthetic_condition\",\"signature:state_transition\":\"supported_synthetic_condition\",\"signature:call_graph\":\"supported_synthetic_condition\",\"signature:consumer_contract\":\"unknown\",\"behavior_invariant\":\"supported_synthetic_condition\",\"minimum_transform\":\"supported_synthetic_condition\",\"rollback\":\"supported_synthetic_condition\",\"semantic_basis\":\"supported_synthetic_condition\",\"operation_boundary\":\"supported_synthetic_condition\"}; candidate_presentable=false（合成条件の部分結果。L3/L4 qualificationやrenameではない）。unaffected_Q=original_Q。実rename・DesignRefactor・CI・merge・authority変更・設計完了・受入はすべてfalse。",
+      "counterexample": "変更後signature consumer contract=TBD。変更前signature consumer contract=TBD。",
+      "expected_result": "提示不可。signature:consumer_contract: unknown",
       "oracle_id": "HARNESS-L10-048-F03",
       "test_citation": null
     },
@@ -2298,8 +2298,8 @@
           "OBJ-P"
         ]
       },
-      "counterexample": "OBJ-Pのinternal symbol変更候補（context scope=PRODUCT-P、unaffected_Q=original_Q）。変更後signatureのconsumer contract=[unknown]。変更前signatureのconsumer contract=[unknown]。behavior invariantはORACLE-Pで値・failure・effects不変、必要時rollbackはOBJ-P/ORACLE-Pを保持してoldLookupへ戻す。",
-      "expected_result": "condition_results={\"canonical\":\"supported_synthetic_condition\",\"internal\":\"supported_synthetic_condition\",\"consumers\":\"supported_synthetic_condition\",\"signature:inputs\":\"supported_synthetic_condition\",\"signature:outputs\":\"supported_synthetic_condition\",\"signature:effects\":\"supported_synthetic_condition\",\"signature:failure\":\"supported_synthetic_condition\",\"signature:state_transition\":\"supported_synthetic_condition\",\"signature:call_graph\":\"supported_synthetic_condition\",\"signature:consumer_contract\":\"unknown\",\"behavior_invariant\":\"supported_synthetic_condition\",\"minimum_transform\":\"supported_synthetic_condition\",\"rollback\":\"supported_synthetic_condition\",\"semantic_basis\":\"supported_synthetic_condition\",\"operation_boundary\":\"supported_synthetic_condition\"}; candidate_presentable=false（合成条件の部分結果。L3/L4 qualificationやrenameではない）。unaffected_Q=original_Q。実rename・DesignRefactor・CI・merge・authority変更・設計完了・受入はすべてfalse。",
+      "counterexample": "変更後signature consumer contract=unknown。変更前signature consumer contract=unknown。",
+      "expected_result": "提示不可。signature:consumer_contract: unknown",
       "oracle_id": "HARNESS-L10-048-F03",
       "test_citation": null
     },
@@ -2312,8 +2312,8 @@
           "OBJ-P"
         ]
       },
-      "counterexample": "OBJ-Pのinternal symbol変更候補（context scope=PRODUCT-P、unaffected_Q=original_Q）。変更後signatureの0=unknown。変更後signatureの0=TBD。変更前signatureの0=unknown。変更前signatureの0=TBD。behavior invariantはORACLE-Pで値・failure・effects不変、必要時rollbackはOBJ-P/ORACLE-Pを保持してoldLookupへ戻す。",
-      "expected_result": "condition_results={\"canonical\":\"supported_synthetic_condition\",\"internal\":\"supported_synthetic_condition\",\"consumers\":\"supported_synthetic_condition\",\"signature:inputs\":\"unknown\",\"signature:outputs\":\"supported_synthetic_condition\",\"signature:effects\":\"supported_synthetic_condition\",\"signature:failure\":\"unknown\",\"signature:state_transition\":\"supported_synthetic_condition\",\"signature:call_graph\":\"supported_synthetic_condition\",\"signature:consumer_contract\":\"supported_synthetic_condition\",\"behavior_invariant\":\"supported_synthetic_condition\",\"minimum_transform\":\"supported_synthetic_condition\",\"rollback\":\"supported_synthetic_condition\",\"semantic_basis\":\"supported_synthetic_condition\",\"operation_boundary\":\"supported_synthetic_condition\"}; candidate_presentable=false（合成条件の部分結果。L3/L4 qualificationやrenameではない）。unaffected_Q=original_Q。実rename・DesignRefactor・CI・merge・authority変更・設計完了・受入はすべてfalse。",
+      "counterexample": "変更後signature failure=unknown。変更後signature inputs=TBD。変更前signature failure=unknown。変更前signature inputs=TBD。",
+      "expected_result": "提示不可。signature:inputs: unknown；signature:failure: unknown",
       "oracle_id": "HARNESS-L10-048-F03",
       "test_citation": null
     },
@@ -2326,8 +2326,8 @@
           "OBJ-P"
         ]
       },
-      "counterexample": "OBJ-Pのinternal symbol変更候補（context scope=PRODUCT-P、unaffected_Q=original_Q）。変更後signatureの0=different-known-value。変更前signatureの0=TBD。behavior invariantはORACLE-Pで値・failure・effects不変、必要時rollbackはOBJ-P/ORACLE-Pを保持してoldLookupへ戻す。",
-      "expected_result": "condition_results={\"canonical\":\"supported_synthetic_condition\",\"internal\":\"supported_synthetic_condition\",\"consumers\":\"supported_synthetic_condition\",\"signature:inputs\":\"supported_synthetic_condition\",\"signature:outputs\":\"unknown\",\"signature:effects\":\"supported_synthetic_condition\",\"signature:failure\":\"supported_synthetic_condition\",\"signature:state_transition\":\"supported_synthetic_condition\",\"signature:call_graph\":\"supported_synthetic_condition\",\"signature:consumer_contract\":\"supported_synthetic_condition\",\"behavior_invariant\":\"supported_synthetic_condition\",\"minimum_transform\":\"supported_synthetic_condition\",\"rollback\":\"supported_synthetic_condition\",\"semantic_basis\":\"supported_synthetic_condition\",\"operation_boundary\":\"supported_synthetic_condition\"}; candidate_presentable=false（合成条件の部分結果。L3/L4 qualificationやrenameではない）。unaffected_Q=original_Q。実rename・DesignRefactor・CI・merge・authority変更・設計完了・受入はすべてfalse。",
+      "counterexample": "変更後signature outputs=different-known-value。変更前signature outputs=TBD。",
+      "expected_result": "提示不可。signature:outputs: unknown",
       "oracle_id": "HARNESS-L10-048-F03",
       "test_citation": null
     },
@@ -2340,8 +2340,8 @@
           "OBJ-P"
         ]
       },
-      "counterexample": "OBJ-Pのinternal symbol変更候補（context scope=PRODUCT-P、unaffected_Q=original_Q）。変更後signatureの0=[known, unknown]。変更前signatureの0=[known, unknown]。behavior invariantはORACLE-Pで値・failure・effects不変、必要時rollbackはOBJ-P/ORACLE-Pを保持してoldLookupへ戻す。",
-      "expected_result": "condition_results={\"canonical\":\"supported_synthetic_condition\",\"internal\":\"supported_synthetic_condition\",\"consumers\":\"supported_synthetic_condition\",\"signature:inputs\":\"supported_synthetic_condition\",\"signature:outputs\":\"supported_synthetic_condition\",\"signature:effects\":\"supported_synthetic_condition\",\"signature:failure\":\"supported_synthetic_condition\",\"signature:state_transition\":\"supported_synthetic_condition\",\"signature:call_graph\":\"unknown\",\"signature:consumer_contract\":\"supported_synthetic_condition\",\"behavior_invariant\":\"supported_synthetic_condition\",\"minimum_transform\":\"supported_synthetic_condition\",\"rollback\":\"supported_synthetic_condition\",\"semantic_basis\":\"supported_synthetic_condition\",\"operation_boundary\":\"supported_synthetic_condition\"}; candidate_presentable=false（合成条件の部分結果。L3/L4 qualificationやrenameではない）。unaffected_Q=original_Q。実rename・DesignRefactor・CI・merge・authority変更・設計完了・受入はすべてfalse。",
+      "counterexample": "変更後signature call graph=known・unknown。変更前signature call graph=known・unknown。",
+      "expected_result": "提示不可。signature:call_graph: unknown",
       "oracle_id": "HARNESS-L10-048-F03",
       "test_citation": null
     },
@@ -2354,8 +2354,8 @@
           "OBJ-P"
         ]
       },
-      "counterexample": "OBJ-Pのinternal symbol変更候補（context scope=PRODUCT-P、unaffected_Q=original_Q）。変更後signatureのC1=欠落。変更後signatureのC2=欠落。変更後signatureのopaque-node={payload=[TBD]}。変更前signatureのC1=欠落。変更前signatureのC2=欠落。変更前signatureのopaque-node={payload=[TBD]}。behavior invariantはORACLE-Pで値・failure・effects不変、必要時rollbackはOBJ-P/ORACLE-Pを保持してoldLookupへ戻す。",
-      "expected_result": "condition_results={\"canonical\":\"supported_synthetic_condition\",\"internal\":\"supported_synthetic_condition\",\"consumers\":\"supported_synthetic_condition\",\"signature:inputs\":\"supported_synthetic_condition\",\"signature:outputs\":\"supported_synthetic_condition\",\"signature:effects\":\"supported_synthetic_condition\",\"signature:failure\":\"supported_synthetic_condition\",\"signature:state_transition\":\"supported_synthetic_condition\",\"signature:call_graph\":\"supported_synthetic_condition\",\"signature:consumer_contract\":\"unknown\",\"behavior_invariant\":\"supported_synthetic_condition\",\"minimum_transform\":\"supported_synthetic_condition\",\"rollback\":\"supported_synthetic_condition\",\"semantic_basis\":\"supported_synthetic_condition\",\"operation_boundary\":\"supported_synthetic_condition\"}; candidate_presentable=false（合成条件の部分結果。L3/L4 qualificationやrenameではない）。unaffected_Q=original_Q。実rename・DesignRefactor・CI・merge・authority変更・設計完了・受入はすべてfalse。",
+      "counterexample": "変更後signature consumer contract C1が未提示。変更後signature consumer contract C2が未提示。変更後signature consumer contract opaque-node payload=TBD。変更前signature consumer contract C1が未提示。変更前signature consumer contract C2が未提示。変更前signature consumer contract opaque-node payload=TBD。",
+      "expected_result": "提示不可。signature:consumer_contract: unknown",
       "oracle_id": "HARNESS-L10-048-F03",
       "test_citation": null
     },
@@ -2368,8 +2368,8 @@
           "OBJ-P"
         ]
       },
-      "counterexample": "OBJ-Pのinternal symbol変更候補（context scope=PRODUCT-P、unaffected_Q=original_Q）。変更後signatureのC1=欠落。変更後signatureのC2=欠落。変更後signatureのTBD=literal-key-known-value。変更前signatureのC1=欠落。変更前signatureのC2=欠落。変更前signatureのTBD=literal-key-known-value。behavior invariantはORACLE-Pで値・failure・effects不変、必要時rollbackはOBJ-P/ORACLE-Pを保持してoldLookupへ戻す。",
-      "expected_result": "condition_results={\"canonical\":\"supported_synthetic_condition\",\"internal\":\"supported_synthetic_condition\",\"consumers\":\"supported_synthetic_condition\",\"signature:inputs\":\"supported_synthetic_condition\",\"signature:outputs\":\"supported_synthetic_condition\",\"signature:effects\":\"supported_synthetic_condition\",\"signature:failure\":\"supported_synthetic_condition\",\"signature:state_transition\":\"supported_synthetic_condition\",\"signature:call_graph\":\"supported_synthetic_condition\",\"signature:consumer_contract\":\"supported_synthetic_condition\",\"behavior_invariant\":\"supported_synthetic_condition\",\"minimum_transform\":\"supported_synthetic_condition\",\"rollback\":\"supported_synthetic_condition\",\"semantic_basis\":\"supported_synthetic_condition\",\"operation_boundary\":\"supported_synthetic_condition\"}; candidate_presentable=true（合成条件の部分結果。L3/L4 qualificationやrenameではない）。unaffected_Q=original_Q。実rename・DesignRefactor・CI・merge・authority変更・設計完了・受入はすべてfalse。",
+      "counterexample": "変更後signature consumer contract C1が未提示。変更後signature consumer contract C2が未提示。変更後signature consumer contract TBD=literal-key-known-value。変更前signature consumer contract C1が未提示。変更前signature consumer contract C2が未提示。変更前signature consumer contract TBD=literal-key-known-value。",
+      "expected_result": "全条件supported（合成条件）、candidate_presentable=true。",
       "oracle_id": "HARNESS-L10-048-F03",
       "test_citation": null
     },
@@ -2383,8 +2383,8 @@
           "OBJ-R"
         ]
       },
-      "counterexample": "context scope=PRODUCT-P, unaffected_Q=original_Q。role vocabulary=[Entity, ValueObject, Aggregate, DomainService, Policy, Specification, Command, Query, DomainEvent, Receipt, Port, Adapter, Repository]。照合対象: OBJ-P（name=lookup, declared_role=Query, meaning=TBD, role_basis=読み取り操作, consumers=[C1], exception=未提示(null)）; OBJ-R（name=lookup, declared_role=Repository, meaning=永続objectの取得, role_basis=永続化境界, consumers=[C2], exception=未提示(null)）。evaluation_date=2030-01-01。",
-      "expected_result": "対象別結果: OBJ-P=missing_target_meaning; OBJ-R=candidate_only:Repository。canonical決定は本照合では行わない。unaffected_Q=original_Q。実rename・DesignRefactor・CI・merge・authority変更・設計完了・受入はすべてfalse。",
+      "counterexample": "OBJ-Pの意味=TBD。",
+      "expected_result": "OBJ-P: missing_target_meaning；OBJ-R: candidate_only:Repository",
       "oracle_id": "HARNESS-L10-048-F01",
       "test_citation": null
     }
