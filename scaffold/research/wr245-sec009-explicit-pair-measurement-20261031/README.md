@@ -12,7 +12,7 @@
 
 QA §3に合わせるにはL4 `failure_classifications`のsource marker・親reverse link、L9 class tableと283件（8 positive・275 assigned negative）のintegration indexが要ります。L8から現L9 nested pathへのconsumer pointerは830件、L4 nested class pointerはL8から308件、L9から308件です。nested L9ケースをflatten/撤去するとL8の830 current-revision pointerが切れます。
 
-そこで測定用draftはnested L9 case payloadを残し、L9にID・state・contract・class refからなる283行のindexを作ります（2 ambiguousは元nested inventoryとauditに残してexplicit class indexから除外）。L4はtop-level `failure_classifications`をexplicit sourceとして宣言し、class IDを維持したまま`code`を既存`expected_classification`値へ写し、各contractに逆linkを追加します。L4 nested class payloadは変更しないため、既存pointer targetはL8 308/308、L9 308/308で同じ型・値を保ちます。L9の既存期待値も変更せず、新indexは元caseへのpointerを持ちます。draftは`/tmp/wr245-proposed-l4-preserve.json`、`/tmp/wr245-proposed-l9.json`です。
+そこで測定用draftはnested L9 case payloadを残し、L9にID・state・contract・class refからなる283行のindexを作ります（2 ambiguousは元nested inventoryとauditに残してexplicit class indexから除外）。L4はtop-level `failure_classifications`をexplicit sourceとして宣言し、class IDを維持したまま`code`を既存`expected_classification`値へ写し、各contractに逆linkを追加します。L4 nested class payloadは変更しないため、既存pointer targetはL8 308/308、L9 308/308で同じ型・値を保ちます。L9の既存期待値も変更せず、新indexは元caseへのpointerを持ちます。draft bytesは`checker-trials/inputs/l4-proposed-pr-a.json`、`checker-trials/inputs/l9-proposed-pr-a.json`として収録しました。PR-B overlayのL5/L8/L9試行入力も同じ`checker-trials/inputs/`に収録しています。
 
 RFC6901でL8とL9からL4 nested分類へ向く各308 pointerを全件解決しました。提案L4のnested payloadは元値・型が各308/308で完全一致し、必要fieldも直接残ります。nested分類行に`class_id`/`id`が無いため、checker上はtop-level 30 `failure_classifications`だけが明示class sourceになります。
 
@@ -37,3 +37,10 @@ PR-B相当のL5/L8 draftを重ねるchecker試行では、L8/L9 explicit index�
 `multi-contract-residual-audit.json` は、71件それぞれのcase/source-input pointer、実入力のfinding pointerと値、L9 expectedの軸、L3/L10/L4各対象のID・pointer・意味、return owner、PR-Bで推測割当をしない扱いを記録します。28正例は全5 recipientを通る横断正例として保持し、43負例はevent identity 21件、expected identity 20件、trigger 1件、phase境界1件の個別値を記録しています。2 ambiguousもfinding値、戻り先、PR-B dispositionを別行で保持します。
 
 `python3 validate_wr245_residual_audit.py` は元fixtureのGit履歴を読み、全73件のsource ID/pointer、実入力値とfinding、L3/L10/L4 crosswalk、return owner、PR-B dispositionを照合します。class割当や期待値は生成しません。
+
+
+## PR #3992 R1訂正とchecker再現
+
+R1 F1のdigest転記訂正は`r1-correction.json`に追記しました。`measurement.json`の当時固定された値は書き換えず、誤値・正値・固定blind bytesのdigestを併記し、materialization validatorが訂正値とbytesを照合します。
+
+R1 F2向けのchecker trial入力、基底L5/L8 source revision/SHA、checker source SHA、保存report、再実行scriptは`checker-trials/`にあります。`python3 checker-trials/replay_checker_trials.py`でPR-A中間FAIL 438件（matched 0）とPR-B shape overlayのmatched 275（failure 0）を再現・照合します。PR-B試行ではL4 `code` 30件とL5 `code` 30件を安定IDから既存expected outcome値へ写しています。これはchecker形状の測定結果であり、formal L4/L5の意味承認や変更許可を示しません。R1の設計判断は安定`class_id`/rule `id`を保ち`code`を既存expected outcomeへ揃える downstream schema resolutionをAIが別途進められるとしています。既存試行draftは承認済みformal変更ではありません。

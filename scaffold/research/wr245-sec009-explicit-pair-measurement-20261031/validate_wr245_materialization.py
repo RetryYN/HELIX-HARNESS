@@ -22,6 +22,7 @@ INPUTS = HERE / "wr245-unlabeled-inputs-fixed.json"
 REFERENCES = HERE / "wr245-phase-reference-inputs-fixed.json"
 SOURCE_INDEX = HERE / "wr245-input-source-index.json"
 REFERENCE_INDEX = HERE / "wr245-reference-source-index.json"
+R1_CORRECTION = HERE / "r1-correction.json"
 POSTFREEZE = HERE / "wr245-postfreeze-comparison.json"
 MEASUREMENT = HERE / "measurement.json"
 
@@ -115,6 +116,19 @@ def main() -> int:
         actual = raw_sha(path.read_bytes())
         if actual != expected:
             fail(f"{path.name} SHA-256 mismatch: {actual}")
+
+    correction = json.loads(R1_CORRECTION.read_bytes())
+    measurement = json.loads(MEASUREMENT.read_bytes())
+    correction_field = correction["corrected_field"]
+    if correction_field.get("pointer") != "/independent_derivation/sha256":
+        fail("R1 correction targets an unexpected measurement field")
+    if measurement["independent_derivation"]["sha256"] != correction_field.get("as_committed_value"):
+        fail("historical measurement digest differs from the recorded R1 old value")
+    fixed_bytes_sha = raw_sha(BLIND.read_bytes())
+    if correction_field.get("evidence_sha256") != fixed_bytes_sha or correction_field.get("correct_value") != fixed_bytes_sha:
+        fail("R1 corrected digest does not match fixed blind bytes")
+    if correction_field.get("evidence_bytes") != "scaffold/research/wr245-sec009-explicit-pair-measurement-20261031/wr245-casewise-blind-fixed.json":
+        fail("R1 correction points to unexpected fixed blind evidence")
 
     source_bytes = git_blob(SOURCE_REVISION, SOURCE_PATH)
     if raw_sha(source_bytes) != SOURCE_SHA256:
@@ -269,7 +283,7 @@ def main() -> int:
         fail("postfreeze match count does not report 245 matches")
 
     replay_historic_patch()
-    print("PASS: fixed blind SHA, input/reference SHA, source history, 245 source pointers, four historical phase references, RFC 6902 context copies, 245 fixed-blind/measurement comparisons, and source assignment verification")
+    print("PASS: fixed blind SHA, R1 corrected digest field, input/reference SHA, source history, 245 source pointers, four historical phase references, RFC 6902 context copies, 245 fixed-blind/measurement comparisons, and source assignment verification")
     print("BOUNDARY: validator does not derive class, expected outcome, or existing assignment")
     return 0
 

@@ -79,7 +79,10 @@
       "L8/L9 nested case inventory exact ID bijection and contract/population split",
       "QA §3 explicit schema arrays and same-layer class marker presence measured separately",
       "source-only before/after SHA-256 equality for L3/L4/L8/L9/L10 and operating references",
-      "71 row-wise multi-contract and two ambiguous audit rows: source input/finding pointers and values, L3/L10/L4 target crosswalk, return owner, and PR-B disposition checked by static validator"
+      "71 row-wise multi-contract and two ambiguous audit rows: source input/finding pointers and values, L3/L10/L4 target crosswalk, return owner, and PR-B disposition checked by static validator",
+      "PR #3992 R1 F1 correction artifact records the as-committed measurement SHA typo and correct fixed-blind SHA; validator checks corrected field against fixed blind bytes without rewriting measurement.json",
+      "PR #3992 R1 F2 checker-trial inputs and reports are stored in scaffold; replay script verifies base source/checker/input SHAs and reproduces PR-A 438 failures plus PR-B shape-only matched 275",
+      "PR-B checker-shape PASS includes 30 L4 and 30 L5 code remaps and is not semantic approval or authorization for formal edits"
     ],
     "negative_cases": [
       "Do not report all 275 rows as blind matches; the combined reused population contains one frozen WR236 mismatch.",
@@ -142,6 +145,16 @@
     "scaffold/research/wr245-sec009-explicit-pair-measurement-20261031/wr245-postfreeze-comparison.json",
     "scaffold/research/wr245-sec009-explicit-pair-measurement-20261031/validate_wr245_materialization.py",
     "scaffold/research/wr245-sec009-explicit-pair-measurement-20261031/multi-contract-residual-audit.json",
-    "scaffold/research/wr245-sec009-explicit-pair-measurement-20261031/validate_wr245_residual_audit.py"
+    "scaffold/research/wr245-sec009-explicit-pair-measurement-20261031/validate_wr245_residual_audit.py",
+    "scaffold/research/wr245-sec009-explicit-pair-measurement-20261031/r1-correction.json",
+    "scaffold/research/wr245-sec009-explicit-pair-measurement-20261031/checker-trials/trial-manifest.json",
+    "scaffold/research/wr245-sec009-explicit-pair-measurement-20261031/checker-trials/replay_checker_trials.py",
+    "scaffold/research/wr245-sec009-explicit-pair-measurement-20261031/checker-trials/inputs/l4-proposed-pr-a.json",
+    "scaffold/research/wr245-sec009-explicit-pair-measurement-20261031/checker-trials/inputs/l9-proposed-pr-a.json",
+    "scaffold/research/wr245-sec009-explicit-pair-measurement-20261031/checker-trials/inputs/l5-probe-pr-b.json",
+    "scaffold/research/wr245-sec009-explicit-pair-measurement-20261031/checker-trials/inputs/l8-probe-pr-b.json",
+    "scaffold/research/wr245-sec009-explicit-pair-measurement-20261031/checker-trials/inputs/l9-probe-pr-b.json",
+    "scaffold/research/wr245-sec009-explicit-pair-measurement-20261031/checker-trials/reports/pr-a-check-child-report.json",
+    "scaffold/research/wr245-sec009-explicit-pair-measurement-20261031/checker-trials/reports/pr-b-overlay-check-child-report.json"
   ]
 }
