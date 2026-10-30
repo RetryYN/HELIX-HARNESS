@@ -37,6 +37,11 @@
       "path": "scaffold/tools/design_verification_checker.py",
       "sha256": "cfd12c5bc4a1dd45351858488b476af0025d35deca7027da35bb1373818b129d",
       "note": "casewise L4/L9/L5/L8照合とcheck-childの静的checker。アルゴリズム実行ではない。"
+    },
+    {
+      "path": "scaffold/research/wr206-tdd-flow-neg-4way-pr-a-20261031/README.md",
+      "sha256": "d5d227bc777b2161c10f470bbd9c80daa6c73d58398c382d99fcdf8cf37825ee",
+      "note": "source・照合範囲・分類理由・静的検証結果を含む現行レビュー証跡のpin。"
     }
   ],
   "role": "WR206 PR-AでL4/L9の28既存negative caseに分類属性とsource理由を対応づけ、調査履歴と限界をレビュー可能に記録する。",
