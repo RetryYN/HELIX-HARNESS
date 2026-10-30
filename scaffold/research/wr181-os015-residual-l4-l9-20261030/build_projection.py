@@ -34,7 +34,7 @@ def main():
     assert sha(base_bytes(L8))==m['source_revisions']['L8_sha256']
     assert sha(base_bytes(L9))==m['source_revisions']['L9_sha256']
     classes=m['classes']
-    assert len(classes)==17 and sum(bool(c['is_new']) for c in classes)==15
+    assert len(classes)==20 and sum(bool(c['is_new']) for c in classes)==18
     all_cases=[cid for c in classes for cid in c['case_ids']]
     assert len(all_cases)==112 and len(set(all_cases))==112
     existing={x['class_id']:x for x in l4['failure_classifications']}

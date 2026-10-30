@@ -51,6 +51,7 @@ def expand_ids(s):
 def main():
     base4=obj(raw(BASE,L4));base9=obj(raw(BASE,L9));base8=raw(BASE,L8);base5=raw(BASE,L5)
     cur4=obj(current(L4));cur9=obj(current(L9));cur7=obj(current(L7));cur5=obj(current(L5));cur8=current(L8);cur3=obj(current(L3))
+    l7cases=cur7['connection_materials']['OS015']['case']['cases'];l7by={r['id']:(i,r) for i,r in enumerate(l7cases)}
     assert sha((DIR/'manual-case-audit-05614.md').read_bytes())==M['manual_audit_sha256']
     assert M['manual_audit_revision']=='05614def4e0427f9390c2b6535e520f5c7c26590'
     assert sha(base4 and raw('dd5787507a9ef3b69f411074e2fcbc7710ca1d62',L4))=='e2e92c62217f70203752ab4f79ed7a92831d94cb813c6947153f237c83c8576b'
@@ -72,7 +73,8 @@ def main():
     assert sha(raw(BASE,L5))==M['source_revisions']['L5_sha256'] and base5==raw(BASE,L5)
     assert sha(raw(BASE,L4))==M['source_revisions']['L4_sha256']
     assert sha(raw(BASE,L9))==M['source_revisions']['L9_sha256']
-    # Hand-authored membership groups are checked against the copied, fixed audit summary table.
+    # Original groups are checked against the copied audit table; corrected cases
+    # are independently pinned to L4/L7-only source evidence.
     table=audit_table_rows();assert len(table)==17
     byline={ln:parts for ln,parts in table}
     existing_classes=[c for c in M['classes'] if not c['is_new']]
@@ -87,17 +89,79 @@ def main():
         assert all(prior.get(cid)==c['existing_class_id'] for cid in audited if cid in prior)
         assert c['class_id']==c['existing_class_id']
     newclasses=[c for c in M['classes'] if c['is_new']]
-    assert len(newclasses)==15
+    assert len(newclasses)==18
+    correction=json.loads((DIR/'class-correction-cases.json').read_text(encoding='utf-8'))
+    assert correction['base_revision']=='5d541f69ff86674e585311558ad2dac1972d42e4'
+    assert correction['L7_source_file_sha256']==sha(raw(BASE,L7))
+    assert correction['L4_algorithm_text_sha256']==sha(cur4['diagnostic_contract']['algorithm_python_document_text'].encode())
+    correction_by_case={x['case_id']:x for x in correction['cases']}
+    correction_groups={x['class_id']:x for x in correction['corrected_groups']}
+    correction_group_ids={c['class_id'] for c in newclasses if c['source_reference']['path']=='class-correction-cases.json'}
+    correction_membership={}
+    manual_line_membership={}
     for c in newclasses:
-        line=c['source_reference']['line']; parts=byline[line]
-        assert set(c['case_ids'])==set(expand_ids(parts[0]))
         key=c['key'];assert c['class_id']==candidate_id(key)
         assert key['owner_ref']=={'kind':'function_ref','id':'FN-OS015-01'}
-        assert len(key['finding_codes'])==len(c['key']['finding_codes'])
+        source=c['source_reference']
+        if source['path']=='manual-case-audit-05614.md':
+            line=source['line'];assert line in byline
+            manual_line_membership.setdefault(line,set()).update(c['case_ids'])
+        else:
+            assert source['path']=='class-correction-cases.json'
+            group=correction_groups[c['class_id']]
+            assert set(c['case_ids'])==set(group['case_ids'])
+            assert c['key']==group['class_key']
+            assert source['manual_audit_lines']==group['manual_audit_lines']
+            assert c['independent_findings']=={cid:correction_by_case[cid]['ordered_findings'] for cid in c['case_ids']}
+            correction_membership.update({cid:c['class_id'] for cid in c['case_ids']})
+            for line in source['manual_audit_lines']:
+                manual_line_membership.setdefault(line,set()).update(c['case_ids'])
         for code in key['finding_codes']:
             assert any(code in r.get('expected',{}).get('finding_codes',[]) and r.get('function_ref')=='FN-OS015-01' for r in cur5['failure_rules'])
+    for line,cases in manual_line_membership.items():
+        assert cases==set(expand_ids(byline[line][0]))
+    expected_corrected={
+      'HELIXOS-L9-015-C0574','HELIXOS-L9-015-C0575','HELIXOS-L9-015-C0577',
+      'HELIXOS-L9-015-C0578','HELIXOS-L9-015-C0580','HELIXOS-L9-015-C0581'}
+    assert set(correction_membership)==expected_corrected
+    assert len(correction_by_case)==10
+    expected_codes={
+      'HELIXOS-L9-015-C0573':['first_classification_prior_present','original_classification_mutated'],
+      'HELIXOS-L9-015-C0574':['first_classification_prior_present','original_classification_mutated']+['source_unresolved']*4,
+      'HELIXOS-L9-015-C0575':['first_classification_prior_present']*2+['source_unresolved']*4,
+      'HELIXOS-L9-015-C0576':['first_classification_prior_unresolved','original_classification_mutated'],
+      'HELIXOS-L9-015-C0577':['first_classification_prior_unresolved','original_classification_mutated']+['source_unresolved']*4,
+      'HELIXOS-L9-015-C0578':['first_classification_prior_unresolved']*2+['source_unresolved']*4,
+      'HELIXOS-L9-015-C0579':['first_classification_prior_unresolved','original_classification_mutated'],
+      'HELIXOS-L9-015-C0580':['first_classification_prior_unresolved','original_classification_mutated']+['source_unresolved']*4,
+      'HELIXOS-L9-015-C0581':['first_classification_prior_unresolved']*2+['source_unresolved']*4,
+      'HELIXOS-L9-015-C0582':['first_classification_prior_present']*2,
+    }
+    source_unresolved_pointers=[
+      '/context/records/target_a/new_classification/prior_classification_ref',
+      '/context/records/target_a/new_classification/prior_classification_revision',
+      '/records/target_a/new_classification/prior_classification_ref',
+      '/records/target_a/new_classification/prior_classification_revision']
+    assert set(correction_by_case)==set(expected_codes)
+    for case_id,ledger_row in correction_by_case.items():
+        assert [x['code'] for x in ledger_row['ordered_findings']]==expected_codes[case_id]
+        assert ledger_row['ordered_findings']==sorted(ledger_row['ordered_findings'],key=lambda x:(x['code'],x['pointer'],x['return_owner']))
+        has_unresolved='source_unresolved' in expected_codes[case_id]
+        assert [x['pointer'] for x in ledger_row['ordered_findings'] if x['code']=='source_unresolved']==(source_unresolved_pointers if has_unresolved else [])
+        l7_index,l7_row=l7by[case_id];given=l7_row['given']['input']
+        assert ledger_row['phase']==given['base_ref']=='classify'
+        fixture=json.loads(json.dumps(cur7['connection_materials']['OS015']['case']['fixture_inputs']['classify']))
+        for replacement in given['replacements']:
+            target=fixture
+            for component in replacement['path'][:-1]:target=target[component]
+            target[replacement['path'][-1]]=replacement['value']
+        assert ledger_row['actual_original_classification']==fixture['records']['target_a']['original_classification']
+        assert ledger_row['context_original_classification']==fixture['context']['records']['target_a']['original_classification']
+        for side,locator in (('actual',('records','target_a','new_classification')),('context',('context','records','target_a','new_classification'))):
+            node=fixture
+            for component in locator:node=node[component]
+            assert ledger_row[f'{side}_new_prior_fields']=={k:node[k] for k in ('prior_classification_ref','prior_classification_revision')}
     # All selected L7 stimuli are direct given.input references; expected_proposal is never loaded.
-    l7cases=cur7['connection_materials']['OS015']['case']['cases'];l7by={r['id']:(i,r) for i,r in enumerate(l7cases)}
     assigned={}
     for c in M['classes']:
         phases=[];stimulus_targets=set()
@@ -118,6 +182,15 @@ def main():
         assert review['reviewed_stimulus_targets']==sorted(stimulus_targets)
         assert review['raw_stimulus_input_count']==len(c['l7_raw_inputs'])
         assert all(phase in c['condition'] for phase in phases)
+        if c['source_reference']['path']=='class-correction-cases.json':
+            for case_id in c['case_ids']:
+                ledger_row=correction_by_case[case_id]
+                assert ledger_row['class_id']==c['class_id']
+                assert ledger_row['input_pointer']==next(x['l7_input_pointer'] for x in c['l7_raw_inputs'] if x['case_id']==case_id)
+                assert ledger_row['input_sha256']==next(x['expanded_input_sha256'] for x in c['l7_raw_inputs'] if x['case_id']==case_id)
+                assert [x['code'] for x in ledger_row['ordered_findings']]==c['key']['finding_codes']
+                assert ledger_row['phase']=='classify'
+            assert len(c['key']['finding_codes'])==6
     assert len(assigned)==112 and len(assigned)==len(set(assigned))
     c44=M['c0044_independent_derivation'];assert c44['case_id'] in assigned and assigned[c44['case_id']]==c44['derived_class_id']
     i44,row44=l7by[c44['case_id']];gi=row44['given']['input']
@@ -129,9 +202,9 @@ def main():
     assert resolve(cur4,c44['supporting_pointers'][0])==cur4['contracts'][2]
     # L4 addition is append-only: every prior row, all L4 semantic contract nodes, and canonical codes remain.
     assert cur4['failure_classifications'][:len(base4['failure_classifications'])]==base4['failure_classifications']
-    assert cur4['contracts'][2]['negative_class_refs'][-15:]==sorted(c['class_id'] for c in newclasses)
+    assert cur4['contracts'][2]['negative_class_refs'][-len(newclasses):]==sorted(c['class_id'] for c in newclasses)
     l4new=cur4['failure_classifications'][len(base4['failure_classifications']):]
-    assert len(l4new)==15
+    assert len(l4new)==18
     l4by={r['class_id']:r for r in cur4['failure_classifications']}
     for c in newclasses:
         row=l4by[c['class_id']]
@@ -146,7 +219,7 @@ def main():
     # New L9 rows project class fields from L4 and link only to L4/L7 sources.
     assert cur9['negative_equivalence_classes'][:len(base9['negative_equivalence_classes'])]==base9['negative_equivalence_classes']
     l9new=cur9['negative_equivalence_classes'][len(base9['negative_equivalence_classes']):]
-    assert len(l9new)==15
+    assert len(l9new)==18
     l9by={r['class_id']:r for r in cur9['negative_equivalence_classes']}
     for c in newclasses:
         r=l9by[c['class_id']];l=l4by[c['class_id']]
@@ -174,7 +247,7 @@ def main():
     # Previously assigned 29 rows remain byte-semantically unchanged.
     for cid,cl in prior.items():
         assert newcases[cid]==oldcases[cid]
-    # Existing L9 class pointers are untouched; the 15 new classes name only L4/L7.
+    # Existing L9 class pointers are untouched; the new classes name only L4/L7.
     for c in newclasses:
         assert c['class_id'] in l9by
     # All bindings pinning changed layer paths are accounted for and follow candidate bytes.
@@ -186,5 +259,5 @@ def main():
             if matches:
                 assert matches[0]['sha256']==h
                 updated.append({'binding':bid,'path':p,'sha256':h})
-    return {'status':'PASS','base_revision':BASE,'manual_audit_revision':M['manual_audit_revision'],'manual_audit_sha256':M['manual_audit_sha256'],'class_count':17,'new_l4_and_l9_classes':15,'case_link_count':112,'existing_class_case_count':75,'new_class_case_count':37,'c0044_independently_derived':True,'prior_29_case_links_unchanged':True,'l9_case_rows':583,'case_expected_condition_preserved_unchanged':True,'l4_new_class_pointers_resolve':True,'l9_new_class_pointers_resolve_and_only_l4_l7':True,'l5_l8_document_bytes_unchanged':True,'current_l4_sha256':l4hash,'current_l9_sha256':l9hash,'pin_impacts':updated,'checker_or_runtime_executed':False}
+    return {'status':'PASS','base_revision':BASE,'correction_base_revision':correction['base_revision'],'manual_audit_revision':M['manual_audit_revision'],'manual_audit_sha256':M['manual_audit_sha256'],'correction_audit_sha256':sha((DIR/'class-correction-audit-5d541.md').read_bytes()),'correction_cases_sha256':sha((DIR/'class-correction-cases.json').read_bytes()),'class_count':20,'new_l4_and_l9_classes':18,'corrected_prior_case_count':6,'corrected_case_ids':sorted(expected_corrected),'case_link_count':112,'existing_class_case_count':75,'new_class_case_count':37,'c0044_independently_derived':True,'prior_29_case_links_unchanged':True,'l9_case_rows':583,'case_expected_condition_preserved_unchanged':True,'l4_new_class_pointers_resolve':True,'l9_new_class_pointers_resolve_and_only_l4_l7':True,'l5_l8_document_bytes_unchanged':True,'current_l4_sha256':l4hash,'current_l9_sha256':l9hash,'pin_impacts':updated,'checker_or_runtime_executed':False}
 if __name__=='__main__': print(json.dumps(main(),ensure_ascii=False,indent=2))
