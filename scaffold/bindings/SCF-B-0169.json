@@ -20,7 +20,7 @@
     },
     {
       "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
-      "sha256": "009da68d79547770e32a91362a410e014ed1951e0cfe9f67a6f6b31fd4c16824",
+      "sha256": "4a770515153fb97e2f5915af8308868450a22014d5739b996bc0ebf4a62db7db",
       "note": "F13/F14 candidate source。対象pointerとauthority境界はscaffold/research/wr154-f13-recipient-design-20261030/README.md。read-only pinで採用を示さない。"
     },
     {
@@ -35,7 +35,7 @@
     },
     {
       "path": "docs/helix-harness/L9-integration-verification/product-template-application.json",
-      "sha256": "dc4f1080f0f737937ee95097d6f8497a6ef352e23f523cf84216d010d64d452c",
+      "sha256": "06c255043e143a0ddd23da750fede31ff6d3b4b1c94d854de22d07ff109c0d8b",
       "note": "F13/F14 candidate source。対象pointerとauthority境界はscaffold/research/wr154-f13-recipient-design-20261030/README.md。read-only pinで採用を示さない。"
     }
   ],
@@ -106,5 +106,5 @@
     "status": "pending"
   },
   "created": "2026-10-30",
-  "updated": "2026-10-30"
+  "updated": "2026-10-31"
 }
