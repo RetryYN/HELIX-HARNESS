@@ -2,11 +2,6 @@
   "status": "candidate_static_checks_complete_with_source_and_checker_residuals",
   "authority_effect": "none",
   "base_revision": "fa3d2d515ce8df79c0a74d5360a4d1254863a6f1",
-  "candidate_commits": [
-    "e69e4bdf1aabf7587925896b77c7871dadf35790",
-    "f073063c09",
-    "20211ed96"
-  ],
   "candidate_documents": {
     "docs/helix-harness/L5-detail-design/tdd-development-flow.json": "12bc2ddad72df32452e424819ce38da5389301662f80dc8e76c823567d851d69",
     "docs/helix-harness/L8-unit-verification/tdd-development-flow.json": "e4ee9ad431c79beb336f1e8bfdc14cb0d3ea854f0ee0c0199499d1cfff8ee1e1"
