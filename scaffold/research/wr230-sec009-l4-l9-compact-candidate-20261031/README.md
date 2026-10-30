@@ -15,3 +15,13 @@ python3 -B scaffold/research/wr230-sec009-l4-l9-compact-candidate-20261031/valid
 ```
 
 正式 L4/L9 は編集していない。authority と operation effect は `none`、実装 readiness は `not_ready` のままである。QA §3 は4層同時の marker を求めるため、この L4/L9 候補だけでは explicit negative equivalence や formal four-way の成立を示さない。L5 contract の `function_refs` と checker の単数 `function` の不一致も未解決である。認証・認可設定、credentials、本番、外部操作は対象に含まない。
+
+## Blind比較の記録
+
+独立に導出されたblind artifactは[Issue #3510のcomment 6532859151](https://github.com/RetryYN/HELIX-HARNESS/issues/3510#issuecomment-6532859151)で比較前に固定されました。`blind-source-derivation.json`へbyte単位で複製し、SHA-256 `1cffa3e3bb88921435ae2e3e0ecd56cdd89701154007f926ff68390660dfdfc3`を保持しています。`blind-comparison.json`には両L4 revision、参照pointer、分類語彙、signature数、case比較の限界を固定しました。
+
+blind側sourceはrevision `aa124441198b3b89cbe089be3dbd46805634201d`のL4（SHA-256 `dde56181db3d564d97222ba9cacdb3fb204888a669b72ed562f19bb77bd41fb5`）です。この候補はrevision `c8f20a4f91456f6d5e5c16e1be0083c34aab6651`のL4（SHA-256 `c0a31c5c663d39854ed1df13b9bf2bfc439fdb46419d089bc617607d6e6ac5b6`）を使っており、L4のbytesは異なります。参照した`/diagnostic_contract/code_classes`は24 finding-code項目で一致します。candidate revisionではblind revisionに無かったtop-level `failure_classifications` 30行と、contractごとの分類リスト4/14/12行が追加されています。
+
+blind側はfinding-code項目がviolation 10件、unknown 14件です。candidate L4側はcontext別のclass行が`revoke_material_violation` 14件、`revoke_material_unknown` 16件です。30対24の差は6件ですが、数えている単位と分類ラベルが異なります。6件をmissing class数とは見なさず、6行の対応も選択・捏造していません。
+
+blind記録にはL9 caseやclass assignmentがありません。そのため、現在の275 assignmentとのcase単位の一致・不一致は確定できません。比較ではexpected値を使った照合や再割当をしていません。曖昧な2件とmulti-contract residual 71件は未割当のままです。typed-ownerを含む完全なkeyは30種類で重複なしです。finding-codeだけで見た粗いprojectionが重なる行も、別行として保持しています。

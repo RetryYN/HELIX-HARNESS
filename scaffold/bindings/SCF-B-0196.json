@@ -42,6 +42,16 @@
       "path": "docs/helix-security/L10-verification/business-verification.json",
       "sha256": "c34b8f9a99f8f240558458dd63033acd0d756dfe61ad9cd3aac0e8e1c8193f42",
       "note": "Pinned current-main source at c8f20a4f91456f6d5e5c16e1be0083c34aab6651; SEC009 L4/L5/L9 and QA/authority context. Case-level source pointers are fixed in candidate compact-candidate.json."
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.json",
+      "sha256": "e4eeb70cc303e44199c7d898281e91c22dba89b47666353b9c80a4c634e898b5",
+      "note": "Pinned at source revision c8f20a4f91456f6d5e5c16e1be0083c34aab6651; consulted by the frozen blind source-only derivation for approved SEC009 L3/L10 pointers."
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.json",
+      "sha256": "e6da7eaff29a623b5d069801280c295d9dd7cc43b51d9cde25b12a8110e5072a",
+      "note": "Pinned at source revision c8f20a4f91456f6d5e5c16e1be0083c34aab6651; consulted by the frozen blind source-only derivation for approved SEC009 L3/L10 pointers."
     }
   ],
   "role": "SEC009 revoke-quarantine-propagationのL4/L9既存classification/case pointerを、固定source revisionから再解決・比較する研究用compact evidence。",
@@ -51,7 +61,9 @@
     "30 class keyの6属性とL5由来typed owner_refをsourceから再解決し、275既存assigned rowsを検査する。",
     "全356 L9 source caseのID、phase、trigger、expected_proposalをsource pointerから再解決し、pinned revisionと比較する。",
     "8 positive、2 ambiguous、71 multi-contract residualの分類とsource順序を復元可能に保つ。",
-    "formal explicit marker、four-way PASS、実装readiness、authority/action effectを生成しない。"
+    "formal explicit marker、four-way PASS、実装readiness、authority/action effectを生成しない。",
+    "Blind source-only artifact is frozen byte-for-byte before comparison; compare its old L4 revision/hash with the candidate revision/hash and record vocabulary/signature differences without reassigning any case.",
+    "Copy the blind source-only artifact byte-for-byte at its fixed digest, then record both source revisions and file hashes plus the non-joinable comparison boundary without value-based reassignment."
   ],
   "connections": {
     "consumers": [
@@ -69,7 +81,8 @@
     "allowed": [
       "read pinned source files and JSON Pointers",
       "run validate_compact_candidate.py for static source/pointer validation",
-      "inspect scaffold binding schema/status read-only"
+      "inspect scaffold binding schema/status read-only",
+      "run compare_blind_source.py for static revision, pointer, category, signature, and residual comparison"
     ],
     "forbidden": [
       "run L4/L5 algorithm, runtime, test, CI, or old workflow",
@@ -83,7 +96,10 @@
     "scaffold/research/wr230-sec009-l4-l9-compact-candidate-20261031/compact-candidate.json",
     "scaffold/research/wr230-sec009-l4-l9-compact-candidate-20261031/validate_compact_candidate.py",
     "scaffold/research/wr230-sec009-l4-l9-compact-candidate-20261031/verification-summary.json",
-    "scaffold/bindings/SCF-B-0196.json"
+    "scaffold/bindings/SCF-B-0196.json",
+    "scaffold/research/wr230-sec009-l4-l9-compact-candidate-20261031/blind-source-derivation.json",
+    "scaffold/research/wr230-sec009-l4-l9-compact-candidate-20261031/blind-comparison.json",
+    "scaffold/research/wr230-sec009-l4-l9-compact-candidate-20261031/compare_blind_source.py"
   ],
   "verification": {
     "evidence_kind": "scaffold",
@@ -95,13 +111,15 @@
       "All source pins match raw files at source_revision and current worktree bytes.",
       "All class and case pointers resolve and preserve fixed source ordering.",
       "30 unique six-attribute typed-owner keys and 275 recorded L9 assignments resolve without creating membership.",
-      "All 356 expected proposals, IDs, phase, and trigger are recomputed from the pinned source and compared to current source."
+      "All 356 expected proposals, IDs, phase, and trigger are recomputed from the pinned source and compared to current source.",
+      "Blind artifact SHA-256 is fixed; old and candidate L4 revisions/pointers are compared and the source difference is recorded without casewise value matching."
     ],
     "negative_cases": [
       "No case IDs, expected values, phases, triggers, or owners are copied into the compact candidate.",
       "Keep 2 ambiguous single-contract negatives and 71 multi-contract cases outside class membership.",
       "Do not treat candidate membership as formal four-way completion or security behavior evidence.",
-      "Do not run old/new runtime, algorithm, tests, or CI."
+      "Do not run old/new runtime, algorithm, tests, or CI.",
+      "Do not reinterpret the raw 30-row vs 24-code count delta as six missing classes; preserve the actual source units and unlisted codes without inferred memberships."
     ]
   },
   "replacement": {

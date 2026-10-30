@@ -2,7 +2,7 @@
   "schema": "wr230-sec009-compact-candidate-validation.v1",
   "evidence_kind": "scaffold",
   "source_revision": "c8f20a4f91456f6d5e5c16e1be0083c34aab6651",
-  "worktree_head": "c8f20a4f91456f6d5e5c16e1be0083c34aab6651",
+  "worktree_head": "1c3e4ad595bc4d4920d0f182f5b4191192e584db",
   "source_pins": [
     {
       "path": "docs/helix-security/L4-basic-design/revoke-quarantine-propagation.json",
@@ -45,11 +45,23 @@
       "sha256": "c34b8f9a99f8f240558458dd63033acd0d756dfe61ad9cd3aac0e8e1c8193f42",
       "pinned_revision_bytes_match": true,
       "current_bytes_match_pinned_revision": true
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.json",
+      "sha256": "e4eeb70cc303e44199c7d898281e91c22dba89b47666353b9c80a4c634e898b5",
+      "pinned_revision_bytes_match": true,
+      "current_bytes_match_pinned_revision": true
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.json",
+      "sha256": "e6da7eaff29a623b5d069801280c295d9dd7cc43b51d9cde25b12a8110e5072a",
+      "pinned_revision_bytes_match": true,
+      "current_bytes_match_pinned_revision": true
     }
   ],
   "result": "PASS",
   "checks": {
-    "pinned_source_files_exact": 7,
+    "pinned_source_files_exact": 9,
     "case_rows_resolved": 356,
     "case_ids_unique": 356,
     "expected_phase_trigger_rows_recomputed": 356,

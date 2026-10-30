@@ -1,0 +1,177 @@
+{
+  "schema": "wr230-sec009-blind-comparison.v1",
+  "comparison_kind": "post_freeze_static_source_and_inventory_comparison",
+  "blind_artifact": {
+    "path": "scaffold/research/wr230-sec009-l4-l9-compact-candidate-20261031/blind-source-derivation.json",
+    "sha256": "1cffa3e3bb88921435ae2e3e0ecd56cdd89701154007f926ff68390660dfdfc3",
+    "expected_sha256": "1cffa3e3bb88921435ae2e3e0ecd56cdd89701154007f926ff68390660dfdfc3",
+    "bytes": 7182,
+    "frozen_reference": "https://github.com/RetryYN/HELIX-HARNESS/issues/3510#issuecomment-6532859151",
+    "bytes_unchanged": true
+  },
+  "compact_candidate_static_validation": {
+    "path": "scaffold/research/wr230-sec009-l4-l9-compact-candidate-20261031/verification-summary.json",
+    "sha256": "b618cc9e2878427e67210b3b55aad0c8380f896dd82ae979986ada2608d6be85",
+    "result": "PASS",
+    "case_rows_resolved": 356,
+    "unique_six_attribute_class_keys": 30,
+    "existing_case_assignments_resolved": 275
+  },
+  "source_revisions": {
+    "blind_repository_head": "aa124441198b3b89cbe089be3dbd46805634201d",
+    "blind_l4_path": "docs/helix-security/L4-basic-design/revoke-quarantine-propagation.json",
+    "blind_l4_sha256": "dde56181db3d564d97222ba9cacdb3fb204888a669b72ed562f19bb77bd41fb5",
+    "candidate_revision": "c8f20a4f91456f6d5e5c16e1be0083c34aab6651",
+    "candidate_l4_path": "docs/helix-security/L4-basic-design/revoke-quarantine-propagation.json",
+    "candidate_l4_sha256": "c0a31c5c663d39854ed1df13b9bf2bfc439fdb46419d089bc617607d6e6ac5b6",
+    "l4_file_bytes": {
+      "blind": 18300,
+      "candidate": 197756
+    },
+    "l4_source_bytes_identical": false,
+    "candidate_l4_matches_candidate_pin": true,
+    "blind_l4_matches_blind_pin": true
+  },
+  "blind_cited_source_pin_results": [
+    {
+      "path": "docs/helix-security/L3-requirements/business-requirements.json",
+      "revision": "c66bfd5b02624f3bb47998c4e7d5e68f710c1dad",
+      "expected_sha256": "f1668180a3daccb38da15f471ade0806c64f094a77b0d7a5cef25edc9b6ce901",
+      "actual_sha256": "f1668180a3daccb38da15f471ade0806c64f094a77b0d7a5cef25edc9b6ce901",
+      "match": true
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.json",
+      "revision": "c66bfd5b02624f3bb47998c4e7d5e68f710c1dad",
+      "expected_sha256": "e4eeb70cc303e44199c7d898281e91c22dba89b47666353b9c80a4c634e898b5",
+      "actual_sha256": "e4eeb70cc303e44199c7d898281e91c22dba89b47666353b9c80a4c634e898b5",
+      "match": true
+    },
+    {
+      "path": "docs/helix-security/L10-verification/business-verification.json",
+      "revision": "c66bfd5b02624f3bb47998c4e7d5e68f710c1dad",
+      "expected_sha256": "c34b8f9a99f8f240558458dd63033acd0d756dfe61ad9cd3aac0e8e1c8193f42",
+      "actual_sha256": "c34b8f9a99f8f240558458dd63033acd0d756dfe61ad9cd3aac0e8e1c8193f42",
+      "match": true
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.json",
+      "revision": "c66bfd5b02624f3bb47998c4e7d5e68f710c1dad",
+      "expected_sha256": "e6da7eaff29a623b5d069801280c295d9dd7cc43b51d9cde25b12a8110e5072a",
+      "actual_sha256": "e6da7eaff29a623b5d069801280c295d9dd7cc43b51d9cde25b12a8110e5072a",
+      "match": true
+    },
+    {
+      "path": "docs/helix-security/L4-basic-design/revoke-quarantine-propagation.json",
+      "revision": "aa124441198b3b89cbe089be3dbd46805634201d",
+      "expected_sha256": "dde56181db3d564d97222ba9cacdb3fb204888a669b72ed562f19bb77bd41fb5",
+      "actual_sha256": "dde56181db3d564d97222ba9cacdb3fb204888a669b72ed562f19bb77bd41fb5",
+      "match": true
+    }
+  ],
+  "approved_l3_l10_links_checked": 3,
+  "approved_l3_object_digest_matches": 3,
+  "approved_l10_pointers_resolved": 3,
+  "l4_revision_delta": {
+    "blind_consulted_pointers": [
+      "/diagnostic_contract/code_classes",
+      "/contracts/0",
+      "/contracts/1",
+      "/contracts/2"
+    ],
+    "candidate_consulted_pointers": [
+      "/diagnostic_contract/code_classes",
+      "/contracts/0/negative_classifications",
+      "/contracts/1/negative_classifications",
+      "/contracts/2/negative_classifications",
+      "/failure_classifications"
+    ],
+    "old_contracts_have_negative_classifications": [
+      false,
+      false,
+      false
+    ],
+    "candidate_contract_negative_classification_counts": [
+      4,
+      14,
+      12
+    ],
+    "old_top_level_failure_classifications_present": false,
+    "candidate_top_level_failure_classification_count": 30,
+    "diagnostic_code_classes_equal_across_revisions": true,
+    "blind_violation_code_count": 10,
+    "blind_unknown_code_count": 14,
+    "blind_category_entry_counts": {
+      "violation": 10,
+      "unknown": 14
+    },
+    "candidate_expected_classification_row_counts": {
+      "revoke_material_unknown": 16,
+      "revoke_material_violation": 14
+    },
+    "blind_category_lists_match_pinned_old_code_classes": true,
+    "current_unique_finding_code_count": 22,
+    "current_finding_tokens_not_in_blind_vocabulary": [],
+    "blind_vocabulary_tokens_without_current_single_contract_class_row": [
+      "propagation_phase_unresolved",
+      "safety_trigger_unresolved"
+    ],
+    "raw_row_count_difference_30_minus_24": 6,
+    "unmatched_count_delta_only": 6,
+    "raw_count_difference_interpretation": "30 current L4 rows are context-specific class rows; 24 blind entries are unique finding-code categories. They are different units. The raw delta of 6 is not evidence of six missing classes and is not converted into assignments.",
+    "direct_class_code_to_blind_finding_code_join_count": 0,
+    "case_assignment_comparison_limit": "Blind derivation contains no L9/case assignments or case IDs. Therefore no casewise agreement/disagreement against the existing 275 L9 assignments is available; no expected-value matching or remapping was used."
+  },
+  "signature_observation": {
+    "six_attribute_typed_owner_key_count": 30,
+    "duplicate_full_six_attribute_keys": 0,
+    "repeated_coarse_expected_classification_and_finding_signatures": [
+      {
+        "finding_codes": [
+          "binding_conflict"
+        ],
+        "current_L4_rows": 5
+      },
+      {
+        "finding_codes": [
+          "binding_unresolved"
+        ],
+        "current_L4_rows": 5
+      }
+    ],
+    "interpretation": "Repeated finding-code projections are kept separate by the full axis/state/typed-owner key; no singleton class or collapse was created."
+  },
+  "existing_l9_inventory": {
+    "source_population_count": 356,
+    "assigned_single_contract_negative_case_count": 275,
+    "ambiguous_single_contract_negative_case_count": 2,
+    "ambiguous_case_pointers": [
+      "/cases/1/negative_cases/205",
+      "/cases/2/negative_cases/40"
+    ],
+    "multi_contract_residual_total_count": 71,
+    "multi_contract_residual_positive_count": 28,
+    "multi_contract_residual_negative_count": 43,
+    "multi_contract_residual_pointer": "/multi_contract_residual",
+    "multi_contract_residual_moved_case_count": 0,
+    "comparison_treatment": "Existing counts/reasons are recorded unchanged. The blind artifact has no case assignments; ambiguous and multi-contract rows remain unassigned and are not matched by values."
+  },
+  "historical_basis": {
+    "legacy_asset_ids": [
+      "LEGACY-ASSET-D461943347D372ECF6DA",
+      "LEGACY-ASSET-B62E49D2E156232B8C63"
+    ],
+    "failure_record": "Issue #3510; PR #3918 and #3925; current L9 /negative_class_assignment_audit",
+    "meaning_change_claimed": false
+  },
+  "boundary": {
+    "authority_effect": "none",
+    "operation_effect": "none",
+    "formal_four_way_status": "not_established",
+    "canonical_l4_l9_edited": false,
+    "authentication_authorization_credentials_production_external_action_touched": false,
+    "legacy_runtime_test_ci_or_algorithm_run": false
+  },
+  "result": "PASS",
+  "failures": []
+}

@@ -1,0 +1,115 @@
+{
+  "purpose": "SEC009 class assignment meaning; blind source-only derivation before comparison",
+  "scope": "SEC009 B01/F01/F02 only; no implementation, runtime, algorithm or test execution",
+  "authority": {
+    "decision_record": "docs/governance/decisions/helix-security-prerequisite-l3-l10-delegated-decision-2026-10-12.md",
+    "decision_id": "HDEC-SECURITY-PREREQUISITE-L3L10-2026-10-12",
+    "reviewed_content_revision": "0f9b1a0ec7554cd5a2ec85a3002a897a649383d3",
+    "decision_sha256": "ec7f54991b540a5afd7ffeb49fd2dc63479fd0907ca93c9e49e2f34fe72bed92",
+    "approval_scope": "SEC001-008/015/016/024 and conditional SEC009, exact reviewed content revision; authorization settings, actual permission and live environment are excluded",
+    "decision_pointer": "frontmatter reviewed_content_head; decision paragraph 1 (SEC009 inclusion and scope)"
+  },
+  "sources": {
+    "repository_head": "aa124441198b3b89cbe089be3dbd46805634201d",
+    "l3_l10_pinned_revision": "c66bfd5b02624f3bb47998c4e7d5e68f710c1dad",
+    "files": {
+      "docs/helix-security/L3-requirements/business-requirements.json": {
+        "sha256": "f1668180a3daccb38da15f471ade0806c64f094a77b0d7a5cef25edc9b6ce901",
+        "pointer": "/requirements/2"
+      },
+      "docs/helix-security/L3-requirements/functional-requirements.json": {
+        "sha256": "e4eeb70cc303e44199c7d898281e91c22dba89b47666353b9c80a4c634e898b5",
+        "pointers": [
+          "/requirements/21",
+          "/requirements/22"
+        ]
+      },
+      "docs/helix-security/L10-verification/business-verification.json": {
+        "sha256": "c34b8f9a99f8f240558458dd63033acd0d756dfe61ad9cd3aac0e8e1c8193f42",
+        "pointer": "/cases/2"
+      },
+      "docs/helix-security/L10-verification/functional-verification.json": {
+        "sha256": "e6da7eaff29a623b5d069801280c295d9dd7cc43b51d9cde25b12a8110e5072a",
+        "pointers": [
+          "/cases/21",
+          "/cases/22"
+        ]
+      },
+      "docs/helix-security/L4-basic-design/revoke-quarantine-propagation.json": {
+        "sha256": "dde56181db3d564d97222ba9cacdb3fb204888a669b72ed562f19bb77bd41fb5",
+        "pointer": "/diagnostic_contract/code_classes; /contracts/0..2"
+      }
+    },
+    "integrity_checks": [
+      "Each cited L3/L10 whole-file SHA-256 matches the L4 /source_pins entry at the pinned revision c66bfd5b02624f3bb47998c4e7d5e68f710c1dad.",
+      "The three current L3 JSON objects at the cited pointers reproduce the canonical SHA-256 values recorded in the corresponding L4 approved_requirement pins."
+    ]
+  },
+  "meaning_derived_from_sources": [
+    "SEC policy/trigger responsibility is distinct from each recipient's own state and execution; SEC009 is conditional on relevant selected operation/recipient scope, not a requirement that every recipient capability or all mechanisms be complete.",
+    "For a selected recipient, compare the selected phase and its evidence separately: instruction/dispatch, receipt, actual application with post-state/isolation, and recovery. A later phase is not presumed from an earlier one; future receipt/application/recovery is not a universal dispatch prerequisite.",
+    "Class violation denotes a source-grounded contradiction or observed failure against the obligation (for example conflicting binding/actions, prohibited expansion, continuing after stop, non-delivery/non-application, or incomplete recovery). Class unknown denotes missing, unresolved, unobserved, or insufficient evidence; it does not assert a contradiction.",
+    "Do not spread an unknown or stop to unrelated valid scope. Keep safety-trigger/external-effect unknown bound to the affected identity; general meaning unknown alone does not establish a global stop.",
+    "No success/pass class is specified in the L4 code_classes map. No class for unlisted codes is derived; use unknown pending source authority."
+  ],
+  "approved_requirement_links": [
+    {
+      "id": "HELIXSECURITY-L3-009-B01",
+      "l3_pointer": "business-requirements.json#/requirements/2",
+      "l10_pointer": "business-verification.json#/cases/2",
+      "l4_pointer": "revoke-quarantine-propagation.json#/contracts/0",
+      "approved_revision": "0f9b1a0ec7554cd5a2ec85a3002a897a649383d3",
+      "approved_object_canonical_sha256": "7284676d88acc8ce9603a2279fa9130d79c5fd77bf6ad63ec6f81020224dee96",
+      "meaning": "初回scopeに必要な条件付き停止契約。SEC owns policy/trigger; each recipient owns its state/execution. Limit closure to required selected scope; identify required closure separately from unselected/unobserved items."
+    },
+    {
+      "id": "HELIXSECURITY-L3-009-F01",
+      "l3_pointer": "functional-requirements.json#/requirements/21",
+      "l10_pointer": "functional-verification.json#/cases/21",
+      "l4_pointer": "revoke-quarantine-propagation.json#/contracts/1",
+      "approved_revision": "0f9b1a0ec7554cd5a2ec85a3002a897a649383d3",
+      "approved_object_canonical_sha256": "f63db86bcfeb83078f48876cdd60c37bdfcd675a02ab2268a2d82c502afc0cb7",
+      "meaning": "Tie revoke/scope drift/uncertain external effect/credential leak/abnormal communication/runtime deviation to operation and recipient identities; propagate to all applicable recipients; distinguish delivery, application and non-observation; a new stop does not establish in-flight success."
+    },
+    {
+      "id": "HELIXSECURITY-L3-009-F02",
+      "l3_pointer": "functional-requirements.json#/requirements/22",
+      "l10_pointer": "functional-verification.json#/cases/22",
+      "l4_pointer": "revoke-quarantine-propagation.json#/contracts/2",
+      "approved_revision": "0f9b1a0ec7554cd5a2ec85a3002a897a649383d3",
+      "approved_object_canonical_sha256": "e08b0afcb69a91058ca60d11dbe837bad0fc4a3b68cabe1901dd1463b4e67441",
+      "meaning": "Keep safety/external-effect unknown local to affected identity, avoid globalizing unrelated general-meaning unknown, preserve a recoverable pre-state and distinguish receipt from actual application/recovery."
+    }
+  ],
+  "l4_explicit_class_assignments": {
+    "violation": [
+      "binding_conflict",
+      "global_stop_expansion",
+      "isolation_not_applied",
+      "recipient_actions_conflict",
+      "recipient_continues_after_stop",
+      "recipient_not_applied",
+      "recipient_not_delivered",
+      "recipient_set_conflict",
+      "recovery_incomplete",
+      "trigger_category_conflict"
+    ],
+    "unknown": [
+      "binding_unresolved",
+      "instruction_unresolved",
+      "isolation_unresolved",
+      "propagation_phase_unresolved",
+      "recipient_actions_unresolved",
+      "recipient_application_unresolved",
+      "recipient_post_state_unresolved",
+      "recipient_receipt_unresolved",
+      "recipient_report_unresolved",
+      "recipient_set_unresolved",
+      "recovery_unresolved",
+      "safety_trigger_unresolved",
+      "stop_scope_unresolved",
+      "trigger_category_unresolved"
+    ]
+  },
+  "limitations": "Static source derivation only. No L5/L8/L9 SEC009 content, expectations, classifications, assignments, comparison records, or #3510 comparison was read. No runtime, algorithm, legacy test or CI was run. This artifact has not been compared with another assignment."
+}
