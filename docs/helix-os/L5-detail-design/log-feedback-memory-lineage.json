@@ -141,14 +141,14 @@
     },
     {
       "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
-      "revision": "85b23733be007c890107d5fa706a8182964e10b2",
-      "whole_sha256": "f99690b09eba315c8be490cb953ed8f43495d57c5ae7d35ca5158ec86251bb27",
+      "revision": "38c862d126d8d70f2ae72c4ad1fba7527c21a968",
+      "whole_sha256": "131fca14dfcae41e491640265ad297bc20a6bcd1730bf4c92d8e4e82e284ee95",
       "role": "親pairの基本設計の固定本文。"
     },
     {
       "path": "docs/helix-os/L9-integration-verification/log-feedback-memory-lineage.json",
-      "revision": "85b23733be007c890107d5fa706a8182964e10b2",
-      "whole_sha256": "fca9236caf8632aab6e2a3423141208e7be2a8b1e62a63c6edce8f3f20ae7fac",
+      "revision": "38c862d126d8d70f2ae72c4ad1fba7527c21a968",
+      "whole_sha256": "3e1551eb83e8bc94743bc0801c8780a30e2ee6b8f34cb21cf06200ce6d357a94",
       "role": "親pairの統合検証。rawと期待値を別々に保持する。"
     },
     {
@@ -4068,37 +4068,6 @@
             "OS007-NEG-feedback-comp-11-boolean_conflict_stage_unrecorded_ref_present_unresolved_claimed_resolved",
             "OS007-NEG-feedback-comp-14-boolean_conflict_field_unknown_unresolved_claimed_resolved",
             "OS007-NEG-feedback-comp-20-boolean_conflict_field_unknown"
-          ]
-        },
-        {
-          "class_id": "OS007-NEG-feedback-original_finding_changed",
-          "single_finding_code": "original_finding_changed",
-          "member_count": 0,
-          "co_occurring_rules_and_reason": "L4 R01, R04 (/diagnostic_contract/rules/0, /diagnostic_contract/rules/3) と L5 assess_feedback_material/steps/1..2 は actual.original_finding と context.original_finding が共に object で不一致のとき original_finding_changed を発火させると同時に、固定7 feedback_fields (finding_id, project_id, requirement_revision, scope, source_head, source_ref, source_digest) を compare_fields_if_both_objects で個別比較する。固定7 field 構造の object 間で不一致が生じるには少なくとも1つの field が異なるか null/非文字列である必要があり、必ず field_conflict または field_unknown が共起する ため、単一の original_finding_changed は単独では発火しない。",
-          "l4_pointers": [
-            "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/failure_classifications/15",
-            "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/codes/12",
-            "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/rules/0",
-            "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/rules/3",
-            "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/rules/11"
-          ],
-          "l5_pointers": [
-            "docs/helix-os/L5-detail-design/log-feedback-memory-lineage.json#/failure_rules/15",
-            "docs/helix-os/L5-detail-design/log-feedback-memory-lineage.json#/finite_domains/diagnostic_codes/12",
-            "docs/helix-os/L5-detail-design/log-feedback-memory-lineage.json#/algorithm/ordered_rules/0",
-            "docs/helix-os/L5-detail-design/log-feedback-memory-lineage.json#/algorithm/ordered_rules/3",
-            "docs/helix-os/L5-detail-design/log-feedback-memory-lineage.json#/algorithm/ordered_rules/11",
-            "docs/helix-os/L5-detail-design/log-feedback-memory-lineage.json#/formal_program/functions/assess_feedback_material/steps/1",
-            "docs/helix-os/L5-detail-design/log-feedback-memory-lineage.json#/formal_program/functions/assess_feedback_material/steps/2"
-          ],
-          "realized_composite_class_ids": [
-            "OS007-NEG-feedback-comp-01-field_unknown_original_finding_changed",
-            "OS007-NEG-feedback-comp-02-field_conflict_original_finding_changed",
-            "OS007-NEG-feedback-comp-03-field_conflict_original_finding_changed",
-            "OS007-NEG-feedback-comp-04-field_conflict_original_finding_changed",
-            "OS007-NEG-feedback-comp-05-field_unknown_original_finding_changed_unresolved_claimed_resolved",
-            "OS007-NEG-feedback-comp-06-field_conflict_original_finding_changed_unresolved_claimed_resolved",
-            "OS007-NEG-feedback-comp-08-field_conflict_original_finding_changed_unresolved_claimed_resolved"
           ]
         },
         {
