@@ -1,0 +1,426 @@
+{
+  "schema": "wr245-r2-ambiguous-source-first-design.v1",
+  "evidence_kind": "scaffold",
+  "authority_effect": "none",
+  "operation_effect": "none",
+  "decision_source": "https://github.com/RetryYN/HELIX-HARNESS/pull/3992#issuecomment-6534981379",
+  "source_order": "L3/L10/L4 plus source input -> candidate; existing L9 expected is only a post-derivation consistency check",
+  "preconditions": [
+    "Keep class_id and L5 rule id stable; AI may align L4/L5 code with existing expected_classification as downstream schema design; this draft makes no formal code edits.",
+    "Do not silently omit either ambiguous case from explicit case tables.",
+    "Any candidate class must preserve all source findings and expected axes, not merely obtain checker match counts.",
+    "Use only source requirements, verification obligations, L4 definitions, and the pinned source input values; no L4 algorithm/runtime/test/CI execution.",
+    "R2 evidence merge is pending; this is a read-only design draft only."
+  ],
+  "source_pins": {
+    "L3B": {
+      "path": "docs/helix-security/L3-requirements/business-requirements.json",
+      "revision": "7382d9c749951074d54240c5473243841c4bc765",
+      "sha256": "f1668180a3daccb38da15f471ade0806c64f094a77b0d7a5cef25edc9b6ce901"
+    },
+    "L3F": {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.json",
+      "revision": "7382d9c749951074d54240c5473243841c4bc765",
+      "sha256": "e4eeb70cc303e44199c7d898281e91c22dba89b47666353b9c80a4c634e898b5"
+    },
+    "L4": {
+      "path": "docs/helix-security/L4-basic-design/revoke-quarantine-propagation.json",
+      "revision": "7382d9c749951074d54240c5473243841c4bc765",
+      "sha256": "c0a31c5c663d39854ed1df13b9bf2bfc439fdb46419d089bc617607d6e6ac5b6"
+    },
+    "L5": {
+      "path": "docs/helix-security/L5-detail-design/revoke-quarantine-propagation.json",
+      "revision": "7382d9c749951074d54240c5473243841c4bc765",
+      "sha256": "90c3761e88ea76fefe1222372ffa1218afcf2fc8cb4dec666ca8b7ca98bd8734"
+    },
+    "L9": {
+      "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+      "revision": "7382d9c749951074d54240c5473243841c4bc765",
+      "sha256": "62913b58577cfc0f3c7e6682ad160d8f236157a0ceed9c88ef71822330ed60fc"
+    },
+    "L10B": {
+      "path": "docs/helix-security/L10-verification/business-verification.json",
+      "revision": "7382d9c749951074d54240c5473243841c4bc765",
+      "sha256": "c34b8f9a99f8f240558458dd63033acd0d756dfe61ad9cd3aac0e8e1c8193f42"
+    },
+    "L10F": {
+      "path": "docs/helix-security/L10-verification/functional-verification.json",
+      "revision": "7382d9c749951074d54240c5473243841c4bc765",
+      "sha256": "e6da7eaff29a623b5d069801280c295d9dd7cc43b51d9cde25b12a8110e5072a"
+    }
+  },
+  "historical_input_source": {
+    "revision": "4ba3f600df75aa6e860e0ddf53db68644e1edf98",
+    "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+    "sha256": "ed74cdc558bd8ba9cad5d8b075eee137bafba9c65e9a4a18bb862c728b646b4f",
+    "case_count": 356
+  },
+  "case_count": 2,
+  "candidates": [
+    {
+      "case_id": "SEC009-COMPOUND-OS-UNKNOWN-CREDENTIAL-UNAPPLIED-WORKER-CONTINUES",
+      "source_input": {
+        "revision": "4ba3f600df75aa6e860e0ddf53db68644e1edf98",
+        "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+        "case_pointer": "/cases/SEC009-COMPOUND-OS-UNKNOWN-CREDENTIAL-UNAPPLIED-WORKER-CONTINUES",
+        "input_pointer": "/cases/331/given/input",
+        "input_sha256_canonical_json": "add497581252e579a7e271a879067adc438c390a83adae27a13135e5dc3ef9bf",
+        "phase": "applied",
+        "facts": [
+          {
+            "input_pointer": "/policy/selected_recipients",
+            "present": true,
+            "value": [
+              "os_assignment",
+              "worker_execution",
+              "connect_communication",
+              "credential_use",
+              "artifact_access"
+            ]
+          },
+          {
+            "input_pointer": "/reports/worker_execution/post_state/execution_continues",
+            "present": true,
+            "value": true
+          },
+          {
+            "input_pointer": "/reports/credential_use/application/stop_use",
+            "present": true,
+            "value": "not_applied"
+          },
+          {
+            "input_pointer": "/reports/os_assignment/receipt",
+            "present": true,
+            "value": "unknown"
+          }
+        ]
+      },
+      "source_classification_basis": {
+        "basis_order": "L3 + L10 + L4 + source input first; existing L9 expected_proposal was read only afterward as cross-check",
+        "cross_layer_contracts": [
+          {
+            "L3_requirement_id": "HELIXSECURITY-L3-009-B01",
+            "L3_pointer": "docs/helix-security/L3-requirements/business-requirements.json#/requirements/2",
+            "L3_obligation": "009は初回scopeの005/008/024等が要求する失効/隔離の条件付き参照として限定著述する。SECがpolicy/発火条件、各recipientが自分のstate/実行を持つ。全recipient能力の実装や全機構完成を任意operationの開始条件にしない。",
+            "L10_oracle_id": "HELIXSECURITY-L10-009-B01",
+            "L10_pointer": "docs/helix-security/L10-verification/business-verification.json#/cases/2",
+            "L10_positive_input": "対象operationと該当recipient、未選択の別経路を照合する。",
+            "L10_negative_input": "SECがOS配置/実環境を所有、不要recipient完成待ち、数値latency新設。",
+            "L10_failure_observation": "必要な接続不足を残し、当該適用範囲だけを保留する。",
+            "L4_contract_id": "HELIXSECURITY-L4-009-B01",
+            "L4_pointer": "docs/helix-security/L4-basic-design/revoke-quarantine-propagation.json#/contracts/0",
+            "L4_input_meaning": "009は初回scopeの005/008/024等が要求する失効/隔離の条件付き参照として限定著述する。SECがpolicy/発火条件、各recipientが自分のstate/実行を持つ。全recipient能力の実装や全機構完成を任意operationの開始条件にしない。",
+            "L4_output_meaning": "選択phaseの各recipient対応/不足、必要な局所保留の提案、隔離/復旧素材の別状態。実停止/実復旧/再開許可を生成しない。"
+          },
+          {
+            "L3_requirement_id": "HELIXSECURITY-L3-009-F01",
+            "L3_pointer": "docs/helix-security/L3-requirements/functional-requirements.json#/requirements/21",
+            "L3_obligation": "失効/scope drift/不明外部副作用/credential漏洩/異常通信/runtime逸脱をoperation/project/Worker/credential/connection/artifact identityへ結び、OS新規割当停止、実環境の実行停止/途中成果隔離、CONNECT通信停止、credential使用停止、artifact access停止の全該当先へ伝播する。",
+            "L10_oracle_id": "HELIXSECURITY-L10-009-F01",
+            "L10_pointer": "docs/helix-security/L10-verification/functional-verification.json#/cases/21",
+            "L10_positive_input": "各triggerで該当recipient集合を与え、受領/実適用/未達/未観測を別々に照合する。",
+            "L10_negative_input": "一recipient未適用なのに継続、revoke後in-flight利用、単体成功で全停止。",
+            "L10_failure_observation": "対象operation/新規割当を止め、未達/適用不足と各ownerを保持する。",
+            "L4_contract_id": "HELIXSECURITY-L4-009-F01",
+            "L4_pointer": "docs/helix-security/L4-basic-design/revoke-quarantine-propagation.json#/contracts/1",
+            "L4_input_meaning": "失効/scope drift/不明外部副作用/credential漏洩/異常通信/runtime逸脱をoperation/project/Worker/credential/connection/artifact identityへ結び、OS新規割当停止、実環境の実行停止/途中成果隔離、CONNECT通信停止、credential使用停止、artifact access停止の全該当先へ伝播する。",
+            "L4_output_meaning": "選択phaseの各recipient対応/不足、必要な局所保留の提案、隔離/復旧素材の別状態。実停止/実復旧/再開許可を生成しない。"
+          },
+          {
+            "L3_requirement_id": "HELIXSECURITY-L3-009-F02",
+            "L3_pointer": "docs/helix-security/L3-requirements/functional-requirements.json#/requirements/22",
+            "L3_obligation": "安全trigger/外部副作用のunknownを該当identityへ束縛し、無関係な一般文書の意味unknownを全操作停止へ広げない。復旧可能な前状態へ隔離し、受領と実適用・復旧は別に確認する。",
+            "L10_oracle_id": "HELIXSECURITY-L10-009-F02",
+            "L10_pointer": "docs/helix-security/L10-verification/functional-verification.json#/cases/22",
+            "L10_positive_input": "一対象の安全unknownと無関係scopeの有効作業、復旧不足を比較する。",
+            "L10_negative_input": "通知ACKだけで停止済、部分復旧を成功、一般meaning unknownで全project停止。",
+            "L10_failure_observation": "policy意味はSEC、実適用はOS/実環境/CONNECT/INFRA等の該当ownerへ返す。",
+            "L4_contract_id": "HELIXSECURITY-L4-009-F02",
+            "L4_pointer": "docs/helix-security/L4-basic-design/revoke-quarantine-propagation.json#/contracts/2",
+            "L4_input_meaning": "安全trigger/外部副作用のunknownを該当identityへ束縛し、無関係な一般文書の意味unknownを全操作停止へ広げない。復旧可能な前状態へ隔離し、受領と実適用・復旧は別に確認する。",
+            "L4_output_meaning": "選択phaseの各recipient対応/不足、必要な局所保留の提案、隔離/復旧素材の別状態。実停止/実復旧/再開許可を生成しない。"
+          }
+        ],
+        "existing_L4_class_options": [
+          {
+            "class_id": "SEC009_F01_RECIPIENT_CONTINUES_AFTER_STOP",
+            "condition": "applied/recoveryのphaseで、選択された該当recipientのreport.post_stateにおいて停止・失効後の新規割当・in-flight実行継続・部分成果物露出・通信継続・credential利用継続・artifact access継続のいずれかがtrueである。",
+            "expected_classification": "revoke_material_violation",
+            "expected": {
+              "condition": "revoke_material_violation",
+              "finding_codes": [
+                "recipient_continues_after_stop"
+              ]
+            },
+            "expected_axis": "recipient_post_stop_non_continuation",
+            "expected_state": "violation",
+            "backflow_owner": "revoke-quarantine-owner",
+            "design_ref": "HELIXSECURITY-L4-009-F01"
+          },
+          {
+            "class_id": "SEC009_F01_RECIPIENT_NOT_APPLIED",
+            "condition": "applied/recoveryのphaseで、選択された該当recipientの必須停止actionに対するreport.applicationがnot_appliedであり、停止・隔離の未適用が確認された。",
+            "expected_classification": "revoke_material_violation",
+            "expected": {
+              "condition": "revoke_material_violation",
+              "finding_codes": [
+                "recipient_not_applied"
+              ]
+            },
+            "expected_axis": "recipient_action_application_status",
+            "expected_state": "violation",
+            "backflow_owner": "revoke-quarantine-owner",
+            "design_ref": "HELIXSECURITY-L4-009-F01"
+          },
+          {
+            "class_id": "SEC009_F01_RECIPIENT_RECEIPT_UNRESOLVED",
+            "condition": "received/applied/recoveryの各phaseで、選択された該当recipientのreport.receiptが未観測または未知状態であり、指示受領が確定できない。",
+            "expected_classification": "revoke_material_unknown",
+            "expected": {
+              "condition": "revoke_material_unknown",
+              "finding_codes": [
+                "recipient_receipt_unresolved"
+              ]
+            },
+            "expected_axis": "recipient_receipt_status",
+            "expected_state": "unknown",
+            "backflow_owner": "revoke-quarantine-owner",
+            "design_ref": "HELIXSECURITY-L4-009-F01"
+          }
+        ],
+        "current_L9_expectation_crosscheck": {
+          "condition": "revoke_material_violation",
+          "selected_phase": "applied",
+          "recipient_correspondence": {
+            "os_assignment": "unknown",
+            "worker_execution": "violation",
+            "connect_communication": "corresponding",
+            "credential_use": "violation",
+            "artifact_access": "corresponding"
+          },
+          "policy_correspondence": "corresponding",
+          "isolation_correspondence": "corresponding",
+          "recovery_correspondence": "not_evaluated",
+          "findings": [
+            {
+              "code": "recipient_continues_after_stop",
+              "pointer": "/reports/worker_execution/post_state/execution_continues",
+              "return_owner": "revoke-quarantine-owner"
+            },
+            {
+              "code": "recipient_not_applied",
+              "pointer": "/reports/credential_use/application/stop_use",
+              "return_owner": "revoke-quarantine-owner"
+            },
+            {
+              "code": "recipient_receipt_unresolved",
+              "pointer": "/reports/os_assignment/receipt",
+              "return_owner": "revoke-quarantine-owner"
+            }
+          ]
+        }
+      },
+      "candidate": {
+        "kind": "new_composite_class_candidate",
+        "provisional_class_id": "SEC009_F01_RECIPIENT_COMPOUND_FAILURE",
+        "collision_in_current_L4": false,
+        "contract_ref": "HELIXSECURITY-L4-009-F01",
+        "expected_classification": "revoke_material_violation",
+        "expected_axis": "recipient_multi_finding_bundle",
+        "expected_state": "violation",
+        "expected_finding_codes": [
+          "recipient_continues_after_stop",
+          "recipient_not_applied",
+          "recipient_receipt_unresolved"
+        ],
+        "component_existing_axes": [
+          "recipient_post_stop_non_continuation",
+          "recipient_action_application_status",
+          "recipient_receipt_status"
+        ],
+        "return_owner": "revoke-quarantine-owner",
+        "why_no_single_existing_class": "既存候補は1 finding/1 axisだけを分類し、このsource inputが同時に示す全finding・全軸を1件で保持しない。既存候補の一つへ絞るとsource-confirmed facts/unknownを落とす。",
+        "exact_pattern_population_count_in_historical_356_cases": 1,
+        "matching_case_ids": [
+          "SEC009-COMPOUND-OS-UNKNOWN-CREDENTIAL-UNAPPLIED-WORKER-CONTINUES"
+        ],
+        "status": "draft_for_independent_design_review; do not add this class to formal L4 yet"
+      },
+      "upstream_conflict": {
+        "found": false,
+        "note": "L3/L10/L4 requirements agree on required stop/unknown-locality and the observed source facts; current L4 taxonomy has only per-axis classes. The gap is cross-axis composite classification design, not a contradictory approved upstream statement."
+      },
+      "selection_note": "candidate is source-first; L9 expectation was not used to invent the candidate, only compared after derivation. No class assignment or formal mutation is made.",
+      "current_case_pointer": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json#/cases/1/negative_cases/205"
+    },
+    {
+      "case_id": "SEC009-RECOVERY-PRIOR-SOURCE-MISSING",
+      "source_input": {
+        "revision": "4ba3f600df75aa6e860e0ddf53db68644e1edf98",
+        "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+        "case_pointer": "/cases/SEC009-RECOVERY-PRIOR-SOURCE-MISSING",
+        "input_pointer": "/cases/335/given/input",
+        "input_sha256_canonical_json": "a3111537b304a99cb925dc4a8e026474edd3fce7a04efb5090a9b9a4f5294e41",
+        "phase": "recovery",
+        "facts": [
+          {
+            "input_pointer": "/context/before_state_ref",
+            "present": true,
+            "value": null
+          },
+          {
+            "input_pointer": "/isolation/before_state_ref",
+            "present": true,
+            "value": "BEFORE-A"
+          },
+          {
+            "input_pointer": "/recovery/restored_state_ref",
+            "present": true,
+            "value": "BEFORE-A"
+          }
+        ]
+      },
+      "source_classification_basis": {
+        "basis_order": "L3 + L10 + L4 + source input first; existing L9 expected_proposal was read only afterward as cross-check",
+        "cross_layer_contracts": [
+          {
+            "L3_requirement_id": "HELIXSECURITY-L3-009-B01",
+            "L3_pointer": "docs/helix-security/L3-requirements/business-requirements.json#/requirements/2",
+            "L3_obligation": "009は初回scopeの005/008/024等が要求する失効/隔離の条件付き参照として限定著述する。SECがpolicy/発火条件、各recipientが自分のstate/実行を持つ。全recipient能力の実装や全機構完成を任意operationの開始条件にしない。",
+            "L10_oracle_id": "HELIXSECURITY-L10-009-B01",
+            "L10_pointer": "docs/helix-security/L10-verification/business-verification.json#/cases/2",
+            "L10_positive_input": "対象operationと該当recipient、未選択の別経路を照合する。",
+            "L10_negative_input": "SECがOS配置/実環境を所有、不要recipient完成待ち、数値latency新設。",
+            "L10_failure_observation": "必要な接続不足を残し、当該適用範囲だけを保留する。",
+            "L4_contract_id": "HELIXSECURITY-L4-009-B01",
+            "L4_pointer": "docs/helix-security/L4-basic-design/revoke-quarantine-propagation.json#/contracts/0",
+            "L4_input_meaning": "009は初回scopeの005/008/024等が要求する失効/隔離の条件付き参照として限定著述する。SECがpolicy/発火条件、各recipientが自分のstate/実行を持つ。全recipient能力の実装や全機構完成を任意operationの開始条件にしない。",
+            "L4_output_meaning": "選択phaseの各recipient対応/不足、必要な局所保留の提案、隔離/復旧素材の別状態。実停止/実復旧/再開許可を生成しない。"
+          },
+          {
+            "L3_requirement_id": "HELIXSECURITY-L3-009-F01",
+            "L3_pointer": "docs/helix-security/L3-requirements/functional-requirements.json#/requirements/21",
+            "L3_obligation": "失効/scope drift/不明外部副作用/credential漏洩/異常通信/runtime逸脱をoperation/project/Worker/credential/connection/artifact identityへ結び、OS新規割当停止、実環境の実行停止/途中成果隔離、CONNECT通信停止、credential使用停止、artifact access停止の全該当先へ伝播する。",
+            "L10_oracle_id": "HELIXSECURITY-L10-009-F01",
+            "L10_pointer": "docs/helix-security/L10-verification/functional-verification.json#/cases/21",
+            "L10_positive_input": "各triggerで該当recipient集合を与え、受領/実適用/未達/未観測を別々に照合する。",
+            "L10_negative_input": "一recipient未適用なのに継続、revoke後in-flight利用、単体成功で全停止。",
+            "L10_failure_observation": "対象operation/新規割当を止め、未達/適用不足と各ownerを保持する。",
+            "L4_contract_id": "HELIXSECURITY-L4-009-F01",
+            "L4_pointer": "docs/helix-security/L4-basic-design/revoke-quarantine-propagation.json#/contracts/1",
+            "L4_input_meaning": "失効/scope drift/不明外部副作用/credential漏洩/異常通信/runtime逸脱をoperation/project/Worker/credential/connection/artifact identityへ結び、OS新規割当停止、実環境の実行停止/途中成果隔離、CONNECT通信停止、credential使用停止、artifact access停止の全該当先へ伝播する。",
+            "L4_output_meaning": "選択phaseの各recipient対応/不足、必要な局所保留の提案、隔離/復旧素材の別状態。実停止/実復旧/再開許可を生成しない。"
+          },
+          {
+            "L3_requirement_id": "HELIXSECURITY-L3-009-F02",
+            "L3_pointer": "docs/helix-security/L3-requirements/functional-requirements.json#/requirements/22",
+            "L3_obligation": "安全trigger/外部副作用のunknownを該当identityへ束縛し、無関係な一般文書の意味unknownを全操作停止へ広げない。復旧可能な前状態へ隔離し、受領と実適用・復旧は別に確認する。",
+            "L10_oracle_id": "HELIXSECURITY-L10-009-F02",
+            "L10_pointer": "docs/helix-security/L10-verification/functional-verification.json#/cases/22",
+            "L10_positive_input": "一対象の安全unknownと無関係scopeの有効作業、復旧不足を比較する。",
+            "L10_negative_input": "通知ACKだけで停止済、部分復旧を成功、一般meaning unknownで全project停止。",
+            "L10_failure_observation": "policy意味はSEC、実適用はOS/実環境/CONNECT/INFRA等の該当ownerへ返す。",
+            "L4_contract_id": "HELIXSECURITY-L4-009-F02",
+            "L4_pointer": "docs/helix-security/L4-basic-design/revoke-quarantine-propagation.json#/contracts/2",
+            "L4_input_meaning": "安全trigger/外部副作用のunknownを該当identityへ束縛し、無関係な一般文書の意味unknownを全操作停止へ広げない。復旧可能な前状態へ隔離し、受領と実適用・復旧は別に確認する。",
+            "L4_output_meaning": "選択phaseの各recipient対応/不足、必要な局所保留の提案、隔離/復旧素材の別状態。実停止/実復旧/再開許可を生成しない。"
+          }
+        ],
+        "existing_L4_class_options": [
+          {
+            "class_id": "SEC009_F02_ISOLATION_BINDING_UNRESOLVED",
+            "condition": "applied/recoveryのphaseで、isolation素材の共通5field・source_ref・before_state_refのいずれかが欠落・未解決であり、隔離対象と問題前状態の束縛が確定できない。",
+            "expected_classification": "revoke_material_unknown",
+            "expected": {
+              "condition": "revoke_material_unknown",
+              "finding_codes": [
+                "binding_unresolved"
+              ]
+            },
+            "expected_axis": "isolation_identity_or_before_state_binding",
+            "expected_state": "unknown",
+            "backflow_owner": "revoke-quarantine-owner",
+            "design_ref": "HELIXSECURITY-L4-009-F02"
+          },
+          {
+            "class_id": "SEC009_F02_RECOVERY_BINDING_UNRESOLVED",
+            "condition": "recoveryのphaseで、recovery素材の共通5field・source_ref・restored_state_refのいずれかが欠落・未解決であり、復旧対象または問題前の状態参照との対応が確定できない。",
+            "expected_classification": "revoke_material_unknown",
+            "expected": {
+              "condition": "revoke_material_unknown",
+              "finding_codes": [
+                "binding_unresolved"
+              ]
+            },
+            "expected_axis": "recovery_identity_or_restored_state_binding",
+            "expected_state": "unknown",
+            "backflow_owner": "revoke-quarantine-owner",
+            "design_ref": "HELIXSECURITY-L4-009-F02"
+          }
+        ],
+        "current_L9_expectation_crosscheck": {
+          "condition": "revoke_material_unknown",
+          "selected_phase": "recovery",
+          "recipient_correspondence": {
+            "os_assignment": "corresponding",
+            "worker_execution": "corresponding",
+            "connect_communication": "corresponding",
+            "credential_use": "corresponding",
+            "artifact_access": "corresponding"
+          },
+          "policy_correspondence": "corresponding",
+          "isolation_correspondence": "unknown",
+          "recovery_correspondence": "unknown",
+          "findings": [
+            {
+              "code": "binding_unresolved",
+              "pointer": "/context/before_state_ref",
+              "return_owner": "revoke-quarantine-owner"
+            }
+          ]
+        }
+      },
+      "candidate": {
+        "kind": "new_composite_class_candidate",
+        "provisional_class_id": "SEC009_F02_PRIOR_STATE_REFERENCE_UNRESOLVED",
+        "collision_in_current_L4": false,
+        "contract_ref": "HELIXSECURITY-L4-009-F02",
+        "expected_classification": "revoke_material_unknown",
+        "expected_axis": "isolation_recovery_before_state_reference_binding",
+        "expected_state": "unknown",
+        "expected_finding_codes": [
+          "binding_unresolved"
+        ],
+        "component_existing_axes": [
+          "isolation_identity_or_before_state_binding",
+          "recovery_identity_or_restored_state_binding"
+        ],
+        "return_owner": "revoke-quarantine-owner",
+        "why_no_single_existing_class": "既存候補は1 finding/1 axisだけを分類し、このsource inputが同時に示す全finding・全軸を1件で保持しない。既存候補の一つへ絞るとsource-confirmed facts/unknownを落とす。",
+        "exact_pattern_population_count_in_historical_356_cases": 1,
+        "matching_case_ids": [
+          "SEC009-RECOVERY-PRIOR-SOURCE-MISSING"
+        ],
+        "status": "draft_for_independent_design_review; do not add this class to formal L4 yet"
+      },
+      "upstream_conflict": {
+        "found": false,
+        "note": "L3/L10/L4 requirements agree on required stop/unknown-locality and the observed source facts; current L4 taxonomy has only per-axis classes. The gap is cross-axis composite classification design, not a contradictory approved upstream statement."
+      },
+      "selection_note": "candidate is source-first; L9 expectation was not used to invent the candidate, only compared after derivation. No class assignment or formal mutation is made.",
+      "current_case_pointer": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json#/cases/2/negative_cases/40"
+    }
+  ],
+  "carry_forward_controls": {
+    "71_multi_contract": "Keep all 71 as currently represented; no reassignment in this draft.",
+    "nested_l4_pointer_targets": "Keep the 308 L8/L9 direct consumer pointers and nested payload values for now.",
+    "nested_payload_retirement_condition": "Retire nested L4 payload only in a later reviewed change after all 308 consumer pointers are explicitly redirected to the canonical top-level class and an RFC6901 audit proves every target and required field. Until then keep nested targets byte/value-equivalent; checker non-detection is not sufficient evidence.",
+    "formal_files_changed": false,
+    "fixed_blind_changed": false,
+    "human_upstream_decision_required_now": false,
+    "human_decision_condition": "Only if a chosen design requires changing approved upstream meaning in L3/Concept/authority model; current candidates are downstream L4 classification shapes derived from existing meanings.",
+    "no_new_gate": "This draft does not create a new human approval gate."
+  },
+  "conclusion": "Both source inputs contain observed cross-axis facts that map to multiple existing atomic L4 classes. Neither has a single existing class that represents its complete finding set. The provisional new composite class shapes retain those facts and the existing outcome labels; their one-case population is explicitly disclosed, so independent design review must assess whether this is a legitimate semantic class or requires a different explicit representation before formal edits.",
+  "base_revision": "7382d9c749951074d54240c5473243841c4bc765"
+}

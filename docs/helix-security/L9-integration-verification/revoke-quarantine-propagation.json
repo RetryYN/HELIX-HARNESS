@@ -5318,14 +5318,16 @@
           "original_pointer": "/cases/331",
           "population_state": "negative",
           "nested_pointer": "#/cases/1/negative_cases/205",
-          "assignment_rule": "single_axis_recipient_delivery_application_F01",
+          "assignment_rule": "composite_multi_finding_multi_axis_F01",
           "basis_pointers": [
             "docs/helix-security/L4-basic-design/revoke-quarantine-propagation.json#/contracts/1/component",
             "docs/helix-security/L4-basic-design/revoke-quarantine-propagation.json#/contracts/1/input_meaning",
             "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json#/cases/1/negative_cases/205/expected_proposal/recipient_correspondence",
-            "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json#/cases/1/negative_cases/205/expected_proposal/findings"
+            "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json#/cases/1/negative_cases/205/expected_proposal/findings",
+            "docs/helix-security/L4-basic-design/revoke-quarantine-propagation.json#/failure_classifications/30",
+            "docs/helix-security/L4-basic-design/revoke-quarantine-propagation.json#/diagnostic_contract/composite_class_formation"
           ],
-          "unassigned_classification_reason": "multiple_findings_compound_case"
+          "negative_classification_ref": "SEC009_F01_RECIPIENT_COMPOSITE_FINDINGS"
         },
         {
           "id": "SEC009-OS_ASSIGNMENT-ACTIONS-DUPLICATE",
@@ -21418,7 +21420,25 @@
             "operation_effect": "none"
           },
           "execution_state": "not_executed",
-          "actual_observation": "not_observed"
+          "actual_observation": "not_observed",
+          "negative_class_assignment": {
+            "classification": "SEC009_F01_RECIPIENT_COMPOSITE_FINDINGS",
+            "reason": "3 independently emitted F01 findings are retained in existing L4 finding sort order; worker continuation and credential not-applied are violations while OS receipt remains unknown.",
+            "source_pointers": [
+              {
+                "path": "docs/helix-security/L4-basic-design/revoke-quarantine-propagation.json",
+                "pointer": "/failure_classifications/30"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/revoke-quarantine-propagation.json",
+                "pointer": "/diagnostic_contract/composite_class_formation"
+              },
+              {
+                "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+                "pointer": "/cases/1/negative_cases/205/expected_proposal/findings"
+              }
+            ]
+          }
         },
         {
           "id": "SEC009-OS_ASSIGNMENT-ACTIONS-DUPLICATE",
@@ -23286,15 +23306,17 @@
           "original_pointer": "/cases/335",
           "population_state": "negative",
           "nested_pointer": "#/cases/2/negative_cases/40",
-          "assignment_rule": "single_axis_local_isolation_recovery_F02",
+          "assignment_rule": "shared_before_state_multi_axis_F02",
           "basis_pointers": [
             "docs/helix-security/L4-basic-design/revoke-quarantine-propagation.json#/contracts/2/component",
             "docs/helix-security/L4-basic-design/revoke-quarantine-propagation.json#/contracts/2/input_meaning",
             "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json#/cases/2/negative_cases/40/expected_proposal/isolation_correspondence",
             "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json#/cases/2/negative_cases/40/expected_proposal/recovery_correspondence",
-            "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json#/cases/2/negative_cases/40/expected_proposal/findings"
+            "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json#/cases/2/negative_cases/40/expected_proposal/findings",
+            "docs/helix-security/L4-basic-design/revoke-quarantine-propagation.json#/failure_classifications/31",
+            "docs/helix-security/L4-basic-design/revoke-quarantine-propagation.json#/diagnostic_contract/composite_class_formation"
           ],
-          "unassigned_classification_reason": "shared_before_state_ref_affecting_both_isolation_and_recovery"
+          "negative_classification_ref": "SEC009_F02_ISOLATION_RECOVERY_BINDING_UNRESOLVED"
         },
         {
           "id": "SEC009-SAFETY-STOP-SCOPE-NULL",
@@ -26490,7 +26512,25 @@
             "operation_effect": "none"
           },
           "execution_state": "not_executed",
-          "actual_observation": "not_observed"
+          "actual_observation": "not_observed",
+          "negative_class_assignment": {
+            "classification": "SEC009_F02_ISOLATION_RECOVERY_BINDING_UNRESOLVED",
+            "reason": "One shared context.before_state_ref finding leaves both existing F02 isolation and recovery binding axes unknown; neither axis is dropped or treated as resolved.",
+            "source_pointers": [
+              {
+                "path": "docs/helix-security/L4-basic-design/revoke-quarantine-propagation.json",
+                "pointer": "/failure_classifications/31"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/revoke-quarantine-propagation.json",
+                "pointer": "/diagnostic_contract/composite_class_formation"
+              },
+              {
+                "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+                "pointer": "/cases/2/negative_cases/40/expected_proposal/findings"
+              }
+            ]
+          }
         },
         {
           "id": "SEC009-SAFETY-STOP-SCOPE-NULL",
@@ -32275,5 +32315,4138 @@
       "basis": "multi_contract_residualの71件を上流L3/L10/L4から再照合した結果、正例28件は全5 recipientと全対象軸を横断するパイプライン正例であり、負例43件もevent.identity欠落/相反（21件：B01/F01/F02の複数correspondence軸に同時波及）、context.expected_identity欠落/相反（20件：B01/F01/F02全契約が共有する原event identity束縛前提）、safety_trigger_unresolved（1件：B01/F01/F02全契約が共有する6種安全trigger閉集合前提）、propagation_phase_unresolved（1件：B01/F01/F02全契約が共有する4 phase境界前提）であるため、上流から単一契約に一意決定できるケースは0件であり、推測による移動を行わず71件すべてを理由付きで保持した。",
       "pointer": "/multi_contract_residual"
     }
+  },
+  "negative_equivalence_classes": [
+    {
+      "class_id": "SEC009_B01_POLICY_BINDING_UNRESOLVED",
+      "expected_classification": "revoke_material_unknown",
+      "expected": {
+        "condition": "revoke_material_unknown",
+        "finding_codes": [
+          "binding_unresolved"
+        ]
+      },
+      "backflow_owner": "revoke-quarantine-owner",
+      "expected_axis": "policy_common_identity_binding",
+      "expected_state": "unknown",
+      "side_effect_count": 0,
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L4-basic-design/revoke-quarantine-propagation.json",
+          "pointer": "/failure_classifications/0"
+        }
+      ]
+    },
+    {
+      "class_id": "SEC009_B01_POLICY_BINDING_CONFLICT",
+      "expected_classification": "revoke_material_violation",
+      "expected": {
+        "condition": "revoke_material_violation",
+        "finding_codes": [
+          "binding_conflict"
+        ]
+      },
+      "backflow_owner": "revoke-quarantine-owner",
+      "expected_axis": "policy_common_identity_binding",
+      "expected_state": "violation",
+      "side_effect_count": 0,
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L4-basic-design/revoke-quarantine-propagation.json",
+          "pointer": "/failure_classifications/1"
+        }
+      ]
+    },
+    {
+      "class_id": "SEC009_B01_RECIPIENT_SET_UNRESOLVED",
+      "expected_classification": "revoke_material_unknown",
+      "expected": {
+        "condition": "revoke_material_unknown",
+        "finding_codes": [
+          "recipient_set_unresolved"
+        ]
+      },
+      "backflow_owner": "revoke-quarantine-owner",
+      "expected_axis": "selected_recipient_closure_set",
+      "expected_state": "unknown",
+      "side_effect_count": 0,
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L4-basic-design/revoke-quarantine-propagation.json",
+          "pointer": "/failure_classifications/2"
+        }
+      ]
+    },
+    {
+      "class_id": "SEC009_B01_RECIPIENT_SET_CONFLICT",
+      "expected_classification": "revoke_material_violation",
+      "expected": {
+        "condition": "revoke_material_violation",
+        "finding_codes": [
+          "recipient_set_conflict"
+        ]
+      },
+      "backflow_owner": "revoke-quarantine-owner",
+      "expected_axis": "selected_recipient_closure_set",
+      "expected_state": "violation",
+      "side_effect_count": 0,
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L4-basic-design/revoke-quarantine-propagation.json",
+          "pointer": "/failure_classifications/3"
+        }
+      ]
+    },
+    {
+      "class_id": "SEC009_F01_INSTRUCTION_UNRESOLVED",
+      "expected_classification": "revoke_material_unknown",
+      "expected": {
+        "condition": "revoke_material_unknown",
+        "finding_codes": [
+          "instruction_unresolved"
+        ]
+      },
+      "backflow_owner": "revoke-quarantine-owner",
+      "expected_axis": "recipient_instruction_presence",
+      "expected_state": "unknown",
+      "side_effect_count": 0,
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L4-basic-design/revoke-quarantine-propagation.json",
+          "pointer": "/failure_classifications/4"
+        }
+      ]
+    },
+    {
+      "class_id": "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED",
+      "expected_classification": "revoke_material_unknown",
+      "expected": {
+        "condition": "revoke_material_unknown",
+        "finding_codes": [
+          "binding_unresolved"
+        ]
+      },
+      "backflow_owner": "revoke-quarantine-owner",
+      "expected_axis": "recipient_instruction_identity_or_policy_source_binding",
+      "expected_state": "unknown",
+      "side_effect_count": 0,
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L4-basic-design/revoke-quarantine-propagation.json",
+          "pointer": "/failure_classifications/5"
+        }
+      ]
+    },
+    {
+      "class_id": "SEC009_F01_INSTRUCTION_BINDING_CONFLICT",
+      "expected_classification": "revoke_material_violation",
+      "expected": {
+        "condition": "revoke_material_violation",
+        "finding_codes": [
+          "binding_conflict"
+        ]
+      },
+      "backflow_owner": "revoke-quarantine-owner",
+      "expected_axis": "recipient_instruction_identity_or_policy_source_binding",
+      "expected_state": "violation",
+      "side_effect_count": 0,
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L4-basic-design/revoke-quarantine-propagation.json",
+          "pointer": "/failure_classifications/6"
+        }
+      ]
+    },
+    {
+      "class_id": "SEC009_F01_RECIPIENT_ACTIONS_UNRESOLVED",
+      "expected_classification": "revoke_material_unknown",
+      "expected": {
+        "condition": "revoke_material_unknown",
+        "finding_codes": [
+          "recipient_actions_unresolved"
+        ]
+      },
+      "backflow_owner": "revoke-quarantine-owner",
+      "expected_axis": "recipient_required_actions_shape",
+      "expected_state": "unknown",
+      "side_effect_count": 0,
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L4-basic-design/revoke-quarantine-propagation.json",
+          "pointer": "/failure_classifications/7"
+        }
+      ]
+    },
+    {
+      "class_id": "SEC009_F01_RECIPIENT_ACTIONS_CONFLICT",
+      "expected_classification": "revoke_material_violation",
+      "expected": {
+        "condition": "revoke_material_violation",
+        "finding_codes": [
+          "recipient_actions_conflict"
+        ]
+      },
+      "backflow_owner": "revoke-quarantine-owner",
+      "expected_axis": "recipient_required_actions_set",
+      "expected_state": "violation",
+      "side_effect_count": 0,
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L4-basic-design/revoke-quarantine-propagation.json",
+          "pointer": "/failure_classifications/8"
+        }
+      ]
+    },
+    {
+      "class_id": "SEC009_F01_RECIPIENT_REPORT_UNRESOLVED",
+      "expected_classification": "revoke_material_unknown",
+      "expected": {
+        "condition": "revoke_material_unknown",
+        "finding_codes": [
+          "recipient_report_unresolved"
+        ]
+      },
+      "backflow_owner": "revoke-quarantine-owner",
+      "expected_axis": "recipient_report_presence",
+      "expected_state": "unknown",
+      "side_effect_count": 0,
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L4-basic-design/revoke-quarantine-propagation.json",
+          "pointer": "/failure_classifications/9"
+        }
+      ]
+    },
+    {
+      "class_id": "SEC009_F01_REPORT_BINDING_UNRESOLVED",
+      "expected_classification": "revoke_material_unknown",
+      "expected": {
+        "condition": "revoke_material_unknown",
+        "finding_codes": [
+          "binding_unresolved"
+        ]
+      },
+      "backflow_owner": "revoke-quarantine-owner",
+      "expected_axis": "recipient_report_identity_or_report_source_binding",
+      "expected_state": "unknown",
+      "side_effect_count": 0,
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L4-basic-design/revoke-quarantine-propagation.json",
+          "pointer": "/failure_classifications/10"
+        }
+      ]
+    },
+    {
+      "class_id": "SEC009_F01_REPORT_BINDING_CONFLICT",
+      "expected_classification": "revoke_material_violation",
+      "expected": {
+        "condition": "revoke_material_violation",
+        "finding_codes": [
+          "binding_conflict"
+        ]
+      },
+      "backflow_owner": "revoke-quarantine-owner",
+      "expected_axis": "recipient_report_identity_or_report_source_binding",
+      "expected_state": "violation",
+      "side_effect_count": 0,
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L4-basic-design/revoke-quarantine-propagation.json",
+          "pointer": "/failure_classifications/11"
+        }
+      ]
+    },
+    {
+      "class_id": "SEC009_F01_RECIPIENT_RECEIPT_UNRESOLVED",
+      "expected_classification": "revoke_material_unknown",
+      "expected": {
+        "condition": "revoke_material_unknown",
+        "finding_codes": [
+          "recipient_receipt_unresolved"
+        ]
+      },
+      "backflow_owner": "revoke-quarantine-owner",
+      "expected_axis": "recipient_receipt_status",
+      "expected_state": "unknown",
+      "side_effect_count": 0,
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L4-basic-design/revoke-quarantine-propagation.json",
+          "pointer": "/failure_classifications/12"
+        }
+      ]
+    },
+    {
+      "class_id": "SEC009_F01_RECIPIENT_NOT_DELIVERED",
+      "expected_classification": "revoke_material_violation",
+      "expected": {
+        "condition": "revoke_material_violation",
+        "finding_codes": [
+          "recipient_not_delivered"
+        ]
+      },
+      "backflow_owner": "revoke-quarantine-owner",
+      "expected_axis": "recipient_receipt_status",
+      "expected_state": "violation",
+      "side_effect_count": 0,
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L4-basic-design/revoke-quarantine-propagation.json",
+          "pointer": "/failure_classifications/13"
+        }
+      ]
+    },
+    {
+      "class_id": "SEC009_F01_RECIPIENT_APPLICATION_UNRESOLVED",
+      "expected_classification": "revoke_material_unknown",
+      "expected": {
+        "condition": "revoke_material_unknown",
+        "finding_codes": [
+          "recipient_application_unresolved"
+        ]
+      },
+      "backflow_owner": "revoke-quarantine-owner",
+      "expected_axis": "recipient_action_application_status",
+      "expected_state": "unknown",
+      "side_effect_count": 0,
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L4-basic-design/revoke-quarantine-propagation.json",
+          "pointer": "/failure_classifications/14"
+        }
+      ]
+    },
+    {
+      "class_id": "SEC009_F01_RECIPIENT_NOT_APPLIED",
+      "expected_classification": "revoke_material_violation",
+      "expected": {
+        "condition": "revoke_material_violation",
+        "finding_codes": [
+          "recipient_not_applied"
+        ]
+      },
+      "backflow_owner": "revoke-quarantine-owner",
+      "expected_axis": "recipient_action_application_status",
+      "expected_state": "violation",
+      "side_effect_count": 0,
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L4-basic-design/revoke-quarantine-propagation.json",
+          "pointer": "/failure_classifications/15"
+        }
+      ]
+    },
+    {
+      "class_id": "SEC009_F01_RECIPIENT_POST_STATE_UNRESOLVED",
+      "expected_classification": "revoke_material_unknown",
+      "expected": {
+        "condition": "revoke_material_unknown",
+        "finding_codes": [
+          "recipient_post_state_unresolved"
+        ]
+      },
+      "backflow_owner": "revoke-quarantine-owner",
+      "expected_axis": "recipient_post_stop_non_continuation",
+      "expected_state": "unknown",
+      "side_effect_count": 0,
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L4-basic-design/revoke-quarantine-propagation.json",
+          "pointer": "/failure_classifications/16"
+        }
+      ]
+    },
+    {
+      "class_id": "SEC009_F01_RECIPIENT_CONTINUES_AFTER_STOP",
+      "expected_classification": "revoke_material_violation",
+      "expected": {
+        "condition": "revoke_material_violation",
+        "finding_codes": [
+          "recipient_continues_after_stop"
+        ]
+      },
+      "backflow_owner": "revoke-quarantine-owner",
+      "expected_axis": "recipient_post_stop_non_continuation",
+      "expected_state": "violation",
+      "side_effect_count": 0,
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L4-basic-design/revoke-quarantine-propagation.json",
+          "pointer": "/failure_classifications/17"
+        }
+      ]
+    },
+    {
+      "class_id": "SEC009_F02_TRIGGER_CATEGORY_UNRESOLVED",
+      "expected_classification": "revoke_material_unknown",
+      "expected": {
+        "condition": "revoke_material_unknown",
+        "finding_codes": [
+          "trigger_category_unresolved"
+        ]
+      },
+      "backflow_owner": "revoke-quarantine-owner",
+      "expected_axis": "safety_vs_general_meaning_category",
+      "expected_state": "unknown",
+      "side_effect_count": 0,
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L4-basic-design/revoke-quarantine-propagation.json",
+          "pointer": "/failure_classifications/18"
+        }
+      ]
+    },
+    {
+      "class_id": "SEC009_F02_TRIGGER_CATEGORY_CONFLICT",
+      "expected_classification": "revoke_material_violation",
+      "expected": {
+        "condition": "revoke_material_violation",
+        "finding_codes": [
+          "trigger_category_conflict"
+        ]
+      },
+      "backflow_owner": "revoke-quarantine-owner",
+      "expected_axis": "safety_vs_general_meaning_category",
+      "expected_state": "violation",
+      "side_effect_count": 0,
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L4-basic-design/revoke-quarantine-propagation.json",
+          "pointer": "/failure_classifications/19"
+        }
+      ]
+    },
+    {
+      "class_id": "SEC009_F02_STOP_SCOPE_UNRESOLVED",
+      "expected_classification": "revoke_material_unknown",
+      "expected": {
+        "condition": "revoke_material_unknown",
+        "finding_codes": [
+          "stop_scope_unresolved"
+        ]
+      },
+      "backflow_owner": "revoke-quarantine-owner",
+      "expected_axis": "local_stop_scope_boundary",
+      "expected_state": "unknown",
+      "side_effect_count": 0,
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L4-basic-design/revoke-quarantine-propagation.json",
+          "pointer": "/failure_classifications/20"
+        }
+      ]
+    },
+    {
+      "class_id": "SEC009_F02_GLOBAL_STOP_EXPANSION",
+      "expected_classification": "revoke_material_violation",
+      "expected": {
+        "condition": "revoke_material_violation",
+        "finding_codes": [
+          "global_stop_expansion"
+        ]
+      },
+      "backflow_owner": "revoke-quarantine-owner",
+      "expected_axis": "local_stop_scope_boundary",
+      "expected_state": "violation",
+      "side_effect_count": 0,
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L4-basic-design/revoke-quarantine-propagation.json",
+          "pointer": "/failure_classifications/21"
+        }
+      ]
+    },
+    {
+      "class_id": "SEC009_F02_ISOLATION_BINDING_UNRESOLVED",
+      "expected_classification": "revoke_material_unknown",
+      "expected": {
+        "condition": "revoke_material_unknown",
+        "finding_codes": [
+          "binding_unresolved"
+        ]
+      },
+      "backflow_owner": "revoke-quarantine-owner",
+      "expected_axis": "isolation_identity_or_before_state_binding",
+      "expected_state": "unknown",
+      "side_effect_count": 0,
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L4-basic-design/revoke-quarantine-propagation.json",
+          "pointer": "/failure_classifications/22"
+        }
+      ]
+    },
+    {
+      "class_id": "SEC009_F02_ISOLATION_BINDING_CONFLICT",
+      "expected_classification": "revoke_material_violation",
+      "expected": {
+        "condition": "revoke_material_violation",
+        "finding_codes": [
+          "binding_conflict"
+        ]
+      },
+      "backflow_owner": "revoke-quarantine-owner",
+      "expected_axis": "isolation_identity_or_before_state_binding",
+      "expected_state": "violation",
+      "side_effect_count": 0,
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L4-basic-design/revoke-quarantine-propagation.json",
+          "pointer": "/failure_classifications/23"
+        }
+      ]
+    },
+    {
+      "class_id": "SEC009_F02_ISOLATION_UNRESOLVED",
+      "expected_classification": "revoke_material_unknown",
+      "expected": {
+        "condition": "revoke_material_unknown",
+        "finding_codes": [
+          "isolation_unresolved"
+        ]
+      },
+      "backflow_owner": "revoke-quarantine-owner",
+      "expected_axis": "isolation_state",
+      "expected_state": "unknown",
+      "side_effect_count": 0,
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L4-basic-design/revoke-quarantine-propagation.json",
+          "pointer": "/failure_classifications/24"
+        }
+      ]
+    },
+    {
+      "class_id": "SEC009_F02_ISOLATION_NOT_APPLIED",
+      "expected_classification": "revoke_material_violation",
+      "expected": {
+        "condition": "revoke_material_violation",
+        "finding_codes": [
+          "isolation_not_applied"
+        ]
+      },
+      "backflow_owner": "revoke-quarantine-owner",
+      "expected_axis": "isolation_state",
+      "expected_state": "violation",
+      "side_effect_count": 0,
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L4-basic-design/revoke-quarantine-propagation.json",
+          "pointer": "/failure_classifications/25"
+        }
+      ]
+    },
+    {
+      "class_id": "SEC009_F02_RECOVERY_BINDING_UNRESOLVED",
+      "expected_classification": "revoke_material_unknown",
+      "expected": {
+        "condition": "revoke_material_unknown",
+        "finding_codes": [
+          "binding_unresolved"
+        ]
+      },
+      "backflow_owner": "revoke-quarantine-owner",
+      "expected_axis": "recovery_identity_or_restored_state_binding",
+      "expected_state": "unknown",
+      "side_effect_count": 0,
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L4-basic-design/revoke-quarantine-propagation.json",
+          "pointer": "/failure_classifications/26"
+        }
+      ]
+    },
+    {
+      "class_id": "SEC009_F02_RECOVERY_BINDING_CONFLICT",
+      "expected_classification": "revoke_material_violation",
+      "expected": {
+        "condition": "revoke_material_violation",
+        "finding_codes": [
+          "binding_conflict"
+        ]
+      },
+      "backflow_owner": "revoke-quarantine-owner",
+      "expected_axis": "recovery_identity_or_restored_state_binding",
+      "expected_state": "violation",
+      "side_effect_count": 0,
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L4-basic-design/revoke-quarantine-propagation.json",
+          "pointer": "/failure_classifications/27"
+        }
+      ]
+    },
+    {
+      "class_id": "SEC009_F02_RECOVERY_UNRESOLVED",
+      "expected_classification": "revoke_material_unknown",
+      "expected": {
+        "condition": "revoke_material_unknown",
+        "finding_codes": [
+          "recovery_unresolved"
+        ]
+      },
+      "backflow_owner": "revoke-quarantine-owner",
+      "expected_axis": "recovery_state",
+      "expected_state": "unknown",
+      "side_effect_count": 0,
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L4-basic-design/revoke-quarantine-propagation.json",
+          "pointer": "/failure_classifications/28"
+        }
+      ]
+    },
+    {
+      "class_id": "SEC009_F02_RECOVERY_INCOMPLETE",
+      "expected_classification": "revoke_material_violation",
+      "expected": {
+        "condition": "revoke_material_violation",
+        "finding_codes": [
+          "recovery_incomplete"
+        ]
+      },
+      "backflow_owner": "revoke-quarantine-owner",
+      "expected_axis": "recovery_state",
+      "expected_state": "violation",
+      "side_effect_count": 0,
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L4-basic-design/revoke-quarantine-propagation.json",
+          "pointer": "/failure_classifications/29"
+        }
+      ]
+    },
+    {
+      "class_id": "SEC009_F01_RECIPIENT_COMPOSITE_FINDINGS",
+      "expected_classification": "revoke_material_violation",
+      "expected": {
+        "condition": "revoke_material_violation",
+        "finding_codes": [
+          "recipient_continues_after_stop",
+          "recipient_not_applied",
+          "recipient_receipt_unresolved"
+        ]
+      },
+      "backflow_owner": "revoke-quarantine-owner",
+      "expected_axis": [
+        "recipient_post_stop_non_continuation",
+        "recipient_action_application_status",
+        "recipient_receipt_status"
+      ],
+      "expected_state": "violation",
+      "side_effect_count": 0,
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L4-basic-design/revoke-quarantine-propagation.json",
+          "pointer": "/failure_classifications/30"
+        }
+      ]
+    },
+    {
+      "class_id": "SEC009_F02_ISOLATION_RECOVERY_BINDING_UNRESOLVED",
+      "expected_classification": "revoke_material_unknown",
+      "expected": {
+        "condition": "revoke_material_unknown",
+        "finding_codes": [
+          "binding_unresolved"
+        ]
+      },
+      "backflow_owner": "revoke-quarantine-owner",
+      "expected_axis": [
+        "isolation_identity_or_before_state_binding",
+        "recovery_identity_or_restored_state_binding"
+      ],
+      "expected_state": "unknown",
+      "side_effect_count": 0,
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L4-basic-design/revoke-quarantine-propagation.json",
+          "pointer": "/failure_classifications/31"
+        }
+      ]
+    }
+  ],
+  "integration_cases": [
+    {
+      "id": "SEC009-ONLY-OS_ASSIGNMENT-UNSELECTED-ABSENT",
+      "population_state": "positive",
+      "contract_ref": "HELIXSECURITY-L4-009-B01",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/0/positive_cases/0"
+        }
+      ]
+    },
+    {
+      "id": "SEC009-ONLY-WORKER_EXECUTION-UNSELECTED-ABSENT",
+      "population_state": "positive",
+      "contract_ref": "HELIXSECURITY-L4-009-B01",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/0/positive_cases/1"
+        }
+      ]
+    },
+    {
+      "id": "SEC009-ONLY-CONNECT_COMMUNICATION-UNSELECTED-ABSENT",
+      "population_state": "positive",
+      "contract_ref": "HELIXSECURITY-L4-009-B01",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/0/positive_cases/2"
+        }
+      ]
+    },
+    {
+      "id": "SEC009-ONLY-CREDENTIAL_USE-UNSELECTED-ABSENT",
+      "population_state": "positive",
+      "contract_ref": "HELIXSECURITY-L4-009-B01",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/0/positive_cases/3"
+        }
+      ]
+    },
+    {
+      "id": "SEC009-ONLY-ARTIFACT_ACCESS-UNSELECTED-ABSENT",
+      "population_state": "positive",
+      "contract_ref": "HELIXSECURITY-L4-009-B01",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/0/positive_cases/4"
+        }
+      ]
+    },
+    {
+      "id": "SEC009-EMPTY-RECIPIENT-SET",
+      "population_state": "positive",
+      "contract_ref": "HELIXSECURITY-L4-009-B01",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/0/positive_cases/5"
+        }
+      ]
+    },
+    {
+      "id": "SEC009-OS-OFFLINE-INDEPENDENT-RECOVERY-SELECTION",
+      "population_state": "positive",
+      "contract_ref": "HELIXSECURITY-L4-009-B01",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/0/positive_cases/6"
+        }
+      ]
+    },
+    {
+      "id": "SEC009-POLICY-EVENT_ID-MISSING",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-B01",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/0/negative_cases/0"
+        }
+      ],
+      "negative_class_ref": "SEC009_B01_POLICY_BINDING_UNRESOLVED"
+    },
+    {
+      "id": "SEC009-POLICY-EVENT_ID-CONFLICT",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-B01",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/0/negative_cases/1"
+        }
+      ],
+      "negative_class_ref": "SEC009_B01_POLICY_BINDING_CONFLICT"
+    },
+    {
+      "id": "SEC009-POLICY-REVISION-MISSING",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-B01",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/0/negative_cases/2"
+        }
+      ],
+      "negative_class_ref": "SEC009_B01_POLICY_BINDING_UNRESOLVED"
+    },
+    {
+      "id": "SEC009-POLICY-REVISION-CONFLICT",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-B01",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/0/negative_cases/3"
+        }
+      ],
+      "negative_class_ref": "SEC009_B01_POLICY_BINDING_CONFLICT"
+    },
+    {
+      "id": "SEC009-POLICY-SCOPE-MISSING",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-B01",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/0/negative_cases/4"
+        }
+      ],
+      "negative_class_ref": "SEC009_B01_POLICY_BINDING_UNRESOLVED"
+    },
+    {
+      "id": "SEC009-POLICY-SCOPE-CONFLICT",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-B01",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/0/negative_cases/5"
+        }
+      ],
+      "negative_class_ref": "SEC009_B01_POLICY_BINDING_CONFLICT"
+    },
+    {
+      "id": "SEC009-POLICY-OPERATION-MISSING",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-B01",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/0/negative_cases/6"
+        }
+      ],
+      "negative_class_ref": "SEC009_B01_POLICY_BINDING_UNRESOLVED"
+    },
+    {
+      "id": "SEC009-POLICY-OPERATION-CONFLICT",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-B01",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/0/negative_cases/7"
+        }
+      ],
+      "negative_class_ref": "SEC009_B01_POLICY_BINDING_CONFLICT"
+    },
+    {
+      "id": "SEC009-POLICY-PROJECT-MISSING",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-B01",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/0/negative_cases/8"
+        }
+      ],
+      "negative_class_ref": "SEC009_B01_POLICY_BINDING_UNRESOLVED"
+    },
+    {
+      "id": "SEC009-POLICY-PROJECT-CONFLICT",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-B01",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/0/negative_cases/9"
+        }
+      ],
+      "negative_class_ref": "SEC009_B01_POLICY_BINDING_CONFLICT"
+    },
+    {
+      "id": "SEC009-POLICY-OMISSION",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-B01",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/0/negative_cases/10"
+        }
+      ],
+      "negative_class_ref": "SEC009_B01_RECIPIENT_SET_CONFLICT"
+    },
+    {
+      "id": "SEC009-POLICY-EXTRA",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-B01",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/0/negative_cases/11"
+        }
+      ],
+      "negative_class_ref": "SEC009_B01_RECIPIENT_SET_CONFLICT"
+    },
+    {
+      "id": "SEC009-EXPECTED-UNKNOWN",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-B01",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/0/negative_cases/12"
+        }
+      ],
+      "negative_class_ref": "SEC009_B01_RECIPIENT_SET_UNRESOLVED"
+    },
+    {
+      "id": "SEC009-OS_ASSIGNMENT-INSTRUCTIONS-MISSING",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F01",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/1/negative_cases/0"
+        }
+      ],
+      "negative_class_ref": "SEC009_F01_INSTRUCTION_UNRESOLVED"
+    },
+    {
+      "id": "SEC009-OS_ASSIGNMENT-INSTRUCTIONS-EVENT_ID-MISSING",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F01",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/1/negative_cases/1"
+        }
+      ],
+      "negative_class_ref": "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED"
+    },
+    {
+      "id": "SEC009-OS_ASSIGNMENT-INSTRUCTIONS-EVENT_ID-CONFLICT",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F01",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/1/negative_cases/2"
+        }
+      ],
+      "negative_class_ref": "SEC009_F01_INSTRUCTION_BINDING_CONFLICT"
+    },
+    {
+      "id": "SEC009-OS_ASSIGNMENT-INSTRUCTIONS-REVISION-MISSING",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F01",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/1/negative_cases/3"
+        }
+      ],
+      "negative_class_ref": "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED"
+    },
+    {
+      "id": "SEC009-OS_ASSIGNMENT-INSTRUCTIONS-REVISION-CONFLICT",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F01",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/1/negative_cases/4"
+        }
+      ],
+      "negative_class_ref": "SEC009_F01_INSTRUCTION_BINDING_CONFLICT"
+    },
+    {
+      "id": "SEC009-OS_ASSIGNMENT-INSTRUCTIONS-SCOPE-MISSING",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F01",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/1/negative_cases/5"
+        }
+      ],
+      "negative_class_ref": "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED"
+    },
+    {
+      "id": "SEC009-OS_ASSIGNMENT-INSTRUCTIONS-SCOPE-CONFLICT",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F01",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/1/negative_cases/6"
+        }
+      ],
+      "negative_class_ref": "SEC009_F01_INSTRUCTION_BINDING_CONFLICT"
+    },
+    {
+      "id": "SEC009-OS_ASSIGNMENT-INSTRUCTIONS-OPERATION-MISSING",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F01",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/1/negative_cases/7"
+        }
+      ],
+      "negative_class_ref": "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED"
+    },
+    {
+      "id": "SEC009-OS_ASSIGNMENT-INSTRUCTIONS-OPERATION-CONFLICT",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F01",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/1/negative_cases/8"
+        }
+      ],
+      "negative_class_ref": "SEC009_F01_INSTRUCTION_BINDING_CONFLICT"
+    },
+    {
+      "id": "SEC009-OS_ASSIGNMENT-INSTRUCTIONS-PROJECT-MISSING",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F01",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/1/negative_cases/9"
+        }
+      ],
+      "negative_class_ref": "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED"
+    },
+    {
+      "id": "SEC009-OS_ASSIGNMENT-INSTRUCTIONS-PROJECT-CONFLICT",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F01",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/1/negative_cases/10"
+        }
+      ],
+      "negative_class_ref": "SEC009_F01_INSTRUCTION_BINDING_CONFLICT"
+    },
+    {
+      "id": "SEC009-OS_ASSIGNMENT-INSTRUCTIONS-SOURCE-MISSING",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F01",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/1/negative_cases/11"
+        }
+      ],
+      "negative_class_ref": "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED"
+    },
+    {
+      "id": "SEC009-OS_ASSIGNMENT-INSTRUCTIONS-SOURCE-CONFLICT",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F01",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/1/negative_cases/12"
+        }
+      ],
+      "negative_class_ref": "SEC009_F01_INSTRUCTION_BINDING_CONFLICT"
+    },
+    {
+      "id": "SEC009-OS_ASSIGNMENT-REPORTS-MISSING",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F01",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/1/negative_cases/13"
+        }
+      ],
+      "negative_class_ref": "SEC009_F01_RECIPIENT_REPORT_UNRESOLVED"
+    },
+    {
+      "id": "SEC009-OS_ASSIGNMENT-REPORTS-EVENT_ID-MISSING",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F01",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/1/negative_cases/14"
+        }
+      ],
+      "negative_class_ref": "SEC009_F01_REPORT_BINDING_UNRESOLVED"
+    },
+    {
+      "id": "SEC009-OS_ASSIGNMENT-REPORTS-EVENT_ID-CONFLICT",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F01",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/1/negative_cases/15"
+        }
+      ],
+      "negative_class_ref": "SEC009_F01_REPORT_BINDING_CONFLICT"
+    },
+    {
+      "id": "SEC009-OS_ASSIGNMENT-REPORTS-REVISION-MISSING",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F01",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/1/negative_cases/16"
+        }
+      ],
+      "negative_class_ref": "SEC009_F01_REPORT_BINDING_UNRESOLVED"
+    },
+    {
+      "id": "SEC009-OS_ASSIGNMENT-REPORTS-REVISION-CONFLICT",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F01",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/1/negative_cases/17"
+        }
+      ],
+      "negative_class_ref": "SEC009_F01_REPORT_BINDING_CONFLICT"
+    },
+    {
+      "id": "SEC009-OS_ASSIGNMENT-REPORTS-SCOPE-MISSING",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F01",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/1/negative_cases/18"
+        }
+      ],
+      "negative_class_ref": "SEC009_F01_REPORT_BINDING_UNRESOLVED"
+    },
+    {
+      "id": "SEC009-OS_ASSIGNMENT-REPORTS-SCOPE-CONFLICT",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F01",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/1/negative_cases/19"
+        }
+      ],
+      "negative_class_ref": "SEC009_F01_REPORT_BINDING_CONFLICT"
+    },
+    {
+      "id": "SEC009-OS_ASSIGNMENT-REPORTS-OPERATION-MISSING",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F01",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/1/negative_cases/20"
+        }
+      ],
+      "negative_class_ref": "SEC009_F01_REPORT_BINDING_UNRESOLVED"
+    },
+    {
+      "id": "SEC009-OS_ASSIGNMENT-REPORTS-OPERATION-CONFLICT",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F01",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/1/negative_cases/21"
+        }
+      ],
+      "negative_class_ref": "SEC009_F01_REPORT_BINDING_CONFLICT"
+    },
+    {
+      "id": "SEC009-OS_ASSIGNMENT-REPORTS-PROJECT-MISSING",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F01",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/1/negative_cases/22"
+        }
+      ],
+      "negative_class_ref": "SEC009_F01_REPORT_BINDING_UNRESOLVED"
+    },
+    {
+      "id": "SEC009-OS_ASSIGNMENT-REPORTS-PROJECT-CONFLICT",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F01",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/1/negative_cases/23"
+        }
+      ],
+      "negative_class_ref": "SEC009_F01_REPORT_BINDING_CONFLICT"
+    },
+    {
+      "id": "SEC009-OS_ASSIGNMENT-REPORTS-SOURCE-MISSING",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F01",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/1/negative_cases/24"
+        }
+      ],
+      "negative_class_ref": "SEC009_F01_REPORT_BINDING_UNRESOLVED"
+    },
+    {
+      "id": "SEC009-OS_ASSIGNMENT-REPORTS-SOURCE-CONFLICT",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F01",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/1/negative_cases/25"
+        }
+      ],
+      "negative_class_ref": "SEC009_F01_REPORT_BINDING_CONFLICT"
+    },
+    {
+      "id": "SEC009-OS_ASSIGNMENT-EXPECTED_POLICY_REFS-MISSING",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F01",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/1/negative_cases/26"
+        }
+      ],
+      "negative_class_ref": "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED"
+    },
+    {
+      "id": "SEC009-OS_ASSIGNMENT-EXPECTED_REPORT_REFS-MISSING",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F01",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/1/negative_cases/27"
+        }
+      ],
+      "negative_class_ref": "SEC009_F01_REPORT_BINDING_UNRESOLVED"
+    },
+    {
+      "id": "SEC009-OS_ASSIGNMENT-RECEIPT-NOT_DELIVERED",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F01",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/1/negative_cases/28"
+        }
+      ],
+      "negative_class_ref": "SEC009_F01_RECIPIENT_NOT_DELIVERED"
+    },
+    {
+      "id": "SEC009-OS_ASSIGNMENT-RECEIPT-UNKNOWN",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F01",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/1/negative_cases/29"
+        }
+      ],
+      "negative_class_ref": "SEC009_F01_RECIPIENT_RECEIPT_UNRESOLVED"
+    },
+    {
+      "id": "SEC009-OS_ASSIGNMENT-STOP_NEW_ASSIGNMENT-NOT_APPLIED",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F01",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/1/negative_cases/30"
+        }
+      ],
+      "negative_class_ref": "SEC009_F01_RECIPIENT_NOT_APPLIED"
+    },
+    {
+      "id": "SEC009-OS_ASSIGNMENT-STOP_NEW_ASSIGNMENT-NOT_OBSERVED",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F01",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/1/negative_cases/31"
+        }
+      ],
+      "negative_class_ref": "SEC009_F01_RECIPIENT_APPLICATION_UNRESOLVED"
+    },
+    {
+      "id": "SEC009-OS_ASSIGNMENT-STOP_NEW_ASSIGNMENT-NONE",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F01",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/1/negative_cases/32"
+        }
+      ],
+      "negative_class_ref": "SEC009_F01_RECIPIENT_APPLICATION_UNRESOLVED"
+    },
+    {
+      "id": "SEC009-OS_ASSIGNMENT-NEW_ASSIGNMENT_CONTINUES-TRUE",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F01",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/1/negative_cases/33"
+        }
+      ],
+      "negative_class_ref": "SEC009_F01_RECIPIENT_CONTINUES_AFTER_STOP"
+    },
+    {
+      "id": "SEC009-OS_ASSIGNMENT-NEW_ASSIGNMENT_CONTINUES-NONE",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F01",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/1/negative_cases/34"
+        }
+      ],
+      "negative_class_ref": "SEC009_F01_RECIPIENT_POST_STATE_UNRESOLVED"
+    },
+    {
+      "id": "SEC009-OS_ASSIGNMENT-ACTIONS-EMPTY",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F01",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/1/negative_cases/35"
+        }
+      ],
+      "negative_class_ref": "SEC009_F01_RECIPIENT_ACTIONS_CONFLICT"
+    },
+    {
+      "id": "SEC009-WORKER_EXECUTION-INSTRUCTIONS-MISSING",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F01",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/1/negative_cases/36"
+        }
+      ],
+      "negative_class_ref": "SEC009_F01_INSTRUCTION_UNRESOLVED"
+    },
+    {
+      "id": "SEC009-WORKER_EXECUTION-INSTRUCTIONS-EVENT_ID-MISSING",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F01",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/1/negative_cases/37"
+        }
+      ],
+      "negative_class_ref": "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED"
+    },
+    {
+      "id": "SEC009-WORKER_EXECUTION-INSTRUCTIONS-EVENT_ID-CONFLICT",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F01",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/1/negative_cases/38"
+        }
+      ],
+      "negative_class_ref": "SEC009_F01_INSTRUCTION_BINDING_CONFLICT"
+    },
+    {
+      "id": "SEC009-WORKER_EXECUTION-INSTRUCTIONS-REVISION-MISSING",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F01",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/1/negative_cases/39"
+        }
+      ],
+      "negative_class_ref": "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED"
+    },
+    {
+      "id": "SEC009-WORKER_EXECUTION-INSTRUCTIONS-REVISION-CONFLICT",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F01",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/1/negative_cases/40"
+        }
+      ],
+      "negative_class_ref": "SEC009_F01_INSTRUCTION_BINDING_CONFLICT"
+    },
+    {
+      "id": "SEC009-WORKER_EXECUTION-INSTRUCTIONS-SCOPE-MISSING",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F01",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/1/negative_cases/41"
+        }
+      ],
+      "negative_class_ref": "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED"
+    },
+    {
+      "id": "SEC009-WORKER_EXECUTION-INSTRUCTIONS-SCOPE-CONFLICT",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F01",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/1/negative_cases/42"
+        }
+      ],
+      "negative_class_ref": "SEC009_F01_INSTRUCTION_BINDING_CONFLICT"
+    },
+    {
+      "id": "SEC009-WORKER_EXECUTION-INSTRUCTIONS-OPERATION-MISSING",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F01",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/1/negative_cases/43"
+        }
+      ],
+      "negative_class_ref": "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED"
+    },
+    {
+      "id": "SEC009-WORKER_EXECUTION-INSTRUCTIONS-OPERATION-CONFLICT",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F01",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/1/negative_cases/44"
+        }
+      ],
+      "negative_class_ref": "SEC009_F01_INSTRUCTION_BINDING_CONFLICT"
+    },
+    {
+      "id": "SEC009-WORKER_EXECUTION-INSTRUCTIONS-PROJECT-MISSING",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F01",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/1/negative_cases/45"
+        }
+      ],
+      "negative_class_ref": "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED"
+    },
+    {
+      "id": "SEC009-WORKER_EXECUTION-INSTRUCTIONS-PROJECT-CONFLICT",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F01",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/1/negative_cases/46"
+        }
+      ],
+      "negative_class_ref": "SEC009_F01_INSTRUCTION_BINDING_CONFLICT"
+    },
+    {
+      "id": "SEC009-WORKER_EXECUTION-INSTRUCTIONS-WORKER-MISSING",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F01",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/1/negative_cases/47"
+        }
+      ],
+      "negative_class_ref": "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED"
+    },
+    {
+      "id": "SEC009-WORKER_EXECUTION-INSTRUCTIONS-WORKER-CONFLICT",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F01",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/1/negative_cases/48"
+        }
+      ],
+      "negative_class_ref": "SEC009_F01_INSTRUCTION_BINDING_CONFLICT"
+    },
+    {
+      "id": "SEC009-WORKER_EXECUTION-INSTRUCTIONS-ENVIRONMENT-MISSING",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F01",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/1/negative_cases/49"
+        }
+      ],
+      "negative_class_ref": "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED"
+    },
+    {
+      "id": "SEC009-WORKER_EXECUTION-INSTRUCTIONS-ENVIRONMENT-CONFLICT",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F01",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/1/negative_cases/50"
+        }
+      ],
+      "negative_class_ref": "SEC009_F01_INSTRUCTION_BINDING_CONFLICT"
+    },
+    {
+      "id": "SEC009-WORKER_EXECUTION-INSTRUCTIONS-SOURCE-MISSING",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F01",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/1/negative_cases/51"
+        }
+      ],
+      "negative_class_ref": "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED"
+    },
+    {
+      "id": "SEC009-WORKER_EXECUTION-INSTRUCTIONS-SOURCE-CONFLICT",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F01",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/1/negative_cases/52"
+        }
+      ],
+      "negative_class_ref": "SEC009_F01_INSTRUCTION_BINDING_CONFLICT"
+    },
+    {
+      "id": "SEC009-WORKER_EXECUTION-REPORTS-MISSING",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F01",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/1/negative_cases/53"
+        }
+      ],
+      "negative_class_ref": "SEC009_F01_RECIPIENT_REPORT_UNRESOLVED"
+    },
+    {
+      "id": "SEC009-WORKER_EXECUTION-REPORTS-EVENT_ID-MISSING",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F01",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/1/negative_cases/54"
+        }
+      ],
+      "negative_class_ref": "SEC009_F01_REPORT_BINDING_UNRESOLVED"
+    },
+    {
+      "id": "SEC009-WORKER_EXECUTION-REPORTS-EVENT_ID-CONFLICT",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F01",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/1/negative_cases/55"
+        }
+      ],
+      "negative_class_ref": "SEC009_F01_REPORT_BINDING_CONFLICT"
+    },
+    {
+      "id": "SEC009-WORKER_EXECUTION-REPORTS-REVISION-MISSING",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F01",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/1/negative_cases/56"
+        }
+      ],
+      "negative_class_ref": "SEC009_F01_REPORT_BINDING_UNRESOLVED"
+    },
+    {
+      "id": "SEC009-WORKER_EXECUTION-REPORTS-REVISION-CONFLICT",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F01",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/1/negative_cases/57"
+        }
+      ],
+      "negative_class_ref": "SEC009_F01_REPORT_BINDING_CONFLICT"
+    },
+    {
+      "id": "SEC009-WORKER_EXECUTION-REPORTS-SCOPE-MISSING",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F01",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/1/negative_cases/58"
+        }
+      ],
+      "negative_class_ref": "SEC009_F01_REPORT_BINDING_UNRESOLVED"
+    },
+    {
+      "id": "SEC009-WORKER_EXECUTION-REPORTS-SCOPE-CONFLICT",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F01",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/1/negative_cases/59"
+        }
+      ],
+      "negative_class_ref": "SEC009_F01_REPORT_BINDING_CONFLICT"
+    },
+    {
+      "id": "SEC009-WORKER_EXECUTION-REPORTS-OPERATION-MISSING",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F01",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/1/negative_cases/60"
+        }
+      ],
+      "negative_class_ref": "SEC009_F01_REPORT_BINDING_UNRESOLVED"
+    },
+    {
+      "id": "SEC009-WORKER_EXECUTION-REPORTS-OPERATION-CONFLICT",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F01",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/1/negative_cases/61"
+        }
+      ],
+      "negative_class_ref": "SEC009_F01_REPORT_BINDING_CONFLICT"
+    },
+    {
+      "id": "SEC009-WORKER_EXECUTION-REPORTS-PROJECT-MISSING",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F01",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/1/negative_cases/62"
+        }
+      ],
+      "negative_class_ref": "SEC009_F01_REPORT_BINDING_UNRESOLVED"
+    },
+    {
+      "id": "SEC009-WORKER_EXECUTION-REPORTS-PROJECT-CONFLICT",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F01",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/1/negative_cases/63"
+        }
+      ],
+      "negative_class_ref": "SEC009_F01_REPORT_BINDING_CONFLICT"
+    },
+    {
+      "id": "SEC009-WORKER_EXECUTION-REPORTS-WORKER-MISSING",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F01",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/1/negative_cases/64"
+        }
+      ],
+      "negative_class_ref": "SEC009_F01_REPORT_BINDING_UNRESOLVED"
+    },
+    {
+      "id": "SEC009-WORKER_EXECUTION-REPORTS-WORKER-CONFLICT",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F01",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/1/negative_cases/65"
+        }
+      ],
+      "negative_class_ref": "SEC009_F01_REPORT_BINDING_CONFLICT"
+    },
+    {
+      "id": "SEC009-WORKER_EXECUTION-REPORTS-ENVIRONMENT-MISSING",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F01",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/1/negative_cases/66"
+        }
+      ],
+      "negative_class_ref": "SEC009_F01_REPORT_BINDING_UNRESOLVED"
+    },
+    {
+      "id": "SEC009-WORKER_EXECUTION-REPORTS-ENVIRONMENT-CONFLICT",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F01",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/1/negative_cases/67"
+        }
+      ],
+      "negative_class_ref": "SEC009_F01_REPORT_BINDING_CONFLICT"
+    },
+    {
+      "id": "SEC009-WORKER_EXECUTION-REPORTS-SOURCE-MISSING",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F01",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/1/negative_cases/68"
+        }
+      ],
+      "negative_class_ref": "SEC009_F01_REPORT_BINDING_UNRESOLVED"
+    },
+    {
+      "id": "SEC009-WORKER_EXECUTION-REPORTS-SOURCE-CONFLICT",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F01",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/1/negative_cases/69"
+        }
+      ],
+      "negative_class_ref": "SEC009_F01_REPORT_BINDING_CONFLICT"
+    },
+    {
+      "id": "SEC009-WORKER_EXECUTION-EXPECTED_POLICY_REFS-MISSING",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F01",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/1/negative_cases/70"
+        }
+      ],
+      "negative_class_ref": "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED"
+    },
+    {
+      "id": "SEC009-WORKER_EXECUTION-EXPECTED_REPORT_REFS-MISSING",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F01",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/1/negative_cases/71"
+        }
+      ],
+      "negative_class_ref": "SEC009_F01_REPORT_BINDING_UNRESOLVED"
+    },
+    {
+      "id": "SEC009-WORKER_EXECUTION-RECEIPT-NOT_DELIVERED",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F01",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/1/negative_cases/72"
+        }
+      ],
+      "negative_class_ref": "SEC009_F01_RECIPIENT_NOT_DELIVERED"
+    },
+    {
+      "id": "SEC009-WORKER_EXECUTION-RECEIPT-UNKNOWN",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F01",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/1/negative_cases/73"
+        }
+      ],
+      "negative_class_ref": "SEC009_F01_RECIPIENT_RECEIPT_UNRESOLVED"
+    },
+    {
+      "id": "SEC009-WORKER_EXECUTION-STOP_EXECUTION-NOT_APPLIED",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F01",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/1/negative_cases/74"
+        }
+      ],
+      "negative_class_ref": "SEC009_F01_RECIPIENT_NOT_APPLIED"
+    },
+    {
+      "id": "SEC009-WORKER_EXECUTION-STOP_EXECUTION-NOT_OBSERVED",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F01",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/1/negative_cases/75"
+        }
+      ],
+      "negative_class_ref": "SEC009_F01_RECIPIENT_APPLICATION_UNRESOLVED"
+    },
+    {
+      "id": "SEC009-WORKER_EXECUTION-STOP_EXECUTION-NONE",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F01",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/1/negative_cases/76"
+        }
+      ],
+      "negative_class_ref": "SEC009_F01_RECIPIENT_APPLICATION_UNRESOLVED"
+    },
+    {
+      "id": "SEC009-WORKER_EXECUTION-ISOLATE_PARTIAL_ARTIFACT-NOT_APPLIED",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F01",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/1/negative_cases/77"
+        }
+      ],
+      "negative_class_ref": "SEC009_F01_RECIPIENT_NOT_APPLIED"
+    },
+    {
+      "id": "SEC009-WORKER_EXECUTION-ISOLATE_PARTIAL_ARTIFACT-NOT_OBSERVED",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F01",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/1/negative_cases/78"
+        }
+      ],
+      "negative_class_ref": "SEC009_F01_RECIPIENT_APPLICATION_UNRESOLVED"
+    },
+    {
+      "id": "SEC009-WORKER_EXECUTION-ISOLATE_PARTIAL_ARTIFACT-NONE",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F01",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/1/negative_cases/79"
+        }
+      ],
+      "negative_class_ref": "SEC009_F01_RECIPIENT_APPLICATION_UNRESOLVED"
+    },
+    {
+      "id": "SEC009-WORKER_EXECUTION-EXECUTION_CONTINUES-TRUE",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F01",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/1/negative_cases/80"
+        }
+      ],
+      "negative_class_ref": "SEC009_F01_RECIPIENT_CONTINUES_AFTER_STOP"
+    },
+    {
+      "id": "SEC009-WORKER_EXECUTION-EXECUTION_CONTINUES-NONE",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F01",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/1/negative_cases/81"
+        }
+      ],
+      "negative_class_ref": "SEC009_F01_RECIPIENT_POST_STATE_UNRESOLVED"
+    },
+    {
+      "id": "SEC009-WORKER_EXECUTION-PARTIAL_ARTIFACT_EXPOSED-TRUE",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F01",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/1/negative_cases/82"
+        }
+      ],
+      "negative_class_ref": "SEC009_F01_RECIPIENT_CONTINUES_AFTER_STOP"
+    },
+    {
+      "id": "SEC009-WORKER_EXECUTION-PARTIAL_ARTIFACT_EXPOSED-NONE",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F01",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/1/negative_cases/83"
+        }
+      ],
+      "negative_class_ref": "SEC009_F01_RECIPIENT_POST_STATE_UNRESOLVED"
+    },
+    {
+      "id": "SEC009-WORKER_EXECUTION-ACTIONS-EMPTY",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F01",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/1/negative_cases/84"
+        }
+      ],
+      "negative_class_ref": "SEC009_F01_RECIPIENT_ACTIONS_CONFLICT"
+    },
+    {
+      "id": "SEC009-CONNECT_COMMUNICATION-INSTRUCTIONS-MISSING",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F01",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/1/negative_cases/85"
+        }
+      ],
+      "negative_class_ref": "SEC009_F01_INSTRUCTION_UNRESOLVED"
+    },
+    {
+      "id": "SEC009-CONNECT_COMMUNICATION-INSTRUCTIONS-EVENT_ID-MISSING",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F01",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/1/negative_cases/86"
+        }
+      ],
+      "negative_class_ref": "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED"
+    },
+    {
+      "id": "SEC009-CONNECT_COMMUNICATION-INSTRUCTIONS-EVENT_ID-CONFLICT",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F01",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/1/negative_cases/87"
+        }
+      ],
+      "negative_class_ref": "SEC009_F01_INSTRUCTION_BINDING_CONFLICT"
+    },
+    {
+      "id": "SEC009-CONNECT_COMMUNICATION-INSTRUCTIONS-REVISION-MISSING",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F01",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/1/negative_cases/88"
+        }
+      ],
+      "negative_class_ref": "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED"
+    },
+    {
+      "id": "SEC009-CONNECT_COMMUNICATION-INSTRUCTIONS-REVISION-CONFLICT",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F01",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/1/negative_cases/89"
+        }
+      ],
+      "negative_class_ref": "SEC009_F01_INSTRUCTION_BINDING_CONFLICT"
+    },
+    {
+      "id": "SEC009-CONNECT_COMMUNICATION-INSTRUCTIONS-SCOPE-MISSING",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F01",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/1/negative_cases/90"
+        }
+      ],
+      "negative_class_ref": "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED"
+    },
+    {
+      "id": "SEC009-CONNECT_COMMUNICATION-INSTRUCTIONS-SCOPE-CONFLICT",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F01",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/1/negative_cases/91"
+        }
+      ],
+      "negative_class_ref": "SEC009_F01_INSTRUCTION_BINDING_CONFLICT"
+    },
+    {
+      "id": "SEC009-CONNECT_COMMUNICATION-INSTRUCTIONS-OPERATION-MISSING",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F01",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/1/negative_cases/92"
+        }
+      ],
+      "negative_class_ref": "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED"
+    },
+    {
+      "id": "SEC009-CONNECT_COMMUNICATION-INSTRUCTIONS-OPERATION-CONFLICT",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F01",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/1/negative_cases/93"
+        }
+      ],
+      "negative_class_ref": "SEC009_F01_INSTRUCTION_BINDING_CONFLICT"
+    },
+    {
+      "id": "SEC009-CONNECT_COMMUNICATION-INSTRUCTIONS-PROJECT-MISSING",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F01",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/1/negative_cases/94"
+        }
+      ],
+      "negative_class_ref": "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED"
+    },
+    {
+      "id": "SEC009-CONNECT_COMMUNICATION-INSTRUCTIONS-PROJECT-CONFLICT",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F01",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/1/negative_cases/95"
+        }
+      ],
+      "negative_class_ref": "SEC009_F01_INSTRUCTION_BINDING_CONFLICT"
+    },
+    {
+      "id": "SEC009-CONNECT_COMMUNICATION-INSTRUCTIONS-CONNECTION-MISSING",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F01",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/1/negative_cases/96"
+        }
+      ],
+      "negative_class_ref": "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED"
+    },
+    {
+      "id": "SEC009-CONNECT_COMMUNICATION-INSTRUCTIONS-CONNECTION-CONFLICT",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F01",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/1/negative_cases/97"
+        }
+      ],
+      "negative_class_ref": "SEC009_F01_INSTRUCTION_BINDING_CONFLICT"
+    },
+    {
+      "id": "SEC009-CONNECT_COMMUNICATION-INSTRUCTIONS-SOURCE-MISSING",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F01",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/1/negative_cases/98"
+        }
+      ],
+      "negative_class_ref": "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED"
+    },
+    {
+      "id": "SEC009-CONNECT_COMMUNICATION-INSTRUCTIONS-SOURCE-CONFLICT",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F01",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/1/negative_cases/99"
+        }
+      ],
+      "negative_class_ref": "SEC009_F01_INSTRUCTION_BINDING_CONFLICT"
+    },
+    {
+      "id": "SEC009-CONNECT_COMMUNICATION-REPORTS-MISSING",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F01",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/1/negative_cases/100"
+        }
+      ],
+      "negative_class_ref": "SEC009_F01_RECIPIENT_REPORT_UNRESOLVED"
+    },
+    {
+      "id": "SEC009-CONNECT_COMMUNICATION-REPORTS-EVENT_ID-MISSING",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F01",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/1/negative_cases/101"
+        }
+      ],
+      "negative_class_ref": "SEC009_F01_REPORT_BINDING_UNRESOLVED"
+    },
+    {
+      "id": "SEC009-CONNECT_COMMUNICATION-REPORTS-EVENT_ID-CONFLICT",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F01",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/1/negative_cases/102"
+        }
+      ],
+      "negative_class_ref": "SEC009_F01_REPORT_BINDING_CONFLICT"
+    },
+    {
+      "id": "SEC009-CONNECT_COMMUNICATION-REPORTS-REVISION-MISSING",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F01",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/1/negative_cases/103"
+        }
+      ],
+      "negative_class_ref": "SEC009_F01_REPORT_BINDING_UNRESOLVED"
+    },
+    {
+      "id": "SEC009-CONNECT_COMMUNICATION-REPORTS-REVISION-CONFLICT",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F01",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/1/negative_cases/104"
+        }
+      ],
+      "negative_class_ref": "SEC009_F01_REPORT_BINDING_CONFLICT"
+    },
+    {
+      "id": "SEC009-CONNECT_COMMUNICATION-REPORTS-SCOPE-MISSING",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F01",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/1/negative_cases/105"
+        }
+      ],
+      "negative_class_ref": "SEC009_F01_REPORT_BINDING_UNRESOLVED"
+    },
+    {
+      "id": "SEC009-CONNECT_COMMUNICATION-REPORTS-SCOPE-CONFLICT",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F01",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/1/negative_cases/106"
+        }
+      ],
+      "negative_class_ref": "SEC009_F01_REPORT_BINDING_CONFLICT"
+    },
+    {
+      "id": "SEC009-CONNECT_COMMUNICATION-REPORTS-OPERATION-MISSING",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F01",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/1/negative_cases/107"
+        }
+      ],
+      "negative_class_ref": "SEC009_F01_REPORT_BINDING_UNRESOLVED"
+    },
+    {
+      "id": "SEC009-CONNECT_COMMUNICATION-REPORTS-OPERATION-CONFLICT",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F01",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/1/negative_cases/108"
+        }
+      ],
+      "negative_class_ref": "SEC009_F01_REPORT_BINDING_CONFLICT"
+    },
+    {
+      "id": "SEC009-CONNECT_COMMUNICATION-REPORTS-PROJECT-MISSING",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F01",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/1/negative_cases/109"
+        }
+      ],
+      "negative_class_ref": "SEC009_F01_REPORT_BINDING_UNRESOLVED"
+    },
+    {
+      "id": "SEC009-CONNECT_COMMUNICATION-REPORTS-PROJECT-CONFLICT",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F01",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/1/negative_cases/110"
+        }
+      ],
+      "negative_class_ref": "SEC009_F01_REPORT_BINDING_CONFLICT"
+    },
+    {
+      "id": "SEC009-CONNECT_COMMUNICATION-REPORTS-CONNECTION-MISSING",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F01",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/1/negative_cases/111"
+        }
+      ],
+      "negative_class_ref": "SEC009_F01_REPORT_BINDING_UNRESOLVED"
+    },
+    {
+      "id": "SEC009-CONNECT_COMMUNICATION-REPORTS-CONNECTION-CONFLICT",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F01",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/1/negative_cases/112"
+        }
+      ],
+      "negative_class_ref": "SEC009_F01_REPORT_BINDING_CONFLICT"
+    },
+    {
+      "id": "SEC009-CONNECT_COMMUNICATION-REPORTS-SOURCE-MISSING",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F01",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/1/negative_cases/113"
+        }
+      ],
+      "negative_class_ref": "SEC009_F01_REPORT_BINDING_UNRESOLVED"
+    },
+    {
+      "id": "SEC009-CONNECT_COMMUNICATION-REPORTS-SOURCE-CONFLICT",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F01",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/1/negative_cases/114"
+        }
+      ],
+      "negative_class_ref": "SEC009_F01_REPORT_BINDING_CONFLICT"
+    },
+    {
+      "id": "SEC009-CONNECT_COMMUNICATION-EXPECTED_POLICY_REFS-MISSING",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F01",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/1/negative_cases/115"
+        }
+      ],
+      "negative_class_ref": "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED"
+    },
+    {
+      "id": "SEC009-CONNECT_COMMUNICATION-EXPECTED_REPORT_REFS-MISSING",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F01",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/1/negative_cases/116"
+        }
+      ],
+      "negative_class_ref": "SEC009_F01_REPORT_BINDING_UNRESOLVED"
+    },
+    {
+      "id": "SEC009-CONNECT_COMMUNICATION-RECEIPT-NOT_DELIVERED",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F01",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/1/negative_cases/117"
+        }
+      ],
+      "negative_class_ref": "SEC009_F01_RECIPIENT_NOT_DELIVERED"
+    },
+    {
+      "id": "SEC009-CONNECT_COMMUNICATION-RECEIPT-UNKNOWN",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F01",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/1/negative_cases/118"
+        }
+      ],
+      "negative_class_ref": "SEC009_F01_RECIPIENT_RECEIPT_UNRESOLVED"
+    },
+    {
+      "id": "SEC009-CONNECT_COMMUNICATION-STOP_COMMUNICATION-NOT_APPLIED",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F01",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/1/negative_cases/119"
+        }
+      ],
+      "negative_class_ref": "SEC009_F01_RECIPIENT_NOT_APPLIED"
+    },
+    {
+      "id": "SEC009-CONNECT_COMMUNICATION-STOP_COMMUNICATION-NOT_OBSERVED",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F01",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/1/negative_cases/120"
+        }
+      ],
+      "negative_class_ref": "SEC009_F01_RECIPIENT_APPLICATION_UNRESOLVED"
+    },
+    {
+      "id": "SEC009-CONNECT_COMMUNICATION-STOP_COMMUNICATION-NONE",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F01",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/1/negative_cases/121"
+        }
+      ],
+      "negative_class_ref": "SEC009_F01_RECIPIENT_APPLICATION_UNRESOLVED"
+    },
+    {
+      "id": "SEC009-CONNECT_COMMUNICATION-COMMUNICATION_CONTINUES-TRUE",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F01",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/1/negative_cases/122"
+        }
+      ],
+      "negative_class_ref": "SEC009_F01_RECIPIENT_CONTINUES_AFTER_STOP"
+    },
+    {
+      "id": "SEC009-CONNECT_COMMUNICATION-COMMUNICATION_CONTINUES-NONE",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F01",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/1/negative_cases/123"
+        }
+      ],
+      "negative_class_ref": "SEC009_F01_RECIPIENT_POST_STATE_UNRESOLVED"
+    },
+    {
+      "id": "SEC009-CONNECT_COMMUNICATION-ACTIONS-EMPTY",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F01",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/1/negative_cases/124"
+        }
+      ],
+      "negative_class_ref": "SEC009_F01_RECIPIENT_ACTIONS_CONFLICT"
+    },
+    {
+      "id": "SEC009-CREDENTIAL_USE-INSTRUCTIONS-MISSING",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F01",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/1/negative_cases/125"
+        }
+      ],
+      "negative_class_ref": "SEC009_F01_INSTRUCTION_UNRESOLVED"
+    },
+    {
+      "id": "SEC009-CREDENTIAL_USE-INSTRUCTIONS-EVENT_ID-MISSING",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F01",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/1/negative_cases/126"
+        }
+      ],
+      "negative_class_ref": "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED"
+    },
+    {
+      "id": "SEC009-CREDENTIAL_USE-INSTRUCTIONS-EVENT_ID-CONFLICT",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F01",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/1/negative_cases/127"
+        }
+      ],
+      "negative_class_ref": "SEC009_F01_INSTRUCTION_BINDING_CONFLICT"
+    },
+    {
+      "id": "SEC009-CREDENTIAL_USE-INSTRUCTIONS-REVISION-MISSING",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F01",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/1/negative_cases/128"
+        }
+      ],
+      "negative_class_ref": "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED"
+    },
+    {
+      "id": "SEC009-CREDENTIAL_USE-INSTRUCTIONS-REVISION-CONFLICT",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F01",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/1/negative_cases/129"
+        }
+      ],
+      "negative_class_ref": "SEC009_F01_INSTRUCTION_BINDING_CONFLICT"
+    },
+    {
+      "id": "SEC009-CREDENTIAL_USE-INSTRUCTIONS-SCOPE-MISSING",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F01",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/1/negative_cases/130"
+        }
+      ],
+      "negative_class_ref": "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED"
+    },
+    {
+      "id": "SEC009-CREDENTIAL_USE-INSTRUCTIONS-SCOPE-CONFLICT",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F01",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/1/negative_cases/131"
+        }
+      ],
+      "negative_class_ref": "SEC009_F01_INSTRUCTION_BINDING_CONFLICT"
+    },
+    {
+      "id": "SEC009-CREDENTIAL_USE-INSTRUCTIONS-OPERATION-MISSING",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F01",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/1/negative_cases/132"
+        }
+      ],
+      "negative_class_ref": "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED"
+    },
+    {
+      "id": "SEC009-CREDENTIAL_USE-INSTRUCTIONS-OPERATION-CONFLICT",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F01",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/1/negative_cases/133"
+        }
+      ],
+      "negative_class_ref": "SEC009_F01_INSTRUCTION_BINDING_CONFLICT"
+    },
+    {
+      "id": "SEC009-CREDENTIAL_USE-INSTRUCTIONS-PROJECT-MISSING",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F01",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/1/negative_cases/134"
+        }
+      ],
+      "negative_class_ref": "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED"
+    },
+    {
+      "id": "SEC009-CREDENTIAL_USE-INSTRUCTIONS-PROJECT-CONFLICT",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F01",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/1/negative_cases/135"
+        }
+      ],
+      "negative_class_ref": "SEC009_F01_INSTRUCTION_BINDING_CONFLICT"
+    },
+    {
+      "id": "SEC009-CREDENTIAL_USE-INSTRUCTIONS-CREDENTIAL-MISSING",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F01",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/1/negative_cases/136"
+        }
+      ],
+      "negative_class_ref": "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED"
+    },
+    {
+      "id": "SEC009-CREDENTIAL_USE-INSTRUCTIONS-CREDENTIAL-CONFLICT",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F01",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/1/negative_cases/137"
+        }
+      ],
+      "negative_class_ref": "SEC009_F01_INSTRUCTION_BINDING_CONFLICT"
+    },
+    {
+      "id": "SEC009-CREDENTIAL_USE-INSTRUCTIONS-SOURCE-MISSING",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F01",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/1/negative_cases/138"
+        }
+      ],
+      "negative_class_ref": "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED"
+    },
+    {
+      "id": "SEC009-CREDENTIAL_USE-INSTRUCTIONS-SOURCE-CONFLICT",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F01",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/1/negative_cases/139"
+        }
+      ],
+      "negative_class_ref": "SEC009_F01_INSTRUCTION_BINDING_CONFLICT"
+    },
+    {
+      "id": "SEC009-CREDENTIAL_USE-REPORTS-MISSING",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F01",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/1/negative_cases/140"
+        }
+      ],
+      "negative_class_ref": "SEC009_F01_RECIPIENT_REPORT_UNRESOLVED"
+    },
+    {
+      "id": "SEC009-CREDENTIAL_USE-REPORTS-EVENT_ID-MISSING",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F01",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/1/negative_cases/141"
+        }
+      ],
+      "negative_class_ref": "SEC009_F01_REPORT_BINDING_UNRESOLVED"
+    },
+    {
+      "id": "SEC009-CREDENTIAL_USE-REPORTS-EVENT_ID-CONFLICT",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F01",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/1/negative_cases/142"
+        }
+      ],
+      "negative_class_ref": "SEC009_F01_REPORT_BINDING_CONFLICT"
+    },
+    {
+      "id": "SEC009-CREDENTIAL_USE-REPORTS-REVISION-MISSING",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F01",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/1/negative_cases/143"
+        }
+      ],
+      "negative_class_ref": "SEC009_F01_REPORT_BINDING_UNRESOLVED"
+    },
+    {
+      "id": "SEC009-CREDENTIAL_USE-REPORTS-REVISION-CONFLICT",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F01",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/1/negative_cases/144"
+        }
+      ],
+      "negative_class_ref": "SEC009_F01_REPORT_BINDING_CONFLICT"
+    },
+    {
+      "id": "SEC009-CREDENTIAL_USE-REPORTS-SCOPE-MISSING",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F01",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/1/negative_cases/145"
+        }
+      ],
+      "negative_class_ref": "SEC009_F01_REPORT_BINDING_UNRESOLVED"
+    },
+    {
+      "id": "SEC009-CREDENTIAL_USE-REPORTS-SCOPE-CONFLICT",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F01",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/1/negative_cases/146"
+        }
+      ],
+      "negative_class_ref": "SEC009_F01_REPORT_BINDING_CONFLICT"
+    },
+    {
+      "id": "SEC009-CREDENTIAL_USE-REPORTS-OPERATION-MISSING",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F01",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/1/negative_cases/147"
+        }
+      ],
+      "negative_class_ref": "SEC009_F01_REPORT_BINDING_UNRESOLVED"
+    },
+    {
+      "id": "SEC009-CREDENTIAL_USE-REPORTS-OPERATION-CONFLICT",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F01",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/1/negative_cases/148"
+        }
+      ],
+      "negative_class_ref": "SEC009_F01_REPORT_BINDING_CONFLICT"
+    },
+    {
+      "id": "SEC009-CREDENTIAL_USE-REPORTS-PROJECT-MISSING",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F01",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/1/negative_cases/149"
+        }
+      ],
+      "negative_class_ref": "SEC009_F01_REPORT_BINDING_UNRESOLVED"
+    },
+    {
+      "id": "SEC009-CREDENTIAL_USE-REPORTS-PROJECT-CONFLICT",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F01",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/1/negative_cases/150"
+        }
+      ],
+      "negative_class_ref": "SEC009_F01_REPORT_BINDING_CONFLICT"
+    },
+    {
+      "id": "SEC009-CREDENTIAL_USE-REPORTS-CREDENTIAL-MISSING",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F01",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/1/negative_cases/151"
+        }
+      ],
+      "negative_class_ref": "SEC009_F01_REPORT_BINDING_UNRESOLVED"
+    },
+    {
+      "id": "SEC009-CREDENTIAL_USE-REPORTS-CREDENTIAL-CONFLICT",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F01",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/1/negative_cases/152"
+        }
+      ],
+      "negative_class_ref": "SEC009_F01_REPORT_BINDING_CONFLICT"
+    },
+    {
+      "id": "SEC009-CREDENTIAL_USE-REPORTS-SOURCE-MISSING",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F01",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/1/negative_cases/153"
+        }
+      ],
+      "negative_class_ref": "SEC009_F01_REPORT_BINDING_UNRESOLVED"
+    },
+    {
+      "id": "SEC009-CREDENTIAL_USE-REPORTS-SOURCE-CONFLICT",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F01",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/1/negative_cases/154"
+        }
+      ],
+      "negative_class_ref": "SEC009_F01_REPORT_BINDING_CONFLICT"
+    },
+    {
+      "id": "SEC009-CREDENTIAL_USE-EXPECTED_POLICY_REFS-MISSING",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F01",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/1/negative_cases/155"
+        }
+      ],
+      "negative_class_ref": "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED"
+    },
+    {
+      "id": "SEC009-CREDENTIAL_USE-EXPECTED_REPORT_REFS-MISSING",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F01",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/1/negative_cases/156"
+        }
+      ],
+      "negative_class_ref": "SEC009_F01_REPORT_BINDING_UNRESOLVED"
+    },
+    {
+      "id": "SEC009-CREDENTIAL_USE-RECEIPT-NOT_DELIVERED",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F01",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/1/negative_cases/157"
+        }
+      ],
+      "negative_class_ref": "SEC009_F01_RECIPIENT_NOT_DELIVERED"
+    },
+    {
+      "id": "SEC009-CREDENTIAL_USE-RECEIPT-UNKNOWN",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F01",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/1/negative_cases/158"
+        }
+      ],
+      "negative_class_ref": "SEC009_F01_RECIPIENT_RECEIPT_UNRESOLVED"
+    },
+    {
+      "id": "SEC009-CREDENTIAL_USE-STOP_USE-NOT_APPLIED",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F01",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/1/negative_cases/159"
+        }
+      ],
+      "negative_class_ref": "SEC009_F01_RECIPIENT_NOT_APPLIED"
+    },
+    {
+      "id": "SEC009-CREDENTIAL_USE-STOP_USE-NOT_OBSERVED",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F01",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/1/negative_cases/160"
+        }
+      ],
+      "negative_class_ref": "SEC009_F01_RECIPIENT_APPLICATION_UNRESOLVED"
+    },
+    {
+      "id": "SEC009-CREDENTIAL_USE-STOP_USE-NONE",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F01",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/1/negative_cases/161"
+        }
+      ],
+      "negative_class_ref": "SEC009_F01_RECIPIENT_APPLICATION_UNRESOLVED"
+    },
+    {
+      "id": "SEC009-CREDENTIAL_USE-USE_CONTINUES-TRUE",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F01",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/1/negative_cases/162"
+        }
+      ],
+      "negative_class_ref": "SEC009_F01_RECIPIENT_CONTINUES_AFTER_STOP"
+    },
+    {
+      "id": "SEC009-CREDENTIAL_USE-USE_CONTINUES-NONE",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F01",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/1/negative_cases/163"
+        }
+      ],
+      "negative_class_ref": "SEC009_F01_RECIPIENT_POST_STATE_UNRESOLVED"
+    },
+    {
+      "id": "SEC009-CREDENTIAL_USE-ACTIONS-EMPTY",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F01",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/1/negative_cases/164"
+        }
+      ],
+      "negative_class_ref": "SEC009_F01_RECIPIENT_ACTIONS_CONFLICT"
+    },
+    {
+      "id": "SEC009-ARTIFACT_ACCESS-INSTRUCTIONS-MISSING",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F01",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/1/negative_cases/165"
+        }
+      ],
+      "negative_class_ref": "SEC009_F01_INSTRUCTION_UNRESOLVED"
+    },
+    {
+      "id": "SEC009-ARTIFACT_ACCESS-INSTRUCTIONS-EVENT_ID-MISSING",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F01",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/1/negative_cases/166"
+        }
+      ],
+      "negative_class_ref": "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED"
+    },
+    {
+      "id": "SEC009-ARTIFACT_ACCESS-INSTRUCTIONS-EVENT_ID-CONFLICT",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F01",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/1/negative_cases/167"
+        }
+      ],
+      "negative_class_ref": "SEC009_F01_INSTRUCTION_BINDING_CONFLICT"
+    },
+    {
+      "id": "SEC009-ARTIFACT_ACCESS-INSTRUCTIONS-REVISION-MISSING",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F01",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/1/negative_cases/168"
+        }
+      ],
+      "negative_class_ref": "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED"
+    },
+    {
+      "id": "SEC009-ARTIFACT_ACCESS-INSTRUCTIONS-REVISION-CONFLICT",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F01",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/1/negative_cases/169"
+        }
+      ],
+      "negative_class_ref": "SEC009_F01_INSTRUCTION_BINDING_CONFLICT"
+    },
+    {
+      "id": "SEC009-ARTIFACT_ACCESS-INSTRUCTIONS-SCOPE-MISSING",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F01",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/1/negative_cases/170"
+        }
+      ],
+      "negative_class_ref": "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED"
+    },
+    {
+      "id": "SEC009-ARTIFACT_ACCESS-INSTRUCTIONS-SCOPE-CONFLICT",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F01",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/1/negative_cases/171"
+        }
+      ],
+      "negative_class_ref": "SEC009_F01_INSTRUCTION_BINDING_CONFLICT"
+    },
+    {
+      "id": "SEC009-ARTIFACT_ACCESS-INSTRUCTIONS-OPERATION-MISSING",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F01",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/1/negative_cases/172"
+        }
+      ],
+      "negative_class_ref": "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED"
+    },
+    {
+      "id": "SEC009-ARTIFACT_ACCESS-INSTRUCTIONS-OPERATION-CONFLICT",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F01",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/1/negative_cases/173"
+        }
+      ],
+      "negative_class_ref": "SEC009_F01_INSTRUCTION_BINDING_CONFLICT"
+    },
+    {
+      "id": "SEC009-ARTIFACT_ACCESS-INSTRUCTIONS-PROJECT-MISSING",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F01",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/1/negative_cases/174"
+        }
+      ],
+      "negative_class_ref": "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED"
+    },
+    {
+      "id": "SEC009-ARTIFACT_ACCESS-INSTRUCTIONS-PROJECT-CONFLICT",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F01",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/1/negative_cases/175"
+        }
+      ],
+      "negative_class_ref": "SEC009_F01_INSTRUCTION_BINDING_CONFLICT"
+    },
+    {
+      "id": "SEC009-ARTIFACT_ACCESS-INSTRUCTIONS-ARTIFACT-MISSING",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F01",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/1/negative_cases/176"
+        }
+      ],
+      "negative_class_ref": "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED"
+    },
+    {
+      "id": "SEC009-ARTIFACT_ACCESS-INSTRUCTIONS-ARTIFACT-CONFLICT",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F01",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/1/negative_cases/177"
+        }
+      ],
+      "negative_class_ref": "SEC009_F01_INSTRUCTION_BINDING_CONFLICT"
+    },
+    {
+      "id": "SEC009-ARTIFACT_ACCESS-INSTRUCTIONS-SOURCE-MISSING",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F01",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/1/negative_cases/178"
+        }
+      ],
+      "negative_class_ref": "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED"
+    },
+    {
+      "id": "SEC009-ARTIFACT_ACCESS-INSTRUCTIONS-SOURCE-CONFLICT",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F01",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/1/negative_cases/179"
+        }
+      ],
+      "negative_class_ref": "SEC009_F01_INSTRUCTION_BINDING_CONFLICT"
+    },
+    {
+      "id": "SEC009-ARTIFACT_ACCESS-REPORTS-MISSING",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F01",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/1/negative_cases/180"
+        }
+      ],
+      "negative_class_ref": "SEC009_F01_RECIPIENT_REPORT_UNRESOLVED"
+    },
+    {
+      "id": "SEC009-ARTIFACT_ACCESS-REPORTS-EVENT_ID-MISSING",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F01",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/1/negative_cases/181"
+        }
+      ],
+      "negative_class_ref": "SEC009_F01_REPORT_BINDING_UNRESOLVED"
+    },
+    {
+      "id": "SEC009-ARTIFACT_ACCESS-REPORTS-EVENT_ID-CONFLICT",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F01",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/1/negative_cases/182"
+        }
+      ],
+      "negative_class_ref": "SEC009_F01_REPORT_BINDING_CONFLICT"
+    },
+    {
+      "id": "SEC009-ARTIFACT_ACCESS-REPORTS-REVISION-MISSING",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F01",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/1/negative_cases/183"
+        }
+      ],
+      "negative_class_ref": "SEC009_F01_REPORT_BINDING_UNRESOLVED"
+    },
+    {
+      "id": "SEC009-ARTIFACT_ACCESS-REPORTS-REVISION-CONFLICT",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F01",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/1/negative_cases/184"
+        }
+      ],
+      "negative_class_ref": "SEC009_F01_REPORT_BINDING_CONFLICT"
+    },
+    {
+      "id": "SEC009-ARTIFACT_ACCESS-REPORTS-SCOPE-MISSING",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F01",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/1/negative_cases/185"
+        }
+      ],
+      "negative_class_ref": "SEC009_F01_REPORT_BINDING_UNRESOLVED"
+    },
+    {
+      "id": "SEC009-ARTIFACT_ACCESS-REPORTS-SCOPE-CONFLICT",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F01",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/1/negative_cases/186"
+        }
+      ],
+      "negative_class_ref": "SEC009_F01_REPORT_BINDING_CONFLICT"
+    },
+    {
+      "id": "SEC009-ARTIFACT_ACCESS-REPORTS-OPERATION-MISSING",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F01",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/1/negative_cases/187"
+        }
+      ],
+      "negative_class_ref": "SEC009_F01_REPORT_BINDING_UNRESOLVED"
+    },
+    {
+      "id": "SEC009-ARTIFACT_ACCESS-REPORTS-OPERATION-CONFLICT",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F01",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/1/negative_cases/188"
+        }
+      ],
+      "negative_class_ref": "SEC009_F01_REPORT_BINDING_CONFLICT"
+    },
+    {
+      "id": "SEC009-ARTIFACT_ACCESS-REPORTS-PROJECT-MISSING",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F01",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/1/negative_cases/189"
+        }
+      ],
+      "negative_class_ref": "SEC009_F01_REPORT_BINDING_UNRESOLVED"
+    },
+    {
+      "id": "SEC009-ARTIFACT_ACCESS-REPORTS-PROJECT-CONFLICT",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F01",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/1/negative_cases/190"
+        }
+      ],
+      "negative_class_ref": "SEC009_F01_REPORT_BINDING_CONFLICT"
+    },
+    {
+      "id": "SEC009-ARTIFACT_ACCESS-REPORTS-ARTIFACT-MISSING",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F01",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/1/negative_cases/191"
+        }
+      ],
+      "negative_class_ref": "SEC009_F01_REPORT_BINDING_UNRESOLVED"
+    },
+    {
+      "id": "SEC009-ARTIFACT_ACCESS-REPORTS-ARTIFACT-CONFLICT",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F01",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/1/negative_cases/192"
+        }
+      ],
+      "negative_class_ref": "SEC009_F01_REPORT_BINDING_CONFLICT"
+    },
+    {
+      "id": "SEC009-ARTIFACT_ACCESS-REPORTS-SOURCE-MISSING",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F01",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/1/negative_cases/193"
+        }
+      ],
+      "negative_class_ref": "SEC009_F01_REPORT_BINDING_UNRESOLVED"
+    },
+    {
+      "id": "SEC009-ARTIFACT_ACCESS-REPORTS-SOURCE-CONFLICT",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F01",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/1/negative_cases/194"
+        }
+      ],
+      "negative_class_ref": "SEC009_F01_REPORT_BINDING_CONFLICT"
+    },
+    {
+      "id": "SEC009-ARTIFACT_ACCESS-EXPECTED_POLICY_REFS-MISSING",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F01",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/1/negative_cases/195"
+        }
+      ],
+      "negative_class_ref": "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED"
+    },
+    {
+      "id": "SEC009-ARTIFACT_ACCESS-EXPECTED_REPORT_REFS-MISSING",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F01",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/1/negative_cases/196"
+        }
+      ],
+      "negative_class_ref": "SEC009_F01_REPORT_BINDING_UNRESOLVED"
+    },
+    {
+      "id": "SEC009-ARTIFACT_ACCESS-RECEIPT-NOT_DELIVERED",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F01",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/1/negative_cases/197"
+        }
+      ],
+      "negative_class_ref": "SEC009_F01_RECIPIENT_NOT_DELIVERED"
+    },
+    {
+      "id": "SEC009-ARTIFACT_ACCESS-RECEIPT-UNKNOWN",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F01",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/1/negative_cases/198"
+        }
+      ],
+      "negative_class_ref": "SEC009_F01_RECIPIENT_RECEIPT_UNRESOLVED"
+    },
+    {
+      "id": "SEC009-ARTIFACT_ACCESS-STOP_ACCESS-NOT_APPLIED",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F01",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/1/negative_cases/199"
+        }
+      ],
+      "negative_class_ref": "SEC009_F01_RECIPIENT_NOT_APPLIED"
+    },
+    {
+      "id": "SEC009-ARTIFACT_ACCESS-STOP_ACCESS-NOT_OBSERVED",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F01",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/1/negative_cases/200"
+        }
+      ],
+      "negative_class_ref": "SEC009_F01_RECIPIENT_APPLICATION_UNRESOLVED"
+    },
+    {
+      "id": "SEC009-ARTIFACT_ACCESS-STOP_ACCESS-NONE",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F01",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/1/negative_cases/201"
+        }
+      ],
+      "negative_class_ref": "SEC009_F01_RECIPIENT_APPLICATION_UNRESOLVED"
+    },
+    {
+      "id": "SEC009-ARTIFACT_ACCESS-ACCESS_CONTINUES-TRUE",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F01",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/1/negative_cases/202"
+        }
+      ],
+      "negative_class_ref": "SEC009_F01_RECIPIENT_CONTINUES_AFTER_STOP"
+    },
+    {
+      "id": "SEC009-ARTIFACT_ACCESS-ACCESS_CONTINUES-NONE",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F01",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/1/negative_cases/203"
+        }
+      ],
+      "negative_class_ref": "SEC009_F01_RECIPIENT_POST_STATE_UNRESOLVED"
+    },
+    {
+      "id": "SEC009-ARTIFACT_ACCESS-ACTIONS-EMPTY",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F01",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/1/negative_cases/204"
+        }
+      ],
+      "negative_class_ref": "SEC009_F01_RECIPIENT_ACTIONS_CONFLICT"
+    },
+    {
+      "id": "SEC009-OS_ASSIGNMENT-ACTIONS-DUPLICATE",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F01",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/1/negative_cases/206"
+        }
+      ],
+      "negative_class_ref": "SEC009_F01_RECIPIENT_ACTIONS_UNRESOLVED"
+    },
+    {
+      "id": "SEC009-OS_ASSIGNMENT-ACTIONS-NONSTRING",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F01",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/1/negative_cases/207"
+        }
+      ],
+      "negative_class_ref": "SEC009_F01_RECIPIENT_ACTIONS_UNRESOLVED"
+    },
+    {
+      "id": "SEC009-OS_ASSIGNMENT-ACTIONS-NONLIST",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F01",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/1/negative_cases/208"
+        }
+      ],
+      "negative_class_ref": "SEC009_F01_RECIPIENT_ACTIONS_UNRESOLVED"
+    },
+    {
+      "id": "SEC009-WORKER_EXECUTION-ACTIONS-DUPLICATE",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F01",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/1/negative_cases/209"
+        }
+      ],
+      "negative_class_ref": "SEC009_F01_RECIPIENT_ACTIONS_UNRESOLVED"
+    },
+    {
+      "id": "SEC009-WORKER_EXECUTION-ACTIONS-NONSTRING",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F01",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/1/negative_cases/210"
+        }
+      ],
+      "negative_class_ref": "SEC009_F01_RECIPIENT_ACTIONS_UNRESOLVED"
+    },
+    {
+      "id": "SEC009-WORKER_EXECUTION-ACTIONS-NONLIST",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F01",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/1/negative_cases/211"
+        }
+      ],
+      "negative_class_ref": "SEC009_F01_RECIPIENT_ACTIONS_UNRESOLVED"
+    },
+    {
+      "id": "SEC009-CONNECT_COMMUNICATION-ACTIONS-DUPLICATE",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F01",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/1/negative_cases/212"
+        }
+      ],
+      "negative_class_ref": "SEC009_F01_RECIPIENT_ACTIONS_UNRESOLVED"
+    },
+    {
+      "id": "SEC009-CONNECT_COMMUNICATION-ACTIONS-NONSTRING",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F01",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/1/negative_cases/213"
+        }
+      ],
+      "negative_class_ref": "SEC009_F01_RECIPIENT_ACTIONS_UNRESOLVED"
+    },
+    {
+      "id": "SEC009-CONNECT_COMMUNICATION-ACTIONS-NONLIST",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F01",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/1/negative_cases/214"
+        }
+      ],
+      "negative_class_ref": "SEC009_F01_RECIPIENT_ACTIONS_UNRESOLVED"
+    },
+    {
+      "id": "SEC009-CREDENTIAL_USE-ACTIONS-DUPLICATE",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F01",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/1/negative_cases/215"
+        }
+      ],
+      "negative_class_ref": "SEC009_F01_RECIPIENT_ACTIONS_UNRESOLVED"
+    },
+    {
+      "id": "SEC009-CREDENTIAL_USE-ACTIONS-NONSTRING",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F01",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/1/negative_cases/216"
+        }
+      ],
+      "negative_class_ref": "SEC009_F01_RECIPIENT_ACTIONS_UNRESOLVED"
+    },
+    {
+      "id": "SEC009-CREDENTIAL_USE-ACTIONS-NONLIST",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F01",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/1/negative_cases/217"
+        }
+      ],
+      "negative_class_ref": "SEC009_F01_RECIPIENT_ACTIONS_UNRESOLVED"
+    },
+    {
+      "id": "SEC009-ARTIFACT_ACCESS-ACTIONS-DUPLICATE",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F01",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/1/negative_cases/218"
+        }
+      ],
+      "negative_class_ref": "SEC009_F01_RECIPIENT_ACTIONS_UNRESOLVED"
+    },
+    {
+      "id": "SEC009-ARTIFACT_ACCESS-ACTIONS-NONSTRING",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F01",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/1/negative_cases/219"
+        }
+      ],
+      "negative_class_ref": "SEC009_F01_RECIPIENT_ACTIONS_UNRESOLVED"
+    },
+    {
+      "id": "SEC009-ARTIFACT_ACCESS-ACTIONS-NONLIST",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F01",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/1/negative_cases/220"
+        }
+      ],
+      "negative_class_ref": "SEC009_F01_RECIPIENT_ACTIONS_UNRESOLVED"
+    },
+    {
+      "id": "SEC009-GENERAL-MEANING-UNKNOWN",
+      "population_state": "positive",
+      "contract_ref": "HELIXSECURITY-L4-009-F02",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/2/positive_cases/0"
+        }
+      ]
+    },
+    {
+      "id": "SEC009-ISOLATION-EVENT_ID-MISSING",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F02",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/2/negative_cases/0"
+        }
+      ],
+      "negative_class_ref": "SEC009_F02_ISOLATION_BINDING_UNRESOLVED"
+    },
+    {
+      "id": "SEC009-ISOLATION-EVENT_ID-CONFLICT",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F02",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/2/negative_cases/1"
+        }
+      ],
+      "negative_class_ref": "SEC009_F02_ISOLATION_BINDING_CONFLICT"
+    },
+    {
+      "id": "SEC009-ISOLATION-REVISION-MISSING",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F02",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/2/negative_cases/2"
+        }
+      ],
+      "negative_class_ref": "SEC009_F02_ISOLATION_BINDING_UNRESOLVED"
+    },
+    {
+      "id": "SEC009-ISOLATION-REVISION-CONFLICT",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F02",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/2/negative_cases/3"
+        }
+      ],
+      "negative_class_ref": "SEC009_F02_ISOLATION_BINDING_CONFLICT"
+    },
+    {
+      "id": "SEC009-ISOLATION-SCOPE-MISSING",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F02",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/2/negative_cases/4"
+        }
+      ],
+      "negative_class_ref": "SEC009_F02_ISOLATION_BINDING_UNRESOLVED"
+    },
+    {
+      "id": "SEC009-ISOLATION-SCOPE-CONFLICT",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F02",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/2/negative_cases/5"
+        }
+      ],
+      "negative_class_ref": "SEC009_F02_ISOLATION_BINDING_CONFLICT"
+    },
+    {
+      "id": "SEC009-ISOLATION-OPERATION-MISSING",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F02",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/2/negative_cases/6"
+        }
+      ],
+      "negative_class_ref": "SEC009_F02_ISOLATION_BINDING_UNRESOLVED"
+    },
+    {
+      "id": "SEC009-ISOLATION-OPERATION-CONFLICT",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F02",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/2/negative_cases/7"
+        }
+      ],
+      "negative_class_ref": "SEC009_F02_ISOLATION_BINDING_CONFLICT"
+    },
+    {
+      "id": "SEC009-ISOLATION-PROJECT-MISSING",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F02",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/2/negative_cases/8"
+        }
+      ],
+      "negative_class_ref": "SEC009_F02_ISOLATION_BINDING_UNRESOLVED"
+    },
+    {
+      "id": "SEC009-ISOLATION-PROJECT-CONFLICT",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F02",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/2/negative_cases/9"
+        }
+      ],
+      "negative_class_ref": "SEC009_F02_ISOLATION_BINDING_CONFLICT"
+    },
+    {
+      "id": "SEC009-ISOLATION-SOURCE_REF-MISSING",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F02",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/2/negative_cases/10"
+        }
+      ],
+      "negative_class_ref": "SEC009_F02_ISOLATION_BINDING_UNRESOLVED"
+    },
+    {
+      "id": "SEC009-ISOLATION-SOURCE_REF-CONFLICT",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F02",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/2/negative_cases/11"
+        }
+      ],
+      "negative_class_ref": "SEC009_F02_ISOLATION_BINDING_CONFLICT"
+    },
+    {
+      "id": "SEC009-ISOLATION-BEFORE_STATE_REF-MISSING",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F02",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/2/negative_cases/12"
+        }
+      ],
+      "negative_class_ref": "SEC009_F02_ISOLATION_BINDING_UNRESOLVED"
+    },
+    {
+      "id": "SEC009-ISOLATION-BEFORE_STATE_REF-CONFLICT",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F02",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/2/negative_cases/13"
+        }
+      ],
+      "negative_class_ref": "SEC009_F02_ISOLATION_BINDING_CONFLICT"
+    },
+    {
+      "id": "SEC009-ISOLATION-STATE-UNKNOWN",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F02",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/2/negative_cases/14"
+        }
+      ],
+      "negative_class_ref": "SEC009_F02_ISOLATION_UNRESOLVED"
+    },
+    {
+      "id": "SEC009-ISOLATION-STATE-NOT_ISOLATED",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F02",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/2/negative_cases/15"
+        }
+      ],
+      "negative_class_ref": "SEC009_F02_ISOLATION_NOT_APPLIED"
+    },
+    {
+      "id": "SEC009-ISOLATION-STATE-PLANNED",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F02",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/2/negative_cases/16"
+        }
+      ],
+      "negative_class_ref": "SEC009_F02_ISOLATION_UNRESOLVED"
+    },
+    {
+      "id": "SEC009-RECOVERY-EVENT_ID-MISSING",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F02",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/2/negative_cases/17"
+        }
+      ],
+      "negative_class_ref": "SEC009_F02_RECOVERY_BINDING_UNRESOLVED"
+    },
+    {
+      "id": "SEC009-RECOVERY-EVENT_ID-CONFLICT",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F02",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/2/negative_cases/18"
+        }
+      ],
+      "negative_class_ref": "SEC009_F02_RECOVERY_BINDING_CONFLICT"
+    },
+    {
+      "id": "SEC009-RECOVERY-REVISION-MISSING",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F02",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/2/negative_cases/19"
+        }
+      ],
+      "negative_class_ref": "SEC009_F02_RECOVERY_BINDING_UNRESOLVED"
+    },
+    {
+      "id": "SEC009-RECOVERY-REVISION-CONFLICT",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F02",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/2/negative_cases/20"
+        }
+      ],
+      "negative_class_ref": "SEC009_F02_RECOVERY_BINDING_CONFLICT"
+    },
+    {
+      "id": "SEC009-RECOVERY-SCOPE-MISSING",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F02",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/2/negative_cases/21"
+        }
+      ],
+      "negative_class_ref": "SEC009_F02_RECOVERY_BINDING_UNRESOLVED"
+    },
+    {
+      "id": "SEC009-RECOVERY-SCOPE-CONFLICT",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F02",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/2/negative_cases/22"
+        }
+      ],
+      "negative_class_ref": "SEC009_F02_RECOVERY_BINDING_CONFLICT"
+    },
+    {
+      "id": "SEC009-RECOVERY-OPERATION-MISSING",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F02",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/2/negative_cases/23"
+        }
+      ],
+      "negative_class_ref": "SEC009_F02_RECOVERY_BINDING_UNRESOLVED"
+    },
+    {
+      "id": "SEC009-RECOVERY-OPERATION-CONFLICT",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F02",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/2/negative_cases/24"
+        }
+      ],
+      "negative_class_ref": "SEC009_F02_RECOVERY_BINDING_CONFLICT"
+    },
+    {
+      "id": "SEC009-RECOVERY-PROJECT-MISSING",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F02",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/2/negative_cases/25"
+        }
+      ],
+      "negative_class_ref": "SEC009_F02_RECOVERY_BINDING_UNRESOLVED"
+    },
+    {
+      "id": "SEC009-RECOVERY-PROJECT-CONFLICT",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F02",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/2/negative_cases/26"
+        }
+      ],
+      "negative_class_ref": "SEC009_F02_RECOVERY_BINDING_CONFLICT"
+    },
+    {
+      "id": "SEC009-RECOVERY-SOURCE_REF-MISSING",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F02",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/2/negative_cases/27"
+        }
+      ],
+      "negative_class_ref": "SEC009_F02_RECOVERY_BINDING_UNRESOLVED"
+    },
+    {
+      "id": "SEC009-RECOVERY-SOURCE_REF-CONFLICT",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F02",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/2/negative_cases/28"
+        }
+      ],
+      "negative_class_ref": "SEC009_F02_RECOVERY_BINDING_CONFLICT"
+    },
+    {
+      "id": "SEC009-RECOVERY-RESTORED_STATE_REF-MISSING",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F02",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/2/negative_cases/29"
+        }
+      ],
+      "negative_class_ref": "SEC009_F02_RECOVERY_BINDING_UNRESOLVED"
+    },
+    {
+      "id": "SEC009-RECOVERY-RESTORED_STATE_REF-CONFLICT",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F02",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/2/negative_cases/30"
+        }
+      ],
+      "negative_class_ref": "SEC009_F02_RECOVERY_BINDING_CONFLICT"
+    },
+    {
+      "id": "SEC009-RECOVERY-STATE-UNKNOWN",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F02",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/2/negative_cases/31"
+        }
+      ],
+      "negative_class_ref": "SEC009_F02_RECOVERY_UNRESOLVED"
+    },
+    {
+      "id": "SEC009-RECOVERY-STATE-PARTIAL",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F02",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/2/negative_cases/32"
+        }
+      ],
+      "negative_class_ref": "SEC009_F02_RECOVERY_INCOMPLETE"
+    },
+    {
+      "id": "SEC009-RECOVERY-STATE-PLANNED",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F02",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/2/negative_cases/33"
+        }
+      ],
+      "negative_class_ref": "SEC009_F02_RECOVERY_UNRESOLVED"
+    },
+    {
+      "id": "SEC009-GLOBAL-STOP",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F02",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/2/negative_cases/34"
+        }
+      ],
+      "negative_class_ref": "SEC009_F02_GLOBAL_STOP_EXPANSION"
+    },
+    {
+      "id": "SEC009-CATEGORY-UNKNOWN",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F02",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/2/negative_cases/35"
+        }
+      ],
+      "negative_class_ref": "SEC009_F02_TRIGGER_CATEGORY_UNRESOLVED"
+    },
+    {
+      "id": "SEC009-CATEGORY-CONFLICT",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F02",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/2/negative_cases/36"
+        }
+      ],
+      "negative_class_ref": "SEC009_F02_TRIGGER_CATEGORY_CONFLICT"
+    },
+    {
+      "id": "SEC009-GENERAL-MEANING-WITH-GLOBAL-STOP",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F02",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/2/negative_cases/37"
+        }
+      ],
+      "negative_class_ref": "SEC009_F02_GLOBAL_STOP_EXPANSION"
+    },
+    {
+      "id": "SEC009-EXPECTED-CATEGORY-MISSING",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F02",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/2/negative_cases/38"
+        }
+      ],
+      "negative_class_ref": "SEC009_F02_TRIGGER_CATEGORY_UNRESOLVED"
+    },
+    {
+      "id": "SEC009-GENERAL-CLAIM-WITH-EXPECTED-SAFETY",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F02",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/2/negative_cases/39"
+        }
+      ],
+      "negative_class_ref": "SEC009_F02_TRIGGER_CATEGORY_CONFLICT"
+    },
+    {
+      "id": "SEC009-SAFETY-STOP-SCOPE-NULL",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F02",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/2/negative_cases/41"
+        }
+      ],
+      "negative_class_ref": "SEC009_F02_STOP_SCOPE_UNRESOLVED"
+    },
+    {
+      "id": "SEC009-GENERAL-MEANING-STOP-SCOPE-NULL",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F02",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/2/negative_cases/42"
+        }
+      ],
+      "negative_class_ref": "SEC009_F02_STOP_SCOPE_UNRESOLVED"
+    },
+    {
+      "id": "SEC009-COMPOUND-OS-UNKNOWN-CREDENTIAL-UNAPPLIED-WORKER-CONTINUES",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F01",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/1/negative_cases/205"
+        }
+      ],
+      "negative_class_ref": "SEC009_F01_RECIPIENT_COMPOSITE_FINDINGS"
+    },
+    {
+      "id": "SEC009-RECOVERY-PRIOR-SOURCE-MISSING",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F02",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/2/negative_cases/40"
+        }
+      ],
+      "negative_class_ref": "SEC009_F02_ISOLATION_RECOVERY_BINDING_UNRESOLVED"
+    }
+  ],
+  "explicit_pr_a_transition_audit": {
+    "evidence_kind": "scaffold",
+    "authority_effect": "none",
+    "previous_audit_revision": "7382d9c749951074d54240c5473243841c4bc765",
+    "projection_scope": "PR-A explicit L9 integration index contains the 8 positive and 275 existing assigned negative single-contract cases (283 rows). The two source-supported ambiguous cases remain unassigned in the nested source and audit; do not infer composite classes absent an upstream L3/L10/L4 class definition. All 71 multi-contract residual rows remain outside the single-contract index.",
+    "preservation": "All existing L9 nested given/when/expected_proposal/operation fields remain unchanged; integration_cases is an additive 283-row index. The two ambiguous source rows remain nested and explicitly unassigned.",
+    "checker_limit": "PR-A provides L4/L9 explicit source/table and L9 integration index, but L5/L8 remain unchanged and lack explicit marker/class/unit_cases links. check-child is expected to FAIL in this intermediate state; no 4-way PASS is claimed.",
+    "as_of_revision": "c50eb21b34f034262ced3f8052d2502fb84c57c9"
+  },
+  "negative_class_assignment_audit_r1_addendum": {
+    "review_source": "PR #3996 R1 comment 6535373957; design response by PR author, not independent approval",
+    "prior_audit_pointer": "/negative_class_assignment_audit",
+    "prior_audit_preserved_exactly": true,
+    "resolved_case_count": 2,
+    "resolved_case_ids": [
+      "SEC009-COMPOUND-OS-UNKNOWN-CREDENTIAL-UNAPPLIED-WORKER-CONTINUES",
+      "SEC009-RECOVERY-PRIOR-SOURCE-MISSING"
+    ],
+    "effective_counts_after_r1": {
+      "single_contract_negative_population_count": 277,
+      "assigned_single_contract_negative_case_count": 277,
+      "unassigned_single_contract_negative_case_count": 0,
+      "fixed_upper_classification_count": 32,
+      "represented_classification_count": 32,
+      "integration_case_count": 285,
+      "positive": 8,
+      "assigned_negative": 277,
+      "multi_contract_residual_total_count": 71
+    },
+    "resolution_basis": "OS015 L4 composite_class_formation is a structural precedent, rederived in SEC009 terms. Preserve existing L4 findings in scalar sort order and map them to existing ordered axes, including a shared finding affecting multiple independently unknown axes. Copy scalar expected_state from the existing classification of the first ordered axis and separately preserve every axis state; do not add a cross-axis severity or aggregation rule. expected_classification is the existing overall result.condition. No new finding, authority or operation effect.",
+    "assignments": [
+      {
+        "case_id": "SEC009-COMPOUND-OS-UNKNOWN-CREDENTIAL-UNAPPLIED-WORKER-CONTINUES",
+        "case_pointer": "/cases/1/negative_cases/205",
+        "class_id": "SEC009_F01_RECIPIENT_COMPOSITE_FINDINGS",
+        "finding_codes": [
+          "recipient_continues_after_stop",
+          "recipient_not_applied",
+          "recipient_receipt_unresolved"
+        ],
+        "expected_axis": [
+          "recipient_post_stop_non_continuation",
+          "recipient_action_application_status",
+          "recipient_receipt_status"
+        ],
+        "expected_classification": "revoke_material_violation",
+        "expected_state": "violation",
+        "previous_unassigned_reason": "multiple_findings_compound_case"
+      },
+      {
+        "case_id": "SEC009-RECOVERY-PRIOR-SOURCE-MISSING",
+        "case_pointer": "/cases/2/negative_cases/40",
+        "class_id": "SEC009_F02_ISOLATION_RECOVERY_BINDING_UNRESOLVED",
+        "finding_codes": [
+          "binding_unresolved"
+        ],
+        "expected_axis": [
+          "isolation_identity_or_before_state_binding",
+          "recovery_identity_or_restored_state_binding"
+        ],
+        "expected_classification": "revoke_material_unknown",
+        "expected_state": "unknown",
+        "previous_unassigned_reason": "shared_before_state_ref_affecting_both_isolation_and_recovery"
+      }
+    ],
+    "expected_proposal_changed": false,
+    "multi_contract_residual_changed": false
   }
 }

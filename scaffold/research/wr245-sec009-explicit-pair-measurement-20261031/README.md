@@ -44,3 +44,22 @@ PR-B相当のL5/L8 draftを重ねるchecker試行では、L8/L9 explicit index�
 R1 F1のdigest転記訂正は`r1-correction.json`に追記しました。`measurement.json`の当時固定された値は書き換えず、誤値・正値・固定blind bytesのdigestを併記し、materialization validatorが訂正値とbytesを照合します。
 
 R1 F2向けのchecker trial入力、基底L5/L8 source revision/SHA、checker source SHA、保存report、再実行scriptは`checker-trials/`にあります。`python3 checker-trials/replay_checker_trials.py`でPR-A中間FAIL 438件（matched 0）とPR-B shape overlayのmatched 275（failure 0）を再現・照合します。PR-B試行ではL4 `code` 30件とL5 `code` 30件を安定IDから既存expected outcome値へ写しています。これはchecker形状の測定結果であり、formal L4/L5の意味承認や変更許可を示しません。R1の設計判断は安定`class_id`/rule `id`を保ち`code`を既存expected outcomeへ揃える downstream schema resolutionをAIが別途進められるとしています。既存試行draftは承認済みformal変更ではありません。
+
+
+## PR #3996 R1 response: source-backed composite classification
+
+この改訂はPR作成側が2026-10-31にR1 comment [6535373957](https://github.com/RetryYN/HELIX-HARNESS/pull/3996#issuecomment-6535373957)へ応答して行う設計変更であり、独立reviewerによる承認を意味しない。レビュー指摘に従い、OS015 L4 `diagnostic_contract.composite_class_formation`と22のcomposite classを構造上の先例として読んだ。SEC009のfinding、axis、return ownerと各axis stateは既存のSEC009 L3/L10/L4意味から再導出し、OS015固有の分類内容やseverity順序は移植しない。L9 `expected_proposal` は導出後の比較先としてのみ使い、設計根拠のsource pointerには含めない。
+
+L4 `diagnostic_contract.composite_class_formation`は次の再利用可能な形成規則を定義する。既存findingをL4 sort（code, pointer, return_owner）のscalar順で並べ、ordered `finding_codes`を重複も含めて保持する。各findingに対応する既存axisを同順で配列化し、一つのshared source findingが複数比較axisを不明にするときは契約順のaxisをすべて記録する。全体`expected_classification`はresult conditionから取り、scalar `expected_state`は既存key形を保つため先頭ordered axisの既存single-axis classificationから写し、全axis stateは順序付きで別途保持する。cross-axis severityの優先順や集約規則は追加しない。新規finding、axis名、authority、operation effectは生成しない。このsignatureは同じ意味の別caseにも適用でき、fixture件数で再利用可否を判定しない。
+
+- `SEC009-COMPOUND-OS-UNKNOWN-CREDENTIAL-UNAPPLIED-WORKER-CONTINUES`: L4に`recipient_continues_after_stop`、`recipient_not_applied`、`recipient_receipt_unresolved`の3 findingを既存順で保持する。`expected_axis`は既存axis名の順序付き配列`[recipient_post_stop_non_continuation, recipient_action_application_status, recipient_receipt_status]`、全体classification/stateはviolation。最初の2軸のviolationを保ちながらreceipt軸のunknownを落とさない。
+- `SEC009-RECOVERY-PRIOR-SOURCE-MISSING`: 一つの既存`binding_unresolved` findingに対し、共有`context.before_state_ref`がisolationとrecovery双方を未解決にする。`expected_axis`は`[isolation_identity_or_before_state_binding, recovery_identity_or_restored_state_binding]`、classification/stateはunknown。findingを重複生成せず、2軸を保持する。
+
+L4/L9は32 classes・285 integration rows（8 positive、277 negative）へ更新した。L9 nested二行にassignmentを加え、L9の全285 nested `given`/`when`/`expected_proposal`、71 multi-contract residual、L8は不変。旧`negative_class_assignment_audit`は時点証拠として書き換えず、新しい`negative_class_assignment_audit_r1_addendum`で2件の解決とcurrent countを追記した。L5/L8は後続PR-Bの対象で、現在の4-way checkerは部分状態FAILのままである。
+
+### nested L4 payloadを撤去する条件と判断責務
+
+L4の既存nested `negative_classifications` payloadは、L8から308件・L9から308件のconsumer referenceがあるため保持する。将来これを撤去できるのは、変更を提案するPR作成側が全consumerをtop-level canonical classへ明示redirectし、RFC6901で各参照先と必要な下位fieldの意味・型・値が保たれることを全件記録し、独立reviewで確認できる別変更に限る。現在のR1変更はこの撤去条件を満たすものではなく、redirectやnested payloadの削除を行っていない。
+### Pointer count reconciliation
+
+一時検討版ではunassigned audit rowを空配列にしたため、L9 nested pointer countを305と誤抽出した。最終案はbaseの2 unassigned audit rowとそこに含まれるL4 pointerを保持し、L8/L9とも308参照・31 unique pointer stringとなる。RFC6901の値・型・必要fieldは308/308で一致し、固定`measurement.json`の308/308と整合する。

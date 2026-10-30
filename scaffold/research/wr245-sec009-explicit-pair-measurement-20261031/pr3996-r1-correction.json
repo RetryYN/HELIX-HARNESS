@@ -1,0 +1,271 @@
+{
+  "schema": "wr245-pr3996-r1-correction.v1",
+  "evidence_kind": "scaffold",
+  "authority_effect": "none",
+  "operation_effect": "none",
+  "request_id": "WR245-SEC009-PRA-PR3996-R1",
+  "request_packet_sha256": "9f1027b08a6c646409e3b0340b78630000e122f7a1144fb79419e55a25f08388",
+  "review_source": {
+    "url": "https://github.com/RetryYN/HELIX-HARNESS/pull/3996#issuecomment-6535373957",
+    "comment_id": "6535373957",
+    "reviewer": "Claude",
+    "finding_ids": [
+      "F1",
+      "F2"
+    ],
+    "author_response": "This is the PR author's design correction in response to R1; it is not a subsequent independent-review approval."
+  },
+  "historical_point": {
+    "revision": "c50eb21b34f034262ced3f8052d2502fb84c57c9",
+    "L4_sha256": "d46e39cad2e2a90cfc532fa57226a4d650336e794a375f07e1cc2e6cbba15eb3",
+    "L9_sha256": "166a86af69e4f9ab067631580752c2f154fddb10c4ed2e2c6bd6ed45b0c769b9",
+    "pre_r1_shape": {
+      "L4_classes": 30,
+      "L9_classes": 30,
+      "L9_integration_cases": 283,
+      "assigned_negative": 275,
+      "unassigned_ambiguous": 2
+    },
+    "previous_validators": [
+      {
+        "path": "scaffold/research/wr245-sec009-explicit-pair-measurement-20261031/validate_pr_a_r2_measurement.py",
+        "sha256": "b0dc2a9a934c68ae37b8b2fc0634db4f5962ef1bd0c311a6e71a064e1a217ed4",
+        "result_at_c50": "PASS"
+      },
+      {
+        "path": "scaffold/research/wr245-sec009-explicit-pair-measurement-20261031/validate_r2_ambiguous_source_first_design.py",
+        "sha256": "7fbd86593b7bcf92fae463d86c87f531c3ed47a503eb253a35da7aa7b1c8f842",
+        "result_at_c50": "PASS"
+      }
+    ],
+    "fixed_prior_artifact_hashes": {
+      "measurement.json": "bb86dd4041553020d5d5b894598861d3a9d34d4f0c696811f0899e858a8333c1",
+      "wr245-casewise-blind-fixed.json": "d047fcec962b1c9d83a191d9fdd777eea47862af2f906f3adf8f0b1450d1db97",
+      "pr-a-r2-static-source-measurement.json": "60edea6fc894710cd3d9037b108aaeeb2336f3f22714839285ce6ffadd3d483a",
+      "pr-a-r2-check-child-report.json": "2405598f7d439d629d9b586edf6f5e31700d7933e4cdafcc9d2f6431e897f5f9",
+      "multi-contract-residual-audit.json": "163008ab18bbdef16de8c078e46d6cee90e1ebe1226ce67c327400921edc6f17"
+    }
+  },
+  "source_pins": {
+    "SEC009_L3_business": {
+      "revision": "c50eb21b34f034262ced3f8052d2502fb84c57c9",
+      "path": "docs/helix-security/L3-requirements/business-requirements.json",
+      "sha256": "f1668180a3daccb38da15f471ade0806c64f094a77b0d7a5cef25edc9b6ce901"
+    },
+    "SEC009_L3_functional": {
+      "revision": "c50eb21b34f034262ced3f8052d2502fb84c57c9",
+      "path": "docs/helix-security/L3-requirements/functional-requirements.json",
+      "sha256": "e4eeb70cc303e44199c7d898281e91c22dba89b47666353b9c80a4c634e898b5"
+    },
+    "SEC009_L10_business": {
+      "revision": "c50eb21b34f034262ced3f8052d2502fb84c57c9",
+      "path": "docs/helix-security/L10-verification/business-verification.json",
+      "sha256": "c34b8f9a99f8f240558458dd63033acd0d756dfe61ad9cd3aac0e8e1c8193f42"
+    },
+    "SEC009_L10_functional": {
+      "revision": "c50eb21b34f034262ced3f8052d2502fb84c57c9",
+      "path": "docs/helix-security/L10-verification/functional-verification.json",
+      "sha256": "e6da7eaff29a623b5d069801280c295d9dd7cc43b51d9cde25b12a8110e5072a"
+    },
+    "OS015_L4_precedent": {
+      "revision": "c50eb21b34f034262ced3f8052d2502fb84c57c9",
+      "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
+      "sha256": "17df9676bfcc82d8d4cd93cc14ae77b5d4b4df2c83d6e7cab015817126bc6103",
+      "pointer": "/diagnostic_contract/composite_class_formation",
+      "composite_class_count": 22
+    },
+    "SEC009_L4_before_r1": {
+      "revision": "c50eb21b34f034262ced3f8052d2502fb84c57c9",
+      "path": "docs/helix-security/L4-basic-design/revoke-quarantine-propagation.json",
+      "sha256": "d46e39cad2e2a90cfc532fa57226a4d650336e794a375f07e1cc2e6cbba15eb3"
+    },
+    "SEC009_L9_before_r1": {
+      "revision": "c50eb21b34f034262ced3f8052d2502fb84c57c9",
+      "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+      "sha256": "166a86af69e4f9ab067631580752c2f154fddb10c4ed2e2c6bd6ed45b0c769b9"
+    }
+  },
+  "f1_design": {
+    "precedent_reuse": "Meaning is rederived into SEC009. OS015 establishes a reusable L4 pattern: preserve ordered findings and distinguish overall classification from axis state; its model also specifies an OS015-specific severity order, which is not imported into SEC009. SEC009 uses no new cross-axis severity order.",
+    "sec009_formation_rule": "Findings use existing L4 scalar sort (code,pointer,return_owner), preserving duplicate codes at distinct pointers. expected.finding_codes is the ordered code sequence. expected_axis is an ordered list of existing axes contributed by each ordered finding; a shared source finding can contribute multiple independently evaluated axes in contract dependency order. expected_classification is the existing overall result.condition. The scalar expected_state required by the existing class key is copied from the existing single-axis classification for the first ordered axis; all axis states remain separately listed in order. No cross-axis severity priority or aggregation rule is introduced. No finding, axis, owner, result, authority, or operation effect is synthesized.",
+    "classes": [
+      {
+        "class_id": "SEC009_F01_RECIPIENT_COMPOSITE_FINDINGS",
+        "design_ref": "HELIXSECURITY-L4-009-F01",
+        "ordered_finding_codes": [
+          "recipient_continues_after_stop",
+          "recipient_not_applied",
+          "recipient_receipt_unresolved"
+        ],
+        "expected_axis": [
+          "recipient_post_stop_non_continuation",
+          "recipient_action_application_status",
+          "recipient_receipt_status"
+        ],
+        "axis_states": [
+          "violation",
+          "violation",
+          "unknown"
+        ],
+        "expected_classification": "revoke_material_violation",
+        "expected_state": "violation",
+        "source_basis": [
+          "docs/helix-security/L3-requirements/functional-requirements.json#/requirements/21",
+          "docs/helix-security/L10-verification/functional-verification.json#/cases/21",
+          "docs/helix-security/L4-basic-design/revoke-quarantine-propagation.json#/contracts/1",
+          "docs/helix-security/L4-basic-design/revoke-quarantine-propagation.json#/failure_classifications/12",
+          "docs/helix-security/L4-basic-design/revoke-quarantine-propagation.json#/failure_classifications/15",
+          "docs/helix-security/L4-basic-design/revoke-quarantine-propagation.json#/failure_classifications/17",
+          "docs/helix-security/L4-basic-design/revoke-quarantine-propagation.json#/diagnostic_contract/composite_class_formation"
+        ],
+        "member_case_id": "SEC009-COMPOUND-OS-UNKNOWN-CREDENTIAL-UNAPPLIED-WORKER-CONTINUES",
+        "axis_state_basis": [
+          {
+            "axis": "recipient_post_stop_non_continuation",
+            "state": "violation",
+            "source_pointer": "docs/helix-security/L4-basic-design/revoke-quarantine-propagation.json#/failure_classifications/17"
+          },
+          {
+            "axis": "recipient_action_application_status",
+            "state": "violation",
+            "source_pointer": "docs/helix-security/L4-basic-design/revoke-quarantine-propagation.json#/failure_classifications/15"
+          },
+          {
+            "axis": "recipient_receipt_status",
+            "state": "unknown",
+            "source_pointer": "docs/helix-security/L4-basic-design/revoke-quarantine-propagation.json#/failure_classifications/12"
+          }
+        ],
+        "expected_state_basis": "docs/helix-security/L4-basic-design/revoke-quarantine-propagation.json#/failure_classifications/17"
+      },
+      {
+        "class_id": "SEC009_F02_ISOLATION_RECOVERY_BINDING_UNRESOLVED",
+        "design_ref": "HELIXSECURITY-L4-009-F02",
+        "ordered_finding_codes": [
+          "binding_unresolved"
+        ],
+        "expected_axis": [
+          "isolation_identity_or_before_state_binding",
+          "recovery_identity_or_restored_state_binding"
+        ],
+        "axis_states": [
+          "unknown",
+          "unknown"
+        ],
+        "expected_classification": "revoke_material_unknown",
+        "expected_state": "unknown",
+        "source_basis": [
+          "docs/helix-security/L3-requirements/functional-requirements.json#/requirements/22",
+          "docs/helix-security/L10-verification/functional-verification.json#/cases/22",
+          "docs/helix-security/L4-basic-design/revoke-quarantine-propagation.json#/contracts/2",
+          "docs/helix-security/L4-basic-design/revoke-quarantine-propagation.json#/failure_classifications/22",
+          "docs/helix-security/L4-basic-design/revoke-quarantine-propagation.json#/failure_classifications/26",
+          "docs/helix-security/L4-basic-design/revoke-quarantine-propagation.json#/diagnostic_contract/composite_class_formation"
+        ],
+        "member_case_id": "SEC009-RECOVERY-PRIOR-SOURCE-MISSING",
+        "axis_state_basis": [
+          {
+            "axis": "isolation_identity_or_before_state_binding",
+            "state": "unknown",
+            "source_pointer": "docs/helix-security/L4-basic-design/revoke-quarantine-propagation.json#/failure_classifications/22"
+          },
+          {
+            "axis": "recovery_identity_or_restored_state_binding",
+            "state": "unknown",
+            "source_pointer": "docs/helix-security/L4-basic-design/revoke-quarantine-propagation.json#/failure_classifications/26"
+          }
+        ],
+        "expected_state_basis": "docs/helix-security/L4-basic-design/revoke-quarantine-propagation.json#/failure_classifications/22"
+      }
+    ],
+    "case_scope": "Class signatures and per-axis state bases derive from SEC009 L3/L10/L4 obligations, contracts, and existing single-axis classifications. Exact source fixtures show membership only, not class IDs or single-use categories. L9 expected_proposal references are comparison targets applied after derivation, not source/design evidence.",
+    "l9_expected_proposal_changed": false,
+    "source_input_examples": [
+      {
+        "case_id": "SEC009-COMPOUND-OS-UNKNOWN-CREDENTIAL-UNAPPLIED-WORKER-CONTINUES",
+        "historical_fixture_revision": "4ba3f600df75aa6e860e0ddf53db68644e1edf98",
+        "source_case_pointer": "/cases/331",
+        "input_pointer": "/cases/331/given/input",
+        "canonical_input_sha256": "add497581252e579a7e271a879067adc438c390a83adae27a13135e5dc3ef9bf",
+        "observations": {
+          "/reports/worker_execution/post_state/execution_continues": true,
+          "/reports/credential_use/application/stop_use": "not_applied",
+          "/reports/os_assignment/receipt": "unknown"
+        },
+        "facts_independently_checked_by": "validate_r2_ambiguous_source_first_design.py"
+      },
+      {
+        "case_id": "SEC009-RECOVERY-PRIOR-SOURCE-MISSING",
+        "historical_fixture_revision": "4ba3f600df75aa6e860e0ddf53db68644e1edf98",
+        "source_case_pointer": "/cases/335",
+        "input_pointer": "/cases/335/given/input",
+        "canonical_input_sha256": "a3111537b304a99cb925dc4a8e026474edd3fce7a04efb5090a9b9a4f5294e41",
+        "observations": {
+          "/context/before_state_ref": null,
+          "/isolation/before_state_ref": "BEFORE-A",
+          "/recovery/restored_state_ref": "BEFORE-A"
+        },
+        "facts_independently_checked_by": "validate_r2_ambiguous_source_first_design.py"
+      }
+    ],
+    "expected_comparison_refs": [
+      {
+        "case_id": "SEC009-COMPOUND-OS-UNKNOWN-CREDENTIAL-UNAPPLIED-WORKER-CONTINUES",
+        "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+        "pointer": "/cases/1/negative_cases/205/expected_proposal",
+        "purpose": "post-derivation comparison target only; not source authority"
+      },
+      {
+        "case_id": "SEC009-RECOVERY-PRIOR-SOURCE-MISSING",
+        "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+        "pointer": "/cases/2/negative_cases/40/expected_proposal",
+        "purpose": "post-derivation comparison target only; not source authority"
+      }
+    ]
+  },
+  "f2_readme": {
+    "decision_attribution": "The README identifies this as the PR author's R1 design response to Claude's PR #3996 comment 6535373957; it does not call that comment an independent approval of the resulting change.",
+    "nested_l4_retirement_condition": "Keep nested contract class payloads until a later reviewed change explicitly redirects all 308 L8 and all 308 L9 consumer references to canonical top-level classes, and RFC6901 evidence proves every target and required lower-level field retains semantic meaning, type, and value. Current R1 does not redirect or remove nested payloads."
+  },
+  "r1_verification": {
+    "status": "measured",
+    "current_proposal_sha256": {
+      "L4": "00376c402930e1287e9e0e896804b1de8a20390f8abbea8377b70712f868b9da",
+      "L9": "af0f3e68683233ee1caa68b816ee7221b1fd4359442b179b4eaa0052068548e1"
+    },
+    "current_checker_report": "checker-trials/reports/pr-a-r1-correction-check-child-report.json",
+    "current_checker": {
+      "exit_code": 1,
+      "passed": false,
+      "failure_count": 448,
+      "matched_case_count": 0,
+      "class_rows": {
+        "L4": 32,
+        "L9": 32,
+        "L5": 0,
+        "L8": 0
+      },
+      "case_rows": {
+        "L9": 285,
+        "L8": 0
+      }
+    },
+    "expected_current_shape": {
+      "L4_classes": 32,
+      "L9_classes": 32,
+      "L9_integration_cases": 285,
+      "positive": 8,
+      "assigned_negative": 277,
+      "unassigned_ambiguous": 0,
+      "multi_contract_residual": 71
+    },
+    "expected_protected_semantics": [
+      "all 285 nested L9 given/when/expected_proposal",
+      "all 71 multi-contract residual rows",
+      "fixed blind and R2 historical measurement/audit bytes",
+      "L5/L8 source bytes",
+      "308 L8 and 308 L9 nested L4 consumer pointers"
+    ],
+    "prior_validation_rerun": "Historical R2 validators were run from /tmp/wr245-r2-history-c50 at exact c50 commit and passed; their tracked scripts/artifacts are unchanged in the PR-A worktree."
+  }
+}
