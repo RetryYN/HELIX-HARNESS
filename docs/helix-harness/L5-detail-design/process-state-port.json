@@ -82,8 +82,8 @@
     },
     {
       "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
-      "revision": "b4f658e74b3d4ba3682465bc4204c1065723aeaf",
-      "sha256": "f683d35fa834eca85e9770544bd55c0a3bcc1328cc7317e6c1d2845080596734"
+      "revision": "7c142d7bb96974e9fe0a2fcab5ad2a48a628cb6f",
+      "sha256": "e6253059bb117446412ecb8b054ae533641054c8a1be4a535eb1f784017fa3e9"
     },
     {
       "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
@@ -2327,17 +2327,17 @@
         {
           "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
           "pointer": "/contracts/3/invariants",
-          "revision": "827c4ea924a15b6b54bbe9d1f5d2f9fbdefa65de"
+          "revision": "7c142d7bb96974e9fe0a2fcab5ad2a48a628cb6f"
         },
         {
           "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
           "pointer": "/contracts/3/connection_detail/partial_results",
-          "revision": "827c4ea924a15b6b54bbe9d1f5d2f9fbdefa65de"
+          "revision": "7c142d7bb96974e9fe0a2fcab5ad2a48a628cb6f"
         },
         {
           "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
           "pointer": "/contracts/3/connection_detail/scope_policy",
-          "revision": "827c4ea924a15b6b54bbe9d1f5d2f9fbdefa65de"
+          "revision": "7c142d7bb96974e9fe0a2fcab5ad2a48a628cb6f"
         },
         {
           "path": "docs/helix-harness/L5-detail-design/process-state-port.json",

@@ -25,8 +25,8 @@
     },
     {
       "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
-      "sha256": "ee564c12ea81158f14a0483bd0fd4d9d35352b62c8050bdf8686195f32df213f",
-      "note": "固定base / refs/heads/main a0ce1ce787cff3b61664c12d62ae471969edb433。F03 /cases/3/cases/4,6。"
+      "sha256": "f5055c9a7d19654402f3f2b595038cf0f81ed717659c342c6190c5f88577e5b2",
+      "note": "固定base / refs/heads/main a0ce1ce787cff3b61664c12d62ae471969edb433。F03 /cases/3/cases/4,6。 Historical fixed source at WR238 base 7c142d7bb96974e9fe0a2fcab5ad2a48a628cb6f: SHA-256 ee564c12ea81158f14a0483bd0fd4d9d35352b62c8050bdf8686195f32df213f. Current digest refreshed to f5055c9a7d19654402f3f2b595038cf0f81ed717659c342c6190c5f88577e5b2 for stale detection only; source semantics/expected values unchanged. Recomparison confirmed this worktree differs from the base only in explicit L4 source pin / revision metadata."
     },
     {
       "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
@@ -96,7 +96,8 @@
       "SHA-256 of scaffold/research/wr219-f03-pair-blind-20261031/wr224-independent-blind-derivation.json equals c363ed8bfbf87130be01506092c91d6058c1ffb84452b00fc75cf578f5f79ef5 (byte copy of fixed Issue #3510 comment 6532068000 blind artifact).",
       "SHA-256 of scaffold/research/wr219-f03-pair-blind-20261031/wr224-comparison-after-r1.md equals 4d4b77ca925a50f230c38f081c7cb98ab5fda5201d4218fbe946bb289b78d9a0 (comparison to fixed blind and PR #3970 R1 findings).",
       "SHA-256 of scaffold/research/wr219-f03-pair-blind-20261031/wr227-f03-value-domain-audit.json equals bf7beab57f0878d6353e547395f3525d434afc1421dbc4d3f25180eead776a2f (scaffold-only exhaustive row/count/exception evidence).",
-      "SHA-256 of scaffold/research/wr186-psp-negative-residual/validate_l9.py equals 70d5ded675eb2eb14b91ebbcaf479b2498469d8353ced2572467fcbdd5ecf3eb (static row, count, exception, and historical L9 reason audit)."
+      "SHA-256 of scaffold/research/wr186-psp-negative-residual/validate_l9.py equals 70d5ded675eb2eb14b91ebbcaf479b2498469d8353ced2572467fcbdd5ecf3eb (static row, count, exception, and historical L9 reason audit).",
+      "WR238 static rebind docs/helix-harness/L8-unit-verification/process-state-port.json: historical SHA-256 ee564c12ea81158f14a0483bd0fd4d9d35352b62c8050bdf8686195f32df213f; current working-tree candidate SHA-256 f5055c9a7d19654402f3f2b595038cf0f81ed717659c342c6190c5f88577e5b2. Normalized JSON comparison against base 7c142d7bb96974e9fe0a2fcab5ad2a48a628cb6f confirms only L4 source pin/revision metadata changed; formal values, consumer target fields, and audit inputs are unchanged."
     ],
     "negative_cases": [
       "Do not replace L4 state=missing with a supported/success value, or treat L8/L9 supported_synthetic_condition as actual pair success.",

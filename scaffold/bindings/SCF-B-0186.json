@@ -25,13 +25,13 @@
     },
     {
       "path": "docs/helix-harness/L5-detail-design/process-state-port.json",
-      "sha256": "8d361927ba36ec0599f267f4bf10824cacc160e9f37feb2db383283ea3b28622",
-      "note": "main 51ebe7e7e563cdc85607f72fdc234e1c7f665a70時点。F03 function/failure ruleの比較後参照。"
+      "sha256": "b8b77871f3970a10b21313028f762346e75e85c4ed4209639a23fe6f2f5f6f2d",
+      "note": "main 51ebe7e7e563cdc85607f72fdc234e1c7f665a70時点。F03 function/failure ruleの比較後参照。 Historical fixed source at WR238 base 7c142d7bb96974e9fe0a2fcab5ad2a48a628cb6f: SHA-256 8d361927ba36ec0599f267f4bf10824cacc160e9f37feb2db383283ea3b28622. Current digest refreshed to b8b77871f3970a10b21313028f762346e75e85c4ed4209639a23fe6f2f5f6f2d for stale detection only; source semantics/expected values unchanged. Recomparison confirmed this worktree differs from the base only in explicit L4 source pin / revision metadata."
     },
     {
       "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
-      "sha256": "ee564c12ea81158f14a0483bd0fd4d9d35352b62c8050bdf8686195f32df213f",
-      "note": "main 51ebe7e7e563cdc85607f72fdc234e1c7f665a70時点。F03の該当2 caseだけを比較後参照。"
+      "sha256": "f5055c9a7d19654402f3f2b595038cf0f81ed717659c342c6190c5f88577e5b2",
+      "note": "main 51ebe7e7e563cdc85607f72fdc234e1c7f665a70時点。F03の該当2 caseだけを比較後参照。 Historical fixed source at WR238 base 7c142d7bb96974e9fe0a2fcab5ad2a48a628cb6f: SHA-256 ee564c12ea81158f14a0483bd0fd4d9d35352b62c8050bdf8686195f32df213f. Current digest refreshed to f5055c9a7d19654402f3f2b595038cf0f81ed717659c342c6190c5f88577e5b2 for stale detection only; source semantics/expected values unchanged. Recomparison confirmed this worktree differs from the base only in explicit L4 source pin / revision metadata."
     },
     {
       "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
@@ -87,7 +87,9 @@
       "source-only-frozen.jsonのSHA-256が固定値と一致すること",
       "2 witnessのID、mutation reason、既存class assignment、L8/L9 expected pair結果、個別trigger/ticket候補、actual effectの静的な別々の対応",
       "L3 approved /requirements/66のticket発行条件文と固定artifactの要約との差を記録し、trigger可否を追加推定しないこと",
-      "SCF Bindingのschemaとupstream hashの静的validate/stale確認"
+      "SCF Bindingのschemaとupstream hashの静的validate/stale確認",
+      "WR238 static rebind docs/helix-harness/L5-detail-design/process-state-port.json: historical SHA-256 8d361927ba36ec0599f267f4bf10824cacc160e9f37feb2db383283ea3b28622; current working-tree candidate SHA-256 b8b77871f3970a10b21313028f762346e75e85c4ed4209639a23fe6f2f5f6f2d. Normalized JSON comparison against base 7c142d7bb96974e9fe0a2fcab5ad2a48a628cb6f confirms only L4 source pin/revision metadata changed; formal values, consumer target fields, and audit inputs are unchanged.",
+      "WR238 static rebind docs/helix-harness/L8-unit-verification/process-state-port.json: historical SHA-256 ee564c12ea81158f14a0483bd0fd4d9d35352b62c8050bdf8686195f32df213f; current working-tree candidate SHA-256 f5055c9a7d19654402f3f2b595038cf0f81ed717659c342c6190c5f88577e5b2. Normalized JSON comparison against base 7c142d7bb96974e9fe0a2fcab5ad2a48a628cb6f confirms only L4 source pin/revision metadata changed; formal values, consumer target fields, and audit inputs are unchanged."
     ],
     "negative_cases": [
       "class一致から実incident同一性やdedupを生成しない。",
