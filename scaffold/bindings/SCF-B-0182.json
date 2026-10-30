@@ -1,0 +1,109 @@
+{
+  "schema_revision": 1,
+  "id": "SCF-B-0182",
+  "kind": "scaffold",
+  "title": "WR206 TDD flow L4 L9 classification candidate evidence",
+  "product": "HELIX-HARNESS",
+  "owner_candidate": "HARNESS-015 L4/L9 TDD development flow design owner",
+  "state": "registered",
+  "reason": "WR206-HARNESS-TDD-FLOW-NEG-4WAY（Issue #3510）のPR-A範囲で、L4/L9の既存28負例分類とsource対応を記録する候補。元依頼base e3a1601からmain f5d5118へ進んだ後の実体を対象とする。L5/L8、正式設計、承認、受入は成立させない。",
+  "upstream": [
+    {
+      "path": "docs/helix-harness/L3-requirements/business-requirements.json",
+      "sha256": "25e0e8f8ee8acbc220483ab6854155218193861086cf757f933e2cd6263f444d",
+      "note": "HARNESS-L3-015-B01。単独利用、quality-first、C1未回収のsource。"
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/business-verification.json",
+      "sha256": "3a9982ef2e59e3d027ce8e5cd72b9879b6224a8e4ea74b657bf9b67c90934319",
+      "note": "HARNESS-L10-015-B01の照合scopeと出力上限。"
+    },
+    {
+      "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+      "sha256": "a3b907cdc316117d4684632f9a1cbf36125eb6e6172f9cfc286060617583d7be",
+      "note": "HARNESS-L3-015-F01..F04。凍結、実Red、最小Greenと意味保存、双方向traceのsource。"
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/functional-verification.json",
+      "sha256": "fc58ad2268746d7924ac9be33e8f3f75e6d3c2cc619e27fbc1ddc34edd065cb2",
+      "note": "HARNESS-L10-015-F01..F04の照合scope。"
+    },
+    {
+      "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
+      "sha256": "eb0f43e23906d04b9554786a2574c94d01de85faa75f7fb1f33e08eb3276f464",
+      "note": "revision 3c2538a096b52fd6353770308831ee05de1d358d、local_returnのstate語彙。draft_pending_semantic_and_fixture_reviewの既存L4設計で、独立oracleとは扱わない。"
+    },
+    {
+      "path": "scaffold/tools/design_verification_checker.py",
+      "sha256": "cfd12c5bc4a1dd45351858488b476af0025d35deca7027da35bb1373818b129d",
+      "note": "casewise L4/L9/L5/L8照合とcheck-childの静的checker。アルゴリズム実行ではない。"
+    },
+    {
+      "path": "scaffold/research/wr206-tdd-flow-neg-4way-pr-a-20261031/README.md",
+      "sha256": "d5d227bc777b2161c10f470bbd9c80daa6c73d58398c382d99fcdf8cf37825ee",
+      "note": "source・照合範囲・分類理由・静的検証結果を含む現行レビュー証跡のpin。"
+    }
+  ],
+  "role": "WR206 PR-AでL4/L9の28既存negative caseに分類属性とsource理由を対応づけ、調査履歴と限界をレビュー可能に記録する。",
+  "obligations": [
+    "L3/L10のHARNESS-015 B01/F01-F04、L4 failure_conditions/output_contract/component_refs、L4 process-state-port local_returnをsource pointer付きで記録する。",
+    "L4/L9へ同じcode・condition・axis・state・owner・zero side-effectの対応を置く。L9の既存expected_issue、expected_partial_material、mutation、fixture、expected_side_effect_countを変更しない。",
+    "null/未決をunknownとする既存state語彙を保ち、freeze:nullはL3/L4が要求する必須記録の未供給としてだけmissingへ対応づける。",
+    "先行調査でL9を読んだ限界を開示し、sourceに基づく候補を独立oracleと主張しない。",
+    "L5/L8の未対応28件、独立review未完了、正式設計・実装・受入未成立を保持する。"
+  ],
+  "connections": {
+    "consumers": [
+      "WR206-HARNESS-TDD-FLOW-NEG-4WAY PR-A review"
+    ],
+    "dependencies": [
+      "HARNESS-L3/L10-015 B01/F01-F04",
+      "L4 process-state-port existing local_return vocabulary",
+      "static design_verification_checker check-pair/check-child"
+    ],
+    "boundary": "L4/L9 TDD flow design candidateとscaffold evidenceのみ。L5/L8、L4/L5 algorithm、旧runtime/test/CI、approval/acceptanceは範囲外。"
+  },
+  "operations": {
+    "allowed": [
+      "対象JSONの静的編集とsource pointer照合",
+      "JSON syntax、diff、design_verification_checker check-pair/check-child、scfctl validate/staleの静的確認"
+    ],
+    "forbidden": [
+      "L4/L5 algorithm、旧HELIX CLI/runtime/test/hook/CIの実行",
+      "L5/L8の変更、期待値やoracleの変更、正式実装・受入の宣言",
+      "push、Draft PR作成、merge、外部設定変更"
+    ]
+  },
+  "artifacts": [
+    "scaffold/research/wr206-tdd-flow-neg-4way-pr-a-20261031/README.md",
+    "docs/helix-harness/L4-basic-design/tdd-development-flow.json",
+    "docs/helix-harness/L9-integration-verification/tdd-development-flow.json"
+  ],
+  "verification": {
+    "evidence_kind": "scaffold",
+    "scope": [
+      "schema_interface",
+      "source_revision_stale",
+      "negative_case"
+    ],
+    "oracles": [
+      "L3/L10 source row identity and pinned SHA comparison",
+      "L4/L9 negative code count, attribute correspondence, and preservation of existing L9 expectation/mutation/fixture values",
+      "design_verification_checker.py check-pair and check-child; child result is reported per L4/L9 and L5/L8 scope",
+      "scfctl validate and scfctl stale"
+    ],
+    "negative_cases": [
+      "Do not treat the previously read L9 expectation as an independent oracle.",
+      "Keep full four-layer check incomplete while L5/L8 remain zero; do not create singleton or renamed-key rows.",
+      "Keep pre-existing ownership-cap findings visible and compare them to baseline."
+    ]
+  },
+  "replacement": {
+    "role_target": "正式な設計検証機構におけるHARNESS-015 TDD flowのL4/L9負例分類とsource trace",
+    "formal_artifacts": [],
+    "issue": 1866,
+    "status": "pending"
+  },
+  "created": "2026-10-31",
+  "updated": "2026-10-31"
+}
