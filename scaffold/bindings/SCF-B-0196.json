@@ -1,0 +1,133 @@
+{
+  "schema_revision": 1,
+  "id": "SCF-B-0196",
+  "kind": "scaffold",
+  "title": "WR230 SEC009 L4/L9 compact transition candidate evidence",
+  "product": "HELIX-HARNESS",
+  "owner_candidate": "HELIX-HARNESS SEC009 L4/L9 source-pinned candidate evidence owner",
+  "state": "registered",
+  "reason": "L4/L9の既存275 assigned caseをclassごとのsource pointerとして圧縮し、2 ambiguousと71 multi-contract residualを分離して保持する静的研究候補。canonical layer文書、要求意味、authority、実操作、formal four-wayを変更・生成しない。",
+  "upstream": [
+    {
+      "path": "docs/helix-security/L4-basic-design/revoke-quarantine-propagation.json",
+      "sha256": "c0a31c5c663d39854ed1df13b9bf2bfc439fdb46419d089bc617607d6e6ac5b6",
+      "note": "Pinned current-main source at c8f20a4f91456f6d5e5c16e1be0083c34aab6651; SEC009 L4/L5/L9 and QA/authority context. Case-level source pointers are fixed in candidate compact-candidate.json."
+    },
+    {
+      "path": "docs/helix-security/L5-detail-design/revoke-quarantine-propagation.json",
+      "sha256": "90c3761e88ea76fefe1222372ffa1218afcf2fc8cb4dec666ca8b7ca98bd8734",
+      "note": "Pinned current-main source at c8f20a4f91456f6d5e5c16e1be0083c34aab6651; SEC009 L4/L5/L9 and QA/authority context. Case-level source pointers are fixed in candidate compact-candidate.json."
+    },
+    {
+      "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+      "sha256": "62913b58577cfc0f3c7e6682ad160d8f236157a0ceed9c88ef71822330ed60fc",
+      "note": "Pinned current-main source at c8f20a4f91456f6d5e5c16e1be0083c34aab6651; SEC009 L4/L5/L9 and QA/authority context. Case-level source pointers are fixed in candidate compact-candidate.json."
+    },
+    {
+      "path": "docs/governance/design-verification-quality-assurance.md",
+      "sha256": "f5751e236dc073fe67114c1fcb4b0f64b3d746290b25d75b61e60a08e3c99c85",
+      "note": "Pinned current-main source at c8f20a4f91456f6d5e5c16e1be0083c34aab6651; SEC009 L4/L5/L9 and QA/authority context. Case-level source pointers are fixed in candidate compact-candidate.json."
+    },
+    {
+      "path": "docs/governance/decisions/helix-security-prerequisite-l3-l10-delegated-decision-2026-10-12.md",
+      "sha256": "ec7f54991b540a5afd7ffeb49fd2dc63479fd0907ca93c9e49e2f34fe72bed92",
+      "note": "Pinned current-main source at c8f20a4f91456f6d5e5c16e1be0083c34aab6651; SEC009 L4/L5/L9 and QA/authority context. Case-level source pointers are fixed in candidate compact-candidate.json."
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/business-requirements.json",
+      "sha256": "f1668180a3daccb38da15f471ade0806c64f094a77b0d7a5cef25edc9b6ce901",
+      "note": "Pinned current-main source at c8f20a4f91456f6d5e5c16e1be0083c34aab6651; SEC009 L4/L5/L9 and QA/authority context. Case-level source pointers are fixed in candidate compact-candidate.json."
+    },
+    {
+      "path": "docs/helix-security/L10-verification/business-verification.json",
+      "sha256": "c34b8f9a99f8f240558458dd63033acd0d756dfe61ad9cd3aac0e8e1c8193f42",
+      "note": "Pinned current-main source at c8f20a4f91456f6d5e5c16e1be0083c34aab6651; SEC009 L4/L5/L9 and QA/authority context. Case-level source pointers are fixed in candidate compact-candidate.json."
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.json",
+      "sha256": "e4eeb70cc303e44199c7d898281e91c22dba89b47666353b9c80a4c634e898b5",
+      "note": "Pinned at source revision c8f20a4f91456f6d5e5c16e1be0083c34aab6651; consulted by the frozen blind source-only derivation for approved SEC009 L3/L10 pointers."
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.json",
+      "sha256": "e6da7eaff29a623b5d069801280c295d9dd7cc43b51d9cde25b12a8110e5072a",
+      "note": "Pinned at source revision c8f20a4f91456f6d5e5c16e1be0083c34aab6651; consulted by the frozen blind source-only derivation for approved SEC009 L3/L10 pointers."
+    }
+  ],
+  "role": "SEC009 revoke-quarantine-propagationのL4/L9既存classification/case pointerを、固定source revisionから再解決・比較する研究用compact evidence。",
+  "obligations": [
+    "source revisionとscaffold外source filesのSHA-256を固定し、validatorがGit source revision bytesとworktree bytesを照合する。",
+    "既存L4 taxonomy pointerとL9 assignment pointerのみを使い、new class、parent link、case membershipを作らない。",
+    "30 class keyの6属性とL5由来typed owner_refをsourceから再解決し、275既存assigned rowsを検査する。",
+    "全356 L9 source caseのID、phase、trigger、expected_proposalをsource pointerから再解決し、pinned revisionと比較する。",
+    "8 positive、2 ambiguous、71 multi-contract residualの分類とsource順序を復元可能に保つ。",
+    "formal explicit marker、four-way PASS、実装readiness、authority/action effectを生成しない。",
+    "Blind source-only artifact is frozen byte-for-byte before comparison; compare its old L4 revision/hash with the candidate revision/hash and record vocabulary/signature differences without reassigning any case.",
+    "Copy the blind source-only artifact byte-for-byte at its fixed digest, then record both source revisions and file hashes plus the non-joinable comparison boundary without value-based reassignment."
+  ],
+  "connections": {
+    "consumers": [
+      "WR230 SEC009 L4/L9 transition review",
+      "後続L5/L8 V-pairのsource/pointer照合"
+    ],
+    "dependencies": [
+      "固定source revision c8f20a4f91456f6d5e5c16e1be0083c34aab6651",
+      "QA §3 CHK-NEG-4WAY-MATCH",
+      "existing L9 negative_class_assignment_audit"
+    ],
+    "boundary": "Candidateはscaffold/researchに限定。canonical L4/L5/L8/L9、checker、authority、認証/認可設定、credential、実revoke/quarantine/recovery、本番・外部作用に影響しない。"
+  },
+  "operations": {
+    "allowed": [
+      "read pinned source files and JSON Pointers",
+      "run validate_compact_candidate.py for static source/pointer validation",
+      "inspect scaffold binding schema/status read-only",
+      "run compare_blind_source.py for static revision, pointer, category, signature, and residual comparison"
+    ],
+    "forbidden": [
+      "run L4/L5 algorithm, runtime, test, CI, or old workflow",
+      "change canonical L4/L9 rows, expectations, class IDs, or membership",
+      "add explicit mode marker or claim formal four-way completion",
+      "modify authentication/authorization settings, credentials, production systems, or external services"
+    ]
+  },
+  "artifacts": [
+    "scaffold/research/wr230-sec009-l4-l9-compact-candidate-20261031/README.md",
+    "scaffold/research/wr230-sec009-l4-l9-compact-candidate-20261031/compact-candidate.json",
+    "scaffold/research/wr230-sec009-l4-l9-compact-candidate-20261031/validate_compact_candidate.py",
+    "scaffold/research/wr230-sec009-l4-l9-compact-candidate-20261031/verification-summary.json",
+    "scaffold/bindings/SCF-B-0196.json",
+    "scaffold/research/wr230-sec009-l4-l9-compact-candidate-20261031/blind-source-derivation.json",
+    "scaffold/research/wr230-sec009-l4-l9-compact-candidate-20261031/blind-comparison.json",
+    "scaffold/research/wr230-sec009-l4-l9-compact-candidate-20261031/compare_blind_source.py"
+  ],
+  "verification": {
+    "evidence_kind": "scaffold",
+    "scope": [
+      "source_revision_stale",
+      "negative_case"
+    ],
+    "oracles": [
+      "All source pins match raw files at source_revision and current worktree bytes.",
+      "All class and case pointers resolve and preserve fixed source ordering.",
+      "30 unique six-attribute typed-owner keys and 275 recorded L9 assignments resolve without creating membership.",
+      "All 356 expected proposals, IDs, phase, and trigger are recomputed from the pinned source and compared to current source.",
+      "Blind artifact SHA-256 is fixed; old and candidate L4 revisions/pointers are compared and the source difference is recorded without casewise value matching."
+    ],
+    "negative_cases": [
+      "No case IDs, expected values, phases, triggers, or owners are copied into the compact candidate.",
+      "Keep 2 ambiguous single-contract negatives and 71 multi-contract cases outside class membership.",
+      "Do not treat candidate membership as formal four-way completion or security behavior evidence.",
+      "Do not run old/new runtime, algorithm, tests, or CI.",
+      "Do not reinterpret the raw 30-row vs 24-code count delta as six missing classes; preserve the actual source units and unlisted codes without inferred memberships."
+    ]
+  },
+  "replacement": {
+    "role_target": "Formal SEC009 L4/L5/L8/L9 class/case equivalence evidence after source authority, class membership, QA schema, and checker owner-reference consistency are resolved.",
+    "formal_artifacts": [],
+    "issue": 1866,
+    "status": "pending"
+  },
+  "created": "2026-10-31",
+  "updated": "2026-10-31"
+}
