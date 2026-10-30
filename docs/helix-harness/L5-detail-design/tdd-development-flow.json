@@ -3702,7 +3702,7 @@
             },
             {
               "predicate_id": "target_and_pair_refs_untraceable",
-              "required_presence": "The target binding and required design/test/oracle references are present as resolvable typed members.",
+              "required_presence": "An evaluation input record is available for inspection.",
               "condition": "A required target identity/revision/scope or paired design/test/oracle identity/revision/scope/owner member is absent, incomplete, or cannot be related to the target binding.",
               "meaning_basis": "L3 requires binding target identity/revision/scope; L10 requires tracing the design/oracle versions and target.",
               "unresolved": "L4/L9 have no corresponding negative row. Classification output, axis, state, backflow, and priority are not defined here; extending L4/L9 is a separate V-pair task."
