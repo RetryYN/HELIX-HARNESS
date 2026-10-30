@@ -1,0 +1,27 @@
+{
+  "fixed_blind_sha256": "846907d5802170ed775fbf08664c0b85f42e7b6ac0a9623e8584452f81ead813",
+  "issue_comment": "https://github.com/RetryYN/HELIX-HARNESS/issues/3510#issuecomment-6534177643",
+  "mapping": [
+    {
+      "local_id": "WR243-SO-B01-01",
+      "source_condition_en": "Frozen oracle is weakened or replaced to make the implementation pass; or the Green observation does not satisfy the same frozen oracle.",
+      "l5_condition_ja": "同じ契約を利用者CIへ渡す単独利用を一律に拒否する、または必要なqualityが未達でも費用・時間の改善を成功として扱う。",
+      "l5_expected_ja": "同じ契約を利用者CIへ渡す単独利用を許容し、必要qualityの未達を保持する。未達のまま改善成功を生成しない。",
+      "l9_comparison_refs": [
+        "os_only",
+        "cheap_quality_failure"
+      ]
+    },
+    {
+      "local_id": "WR243-SO-B01-02",
+      "source_condition_en": "The implementation body is changed before the intended pre-body Red is observed, or the required causal order is inverted.",
+      "l5_condition_ja": "未回収の検査が消去される、または計測改善が受入・効果成功へ変換される。",
+      "l5_expected_ja": "未回収の検査を保持し、計測・費用・時間の改善をqualityおよび利用者受入と分ける。計測値から受入を生成しない。",
+      "l9_comparison_refs": [
+        "omission_erased",
+        "metric_as_accepted"
+      ]
+    }
+  ],
+  "note": "L5/L8 prose is Japanese; mapping preserves fixed English blind bytes and is evidence only."
+}

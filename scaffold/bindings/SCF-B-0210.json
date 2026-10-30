@@ -1,0 +1,132 @@
+{
+  "schema_revision": 1,
+  "id": "SCF-B-0210",
+  "kind": "scaffold",
+  "title": "WR243 HARNESS-015 B01 L5/L8 source-only candidate evidence",
+  "product": "HELIX-HARNESS",
+  "owner_candidate": "HARNESS-015 B01 L5/L8 candidate-design responsibility owner candidate",
+  "state": "registered",
+  "reason": "Issue #3510 WR243: use the fixed source-only B01 meanings to annotate L5/L8 candidates, compare every existing B01 L4/L9 negative row, and preserve missing row-oracle/test-citation evidence as missing.",
+  "upstream": [
+    {
+      "path": "docs/helix-harness/L3-requirements/business-requirements.json",
+      "sha256": "25e0e8f8ee8acbc220483ab6854155218193861086cf757f933e2cd6263f444d",
+      "note": "L3 B01 source record pinned by fixed artifact at base 988765e9be335f2a1d376721c1b11f808fd03372#/requirements/7."
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/business-verification.json",
+      "sha256": "3a9982ef2e59e3d027ce8e5cd72b9879b6224a8e4ea74b657bf9b67c90934319",
+      "note": "L10 B01 oracle contract pinned by fixed artifact at base 988765e9be335f2a1d376721c1b11f808fd03372#/cases/7."
+    },
+    {
+      "path": "docs/helix-harness/L4-basic-design/tdd-development-flow.json",
+      "sha256": "347bfd83b7685b52c45f62b5ee6f336fd74338ee65e67327e6e810d6eb489a16",
+      "note": "Allowed behavior/output/failure-condition prose and all four existing comparison rows; no algorithm or classifier values elevated."
+    },
+    {
+      "path": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json",
+      "sha256": "4f64977ee8b2900733a823d5b9755f567952caef8cf323036a9b0776202d2462",
+      "note": "All four existing B01 negative rows are source traces/comparison only; no L4/L9 edits."
+    },
+    {
+      "path": "docs/governance/design-verification-quality-assurance.md",
+      "sha256": "f5751e236dc073fe67114c1fcb4b0f64b3d746290b25d75b61e60a08e3c99c85",
+      "note": "QA §3 defines the U-ID table fields and artifact/citation boundaries; missing row oracle/test citation remain explicit."
+    },
+    {
+      "path": "docs/helix-harness/L5-detail-design/tdd-development-flow.json",
+      "sha256": "79a383715e020cc5b32d6b8f9f55fbf1ca13b6731e38d03e83ae0cb291b4e5fa",
+      "note": "Shared L5 document with B01 source-derived condition candidates and preserved F03/F04 candidates."
+    },
+    {
+      "path": "docs/helix-harness/L8-unit-verification/tdd-development-flow.json",
+      "sha256": "3c09da25eec8b11d259fa6f8eb797600a4b1ad9f13de92366a6dbc12c76b4b5c",
+      "note": "Shared L8 document with B01 candidate references to existing U-ID rows; target contract and L9 source trace remain distinct."
+    }
+  ],
+  "role": "B01 source-derived L5 condition candidates, four existing L8 U-ID references, and all-row L4/L9 comparison evidence.",
+  "obligations": [
+    "Preserve shared fixed blind bytes and SHA-256 846907d5802170ed775fbf08664c0b85f42e7b6ac0a9623e8584452f81ead813 with Issue #3510 comment 6534177643.",
+    "Record both source-only B01 meanings and compare every existing L4/L9 negative row; keep code, axis/state, owner, and side-effect values comparison-only.",
+    "Add only two source-derived, Japanese L5 conditions and expected observations; do not select failure-code vocabulary or classification projections.",
+    "L8 candidate targets HARNESS-L5-015-B01. Keep each L9 row pointer separate as source_trace_ref; contract oracle is HARNESS-L10-015-B01; row oracle and test citation remain missing.",
+    "Preserve existing B01 L8 canonical IDs and unit_cases, F03/F04 candidate content and frozen evidence, and all L4/L9 bytes.",
+    "Do not execute old/new runtime, tests, CI, or L4 algorithms; do not count candidate rows as canonical 4way rows."
+  ],
+  "connections": {
+    "consumers": [
+      "WR243 B01 L5/L8 candidate review for Issue #3510"
+    ],
+    "dependencies": [
+      "Fixed source-only blind artifact SHA-256 846907d5802170ed775fbf08664c0b85f42e7b6ac0a9623e8584452f81ead813; Issue #3510 comment 6534177643.",
+      "HARNESS-L3/L10-015-B01 source contract rows.",
+      "All four existing HARNESS-L4/L9-015-B01 negative rows.",
+      "Design Verification Quality Assurance §3 U-ID table boundary.",
+      "Merged F03/F04 L5/L8 candidate pairs on main e0438a372065626ea752c31dc6c86b92d3198a9d."
+    ],
+    "boundary": "B01-only candidate extension and evidence. No L4/L9 edits, no changes to F03/F04 fixed artifacts or candidates, no canonical L8 row edits, no row oracle/test citation invention, no runtime/test/CI/algorithm execution, no approval/acceptance/4way completion."
+  },
+  "operations": {
+    "allowed": [
+      "Static source pointer/hash and row comparison validation",
+      "B01-only candidate annotation in existing L5/L8 contract entries",
+      "design_verification_checker check-child as static document comparison",
+      "scfctl validate/stale and diff-scope checks"
+    ],
+    "forbidden": [
+      "Changing L4 or L9",
+      "Changing F03/F04 candidate content or fixed blind/comparison/verification-summary evidence",
+      "Changing canonical B01 unit_case_ids/unit_cases",
+      "Choosing failure codes, axis/state projections, or unresolved semantics",
+      "Creating U-ID row oracle or test citations without evidence",
+      "Adding fixtures, seeds, COPY, full returns, or hashes to L8",
+      "Executing algorithms, runtimes, tests, or CI"
+    ]
+  },
+  "artifacts": [
+    "scaffold/research/wr243-tdd-b01-l5-l8-20261031/README.md",
+    "scaffold/research/wr243-tdd-b01-l5-l8-20261031/comparison.json",
+    "scaffold/research/wr243-tdd-b01-l5-l8-20261031/bilingual-mapping.json",
+    "scaffold/research/wr243-tdd-b01-l5-l8-20261031/validate_b01_candidate.py",
+    "scaffold/research/wr243-tdd-b01-l5-l8-20261031/verification-summary.json",
+    "docs/helix-harness/L5-detail-design/tdd-development-flow.json",
+    "docs/helix-harness/L8-unit-verification/tdd-development-flow.json",
+    "scaffold/research/wr243-tdd-f03-l5-l8-20261031/source/wr243-tdd-clean-source-only.json",
+    "scaffold/bindings/SCF-B-0204.json",
+    "scaffold/bindings/SCF-B-0208.json",
+    "scaffold/research/wr243-tdd-b01-l5-l8-20261031/historical-candidate-hashes.json",
+    "scaffold/research/wr243-tdd-f03-l5-l8-20261031/validate_static_candidate.py",
+    "scaffold/research/wr243-tdd-f04-l5-l8-20261031/validate_f04_candidate.py"
+  ],
+  "verification": {
+    "evidence_kind": "scaffold",
+    "scope": [
+      "schema_interface",
+      "source_revision_stale",
+      "negative_case"
+    ],
+    "oracles": [
+      "Fixed blind raw-byte SHA-256 and Issue #3510 comment 6534177643.",
+      "L3 B01 /requirements/7 and L10 B01 /cases/7 canonical hashes.",
+      "All four B01 L4/L9 row conditions and comparison-only projections.",
+      "L4/L9 exact bytes and canonical L8 unit IDs/rows unchanged; F03/F04 candidates/fixed evidence unchanged.",
+      "Static B01/F03/F04 validators, check-child residual comparison, L8 cap/forbidden-key count, scfctl validate/stale.",
+      "F03/F04 merge-time L5/L8 raw SHA-256 and Git blob OIDs are recorded and re-read from Git objects by validator; current docs are compared with those snapshots after removing only the B01 candidate fields."
+    ],
+    "negative_cases": [
+      "Do not create row-level oracle or test citation values.",
+      "Do not promote existing L4/L9 projections.",
+      "Do not select failure-code vocabulary.",
+      "Do not count candidate rows toward canonical 4way totals.",
+      "Do not execute algorithms, runtimes, tests, or CI."
+    ]
+  },
+  "replacement": {
+    "role_target": "Formal HARNESS-015 B01 L5/L8 design and verification pair",
+    "formal_artifacts": [],
+    "issue": 1866,
+    "status": "pending"
+  },
+  "created": "2026-10-31",
+  "updated": "2026-10-31"
+}

@@ -1,0 +1,175 @@
+{
+  "schema": "wr243-b01-post-blind-comparison.v1",
+  "request_id": "WR243-TDD-F03F04B01-L5L8",
+  "contract_id": "HARNESS-L3/L10-015-B01",
+  "base_revision": "988765e9be335f2a1d376721c1b11f808fd03372",
+  "post_freeze_main": "e0438a372065626ea752c31dc6c86b92d3198a9d",
+  "fixed_blind_artifact": {
+    "path": "scaffold/research/wr243-tdd-f03-l5-l8-20261031/source/wr243-tdd-clean-source-only.json",
+    "sha256": "846907d5802170ed775fbf08664c0b85f42e7b6ac0a9623e8584452f81ead813",
+    "issue_comment": "https://github.com/RetryYN/HELIX-HARNESS/issues/3510#issuecomment-6534177643",
+    "fixed_before_comparison": true
+  },
+  "source_only_conditions": [
+    {
+      "local_id": "WR243-SO-B01-01",
+      "condition": "Use without OS-operated CI is rejected categorically even though the same contract is passed to user CI; or cost/time improvement is claimed as success while required quality is unmet.",
+      "expected_observation": "Preserve standalone user-CI use as an allowed form, but keep quality unmet and improvement success ungenerated when required quality is not met."
+    },
+    {
+      "local_id": "WR243-SO-B01-02",
+      "condition": "An omitted inspection is erased, or a measurement improvement is converted into acceptance/effect success.",
+      "expected_observation": "Retain the unrecovered inspection and separate measurement/cost/time improvement from quality and user acceptance; do not generate acceptance from the metric."
+    }
+  ],
+  "upstream_record_pins": [
+    {
+      "path": "docs/helix-harness/L3-requirements/business-requirements.json",
+      "revision": "988765e9be335f2a1d376721c1b11f808fd03372",
+      "pointer": "/requirements/7",
+      "record_sha256": "9fff23f4d422ea65245f21dd2e7ac8276977c2216926dc27b2fe1b142ecf8d43"
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/business-verification.json",
+      "revision": "988765e9be335f2a1d376721c1b11f808fd03372",
+      "pointer": "/cases/7",
+      "record_sha256": "f725d5f140291596015f190f18eb8a6579787c4cdba387402632c72a250b94b1"
+    }
+  ],
+  "allowed_l4_source": {
+    "path": "docs/helix-harness/L4-basic-design/tdd-development-flow.json",
+    "revision": "988765e9be335f2a1d376721c1b11f808fd03372",
+    "contract_pointer": "/contracts/0",
+    "canonical_sha256_at_current_source": "22a6075b5b72984eb888dc35d947d79391938f41cd124c745d6c18e36023bef5",
+    "fields": [
+      "behavior",
+      "output_contract",
+      "failure_conditions"
+    ],
+    "excluded": [
+      "negative_classifications",
+      "algorithm/data_flow",
+      "existing expected rows"
+    ]
+  },
+  "comparison_method": "Blind was fixed before comparison. Compare both source-only B01 conditions against the allowed L3/L10 meaning and L4 behavior/output/failure prose, then enumerate every existing L4/L9 negative row. L9 is used only as source trace for candidate U-ID rows; codes, axes, states, owners, and effects remain comparison-only.",
+  "rows": [
+    {
+      "l4_pointer": "docs/helix-harness/L4-basic-design/tdd-development-flow.json#/contracts/0/negative_classifications/0",
+      "l9_pointer": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/0/negative_cases/0",
+      "l4_condition": "利用者CIへ同契約を渡す単独利用を保持。",
+      "l9_condition": "利用者CIへ同契約を渡す単独利用を保持。",
+      "conditions_equal": true,
+      "l4_existing_projection_comparison_only": {
+        "code": "os_only",
+        "expected_axis": "operator_contract",
+        "expected_state": "conflict",
+        "backflow_owner": "QualityAndCiHandoff",
+        "expected_side_effect_count": 0
+      },
+      "l9_existing_projection_comparison_only": {
+        "code": "os_only",
+        "expected_axis": "operator_contract",
+        "expected_state": "conflict",
+        "backflow_owner": "QualityAndCiHandoff",
+        "expected_side_effect_count": 0
+      },
+      "source_only_comparison_ref": "WR243-SO-B01-01",
+      "comparison_result": "semantic direction aligns; existing projections are not candidate authority; row-level oracle and test citation absent"
+    },
+    {
+      "l4_pointer": "docs/helix-harness/L4-basic-design/tdd-development-flow.json#/contracts/0/negative_classifications/1",
+      "l9_pointer": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/0/negative_cases/1",
+      "l4_condition": "品質未達を費用/時間改善で相殺しない。",
+      "l9_condition": "品質未達を費用/時間改善で相殺しない。",
+      "conditions_equal": true,
+      "l4_existing_projection_comparison_only": {
+        "code": "cheap_quality_failure",
+        "expected_axis": "quality",
+        "expected_state": "conflict",
+        "backflow_owner": "QualityAndCiHandoff",
+        "expected_side_effect_count": 0
+      },
+      "l9_existing_projection_comparison_only": {
+        "code": "cheap_quality_failure",
+        "expected_axis": "quality",
+        "expected_state": "conflict",
+        "backflow_owner": "QualityAndCiHandoff",
+        "expected_side_effect_count": 0
+      },
+      "source_only_comparison_ref": "WR243-SO-B01-01",
+      "comparison_result": "semantic direction aligns; existing projections are not candidate authority; row-level oracle and test citation absent"
+    },
+    {
+      "l4_pointer": "docs/helix-harness/L4-basic-design/tdd-development-flow.json#/contracts/0/negative_classifications/2",
+      "l9_pointer": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/0/negative_cases/2",
+      "l4_condition": "C1未回収を保持。",
+      "l9_condition": "C1未回収を保持。",
+      "conditions_equal": true,
+      "l4_existing_projection_comparison_only": {
+        "code": "omission_erased",
+        "expected_axis": "unrecovered_refs",
+        "expected_state": "conflict",
+        "backflow_owner": "QualityAndCiHandoff",
+        "expected_side_effect_count": 0
+      },
+      "l9_existing_projection_comparison_only": {
+        "code": "omission_erased",
+        "expected_axis": "unrecovered_refs",
+        "expected_state": "conflict",
+        "backflow_owner": "QualityAndCiHandoff",
+        "expected_side_effect_count": 0
+      },
+      "source_only_comparison_ref": "WR243-SO-B01-02",
+      "comparison_result": "semantic direction aligns; existing projections are not candidate authority; row-level oracle and test citation absent"
+    },
+    {
+      "l4_pointer": "docs/helix-harness/L4-basic-design/tdd-development-flow.json#/contracts/0/negative_classifications/3",
+      "l9_pointer": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/0/negative_cases/3",
+      "l4_condition": "計測改善から受入を生成しない。",
+      "l9_condition": "計測改善から受入を生成しない。",
+      "conditions_equal": true,
+      "l4_existing_projection_comparison_only": {
+        "code": "metric_as_accepted",
+        "expected_axis": "accepted",
+        "expected_state": "unknown",
+        "backflow_owner": "QualityAndCiHandoff",
+        "expected_side_effect_count": 0
+      },
+      "l9_existing_projection_comparison_only": {
+        "code": "metric_as_accepted",
+        "expected_axis": "accepted",
+        "expected_state": "unknown",
+        "backflow_owner": "QualityAndCiHandoff",
+        "expected_side_effect_count": 0
+      },
+      "source_only_comparison_ref": "WR243-SO-B01-02",
+      "comparison_result": "semantic direction aligns; existing projections are not candidate authority; row-level oracle and test citation absent"
+    }
+  ],
+  "mapping_summary": {
+    "WR243-SO-B01-01": [
+      "os_only",
+      "cheap_quality_failure"
+    ],
+    "WR243-SO-B01-02": [
+      "omission_erased",
+      "metric_as_accepted"
+    ],
+    "mapping_kind": "many-to-one semantic comparison; not a U-ID oracle assignment"
+  },
+  "unresolved": {
+    "row_oracle": "missing; not created",
+    "test_citation": "not found; not created",
+    "failure_code_vocabulary": "not selected",
+    "L8 target": "HARNESS-L5-015-B01 contract; L9 pointers are separate source traces",
+    "execution": "not executed"
+  },
+  "preservation_checks": {
+    "L4_bytes_unchanged": true,
+    "L9_bytes_unchanged": true,
+    "canonical_L8_unit_case_ids_unchanged": true,
+    "canonical_L8_unit_cases_unchanged": true,
+    "F03_F04_candidate_evidence_untouched": true
+  }
+}

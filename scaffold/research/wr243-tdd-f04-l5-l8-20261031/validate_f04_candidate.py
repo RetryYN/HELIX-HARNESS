@@ -9,8 +9,10 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[3]
 BASE = "988765e9be335f2a1d376721c1b11f808fd03372"
 MAIN_BASE = "cf31240384980220249a4f58abe62ce57d47a880"
+F04_MERGE_REVISION = "e0438a372065626ea752c31dc6c86b92d3198a9d"
 PKG = "scaffold/research/wr243-tdd-f04-l5-l8-20261031"
 F03_PKG = "scaffold/research/wr243-tdd-f03-l5-l8-20261031"
+B01_PKG = "scaffold/research/wr243-tdd-b01-l5-l8-20261031"
 BLIND = f"{F03_PKG}/source/wr243-tdd-clean-source-only.json"
 BLIND_SHA = "846907d5802170ed775fbf08664c0b85f42e7b6ac0a9623e8584452f81ead813"
 L3 = "docs/helix-harness/L3-requirements/functional-requirements.json"
@@ -35,6 +37,11 @@ def sha_json(value) -> str:
 
 def git_bytes(rev: str, path: str) -> bytes:
     return subprocess.check_output(["git", "show", f"{rev}:{path}"], cwd=ROOT)
+
+
+def git_blob_oid(rev: str, path: str) -> str:
+    entry = subprocess.check_output(["git", "ls-tree", rev, "--", path], cwd=ROOT, text=True).strip()
+    return entry.split()[2]
 
 
 def project(doc, key, row_id):
@@ -97,15 +104,56 @@ def main() -> int:
     base_l8f = project(base_l8, "cases", "HARNESS-L8-015-F04")
     main_l5 = json.loads(git_bytes(MAIN_BASE, L5))
     main_l8 = json.loads(git_bytes(MAIN_BASE, L8))
-    checks["F04_existing_L5_contract_unchanged"] = remove_candidate(l5, "contracts", "HARNESS-L5-015-F04", "candidate_classification_design")["contracts"] == main_l5["contracts"] and project(main_l5, "contracts", "HARNESS-L5-015-F04").get("candidate_classification_design") is None
+    f04_merge_l5 = json.loads(git_bytes(F04_MERGE_REVISION, L5))
+    f04_merge_l8 = json.loads(git_bytes(F04_MERGE_REVISION, L8))
+    historical_hashes = read_json(f"{B01_PKG}/historical-candidate-hashes.json")
+    history = {(row["phase"], row["path"]): row for row in historical_hashes["records"]}
+    checks["historical_merge_bytes_match_git_objects"] = all(
+        sha_bytes(git_bytes(rev, path)) == history[(phase, path)]["sha256_raw_bytes"]
+        and git_blob_oid(rev, path) == history[(phase, path)]["git_blob_oid"]
+        for phase, rev in (("F03", MAIN_BASE), ("F04", F04_MERGE_REVISION))
+        for path in (L5, L8)
+    )
+    f03_correction = read_json(f"{F03_PKG}/correction-r1-f1.json")
+    checks["F03_historical_candidate_hashes_match_merge_blobs"] = all(
+        f03_correction["candidate_hashes"].get(path) == history[("F03", path)]["sha256_raw_bytes"]
+        for path in (L5, L8)
+    )
+    checks["F04_merge_time_L5_pin_recorded_in_0208_history"] = any(
+        row.get("binding") == "SCF-B-0208"
+        and row.get("revision") == F04_MERGE_REVISION
+        and row.get("old_pin_sha256") == history[("F04", L5)]["sha256_raw_bytes"]
+        for row in historical_hashes.get("historical_binding_pins", [])
+    )
+    l5_without_f04_and_b01 = remove_candidate(l5, "contracts", "HARNESS-L5-015-F04", "candidate_classification_design")
+    l5_without_f04_and_b01 = remove_candidate(l5_without_f04_and_b01, "contracts", "HARNESS-L5-015-B01", "candidate_classification_design")
+    l8_without_f04_and_b01 = remove_candidate(l8, "cases", "HARNESS-L8-015-F04", "candidate_unit_design")
+    l8_without_f04_and_b01 = remove_candidate(l8_without_f04_and_b01, "cases", "HARNESS-L8-015-B01", "candidate_unit_design")
+    l5_without_b01 = remove_candidate(l5, "contracts", "HARNESS-L5-015-B01", "candidate_classification_design")
+    l8_without_b01 = remove_candidate(l8, "cases", "HARNESS-L8-015-B01", "candidate_unit_design")
+    checks["F04_existing_L5_contract_unchanged"] = project(l5_without_f04_and_b01, "contracts", "HARNESS-L5-015-F04") == project(main_l5, "contracts", "HARNESS-L5-015-F04") and project(main_l5, "contracts", "HARNESS-L5-015-F04").get("candidate_classification_design") is None
     checks["F04_canonical_L8_ids_and_cases_unchanged"] = l8f["unit_case_ids"] == base_l8f["unit_case_ids"] and l8["unit_cases"] == base_l8["unit_cases"]
-    checks["all_other_L5_content_unchanged_from_merged_main"] = remove_candidate(l5, "contracts", "HARNESS-L5-015-F04", "candidate_classification_design") == main_l5
-    checks["all_other_L8_content_unchanged_from_merged_main"] = remove_candidate(l8, "cases", "HARNESS-L8-015-F04", "candidate_unit_design") == main_l8
+    checks["F04_candidate_content_unchanged_from_merge_snapshot"] = project(l5, "contracts", "HARNESS-L5-015-F04").get("candidate_classification_design") == project(f04_merge_l5, "contracts", "HARNESS-L5-015-F04").get("candidate_classification_design") and project(l8, "cases", "HARNESS-L8-015-F04").get("candidate_unit_design") == project(f04_merge_l8, "cases", "HARNESS-L8-015-F04").get("candidate_unit_design")
+    checks["F03_candidate_content_unchanged_from_merge_snapshot"] = project(l5, "contracts", "HARNESS-L5-015-F03").get("candidate_classification_design") == project(f04_merge_l5, "contracts", "HARNESS-L5-015-F03").get("candidate_classification_design") and project(l8, "cases", "HARNESS-L8-015-F03").get("candidate_unit_design") == project(f04_merge_l8, "cases", "HARNESS-L8-015-F03").get("candidate_unit_design")
+    checks["all_L5_content_except_B01_unchanged_from_F04_merge_snapshot"] = l5_without_b01 == f04_merge_l5
+    checks["all_L8_content_except_B01_unchanged_from_F04_merge_snapshot"] = l8_without_b01 == f04_merge_l8
     checks["F03_candidate_content_preserved_from_merged_main"] = project(l5, "contracts", "HARNESS-L5-015-F03").get("candidate_classification_design") == project(main_l5, "contracts", "HARNESS-L5-015-F03").get("candidate_classification_design") and project(l8, "cases", "HARNESS-L8-015-F03").get("candidate_unit_design") == project(main_l8, "cases", "HARNESS-L8-015-F03").get("candidate_unit_design")
     checks["F03_fixed_comparison_summary_blind_preserved"] = all((ROOT / f"{F03_PKG}/{p}").read_bytes() == git_bytes(MAIN_BASE, f"{F03_PKG}/{p}") for p in ("comparison.json", "verification-summary.json", "source/wr243-tdd-clean-source-only.json"))
 
     binding = read_json("scaffold/bindings/SCF-B-0208.json")
     f03_binding = read_json("scaffold/bindings/SCF-B-0204.json")
+    checks["0204_old_F03_pin_and_revision_retained"] = any(
+        row.get("path") == L5
+        and "a7fd79b52e6e5431ed0b5d2e72524c805e3ecdf1226c17f3ee01de5ed4dc24e0" in row.get("note", "")
+        and MAIN_BASE in row.get("note", "")
+        for row in f03_binding.get("upstream", [])
+    )
+    checks["0208_old_F04_pin_and_revision_retained"] = any(
+        row.get("path") == L5
+        and history[("F04", L5)]["sha256_raw_bytes"] in row.get("note", "")
+        and F04_MERGE_REVISION in row.get("note", "")
+        for row in binding.get("upstream", [])
+    )
     l5sha = sha_bytes((ROOT / L5).read_bytes())
     pins = {(r.get("path"), r.get("sha256")) for r in binding.get("upstream", [])}
     f03pins = {(r.get("path"), r.get("sha256")) for r in f03_binding.get("upstream", [])}
