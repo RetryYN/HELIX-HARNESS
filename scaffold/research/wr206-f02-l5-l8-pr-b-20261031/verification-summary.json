@@ -1,0 +1,78 @@
+{
+  "status": "candidate_static_checks_complete_with_source_and_checker_residuals",
+  "authority_effect": "none",
+  "base_revision": "fa3d2d515ce8df79c0a74d5360a4d1254863a6f1",
+  "candidate_documents": {
+    "docs/helix-harness/L5-detail-design/tdd-development-flow.json": "426a0b4299a76eaf7a097d33ab56e16244a69163c878ddb265f8bdc4b465b742",
+    "docs/helix-harness/L8-unit-verification/tdd-development-flow.json": "9f52fe3f90769cdacee9d147dceb0fabb2c36386839f39fdcb2d4039086ed6b7"
+  },
+  "fixed_blind_artifact": {
+    "path": "scaffold/research/wr206-f02-l5-l8-pr-b-20261031/source/f02-blind-draft.json",
+    "sha256": "7adbbee23d54e79773c5c7462c14250b6640c0afb4707495275aab069fb46152",
+    "bytes_changed": false,
+    "meaning_scope_only": true
+  },
+  "input_material_boundary": {
+    "scope_owner_input_source_found": false,
+    "synthetic_facts_path": "scaffold/research/wr206-f02-l5-l8-pr-b-20261031/source/f02-candidate-input-facts.json",
+    "synthetic_facts_sha256": "2bc3059606c992ca07bb012bc3ca1ecd195a4ad2e1aafb180e5fa3e68f2b7b0f",
+    "l8_embeds_full_input_payload": false,
+    "l8_embeds_full_return_or_fixture_body": false,
+    "l8_retains": "shared baseline pointer, 9 delta-row pointers, case reconstruction note, and compact semantic projections only",
+    "candidate_fixture_is_formal_oracle": false,
+    "case_id_is_evaluator_input_or_output": false
+  },
+  "verification": {
+    "json_syntax": "pass",
+    "static_candidate_validator": "pass",
+    "source_revision_blob_sha_and_reviewed_f02_row_match": "pass; L8 L5 source pin also matches current L5 bytes SHA-256",
+    "existing_l5_f02_contract_unchanged": true,
+    "existing_l8_unit_cases_unchanged": 35,
+    "existing_l8_case_records_unchanged_except_appended_f02_candidate_design": true,
+    "l4_l9_bytes_unchanged_from_base": true,
+    "candidate_rows": {
+      "positive": 2,
+      "negative_witnesses": 7,
+      "negative_classifications": 5
+    },
+    "check_child_base_vs_candidate": {
+      "baseline": "fa3d2d515ce8df79c0a74d5360a4d1254863a6f1",
+      "L4_L9_pair": "both pass (5/5)",
+      "L5_L8_pair": "both pass (5/5 formal roots)",
+      "negative_4way": "unchanged failure; L4=28, L9=28, L8=0, L5=0, matched=0, 33 failures",
+      "ownership_caps": "identical counts: L4 pass/0, L9 fail/35, L5 pass/0, L8 fail/1647"
+    },
+    "scf_validate": {
+      "status": "pass",
+      "bindings": 172,
+      "fail": 0
+    },
+    "scf_stale": {
+      "status": "pass",
+      "stale": 0
+    },
+    "pr_scope_diff_check": "pass",
+    "not_run": [
+      "L4/L5 algorithm or F-015-05 execution",
+      "old HELIX CLI/runtime/test/CI",
+      "new runtime/test/CI"
+    ],
+    "case_identity_handling": "F-015-05 input and return types exclude candidate_case_id; L8 expectation is attached directly to each fixture-reference row.",
+    "delta_reconstruction": "shared_input_ref plus explicit ordered FieldValue replacement semantics; manual candidate record only",
+    "after_body_branch_review": {
+      "pre_body_head_late_record": "retained as a distinct candidate branch; it does not establish post-body execution",
+      "post_body_target_revision": "added H1=body_change.to_head witness with red.sequence 40 > body_change.sequence 30",
+      "fixed_artifact_bytes_changed": false,
+      "L4_L9_bytes_changed": false
+    },
+    "l8_l4_output_pointer_resolution": "RFC6901 resolution to /contracts/2/output_contract",
+    "candidate_fixture_delta_reconstruction": "9 ordered delta rows; new after-body revision witness adds red.head=H1 and red.sequence=40"
+  },
+  "unresolved": [
+    "No owner-derived raw input packet within L3/L10 scope was identified; the scaffold fixture is synthetic candidate material, so formal L8 input linkage remains unestablished.",
+    "F-015-05 typed owner is not resolved by the checker because it reads L5 functions[]; no alias or marker was added.",
+    "The candidate F02 fixture rows do not count toward the checker four-way negative case rows.",
+    "Chosen head/revision mapping, syntax-to-environment_error mapping, actual-absent behavior, and multi-predicate precedence remain candidate design choices or unresolved."
+  ],
+  "binding_sha256": "19544b30e5fd0fed8dea8070c217ee3f99e2726ddb07bf2ab96c35edd6e5618a"
+}

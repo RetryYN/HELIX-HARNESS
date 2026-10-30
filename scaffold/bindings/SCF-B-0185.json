@@ -1,0 +1,110 @@
+{
+  "schema_revision": 1,
+  "id": "SCF-B-0185",
+  "kind": "scaffold",
+  "title": "WR206 F02 L5/L8分類候補の証跡",
+  "product": "HELIX-HARNESS",
+  "owner_candidate": "HARNESS-015 F02 L5/L8候補設計の責務owner候補",
+  "state": "registered",
+  "reason": "WR206-HARNESS-TDD-FLOW-NEG-4WAY（Issue #3510）のPR-B候補として、F02に限定したL5入力述語とL8手動照合fixtureを記録する。正例2枝・負例5分類（after-bodyのH1 revisionとH0遅延記録の別witnessを含む）のcandidate designであり、上流意味候補の承認、独立oracle、正式設計、実行、受入を成立させない。",
+  "upstream": [
+    {
+      "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+      "sha256": "a3b907cdc316117d4684632f9a1cbf36125eb6e6172f9cfc286060617583d7be",
+      "note": "現行fileをstale判定用にpin。F02意味のsourceはapproved reviewed head a715... /requirements/41。該当rowは現行mainと同一。"
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/functional-verification.json",
+      "sha256": "fc58ad2268746d7924ac9be33e8f3f75e6d3c2cc619e27fbc1ddc34edd065cb2",
+      "note": "現行fileをstale判定用にpin。F02照合scopeのsourceはapproved reviewed head a715... /cases/41。該当rowは現行mainと同一。"
+    },
+    {
+      "path": "docs/helix-harness/L4-basic-design/tdd-development-flow.json",
+      "sha256": "8dfbe628d7beb9b449a3ec48e98b7ed89ebbb4be1ea9b3f061dfd02ba464ea2f",
+      "note": "現行main L4 F02 candidate contract、negative classifications、output contract。各axis/stateは本候補の設計選択で、L4承認を意味しない。"
+    },
+    {
+      "path": "scaffold/research/wr206-tdd-flow-neg-4way-pr-a-20261031/README.md",
+      "sha256": "d5d227bc777b2161c10f470bbd9c80daa6c73d58398c382d99fcdf8cf37825ee",
+      "note": "WR206 PR-Aの限界・child/ownership residualの記録。"
+    }
+  ],
+  "role": "WR206 PR-BのHARNESS-015 F02 L5/L8 candidate classifier述語と手動unit input/expected設計、source provenance、未決限界をレビュー可能に記録する。",
+  "obligations": [
+    "比較前固定のF02 blind artifact bytes/hashとL3/L10 reviewed-head由来を保持し、意味範囲だけが独立固定されたことを明記する。",
+    "L5候補述語は実際のPayloadF02 input factを評価し、5 negative classの条件とafter-bodyの別head/sequence branches、L4 candidate axis/state、PreBodyRedEvidence backflow component、zero-side-effect候補を対応づける。",
+    "L8 F02で新規/既存positive枝と5 negative分類（environment/syntaxの別witnessを含む）を合成入力と手動照合期待で示す。L9既存input/expectedを使わず、変更しない。",
+    "head/revision、syntax→environment_error、未実行actual不在、multiple predicate、typed owner解決、4way residualをcandidate limitationとして記録する。",
+    "既存L5/L8 source_mainと過去revision pinsは履歴を保ち、F02候補が依拠するL3/L10/L4/L5のexact path/revision/hashを候補節と証跡へ分けて記録する。"
+  ],
+  "connections": {
+    "consumers": [
+      "WR206-HARNESS-TDD-FLOW-NEG-4WAY PR-B review"
+    ],
+    "dependencies": [
+      "HARNESS-L3/L10-015-F02 reviewed source",
+      "HARNESS-L4-015-F02 current candidate contract",
+      "WR206 PR-A L4/L9 classification evidence"
+    ],
+    "boundary": "HARNESS F02 L5/L8 design candidateとscaffold evidenceのみ。F01/F03/F04/B01、L4/L9、既存L9 input/expected、function implementation、runtime/test/CI、approval/acceptanceは範囲外。"
+  },
+  "operations": {
+    "allowed": [
+      "対象JSONの静的編集とsource pointer/hash照合",
+      "JSON syntaxと手動candidate fixture差分の静的確認",
+      "design_verification_checker check-childを静的文書照合として実行",
+      "scfctl validate/staleとPR範囲git diff --check"
+    ],
+    "forbidden": [
+      "L4/L5 algorithmやF-015-05の実行",
+      "旧HELIX CLI/runtime/test/hook/CIまたは新世代runtime/test/CIの起動",
+      "L4/L9、既存L9 input/expected、formal expectationの変更",
+      "checkerを通すためだけのfunction alias/class marker/空class追加",
+      "本候補から承認・merge admission・実装完了を生成すること"
+    ]
+  },
+  "artifacts": [
+    "scaffold/research/wr206-f02-l5-l8-pr-b-20261031/README.md",
+    "scaffold/research/wr206-f02-l5-l8-pr-b-20261031/validate_static_candidate.py",
+    "scaffold/research/wr206-f02-l5-l8-pr-b-20261031/verification-summary.json",
+    "scaffold/research/wr206-f02-l5-l8-pr-b-20261031/source/f02-blind-draft.json",
+    "scaffold/research/wr206-f02-l5-l8-pr-b-20261031/source/f02-candidate-input-facts.json",
+    "docs/helix-harness/L5-detail-design/tdd-development-flow.json",
+    "docs/helix-harness/L8-unit-verification/tdd-development-flow.json"
+  ],
+  "verification": {
+    "evidence_kind": "scaffold",
+    "scope": [
+      "schema_interface",
+      "source_revision_stale",
+      "negative_case"
+    ],
+    "oracles": [
+      "fixed artifact byte SHA-256 and comment provenance",
+      "L3/L10 source pointers/revision and matching current F02 row bytes",
+      "L4 candidate code/axis/state and L5 candidate fact predicates",
+      "L8 shared baseline plus case deltas and manually stated candidate projections",
+      "L8 pre-existing expected projections and L9 whole-document bytes unchanged",
+      "check-child owner and 4way diagnostics, reported as residual",
+      "scfctl validate/stale and PR-scope diff check",
+      "candidate artifact SHA-256: docs/helix-harness/L5-detail-design/tdd-development-flow.json=426a0b4299a76eaf7a097d33ab56e16244a69163c878ddb265f8bdc4b465b742",
+      "candidate artifact SHA-256: docs/helix-harness/L8-unit-verification/tdd-development-flow.json=9f52fe3f90769cdacee9d147dceb0fabb2c36386839f39fdcb2d4039086ed6b7",
+      "candidate artifact SHA-256: scaffold/research/wr206-f02-l5-l8-pr-b-20261031/source/f02-candidate-input-facts.json=2bc3059606c992ca07bb012bc3ca1ecd195a4ad2e1aafb180e5fa3e68f2b7b0f"
+    ],
+    "negative_cases": [
+      "Do not present chosen axis/state/schema as upstream approval or independent oracle.",
+      "Do not use L9 expected materials or L9 source packets as independent candidate inputs.",
+      "Do not infer revision identity from Ref.revision; candidate head token mapping is an explicit choice.",
+      "Do not treat unexecuted actual inconsistency, closed syntax taxonomy, or multi-match precedence as resolved.",
+      "Do not infer 4way completion from the F02 L5/L8 design rows."
+    ]
+  },
+  "replacement": {
+    "role_target": "正式なHARNESS-015 TDD flow設計検証機構のF02 L5/L8 source observation classification and unit verification design",
+    "formal_artifacts": [],
+    "issue": 1866,
+    "status": "pending"
+  },
+  "created": "2026-10-31",
+  "updated": "2026-10-31"
+}

@@ -2806,6 +2806,26 @@
           "semantic_state": "string",
           "findings": "list<SemanticFinding>"
         }
+      },
+      {
+        "name": "F02CandidateInput",
+        "kind": "record",
+        "fields": {
+          "source_payload": "PayloadF02"
+        }
+      },
+      {
+        "name": "F02CandidateClassification",
+        "kind": "record",
+        "fields": {
+          "candidate_classification_code": "FieldValue<string>",
+          "candidate_axis": "FieldValue<string>",
+          "candidate_state": "FieldValue<string>",
+          "backflow_component": "FieldValue<string>",
+          "side_effect_count": "number",
+          "candidate_semantic_state": "string",
+          "candidate_output_fields": "JsonValue"
+        }
       }
     ],
     "source_authority_note": "資格表示はsource_packet.qualification_kindの値として保持し、正本ownerによる実資格の証拠とは解釈しない。",
@@ -3179,6 +3199,42 @@
           "findings": "$derived:rules+input"
         }
       }
+    },
+    {
+      "id": "F-015-05",
+      "name": "classify_f02_pre_body_red_candidate",
+      "signature": "classify_f02_pre_body_red_candidate(input: F02CandidateInput, rules: JsonValue) -> F02CandidateClassification",
+      "reads": [
+        "input.source_payload.tag/value.binding",
+        "input.source_payload.tag/value.body_change",
+        "input.source_payload.tag/value.change_kind",
+        "input.source_payload.tag/value.frozen_oracle.freeze_sequence/ref/expected",
+        "input.source_payload.tag/value.pre_body",
+        "input.source_payload.tag/value.red",
+        "input.source_payload.tag/value.post_mutation",
+        "rules.candidate_classification_design.positive_candidate_rule",
+        "rules.candidate_classification_design.negative_classification_rules"
+      ],
+      "returns": [
+        "candidate_classification_code",
+        "candidate_axis",
+        "candidate_state",
+        "backflow_component",
+        "side_effect_count",
+        "candidate_output_fields",
+        "candidate_semantic_state"
+      ],
+      "preconditions": [
+        "Input is a locally authored, finite L8 candidate fixture; it does not claim an L9 source packet, actual owner qualification, or operation.",
+        "The input case satisfies the shared qualifiers and exactly one candidate predicate, or is the positive case; overlap resolution outside these controlled examples is unspecified.",
+        "FieldValue absent/null/provided states are preserved; absent observations are never filled from a candidate output or L9 expected material."
+      ],
+      "branches": [
+        "A positive fixture satisfying the full pre-body Red predicate returns candidate_semantic_state=supported_by_fixture and the L4 F02 output-contract projection.",
+        "Exactly one matching negative predicate returns its candidate code/axis/state, backflow component, and zero side effects.",
+        "Missing or conflicting inputs, multiple matching negative predicates, or an unsupported failure cause remain unclassified in this candidate; no general fallback state is selected."
+      ],
+      "effects": "none"
     }
   ],
   "contracts": [
@@ -3689,6 +3745,190 @@
             ]
           }
         ]
+      },
+      "candidate_classification_design": {
+        "status": "candidate_only_not_approved_or_executed",
+        "scope": "HARNESS-L3/L10-015-F02の意味範囲に対するL5候補分類述語。F02だけを対象とし、L4/L9、既存L9入力・期待、F01/F03/F04/B01を変更しない。",
+        "meaning_source": {
+          "fixed_artifact": "scaffold/research/wr206-f02-l5-l8-pr-b-20261031/source/f02-blind-draft.json",
+          "sha256": "7adbbee23d54e79773c5c7462c14250b6640c0afb4707495275aab069fb46152",
+          "comment": "https://github.com/RetryYN/HELIX-HARNESS/issues/3510#issuecomment-6530137720",
+          "limit": "固定artifactは意味範囲のみ。schema、具体値、述語、分類、axis/stateは承認していない。作成者は過去にL9候補を読んでおり盲検・独立oracleを主張しない。"
+        },
+        "candidate_source_pins": [
+          {
+            "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+            "revision": "a715e777bd59291b26f09c0c1c5481273c6eba2e",
+            "sha256": "62a954e9244eb184bf3c2c3c1ab6b27763b52ce4a40041debbd9e13eed7d6689",
+            "pointer": "/requirements/41",
+            "claim": "HARNESS-L3-015-F02の承認済みreviewed source。"
+          },
+          {
+            "path": "docs/helix-harness/L10-verification/functional-verification.json",
+            "revision": "a715e777bd59291b26f09c0c1c5481273c6eba2e",
+            "sha256": "e2580d52e8628d4755973e745528702e5cce66ab829c3f9c6f26c5ceb6aace7c",
+            "pointer": "/cases/41",
+            "claim": "HARNESS-L10-015-F02の承認済みreviewed source。"
+          },
+          {
+            "path": "docs/helix-harness/L4-basic-design/tdd-development-flow.json",
+            "revision": "fa3d2d515ce8df79c0a74d5360a4d1254863a6f1",
+            "sha256": "8dfbe628d7beb9b449a3ec48e98b7ed89ebbb4be1ea9b3f061dfd02ba464ea2f",
+            "pointer": "/contracts/2",
+            "claim": "現行main上のL4 F02候補契約。axis/stateは上流承認ではなく、このL5候補で明示的に選ぶ。"
+          }
+        ],
+        "function_ref": "F-015-05",
+        "owner_note": "L5 function owner F-015-05とL4 backflow component PreBodyRedEvidenceを区別する。",
+        "common_input_observations": [
+          {
+            "path": "change_kind",
+            "test": "new|existing; pre_body.state is unimplemented|unrepaired respectively"
+          },
+          {
+            "path": "pre_body.head, body_change.from_head",
+            "test": "equal candidate target head"
+          },
+          {
+            "path": "frozen_oracle.ref, red.oracle_ref",
+            "test": "same identity, revision and scope"
+          },
+          {
+            "path": "frozen_oracle.freeze_sequence, red.sequence, body_change.sequence",
+            "test": "freeze < red < body change for the positive candidate"
+          },
+          {
+            "path": "red.executed, red.failure_kind, red.actual.behavior_observation, red.actual.receiver_debits, frozen_oracle.expected.receiver_debits",
+            "test": "executed intended behavior mismatch; observed value differs from frozen expected"
+          }
+        ],
+        "positive_candidate_rule": {
+          "rule_id": "f02_candidate_pre_body_red",
+          "predicate_observations": [
+            "change_kind ∈ {new, existing} and matching pre_body.state",
+            "red.executed=true and red.failure_kind=intended_behavior_mismatch",
+            "red.head=pre_body.head=body_change.from_head",
+            "frozen_oracle.freeze_sequence < red.sequence < body_change.sequence",
+            "red.oracle_ref equals frozen_oracle.ref",
+            "red.actual.receiver_debits differs from frozen_oracle.expected.receiver_debits"
+          ],
+          "candidate_output_fields_from_l4_output_contract": {
+            "pre_body_head": "H0",
+            "red_meaning": "intended_duplicate_debit_detected",
+            "red_before_body": "synthetic_order_supported",
+            "post_mutation_role": "oracle_strength_only",
+            "actual_tdd_success": "not_generated"
+          },
+          "candidate_only_note": "候補述語・値・返却projectionはL5設計選択。実Red/Greenや上流承認ではない。"
+        },
+        "negative_classification_rules": [
+          {
+            "code": "after_body_red",
+            "observations": [
+              "red.executed=true",
+              "red.failure_kind=intended_behavior_mismatch",
+              "red.oracle_ref equals frozen_oracle.ref"
+            ],
+            "candidate_l4_result": {
+              "expected_axis": "red_before_body",
+              "expected_state": "conflict",
+              "backflow_owner": "PreBodyRedEvidence",
+              "side_effect_count": 0
+            },
+            "meaning": "candidate codeは上記の異なる二枝を記録する。post_body_target_revisionのみが固定artifactのafter-body revision意味に対応する。pre_body_target_head_late_recordはcandidate sequence mapping上の順序所見であり、実行時点を確定しない。",
+            "candidate_branches": [
+              {
+                "branch_id": "post_body_target_revision",
+                "observations": [
+                  "red.head=body_change.to_head",
+                  "red.sequence>body_change.sequence"
+                ],
+                "meaning": "本体変更先revision H1上のRedで、固定artifactの「本体実装/修正後revisionだけのRed」に対応するcandidate witness。"
+              },
+              {
+                "branch_id": "pre_body_target_head_late_record",
+                "observations": [
+                  "red.head=pre_body.head=body_change.from_head",
+                  "red.sequence>body_change.sequence"
+                ],
+                "meaning": "対象headは本体前H0のまま記録sequenceだけが後。これは実行が本体後に起きた証拠ではなく、candidateがsequenceを順序proxyとする設計選択による別の記録順序所見。固定artifactのafter-body revision意味とは同一視しない。"
+              }
+            ],
+            "branch_join": "OR across candidate_branches; AND within each branch observations"
+          },
+          {
+            "code": "foreign_pre_body_head",
+            "observations": [
+              "red.executed=true",
+              "red.failure_kind=intended_behavior_mismatch",
+              "red.head!=pre_body.head",
+              "pre_body.head=body_change.from_head",
+              "red.sequence<body_change.sequence"
+            ],
+            "candidate_l4_result": {
+              "expected_axis": "pre_body_head",
+              "expected_state": "stale",
+              "backflow_owner": "PreBodyRedEvidence",
+              "side_effect_count": 0
+            },
+            "meaning": "対象head外のRedを対象Redへ結ばない。"
+          },
+          {
+            "code": "environment_error",
+            "observations": [
+              "red.executed=true",
+              "failure_kind is the candidate environment_failure or syntax_failure witness",
+              "behavior_observation=missing",
+              "receiver_debits is absent"
+            ],
+            "candidate_l4_result": {
+              "expected_axis": "red_meaning",
+              "expected_state": "unknown",
+              "backflow_owner": "PreBodyRedEvidence",
+              "side_effect_count": 0
+            },
+            "meaning": "環境/構文witnessを意図したbehaviorのRedとして扱わない。syntaxをenvironment_errorへ束ねるのは候補選択。failure taxonomyは閉じない。"
+          },
+          {
+            "code": "unexecuted_red",
+            "observations": [
+              "red.executed=false",
+              "red.actual.behavior_observation is absent",
+              "red.actual.receiver_debits is absent"
+            ],
+            "candidate_l4_result": {
+              "expected_axis": "red_meaning",
+              "expected_state": "missing",
+              "backflow_owner": "PreBodyRedEvidence",
+              "side_effect_count": 0
+            },
+            "meaning": "未実行をRedと数えない。actualが同時にmaterializedの場合は未決。"
+          },
+          {
+            "code": "mutation_substitute",
+            "observations": [
+              "red is absent",
+              "post_mutation.executed=true",
+              "post_mutation.head=body_change.to_head",
+              "post_mutation.role=oracle_strength_only",
+              "post_mutation.actual.receiver_debits differs from expected"
+            ],
+            "candidate_l4_result": {
+              "expected_axis": "red_before_body",
+              "expected_state": "missing",
+              "backflow_owner": "PreBodyRedEvidence",
+              "side_effect_count": 0
+            },
+            "meaning": "post-body mutationをpre-body Redの代用にしない。"
+          }
+        ],
+        "unresolved": [
+          "pre_body.head等をcode revision tokenとしRef.revisionをsource record metadataと分けるのは候補選択。",
+          "executed=falseとmaterialized actualが併存するときの優先は未定。",
+          "複数predicateが同時成立する場合の優先順位は未定。",
+          "L5純関数ownerは現行checkerが参照するfunctions[]で解決されない。"
+        ],
+        "execution_boundary": "述語と結果は静的なL5候補設計。L4/L5 algorithm、runtime、test/CIを実行せず、候補例の記述を実観測・成功・authorityへ昇格しない。"
       }
     },
     {

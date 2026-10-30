@@ -1093,7 +1093,154 @@
         "HARNESS-L9-015-F02-environment_error",
         "HARNESS-L9-015-F02-unexecuted_red",
         "HARNESS-L9-015-F02-mutation_substitute"
-      ]
+      ],
+      "candidate_unit_design": {
+        "status": "scaffold_candidate_only_not_approved_or_executed",
+        "pair_ref": "HARNESS-L5-015-F02",
+        "function_ref": "F-015-05",
+        "source_pins": [
+          {
+            "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+            "revision": "a715e777bd59291b26f09c0c1c5481273c6eba2e",
+            "sha256": "62a954e9244eb184bf3c2c3c1ab6b27763b52ce4a40041debbd9e13eed7d6689",
+            "pointer": "/requirements/41"
+          },
+          {
+            "path": "docs/helix-harness/L10-verification/functional-verification.json",
+            "revision": "a715e777bd59291b26f09c0c1c5481273c6eba2e",
+            "sha256": "e2580d52e8628d4755973e745528702e5cce66ab829c3f9c6f26c5ceb6aace7c",
+            "pointer": "/cases/41"
+          },
+          {
+            "path": "docs/helix-harness/L4-basic-design/tdd-development-flow.json",
+            "revision": "29c9031159f1cf77b0c503cbf87bbcdc16d31320",
+            "sha256": "8dfbe628d7beb9b449a3ec48e98b7ed89ebbb4be1ea9b3f061dfd02ba464ea2f",
+            "pointer": "/contracts/2"
+          },
+          {
+            "path": "docs/helix-harness/L5-detail-design/tdd-development-flow.json",
+            "revision": "4c0e29b6d18a8943514ffd25a27cd4e83c11cff0",
+            "sha256": "426a0b4299a76eaf7a097d33ab56e16244a69163c878ddb265f8bdc4b465b742",
+            "pointer": "/contracts/2/candidate_classification_design"
+          }
+        ],
+        "input_source": "synthetic candidate facts in the bound scaffold research artifact; no approved raw L7/L9 input source found or claimed",
+        "input_artifact_ref": "scaffold/research/wr206-f02-l5-l8-pr-b-20261031/source/f02-candidate-input-facts.json",
+        "cases": [
+          {
+            "case_id": "F02-CANDIDATE-POSITIVE-NEW",
+            "polarity": "positive",
+            "input_ref": "scaffold/research/wr206-f02-l5-l8-pr-b-20261031/source/f02-candidate-input-facts.json#/case_deltas/0",
+            "expected_projection": {
+              "candidate_result": "supported_pre_body_red",
+              "l4_output_ref": "docs/helix-harness/L4-basic-design/tdd-development-flow.json#/contracts/2/output_contract",
+              "side_effect_count": 0
+            }
+          },
+          {
+            "case_id": "F02-CANDIDATE-POSITIVE-EXISTING",
+            "polarity": "positive",
+            "input_ref": "scaffold/research/wr206-f02-l5-l8-pr-b-20261031/source/f02-candidate-input-facts.json#/case_deltas/1",
+            "expected_projection": {
+              "candidate_result": "supported_pre_body_red",
+              "l4_output_ref": "docs/helix-harness/L4-basic-design/tdd-development-flow.json#/contracts/2/output_contract",
+              "side_effect_count": 0
+            }
+          },
+          {
+            "case_id": "F02-CANDIDATE-NEGATIVE-AFTER-BODY",
+            "polarity": "negative",
+            "input_ref": "scaffold/research/wr206-f02-l5-l8-pr-b-20261031/source/f02-candidate-input-facts.json#/case_deltas/2",
+            "expected_projection": {
+              "candidate_classification_code": "after_body_red",
+              "candidate_axis": "red_before_body",
+              "candidate_state": "conflict",
+              "backflow_component": "PreBodyRedEvidence",
+              "side_effect_count": 0
+            }
+          },
+          {
+            "case_id": "F02-CANDIDATE-NEGATIVE-FOREIGN-HEAD",
+            "polarity": "negative",
+            "input_ref": "scaffold/research/wr206-f02-l5-l8-pr-b-20261031/source/f02-candidate-input-facts.json#/case_deltas/3",
+            "expected_projection": {
+              "candidate_classification_code": "foreign_pre_body_head",
+              "candidate_axis": "pre_body_head",
+              "candidate_state": "stale",
+              "backflow_component": "PreBodyRedEvidence",
+              "side_effect_count": 0
+            }
+          },
+          {
+            "case_id": "F02-CANDIDATE-NEGATIVE-ENVIRONMENT",
+            "polarity": "negative",
+            "input_ref": "scaffold/research/wr206-f02-l5-l8-pr-b-20261031/source/f02-candidate-input-facts.json#/case_deltas/4",
+            "expected_projection": {
+              "candidate_classification_code": "environment_error",
+              "candidate_axis": "red_meaning",
+              "candidate_state": "unknown",
+              "backflow_component": "PreBodyRedEvidence",
+              "side_effect_count": 0
+            }
+          },
+          {
+            "case_id": "F02-CANDIDATE-NEGATIVE-SYNTAX",
+            "polarity": "negative",
+            "input_ref": "scaffold/research/wr206-f02-l5-l8-pr-b-20261031/source/f02-candidate-input-facts.json#/case_deltas/5",
+            "expected_projection": {
+              "candidate_classification_code": "environment_error",
+              "candidate_axis": "red_meaning",
+              "candidate_state": "unknown",
+              "backflow_component": "PreBodyRedEvidence",
+              "side_effect_count": 0
+            }
+          },
+          {
+            "case_id": "F02-CANDIDATE-NEGATIVE-UNEXECUTED",
+            "polarity": "negative",
+            "input_ref": "scaffold/research/wr206-f02-l5-l8-pr-b-20261031/source/f02-candidate-input-facts.json#/case_deltas/6",
+            "expected_projection": {
+              "candidate_classification_code": "unexecuted_red",
+              "candidate_axis": "red_meaning",
+              "candidate_state": "missing",
+              "backflow_component": "PreBodyRedEvidence",
+              "side_effect_count": 0
+            }
+          },
+          {
+            "case_id": "F02-CANDIDATE-NEGATIVE-MUTATION-SUBSTITUTE",
+            "polarity": "negative",
+            "input_ref": "scaffold/research/wr206-f02-l5-l8-pr-b-20261031/source/f02-candidate-input-facts.json#/case_deltas/7",
+            "expected_projection": {
+              "candidate_classification_code": "mutation_substitute",
+              "candidate_axis": "red_before_body",
+              "candidate_state": "missing",
+              "backflow_component": "PreBodyRedEvidence",
+              "side_effect_count": 0
+            }
+          },
+          {
+            "case_id": "F02-CANDIDATE-NEGATIVE-AFTER-BODY-REVISION",
+            "polarity": "negative",
+            "input_ref": "scaffold/research/wr206-f02-l5-l8-pr-b-20261031/source/f02-candidate-input-facts.json#/case_deltas/8",
+            "expected_projection": {
+              "candidate_classification_code": "after_body_red",
+              "candidate_axis": "red_before_body",
+              "candidate_state": "conflict",
+              "backflow_component": "PreBodyRedEvidence",
+              "side_effect_count": 0
+            }
+          }
+        ],
+        "expectation_boundary": "L8候補の意味projectionは手動照合用。L3/L10の承認済み意味候補とL4候補契約に照らす設計選択であり、独立oracle、正式期待、実行結果ではない。 case_idはresearch/L8行を指す識別子であり、F-015-05のinput/outputではなく期待値選択にも使わない。",
+        "unresolved": [
+          "L3/L10 scope内のactual raw packet/source ownerは特定されていない。",
+          "L4 axis/state/codeの候補値は承認済み期待ではない。",
+          "checker typed owner解決と4way全体対応は未成立。"
+        ],
+        "shared_input_ref": "scaffold/research/wr206-f02-l5-l8-pr-b-20261031/source/f02-candidate-input-facts.json#/shared_input_baseline",
+        "case_input_resolution": "各cases[].input_refは同じartifactのcase_deltas内の差分行を指す。各caseはshared_input_refのbaselineを使い、参照行のinput_deltaを配列順にPayloadF02.tag.value相対のdot pathへFieldValueごと置換する。state=absentはabsentのまま、nullはprovided nullのまま保つ。この記録は手動candidate packet再構成の説明で、実行手順・実source packetではない。"
+      }
     },
     {
       "id": "HARNESS-L8-015-F03",
