@@ -110,12 +110,14 @@ def main() -> int:
     next(row for row in base_l5_without_candidate["contracts"] if row["id"] == "HARNESS-L5-015-F03").pop("candidate_classification_design", None)
     next(row for row in current_l5_without_candidate_doc["contracts"] if row["id"] == "HARNESS-L5-015-F03").pop("candidate_classification_design", None)
     next(row for row in current_l5_without_candidate_doc["contracts"] if row["id"] == "HARNESS-L5-015-F04").pop("candidate_classification_design", None)
+    next(row for row in current_l5_without_candidate_doc["contracts"] if row["id"] == "HARNESS-L5-015-B01").pop("candidate_classification_design", None)
     checks["all_other_L5_bytes_structurally_unchanged"] = current_l5_without_candidate_doc == base_l5_without_candidate
     base_l8_without_candidate = json.loads(base_bytes(L8_PATH))
     current_l8_without_candidate = json.loads(json.dumps(l8))
     next(row for row in base_l8_without_candidate["cases"] if row["id"] == "HARNESS-L8-015-F03").pop("candidate_unit_design", None)
     next(row for row in current_l8_without_candidate["cases"] if row["id"] == "HARNESS-L8-015-F03").pop("candidate_unit_design", None)
     next(row for row in current_l8_without_candidate["cases"] if row["id"] == "HARNESS-L8-015-F04").pop("candidate_unit_design", None)
+    next(row for row in current_l8_without_candidate["cases"] if row["id"] == "HARNESS-L8-015-B01").pop("candidate_unit_design", None)
     checks["all_other_L8_bytes_structurally_unchanged"] = current_l8_without_candidate == base_l8_without_candidate
     checks["L8_candidate_only_field"] = len(l8f["candidate_unit_design"]["cases"]) == 9
 

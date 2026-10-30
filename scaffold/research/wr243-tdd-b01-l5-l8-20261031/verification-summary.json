@@ -1,0 +1,110 @@
+{
+  "schema": "wr243-b01-verification-summary.v1",
+  "evidence_kind": "scaffold",
+  "authority_effect": "none",
+  "status": "candidate_only_not_approved_or_executed",
+  "base_revision": "988765e9be335f2a1d376721c1b11f808fd03372",
+  "main_revision_before_B01": "e0438a372065626ea752c31dc6c86b92d3198a9d",
+  "fixed_blind_artifact": {
+    "path": "scaffold/research/wr243-tdd-f03-l5-l8-20261031/source/wr243-tdd-clean-source-only.json",
+    "sha256": "846907d5802170ed775fbf08664c0b85f42e7b6ac0a9623e8584452f81ead813",
+    "unchanged": true
+  },
+  "candidate_documents": {
+    "L5_path": "docs/helix-harness/L5-detail-design/tdd-development-flow.json",
+    "L5_sha256": "79a383715e020cc5b32d6b8f9f55fbf1ca13b6731e38d03e83ae0cb291b4e5fa",
+    "L8_path": "docs/helix-harness/L8-unit-verification/tdd-development-flow.json",
+    "L8_sha256": "3c09da25eec8b11d259fa6f8eb797600a4b1ad9f13de92366a6dbc12c76b4b5c"
+  },
+  "comparison": {
+    "fixed_source_only_conditions": 2,
+    "existing_L4_rows": 4,
+    "existing_L9_rows": 4,
+    "L4_L9_condition_pairs_equal": 4,
+    "mapping": {
+      "WR243-SO-B01-01": [
+        "os_only",
+        "cheap_quality_failure"
+      ],
+      "WR243-SO-B01-02": [
+        "omission_erased",
+        "metric_as_accepted"
+      ]
+    },
+    "row_oracle": "missing_not_created",
+    "test_citation": "not_found_not_created",
+    "L8_target_ref": "HARNESS-L5-015-B01",
+    "L9_refs": "source_trace_ref only"
+  },
+  "preservation": {
+    "L4_bytes_unchanged": true,
+    "L9_bytes_unchanged": true,
+    "B01_L8_unit_case_ids_unchanged": true,
+    "L8_unit_cases_unchanged": true,
+    "F03_candidate_and_fixed_evidence_unchanged": true,
+    "F04_candidate_and_fixed_evidence_unchanged": true,
+    "F03_validator_compatibility_extended_for_B01_annotation": true,
+    "F04_validator_compatibility_extended_for_B01_annotation": true
+  },
+  "verification": {
+    "static_validators": {
+      "B01": "24/24 pass",
+      "F03": "28/28 pass",
+      "F04": "36/36 pass"
+    },
+    "check_child_before_after": {
+      "baseline": "e0438a372065626ea752c31dc6c86b92d3198a9d",
+      "L4_L9_pair": "pass unchanged",
+      "L5_L8_pair": "pass unchanged",
+      "negative_4way_counts_before": {
+        "L4": 30,
+        "L9": 30,
+        "L8": 0,
+        "L5": 0
+      },
+      "negative_4way_counts_after": {
+        "L4": 30,
+        "L9": 30,
+        "L8": 0,
+        "L5": 0
+      },
+      "matched_before_after": 0,
+      "existing_4way_failures_before_after": 35,
+      "ownership_cap_failures_before_after": {
+        "L4": 0,
+        "L9": 35,
+        "L5": 0,
+        "L8": 1647
+      },
+      "candidate_rows_counted_as_canonical": false
+    },
+    "bindings": {
+      "SCF-B-0204_L5_sha_rebound": "79a383715e020cc5b32d6b8f9f55fbf1ca13b6731e38d03e83ae0cb291b4e5fa",
+      "SCF-B-0204_historical_F03_pin_a7fd79_preserved_in_note": true,
+      "SCF-B-0208_L5_sha_rebound": "79a383715e020cc5b32d6b8f9f55fbf1ca13b6731e38d03e83ae0cb291b4e5fa",
+      "new_binding": "SCF-B-0210",
+      "0209": "reserved by WR245",
+      "scfctl_validate": "191 bindings; fail=0",
+      "scfctl_stale": "stale=0",
+      "SCF-B-0204_historical_pin": "L5 a7fd79... at cf312403, retained in note",
+      "SCF-B-0208_historical_pin": "L5 b4b120... at e0438a3, retained in note"
+    },
+    "diff_check": "git diff --check pass",
+    "historical_candidate_integrity": {
+      "F03_merge_revision": "cf31240384980220249a4f58abe62ce57d47a880",
+      "F03_L5_raw_sha256": "a7fd79b52e6e5431ed0b5d2e72524c805e3ecdf1226c17f3ee01de5ed4dc24e0",
+      "F03_L8_raw_sha256": "3467fe21dd0ad803b9414abe4087fb2ef9088cbe94298d4371b1baed65c9396f",
+      "F04_merge_revision": "e0438a372065626ea752c31dc6c86b92d3198a9d",
+      "F04_L5_raw_sha256": "b4b120f025efeb7fe6bfaf020d950eb7a75949baaed3268f5e3b32e88853758d",
+      "F04_L8_raw_sha256": "37aebaa7c81edd37c8b0ec97dfe7226f27e898ffa2bf1a8d2aa3ec82a4bedd9e",
+      "method": "SHA-256 of bytes read with git show and Git blob OIDs; validators re-read Git objects, compare historical hashes and verify F03/F04 candidate content remains unchanged."
+    }
+  },
+  "not_run": [
+    "L4/L5 algorithm",
+    "old runtime/test/CI",
+    "new runtime/test/CI"
+  ],
+  "commit_created": false,
+  "push_performed": false
+}

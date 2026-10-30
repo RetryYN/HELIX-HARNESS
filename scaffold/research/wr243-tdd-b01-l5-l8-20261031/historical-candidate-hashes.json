@@ -1,0 +1,60 @@
+{
+  "schema": "wr243-candidate-document-git-history.v1",
+  "evidence_kind": "scaffold",
+  "authority_effect": "none",
+  "fixed_at": "2026-10-31",
+  "meaning": "Raw L5/L8 document bytes and Git blob object IDs at F03/F04 merge revisions. These are historical checksums; current shared documents include later B01 candidate annotations and need not equal them.",
+  "records": [
+    {
+      "phase": "F03",
+      "revision": "cf31240384980220249a4f58abe62ce57d47a880",
+      "path": "docs/helix-harness/L5-detail-design/tdd-development-flow.json",
+      "sha256_raw_bytes": "a7fd79b52e6e5431ed0b5d2e72524c805e3ecdf1226c17f3ee01de5ed4dc24e0",
+      "git_blob_oid": "4246424b8dbac2234d355b3f3e640fe882eeb81b"
+    },
+    {
+      "phase": "F03",
+      "revision": "cf31240384980220249a4f58abe62ce57d47a880",
+      "path": "docs/helix-harness/L8-unit-verification/tdd-development-flow.json",
+      "sha256_raw_bytes": "3467fe21dd0ad803b9414abe4087fb2ef9088cbe94298d4371b1baed65c9396f",
+      "git_blob_oid": "e4fe4ba540cde2da35aaaa4f1caecda286f6b12d"
+    },
+    {
+      "phase": "F04",
+      "revision": "e0438a372065626ea752c31dc6c86b92d3198a9d",
+      "path": "docs/helix-harness/L5-detail-design/tdd-development-flow.json",
+      "sha256_raw_bytes": "b4b120f025efeb7fe6bfaf020d950eb7a75949baaed3268f5e3b32e88853758d",
+      "git_blob_oid": "e89f15e7b2f294e104d2a9445f7557fac8b6b945"
+    },
+    {
+      "phase": "F04",
+      "revision": "e0438a372065626ea752c31dc6c86b92d3198a9d",
+      "path": "docs/helix-harness/L8-unit-verification/tdd-development-flow.json",
+      "sha256_raw_bytes": "37aebaa7c81edd37c8b0ec97dfe7226f27e898ffa2bf1a8d2aa3ec82a4bedd9e",
+      "git_blob_oid": "a56d834e61168eeca0ec2472c260bf8651151229"
+    }
+  ],
+  "historical_binding_pins": [
+    {
+      "binding": "SCF-B-0204",
+      "revision": "cf31240384980220249a4f58abe62ce57d47a880",
+      "path": "docs/helix-harness/L5-detail-design/tdd-development-flow.json",
+      "old_pin_sha256": "a7fd79b52e6e5431ed0b5d2e72524c805e3ecdf1226c17f3ee01de5ed4dc24e0",
+      "preserved_in_current_note": true
+    },
+    {
+      "binding": "SCF-B-0208",
+      "revision": "e0438a372065626ea752c31dc6c86b92d3198a9d",
+      "path": "docs/helix-harness/L5-detail-design/tdd-development-flow.json",
+      "old_pin_sha256": "b4b120f025efeb7fe6bfaf020d950eb7a75949baaed3268f5e3b32e88853758d",
+      "preserved_in_current_note": true
+    },
+    {
+      "binding": "SCF-B-0208",
+      "revision": "e0438a372065626ea752c31dc6c86b92d3198a9d",
+      "path": "docs/helix-harness/L8-unit-verification/tdd-development-flow.json",
+      "old_pin_sha256": null,
+      "note": "SCF-B-0208 had no L8 upstream pin at this revision; actual L8 blob digest is recorded above, not retroactively represented as an old binding pin."
+    }
+  ]
+}
