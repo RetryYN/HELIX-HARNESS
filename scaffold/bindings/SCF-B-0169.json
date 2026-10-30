@@ -25,12 +25,12 @@
     },
     {
       "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
-      "sha256": "d85ff1a6db76b0b367a0ae51a5a2b82df93298f17375940d0b84c1674e9507ef",
+      "sha256": "b53f8754dfac2c069e36c6427ce1b151398c4b1ea1c81cf9185c4a38b0bb32ce",
       "note": "F13/F14 candidate source。対象pointerとauthority境界はscaffold/research/wr154-f13-recipient-design-20261030/README.md。read-only pinで採用を示さない。"
     },
     {
       "path": "docs/helix-harness/L8-unit-verification/product-template-application.json",
-      "sha256": "bc1a74cb56612e555899c585c42f2c2843b6c2ee8efce5df5c27404de4ac35bd",
+      "sha256": "da37ff653d24eb3432aea09e4aea92005050cd95316da9949ef00658c77b8a21",
       "note": "L8全体の現行source hash。F13/F14 README記載pointerは不変。ADD-47 fixed writer追加による文書hash更新であり、F13/F14候補の採用や意味変更を示さない。"
     },
     {
