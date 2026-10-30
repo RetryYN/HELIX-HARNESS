@@ -1,0 +1,1589 @@
+{
+  "work_item_id": "WR233-OS007-INDEPENDENT-REDERIVATION",
+  "target_subject": "HELIXOS-L2-007 / log-feedback-memory-lineage",
+  "step": "Step A (Pre-Comparison Blind Derivation & Freeze on #3510)",
+  "derived_by": {
+    "subagent_conversation_id": "7fa2a2e6-c87a-4f81-94b5-58dfbc7af802",
+    "caller_conversation_id": "f0ce0082-355c-460f-9086-c1b153f75eda",
+    "derived_at_utc": "2026-10-30T22:32:00Z"
+  },
+  "strict_blindness_attestation": {
+    "l5_read_count": 0,
+    "l7_read_count": 0,
+    "l8_read_count": 0,
+    "l9_read_count": 0,
+    "scaffold_research_os007_read_count": 0,
+    "github_pr_or_issue_comment_read_count": 0,
+    "forbidden_files_not_accessed": [
+      "docs/helix-os/L5-detail-design/log-feedback-memory-lineage.json",
+      "docs/helix-os/L8-unit-verification/log-feedback-memory-lineage.json",
+      "docs/helix-os/L9-integration-verification/log-feedback-memory-lineage.json",
+      "scaffold/research/*os007*"
+    ],
+    "l4_algorithm_python_document_text_handling": "Created /tmp/l4-os007-prose-only.json with algorithm_python_document_text stripped before reading; verified 0 occurrences of algorithm_python_document_text in docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json and read only via /tmp/l4-os007-prose-only.json.",
+    "upstream_files_read": [
+      {
+        "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+        "sha256": "e86254a35b476ed71ebb112e41ccd2b48f89a8d0393e6495dc11cac7a7cf4e02",
+        "selected_pointers": [
+          "/parent_basis/2",
+          "/requirements/21",
+          "/requirements/22",
+          "/requirements/23"
+        ]
+      },
+      {
+        "path": "docs/helix-os/L3-requirements/business-requirements.json",
+        "sha256": "0df11c612e3e0b531d2103d058471d5be2be8b8df965d10b69e06b0e506488c7",
+        "selected_pointers": [
+          "/parent_basis/2",
+          "/requirements/1"
+        ]
+      },
+      {
+        "path": "docs/helix-os/L10-verification/functional-verification.json",
+        "sha256": "583020f951672e48bc37fcd35cb916de5ccd9866f41dd04731f6519325ae500a",
+        "selected_pointers": [
+          "/parent_basis/2",
+          "/cases/21",
+          "/cases/22",
+          "/cases/23"
+        ]
+      },
+      {
+        "path": "docs/helix-os/L10-verification/business-verification.json",
+        "sha256": "215e1d4a99f73151aa4b3225947a65567fbc3b97bec0cf9eac8d1a6456cbc3dd",
+        "selected_pointers": [
+          "/parent_basis/2"
+        ]
+      },
+      {
+        "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
+        "sha256": "a69db9b9b13622528b96712afb6aa8f72a208629f18dc13694e96ec5b760b5b8",
+        "prose_only_copy_path": "/tmp/l4-os007-prose-only.json",
+        "prose_only_copy_sha256": "2d042cf0a20cee285b0a1969356b2af3c56cfa98846474c471a6891a367b8504",
+        "selected_pointers": [
+          "/scope",
+          "/approved_whole_objects/0",
+          "/approved_whole_objects/1",
+          "/approved_whole_objects/2",
+          "/approved_whole_objects/3",
+          "/approved_whole_objects/4",
+          "/approved_whole_objects/5",
+          "/legacy_comparison",
+          "/remaining/0",
+          "/remaining/1",
+          "/remaining/2",
+          "/remaining/3",
+          "/remaining/4",
+          "/contracts/0",
+          "/contracts/1",
+          "/contracts/2",
+          "/diagnostic_contract"
+        ]
+      }
+    ]
+  },
+  "selection_policy_and_overview": {
+    "選定理由": "承認済みL3/L10（HELIXOS-L3-007-F01〜F03 / HELIXOS-L10-007-F01〜F03）およびL4基本設計prose（HELIXOS-L4-007-F01〜F03とdiagnostic_contractのR01〜R12・全37診断code）に基づき、R01/R02相当の共通フィールド/型/lineage照合だけでなく、L4が持つすべての規則族（F01共通ログkind/state/success_evidence_claim: R01〜R03、F02 feedback原finding保全/stage記録整合/source_head結合/resolution_origin制限/未解決の解決主張禁止: R04〜R07、F03 memory正本反映先結合/state・freshness閉集合/reflection・retire順序整合/terminal再提示禁止/deliver・consume回数と状態の整合/provider memory正本化禁止: R08〜R11、全体完了主張禁止・優先順位集約・原記録保持: R12）を漏れなく網羅するよう10の代表negative行（NEG-OS007-R01〜NEG-OS007-R12）および全37診断codeの完全マトリクスを選定した。",
+    "rule_families_covered": [
+      "R01: Common string & boolean comparison primitives (field_unknown, field_conflict, boolean_unknown, boolean_conflict)",
+      "R02: Four-log common fields, closed log kind, fixture-key kind match, and log state (log_kind_unknown, log_kind_conflict, log_state_unknown, log_state_conflict, log_duplicate, log_stale)",
+      "R03: Log success_evidence_claim prohibition and per-log log_material_usable gating (log_success_claim_forbidden, boolean_unknown)",
+      "R04: Feedback original_finding dict/canonical-whole preservation and discard_original_claim prohibition (finding_missing, original_finding_changed, finding_discard_forbidden)",
+      "R05: Feedback 5-stage recording consistency, unrecorded non-null ref rejection, and stage.source_head join to context original_finding.source_head (stage_unrecorded_ref_present, field_unknown, field_conflict, boolean_unknown, boolean_conflict)",
+      "R06: Feedback resolution_origin closed-set / canonical-only enforcement and unresolved_claimed_resolved prohibition (resolution_origin_unknown, resolution_origin_forbidden, unresolved_claimed_resolved)",
+      "R07: Feedback material correspondence aggregation and non-elevation of actual_feedback_resolved",
+      "R08: Memory source fields, closed state/freshness, reflection.recorded consistency, unrecorded reflection field/order rejection, and reflection-to-source 5-field join (memory_state_unknown, memory_state_conflict, memory_freshness_unknown, memory_freshness_conflict, reflection_unrecorded_ref_present)",
+      "R09: Memory reflection.order & retire_order positive-int check and actual state=retired ordering enforcement (order_unknown, order_conflict, retire_before_reflection, retirement_basis_unknown, reflection_not_before_retire)",
+      "R10: Memory terminal/stale active resurfacing prohibition, deliver/consume count & state consistency, and provider_authority_claim prohibition (terminal_instruction_resurfaced, use_count_unknown, use_count_conflict, duplicate_successful_use, consume_without_delivery, use_state_conflict, provider_memory_authority_forbidden)",
+      "R11: Memory material correspondence and per-entry active_material_eligible isolation",
+      "R12: Boundary whole_completion_claim prohibition, violation > unknown > corresponding precedence, finding deduplication/sorting, deepcopied record retention, and all actual/effect flags forced false/none (whole_completion_forbidden, whole_claim_unknown)"
+    ]
+  },
+  "representative_negative_rows": [
+    {
+      "row_id": "NEG-OS007-R01-COMMON-PRIMITIVES",
+      "contract_id": "HELIXOS-L4-007-F01 / HELIXOS-L4-007-F02 / HELIXOS-L4-007-F03",
+      "rule_ids": [
+        "R01",
+        "R12"
+      ],
+      "選定理由": "logs/feedback/memoryの3 facetすべてで共通に使われるR01の文字列比較（非空string判定と一致判定）および真偽値比較（bool型判定と一致判定）の負例であり、片側不明（unknown）と両側既知不一致（violation）および呼出元facetへの帰属規則を代表するため選定。",
+      "negative_input_conditions": {
+        "string_unknown_case": "actualまたはcontextの比較対象stringフィールドが空文字列 \"\" または非string（null/数値/配列/オブジェクト等）",
+        "string_conflict_case": "actualとcontextの双方が非空stringで値が相違（actual != context）",
+        "boolean_unknown_case": "actualまたはcontextの比較対象boolフィールドの型がbool以外（null/string/int等）",
+        "boolean_conflict_case": "actualとcontextの双方がbool型で値が相違（actual != context）"
+      },
+      "expected_outcomes": {
+        "expected_finding_codes": [
+          {
+            "code": "field_unknown",
+            "code_table_facet": "comparison",
+            "effective_caller_facet": "logs | feedback | memory (caller facet per R01)",
+            "disposition": "unknown",
+            "target_pointer_rule": "Emitted on each side's pointer (actual pointer and/or context pointer) where the string is not a non-empty string."
+          },
+          {
+            "code": "field_conflict",
+            "code_table_facet": "comparison",
+            "effective_caller_facet": "logs | feedback | memory (caller facet per R01)",
+            "disposition": "violation",
+            "target_pointer_rule": "Emitted on the actual field pointer when both actual and context are non-empty strings and actual != context."
+          },
+          {
+            "code": "boolean_unknown",
+            "code_table_facet": "comparison",
+            "effective_caller_facet": "logs | feedback | memory (caller facet per R01)",
+            "disposition": "unknown",
+            "target_pointer_rule": "Emitted on each side's pointer where the value is not of type bool."
+          },
+          {
+            "code": "boolean_conflict",
+            "code_table_facet": "comparison",
+            "effective_caller_facet": "logs | feedback | memory (caller facet per R01)",
+            "disposition": "violation",
+            "target_pointer_rule": "Emitted on the actual boolean pointer when both actual and context are bool and actual != context."
+          }
+        ],
+        "expected_state_and_disposition": {
+          "caller_facet_correspondence": "violation if field_conflict or boolean_conflict occurs; unknown if only field_unknown or boolean_unknown occurs (with no violation in that facet).",
+          "overall_condition": "record_material_violation if any violation exists; otherwise record_material_unknown."
+        },
+        "expected_side_effects_and_return_fields": {
+          "material_flags": "For the affected log/finding/memory entry, log_material_usable[log] = false, feedback_material[finding].resolution_material_corresponding = false, or memory_material[entry].active_material_eligible = false because finding count for that item > 0.",
+          "retained_records": "retained_actual_records and retained_reference_records preserved as separate deepcopies without silent backfill.",
+          "authority_and_effect_flags": {
+            "actual_log_written": false,
+            "actual_feedback_resolved": false,
+            "actual_memory_retired": false,
+            "whole_management_complete": false,
+            "operation_effect": "none"
+          }
+        },
+        "backflow_owner": "Caller facet owner from owner_by_facet: common-log-owner (logs), feedback-source-owner (feedback), or memory-canonical-owner (memory).",
+        "uniquely_determined_by_l3_l10_and_l4_prose": [
+          "Exact finding codes (field_unknown, field_conflict, boolean_unknown, boolean_conflict) and their dispositions (unknown vs violation)",
+          "Side-attribution rule (unknown on each offending side's pointer; conflict on actual pointer)",
+          "Facet routing rule (comparison codes are placed into caller's logs/feedback/memory facet and take that facet's return_owner)",
+          "Zero silent backfill between context and actual"
+        ],
+        "left_undetermined_by_l3_l10_and_l4_prose": [
+          "Exact JSON pointer prefix formatting for actual vs context in findings (e.g. whether pointers start with /logs/... vs /actual/logs/... and /context/logs/... is fixed in L5/L8, not spelled out as a literal path template in L4 prose)",
+          "Concrete synthetic string/boolean values used in L8/L9 test fixtures"
+        ]
+      },
+      "source_pointers": [
+        "docs/helix-os/L3-requirements/functional-requirements.json#/requirements/21",
+        "docs/helix-os/L3-requirements/functional-requirements.json#/requirements/22",
+        "docs/helix-os/L3-requirements/functional-requirements.json#/requirements/23",
+        "docs/helix-os/L10-verification/functional-verification.json#/cases/21",
+        "docs/helix-os/L10-verification/functional-verification.json#/cases/22",
+        "docs/helix-os/L10-verification/functional-verification.json#/cases/23",
+        "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/codes/0",
+        "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/codes/1",
+        "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/codes/9",
+        "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/codes/10",
+        "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/rules/0",
+        "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/rules/11",
+        "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/owner_by_facet"
+      ]
+    },
+    {
+      "row_id": "NEG-OS007-R02-LOG-COMMON-FIELDS-KIND-AND-STATE",
+      "contract_id": "HELIXOS-L4-007-F01",
+      "rule_ids": [
+        "R01",
+        "R02",
+        "R03",
+        "R12"
+      ],
+      "選定理由": "HELIXOS-L3-007-F01 / HELIXOS-L10-007-F01が求める四種ログ（worker/decision/operation/verification）のBASE-01共通形式（18 common_fields）、ログ種別（log_names閉集合とfixture keyとの整合）、ログ状態（current_material / duplicate_material / stale_material / unobserved）の識別と、欠落・重複・stale・別HEADを成功証拠から分離する規則（R02/R03）を代表するため選定。",
+      "negative_input_conditions": {
+        "common_field_missing_or_mismatch": "四logのいずれかで18 common_fields（project_id, requirement_id, requirement_revision, scope, record_id, source_ref, source_revision, source_digest, actor_ref, observed_at_ref, configuration_revision, capability_revision, model_revision, causal_id, episode_ref, schema_revision, action_ref, result_ref）に空文字/非stringまたはcontextとの不一致がある（例：別HEADのsource_revision/source_digestや欠落形式）",
+        "kind_invalid_or_mismatched": "kindがlog_names（worker, decision, operation, verification）外の未知値、またはknown kindだがfixture keyのlog名と不一致、またはactual.kind != context.kind",
+        "state_invalid_or_non_current": "stateがlog_states外の未知値、actual.state != context.state、またはactual.stateがduplicate_material / stale_material / unobserved"
+      },
+      "expected_outcomes": {
+        "expected_finding_codes": [
+          {
+            "code": "field_unknown",
+            "facet": "logs",
+            "disposition": "unknown",
+            "condition": "Any of the 18 common_fields is empty/non-string on actual or context (emitted on each offending side's pointer)."
+          },
+          {
+            "code": "field_conflict",
+            "facet": "logs",
+            "disposition": "violation",
+            "condition": "Any of the 18 common_fields is known non-empty string on both sides and actual != context, OR both actual.kind and context.kind are known in log_names and actual.kind != context.kind (emitted on actual pointer)."
+          },
+          {
+            "code": "log_kind_unknown",
+            "facet": "logs",
+            "disposition": "unknown",
+            "condition": "kind on actual or context is not in log_names [worker, decision, operation, verification] (emitted on each unknown side's pointer)."
+          },
+          {
+            "code": "log_kind_conflict",
+            "facet": "logs",
+            "disposition": "violation",
+            "condition": "kind on actual or context is a known member of log_names but differs from the fixture key log_name (emitted on each mismatched side's pointer)."
+          },
+          {
+            "code": "log_state_unknown",
+            "facet": "logs",
+            "disposition": "unknown",
+            "condition": "state on actual or context is not in log_states [current_material, duplicate_material, stale_material, unobserved] (emitted on each unknown side's pointer), OR actual.state == 'unobserved' (emitted on actual state pointer)."
+          },
+          {
+            "code": "log_state_conflict",
+            "facet": "logs",
+            "disposition": "violation",
+            "condition": "Both actual.state and context.state are known in log_states and actual.state != context.state (emitted on actual state pointer)."
+          },
+          {
+            "code": "log_duplicate",
+            "facet": "logs",
+            "disposition": "unknown",
+            "condition": "actual.state == 'duplicate_material' (emitted on actual state pointer)."
+          },
+          {
+            "code": "log_stale",
+            "facet": "logs",
+            "disposition": "unknown",
+            "condition": "actual.state == 'stale_material' (emitted on actual state pointer)."
+          }
+        ],
+        "expected_state_and_disposition": {
+          "logs_facet_correspondence": "violation when any field_conflict, log_kind_conflict, or log_state_conflict is present; unknown when only field_unknown, log_kind_unknown, log_state_unknown, log_duplicate, or log_stale is present.",
+          "overall_condition": "record_material_violation or record_material_unknown following violation > unknown > corresponding."
+        },
+        "expected_side_effects_and_return_fields": {
+          "log_material_usable": "false for the affected log kind (since log_material_usable[log] is true iff actual.state == 'current_material' AND that log has 0 findings; other logs without faults remain unaffected).",
+          "retained_records": "Original log record is never discarded; retained in retained_actual_records.logs and retained_reference_records.logs.",
+          "authority_and_effect_flags": {
+            "actual_log_written": false,
+            "whole_management_complete": false,
+            "operation_effect": "none"
+          }
+        },
+        "backflow_owner": "common-log-owner",
+        "uniquely_determined_by_l3_l10_and_l4_prose": [
+          "Closed set of 4 log_names, 18 common_fields, and 4 log_states",
+          "Exact mapping from duplicate_material -> log_duplicate (unknown), stale_material -> log_stale (unknown), unobserved -> log_state_unknown (unknown)",
+          "Dual check on kind: membership in log_names, equality with fixture key (log_kind_conflict on both sides if mismatched), and actual vs context equality (field_conflict on actual)",
+          "Per-log independence of log_material_usable (fault in one log does not flip another clean log's log_material_usable to false)"
+        ],
+        "left_undetermined_by_l3_l10_and_l4_prose": [
+          "Formal BASE-01 schema/codec and real actor/model/capability/time/source qualification (explicitly deferred in /remaining/0 to L5/L8)",
+          "Formal N/A evidence type for model_revision on human records (/diagnostic_contract/common_meanings/model_revision)"
+        ]
+      },
+      "source_pointers": [
+        "docs/helix-os/L3-requirements/functional-requirements.json#/requirements/21",
+        "docs/helix-os/L10-verification/functional-verification.json#/cases/21",
+        "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/contracts/0",
+        "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/log_names",
+        "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/common_fields",
+        "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/common_meanings",
+        "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/log_states",
+        "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/codes/2",
+        "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/codes/3",
+        "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/codes/4",
+        "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/codes/5",
+        "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/codes/6",
+        "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/codes/7",
+        "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/rules/1",
+        "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/rules/2",
+        "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/remaining/0"
+      ]
+    },
+    {
+      "row_id": "NEG-OS007-R03-LOG-SUCCESS-CLAIM-FORBIDDEN",
+      "contract_id": "HELIXOS-L4-007-F01",
+      "rule_ids": [
+        "R03",
+        "R12"
+      ],
+      "選定理由": "L3-007-F01 / L10-007-F01の「証拠の存在で承認/完了にしない」「原ログがあることと正式成功証拠を別にする」に対応するR03の直接拒否規則（success_evidence_claim=trueおよび非bool）を代表するため選定。",
+      "negative_input_conditions": {
+        "claim_true": "actualの当該logで success_evidence_claim == true",
+        "claim_non_bool": "actualの当該logで success_evidence_claim がbool型以外（null/string/int等）"
+      },
+      "expected_outcomes": {
+        "expected_finding_codes": [
+          {
+            "code": "log_success_claim_forbidden",
+            "facet": "logs",
+            "disposition": "violation",
+            "condition": "actual log success_evidence_claim == true"
+          },
+          {
+            "code": "boolean_unknown",
+            "facet": "logs",
+            "disposition": "unknown",
+            "condition": "actual log success_evidence_claim is not a bool"
+          }
+        ],
+        "expected_state_and_disposition": {
+          "logs_facet_correspondence": "violation when success_evidence_claim is true; unknown when non-bool (and no other violation in logs).",
+          "overall_condition": "record_material_violation (when true) or record_material_unknown (when non-bool)."
+        },
+        "expected_side_effects_and_return_fields": {
+          "log_material_usable": "false for the log where log_success_claim_forbidden or boolean_unknown is emitted (since finding count for that log > 0).",
+          "actual_log_written": false,
+          "whole_management_complete": false,
+          "operation_effect": "none"
+        },
+        "backflow_owner": "common-log-owner",
+        "uniquely_determined_by_l3_l10_and_l4_prose": [
+          "success_evidence_claim=true unconditionally produces log_success_claim_forbidden (violation) even if all 18 common_fields and state='current_material' match context",
+          "Non-bool success_evidence_claim produces boolean_unknown (unknown) in logs facet",
+          "log_material_usable becomes false for that log because finding count > 0"
+        ],
+        "left_undetermined_by_l3_l10_and_l4_prose": [
+          "Concrete pointer path string for success_evidence_claim in L8/L9 fixtures"
+        ]
+      },
+      "source_pointers": [
+        "docs/helix-os/L3-requirements/functional-requirements.json#/requirements/21",
+        "docs/helix-os/L10-verification/functional-verification.json#/cases/21",
+        "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/contracts/0",
+        "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/codes/8",
+        "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/codes/9",
+        "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/rules/2",
+        "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/limit"
+      ]
+    },
+    {
+      "row_id": "NEG-OS007-R04-FEEDBACK-ORIGINAL-FINDING-PRESERVATION",
+      "contract_id": "HELIXOS-L4-007-F02",
+      "rule_ids": [
+        "R01",
+        "R04",
+        "R07",
+        "R12"
+      ],
+      "選定理由": "HELIXOS-L3-007-F02 / HELIXOS-L10-007-F02が求める「未ack findingと元source HEADを保持する」「projection/通知の消費で原findingを失わない」に対応するR04（original_finding欠落・改変・破棄主張の拒否）を代表するため選定。",
+      "negative_input_conditions": {
+        "finding_not_dict": "feedback（unacked, acked_pending, resolved）のいずれかでactualまたはcontextのoriginal_findingがdictでない（null等）",
+        "original_finding_mutated": "actualとcontextのoriginal_findingが両方dictだがcanonical JSON全体が異なる（7つのfeedback_fieldsの変更または追加/欠落キーによる相違）",
+        "discard_claim": "actualのdiscard_original_claimがtrue、または非bool"
+      },
+      "expected_outcomes": {
+        "expected_finding_codes": [
+          {
+            "code": "finding_missing",
+            "facet": "feedback",
+            "disposition": "unknown",
+            "condition": "original_finding is not a dict on actual and/or context (emitted on each non-dict side's pointer)."
+          },
+          {
+            "code": "original_finding_changed",
+            "facet": "feedback",
+            "disposition": "violation",
+            "condition": "Both actual and context original_finding are dicts and their canonical JSON wholes differ (emitted on actual original_finding pointer)."
+          },
+          {
+            "code": "field_unknown",
+            "facet": "feedback",
+            "disposition": "unknown",
+            "condition": "When both original_finding are dicts, any of the 7 feedback_fields (finding_id, project_id, requirement_revision, scope, source_head, source_ref, source_digest) is empty/non-string on actual or context."
+          },
+          {
+            "code": "field_conflict",
+            "facet": "feedback",
+            "disposition": "violation",
+            "condition": "When both original_finding are dicts, any of the 7 feedback_fields is known non-empty string on both sides and actual != context."
+          },
+          {
+            "code": "finding_discard_forbidden",
+            "facet": "feedback",
+            "disposition": "violation",
+            "condition": "actual discard_original_claim == true."
+          },
+          {
+            "code": "boolean_unknown",
+            "facet": "feedback",
+            "disposition": "unknown",
+            "condition": "actual discard_original_claim is not a bool."
+          }
+        ],
+        "expected_state_and_disposition": {
+          "feedback_facet_correspondence": "violation if original_finding_changed, field_conflict, or finding_discard_forbidden occurs; unknown if only finding_missing, field_unknown, or boolean_unknown occurs.",
+          "overall_condition": "record_material_violation or record_material_unknown."
+        },
+        "expected_side_effects_and_return_fields": {
+          "feedback_material": "resolution_material_corresponding = false for the affected finding; actual_feedback_resolved = false.",
+          "retained_records": "Even when actual original_finding is missing/unknown or mutated, reference original record is preserved separately in retained_reference_records and never used to silently overwrite or complete actual.",
+          "authority_and_effect_flags": {
+            "actual_feedback_resolved": false,
+            "whole_management_complete": false,
+            "operation_effect": "none"
+          }
+        },
+        "backflow_owner": "feedback-source-owner",
+        "uniquely_determined_by_l3_l10_and_l4_prose": [
+          "Closed set of 3 feedback_names (unacked, acked_pending, resolved) and 7 feedback_fields (finding_id, project_id, requirement_revision, scope, source_head, source_ref, source_digest)",
+          "Simultaneous emission of original_finding_changed AND per-field R01 comparison (field_unknown / field_conflict) when both original_finding are dicts with different canonical JSON",
+          "Explicit prohibition of discard_original_claim=true via finding_discard_forbidden",
+          "Strict separation of retained_actual_records and retained_reference_records without silent completion"
+        ],
+        "left_undetermined_by_l3_l10_and_l4_prose": [
+          "Real persistence/journal recovery and partial scan completeness markers for unacked findings (/remaining/1)"
+        ]
+      },
+      "source_pointers": [
+        "docs/helix-os/L3-requirements/functional-requirements.json#/requirements/22",
+        "docs/helix-os/L10-verification/functional-verification.json#/cases/22",
+        "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/contracts/1",
+        "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/feedback_names",
+        "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/feedback_fields",
+        "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/codes/11",
+        "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/codes/12",
+        "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/codes/30",
+        "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/rules/3",
+        "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/remaining/1"
+      ]
+    },
+    {
+      "row_id": "NEG-OS007-R05-FEEDBACK-STAGE-RECORDING-AND-SOURCE-HEAD-JOIN",
+      "contract_id": "HELIXOS-L4-007-F02",
+      "rule_ids": [
+        "R01",
+        "R05",
+        "R07",
+        "R12"
+      ],
+      "選定理由": "feedbackの5段階（intake, classify, ack, pending, resolution）の個別記録保持、未記録段階への不正参照混入拒否（stage_unrecorded_ref_present）、および各段階のsource_headとcontext original_finding.source_headの結合検証（source HEAD不一致の拒否）を定めるR05を代表するため選定。",
+      "negative_input_conditions": {
+        "recorded_mismatch_or_non_bool": "5段階（intake, classify, ack, pending, resolution）のいずれかでrecordedが非boolまたはactual.recorded != context.recorded",
+        "unrecorded_ref_present": "actualまたはcontextでstage.recorded == falseであるにもかかわらず、stage_fields（record_ref, source_head, actor_ref, observed_at_ref）のいずれかに非null値が存在する",
+        "recorded_stage_field_or_source_head_mismatch": "片側以上でstage.recorded == trueのとき、4つのstage_fieldsのいずれかが空/非stringまたはactual != context、あるいはactual stage.source_headがcontext original_finding.source_headと不一致"
+      },
+      "expected_outcomes": {
+        "expected_finding_codes": [
+          {
+            "code": "boolean_unknown",
+            "facet": "feedback",
+            "disposition": "unknown",
+            "condition": "stage.recorded is not bool on actual or context."
+          },
+          {
+            "code": "boolean_conflict",
+            "facet": "feedback",
+            "disposition": "violation",
+            "condition": "stage.recorded is bool on both sides and actual.recorded != context.recorded."
+          },
+          {
+            "code": "stage_unrecorded_ref_present",
+            "facet": "feedback",
+            "disposition": "violation",
+            "condition": "On actual or context, stage.recorded == false and at least one of [record_ref, source_head, actor_ref, observed_at_ref] is non-null (emitted on the stage whole pointer)."
+          },
+          {
+            "code": "field_unknown",
+            "facet": "feedback",
+            "disposition": "unknown",
+            "condition": "When at least one side has stage.recorded == true, any of the 4 stage_fields is empty/non-string on actual or context, or actual stage.source_head / context original_finding.source_head is empty/non-string during the source_head join."
+          },
+          {
+            "code": "field_conflict",
+            "facet": "feedback",
+            "disposition": "violation",
+            "condition": "When at least one side has stage.recorded == true, any of the 4 stage_fields differs between actual and context, OR actual stage.source_head != context original_finding.source_head (emitted on actual stage.source_head pointer)."
+          }
+        ],
+        "expected_state_and_disposition": {
+          "feedback_facet_correspondence": "violation if boolean_conflict, stage_unrecorded_ref_present, or field_conflict occurs; unknown if only boolean_unknown or field_unknown occurs.",
+          "overall_condition": "record_material_violation or record_material_unknown."
+        },
+        "expected_side_effects_and_return_fields": {
+          "feedback_material": "Retains all actual stage recorded flags; resolution_material_corresponding = false for the affected finding if any finding is emitted on it.",
+          "both_unrecorded_exemption": "When both actual and context have stage.recorded == false and all 4 stage_fields are null, no finding is emitted (future receipts are not required)."
+        },
+        "backflow_owner": "feedback-source-owner",
+        "uniquely_determined_by_l3_l10_and_l4_prose": [
+          "Closed list of 5 stages (intake, classify, ack, pending, resolution) and 4 stage_fields (record_ref, source_head, actor_ref, observed_at_ref)",
+          "stage_unrecorded_ref_present emitted on the stage whole pointer when recorded=false and any stage_field is non-null",
+          "Mandatory join of actual stage.source_head to context original_finding.source_head whenever at least one side has stage.recorded=true and context original_finding is a dict",
+          "Deduplication in R12 ensures that if actual stage.source_head conflicts with both context stage.source_head and context original_finding.source_head at the same pointer, duplicate (code, pointer, return_owner) tuples are deduplicated"
+        ],
+        "left_undetermined_by_l3_l10_and_l4_prose": [
+          "Concrete stage receipt identifiers and timestamps used in downstream test fixtures"
+        ]
+      },
+      "source_pointers": [
+        "docs/helix-os/L3-requirements/functional-requirements.json#/requirements/22",
+        "docs/helix-os/L10-verification/functional-verification.json#/cases/22",
+        "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/contracts/1",
+        "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/stages",
+        "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/stage_fields",
+        "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/codes/13",
+        "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/rules/4",
+        "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/rules/6"
+      ]
+    },
+    {
+      "row_id": "NEG-OS007-R06-R07-FEEDBACK-RESOLUTION-ORIGIN-AND-UNRESOLVED-CLAIM",
+      "contract_id": "HELIXOS-L4-007-F02",
+      "rule_ids": [
+        "R06",
+        "R07",
+        "R12"
+      ],
+      "選定理由": "HELIXOS-L3-007-F02 / HELIXOS-L10-007-F02が求める「受領や分類だけを解決にせず」「prose handoverだけで解決…受領を解決へ昇格しない」に対応するR06/R07（resolution_originの閉集合・正本解決source以外の禁止、未解決での解決主張禁止、通知/projection表示値の不使用）を代表するため選定。",
+      "negative_input_conditions": {
+        "origin_unknown": "actual.stages.resolution.recorded == true のとき、actualまたはcontextのresolution_originがresolution_origins閉集合（canonical_resolution_source, ack, classification, prose, notification, memory）外の値",
+        "origin_forbidden": "actual.stages.resolution.recorded == true のとき、actual.resolution_originがack, classification, prose, notification, memoryのいずれか（canonical_resolution_source以外）",
+        "origin_conflict": "actual.stages.resolution.recorded == true のとき、actualとcontextのresolution_originが両方既知だが不一致",
+        "unresolved_claimed_resolved": "actual.resolved_claim == true だが、actual.stages.resolution.recorded != true または当該findingに1件以上のfindingが存在する（あるいはresolved_claimが非bool）"
+      },
+      "expected_outcomes": {
+        "expected_finding_codes": [
+          {
+            "code": "resolution_origin_unknown",
+            "facet": "feedback",
+            "disposition": "unknown",
+            "condition": "Evaluated only when actual resolution.recorded == true: actual or context resolution_origin is not in [canonical_resolution_source, ack, classification, prose, notification, memory] (emitted on each unknown side's pointer)."
+          },
+          {
+            "code": "field_conflict",
+            "facet": "feedback",
+            "disposition": "violation",
+            "condition": "Evaluated only when actual resolution.recorded == true: both actual and context resolution_origin are in resolution_origins and actual != context (emitted on actual resolution_origin pointer)."
+          },
+          {
+            "code": "resolution_origin_forbidden",
+            "facet": "feedback",
+            "disposition": "violation",
+            "condition": "Evaluated only when actual resolution.recorded == true: actual resolution_origin is in {ack, classification, prose, notification, memory} (emitted on actual resolution_origin pointer)."
+          },
+          {
+            "code": "boolean_unknown",
+            "facet": "feedback",
+            "disposition": "unknown",
+            "condition": "actual resolved_claim is not a bool."
+          },
+          {
+            "code": "unresolved_claimed_resolved",
+            "facet": "feedback",
+            "disposition": "violation",
+            "condition": "actual resolved_claim == true AND (actual resolution.recorded != true OR the finding has any diagnostic finding > 0)."
+          }
+        ],
+        "expected_state_and_disposition": {
+          "feedback_facet_correspondence": "violation when resolution_origin_forbidden, field_conflict, or unresolved_claimed_resolved is emitted; unknown when only resolution_origin_unknown or boolean_unknown is emitted.",
+          "overall_condition": "record_material_violation or record_material_unknown."
+        },
+        "expected_side_effects_and_return_fields": {
+          "resolution_material_corresponding": "false whenever resolution.recorded != true, resolution_origin != 'canonical_resolution_source', or the finding has > 0 findings.",
+          "actual_feedback_resolved": "Always false (even when resolution_material_corresponding is true).",
+          "notification_or_projection_display_ignored": "Notification/projection display values are not used to establish resolution."
+        },
+        "backflow_owner": "feedback-source-owner",
+        "uniquely_determined_by_l3_l10_and_l4_prose": [
+          "Gating condition: resolution_origin is evaluated ONLY when actual resolution.recorded == true",
+          "Closed set of 6 resolution_origins and exact set of 5 forbidden origins (ack, classification, prose, notification, memory)",
+          "Trigger condition for unresolved_claimed_resolved: resolved_claim == true when either resolution is unrecorded or ANY finding exists on that feedback item",
+          "actual_feedback_resolved is unconditionally false"
+        ],
+        "left_undetermined_by_l3_l10_and_l4_prose": [
+          "Sufficient conditions for real domain resolution and formal finding schemas owned by each meaning/verification owner (/remaining/1)"
+        ]
+      },
+      "source_pointers": [
+        "docs/helix-os/L3-requirements/functional-requirements.json#/requirements/22",
+        "docs/helix-os/L10-verification/functional-verification.json#/cases/22",
+        "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/contracts/1",
+        "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/resolution_origins",
+        "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/codes/14",
+        "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/codes/15",
+        "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/codes/16",
+        "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/rules/5",
+        "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/rules/6",
+        "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/remaining/1"
+      ]
+    },
+    {
+      "row_id": "NEG-OS007-R08-MEMORY-SOURCE-STATE-FRESHNESS-AND-REFLECTION-JOIN",
+      "contract_id": "HELIXOS-L4-007-F03",
+      "rule_ids": [
+        "R01",
+        "R08",
+        "R11",
+        "R12"
+      ],
+      "選定理由": "HELIXOS-L3-007-F03 / HELIXOS-L10-007-F03が求める「memory sourceと責務正本反映先のexact revision/digest/ownerを結ぶ」「反映元/反映先revision・retire/利用状態を辿る」に対応するR08（10 memory_fields、memory_states/memory_freshness閉集合、reflection未記録時の非null参照拒否、9 reflection_fieldsとsource 5項目の結合照合）を代表するため選定。",
+      "negative_input_conditions": {
+        "memory_source_field_fault": "4種のmemory（pending_reflection, retired, expired, consumed）のいずれかでsourceの10 memory_fields（entry_id, project_id, requirement_revision, scope, source_ref, source_revision, source_digest, responsibility_ref, original_content_ref, episode_ref）に空/非stringまたはcontextとの不一致がある",
+        "state_or_freshness_fault": "stateがmemory_states（active, retired, expired, consumed）外またはactual != context、あるいはfreshnessがmemory_freshness（current_material, stale_material）外またはactual != context",
+        "reflection_unrecorded_ref_present": "actualまたはcontextでreflection.recorded == falseであるにもかかわらず、9つのreflection_fieldsまたはreflection.orderのいずれかに非null値が存在する",
+        "reflection_fields_or_source_join_mismatch": "片側以上でreflection.recorded == trueのとき、9つのreflection_fields（reflection_ref, source_entry_id, source_revision, source_digest, target_canonical_ref, target_revision, target_content_digest, responsibility_ref, episode_ref）に空/非stringまたはactual != contextがある、あるいはactual reflectionの5項目（source_entry_id, source_revision, source_digest, responsibility_ref, episode_ref）がcontext sourceの対応5項目（entry_id, source_revision, source_digest, responsibility_ref, episode_ref）と不一致"
+      },
+      "expected_outcomes": {
+        "expected_finding_codes": [
+          {
+            "code": "memory_state_unknown",
+            "facet": "memory",
+            "disposition": "unknown",
+            "condition": "state on actual or context is not in [active, retired, expired, consumed] (emitted on each unknown side's pointer)."
+          },
+          {
+            "code": "memory_state_conflict",
+            "facet": "memory",
+            "disposition": "violation",
+            "condition": "Both actual and context state are in memory_states and actual.state != context.state (emitted on actual state pointer)."
+          },
+          {
+            "code": "memory_freshness_unknown",
+            "facet": "memory",
+            "disposition": "unknown",
+            "condition": "freshness on actual or context is not in [current_material, stale_material] (emitted on each unknown side's pointer)."
+          },
+          {
+            "code": "memory_freshness_conflict",
+            "facet": "memory",
+            "disposition": "violation",
+            "condition": "Both actual and context freshness are in memory_freshness and actual.freshness != context.freshness (emitted on actual freshness pointer)."
+          },
+          {
+            "code": "reflection_unrecorded_ref_present",
+            "facet": "memory",
+            "disposition": "violation",
+            "condition": "On actual or context, reflection.recorded == false and any of the 9 reflection_fields or reflection.order is non-null (emitted on reflection whole pointer)."
+          },
+          {
+            "code": "field_unknown",
+            "facet": "memory",
+            "disposition": "unknown",
+            "condition": "Empty/non-string in any of the 10 source memory_fields, or (when at least one side has reflection.recorded == true) in any of the 9 reflection_fields or the 5 joined source fields."
+          },
+          {
+            "code": "field_conflict",
+            "facet": "memory",
+            "disposition": "violation",
+            "condition": "Mismatch between actual and context in any of the 10 source memory_fields, or (when at least one side has reflection.recorded == true) in any of the 9 reflection_fields, or between actual reflection.{source_entry_id, source_revision, source_digest, responsibility_ref, episode_ref} and context source.{entry_id, source_revision, source_digest, responsibility_ref, episode_ref}."
+          },
+          {
+            "code": "boolean_unknown",
+            "facet": "memory",
+            "disposition": "unknown",
+            "condition": "reflection.recorded is not a bool on actual or context."
+          },
+          {
+            "code": "boolean_conflict",
+            "facet": "memory",
+            "disposition": "violation",
+            "condition": "reflection.recorded is bool on both sides and actual.reflection.recorded != context.reflection.recorded."
+          }
+        ],
+        "expected_state_and_disposition": {
+          "memory_facet_correspondence": "violation if any *_conflict or reflection_unrecorded_ref_present occurs; unknown if only *_unknown occurs.",
+          "overall_condition": "record_material_violation or record_material_unknown."
+        },
+        "expected_side_effects_and_return_fields": {
+          "memory_material": "Retains actual state, freshness, and reflection.recorded; active_material_eligible = false for the affected entry if any finding is emitted on it.",
+          "actual_memory_retired": false,
+          "whole_management_complete": false,
+          "operation_effect": "none"
+        },
+        "backflow_owner": "memory-canonical-owner",
+        "uniquely_determined_by_l3_l10_and_l4_prose": [
+          "Closed sets of 4 memory_names, 10 memory_fields, 9 reflection_fields, 4 memory_states, and 2 memory_freshness values",
+          "Exact 5-field join mapping between actual.reflection (source_entry_id, source_revision, source_digest, responsibility_ref, episode_ref) and context.source (entry_id, source_revision, source_digest, responsibility_ref, episode_ref)",
+          "Inclusion of reflection.order in the non-null check for reflection_unrecorded_ref_present when reflection.recorded == false"
+        ],
+        "left_undetermined_by_l3_l10_and_l4_prose": [
+          "Real target identity / durable write verification / physical target file realpath check (/remaining/2)"
+        ]
+      },
+      "source_pointers": [
+        "docs/helix-os/L3-requirements/functional-requirements.json#/requirements/23",
+        "docs/helix-os/L10-verification/functional-verification.json#/cases/23",
+        "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/contracts/2",
+        "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/memory_names",
+        "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/memory_fields",
+        "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/reflection_fields",
+        "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/memory_states",
+        "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/memory_freshness",
+        "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/codes/17",
+        "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/codes/18",
+        "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/codes/19",
+        "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/codes/20",
+        "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/codes/21",
+        "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/rules/7",
+        "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/remaining/2"
+      ]
+    },
+    {
+      "row_id": "NEG-OS007-R09-MEMORY-RETIRE-BEFORE-REFLECTION-AND-ORDERING",
+      "contract_id": "HELIXOS-L4-007-F03",
+      "rule_ids": [
+        "R09",
+        "R11",
+        "R12"
+      ],
+      "選定理由": "HELIXOS-L3-007-F03 / HELIXOS-L10-007-F03の「memory内容を該当責務の正本へ反映してからretireし」「負例：未反映のretire」に対応するR09（reflection.order / retire_orderの正整数検査、actual state=retired時の未反映retire拒否・反映順序逆転拒否・retire根拠不明識別）を代表するため選定。",
+      "negative_input_conditions": {
+        "reflection_order_invalid_or_conflict": "片側以上でreflection.recorded == trueのとき、actualまたはcontextのreflection.orderが正のintでない（null, 0, 負数, bool, string等）、または両側正intでactual != context",
+        "retire_without_reflection": "actual.state == 'retired' のとき、actual.reflection.recorded == false（未反映のretire）",
+        "retirement_basis_non_bool": "actual.state == 'retired' のとき、actual.reflection.recorded がbool型でない（trueでもfalseでもない）",
+        "retire_order_invalid_or_conflict": "actual.state == 'retired' のとき、actualまたはcontextのretire_orderが正のintでない、または両側正intでactual != context",
+        "reflection_not_before_retire": "actual.state == 'retired' かつ actual.reflection.recorded == true かつ actualのreflection.orderとretire_orderが共に正intで、actual.reflection.order >= actual.retire_order"
+      },
+      "expected_outcomes": {
+        "expected_finding_codes": [
+          {
+            "code": "order_unknown",
+            "facet": "memory",
+            "disposition": "unknown",
+            "condition": "When at least one side has reflection.recorded == true and reflection.order on actual or context is not a positive int (excluding bool); OR when actual.state == 'retired' and retire_order on actual or context is not a positive int (excluding bool) (emitted on each invalid side's pointer)."
+          },
+          {
+            "code": "order_conflict",
+            "facet": "memory",
+            "disposition": "violation",
+            "condition": "When at least one side has reflection.recorded == true and both sides have positive int reflection.order with actual != context; OR when actual.state == 'retired' and both sides have positive int retire_order with actual != context (emitted on actual order pointer)."
+          },
+          {
+            "code": "retire_before_reflection",
+            "facet": "memory",
+            "disposition": "violation",
+            "condition": "actual.state == 'retired' AND actual.reflection.recorded == false."
+          },
+          {
+            "code": "retirement_basis_unknown",
+            "facet": "memory",
+            "disposition": "unknown",
+            "condition": "actual.state == 'retired' AND actual.reflection.recorded is neither bool true nor bool false."
+          },
+          {
+            "code": "reflection_not_before_retire",
+            "facet": "memory",
+            "disposition": "violation",
+            "condition": "actual.state == 'retired' AND actual.reflection.recorded == true AND both actual.reflection.order and actual.retire_order are positive ints AND actual.reflection.order >= actual.retire_order."
+          }
+        ],
+        "expected_state_and_disposition": {
+          "memory_facet_correspondence": "violation when retire_before_reflection, reflection_not_before_retire, or order_conflict occurs; unknown when only order_unknown or retirement_basis_unknown occurs.",
+          "overall_condition": "record_material_violation or record_material_unknown."
+        },
+        "expected_side_effects_and_return_fields": {
+          "context_only_retired_guard": "If actual.state != 'retired' (even if context.state == 'retired'), the retire-specific checks (retire_before_reflection, retirement_basis_unknown, retire_order check, reflection_not_before_retire) are NOT executed.",
+          "actual_memory_retired": "Always false (ordinal ordering check is synthetic within the episode and does not execute a real writer)."
+        },
+        "backflow_owner": "memory-canonical-owner",
+        "uniquely_determined_by_l3_l10_and_l4_prose": [
+          "Positive integer definition explicitly excludes Python bool (isinstance(v, int) and not isinstance(v, bool) and v > 0)",
+          "Strict gating of retire checks on actual.state == 'retired' (explicitly NOT triggered when only context.state == 'retired')",
+          "Strict inequality required for valid retirement ordering: reflection.order < retire_order (reflection.order >= retire_order emits reflection_not_before_retire)"
+        ],
+        "left_undetermined_by_l3_l10_and_l4_prose": [
+          "Exact pointer chosen for retire_before_reflection, retirement_basis_unknown, and reflection_not_before_retire (e.g., whether attached to state, reflection.recorded, or retire_order pointer in L5/L8)",
+          "Real custody/timestamp proof of ordering beyond synthetic episode ordinal (/remaining/3)"
+        ]
+      },
+      "source_pointers": [
+        "docs/helix-os/L3-requirements/functional-requirements.json#/requirements/23",
+        "docs/helix-os/L10-verification/functional-verification.json#/cases/23",
+        "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/contracts/2",
+        "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/codes/22",
+        "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/codes/31",
+        "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/codes/32",
+        "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/codes/33",
+        "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/codes/34",
+        "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/rules/8",
+        "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/remaining/3"
+      ]
+    },
+    {
+      "row_id": "NEG-OS007-R10A-MEMORY-TERMINAL-OR-STALE-RESURFACED",
+      "contract_id": "HELIXOS-L4-007-F03",
+      "rule_ids": [
+        "R10",
+        "R11",
+        "R12"
+      ],
+      "選定理由": "HELIXOS-L3-007-F03 / HELIXOS-L10-007-F03が求める「古い指示・期限切れ・消費済み指示を再提示しない」「負例：terminal receiptのactive表示」に対応するR10前半（active_instruction_present検査とterminal_instruction_resurfaced）を代表するため選定。",
+      "negative_input_conditions": {
+        "active_instruction_non_bool": "actualのactive_instruction_presentがbool型でない",
+        "terminal_or_stale_resurfaced": "actualのactive_instruction_present == true かつ（actual.state != 'active' [すなわちretired, expired, consumedのいずれか] または actual.freshness != 'current_material' [すなわちstale_material等]）"
+      },
+      "expected_outcomes": {
+        "expected_finding_codes": [
+          {
+            "code": "boolean_unknown",
+            "facet": "memory",
+            "disposition": "unknown",
+            "condition": "actual active_instruction_present is not a bool."
+          },
+          {
+            "code": "terminal_instruction_resurfaced",
+            "facet": "memory",
+            "disposition": "violation",
+            "condition": "actual active_instruction_present == true AND (actual.state != 'active' OR actual.freshness != 'current_material')."
+          }
+        ],
+        "expected_state_and_disposition": {
+          "memory_facet_correspondence": "violation when terminal_instruction_resurfaced is emitted; unknown when only boolean_unknown is emitted.",
+          "overall_condition": "record_material_violation or record_material_unknown."
+        },
+        "expected_side_effects_and_return_fields": {
+          "active_material_eligible": "false for any entry where state != 'active', freshness != 'current_material', or any finding > 0.",
+          "actual_memory_retired": false
+        },
+        "backflow_owner": "memory-canonical-owner",
+        "uniquely_determined_by_l3_l10_and_l4_prose": [
+          "Exact boolean predicate for terminal_instruction_resurfaced: actual.active_instruction_present is True and (actual.state != 'active' or actual.freshness != 'current_material')",
+          "active_material_eligible is true iff actual.state == 'active' and actual.freshness == 'current_material' and finding count for that entry == 0"
+        ],
+        "left_undetermined_by_l3_l10_and_l4_prose": [
+          "Expiry clock injection, compaction tombstone redaction, and physical surface budget clipping (/remaining/2)"
+        ]
+      },
+      "source_pointers": [
+        "docs/helix-os/L3-requirements/functional-requirements.json#/requirements/23",
+        "docs/helix-os/L10-verification/functional-verification.json#/cases/23",
+        "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/contracts/2",
+        "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/codes/9",
+        "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/codes/23",
+        "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/rules/9",
+        "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/rules/10"
+      ]
+    },
+    {
+      "row_id": "NEG-OS007-R10B-MEMORY-DELIVERY-CONSUME-COUNTS-AND-USE-STATE",
+      "contract_id": "HELIXOS-L4-007-F03",
+      "rule_ids": [
+        "R10",
+        "R11",
+        "R12"
+      ],
+      "選定理由": "HELIXOS-L3-007-F03 / HELIXOS-L10-007-F03およびL4 HELIXOS-L4-007-F03の「論理成功の二重deliver/consume、delivery成功なしのconsume…を拒否する」に対応するR10中盤（deliver_success_count / consume_success_countの非負整数検査、context不一致、二重利用、未配信消費、stateとconsume数の矛盾）を代表するため選定。",
+      "negative_input_conditions": {
+        "count_unknown": "deliver_success_countまたはconsume_success_countがactualまたはcontextで非負intでない（負数、bool、null、string等）",
+        "count_conflict": "deliver_success_countまたはconsume_success_countが両側で既知の非負intだがactual != context",
+        "duplicate_use": "actualのdeliver_success_count > 1 または actualのconsume_success_count > 1",
+        "consume_without_delivery": "actualのdeliver_success_countとconsume_success_countが共に既知の非負intで、actual.consume_success_count > actual.deliver_success_count",
+        "use_state_conflict": "actualのconsume_success_countが既知の非負intで、(actual.state == 'active' かつ consume_success_count > 0) または (actual.state == 'consumed' かつ consume_success_count == 0)"
+      },
+      "expected_outcomes": {
+        "expected_finding_codes": [
+          {
+            "code": "use_count_unknown",
+            "facet": "memory",
+            "disposition": "unknown",
+            "condition": "deliver_success_count or consume_success_count on actual or context is not a non-negative int (excluding bool) (emitted on each invalid side's pointer)."
+          },
+          {
+            "code": "use_count_conflict",
+            "facet": "memory",
+            "disposition": "violation",
+            "condition": "deliver_success_count or consume_success_count is a known non-negative int on both sides and actual != context (emitted on actual count pointer)."
+          },
+          {
+            "code": "duplicate_successful_use",
+            "facet": "memory",
+            "disposition": "violation",
+            "condition": "actual deliver_success_count > 1 or actual consume_success_count > 1 (emitted on the offending actual count pointer)."
+          },
+          {
+            "code": "consume_without_delivery",
+            "facet": "memory",
+            "disposition": "violation",
+            "condition": "Both actual deliver_success_count and actual consume_success_count are known non-negative ints and consume_success_count > deliver_success_count."
+          },
+          {
+            "code": "use_state_conflict",
+            "facet": "memory",
+            "disposition": "violation",
+            "condition": "actual consume_success_count is a known non-negative int and ((actual.state == 'active' and consume_success_count > 0) or (actual.state == 'consumed' and consume_success_count == 0))."
+          }
+        ],
+        "expected_state_and_disposition": {
+          "memory_facet_correspondence": "violation if any of use_count_conflict, duplicate_successful_use, consume_without_delivery, or use_state_conflict occurs; unknown if only use_count_unknown occurs.",
+          "overall_condition": "record_material_violation or record_material_unknown."
+        },
+        "expected_side_effects_and_return_fields": {
+          "active_material_eligible": "false for the affected entry.",
+          "physical_retry_distinction": "Counts represent logical successful effect counts for the entry; physical retries without duplicate logical success are not conflated with duplicate_successful_use (/remaining/3)."
+        },
+        "backflow_owner": "memory-canonical-owner",
+        "uniquely_determined_by_l3_l10_and_l4_prose": [
+          "Non-negative int domain (0, 1, 2, ...) excluding bool for deliver_success_count and consume_success_count",
+          "Threshold > 1 for duplicate_successful_use on actual deliver_success_count and actual consume_success_count",
+          "Cross-field inequality consume_success_count > deliver_success_count for consume_without_delivery",
+          "Exact state-vs-count combinations for use_state_conflict: (state == 'active' and consume > 0) or (state == 'consumed' and consume == 0)"
+        ],
+        "left_undetermined_by_l3_l10_and_l4_prose": [
+          "Physical at-least-once delivery transport and SQLite coordination lock/fencing mechanics (/legacy_comparison/consumer_boundary, /remaining/2, /remaining/3)"
+        ]
+      },
+      "source_pointers": [
+        "docs/helix-os/L3-requirements/functional-requirements.json#/requirements/23",
+        "docs/helix-os/L10-verification/functional-verification.json#/cases/23",
+        "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/contracts/2",
+        "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/codes/24",
+        "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/codes/25",
+        "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/codes/26",
+        "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/codes/35",
+        "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/codes/36",
+        "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/rules/9",
+        "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/remaining/3"
+      ]
+    },
+    {
+      "row_id": "NEG-OS007-R10C-PROVIDER-MEMORY-AUTHORITY-FORBIDDEN",
+      "contract_id": "HELIXOS-L4-007-F03",
+      "rule_ids": [
+        "R10",
+        "R11",
+        "R12"
+      ],
+      "選定理由": "HELIXOS-L3-007-F03 / HELIXOS-L10-007-F03の「provider memoryを要求や継続状態の正本にせず」「負例：memoryだけから正本判断」に対応するR10末尾（provider_authority_claim=trueおよび非boolの拒否）を代表するため選定。",
+      "negative_input_conditions": {
+        "provider_claim_true": "actualの当該memory entryで provider_authority_claim == true",
+        "provider_claim_non_bool": "actualの当該memory entryで provider_authority_claim がbool型でない"
+      },
+      "expected_outcomes": {
+        "expected_finding_codes": [
+          {
+            "code": "provider_memory_authority_forbidden",
+            "facet": "memory",
+            "disposition": "violation",
+            "condition": "actual provider_authority_claim == true."
+          },
+          {
+            "code": "boolean_unknown",
+            "facet": "memory",
+            "disposition": "unknown",
+            "condition": "actual provider_authority_claim is not a bool."
+          }
+        ],
+        "expected_state_and_disposition": {
+          "memory_facet_correspondence": "violation when provider_authority_claim == true; unknown when non-bool.",
+          "overall_condition": "record_material_violation or record_material_unknown."
+        },
+        "expected_side_effects_and_return_fields": {
+          "active_material_eligible": "false for that memory entry because finding count > 0.",
+          "actual_memory_retired": false,
+          "whole_management_complete": false,
+          "operation_effect": "none"
+        },
+        "backflow_owner": "memory-canonical-owner",
+        "uniquely_determined_by_l3_l10_and_l4_prose": [
+          "provider_authority_claim == true unconditionally emits provider_memory_authority_forbidden (violation) in memory facet with return_owner = memory-canonical-owner",
+          "Non-bool provider_authority_claim emits boolean_unknown (unknown) in memory facet"
+        ],
+        "left_undetermined_by_l3_l10_and_l4_prose": [
+          "Provider-specific memory adapter shapes (explicitly excluded from migration in /legacy_comparison/change and /legacy_comparison/consumer_boundary)"
+        ]
+      },
+      "source_pointers": [
+        "docs/helix-os/L3-requirements/functional-requirements.json#/requirements/23",
+        "docs/helix-os/L10-verification/functional-verification.json#/cases/23",
+        "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/contracts/2",
+        "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/codes/9",
+        "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/codes/27",
+        "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/rules/9",
+        "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/legacy_comparison"
+      ]
+    },
+    {
+      "row_id": "NEG-OS007-R12-BOUNDARY-WHOLE-COMPLETION-AND-PRECEDENCE",
+      "contract_id": "HELIXOS-L4-007-F01 / HELIXOS-L4-007-F02 / HELIXOS-L4-007-F03",
+      "rule_ids": [
+        "R12"
+      ],
+      "選定理由": "OS007全体を通して「記録や証拠の存在だけで承認・受入・全体完了を生成しない」境界統制（whole_completion_claim検査、boundary facet、violation > unknown > correspondingの優先順位、findingsの重複除去・辞書順整列、全actual/effectフラグのfalse/none固定）を定めるR12を代表するため選定。",
+      "negative_input_conditions": {
+        "whole_completion_claim_true": "whole_completion_claim == true",
+        "whole_completion_claim_non_bool": "whole_completion_claim が false 以外の非bool値（null, string, int等）",
+        "mixed_facet_faults": "同一入力内でviolation系codeとunknown系codeが混在、または同一(code, pointer, return_owner)が複数経路（例：R05 stage.source_head比較とcontext original_finding.source_head結合）から発生"
+      },
+      "expected_outcomes": {
+        "expected_finding_codes": [
+          {
+            "code": "whole_completion_forbidden",
+            "facet": "boundary",
+            "disposition": "violation",
+            "condition": "whole_completion_claim == true."
+          },
+          {
+            "code": "whole_claim_unknown",
+            "facet": "boundary",
+            "disposition": "unknown",
+            "condition": "whole_completion_claim is neither bool false nor bool true."
+          }
+        ],
+        "expected_state_and_disposition": {
+          "boundary_facet_correspondence": "violation when whole_completion_claim == true; unknown when non-bool; corresponding when false.",
+          "facet_and_overall_precedence": "violation > unknown > corresponding across logs, feedback, memory, and boundary; overall condition is record_material_violation, record_material_unknown, or record_material_corresponding."
+        },
+        "expected_side_effects_and_return_fields": {
+          "findings_normalization": "Deduplicated by (code, pointer, return_owner) and sorted lexicographically by (code, pointer, return_owner).",
+          "output_fields": [
+            "condition",
+            "facet_correspondence",
+            "log_material_usable",
+            "feedback_material",
+            "memory_material",
+            "retained_actual_records",
+            "retained_reference_records",
+            "findings",
+            "actual_log_written",
+            "actual_feedback_resolved",
+            "actual_memory_retired",
+            "whole_management_complete",
+            "operation_effect"
+          ],
+          "immutable_false_and_none_flags": {
+            "actual_log_written": false,
+            "actual_feedback_resolved": false,
+            "actual_memory_retired": false,
+            "whole_management_complete": false,
+            "operation_effect": "none"
+          }
+        },
+        "backflow_owner": "management-authority-owner",
+        "uniquely_determined_by_l3_l10_and_l4_prose": [
+          "Exact 13 output_fields keys in diagnostic return",
+          "Exact 4 facet names in owner_by_facet (logs, feedback, memory, boundary) and their 4 return_owner strings",
+          "Precedence order: violation > unknown > corresponding",
+          "Condition string format: record_material_violation, record_material_unknown, record_material_corresponding",
+          "Deduplication and lexicographical sort key: (code, pointer, return_owner)",
+          "All 4 actual_*/whole_management_complete flags are always false and operation_effect is always 'none'"
+        ],
+        "left_undetermined_by_l3_l10_and_l4_prose": [
+          "Exact binding and full structural closure to OS015/016/019/053 and HARNESS common evidence semantics (/remaining/4)"
+        ]
+      },
+      "source_pointers": [
+        "docs/helix-os/L3-requirements/functional-requirements.json#/requirements/21",
+        "docs/helix-os/L3-requirements/functional-requirements.json#/requirements/22",
+        "docs/helix-os/L3-requirements/functional-requirements.json#/requirements/23",
+        "docs/helix-os/L3-requirements/business-requirements.json#/requirements/1",
+        "docs/helix-os/L10-verification/functional-verification.json#/cases/21",
+        "docs/helix-os/L10-verification/functional-verification.json#/cases/22",
+        "docs/helix-os/L10-verification/functional-verification.json#/cases/23",
+        "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/owner_by_facet",
+        "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/codes/28",
+        "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/codes/29",
+        "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/rules/11",
+        "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/output_fields",
+        "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/limit",
+        "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/remaining/4"
+      ]
+    }
+  ],
+  "complete_37_code_matrix": [
+    {
+      "index": 0,
+      "pointer": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/codes/0",
+      "code": "field_unknown",
+      "code_facet": "comparison",
+      "effective_facet": "caller (logs|feedback|memory)",
+      "disposition": "unknown",
+      "return_owner": "caller owner_by_facet",
+      "rule_refs": [
+        "R01",
+        "R02",
+        "R04",
+        "R05",
+        "R08"
+      ]
+    },
+    {
+      "index": 1,
+      "pointer": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/codes/1",
+      "code": "field_conflict",
+      "code_facet": "comparison",
+      "effective_facet": "caller (logs|feedback|memory)",
+      "disposition": "violation",
+      "return_owner": "caller owner_by_facet",
+      "rule_refs": [
+        "R01",
+        "R02",
+        "R04",
+        "R05",
+        "R06",
+        "R08"
+      ]
+    },
+    {
+      "index": 2,
+      "pointer": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/codes/2",
+      "code": "log_kind_unknown",
+      "code_facet": "logs",
+      "effective_facet": "logs",
+      "disposition": "unknown",
+      "return_owner": "common-log-owner",
+      "rule_refs": [
+        "R02"
+      ]
+    },
+    {
+      "index": 3,
+      "pointer": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/codes/3",
+      "code": "log_kind_conflict",
+      "code_facet": "logs",
+      "effective_facet": "logs",
+      "disposition": "violation",
+      "return_owner": "common-log-owner",
+      "rule_refs": [
+        "R02"
+      ]
+    },
+    {
+      "index": 4,
+      "pointer": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/codes/4",
+      "code": "log_state_unknown",
+      "code_facet": "logs",
+      "effective_facet": "logs",
+      "disposition": "unknown",
+      "return_owner": "common-log-owner",
+      "rule_refs": [
+        "R02"
+      ]
+    },
+    {
+      "index": 5,
+      "pointer": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/codes/5",
+      "code": "log_state_conflict",
+      "code_facet": "logs",
+      "effective_facet": "logs",
+      "disposition": "violation",
+      "return_owner": "common-log-owner",
+      "rule_refs": [
+        "R02"
+      ]
+    },
+    {
+      "index": 6,
+      "pointer": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/codes/6",
+      "code": "log_duplicate",
+      "code_facet": "logs",
+      "effective_facet": "logs",
+      "disposition": "unknown",
+      "return_owner": "common-log-owner",
+      "rule_refs": [
+        "R02"
+      ]
+    },
+    {
+      "index": 7,
+      "pointer": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/codes/7",
+      "code": "log_stale",
+      "code_facet": "logs",
+      "effective_facet": "logs",
+      "disposition": "unknown",
+      "return_owner": "common-log-owner",
+      "rule_refs": [
+        "R02"
+      ]
+    },
+    {
+      "index": 8,
+      "pointer": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/codes/8",
+      "code": "log_success_claim_forbidden",
+      "code_facet": "logs",
+      "effective_facet": "logs",
+      "disposition": "violation",
+      "return_owner": "common-log-owner",
+      "rule_refs": [
+        "R03"
+      ]
+    },
+    {
+      "index": 9,
+      "pointer": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/codes/9",
+      "code": "boolean_unknown",
+      "code_facet": "comparison",
+      "effective_facet": "caller (logs|feedback|memory)",
+      "disposition": "unknown",
+      "return_owner": "caller owner_by_facet",
+      "rule_refs": [
+        "R01",
+        "R03",
+        "R04",
+        "R05",
+        "R06",
+        "R08",
+        "R10"
+      ]
+    },
+    {
+      "index": 10,
+      "pointer": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/codes/10",
+      "code": "boolean_conflict",
+      "code_facet": "comparison",
+      "effective_facet": "caller (logs|feedback|memory)",
+      "disposition": "violation",
+      "return_owner": "caller owner_by_facet",
+      "rule_refs": [
+        "R01",
+        "R05",
+        "R08"
+      ]
+    },
+    {
+      "index": 11,
+      "pointer": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/codes/11",
+      "code": "finding_missing",
+      "code_facet": "feedback",
+      "effective_facet": "feedback",
+      "disposition": "unknown",
+      "return_owner": "feedback-source-owner",
+      "rule_refs": [
+        "R04"
+      ]
+    },
+    {
+      "index": 12,
+      "pointer": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/codes/12",
+      "code": "original_finding_changed",
+      "code_facet": "feedback",
+      "effective_facet": "feedback",
+      "disposition": "violation",
+      "return_owner": "feedback-source-owner",
+      "rule_refs": [
+        "R04"
+      ]
+    },
+    {
+      "index": 13,
+      "pointer": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/codes/13",
+      "code": "stage_unrecorded_ref_present",
+      "code_facet": "feedback",
+      "effective_facet": "feedback",
+      "disposition": "violation",
+      "return_owner": "feedback-source-owner",
+      "rule_refs": [
+        "R05"
+      ]
+    },
+    {
+      "index": 14,
+      "pointer": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/codes/14",
+      "code": "resolution_origin_unknown",
+      "code_facet": "feedback",
+      "effective_facet": "feedback",
+      "disposition": "unknown",
+      "return_owner": "feedback-source-owner",
+      "rule_refs": [
+        "R06"
+      ]
+    },
+    {
+      "index": 15,
+      "pointer": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/codes/15",
+      "code": "resolution_origin_forbidden",
+      "code_facet": "feedback",
+      "effective_facet": "feedback",
+      "disposition": "violation",
+      "return_owner": "feedback-source-owner",
+      "rule_refs": [
+        "R06"
+      ]
+    },
+    {
+      "index": 16,
+      "pointer": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/codes/16",
+      "code": "unresolved_claimed_resolved",
+      "code_facet": "feedback",
+      "effective_facet": "feedback",
+      "disposition": "violation",
+      "return_owner": "feedback-source-owner",
+      "rule_refs": [
+        "R06"
+      ]
+    },
+    {
+      "index": 17,
+      "pointer": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/codes/17",
+      "code": "memory_state_unknown",
+      "code_facet": "memory",
+      "effective_facet": "memory",
+      "disposition": "unknown",
+      "return_owner": "memory-canonical-owner",
+      "rule_refs": [
+        "R08"
+      ]
+    },
+    {
+      "index": 18,
+      "pointer": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/codes/18",
+      "code": "memory_state_conflict",
+      "code_facet": "memory",
+      "effective_facet": "memory",
+      "disposition": "violation",
+      "return_owner": "memory-canonical-owner",
+      "rule_refs": [
+        "R08"
+      ]
+    },
+    {
+      "index": 19,
+      "pointer": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/codes/19",
+      "code": "memory_freshness_unknown",
+      "code_facet": "memory",
+      "effective_facet": "memory",
+      "disposition": "unknown",
+      "return_owner": "memory-canonical-owner",
+      "rule_refs": [
+        "R08"
+      ]
+    },
+    {
+      "index": 20,
+      "pointer": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/codes/20",
+      "code": "memory_freshness_conflict",
+      "code_facet": "memory",
+      "effective_facet": "memory",
+      "disposition": "violation",
+      "return_owner": "memory-canonical-owner",
+      "rule_refs": [
+        "R08"
+      ]
+    },
+    {
+      "index": 21,
+      "pointer": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/codes/21",
+      "code": "reflection_unrecorded_ref_present",
+      "code_facet": "memory",
+      "effective_facet": "memory",
+      "disposition": "violation",
+      "return_owner": "memory-canonical-owner",
+      "rule_refs": [
+        "R08"
+      ]
+    },
+    {
+      "index": 22,
+      "pointer": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/codes/22",
+      "code": "retire_before_reflection",
+      "code_facet": "memory",
+      "effective_facet": "memory",
+      "disposition": "violation",
+      "return_owner": "memory-canonical-owner",
+      "rule_refs": [
+        "R09"
+      ]
+    },
+    {
+      "index": 23,
+      "pointer": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/codes/23",
+      "code": "terminal_instruction_resurfaced",
+      "code_facet": "memory",
+      "effective_facet": "memory",
+      "disposition": "violation",
+      "return_owner": "memory-canonical-owner",
+      "rule_refs": [
+        "R10"
+      ]
+    },
+    {
+      "index": 24,
+      "pointer": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/codes/24",
+      "code": "use_count_unknown",
+      "code_facet": "memory",
+      "effective_facet": "memory",
+      "disposition": "unknown",
+      "return_owner": "memory-canonical-owner",
+      "rule_refs": [
+        "R10"
+      ]
+    },
+    {
+      "index": 25,
+      "pointer": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/codes/25",
+      "code": "use_count_conflict",
+      "code_facet": "memory",
+      "effective_facet": "memory",
+      "disposition": "violation",
+      "return_owner": "memory-canonical-owner",
+      "rule_refs": [
+        "R10"
+      ]
+    },
+    {
+      "index": 26,
+      "pointer": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/codes/26",
+      "code": "duplicate_successful_use",
+      "code_facet": "memory",
+      "effective_facet": "memory",
+      "disposition": "violation",
+      "return_owner": "memory-canonical-owner",
+      "rule_refs": [
+        "R10"
+      ]
+    },
+    {
+      "index": 27,
+      "pointer": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/codes/27",
+      "code": "provider_memory_authority_forbidden",
+      "code_facet": "memory",
+      "effective_facet": "memory",
+      "disposition": "violation",
+      "return_owner": "memory-canonical-owner",
+      "rule_refs": [
+        "R10"
+      ]
+    },
+    {
+      "index": 28,
+      "pointer": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/codes/28",
+      "code": "whole_completion_forbidden",
+      "code_facet": "boundary",
+      "effective_facet": "boundary",
+      "disposition": "violation",
+      "return_owner": "management-authority-owner",
+      "rule_refs": [
+        "R12"
+      ]
+    },
+    {
+      "index": 29,
+      "pointer": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/codes/29",
+      "code": "whole_claim_unknown",
+      "code_facet": "boundary",
+      "effective_facet": "boundary",
+      "disposition": "unknown",
+      "return_owner": "management-authority-owner",
+      "rule_refs": [
+        "R12"
+      ]
+    },
+    {
+      "index": 30,
+      "pointer": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/codes/30",
+      "code": "finding_discard_forbidden",
+      "code_facet": "feedback",
+      "effective_facet": "feedback",
+      "disposition": "violation",
+      "return_owner": "feedback-source-owner",
+      "rule_refs": [
+        "R04"
+      ]
+    },
+    {
+      "index": 31,
+      "pointer": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/codes/31",
+      "code": "order_unknown",
+      "code_facet": "memory",
+      "effective_facet": "memory",
+      "disposition": "unknown",
+      "return_owner": "memory-canonical-owner",
+      "rule_refs": [
+        "R09"
+      ]
+    },
+    {
+      "index": 32,
+      "pointer": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/codes/32",
+      "code": "order_conflict",
+      "code_facet": "memory",
+      "effective_facet": "memory",
+      "disposition": "violation",
+      "return_owner": "memory-canonical-owner",
+      "rule_refs": [
+        "R09"
+      ]
+    },
+    {
+      "index": 33,
+      "pointer": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/codes/33",
+      "code": "reflection_not_before_retire",
+      "code_facet": "memory",
+      "effective_facet": "memory",
+      "disposition": "violation",
+      "return_owner": "memory-canonical-owner",
+      "rule_refs": [
+        "R09"
+      ]
+    },
+    {
+      "index": 34,
+      "pointer": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/codes/34",
+      "code": "retirement_basis_unknown",
+      "code_facet": "memory",
+      "effective_facet": "memory",
+      "disposition": "unknown",
+      "return_owner": "memory-canonical-owner",
+      "rule_refs": [
+        "R09"
+      ]
+    },
+    {
+      "index": 35,
+      "pointer": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/codes/35",
+      "code": "consume_without_delivery",
+      "code_facet": "memory",
+      "effective_facet": "memory",
+      "disposition": "violation",
+      "return_owner": "memory-canonical-owner",
+      "rule_refs": [
+        "R10"
+      ]
+    },
+    {
+      "index": 36,
+      "pointer": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/codes/36",
+      "code": "use_state_conflict",
+      "code_facet": "memory",
+      "effective_facet": "memory",
+      "disposition": "violation",
+      "return_owner": "memory-canonical-owner",
+      "rule_refs": [
+        "R10"
+      ]
+    }
+  ],
+  "uninstantiated_or_deferred_branches_in_l4_and_remaining": [
+    {
+      "branch_id": "L4-STRUCT-01",
+      "source_pointer": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/input_domain",
+      "description": "Arbitrary JSON shapes and missing-node validation outside the fixed 4-log / 3-finding / 4-memory document shape are explicitly declared undesigned at L4 ('固定四log/三finding/四memoryの文書shape。任意JSON/欠落nodeのvalidationは未設計。'). No concrete values or error codes are fabricated for missing top-level/container nodes.",
+      "concrete_upstream_instance_present": false
+    },
+    {
+      "branch_id": "L4-STRUCT-02",
+      "source_pointer": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/contracts",
+      "description": "In docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json, /contracts/0..2 do not have a nested contracts[*].negative_classifications array or top-level failure_classifications key; instead, all negative classifications and rules are consolidated in /diagnostic_contract/codes (37 codes) and /diagnostic_contract/rules (R01..R12), and no concrete synthetic fixture values (record_id, digests, commit hashes, pointers) are instantiated in L4 prose.",
+      "concrete_upstream_instance_present": false
+    },
+    {
+      "branch_id": "L4-REM-00",
+      "source_pointer": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/remaining/0",
+      "description": "Formal BASE-01 common schema/codec, real actor/model/capability/time/source qualification, physical storage of the 4 logs, arbitrary event sets, and alias/generation/duplicate replay handling are deferred to L5/L8; formal N/A evidence type for model_revision on human records (/diagnostic_contract/common_meanings/model_revision) is also marked incomplete.",
+      "concrete_upstream_instance_present": false
+    },
+    {
+      "branch_id": "L4-REM-01",
+      "source_pointer": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/remaining/1",
+      "description": "Sufficient conditions for feedback resolution and formal finding types belong to each meaning owner / verification owner; durable storage of unacked findings, partial scan / damaged journal handling, and terminal generation preservation are not established in L4.",
+      "concrete_upstream_instance_present": false
+    },
+    {
+      "branch_id": "L4-REM-02",
+      "source_pointer": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/remaining/2",
+      "description": "Real target identity, durable write success, ordering proof for memory reflection, expiry clock, fencing token, takeover layer, compaction, partial failure recovery, and data-use/secret redaction remain with their respective consumers.",
+      "concrete_upstream_instance_present": false
+    },
+    {
+      "branch_id": "L4-REM-03",
+      "source_pointer": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/remaining/3",
+      "description": "Episode ordinal is a synthetic input representing intra-episode order rather than real source custody/timestamp proof, and successful use count represents logical successful effect count rather than physical retry count.",
+      "concrete_upstream_instance_present": false
+    },
+    {
+      "branch_id": "L4-REM-04",
+      "source_pointer": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/remaining/4",
+      "description": "Exact binding and full structural closure to OS015/016/019/053 and HARNESS common evidence semantics, independent oracle freeze, pre-implementation Red->Green->Refactor, and real CI/L9/L10/PO L11 execution remain unestablished.",
+      "concrete_upstream_instance_present": false
+    }
+  ]
+}
