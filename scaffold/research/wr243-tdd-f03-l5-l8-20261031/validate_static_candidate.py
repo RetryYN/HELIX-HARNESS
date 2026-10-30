@@ -74,13 +74,21 @@ def main() -> int:
     checks["all_nine_L4_L9_rows_compared"] = len(l4f["negative_classifications"]) == len(l9f["negative_cases"]) == len(comp_rows) == 9
     checks["all_L4_L9_conditions_equal"] = all(a.get("condition") == b.get("condition") for a, b in zip(l4f["negative_classifications"], l9f["negative_cases"]))
     checks["comparison_rows_resolve"] = all(row.get("l4_pointer") == f"/contracts/3/negative_classifications/{i}" and row.get("l9_pointer") == f"/cases/3/negative_cases/{i}" for i, row in enumerate(comp_rows))
-    checks["L5_candidate_matches_fixed_conditions"] = [row.get("local_id") for row in l5f["candidate_classification_design"]["conditions"]] == [row["local_id"] for row in blind_rows]
+    wr249 = read_json("scaffold/research/wr249-tdd-f03-f04-uid-split-20261031/uid-split-correction.json")
+    wr249_rows = {row[0]: row for row in wr249["corrected_candidate"]["unit_case_refs"]["F03"]}
+    checks["L5_candidate_has_one_condition_per_existing_UID"] = [row.get("unit_case_ref") for row in l5f["candidate_classification_design"]["conditions"]] == [row[0] for row in wr249["corrected_candidate"]["unit_case_refs"]["F03"]]
     bilingual = {row["source_only_ref"]: row for row in correction["mappings"]}
-    l5_by_id = {row["local_id"]: row for row in l5f["candidate_classification_design"]["conditions"]}
-    checks["L5_Japanese_text_matches_correction"] = all(l5_by_id[key]["negative_condition"] == row["negative_condition_ja"] and l5_by_id[key]["expected_observation"] == row["expected_observation_ja"] for key, row in bilingual.items())
+    old_l5 = json.loads(base_bytes_at_revision(F03_MERGE_REVISION, L5_PATH))
+    old_l8 = json.loads(base_bytes_at_revision(F03_MERGE_REVISION, L8_PATH))
+    old_l5_rows = next(row for row in old_l5["contracts"] if row["id"] == "HARNESS-L5-015-F03")["candidate_classification_design"]["conditions"]
+    old_l8_rows = next(row for row in old_l8["cases"] if row["id"] == "HARNESS-L8-015-F03")["candidate_unit_design"]["cases"]
+    checks["historical_L5_matches_fixed_blind_mapping"] = [row["local_id"] for row in old_l5_rows] == [row["local_id"] for row in blind_rows] and all(row["negative_condition"] == bilingual[row["local_id"]]["negative_condition_ja"] and row["expected_observation"] == bilingual[row["local_id"]]["expected_observation_ja"] for row in old_l5_rows)
+    checks["historical_L8_matches_fixed_blind_mapping"] = all(row["counterexample"] == bilingual[row["source_only_ref"]]["negative_condition_ja"] and row["candidate_expected_result"] == bilingual[row["source_only_ref"]]["expected_observation_ja"] for row in old_l8_rows)
+    l5_by_id = {row["unit_case_ref"]: row for row in l5f["candidate_classification_design"]["conditions"]}
+    checks["L5_candidate_conditions_match_WR249_UID_split"] = set(l5_by_id) == set(wr249_rows)
     checks["L5_candidate_has_no_classifier_projection"] = all(not ({"code", "expected_axis", "expected_state", "backflow_owner", "algorithm", "fixture"} & set(row)) for row in l5f["candidate_classification_design"]["conditions"])
     checks["L8_candidate_nine_existing_ids_only"] = len(l8f["candidate_unit_design"]["cases"]) == 9 and all(row["existing_unit_case_ref"] in l8f["unit_case_ids"] for row in l8f["candidate_unit_design"]["cases"])
-    checks["L8_Japanese_text_matches_L5_and_correction"] = all(row["counterexample"] == bilingual[row["source_only_ref"]]["negative_condition_ja"] and row["candidate_expected_result"] == bilingual[row["source_only_ref"]]["expected_observation_ja"] for row in l8f["candidate_unit_design"]["cases"])
+    checks["L8_Japanese_text_matches_L5_by_UID"] = all(row["counterexample"] == l5_by_id[row["existing_unit_case_ref"]]["negative_condition"] and row["candidate_expected_result"] == l5_by_id[row["existing_unit_case_ref"]]["expected_observation"] for row in l8f["candidate_unit_design"]["cases"])
     checks["L8_contract_oracle_row_oracle_separated"] = all(row.get("contract_oracle_id") == "HARNESS-L10-015-F03" and row.get("row_oracle_id") is None and row.get("row_oracle_status") == "missing_not_created" for row in l8f["candidate_unit_design"]["cases"])
     checks["L8_target_is_L5_contract_and_L9_is_trace"] = all(row.get("target_ref") == "HARNESS-L5-015-F03" and row.get("source_trace_ref", "").startswith("docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/3/negative_cases/") for row in l8f["candidate_unit_design"]["cases"])
     checks["L8_no_test_citation_invented"] = all(row.get("test_citation") is None and row.get("test_citation_status") == "not_found_not_created" for row in l8f["candidate_unit_design"]["cases"])

@@ -10,6 +10,7 @@ ROOT = Path(__file__).resolve().parents[3]
 BASE = "988765e9be335f2a1d376721c1b11f808fd03372"
 MAIN_BASE = "cf31240384980220249a4f58abe62ce57d47a880"
 F04_MERGE_REVISION = "e0438a372065626ea752c31dc6c86b92d3198a9d"
+WR249_BASE = "e9cca9f1d3d88b1c2049c3a3e492b36b2c2ec905"
 PKG = "scaffold/research/wr243-tdd-f04-l5-l8-20261031"
 F03_PKG = "scaffold/research/wr243-tdd-f03-l5-l8-20261031"
 B01_PKG = "scaffold/research/wr243-tdd-b01-l5-l8-20261031"
@@ -76,6 +77,12 @@ def main() -> int:
     cmp = read_json(f"{PKG}/comparison.json")
     trans = read_json(f"{PKG}/bilingual-mapping.json")
     condition_map = {row["source_only_ref"]: row for row in trans["mappings"]}
+    old_l5 = json.loads(git_bytes(F04_MERGE_REVISION, L5))
+    old_l8 = json.loads(git_bytes(F04_MERGE_REVISION, L8))
+    old_l5_rows = project(old_l5, "contracts", "HARNESS-L5-015-F04")["candidate_classification_design"]["conditions"]
+    old_l8_rows = project(old_l8, "cases", "HARNESS-L8-015-F04")["candidate_unit_design"]["cases"]
+    checks["historical_L5_matches_fixed_blind_mapping"] = [row["local_id"] for row in old_l5_rows] == list(f04_blind) and all(row["negative_condition"] == condition_map[row["local_id"]]["negative_condition_ja"] and row["expected_observation"] == condition_map[row["local_id"]]["expected_observation_ja"] for row in old_l5_rows)
+    checks["historical_L8_matches_fixed_blind_mapping"] = all(row["counterexample"] == condition_map[row["source_only_ref"]]["l8_counterexample_ja"] and row["candidate_expected_result"] == condition_map[row["source_only_ref"]]["l8_expected_result_ja"] for row in old_l8_rows)
     l4rows, l9rows = l4f["negative_classifications"], l9f["negative_cases"]
     l8_ids = l8f["unit_case_ids"][1:]
     checks["all_five_L4_L9_rows_compared"] = len(l4rows) == len(l9rows) == len(cmp["rows"]) == len(l8_ids) == 5
@@ -88,12 +95,15 @@ def main() -> int:
     l8cand = l8f.get("candidate_unit_design", {})
     l5conditions = l5cand.get("conditions", [])
     l8cases = l8cand.get("cases", [])
-    checks["L5_candidate_source_ids"] = [r.get("local_id") for r in l5conditions] == list(f04_blind)
-    checks["L5_candidate_Japanese_matches_blind_mapping"] = all(r.get("negative_condition") == condition_map[r["local_id"]]["negative_condition_ja"] and r.get("expected_observation") == condition_map[r["local_id"]]["expected_observation_ja"] for r in l5conditions)
+    wr249 = read_json("scaffold/research/wr249-tdd-f03-f04-uid-split-20261031/uid-split-correction.json")
+    wr249_rows = {row[0]: row for row in wr249["corrected_candidate"]["unit_case_refs"]["F04"]}
+    l5_by_uid = {r["unit_case_ref"]: r for r in l5conditions}
+    checks["L5_candidate_has_one_condition_per_existing_UID"] = [r.get("unit_case_ref") for r in l5conditions] == [r[0] for r in wr249["corrected_candidate"]["unit_case_refs"]["F04"]]
+    checks["L5_candidate_matches_WR249_UID_split"] = set(l5_by_uid) == set(wr249_rows)
     checks["L5_candidate_has_no_new_classifier_projection"] = all(not ({"code", "expected_axis", "expected_state", "backflow_owner", "algorithm", "fixture"} & set(r)) for r in l5conditions)
     checks["L8_candidate_existing_negative_ids_only"] = len(l8cases) == 5 and all(r.get("existing_unit_case_ref") in l8f["unit_case_ids"] for r in l8cases)
     checks["L8_target_L5_contract_and_trace_L9"] = all(r.get("target_ref") == "HARNESS-L5-015-F04" and r.get("source_trace_ref") == f"{L9}#/cases/4/negative_cases/{i}" for i, r in enumerate(l8cases))
-    checks["L8_Japanese_text_matches_independent_mapping"] = all(r.get("counterexample") == condition_map[r["source_only_ref"]]["l8_counterexample_ja"] and r.get("candidate_expected_result") == condition_map[r["source_only_ref"]]["l8_expected_result_ja"] for r in l8cases)
+    checks["L8_Japanese_text_matches_L5_by_UID"] = all(r.get("counterexample") == l5_by_uid[r["existing_unit_case_ref"]]["negative_condition"] and r.get("candidate_expected_result") == l5_by_uid[r["existing_unit_case_ref"]]["expected_observation"] for r in l8cases)
     checks["L8_contract_and_row_oracle_separated"] = all(r.get("contract_oracle_id") == "HARNESS-L10-015-F04" and r.get("row_oracle_id") is None and r.get("row_oracle_status") == "missing_not_created" for r in l8cases)
     checks["L8_no_test_citation_created"] = all(r.get("test_citation") is None and r.get("test_citation_status") == "not_found_not_created" for r in l8cases)
     checks["L8_candidate_no_fixture_hash_seed_copy"] = not any(term in json.dumps(l8cand).lower() for term in ("sha256", "fixture", "seed", "copy", "rfc6902", "full_return", "same_invocation"))
@@ -133,11 +143,16 @@ def main() -> int:
     l8_without_b01 = remove_candidate(l8, "cases", "HARNESS-L8-015-B01", "candidate_unit_design")
     checks["F04_existing_L5_contract_unchanged"] = project(l5_without_f04_and_b01, "contracts", "HARNESS-L5-015-F04") == project(main_l5, "contracts", "HARNESS-L5-015-F04") and project(main_l5, "contracts", "HARNESS-L5-015-F04").get("candidate_classification_design") is None
     checks["F04_canonical_L8_ids_and_cases_unchanged"] = l8f["unit_case_ids"] == base_l8f["unit_case_ids"] and l8["unit_cases"] == base_l8["unit_cases"]
-    checks["F04_candidate_content_unchanged_from_merge_snapshot"] = project(l5, "contracts", "HARNESS-L5-015-F04").get("candidate_classification_design") == project(f04_merge_l5, "contracts", "HARNESS-L5-015-F04").get("candidate_classification_design") and project(l8, "cases", "HARNESS-L8-015-F04").get("candidate_unit_design") == project(f04_merge_l8, "cases", "HARNESS-L8-015-F04").get("candidate_unit_design")
-    checks["F03_candidate_content_unchanged_from_merge_snapshot"] = project(l5, "contracts", "HARNESS-L5-015-F03").get("candidate_classification_design") == project(f04_merge_l5, "contracts", "HARNESS-L5-015-F03").get("candidate_classification_design") and project(l8, "cases", "HARNESS-L8-015-F03").get("candidate_unit_design") == project(f04_merge_l8, "cases", "HARNESS-L8-015-F03").get("candidate_unit_design")
-    checks["all_L5_content_except_B01_unchanged_from_F04_merge_snapshot"] = l5_without_b01 == f04_merge_l5
-    checks["all_L8_content_except_B01_unchanged_from_F04_merge_snapshot"] = l8_without_b01 == f04_merge_l8
-    checks["F03_candidate_content_preserved_from_merged_main"] = project(l5, "contracts", "HARNESS-L5-015-F03").get("candidate_classification_design") == project(main_l5, "contracts", "HARNESS-L5-015-F03").get("candidate_classification_design") and project(l8, "cases", "HARNESS-L8-015-F03").get("candidate_unit_design") == project(main_l8, "cases", "HARNESS-L8-015-F03").get("candidate_unit_design")
+    checks["WR249_prechange_snapshot_hashes_match_base"] = wr249["prior_candidate_snapshot"]["revision"] == WR249_BASE and wr249["prior_candidate_snapshot"]["l5_sha256"] == sha_bytes(git_bytes(WR249_BASE, L5)) and wr249["prior_candidate_snapshot"]["l8_sha256"] == sha_bytes(git_bytes(WR249_BASE, L8))
+    for doc, collection, field, ids in ((l5, "contracts", "candidate_classification_design", ("F03", "F04")), (l8, "cases", "candidate_unit_design", ("F03", "F04"))):
+        baseline = json.loads(git_bytes(F04_MERGE_REVISION, L5 if collection == "contracts" else L8))
+        for suffix in ids:
+            project(doc, collection, f"HARNESS-L{5 if collection == 'contracts' else 8}-015-{suffix}").pop(field, None)
+            project(baseline, collection, f"HARNESS-L{5 if collection == 'contracts' else 8}-015-{suffix}").pop(field, None)
+        project(doc, collection, f"HARNESS-L{5 if collection == 'contracts' else 8}-015-B01").pop(field, None)
+        project(baseline, collection, f"HARNESS-L{5 if collection == 'contracts' else 8}-015-B01").pop(field, None)
+        checks[f"{collection}_all_noncandidate_content_unchanged_from_F04_merge"] = doc == baseline
+    checks["F03_and_F04_current_hashes_match_WR249_correction"] = sha_bytes((ROOT / L5).read_bytes()) == wr249["corrected_candidate"]["l5_sha256"] and sha_bytes((ROOT / L8).read_bytes()) == wr249["corrected_candidate"]["l8_sha256"]
     checks["F03_fixed_comparison_summary_blind_preserved"] = all((ROOT / f"{F03_PKG}/{p}").read_bytes() == git_bytes(MAIN_BASE, f"{F03_PKG}/{p}") for p in ("comparison.json", "verification-summary.json", "source/wr243-tdd-clean-source-only.json"))
 
     binding = read_json("scaffold/bindings/SCF-B-0208.json")

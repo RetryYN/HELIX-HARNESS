@@ -6,7 +6,7 @@
   "product": "HELIX-HARNESS",
   "owner_candidate": "HARNESS-015 F03 L5/L8候補設計の責務owner候補",
   "state": "registered",
-  "reason": "Issue #3510 WR243で比較前固定したsource-only F03導出、既存L4/L9全行比較、L5/L8候補表および不足事項を、正式な設計・oracle・実行・受入と混同しないよう分離する。",
+  "reason": "Issue #3510 WR243で比較前固定したsource-only F03導出、既存L4/L9全行比較、L5/L8候補表および不足事項を、正式な設計・oracle・実行・受入と混同しないよう分離する。 WR249-TDD-F03F04-UID-SPLITでは既存F03/F04 U-IDごとに候補条件と期待を分けた。",
   "upstream": [
     {
       "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
@@ -35,8 +35,8 @@
     },
     {
       "path": "docs/helix-harness/L5-detail-design/tdd-development-flow.json",
-      "sha256": "79a383715e020cc5b32d6b8f9f55fbf1ca13b6731e38d03e83ae0cb291b4e5fa",
-      "note": "Current shared L5 document after F04 candidate extension; prior F03 pin at merge cf31240384980220249a4f58abe62ce57d47a880 was a7fd79b52e6e5431ed0b5d2e72524c805e3ecdf1226c17f3ee01de5ed4dc24e0 (recorded in correction-r1-f1.json). F03 candidate bytes remain unchanged. B01 candidate added in WR243 B01 follow-up; F03 candidate and fixed evidence unchanged."
+      "sha256": "6aaa1c03c484541be4bc331dbf6f05756e3eed2acc17d6f212fc901678cb9778",
+      "note": "Current shared L5 document after F04 candidate extension; prior F03 pin at merge cf31240384980220249a4f58abe62ce57d47a880 was a7fd79b52e6e5431ed0b5d2e72524c805e3ecdf1226c17f3ee01de5ed4dc24e0 (recorded in correction-r1-f1.json). F03 candidate bytes remain unchanged. B01 candidate added in WR243 B01 follow-up; F03 candidate and fixed evidence unchanged. WR249-TDD-F03F04-UID-SPLIT repin at base e9cca9f1d3d88b1c2049c3a3e492b36b2c2ec905: prior pin 79a383715e020cc5b32d6b8f9f55fbf1ca13b6731e38d03e83ae0cb291b4e5fa; current shared candidate file split per existing U-ID. Historical evidence/canonical IDs retained; see scaffold/research/wr249-tdd-f03-f04-uid-split-20261031/uid-split-correction.json."
     }
   ],
   "role": "WR243 F03 source-only comparison, L5 condition candidate and L8 existing-U-ID reference table evidence.",
@@ -46,7 +46,8 @@
     "L5 F03 candidate contains source-only condition statements only; do not add failure code vocabulary, axis/state, algorithm, fixture, or full return material.",
     "L8 F03 candidate references existing unit_case IDs only; contract oracle is L10 F03, row-level U-ID oracle and test citation remain missing and are not fabricated.",
     "Preserve all canonical L8 unit_case_ids/unit_cases, L4/L9 bytes, F03 sequence-equality uncertainty, and all other contracts.",
-    "Keep the 4way checker residual and existing ownership-cap residual visible; candidate rows are not counted as canonical 4way rows."
+    "Keep the 4way checker residual and existing ownership-cap residual visible; candidate rows are not counted as canonical 4way rows.",
+    "WR249分割後も各U-IDのsource-specific候補条件と期待を保ち、canonical IDs/unit_cases、L4/L9、row oracle/test citationの未決境界を維持する。過去snapshotは書き換えず訂正artifactを参照する。"
   ],
   "connections": {
     "consumers": [
@@ -83,7 +84,12 @@
     "scaffold/research/wr243-tdd-f03-l5-l8-20261031/source/wr243-tdd-clean-source-only.json",
     "docs/helix-harness/L5-detail-design/tdd-development-flow.json",
     "docs/helix-harness/L8-unit-verification/tdd-development-flow.json",
-    "scaffold/research/wr243-tdd-f03-l5-l8-20261031/correction-r1-f1.json"
+    "scaffold/research/wr243-tdd-f03-l5-l8-20261031/correction-r1-f1.json",
+    "scaffold/research/wr249-tdd-f03-f04-uid-split-20261031/README.md",
+    "scaffold/research/wr249-tdd-f03-f04-uid-split-20261031/uid-split-correction.json",
+    "scaffold/research/wr249-tdd-f03-f04-uid-split-20261031/verification-summary.json",
+    "scaffold/research/wr249-tdd-f03-f04-uid-split-20261031/validate_uid_split.py",
+    "scaffold/research/wr249-tdd-f03-f04-uid-split-20261031/source-only-draft.json"
   ],
   "verification": {
     "evidence_kind": "scaffold",
