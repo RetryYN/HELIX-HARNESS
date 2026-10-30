@@ -1,0 +1,98 @@
+{
+  "schema": "wr245-pr3992-checker-trial-replay.v1",
+  "evidence_kind": "scaffold",
+  "authority_effect": "none",
+  "base_revision": "456bf1f4e143811a32ae1314f3146e34098509db",
+  "checker": {
+    "path": "scaffold/tools/design_verification_checker.py",
+    "sha256": "e751526d67cd8df11e5aac1c5a1a178dfbd0fecc3f2ed21f995b7dda11ea4d5d"
+  },
+  "base_source_inputs": [
+    {
+      "path": "docs/helix-security/L4-basic-design/revoke-quarantine-propagation.json",
+      "sha256": "c0a31c5c663d39854ed1df13b9bf2bfc439fdb46419d089bc617607d6e6ac5b6"
+    },
+    {
+      "path": "docs/helix-security/L5-detail-design/revoke-quarantine-propagation.json",
+      "sha256": "90c3761e88ea76fefe1222372ffa1218afcf2fc8cb4dec666ca8b7ca98bd8734"
+    },
+    {
+      "path": "docs/helix-security/L8-unit-verification/revoke-quarantine-propagation.json",
+      "sha256": "ebfb5a50360fbcf4c0df262a4c31c87870b963b9d4e557888d63aef74699c777"
+    },
+    {
+      "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+      "sha256": "62913b58577cfc0f3c7e6682ad160d8f236157a0ceed9c88ef71822330ed60fc"
+    }
+  ],
+  "trial_inputs": [
+    {
+      "path": "inputs/l4-proposed-pr-a.json",
+      "sha256": "d46e39cad2e2a90cfc532fa57226a4d650336e794a375f07e1cc2e6cbba15eb3",
+      "bytes": 199037
+    },
+    {
+      "path": "inputs/l5-probe-pr-b.json",
+      "sha256": "e539a960b093971af946b6ff375cf4b3f1818f72aa6bbaf4860fca8a98c9825a",
+      "bytes": 232157
+    },
+    {
+      "path": "inputs/l8-probe-pr-b.json",
+      "sha256": "bcb164ae413cc367967d3d956ea325763dc4d7ccd88d7b1405e2d38b653c577e",
+      "bytes": 2018679
+    },
+    {
+      "path": "inputs/l9-probe-pr-b.json",
+      "sha256": "c97337aac023b68238f3cb7f4f75f9e05d5a0d998eac6a73f42cd57319723fac",
+      "bytes": 1974503
+    },
+    {
+      "path": "inputs/l9-proposed-pr-a.json",
+      "sha256": "7513bf5edc381aec1cf6a6ae2b3abe6c01cafe16d2bb6f7ad59e452c2efaad4e",
+      "bytes": 1781228
+    }
+  ],
+  "trials": [
+    {
+      "id": "pr-a-intermediate",
+      "input_files": [
+        "inputs/l4-proposed-pr-a.json",
+        "inputs/l9-proposed-pr-a.json"
+      ],
+      "base_files": [
+        "L5",
+        "L8"
+      ],
+      "exit_code": 1,
+      "passed": false,
+      "negative_4way_failures": 438,
+      "matched_case_count": 0,
+      "report": "reports/pr-a-check-child-report.json",
+      "report_sha256": "6b3e08223d05d0a4950c2d8b1ab89c8f893c8014d6cde8820ce0bd698a55181d"
+    },
+    {
+      "id": "pr-b-shape-overlay",
+      "input_files": [
+        "inputs/l4-proposed-pr-a.json",
+        "inputs/l5-probe-pr-b.json",
+        "inputs/l8-probe-pr-b.json",
+        "inputs/l9-probe-pr-b.json"
+      ],
+      "base_files": [],
+      "exit_code": 0,
+      "passed": true,
+      "negative_4way_failures": 0,
+      "matched_case_count": 275,
+      "report": "reports/pr-b-overlay-check-child-report.json",
+      "report_sha256": "32eea91523967093a397dc40a73c793a4cf60ee16e61ef8d27530d2a2ff14ed6"
+    }
+  ],
+  "trial_semantics": {
+    "L4_code_remaps": 30,
+    "L5_code_remaps": 30,
+    "preserved_ids": "L4 class_id and L5 id/class_id remain stable",
+    "meaning_approval": false,
+    "interpretation": "The PR-B report is checker-shape evidence only. Replacing code from stable IDs to expected outcome labels is a semantic remap under review, not authorization for formal edits."
+  },
+  "replay_command": "python3 scaffold/research/wr245-sec009-explicit-pair-measurement-20261031/checker-trials/replay_checker_trials.py"
+}

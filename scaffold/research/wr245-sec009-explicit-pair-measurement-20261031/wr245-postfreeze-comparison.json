@@ -1,0 +1,2212 @@
+{
+  "rows": [
+    {
+      "input_id": "WR245-INPUT-001",
+      "case_id": "SEC009-POLICY-REVISION-MISSING",
+      "candidate_classes": [
+        "SEC009_B01_POLICY_BINDING_UNRESOLVED"
+      ],
+      "current_assignment": "SEC009_B01_POLICY_BINDING_UNRESOLVED",
+      "relation": "matches"
+    },
+    {
+      "input_id": "WR245-INPUT-002",
+      "case_id": "SEC009-POLICY-REVISION-CONFLICT",
+      "candidate_classes": [
+        "SEC009_B01_POLICY_BINDING_CONFLICT"
+      ],
+      "current_assignment": "SEC009_B01_POLICY_BINDING_CONFLICT",
+      "relation": "matches"
+    },
+    {
+      "input_id": "WR245-INPUT-003",
+      "case_id": "SEC009-POLICY-SCOPE-MISSING",
+      "candidate_classes": [
+        "SEC009_B01_POLICY_BINDING_UNRESOLVED"
+      ],
+      "current_assignment": "SEC009_B01_POLICY_BINDING_UNRESOLVED",
+      "relation": "matches"
+    },
+    {
+      "input_id": "WR245-INPUT-004",
+      "case_id": "SEC009-POLICY-SCOPE-CONFLICT",
+      "candidate_classes": [
+        "SEC009_B01_POLICY_BINDING_CONFLICT"
+      ],
+      "current_assignment": "SEC009_B01_POLICY_BINDING_CONFLICT",
+      "relation": "matches"
+    },
+    {
+      "input_id": "WR245-INPUT-005",
+      "case_id": "SEC009-POLICY-OPERATION-MISSING",
+      "candidate_classes": [
+        "SEC009_B01_POLICY_BINDING_UNRESOLVED"
+      ],
+      "current_assignment": "SEC009_B01_POLICY_BINDING_UNRESOLVED",
+      "relation": "matches"
+    },
+    {
+      "input_id": "WR245-INPUT-006",
+      "case_id": "SEC009-POLICY-OPERATION-CONFLICT",
+      "candidate_classes": [
+        "SEC009_B01_POLICY_BINDING_CONFLICT"
+      ],
+      "current_assignment": "SEC009_B01_POLICY_BINDING_CONFLICT",
+      "relation": "matches"
+    },
+    {
+      "input_id": "WR245-INPUT-007",
+      "case_id": "SEC009-POLICY-PROJECT-MISSING",
+      "candidate_classes": [
+        "SEC009_B01_POLICY_BINDING_UNRESOLVED"
+      ],
+      "current_assignment": "SEC009_B01_POLICY_BINDING_UNRESOLVED",
+      "relation": "matches"
+    },
+    {
+      "input_id": "WR245-INPUT-008",
+      "case_id": "SEC009-POLICY-PROJECT-CONFLICT",
+      "candidate_classes": [
+        "SEC009_B01_POLICY_BINDING_CONFLICT"
+      ],
+      "current_assignment": "SEC009_B01_POLICY_BINDING_CONFLICT",
+      "relation": "matches"
+    },
+    {
+      "input_id": "WR245-INPUT-009",
+      "case_id": "SEC009-POLICY-EXTRA",
+      "candidate_classes": [
+        "SEC009_B01_RECIPIENT_SET_CONFLICT"
+      ],
+      "current_assignment": "SEC009_B01_RECIPIENT_SET_CONFLICT",
+      "relation": "matches"
+    },
+    {
+      "input_id": "WR245-INPUT-010",
+      "case_id": "SEC009-OS_ASSIGNMENT-INSTRUCTIONS-REVISION-MISSING",
+      "candidate_classes": [
+        "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED"
+      ],
+      "current_assignment": "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED",
+      "relation": "matches"
+    },
+    {
+      "input_id": "WR245-INPUT-011",
+      "case_id": "SEC009-OS_ASSIGNMENT-INSTRUCTIONS-REVISION-CONFLICT",
+      "candidate_classes": [
+        "SEC009_F01_INSTRUCTION_BINDING_CONFLICT"
+      ],
+      "current_assignment": "SEC009_F01_INSTRUCTION_BINDING_CONFLICT",
+      "relation": "matches"
+    },
+    {
+      "input_id": "WR245-INPUT-012",
+      "case_id": "SEC009-OS_ASSIGNMENT-INSTRUCTIONS-SCOPE-MISSING",
+      "candidate_classes": [
+        "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED"
+      ],
+      "current_assignment": "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED",
+      "relation": "matches"
+    },
+    {
+      "input_id": "WR245-INPUT-013",
+      "case_id": "SEC009-OS_ASSIGNMENT-INSTRUCTIONS-SCOPE-CONFLICT",
+      "candidate_classes": [
+        "SEC009_F01_INSTRUCTION_BINDING_CONFLICT"
+      ],
+      "current_assignment": "SEC009_F01_INSTRUCTION_BINDING_CONFLICT",
+      "relation": "matches"
+    },
+    {
+      "input_id": "WR245-INPUT-014",
+      "case_id": "SEC009-OS_ASSIGNMENT-INSTRUCTIONS-OPERATION-MISSING",
+      "candidate_classes": [
+        "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED"
+      ],
+      "current_assignment": "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED",
+      "relation": "matches"
+    },
+    {
+      "input_id": "WR245-INPUT-015",
+      "case_id": "SEC009-OS_ASSIGNMENT-INSTRUCTIONS-OPERATION-CONFLICT",
+      "candidate_classes": [
+        "SEC009_F01_INSTRUCTION_BINDING_CONFLICT"
+      ],
+      "current_assignment": "SEC009_F01_INSTRUCTION_BINDING_CONFLICT",
+      "relation": "matches"
+    },
+    {
+      "input_id": "WR245-INPUT-016",
+      "case_id": "SEC009-OS_ASSIGNMENT-INSTRUCTIONS-PROJECT-MISSING",
+      "candidate_classes": [
+        "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED"
+      ],
+      "current_assignment": "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED",
+      "relation": "matches"
+    },
+    {
+      "input_id": "WR245-INPUT-017",
+      "case_id": "SEC009-OS_ASSIGNMENT-INSTRUCTIONS-PROJECT-CONFLICT",
+      "candidate_classes": [
+        "SEC009_F01_INSTRUCTION_BINDING_CONFLICT"
+      ],
+      "current_assignment": "SEC009_F01_INSTRUCTION_BINDING_CONFLICT",
+      "relation": "matches"
+    },
+    {
+      "input_id": "WR245-INPUT-018",
+      "case_id": "SEC009-OS_ASSIGNMENT-INSTRUCTIONS-SOURCE-MISSING",
+      "candidate_classes": [
+        "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED"
+      ],
+      "current_assignment": "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED",
+      "relation": "matches"
+    },
+    {
+      "input_id": "WR245-INPUT-019",
+      "case_id": "SEC009-OS_ASSIGNMENT-INSTRUCTIONS-SOURCE-CONFLICT",
+      "candidate_classes": [
+        "SEC009_F01_INSTRUCTION_BINDING_CONFLICT"
+      ],
+      "current_assignment": "SEC009_F01_INSTRUCTION_BINDING_CONFLICT",
+      "relation": "matches"
+    },
+    {
+      "input_id": "WR245-INPUT-020",
+      "case_id": "SEC009-OS_ASSIGNMENT-REPORTS-REVISION-MISSING",
+      "candidate_classes": [
+        "SEC009_F01_REPORT_BINDING_UNRESOLVED"
+      ],
+      "current_assignment": "SEC009_F01_REPORT_BINDING_UNRESOLVED",
+      "relation": "matches"
+    },
+    {
+      "input_id": "WR245-INPUT-021",
+      "case_id": "SEC009-OS_ASSIGNMENT-REPORTS-REVISION-CONFLICT",
+      "candidate_classes": [
+        "SEC009_F01_REPORT_BINDING_CONFLICT"
+      ],
+      "current_assignment": "SEC009_F01_REPORT_BINDING_CONFLICT",
+      "relation": "matches"
+    },
+    {
+      "input_id": "WR245-INPUT-022",
+      "case_id": "SEC009-OS_ASSIGNMENT-REPORTS-SCOPE-MISSING",
+      "candidate_classes": [
+        "SEC009_F01_REPORT_BINDING_UNRESOLVED"
+      ],
+      "current_assignment": "SEC009_F01_REPORT_BINDING_UNRESOLVED",
+      "relation": "matches"
+    },
+    {
+      "input_id": "WR245-INPUT-023",
+      "case_id": "SEC009-OS_ASSIGNMENT-REPORTS-SCOPE-CONFLICT",
+      "candidate_classes": [
+        "SEC009_F01_REPORT_BINDING_CONFLICT"
+      ],
+      "current_assignment": "SEC009_F01_REPORT_BINDING_CONFLICT",
+      "relation": "matches"
+    },
+    {
+      "input_id": "WR245-INPUT-024",
+      "case_id": "SEC009-OS_ASSIGNMENT-REPORTS-OPERATION-MISSING",
+      "candidate_classes": [
+        "SEC009_F01_REPORT_BINDING_UNRESOLVED"
+      ],
+      "current_assignment": "SEC009_F01_REPORT_BINDING_UNRESOLVED",
+      "relation": "matches"
+    },
+    {
+      "input_id": "WR245-INPUT-025",
+      "case_id": "SEC009-OS_ASSIGNMENT-REPORTS-OPERATION-CONFLICT",
+      "candidate_classes": [
+        "SEC009_F01_REPORT_BINDING_CONFLICT"
+      ],
+      "current_assignment": "SEC009_F01_REPORT_BINDING_CONFLICT",
+      "relation": "matches"
+    },
+    {
+      "input_id": "WR245-INPUT-026",
+      "case_id": "SEC009-OS_ASSIGNMENT-REPORTS-PROJECT-MISSING",
+      "candidate_classes": [
+        "SEC009_F01_REPORT_BINDING_UNRESOLVED"
+      ],
+      "current_assignment": "SEC009_F01_REPORT_BINDING_UNRESOLVED",
+      "relation": "matches"
+    },
+    {
+      "input_id": "WR245-INPUT-027",
+      "case_id": "SEC009-OS_ASSIGNMENT-REPORTS-PROJECT-CONFLICT",
+      "candidate_classes": [
+        "SEC009_F01_REPORT_BINDING_CONFLICT"
+      ],
+      "current_assignment": "SEC009_F01_REPORT_BINDING_CONFLICT",
+      "relation": "matches"
+    },
+    {
+      "input_id": "WR245-INPUT-028",
+      "case_id": "SEC009-OS_ASSIGNMENT-REPORTS-SOURCE-MISSING",
+      "candidate_classes": [
+        "SEC009_F01_REPORT_BINDING_UNRESOLVED"
+      ],
+      "current_assignment": "SEC009_F01_REPORT_BINDING_UNRESOLVED",
+      "relation": "matches"
+    },
+    {
+      "input_id": "WR245-INPUT-029",
+      "case_id": "SEC009-OS_ASSIGNMENT-REPORTS-SOURCE-CONFLICT",
+      "candidate_classes": [
+        "SEC009_F01_REPORT_BINDING_CONFLICT"
+      ],
+      "current_assignment": "SEC009_F01_REPORT_BINDING_CONFLICT",
+      "relation": "matches"
+    },
+    {
+      "input_id": "WR245-INPUT-030",
+      "case_id": "SEC009-OS_ASSIGNMENT-EXPECTED_POLICY_REFS-MISSING",
+      "candidate_classes": [
+        "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED"
+      ],
+      "current_assignment": "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED",
+      "relation": "matches"
+    },
+    {
+      "input_id": "WR245-INPUT-031",
+      "case_id": "SEC009-OS_ASSIGNMENT-EXPECTED_REPORT_REFS-MISSING",
+      "candidate_classes": [
+        "SEC009_F01_REPORT_BINDING_UNRESOLVED"
+      ],
+      "current_assignment": "SEC009_F01_REPORT_BINDING_UNRESOLVED",
+      "relation": "matches"
+    },
+    {
+      "input_id": "WR245-INPUT-032",
+      "case_id": "SEC009-OS_ASSIGNMENT-STOP_NEW_ASSIGNMENT-NONE",
+      "candidate_classes": [
+        "SEC009_F01_RECIPIENT_APPLICATION_UNRESOLVED"
+      ],
+      "current_assignment": "SEC009_F01_RECIPIENT_APPLICATION_UNRESOLVED",
+      "relation": "matches"
+    },
+    {
+      "input_id": "WR245-INPUT-033",
+      "case_id": "SEC009-WORKER_EXECUTION-INSTRUCTIONS-MISSING",
+      "candidate_classes": [
+        "SEC009_F01_INSTRUCTION_UNRESOLVED"
+      ],
+      "current_assignment": "SEC009_F01_INSTRUCTION_UNRESOLVED",
+      "relation": "matches"
+    },
+    {
+      "input_id": "WR245-INPUT-034",
+      "case_id": "SEC009-WORKER_EXECUTION-INSTRUCTIONS-EVENT_ID-MISSING",
+      "candidate_classes": [
+        "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED"
+      ],
+      "current_assignment": "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED",
+      "relation": "matches"
+    },
+    {
+      "input_id": "WR245-INPUT-035",
+      "case_id": "SEC009-WORKER_EXECUTION-INSTRUCTIONS-EVENT_ID-CONFLICT",
+      "candidate_classes": [
+        "SEC009_F01_INSTRUCTION_BINDING_CONFLICT"
+      ],
+      "current_assignment": "SEC009_F01_INSTRUCTION_BINDING_CONFLICT",
+      "relation": "matches"
+    },
+    {
+      "input_id": "WR245-INPUT-036",
+      "case_id": "SEC009-WORKER_EXECUTION-INSTRUCTIONS-REVISION-MISSING",
+      "candidate_classes": [
+        "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED"
+      ],
+      "current_assignment": "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED",
+      "relation": "matches"
+    },
+    {
+      "input_id": "WR245-INPUT-037",
+      "case_id": "SEC009-WORKER_EXECUTION-INSTRUCTIONS-REVISION-CONFLICT",
+      "candidate_classes": [
+        "SEC009_F01_INSTRUCTION_BINDING_CONFLICT"
+      ],
+      "current_assignment": "SEC009_F01_INSTRUCTION_BINDING_CONFLICT",
+      "relation": "matches"
+    },
+    {
+      "input_id": "WR245-INPUT-038",
+      "case_id": "SEC009-WORKER_EXECUTION-INSTRUCTIONS-SCOPE-MISSING",
+      "candidate_classes": [
+        "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED"
+      ],
+      "current_assignment": "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED",
+      "relation": "matches"
+    },
+    {
+      "input_id": "WR245-INPUT-039",
+      "case_id": "SEC009-WORKER_EXECUTION-INSTRUCTIONS-SCOPE-CONFLICT",
+      "candidate_classes": [
+        "SEC009_F01_INSTRUCTION_BINDING_CONFLICT"
+      ],
+      "current_assignment": "SEC009_F01_INSTRUCTION_BINDING_CONFLICT",
+      "relation": "matches"
+    },
+    {
+      "input_id": "WR245-INPUT-040",
+      "case_id": "SEC009-WORKER_EXECUTION-INSTRUCTIONS-OPERATION-MISSING",
+      "candidate_classes": [
+        "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED"
+      ],
+      "current_assignment": "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED",
+      "relation": "matches"
+    },
+    {
+      "input_id": "WR245-INPUT-041",
+      "case_id": "SEC009-WORKER_EXECUTION-INSTRUCTIONS-OPERATION-CONFLICT",
+      "candidate_classes": [
+        "SEC009_F01_INSTRUCTION_BINDING_CONFLICT"
+      ],
+      "current_assignment": "SEC009_F01_INSTRUCTION_BINDING_CONFLICT",
+      "relation": "matches"
+    },
+    {
+      "input_id": "WR245-INPUT-042",
+      "case_id": "SEC009-WORKER_EXECUTION-INSTRUCTIONS-PROJECT-MISSING",
+      "candidate_classes": [
+        "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED"
+      ],
+      "current_assignment": "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED",
+      "relation": "matches"
+    },
+    {
+      "input_id": "WR245-INPUT-043",
+      "case_id": "SEC009-WORKER_EXECUTION-INSTRUCTIONS-PROJECT-CONFLICT",
+      "candidate_classes": [
+        "SEC009_F01_INSTRUCTION_BINDING_CONFLICT"
+      ],
+      "current_assignment": "SEC009_F01_INSTRUCTION_BINDING_CONFLICT",
+      "relation": "matches"
+    },
+    {
+      "input_id": "WR245-INPUT-044",
+      "case_id": "SEC009-WORKER_EXECUTION-INSTRUCTIONS-WORKER-MISSING",
+      "candidate_classes": [
+        "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED"
+      ],
+      "current_assignment": "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED",
+      "relation": "matches"
+    },
+    {
+      "input_id": "WR245-INPUT-045",
+      "case_id": "SEC009-WORKER_EXECUTION-INSTRUCTIONS-WORKER-CONFLICT",
+      "candidate_classes": [
+        "SEC009_F01_INSTRUCTION_BINDING_CONFLICT"
+      ],
+      "current_assignment": "SEC009_F01_INSTRUCTION_BINDING_CONFLICT",
+      "relation": "matches"
+    },
+    {
+      "input_id": "WR245-INPUT-046",
+      "case_id": "SEC009-WORKER_EXECUTION-INSTRUCTIONS-ENVIRONMENT-MISSING",
+      "candidate_classes": [
+        "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED"
+      ],
+      "current_assignment": "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED",
+      "relation": "matches"
+    },
+    {
+      "input_id": "WR245-INPUT-047",
+      "case_id": "SEC009-WORKER_EXECUTION-INSTRUCTIONS-ENVIRONMENT-CONFLICT",
+      "candidate_classes": [
+        "SEC009_F01_INSTRUCTION_BINDING_CONFLICT"
+      ],
+      "current_assignment": "SEC009_F01_INSTRUCTION_BINDING_CONFLICT",
+      "relation": "matches"
+    },
+    {
+      "input_id": "WR245-INPUT-048",
+      "case_id": "SEC009-WORKER_EXECUTION-INSTRUCTIONS-SOURCE-MISSING",
+      "candidate_classes": [
+        "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED"
+      ],
+      "current_assignment": "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED",
+      "relation": "matches"
+    },
+    {
+      "input_id": "WR245-INPUT-049",
+      "case_id": "SEC009-WORKER_EXECUTION-INSTRUCTIONS-SOURCE-CONFLICT",
+      "candidate_classes": [
+        "SEC009_F01_INSTRUCTION_BINDING_CONFLICT"
+      ],
+      "current_assignment": "SEC009_F01_INSTRUCTION_BINDING_CONFLICT",
+      "relation": "matches"
+    },
+    {
+      "input_id": "WR245-INPUT-050",
+      "case_id": "SEC009-WORKER_EXECUTION-REPORTS-MISSING",
+      "candidate_classes": [
+        "SEC009_F01_RECIPIENT_REPORT_UNRESOLVED"
+      ],
+      "current_assignment": "SEC009_F01_RECIPIENT_REPORT_UNRESOLVED",
+      "relation": "matches"
+    },
+    {
+      "input_id": "WR245-INPUT-051",
+      "case_id": "SEC009-WORKER_EXECUTION-REPORTS-EVENT_ID-MISSING",
+      "candidate_classes": [
+        "SEC009_F01_REPORT_BINDING_UNRESOLVED"
+      ],
+      "current_assignment": "SEC009_F01_REPORT_BINDING_UNRESOLVED",
+      "relation": "matches"
+    },
+    {
+      "input_id": "WR245-INPUT-052",
+      "case_id": "SEC009-WORKER_EXECUTION-REPORTS-EVENT_ID-CONFLICT",
+      "candidate_classes": [
+        "SEC009_F01_REPORT_BINDING_CONFLICT"
+      ],
+      "current_assignment": "SEC009_F01_REPORT_BINDING_CONFLICT",
+      "relation": "matches"
+    },
+    {
+      "input_id": "WR245-INPUT-053",
+      "case_id": "SEC009-WORKER_EXECUTION-REPORTS-REVISION-MISSING",
+      "candidate_classes": [
+        "SEC009_F01_REPORT_BINDING_UNRESOLVED"
+      ],
+      "current_assignment": "SEC009_F01_REPORT_BINDING_UNRESOLVED",
+      "relation": "matches"
+    },
+    {
+      "input_id": "WR245-INPUT-054",
+      "case_id": "SEC009-WORKER_EXECUTION-REPORTS-REVISION-CONFLICT",
+      "candidate_classes": [
+        "SEC009_F01_REPORT_BINDING_CONFLICT"
+      ],
+      "current_assignment": "SEC009_F01_REPORT_BINDING_CONFLICT",
+      "relation": "matches"
+    },
+    {
+      "input_id": "WR245-INPUT-055",
+      "case_id": "SEC009-WORKER_EXECUTION-REPORTS-SCOPE-MISSING",
+      "candidate_classes": [
+        "SEC009_F01_REPORT_BINDING_UNRESOLVED"
+      ],
+      "current_assignment": "SEC009_F01_REPORT_BINDING_UNRESOLVED",
+      "relation": "matches"
+    },
+    {
+      "input_id": "WR245-INPUT-056",
+      "case_id": "SEC009-WORKER_EXECUTION-REPORTS-SCOPE-CONFLICT",
+      "candidate_classes": [
+        "SEC009_F01_REPORT_BINDING_CONFLICT"
+      ],
+      "current_assignment": "SEC009_F01_REPORT_BINDING_CONFLICT",
+      "relation": "matches"
+    },
+    {
+      "input_id": "WR245-INPUT-057",
+      "case_id": "SEC009-WORKER_EXECUTION-REPORTS-OPERATION-MISSING",
+      "candidate_classes": [
+        "SEC009_F01_REPORT_BINDING_UNRESOLVED"
+      ],
+      "current_assignment": "SEC009_F01_REPORT_BINDING_UNRESOLVED",
+      "relation": "matches"
+    },
+    {
+      "input_id": "WR245-INPUT-058",
+      "case_id": "SEC009-WORKER_EXECUTION-REPORTS-OPERATION-CONFLICT",
+      "candidate_classes": [
+        "SEC009_F01_REPORT_BINDING_CONFLICT"
+      ],
+      "current_assignment": "SEC009_F01_REPORT_BINDING_CONFLICT",
+      "relation": "matches"
+    },
+    {
+      "input_id": "WR245-INPUT-059",
+      "case_id": "SEC009-WORKER_EXECUTION-REPORTS-PROJECT-MISSING",
+      "candidate_classes": [
+        "SEC009_F01_REPORT_BINDING_UNRESOLVED"
+      ],
+      "current_assignment": "SEC009_F01_REPORT_BINDING_UNRESOLVED",
+      "relation": "matches"
+    },
+    {
+      "input_id": "WR245-INPUT-060",
+      "case_id": "SEC009-WORKER_EXECUTION-REPORTS-PROJECT-CONFLICT",
+      "candidate_classes": [
+        "SEC009_F01_REPORT_BINDING_CONFLICT"
+      ],
+      "current_assignment": "SEC009_F01_REPORT_BINDING_CONFLICT",
+      "relation": "matches"
+    },
+    {
+      "input_id": "WR245-INPUT-061",
+      "case_id": "SEC009-WORKER_EXECUTION-REPORTS-WORKER-MISSING",
+      "candidate_classes": [
+        "SEC009_F01_REPORT_BINDING_UNRESOLVED"
+      ],
+      "current_assignment": "SEC009_F01_REPORT_BINDING_UNRESOLVED",
+      "relation": "matches"
+    },
+    {
+      "input_id": "WR245-INPUT-062",
+      "case_id": "SEC009-WORKER_EXECUTION-REPORTS-WORKER-CONFLICT",
+      "candidate_classes": [
+        "SEC009_F01_REPORT_BINDING_CONFLICT"
+      ],
+      "current_assignment": "SEC009_F01_REPORT_BINDING_CONFLICT",
+      "relation": "matches"
+    },
+    {
+      "input_id": "WR245-INPUT-063",
+      "case_id": "SEC009-WORKER_EXECUTION-REPORTS-ENVIRONMENT-MISSING",
+      "candidate_classes": [
+        "SEC009_F01_REPORT_BINDING_UNRESOLVED"
+      ],
+      "current_assignment": "SEC009_F01_REPORT_BINDING_UNRESOLVED",
+      "relation": "matches"
+    },
+    {
+      "input_id": "WR245-INPUT-064",
+      "case_id": "SEC009-WORKER_EXECUTION-REPORTS-ENVIRONMENT-CONFLICT",
+      "candidate_classes": [
+        "SEC009_F01_REPORT_BINDING_CONFLICT"
+      ],
+      "current_assignment": "SEC009_F01_REPORT_BINDING_CONFLICT",
+      "relation": "matches"
+    },
+    {
+      "input_id": "WR245-INPUT-065",
+      "case_id": "SEC009-WORKER_EXECUTION-REPORTS-SOURCE-MISSING",
+      "candidate_classes": [
+        "SEC009_F01_REPORT_BINDING_UNRESOLVED"
+      ],
+      "current_assignment": "SEC009_F01_REPORT_BINDING_UNRESOLVED",
+      "relation": "matches"
+    },
+    {
+      "input_id": "WR245-INPUT-066",
+      "case_id": "SEC009-WORKER_EXECUTION-REPORTS-SOURCE-CONFLICT",
+      "candidate_classes": [
+        "SEC009_F01_REPORT_BINDING_CONFLICT"
+      ],
+      "current_assignment": "SEC009_F01_REPORT_BINDING_CONFLICT",
+      "relation": "matches"
+    },
+    {
+      "input_id": "WR245-INPUT-067",
+      "case_id": "SEC009-WORKER_EXECUTION-EXPECTED_POLICY_REFS-MISSING",
+      "candidate_classes": [
+        "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED"
+      ],
+      "current_assignment": "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED",
+      "relation": "matches"
+    },
+    {
+      "input_id": "WR245-INPUT-068",
+      "case_id": "SEC009-WORKER_EXECUTION-EXPECTED_REPORT_REFS-MISSING",
+      "candidate_classes": [
+        "SEC009_F01_REPORT_BINDING_UNRESOLVED"
+      ],
+      "current_assignment": "SEC009_F01_REPORT_BINDING_UNRESOLVED",
+      "relation": "matches"
+    },
+    {
+      "input_id": "WR245-INPUT-069",
+      "case_id": "SEC009-WORKER_EXECUTION-RECEIPT-NOT_DELIVERED",
+      "candidate_classes": [
+        "SEC009_F01_RECIPIENT_NOT_DELIVERED"
+      ],
+      "current_assignment": "SEC009_F01_RECIPIENT_NOT_DELIVERED",
+      "relation": "matches"
+    },
+    {
+      "input_id": "WR245-INPUT-070",
+      "case_id": "SEC009-WORKER_EXECUTION-RECEIPT-UNKNOWN",
+      "candidate_classes": [
+        "SEC009_F01_RECIPIENT_RECEIPT_UNRESOLVED"
+      ],
+      "current_assignment": "SEC009_F01_RECIPIENT_RECEIPT_UNRESOLVED",
+      "relation": "matches"
+    },
+    {
+      "input_id": "WR245-INPUT-071",
+      "case_id": "SEC009-WORKER_EXECUTION-STOP_EXECUTION-NOT_APPLIED",
+      "candidate_classes": [
+        "SEC009_F01_RECIPIENT_NOT_APPLIED"
+      ],
+      "current_assignment": "SEC009_F01_RECIPIENT_NOT_APPLIED",
+      "relation": "matches"
+    },
+    {
+      "input_id": "WR245-INPUT-072",
+      "case_id": "SEC009-WORKER_EXECUTION-STOP_EXECUTION-NOT_OBSERVED",
+      "candidate_classes": [
+        "SEC009_F01_RECIPIENT_APPLICATION_UNRESOLVED"
+      ],
+      "current_assignment": "SEC009_F01_RECIPIENT_APPLICATION_UNRESOLVED",
+      "relation": "matches"
+    },
+    {
+      "input_id": "WR245-INPUT-073",
+      "case_id": "SEC009-WORKER_EXECUTION-STOP_EXECUTION-NONE",
+      "candidate_classes": [
+        "SEC009_F01_RECIPIENT_APPLICATION_UNRESOLVED"
+      ],
+      "current_assignment": "SEC009_F01_RECIPIENT_APPLICATION_UNRESOLVED",
+      "relation": "matches"
+    },
+    {
+      "input_id": "WR245-INPUT-074",
+      "case_id": "SEC009-WORKER_EXECUTION-ISOLATE_PARTIAL_ARTIFACT-NOT_APPLIED",
+      "candidate_classes": [
+        "SEC009_F01_RECIPIENT_NOT_APPLIED"
+      ],
+      "current_assignment": "SEC009_F01_RECIPIENT_NOT_APPLIED",
+      "relation": "matches"
+    },
+    {
+      "input_id": "WR245-INPUT-075",
+      "case_id": "SEC009-WORKER_EXECUTION-ISOLATE_PARTIAL_ARTIFACT-NOT_OBSERVED",
+      "candidate_classes": [
+        "SEC009_F01_RECIPIENT_APPLICATION_UNRESOLVED"
+      ],
+      "current_assignment": "SEC009_F01_RECIPIENT_APPLICATION_UNRESOLVED",
+      "relation": "matches"
+    },
+    {
+      "input_id": "WR245-INPUT-076",
+      "case_id": "SEC009-WORKER_EXECUTION-ISOLATE_PARTIAL_ARTIFACT-NONE",
+      "candidate_classes": [
+        "SEC009_F01_RECIPIENT_APPLICATION_UNRESOLVED"
+      ],
+      "current_assignment": "SEC009_F01_RECIPIENT_APPLICATION_UNRESOLVED",
+      "relation": "matches"
+    },
+    {
+      "input_id": "WR245-INPUT-077",
+      "case_id": "SEC009-WORKER_EXECUTION-EXECUTION_CONTINUES-TRUE",
+      "candidate_classes": [
+        "SEC009_F01_RECIPIENT_CONTINUES_AFTER_STOP"
+      ],
+      "current_assignment": "SEC009_F01_RECIPIENT_CONTINUES_AFTER_STOP",
+      "relation": "matches"
+    },
+    {
+      "input_id": "WR245-INPUT-078",
+      "case_id": "SEC009-WORKER_EXECUTION-EXECUTION_CONTINUES-NONE",
+      "candidate_classes": [
+        "SEC009_F01_RECIPIENT_POST_STATE_UNRESOLVED"
+      ],
+      "current_assignment": "SEC009_F01_RECIPIENT_POST_STATE_UNRESOLVED",
+      "relation": "matches"
+    },
+    {
+      "input_id": "WR245-INPUT-079",
+      "case_id": "SEC009-WORKER_EXECUTION-PARTIAL_ARTIFACT_EXPOSED-TRUE",
+      "candidate_classes": [
+        "SEC009_F01_RECIPIENT_CONTINUES_AFTER_STOP"
+      ],
+      "current_assignment": "SEC009_F01_RECIPIENT_CONTINUES_AFTER_STOP",
+      "relation": "matches"
+    },
+    {
+      "input_id": "WR245-INPUT-080",
+      "case_id": "SEC009-WORKER_EXECUTION-PARTIAL_ARTIFACT_EXPOSED-NONE",
+      "candidate_classes": [
+        "SEC009_F01_RECIPIENT_POST_STATE_UNRESOLVED"
+      ],
+      "current_assignment": "SEC009_F01_RECIPIENT_POST_STATE_UNRESOLVED",
+      "relation": "matches"
+    },
+    {
+      "input_id": "WR245-INPUT-081",
+      "case_id": "SEC009-WORKER_EXECUTION-ACTIONS-EMPTY",
+      "candidate_classes": [
+        "SEC009_F01_RECIPIENT_ACTIONS_CONFLICT"
+      ],
+      "current_assignment": "SEC009_F01_RECIPIENT_ACTIONS_CONFLICT",
+      "relation": "matches"
+    },
+    {
+      "input_id": "WR245-INPUT-082",
+      "case_id": "SEC009-CONNECT_COMMUNICATION-INSTRUCTIONS-MISSING",
+      "candidate_classes": [
+        "SEC009_F01_INSTRUCTION_UNRESOLVED"
+      ],
+      "current_assignment": "SEC009_F01_INSTRUCTION_UNRESOLVED",
+      "relation": "matches"
+    },
+    {
+      "input_id": "WR245-INPUT-083",
+      "case_id": "SEC009-CONNECT_COMMUNICATION-INSTRUCTIONS-EVENT_ID-MISSING",
+      "candidate_classes": [
+        "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED"
+      ],
+      "current_assignment": "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED",
+      "relation": "matches"
+    },
+    {
+      "input_id": "WR245-INPUT-084",
+      "case_id": "SEC009-CONNECT_COMMUNICATION-INSTRUCTIONS-EVENT_ID-CONFLICT",
+      "candidate_classes": [
+        "SEC009_F01_INSTRUCTION_BINDING_CONFLICT"
+      ],
+      "current_assignment": "SEC009_F01_INSTRUCTION_BINDING_CONFLICT",
+      "relation": "matches"
+    },
+    {
+      "input_id": "WR245-INPUT-085",
+      "case_id": "SEC009-CONNECT_COMMUNICATION-INSTRUCTIONS-REVISION-MISSING",
+      "candidate_classes": [
+        "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED"
+      ],
+      "current_assignment": "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED",
+      "relation": "matches"
+    },
+    {
+      "input_id": "WR245-INPUT-086",
+      "case_id": "SEC009-CONNECT_COMMUNICATION-INSTRUCTIONS-REVISION-CONFLICT",
+      "candidate_classes": [
+        "SEC009_F01_INSTRUCTION_BINDING_CONFLICT"
+      ],
+      "current_assignment": "SEC009_F01_INSTRUCTION_BINDING_CONFLICT",
+      "relation": "matches"
+    },
+    {
+      "input_id": "WR245-INPUT-087",
+      "case_id": "SEC009-CONNECT_COMMUNICATION-INSTRUCTIONS-SCOPE-MISSING",
+      "candidate_classes": [
+        "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED"
+      ],
+      "current_assignment": "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED",
+      "relation": "matches"
+    },
+    {
+      "input_id": "WR245-INPUT-088",
+      "case_id": "SEC009-CONNECT_COMMUNICATION-INSTRUCTIONS-SCOPE-CONFLICT",
+      "candidate_classes": [
+        "SEC009_F01_INSTRUCTION_BINDING_CONFLICT"
+      ],
+      "current_assignment": "SEC009_F01_INSTRUCTION_BINDING_CONFLICT",
+      "relation": "matches"
+    },
+    {
+      "input_id": "WR245-INPUT-089",
+      "case_id": "SEC009-CONNECT_COMMUNICATION-INSTRUCTIONS-OPERATION-MISSING",
+      "candidate_classes": [
+        "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED"
+      ],
+      "current_assignment": "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED",
+      "relation": "matches"
+    },
+    {
+      "input_id": "WR245-INPUT-090",
+      "case_id": "SEC009-CONNECT_COMMUNICATION-INSTRUCTIONS-OPERATION-CONFLICT",
+      "candidate_classes": [
+        "SEC009_F01_INSTRUCTION_BINDING_CONFLICT"
+      ],
+      "current_assignment": "SEC009_F01_INSTRUCTION_BINDING_CONFLICT",
+      "relation": "matches"
+    },
+    {
+      "input_id": "WR245-INPUT-091",
+      "case_id": "SEC009-CONNECT_COMMUNICATION-INSTRUCTIONS-PROJECT-MISSING",
+      "candidate_classes": [
+        "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED"
+      ],
+      "current_assignment": "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED",
+      "relation": "matches"
+    },
+    {
+      "input_id": "WR245-INPUT-092",
+      "case_id": "SEC009-CONNECT_COMMUNICATION-INSTRUCTIONS-PROJECT-CONFLICT",
+      "candidate_classes": [
+        "SEC009_F01_INSTRUCTION_BINDING_CONFLICT"
+      ],
+      "current_assignment": "SEC009_F01_INSTRUCTION_BINDING_CONFLICT",
+      "relation": "matches"
+    },
+    {
+      "input_id": "WR245-INPUT-093",
+      "case_id": "SEC009-CONNECT_COMMUNICATION-INSTRUCTIONS-CONNECTION-MISSING",
+      "candidate_classes": [
+        "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED"
+      ],
+      "current_assignment": "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED",
+      "relation": "matches"
+    },
+    {
+      "input_id": "WR245-INPUT-094",
+      "case_id": "SEC009-CONNECT_COMMUNICATION-INSTRUCTIONS-CONNECTION-CONFLICT",
+      "candidate_classes": [
+        "SEC009_F01_INSTRUCTION_BINDING_CONFLICT"
+      ],
+      "current_assignment": "SEC009_F01_INSTRUCTION_BINDING_CONFLICT",
+      "relation": "matches"
+    },
+    {
+      "input_id": "WR245-INPUT-095",
+      "case_id": "SEC009-CONNECT_COMMUNICATION-INSTRUCTIONS-SOURCE-MISSING",
+      "candidate_classes": [
+        "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED"
+      ],
+      "current_assignment": "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED",
+      "relation": "matches"
+    },
+    {
+      "input_id": "WR245-INPUT-096",
+      "case_id": "SEC009-CONNECT_COMMUNICATION-INSTRUCTIONS-SOURCE-CONFLICT",
+      "candidate_classes": [
+        "SEC009_F01_INSTRUCTION_BINDING_CONFLICT"
+      ],
+      "current_assignment": "SEC009_F01_INSTRUCTION_BINDING_CONFLICT",
+      "relation": "matches"
+    },
+    {
+      "input_id": "WR245-INPUT-097",
+      "case_id": "SEC009-CONNECT_COMMUNICATION-REPORTS-MISSING",
+      "candidate_classes": [
+        "SEC009_F01_RECIPIENT_REPORT_UNRESOLVED"
+      ],
+      "current_assignment": "SEC009_F01_RECIPIENT_REPORT_UNRESOLVED",
+      "relation": "matches"
+    },
+    {
+      "input_id": "WR245-INPUT-098",
+      "case_id": "SEC009-CONNECT_COMMUNICATION-REPORTS-EVENT_ID-MISSING",
+      "candidate_classes": [
+        "SEC009_F01_REPORT_BINDING_UNRESOLVED"
+      ],
+      "current_assignment": "SEC009_F01_REPORT_BINDING_UNRESOLVED",
+      "relation": "matches"
+    },
+    {
+      "input_id": "WR245-INPUT-099",
+      "case_id": "SEC009-CONNECT_COMMUNICATION-REPORTS-EVENT_ID-CONFLICT",
+      "candidate_classes": [
+        "SEC009_F01_REPORT_BINDING_CONFLICT"
+      ],
+      "current_assignment": "SEC009_F01_REPORT_BINDING_CONFLICT",
+      "relation": "matches"
+    },
+    {
+      "input_id": "WR245-INPUT-100",
+      "case_id": "SEC009-CONNECT_COMMUNICATION-REPORTS-REVISION-MISSING",
+      "candidate_classes": [
+        "SEC009_F01_REPORT_BINDING_UNRESOLVED"
+      ],
+      "current_assignment": "SEC009_F01_REPORT_BINDING_UNRESOLVED",
+      "relation": "matches"
+    },
+    {
+      "input_id": "WR245-INPUT-101",
+      "case_id": "SEC009-CONNECT_COMMUNICATION-REPORTS-REVISION-CONFLICT",
+      "candidate_classes": [
+        "SEC009_F01_REPORT_BINDING_CONFLICT"
+      ],
+      "current_assignment": "SEC009_F01_REPORT_BINDING_CONFLICT",
+      "relation": "matches"
+    },
+    {
+      "input_id": "WR245-INPUT-102",
+      "case_id": "SEC009-CONNECT_COMMUNICATION-REPORTS-SCOPE-MISSING",
+      "candidate_classes": [
+        "SEC009_F01_REPORT_BINDING_UNRESOLVED"
+      ],
+      "current_assignment": "SEC009_F01_REPORT_BINDING_UNRESOLVED",
+      "relation": "matches"
+    },
+    {
+      "input_id": "WR245-INPUT-103",
+      "case_id": "SEC009-CONNECT_COMMUNICATION-REPORTS-SCOPE-CONFLICT",
+      "candidate_classes": [
+        "SEC009_F01_REPORT_BINDING_CONFLICT"
+      ],
+      "current_assignment": "SEC009_F01_REPORT_BINDING_CONFLICT",
+      "relation": "matches"
+    },
+    {
+      "input_id": "WR245-INPUT-104",
+      "case_id": "SEC009-CONNECT_COMMUNICATION-REPORTS-OPERATION-MISSING",
+      "candidate_classes": [
+        "SEC009_F01_REPORT_BINDING_UNRESOLVED"
+      ],
+      "current_assignment": "SEC009_F01_REPORT_BINDING_UNRESOLVED",
+      "relation": "matches"
+    },
+    {
+      "input_id": "WR245-INPUT-105",
+      "case_id": "SEC009-CONNECT_COMMUNICATION-REPORTS-OPERATION-CONFLICT",
+      "candidate_classes": [
+        "SEC009_F01_REPORT_BINDING_CONFLICT"
+      ],
+      "current_assignment": "SEC009_F01_REPORT_BINDING_CONFLICT",
+      "relation": "matches"
+    },
+    {
+      "input_id": "WR245-INPUT-106",
+      "case_id": "SEC009-CONNECT_COMMUNICATION-REPORTS-PROJECT-MISSING",
+      "candidate_classes": [
+        "SEC009_F01_REPORT_BINDING_UNRESOLVED"
+      ],
+      "current_assignment": "SEC009_F01_REPORT_BINDING_UNRESOLVED",
+      "relation": "matches"
+    },
+    {
+      "input_id": "WR245-INPUT-107",
+      "case_id": "SEC009-CONNECT_COMMUNICATION-REPORTS-PROJECT-CONFLICT",
+      "candidate_classes": [
+        "SEC009_F01_REPORT_BINDING_CONFLICT"
+      ],
+      "current_assignment": "SEC009_F01_REPORT_BINDING_CONFLICT",
+      "relation": "matches"
+    },
+    {
+      "input_id": "WR245-INPUT-108",
+      "case_id": "SEC009-CONNECT_COMMUNICATION-REPORTS-CONNECTION-MISSING",
+      "candidate_classes": [
+        "SEC009_F01_REPORT_BINDING_UNRESOLVED"
+      ],
+      "current_assignment": "SEC009_F01_REPORT_BINDING_UNRESOLVED",
+      "relation": "matches"
+    },
+    {
+      "input_id": "WR245-INPUT-109",
+      "case_id": "SEC009-CONNECT_COMMUNICATION-REPORTS-CONNECTION-CONFLICT",
+      "candidate_classes": [
+        "SEC009_F01_REPORT_BINDING_CONFLICT"
+      ],
+      "current_assignment": "SEC009_F01_REPORT_BINDING_CONFLICT",
+      "relation": "matches"
+    },
+    {
+      "input_id": "WR245-INPUT-110",
+      "case_id": "SEC009-CONNECT_COMMUNICATION-REPORTS-SOURCE-MISSING",
+      "candidate_classes": [
+        "SEC009_F01_REPORT_BINDING_UNRESOLVED"
+      ],
+      "current_assignment": "SEC009_F01_REPORT_BINDING_UNRESOLVED",
+      "relation": "matches"
+    },
+    {
+      "input_id": "WR245-INPUT-111",
+      "case_id": "SEC009-CONNECT_COMMUNICATION-REPORTS-SOURCE-CONFLICT",
+      "candidate_classes": [
+        "SEC009_F01_REPORT_BINDING_CONFLICT"
+      ],
+      "current_assignment": "SEC009_F01_REPORT_BINDING_CONFLICT",
+      "relation": "matches"
+    },
+    {
+      "input_id": "WR245-INPUT-112",
+      "case_id": "SEC009-CONNECT_COMMUNICATION-EXPECTED_POLICY_REFS-MISSING",
+      "candidate_classes": [
+        "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED"
+      ],
+      "current_assignment": "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED",
+      "relation": "matches"
+    },
+    {
+      "input_id": "WR245-INPUT-113",
+      "case_id": "SEC009-CONNECT_COMMUNICATION-EXPECTED_REPORT_REFS-MISSING",
+      "candidate_classes": [
+        "SEC009_F01_REPORT_BINDING_UNRESOLVED"
+      ],
+      "current_assignment": "SEC009_F01_REPORT_BINDING_UNRESOLVED",
+      "relation": "matches"
+    },
+    {
+      "input_id": "WR245-INPUT-114",
+      "case_id": "SEC009-CONNECT_COMMUNICATION-RECEIPT-NOT_DELIVERED",
+      "candidate_classes": [
+        "SEC009_F01_RECIPIENT_NOT_DELIVERED"
+      ],
+      "current_assignment": "SEC009_F01_RECIPIENT_NOT_DELIVERED",
+      "relation": "matches"
+    },
+    {
+      "input_id": "WR245-INPUT-115",
+      "case_id": "SEC009-CONNECT_COMMUNICATION-RECEIPT-UNKNOWN",
+      "candidate_classes": [
+        "SEC009_F01_RECIPIENT_RECEIPT_UNRESOLVED"
+      ],
+      "current_assignment": "SEC009_F01_RECIPIENT_RECEIPT_UNRESOLVED",
+      "relation": "matches"
+    },
+    {
+      "input_id": "WR245-INPUT-116",
+      "case_id": "SEC009-CONNECT_COMMUNICATION-STOP_COMMUNICATION-NOT_APPLIED",
+      "candidate_classes": [
+        "SEC009_F01_RECIPIENT_NOT_APPLIED"
+      ],
+      "current_assignment": "SEC009_F01_RECIPIENT_NOT_APPLIED",
+      "relation": "matches"
+    },
+    {
+      "input_id": "WR245-INPUT-117",
+      "case_id": "SEC009-CONNECT_COMMUNICATION-STOP_COMMUNICATION-NOT_OBSERVED",
+      "candidate_classes": [
+        "SEC009_F01_RECIPIENT_APPLICATION_UNRESOLVED"
+      ],
+      "current_assignment": "SEC009_F01_RECIPIENT_APPLICATION_UNRESOLVED",
+      "relation": "matches"
+    },
+    {
+      "input_id": "WR245-INPUT-118",
+      "case_id": "SEC009-CONNECT_COMMUNICATION-STOP_COMMUNICATION-NONE",
+      "candidate_classes": [
+        "SEC009_F01_RECIPIENT_APPLICATION_UNRESOLVED"
+      ],
+      "current_assignment": "SEC009_F01_RECIPIENT_APPLICATION_UNRESOLVED",
+      "relation": "matches"
+    },
+    {
+      "input_id": "WR245-INPUT-119",
+      "case_id": "SEC009-CONNECT_COMMUNICATION-COMMUNICATION_CONTINUES-TRUE",
+      "candidate_classes": [
+        "SEC009_F01_RECIPIENT_CONTINUES_AFTER_STOP"
+      ],
+      "current_assignment": "SEC009_F01_RECIPIENT_CONTINUES_AFTER_STOP",
+      "relation": "matches"
+    },
+    {
+      "input_id": "WR245-INPUT-120",
+      "case_id": "SEC009-CONNECT_COMMUNICATION-COMMUNICATION_CONTINUES-NONE",
+      "candidate_classes": [
+        "SEC009_F01_RECIPIENT_POST_STATE_UNRESOLVED"
+      ],
+      "current_assignment": "SEC009_F01_RECIPIENT_POST_STATE_UNRESOLVED",
+      "relation": "matches"
+    },
+    {
+      "input_id": "WR245-INPUT-121",
+      "case_id": "SEC009-CONNECT_COMMUNICATION-ACTIONS-EMPTY",
+      "candidate_classes": [
+        "SEC009_F01_RECIPIENT_ACTIONS_CONFLICT"
+      ],
+      "current_assignment": "SEC009_F01_RECIPIENT_ACTIONS_CONFLICT",
+      "relation": "matches"
+    },
+    {
+      "input_id": "WR245-INPUT-122",
+      "case_id": "SEC009-CREDENTIAL_USE-INSTRUCTIONS-MISSING",
+      "candidate_classes": [
+        "SEC009_F01_INSTRUCTION_UNRESOLVED"
+      ],
+      "current_assignment": "SEC009_F01_INSTRUCTION_UNRESOLVED",
+      "relation": "matches"
+    },
+    {
+      "input_id": "WR245-INPUT-123",
+      "case_id": "SEC009-CREDENTIAL_USE-INSTRUCTIONS-EVENT_ID-MISSING",
+      "candidate_classes": [
+        "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED"
+      ],
+      "current_assignment": "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED",
+      "relation": "matches"
+    },
+    {
+      "input_id": "WR245-INPUT-124",
+      "case_id": "SEC009-CREDENTIAL_USE-INSTRUCTIONS-EVENT_ID-CONFLICT",
+      "candidate_classes": [
+        "SEC009_F01_INSTRUCTION_BINDING_CONFLICT"
+      ],
+      "current_assignment": "SEC009_F01_INSTRUCTION_BINDING_CONFLICT",
+      "relation": "matches"
+    },
+    {
+      "input_id": "WR245-INPUT-125",
+      "case_id": "SEC009-CREDENTIAL_USE-INSTRUCTIONS-REVISION-MISSING",
+      "candidate_classes": [
+        "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED"
+      ],
+      "current_assignment": "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED",
+      "relation": "matches"
+    },
+    {
+      "input_id": "WR245-INPUT-126",
+      "case_id": "SEC009-CREDENTIAL_USE-INSTRUCTIONS-REVISION-CONFLICT",
+      "candidate_classes": [
+        "SEC009_F01_INSTRUCTION_BINDING_CONFLICT"
+      ],
+      "current_assignment": "SEC009_F01_INSTRUCTION_BINDING_CONFLICT",
+      "relation": "matches"
+    },
+    {
+      "input_id": "WR245-INPUT-127",
+      "case_id": "SEC009-CREDENTIAL_USE-INSTRUCTIONS-SCOPE-MISSING",
+      "candidate_classes": [
+        "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED"
+      ],
+      "current_assignment": "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED",
+      "relation": "matches"
+    },
+    {
+      "input_id": "WR245-INPUT-128",
+      "case_id": "SEC009-CREDENTIAL_USE-INSTRUCTIONS-SCOPE-CONFLICT",
+      "candidate_classes": [
+        "SEC009_F01_INSTRUCTION_BINDING_CONFLICT"
+      ],
+      "current_assignment": "SEC009_F01_INSTRUCTION_BINDING_CONFLICT",
+      "relation": "matches"
+    },
+    {
+      "input_id": "WR245-INPUT-129",
+      "case_id": "SEC009-CREDENTIAL_USE-INSTRUCTIONS-OPERATION-MISSING",
+      "candidate_classes": [
+        "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED"
+      ],
+      "current_assignment": "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED",
+      "relation": "matches"
+    },
+    {
+      "input_id": "WR245-INPUT-130",
+      "case_id": "SEC009-CREDENTIAL_USE-INSTRUCTIONS-OPERATION-CONFLICT",
+      "candidate_classes": [
+        "SEC009_F01_INSTRUCTION_BINDING_CONFLICT"
+      ],
+      "current_assignment": "SEC009_F01_INSTRUCTION_BINDING_CONFLICT",
+      "relation": "matches"
+    },
+    {
+      "input_id": "WR245-INPUT-131",
+      "case_id": "SEC009-CREDENTIAL_USE-INSTRUCTIONS-PROJECT-MISSING",
+      "candidate_classes": [
+        "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED"
+      ],
+      "current_assignment": "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED",
+      "relation": "matches"
+    },
+    {
+      "input_id": "WR245-INPUT-132",
+      "case_id": "SEC009-CREDENTIAL_USE-INSTRUCTIONS-PROJECT-CONFLICT",
+      "candidate_classes": [
+        "SEC009_F01_INSTRUCTION_BINDING_CONFLICT"
+      ],
+      "current_assignment": "SEC009_F01_INSTRUCTION_BINDING_CONFLICT",
+      "relation": "matches"
+    },
+    {
+      "input_id": "WR245-INPUT-133",
+      "case_id": "SEC009-CREDENTIAL_USE-INSTRUCTIONS-CREDENTIAL-MISSING",
+      "candidate_classes": [
+        "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED"
+      ],
+      "current_assignment": "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED",
+      "relation": "matches"
+    },
+    {
+      "input_id": "WR245-INPUT-134",
+      "case_id": "SEC009-CREDENTIAL_USE-INSTRUCTIONS-CREDENTIAL-CONFLICT",
+      "candidate_classes": [
+        "SEC009_F01_INSTRUCTION_BINDING_CONFLICT"
+      ],
+      "current_assignment": "SEC009_F01_INSTRUCTION_BINDING_CONFLICT",
+      "relation": "matches"
+    },
+    {
+      "input_id": "WR245-INPUT-135",
+      "case_id": "SEC009-CREDENTIAL_USE-INSTRUCTIONS-SOURCE-MISSING",
+      "candidate_classes": [
+        "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED"
+      ],
+      "current_assignment": "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED",
+      "relation": "matches"
+    },
+    {
+      "input_id": "WR245-INPUT-136",
+      "case_id": "SEC009-CREDENTIAL_USE-INSTRUCTIONS-SOURCE-CONFLICT",
+      "candidate_classes": [
+        "SEC009_F01_INSTRUCTION_BINDING_CONFLICT"
+      ],
+      "current_assignment": "SEC009_F01_INSTRUCTION_BINDING_CONFLICT",
+      "relation": "matches"
+    },
+    {
+      "input_id": "WR245-INPUT-137",
+      "case_id": "SEC009-CREDENTIAL_USE-REPORTS-MISSING",
+      "candidate_classes": [
+        "SEC009_F01_RECIPIENT_REPORT_UNRESOLVED"
+      ],
+      "current_assignment": "SEC009_F01_RECIPIENT_REPORT_UNRESOLVED",
+      "relation": "matches"
+    },
+    {
+      "input_id": "WR245-INPUT-138",
+      "case_id": "SEC009-CREDENTIAL_USE-REPORTS-EVENT_ID-MISSING",
+      "candidate_classes": [
+        "SEC009_F01_REPORT_BINDING_UNRESOLVED"
+      ],
+      "current_assignment": "SEC009_F01_REPORT_BINDING_UNRESOLVED",
+      "relation": "matches"
+    },
+    {
+      "input_id": "WR245-INPUT-139",
+      "case_id": "SEC009-CREDENTIAL_USE-REPORTS-EVENT_ID-CONFLICT",
+      "candidate_classes": [
+        "SEC009_F01_REPORT_BINDING_CONFLICT"
+      ],
+      "current_assignment": "SEC009_F01_REPORT_BINDING_CONFLICT",
+      "relation": "matches"
+    },
+    {
+      "input_id": "WR245-INPUT-140",
+      "case_id": "SEC009-CREDENTIAL_USE-REPORTS-REVISION-MISSING",
+      "candidate_classes": [
+        "SEC009_F01_REPORT_BINDING_UNRESOLVED"
+      ],
+      "current_assignment": "SEC009_F01_REPORT_BINDING_UNRESOLVED",
+      "relation": "matches"
+    },
+    {
+      "input_id": "WR245-INPUT-141",
+      "case_id": "SEC009-CREDENTIAL_USE-REPORTS-REVISION-CONFLICT",
+      "candidate_classes": [
+        "SEC009_F01_REPORT_BINDING_CONFLICT"
+      ],
+      "current_assignment": "SEC009_F01_REPORT_BINDING_CONFLICT",
+      "relation": "matches"
+    },
+    {
+      "input_id": "WR245-INPUT-142",
+      "case_id": "SEC009-CREDENTIAL_USE-REPORTS-SCOPE-MISSING",
+      "candidate_classes": [
+        "SEC009_F01_REPORT_BINDING_UNRESOLVED"
+      ],
+      "current_assignment": "SEC009_F01_REPORT_BINDING_UNRESOLVED",
+      "relation": "matches"
+    },
+    {
+      "input_id": "WR245-INPUT-143",
+      "case_id": "SEC009-CREDENTIAL_USE-REPORTS-SCOPE-CONFLICT",
+      "candidate_classes": [
+        "SEC009_F01_REPORT_BINDING_CONFLICT"
+      ],
+      "current_assignment": "SEC009_F01_REPORT_BINDING_CONFLICT",
+      "relation": "matches"
+    },
+    {
+      "input_id": "WR245-INPUT-144",
+      "case_id": "SEC009-CREDENTIAL_USE-REPORTS-OPERATION-MISSING",
+      "candidate_classes": [
+        "SEC009_F01_REPORT_BINDING_UNRESOLVED"
+      ],
+      "current_assignment": "SEC009_F01_REPORT_BINDING_UNRESOLVED",
+      "relation": "matches"
+    },
+    {
+      "input_id": "WR245-INPUT-145",
+      "case_id": "SEC009-CREDENTIAL_USE-REPORTS-OPERATION-CONFLICT",
+      "candidate_classes": [
+        "SEC009_F01_REPORT_BINDING_CONFLICT"
+      ],
+      "current_assignment": "SEC009_F01_REPORT_BINDING_CONFLICT",
+      "relation": "matches"
+    },
+    {
+      "input_id": "WR245-INPUT-146",
+      "case_id": "SEC009-CREDENTIAL_USE-REPORTS-PROJECT-MISSING",
+      "candidate_classes": [
+        "SEC009_F01_REPORT_BINDING_UNRESOLVED"
+      ],
+      "current_assignment": "SEC009_F01_REPORT_BINDING_UNRESOLVED",
+      "relation": "matches"
+    },
+    {
+      "input_id": "WR245-INPUT-147",
+      "case_id": "SEC009-CREDENTIAL_USE-REPORTS-PROJECT-CONFLICT",
+      "candidate_classes": [
+        "SEC009_F01_REPORT_BINDING_CONFLICT"
+      ],
+      "current_assignment": "SEC009_F01_REPORT_BINDING_CONFLICT",
+      "relation": "matches"
+    },
+    {
+      "input_id": "WR245-INPUT-148",
+      "case_id": "SEC009-CREDENTIAL_USE-REPORTS-CREDENTIAL-MISSING",
+      "candidate_classes": [
+        "SEC009_F01_REPORT_BINDING_UNRESOLVED"
+      ],
+      "current_assignment": "SEC009_F01_REPORT_BINDING_UNRESOLVED",
+      "relation": "matches"
+    },
+    {
+      "input_id": "WR245-INPUT-149",
+      "case_id": "SEC009-CREDENTIAL_USE-REPORTS-CREDENTIAL-CONFLICT",
+      "candidate_classes": [
+        "SEC009_F01_REPORT_BINDING_CONFLICT"
+      ],
+      "current_assignment": "SEC009_F01_REPORT_BINDING_CONFLICT",
+      "relation": "matches"
+    },
+    {
+      "input_id": "WR245-INPUT-150",
+      "case_id": "SEC009-CREDENTIAL_USE-REPORTS-SOURCE-MISSING",
+      "candidate_classes": [
+        "SEC009_F01_REPORT_BINDING_UNRESOLVED"
+      ],
+      "current_assignment": "SEC009_F01_REPORT_BINDING_UNRESOLVED",
+      "relation": "matches"
+    },
+    {
+      "input_id": "WR245-INPUT-151",
+      "case_id": "SEC009-CREDENTIAL_USE-REPORTS-SOURCE-CONFLICT",
+      "candidate_classes": [
+        "SEC009_F01_REPORT_BINDING_CONFLICT"
+      ],
+      "current_assignment": "SEC009_F01_REPORT_BINDING_CONFLICT",
+      "relation": "matches"
+    },
+    {
+      "input_id": "WR245-INPUT-152",
+      "case_id": "SEC009-CREDENTIAL_USE-EXPECTED_POLICY_REFS-MISSING",
+      "candidate_classes": [
+        "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED"
+      ],
+      "current_assignment": "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED",
+      "relation": "matches"
+    },
+    {
+      "input_id": "WR245-INPUT-153",
+      "case_id": "SEC009-CREDENTIAL_USE-EXPECTED_REPORT_REFS-MISSING",
+      "candidate_classes": [
+        "SEC009_F01_REPORT_BINDING_UNRESOLVED"
+      ],
+      "current_assignment": "SEC009_F01_REPORT_BINDING_UNRESOLVED",
+      "relation": "matches"
+    },
+    {
+      "input_id": "WR245-INPUT-154",
+      "case_id": "SEC009-CREDENTIAL_USE-RECEIPT-NOT_DELIVERED",
+      "candidate_classes": [
+        "SEC009_F01_RECIPIENT_NOT_DELIVERED"
+      ],
+      "current_assignment": "SEC009_F01_RECIPIENT_NOT_DELIVERED",
+      "relation": "matches"
+    },
+    {
+      "input_id": "WR245-INPUT-155",
+      "case_id": "SEC009-CREDENTIAL_USE-RECEIPT-UNKNOWN",
+      "candidate_classes": [
+        "SEC009_F01_RECIPIENT_RECEIPT_UNRESOLVED"
+      ],
+      "current_assignment": "SEC009_F01_RECIPIENT_RECEIPT_UNRESOLVED",
+      "relation": "matches"
+    },
+    {
+      "input_id": "WR245-INPUT-156",
+      "case_id": "SEC009-CREDENTIAL_USE-STOP_USE-NOT_APPLIED",
+      "candidate_classes": [
+        "SEC009_F01_RECIPIENT_NOT_APPLIED"
+      ],
+      "current_assignment": "SEC009_F01_RECIPIENT_NOT_APPLIED",
+      "relation": "matches"
+    },
+    {
+      "input_id": "WR245-INPUT-157",
+      "case_id": "SEC009-CREDENTIAL_USE-STOP_USE-NOT_OBSERVED",
+      "candidate_classes": [
+        "SEC009_F01_RECIPIENT_APPLICATION_UNRESOLVED"
+      ],
+      "current_assignment": "SEC009_F01_RECIPIENT_APPLICATION_UNRESOLVED",
+      "relation": "matches"
+    },
+    {
+      "input_id": "WR245-INPUT-158",
+      "case_id": "SEC009-CREDENTIAL_USE-STOP_USE-NONE",
+      "candidate_classes": [
+        "SEC009_F01_RECIPIENT_APPLICATION_UNRESOLVED"
+      ],
+      "current_assignment": "SEC009_F01_RECIPIENT_APPLICATION_UNRESOLVED",
+      "relation": "matches"
+    },
+    {
+      "input_id": "WR245-INPUT-159",
+      "case_id": "SEC009-CREDENTIAL_USE-USE_CONTINUES-TRUE",
+      "candidate_classes": [
+        "SEC009_F01_RECIPIENT_CONTINUES_AFTER_STOP"
+      ],
+      "current_assignment": "SEC009_F01_RECIPIENT_CONTINUES_AFTER_STOP",
+      "relation": "matches"
+    },
+    {
+      "input_id": "WR245-INPUT-160",
+      "case_id": "SEC009-CREDENTIAL_USE-USE_CONTINUES-NONE",
+      "candidate_classes": [
+        "SEC009_F01_RECIPIENT_POST_STATE_UNRESOLVED"
+      ],
+      "current_assignment": "SEC009_F01_RECIPIENT_POST_STATE_UNRESOLVED",
+      "relation": "matches"
+    },
+    {
+      "input_id": "WR245-INPUT-161",
+      "case_id": "SEC009-CREDENTIAL_USE-ACTIONS-EMPTY",
+      "candidate_classes": [
+        "SEC009_F01_RECIPIENT_ACTIONS_CONFLICT"
+      ],
+      "current_assignment": "SEC009_F01_RECIPIENT_ACTIONS_CONFLICT",
+      "relation": "matches"
+    },
+    {
+      "input_id": "WR245-INPUT-162",
+      "case_id": "SEC009-ARTIFACT_ACCESS-INSTRUCTIONS-MISSING",
+      "candidate_classes": [
+        "SEC009_F01_INSTRUCTION_UNRESOLVED"
+      ],
+      "current_assignment": "SEC009_F01_INSTRUCTION_UNRESOLVED",
+      "relation": "matches"
+    },
+    {
+      "input_id": "WR245-INPUT-163",
+      "case_id": "SEC009-ARTIFACT_ACCESS-INSTRUCTIONS-EVENT_ID-MISSING",
+      "candidate_classes": [
+        "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED"
+      ],
+      "current_assignment": "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED",
+      "relation": "matches"
+    },
+    {
+      "input_id": "WR245-INPUT-164",
+      "case_id": "SEC009-ARTIFACT_ACCESS-INSTRUCTIONS-EVENT_ID-CONFLICT",
+      "candidate_classes": [
+        "SEC009_F01_INSTRUCTION_BINDING_CONFLICT"
+      ],
+      "current_assignment": "SEC009_F01_INSTRUCTION_BINDING_CONFLICT",
+      "relation": "matches"
+    },
+    {
+      "input_id": "WR245-INPUT-165",
+      "case_id": "SEC009-ARTIFACT_ACCESS-INSTRUCTIONS-REVISION-MISSING",
+      "candidate_classes": [
+        "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED"
+      ],
+      "current_assignment": "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED",
+      "relation": "matches"
+    },
+    {
+      "input_id": "WR245-INPUT-166",
+      "case_id": "SEC009-ARTIFACT_ACCESS-INSTRUCTIONS-REVISION-CONFLICT",
+      "candidate_classes": [
+        "SEC009_F01_INSTRUCTION_BINDING_CONFLICT"
+      ],
+      "current_assignment": "SEC009_F01_INSTRUCTION_BINDING_CONFLICT",
+      "relation": "matches"
+    },
+    {
+      "input_id": "WR245-INPUT-167",
+      "case_id": "SEC009-ARTIFACT_ACCESS-INSTRUCTIONS-SCOPE-MISSING",
+      "candidate_classes": [
+        "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED"
+      ],
+      "current_assignment": "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED",
+      "relation": "matches"
+    },
+    {
+      "input_id": "WR245-INPUT-168",
+      "case_id": "SEC009-ARTIFACT_ACCESS-INSTRUCTIONS-SCOPE-CONFLICT",
+      "candidate_classes": [
+        "SEC009_F01_INSTRUCTION_BINDING_CONFLICT"
+      ],
+      "current_assignment": "SEC009_F01_INSTRUCTION_BINDING_CONFLICT",
+      "relation": "matches"
+    },
+    {
+      "input_id": "WR245-INPUT-169",
+      "case_id": "SEC009-ARTIFACT_ACCESS-INSTRUCTIONS-OPERATION-MISSING",
+      "candidate_classes": [
+        "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED"
+      ],
+      "current_assignment": "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED",
+      "relation": "matches"
+    },
+    {
+      "input_id": "WR245-INPUT-170",
+      "case_id": "SEC009-ARTIFACT_ACCESS-INSTRUCTIONS-OPERATION-CONFLICT",
+      "candidate_classes": [
+        "SEC009_F01_INSTRUCTION_BINDING_CONFLICT"
+      ],
+      "current_assignment": "SEC009_F01_INSTRUCTION_BINDING_CONFLICT",
+      "relation": "matches"
+    },
+    {
+      "input_id": "WR245-INPUT-171",
+      "case_id": "SEC009-ARTIFACT_ACCESS-INSTRUCTIONS-PROJECT-MISSING",
+      "candidate_classes": [
+        "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED"
+      ],
+      "current_assignment": "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED",
+      "relation": "matches"
+    },
+    {
+      "input_id": "WR245-INPUT-172",
+      "case_id": "SEC009-ARTIFACT_ACCESS-INSTRUCTIONS-PROJECT-CONFLICT",
+      "candidate_classes": [
+        "SEC009_F01_INSTRUCTION_BINDING_CONFLICT"
+      ],
+      "current_assignment": "SEC009_F01_INSTRUCTION_BINDING_CONFLICT",
+      "relation": "matches"
+    },
+    {
+      "input_id": "WR245-INPUT-173",
+      "case_id": "SEC009-ARTIFACT_ACCESS-INSTRUCTIONS-ARTIFACT-MISSING",
+      "candidate_classes": [
+        "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED"
+      ],
+      "current_assignment": "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED",
+      "relation": "matches"
+    },
+    {
+      "input_id": "WR245-INPUT-174",
+      "case_id": "SEC009-ARTIFACT_ACCESS-INSTRUCTIONS-ARTIFACT-CONFLICT",
+      "candidate_classes": [
+        "SEC009_F01_INSTRUCTION_BINDING_CONFLICT"
+      ],
+      "current_assignment": "SEC009_F01_INSTRUCTION_BINDING_CONFLICT",
+      "relation": "matches"
+    },
+    {
+      "input_id": "WR245-INPUT-175",
+      "case_id": "SEC009-ARTIFACT_ACCESS-INSTRUCTIONS-SOURCE-MISSING",
+      "candidate_classes": [
+        "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED"
+      ],
+      "current_assignment": "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED",
+      "relation": "matches"
+    },
+    {
+      "input_id": "WR245-INPUT-176",
+      "case_id": "SEC009-ARTIFACT_ACCESS-INSTRUCTIONS-SOURCE-CONFLICT",
+      "candidate_classes": [
+        "SEC009_F01_INSTRUCTION_BINDING_CONFLICT"
+      ],
+      "current_assignment": "SEC009_F01_INSTRUCTION_BINDING_CONFLICT",
+      "relation": "matches"
+    },
+    {
+      "input_id": "WR245-INPUT-177",
+      "case_id": "SEC009-ARTIFACT_ACCESS-REPORTS-MISSING",
+      "candidate_classes": [
+        "SEC009_F01_RECIPIENT_REPORT_UNRESOLVED"
+      ],
+      "current_assignment": "SEC009_F01_RECIPIENT_REPORT_UNRESOLVED",
+      "relation": "matches"
+    },
+    {
+      "input_id": "WR245-INPUT-178",
+      "case_id": "SEC009-ARTIFACT_ACCESS-REPORTS-EVENT_ID-MISSING",
+      "candidate_classes": [
+        "SEC009_F01_REPORT_BINDING_UNRESOLVED"
+      ],
+      "current_assignment": "SEC009_F01_REPORT_BINDING_UNRESOLVED",
+      "relation": "matches"
+    },
+    {
+      "input_id": "WR245-INPUT-179",
+      "case_id": "SEC009-ARTIFACT_ACCESS-REPORTS-EVENT_ID-CONFLICT",
+      "candidate_classes": [
+        "SEC009_F01_REPORT_BINDING_CONFLICT"
+      ],
+      "current_assignment": "SEC009_F01_REPORT_BINDING_CONFLICT",
+      "relation": "matches"
+    },
+    {
+      "input_id": "WR245-INPUT-180",
+      "case_id": "SEC009-ARTIFACT_ACCESS-REPORTS-REVISION-MISSING",
+      "candidate_classes": [
+        "SEC009_F01_REPORT_BINDING_UNRESOLVED"
+      ],
+      "current_assignment": "SEC009_F01_REPORT_BINDING_UNRESOLVED",
+      "relation": "matches"
+    },
+    {
+      "input_id": "WR245-INPUT-181",
+      "case_id": "SEC009-ARTIFACT_ACCESS-REPORTS-REVISION-CONFLICT",
+      "candidate_classes": [
+        "SEC009_F01_REPORT_BINDING_CONFLICT"
+      ],
+      "current_assignment": "SEC009_F01_REPORT_BINDING_CONFLICT",
+      "relation": "matches"
+    },
+    {
+      "input_id": "WR245-INPUT-182",
+      "case_id": "SEC009-ARTIFACT_ACCESS-REPORTS-SCOPE-MISSING",
+      "candidate_classes": [
+        "SEC009_F01_REPORT_BINDING_UNRESOLVED"
+      ],
+      "current_assignment": "SEC009_F01_REPORT_BINDING_UNRESOLVED",
+      "relation": "matches"
+    },
+    {
+      "input_id": "WR245-INPUT-183",
+      "case_id": "SEC009-ARTIFACT_ACCESS-REPORTS-SCOPE-CONFLICT",
+      "candidate_classes": [
+        "SEC009_F01_REPORT_BINDING_CONFLICT"
+      ],
+      "current_assignment": "SEC009_F01_REPORT_BINDING_CONFLICT",
+      "relation": "matches"
+    },
+    {
+      "input_id": "WR245-INPUT-184",
+      "case_id": "SEC009-ARTIFACT_ACCESS-REPORTS-OPERATION-MISSING",
+      "candidate_classes": [
+        "SEC009_F01_REPORT_BINDING_UNRESOLVED"
+      ],
+      "current_assignment": "SEC009_F01_REPORT_BINDING_UNRESOLVED",
+      "relation": "matches"
+    },
+    {
+      "input_id": "WR245-INPUT-185",
+      "case_id": "SEC009-ARTIFACT_ACCESS-REPORTS-OPERATION-CONFLICT",
+      "candidate_classes": [
+        "SEC009_F01_REPORT_BINDING_CONFLICT"
+      ],
+      "current_assignment": "SEC009_F01_REPORT_BINDING_CONFLICT",
+      "relation": "matches"
+    },
+    {
+      "input_id": "WR245-INPUT-186",
+      "case_id": "SEC009-ARTIFACT_ACCESS-REPORTS-PROJECT-MISSING",
+      "candidate_classes": [
+        "SEC009_F01_REPORT_BINDING_UNRESOLVED"
+      ],
+      "current_assignment": "SEC009_F01_REPORT_BINDING_UNRESOLVED",
+      "relation": "matches"
+    },
+    {
+      "input_id": "WR245-INPUT-187",
+      "case_id": "SEC009-ARTIFACT_ACCESS-REPORTS-PROJECT-CONFLICT",
+      "candidate_classes": [
+        "SEC009_F01_REPORT_BINDING_CONFLICT"
+      ],
+      "current_assignment": "SEC009_F01_REPORT_BINDING_CONFLICT",
+      "relation": "matches"
+    },
+    {
+      "input_id": "WR245-INPUT-188",
+      "case_id": "SEC009-ARTIFACT_ACCESS-REPORTS-ARTIFACT-MISSING",
+      "candidate_classes": [
+        "SEC009_F01_REPORT_BINDING_UNRESOLVED"
+      ],
+      "current_assignment": "SEC009_F01_REPORT_BINDING_UNRESOLVED",
+      "relation": "matches"
+    },
+    {
+      "input_id": "WR245-INPUT-189",
+      "case_id": "SEC009-ARTIFACT_ACCESS-REPORTS-ARTIFACT-CONFLICT",
+      "candidate_classes": [
+        "SEC009_F01_REPORT_BINDING_CONFLICT"
+      ],
+      "current_assignment": "SEC009_F01_REPORT_BINDING_CONFLICT",
+      "relation": "matches"
+    },
+    {
+      "input_id": "WR245-INPUT-190",
+      "case_id": "SEC009-ARTIFACT_ACCESS-REPORTS-SOURCE-MISSING",
+      "candidate_classes": [
+        "SEC009_F01_REPORT_BINDING_UNRESOLVED"
+      ],
+      "current_assignment": "SEC009_F01_REPORT_BINDING_UNRESOLVED",
+      "relation": "matches"
+    },
+    {
+      "input_id": "WR245-INPUT-191",
+      "case_id": "SEC009-ARTIFACT_ACCESS-REPORTS-SOURCE-CONFLICT",
+      "candidate_classes": [
+        "SEC009_F01_REPORT_BINDING_CONFLICT"
+      ],
+      "current_assignment": "SEC009_F01_REPORT_BINDING_CONFLICT",
+      "relation": "matches"
+    },
+    {
+      "input_id": "WR245-INPUT-192",
+      "case_id": "SEC009-ARTIFACT_ACCESS-EXPECTED_POLICY_REFS-MISSING",
+      "candidate_classes": [
+        "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED"
+      ],
+      "current_assignment": "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED",
+      "relation": "matches"
+    },
+    {
+      "input_id": "WR245-INPUT-193",
+      "case_id": "SEC009-ARTIFACT_ACCESS-EXPECTED_REPORT_REFS-MISSING",
+      "candidate_classes": [
+        "SEC009_F01_REPORT_BINDING_UNRESOLVED"
+      ],
+      "current_assignment": "SEC009_F01_REPORT_BINDING_UNRESOLVED",
+      "relation": "matches"
+    },
+    {
+      "input_id": "WR245-INPUT-194",
+      "case_id": "SEC009-ARTIFACT_ACCESS-RECEIPT-NOT_DELIVERED",
+      "candidate_classes": [
+        "SEC009_F01_RECIPIENT_NOT_DELIVERED"
+      ],
+      "current_assignment": "SEC009_F01_RECIPIENT_NOT_DELIVERED",
+      "relation": "matches"
+    },
+    {
+      "input_id": "WR245-INPUT-195",
+      "case_id": "SEC009-ARTIFACT_ACCESS-RECEIPT-UNKNOWN",
+      "candidate_classes": [
+        "SEC009_F01_RECIPIENT_RECEIPT_UNRESOLVED"
+      ],
+      "current_assignment": "SEC009_F01_RECIPIENT_RECEIPT_UNRESOLVED",
+      "relation": "matches"
+    },
+    {
+      "input_id": "WR245-INPUT-196",
+      "case_id": "SEC009-ARTIFACT_ACCESS-STOP_ACCESS-NOT_APPLIED",
+      "candidate_classes": [
+        "SEC009_F01_RECIPIENT_NOT_APPLIED"
+      ],
+      "current_assignment": "SEC009_F01_RECIPIENT_NOT_APPLIED",
+      "relation": "matches"
+    },
+    {
+      "input_id": "WR245-INPUT-197",
+      "case_id": "SEC009-ARTIFACT_ACCESS-STOP_ACCESS-NOT_OBSERVED",
+      "candidate_classes": [
+        "SEC009_F01_RECIPIENT_APPLICATION_UNRESOLVED"
+      ],
+      "current_assignment": "SEC009_F01_RECIPIENT_APPLICATION_UNRESOLVED",
+      "relation": "matches"
+    },
+    {
+      "input_id": "WR245-INPUT-198",
+      "case_id": "SEC009-ARTIFACT_ACCESS-STOP_ACCESS-NONE",
+      "candidate_classes": [
+        "SEC009_F01_RECIPIENT_APPLICATION_UNRESOLVED"
+      ],
+      "current_assignment": "SEC009_F01_RECIPIENT_APPLICATION_UNRESOLVED",
+      "relation": "matches"
+    },
+    {
+      "input_id": "WR245-INPUT-199",
+      "case_id": "SEC009-ARTIFACT_ACCESS-ACCESS_CONTINUES-TRUE",
+      "candidate_classes": [
+        "SEC009_F01_RECIPIENT_CONTINUES_AFTER_STOP"
+      ],
+      "current_assignment": "SEC009_F01_RECIPIENT_CONTINUES_AFTER_STOP",
+      "relation": "matches"
+    },
+    {
+      "input_id": "WR245-INPUT-200",
+      "case_id": "SEC009-ARTIFACT_ACCESS-ACCESS_CONTINUES-NONE",
+      "candidate_classes": [
+        "SEC009_F01_RECIPIENT_POST_STATE_UNRESOLVED"
+      ],
+      "current_assignment": "SEC009_F01_RECIPIENT_POST_STATE_UNRESOLVED",
+      "relation": "matches"
+    },
+    {
+      "input_id": "WR245-INPUT-201",
+      "case_id": "SEC009-ARTIFACT_ACCESS-ACTIONS-EMPTY",
+      "candidate_classes": [
+        "SEC009_F01_RECIPIENT_ACTIONS_CONFLICT"
+      ],
+      "current_assignment": "SEC009_F01_RECIPIENT_ACTIONS_CONFLICT",
+      "relation": "matches"
+    },
+    {
+      "input_id": "WR245-INPUT-202",
+      "case_id": "SEC009-OS_ASSIGNMENT-ACTIONS-NONSTRING",
+      "candidate_classes": [
+        "SEC009_F01_RECIPIENT_ACTIONS_UNRESOLVED"
+      ],
+      "current_assignment": "SEC009_F01_RECIPIENT_ACTIONS_UNRESOLVED",
+      "relation": "matches"
+    },
+    {
+      "input_id": "WR245-INPUT-203",
+      "case_id": "SEC009-OS_ASSIGNMENT-ACTIONS-NONLIST",
+      "candidate_classes": [
+        "SEC009_F01_RECIPIENT_ACTIONS_UNRESOLVED"
+      ],
+      "current_assignment": "SEC009_F01_RECIPIENT_ACTIONS_UNRESOLVED",
+      "relation": "matches"
+    },
+    {
+      "input_id": "WR245-INPUT-204",
+      "case_id": "SEC009-WORKER_EXECUTION-ACTIONS-DUPLICATE",
+      "candidate_classes": [
+        "SEC009_F01_RECIPIENT_ACTIONS_UNRESOLVED"
+      ],
+      "current_assignment": "SEC009_F01_RECIPIENT_ACTIONS_UNRESOLVED",
+      "relation": "matches"
+    },
+    {
+      "input_id": "WR245-INPUT-205",
+      "case_id": "SEC009-WORKER_EXECUTION-ACTIONS-NONSTRING",
+      "candidate_classes": [
+        "SEC009_F01_RECIPIENT_ACTIONS_UNRESOLVED"
+      ],
+      "current_assignment": "SEC009_F01_RECIPIENT_ACTIONS_UNRESOLVED",
+      "relation": "matches"
+    },
+    {
+      "input_id": "WR245-INPUT-206",
+      "case_id": "SEC009-WORKER_EXECUTION-ACTIONS-NONLIST",
+      "candidate_classes": [
+        "SEC009_F01_RECIPIENT_ACTIONS_UNRESOLVED"
+      ],
+      "current_assignment": "SEC009_F01_RECIPIENT_ACTIONS_UNRESOLVED",
+      "relation": "matches"
+    },
+    {
+      "input_id": "WR245-INPUT-207",
+      "case_id": "SEC009-CONNECT_COMMUNICATION-ACTIONS-DUPLICATE",
+      "candidate_classes": [
+        "SEC009_F01_RECIPIENT_ACTIONS_UNRESOLVED"
+      ],
+      "current_assignment": "SEC009_F01_RECIPIENT_ACTIONS_UNRESOLVED",
+      "relation": "matches"
+    },
+    {
+      "input_id": "WR245-INPUT-208",
+      "case_id": "SEC009-CONNECT_COMMUNICATION-ACTIONS-NONSTRING",
+      "candidate_classes": [
+        "SEC009_F01_RECIPIENT_ACTIONS_UNRESOLVED"
+      ],
+      "current_assignment": "SEC009_F01_RECIPIENT_ACTIONS_UNRESOLVED",
+      "relation": "matches"
+    },
+    {
+      "input_id": "WR245-INPUT-209",
+      "case_id": "SEC009-CONNECT_COMMUNICATION-ACTIONS-NONLIST",
+      "candidate_classes": [
+        "SEC009_F01_RECIPIENT_ACTIONS_UNRESOLVED"
+      ],
+      "current_assignment": "SEC009_F01_RECIPIENT_ACTIONS_UNRESOLVED",
+      "relation": "matches"
+    },
+    {
+      "input_id": "WR245-INPUT-210",
+      "case_id": "SEC009-CREDENTIAL_USE-ACTIONS-DUPLICATE",
+      "candidate_classes": [
+        "SEC009_F01_RECIPIENT_ACTIONS_UNRESOLVED"
+      ],
+      "current_assignment": "SEC009_F01_RECIPIENT_ACTIONS_UNRESOLVED",
+      "relation": "matches"
+    },
+    {
+      "input_id": "WR245-INPUT-211",
+      "case_id": "SEC009-CREDENTIAL_USE-ACTIONS-NONSTRING",
+      "candidate_classes": [
+        "SEC009_F01_RECIPIENT_ACTIONS_UNRESOLVED"
+      ],
+      "current_assignment": "SEC009_F01_RECIPIENT_ACTIONS_UNRESOLVED",
+      "relation": "matches"
+    },
+    {
+      "input_id": "WR245-INPUT-212",
+      "case_id": "SEC009-CREDENTIAL_USE-ACTIONS-NONLIST",
+      "candidate_classes": [
+        "SEC009_F01_RECIPIENT_ACTIONS_UNRESOLVED"
+      ],
+      "current_assignment": "SEC009_F01_RECIPIENT_ACTIONS_UNRESOLVED",
+      "relation": "matches"
+    },
+    {
+      "input_id": "WR245-INPUT-213",
+      "case_id": "SEC009-ARTIFACT_ACCESS-ACTIONS-DUPLICATE",
+      "candidate_classes": [
+        "SEC009_F01_RECIPIENT_ACTIONS_UNRESOLVED"
+      ],
+      "current_assignment": "SEC009_F01_RECIPIENT_ACTIONS_UNRESOLVED",
+      "relation": "matches"
+    },
+    {
+      "input_id": "WR245-INPUT-214",
+      "case_id": "SEC009-ARTIFACT_ACCESS-ACTIONS-NONSTRING",
+      "candidate_classes": [
+        "SEC009_F01_RECIPIENT_ACTIONS_UNRESOLVED"
+      ],
+      "current_assignment": "SEC009_F01_RECIPIENT_ACTIONS_UNRESOLVED",
+      "relation": "matches"
+    },
+    {
+      "input_id": "WR245-INPUT-215",
+      "case_id": "SEC009-ARTIFACT_ACCESS-ACTIONS-NONLIST",
+      "candidate_classes": [
+        "SEC009_F01_RECIPIENT_ACTIONS_UNRESOLVED"
+      ],
+      "current_assignment": "SEC009_F01_RECIPIENT_ACTIONS_UNRESOLVED",
+      "relation": "matches"
+    },
+    {
+      "input_id": "WR245-INPUT-216",
+      "case_id": "SEC009-ISOLATION-REVISION-MISSING",
+      "candidate_classes": [
+        "SEC009_F02_ISOLATION_BINDING_UNRESOLVED"
+      ],
+      "current_assignment": "SEC009_F02_ISOLATION_BINDING_UNRESOLVED",
+      "relation": "matches"
+    },
+    {
+      "input_id": "WR245-INPUT-217",
+      "case_id": "SEC009-ISOLATION-REVISION-CONFLICT",
+      "candidate_classes": [
+        "SEC009_F02_ISOLATION_BINDING_CONFLICT"
+      ],
+      "current_assignment": "SEC009_F02_ISOLATION_BINDING_CONFLICT",
+      "relation": "matches"
+    },
+    {
+      "input_id": "WR245-INPUT-218",
+      "case_id": "SEC009-ISOLATION-SCOPE-MISSING",
+      "candidate_classes": [
+        "SEC009_F02_ISOLATION_BINDING_UNRESOLVED"
+      ],
+      "current_assignment": "SEC009_F02_ISOLATION_BINDING_UNRESOLVED",
+      "relation": "matches"
+    },
+    {
+      "input_id": "WR245-INPUT-219",
+      "case_id": "SEC009-ISOLATION-SCOPE-CONFLICT",
+      "candidate_classes": [
+        "SEC009_F02_ISOLATION_BINDING_CONFLICT"
+      ],
+      "current_assignment": "SEC009_F02_ISOLATION_BINDING_CONFLICT",
+      "relation": "matches"
+    },
+    {
+      "input_id": "WR245-INPUT-220",
+      "case_id": "SEC009-ISOLATION-OPERATION-MISSING",
+      "candidate_classes": [
+        "SEC009_F02_ISOLATION_BINDING_UNRESOLVED"
+      ],
+      "current_assignment": "SEC009_F02_ISOLATION_BINDING_UNRESOLVED",
+      "relation": "matches"
+    },
+    {
+      "input_id": "WR245-INPUT-221",
+      "case_id": "SEC009-ISOLATION-OPERATION-CONFLICT",
+      "candidate_classes": [
+        "SEC009_F02_ISOLATION_BINDING_CONFLICT"
+      ],
+      "current_assignment": "SEC009_F02_ISOLATION_BINDING_CONFLICT",
+      "relation": "matches"
+    },
+    {
+      "input_id": "WR245-INPUT-222",
+      "case_id": "SEC009-ISOLATION-PROJECT-MISSING",
+      "candidate_classes": [
+        "SEC009_F02_ISOLATION_BINDING_UNRESOLVED"
+      ],
+      "current_assignment": "SEC009_F02_ISOLATION_BINDING_UNRESOLVED",
+      "relation": "matches"
+    },
+    {
+      "input_id": "WR245-INPUT-223",
+      "case_id": "SEC009-ISOLATION-PROJECT-CONFLICT",
+      "candidate_classes": [
+        "SEC009_F02_ISOLATION_BINDING_CONFLICT"
+      ],
+      "current_assignment": "SEC009_F02_ISOLATION_BINDING_CONFLICT",
+      "relation": "matches"
+    },
+    {
+      "input_id": "WR245-INPUT-224",
+      "case_id": "SEC009-ISOLATION-SOURCE_REF-MISSING",
+      "candidate_classes": [
+        "SEC009_F02_ISOLATION_BINDING_UNRESOLVED"
+      ],
+      "current_assignment": "SEC009_F02_ISOLATION_BINDING_UNRESOLVED",
+      "relation": "matches"
+    },
+    {
+      "input_id": "WR245-INPUT-225",
+      "case_id": "SEC009-ISOLATION-SOURCE_REF-CONFLICT",
+      "candidate_classes": [
+        "SEC009_F02_ISOLATION_BINDING_CONFLICT"
+      ],
+      "current_assignment": "SEC009_F02_ISOLATION_BINDING_CONFLICT",
+      "relation": "matches"
+    },
+    {
+      "input_id": "WR245-INPUT-226",
+      "case_id": "SEC009-ISOLATION-BEFORE_STATE_REF-MISSING",
+      "candidate_classes": [
+        "SEC009_F02_ISOLATION_BINDING_UNRESOLVED"
+      ],
+      "current_assignment": "SEC009_F02_ISOLATION_BINDING_UNRESOLVED",
+      "relation": "matches"
+    },
+    {
+      "input_id": "WR245-INPUT-227",
+      "case_id": "SEC009-ISOLATION-BEFORE_STATE_REF-CONFLICT",
+      "candidate_classes": [
+        "SEC009_F02_ISOLATION_BINDING_CONFLICT"
+      ],
+      "current_assignment": "SEC009_F02_ISOLATION_BINDING_CONFLICT",
+      "relation": "matches"
+    },
+    {
+      "input_id": "WR245-INPUT-228",
+      "case_id": "SEC009-ISOLATION-STATE-PLANNED",
+      "candidate_classes": [
+        "SEC009_F02_ISOLATION_UNRESOLVED"
+      ],
+      "current_assignment": "SEC009_F02_ISOLATION_UNRESOLVED",
+      "relation": "matches"
+    },
+    {
+      "input_id": "WR245-INPUT-229",
+      "case_id": "SEC009-RECOVERY-REVISION-MISSING",
+      "candidate_classes": [
+        "SEC009_F02_RECOVERY_BINDING_UNRESOLVED"
+      ],
+      "current_assignment": "SEC009_F02_RECOVERY_BINDING_UNRESOLVED",
+      "relation": "matches"
+    },
+    {
+      "input_id": "WR245-INPUT-230",
+      "case_id": "SEC009-RECOVERY-REVISION-CONFLICT",
+      "candidate_classes": [
+        "SEC009_F02_RECOVERY_BINDING_CONFLICT"
+      ],
+      "current_assignment": "SEC009_F02_RECOVERY_BINDING_CONFLICT",
+      "relation": "matches"
+    },
+    {
+      "input_id": "WR245-INPUT-231",
+      "case_id": "SEC009-RECOVERY-SCOPE-MISSING",
+      "candidate_classes": [
+        "SEC009_F02_RECOVERY_BINDING_UNRESOLVED"
+      ],
+      "current_assignment": "SEC009_F02_RECOVERY_BINDING_UNRESOLVED",
+      "relation": "matches"
+    },
+    {
+      "input_id": "WR245-INPUT-232",
+      "case_id": "SEC009-RECOVERY-SCOPE-CONFLICT",
+      "candidate_classes": [
+        "SEC009_F02_RECOVERY_BINDING_CONFLICT"
+      ],
+      "current_assignment": "SEC009_F02_RECOVERY_BINDING_CONFLICT",
+      "relation": "matches"
+    },
+    {
+      "input_id": "WR245-INPUT-233",
+      "case_id": "SEC009-RECOVERY-OPERATION-MISSING",
+      "candidate_classes": [
+        "SEC009_F02_RECOVERY_BINDING_UNRESOLVED"
+      ],
+      "current_assignment": "SEC009_F02_RECOVERY_BINDING_UNRESOLVED",
+      "relation": "matches"
+    },
+    {
+      "input_id": "WR245-INPUT-234",
+      "case_id": "SEC009-RECOVERY-OPERATION-CONFLICT",
+      "candidate_classes": [
+        "SEC009_F02_RECOVERY_BINDING_CONFLICT"
+      ],
+      "current_assignment": "SEC009_F02_RECOVERY_BINDING_CONFLICT",
+      "relation": "matches"
+    },
+    {
+      "input_id": "WR245-INPUT-235",
+      "case_id": "SEC009-RECOVERY-PROJECT-MISSING",
+      "candidate_classes": [
+        "SEC009_F02_RECOVERY_BINDING_UNRESOLVED"
+      ],
+      "current_assignment": "SEC009_F02_RECOVERY_BINDING_UNRESOLVED",
+      "relation": "matches"
+    },
+    {
+      "input_id": "WR245-INPUT-236",
+      "case_id": "SEC009-RECOVERY-PROJECT-CONFLICT",
+      "candidate_classes": [
+        "SEC009_F02_RECOVERY_BINDING_CONFLICT"
+      ],
+      "current_assignment": "SEC009_F02_RECOVERY_BINDING_CONFLICT",
+      "relation": "matches"
+    },
+    {
+      "input_id": "WR245-INPUT-237",
+      "case_id": "SEC009-RECOVERY-SOURCE_REF-MISSING",
+      "candidate_classes": [
+        "SEC009_F02_RECOVERY_BINDING_UNRESOLVED"
+      ],
+      "current_assignment": "SEC009_F02_RECOVERY_BINDING_UNRESOLVED",
+      "relation": "matches"
+    },
+    {
+      "input_id": "WR245-INPUT-238",
+      "case_id": "SEC009-RECOVERY-SOURCE_REF-CONFLICT",
+      "candidate_classes": [
+        "SEC009_F02_RECOVERY_BINDING_CONFLICT"
+      ],
+      "current_assignment": "SEC009_F02_RECOVERY_BINDING_CONFLICT",
+      "relation": "matches"
+    },
+    {
+      "input_id": "WR245-INPUT-239",
+      "case_id": "SEC009-RECOVERY-RESTORED_STATE_REF-MISSING",
+      "candidate_classes": [
+        "SEC009_F02_RECOVERY_BINDING_UNRESOLVED"
+      ],
+      "current_assignment": "SEC009_F02_RECOVERY_BINDING_UNRESOLVED",
+      "relation": "matches"
+    },
+    {
+      "input_id": "WR245-INPUT-240",
+      "case_id": "SEC009-RECOVERY-RESTORED_STATE_REF-CONFLICT",
+      "candidate_classes": [
+        "SEC009_F02_RECOVERY_BINDING_CONFLICT"
+      ],
+      "current_assignment": "SEC009_F02_RECOVERY_BINDING_CONFLICT",
+      "relation": "matches"
+    },
+    {
+      "input_id": "WR245-INPUT-241",
+      "case_id": "SEC009-RECOVERY-STATE-PLANNED",
+      "candidate_classes": [
+        "SEC009_F02_RECOVERY_UNRESOLVED"
+      ],
+      "current_assignment": "SEC009_F02_RECOVERY_UNRESOLVED",
+      "relation": "matches"
+    },
+    {
+      "input_id": "WR245-INPUT-242",
+      "case_id": "SEC009-GENERAL-MEANING-WITH-GLOBAL-STOP",
+      "candidate_classes": [
+        "SEC009_F02_GLOBAL_STOP_EXPANSION"
+      ],
+      "current_assignment": "SEC009_F02_GLOBAL_STOP_EXPANSION",
+      "relation": "matches"
+    },
+    {
+      "input_id": "WR245-INPUT-243",
+      "case_id": "SEC009-EXPECTED-CATEGORY-MISSING",
+      "candidate_classes": [
+        "SEC009_F02_TRIGGER_CATEGORY_UNRESOLVED"
+      ],
+      "current_assignment": "SEC009_F02_TRIGGER_CATEGORY_UNRESOLVED",
+      "relation": "matches"
+    },
+    {
+      "input_id": "WR245-INPUT-244",
+      "case_id": "SEC009-GENERAL-CLAIM-WITH-EXPECTED-SAFETY",
+      "candidate_classes": [
+        "SEC009_F02_TRIGGER_CATEGORY_CONFLICT"
+      ],
+      "current_assignment": "SEC009_F02_TRIGGER_CATEGORY_CONFLICT",
+      "relation": "matches"
+    },
+    {
+      "input_id": "WR245-INPUT-245",
+      "case_id": "SEC009-GENERAL-MEANING-STOP-SCOPE-NULL",
+      "candidate_classes": [
+        "SEC009_F02_STOP_SCOPE_UNRESOLVED"
+      ],
+      "current_assignment": "SEC009_F02_STOP_SCOPE_UNRESOLVED",
+      "relation": "matches"
+    }
+  ],
+  "counts": {
+    "matches": 245
+  }
+}

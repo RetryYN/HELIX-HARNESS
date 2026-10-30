@@ -1,0 +1,18 @@
+{
+  "schema": "wr245-pr3992-r1-correction.v1",
+  "evidence_kind": "scaffold",
+  "authority_effect": "none",
+  "request_id": "WR245-SEC009-PR3992-R1",
+  "review_comment": "https://github.com/RetryYN/HELIX-HARNESS/pull/3992#issuecomment-6534981379",
+  "fixed_blind_comment": "https://github.com/RetryYN/HELIX-HARNESS/issues/3510#issuecomment-6534549651",
+  "corrected_field": {
+    "artifact": "scaffold/research/wr245-sec009-explicit-pair-measurement-20261031/measurement.json",
+    "pointer": "/independent_derivation/sha256",
+    "as_committed_value": "d047fcec962b1c9d83a191d9fdd777eea47862af2f906f3adf8b0f1450d1db97",
+    "correct_value": "d047fcec962b1c9d83a191d9fdd777eea47862af2f906f3adf8f0b1450d1db97",
+    "evidence_bytes": "scaffold/research/wr245-sec009-explicit-pair-measurement-20261031/wr245-casewise-blind-fixed.json",
+    "evidence_sha256": "d047fcec962b1c9d83a191d9fdd777eea47862af2f906f3adf8f0b1450d1db97",
+    "reason": "R1 found a transposition in the copied digest. This additive correction records the correct value; the committed measurement bytes remain unchanged."
+  },
+  "boundary": "This correction only fixes the digest transcription. It does not alter the frozen blind or comparison evidence and grants no semantic approval to the checker probe drafts."
+}
