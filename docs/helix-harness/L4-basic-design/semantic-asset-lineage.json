@@ -315,7 +315,7 @@
       "backflow_owners": [
         "authority_record_owner"
       ],
-      "effect": "該当axis/claimの不足と差分を保全、関係のない既知axisまで消さない。実変換/保存/権限発行0。",
+      "effect": "authority、acceptance oracle、typed edgeの対応はそれぞれ独立に扱い、欠落・対応不明は項目ごとにunknown/不成立として返す。他の対応記録やreceiptで補わず、全closure成立へ昇格しない。 関係のない既知axisまで消さない。",
       "expected_record_axes": [
         {
           "subject": "LS",
@@ -671,7 +671,7 @@
       "backflow_owners": [
         "record_owner"
       ],
-      "effect": "該当axis/claimの不足と差分を保全、関係のない既知axisまで消さない。実変換/保存/権限発行0。",
+      "effect": "lineageは供給された記録の前後identity・revision・関係種別・影響history・authority・oracle・typed edgeを対応付ける。不足・対応不明を推測で補わず、原因に応じたownerへ返す。照合から変換操作を発行しない。関係のない既知axisまで消さない。",
       "expected_record_axes": [
         {
           "subject": "LM B/b1",
@@ -765,7 +765,7 @@
       "backflow_owners": [
         "record_owner"
       ],
-      "effect": "該当axis/claimの不足と差分を保全、関係のない既知axisまで消さない。実変換/保存/権限発行0。",
+      "effect": "location/nameの差をsemantic revisionの差と分けて扱う。配置・名称だけの変更はsemantic diffや新しい意味revisionにせず、意味変更がある場合は同一identityの異なるrevisionと影響するoracle/typed edgeへ結ぶ。 関係のない既知axisまで消さない。",
       "expected_record_axes": [
         {
           "subject": "A/r1",
@@ -981,7 +981,7 @@
       "backflow_owners": [
         "record_owner"
       ],
-      "effect": "該当axis/claimの不足と差分を保全、関係のない既知axisまで消さない。実変換/保存/権限発行0。",
+      "effect": "identityはimmutable asset IDで扱い、path/nameを根拠に同一性を推定しない。対応が不明なら不明を保持し、根拠不足をrecord ownerへ返す。採番・永続化の方式はこの判定から決めない。 関係のない既知axisまで消さない。",
       "expected_record_axes": [
         {
           "subject": "A/B",
@@ -1065,7 +1065,7 @@
       "backflow_owners": [
         "persistence_owner"
       ],
-      "effect": "該当axis/claimの不足と差分を保全、関係のない既知axisまで消さない。実変換/保存/権限発行0。",
+      "effect": "lineage/diffの記録は記録成果として扱い、実保存・rollback・権限・採択・受入の成立を生成しない。実作用や未完義務の不足は該当ownerへ返し、新しい承認手続きは設けない。 関係のない既知axisまで消さない。",
       "expected_record_axes": [
         {
           "subject": "LS",
@@ -1093,7 +1093,7 @@
       "backflow_owners": [
         "harness053_requirement_owner"
       ],
-      "effect": "該当axis/claimの不足と差分を保全、関係のない既知axisまで消さない。実変換/保存/権限発行0。",
+      "effect": "意味が不整合な参照は未決のまま保持し、provenance保証や代替IDを推定しない。参照に依存する操作だけをownerの参照訂正/適用判断まで保留し、無関係な局所照合は続ける。 関係のない既知axisまで消さない。",
       "expected_record_axes": [
         {
           "subject": "A/B",
