@@ -146,7 +146,8 @@
     "scaffold/research/wr181-os015-residual-l4-l9-20261030/class-correction-audit-5d541.md",
     "scaffold/research/wr181-os015-residual-l4-l9-20261030/class-correction-cases.json",
     "scaffold/research/wr181-os015-residual-l4-l9-20261030/singleton-residual-update-20261031.md",
-    "scaffold/research/wr181-os015-residual-l4-l9-20261030/validate_singleton_residuals.py"
+    "scaffold/research/wr181-os015-residual-l4-l9-20261030/validate_singleton_residuals.py",
+    "scaffold/research/wr181-os015-residual-l4-l9-20261030/latest-main-trial-20261031.json"
   ],
   "verification": {
     "evidence_kind": "scaffold",

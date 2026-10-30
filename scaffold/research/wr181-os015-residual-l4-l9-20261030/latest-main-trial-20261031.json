@@ -1,0 +1,121 @@
+{
+  "schema": "wr181-os015-l4-l9-trial.v1",
+  "candidate_branch": "codex/wr181-five-singleton-residuals-20261031",
+  "initial_main_base": "0fc143f1bc356b4b1e0ab410d974572b935bffa1",
+  "latest_main_head": "de7908f1c9cb6d05531a339a0054ac577902b58c",
+  "latest_main_overlap": "origin/main changes since initial base were SCF-B-0179 plus WR198 F05 audit files; no L4/L9/SCF-B-0177 overlap.",
+  "candidate_commit_at_trial": "26c7e067c5250e28179961ebd6cbe34b5937cbd4",
+  "sha256": {
+    "docs/helix-os/L4-basic-design/management-authority-source-record.json": "d958b3c4df05520a2f52e7cbfe3dc01a4fb9a47ed74c638dada913d438945750",
+    "docs/helix-os/L9-integration-verification/management-authority-source-record.json": "637f2499479913a629a15ddab80e46b383121d38a0dd1482bc1a1ca2d66ee84b",
+    "docs/helix-os/L5-detail-design/management-authority-source-record.json": "4d686c07580eb0aef0a580dec5e2fa666c14476dcf81facdc469cde05719015d",
+    "docs/helix-os/L7-function-verification/management-authority-source-record.json": "b2a71c3d2a99c5268275e183f21c2b1bbc4b21ad79d577af42573a079e920a09",
+    "docs/helix-os/L8-unit-verification/management-authority-source-record.json": "c3b6640290314b8d03cbcc7f4908768e7ff89d9b10d2582dff73e59ae3fa4ca5"
+  },
+  "static_source_checks": {
+    "passed": true,
+    "l4_failure_classifications": 47,
+    "l9_integration_cases": 585,
+    "l9_class_rows": 47,
+    "f03_source_case_refs": 31,
+    "l4_algorithm_and_codes_unchanged": true,
+    "existing_l9_case_fields_preserved": 583,
+    "l5_l7_l8_bytes_unchanged": true
+  },
+  "scf": {
+    "validate": "PASS",
+    "binding_count": 168,
+    "failures": 0,
+    "stale": "PASS",
+    "stale_count": 0
+  },
+  "child_trial": {
+    "baseline_initial_main": {
+      "passed": false,
+      "l4_l9_pair": [
+        4,
+        4
+      ],
+      "l5_l8_pair": [
+        4,
+        4
+      ],
+      "negative_4way": false,
+      "class_rows": {
+        "L4": 51,
+        "L9": 45,
+        "L8": 45,
+        "L5": 51
+      },
+      "case_rows": {
+        "L8": 583,
+        "L9": 583
+      },
+      "matched_case_count": 572,
+      "failure_count": 24
+    },
+    "latest_main_candidate": {
+      "passed": false,
+      "l4_l9_pair": [
+        4,
+        4
+      ],
+      "l5_l8_pair": [
+        4,
+        4
+      ],
+      "negative_4way": false,
+      "class_rows": {
+        "L4": 47,
+        "L9": 47,
+        "L8": 45,
+        "L5": 51
+      },
+      "case_rows": {
+        "L8": 583,
+        "L9": 585
+      },
+      "matched_case_count": 572,
+      "failure_count": 24
+    },
+    "interpretation": "Pair IDs pass. The explicit 4-way check remains failing because L5/L8 have not yet been projected; the same 572 matched case rows and 24 residual failures were reported before and after."
+  },
+  "freeze_trial": {
+    "baseline_initial_main": {
+      "mechanical_match": false,
+      "pin_sha256": {
+        "status": "not_evaluated",
+        "reason": "no_pinned_inputs_found"
+      },
+      "json_pointer_failures": 2421,
+      "negative_4way": {
+        "status": "not_evaluated",
+        "reason": "missing_or_unparsed_layer_documents"
+      },
+      "public_fn_failures": 8,
+      "l3_obligation_map": {
+        "status": "not_evaluated",
+        "reason": "no_l3_obligations_found"
+      }
+    },
+    "latest_main_candidate": {
+      "mechanical_match": false,
+      "pin_sha256": {
+        "status": "not_evaluated",
+        "reason": "no_pinned_inputs_found"
+      },
+      "json_pointer_failures": 2421,
+      "negative_4way": {
+        "status": "not_evaluated",
+        "reason": "missing_or_unparsed_layer_documents"
+      },
+      "public_fn_failures": 8,
+      "l3_obligation_map": {
+        "status": "not_evaluated",
+        "reason": "no_l3_obligations_found"
+      }
+    },
+    "interpretation": "The 2026-10-28 freeze remains mechanically unmatched; measured failure counts and not-evaluated reasons are unchanged from baseline."
+  },
+  "scope": "L4/L9 records and SCF-B-0170/0173/0175/0176/0177/0178 binding pins only; no L5/L8 formal document edits."
+}
