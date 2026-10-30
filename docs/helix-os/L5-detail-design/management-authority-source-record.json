@@ -12505,7 +12505,7 @@
     "preserve": "二対象・phase・独立context・全原event/旧分類/未解決履歴・所見の重複除去/順序・原source期待583を保持。",
     "change": "型付きJSON whole等値・correct部分旧分類objectの不足診断を整合。機械可読純AST・閉じた論理型と全署名、当該source参照候補、分類原値/材料状態/訂正根拠の保持root、値まで解決可能なL8 IOを具体化。",
     "reason": "散文/外部helperへ隠れた比較やowner判断を残さず、照合labelを具体解消先/資格と混同しないため。上流意味や実運用を変更しない。",
-    "pending": "実source資格・参照解決・writer/consumerの実binding、任意JSON一般域の意味網羅は未成立。材料照合の成功をauthorityへ昇格しない。"
+    "pending": "実source資格・参照解決・writer/consumerの実binding、任意JSON一般域の意味網羅は未成立。L4 result_field_shapesで未決（determined_from_l3_l10_l4_prose: false）の6 fieldは、logical_typesに過去のL5確定型が残存しているが未決のまま扱い、候補対応と情報源（actual/context）未決をreturn_root_trace.undetermined_l4_result_field_shapesに記録した。材料照合の成功をauthorityへ昇格しない。"
   },
   "classification_retention_contract": {
     "source_basis": [
@@ -12622,7 +12622,81 @@
       ],
       "source": "L4 contracts[2]、批准L3/L10-F02の旧event/分類と新revision/訂正根拠の保持。",
       "inputs": "input.recordsの分類原値と同inputからのmaterial.selected_phase/target_correspondence。"
-    }
+    },
+    "undetermined_l4_result_field_shapes": [
+      {
+        "field": "original_classification_state",
+        "l4_candidates_pointer": "docs/helix-os/L4-basic-design/management-authority-source-record.json#/diagnostic_contract/result_field_shapes/fields/original_classification_state/candidates_if_undetermined",
+        "l5_logical_type_pointers": [
+          "docs/helix-os/L5-detail-design/management-authority-source-record.json#/logical_types/MaterialAssessment/fields/original_classification_state",
+          "docs/helix-os/L5-detail-design/management-authority-source-record.json#/logical_types/PublicAssessment/fields/original_classification_state"
+        ],
+        "current_l5_logical_type": "record (target_a, target_b -> enum [\"unclassified_material\", \"classification_material_present\"])",
+        "l4_candidate_correspondence": "候補1（targetごとの状態ラベル文字列）の一具体化に当たるが、L4候補1が例示する \"unclassified\" / null / \"stale\" / \"preserved\" / \"mutated\" / \"unresolved\" や候補2（\"corresponding\" / \"unknown\" / \"violation\"）・候補3（要約objectまたはnull）とは語彙・型が異なり、L4候補のどれにもそのままは当たらない（過去のL5確定型が残存）。",
+        "status": "undetermined",
+        "information_source_actual_or_context": "undetermined（actualとcontextのどちらを情報源として状態ラベルを導くかも未決）"
+      },
+      {
+        "field": "original_authority_state",
+        "l4_candidates_pointer": "docs/helix-os/L4-basic-design/management-authority-source-record.json#/diagnostic_contract/result_field_shapes/fields/original_authority_state/candidates_if_undetermined",
+        "l5_logical_type_pointers": [
+          "docs/helix-os/L5-detail-design/management-authority-source-record.json#/logical_types/MaterialAssessment/fields/original_authority_state",
+          "docs/helix-os/L5-detail-design/management-authority-source-record.json#/logical_types/PublicAssessment/fields/original_authority_state"
+        ],
+        "current_l5_logical_type": "record (target_a, target_b -> union [enum [\"current_material\", \"stale_material\", \"conflict_material\", \"unresolved\"], null])",
+        "l4_candidate_correspondence": "候補1（保全した元のauthority_state値＋null）と候補2（未解決時の正規化状態ラベル \"unresolved\"）の折衷型に当たるが、L4の string | null | any（任意の未定義生値保持）を閉じた4値enum＋nullへ絞っており、L4候補のどれか一つに確定したものではない（過去のL5確定型が残存）。",
+        "status": "undetermined",
+        "information_source_actual_or_context": "undetermined（actualとcontextのどちらのauthority_stateを情報源とするか、生値保持か正規化かも未決）"
+      },
+      {
+        "field": "retained_original_events",
+        "l4_candidates_pointer": "docs/helix-os/L4-basic-design/management-authority-source-record.json#/diagnostic_contract/result_field_shapes/fields/retained_original_events/candidates_if_undetermined",
+        "l5_logical_type_pointers": [
+          "docs/helix-os/L5-detail-design/management-authority-source-record.json#/logical_types/MaterialAssessment/fields/retained_original_events",
+          "docs/helix-os/L5-detail-design/management-authority-source-record.json#/logical_types/PublicAssessment/fields/retained_original_events"
+        ],
+        "current_l5_logical_type": "record (target_a, target_b -> OriginalEvent)（nullなし）",
+        "l4_candidate_correspondence": "L4候補のどれにも当たらない（L4の型 object (event_fields 9 keys) | null が許すnullを現行L5のOriginalEvent型は許さず、候補2の {actual, context} 組も表現できない過去のL5確定型が残存）。",
+        "status": "undetermined",
+        "information_source_actual_or_context": "undetermined（候補1のcontext基準deepcopyか候補2のactual基準/actual・context対かの情報源も未決）"
+      },
+      {
+        "field": "retained_original_classifications",
+        "l4_candidates_pointer": "docs/helix-os/L4-basic-design/management-authority-source-record.json#/diagnostic_contract/result_field_shapes/fields/retained_original_classifications/candidates_if_undetermined",
+        "l5_logical_type_pointers": [
+          "docs/helix-os/L5-detail-design/management-authority-source-record.json#/logical_types/MaterialAssessment/fields/retained_original_classifications",
+          "docs/helix-os/L5-detail-design/management-authority-source-record.json#/logical_types/PublicAssessment/fields/retained_original_classifications"
+        ],
+        "current_l5_logical_type": "record (target_a, target_b -> JsonValue)",
+        "l4_candidate_correspondence": "L4の object (classification_fields 14 keys) | null | any を無制約の JsonValue で受けており、候補1（context基準deepcopy）と候補2（actual基準またはマージ保全）のどちらにも型上は対応しうるが、候補の選択は未決（過去のL5確定型が残存）。",
+        "status": "undetermined",
+        "information_source_actual_or_context": "undetermined（actualとcontextのどちらのoriginal_classificationを情報源として保持するかは未決）"
+      },
+      {
+        "field": "retained_unresolved_history",
+        "l4_candidates_pointer": "docs/helix-os/L4-basic-design/management-authority-source-record.json#/diagnostic_contract/result_field_shapes/fields/retained_unresolved_history/candidates_if_undetermined",
+        "l5_logical_type_pointers": [
+          "docs/helix-os/L5-detail-design/management-authority-source-record.json#/logical_types/MaterialAssessment/fields/retained_unresolved_history",
+          "docs/helix-os/L5-detail-design/management-authority-source-record.json#/logical_types/PublicAssessment/fields/retained_unresolved_history"
+        ],
+        "current_l5_logical_type": "record (target_a, target_b -> JsonValue)",
+        "l4_candidate_correspondence": "候補1（非リスト・null等の不正型を含む生値のdeepcopy保全）を包含する JsonValue 型になっているが、候補2（正常時・不正型時とも list[str] または [] に正規化する文字列リスト保全）との選択は未決（過去のL5確定型が残存）。",
+        "status": "undetermined",
+        "information_source_actual_or_context": "undetermined（actualとcontextのどちらを情報源とするか、および非リスト等の不正型入力時に生値を保持するか [] 等へ置換するかは未決）"
+      },
+      {
+        "field": "retained_classification_lineage",
+        "l4_candidates_pointer": "docs/helix-os/L4-basic-design/management-authority-source-record.json#/diagnostic_contract/result_field_shapes/fields/retained_classification_lineage/candidates_if_undetermined",
+        "l5_logical_type_pointers": [
+          "docs/helix-os/L5-detail-design/management-authority-source-record.json#/logical_types/MaterialAssessment/fields/retained_classification_lineage",
+          "docs/helix-os/L5-detail-design/management-authority-source-record.json#/logical_types/PublicAssessment/fields/retained_classification_lineage"
+        ],
+        "current_l5_logical_type": "record (target_a, target_b -> union [array[string], null])",
+        "l4_candidate_correspondence": "候補1（history文字列リスト array[string]、プラスnull許容）に当たる片側だけの型であり、候補2（event・prior_classification・new_classification・historyを結ぶ構造化object）のobject候補を落としている（過去のL5確定型が残存）。",
+        "status": "undetermined",
+        "information_source_actual_or_context": "undetermined（actualとcontextのどちらのhistory/分類系譜を情報源とするか、および空時が [] か null か object かは未決）"
+      }
+    ]
   },
   "contracts": [
     {
