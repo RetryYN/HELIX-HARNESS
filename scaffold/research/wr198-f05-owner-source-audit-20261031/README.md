@@ -3,7 +3,7 @@
 - status: scaffold candidate（調査証跡、未採用・未review）
 - authority_effect: none
 - PR class: `design_verification`
-- base: `623f2abc6e0022f5aa781af5d1e21c4babcab7b9`
+- base: `0fc143f1bc356b4b1e0ab410d974572b935bffa1`
 - request: `WR198-F05-GAP-PROPOSAL-BODY-SOURCE`（Issue #3510、Claude査定 comment `6526378182`、request SHA-256 `fe9469e2f644d96210ee409a5fe647364a9dd0a39b942789d96b239aceaae102`）
 - review: `WR198-3933-review-R1` response SHA-256 `34b2164fb6722b144fe774137a07165f66035f11d5f01c40ae853f3d99cdea74`; PR #3933 comment `6526970112` reviewed head `cc7bf20335937ff4585420d69433908b05144cc9`
 
@@ -20,7 +20,7 @@ SHA-256はこの記録を作成したmain worktreeで計算した。pointerは�
 | 対象 | revision / SHA-256 | 調査した箇所と観測 |
 |---|---|---|
 | WR198依頼（local handoff、main tree外） | request base `32ba19e67227c51d343831f22cea511b204ffc41`; SHA-256 `fe9469e2f644d96210ee409a5fe647364a9dd0a39b942789d96b239aceaae102` | `scaffold/review-handoff/local/brain032-l8-d27-3547-20261023/root-wr198-work-request-r1.json`。HARNESS 009 L4/L9のsource探査を依頼。外部owner bodyの所在を含むと仮定しない。 |
-| 現行main（read-after） | `623f2abc6e0022f5aa781af5d1e21c4babcab7b9` | #3932 merge後に候補をrebaseし、binding空きIDを確認して再検証した基点。依頼記載baseとの差分があるため、以下のmain上の現行hash/pointerで照合した。 |
+| 現行main（read-after） | `0fc143f1bc356b4b1e0ab410d974572b935bffa1` | #3932 merge後にSCF-B-0179へ再採番し、続く#3922 merge時点の最新mainへrebaseして再検証した基点。依頼記載baseとの差分があるため、以下のmain上の現行hash/pointerで照合した。 |
 | HARNESS L3 | SHA-256 `a3b907cdc316117d4684632f9a1cbf36125eb6e6172f9cfc286060617583d7be` | `docs/helix-harness/L3-requirements/functional-requirements.json#/requirements/27`。source/template/revision/field・義務/evidence/scopeと不足4候補の保持を示す。ownerの原適用contract質問本文や具体body/operandは収録されていない。 |
 | HARNESS L10 | SHA-256 `fc58ad2268746d7924ac9be33e8f3f75e6d3c2cc619e27fbc1ddc34edd065cb2` | `docs/helix-harness/L10-verification/functional-verification.json#/cases/27`。定義欠落と値未決の混同防止を示す。具体のF05 owner statement/bodyや有限期待値を供給しない。 |
 | HARNESS L1 | SHA-256 `238ae0590f43c10c0a59a0cea4a9907328752a81388891e1a115d4278db00e1f` | `docs/helix-harness/L1-planning/product-intent.md:39` のHARNESS-L1-009（status draft / authority_status draft_candidate）。templateで設計義務を導き、必要な要求input不足を上流へ戻す企画候補。F05の具体owner bodyではない。 |
@@ -64,7 +64,7 @@ HDECと承認済みL3/L10はsource/revision/scopeの保持、欠落と未決の�
 
 ## 実施した静的確認
 
-最新main `623f2abc6e0022f5aa781af5d1e21c4babcab7b9` のclean detached worktreeでread-after基準を取り、候補を載せたworktreeでも再実行した。L4/L9本文、L3/L10、既存freezeは変更していない。clean mainと候補worktreeのL4/L9 hashは上表の値で一致した。
+最新main `0fc143f1bc356b4b1e0ab410d974572b935bffa1` のclean detached worktreeでread-after基準を取り、候補を載せたworktreeでも再実行した。L1/L2/L11/L3/L4/L9/L10のうち今回pinしたsourceは623fからの変更一覧に含まれず、hashも上表と一致する。既存freeze・正本は変更していない。
 
 - `python3 -m json.tool scaffold/bindings/SCF-B-0179.json`: exit 0。
 - `python3 -B scaffold/tools/scfctl.py validate`: `bindings=168 fail=0`。SCF-B-0178は#3932で使用済みのため、本候補をSCF-B-0179へ再採番した。
