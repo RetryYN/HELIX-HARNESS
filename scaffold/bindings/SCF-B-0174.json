@@ -6,7 +6,7 @@
   "product": "HELIX-HARNESS",
   "owner_candidate": "HELIX-HARNESS CORE003 design_verification (L4/L9)",
   "state": "registered",
-  "reason": "HARNESS L4/L9 process-state-portのF03 14件・F05 8件について、固定L9入力とL3/L4 classificationからの静的照合根拠を一度だけ保持する研究用scaffold。L5は一致照合のみ。既存期待、formal projection row、checker marker、freeze、関数実行、製品テストを変更・生成しない。",
+  "reason": "HARNESS L4/L9 process-state-portのF03 14件・F05 8件について、固定L9入力/差分とsource pointer/hashを保持する監査用scaffold。独立に確認した結果、L4/L5が要求する成立扱い/Release-eligibleの処理結果はrawに存在せず、22件のfinding集合はunknown/unformed。既存期待、formal projection row、checker marker、freeze、関数実行、製品testを変更・生成しない。",
   "upstream": [
     {
       "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
@@ -25,16 +25,16 @@
     },
     {
       "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
-      "sha256": "b5f95dba1076daa0e1a8ef9aaa52bd657ac471b580eddf538be756efb22ba526",
-      "note": "Formal L9 document consumer; carries inline L3/L4 candidate finding sets, input pointers, 182-case population and existing expectations. Fixed raw input snapshot: ed3981e7b9419d796adf1981f8990c6b626ecabe, full-file SHA-256 91d0bcd34b8b451bc8e81f5d13d0c5f413de3ad5f7c70ba90a704134c4af3735."
+      "sha256": "536c5e8ea00fd06e99b3eb27a5350e0d789f46774d34ef68ebcc114191555173",
+      "note": "L9監査記録と既存182-case population/expectations。固定raw input snapshotはed3981e7b9419d796adf1981f8990c6b626ecabe。22件の入力・mutationを保持するがfinding setはunknown/unformed。"
     }
   ],
-  "role": "HARNESS L4/L9 design_verification pair向けに、process-state-port負例22件のL9入力由来とrule照合候補を記録する。",
+  "role": "HARNESS L4/L9 design_verification pair向けに、process-state-portのF03 14件・F05 8件の入力由来/不足条件を監査する。",
   "obligations": [
-    "F03の14件について、L3/L4 classと固定L9入力からsingleton code/ownerまたはunordered finding setを記録する。L5は一致照合だけに使い、L4が順序を定めない3件のL9 output orderはunknownに保つ。",
-    "F05の8件について、L3/L4 classと固定L9入力からsingleton code/ownerおよび不発火根拠を記録する。L5は一致照合だけに使う。",
-    "既存の182件case population・expected valuesを保持し、formal projection rowsを追加せず、checker markerを無効のままにする。",
-    "残る175件の未形成とexisting negative checker 223 FAILを明示し、部分候補を全体PASSと扱わない。"
+    "固定raw revision/path/pointer/hashとL9 mutation/base case参照を保持し、既存case/expectationを変更しない。",
+    "F03 14件・F05 8件で、L4/L5が要求する「未決/欠落を成立またはRelease-eligible扱いした処理結果」がrawにないことを個別記録し、finding setをunknown/unformed（空集合ではない）とする。",
+    "F03/F05の既存case・期待、182件母集団、formal projection rows、checker marker、freezeを変更しない。",
+    "残る未形成175件と既存negative checker 223 FAILを明示し、部分監査を全体PASSと扱わない。"
   ],
   "connections": {
     "consumers": [
@@ -43,10 +43,10 @@
     "dependencies": [
       "HARNESS L3 F03/F05 obligations",
       "HARNESS L4 process-state-port contracts and classifications",
-      "HARNESS L5 process-state-port contracts for concordance only",
-      "fixed L9 raw source snapshot ed3981e7b9419d796adf1981f8990c6b626ecabe"
+      "HARNESS L5 process-state-port failure conditions, read only to identify the missing handled-as-success claim",
+      "fixed L9 raw input snapshot ed3981e7b9419d796adf1981f8990c6b626ecabe"
     ],
-    "boundary": "design_verification（HARNESS L4/L9）の静的監査のみ。L9 source、期待値、ケース母集団を変更せず、正式projection row、checker marker、freeze、関数実行、製品テスト、CI結果を生成しない。"
+    "boundary": "design_verification（HARNESS L4/L9）の静的入力・参照監査のみ。finding outputは形成しない。L9 source、期待値、ケース母集団を変更せず、formal projection row、checker marker、freeze、関数実行、製品test、CI結果を生成しない。"
   },
   "operations": {
     "allowed": [
@@ -68,8 +68,8 @@
   "artifacts": [
     "docs/helix-harness/L9-integration-verification/process-state-port.json",
     "scaffold/research/wr186-psp-negative-residual/README.md",
-    "scaffold/research/wr186-psp-negative-residual/manual-projection-candidates.json",
-    "scaffold/research/wr186-psp-negative-residual/f05-single-finding-candidates.json",
+    "scaffold/research/wr186-psp-negative-residual/manual-projection-audit-rows.json",
+    "scaffold/research/wr186-psp-negative-residual/f05-audit-rows.json",
     "scaffold/research/wr186-psp-negative-residual/independent-manual-review.md",
     "scaffold/research/wr186-psp-negative-residual/validate_l9.py"
   ],
@@ -88,10 +88,10 @@
       "scaffold/research/wr186-psp-negative-residual/independent-manual-review.md"
     ],
     "negative_cases": [
-      "L9 expected_material and negative_class_assignment are excluded from derivation.",
-      "The 22 candidates remain audit-only; all 175 unformed cases remain visible.",
-      "The 182-case population and existing expected values remain unchanged; no formal row or checker marker is added.",
-      "Existing negative checker residual 223 FAIL and freeze state are reported separately from these static candidates."
+      "F03 14件とF05 8件はfinding set unknown/unformedであり、空集合やformal outputと扱わない。",
+      "182-case populationと既存期待は不変、formal row・checker markerを追加しない。",
+      "従来の22候補は要件追加条件を裏付けるraw観測がなく撤回し、履歴上の主張と混同しない。",
+      "既存negative checker残余223 FAILとfreeze状態は監査候補と分けて記録する。"
     ]
   },
   "replacement": {
