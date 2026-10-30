@@ -584,6 +584,85 @@
     ],
     "condition_semantics": "conditionは選択phaseで適用した7facetの集約。violationが1つでもあればworkflow_material_violation、違反なしでunknownがあればworkflow_material_unknown、それ以外workflow_material_corresponding。workflow実適格性や実完了を意味しない。boolean workflow_material_correspondingは別の素材flagで、candidate phaseでは必ずfalse。candidate phaseのconditionがworkflow_material_correspondingでもworkflow instanceの成立を示さない。",
     "case_input_integrity": "givenの値をcaseごとに独立保持する。全caseをcanonical givenでgroup化し、同一入力ならexpected_proposal全field同値を静的に照合する。これは同入力決定性の文書整合証拠で、正式codec/実装oracle凍結を成立させない。",
-    "primary_requirement_ref_semantics": "requirement_refsは親4要求の全体trace、primary_requirement_refsはcaseの直接検証concern。negativeは不成立facet→ownership/scope_limit:B01、inputs/ticket:F01、workflow:F02、backflow/continuity:F03。positiveは選択phaseの主目的、projectionと決定性/対象差はその直接concernを明示。絞込参照は全4要求の完了宣言ではない。"
+    "primary_requirement_ref_semantics": "requirement_refsは親4要求の全体trace、primary_requirement_refsはcaseの直接検証concern。negativeは不成立facet→ownership/scope_limit:B01、inputs/ticket:F01、workflow:F02、backflow/continuity:F03。positiveは選択phaseの主目的、projectionと決定性/対象差はその直接concernを明示。絞込参照は全4要求の完了宣言ではない。",
+    "phase_facet_class_key_contract": {
+      "key_fields": [
+        "selected_phase",
+        "condition_facet",
+        "witness_field",
+        "condition_facet_status"
+      ],
+      "key_format": "{selected_phase}:{condition_facet}:{witness_field}:{condition_facet_status}",
+      "scope": "既存comparison条件をphaseとcondition facetを保持して表すclass key。条件やgateを追加しない。",
+      "class_keys": [
+        {
+          "key": "resume:inputs:binding.project:corresponding",
+          "selected_phase": "resume",
+          "condition_facet": "inputs",
+          "condition_facet_status": "corresponding",
+          "condition": "workflow_material_corresponding",
+          "witness_rule": "binding.project と context.binding.project がともに非空文字列で一致し、同じbindingの他4 fieldも一致する。",
+          "finding_signature": [],
+          "source_pointers": [
+            "/diagnostic_contract/condition_names",
+            "/diagnostic_contract/comparison_table/binding",
+            "/diagnostic_contract/algorithm/2",
+            "/diagnostic_contract/diagnostic_code_facets/source_unresolved",
+            "/diagnostic_contract/diagnostic_code_facets/source_conflict",
+            "/diagnostic_contract/return_owner"
+          ],
+          "witness_field": "binding.project"
+        },
+        {
+          "key": "resume:inputs:binding.project:unknown",
+          "selected_phase": "resume",
+          "condition_facet": "inputs",
+          "condition_facet_status": "unknown",
+          "condition": "workflow_material_unknown",
+          "witness_rule": "binding.project の一方が非空文字列でなく、他方は非空文字列。L4のstring比較では不足側の原pointerにsource_unresolvedを置く。",
+          "finding_signature": [
+            {
+              "code": "source_unresolved",
+              "pointer": "/binding/project",
+              "return_owner": "ticket-workflow-owner"
+            }
+          ],
+          "source_pointers": [
+            "/diagnostic_contract/condition_names",
+            "/diagnostic_contract/comparison_table/binding",
+            "/diagnostic_contract/algorithm/2",
+            "/diagnostic_contract/diagnostic_code_facets/source_unresolved",
+            "/diagnostic_contract/diagnostic_code_facets/source_conflict",
+            "/diagnostic_contract/return_owner"
+          ],
+          "witness_field": "binding.project"
+        },
+        {
+          "key": "resume:inputs:binding.project:violation",
+          "selected_phase": "resume",
+          "condition_facet": "inputs",
+          "condition_facet_status": "violation",
+          "condition": "workflow_material_violation",
+          "witness_rule": "binding.project と context.binding.project がともに非空文字列で相反する。L4のstring比較ではactual原pointerにsource_conflictを置く。",
+          "finding_signature": [
+            {
+              "code": "source_conflict",
+              "pointer": "/binding/project",
+              "return_owner": "ticket-workflow-owner"
+            }
+          ],
+          "source_pointers": [
+            "/diagnostic_contract/condition_names",
+            "/diagnostic_contract/comparison_table/binding",
+            "/diagnostic_contract/algorithm/2",
+            "/diagnostic_contract/diagnostic_code_facets/source_unresolved",
+            "/diagnostic_contract/diagnostic_code_facets/source_conflict",
+            "/diagnostic_contract/return_owner"
+          ],
+          "witness_field": "binding.project"
+        }
+      ],
+      "scope_limit": "このclass cohortはresumeのinputs facetにあるbinding.project comparisonだけを扱う。phase/facetの異なる負例や他fieldはこのcohortで形成しない。"
+    }
   }
 }
