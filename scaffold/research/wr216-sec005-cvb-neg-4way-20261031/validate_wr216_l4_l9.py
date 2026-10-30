@@ -1,0 +1,186 @@
+#!/usr/bin/env python3
+"""Static validator for WR216 SEC005 credential-value-boundary L4/L9 negative classifications (PR-A)."""
+
+from __future__ import annotations
+
+import hashlib
+import json
+import subprocess
+import sys
+from pathlib import Path
+from typing import Any
+
+ROOT = Path(__file__).resolve().parents[3]
+BLIND_PATH = ROOT / "scaffold/research/wr216-sec005-cvb-neg-4way-20261031/blind-derivation.json"
+COMP_PATH = ROOT / "scaffold/research/wr216-sec005-cvb-neg-4way-20261031/comparison.json"
+L4_REL = "docs/helix-security/L4-basic-design/credential-value-boundary.json"
+L9_REL = "docs/helix-security/L9-integration-verification/credential-value-boundary.json"
+L5_REL = "docs/helix-security/L5-detail-design/credential-value-boundary.json"
+L8_REL = "docs/helix-security/L8-unit-verification/credential-value-boundary.json"
+
+EXPECTED_BLIND_SHA256 = "b18b662713eb94c3d6bc5a3443128c6c8112f61308886647d0d1f2372f754bf6"
+
+
+def resolve_json_pointer(doc: Any, pointer: str) -> Any:
+    if pointer == "" or pointer == "#":
+        return doc
+    if pointer.startswith("#"):
+        pointer = pointer[1:]
+    if not pointer.startswith("/"):
+        raise ValueError(f"Invalid JSON Pointer: {pointer}")
+    cur = doc
+    for raw_token in pointer.split("/")[1:]:
+        token = raw_token.replace("~1", "/").replace("~0", "~")
+        if isinstance(cur, list):
+            cur = cur[int(token)]
+        elif isinstance(cur, dict):
+            if token not in cur:
+                raise KeyError(f"Token {token!r} not found at {pointer}")
+            cur = cur[token]
+        else:
+            raise TypeError(f"Cannot traverse {type(cur)} at {pointer}")
+    return cur
+
+
+def load_git_json(rev: str, rel_path: str) -> Any:
+    out = subprocess.check_output(["git", "-C", str(ROOT), "show", f"{rev}:{rel_path}"])
+    return json.loads(out.decode("utf-8"))
+
+
+def main() -> int:
+    failures: list[str] = []
+
+    # 1. Verify frozen blind-derivation.json SHA-256
+    blind_sha = hashlib.sha256(BLIND_PATH.read_bytes()).hexdigest()
+    if blind_sha != EXPECTED_BLIND_SHA256:
+        failures.append(f"blind_sha256_mismatch: {blind_sha} != {EXPECTED_BLIND_SHA256}")
+
+    l4 = json.loads((ROOT / L4_REL).read_text(encoding="utf-8"))
+    l9 = json.loads((ROOT / L9_REL).read_text(encoding="utf-8"))
+    l5 = json.loads((ROOT / L5_REL).read_text(encoding="utf-8"))
+    l8 = json.loads((ROOT / L8_REL).read_text(encoding="utf-8"))
+    comp = json.loads(COMP_PATH.read_text(encoding="utf-8"))
+
+    # 2. Verify preservation against base_main_sha
+    base_rev = comp["base_main_sha"]
+    l4_base = load_git_json(base_rev, L4_REL)
+    l9_base = load_git_json(base_rev, L9_REL)
+
+    l4_copy = json.loads(json.dumps(l4))
+    l4_copy.pop("failure_classifications", None)
+    for c in l4_copy.get("contracts", []):
+        c.pop("negative_classifications", None)
+    if l4_copy != l4_base:
+        failures.append("l4_existing_fields_modified")
+
+    l9_copy = json.loads(json.dumps(l9))
+    l9_copy.pop("negative_class_assignment_audit", None)
+    for c in l9_copy.get("cases", []):
+        for nc in c.get("negative_cases", []):
+            nc.pop("negative_class_assignment", None)
+    if l9_copy != l9_base:
+        failures.append("l9_existing_fields_or_cases_modified")
+
+    # 3. Verify L4 classes (12 in F01, 9 in F02, 0 in B01, 21 total) and no downward refs
+    c0_neg = l4["contracts"][0].get("negative_classifications", [])
+    c1_neg = l4["contracts"][1].get("negative_classifications", [])
+    c2_neg = l4["contracts"][2].get("negative_classifications", [])
+    top_fc = l4.get("failure_classifications", [])
+    if (len(c0_neg), len(c1_neg), len(c2_neg), len(top_fc)) != (12, 9, 0, 21):
+        failures.append(f"unexpected_l4_class_counts: {(len(c0_neg), len(c1_neg), len(c2_neg), len(top_fc))}")
+
+    doc_cache: dict[str, Any] = {L4_REL: l4, L9_REL: l9, L5_REL: l5, L8_REL: l8}
+
+    def check_pointer_list(ptrs: list[dict[str, str]], forbid_downward: bool = False) -> None:
+        for p_obj in ptrs:
+            rel = p_obj["path"]
+            ptr = p_obj["pointer"]
+            if forbid_downward and any(layer_tag in rel for layer_tag in ("L5-", "L8-", "L9-")):
+                failures.append(f"downward_reference_in_l4: {rel}#{ptr}")
+            if rel not in doc_cache:
+                doc_cache[rel] = json.loads((ROOT / rel).read_text(encoding="utf-8"))
+            try:
+                resolve_json_pointer(doc_cache[rel], ptr)
+            except Exception as exc:
+                failures.append(f"broken_pointer: {rel}#{ptr} ({exc})")
+
+    l4_class_by_code: dict[str, tuple[int, int, dict[str, Any]]] = {}
+    for ci, c_neg in enumerate([c0_neg, c1_neg, c2_neg]):
+        for idx, cr in enumerate(c_neg):
+            code = cr["code"]
+            if code in l4_class_by_code:
+                failures.append(f"duplicate_l4_class_code: {code}")
+            l4_class_by_code[code] = (ci, idx, cr)
+            check_pointer_list(cr["source_pointers"], forbid_downward=True)
+
+    for tr in top_fc:
+        check_pointer_list(tr["source_pointers"], forbid_downward=True)
+
+    # 4. Verify L9 assignments and audit counts
+    audit = l9.get("negative_class_assignment_audit", {})
+    member_counts = {code: 0 for code in l4_class_by_code}
+    assigned_total = 0
+    unassigned_ids: list[str] = []
+
+    for ci, c in enumerate(l9["cases"]):
+        for ni, nc in enumerate(c["negative_cases"]):
+            asgn = nc.get("negative_class_assignment")
+            if asgn is None:
+                unassigned_ids.append(nc["id"])
+                continue
+            assigned_total += 1
+            code = asgn["classification"]
+            if code not in l4_class_by_code:
+                failures.append(f"unknown_classification_in_l9: {nc[id]} -> {code}")
+                continue
+            member_counts[code] += 1
+            l4_ci, l4_idx, cr = l4_class_by_code[code]
+            if l4_ci != ci:
+                failures.append(f"contract_mismatch: {nc[id]} in contract {ci} assigned to {code} in contract {l4_ci}")
+            ep = nc["expected_proposal"]
+            if ep["condition"] != cr["expected"]["condition"]:
+                failures.append(f"condition_mismatch: {nc[id]}")
+            if [f["code"] for f in ep["findings"]] != cr["expected"]["finding_codes"]:
+                failures.append(f"finding_codes_mismatch: {nc[id]}")
+            axis = cr["axis"]
+            if ep.get(axis) != cr["state"]:
+                failures.append(f"axis_state_mismatch: {nc[id]} {axis}={ep.get(axis)} vs {cr[state]}")
+            for f_obj in ep["findings"]:
+                if f_obj["return_owner"] != cr["backflow_owner"]:
+                    failures.append(f"return_owner_mismatch: {nc[id]}")
+            check_pointer_list(asgn["source_pointers"], forbid_downward=False)
+
+    if assigned_total != 64:
+        failures.append(f"expected_64_assigned_got_{assigned_total}")
+    if len(unassigned_ids) != 5:
+        failures.append(f"expected_5_unassigned_got_{len(unassigned_ids)}")
+    if any(cnt == 0 for cnt in member_counts.values()):
+        failures.append(f"zero_member_class_detected: {member_counts}")
+    if audit.get("class_member_count_by_code") != member_counts:
+        failures.append("audit_class_member_count_mismatch")
+
+    for u_entry in audit.get("unassigned_single_contract_negative_cases", []):
+        check_pointer_list(u_entry["source_pointers"], forbid_downward=False)
+
+    # 5. Verify L8 vs L9 arithmetic in audit
+    f01_deltas = sum(x["delta_l9_minus_l8"] for x in audit["l8_vs_l9_granularity_classification"]["f01_l8_33_vs_l9_55_diff_plus_22"])
+    f02_deltas = sum(x["delta_l9_minus_l8"] for x in audit["l8_vs_l9_granularity_classification"]["f02_l8_9_vs_l9_14_diff_plus_5"])
+    b01_deltas = sum(x["delta_l9_minus_l8"] for x in audit["l8_vs_l9_granularity_classification"]["b01_l8_1_vs_l9_0_diff_minus_1"])
+    if (33 + f01_deltas, 9 + f02_deltas, 1 + b01_deltas) != (55, 14, 0):
+        failures.append(f"l8_vs_l9_delta_sum_mismatch: {(33 + f01_deltas, 9 + f02_deltas, 1 + b01_deltas)}")
+
+    report = {
+        "passed": len(failures) == 0,
+        "blind_sha256": blind_sha,
+        "l4_class_count": len(top_fc),
+        "l9_assigned_count": assigned_total,
+        "l9_unassigned_count": len(unassigned_ids),
+        "zero_member_classes": [k for k, v in member_counts.items() if v == 0],
+        "failures": failures,
+    }
+    print(json.dumps(report, indent=2, ensure_ascii=False))
+    return 0 if not failures else 1
+
+
+if __name__ == "__main__":
+    sys.exit(main())

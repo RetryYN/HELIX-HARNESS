@@ -1,0 +1,270 @@
+{
+  "schema": "wr216-sec005-cvb-neg-4way-comparison.v1",
+  "request_id": "WR216-SEC-CVB-NEG-4WAY",
+  "issue": 3510,
+  "pr_scope": "PR-A (L4/L9 V-pair only; L5/L8 deferred to PR-B under 1-V-pair-per-PR rule)",
+  "base_main_sha": "73193d8d37845a23e57330db99dd53bbc0e7004c",
+  "request_base_sha": "fa3d2d515ce8df79c0a74d5360a4d1254863a6f1",
+  "pre_comparison_freeze": {
+    "artifact_path": "scaffold/research/wr216-sec005-cvb-neg-4way-20261031/blind-derivation.json",
+    "sha256": "b18b662713eb94c3d6bc5a3443128c6c8112f61308886647d0d1f2372f754bf6",
+    "issue_comment_url": "https://github.com/RetryYN/HELIX-HARNESS/issues/3510#issuecomment-6533221683",
+    "blind_candidate_count": 23,
+    "blind_counts_by_contract": {
+      "F01": 14,
+      "F02": 7,
+      "B01": 2
+    },
+    "vocabulary_disclosure": "L4/credential-value-boundary.json の散文（content_comparison/4）で snake_case の finding code 識別子として明示されているのは credential_binding_unresolved と authority_expected_unresolved の2語のみであり、blind-derivation.json に記載された残り17個の snake_case finding code 名および condition 名（credential_use_rejected / credential_use_unresolved）は、L4散文の字面のみから一意に定まったものではなく、先行作業（#3944 WR195 / #3953 WR208）で扱った SEC005 の既存語彙の記憶が混入していたことを正直に開示する。L3/L10 と L4 散文のみから独立に導出できるのは、各契約の失敗条件の意味分類（7出力面での生値露出/未観測、store直接開示/可視性unknown、8項目tupleのrequest/capability欠落・request単独相反・capability共有オペランド相反・独立expected欠落・class未知・期限/時刻観測unknown・authority資料unknown・007/006条件unknown/violation、2検査reportのsecret検出/未観測/非canonical predicate/predicate束縛欠落/検査資料unknown、capability/独立revocationのrevoked/expired/unknown、027初回経路のoutside_credential_free_scope）である。"
+  },
+  "qa_section3_comparison_mode_check": {
+    "qa_document": "docs/governance/design-verification-quality-assurance.md",
+    "modes": [
+      "legacy_casewise_four_layer (default when negative_equivalence_classes marker is absent on any of L4/L5/L8/L9)",
+      "explicit_negative_equivalence_classes (active only when all 4 layers declare negative_equivalence_classes)"
+    ],
+    "why_split_into_pr_a_and_pr_b": "design_verification PR class は 1 V-pair ごとに PR を分ける規則（#3976 R1 Info I1 で再確認）に従い、L4/L9（PR-A）と L5/L8（PR-B）を別 PR に分割する。QA §3 は 4 層すべてに negative_equivalence_classes marker が揃うことを求め、部分 marker は不一致で FAIL させるため、PR-A では marker を追加せず中間状態として legacy_casewise_four_layer の測定値（L4=21, L9=69, L8=43, L5=0、136 failures）を明記する。",
+    "checker_structural_constraints_recorded": [
+      "design_verification_checker.py (_check_negative_equivalence_mode, lines 1898-1955, 2404-2416) はトップレベル L8.unit_cases / L9.integration_cases と 1対1 の integration_case_ref 全単射（integration_case_ref_not_one_to_one / integration_case_not_referenced_from_l8）を要求するが、SEC005 の L8/L9 は contracts ごとの cases[0..2] 構造を持ち、かつ単体検証 L8（43件）と統合検証 L9（69件）で検証粒度が異なる（N対M）。",
+      "design_verification_checker.py (lines 1735-1743, 2381-2394) は L5 contract の単数文字列 contract.get(\"function\") を比較するが、SEC005 の L5 contracts[0..2] は function_refs 配列を持つ。"
+    ]
+  },
+  "post_comparison_change_order": [
+    {
+      "step": 1,
+      "target": "return_owner and expected_proposal axis/state names in L4 negative_classifications",
+      "before_in_blind": "backflow_owner=credential-value-boundary-owner; conceptual axis names (value_non_exposure, scoped_credential_correspondence, secret_inspection_guard, lifecycle_revocation_guard)",
+      "after_in_l4": "backflow_owner=credential-boundary-owner (matching L4#/diagnostic_contract/return_owner); L9 expected_proposal field names (exposure_state, use_binding_state, capability_state_projection, inspection_state) and their exact state values",
+      "reason": "L4#/diagnostic_contract/return_owner の正本値（credential-boundary-owner）および L9 expected_proposal の実フィールド名・状態値と JSON Pointer 参照を一致させるため。"
+    },
+    {
+      "step": 2,
+      "target": "F01 credential_binding_conflict split into single-join request conflict vs shared-middle-operand capability.tuple conflict",
+      "before_in_blind": "Single candidate class SEC005_F01_CREDENTIAL_BINDING_CONFLICT with finding_codes=[\"credential_binding_conflict\"]",
+      "after_in_l4": "Split into SEC005_F01_REQUEST_BINDING_CONFLICT (finding_codes=[\"credential_binding_conflict\"], 7 L9 cases [15,17,19,21,23,25,27]) and SEC005_F01_CAPABILITY_TUPLE_BINDING_CONFLICT (finding_codes=[\"credential_binding_conflict\", \"credential_binding_conflict\"], 8 L9 cases [31,33,35,37,39,41,43,45] and 8 L8 cases [1,3,5,7,9,11,13,15])",
+      "reason": "L4#/contracts/0/content_comparison/0,/4 の2つの join（request.<field> vs capability.tuple.<field>、capability.tuple.<field> vs expected_capability.<field>）において、共有中間オペランド /capability/tuple/<field> のみが異なる非null値を持つ場合、Join 2（/capability/tuple/<field>）と Join 1（/request/<field>）の異なる2つの pointer で credential_binding_conflict が発火し、(code, pointer, return_owner) 一意化後も2件とも保持されるため。"
+    },
+    {
+      "step": 3,
+      "target": "F01 credential_class_unresolved (BLIND-F01-08) removal from L4/L9 single-contract class rows",
+      "before_in_blind": "Included SEC005_F01_CREDENTIAL_CLASS_UNRESOLVED as an F01 single-finding class candidate",
+      "after_in_l4": "Removed from L4/L9 class rows (0 pure single-finding cases in L9; 2 co-occurring L9 cases [28, 29] recorded in unassigned_single_contract_negative_cases)",
+      "reason": "L8単体検証では compare_credential_classification を単独呼び出しするため単一findingケースが3件存在するが、L9統合パイプラインでは /request/classification が 8項目tuple照合と共有されているため、欠落（[28]）でも相反（[29]）でも tuple finding と credential_class_unresolved の2件が同時発火し、単一findingのL9ケースは0件となる。member 0 の class 行を作らない規則に従い L4/L9 class 行から外し、[28],[29] は共有leaf理由とともに unassigned_single_contract_negative_cases に記録した。"
+    },
+    {
+      "step": 4,
+      "target": "Placement of credential_expired, capability_lifecycle_unresolved, and inspection_material_unresolved between F01 and F02",
+      "before_in_blind": "SEC005_F01_CREDENTIAL_EXPIRED and SEC005_F01_CAPABILITY_LIFECYCLE_UNRESOLVED under F01; SEC005_F02_INSPECTION_MATERIAL_UNRESOLVED not listed separately",
+      "after_in_l4": "SEC005_F02_CREDENTIAL_EXPIRED (1 L9 case [10] SEC005-DECLARED-EXPIRED), SEC005_F02_CAPABILITY_LIFECYCLE_UNRESOLVED (1 L9 case [11] SEC005-LIFECYCLE-UNKNOWN), and SEC005_F02_INSPECTION_MATERIAL_UNRESOLVED (1 L9 case [13] SEC005-INSPECTION-SOURCE-UNKNOWN) placed in F02 (9 classes, 14 L9 cases total)",
+      "reason": "L4#/contracts/1/input_meanings/1 および content_comparison/2 において capability lifecycle・独立revocation観測・検査資料状態は F02 の入力・比較契約に属し、L9 でも [10] capability.state=expired、[11] capability.state=unknown、[13] context.inspection_source_state=unknown は F02（cases[1]）の単一契約負例として配置されているため（一方 observed_time>=expiry による期限切れ2件は F01/F02 両契約に跨るため multi_contract_residual [R00],[R01] に保持）。"
+    },
+    {
+      "step": 5,
+      "target": "B01 candidate rows (BLIND-B01-01, BLIND-B01-02) removal from L4/L9 negative_classifications",
+      "before_in_blind": "2 candidate rows under B01 (outside_credential_free_scope and use_context_unresolved)",
+      "after_in_l4": "contracts[2].negative_classifications = [] (0 classes in L4/L9)",
+      "reason": "L9 では B01（cases[2]）は正例4件のみで負例0件であり（outside_credential_free_scope は multi_contract_residual の正例 [1] SEC005-OS027-CREDENTIAL-REQUESTED-OUTSIDE-SCOPE として検証され、未知 use_context の InputIssue は L8 単体検証 SEC005-L8-INITIAL-UNKNOWN のみに存在）、member 0 の class 行を作らない規則に従い B01 の negative_classifications を空配列とした。"
+    }
+  ],
+  "shared_leaf_and_deduplication_rules": [
+    {
+      "shared_leaf": "/capability/tuple/<field>",
+      "comparisons_sharing_leaf": [
+        "Join 1: request.<field> vs capability.tuple.<field> (L4#/contracts/0/content_comparison/0, /4)",
+        "Join 2: capability.tuple.<field> vs context.expected_capability.<field> (L4#/contracts/0/content_comparison/0, /4)"
+      ],
+      "deduplication_rule": "L4#/diagnostic_contract/sort に従い findings は (code, pointer, return_owner) で一意化・scalar codepoint順整列される。/capability/tuple/<field> が null（欠落）のとき、Join 1 と Join 2 はともに同一タプル (credential_binding_unresolved, /capability/tuple/<field>, credential-boundary-owner) を出力するため1件に重複除去され SEC005_F01_CREDENTIAL_BINDING_UNRESOLVED（expiryを除く7件）に属する。一方 /capability/tuple/<field> が非nullの相反値のとき、Join 2 は /capability/tuple/<field>、Join 1 は /request/<field> を pointer として credential_binding_conflict を出力するため pointer が異なり重複除去されず2件とも保持され、SEC005_F01_CAPABILITY_TUPLE_BINDING_CONFLICT（8件）を形成する。"
+    },
+    {
+      "shared_leaf": "/request/classification",
+      "comparisons_sharing_leaf": [
+        "8-field tuple Join 1: request.classification vs capability.tuple.classification (L4#/contracts/0/content_comparison/0, /4)",
+        "Allowed classification set check: request.classification in context.allowed_classifications (L4#/contracts/0/content_comparison/0)"
+      ],
+      "deduplication_rule": "L9の統合パイプラインでは /request/classification の欠落（SEC005-REQUEST-CLASSIFICATION-MISSING）または相反（SEC005-REQUEST-CLASSIFICATION-CONFLICT）が tuple Join 1（credential_binding_unresolved または credential_binding_conflict）と classification集合照合（credential_class_unresolved）の双方を同時発火させる。pointer はともに /request/classification だが finding code が異なるため (code, pointer, return_owner) 一意化後も2件残り、unassigned_single_contract_negative_cases に分離保持される（L8単体検証では compare_credential_classification を単独関数として検証するため credential_class_unresolved 単一finding 3件が存在する）。"
+    },
+    {
+      "shared_leaf": "/capability/tuple/expiry",
+      "comparisons_sharing_leaf": [
+        "8-field tuple Join 1 & Join 2: capability.tuple.expiry (L4#/contracts/0/content_comparison/0, /4)",
+        "Numeric expiry observation: context.observed_time >= capability.tuple.expiry (L4#/contracts/0/content_comparison/1)"
+      ],
+      "deduplication_rule": "/capability/tuple/expiry が null（SEC005-CAPABILITY-TUPLE-EXPIRY-MISSING）のとき、Join 1 と Join 2 の credential_binding_unresolved は同一タプルとして1件に重複除去されるが、期限比較が同一pointer /capability/tuple/expiry に別code expiry_observation_unresolved を出力するため計2件のfindingが残り、unassigned_single_contract_negative_cases に分離保持される。"
+    },
+    {
+      "shared_leaf": "/context/observed_time and /capability/tuple/expiry",
+      "comparisons_sharing_leaf": [
+        "F01 use_binding_state / capability_state_projection expiry check (L4#/contracts/0/content_comparison/1)",
+        "F02 capability_state_projection lifecycle expiry check (L4#/contracts/1/content_comparison/2)"
+      ],
+      "deduplication_rule": "observed_time >= expiry（SEC005-AT-EXPIRY, SEC005-AFTER-EXPIRY）では finding は (credential_expired, /context/observed_time, credential-boundary-owner) の1件に一意化されるが、F01 の期限比較（content_comparison/1）と F02 の失効・期限切れ後続利用停止（content_comparison/2）の2契約にまたがるため multi_contract_residual に保持される。これに対し capability.state=expired（SEC005-DECLARED-EXPIRED, pointer=/capability/state）は F02 の capability_state_projection=expired のみを変化させる単一契約負例であり SEC005_F02_CREDENTIAL_EXPIRED に属する。"
+    }
+  ],
+  "l8_vs_l9_granularity_classification": {
+    "summary": "L8は8つの純粋関数（evaluate_surface_exposure, compare_credential_tuple, compare_credential_classification, evaluate_lifecycle_and_time, evaluate_authority_and_use_conditions, evaluate_secret_inspections, classify_initial_path, evaluate_credential_value_boundary）の関数単位境界を検証し（単一契約負例43件: F01=33, F02=9, B01=1; multi_contract_residual負例12件）、L9は統合パイプライン（evaluate_credential_value_boundary）の入力シナリオ単位で検証する（単一契約負例69件: F01=55, F02=14, B01=0; multi_contract_residual負例4件）。",
+    "f01_l8_33_vs_l9_55_diff_plus_22": [
+      {
+        "category": "value_exposure_unresolved_surface_expansion",
+        "l8_count": 1,
+        "l9_count": 7,
+        "delta_l9_minus_l8": 6,
+        "explanation": "L8は /surfaces/receipt/observation の代表1件のみで value_exposure_unresolved を単体検証するのに対し、L9は7出力面すべてで未観測（NOT_OBSERVED）を個別に検証する（+6）。"
+      },
+      {
+        "category": "store_visibility_unresolved_coverage",
+        "l8_count": 0,
+        "l9_count": 1,
+        "delta_l9_minus_l8": 1,
+        "explanation": "L9は store.worker_can_read_directly=unknown（SEC005-STORE-UNKNOWN）を単一契約負例として持つが、L8のcases[0]には同ケースがない（+1）。"
+      },
+      {
+        "category": "credential_binding_unresolved_request_vs_capability_tuple",
+        "l8_count": 8,
+        "l9_count": 14,
+        "delta_l9_minus_l8": 6,
+        "explanation": "L8は compare_credential_tuple 単体で request.<field>=null の全8項目（8件）を検証する。L9は request.<field>=null のうち classification を除く7件＋capability.tuple.<field>=null のうち expiry を除く7件の計14件を単一findingケースとして検証する（+6）。"
+      },
+      {
+        "category": "request_single_join_credential_binding_conflict",
+        "l8_count": 0,
+        "l9_count": 7,
+        "delta_l9_minus_l8": 7,
+        "explanation": "L8は compare_credential_tuple の相反として共有中間オペランド capability.tuple.<field> の相反8件（2-finding）のみを持ち request.<field> 単独相反を持たないのに対し、L9は classification を除く7項目で request.<field> 単独相反（1-finding）を検証する（+7）。"
+      },
+      {
+        "category": "capability_tuple_shared_operand_conflict_match",
+        "l8_count": 8,
+        "l9_count": 8,
+        "delta_l9_minus_l8": 0,
+        "explanation": "capability.tuple.<field> が request と expected_capability の双方と相反する2-findingケース（SEC005_F01_CAPABILITY_TUPLE_BINDING_CONFLICT）は L8（SEC005-L8-TUPLE-CONFLICT-* 8件）と L9（SEC005-CAPABILITY-TUPLE-*-CONFLICT 8件）で同数（0）。"
+      },
+      {
+        "category": "authority_expected_unresolved_location",
+        "l8_count": 0,
+        "l9_count": 1,
+        "delta_l9_minus_l8": 1,
+        "explanation": "L9は expected_capability.actor=null かつ request.actor==capability.tuple.actor の単一findingケース（SEC005-EXPECTED-ACTOR-MISSING 1件）をF01に持つ（L8では expected 欠落は capability 相反と同時に起きる multi_contract_residual 側で検証）（+1）。"
+      },
+      {
+        "category": "expiry_observation_unresolved_unit_variants",
+        "l8_count": 2,
+        "l9_count": 1,
+        "delta_l9_minus_l8": -1,
+        "explanation": "L8は observed_time=True（bool拒否）と expiry=100.5（非整数拒否）の2件を単体検証し、L9は observed_time=null（SEC005-TIME-UNKNOWN）の1件を単一findingケースとして検証する（-1）。"
+      },
+      {
+        "category": "credential_class_unresolved_isolation_vs_pipeline_cooccurrence",
+        "l8_count": 3,
+        "l9_count": 0,
+        "delta_l9_minus_l8": -3,
+        "explanation": "L8は compare_credential_classification 関数を単独で呼び出すため未知class・空文字・null集合の3件が単一findingとなるが、L9統合パイプラインでは /request/classification の変更が compare_credential_tuple と同時発火するため単一findingケースは0件となり複合ケース2件（[28], [29]）に入る（-3）。"
+      },
+      {
+        "category": "l9_compound_and_shared_leaf_cooccurrence_cases",
+        "l8_count": 0,
+        "l9_count": 5,
+        "delta_l9_minus_l8": 5,
+        "explanation": "L9のF01は共有leaf同時発火3件（[28], [29], [40]）と2項目同時異常2件（[52], [53]）の計5件を単一契約負例内の複合残余として持つ（+5）。"
+      }
+    ],
+    "f02_l8_9_vs_l9_14_diff_plus_5": [
+      {
+        "category": "noncanonical_secret_predicate_sink_expansion",
+        "l8_count": 1,
+        "l9_count": 2,
+        "delta_l9_minus_l8": 1,
+        "explanation": "L8は repository の非canonical predicate 1件のみを検証し、L9は repository と external_sink の2件を検証する（+1）。"
+      },
+      {
+        "category": "declared_expired_and_lifecycle_revoke_inspection_unknowns",
+        "l8_count": 0,
+        "l9_count": 4,
+        "delta_l9_minus_l8": 4,
+        "explanation": "L9のF02は capability.state=expired（[10]）、capability.state=unknown（[11]）、context.revocation_state=unknown（[12]）、context.inspection_source_state=unknown（[13]）の4件をF02単一契約負例として持つ（L8では cases[1] が evaluate_secret_inspections と明示revoked 2件の計9件で構成され、lifecycle/time系は cases[0] または multi_contract_residual に配置）（+4）。"
+      }
+    ],
+    "b01_l8_1_vs_l9_0_diff_minus_1": [
+      {
+        "category": "unit_only_unknown_use_context_input_issue",
+        "l8_count": 1,
+        "l9_count": 0,
+        "delta_l9_minus_l8": -1,
+        "explanation": "L8の cases[2]（B01）は classify_initial_path 単体関数に未知 use_context（legacy_implicit_grant）を与えて局所 InputIssue（logical_field_unknown, findings=[]）を検証する1件（SEC005-L8-INITIAL-UNKNOWN）を持つが、L9の cases[2]（B01）は正例4件のみで負例0件である（-1）。"
+      }
+    ]
+  },
+  "l4_l9_summary_counts": {
+    "l4_class_count_total": 21,
+    "l4_class_count_by_contract": {
+      "F01": 12,
+      "F02": 9,
+      "B01": 0
+    },
+    "l9_total_cases": 87,
+    "l9_single_contract_positive_cases": 12,
+    "l9_single_contract_negative_cases": 69,
+    "l9_assigned_single_contract_negative_cases": 64,
+    "l9_assigned_by_contract": {
+      "F01": 50,
+      "F02": 14,
+      "B01": 0
+    },
+    "l9_unassigned_single_contract_negative_cases": 5,
+    "l9_multi_contract_residual_positive_cases": 2,
+    "l9_multi_contract_residual_negative_cases": 4,
+    "l8_single_contract_negative_cases": 43,
+    "l8_single_contract_negative_by_contract": {
+      "F01": 33,
+      "F02": 9,
+      "B01": 1
+    },
+    "l8_multi_contract_residual_negative_cases": 12,
+    "check_pair_l4_l9_passed": true,
+    "check_child_intermediate_negative_4way_counts": {
+      "L4": 21,
+      "L9": 69,
+      "L8": 43,
+      "L5": 0
+    },
+    "check_child_intermediate_negative_4way_failures": 136
+  },
+  "legacy_and_failure_precedents": {
+    "legacy_assets_consulted": [
+      {
+        "asset_id": "LEGACY-ASSET-99C939E249CAF40935CB",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L4-basic-design/architecture.md",
+        "line": 63,
+        "kept": "単一secret predicate正本を機能モジュールから独立した安定核として保持する構造。",
+        "changed": "旧SECRET_PATTERN/isSecretLike実装をそのまま移植せず、SEC005 F02のcanonical predicate Ref束縛・検査結果分類（SEC005_F02_SECRET_INSPECTION_DETECTED / UNRESOLVED / NONCANONICAL_SECRET_PREDICATE / PREDICATE_BINDING_UNRESOLVED）として再導出。"
+      },
+      {
+        "asset_id": "LEGACY-ASSET-D461943347D372ECF6DA",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/security-engagement-authority-requirements.md",
+        "lines": [
+          29,
+          32,
+          33,
+          39,
+          40,
+          41
+        ],
+        "kept": "値非表示の証跡（SEA-FR-006/009, SEA-NFR-003）、最小範囲のcredential capability束縛（SEA-NFR-002）、revoke/expire時の利用停止（SEA-FR-010）、unknown/missing/ambiguousを推測しないFail-close原則（SEA-NFR-001）。",
+        "changed": "special engagement専用の追加human gateや旧runtime/brokerを設けず、F01（12分類）とF02（9分類）の純粋境界比較分類として整理。"
+      }
+    ],
+    "failure_precedents_applied": [
+      {
+        "reference": "PR #3949 R4 N2",
+        "lesson": "比較前固定artifact（blind-derivation.json）と比較後の変更値・変更順序を分離記録し、先行作業の語彙記憶が混入していた点も含めて隠さず開示する。"
+      },
+      {
+        "reference": "PR #3952 R1 F1",
+        "lesson": "複数の比較規則が同じ入力leaf（/capability/tuple/<field>, /request/classification, /capability/tuple/expiry, /context/observed_time）を参照するときは、(code, pointer, return_owner) の一意化規則と1件/2件に分かれる理由まで明記する。"
+      },
+      {
+        "reference": "PR #3972 (WR226) / PR #3973 (WR230) / PR #3976 (WR236 R1 Info I1)",
+        "lesson": "1 V-pair per PR の原則を守り、4層に跨る negative_4way でも PR-A（L4/L9）と PR-B（L5/L8）に分割し、QA §3 の部分marker禁止と checker の構造制約・中間未成立（136 failures）を正直に明記する。架空のsingletonやmember 0のclass行、件数合わせのcase増減を行わない。"
+      }
+    ]
+  }
+}
