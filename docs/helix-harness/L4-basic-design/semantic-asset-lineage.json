@@ -345,7 +345,9 @@
       "expected_side_effect_count": 0,
       "design_ref": "HARNESS-L4-053-F04",
       "backflow_owner": "authority_record_owner",
-      "basis_ref": "docs/helix-harness/L4-basic-design/semantic-asset-lineage.json#/failure_classifications/0/backflow_owners/0"
+      "basis_ref": "docs/helix-harness/L4-basic-design/semantic-asset-lineage.json#/failure_classifications/0/backflow_owners/0",
+      "change": "LS authority QAだけ欠落、history有りで保持成功",
+      "expected": "LS authority_mapping missing、QO/QE/historyのmatchedは保持し全closure成功にしない。"
     },
     {
       "code": "authority_mapping_unknown",
@@ -373,7 +375,9 @@
       "expected_side_effect_count": 0,
       "design_ref": "HARNESS-L4-053-F04",
       "backflow_owner": "authority_record_owner",
-      "basis_ref": "docs/helix-harness/L4-basic-design/semantic-asset-lineage.json#/failure_classifications/1/backflow_owners/0"
+      "basis_ref": "docs/helix-harness/L4-basic-design/semantic-asset-lineage.json#/failure_classifications/1/backflow_owners/0",
+      "change": "QA対応先不明を自己申告でqualified",
+      "expected": "LS authority_mapping unknown、原未検証source保持。"
     },
     {
       "code": "authority_procedure_added",
@@ -401,7 +405,9 @@
       "expected_side_effect_count": 0,
       "design_ref": "HARNESS-L4-053-B01",
       "backflow_owner": "authority_record_owner",
-      "basis_ref": "docs/helix-harness/L4-basic-design/semantic-asset-lineage.json#/failure_classifications/2/backflow_owners/0"
+      "basis_ref": "docs/helix-harness/L4-basic-design/semantic-asset-lineage.json#/failure_classifications/2/backflow_owners/0",
+      "change": "split/mergeのauthority裁定手続きを053で追加",
+      "expected": "対応unknownをauthority ownerへ返し、新裁定/人承認手続きを作らない。"
     },
     {
       "code": "base_revision_mismatch",
@@ -434,7 +440,9 @@
       "expected_side_effect_count": 0,
       "design_ref": "HARNESS-L4-053-F03",
       "backflow_owner": "record_owner",
-      "basis_ref": "docs/helix-harness/L4-basic-design/semantic-asset-lineage.json#/failure_classifications/3/backflow_owners/0"
+      "basis_ref": "docs/helix-harness/L4-basic-design/semantic-asset-lineage.json#/failure_classifications/3/backflow_owners/0",
+      "change": "LS baseをA/r1としsourceはA/r2",
+      "expected": "LS base revision conflict、元r1/r2差を保持。"
     },
     {
       "code": "fixture_as_rollback",
@@ -462,7 +470,9 @@
       "expected_side_effect_count": 0,
       "design_ref": "HARNESS-L4-053-B01",
       "backflow_owner": "persistence_owner",
-      "basis_ref": "docs/helix-harness/L4-basic-design/semantic-asset-lineage.json#/failure_classifications/4/backflow_owners/0"
+      "basis_ref": "docs/helix-harness/L4-basic-design/semantic-asset-lineage.json#/failure_classifications/4/backflow_owners/0",
+      "change": "split fixtureがあるのでrollback成功",
+      "expected": "実rollback未証明、fixtureをreceiptへ昇格しない。"
     },
     {
       "code": "global_stop_added",
@@ -490,7 +500,9 @@
       "expected_side_effect_count": 0,
       "design_ref": "HARNESS-L4-053-N01",
       "backflow_owner": "harness053_requirement_owner",
-      "basis_ref": "docs/helix-harness/L4-basic-design/semantic-asset-lineage.json#/failure_classifications/5/backflow_owners/0"
+      "basis_ref": "docs/helix-harness/L4-basic-design/semantic-asset-lineage.json#/failure_classifications/5/backflow_owners/0",
+      "change": "042未決を理由に無関係A/B局所照合も全停止",
+      "expected": "dependent操作はheld、A/B局所照合を返す。全体gateを足さない。"
     },
     {
       "code": "hash_identity_inference",
@@ -518,7 +530,9 @@
       "expected_side_effect_count": 0,
       "design_ref": "HARNESS-L4-053-F01",
       "backflow_owner": "record_owner",
-      "basis_ref": "docs/helix-harness/L4-basic-design/semantic-asset-lineage.json#/failure_classifications/6/backflow_owners/0"
+      "basis_ref": "docs/helix-harness/L4-basic-design/semantic-asset-lineage.json#/failure_classifications/6/backflow_owners/0",
+      "change": "body digestが同じA/Bを同IDとする",
+      "expected": "原別ID保持、digestをimmutable IDへ変換しない。"
     },
     {
       "code": "history_mapping_missing",
@@ -546,7 +560,9 @@
       "expected_side_effect_count": 0,
       "design_ref": "HARNESS-L4-053-F03",
       "backflow_owner": "record_owner",
-      "basis_ref": "docs/helix-harness/L4-basic-design/semantic-asset-lineage.json#/failure_classifications/7/backflow_owners/0"
+      "basis_ref": "docs/helix-harness/L4-basic-design/semantic-asset-lineage.json#/failure_classifications/7/backflow_owners/0",
+      "change": "LS splitの親A/r2との履歴対応を削除",
+      "expected": "LS history_mapping missing、B/Cから親を推測しない。"
     },
     {
       "code": "identity_conflict",
@@ -574,7 +590,9 @@
       "expected_side_effect_count": 0,
       "design_ref": "HARNESS-L4-053-F01",
       "backflow_owner": "record_owner",
-      "basis_ref": "docs/helix-harness/L4-basic-design/semantic-asset-lineage.json#/failure_classifications/8/backflow_owners/0"
+      "basis_ref": "docs/helix-harness/L4-basic-design/semantic-asset-lineage.json#/failure_classifications/8/backflow_owners/0",
+      "change": "同A/r1に相反する意味owner記録を重複供給し先着採用",
+      "expected": "A/r1当該identity/owner対応はconflict、両sourceを保持、無関係B照合は継続。"
     },
     {
       "code": "identity_missing",
@@ -602,7 +620,9 @@
       "expected_side_effect_count": 0,
       "design_ref": "HARNESS-L4-053-F01",
       "backflow_owner": "record_owner",
-      "basis_ref": "docs/helix-harness/L4-basic-design/semantic-asset-lineage.json#/failure_classifications/9/backflow_owners/0"
+      "basis_ref": "docs/helix-harness/L4-basic-design/semantic-asset-lineage.json#/failure_classifications/9/backflow_owners/0",
+      "change": "A/r1のID欠落をpathから生成",
+      "expected": "identity missingを対象recordへ返し採番/推測0。"
     },
     {
       "code": "legacy_completion_claim",
@@ -630,7 +650,9 @@
       "expected_side_effect_count": 0,
       "design_ref": "HARNESS-L4-053-B01",
       "backflow_owner": "harness053_requirement_owner",
-      "basis_ref": "docs/helix-harness/L4-basic-design/semantic-asset-lineage.json#/failure_classifications/10/backflow_owners/0"
+      "basis_ref": "docs/helix-harness/L4-basic-design/semantic-asset-lineage.json#/failure_classifications/10/backflow_owners/0",
+      "change": "原FR53の全実操作まで移管完了",
+      "expected": "保持した意味と非選択実操作を分け、全旧FR53移管を主張しない。"
     },
     {
       "code": "lineage_as_authority_transfer",
@@ -658,7 +680,9 @@
       "expected_side_effect_count": 0,
       "design_ref": "HARNESS-L4-053-F03",
       "backflow_owner": "authority_record_owner",
-      "basis_ref": "docs/helix-harness/L4-basic-design/semantic-asset-lineage.json#/failure_classifications/11/backflow_owners/0"
+      "basis_ref": "docs/helix-harness/L4-basic-design/semantic-asset-lineage.json#/failure_classifications/11/backflow_owners/0",
+      "change": "renameのlocation対応だけでauthority移転成立",
+      "expected": "location照合とauthority対応/実権限を別軸に返し移転成立にしない。"
     },
     {
       "code": "lineage_endpoint_missing",
@@ -691,7 +715,9 @@
       "expected_side_effect_count": 0,
       "design_ref": "HARNESS-L4-053-F03",
       "backflow_owner": "record_owner",
-      "basis_ref": "docs/helix-harness/L4-basic-design/semantic-asset-lineage.json#/failure_classifications/12/backflow_owners/0"
+      "basis_ref": "docs/helix-harness/L4-basic-design/semantic-asset-lineage.json#/failure_classifications/12/backflow_owners/0",
+      "change": "LM mergeの元Bだけを対応から削除",
+      "expected": "LM元endpoint B/b1の不足を返しCだけでmerge閉包にしない。"
     },
     {
       "code": "lineage_target_missing",
@@ -724,7 +750,9 @@
       "expected_side_effect_count": 0,
       "design_ref": "HARNESS-L4-053-F03",
       "backflow_owner": "record_owner",
-      "basis_ref": "docs/helix-harness/L4-basic-design/semantic-asset-lineage.json#/failure_classifications/13/backflow_owners/0"
+      "basis_ref": "docs/helix-harness/L4-basic-design/semantic-asset-lineage.json#/failure_classifications/13/backflow_owners/0",
+      "change": "LX先D/d1不在を最新Dへ補完",
+      "expected": "LX target D/d1 missing、latest推測0、他relationの既知状態保持。"
     },
     {
       "code": "local_as_global_completion",
@@ -752,7 +780,9 @@
       "expected_side_effect_count": 0,
       "design_ref": "HARNESS-L4-053-N01",
       "backflow_owner": "harness053_requirement_owner",
-      "basis_ref": "docs/helix-harness/L4-basic-design/semantic-asset-lineage.json#/failure_classifications/14/backflow_owners/0"
+      "basis_ref": "docs/helix-harness/L4-basic-design/semantic-asset-lineage.json#/failure_classifications/14/backflow_owners/0",
+      "change": "局所identity一致から053全能力完成",
+      "expected": "局所一致と未完履歴/未決参照/非選択操作を別に残す。"
     },
     {
       "code": "location_as_semantic",
@@ -785,7 +815,9 @@
       "expected_side_effect_count": 0,
       "design_ref": "HARNESS-L4-053-F02",
       "backflow_owner": "record_owner",
-      "basis_ref": "docs/helix-harness/L4-basic-design/semantic-asset-lineage.json#/failure_classifications/15/backflow_owners/0"
+      "basis_ref": "docs/helix-harness/L4-basic-design/semantic-asset-lineage.json#/failure_classifications/15/backflow_owners/0",
+      "change": "意味不変のmoveだけでA/r2の意味revision成立",
+      "expected": "ID A/r1の意味を保全しlocation軸の差だけを返す。"
     },
     {
       "code": "location_identity_change",
@@ -818,7 +850,9 @@
       "expected_side_effect_count": 0,
       "design_ref": "HARNESS-L4-053-F01",
       "backflow_owner": "record_owner",
-      "basis_ref": "docs/helix-harness/L4-basic-design/semantic-asset-lineage.json#/failure_classifications/16/backflow_owners/0"
+      "basis_ref": "docs/helix-harness/L4-basic-design/semantic-asset-lineage.json#/failure_classifications/16/backflow_owners/0",
+      "change": "異pathに移った同Aを新IDとする",
+      "expected": "原ID Aを保全、供給location履歴へ対応し新IDclaimを拒否。"
     },
     {
       "code": "name_identity_inference",
@@ -846,7 +880,9 @@
       "expected_side_effect_count": 0,
       "design_ref": "HARNESS-L4-053-F01",
       "backflow_owner": "record_owner",
-      "basis_ref": "docs/helix-harness/L4-basic-design/semantic-asset-lineage.json#/failure_classifications/17/backflow_owners/0"
+      "basis_ref": "docs/helix-harness/L4-basic-design/semantic-asset-lineage.json#/failure_classifications/17/backflow_owners/0",
+      "change": "同名異義A/Bを同一assetとする",
+      "expected": "A/Bは別ID、名前一致をidentity oracleへしない。"
     },
     {
       "code": "new_precondition",
@@ -874,7 +910,9 @@
       "expected_side_effect_count": 0,
       "design_ref": "HARNESS-L4-053-B01",
       "backflow_owner": "harness053_requirement_owner",
-      "basis_ref": "docs/helix-harness/L4-basic-design/semantic-asset-lineage.json#/failure_classifications/18/backflow_owners/0"
+      "basis_ref": "docs/helix-harness/L4-basic-design/semantic-asset-lineage.json#/failure_classifications/18/backflow_owners/0",
+      "change": "052採択/先行を053照合の新必須条件",
+      "expected": "053承認入力だけで局所照合し052gateを新設しない。"
     },
     {
       "code": "oracle_mapping_missing",
@@ -912,7 +950,9 @@
       "expected_side_effect_count": 0,
       "design_ref": "HARNESS-L4-053-F04",
       "backflow_owner": "oracle_owner",
-      "basis_ref": "docs/helix-harness/L4-basic-design/semantic-asset-lineage.json#/failure_classifications/19/backflow_owners/0"
+      "basis_ref": "docs/helix-harness/L4-basic-design/semantic-asset-lineage.json#/failure_classifications/19/backflow_owners/0",
+      "change": "LS oracle QOだけ欠落、authority有りで受入可能",
+      "expected": "LS oracle_mapping missing、QA/QE保持、受入可能を生成しない。"
     },
     {
       "code": "oracle_revision_mismatch",
@@ -940,7 +980,9 @@
       "expected_side_effect_count": 0,
       "design_ref": "HARNESS-L4-053-F04",
       "backflow_owner": "oracle_owner",
-      "basis_ref": "docs/helix-harness/L4-basic-design/semantic-asset-lineage.json#/failure_classifications/20/backflow_owners/0"
+      "basis_ref": "docs/helix-harness/L4-basic-design/semantic-asset-lineage.json#/failure_classifications/20/backflow_owners/0",
+      "change": "別revisionのQOをA/r2 oracleへ付替え",
+      "expected": "oracle対象revision conflict、元Refと要求Ref差を返す。"
     },
     {
       "code": "owner_boundary_change",
@@ -968,7 +1010,9 @@
       "expected_side_effect_count": 0,
       "design_ref": "HARNESS-L4-053-B01",
       "backflow_owner": "harness053_requirement_owner",
-      "basis_ref": "docs/helix-harness/L4-basic-design/semantic-asset-lineage.json#/failure_classifications/21/backflow_owners/0"
+      "basis_ref": "docs/helix-harness/L4-basic-design/semantic-asset-lineage.json#/failure_classifications/21/backflow_owners/0",
+      "change": "053で003/004/016の変更/trace/差分条件を別定義",
+      "expected": "各既存ownerの条件を保持し053照合で置換しない。"
     },
     {
       "code": "path_identity_inference",
@@ -996,7 +1040,9 @@
       "expected_side_effect_count": 0,
       "design_ref": "HARNESS-L4-053-F01",
       "backflow_owner": "record_owner",
-      "basis_ref": "docs/helix-harness/L4-basic-design/semantic-asset-lineage.json#/failure_classifications/22/backflow_owners/0"
+      "basis_ref": "docs/helix-harness/L4-basic-design/semantic-asset-lineage.json#/failure_classifications/22/backflow_owners/0",
+      "change": "同pathのBを旧Aへ併合",
+      "expected": "Bを別IDに保持、原A/B identityはmatched、確定した別IDを同一とするclaimはconflict。"
     },
     {
       "code": "record_as_acceptance",
@@ -1024,7 +1070,9 @@
       "expected_side_effect_count": 0,
       "design_ref": "HARNESS-L4-053-B01",
       "backflow_owner": "PO",
-      "basis_ref": "docs/helix-harness/L4-basic-design/semantic-asset-lineage.json#/failure_classifications/23/backflow_owners/0"
+      "basis_ref": "docs/helix-harness/L4-basic-design/semantic-asset-lineage.json#/failure_classifications/23/backflow_owners/0",
+      "change": "lineage記録でPO採択/受入済み",
+      "expected": "原採択/受入authority未成立を保全、PO判断を生成しない。"
     },
     {
       "code": "record_as_permission",
@@ -1052,7 +1100,9 @@
       "expected_side_effect_count": 0,
       "design_ref": "HARNESS-L4-053-B01",
       "backflow_owner": "authority_record_owner",
-      "basis_ref": "docs/helix-harness/L4-basic-design/semantic-asset-lineage.json#/failure_classifications/24/backflow_owners/0"
+      "basis_ref": "docs/helix-harness/L4-basic-design/semantic-asset-lineage.json#/failure_classifications/24/backflow_owners/0",
+      "change": "全対応Refの存在だけで権限発行済み",
+      "expected": "Refの対応と実権限を分離、権限発行0。"
     },
     {
       "code": "record_as_persistence",
@@ -1080,7 +1130,9 @@
       "expected_side_effect_count": 0,
       "design_ref": "HARNESS-L4-053-B01",
       "backflow_owner": "persistence_owner",
-      "basis_ref": "docs/helix-harness/L4-basic-design/semantic-asset-lineage.json#/failure_classifications/25/backflow_owners/0"
+      "basis_ref": "docs/helix-harness/L4-basic-design/semantic-asset-lineage.json#/failure_classifications/25/backflow_owners/0",
+      "change": "対応記録存在で実保存成立",
+      "expected": "記録照合と実保存は別、実保存未証明を保存ownerへ。"
     },
     {
       "code": "reference_meaning_mismatch",
@@ -1108,7 +1160,9 @@
       "expected_side_effect_count": 0,
       "design_ref": "HARNESS-L4-053-N01",
       "backflow_owner": "harness053_requirement_owner",
-      "basis_ref": "docs/helix-harness/L4-basic-design/semantic-asset-lineage.json#/failure_classifications/26/backflow_owners/0"
+      "basis_ref": "docs/helix-harness/L4-basic-design/semantic-asset-lineage.json#/failure_classifications/26/backflow_owners/0",
+      "change": "042をsource provenance保証へ読替え",
+      "expected": "053→042 unresolved維持、dependent operation held、局所記録比較は継続。"
     },
     {
       "code": "reference_substitution",
@@ -1136,7 +1190,9 @@
       "expected_side_effect_count": 0,
       "design_ref": "HARNESS-L4-053-N01",
       "backflow_owner": "harness053_requirement_owner",
-      "basis_ref": "docs/helix-harness/L4-basic-design/semantic-asset-lineage.json#/failure_classifications/27/backflow_owners/0"
+      "basis_ref": "docs/helix-harness/L4-basic-design/semantic-asset-lineage.json#/failure_classifications/27/backflow_owners/0",
+      "change": "042の代替IDを推測して参照解決済み",
+      "expected": "原042参照とunresolvedを保持し代替採択を生成しない。"
     },
     {
       "code": "relation_kind_missing",
@@ -1164,7 +1220,9 @@
       "expected_side_effect_count": 0,
       "design_ref": "HARNESS-L4-053-F03",
       "backflow_owner": "record_owner",
-      "basis_ref": "docs/helix-harness/L4-basic-design/semantic-asset-lineage.json#/failure_classifications/28/backflow_owners/0"
+      "basis_ref": "docs/helix-harness/L4-basic-design/semantic-asset-lineage.json#/failure_classifications/28/backflow_owners/0",
+      "change": "LX supersedeのrelation種別を欠落",
+      "expected": "LX relation missing、path/名前からsupersedeを生成しない。"
     },
     {
       "code": "revision_conflict",
@@ -1192,7 +1250,9 @@
       "expected_side_effect_count": 0,
       "design_ref": "HARNESS-L4-053-F02",
       "backflow_owner": "record_owner",
-      "basis_ref": "docs/helix-harness/L4-basic-design/semantic-asset-lineage.json#/failure_classifications/29/backflow_owners/0"
+      "basis_ref": "docs/helix-harness/L4-basic-design/semantic-asset-lineage.json#/failure_classifications/29/backflow_owners/0",
+      "change": "同A/r1で意味bodyが相反しているのに意味不変",
+      "expected": "同ID/revisionの意味対応conflict、両原sourceを保持。"
     },
     {
       "code": "scope_cross_binding",
@@ -1240,7 +1300,9 @@
       "expected_side_effect_count": 0,
       "design_ref": "HARNESS-L4-053-F03",
       "backflow_owner": "record_owner",
-      "basis_ref": "docs/helix-harness/L4-basic-design/semantic-asset-lineage.json#/failure_classifications/30/backflow_owners/0"
+      "basis_ref": "docs/helix-harness/L4-basic-design/semantic-asset-lineage.json#/failure_classifications/30/backflow_owners/0",
+      "change": "他tenantのLS対応表をcurrentへ転用",
+      "expected": "当該LSのscope差を返し対応unknown、原scope/source保持。"
     },
     {
       "code": "semantic_as_location",
@@ -1278,7 +1340,9 @@
       "expected_side_effect_count": 0,
       "design_ref": "HARNESS-L4-053-F02",
       "backflow_owner": "record_owner",
-      "basis_ref": "docs/helix-harness/L4-basic-design/semantic-asset-lineage.json#/failure_classifications/31/backflow_owners/0"
+      "basis_ref": "docs/helix-harness/L4-basic-design/semantic-asset-lineage.json#/failure_classifications/31/backflow_owners/0",
+      "change": "M1→M2の意味差をlocation変更だけとして隠す",
+      "expected": "A/r1→r2とsemantic diffの意味差を保全、影響OA/EAへtrace。"
     },
     {
       "code": "semantic_identity_change",
@@ -1311,7 +1375,9 @@
       "expected_side_effect_count": 0,
       "design_ref": "HARNESS-L4-053-F02",
       "backflow_owner": "record_owner",
-      "basis_ref": "docs/helix-harness/L4-basic-design/semantic-asset-lineage.json#/failure_classifications/32/backflow_owners/0"
+      "basis_ref": "docs/helix-harness/L4-basic-design/semantic-asset-lineage.json#/failure_classifications/32/backflow_owners/0",
+      "change": "Aの意味変更で新ID Zを発行して履歴切断",
+      "expected": "供給before/after同Aを保全し異IDclaimと切断箇所を返す。"
     },
     {
       "code": "semantic_impact_missing",
@@ -1349,7 +1415,9 @@
       "expected_side_effect_count": 0,
       "design_ref": "HARNESS-L4-053-F02",
       "backflow_owner": "trace_owner",
-      "basis_ref": "docs/helix-harness/L4-basic-design/semantic-asset-lineage.json#/failure_classifications/33/backflow_owners/0"
+      "basis_ref": "docs/helix-harness/L4-basic-design/semantic-asset-lineage.json#/failure_classifications/33/backflow_owners/0",
+      "change": "M1→M2に必要なoracle/edge影響対応を消す",
+      "expected": "semantic diff自体と影響の欠落を別に返す、全対応成立にしない。"
     },
     {
       "code": "semantic_source_missing",
@@ -1377,7 +1445,9 @@
       "expected_side_effect_count": 0,
       "design_ref": "HARNESS-L4-053-F02",
       "backflow_owner": "record_owner",
-      "basis_ref": "docs/helix-harness/L4-basic-design/semantic-asset-lineage.json#/failure_classifications/34/backflow_owners/0"
+      "basis_ref": "docs/helix-harness/L4-basic-design/semantic-asset-lineage.json#/failure_classifications/34/backflow_owners/0",
+      "change": "意味before source欠落を差分無しへ読む",
+      "expected": "before意味軸missing、差分unknown、after存在で補完しない。"
     },
     {
       "code": "typed_edge_kind_mismatch",
@@ -1405,7 +1475,9 @@
       "expected_side_effect_count": 0,
       "design_ref": "HARNESS-L4-053-F04",
       "backflow_owner": "trace_owner",
-      "basis_ref": "docs/helix-harness/L4-basic-design/semantic-asset-lineage.json#/failure_classifications/35/backflow_owners/0"
+      "basis_ref": "docs/helix-harness/L4-basic-design/semantic-asset-lineage.json#/failure_classifications/35/backflow_owners/0",
+      "change": "QE relation種別が違うがID一致で合格",
+      "expected": "typed edge対応conflict、関係kind差を消さない。"
     },
     {
       "code": "typed_edge_mapping_missing",
@@ -1443,7 +1515,9 @@
       "expected_side_effect_count": 0,
       "design_ref": "HARNESS-L4-053-F04",
       "backflow_owner": "trace_owner",
-      "basis_ref": "docs/helix-harness/L4-basic-design/semantic-asset-lineage.json#/failure_classifications/36/backflow_owners/0"
+      "basis_ref": "docs/helix-harness/L4-basic-design/semantic-asset-lineage.json#/failure_classifications/36/backflow_owners/0",
+      "change": "LS typed edge QEだけ欠落、receiptで補完",
+      "expected": "LS typed_edge_mapping missing、QA/QO保持、closure成功へしない。"
     },
     {
       "code": "unselected_operation",
@@ -1471,7 +1545,9 @@
       "expected_side_effect_count": 0,
       "design_ref": "HARNESS-L4-053-N01",
       "backflow_owner": "harness053_requirement_owner",
-      "basis_ref": "docs/helix-harness/L4-basic-design/semantic-asset-lineage.json#/failure_classifications/37/backflow_owners/0"
+      "basis_ref": "docs/helix-harness/L4-basic-design/semantic-asset-lineage.json#/failure_classifications/37/backflow_owners/0",
+      "change": "参照未決なのにsplit実操作へ進む",
+      "expected": "operation held/not_selected、変換/保存0、理由ownerを返す。"
     }
   ],
   "remaining": [

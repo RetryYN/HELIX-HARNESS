@@ -1,0 +1,3343 @@
+{
+  "artifact_id": "WR247-H053-CASEWISE-L4L9-DESIGN-2026-10-31",
+  "evidence_kind": "scaffold_casewise_design_record",
+  "authority_effect": "none",
+  "request_id": "WR247-H053-CASEWISE-L4L9",
+  "base_revision": "756cac0ebdf02d38d0703566bae24c8de20b3275",
+  "changes": {
+    "path": "docs/helix-harness/L4-basic-design/semantic-asset-lineage.json",
+    "before_sha256": "99621490097336317e2787d831cf94c761cdd39b04c696af8144c442748cf929",
+    "after_sha256": "0a6b391a6aef3b37e6a2715af87301200f53a150e855eb6c7d27e65d884711a6",
+    "rows_updated": 38,
+    "fields_added": [
+      "change",
+      "expected"
+    ],
+    "existing_fields_preserved": [
+      "conditions",
+      "effect",
+      "expected_record_axes",
+      "expected_claim_state",
+      "expected_operation_state",
+      "expected_operation_selection",
+      "expected_reference_state",
+      "expected_side_effect_count"
+    ]
+  },
+  "nonchanges": {
+    "l9_path": "docs/helix-harness/L9-integration-verification/semantic-asset-lineage.json",
+    "l9_sha256_unchanged": "ab18e7965f1210eb638501178db9ccc886feb86fdafa7572f6f71cae1c2e268a",
+    "l5_l8": "not edited",
+    "negative_equivalence_classes_marker": "not added",
+    "new_blind": "not created"
+  },
+  "fixed_blinds": [
+    {
+      "path": "scaffold/research/wr242-h053-l4-l9-comparison-20261031/blind-source-only.json",
+      "issue": 3510,
+      "comment_id": 6534090409,
+      "sha256": "5e69cd0c3c472090947fec9454d892ffa2caa24ed0aa2a1b2540f7d9c18f408b",
+      "used_as": "WR242 source-only crosswalk; provisional groups are not class membership"
+    },
+    {
+      "path": "docs/governance/audits/wr239-h053-source-only-2026-10-31.json",
+      "issue": 3510,
+      "comment_id": 6533432579,
+      "sha256": "c30e17f928ae329f87a73bca41f746b6aab085e4586897326c0a67ec4fbea98d",
+      "used_as": "WR239 source leaf inventory and rowwise L4-effect comparison"
+    }
+  ],
+  "comparison_precedent": {
+    "pr_3955": "HARNESS011 L4/L9 casewise row alignment; no explicit class marker",
+    "pr_3968": "HARNESS011 follow-on L5/L8 alignment; no explicit class marker",
+    "pr_3983": "WR242 R1 addendum corrected comparison; casewise projection allowed; earlier categorical no-go withdrawn"
+  },
+  "row_derivations": [
+    {
+      "index": 0,
+      "code": "authority_mapping_missing",
+      "l4_pointer": "/failure_classifications/0",
+      "l4_design_ref": "HARNESS-L4-053-F04",
+      "l4_source_basis_ref": "docs/helix-harness/L4-basic-design/semantic-asset-lineage.json#/failure_classifications/0/backflow_owners/0",
+      "change": "LS authority QAだけ欠落、history有りで保持成功",
+      "change_derivation": "既存L4 conditions[0]を保持してcasewise singular fieldへ投影。WR242 fixed comparison上の既存L9 changeとは対照確認のみ。",
+      "expected_source_refs": [
+        {
+          "source_files": [
+            {
+              "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+              "pointer": "/requirements/22"
+            },
+            {
+              "path": "docs/helix-harness/L10-verification/functional-verification.json",
+              "pointer": "/cases/22"
+            }
+          ],
+          "l4_design_contract_pointer": "/contracts/3",
+          "reason": "同一caseのsource leafとして一意に対応づくWR239 recordがないため、対象L3 requirementとL10 caseのnegative/failure observationおよびL4 contractから直接導出。"
+        }
+      ],
+      "source_only_candidate_groups": [
+        "C07",
+        "C08",
+        "C09"
+      ],
+      "source_match_note": "WR239 source inventoryに同一leafなし。L3/L10 requirement/caseを直接参照。",
+      "l4_existing_expected_axes": [
+        {
+          "subject": "LS",
+          "axis": "authority_mapping",
+          "state": "missing"
+        },
+        {
+          "subject": "LS",
+          "axis": "oracle_mapping",
+          "state": "matched"
+        },
+        {
+          "subject": "LS",
+          "axis": "typed_edge_mapping",
+          "state": "matched"
+        },
+        {
+          "subject": "LS",
+          "axis": "history_mapping",
+          "state": "matched"
+        }
+      ],
+      "l4_existing_expected_claim_state": "unknown",
+      "l4_existing_expected_operation_state": "not_requested",
+      "l4_existing_expected_operation_selection": "not_requested",
+      "l4_existing_expected_reference_state": "unresolved",
+      "l4_existing_expected_side_effect_count": 0,
+      "expected_derivation": "一意なsource leaf対応を作らず、対象L3 requirementとL10 caseのnegative/failure observation、既存L4期待軸・effectからこのcaseの期待意味を導出した。checkerの不変L9 targetとの一致は照合に限る。",
+      "l9_case_id": "HARNESS-L9-053-F04-NEG-01",
+      "comparison_only": {
+        "change_exact_match": true,
+        "expected_exact_match": true
+      },
+      "formal_class_membership": "not_asserted",
+      "blind_candidate_context": {
+        "artifact": "WR242 comparison row",
+        "candidate_groups": [
+          "C07",
+          "C08",
+          "C09"
+        ],
+        "candidate_leaf_ids": [
+          "H053-SRC-003",
+          "H053-SRC-004",
+          "H053-SRC-009",
+          "H053-SRC-013",
+          "H053-SRC-016",
+          "H053-SRC-018",
+          "H053-SRC-025",
+          "H053-SRC-026",
+          "H053-SRC-027",
+          "H053-SRC-028"
+        ],
+        "use": "context only; broad/overlapping candidates do not establish this case membership or its expected meaning"
+      },
+      "source_mapping_status": "no unique row-specific source leaf; direct L3/L10 derivation"
+    },
+    {
+      "index": 1,
+      "code": "authority_mapping_unknown",
+      "l4_pointer": "/failure_classifications/1",
+      "l4_design_ref": "HARNESS-L4-053-F04",
+      "l4_source_basis_ref": "docs/helix-harness/L4-basic-design/semantic-asset-lineage.json#/failure_classifications/1/backflow_owners/0",
+      "change": "QA対応先不明を自己申告でqualified",
+      "change_derivation": "既存L4 conditions[0]を保持してcasewise singular fieldへ投影。WR242 fixed comparison上の既存L9 changeとは対照確認のみ。",
+      "expected_source_refs": [
+        {
+          "source_audit_record_id": "H053-S14",
+          "source_namespace": "WR239 source-only record H053-Snn",
+          "source_audit_record_path": "docs/governance/audits/wr239-h053-source-only-2026-10-31.json",
+          "source_contract": "HARNESS-L4-053-F04",
+          "source_files": [
+            {
+              "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+              "pointer": "/requirements/22"
+            },
+            {
+              "path": "docs/helix-harness/L10-verification/functional-verification.json",
+              "pointer": "/cases/22"
+            }
+          ],
+          "l4_design_contract_pointer": "/contracts/3",
+          "source_leaf_pointers": [
+            "/requirements/22",
+            "/cases/22",
+            "/contracts/3"
+          ],
+          "negative_condition": "lineage記録からauthority対応だけが欠ける/不明",
+          "expected_effect": "authority項目をunknown/不成立で返し、history等でauthority保持へ補わない"
+        },
+        {
+          "source_audit_record_id": "H053-S17",
+          "source_namespace": "WR239 source-only record H053-Snn",
+          "source_audit_record_path": "docs/governance/audits/wr239-h053-source-only-2026-10-31.json",
+          "source_contract": "HARNESS-L4-053-F04",
+          "source_files": [
+            {
+              "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+              "pointer": "/requirements/22"
+            },
+            {
+              "path": "docs/helix-harness/L10-verification/functional-verification.json",
+              "pointer": "/cases/22"
+            }
+          ],
+          "l4_design_contract_pointer": "/contracts/3",
+          "source_leaf_pointers": [
+            "/requirements/22",
+            "/cases/22",
+            "/contracts/3"
+          ],
+          "negative_condition": "receiptまたは他の成立項目を欠落項目の代替証拠とする",
+          "expected_effect": "該当項目のunknownを保持し、別項目の成立から全closure成功へ昇格しない"
+        }
+      ],
+      "source_only_candidate_groups": [
+        "C07",
+        "C08",
+        "C09"
+      ],
+      "source_match_note": "一致/関連",
+      "l4_existing_expected_axes": [
+        {
+          "subject": "LS",
+          "axis": "authority_mapping",
+          "state": "unknown"
+        }
+      ],
+      "l4_existing_expected_claim_state": "unknown",
+      "l4_existing_expected_operation_state": "not_requested",
+      "l4_existing_expected_operation_selection": "not_requested",
+      "l4_existing_expected_reference_state": "unresolved",
+      "l4_existing_expected_side_effect_count": 0,
+      "expected_derivation": "行別WR239 source leafのnegative_condition/expected_effectを当該L3/L10 source pointerと既存L4期待軸・effectに照合した。source leafの意味を行別に採り、checkerの不変L9 targetと一致するcasewise文面にした。",
+      "l9_case_id": "HARNESS-L9-053-F04-NEG-04",
+      "comparison_only": {
+        "change_exact_match": true,
+        "expected_exact_match": true
+      },
+      "formal_class_membership": "not_asserted",
+      "blind_candidate_context": {
+        "artifact": "WR242 comparison row",
+        "candidate_groups": [
+          "C07",
+          "C08",
+          "C09"
+        ],
+        "candidate_leaf_ids": [
+          "H053-SRC-003",
+          "H053-SRC-004",
+          "H053-SRC-009",
+          "H053-SRC-013",
+          "H053-SRC-016",
+          "H053-SRC-018",
+          "H053-SRC-025",
+          "H053-SRC-026",
+          "H053-SRC-027",
+          "H053-SRC-028"
+        ],
+        "use": "context only; broad/overlapping candidates do not establish this case membership or its expected meaning"
+      },
+      "source_mapping_status": "row-specific WR239 source leaves; source owner/contract matched"
+    },
+    {
+      "index": 2,
+      "code": "authority_procedure_added",
+      "l4_pointer": "/failure_classifications/2",
+      "l4_design_ref": "HARNESS-L4-053-B01",
+      "l4_source_basis_ref": "docs/helix-harness/L4-basic-design/semantic-asset-lineage.json#/failure_classifications/2/backflow_owners/0",
+      "change": "split/mergeのauthority裁定手続きを053で追加",
+      "change_derivation": "既存L4 conditions[0]を保持してcasewise singular fieldへ投影。WR242 fixed comparison上の既存L9 changeとは対照確認のみ。",
+      "expected_source_refs": [
+        {
+          "source_audit_record_id": "H053-S29",
+          "source_namespace": "WR239 source-only record H053-Snn",
+          "source_audit_record_path": "docs/governance/audits/wr239-h053-source-only-2026-10-31.json",
+          "source_contract": "HARNESS-L4-053-B01",
+          "source_files": [
+            {
+              "path": "docs/helix-harness/L3-requirements/business-requirements.json",
+              "pointer": "/requirements/3"
+            },
+            {
+              "path": "docs/helix-harness/L10-verification/business-verification.json",
+              "pointer": "/cases/3"
+            }
+          ],
+          "l4_design_contract_pointer": "/contracts/5",
+          "source_leaf_pointers": [
+            "/requirements/3",
+            "/cases/3",
+            "/contracts/5"
+          ],
+          "negative_condition": "対応記録だけから権限またはauthority移転を主張する",
+          "expected_effect": "実権限/authority裁定を記録成果で代替しない。項目別ownerの判断を残す"
+        }
+      ],
+      "source_only_candidate_groups": [
+        "C11"
+      ],
+      "source_match_note": "関連",
+      "l4_existing_expected_axes": [
+        {
+          "subject": "LS",
+          "axis": "authority_mapping",
+          "state": "matched"
+        }
+      ],
+      "l4_existing_expected_claim_state": "conflict",
+      "l4_existing_expected_operation_state": "not_requested",
+      "l4_existing_expected_operation_selection": "not_requested",
+      "l4_existing_expected_reference_state": "unresolved",
+      "l4_existing_expected_side_effect_count": 0,
+      "expected_derivation": "行別WR239 source leafのnegative_condition/expected_effectを当該L3/L10 source pointerと既存L4期待軸・effectに照合した。source leafの意味を行別に採り、checkerの不変L9 targetと一致するcasewise文面にした。",
+      "l9_case_id": "HARNESS-L9-053-B01-NEG-08",
+      "comparison_only": {
+        "change_exact_match": true,
+        "expected_exact_match": true
+      },
+      "formal_class_membership": "not_asserted",
+      "blind_candidate_context": {
+        "artifact": "WR242 comparison row",
+        "candidate_groups": [
+          "C11"
+        ],
+        "candidate_leaf_ids": [
+          "H053-SRC-005",
+          "H053-SRC-010",
+          "H053-SRC-017",
+          "H053-SRC-018",
+          "H053-SRC-019",
+          "H053-SRC-020",
+          "H053-SRC-029",
+          "H053-SRC-030",
+          "H053-SRC-031",
+          "H053-SRC-032"
+        ],
+        "use": "context only; broad/overlapping candidates do not establish this case membership or its expected meaning"
+      },
+      "source_mapping_status": "row-specific WR239 source leaves; source owner/contract matched"
+    },
+    {
+      "index": 3,
+      "code": "base_revision_mismatch",
+      "l4_pointer": "/failure_classifications/3",
+      "l4_design_ref": "HARNESS-L4-053-F03",
+      "l4_source_basis_ref": "docs/helix-harness/L4-basic-design/semantic-asset-lineage.json#/failure_classifications/3/backflow_owners/0",
+      "change": "LS baseをA/r1としsourceはA/r2",
+      "change_derivation": "既存L4 conditions[0]を保持してcasewise singular fieldへ投影。WR242 fixed comparison上の既存L9 changeとは対照確認のみ。",
+      "expected_source_refs": [
+        {
+          "source_audit_record_id": "H053-S13",
+          "source_namespace": "WR239 source-only record H053-Snn",
+          "source_audit_record_path": "docs/governance/audits/wr239-h053-source-only-2026-10-31.json",
+          "source_contract": "HARNESS-L4-053-F03",
+          "source_files": [
+            {
+              "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+              "pointer": "/requirements/21"
+            },
+            {
+              "path": "docs/helix-harness/L10-verification/functional-verification.json",
+              "pointer": "/cases/21"
+            }
+          ],
+          "l4_design_contract_pointer": "/contracts/2",
+          "source_leaf_pointers": [
+            "/requirements/21",
+            "/cases/21",
+            "/contracts/2"
+          ],
+          "negative_condition": "関係種別が欠ける、lineage先がない、またはbase revisionが一致しない",
+          "expected_effect": "不足関係と影響historyをunknownへ残し、実操作成功を主張しない"
+        }
+      ],
+      "source_only_candidate_groups": [
+        "C05",
+        "C06",
+        "C07",
+        "C08",
+        "C09"
+      ],
+      "source_match_note": "一致",
+      "l4_existing_expected_axes": [
+        {
+          "subject": "LS A/r1 vs r2",
+          "axis": "semantic_revision",
+          "state": "conflict"
+        },
+        {
+          "subject": "LS",
+          "axis": "history_mapping",
+          "state": "conflict"
+        }
+      ],
+      "l4_existing_expected_claim_state": "conflict",
+      "l4_existing_expected_operation_state": "not_requested",
+      "l4_existing_expected_operation_selection": "not_requested",
+      "l4_existing_expected_reference_state": "unresolved",
+      "l4_existing_expected_side_effect_count": 0,
+      "expected_derivation": "行別WR239 source leafのnegative_condition/expected_effectを当該L3/L10 source pointerと既存L4期待軸・effectに照合した。source leafの意味を行別に採り、checkerの不変L9 targetと一致するcasewise文面にした。",
+      "l9_case_id": "HARNESS-L9-053-F03-NEG-04",
+      "comparison_only": {
+        "change_exact_match": true,
+        "expected_exact_match": true
+      },
+      "formal_class_membership": "not_asserted",
+      "blind_candidate_context": {
+        "artifact": "WR242 comparison row",
+        "candidate_groups": [
+          "C05",
+          "C06",
+          "C07",
+          "C08",
+          "C09"
+        ],
+        "candidate_leaf_ids": [
+          "H053-SRC-003",
+          "H053-SRC-004",
+          "H053-SRC-008",
+          "H053-SRC-009",
+          "H053-SRC-013",
+          "H053-SRC-014",
+          "H053-SRC-016",
+          "H053-SRC-018",
+          "H053-SRC-025",
+          "H053-SRC-026",
+          "H053-SRC-027",
+          "H053-SRC-028"
+        ],
+        "use": "context only; broad/overlapping candidates do not establish this case membership or its expected meaning"
+      },
+      "source_mapping_status": "row-specific WR239 source leaves; source owner/contract matched"
+    },
+    {
+      "index": 4,
+      "code": "fixture_as_rollback",
+      "l4_pointer": "/failure_classifications/4",
+      "l4_design_ref": "HARNESS-L4-053-B01",
+      "l4_source_basis_ref": "docs/helix-harness/L4-basic-design/semantic-asset-lineage.json#/failure_classifications/4/backflow_owners/0",
+      "change": "split fixtureがあるのでrollback成功",
+      "change_derivation": "既存L4 conditions[0]を保持してcasewise singular fieldへ投影。WR242 fixed comparison上の既存L9 changeとは対照確認のみ。",
+      "expected_source_refs": [
+        {
+          "source_audit_record_id": "H053-S28",
+          "source_namespace": "WR239 source-only record H053-Snn",
+          "source_audit_record_path": "docs/governance/audits/wr239-h053-source-only-2026-10-31.json",
+          "source_contract": "HARNESS-L4-053-B01",
+          "source_files": [
+            {
+              "path": "docs/helix-harness/L3-requirements/business-requirements.json",
+              "pointer": "/requirements/3"
+            },
+            {
+              "path": "docs/helix-harness/L10-verification/business-verification.json",
+              "pointer": "/cases/3"
+            }
+          ],
+          "l4_design_contract_pointer": "/contracts/5",
+          "source_leaf_pointers": [
+            "/requirements/3",
+            "/cases/3",
+            "/contracts/5"
+          ],
+          "negative_condition": "対応記録だけからrollbackの成立を主張する",
+          "expected_effect": "rollbackは記録成果から生成せず、実操作ownerに残す"
+        }
+      ],
+      "source_only_candidate_groups": [
+        "C11"
+      ],
+      "source_match_note": "一致",
+      "l4_existing_expected_axes": [
+        {
+          "subject": "LS",
+          "axis": "lineage_relation",
+          "state": "matched"
+        }
+      ],
+      "l4_existing_expected_claim_state": "unknown",
+      "l4_existing_expected_operation_state": "not_requested",
+      "l4_existing_expected_operation_selection": "not_requested",
+      "l4_existing_expected_reference_state": "unresolved",
+      "l4_existing_expected_side_effect_count": 0,
+      "expected_derivation": "行別WR239 source leafのnegative_condition/expected_effectを当該L3/L10 source pointerと既存L4期待軸・effectに照合した。source leafの意味を行別に採り、checkerの不変L9 targetと一致するcasewise文面にした。",
+      "l9_case_id": "HARNESS-L9-053-B01-NEG-02",
+      "comparison_only": {
+        "change_exact_match": true,
+        "expected_exact_match": true
+      },
+      "formal_class_membership": "not_asserted",
+      "blind_candidate_context": {
+        "artifact": "WR242 comparison row",
+        "candidate_groups": [
+          "C11"
+        ],
+        "candidate_leaf_ids": [
+          "H053-SRC-005",
+          "H053-SRC-010",
+          "H053-SRC-017",
+          "H053-SRC-018",
+          "H053-SRC-019",
+          "H053-SRC-020",
+          "H053-SRC-029",
+          "H053-SRC-030",
+          "H053-SRC-031",
+          "H053-SRC-032"
+        ],
+        "use": "context only; broad/overlapping candidates do not establish this case membership or its expected meaning"
+      },
+      "source_mapping_status": "row-specific WR239 source leaves; source owner/contract matched"
+    },
+    {
+      "index": 5,
+      "code": "global_stop_added",
+      "l4_pointer": "/failure_classifications/5",
+      "l4_design_ref": "HARNESS-L4-053-N01",
+      "l4_source_basis_ref": "docs/helix-harness/L4-basic-design/semantic-asset-lineage.json#/failure_classifications/5/backflow_owners/0",
+      "change": "042未決を理由に無関係A/B局所照合も全停止",
+      "change_derivation": "既存L4 conditions[0]を保持してcasewise singular fieldへ投影。WR242 fixed comparison上の既存L9 changeとは対照確認のみ。",
+      "expected_source_refs": [
+        {
+          "source_audit_record_id": "H053-S26",
+          "source_namespace": "WR239 source-only record H053-Snn",
+          "source_audit_record_path": "docs/governance/audits/wr239-h053-source-only-2026-10-31.json",
+          "source_contract": "HARNESS-L4-053-N01",
+          "source_files": [
+            {
+              "path": "docs/helix-harness/L3-requirements/nfr-grade.json",
+              "pointer": "/requirements/3"
+            },
+            {
+              "path": "docs/helix-harness/L10-verification/nfr-verification.json",
+              "pointer": "/cases/3"
+            }
+          ],
+          "l4_design_contract_pointer": "/contracts/4",
+          "source_leaf_pointers": [
+            "/requirements/3",
+            "/cases/3",
+            "/contracts/4"
+          ],
+          "negative_condition": "未決依存操作を開始する、または局所照合も全停止/全成立へ一律化する",
+          "expected_effect": "依存する操作だけ理由/owner付きで保留し、無関係な局所照合は区別して保持する"
+        }
+      ],
+      "source_only_candidate_groups": [
+        "C10",
+        "C11"
+      ],
+      "source_match_note": "一致",
+      "l4_existing_expected_axes": [
+        {
+          "subject": "A/B",
+          "axis": "identity",
+          "state": "matched"
+        }
+      ],
+      "l4_existing_expected_claim_state": "conflict",
+      "l4_existing_expected_operation_state": "not_requested",
+      "l4_existing_expected_operation_selection": "not_requested",
+      "l4_existing_expected_reference_state": "unresolved",
+      "l4_existing_expected_side_effect_count": 0,
+      "expected_derivation": "行別WR239 source leafのnegative_condition/expected_effectを当該L3/L10 source pointerと既存L4期待軸・effectに照合した。source leafの意味を行別に採り、checkerの不変L9 targetと一致するcasewise文面にした。",
+      "l9_case_id": "HARNESS-L9-053-N01-NEG-05",
+      "comparison_only": {
+        "change_exact_match": true,
+        "expected_exact_match": true
+      },
+      "formal_class_membership": "not_asserted",
+      "blind_candidate_context": {
+        "artifact": "WR242 comparison row",
+        "candidate_groups": [
+          "C10",
+          "C11"
+        ],
+        "candidate_leaf_ids": [
+          "H053-SRC-005",
+          "H053-SRC-010",
+          "H053-SRC-015",
+          "H053-SRC-017",
+          "H053-SRC-018",
+          "H053-SRC-019",
+          "H053-SRC-020",
+          "H053-SRC-029",
+          "H053-SRC-030",
+          "H053-SRC-031",
+          "H053-SRC-032"
+        ],
+        "use": "context only; broad/overlapping candidates do not establish this case membership or its expected meaning"
+      },
+      "source_mapping_status": "row-specific WR239 source leaves; source owner/contract matched"
+    },
+    {
+      "index": 6,
+      "code": "hash_identity_inference",
+      "l4_pointer": "/failure_classifications/6",
+      "l4_design_ref": "HARNESS-L4-053-F01",
+      "l4_source_basis_ref": "docs/helix-harness/L4-basic-design/semantic-asset-lineage.json#/failure_classifications/6/backflow_owners/0",
+      "change": "body digestが同じA/Bを同IDとする",
+      "change_derivation": "既存L4 conditions[0]を保持してcasewise singular fieldへ投影。WR242 fixed comparison上の既存L9 changeとは対照確認のみ。",
+      "expected_source_refs": [
+        {
+          "source_audit_record_id": "H053-S03",
+          "source_namespace": "WR239 source-only record H053-Snn",
+          "source_audit_record_path": "docs/governance/audits/wr239-h053-source-only-2026-10-31.json",
+          "source_contract": "HARNESS-L4-053-F01",
+          "source_files": [
+            {
+              "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+              "pointer": "/requirements/19"
+            },
+            {
+              "path": "docs/helix-harness/L10-verification/functional-verification.json",
+              "pointer": "/cases/19"
+            }
+          ],
+          "l4_design_contract_pointer": "/contracts/0",
+          "source_leaf_pointers": [
+            "/requirements/19",
+            "/cases/19",
+            "/contracts/0"
+          ],
+          "negative_condition": "identity重複または対応競合を隠し、単一identityを返す",
+          "expected_effect": "競合/対応不明をunknownに保持し、path/nameのみの同一視を成立させない"
+        }
+      ],
+      "source_only_candidate_groups": [
+        "C01",
+        "C02"
+      ],
+      "source_match_note": "関連・hash方式の意味は未決",
+      "l4_existing_expected_axes": [
+        {
+          "subject": "A/B",
+          "axis": "identity",
+          "state": "matched"
+        }
+      ],
+      "l4_existing_expected_claim_state": "conflict",
+      "l4_existing_expected_operation_state": "not_requested",
+      "l4_existing_expected_operation_selection": "not_requested",
+      "l4_existing_expected_reference_state": "unresolved",
+      "l4_existing_expected_side_effect_count": 0,
+      "expected_derivation": "行別WR239 source leafのnegative_condition/expected_effectを当該L3/L10 source pointerと既存L4期待軸・effectに照合した。source leafの意味を行別に採り、checkerの不変L9 targetと一致するcasewise文面にした。",
+      "l9_case_id": "HARNESS-L9-053-F01-NEG-06",
+      "comparison_only": {
+        "change_exact_match": true,
+        "expected_exact_match": true
+      },
+      "formal_class_membership": "not_asserted",
+      "unresolved_boundary": "L3-F01はimmutable IDを要求するが採番/符号化方式は後続設計へ残す。WR239 fixed noteはhash方式の意味を未決とするため、expectedはdigest方式/閾値を追加せず、digest一致だけで別IDを統合しない境界に限る。",
+      "blind_candidate_context": {
+        "artifact": "WR242 comparison row",
+        "candidate_groups": [
+          "C01",
+          "C02"
+        ],
+        "candidate_leaf_ids": [
+          "H053-SRC-001",
+          "H053-SRC-006",
+          "H053-SRC-011",
+          "H053-SRC-015",
+          "H053-SRC-020",
+          "H053-SRC-021",
+          "H053-SRC-022"
+        ],
+        "use": "context only; broad/overlapping candidates do not establish this case membership or its expected meaning"
+      },
+      "source_mapping_status": "row-specific WR239 source leaves; source owner/contract matched"
+    },
+    {
+      "index": 7,
+      "code": "history_mapping_missing",
+      "l4_pointer": "/failure_classifications/7",
+      "l4_design_ref": "HARNESS-L4-053-F03",
+      "l4_source_basis_ref": "docs/helix-harness/L4-basic-design/semantic-asset-lineage.json#/failure_classifications/7/backflow_owners/0",
+      "change": "LS splitの親A/r2との履歴対応を削除",
+      "change_derivation": "既存L4 conditions[0]を保持してcasewise singular fieldへ投影。WR242 fixed comparison上の既存L9 changeとは対照確認のみ。",
+      "expected_source_refs": [
+        {
+          "source_audit_record_id": "H053-S10",
+          "source_namespace": "WR239 source-only record H053-Snn",
+          "source_audit_record_path": "docs/governance/audits/wr239-h053-source-only-2026-10-31.json",
+          "source_contract": "HARNESS-L4-053-F03",
+          "source_files": [
+            {
+              "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+              "pointer": "/requirements/21"
+            },
+            {
+              "path": "docs/helix-harness/L10-verification/functional-verification.json",
+              "pointer": "/cases/21"
+            }
+          ],
+          "l4_design_contract_pointer": "/contracts/2",
+          "source_leaf_pointers": [
+            "/requirements/21",
+            "/cases/21",
+            "/contracts/2"
+          ],
+          "negative_condition": "split記録で前後identity/revisionの対応が切れている",
+          "expected_effect": "不足する親子関係と影響historyをunknownへ残し、全履歴保持を主張しない"
+        },
+        {
+          "source_audit_record_id": "H053-S11",
+          "source_namespace": "WR239 source-only record H053-Snn",
+          "source_audit_record_path": "docs/governance/audits/wr239-h053-source-only-2026-10-31.json",
+          "source_contract": "HARNESS-L4-053-F03",
+          "source_files": [
+            {
+              "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+              "pointer": "/requirements/21"
+            },
+            {
+              "path": "docs/helix-harness/L10-verification/functional-verification.json",
+              "pointer": "/cases/21"
+            }
+          ],
+          "l4_design_contract_pointer": "/contracts/2",
+          "source_leaf_pointers": [
+            "/requirements/21",
+            "/cases/21",
+            "/contracts/2"
+          ],
+          "negative_condition": "merge記録で統合元と統合先の対応が切れている",
+          "expected_effect": "不足する統合関係をunknownへ残し、全履歴保持を主張しない"
+        },
+        {
+          "source_audit_record_id": "H053-S12",
+          "source_namespace": "WR239 source-only record H053-Snn",
+          "source_audit_record_path": "docs/governance/audits/wr239-h053-source-only-2026-10-31.json",
+          "source_contract": "HARNESS-L4-053-F03",
+          "source_files": [
+            {
+              "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+              "pointer": "/requirements/21"
+            },
+            {
+              "path": "docs/helix-harness/L10-verification/functional-verification.json",
+              "pointer": "/cases/21"
+            }
+          ],
+          "l4_design_contract_pointer": "/contracts/2",
+          "source_leaf_pointers": [
+            "/requirements/21",
+            "/cases/21",
+            "/contracts/2"
+          ],
+          "negative_condition": "supersede記録で後継identity/revisionの対応が切れている",
+          "expected_effect": "不足する後継関係をunknownへ残し、全履歴保持を主張しない"
+        }
+      ],
+      "source_only_candidate_groups": [
+        "C05",
+        "C06",
+        "C07",
+        "C08",
+        "C09"
+      ],
+      "source_match_note": "関連・前後history対応",
+      "l4_existing_expected_axes": [
+        {
+          "subject": "LS",
+          "axis": "history_mapping",
+          "state": "missing"
+        }
+      ],
+      "l4_existing_expected_claim_state": "unknown",
+      "l4_existing_expected_operation_state": "not_requested",
+      "l4_existing_expected_operation_selection": "not_requested",
+      "l4_existing_expected_reference_state": "unresolved",
+      "l4_existing_expected_side_effect_count": 0,
+      "expected_derivation": "行別WR239 source leafのnegative_condition/expected_effectを当該L3/L10 source pointerと既存L4期待軸・effectに照合した。source leafの意味を行別に採り、checkerの不変L9 targetと一致するcasewise文面にした。",
+      "l9_case_id": "HARNESS-L9-053-F03-NEG-01",
+      "comparison_only": {
+        "change_exact_match": true,
+        "expected_exact_match": true
+      },
+      "formal_class_membership": "not_asserted",
+      "blind_candidate_context": {
+        "artifact": "WR242 comparison row",
+        "candidate_groups": [
+          "C05",
+          "C06",
+          "C07",
+          "C08",
+          "C09"
+        ],
+        "candidate_leaf_ids": [
+          "H053-SRC-003",
+          "H053-SRC-004",
+          "H053-SRC-008",
+          "H053-SRC-009",
+          "H053-SRC-013",
+          "H053-SRC-014",
+          "H053-SRC-016",
+          "H053-SRC-018",
+          "H053-SRC-025",
+          "H053-SRC-026",
+          "H053-SRC-027",
+          "H053-SRC-028"
+        ],
+        "use": "context only; broad/overlapping candidates do not establish this case membership or its expected meaning"
+      },
+      "source_mapping_status": "row-specific WR239 source leaves; source owner/contract matched"
+    },
+    {
+      "index": 8,
+      "code": "identity_conflict",
+      "l4_pointer": "/failure_classifications/8",
+      "l4_design_ref": "HARNESS-L4-053-F01",
+      "l4_source_basis_ref": "docs/helix-harness/L4-basic-design/semantic-asset-lineage.json#/failure_classifications/8/backflow_owners/0",
+      "change": "同A/r1に相反する意味owner記録を重複供給し先着採用",
+      "change_derivation": "既存L4 conditions[0]を保持してcasewise singular fieldへ投影。WR242 fixed comparison上の既存L9 changeとは対照確認のみ。",
+      "expected_source_refs": [
+        {
+          "source_audit_record_id": "H053-S03",
+          "source_namespace": "WR239 source-only record H053-Snn",
+          "source_audit_record_path": "docs/governance/audits/wr239-h053-source-only-2026-10-31.json",
+          "source_contract": "HARNESS-L4-053-F01",
+          "source_files": [
+            {
+              "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+              "pointer": "/requirements/19"
+            },
+            {
+              "path": "docs/helix-harness/L10-verification/functional-verification.json",
+              "pointer": "/cases/19"
+            }
+          ],
+          "l4_design_contract_pointer": "/contracts/0",
+          "source_leaf_pointers": [
+            "/requirements/19",
+            "/cases/19",
+            "/contracts/0"
+          ],
+          "negative_condition": "identity重複または対応競合を隠し、単一identityを返す",
+          "expected_effect": "競合/対応不明をunknownに保持し、path/nameのみの同一視を成立させない"
+        }
+      ],
+      "source_only_candidate_groups": [
+        "C01",
+        "C02"
+      ],
+      "source_match_note": "一致",
+      "l4_existing_expected_axes": [
+        {
+          "subject": "A/r1",
+          "axis": "identity",
+          "state": "conflict"
+        }
+      ],
+      "l4_existing_expected_claim_state": "conflict",
+      "l4_existing_expected_operation_state": "not_requested",
+      "l4_existing_expected_operation_selection": "not_requested",
+      "l4_existing_expected_reference_state": "unresolved",
+      "l4_existing_expected_side_effect_count": 0,
+      "expected_derivation": "行別WR239 source leafのnegative_condition/expected_effectを当該L3/L10 source pointerと既存L4期待軸・effectに照合した。source leafの意味を行別に採り、checkerの不変L9 targetと一致するcasewise文面にした。",
+      "l9_case_id": "HARNESS-L9-053-F01-NEG-03",
+      "comparison_only": {
+        "change_exact_match": true,
+        "expected_exact_match": true
+      },
+      "formal_class_membership": "not_asserted",
+      "blind_candidate_context": {
+        "artifact": "WR242 comparison row",
+        "candidate_groups": [
+          "C01",
+          "C02"
+        ],
+        "candidate_leaf_ids": [
+          "H053-SRC-001",
+          "H053-SRC-006",
+          "H053-SRC-011",
+          "H053-SRC-015",
+          "H053-SRC-020",
+          "H053-SRC-021",
+          "H053-SRC-022"
+        ],
+        "use": "context only; broad/overlapping candidates do not establish this case membership or its expected meaning"
+      },
+      "source_mapping_status": "row-specific WR239 source leaves; source owner/contract matched"
+    },
+    {
+      "index": 9,
+      "code": "identity_missing",
+      "l4_pointer": "/failure_classifications/9",
+      "l4_design_ref": "HARNESS-L4-053-F01",
+      "l4_source_basis_ref": "docs/helix-harness/L4-basic-design/semantic-asset-lineage.json#/failure_classifications/9/backflow_owners/0",
+      "change": "A/r1のID欠落をpathから生成",
+      "change_derivation": "既存L4 conditions[0]を保持してcasewise singular fieldへ投影。WR242 fixed comparison上の既存L9 changeとは対照確認のみ。",
+      "expected_source_refs": [
+        {
+          "source_audit_record_id": "H053-S01",
+          "source_namespace": "WR239 source-only record H053-Snn",
+          "source_audit_record_path": "docs/governance/audits/wr239-h053-source-only-2026-10-31.json",
+          "source_contract": "HARNESS-L4-053-F01",
+          "source_files": [
+            {
+              "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+              "pointer": "/requirements/19"
+            },
+            {
+              "path": "docs/helix-harness/L10-verification/functional-verification.json",
+              "pointer": "/cases/19"
+            }
+          ],
+          "l4_design_contract_pointer": "/contracts/0",
+          "source_leaf_pointers": [
+            "/requirements/19",
+            "/cases/19",
+            "/contracts/0"
+          ],
+          "negative_condition": "異なるasset IDが同じpathを再利用する",
+          "expected_effect": "pathの再利用だけでは旧identityへ併合せず、競合/対応不明をunknownとして同一性を成立扱いしない"
+        },
+        {
+          "source_audit_record_id": "H053-S03",
+          "source_namespace": "WR239 source-only record H053-Snn",
+          "source_audit_record_path": "docs/governance/audits/wr239-h053-source-only-2026-10-31.json",
+          "source_contract": "HARNESS-L4-053-F01",
+          "source_files": [
+            {
+              "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+              "pointer": "/requirements/19"
+            },
+            {
+              "path": "docs/helix-harness/L10-verification/functional-verification.json",
+              "pointer": "/cases/19"
+            }
+          ],
+          "l4_design_contract_pointer": "/contracts/0",
+          "source_leaf_pointers": [
+            "/requirements/19",
+            "/cases/19",
+            "/contracts/0"
+          ],
+          "negative_condition": "identity重複または対応競合を隠し、単一identityを返す",
+          "expected_effect": "競合/対応不明をunknownに保持し、path/nameのみの同一視を成立させない"
+        }
+      ],
+      "source_only_candidate_groups": [
+        "C01",
+        "C02"
+      ],
+      "source_match_note": "関連",
+      "l4_existing_expected_axes": [
+        {
+          "subject": "A record slot",
+          "axis": "identity",
+          "state": "missing"
+        }
+      ],
+      "l4_existing_expected_claim_state": "unknown",
+      "l4_existing_expected_operation_state": "not_requested",
+      "l4_existing_expected_operation_selection": "not_requested",
+      "l4_existing_expected_reference_state": "unresolved",
+      "l4_existing_expected_side_effect_count": 0,
+      "expected_derivation": "行別WR239 source leafのnegative_condition/expected_effectを当該L3/L10 source pointerと既存L4期待軸・effectに照合した。source leafの意味を行別に採り、checkerの不変L9 targetと一致するcasewise文面にした。",
+      "l9_case_id": "HARNESS-L9-053-F01-NEG-04",
+      "comparison_only": {
+        "change_exact_match": true,
+        "expected_exact_match": true
+      },
+      "formal_class_membership": "not_asserted",
+      "blind_candidate_context": {
+        "artifact": "WR242 comparison row",
+        "candidate_groups": [
+          "C01",
+          "C02"
+        ],
+        "candidate_leaf_ids": [
+          "H053-SRC-001",
+          "H053-SRC-006",
+          "H053-SRC-011",
+          "H053-SRC-015",
+          "H053-SRC-020",
+          "H053-SRC-021",
+          "H053-SRC-022"
+        ],
+        "use": "context only; broad/overlapping candidates do not establish this case membership or its expected meaning"
+      },
+      "source_mapping_status": "row-specific WR239 source leaves; source owner/contract matched"
+    },
+    {
+      "index": 10,
+      "code": "legacy_completion_claim",
+      "l4_pointer": "/failure_classifications/10",
+      "l4_design_ref": "HARNESS-L4-053-B01",
+      "l4_source_basis_ref": "docs/helix-harness/L4-basic-design/semantic-asset-lineage.json#/failure_classifications/10/backflow_owners/0",
+      "change": "原FR53の全実操作まで移管完了",
+      "change_derivation": "既存L4 conditions[0]を保持してcasewise singular fieldへ投影。WR242 fixed comparison上の既存L9 changeとは対照確認のみ。",
+      "expected_source_refs": [
+        {
+          "source_files": [
+            {
+              "path": "docs/helix-harness/L3-requirements/business-requirements.json",
+              "pointer": "/requirements/3"
+            },
+            {
+              "path": "docs/helix-harness/L10-verification/business-verification.json",
+              "pointer": "/cases/3"
+            }
+          ],
+          "l4_design_contract_pointer": "/contracts/5",
+          "reason": "同一caseのsource leafとして一意に対応づくWR239 recordがないため、対象L3 requirementとL10 caseのnegative/failure observationおよびL4 contractから直接導出。"
+        }
+      ],
+      "source_only_candidate_groups": [
+        "C11"
+      ],
+      "source_match_note": "WR239 source inventoryに同一leafなし。L3/L10 requirement/caseを直接参照。",
+      "l4_existing_expected_axes": [
+        {
+          "subject": "LS",
+          "axis": "lineage_relation",
+          "state": "matched"
+        }
+      ],
+      "l4_existing_expected_claim_state": "unknown",
+      "l4_existing_expected_operation_state": "not_requested",
+      "l4_existing_expected_operation_selection": "not_requested",
+      "l4_existing_expected_reference_state": "unresolved",
+      "l4_existing_expected_side_effect_count": 0,
+      "expected_derivation": "一意なsource leaf対応を作らず、対象L3 requirementとL10 caseのnegative/failure observation、既存L4期待軸・effectからこのcaseの期待意味を導出した。checkerの不変L9 targetとの一致は照合に限る。",
+      "l9_case_id": "HARNESS-L9-053-B01-NEG-05",
+      "comparison_only": {
+        "change_exact_match": true,
+        "expected_exact_match": true
+      },
+      "formal_class_membership": "not_asserted",
+      "blind_candidate_context": {
+        "artifact": "WR242 comparison row",
+        "candidate_groups": [
+          "C11"
+        ],
+        "candidate_leaf_ids": [
+          "H053-SRC-005",
+          "H053-SRC-010",
+          "H053-SRC-017",
+          "H053-SRC-018",
+          "H053-SRC-019",
+          "H053-SRC-020",
+          "H053-SRC-029",
+          "H053-SRC-030",
+          "H053-SRC-031",
+          "H053-SRC-032"
+        ],
+        "use": "context only; broad/overlapping candidates do not establish this case membership or its expected meaning"
+      },
+      "source_mapping_status": "no unique row-specific source leaf; direct L3/L10 derivation"
+    },
+    {
+      "index": 11,
+      "code": "lineage_as_authority_transfer",
+      "l4_pointer": "/failure_classifications/11",
+      "l4_design_ref": "HARNESS-L4-053-F03",
+      "l4_source_basis_ref": "docs/helix-harness/L4-basic-design/semantic-asset-lineage.json#/failure_classifications/11/backflow_owners/0",
+      "change": "renameのlocation対応だけでauthority移転成立",
+      "change_derivation": "既存L4 conditions[0]を保持してcasewise singular fieldへ投影。WR242 fixed comparison上の既存L9 changeとは対照確認のみ。",
+      "expected_source_refs": [
+        {
+          "source_audit_record_id": "H053-S08",
+          "source_namespace": "WR239 source-only record H053-Snn",
+          "source_audit_record_path": "docs/governance/audits/wr239-h053-source-only-2026-10-31.json",
+          "source_contract": "HARNESS-L4-053-F03",
+          "source_files": [
+            {
+              "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+              "pointer": "/requirements/21"
+            },
+            {
+              "path": "docs/helix-harness/L10-verification/functional-verification.json",
+              "pointer": "/cases/21"
+            }
+          ],
+          "l4_design_contract_pointer": "/contracts/2",
+          "source_leaf_pointers": [
+            "/requirements/21",
+            "/cases/21",
+            "/contracts/2"
+          ],
+          "negative_condition": "供給されたrename履歴を別identityの生成として対応付ける",
+          "expected_effect": "rename履歴は同identityのlocation履歴へ対応させ、実変換成立とは扱わない"
+        },
+        {
+          "source_audit_record_id": "H053-S09",
+          "source_namespace": "WR239 source-only record H053-Snn",
+          "source_audit_record_path": "docs/governance/audits/wr239-h053-source-only-2026-10-31.json",
+          "source_contract": "HARNESS-L4-053-F03",
+          "source_files": [
+            {
+              "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+              "pointer": "/requirements/21"
+            },
+            {
+              "path": "docs/helix-harness/L10-verification/functional-verification.json",
+              "pointer": "/cases/21"
+            }
+          ],
+          "l4_design_contract_pointer": "/contracts/2",
+          "source_leaf_pointers": [
+            "/requirements/21",
+            "/cases/21",
+            "/contracts/2"
+          ],
+          "negative_condition": "供給されたmove履歴を別identityの生成として対応付ける",
+          "expected_effect": "move履歴は同identityのlocation履歴へ対応させ、実変換成立とは扱わない"
+        }
+      ],
+      "source_only_candidate_groups": [
+        "C05",
+        "C06",
+        "C07",
+        "C08",
+        "C09"
+      ],
+      "source_match_note": "関連・location対応とauthorityを分離",
+      "l4_existing_expected_axes": [
+        {
+          "subject": "A/r1 rename",
+          "axis": "location_history",
+          "state": "matched"
+        }
+      ],
+      "l4_existing_expected_claim_state": "unknown",
+      "l4_existing_expected_operation_state": "not_requested",
+      "l4_existing_expected_operation_selection": "not_requested",
+      "l4_existing_expected_reference_state": "unresolved",
+      "l4_existing_expected_side_effect_count": 0,
+      "expected_derivation": "行別WR239 source leafのnegative_condition/expected_effectを当該L3/L10 source pointerと既存L4期待軸・effectに照合した。source leafの意味を行別に採り、checkerの不変L9 targetと一致するcasewise文面にした。",
+      "l9_case_id": "HARNESS-L9-053-F03-NEG-06",
+      "comparison_only": {
+        "change_exact_match": true,
+        "expected_exact_match": true
+      },
+      "formal_class_membership": "not_asserted",
+      "blind_candidate_context": {
+        "artifact": "WR242 comparison row",
+        "candidate_groups": [
+          "C05",
+          "C06",
+          "C07",
+          "C08",
+          "C09"
+        ],
+        "candidate_leaf_ids": [
+          "H053-SRC-003",
+          "H053-SRC-004",
+          "H053-SRC-008",
+          "H053-SRC-009",
+          "H053-SRC-013",
+          "H053-SRC-014",
+          "H053-SRC-016",
+          "H053-SRC-018",
+          "H053-SRC-025",
+          "H053-SRC-026",
+          "H053-SRC-027",
+          "H053-SRC-028"
+        ],
+        "use": "context only; broad/overlapping candidates do not establish this case membership or its expected meaning"
+      },
+      "source_mapping_status": "row-specific WR239 source leaves; source owner/contract matched"
+    },
+    {
+      "index": 12,
+      "code": "lineage_endpoint_missing",
+      "l4_pointer": "/failure_classifications/12",
+      "l4_design_ref": "HARNESS-L4-053-F03",
+      "l4_source_basis_ref": "docs/helix-harness/L4-basic-design/semantic-asset-lineage.json#/failure_classifications/12/backflow_owners/0",
+      "change": "LM mergeの元Bだけを対応から削除",
+      "change_derivation": "既存L4 conditions[0]を保持してcasewise singular fieldへ投影。WR242 fixed comparison上の既存L9 changeとは対照確認のみ。",
+      "expected_source_refs": [
+        {
+          "source_files": [
+            {
+              "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+              "pointer": "/requirements/21"
+            },
+            {
+              "path": "docs/helix-harness/L10-verification/functional-verification.json",
+              "pointer": "/cases/21"
+            }
+          ],
+          "l4_design_contract_pointer": "/contracts/2",
+          "reason": "同一caseのsource leafとして一意に対応づくWR239 recordがないため、対象L3 requirementとL10 caseのnegative/failure observationおよびL4 contractから直接導出。"
+        }
+      ],
+      "source_only_candidate_groups": [
+        "C05",
+        "C06",
+        "C07",
+        "C08",
+        "C09"
+      ],
+      "source_match_note": "WR239 source inventoryに同一leafなし。L3/L10 requirement/caseを直接参照。",
+      "l4_existing_expected_axes": [
+        {
+          "subject": "LM B/b1",
+          "axis": "identity",
+          "state": "missing"
+        },
+        {
+          "subject": "LM",
+          "axis": "lineage_relation",
+          "state": "unknown"
+        }
+      ],
+      "l4_existing_expected_claim_state": "unknown",
+      "l4_existing_expected_operation_state": "not_requested",
+      "l4_existing_expected_operation_selection": "not_requested",
+      "l4_existing_expected_reference_state": "unresolved",
+      "l4_existing_expected_side_effect_count": 0,
+      "expected_derivation": "一意なsource leaf対応を作らず、対象L3 requirementとL10 caseのnegative/failure observation、既存L4期待軸・effectからこのcaseの期待意味を導出した。checkerの不変L9 targetとの一致は照合に限る。",
+      "l9_case_id": "HARNESS-L9-053-F03-NEG-02",
+      "comparison_only": {
+        "change_exact_match": true,
+        "expected_exact_match": true
+      },
+      "formal_class_membership": "not_asserted",
+      "blind_candidate_context": {
+        "artifact": "WR242 comparison row",
+        "candidate_groups": [
+          "C05",
+          "C06",
+          "C07",
+          "C08",
+          "C09"
+        ],
+        "candidate_leaf_ids": [
+          "H053-SRC-003",
+          "H053-SRC-004",
+          "H053-SRC-008",
+          "H053-SRC-009",
+          "H053-SRC-013",
+          "H053-SRC-014",
+          "H053-SRC-016",
+          "H053-SRC-018",
+          "H053-SRC-025",
+          "H053-SRC-026",
+          "H053-SRC-027",
+          "H053-SRC-028"
+        ],
+        "use": "context only; broad/overlapping candidates do not establish this case membership or its expected meaning"
+      },
+      "source_mapping_status": "no unique row-specific source leaf; direct L3/L10 derivation"
+    },
+    {
+      "index": 13,
+      "code": "lineage_target_missing",
+      "l4_pointer": "/failure_classifications/13",
+      "l4_design_ref": "HARNESS-L4-053-F03",
+      "l4_source_basis_ref": "docs/helix-harness/L4-basic-design/semantic-asset-lineage.json#/failure_classifications/13/backflow_owners/0",
+      "change": "LX先D/d1不在を最新Dへ補完",
+      "change_derivation": "既存L4 conditions[0]を保持してcasewise singular fieldへ投影。WR242 fixed comparison上の既存L9 changeとは対照確認のみ。",
+      "expected_source_refs": [
+        {
+          "source_audit_record_id": "H053-S13",
+          "source_namespace": "WR239 source-only record H053-Snn",
+          "source_audit_record_path": "docs/governance/audits/wr239-h053-source-only-2026-10-31.json",
+          "source_contract": "HARNESS-L4-053-F03",
+          "source_files": [
+            {
+              "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+              "pointer": "/requirements/21"
+            },
+            {
+              "path": "docs/helix-harness/L10-verification/functional-verification.json",
+              "pointer": "/cases/21"
+            }
+          ],
+          "l4_design_contract_pointer": "/contracts/2",
+          "source_leaf_pointers": [
+            "/requirements/21",
+            "/cases/21",
+            "/contracts/2"
+          ],
+          "negative_condition": "関係種別が欠ける、lineage先がない、またはbase revisionが一致しない",
+          "expected_effect": "不足関係と影響historyをunknownへ残し、実操作成功を主張しない"
+        }
+      ],
+      "source_only_candidate_groups": [
+        "C05",
+        "C06",
+        "C07",
+        "C08",
+        "C09"
+      ],
+      "source_match_note": "一致",
+      "l4_existing_expected_axes": [
+        {
+          "subject": "LX D/d1",
+          "axis": "identity",
+          "state": "missing"
+        },
+        {
+          "subject": "LX",
+          "axis": "lineage_relation",
+          "state": "unknown"
+        }
+      ],
+      "l4_existing_expected_claim_state": "unknown",
+      "l4_existing_expected_operation_state": "not_requested",
+      "l4_existing_expected_operation_selection": "not_requested",
+      "l4_existing_expected_reference_state": "unresolved",
+      "l4_existing_expected_side_effect_count": 0,
+      "expected_derivation": "行別WR239 source leafのnegative_condition/expected_effectを当該L3/L10 source pointerと既存L4期待軸・effectに照合した。source leafの意味を行別に採り、checkerの不変L9 targetと一致するcasewise文面にした。",
+      "l9_case_id": "HARNESS-L9-053-F03-NEG-05",
+      "comparison_only": {
+        "change_exact_match": true,
+        "expected_exact_match": true
+      },
+      "formal_class_membership": "not_asserted",
+      "blind_candidate_context": {
+        "artifact": "WR242 comparison row",
+        "candidate_groups": [
+          "C05",
+          "C06",
+          "C07",
+          "C08",
+          "C09"
+        ],
+        "candidate_leaf_ids": [
+          "H053-SRC-003",
+          "H053-SRC-004",
+          "H053-SRC-008",
+          "H053-SRC-009",
+          "H053-SRC-013",
+          "H053-SRC-014",
+          "H053-SRC-016",
+          "H053-SRC-018",
+          "H053-SRC-025",
+          "H053-SRC-026",
+          "H053-SRC-027",
+          "H053-SRC-028"
+        ],
+        "use": "context only; broad/overlapping candidates do not establish this case membership or its expected meaning"
+      },
+      "source_mapping_status": "row-specific WR239 source leaves; source owner/contract matched"
+    },
+    {
+      "index": 14,
+      "code": "local_as_global_completion",
+      "l4_pointer": "/failure_classifications/14",
+      "l4_design_ref": "HARNESS-L4-053-N01",
+      "l4_source_basis_ref": "docs/helix-harness/L4-basic-design/semantic-asset-lineage.json#/failure_classifications/14/backflow_owners/0",
+      "change": "局所identity一致から053全能力完成",
+      "change_derivation": "既存L4 conditions[0]を保持してcasewise singular fieldへ投影。WR242 fixed comparison上の既存L9 changeとは対照確認のみ。",
+      "expected_source_refs": [
+        {
+          "source_audit_record_id": "H053-S26",
+          "source_namespace": "WR239 source-only record H053-Snn",
+          "source_audit_record_path": "docs/governance/audits/wr239-h053-source-only-2026-10-31.json",
+          "source_contract": "HARNESS-L4-053-N01",
+          "source_files": [
+            {
+              "path": "docs/helix-harness/L3-requirements/nfr-grade.json",
+              "pointer": "/requirements/3"
+            },
+            {
+              "path": "docs/helix-harness/L10-verification/nfr-verification.json",
+              "pointer": "/cases/3"
+            }
+          ],
+          "l4_design_contract_pointer": "/contracts/4",
+          "source_leaf_pointers": [
+            "/requirements/3",
+            "/cases/3",
+            "/contracts/4"
+          ],
+          "negative_condition": "未決依存操作を開始する、または局所照合も全停止/全成立へ一律化する",
+          "expected_effect": "依存する操作だけ理由/owner付きで保留し、無関係な局所照合は区別して保持する"
+        }
+      ],
+      "source_only_candidate_groups": [
+        "C10",
+        "C11"
+      ],
+      "source_match_note": "一致",
+      "l4_existing_expected_axes": [
+        {
+          "subject": "A/B",
+          "axis": "identity",
+          "state": "matched"
+        }
+      ],
+      "l4_existing_expected_claim_state": "unknown",
+      "l4_existing_expected_operation_state": "not_requested",
+      "l4_existing_expected_operation_selection": "not_requested",
+      "l4_existing_expected_reference_state": "unresolved",
+      "l4_existing_expected_side_effect_count": 0,
+      "expected_derivation": "行別WR239 source leafのnegative_condition/expected_effectを当該L3/L10 source pointerと既存L4期待軸・effectに照合した。source leafの意味を行別に採り、checkerの不変L9 targetと一致するcasewise文面にした。",
+      "l9_case_id": "HARNESS-L9-053-N01-NEG-04",
+      "comparison_only": {
+        "change_exact_match": true,
+        "expected_exact_match": true
+      },
+      "formal_class_membership": "not_asserted",
+      "blind_candidate_context": {
+        "artifact": "WR242 comparison row",
+        "candidate_groups": [
+          "C10",
+          "C11"
+        ],
+        "candidate_leaf_ids": [
+          "H053-SRC-005",
+          "H053-SRC-010",
+          "H053-SRC-015",
+          "H053-SRC-017",
+          "H053-SRC-018",
+          "H053-SRC-019",
+          "H053-SRC-020",
+          "H053-SRC-029",
+          "H053-SRC-030",
+          "H053-SRC-031",
+          "H053-SRC-032"
+        ],
+        "use": "context only; broad/overlapping candidates do not establish this case membership or its expected meaning"
+      },
+      "source_mapping_status": "row-specific WR239 source leaves; source owner/contract matched"
+    },
+    {
+      "index": 15,
+      "code": "location_as_semantic",
+      "l4_pointer": "/failure_classifications/15",
+      "l4_design_ref": "HARNESS-L4-053-F02",
+      "l4_source_basis_ref": "docs/helix-harness/L4-basic-design/semantic-asset-lineage.json#/failure_classifications/15/backflow_owners/0",
+      "change": "意味不変のmoveだけでA/r2の意味revision成立",
+      "change_derivation": "既存L4 conditions[0]を保持してcasewise singular fieldへ投影。WR242 fixed comparison上の既存L9 changeとは対照確認のみ。",
+      "expected_source_refs": [
+        {
+          "source_files": [
+            {
+              "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+              "pointer": "/requirements/20"
+            },
+            {
+              "path": "docs/helix-harness/L10-verification/functional-verification.json",
+              "pointer": "/cases/20"
+            }
+          ],
+          "l4_design_contract_pointer": "/contracts/1",
+          "reason": "同一caseのsource leafとして一意に対応づくWR239 recordがないため、対象L3 requirementとL10 caseのnegative/failure observationおよびL4 contractから直接導出。"
+        }
+      ],
+      "source_only_candidate_groups": [
+        "C03",
+        "C04"
+      ],
+      "source_match_note": "WR239 source inventoryに同一leafなし。L3/L10 requirement/caseを直接参照。",
+      "l4_existing_expected_axes": [
+        {
+          "subject": "A/r1",
+          "axis": "semantic_revision",
+          "state": "matched"
+        },
+        {
+          "subject": "A/r1",
+          "axis": "location_history",
+          "state": "matched"
+        }
+      ],
+      "l4_existing_expected_claim_state": "conflict",
+      "l4_existing_expected_operation_state": "not_requested",
+      "l4_existing_expected_operation_selection": "not_requested",
+      "l4_existing_expected_reference_state": "unresolved",
+      "l4_existing_expected_side_effect_count": 0,
+      "expected_derivation": "一意なsource leaf対応を作らず、対象L3 requirementとL10 caseのnegative/failure observation、既存L4期待軸・effectからこのcaseの期待意味を導出した。checkerの不変L9 targetとの一致は照合に限る。",
+      "l9_case_id": "HARNESS-L9-053-F02-NEG-01",
+      "comparison_only": {
+        "change_exact_match": true,
+        "expected_exact_match": true
+      },
+      "formal_class_membership": "not_asserted",
+      "blind_candidate_context": {
+        "artifact": "WR242 comparison row",
+        "candidate_groups": [
+          "C03",
+          "C04"
+        ],
+        "candidate_leaf_ids": [
+          "H053-SRC-002",
+          "H053-SRC-007",
+          "H053-SRC-012",
+          "H053-SRC-016",
+          "H053-SRC-023",
+          "H053-SRC-024"
+        ],
+        "use": "context only; broad/overlapping candidates do not establish this case membership or its expected meaning"
+      },
+      "source_mapping_status": "no unique row-specific source leaf; direct L3/L10 derivation"
+    },
+    {
+      "index": 16,
+      "code": "location_identity_change",
+      "l4_pointer": "/failure_classifications/16",
+      "l4_design_ref": "HARNESS-L4-053-F01",
+      "l4_source_basis_ref": "docs/helix-harness/L4-basic-design/semantic-asset-lineage.json#/failure_classifications/16/backflow_owners/0",
+      "change": "異pathに移った同Aを新IDとする",
+      "change_derivation": "既存L4 conditions[0]を保持してcasewise singular fieldへ投影。WR242 fixed comparison上の既存L9 changeとは対照確認のみ。",
+      "expected_source_refs": [
+        {
+          "source_audit_record_id": "H053-S01",
+          "source_namespace": "WR239 source-only record H053-Snn",
+          "source_audit_record_path": "docs/governance/audits/wr239-h053-source-only-2026-10-31.json",
+          "source_contract": "HARNESS-L4-053-F01",
+          "source_files": [
+            {
+              "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+              "pointer": "/requirements/19"
+            },
+            {
+              "path": "docs/helix-harness/L10-verification/functional-verification.json",
+              "pointer": "/cases/19"
+            }
+          ],
+          "l4_design_contract_pointer": "/contracts/0",
+          "source_leaf_pointers": [
+            "/requirements/19",
+            "/cases/19",
+            "/contracts/0"
+          ],
+          "negative_condition": "異なるasset IDが同じpathを再利用する",
+          "expected_effect": "pathの再利用だけでは旧identityへ併合せず、競合/対応不明をunknownとして同一性を成立扱いしない"
+        }
+      ],
+      "source_only_candidate_groups": [
+        "C01",
+        "C02"
+      ],
+      "source_match_note": "関連・path推論を禁止",
+      "l4_existing_expected_axes": [
+        {
+          "subject": "A/r1",
+          "axis": "identity",
+          "state": "matched"
+        },
+        {
+          "subject": "A/r1",
+          "axis": "location_history",
+          "state": "matched"
+        }
+      ],
+      "l4_existing_expected_claim_state": "conflict",
+      "l4_existing_expected_operation_state": "not_requested",
+      "l4_existing_expected_operation_selection": "not_requested",
+      "l4_existing_expected_reference_state": "unresolved",
+      "l4_existing_expected_side_effect_count": 0,
+      "expected_derivation": "行別WR239 source leafのnegative_condition/expected_effectを当該L3/L10 source pointerと既存L4期待軸・effectに照合した。source leafの意味を行別に採り、checkerの不変L9 targetと一致するcasewise文面にした。",
+      "l9_case_id": "HARNESS-L9-053-F01-NEG-05",
+      "comparison_only": {
+        "change_exact_match": true,
+        "expected_exact_match": true
+      },
+      "formal_class_membership": "not_asserted",
+      "blind_candidate_context": {
+        "artifact": "WR242 comparison row",
+        "candidate_groups": [
+          "C01",
+          "C02"
+        ],
+        "candidate_leaf_ids": [
+          "H053-SRC-001",
+          "H053-SRC-006",
+          "H053-SRC-011",
+          "H053-SRC-015",
+          "H053-SRC-020",
+          "H053-SRC-021",
+          "H053-SRC-022"
+        ],
+        "use": "context only; broad/overlapping candidates do not establish this case membership or its expected meaning"
+      },
+      "source_mapping_status": "row-specific WR239 source leaves; source owner/contract matched"
+    },
+    {
+      "index": 17,
+      "code": "name_identity_inference",
+      "l4_pointer": "/failure_classifications/17",
+      "l4_design_ref": "HARNESS-L4-053-F01",
+      "l4_source_basis_ref": "docs/helix-harness/L4-basic-design/semantic-asset-lineage.json#/failure_classifications/17/backflow_owners/0",
+      "change": "同名異義A/Bを同一assetとする",
+      "change_derivation": "既存L4 conditions[0]を保持してcasewise singular fieldへ投影。WR242 fixed comparison上の既存L9 changeとは対照確認のみ。",
+      "expected_source_refs": [
+        {
+          "source_audit_record_id": "H053-S02",
+          "source_namespace": "WR239 source-only record H053-Snn",
+          "source_audit_record_path": "docs/governance/audits/wr239-h053-source-only-2026-10-31.json",
+          "source_contract": "HARNESS-L4-053-F01",
+          "source_files": [
+            {
+              "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+              "pointer": "/requirements/19"
+            },
+            {
+              "path": "docs/helix-harness/L10-verification/functional-verification.json",
+              "pointer": "/cases/19"
+            }
+          ],
+          "l4_design_contract_pointer": "/contracts/0",
+          "source_leaf_pointers": [
+            "/requirements/19",
+            "/cases/19",
+            "/contracts/0"
+          ],
+          "negative_condition": "同名異義の記録を同じassetとして扱う",
+          "expected_effect": "名称一致で同一と返さず、asset IDと履歴に結ぶ"
+        }
+      ],
+      "source_only_candidate_groups": [
+        "C01",
+        "C02"
+      ],
+      "source_match_note": "一致",
+      "l4_existing_expected_axes": [
+        {
+          "subject": "A/B",
+          "axis": "identity",
+          "state": "matched"
+        }
+      ],
+      "l4_existing_expected_claim_state": "conflict",
+      "l4_existing_expected_operation_state": "not_requested",
+      "l4_existing_expected_operation_selection": "not_requested",
+      "l4_existing_expected_reference_state": "unresolved",
+      "l4_existing_expected_side_effect_count": 0,
+      "expected_derivation": "行別WR239 source leafのnegative_condition/expected_effectを当該L3/L10 source pointerと既存L4期待軸・effectに照合した。source leafの意味を行別に採り、checkerの不変L9 targetと一致するcasewise文面にした。",
+      "l9_case_id": "HARNESS-L9-053-F01-NEG-02",
+      "comparison_only": {
+        "change_exact_match": true,
+        "expected_exact_match": true
+      },
+      "formal_class_membership": "not_asserted",
+      "blind_candidate_context": {
+        "artifact": "WR242 comparison row",
+        "candidate_groups": [
+          "C01",
+          "C02"
+        ],
+        "candidate_leaf_ids": [
+          "H053-SRC-001",
+          "H053-SRC-006",
+          "H053-SRC-011",
+          "H053-SRC-015",
+          "H053-SRC-020",
+          "H053-SRC-021",
+          "H053-SRC-022"
+        ],
+        "use": "context only; broad/overlapping candidates do not establish this case membership or its expected meaning"
+      },
+      "source_mapping_status": "row-specific WR239 source leaves; source owner/contract matched"
+    },
+    {
+      "index": 18,
+      "code": "new_precondition",
+      "l4_pointer": "/failure_classifications/18",
+      "l4_design_ref": "HARNESS-L4-053-B01",
+      "l4_source_basis_ref": "docs/helix-harness/L4-basic-design/semantic-asset-lineage.json#/failure_classifications/18/backflow_owners/0",
+      "change": "052採択/先行を053照合の新必須条件",
+      "change_derivation": "既存L4 conditions[0]を保持してcasewise singular fieldへ投影。WR242 fixed comparison上の既存L9 changeとは対照確認のみ。",
+      "expected_source_refs": [
+        {
+          "source_audit_record_id": "H053-S32",
+          "source_namespace": "WR239 source-only record H053-Snn",
+          "source_audit_record_path": "docs/governance/audits/wr239-h053-source-only-2026-10-31.json",
+          "source_contract": "HARNESS-L4-053-B01",
+          "source_files": [
+            {
+              "path": "docs/helix-harness/L3-requirements/business-requirements.json",
+              "pointer": "/requirements/3"
+            },
+            {
+              "path": "docs/helix-harness/L10-verification/business-verification.json",
+              "pointer": "/cases/3"
+            }
+          ],
+          "l4_design_contract_pointer": "/contracts/5",
+          "source_leaf_pointers": [
+            "/requirements/3",
+            "/cases/3",
+            "/contracts/5"
+          ],
+          "negative_condition": "052の採択または実施順序を前提として追加する",
+          "expected_effect": "052の採択/順序を新設前提とせず、実施順序の具体値はunknown"
+        }
+      ],
+      "source_only_candidate_groups": [
+        "C11"
+      ],
+      "source_match_note": "一致",
+      "l4_existing_expected_axes": [
+        {
+          "subject": "A/B",
+          "axis": "identity",
+          "state": "matched"
+        }
+      ],
+      "l4_existing_expected_claim_state": "conflict",
+      "l4_existing_expected_operation_state": "not_requested",
+      "l4_existing_expected_operation_selection": "not_requested",
+      "l4_existing_expected_reference_state": "unresolved",
+      "l4_existing_expected_side_effect_count": 0,
+      "expected_derivation": "行別WR239 source leafのnegative_condition/expected_effectを当該L3/L10 source pointerと既存L4期待軸・effectに照合した。source leafの意味を行別に採り、checkerの不変L9 targetと一致するcasewise文面にした。",
+      "l9_case_id": "HARNESS-L9-053-B01-NEG-07",
+      "comparison_only": {
+        "change_exact_match": true,
+        "expected_exact_match": true
+      },
+      "formal_class_membership": "not_asserted",
+      "blind_candidate_context": {
+        "artifact": "WR242 comparison row",
+        "candidate_groups": [
+          "C11"
+        ],
+        "candidate_leaf_ids": [
+          "H053-SRC-005",
+          "H053-SRC-010",
+          "H053-SRC-017",
+          "H053-SRC-018",
+          "H053-SRC-019",
+          "H053-SRC-020",
+          "H053-SRC-029",
+          "H053-SRC-030",
+          "H053-SRC-031",
+          "H053-SRC-032"
+        ],
+        "use": "context only; broad/overlapping candidates do not establish this case membership or its expected meaning"
+      },
+      "source_mapping_status": "row-specific WR239 source leaves; source owner/contract matched"
+    },
+    {
+      "index": 19,
+      "code": "oracle_mapping_missing",
+      "l4_pointer": "/failure_classifications/19",
+      "l4_design_ref": "HARNESS-L4-053-F04",
+      "l4_source_basis_ref": "docs/helix-harness/L4-basic-design/semantic-asset-lineage.json#/failure_classifications/19/backflow_owners/0",
+      "change": "LS oracle QOだけ欠落、authority有りで受入可能",
+      "change_derivation": "既存L4 conditions[0]を保持してcasewise singular fieldへ投影。WR242 fixed comparison上の既存L9 changeとは対照確認のみ。",
+      "expected_source_refs": [
+        {
+          "source_audit_record_id": "H053-S15",
+          "source_namespace": "WR239 source-only record H053-Snn",
+          "source_audit_record_path": "docs/governance/audits/wr239-h053-source-only-2026-10-31.json",
+          "source_contract": "HARNESS-L4-053-F04",
+          "source_files": [
+            {
+              "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+              "pointer": "/requirements/22"
+            },
+            {
+              "path": "docs/helix-harness/L10-verification/functional-verification.json",
+              "pointer": "/cases/22"
+            }
+          ],
+          "l4_design_contract_pointer": "/contracts/3",
+          "source_leaf_pointers": [
+            "/requirements/22",
+            "/cases/22",
+            "/contracts/3"
+          ],
+          "negative_condition": "lineage記録からacceptance oracleだけが欠ける/不明",
+          "expected_effect": "oracle項目をunknown/不成立で返し、authority等で受入可能へ補わない"
+        },
+        {
+          "source_audit_record_id": "H053-S17",
+          "source_namespace": "WR239 source-only record H053-Snn",
+          "source_audit_record_path": "docs/governance/audits/wr239-h053-source-only-2026-10-31.json",
+          "source_contract": "HARNESS-L4-053-F04",
+          "source_files": [
+            {
+              "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+              "pointer": "/requirements/22"
+            },
+            {
+              "path": "docs/helix-harness/L10-verification/functional-verification.json",
+              "pointer": "/cases/22"
+            }
+          ],
+          "l4_design_contract_pointer": "/contracts/3",
+          "source_leaf_pointers": [
+            "/requirements/22",
+            "/cases/22",
+            "/contracts/3"
+          ],
+          "negative_condition": "receiptまたは他の成立項目を欠落項目の代替証拠とする",
+          "expected_effect": "該当項目のunknownを保持し、別項目の成立から全closure成功へ昇格しない"
+        }
+      ],
+      "source_only_candidate_groups": [
+        "C07",
+        "C08",
+        "C09"
+      ],
+      "source_match_note": "一致/関連",
+      "l4_existing_expected_axes": [
+        {
+          "subject": "LS",
+          "axis": "oracle_mapping",
+          "state": "missing"
+        },
+        {
+          "subject": "LS",
+          "axis": "authority_mapping",
+          "state": "matched"
+        },
+        {
+          "subject": "LS",
+          "axis": "typed_edge_mapping",
+          "state": "matched"
+        }
+      ],
+      "l4_existing_expected_claim_state": "unknown",
+      "l4_existing_expected_operation_state": "not_requested",
+      "l4_existing_expected_operation_selection": "not_requested",
+      "l4_existing_expected_reference_state": "unresolved",
+      "l4_existing_expected_side_effect_count": 0,
+      "expected_derivation": "行別WR239 source leafのnegative_condition/expected_effectを当該L3/L10 source pointerと既存L4期待軸・effectに照合した。source leafの意味を行別に採り、checkerの不変L9 targetと一致するcasewise文面にした。",
+      "l9_case_id": "HARNESS-L9-053-F04-NEG-02",
+      "comparison_only": {
+        "change_exact_match": true,
+        "expected_exact_match": true
+      },
+      "formal_class_membership": "not_asserted",
+      "blind_candidate_context": {
+        "artifact": "WR242 comparison row",
+        "candidate_groups": [
+          "C07",
+          "C08",
+          "C09"
+        ],
+        "candidate_leaf_ids": [
+          "H053-SRC-003",
+          "H053-SRC-004",
+          "H053-SRC-009",
+          "H053-SRC-013",
+          "H053-SRC-016",
+          "H053-SRC-018",
+          "H053-SRC-025",
+          "H053-SRC-026",
+          "H053-SRC-027",
+          "H053-SRC-028"
+        ],
+        "use": "context only; broad/overlapping candidates do not establish this case membership or its expected meaning"
+      },
+      "source_mapping_status": "row-specific WR239 source leaves; source owner/contract matched"
+    },
+    {
+      "index": 20,
+      "code": "oracle_revision_mismatch",
+      "l4_pointer": "/failure_classifications/20",
+      "l4_design_ref": "HARNESS-L4-053-F04",
+      "l4_source_basis_ref": "docs/helix-harness/L4-basic-design/semantic-asset-lineage.json#/failure_classifications/20/backflow_owners/0",
+      "change": "別revisionのQOをA/r2 oracleへ付替え",
+      "change_derivation": "既存L4 conditions[0]を保持してcasewise singular fieldへ投影。WR242 fixed comparison上の既存L9 changeとは対照確認のみ。",
+      "expected_source_refs": [
+        {
+          "source_audit_record_id": "H053-S15",
+          "source_namespace": "WR239 source-only record H053-Snn",
+          "source_audit_record_path": "docs/governance/audits/wr239-h053-source-only-2026-10-31.json",
+          "source_contract": "HARNESS-L4-053-F04",
+          "source_files": [
+            {
+              "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+              "pointer": "/requirements/22"
+            },
+            {
+              "path": "docs/helix-harness/L10-verification/functional-verification.json",
+              "pointer": "/cases/22"
+            }
+          ],
+          "l4_design_contract_pointer": "/contracts/3",
+          "source_leaf_pointers": [
+            "/requirements/22",
+            "/cases/22",
+            "/contracts/3"
+          ],
+          "negative_condition": "lineage記録からacceptance oracleだけが欠ける/不明",
+          "expected_effect": "oracle項目をunknown/不成立で返し、authority等で受入可能へ補わない"
+        }
+      ],
+      "source_only_candidate_groups": [
+        "C07",
+        "C08",
+        "C09"
+      ],
+      "source_match_note": "関連・revision対応",
+      "l4_existing_expected_axes": [
+        {
+          "subject": "LS",
+          "axis": "oracle_mapping",
+          "state": "conflict"
+        }
+      ],
+      "l4_existing_expected_claim_state": "conflict",
+      "l4_existing_expected_operation_state": "not_requested",
+      "l4_existing_expected_operation_selection": "not_requested",
+      "l4_existing_expected_reference_state": "unresolved",
+      "l4_existing_expected_side_effect_count": 0,
+      "expected_derivation": "行別WR239 source leafのnegative_condition/expected_effectを当該L3/L10 source pointerと既存L4期待軸・effectに照合した。source leafの意味を行別に採り、checkerの不変L9 targetと一致するcasewise文面にした。",
+      "l9_case_id": "HARNESS-L9-053-F04-NEG-05",
+      "comparison_only": {
+        "change_exact_match": true,
+        "expected_exact_match": true
+      },
+      "formal_class_membership": "not_asserted",
+      "blind_candidate_context": {
+        "artifact": "WR242 comparison row",
+        "candidate_groups": [
+          "C07",
+          "C08",
+          "C09"
+        ],
+        "candidate_leaf_ids": [
+          "H053-SRC-003",
+          "H053-SRC-004",
+          "H053-SRC-009",
+          "H053-SRC-013",
+          "H053-SRC-016",
+          "H053-SRC-018",
+          "H053-SRC-025",
+          "H053-SRC-026",
+          "H053-SRC-027",
+          "H053-SRC-028"
+        ],
+        "use": "context only; broad/overlapping candidates do not establish this case membership or its expected meaning"
+      },
+      "source_mapping_status": "row-specific WR239 source leaves; source owner/contract matched"
+    },
+    {
+      "index": 21,
+      "code": "owner_boundary_change",
+      "l4_pointer": "/failure_classifications/21",
+      "l4_design_ref": "HARNESS-L4-053-B01",
+      "l4_source_basis_ref": "docs/helix-harness/L4-basic-design/semantic-asset-lineage.json#/failure_classifications/21/backflow_owners/0",
+      "change": "053で003/004/016の変更/trace/差分条件を別定義",
+      "change_derivation": "既存L4 conditions[0]を保持してcasewise singular fieldへ投影。WR242 fixed comparison上の既存L9 changeとは対照確認のみ。",
+      "expected_source_refs": [
+        {
+          "source_audit_record_id": "H053-S31",
+          "source_namespace": "WR239 source-only record H053-Snn",
+          "source_audit_record_path": "docs/governance/audits/wr239-h053-source-only-2026-10-31.json",
+          "source_contract": "HARNESS-L4-053-B01",
+          "source_files": [
+            {
+              "path": "docs/helix-harness/L3-requirements/business-requirements.json",
+              "pointer": "/requirements/3"
+            },
+            {
+              "path": "docs/helix-harness/L10-verification/business-verification.json",
+              "pointer": "/cases/3"
+            }
+          ],
+          "l4_design_contract_pointer": "/contracts/5",
+          "source_leaf_pointers": [
+            "/requirements/3",
+            "/cases/3",
+            "/contracts/5"
+          ],
+          "negative_condition": "053記録で003/004/016のrevision/trace/stale/diff条件を再定義する",
+          "expected_effect": "既存条件を再定義しない。具体的な既存適用差は今回の許可sourceのみでは一意に定まらずunknown"
+        }
+      ],
+      "source_only_candidate_groups": [
+        "C11"
+      ],
+      "source_match_note": "一致",
+      "l4_existing_expected_axes": [
+        {
+          "subject": "LS",
+          "axis": "lineage_relation",
+          "state": "matched"
+        }
+      ],
+      "l4_existing_expected_claim_state": "conflict",
+      "l4_existing_expected_operation_state": "not_requested",
+      "l4_existing_expected_operation_selection": "not_requested",
+      "l4_existing_expected_reference_state": "unresolved",
+      "l4_existing_expected_side_effect_count": 0,
+      "expected_derivation": "行別WR239 source leafのnegative_condition/expected_effectを当該L3/L10 source pointerと既存L4期待軸・effectに照合した。source leafの意味を行別に採り、checkerの不変L9 targetと一致するcasewise文面にした。",
+      "l9_case_id": "HARNESS-L9-053-B01-NEG-06",
+      "comparison_only": {
+        "change_exact_match": true,
+        "expected_exact_match": true
+      },
+      "formal_class_membership": "not_asserted",
+      "blind_candidate_context": {
+        "artifact": "WR242 comparison row",
+        "candidate_groups": [
+          "C11"
+        ],
+        "candidate_leaf_ids": [
+          "H053-SRC-005",
+          "H053-SRC-010",
+          "H053-SRC-017",
+          "H053-SRC-018",
+          "H053-SRC-019",
+          "H053-SRC-020",
+          "H053-SRC-029",
+          "H053-SRC-030",
+          "H053-SRC-031",
+          "H053-SRC-032"
+        ],
+        "use": "context only; broad/overlapping candidates do not establish this case membership or its expected meaning"
+      },
+      "source_mapping_status": "row-specific WR239 source leaves; source owner/contract matched",
+      "unresolved_boundary": "WR239 fixed noteは003/004/016の具体的既存適用差をこの許可sourceのみでは一意に定めないと記録。expectedは既存条件を再定義しない範囲に留める。"
+    },
+    {
+      "index": 22,
+      "code": "path_identity_inference",
+      "l4_pointer": "/failure_classifications/22",
+      "l4_design_ref": "HARNESS-L4-053-F01",
+      "l4_source_basis_ref": "docs/helix-harness/L4-basic-design/semantic-asset-lineage.json#/failure_classifications/22/backflow_owners/0",
+      "change": "同pathのBを旧Aへ併合",
+      "change_derivation": "既存L4 conditions[0]を保持してcasewise singular fieldへ投影。WR242 fixed comparison上の既存L9 changeとは対照確認のみ。",
+      "expected_source_refs": [
+        {
+          "source_files": [
+            {
+              "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+              "pointer": "/requirements/19"
+            },
+            {
+              "path": "docs/helix-harness/L10-verification/functional-verification.json",
+              "pointer": "/cases/19"
+            }
+          ],
+          "l4_design_contract_pointer": "/contracts/0",
+          "reason": "同一caseのsource leafとして一意に対応づくWR239 recordがないため、対象L3 requirementとL10 caseのnegative/failure observationおよびL4 contractから直接導出。"
+        }
+      ],
+      "source_only_candidate_groups": [
+        "C01",
+        "C02"
+      ],
+      "source_match_note": "WR239 source inventoryに同一leafなし。L3/L10 requirement/caseを直接参照。",
+      "l4_existing_expected_axes": [
+        {
+          "subject": "A/B",
+          "axis": "identity",
+          "state": "matched"
+        }
+      ],
+      "l4_existing_expected_claim_state": "conflict",
+      "l4_existing_expected_operation_state": "not_requested",
+      "l4_existing_expected_operation_selection": "not_requested",
+      "l4_existing_expected_reference_state": "unresolved",
+      "l4_existing_expected_side_effect_count": 0,
+      "expected_derivation": "一意なsource leaf対応を作らず、対象L3 requirementとL10 caseのnegative/failure observation、既存L4期待軸・effectからこのcaseの期待意味を導出した。checkerの不変L9 targetとの一致は照合に限る。",
+      "l9_case_id": "HARNESS-L9-053-F01-NEG-01",
+      "comparison_only": {
+        "change_exact_match": true,
+        "expected_exact_match": true
+      },
+      "formal_class_membership": "not_asserted",
+      "blind_candidate_context": {
+        "artifact": "WR242 comparison row",
+        "candidate_groups": [
+          "C01",
+          "C02"
+        ],
+        "candidate_leaf_ids": [
+          "H053-SRC-001",
+          "H053-SRC-006",
+          "H053-SRC-011",
+          "H053-SRC-015",
+          "H053-SRC-020",
+          "H053-SRC-021",
+          "H053-SRC-022"
+        ],
+        "use": "context only; broad/overlapping candidates do not establish this case membership or its expected meaning"
+      },
+      "source_mapping_status": "no unique row-specific source leaf; direct L3/L10 derivation"
+    },
+    {
+      "index": 23,
+      "code": "record_as_acceptance",
+      "l4_pointer": "/failure_classifications/23",
+      "l4_design_ref": "HARNESS-L4-053-B01",
+      "l4_source_basis_ref": "docs/helix-harness/L4-basic-design/semantic-asset-lineage.json#/failure_classifications/23/backflow_owners/0",
+      "change": "lineage記録でPO採択/受入済み",
+      "change_derivation": "既存L4 conditions[0]を保持してcasewise singular fieldへ投影。WR242 fixed comparison上の既存L9 changeとは対照確認のみ。",
+      "expected_source_refs": [
+        {
+          "source_audit_record_id": "H053-S30",
+          "source_namespace": "WR239 source-only record H053-Snn",
+          "source_audit_record_path": "docs/governance/audits/wr239-h053-source-only-2026-10-31.json",
+          "source_contract": "HARNESS-L4-053-B01",
+          "source_files": [
+            {
+              "path": "docs/helix-harness/L3-requirements/business-requirements.json",
+              "pointer": "/requirements/3"
+            },
+            {
+              "path": "docs/helix-harness/L10-verification/business-verification.json",
+              "pointer": "/cases/3"
+            }
+          ],
+          "l4_design_contract_pointer": "/contracts/5",
+          "source_leaf_pointers": [
+            "/requirements/3",
+            "/cases/3",
+            "/contracts/5"
+          ],
+          "negative_condition": "対応記録だけから要求採択/受入を主張する",
+          "expected_effect": "採択とPO受入を記録成果から生成せず、既存ownerに残す"
+        }
+      ],
+      "source_only_candidate_groups": [
+        "C11"
+      ],
+      "source_match_note": "一致",
+      "l4_existing_expected_axes": [
+        {
+          "subject": "LS",
+          "axis": "lineage_relation",
+          "state": "matched"
+        }
+      ],
+      "l4_existing_expected_claim_state": "unknown",
+      "l4_existing_expected_operation_state": "not_requested",
+      "l4_existing_expected_operation_selection": "not_requested",
+      "l4_existing_expected_reference_state": "unresolved",
+      "l4_existing_expected_side_effect_count": 0,
+      "expected_derivation": "行別WR239 source leafのnegative_condition/expected_effectを当該L3/L10 source pointerと既存L4期待軸・effectに照合した。source leafの意味を行別に採り、checkerの不変L9 targetと一致するcasewise文面にした。",
+      "l9_case_id": "HARNESS-L9-053-B01-NEG-04",
+      "comparison_only": {
+        "change_exact_match": true,
+        "expected_exact_match": true
+      },
+      "formal_class_membership": "not_asserted",
+      "blind_candidate_context": {
+        "artifact": "WR242 comparison row",
+        "candidate_groups": [
+          "C11"
+        ],
+        "candidate_leaf_ids": [
+          "H053-SRC-005",
+          "H053-SRC-010",
+          "H053-SRC-017",
+          "H053-SRC-018",
+          "H053-SRC-019",
+          "H053-SRC-020",
+          "H053-SRC-029",
+          "H053-SRC-030",
+          "H053-SRC-031",
+          "H053-SRC-032"
+        ],
+        "use": "context only; broad/overlapping candidates do not establish this case membership or its expected meaning"
+      },
+      "source_mapping_status": "row-specific WR239 source leaves; source owner/contract matched"
+    },
+    {
+      "index": 24,
+      "code": "record_as_permission",
+      "l4_pointer": "/failure_classifications/24",
+      "l4_design_ref": "HARNESS-L4-053-B01",
+      "l4_source_basis_ref": "docs/helix-harness/L4-basic-design/semantic-asset-lineage.json#/failure_classifications/24/backflow_owners/0",
+      "change": "全対応Refの存在だけで権限発行済み",
+      "change_derivation": "既存L4 conditions[0]を保持してcasewise singular fieldへ投影。WR242 fixed comparison上の既存L9 changeとは対照確認のみ。",
+      "expected_source_refs": [
+        {
+          "source_audit_record_id": "H053-S29",
+          "source_namespace": "WR239 source-only record H053-Snn",
+          "source_audit_record_path": "docs/governance/audits/wr239-h053-source-only-2026-10-31.json",
+          "source_contract": "HARNESS-L4-053-B01",
+          "source_files": [
+            {
+              "path": "docs/helix-harness/L3-requirements/business-requirements.json",
+              "pointer": "/requirements/3"
+            },
+            {
+              "path": "docs/helix-harness/L10-verification/business-verification.json",
+              "pointer": "/cases/3"
+            }
+          ],
+          "l4_design_contract_pointer": "/contracts/5",
+          "source_leaf_pointers": [
+            "/requirements/3",
+            "/cases/3",
+            "/contracts/5"
+          ],
+          "negative_condition": "対応記録だけから権限またはauthority移転を主張する",
+          "expected_effect": "実権限/authority裁定を記録成果で代替しない。項目別ownerの判断を残す"
+        }
+      ],
+      "source_only_candidate_groups": [
+        "C11"
+      ],
+      "source_match_note": "一致",
+      "l4_existing_expected_axes": [
+        {
+          "subject": "LS",
+          "axis": "authority_mapping",
+          "state": "matched"
+        }
+      ],
+      "l4_existing_expected_claim_state": "unknown",
+      "l4_existing_expected_operation_state": "not_requested",
+      "l4_existing_expected_operation_selection": "not_requested",
+      "l4_existing_expected_reference_state": "unresolved",
+      "l4_existing_expected_side_effect_count": 0,
+      "expected_derivation": "行別WR239 source leafのnegative_condition/expected_effectを当該L3/L10 source pointerと既存L4期待軸・effectに照合した。source leafの意味を行別に採り、checkerの不変L9 targetと一致するcasewise文面にした。",
+      "l9_case_id": "HARNESS-L9-053-B01-NEG-03",
+      "comparison_only": {
+        "change_exact_match": true,
+        "expected_exact_match": true
+      },
+      "formal_class_membership": "not_asserted",
+      "blind_candidate_context": {
+        "artifact": "WR242 comparison row",
+        "candidate_groups": [
+          "C11"
+        ],
+        "candidate_leaf_ids": [
+          "H053-SRC-005",
+          "H053-SRC-010",
+          "H053-SRC-017",
+          "H053-SRC-018",
+          "H053-SRC-019",
+          "H053-SRC-020",
+          "H053-SRC-029",
+          "H053-SRC-030",
+          "H053-SRC-031",
+          "H053-SRC-032"
+        ],
+        "use": "context only; broad/overlapping candidates do not establish this case membership or its expected meaning"
+      },
+      "source_mapping_status": "row-specific WR239 source leaves; source owner/contract matched"
+    },
+    {
+      "index": 25,
+      "code": "record_as_persistence",
+      "l4_pointer": "/failure_classifications/25",
+      "l4_design_ref": "HARNESS-L4-053-B01",
+      "l4_source_basis_ref": "docs/helix-harness/L4-basic-design/semantic-asset-lineage.json#/failure_classifications/25/backflow_owners/0",
+      "change": "対応記録存在で実保存成立",
+      "change_derivation": "既存L4 conditions[0]を保持してcasewise singular fieldへ投影。WR242 fixed comparison上の既存L9 changeとは対照確認のみ。",
+      "expected_source_refs": [
+        {
+          "source_files": [
+            {
+              "path": "docs/helix-harness/L3-requirements/business-requirements.json",
+              "pointer": "/requirements/3"
+            },
+            {
+              "path": "docs/helix-harness/L10-verification/business-verification.json",
+              "pointer": "/cases/3"
+            }
+          ],
+          "l4_design_contract_pointer": "/contracts/5",
+          "reason": "同一caseのsource leafとして一意に対応づくWR239 recordがないため、対象L3 requirementとL10 caseのnegative/failure observationおよびL4 contractから直接導出。"
+        }
+      ],
+      "source_only_candidate_groups": [
+        "C11"
+      ],
+      "source_match_note": "WR239 source inventoryに同一leafなし。L3/L10 requirement/caseを直接参照。",
+      "l4_existing_expected_axes": [
+        {
+          "subject": "LS",
+          "axis": "lineage_relation",
+          "state": "matched"
+        }
+      ],
+      "l4_existing_expected_claim_state": "unknown",
+      "l4_existing_expected_operation_state": "not_requested",
+      "l4_existing_expected_operation_selection": "not_requested",
+      "l4_existing_expected_reference_state": "unresolved",
+      "l4_existing_expected_side_effect_count": 0,
+      "expected_derivation": "一意なsource leaf対応を作らず、対象L3 requirementとL10 caseのnegative/failure observation、既存L4期待軸・effectからこのcaseの期待意味を導出した。checkerの不変L9 targetとの一致は照合に限る。",
+      "l9_case_id": "HARNESS-L9-053-B01-NEG-01",
+      "comparison_only": {
+        "change_exact_match": true,
+        "expected_exact_match": true
+      },
+      "formal_class_membership": "not_asserted",
+      "blind_candidate_context": {
+        "artifact": "WR242 comparison row",
+        "candidate_groups": [
+          "C11"
+        ],
+        "candidate_leaf_ids": [
+          "H053-SRC-005",
+          "H053-SRC-010",
+          "H053-SRC-017",
+          "H053-SRC-018",
+          "H053-SRC-019",
+          "H053-SRC-020",
+          "H053-SRC-029",
+          "H053-SRC-030",
+          "H053-SRC-031",
+          "H053-SRC-032"
+        ],
+        "use": "context only; broad/overlapping candidates do not establish this case membership or its expected meaning"
+      },
+      "source_mapping_status": "no unique row-specific source leaf; direct L3/L10 derivation"
+    },
+    {
+      "index": 26,
+      "code": "reference_meaning_mismatch",
+      "l4_pointer": "/failure_classifications/26",
+      "l4_design_ref": "HARNESS-L4-053-N01",
+      "l4_source_basis_ref": "docs/helix-harness/L4-basic-design/semantic-asset-lineage.json#/failure_classifications/26/backflow_owners/0",
+      "change": "042をsource provenance保証へ読替え",
+      "change_derivation": "既存L4 conditions[0]を保持してcasewise singular fieldへ投影。WR242 fixed comparison上の既存L9 changeとは対照確認のみ。",
+      "expected_source_refs": [
+        {
+          "source_files": [
+            {
+              "path": "docs/helix-harness/L3-requirements/nfr-grade.json",
+              "pointer": "/requirements/3"
+            },
+            {
+              "path": "docs/helix-harness/L10-verification/nfr-verification.json",
+              "pointer": "/cases/3"
+            }
+          ],
+          "l4_design_contract_pointer": "/contracts/4",
+          "reason": "同一caseのsource leafとして一意に対応づくWR239 recordがないため、対象L3 requirementとL10 caseのnegative/failure observationおよびL4 contractから直接導出。"
+        }
+      ],
+      "source_only_candidate_groups": [
+        "C10",
+        "C11"
+      ],
+      "source_match_note": "WR239 source inventoryに同一leafなし。L3/L10 requirement/caseを直接参照。",
+      "l4_existing_expected_axes": [
+        {
+          "subject": "A/B",
+          "axis": "identity",
+          "state": "matched"
+        }
+      ],
+      "l4_existing_expected_claim_state": "conflict",
+      "l4_existing_expected_operation_state": "not_requested",
+      "l4_existing_expected_operation_selection": "not_requested",
+      "l4_existing_expected_reference_state": "unresolved",
+      "l4_existing_expected_side_effect_count": 0,
+      "expected_derivation": "一意なsource leaf対応を作らず、対象L3 requirementとL10 caseのnegative/failure observation、既存L4期待軸・effectからこのcaseの期待意味を導出した。checkerの不変L9 targetとの一致は照合に限る。",
+      "l9_case_id": "HARNESS-L9-053-N01-NEG-01",
+      "comparison_only": {
+        "change_exact_match": true,
+        "expected_exact_match": true
+      },
+      "formal_class_membership": "not_asserted",
+      "blind_candidate_context": {
+        "artifact": "WR242 comparison row",
+        "candidate_groups": [
+          "C10",
+          "C11"
+        ],
+        "candidate_leaf_ids": [
+          "H053-SRC-005",
+          "H053-SRC-010",
+          "H053-SRC-015",
+          "H053-SRC-017",
+          "H053-SRC-018",
+          "H053-SRC-019",
+          "H053-SRC-020",
+          "H053-SRC-029",
+          "H053-SRC-030",
+          "H053-SRC-031",
+          "H053-SRC-032"
+        ],
+        "use": "context only; broad/overlapping candidates do not establish this case membership or its expected meaning"
+      },
+      "source_mapping_status": "no unique row-specific source leaf; direct L3/L10 derivation"
+    },
+    {
+      "index": 27,
+      "code": "reference_substitution",
+      "l4_pointer": "/failure_classifications/27",
+      "l4_design_ref": "HARNESS-L4-053-N01",
+      "l4_source_basis_ref": "docs/helix-harness/L4-basic-design/semantic-asset-lineage.json#/failure_classifications/27/backflow_owners/0",
+      "change": "042の代替IDを推測して参照解決済み",
+      "change_derivation": "既存L4 conditions[0]を保持してcasewise singular fieldへ投影。WR242 fixed comparison上の既存L9 changeとは対照確認のみ。",
+      "expected_source_refs": [
+        {
+          "source_audit_record_id": "H053-S19",
+          "source_namespace": "WR239 source-only record H053-Snn",
+          "source_audit_record_path": "docs/governance/audits/wr239-h053-source-only-2026-10-31.json",
+          "source_contract": "HARNESS-L4-053-N01",
+          "source_files": [
+            {
+              "path": "docs/helix-harness/L3-requirements/nfr-grade.json",
+              "pointer": "/requirements/3"
+            },
+            {
+              "path": "docs/helix-harness/L10-verification/nfr-verification.json",
+              "pointer": "/cases/3"
+            }
+          ],
+          "l4_design_contract_pointer": "/contracts/4",
+          "source_leaf_pointers": [
+            "/requirements/3",
+            "/cases/3",
+            "/contracts/4"
+          ],
+          "negative_condition": "未決参照の代替asset IDを推測する",
+          "expected_effect": "代替IDを生成せず、ownerの参照訂正/適用判断まで未決を保持する"
+        }
+      ],
+      "source_only_candidate_groups": [
+        "C10",
+        "C11"
+      ],
+      "source_match_note": "一致",
+      "l4_existing_expected_axes": [
+        {
+          "subject": "A/B",
+          "axis": "identity",
+          "state": "matched"
+        }
+      ],
+      "l4_existing_expected_claim_state": "conflict",
+      "l4_existing_expected_operation_state": "not_requested",
+      "l4_existing_expected_operation_selection": "not_requested",
+      "l4_existing_expected_reference_state": "unresolved",
+      "l4_existing_expected_side_effect_count": 0,
+      "expected_derivation": "行別WR239 source leafのnegative_condition/expected_effectを当該L3/L10 source pointerと既存L4期待軸・effectに照合した。source leafの意味を行別に採り、checkerの不変L9 targetと一致するcasewise文面にした。",
+      "l9_case_id": "HARNESS-L9-053-N01-NEG-02",
+      "comparison_only": {
+        "change_exact_match": true,
+        "expected_exact_match": true
+      },
+      "formal_class_membership": "not_asserted",
+      "blind_candidate_context": {
+        "artifact": "WR242 comparison row",
+        "candidate_groups": [
+          "C10",
+          "C11"
+        ],
+        "candidate_leaf_ids": [
+          "H053-SRC-005",
+          "H053-SRC-010",
+          "H053-SRC-015",
+          "H053-SRC-017",
+          "H053-SRC-018",
+          "H053-SRC-019",
+          "H053-SRC-020",
+          "H053-SRC-029",
+          "H053-SRC-030",
+          "H053-SRC-031",
+          "H053-SRC-032"
+        ],
+        "use": "context only; broad/overlapping candidates do not establish this case membership or its expected meaning"
+      },
+      "source_mapping_status": "row-specific WR239 source leaves; source owner/contract matched"
+    },
+    {
+      "index": 28,
+      "code": "relation_kind_missing",
+      "l4_pointer": "/failure_classifications/28",
+      "l4_design_ref": "HARNESS-L4-053-F03",
+      "l4_source_basis_ref": "docs/helix-harness/L4-basic-design/semantic-asset-lineage.json#/failure_classifications/28/backflow_owners/0",
+      "change": "LX supersedeのrelation種別を欠落",
+      "change_derivation": "既存L4 conditions[0]を保持してcasewise singular fieldへ投影。WR242 fixed comparison上の既存L9 changeとは対照確認のみ。",
+      "expected_source_refs": [
+        {
+          "source_audit_record_id": "H053-S13",
+          "source_namespace": "WR239 source-only record H053-Snn",
+          "source_audit_record_path": "docs/governance/audits/wr239-h053-source-only-2026-10-31.json",
+          "source_contract": "HARNESS-L4-053-F03",
+          "source_files": [
+            {
+              "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+              "pointer": "/requirements/21"
+            },
+            {
+              "path": "docs/helix-harness/L10-verification/functional-verification.json",
+              "pointer": "/cases/21"
+            }
+          ],
+          "l4_design_contract_pointer": "/contracts/2",
+          "source_leaf_pointers": [
+            "/requirements/21",
+            "/cases/21",
+            "/contracts/2"
+          ],
+          "negative_condition": "関係種別が欠ける、lineage先がない、またはbase revisionが一致しない",
+          "expected_effect": "不足関係と影響historyをunknownへ残し、実操作成功を主張しない"
+        }
+      ],
+      "source_only_candidate_groups": [
+        "C05",
+        "C06",
+        "C07",
+        "C08",
+        "C09"
+      ],
+      "source_match_note": "一致",
+      "l4_existing_expected_axes": [
+        {
+          "subject": "LX",
+          "axis": "lineage_relation",
+          "state": "missing"
+        }
+      ],
+      "l4_existing_expected_claim_state": "unknown",
+      "l4_existing_expected_operation_state": "not_requested",
+      "l4_existing_expected_operation_selection": "not_requested",
+      "l4_existing_expected_reference_state": "unresolved",
+      "l4_existing_expected_side_effect_count": 0,
+      "expected_derivation": "行別WR239 source leafのnegative_condition/expected_effectを当該L3/L10 source pointerと既存L4期待軸・effectに照合した。source leafの意味を行別に採り、checkerの不変L9 targetと一致するcasewise文面にした。",
+      "l9_case_id": "HARNESS-L9-053-F03-NEG-03",
+      "comparison_only": {
+        "change_exact_match": true,
+        "expected_exact_match": true
+      },
+      "formal_class_membership": "not_asserted",
+      "blind_candidate_context": {
+        "artifact": "WR242 comparison row",
+        "candidate_groups": [
+          "C05",
+          "C06",
+          "C07",
+          "C08",
+          "C09"
+        ],
+        "candidate_leaf_ids": [
+          "H053-SRC-003",
+          "H053-SRC-004",
+          "H053-SRC-008",
+          "H053-SRC-009",
+          "H053-SRC-013",
+          "H053-SRC-014",
+          "H053-SRC-016",
+          "H053-SRC-018",
+          "H053-SRC-025",
+          "H053-SRC-026",
+          "H053-SRC-027",
+          "H053-SRC-028"
+        ],
+        "use": "context only; broad/overlapping candidates do not establish this case membership or its expected meaning"
+      },
+      "source_mapping_status": "row-specific WR239 source leaves; source owner/contract matched"
+    },
+    {
+      "index": 29,
+      "code": "revision_conflict",
+      "l4_pointer": "/failure_classifications/29",
+      "l4_design_ref": "HARNESS-L4-053-F02",
+      "l4_source_basis_ref": "docs/helix-harness/L4-basic-design/semantic-asset-lineage.json#/failure_classifications/29/backflow_owners/0",
+      "change": "同A/r1で意味bodyが相反しているのに意味不変",
+      "change_derivation": "既存L4 conditions[0]を保持してcasewise singular fieldへ投影。WR242 fixed comparison上の既存L9 changeとは対照確認のみ。",
+      "expected_source_refs": [
+        {
+          "source_files": [
+            {
+              "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+              "pointer": "/requirements/20"
+            },
+            {
+              "path": "docs/helix-harness/L10-verification/functional-verification.json",
+              "pointer": "/cases/20"
+            }
+          ],
+          "l4_design_contract_pointer": "/contracts/1",
+          "reason": "同一caseのsource leafとして一意に対応づくWR239 recordがないため、対象L3 requirementとL10 caseのnegative/failure observationおよびL4 contractから直接導出。"
+        }
+      ],
+      "source_only_candidate_groups": [
+        "C03",
+        "C04"
+      ],
+      "source_match_note": "WR239 source inventoryに同一leafなし。L3/L10 requirement/caseを直接参照。",
+      "l4_existing_expected_axes": [
+        {
+          "subject": "A/r1",
+          "axis": "semantic_revision",
+          "state": "conflict"
+        }
+      ],
+      "l4_existing_expected_claim_state": "conflict",
+      "l4_existing_expected_operation_state": "not_requested",
+      "l4_existing_expected_operation_selection": "not_requested",
+      "l4_existing_expected_reference_state": "unresolved",
+      "l4_existing_expected_side_effect_count": 0,
+      "expected_derivation": "一意なsource leaf対応を作らず、対象L3 requirementとL10 caseのnegative/failure observation、既存L4期待軸・effectからこのcaseの期待意味を導出した。checkerの不変L9 targetとの一致は照合に限る。",
+      "l9_case_id": "HARNESS-L9-053-F02-NEG-06",
+      "comparison_only": {
+        "change_exact_match": true,
+        "expected_exact_match": true
+      },
+      "formal_class_membership": "not_asserted",
+      "blind_candidate_context": {
+        "artifact": "WR242 comparison row",
+        "candidate_groups": [
+          "C03",
+          "C04"
+        ],
+        "candidate_leaf_ids": [
+          "H053-SRC-002",
+          "H053-SRC-007",
+          "H053-SRC-012",
+          "H053-SRC-016",
+          "H053-SRC-023",
+          "H053-SRC-024"
+        ],
+        "use": "context only; broad/overlapping candidates do not establish this case membership or its expected meaning"
+      },
+      "source_mapping_status": "no unique row-specific source leaf; direct L3/L10 derivation"
+    },
+    {
+      "index": 30,
+      "code": "scope_cross_binding",
+      "l4_pointer": "/failure_classifications/30",
+      "l4_design_ref": "HARNESS-L4-053-F03",
+      "l4_source_basis_ref": "docs/helix-harness/L4-basic-design/semantic-asset-lineage.json#/failure_classifications/30/backflow_owners/0",
+      "change": "他tenantのLS対応表をcurrentへ転用",
+      "change_derivation": "既存L4 conditions[0]を保持してcasewise singular fieldへ投影。WR242 fixed comparison上の既存L9 changeとは対照確認のみ。",
+      "expected_source_refs": [
+        {
+          "source_files": [
+            {
+              "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+              "pointer": "/requirements/21"
+            },
+            {
+              "path": "docs/helix-harness/L10-verification/functional-verification.json",
+              "pointer": "/cases/21"
+            }
+          ],
+          "l4_design_contract_pointer": "/contracts/2",
+          "reason": "同一caseのsource leafとして一意に対応づくWR239 recordがないため、対象L3 requirementとL10 caseのnegative/failure observationおよびL4 contractから直接導出。"
+        }
+      ],
+      "source_only_candidate_groups": [
+        "C05",
+        "C06",
+        "C07",
+        "C08",
+        "C09"
+      ],
+      "source_match_note": "WR239 source inventoryに同一leafなし。L3/L10 requirement/caseを直接参照。",
+      "l4_existing_expected_axes": [
+        {
+          "subject": "LS",
+          "axis": "lineage_relation",
+          "state": "unknown"
+        },
+        {
+          "subject": "LS",
+          "axis": "history_mapping",
+          "state": "unknown"
+        },
+        {
+          "subject": "LS",
+          "axis": "authority_mapping",
+          "state": "unknown"
+        },
+        {
+          "subject": "LS",
+          "axis": "oracle_mapping",
+          "state": "unknown"
+        },
+        {
+          "subject": "LS",
+          "axis": "typed_edge_mapping",
+          "state": "unknown"
+        }
+      ],
+      "l4_existing_expected_claim_state": "conflict",
+      "l4_existing_expected_operation_state": "not_requested",
+      "l4_existing_expected_operation_selection": "not_requested",
+      "l4_existing_expected_reference_state": "unresolved",
+      "l4_existing_expected_side_effect_count": 0,
+      "expected_derivation": "一意なsource leaf対応を作らず、対象L3 requirementとL10 caseのnegative/failure observation、既存L4期待軸・effectからこのcaseの期待意味を導出した。checkerの不変L9 targetとの一致は照合に限る。",
+      "l9_case_id": "HARNESS-L9-053-F03-NEG-07",
+      "comparison_only": {
+        "change_exact_match": true,
+        "expected_exact_match": true
+      },
+      "formal_class_membership": "not_asserted",
+      "blind_candidate_context": {
+        "artifact": "WR242 comparison row",
+        "candidate_groups": [
+          "C05",
+          "C06",
+          "C07",
+          "C08",
+          "C09"
+        ],
+        "candidate_leaf_ids": [
+          "H053-SRC-003",
+          "H053-SRC-004",
+          "H053-SRC-008",
+          "H053-SRC-009",
+          "H053-SRC-013",
+          "H053-SRC-014",
+          "H053-SRC-016",
+          "H053-SRC-018",
+          "H053-SRC-025",
+          "H053-SRC-026",
+          "H053-SRC-027",
+          "H053-SRC-028"
+        ],
+        "use": "context only; broad/overlapping candidates do not establish this case membership or its expected meaning"
+      },
+      "source_mapping_status": "no unique row-specific source leaf; direct L3/L10 derivation"
+    },
+    {
+      "index": 31,
+      "code": "semantic_as_location",
+      "l4_pointer": "/failure_classifications/31",
+      "l4_design_ref": "HARNESS-L4-053-F02",
+      "l4_source_basis_ref": "docs/helix-harness/L4-basic-design/semantic-asset-lineage.json#/failure_classifications/31/backflow_owners/0",
+      "change": "M1→M2の意味差をlocation変更だけとして隠す",
+      "change_derivation": "既存L4 conditions[0]を保持してcasewise singular fieldへ投影。WR242 fixed comparison上の既存L9 changeとは対照確認のみ。",
+      "expected_source_refs": [
+        {
+          "source_audit_record_id": "H053-S05",
+          "source_namespace": "WR239 source-only record H053-Snn",
+          "source_audit_record_path": "docs/governance/audits/wr239-h053-source-only-2026-10-31.json",
+          "source_contract": "HARNESS-L4-053-F02",
+          "source_files": [
+            {
+              "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+              "pointer": "/requirements/20"
+            },
+            {
+              "path": "docs/helix-harness/L10-verification/functional-verification.json",
+              "pointer": "/cases/20"
+            }
+          ],
+          "l4_design_contract_pointer": "/contracts/1",
+          "source_leaf_pointers": [
+            "/requirements/20",
+            "/cases/20",
+            "/contracts/1"
+          ],
+          "negative_condition": "実際の意味差分をlocation履歴だけとして隠す",
+          "expected_effect": "誤ったrevision分類を成立扱いせず、意味軸の差分と影響を返す"
+        }
+      ],
+      "source_only_candidate_groups": [
+        "C03",
+        "C04"
+      ],
+      "source_match_note": "一致",
+      "l4_existing_expected_axes": [
+        {
+          "subject": "A/r1→r2",
+          "axis": "semantic_revision",
+          "state": "matched"
+        },
+        {
+          "subject": "A/r1→r2",
+          "axis": "oracle_mapping",
+          "state": "matched"
+        },
+        {
+          "subject": "A/r1→r2",
+          "axis": "typed_edge_mapping",
+          "state": "matched"
+        }
+      ],
+      "l4_existing_expected_claim_state": "conflict",
+      "l4_existing_expected_operation_state": "not_requested",
+      "l4_existing_expected_operation_selection": "not_requested",
+      "l4_existing_expected_reference_state": "unresolved",
+      "l4_existing_expected_side_effect_count": 0,
+      "expected_derivation": "行別WR239 source leafのnegative_condition/expected_effectを当該L3/L10 source pointerと既存L4期待軸・effectに照合した。source leafの意味を行別に採り、checkerの不変L9 targetと一致するcasewise文面にした。",
+      "l9_case_id": "HARNESS-L9-053-F02-NEG-02",
+      "comparison_only": {
+        "change_exact_match": true,
+        "expected_exact_match": true
+      },
+      "formal_class_membership": "not_asserted",
+      "blind_candidate_context": {
+        "artifact": "WR242 comparison row",
+        "candidate_groups": [
+          "C03",
+          "C04"
+        ],
+        "candidate_leaf_ids": [
+          "H053-SRC-002",
+          "H053-SRC-007",
+          "H053-SRC-012",
+          "H053-SRC-016",
+          "H053-SRC-023",
+          "H053-SRC-024"
+        ],
+        "use": "context only; broad/overlapping candidates do not establish this case membership or its expected meaning"
+      },
+      "source_mapping_status": "row-specific WR239 source leaves; source owner/contract matched"
+    },
+    {
+      "index": 32,
+      "code": "semantic_identity_change",
+      "l4_pointer": "/failure_classifications/32",
+      "l4_design_ref": "HARNESS-L4-053-F02",
+      "l4_source_basis_ref": "docs/helix-harness/L4-basic-design/semantic-asset-lineage.json#/failure_classifications/32/backflow_owners/0",
+      "change": "Aの意味変更で新ID Zを発行して履歴切断",
+      "change_derivation": "既存L4 conditions[0]を保持してcasewise singular fieldへ投影。WR242 fixed comparison上の既存L9 changeとは対照確認のみ。",
+      "expected_source_refs": [
+        {
+          "source_audit_record_id": "H053-S05",
+          "source_namespace": "WR239 source-only record H053-Snn",
+          "source_audit_record_path": "docs/governance/audits/wr239-h053-source-only-2026-10-31.json",
+          "source_contract": "HARNESS-L4-053-F02",
+          "source_files": [
+            {
+              "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+              "pointer": "/requirements/20"
+            },
+            {
+              "path": "docs/helix-harness/L10-verification/functional-verification.json",
+              "pointer": "/cases/20"
+            }
+          ],
+          "l4_design_contract_pointer": "/contracts/1",
+          "source_leaf_pointers": [
+            "/requirements/20",
+            "/cases/20",
+            "/contracts/1"
+          ],
+          "negative_condition": "実際の意味差分をlocation履歴だけとして隠す",
+          "expected_effect": "誤ったrevision分類を成立扱いせず、意味軸の差分と影響を返す"
+        }
+      ],
+      "source_only_candidate_groups": [
+        "C03",
+        "C04"
+      ],
+      "source_match_note": "関連・同一identity上のrevision差",
+      "l4_existing_expected_axes": [
+        {
+          "subject": "A/r1→r2",
+          "axis": "identity",
+          "state": "matched"
+        },
+        {
+          "subject": "A/r1→r2",
+          "axis": "semantic_revision",
+          "state": "matched"
+        }
+      ],
+      "l4_existing_expected_claim_state": "conflict",
+      "l4_existing_expected_operation_state": "not_requested",
+      "l4_existing_expected_operation_selection": "not_requested",
+      "l4_existing_expected_reference_state": "unresolved",
+      "l4_existing_expected_side_effect_count": 0,
+      "expected_derivation": "行別WR239 source leafのnegative_condition/expected_effectを当該L3/L10 source pointerと既存L4期待軸・effectに照合した。source leafの意味を行別に採り、checkerの不変L9 targetと一致するcasewise文面にした。",
+      "l9_case_id": "HARNESS-L9-053-F02-NEG-03",
+      "comparison_only": {
+        "change_exact_match": true,
+        "expected_exact_match": true
+      },
+      "formal_class_membership": "not_asserted",
+      "blind_candidate_context": {
+        "artifact": "WR242 comparison row",
+        "candidate_groups": [
+          "C03",
+          "C04"
+        ],
+        "candidate_leaf_ids": [
+          "H053-SRC-002",
+          "H053-SRC-007",
+          "H053-SRC-012",
+          "H053-SRC-016",
+          "H053-SRC-023",
+          "H053-SRC-024"
+        ],
+        "use": "context only; broad/overlapping candidates do not establish this case membership or its expected meaning"
+      },
+      "source_mapping_status": "row-specific WR239 source leaves; source owner/contract matched"
+    },
+    {
+      "index": 33,
+      "code": "semantic_impact_missing",
+      "l4_pointer": "/failure_classifications/33",
+      "l4_design_ref": "HARNESS-L4-053-F02",
+      "l4_source_basis_ref": "docs/helix-harness/L4-basic-design/semantic-asset-lineage.json#/failure_classifications/33/backflow_owners/0",
+      "change": "M1→M2に必要なoracle/edge影響対応を消す",
+      "change_derivation": "既存L4 conditions[0]を保持してcasewise singular fieldへ投影。WR242 fixed comparison上の既存L9 changeとは対照確認のみ。",
+      "expected_source_refs": [
+        {
+          "source_audit_record_id": "H053-S06",
+          "source_namespace": "WR239 source-only record H053-Snn",
+          "source_audit_record_path": "docs/governance/audits/wr239-h053-source-only-2026-10-31.json",
+          "source_contract": "HARNESS-L4-053-F02",
+          "source_files": [
+            {
+              "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+              "pointer": "/requirements/20"
+            },
+            {
+              "path": "docs/helix-harness/L10-verification/functional-verification.json",
+              "pointer": "/cases/20"
+            }
+          ],
+          "l4_design_contract_pointer": "/contracts/1",
+          "source_leaf_pointers": [
+            "/requirements/20",
+            "/cases/20",
+            "/contracts/1"
+          ],
+          "negative_condition": "semantic diffを作るが影響するoracleへの結び付けを欠く",
+          "expected_effect": "oracle影響の不足をunknown/不成立として残し、差分だけでclosureを主張しない"
+        },
+        {
+          "source_audit_record_id": "H053-S07",
+          "source_namespace": "WR239 source-only record H053-Snn",
+          "source_audit_record_path": "docs/governance/audits/wr239-h053-source-only-2026-10-31.json",
+          "source_contract": "HARNESS-L4-053-F02",
+          "source_files": [
+            {
+              "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+              "pointer": "/requirements/20"
+            },
+            {
+              "path": "docs/helix-harness/L10-verification/functional-verification.json",
+              "pointer": "/cases/20"
+            }
+          ],
+          "l4_design_contract_pointer": "/contracts/1",
+          "source_leaf_pointers": [
+            "/requirements/20",
+            "/cases/20",
+            "/contracts/1"
+          ],
+          "negative_condition": "semantic diffを作るが影響するtyped edgeへの結び付けを欠く",
+          "expected_effect": "typed-edge影響の不足をunknown/不成立として残し、差分だけでclosureを主張しない"
+        }
+      ],
+      "source_only_candidate_groups": [
+        "C03",
+        "C04"
+      ],
+      "source_match_note": "一致",
+      "l4_existing_expected_axes": [
+        {
+          "subject": "A/r1→r2",
+          "axis": "semantic_revision",
+          "state": "matched"
+        },
+        {
+          "subject": "A/r1→r2",
+          "axis": "oracle_mapping",
+          "state": "missing"
+        },
+        {
+          "subject": "A/r1→r2",
+          "axis": "typed_edge_mapping",
+          "state": "missing"
+        }
+      ],
+      "l4_existing_expected_claim_state": "unknown",
+      "l4_existing_expected_operation_state": "not_requested",
+      "l4_existing_expected_operation_selection": "not_requested",
+      "l4_existing_expected_reference_state": "unresolved",
+      "l4_existing_expected_side_effect_count": 0,
+      "expected_derivation": "行別WR239 source leafのnegative_condition/expected_effectを当該L3/L10 source pointerと既存L4期待軸・effectに照合した。source leafの意味を行別に採り、checkerの不変L9 targetと一致するcasewise文面にした。",
+      "l9_case_id": "HARNESS-L9-053-F02-NEG-05",
+      "comparison_only": {
+        "change_exact_match": true,
+        "expected_exact_match": true
+      },
+      "formal_class_membership": "not_asserted",
+      "blind_candidate_context": {
+        "artifact": "WR242 comparison row",
+        "candidate_groups": [
+          "C03",
+          "C04"
+        ],
+        "candidate_leaf_ids": [
+          "H053-SRC-002",
+          "H053-SRC-007",
+          "H053-SRC-012",
+          "H053-SRC-016",
+          "H053-SRC-023",
+          "H053-SRC-024"
+        ],
+        "use": "context only; broad/overlapping candidates do not establish this case membership or its expected meaning"
+      },
+      "source_mapping_status": "row-specific WR239 source leaves; source owner/contract matched"
+    },
+    {
+      "index": 34,
+      "code": "semantic_source_missing",
+      "l4_pointer": "/failure_classifications/34",
+      "l4_design_ref": "HARNESS-L4-053-F02",
+      "l4_source_basis_ref": "docs/helix-harness/L4-basic-design/semantic-asset-lineage.json#/failure_classifications/34/backflow_owners/0",
+      "change": "意味before source欠落を差分無しへ読む",
+      "change_derivation": "既存L4 conditions[0]を保持してcasewise singular fieldへ投影。WR242 fixed comparison上の既存L9 changeとは対照確認のみ。",
+      "expected_source_refs": [
+        {
+          "source_files": [
+            {
+              "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+              "pointer": "/requirements/20"
+            },
+            {
+              "path": "docs/helix-harness/L10-verification/functional-verification.json",
+              "pointer": "/cases/20"
+            }
+          ],
+          "l4_design_contract_pointer": "/contracts/1",
+          "reason": "同一caseのsource leafとして一意に対応づくWR239 recordがないため、対象L3 requirementとL10 caseのnegative/failure observationおよびL4 contractから直接導出。"
+        }
+      ],
+      "source_only_candidate_groups": [
+        "C03",
+        "C04"
+      ],
+      "source_match_note": "WR239 source inventoryに同一leafなし。L3/L10 requirement/caseを直接参照。",
+      "l4_existing_expected_axes": [
+        {
+          "subject": "A/r1 before",
+          "axis": "semantic_revision",
+          "state": "missing"
+        }
+      ],
+      "l4_existing_expected_claim_state": "unknown",
+      "l4_existing_expected_operation_state": "not_requested",
+      "l4_existing_expected_operation_selection": "not_requested",
+      "l4_existing_expected_reference_state": "unresolved",
+      "l4_existing_expected_side_effect_count": 0,
+      "expected_derivation": "一意なsource leaf対応を作らず、対象L3 requirementとL10 caseのnegative/failure observation、既存L4期待軸・effectからこのcaseの期待意味を導出した。checkerの不変L9 targetとの一致は照合に限る。",
+      "l9_case_id": "HARNESS-L9-053-F02-NEG-04",
+      "comparison_only": {
+        "change_exact_match": true,
+        "expected_exact_match": true
+      },
+      "formal_class_membership": "not_asserted",
+      "blind_candidate_context": {
+        "artifact": "WR242 comparison row",
+        "candidate_groups": [
+          "C03",
+          "C04"
+        ],
+        "candidate_leaf_ids": [
+          "H053-SRC-002",
+          "H053-SRC-007",
+          "H053-SRC-012",
+          "H053-SRC-016",
+          "H053-SRC-023",
+          "H053-SRC-024"
+        ],
+        "use": "context only; broad/overlapping candidates do not establish this case membership or its expected meaning"
+      },
+      "source_mapping_status": "no unique row-specific source leaf; direct L3/L10 derivation"
+    },
+    {
+      "index": 35,
+      "code": "typed_edge_kind_mismatch",
+      "l4_pointer": "/failure_classifications/35",
+      "l4_design_ref": "HARNESS-L4-053-F04",
+      "l4_source_basis_ref": "docs/helix-harness/L4-basic-design/semantic-asset-lineage.json#/failure_classifications/35/backflow_owners/0",
+      "change": "QE relation種別が違うがID一致で合格",
+      "change_derivation": "既存L4 conditions[0]を保持してcasewise singular fieldへ投影。WR242 fixed comparison上の既存L9 changeとは対照確認のみ。",
+      "expected_source_refs": [
+        {
+          "source_audit_record_id": "H053-S16",
+          "source_namespace": "WR239 source-only record H053-Snn",
+          "source_audit_record_path": "docs/governance/audits/wr239-h053-source-only-2026-10-31.json",
+          "source_contract": "HARNESS-L4-053-F04",
+          "source_files": [
+            {
+              "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+              "pointer": "/requirements/22"
+            },
+            {
+              "path": "docs/helix-harness/L10-verification/functional-verification.json",
+              "pointer": "/cases/22"
+            }
+          ],
+          "l4_design_contract_pointer": "/contracts/3",
+          "source_leaf_pointers": [
+            "/requirements/22",
+            "/cases/22",
+            "/contracts/3"
+          ],
+          "negative_condition": "lineage記録からtyped edgeだけが欠ける/不明",
+          "expected_effect": "typed-edge項目をunknown/不成立で返し、receipt等でlineage closureへ補わない"
+        },
+        {
+          "source_audit_record_id": "H053-S17",
+          "source_namespace": "WR239 source-only record H053-Snn",
+          "source_audit_record_path": "docs/governance/audits/wr239-h053-source-only-2026-10-31.json",
+          "source_contract": "HARNESS-L4-053-F04",
+          "source_files": [
+            {
+              "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+              "pointer": "/requirements/22"
+            },
+            {
+              "path": "docs/helix-harness/L10-verification/functional-verification.json",
+              "pointer": "/cases/22"
+            }
+          ],
+          "l4_design_contract_pointer": "/contracts/3",
+          "source_leaf_pointers": [
+            "/requirements/22",
+            "/cases/22",
+            "/contracts/3"
+          ],
+          "negative_condition": "receiptまたは他の成立項目を欠落項目の代替証拠とする",
+          "expected_effect": "該当項目のunknownを保持し、別項目の成立から全closure成功へ昇格しない"
+        }
+      ],
+      "source_only_candidate_groups": [
+        "C07",
+        "C08",
+        "C09"
+      ],
+      "source_match_note": "関連・kind mismatch自体はL3 F04の対応不明",
+      "l4_existing_expected_axes": [
+        {
+          "subject": "LS",
+          "axis": "typed_edge_mapping",
+          "state": "conflict"
+        }
+      ],
+      "l4_existing_expected_claim_state": "conflict",
+      "l4_existing_expected_operation_state": "not_requested",
+      "l4_existing_expected_operation_selection": "not_requested",
+      "l4_existing_expected_reference_state": "unresolved",
+      "l4_existing_expected_side_effect_count": 0,
+      "expected_derivation": "行別WR239 source leafのnegative_condition/expected_effectを当該L3/L10 source pointerと既存L4期待軸・effectに照合した。source leafの意味を行別に採り、checkerの不変L9 targetと一致するcasewise文面にした。",
+      "l9_case_id": "HARNESS-L9-053-F04-NEG-06",
+      "comparison_only": {
+        "change_exact_match": true,
+        "expected_exact_match": true
+      },
+      "formal_class_membership": "not_asserted",
+      "blind_candidate_context": {
+        "artifact": "WR242 comparison row",
+        "candidate_groups": [
+          "C07",
+          "C08",
+          "C09"
+        ],
+        "candidate_leaf_ids": [
+          "H053-SRC-003",
+          "H053-SRC-004",
+          "H053-SRC-009",
+          "H053-SRC-013",
+          "H053-SRC-016",
+          "H053-SRC-018",
+          "H053-SRC-025",
+          "H053-SRC-026",
+          "H053-SRC-027",
+          "H053-SRC-028"
+        ],
+        "use": "context only; broad/overlapping candidates do not establish this case membership or its expected meaning"
+      },
+      "source_mapping_status": "row-specific WR239 source leaves; source owner/contract matched"
+    },
+    {
+      "index": 36,
+      "code": "typed_edge_mapping_missing",
+      "l4_pointer": "/failure_classifications/36",
+      "l4_design_ref": "HARNESS-L4-053-F04",
+      "l4_source_basis_ref": "docs/helix-harness/L4-basic-design/semantic-asset-lineage.json#/failure_classifications/36/backflow_owners/0",
+      "change": "LS typed edge QEだけ欠落、receiptで補完",
+      "change_derivation": "既存L4 conditions[0]を保持してcasewise singular fieldへ投影。WR242 fixed comparison上の既存L9 changeとは対照確認のみ。",
+      "expected_source_refs": [
+        {
+          "source_audit_record_id": "H053-S16",
+          "source_namespace": "WR239 source-only record H053-Snn",
+          "source_audit_record_path": "docs/governance/audits/wr239-h053-source-only-2026-10-31.json",
+          "source_contract": "HARNESS-L4-053-F04",
+          "source_files": [
+            {
+              "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+              "pointer": "/requirements/22"
+            },
+            {
+              "path": "docs/helix-harness/L10-verification/functional-verification.json",
+              "pointer": "/cases/22"
+            }
+          ],
+          "l4_design_contract_pointer": "/contracts/3",
+          "source_leaf_pointers": [
+            "/requirements/22",
+            "/cases/22",
+            "/contracts/3"
+          ],
+          "negative_condition": "lineage記録からtyped edgeだけが欠ける/不明",
+          "expected_effect": "typed-edge項目をunknown/不成立で返し、receipt等でlineage closureへ補わない"
+        },
+        {
+          "source_audit_record_id": "H053-S17",
+          "source_namespace": "WR239 source-only record H053-Snn",
+          "source_audit_record_path": "docs/governance/audits/wr239-h053-source-only-2026-10-31.json",
+          "source_contract": "HARNESS-L4-053-F04",
+          "source_files": [
+            {
+              "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+              "pointer": "/requirements/22"
+            },
+            {
+              "path": "docs/helix-harness/L10-verification/functional-verification.json",
+              "pointer": "/cases/22"
+            }
+          ],
+          "l4_design_contract_pointer": "/contracts/3",
+          "source_leaf_pointers": [
+            "/requirements/22",
+            "/cases/22",
+            "/contracts/3"
+          ],
+          "negative_condition": "receiptまたは他の成立項目を欠落項目の代替証拠とする",
+          "expected_effect": "該当項目のunknownを保持し、別項目の成立から全closure成功へ昇格しない"
+        }
+      ],
+      "source_only_candidate_groups": [
+        "C07",
+        "C08",
+        "C09"
+      ],
+      "source_match_note": "一致/関連",
+      "l4_existing_expected_axes": [
+        {
+          "subject": "LS",
+          "axis": "typed_edge_mapping",
+          "state": "missing"
+        },
+        {
+          "subject": "LS",
+          "axis": "authority_mapping",
+          "state": "matched"
+        },
+        {
+          "subject": "LS",
+          "axis": "oracle_mapping",
+          "state": "matched"
+        }
+      ],
+      "l4_existing_expected_claim_state": "unknown",
+      "l4_existing_expected_operation_state": "not_requested",
+      "l4_existing_expected_operation_selection": "not_requested",
+      "l4_existing_expected_reference_state": "unresolved",
+      "l4_existing_expected_side_effect_count": 0,
+      "expected_derivation": "行別WR239 source leafのnegative_condition/expected_effectを当該L3/L10 source pointerと既存L4期待軸・effectに照合した。source leafの意味を行別に採り、checkerの不変L9 targetと一致するcasewise文面にした。",
+      "l9_case_id": "HARNESS-L9-053-F04-NEG-03",
+      "comparison_only": {
+        "change_exact_match": true,
+        "expected_exact_match": true
+      },
+      "formal_class_membership": "not_asserted",
+      "blind_candidate_context": {
+        "artifact": "WR242 comparison row",
+        "candidate_groups": [
+          "C07",
+          "C08",
+          "C09"
+        ],
+        "candidate_leaf_ids": [
+          "H053-SRC-003",
+          "H053-SRC-004",
+          "H053-SRC-009",
+          "H053-SRC-013",
+          "H053-SRC-016",
+          "H053-SRC-018",
+          "H053-SRC-025",
+          "H053-SRC-026",
+          "H053-SRC-027",
+          "H053-SRC-028"
+        ],
+        "use": "context only; broad/overlapping candidates do not establish this case membership or its expected meaning"
+      },
+      "source_mapping_status": "row-specific WR239 source leaves; source owner/contract matched"
+    },
+    {
+      "index": 37,
+      "code": "unselected_operation",
+      "l4_pointer": "/failure_classifications/37",
+      "l4_design_ref": "HARNESS-L4-053-N01",
+      "l4_source_basis_ref": "docs/helix-harness/L4-basic-design/semantic-asset-lineage.json#/failure_classifications/37/backflow_owners/0",
+      "change": "参照未決なのにsplit実操作へ進む",
+      "change_derivation": "既存L4 conditions[0]を保持してcasewise singular fieldへ投影。WR242 fixed comparison上の既存L9 changeとは対照確認のみ。",
+      "expected_source_refs": [
+        {
+          "source_audit_record_id": "H053-S22",
+          "source_namespace": "WR239 source-only record H053-Snn",
+          "source_audit_record_path": "docs/governance/audits/wr239-h053-source-only-2026-10-31.json",
+          "source_contract": "HARNESS-L4-053-N01",
+          "source_files": [
+            {
+              "path": "docs/helix-harness/L3-requirements/nfr-grade.json",
+              "pointer": "/requirements/3"
+            },
+            {
+              "path": "docs/helix-harness/L10-verification/nfr-verification.json",
+              "pointer": "/cases/3"
+            }
+          ],
+          "l4_design_contract_pointer": "/contracts/4",
+          "source_leaf_pointers": [
+            "/requirements/3",
+            "/cases/3",
+            "/contracts/4"
+          ],
+          "negative_condition": "初回照合からsplit実操作を選ぶ/開始する",
+          "expected_effect": "操作を初回選択せず、053 ownerの参照訂正/適用判断まで保留する"
+        }
+      ],
+      "source_only_candidate_groups": [
+        "C10",
+        "C11"
+      ],
+      "source_match_note": "一致・既存行が扱うsplit branchのみ",
+      "l4_existing_expected_axes": [
+        {
+          "subject": "LS",
+          "axis": "lineage_relation",
+          "state": "matched"
+        }
+      ],
+      "l4_existing_expected_claim_state": "conflict",
+      "l4_existing_expected_operation_state": "held",
+      "l4_existing_expected_operation_selection": "not_selected",
+      "l4_existing_expected_reference_state": "unresolved",
+      "l4_existing_expected_side_effect_count": 0,
+      "expected_derivation": "行別WR239 source leafのnegative_condition/expected_effectを当該L3/L10 source pointerと既存L4期待軸・effectに照合した。source leafの意味を行別に採り、checkerの不変L9 targetと一致するcasewise文面にした。",
+      "l9_case_id": "HARNESS-L9-053-N01-NEG-03",
+      "comparison_only": {
+        "change_exact_match": true,
+        "expected_exact_match": true
+      },
+      "formal_class_membership": "not_asserted",
+      "blind_candidate_context": {
+        "artifact": "WR242 comparison row",
+        "candidate_groups": [
+          "C10",
+          "C11"
+        ],
+        "candidate_leaf_ids": [
+          "H053-SRC-005",
+          "H053-SRC-010",
+          "H053-SRC-015",
+          "H053-SRC-017",
+          "H053-SRC-018",
+          "H053-SRC-019",
+          "H053-SRC-020",
+          "H053-SRC-029",
+          "H053-SRC-030",
+          "H053-SRC-031",
+          "H053-SRC-032"
+        ],
+        "use": "context only; broad/overlapping candidates do not establish this case membership or its expected meaning"
+      },
+      "source_mapping_status": "row-specific WR239 source leaves; source owner/contract matched"
+    }
+  ],
+  "legacy_assets_inherited_from_wr239": [
+    "LEGACY-ASSET-A4DD57E39031B1402494",
+    "LEGACY-ASSET-310E87378AFE8095809C",
+    "LEGACY-ASSET-36AC5308AB06DEF9DE4B",
+    "LEGACY-ASSET-CCA6C60FBB1D735EC38E"
+  ],
+  "scope_boundary": "L4 casewise field projection only. No L9 expectation, L5/L8, source pins, requirement, authority, formal class membership, runtime, test, or CI changes.",
+  "row_mapping_note": "WR239 `H053-Snn` source-audit record IDs and WR242 `H053-SRC-nnn` leaf IDs belong to distinct artifact namespaces and are not equated. Exact row source leaves come only from WR239 row_comparison.source_only_candidate_records; six rows without a unique leaf use direct L3/L10+L4 pointers. WR242 candidate groups/leaves are contextual only because they overlap and do not prove row membership."
+}

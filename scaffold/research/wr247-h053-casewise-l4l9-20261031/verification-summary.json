@@ -1,0 +1,195 @@
+{
+  "schema": "wr247-verification-summary.v1",
+  "evidence_kind": "scaffold",
+  "authority_effect": "none",
+  "base_revision": "756cac0ebdf02d38d0703566bae24c8de20b3275",
+  "measurements": {
+    "pre": {
+      "tree": "base revision, before WR247 edits",
+      "check_child": {
+        "command": "python3 -B scaffold/tools/design_verification_checker.py check-child --root . --l4 docs/helix-harness/L4-basic-design/semantic-asset-lineage.json --l9 docs/helix-harness/L9-integration-verification/semantic-asset-lineage.json --l5 docs/helix-harness/L5-detail-design/semantic-asset-lineage.json --l8 docs/helix-harness/L8-unit-verification/semantic-asset-lineage.json",
+        "overall_passed": false,
+        "L4_L9_pair_passed": true,
+        "L5_L8_pair_passed": true,
+        "negative_4way": {
+          "passed": false,
+          "counts": {
+            "L4": 38,
+            "L9": 38,
+            "L8": 38,
+            "L5": 38
+          },
+          "matched": 0,
+          "failure_count": 76,
+          "attributes": {
+            "change_or_condition": 38,
+            "expected": 38
+          }
+        }
+      },
+      "scfctl_validate": {
+        "command": "python3 -B scaffold/tools/scfctl.py validate",
+        "summary": "bindings=187 fail=0"
+      },
+      "scfctl_stale": {
+        "command": "python3 -B scaffold/tools/scfctl.py stale",
+        "summary": "stale=0"
+      }
+    },
+    "post": {
+      "tree": "WR247 L4 projection, research record/binding added, WR242 binding rebound",
+      "check_child": {
+        "command": "python3 -B scaffold/tools/design_verification_checker.py check-child --root . --l4 docs/helix-harness/L4-basic-design/semantic-asset-lineage.json --l9 docs/helix-harness/L9-integration-verification/semantic-asset-lineage.json --l5 docs/helix-harness/L5-detail-design/semantic-asset-lineage.json --l8 docs/helix-harness/L8-unit-verification/semantic-asset-lineage.json",
+        "overall_passed": false,
+        "L4_L9_pair_passed": true,
+        "L5_L8_pair_passed": true,
+        "negative_4way": {
+          "passed": true,
+          "counts": {
+            "L4": 38,
+            "L9": 38,
+            "L8": 38,
+            "L5": 38
+          },
+          "matched": 38,
+          "failure_count": 0
+        },
+        "ownership_caps": [
+          {
+            "layer": "L4",
+            "passed": true,
+            "failure_count": 0,
+            "example": null
+          },
+          {
+            "layer": "L9",
+            "passed": true,
+            "failure_count": 0,
+            "example": null
+          },
+          {
+            "layer": "L5",
+            "passed": true,
+            "failure_count": 0,
+            "example": null
+          },
+          {
+            "layer": "L8",
+            "passed": false,
+            "failure_count": 30,
+            "example": {
+              "check": "CHK-OWNERSHIP-CAP",
+              "layer": "L8",
+              "file": "docs/helix-harness/L8-unit-verification/semantic-asset-lineage.json",
+              "pointer": "/additional_unit_cases/21/typed_input/validated_input/input/qualifications/0/subject_sha256",
+              "violation": "forbidden_key",
+              "key": "subject_sha256"
+            }
+          }
+        ],
+        "pins_passed": true
+      },
+      "scfctl_validate": {
+        "command": "python3 -B scaffold/tools/scfctl.py validate",
+        "summary": "bindings=188 fail=0"
+      },
+      "scfctl_stale": {
+        "command": "python3 -B scaffold/tools/scfctl.py stale",
+        "summary": "stale=0"
+      },
+      "historical_wr242_validator": {
+        "command": "python3 -B scaffold/research/wr242-h053-l4-l9-comparison-20261031/validate_comparison.py",
+        "result": "FAIL at source-bytes assertion because current L4 was updated after its historical comparison digest; frozen comparison/blind/verification/addendum files remain unchanged. This validator targets the historical source snapshot and cannot validate post-WR247 current L4 bytes."
+      }
+    },
+    "latest_main_overlay": {
+      "base_revision": "9cea2b158255942f758b27deba7ed45e31e3750f",
+      "overlay": "WR247 L4 projection and SCF-B-0207/research over latest main; SCF-B-0203 L4 pin rebound while preserving #3988 L8 pin",
+      "binding_id": "SCF-B-0207",
+      "scfctl_validate": "bindings=190 fail=0",
+      "scfctl_stale": "stale=0",
+      "check_child": {
+        "overall_passed": true,
+        "L4_L9_pair_passed": true,
+        "L5_L8_pair_passed": true,
+        "negative_4way_passed": true,
+        "counts": {
+          "L4": 38,
+          "L9": 38,
+          "L8": 38,
+          "L5": 38
+        },
+        "matched": 38,
+        "failure_count": 0,
+        "ownership_caps": {
+          "L4": 0,
+          "L9": 0,
+          "L5": 0,
+          "L8": 0
+        },
+        "pins_all_passed": true
+      },
+      "SCF-B-0203-preserved_pins": {
+        "L4_current": "0a6b391a6aef3b37e6a2715af87301200f53a150e855eb6c7d27e65d884711a6",
+        "L4_historical_comparison": "99621490097336317e2787d831cf94c761cdd39b04c696af8144c442748cf929",
+        "L8_current_from_PR_3988": "0e0de093df806bb0fc7df68a4d0d3371178a49c5528eb8f7c6066e7d42e4fa20"
+      },
+      "historical_wr242_validator_overlay": "FAIL at source byte assertion because current L4 and L8 differ from historical comparison snapshot; fixed evidence unchanged."
+    },
+    "historical_reproduction": {
+      "revision": "756cac0ebdf02d38d0703566bae24c8de20b3275",
+      "l4_sha256": "99621490097336317e2787d831cf94c761cdd39b04c696af8144c442748cf929",
+      "command": "python3 -B scaffold/research/wr242-h053-l4-l9-comparison-20261031/validate_comparison.py",
+      "result": "PASS; frozen blind/comparison/summary hashes verified; 32 source-leaf hashes; 38 L4/L9 rows; historical outputs not rewritten."
+    },
+    "base_after_main_l8_pin_copy": {
+      "base_revision": "756cac0ebdf02d38d0703566bae24c8de20b3275",
+      "scfctl_validate": "bindings=188 fail=0",
+      "scfctl_stale": "stale=1: SCF-B-0203 L8 upstream expects 0e0de093df806bb0fc7df68a4d0d3371178a49c5528eb8f7c6066e7d42e4fa20 from #3988, while the unchanged base L8 file remains 6365651422b2aa7cc4ae3d7596c445cc854eea140daabeddb8990da6c57d7bd2. L4 and L8 documents were not edited in this follow-up. Latest-main overlay is stale=0."
+    }
+  },
+  "fixed_evidence": {
+    "wr239": {
+      "comment_id": 6533432579,
+      "path": "docs/governance/audits/wr239-h053-source-only-2026-10-31.json",
+      "sha256": "c30e17f928ae329f87a73bca41f746b6aab085e4586897326c0a67ec4fbea98d"
+    },
+    "wr242": {
+      "comment_id": 6534090409,
+      "path": "scaffold/research/wr242-h053-l4-l9-comparison-20261031/blind-source-only.json",
+      "sha256": "5e69cd0c3c472090947fec9454d892ffa2caa24ed0aa2a1b2540f7d9c18f408b"
+    },
+    "L9_sha256_unchanged": "ab18e7965f1210eb638501178db9ccc886feb86fdafa7572f6f71cae1c2e268a",
+    "L5_sha256_unchanged": "6a66cffd1521e91130c710bbfd0d997c73c2cb56fd79d0959de725f6defdcb41",
+    "L8_sha256_unchanged": "6365651422b2aa7cc4ae3d7596c445cc854eea140daabeddb8990da6c57d7bd2",
+    "wr242_comparison_sha256": "ee245db3d4dab87aea212c6fe2f5f44f00f34fbfcd35faebb63fdd5fe88aa437",
+    "wr242_verification_summary_sha256": "a025836db3757b3dded20ff6407a73064d18ac515b20922122c232c95ae6ffb9",
+    "wr242_review_r1_addendum_sha256": "ea597ec9a6cb7898aa99024604d528c39b57825fda3c32854d7345461c5e99a9"
+  },
+  "interpretation": "最新main #3988 overlayでは、WR246のL8 ownership-cap修正後にcheck-child全体PASS、negative_4way=38/38、failure=0。SCF-B-0203は現在のL4 pinと#3988由来L8 pinをともに保持。WR242 validatorは歴史的756cac0 snapshotではPASSし、更新overlayでは想定どおり旧L4/L8 source bytesとの比較でFAIL。",
+  "binding_id": "SCF-B-0207",
+  "id_allocation": {
+    "assigned": "SCF-B-0207",
+    "checked_before_assignment": {
+      "origin_main": "cf31240384980220249a4f58abe62ce57d47a880",
+      "SCF-B-0207_present": false,
+      "registered_worktree_snapshots_checked": 351,
+      "SCF-B-0207_present_in_snapshots": false
+    },
+    "known_collisions": "SCF-B-0204 present on origin/main (#3984/WR243 F03); 0205 and 0206 reserved by active WR246/WR243 work; 0201 and 0203 occupied. WR243 and WR246 worktrees contained snapshots of 0204/0205 respectively; not reused."
+  },
+  "row_source_pointer_validation": {
+    "result": "PASS",
+    "rows": 38,
+    "rows_with_specific_WR239_source_leaf": 28,
+    "rows_using_direct_L3_L10_derivation": 10,
+    "pointer_resolution": "Every cited L3/L10 requirement/case and L4 contract/source leaf pointer resolved in the latest-main overlay. WR239 H053-Snn record IDs and WR242 H053-SRC-nnn leaf IDs remain distinct namespaces."
+  },
+  "three_way_binding_merge": {
+    "path": "scaffold/bindings/SCF-B-0203.json",
+    "base": "756cac0ebdf02d38d0703566bae24c8de20b3275",
+    "ours": "WR247 L4 pin rebinding + main #3988 L8 upstream row copied exactly",
+    "theirs": "origin/main 9cea2b158255942f758b27deba7ed45e31e3750f",
+    "result": "clean (git merge-file exit 0); merged content equals current candidate binding; both L4/L8 pins retained."
+  }
+}

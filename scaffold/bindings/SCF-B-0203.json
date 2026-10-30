@@ -30,8 +30,8 @@
     },
     {
       "path": "docs/helix-harness/L4-basic-design/semantic-asset-lineage.json",
-      "sha256": "99621490097336317e2787d831cf94c761cdd39b04c696af8144c442748cf929",
-      "note": "base dd07a349の既存38 failure_classificationsとcontracts。改変なし。"
+      "sha256": "0a6b391a6aef3b37e6a2715af87301200f53a150e855eb6c7d27e65d884711a6",
+      "note": "WR242比較時点のL4 bytes SHA-256 99621490097336317e2787d831cf94c761cdd39b04c696af8144c442748cf929 はcomparison.jsonに固定。現在のupstreamはWR247 casewise投影後bytesへ再束縛し、historical comparison/blind/verificationは書き換えない。"
     },
     {
       "path": "docs/helix-harness/L9-integration-verification/semantic-asset-lineage.json",
@@ -118,7 +118,8 @@
       "On latest main overlay, the pre-rebind binding with its old scaffold checker/blind upstream pins reported stale=1 only for scaffold/tools/design_verification_checker.py (expected base SHA cfd12c5bc4a1dd45351858488b476af0025d35deca7027da35bb1373818b129d; actual PR #3982 SHA e751526d67cd8df11e5aac1c5a1a178dfbd0fecc3f2ed21f995b7dda11ea4d5d); the blind SHA matched.",
       "After moving both scaffold/ SHA pins to verification.oracles, latest-main overlay scfctl validate reported bindings=187 fail=0 and scfctl stale reported stale=0; base worktree reported bindings=184 fail=0 and stale=0.",
       "Latest-main checker check-child measurement at 216c2240: pair checks pass 6/6 each; legacy casewise negative 4-way has 38 rows per layer, matched=0, failures=76 (38 change_or_condition, 38 expected); L8 ownership cap=30; pin counts [15,15,17,17] all pass.",
-      "Latest-main reference refs/codex-readback/wr244-main points to 216c22400e2823eff6126982a44459b4a938fe70; both #3981 merge 03141af4 and #3982 merge 2684816 are ancestors. This exact target was used for virtual merge/overlay validation."
+      "Latest-main reference refs/codex-readback/wr244-main points to 216c22400e2823eff6126982a44459b4a938fe70; both #3981 merge 03141af4 and #3982 merge 2684816 are ancestors. This exact target was used for virtual merge/overlay validation.",
+      "WR242 historical L4 bytes at comparison base dd07a349 remain SHA-256 99621490097336317e2787d831cf94c761cdd39b04c696af8144c442748cf929 in the frozen comparison record; current upstream digest is rebound to WR247 post-projection bytes 0a6b391a6aef3b37e6a2715af87301200f53a150e855eb6c7d27e65d884711a6."
     ],
     "negative_cases": [
       "Do not interpret fixed blind candidate_keys_asserted=0 as proof that casewise or later explicit design is impossible.",

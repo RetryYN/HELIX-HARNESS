@@ -1,0 +1,108 @@
+{
+  "schema_revision": 1,
+  "id": "SCF-B-0207",
+  "kind": "scaffold",
+  "title": "WR247 H053 L4/L9 casewise projection evidence",
+  "product": "HELIX-HARNESS",
+  "owner_candidate": "HELIX-HARNESS H053 L4 casewise field projection evidence owner",
+  "state": "registered",
+  "reason": "WR247で許可されたL4 casewise checker fieldsと、fixed blind/sourceへの行別導出根拠および前後計測を保持する。",
+  "upstream": [
+    {
+      "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+      "sha256": "a3b907cdc316117d4684632f9a1cbf36125eb6e6172f9cfc286060617583d7be",
+      "note": "HARNESS-L3-053-F01..F04 source-derived expectations."
+    },
+    {
+      "path": "docs/helix-harness/L3-requirements/business-requirements.json",
+      "sha256": "25e0e8f8ee8acbc220483ab6854155218193861086cf757f933e2cd6263f444d",
+      "note": "HARNESS-L3-053-B01 source-derived expectations."
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/functional-verification.json",
+      "sha256": "fc58ad2268746d7924ac9be33e8f3f75e6d3c2cc619e27fbc1ddc34edd065cb2",
+      "note": "HARNESS-L10-053-F01..F04 paired verification sources."
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/business-verification.json",
+      "sha256": "3a9982ef2e59e3d027ce8e5cd72b9879b6224a8e4ea74b657bf9b67c90934319",
+      "note": "HARNESS-L10-053-B01 paired verification source."
+    },
+    {
+      "path": "docs/helix-harness/L4-basic-design/semantic-asset-lineage.json",
+      "sha256": "0a6b391a6aef3b37e6a2715af87301200f53a150e855eb6c7d27e65d884711a6",
+      "note": "Current L4 with WR247 casewise projection."
+    },
+    {
+      "path": "docs/helix-harness/L9-integration-verification/semantic-asset-lineage.json",
+      "sha256": "ab18e7965f1210eb638501178db9ccc886feb86fdafa7572f6f71cae1c2e268a",
+      "note": "L9 comparison target; not edited."
+    }
+  ],
+  "role": "PR-AのL4 casewise change/expected projectionのsource derivationとchecker measurementを記録する。",
+  "obligations": [
+    "38行全てに一意な既存oracle_refを持たせる。",
+    "conditionsとeffectを保持し、change/expectedをL4側だけへ加える。",
+    "expectedは行別source pointerとL4期待軸を根拠にし、L9は比較targetとして扱う。",
+    "fixed blind bytesを保持し、formal class membershipやmarkerを作らない。",
+    "L5/L8は後続PR-Bへ残す。"
+  ],
+  "connections": {
+    "consumers": [
+      "WR247-H053-CASEWISE-L4L9",
+      "later L5/L8 casewise follow-up"
+    ],
+    "dependencies": [
+      "WR239 fixed source-only record at #3510 comment 6533432579",
+      "WR242 fixed source-only comparison at #3510 comment 6534090409",
+      "HARNESS011 PR #3955 and #3968 casewise precedent",
+      "WR242 PR #3983 R1 addendum"
+    ],
+    "boundary": "Scaffold evidence only; no authority effect."
+  },
+  "operations": {
+    "allowed": [
+      "static JSON source/pointer comparison",
+      "design_verification_checker.py check-child as static measurement",
+      "scfctl validate/stale"
+    ],
+    "forbidden": [
+      "L4 algorithm/runtime/test/CI or any old runtime/test/CI",
+      "modify L9/L5/L8 or fixed blind bytes",
+      "introduce explicit equivalence classes or class marker"
+    ]
+  },
+  "artifacts": [
+    "scaffold/research/wr247-h053-casewise-l4l9-20261031/README.md",
+    "scaffold/research/wr247-h053-casewise-l4l9-20261031/casewise-design-record.json",
+    "scaffold/research/wr247-h053-casewise-l4l9-20261031/verification-summary.json",
+    "docs/helix-harness/L4-basic-design/semantic-asset-lineage.json"
+  ],
+  "verification": {
+    "evidence_kind": "scaffold",
+    "scope": [
+      "source_revision_stale",
+      "negative_case",
+      "forbidden_write_scope"
+    ],
+    "oracles": [
+      "WR239 fixed blind SHA-256 c30e17f928ae329f87a73bca41f746b6aab085e4586897326c0a67ec4fbea98d comment 6533432579.",
+      "WR242 fixed blind SHA-256 5e69cd0c3c472090947fec9454d892ffa2caa24ed0aa2a1b2540f7d9c18f408b comment 6534090409.",
+      "Casewise derivation and row matches are recorded in casewise-design-record.json.",
+      "SCF-B-0207 was checked absent from fetched origin/main and all registered worktree snapshots before assignment; SCF-B-0204 is already registered on origin/main."
+    ],
+    "negative_cases": [
+      "Do not derive source meanings from L9 expected strings.",
+      "Do not infer formal class membership from candidate groups or case counts.",
+      "Do not treat check-child as behavioral or approval evidence."
+    ]
+  },
+  "replacement": {
+    "role_target": "Future formal L4/L9 design or verification artifact, if separately accepted.",
+    "formal_artifacts": [],
+    "issue": 3510,
+    "status": "pending"
+  },
+  "created": "2026-10-31",
+  "updated": "2026-10-31"
+}
