@@ -600,9 +600,8 @@
           "selected_phase": "resume",
           "condition_facet": "inputs",
           "condition_facet_status": "corresponding",
-          "condition": "workflow_material_corresponding",
-          "witness_rule": "binding.project と context.binding.project がともに非空文字列で一致し、同じbindingの他4 fieldも一致する。",
-          "finding_signature": [],
+          "witness_rule": "このclassはresumeのinputs facet内にあるbinding.project比較だけを表す。binding.project と context.binding.project がともに非空文字列で一致し、同じbindingの他4 fieldも一致する固定witnessでのfacet局所状態はcorresponding、局所findingはない。全体conditionと全findingはcase単位で記録する。",
+          "local_finding_signature": [],
           "source_pointers": [
             "/diagnostic_contract/condition_names",
             "/diagnostic_contract/comparison_table/binding",
@@ -618,9 +617,8 @@
           "selected_phase": "resume",
           "condition_facet": "inputs",
           "condition_facet_status": "unknown",
-          "condition": "workflow_material_unknown",
-          "witness_rule": "binding.project の一方が非空文字列でなく、他方は非空文字列。L4のstring比較では不足側の原pointerにsource_unresolvedを置く。",
-          "finding_signature": [
+          "witness_rule": "このclassはresumeのinputs facet内にあるbinding.project比較だけを表す。binding.project の一方が非空文字列でなく、他方は非空文字列の固定witnessでは、facet局所状態はunknownとなり、L4 string比較は不足側の原pointerにsource_unresolvedを置く。全体conditionと全findingはcase単位で記録する。",
+          "local_finding_signature": [
             {
               "code": "source_unresolved",
               "pointer": "/binding/project",
@@ -642,9 +640,8 @@
           "selected_phase": "resume",
           "condition_facet": "inputs",
           "condition_facet_status": "violation",
-          "condition": "workflow_material_violation",
-          "witness_rule": "binding.project と context.binding.project がともに非空文字列で相反する。L4のstring比較ではactual原pointerにsource_conflictを置く。",
-          "finding_signature": [
+          "witness_rule": "このclassはresumeのinputs facet内にあるbinding.project比較だけを表す。binding.project と context.binding.project がともに非空文字列で相反する固定witnessでは、facet局所状態はviolationとなり、L4 string比較はactual原pointerにsource_conflictを置く。全体conditionと全findingはcase単位で記録する。",
+          "local_finding_signature": [
             {
               "code": "source_conflict",
               "pointer": "/binding/project",
