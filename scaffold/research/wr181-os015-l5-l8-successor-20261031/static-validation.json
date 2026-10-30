@@ -19,7 +19,7 @@
     "HELIXOS-L9-015-C0584": "622f442bc8350f275dec386db1516a75e6fe64b4092546ae41a949aede8a4418",
     "HELIXOS-L9-015-C0585": "b9a798379d22d7dc4fcb542619e0b6cdea7b18378f3c0f6e44b2bf391f3ca6a1"
   },
-  "candidate_l5_revision": "9b659e885984bc93490ac088f4278c8987956ea7",
+  "candidate_l5_revision": "5dec530a950d9c1280ab2226121ea148af539ae4",
   "source_pair_revision": "e3a16010cce138001d33df19afef92e3fa049d81",
   "l9_expected_material_loaded": false,
   "l7_expected_proposal_used": false

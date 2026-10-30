@@ -2,7 +2,7 @@
   "evidence_kind": "scaffold",
   "authority_effect": "none",
   "source_main": "e3a16010cce138001d33df19afef92e3fa049d81",
-  "l5_commit": "9b659e885984bc93490ac088f4278c8987956ea7",
+  "l5_commit": "5dec530a950d9c1280ab2226121ea148af539ae4",
   "l4_l9_pair_pin_revision": "e3a16010cce138001d33df19afef92e3fa049d81",
   "counts": {
     "before": {
@@ -211,28 +211,29 @@
     "freeze record not modified and remains mechanically unmatched"
   ],
   "latest_main_trial": {
-    "main_revision": "e3a16010cce138001d33df19afef92e3fa049d81",
-    "base_includes": "#3939 read-after; #3940 merged before candidate rebase",
+    "main_revision": "f7ee0a09cf113afe7b9b1b3377e2d5d0908cbc53",
+    "base_includes": "#3939 read-after, #3940, and #3934 merged before the candidate trial; candidate branch kept without rebase after L5 SHA pinning.",
     "path_overlap_with_main_delta": 0,
     "main_delta_paths": [
-      "docs/helix-os/L8-unit-verification/ticket-workflow-derivation.json"
+      "docs/helix-harness/L9-integration-verification/process-state-port.json",
+      "scaffold/bindings/SCF-B-0174.json",
+      "scaffold/research/wr186-psp-negative-residual/README.md",
+      "scaffold/research/wr186-psp-negative-residual/f04-audit-rows.json",
+      "scaffold/research/wr186-psp-negative-residual/independent-manual-review.md",
+      "scaffold/research/wr186-psp-negative-residual/validate_l9.py"
     ],
-    "conflicts": 0
+    "conflicts": 0,
+    "l5_revision_reachable": true
   },
   "scaffold_binding": {
     "scfctl_validate": "PASS",
     "binding_count": 168,
     "validation_failures": 0,
     "scfctl_stale": {
-      "stale_count": 4,
-      "stale_ids": [
-        "SCF-B-0170",
-        "SCF-B-0175",
-        "SCF-B-0176",
-        "SCF-B-0177"
-      ],
+      "stale_count": 0,
+      "stale_ids": [],
       "SCF-B-0178": "not stale",
-      "meaning": "predecessor bindings still pin prior L5/L8 bytes; historical bindings left unchanged"
+      "meaning": "L5/L8 source byte pins and successor chain pins match current candidate bytes."
     }
   }
 }

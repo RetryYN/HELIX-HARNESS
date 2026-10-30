@@ -346,7 +346,10 @@ def build_l8() -> None:
         out["unit_cases"].append(case_row(spec, l7, digest))
 
     out["source_pair_pins"] = pin_pair()
-    l5_revision = subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=ROOT, text=True).strip()
+    l5_revision = subprocess.check_output(
+        ["git", "log", "-1", "--format=%H", "--", L5], cwd=ROOT, text=True
+    ).strip()
+    assert sha(git_raw(l5_revision, L5)) == sha((ROOT / L5).read_bytes())
     out["candidate_l5_bytes"] = {
         "path": L5,
         "revision": l5_revision,
