@@ -1,0 +1,801 @@
+{
+  "artifact_id": "WR239-H053-R1-EFFECT-SCOPE-CORRECTION-2026-10-31",
+  "evidence_kind": "append_only_review_correction_record",
+  "authority_effect": "none",
+  "review_comment": {
+    "pr": 3979,
+    "comment_id": "6533801995",
+    "review": "R1 F1/F2"
+  },
+  "base_revision": "fea0fa6515772f7ec2fce271f2c0368b8fa39b90",
+  "previous_audit": {
+    "path": "docs/governance/audits/wr239-h053-axis-state-alignment-2026-10-31.json",
+    "sha256": "150ac4bbc7ee96ecf6b98aded4ad1eded86f977c1cec73c9ae210a9a7b907a20",
+    "preserved": "変更せず保持"
+  },
+  "fixed_blind_artifact": {
+    "path": "docs/governance/audits/wr239-h053-source-only-2026-10-31.json",
+    "sha256": "c30e17f928ae329f87a73bca41f746b6aab085e4586897326c0a67ec4fbea98d",
+    "preserved": "bytes不変"
+  },
+  "source_revisions": {
+    "docs/helix-harness/L3-requirements/business-requirements.json": "25e0e8f8ee8acbc220483ab6854155218193861086cf757f933e2cd6263f444d",
+    "docs/helix-harness/L10-verification/business-verification.json": "3a9982ef2e59e3d027ce8e5cd72b9879b6224a8e4ea74b657bf9b67c90934319",
+    "docs/helix-harness/L3-requirements/functional-requirements.json": "a3b907cdc316117d4684632f9a1cbf36125eb6e6172f9cfc286060617583d7be",
+    "docs/helix-harness/L10-verification/functional-verification.json": "fc58ad2268746d7924ac9be33e8f3f75e6d3c2cc619e27fbc1ddc34edd065cb2",
+    "docs/helix-harness/L4-basic-design/semantic-asset-lineage.json": "99621490097336317e2787d831cf94c761cdd39b04c696af8144c442748cf929"
+  },
+  "corrections": [
+    {
+      "pointer": "/failure_classifications/18",
+      "code": "new_precondition",
+      "basis": [
+        "docs/helix-harness/L3-requirements/business-requirements.json#/requirements/3/obligation",
+        "docs/helix-harness/L10-verification/business-verification.json#/cases/3/failure_observation",
+        "docs/helix-harness/L4-basic-design/semantic-asset-lineage.json#/contracts/5/behavior"
+      ],
+      "interpretation": "blindの導出限界を製品効果へ転記せず、052の採択や実施順序を前提として新設しないという境界だけを記す。",
+      "before": "052の採択・実施順序を053照合の追加前提として設けず、具体的な実施順序はunknownに残す。 関係のない既知axisまで消さない。実変換/保存/権限発行0。",
+      "after": "052の採択や実施順序を前提として新設しない。 関係のない既知axisまで消さない。実変換/保存/権限発行0。"
+    },
+    {
+      "pointer": "/failure_classifications/21",
+      "code": "owner_boundary_change",
+      "basis": [
+        "docs/helix-harness/L3-requirements/business-requirements.json#/requirements/3/obligation",
+        "docs/helix-harness/L10-verification/business-verification.json#/cases/3/failure_observation",
+        "docs/helix-harness/L4-basic-design/semantic-asset-lineage.json#/contracts/5/behavior"
+      ],
+      "interpretation": "L3/L4が無条件に定める既存条件の非再定義を記し、一意性に依存する条件節を除く。",
+      "before": "003/004/016の既存revision/trace/stale/diff条件を053で再定義せず、詳細が一意に決まらない場合は既存条件を変更しない。 関係のない既知axisまで消さない。実変換/保存/権限発行0。",
+      "after": "003/004/016の既存revision/trace/stale/diff条件を053で再定義しない。 関係のない既知axisまで消さない。実変換/保存/権限発行0。"
+    },
+    {
+      "pointer": "/failure_classifications/30",
+      "code": "scope_cross_binding",
+      "basis": [
+        "docs/helix-harness/L3-requirements/functional-requirements.json#/requirements/21/obligation",
+        "docs/helix-harness/L10-verification/functional-verification.json#/cases/21/failure_observation",
+        "docs/helix-harness/L4-basic-design/semantic-asset-lineage.json#/contracts/2/behavior",
+        "docs/helix-harness/L4-basic-design/semantic-asset-lineage.json#/contracts/3/behavior",
+        "/failure_classifications/30/expected_record_axes"
+      ],
+      "interpretation": "構造化された5軸を全て効果に列記し、各対応をunknownとしてrecord ownerへ返す。条件・structured expectedは変更しない。",
+      "before": "対象revision/scopeに適合しないlineage対応を成立扱いせず、該当する関係/履歴の対応をunknownとしてrecord ownerへ返す。 関係のない既知axisまで消さない。実変換/保存/権限発行0。",
+      "after": "対象revision/scopeに適合しないlineage対応を成立扱いせず、lineage relation・history mapping・authority mapping・oracle mapping・typed edge mappingの対応をunknownとしてrecord ownerへ返す。 関係のない既知axisまで消さない。実変換/保存/権限発行0。"
+    }
+  ],
+  "full_row_state_review": {
+    "reviewed_count": 38,
+    "rows": [
+      {
+        "pointer": "/failure_classifications/0",
+        "code": "authority_mapping_missing",
+        "record_axes": [
+          {
+            "subject": "LS",
+            "axis": "authority_mapping",
+            "state": "missing"
+          },
+          {
+            "subject": "LS",
+            "axis": "oracle_mapping",
+            "state": "matched"
+          },
+          {
+            "subject": "LS",
+            "axis": "typed_edge_mapping",
+            "state": "matched"
+          },
+          {
+            "subject": "LS",
+            "axis": "history_mapping",
+            "state": "matched"
+          }
+        ],
+        "claim_state": "unknown",
+        "operation_state": "not_requested",
+        "operation_selection": "not_requested",
+        "reference_state": "unresolved",
+        "side_effect_count": 0
+      },
+      {
+        "pointer": "/failure_classifications/1",
+        "code": "authority_mapping_unknown",
+        "record_axes": [
+          {
+            "subject": "LS",
+            "axis": "authority_mapping",
+            "state": "unknown"
+          }
+        ],
+        "claim_state": "unknown",
+        "operation_state": "not_requested",
+        "operation_selection": "not_requested",
+        "reference_state": "unresolved",
+        "side_effect_count": 0
+      },
+      {
+        "pointer": "/failure_classifications/2",
+        "code": "authority_procedure_added",
+        "record_axes": [
+          {
+            "subject": "LS",
+            "axis": "authority_mapping",
+            "state": "matched"
+          }
+        ],
+        "claim_state": "conflict",
+        "operation_state": "not_requested",
+        "operation_selection": "not_requested",
+        "reference_state": "unresolved",
+        "side_effect_count": 0
+      },
+      {
+        "pointer": "/failure_classifications/3",
+        "code": "base_revision_mismatch",
+        "record_axes": [
+          {
+            "subject": "LS A/r1 vs r2",
+            "axis": "semantic_revision",
+            "state": "conflict"
+          },
+          {
+            "subject": "LS",
+            "axis": "history_mapping",
+            "state": "conflict"
+          }
+        ],
+        "claim_state": "conflict",
+        "operation_state": "not_requested",
+        "operation_selection": "not_requested",
+        "reference_state": "unresolved",
+        "side_effect_count": 0
+      },
+      {
+        "pointer": "/failure_classifications/4",
+        "code": "fixture_as_rollback",
+        "record_axes": [
+          {
+            "subject": "LS",
+            "axis": "lineage_relation",
+            "state": "matched"
+          }
+        ],
+        "claim_state": "unknown",
+        "operation_state": "not_requested",
+        "operation_selection": "not_requested",
+        "reference_state": "unresolved",
+        "side_effect_count": 0
+      },
+      {
+        "pointer": "/failure_classifications/5",
+        "code": "global_stop_added",
+        "record_axes": [
+          {
+            "subject": "A/B",
+            "axis": "identity",
+            "state": "matched"
+          }
+        ],
+        "claim_state": "conflict",
+        "operation_state": "not_requested",
+        "operation_selection": "not_requested",
+        "reference_state": "unresolved",
+        "side_effect_count": 0
+      },
+      {
+        "pointer": "/failure_classifications/6",
+        "code": "hash_identity_inference",
+        "record_axes": [
+          {
+            "subject": "A/B",
+            "axis": "identity",
+            "state": "matched"
+          }
+        ],
+        "claim_state": "conflict",
+        "operation_state": "not_requested",
+        "operation_selection": "not_requested",
+        "reference_state": "unresolved",
+        "side_effect_count": 0
+      },
+      {
+        "pointer": "/failure_classifications/7",
+        "code": "history_mapping_missing",
+        "record_axes": [
+          {
+            "subject": "LS",
+            "axis": "history_mapping",
+            "state": "missing"
+          }
+        ],
+        "claim_state": "unknown",
+        "operation_state": "not_requested",
+        "operation_selection": "not_requested",
+        "reference_state": "unresolved",
+        "side_effect_count": 0
+      },
+      {
+        "pointer": "/failure_classifications/8",
+        "code": "identity_conflict",
+        "record_axes": [
+          {
+            "subject": "A/r1",
+            "axis": "identity",
+            "state": "conflict"
+          }
+        ],
+        "claim_state": "conflict",
+        "operation_state": "not_requested",
+        "operation_selection": "not_requested",
+        "reference_state": "unresolved",
+        "side_effect_count": 0
+      },
+      {
+        "pointer": "/failure_classifications/9",
+        "code": "identity_missing",
+        "record_axes": [
+          {
+            "subject": "A record slot",
+            "axis": "identity",
+            "state": "missing"
+          }
+        ],
+        "claim_state": "unknown",
+        "operation_state": "not_requested",
+        "operation_selection": "not_requested",
+        "reference_state": "unresolved",
+        "side_effect_count": 0
+      },
+      {
+        "pointer": "/failure_classifications/10",
+        "code": "legacy_completion_claim",
+        "record_axes": [
+          {
+            "subject": "LS",
+            "axis": "lineage_relation",
+            "state": "matched"
+          }
+        ],
+        "claim_state": "unknown",
+        "operation_state": "not_requested",
+        "operation_selection": "not_requested",
+        "reference_state": "unresolved",
+        "side_effect_count": 0
+      },
+      {
+        "pointer": "/failure_classifications/11",
+        "code": "lineage_as_authority_transfer",
+        "record_axes": [
+          {
+            "subject": "A/r1 rename",
+            "axis": "location_history",
+            "state": "matched"
+          }
+        ],
+        "claim_state": "unknown",
+        "operation_state": "not_requested",
+        "operation_selection": "not_requested",
+        "reference_state": "unresolved",
+        "side_effect_count": 0
+      },
+      {
+        "pointer": "/failure_classifications/12",
+        "code": "lineage_endpoint_missing",
+        "record_axes": [
+          {
+            "subject": "LM B/b1",
+            "axis": "identity",
+            "state": "missing"
+          },
+          {
+            "subject": "LM",
+            "axis": "lineage_relation",
+            "state": "unknown"
+          }
+        ],
+        "claim_state": "unknown",
+        "operation_state": "not_requested",
+        "operation_selection": "not_requested",
+        "reference_state": "unresolved",
+        "side_effect_count": 0
+      },
+      {
+        "pointer": "/failure_classifications/13",
+        "code": "lineage_target_missing",
+        "record_axes": [
+          {
+            "subject": "LX D/d1",
+            "axis": "identity",
+            "state": "missing"
+          },
+          {
+            "subject": "LX",
+            "axis": "lineage_relation",
+            "state": "unknown"
+          }
+        ],
+        "claim_state": "unknown",
+        "operation_state": "not_requested",
+        "operation_selection": "not_requested",
+        "reference_state": "unresolved",
+        "side_effect_count": 0
+      },
+      {
+        "pointer": "/failure_classifications/14",
+        "code": "local_as_global_completion",
+        "record_axes": [
+          {
+            "subject": "A/B",
+            "axis": "identity",
+            "state": "matched"
+          }
+        ],
+        "claim_state": "unknown",
+        "operation_state": "not_requested",
+        "operation_selection": "not_requested",
+        "reference_state": "unresolved",
+        "side_effect_count": 0
+      },
+      {
+        "pointer": "/failure_classifications/15",
+        "code": "location_as_semantic",
+        "record_axes": [
+          {
+            "subject": "A/r1",
+            "axis": "semantic_revision",
+            "state": "matched"
+          },
+          {
+            "subject": "A/r1",
+            "axis": "location_history",
+            "state": "matched"
+          }
+        ],
+        "claim_state": "conflict",
+        "operation_state": "not_requested",
+        "operation_selection": "not_requested",
+        "reference_state": "unresolved",
+        "side_effect_count": 0
+      },
+      {
+        "pointer": "/failure_classifications/16",
+        "code": "location_identity_change",
+        "record_axes": [
+          {
+            "subject": "A/r1",
+            "axis": "identity",
+            "state": "matched"
+          },
+          {
+            "subject": "A/r1",
+            "axis": "location_history",
+            "state": "matched"
+          }
+        ],
+        "claim_state": "conflict",
+        "operation_state": "not_requested",
+        "operation_selection": "not_requested",
+        "reference_state": "unresolved",
+        "side_effect_count": 0
+      },
+      {
+        "pointer": "/failure_classifications/17",
+        "code": "name_identity_inference",
+        "record_axes": [
+          {
+            "subject": "A/B",
+            "axis": "identity",
+            "state": "matched"
+          }
+        ],
+        "claim_state": "conflict",
+        "operation_state": "not_requested",
+        "operation_selection": "not_requested",
+        "reference_state": "unresolved",
+        "side_effect_count": 0
+      },
+      {
+        "pointer": "/failure_classifications/18",
+        "code": "new_precondition",
+        "record_axes": [
+          {
+            "subject": "A/B",
+            "axis": "identity",
+            "state": "matched"
+          }
+        ],
+        "claim_state": "conflict",
+        "operation_state": "not_requested",
+        "operation_selection": "not_requested",
+        "reference_state": "unresolved",
+        "side_effect_count": 0
+      },
+      {
+        "pointer": "/failure_classifications/19",
+        "code": "oracle_mapping_missing",
+        "record_axes": [
+          {
+            "subject": "LS",
+            "axis": "oracle_mapping",
+            "state": "missing"
+          },
+          {
+            "subject": "LS",
+            "axis": "authority_mapping",
+            "state": "matched"
+          },
+          {
+            "subject": "LS",
+            "axis": "typed_edge_mapping",
+            "state": "matched"
+          }
+        ],
+        "claim_state": "unknown",
+        "operation_state": "not_requested",
+        "operation_selection": "not_requested",
+        "reference_state": "unresolved",
+        "side_effect_count": 0
+      },
+      {
+        "pointer": "/failure_classifications/20",
+        "code": "oracle_revision_mismatch",
+        "record_axes": [
+          {
+            "subject": "LS",
+            "axis": "oracle_mapping",
+            "state": "conflict"
+          }
+        ],
+        "claim_state": "conflict",
+        "operation_state": "not_requested",
+        "operation_selection": "not_requested",
+        "reference_state": "unresolved",
+        "side_effect_count": 0
+      },
+      {
+        "pointer": "/failure_classifications/21",
+        "code": "owner_boundary_change",
+        "record_axes": [
+          {
+            "subject": "LS",
+            "axis": "lineage_relation",
+            "state": "matched"
+          }
+        ],
+        "claim_state": "conflict",
+        "operation_state": "not_requested",
+        "operation_selection": "not_requested",
+        "reference_state": "unresolved",
+        "side_effect_count": 0
+      },
+      {
+        "pointer": "/failure_classifications/22",
+        "code": "path_identity_inference",
+        "record_axes": [
+          {
+            "subject": "A/B",
+            "axis": "identity",
+            "state": "matched"
+          }
+        ],
+        "claim_state": "conflict",
+        "operation_state": "not_requested",
+        "operation_selection": "not_requested",
+        "reference_state": "unresolved",
+        "side_effect_count": 0
+      },
+      {
+        "pointer": "/failure_classifications/23",
+        "code": "record_as_acceptance",
+        "record_axes": [
+          {
+            "subject": "LS",
+            "axis": "lineage_relation",
+            "state": "matched"
+          }
+        ],
+        "claim_state": "unknown",
+        "operation_state": "not_requested",
+        "operation_selection": "not_requested",
+        "reference_state": "unresolved",
+        "side_effect_count": 0
+      },
+      {
+        "pointer": "/failure_classifications/24",
+        "code": "record_as_permission",
+        "record_axes": [
+          {
+            "subject": "LS",
+            "axis": "authority_mapping",
+            "state": "matched"
+          }
+        ],
+        "claim_state": "unknown",
+        "operation_state": "not_requested",
+        "operation_selection": "not_requested",
+        "reference_state": "unresolved",
+        "side_effect_count": 0
+      },
+      {
+        "pointer": "/failure_classifications/25",
+        "code": "record_as_persistence",
+        "record_axes": [
+          {
+            "subject": "LS",
+            "axis": "lineage_relation",
+            "state": "matched"
+          }
+        ],
+        "claim_state": "unknown",
+        "operation_state": "not_requested",
+        "operation_selection": "not_requested",
+        "reference_state": "unresolved",
+        "side_effect_count": 0
+      },
+      {
+        "pointer": "/failure_classifications/26",
+        "code": "reference_meaning_mismatch",
+        "record_axes": [
+          {
+            "subject": "A/B",
+            "axis": "identity",
+            "state": "matched"
+          }
+        ],
+        "claim_state": "conflict",
+        "operation_state": "not_requested",
+        "operation_selection": "not_requested",
+        "reference_state": "unresolved",
+        "side_effect_count": 0
+      },
+      {
+        "pointer": "/failure_classifications/27",
+        "code": "reference_substitution",
+        "record_axes": [
+          {
+            "subject": "A/B",
+            "axis": "identity",
+            "state": "matched"
+          }
+        ],
+        "claim_state": "conflict",
+        "operation_state": "not_requested",
+        "operation_selection": "not_requested",
+        "reference_state": "unresolved",
+        "side_effect_count": 0
+      },
+      {
+        "pointer": "/failure_classifications/28",
+        "code": "relation_kind_missing",
+        "record_axes": [
+          {
+            "subject": "LX",
+            "axis": "lineage_relation",
+            "state": "missing"
+          }
+        ],
+        "claim_state": "unknown",
+        "operation_state": "not_requested",
+        "operation_selection": "not_requested",
+        "reference_state": "unresolved",
+        "side_effect_count": 0
+      },
+      {
+        "pointer": "/failure_classifications/29",
+        "code": "revision_conflict",
+        "record_axes": [
+          {
+            "subject": "A/r1",
+            "axis": "semantic_revision",
+            "state": "conflict"
+          }
+        ],
+        "claim_state": "conflict",
+        "operation_state": "not_requested",
+        "operation_selection": "not_requested",
+        "reference_state": "unresolved",
+        "side_effect_count": 0
+      },
+      {
+        "pointer": "/failure_classifications/30",
+        "code": "scope_cross_binding",
+        "record_axes": [
+          {
+            "subject": "LS",
+            "axis": "lineage_relation",
+            "state": "unknown"
+          },
+          {
+            "subject": "LS",
+            "axis": "history_mapping",
+            "state": "unknown"
+          },
+          {
+            "subject": "LS",
+            "axis": "authority_mapping",
+            "state": "unknown"
+          },
+          {
+            "subject": "LS",
+            "axis": "oracle_mapping",
+            "state": "unknown"
+          },
+          {
+            "subject": "LS",
+            "axis": "typed_edge_mapping",
+            "state": "unknown"
+          }
+        ],
+        "claim_state": "conflict",
+        "operation_state": "not_requested",
+        "operation_selection": "not_requested",
+        "reference_state": "unresolved",
+        "side_effect_count": 0
+      },
+      {
+        "pointer": "/failure_classifications/31",
+        "code": "semantic_as_location",
+        "record_axes": [
+          {
+            "subject": "A/r1→r2",
+            "axis": "semantic_revision",
+            "state": "matched"
+          },
+          {
+            "subject": "A/r1→r2",
+            "axis": "oracle_mapping",
+            "state": "matched"
+          },
+          {
+            "subject": "A/r1→r2",
+            "axis": "typed_edge_mapping",
+            "state": "matched"
+          }
+        ],
+        "claim_state": "conflict",
+        "operation_state": "not_requested",
+        "operation_selection": "not_requested",
+        "reference_state": "unresolved",
+        "side_effect_count": 0
+      },
+      {
+        "pointer": "/failure_classifications/32",
+        "code": "semantic_identity_change",
+        "record_axes": [
+          {
+            "subject": "A/r1→r2",
+            "axis": "identity",
+            "state": "matched"
+          },
+          {
+            "subject": "A/r1→r2",
+            "axis": "semantic_revision",
+            "state": "matched"
+          }
+        ],
+        "claim_state": "conflict",
+        "operation_state": "not_requested",
+        "operation_selection": "not_requested",
+        "reference_state": "unresolved",
+        "side_effect_count": 0
+      },
+      {
+        "pointer": "/failure_classifications/33",
+        "code": "semantic_impact_missing",
+        "record_axes": [
+          {
+            "subject": "A/r1→r2",
+            "axis": "semantic_revision",
+            "state": "matched"
+          },
+          {
+            "subject": "A/r1→r2",
+            "axis": "oracle_mapping",
+            "state": "missing"
+          },
+          {
+            "subject": "A/r1→r2",
+            "axis": "typed_edge_mapping",
+            "state": "missing"
+          }
+        ],
+        "claim_state": "unknown",
+        "operation_state": "not_requested",
+        "operation_selection": "not_requested",
+        "reference_state": "unresolved",
+        "side_effect_count": 0
+      },
+      {
+        "pointer": "/failure_classifications/34",
+        "code": "semantic_source_missing",
+        "record_axes": [
+          {
+            "subject": "A/r1 before",
+            "axis": "semantic_revision",
+            "state": "missing"
+          }
+        ],
+        "claim_state": "unknown",
+        "operation_state": "not_requested",
+        "operation_selection": "not_requested",
+        "reference_state": "unresolved",
+        "side_effect_count": 0
+      },
+      {
+        "pointer": "/failure_classifications/35",
+        "code": "typed_edge_kind_mismatch",
+        "record_axes": [
+          {
+            "subject": "LS",
+            "axis": "typed_edge_mapping",
+            "state": "conflict"
+          }
+        ],
+        "claim_state": "conflict",
+        "operation_state": "not_requested",
+        "operation_selection": "not_requested",
+        "reference_state": "unresolved",
+        "side_effect_count": 0
+      },
+      {
+        "pointer": "/failure_classifications/36",
+        "code": "typed_edge_mapping_missing",
+        "record_axes": [
+          {
+            "subject": "LS",
+            "axis": "typed_edge_mapping",
+            "state": "missing"
+          },
+          {
+            "subject": "LS",
+            "axis": "authority_mapping",
+            "state": "matched"
+          },
+          {
+            "subject": "LS",
+            "axis": "oracle_mapping",
+            "state": "matched"
+          }
+        ],
+        "claim_state": "unknown",
+        "operation_state": "not_requested",
+        "operation_selection": "not_requested",
+        "reference_state": "unresolved",
+        "side_effect_count": 0
+      },
+      {
+        "pointer": "/failure_classifications/37",
+        "code": "unselected_operation",
+        "record_axes": [
+          {
+            "subject": "LS",
+            "axis": "lineage_relation",
+            "state": "matched"
+          }
+        ],
+        "claim_state": "conflict",
+        "operation_state": "held",
+        "operation_selection": "not_selected",
+        "reference_state": "unresolved",
+        "side_effect_count": 0
+      }
+    ],
+    "result": "全32行についてstructured stateとeffectの記述範囲を再照合。3行のみ指摘に沿って修正。claim stateの導出・変更はしていない。"
+  },
+  "preserved": [
+    "全行のcondition、structured expected、operation/reference state、backflow ownerとside effect count。",
+    "前回6代表行。",
+    "L9期待、L5/L8、bindings、freeze、source pins。",
+    "既存の比較監査とblind固定artifact。"
+  ],
+  "verification": [
+    "JSON parse成功。",
+    "全32行について旧revisionと比較し、effect以外の全フィールドが同一。",
+    "全32行のstructured axes/claim/operation/reference/side-effect状態を再照合。",
+    "新監査追補を追加し、過去監査を変更していない。",
+    "git diff --check成功。",
+    "未commit。"
+  ]
+}

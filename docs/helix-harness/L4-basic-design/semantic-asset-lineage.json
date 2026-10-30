@@ -859,7 +859,7 @@
       "backflow_owners": [
         "harness053_requirement_owner"
       ],
-      "effect": "052の採択・実施順序を053照合の追加前提として設けず、具体的な実施順序はunknownに残す。 関係のない既知axisまで消さない。実変換/保存/権限発行0。",
+      "effect": "052の採択や実施順序を前提として新設しない。 関係のない既知axisまで消さない。実変換/保存/権限発行0。",
       "expected_record_axes": [
         {
           "subject": "A/B",
@@ -953,7 +953,7 @@
       "backflow_owners": [
         "harness053_requirement_owner"
       ],
-      "effect": "003/004/016の既存revision/trace/stale/diff条件を053で再定義せず、詳細が一意に決まらない場合は既存条件を変更しない。 関係のない既知axisまで消さない。実変換/保存/権限発行0。",
+      "effect": "003/004/016の既存revision/trace/stale/diff条件を053で再定義しない。 関係のない既知axisまで消さない。実変換/保存/権限発行0。",
       "expected_record_axes": [
         {
           "subject": "LS",
@@ -1205,7 +1205,7 @@
       "backflow_owners": [
         "record_owner"
       ],
-      "effect": "対象revision/scopeに適合しないlineage対応を成立扱いせず、該当する関係/履歴の対応をunknownとしてrecord ownerへ返す。 関係のない既知axisまで消さない。実変換/保存/権限発行0。",
+      "effect": "対象revision/scopeに適合しないlineage対応を成立扱いせず、lineage relation・history mapping・authority mapping・oracle mapping・typed edge mappingの対応をunknownとしてrecord ownerへ返す。 関係のない既知axisまで消さない。実変換/保存/権限発行0。",
       "expected_record_axes": [
         {
           "subject": "LS",
