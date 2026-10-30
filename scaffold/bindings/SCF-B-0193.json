@@ -1,0 +1,117 @@
+{
+  "schema_revision": 1,
+  "id": "SCF-B-0193",
+  "kind": "scaffold",
+  "title": "WR231 HARNESS-015 F01 L4 L9 untraceable pair candidate evidence",
+  "product": "HELIX-HARNESS",
+  "owner_candidate": "HARNESS-015 F01 L4/L9 TDD development flow design owner candidate",
+  "state": "registered",
+  "reason": "Issue #3510 WR231の比較前固定blind artifactとL3 F01/L10 F01に基づき、既存L4/L9に無かった対象またはpair revision trace不足のnegative candidateを隔離する。既存L4/L9期待、要求意味、承認、実行、受入を生成しない。",
+  "upstream": [
+    {
+      "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+      "sha256": "a3b907cdc316117d4684632f9a1cbf36125eb6e6172f9cfc286060617583d7be",
+      "note": "Approved HARNESS-L3-015-F01 source file; SHA/pointer pinned by blind artifact."
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/functional-verification.json",
+      "sha256": "fc58ad2268746d7924ac9be33e8f3f75e6d3c2cc619e27fbc1ddc34edd065cb2",
+      "note": "Approved HARNESS-L10-015-F01 source file; SHA/pointer pinned by blind artifact."
+    },
+    {
+      "path": "docs/helix-harness/L4-basic-design/tdd-development-flow.json",
+      "sha256": "36ba5cad0b3f49b9424635a670e6d309e8379bb44bb1f056e556f26ad44507f4",
+      "note": "Current L4 F01 compact candidate witness IDs, source meaning and evidence pointers; no new failure_conditions code. Existing F02 unchanged."
+    },
+    {
+      "path": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json",
+      "sha256": "6626dab873e21bf560f427729caa73addc48146bf50fbeb4883dddf742bd06fc",
+      "note": "Current L9 F01 compact candidate witness IDs and evidence pointers; existing expected materials and five negatives preserved; synthetic inputs remain in fixed scaffold artifact."
+    },
+    {
+      "path": "docs/governance/legacy-asset-disposition.jsonl",
+      "sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+      "note": "Legacy asset identity/disposition lookup only."
+    }
+  ],
+  "role": "HARNESS-015 F01の対象bindingおよび設計/oracle revisionが辿れない条件に対するL4/L9候補設計とsource trace。",
+  "obligations": [
+    "Issue-fixed blind artifactを変更せず収録し、artifact SHAと固定commentを証跡へ記録する。",
+    "L3 F01/L10 F01から候補の意味を導出し、blindがfailure_code unknownとした条件にfailure code/classification enumを追加しない。",
+    "L4/L9には必要な候補条件、既存語彙のaxis/state、owner、固定artifactへの証拠pointerのみ置き、合成入力の重複をscaffold証跡へ隔離する。",
+    "既存L4/L9 expected・分類・fixturesを保持し、timestamp-onlyを重複追加しない。",
+    "旧資産・現行failure記録・行識別子と静的consumerの範囲を記録する。",
+    "SCF-B-0192の履歴/stale理由を保持し、L5/L8再照合を別途必要と明記する。"
+  ],
+  "connections": {
+    "consumers": [
+      "WR231-HARNESS-TDD-FLOW-F01-UNTRACEABLE-L4L9 review"
+    ],
+    "dependencies": [
+      "Approved HARNESS-L3/L10-015-F01",
+      "Current HARNESS-L4-015-F01 prose",
+      "Issue-fixed source-only blind artifact",
+      "LEGACY-ASSET-5E22432B0A5A8F7CC8B3 and A127DEC3EEE6ED63CF17 as historical context",
+      "PR #3967 R1 review finding as current failure evidence"
+    ],
+    "boundary": "Scaffold candidate only. L4/L9 negative rows and comparison evidence; no L5/L8 edit, formal approval, execution, implementation or acceptance."
+  },
+  "operations": {
+    "allowed": [
+      "Static JSON edit and source pointer/hash checks",
+      "Static review of historical source/audit only",
+      "JSON parse, scfctl validate/stale, design_verification_checker pair/child checks, git diff --check"
+    ],
+    "forbidden": [
+      "L4/L5 algorithms, old CLI/runtime/test/hook/CI execution",
+      "L3/L10/L5/L8 edits",
+      "Changing existing L4/L9 expected values or existing negative witnesses",
+      "Generating approval, implementation completion, acceptance, release, or CI result"
+    ]
+  },
+  "artifacts": [
+    "scaffold/research/wr231-tdd-f01-untraceable-l4l9-20261031/README.md",
+    "scaffold/research/wr231-tdd-f01-untraceable-l4l9-20261031/source/f01-blind-retry.json",
+    "docs/helix-harness/L4-basic-design/tdd-development-flow.json",
+    "docs/helix-harness/L9-integration-verification/tdd-development-flow.json",
+    "scaffold/research/wr231-tdd-f01-untraceable-l4l9-20261031/post-wr223-binding-recheck-20261031.json"
+  ],
+  "verification": {
+    "evidence_kind": "scaffold",
+    "scope": [
+      "schema_interface",
+      "source_revision_stale",
+      "negative_case"
+    ],
+    "oracles": [
+      "Exact blind artifact byte SHA and fixed Issue comment",
+      "L3/L10 approved source file hashes and source pointers",
+      "Blind L4 source revision/file SHA versus base revision/file SHA and structural comparison of source-used F01 fields; blind is not represented as having read the base as a whole",
+      "L4/L9 candidate witness-row identifiers, unknown failure-code status, existing axis/state/owner correspondence, and fixed-artifact pointers",
+      "Existing L4 conditions/classifications/output and L9 expected materials/fixtures/five negative rows preserved",
+      "Static checker consumer semantics recorded; no execution consumer or runtime behavior asserted",
+      "SCF-B-0192 stale=1 reason retained: preceding L5/L8 evidence marks L4/L9 unhandled; separate L5/L8 recompare required",
+      "scfctl validate/stale, design_verification_checker check-pair/check-child, git diff --check",
+      "candidate artifact SHA-256: scaffold/research/wr231-tdd-f01-untraceable-l4l9-20261031/post-wr223-binding-recheck-20261031.json=8697527832af4934621422a4ec00f779a5fd5d0baf7edbc057f247e34ec82a19",
+      "WR223 README and verification-summary remain original pre-WR231 point-in-time bytes; post-WR223 binding reassessment is held in the separate WR231 evidence artifact.",
+      "candidate artifact SHA-256: scaffold/research/wr231-tdd-f01-untraceable-l4l9-20261031/source/f01-blind-retry.json=2a53b965d023d81e6add971f8693cf633cfd6152c700e863a13da65568de3983",
+      "candidate artifact SHA-256: scaffold/research/wr231-tdd-f01-untraceable-l4l9-20261031/README.md=21bcdb8d411159eb9e3b682d85d433b35e24ff223bb7cfd69abceb3cd606cfa9"
+    ],
+    "negative_cases": [
+      "Do not treat witness IDs as failure codes or classification enums.",
+      "Do not alter fixed blind bytes or existing expected values.",
+      "Keep synthetic inputs only in the scaffold source artifact, not duplicated in L4/L9.",
+      "Do not classify target/reference mismatches absent from fixed source evidence; keep semantic uncertainty unresolved.",
+      "Do not clear SCF-B-0192 stale by hash-only rebinding or claim L5/L8 four-way completion."
+    ]
+  },
+  "replacement": {
+    "role_target": "Formal HARNESS-015 TDD flow design and paired verification of target and pair-revision traceability",
+    "formal_artifacts": [],
+    "issue": 1866,
+    "status": "pending"
+  },
+  "overlap_reason": "SCF-B-0192 records the earlier F01 L5/L8 candidate and its exact upstream history. SCF-B-0193 isolates the newly added L4/L9 candidate V-pair and comparison evidence; it does not update or overwrite that earlier record.",
+  "created": "2026-10-31",
+  "updated": "2026-10-31"
+}

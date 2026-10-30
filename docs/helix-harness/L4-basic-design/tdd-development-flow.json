@@ -548,6 +548,50 @@
             "verification_ref": "HARNESS-L10-015-F01"
           },
           "axis_selection_status": "l4_design_choice_not_unique_from_source"
+        },
+        {
+          "id": "WR231-F01-target-binding-unavailable",
+          "condition": "凍結対象のidentity・revision・scopeが未供給で、対象に結ぶ根拠がない。",
+          "failure_code_status": "unknown",
+          "expected_axis": "pair_binding",
+          "expected_state": "unknown",
+          "backflow_owner": "FrozenContractIntake",
+          "classification_basis": "L3 F01/L10 F01の対象・対revision trace義務に対応する候補行。blind artifactはfailure_codeをunknownとしているため、idは証拠行の識別子でありfailure code/classification enumを定義しない。pair_bindingは既存L4 output_contractの軸、unknownは既存L4 state vocabularyに基づく。",
+          "source_reference": {
+            "revision": "a715e777bd59291b26f09c0c1c5481273c6eba2e",
+            "pointer": "/requirements/40",
+            "requirement_ref": "HARNESS-L3-015-F01",
+            "verification_ref": "HARNESS-L10-015-F01",
+            "verification_pointer": "/cases/40/expected_observation"
+          },
+          "source_artifact": {
+            "path": "scaffold/research/wr231-tdd-f01-untraceable-l4l9-20261031/source/f01-blind-retry.json",
+            "sha256": "2a53b965d023d81e6add971f8693cf633cfd6152c700e863a13da65568de3983",
+            "pointer": "/negative_inputs/0",
+            "issue_comment": "https://github.com/RetryYN/HELIX-HARNESS/issues/3510#issuecomment-6532785305"
+          }
+        },
+        {
+          "id": "WR231-F01-design-oracle-revision-untraceable",
+          "condition": "対象は識別できるが、設計またはoracleのrevisionを対象へ辿れない。",
+          "failure_code_status": "unknown",
+          "expected_axis": "pair_binding",
+          "expected_state": "unknown",
+          "backflow_owner": "FrozenContractIntake",
+          "classification_basis": "L3 F01/L10 F01の対象・対revision trace義務に対応する候補行。blind artifactはfailure_codeをunknownとしているため、idは証拠行の識別子でありfailure code/classification enumを定義しない。pair_bindingは既存L4 output_contractの軸、unknownは既存L4 state vocabularyに基づく。",
+          "source_reference": {
+            "revision": "a715e777bd59291b26f09c0c1c5481273c6eba2e",
+            "pointer": "/requirements/40",
+            "requirement_ref": "HARNESS-L3-015-F01",
+            "verification_ref": "HARNESS-L10-015-F01",
+            "verification_pointer": "/cases/40/expected_observation"
+          },
+          "source_artifact": {
+            "path": "scaffold/research/wr231-tdd-f01-untraceable-l4l9-20261031/source/f01-blind-retry.json",
+            "sha256": "2a53b965d023d81e6add971f8693cf633cfd6152c700e863a13da65568de3983",
+            "pointer": "/negative_inputs/1",
+            "issue_comment": "https://github.com/RetryYN/HELIX-HARNESS/issues/3510#issuecomment-6532785305"
+          }
         }
       ]
     },

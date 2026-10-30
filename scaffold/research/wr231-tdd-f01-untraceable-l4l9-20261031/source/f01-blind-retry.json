@@ -1,0 +1,129 @@
+{
+  "artifact_id": "WR231-F01-blind-retry",
+  "artifact_kind": "synthetic_negative_inputs_and_source_basis",
+  "authority": "derived_negative_meaning_only; not a new requirement or acceptance result",
+  "comparison_status": "not_compared",
+  "comparison_guard": "Do not compare with fixed #3510 until the parent lane authorizes the comparison.",
+  "blind_scope": {
+    "consulted_target_material": [
+      "HARNESS-L3-015-F01",
+      "HARNESS-L10-015-F01",
+      "HARNESS-L4-015-F01 failure_conditions"
+    ],
+    "excluded_target_material": [
+      "all L5 content, expected values, classifications, and comparisons",
+      "all L8 content, expected values, classifications, and comparisons",
+      "all L9 content, expected values, classifications, and comparisons"
+    ],
+    "raw_L7_given_input_used": false,
+    "qualification": "Only the expressly permitted L3/L10/L4 F01 source pointers below were used to derive these synthetic inputs."
+  },
+  "source_evidence": [
+    {
+      "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+      "sha256": "a3b907cdc316117d4684632f9a1cbf36125eb6e6172f9cfc286060617583d7be",
+      "pointer": "/requirements/40",
+      "source_id": "HARNESS-L3-015-F01",
+      "basis": "The frozen pair must be bound to target identity, revision, and scope; merely defining/fixing the contract is not an observed Red."
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/functional-verification.json",
+      "sha256": "fc58ad2268746d7924ac9be33e8f3f75e6d3c2cc619e27fbc1ddc34edd065cb2",
+      "pointer": "/cases/40",
+      "source_id": "HARNESS-L10-015-F01",
+      "basis": "Expected observation follows design/test/oracle and target revision; negative evidence includes post-implementation oracle, missing freeze, foreign oracle revision, and timestamp-only evidence."
+    },
+    {
+      "path": "docs/helix-harness/L4-basic-design/tdd-development-flow.json",
+      "sha256": "738a76b4753a8c51d1c684ae2ffa18d91b7bdbc2794961cde66a47c585aa299b",
+      "pointer": "/contracts/1",
+      "source_id": "HARNESS-L4-015-F01",
+      "basis": "A freeze must be traceable to the target and paired oracle; timestamp alone does not establish target/design/test/oracle/expected-result identity or freeze order."
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/ddd-tdd-rules.md",
+      "sha256": "9eac2cc9e5fa8f1177b39f86681fa928cb22070666a5306dce7ae6943597d7af",
+      "pointer": "lines 20-26, especially line 23",
+      "asset_id": "LEGACY-ASSET-5E22432B0A5A8F7CC8B3",
+      "basis": "Historical semantic precedent: contracts are fixed before implementation; Red means observed detection of the intended defect, not a timestamp or act of writing a test. Read-only semantic rederivation."
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/predecessor-harness-full-weakness-audit-2026-07-20.md",
+      "sha256": "bab121404c956a0a4b403e589bea1c414af59b5996989bea5fab9f98f42f6872",
+      "pointer": "lines 71-75, especially UTW-005",
+      "asset_id": "LEGACY-ASSET-A127DEC3EEE6ED63CF17",
+      "basis": "Historical failure context: trace/review evidence could fail to rebind to latest HEAD and merge-base. This is an analogy supporting revision-binding concern, not a direct TDD oracle rule."
+    },
+    {
+      "path": "docs/governance/legacy-asset-disposition.jsonl",
+      "sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+      "pointer": "JSONL record with asset_id LEGACY-ASSET-5E22432B0A5A8F7CC8B3 (line 888); record with asset_id LEGACY-ASSET-A127DEC3EEE6ED63CF17 (line 1000)",
+      "basis": "Confirms the historical asset identities, source paths, source digests, and historical/unresolved disposition; not used as current authority."
+    }
+  ],
+  "negative_inputs": [
+    {
+      "case_id": "target_binding_unavailable",
+      "synthetic_input": {
+        "target_identity": null,
+        "target_revision": null,
+        "scope": null,
+        "design_revision": "design-r1",
+        "test_revision": "test-r1",
+        "oracle_revision": "oracle-r1",
+        "expected_result_revision": "expect-r1",
+        "freeze_record": "present"
+      },
+      "expected_semantics": {
+        "pair_freeze_established": false,
+        "result": "preserve as unproven/incomplete; do not generate TDD success or implementation success",
+        "failure_code": "unknown",
+        "reason": "Sources require target identity/revision/scope binding but do not assign this specific missing-binding mutation a unique failure code."
+      }
+    },
+    {
+      "case_id": "design_oracle_revision_untraceable",
+      "synthetic_input": {
+        "target_identity": "target-A",
+        "target_revision": "target-r2",
+        "scope": "scope-A",
+        "design_revision": null,
+        "test_revision": "test-r2",
+        "oracle_revision": null,
+        "expected_result_revision": "expect-r2",
+        "freeze_record": "present"
+      },
+      "expected_semantics": {
+        "pair_freeze_established": false,
+        "result": "preserve as unproven/incomplete; do not infer a matching or current oracle",
+        "failure_code": "unknown",
+        "reason": "Sources require tracing the design/oracle version to the target but do not specify a unique code for absent revision evidence."
+      }
+    },
+    {
+      "case_id": "timestamp_only_freeze",
+      "synthetic_input": {
+        "created_at": "before-implementation",
+        "target_identity": null,
+        "target_revision": null,
+        "scope": null,
+        "design_revision": null,
+        "test_revision": null,
+        "oracle_revision": null,
+        "expected_result_revision": null,
+        "freeze_order_evidence": null
+      },
+      "expected_semantics": {
+        "pair_freeze_established": false,
+        "result": "reject as a valid freeze; do not count as observed Red or implementation success",
+        "failure_code": "freeze_timestamp_only",
+        "reason": "The L4 F01 condition explicitly treats a timestamp without traceable target/design/test/oracle/expected-result and freeze-order evidence as insufficient."
+      }
+    }
+  ],
+  "limits": [
+    "No exact downstream consumer classification was consulted or inferred.",
+    "No threshold, schema, runtime behavior, or additional failure code was added.",
+    "The historical weakness is contextual only and does not independently establish a current requirement."
+  ]
+}
