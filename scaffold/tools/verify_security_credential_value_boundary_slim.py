@@ -74,7 +74,9 @@ def pointer_tokens(pointer: str) -> list[str]:
         return []
     if not pointer.startswith("/"):
         raise ValueError(f"JSON pointer must start with '/': {pointer}")
-    return [part.replace("~1", "/").replace("~0", "~") for part in pointer[1:].split("/")]
+    return [
+        part.replace("~1", "/").replace("~0", "~") for part in pointer[1:].split("/")
+    ]
 
 
 def set_pointer(document: Any, pointer: str, value: Any) -> None:
@@ -119,7 +121,9 @@ def iter_pointer_fields(value: Any, path: tuple[str, ...] = ()):
 def count_nested_pointer_values(value: Any) -> int:
     """Raw fixture本文にある`pointer`という通常データfieldの件数。"""
     if isinstance(value, dict):
-        return int("pointer" in value) + sum(count_nested_pointer_values(v) for v in value.values())
+        return int("pointer" in value) + sum(
+            count_nested_pointer_values(v) for v in value.values()
+        )
     if isinstance(value, list):
         return sum(count_nested_pointer_values(v) for v in value)
     return 0
@@ -176,9 +180,18 @@ def pointer_key_counts(value: Any) -> Counter[str]:
     def walk(node: Any, path: tuple[str, ...] = ()) -> None:
         if isinstance(node, dict):
             for key, child in node.items():
-                if key in {"pointer", "argument_pointer", "source_case_pointer", "json_pointer", "from"}:
+                if key in {
+                    "pointer",
+                    "argument_pointer",
+                    "source_case_pointer",
+                    "json_pointer",
+                    "from",
+                }:
                     counts[key] += 1
-                if key == "path" and path[:2] == ("literal_materialization_contract", "operations"):
+                if key == "path" and path[:2] == (
+                    "literal_materialization_contract",
+                    "operations",
+                ):
                     counts["rfc6902_target_path"] += 1
                 walk(child, path + (key,))
         elif isinstance(node, list):
@@ -195,10 +208,21 @@ def pointer_inventory_digest(value: Any) -> str:
     def walk(node: Any, path: tuple[str, ...] = ()) -> None:
         if isinstance(node, dict):
             for key, child in node.items():
-                if key in {"pointer", "argument_pointer", "source_case_pointer", "json_pointer", "from"}:
+                if key in {
+                    "pointer",
+                    "argument_pointer",
+                    "source_case_pointer",
+                    "json_pointer",
+                    "from",
+                }:
                     rows.append(("/" + "/".join(path + (key,)), key, child))
-                elif key == "path" and path[:2] == ("literal_materialization_contract", "operations"):
-                    rows.append(("/" + "/".join(path + (key,)), "rfc6902_target_path", child))
+                elif key == "path" and path[:2] == (
+                    "literal_materialization_contract",
+                    "operations",
+                ):
+                    rows.append(
+                        ("/" + "/".join(path + (key,)), "rfc6902_target_path", child)
+                    )
                 walk(child, path + (key,))
         elif isinstance(node, list):
             for index, child in enumerate(node):
@@ -223,11 +247,18 @@ def expand_literal_materialization(document: dict[str, Any]) -> dict[str, Any]:
                 f"recipe destination is not a declared null placeholder: {operation['path']}"
             )
         tokens = pointer_tokens(operation["path"])
-        parent_pointer = "" if not tokens[:-1] else "/" + "/".join(
-            token.replace("~", "~0").replace("/", "~1") for token in tokens[:-1]
+        parent_pointer = (
+            ""
+            if not tokens[:-1]
+            else "/"
+            + "/".join(
+                token.replace("~", "~0").replace("/", "~1") for token in tokens[:-1]
+            )
         )
         if pointer_lookup(expanded, parent_pointer) is MISSING:
-            raise ValueError(f"recipe destination parent does not resolve: {operation['path']}")
+            raise ValueError(
+                f"recipe destination parent does not resolve: {operation['path']}"
+            )
         set_pointer(expanded, operation["path"], copy.deepcopy(source))
     return expanded
 
@@ -247,7 +278,8 @@ def audit_pointer_semantics(
 
     def is_read_path(pointer: str, allowed: list[str]) -> bool:
         return any(
-            pointer == prefix or (prefix != "" and pointer.startswith(prefix.rstrip("/") + "/"))
+            pointer == prefix
+            or (prefix != "" and pointer.startswith(prefix.rstrip("/") + "/"))
             for prefix in allowed
         )
 
@@ -267,13 +299,34 @@ def audit_pointer_semantics(
                 counters[f"{category}.expected_absent"] += 1
             else:
                 counters[f"{category}.unresolved"] += 1
-                mismatches.append({"category": category, "identity": identity, "pointer": pointer, "state": "unexplained_absence"})
+                mismatches.append(
+                    {
+                        "category": category,
+                        "identity": identity,
+                        "pointer": pointer,
+                        "state": "unexplained_absence",
+                    }
+                )
         elif presence == "absent" or tag == "absent":
             counters[f"{category}.unexpected_present"] += 1
-            mismatches.append({"category": category, "identity": identity, "pointer": pointer, "state": "present_but_expected_absent"})
+            mismatches.append(
+                {
+                    "category": category,
+                    "identity": identity,
+                    "pointer": pointer,
+                    "state": "present_but_expected_absent",
+                }
+            )
         elif presence == "supplied" and original.get("raw") != value:
             counters[f"{category}.value_mismatch"] += 1
-            mismatches.append({"category": category, "identity": identity, "pointer": pointer, "state": "original_raw_mismatch"})
+            mismatches.append(
+                {
+                    "category": category,
+                    "identity": identity,
+                    "pointer": pointer,
+                    "state": "original_raw_mismatch",
+                }
+            )
         else:
             counters[f"{category}.resolved"] += 1
 
@@ -284,59 +337,125 @@ def audit_pointer_semantics(
         if isinstance(materialization, dict):
             argument = materialization["expected_argument"]
             if argument.get("original", {}).get("raw") != raw:
-                mismatches.append({"category": "raw_materialization_root", "identity": identity, "pointer": "", "state": "raw_utf8_mismatch"})
+                mismatches.append(
+                    {
+                        "category": "raw_materialization_root",
+                        "identity": identity,
+                        "pointer": "",
+                        "state": "raw_utf8_mismatch",
+                    }
+                )
             for _, node in iter_pointer_nodes(argument):
-                check_input_pointer("raw_materialization_pointer", node["pointer"], raw, node.get("original"), node.get("tag"), identity)
-            counters["embedded_materialized_original_pointer_values"] += count_materialized_original_pointer_values(argument)
-            counters["embedded_materialized_finding_pointer_values"] += count_materialized_finding_pointer_values(argument)
+                check_input_pointer(
+                    "raw_materialization_pointer",
+                    node["pointer"],
+                    raw,
+                    node.get("original"),
+                    node.get("tag"),
+                    identity,
+                )
+            counters["embedded_materialized_original_pointer_values"] += (
+                count_materialized_original_pointer_values(argument)
+            )
+            counters["embedded_materialized_finding_pointer_values"] += (
+                count_materialized_finding_pointer_values(argument)
+            )
 
             for row in case.get("expected_declared_member_presence") or []:
                 if not isinstance(row, dict):
                     continue
-                check_input_pointer("expected_presence_pointer", row["pointer"], raw, row.get("original"), row.get("tag"), identity)
+                check_input_pointer(
+                    "expected_presence_pointer",
+                    row["pointer"],
+                    raw,
+                    row.get("original"),
+                    row.get("tag"),
+                    identity,
+                )
                 counters["argument_pointer.count"] += 1
                 target = pointer_lookup(argument, row["argument_pointer"])
                 if target is MISSING or target is None:
                     counters["argument_pointer.unresolved_after_recipe"] += 1
-                    mismatches.append({"category": "argument_pointer", "identity": identity, "pointer": row["argument_pointer"], "state": "target_absent_after_recipe"})
+                    mismatches.append(
+                        {
+                            "category": "argument_pointer",
+                            "identity": identity,
+                            "pointer": row["argument_pointer"],
+                            "state": "target_absent_after_recipe",
+                        }
+                    )
                 elif not isinstance(target, dict) or any(
-                    target.get(key) != row.get(key) for key in ("pointer", "tag", "original")
+                    target.get(key) != row.get(key)
+                    for key in ("pointer", "tag", "original")
                 ):
                     counters["argument_pointer.target_mismatch"] += 1
-                    mismatches.append({"category": "argument_pointer", "identity": identity, "pointer": row["argument_pointer"], "state": "target_row_mismatch"})
+                    mismatches.append(
+                        {
+                            "category": "argument_pointer",
+                            "identity": identity,
+                            "pointer": row["argument_pointer"],
+                            "state": "target_row_mismatch",
+                        }
+                    )
                 else:
                     counters["argument_pointer.resolved_exact_after_recipe"] += 1
                 raw_copy = (row.get("original") or {}).get("raw")
-                counters["embedded_expected_presence_raw_pointer_values"] += count_nested_pointer_values(raw_copy)
+                counters["embedded_expected_presence_raw_pointer_values"] += (
+                    count_nested_pointer_values(raw_copy)
+                )
 
         source_frame = raw.get("source_frame", raw) if isinstance(raw, dict) else raw
         for _, finding in iter_finding_pointer_values(raw):
             counters["raw_input_finding_pointer.count"] += 1
             if pointer_lookup(source_frame, finding["pointer"]) is MISSING:
                 counters["raw_input_finding_pointer.unresolved"] += 1
-                mismatches.append({"category": "raw_input_finding_pointer", "identity": identity, "pointer": finding["pointer"], "state": "unresolved_against_source_frame"})
+                mismatches.append(
+                    {
+                        "category": "raw_input_finding_pointer",
+                        "identity": identity,
+                        "pointer": finding["pointer"],
+                        "state": "unresolved_against_source_frame",
+                    }
+                )
             else:
                 counters["raw_input_finding_pointer.resolved_against_source_frame"] += 1
             finding_reads = [
                 pointer
                 for item in l5["functions"]
-                if item["symbol"] not in {"build_credential_proposal", "materialize_credential_frame"}
+                if item["symbol"]
+                not in {"build_credential_proposal", "materialize_credential_frame"}
                 for pointer in read_paths(item)
             ]
             if is_read_path(finding["pointer"], finding_reads):
                 counters["raw_input_finding_pointer_supported_by_l5_read_fields"] += 1
             else:
                 counters["raw_input_finding_pointer_without_l5_read_field"] += 1
-                mismatches.append({"category": "raw_input_finding_pointer", "identity": identity, "pointer": finding["pointer"], "state": "outside_l5_component_read_fields"})
+                mismatches.append(
+                    {
+                        "category": "raw_input_finding_pointer",
+                        "identity": identity,
+                        "pointer": finding["pointer"],
+                        "state": "outside_l5_component_read_fields",
+                    }
+                )
 
         result = case.get("expected_result") or {}
         for _, node in iter_pointer_nodes(result.get("argument")):
-            check_input_pointer("result_argument_pointer", node["pointer"], raw, node.get("original"), node.get("tag"), identity)
+            check_input_pointer(
+                "result_argument_pointer",
+                node["pointer"],
+                raw,
+                node.get("original"),
+                node.get("tag"),
+                identity,
+            )
 
         function = function_by_id.get(case["function_ref"], {})
         finding_root = raw
         if case.get("symbol") == "build_credential_proposal":
-            finding_root = raw.get("source_frame", MISSING) if isinstance(raw, dict) else MISSING
+            finding_root = (
+                raw.get("source_frame", MISSING) if isinstance(raw, dict) else MISSING
+            )
         for finding in result.get("findings", []):
             counters["expected_finding_pointer.count"] += 1
             if case.get("symbol") == "build_credential_proposal":
@@ -344,7 +463,8 @@ def audit_pointer_semantics(
                 allowed_reads = [
                     pointer
                     for item in l5["functions"]
-                    if item["symbol"] not in {"build_credential_proposal", "materialize_credential_frame"}
+                    if item["symbol"]
+                    not in {"build_credential_proposal", "materialize_credential_frame"}
                     for pointer in read_paths(item)
                 ]
             else:
@@ -353,35 +473,78 @@ def audit_pointer_semantics(
                 counters["expected_finding_pointer_supported_by_l5_read_fields"] += 1
             else:
                 counters["expected_finding_pointer_without_l5_read_field"] += 1
-                mismatches.append({"category": "expected_finding_pointer", "identity": identity, "pointer": finding["pointer"], "state": "outside_l5_read_fields"})
+                mismatches.append(
+                    {
+                        "category": "expected_finding_pointer",
+                        "identity": identity,
+                        "pointer": finding["pointer"],
+                        "state": "outside_l5_read_fields",
+                    }
+                )
             if pointer_lookup(finding_root, finding["pointer"]) is MISSING:
                 # L5 states that an absent request flag produces this exact finding.
                 absent_by_l5 = (
                     case.get("symbol") == "plan_credential_use"
                     and finding.get("code") == "credential_request_unresolved"
                     and finding["pointer"] == "/credential_requested"
-                    and any(x.get("raw_pointer") == finding["pointer"] for x in function.get("read_fields", []))
-                    and any("credential_request_unresolved /credential_requested" in x for x in function.get("pure_algorithm", []))
+                    and any(
+                        x.get("raw_pointer") == finding["pointer"]
+                        for x in function.get("read_fields", [])
+                    )
+                    and any(
+                        "credential_request_unresolved /credential_requested" in x
+                        for x in function.get("pure_algorithm", [])
+                    )
                 )
                 if absent_by_l5:
                     counters["expected_finding_pointer.absent_by_l5_contract"] += 1
                 else:
                     counters["expected_finding_pointer.unresolved"] += 1
-                    mismatches.append({"category": "expected_finding_pointer", "identity": identity, "pointer": finding["pointer"], "state": "unexplained_absence"})
+                    mismatches.append(
+                        {
+                            "category": "expected_finding_pointer",
+                            "identity": identity,
+                            "pointer": finding["pointer"],
+                            "state": "unexplained_absence",
+                        }
+                    )
             else:
                 counters["expected_finding_pointer.resolved"] += 1
         for issue in result.get("input_issues", []):
-            check_input_pointer("expected_input_issue_pointer", issue["pointer"], raw, None, issue.get("raw_tag"), identity)
+            check_input_pointer(
+                "expected_input_issue_pointer",
+                issue["pointer"],
+                raw,
+                None,
+                issue.get("raw_tag"),
+                identity,
+            )
         for gap in result.get("gaps", []):
             counters["source_gap_pointer.count"] += 1
-            source_function = function_by_symbol.get("retain_credential_source_material", {})
+            source_function = function_by_symbol.get(
+                "retain_credential_source_material", {}
+            )
             if is_read_path(gap["pointer"], read_paths(source_function)):
                 counters["source_gap_pointer_supported_by_l5_read_fields"] += 1
             else:
-                mismatches.append({"category": "source_gap_pointer", "identity": identity, "pointer": gap["pointer"], "state": "outside_l5_read_fields"})
+                mismatches.append(
+                    {
+                        "category": "source_gap_pointer",
+                        "identity": identity,
+                        "pointer": gap["pointer"],
+                        "state": "outside_l5_read_fields",
+                    }
+                )
             if pointer_lookup(raw, gap["pointer"]) is MISSING:
                 counters["source_gap_pointer.unresolved"] += 1
-                mismatches.append({"category": "source_gap_pointer", "identity": identity, "pointer": gap["pointer"], "state": "unresolved"})
+                mismatches.append(
+                    {
+                        "category": "source_gap_pointer",
+                        "identity": identity,
+                        "pointer": gap["pointer"],
+                        "state": "unresolved",
+                    }
+                )
             else:
                 counters["source_gap_pointer.resolved"] += 1
 
@@ -393,7 +556,14 @@ def audit_pointer_semantics(
         counters["historical_source_case_pointer.count"] += 1
         counters["historical_source_case_pointer.resolved"] += 1
         for row in record.get("expected_declared_presence", []):
-            check_input_pointer("historical_presence_pointer", row["pointer"], raw, row.get("original"), row.get("tag"), record["id"])
+            check_input_pointer(
+                "historical_presence_pointer",
+                row["pointer"],
+                raw,
+                row.get("original"),
+                row.get("tag"),
+                record["id"],
+            )
         step_symbols = {
             "plan": "plan_credential_use",
             "tuple": "compare_credential_tuple",
@@ -408,17 +578,35 @@ def audit_pointer_semantics(
         for step_name, step_value in record.get("expected_step_outputs", {}).items():
             step_function = function_by_symbol.get(step_symbols.get(step_name, ""), {})
             for _, node in iter_pointer_fields(step_value):
-            # Step findings carry a code field, not the Materialized<T> tag.
+                # Step findings carry a code field, not the Materialized<T> tag.
                 if "code" in node:
                     counters["historical_step_finding_pointer.count"] += 1
                     if is_read_path(node["pointer"], read_paths(step_function)):
-                        counters["historical_step_finding_pointer_supported_by_l5_read_fields"] += 1
+                        counters[
+                            "historical_step_finding_pointer_supported_by_l5_read_fields"
+                        ] += 1
                     else:
-                        counters["historical_step_finding_pointer_without_l5_read_field"] += 1
-                        mismatches.append({"category": "historical_step_finding_pointer", "identity": record["id"], "pointer": node["pointer"], "state": "outside_l5_step_read_fields"})
+                        counters[
+                            "historical_step_finding_pointer_without_l5_read_field"
+                        ] += 1
+                        mismatches.append(
+                            {
+                                "category": "historical_step_finding_pointer",
+                                "identity": record["id"],
+                                "pointer": node["pointer"],
+                                "state": "outside_l5_step_read_fields",
+                            }
+                        )
                     if pointer_lookup(raw, node["pointer"]) is MISSING:
                         counters["historical_step_finding_pointer.unresolved"] += 1
-                        mismatches.append({"category": "historical_step_finding_pointer", "identity": record["id"], "pointer": node["pointer"], "state": "unresolved"})
+                        mismatches.append(
+                            {
+                                "category": "historical_step_finding_pointer",
+                                "identity": record["id"],
+                                "pointer": node["pointer"],
+                                "state": "unresolved",
+                            }
+                        )
                     else:
                         counters["historical_step_finding_pointer.resolved"] += 1
 
@@ -426,23 +614,48 @@ def audit_pointer_semantics(
         raw = case["given"]["input"]
         for finding in case.get("expected_proposal", {}).get("findings", []):
             counters["L9_finding_pointer.count"] += 1
-            all_l5_reads = [pointer for item in l5["functions"] for pointer in read_paths(item)]
+            all_l5_reads = [
+                pointer for item in l5["functions"] for pointer in read_paths(item)
+            ]
             if is_read_path(finding["pointer"], all_l5_reads):
                 counters["L9_finding_pointer_supported_by_l5_read_fields"] += 1
             else:
                 counters["L9_finding_pointer_without_l5_read_field"] += 1
-                mismatches.append({"category": "L9_finding_pointer", "identity": case["id"], "pointer": finding["pointer"], "state": "outside_l5_read_fields"})
+                mismatches.append(
+                    {
+                        "category": "L9_finding_pointer",
+                        "identity": case["id"],
+                        "pointer": finding["pointer"],
+                        "state": "outside_l5_read_fields",
+                    }
+                )
             if pointer_lookup(raw, finding["pointer"]) is MISSING:
                 counters["L9_finding_pointer.unresolved"] += 1
-                mismatches.append({"category": "L9_finding_pointer", "identity": case["id"], "pointer": finding["pointer"], "state": "unresolved"})
+                mismatches.append(
+                    {
+                        "category": "L9_finding_pointer",
+                        "identity": case["id"],
+                        "pointer": finding["pointer"],
+                        "state": "unresolved",
+                    }
+                )
             else:
                 counters["L9_finding_pointer.resolved"] += 1
 
-    for anchor in expanded["literal_materialization_contract"]["source_binding"]["anchors"]:
+    for anchor in expanded["literal_materialization_contract"]["source_binding"][
+        "anchors"
+    ]:
         counters["recipe_anchor_pointer.count"] += 1
         if pointer_lookup(expanded, anchor["pointer"]) is MISSING:
             counters["recipe_anchor_pointer.unresolved"] += 1
-            mismatches.append({"category": "recipe_anchor_pointer", "identity": "literal_materialization_contract", "pointer": anchor["pointer"], "state": "unresolved"})
+            mismatches.append(
+                {
+                    "category": "recipe_anchor_pointer",
+                    "identity": "literal_materialization_contract",
+                    "pointer": anchor["pointer"],
+                    "state": "unresolved",
+                }
+            )
         else:
             counters["recipe_anchor_pointer.resolved"] += 1
 
@@ -468,13 +681,21 @@ def audit_pointer_semantics(
         "stored_pointer_key_counts": physical_counts,
         "expanded_L8_pointer_resolution_counts": dict(sorted(counters.items())),
         "expanded_L8_pointer_mismatches": mismatches,
-        "expanded_L8_argument_pointer_unresolved_count": counters["argument_pointer.unresolved_after_recipe"],
+        "expanded_L8_argument_pointer_unresolved_count": counters[
+            "argument_pointer.unresolved_after_recipe"
+        ],
         "expanded_L8_argument_pointer_count": counters["argument_pointer.count"],
         "input_presence_absence_is_explicitly_classified": True,
         "embedded_pointer_value_occurrences": {
-            "materialized_original_snapshots": counters["embedded_materialized_original_pointer_values"],
-            "materialized_finding_values": counters["embedded_materialized_finding_pointer_values"],
-            "declared_presence_raw_snapshots": counters["embedded_expected_presence_raw_pointer_values"],
+            "materialized_original_snapshots": counters[
+                "embedded_materialized_original_pointer_values"
+            ],
+            "materialized_finding_values": counters[
+                "embedded_materialized_finding_pointer_values"
+            ],
+            "declared_presence_raw_snapshots": counters[
+                "embedded_expected_presence_raw_pointer_values"
+            ],
             "total": sum(
                 counters[key]
                 for key in (
@@ -513,7 +734,11 @@ def is_source_pin_hash(path: tuple[str, ...], key: str, parent: Any) -> bool:
     if any(part in SOURCE_PIN_CONTAINERS for part in path):
         return True
     if path == ("original_case_chains", "source") and key == "whole_file_sha256":
-        return isinstance(parent, dict) and isinstance(parent.get("path"), str) and isinstance(parent.get("revision"), str)
+        return (
+            isinstance(parent, dict)
+            and isinstance(parent.get("path"), str)
+            and isinstance(parent.get("revision"), str)
+        )
     if path[:1] == ("approved_whole_objects",) and key == "whole_file_sha256":
         return True
     if path[:1] == ("legacy_comparison",) and key in {
@@ -521,13 +746,19 @@ def is_source_pin_hash(path: tuple[str, ...], key: str, parent: Any) -> bool:
         "source_sha256",
     }:
         return True
-    if path[:2] == ("legacy_comparison", "source_quotes") and key == "whole_file_sha256":
+    if (
+        path[:2] == ("legacy_comparison", "source_quotes")
+        and key == "whole_file_sha256"
+    ):
         return True
     if path[:2] == ("legacy_comparison", "asset_inventory") and key == "source_sha256":
         return True
     if path[:2] == ("failure_basis", "source") and key == "whole_file_sha256":
         return True
-    if path[:2] == ("literal_materialization_contract", "source_binding") and key == "raw_sha256":
+    if (
+        path[:2] == ("literal_materialization_contract", "source_binding")
+        and key == "raw_sha256"
+    ):
         return True
     return False
 
@@ -573,7 +804,9 @@ def resolve_external_pointers(root: Path, revision: str, document: Any) -> int:
     return checked
 
 
-def reconcile_original_case_chains(root: Path, document: dict[str, Any]) -> dict[str, Any]:
+def reconcile_original_case_chains(
+    root: Path, document: dict[str, Any]
+) -> dict[str, Any]:
     source = document["original_case_chains"]["source"]
     source_doc = json.loads(git_bytes(root, source["revision"], source["path"]))
     mismatches: list[str] = []
@@ -582,18 +815,22 @@ def reconcile_original_case_chains(root: Path, document: dict[str, Any]) -> dict
         if original.get("id") != record["id"]:
             mismatches.append(f"{record['id']}: source id mismatch")
             continue
-        if canonical_sha256(original.get("given", {}).get("input")) != record[
-            "input_canonical_sha256"
-        ]:
+        if (
+            canonical_sha256(original.get("given", {}).get("input"))
+            != record["input_canonical_sha256"]
+        ):
             mismatches.append(f"{record['id']}: input hash mismatch")
-        if canonical_sha256(original.get("expected_proposal")) != record[
-            "expected_proposal_canonical_sha256"
-        ]:
+        if (
+            canonical_sha256(original.get("expected_proposal"))
+            != record["expected_proposal_canonical_sha256"]
+        ):
             mismatches.append(f"{record['id']}: expected proposal hash mismatch")
     return {
         "source": source,
         "records_checked": len(document["original_case_chains"]["records"]),
-        "source_case_pointers_resolved": len(document["original_case_chains"]["records"])
+        "source_case_pointers_resolved": len(
+            document["original_case_chains"]["records"]
+        )
         - sum("source id mismatch" in item for item in mismatches),
         "input_and_expected_hashes_match_fixed_l9_source": not mismatches,
         "mismatches": mismatches,
@@ -612,8 +849,10 @@ def verify_pinned_files(root: Path, document: dict[str, Any]) -> dict[str, Any]:
             expected = value.get(
                 "whole_file_sha256", value.get("sha256", value.get("raw_sha256"))
             )
-            if isinstance(source_path, str) and isinstance(revision, str) and isinstance(
-                expected, str
+            if (
+                isinstance(source_path, str)
+                and isinstance(revision, str)
+                and isinstance(expected, str)
             ):
                 raw = git_bytes(root, revision, source_path)
                 actual = hashlib.sha256(raw).hexdigest()
@@ -627,7 +866,11 @@ def verify_pinned_files(root: Path, document: dict[str, Any]) -> dict[str, Any]:
                 walk(child, f"{path}/{index}")
 
     walk(document)
-    return {"pinned_file_count": checked, "all_pinned_file_hashes_match": not mismatches, "mismatches": mismatches}
+    return {
+        "pinned_file_count": checked,
+        "all_pinned_file_hashes_match": not mismatches,
+        "mismatches": mismatches,
+    }
 
 
 def collect_ids(value: Any, key: str) -> set[str]:
@@ -647,9 +890,9 @@ def collect_ids(value: Any, key: str) -> set[str]:
 def strip_released_upstream_copies(document: dict[str, Any]) -> int:
     removed = 0
     for item in document.get("approved_whole_objects", []):
-        if item["path"].startswith("docs/helix-security/L3-") or item["path"].startswith(
-            "docs/helix-security/L10-"
-        ):
+        if item["path"].startswith("docs/helix-security/L3-") or item[
+            "path"
+        ].startswith("docs/helix-security/L10-"):
             if "source_value" not in item:
                 continue
             del item["source_value"]
@@ -718,7 +961,9 @@ def main() -> int:
         }
         pin_report = verify_pinned_files(root, base_doc)
         candidate_pin_report = verify_pinned_files(root, current_doc)
-        pin_report["candidate_pinned_file_count"] = candidate_pin_report["pinned_file_count"]
+        pin_report["candidate_pinned_file_count"] = candidate_pin_report[
+            "pinned_file_count"
+        ]
         pin_report["candidate_all_pinned_file_hashes_match"] = candidate_pin_report[
             "all_pinned_file_hashes_match"
         ]
@@ -728,7 +973,9 @@ def main() -> int:
         )
         report.setdefault("source_pin_reconciliation", {})[path] = pin_report
         if pin_report["mismatches"] or candidate_pin_report["mismatches"]:
-            failures.extend(pin_report["mismatches"] + candidate_pin_report["mismatches"])
+            failures.extend(
+                pin_report["mismatches"] + candidate_pin_report["mismatches"]
+            )
 
     l8_base = base_docs[L8]
     l8_current = current_docs[L8]
@@ -757,9 +1004,13 @@ def main() -> int:
         ],
     }
     if not pointer_projection_same:
-        failures.append("base/candidate pointer resolution or pointer inventory changed")
+        failures.append(
+            "base/candidate pointer resolution or pointer inventory changed"
+        )
     if pointer_candidate["expanded_L8_pointer_mismatches"]:
-        failures.append("one or more semantic pointers remain unresolved after recipe expansion")
+        failures.append(
+            "one or more semantic pointers remain unresolved after recipe expansion"
+        )
 
     for item in l8_base["approved_whole_objects"]:
         source_doc = json.loads(git_bytes(root, item["revision"], item["path"]))
@@ -774,7 +1025,9 @@ def main() -> int:
                 "matches_fixed_upstream_value": ok,
                 "candidate_copy_removed": "source_value"
                 not in next(
-                    x for x in l8_current["approved_whole_objects"] if x["id"] == item["id"]
+                    x
+                    for x in l8_current["approved_whole_objects"]
+                    if x["id"] == item["id"]
                 ),
             }
         )
@@ -793,19 +1046,34 @@ def main() -> int:
         failures.append(f"unresolved L5 function refs: {missing_functions}")
 
     report["preservation"] = {
-        "L8_case_count_base_candidate": [len(l8_base["cases"]), len(l8_current["cases"])],
-        "L9_case_count_base_candidate": [len(l9_base["cases"]), len(l9_current["cases"])],
+        "L8_case_count_base_candidate": [
+            len(l8_base["cases"]),
+            len(l8_current["cases"]),
+        ],
+        "L9_case_count_base_candidate": [
+            len(l9_base["cases"]),
+            len(l9_current["cases"]),
+        ],
         "L8_original_chain_count_base_candidate": [
             len(l8_base["original_case_chains"]["records"]),
             len(l8_current["original_case_chains"]["records"]),
         ],
-        "L8_contract_count_base_candidate": [len(l8_base["contracts"]), len(l8_current["contracts"])],
+        "L8_contract_count_base_candidate": [
+            len(l8_base["contracts"]),
+            len(l8_current["contracts"]),
+        ],
         "L9_contracts_absent_base_candidate": [
             "contracts" not in l9_base,
             "contracts" not in l9_current,
         ],
-        "L8_source_pin_count_base_candidate": [len(l8_base["source_pins"]), len(l8_current["source_pins"])],
-        "L9_source_pin_count_base_candidate": [len(l9_base["source_pins"]), len(l9_current["source_pins"])],
+        "L8_source_pin_count_base_candidate": [
+            len(l8_base["source_pins"]),
+            len(l8_current["source_pins"]),
+        ],
+        "L9_source_pin_count_base_candidate": [
+            len(l9_base["source_pins"]),
+            len(l9_current["source_pins"]),
+        ],
         "L8_function_ref_count": len(l8_fn_refs),
         "unresolved_L5_function_refs": missing_functions,
         "raw_inputs_and_function_expected_objects_semantically_unchanged": True,
