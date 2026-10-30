@@ -45,8 +45,8 @@
     },
     {
       "path": "docs/helix-harness/L8-unit-verification/semantic-asset-lineage.json",
-      "sha256": "6365651422b2aa7cc4ae3d7596c445cc854eea140daabeddb8990da6c57d7bd2",
-      "note": "4層marker状態とout-of-scope ownership capのbase文脈。PR-Aでは変更しない。"
+      "sha256": "0e0de093df806bb0fc7df68a4d0d3371178a49c5528eb8f7c6066e7d42e4fa20",
+      "note": "4層marker状態とout-of-scope ownership capのbase文脈。PR-Aでは変更しない。 歴史的なWR242固定base dd07a349のL8 SHA-256 6365651422b2aa7cc4ae3d7596c445cc854eea140daabeddb8990da6c57d7bd2 は比較証拠に保持。WR246の30件撤去後のL8へ再束縛し、当時のbaselineを更新しない。"
     },
     {
       "path": "docs/governance/design-verification-quality-assurance.md",
