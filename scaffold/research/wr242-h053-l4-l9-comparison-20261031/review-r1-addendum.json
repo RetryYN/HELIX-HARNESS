@@ -1,0 +1,190 @@
+{
+  "artifact_id": "WR242-H053-PR3983-R1-CORRECTION-ADDENDUM-2026-10-31",
+  "evidence_kind": "scaffold_review_correction",
+  "authority_effect": "none",
+  "created": "2026-10-31",
+  "applies_to": {
+    "base_revision": "dd07a3498be74f32519adf42a221caf51e547ea1",
+    "historical_comparison_path": "scaffold/research/wr242-h053-l4-l9-comparison-20261031/comparison.json",
+    "historical_comparison_sha256": "ee245db3d4dab87aea212c6fe2f5f44f00f34fbfcd35faebb63fdd5fe88aa437",
+    "historical_verification_summary_path": "scaffold/research/wr242-h053-l4-l9-comparison-20261031/verification-summary.json",
+    "historical_verification_summary_sha256": "a025836db3757b3dded20ff6407a73064d18ac515b20922122c232c95ae6ffb9",
+    "fixed_blind_path": "scaffold/research/wr242-h053-l4-l9-comparison-20261031/blind-source-only.json",
+    "fixed_blind_sha256": "5e69cd0c3c472090947fec9454d892ffa2caa24ed0aa2a1b2540f7d9c18f408b"
+  },
+  "review_response": {
+    "review_comment": "https://github.com/RetryYN/HELIX-HARNESS/pull/3983#issuecomment-6534282855",
+    "sha256": "18b2acfd863854799baee7f9ec04388f210b9f39ef0966fa1fa954514affbf66",
+    "request_id": "WR242-H053-PR3983-R1",
+    "request_payload_sha256": "1f4a8a12719536fd1c65aef8a2a1c44ac82f7eec0a861a5a5ebbd3a12580e632",
+    "reviewed_content_sha": "6df21b0e4af5d57dff5dc3e8ac3c5c71ef6740d8"
+  },
+  "supersedes": [
+    {
+      "pointer": "comparison.json#/decision/l4_l9_class_migration",
+      "old_value": "not feasible from fixed artifact plus current L4/L9 under PR-A scope",
+      "status": "retracted_as_categorical_conclusion",
+      "replacement": "Explicit class migration was not performed in this PR. This evidence does not conclude that L4/L9 casewise design or a later migration is impossible."
+    },
+    {
+      "pointer": "comparison.json#/decision/reason",
+      "old_value": "fixed artifact intentionally asserts zero six-field keys; class membership cannot be derived from broad overlapping candidate groups; L4/L9 expose one-to-one legacy case references but no explicit class membership",
+      "status": "retracted_as_basis_for_impossibility",
+      "replacement": "The fixed blind artifact records uncertainty; its zero key assertions are not proof that design values cannot be derived. Existing casewise correspondences and the HARNESS011 precedent provide a separate supported route for later work."
+    },
+    {
+      "pointer": "README.md prior statements about single axis/state and impossibility",
+      "status": "corrected_in_current_readme",
+      "replacement": "QA §3 permits expected_axis as a non-empty string or ordered non-empty string array. Current L4 stores expected_record_axes as structured objects and distinct claim/operation state fields; no explicit projection was made in this PR, but axis shape alone is not a blocker."
+    }
+  ],
+  "review_findings": {
+    "F1": {
+      "status": "addressed_by_retraction_and_scope_correction",
+      "casewise_precedents": [
+        {
+          "pr": 3955,
+          "url": "https://github.com/RetryYN/HELIX-HARNESS/pull/3955",
+          "merged": "2026-10-30",
+          "precedent": "HARNESS011 retained legacy_casewise_four_layer mode and aligned 38 L4/L9 negative rows; it populated casewise parent rows from existing references and did not require equivalence-class markers."
+        },
+        {
+          "pr": 3968,
+          "url": "https://github.com/RetryYN/HELIX-HARNESS/pull/3968",
+          "merged": "2026-10-30",
+          "precedent": "HARNESS011 aligned 38 L5/L8 rows and pins after PR #3955, preserving the casewise four-layer arrangement."
+        }
+      ],
+      "h053_casewise_facts": {
+        "l4_failure_classifications": 38,
+        "l9_negative_cases_resolved_uniquely": 38,
+        "one_to_one_existing_oracle_refs": 38,
+        "code_and_classification_matches": 38,
+        "conditions_array_to_l9_change_matches": 38,
+        "backflow_owner_matches": 38,
+        "record_axes_matches": 38,
+        "claim_state_matches": 38,
+        "operation_state_matches": 38,
+        "operation_selection_matches": 38,
+        "reference_state_matches": 38,
+        "side_effect_count_matches": 38,
+        "explicit_class_membership_asserted": false
+      },
+      "base_checker_diagnostic": {
+        "checker_sha256": "cfd12c5bc4a1dd45351858488b476af0025d35deca7027da35bb1373818b129d",
+        "comparison_mode": "legacy_casewise_four_layer",
+        "counts_each_layer": 38,
+        "matched_case_count": 0,
+        "failure_count": 76,
+        "failure_attribute_counts": {
+          "change_or_condition": 38,
+          "expected": 38
+        },
+        "finding": "At the fixed base, L4 rows have conditions[] and effect but no singular change/condition; L5 failure_rules have neither change/condition nor expected/effect. The checker resolves change-or-condition but does not read plural conditions[]. In expected comparison, L4 effect is present but differs from the case-specific L8/L9 expected values, while L5 expected/effect is absent. These are concrete casewise projection gaps, not proof that casewise design is impossible."
+      },
+      "scope_decision": "This PR records comparison evidence only. It does not perform the casewise projection or explicit class migration; those require a separate follow-up request."
+    },
+    "F2": {
+      "status": "addressed",
+      "qa_section": "docs/governance/design-verification-quality-assurance.md §3 CHK-NEG-4WAY-MATCH",
+      "expected_axis_contract": "non-empty string or ordered non-empty string array",
+      "correction": "Do not describe a single string axis as mandatory. H053 L4 currently has expected_record_axes arrays of structured observations, not an explicit expected_axis class field. Its array shape alone does not violate QA; a projection is not made in this comparison-only PR.",
+      "expected_state_note": "L4 stores separate record-axis, claim, and operation states. This record does not assert that they cannot be mapped to the QA class field; it records that no mapping was performed in this PR."
+    },
+    "I1": {
+      "status": "scope_recorded",
+      "route": "Follow the casewise HARNESS011 precedent in a separately requested task; L4/L9 casewise projection is not part of this comparison-only correction; L5/L8 remain a later PR-B scope."
+    }
+  },
+  "checker_rebinding_history": {
+    "base_revision": "dd07a3498be74f32519adf42a221caf51e547ea1",
+    "base_checker_sha256": "cfd12c5bc4a1dd45351858488b476af0025d35deca7027da35bb1373818b129d",
+    "function_refs_fix_merge_commit": "2684816ad6179cc3535e4a6c297e61d10fd75ca0",
+    "latest_main_at_recheck": "216c22400e2823eff6126982a44459b4a938fe70",
+    "latest_checker_sha256": "e751526d67cd8df11e5aac1c5a1a178dfbd0fecc3f2ed21f995b7dda11ea4d5d",
+    "change_summary": "PR #3982 added explicit-mode support for contract.function_refs alongside contract.function. The legacy_casewise_four_layer branch is unchanged; this is recorded as the current checker revision, not substituted into the historical base measurement.",
+    "pin_policy": "Checker and fixed blind SHA are verification evidence, not upstream[].path dependencies. Their historical and current SHA values are retained in verification.oracles.",
+    "pre_rebind_latest_main_diagnostic": {
+      "binding_id": "SCF-B-0203",
+      "upstream_scaffold_pins": [
+        "scaffold/tools/design_verification_checker.py",
+        "scaffold/research/wr242-h053-l4-l9-comparison-20261031/blind-source-only.json"
+      ],
+      "latest_main_stale_count": 1,
+      "stale_path": "scaffold/tools/design_verification_checker.py",
+      "expected_sha256": "cfd12c5bc4a1dd45351858488b476af0025d35deca7027da35bb1373818b129d",
+      "actual_sha256": "e751526d67cd8df11e5aac1c5a1a178dfbd0fecc3f2ed21f995b7dda11ea4d5d",
+      "blind_pin_status": "matched"
+    },
+    "rebinding_action": "Removed both scaffold/ paths from upstream[].path; preserved base checker SHA, latest checker SHA, and fixed blind SHA in verification.oracles as dated evidence.",
+    "post_rebind_latest_main_validation": {
+      "latest_main_revision": "216c22400e2823eff6126982a44459b4a938fe70",
+      "scfctl_validate_bindings": 187,
+      "scfctl_validate_failures": 0,
+      "scfctl_stale": 0
+    },
+    "post_rebind_base_worktree_validation": {
+      "base_revision": "dd07a3498be74f32519adf42a221caf51e547ea1",
+      "scfctl_validate_bindings": 184,
+      "scfctl_validate_failures": 0,
+      "scfctl_stale": 0
+    },
+    "latest_main_checker_measurement": {
+      "checker_sha256": "e751526d67cd8df11e5aac1c5a1a178dfbd0fecc3f2ed21f995b7dda11ea4d5d",
+      "check_child_overall_passed": false,
+      "pair_checks_passed": [
+        true,
+        true
+      ],
+      "negative_4way_mode": "legacy_casewise_four_layer",
+      "negative_4way_counts_each_layer": 38,
+      "negative_4way_matched": 0,
+      "negative_4way_failures": 76,
+      "negative_4way_failure_attribute_counts": {
+        "change_or_condition": 38,
+        "expected": 38
+      },
+      "ownership_cap_failures": {
+        "L4": 0,
+        "L9": 0,
+        "L5": 0,
+        "L8": 30
+      },
+      "pin_checked_counts": [
+        15,
+        15,
+        17,
+        17
+      ]
+    },
+    "latest_main_ref": "refs/codex-readback/wr244-main",
+    "latest_main_ancestry_checks": {
+      "pr_3982_merge_2684816_is_ancestor": true,
+      "pr_3981_merge_03141af4_is_ancestor": true
+    }
+  },
+  "latest_main_virtual_merge": {
+    "base_revision": "dd07a3498be74f32519adf42a221caf51e547ea1",
+    "latest_main_revision": "216c22400e2823eff6126982a44459b4a938fe70",
+    "merge_tree": "c540e17453c0eec9f4fdf62c4cf5d0403d2cb502",
+    "conflicts": 0,
+    "method": "git merge-tree --write-tree; no commit created",
+    "overlay_validation_pending": false,
+    "overlay_worktree_revision": "216c22400e2823eff6126982a44459b4a938fe70",
+    "overlay_result": {
+      "scfctl_validate_bindings": 187,
+      "scfctl_validate_failures": 0,
+      "scfctl_stale_after_rebind": 0,
+      "validator_read_only_passed": true,
+      "fixed_blind_sha_unchanged": true,
+      "historical_comparison_sha_unchanged": true,
+      "historical_summary_sha_unchanged": true
+    },
+    "latest_main_ref": "refs/codex-readback/wr244-main",
+    "ancestry_checks": {
+      "pr_3982_merge_2684816_is_ancestor": true,
+      "pr_3981_merge_03141af4_is_ancestor": true
+    }
+  },
+  "historical_artifacts_policy": "comparison.json, verification-summary.json, and blind-source-only.json remain byte-frozen. This addendum expressly corrects and supersedes the prior decision statement; it does not rewrite its timestamped contents."
+}
