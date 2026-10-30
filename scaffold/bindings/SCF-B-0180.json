@@ -35,12 +35,12 @@
     },
     {
       "path": "scaffold/research/wr181-os015-l5-l8-successor-20261031/manual-source-only-pilot.json",
-      "sha256": "1d1f50751641002e3b6e155e7bd217a5aa4f85dd4406d018a0bad908f2a90caa",
+      "sha256": "280060526cc061262dcadfba63ac397ec6a5202c375c489756575b81086208ac",
       "note": "Moved manual source-only pilot, including case/root pointers, statuses, and unknowns."
     },
     {
       "path": "scaffold/research/wr181-os015-l5-l8-successor-20261031/manual-source-only-pilot.md",
-      "sha256": "88950563d1f9d14faa1d08efe9f133831116e18eff1404797fb040af0716344a",
+      "sha256": "3e37f76592c17bbdeadb324447aef6f4d4bbc8e2b1ea1b14a2b2d740809325c3",
       "note": "Review-summary rendering of the moved pilot; detailed root basis remains in the JSON audit record."
     }
   ],

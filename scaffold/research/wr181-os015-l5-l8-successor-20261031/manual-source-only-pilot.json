@@ -66,14 +66,14 @@
           {
             "root": "target_correspondence",
             "status": "partial_unknown",
-            "basis": "only target_a.source.target_id differs from the corresponding context value; L4 facets/comparison_facets. Exact serialized return shape/value is not specified by the allowed source prose.",
-            "semantic_summary": "L7 rawとL4 facets/comparison_facetsから比較上のカテゴリは {'target_a': {'source': 'corresponding', 'other_facets': 'corresponding'}, 'target_b': 'all facets corresponding'} と整理できる。ただしこれは意味上の要約であり、返却fieldの正確なJSON shape/encodingはsource proseに規定されていない。",
+            "basis": "C0001の固定rawではtarget_aとtarget_bの比較対象値がcontextと一致し、source.target_idにも差分がない。L4 /diagnostic_contract/facets と /comparison_facets。Exact serialized return shape/value is not specified by the allowed source prose.",
+            "semantic_summary": "L7 rawのtarget_a/target_bにある比較対象と対応context値は一致する（source.target_idも両方一致）。L4 facets/comparison_facets上の意味要約はcorresponding。ただし返却fieldの正確なJSON shape/encodingは規定されていない。",
             "exact_value_status": "unknown"
           },
           {
             "root": "current_source_material",
             "status": "partial_unknown",
-            "basis": "L4 /diagnostic_contract/aggregation: source/event/authority defects make current_source_material false. The full aggregation predicate and exact returned value/type are not specified by the allowed source prose.",
+            "basis": "C0001の固定rawでは比較したsource/event/authority値に差分を確認しない。L4 /diagnostic_contract/aggregation はそれらのdefectがこの材料状態に関与すると述べるが、完全なpredicateとexact return value/typeは定めない。",
             "semantic_summary": "手比較ではsource/event/authority discrepancyを見つけていない。L4 aggregation proseは欠陥との関係を述べるが、完全なpredicateとこのrootの正確な返却値/型を一意に定めない。",
             "exact_value_status": "unknown"
           },
@@ -179,14 +179,14 @@
           {
             "root": "target_correspondence",
             "status": "partial_unknown",
-            "basis": "only target_a.source.target_id differs from the corresponding context value; L4 facets/comparison_facets. Exact serialized return shape/value is not specified by the allowed source prose.",
+            "basis": "C0004の固定rawではtarget_a.source.target_idがnullでcontext値はknown、target_bの比較対象は一致する。L4 /diagnostic_contract/facets と /comparison_facets。Exact serialized return shape/value is not specified by the allowed source prose.",
             "semantic_summary": "L7 rawとL4 facets/comparison_facetsから比較上のカテゴリは {'target_a': {'source': 'unknown', 'other_facets': 'corresponding'}, 'target_b': 'all facets corresponding'} と整理できる。ただしこれは意味上の要約であり、返却fieldの正確なJSON shape/encodingはsource proseに規定されていない。",
             "exact_value_status": "unknown"
           },
           {
             "root": "current_source_material",
             "status": "partial_unknown",
-            "basis": "L4 /diagnostic_contract/aggregation: source/event/authority defects make current_source_material false. The full aggregation predicate and exact returned value/type are not specified by the allowed source prose.",
+            "basis": "C0004の固定rawではtarget_a.source.target_idがnull、target_bの比較対象は一致する。L4 /diagnostic_contract/aggregation はsource/event/authority defectとの関係を述べるが、完全なpredicateとexact return value/typeは定めない。",
             "semantic_summary": "L7 rawでtarget_a source identityがmissing。L4 aggregation proseは欠陥との関係を述べるが、完全なpredicateとこのrootの正確な返却値/型を一意に定めない。",
             "exact_value_status": "unknown"
           },
@@ -293,14 +293,14 @@
           {
             "root": "target_correspondence",
             "status": "partial_unknown",
-            "basis": "only target_a.source.target_id differs from the corresponding context value; L4 facets/comparison_facets. Exact serialized return shape/value is not specified by the allowed source prose.",
+            "basis": "C0005の固定rawではtarget_a.source.target_idはnonemptyでcontext値と異なり、target_bの比較対象は一致する。L4 /diagnostic_contract/facets と /comparison_facets。Exact serialized return shape/value is not specified by the allowed source prose.",
             "semantic_summary": "L7 rawとL4 facets/comparison_facetsから比較上のカテゴリは {'target_a': {'source': 'violation', 'other_facets': 'corresponding'}, 'target_b': 'all facets corresponding'} と整理できる。ただしこれは意味上の要約であり、返却fieldの正確なJSON shape/encodingはsource proseに規定されていない。",
             "exact_value_status": "unknown"
           },
           {
             "root": "current_source_material",
             "status": "partial_unknown",
-            "basis": "L4 /diagnostic_contract/aggregation: source/event/authority defects make current_source_material false. The full aggregation predicate and exact returned value/type are not specified by the allowed source prose.",
+            "basis": "C0005の固定rawではtarget_a.source.target_idがknown-different、target_bの比較対象は一致する。L4 /diagnostic_contract/aggregation はsource/event/authority defectとの関係を述べるが、完全なpredicateとexact return value/typeは定めない。",
             "semantic_summary": "L7 rawでtarget_a source identityがknown-different。L4 aggregation proseは欠陥との関係を述べるが、完全なpredicateとこのrootの正確な返却値/型を一意に定めない。",
             "exact_value_status": "unknown"
           },

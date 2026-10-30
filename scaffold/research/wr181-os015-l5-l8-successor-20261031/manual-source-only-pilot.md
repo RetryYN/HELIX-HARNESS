@@ -15,6 +15,7 @@
 - 役割: normal inspect; unmodified raw fixture
 - L7入力: `/connection_materials/OS015/case/cases/0/given/input`
 - base: `inspect`; replacements: `0`
+- source比較の要約: L7 rawで両targetの比較値はcontextと一致し、target_a.source.target_idにも差分なし。target_correspondenceのexact JSON shapeは未確定。
 
 | root | status |
 |---|---|
@@ -40,6 +41,7 @@
 - 役割: unknown inspect; target_a source.target_id=null
 - L7入力: `/connection_materials/OS015/case/cases/3/given/input`
 - base: `inspect`; replacements: `1`
+- source比較の要約: L7 rawでtarget_a.source.target_id=null、context側はknown。target_bの比較対象は一致。exact JSON shapeは未確定。
 
 | root | status |
 |---|---|
@@ -65,6 +67,7 @@
 - 役割: violation inspect; target_a source.target_id is known and different
 - L7入力: `/connection_materials/OS015/case/cases/4/given/input`
 - base: `inspect`; replacements: `1`
+- source比較の要約: L7 rawでtarget_a.source.target_idはnonemptyかつcontext側と異なる。target_bの比較対象は一致。exact JSON shapeは未確定。
 
 | root | status |
 |---|---|
