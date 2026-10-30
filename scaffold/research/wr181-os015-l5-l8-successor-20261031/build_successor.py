@@ -1,22 +1,22 @@
 #!/usr/bin/env python3
-"""Build the WR181 residual L5/L8 successor from L4/L5 contracts and L7 raw input refs.
+"""Static WR181 OS015 L5/L8 projection after #3939.
 
-This is a document projection only. It does not evaluate L4 predicates and does
-not load L9 or use any L8/L9 expected value as a class oracle.
+This document builder reads fixed L4 contract rows and L7 fixture input only.
+It does not import or execute the embedded L4 algorithm and does not load L9.
+The two new scenario expectations are manually declared below and checked
+against their L4 class rows.
 """
 from __future__ import annotations
 
 import argparse
+import copy
 import hashlib
 import json
 import subprocess
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[3]
-BASE = "0dd2045801e9e30def00913b57a6177d8d9be3a8"
-PAIR_REVISION = "be407b48779ea1125f12a1a78f998c73316ed2e7"
-DIR = ROOT / "scaffold/research/wr181-os015-l5-l8-successor-20261031"
-MANIFEST = ROOT / "scaffold/research/wr181-os015-residual-l4-l9-20261030/projection-manifest.json"
+BASE = "e3a16010cce138001d33df19afef92e3fa049d81"
 L3 = "docs/helix-os/L3-requirements/functional-requirements.json"
 L4 = "docs/helix-os/L4-basic-design/management-authority-source-record.json"
 L5 = "docs/helix-os/L5-detail-design/management-authority-source-record.json"
@@ -24,280 +24,385 @@ L7 = "docs/helix-os/L7-function-verification/management-authority-source-record.
 L8 = "docs/helix-os/L8-unit-verification/management-authority-source-record.json"
 L9 = "docs/helix-os/L9-integration-verification/management-authority-source-record.json"
 FUNCTION = "FN-OS015-01"
-PR_A_EVIDENCE = ROOT / "scaffold/research/wr181-os015-pr-a-l4-l9-20261030/case-evidence.json"
+SINGLETONS = {
+    "OS015-NEG-first_classification_prior_present",
+    "OS015-NEG-first_classification_prior_unresolved",
+    "OS015-NEG-original_event_mutated",
+    "OS015-NEG-source_conflict-original_event",
+    "OS015-NEG-source_unresolved-original_event",
+    "OS015-NEG-unresolved_promoted_to_current",
+}
+
+# Manually derived from L7 fixture_inputs.inspect + the stated replacements,
+# then matched to the corresponding L4 classification row and L5 contract.
+SCENARIOS = [
+    {
+        "case_id": "HELIXOS-L9-015-C0584",
+        "class_id": "OS015-NEG-COMPOSITE-62fb66a6e279702c28b1aa4f8ee9380369f59c8322c999587e174c6c4992b558",
+        "requirement_ref": "HELIXOS-L3-015-F03",
+        "oracle_ref": "HELIXOS-L10-015-F03",
+        "replacements": [
+            {"path": ["records", "target_a", "original_event", "event_id"], "value": None},
+            {"path": ["records", "target_a", "current_material_claim"], "value": True},
+        ],
+        "finding_codes": ["original_event_mutated", "source_unresolved", "unresolved_promoted_to_current"],
+        "expected_classification": "management_material_violation",
+        "expected_axis": "original_event",
+        "expected_state": "violation",
+        "finding_pointers": [
+            "/records/target_a/original_event",
+            "/records/target_a/original_event/event_id",
+            "/records/target_a/current_material_claim",
+        ],
+        "l4_source_pointers": [
+            "/contracts/2", "/contracts/3", "/diagnostic_contract/codes/0",
+            "/diagnostic_contract/codes/3", "/diagnostic_contract/codes/10",
+            "/diagnostic_contract/comparison_facets", "/diagnostic_contract/aggregation",
+            "/diagnostic_contract/current_material_limit", "/diagnostic_contract/condition_values",
+        ],
+    },
+    {
+        "case_id": "HELIXOS-L9-015-C0585",
+        "class_id": "OS015-NEG-COMPOSITE-deac8ce9011311dc91b808f2f94e7d2dcd7320bd68b2b820d7eeef6ac092e7f9",
+        "requirement_ref": "HELIXOS-L3-015-F03",
+        "oracle_ref": "HELIXOS-L10-015-F03",
+        "replacements": [
+            {"path": ["records", "target_a", "authority_state"], "value": None},
+            {"path": ["records", "target_a", "current_material_claim"], "value": True},
+        ],
+        "finding_codes": ["authority_state_unresolved", "unresolved_promoted_to_current"],
+        "expected_classification": "management_material_violation",
+        "expected_axis": "authority",
+        "expected_state": "violation",
+        "finding_pointers": [
+            "/records/target_a/authority_state",
+            "/records/target_a/current_material_claim",
+        ],
+        "l4_source_pointers": [
+            "/contracts/3", "/diagnostic_contract/codes/10", "/diagnostic_contract/codes/14",
+            "/diagnostic_contract/aggregation", "/diagnostic_contract/current_material_limit",
+            "/diagnostic_contract/condition_values",
+        ],
+    },
+]
+
+
+def read(path: str) -> dict:
+    return json.loads((ROOT / path).read_text(encoding="utf-8"))
+
+
+def write(path: str, value: dict) -> None:
+    (ROOT / path).write_text(json.dumps(value, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 
 
 def sha(raw: bytes) -> str:
     return hashlib.sha256(raw).hexdigest()
 
 
-def raw_at(revision: str, path: str) -> bytes:
+def git_raw(revision: str, path: str) -> bytes:
     return subprocess.check_output(["git", "show", f"{revision}:{path}"], cwd=ROOT)
 
 
-def load(path: str) -> dict:
-    return json.loads((ROOT / path).read_text(encoding="utf-8"))
-
-
-def parse(raw: bytes) -> dict:
-    return json.loads(raw)
-
-
-def dump(data: dict) -> bytes:
-    return (json.dumps(data, ensure_ascii=False, indent=2) + "\n").encode()
+def pin_pair() -> list[dict]:
+    return [
+        {"path": L4, "revision": BASE, "sha256": sha(git_raw(BASE, L4))},
+        {"path": L9, "revision": BASE, "sha256": sha(git_raw(BASE, L9))},
+    ]
 
 
 def resolve(doc: dict, pointer: str):
-    assert pointer == "" or pointer.startswith("/"), pointer
     value = doc
-    for token in pointer[1:].split("/") if pointer else []:
-        token = token.replace("~1", "/").replace("~0", "~")
-        value = value[int(token)] if isinstance(value, list) else value[token]
+    for part in pointer[1:].split("/") if pointer else []:
+        part = part.replace("~1", "/").replace("~0", "~")
+        value = value[int(part)] if isinstance(value, list) else value[part]
     return value
 
 
-def owner_join(code: str, rules: list[dict]) -> tuple[list[int], str]:
-    matches = [
-        (i, row)
-        for i, row in enumerate(rules)
-        if code in row.get("expected", {}).get("finding_codes", [])
-    ]
-    owners = {row.get("function_ref") for _, row in matches}
-    contracts = {row.get("contract_ref") for _, row in matches}
-    assert matches and owners == {FUNCTION} and contracts == {None}, (code, matches)
-    return [i for i, _ in matches], FUNCTION
+def scenario_input(l7: dict, spec: dict) -> tuple[dict, str]:
+    base = copy.deepcopy(l7["connection_materials"]["OS015"]["case"]["fixture_inputs"]["inspect"])
+    for replacement in spec["replacements"]:
+        target = base
+        for part in replacement["path"][:-1]:
+            target = target[part]
+        target[replacement["path"][-1]] = replacement["value"]
+    digest = sha(json.dumps(base, ensure_ascii=False, sort_keys=True, separators=(",", ":")).encode())
+    return base, digest
 
 
-def build_l5(l3: dict, l4: dict, l5_base: dict, manifest: dict) -> tuple[dict, list[dict]]:
-    rows4 = l4["failure_classifications"]
-    rules_base = l5_base["failure_rules"]
-    l4_by_id = {row["class_id"]: (i, row) for i, row in enumerate(rows4)}
-    l5_by_id = {row["id"]: row for row in rules_base}
-    classes = manifest["classes"]
-    new_classes = sorted((x for x in classes if x["is_new"]), key=lambda x: x["class_id"])
-    assert len(new_classes) == 18 and len(classes) == 20
-    assert len(rules_base) == 33
-    out = json.loads(json.dumps(l5_base))
+def verify_manual_scenarios(l3: dict, l4: dict, l5: dict, l7: dict) -> dict[str, tuple[dict, str]]:
+    rows4 = {row["class_id"]: (index, row) for index, row in enumerate(l4["failure_classifications"])}
+    rows5 = {row["id"]: (index, row) for index, row in enumerate(l5["failure_rules"])}
+    inputs = {}
+    for spec in SCENARIOS:
+        index4, row4 = rows4[spec["class_id"]]
+        _, row5 = rows5[spec["class_id"]]
+        assert row4["expected_classification"] == spec["expected_classification"]
+        assert row4["expected"]["finding_codes"] == spec["finding_codes"]
+        assert row4["expected_axis"] == spec["expected_axis"]
+        assert row4["expected_state"] == spec["expected_state"]
+        assert row4["side_effect_count"] == 0
+        assert row5["expected_classification"] == spec["expected_classification"]
+        assert row5["expected"]["finding_codes"] == spec["finding_codes"]
+        assert row5["expected_axis"] == spec["expected_axis"]
+        assert row5["expected_state"] == spec["expected_state"]
+        assert row5["function_ref"] == FUNCTION
+        assert row5["backflow_owner"] == row4["backflow_owner"] == "management-authority-owner"
+        assert len(spec["finding_codes"]) == len(spec["finding_pointers"])
+        # Each occurrence joins to a surviving existing L5 rule owned by FN-OS015-01.
+        for code in set(spec["finding_codes"]):
+            joins = [r for r in l5["failure_rules"] if code in r.get("expected", {}).get("finding_codes", [])]
+            assert joins and {r.get("function_ref") for r in joins} == {FUNCTION}
+            assert {r.get("contract_ref") for r in joins} == {None}
+        for pointer in spec["l4_source_pointers"]:
+            resolve(l4, pointer)
+        resolve(l3, "/requirements/26")
+        raw, digest = scenario_input(l7, spec)
+        assert raw["phase"] == "inspect"
+        inputs[spec["case_id"]] = (raw, digest)
+    return inputs
+
+
+def build_l5() -> None:
+    l3, l4 = (read(p) for p in (L3, L4))
+    base5 = json.loads(git_raw(BASE, L5))
+    assert len(l4["failure_classifications"]) == 47
+    assert len(base5["failure_rules"]) == 51
+    old_rules = base5["failure_rules"]
+    l4_by_id = {row["class_id"]: (index, row) for index, row in enumerate(l4["failure_classifications"])}
+    keep = [row for row in old_rules if row["id"] not in SINGLETONS]
+    assert len(keep) == 45
+    keep_index = {row["id"]: index for index, row in enumerate(keep)}
+
+    # Remap any same-document rule pointers in retained L5 records by target ID.
+    old_id_by_index = {index: row["id"] for index, row in enumerate(old_rules)}
+    for row in keep:
+        for source in row.get("source_pointers", []):
+            mapped = []
+            for pointer in source.get("pointers", []):
+                if source.get("path") == L4 and pointer.startswith("/failure_classifications/"):
+                    # Older L5 rows may retain pre-correction L4 indices.
+                    mapped.append(f"/failure_classifications/{l4_by_id[row['id']][0]}")
+                elif source.get("path") == L5 and pointer.startswith("/failure_rules/"):
+                    old_index = int(pointer.rsplit("/", 1)[1])
+                    target_id = old_id_by_index[old_index]
+                    if target_id in keep_index:
+                        mapped.append(f"/failure_rules/{keep_index[target_id]}")
+                    else:
+                        # A removed singleton pointer becomes the surviving
+                        # owner evidence for that code, selected by code ID.
+                        old_target = old_rules[old_index]
+                        codes = old_target.get("expected", {}).get("finding_codes", [])
+                        replacement = next((
+                            keep_index[candidate["id"]]
+                            for candidate in keep
+                            if candidate.get("function_ref") == FUNCTION
+                            and set(candidate.get("expected", {}).get("finding_codes", [])) & set(codes)
+                        ), None)
+                        assert replacement is not None, (row["id"], target_id, codes)
+                        mapped.append(f"/failure_rules/{replacement}")
+                else:
+                    mapped.append(pointer)
+            source["pointers"] = mapped
+
     additions = []
-    for group in new_classes:
-        cid = group["class_id"]
-        l4_index, l4row = l4_by_id[cid]
-        assert cid not in l5_by_id
-        key = group["key"]
-        assert l4row["expected_classification"] == key["expected_classification"]
-        assert l4row["expected"]["finding_codes"] == key["finding_codes"]
-        assert l4row["expected_axis"] == key["expected_axis"]
-        assert l4row["expected_state"] == key["expected_state"]
-        assert l4row["backflow_owner"] == key["backflow_owner"] == "management-authority-owner"
-        owner_rule_indexes = set()
-        for code in key["finding_codes"]:
-            indexes, owner = owner_join(code, rules_base)
-            assert owner == key["owner_ref"]["id"] == FUNCTION
-            owner_rule_indexes.update(indexes)
-        l5_pointers = [
-            {"path": L3, "pointers": ["/requirements/25"]},
-            {"path": L4, "pointers": [f"/failure_classifications/{l4_index}"]},
-            {
-                "path": L5,
-                "pointers": [
-                    "/formal_reference/composite_class_formation",
-                    "/input_boundary",
-                    "/functions/0",
-                    *[f"/failure_rules/{i}" for i in sorted(owner_rule_indexes)],
-                ],
-            },
-        ]
-        for source in l5_pointers:
-            doc = {L3: l3, L4: l4, L5: l5_base}[source["path"]]
-            for pointer in source["pointers"]:
-                resolve(doc, pointer)
-        row = {
-            "id": cid,
-            "code": l4row["expected_classification"],
-            "expected_classification": l4row["expected_classification"],
+    for spec in SCENARIOS:
+        l4_index, row4 = l4_by_id[spec["class_id"]]
+        assert row4["expected"]["finding_codes"] == spec["finding_codes"]
+        owner_indexes = sorted({
+            index for index, rule in enumerate(keep)
+            if set(rule.get("expected", {}).get("finding_codes", [])) & set(spec["finding_codes"])
+        })
+        assert owner_indexes
+        additions.append({
+            "id": spec["class_id"],
+            "code": spec["expected_classification"],
+            "expected_classification": spec["expected_classification"],
             "function_ref": FUNCTION,
-            "expected": {"finding_codes": list(l4row["expected"]["finding_codes"])},
-            "expected_axis": l4row["expected_axis"],
-            "expected_state": l4row["expected_state"],
-            "backflow_owner": l4row["backflow_owner"],
+            "expected": {"finding_codes": list(spec["finding_codes"])},
+            "expected_axis": spec["expected_axis"],
+            "expected_state": spec["expected_state"],
+            "backflow_owner": "management-authority-owner",
             "side_effect_count": 0,
             "handling": (
-                "L5 composite_class_formationに従い、L4のordered finding occurrencesを保持する。"
-                "各occurrenceのcodeを既存failure_rulesへ照合し、FN-OS015-01へ一意にowner joinした。"
-                "expected_axis/stateと全体conditionはL4 keyから投影し、input_boundaryの固定carrier条件内で扱う。"
-                "L7 raw inputとの対応はL8側のcase sourceで記録し、case expectedから形成しない。"
+                "L4の固定class rowからordered finding occurrence・全体condition・axis/stateを投影。"
+                "L5 composite_class_formationに従い各code occurrenceを残存existing failure_rulesへ一意owner joinし、"
+                "input_boundaryの固定carrier条件を保持する。L7 fixture入力・stimulusはL8 caseで別途固定する。"
             ),
-            "source_pointers": l5_pointers,
-        }
-        additions.append(row)
-    out["failure_rules"].extend(additions)
-    out["source_pair_pins"] = [
-        {"path": L4, "revision": PAIR_REVISION, "sha256": sha(raw_at(PAIR_REVISION, L4))},
-        {"path": L9, "revision": PAIR_REVISION, "sha256": sha(raw_at(PAIR_REVISION, L9))},
-    ]
-    return out, additions
+            "source_pointers": [
+                {"path": L3, "pointers": ["/requirements/26"]},
+                {"path": L4, "pointers": [f"/failure_classifications/{l4_index}"]},
+                {"path": L5, "pointers": [
+                    "/formal_reference/composite_class_formation", "/input_boundary", "/functions/0",
+                    *[f"/failure_rules/{i}" for i in owner_indexes],
+                ]},
+            ],
+        })
+    out = copy.deepcopy(base5)
+    out["failure_rules"] = keep + additions
+    out["source_pair_pins"] = pin_pair()
+    assert len(out["failure_rules"]) == 47
+    assert {row["id"] for row in out["failure_rules"]} == set(l4_by_id)
+    inputs = verify_manual_scenarios(l3, l4, out, read(L7))
+    write(L5, out)
+    print(json.dumps({"stage": "L5", "rule_count": len(out["failure_rules"]), "removed_singletons": sorted(SINGLETONS), "added_classes": [x["id"] for x in additions], "input_hashes": {k:v[1] for k,v in inputs.items()}}, ensure_ascii=False, indent=2))
 
 
-def build_l8(
-    l3: dict,
-    l4: dict,
-    l5: dict,
-    l7: dict,
-    l8_base: dict,
-    manifest: dict,
-    l5_revision: str,
-) -> tuple[dict, dict]:
-    assert l5_revision and len(l5_revision) == 40
-    groups = manifest["classes"]
-    new_groups = [x for x in groups if x["is_new"]]
-    assert len(groups) == 20 and len(new_groups) == 18
-    rows4 = l4["failure_classifications"]
-    rows5 = l5["failure_rules"]
-    rows8_base = l8_base["negative_equivalence_classes"]
-    cases8 = l8_base["unit_cases"]
-    assert len(rows5) == 51 and len(rows8_base) == 27 and len(cases8) == 583
-    l4_by_id = {row["class_id"]: (i, row) for i, row in enumerate(rows4)}
-    l5_by_id = {row["id"]: (i, row) for i, row in enumerate(rows5)}
-    l8_ids = {row["class_id"] for row in rows8_base}
-    assert len(l4_by_id) == 51 and len(l5_by_id) == 51
-    out = json.loads(json.dumps(l8_base))
-    l7cases = l7["connection_materials"]["OS015"]["case"]["cases"]
-    l7_by_id = {row["id"]: (i, row) for i, row in enumerate(l7cases)}
-    case8_by_id = {row["case_id"]: row for row in out["unit_cases"]}
-    assert len(case8_by_id) == len(out["unit_cases"])
-    pr_a = load("scaffold/research/wr181-os015-pr-a-l4-l9-20261030/case-evidence.json")
-    prior = {item["case_id"]: item["class_id"] for item in pr_a["case_assignments"]}
-    assert len(prior) == 29
-    assignments = {}
-    new_l8_classes = []
-    for group in sorted(groups, key=lambda x: x["class_id"]):
-        cid = group["class_id"] if group["is_new"] else group["existing_class_id"]
-        assert cid == group["class_id"] or not group["is_new"]
-        l4_index, row4 = l4_by_id[cid]
-        l5_index, row5 = l5_by_id[cid]
-        key = group["key"]
-        assert row5["expected_classification"] == key["expected_classification"]
-        assert row5["expected"]["finding_codes"] == key["finding_codes"]
-        assert row5["expected_axis"] == key["expected_axis"]
-        assert row5["expected_state"] == key["expected_state"]
-        assert row5["function_ref"] == FUNCTION
-        assert row5["backflow_owner"] == key["backflow_owner"]
-        raw_pointers = []
-        raw_by_case = {x["case_id"]: x for x in group["l7_raw_inputs"]}
-        assert set(raw_by_case) == set(group["case_ids"])
-        for case_id in group["case_ids"]:
-            i7, row7 = l7_by_id[case_id]
-            item = raw_by_case[case_id]
-            expected_pointer = f"/connection_materials/OS015/case/cases/{i7}/given/input"
-            assert item["l7_input_pointer"] == expected_pointer
-            given = resolve(l7, expected_pointer)
-            assert given["expanded_input_sha256"] == item["expanded_input_sha256"]
-            case8 = case8_by_id[case_id]
-            assert case8.get("negative_class_ref") in (None, cid)
-            if case_id in prior:
-                assert prior[case_id] == cid
-                assert case8.get("negative_class_ref") == cid
-            else:
-                assert case8.get("negative_class_ref") is None
-                assignments[case_id] = cid
-                case8["l7_material_ref"] = {"path": L7, "pointer": expected_pointer}
-                case8["negative_class_ref"] = cid
-                case8["rule_ref"] = cid
-                case8["function_ref"] = FUNCTION
-            raw_pointers.append(expected_pointer)
-        if group["is_new"]:
-            assert cid not in l8_ids
-            new_l8_classes.append(
-                {
-                    "class_id": cid,
-                    "expected_classification": row5["expected_classification"],
-                    "expected": {"finding_codes": list(row5["expected"]["finding_codes"])},
-                    "expected_axis": row5["expected_axis"],
-                    "expected_state": row5["expected_state"],
-                    "backflow_owner": row5["backflow_owner"],
-                    "side_effect_count": row5["side_effect_count"],
-                    "source_pointers": [
-                        {"path": L4, "pointers": [f"/failure_classifications/{l4_index}"]},
-                        {"path": L5, "pointers": [f"/failure_rules/{l5_index}"]},
-                        {"path": L7, "pointers": raw_pointers},
-                    ],
-                }
-            )
-    assert len(assignments) == 112
-    assert len(set(assignments)) == 112
-    assert not (set(assignments) & set(prior))
-    out["negative_equivalence_classes"].extend(new_l8_classes)
-    out["source_pair_pins"] = [
-        {"path": L4, "revision": PAIR_REVISION, "sha256": sha(raw_at(PAIR_REVISION, L4))},
-        {"path": L9, "revision": PAIR_REVISION, "sha256": sha(raw_at(PAIR_REVISION, L9))},
+def remap_class_pointers(l8: dict, l4: dict, old_l5: dict, new_l5: dict) -> None:
+    index4 = {row["class_id"]: i for i, row in enumerate(l4["failure_classifications"])}
+    new5 = {row["id"]: i for i, row in enumerate(new_l5["failure_rules"])}
+    for class_row in l8["negative_equivalence_classes"]:
+        cid = class_row["class_id"]
+        assert cid in index4 and cid in new5
+        for source in class_row.get("source_pointers", []):
+            pointers = []
+            for pointer in source.get("pointers", []):
+                if source.get("path") == L4 and pointer.startswith("/failure_classifications/"):
+                    pointers.append(f"/failure_classifications/{index4[cid]}")
+                elif source.get("path") == L5 and pointer.startswith("/failure_rules/"):
+                    # Class-index pointers are rebound by class ID because the
+                    # L5 row ordering changes when six singleton rows leave.
+                    pointers.append(f"/failure_rules/{new5[cid]}")
+                else:
+                    pointers.append(pointer)
+            source["pointers"] = pointers
+
+
+def case_row(spec: dict, l7: dict, digest: str) -> dict:
+    input_pointer = "/connection_materials/OS015/case/fixture_inputs/inspect"
+    ordered_findings = [
+        {"code": code, "pointer": pointer, "return_owner": "management-authority-owner"}
+        for code, pointer in zip(spec["finding_codes"], spec["finding_pointers"])
     ]
+    return {
+        "id": spec["case_id"],
+        "source_trace": {"requirement_ref": spec["requirement_ref"], "oracle_ref": spec["oracle_ref"]},
+        "function_roster_ref": {"path": L8, "pointer": "/common_call_contract/function_order"},
+        "counterexample_summary": {
+            "ordered_findings": ordered_findings,
+            "noneffects_all_false": True,
+            "retention_all_true": True,
+        },
+        "l7_material_ref": {"path": L7, "pointer": input_pointer},
+        "forward_stimulus_replacements": copy.deepcopy(spec["replacements"]),
+        "case_id": spec["case_id"],
+        "integration_case_ref": spec["case_id"],
+        "contract_ref": "HELIXOS-L5-015-P-F03",
+        "population_state": "negative",
+        "condition": spec["expected_classification"],
+        "expected": {"finding_codes": list(spec["finding_codes"])},
+        "expected_preserved": True,
+        "phase": "inspect",
+        "ordered_finding_codes": list(spec["finding_codes"]),
+        "noneffects_all_false": True,
+        "retention_all_true": {
+            "material_retention_checks": True,
+            "retained_new_classification_equal_input": True,
+            "correction_reference_equal_input": True,
+        },
+        "classification_states": {
+            "target_a": {"original": "not_evaluated", "new": "not_evaluated"},
+            "target_b": {"original": "not_evaluated", "new": "not_evaluated"},
+        },
+        "negative_class_ref": spec["class_id"],
+        "rule_ref": spec["class_id"],
+        "function_ref": FUNCTION,
+    }
+
+
+def build_l8() -> None:
+    l3, l4, l5, l7 = (read(p) for p in (L3, L4, L5, L7))
+    base8 = json.loads(git_raw(BASE, L8))
+    base5 = json.loads(git_raw(BASE, L5))
+    assert len(base8["unit_cases"]) == 583
+    assert len(base8["negative_equivalence_classes"]) == 45
+    assert len(l5["failure_rules"]) == 47
+    assert len(l4["failure_classifications"]) == 47
+
+    inputs = verify_manual_scenarios(l3, l4, l5, l7)
+    out = copy.deepcopy(base8)
+    remap_class_pointers(out, l4, base5, l5)
+    l4_by_id = {row["class_id"]: (index, row) for index, row in enumerate(l4["failure_classifications"])}
+    l5_by_id = {row["id"]: (index, row) for index, row in enumerate(l5["failure_rules"])}
+    for spec in SCENARIOS:
+        index4, row4 = l4_by_id[spec["class_id"]]
+        index5, row5 = l5_by_id[spec["class_id"]]
+        assert spec["class_id"] not in {row["class_id"] for row in out["negative_equivalence_classes"]}
+        out["negative_equivalence_classes"].append({
+            "class_id": spec["class_id"],
+            "expected_classification": row4["expected_classification"],
+            "expected": {"finding_codes": list(row4["expected"]["finding_codes"])},
+            "expected_axis": row4["expected_axis"],
+            "expected_state": row4["expected_state"],
+            "backflow_owner": row4["backflow_owner"],
+            "side_effect_count": row4["side_effect_count"],
+            "source_pointers": [
+                {"path": L4, "pointers": [f"/failure_classifications/{index4}"]},
+                {"path": L5, "pointers": [f"/failure_rules/{index5}"]},
+                {"path": L7, "pointers": ["/connection_materials/OS015/case/fixture_inputs/inspect"]},
+            ],
+        })
+        raw, digest = inputs[spec["case_id"]]
+        assert raw["phase"] == "inspect"
+        out["unit_cases"].append(case_row(spec, l7, digest))
+
+    out["source_pair_pins"] = pin_pair()
+    l5_revision = subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=ROOT, text=True).strip()
     out["candidate_l5_bytes"] = {
         "path": L5,
         "revision": l5_revision,
         "same_candidate": True,
-        "sha256": sha(dump(l5)),
+        "sha256": sha((ROOT / L5).read_bytes()),
     }
     out["composite_class_formation_verification"] = {
         "source": f"{L5}#/formal_reference/composite_class_formation",
         "population_source": {"path": L8, "pointer": "/unit_cases"},
-        "raw_input_source": {"path": L7, "pointer": "/connection_materials/OS015/case/cases/*/given/input"},
+        "raw_input_source": {"path": L7, "pointer": "/connection_materials/OS015/case/fixture_inputs/inspect"},
         "method": (
-            "L8 unit_casesのcase_idとl7_material_refからL7固定given.inputへ結び、"
-            "manifestに固定されたL4/L7独立manual classificationをL5 composite_class_formationで"
-            "owner joinした。L5 existing rulesは全ordered code occurrenceのowner条件として照合。"
-            "L7 expected_proposal、L8/L9 case expected、L9 class rowsを分類oracleに使わない。"
+            "二件のclass/caseはL7固定inspect fixtureへ明示stimulus replacementを適用するsource-forward projection。"
+            "finding occurrence順・全体condition・axis/stateはL4固定class rowをsourceとして手作業で対応づけ、"
+            "L5 composite_class_formationと既存failure rule owner joinを照合した。L7 expected_proposal、"
+            "L8/L9 expected、L9 class rowは期待導出に使用しない。"
         ),
-        "coverage": (
-            "先行29 assignmentsを保持し、追加112件（既存2 class residual 75、新規18 class 37）を"
-            "L8 unit_casesへraw given.input pointerとclass/rule/function refsで接続。"
-            "L8 classesは18件追加。singleton-less 6 classは未形成のまま。"
-        ),
-        "preservation": (
-            "583 unit_casesのcondition/expected/expected_preserved、全L7 own input以外の既存期待を保持。"
-            "先行29 linksは変更しない。追加caseで変更するのはl7_material_ref、negative_class_ref、"
-            "rule_ref、function_refのみ。"
-        ),
+        "coverage": "L4/L5全47 class IDsを対応させ、C0584/C0585の2 caseを追加。6 singleton ruleはL5から除き、L8 classへ形成しない。",
+        "preservation": "従来583 unit_casesとそのcondition/expected/expected_preserved、112既存class linksを保持。追加2 case以外のcase rowはbaseと同一。",
     }
-    return out, {"assignments": assignments, "class_rows": new_l8_classes}
+    write(L8, out)
+    evidence = {
+        "evidence_kind": "scaffold",
+        "source_main": BASE,
+        "method": "固定L7 inspect fixtureに明示stimulus replacementを適用して入力hashを照合し、L4 class rowとL5 composite contractから手動投影を記録。L4 algorithmは実行せず、L7 expected_proposalとL9 expected/classは導出に使わない。",
+        "cases": [],
+    }
+    for spec in SCENARIOS:
+        row4 = l4_by_id[spec["class_id"]][1]
+        evidence["cases"].append({
+            "case_id": spec["case_id"],
+            "l4_class_id": spec["class_id"],
+            "l7_fixture_pointer": "/connection_materials/OS015/case/fixture_inputs/inspect",
+            "stimulus_replacements": spec["replacements"],
+            "expanded_input_sha256": inputs[spec["case_id"]][1],
+            "manual_l4_projection": {
+                "condition": row4["expected_classification"],
+                "ordered_finding_codes": row4["expected"]["finding_codes"],
+                "expected_axis": row4["expected_axis"],
+                "expected_state": row4["expected_state"],
+                "side_effect_count": row4["side_effect_count"],
+            },
+            "finding_pointers": spec["finding_pointers"],
+            "l4_source_pointers": spec["l4_source_pointers"],
+        })
+    write("scaffold/research/wr181-os015-l5-l8-successor-20261031/source-projection-evidence.json", evidence)
+    print(json.dumps({"stage": "L8", "class_count": len(out["negative_equivalence_classes"]), "case_count": len(out["unit_cases"]), "candidate_l5_revision": l5_revision, "input_hashes": {k:v[1] for k,v in inputs.items()}}, ensure_ascii=False, indent=2))
 
 
 def main() -> None:
     parser = argparse.ArgumentParser()
-    parser.add_argument("--l5-only", action="store_true")
-    parser.add_argument("--l5-revision")
+    parser.add_argument("stage", choices=("l5", "l8"))
     args = parser.parse_args()
-    manifest = load(str(MANIFEST.relative_to(ROOT)))
-    l3, l4, l7 = (load(path) for path in (L3, L4, L7))
-    l5_base = parse(raw_at(BASE, L5))
-    l8_base = parse(raw_at(BASE, L8))
-    assert sha(raw_at(BASE, L4)) == "5038893210d772bc46fa75802757a90d9658ec4f427f76adcc3cf8a6702ce96f"
-    assert sha(raw_at(BASE, L5)) == manifest["source_revisions"]["L5_sha256"]
-    assert sha(raw_at(BASE, L7)) == manifest["source_revisions"]["L7_sha256"]
-    assert sha(raw_at(BASE, L8)) == manifest["source_revisions"]["L8_sha256"]
-    l5, l5_additions = build_l5(l3, l4, l5_base, manifest)
-    (ROOT / L5).write_bytes(dump(l5))
-    result = {
-        "status": "BUILT_L5_ONLY" if args.l5_only else "BUILT",
-        "base_revision": BASE,
-        "new_l5_rule_rows": len(l5_additions),
-        "l5_rule_count": len(l5["failure_rules"]),
-        "l5_sha256": sha(dump(l5)),
-    }
-    if not args.l5_only:
-        assert args.l5_revision, "--l5-revision is required for an L8 successor pin"
-        assert args.l5_revision in subprocess.check_output(["git", "rev-list", "HEAD"], cwd=ROOT, text=True).splitlines()
-        l8, evidence = build_l8(l3, l4, l5, l7, l8_base, manifest, args.l5_revision)
-        (ROOT / L8).write_bytes(dump(l8))
-        result.update(
-            {
-                "new_l8_class_rows": len(evidence["class_rows"]),
-                "new_l8_case_links": len(evidence["assignments"]),
-                "l8_class_count": len(l8["negative_equivalence_classes"]),
-                "l8_case_count": len(l8["unit_cases"]),
-                "l8_sha256": sha(dump(l8)),
-            }
-        )
-    print(json.dumps(result, ensure_ascii=False, indent=2))
+    if args.stage == "l5":
+        build_l5()
+    else:
+        build_l8()
 
 
 if __name__ == "__main__":
