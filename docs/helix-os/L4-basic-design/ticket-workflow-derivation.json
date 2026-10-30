@@ -590,17 +590,16 @@
         "selected_phase",
         "condition_facet",
         "witness_field",
-        "condition_facet_status"
+        "comparison_status"
       ],
-      "key_format": "{selected_phase}:{condition_facet}:{witness_field}:{condition_facet_status}",
-      "scope": "既存comparison条件をphaseとcondition facetを保持して表すclass key。条件やgateを追加しない。",
+      "key_format": "{selected_phase}:{condition_facet}:{witness_field}:{comparison_status}",
+      "scope": "class keyは既存comparison条件のselected phaseとcondition facetを保持する。末尾statusはwitness_fieldであるbinding.project比較一件の状態であり、condition facet全体の集約状態を表さない。条件やgateを追加しない。",
       "class_keys": [
         {
           "key": "resume:inputs:binding.project:corresponding",
           "selected_phase": "resume",
           "condition_facet": "inputs",
-          "condition_facet_status": "corresponding",
-          "witness_rule": "このclassはresumeのinputs facet内にあるbinding.project比較だけを表す。binding.project と context.binding.project がともに非空文字列で一致し、同じbindingの他4 fieldも一致する固定witnessでのfacet局所状態はcorresponding、局所findingはない。全体conditionと全findingはcase単位で記録する。",
+          "witness_rule": "このclassはresumeのinputs facet内にあるbinding.project比較だけを表す。binding.project と context.binding.project がともに非空文字列で一致し、同じbindingの他4 fieldも一致する固定witnessでのbinding.project比較の状態はcorresponding、局所findingはない。全体conditionと全findingはcase単位で記録する。",
           "local_finding_signature": [],
           "source_pointers": [
             "/diagnostic_contract/condition_names",
@@ -610,14 +609,14 @@
             "/diagnostic_contract/diagnostic_code_facets/source_conflict",
             "/diagnostic_contract/return_owner"
           ],
-          "witness_field": "binding.project"
+          "witness_field": "binding.project",
+          "comparison_status": "corresponding"
         },
         {
           "key": "resume:inputs:binding.project:unknown",
           "selected_phase": "resume",
           "condition_facet": "inputs",
-          "condition_facet_status": "unknown",
-          "witness_rule": "このclassはresumeのinputs facet内にあるbinding.project比較だけを表す。binding.project の一方が非空文字列でなく、他方は非空文字列の固定witnessでは、facet局所状態はunknownとなり、L4 string比較は不足側の原pointerにsource_unresolvedを置く。全体conditionと全findingはcase単位で記録する。",
+          "witness_rule": "このclassはresumeのinputs facet内にあるbinding.project比較だけを表す。binding.project の一方が非空文字列でなく、他方は非空文字列の固定witnessでは、binding.project比較の状態はunknownとなり、L4 string比較は不足側の原pointerにsource_unresolvedを置く。全体conditionと全findingはcase単位で記録する。",
           "local_finding_signature": [
             {
               "code": "source_unresolved",
@@ -633,14 +632,14 @@
             "/diagnostic_contract/diagnostic_code_facets/source_conflict",
             "/diagnostic_contract/return_owner"
           ],
-          "witness_field": "binding.project"
+          "witness_field": "binding.project",
+          "comparison_status": "unknown"
         },
         {
           "key": "resume:inputs:binding.project:violation",
           "selected_phase": "resume",
           "condition_facet": "inputs",
-          "condition_facet_status": "violation",
-          "witness_rule": "このclassはresumeのinputs facet内にあるbinding.project比較だけを表す。binding.project と context.binding.project がともに非空文字列で相反する固定witnessでは、facet局所状態はviolationとなり、L4 string比較はactual原pointerにsource_conflictを置く。全体conditionと全findingはcase単位で記録する。",
+          "witness_rule": "このclassはresumeのinputs facet内にあるbinding.project比較だけを表す。binding.project と context.binding.project がともに非空文字列で相反する固定witnessでは、binding.project比較の状態はviolationとなり、L4 string比較はactual原pointerにsource_conflictを置く。全体conditionと全findingはcase単位で記録する。",
           "local_finding_signature": [
             {
               "code": "source_conflict",
@@ -656,10 +655,11 @@
             "/diagnostic_contract/diagnostic_code_facets/source_conflict",
             "/diagnostic_contract/return_owner"
           ],
-          "witness_field": "binding.project"
+          "witness_field": "binding.project",
+          "comparison_status": "violation"
         }
       ],
-      "scope_limit": "このclass cohortはresumeのinputs facetにあるbinding.project comparisonだけを扱う。phase/facetの異なる負例や他fieldはこのcohortで形成しない。"
+      "scope_limit": "このclass cohortはresume phaseのinputs condition facetにあるbinding.project comparisonだけを扱う。key末尾statusはこの比較一件の状態で、inputs facet全体の集約状態を主張しない。phase/facetの異なる負例や他fieldはこのcohortで形成しない。"
     }
   }
 }
