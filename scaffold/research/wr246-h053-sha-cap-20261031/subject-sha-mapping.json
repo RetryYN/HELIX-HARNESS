@@ -1,0 +1,2325 @@
+{
+  "schema": "wr246-h053-subject-digest-map.v1",
+  "evidence_kind": "scaffold",
+  "authority_effect": "none",
+  "request_id": "WR246-H053-L8-SUBJECT-SHA-CAP",
+  "base_sha": "03141af4af6c5c3d9dc1f1bf075f29d96928d0f7",
+  "source_files": {
+    "docs/helix-harness/L8-unit-verification/semantic-asset-lineage.json": {
+      "sha256": "6365651422b2aa7cc4ae3d7596c445cc854eea140daabeddb8990da6c57d7bd2",
+      "revision": "03141af4af6c5c3d9dc1f1bf075f29d96928d0f7"
+    },
+    "docs/helix-harness/L5-detail-design/semantic-asset-lineage.json": {
+      "sha256": "6a66cffd1521e91130c710bbfd0d997c73c2cb56fd79d0959de725f6defdcb41",
+      "revision": "03141af4af6c5c3d9dc1f1bf075f29d96928d0f7"
+    },
+    "docs/governance/design-verification-quality-assurance.md": {
+      "sha256": "f5751e236dc073fe67114c1fcb4b0f64b3d746290b25d75b61e60a08e3c99c85",
+      "revision": "03141af4af6c5c3d9dc1f1bf075f29d96928d0f7"
+    }
+  },
+  "summary": {
+    "row_count": 30,
+    "case_ids": [
+      "HARNESS-L8-053-ADD-22",
+      "HARNESS-L8-053-ADD-23",
+      "HARNESS-L8-053-ADD-24",
+      "HARNESS-L8-053-ADD-25",
+      "HARNESS-L8-053-ADD-26",
+      "HARNESS-L8-053-ADD-27"
+    ],
+    "classification": "30 values across six cases are synthetic Qualification input digests. They are not source pins or expected-output values.",
+    "l5_contract_pointer": "/type_contract/types/Qualification/subject_sha256; /functions[HARNESS-L5-053-validate_lineage_input]/algorithm[2]",
+    "l5_fixture_boundary": "QA §3 prohibits concrete test fixture bodies in L5. L5 already defines the abstract typed Qualification and matching contract; the exact synthetic values stay source-only in this scaffold artifact.",
+    "l8_expected_preservation": "No values from expected/expected_comparison are copied into this artifact. The formal L8 expected fields remain unchanged.",
+    "test_citation_status": "No test_citation field is present on ADD-22..27 and no L7 semantic-asset-lineage test file exists at the fixed base. A function_ref is not treated as a test citation.",
+    "cap_status": "Unresolved; this artifact does not remove or rename the 30 forbidden L8 keys. Formal L8 remains unchanged until an existing valid U-ID/test-citation reference is available.",
+    "reconstruction": "Every value equals Qualification.subject_ref.sha256. Case-specific matching source_refs and raw content_bytes digests are listed. Intentional missing, mismatched content, and unresolved Qualification root cases remain distinct; they are not normalized to a single value state.",
+    "case_expectation_link": "Each mapping row records the enclosing L8 branch, function_ref, expected axes/rule refs, and the other case expected states. Full expected values remain only in the fixed L8 source; the evidence does not generate or rewrite an oracle."
+  },
+  "rows": [
+    {
+      "row_id": "WR246-H053-22-Q0",
+      "l8_case_id": "HARNESS-L8-053-ADD-22",
+      "l8_case_pointer": "/docs/helix-harness/L8-unit-verification/semantic-asset-lineage.json#/additional_unit_cases/21",
+      "branch": "r4-source-qualified-nonapplicability-whole",
+      "qualification_index": 0,
+      "qualification_owner": "authority_record_owner",
+      "qualification_ref": {
+        "identity": "qualification:mapping:map-QA",
+        "revision": "q1",
+        "scope": {
+          "project": "fixture-project",
+          "tenant": "fixture-tenant",
+          "environment": "unit"
+        },
+        "owner": "authority_record_owner",
+        "sha256": "f9a8bc26f168646e649b88e5a5d33ed8c66621407602db5241a4b15b0ef95bd7"
+      },
+      "subject_ref": {
+        "identity": "mapping-body:map-QA",
+        "revision": "r1",
+        "scope": {
+          "project": "fixture-project",
+          "tenant": "fixture-tenant",
+          "environment": "unit"
+        },
+        "owner": "authority_record_owner",
+        "sha256": "f704e13f9edb1e5fa40d04fa2a9ca8e72171fe99eb88dd1e122989eb323324bc"
+      },
+      "subject_sha256_value": "f704e13f9edb1e5fa40d04fa2a9ca8e72171fe99eb88dd1e122989eb323324bc",
+      "same_subject_ref_sha256": "f704e13f9edb1e5fa40d04fa2a9ca8e72171fe99eb88dd1e122989eb323324bc",
+      "same_subject_ref_sha256_matches": true,
+      "same_identity_source_refs": [
+        {
+          "pointer": "/additional_unit_cases/21/typed_input/validated_input/input/mapping_sources/0/source_ref",
+          "sha256": "f704e13f9edb1e5fa40d04fa2a9ca8e72171fe99eb88dd1e122989eb323324bc"
+        }
+      ],
+      "same_identity_source_envelopes": [
+        {
+          "pointer": "/additional_unit_cases/21/typed_input/validated_input/input/mapping_sources/0",
+          "source_ref_sha256": "f704e13f9edb1e5fa40d04fa2a9ca8e72171fe99eb88dd1e122989eb323324bc",
+          "content_bytes_sha256": "f704e13f9edb1e5fa40d04fa2a9ca8e72171fe99eb88dd1e122989eb323324bc",
+          "source_ref_matches_content": true
+        }
+      ],
+      "classification": "synthetic Qualification input (not repository source pin; not expected output)",
+      "destination": "abstract L5 Qualification contract; raw fixture claim and its resolution evidence retained only in this source-only scaffold record until a valid L7 test citation exists",
+      "what_digest_identifies": "SHA-256 claim for the Qualification.subject_ref body. Branch evidence below distinguishes a qualified source, foreign-scope source, absent source, byte mismatch, or unresolved selected qualification.",
+      "expected_oracle_role": "input-side qualification/source condition only; expected_comparison and expected status fields are separate.",
+      "function_ref": "HARNESS-L5-053-compare_lineage_mappings",
+      "expected_axes": [
+        {
+          "axis": "authority_mapping",
+          "state": "matched"
+        },
+        {
+          "axis": "oracle_mapping",
+          "state": "matched"
+        },
+        {
+          "axis": "typed_edge_mapping",
+          "state": "not_applicable"
+        }
+      ],
+      "expected_rule_refs": [],
+      "other_case_expected_refs": {
+        "expected_reference_state": "unresolved",
+        "expected_operation_state": "not_requested",
+        "expected_operation_selection": "not_requested",
+        "expected_side_effect_count": 0,
+        "expected_claim_state": "not_reported"
+      }
+    },
+    {
+      "row_id": "WR246-H053-22-Q1",
+      "l8_case_id": "HARNESS-L8-053-ADD-22",
+      "l8_case_pointer": "/docs/helix-harness/L8-unit-verification/semantic-asset-lineage.json#/additional_unit_cases/21",
+      "branch": "r4-source-qualified-nonapplicability-whole",
+      "qualification_index": 1,
+      "qualification_owner": "oracle_owner",
+      "qualification_ref": {
+        "identity": "qualification:mapping:map-QO",
+        "revision": "q1",
+        "scope": {
+          "project": "fixture-project",
+          "tenant": "fixture-tenant",
+          "environment": "unit"
+        },
+        "owner": "oracle_owner",
+        "sha256": "c18a1b424a2a24c495bf63e36b3b5ecb161f53debb8d2f887dbb2d9d02555295"
+      },
+      "subject_ref": {
+        "identity": "mapping-body:map-QO",
+        "revision": "r1",
+        "scope": {
+          "project": "fixture-project",
+          "tenant": "fixture-tenant",
+          "environment": "unit"
+        },
+        "owner": "oracle_owner",
+        "sha256": "9304db19a5f2d77e00c36e7537c3a378177b53344dba297516e70b72bf1d5e64"
+      },
+      "subject_sha256_value": "9304db19a5f2d77e00c36e7537c3a378177b53344dba297516e70b72bf1d5e64",
+      "same_subject_ref_sha256": "9304db19a5f2d77e00c36e7537c3a378177b53344dba297516e70b72bf1d5e64",
+      "same_subject_ref_sha256_matches": true,
+      "same_identity_source_refs": [
+        {
+          "pointer": "/additional_unit_cases/21/typed_input/validated_input/input/mapping_sources/1/source_ref",
+          "sha256": "9304db19a5f2d77e00c36e7537c3a378177b53344dba297516e70b72bf1d5e64"
+        }
+      ],
+      "same_identity_source_envelopes": [
+        {
+          "pointer": "/additional_unit_cases/21/typed_input/validated_input/input/mapping_sources/1",
+          "source_ref_sha256": "9304db19a5f2d77e00c36e7537c3a378177b53344dba297516e70b72bf1d5e64",
+          "content_bytes_sha256": "9304db19a5f2d77e00c36e7537c3a378177b53344dba297516e70b72bf1d5e64",
+          "source_ref_matches_content": true
+        }
+      ],
+      "classification": "synthetic Qualification input (not repository source pin; not expected output)",
+      "destination": "abstract L5 Qualification contract; raw fixture claim and its resolution evidence retained only in this source-only scaffold record until a valid L7 test citation exists",
+      "what_digest_identifies": "SHA-256 claim for the Qualification.subject_ref body. Branch evidence below distinguishes a qualified source, foreign-scope source, absent source, byte mismatch, or unresolved selected qualification.",
+      "expected_oracle_role": "input-side qualification/source condition only; expected_comparison and expected status fields are separate.",
+      "function_ref": "HARNESS-L5-053-compare_lineage_mappings",
+      "expected_axes": [
+        {
+          "axis": "authority_mapping",
+          "state": "matched"
+        },
+        {
+          "axis": "oracle_mapping",
+          "state": "matched"
+        },
+        {
+          "axis": "typed_edge_mapping",
+          "state": "not_applicable"
+        }
+      ],
+      "expected_rule_refs": [],
+      "other_case_expected_refs": {
+        "expected_reference_state": "unresolved",
+        "expected_operation_state": "not_requested",
+        "expected_operation_selection": "not_requested",
+        "expected_side_effect_count": 0,
+        "expected_claim_state": "not_reported"
+      }
+    },
+    {
+      "row_id": "WR246-H053-22-Q2",
+      "l8_case_id": "HARNESS-L8-053-ADD-22",
+      "l8_case_pointer": "/docs/helix-harness/L8-unit-verification/semantic-asset-lineage.json#/additional_unit_cases/21",
+      "branch": "r4-source-qualified-nonapplicability-whole",
+      "qualification_index": 2,
+      "qualification_owner": "relation-body-owner",
+      "qualification_ref": {
+        "identity": "qualification:relation-body",
+        "revision": "q1",
+        "scope": {
+          "project": "fixture-project",
+          "tenant": "fixture-tenant",
+          "environment": "unit"
+        },
+        "owner": "relation-body-owner",
+        "sha256": "3a204e53b73c6e741afba630ad9ad685ad1268cfe8d46f32ef5669f3018eb323"
+      },
+      "subject_ref": {
+        "identity": "relation-body:LS",
+        "revision": "r1",
+        "scope": {
+          "project": "fixture-project",
+          "tenant": "fixture-tenant",
+          "environment": "unit"
+        },
+        "owner": "relation-body-owner",
+        "sha256": "b21c812225f1d6bac2756372811c57168679e81439844b7d3c2fc607f6a9abbb"
+      },
+      "subject_sha256_value": "b21c812225f1d6bac2756372811c57168679e81439844b7d3c2fc607f6a9abbb",
+      "same_subject_ref_sha256": "b21c812225f1d6bac2756372811c57168679e81439844b7d3c2fc607f6a9abbb",
+      "same_subject_ref_sha256_matches": true,
+      "same_identity_source_refs": [
+        {
+          "pointer": "/additional_unit_cases/21/typed_input/validated_input/input/relation_sources/0/source_ref",
+          "sha256": "b21c812225f1d6bac2756372811c57168679e81439844b7d3c2fc607f6a9abbb"
+        }
+      ],
+      "same_identity_source_envelopes": [
+        {
+          "pointer": "/additional_unit_cases/21/typed_input/validated_input/input/relation_sources/0",
+          "source_ref_sha256": "b21c812225f1d6bac2756372811c57168679e81439844b7d3c2fc607f6a9abbb",
+          "content_bytes_sha256": "b21c812225f1d6bac2756372811c57168679e81439844b7d3c2fc607f6a9abbb",
+          "source_ref_matches_content": true
+        }
+      ],
+      "classification": "synthetic Qualification input (not repository source pin; not expected output)",
+      "destination": "abstract L5 Qualification contract; raw fixture claim and its resolution evidence retained only in this source-only scaffold record until a valid L7 test citation exists",
+      "what_digest_identifies": "SHA-256 claim for the Qualification.subject_ref body. Branch evidence below distinguishes a qualified source, foreign-scope source, absent source, byte mismatch, or unresolved selected qualification.",
+      "expected_oracle_role": "input-side qualification/source condition only; expected_comparison and expected status fields are separate.",
+      "function_ref": "HARNESS-L5-053-compare_lineage_mappings",
+      "expected_axes": [
+        {
+          "axis": "authority_mapping",
+          "state": "matched"
+        },
+        {
+          "axis": "oracle_mapping",
+          "state": "matched"
+        },
+        {
+          "axis": "typed_edge_mapping",
+          "state": "not_applicable"
+        }
+      ],
+      "expected_rule_refs": [],
+      "other_case_expected_refs": {
+        "expected_reference_state": "unresolved",
+        "expected_operation_state": "not_requested",
+        "expected_operation_selection": "not_requested",
+        "expected_side_effect_count": 0,
+        "expected_claim_state": "not_reported"
+      }
+    },
+    {
+      "row_id": "WR246-H053-22-Q3",
+      "l8_case_id": "HARNESS-L8-053-ADD-22",
+      "l8_case_pointer": "/docs/helix-harness/L8-unit-verification/semantic-asset-lineage.json#/additional_unit_cases/21",
+      "branch": "r4-source-qualified-nonapplicability-whole",
+      "qualification_index": 3,
+      "qualification_owner": "relation-record-owner",
+      "qualification_ref": {
+        "identity": "qualification:relation-record",
+        "revision": "q1",
+        "scope": {
+          "project": "fixture-project",
+          "tenant": "fixture-tenant",
+          "environment": "unit"
+        },
+        "owner": "relation-record-owner",
+        "sha256": "67a12e80dbae65084b4ce34eb3999b2206894758bb0283347f8dbe4da90c292b"
+      },
+      "subject_ref": {
+        "identity": "relation-record:LS",
+        "revision": "r1",
+        "scope": {
+          "project": "fixture-project",
+          "tenant": "fixture-tenant",
+          "environment": "unit"
+        },
+        "owner": "relation-record-owner",
+        "sha256": "ce891fdb8e2210395a43b4b8cf7c868a838902491cb2450f699e3a49fab32d73"
+      },
+      "subject_sha256_value": "ce891fdb8e2210395a43b4b8cf7c868a838902491cb2450f699e3a49fab32d73",
+      "same_subject_ref_sha256": "ce891fdb8e2210395a43b4b8cf7c868a838902491cb2450f699e3a49fab32d73",
+      "same_subject_ref_sha256_matches": true,
+      "same_identity_source_refs": [
+        {
+          "pointer": "/additional_unit_cases/21/typed_input/validated_input/input/relations/0/source_ref",
+          "sha256": "ce891fdb8e2210395a43b4b8cf7c868a838902491cb2450f699e3a49fab32d73"
+        }
+      ],
+      "same_identity_source_envelopes": [
+        {
+          "pointer": "/additional_unit_cases/21/typed_input/validated_input/input/relations/0",
+          "source_ref_sha256": "ce891fdb8e2210395a43b4b8cf7c868a838902491cb2450f699e3a49fab32d73",
+          "content_bytes_sha256": "ce891fdb8e2210395a43b4b8cf7c868a838902491cb2450f699e3a49fab32d73",
+          "source_ref_matches_content": true
+        }
+      ],
+      "classification": "synthetic Qualification input (not repository source pin; not expected output)",
+      "destination": "abstract L5 Qualification contract; raw fixture claim and its resolution evidence retained only in this source-only scaffold record until a valid L7 test citation exists",
+      "what_digest_identifies": "SHA-256 claim for the Qualification.subject_ref body. Branch evidence below distinguishes a qualified source, foreign-scope source, absent source, byte mismatch, or unresolved selected qualification.",
+      "expected_oracle_role": "input-side qualification/source condition only; expected_comparison and expected status fields are separate.",
+      "function_ref": "HARNESS-L5-053-compare_lineage_mappings",
+      "expected_axes": [
+        {
+          "axis": "authority_mapping",
+          "state": "matched"
+        },
+        {
+          "axis": "oracle_mapping",
+          "state": "matched"
+        },
+        {
+          "axis": "typed_edge_mapping",
+          "state": "not_applicable"
+        }
+      ],
+      "expected_rule_refs": [],
+      "other_case_expected_refs": {
+        "expected_reference_state": "unresolved",
+        "expected_operation_state": "not_requested",
+        "expected_operation_selection": "not_requested",
+        "expected_side_effect_count": 0,
+        "expected_claim_state": "not_reported"
+      }
+    },
+    {
+      "row_id": "WR246-H053-22-Q4",
+      "l8_case_id": "HARNESS-L8-053-ADD-22",
+      "l8_case_pointer": "/docs/helix-harness/L8-unit-verification/semantic-asset-lineage.json#/additional_unit_cases/21",
+      "branch": "r4-source-qualified-nonapplicability-whole",
+      "qualification_index": 4,
+      "qualification_owner": "trace_owner",
+      "qualification_ref": {
+        "identity": "qualification:reason:typed-edge",
+        "revision": "q2",
+        "scope": {
+          "project": "fixture-project",
+          "tenant": "fixture-tenant",
+          "environment": "unit"
+        },
+        "owner": "trace_owner",
+        "sha256": "7715adb82c848bcf03cecff8bacdbe0f4386a0ab2df9fe91aa7bc801fa48bdec"
+      },
+      "subject_ref": {
+        "identity": "reason:typed-edge",
+        "revision": "r1",
+        "scope": {
+          "project": "fixture-project",
+          "tenant": "fixture-tenant",
+          "environment": "unit"
+        },
+        "owner": "trace_owner",
+        "sha256": "727db3b76f406a89b3a69a0c23fc842e05c538fb8dfefc1892f17a7a57325074"
+      },
+      "subject_sha256_value": "727db3b76f406a89b3a69a0c23fc842e05c538fb8dfefc1892f17a7a57325074",
+      "same_subject_ref_sha256": "727db3b76f406a89b3a69a0c23fc842e05c538fb8dfefc1892f17a7a57325074",
+      "same_subject_ref_sha256_matches": true,
+      "same_identity_source_refs": [
+        {
+          "pointer": "/additional_unit_cases/21/typed_input/non_applicability_sources/0/source_ref",
+          "sha256": "727db3b76f406a89b3a69a0c23fc842e05c538fb8dfefc1892f17a7a57325074"
+        }
+      ],
+      "same_identity_source_envelopes": [
+        {
+          "pointer": "/additional_unit_cases/21/typed_input/non_applicability_sources/0",
+          "source_ref_sha256": "727db3b76f406a89b3a69a0c23fc842e05c538fb8dfefc1892f17a7a57325074",
+          "content_bytes_sha256": "727db3b76f406a89b3a69a0c23fc842e05c538fb8dfefc1892f17a7a57325074",
+          "source_ref_matches_content": true
+        }
+      ],
+      "classification": "synthetic Qualification input (not repository source pin; not expected output)",
+      "destination": "abstract L5 Qualification contract; raw fixture claim and its resolution evidence retained only in this source-only scaffold record until a valid L7 test citation exists",
+      "what_digest_identifies": "SHA-256 claim for the Qualification.subject_ref body. Branch evidence below distinguishes a qualified source, foreign-scope source, absent source, byte mismatch, or unresolved selected qualification.",
+      "expected_oracle_role": "input-side qualification/source condition only; expected_comparison and expected status fields are separate.",
+      "function_ref": "HARNESS-L5-053-compare_lineage_mappings",
+      "expected_axes": [
+        {
+          "axis": "authority_mapping",
+          "state": "matched"
+        },
+        {
+          "axis": "oracle_mapping",
+          "state": "matched"
+        },
+        {
+          "axis": "typed_edge_mapping",
+          "state": "not_applicable"
+        }
+      ],
+      "expected_rule_refs": [],
+      "other_case_expected_refs": {
+        "expected_reference_state": "unresolved",
+        "expected_operation_state": "not_requested",
+        "expected_operation_selection": "not_requested",
+        "expected_side_effect_count": 0,
+        "expected_claim_state": "not_reported"
+      }
+    },
+    {
+      "row_id": "WR246-H053-23-Q0",
+      "l8_case_id": "HARNESS-L8-053-ADD-23",
+      "l8_case_pointer": "/docs/helix-harness/L8-unit-verification/semantic-asset-lineage.json#/additional_unit_cases/22",
+      "branch": "r4-source-qualified-nonapplicability-whole",
+      "qualification_index": 0,
+      "qualification_owner": "oracle_owner",
+      "qualification_ref": {
+        "identity": "qualification:mapping:map-QO",
+        "revision": "q1",
+        "scope": {
+          "project": "fixture-project",
+          "tenant": "fixture-tenant",
+          "environment": "unit"
+        },
+        "owner": "oracle_owner",
+        "sha256": "c18a1b424a2a24c495bf63e36b3b5ecb161f53debb8d2f887dbb2d9d02555295"
+      },
+      "subject_ref": {
+        "identity": "mapping-body:map-QO",
+        "revision": "r1",
+        "scope": {
+          "project": "fixture-project",
+          "tenant": "fixture-tenant",
+          "environment": "unit"
+        },
+        "owner": "oracle_owner",
+        "sha256": "9304db19a5f2d77e00c36e7537c3a378177b53344dba297516e70b72bf1d5e64"
+      },
+      "subject_sha256_value": "9304db19a5f2d77e00c36e7537c3a378177b53344dba297516e70b72bf1d5e64",
+      "same_subject_ref_sha256": "9304db19a5f2d77e00c36e7537c3a378177b53344dba297516e70b72bf1d5e64",
+      "same_subject_ref_sha256_matches": true,
+      "same_identity_source_refs": [
+        {
+          "pointer": "/additional_unit_cases/22/typed_input/validated_input/input/mapping_sources/0/source_ref",
+          "sha256": "9304db19a5f2d77e00c36e7537c3a378177b53344dba297516e70b72bf1d5e64"
+        }
+      ],
+      "same_identity_source_envelopes": [
+        {
+          "pointer": "/additional_unit_cases/22/typed_input/validated_input/input/mapping_sources/0",
+          "source_ref_sha256": "9304db19a5f2d77e00c36e7537c3a378177b53344dba297516e70b72bf1d5e64",
+          "content_bytes_sha256": "9304db19a5f2d77e00c36e7537c3a378177b53344dba297516e70b72bf1d5e64",
+          "source_ref_matches_content": true
+        }
+      ],
+      "classification": "synthetic Qualification input (not repository source pin; not expected output)",
+      "destination": "abstract L5 Qualification contract; raw fixture claim and its resolution evidence retained only in this source-only scaffold record until a valid L7 test citation exists",
+      "what_digest_identifies": "SHA-256 claim for the Qualification.subject_ref body. Branch evidence below distinguishes a qualified source, foreign-scope source, absent source, byte mismatch, or unresolved selected qualification.",
+      "expected_oracle_role": "input-side qualification/source condition only; expected_comparison and expected status fields are separate.",
+      "function_ref": "HARNESS-L5-053-compare_lineage_mappings",
+      "expected_axes": [
+        {
+          "axis": "authority_mapping",
+          "state": "missing"
+        },
+        {
+          "axis": "authority_mapping",
+          "state": "unknown"
+        },
+        {
+          "axis": "oracle_mapping",
+          "state": "matched"
+        },
+        {
+          "axis": "typed_edge_mapping",
+          "state": "matched"
+        }
+      ],
+      "expected_rule_refs": [
+        "HARNESS-L5-053-R-authority_mapping_missing",
+        "HARNESS-L5-053-R-non_applicability_scope_mismatch"
+      ],
+      "other_case_expected_refs": {
+        "expected_reference_state": "unresolved",
+        "expected_operation_state": "not_requested",
+        "expected_operation_selection": "not_requested",
+        "expected_side_effect_count": 0,
+        "expected_claim_state": "not_reported"
+      }
+    },
+    {
+      "row_id": "WR246-H053-23-Q1",
+      "l8_case_id": "HARNESS-L8-053-ADD-23",
+      "l8_case_pointer": "/docs/helix-harness/L8-unit-verification/semantic-asset-lineage.json#/additional_unit_cases/22",
+      "branch": "r4-source-qualified-nonapplicability-whole",
+      "qualification_index": 1,
+      "qualification_owner": "trace_owner",
+      "qualification_ref": {
+        "identity": "qualification:mapping:map-QE",
+        "revision": "q1",
+        "scope": {
+          "project": "fixture-project",
+          "tenant": "fixture-tenant",
+          "environment": "unit"
+        },
+        "owner": "trace_owner",
+        "sha256": "d0224e39e1f8e12f660127d1a790be3c7acb6cf854ad84160d00275170061428"
+      },
+      "subject_ref": {
+        "identity": "mapping-body:map-QE",
+        "revision": "r1",
+        "scope": {
+          "project": "fixture-project",
+          "tenant": "fixture-tenant",
+          "environment": "unit"
+        },
+        "owner": "trace_owner",
+        "sha256": "6357d0609e1535d186abbdd291b31b949a859f32ba5c01863d996b833c431696"
+      },
+      "subject_sha256_value": "6357d0609e1535d186abbdd291b31b949a859f32ba5c01863d996b833c431696",
+      "same_subject_ref_sha256": "6357d0609e1535d186abbdd291b31b949a859f32ba5c01863d996b833c431696",
+      "same_subject_ref_sha256_matches": true,
+      "same_identity_source_refs": [
+        {
+          "pointer": "/additional_unit_cases/22/typed_input/validated_input/input/mapping_sources/1/source_ref",
+          "sha256": "6357d0609e1535d186abbdd291b31b949a859f32ba5c01863d996b833c431696"
+        }
+      ],
+      "same_identity_source_envelopes": [
+        {
+          "pointer": "/additional_unit_cases/22/typed_input/validated_input/input/mapping_sources/1",
+          "source_ref_sha256": "6357d0609e1535d186abbdd291b31b949a859f32ba5c01863d996b833c431696",
+          "content_bytes_sha256": "6357d0609e1535d186abbdd291b31b949a859f32ba5c01863d996b833c431696",
+          "source_ref_matches_content": true
+        }
+      ],
+      "classification": "synthetic Qualification input (not repository source pin; not expected output)",
+      "destination": "abstract L5 Qualification contract; raw fixture claim and its resolution evidence retained only in this source-only scaffold record until a valid L7 test citation exists",
+      "what_digest_identifies": "SHA-256 claim for the Qualification.subject_ref body. Branch evidence below distinguishes a qualified source, foreign-scope source, absent source, byte mismatch, or unresolved selected qualification.",
+      "expected_oracle_role": "input-side qualification/source condition only; expected_comparison and expected status fields are separate.",
+      "function_ref": "HARNESS-L5-053-compare_lineage_mappings",
+      "expected_axes": [
+        {
+          "axis": "authority_mapping",
+          "state": "missing"
+        },
+        {
+          "axis": "authority_mapping",
+          "state": "unknown"
+        },
+        {
+          "axis": "oracle_mapping",
+          "state": "matched"
+        },
+        {
+          "axis": "typed_edge_mapping",
+          "state": "matched"
+        }
+      ],
+      "expected_rule_refs": [
+        "HARNESS-L5-053-R-authority_mapping_missing",
+        "HARNESS-L5-053-R-non_applicability_scope_mismatch"
+      ],
+      "other_case_expected_refs": {
+        "expected_reference_state": "unresolved",
+        "expected_operation_state": "not_requested",
+        "expected_operation_selection": "not_requested",
+        "expected_side_effect_count": 0,
+        "expected_claim_state": "not_reported"
+      }
+    },
+    {
+      "row_id": "WR246-H053-23-Q2",
+      "l8_case_id": "HARNESS-L8-053-ADD-23",
+      "l8_case_pointer": "/docs/helix-harness/L8-unit-verification/semantic-asset-lineage.json#/additional_unit_cases/22",
+      "branch": "r4-source-qualified-nonapplicability-whole",
+      "qualification_index": 2,
+      "qualification_owner": "relation-body-owner",
+      "qualification_ref": {
+        "identity": "qualification:relation-body",
+        "revision": "q1",
+        "scope": {
+          "project": "fixture-project",
+          "tenant": "fixture-tenant",
+          "environment": "unit"
+        },
+        "owner": "relation-body-owner",
+        "sha256": "3a204e53b73c6e741afba630ad9ad685ad1268cfe8d46f32ef5669f3018eb323"
+      },
+      "subject_ref": {
+        "identity": "relation-body:LS",
+        "revision": "r1",
+        "scope": {
+          "project": "fixture-project",
+          "tenant": "fixture-tenant",
+          "environment": "unit"
+        },
+        "owner": "relation-body-owner",
+        "sha256": "6a86e7ca4808fe012b3acfb93d15f281589b8ec1ed82c224fff2b7109483ff92"
+      },
+      "subject_sha256_value": "6a86e7ca4808fe012b3acfb93d15f281589b8ec1ed82c224fff2b7109483ff92",
+      "same_subject_ref_sha256": "6a86e7ca4808fe012b3acfb93d15f281589b8ec1ed82c224fff2b7109483ff92",
+      "same_subject_ref_sha256_matches": true,
+      "same_identity_source_refs": [
+        {
+          "pointer": "/additional_unit_cases/22/typed_input/validated_input/input/relation_sources/0/source_ref",
+          "sha256": "6a86e7ca4808fe012b3acfb93d15f281589b8ec1ed82c224fff2b7109483ff92"
+        }
+      ],
+      "same_identity_source_envelopes": [
+        {
+          "pointer": "/additional_unit_cases/22/typed_input/validated_input/input/relation_sources/0",
+          "source_ref_sha256": "6a86e7ca4808fe012b3acfb93d15f281589b8ec1ed82c224fff2b7109483ff92",
+          "content_bytes_sha256": "6a86e7ca4808fe012b3acfb93d15f281589b8ec1ed82c224fff2b7109483ff92",
+          "source_ref_matches_content": true
+        }
+      ],
+      "classification": "synthetic Qualification input (not repository source pin; not expected output)",
+      "destination": "abstract L5 Qualification contract; raw fixture claim and its resolution evidence retained only in this source-only scaffold record until a valid L7 test citation exists",
+      "what_digest_identifies": "SHA-256 claim for the Qualification.subject_ref body. Branch evidence below distinguishes a qualified source, foreign-scope source, absent source, byte mismatch, or unresolved selected qualification.",
+      "expected_oracle_role": "input-side qualification/source condition only; expected_comparison and expected status fields are separate.",
+      "function_ref": "HARNESS-L5-053-compare_lineage_mappings",
+      "expected_axes": [
+        {
+          "axis": "authority_mapping",
+          "state": "missing"
+        },
+        {
+          "axis": "authority_mapping",
+          "state": "unknown"
+        },
+        {
+          "axis": "oracle_mapping",
+          "state": "matched"
+        },
+        {
+          "axis": "typed_edge_mapping",
+          "state": "matched"
+        }
+      ],
+      "expected_rule_refs": [
+        "HARNESS-L5-053-R-authority_mapping_missing",
+        "HARNESS-L5-053-R-non_applicability_scope_mismatch"
+      ],
+      "other_case_expected_refs": {
+        "expected_reference_state": "unresolved",
+        "expected_operation_state": "not_requested",
+        "expected_operation_selection": "not_requested",
+        "expected_side_effect_count": 0,
+        "expected_claim_state": "not_reported"
+      }
+    },
+    {
+      "row_id": "WR246-H053-23-Q3",
+      "l8_case_id": "HARNESS-L8-053-ADD-23",
+      "l8_case_pointer": "/docs/helix-harness/L8-unit-verification/semantic-asset-lineage.json#/additional_unit_cases/22",
+      "branch": "r4-source-qualified-nonapplicability-whole",
+      "qualification_index": 3,
+      "qualification_owner": "relation-record-owner",
+      "qualification_ref": {
+        "identity": "qualification:relation-record",
+        "revision": "q1",
+        "scope": {
+          "project": "fixture-project",
+          "tenant": "fixture-tenant",
+          "environment": "unit"
+        },
+        "owner": "relation-record-owner",
+        "sha256": "67a12e80dbae65084b4ce34eb3999b2206894758bb0283347f8dbe4da90c292b"
+      },
+      "subject_ref": {
+        "identity": "relation-record:LS",
+        "revision": "r1",
+        "scope": {
+          "project": "fixture-project",
+          "tenant": "fixture-tenant",
+          "environment": "unit"
+        },
+        "owner": "relation-record-owner",
+        "sha256": "1e56fb80451f4a96b8629054616a1c272bea673859e17640206523886f081be0"
+      },
+      "subject_sha256_value": "1e56fb80451f4a96b8629054616a1c272bea673859e17640206523886f081be0",
+      "same_subject_ref_sha256": "1e56fb80451f4a96b8629054616a1c272bea673859e17640206523886f081be0",
+      "same_subject_ref_sha256_matches": true,
+      "same_identity_source_refs": [
+        {
+          "pointer": "/additional_unit_cases/22/typed_input/validated_input/input/relations/0/source_ref",
+          "sha256": "1e56fb80451f4a96b8629054616a1c272bea673859e17640206523886f081be0"
+        }
+      ],
+      "same_identity_source_envelopes": [
+        {
+          "pointer": "/additional_unit_cases/22/typed_input/validated_input/input/relations/0",
+          "source_ref_sha256": "1e56fb80451f4a96b8629054616a1c272bea673859e17640206523886f081be0",
+          "content_bytes_sha256": "1e56fb80451f4a96b8629054616a1c272bea673859e17640206523886f081be0",
+          "source_ref_matches_content": true
+        }
+      ],
+      "classification": "synthetic Qualification input (not repository source pin; not expected output)",
+      "destination": "abstract L5 Qualification contract; raw fixture claim and its resolution evidence retained only in this source-only scaffold record until a valid L7 test citation exists",
+      "what_digest_identifies": "SHA-256 claim for the Qualification.subject_ref body. Branch evidence below distinguishes a qualified source, foreign-scope source, absent source, byte mismatch, or unresolved selected qualification.",
+      "expected_oracle_role": "input-side qualification/source condition only; expected_comparison and expected status fields are separate.",
+      "function_ref": "HARNESS-L5-053-compare_lineage_mappings",
+      "expected_axes": [
+        {
+          "axis": "authority_mapping",
+          "state": "missing"
+        },
+        {
+          "axis": "authority_mapping",
+          "state": "unknown"
+        },
+        {
+          "axis": "oracle_mapping",
+          "state": "matched"
+        },
+        {
+          "axis": "typed_edge_mapping",
+          "state": "matched"
+        }
+      ],
+      "expected_rule_refs": [
+        "HARNESS-L5-053-R-authority_mapping_missing",
+        "HARNESS-L5-053-R-non_applicability_scope_mismatch"
+      ],
+      "other_case_expected_refs": {
+        "expected_reference_state": "unresolved",
+        "expected_operation_state": "not_requested",
+        "expected_operation_selection": "not_requested",
+        "expected_side_effect_count": 0,
+        "expected_claim_state": "not_reported"
+      }
+    },
+    {
+      "row_id": "WR246-H053-23-Q4",
+      "l8_case_id": "HARNESS-L8-053-ADD-23",
+      "l8_case_pointer": "/docs/helix-harness/L8-unit-verification/semantic-asset-lineage.json#/additional_unit_cases/22",
+      "branch": "r4-source-qualified-nonapplicability-whole",
+      "qualification_index": 4,
+      "qualification_owner": "trace_owner",
+      "qualification_ref": {
+        "identity": "qualification:reason:foreign-scope",
+        "revision": "q2",
+        "scope": {
+          "project": "fixture-project",
+          "tenant": "foreign-fixture-tenant",
+          "environment": "unit"
+        },
+        "owner": "trace_owner",
+        "sha256": "07d30ae6f0bfcc0c94893e649825438e88cea6a23501a8924fc4c062dd505bf7"
+      },
+      "subject_ref": {
+        "identity": "reason:foreign",
+        "revision": "r1",
+        "scope": {
+          "project": "fixture-project",
+          "tenant": "foreign-fixture-tenant",
+          "environment": "unit"
+        },
+        "owner": "trace_owner",
+        "sha256": "ce233450315d8724d26a8065baf991d8886ed9c3488be42c28512ba061695b66"
+      },
+      "subject_sha256_value": "ce233450315d8724d26a8065baf991d8886ed9c3488be42c28512ba061695b66",
+      "same_subject_ref_sha256": "ce233450315d8724d26a8065baf991d8886ed9c3488be42c28512ba061695b66",
+      "same_subject_ref_sha256_matches": true,
+      "same_identity_source_refs": [
+        {
+          "pointer": "/additional_unit_cases/22/typed_input/non_applicability_sources/0/source_ref",
+          "sha256": "ce233450315d8724d26a8065baf991d8886ed9c3488be42c28512ba061695b66"
+        }
+      ],
+      "same_identity_source_envelopes": [
+        {
+          "pointer": "/additional_unit_cases/22/typed_input/non_applicability_sources/0",
+          "source_ref_sha256": "ce233450315d8724d26a8065baf991d8886ed9c3488be42c28512ba061695b66",
+          "content_bytes_sha256": "ce233450315d8724d26a8065baf991d8886ed9c3488be42c28512ba061695b66",
+          "source_ref_matches_content": true
+        }
+      ],
+      "classification": "synthetic Qualification input (not repository source pin; not expected output)",
+      "destination": "abstract L5 Qualification contract; raw fixture claim and its resolution evidence retained only in this source-only scaffold record until a valid L7 test citation exists",
+      "what_digest_identifies": "SHA-256 claim for the Qualification.subject_ref body. Branch evidence below distinguishes a qualified source, foreign-scope source, absent source, byte mismatch, or unresolved selected qualification.",
+      "expected_oracle_role": "input-side qualification/source condition only; expected_comparison and expected status fields are separate.",
+      "function_ref": "HARNESS-L5-053-compare_lineage_mappings",
+      "expected_axes": [
+        {
+          "axis": "authority_mapping",
+          "state": "missing"
+        },
+        {
+          "axis": "authority_mapping",
+          "state": "unknown"
+        },
+        {
+          "axis": "oracle_mapping",
+          "state": "matched"
+        },
+        {
+          "axis": "typed_edge_mapping",
+          "state": "matched"
+        }
+      ],
+      "expected_rule_refs": [
+        "HARNESS-L5-053-R-authority_mapping_missing",
+        "HARNESS-L5-053-R-non_applicability_scope_mismatch"
+      ],
+      "other_case_expected_refs": {
+        "expected_reference_state": "unresolved",
+        "expected_operation_state": "not_requested",
+        "expected_operation_selection": "not_requested",
+        "expected_side_effect_count": 0,
+        "expected_claim_state": "not_reported"
+      }
+    },
+    {
+      "row_id": "WR246-H053-24-Q0",
+      "l8_case_id": "HARNESS-L8-053-ADD-24",
+      "l8_case_pointer": "/docs/helix-harness/L8-unit-verification/semantic-asset-lineage.json#/additional_unit_cases/23",
+      "branch": "r4-source-qualified-nonapplicability-whole",
+      "qualification_index": 0,
+      "qualification_owner": "oracle_owner",
+      "qualification_ref": {
+        "identity": "qualification:mapping:map-QO",
+        "revision": "q1",
+        "scope": {
+          "project": "fixture-project",
+          "tenant": "fixture-tenant",
+          "environment": "unit"
+        },
+        "owner": "oracle_owner",
+        "sha256": "c18a1b424a2a24c495bf63e36b3b5ecb161f53debb8d2f887dbb2d9d02555295"
+      },
+      "subject_ref": {
+        "identity": "mapping-body:map-QO",
+        "revision": "r1",
+        "scope": {
+          "project": "fixture-project",
+          "tenant": "fixture-tenant",
+          "environment": "unit"
+        },
+        "owner": "oracle_owner",
+        "sha256": "9304db19a5f2d77e00c36e7537c3a378177b53344dba297516e70b72bf1d5e64"
+      },
+      "subject_sha256_value": "9304db19a5f2d77e00c36e7537c3a378177b53344dba297516e70b72bf1d5e64",
+      "same_subject_ref_sha256": "9304db19a5f2d77e00c36e7537c3a378177b53344dba297516e70b72bf1d5e64",
+      "same_subject_ref_sha256_matches": true,
+      "same_identity_source_refs": [
+        {
+          "pointer": "/additional_unit_cases/23/typed_input/validated_input/input/mapping_sources/0/source_ref",
+          "sha256": "9304db19a5f2d77e00c36e7537c3a378177b53344dba297516e70b72bf1d5e64"
+        }
+      ],
+      "same_identity_source_envelopes": [
+        {
+          "pointer": "/additional_unit_cases/23/typed_input/validated_input/input/mapping_sources/0",
+          "source_ref_sha256": "9304db19a5f2d77e00c36e7537c3a378177b53344dba297516e70b72bf1d5e64",
+          "content_bytes_sha256": "9304db19a5f2d77e00c36e7537c3a378177b53344dba297516e70b72bf1d5e64",
+          "source_ref_matches_content": true
+        }
+      ],
+      "classification": "synthetic Qualification input (not repository source pin; not expected output)",
+      "destination": "abstract L5 Qualification contract; raw fixture claim and its resolution evidence retained only in this source-only scaffold record until a valid L7 test citation exists",
+      "what_digest_identifies": "SHA-256 claim for the Qualification.subject_ref body. Branch evidence below distinguishes a qualified source, foreign-scope source, absent source, byte mismatch, or unresolved selected qualification.",
+      "expected_oracle_role": "input-side qualification/source condition only; expected_comparison and expected status fields are separate.",
+      "function_ref": "HARNESS-L5-053-compare_lineage_mappings",
+      "expected_axes": [
+        {
+          "axis": "authority_mapping",
+          "state": "missing"
+        },
+        {
+          "axis": "oracle_mapping",
+          "state": "matched"
+        },
+        {
+          "axis": "typed_edge_mapping",
+          "state": "matched"
+        }
+      ],
+      "expected_rule_refs": [
+        "HARNESS-L5-053-R-authority_mapping_missing"
+      ],
+      "other_case_expected_refs": {
+        "expected_reference_state": "unresolved",
+        "expected_operation_state": "not_requested",
+        "expected_operation_selection": "not_requested",
+        "expected_side_effect_count": 0,
+        "expected_claim_state": "not_reported"
+      }
+    },
+    {
+      "row_id": "WR246-H053-24-Q1",
+      "l8_case_id": "HARNESS-L8-053-ADD-24",
+      "l8_case_pointer": "/docs/helix-harness/L8-unit-verification/semantic-asset-lineage.json#/additional_unit_cases/23",
+      "branch": "r4-source-qualified-nonapplicability-whole",
+      "qualification_index": 1,
+      "qualification_owner": "trace_owner",
+      "qualification_ref": {
+        "identity": "qualification:mapping:map-QE",
+        "revision": "q1",
+        "scope": {
+          "project": "fixture-project",
+          "tenant": "fixture-tenant",
+          "environment": "unit"
+        },
+        "owner": "trace_owner",
+        "sha256": "d0224e39e1f8e12f660127d1a790be3c7acb6cf854ad84160d00275170061428"
+      },
+      "subject_ref": {
+        "identity": "mapping-body:map-QE",
+        "revision": "r1",
+        "scope": {
+          "project": "fixture-project",
+          "tenant": "fixture-tenant",
+          "environment": "unit"
+        },
+        "owner": "trace_owner",
+        "sha256": "6357d0609e1535d186abbdd291b31b949a859f32ba5c01863d996b833c431696"
+      },
+      "subject_sha256_value": "6357d0609e1535d186abbdd291b31b949a859f32ba5c01863d996b833c431696",
+      "same_subject_ref_sha256": "6357d0609e1535d186abbdd291b31b949a859f32ba5c01863d996b833c431696",
+      "same_subject_ref_sha256_matches": true,
+      "same_identity_source_refs": [
+        {
+          "pointer": "/additional_unit_cases/23/typed_input/validated_input/input/mapping_sources/1/source_ref",
+          "sha256": "6357d0609e1535d186abbdd291b31b949a859f32ba5c01863d996b833c431696"
+        }
+      ],
+      "same_identity_source_envelopes": [
+        {
+          "pointer": "/additional_unit_cases/23/typed_input/validated_input/input/mapping_sources/1",
+          "source_ref_sha256": "6357d0609e1535d186abbdd291b31b949a859f32ba5c01863d996b833c431696",
+          "content_bytes_sha256": "6357d0609e1535d186abbdd291b31b949a859f32ba5c01863d996b833c431696",
+          "source_ref_matches_content": true
+        }
+      ],
+      "classification": "synthetic Qualification input (not repository source pin; not expected output)",
+      "destination": "abstract L5 Qualification contract; raw fixture claim and its resolution evidence retained only in this source-only scaffold record until a valid L7 test citation exists",
+      "what_digest_identifies": "SHA-256 claim for the Qualification.subject_ref body. Branch evidence below distinguishes a qualified source, foreign-scope source, absent source, byte mismatch, or unresolved selected qualification.",
+      "expected_oracle_role": "input-side qualification/source condition only; expected_comparison and expected status fields are separate.",
+      "function_ref": "HARNESS-L5-053-compare_lineage_mappings",
+      "expected_axes": [
+        {
+          "axis": "authority_mapping",
+          "state": "missing"
+        },
+        {
+          "axis": "oracle_mapping",
+          "state": "matched"
+        },
+        {
+          "axis": "typed_edge_mapping",
+          "state": "matched"
+        }
+      ],
+      "expected_rule_refs": [
+        "HARNESS-L5-053-R-authority_mapping_missing"
+      ],
+      "other_case_expected_refs": {
+        "expected_reference_state": "unresolved",
+        "expected_operation_state": "not_requested",
+        "expected_operation_selection": "not_requested",
+        "expected_side_effect_count": 0,
+        "expected_claim_state": "not_reported"
+      }
+    },
+    {
+      "row_id": "WR246-H053-24-Q2",
+      "l8_case_id": "HARNESS-L8-053-ADD-24",
+      "l8_case_pointer": "/docs/helix-harness/L8-unit-verification/semantic-asset-lineage.json#/additional_unit_cases/23",
+      "branch": "r4-source-qualified-nonapplicability-whole",
+      "qualification_index": 2,
+      "qualification_owner": "relation-body-owner",
+      "qualification_ref": {
+        "identity": "qualification:relation-body",
+        "revision": "q1",
+        "scope": {
+          "project": "fixture-project",
+          "tenant": "fixture-tenant",
+          "environment": "unit"
+        },
+        "owner": "relation-body-owner",
+        "sha256": "3a204e53b73c6e741afba630ad9ad685ad1268cfe8d46f32ef5669f3018eb323"
+      },
+      "subject_ref": {
+        "identity": "relation-body:LS",
+        "revision": "r1",
+        "scope": {
+          "project": "fixture-project",
+          "tenant": "fixture-tenant",
+          "environment": "unit"
+        },
+        "owner": "relation-body-owner",
+        "sha256": "6a86e7ca4808fe012b3acfb93d15f281589b8ec1ed82c224fff2b7109483ff92"
+      },
+      "subject_sha256_value": "6a86e7ca4808fe012b3acfb93d15f281589b8ec1ed82c224fff2b7109483ff92",
+      "same_subject_ref_sha256": "6a86e7ca4808fe012b3acfb93d15f281589b8ec1ed82c224fff2b7109483ff92",
+      "same_subject_ref_sha256_matches": true,
+      "same_identity_source_refs": [
+        {
+          "pointer": "/additional_unit_cases/23/typed_input/validated_input/input/relation_sources/0/source_ref",
+          "sha256": "6a86e7ca4808fe012b3acfb93d15f281589b8ec1ed82c224fff2b7109483ff92"
+        }
+      ],
+      "same_identity_source_envelopes": [
+        {
+          "pointer": "/additional_unit_cases/23/typed_input/validated_input/input/relation_sources/0",
+          "source_ref_sha256": "6a86e7ca4808fe012b3acfb93d15f281589b8ec1ed82c224fff2b7109483ff92",
+          "content_bytes_sha256": "6a86e7ca4808fe012b3acfb93d15f281589b8ec1ed82c224fff2b7109483ff92",
+          "source_ref_matches_content": true
+        }
+      ],
+      "classification": "synthetic Qualification input (not repository source pin; not expected output)",
+      "destination": "abstract L5 Qualification contract; raw fixture claim and its resolution evidence retained only in this source-only scaffold record until a valid L7 test citation exists",
+      "what_digest_identifies": "SHA-256 claim for the Qualification.subject_ref body. Branch evidence below distinguishes a qualified source, foreign-scope source, absent source, byte mismatch, or unresolved selected qualification.",
+      "expected_oracle_role": "input-side qualification/source condition only; expected_comparison and expected status fields are separate.",
+      "function_ref": "HARNESS-L5-053-compare_lineage_mappings",
+      "expected_axes": [
+        {
+          "axis": "authority_mapping",
+          "state": "missing"
+        },
+        {
+          "axis": "oracle_mapping",
+          "state": "matched"
+        },
+        {
+          "axis": "typed_edge_mapping",
+          "state": "matched"
+        }
+      ],
+      "expected_rule_refs": [
+        "HARNESS-L5-053-R-authority_mapping_missing"
+      ],
+      "other_case_expected_refs": {
+        "expected_reference_state": "unresolved",
+        "expected_operation_state": "not_requested",
+        "expected_operation_selection": "not_requested",
+        "expected_side_effect_count": 0,
+        "expected_claim_state": "not_reported"
+      }
+    },
+    {
+      "row_id": "WR246-H053-24-Q3",
+      "l8_case_id": "HARNESS-L8-053-ADD-24",
+      "l8_case_pointer": "/docs/helix-harness/L8-unit-verification/semantic-asset-lineage.json#/additional_unit_cases/23",
+      "branch": "r4-source-qualified-nonapplicability-whole",
+      "qualification_index": 3,
+      "qualification_owner": "relation-record-owner",
+      "qualification_ref": {
+        "identity": "qualification:relation-record",
+        "revision": "q1",
+        "scope": {
+          "project": "fixture-project",
+          "tenant": "fixture-tenant",
+          "environment": "unit"
+        },
+        "owner": "relation-record-owner",
+        "sha256": "67a12e80dbae65084b4ce34eb3999b2206894758bb0283347f8dbe4da90c292b"
+      },
+      "subject_ref": {
+        "identity": "relation-record:LS",
+        "revision": "r1",
+        "scope": {
+          "project": "fixture-project",
+          "tenant": "fixture-tenant",
+          "environment": "unit"
+        },
+        "owner": "relation-record-owner",
+        "sha256": "1e56fb80451f4a96b8629054616a1c272bea673859e17640206523886f081be0"
+      },
+      "subject_sha256_value": "1e56fb80451f4a96b8629054616a1c272bea673859e17640206523886f081be0",
+      "same_subject_ref_sha256": "1e56fb80451f4a96b8629054616a1c272bea673859e17640206523886f081be0",
+      "same_subject_ref_sha256_matches": true,
+      "same_identity_source_refs": [
+        {
+          "pointer": "/additional_unit_cases/23/typed_input/validated_input/input/relations/0/source_ref",
+          "sha256": "1e56fb80451f4a96b8629054616a1c272bea673859e17640206523886f081be0"
+        }
+      ],
+      "same_identity_source_envelopes": [
+        {
+          "pointer": "/additional_unit_cases/23/typed_input/validated_input/input/relations/0",
+          "source_ref_sha256": "1e56fb80451f4a96b8629054616a1c272bea673859e17640206523886f081be0",
+          "content_bytes_sha256": "1e56fb80451f4a96b8629054616a1c272bea673859e17640206523886f081be0",
+          "source_ref_matches_content": true
+        }
+      ],
+      "classification": "synthetic Qualification input (not repository source pin; not expected output)",
+      "destination": "abstract L5 Qualification contract; raw fixture claim and its resolution evidence retained only in this source-only scaffold record until a valid L7 test citation exists",
+      "what_digest_identifies": "SHA-256 claim for the Qualification.subject_ref body. Branch evidence below distinguishes a qualified source, foreign-scope source, absent source, byte mismatch, or unresolved selected qualification.",
+      "expected_oracle_role": "input-side qualification/source condition only; expected_comparison and expected status fields are separate.",
+      "function_ref": "HARNESS-L5-053-compare_lineage_mappings",
+      "expected_axes": [
+        {
+          "axis": "authority_mapping",
+          "state": "missing"
+        },
+        {
+          "axis": "oracle_mapping",
+          "state": "matched"
+        },
+        {
+          "axis": "typed_edge_mapping",
+          "state": "matched"
+        }
+      ],
+      "expected_rule_refs": [
+        "HARNESS-L5-053-R-authority_mapping_missing"
+      ],
+      "other_case_expected_refs": {
+        "expected_reference_state": "unresolved",
+        "expected_operation_state": "not_requested",
+        "expected_operation_selection": "not_requested",
+        "expected_side_effect_count": 0,
+        "expected_claim_state": "not_reported"
+      }
+    },
+    {
+      "row_id": "WR246-H053-24-Q4",
+      "l8_case_id": "HARNESS-L8-053-ADD-24",
+      "l8_case_pointer": "/docs/helix-harness/L8-unit-verification/semantic-asset-lineage.json#/additional_unit_cases/23",
+      "branch": "r4-source-qualified-nonapplicability-whole",
+      "qualification_index": 4,
+      "qualification_owner": "trace_owner",
+      "qualification_ref": {
+        "identity": "qualification:reason:foreign-scope",
+        "revision": "q2",
+        "scope": {
+          "project": "fixture-project",
+          "tenant": "foreign-fixture-tenant",
+          "environment": "unit"
+        },
+        "owner": "trace_owner",
+        "sha256": "07d30ae6f0bfcc0c94893e649825438e88cea6a23501a8924fc4c062dd505bf7"
+      },
+      "subject_ref": {
+        "identity": "reason:foreign",
+        "revision": "r1",
+        "scope": {
+          "project": "fixture-project",
+          "tenant": "foreign-fixture-tenant",
+          "environment": "unit"
+        },
+        "owner": "trace_owner",
+        "sha256": "ce233450315d8724d26a8065baf991d8886ed9c3488be42c28512ba061695b66"
+      },
+      "subject_sha256_value": "ce233450315d8724d26a8065baf991d8886ed9c3488be42c28512ba061695b66",
+      "same_subject_ref_sha256": "ce233450315d8724d26a8065baf991d8886ed9c3488be42c28512ba061695b66",
+      "same_subject_ref_sha256_matches": true,
+      "same_identity_source_refs": [
+        {
+          "pointer": "/additional_unit_cases/23/typed_input/non_applicability_sources/0/source_ref",
+          "sha256": "ce233450315d8724d26a8065baf991d8886ed9c3488be42c28512ba061695b66"
+        }
+      ],
+      "same_identity_source_envelopes": [
+        {
+          "pointer": "/additional_unit_cases/23/typed_input/non_applicability_sources/0",
+          "source_ref_sha256": "ce233450315d8724d26a8065baf991d8886ed9c3488be42c28512ba061695b66",
+          "content_bytes_sha256": "ce233450315d8724d26a8065baf991d8886ed9c3488be42c28512ba061695b66",
+          "source_ref_matches_content": true
+        }
+      ],
+      "classification": "synthetic Qualification input (not repository source pin; not expected output)",
+      "destination": "abstract L5 Qualification contract; raw fixture claim and its resolution evidence retained only in this source-only scaffold record until a valid L7 test citation exists",
+      "what_digest_identifies": "SHA-256 claim for the Qualification.subject_ref body. Branch evidence below distinguishes a qualified source, foreign-scope source, absent source, byte mismatch, or unresolved selected qualification.",
+      "expected_oracle_role": "input-side qualification/source condition only; expected_comparison and expected status fields are separate.",
+      "function_ref": "HARNESS-L5-053-compare_lineage_mappings",
+      "expected_axes": [
+        {
+          "axis": "authority_mapping",
+          "state": "missing"
+        },
+        {
+          "axis": "oracle_mapping",
+          "state": "matched"
+        },
+        {
+          "axis": "typed_edge_mapping",
+          "state": "matched"
+        }
+      ],
+      "expected_rule_refs": [
+        "HARNESS-L5-053-R-authority_mapping_missing"
+      ],
+      "other_case_expected_refs": {
+        "expected_reference_state": "unresolved",
+        "expected_operation_state": "not_requested",
+        "expected_operation_selection": "not_requested",
+        "expected_side_effect_count": 0,
+        "expected_claim_state": "not_reported"
+      }
+    },
+    {
+      "row_id": "WR246-H053-25-Q0",
+      "l8_case_id": "HARNESS-L8-053-ADD-25",
+      "l8_case_pointer": "/docs/helix-harness/L8-unit-verification/semantic-asset-lineage.json#/additional_unit_cases/24",
+      "branch": "selected-reason-source_missing",
+      "qualification_index": 0,
+      "qualification_owner": "authority_record_owner",
+      "qualification_ref": {
+        "identity": "qualification:mapping:map-QA",
+        "revision": "q1",
+        "scope": {
+          "project": "fixture-project",
+          "tenant": "fixture-tenant",
+          "environment": "unit"
+        },
+        "owner": "authority_record_owner",
+        "sha256": "f9a8bc26f168646e649b88e5a5d33ed8c66621407602db5241a4b15b0ef95bd7"
+      },
+      "subject_ref": {
+        "identity": "mapping-body:map-QA",
+        "revision": "r1",
+        "scope": {
+          "project": "fixture-project",
+          "tenant": "fixture-tenant",
+          "environment": "unit"
+        },
+        "owner": "authority_record_owner",
+        "sha256": "f704e13f9edb1e5fa40d04fa2a9ca8e72171fe99eb88dd1e122989eb323324bc"
+      },
+      "subject_sha256_value": "f704e13f9edb1e5fa40d04fa2a9ca8e72171fe99eb88dd1e122989eb323324bc",
+      "same_subject_ref_sha256": "f704e13f9edb1e5fa40d04fa2a9ca8e72171fe99eb88dd1e122989eb323324bc",
+      "same_subject_ref_sha256_matches": true,
+      "same_identity_source_refs": [
+        {
+          "pointer": "/additional_unit_cases/24/typed_input/validated_input/input/mapping_sources/0/source_ref",
+          "sha256": "f704e13f9edb1e5fa40d04fa2a9ca8e72171fe99eb88dd1e122989eb323324bc"
+        }
+      ],
+      "same_identity_source_envelopes": [
+        {
+          "pointer": "/additional_unit_cases/24/typed_input/validated_input/input/mapping_sources/0",
+          "source_ref_sha256": "f704e13f9edb1e5fa40d04fa2a9ca8e72171fe99eb88dd1e122989eb323324bc",
+          "content_bytes_sha256": "f704e13f9edb1e5fa40d04fa2a9ca8e72171fe99eb88dd1e122989eb323324bc",
+          "source_ref_matches_content": true
+        }
+      ],
+      "classification": "synthetic Qualification input (not repository source pin; not expected output)",
+      "destination": "abstract L5 Qualification contract; raw fixture claim and its resolution evidence retained only in this source-only scaffold record until a valid L7 test citation exists",
+      "what_digest_identifies": "SHA-256 claim for the Qualification.subject_ref body. Branch evidence below distinguishes a qualified source, foreign-scope source, absent source, byte mismatch, or unresolved selected qualification.",
+      "expected_oracle_role": "input-side qualification/source condition only; expected_comparison and expected status fields are separate.",
+      "function_ref": "HARNESS-L5-053-compare_lineage_mappings",
+      "expected_axes": [
+        {
+          "axis": "authority_mapping",
+          "state": "matched"
+        },
+        {
+          "axis": "oracle_mapping",
+          "state": "matched"
+        },
+        {
+          "axis": "typed_edge_mapping",
+          "state": "unknown"
+        }
+      ],
+      "expected_rule_refs": [
+        "HARNESS-L5-053-R-non_applicability_source_missing"
+      ],
+      "other_case_expected_refs": {
+        "expected_reference_state": "unresolved",
+        "expected_operation_state": "not_requested",
+        "expected_operation_selection": "not_requested",
+        "expected_side_effect_count": 0,
+        "expected_claim_state": "not_reported"
+      }
+    },
+    {
+      "row_id": "WR246-H053-25-Q1",
+      "l8_case_id": "HARNESS-L8-053-ADD-25",
+      "l8_case_pointer": "/docs/helix-harness/L8-unit-verification/semantic-asset-lineage.json#/additional_unit_cases/24",
+      "branch": "selected-reason-source_missing",
+      "qualification_index": 1,
+      "qualification_owner": "oracle_owner",
+      "qualification_ref": {
+        "identity": "qualification:mapping:map-QO",
+        "revision": "q1",
+        "scope": {
+          "project": "fixture-project",
+          "tenant": "fixture-tenant",
+          "environment": "unit"
+        },
+        "owner": "oracle_owner",
+        "sha256": "c18a1b424a2a24c495bf63e36b3b5ecb161f53debb8d2f887dbb2d9d02555295"
+      },
+      "subject_ref": {
+        "identity": "mapping-body:map-QO",
+        "revision": "r1",
+        "scope": {
+          "project": "fixture-project",
+          "tenant": "fixture-tenant",
+          "environment": "unit"
+        },
+        "owner": "oracle_owner",
+        "sha256": "9304db19a5f2d77e00c36e7537c3a378177b53344dba297516e70b72bf1d5e64"
+      },
+      "subject_sha256_value": "9304db19a5f2d77e00c36e7537c3a378177b53344dba297516e70b72bf1d5e64",
+      "same_subject_ref_sha256": "9304db19a5f2d77e00c36e7537c3a378177b53344dba297516e70b72bf1d5e64",
+      "same_subject_ref_sha256_matches": true,
+      "same_identity_source_refs": [
+        {
+          "pointer": "/additional_unit_cases/24/typed_input/validated_input/input/mapping_sources/1/source_ref",
+          "sha256": "9304db19a5f2d77e00c36e7537c3a378177b53344dba297516e70b72bf1d5e64"
+        }
+      ],
+      "same_identity_source_envelopes": [
+        {
+          "pointer": "/additional_unit_cases/24/typed_input/validated_input/input/mapping_sources/1",
+          "source_ref_sha256": "9304db19a5f2d77e00c36e7537c3a378177b53344dba297516e70b72bf1d5e64",
+          "content_bytes_sha256": "9304db19a5f2d77e00c36e7537c3a378177b53344dba297516e70b72bf1d5e64",
+          "source_ref_matches_content": true
+        }
+      ],
+      "classification": "synthetic Qualification input (not repository source pin; not expected output)",
+      "destination": "abstract L5 Qualification contract; raw fixture claim and its resolution evidence retained only in this source-only scaffold record until a valid L7 test citation exists",
+      "what_digest_identifies": "SHA-256 claim for the Qualification.subject_ref body. Branch evidence below distinguishes a qualified source, foreign-scope source, absent source, byte mismatch, or unresolved selected qualification.",
+      "expected_oracle_role": "input-side qualification/source condition only; expected_comparison and expected status fields are separate.",
+      "function_ref": "HARNESS-L5-053-compare_lineage_mappings",
+      "expected_axes": [
+        {
+          "axis": "authority_mapping",
+          "state": "matched"
+        },
+        {
+          "axis": "oracle_mapping",
+          "state": "matched"
+        },
+        {
+          "axis": "typed_edge_mapping",
+          "state": "unknown"
+        }
+      ],
+      "expected_rule_refs": [
+        "HARNESS-L5-053-R-non_applicability_source_missing"
+      ],
+      "other_case_expected_refs": {
+        "expected_reference_state": "unresolved",
+        "expected_operation_state": "not_requested",
+        "expected_operation_selection": "not_requested",
+        "expected_side_effect_count": 0,
+        "expected_claim_state": "not_reported"
+      }
+    },
+    {
+      "row_id": "WR246-H053-25-Q2",
+      "l8_case_id": "HARNESS-L8-053-ADD-25",
+      "l8_case_pointer": "/docs/helix-harness/L8-unit-verification/semantic-asset-lineage.json#/additional_unit_cases/24",
+      "branch": "selected-reason-source_missing",
+      "qualification_index": 2,
+      "qualification_owner": "relation-body-owner",
+      "qualification_ref": {
+        "identity": "qualification:relation-body",
+        "revision": "q1",
+        "scope": {
+          "project": "fixture-project",
+          "tenant": "fixture-tenant",
+          "environment": "unit"
+        },
+        "owner": "relation-body-owner",
+        "sha256": "3a204e53b73c6e741afba630ad9ad685ad1268cfe8d46f32ef5669f3018eb323"
+      },
+      "subject_ref": {
+        "identity": "relation-body:LS",
+        "revision": "r1",
+        "scope": {
+          "project": "fixture-project",
+          "tenant": "fixture-tenant",
+          "environment": "unit"
+        },
+        "owner": "relation-body-owner",
+        "sha256": "b21c812225f1d6bac2756372811c57168679e81439844b7d3c2fc607f6a9abbb"
+      },
+      "subject_sha256_value": "b21c812225f1d6bac2756372811c57168679e81439844b7d3c2fc607f6a9abbb",
+      "same_subject_ref_sha256": "b21c812225f1d6bac2756372811c57168679e81439844b7d3c2fc607f6a9abbb",
+      "same_subject_ref_sha256_matches": true,
+      "same_identity_source_refs": [
+        {
+          "pointer": "/additional_unit_cases/24/typed_input/validated_input/input/relation_sources/0/source_ref",
+          "sha256": "b21c812225f1d6bac2756372811c57168679e81439844b7d3c2fc607f6a9abbb"
+        }
+      ],
+      "same_identity_source_envelopes": [
+        {
+          "pointer": "/additional_unit_cases/24/typed_input/validated_input/input/relation_sources/0",
+          "source_ref_sha256": "b21c812225f1d6bac2756372811c57168679e81439844b7d3c2fc607f6a9abbb",
+          "content_bytes_sha256": "b21c812225f1d6bac2756372811c57168679e81439844b7d3c2fc607f6a9abbb",
+          "source_ref_matches_content": true
+        }
+      ],
+      "classification": "synthetic Qualification input (not repository source pin; not expected output)",
+      "destination": "abstract L5 Qualification contract; raw fixture claim and its resolution evidence retained only in this source-only scaffold record until a valid L7 test citation exists",
+      "what_digest_identifies": "SHA-256 claim for the Qualification.subject_ref body. Branch evidence below distinguishes a qualified source, foreign-scope source, absent source, byte mismatch, or unresolved selected qualification.",
+      "expected_oracle_role": "input-side qualification/source condition only; expected_comparison and expected status fields are separate.",
+      "function_ref": "HARNESS-L5-053-compare_lineage_mappings",
+      "expected_axes": [
+        {
+          "axis": "authority_mapping",
+          "state": "matched"
+        },
+        {
+          "axis": "oracle_mapping",
+          "state": "matched"
+        },
+        {
+          "axis": "typed_edge_mapping",
+          "state": "unknown"
+        }
+      ],
+      "expected_rule_refs": [
+        "HARNESS-L5-053-R-non_applicability_source_missing"
+      ],
+      "other_case_expected_refs": {
+        "expected_reference_state": "unresolved",
+        "expected_operation_state": "not_requested",
+        "expected_operation_selection": "not_requested",
+        "expected_side_effect_count": 0,
+        "expected_claim_state": "not_reported"
+      }
+    },
+    {
+      "row_id": "WR246-H053-25-Q3",
+      "l8_case_id": "HARNESS-L8-053-ADD-25",
+      "l8_case_pointer": "/docs/helix-harness/L8-unit-verification/semantic-asset-lineage.json#/additional_unit_cases/24",
+      "branch": "selected-reason-source_missing",
+      "qualification_index": 3,
+      "qualification_owner": "relation-record-owner",
+      "qualification_ref": {
+        "identity": "qualification:relation-record",
+        "revision": "q1",
+        "scope": {
+          "project": "fixture-project",
+          "tenant": "fixture-tenant",
+          "environment": "unit"
+        },
+        "owner": "relation-record-owner",
+        "sha256": "67a12e80dbae65084b4ce34eb3999b2206894758bb0283347f8dbe4da90c292b"
+      },
+      "subject_ref": {
+        "identity": "relation-record:LS",
+        "revision": "r1",
+        "scope": {
+          "project": "fixture-project",
+          "tenant": "fixture-tenant",
+          "environment": "unit"
+        },
+        "owner": "relation-record-owner",
+        "sha256": "ce891fdb8e2210395a43b4b8cf7c868a838902491cb2450f699e3a49fab32d73"
+      },
+      "subject_sha256_value": "ce891fdb8e2210395a43b4b8cf7c868a838902491cb2450f699e3a49fab32d73",
+      "same_subject_ref_sha256": "ce891fdb8e2210395a43b4b8cf7c868a838902491cb2450f699e3a49fab32d73",
+      "same_subject_ref_sha256_matches": true,
+      "same_identity_source_refs": [
+        {
+          "pointer": "/additional_unit_cases/24/typed_input/validated_input/input/relations/0/source_ref",
+          "sha256": "ce891fdb8e2210395a43b4b8cf7c868a838902491cb2450f699e3a49fab32d73"
+        }
+      ],
+      "same_identity_source_envelopes": [
+        {
+          "pointer": "/additional_unit_cases/24/typed_input/validated_input/input/relations/0",
+          "source_ref_sha256": "ce891fdb8e2210395a43b4b8cf7c868a838902491cb2450f699e3a49fab32d73",
+          "content_bytes_sha256": "ce891fdb8e2210395a43b4b8cf7c868a838902491cb2450f699e3a49fab32d73",
+          "source_ref_matches_content": true
+        }
+      ],
+      "classification": "synthetic Qualification input (not repository source pin; not expected output)",
+      "destination": "abstract L5 Qualification contract; raw fixture claim and its resolution evidence retained only in this source-only scaffold record until a valid L7 test citation exists",
+      "what_digest_identifies": "SHA-256 claim for the Qualification.subject_ref body. Branch evidence below distinguishes a qualified source, foreign-scope source, absent source, byte mismatch, or unresolved selected qualification.",
+      "expected_oracle_role": "input-side qualification/source condition only; expected_comparison and expected status fields are separate.",
+      "function_ref": "HARNESS-L5-053-compare_lineage_mappings",
+      "expected_axes": [
+        {
+          "axis": "authority_mapping",
+          "state": "matched"
+        },
+        {
+          "axis": "oracle_mapping",
+          "state": "matched"
+        },
+        {
+          "axis": "typed_edge_mapping",
+          "state": "unknown"
+        }
+      ],
+      "expected_rule_refs": [
+        "HARNESS-L5-053-R-non_applicability_source_missing"
+      ],
+      "other_case_expected_refs": {
+        "expected_reference_state": "unresolved",
+        "expected_operation_state": "not_requested",
+        "expected_operation_selection": "not_requested",
+        "expected_side_effect_count": 0,
+        "expected_claim_state": "not_reported"
+      }
+    },
+    {
+      "row_id": "WR246-H053-25-Q4",
+      "l8_case_id": "HARNESS-L8-053-ADD-25",
+      "l8_case_pointer": "/docs/helix-harness/L8-unit-verification/semantic-asset-lineage.json#/additional_unit_cases/24",
+      "branch": "selected-reason-source_missing",
+      "qualification_index": 4,
+      "qualification_owner": "trace_owner",
+      "qualification_ref": {
+        "identity": "qualification:reason:typed-edge",
+        "revision": "q2",
+        "scope": {
+          "project": "fixture-project",
+          "tenant": "fixture-tenant",
+          "environment": "unit"
+        },
+        "owner": "trace_owner",
+        "sha256": "7715adb82c848bcf03cecff8bacdbe0f4386a0ab2df9fe91aa7bc801fa48bdec"
+      },
+      "subject_ref": {
+        "identity": "reason:typed-edge",
+        "revision": "r1",
+        "scope": {
+          "project": "fixture-project",
+          "tenant": "fixture-tenant",
+          "environment": "unit"
+        },
+        "owner": "trace_owner",
+        "sha256": "727db3b76f406a89b3a69a0c23fc842e05c538fb8dfefc1892f17a7a57325074"
+      },
+      "subject_sha256_value": "727db3b76f406a89b3a69a0c23fc842e05c538fb8dfefc1892f17a7a57325074",
+      "same_subject_ref_sha256": "727db3b76f406a89b3a69a0c23fc842e05c538fb8dfefc1892f17a7a57325074",
+      "same_subject_ref_sha256_matches": true,
+      "same_identity_source_refs": [],
+      "same_identity_source_envelopes": [],
+      "classification": "synthetic Qualification input (not repository source pin; not expected output)",
+      "destination": "abstract L5 Qualification contract; raw fixture claim and its resolution evidence retained only in this source-only scaffold record until a valid L7 test citation exists",
+      "what_digest_identifies": "SHA-256 claim for the Qualification.subject_ref body. Branch evidence below distinguishes a qualified source, foreign-scope source, absent source, byte mismatch, or unresolved selected qualification.",
+      "expected_oracle_role": "input-side qualification/source condition only; expected_comparison and expected status fields are separate.",
+      "function_ref": "HARNESS-L5-053-compare_lineage_mappings",
+      "expected_axes": [
+        {
+          "axis": "authority_mapping",
+          "state": "matched"
+        },
+        {
+          "axis": "oracle_mapping",
+          "state": "matched"
+        },
+        {
+          "axis": "typed_edge_mapping",
+          "state": "unknown"
+        }
+      ],
+      "expected_rule_refs": [
+        "HARNESS-L5-053-R-non_applicability_source_missing"
+      ],
+      "other_case_expected_refs": {
+        "expected_reference_state": "unresolved",
+        "expected_operation_state": "not_requested",
+        "expected_operation_selection": "not_requested",
+        "expected_side_effect_count": 0,
+        "expected_claim_state": "not_reported"
+      }
+    },
+    {
+      "row_id": "WR246-H053-26-Q0",
+      "l8_case_id": "HARNESS-L8-053-ADD-26",
+      "l8_case_pointer": "/docs/helix-harness/L8-unit-verification/semantic-asset-lineage.json#/additional_unit_cases/25",
+      "branch": "selected-reason-source_bytes_mismatch",
+      "qualification_index": 0,
+      "qualification_owner": "authority_record_owner",
+      "qualification_ref": {
+        "identity": "qualification:mapping:map-QA",
+        "revision": "q1",
+        "scope": {
+          "project": "fixture-project",
+          "tenant": "fixture-tenant",
+          "environment": "unit"
+        },
+        "owner": "authority_record_owner",
+        "sha256": "f9a8bc26f168646e649b88e5a5d33ed8c66621407602db5241a4b15b0ef95bd7"
+      },
+      "subject_ref": {
+        "identity": "mapping-body:map-QA",
+        "revision": "r1",
+        "scope": {
+          "project": "fixture-project",
+          "tenant": "fixture-tenant",
+          "environment": "unit"
+        },
+        "owner": "authority_record_owner",
+        "sha256": "f704e13f9edb1e5fa40d04fa2a9ca8e72171fe99eb88dd1e122989eb323324bc"
+      },
+      "subject_sha256_value": "f704e13f9edb1e5fa40d04fa2a9ca8e72171fe99eb88dd1e122989eb323324bc",
+      "same_subject_ref_sha256": "f704e13f9edb1e5fa40d04fa2a9ca8e72171fe99eb88dd1e122989eb323324bc",
+      "same_subject_ref_sha256_matches": true,
+      "same_identity_source_refs": [
+        {
+          "pointer": "/additional_unit_cases/25/typed_input/validated_input/input/mapping_sources/0/source_ref",
+          "sha256": "f704e13f9edb1e5fa40d04fa2a9ca8e72171fe99eb88dd1e122989eb323324bc"
+        }
+      ],
+      "same_identity_source_envelopes": [
+        {
+          "pointer": "/additional_unit_cases/25/typed_input/validated_input/input/mapping_sources/0",
+          "source_ref_sha256": "f704e13f9edb1e5fa40d04fa2a9ca8e72171fe99eb88dd1e122989eb323324bc",
+          "content_bytes_sha256": "f704e13f9edb1e5fa40d04fa2a9ca8e72171fe99eb88dd1e122989eb323324bc",
+          "source_ref_matches_content": true
+        }
+      ],
+      "classification": "synthetic Qualification input (not repository source pin; not expected output)",
+      "destination": "abstract L5 Qualification contract; raw fixture claim and its resolution evidence retained only in this source-only scaffold record until a valid L7 test citation exists",
+      "what_digest_identifies": "SHA-256 claim for the Qualification.subject_ref body. Branch evidence below distinguishes a qualified source, foreign-scope source, absent source, byte mismatch, or unresolved selected qualification.",
+      "expected_oracle_role": "input-side qualification/source condition only; expected_comparison and expected status fields are separate.",
+      "function_ref": "HARNESS-L5-053-compare_lineage_mappings",
+      "expected_axes": [
+        {
+          "axis": "authority_mapping",
+          "state": "matched"
+        },
+        {
+          "axis": "oracle_mapping",
+          "state": "matched"
+        },
+        {
+          "axis": "typed_edge_mapping",
+          "state": "unknown"
+        }
+      ],
+      "expected_rule_refs": [
+        "HARNESS-L5-053-R-non_applicability_source_bytes_mismatch"
+      ],
+      "other_case_expected_refs": {
+        "expected_reference_state": "unresolved",
+        "expected_operation_state": "not_requested",
+        "expected_operation_selection": "not_requested",
+        "expected_side_effect_count": 0,
+        "expected_claim_state": "not_reported"
+      }
+    },
+    {
+      "row_id": "WR246-H053-26-Q1",
+      "l8_case_id": "HARNESS-L8-053-ADD-26",
+      "l8_case_pointer": "/docs/helix-harness/L8-unit-verification/semantic-asset-lineage.json#/additional_unit_cases/25",
+      "branch": "selected-reason-source_bytes_mismatch",
+      "qualification_index": 1,
+      "qualification_owner": "oracle_owner",
+      "qualification_ref": {
+        "identity": "qualification:mapping:map-QO",
+        "revision": "q1",
+        "scope": {
+          "project": "fixture-project",
+          "tenant": "fixture-tenant",
+          "environment": "unit"
+        },
+        "owner": "oracle_owner",
+        "sha256": "c18a1b424a2a24c495bf63e36b3b5ecb161f53debb8d2f887dbb2d9d02555295"
+      },
+      "subject_ref": {
+        "identity": "mapping-body:map-QO",
+        "revision": "r1",
+        "scope": {
+          "project": "fixture-project",
+          "tenant": "fixture-tenant",
+          "environment": "unit"
+        },
+        "owner": "oracle_owner",
+        "sha256": "9304db19a5f2d77e00c36e7537c3a378177b53344dba297516e70b72bf1d5e64"
+      },
+      "subject_sha256_value": "9304db19a5f2d77e00c36e7537c3a378177b53344dba297516e70b72bf1d5e64",
+      "same_subject_ref_sha256": "9304db19a5f2d77e00c36e7537c3a378177b53344dba297516e70b72bf1d5e64",
+      "same_subject_ref_sha256_matches": true,
+      "same_identity_source_refs": [
+        {
+          "pointer": "/additional_unit_cases/25/typed_input/validated_input/input/mapping_sources/1/source_ref",
+          "sha256": "9304db19a5f2d77e00c36e7537c3a378177b53344dba297516e70b72bf1d5e64"
+        }
+      ],
+      "same_identity_source_envelopes": [
+        {
+          "pointer": "/additional_unit_cases/25/typed_input/validated_input/input/mapping_sources/1",
+          "source_ref_sha256": "9304db19a5f2d77e00c36e7537c3a378177b53344dba297516e70b72bf1d5e64",
+          "content_bytes_sha256": "9304db19a5f2d77e00c36e7537c3a378177b53344dba297516e70b72bf1d5e64",
+          "source_ref_matches_content": true
+        }
+      ],
+      "classification": "synthetic Qualification input (not repository source pin; not expected output)",
+      "destination": "abstract L5 Qualification contract; raw fixture claim and its resolution evidence retained only in this source-only scaffold record until a valid L7 test citation exists",
+      "what_digest_identifies": "SHA-256 claim for the Qualification.subject_ref body. Branch evidence below distinguishes a qualified source, foreign-scope source, absent source, byte mismatch, or unresolved selected qualification.",
+      "expected_oracle_role": "input-side qualification/source condition only; expected_comparison and expected status fields are separate.",
+      "function_ref": "HARNESS-L5-053-compare_lineage_mappings",
+      "expected_axes": [
+        {
+          "axis": "authority_mapping",
+          "state": "matched"
+        },
+        {
+          "axis": "oracle_mapping",
+          "state": "matched"
+        },
+        {
+          "axis": "typed_edge_mapping",
+          "state": "unknown"
+        }
+      ],
+      "expected_rule_refs": [
+        "HARNESS-L5-053-R-non_applicability_source_bytes_mismatch"
+      ],
+      "other_case_expected_refs": {
+        "expected_reference_state": "unresolved",
+        "expected_operation_state": "not_requested",
+        "expected_operation_selection": "not_requested",
+        "expected_side_effect_count": 0,
+        "expected_claim_state": "not_reported"
+      }
+    },
+    {
+      "row_id": "WR246-H053-26-Q2",
+      "l8_case_id": "HARNESS-L8-053-ADD-26",
+      "l8_case_pointer": "/docs/helix-harness/L8-unit-verification/semantic-asset-lineage.json#/additional_unit_cases/25",
+      "branch": "selected-reason-source_bytes_mismatch",
+      "qualification_index": 2,
+      "qualification_owner": "relation-body-owner",
+      "qualification_ref": {
+        "identity": "qualification:relation-body",
+        "revision": "q1",
+        "scope": {
+          "project": "fixture-project",
+          "tenant": "fixture-tenant",
+          "environment": "unit"
+        },
+        "owner": "relation-body-owner",
+        "sha256": "3a204e53b73c6e741afba630ad9ad685ad1268cfe8d46f32ef5669f3018eb323"
+      },
+      "subject_ref": {
+        "identity": "relation-body:LS",
+        "revision": "r1",
+        "scope": {
+          "project": "fixture-project",
+          "tenant": "fixture-tenant",
+          "environment": "unit"
+        },
+        "owner": "relation-body-owner",
+        "sha256": "b21c812225f1d6bac2756372811c57168679e81439844b7d3c2fc607f6a9abbb"
+      },
+      "subject_sha256_value": "b21c812225f1d6bac2756372811c57168679e81439844b7d3c2fc607f6a9abbb",
+      "same_subject_ref_sha256": "b21c812225f1d6bac2756372811c57168679e81439844b7d3c2fc607f6a9abbb",
+      "same_subject_ref_sha256_matches": true,
+      "same_identity_source_refs": [
+        {
+          "pointer": "/additional_unit_cases/25/typed_input/validated_input/input/relation_sources/0/source_ref",
+          "sha256": "b21c812225f1d6bac2756372811c57168679e81439844b7d3c2fc607f6a9abbb"
+        }
+      ],
+      "same_identity_source_envelopes": [
+        {
+          "pointer": "/additional_unit_cases/25/typed_input/validated_input/input/relation_sources/0",
+          "source_ref_sha256": "b21c812225f1d6bac2756372811c57168679e81439844b7d3c2fc607f6a9abbb",
+          "content_bytes_sha256": "b21c812225f1d6bac2756372811c57168679e81439844b7d3c2fc607f6a9abbb",
+          "source_ref_matches_content": true
+        }
+      ],
+      "classification": "synthetic Qualification input (not repository source pin; not expected output)",
+      "destination": "abstract L5 Qualification contract; raw fixture claim and its resolution evidence retained only in this source-only scaffold record until a valid L7 test citation exists",
+      "what_digest_identifies": "SHA-256 claim for the Qualification.subject_ref body. Branch evidence below distinguishes a qualified source, foreign-scope source, absent source, byte mismatch, or unresolved selected qualification.",
+      "expected_oracle_role": "input-side qualification/source condition only; expected_comparison and expected status fields are separate.",
+      "function_ref": "HARNESS-L5-053-compare_lineage_mappings",
+      "expected_axes": [
+        {
+          "axis": "authority_mapping",
+          "state": "matched"
+        },
+        {
+          "axis": "oracle_mapping",
+          "state": "matched"
+        },
+        {
+          "axis": "typed_edge_mapping",
+          "state": "unknown"
+        }
+      ],
+      "expected_rule_refs": [
+        "HARNESS-L5-053-R-non_applicability_source_bytes_mismatch"
+      ],
+      "other_case_expected_refs": {
+        "expected_reference_state": "unresolved",
+        "expected_operation_state": "not_requested",
+        "expected_operation_selection": "not_requested",
+        "expected_side_effect_count": 0,
+        "expected_claim_state": "not_reported"
+      }
+    },
+    {
+      "row_id": "WR246-H053-26-Q3",
+      "l8_case_id": "HARNESS-L8-053-ADD-26",
+      "l8_case_pointer": "/docs/helix-harness/L8-unit-verification/semantic-asset-lineage.json#/additional_unit_cases/25",
+      "branch": "selected-reason-source_bytes_mismatch",
+      "qualification_index": 3,
+      "qualification_owner": "relation-record-owner",
+      "qualification_ref": {
+        "identity": "qualification:relation-record",
+        "revision": "q1",
+        "scope": {
+          "project": "fixture-project",
+          "tenant": "fixture-tenant",
+          "environment": "unit"
+        },
+        "owner": "relation-record-owner",
+        "sha256": "67a12e80dbae65084b4ce34eb3999b2206894758bb0283347f8dbe4da90c292b"
+      },
+      "subject_ref": {
+        "identity": "relation-record:LS",
+        "revision": "r1",
+        "scope": {
+          "project": "fixture-project",
+          "tenant": "fixture-tenant",
+          "environment": "unit"
+        },
+        "owner": "relation-record-owner",
+        "sha256": "ce891fdb8e2210395a43b4b8cf7c868a838902491cb2450f699e3a49fab32d73"
+      },
+      "subject_sha256_value": "ce891fdb8e2210395a43b4b8cf7c868a838902491cb2450f699e3a49fab32d73",
+      "same_subject_ref_sha256": "ce891fdb8e2210395a43b4b8cf7c868a838902491cb2450f699e3a49fab32d73",
+      "same_subject_ref_sha256_matches": true,
+      "same_identity_source_refs": [
+        {
+          "pointer": "/additional_unit_cases/25/typed_input/validated_input/input/relations/0/source_ref",
+          "sha256": "ce891fdb8e2210395a43b4b8cf7c868a838902491cb2450f699e3a49fab32d73"
+        }
+      ],
+      "same_identity_source_envelopes": [
+        {
+          "pointer": "/additional_unit_cases/25/typed_input/validated_input/input/relations/0",
+          "source_ref_sha256": "ce891fdb8e2210395a43b4b8cf7c868a838902491cb2450f699e3a49fab32d73",
+          "content_bytes_sha256": "ce891fdb8e2210395a43b4b8cf7c868a838902491cb2450f699e3a49fab32d73",
+          "source_ref_matches_content": true
+        }
+      ],
+      "classification": "synthetic Qualification input (not repository source pin; not expected output)",
+      "destination": "abstract L5 Qualification contract; raw fixture claim and its resolution evidence retained only in this source-only scaffold record until a valid L7 test citation exists",
+      "what_digest_identifies": "SHA-256 claim for the Qualification.subject_ref body. Branch evidence below distinguishes a qualified source, foreign-scope source, absent source, byte mismatch, or unresolved selected qualification.",
+      "expected_oracle_role": "input-side qualification/source condition only; expected_comparison and expected status fields are separate.",
+      "function_ref": "HARNESS-L5-053-compare_lineage_mappings",
+      "expected_axes": [
+        {
+          "axis": "authority_mapping",
+          "state": "matched"
+        },
+        {
+          "axis": "oracle_mapping",
+          "state": "matched"
+        },
+        {
+          "axis": "typed_edge_mapping",
+          "state": "unknown"
+        }
+      ],
+      "expected_rule_refs": [
+        "HARNESS-L5-053-R-non_applicability_source_bytes_mismatch"
+      ],
+      "other_case_expected_refs": {
+        "expected_reference_state": "unresolved",
+        "expected_operation_state": "not_requested",
+        "expected_operation_selection": "not_requested",
+        "expected_side_effect_count": 0,
+        "expected_claim_state": "not_reported"
+      }
+    },
+    {
+      "row_id": "WR246-H053-26-Q4",
+      "l8_case_id": "HARNESS-L8-053-ADD-26",
+      "l8_case_pointer": "/docs/helix-harness/L8-unit-verification/semantic-asset-lineage.json#/additional_unit_cases/25",
+      "branch": "selected-reason-source_bytes_mismatch",
+      "qualification_index": 4,
+      "qualification_owner": "trace_owner",
+      "qualification_ref": {
+        "identity": "qualification:reason:typed-edge",
+        "revision": "q2",
+        "scope": {
+          "project": "fixture-project",
+          "tenant": "fixture-tenant",
+          "environment": "unit"
+        },
+        "owner": "trace_owner",
+        "sha256": "7715adb82c848bcf03cecff8bacdbe0f4386a0ab2df9fe91aa7bc801fa48bdec"
+      },
+      "subject_ref": {
+        "identity": "reason:typed-edge",
+        "revision": "r1",
+        "scope": {
+          "project": "fixture-project",
+          "tenant": "fixture-tenant",
+          "environment": "unit"
+        },
+        "owner": "trace_owner",
+        "sha256": "727db3b76f406a89b3a69a0c23fc842e05c538fb8dfefc1892f17a7a57325074"
+      },
+      "subject_sha256_value": "727db3b76f406a89b3a69a0c23fc842e05c538fb8dfefc1892f17a7a57325074",
+      "same_subject_ref_sha256": "727db3b76f406a89b3a69a0c23fc842e05c538fb8dfefc1892f17a7a57325074",
+      "same_subject_ref_sha256_matches": true,
+      "same_identity_source_refs": [
+        {
+          "pointer": "/additional_unit_cases/25/typed_input/non_applicability_sources/0/source_ref",
+          "sha256": "727db3b76f406a89b3a69a0c23fc842e05c538fb8dfefc1892f17a7a57325074"
+        }
+      ],
+      "same_identity_source_envelopes": [
+        {
+          "pointer": "/additional_unit_cases/25/typed_input/non_applicability_sources/0",
+          "source_ref_sha256": "727db3b76f406a89b3a69a0c23fc842e05c538fb8dfefc1892f17a7a57325074",
+          "content_bytes_sha256": "e51459374570b85615364bb970aa684112f1e92763872ce8fee16fd62cc06980",
+          "source_ref_matches_content": false
+        }
+      ],
+      "classification": "synthetic Qualification input (not repository source pin; not expected output)",
+      "destination": "abstract L5 Qualification contract; raw fixture claim and its resolution evidence retained only in this source-only scaffold record until a valid L7 test citation exists",
+      "what_digest_identifies": "SHA-256 claim for the Qualification.subject_ref body. Branch evidence below distinguishes a qualified source, foreign-scope source, absent source, byte mismatch, or unresolved selected qualification.",
+      "expected_oracle_role": "input-side qualification/source condition only; expected_comparison and expected status fields are separate.",
+      "function_ref": "HARNESS-L5-053-compare_lineage_mappings",
+      "expected_axes": [
+        {
+          "axis": "authority_mapping",
+          "state": "matched"
+        },
+        {
+          "axis": "oracle_mapping",
+          "state": "matched"
+        },
+        {
+          "axis": "typed_edge_mapping",
+          "state": "unknown"
+        }
+      ],
+      "expected_rule_refs": [
+        "HARNESS-L5-053-R-non_applicability_source_bytes_mismatch"
+      ],
+      "other_case_expected_refs": {
+        "expected_reference_state": "unresolved",
+        "expected_operation_state": "not_requested",
+        "expected_operation_selection": "not_requested",
+        "expected_side_effect_count": 0,
+        "expected_claim_state": "not_reported"
+      }
+    },
+    {
+      "row_id": "WR246-H053-27-Q0",
+      "l8_case_id": "HARNESS-L8-053-ADD-27",
+      "l8_case_pointer": "/docs/helix-harness/L8-unit-verification/semantic-asset-lineage.json#/additional_unit_cases/26",
+      "branch": "selected-reason-qualification_unresolved",
+      "qualification_index": 0,
+      "qualification_owner": "authority_record_owner",
+      "qualification_ref": {
+        "identity": "qualification:mapping:map-QA",
+        "revision": "q1",
+        "scope": {
+          "project": "fixture-project",
+          "tenant": "fixture-tenant",
+          "environment": "unit"
+        },
+        "owner": "authority_record_owner",
+        "sha256": "f9a8bc26f168646e649b88e5a5d33ed8c66621407602db5241a4b15b0ef95bd7"
+      },
+      "subject_ref": {
+        "identity": "mapping-body:map-QA",
+        "revision": "r1",
+        "scope": {
+          "project": "fixture-project",
+          "tenant": "fixture-tenant",
+          "environment": "unit"
+        },
+        "owner": "authority_record_owner",
+        "sha256": "f704e13f9edb1e5fa40d04fa2a9ca8e72171fe99eb88dd1e122989eb323324bc"
+      },
+      "subject_sha256_value": "f704e13f9edb1e5fa40d04fa2a9ca8e72171fe99eb88dd1e122989eb323324bc",
+      "same_subject_ref_sha256": "f704e13f9edb1e5fa40d04fa2a9ca8e72171fe99eb88dd1e122989eb323324bc",
+      "same_subject_ref_sha256_matches": true,
+      "same_identity_source_refs": [
+        {
+          "pointer": "/additional_unit_cases/26/typed_input/validated_input/input/mapping_sources/0/source_ref",
+          "sha256": "f704e13f9edb1e5fa40d04fa2a9ca8e72171fe99eb88dd1e122989eb323324bc"
+        }
+      ],
+      "same_identity_source_envelopes": [
+        {
+          "pointer": "/additional_unit_cases/26/typed_input/validated_input/input/mapping_sources/0",
+          "source_ref_sha256": "f704e13f9edb1e5fa40d04fa2a9ca8e72171fe99eb88dd1e122989eb323324bc",
+          "content_bytes_sha256": "f704e13f9edb1e5fa40d04fa2a9ca8e72171fe99eb88dd1e122989eb323324bc",
+          "source_ref_matches_content": true
+        }
+      ],
+      "classification": "synthetic Qualification input (not repository source pin; not expected output)",
+      "destination": "abstract L5 Qualification contract; raw fixture claim and its resolution evidence retained only in this source-only scaffold record until a valid L7 test citation exists",
+      "what_digest_identifies": "SHA-256 claim for the Qualification.subject_ref body. Branch evidence below distinguishes a qualified source, foreign-scope source, absent source, byte mismatch, or unresolved selected qualification.",
+      "expected_oracle_role": "input-side qualification/source condition only; expected_comparison and expected status fields are separate.",
+      "function_ref": "HARNESS-L5-053-compare_lineage_mappings",
+      "expected_axes": [
+        {
+          "axis": "authority_mapping",
+          "state": "matched"
+        },
+        {
+          "axis": "oracle_mapping",
+          "state": "matched"
+        },
+        {
+          "axis": "typed_edge_mapping",
+          "state": "unknown"
+        }
+      ],
+      "expected_rule_refs": [
+        "HARNESS-L5-053-R-non_applicability_qualification_unresolved"
+      ],
+      "other_case_expected_refs": {
+        "expected_reference_state": "unresolved",
+        "expected_operation_state": "not_requested",
+        "expected_operation_selection": "not_requested",
+        "expected_side_effect_count": 0,
+        "expected_claim_state": "not_reported"
+      }
+    },
+    {
+      "row_id": "WR246-H053-27-Q1",
+      "l8_case_id": "HARNESS-L8-053-ADD-27",
+      "l8_case_pointer": "/docs/helix-harness/L8-unit-verification/semantic-asset-lineage.json#/additional_unit_cases/26",
+      "branch": "selected-reason-qualification_unresolved",
+      "qualification_index": 1,
+      "qualification_owner": "oracle_owner",
+      "qualification_ref": {
+        "identity": "qualification:mapping:map-QO",
+        "revision": "q1",
+        "scope": {
+          "project": "fixture-project",
+          "tenant": "fixture-tenant",
+          "environment": "unit"
+        },
+        "owner": "oracle_owner",
+        "sha256": "c18a1b424a2a24c495bf63e36b3b5ecb161f53debb8d2f887dbb2d9d02555295"
+      },
+      "subject_ref": {
+        "identity": "mapping-body:map-QO",
+        "revision": "r1",
+        "scope": {
+          "project": "fixture-project",
+          "tenant": "fixture-tenant",
+          "environment": "unit"
+        },
+        "owner": "oracle_owner",
+        "sha256": "9304db19a5f2d77e00c36e7537c3a378177b53344dba297516e70b72bf1d5e64"
+      },
+      "subject_sha256_value": "9304db19a5f2d77e00c36e7537c3a378177b53344dba297516e70b72bf1d5e64",
+      "same_subject_ref_sha256": "9304db19a5f2d77e00c36e7537c3a378177b53344dba297516e70b72bf1d5e64",
+      "same_subject_ref_sha256_matches": true,
+      "same_identity_source_refs": [
+        {
+          "pointer": "/additional_unit_cases/26/typed_input/validated_input/input/mapping_sources/1/source_ref",
+          "sha256": "9304db19a5f2d77e00c36e7537c3a378177b53344dba297516e70b72bf1d5e64"
+        }
+      ],
+      "same_identity_source_envelopes": [
+        {
+          "pointer": "/additional_unit_cases/26/typed_input/validated_input/input/mapping_sources/1",
+          "source_ref_sha256": "9304db19a5f2d77e00c36e7537c3a378177b53344dba297516e70b72bf1d5e64",
+          "content_bytes_sha256": "9304db19a5f2d77e00c36e7537c3a378177b53344dba297516e70b72bf1d5e64",
+          "source_ref_matches_content": true
+        }
+      ],
+      "classification": "synthetic Qualification input (not repository source pin; not expected output)",
+      "destination": "abstract L5 Qualification contract; raw fixture claim and its resolution evidence retained only in this source-only scaffold record until a valid L7 test citation exists",
+      "what_digest_identifies": "SHA-256 claim for the Qualification.subject_ref body. Branch evidence below distinguishes a qualified source, foreign-scope source, absent source, byte mismatch, or unresolved selected qualification.",
+      "expected_oracle_role": "input-side qualification/source condition only; expected_comparison and expected status fields are separate.",
+      "function_ref": "HARNESS-L5-053-compare_lineage_mappings",
+      "expected_axes": [
+        {
+          "axis": "authority_mapping",
+          "state": "matched"
+        },
+        {
+          "axis": "oracle_mapping",
+          "state": "matched"
+        },
+        {
+          "axis": "typed_edge_mapping",
+          "state": "unknown"
+        }
+      ],
+      "expected_rule_refs": [
+        "HARNESS-L5-053-R-non_applicability_qualification_unresolved"
+      ],
+      "other_case_expected_refs": {
+        "expected_reference_state": "unresolved",
+        "expected_operation_state": "not_requested",
+        "expected_operation_selection": "not_requested",
+        "expected_side_effect_count": 0,
+        "expected_claim_state": "not_reported"
+      }
+    },
+    {
+      "row_id": "WR246-H053-27-Q2",
+      "l8_case_id": "HARNESS-L8-053-ADD-27",
+      "l8_case_pointer": "/docs/helix-harness/L8-unit-verification/semantic-asset-lineage.json#/additional_unit_cases/26",
+      "branch": "selected-reason-qualification_unresolved",
+      "qualification_index": 2,
+      "qualification_owner": "relation-body-owner",
+      "qualification_ref": {
+        "identity": "qualification:relation-body",
+        "revision": "q1",
+        "scope": {
+          "project": "fixture-project",
+          "tenant": "fixture-tenant",
+          "environment": "unit"
+        },
+        "owner": "relation-body-owner",
+        "sha256": "3a204e53b73c6e741afba630ad9ad685ad1268cfe8d46f32ef5669f3018eb323"
+      },
+      "subject_ref": {
+        "identity": "relation-body:LS",
+        "revision": "r1",
+        "scope": {
+          "project": "fixture-project",
+          "tenant": "fixture-tenant",
+          "environment": "unit"
+        },
+        "owner": "relation-body-owner",
+        "sha256": "b21c812225f1d6bac2756372811c57168679e81439844b7d3c2fc607f6a9abbb"
+      },
+      "subject_sha256_value": "b21c812225f1d6bac2756372811c57168679e81439844b7d3c2fc607f6a9abbb",
+      "same_subject_ref_sha256": "b21c812225f1d6bac2756372811c57168679e81439844b7d3c2fc607f6a9abbb",
+      "same_subject_ref_sha256_matches": true,
+      "same_identity_source_refs": [
+        {
+          "pointer": "/additional_unit_cases/26/typed_input/validated_input/input/relation_sources/0/source_ref",
+          "sha256": "b21c812225f1d6bac2756372811c57168679e81439844b7d3c2fc607f6a9abbb"
+        }
+      ],
+      "same_identity_source_envelopes": [
+        {
+          "pointer": "/additional_unit_cases/26/typed_input/validated_input/input/relation_sources/0",
+          "source_ref_sha256": "b21c812225f1d6bac2756372811c57168679e81439844b7d3c2fc607f6a9abbb",
+          "content_bytes_sha256": "b21c812225f1d6bac2756372811c57168679e81439844b7d3c2fc607f6a9abbb",
+          "source_ref_matches_content": true
+        }
+      ],
+      "classification": "synthetic Qualification input (not repository source pin; not expected output)",
+      "destination": "abstract L5 Qualification contract; raw fixture claim and its resolution evidence retained only in this source-only scaffold record until a valid L7 test citation exists",
+      "what_digest_identifies": "SHA-256 claim for the Qualification.subject_ref body. Branch evidence below distinguishes a qualified source, foreign-scope source, absent source, byte mismatch, or unresolved selected qualification.",
+      "expected_oracle_role": "input-side qualification/source condition only; expected_comparison and expected status fields are separate.",
+      "function_ref": "HARNESS-L5-053-compare_lineage_mappings",
+      "expected_axes": [
+        {
+          "axis": "authority_mapping",
+          "state": "matched"
+        },
+        {
+          "axis": "oracle_mapping",
+          "state": "matched"
+        },
+        {
+          "axis": "typed_edge_mapping",
+          "state": "unknown"
+        }
+      ],
+      "expected_rule_refs": [
+        "HARNESS-L5-053-R-non_applicability_qualification_unresolved"
+      ],
+      "other_case_expected_refs": {
+        "expected_reference_state": "unresolved",
+        "expected_operation_state": "not_requested",
+        "expected_operation_selection": "not_requested",
+        "expected_side_effect_count": 0,
+        "expected_claim_state": "not_reported"
+      }
+    },
+    {
+      "row_id": "WR246-H053-27-Q3",
+      "l8_case_id": "HARNESS-L8-053-ADD-27",
+      "l8_case_pointer": "/docs/helix-harness/L8-unit-verification/semantic-asset-lineage.json#/additional_unit_cases/26",
+      "branch": "selected-reason-qualification_unresolved",
+      "qualification_index": 3,
+      "qualification_owner": "relation-record-owner",
+      "qualification_ref": {
+        "identity": "qualification:relation-record",
+        "revision": "q1",
+        "scope": {
+          "project": "fixture-project",
+          "tenant": "fixture-tenant",
+          "environment": "unit"
+        },
+        "owner": "relation-record-owner",
+        "sha256": "67a12e80dbae65084b4ce34eb3999b2206894758bb0283347f8dbe4da90c292b"
+      },
+      "subject_ref": {
+        "identity": "relation-record:LS",
+        "revision": "r1",
+        "scope": {
+          "project": "fixture-project",
+          "tenant": "fixture-tenant",
+          "environment": "unit"
+        },
+        "owner": "relation-record-owner",
+        "sha256": "ce891fdb8e2210395a43b4b8cf7c868a838902491cb2450f699e3a49fab32d73"
+      },
+      "subject_sha256_value": "ce891fdb8e2210395a43b4b8cf7c868a838902491cb2450f699e3a49fab32d73",
+      "same_subject_ref_sha256": "ce891fdb8e2210395a43b4b8cf7c868a838902491cb2450f699e3a49fab32d73",
+      "same_subject_ref_sha256_matches": true,
+      "same_identity_source_refs": [
+        {
+          "pointer": "/additional_unit_cases/26/typed_input/validated_input/input/relations/0/source_ref",
+          "sha256": "ce891fdb8e2210395a43b4b8cf7c868a838902491cb2450f699e3a49fab32d73"
+        }
+      ],
+      "same_identity_source_envelopes": [
+        {
+          "pointer": "/additional_unit_cases/26/typed_input/validated_input/input/relations/0",
+          "source_ref_sha256": "ce891fdb8e2210395a43b4b8cf7c868a838902491cb2450f699e3a49fab32d73",
+          "content_bytes_sha256": "ce891fdb8e2210395a43b4b8cf7c868a838902491cb2450f699e3a49fab32d73",
+          "source_ref_matches_content": true
+        }
+      ],
+      "classification": "synthetic Qualification input (not repository source pin; not expected output)",
+      "destination": "abstract L5 Qualification contract; raw fixture claim and its resolution evidence retained only in this source-only scaffold record until a valid L7 test citation exists",
+      "what_digest_identifies": "SHA-256 claim for the Qualification.subject_ref body. Branch evidence below distinguishes a qualified source, foreign-scope source, absent source, byte mismatch, or unresolved selected qualification.",
+      "expected_oracle_role": "input-side qualification/source condition only; expected_comparison and expected status fields are separate.",
+      "function_ref": "HARNESS-L5-053-compare_lineage_mappings",
+      "expected_axes": [
+        {
+          "axis": "authority_mapping",
+          "state": "matched"
+        },
+        {
+          "axis": "oracle_mapping",
+          "state": "matched"
+        },
+        {
+          "axis": "typed_edge_mapping",
+          "state": "unknown"
+        }
+      ],
+      "expected_rule_refs": [
+        "HARNESS-L5-053-R-non_applicability_qualification_unresolved"
+      ],
+      "other_case_expected_refs": {
+        "expected_reference_state": "unresolved",
+        "expected_operation_state": "not_requested",
+        "expected_operation_selection": "not_requested",
+        "expected_side_effect_count": 0,
+        "expected_claim_state": "not_reported"
+      }
+    },
+    {
+      "row_id": "WR246-H053-27-Q4",
+      "l8_case_id": "HARNESS-L8-053-ADD-27",
+      "l8_case_pointer": "/docs/helix-harness/L8-unit-verification/semantic-asset-lineage.json#/additional_unit_cases/26",
+      "branch": "selected-reason-qualification_unresolved",
+      "qualification_index": 4,
+      "qualification_owner": "trace_owner",
+      "qualification_ref": {
+        "identity": "qualification:reason:typed-edge",
+        "revision": "q2",
+        "scope": {
+          "project": "fixture-project",
+          "tenant": "fixture-tenant",
+          "environment": "unit"
+        },
+        "owner": "trace_owner",
+        "sha256": "7715adb82c848bcf03cecff8bacdbe0f4386a0ab2df9fe91aa7bc801fa48bdec"
+      },
+      "subject_ref": {
+        "identity": "reason:typed-edge",
+        "revision": "r1",
+        "scope": {
+          "project": "fixture-project",
+          "tenant": "fixture-tenant",
+          "environment": "unit"
+        },
+        "owner": "trace_owner",
+        "sha256": "727db3b76f406a89b3a69a0c23fc842e05c538fb8dfefc1892f17a7a57325074"
+      },
+      "subject_sha256_value": "727db3b76f406a89b3a69a0c23fc842e05c538fb8dfefc1892f17a7a57325074",
+      "same_subject_ref_sha256": "727db3b76f406a89b3a69a0c23fc842e05c538fb8dfefc1892f17a7a57325074",
+      "same_subject_ref_sha256_matches": true,
+      "same_identity_source_refs": [
+        {
+          "pointer": "/additional_unit_cases/26/typed_input/non_applicability_sources/0/source_ref",
+          "sha256": "727db3b76f406a89b3a69a0c23fc842e05c538fb8dfefc1892f17a7a57325074"
+        }
+      ],
+      "same_identity_source_envelopes": [
+        {
+          "pointer": "/additional_unit_cases/26/typed_input/non_applicability_sources/0",
+          "source_ref_sha256": "727db3b76f406a89b3a69a0c23fc842e05c538fb8dfefc1892f17a7a57325074",
+          "content_bytes_sha256": "727db3b76f406a89b3a69a0c23fc842e05c538fb8dfefc1892f17a7a57325074",
+          "source_ref_matches_content": true
+        }
+      ],
+      "classification": "synthetic Qualification input (not repository source pin; not expected output)",
+      "destination": "abstract L5 Qualification contract; raw fixture claim and its resolution evidence retained only in this source-only scaffold record until a valid L7 test citation exists",
+      "what_digest_identifies": "SHA-256 claim for the Qualification.subject_ref body. Branch evidence below distinguishes a qualified source, foreign-scope source, absent source, byte mismatch, or unresolved selected qualification.",
+      "expected_oracle_role": "input-side qualification/source condition only; expected_comparison and expected status fields are separate.",
+      "function_ref": "HARNESS-L5-053-compare_lineage_mappings",
+      "expected_axes": [
+        {
+          "axis": "authority_mapping",
+          "state": "matched"
+        },
+        {
+          "axis": "oracle_mapping",
+          "state": "matched"
+        },
+        {
+          "axis": "typed_edge_mapping",
+          "state": "unknown"
+        }
+      ],
+      "expected_rule_refs": [
+        "HARNESS-L5-053-R-non_applicability_qualification_unresolved"
+      ],
+      "other_case_expected_refs": {
+        "expected_reference_state": "unresolved",
+        "expected_operation_state": "not_requested",
+        "expected_operation_selection": "not_requested",
+        "expected_side_effect_count": 0,
+        "expected_claim_state": "not_reported"
+      }
+    }
+  ]
+}
