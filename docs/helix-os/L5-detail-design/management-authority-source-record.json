@@ -421,13 +421,13 @@
   "source_pair_pins": [
     {
       "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
-      "revision": "36947baf69999c99d5370d804d69ee2f3acaed72",
-      "sha256": "9146ffd557bc5da60f79cdcd462578b38edf6ec524143a705ab07eeb34c7997b"
+      "revision": "be407b48779ea1125f12a1a78f998c73316ed2e7",
+      "sha256": "32e4a7b6432e7454d242277b37a0948916dc876b6e8e008ad8e4f8c2d7207081"
     },
     {
       "path": "docs/helix-os/L9-integration-verification/management-authority-source-record.json",
-      "revision": "36947baf69999c99d5370d804d69ee2f3acaed72",
-      "sha256": "392417ce60ff10beed23d1aee27aadc7afaaf4062fb1dc04473325e30ad2c7e5"
+      "revision": "be407b48779ea1125f12a1a78f998c73316ed2e7",
+      "sha256": "365b89c9131e5edd9b64d474438ff780360118819cc651ee535f64a70aa5ff1d"
     }
   ],
   "document_id": "HELIXOS-L5-015",
@@ -14007,6 +14007,806 @@
           "pointers": [
             "/signatures/0",
             "/formal_reference/composite_class_formation"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "OS015-NEG-COMPOSITE-0847e4310de684d30c54c16de19c0ce068f2666a3e68fe3e3d93f144934f9a42",
+      "code": "management_material_violation",
+      "expected_classification": "management_material_violation",
+      "function_ref": "FN-OS015-01",
+      "expected": {
+        "finding_codes": [
+          "source_conflict",
+          "source_conflict"
+        ]
+      },
+      "expected_axis": "source",
+      "expected_state": "violation",
+      "backflow_owner": "management-authority-owner",
+      "side_effect_count": 0,
+      "handling": "L5 composite_class_formationに従い、L4のordered finding occurrencesを保持する。各occurrenceのcodeを既存failure_rulesへ照合し、FN-OS015-01へ一意にowner joinした。expected_axis/stateと全体conditionはL4 keyから投影し、input_boundaryの固定carrier条件内で扱う。L7 raw inputとの対応はL8側のcase sourceで記録し、case expectedから形成しない。",
+      "source_pointers": [
+        {
+          "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+          "pointers": [
+            "/requirements/25"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
+          "pointers": [
+            "/failure_classifications/33"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L5-detail-design/management-authority-source-record.json",
+          "pointers": [
+            "/formal_reference/composite_class_formation",
+            "/input_boundary",
+            "/functions/0",
+            "/failure_rules/3",
+            "/failure_rules/4",
+            "/failure_rules/5",
+            "/failure_rules/6",
+            "/failure_rules/31"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "OS015-NEG-COMPOSITE-08695e0fad423852ebf0d60b18b944ec130ec1c4865698ff05c83b4646a9e405",
+      "code": "management_material_unknown",
+      "expected_classification": "management_material_unknown",
+      "function_ref": "FN-OS015-01",
+      "expected": {
+        "finding_codes": [
+          "first_classification_prior_unresolved",
+          "first_classification_prior_unresolved",
+          "source_unresolved",
+          "source_unresolved",
+          "source_unresolved",
+          "source_unresolved"
+        ]
+      },
+      "expected_axis": "classification",
+      "expected_state": "unknown",
+      "backflow_owner": "management-authority-owner",
+      "side_effect_count": 0,
+      "handling": "L5 composite_class_formationに従い、L4のordered finding occurrencesを保持する。各occurrenceのcodeを既存failure_rulesへ照合し、FN-OS015-01へ一意にowner joinした。expected_axis/stateと全体conditionはL4 keyから投影し、input_boundaryの固定carrier条件内で扱う。L7 raw inputとの対応はL8側のcase sourceで記録し、case expectedから形成しない。",
+      "source_pointers": [
+        {
+          "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+          "pointers": [
+            "/requirements/25"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
+          "pointers": [
+            "/failure_classifications/34"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L5-detail-design/management-authority-source-record.json",
+          "pointers": [
+            "/formal_reference/composite_class_formation",
+            "/input_boundary",
+            "/functions/0",
+            "/failure_rules/0",
+            "/failure_rules/1",
+            "/failure_rules/2",
+            "/failure_rules/30",
+            "/failure_rules/32"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "OS015-NEG-COMPOSITE-087fdf8f8d9303e619d04ccc3cbc6da653d08a4b20f6009bab1ec8dfe3cc90c9",
+      "code": "management_material_violation",
+      "expected_classification": "management_material_violation",
+      "function_ref": "FN-OS015-01",
+      "expected": {
+        "finding_codes": [
+          "authority_conflict",
+          "source_conflict"
+        ]
+      },
+      "expected_axis": "authority",
+      "expected_state": "violation",
+      "backflow_owner": "management-authority-owner",
+      "side_effect_count": 0,
+      "handling": "L5 composite_class_formationに従い、L4のordered finding occurrencesを保持する。各occurrenceのcodeを既存failure_rulesへ照合し、FN-OS015-01へ一意にowner joinした。expected_axis/stateと全体conditionはL4 keyから投影し、input_boundaryの固定carrier条件内で扱う。L7 raw inputとの対応はL8側のcase sourceで記録し、case expectedから形成しない。",
+      "source_pointers": [
+        {
+          "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+          "pointers": [
+            "/requirements/25"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
+          "pointers": [
+            "/failure_classifications/35"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L5-detail-design/management-authority-source-record.json",
+          "pointers": [
+            "/formal_reference/composite_class_formation",
+            "/input_boundary",
+            "/functions/0",
+            "/failure_rules/3",
+            "/failure_rules/4",
+            "/failure_rules/5",
+            "/failure_rules/6",
+            "/failure_rules/13",
+            "/failure_rules/31"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "OS015-NEG-COMPOSITE-3123046e6695da60ba6abef15c2588c632081391d431ec133fa509d6d90017bb",
+      "code": "management_material_violation",
+      "expected_classification": "management_material_violation",
+      "function_ref": "FN-OS015-01",
+      "expected": {
+        "finding_codes": [
+          "authority_state_unresolved",
+          "source_conflict"
+        ]
+      },
+      "expected_axis": "authority",
+      "expected_state": "violation",
+      "backflow_owner": "management-authority-owner",
+      "side_effect_count": 0,
+      "handling": "L5 composite_class_formationに従い、L4のordered finding occurrencesを保持する。各occurrenceのcodeを既存failure_rulesへ照合し、FN-OS015-01へ一意にowner joinした。expected_axis/stateと全体conditionはL4 keyから投影し、input_boundaryの固定carrier条件内で扱う。L7 raw inputとの対応はL8側のcase sourceで記録し、case expectedから形成しない。",
+      "source_pointers": [
+        {
+          "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+          "pointers": [
+            "/requirements/25"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
+          "pointers": [
+            "/failure_classifications/36"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L5-detail-design/management-authority-source-record.json",
+          "pointers": [
+            "/formal_reference/composite_class_formation",
+            "/input_boundary",
+            "/functions/0",
+            "/failure_rules/3",
+            "/failure_rules/4",
+            "/failure_rules/5",
+            "/failure_rules/6",
+            "/failure_rules/14",
+            "/failure_rules/31"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "OS015-NEG-COMPOSITE-4e80f5977bf48e95192dcbe7ebd26ffba7aa253ddef99755e42e3e0990008f72",
+      "code": "management_material_violation",
+      "expected_classification": "management_material_violation",
+      "function_ref": "FN-OS015-01",
+      "expected": {
+        "finding_codes": [
+          "first_classification_prior_unresolved",
+          "original_classification_mutated"
+        ]
+      },
+      "expected_axis": "classification",
+      "expected_state": "unknown",
+      "backflow_owner": "management-authority-owner",
+      "side_effect_count": 0,
+      "handling": "L5 composite_class_formationに従い、L4のordered finding occurrencesを保持する。各occurrenceのcodeを既存failure_rulesへ照合し、FN-OS015-01へ一意にowner joinした。expected_axis/stateと全体conditionはL4 keyから投影し、input_boundaryの固定carrier条件内で扱う。L7 raw inputとの対応はL8側のcase sourceで記録し、case expectedから形成しない。",
+      "source_pointers": [
+        {
+          "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+          "pointers": [
+            "/requirements/25"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
+          "pointers": [
+            "/failure_classifications/37"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L5-detail-design/management-authority-source-record.json",
+          "pointers": [
+            "/formal_reference/composite_class_formation",
+            "/input_boundary",
+            "/functions/0",
+            "/failure_rules/9",
+            "/failure_rules/30"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "OS015-NEG-COMPOSITE-4ed7dc758943d0971c6a7853ba3568609804d47e1f5f615e39eaa5e523ef1c04",
+      "code": "management_material_unknown",
+      "expected_classification": "management_material_unknown",
+      "function_ref": "FN-OS015-01",
+      "expected": {
+        "finding_codes": [
+          "authority_origin_unresolved",
+          "authority_origin_unresolved"
+        ]
+      },
+      "expected_axis": "authority",
+      "expected_state": "unknown",
+      "backflow_owner": "management-authority-owner",
+      "side_effect_count": 0,
+      "handling": "L5 composite_class_formationに従い、L4のordered finding occurrencesを保持する。各occurrenceのcodeを既存failure_rulesへ照合し、FN-OS015-01へ一意にowner joinした。expected_axis/stateと全体conditionはL4 keyから投影し、input_boundaryの固定carrier条件内で扱う。L7 raw inputとの対応はL8側のcase sourceで記録し、case expectedから形成しない。",
+      "source_pointers": [
+        {
+          "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+          "pointers": [
+            "/requirements/25"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
+          "pointers": [
+            "/failure_classifications/38"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L5-detail-design/management-authority-source-record.json",
+          "pointers": [
+            "/formal_reference/composite_class_formation",
+            "/input_boundary",
+            "/functions/0",
+            "/failure_rules/11"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "OS015-NEG-COMPOSITE-89de10e4554c2fb25885bc24b09de095d209750e791130a0f121afac952aa4ea",
+      "code": "management_material_violation",
+      "expected_classification": "management_material_violation",
+      "function_ref": "FN-OS015-01",
+      "expected": {
+        "finding_codes": [
+          "authority_origin_forbidden",
+          "source_conflict"
+        ]
+      },
+      "expected_axis": "authority",
+      "expected_state": "violation",
+      "backflow_owner": "management-authority-owner",
+      "side_effect_count": 0,
+      "handling": "L5 composite_class_formationに従い、L4のordered finding occurrencesを保持する。各occurrenceのcodeを既存failure_rulesへ照合し、FN-OS015-01へ一意にowner joinした。expected_axis/stateと全体conditionはL4 keyから投影し、input_boundaryの固定carrier条件内で扱う。L7 raw inputとの対応はL8側のcase sourceで記録し、case expectedから形成しない。",
+      "source_pointers": [
+        {
+          "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+          "pointers": [
+            "/requirements/25"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
+          "pointers": [
+            "/failure_classifications/39"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L5-detail-design/management-authority-source-record.json",
+          "pointers": [
+            "/formal_reference/composite_class_formation",
+            "/input_boundary",
+            "/functions/0",
+            "/failure_rules/3",
+            "/failure_rules/4",
+            "/failure_rules/5",
+            "/failure_rules/6",
+            "/failure_rules/10",
+            "/failure_rules/31"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "OS015-NEG-COMPOSITE-8db83e3dc818dc613437d06b57bc7695b8867a0c7a35f630b9e0837c6c5950a4",
+      "code": "management_material_violation",
+      "expected_classification": "management_material_violation",
+      "function_ref": "FN-OS015-01",
+      "expected": {
+        "finding_codes": [
+          "first_classification_prior_present",
+          "first_classification_prior_present",
+          "source_unresolved",
+          "source_unresolved",
+          "source_unresolved",
+          "source_unresolved"
+        ]
+      },
+      "expected_axis": "classification",
+      "expected_state": "violation",
+      "backflow_owner": "management-authority-owner",
+      "side_effect_count": 0,
+      "handling": "L5 composite_class_formationに従い、L4のordered finding occurrencesを保持する。各occurrenceのcodeを既存failure_rulesへ照合し、FN-OS015-01へ一意にowner joinした。expected_axis/stateと全体conditionはL4 keyから投影し、input_boundaryの固定carrier条件内で扱う。L7 raw inputとの対応はL8側のcase sourceで記録し、case expectedから形成しない。",
+      "source_pointers": [
+        {
+          "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+          "pointers": [
+            "/requirements/25"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
+          "pointers": [
+            "/failure_classifications/40"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L5-detail-design/management-authority-source-record.json",
+          "pointers": [
+            "/formal_reference/composite_class_formation",
+            "/input_boundary",
+            "/functions/0",
+            "/failure_rules/0",
+            "/failure_rules/1",
+            "/failure_rules/2",
+            "/failure_rules/29",
+            "/failure_rules/32"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "OS015-NEG-COMPOSITE-931c9057eaac57f35bd0ed64d5288c4339e3e4ff9b96eb19b2d77ff8a25767e2",
+      "code": "management_material_violation",
+      "expected_classification": "management_material_violation",
+      "function_ref": "FN-OS015-01",
+      "expected": {
+        "finding_codes": [
+          "source_unresolved",
+          "unresolved_promoted_to_current"
+        ]
+      },
+      "expected_axis": "source",
+      "expected_state": "unknown",
+      "backflow_owner": "management-authority-owner",
+      "side_effect_count": 0,
+      "handling": "L5 composite_class_formationに従い、L4のordered finding occurrencesを保持する。各occurrenceのcodeを既存failure_rulesへ照合し、FN-OS015-01へ一意にowner joinした。expected_axis/stateと全体conditionはL4 keyから投影し、input_boundaryの固定carrier条件内で扱う。L7 raw inputとの対応はL8側のcase sourceで記録し、case expectedから形成しない。",
+      "source_pointers": [
+        {
+          "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+          "pointers": [
+            "/requirements/25"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
+          "pointers": [
+            "/failure_classifications/41"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L5-detail-design/management-authority-source-record.json",
+          "pointers": [
+            "/formal_reference/composite_class_formation",
+            "/input_boundary",
+            "/functions/0",
+            "/failure_rules/0",
+            "/failure_rules/1",
+            "/failure_rules/2",
+            "/failure_rules/15",
+            "/failure_rules/32"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "OS015-NEG-COMPOSITE-9539a1f0e6787f121075bfc71469d281caadb1e4c31ba4a8df9ccd5fe882d3d7",
+      "code": "management_material_unknown",
+      "expected_classification": "management_material_unknown",
+      "function_ref": "FN-OS015-01",
+      "expected": {
+        "finding_codes": [
+          "authority_state_unresolved",
+          "authority_state_unresolved"
+        ]
+      },
+      "expected_axis": "authority",
+      "expected_state": "unknown",
+      "backflow_owner": "management-authority-owner",
+      "side_effect_count": 0,
+      "handling": "L5 composite_class_formationに従い、L4のordered finding occurrencesを保持する。各occurrenceのcodeを既存failure_rulesへ照合し、FN-OS015-01へ一意にowner joinした。expected_axis/stateと全体conditionはL4 keyから投影し、input_boundaryの固定carrier条件内で扱う。L7 raw inputとの対応はL8側のcase sourceで記録し、case expectedから形成しない。",
+      "source_pointers": [
+        {
+          "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+          "pointers": [
+            "/requirements/25"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
+          "pointers": [
+            "/failure_classifications/42"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L5-detail-design/management-authority-source-record.json",
+          "pointers": [
+            "/formal_reference/composite_class_formation",
+            "/input_boundary",
+            "/functions/0",
+            "/failure_rules/14"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "OS015-NEG-COMPOSITE-9c5c0fb87d1b6f9fbdf5e2e825c9e600024bbcd3f5bac7a32e7c20423fca521c",
+      "code": "management_material_violation",
+      "expected_classification": "management_material_violation",
+      "function_ref": "FN-OS015-01",
+      "expected": {
+        "finding_codes": [
+          "original_event_mutated",
+          "source_conflict",
+          "source_conflict"
+        ]
+      },
+      "expected_axis": "original_event",
+      "expected_state": "violation",
+      "backflow_owner": "management-authority-owner",
+      "side_effect_count": 0,
+      "handling": "L5 composite_class_formationに従い、L4のordered finding occurrencesを保持する。各occurrenceのcodeを既存failure_rulesへ照合し、FN-OS015-01へ一意にowner joinした。expected_axis/stateと全体conditionはL4 keyから投影し、input_boundaryの固定carrier条件内で扱う。L7 raw inputとの対応はL8側のcase sourceで記録し、case expectedから形成しない。",
+      "source_pointers": [
+        {
+          "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+          "pointers": [
+            "/requirements/25"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
+          "pointers": [
+            "/failure_classifications/43"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L5-detail-design/management-authority-source-record.json",
+          "pointers": [
+            "/formal_reference/composite_class_formation",
+            "/input_boundary",
+            "/functions/0",
+            "/failure_rules/3",
+            "/failure_rules/4",
+            "/failure_rules/5",
+            "/failure_rules/6",
+            "/failure_rules/8",
+            "/failure_rules/31",
+            "/failure_rules/32"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "OS015-NEG-COMPOSITE-a0f8ffe7cb48eb9237554e7c9344182b48c98fed14721acb96cafa89481c6429",
+      "code": "management_material_violation",
+      "expected_classification": "management_material_violation",
+      "function_ref": "FN-OS015-01",
+      "expected": {
+        "finding_codes": [
+          "first_classification_prior_unresolved",
+          "original_classification_mutated",
+          "source_unresolved",
+          "source_unresolved",
+          "source_unresolved",
+          "source_unresolved"
+        ]
+      },
+      "expected_axis": "classification",
+      "expected_state": "unknown",
+      "backflow_owner": "management-authority-owner",
+      "side_effect_count": 0,
+      "handling": "L5 composite_class_formationに従い、L4のordered finding occurrencesを保持する。各occurrenceのcodeを既存failure_rulesへ照合し、FN-OS015-01へ一意にowner joinした。expected_axis/stateと全体conditionはL4 keyから投影し、input_boundaryの固定carrier条件内で扱う。L7 raw inputとの対応はL8側のcase sourceで記録し、case expectedから形成しない。",
+      "source_pointers": [
+        {
+          "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+          "pointers": [
+            "/requirements/25"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
+          "pointers": [
+            "/failure_classifications/44"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L5-detail-design/management-authority-source-record.json",
+          "pointers": [
+            "/formal_reference/composite_class_formation",
+            "/input_boundary",
+            "/functions/0",
+            "/failure_rules/0",
+            "/failure_rules/1",
+            "/failure_rules/2",
+            "/failure_rules/9",
+            "/failure_rules/30",
+            "/failure_rules/32"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "OS015-NEG-COMPOSITE-d509d10e51a98c1fe8971d91e909e058b360a803c1d686891282e3a8667a158f",
+      "code": "management_material_violation",
+      "expected_classification": "management_material_violation",
+      "function_ref": "FN-OS015-01",
+      "expected": {
+        "finding_codes": [
+          "first_classification_prior_present",
+          "first_classification_prior_present"
+        ]
+      },
+      "expected_axis": "classification",
+      "expected_state": "violation",
+      "backflow_owner": "management-authority-owner",
+      "side_effect_count": 0,
+      "handling": "L5 composite_class_formationに従い、L4のordered finding occurrencesを保持する。各occurrenceのcodeを既存failure_rulesへ照合し、FN-OS015-01へ一意にowner joinした。expected_axis/stateと全体conditionはL4 keyから投影し、input_boundaryの固定carrier条件内で扱う。L7 raw inputとの対応はL8側のcase sourceで記録し、case expectedから形成しない。",
+      "source_pointers": [
+        {
+          "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+          "pointers": [
+            "/requirements/25"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
+          "pointers": [
+            "/failure_classifications/45"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L5-detail-design/management-authority-source-record.json",
+          "pointers": [
+            "/formal_reference/composite_class_formation",
+            "/input_boundary",
+            "/functions/0",
+            "/failure_rules/29"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "OS015-NEG-COMPOSITE-dead4dfeefccac8eec603d8be3bf804b928f0882d4c1b4ff907acba7b10f277a",
+      "code": "management_material_violation",
+      "expected_classification": "management_material_violation",
+      "function_ref": "FN-OS015-01",
+      "expected": {
+        "finding_codes": [
+          "first_classification_prior_present",
+          "original_classification_mutated",
+          "source_unresolved",
+          "source_unresolved",
+          "source_unresolved",
+          "source_unresolved"
+        ]
+      },
+      "expected_axis": "classification",
+      "expected_state": "violation",
+      "backflow_owner": "management-authority-owner",
+      "side_effect_count": 0,
+      "handling": "L5 composite_class_formationに従い、L4のordered finding occurrencesを保持する。各occurrenceのcodeを既存failure_rulesへ照合し、FN-OS015-01へ一意にowner joinした。expected_axis/stateと全体conditionはL4 keyから投影し、input_boundaryの固定carrier条件内で扱う。L7 raw inputとの対応はL8側のcase sourceで記録し、case expectedから形成しない。",
+      "source_pointers": [
+        {
+          "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+          "pointers": [
+            "/requirements/25"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
+          "pointers": [
+            "/failure_classifications/46"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L5-detail-design/management-authority-source-record.json",
+          "pointers": [
+            "/formal_reference/composite_class_formation",
+            "/input_boundary",
+            "/functions/0",
+            "/failure_rules/0",
+            "/failure_rules/1",
+            "/failure_rules/2",
+            "/failure_rules/9",
+            "/failure_rules/29",
+            "/failure_rules/32"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "OS015-NEG-COMPOSITE-df9154ac8720b176f3ba2d4bf5fc0362496e530eafdd829278de18d4a3d5c39b",
+      "code": "management_material_violation",
+      "expected_classification": "management_material_violation",
+      "function_ref": "FN-OS015-01",
+      "expected": {
+        "finding_codes": [
+          "classification_kind_unresolved",
+          "source_conflict"
+        ]
+      },
+      "expected_axis": "classification",
+      "expected_state": "violation",
+      "backflow_owner": "management-authority-owner",
+      "side_effect_count": 0,
+      "handling": "L5 composite_class_formationに従い、L4のordered finding occurrencesを保持する。各occurrenceのcodeを既存failure_rulesへ照合し、FN-OS015-01へ一意にowner joinした。expected_axis/stateと全体conditionはL4 keyから投影し、input_boundaryの固定carrier条件内で扱う。L7 raw inputとの対応はL8側のcase sourceで記録し、case expectedから形成しない。",
+      "source_pointers": [
+        {
+          "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+          "pointers": [
+            "/requirements/25"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
+          "pointers": [
+            "/failure_classifications/47"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L5-detail-design/management-authority-source-record.json",
+          "pointers": [
+            "/formal_reference/composite_class_formation",
+            "/input_boundary",
+            "/functions/0",
+            "/failure_rules/3",
+            "/failure_rules/4",
+            "/failure_rules/5",
+            "/failure_rules/6",
+            "/failure_rules/20",
+            "/failure_rules/31"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "OS015-NEG-COMPOSITE-e23551bcfb260256f33d6911d244f0715dee4f62c3f09840e48d7de5c6473ae9",
+      "code": "management_material_violation",
+      "expected_classification": "management_material_violation",
+      "function_ref": "FN-OS015-01",
+      "expected": {
+        "finding_codes": [
+          "authority_stale",
+          "source_conflict"
+        ]
+      },
+      "expected_axis": "authority",
+      "expected_state": "violation",
+      "backflow_owner": "management-authority-owner",
+      "side_effect_count": 0,
+      "handling": "L5 composite_class_formationに従い、L4のordered finding occurrencesを保持する。各occurrenceのcodeを既存failure_rulesへ照合し、FN-OS015-01へ一意にowner joinした。expected_axis/stateと全体conditionはL4 keyから投影し、input_boundaryの固定carrier条件内で扱う。L7 raw inputとの対応はL8側のcase sourceで記録し、case expectedから形成しない。",
+      "source_pointers": [
+        {
+          "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+          "pointers": [
+            "/requirements/25"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
+          "pointers": [
+            "/failure_classifications/48"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L5-detail-design/management-authority-source-record.json",
+          "pointers": [
+            "/formal_reference/composite_class_formation",
+            "/input_boundary",
+            "/functions/0",
+            "/failure_rules/3",
+            "/failure_rules/4",
+            "/failure_rules/5",
+            "/failure_rules/6",
+            "/failure_rules/12",
+            "/failure_rules/31"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "OS015-NEG-COMPOSITE-f26b128d495605fef34af26296623a373d06205bdbe8e9e366001ee980e6f294",
+      "code": "management_material_unknown",
+      "expected_classification": "management_material_unknown",
+      "function_ref": "FN-OS015-01",
+      "expected": {
+        "finding_codes": [
+          "classification_kind_unresolved",
+          "source_unresolved"
+        ]
+      },
+      "expected_axis": "classification",
+      "expected_state": "unknown",
+      "backflow_owner": "management-authority-owner",
+      "side_effect_count": 0,
+      "handling": "L5 composite_class_formationに従い、L4のordered finding occurrencesを保持する。各occurrenceのcodeを既存failure_rulesへ照合し、FN-OS015-01へ一意にowner joinした。expected_axis/stateと全体conditionはL4 keyから投影し、input_boundaryの固定carrier条件内で扱う。L7 raw inputとの対応はL8側のcase sourceで記録し、case expectedから形成しない。",
+      "source_pointers": [
+        {
+          "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+          "pointers": [
+            "/requirements/25"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
+          "pointers": [
+            "/failure_classifications/49"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L5-detail-design/management-authority-source-record.json",
+          "pointers": [
+            "/formal_reference/composite_class_formation",
+            "/input_boundary",
+            "/functions/0",
+            "/failure_rules/0",
+            "/failure_rules/1",
+            "/failure_rules/2",
+            "/failure_rules/20",
+            "/failure_rules/32"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "OS015-NEG-COMPOSITE-f5d02578a904f76ed01d15f549851918588f40e74d8216f84c54500cc38a384a",
+      "code": "management_material_violation",
+      "expected_classification": "management_material_violation",
+      "function_ref": "FN-OS015-01",
+      "expected": {
+        "finding_codes": [
+          "first_classification_prior_present",
+          "original_classification_mutated"
+        ]
+      },
+      "expected_axis": "classification",
+      "expected_state": "violation",
+      "backflow_owner": "management-authority-owner",
+      "side_effect_count": 0,
+      "handling": "L5 composite_class_formationに従い、L4のordered finding occurrencesを保持する。各occurrenceのcodeを既存failure_rulesへ照合し、FN-OS015-01へ一意にowner joinした。expected_axis/stateと全体conditionはL4 keyから投影し、input_boundaryの固定carrier条件内で扱う。L7 raw inputとの対応はL8側のcase sourceで記録し、case expectedから形成しない。",
+      "source_pointers": [
+        {
+          "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+          "pointers": [
+            "/requirements/25"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
+          "pointers": [
+            "/failure_classifications/50"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L5-detail-design/management-authority-source-record.json",
+          "pointers": [
+            "/formal_reference/composite_class_formation",
+            "/input_boundary",
+            "/functions/0",
+            "/failure_rules/9",
+            "/failure_rules/29"
           ]
         }
       ]

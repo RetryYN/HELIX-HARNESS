@@ -1,0 +1,170 @@
+{
+  "schema": "wr181-os015-l5-l8-successor-summary.v1",
+  "base_revision": "0dd2045801e9e30def00913b57a6177d8d9be3a8",
+  "l5_candidate_commit": "34f315ea69522e113433f3b16ef71ddb262e2b80",
+  "l5_sha256": "4d686c07580eb0aef0a580dec5e2fa666c14476dcf81facdc469cde05719015d",
+  "l8_candidate_l5_pin": {
+    "revision": "34f315ea69522e113433f3b16ef71ddb262e2b80",
+    "sha256": "4d686c07580eb0aef0a580dec5e2fa666c14476dcf81facdc469cde05719015d"
+  },
+  "l8_sha256": "c3b6640290314b8d03cbcc7f4908768e7ff89d9b10d2582dff73e59ae3fa4ca5",
+  "pair_pins": {
+    "revision": "be407b48779ea1125f12a1a78f998c73316ed2e7",
+    "L4_sha256": "32e4a7b6432e7454d242277b37a0948916dc876b6e8e008ad8e4f8c2d7207081",
+    "L9_sha256": "365b89c9131e5edd9b64d474438ff780360118819cc651ee535f64a70aa5ff1d"
+  },
+  "projection": {
+    "L4_classes": 51,
+    "L5_rules": 51,
+    "L8_classes": 45,
+    "new_L5_rules": 18,
+    "new_L8_classes": 18,
+    "new_case_links": 112,
+    "case_split": {
+      "existing_two_class_residual": 75,
+      "new_eighteen_class": 37
+    },
+    "prior_29_links_unchanged": true,
+    "L8_preexisting_class_link_count": 460,
+    "L8_total_class_link_count": 572,
+    "L8_case_rows": 583,
+    "expected_condition_expected_preserved_unchanged": true,
+    "six_singleton_less_classes_unformed": [
+      "OS015-NEG-source_unresolved-original_event",
+      "OS015-NEG-source_conflict-original_event",
+      "OS015-NEG-original_event_mutated",
+      "OS015-NEG-unresolved_promoted_to_current",
+      "OS015-NEG-first_classification_prior_present",
+      "OS015-NEG-first_classification_prior_unresolved"
+    ]
+  },
+  "corrected_cases": {
+    "cases": [
+      "HELIXOS-L9-015-C0574",
+      "HELIXOS-L9-015-C0575",
+      "HELIXOS-L9-015-C0577",
+      "HELIXOS-L9-015-C0578",
+      "HELIXOS-L9-015-C0580",
+      "HELIXOS-L9-015-C0581"
+    ],
+    "finding_added": "source_unresolved x4 ordered context prior ref, context prior revision, actual prior ref, actual prior revision",
+    "violation_axis_state": "classification/violation for C0574,C0575,C0577,C0580",
+    "unknown_axis_state": "classification/unknown for C0578,C0581",
+    "case_expected_changed": false
+  },
+  "derivation_boundary": {
+    "l5_basis": [
+      "formal_reference/composite_class_formation",
+      "input_boundary",
+      "existing failure_rules owner join"
+    ],
+    "L8_population_basis": "existing L8 unit_cases case_id linked to L7 fixed given.input pointers and expanded input digests",
+    "L9_case_expected_used_as_oracle": false,
+    "L9_class_expected_used_as_oracle": false,
+    "L7_expected_proposal_used_as_oracle": false,
+    "L8_case_expected_used_as_class_source": false
+  },
+  "static_validation": {
+    "status": "PASS",
+    "report": "scaffold/research/wr181-os015-l5-l8-successor-20261031/static-validation.json",
+    "report_sha256": "4a7cfc826f3fee99aae3031adca03cb4fe925946503c9dcb80e33778113711d9"
+  },
+  "baseline_before_successor": {
+    "main_revision": "be407b48779ea1125f12a1a78f998c73316ed2e7",
+    "child": {
+      "passed": false,
+      "negative_4way_failures": 226,
+      "counts": {
+        "L4": 51,
+        "L9": 45,
+        "L8": 27,
+        "L5": 33
+      },
+      "matched_case_count": 460,
+      "report_sha256": "95a3077c343c26040ab2111852bdd4392f328f9f820420b3170cb5377c4ee4fa",
+      "L4_L9_pair": true,
+      "L5_L8_pair": true
+    },
+    "freeze": {
+      "all_mechanical_matched": false,
+      "json_pointer_failures": 2421,
+      "public_function_failures": 8,
+      "report_sha256": "cc4bd1a42fcde81c9b38c3d9f68af3531cab8a235811fb937e2a57f35d320003"
+    },
+    "scfctl_validate": "bindings=166 fail=0",
+    "scfctl_stale": "stale=0"
+  },
+  "after_successor_trial": {
+    "child": {
+      "passed": false,
+      "negative_4way_failures": 24,
+      "counts": {
+        "L4": 51,
+        "L9": 45,
+        "L8": 45,
+        "L5": 51
+      },
+      "matched_case_count": 572,
+      "report_sha256": "891346d27500bafab821487aae67f463db7aae0ad38b18e608d548c551fd37f0",
+      "L4_L9_pair": true,
+      "L5_L8_pair": true
+    },
+    "freeze": {
+      "all_mechanical_matched": false,
+      "json_pointer_failures": 2421,
+      "public_function_failures": 8,
+      "report_sha256": "cc4bd1a42fcde81c9b38c3d9f68af3531cab8a235811fb937e2a57f35d320003"
+    },
+    "scfctl_validate": "bindings=167 fail=0",
+    "scfctl_stale": "stale=0",
+    "diff_check": "PASS",
+    "binding_count_includes": "SCF-B-0178"
+  },
+  "remaining": [
+    "negative-4way remains FAIL with 24 class-key-missing failures: 12 in L8 and 12 in L9, corresponding to the six explicitly unformed singleton classes",
+    "existing freeze remains mechanical_match=false with 2421 JSON pointer and 8 public-function failures"
+  ],
+  "prohibitions_observed": [
+    "L9 case/class expectedをL8 classのoracleにしない",
+    "L7 expected_proposalをoracleにしない",
+    "L8 case expected/condition/expected_preservedを変更しない",
+    "旧HELIX CLI/runtime/test/CIは実行しない",
+    "push/PRを作らない"
+  ],
+  "final_candidate_static_validation": {
+    "status": "PASS",
+    "l5_l8_pair": "PASS",
+    "scfctl_validate": "bindings=167 fail=0",
+    "scfctl_stale": "stale=0",
+    "diff_check": "PASS"
+  },
+  "latest_main_trial": {
+    "main_revision": "be407b48779ea1125f12a1a78f998c73316ed2e7",
+    "main_fetch_matches_ls_remote": true,
+    "candidate_commit_tested": "742a2c4b04e30fd144aa5473da9f855138fed458",
+    "merge_base": "5e7286c6def741df3f8abfabdb1f2058eaaedd07",
+    "merge_conflicts": [],
+    "candidate_changed_path_count": 12,
+    "main_changed_path_count": 17,
+    "path_overlap_count": 0,
+    "formal_document_diff": [
+      "docs/helix-os/L5-detail-design/management-authority-source-record.json",
+      "docs/helix-os/L8-unit-verification/management-authority-source-record.json"
+    ],
+    "static_validator": "PASS (51 L4/L5 classes, 45 L8 classes, 112 new links, 29 prior links, all 583 condition/expected/expected_preserved unchanged)",
+    "static_report_sha256": "4a7cfc826f3fee99aae3031adca03cb4fe925946503c9dcb80e33778113711d9",
+    "child_baseline_failures": 226,
+    "child_trial_failures": 24,
+    "child_trial_report_sha256": "891346d27500bafab821487aae67f463db7aae0ad38b18e608d548c551fd37f0",
+    "child_pairs": "L4/L9 PASS; L5/L8 PASS",
+    "child_matched_cases": 572,
+    "freeze_baseline_report_sha256": "cc4bd1a42fcde81c9b38c3d9f68af3531cab8a235811fb937e2a57f35d320003",
+    "freeze_trial_report_sha256": "cc4bd1a42fcde81c9b38c3d9f68af3531cab8a235811fb937e2a57f35d320003",
+    "freeze_reports_same": true,
+    "freeze_mechanical_match": false,
+    "freeze_json_pointer_failures": 2421,
+    "freeze_public_function_failures": 8,
+    "scfctl_baseline": "166 bindings valid; stale=0",
+    "scfctl_trial": "167 bindings valid; stale=0"
+  }
+}

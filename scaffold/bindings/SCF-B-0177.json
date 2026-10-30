@@ -6,7 +6,7 @@
   "product": "HELIX-OS",
   "owner_candidate": "HELIX-OS OS015 管理record/source projection設計",
   "state": "registered",
-  "reason": "PR class design_verification のOS015 L4/L9 V-pair候補。75件を既存2 classへ、37件を補正後18 new classへ結び、L9の残112 caseへraw-input参照とclass refを追加する。C0573–C0582はL4 algorithmとL7 given.inputから再導出し6件を訂正した。C0577/C0580は全体severity=violation、選択classification facet state=unknown。",
+  "reason": "PR class design_verification のOS015 L4/L9 V-pair候補。75件を既存2 classへ、37件を補正後18 new classへ結び、L9の残112 caseへraw-input参照とclass refを追加する。C0573–C0582はL4 algorithmとL7 given.inputから再導出し6件を訂正した。",
   "upstream": [
     {
       "path": "docs/helix-os/L3-requirements/functional-requirements.json",
@@ -16,12 +16,12 @@
     {
       "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
       "sha256": "32e4a7b6432e7454d242277b37a0948916dc876b6e8e008ad8e4f8c2d7207081",
-      "note": "候補L4に補正後18 new class rowsとF02 negative_class_refs。source derived from pinned L4 algorithm and L7 input only. M1 local-state correction: prior pin=5038893210d772bc46fa75802757a90d9658ec4f427f76adcc3cf8a6702ce96f; current pin=32e4a7b6432e7454d242277b37a0948916dc876b6e8e008ad8e4f8c2d7207081; class fd9fdc4c replaced by 481c6429; overall violation / classification unknown."
+      "note": "候補L4に補正後18 new class rowsとF02 negative_class_refs。source derived from pinned L4 algorithm and L7 input only. M1 successor alignment: retain prior pin=5038893210d772bc46fa75802757a90d9658ec4f427f76adcc3cf8a6702ce96f; current candidate pin=32e4a7b6432e7454d242277b37a0948916dc876b6e8e008ad8e4f8c2d7207081; C0577/C0580 selected classification state is unknown while overall classification remains violation."
     },
     {
       "path": "docs/helix-os/L5-detail-design/management-authority-source-record.json",
-      "sha256": "c7d979d397f7ebc9b82b1cb5fa3e32f82737956c6a54adc2080342b729607c7f",
-      "note": "手動監査でowner_refを確認したsource。L5文書は変更しない。"
+      "sha256": "4d686c07580eb0aef0a580dec5e2fa666c14476dcf81facdc469cde05719015d",
+      "note": "手動監査でowner_refを確認したsource。L5文書は変更しない。 #3927 L4/L9 audit時のL5 snapshot pin=c7d979d397f7ebc9b82b1cb5fa3e32f82737956c6a54adc2080342b729607c7f。後続successor L5 current bytes=25bd183b3725fce8a994d24710e29280b00ed27b83efe3a0f989d62641d61d94; 0177 audit scope remains the 0dd204 snapshot. M1 successor alignment: retain prior pin=25bd183b3725fce8a994d24710e29280b00ed27b83efe3a0f989d62641d61d94; current candidate pin=ce3f7579d3be09cbd6cf786e4d69f0ff3fdc31fe36645669b0379368a9f448d7; C0577/C0580 selected classification state is unknown while overall classification remains violation. Latest-main successor repin: prior pin=ce3f7579d3be09cbd6cf786e4d69f0ff3fdc31fe36645669b0379368a9f448d7; current=00f06a0532a02138f16a6968c25f07cb8adb1b8d646699ea91a1404f31eb4bcd; pair revision=2e5ef018, L5/L8 carries a0f8ffe7 overall violation/classification local unknown. Current-main successor repin: prior pin=00f06a0532a02138f16a6968c25f07cb8adb1b8d646699ea91a1404f31eb4bcd; current=4d686c07580eb0aef0a580dec5e2fa666c14476dcf81facdc469cde05719015d; pair revision=be407b48; C0577/C0580 class a0f8ffe7 overall violation/classification local unknown."
     },
     {
       "path": "docs/helix-os/L7-function-verification/management-authority-source-record.json",
@@ -30,13 +30,13 @@
     },
     {
       "path": "docs/helix-os/L8-unit-verification/management-authority-source-record.json",
-      "sha256": "63fc2084a2a41cce1c84ac0db7a437ce25a0525f9f24d060f47bcf61357aa621",
-      "note": "既存583 unit case期待を保持したことの比較source。L8文書は変更しない。"
+      "sha256": "c3b6640290314b8d03cbcc7f4908768e7ff89d9b10d2582dff73e59ae3fa4ca5",
+      "note": "既存583 unit case期待を保持したことの比較source。L8文書は変更しない。 prior pin=63fc2084a2a41cce1c84ac0db7a437ce25a0525f9f24d060f47bcf61357aa621. 0dd204 L4/L9 audit snapshot pin is retained in verification-summary; current L8 successor extends it with the separately bound 112-case pair. successor correction update: prior pin=04eb8f8ffcc0b5d7676e8c319ed5d368e6ec816ae111084058722e19f6e152b1; current pin=9bba916b62b32fbcc7ae40ea92ed90c5eb3e58e71e923e39efcf0ede6879d759; class a0f8ffe7 local classification state unknown. Latest-main successor repin: prior pin=9bba916b62b32fbcc7ae40ea92ed90c5eb3e58e71e923e39efcf0ede6879d759; current=9956a4a531b59b553997dd0cc4f8b52d4f3be1c67a4f3ac4f9e1360330557e0e; pair revision=2e5ef018, L5/L8 carries a0f8ffe7 overall violation/classification local unknown. Current-main successor repin: prior pin=9956a4a531b59b553997dd0cc4f8b52d4f3be1c67a4f3ac4f9e1360330557e0e; current=c3b6640290314b8d03cbcc7f4908768e7ff89d9b10d2582dff73e59ae3fa4ca5; pair revision=be407b48; C0577/C0580 class a0f8ffe7 overall violation/classification local unknown."
     },
     {
       "path": "docs/helix-os/L9-integration-verification/management-authority-source-record.json",
       "sha256": "365b89c9131e5edd9b64d474438ff780360118819cc651ee535f64a70aa5ff1d",
-      "note": "候補L9に補正後18 class rowsと112 case refs。case-level expectedは維持し、classはL4から順方向projection。 M1 local-state correction: prior pin=1e2bac6a7cabe48b11ba17736c7081fcbe27c35de79f835c75a1a709d5891b39; current pin=365b89c9131e5edd9b64d474438ff780360118819cc651ee535f64a70aa5ff1d; class fd9fdc4c replaced by 481c6429; overall violation / classification unknown."
+      "note": "候補L9に補正後18 class rowsと112 case refs。case-level expectedは維持し、classはL4から順方向projection。 M1 successor alignment: retain prior pin=1e2bac6a7cabe48b11ba17736c7081fcbe27c35de79f835c75a1a709d5891b39; current candidate pin=365b89c9131e5edd9b64d474438ff780360118819cc651ee535f64a70aa5ff1d; C0577/C0580 selected classification state is unknown while overall classification remains violation."
     },
     {
       "path": "scaffold/tools/design_verification_checker.py",
@@ -51,7 +51,7 @@
     {
       "path": "scaffold/research/wr181-os015-residual-l4-l9-20261030/projection-manifest.json",
       "sha256": "fd1c81f801d59fd89bff48332e6aa4047cf368ffc97176127f742257303a0f17",
-      "note": "補正後20 class group / 112 raw given.input case mapping。C0573–C0582 correction auditを含む。 M1 local-state correction: prior pin=417da5eaf959ee26daa7c1fe34add98ed6f3b5f22212234cf076f66213a8c3f3; current pin=fd1c81f801d59fd89bff48332e6aa4047cf368ffc97176127f742257303a0f17; class fd9fdc4c replaced by 481c6429; overall violation / classification unknown."
+      "note": "補正後20 class group / 112 raw given.input case mapping。C0573–C0582 correction auditを含む。 M1 successor alignment: retain prior pin=417da5eaf959ee26daa7c1fe34add98ed6f3b5f22212234cf076f66213a8c3f3; current candidate pin=fd1c81f801d59fd89bff48332e6aa4047cf368ffc97176127f742257303a0f17; C0577/C0580 selected classification state is unknown while overall classification remains violation."
     },
     {
       "path": "scaffold/research/wr181-os015-pr-a-l4-l9-20261030/case-evidence.json",
@@ -60,33 +60,33 @@
     },
     {
       "path": "scaffold/bindings/SCF-B-0170.json",
-      "sha256": "87d22cb2360b00bd9dcdc6eabfc5ef383647fe73dfe7efafe4730eb477b09c00",
-      "note": "本候補のL4/L9追補後にhashを更新した前段binding。歴史差分と更新理由は各binding noteに保持。 M1 local-state correction: prior pin=a79c2d79c53d84cc4aacaaaea49a9a3dcdbb193b300330d56fc571885592ab8b; current pin=87d22cb2360b00bd9dcdc6eabfc5ef383647fe73dfe7efafe4730eb477b09c00; class fd9fdc4c replaced by 481c6429; overall violation / classification unknown."
+      "sha256": "58ee78dd16284eec535258af6fd810679897a996e48e9b6d18638a6cd9b5da83",
+      "note": "本候補のL4/L9追補後にhashを更新した前段binding。歴史差分と更新理由は各binding noteに保持。 M1 successor alignment: retain prior pin=944ace0f511b468650996698a4694d97a0b9ebcc5e945d63de1a48bb918ba139; current candidate pin=b43cb6c5848bae8b580859816f98ab06b6e929c724dbdd86d89500bbc19be037; C0577/C0580 selected classification state is unknown while overall classification remains violation. OS015 M1 successor update: retain prior pin=b43cb6c5848bae8b580859816f98ab06b6e929c724dbdd86d89500bbc19be037; current pin=83e3b0c53ada715ddef1cf4133785d143845f6bbd19592ffe6856e0ee7549866; L5/L8 projection carries class a0f8ffe7 as overall violation, classification local state unknown. Latest-main successor repin: prior pin=83e3b0c53ada715ddef1cf4133785d143845f6bbd19592ffe6856e0ee7549866; current=37a5a7c296669c5b487f4f5226ac8307452790b999b54fb59545a992c285b987; pair revision=2e5ef018, L5/L8 carries a0f8ffe7 overall violation/classification local unknown. Current-main successor repin: prior pin=37a5a7c296669c5b487f4f5226ac8307452790b999b54fb59545a992c285b987; current=58ee78dd16284eec535258af6fd810679897a996e48e9b6d18638a6cd9b5da83; pair revision=be407b48; C0577/C0580 class a0f8ffe7 overall violation/classification local unknown."
     },
     {
       "path": "scaffold/bindings/SCF-B-0173.json",
       "sha256": "e95e5527ecb5d6a0af2af99b5720b0bcb0822439bdd24adedb40bbae1b119dbb",
-      "note": "本候補のL4/L9追補後にhashを更新した前段binding。歴史差分と更新理由は各binding noteに保持。 M1 local-state correction: prior pin=c9ab16d9571a01c98c2bf597247bf46938020a6cab49ef64248c5748698afdf9; current pin=e95e5527ecb5d6a0af2af99b5720b0bcb0822439bdd24adedb40bbae1b119dbb; class fd9fdc4c replaced by 481c6429; overall violation / classification unknown."
+      "note": "本候補のL4/L9追補後にhashを更新した前段binding。歴史差分と更新理由は各binding noteに保持。 M1 successor alignment: retain prior pin=c9ab16d9571a01c98c2bf597247bf46938020a6cab49ef64248c5748698afdf9; current candidate pin=e95e5527ecb5d6a0af2af99b5720b0bcb0822439bdd24adedb40bbae1b119dbb; C0577/C0580 selected classification state is unknown while overall classification remains violation."
     },
     {
       "path": "scaffold/bindings/SCF-B-0175.json",
-      "sha256": "7498168605ded4332b24b8b8703221ac7249611db33ba55f8c98301bcffdfe08",
-      "note": "本候補のL4/L9追補後にhashを更新した前段binding。歴史差分と更新理由は各binding noteに保持。 M1 local-state correction: prior pin=e4f57b9afaf44a23a4cc5c30fb76741695aeaeef1bf43f2f60890bd930441b0a; current pin=7498168605ded4332b24b8b8703221ac7249611db33ba55f8c98301bcffdfe08; class fd9fdc4c replaced by 481c6429; overall violation / classification unknown."
+      "sha256": "1b2476a04563447e4f1707a596c19ca7ad3d038b90878917d67ece9fed77fe44",
+      "note": "本候補のL4/L9追補後にhashを更新した前段binding。歴史差分と更新理由は各binding noteに保持。 M1 successor alignment: retain prior pin=abec97a660ae4f2b1d3169f4464a187d9d76140c0f41b8376c33757db57a20ae; current candidate pin=5bc13d1a478e157cc249468f5d6e64c0d79dacf69c5d62b3903eee87e2d52c10; C0577/C0580 selected classification state is unknown while overall classification remains violation. successor correction update: prior pin=5bc13d1a478e157cc249468f5d6e64c0d79dacf69c5d62b3903eee87e2d52c10; current pin=36747d56c6a218cddab6ed8e13cf734265ca981b3b5c2d427a5fb3d1759a030c; class a0f8ffe7 local classification state unknown. OS015 M1 successor update: retain prior pin=36747d56c6a218cddab6ed8e13cf734265ca981b3b5c2d427a5fb3d1759a030c; current pin=fa1a731465885330d7bc82bdcf3a590591903a9fd8086f4cb364df807e7fdb37; L5/L8 projection carries class a0f8ffe7 as overall violation, classification local state unknown. Latest-main successor repin: prior pin=fa1a731465885330d7bc82bdcf3a590591903a9fd8086f4cb364df807e7fdb37; current=cc6454386a4c12102f9f4401ca8828dea0b7d2bc98649c480f351a7e21e7948d; pair revision=2e5ef018, L5/L8 carries a0f8ffe7 overall violation/classification local unknown. Current-main successor repin: prior pin=cc6454386a4c12102f9f4401ca8828dea0b7d2bc98649c480f351a7e21e7948d; current=1b2476a04563447e4f1707a596c19ca7ad3d038b90878917d67ece9fed77fe44; pair revision=be407b48; C0577/C0580 class a0f8ffe7 overall violation/classification local unknown."
     },
     {
       "path": "scaffold/bindings/SCF-B-0176.json",
-      "sha256": "9605aa3436faaa92465bd93840b2677d66e9daffa4d15b123295990bd4bf9f7c",
-      "note": "本候補のL4/L9追補後にhashを更新した前段binding。歴史差分と更新理由は各binding noteに保持。 M1 local-state correction: prior pin=96acec08440dde7a1fa50294d4b2d7f9d88808521fe7fa9eb9bf480e5a79304d; current pin=9605aa3436faaa92465bd93840b2677d66e9daffa4d15b123295990bd4bf9f7c; class fd9fdc4c replaced by 481c6429; overall violation / classification unknown."
+      "sha256": "24d8b96a8590c7b80ed459ab98fde40131b86a57660b0bea411dfae99be42cd4",
+      "note": "本候補のL4/L9追補後にhashを更新した前段binding。歴史差分と更新理由は各binding noteに保持。 M1 successor alignment: retain prior pin=51cd7f87d82b3c395b81592ca01b8357fc4caa9353b9b8a8928bf9bbbd2f4257; current candidate pin=c8938fea915e063db95864f1fe0d8603e95a8e743a22f1126f7aa346209ae846; C0577/C0580 selected classification state is unknown while overall classification remains violation. successor correction update: prior pin=c8938fea915e063db95864f1fe0d8603e95a8e743a22f1126f7aa346209ae846; current pin=96495a7b144796c2e9f70e36fe5165c72bd7fa1bc90a95400b0c6e6d5d139582; class a0f8ffe7 local classification state unknown. OS015 M1 successor update: retain prior pin=96495a7b144796c2e9f70e36fe5165c72bd7fa1bc90a95400b0c6e6d5d139582; current pin=024f634e6e665f92909bf09db57eae4609d1eacdbf287af059424e5192d955df; L5/L8 projection carries class a0f8ffe7 as overall violation, classification local state unknown. Latest-main successor repin: prior pin=024f634e6e665f92909bf09db57eae4609d1eacdbf287af059424e5192d955df; current=4c4f5d1bb859e7aa292fb6fdc12e4d9eb20eb564bb288f76d6dd7574ea7fffb8; pair revision=2e5ef018, L5/L8 carries a0f8ffe7 overall violation/classification local unknown. Current-main successor repin: prior pin=4c4f5d1bb859e7aa292fb6fdc12e4d9eb20eb564bb288f76d6dd7574ea7fffb8; current=24d8b96a8590c7b80ed459ab98fde40131b86a57660b0bea411dfae99be42cd4; pair revision=be407b48; C0577/C0580 class a0f8ffe7 overall violation/classification local unknown."
     },
     {
       "path": "scaffold/research/wr181-os015-residual-l4-l9-20261030/class-correction-audit-5d541.md",
       "sha256": "3429e4886f3c960a78ce9a142619e43e02dbc5ec527399f6dbfa028c28d800ba",
-      "note": "#3927 head 5d541からL4 algorithmとL7 given.inputだけでC0573–C0582を再照合した独立監査記録。 M1 local-state correction: prior pin=be773b98faa2916b8b144689edd45ca93ac3ca067ceb3d8b51ca395908822d90; current pin=3429e4886f3c960a78ce9a142619e43e02dbc5ec527399f6dbfa028c28d800ba; class fd9fdc4c replaced by 481c6429; overall violation / classification unknown."
+      "note": "#3927 head 5d541からL4 algorithmとL7 given.inputだけでC0573–C0582を再照合した独立監査記録。 M1 successor alignment: retain prior pin=be773b98faa2916b8b144689edd45ca93ac3ca067ceb3d8b51ca395908822d90; current candidate pin=3429e4886f3c960a78ce9a142619e43e02dbc5ec527399f6dbfa028c28d800ba; C0577/C0580 selected classification state is unknown while overall classification remains violation."
     },
     {
       "path": "scaffold/research/wr181-os015-residual-l4-l9-20261030/class-correction-cases.json",
       "sha256": "fda0a1cbbcf5638ccfe88b08d7de62e3f7b9c0f7bf6be2d2621e67d6d121a680",
-      "note": "C0573–C0582のL7 fixed input pointers/hashとL4由来ordered finding/pointer/class-key evidence。L8/L9 expectedは未参照。 M1 local-state correction: prior pin=1d2f8de636f5ed238ebaecd3d5a3ce76650b9e413ff7eeed62f2d74d400a2c68; current pin=fda0a1cbbcf5638ccfe88b08d7de62e3f7b9c0f7bf6be2d2621e67d6d121a680; class fd9fdc4c replaced by 481c6429; overall violation / classification unknown."
+      "note": "C0573–C0582のL7 fixed input pointers/hashとL4由来ordered finding/pointer/class-key evidence。L8/L9 expectedは未参照。 M1 successor alignment: retain prior pin=1d2f8de636f5ed238ebaecd3d5a3ce76650b9e413ff7eeed62f2d74d400a2c68; current candidate pin=fda0a1cbbcf5638ccfe88b08d7de62e3f7b9c0f7bf6be2d2621e67d6d121a680; C0577/C0580 selected classification state is unknown while overall classification remains violation."
     }
   ],
   "role": "OS015の独立形成済み18 classと残112件L4/L9 projectionおよびC0573–C0582 correction evidence。",
