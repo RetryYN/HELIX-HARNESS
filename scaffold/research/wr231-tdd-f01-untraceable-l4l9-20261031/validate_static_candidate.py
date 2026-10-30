@@ -35,6 +35,7 @@ L9_SHA = "3d2257ee9d0f33f367377a3c379af9852973dc11d87c1f23f8f193724adebeb2"
 WR231_ARTIFACT = "scaffold/research/wr231-tdd-f01-untraceable-l4l9-20261031/source/f01-blind-retry.json"
 WR231_SHA = "2a53b965d023d81e6add971f8693cf633cfd6152c700e863a13da65568de3983"
 WR231_IDS = {"WR231-F01-target-binding-unavailable", "WR231-F01-design-oracle-revision-untraceable"}
+WR231_SECOND_BASIS = 'L3 F01はL6/L5と対test/oracleを定義・凍結し、対象identity/revision/scopeへ結ぶことを要求する。固定blind /negative_inputs/1 ではtarget_identity=target-A、target_revision=target-r2、scope=scope-A、test_revision=test-r2、expected_result_revision=expect-r2が供給されている一方、design_revisionとoracle_revisionがnullで必須の設計/oracle版traceが未供給。L10 F01は設計/対oracleの版を対象へ辿るよう求め、固定blindも一致/current oracleを推論せずunproven/incompleteを保つ。よって既存state vocabularyに沿いmissingを候補とする。pair_binding軸はL4の設計選択でsourceから一意でない。failure_code_status=unknownはfailure codeの意味が未確定であることを示し、stateとは別。'
 WR223_README_SHA = "7e5fe7f82acac693785d4589f9e14752d632dc6ae414c6b652dd03c467d9f60c"
 WR223_SUMMARY_SHA = "7f2f84406dffde75ab351eed7c436031c6e01fc8ce1939d9c258606d0fda6ad4"
 L5_SHA = "fce881931580d26381df12721dc740a82b685e29c2039a5e1ff838475824c176"
@@ -43,6 +44,43 @@ FACTS_SHA = "f16de2d4cb641c34a7289a81496e4618ff5a4a88eb8be3da1896123920db21de"
 
 def sha(data: bytes) -> str:
     return hashlib.sha256(data).hexdigest()
+
+
+CORRECTION_PATH = "scaffold/research/wr231-tdd-f01-untraceable-l4l9-20261031/r2-classification-basis-correction-20261031.json"
+CORRECTION_SHA = "b6104eff006fb835de7b910fe600fb9935c831d224ed5dd913cb48b740b6d746"
+POST_AUDIT_PATH = "scaffold/research/wr231-tdd-f01-untraceable-l4l9-20261031/post-wr223-binding-recheck-20261031.json"
+POST_AUDIT_SHA = "70271a76f37eea270fdcad92c8405d0332c757463ac680b2cc289e70578b5728"
+
+
+def verify_r2_correction(wr231: dict) -> None:
+    correction_bytes = (ROOT / CORRECTION_PATH).read_bytes()
+    assert sha(correction_bytes) == CORRECTION_SHA
+    assert sha((ROOT / POST_AUDIT_PATH).read_bytes()) == POST_AUDIT_SHA
+    correction = json.loads(correction_bytes)
+    assert correction["immutable_point_in_time_audit"]["path"] == POST_AUDIT_PATH
+    assert correction["immutable_point_in_time_audit"]["sha256"] == POST_AUDIT_SHA
+    target = correction["corrected_target"]
+    assert target["row_id"] == "WR231-F01-design-oracle-revision-untraceable"
+    assert target["field"] == "classification_basis"
+    assert target["corrected_value"] == WR231_SECOND_BASIS
+    assert target["current_artifact_sha256"] == sha((ROOT / L4).read_bytes())
+    blind_row = wr231["negative_inputs"][1]["synthetic_input"]
+    expected_fields = {key: blind_row.get(key) for key in (
+        "target_identity", "target_revision", "scope", "test_revision",
+        "expected_result_revision", "design_revision", "oracle_revision", "freeze_record"
+    )}
+    assert correction["observed_blind_fields"] == expected_fields
+    assert expected_fields == {
+        "target_identity": "target-A", "target_revision": "target-r2", "scope": "scope-A",
+        "test_revision": "test-r2", "expected_result_revision": "expect-r2",
+        "design_revision": None, "oracle_revision": None, "freeze_record": "present"
+    }
+    line = f"candidate artifact SHA-256: {CORRECTION_PATH}={CORRECTION_SHA}"
+    for binding_path in ALL_BINDINGS:
+        binding = read_json(binding_path)
+        assert line in binding["verification"]["oracles"], binding_path
+    binding_0193 = read_json("scaffold/bindings/SCF-B-0193.json")
+    assert f"candidate artifact SHA-256: {POST_AUDIT_PATH}={POST_AUDIT_SHA}" in binding_0193["verification"]["oracles"]
 
 
 def git_bytes(revision: str, path: str) -> bytes:
@@ -143,6 +181,7 @@ def main() -> None:
     wr231_bytes = (ROOT / WR231_ARTIFACT).read_bytes()
     assert sha(wr231_bytes) == WR231_SHA
     wr231 = json.loads(wr231_bytes)
+    verify_r2_correction(wr231)
     facts = read_json(FACTS)
     binding = read_json(BINDING)
     assert sha((ROOT / FACTS).read_bytes()) == FACTS_SHA
@@ -225,6 +264,8 @@ def main() -> None:
         assert l4_row["failure_code_status"] == l9_row["failure_code_status"] == "unknown"
         assert l4_row["expected_axis"] == l9_row["expected_axis"] == "pair_binding"
         assert l4_row["expected_state"] == l9_row["expected_state"] == "missing"
+        if row_id == "WR231-F01-design-oracle-revision-untraceable":
+            assert l4_row["classification_basis"] == WR231_SECOND_BASIS
         assert l4_row["expected_side_effect_count"] == l9_row["expected_side_effect_count"] == 0
         assert l4_row["axis_selection_status"] == l9_row["axis_selection_status"] == "l4_design_choice_not_unique_from_source"
         assert l4_row["backflow_owner"] == l9_row["backflow_owner"] == "FrozenContractIntake"

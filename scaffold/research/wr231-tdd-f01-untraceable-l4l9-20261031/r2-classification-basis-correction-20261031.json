@@ -1,0 +1,47 @@
+{
+  "evidence_id": "WR231-F01-R2-classification-basis-correction-20261031",
+  "evidence_kind": "append_only_correction",
+  "authority_effect": "none",
+  "scope": "Correct the second WR231 candidate classification_basis trace after PR #3975 R2 review; preserve the committed post-WR223 point-in-time audit unchanged.",
+  "immutable_point_in_time_audit": {
+    "path": "scaffold/research/wr231-tdd-f01-untraceable-l4l9-20261031/post-wr223-binding-recheck-20261031.json",
+    "sha256": "70271a76f37eea270fdcad92c8405d0332c757463ac680b2cc289e70578b5728",
+    "status": "Existing committed snapshot restored byte-for-byte; this correction is recorded separately."
+  },
+  "review_followup": {
+    "pull_request": "https://github.com/RetryYN/HELIX-HARNESS/pull/3975",
+    "comment": "https://github.com/RetryYN/HELIX-HARNESS/pull/3975#issuecomment-6533470710",
+    "exact_head": "6cd9c2814f5d333cc9eca582eb51593ba6377e91"
+  },
+  "fixed_blind": {
+    "path": "scaffold/research/wr231-tdd-f01-untraceable-l4l9-20261031/source/f01-blind-retry.json",
+    "sha256": "2a53b965d023d81e6add971f8693cf633cfd6152c700e863a13da65568de3983",
+    "pointer": "/negative_inputs/1"
+  },
+  "corrected_target": {
+    "path": "docs/helix-harness/L4-basic-design/tdd-development-flow.json",
+    "requirement_id": "HARNESS-L4-015-F01",
+    "row_id": "WR231-F01-design-oracle-revision-untraceable",
+    "field": "classification_basis",
+    "previous_value": "L3 F01が要求する対象identity/revision/scopeが固定blindでnullのまま未供給であり、既存L4 state vocabularyおよびfreeze_missing（nullの必須記録は未供給としてmissing）と同じ根拠でmissingを候補とする。pair_binding軸はL4設計選択でソースから一意でない。fixed blindはfailure_codeだけをunknownとし、実際のfailure code/classificationは未確定のまま。pair freeze/TDD success/implementation successを生成しない。",
+    "corrected_value": "L3 F01はL6/L5と対test/oracleを定義・凍結し、対象identity/revision/scopeへ結ぶことを要求する。固定blind /negative_inputs/1 ではtarget_identity=target-A、target_revision=target-r2、scope=scope-A、test_revision=test-r2、expected_result_revision=expect-r2が供給されている一方、design_revisionとoracle_revisionがnullで必須の設計/oracle版traceが未供給。L10 F01は設計/対oracleの版を対象へ辿るよう求め、固定blindも一致/current oracleを推論せずunproven/incompleteを保つ。よって既存state vocabularyに沿いmissingを候補とする。pair_binding軸はL4の設計選択でsourceから一意でない。failure_code_status=unknownはfailure codeの意味が未確定であることを示し、stateとは別。",
+    "current_artifact_sha256": "347bfd83b7685b52c45f62b5ee6f336fd74338ee65e67327e6e810d6eb489a16"
+  },
+  "observed_blind_fields": {
+    "target_identity": "target-A",
+    "target_revision": "target-r2",
+    "scope": "scope-A",
+    "test_revision": "test-r2",
+    "expected_result_revision": "expect-r2",
+    "design_revision": null,
+    "oracle_revision": null,
+    "freeze_record": "present"
+  },
+  "classification_boundary": {
+    "L3_requirement": "HARNESS-L3-015-F01 requires the L6/L5 test/oracle pair to be defined, frozen, and bound to target identity/revision/scope.",
+    "L10_requirement": "HARNESS-L10-015-F01 requires design/pair-oracle versions to be traceable to the target.",
+    "candidate_projection": "expected_state=missing because required design_revision and oracle_revision are null; failure_code_status=unknown remains separate because failure-code meaning is not established.",
+    "unchanged": "L9 row, failure-code status, expected state, side-effect count, non-generation assertions, source pointers, and fixed blind bytes."
+  },
+  "validation_intent": "All three static validators assert the exact corrected value, fixed blind field facts, immutable audit digest, and this correction artifact digest through the three affected bindings."
+}

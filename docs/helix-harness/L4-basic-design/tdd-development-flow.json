@@ -586,7 +586,7 @@
           "expected_axis": "pair_binding",
           "expected_state": "missing",
           "backflow_owner": "FrozenContractIntake",
-          "classification_basis": "L3 F01が要求する対象identity/revision/scopeが固定blindでnullのまま未供給であり、既存L4 state vocabularyおよびfreeze_missing（nullの必須記録は未供給としてmissing）と同じ根拠でmissingを候補とする。pair_binding軸はL4設計選択でソースから一意でない。fixed blindはfailure_codeだけをunknownとし、実際のfailure code/classificationは未確定のまま。pair freeze/TDD success/implementation successを生成しない。",
+          "classification_basis": "L3 F01はL6/L5と対test/oracleを定義・凍結し、対象identity/revision/scopeへ結ぶことを要求する。固定blind /negative_inputs/1 ではtarget_identity=target-A、target_revision=target-r2、scope=scope-A、test_revision=test-r2、expected_result_revision=expect-r2が供給されている一方、design_revisionとoracle_revisionがnullで必須の設計/oracle版traceが未供給。L10 F01は設計/対oracleの版を対象へ辿るよう求め、固定blindも一致/current oracleを推論せずunproven/incompleteを保つ。よって既存state vocabularyに沿いmissingを候補とする。pair_binding軸はL4の設計選択でsourceから一意でない。failure_code_status=unknownはfailure codeの意味が未確定であることを示し、stateとは別。",
           "source_reference": {
             "revision": "a715e777bd59291b26f09c0c1c5481273c6eba2e",
             "pointer": "/requirements/40",

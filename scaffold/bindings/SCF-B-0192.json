@@ -20,8 +20,8 @@
     },
     {
       "path": "docs/helix-harness/L4-basic-design/tdd-development-flow.json",
-      "sha256": "0636c1e7609777eea2811fbcb7dd980e5bae764c622ce57784dce50da5aa152e",
-      "note": "Current source pin after WR231; historical BASE dd5931cfff4ff786da2ced44de2a40529edf7b71 SHA-256 8dfbe628d7beb9b449a3ec48e98b7ed89ebbb4be1ea9b3f061dfd02ba464ea2f recorded five existing F01 classifications and no row for r2 sixth condition at that revision. WR231 adds two unknown-code witnesses only; static validator proves they are the only structural delta. R1 F1/F2 state correction verified against fixed BASE and exact WR231 candidate rows; prior pin 36ba5cad0b3f49b9424635a670e6d309e8379bb44bb1f056e556f26ad44507f4 retained in WR231 comparison evidence. Rebound to current bytes 0636c1e7609777eea2811fbcb7dd980e5bae764c622ce57784dce50da5aa152e."
+      "sha256": "347bfd83b7685b52c45f62b5ee6f336fd74338ee65e67327e6e810d6eb489a16",
+      "note": "Current source pin after WR231; historical BASE dd5931cfff4ff786da2ced44de2a40529edf7b71 SHA-256 8dfbe628d7beb9b449a3ec48e98b7ed89ebbb4be1ea9b3f061dfd02ba464ea2f recorded five existing F01 classifications and no row for r2 sixth condition at that revision. WR231 adds two unknown-code witnesses only; static validator proves they are the only structural delta. R1 F1/F2 state correction verified against fixed BASE and exact WR231 candidate rows; prior pin 36ba5cad0b3f49b9424635a670e6d309e8379bb44bb1f056e556f26ad44507f4 retained in WR231 comparison evidence. Rebound to current bytes 0636c1e7609777eea2811fbcb7dd980e5bae764c622ce57784dce50da5aa152e. R2 corrected the second WR231 classification_basis from the first-row target-missing statement to absent design/oracle revision evidence; previous digest 0636c1e7609777eea2811fbcb7dd980e5bae764c622ce57784dce50da5aa152e is preserved in WR231 comparison evidence. Rebound to validated current SHA-256 347bfd83b7685b52c45f62b5ee6f336fd74338ee65e67327e6e810d6eb489a16."
     },
     {
       "path": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json",
@@ -110,7 +110,7 @@
       "candidate artifact SHA-256: docs/helix-harness/L5-detail-design/tdd-development-flow.json=fce881931580d26381df12721dc740a82b685e29c2039a5e1ff838475824c176",
       "candidate artifact SHA-256: docs/helix-harness/L8-unit-verification/tdd-development-flow.json=ee1648c067009e819d41f869733290042e103c39e41c0980d29dcdb46c107392",
       "candidate artifact SHA-256: scaffold/research/wr223-f01-l5-l8-20261031/README.md=7e5fe7f82acac693785d4589f9e14752d632dc6ae414c6b652dd03c467d9f60c",
-      "candidate artifact SHA-256: scaffold/research/wr223-f01-l5-l8-20261031/validate_static_candidate.py=13351edd53a8754ea9342c401469746d6aa8fbc06fbba4d96789b9ce90e8ee60",
+      "candidate artifact SHA-256: scaffold/research/wr223-f01-l5-l8-20261031/validate_static_candidate.py=859c6a5ad5b6a8069127a4ab8fa4b9d7e3bb84eea0439512fd10a64c72475ea0",
       "candidate artifact SHA-256: scaffold/research/wr223-f01-l5-l8-20261031/verification-summary.json=7f2f84406dffde75ab351eed7c436031c6e01fc8ce1939d9c258606d0fda6ad4",
       "candidate artifact SHA-256: scaffold/research/wr223-f01-l5-l8-20261031/source/f01-candidate-input-facts.json=f16de2d4cb641c34a7289a81496e4618ff5a4a88eb8be3da1896123920db21de",
       "Post-WR231 source recheck: base L4/L9 hashes preserved as historical pins; current L4/L9 pins resolve; stripping exactly two WR231 witness rows reproduces the full fixed BASE documents; both candidate failure_code_status values remain unknown.",
@@ -118,8 +118,9 @@
       "candidate artifact SHA-256: scaffold/research/wr223-f01-l5-l8-20261031/source/f01-blind-draft-r2.json=fa047d5d871913b696ba5e01d9227ce13a68bc827ff6e8c66cc29d8e69d7e647",
       "candidate artifact SHA-256: scaffold/research/wr231-tdd-f01-untraceable-l4l9-20261031/source/f01-blind-retry.json=2a53b965d023d81e6add971f8693cf633cfd6152c700e863a13da65568de3983",
       "WR223 README and verification-summary are immutable point-in-time snapshots restored to their original BASE revision bytes; post-WR231 comparison is recorded separately in scaffold/research/wr231-tdd-f01-untraceable-l4l9-20261031/post-wr223-binding-recheck-20261031.json.",
-      "candidate artifact SHA-256: scaffold/research/wr231-tdd-f01-untraceable-l4l9-20261031/validate_static_candidate.py=a9a6d81e45c0a2c4bf6f46c9798fb6729373b1b31c7b9d671a3c5c11292a9c52",
-      "WR231 R1 response: github-upstream-operating-model.md:264 requires upstream[].path outside scaffold/; fixed artifact byte SHA is checked by the WR231 static validator, while historical scaffold paths and SHA remain in WR231 comparison evidence."
+      "candidate artifact SHA-256: scaffold/research/wr231-tdd-f01-untraceable-l4l9-20261031/validate_static_candidate.py=d7ccf1a41013973068020bac38042306cdb34e8046177dcff116d48156dcb01e",
+      "WR231 R1 response: github-upstream-operating-model.md:264 requires upstream[].path outside scaffold/; fixed artifact byte SHA is checked by the WR231 static validator, while historical scaffold paths and SHA remain in WR231 comparison evidence.",
+      "candidate artifact SHA-256: scaffold/research/wr231-tdd-f01-untraceable-l4l9-20261031/r2-classification-basis-correction-20261031.json=b6104eff006fb835de7b910fe600fb9935c831d224ed5dd913cb48b740b6d746"
     ],
     "negative_cases": [
       "Do not treat r1 or r2 semantic-scope artifact as formal oracle or approval.",
