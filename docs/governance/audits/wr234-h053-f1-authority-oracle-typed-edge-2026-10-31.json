@@ -1,0 +1,66 @@
+{
+  "artifact_id": "WR234-H053-F1-AUTHORITY-ORACLE-TYPED-EDGE-ADDENDUM-2026-10-31",
+  "evidence_kind": "append_only_review_correction_record",
+  "authority_effect": "none",
+  "review_finding": {
+    "pull_request": 3974,
+    "comment_id": "IC_kwDOTG8BRc8AAAABhWjs2Q",
+    "comment_url": "https://github.com/RetryYN/HELIX-HARNESS/pull/3974#issuecomment-6533213401",
+    "finding": "F1 Minor: lineage_endpoint_missingのeffectにある「だけ」と不完全な列挙により、authority・oracle・typed edgeが対応付け義務の対象外と読める。"
+  },
+  "revision_history": {
+    "prior_committed_revision": "aa41b9073bfe867e29f32e7c338add12dbd3e3de",
+    "prior_commit_time": "2026-10-31T05:46:18+09:00",
+    "prior_l4_path": "docs/helix-harness/L4-basic-design/semantic-asset-lineage.json",
+    "prior_l4_sha256": "5788ecc35660c23dbbbf6626811b60356576c86d0424ca08bdd65d30d0e3a99e",
+    "prior_l4_git_blob": "12025b1b78fa8b7275c1c994305758a7c6988936",
+    "current_worktree_l4_sha256": "9fd27d90c3bc8610e7d132bf075a9b2ea6e5ac570e55ea2e0741947576eafbc7",
+    "current_change_is_uncommitted": true
+  },
+  "basis": [
+    {
+      "pointer": "docs/helix-harness/L3-requirements/functional-requirements.json#/requirements/21",
+      "requirement_id": "HARNESS-L3-053-F03",
+      "revision": "aa41b9073bfe867e29f32e7c338add12dbd3e3de",
+      "git_blob": "d1f20053f75232a0fb6a7bd2d16949a23364cec0",
+      "sha256": "a3b907cdc316117d4684632f9a1cbf36125eb6e6172f9cfc286060617583d7be",
+      "relevant_obligation": "split/merge/supersedeの記録を、前後identity・revision・関係種別・影響history・authority・oracle・typed edgeへ個別に対応付ける。変換操作自体はこの照合で選択・発行しない。"
+    },
+    {
+      "pointer": "docs/helix-harness/L4-basic-design/semantic-asset-lineage.json#/contracts/2",
+      "contract_id": "HARNESS-L4-053-F03",
+      "revision": "aa41b9073bfe867e29f32e7c338add12dbd3e3de",
+      "git_blob": "12025b1b78fa8b7275c1c994305758a7c6988936",
+      "sha256": "5788ecc35660c23dbbbf6626811b60356576c86d0424ca08bdd65d30d0e3a99e",
+      "relevant_behavior": "同じ7要素を個別に対応付け、照合から変換操作を発行しない。"
+    },
+    {
+      "pointer": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:143",
+      "asset_id": "LEGACY-ASSET-719D5EC9C06FC4AAD0FF",
+      "revision": "aa41b9073bfe867e29f32e7c338add12dbd3e3de",
+      "git_blob": "c245ba33e1cd9c0230cf3b42c49c44dea7520934",
+      "sha256": "db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+      "relevant_source": "旧HIL-FR-53はrename/move/split/merge/supersedeを処理するとき、history・authority・oracle・typed edgeを保持する。"
+    }
+  ],
+  "change": {
+    "pointer": "docs/helix-harness/L4-basic-design/semantic-asset-lineage.json#/failure_classifications/12/effect",
+    "row_code": "lineage_endpoint_missing",
+    "before": "lineageは供給された記録にある前後identity・revision・relation・影響historyだけを対応付ける。不足・対応不明を推測で補わず、原因に応じたownerへ返す。照合から変換操作を発行しない。 関係のない既知axisまで消さない。",
+    "after": "lineageは供給された記録の前後identity・revision・関係種別・影響history・authority・oracle・typed edgeを対応付ける。不足・対応不明を推測で補わず、原因に応じたownerへ返す。照合から変換操作を発行しない。関係のない既知axisまで消さない。",
+    "rationale": "L3 F03とL4 F03が既に定める7要素の対応付けに列挙を揃え、範囲を狭める「だけ」を削除した。推測補完をしないこと、変換操作を出さないこと、無関係な既知axisの保持は維持した。"
+  },
+  "preserved": [
+    "この行のexpected_side_effect_countは0のまま。",
+    "無関係な既知axisを保持するeffect文を維持。",
+    "他の行、condition、構造化expected欄、L9、固定blind artifact、L5/L8、freeze、binding、source pinは編集していない。"
+  ],
+  "verification": {
+    "static_only": true,
+    "checks_pending_at_record_creation": [
+      "JSON構文解析",
+      "git diff --check",
+      "差分範囲の確認"
+    ]
+  }
+}

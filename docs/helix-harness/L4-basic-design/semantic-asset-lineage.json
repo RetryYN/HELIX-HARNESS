@@ -671,7 +671,7 @@
       "backflow_owners": [
         "record_owner"
       ],
-      "effect": "lineageは供給された記録にある前後identity・revision・relation・影響historyだけを対応付ける。不足・対応不明を推測で補わず、原因に応じたownerへ返す。照合から変換操作を発行しない。 関係のない既知axisまで消さない。",
+      "effect": "lineageは供給された記録の前後identity・revision・関係種別・影響history・authority・oracle・typed edgeを対応付ける。不足・対応不明を推測で補わず、原因に応じたownerへ返す。照合から変換操作を発行しない。関係のない既知axisまで消さない。",
       "expected_record_axes": [
         {
           "subject": "LM B/b1",
