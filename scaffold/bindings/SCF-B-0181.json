@@ -6,7 +6,7 @@
   "product": "HELIX-HARNESS",
   "owner_candidate": "HELIX-OS OS017 L4/L9 candidate evidence",
   "state": "registered",
-  "reason": "PR #3945 R1 M1/F2に応じ、OS017の2負例候補をL4設計テキストとL7 given inputから手導出した証跡をscaffoldに保持する。context.bindingのcross-facet再利用とpointer単位finding deduplicationを記録し、期待値由来のoracle、4層class marker、L5/L8投影、freeze成立を生成しない。",
+  "reason": "PR #3945 R1 M1/F2に応じ、OS017の2負例候補をL4設計テキストとL7 given inputから手導出した証跡をscaffoldに保持する。context.bindingのcross-facet再利用とpointer単位finding deduplicationを記録し、期待値由来のoracle、4層class marker、L5/L8投影、freeze成立を生成しない。 Current-main continuation: the two original inputs classes/witnesses remain preserved; the six ownership-role witnesses are a separate source-only tranche registered by SCF-B-0184.",
   "upstream": [
     {
       "path": "docs/helix-os/L3-requirements/functional-requirements.json",
@@ -30,8 +30,8 @@
     },
     {
       "path": "docs/helix-os/L4-basic-design/ticket-workflow-derivation.json",
-      "sha256": "df533df843f0742b66ebe9f1b71673e0e9ab9778e4931ea9e9351858835583b0",
-      "note": "L4 rows record raw witness pointers; prose steps 0–2 and 8 document cross-facet context.binding reuse/deduplication, while step 5 records conditional level reading. Raw operands are resolved by the validator; behavior is not executed."
+      "sha256": "042b09df96082a9f04e43016bb70928ceef2e807d84b0bbc958210283582fa15",
+      "note": "L4 current source pin 042b09df96082a9f04e43016bb70928ceef2e807d84b0bbc958210283582fa15; previous pin df533df843f0742b66ebe9f1b71673e0e9ab9778e4931ea9e9351858835583b0 is preserved in binding history. Existing input classes remain byte-identical; OS017 B01 ownership class is separately evidenced by SCF-B-0184. Updated for compact role witness references; prior pin: 45cca359a390061fb63291f10b482c8b643345b6c5f5fe45093fc62d8574dde2."
     },
     {
       "path": "docs/helix-os/L7-function-verification/ticket-workflow-derivation.json",
@@ -45,8 +45,8 @@
     },
     {
       "path": "docs/helix-os/L9-integration-verification/ticket-workflow-derivation.json",
-      "sha256": "0fc112aaae58ad70b7002ead221e521a56d13c3f2ea5257f02b79d404bc7e9d3",
-      "note": "49 existing cases gain only l4_source_class_candidate_ref; all 217 expected rows are unchanged."
+      "sha256": "74458de4b91932c4a6ddad22434e86be4ee5eacfa1f36ac59b9873a06c44652d",
+      "note": "L9 current source pin 74458de4b91932c4a6ddad22434e86be4ee5eacfa1f36ac59b9873a06c44652d; previous pin 0fc112aaae58ad70b7002ead221e521a56d13c3f2ea5257f02b79d404bc7e9d3 is preserved in binding history. Six roles rows link to the B01 candidate; all 217 expected projections remain unchanged."
     },
     {
       "path": "docs/helix-os/L9-integration-verification/management-authority-source-record.json",

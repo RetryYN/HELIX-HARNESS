@@ -1,0 +1,72 @@
+{
+  "schema": "wr204-os017-roles-witness-index.v1",
+  "evidence_kind": "scaffold",
+  "authority_effect": "none",
+  "base_revision": "fa3d2d515ce8df79c0a74d5360a4d1254863a6f1",
+  "scope": "Six raw OS017 ownership-role unknown witnesses linked to one unmarked L4/L9 candidate class.",
+  "method": "Use L7 given_input_ref graphs and L4 prose; the existing validate_manual_derivation.py resolver checks actual/context values, single changed role leaf, fixed owner, class state/signature, and L9 candidate links. No expected values or embedded L4/L5 algorithm are used to derive classification.",
+  "source_basis": [
+    {
+      "path": "docs/helix-os/L3-requirements/business-requirements.json",
+      "pointer": "/requirements/5",
+      "id": "HELIXOS-L3-017-B01"
+    },
+    {
+      "path": "docs/helix-os/L10-verification/business-verification.json",
+      "pointer": "/cases/5",
+      "id": "HELIXOS-L10-017-B01"
+    },
+    {
+      "path": "docs/helix-os/L4-basic-design/ticket-workflow-derivation.json",
+      "pointers": [
+        "/contracts/3",
+        "/diagnostic_contract/owner_roles",
+        "/diagnostic_contract/comparison_table/roles",
+        "/diagnostic_contract/diagnostic_code_facets/source_unresolved",
+        "/diagnostic_contract/condition_semantics",
+        "/diagnostic_contract/return_owner",
+        "/diagnostic_contract/algorithm/1",
+        "/diagnostic_contract/algorithm/2",
+        "/diagnostic_contract/condition_names/1",
+        "/diagnostic_contract/result_fields"
+      ]
+    }
+  ],
+  "witnesses": [
+    {
+      "l7_case_pointer": "/cases/39",
+      "role": "promotion",
+      "class_id": "OS017-NEG-ownership-source_unresolved"
+    },
+    {
+      "l7_case_pointer": "/cases/41",
+      "role": "process",
+      "class_id": "OS017-NEG-ownership-source_unresolved"
+    },
+    {
+      "l7_case_pointer": "/cases/43",
+      "role": "proposal",
+      "class_id": "OS017-NEG-ownership-source_unresolved"
+    },
+    {
+      "l7_case_pointer": "/cases/45",
+      "role": "level",
+      "class_id": "OS017-NEG-ownership-source_unresolved"
+    },
+    {
+      "l7_case_pointer": "/cases/47",
+      "role": "authority",
+      "class_id": "OS017-NEG-ownership-source_unresolved"
+    },
+    {
+      "l7_case_pointer": "/cases/49",
+      "role": "resource",
+      "class_id": "OS017-NEG-ownership-source_unresolved"
+    }
+  ],
+  "limits": [
+    "L9 condition/expected and L7 original_expected_ref are not derivation oracles.",
+    "No L4/L5 algorithm execution.",
+    "No formal four-layer marker, L5 owner_ref, L8 projection, freeze, or four-way PASS."
+  ]
+}

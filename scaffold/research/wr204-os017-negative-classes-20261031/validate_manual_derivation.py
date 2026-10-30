@@ -12,11 +12,22 @@ from typing import Any
 
 ROOT = Path(__file__).resolve().parents[3]
 EVIDENCE = ROOT / "scaffold/research/wr204-os017-negative-classes-20261031/manual-derivation.json"
+ROLE_EVIDENCE = ROOT / "scaffold/research/wr204-os017-roles-witnesses-20261031/manual-derivation.json"
 L4_PATH = "docs/helix-os/L4-basic-design/ticket-workflow-derivation.json"
 L9_PATH = "docs/helix-os/L9-integration-verification/ticket-workflow-derivation.json"
 L7_PATH = "docs/helix-os/L7-function-verification/ticket-workflow-derivation.json"
 BASE = "e465b3b2edcf8951ea3a5bbedc271543eb2e094e"
+ROLE_BASE = "fa3d2d515ce8df79c0a74d5360a4d1254863a6f1"
 EXPECTED_DIGEST = "0899fc16c319b4ad2a321048215066e4e2cee47bf5112dccbb4086b2f6220b02"
+ROLE_CLASS_ID = "OS017-NEG-ownership-source_unresolved"
+ROLE_CASES = {
+    "promotion": (39, "OS"),
+    "process": (41, "HARNESS"),
+    "proposal": (43, "INTELLIGENCE"),
+    "level": (45, "LABO"),
+    "authority": (47, "SECURITY"),
+    "resource": (49, "INFRASTRUCTURE"),
+}
 
 
 def read_json(path: str) -> Any:
@@ -62,6 +73,8 @@ def resolve_pointer(document: Any, pointer: str) -> Any:
 def source_documents() -> dict[str, Any]:
     evidence = json.loads(EVIDENCE.read_text(encoding="utf-8"))
     paths = {row["path"] for row in evidence["source_pointers"]}
+    role_evidence = json.loads(ROLE_EVIDENCE.read_text(encoding="utf-8"))
+    paths.update(row["path"] for row in role_evidence["source_basis"])
     for row in read_json(L4_PATH)["failure_classifications"]:
         paths.update(ref["path"] for ref in row.get("source_pointers", []))
     return {path: read_json(path) for path in paths}
@@ -72,6 +85,12 @@ def validate_declared_pointers() -> int:
     documents = source_documents()
     checked = 0
     for row in evidence["source_pointers"]:
+        pointers = [row["pointer"]] if "pointer" in row else row.get("pointers", [])
+        for pointer in pointers:
+            resolve_pointer(documents[row["path"]], pointer)
+            checked += 1
+    role_evidence = json.loads(ROLE_EVIDENCE.read_text(encoding="utf-8"))
+    for row in role_evidence["source_basis"]:
         pointers = [row["pointer"]] if "pointer" in row else row.get("pointers", [])
         for pointer in pointers:
             resolve_pointer(documents[row["path"]], pointer)
@@ -409,35 +428,42 @@ def validate_class_rows_and_unmarked_mode() -> None:
     expected_ids = [
         "OS017-NEG-inputs-source_unresolved",
         "OS017-NEG-inputs-source_conflict",
+        "OS017-NEG-ownership-source_unresolved",
     ]
     rows = l4.get("failure_classifications")
     if not isinstance(rows, list) or [row.get("class_id") for row in rows] != expected_ids:
         raise AssertionError("L4 formal failure_classifications rows differ")
     condition_invariants = [
-        ("workflow_material_unknown", ["source_unresolved"], "unknown"),
-        ("workflow_material_violation", ["source_conflict"], "violation"),
+        ("workflow_material_unknown", ["source_unresolved"], "inputs", "unknown"),
+        ("workflow_material_violation", ["source_conflict"], "inputs", "violation"),
+        ("workflow_material_unknown", ["source_unresolved"], "ownership", "unknown"),
     ]
-    for row, (overall_condition, finding_signature, comparison_state) in zip(rows, condition_invariants):
+    for row, (overall_condition, finding_signature, axis, comparison_state) in zip(rows, condition_invariants):
         condition = row.get("condition", "")
         if "phase非依存" not in condition or "resume" in condition.lower():
             raise AssertionError(f"class condition must be phase-independent: {row.get('class_id')}")
-        if "binding.project" in condition or "inputs facetの局所state" not in condition:
+        if "binding.project" in condition or f"{axis} facetの局所state" not in condition:
             raise AssertionError(f"class condition must describe facet state without a field/slot: {row.get('class_id')}")
         if (
             row.get("code") != overall_condition
             or row.get("expected", {}).get("finding_codes") != finding_signature
-            or row.get("expected_axis") != "inputs"
+            or row.get("expected_axis") != axis
             or row.get("expected_state") != comparison_state
         ):
             raise AssertionError(f"class-wide finding/condition invariant differs: {row.get('class_id')}")
-        if "全体finding signatureが異なるcaseは本classに含めない" not in condition:
+        if (
+            "finding" not in condition
+            or "signature" not in condition
+            or "全体" not in condition
+            or "本classに含めない" not in condition
+        ):
             raise AssertionError(f"class condition must constrain complete finding signature: {row.get('class_id')}")
     contract_refs = {contract["id"]: contract.get("negative_class_refs") for contract in l4["contracts"]}
-    if contract_refs.get("HELIXOS-L4-017-F01") != expected_ids:
+    if contract_refs.get("HELIXOS-L4-017-F01") != expected_ids[:2]:
         raise AssertionError("L4 F01 reverse parent link differs")
-    if any(contract_refs.get(cid) != [] for cid in (
-        "HELIXOS-L4-017-F02", "HELIXOS-L4-017-F03", "HELIXOS-L4-017-B01"
-    )):
+    if contract_refs.get("HELIXOS-L4-017-B01") != [expected_ids[2]]:
+        raise AssertionError("L4 B01 reverse parent link differs")
+    if any(contract_refs.get(cid) != [] for cid in ("HELIXOS-L4-017-F02", "HELIXOS-L4-017-F03")):
         raise AssertionError("L4 non-F01 reverse parent links must be empty arrays")
 
     def has_marker(document: dict[str, Any]) -> bool:
@@ -475,10 +501,112 @@ def validate_class_rows_and_unmarked_mode() -> None:
             raise AssertionError(f"L9 source candidate pointer targets wrong L4 row for case {case_index}")
 
 
+def validate_role_raw_witnesses() -> None:
+    """Re-resolve six case pointers and role leaves; never calculate L4 behavior."""
+    audit = json.loads(ROLE_EVIDENCE.read_text(encoding="utf-8"))
+    l4 = read_json(L4_PATH)
+    l7 = read_json(L7_PATH)
+    l9 = read_json(L9_PATH)
+    base_l4 = json.loads(subprocess.check_output(["git", "show", f"{ROLE_BASE}:{L4_PATH}"], cwd=ROOT))
+    base_l9 = json.loads(subprocess.check_output(["git", "show", f"{ROLE_BASE}:{L9_PATH}"], cwd=ROOT))
+    role_row = next(row for row in l4["failure_classifications"] if row.get("class_id") == ROLE_CLASS_ID)
+    if l4["failure_classifications"][:2] != base_l4["failure_classifications"][:2]:
+        raise AssertionError("existing two inputs class rows changed")
+    expected_row_fields = {
+        "code": "workflow_material_unknown",
+        "design_ref": "HELIXOS-L4-017-B01",
+        "expected_classification": "workflow_material_unknown",
+        "expected": {"finding_codes": ["source_unresolved"]},
+        "expected_axis": "ownership",
+        "expected_state": "unknown",
+        "backflow_owner": "ticket-workflow-owner",
+        "side_effect_count": 0,
+    }
+    if any(role_row.get(key) != value for key, value in expected_row_fields.items()):
+        raise AssertionError("L4 roles class axis/state/code/owner differs")
+    condition = role_row.get("condition", "")
+    for phrase in ("workflow_material_unknown", "ordered finding code signature=[source_unresolved]",
+                   "ownership facetの局所state=unknown", "role field自体はclass keyに含めない"):
+        if phrase not in condition:
+            raise AssertionError(f"L4 roles class condition omits {phrase}")
+    if "/roles/" in condition or "追加finding" not in condition:
+        raise AssertionError("case pointer or unbounded findings leaked into class condition")
+    role_contract = next(row for row in l4["contracts"] if row["id"] == "HELIXOS-L4-017-B01")
+    if role_contract.get("negative_class_refs") != [ROLE_CLASS_ID]:
+        raise AssertionError("L4 B01 reverse class reference differs")
+    diagnostic = l4["diagnostic_contract"]
+    if diagnostic["comparison_table"]["roles"].get("facet") != "ownership":
+        raise AssertionError("L4 role comparison facet differs")
+    if diagnostic["owner_roles"] != {role: owner for role, (_, owner) in ROLE_CASES.items()}:
+        raise AssertionError("L4 role owner map differs")
+    if diagnostic["return_owner"] != "ticket-workflow-owner":
+        raise AssertionError("L4 return owner differs")
+    if "重複findingはcode/pointer/return_ownerで一意化" not in diagnostic["algorithm"][2]:
+        raise AssertionError("L4 deduplication prose differs")
+
+    witnesses = audit["witnesses"]
+    expected_witnesses = [
+        {"l7_case_pointer": f"/cases/{index}", "role": role, "class_id": ROLE_CLASS_ID}
+        for role, (index, _) in ROLE_CASES.items()
+    ]
+    if witnesses != expected_witnesses:
+        raise AssertionError("compact roles witness index differs")
+    base_case = resolve_pointer(l7, "/cases/3")
+    base_raw = expand_l7_value(l7, resolve_pointer(l7, base_case["given_input_ref"]["pointer"]))
+    role_source = next(
+        row for row in role_row["source_pointers"]
+        if row["path"] == L7_PATH
+    )["pointers"]
+    l9_role_indexes = {index for index, _ in ROLE_CASES.values()}
+    for witness in witnesses:
+        role = witness["role"]
+        index, fixed_owner = ROLE_CASES[role]
+        case_pointer = witness["l7_case_pointer"]
+        case = resolve_pointer(l7, case_pointer)
+        given_pointer = case_pointer + "/given_input_ref"
+        if given_pointer not in role_source:
+            raise AssertionError(f"L4 row does not retain given_input_ref for {case_pointer}")
+        raw_ref = case["given_input_ref"]["pointer"]
+        raw_ref_obj = resolve_pointer(l7, raw_ref)
+        raw = expand_l7_value(l7, raw_ref_obj)
+        if case.get("id") != f"OS017-L8-ROLES-{role.upper()}-UNKNOWN":
+            raise AssertionError(f"L7 role case identity differs: {case_pointer}")
+        if raw.get("phase") != "resume" or raw["roles"].get(role, "missing") is not None:
+            raise AssertionError(f"role input is not null at the selected leaf: {case_pointer}")
+        if leaf_differences(base_raw, raw) != [f"/roles/{role}"]:
+            raise AssertionError(f"raw graph differs beyond its single roles leaf: {case_pointer}")
+        if raw["context"]["roles"].get(role) != fixed_owner:
+            raise AssertionError(f"context role does not match the fixed L4 owner: {case_pointer}")
+        actual_leaf_pointer = raw_ref_obj["roles"]["pointer"] + "/" + role
+        context_object = resolve_pointer(l7, raw_ref_obj["context"]["pointer"])
+        context_leaf_pointer = context_object["roles"]["pointer"] + "/" + role
+        if resolve_pointer(l7, actual_leaf_pointer) is not None:
+            raise AssertionError(f"actual role pointer is not null: {case_pointer}")
+        if resolve_pointer(l7, context_leaf_pointer) != fixed_owner:
+            raise AssertionError(f"context role pointer does not resolve to fixed owner: {case_pointer}")
+
+        l9_case = l9["integration_cases"][index]
+        ref = l9_case.get("l4_source_class_candidate_ref")
+        if l9_case.get("source_case_pointer") != case_pointer or ref != {
+            "path": L4_PATH, "pointer": "/failure_classifications/2", "class_id": ROLE_CLASS_ID
+        }:
+            raise AssertionError(f"L9 candidate link differs: {case_pointer}")
+
+    if len(l9["integration_cases"]) != 217:
+        raise AssertionError("L9 integration case count differs")
+    for index, (base_case, current_case) in enumerate(zip(base_l9["integration_cases"], l9["integration_cases"])):
+        comparable = dict(current_case)
+        if index in l9_role_indexes:
+            comparable.pop("l4_source_class_candidate_ref", None)
+        if comparable != base_case:
+            raise AssertionError(f"L9 changed outside the six candidate links at {index}")
+
+
 def main() -> None:
     checked = validate_declared_pointers()
     validate_l7_input_refs()
     validate_class_rows_and_unmarked_mode()
+    validate_role_raw_witnesses()
     base_hash, base_count = expected_projection(BASE)
     candidate_hash, candidate_count = expected_projection()
     if (base_count, base_hash) != (217, EXPECTED_DIGEST):
@@ -486,7 +614,7 @@ def main() -> None:
     if (candidate_count, candidate_hash) != (base_count, base_hash):
         raise AssertionError("L9 expected projection changed")
     print(
-        f"static source validation: pointers={checked}, raw cases=52, class witnesses=51, L4 classes=2, "
+        f"static source validation: pointers={checked}, input cohort=52 cases/51 witnesses, role witnesses=6, L4 classes=3, "
         f"cross_facet_reuse_cases=3, L9 cases={candidate_count}, expected_digest={candidate_hash}, "
         f"four_layer_marker=absent"
     )
