@@ -1,157 +1,96 @@
-# WR218: H009 F05 `STOP-F05-CONTENT-UNRESOLVED-CAUSE-PAIR-01` 残3枝（(a), (b), (c)）の上流独立導出・固定後比較とSTOP維持記録
+# WR218: H009 F05 `STOP-F05-CONTENT-UNRESOLVED-CAUSE-PAIR-01` 残3枝（(a), (b), (c)）の現行L4独立導出（R2）・4要素分類と後続L4/L9設計PRへの入力整理
 
-## 1. 対象と結論
+## 1. 対象と結論（R2改訂）
 
 - **Work Request**: `WR218-F05-CONTENT-UNRESOLVED-REMAINING` (Issue `#3510`, `payload_sha256: a799a04ba346316a7c59ac459e0d40420f7f1d902baeae9c73b501bec2f6dbe0`, `base_sha: 3082abb893bbec7c919d4ed88a927e5100874372`)
 - **PR Class**: `design_verification`
 - **対象STOP**: `STOP-F05-CONTENT-UNRESOLVED-CAUSE-PAIR-01`
-- **残る3枝**:
+- **残る3枝（(b)は既知差と未確立を分離）**:
   - **(a) `matching=unestablished`**（候補recordまたは`definition_refs[j]`のRef比較端不足）
-  - **(b) 同Refで `binding_relation=different|unestablished`**（`ref_relation=corresponding` だが `field.binding` 既知差 `target_mismatch` または比較端不足）
+  - **(b-1) 同Ref（`ref_relation=corresponding`）で `binding_relation=different`**（`field.binding` 既知差）
+  - **(b-2) 同Ref（`ref_relation=corresponding`）で `binding_relation=unestablished`**（binding必要端不足・未確立）
   - **(c) 片側/両側collection未観測**（`axis_facts` が `Read.present(null)` / `Read.absent` または `semantic_records` が `Read.absent`）
-- **結論（閉じた枝: 0枝 / STOP維持: 3枝すべて）**:
-  1. **Step A（比較前の独立導出と事前固定）**: `L5`, `L8`, `L9` の既存期待および関連 `scaffold/research/` を一切開く前に、承認済み `L3`/`L10` F05 と `L4` 散文のみから上記3枝 `(a)`, `(b)`, `(c)` の局所 `CauseKind`・左右 `Read`・件数が一意に導出できるかを検証し、**3枝すべてが上流からは一意に決まらない (`uniquely_determined: false`, `keep_in_stop`)** ことを導出して `blind-derivation.json` (`SHA-256: 30930545318afe6ed1d2e208670b72dfa4dda8c2ac1bf38ad00026d3e4c50cf5`) として GitHub Issue `#3510` (`#issuecomment-6534822649`, `2026-10-30T22:25:00Z`) に固定した。
-  2. **Step B（固定後比較とSTOP維持記録）**: 固定済みの `blind-derivation.json` を1バイトも変更せずに本ディレクトリへ配置し、現行 `L4`, `L9` (`cases/3`), `L5` (`writers/3` および `unclosed_stops/0`), `L8` (`ADD-45`) と比較した。`上流から一意に決まる枝だけを進め、決まらない枝は根拠を記録してSTOPに残す` 規則に従い、**本PRで閉じた枝は0枝であり、3枝 `(a)`, `(b)`, `(c)` すべてを非一意性の根拠とともに `STOP-F05-CONTENT-UNRESOLVED-CAUSE-PAIR-01` に残す**（STOPは閉じていない）。
-  3. **V-pair境界と正本保護**: 3枝すべてがSTOP維持となったため、`L4`/`L9` および `L5`/`L8` の正本JSONは変更せず（`#3948` で生成された2件のrefreeze manifestとの機械的一致を維持）、比較監査結果・非一意性根拠・`L5:` pointer実在確認（全52件）を `scaffold/research/` と `scaffold/bindings/SCF-B-0214.json` に記録する。
+- **結論と後続V-pair PRへの引き渡し**:
+  1. **Step A R1（旧L4 revisionを読んだ履歴の保全）と Step A R2（現行L4 `4a770515…` での再導出・再固定）**:
+     - R1 の `blind-derivation.json` (`SHA-256: 30930545318afe6ed1d2e208670b72dfa4dda8c2ac1bf38ad00026d3e4c50cf5`, artifact内 `derived_at_utc = 2026-10-30T22:25:00Z`, Issue `#3510` `#issuecomment-6534822649` `created_at = 2026-10-30T22:27:26Z`) は、古い L4 revision (`SHA-256: 4330847017a409ef45500e14d73dfc1170489549b23d0f642f6927322d6bb4b3`, commit `61aaffe46`, `2026-10-28`: 14語 `cause_vocabulary` で現行の17語 `cause_vocabulary`・`cause_boundary`・`cause_kind_extension_rules` が入る前) を読んでいたため、1バイトも変更せず履歴証拠としてそのまま保持し、旧revisionを読んだ事実を記録した。
+     - 現行 L4 (`SHA-256: 4a770515153fb97e2f5915af8308868450a22014d5739b996bc0ebf4a62db7db`, prose-only copy `71d68fb3b26e444c3af530071c12d5160dee4da12b4c9417b105033133185b30`) と承認済み `L3`/`L10` F05 のみから、`L5`/`L8`/`L9` を一切読まない未汚染subagent (`e46707ba-55c7-4d84-90f3-6636c30fec7d`) により Step A R2 をやり直し、`blind-derivation-r2.json` (`SHA-256: d32689e4282b71ed131cc590873225375d17a429ce08c78becf688446dff31d1`, artifact内 `derived_at_utc = 2026-10-30T23:36:35Z`) を GitHub Issue `#3510` (`#issuecomment-6535797085`, `created_at = 2026-10-30T23:37:05Z`) に固定してから Step B R2 の比較を実施した。
+  2. **Step B R2（3枝×4要素の「L4（およびL5）で確定（pointer）」と「設計で決める（候補と理由）」への分離）**:
+     - 3枝を丸ごと「非一意」として落とすのではなく、`(a)`, `(b-1)`, `(b-2)`, `(c)` × `CauseKind`・`左Read`・`右Read`・`件数` の各マスを、現行 `L4`（および Step B で照合した `L5 reference_and_collection_rules/binding` 等）で**既に確定している要素（pointer付き）**と、**これから設計で決める要素（候補と理由）**に分けて整理した（第3節の表）。
+  3. **STOP維持を結論とせず、後続 L4/L9 → L5/L8 PR への設計入力として引き渡す**:
+     - `L3`/`L10` F05 は承認済みであり、`L4#/field_semantic_evidence_contract/detail_and_consumer_boundary/0`（「L5/L8で全private型、全guardと分岐、…各leaf writer…を具体化する」）および `AGENTS.md`「再構築の原則」（要件の起草以下はAIが自走）の下で、L4にまだ書かれていない事項は「STOP維持」の結論ではなく、**次の L4/L9 PR（および続く L5/L8 PR）で決める設計対象**である（PR `#3983` の教訓と同じ）。
+     - `1 PR 1 V-pair`（`#3942` L4/L9 → `#3948` L5/L8）の原則に従い、本PRには設計変更を混ぜず（正本JSON無変更、`#3948` refreeze manifest 2件との機械的一致を維持）、本PR merge後に発行される後続 L4/L9 WR の具体的な設計入力（第4節）として引き渡す。
 
-## 2. 入力正本ピンとStep A固定証拠
+## 2. 入力正本ピンと Step A（R1履歴・R2現行L4）固定証拠
 
-| 種別 | パス / URL | SHA-256 / 識別子 |
+| 種別 | パス / URL | SHA-256 / 時刻（`derived_at_utc` と comment `created_at` の区別） |
 |---|---|---|
-| Step A 固定コメント | `https://github.com/RetryYN/HELIX-HARNESS/issues/3510#issuecomment-6534822649` | `2026-10-30T22:25:00Z` |
-| Step A 固定導出ファイル | `scaffold/research/wr218-f05-content-unresolved-remaining-20261031/blind-derivation.json` | `30930545318afe6ed1d2e208670b72dfa4dda8c2ac1bf38ad00026d3e4c50cf5` |
+| Step A R1 固定コメント（履歴保全） | `https://github.com/RetryYN/HELIX-HARNESS/issues/3510#issuecomment-6534822649` | artifact `derived_at_utc`: `2026-10-30T22:25:00Z` / GitHub comment `created_at`: `2026-10-30T22:27:26Z`（旧L4 `43308470…` 参照） |
+| Step A R1 固定導出ファイル（履歴保全） | `scaffold/research/wr218-f05-content-unresolved-remaining-20261031/blind-derivation.json` | `30930545318afe6ed1d2e208670b72dfa4dda8c2ac1bf38ad00026d3e4c50cf5`（1バイトも変更せず保持） |
+| **Step A R2 固定コメント（現行L4）** | `https://github.com/RetryYN/HELIX-HARNESS/issues/3510#issuecomment-6535797085` | artifact `derived_at_utc`: `2026-10-30T23:36:35Z` / GitHub comment `created_at`: `2026-10-30T23:37:05Z`（現行L4 `4a770515…` 参照） |
+| **Step A R2 固定導出ファイル（現行L4）** | `scaffold/research/wr218-f05-content-unresolved-remaining-20261031/blind-derivation-r2.json` | `d32689e4282b71ed131cc590873225375d17a429ce08c78becf688446dff31d1`（1バイトも変更せず保持） |
 | `L3_functional` | `docs/helix-harness/L3-requirements/functional-requirements.json` (`/requirements/23`, `/requirements/27`) | `a3b907cdc316117d4684632f9a1cbf36125eb6e6172f9cfc286060617583d7be` |
 | `L3_business` | `docs/helix-harness/L3-requirements/business-requirements.json` (`/requirements/4`, `/requirements/5`) | `25e0e8f8ee8acbc220483ab6854155218193861086cf757f933e2cd6263f444d` |
 | `L10_functional` | `docs/helix-harness/L10-verification/functional-verification.json` (`/cases/23`, `/cases/27`) | `fc58ad2268746d7924ac9be33e8f3f75e6d3c2cc619e27fbc1ddc34edd065cb2` |
 | `L10_business` | `docs/helix-harness/L10-verification/business-verification.json` (`/cases/4`, `/cases/5`) | `3a9982ef2e59e3d027ce8e5cd72b9879b6224a8e4ea74b657bf9b67c90934319` |
-| `L4_basic_design` | `docs/helix-harness/L4-basic-design/product-template-application.json` (`/field_source_materialization_contract`, `/field_semantic_evidence_contract`, `/field_obligation_scope_contract/cause_patterns/content_unresolved`) | `4a770515153fb97e2f5915af8308868450a22014d5739b996bc0ebf4a62db7db` |
-| `L5_detail_design` | `docs/helix-harness/L5-detail-design/product-template-application.json` (`/f05_detail_contract/field_content_source_failure_writer_contract/writers/3`, `/f05_detail_contract/field_content_source_failure_writer_contract/unclosed_stops/0`) | `b53f8754dfac2c069e36c6427ce1b151398c4b1ea1c81cf9185c4a38b0bb32ce` |
+| `L4_basic_design` | `docs/helix-harness/L4-basic-design/product-template-application.json` | `4a770515153fb97e2f5915af8308868450a22014d5739b996bc0ebf4a62db7db` |
+| `L5_detail_design` | `docs/helix-harness/L5-detail-design/product-template-application.json` (`/f05_detail_contract/reference_and_collection_rules/binding`, `writers/3`, `unclosed_stops/0`) | `b53f8754dfac2c069e36c6427ce1b151398c4b1ea1c81cf9185c4a38b0bb32ce` |
 | `L8_unit_verification` | `docs/helix-harness/L8-unit-verification/product-template-application.json` (`/additional_unit_cases/45`) | `da37ff653d24eb3432aea09e4aea92005050cd95316da9949ef00658c77b8a21` |
 | `L9_integration_verification` | `docs/helix-harness/L9-integration-verification/product-template-application.json` (`/field_semantic_evidence_verification/cases/3`) | `06c255043e143a0ddd23da750fede31ff6d3b4b1c94d854de22d07ff109c0d8b` |
 
-## 3. 3枝それぞれのStep A独立導出（非一意性の根拠）とStep B比較結果
+## 3. 3枝×4要素（`CauseKind`・`左Read`・`右Read`・`件数`）の分類表（「L4/L5で確定（pointer）」vs「設計で決める（候補と理由）」）
 
-### 3.(a) 枝 `(a)`: `matching=unestablished`
+| 枝 | `CauseKind` | `左Read` (`Cause.left`) | `右Read` (`Cause.right`) | `件数` (`occurrence_count_unit`) |
+|---|---|---|---|---|
+| **(a) `matching=unestablished`**<br>（候補recordまたは`definition_refs[j]`のRef比較端不足） | **設計で決める（候補と理由）**<br>・**L4確定枠**: 17語 `cause_vocabulary` (`L4#/field_semantic_evidence_contract/basic_candidate_return/cause_vocabulary`) から選び、空正常やdomain `missing`/`unknown` にしない (`L4#.../common_target_guards/0,2,3`)。<br>・**候補1**: `content_unresolved`（`L4#.../field_definition_evidence_body/absent_guard`・`undecided_guard`「未解決のoperandがある場合は…`content_unresolved`として保存」を優先）。<br>・**候補2**: `target_unformed` / `body_unformed`（`L4#.../basic_candidate_return/cause_boundary`「`content_unresolved`はlookup 0件」および`common_target_guards/0`「field Ref/Binding未形成は…当該対象の未形成」を優先）。どちらを優先・併用するかを設計で決める。 | **L4で確定（pointer）**<br>・対象operand `field_inputs[i].definition_refs[j]`（または未形成Ref比較端member）の原Read（原値・presence・requested/reached locator）。<br>・**Pointers**: `L4#/field_source_materialization_contract/original_operand_contract/field_domain`, `L4#/field_semantic_evidence_contract/field_definition_evidence_body/absent_guard`, `/undecided_guard`, `L4#/field_semantic_evidence_contract/basic_candidate_return/cause_boundary`, `/fields/local_unestablished` | **設計で決める（候補と理由）**<br>・**L4確定枠**: `L4#.../basic_candidate_return/cause_boundary`（「各causeは…左右原値/presenceを持つ」）。<br>・**候補1**: `matching=unestablished`となった候補recordまたは`record.ref`（`axis_facts[k]`/`semantic_records[k]`）の原Read（`common_target_guards/2,3`）。<br>・**候補2**: 探索collection全体（`axis_facts` / `semantic_records`）の原Read（`L4#/field_obligation_scope_contract/cause_patterns/content_unresolved`・L5 `writers/3`と同型）。<br>・**候補3**: 必要Ref比較端を示す `normative_literal`（`definition_refs[j]`自体が比較端不足のとき）。 | **L4で確定（出現単位保存の原則: pointer）＋ 設計で決める（具体粒度: 候補と理由）**<br>・**L4で確定**: `L4#.../basic_candidate_return/cause_boundary`（「既存の該当causeで出現単位に保存」）、`common_target_guards/5`（「原field→元Ref列index→record/source/body原index順に保持」）。<br>・**設計で決める候補**: ①`matching=unestablished`の各候補record出現`[k]`ごと（1件/候補record）、②`(definition_refs[j], collection)`対ごと（2件/operand）、③operand自体が比較端不足のとき1件/operand。 |
+| **(b-1) 同Ref（`ref_relation=corresponding`）で `binding_relation=different`**<br>（`field.binding`既知差） | **L4/L5で確定（pointer: `target_mismatch`）＋ 設計で決める（同binding 0件時の追加有無）**<br>・**L4/L5で確定**: `L4#.../ordered_source_materialization/3`、`common_target_guards/1,3`、`basic_candidate_return/fields/local_unestablished`（「対象不一致」）、および `L5#/f05_detail_contract/reference_and_collection_rules/binding`（「**field.bindingの既知差はfield単位target_mismatchへ**」）・`unclosed_stops/0` により、既知差の `CauseKind = target_mismatch` が確定（同Ref recordが存在するためRef lookupは0件ではない：`L4#.../cause_boundary`）。<br>・**設計で決める候補**: `target_mismatch`のみとするか、同binding解決recordが0件のときにoperand単位の`content_unresolved`も併記するか、および`RecordOccurrence.causes`→`RefOperand.causes`の格納・伝播経路。 | **L4で確定（pointer）**<br>・field側の原binding Read（`field_inputs[i].binding` または不一致となったbinding比較軸memberの原Readとpresence/locator）。<br>・**Pointers**: `L4#/field_semantic_evidence_contract/common_target_guards/1`, `L4#/field_semantic_evidence_contract/basic_candidate_return/fields/local_unestablished`, `/cause_boundary`, `L4#/f05_validation_material_call_contract/formation_rules/5`, `L5#/f05_detail_contract/reference_and_collection_rules/binding` | **L4で確定（pointer）**<br>・同Refで一致した候補record側の原binding Read（`axis_facts[k].binding` または `semantic_records[k].binding`、もしくは不一致binding比較軸memberの原Readとpresence/locator）。<br>・**Pointers**: `L4#/field_source_materialization_contract/ordered_source_materialization/3`, `L4#/field_semantic_evidence_contract/common_target_guards/1`, `/3`, `L4#/field_semantic_evidence_contract/basic_candidate_return/fields/local_unestablished`, `/cause_boundary` | **L4で確定（pointer）**<br>・同Refかつ`binding_relation=different`の各候補record出現 `(field_inputs[i], definition_refs[j], candidate_record_occurrence[k])` ごとに1件（field単位`target_mismatch`）を原index順で保持。<br>・**Pointers**: `L4#/field_source_materialization_contract/ordered_source_materialization/3`, `L4#/field_semantic_evidence_contract/common_target_guards/3`, `/5`, `L4#/field_semantic_evidence_contract/basic_candidate_return/cause_boundary`, `L5#/f05_detail_contract/reference_and_collection_rules/binding` |
+| **(b-2) 同Ref（`ref_relation=corresponding`）で `binding_relation=unestablished`**<br>（binding比較端不足・未確立） | **設計で決める（候補と理由）**<br>・**L4/L5確定枠**: `(b-1)`の既知差（`target_mismatch`）と区別し、`L4#.../common_target_guards/0`（「field Ref/Binding未形成は…当該対象の未形成」）、`L4#/f05_validation_material_call_contract/formation_rules/5`（「既知差又は対象対応未形成」）、`L5#.../reference_and_collection_rules/binding`（「対応に必要な原memberが足りない場合は局所未形成」）に従う。<br>・**候補1**: `target_unformed` / `body_unformed`（binding未形成に直結）。<br>・**候補2**: `target_mismatch`（同Ref上のbinding不成立へ統合）。<br>・**候補3**: 同binding解決0件時の`content_unresolved`併記有無。 | **L4で確定（pointer）**<br>・field側の原binding Read（`field_inputs[i].binding` または未形成binding軸memberの原Read：absent/null/型外を隣のBindingから補わず保持）。<br>・**Pointers**: `L4#/field_semantic_evidence_contract/common_target_guards/0`, `/1`, `L4#/field_semantic_evidence_contract/basic_candidate_return/cause_boundary`, `L4#/f05_validation_material_call_contract/formation_rules/5`, `L5#/f05_detail_contract/reference_and_collection_rules/binding` | **設計で決める（候補と理由）**<br>・**L4確定枠**: `L4#.../basic_candidate_return/cause_boundary`。<br>・**候補1**: 同Ref候補record側の原binding Read（`axis_facts[k].binding` / `semantic_records[k].binding` またはその未形成member Read：`common_target_guards/1,3`）。<br>・**候補2**: 必要な`ApplicationBinding`/比較軸形成条件を示す `normative_literal`（片側binding自体が未形成のとき：`L4#/field_obligation_scope_contract/cause_patterns/body_unformed`と同型）。 | **L4で確定（pointer）**<br>・同Refかつ`binding_relation=unestablished`となった各候補record出現 `(field_inputs[i], definition_refs[j], candidate_record_occurrence[k])` 単位に原index順で保持。<br>・**Pointers**: `L4#/field_source_materialization_contract/ordered_source_materialization/3`, `L4#/field_semantic_evidence_contract/common_target_guards/3`, `/5`, `L4#/field_semantic_evidence_contract/basic_candidate_return/cause_boundary` |
+| **(c) 片側/両側collection未観測**<br>（`axis_facts`が`Read.present(null)`/`Read.absent` または `semantic_records`が`Read.absent`） | **設計で決める（候補と理由）**<br>・**L4で確定（pointer）**: `L4#/field_semantic_evidence_contract/common_target_guards/0` はcollection未供給/型外を「未観測又は当該対象の未形成」とし、`L4#.../basic_candidate_return/cause_boundary` は `content_unresolved` を「lookup 0件」と定義するため、**未観測collection自体はlookup 0件の`content_unresolved`に当たらない**。<br>・**候補1**: 未観測collection側に `input_unobserved` / `body_unformed` / `target_unformed` のどれを使うか（または `ValidationSourceObservations.causes` の `input_unobserved` のみとするか）。<br>・**候補2**: 片側未観測＋他方観測済み0件のとき、観測済み0件側に `content_unresolved` を出すか。 | **設計で決める（候補と理由）**<br>・**L4確定枠**: `L4#.../basic_candidate_return/cause_boundary`, `L4#/field_source_materialization_contract/returned_materials/source_observations`（未観測を`[]`へ変換しない）。<br>・**候補1**: 未観測collection（`validated.input.axis_facts` / `semantic_records`）の原Read（`L4#/field_obligation_scope_contract/cause_patterns/body_unformed`・L5 `input_unobserved_pattern`と同型）。<br>・**候補2**: `field_inputs[i].definition_refs[j]` の原Read（`L4#/field_obligation_scope_contract/cause_patterns/content_unresolved`・L5 `writers/3`と同型）。 | **設計で決める（候補と理由）**<br>・**L4確定枠**: `L4#.../common_target_guards/0`, `/basic_candidate_return/cause_boundary`（`左Read`と対で決定）。<br>・**候補1**: 期待されるcollection配列型を示す `normative_literal`（`左Read` = 未観測collection Read の場合）。<br>・**候補2**: 未観測または観測済み0件collectionの原Read（`左Read` = `definition_refs[j]` Read の場合）。 | **設計で決める（候補と理由）**<br>・**L4で確定（pointer）**: `L4#.../common_target_guards/0`（「無関係な元collection/fieldの読取は継続する」）。<br>・**候補1**: `L4#/field_source_materialization_contract/failure_and_consumer_boundary/independent_causes`（「同じ親未観測を子ごとの新不足へ複写しない」）を優先し、親collection単位1件（両側なら2件、片側観測済み0件のみ`RefOperand.causes`に1件）。<br>・**候補2**: `L4#.../cause_boundary`（「出現単位に保存」）およびL5 `writers/3` の2-domain順に揃え、`(definition_refs[j], collection)` 対ごとに格納（計2件）。 |
 
-- **Step A 独立導出判定**: `uniquely_determined = False` → **`keep_in_stop`**
-- **上流（L3/L10 F05 + L4散文）から一意に決まらない根拠**:
-  - CauseKind非一意: L4散文はdefinition_refsの未解決を大枠でcontent_unresolvedとする一方、Ref比較端不足（identity/revision/scope/owner欠落・null・型外や供給digest不成立）の局所CauseKindをcontent_unresolved・target_unformed・target_mismatch・比較軸別Causeのいずれにするか規定していない。
-  - 左右Read非一意: Cause.leftをdefinition_refs[j]全体Readとするか不足member Readとするか、Cause.rightを候補record.ref Read・不足member Read・collection全体ReadのいずれとするかがL4散文に未規定。
-  - 件数非一意: axis_factsとsemantic_recordsの双方が絡む際、1 operand_refあたりか、matching=unestablishedとなった候補record出現ごとか、不足比較軸ごとかがL4散文だけでは決まらない。
-- **Step B 既存 L9 / L5 / L8 との比較**:
-  - **L9 (`cases/3` `HARNESS-L9-009-F05-EVIDENCE-DEF-LOOKUP-MISS`)**: L9 /field_semantic_evidence_verification/cases/3 (HARNESS-L9-009-F05-EVIDENCE-DEF-LOOKUP-MISS) はpresent non-nullのfull Refと観測済み両collectionの全record不一致（0件）のみを対象とし、比較端不足（matching=unestablished）を対象外としている。
-  - **L5 (`writers/3` & `unclosed_stops/0`)**: L5 writers/3のtrigger_ja除外(2)およびunclosed_stops/0 (STOP-F05-CONTENT-UNRESOLVED-CAUSE-PAIR-01) は、『候補record又はdefinition_refs[j]のRef比較端不足によりreference_and_collection_rules/matchingがunestablishedとなる場合、RefOperand.causes又はRecordOccurrence.causesへどのCauseKind・左右Read・件数を格納するかはL4及びL9 cases/3だけでは一意に決まらないため、writers/3のcontent_unresolved 2件へ丸めず未形成として止める』と記録しており、Step Aの独立導出結論と完全一致する。
-  - **L8 (`HARNESS-L8-009-ADD-45`)**: L8 /additional_unit_cases/45 (HARNESS-L8-009-ADD-45) もmatching=differentが確定するexact lookup missのみを検証対象とし、matching=unestablishedを除外している。
-- **比較後の処置**: **keep_in_stop (STOP-F05-CONTENT-UNRESOLVED-CAUSE-PAIR-01に残す)**
+## 4. 次の L4/L9 PR（および続く L5/L8 PR）への設計入力（`next_l4_l9_design_inputs`）
 
-### 3.(b) 枝 `(b)`: `同Refで binding_relation=different|unestablished`
+`L4#/field_semantic_evidence_contract/detail_and_consumer_boundary/0` および `L5#/f05_detail_contract/field_content_source_failure_writer_contract/unclosed_stops/0` (`reentry_ja`) に従い、本PR merge後に発行される後続の `L4/L9` WR（および続く `L5/L8` WR）では、以下の確定事項を維持しつつ「設計で決める」マスを決定する：
 
-- **Step A 独立導出判定**: `uniquely_determined = False` → **`keep_in_stop`**
-- **上流（L3/L10 F05 + L4散文）から一意に決まらない根拠**:
-  - CauseKind非一意: L4 ordered_source_materialization/3は同Refでもbindingが異なる出現を保持すると定めるが、局所CauseKindをcontent_unresolved・target_mismatch・target_unformedのいずれにするか（differentとunestablishedで分けるか）がL4散文だけでは一意でない。
-  - 左右Read非一意: Cause.left/rightにFieldInput.bindingと候補record.binding全体Readを置くか、不一致/未確立の個別binding member（requirement_ref, product_scope, process_contract_ref, application_contract_ref, template_ref, knowledge_ref, oracle_ref）のReadを置くか、definition_refs[j]と候補record全体を置くかがL4散文に未規定。
-  - 件数非一意: RecordOccurrence.causesとRefOperand.causesのどちら（または両方）に、不一致binding member数・同Ref候補record数・collection数のどの粒度で何件生成するかがL4散文だけでは決まらない。
-- **Step B 既存 L9 / L5 / L8 との比較**:
-  - **L9 (`cases/3` `HARNESS-L9-009-F05-EVIDENCE-DEF-LOOKUP-MISS`)**: L9 cases/3は両collectionに当該Ref一致recordが0件のケースに限定しており、同Refでbindingが異なる/未確立の候補recordが存在するケースを含まない。
-  - **L5 (`writers/3` & `unclosed_stops/0`)**: L5 writers/3のtrigger_ja除外(2)およびunclosed_stops/0は、『同一Ref（ref_relation=corresponding）のrecordが存在するがbinding_relationがdifferent（field.binding既知差target_mismatch）又はunestablishedとなる場合（F03によりRecordOccurrence自体は保持）、RecordOccurrence.causes/RefOperand.causes上の局所Cause leaf表現はL4及びL9 cases/3だけでは決まらないためSTOP-F05-CONTENT-UNRESOLVED-CAUSE-PAIR-01に残す』と記録しており、Step Aの独立導出結論と完全一致する。
-  - **L8 (`HARNESS-L8-009-ADD-45`)**: L8 /additional_unit_cases/45 (HARNESS-L8-009-ADD-45) も同Ref・binding不一致/未確立ケースを対象外としている。
-- **比較後の処置**: **keep_in_stop (STOP-F05-CONTENT-UNRESOLVED-CAUSE-PAIR-01に残す)**
+1. **枝 `(a)` `matching=unestablished`**:
+   - **維持するL4確定事項**: `左Read = field_inputs[i].definition_refs[j]`（または未形成Ref比較端member）の原Read、および出現単位・原index順保存。
+   - **次のL4/L9 PRで決める事項**: `absent_guard`/`undecided_guard` の `content_unresolved` と `cause_boundary` の lookup 0件定義（Ref未形成 = `target_unformed` / `body_unformed`）の優先順位・使い分け、および `右Read`・出現単位粒度（候補record出現ごと vs `(operand, collection)`対ごと vs operandごと）。
+2. **枝 `(b-1)` 同Refかつ `binding_relation=different`（既知差）**:
+   - **維持するL4/L5確定事項**: `CauseKind = target_mismatch`（`L5#/f05_detail_contract/reference_and_collection_rules/binding`）、`左Read = field_inputs[i].binding` 原Read、`右Read = 候補record.binding` 原Read、`件数 = 各同Ref異binding候補record出現ごとに1件（原index順）`。
+   - **次のL4/L9 PRで決める事項**: 同Ref異bindingの `RecordOccurrence.causes` から `RefOperand.causes` / `FieldOwnerResult.causes` への伝播と、同binding一致recordが0件のときに `target_mismatch` のみで `DefinitionAssessment.judgment = unformed` とするか operand 単位の `content_unresolved` を併記するか。
+3. **枝 `(b-2)` 同Refかつ `binding_relation=unestablished`（未確立）**:
+   - **維持するL4/L5確定事項**: `左Read = field_inputs[i].binding`（または未形成binding軸member）の原Read（隣のBindingから補わない）、`件数 = 各同Ref・binding未確立の候補record出現ごとに原index順で保持`。
+   - **次のL4/L9 PRで決める事項**: 局所未形成の `CauseKind`（`target_unformed` / `body_unformed` vs `target_mismatch`）と `右Read`（候補 `record.binding` 原Read vs `normative_literal`）。
+4. **枝 `(c)` 片側/両側collection未観測**:
+   - **維持するL4確定事項**: 未観測collection自体は lookup 0件（`content_unresolved`）ではなく「未観測又は当該対象の未形成」であり（`common_target_guards/0`, `cause_boundary`）、片側未観測でも他方の観測済みcollectionの読取を継続し、空配列 `[]` を捏造しない。
+   - **次のL4/L9 PRで決める事項**: 未観測collection側の `CauseKind`（`input_unobserved` / `body_unformed` / `target_unformed`）、片側観測済み0件側の `content_unresolved` 出力、左右Readペアリング（`left=collection, right=normative_literal` vs `left=operand_ref, right=collection`）、および `independent_causes`（親未観測の非複写）と `cause_boundary`（出現単位保存）に基づく件数。
 
-### 3.(c) 枝 `(c)`: `片側/両側collection未観測`
+## 5. L5 `/f05_detail_contract/field_content_source_failure_writer_contract` 内の `L5:` 付きPointer実在確認
 
-- **Step A 独立導出判定**: `uniquely_determined = False` → **`keep_in_stop`**
-- **上流（L3/L10 F05 + L4散文）から一意に決まらない根拠**:
-  - CauseKind非一意: L4 common_target_guards/0はcollection未供給/null/型外を未観測またはtarget unformedとし空正常にしないと定めるが、F05 operand解決時の局所CauseKindをcontent_unresolved・input_unobserved・target_unformed/body_unformedのいずれにするかがL4散文に未規定。
-  - 左右Read非一意: L4で唯一content_unresolvedの左右Readを明示する /field_obligation_scope_contract/cause_patterns/content_unresolved は単一collection（raw.obligations）参照であるのに対し、F05はaxis_factsとsemantic_recordsの2 collectionを横断する。片側のみ未観測で他方が0件一致のとき、あるいは両側未観測のとき、単一Read<CoreJsonValue>のCause.rightにどのReadを置くかがL4散文だけでは決まらない。
-  - 件数非一意: 未観測collection分のみ1件か、観測済み0件collectionと合わせて2件か、ValidationSourceObservations側のinput_unobservedへの委譲のみとするかがL4散文だけでは決まらない。
-- **Step B 既存 L9 / L5 / L8 との比較**:
-  - **L9 (`cases/3` `HARNESS-L9-009-F05-EVIDENCE-DEF-LOOKUP-MISS`)**: L9 cases/3のinput_mutation_jaは『input.axis_factsおよびinput.semantic_recordsの双方を実配列（Read.present）として供給する...collection自体の欠落/null/型外とは混ぜない』と明記し、片側/両側collection未観測を除外している。
-  - **L5 (`writers/3` & `unclosed_stops/0`)**: L5 writers/3のtrigger_ja除外(3)(4)およびunclosed_stops/0は、『axis_factsがnull（Read.present(null)）/未供給（Read.absent）又はsemantic_recordsが未供給（Read.absent）である片側/両側collection未観測の場合に、RefOperand.causes又はRecordOccurrence.causesへどのCauseKind・左右Read・件数を格納するかはL4及びL9 cases/3だけでは一意に決まらないため、writers/3のcontent_unresolved 2件へ丸めず未形成として止める』と記録しており、Step Aの独立導出結論と完全一致する。
-  - **L8 (`HARNESS-L8-009-ADD-45`)**: L8 /additional_unit_cases/45 (HARNESS-L8-009-ADD-45) も両collectionがRead.present配列である前提に限定している。
-- **比較後の処置**: **keep_in_stop (STOP-F05-CONTENT-UNRESOLVED-CAUSE-PAIR-01に残す)**
+`writers/0..3`, `unclosed_stops/0..3`, `preserve_change_reason_ja` に含まれる全ての `L5:` 付きpointerおよび `/f05_detail_contract/...` pointer（計 52 件）について、`docs/helix-harness/L5-detail-design/product-template-application.json` 上で実在することを確認した（詳細は `comparison-audit.json` の `verified_l5_pointers_in_writer_contract` に収録）。
 
-## 4. L5 `/f05_detail_contract/field_content_source_failure_writer_contract` 内の `L5:` 付きPointer実在確認
+## 6. 旧HELIXの対応箇所と同種の失敗事例
 
-`writers/0..3`, `unclosed_stops/0..3`, `preserve_change_reason_ja` に含まれる全ての `L5:` 付きpointerおよび `/f05_detail_contract/...` pointer（計 52 件）について、`docs/helix-harness/L5-detail-design/product-template-application.json` 上で実在することを確認した。
-
-| Pointer | L5内の実在確認 (`resolved_in_l5`) | JSON型 |
-|---|---|---|
-| `L5:/f05_detail_contract/context_header_cause_contract/header_read_and_patterns/0` | `True` | `dict` |
-| `L5:/f05_detail_contract/field_summary_and_custody_writer_contract/cause_propagation_order` | `True` | `dict` |
-| `L5:/f05_detail_contract/field_summary_and_custody_writer_contract/patterns/0` | `True` | `dict` |
-| `L5:/f05_detail_contract/field_summary_and_custody_writer_contract/patterns/2` | `True` | `dict` |
-| `L5:/f05_detail_contract/leaf_writer_ledger/0` | `True` | `dict` |
-| `L5:/f05_detail_contract/leaf_writer_ledger/1` | `True` | `dict` |
-| `L5:/f05_detail_contract/leaf_writer_ledger/13` | `True` | `dict` |
-| `L5:/f05_detail_contract/leaf_writer_ledger/14` | `True` | `dict` |
-| `L5:/f05_detail_contract/leaf_writer_ledger/15` | `True` | `dict` |
-| `L5:/f05_detail_contract/leaf_writer_ledger/2` | `True` | `dict` |
-| `L5:/f05_detail_contract/leaf_writer_ledger/6` | `True` | `dict` |
-| `L5:/f05_detail_contract/leaf_writer_ledger/7` | `True` | `dict` |
-| `L5:/f05_detail_contract/leaf_writer_ledger/9` | `True` | `dict` |
-| `L5:/f05_detail_contract/presence_and_decode_rules` | `True` | `list` |
-| `L5:/f05_detail_contract/recipient_leaf_writer_contract/cause_copy_and_order` | `True` | `str` |
-| `L5:/f05_detail_contract/reference_and_collection_rules/binding` | `True` | `str` |
-| `L5:/f05_detail_contract/reference_and_collection_rules/matching` | `True` | `str` |
-| `L5:/f05_detail_contract/reference_and_collection_rules/order` | `True` | `str` |
-| `L5:/f05_detail_contract/reference_and_collection_rules/records` | `True` | `str` |
-| `L5:/f05_detail_contract/source_observation_contract/operand_pair_order` | `True` | `str` |
-| `L5:/f05_detail_contract/validation_cause_diagnostic_contract/input_unobserved_pattern` | `True` | `dict` |
-| `/f05_detail_contract/context_header_cause_contract/header_read_and_patterns/0` | `True` | `dict` |
-| `/f05_detail_contract/context_header_cause_contract/propagation` | `True` | `dict` |
-| `/f05_detail_contract/field_content_source_failure_writer_contract/writers/0` | `True` | `dict` |
-| `/f05_detail_contract/field_content_source_failure_writer_contract/writers/1` | `True` | `dict` |
-| `/f05_detail_contract/field_content_source_failure_writer_contract/writers/2` | `True` | `dict` |
-| `/f05_detail_contract/field_content_source_failure_writer_contract/writers/3` | `True` | `dict` |
-| `/f05_detail_contract/field_summary_and_custody_writer_contract/cause_propagation_order` | `True` | `dict` |
-| `/f05_detail_contract/field_summary_and_custody_writer_contract/cause_propagation_order/field_owner` | `True` | `str` |
-| `/f05_detail_contract/field_summary_and_custody_writer_contract/patterns/0` | `True` | `dict` |
-| `/f05_detail_contract/field_summary_and_custody_writer_contract/patterns/0/storage_ja` | `True` | `str` |
-| `/f05_detail_contract/field_summary_and_custody_writer_contract/patterns/2` | `True` | `dict` |
-| `/f05_detail_contract/field_summary_and_custody_writer_contract/summary_projection_applicability/attempt_without_basis` | `True` | `str` |
-| `/f05_detail_contract/leaf_writer_ledger/0` | `True` | `dict` |
-| `/f05_detail_contract/leaf_writer_ledger/1` | `True` | `dict` |
-| `/f05_detail_contract/leaf_writer_ledger/13` | `True` | `dict` |
-| `/f05_detail_contract/leaf_writer_ledger/14` | `True` | `dict` |
-| `/f05_detail_contract/leaf_writer_ledger/15` | `True` | `dict` |
-| `/f05_detail_contract/leaf_writer_ledger/2` | `True` | `dict` |
-| `/f05_detail_contract/leaf_writer_ledger/6` | `True` | `dict` |
-| `/f05_detail_contract/leaf_writer_ledger/7` | `True` | `dict` |
-| `/f05_detail_contract/leaf_writer_ledger/9` | `True` | `dict` |
-| `/f05_detail_contract/native_comparison_projection/formation` | `True` | `str` |
-| `/f05_detail_contract/presence_and_decode_rules/1` | `True` | `str` |
-| `/f05_detail_contract/presence_and_decode_rules/3` | `True` | `str` |
-| `/f05_detail_contract/presence_and_decode_rules/4` | `True` | `str` |
-| `/f05_detail_contract/recipient_leaf_writer_contract/cause_copy_and_order` | `True` | `str` |
-| `/f05_detail_contract/reference_and_collection_rules/binding` | `True` | `str` |
-| `/f05_detail_contract/reference_and_collection_rules/matching` | `True` | `str` |
-| `/f05_detail_contract/source_material_leaf_writer_contract/record_and_body_occurrence_leaf` | `True` | `dict` |
-| `/f05_detail_contract/validation_cause_diagnostic_contract/input_unobserved_pattern` | `True` | `dict` |
-| `/f05_detail_contract/validation_cause_diagnostic_contract/validated_input_issue_writer/native_shape` | `True` | `str` |
-
-## 5. 旧HELIXの対応箇所と同種の失敗事例
-
-### 5.1 旧HELIXの対応箇所（静的read-only参照のみ・実行なし）
+### 6.1 旧HELIXの対応箇所（静的read-only参照のみ・実行なし）
 
 - **`LEGACY-ASSET-4F5A1F0739EC1111D91D`** (`archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/design-template-json-authority.md`, 行 `16-60, 81-92`, SHA-256 `e254d995d1d9fbbcc74bb53b3356b4499ac20cca2280eeafde1412d08630c4cb`):
   - **保持する点**: JSON正本における参照整合と未解決参照を空正常に畳まない設計契約の意味。
   - **変更する点**: 旧世代の単一スキーマ検査ではなく、H009 F05のaxis_facts/semantic_records 2コレクション横断解決と局所Cause/STOP境界として再導出。
 - **`LEGACY-ASSET-98372FEE8A3AC8F9C299`** (`archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/design-template-json-authority.md`, 行 `33-108`, SHA-256 `3015d4f3d65cd1f8205f88f29dd59c4f1f7ef42c729d8144f2319e49fe20d830`):
-  - **保持する点**: 詳細設計における有限分岐writerと未規定分岐の停止境界の分離。
-  - **変更する点**: 上流L3/L10/L4から一意に決まらない枝（(a), (b), (c)）を推測でwriter化せず、STOP-F05-CONTENT-UNRESOLVED-CAUSE-PAIR-01に保持。
+  - **保持する点**: 詳細設計における有限分岐writerと未規定分岐の明示分離、およびL4/L9・L5/L8のV-pair接続。
+  - **変更する点**: 3枝×4要素を「L4/L5で確定（pointer）」と「設計で決める（候補と理由）」に分離し、後続のL4/L9→L5/L8 V-pair PRへの設計入力として構造化。
 - **`LEGACY-ASSET-A127DEC3EEE6ED63CF17`** (`archive/legacy-generation-2026-09-14/root/docs/governance/predecessor-harness-full-weakness-audit-2026-07-20.md`, 行 `80, 86-87`, SHA-256 `bab121404c956a0a4b403e589bea1c414af59b5996989bea5fab9f98f42f6872`):
   - **保持する点**: UTW-014（未取得・欠損sourceを空集合・成功へ縮退させるabsence blindnessの防止）、UTW-020（異なる失敗原因を単一バケットへ丸める集約損失の防止）、UTW-021（自己申告完了の防止）。
-  - **変更する点**: 3枝が閉じていない段階でSTOP解消と記載せず、一意に決まらない3枝をcontent_unresolved 2件へ丸めずにSTOPへ残す統制として適用。
+  - **変更する点**: 3枝を丸ごと非一意・STOP維持で思考停止せず、L4/L5が既に決めている要素（左Read、同Ref既知差`target_mismatch`、出現単位保存、未観測≠lookup 0件）と設計で決める要素を分けて後続L4/L9 PRへ引き渡す形に適用。
 
-### 5.2 同種の失敗事例
+### 6.2 同種の失敗事例
 
-- **`PR #3942 (WR196 Part 1: L9 cases/3) & PR #3948 (WR196 Part 2: L5 writers/3 + L8 ADD-45)`**: STOP-F05-CONTENT-UNRESOLVED-CAUSE-PAIR-01のうち、上流から一意に決まる『present non-null Ref × 観測済み両collection全record比較different確定』の1枝のみをL4/L9→L5/L8の順で閉じ、残る(a)(b)(c)の3枝をSTOPへ残した直接の先行事例。PR #3948 R1/R2ではL5: pointer誤記（field_obligation_scope_writer_contract vs recipient_leaf_writer_contract）の指摘・修正が行われたため、本監査でも全L5: pointerの実在を検証した。
-- **`PR #3933 (WR198 STOP-F05-GAP-PROPOSAL-BODY-ORACLE-01 audit)`**: 上流から有限oracleが一意に定まらない場合に、L4/L9/L5/L8の既存契約・Stopを変更せず、検索・導出根拠と再進入条件をscaffold/researchとScaffold Bindingに記録するdesign_verificationの先例。
-- **`PR #3949 (WR181) / PR #3961 (WR217)`**: 既存L5/L8/L9を見る前にStep Aのsource-only独立導出を#3510へSHA-256固定し、Step Bで値合わせせずに比較・記録する2段階プロトコルの先例。
+- **`PR #3942 (WR196 Part 1: L9 cases/3) & PR #3948 (WR196 Part 2: L5 writers/3 + L8 ADD-45)`**: `STOP-F05-CONTENT-UNRESOLVED-CAUSE-PAIR-01` のうち、`present non-null Ref × 観測済み両collection全record比較different確定` の1枝を `L4/L9` → `L5/L8` の順（1 PR 1 V-pair）で閉じた直接の先行事例。残る `(a)`, `(b)`, `(c)` も同じく後続の `L4/L9` PR → `L5/L8` PR の順で進める。
+- **`PR #3983 (WR242 H053 equivalence class migration evidence R1 correction)`**: blind導出が特定要素を1つに断定しないことは「設計不可能・STOP維持が結論」の証拠ではなく、`L4 detail_and_consumer_boundary/0` および `AGENTS.md` 自律境界の下でこれから `L4/L9`・`L5/L8` で設計する対象であるという教訓。本監査 R2 でも `keep_in_stop` を結論にせず、各マスの「L4で確定」と「設計で決める（候補と理由）」を次PRの入力として整理した。
+- **`PR #3949 (WR181) / PR #3961 (WR217)`**: 既存 `L5`/`L8`/`L9` を見る前に Step A の source-only 独立導出を `#3510` へ SHA-256 固定し、Step B で比較・記録する2段階プロトコルの先例。R1 で古い L4 revision (`43308470…`) を読んでいた不備を検出し、R1 blind を保全した上で現行 L4 (`4a770515…`) による Step A R2 (`#issuecomment-6535797085`) を再固定してから比較した。
 
-## 6. 静的検証コマンド実測
+## 7. 静的検証コマンド実測
 
-- `sha256sum scaffold/research/wr218-f05-content-unresolved-remaining-20261031/blind-derivation.json`: `30930545318afe6ed1d2e208670b72dfa4dda8c2ac1bf38ad00026d3e4c50cf5`（Issue `#3510` `#issuecomment-6534822649` と完全一致）
+- `sha256sum scaffold/research/wr218-f05-content-unresolved-remaining-20261031/blind-derivation.json`: `30930545318afe6ed1d2e208670b72dfa4dda8c2ac1bf38ad00026d3e4c50cf5`（Issue `#3510` `#issuecomment-6534822649` と完全一致・R1履歴保全）
+- `sha256sum scaffold/research/wr218-f05-content-unresolved-remaining-20261031/blind-derivation-r2.json`: `d32689e4282b71ed131cc590873225375d17a429ce08c78becf688446dff31d1`（Issue `#3510` `#issuecomment-6535797085` と完全一致・R2現行L4）
 - `python3 scaffold/tools/scfctl.py stale`: `stale=0`
 - `python3 scaffold/tools/scfctl.py validate`: `ok scaffold/bindings/SCF-B-0214.json SCF-B-0214 [registered]`, `errors=0`
 - `python3 -B scaffold/tools/design_verification_checker.py check-child --root . --l4 docs/helix-harness/L4-basic-design/product-template-application.json --l9 docs/helix-harness/L9-integration-verification/product-template-application.json --l5 docs/helix-harness/L5-detail-design/product-template-application.json --l8 docs/helix-harness/L8-unit-verification/product-template-application.json`: `passed: true` (`L4_L9: true`, `L5_L8: true`, `negative_4way: true`)
