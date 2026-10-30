@@ -1,8 +1,8 @@
 # WR211 L8/L5 hash参照整理の静的監査
 
-status: scaffold research evidence（正式設計・承認・実装・受入ではない）  
-authority_effect: none  
-対象候補: `docs/helix-harness/L8-unit-verification/semantic-asset-lineage.json` と同書の`candidate_l5_binding`  
+status: scaffold research evidence（正式設計・承認・実装・受入ではない）
+authority_effect: none
+対象候補: `docs/helix-harness/L8-unit-verification/semantic-asset-lineage.json` と同書の`candidate_l5_binding`
 確認したmain/base: `4bee77125480c578068aa0760d2f6b33c497d53a`
 
 ## 目的と境界

@@ -10,7 +10,7 @@
   "upstream": [
     {
       "path": "docs/helix-harness/L8-unit-verification/semantic-asset-lineage.json",
-      "sha256": "72623a84834c911878012b40e1636fc381c91881ecd10a350e25275f1de50dfd",
+      "sha256": "6365651422b2aa7cc4ae3d7596c445cc854eea140daabeddb8990da6c57d7bd2",
       "note": "WR211 reference reconciliationを含む候補bytes。削除前の複製値は固定履歴revision 4bee77125480c578068aa0760d2f6b33c497d53aからvalidatorが読む。"
     },
     {

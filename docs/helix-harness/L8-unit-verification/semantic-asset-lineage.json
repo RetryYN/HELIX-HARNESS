@@ -11177,7 +11177,7 @@
       "source_freeze_reference_reconciliation": "ADD-25/26/27のsource_whole_identityおよびcase_mapping_and_complete_valuesの計6複製を削除。source_failure_freeze_provenanceのpathとsha256を監査参照として保持。指定pathのfreeze実体とそのcommitはorigin/mainのtree/historyで解決できず、ここでは復元・代替しない。",
       "l5_rule_value_reconciliation": "4つのvalue_canonical_sha256を削除し、rule_idとJSON pointerは保持。L5候補全体のsha256、revision、path、および各rule pointerで固定し、revisionの候補file bytesはsha256一致を確認。",
       "qualification_inputs": "ADD-22..27のtyped Qualification subject_sha256 30値は変更せず保持。これらはcase inputであり、削除した参照複製とは異なる。",
-      "projected_l8_ownership_cap": "43件から上記13重複を除くと30件。残る30件は保持したtyped Qualification subject_sha256。checkerの再実行結果ではなく、pointer単位の静的計数。",
+      "projected_l8_ownership_cap": "基準の43件から13重複を除去し、main fa3d2d515ce8df79c0a74d5360a4d1254863a6f1のcandidate child checkerで30件を実測。残る30件は保持したtyped Qualification subject_sha256。",
       "expected_and_oracle": "既存case expected_comparison、expected state、side-effect期待を不変。base 4bee77125480c578068aa0760d2f6b33c497d53aと未commit候補L8での親側child checker結果は、4-wayの76 failuresが残りmatched_case_count=0で変更前後不変、L4/L9とL5/L8 pairはPASS。rebase先fa3d2d515ce8df79c0a74d5360a4d1254863a6f1への更新でL8 bytesは不変。latest main fa3d2d515ce8df79c0a74d5360a4d1254863a6f1上でも候補childを再測定し、両pair PASS、4-way 76 failures／matched 0、L8 cap 30を確認。この結果は要求や受入を追加しない。",
       "legacy_and_failure_basis": "根拠は本書legacy_comparisonおよびfailure_basisの既存参照を維持。旧sourceの実行・再解釈はしていない。",
       "remaining": "4-wayは76 failures/matched_case_count=0、30件のownership cap残、freeze実体/commitの不在、およびsource omission以外のoracle・期待変更は別途未解決。"
