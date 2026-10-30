@@ -35,6 +35,8 @@ R1 M1再確認により、既存F04 7件すべてを単一条件候補とする�
 
 R2 M1のsource-only再確認では、Release-eligible proof自体がnullのpacketも単一条件候補から撤回した。Working.work_record、Provisional.contract/oracle、Integrated.design/observed_boundary、Accepted.l2、Observed.planning/operation_recordはL5でstate_basisとされるが、raw packetに参照先の原内容・対応付けがない。Verified.lower_proof_refsはproof identityに解決する一方、その先のProvisional/Integrated根拠は同じく未解決である。L4 `/state_evidence_connection` は独立した原証拠との照合を求め、L5 `/functions/4/state_detail/qualification_rule` は各state資料を個別に資格確認するが、識別子文字列のみの解決や参照未解決時の部分結果は定義していない。したがって他state ruleの非発火は証明できず、Release-eligible nullというraw conditionだけでcandidateを形成しない。未解決を発火とは扱わずF04全7件をunknown/unformedとする。全packetのqualificationは `synthetic_design_fixture_not_actual_owner_or_authority` であり、実source資格・実owner権限・実state成立はunknownである。L9 `cases` / `expected_material`、182件母集団、formal projection row、checker marker、freezeは変更しない。候補は処理済み結果や製品合格を意味しない。
 
+R3 M1では、同じcanonical proof hashを持つstate proofのstate_basis参照をpacketごとに異なる扱いにしていた点を訂正した。L4 `/state_evidence_connection` は独立原証拠との結合を求め、L5 `/functions/4/state_detail/qualification_rule` はstate資料を個別に資格照合するが、参照先の原内容・qualificationは固定packetにない。同じproofを含むcase間で資格差を示すsourceもないため、各F04行でtarget以外の6コードをunknown/unformedに統一し、confirmed non-firingは空とした。参照未解決をfinding発火とは扱わない。静的validatorは各行のtarget/code分類、present proof hash、適用可能なraw referenceとL5 `state_basis` pointer/valueの一致を確認する。
+
 ## 固定入力と再現
 
 固定raw snapshotは `ed3981e7b9419d796adf1981f8990c6b626ecabe` の `docs/helix-harness/L9-integration-verification/process-state-port.json`、file SHA-256 `91d0bcd34b8b451bc8e81f5d13d0c5f413de3ad5f7c70ba90a704134c4af3735`。

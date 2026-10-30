@@ -133,11 +133,21 @@ def main() -> None:
         assert resolve(l5, row["l5_condition_crosscheck_pointer"]["pointer"])["code"] == f04_classes[i]["code"]
         assert resolve(l5, row["l5_condition_crosscheck_pointer"]["pointer"])["condition_source"] == f04_classes[i]["change"]
         assert row["raw_condition_evidence"]["missing_state_pointer"] == f"/state_proofs/{state}"
-        recorded_non_firing_codes = (
-            row["raw_condition_evidence"]["non_firing_f04_codes"]
-            + row["raw_condition_evidence"]["non_firing_unknown_f04_codes"]
-        )
-        assert set(recorded_non_firing_codes) == {x["code"] for j, x in enumerate(f04_classes) if j != i}
+        other_f04_codes = [x["code"] for j, x in enumerate(f04_classes) if j != i]
+        raw_condition = row["raw_condition_evidence"]
+        assert raw_condition["non_firing_f04_codes"] == [], "shared unresolved proof references cannot be recorded as confirmed non-firing"
+        assert raw_condition["non_firing_unknown_f04_codes"] == other_f04_codes
+        shared_reconciliation = raw_condition["non_firing_unknown_basis"]["shared_state_basis_reference_reconciliation"]
+        assert shared_reconciliation["common_review_ref"] == "/common_other_state_proof_review/shared_state_basis_reference_resolution"
+        assert shared_reconciliation["target_condition_code"] == f04_classes[i]["code"]
+        assert shared_reconciliation["unknown_other_f04_codes"] == other_f04_codes
+        assert shared_reconciliation["confirmed_non_firing_f04_codes"] == []
+        assert shared_reconciliation["present_shared_proof_states"] == [
+            other_state
+            for other_state in ["Working", *f04_states]
+            if other_state != state
+        ]
+        assert "unknown/unformed" in common_proof_review["shared_state_basis_reference_resolution"]["classification_effect"]
         assert live["execution_state"] == historical["execution_state"] == "not_executed"
         assert live["effect"] == historical["effect"] == "none"
         assert row["case_provenance"]["mutation_pointer"] == f"/cases/4/negative_cases/{i + 1}/mutation"
@@ -227,6 +237,12 @@ def main() -> None:
     assert recheck["release_null_case_id"] == release_case_id
     assert recheck["same_shape_state_basis_reference_count"] == 9
     assert recheck["result"] == "withdraw candidate; all seven F04 cases remain unknown/unformed; no finding is inferred to fire"
+    assert recheck["row_consistency"]
+    row_statuses = rows_by_id(recheck["row_statuses"])
+    assert set(row_statuses) == expected_f04_ids
+    assert recheck["state_proof_hashes"] == {
+        state: review["canonical_proof_sha256"] for state, review in common_proof_rows.items()
+    }
     refs = release_row["raw_condition_evidence"]["non_firing_unknown_basis"]["same_shape_state_basis_references"]
     assert refs == recheck["references"] and len(refs) == 9
     for ref in refs:
@@ -236,6 +252,19 @@ def main() -> None:
         assert l5_qualification["affected_state"] == ref["state"]
         assert isinstance(ref["raw_value"], (str, list))
         assert "unknown" in ref["resolution"]
+        for state in f04_states:
+            if state == ref["state"]:
+                continue
+            cid = f"H003-F04-MISSING-{state}"
+            packet_index = next(i for i, x in enumerate(f04_raw["negative_cases"]) if x["id"] == cid)
+            packet = json.loads(resolve(raw, f"/verification_obligations/4/negative_cases/{packet_index}/independent_source_packet/raw_utf8"))
+            proof = packet["state_proofs"][ref["state"]]
+            if proof is not None:
+                assert resolve(packet, ref["raw_pointer"]) == ref["raw_value"]
+                proof_hash = hashlib.sha256(
+                    json.dumps(proof, sort_keys=True, separators=(",", ":"), ensure_ascii=False).encode("utf-8")
+                ).hexdigest()
+                assert proof_hash == common_proof_rows[ref["state"]]["canonical_proof_sha256"]
     assert resolve(release_packet, "/state_proofs/Release-eligible") is None
     l4_connection = resolve(l4, "/state_evidence_connection")
     assert "独立原証拠→同revision/scope/artifact/environmentの結合" in l4_connection["flow"]
@@ -244,6 +273,15 @@ def main() -> None:
     assert release_row["finding_code"] is None
     assert release_row["raw_condition_evidence"]["non_firing_f04_codes"] == []
     assert set(release_row["raw_condition_evidence"]["non_firing_unknown_f04_codes"]) == {x["code"] for x in f04_classes if x["code"] != release_row["target_condition_code"]}
+    for cid, row in f04_rows.items():
+        status = row_statuses[cid]
+        raw_condition = row["raw_condition_evidence"]
+        assert status["target_condition_code"] == row["target_condition_code"]
+        assert status["non_firing_f04_codes"] == raw_condition["non_firing_f04_codes"] == []
+        assert status["non_firing_unknown_f04_codes"] == raw_condition["non_firing_unknown_f04_codes"]
+        reconciliation = raw_condition["non_firing_unknown_basis"]["shared_state_basis_reference_reconciliation"]
+        assert reconciliation["unknown_other_f04_codes"] == status["non_firing_unknown_f04_codes"]
+        assert reconciliation["confirmed_non_firing_f04_codes"] == status["non_firing_f04_codes"]
 
     # Verify the currently pinned L3 clauses without deriving any output.
     assert resolve(l3_pinned, "/requirements/66/obligation") == resolve(l3_current, "/requirements/66/obligation")

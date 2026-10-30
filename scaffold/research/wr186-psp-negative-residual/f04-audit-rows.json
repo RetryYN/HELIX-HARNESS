@@ -12,7 +12,7 @@
     "sha256": "91d0bcd34b8b451bc8e81f5d13d0c5f413de3ad5f7c70ba90a704134c4af3735",
     "pointer_field": "independent_source_packet.raw_utf8"
   },
-  "method": "L4 F04 class condition and state basis were read directly. Each fixed raw source packet was manually reviewed; target proof null is recorded as an input condition only. Same-shape state_basis references in non-null proof objects were checked against L4/L5 and the raw packet; where the referenced original content/mapping is not present and reference-resolution semantics are not defined, non-firing is unknown. L9 expected_material and negative_class_assignment were excluded as result evidence. No condition is treated as a firing finding, and no candidate is formed.",
+  "method": "各packetに存在するproof objectの共通構造・canonical hash・outer bindingを記録する。canonical hashが同じstate proofに含まれるstate_basis参照の資格判定は、packetごとに異なるとするsource証拠がない限り一貫させる。参照先原内容/qualificationが未解決なら、そのproofを持つcaseで対応conditionのnonfireを確定しない。機械validatorはraw hash/pointerと行間状態一致のみを静的照合し、conditionは評価しない。",
   "audit_rows": [
     {
       "case_id": "H003-F04-MISSING-Provisional",
@@ -35,16 +35,15 @@
         "missing_state_value": "explicit_null",
         "other_state_proof_count": 7,
         "other_state_proofs_non_null": true,
-        "non_firing_f04_codes": [
-          "F04_STATE_INTEGRATED_PROOF_MISSING",
-          "F04_STATE_ACCEPTED_PROOF_MISSING",
-          "F04_STATE_DEPLOYED_PROOF_MISSING",
-          "F04_STATE_OBSERVED_PROOF_MISSING"
-        ],
+        "non_firing_f04_codes": [],
         "single_finding_set_status": "unknown/unformed",
         "non_firing_unknown_f04_codes": [
+          "F04_STATE_INTEGRATED_PROOF_MISSING",
           "F04_STATE_VERIFIED_PROOF_MISSING",
-          "F04_STATE_RELEASE-ELIGIBLE_PROOF_MISSING"
+          "F04_STATE_ACCEPTED_PROOF_MISSING",
+          "F04_STATE_RELEASE-ELIGIBLE_PROOF_MISSING",
+          "F04_STATE_DEPLOYED_PROOF_MISSING",
+          "F04_STATE_OBSERVED_PROOF_MISSING"
         ],
         "non_firing_unknown_basis": {
           "verified_lower_proof_refs": {
@@ -64,6 +63,28 @@
             },
             "state_role": "state_basis",
             "resolution": "unknown; referenced content/source/owner qualification and its mapping to per-state proofs are not present or defined; do not convert to a firing finding"
+          },
+          "shared_state_basis_reference_reconciliation": {
+            "common_review_ref": "/common_other_state_proof_review/shared_state_basis_reference_resolution",
+            "target_condition_code": "F04_STATE_PROVISIONAL_PROOF_MISSING",
+            "unknown_other_f04_codes": [
+              "F04_STATE_INTEGRATED_PROOF_MISSING",
+              "F04_STATE_VERIFIED_PROOF_MISSING",
+              "F04_STATE_ACCEPTED_PROOF_MISSING",
+              "F04_STATE_RELEASE-ELIGIBLE_PROOF_MISSING",
+              "F04_STATE_DEPLOYED_PROOF_MISSING",
+              "F04_STATE_OBSERVED_PROOF_MISSING"
+            ],
+            "confirmed_non_firing_f04_codes": [],
+            "present_shared_proof_states": [
+              "Working",
+              "Integrated",
+              "Verified",
+              "Accepted",
+              "Release-eligible",
+              "Deployed",
+              "Observed"
+            ]
           }
         }
       },
@@ -100,7 +121,7 @@
         "value": "synthetic_design_fixture_not_actual_owner_or_authority"
       },
       "state_establishment": "unknown_not_claimed",
-      "non_firing_unknown_reason": "Verified.lower_proof_refsはstate_basisで、Provisionalの実proofがnullの同一packetを参照する。Release-eligible.observations.proofsはproofs@r1という一致文字列のみで参照先内容・qualificationとstate proof群への対応が解決されず、Release-eligibleのnonfireも判断できない。",
+      "non_firing_unknown_reason": "同一canonical_proof_sha256を持つ非null proofに含まれるstate_basis参照は各行で同じ内容であり、packet間の資格差を示すsourceはない。L4/L5の原証拠照合・個別資格条件に照らし参照先が未解決であるため、対象condition以外のF04コードをnonfire確定へ置かず全てunknown/unformedとする。未解決をfinding発火とは扱わない。",
       "definition_gap_return": {
         "layer": "L5",
         "owner": "L5 function 4 detail-design owner",
@@ -145,16 +166,15 @@
         "missing_state_value": "explicit_null",
         "other_state_proof_count": 7,
         "other_state_proofs_non_null": true,
-        "non_firing_f04_codes": [
-          "F04_STATE_PROVISIONAL_PROOF_MISSING",
-          "F04_STATE_ACCEPTED_PROOF_MISSING",
-          "F04_STATE_DEPLOYED_PROOF_MISSING",
-          "F04_STATE_OBSERVED_PROOF_MISSING"
-        ],
+        "non_firing_f04_codes": [],
         "single_finding_set_status": "unknown/unformed",
         "non_firing_unknown_f04_codes": [
+          "F04_STATE_PROVISIONAL_PROOF_MISSING",
           "F04_STATE_VERIFIED_PROOF_MISSING",
-          "F04_STATE_RELEASE-ELIGIBLE_PROOF_MISSING"
+          "F04_STATE_ACCEPTED_PROOF_MISSING",
+          "F04_STATE_RELEASE-ELIGIBLE_PROOF_MISSING",
+          "F04_STATE_DEPLOYED_PROOF_MISSING",
+          "F04_STATE_OBSERVED_PROOF_MISSING"
         ],
         "non_firing_unknown_basis": {
           "verified_lower_proof_refs": {
@@ -174,6 +194,28 @@
             },
             "state_role": "state_basis",
             "resolution": "unknown; referenced content/source/owner qualification and its mapping to per-state proofs are not present or defined; do not convert to a firing finding"
+          },
+          "shared_state_basis_reference_reconciliation": {
+            "common_review_ref": "/common_other_state_proof_review/shared_state_basis_reference_resolution",
+            "target_condition_code": "F04_STATE_INTEGRATED_PROOF_MISSING",
+            "unknown_other_f04_codes": [
+              "F04_STATE_PROVISIONAL_PROOF_MISSING",
+              "F04_STATE_VERIFIED_PROOF_MISSING",
+              "F04_STATE_ACCEPTED_PROOF_MISSING",
+              "F04_STATE_RELEASE-ELIGIBLE_PROOF_MISSING",
+              "F04_STATE_DEPLOYED_PROOF_MISSING",
+              "F04_STATE_OBSERVED_PROOF_MISSING"
+            ],
+            "confirmed_non_firing_f04_codes": [],
+            "present_shared_proof_states": [
+              "Working",
+              "Provisional",
+              "Verified",
+              "Accepted",
+              "Release-eligible",
+              "Deployed",
+              "Observed"
+            ]
           }
         }
       },
@@ -210,7 +252,7 @@
         "value": "synthetic_design_fixture_not_actual_owner_or_authority"
       },
       "state_establishment": "unknown_not_claimed",
-      "non_firing_unknown_reason": "Verified.lower_proof_refsはstate_basisで、Integratedの実proofがnullの同一packetを参照する。Release-eligible.observations.proofsはproofs@r1という一致文字列のみで参照先内容・qualificationとstate proof群への対応が解決されず、Release-eligibleのnonfireも判断できない。",
+      "non_firing_unknown_reason": "同一canonical_proof_sha256を持つ非null proofに含まれるstate_basis参照は各行で同じ内容であり、packet間の資格差を示すsourceはない。L4/L5の原証拠照合・個別資格条件に照らし参照先が未解決であるため、対象condition以外のF04コードをnonfire確定へ置かず全てunknown/unformedとする。未解決をfinding発火とは扱わない。",
       "definition_gap_return": {
         "layer": "L5",
         "owner": "L5 function 4 detail-design owner",
@@ -255,16 +297,15 @@
         "missing_state_value": "explicit_null",
         "other_state_proof_count": 7,
         "other_state_proofs_non_null": true,
-        "non_firing_f04_codes": [
+        "non_firing_f04_codes": [],
+        "single_finding_set_status": "unknown/unformed",
+        "non_firing_unknown_f04_codes": [
           "F04_STATE_PROVISIONAL_PROOF_MISSING",
           "F04_STATE_INTEGRATED_PROOF_MISSING",
           "F04_STATE_ACCEPTED_PROOF_MISSING",
+          "F04_STATE_RELEASE-ELIGIBLE_PROOF_MISSING",
           "F04_STATE_DEPLOYED_PROOF_MISSING",
           "F04_STATE_OBSERVED_PROOF_MISSING"
-        ],
-        "single_finding_set_status": "unknown/unformed",
-        "non_firing_unknown_f04_codes": [
-          "F04_STATE_RELEASE-ELIGIBLE_PROOF_MISSING"
         ],
         "non_firing_unknown_basis": {
           "verified_lower_proof_refs": {
@@ -284,6 +325,28 @@
             },
             "state_role": "state_basis",
             "resolution": "unknown; referenced content/source/owner qualification and its mapping to per-state proofs are not present or defined; do not convert to a firing finding"
+          },
+          "shared_state_basis_reference_reconciliation": {
+            "common_review_ref": "/common_other_state_proof_review/shared_state_basis_reference_resolution",
+            "target_condition_code": "F04_STATE_VERIFIED_PROOF_MISSING",
+            "unknown_other_f04_codes": [
+              "F04_STATE_PROVISIONAL_PROOF_MISSING",
+              "F04_STATE_INTEGRATED_PROOF_MISSING",
+              "F04_STATE_ACCEPTED_PROOF_MISSING",
+              "F04_STATE_RELEASE-ELIGIBLE_PROOF_MISSING",
+              "F04_STATE_DEPLOYED_PROOF_MISSING",
+              "F04_STATE_OBSERVED_PROOF_MISSING"
+            ],
+            "confirmed_non_firing_f04_codes": [],
+            "present_shared_proof_states": [
+              "Working",
+              "Provisional",
+              "Integrated",
+              "Accepted",
+              "Release-eligible",
+              "Deployed",
+              "Observed"
+            ]
           }
         }
       },
@@ -320,7 +383,7 @@
         "value": "synthetic_design_fixture_not_actual_owner_or_authority"
       },
       "state_establishment": "unknown_not_claimed",
-      "non_firing_unknown_reason": "Release-eligible.observations.proofsはRelease state_basisのfieldだが、proofs@r1の参照先content/source/owner qualificationがpacket内に無く、Verified proof nullとの包含関係もL4/L5で定義されない。Release-eligible非発火を立証できない。",
+      "non_firing_unknown_reason": "同一canonical_proof_sha256を持つ非null proofに含まれるstate_basis参照は各行で同じ内容であり、packet間の資格差を示すsourceはない。L4/L5の原証拠照合・個別資格条件に照らし参照先が未解決であるため、対象condition以外のF04コードをnonfire確定へ置かず全てunknown/unformedとする。未解決をfinding発火とは扱わない。",
       "definition_gap_return": {
         "layer": "L5",
         "owner": "L5 function 4 detail-design owner",
@@ -361,16 +424,15 @@
         "missing_state_value": "explicit_null",
         "other_state_proof_count": 7,
         "other_state_proofs_non_null": true,
-        "non_firing_f04_codes": [
+        "non_firing_f04_codes": [],
+        "single_finding_set_status": "unknown/unformed",
+        "non_firing_unknown_f04_codes": [
           "F04_STATE_PROVISIONAL_PROOF_MISSING",
           "F04_STATE_INTEGRATED_PROOF_MISSING",
           "F04_STATE_VERIFIED_PROOF_MISSING",
+          "F04_STATE_RELEASE-ELIGIBLE_PROOF_MISSING",
           "F04_STATE_DEPLOYED_PROOF_MISSING",
           "F04_STATE_OBSERVED_PROOF_MISSING"
-        ],
-        "single_finding_set_status": "unknown/unformed",
-        "non_firing_unknown_f04_codes": [
-          "F04_STATE_RELEASE-ELIGIBLE_PROOF_MISSING"
         ],
         "non_firing_unknown_basis": {
           "verified_lower_proof_refs": {
@@ -390,6 +452,28 @@
             },
             "state_role": "state_basis",
             "resolution": "unknown; referenced content/source/owner qualification and its mapping to per-state proofs are not present or defined; do not convert to a firing finding"
+          },
+          "shared_state_basis_reference_reconciliation": {
+            "common_review_ref": "/common_other_state_proof_review/shared_state_basis_reference_resolution",
+            "target_condition_code": "F04_STATE_ACCEPTED_PROOF_MISSING",
+            "unknown_other_f04_codes": [
+              "F04_STATE_PROVISIONAL_PROOF_MISSING",
+              "F04_STATE_INTEGRATED_PROOF_MISSING",
+              "F04_STATE_VERIFIED_PROOF_MISSING",
+              "F04_STATE_RELEASE-ELIGIBLE_PROOF_MISSING",
+              "F04_STATE_DEPLOYED_PROOF_MISSING",
+              "F04_STATE_OBSERVED_PROOF_MISSING"
+            ],
+            "confirmed_non_firing_f04_codes": [],
+            "present_shared_proof_states": [
+              "Working",
+              "Provisional",
+              "Integrated",
+              "Verified",
+              "Release-eligible",
+              "Deployed",
+              "Observed"
+            ]
           }
         }
       },
@@ -426,7 +510,7 @@
         "value": "synthetic_design_fixture_not_actual_owner_or_authority"
       },
       "state_establishment": "unknown_not_claimed",
-      "non_firing_unknown_reason": "Release-eligible.observations.proofsはRelease state_basisのfieldだが、proofs@r1の参照先content/source/owner qualificationがpacket内に無く、Accepted proof nullとの包含関係もL4/L5で定義されない。Release-eligible非発火を立証できない。",
+      "non_firing_unknown_reason": "同一canonical_proof_sha256を持つ非null proofに含まれるstate_basis参照は各行で同じ内容であり、packet間の資格差を示すsourceはない。L4/L5の原証拠照合・個別資格条件に照らし参照先が未解決であるため、対象condition以外のF04コードをnonfire確定へ置かず全てunknown/unformedとする。未解決をfinding発火とは扱わない。",
       "definition_gap_return": {
         "layer": "L5",
         "owner": "L5 function 4 detail-design owner",
@@ -554,6 +638,28 @@
           "l5_qualification_rule": {
             "raw_pointer": "/functions/4/state_detail/qualification_rule",
             "resolution": "qualifies each state root/binding and state-specific source materials individually; does not define string-only reference resolution"
+          },
+          "shared_state_basis_reference_reconciliation": {
+            "common_review_ref": "/common_other_state_proof_review/shared_state_basis_reference_resolution",
+            "target_condition_code": "F04_STATE_RELEASE-ELIGIBLE_PROOF_MISSING",
+            "unknown_other_f04_codes": [
+              "F04_STATE_PROVISIONAL_PROOF_MISSING",
+              "F04_STATE_INTEGRATED_PROOF_MISSING",
+              "F04_STATE_VERIFIED_PROOF_MISSING",
+              "F04_STATE_ACCEPTED_PROOF_MISSING",
+              "F04_STATE_DEPLOYED_PROOF_MISSING",
+              "F04_STATE_OBSERVED_PROOF_MISSING"
+            ],
+            "confirmed_non_firing_f04_codes": [],
+            "present_shared_proof_states": [
+              "Working",
+              "Provisional",
+              "Integrated",
+              "Verified",
+              "Accepted",
+              "Deployed",
+              "Observed"
+            ]
           }
         }
       },
@@ -590,7 +696,7 @@
         "value": "synthetic_design_fixture_not_actual_owner_or_authority"
       },
       "state_establishment": "unknown_not_claimed",
-      "non_firing_unknown_reason": "他の非null proofにもL5 state_basisとして分類される参照（Working.work_record、Provisional.contract/oracle、Integrated.design/observed_boundary、Verified.lower_proof_refs、Accepted.l2、Observed.planning/operation_record）がある。固定rawには参照先の原内容・一部の対応付けがなく、L4/L5は文字列だけでの解決や未解決参照の扱いを定義しない。対象Release-eligible null以外の非発火を確認できずfinding setはunknown/unformed。未解決を発火とは扱わない。",
+      "non_firing_unknown_reason": "同一canonical_proof_sha256を持つ非null proofに含まれるstate_basis参照は各行で同じ内容であり、packet間の資格差を示すsourceはない。L4/L5の原証拠照合・個別資格条件に照らし参照先が未解決であるため、対象condition以外のF04コードをnonfire確定へ置かず全てunknown/unformedとする。未解決をfinding発火とは扱わない。",
       "finding_code_status": "not_formed_unknown_set",
       "definition_gap_return": {
         "layer": "L5",
@@ -666,16 +772,15 @@
         "missing_state_value": "explicit_null",
         "other_state_proof_count": 7,
         "other_state_proofs_non_null": true,
-        "non_firing_f04_codes": [
+        "non_firing_f04_codes": [],
+        "single_finding_set_status": "unknown/unformed",
+        "non_firing_unknown_f04_codes": [
           "F04_STATE_PROVISIONAL_PROOF_MISSING",
           "F04_STATE_INTEGRATED_PROOF_MISSING",
           "F04_STATE_VERIFIED_PROOF_MISSING",
           "F04_STATE_ACCEPTED_PROOF_MISSING",
+          "F04_STATE_RELEASE-ELIGIBLE_PROOF_MISSING",
           "F04_STATE_OBSERVED_PROOF_MISSING"
-        ],
-        "single_finding_set_status": "unknown/unformed",
-        "non_firing_unknown_f04_codes": [
-          "F04_STATE_RELEASE-ELIGIBLE_PROOF_MISSING"
         ],
         "non_firing_unknown_basis": {
           "verified_lower_proof_refs": {
@@ -695,6 +800,28 @@
             },
             "state_role": "state_basis",
             "resolution": "unknown; referenced content/source/owner qualification and its mapping to per-state proofs are not present or defined; do not convert to a firing finding"
+          },
+          "shared_state_basis_reference_reconciliation": {
+            "common_review_ref": "/common_other_state_proof_review/shared_state_basis_reference_resolution",
+            "target_condition_code": "F04_STATE_DEPLOYED_PROOF_MISSING",
+            "unknown_other_f04_codes": [
+              "F04_STATE_PROVISIONAL_PROOF_MISSING",
+              "F04_STATE_INTEGRATED_PROOF_MISSING",
+              "F04_STATE_VERIFIED_PROOF_MISSING",
+              "F04_STATE_ACCEPTED_PROOF_MISSING",
+              "F04_STATE_RELEASE-ELIGIBLE_PROOF_MISSING",
+              "F04_STATE_OBSERVED_PROOF_MISSING"
+            ],
+            "confirmed_non_firing_f04_codes": [],
+            "present_shared_proof_states": [
+              "Working",
+              "Provisional",
+              "Integrated",
+              "Verified",
+              "Accepted",
+              "Release-eligible",
+              "Observed"
+            ]
           }
         }
       },
@@ -731,7 +858,7 @@
         "value": "synthetic_design_fixture_not_actual_owner_or_authority"
       },
       "state_establishment": "unknown_not_claimed",
-      "non_firing_unknown_reason": "Release-eligible.observations.proofsはRelease state_basisのfieldだが、proofs@r1の参照先content/source/owner qualificationがpacket内に無い。Deployedは後続stateなのでReleaseがそれを含むとは推定せず、独立したRelease proof contentの充足もこのpointerだけから確定しない。",
+      "non_firing_unknown_reason": "同一canonical_proof_sha256を持つ非null proofに含まれるstate_basis参照は各行で同じ内容であり、packet間の資格差を示すsourceはない。L4/L5の原証拠照合・個別資格条件に照らし参照先が未解決であるため、対象condition以外のF04コードをnonfire確定へ置かず全てunknown/unformedとする。未解決をfinding発火とは扱わない。",
       "definition_gap_return": {
         "layer": "L5",
         "owner": "L5 function 4 detail-design owner",
@@ -772,16 +899,15 @@
         "missing_state_value": "explicit_null",
         "other_state_proof_count": 7,
         "other_state_proofs_non_null": true,
-        "non_firing_f04_codes": [
+        "non_firing_f04_codes": [],
+        "single_finding_set_status": "unknown/unformed",
+        "non_firing_unknown_f04_codes": [
           "F04_STATE_PROVISIONAL_PROOF_MISSING",
           "F04_STATE_INTEGRATED_PROOF_MISSING",
           "F04_STATE_VERIFIED_PROOF_MISSING",
           "F04_STATE_ACCEPTED_PROOF_MISSING",
+          "F04_STATE_RELEASE-ELIGIBLE_PROOF_MISSING",
           "F04_STATE_DEPLOYED_PROOF_MISSING"
-        ],
-        "single_finding_set_status": "unknown/unformed",
-        "non_firing_unknown_f04_codes": [
-          "F04_STATE_RELEASE-ELIGIBLE_PROOF_MISSING"
         ],
         "non_firing_unknown_basis": {
           "verified_lower_proof_refs": {
@@ -801,6 +927,28 @@
             },
             "state_role": "state_basis",
             "resolution": "unknown; referenced content/source/owner qualification and its mapping to per-state proofs are not present or defined; do not convert to a firing finding"
+          },
+          "shared_state_basis_reference_reconciliation": {
+            "common_review_ref": "/common_other_state_proof_review/shared_state_basis_reference_resolution",
+            "target_condition_code": "F04_STATE_OBSERVED_PROOF_MISSING",
+            "unknown_other_f04_codes": [
+              "F04_STATE_PROVISIONAL_PROOF_MISSING",
+              "F04_STATE_INTEGRATED_PROOF_MISSING",
+              "F04_STATE_VERIFIED_PROOF_MISSING",
+              "F04_STATE_ACCEPTED_PROOF_MISSING",
+              "F04_STATE_RELEASE-ELIGIBLE_PROOF_MISSING",
+              "F04_STATE_DEPLOYED_PROOF_MISSING"
+            ],
+            "confirmed_non_firing_f04_codes": [],
+            "present_shared_proof_states": [
+              "Working",
+              "Provisional",
+              "Integrated",
+              "Verified",
+              "Accepted",
+              "Release-eligible",
+              "Deployed"
+            ]
           }
         }
       },
@@ -837,7 +985,7 @@
         "value": "synthetic_design_fixture_not_actual_owner_or_authority"
       },
       "state_establishment": "unknown_not_claimed",
-      "non_firing_unknown_reason": "Release-eligible.observations.proofsはRelease state_basisのfieldだが、proofs@r1の参照先content/source/owner qualificationがpacket内に無い。Observedは後続stateなのでReleaseがそれを含むとは推定せず、独立したRelease proof contentの充足もこのpointerだけから確定しない。",
+      "non_firing_unknown_reason": "同一canonical_proof_sha256を持つ非null proofに含まれるstate_basis参照は各行で同じ内容であり、packet間の資格差を示すsourceはない。L4/L5の原証拠照合・個別資格条件に照らし参照先が未解決であるため、対象condition以外のF04コードをnonfire確定へ置かず全てunknown/unformedとする。未解決をfinding発火とは扱わない。",
       "definition_gap_return": {
         "layer": "L5",
         "owner": "L5 function 4 detail-design owner",
@@ -866,7 +1014,7 @@
       "artifact": "ARTIFACT-A@h2",
       "environment": "ENV-A"
     },
-    "method": "各packetに存在するproof objectの共通構造・canonical hash・outer bindingを記録する。これはstate_basis参照先の原内容/qualification解決を意味しない。Release-null packetを含む参照先qualificationはcandidate_nonfiring_reference_recheckに従いunknownとして扱い、機械validatorは原文hash/pointerと記録値だけを静的照合する。conditionは評価しない。",
+    "method": "各packetに存在するproof objectの共通構造・canonical hash・outer bindingを記録する。canonical hashが同じstate proofに含まれるstate_basis参照の資格判定は、packetごとに異なるとするsource証拠がない限り一貫させる。参照先原内容/qualificationが未解決なら、そのproofを持つcaseで対応conditionのnonfireを確定しない。機械validatorはraw hash/pointerと行間状態一致のみを静的照合し、conditionは評価しない。",
     "qualification_limit": "独立source packet自身が synthetic_design_fixture_not_actual_owner_or_authority と明示するため、実sourceの資格・実owner bytes・実authorityはunknown。実stateが成立したとは扱わない。",
     "states": [
       {
@@ -1206,12 +1354,20 @@
         "present_in_audit_count": 6
       }
     ],
-    "raw_packet_qualification": "synthetic_design_fixture_not_actual_owner_or_authority"
+    "raw_packet_qualification": "synthetic_design_fixture_not_actual_owner_or_authority",
+    "shared_state_basis_reference_resolution": {
+      "references_ref": "/candidate_nonfiring_reference_recheck/references",
+      "l4_source_pointer": "/state_evidence_connection",
+      "l5_source_pointer": "/functions/4/state_detail/qualification_rule",
+      "review_basis": "同一canonical proof hashのstate proofが持つstate_basis参照は、同じproofを含むpacket間で同一である。L4の独立原証拠結合とL5のstate資料ごとの資格照合に対し参照先原内容/資格がないため、packetごとに異なる根拠なくnonfire判定を分けない。",
+      "classification_effect": "For each case, unresolved references in any present non-target proof prevent confirming the other F04 codes as non-firing. Keep each of those codes unknown/unformed; do not infer that any such code fires.",
+      "validator_rule": "全7行でtarget以外の6コードをunknown/unformedとし、confirmed non-firingは空にする。各present state proof hashおよび適用可能なstate_basis pointer/valueを固定rawと照合する。"
+    }
   },
   "single_finding_candidate_count": 0,
   "unknown_unformed_case_count": 7,
   "candidate_nonfiring_reference_recheck": {
-    "review_basis": "L4/L5 source and fixed raw input only; no L4 predicate, L9 expected_material, or L8/L9 result oracle used",
+    "review_basis": "同一canonical proof hashのstate proofが持つstate_basis参照は、同じproofを含むpacket間で同一である。L4の独立原証拠結合とL5のstate資料ごとの資格照合に対し参照先原内容/資格がないため、packetごとに異なる根拠なくnonfire判定を分けない。",
     "release_null_case_id": "H003-F04-MISSING-Release-eligible",
     "same_shape_state_basis_reference_count": 9,
     "unresolved_condition": "The raw packet contains identifiers/references for state_basis items but does not contain or map the cited original content in the cited cases; L4/L5 do not define string-only resolution or treatment of unresolved references.",
@@ -1283,6 +1439,111 @@
         "raw_value": "OPERATION-01",
         "resolution": "unknown; referenced operation record content/source qualification is not included or mapped in the fixed packet"
       }
-    ]
+    ],
+    "row_consistency": "All seven rows use the same unresolved state_basis reference evidence wherever the proof is present. Therefore every non-target F04 code is unknown/unformed in each row; no code is recorded as confirmed non-firing, and no finding is inferred to fire.",
+    "state_proof_hashes": {
+      "Working": "0f875664a1bc2f203ff4f0cd13b9b43dd34b47fe08e62268c16514dd3a59a743",
+      "Provisional": "c90cf610c6b6fc7869f5ffcffa703fd64b834265a780f48c1d4cc47185dea3e2",
+      "Integrated": "45b98272fe380d1c81cee94541c85aa60cb4f86e8534817e85b28f65ccab1061",
+      "Verified": "6e2cd515e48cab56fa4b88f09afe3c9546a1ef8be14c281e9dd26d34b0953e0d",
+      "Accepted": "efc8ea97e935978a28d18605fc1a573d3ac5ce5075524bdc58751e8d6a4067e7",
+      "Release-eligible": "6b747f30252e4067cdee7ff5a4661faf6cd03f01cbf80760f3e7c0341765019d",
+      "Deployed": "a97334aa552dba2f9b18695f383dd46c79de802f264a587690e373b2b326e29a",
+      "Observed": "fa3fcaaba5094e08460eef12476dcc2821826c969905d3a74756405b5bba60ae"
+    },
+    "row_statuses": [
+      {
+        "case_id": "H003-F04-MISSING-Provisional",
+        "target_condition_code": "F04_STATE_PROVISIONAL_PROOF_MISSING",
+        "non_firing_f04_codes": [],
+        "non_firing_unknown_f04_codes": [
+          "F04_STATE_INTEGRATED_PROOF_MISSING",
+          "F04_STATE_VERIFIED_PROOF_MISSING",
+          "F04_STATE_ACCEPTED_PROOF_MISSING",
+          "F04_STATE_RELEASE-ELIGIBLE_PROOF_MISSING",
+          "F04_STATE_DEPLOYED_PROOF_MISSING",
+          "F04_STATE_OBSERVED_PROOF_MISSING"
+        ]
+      },
+      {
+        "case_id": "H003-F04-MISSING-Integrated",
+        "target_condition_code": "F04_STATE_INTEGRATED_PROOF_MISSING",
+        "non_firing_f04_codes": [],
+        "non_firing_unknown_f04_codes": [
+          "F04_STATE_PROVISIONAL_PROOF_MISSING",
+          "F04_STATE_VERIFIED_PROOF_MISSING",
+          "F04_STATE_ACCEPTED_PROOF_MISSING",
+          "F04_STATE_RELEASE-ELIGIBLE_PROOF_MISSING",
+          "F04_STATE_DEPLOYED_PROOF_MISSING",
+          "F04_STATE_OBSERVED_PROOF_MISSING"
+        ]
+      },
+      {
+        "case_id": "H003-F04-MISSING-Verified",
+        "target_condition_code": "F04_STATE_VERIFIED_PROOF_MISSING",
+        "non_firing_f04_codes": [],
+        "non_firing_unknown_f04_codes": [
+          "F04_STATE_PROVISIONAL_PROOF_MISSING",
+          "F04_STATE_INTEGRATED_PROOF_MISSING",
+          "F04_STATE_ACCEPTED_PROOF_MISSING",
+          "F04_STATE_RELEASE-ELIGIBLE_PROOF_MISSING",
+          "F04_STATE_DEPLOYED_PROOF_MISSING",
+          "F04_STATE_OBSERVED_PROOF_MISSING"
+        ]
+      },
+      {
+        "case_id": "H003-F04-MISSING-Accepted",
+        "target_condition_code": "F04_STATE_ACCEPTED_PROOF_MISSING",
+        "non_firing_f04_codes": [],
+        "non_firing_unknown_f04_codes": [
+          "F04_STATE_PROVISIONAL_PROOF_MISSING",
+          "F04_STATE_INTEGRATED_PROOF_MISSING",
+          "F04_STATE_VERIFIED_PROOF_MISSING",
+          "F04_STATE_RELEASE-ELIGIBLE_PROOF_MISSING",
+          "F04_STATE_DEPLOYED_PROOF_MISSING",
+          "F04_STATE_OBSERVED_PROOF_MISSING"
+        ]
+      },
+      {
+        "case_id": "H003-F04-MISSING-Release-eligible",
+        "target_condition_code": "F04_STATE_RELEASE-ELIGIBLE_PROOF_MISSING",
+        "non_firing_f04_codes": [],
+        "non_firing_unknown_f04_codes": [
+          "F04_STATE_PROVISIONAL_PROOF_MISSING",
+          "F04_STATE_INTEGRATED_PROOF_MISSING",
+          "F04_STATE_VERIFIED_PROOF_MISSING",
+          "F04_STATE_ACCEPTED_PROOF_MISSING",
+          "F04_STATE_DEPLOYED_PROOF_MISSING",
+          "F04_STATE_OBSERVED_PROOF_MISSING"
+        ]
+      },
+      {
+        "case_id": "H003-F04-MISSING-Deployed",
+        "target_condition_code": "F04_STATE_DEPLOYED_PROOF_MISSING",
+        "non_firing_f04_codes": [],
+        "non_firing_unknown_f04_codes": [
+          "F04_STATE_PROVISIONAL_PROOF_MISSING",
+          "F04_STATE_INTEGRATED_PROOF_MISSING",
+          "F04_STATE_VERIFIED_PROOF_MISSING",
+          "F04_STATE_ACCEPTED_PROOF_MISSING",
+          "F04_STATE_RELEASE-ELIGIBLE_PROOF_MISSING",
+          "F04_STATE_OBSERVED_PROOF_MISSING"
+        ]
+      },
+      {
+        "case_id": "H003-F04-MISSING-Observed",
+        "target_condition_code": "F04_STATE_OBSERVED_PROOF_MISSING",
+        "non_firing_f04_codes": [],
+        "non_firing_unknown_f04_codes": [
+          "F04_STATE_PROVISIONAL_PROOF_MISSING",
+          "F04_STATE_INTEGRATED_PROOF_MISSING",
+          "F04_STATE_VERIFIED_PROOF_MISSING",
+          "F04_STATE_ACCEPTED_PROOF_MISSING",
+          "F04_STATE_RELEASE-ELIGIBLE_PROOF_MISSING",
+          "F04_STATE_DEPLOYED_PROOF_MISSING"
+        ]
+      }
+    ],
+    "validator_rule": "For each row, exclude its target code and record the other six in non_firing_unknown_f04_codes, with non_firing_f04_codes empty. Verify each present proof hash and each applicable shared reference against the fixed raw packet and L5 state_basis pointer."
   }
 }
