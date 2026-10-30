@@ -30871,7 +30871,7 @@
             "expected_classification": "scope_unresolved",
             "expected_axis": "scope_identity",
             "expected_state": "unknown",
-            "reason": "L8の既存関数単体反例の意味・局所findingを読み、SEC003 L3/L10/L4の分類へ割当。L8の関数層finding codeはL4の集約finding vocabularyへ書換えず、expected_resultを保持する。",
+            "reason": "SEC003-L8-SIDE-NULL-PROJECT: local grade=unknown; scope_identity_unresolved@/request/origin/project; input at /request/origin/project=explicit null. This local outcome was compared with L4 taxonomy; retained assignment SEC003-F01-IDENTITY-MISSING is grounded by its source pointers and does not rewrite local findings.",
             "source_pointers": [
               {
                 "path": "docs/helix-security/L3-requirements/functional-requirements.json",
@@ -33184,7 +33184,7 @@
             "expected_classification": "isolation_violation",
             "expected_axis": "scope_identity",
             "expected_state": "violation",
-            "reason": "L8の既存関数単体反例の意味・局所findingを読み、SEC003 L3/L10/L4の分類へ割当。L8の関数層finding codeはL4の集約finding vocabularyへ書換えず、expected_resultを保持する。",
+            "reason": "SEC003-L8-SIDE-CONFLICT-PROJECT: local grade=violation; scope_identity_conflict@/request/origin/project; input at /request/origin/project=SYN-OTHER. This local outcome was compared with L4 taxonomy; retained assignment SEC003-F01-IDENTITY-CONFLICT is grounded by its source pointers and does not rewrite local findings.",
             "source_pointers": [
               {
                 "path": "docs/helix-security/L3-requirements/functional-requirements.json",
@@ -35497,7 +35497,7 @@
             "expected_classification": "scope_unresolved",
             "expected_axis": "scope_identity",
             "expected_state": "unknown",
-            "reason": "L8の既存関数単体反例の意味・局所findingを読み、SEC003 L3/L10/L4の分類へ割当。L8の関数層finding codeはL4の集約finding vocabularyへ書換えず、expected_resultを保持する。",
+            "reason": "SEC003-L8-SIDE-NULL-TENANT: local grade=unknown; scope_identity_unresolved@/request/origin/tenant; input at /request/origin/tenant=explicit null. This local outcome was compared with L4 taxonomy; retained assignment SEC003-F01-IDENTITY-MISSING is grounded by its source pointers and does not rewrite local findings.",
             "source_pointers": [
               {
                 "path": "docs/helix-security/L3-requirements/functional-requirements.json",
@@ -37810,7 +37810,7 @@
             "expected_classification": "isolation_violation",
             "expected_axis": "scope_identity",
             "expected_state": "violation",
-            "reason": "L8の既存関数単体反例の意味・局所findingを読み、SEC003 L3/L10/L4の分類へ割当。L8の関数層finding codeはL4の集約finding vocabularyへ書換えず、expected_resultを保持する。",
+            "reason": "SEC003-L8-SIDE-CONFLICT-TENANT: local grade=violation; scope_identity_conflict@/request/origin/tenant; input at /request/origin/tenant=SYN-OTHER. This local outcome was compared with L4 taxonomy; retained assignment SEC003-F01-IDENTITY-CONFLICT is grounded by its source pointers and does not rewrite local findings.",
             "source_pointers": [
               {
                 "path": "docs/helix-security/L3-requirements/functional-requirements.json",
@@ -40123,7 +40123,7 @@
             "expected_classification": "scope_unresolved",
             "expected_axis": "scope_identity",
             "expected_state": "unknown",
-            "reason": "L8の既存関数単体反例の意味・局所findingを読み、SEC003 L3/L10/L4の分類へ割当。L8の関数層finding codeはL4の集約finding vocabularyへ書換えず、expected_resultを保持する。",
+            "reason": "SEC003-L8-SIDE-NULL-ENVIRONMENT: local grade=unknown; scope_identity_unresolved@/request/origin/environment; input at /request/origin/environment=explicit null. This local outcome was compared with L4 taxonomy; retained assignment SEC003-F01-IDENTITY-MISSING is grounded by its source pointers and does not rewrite local findings.",
             "source_pointers": [
               {
                 "path": "docs/helix-security/L3-requirements/functional-requirements.json",
@@ -42436,7 +42436,7 @@
             "expected_classification": "isolation_violation",
             "expected_axis": "scope_identity",
             "expected_state": "violation",
-            "reason": "L8の既存関数単体反例の意味・局所findingを読み、SEC003 L3/L10/L4の分類へ割当。L8の関数層finding codeはL4の集約finding vocabularyへ書換えず、expected_resultを保持する。",
+            "reason": "SEC003-L8-SIDE-CONFLICT-ENVIRONMENT: local grade=violation; scope_identity_conflict@/request/origin/environment; input at /request/origin/environment=SYN-OTHER. This local outcome was compared with L4 taxonomy; retained assignment SEC003-F01-IDENTITY-CONFLICT is grounded by its source pointers and does not rewrite local findings.",
             "source_pointers": [
               {
                 "path": "docs/helix-security/L3-requirements/functional-requirements.json",
@@ -44749,7 +44749,7 @@
             "expected_classification": "scope_unresolved",
             "expected_axis": "scope_identity",
             "expected_state": "unknown",
-            "reason": "L8の既存関数単体反例の意味・局所findingを読み、SEC003 L3/L10/L4の分類へ割当。L8の関数層finding codeはL4の集約finding vocabularyへ書換えず、expected_resultを保持する。",
+            "reason": "SEC003-L8-SIDE-NULL-ASSIGNMENT: local grade=unknown; scope_identity_unresolved@/request/origin/assignment; input at /request/origin/assignment=explicit null. This local outcome was compared with L4 taxonomy; retained assignment SEC003-F01-IDENTITY-MISSING is grounded by its source pointers and does not rewrite local findings.",
             "source_pointers": [
               {
                 "path": "docs/helix-security/L3-requirements/functional-requirements.json",
@@ -47062,7 +47062,7 @@
             "expected_classification": "isolation_violation",
             "expected_axis": "scope_identity",
             "expected_state": "violation",
-            "reason": "L8の既存関数単体反例の意味・局所findingを読み、SEC003 L3/L10/L4の分類へ割当。L8の関数層finding codeはL4の集約finding vocabularyへ書換えず、expected_resultを保持する。",
+            "reason": "SEC003-L8-SIDE-CONFLICT-ASSIGNMENT: local grade=violation; scope_identity_conflict@/request/origin/assignment; input at /request/origin/assignment=SYN-OTHER. This local outcome was compared with L4 taxonomy; retained assignment SEC003-F01-IDENTITY-CONFLICT is grounded by its source pointers and does not rewrite local findings.",
             "source_pointers": [
               {
                 "path": "docs/helix-security/L3-requirements/functional-requirements.json",
@@ -49375,7 +49375,7 @@
             "expected_classification": "scope_unresolved",
             "expected_axis": "scope_identity",
             "expected_state": "unknown",
-            "reason": "L8の既存関数単体反例の意味・局所findingを読み、SEC003 L3/L10/L4の分類へ割当。L8の関数層finding codeはL4の集約finding vocabularyへ書換えず、expected_resultを保持する。",
+            "reason": "SEC003-L8-SIDE-NULL-WORKTREE: local grade=unknown; scope_identity_unresolved@/request/origin/worktree; input at /request/origin/worktree=explicit null. This local outcome was compared with L4 taxonomy; retained assignment SEC003-F01-IDENTITY-MISSING is grounded by its source pointers and does not rewrite local findings.",
             "source_pointers": [
               {
                 "path": "docs/helix-security/L3-requirements/functional-requirements.json",
@@ -51688,7 +51688,7 @@
             "expected_classification": "isolation_violation",
             "expected_axis": "scope_identity",
             "expected_state": "violation",
-            "reason": "L8の既存関数単体反例の意味・局所findingを読み、SEC003 L3/L10/L4の分類へ割当。L8の関数層finding codeはL4の集約finding vocabularyへ書換えず、expected_resultを保持する。",
+            "reason": "SEC003-L8-SIDE-CONFLICT-WORKTREE: local grade=violation; scope_identity_conflict@/request/origin/worktree; input at /request/origin/worktree=SYN-OTHER. This local outcome was compared with L4 taxonomy; retained assignment SEC003-F01-IDENTITY-CONFLICT is grounded by its source pointers and does not rewrite local findings.",
             "source_pointers": [
               {
                 "path": "docs/helix-security/L3-requirements/functional-requirements.json",
@@ -54001,7 +54001,7 @@
             "expected_classification": "scope_unresolved",
             "expected_axis": "scope_identity",
             "expected_state": "unknown",
-            "reason": "L8の既存関数単体反例の意味・局所findingを読み、SEC003 L3/L10/L4の分類へ割当。L8の関数層finding codeはL4の集約finding vocabularyへ書換えず、expected_resultを保持する。",
+            "reason": "SEC003-L8-SIDE-NULL-REVISION: local grade=unknown; scope_identity_unresolved@/request/origin/revision; input at /request/origin/revision=explicit null. This local outcome was compared with L4 taxonomy; retained assignment SEC003-F01-IDENTITY-MISSING is grounded by its source pointers and does not rewrite local findings.",
             "source_pointers": [
               {
                 "path": "docs/helix-security/L3-requirements/functional-requirements.json",
@@ -56314,7 +56314,7 @@
             "expected_classification": "isolation_violation",
             "expected_axis": "scope_identity",
             "expected_state": "violation",
-            "reason": "L8の既存関数単体反例の意味・局所findingを読み、SEC003 L3/L10/L4の分類へ割当。L8の関数層finding codeはL4の集約finding vocabularyへ書換えず、expected_resultを保持する。",
+            "reason": "SEC003-L8-SIDE-CONFLICT-REVISION: local grade=violation; scope_identity_conflict@/request/origin/revision; input at /request/origin/revision=SYN-OTHER. This local outcome was compared with L4 taxonomy; retained assignment SEC003-F01-IDENTITY-CONFLICT is grounded by its source pointers and does not rewrite local findings.",
             "source_pointers": [
               {
                 "path": "docs/helix-security/L3-requirements/functional-requirements.json",
@@ -58627,7 +58627,7 @@
             "expected_classification": "isolation_violation",
             "expected_axis": "tenant_applicability",
             "expected_state": "violation",
-            "reason": "L8の既存関数単体反例の意味・局所findingを読み、SEC003 L3/L10/L4の分類へ割当。L8の関数層finding codeはL4の集約finding vocabularyへ書換えず、expected_resultを保持する。",
+            "reason": "SEC003-L8-SIDE-INVENTED: local grade=violation; tenant_invented@/request/origin/tenant; input at /request/origin/tenant=SYN-T. This local outcome was compared with L4 taxonomy; retained assignment SEC003-F01-TENANT-INVENTED is grounded by its source pointers and does not rewrite local findings.",
             "source_pointers": [
               {
                 "path": "docs/helix-security/L3-requirements/functional-requirements.json",
@@ -60940,7 +60940,7 @@
             "expected_classification": "scope_unresolved",
             "expected_axis": "tenant_applicability",
             "expected_state": "unknown",
-            "reason": "L8の既存関数単体反例の意味・局所findingを読み、SEC003 L3/L10/L4の分類へ割当。L8の関数層finding codeはL4の集約finding vocabularyへ書換えず、expected_resultを保持する。",
+            "reason": "SEC003-L8-SIDE-UNKNOWN-VALUES: local grade=unknown; tenant_applicability_unresolved@/context/origin_tenant_applicable; input at /context/origin_tenant_applicable=explicit null. This local outcome was compared with L4 taxonomy; retained assignment SEC003-F01-TENANT-APPLICABILITY-UNRESOLVED is grounded by its source pointers and does not rewrite local findings.",
             "source_pointers": [
               {
                 "path": "docs/helix-security/L3-requirements/functional-requirements.json",
@@ -63245,7 +63245,7 @@
             "expected_classification": "scope_unresolved",
             "expected_axis": "scope_identity",
             "expected_state": "unknown",
-            "reason": "L8の既存関数単体反例の意味・局所findingを読み、SEC003 L3/L10/L4の分類へ割当。L8の関数層finding codeはL4の集約finding vocabularyへ書換えず、expected_resultを保持する。",
+            "reason": "SEC003-L8-SIDE-NONAPPLICABLE-ABSENT: local grade=unknown; scope_identity_unresolved@/request/origin/tenant; input at /request/origin/tenant=omitted. This local outcome was compared with L4 taxonomy; retained assignment SEC003-F01-IDENTITY-MISSING is grounded by its source pointers and does not rewrite local findings.",
             "source_pointers": [
               {
                 "path": "docs/helix-security/L3-requirements/functional-requirements.json",
@@ -65553,12 +65553,7 @@
           "execution_state": "not_executed",
           "meaning_completion_effect": "none",
           "negative_class_assignment": {
-            "classification": "SEC003-F01-IDENTITY-MISSING",
-            "rule_ref": "SEC003-F01-IDENTITY-MISSING",
-            "expected_classification": "scope_unresolved",
-            "expected_axis": "scope_identity",
-            "expected_state": "unknown",
-            "reason": "L8の既存関数単体反例の意味・局所findingを読み、SEC003 L3/L10/L4の分類へ割当。L8の関数層finding codeはL4の集約finding vocabularyへ書換えず、expected_resultを保持する。",
+            "reason": "grade=unknown; finding scope_input_unresolved at /side, not an identity-member pointer; L4 has no scope_input_unresolved class.",
             "source_pointers": [
               {
                 "path": "docs/helix-security/L3-requirements/functional-requirements.json",
@@ -65584,7 +65579,8 @@
                 "path": "docs/helix-security/L8-unit-verification/project-scope-isolation.json",
                 "pointer": "/cases/0/negative_cases/15/expected_result"
               }
-            ]
+            ],
+            "status": "no_receiving_l4_class"
           }
         },
         {
@@ -67871,7 +67867,7 @@
             "expected_classification": "scope_unresolved",
             "expected_axis": "scope_identity",
             "expected_state": "unknown",
-            "reason": "L8の既存関数単体反例の意味・局所findingを読み、SEC003 L3/L10/L4の分類へ割当。L8の関数層finding codeはL4の集約finding vocabularyへ書換えず、expected_resultを保持する。",
+            "reason": "SEC003-L8-SIDE-EXPECTED-NULL: local grade=unknown; scope_identity_unresolved@/context/expected_origin/project; input at /context/expected_origin/project=explicit null. This local outcome was compared with L4 taxonomy; retained assignment SEC003-F01-IDENTITY-MISSING is grounded by its source pointers and does not rewrite local findings.",
             "source_pointers": [
               {
                 "path": "docs/helix-security/L3-requirements/functional-requirements.json",
@@ -70160,7 +70156,7 @@
             "expected_classification": "isolation_violation",
             "expected_axis": "scope_identity",
             "expected_state": "violation",
-            "reason": "L8の既存関数単体反例の意味・局所findingを読み、SEC003 L3/L10/L4の分類へ割当。L8の関数層finding codeはL4の集約finding vocabularyへ書換えず、expected_resultを保持する。",
+            "reason": "SEC003-L8-ASSET-CONFLICT-PROJECT: local grade=violation; asset_scope_conflict@/request/asset_scope/project; input at /request/asset_scope/project=SYN-FOREIGN. This local outcome was compared with L4 taxonomy; retained assignment SEC003-F01-IDENTITY-CONFLICT is grounded by its source pointers and does not rewrite local findings.",
             "source_pointers": [
               {
                 "path": "docs/helix-security/L3-requirements/functional-requirements.json",
@@ -72449,7 +72445,7 @@
             "expected_classification": "isolation_violation",
             "expected_axis": "scope_identity",
             "expected_state": "violation",
-            "reason": "L8の既存関数単体反例の意味・局所findingを読み、SEC003 L3/L10/L4の分類へ割当。L8の関数層finding codeはL4の集約finding vocabularyへ書換えず、expected_resultを保持する。",
+            "reason": "SEC003-L8-ASSET-CONFLICT-TENANT: local grade=violation; asset_scope_conflict@/request/asset_scope/tenant; input at /request/asset_scope/tenant=SYN-FOREIGN. This local outcome was compared with L4 taxonomy; retained assignment SEC003-F01-IDENTITY-CONFLICT is grounded by its source pointers and does not rewrite local findings.",
             "source_pointers": [
               {
                 "path": "docs/helix-security/L3-requirements/functional-requirements.json",
@@ -74738,7 +74734,7 @@
             "expected_classification": "isolation_violation",
             "expected_axis": "scope_identity",
             "expected_state": "violation",
-            "reason": "L8の既存関数単体反例の意味・局所findingを読み、SEC003 L3/L10/L4の分類へ割当。L8の関数層finding codeはL4の集約finding vocabularyへ書換えず、expected_resultを保持する。",
+            "reason": "SEC003-L8-ASSET-CONFLICT-ENVIRONMENT: local grade=violation; asset_scope_conflict@/request/asset_scope/environment; input at /request/asset_scope/environment=SYN-FOREIGN. This local outcome was compared with L4 taxonomy; retained assignment SEC003-F01-IDENTITY-CONFLICT is grounded by its source pointers and does not rewrite local findings.",
             "source_pointers": [
               {
                 "path": "docs/helix-security/L3-requirements/functional-requirements.json",
@@ -77027,7 +77023,7 @@
             "expected_classification": "isolation_violation",
             "expected_axis": "scope_identity",
             "expected_state": "violation",
-            "reason": "L8の既存関数単体反例の意味・局所findingを読み、SEC003 L3/L10/L4の分類へ割当。L8の関数層finding codeはL4の集約finding vocabularyへ書換えず、expected_resultを保持する。",
+            "reason": "SEC003-L8-ASSET-CONFLICT-ASSIGNMENT: local grade=violation; asset_scope_conflict@/request/asset_scope/assignment; input at /request/asset_scope/assignment=SYN-FOREIGN. This local outcome was compared with L4 taxonomy; retained assignment SEC003-F01-IDENTITY-CONFLICT is grounded by its source pointers and does not rewrite local findings.",
             "source_pointers": [
               {
                 "path": "docs/helix-security/L3-requirements/functional-requirements.json",
@@ -79316,7 +79312,7 @@
             "expected_classification": "isolation_violation",
             "expected_axis": "scope_identity",
             "expected_state": "violation",
-            "reason": "L8の既存関数単体反例の意味・局所findingを読み、SEC003 L3/L10/L4の分類へ割当。L8の関数層finding codeはL4の集約finding vocabularyへ書換えず、expected_resultを保持する。",
+            "reason": "SEC003-L8-ASSET-CONFLICT-WORKTREE: local grade=violation; asset_scope_conflict@/request/asset_scope/worktree; input at /request/asset_scope/worktree=SYN-FOREIGN. This local outcome was compared with L4 taxonomy; retained assignment SEC003-F01-IDENTITY-CONFLICT is grounded by its source pointers and does not rewrite local findings.",
             "source_pointers": [
               {
                 "path": "docs/helix-security/L3-requirements/functional-requirements.json",
@@ -81605,7 +81601,7 @@
             "expected_classification": "isolation_violation",
             "expected_axis": "scope_identity",
             "expected_state": "violation",
-            "reason": "L8の既存関数単体反例の意味・局所findingを読み、SEC003 L3/L10/L4の分類へ割当。L8の関数層finding codeはL4の集約finding vocabularyへ書換えず、expected_resultを保持する。",
+            "reason": "SEC003-L8-ASSET-CONFLICT-REVISION: local grade=violation; asset_scope_conflict@/request/asset_scope/revision; input at /request/asset_scope/revision=SYN-FOREIGN. This local outcome was compared with L4 taxonomy; retained assignment SEC003-F01-IDENTITY-CONFLICT is grounded by its source pointers and does not rewrite local findings.",
             "source_pointers": [
               {
                 "path": "docs/helix-security/L3-requirements/functional-requirements.json",
@@ -83889,12 +83885,7 @@
           "execution_state": "not_executed",
           "meaning_completion_effect": "none",
           "negative_class_assignment": {
-            "classification": "SEC003-F01-IDENTITY-MISSING",
-            "rule_ref": "SEC003-F01-IDENTITY-MISSING",
-            "expected_classification": "scope_unresolved",
-            "expected_axis": "scope_identity",
-            "expected_state": "unknown",
-            "reason": "L8の既存関数単体反例の意味・局所findingを読み、SEC003 L3/L10/L4の分類へ割当。L8の関数層finding codeはL4の集約finding vocabularyへ書換えず、expected_resultを保持する。",
+            "reason": "grade=unknown; finding scope_input_unresolved at /request/asset_kind, not an identity-member pointer; L4 has no scope_input_unresolved class.",
             "source_pointers": [
               {
                 "path": "docs/helix-security/L3-requirements/functional-requirements.json",
@@ -83920,7 +83911,8 @@
                 "path": "docs/helix-security/L8-unit-verification/project-scope-isolation.json",
                 "pointer": "/cases/0/negative_cases/23/expected_result"
               }
-            ]
+            ],
+            "status": "no_receiving_l4_class"
           }
         },
         {
@@ -84106,12 +84098,7 @@
           "execution_state": "not_executed",
           "meaning_completion_effect": "none",
           "negative_class_assignment": {
-            "classification": "SEC003-F01-IDENTITY-MISSING",
-            "rule_ref": "SEC003-F01-IDENTITY-MISSING",
-            "expected_classification": "scope_unresolved",
-            "expected_axis": "scope_identity",
-            "expected_state": "unknown",
-            "reason": "L8の既存関数単体反例の意味・局所findingを読み、SEC003 L3/L10/L4の分類へ割当。L8の関数層finding codeはL4の集約finding vocabularyへ書換えず、expected_resultを保持する。",
+            "reason": "grade=unknown; finding owner_material_unresolved at /context/owner_material_states/OS; L4 has no owner-material-unresolved class.",
             "source_pointers": [
               {
                 "path": "docs/helix-security/L3-requirements/functional-requirements.json",
@@ -84137,7 +84124,8 @@
                 "path": "docs/helix-security/L8-unit-verification/project-scope-isolation.json",
                 "pointer": "/cases/0/negative_cases/24/expected_result"
               }
-            ]
+            ],
+            "status": "no_receiving_l4_class"
           }
         },
         {
@@ -84323,12 +84311,7 @@
           "execution_state": "not_executed",
           "meaning_completion_effect": "none",
           "negative_class_assignment": {
-            "classification": "SEC003-F01-IDENTITY-MISSING",
-            "rule_ref": "SEC003-F01-IDENTITY-MISSING",
-            "expected_classification": "scope_unresolved",
-            "expected_axis": "scope_identity",
-            "expected_state": "unknown",
-            "reason": "L8の既存関数単体反例の意味・局所findingを読み、SEC003 L3/L10/L4の分類へ割当。L8の関数層finding codeはL4の集約finding vocabularyへ書換えず、expected_resultを保持する。",
+            "reason": "grade=unknown; finding owner_material_unresolved at /context/owner_material_states/INFRA; L4 has no owner-material-unresolved class.",
             "source_pointers": [
               {
                 "path": "docs/helix-security/L3-requirements/functional-requirements.json",
@@ -84354,7 +84337,8 @@
                 "path": "docs/helix-security/L8-unit-verification/project-scope-isolation.json",
                 "pointer": "/cases/0/negative_cases/25/expected_result"
               }
-            ]
+            ],
+            "status": "no_receiving_l4_class"
           }
         },
         {
@@ -84540,12 +84524,7 @@
           "execution_state": "not_executed",
           "meaning_completion_effect": "none",
           "negative_class_assignment": {
-            "classification": "SEC003-F01-IDENTITY-MISSING",
-            "rule_ref": "SEC003-F01-IDENTITY-MISSING",
-            "expected_classification": "scope_unresolved",
-            "expected_axis": "scope_identity",
-            "expected_state": "unknown",
-            "reason": "L8の既存関数単体反例の意味・局所findingを読み、SEC003 L3/L10/L4の分類へ割当。L8の関数層finding codeはL4の集約finding vocabularyへ書換えず、expected_resultを保持する。",
+            "reason": "grade=unknown; finding owner_material_unresolved at /context/owner_material_states/CONNECT; L4 has no owner-material-unresolved class.",
             "source_pointers": [
               {
                 "path": "docs/helix-security/L3-requirements/functional-requirements.json",
@@ -84571,7 +84550,8 @@
                 "path": "docs/helix-security/L8-unit-verification/project-scope-isolation.json",
                 "pointer": "/cases/0/negative_cases/26/expected_result"
               }
-            ]
+            ],
+            "status": "no_receiving_l4_class"
           }
         },
         {
@@ -86858,7 +86838,7 @@
             "expected_classification": "scope_unresolved",
             "expected_axis": "scope_identity",
             "expected_state": "unknown",
-            "reason": "L8の既存関数単体反例の意味・局所findingを読み、SEC003 L3/L10/L4の分類へ割当。L8の関数層finding codeはL4の集約finding vocabularyへ書換えず、expected_resultを保持する。",
+            "reason": "SEC003-L8-SIDE-TARGET-NULL: local grade=unknown; scope_identity_unresolved@/request/target/project; input at /request/target/project=explicit null. This local outcome was compared with L4 taxonomy; retained assignment SEC003-F01-IDENTITY-MISSING is grounded by its source pointers and does not rewrite local findings.",
             "source_pointers": [
               {
                 "path": "docs/helix-security/L3-requirements/functional-requirements.json",
@@ -89074,7 +89054,7 @@
             "expected_classification": "scope_unresolved",
             "expected_axis": "scope_identity",
             "expected_state": "unknown",
-            "reason": "L8の既存関数単体反例の意味・局所findingを読み、SEC003 L3/L10/L4の分類へ割当。L8の関数層finding codeはL4の集約finding vocabularyへ書換えず、expected_resultを保持する。",
+            "reason": "SEC003-L8-SIDE-ORIGIN-MULTITARGET: local grade=unknown; scope_identity_unresolved@/request/origin; input at /request/origin=[{'assignment': 'SYN-A', 'environment': 'SYN-E', 'project': 'SYN-P', 'revision': 'SYN-R', 'tenant': 'SYN-T', 'worktree': 'SYN-W'}]. This local outcome was compared with L4 taxonomy; retained assignment SEC003-F01-IDENTITY-MISSING is grounded by its source pointers and does not rewrite local findings.",
             "source_pointers": [
               {
                 "path": "docs/helix-security/L3-requirements/functional-requirements.json",
@@ -102179,7 +102159,7 @@
             "expected_classification": "isolation_violation",
             "expected_axis": "explicit_connection",
             "expected_state": "violation",
-            "reason": "L8の既存関数単体反例の意味・局所findingを読み、SEC003 L3/L10/L4の分類へ割当。L8の関数層finding codeはL4の集約finding vocabularyへ書換えず、expected_resultを保持する。",
+            "reason": "SEC003-L8-CONNECTION-ABSENT: local grade=violation; explicit_connection_absent@/request/connection_state; input at /request/connection_state=absent. This local outcome was compared with L4 taxonomy; retained assignment SEC003-F02-EXPLICIT-CONNECTION-ABSENT is grounded by its source pointers and does not rewrite local findings.",
             "source_pointers": [
               {
                 "path": "docs/helix-security/L3-requirements/functional-requirements.json",
@@ -104470,7 +104450,7 @@
             "expected_classification": "scope_unresolved",
             "expected_axis": "explicit_connection",
             "expected_state": "unknown",
-            "reason": "L8の既存関数単体反例の意味・局所findingを読み、SEC003 L3/L10/L4の分類へ割当。L8の関数層finding codeはL4の集約finding vocabularyへ書換えず、expected_resultを保持する。",
+            "reason": "SEC003-L8-CONNECTION-UNKNOWN: local grade=unknown; connection_material_unresolved@/request/connection_state; input at /request/connection_state=unknown. This local outcome was compared with L4 taxonomy; retained assignment SEC003-F02-CONNECTION-MATERIAL-UNRESOLVED is grounded by its source pointers and does not rewrite local findings.",
             "source_pointers": [
               {
                 "path": "docs/helix-security/L3-requirements/functional-requirements.json",
@@ -106761,7 +106741,7 @@
             "expected_classification": "scope_unresolved",
             "expected_axis": "explicit_connection",
             "expected_state": "unknown",
-            "reason": "L8の既存関数単体反例の意味・局所findingを読み、SEC003 L3/L10/L4の分類へ割当。L8の関数層finding codeはL4の集約finding vocabularyへ書換えず、expected_resultを保持する。",
+            "reason": "SEC003-L8-CONNECTION-ENUM: local grade=unknown; connection_material_unresolved@/request/connection_state; input at /request/connection_state=future. This local outcome was compared with L4 taxonomy; retained assignment SEC003-F02-CONNECTION-MATERIAL-UNRESOLVED is grounded by its source pointers and does not rewrite local findings.",
             "source_pointers": [
               {
                 "path": "docs/helix-security/L3-requirements/functional-requirements.json",
@@ -109052,7 +109032,7 @@
             "expected_classification": "isolation_violation",
             "expected_axis": "explicit_connection",
             "expected_state": "violation",
-            "reason": "L8の既存関数単体反例の意味・局所findingを読み、SEC003 L3/L10/L4の分類へ割当。L8の関数層finding codeはL4の集約finding vocabularyへ書換えず、expected_resultを保持する。",
+            "reason": "SEC003-L8-CONNECTION-CONTENT-IDENTITY: local grade=violation; connection_content_conflict@/request/connection; input at /request/connection={'allowed_operations': ['read'], 'identity': 'SYN-OTHER-C', 'origin': {'assignment': 'SYN-A', 'environment': 'SYN-E', 'project': 'SYN-P', 'revision': 'SYN-R', 'tenant': 'SYN-T', 'worktree': 'SYN-W'}, 'revision': 'SYN-CR', 'target': {'assignment': 'SYN-A', 'environment': 'SYN-E', 'project': 'SYN-P', 'revision': 'SYN-R', 'tenant': 'SYN-T', 'worktree': 'SYN-W'}}. This local outcome was compared with L4 taxonomy; retained assignment SEC003-F02-CONNECTION-MATERIAL-CONFLICT is grounded by its source pointers and does not rewrite local findings.",
             "source_pointers": [
               {
                 "path": "docs/helix-security/L3-requirements/functional-requirements.json",
@@ -111343,7 +111323,7 @@
             "expected_classification": "isolation_violation",
             "expected_axis": "explicit_connection",
             "expected_state": "violation",
-            "reason": "L8の既存関数単体反例の意味・局所findingを読み、SEC003 L3/L10/L4の分類へ割当。L8の関数層finding codeはL4の集約finding vocabularyへ書換えず、expected_resultを保持する。",
+            "reason": "SEC003-L8-CONNECTION-CONTENT-REVISION: local grade=violation; connection_content_conflict@/request/connection; input at /request/connection={'allowed_operations': ['read'], 'identity': 'SYN-C', 'origin': {'assignment': 'SYN-A', 'environment': 'SYN-E', 'project': 'SYN-P', 'revision': 'SYN-R', 'tenant': 'SYN-T', 'worktree': 'SYN-W'}, 'revision': 'SYN-OLD-CR', 'target': {'assignment': 'SYN-A', 'environment': 'SYN-E', 'project': 'SYN-P', 'revision': 'SYN-R', 'tenant': 'SYN-T', 'worktree': 'SYN-W'}}. This local outcome was compared with L4 taxonomy; retained assignment SEC003-F02-CONNECTION-MATERIAL-CONFLICT is grounded by its source pointers and does not rewrite local findings.",
             "source_pointers": [
               {
                 "path": "docs/helix-security/L3-requirements/functional-requirements.json",
@@ -113643,7 +113623,7 @@
             "expected_classification": "isolation_violation",
             "expected_axis": "explicit_connection",
             "expected_state": "violation",
-            "reason": "L8の既存関数単体反例の意味・局所findingを読み、SEC003 L3/L10/L4の分類へ割当。L8の関数層finding codeはL4の集約finding vocabularyへ書換えず、expected_resultを保持する。",
+            "reason": "SEC003-L8-CONNECTION-CONTENT-ALLOWED_OPERATIONS: local grade=violation; connection_content_conflict@/request/connection; input at /request/connection={'allowed_operations': ['read', 'read'], 'identity': 'SYN-C', 'origin': {'assignment': 'SYN-A', 'environment': 'SYN-E', 'project': 'SYN-P', 'revision': 'SYN-R', 'tenant': 'SYN-T', 'worktree': 'SYN-W'}, 'revision': 'SYN-CR', 'target': {'assignment': 'SYN-A', 'environment': 'SYN-E', 'project': 'SYN-P', 'revision': 'SYN-R', 'tenant': 'SYN-T', 'worktree': 'SYN-W'}}. This local outcome was compared with L4 taxonomy; retained assignment SEC003-F02-CONNECTION-MATERIAL-CONFLICT is grounded by its source pointers and does not rewrite local findings.",
             "source_pointers": [
               {
                 "path": "docs/helix-security/L3-requirements/functional-requirements.json",
@@ -115934,7 +115914,7 @@
             "expected_classification": "isolation_violation",
             "expected_axis": "explicit_connection",
             "expected_state": "violation",
-            "reason": "L8の既存関数単体反例の意味・局所findingを読み、SEC003 L3/L10/L4の分類へ割当。L8の関数層finding codeはL4の集約finding vocabularyへ書換えず、expected_resultを保持する。",
+            "reason": "SEC003-L8-CONNECTION-JOIN-ORIGIN: local grade=violation; connection_scope_conflict@/request/connection/origin; input at /request/connection/origin={'assignment': 'SYN-A', 'environment': 'SYN-E', 'project': 'SYN-P', 'revision': 'SYN-R', 'tenant': 'SYN-T', 'worktree': 'SYN-W'}. This local outcome was compared with L4 taxonomy; retained assignment SEC003-F02-CONNECTION-MATERIAL-CONFLICT is grounded by its source pointers and does not rewrite local findings.",
             "source_pointers": [
               {
                 "path": "docs/helix-security/L3-requirements/functional-requirements.json",
@@ -118225,7 +118205,7 @@
             "expected_classification": "isolation_violation",
             "expected_axis": "explicit_connection",
             "expected_state": "violation",
-            "reason": "L8の既存関数単体反例の意味・局所findingを読み、SEC003 L3/L10/L4の分類へ割当。L8の関数層finding codeはL4の集約finding vocabularyへ書換えず、expected_resultを保持する。",
+            "reason": "SEC003-L8-CONNECTION-JOIN-TARGET: local grade=violation; connection_scope_conflict@/request/connection/target; input at /request/connection/target={'assignment': 'SYN-A', 'environment': 'SYN-E', 'project': 'SYN-P', 'revision': 'SYN-R', 'tenant': 'SYN-T', 'worktree': 'SYN-W'}. This local outcome was compared with L4 taxonomy; retained assignment SEC003-F02-CONNECTION-MATERIAL-CONFLICT is grounded by its source pointers and does not rewrite local findings.",
             "source_pointers": [
               {
                 "path": "docs/helix-security/L3-requirements/functional-requirements.json",
@@ -120508,7 +120488,7 @@
             "expected_classification": "scope_unresolved",
             "expected_axis": "explicit_connection",
             "expected_state": "unknown",
-            "reason": "L8の既存関数単体反例の意味・局所findingを読み、SEC003 L3/L10/L4の分類へ割当。L8の関数層finding codeはL4の集約finding vocabularyへ書換えず、expected_resultを保持する。",
+            "reason": "SEC003-L8-CONNECTION-IDENTITY-ABSENT: local grade=unknown; connection_material_unresolved@/request/connection/identity; input at /request/connection/identity=omitted. This local outcome was compared with L4 taxonomy; retained assignment SEC003-F02-CONNECTION-MATERIAL-UNRESOLVED is grounded by its source pointers and does not rewrite local findings.",
             "source_pointers": [
               {
                 "path": "docs/helix-security/L3-requirements/functional-requirements.json",
@@ -121693,7 +121673,7 @@
             "expected_classification": "isolation_violation",
             "expected_axis": "operation_scope",
             "expected_state": "violation",
-            "reason": "L8の既存関数単体反例の意味・局所findingを読み、SEC003 L3/L10/L4の分類へ割当。L8の関数層finding codeはL4の集約finding vocabularyへ書換えず、expected_resultを保持する。",
+            "reason": "SEC003-L8-OPERATION-WRITE: local grade=violation; operation_scope_conflict@/request/operation; input at /request/operation=write. This local outcome was compared with L4 taxonomy; retained assignment SEC003-F02-OPERATION-SCOPE is grounded by its source pointers and does not rewrite local findings.",
             "source_pointers": [
               {
                 "path": "docs/helix-security/L3-requirements/functional-requirements.json",
@@ -122878,7 +122858,7 @@
             "expected_classification": "isolation_violation",
             "expected_axis": "operation_scope",
             "expected_state": "violation",
-            "reason": "L8の既存関数単体反例の意味・局所findingを読み、SEC003 L3/L10/L4の分類へ割当。L8の関数層finding codeはL4の集約finding vocabularyへ書換えず、expected_resultを保持する。",
+            "reason": "SEC003-L8-OPERATION-EXECUTE: local grade=violation; operation_scope_conflict@/request/operation; input at /request/operation=execute. This local outcome was compared with L4 taxonomy; retained assignment SEC003-F02-OPERATION-SCOPE is grounded by its source pointers and does not rewrite local findings.",
             "source_pointers": [
               {
                 "path": "docs/helix-security/L3-requirements/functional-requirements.json",
@@ -124063,7 +124043,7 @@
             "expected_classification": "isolation_violation",
             "expected_axis": "operation_scope",
             "expected_state": "violation",
-            "reason": "L8の既存関数単体反例の意味・局所findingを読み、SEC003 L3/L10/L4の分類へ割当。L8の関数層finding codeはL4の集約finding vocabularyへ書換えず、expected_resultを保持する。",
+            "reason": "SEC003-L8-OPERATION-NETWORK: local grade=violation; operation_scope_conflict@/request/operation; input at /request/operation=network. This local outcome was compared with L4 taxonomy; retained assignment SEC003-F02-OPERATION-SCOPE is grounded by its source pointers and does not rewrite local findings.",
             "source_pointers": [
               {
                 "path": "docs/helix-security/L3-requirements/functional-requirements.json",
@@ -125248,7 +125228,7 @@
             "expected_classification": "isolation_violation",
             "expected_axis": "operation_scope",
             "expected_state": "violation",
-            "reason": "L8の既存関数単体反例の意味・局所findingを読み、SEC003 L3/L10/L4の分類へ割当。L8の関数層finding codeはL4の集約finding vocabularyへ書換えず、expected_resultを保持する。",
+            "reason": "SEC003-L8-OPERATION-STATE: local grade=violation; operation_scope_conflict@/request/operation; input at /request/operation=state. This local outcome was compared with L4 taxonomy; retained assignment SEC003-F02-OPERATION-SCOPE is grounded by its source pointers and does not rewrite local findings.",
             "source_pointers": [
               {
                 "path": "docs/helix-security/L3-requirements/functional-requirements.json",
@@ -126433,7 +126413,7 @@
             "expected_classification": "isolation_violation",
             "expected_axis": "operation_scope",
             "expected_state": "violation",
-            "reason": "L8の既存関数単体反例の意味・局所findingを読み、SEC003 L3/L10/L4の分類へ割当。L8の関数層finding codeはL4の集約finding vocabularyへ書換えず、expected_resultを保持する。",
+            "reason": "SEC003-L8-OPERATION-CREDENTIAL: local grade=violation; operation_scope_conflict@/request/operation; input at /request/operation=credential. This local outcome was compared with L4 taxonomy; retained assignment SEC003-F02-OPERATION-SCOPE is grounded by its source pointers and does not rewrite local findings.",
             "source_pointers": [
               {
                 "path": "docs/helix-security/L3-requirements/functional-requirements.json",
@@ -127618,7 +127598,7 @@
             "expected_classification": "isolation_violation",
             "expected_axis": "operation_scope",
             "expected_state": "violation",
-            "reason": "L8の既存関数単体反例の意味・局所findingを読み、SEC003 L3/L10/L4の分類へ割当。L8の関数層finding codeはL4の集約finding vocabularyへ書換えず、expected_resultを保持する。",
+            "reason": "SEC003-L8-OPERATION-ARTIFACT: local grade=violation; operation_scope_conflict@/request/operation; input at /request/operation=artifact. This local outcome was compared with L4 taxonomy; retained assignment SEC003-F02-OPERATION-SCOPE is grounded by its source pointers and does not rewrite local findings.",
             "source_pointers": [
               {
                 "path": "docs/helix-security/L3-requirements/functional-requirements.json",
@@ -128798,12 +128778,7 @@
           "execution_state": "not_executed",
           "meaning_completion_effect": "none",
           "negative_class_assignment": {
-            "classification": "SEC003-F02-OPERATION-SCOPE",
-            "rule_ref": "SEC003-F02-OPERATION-SCOPE",
-            "expected_classification": "isolation_violation",
-            "expected_axis": "operation_scope",
-            "expected_state": "violation",
-            "reason": "L8の既存関数単体反例の意味・局所findingを読み、SEC003 L3/L10/L4の分類へ割当。L8の関数層finding codeはL4の集約finding vocabularyへ書換えず、expected_resultを保持する。",
+            "reason": "grade=unknown; finding scope_input_unresolved at /request/operation; L4 has no matching unknown-operation classification.",
             "source_pointers": [
               {
                 "path": "docs/helix-security/L3-requirements/functional-requirements.json",
@@ -128829,7 +128804,8 @@
                 "path": "docs/helix-security/L8-unit-verification/project-scope-isolation.json",
                 "pointer": "/cases/1/negative_cases/15/expected_result"
               }
-            ]
+            ],
+            "status": "no_receiving_l4_class"
           }
         },
         {
@@ -129977,12 +129953,7 @@
           "execution_state": "not_executed",
           "meaning_completion_effect": "none",
           "negative_class_assignment": {
-            "classification": "SEC003-F02-OPERATION-SCOPE",
-            "rule_ref": "SEC003-F02-OPERATION-SCOPE",
-            "expected_classification": "isolation_violation",
-            "expected_axis": "operation_scope",
-            "expected_state": "violation",
-            "reason": "L8の既存関数単体反例の意味・局所findingを読み、SEC003 L3/L10/L4の分類へ割当。L8の関数層finding codeはL4の集約finding vocabularyへ書換えず、expected_resultを保持する。",
+            "reason": "grade=unknown; no local findings; L5 defer/unknown boundary does not establish the L4 operation-scope violation class.",
             "source_pointers": [
               {
                 "path": "docs/helix-security/L3-requirements/functional-requirements.json",
@@ -130008,7 +129979,8 @@
                 "path": "docs/helix-security/L8-unit-verification/project-scope-isolation.json",
                 "pointer": "/cases/1/negative_cases/16/expected_result"
               }
-            ]
+            ],
+            "status": "no_receiving_l4_class"
           }
         },
         {
@@ -131131,7 +131103,7 @@
             "expected_classification": "isolation_violation",
             "expected_axis": "operation_scope",
             "expected_state": "violation",
-            "reason": "L8の既存関数単体反例の意味・局所findingを読み、SEC003 L3/L10/L4の分類へ割当。L8の関数層finding codeはL4の集約finding vocabularyへ書換えず、expected_resultを保持する。",
+            "reason": "SEC003-L8-OPERATION-EMPTY: local grade=violation; operation_scope_conflict@/request/operation; input at /request/operation=read. This local outcome was compared with L4 taxonomy; retained assignment SEC003-F02-OPERATION-SCOPE is grounded by its source pointers and does not rewrite local findings.",
             "source_pointers": [
               {
                 "path": "docs/helix-security/L3-requirements/functional-requirements.json",
@@ -132322,7 +132294,7 @@
             "expected_classification": "scope_unresolved",
             "expected_axis": "explicit_connection",
             "expected_state": "unknown",
-            "reason": "L8の既存関数単体反例の意味・局所findingを読み、SEC003 L3/L10/L4の分類へ割当。L8の関数層finding codeはL4の集約finding vocabularyへ書換えず、expected_resultを保持する。",
+            "reason": "SEC003-L8-OPERATION-INVALID-LIST: local grade=unknown; connection_material_unresolved@/request/connection/allowed_operations; input at /request/connection/allowed_operations=['read', None]. This local outcome was compared with L4 taxonomy; retained assignment SEC003-F02-CONNECTION-MATERIAL-UNRESOLVED is grounded by its source pointers and does not rewrite local findings.",
             "source_pointers": [
               {
                 "path": "docs/helix-security/L3-requirements/functional-requirements.json",
@@ -132459,7 +132431,7 @@
             "expected_classification": "isolation_violation",
             "expected_axis": "explicit_connection",
             "expected_state": "violation",
-            "reason": "L8の既存関数単体反例の意味・局所findingを読み、SEC003 L3/L10/L4の分類へ割当。L8の関数層finding codeはL4の集約finding vocabularyへ書換えず、expected_resultを保持する。",
+            "reason": "SEC003-L8-FALLBACK-PRIMARY: local grade=violation; implicit_fallback@/request/fallback; input at /request/fallback=primary_tree. This local outcome was compared with L4 taxonomy; retained assignment SEC003-F02-IMPLICIT-FALLBACK is grounded by its source pointers and does not rewrite local findings.",
             "source_pointers": [
               {
                 "path": "docs/helix-security/L3-requirements/functional-requirements.json",
@@ -132596,7 +132568,7 @@
             "expected_classification": "isolation_violation",
             "expected_axis": "explicit_connection",
             "expected_state": "violation",
-            "reason": "L8の既存関数単体反例の意味・局所findingを読み、SEC003 L3/L10/L4の分類へ割当。L8の関数層finding codeはL4の集約finding vocabularyへ書換えず、expected_resultを保持する。",
+            "reason": "SEC003-L8-FALLBACK-OTHER: local grade=violation; implicit_fallback@/request/fallback; input at /request/fallback=other_project. This local outcome was compared with L4 taxonomy; retained assignment SEC003-F02-IMPLICIT-FALLBACK is grounded by its source pointers and does not rewrite local findings.",
             "source_pointers": [
               {
                 "path": "docs/helix-security/L3-requirements/functional-requirements.json",
@@ -132728,12 +132700,7 @@
           "execution_state": "not_executed",
           "meaning_completion_effect": "none",
           "negative_class_assignment": {
-            "classification": "SEC003-F02-IMPLICIT-FALLBACK",
-            "rule_ref": "SEC003-F02-IMPLICIT-FALLBACK",
-            "expected_classification": "isolation_violation",
-            "expected_axis": "explicit_connection",
-            "expected_state": "violation",
-            "reason": "L8の既存関数単体反例の意味・局所findingを読み、SEC003 L3/L10/L4の分類へ割当。L8の関数層finding codeはL4の集約finding vocabularyへ書換えず、expected_resultを保持する。",
+            "reason": "grade=unknown; finding scope_input_unresolved at /request/fallback; L4 has no matching unresolved-fallback classification.",
             "source_pointers": [
               {
                 "path": "docs/helix-security/L3-requirements/functional-requirements.json",
@@ -132759,7 +132726,8 @@
                 "path": "docs/helix-security/L8-unit-verification/project-scope-isolation.json",
                 "pointer": "/cases/1/negative_cases/21/expected_result"
               }
-            ]
+            ],
+            "status": "no_receiving_l4_class"
           }
         },
         {
@@ -132865,12 +132833,7 @@
           "execution_state": "not_executed",
           "meaning_completion_effect": "none",
           "negative_class_assignment": {
-            "classification": "SEC003-F02-IMPLICIT-FALLBACK",
-            "rule_ref": "SEC003-F02-IMPLICIT-FALLBACK",
-            "expected_classification": "isolation_violation",
-            "expected_axis": "explicit_connection",
-            "expected_state": "violation",
-            "reason": "L8の既存関数単体反例の意味・局所findingを読み、SEC003 L3/L10/L4の分類へ割当。L8の関数層finding codeはL4の集約finding vocabularyへ書換えず、expected_resultを保持する。",
+            "reason": "grade=unknown; explicit-null fallback is unresolved at /request/fallback; L4 has no matching unresolved-fallback classification.",
             "source_pointers": [
               {
                 "path": "docs/helix-security/L3-requirements/functional-requirements.json",
@@ -132896,7 +132859,8 @@
                 "path": "docs/helix-security/L8-unit-verification/project-scope-isolation.json",
                 "pointer": "/cases/1/negative_cases/22/expected_result"
               }
-            ]
+            ],
+            "status": "no_receiving_l4_class"
           }
         }
       ],
@@ -180788,13 +180752,13 @@
         "document": "docs/helix-security/L5-detail-design/project-scope-isolation.json",
         "revision": "current_candidate",
         "pointer": "/functions/7",
-        "file_sha256": "1b6e50cd2db88e86ae88723589e12170b0651650cf5dbb280b99c673180ea108"
+        "file_sha256": "41c49bc0b62b415422067297bd9accf848e4f14e253fab9779e778c49c2e1edd"
       },
       "fn10": {
         "document": "docs/helix-security/L5-detail-design/project-scope-isolation.json",
         "revision": "current_candidate",
         "pointer": "/functions/10",
-        "file_sha256": "1b6e50cd2db88e86ae88723589e12170b0651650cf5dbb280b99c673180ea108"
+        "file_sha256": "41c49bc0b62b415422067297bd9accf848e4f14e253fab9779e778c49c2e1edd"
       },
       "scope_proposal": {
         "document": "docs/helix-security/L5-detail-design/project-scope-isolation.json",
@@ -181130,13 +181094,13 @@
             "document": "docs/helix-security/L5-detail-design/project-scope-isolation.json",
             "revision": "current_candidate",
             "pointer": "/functions/7",
-            "file_sha256": "1b6e50cd2db88e86ae88723589e12170b0651650cf5dbb280b99c673180ea108"
+            "file_sha256": "41c49bc0b62b415422067297bd9accf848e4f14e253fab9779e778c49c2e1edd"
           },
           "fn10": {
             "document": "docs/helix-security/L5-detail-design/project-scope-isolation.json",
             "revision": "current_candidate",
             "pointer": "/functions/10",
-            "file_sha256": "1b6e50cd2db88e86ae88723589e12170b0651650cf5dbb280b99c673180ea108"
+            "file_sha256": "41c49bc0b62b415422067297bd9accf848e4f14e253fab9779e778c49c2e1edd"
           },
           "ScopeProposal": {
             "document": "docs/helix-security/L5-detail-design/project-scope-isolation.json",
@@ -181490,13 +181454,13 @@
             "document": "docs/helix-security/L5-detail-design/project-scope-isolation.json",
             "revision": "current_candidate",
             "pointer": "/functions/7",
-            "file_sha256": "1b6e50cd2db88e86ae88723589e12170b0651650cf5dbb280b99c673180ea108"
+            "file_sha256": "41c49bc0b62b415422067297bd9accf848e4f14e253fab9779e778c49c2e1edd"
           },
           "fn10": {
             "document": "docs/helix-security/L5-detail-design/project-scope-isolation.json",
             "revision": "current_candidate",
             "pointer": "/functions/10",
-            "file_sha256": "1b6e50cd2db88e86ae88723589e12170b0651650cf5dbb280b99c673180ea108"
+            "file_sha256": "41c49bc0b62b415422067297bd9accf848e4f14e253fab9779e778c49c2e1edd"
           },
           "ScopeProposal": {
             "document": "docs/helix-security/L5-detail-design/project-scope-isolation.json",
@@ -181938,13 +181902,13 @@
             "document": "docs/helix-security/L5-detail-design/project-scope-isolation.json",
             "revision": "current_candidate",
             "pointer": "/functions/7",
-            "file_sha256": "1b6e50cd2db88e86ae88723589e12170b0651650cf5dbb280b99c673180ea108"
+            "file_sha256": "41c49bc0b62b415422067297bd9accf848e4f14e253fab9779e778c49c2e1edd"
           },
           "fn10": {
             "document": "docs/helix-security/L5-detail-design/project-scope-isolation.json",
             "revision": "current_candidate",
             "pointer": "/functions/10",
-            "file_sha256": "1b6e50cd2db88e86ae88723589e12170b0651650cf5dbb280b99c673180ea108"
+            "file_sha256": "41c49bc0b62b415422067297bd9accf848e4f14e253fab9779e778c49c2e1edd"
           },
           "ScopeProposal": {
             "document": "docs/helix-security/L5-detail-design/project-scope-isolation.json",
@@ -182272,13 +182236,13 @@
             "document": "docs/helix-security/L5-detail-design/project-scope-isolation.json",
             "revision": "current_candidate",
             "pointer": "/functions/7",
-            "file_sha256": "1b6e50cd2db88e86ae88723589e12170b0651650cf5dbb280b99c673180ea108"
+            "file_sha256": "41c49bc0b62b415422067297bd9accf848e4f14e253fab9779e778c49c2e1edd"
           },
           "fn10": {
             "document": "docs/helix-security/L5-detail-design/project-scope-isolation.json",
             "revision": "current_candidate",
             "pointer": "/functions/10",
-            "file_sha256": "1b6e50cd2db88e86ae88723589e12170b0651650cf5dbb280b99c673180ea108"
+            "file_sha256": "41c49bc0b62b415422067297bd9accf848e4f14e253fab9779e778c49c2e1edd"
           },
           "ScopeProposal": {
             "document": "docs/helix-security/L5-detail-design/project-scope-isolation.json",
@@ -182710,13 +182674,13 @@
             "document": "docs/helix-security/L5-detail-design/project-scope-isolation.json",
             "revision": "current_candidate",
             "pointer": "/functions/7",
-            "file_sha256": "1b6e50cd2db88e86ae88723589e12170b0651650cf5dbb280b99c673180ea108"
+            "file_sha256": "41c49bc0b62b415422067297bd9accf848e4f14e253fab9779e778c49c2e1edd"
           },
           "fn10": {
             "document": "docs/helix-security/L5-detail-design/project-scope-isolation.json",
             "revision": "current_candidate",
             "pointer": "/functions/10",
-            "file_sha256": "1b6e50cd2db88e86ae88723589e12170b0651650cf5dbb280b99c673180ea108"
+            "file_sha256": "41c49bc0b62b415422067297bd9accf848e4f14e253fab9779e778c49c2e1edd"
           },
           "ScopeProposal": {
             "document": "docs/helix-security/L5-detail-design/project-scope-isolation.json",
@@ -182971,13 +182935,13 @@
             "document": "docs/helix-security/L5-detail-design/project-scope-isolation.json",
             "revision": "current_candidate",
             "pointer": "/functions/7",
-            "file_sha256": "1b6e50cd2db88e86ae88723589e12170b0651650cf5dbb280b99c673180ea108"
+            "file_sha256": "41c49bc0b62b415422067297bd9accf848e4f14e253fab9779e778c49c2e1edd"
           },
           "fn10": {
             "document": "docs/helix-security/L5-detail-design/project-scope-isolation.json",
             "revision": "current_candidate",
             "pointer": "/functions/10",
-            "file_sha256": "1b6e50cd2db88e86ae88723589e12170b0651650cf5dbb280b99c673180ea108"
+            "file_sha256": "41c49bc0b62b415422067297bd9accf848e4f14e253fab9779e778c49c2e1edd"
           },
           "ScopeProposal": {
             "document": "docs/helix-security/L5-detail-design/project-scope-isolation.json",
@@ -183232,13 +183196,13 @@
             "document": "docs/helix-security/L5-detail-design/project-scope-isolation.json",
             "revision": "current_candidate",
             "pointer": "/functions/7",
-            "file_sha256": "1b6e50cd2db88e86ae88723589e12170b0651650cf5dbb280b99c673180ea108"
+            "file_sha256": "41c49bc0b62b415422067297bd9accf848e4f14e253fab9779e778c49c2e1edd"
           },
           "fn10": {
             "document": "docs/helix-security/L5-detail-design/project-scope-isolation.json",
             "revision": "current_candidate",
             "pointer": "/functions/10",
-            "file_sha256": "1b6e50cd2db88e86ae88723589e12170b0651650cf5dbb280b99c673180ea108"
+            "file_sha256": "41c49bc0b62b415422067297bd9accf848e4f14e253fab9779e778c49c2e1edd"
           },
           "ScopeProposal": {
             "document": "docs/helix-security/L5-detail-design/project-scope-isolation.json",
@@ -183493,13 +183457,13 @@
             "document": "docs/helix-security/L5-detail-design/project-scope-isolation.json",
             "revision": "current_candidate",
             "pointer": "/functions/7",
-            "file_sha256": "1b6e50cd2db88e86ae88723589e12170b0651650cf5dbb280b99c673180ea108"
+            "file_sha256": "41c49bc0b62b415422067297bd9accf848e4f14e253fab9779e778c49c2e1edd"
           },
           "fn10": {
             "document": "docs/helix-security/L5-detail-design/project-scope-isolation.json",
             "revision": "current_candidate",
             "pointer": "/functions/10",
-            "file_sha256": "1b6e50cd2db88e86ae88723589e12170b0651650cf5dbb280b99c673180ea108"
+            "file_sha256": "41c49bc0b62b415422067297bd9accf848e4f14e253fab9779e778c49c2e1edd"
           },
           "ScopeProposal": {
             "document": "docs/helix-security/L5-detail-design/project-scope-isolation.json",
@@ -183815,13 +183779,13 @@
             "document": "docs/helix-security/L5-detail-design/project-scope-isolation.json",
             "revision": "current_candidate",
             "pointer": "/functions/7",
-            "file_sha256": "1b6e50cd2db88e86ae88723589e12170b0651650cf5dbb280b99c673180ea108"
+            "file_sha256": "41c49bc0b62b415422067297bd9accf848e4f14e253fab9779e778c49c2e1edd"
           },
           "fn10": {
             "document": "docs/helix-security/L5-detail-design/project-scope-isolation.json",
             "revision": "current_candidate",
             "pointer": "/functions/10",
-            "file_sha256": "1b6e50cd2db88e86ae88723589e12170b0651650cf5dbb280b99c673180ea108"
+            "file_sha256": "41c49bc0b62b415422067297bd9accf848e4f14e253fab9779e778c49c2e1edd"
           },
           "ScopeProposal": {
             "document": "docs/helix-security/L5-detail-design/project-scope-isolation.json",
@@ -184269,13 +184233,13 @@
             "document": "docs/helix-security/L5-detail-design/project-scope-isolation.json",
             "revision": "current_candidate",
             "pointer": "/functions/7",
-            "file_sha256": "1b6e50cd2db88e86ae88723589e12170b0651650cf5dbb280b99c673180ea108"
+            "file_sha256": "41c49bc0b62b415422067297bd9accf848e4f14e253fab9779e778c49c2e1edd"
           },
           "fn10": {
             "document": "docs/helix-security/L5-detail-design/project-scope-isolation.json",
             "revision": "current_candidate",
             "pointer": "/functions/10",
-            "file_sha256": "1b6e50cd2db88e86ae88723589e12170b0651650cf5dbb280b99c673180ea108"
+            "file_sha256": "41c49bc0b62b415422067297bd9accf848e4f14e253fab9779e778c49c2e1edd"
           },
           "ScopeProposal": {
             "document": "docs/helix-security/L5-detail-design/project-scope-isolation.json",
@@ -184594,13 +184558,13 @@
             "document": "docs/helix-security/L5-detail-design/project-scope-isolation.json",
             "revision": "current_candidate",
             "pointer": "/functions/7",
-            "file_sha256": "1b6e50cd2db88e86ae88723589e12170b0651650cf5dbb280b99c673180ea108"
+            "file_sha256": "41c49bc0b62b415422067297bd9accf848e4f14e253fab9779e778c49c2e1edd"
           },
           "fn10": {
             "document": "docs/helix-security/L5-detail-design/project-scope-isolation.json",
             "revision": "current_candidate",
             "pointer": "/functions/10",
-            "file_sha256": "1b6e50cd2db88e86ae88723589e12170b0651650cf5dbb280b99c673180ea108"
+            "file_sha256": "41c49bc0b62b415422067297bd9accf848e4f14e253fab9779e778c49c2e1edd"
           },
           "ScopeProposal": {
             "document": "docs/helix-security/L5-detail-design/project-scope-isolation.json",
@@ -184926,13 +184890,13 @@
             "document": "docs/helix-security/L5-detail-design/project-scope-isolation.json",
             "revision": "current_candidate",
             "pointer": "/functions/7",
-            "file_sha256": "1b6e50cd2db88e86ae88723589e12170b0651650cf5dbb280b99c673180ea108"
+            "file_sha256": "41c49bc0b62b415422067297bd9accf848e4f14e253fab9779e778c49c2e1edd"
           },
           "fn10": {
             "document": "docs/helix-security/L5-detail-design/project-scope-isolation.json",
             "revision": "current_candidate",
             "pointer": "/functions/10",
-            "file_sha256": "1b6e50cd2db88e86ae88723589e12170b0651650cf5dbb280b99c673180ea108"
+            "file_sha256": "41c49bc0b62b415422067297bd9accf848e4f14e253fab9779e778c49c2e1edd"
           },
           "ScopeProposal": {
             "document": "docs/helix-security/L5-detail-design/project-scope-isolation.json",
@@ -185297,13 +185261,13 @@
             "document": "docs/helix-security/L5-detail-design/project-scope-isolation.json",
             "revision": "current_candidate",
             "pointer": "/functions/7",
-            "file_sha256": "1b6e50cd2db88e86ae88723589e12170b0651650cf5dbb280b99c673180ea108"
+            "file_sha256": "41c49bc0b62b415422067297bd9accf848e4f14e253fab9779e778c49c2e1edd"
           },
           "fn10": {
             "document": "docs/helix-security/L5-detail-design/project-scope-isolation.json",
             "revision": "current_candidate",
             "pointer": "/functions/10",
-            "file_sha256": "1b6e50cd2db88e86ae88723589e12170b0651650cf5dbb280b99c673180ea108"
+            "file_sha256": "41c49bc0b62b415422067297bd9accf848e4f14e253fab9779e778c49c2e1edd"
           },
           "ScopeProposal": {
             "document": "docs/helix-security/L5-detail-design/project-scope-isolation.json",
@@ -185907,13 +185871,13 @@
             "document": "docs/helix-security/L5-detail-design/project-scope-isolation.json",
             "revision": "current_candidate",
             "pointer": "/functions/7",
-            "file_sha256": "1b6e50cd2db88e86ae88723589e12170b0651650cf5dbb280b99c673180ea108"
+            "file_sha256": "41c49bc0b62b415422067297bd9accf848e4f14e253fab9779e778c49c2e1edd"
           },
           "fn10": {
             "document": "docs/helix-security/L5-detail-design/project-scope-isolation.json",
             "revision": "current_candidate",
             "pointer": "/functions/10",
-            "file_sha256": "1b6e50cd2db88e86ae88723589e12170b0651650cf5dbb280b99c673180ea108"
+            "file_sha256": "41c49bc0b62b415422067297bd9accf848e4f14e253fab9779e778c49c2e1edd"
           },
           "ScopeProposal": {
             "document": "docs/helix-security/L5-detail-design/project-scope-isolation.json",
@@ -186219,13 +186183,13 @@
             "document": "docs/helix-security/L5-detail-design/project-scope-isolation.json",
             "revision": "current_candidate",
             "pointer": "/functions/7",
-            "file_sha256": "1b6e50cd2db88e86ae88723589e12170b0651650cf5dbb280b99c673180ea108"
+            "file_sha256": "41c49bc0b62b415422067297bd9accf848e4f14e253fab9779e778c49c2e1edd"
           },
           "fn10": {
             "document": "docs/helix-security/L5-detail-design/project-scope-isolation.json",
             "revision": "current_candidate",
             "pointer": "/functions/10",
-            "file_sha256": "1b6e50cd2db88e86ae88723589e12170b0651650cf5dbb280b99c673180ea108"
+            "file_sha256": "41c49bc0b62b415422067297bd9accf848e4f14e253fab9779e778c49c2e1edd"
           },
           "ScopeProposal": {
             "document": "docs/helix-security/L5-detail-design/project-scope-isolation.json",
@@ -204965,7 +204929,7 @@
       "design_ref": "HELIXSECURITY-L4-003-F02",
       "function_ref": "HELIXSECURITY-L5-003-compare_connection_content",
       "negative_class_ref": "SEC003-F02-EXPLICIT-CONNECTION-ABSENT",
-      "counterexample": "request.connection_state=\"absent\"; request.operation=\"read\"; request.caller_kind=\"Worker\".",
+      "counterexample": "request.connection_state=\"absent\"; request.operation=\"read\"; request.caller_kind=\"Worker\". comparison_shape_id=\"cross_scope\".",
       "expected_result": {
         "condition": "isolation_violation",
         "finding_codes": [
@@ -205002,6 +204966,14 @@
         {
           "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
           "pointer": "/diagnostic_contract/return_owner"
+        }
+      ],
+      "comparison_shape_id": "cross_scope",
+      "input_field_audit": [
+        {
+          "path": "comparison_shape_id",
+          "state": "present",
+          "value": "cross_scope"
         }
       ]
     },
@@ -205294,108 +205266,12 @@
       ]
     },
     {
-      "id": "SEC003-L8-CAND-072",
-      "status": "candidate_not_canonical",
-      "requirement_ref": "HELIXSECURITY-L3-003-F02",
-      "detail_ref": "HELIXSECURITY-L5-003-F02",
-      "design_ref": "HELIXSECURITY-L4-003-F02",
-      "function_ref": "HELIXSECURITY-L5-003-compare_operation_scope",
-      "negative_class_ref": "SEC003-F02-IMPLICIT-FALLBACK",
-      "counterexample": "request.caller_kind=\"Worker\"; request.asset_kind=\"state\"; request.fallback=\"primary_tree\".",
-      "expected_result": {
-        "condition": "isolation_violation",
-        "finding_codes": [
-          "implicit_fallback"
-        ],
-        "expected_axis": "explicit_connection",
-        "expected_state": "violation",
-        "side_effect_count": 0,
-        "backflow_owner": "scope-binding-owner"
-      },
-      "oracle_id": null,
-      "test_citation": null,
-      "citation_state": "missing_until_L7_test_exists",
-      "execution_state": "not_executed",
-      "authority_effect": "none",
-      "operation_effect": "none",
-      "source_pointers": [
-        {
-          "path": "docs/helix-security/L3-requirements/functional-requirements.json",
-          "pointer": "/requirements/4"
-        },
-        {
-          "path": "docs/helix-security/L10-verification/functional-verification.json",
-          "pointer": "/cases/4"
-        },
-        {
-          "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
-          "pointer": "/contracts/1/content_comparison"
-        },
-        {
-          "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
-          "pointer": "/contracts/1/output_meanings"
-        },
-        {
-          "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
-          "pointer": "/diagnostic_contract/return_owner"
-        }
-      ]
-    },
-    {
-      "id": "SEC003-L8-CAND-073",
-      "status": "candidate_not_canonical",
-      "requirement_ref": "HELIXSECURITY-L3-003-F02",
-      "detail_ref": "HELIXSECURITY-L5-003-F02",
-      "design_ref": "HELIXSECURITY-L4-003-F02",
-      "function_ref": "HELIXSECURITY-L5-003-compare_operation_scope",
-      "negative_class_ref": "SEC003-F02-IMPLICIT-FALLBACK",
-      "counterexample": "request.caller_kind=\"Worker\"; request.asset_kind=\"state\"; request.fallback=\"other_project\".",
-      "expected_result": {
-        "condition": "isolation_violation",
-        "finding_codes": [
-          "implicit_fallback"
-        ],
-        "expected_axis": "explicit_connection",
-        "expected_state": "violation",
-        "side_effect_count": 0,
-        "backflow_owner": "scope-binding-owner"
-      },
-      "oracle_id": null,
-      "test_citation": null,
-      "citation_state": "missing_until_L7_test_exists",
-      "execution_state": "not_executed",
-      "authority_effect": "none",
-      "operation_effect": "none",
-      "source_pointers": [
-        {
-          "path": "docs/helix-security/L3-requirements/functional-requirements.json",
-          "pointer": "/requirements/4"
-        },
-        {
-          "path": "docs/helix-security/L10-verification/functional-verification.json",
-          "pointer": "/cases/4"
-        },
-        {
-          "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
-          "pointer": "/contracts/1/content_comparison"
-        },
-        {
-          "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
-          "pointer": "/contracts/1/output_meanings"
-        },
-        {
-          "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
-          "pointer": "/diagnostic_contract/return_owner"
-        }
-      ]
-    },
-    {
       "id": "SEC003-L8-CAND-074",
       "status": "candidate_not_canonical",
       "requirement_ref": "HELIXSECURITY-L3-003-F02",
       "detail_ref": "HELIXSECURITY-L5-003-F02",
       "design_ref": "HELIXSECURITY-L4-003-F02",
-      "function_ref": "HELIXSECURITY-L5-003-compare_operation_scope",
+      "function_ref": "HELIXSECURITY-L5-003-compare_asset_scope",
       "negative_class_ref": "SEC003-F02-FOREIGN-LATEST",
       "counterexample": "request.caller_kind=\"Worker\"; request.asset_kind=\"state\"; request.asset_state_latest_claim=true; request.asset_scope.project=\"PROJECT-B\"; context.expected_target.project=\"PROJECT-A\".",
       "expected_result": {
@@ -205829,7 +205705,7 @@
       "design_ref": "HELIXSECURITY-L4-003-F02",
       "function_ref": "HELIXSECURITY-L5-003-compare_connection_content",
       "negative_class_ref": "SEC003-F02-EXPLICIT-CONNECTION-ABSENT",
-      "counterexample": "request.connection_state=\"absent\"; request.operation=\"read\"; request.caller_kind=\"Worker\".",
+      "counterexample": "request.connection_state=\"absent\"; request.operation=\"read\"; request.caller_kind=\"Worker\". comparison_shape_id=\"same_scope_tenant\".",
       "expected_result": {
         "condition": "isolation_violation",
         "finding_codes": [
@@ -205867,53 +205743,13 @@
           "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
           "pointer": "/diagnostic_contract/return_owner"
         }
-      ]
-    },
-    {
-      "id": "SEC003-L8-CAND-084",
-      "status": "candidate_not_canonical",
-      "requirement_ref": "HELIXSECURITY-L3-003-F02",
-      "detail_ref": "HELIXSECURITY-L5-003-F02",
-      "design_ref": "HELIXSECURITY-L4-003-F02",
-      "function_ref": "HELIXSECURITY-L5-003-compare_operation_scope",
-      "negative_class_ref": "SEC003-F02-IMPLICIT-FALLBACK",
-      "counterexample": "request.caller_kind=\"Agent\"; request.asset_kind=\"state\"; request.fallback=\"primary_tree\".",
-      "expected_result": {
-        "condition": "isolation_violation",
-        "finding_codes": [
-          "implicit_fallback"
-        ],
-        "expected_axis": "explicit_connection",
-        "expected_state": "violation",
-        "side_effect_count": 0,
-        "backflow_owner": "scope-binding-owner"
-      },
-      "oracle_id": null,
-      "test_citation": null,
-      "citation_state": "missing_until_L7_test_exists",
-      "execution_state": "not_executed",
-      "authority_effect": "none",
-      "operation_effect": "none",
-      "source_pointers": [
+      ],
+      "comparison_shape_id": "same_scope_tenant",
+      "input_field_audit": [
         {
-          "path": "docs/helix-security/L3-requirements/functional-requirements.json",
-          "pointer": "/requirements/4"
-        },
-        {
-          "path": "docs/helix-security/L10-verification/functional-verification.json",
-          "pointer": "/cases/4"
-        },
-        {
-          "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
-          "pointer": "/contracts/1/content_comparison"
-        },
-        {
-          "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
-          "pointer": "/contracts/1/output_meanings"
-        },
-        {
-          "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
-          "pointer": "/diagnostic_contract/return_owner"
+          "path": "comparison_shape_id",
+          "state": "present",
+          "value": "same_scope_tenant"
         }
       ]
     },
@@ -205923,7 +205759,7 @@
       "requirement_ref": "HELIXSECURITY-L3-003-F02",
       "detail_ref": "HELIXSECURITY-L5-003-F02",
       "design_ref": "HELIXSECURITY-L4-003-F02",
-      "function_ref": "HELIXSECURITY-L5-003-compare_operation_scope",
+      "function_ref": "HELIXSECURITY-L5-003-compare_asset_scope",
       "negative_class_ref": "SEC003-F02-FOREIGN-LATEST",
       "counterexample": "request.caller_kind=\"Agent\"; request.asset_kind=\"state\"; request.asset_state_latest_claim=true; request.asset_scope.project=\"PROJECT-B\"; context.expected_target.project=\"PROJECT-A\".",
       "expected_result": {
@@ -206014,60 +205850,12 @@
       ]
     },
     {
-      "id": "SEC003-L8-CAND-087",
-      "status": "candidate_not_canonical",
-      "requirement_ref": "HELIXSECURITY-L3-003-F02",
-      "detail_ref": "HELIXSECURITY-L5-003-F02",
-      "design_ref": "HELIXSECURITY-L4-003-F02",
-      "function_ref": "HELIXSECURITY-L5-003-compare_operation_scope",
-      "negative_class_ref": "SEC003-F02-IMPLICIT-FALLBACK",
-      "counterexample": "request.caller_kind=\"Hook\"; request.asset_kind=\"state\"; request.fallback=\"primary_tree\".",
-      "expected_result": {
-        "condition": "isolation_violation",
-        "finding_codes": [
-          "implicit_fallback"
-        ],
-        "expected_axis": "explicit_connection",
-        "expected_state": "violation",
-        "side_effect_count": 0,
-        "backflow_owner": "scope-binding-owner"
-      },
-      "oracle_id": null,
-      "test_citation": null,
-      "citation_state": "missing_until_L7_test_exists",
-      "execution_state": "not_executed",
-      "authority_effect": "none",
-      "operation_effect": "none",
-      "source_pointers": [
-        {
-          "path": "docs/helix-security/L3-requirements/functional-requirements.json",
-          "pointer": "/requirements/4"
-        },
-        {
-          "path": "docs/helix-security/L10-verification/functional-verification.json",
-          "pointer": "/cases/4"
-        },
-        {
-          "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
-          "pointer": "/contracts/1/content_comparison"
-        },
-        {
-          "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
-          "pointer": "/contracts/1/output_meanings"
-        },
-        {
-          "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
-          "pointer": "/diagnostic_contract/return_owner"
-        }
-      ]
-    },
-    {
       "id": "SEC003-L8-CAND-088",
       "status": "candidate_not_canonical",
       "requirement_ref": "HELIXSECURITY-L3-003-F02",
       "detail_ref": "HELIXSECURITY-L5-003-F02",
       "design_ref": "HELIXSECURITY-L4-003-F02",
-      "function_ref": "HELIXSECURITY-L5-003-compare_operation_scope",
+      "function_ref": "HELIXSECURITY-L5-003-compare_asset_scope",
       "negative_class_ref": "SEC003-F02-FOREIGN-LATEST",
       "counterexample": "request.caller_kind=\"Hook\"; request.asset_kind=\"state\"; request.asset_state_latest_claim=true; request.asset_scope.project=\"PROJECT-B\"; context.expected_target.project=\"PROJECT-A\".",
       "expected_result": {
@@ -206158,60 +205946,12 @@
       ]
     },
     {
-      "id": "SEC003-L8-CAND-090",
-      "status": "candidate_not_canonical",
-      "requirement_ref": "HELIXSECURITY-L3-003-F02",
-      "detail_ref": "HELIXSECURITY-L5-003-F02",
-      "design_ref": "HELIXSECURITY-L4-003-F02",
-      "function_ref": "HELIXSECURITY-L5-003-compare_operation_scope",
-      "negative_class_ref": "SEC003-F02-IMPLICIT-FALLBACK",
-      "counterexample": "request.caller_kind=\"memory\"; request.asset_kind=\"state\"; request.fallback=\"primary_tree\".",
-      "expected_result": {
-        "condition": "isolation_violation",
-        "finding_codes": [
-          "implicit_fallback"
-        ],
-        "expected_axis": "explicit_connection",
-        "expected_state": "violation",
-        "side_effect_count": 0,
-        "backflow_owner": "scope-binding-owner"
-      },
-      "oracle_id": null,
-      "test_citation": null,
-      "citation_state": "missing_until_L7_test_exists",
-      "execution_state": "not_executed",
-      "authority_effect": "none",
-      "operation_effect": "none",
-      "source_pointers": [
-        {
-          "path": "docs/helix-security/L3-requirements/functional-requirements.json",
-          "pointer": "/requirements/4"
-        },
-        {
-          "path": "docs/helix-security/L10-verification/functional-verification.json",
-          "pointer": "/cases/4"
-        },
-        {
-          "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
-          "pointer": "/contracts/1/content_comparison"
-        },
-        {
-          "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
-          "pointer": "/contracts/1/output_meanings"
-        },
-        {
-          "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
-          "pointer": "/diagnostic_contract/return_owner"
-        }
-      ]
-    },
-    {
       "id": "SEC003-L8-CAND-091",
       "status": "candidate_not_canonical",
       "requirement_ref": "HELIXSECURITY-L3-003-F02",
       "detail_ref": "HELIXSECURITY-L5-003-F02",
       "design_ref": "HELIXSECURITY-L4-003-F02",
-      "function_ref": "HELIXSECURITY-L5-003-compare_operation_scope",
+      "function_ref": "HELIXSECURITY-L5-003-compare_asset_scope",
       "negative_class_ref": "SEC003-F02-FOREIGN-LATEST",
       "counterexample": "request.caller_kind=\"memory\"; request.asset_kind=\"state\"; request.asset_state_latest_claim=true; request.asset_scope.project=\"PROJECT-B\"; context.expected_target.project=\"PROJECT-A\".",
       "expected_result": {
@@ -206302,60 +206042,12 @@
       ]
     },
     {
-      "id": "SEC003-L8-CAND-093",
-      "status": "candidate_not_canonical",
-      "requirement_ref": "HELIXSECURITY-L3-003-F02",
-      "detail_ref": "HELIXSECURITY-L5-003-F02",
-      "design_ref": "HELIXSECURITY-L4-003-F02",
-      "function_ref": "HELIXSECURITY-L5-003-compare_operation_scope",
-      "negative_class_ref": "SEC003-F02-IMPLICIT-FALLBACK",
-      "counterexample": "request.caller_kind=\"credential\"; request.asset_kind=\"state\"; request.fallback=\"primary_tree\".",
-      "expected_result": {
-        "condition": "isolation_violation",
-        "finding_codes": [
-          "implicit_fallback"
-        ],
-        "expected_axis": "explicit_connection",
-        "expected_state": "violation",
-        "side_effect_count": 0,
-        "backflow_owner": "scope-binding-owner"
-      },
-      "oracle_id": null,
-      "test_citation": null,
-      "citation_state": "missing_until_L7_test_exists",
-      "execution_state": "not_executed",
-      "authority_effect": "none",
-      "operation_effect": "none",
-      "source_pointers": [
-        {
-          "path": "docs/helix-security/L3-requirements/functional-requirements.json",
-          "pointer": "/requirements/4"
-        },
-        {
-          "path": "docs/helix-security/L10-verification/functional-verification.json",
-          "pointer": "/cases/4"
-        },
-        {
-          "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
-          "pointer": "/contracts/1/content_comparison"
-        },
-        {
-          "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
-          "pointer": "/contracts/1/output_meanings"
-        },
-        {
-          "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
-          "pointer": "/diagnostic_contract/return_owner"
-        }
-      ]
-    },
-    {
       "id": "SEC003-L8-CAND-094",
       "status": "candidate_not_canonical",
       "requirement_ref": "HELIXSECURITY-L3-003-F02",
       "detail_ref": "HELIXSECURITY-L5-003-F02",
       "design_ref": "HELIXSECURITY-L4-003-F02",
-      "function_ref": "HELIXSECURITY-L5-003-compare_operation_scope",
+      "function_ref": "HELIXSECURITY-L5-003-compare_asset_scope",
       "negative_class_ref": "SEC003-F02-FOREIGN-LATEST",
       "counterexample": "request.caller_kind=\"credential\"; request.asset_kind=\"state\"; request.asset_state_latest_claim=true; request.asset_scope.project=\"PROJECT-B\"; context.expected_target.project=\"PROJECT-A\".",
       "expected_result": {
@@ -206446,60 +206138,12 @@
       ]
     },
     {
-      "id": "SEC003-L8-CAND-096",
-      "status": "candidate_not_canonical",
-      "requirement_ref": "HELIXSECURITY-L3-003-F02",
-      "detail_ref": "HELIXSECURITY-L5-003-F02",
-      "design_ref": "HELIXSECURITY-L4-003-F02",
-      "function_ref": "HELIXSECURITY-L5-003-compare_operation_scope",
-      "negative_class_ref": "SEC003-F02-IMPLICIT-FALLBACK",
-      "counterexample": "request.caller_kind=\"configuration\"; request.asset_kind=\"state\"; request.fallback=\"primary_tree\".",
-      "expected_result": {
-        "condition": "isolation_violation",
-        "finding_codes": [
-          "implicit_fallback"
-        ],
-        "expected_axis": "explicit_connection",
-        "expected_state": "violation",
-        "side_effect_count": 0,
-        "backflow_owner": "scope-binding-owner"
-      },
-      "oracle_id": null,
-      "test_citation": null,
-      "citation_state": "missing_until_L7_test_exists",
-      "execution_state": "not_executed",
-      "authority_effect": "none",
-      "operation_effect": "none",
-      "source_pointers": [
-        {
-          "path": "docs/helix-security/L3-requirements/functional-requirements.json",
-          "pointer": "/requirements/4"
-        },
-        {
-          "path": "docs/helix-security/L10-verification/functional-verification.json",
-          "pointer": "/cases/4"
-        },
-        {
-          "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
-          "pointer": "/contracts/1/content_comparison"
-        },
-        {
-          "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
-          "pointer": "/contracts/1/output_meanings"
-        },
-        {
-          "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
-          "pointer": "/diagnostic_contract/return_owner"
-        }
-      ]
-    },
-    {
       "id": "SEC003-L8-CAND-097",
       "status": "candidate_not_canonical",
       "requirement_ref": "HELIXSECURITY-L3-003-F02",
       "detail_ref": "HELIXSECURITY-L5-003-F02",
       "design_ref": "HELIXSECURITY-L4-003-F02",
-      "function_ref": "HELIXSECURITY-L5-003-compare_operation_scope",
+      "function_ref": "HELIXSECURITY-L5-003-compare_asset_scope",
       "negative_class_ref": "SEC003-F02-FOREIGN-LATEST",
       "counterexample": "request.caller_kind=\"configuration\"; request.asset_kind=\"state\"; request.asset_state_latest_claim=true; request.asset_scope.project=\"PROJECT-B\"; context.expected_target.project=\"PROJECT-A\".",
       "expected_result": {
@@ -206589,543 +206233,5 @@
         }
       ]
     }
-  ],
-  "candidate_negative_class_assignment": {
-    "authority_effect": "none",
-    "comparison_mode": "legacy_casewise_four_layer",
-    "basis": "既存52 L8 negative rowsを維持し、L9 98行の各source comparison pointerに対して短いsource-backed candidate counterexample/期待を設計する。L9はcase条件との照合先であり、期待意味はL3/L10/L4から導出。candidateはcanonical/executed L8 rowではない。",
-    "rows": [
-      {
-        "l8_case_id": "SEC003-L8-SIDE-NULL-PROJECT",
-        "l8_pointer": "docs/helix-security/L8-unit-verification/project-scope-isolation.json#/cases/0/negative_cases/0",
-        "class_id": "SEC003-F01-IDENTITY-MISSING",
-        "rule_ref": "SEC003-F01-IDENTITY-MISSING",
-        "l8_finding_codes": [
-          "scope_identity_unresolved"
-        ],
-        "l8_grade": "unknown"
-      },
-      {
-        "l8_case_id": "SEC003-L8-SIDE-CONFLICT-PROJECT",
-        "l8_pointer": "docs/helix-security/L8-unit-verification/project-scope-isolation.json#/cases/0/negative_cases/1",
-        "class_id": "SEC003-F01-IDENTITY-CONFLICT",
-        "rule_ref": "SEC003-F01-IDENTITY-CONFLICT",
-        "l8_finding_codes": [
-          "scope_identity_conflict"
-        ],
-        "l8_grade": "violation"
-      },
-      {
-        "l8_case_id": "SEC003-L8-SIDE-NULL-TENANT",
-        "l8_pointer": "docs/helix-security/L8-unit-verification/project-scope-isolation.json#/cases/0/negative_cases/2",
-        "class_id": "SEC003-F01-IDENTITY-MISSING",
-        "rule_ref": "SEC003-F01-IDENTITY-MISSING",
-        "l8_finding_codes": [
-          "scope_identity_unresolved"
-        ],
-        "l8_grade": "unknown"
-      },
-      {
-        "l8_case_id": "SEC003-L8-SIDE-CONFLICT-TENANT",
-        "l8_pointer": "docs/helix-security/L8-unit-verification/project-scope-isolation.json#/cases/0/negative_cases/3",
-        "class_id": "SEC003-F01-IDENTITY-CONFLICT",
-        "rule_ref": "SEC003-F01-IDENTITY-CONFLICT",
-        "l8_finding_codes": [
-          "scope_identity_conflict"
-        ],
-        "l8_grade": "violation"
-      },
-      {
-        "l8_case_id": "SEC003-L8-SIDE-NULL-ENVIRONMENT",
-        "l8_pointer": "docs/helix-security/L8-unit-verification/project-scope-isolation.json#/cases/0/negative_cases/4",
-        "class_id": "SEC003-F01-IDENTITY-MISSING",
-        "rule_ref": "SEC003-F01-IDENTITY-MISSING",
-        "l8_finding_codes": [
-          "scope_identity_unresolved"
-        ],
-        "l8_grade": "unknown"
-      },
-      {
-        "l8_case_id": "SEC003-L8-SIDE-CONFLICT-ENVIRONMENT",
-        "l8_pointer": "docs/helix-security/L8-unit-verification/project-scope-isolation.json#/cases/0/negative_cases/5",
-        "class_id": "SEC003-F01-IDENTITY-CONFLICT",
-        "rule_ref": "SEC003-F01-IDENTITY-CONFLICT",
-        "l8_finding_codes": [
-          "scope_identity_conflict"
-        ],
-        "l8_grade": "violation"
-      },
-      {
-        "l8_case_id": "SEC003-L8-SIDE-NULL-ASSIGNMENT",
-        "l8_pointer": "docs/helix-security/L8-unit-verification/project-scope-isolation.json#/cases/0/negative_cases/6",
-        "class_id": "SEC003-F01-IDENTITY-MISSING",
-        "rule_ref": "SEC003-F01-IDENTITY-MISSING",
-        "l8_finding_codes": [
-          "scope_identity_unresolved"
-        ],
-        "l8_grade": "unknown"
-      },
-      {
-        "l8_case_id": "SEC003-L8-SIDE-CONFLICT-ASSIGNMENT",
-        "l8_pointer": "docs/helix-security/L8-unit-verification/project-scope-isolation.json#/cases/0/negative_cases/7",
-        "class_id": "SEC003-F01-IDENTITY-CONFLICT",
-        "rule_ref": "SEC003-F01-IDENTITY-CONFLICT",
-        "l8_finding_codes": [
-          "scope_identity_conflict"
-        ],
-        "l8_grade": "violation"
-      },
-      {
-        "l8_case_id": "SEC003-L8-SIDE-NULL-WORKTREE",
-        "l8_pointer": "docs/helix-security/L8-unit-verification/project-scope-isolation.json#/cases/0/negative_cases/8",
-        "class_id": "SEC003-F01-IDENTITY-MISSING",
-        "rule_ref": "SEC003-F01-IDENTITY-MISSING",
-        "l8_finding_codes": [
-          "scope_identity_unresolved"
-        ],
-        "l8_grade": "unknown"
-      },
-      {
-        "l8_case_id": "SEC003-L8-SIDE-CONFLICT-WORKTREE",
-        "l8_pointer": "docs/helix-security/L8-unit-verification/project-scope-isolation.json#/cases/0/negative_cases/9",
-        "class_id": "SEC003-F01-IDENTITY-CONFLICT",
-        "rule_ref": "SEC003-F01-IDENTITY-CONFLICT",
-        "l8_finding_codes": [
-          "scope_identity_conflict"
-        ],
-        "l8_grade": "violation"
-      },
-      {
-        "l8_case_id": "SEC003-L8-SIDE-NULL-REVISION",
-        "l8_pointer": "docs/helix-security/L8-unit-verification/project-scope-isolation.json#/cases/0/negative_cases/10",
-        "class_id": "SEC003-F01-IDENTITY-MISSING",
-        "rule_ref": "SEC003-F01-IDENTITY-MISSING",
-        "l8_finding_codes": [
-          "scope_identity_unresolved"
-        ],
-        "l8_grade": "unknown"
-      },
-      {
-        "l8_case_id": "SEC003-L8-SIDE-CONFLICT-REVISION",
-        "l8_pointer": "docs/helix-security/L8-unit-verification/project-scope-isolation.json#/cases/0/negative_cases/11",
-        "class_id": "SEC003-F01-IDENTITY-CONFLICT",
-        "rule_ref": "SEC003-F01-IDENTITY-CONFLICT",
-        "l8_finding_codes": [
-          "scope_identity_conflict"
-        ],
-        "l8_grade": "violation"
-      },
-      {
-        "l8_case_id": "SEC003-L8-SIDE-INVENTED",
-        "l8_pointer": "docs/helix-security/L8-unit-verification/project-scope-isolation.json#/cases/0/negative_cases/12",
-        "class_id": "SEC003-F01-TENANT-INVENTED",
-        "rule_ref": "SEC003-F01-TENANT-INVENTED",
-        "l8_finding_codes": [
-          "tenant_invented"
-        ],
-        "l8_grade": "violation"
-      },
-      {
-        "l8_case_id": "SEC003-L8-SIDE-UNKNOWN-VALUES",
-        "l8_pointer": "docs/helix-security/L8-unit-verification/project-scope-isolation.json#/cases/0/negative_cases/13",
-        "class_id": "SEC003-F01-TENANT-APPLICABILITY-UNRESOLVED",
-        "rule_ref": "SEC003-F01-TENANT-APPLICABILITY-UNRESOLVED",
-        "l8_finding_codes": [
-          "tenant_applicability_unresolved"
-        ],
-        "l8_grade": "unknown"
-      },
-      {
-        "l8_case_id": "SEC003-L8-SIDE-NONAPPLICABLE-ABSENT",
-        "l8_pointer": "docs/helix-security/L8-unit-verification/project-scope-isolation.json#/cases/0/negative_cases/14",
-        "class_id": "SEC003-F01-IDENTITY-MISSING",
-        "rule_ref": "SEC003-F01-IDENTITY-MISSING",
-        "l8_finding_codes": [
-          "scope_identity_unresolved"
-        ],
-        "l8_grade": "unknown"
-      },
-      {
-        "l8_case_id": "SEC003-L8-SIDE-UNKNOWN-SIDE",
-        "l8_pointer": "docs/helix-security/L8-unit-verification/project-scope-isolation.json#/cases/0/negative_cases/15",
-        "class_id": "SEC003-F01-IDENTITY-MISSING",
-        "rule_ref": "SEC003-F01-IDENTITY-MISSING",
-        "l8_finding_codes": [
-          "scope_input_unresolved"
-        ],
-        "l8_grade": "unknown"
-      },
-      {
-        "l8_case_id": "SEC003-L8-SIDE-EXPECTED-NULL",
-        "l8_pointer": "docs/helix-security/L8-unit-verification/project-scope-isolation.json#/cases/0/negative_cases/16",
-        "class_id": "SEC003-F01-IDENTITY-MISSING",
-        "rule_ref": "SEC003-F01-IDENTITY-MISSING",
-        "l8_finding_codes": [
-          "scope_identity_unresolved"
-        ],
-        "l8_grade": "unknown"
-      },
-      {
-        "l8_case_id": "SEC003-L8-ASSET-CONFLICT-PROJECT",
-        "l8_pointer": "docs/helix-security/L8-unit-verification/project-scope-isolation.json#/cases/0/negative_cases/17",
-        "class_id": "SEC003-F01-IDENTITY-CONFLICT",
-        "rule_ref": "SEC003-F01-IDENTITY-CONFLICT",
-        "l8_finding_codes": [
-          "asset_scope_conflict"
-        ],
-        "l8_grade": "violation"
-      },
-      {
-        "l8_case_id": "SEC003-L8-ASSET-CONFLICT-TENANT",
-        "l8_pointer": "docs/helix-security/L8-unit-verification/project-scope-isolation.json#/cases/0/negative_cases/18",
-        "class_id": "SEC003-F01-IDENTITY-CONFLICT",
-        "rule_ref": "SEC003-F01-IDENTITY-CONFLICT",
-        "l8_finding_codes": [
-          "asset_scope_conflict"
-        ],
-        "l8_grade": "violation"
-      },
-      {
-        "l8_case_id": "SEC003-L8-ASSET-CONFLICT-ENVIRONMENT",
-        "l8_pointer": "docs/helix-security/L8-unit-verification/project-scope-isolation.json#/cases/0/negative_cases/19",
-        "class_id": "SEC003-F01-IDENTITY-CONFLICT",
-        "rule_ref": "SEC003-F01-IDENTITY-CONFLICT",
-        "l8_finding_codes": [
-          "asset_scope_conflict"
-        ],
-        "l8_grade": "violation"
-      },
-      {
-        "l8_case_id": "SEC003-L8-ASSET-CONFLICT-ASSIGNMENT",
-        "l8_pointer": "docs/helix-security/L8-unit-verification/project-scope-isolation.json#/cases/0/negative_cases/20",
-        "class_id": "SEC003-F01-IDENTITY-CONFLICT",
-        "rule_ref": "SEC003-F01-IDENTITY-CONFLICT",
-        "l8_finding_codes": [
-          "asset_scope_conflict"
-        ],
-        "l8_grade": "violation"
-      },
-      {
-        "l8_case_id": "SEC003-L8-ASSET-CONFLICT-WORKTREE",
-        "l8_pointer": "docs/helix-security/L8-unit-verification/project-scope-isolation.json#/cases/0/negative_cases/21",
-        "class_id": "SEC003-F01-IDENTITY-CONFLICT",
-        "rule_ref": "SEC003-F01-IDENTITY-CONFLICT",
-        "l8_finding_codes": [
-          "asset_scope_conflict"
-        ],
-        "l8_grade": "violation"
-      },
-      {
-        "l8_case_id": "SEC003-L8-ASSET-CONFLICT-REVISION",
-        "l8_pointer": "docs/helix-security/L8-unit-verification/project-scope-isolation.json#/cases/0/negative_cases/22",
-        "class_id": "SEC003-F01-IDENTITY-CONFLICT",
-        "rule_ref": "SEC003-F01-IDENTITY-CONFLICT",
-        "l8_finding_codes": [
-          "asset_scope_conflict"
-        ],
-        "l8_grade": "violation"
-      },
-      {
-        "l8_case_id": "SEC003-L8-ASSET-UNKNOWN-KIND",
-        "l8_pointer": "docs/helix-security/L8-unit-verification/project-scope-isolation.json#/cases/0/negative_cases/23",
-        "class_id": "SEC003-F01-IDENTITY-MISSING",
-        "rule_ref": "SEC003-F01-IDENTITY-MISSING",
-        "l8_finding_codes": [
-          "scope_input_unresolved"
-        ],
-        "l8_grade": "unknown"
-      },
-      {
-        "l8_case_id": "SEC003-L8-OWNERS-STALE-OS",
-        "l8_pointer": "docs/helix-security/L8-unit-verification/project-scope-isolation.json#/cases/0/negative_cases/24",
-        "class_id": "SEC003-F01-IDENTITY-MISSING",
-        "rule_ref": "SEC003-F01-IDENTITY-MISSING",
-        "l8_finding_codes": [
-          "owner_material_unresolved"
-        ],
-        "l8_grade": "unknown"
-      },
-      {
-        "l8_case_id": "SEC003-L8-OWNERS-STALE-INFRA",
-        "l8_pointer": "docs/helix-security/L8-unit-verification/project-scope-isolation.json#/cases/0/negative_cases/25",
-        "class_id": "SEC003-F01-IDENTITY-MISSING",
-        "rule_ref": "SEC003-F01-IDENTITY-MISSING",
-        "l8_finding_codes": [
-          "owner_material_unresolved"
-        ],
-        "l8_grade": "unknown"
-      },
-      {
-        "l8_case_id": "SEC003-L8-OWNERS-STALE-CONNECT",
-        "l8_pointer": "docs/helix-security/L8-unit-verification/project-scope-isolation.json#/cases/0/negative_cases/26",
-        "class_id": "SEC003-F01-IDENTITY-MISSING",
-        "rule_ref": "SEC003-F01-IDENTITY-MISSING",
-        "l8_finding_codes": [
-          "owner_material_unresolved"
-        ],
-        "l8_grade": "unknown"
-      },
-      {
-        "l8_case_id": "SEC003-L8-SIDE-TARGET-NULL",
-        "l8_pointer": "docs/helix-security/L8-unit-verification/project-scope-isolation.json#/cases/0/negative_cases/27",
-        "class_id": "SEC003-F01-IDENTITY-MISSING",
-        "rule_ref": "SEC003-F01-IDENTITY-MISSING",
-        "l8_finding_codes": [
-          "scope_identity_unresolved"
-        ],
-        "l8_grade": "unknown"
-      },
-      {
-        "l8_case_id": "SEC003-L8-SIDE-ORIGIN-MULTITARGET",
-        "l8_pointer": "docs/helix-security/L8-unit-verification/project-scope-isolation.json#/cases/0/negative_cases/28",
-        "class_id": "SEC003-F01-IDENTITY-MISSING",
-        "rule_ref": "SEC003-F01-IDENTITY-MISSING",
-        "l8_finding_codes": [
-          "scope_identity_unresolved"
-        ],
-        "l8_grade": "unknown"
-      },
-      {
-        "l8_case_id": "SEC003-L8-CONNECTION-ABSENT",
-        "l8_pointer": "docs/helix-security/L8-unit-verification/project-scope-isolation.json#/cases/1/negative_cases/0",
-        "class_id": "SEC003-F02-EXPLICIT-CONNECTION-ABSENT",
-        "rule_ref": "SEC003-F02-EXPLICIT-CONNECTION-ABSENT",
-        "l8_finding_codes": [
-          "explicit_connection_absent"
-        ],
-        "l8_grade": "violation"
-      },
-      {
-        "l8_case_id": "SEC003-L8-CONNECTION-UNKNOWN",
-        "l8_pointer": "docs/helix-security/L8-unit-verification/project-scope-isolation.json#/cases/1/negative_cases/1",
-        "class_id": "SEC003-F02-CONNECTION-MATERIAL-UNRESOLVED",
-        "rule_ref": "SEC003-F02-CONNECTION-MATERIAL-UNRESOLVED",
-        "l8_finding_codes": [
-          "connection_material_unresolved"
-        ],
-        "l8_grade": "unknown"
-      },
-      {
-        "l8_case_id": "SEC003-L8-CONNECTION-ENUM",
-        "l8_pointer": "docs/helix-security/L8-unit-verification/project-scope-isolation.json#/cases/1/negative_cases/2",
-        "class_id": "SEC003-F02-CONNECTION-MATERIAL-UNRESOLVED",
-        "rule_ref": "SEC003-F02-CONNECTION-MATERIAL-UNRESOLVED",
-        "l8_finding_codes": [
-          "connection_material_unresolved"
-        ],
-        "l8_grade": "unknown"
-      },
-      {
-        "l8_case_id": "SEC003-L8-CONNECTION-CONTENT-IDENTITY",
-        "l8_pointer": "docs/helix-security/L8-unit-verification/project-scope-isolation.json#/cases/1/negative_cases/3",
-        "class_id": "SEC003-F02-CONNECTION-MATERIAL-CONFLICT",
-        "rule_ref": "SEC003-F02-CONNECTION-MATERIAL-CONFLICT",
-        "l8_finding_codes": [
-          "connection_content_conflict"
-        ],
-        "l8_grade": "violation"
-      },
-      {
-        "l8_case_id": "SEC003-L8-CONNECTION-CONTENT-REVISION",
-        "l8_pointer": "docs/helix-security/L8-unit-verification/project-scope-isolation.json#/cases/1/negative_cases/4",
-        "class_id": "SEC003-F02-CONNECTION-MATERIAL-CONFLICT",
-        "rule_ref": "SEC003-F02-CONNECTION-MATERIAL-CONFLICT",
-        "l8_finding_codes": [
-          "connection_content_conflict"
-        ],
-        "l8_grade": "violation"
-      },
-      {
-        "l8_case_id": "SEC003-L8-CONNECTION-CONTENT-ALLOWED_OPERATIONS",
-        "l8_pointer": "docs/helix-security/L8-unit-verification/project-scope-isolation.json#/cases/1/negative_cases/5",
-        "class_id": "SEC003-F02-CONNECTION-MATERIAL-CONFLICT",
-        "rule_ref": "SEC003-F02-CONNECTION-MATERIAL-CONFLICT",
-        "l8_finding_codes": [
-          "connection_content_conflict"
-        ],
-        "l8_grade": "violation"
-      },
-      {
-        "l8_case_id": "SEC003-L8-CONNECTION-JOIN-ORIGIN",
-        "l8_pointer": "docs/helix-security/L8-unit-verification/project-scope-isolation.json#/cases/1/negative_cases/6",
-        "class_id": "SEC003-F02-CONNECTION-MATERIAL-CONFLICT",
-        "rule_ref": "SEC003-F02-CONNECTION-MATERIAL-CONFLICT",
-        "l8_finding_codes": [
-          "connection_scope_conflict"
-        ],
-        "l8_grade": "violation"
-      },
-      {
-        "l8_case_id": "SEC003-L8-CONNECTION-JOIN-TARGET",
-        "l8_pointer": "docs/helix-security/L8-unit-verification/project-scope-isolation.json#/cases/1/negative_cases/7",
-        "class_id": "SEC003-F02-CONNECTION-MATERIAL-CONFLICT",
-        "rule_ref": "SEC003-F02-CONNECTION-MATERIAL-CONFLICT",
-        "l8_finding_codes": [
-          "connection_scope_conflict"
-        ],
-        "l8_grade": "violation"
-      },
-      {
-        "l8_case_id": "SEC003-L8-CONNECTION-IDENTITY-ABSENT",
-        "l8_pointer": "docs/helix-security/L8-unit-verification/project-scope-isolation.json#/cases/1/negative_cases/8",
-        "class_id": "SEC003-F02-CONNECTION-MATERIAL-UNRESOLVED",
-        "rule_ref": "SEC003-F02-CONNECTION-MATERIAL-UNRESOLVED",
-        "l8_finding_codes": [
-          "connection_material_unresolved"
-        ],
-        "l8_grade": "unknown"
-      },
-      {
-        "l8_case_id": "SEC003-L8-OPERATION-WRITE",
-        "l8_pointer": "docs/helix-security/L8-unit-verification/project-scope-isolation.json#/cases/1/negative_cases/9",
-        "class_id": "SEC003-F02-OPERATION-SCOPE",
-        "rule_ref": "SEC003-F02-OPERATION-SCOPE",
-        "l8_finding_codes": [
-          "operation_scope_conflict"
-        ],
-        "l8_grade": "violation"
-      },
-      {
-        "l8_case_id": "SEC003-L8-OPERATION-EXECUTE",
-        "l8_pointer": "docs/helix-security/L8-unit-verification/project-scope-isolation.json#/cases/1/negative_cases/10",
-        "class_id": "SEC003-F02-OPERATION-SCOPE",
-        "rule_ref": "SEC003-F02-OPERATION-SCOPE",
-        "l8_finding_codes": [
-          "operation_scope_conflict"
-        ],
-        "l8_grade": "violation"
-      },
-      {
-        "l8_case_id": "SEC003-L8-OPERATION-NETWORK",
-        "l8_pointer": "docs/helix-security/L8-unit-verification/project-scope-isolation.json#/cases/1/negative_cases/11",
-        "class_id": "SEC003-F02-OPERATION-SCOPE",
-        "rule_ref": "SEC003-F02-OPERATION-SCOPE",
-        "l8_finding_codes": [
-          "operation_scope_conflict"
-        ],
-        "l8_grade": "violation"
-      },
-      {
-        "l8_case_id": "SEC003-L8-OPERATION-STATE",
-        "l8_pointer": "docs/helix-security/L8-unit-verification/project-scope-isolation.json#/cases/1/negative_cases/12",
-        "class_id": "SEC003-F02-OPERATION-SCOPE",
-        "rule_ref": "SEC003-F02-OPERATION-SCOPE",
-        "l8_finding_codes": [
-          "operation_scope_conflict"
-        ],
-        "l8_grade": "violation"
-      },
-      {
-        "l8_case_id": "SEC003-L8-OPERATION-CREDENTIAL",
-        "l8_pointer": "docs/helix-security/L8-unit-verification/project-scope-isolation.json#/cases/1/negative_cases/13",
-        "class_id": "SEC003-F02-OPERATION-SCOPE",
-        "rule_ref": "SEC003-F02-OPERATION-SCOPE",
-        "l8_finding_codes": [
-          "operation_scope_conflict"
-        ],
-        "l8_grade": "violation"
-      },
-      {
-        "l8_case_id": "SEC003-L8-OPERATION-ARTIFACT",
-        "l8_pointer": "docs/helix-security/L8-unit-verification/project-scope-isolation.json#/cases/1/negative_cases/14",
-        "class_id": "SEC003-F02-OPERATION-SCOPE",
-        "rule_ref": "SEC003-F02-OPERATION-SCOPE",
-        "l8_finding_codes": [
-          "operation_scope_conflict"
-        ],
-        "l8_grade": "violation"
-      },
-      {
-        "l8_case_id": "SEC003-L8-OPERATION-UNKNOWN",
-        "l8_pointer": "docs/helix-security/L8-unit-verification/project-scope-isolation.json#/cases/1/negative_cases/15",
-        "class_id": "SEC003-F02-OPERATION-SCOPE",
-        "rule_ref": "SEC003-F02-OPERATION-SCOPE",
-        "l8_finding_codes": [
-          "scope_input_unresolved"
-        ],
-        "l8_grade": "unknown"
-      },
-      {
-        "l8_case_id": "SEC003-L8-OPERATION-DEFER",
-        "l8_pointer": "docs/helix-security/L8-unit-verification/project-scope-isolation.json#/cases/1/negative_cases/16",
-        "class_id": "SEC003-F02-OPERATION-SCOPE",
-        "rule_ref": "SEC003-F02-OPERATION-SCOPE",
-        "l8_finding_codes": [],
-        "l8_grade": "unknown"
-      },
-      {
-        "l8_case_id": "SEC003-L8-OPERATION-EMPTY",
-        "l8_pointer": "docs/helix-security/L8-unit-verification/project-scope-isolation.json#/cases/1/negative_cases/17",
-        "class_id": "SEC003-F02-OPERATION-SCOPE",
-        "rule_ref": "SEC003-F02-OPERATION-SCOPE",
-        "l8_finding_codes": [
-          "operation_scope_conflict"
-        ],
-        "l8_grade": "violation"
-      },
-      {
-        "l8_case_id": "SEC003-L8-OPERATION-INVALID-LIST",
-        "l8_pointer": "docs/helix-security/L8-unit-verification/project-scope-isolation.json#/cases/1/negative_cases/18",
-        "class_id": "SEC003-F02-CONNECTION-MATERIAL-UNRESOLVED",
-        "rule_ref": "SEC003-F02-CONNECTION-MATERIAL-UNRESOLVED",
-        "l8_finding_codes": [
-          "connection_material_unresolved"
-        ],
-        "l8_grade": "unknown"
-      },
-      {
-        "l8_case_id": "SEC003-L8-FALLBACK-PRIMARY",
-        "l8_pointer": "docs/helix-security/L8-unit-verification/project-scope-isolation.json#/cases/1/negative_cases/19",
-        "class_id": "SEC003-F02-IMPLICIT-FALLBACK",
-        "rule_ref": "SEC003-F02-IMPLICIT-FALLBACK",
-        "l8_finding_codes": [
-          "implicit_fallback"
-        ],
-        "l8_grade": "violation"
-      },
-      {
-        "l8_case_id": "SEC003-L8-FALLBACK-OTHER",
-        "l8_pointer": "docs/helix-security/L8-unit-verification/project-scope-isolation.json#/cases/1/negative_cases/20",
-        "class_id": "SEC003-F02-IMPLICIT-FALLBACK",
-        "rule_ref": "SEC003-F02-IMPLICIT-FALLBACK",
-        "l8_finding_codes": [
-          "implicit_fallback"
-        ],
-        "l8_grade": "violation"
-      },
-      {
-        "l8_case_id": "SEC003-L8-FALLBACK-UNKNOWN",
-        "l8_pointer": "docs/helix-security/L8-unit-verification/project-scope-isolation.json#/cases/1/negative_cases/21",
-        "class_id": "SEC003-F02-IMPLICIT-FALLBACK",
-        "rule_ref": "SEC003-F02-IMPLICIT-FALLBACK",
-        "l8_finding_codes": [
-          "scope_input_unresolved"
-        ],
-        "l8_grade": "unknown"
-      },
-      {
-        "l8_case_id": "SEC003-L8-FALLBACK-NULL",
-        "l8_pointer": "docs/helix-security/L8-unit-verification/project-scope-isolation.json#/cases/1/negative_cases/22",
-        "class_id": "SEC003-F02-IMPLICIT-FALLBACK",
-        "rule_ref": "SEC003-F02-IMPLICIT-FALLBACK",
-        "l8_finding_codes": [
-          "scope_input_unresolved"
-        ],
-        "l8_grade": "unknown"
-      }
-    ],
-    "candidate_rows_total": 98,
-    "pair_deficits": {
-      "F01": 35,
-      "F02": 11
-    },
-    "one_to_one_status": "candidate design references cover 98 L9 rows once each; existing L8 rows are not counted as row matches without same case identity; candidates are unexecuted and formal one-to-one remains unestablished.",
-    "raw_count_difference_L9_minus_existing_L8": 46,
-    "existing_L8_L9_class_deficit_rows": 56,
-    "existing_L8_L9_class_surplus_rows": 10,
-    "pair_deficits_by_raw_count": {
-      "F01": 35,
-      "F02": 11
-    }
-  }
+  ]
 }

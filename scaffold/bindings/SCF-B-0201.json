@@ -35,8 +35,8 @@
     },
     {
       "path": "docs/helix-security/L8-unit-verification/project-scope-isolation.json",
-      "sha256": "3e9ba62e992bf99e38a85003bcddc06f93f21d6a4041a56fa2a255739dcf51fb",
-      "note": "WR244固定base比較値 45d9ae37cf4136aed05d548107a7bdc0c088e2753d36428fb4692c7078a65070 は時点証拠として保持。WR250候補追補の現行bytesへ再束縛。base 1b155cc648d589d32ca111efb3fbfcea1c4048b7."
+      "sha256": "6d093e482b013e733bc3eb5950aef5b8385b3288dc85bbcb9854bea92830900d",
+      "note": "WR244固定base pin 45d9ae37cf4136aed05d548107a7bdc0c088e2753d36428fb4692c7078a65070は時点証拠として保持。WR250 PR #4000 R1追補を含む現行L8 bytesへ再束縛。base 1b155cc648d589d32ca111efb3fbfcea1c4048b7."
     },
     {
       "path": "docs/governance/design-verification-quality-assurance.md",
@@ -58,8 +58,9 @@
     "Preserve the measured legacy four-way failure; do not claim formal completion or pass.",
     "After blind comparison, inspect other L3/L4 source meanings; add only source-backed meaning rows, record source pointers/order, and map L9 using case inputs rather than expected values.",
     "WR244のfixed blind/comparison/audit/summary bytesを変更せず、旧L5/L8 pin hashesとbase revisionを時点証拠として保持する。",
-    "WR250: add ten L5 failure rules, assign the 52 existing L8 negative rows, and record 98 concise per-L9-row candidate designs using L3/L10/L4 source pointers. Keep comparison row pointers in scaffold evidence and do not treat candidates as formal L8 execution evidence.",
-    "98 L9 rowsを行別に比較し、L8 row identity/oracle/test citationがない場合はone-to-one未成立を記録する。"
+    "WR250 initial reviewed-head scope: add ten L5 failure rules, classify the 52 existing L8 negative rows, and record 98 concise per-L9-row candidates using L3/L10/L4 source pointers. PR #4000 R1 retains that commit-time evidence but removes seven candidates with exact existing-L8 fallback input/outcome matches; current R1 set is 91 retained candidate designs plus the seven rowwise existing-L8 correspondences. Keep row pointers in scaffold evidence; candidates are not formal L8 execution evidence.",
+    "98 L9 rowsを行別に比較し、L8 row identity/oracle/test citationがない場合はone-to-one未成立を記録する。",
+    "WR250 PR #4000 R1: preserve commit-time rowwise-comparison.json and verification-summary.json byte-for-byte; put corrections and rowwise audit in separate addendum artifacts. Remove only candidate rows with confirmed function-read-field/input and expectation correspondence to existing L8 rows; retain null oracle/test citations."
   ],
   "connections": {
     "consumers": [
@@ -101,7 +102,10 @@
     "scaffold/research/wr244-sec006-psi-l4l9-20261031-r1/r2-review-corrections.json",
     "scaffold/research/wr250-sec006-psi-l5l8-20261031/README.md",
     "scaffold/research/wr250-sec006-psi-l5l8-20261031/rowwise-comparison.json",
-    "scaffold/research/wr250-sec006-psi-l5l8-20261031/verification-summary.json"
+    "scaffold/research/wr250-sec006-psi-l5l8-20261031/verification-summary.json",
+    "scaffold/research/wr250-sec006-psi-l5l8-20261031/rowwise-comparison-r1.json",
+    "scaffold/research/wr250-sec006-psi-l5l8-20261031/pr4000-r1-addendum.json",
+    "scaffold/research/wr250-sec006-psi-l5l8-20261031/validate_pr4000_r1.py"
   ],
   "verification": {
     "evidence_kind": "scaffold",
@@ -120,11 +124,14 @@
       "The post-comparison artifact records all 98 row dispositions without changing the frozen blind/comparison/audit/summary artifacts.",
       "After source re-derivation, known connection_state=absent is a violation and connection_state=unknown remains unresolved; retained assignment rows are statically checked for exact ordered findings and condition equality.",
       "Historical WR244 pin hashes at base 1b155cc648d589d32ca111efb3fbfcea1c4048b7: L5 1b6e50cd2db88e86ae88723589e12170b0651650cf5dbb280b99c673180ea108, L8 45d9ae37cf4136aed05d548107a7bdc0c088e2753d36428fb4692c7078a65070; WR244 fixed comparison/blind artifacts remain byte-for-byte unchanged. Current L5/L8 hashes are rebound above for WR250 candidate bytes.",
-      "WR250 records 98 L9 rows individually; exact one-to-one L8↔L9 identity, row oracle and test citation remain unestablished where absent. All 98 candidate rows retain oracle_id=null and test_citation=null and are not executed; existing 52 L8 rows are not counted as exact row matches without same-input/expectation identity.",
+      "WR250 records all 98 L9 rows individually. R1 still leaves formal one-to-one L8↔L9 identity unestablished; candidate oracle/test citations remain null and unexecuted. Existing 52 L8 rows are not counted as exact matches without read-field/input and outcome correspondence.",
       "WR250 check-child remains legacy_casewise_four_layer: L4/L9 and L5/L8 pair checks and all caps/pins pass, but matched=0 and four-way failures=172; no explicit marker is selected.",
-      "WR250 records 98 concise candidate rows. Static comparison checks only source-derived condition and ordered finding_codes against L9 expected_observation (98/98 each); it does not claim full expected-object or input JSON equality. Candidates have null oracle/test citation and are unexecuted. Existing 52 L8 rows remain separate; formal one-to-one is unestablished.",
-      "WR250 rowwise matrix has 98 unique candidate design rows. It reports only condition and ordered-finding-code comparisons; no full input JSON equality or full expected-object comparison is claimed. Existing 52 L8 rows are not promoted to exact row matches. Formal one-to-one remains unestablished.",
-      "WR250 static row audit records the actual source-field states (present, explicit null, omitted) for all 98 concise candidate counterexamples; no full L9 input JSON is copied into canonical L8. Expectations are checked against L4, then only condition and ordered finding_codes are compared to L9 expected_observation."
+      "WR250 reviewed-head evidence recorded 98 concise candidate rows. PR #4000 R1 keeps the frozen rowwise artifact byte-identical and adds a current rowwise audit: 7 exact fallback correspondences to existing L8 rows, 91 retained candidate designs, and explicit function read_fields input-state comparisons; neither set is execution evidence.",
+      "The frozen pre-R1 WR250 rowwise matrix has 98 unique candidate-design rows. PR #4000 R1 keeps it unchanged and adds a 98-row disposition audit that removes only seven confirmed fallback duplicates and retains 91 candidate designs. It does not claim full input JSON or expected-object equality; one-to-one formal equivalence remains unestablished.",
+      "WR250 static row audit records the actual source-field states (present, explicit null, omitted) for all 98 concise candidate counterexamples; no full L9 input JSON is copied into canonical L8. Expectations are checked against L4, then only condition and ordered finding_codes are compared to L9 expected_observation.",
+      "WR250 PR #4000 R1 addendum: 9 of 52 existing L8 rows have no receiving L4 class; remaining 43 assignment reasons are unique; 13 candidate function refs corrected; 32 current-candidate L5 pins match current L5 bytes; duplicate candidate root rows absent; input projections distinguish present/null/omitted; seven exact fallback duplicates are enumerated and 91 candidates retained.",
+      "WR250 R1 preserves L9 main negative count 98 and multi_contract_residual negative_case_count 16; L4/L9 source bytes unchanged. Commit-time matrix and summary remain byte-identical to reviewed head.",
+      "WR250 R1 static validator passes: row counts, no-class/unique-reason classification, corrected function refs, function-read-field missing/null/present projections, 32 current L5 pins, L4/L9 unchanged, frozen evidence unchanged, and residual negative count 16."
     ],
     "negative_cases": [
       "Do not treat source presentation order as normative when the L4 diagnostic sort does not apply.",
@@ -133,7 +140,8 @@
       "WR244 historical fixed-comparison scope only: do not change its expected/oracle or L5/L8 bytes. WR250 separately permits current L5/L8 candidate-document updates and pin rebinding; neither scope permits auth configuration or runtime changes.",
       "Do not treat static checker or binding validation as implementation, security behavior, or completion evidence.",
       "Do not infer class membership from existing expected_observation/finding codes; assignment uses fixed blind categories and counterexample inputs only.",
-      "Do not derive class semantics from L9 expected values; use L3/L10/L4 meaning then counterexample inputs, and compare L9 only after code design. Keep absent violation separate from unknown unresolved."
+      "Do not derive class semantics from L9 expected values; use L3/L10/L4 meaning then counterexample inputs, and compare L9 only after code design. Keep absent violation separate from unknown unresolved.",
+      "WR250 PR #4000 R1: do not count equality of finding code and pointer alone as an L8/L9 match; compare function read_fields and candidate input condition, and keep oracle/test citation null when absent."
     ]
   },
   "replacement": {
