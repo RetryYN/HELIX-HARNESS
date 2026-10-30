@@ -1079,7 +1079,145 @@
         "HARNESS-L9-015-F01-foreign_oracle_revision",
         "HARNESS-L9-015-F01-freeze_as_red",
         "HARNESS-L9-015-F01-freeze_timestamp_only"
-      ]
+      ],
+      "candidate_unit_design": {
+        "status": "scaffold_candidate_only_not_approved_or_executed",
+        "pair_ref": "HARNESS-L5-015-F01",
+        "fixed_artifact": {
+          "path": "scaffold/research/wr223-f01-l5-l8-20261031/source/f01-blind-draft-r2.json",
+          "sha256": "fa047d5d871913b696ba5e01d9227ce13a68bc827ff6e8c66cc29d8e69d7e647",
+          "issue_comment": "https://github.com/RetryYN/HELIX-HARNESS/issues/3510#issuecomment-6531844362",
+          "meaning_scope_only": true
+        },
+        "source_pins": [
+          {
+            "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+            "revision": "a715e777bd59291b26f09c0c1c5481273c6eba2e",
+            "sha256": "62a954e9244eb184bf3c2c3c1ab6b27763b52ce4a40041debbd9e13eed7d6689",
+            "pointer": "/requirements/40",
+            "claim": "承認済みreviewed head L3 F01."
+          },
+          {
+            "path": "docs/helix-harness/L10-verification/functional-verification.json",
+            "revision": "a715e777bd59291b26f09c0c1c5481273c6eba2e",
+            "sha256": "e2580d52e8628d4755973e745528702e5cce66ab829c3f9c6f26c5ceb6aace7c",
+            "pointer": "/cases/40",
+            "claim": "承認済みreviewed head L10 F01."
+          },
+          {
+            "path": "docs/helix-harness/L4-basic-design/tdd-development-flow.json",
+            "revision": "dd5931cfff4ff786da2ced44de2a40529edf7b71",
+            "sha256": "8dfbe628d7beb9b449a3ec48e98b7ed89ebbb4be1ea9b3f061dfd02ba464ea2f",
+            "pointer": "/contracts/1",
+            "claim": "F01 L4 output contract/classifications; base bytes unchanged."
+          },
+          {
+            "path": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json",
+            "revision": "dd5931cfff4ff786da2ced44de2a40529edf7b71",
+            "sha256": "3d2257ee9d0f33f367377a3c379af9852973dc11d87c1f23f8f193724adebeb2",
+            "pointer": "/cases/1",
+            "claim": "F01 existing L9 witnesses/expectations; base bytes unchanged."
+          },
+          {
+            "path": "docs/helix-harness/L5-detail-design/tdd-development-flow.json",
+            "revision": "87e5d15cdb909e88fd5d132ae7ad1d32c14b71d5",
+            "sha256": "fce881931580d26381df12721dc740a82b685e29c2039a5e1ff838475824c176",
+            "pointer": "/contracts/1/candidate_classification_design",
+            "claim": "前段で固定した値を含まないL5 general predicate catalog。r2第6負例に対する述語は候補意味だけを持ち、L8 expected projectionは定義しない。"
+          }
+        ],
+        "input_source_boundary": "Each candidate U-ID row refers compactly to a scaffold research fact record. The evidence record re-resolves selected facts against the existing synthetic L9 owner_material; it is not a formal owner-qualified input, new raw source, full return, or independent oracle.",
+        "cases": [
+          {
+            "case_id": "F01-CANDIDATE-POSITIVE-NORMAL",
+            "polarity": "positive",
+            "expected_projection": {
+              "candidate_l4_output": {
+                "pair_binding": "synthetic_match",
+                "freeze_before_body": "synthetic_order_supported",
+                "pre_body_red": "missing",
+                "implementation_success": "not_generated"
+              },
+              "l4_output_ref": "docs/helix-harness/L4-basic-design/tdd-development-flow.json#/contracts/1/output_contract",
+              "l9_expected_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/1/expected_material"
+            },
+            "candidate_input_ref": "scaffold/research/wr223-f01-l5-l8-20261031/source/f01-candidate-input-facts.json#/cases/0"
+          },
+          {
+            "case_id": "F01-CANDIDATE-NEGATIVE-FREEZE-MISSING",
+            "polarity": "negative",
+            "expected_projection": {
+              "candidate_classification_code": "freeze_missing",
+              "candidate_axis": "freeze_before_body",
+              "candidate_state": "missing",
+              "backflow_component": "FrozenContractIntake",
+              "side_effect_count": 0,
+              "l4_expected_ref": "docs/helix-harness/L4-basic-design/tdd-development-flow.json#/contracts/1/negative_classifications/0",
+              "l9_expected_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/1/negative_cases/0"
+            },
+            "candidate_input_ref": "scaffold/research/wr223-f01-l5-l8-20261031/source/f01-candidate-input-facts.json#/cases/1"
+          },
+          {
+            "case_id": "F01-CANDIDATE-NEGATIVE-TEST-AFTER-BODY",
+            "polarity": "negative",
+            "expected_projection": {
+              "candidate_classification_code": "test_after_body",
+              "candidate_axis": "freeze_before_body",
+              "candidate_state": "conflict",
+              "backflow_component": "FrozenContractIntake",
+              "side_effect_count": 0,
+              "l4_expected_ref": "docs/helix-harness/L4-basic-design/tdd-development-flow.json#/contracts/1/negative_classifications/1",
+              "l9_expected_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/1/negative_cases/1"
+            },
+            "candidate_input_ref": "scaffold/research/wr223-f01-l5-l8-20261031/source/f01-candidate-input-facts.json#/cases/2"
+          },
+          {
+            "case_id": "F01-CANDIDATE-NEGATIVE-FOREIGN-ORACLE-REVISION",
+            "polarity": "negative",
+            "expected_projection": {
+              "candidate_classification_code": "foreign_oracle_revision",
+              "candidate_axis": "pair_binding",
+              "candidate_state": "stale",
+              "backflow_component": "FrozenContractIntake",
+              "side_effect_count": 0,
+              "l4_expected_ref": "docs/helix-harness/L4-basic-design/tdd-development-flow.json#/contracts/1/negative_classifications/2",
+              "l9_expected_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/1/negative_cases/2"
+            },
+            "candidate_input_ref": "scaffold/research/wr223-f01-l5-l8-20261031/source/f01-candidate-input-facts.json#/cases/3"
+          },
+          {
+            "case_id": "F01-CANDIDATE-NEGATIVE-FREEZE-AS-RED",
+            "polarity": "negative",
+            "expected_projection": {
+              "candidate_classification_code": "freeze_as_red",
+              "candidate_axis": "pre_body_red",
+              "candidate_state": "missing",
+              "backflow_component": "FrozenContractIntake",
+              "side_effect_count": 0,
+              "l4_expected_ref": "docs/helix-harness/L4-basic-design/tdd-development-flow.json#/contracts/1/negative_classifications/3",
+              "l9_expected_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/1/negative_cases/3"
+            },
+            "candidate_input_ref": "scaffold/research/wr223-f01-l5-l8-20261031/source/f01-candidate-input-facts.json#/cases/4"
+          },
+          {
+            "case_id": "F01-CANDIDATE-NEGATIVE-FREEZE-TIMESTAMP-ONLY",
+            "polarity": "negative",
+            "expected_projection": {
+              "candidate_classification_code": "freeze_timestamp_only",
+              "candidate_axis": "freeze_before_body",
+              "candidate_state": "missing",
+              "backflow_component": "FrozenContractIntake",
+              "side_effect_count": 0,
+              "l4_expected_ref": "docs/helix-harness/L4-basic-design/tdd-development-flow.json#/contracts/1/negative_classifications/4",
+              "l9_expected_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/1/negative_cases/4"
+            },
+            "candidate_input_ref": "scaffold/research/wr223-f01-l5-l8-20261031/source/f01-candidate-input-facts.json#/cases/5"
+          }
+        ],
+        "expectation_boundary": "Each expected_projection is a compact manual candidate projection grounded in the approved L3/L10 F01 meaning and the existing L4/L9 F01 output/negative expectations. It does not replace or edit those expectations. case_id values are local candidate labels only: none is added to unit_case_ids or unit_cases, and none counts toward canonical four-way coverage.",
+        "branch_boundary": "freeze_missing and freeze_timestamp_only stay as separate negative witnesses despite the same L4 axis/state. Other L4/L9 codes each retain their own witness; no merged or invented singleton class is introduced.",
+        "execution_state": "not_executed"
+      }
     },
     {
       "id": "HARNESS-L8-015-F02",

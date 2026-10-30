@@ -1,0 +1,86 @@
+# WR223 HARNESS-015 F01 L5/L8候補
+
+## 範囲と状態
+
+- Issue: #3510、依頼 `WR223-HARNESS-TDD-FLOW-F01-L5L8`
+- 基点: `dd5931cfff4ff786da2ced44de2a40529edf7b71`
+- Binding: `SCF-B-0192`
+- 対象: `HARNESS-L5-015-F01` と `HARNESS-L8-015-F01` の候補annotationだけ
+- 状態: scaffold候補、`authority_effect=none`。承認済みL3/L10の意味と既存L4/L9の散文・部分期待を手動照合した記録であり、正式な設計、独立oracle、実行結果、受入、4way成立ではない。
+
+L4/L9とL8の既存unit-case ID一覧、L5の既存contract、既存L8 unit casesは変更しない。candidate caseはL8既存case rowの入れ子へ置き、canonical `unit_case_ids`／`unit_cases`へ追加しない。checker用keyの改名、singleton classの新設、candidate行の4way件数への計上はしない。
+
+## 固定artifactと比較順序
+
+### r1からr2への差分
+
+- r1 [`source/f01-blind-draft-r1.json`](source/f01-blind-draft-r1.json)、SHA-256 `e4f7be9befded4f2398209eac0d3ef226c0cd62cefa5e47d013a18e87f265bbd` は、別担当がL3 MarkdownとL4 F01散文だけから固定した意味範囲で、L10本文を読まずに作成された。
+- r2 [`source/f01-blind-draft-r2.json`](source/f01-blind-draft-r2.json)、SHA-256 `fa047d5d871913b696ba5e01d9227ce13a68bc827ff6e8c66cc29d8e69d7e647` は、承認済みrevisionのL3 JSON rowとL10 JSON caseを追加して意味範囲を更新し、approval/main-admission調査と露出監査を追記した。L10の正例には未実装／未修正状態からの順序照合が入り、負例を後付け・未凍結・別revision・時刻だけへ具体化した。r1を上書きせず両版を保全した。
+- r2はIssue [#3510 comment 6531844362](https://github.com/RetryYN/HELIX-HARNESS/issues/3510#issuecomment-6531844362)へ固定済み。r2のSHAは比較開始前に照合し、候補artifactにも同一bytesを収録した。
+- 比較順序: r1を固定 → L3/L10 JSONとrepo内decision/auditで承認source revision・main admissionを確認 → r2を固定してIssueへ記録 → L4/L9と既存L5/L8を比較 → L5だけを変更・commit → そのcommitのL5 bytesをL8 source pinへ設定 → L8候補を追加。
+
+固定artifactは意味範囲だけを持つ。schema、具体入力値、分類実装、正式期待値、実Red/Green、4way成立は固定せず、候補からも生成しない。
+
+## 承認済みsourceとrevision
+
+- L3正本: `docs/helix-harness/L3-requirements/functional-requirements.json`。F01 rowは承認reviewed head `a715e777bd59291b26f09c0c1c5481273c6eba2e` の `/requirements/40`。decisionの承認時JSON SHA-256 `62a954e9…d6689` は当該head上で一致する。
+- L10正本: `docs/helix-harness/L10-verification/functional-verification.json`。F01 caseは同reviewed headの `/cases/40`。decisionの承認時JSON SHA-256 `e2580d52…6ace7c` は当該head上で一致する。
+- `docs/governance/audits/prerequisite-l3-l10-definition-audit-2026-10-12.json` はF01 row pairをPR2943、approval comment 6113131428、merge commit `28739e940176b0128c49b4646615674ba33b6771`へ結び、両base rowがaudit entryと一致する。PR2943 merge commitは基点の祖先である。
+- 後続034 decision PR2959は追加13組と先行113組不変を記録し、merge commit `de53e71f2f3bb0f260a792244fe8badd46f4274d` は基点の祖先である。基点のL3/L10 file SHAは同decisionのpinsと一致し、F01 row/caseはapproval audit entryと同じ。
+- 両decision recordの`authority_effect`はmain admission時に有効となる条件付きで、PR2943およびPR2959のmerge commitは基点の祖先であるため、両方のadmission条件は充足している。`recorded_pending_final_review_and_main_admission`はdecision記録時点のstatus表示として読む。decision recordと固定済みr2は書き換えない。
+
+## L5/L8候補
+
+初回L5候補commitは `f97e1ff9331bafdc5d87b4f6e1af067020e78b76`（SHA-256 `216e8f04638ab8734c91333bbb6bae48031e13224d084eb9fc750f125d703610`）。r2固定後にL5へfixture factsを加えた中間revisionはQA §3所有境界に反したため、具体値とfact listをscaffoldへ移した。その後、R1で未対応のr2第6負例を受け、値を含まない一般述語だけを追加したL5 commit `706343a6d75dedd0d07040958d5f340baf259514`（SHA-256 `d5e5bc2611e47da7c0a55020c52152453f932c9665a0eeca5e44ddc71a1d3a15`）を固定した。R2 F1では最小前提と欠落条件の矛盾を指摘され、`required_presence`を「評価対象input recordがある」へ限定したL5 commit `87e5d15cdb909e88fd5d132ae7ad1d32c14b71d5`（SHA-256 `fce881931580d26381df12721dc740a82b685e29c2039a5e1ff838475824c176`）を固定した。L8 source pinはこのrevisionと完全bytesを参照する。L5 F01既存field/semantic rulesは不変。
+
+### r2固定後のsource-condition再照合
+
+r2は意味範囲だけを固定し、具体schema・fixture事実・分類優先順位を指定していない。初回L5 annotationはL4/L9 projectionのcode/axis/stateを写し、続く修正では具体的なsynthetic値をL5内へ記載していた。QA §3「L5持ち物上限」はtest用synthetic fixture本体をL5へ置かないと定め、PR #3959（base merge `dd5931cfff4ff786da2ced44de2a40529edf7b71`）のF02ではcandidate input factsをscaffold researchへ分離している。この指摘に沿い、L5からcase別rules、具体facts、期待projectionを除去し、case IDや値を含まないpresence/relational predicate catalogと未決だけを残した。事実は [`source/f01-candidate-input-facts.json`](source/f01-candidate-input-facts.json) に限定抽出して保存し、validatorがbase revisionのL9 `owner_material` から再解決する。L8 U-ID行は同artifactのcase recordへのcompact referenceと短い期待projectionだけを持つ。L4/L9と既存期待、r1/r2 bytesは変更していない。
+
+| witness | L9 owner_material上の具体条件 | projectionに関する扱い |
+|---|---|---|
+| positive normal | `binding`・`design_pair.*_ref`・`freeze.*_ref`がprovided。target refとbinding、freeze refsとdesign-pair refsのidentity/revision/scope/owner関係が揃い、`freeze.sequence=1 < body_change.sequence=3`。`red`はprovided null、`implementation_success`はabsent。 | 既存L4/L9 normal projectionは候補参照のまま。fixtureは実凍結・Red・実装成功を証明しない。 |
+| freeze missing | `freeze`はprovided null。paired design refsと`body_change.sequence`はprovided。 | 凍結不足の意味は導けるが、`pair_binding`対`freeze_before_body`の一次軸は決まらない。既存projectionはr2固定後に選んだ候補mappingとして残し、優先順位は未決。 |
+| test after body | 同じowner_material内で`freeze.sequence=4 > body_change.sequence=3`。binding/target ref revisionはr1だが、`body_change`にrevision fieldはない。 | 後順序の事実は明示できる。`test_after_body/conflict`はL10の意味と既存L4/L9語彙を結ぶ候補mappingで、新規上流規則ではない。 |
+| foreign oracle revision | `design_pair.oracle_ref.revision=r1`、`freeze.oracle_ref.revision=r0`、freeze sequenceはbody changeより前。 | ref revision不一致は具体化できる。`pair_binding/stale`のstate/codeは候補語彙選択として区別する。 |
+| freeze as Red | raw `red`はprovided null、freeze recordとsequenceは存在。一方L9 caseは候補出力`pre_body_red=observed_from_freeze`へ置換している。 | 出力の主張とraw inputの不一致を示す。凍結metadataだけではRed観測にならない。閉じた分類条件や出力の優先順位は未決。 |
+| timestamp only | `freeze`はprovided recordだが`created_at`だけ。target/design/test/oracle/expected/sequence各fieldはabsent。`created_at`は`body_change.created_at`より早い。 | `freeze=null`と別witnessとして維持。両者を同じ`freeze_before_body/missing`へ投影する選択はr2後の候補設計で、重複と優先順位は未決。 |
+
+L9のowner_materialはsynthetic fixtureであり、正式なowner-qualified入力ではない。具体factsはscaffold研究artifactだけに置き、L5 predicateはfield presence/比較関係に限る。production schemaや正式分類器は定めず、候補期待projectionの意味確認と値の一致検査を混同しない。特にfreeze欠落とtimestamp-onlyの一次axis、複数条件同時成立時の分類優先順位、`body_change`のrevision対応field、`freeze_as_red`出力変異の正式な入力/出力境界は未決である。
+
+### PR #3967 R1で見つかったr2第6負例の未対応
+
+r2の`representative_negative_conditions`第6項は「対象identity/revision/scopeまたは設計/対oracleの版を辿れない」条件で、L3 F01の対象結線義務とL10 F01の設計・oracle版と対象を辿る観測に根拠がある。既存L4 F01とL9 F01には負例行が各5件だけで、この第6条件に対応する行はない。[PR #3967 R1 comment 6532324816](https://github.com/RetryYN/HELIX-HARNESS/pull/3967#issuecomment-6532324816)もこの差をMajorとして指摘した。
+
+L5には値を持たない`target_and_pair_refs_untraceable`一般述語を追加し、最小評価前提はinput recordの存在、検出条件はrequired ref memberの欠落・不完全・target bindingへの非関連とした。分類code/axis/state/backflowや優先順位は未定義のまま。L8は既存L4/L9に根拠のない6件目の期待projectionを作らず、引き続き1 positive・5 negativeのままにする。第6意味をL4/L9のnegative rowへ定義する場合は別V-pair作業として扱う。source facts artifactのunresolvedにもこの欠落を記録した。
+
+PR #3967 R2 comment 6532411765 / response `root-wr223-pr3967-review-r2-response-R1.json`（SHA-256 `8947a178cea3083f3c27fdd09b7756e81b7e29d367d628f261855dfa0e3c9399`）のF1に従い、required_presenceを対象recordが利用可能という最小前提へ直した。欠落等を述語条件に保持し、value-freeを維持した。L8の期待projectionは増やしていない。r2固定bytes・L4/L9・既存期待は不変。
+
+同R1のI1に従い、`freeze.sequence == body_change.sequence`は正例`<`にも負例`>`にも属する根拠が固定sourceにないため未決へ追加した。等値を受理・拒否・unknownのどれかに決めない。r2のbytesとIssue固定SHAは不変。
+
+L8 candidateは1 positive、5 negative witnessを持つ。正例projectionはL4 `/contracts/1/output_contract` とL9 `/cases/1/expected_material` を参照する。負例projectionは候補の短い意味projectionと既存L4/L9への参照を持つ。各U-ID rowの`candidate_input_ref`は [`source/f01-candidate-input-facts.json`](source/f01-candidate-input-facts.json) のcompact case recordを指し、L8にはraw owner_material、全返却、fixture payloadを置かない。fact recordは既存L9 owner_materialをvalidatorで再解決する。L9 fixtureは `synthetic_independent_owner_design_fixture` であり、正式owner由来inputと主張しない。
+
+| candidate witness | source条件 | candidate projectionの根拠 |
+|---|---|---|
+| positive normal | L9 normal fixture | L4 output contract + L9 expected material |
+| freeze missing | 凍結記録の欠落 | L4/L9 `freeze_missing` |
+| test after body | 本体変更後の凍結 | L4/L9 `test_after_body` |
+| foreign oracle revision | oracleのrevision不一致 | L4/L9 `foreign_oracle_revision` |
+| freeze as Red | 凍結だけをRed扱い | L4/L9 `freeze_as_red` |
+| timestamp only | 早い作成時刻だけで原記録なし | L4/L9 `freeze_timestamp_only` |
+
+`freeze_missing`と`freeze_timestamp_only`は双方 `freeze_before_body=missing` だが別条件のまま別witnessにした。各候補行のIDはresearch内識別子で、既存の6件の`unit_case_ids`や35件の`unit_cases`へ加えていない。従ってcanonical four-way negative row数を増やさない。 静的 `design_verification_checker.py check-child` もこの候補後に4way countsを `L4=28, L9=28, L8=0, L5=0` と報告し、matched=0のまま。L4/L9 pairとL5/L8 pair自体はpassしたが、full negative 4wayはfail/residualのままであり、このcandidateは件数へ入らない。ownership-capはL9で35件、L8で1647件が残り、pinsは4文書ともpass。
+
+## 既存失敗と旧HELIXとの対応
+
+現行の同種gapは `scaffold/research/wr206-tdd-flow-neg-4way-pr-a-20261031/README.md` に記録されている。L4/L9に負例28件ずつがありL5/L8は0件、child照合で33件の失敗が残り、ownership-capもL8で既存1647件の指摘が残る。ここではF01だけに候補pairを置く。残る27件、ownership-cap、4way完成は扱わない。
+
+旧HELIXの対応sourceは `LEGACY-ASSET-5E22432B0A5A8F7CC8B3`、`archive/legacy-generation-2026-09-14/root/docs/governance/ddd-tdd-rules.md`（SHA-256 `9eac2cc9e5fa8f1177b39f86681fa928cb22070666a5306dce7ae6943597d7af`）と `archive/legacy-generation-2026-09-14/root/docs/design/harness/L6-function-design/vmodel-pair-freeze.md` である。保持するのは契約先行、pairを実在する設計とtestへ明示的に結ぶこと、Redは意図した欠陥の実観測であること。変えるのは旧lint/層番号/実装形式を移植せず、現行承認済みL3/L10 F01と現行L4/L9に従ってL5/L8候補の意味・source pin・witnessを組み立てる点である。候補設計のために旧runtimeやlintを再利用・実行しない。
+
+同種の失敗記録 `archive/legacy-generation-2026-09-14/root/.helix/audit/A-114-ddd-tdd-strengthening-reaudit.md:37-41` は15件のPLANがdraftかつreview evidenceなしの間に実装がshippedしていた状態（implementation ahead of confirmed PLAN）を示す。旧 `PLAN-REVERSE-28-red-first-tdd-evidence.md` はRed-first evidenceが機械的に強制されていなかったgapを記録する。これは固定sourceの意味を変える根拠ではなく、候補を承認済み設計・実観測と誤認しない境界の参考にした。
+
+## 検証と未決
+
+再現可能な静的validatorは [`validate_static_candidate.py`](validate_static_candidate.py)。JSON parse、source revision/file hashes、RFC6901 pointer解決、source factsのpresence/value/field relationをbase L9 owner_materialから再解決、L4/L9/L8既存bytes・期待の不変、L8 L5 final pin、r1/r2 hashes、候補IDとcanonical IDの分離を確認する。source factsを候補期待値との等値で分類する検査はしない。validatorはL4/L5 algorithmを実行しない。旧HELIX runtime/test/CIと新runtime/test/CIは起動しない。 実行結果はvalidator PASS、`scfctl validate` `bindings=177 fail=0`、`scfctl stale` `stale=0`、staged `git diff --check` はclean。
+
+正式な入力owner、production schema/codec、分類優先順位、sequence等値の扱い、r2第6負例のL4/L9対応、L5/L8正式設計、independent oracle、実行・受入、全negative 4way matching、L8 ownership-cap、通常のL3再開は未成立のまま残す。候補artifactの存在やvalidatorの成功でこれらを生成しない。

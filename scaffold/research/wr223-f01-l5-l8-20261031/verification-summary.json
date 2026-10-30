@@ -1,0 +1,164 @@
+{
+  "status": "candidate_static_validation_passed_with_unresolved_formal_4way_and_source_authority",
+  "evidence_kind": "scaffold",
+  "authority_effect": "none",
+  "base_revision": "dd5931cfff4ff786da2ced44de2a40529edf7b71",
+  "candidate_documents": {
+    "docs/helix-harness/L5-detail-design/tdd-development-flow.json": "fce881931580d26381df12721dc740a82b685e29c2039a5e1ff838475824c176",
+    "docs/helix-harness/L8-unit-verification/tdd-development-flow.json": "ee1648c067009e819d41f869733290042e103c39e41c0980d29dcdb46c107392"
+  },
+  "fixed_artifacts": {
+    "r1": {
+      "path": "scaffold/research/wr223-f01-l5-l8-20261031/source/f01-blind-draft-r1.json",
+      "sha256": "e4f7be9befded4f2398209eac0d3ef226c0cd62cefa5e47d013a18e87f265bbd"
+    },
+    "r2": {
+      "path": "scaffold/research/wr223-f01-l5-l8-20261031/source/f01-blind-draft-r2.json",
+      "sha256": "fa047d5d871913b696ba5e01d9227ce13a68bc827ff6e8c66cc29d8e69d7e647",
+      "issue_comment": "https://github.com/RetryYN/HELIX-HARNESS/issues/3510#issuecomment-6531844362",
+      "meaning_scope_only": true
+    }
+  },
+  "checks": {
+    "json_parse": "pass",
+    "source_revision_and_blob_hashes": "pass",
+    "approved_l3_l10_target_row_equality": "pass",
+    "l4_positive_output_pointer_resolution": "pass",
+    "l9_witness_pointer_resolution": "pass",
+    "l4_l9_full_file_bytes_unchanged": "pass",
+    "existing_l5_contract_fields_unchanged": "pass",
+    "existing_l8_unit_case_ids_and_unit_cases_unchanged": "pass",
+    "candidate_witnesses_positive": 1,
+    "candidate_witnesses_negative": 5,
+    "candidate_contribution_to_canonical_four_way": 0,
+    "scaffold_binding_validation": "pass: bindings=177, fail=0",
+    "static_candidate_validator": "pass: six source facts re-resolve; six value-free predicates; L8 remains five negative witnesses",
+    "git_diff_check": "pass: working diff clean; final cached diff checked before commit",
+    "scaffold_stale": "pass: stale=0",
+    "design_verification_checker_check_child": {
+      "evidence_kind": "scaffold",
+      "exit_code": 1,
+      "l4_l9_pair": "pass",
+      "l5_l8_pair": "pass",
+      "negative_4way_counts": {
+        "L4": 28,
+        "L9": 28,
+        "L8": 0,
+        "L5": 0
+      },
+      "matched_case_count": 0,
+      "candidate_rows_counted": 0,
+      "ownership_cap_failures": {
+        "L9": 35,
+        "L8": 1647
+      },
+      "pins": "all four documents pass",
+      "meaning": "formal negative 4way remains incomplete; expected residual, not a candidate validation pass"
+    },
+    "source_condition_facts_compared_to_l4_l9_expected_values": "not performed; conditions are fixture-local field/presence/revision/sequence statements",
+    "candidate_projection_expected_value_equality": "not used by static validator; candidate mappings remain provisional",
+    "source_fact_resolution": "pass: 6 records, presence/value and field relations re-resolved against base L9 owner_material",
+    "l5_fixture_value_separation": "pass: no case IDs or synthetic fixture values in L5 predicate catalog",
+    "l8_compact_reference_scope": "pass: U-ID rows reference scaffold fact records; no raw payload/full return keys",
+    "l5_general_predicates": "pass: 6 negative predicates, including r2 sixth meaning, contain no concrete fixture values or classification projection",
+    "l8_negative_witnesses": "pass: 5 only; no invented projection for r2 sixth negative because L4/L9 have no row",
+    "decision_admission_read": "PR2943 and PR2959 admission conditions satisfied by merge ancestry; recorded status interpreted as decision-time display",
+    "fixed_r2_artifact": "unchanged bytes; SHA fa047d5d871913b696ba5e01d9227ce13a68bc827ff6e8c66cc29d8e69d7e647",
+    "sequence_equality": "unresolved; no classification assigned",
+    "r2_f1_minimum_precondition": "pass: required_presence states only that an evaluation input record is available; predicate condition detects absent, incomplete, or unrelatable required refs",
+    "l8_projection_after_r2_f1": "pass: unchanged; no additional expected projection",
+    "post_r2_f1_validation": "PASS: static candidate validator; SCF-B-0192 validate bindings=177 fail=0; stale=0; git diff --check clean",
+    "l5_l8_pin_order": "pass: L5 bytes committed first as 87e5d15cdb909e88fd5d132ae7ad1d32c14b71d5; L8 pin now references exact revision and bytes"
+  },
+  "historical_failure_basis": {
+    "current_pr_a": "WR206 PR-A research record: L4/L9 each had 28 negative classifications while L5/L8 had zero; 33 child mismatches and existing L8 ownership-cap findings remained.",
+    "legacy": "A-114 records 15 draft plans without review evidence while implementation was shipped ahead of confirmed plans; old DDD/TDD source requires contract-first and actual intended-defect Red evidence."
+  },
+  "not_run": [
+    "L4/L5 algorithm execution",
+    "old HELIX CLI, runtime, hooks, tests, or CI",
+    "new runtime, tests, or CI",
+    "candidate rows are not formal oracle outcomes"
+  ],
+  "unresolved": [
+    "No formal owner-qualified input source, production schema/codec, approved L5/L8 design, independent oracle, execution, or acceptance is established.",
+    "Formal four-way matching remains unestablished; candidate rows are excluded from canonical counts.",
+    "freeze_missing and timestamp-only primary-axis/priority overlap; multi-condition priority; body_change revision binding field; formal input/output boundary for freeze-as-Red",
+    "No formal owner-qualified input is established; research fact records describe the existing synthetic L9 fixture only.",
+    "Synthetic source fact records are research evidence only; they do not qualify the L9 owner as a formal input owner.",
+    "r2 sixth negative (untraceable identity/revision/scope or design/oracle version) has no L4/L9 row; L8 projection intentionally not invented; L4/L9 work remains separate.",
+    "freeze.sequence equality with body_change.sequence has no fixed positive/negative meaning."
+  ],
+  "l5_initial_commit": {
+    "revision": "f97e1ff9331bafdc5d87b4f6e1af067020e78b76",
+    "sha256": "216e8f04638ab8734c91333bbb6bae48031e13224d084eb9fc750f125d703610"
+  },
+  "l5_previous_revision_history": [
+    {
+      "revision": "f97e1ff9331bafdc5d87b4f6e1af067020e78b76",
+      "sha256": "216e8f04638ab8734c91333bbb6bae48031e13224d084eb9fc750f125d703610",
+      "note": "initial candidate"
+    },
+    {
+      "revision": "7d72703bb1fe3e350292751141146f300d70574a",
+      "sha256": "f1ac1bd4e47365378ebf09f53b0e24b02d3be7033411df881672206363805b4a",
+      "note": "fixture values were temporarily recorded in L5; superseded due to ownership boundary"
+    },
+    {
+      "revision": "706343a6d75dedd0d07040958d5f340baf259514",
+      "sha256": "d5e5bc2611e47da7c0a55020c52152453f932c9665a0eeca5e44ddc71a1d3a15",
+      "note": "value-free general predicate added for r2 sixth negative; superseded by R2 F1 precondition correction"
+    },
+    {
+      "revision": "87e5d15cdb909e88fd5d132ae7ad1d32c14b71d5",
+      "sha256": "fce881931580d26381df12721dc740a82b685e29c2039a5e1ff838475824c176",
+      "note": "R2 F1: minimum evaluation precondition clarified; L8 pin rebound in following commit"
+    }
+  ],
+  "l5_ownership_correction": {
+    "revision": "87e5d15cdb909e88fd5d132ae7ad1d32c14b71d5",
+    "sha256": "fce881931580d26381df12721dc740a82b685e29c2039a5e1ff838475824c176",
+    "change": "R2 F1: minimum precondition is an available evaluation input record; predicate condition detects absent, incomplete, or unrelatable required reference members; value-free and no classification mapping"
+  },
+  "source_fact_evidence": {
+    "path": "scaffold/research/wr223-f01-l5-l8-20261031/source/f01-candidate-input-facts.json",
+    "sha256": "f16de2d4cb641c34a7289a81496e4618ff5a4a88eb8be3da1896123920db21de",
+    "records": 6,
+    "basis": "selected concrete facts re-resolved against base L9 owner_material; no full owner_material payload duplicated"
+  },
+  "l5_superseded_source_condition_revision": {
+    "revision": "7d72703bb1fe3e350292751141146f300d70574a",
+    "path": "docs/helix-harness/L5-detail-design/tdd-development-flow.json",
+    "sha256": "f1ac1bd4e47365378ebf09f53b0e24b02d3be7033411df881672206363805b4a",
+    "negative_rules_with_fixture_fact_predicates": 5,
+    "positive_rule_with_fixture_fact_predicate": 1,
+    "selection_basis": "r2 fixed meaning plus synthetic L9 owner_material field facts; projection choices remain candidate-only; unresolved priority explicitly retained",
+    "note": "Superseded: fixture facts and per-witness projections were temporarily placed in L5 and then removed to restore the QA §3 ownership boundary."
+  },
+  "l5_current_pinned_commit": {
+    "revision": "87e5d15cdb909e88fd5d132ae7ad1d32c14b71d5",
+    "path": "docs/helix-harness/L5-detail-design/tdd-development-flow.json",
+    "sha256": "fce881931580d26381df12721dc740a82b685e29c2039a5e1ff838475824c176"
+  },
+  "resolved_authority_admission": "PR2943 and PR2959 merge admission conditions are satisfied by merge ancestry; decision status fields are read as decision-time records. Source decision records and fixed r2 were not edited.",
+  "review_r2_followup": {
+    "pr": 3967,
+    "review_comment_id": 6532411765,
+    "reviewed_head": "d0ccf6b3f46f382e65a7fa2589678f4b936d5ec8",
+    "response_path": "scaffold/review-handoff/local/brain032-l8-d27-3547-20261023/root-wr223-pr3967-review-r2-response-R1.json",
+    "response_sha256": "8947a178cea3083f3c27fdd09b7756e81b7e29d367d628f261855dfa0e3c9399",
+    "finding_recorded": "minimum precondition now states evaluation input record availability; missing/incomplete/unrelatable required members remain the value-free condition; no L8 projection added"
+  },
+  "review_r1_followup": {
+    "pr": 3967,
+    "review_comment_id": 6532324816,
+    "reviewed_head": "50ba8c4d0c119e62b1d86b8f41cde4da2d62937d",
+    "response_path": "scaffold/review-handoff/local/brain032-l8-d27-3547-20261023/root-wr223-pr3967-review-r1-response-R1.json",
+    "response_sha256": "a61e1620d1db9513f6fb6388ec34a52a05d6e1e4d18a641f7e9419968da7535a",
+    "findings_recorded": [
+      "r2 sixth negative has no L4/L9 row; value-free L5 predicate added with no L8 projection",
+      "sequence equality added to unresolved",
+      "decision admission condition satisfied by merge ancestry; decision records remain immutable"
+    ]
+  }
+}

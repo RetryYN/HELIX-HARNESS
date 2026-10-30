@@ -3580,6 +3580,145 @@
             ]
           }
         ]
+      },
+      "candidate_classification_design": {
+        "status": "candidate_only_not_approved_or_executed",
+        "scope": "HARNESS-L5/L8-015-F01の候補だけ。既存L5 contract/semantic rules、L4/L9、L8のcanonical unit_case_idsは変更しない。formal L5/L8 designや独立oracleを成立させない。",
+        "fixed_artifact": {
+          "path": "scaffold/research/wr223-f01-l5-l8-20261031/source/f01-blind-draft-r2.json",
+          "sha256": "fa047d5d871913b696ba5e01d9227ce13a68bc827ff6e8c66cc29d8e69d7e647",
+          "issue_comment": "https://github.com/RetryYN/HELIX-HARNESS/issues/3510#issuecomment-6531844362",
+          "authority_boundary": "source-only meaning scope; not a formal oracle, schema, classifier, or approval."
+        },
+        "preserved_fixed_artifact_history": [
+          {
+            "path": "scaffold/research/wr223-f01-l5-l8-20261031/source/f01-blind-draft-r1.json",
+            "sha256": "e4f7be9befded4f2398209eac0d3ef226c0cd62cefa5e47d013a18e87f265bbd"
+          },
+          {
+            "path": "scaffold/research/wr223-f01-l5-l8-20261031/source/f01-blind-draft-r2.json",
+            "sha256": "fa047d5d871913b696ba5e01d9227ce13a68bc827ff6e8c66cc29d8e69d7e647"
+          }
+        ],
+        "candidate_source_pins": [
+          {
+            "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+            "revision": "a715e777bd59291b26f09c0c1c5481273c6eba2e",
+            "sha256": "62a954e9244eb184bf3c2c3c1ab6b27763b52ce4a40041debbd9e13eed7d6689",
+            "pointer": "/requirements/40",
+            "claim": "承認済みreviewed headのL3 F01 row。base rowとの同一性はauditで確認。"
+          },
+          {
+            "path": "docs/helix-harness/L10-verification/functional-verification.json",
+            "revision": "a715e777bd59291b26f09c0c1c5481273c6eba2e",
+            "sha256": "e2580d52e8628d4755973e745528702e5cce66ab829c3f9c6f26c5ceb6aace7c",
+            "pointer": "/cases/40",
+            "claim": "承認済みreviewed headのL10 F01 case。base caseとの同一性はauditで確認。"
+          },
+          {
+            "path": "docs/helix-harness/L4-basic-design/tdd-development-flow.json",
+            "revision": "dd5931cfff4ff786da2ced44de2a40529edf7b71",
+            "sha256": "8dfbe628d7beb9b449a3ec48e98b7ed89ebbb4be1ea9b3f061dfd02ba464ea2f",
+            "pointer": "/contracts/1",
+            "claim": "F01の既存L4 output contractとfailure classifications。"
+          }
+        ],
+        "candidate_boundary": "L8 candidate cases are manual compact projections of L4/L9 expectations grounded in the fixed L3/L10 meaning. They do not change L9 expected material, do not execute any algorithm, do not establish a formal oracle, and do not count as canonical four-way rows.",
+        "classification_authority_note": "値を持たない候補述語一覧で、field presenceと比較関係だけを記す。production schema、分類code/axis/stateは定義しない。具体fixture evidenceとr2後のmapping差分はscaffold研究資料へ置く。",
+        "source_fact_evidence_ref": "scaffold/research/wr223-f01-l5-l8-20261031/source/f01-candidate-input-facts.json#/cases",
+        "candidate_predicate_catalog": {
+          "status": "candidate_general_predicates_only_not_approved_or_executed",
+          "positive": {
+            "required_presence": [
+              "binding.identity",
+              "binding.revision",
+              "binding.scope",
+              "design_pair.l6_ref",
+              "design_pair.l5_ref",
+              "design_pair.paired_test_ref",
+              "design_pair.oracle_ref",
+              "freeze.target_ref",
+              "freeze.design_ref",
+              "freeze.l6_ref",
+              "freeze.test_ref",
+              "freeze.oracle_ref",
+              "freeze.sequence",
+              "body_change.sequence"
+            ],
+            "relations": [
+              "freeze.target_ref matches binding on identity/revision/scope",
+              "each freeze design/L6/test/oracle ref matches its paired design_pair ref on identity/revision/scope/owner",
+              "freeze.sequence < body_change.sequence"
+            ],
+            "observation_boundary": [
+              "Red observation is absent or null",
+              "implementation-success material is absent"
+            ],
+            "unresolved": [
+              "formal field schema and required-field policy",
+              "whether absent and null are equivalent for each member",
+              "source owner qualification",
+              "Whether freeze.sequence equal to body_change.sequence is rejected, accepted, or unknown; only the < and > branches have source basis."
+            ]
+          },
+          "negative": [
+            {
+              "predicate_id": "freeze_record_absent",
+              "required_presence": "freeze is absent or null",
+              "condition": "No freeze record is available; other missing evidence is retained without selecting a primary axis."
+            },
+            {
+              "predicate_id": "freeze_after_body_change",
+              "required_presence": [
+                "freeze.sequence",
+                "body_change.sequence"
+              ],
+              "relation": "freeze.sequence > body_change.sequence",
+              "unresolved": "Meaning and target-revision binding of sequence values; equality is not covered by the fixed source and remains unresolved."
+            },
+            {
+              "predicate_id": "paired_oracle_revision_mismatch",
+              "required_presence": [
+                "design_pair.oracle_ref.revision",
+                "freeze.oracle_ref.revision"
+              ],
+              "relation": "the revisions differ",
+              "unresolved": "Whether revision mismatch alone determines a classification axis/state."
+            },
+            {
+              "predicate_id": "red_claim_without_observation",
+              "required_presence": "candidate claims a Red observation; raw red observation is absent or null",
+              "condition": "Freeze metadata alone does not supply a Red observation.",
+              "unresolved": "Formal input/output boundary and precedence."
+            },
+            {
+              "predicate_id": "timestamp_without_freeze_material",
+              "required_presence": [
+                "freeze.created_at",
+                "body_change.created_at"
+              ],
+              "condition": "Freeze record lacks target/design/L6/test/oracle/expected/sequence members; timestamps alone do not establish the required frozen pair or sequence relation.",
+              "unresolved": "Overlap and precedence relative to an absent/null freeze record."
+            },
+            {
+              "predicate_id": "target_and_pair_refs_untraceable",
+              "required_presence": "An evaluation input record is available for inspection.",
+              "condition": "A required target identity/revision/scope or paired design/test/oracle identity/revision/scope/owner member is absent, incomplete, or cannot be related to the target binding.",
+              "meaning_basis": "L3 requires binding target identity/revision/scope; L10 requires tracing the design/oracle versions and target.",
+              "unresolved": "L4/L9 have no corresponding negative row. Classification output, axis, state, backflow, and priority are not defined here; extending L4/L9 is a separate V-pair task."
+            }
+          ],
+          "no_classification_mapping": "This catalog contains no candidate code, axis, state, fixture value, or case ID. Candidate mapping priority remains unresolved.",
+          "unresolved": [
+            "r2 negative condition for untraceable target identity/revision/scope or design/oracle version has no L4/L9 negative row; a value-free candidate predicate is recorded without L8 projection.",
+            "freeze.sequence == body_change.sequence has no positive or negative classification in fixed sources."
+          ]
+        },
+        "semantic_distinctions": [
+          "凍結記録と実Red観測は別であり、凍結をRed実観測へ昇格させない。",
+          "実装前凍結、後付け凍結、oracle revision不一致、時刻だけの記録は意味上の異なる反例候補として扱う。",
+          "各反例が複数のpredicateを満たす場合の分類優先順位は未決。"
+        ]
       }
     },
     {
