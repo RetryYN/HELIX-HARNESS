@@ -8,6 +8,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[3]
 BASE = "988765e9be335f2a1d376721c1b11f808fd03372"
 MAIN = "e0438a372065626ea752c31dc6c86b92d3198a9d"
+WR249_BASE = "e9cca9f1d3d88b1c2049c3a3e492b36b2c2ec905"
 BLIND = "scaffold/research/wr243-tdd-f03-l5-l8-20261031/source/wr243-tdd-clean-source-only.json"
 BLIND_SHA = "846907d5802170ed775fbf08664c0b85f42e7b6ac0a9623e8584452f81ead813"
 L5 = "docs/helix-harness/L5-detail-design/tdd-development-flow.json"
@@ -92,22 +93,24 @@ def main():
     current_case = next(x for x in current_l8["cases"] if x["id"] == "HARNESS-L8-015-B01")
     checks["canonical_B01_unit_case_ids_unchanged"] = current_case.get("unit_case_ids") == base_case.get("unit_case_ids")
     checks["canonical_B01_unit_cases_unchanged"] = current_l8.get("unit_cases") == base_l8.get("unit_cases")
-    for layer, path, collection, candidate_key, record_id in (
-        ("F03-L5", L5, "contracts", "candidate_classification_design", "HARNESS-L5-015-F03"),
-        ("F04-L5", L5, "contracts", "candidate_classification_design", "HARNESS-L5-015-F04"),
+    correction = read_json("scaffold/research/wr249-tdd-f03-f04-uid-split-20261031/uid-split-correction.json")
+    for layer, path, collection, candidate_key in (
+        ("L5", L5, "contracts", "candidate_classification_design"),
+        ("L8", L8, "cases", "candidate_unit_design"),
     ):
+        historical = git_json(WR249_BASE, path)
+        predecessor = git_json(MAIN, path)
+        b01_id = f"HARNESS-{layer}-015-B01"
+        checks[f"historical_{layer}_F03_F04_preserved_after_B01"] = strip_b01_candidate(historical, collection, candidate_key, b01_id) == predecessor
         current = read_json(path)
-        base_doc = git_json(MAIN, path)
-        current = strip_b01_candidate(current, collection, "candidate_classification_design", "HARNESS-L5-015-B01")
-        checks[f"{layer}_preserved"] = current == base_doc
-    for layer, path, collection, candidate_key, record_id in (
-        ("F03-L8", L8, "cases", "candidate_unit_design", "HARNESS-L8-015-F03"),
-        ("F04-L8", L8, "cases", "candidate_unit_design", "HARNESS-L8-015-F04"),
-    ):
-        current = read_json(path)
-        base_doc = git_json(MAIN, path)
-        current = strip_b01_candidate(current, collection, "candidate_unit_design", "HARNESS-L8-015-B01")
-        checks[f"{layer}_preserved"] = current == base_doc
+        prior = git_json(WR249_BASE, path)
+        for suffix in ("F03", "F04"):
+            record_id = f"HARNESS-{layer}-015-{suffix}"
+            next(x for x in current[collection] if x.get("id") == record_id).pop(candidate_key, None)
+            next(x for x in prior[collection] if x.get("id") == record_id).pop(candidate_key, None)
+        checks[f"current_{layer}_only_F03_F04_candidate_changes"] = current == prior
+        checks[f"current_{layer}_matches_WR249_correction_hash"] = sha((ROOT / path).read_bytes()) == correction["corrected_candidate"][f"{layer.lower()}_sha256"]
+        checks[f"historical_{layer}_matches_WR249_snapshot_hash"] = sha(subprocess.check_output(["git", "show", f"{WR249_BASE}:{path}"], cwd=ROOT)) == correction["prior_candidate_snapshot"][f"{layer.lower()}_sha256"]
     checks["L4_L9_exact_bytes_unchanged"] = all(sha((ROOT / p).read_bytes()) == sha(subprocess.check_output(["git", "show", f"{MAIN}:{p}"], cwd=ROOT)) for p in (L4, L9))
     binding = read_json("scaffold/bindings/SCF-B-0210.json")
     checks["binding_id_and_no_scaffold_upstream"] = binding.get("id") == "SCF-B-0210" and all(not x.get("path", "").startswith("scaffold/") for x in binding.get("upstream", []))

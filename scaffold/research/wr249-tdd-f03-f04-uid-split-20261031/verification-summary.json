@@ -1,0 +1,127 @@
+{
+  "schema": "wr249-verification-summary.v1",
+  "evidence_kind": "scaffold",
+  "authority_effect": "none",
+  "base_revision": "e9cca9f1d3d88b1c2049c3a3e492b36b2c2ec905",
+  "static_validation": {
+    "command": "python3 scaffold/research/wr249-tdd-f03-f04-uid-split-20261031/validate_uid_split.py",
+    "exit_code": 0,
+    "passed": true,
+    "checks": {
+      "L3_L10_L4_L9_bytes_unchanged": true,
+      "fixed_blind_unchanged": true,
+      "fixed_wr243-tdd-f03-l5-l8-20261031_evidence_unchanged": true,
+      "fixed_wr243-tdd-f04-l5-l8-20261031_evidence_unchanged": true,
+      "fixed_wr243-tdd-b01-l5-l8-20261031_evidence_unchanged": true,
+      "F03_candidate_count_and_one_to_one_ids": true,
+      "F03_L5_L8_source_text_matches_by_UID": true,
+      "F03_existing_L9_trace_refs": true,
+      "F03_canonical_unit_case_ids_preserved": true,
+      "F03_missing_row_oracle_and_test_citation_preserved": true,
+      "F03_contract_oracle_preserved": true,
+      "F04_candidate_count_and_one_to_one_ids": true,
+      "F04_L5_L8_source_text_matches_by_UID": true,
+      "F04_existing_L9_trace_refs": true,
+      "F04_canonical_unit_case_ids_preserved": true,
+      "F04_missing_row_oracle_and_test_citation_preserved": true,
+      "F04_contract_oracle_preserved": true,
+      "all_14_existing_U_IDs_are_unique": true,
+      "L8_canonical_unit_cases_preserved": true,
+      "F04_core_verification_022_named": true,
+      "B01_and_other_fields_unchanged": true,
+      "correction_records_base_hashes_and_current_hashes": true,
+      "SCF-B-0204_pins_current_and_have_history": true,
+      "SCF-B-0204_upstream_has_no_scaffold_paths": true,
+      "SCF-B-0204_correction_artifact_registered": true,
+      "SCF-B-0208_pins_current_and_have_history": true,
+      "SCF-B-0208_upstream_has_no_scaffold_paths": true,
+      "SCF-B-0208_correction_artifact_registered": true,
+      "SCF-B-0210_pins_current_and_have_history": true,
+      "SCF-B-0210_upstream_has_no_scaffold_paths": true,
+      "SCF-B-0210_correction_artifact_registered": true
+    }
+  },
+  "scfctl": {
+    "validate": {
+      "command": "python3 scaffold/tools/scfctl.py validate",
+      "exit": "0",
+      "result": "bindings=194 fail=0"
+    },
+    "stale": {
+      "command": "python3 scaffold/tools/scfctl.py stale",
+      "exit": "0",
+      "result": "stale=0"
+    }
+  },
+  "design_verification_checker_check_child": {
+    "command": "python3 scaffold/tools/design_verification_checker.py check-child --l4 ... --l9 ... --l5 ... --l8 ...",
+    "current": {
+      "passed": false,
+      "L4_L9_pair": {
+        "passed": true,
+        "failures": 0
+      },
+      "L5_L8_pair": {
+        "passed": true,
+        "failures": 0
+      },
+      "negative_4way": {
+        "passed": false,
+        "counts": {
+          "L4": 30,
+          "L9": 30,
+          "L8": 0,
+          "L5": 0
+        },
+        "failures": 35
+      },
+      "ownership_caps": [
+        {
+          "passed": true,
+          "failures": 0
+        },
+        {
+          "passed": false,
+          "failures": 35
+        },
+        {
+          "passed": true,
+          "failures": 0
+        },
+        {
+          "passed": false,
+          "failures": 1647
+        }
+      ]
+    },
+    "base_comparison": {
+      "revision": "e9cca9f1d3d88b1c2049c3a3e492b36b2c2ec905",
+      "same_outcome_and_counts": true,
+      "negative_4way_failures": 35,
+      "ownership_cap_failures": [
+        0,
+        35,
+        0,
+        1647
+      ]
+    }
+  },
+  "not_run": [
+    "L4/L5 algorithm",
+    "runtime",
+    "product tests",
+    "CI"
+  ],
+  "wr243_current_candidate_validators": {
+    "F03": {
+      "command": "python3 scaffold/research/wr243-tdd-f03-l5-l8-20261031/validate_static_candidate.py",
+      "exit": "0",
+      "passed": true
+    },
+    "F04": {
+      "command": "python3 scaffold/research/wr243-tdd-f04-l5-l8-20261031/validate_f04_candidate.py",
+      "exit": "0",
+      "passed": true
+    }
+  }
+}

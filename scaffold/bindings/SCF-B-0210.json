@@ -6,7 +6,7 @@
   "product": "HELIX-HARNESS",
   "owner_candidate": "HARNESS-015 B01 L5/L8 candidate-design responsibility owner candidate",
   "state": "registered",
-  "reason": "Issue #3510 WR243: use the fixed source-only B01 meanings to annotate L5/L8 candidates, compare every existing B01 L4/L9 negative row, and preserve missing row-oracle/test-citation evidence as missing.",
+  "reason": "Issue #3510 WR243: use the fixed source-only B01 meanings to annotate L5/L8 candidates, compare every existing B01 L4/L9 negative row, and preserve missing row-oracle/test-citation evidence as missing. WR249-TDD-F03F04-UID-SPLITでは既存F03/F04 U-IDごとに候補条件と期待を分けた。",
   "upstream": [
     {
       "path": "docs/helix-harness/L3-requirements/business-requirements.json",
@@ -35,13 +35,13 @@
     },
     {
       "path": "docs/helix-harness/L5-detail-design/tdd-development-flow.json",
-      "sha256": "79a383715e020cc5b32d6b8f9f55fbf1ca13b6731e38d03e83ae0cb291b4e5fa",
-      "note": "Shared L5 document with B01 source-derived condition candidates and preserved F03/F04 candidates."
+      "sha256": "6aaa1c03c484541be4bc331dbf6f05756e3eed2acc17d6f212fc901678cb9778",
+      "note": "Shared L5 document with B01 source-derived condition candidates and preserved F03/F04 candidates. WR249-TDD-F03F04-UID-SPLIT repin at base e9cca9f1d3d88b1c2049c3a3e492b36b2c2ec905: prior pin 79a383715e020cc5b32d6b8f9f55fbf1ca13b6731e38d03e83ae0cb291b4e5fa; current shared candidate file split per existing U-ID. Historical evidence/canonical IDs retained; see scaffold/research/wr249-tdd-f03-f04-uid-split-20261031/uid-split-correction.json."
     },
     {
       "path": "docs/helix-harness/L8-unit-verification/tdd-development-flow.json",
-      "sha256": "3c09da25eec8b11d259fa6f8eb797600a4b1ad9f13de92366a6dbc12c76b4b5c",
-      "note": "Shared L8 document with B01 candidate references to existing U-ID rows; target contract and L9 source trace remain distinct."
+      "sha256": "919b1ebdf074f291458947af0db8b751f3fd45a144aa542020759febcd652a83",
+      "note": "Shared L8 document with B01 candidate references to existing U-ID rows; target contract and L9 source trace remain distinct. WR249-TDD-F03F04-UID-SPLIT repin at base e9cca9f1d3d88b1c2049c3a3e492b36b2c2ec905: prior pin 3c09da25eec8b11d259fa6f8eb797600a4b1ad9f13de92366a6dbc12c76b4b5c; current shared candidate file split per existing U-ID. Historical evidence/canonical IDs retained; see scaffold/research/wr249-tdd-f03-f04-uid-split-20261031/uid-split-correction.json."
     }
   ],
   "role": "B01 source-derived L5 condition candidates, four existing L8 U-ID references, and all-row L4/L9 comparison evidence.",
@@ -51,7 +51,8 @@
     "Add only two source-derived, Japanese L5 conditions and expected observations; do not select failure-code vocabulary or classification projections.",
     "L8 candidate targets HARNESS-L5-015-B01. Keep each L9 row pointer separate as source_trace_ref; contract oracle is HARNESS-L10-015-B01; row oracle and test citation remain missing.",
     "Preserve existing B01 L8 canonical IDs and unit_cases, F03/F04 candidate content and frozen evidence, and all L4/L9 bytes.",
-    "Do not execute old/new runtime, tests, CI, or L4 algorithms; do not count candidate rows as canonical 4way rows."
+    "Do not execute old/new runtime, tests, CI, or L4 algorithms; do not count candidate rows as canonical 4way rows.",
+    "WR249分割後も各U-IDのsource-specific候補条件と期待を保ち、canonical IDs/unit_cases、L4/L9、row oracle/test citationの未決境界を維持する。過去snapshotは書き換えず訂正artifactを参照する。"
   ],
   "connections": {
     "consumers": [
@@ -96,7 +97,13 @@
     "scaffold/bindings/SCF-B-0208.json",
     "scaffold/research/wr243-tdd-b01-l5-l8-20261031/historical-candidate-hashes.json",
     "scaffold/research/wr243-tdd-f03-l5-l8-20261031/validate_static_candidate.py",
-    "scaffold/research/wr243-tdd-f04-l5-l8-20261031/validate_f04_candidate.py"
+    "scaffold/research/wr243-tdd-f04-l5-l8-20261031/validate_f04_candidate.py",
+    "scaffold/research/wr249-tdd-f03-f04-uid-split-20261031/README.md",
+    "scaffold/research/wr249-tdd-f03-f04-uid-split-20261031/uid-split-correction.json",
+    "scaffold/research/wr249-tdd-f03-f04-uid-split-20261031/verification-summary.json",
+    "scaffold/research/wr249-tdd-f03-f04-uid-split-20261031/validate_uid_split.py",
+    "scaffold/research/wr249-tdd-f03-f04-uid-split-20261031/source-only-draft.json",
+    "scaffold/research/wr249-tdd-f03-f04-uid-split-20261031/review-r1-correction.json"
   ],
   "verification": {
     "evidence_kind": "scaffold",
@@ -111,7 +118,8 @@
       "All four B01 L4/L9 row conditions and comparison-only projections.",
       "L4/L9 exact bytes and canonical L8 unit IDs/rows unchanged; F03/F04 candidates/fixed evidence unchanged.",
       "Static B01/F03/F04 validators, check-child residual comparison, L8 cap/forbidden-key count, scfctl validate/stale.",
-      "F03/F04 merge-time L5/L8 raw SHA-256 and Git blob OIDs are recorded and re-read from Git objects by validator; current docs are compared with those snapshots after removing only the B01 candidate fields."
+      "F03/F04 merge-time L5/L8 raw SHA-256 and Git blob OIDs are recorded and re-read from Git objects by validator; current docs are compared with those snapshots after removing only the B01 candidate fields.",
+      "WR249 R1 correction preserves historical B01 comparison and verifies current F03/F04 U-ID split by recorded hashes; B01 validator 28/28 passes."
     ],
     "negative_cases": [
       "Do not create row-level oracle or test citation values.",

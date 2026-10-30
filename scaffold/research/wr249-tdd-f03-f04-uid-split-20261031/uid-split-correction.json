@@ -1,0 +1,141 @@
+{
+  "schema": "wr249-uid-split-correction.v1",
+  "evidence_kind": "scaffold",
+  "authority_effect": "none",
+  "request_id": "WR249-TDD-F03F04-UID-SPLIT",
+  "base_revision": "e9cca9f1d3d88b1c2049c3a3e492b36b2c2ec905",
+  "source_artifact": {
+    "path": "scaffold/research/wr249-tdd-f03-f04-uid-split-20261031/source-only-draft.json",
+    "sha256": "cb1637a830057ec80c3412a0c8c10446a42b09483093c20bfbdc77c931fefdc5",
+    "status": "source-only draft used as working reference; not approval"
+  },
+  "prior_candidate_snapshot": {
+    "revision": "e9cca9f1d3d88b1c2049c3a3e492b36b2c2ec905",
+    "l5_path": "docs/helix-harness/L5-detail-design/tdd-development-flow.json",
+    "l5_sha256": "79a383715e020cc5b32d6b8f9f55fbf1ca13b6731e38d03e83ae0cb291b4e5fa",
+    "l8_path": "docs/helix-harness/L8-unit-verification/tdd-development-flow.json",
+    "l8_sha256": "3c09da25eec8b11d259fa6f8eb797600a4b1ad9f13de92366a6dbc12c76b4b5c"
+  },
+  "corrected_candidate": {
+    "l5_path": "docs/helix-harness/L5-detail-design/tdd-development-flow.json",
+    "l5_sha256": "6aaa1c03c484541be4bc331dbf6f05756e3eed2acc17d6f212fc901678cb9778",
+    "l8_path": "docs/helix-harness/L8-unit-verification/tdd-development-flow.json",
+    "l8_sha256": "919b1ebdf074f291458947af0db8b751f3fd45a144aa542020759febcd652a83",
+    "condition_counts": {
+      "F03": 9,
+      "F04": 5
+    },
+    "unit_case_refs": {
+      "F03": [
+        [
+          "HARNESS-L9-015-F03-oracle_relaxed",
+          "凍結oracleを弱める、または別のoracleへ替える"
+        ],
+        [
+          "HARNESS-L9-015-F03-body_before_red",
+          "本体変更前のRed観測より実装本体変更を先行させる"
+        ],
+        [
+          "HARNESS-L9-015-F03-public_change",
+          "局所Refactorでpublic contractの意味を変える"
+        ],
+        [
+          "HARNESS-L9-015-F03-architecture_change",
+          "局所Refactorでarchitectureの意味を変える"
+        ],
+        [
+          "HARNESS-L9-015-F03-state_change",
+          "局所Refactorでstateの意味を変える"
+        ],
+        [
+          "HARNESS-L9-015-F03-ci_as_quality",
+          "原子CIだけから製品品質または利用者受入の成立を主張する"
+        ],
+        [
+          "HARNESS-L9-015-F03-requirement_change",
+          "局所Refactor中に要求の意味を変える"
+        ],
+        [
+          "HARNESS-L9-015-F03-minimal_body_scope_expansion",
+          "最小本体の契約範囲を越える振る舞いを追加する"
+        ],
+        [
+          "HARNESS-L9-015-F03-green_wrong_behavior",
+          "期待receiver debit 1に対しGreen観測が2である"
+        ]
+      ],
+      "F04": [
+        [
+          "HARNESS-L9-015-F04-reverse_trace_missing",
+          "codeから設計またはtestへ戻るtraceがない"
+        ],
+        [
+          "HARNESS-L9-015-F04-foreign_trace_revision",
+          "traceの参照先対象revisionが一致しない"
+        ],
+        [
+          "HARNESS-L9-015-F04-development_as_integrated",
+          "④開発単独からIntegrated成立を主張する"
+        ],
+        [
+          "HARNESS-L9-015-F04-ci_as_accepted",
+          "原子CI GreenだけからAccepted成立を主張する"
+        ],
+        [
+          "HARNESS-L9-015-F04-ci_as_release",
+          "原子CI GreenだけからRelease成立を主張する"
+        ]
+      ]
+    }
+  },
+  "source_basis": {
+    "L3": "HARNESS-L3-015-F03/F04 obligations",
+    "L10": "HARNESS-L10-015-F03/F04 negative_input and failure_observation",
+    "L4": "HARNESS-L4-015-F03/F04 failure_conditions meaning prose only",
+    "L9": "existing U-ID references/source_trace_ref only; not counterexample/expectation derivation"
+  },
+  "preserved": {
+    "canonical_unit_case_ids_and_unit_cases": true,
+    "L4_and_L9_bytes": true,
+    "B01_and_other_contracts": true,
+    "fixed_blind_and_prior_verification_snapshots": true,
+    "row_oracle": "missing_not_created",
+    "test_citation": "not_found_not_created",
+    "failure_code_axis_state": "unresolved_not_created",
+    "L3_F04_core_verification_acceptance_022": true
+  },
+  "binding_repins": [
+    {
+      "binding": "SCF-B-0204",
+      "previous": {
+        "docs/helix-harness/L5-detail-design/tdd-development-flow.json": "79a383715e020cc5b32d6b8f9f55fbf1ca13b6731e38d03e83ae0cb291b4e5fa"
+      },
+      "current": {
+        "docs/helix-harness/L5-detail-design/tdd-development-flow.json": "6aaa1c03c484541be4bc331dbf6f05756e3eed2acc17d6f212fc901678cb9778"
+      },
+      "revision": "e9cca9f1d3d88b1c2049c3a3e492b36b2c2ec905"
+    },
+    {
+      "binding": "SCF-B-0208",
+      "previous": {
+        "docs/helix-harness/L5-detail-design/tdd-development-flow.json": "79a383715e020cc5b32d6b8f9f55fbf1ca13b6731e38d03e83ae0cb291b4e5fa"
+      },
+      "current": {
+        "docs/helix-harness/L5-detail-design/tdd-development-flow.json": "6aaa1c03c484541be4bc331dbf6f05756e3eed2acc17d6f212fc901678cb9778"
+      },
+      "revision": "e9cca9f1d3d88b1c2049c3a3e492b36b2c2ec905"
+    },
+    {
+      "binding": "SCF-B-0210",
+      "previous": {
+        "docs/helix-harness/L5-detail-design/tdd-development-flow.json": "79a383715e020cc5b32d6b8f9f55fbf1ca13b6731e38d03e83ae0cb291b4e5fa",
+        "docs/helix-harness/L8-unit-verification/tdd-development-flow.json": "3c09da25eec8b11d259fa6f8eb797600a4b1ad9f13de92366a6dbc12c76b4b5c"
+      },
+      "current": {
+        "docs/helix-harness/L5-detail-design/tdd-development-flow.json": "6aaa1c03c484541be4bc331dbf6f05756e3eed2acc17d6f212fc901678cb9778",
+        "docs/helix-harness/L8-unit-verification/tdd-development-flow.json": "919b1ebdf074f291458947af0db8b751f3fd45a144aa542020759febcd652a83"
+      },
+      "revision": "e9cca9f1d3d88b1c2049c3a3e492b36b2c2ec905"
+    }
+  ]
+}

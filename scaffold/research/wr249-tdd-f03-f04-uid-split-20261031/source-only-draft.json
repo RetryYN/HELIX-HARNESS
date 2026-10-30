@@ -1,0 +1,211 @@
+{
+  "schema": "wr249-uid-split-draft.v1",
+  "status": "draft_source_derived_not_approved_not_executed",
+  "authority_effect": "none",
+  "base_revision": "e0438a372065626ea752c31dc6c86b92d3198a9d",
+  "request_id": "WR249-TDD-F03F04-UID-SPLIT",
+  "precedent": {
+    "issue": 3968,
+    "merge_revision": "6dfc0cf464",
+    "read_scope": [
+      "docs/helix-harness/L5-detail-design/headless-call-contract.json",
+      "docs/helix-harness/L8-unit-verification/headless-call-contract.json"
+    ],
+    "application": "行単位に対象U-ID、反例、期待観測を結ぶ形だけを参照。blind固定の変更や既存分類値の転記には使わない。"
+  },
+  "source_basis": [
+    {
+      "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+      "pointers": [
+        "/requirements/42 (HARNESS-L3-015-F03)",
+        "/requirements/43 (HARNESS-L3-015-F04)"
+      ],
+      "role": "承認済み要求の義務"
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/functional-verification.json",
+      "pointers": [
+        "/cases/42 (HARNESS-L10-015-F03)",
+        "/cases/43 (HARNESS-L10-015-F04)"
+      ],
+      "role": "要求ごとの検証入力・期待観測・失敗観測"
+    },
+    {
+      "path": "docs/helix-harness/L4-basic-design/tdd-development-flow.json",
+      "pointers": [
+        "/contracts/3/failure_conditions/0..8",
+        "/contracts/4/failure_conditions/0..4"
+      ],
+      "role": "各条件の文章上の意味のみ。algorithm、分類値、failure codeとしては使わない"
+    },
+    {
+      "path": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json",
+      "pointers": [
+        "/cases/3/negative_cases/0..8",
+        "/cases/4/negative_cases/0..4"
+      ],
+      "role": "U-ID対応を示す参照のみ。反例・期待の導出元ではない"
+    }
+  ],
+  "candidate_unit_design": {
+    "target_pair": "HARNESS-L5-015-F03/F04",
+    "execution_state": "not_executed",
+    "row_oracle": "missing_not_created",
+    "test_citation": "not_found_not_created",
+    "failure_code_axis_state": "not_created_not_assigned",
+    "cases": [
+      {
+        "requirement": "HARNESS-L3-015-F03",
+        "verification": "HARNESS-L10-015-F03",
+        "unit_case_ref": "HARNESS-L9-015-F03-oracle_relaxed",
+        "source_trace_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/3/negative_cases/0",
+        "l4_meaning_ref": "docs/helix-harness/L4-basic-design/tdd-development-flow.json#/contracts/3/failure_conditions/0",
+        "counterexample": "Greenを通すために凍結済みoracleを弱める、または別のoracleへ替える。",
+        "candidate_expected_result": "oracleの同一性が保たれない、またはGreenが同じ凍結oracleを満たさない状態を保持し、F03を完了扱いしない。変更後oracleに対するGreenを元の期待の充足として数えない。"
+      },
+      {
+        "requirement": "HARNESS-L3-015-F03",
+        "verification": "HARNESS-L10-015-F03",
+        "unit_case_ref": "HARNESS-L9-015-F03-body_before_red",
+        "source_trace_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/3/negative_cases/1",
+        "l4_meaning_ref": "docs/helix-harness/L4-basic-design/tdd-development-flow.json#/contracts/3/failure_conditions/1",
+        "counterexample": "実装本体を変えてからRedを観測する、またはfreeze・Red・本体変更の因果順を逆にする。",
+        "candidate_expected_result": "本体変更前Redが欠けたまま保持され、後続の証拠でその先行観測を補ったことにしない。F03の順序を完了扱いしない。"
+      },
+      {
+        "requirement": "HARNESS-L3-015-F03",
+        "verification": "HARNESS-L10-015-F03",
+        "unit_case_ref": "HARNESS-L9-015-F03-public_change",
+        "source_trace_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/3/negative_cases/2",
+        "l4_meaning_ref": "docs/helix-harness/L4-basic-design/tdd-development-flow.json#/contracts/3/failure_conditions/2",
+        "counterexample": "局所Refactorでpublic contractの意味を変える。",
+        "candidate_expected_result": "意味を保つ局所Refactorとして扱わず、public contractの変更を該当する上流へ戻す必要として保持する。"
+      },
+      {
+        "requirement": "HARNESS-L3-015-F03",
+        "verification": "HARNESS-L10-015-F03",
+        "unit_case_ref": "HARNESS-L9-015-F03-architecture_change",
+        "source_trace_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/3/negative_cases/3",
+        "l4_meaning_ref": "docs/helix-harness/L4-basic-design/tdd-development-flow.json#/contracts/3/failure_conditions/3",
+        "counterexample": "局所Refactorでarchitectureの意味を変える。",
+        "candidate_expected_result": "局所変更として閉じず、architectureの意味変更をL4へ戻す必要として保持する。"
+      },
+      {
+        "requirement": "HARNESS-L3-015-F03",
+        "verification": "HARNESS-L10-015-F03",
+        "unit_case_ref": "HARNESS-L9-015-F03-state_change",
+        "source_trace_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/3/negative_cases/4",
+        "l4_meaning_ref": "docs/helix-harness/L4-basic-design/tdd-development-flow.json#/contracts/3/failure_conditions/4",
+        "counterexample": "局所Refactorでstateの意味を変える。",
+        "candidate_expected_result": "意味を保つRefactorとして扱わず、stateの意味変更を対応する設計へ戻す必要として保持する。"
+      },
+      {
+        "requirement": "HARNESS-L3-015-F03",
+        "verification": "HARNESS-L10-015-F03",
+        "unit_case_ref": "HARNESS-L9-015-F03-ci_as_quality",
+        "source_trace_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/3/negative_cases/5",
+        "l4_meaning_ref": "docs/helix-harness/L4-basic-design/tdd-development-flow.json#/contracts/3/failure_conditions/5",
+        "counterexample": "原子CIの成功だけを根拠に、製品品質または利用者受入が成立したとする。",
+        "candidate_expected_result": "原子CIの証拠を品質・受入の根拠から分け、CI成功からそれらの成立を生成しない。L10 F03が述べる未検証構成の問題も別のまま保持する。"
+      },
+      {
+        "requirement": "HARNESS-L3-015-F03",
+        "verification": "HARNESS-L10-015-F03",
+        "unit_case_ref": "HARNESS-L9-015-F03-requirement_change",
+        "source_trace_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/3/negative_cases/6",
+        "l4_meaning_ref": "docs/helix-harness/L4-basic-design/tdd-development-flow.json#/contracts/3/failure_conditions/6",
+        "counterexample": "局所Refactor中に要求の意味を変える。",
+        "candidate_expected_result": "要求意味の変更を局所Refactorとして受け入れず、変更を該当する上流へ戻す必要として保持する。"
+      },
+      {
+        "requirement": "HARNESS-L3-015-F03",
+        "verification": "HARNESS-L10-015-F03",
+        "unit_case_ref": "HARNESS-L9-015-F03-minimal_body_scope_expansion",
+        "source_trace_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/3/negative_cases/7",
+        "l4_meaning_ref": "docs/helix-harness/L4-basic-design/tdd-development-flow.json#/contracts/3/failure_conditions/7",
+        "counterexample": "最小本体の契約範囲を越える振る舞いを実装へ追加する。",
+        "candidate_expected_result": "契約範囲外の振る舞いを未解決のまま保持し、別のGreen成功で相殺しない。"
+      },
+      {
+        "requirement": "HARNESS-L3-015-F03",
+        "verification": "HARNESS-L10-015-F03",
+        "unit_case_ref": "HARNESS-L9-015-F03-green_wrong_behavior",
+        "source_trace_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/3/negative_cases/8",
+        "l4_meaning_ref": "docs/helix-harness/L4-basic-design/tdd-development-flow.json#/contracts/3/failure_conditions/8",
+        "counterexample": "凍結oracleが期待するreceiver debitは1件なのに、Green時の観測が2件である。",
+        "candidate_expected_result": "Greenの観測を凍結oracleの充足として扱わず、不一致を未解決のfailureとして保持する。"
+      },
+      {
+        "requirement": "HARNESS-L3-015-F04",
+        "verification": "HARNESS-L10-015-F04",
+        "unit_case_ref": "HARNESS-L9-015-F04-reverse_trace_missing",
+        "source_trace_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/4/negative_cases/0",
+        "l4_meaning_ref": "docs/helix-harness/L4-basic-design/tdd-development-flow.json#/contracts/4/failure_conditions/0",
+        "counterexample": "設計またはtestからcodeへの参照はあるが、codeから設計またはtestへ戻る参照がない。",
+        "candidate_expected_result": "不足した逆方向traceを保持し、traceを双方向成立として認めず、F04の義務を完了扱いしない。"
+      },
+      {
+        "requirement": "HARNESS-L3-015-F04",
+        "verification": "HARNESS-L10-015-F04",
+        "unit_case_ref": "HARNESS-L9-015-F04-foreign_trace_revision",
+        "source_trace_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/4/negative_cases/1",
+        "l4_meaning_ref": "docs/helix-harness/L4-basic-design/tdd-development-flow.json#/contracts/4/failure_conditions/1",
+        "counterexample": "コードと設計またはtestのtraceは存在するが、参照先の対象revisionが一致しない。",
+        "candidate_expected_result": "対象revisionの不一致を保持し、同一対象revisionへの双方向traceと認めず、F04の義務を完了扱いしない。"
+      },
+      {
+        "requirement": "HARNESS-L3-015-F04",
+        "verification": "HARNESS-L10-015-F04",
+        "unit_case_ref": "HARNESS-L9-015-F04-development_as_integrated",
+        "source_trace_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/4/negative_cases/2",
+        "l4_meaning_ref": "docs/helix-harness/L4-basic-design/tdd-development-flow.json#/contracts/4/failure_conditions/2",
+        "counterexample": "④開発単独の出力を根拠にIntegratedが成立したと主張する。",
+        "candidate_expected_result": "④開発単独の出力上限をProvisionalとして保持する。Integrated以降はL3 F04が指定するコア検証／受入022との組合せが根拠にそろうまで未成立とし、開発単独からIntegratedを生成しない。"
+      },
+      {
+        "requirement": "HARNESS-L3-015-F04",
+        "verification": "HARNESS-L10-015-F04",
+        "unit_case_ref": "HARNESS-L9-015-F04-ci_as_accepted",
+        "source_trace_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/4/negative_cases/3",
+        "l4_meaning_ref": "docs/helix-harness/L4-basic-design/tdd-development-flow.json#/contracts/4/failure_conditions/3",
+        "counterexample": "原子CIのGreenだけを根拠に利用者Acceptedが成立したと主張する。",
+        "candidate_expected_result": "原子CIからAcceptedを生成しない。AcceptedはL3 F04が指定するコア検証／受入022との組合せによる根拠がそろうまで未成立として保持する。"
+      },
+      {
+        "requirement": "HARNESS-L3-015-F04",
+        "verification": "HARNESS-L10-015-F04",
+        "unit_case_ref": "HARNESS-L9-015-F04-ci_as_release",
+        "source_trace_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/4/negative_cases/4",
+        "l4_meaning_ref": "docs/helix-harness/L4-basic-design/tdd-development-flow.json#/contracts/4/failure_conditions/4",
+        "counterexample": "原子CIのGreenだけを根拠にRelease成立を主張する。",
+        "candidate_expected_result": "原子CIからReleaseを生成しない。Integrated以降についてL3 F04が指定するコア検証／受入022との組合せが根拠にそろうまでReleaseも未成立として保持する。"
+      }
+    ],
+    "limits": [
+      "U-ID参照は既存行との対応確認に限る。",
+      "L4 failure_conditions の意味を候補の文章へ分けて述べ、L4 algorithm／negative_classificationsの値を転記しない。",
+      "L9はsource_trace_refに限って参照し、L9の期待値・axis/state・分類文を候補の根拠にしない。",
+      "固定blindは未変更。",
+      "formal JSON、binding、研究記録は変更していない。"
+    ]
+  },
+  "legacy_comparison": {
+    "references": [
+      {
+        "asset_id": "LEGACY-ASSET-34DF3B535879CC73FA86",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/process/forward/L08-L14-verification-phase.md",
+        "lines": "28-35, 73-79",
+        "observed": "旧層番号ではL6↔L7をTDD closure、L5↔L8をintegration、L4↔L9をsystemとして分け、右腕の証拠を左腕のtest basis/test conditionに対応させていた。"
+      },
+      {
+        "asset_id": "LEGACY-ASSET-7873E44594456A8F925A",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L5-detailed-design/internal-processing.md",
+        "lines": "48-50, 77-78",
+        "observed": "旧設計はtrace照合とRed test存在・本体commit順序・trace記録を記述する。"
+      }
+    ],
+    "preserve": "要求／設計と検証証拠の対応、およびRed-firstの因果順を現行L3/L10/L4の条件に沿って別々に扱う。",
+    "change": "旧L5/L8等の層番号、G7/G8等のgate名、旧commandや実装前提は草案へ持ち込まない。現在のL3/L10/L4 sourceだけから14件を記述する。",
+    "reason": "旧sourceは歴史的資料。現行の要求意味とU-ID分割は現行固定revisionのL3/L10/L4に拘束し、旧workflowやgateを復活させない。"
+  }
+}
