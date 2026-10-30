@@ -21,9 +21,15 @@
 | `OS017-L8-BINDING-PROJECT-UNKNOWN` | `null` | `SYNTHETIC-PROJECT` | binding比較はinputs facet。非string operandに`source_unresolved`、局所状態unknown。 |
 | `OS017-L8-BINDING-PROJECT-CONFLICT` | `OTHER-SOURCE` | `SYNTHETIC-PROJECT` | binding比較はinputs facet。known不一致に`source_conflict`、局所状態violation。 |
 
-L4 `/diagnostic_contract/comparison_table/binding` は`project`を含む5 fieldをinputs facet/string比較として定める。`diagnostic_code_facets` は`source_unresolved` / `source_conflict`をcomparison facetへ対応させ、L4 `condition_semantics` は選択phaseのfacet集約順を定める。L4のresume適用規則は設計テキストとして読み、実行していない。resumeの他の固定入力は3 caseで同じであり、base inputのownership、ticket、workflow、backflow、continuity、scope_limit条件はL4テキストに照らして対応を確認した。したがって全体conditionはunknown caseが`workflow_material_unknown`、conflict caseが`workflow_material_violation`。ownerはL4固定値`ticket-workflow-owner`。新しいphase/facet別ownerやgateは作らない。
+L4 `/diagnostic_contract/comparison_table/binding` は`project`を含む5 fieldをinputs facet/string比較として定める。`diagnostic_code_facets` は`source_unresolved` / `source_conflict`をcomparison facetへ対応させ、L4 `condition_semantics` は選択phaseのfacet集約順を定める。L4のresume適用規則は設計テキストとして読み、実行していない。元の`/cases/5`と`/cases/6`は`binding.project`の変更が他facet比較へ再利用されない。source-onlyのこの3 raw inputでは、unknown caseが`workflow_material_unknown`、conflict caseが`workflow_material_violation`となり、finding signatureはそれぞれ`[source_unresolved]`、`[source_conflict]`。ownerはL4固定値`ticket-workflow-owner`。新しいphase/facet別ownerやgateは作らない。
 
-L4のbinding 5 fieldとmanagement 12 fieldはいずれもinputs facet/string比較である。追加49件ではactual側null 16件とcontext側null 17件が`source_unresolved`、actual側known unequal string 16件が`source_conflict`となる。各caseはこのinputs leaf一つだけが基準入力から変わり、L4散文にある他facetの材料は同じなので、追加後の候補witness総数はunresolved 34、conflict 17。classの全体condition/ordered finding signature/inputs局所stateは既存2 rowの意味を維持し、ownerはL4固定値`ticket-workflow-owner`。新しいphase/facet別ownerやgateは作らない。
+L4のbinding 5 fieldとmanagement 12 fieldはいずれもinputs facet/string比較である。追加49件ではactual側null 16件とcontext側null 17件が`source_unresolved`、actual側known unequal string 16件が`source_conflict`。raw graphの基準との差分が1 leafであることだけからfinding数を導いてはいない。L4 `/diagnostic_contract/algorithm/0..2` の散文は、一部の`context.binding` leafをticket/workflow比較でも参照し、findingを`(code,pointer,return_owner)`で一意化すると定める。
+
+具体的には、`/cases/92`のcontext `binding.requirement_revision`はticket graphの`parent_revision`、proposal/dependencyの`requirement_revision`、intermediateの`requirement_revision`比較にも使われる。`/cases/93`のcontext `binding.scope`はticket graph、proposal、dependency、intermediateの`scope`比較にも使われる。これらではinputs・ticket・workflow・backflow各facetがunknownになり得る。`/cases/95`のcontext `binding.contract_revision`は`process.revision`比較にも使われ、inputsとworkflowがunknownになり得る。L7 raw inputでは3 caseともphase=`resume`、`proposal_selected=true`、`level_selected=false`である。従ってproposal比較は適用され、level recordはL4規則上読まれない。中間記録のrevision/scope operandはknownな非空文字列である。各比較で不明な期待operandは同じcontext binding pointerを指し、L4の重複finding一意化により全体signatureは`[source_unresolved]`のまま。inputs local stateも直接のbinding比較によりunknown、severity集約による全体conditionもunknownである。これらのcaseを「他facetが対応状態」とは記述しない。
+
+L4の全algorithm散文で`context.binding`参照も再走査した。JSON Pointer `/diagnostic_contract/algorithm/8`がbackflow/resumeのintermediate revision/scope比較を記す。`/diagnostic_contract/algorithm/7`はbudget/deadline等のconstraints規則で、`context.binding`を参照しない。`/algorithm/0`のprovided-level comparisonは`/algorithm/5`の`level_selected=true`条件に従い、3 raw caseはいずれも`level_selected=false`なので不適用である。
+
+同じL4散文に照らした残りの追加witness（context bindingの`project`/`plan_revision`、actual側binding、management 12 field）は、他facet比較が再参照するleafではない。直接のbinding/management比較だけがその入力変更を使う。したがってこれらは別facetのfindingを増やさず、他facetの対応状態を保つ。分類候補総数は変わらずunresolved 34、conflict 17だが、前段のcontext binding 3 caseは複数facetが局所unknownとなる。class rowの条件は全体condition、全体ordered finding signature、inputs local stateを制約し、どのcaseにも同じと確認した。ownerはL4固定値`ticket-workflow-owner`。新しいphase/facet別ownerやgateは作らない。
 
 2件のL4 `failure_classifications` rowとF01契約の`negative_class_refs`は維持し、49件分のL7 source pointerを各rowへ追加した。対応する既存L9 caseには`l4_source_class_candidate_ref`だけを追加し、L9の`condition`/`expected`等は変更しない。L9の`negative_class_ref`は付けない。QA explicit modeではそれが同層`negative_equivalence_classes` class tableへの所属を表す。L9 class tableとL5 typed owner/L5-L8 rowsは未形成なので、4層markerは付けずlegacy modeを維持する。
 
@@ -34,7 +40,7 @@ L4のbinding 5 fieldとmanagement 12 fieldはいずれもinputs facet/string比�
 | `/cases/7..38` actual binding/management | 32 | bindingのproject以外4 fieldとmanagement 12 field。各fieldにnullと`OTHER-SOURCE`のcaseがある | `source_unresolved` 16、`source_conflict` 16 |
 | `/cases/91..107` context binding/management | 17 | binding 5 fieldとmanagement 12 fieldがcontext側でnull | `source_unresolved` 17 |
 
-各caseは`manual-derivation.json#/cohort/additional_raw_witnesses`にL7 case pointer、family、field、差分側、classだけを記録した。validatorがL7 case idとL9 source-case mappingを解決し、raw graphからphase、actual/context operand、単一leaf差分、classとの一致を再計算する。分類はL4の比較表・散文とL7 raw inputから手導出し、L7/L8/L9期待を導出に使っていない。
+各caseは`manual-derivation.json#/cohort/additional_raw_witnesses`にL7 case pointer、family、field、差分側、classだけを記録した。validatorがL7 case idとL9 source-case mappingを解決し、raw graphからphase、actual/context operand、単一leaf差分、classとの整合を確認する。さらにcross-facet reuse表のraw operand参照を解決し、L4散文に記録された共有context leafを機械的に照合する。validatorはfinding列やfacet stateを計算・再現する実行oracleではない。分類はL4の比較表・設計散文とL7 raw inputから手導出し、L7/L8/L9期待を導出に使っていない。
 
 ## 旧HELIXの対応・失敗記録
 

@@ -232,6 +232,8 @@ def validate_l7_input_refs() -> None:
     }:
         raise AssertionError(f"additional witness class distribution differs: {class_counts}")
 
+    validate_cross_facet_reuse(l7, l4, audit)
+
     for case_id, input_obj_pointer, context_obj_pointer in [
         (
             ids[1],
@@ -266,6 +268,123 @@ def validate_l7_input_refs() -> None:
             raise AssertionError(f"context binding reference leaf does not resolve for {case_id}")
         if resolve_pointer(l7, context_ref + "/project") != context:
             raise AssertionError(f"context binding project leaf does not resolve for {case_id}")
+
+
+def validate_cross_facet_reuse(
+    l7: dict[str, Any], l4: dict[str, Any], audit: dict[str, Any]
+) -> None:
+    """Check cited L4 prose and raw inputs; do not calculate findings or facet states."""
+    reuse = audit["cohort"]["cross_facet_reuse_analysis"]
+    diagnostic = l4["diagnostic_contract"]
+    prose = diagnostic["algorithm"]
+    required_anchors = {
+        "/diagnostic_contract/algorithm/0": (
+            "process.revision→context.binding.contract_revision",
+            "proposal/dependency/提供levelのrequirement_revision/scope→context.binding",
+        ),
+        "/diagnostic_contract/algorithm/1": (
+            "parent_revision/scopeをcontext bindingへも照合",
+        ),
+        "/diagnostic_contract/algorithm/2": (
+            "重複findingはcode/pointer/return_ownerで一意化",
+        ),
+        "/diagnostic_contract/algorithm/5": (
+            "actual selected=true時だけlevel recordを読む",
+        ),
+        "/diagnostic_contract/algorithm/7": (
+            "constraintsのbudget_limit/deadline/cost_spent/failures/now",
+        ),
+        "/diagnostic_contract/algorithm/8": (
+            "backflow/resumeだけintermediateのrequirement_revision/scopeを独立context.bindingへ",
+        ),
+    }
+    for pointer, phrases in required_anchors.items():
+        index = int(pointer.rsplit("/", 1)[1])
+        text = prose[index]
+        if any(phrase not in text for phrase in phrases):
+            raise AssertionError(f"L4 prose changed for reuse premise {pointer}")
+    if "context.binding" in prose[7]:
+        raise AssertionError("L4 algorithm/7 constraints prose is not expected to reuse context.binding")
+    if "/diagnostic_contract/algorithm/0" not in reuse["l4_prose_pointers"]:
+        raise AssertionError("reuse audit does not cite L4 algorithm/0 prose")
+
+    case_rows = {row["l7_case_pointer"]: row for row in reuse["shared_context_binding_cases"]}
+    expected_cases = {
+        "/cases/92": (
+            "requirement_revision",
+            [
+                "ticket_graph/0/parent_revision",
+                "proposal/requirement_revision",
+                "dependency/requirement_revision",
+                "intermediate/requirement_revision",
+            ],
+        ),
+        "/cases/93": (
+            "scope",
+            ["ticket_graph/0/scope", "proposal/scope", "dependency/scope", "intermediate/scope"],
+        ),
+        "/cases/95": ("contract_revision", ["process/revision"]),
+    }
+    if set(case_rows) != set(expected_cases):
+        raise AssertionError("shared context.binding case set differs from reviewed scope")
+
+    def get_path(value: Any, path: str) -> Any:
+        current = value
+        for token in path.split("/"):
+            current = current[int(token)] if isinstance(current, list) else current[token]
+        return current
+
+    cases_by_pointer = {
+        f"/cases/{index}": case for index, case in enumerate(l7["cases"])
+    }
+    for pointer, (field, comparison_paths) in expected_cases.items():
+        row = case_rows[pointer]
+        if row.get("changed_context_leaf") != f"/context/binding/{field}":
+            raise AssertionError(f"reuse leaf differs for {pointer}")
+        if row.get("dependent_comparison_paths") != comparison_paths:
+            raise AssertionError(f"reuse comparison list differs for {pointer}")
+        case = cases_by_pointer[pointer]
+        raw = expand_l7_value(l7, resolve_pointer(l7, case["given_input_ref"]["pointer"]))
+        context_value = get_path(raw, f"context/binding/{field}")
+        if context_value is not None:
+            raise AssertionError(f"reviewed shared context leaf is not null: {pointer}")
+        for comparison_path in comparison_paths:
+            operand = get_path(raw, comparison_path)
+            if not isinstance(operand, str) or not operand:
+                raise AssertionError(f"shared comparison operand is not known in raw input: {pointer} {comparison_path}")
+        if raw.get("phase") != "resume" or raw.get("proposal_selected") is not True:
+            raise AssertionError(f"resume/proposal selection condition differs for {pointer}")
+        if raw.get("level_selected") is not False:
+            raise AssertionError(f"level should be unselected under the cited L4 rule: {pointer}")
+        if pointer in ("/cases/92", "/cases/93"):
+            field_value = get_path(raw, f"intermediate/{field}")
+            if not isinstance(field_value, str) or not field_value:
+                raise AssertionError(f"intermediate operand is not known in raw input: {pointer}")
+            if row.get("raw_conditions", {}).get("intermediate_operand") != "known nonempty string":
+                raise AssertionError(f"intermediate operand condition is not recorded for {pointer}")
+            expected_facets = ["inputs", "ticket", "workflow", "backflow"]
+        else:
+            expected_facets = ["inputs", "workflow"]
+        if row.get("affected_facets") != expected_facets:
+            raise AssertionError(f"source-only facet reuse record differs for {pointer}")
+        if list(row.get("local_states_from_l4_prose", {}).values()) != ["unknown"] * len(expected_facets):
+            raise AssertionError(f"source-only local facet state record differs for {pointer}")
+        if row.get("deduplicated_finding_signature") != ["source_unresolved"]:
+            raise AssertionError(f"manual deduplication derivation differs for {pointer}")
+        if row.get("overall_condition") != "workflow_material_unknown":
+            raise AssertionError(f"manual overall-condition derivation differs for {pointer}")
+
+    additional = audit["cohort"]["additional_raw_witnesses"]
+    shared_case_pointers = set(expected_cases)
+    for witness in additional:
+        pointer = witness["l7_case_pointer"]
+        is_reused_context = (
+            witness["changed_side"] == "context"
+            and witness["field_family"] == "binding"
+            and witness["field"] in {"requirement_revision", "scope", "contract_revision"}
+        )
+        if is_reused_context != (pointer in shared_case_pointers):
+            raise AssertionError(f"context binding reuse coverage mismatch for {pointer}")
 
 
 def expected_projection(revision: str | None = None) -> tuple[str, int]:
@@ -368,7 +487,8 @@ def main() -> None:
         raise AssertionError("L9 expected projection changed")
     print(
         f"static source validation: pointers={checked}, raw cases=52, class witnesses=51, L4 classes=2, "
-        f"L9 cases={candidate_count}, expected_digest={candidate_hash}, four_layer_marker=absent"
+        f"cross_facet_reuse_cases=3, L9 cases={candidate_count}, expected_digest={candidate_hash}, "
+        f"four_layer_marker=absent"
     )
 
 

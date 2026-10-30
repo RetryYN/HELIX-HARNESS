@@ -6,7 +6,7 @@
   "product": "HELIX-HARNESS",
   "owner_candidate": "HELIX-OS OS017 L4/L9 candidate evidence",
   "state": "registered",
-  "reason": "PR #3945 R1 M1/F2に応じ、OS017の2負例候補をL4設計テキストとL7 given inputから手導出した証跡をscaffoldに保持する。期待値由来のoracle、4層class marker、L5/L8投影、freeze成立を生成しない。",
+  "reason": "PR #3945 R1 M1/F2に応じ、OS017の2負例候補をL4設計テキストとL7 given inputから手導出した証跡をscaffoldに保持する。context.bindingのcross-facet再利用とpointer単位finding deduplicationを記録し、期待値由来のoracle、4層class marker、L5/L8投影、freeze成立を生成しない。",
   "upstream": [
     {
       "path": "docs/helix-os/L3-requirements/functional-requirements.json",
@@ -30,8 +30,8 @@
     },
     {
       "path": "docs/helix-os/L4-basic-design/ticket-workflow-derivation.json",
-      "sha256": "7b7d3f45214aa8a345ef8433e503bf8811b86edf8f34409ce12cbb0b9a81024d",
-      "note": "L4 rows list compact L7 given_input_ref pointers for the 49 extra witnesses; raw object hashes are resolved by the bound source audit validator."
+      "sha256": "df533df843f0742b66ebe9f1b71673e0e9ab9778e4931ea9e9351858835583b0",
+      "note": "L4 rows record raw witness pointers; prose steps 0–2 and 8 document cross-facet context.binding reuse/deduplication, while step 5 records conditional level reading. Raw operands are resolved by the validator; behavior is not executed."
     },
     {
       "path": "docs/helix-os/L7-function-verification/ticket-workflow-derivation.json",
@@ -55,8 +55,8 @@
     },
     {
       "path": "scaffold/research/wr204-os017-negative-classes-20261031/README.md",
-      "sha256": "8d9be8aa157ec751df0603cfff9cdee21f05f72ff09f50aac33c724469a5a849",
-      "note": "Updated with compact witness record shape, 49-case counts, legacy source/failure provenance, and uninspected denominator."
+      "sha256": "52712a56ec87abf54cfc797f5ea9704b47d86eda19faba706b9ca71c95574ad5",
+      "note": "Describes three cross-facet context.binding reuse cases, including resume intermediate comparisons and conditional level reading; also records non-reused groups and denominator."
     }
   ],
   "role": "WR204 OS017 L4/L9 source-qualified負例class候補の証拠。4層class登録ではない。",
@@ -65,7 +65,8 @@
     "対応する正例caseは負例candidate集合の外に置き、phaseはcase、inputsはexpected_axisとして保持する。",
     "L9の217件についてcondition/expected/expected_preservedとL7 given入力参照を保持する。",
     "owner_ref、L5/L8投影、4層explicit marker、4way PASSは後続へ残す。",
-    "RFC6901 pointer resolution for all declared source pointers and L7 reference leaves."
+    "RFC6901 pointer resolution for all declared source pointers and L7 reference leaves.",
+    "単一raw leaf差分を単一findingとみなさず、L4 proseが再利用するcontext.binding leafと(code,pointer,return_owner) finding deduplicationをsource-onlyで記録する。"
   ],
   "connections": {
     "consumers": [
@@ -121,7 +122,8 @@
       "OS017-NORMAL-RESUMEは負例候補集合の外に保持する。",
       "片側だけのexplicit_negative_equivalence_classes markerを設定しない。",
       "L9 expectedのdigestは保持確認だけに使い、classを導出しない。",
-      "4way checkはlegacy/not_evaluatedのままで、PASSと報告しない。"
+      "4way checkはlegacy/not_evaluatedのままで、PASSと報告しない。",
+      "context.bindingのcross-facet参照がある3 witnessでは複数facet unknownと単一finding signatureを区別し、validatorはL4 behaviorを計算しない。"
     ]
   },
   "replacement": {
