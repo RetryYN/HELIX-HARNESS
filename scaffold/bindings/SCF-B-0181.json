@@ -45,8 +45,13 @@
     },
     {
       "path": "docs/helix-os/L9-integration-verification/ticket-workflow-derivation.json",
-      "sha256": "4955e543699e3d011075d9b6b75dd642b812569c1b8891d0813f1087264d689b",
-      "note": "Unmarked candidate references and remaining scope; 217-case expected projection digest checked only for preservation."
+      "sha256": "5ea011a912dfbf159bd7e00815a8a499b292df5915b174b0f6b7f3bf34b50375",
+      "note": "Unmarked L9 candidate references remain source-qualified; no negative_class_ref without a local explicit class table. 217-case expected projection digest checked only for preservation."
+    },
+    {
+      "path": "docs/helix-os/L9-integration-verification/management-authority-source-record.json",
+      "sha256": "365b89c9131e5edd9b64d474438ff780360118819cc651ee535f64a70aa5ff1d",
+      "note": "OS015 L9 precedent: negative_class_ref resolves to the same document’s negative_equivalence_classes row; used only to compare shape semantics."
     }
   ],
   "role": "WR204 OS017 L4/L9 source-qualified負例class候補の証拠。4層class登録ではない。",

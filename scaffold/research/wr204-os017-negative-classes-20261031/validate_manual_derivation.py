@@ -232,10 +232,17 @@ def validate_class_rows_and_unmarked_mode() -> None:
         raise AssertionError("explicit class marker must remain absent in all four layers")
     if any("negative_class_ref" in row for row in l9["integration_cases"]):
         raise AssertionError("unmarked L9 case rows must not claim explicit class membership")
-    if l9["integration_cases"][5]["l4_source_class_candidate_ref"]["pointer"] != "/failure_classifications/0":
-        raise AssertionError("unknown-case source row pointer differs")
-    if l9["integration_cases"][6]["l4_source_class_candidate_ref"]["pointer"] != "/failure_classifications/1":
-        raise AssertionError("conflict-case source row pointer differs")
+    for case_index, class_index in ((5, 0), (6, 1)):
+        case = l9["integration_cases"][case_index]
+        ref = case.get("l4_source_class_candidate_ref")
+        if not isinstance(ref, dict) or ref.get("path") != L4_PATH:
+            raise AssertionError(f"L9 source candidate reference missing for case {case_index}")
+        row = resolve_pointer(l4, ref.get("pointer", ""))
+        expected_class_id = l4["failure_classifications"][class_index].get("class_id")
+        if ref.get("class_id") != row.get("class_id") or row.get("class_id") != expected_class_id:
+            raise AssertionError(f"candidate class ID does not match referenced L4 row for case {case_index}")
+        if row is not l4["failure_classifications"][class_index]:
+            raise AssertionError(f"L9 source candidate pointer targets wrong L4 row for case {case_index}")
 
 
 def main() -> None:

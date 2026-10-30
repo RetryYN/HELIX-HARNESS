@@ -20,7 +20,16 @@
       "L9 case condition/expected values"
     ],
     "derivation_note": "L7 /cases/3、/cases/5、/cases/6 のgiven_input_refからraw入力object graphだけを展開した。3入力の再帰的差分は /binding/project のみ。L4 binding比較表はbinding.projectをinputs/string比較に置き、diagnostic_code_facetsはsource_unresolvedとsource_conflictをcomparison facetに対応させる。L4のformal rowはtop-level failure_classificationsに置き、contracts[].negative_class_refsへF01のreverse linkを設定した。negative_equivalence_classes marker自体は4層揃うまで設定していない。L4 condition_semanticsが全体severity集約を定める。L4のresume規則文は設計文として読み手で適用し、診断algorithm/実装は実行していない。期待値からconditionを写していない。",
-    "historical_expectation_note": "L7 original_expected_ref lineageは独立oracleとして使わない。L9 expected fieldは編集前後の保持だけをdigestで確認し、分類導出には使わない。"
+    "historical_expectation_note": "L7 original_expected_ref lineageは独立oracleとして使わない。L9 expected fieldは編集前後の保持だけをdigestで確認し、分類導出には使わない。",
+    "existing_shape_comparison": {
+      "conclusion": "L9 negative_class_ref is a membership reference to that same L9 document’s negative_equivalence_classes table. This tranche has no L9 class table or marker, so the L4 source candidate remains expressed as l4_source_class_candidate_ref; negative_class_ref would be unresolved in the L9 table and would overstate a formal L9 projection.",
+      "qa_source": "docs/governance/design-verification-quality-assurance.md §3 (explicit mode: negative_class_ref→class key; L8/L9 use their negative_equivalence_classes rows).",
+      "os015_example": [
+        "docs/helix-os/L9-integration-verification/management-authority-source-record.json#/integration_cases/3/negative_class_ref",
+        "docs/helix-os/L9-integration-verification/management-authority-source-record.json#/negative_equivalence_classes/0"
+      ],
+      "os015_observation": "The OS015 case reference equals the class_id in the same document’s L9 class table, and the document has the explicit negative_equivalence_classes table."
+    }
   },
   "source_pointers": [
     {
@@ -79,6 +88,13 @@
         "/objects/503f5d7a9aa22046ec2e55ee05ee1b9a362553e1a8f881af99e05997244d0ccb/project",
         "/objects/3067a4f2dd8a085db4b59cdda7e6d9e8aaa9d413dc63e33087048d828a61911f/project",
         "/objects/6f5cccd81e8bf8f4de90ff3d1f5029bda2b0eeed9285be8e04b7a4808a05c790/project"
+      ]
+    },
+    {
+      "path": "docs/helix-os/L9-integration-verification/management-authority-source-record.json",
+      "pointers": [
+        "/integration_cases/3/negative_class_ref",
+        "/negative_equivalence_classes/0"
       ]
     }
   ],

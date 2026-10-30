@@ -22,7 +22,7 @@ L7 `ticket-workflow-derivation.json` の `/cases/3`, `/cases/5`, `/cases/6` の 
 
 L4 `/diagnostic_contract/comparison_table/binding` は`project`を含む5 fieldをinputs facet/string比較として定める。`diagnostic_code_facets` は`source_unresolved` / `source_conflict`をcomparison facetへ対応させ、L4 `condition_semantics` は選択phaseのfacet集約順を定める。L4のresume適用規則は設計テキストとして読み、実行していない。resumeの他の固定入力は3 caseで同じであり、base inputのownership、ticket、workflow、backflow、continuity、scope_limit条件はL4テキストに照らして対応を確認した。したがって全体conditionはunknown caseが`workflow_material_unknown`、conflict caseが`workflow_material_violation`。ownerはL4固定値`ticket-workflow-owner`。新しいphase/facet別ownerやgateは作らない。
 
-2件はL4の正規`failure_classifications`配列に置き、F01契約の`negative_class_refs`から双方向に結んだ。L9 caseはそのL4 rowへの`l4_source_class_candidate_ref`を持つ。4層markerの`negative_equivalence_classes`はL4/L5/L8/L9の全配列が揃うまで付けないため、checkerはlegacy modeを維持する。QA explicit modeに必要なL5 typed ownerとL5/L8 rowsは未形成である。
+2件はL4の正規`failure_classifications`配列に置き、F01契約の`negative_class_refs`から双方向に結んだ。L9 caseはそのL4 rowへの`l4_source_class_candidate_ref`を持ち、class IDとsource rowを併記する。L9の`negative_class_ref`は付けない。QA explicit modeではこの属性が同層の`negative_equivalence_classes` class tableへの所属を表し、OS015でもroot class tableのIDを参照している。今回L9 class tableを作らずL4のcandidateだけへ結ぶと、L9内で解決しない正式membershipを記録することになる。4層markerの`negative_equivalence_classes`はL4/L5/L8/L9の全配列が揃うまで付けないため、checkerはlegacy modeを維持する。QA explicit modeに必要なL5 typed ownerとL5/L8 rowsは未形成である。
 
 ## 期待値の保持確認
 
