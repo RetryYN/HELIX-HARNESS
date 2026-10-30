@@ -421,12 +421,12 @@
   "source_pair_pins": [
     {
       "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
-      "revision": "5e7286c6def741df3f8abfabdb1f2058eaaedd07",
+      "revision": "2e5ef018a89898bede25c8aa280ce61fe4ee5104",
       "sha256": "32e4a7b6432e7454d242277b37a0948916dc876b6e8e008ad8e4f8c2d7207081"
     },
     {
       "path": "docs/helix-os/L9-integration-verification/management-authority-source-record.json",
-      "revision": "5e7286c6def741df3f8abfabdb1f2058eaaedd07",
+      "revision": "2e5ef018a89898bede25c8aa280ce61fe4ee5104",
       "sha256": "365b89c9131e5edd9b64d474438ff780360118819cc651ee535f64a70aa5ff1d"
     }
   ],

@@ -14,7 +14,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[3]
 BASE = "0dd2045801e9e30def00913b57a6177d8d9be3a8"
-PAIR_REVISION = "5e7286c6def741df3f8abfabdb1f2058eaaedd07"
+PAIR_REVISION = "2e5ef018a89898bede25c8aa280ce61fe4ee5104"
 DIR = ROOT / "scaffold/research/wr181-os015-l5-l8-successor-20261031"
 MANIFEST = ROOT / "scaffold/research/wr181-os015-residual-l4-l9-20261030/projection-manifest.json"
 L3 = "docs/helix-os/L3-requirements/functional-requirements.json"
