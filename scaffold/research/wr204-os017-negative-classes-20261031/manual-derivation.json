@@ -1,0 +1,221 @@
+{
+  "schema": "wr204-os017-source-qualified-negative-candidates.v1",
+  "evidence_kind": "scaffold",
+  "authority_effect": "none",
+  "request": "WR204-OS017-L4L9-CLASS-FORMATION; PR #3945 R1 M1/F2",
+  "base_revision": "e465b3b2edcf8951ea3a5bbedc271543eb2e094e",
+  "method": {
+    "allowed_derivation_sources": [
+      "L3 F01/B01要件本文",
+      "L10 F01/B01検証本文",
+      "L4診断説明文と比較/code表",
+      "L7 given_input_refのraw入力値",
+      "L4診断ルールの文章を設計文として読み手適用（実行なし）"
+    ],
+    "forbidden_as_derivation_oracle": [
+      "L4 algorithm execution",
+      "L5 algorithm or formal_reference execution",
+      "L7 original_expected_ref values",
+      "L8 expectations",
+      "L9 case condition/expected values"
+    ],
+    "derivation_note": "L7 /cases/3、/cases/5、/cases/6 のgiven_input_refからraw入力object graphだけを展開した。3入力の再帰的差分は /binding/project のみ。L4 binding比較表はbinding.projectをinputs/string比較に置き、diagnostic_code_facetsはsource_unresolvedとsource_conflictをcomparison facetに対応させる。L4のformal rowはtop-level failure_classificationsに置き、contracts[].negative_class_refsへF01のreverse linkを設定した。negative_equivalence_classes marker自体は4層揃うまで設定していない。L4 condition_semanticsが全体severity集約を定める。L4のresume規則文は設計文として読み手で適用し、診断algorithm/実装は実行していない。期待値からconditionを写していない。",
+    "historical_expectation_note": "L7 original_expected_ref lineageは独立oracleとして使わない。L9 expected fieldは編集前後の保持だけをdigestで確認し、分類導出には使わない。",
+    "existing_shape_comparison": {
+      "conclusion": "L9 negative_class_ref is a membership reference to that same L9 document’s negative_equivalence_classes table. This tranche has no L9 class table or marker, so the L4 source candidate remains expressed as l4_source_class_candidate_ref; negative_class_ref would be unresolved in the L9 table and would overstate a formal L9 projection.",
+      "qa_source": "docs/governance/design-verification-quality-assurance.md §3 (explicit mode: negative_class_ref→class key; L8/L9 use their negative_equivalence_classes rows).",
+      "os015_example": [
+        "docs/helix-os/L9-integration-verification/management-authority-source-record.json#/integration_cases/3/negative_class_ref",
+        "docs/helix-os/L9-integration-verification/management-authority-source-record.json#/negative_equivalence_classes/0"
+      ],
+      "os015_observation": "The OS015 case reference equals the class_id in the same document’s L9 class table, and the document has the explicit negative_equivalence_classes table."
+    }
+  },
+  "source_pointers": [
+    {
+      "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+      "pointer": "/requirements/34",
+      "id": "HELIXOS-L3-017-F01"
+    },
+    {
+      "path": "docs/helix-os/L3-requirements/business-requirements.json",
+      "pointer": "/requirements/5",
+      "id": "HELIXOS-L3-017-B01"
+    },
+    {
+      "path": "docs/helix-os/L10-verification/functional-verification.json",
+      "pointer": "/cases/34",
+      "id": "HELIXOS-L10-017-F01"
+    },
+    {
+      "path": "docs/helix-os/L10-verification/business-verification.json",
+      "pointer": "/cases/5",
+      "id": "HELIXOS-L10-017-B01"
+    },
+    {
+      "path": "docs/helix-os/L4-basic-design/ticket-workflow-derivation.json",
+      "pointers": [
+        "/contracts/0",
+        "/diagnostic_contract/comparison_table/binding",
+        "/diagnostic_contract/diagnostic_code_facets/source_unresolved",
+        "/diagnostic_contract/diagnostic_code_facets/source_conflict",
+        "/diagnostic_contract/condition_names",
+        "/diagnostic_contract/condition_semantics",
+        "/diagnostic_contract/return_owner",
+        "/diagnostic_contract/algorithm/1",
+        "/diagnostic_contract/algorithm/2",
+        "/diagnostic_contract/algorithm/3",
+        "/diagnostic_contract/algorithm/4",
+        "/diagnostic_contract/algorithm/5",
+        "/diagnostic_contract/algorithm/6",
+        "/diagnostic_contract/algorithm/7",
+        "/diagnostic_contract/algorithm/8",
+        "/diagnostic_contract/algorithm/9",
+        "/diagnostic_contract/algorithm/10",
+        "/diagnostic_contract/result_fields",
+        "/failure_classifications/0",
+        "/failure_classifications/1",
+        "/contracts/0/negative_class_refs"
+      ]
+    },
+    {
+      "path": "docs/helix-os/L7-function-verification/ticket-workflow-derivation.json",
+      "pointers": [
+        "/cases/3/given_input_ref",
+        "/objects/1586f614cc69eb6f2e655c825fef3f3d997b29fefcdc517413ee05acc651d07e/binding",
+        "/cases/5/given_input_ref",
+        "/cases/6/given_input_ref",
+        "/objects/503f5d7a9aa22046ec2e55ee05ee1b9a362553e1a8f881af99e05997244d0ccb/project",
+        "/objects/3067a4f2dd8a085db4b59cdda7e6d9e8aaa9d413dc63e33087048d828a61911f/project",
+        "/objects/6f5cccd81e8bf8f4de90ff3d1f5029bda2b0eeed9285be8e04b7a4808a05c790/project"
+      ]
+    },
+    {
+      "path": "docs/helix-os/L9-integration-verification/management-authority-source-record.json",
+      "pointers": [
+        "/integration_cases/3/negative_class_ref",
+        "/negative_equivalence_classes/0"
+      ]
+    }
+  ],
+  "cohort": {
+    "comparison_baseline": {
+      "case_id": "OS017-NORMAL-RESUME",
+      "l7_case_pointer": "/cases/3",
+      "given_input_object_digest": "b4f43d1ac0d6043d665da7589693e8d180612bd7dc4210da0de17eb3edea7625",
+      "phase": "resume",
+      "actual_binding_project": "SYNTHETIC-PROJECT",
+      "context_binding_project": "SYNTHETIC-PROJECT",
+      "classification": "corresponding baseline; excluded from negative classes"
+    },
+    "negative_candidates": [
+      {
+        "case_id": "OS017-BINDING-PROJECT-UNKNOWN",
+        "l7_case_pointer": "/cases/5",
+        "given_input_object_digest": "349e48fcefb66a199a806b2b3fc531cc39192fe8680ecf9cfc73ad0da208ccd3",
+        "phase": "resume",
+        "actual_pointer": "/binding/project",
+        "actual_value": null,
+        "context_pointer": "/context/binding/project",
+        "context_value": "SYNTHETIC-PROJECT",
+        "class_id": "OS017-NEG-inputs-source_unresolved",
+        "key_fields": {
+          "code": "workflow_material_unknown",
+          "finding_codes": [
+            "source_unresolved"
+          ],
+          "backflow_owner": "ticket-workflow-owner",
+          "expected_axis": "inputs",
+          "expected_state": "unknown",
+          "side_effect_count": 0
+        },
+        "source_derivation": "L4 binding tableでprojectはinputs/string比較。nullは非string operandのためsource_unresolved、comparison facetの状態はunknown。他の6 resume facetはL4文章と固定inputに照らして手で確認した（facet_source_check参照）。L9/L7期待値は使っていない。",
+        "owner_ref": "L5 rule owner projectionまで保留",
+        "binding_object_pointer": "/objects/503f5d7a9aa22046ec2e55ee05ee1b9a362553e1a8f881af99e05997244d0ccb",
+        "context_binding_object_pointer": "/objects/3067a4f2dd8a085db4b59cdda7e6d9e8aaa9d413dc63e33087048d828a61911f"
+      },
+      {
+        "case_id": "OS017-BINDING-PROJECT-CONFLICT",
+        "l7_case_pointer": "/cases/6",
+        "given_input_object_digest": "44d858290764eced3f62ba0d37593b228a6caee87290c022dc5ced1db2140c02",
+        "phase": "resume",
+        "actual_pointer": "/binding/project",
+        "actual_value": "OTHER-SOURCE",
+        "context_pointer": "/context/binding/project",
+        "context_value": "SYNTHETIC-PROJECT",
+        "class_id": "OS017-NEG-inputs-source_conflict",
+        "key_fields": {
+          "code": "workflow_material_violation",
+          "finding_codes": [
+            "source_conflict"
+          ],
+          "backflow_owner": "ticket-workflow-owner",
+          "expected_axis": "inputs",
+          "expected_state": "violation",
+          "side_effect_count": 0
+        },
+        "source_derivation": "L4 binding tableでprojectはinputs/string比較。両operandは非空文字列かつ不一致のためsource_conflict、comparison facetの状態はviolation。他の6 resume facetはL4文章と固定inputに照らして手で確認した（facet_source_check参照）。L9/L7期待値は使っていない。",
+        "owner_ref": "L5 rule owner projectionまで保留",
+        "binding_object_pointer": "/objects/6f5cccd81e8bf8f4de90ff3d1f5029bda2b0eeed9285be8e04b7a4808a05c790",
+        "context_binding_object_pointer": "/objects/3067a4f2dd8a085db4b59cdda7e6d9e8aaa9d413dc63e33087048d828a61911f"
+      }
+    ],
+    "scope": {
+      "positive_cases_in_negative_classes": 0,
+      "negative_candidates_formed": 2,
+      "other_population": 214,
+      "four_layer_explicit_mode_marker": "意図的に未設定。L5/L8後続まで待つ",
+      "four_way_status": "legacy/not_evaluated。PASSではない"
+    },
+    "facet_source_check": {
+      "phase": "resume",
+      "inputs_baseline": "基準入力では5つのbinding値と12のmanagement値がcontextと一致する。各負例候補ではraw graph上の差はbinding.projectのみ。",
+      "ownership": "6個のrole値がcontextおよび固定owner roleと一致する。",
+      "ticket": "ticket graph 1件はcontextと一致し、parent_revisionとscopeは共通bindingに一致する。",
+      "workflow": "process parts/edge/obligationsおよびselected proposalはcontextと一致し、proposalのpartsとobligationsはprocessに存在する。level selectorは両側false。authorityはcurrent、resourceはobserved_material、dependencyはresolvedで、共通revision/scopeに結ばれている。budget/deadlineは100/100、costは7、nowは90。",
+      "backflow": "intermediate stateは許容されるbackflow素材failedで、revision/scope/ticket/backflow参照はcontextと一致する。",
+      "continuity": "prior/resumedのrevision/scope/stop reasonは一致する。budget/deadlineは変わらず、cost/failuresは4/1から7/2へ増加。priorのoutstanding obligation Aはresumed集合に残り、meaning_change_self_confirmedはfalse。",
+      "scope_limit": "completion_claimはfalse。projection labelを完了の根拠にしない。",
+      "aggregate": "他の全facetはcorrespondingと手で確認したため、null project比較はworkflow_material_unknown、既知の相反project比較はworkflow_material_violation。L4のseverity優先規則を適用した。"
+    }
+  },
+  "preservation_check": {
+    "l9_case_count": 217,
+    "projection_fields": [
+      "id",
+      "condition",
+      "expected",
+      "expected_preserved"
+    ],
+    "base_projection_sha256": "0899fc16c319b4ad2a321048215066e4e2cee47bf5112dccbb4086b2f6220b02",
+    "candidate_projection_sha256": "0899fc16c319b4ad2a321048215066e4e2cee47bf5112dccbb4086b2f6220b02",
+    "interpretation": "編集前後の不変性確認のみ。候補classの導出根拠には使っていない。"
+  },
+  "limitations": [
+    "L4 failure_classifications rowsはformal source rowsだが、negative_equivalence_classes markerがないため4層explicit class modeではない。L5 owner_refとL8/L5 projectionを形成し全4層markerを揃えるまでlegacy modeを維持する。",
+    "authority、approval、runtime実行、implementation completion、freeze、four-way PASSを主張しない。",
+    "この証拠の対象外214件はこのtrancheで分類していない。"
+  ],
+  "source_qualified_class_shape": {
+    "l4_container": "/failure_classifications",
+    "l4_count": 2,
+    "reverse_parent_links": {
+      "HELIXOS-L4-017-F01": [
+        "OS017-NEG-inputs-source_unresolved",
+        "OS017-NEG-inputs-source_conflict"
+      ],
+      "HELIXOS-L4-017-F02": [],
+      "HELIXOS-L4-017-F03": [],
+      "HELIXOS-L4-017-B01": []
+    },
+    "explicit_mode_marker": "absent in L4/L5/L8/L9 by design until all four layers are complete",
+    "l9_case_reference_field": "l4_source_class_candidate_ref; unmarked candidate reference, not negative_class_ref",
+    "owner_ref": "deferred to L5 successor",
+    "class_scope": {
+      "phase_in_key": false,
+      "invariant": "全体condition、全体ordered finding signature、inputs facetの局所stateがclass rowに記録した値と一致すること。同facet内のslot/field差はclass区分に使わず、別findingや異なる全体severityを持つcaseは同じclassへ含めない。",
+      "fixed_witness": "resume phaseはL7 fixed raw inputから導いたcase-specific witnessであり、class key/conditionの範囲をresumeへ限定しない。"
+    },
+    "fixed_witness": "resume phaseはL7 fixed raw inputから導いたcase-specific witness。binding.projectはこのwitnessとsource pointerで特定し、class condition/keyは個別field/slotに限定しない。"
+  }
+}

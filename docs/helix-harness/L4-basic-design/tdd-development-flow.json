@@ -73,6 +73,11 @@
       "path": "docs/helix-harness/L9-integration-verification/verification-discipline.json",
       "revision": "337eb623d4a4d6aaa51b430964eb8f6c2e175202",
       "sha256": "19498cf4c9cc07d7335592cda45bfdfbaea51cba08ec39c5118ac83b4e8e0221"
+    },
+    {
+      "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
+      "revision": "3c2538a096b52fd6353770308831ee05de1d358d",
+      "sha256": "eb0f43e23906d04b9554786a2574c94d01de85faa75f7fb1f33e08eb3276f464"
     }
   ],
   "legacy_comparison": [
@@ -355,7 +360,69 @@
           "meaning": "計測改善から受入を生成しない。"
         }
       ],
-      "effect": "normative_contract_only_no_execution"
+      "effect": "normative_contract_only_no_execution",
+      "negative_classifications": [
+        {
+          "code": "os_only",
+          "condition": "利用者CIへ同契約を渡す単独利用を保持。",
+          "expected_axis": "operator_contract",
+          "expected_state": "conflict",
+          "backflow_owner": "QualityAndCiHandoff",
+          "expected_side_effect_count": 0,
+          "classification_basis": "利用者CIへ同契約を渡す単独利用はL3 B01の義務であり、OS限定化は既知の契約と相反する。",
+          "source_reference": {
+            "revision": "f5d511841c665b3424e159c8c1029bde51434521",
+            "pointer": "/contracts/0/failure_conditions/0",
+            "requirement_ref": "HARNESS-L3-015-B01",
+            "verification_ref": "HARNESS-L10-015-B01"
+          }
+        },
+        {
+          "code": "cheap_quality_failure",
+          "condition": "品質未達を費用/時間改善で相殺しない。",
+          "expected_axis": "quality",
+          "expected_state": "conflict",
+          "backflow_owner": "QualityAndCiHandoff",
+          "expected_side_effect_count": 0,
+          "classification_basis": "必要quality未達を費用・時間の改善で相殺できないというL3/L4 B01の明示条件に反する。",
+          "source_reference": {
+            "revision": "f5d511841c665b3424e159c8c1029bde51434521",
+            "pointer": "/contracts/0/failure_conditions/1",
+            "requirement_ref": "HARNESS-L3-015-B01",
+            "verification_ref": "HARNESS-L10-015-B01"
+          }
+        },
+        {
+          "code": "omission_erased",
+          "condition": "C1未回収を保持。",
+          "expected_axis": "unrecovered_refs",
+          "expected_state": "conflict",
+          "backflow_owner": "QualityAndCiHandoff",
+          "expected_side_effect_count": 0,
+          "classification_basis": "required_refsにC1が残る一方、候補のunrecovered_refsだけが空で、既知の義務材料と相反する。",
+          "source_reference": {
+            "revision": "f5d511841c665b3424e159c8c1029bde51434521",
+            "pointer": "/contracts/0/failure_conditions/2",
+            "requirement_ref": "HARNESS-L3-015-B01",
+            "verification_ref": "HARNESS-L10-015-B01"
+          }
+        },
+        {
+          "code": "metric_as_accepted",
+          "condition": "計測改善から受入を生成しない。",
+          "expected_axis": "accepted",
+          "expected_state": "unknown",
+          "backflow_owner": "QualityAndCiHandoff",
+          "expected_side_effect_count": 0,
+          "classification_basis": "B01 output_contract外のaccepted主張。quality/受入の根拠材料が入力されておらず、null/未決相当のunknown。",
+          "source_reference": {
+            "revision": "f5d511841c665b3424e159c8c1029bde51434521",
+            "pointer": "/contracts/0/failure_conditions/3",
+            "requirement_ref": "HARNESS-L3-015-B01",
+            "verification_ref": "HARNESS-L10-015-B01"
+          }
+        }
+      ]
     },
     {
       "id": "HARNESS-L4-015-F01",
@@ -403,7 +470,86 @@
           "meaning": "作成時刻だけが本体変更より前でも対象revision/設計/test/oracle/期待結果/凍結順序の原記録なし。凍結不成立を当該条件に保持。"
         }
       ],
-      "effect": "normative_contract_only_no_execution"
+      "effect": "normative_contract_only_no_execution",
+      "negative_classifications": [
+        {
+          "code": "freeze_missing",
+          "condition": "凍結不足を保持。",
+          "expected_axis": "freeze_before_body",
+          "expected_state": "missing",
+          "backflow_owner": "FrozenContractIntake",
+          "expected_side_effect_count": 0,
+          "classification_basis": "L3 F01はL6/L5と対test/oracleを先に定義・凍結する義務。freeze=nullは未決の選択ではなく必須記録の未供給。pair_bindingにも影響するが、L3-F01の順序（定義・凍結後に対象へ結ぶ）からfreeze_before_bodyをL4の設計選択として採る。L4本文だけでは一意に決まらない。",
+          "source_reference": {
+            "revision": "f5d511841c665b3424e159c8c1029bde51434521",
+            "pointer": "/contracts/1/failure_conditions/0",
+            "requirement_ref": "HARNESS-L3-015-F01",
+            "verification_ref": "HARNESS-L10-015-F01"
+          },
+          "axis_selection_status": "l4_design_choice_not_unique_from_source"
+        },
+        {
+          "code": "test_after_body",
+          "condition": "本体sequence3の後付け凍結を拒否。",
+          "expected_axis": "freeze_before_body",
+          "expected_state": "conflict",
+          "backflow_owner": "FrozenContractIntake",
+          "expected_side_effect_count": 0,
+          "classification_basis": "freezeとbodyは同じr1で、sequence 4の凍結がsequence 3の本体より後。必要な順序との同revision内の相反である。",
+          "source_reference": {
+            "revision": "f5d511841c665b3424e159c8c1029bde51434521",
+            "pointer": "/contracts/1/failure_conditions/1",
+            "requirement_ref": "HARNESS-L3-015-F01",
+            "verification_ref": "HARNESS-L10-015-F01"
+          }
+        },
+        {
+          "code": "foreign_oracle_revision",
+          "condition": "対oracle版不一致を保持。",
+          "expected_axis": "pair_binding",
+          "expected_state": "stale",
+          "backflow_owner": "FrozenContractIntake",
+          "expected_side_effect_count": 0,
+          "classification_basis": "oracle_refのみ同scopeのr0へ変わり、元のr1対契約から異なるrevisionを指す。",
+          "source_reference": {
+            "revision": "f5d511841c665b3424e159c8c1029bde51434521",
+            "pointer": "/contracts/1/failure_conditions/2",
+            "requirement_ref": "HARNESS-L3-015-F01",
+            "verification_ref": "HARNESS-L10-015-F01"
+          }
+        },
+        {
+          "code": "freeze_as_red",
+          "condition": "定義凍結は実Redではない。",
+          "expected_axis": "pre_body_red",
+          "expected_state": "missing",
+          "backflow_owner": "FrozenContractIntake",
+          "expected_side_effect_count": 0,
+          "classification_basis": "定義凍結はbehaviorを実観測したRedではなく、L3/L4 F02が要求するRed観測材料が不足する。",
+          "source_reference": {
+            "revision": "f5d511841c665b3424e159c8c1029bde51434521",
+            "pointer": "/contracts/1/failure_conditions/3",
+            "requirement_ref": "HARNESS-L3-015-F01",
+            "verification_ref": "HARNESS-L10-015-F01"
+          }
+        },
+        {
+          "code": "freeze_timestamp_only",
+          "condition": "作成時刻だけが本体変更より前でも対象revision/設計/test/oracle/期待結果/凍結順序の原記録なし。凍結不成立を当該条件に保持。",
+          "expected_axis": "freeze_before_body",
+          "expected_state": "missing",
+          "backflow_owner": "FrozenContractIntake",
+          "expected_side_effect_count": 0,
+          "classification_basis": "created_atだけでは対象revision・設計・test・oracle・期待結果・順序の記録が供給されず、L3 F01の凍結義務に必要な材料がない。pair bindingより先の凍結を選ぶ。",
+          "source_reference": {
+            "revision": "f5d511841c665b3424e159c8c1029bde51434521",
+            "pointer": "/contracts/1/failure_conditions/4",
+            "requirement_ref": "HARNESS-L3-015-F01",
+            "verification_ref": "HARNESS-L10-015-F01"
+          },
+          "axis_selection_status": "l4_design_choice_not_unique_from_source"
+        }
+      ]
     },
     {
       "id": "HARNESS-L4-015-F02",
@@ -452,7 +598,84 @@
           "meaning": "本体前Red欠落を保持。実装後H1の具体mutation検出はoracle強度の別証拠であり、実装前H0の観測を生成しない。"
         }
       ],
-      "effect": "normative_contract_only_no_execution"
+      "effect": "normative_contract_only_no_execution",
+      "negative_classifications": [
+        {
+          "code": "after_body_red",
+          "condition": "本体前Redの順序不足を保持。",
+          "expected_axis": "red_before_body",
+          "expected_state": "conflict",
+          "backflow_owner": "PreBodyRedEvidence",
+          "expected_side_effect_count": 0,
+          "classification_basis": "Red sequence 4と本体sequence 3は同じr1内の順序相反で、別revisionではない。",
+          "source_reference": {
+            "revision": "f5d511841c665b3424e159c8c1029bde51434521",
+            "pointer": "/contracts/2/failure_conditions/0",
+            "requirement_ref": "HARNESS-L3-015-F02",
+            "verification_ref": "HARNESS-L10-015-F02"
+          }
+        },
+        {
+          "code": "foreign_pre_body_head",
+          "condition": "本体前H0を要求。",
+          "expected_axis": "pre_body_head",
+          "expected_state": "stale",
+          "backflow_owner": "PreBodyRedEvidence",
+          "expected_side_effect_count": 0,
+          "classification_basis": "Red head H1は要求される未修正H0と異なる同scopeのhead/revisionを指す。",
+          "source_reference": {
+            "revision": "f5d511841c665b3424e159c8c1029bde51434521",
+            "pointer": "/contracts/2/failure_conditions/1",
+            "requirement_ref": "HARNESS-L3-015-F02",
+            "verification_ref": "HARNESS-L10-015-F02"
+          }
+        },
+        {
+          "code": "environment_error",
+          "condition": "環境障害でbehavior未観測。oracleが意図したduplicate_debitを検出した実装前Redへ数えない。",
+          "expected_axis": "red_meaning",
+          "expected_state": "unknown",
+          "backflow_owner": "PreBodyRedEvidence",
+          "expected_side_effect_count": 0,
+          "classification_basis": "環境例外がありbehaviorを観測できず、意図したduplicate_debitの成否は未決。",
+          "source_reference": {
+            "revision": "f5d511841c665b3424e159c8c1029bde51434521",
+            "pointer": "/contracts/2/failure_conditions/2",
+            "requirement_ref": "HARNESS-L3-015-F02",
+            "verification_ref": "HARNESS-L10-015-F02"
+          }
+        },
+        {
+          "code": "unexecuted_red",
+          "condition": "観測無しはRedではない。",
+          "expected_axis": "red_meaning",
+          "expected_state": "missing",
+          "backflow_owner": "PreBodyRedEvidence",
+          "expected_side_effect_count": 0,
+          "classification_basis": "executed=falseで、必要な実Red観測が供給されない。",
+          "source_reference": {
+            "revision": "f5d511841c665b3424e159c8c1029bde51434521",
+            "pointer": "/contracts/2/failure_conditions/3",
+            "requirement_ref": "HARNESS-L3-015-F02",
+            "verification_ref": "HARNESS-L10-015-F02"
+          }
+        },
+        {
+          "code": "mutation_substitute",
+          "condition": "本体前Red欠落を保持。実装後H1の具体mutation検出はoracle強度の別証拠であり、実装前H0の観測を生成しない。",
+          "expected_axis": "red_before_body",
+          "expected_state": "missing",
+          "backflow_owner": "PreBodyRedEvidence",
+          "expected_side_effect_count": 0,
+          "classification_basis": "F02 output_contractの本体前Red fieldはred_before_body。H1後のmutation検出は別証拠であり、F02に存在しないF01のpre_body_red fieldへ軸を移さず、実装前観測欠落をmissingとする。",
+          "source_reference": {
+            "revision": "f5d511841c665b3424e159c8c1029bde51434521",
+            "pointer": "/contracts/2/failure_conditions/4",
+            "requirement_ref": "HARNESS-L3-015-F02",
+            "verification_ref": "HARNESS-L10-015-F02"
+          }
+        }
+      ]
     },
     {
       "id": "HARNESS-L4-015-F03",
@@ -522,7 +745,145 @@
           "meaning": "同oracle期待1に対してGreenの観測2を成功として数えない。"
         }
       ],
-      "effect": "normative_contract_only_no_execution"
+      "effect": "normative_contract_only_no_execution",
+      "negative_classifications": [
+        {
+          "code": "oracle_relaxed",
+          "condition": "Greenのoracle入替を拒否。",
+          "expected_axis": "oracle_binding",
+          "expected_state": "conflict",
+          "backflow_owner": "MinimalGreenLocalRefactor",
+          "expected_side_effect_count": 0,
+          "classification_basis": "同じscope/revision上のGreen oracleが凍結oracleと異なる既知のoracleへ置換され、契約と相反する。",
+          "source_reference": {
+            "revision": "f5d511841c665b3424e159c8c1029bde51434521",
+            "pointer": "/contracts/3/failure_conditions/0",
+            "requirement_ref": "HARNESS-L3-015-F03",
+            "verification_ref": "HARNESS-L10-015-F03"
+          }
+        },
+        {
+          "code": "body_before_red",
+          "condition": "freeze/Red/本体の因果順序を保持。",
+          "expected_axis": "order",
+          "expected_state": "conflict",
+          "backflow_owner": "MinimalGreenLocalRefactor",
+          "expected_side_effect_count": 0,
+          "classification_basis": "本体sequence 1がRed sequence 2より前で、同じscope/revisionの因果順序と相反する。",
+          "source_reference": {
+            "revision": "f5d511841c665b3424e159c8c1029bde51434521",
+            "pointer": "/contracts/3/failure_conditions/1",
+            "requirement_ref": "HARNESS-L3-015-F03",
+            "verification_ref": "HARNESS-L10-015-F03"
+          }
+        },
+        {
+          "code": "public_change",
+          "condition": "public意味はBackflow。",
+          "expected_axis": "local_meaning",
+          "expected_state": "conflict",
+          "backflow_owner": "MinimalGreenLocalRefactor",
+          "expected_side_effect_count": 0,
+          "classification_basis": "局所Refactor後のpublic contract意味が一debitから二debitsへ変わり、L3 F03の意味保存義務と相反する。",
+          "source_reference": {
+            "revision": "f5d511841c665b3424e159c8c1029bde51434521",
+            "pointer": "/contracts/3/failure_conditions/2",
+            "requirement_ref": "HARNESS-L3-015-F03",
+            "verification_ref": "HARNESS-L10-015-F03"
+          }
+        },
+        {
+          "code": "architecture_change",
+          "condition": "architecture意味はL4へBackflow。",
+          "expected_axis": "local_meaning",
+          "expected_state": "conflict",
+          "backflow_owner": "MinimalGreenLocalRefactor",
+          "expected_side_effect_count": 0,
+          "classification_basis": "Refactor後architectureがA→ABからAB→Aへ変わり、局所変更の意味保存境界と相反する。",
+          "source_reference": {
+            "revision": "f5d511841c665b3424e159c8c1029bde51434521",
+            "pointer": "/contracts/3/failure_conditions/3",
+            "requirement_ref": "HARNESS-L3-015-F03",
+            "verification_ref": "HARNESS-L10-015-F03"
+          }
+        },
+        {
+          "code": "state_change",
+          "condition": "state意味は対設計へBackflow。",
+          "expected_axis": "local_meaning",
+          "expected_state": "conflict",
+          "backflow_owner": "MinimalGreenLocalRefactor",
+          "expected_side_effect_count": 0,
+          "classification_basis": "Refactor後state意味がone_debitからtwo_debitsへ変わり、L3 F03のstate意味保存義務と相反する。",
+          "source_reference": {
+            "revision": "f5d511841c665b3424e159c8c1029bde51434521",
+            "pointer": "/contracts/3/failure_conditions/4",
+            "requirement_ref": "HARNESS-L3-015-F03",
+            "verification_ref": "HARNESS-L10-015-F03"
+          }
+        },
+        {
+          "code": "ci_as_quality",
+          "condition": "原子CIで品質/受入を生成しない。",
+          "expected_axis": "actual_tdd_success",
+          "expected_state": "unknown",
+          "backflow_owner": "MinimalGreenLocalRefactor",
+          "expected_side_effect_count": 0,
+          "classification_basis": "F03 output_contract内のactual_tdd_successを変更する軸。L3/L10 F03入力にquality材料がなく、CIからの主張がqualityを成立させるかは未決なのでunknown。qualityをCIで生成しないfailure conditionは維持する。",
+          "source_reference": {
+            "revision": "f5d511841c665b3424e159c8c1029bde51434521",
+            "pointer": "/contracts/3/failure_conditions/5",
+            "requirement_ref": "HARNESS-L3-015-F03",
+            "verification_ref": "HARNESS-L10-015-F03"
+          },
+          "state_selection_status": "unknown_due_to_absent_quality_material"
+        },
+        {
+          "code": "requirement_change",
+          "condition": "要求意味の変更は局所Refactorにせず該当上流へBackflow。",
+          "expected_axis": "local_meaning",
+          "expected_state": "conflict",
+          "backflow_owner": "MinimalGreenLocalRefactor",
+          "expected_side_effect_count": 0,
+          "classification_basis": "requirement R1からR2への変更は局所Refactorで扱えず上流へ戻すというL3 F03と相反する。",
+          "source_reference": {
+            "revision": "f5d511841c665b3424e159c8c1029bde51434521",
+            "pointer": "/contracts/3/failure_conditions/6",
+            "requirement_ref": "HARNESS-L3-015-F03",
+            "verification_ref": "HARNESS-L10-015-F03"
+          }
+        },
+        {
+          "code": "minimal_body_scope_expansion",
+          "condition": "最小本体の契約外behavior追加を保持し、成功Greenで相殺しない。",
+          "expected_axis": "minimal_body_scope",
+          "expected_state": "conflict",
+          "backflow_owner": "MinimalGreenLocalRefactor",
+          "expected_side_effect_count": 0,
+          "classification_basis": "契約外behaviorを本体へ追加する変更で、one-commandの最小scope義務と相反する。",
+          "source_reference": {
+            "revision": "f5d511841c665b3424e159c8c1029bde51434521",
+            "pointer": "/contracts/3/failure_conditions/7",
+            "requirement_ref": "HARNESS-L3-015-F03",
+            "verification_ref": "HARNESS-L10-015-F03"
+          }
+        },
+        {
+          "code": "green_wrong_behavior",
+          "condition": "同oracle期待1に対してGreenの観測2を成功として数えない。",
+          "expected_axis": "green_behavior",
+          "expected_state": "conflict",
+          "backflow_owner": "MinimalGreenLocalRefactor",
+          "expected_side_effect_count": 0,
+          "classification_basis": "同一oracleの期待receiver_debits=1に対し観測2であり、既知期待と相反する。",
+          "source_reference": {
+            "revision": "f5d511841c665b3424e159c8c1029bde51434521",
+            "pointer": "/contracts/3/failure_conditions/8",
+            "requirement_ref": "HARNESS-L3-015-F03",
+            "verification_ref": "HARNESS-L10-015-F03"
+          }
+        }
+      ]
     },
     {
       "id": "HARNESS-L4-015-F04",
@@ -571,15 +932,102 @@
           "meaning": "原子greenをRelease成立にしない。"
         }
       ],
-      "effect": "normative_contract_only_no_execution"
+      "effect": "normative_contract_only_no_execution",
+      "negative_classifications": [
+        {
+          "code": "reverse_trace_missing",
+          "condition": "code→design欠落を保持。",
+          "expected_axis": "trace",
+          "expected_state": "missing",
+          "backflow_owner": "DevelopmentTraceAndFrontier",
+          "expected_side_effect_count": 0,
+          "classification_basis": "code→design参照がout_refsから欠落し、L3 F04の双方向trace材料が不足する。",
+          "source_reference": {
+            "revision": "f5d511841c665b3424e159c8c1029bde51434521",
+            "pointer": "/contracts/4/failure_conditions/0",
+            "requirement_ref": "HARNESS-L3-015-F04",
+            "verification_ref": "HARNESS-L10-015-F04"
+          }
+        },
+        {
+          "code": "foreign_trace_revision",
+          "condition": "同revision trace不成立。",
+          "expected_axis": "trace",
+          "expected_state": "stale",
+          "backflow_owner": "DevelopmentTraceAndFrontier",
+          "expected_side_effect_count": 0,
+          "classification_basis": "traceのrevision r0が同scopeの対象revision r1と異なる。",
+          "source_reference": {
+            "revision": "f5d511841c665b3424e159c8c1029bde51434521",
+            "pointer": "/contracts/4/failure_conditions/1",
+            "requirement_ref": "HARNESS-L3-015-F04",
+            "verification_ref": "HARNESS-L10-015-F04"
+          }
+        },
+        {
+          "code": "development_as_integrated",
+          "condition": "015単独でIntegrated以上を生成しない。",
+          "expected_axis": "integrated",
+          "expected_state": "unknown",
+          "backflow_owner": "DevelopmentTraceAndFrontier",
+          "expected_side_effect_count": 0,
+          "classification_basis": "F04 output_contract内のintegrated field。015単独を超える統合確認材料がなく、状態は未決。",
+          "source_reference": {
+            "revision": "f5d511841c665b3424e159c8c1029bde51434521",
+            "pointer": "/contracts/4/failure_conditions/2",
+            "requirement_ref": "HARNESS-L3-015-F04",
+            "verification_ref": "HARNESS-L10-015-F04"
+          }
+        },
+        {
+          "code": "ci_as_accepted",
+          "condition": "原子greenを利用者受入にしない。",
+          "expected_axis": "accepted",
+          "expected_state": "unknown",
+          "backflow_owner": "DevelopmentTraceAndFrontier",
+          "expected_side_effect_count": 0,
+          "classification_basis": "F04 output_contract内のaccepted field。原子greenを超える利用者受入材料は入力されず、状態は未決。",
+          "source_reference": {
+            "revision": "f5d511841c665b3424e159c8c1029bde51434521",
+            "pointer": "/contracts/4/failure_conditions/3",
+            "requirement_ref": "HARNESS-L3-015-F04",
+            "verification_ref": "HARNESS-L10-015-F04"
+          }
+        },
+        {
+          "code": "ci_as_release",
+          "condition": "原子greenをRelease成立にしない。",
+          "expected_axis": "release",
+          "expected_state": "unknown",
+          "backflow_owner": "DevelopmentTraceAndFrontier",
+          "expected_side_effect_count": 0,
+          "classification_basis": "F04 output_contract内のrelease field。原子greenを超えるRelease根拠材料は入力されず、状態は未決。",
+          "source_reference": {
+            "revision": "f5d511841c665b3424e159c8c1029bde51434521",
+            "pointer": "/contracts/4/failure_conditions/4",
+            "requirement_ref": "HARNESS-L3-015-F04",
+            "verification_ref": "HARNESS-L10-015-F04"
+          }
+        }
+      ]
     }
   ],
   "remaining": [
-    "基本5契約/27負例のsource役割・具体意味対照と全変異再現を照合。exact HEAD独立意味reviewは未成立。",
+    "基本5契約/28負例のsource役割・具体意味対照と全変異再現を照合。exact HEAD独立意味reviewは未成立。",
     "L5/L8の関数/型/アルゴリズム/具体負例を起草",
     "正式schema/codec、実Worker/利用者CI binding、安全/隔離/資源/接続と実凍結",
     "本体前実Red/最小Green/意味保存Refactor/原子CI/独立実証・PO受入",
     "限定全92親430対の基本/詳細設計充足"
   ],
-  "source_resolution_boundary": "各root合成snapshotのbytes/source_refを固定。参照先canonical意味/資格はL5/L8で独立owner資料へ具体化し、負例の提出変異を同Refのowner更新として供給しない。"
+  "source_resolution_boundary": "各root合成snapshotのbytes/source_refを固定。参照先canonical意味/資格はL5/L8で独立owner資料へ具体化し、負例の提出変異を同Refのowner更新として供給しない。",
+  "negative_classification_state_vocabulary": {
+    "meaning": "必要な所見/比較軸の未供給はmissing、null/未決はunknown、型外/既知役割・Ref・材料・scope相反はconflict、同scope別revisionはstaleとして保持する。独立原因を捨てず、異なる未解決stateの集約はunknown/nullとする。必要集合が既知の空集合なら当該scopeの非必要条件を返す。",
+    "source_reference": {
+      "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
+      "revision": "3c2538a096b52fd6353770308831ee05de1d358d",
+      "sha256": "eb0f43e23906d04b9554786a2574c94d01de85faa75f7fb1f33e08eb3276f464",
+      "pointer": "/contracts/0/connection_detail/grounding_meaning_input/local_return"
+    },
+    "authority_note": "既存L4 designの語彙をこのcandidateで参照する。draft_pending_semantic_and_fixture_reviewであり独立oracle・承認・新要求ではない。"
+  }
 }

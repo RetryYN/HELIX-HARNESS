@@ -1,0 +1,132 @@
+{
+  "schema_revision": 1,
+  "id": "SCF-B-0180",
+  "kind": "scaffold",
+  "title": "WR181 OS015 source-only expectation derivation pilot audit",
+  "product": "HELIX-OS",
+  "owner_candidate": "HELIX-OS OS015 L8 expectation provenance audit",
+  "state": "registered",
+  "reason": "L8に置かれていた3×16 rootの手導出監査ログを、QA §3 L8の期待/ケース範囲から分離し、source-only research auditとして保持する。L8 formal expectations、L7 raw、L3/L10/L4意味は変更せず、unknownはunknownのまま記録する。",
+  "upstream": [
+    {
+      "path": "docs/helix-os/L10-verification/business-verification.json",
+      "sha256": "215e1d4a99f73151aa4b3225947a65567fbc3b97bec0cf9eac8d1a6456cbc3dd",
+      "note": "OS015 B01 including upstream expected_observation."
+    },
+    {
+      "path": "docs/helix-os/L3-requirements/business-requirements.json",
+      "sha256": "0df11c612e3e0b531d2103d058471d5be2be8b8df965d10b69e06b0e506488c7",
+      "note": "OS015 B01 requirement prose."
+    },
+    {
+      "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+      "sha256": "e86254a35b476ed71ebb112e41ccd2b48f89a8d0393e6495dc11cac7a7cf4e02",
+      "note": "OS015 F01–F03 requirement prose, source-only derivation."
+    },
+    {
+      "path": "docs/helix-os/L10-verification/functional-verification.json",
+      "sha256": "583020f951672e48bc37fcd35cb916de5ccd9866f41dd04731f6519325ae500a",
+      "note": "OS015 F01–F03 including upstream expected_observation; source-only derivation."
+    },
+    {
+      "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
+      "sha256": "c468e6cd85c26a6d8fa18d44c000ce32a8e607d48ff77241e233f251ea394a81",
+      "note": "OS015 contracts and diagnostic prose/tables plus source unresolved/conflict classifications; embedded algorithm body excluded."
+    },
+    {
+      "path": "docs/helix-os/L7-function-verification/management-authority-source-record.json",
+      "sha256": "b2a71c3d2a99c5268275e183f21c2b1bbc4b21ad79d577af42573a079e920a09",
+      "note": "Fixed given.input and source stimulus/reference only; L7 expected values excluded."
+    },
+    {
+      "path": "docs/helix-os/L8-unit-verification/management-authority-source-record.json",
+      "sha256": "32784b1aefffbd2f5763d5e07c4d145ff866d4c2ab14dfecffafb469bba8dd8c",
+      "note": "L8 carries only provenance correction and pointer/status; no formal expectation change. R4 response: L8 comparison status only; prior=8f36fe5cd183be374bf59a23d38b5b169af156350f5fbd7a31ce9837c9761724; current=32784b1aefffbd2f5763d5e07c4d145ff866d4c2ab14dfecffafb469bba8dd8c; formal expectations unchanged."
+    },
+    {
+      "path": "scaffold/research/wr181-os015-l5-l8-successor-20261031/manual-source-only-pilot.json",
+      "sha256": "2d453043a0e035459119f536678233570e17690d1fb0a3e3febe8535a938fe30",
+      "note": "Manual source-only pilot, including case/root pointers, statuses, and post-freeze comparison scope."
+    },
+    {
+      "path": "scaffold/research/wr181-os015-l5-l8-successor-20261031/manual-source-only-pilot.md",
+      "sha256": "55aecb5f17b8951877a6a8624f6c7737fd6a6b55dcb9f57223173e34fdba748e",
+      "note": "Review-summary rendering; detailed root basis remains in JSON."
+    },
+    {
+      "path": "scaffold/research/wr181-os015-l5-l8-successor-20261031/blind-derivation-fixed-e96d09af.json",
+      "sha256": "e96d09afb12131681bf126b6414a4700f60c37da156cb9297b823f6344362b79",
+      "note": "Original blind semantic draft fixed before the limited comparison; not a formal oracle."
+    }
+  ],
+  "role": "WR181 OS015の手導出pilotについて、固定source revision・3 cohort・16 roots・根拠pointer・未解決root・停止境界をレビュー可能なscaffold research auditとして記録する。",
+  "obligations": [
+    "3 cohortそれぞれの16 root source derivation/status/basis/pointerをmanual-source-only-pilot.jsonに保持する。",
+    "L3/L10 prose、L4 diagnostic contract prose/tables、L7 fixed given.inputだけを導出根拠とし、L4 embedded algorithm、L5 formal_reference、既存expected valuesを導出根拠にしない。",
+    "unknown/partial_unknownを未解決のまま保持し、盲検導出時は既存期待を使わず、固定後の一部比較と残り未比較、全91代表の独立性未成立を明示する。",
+    "L8のformal expected rows/cases、L7、L3/L10/L4の意味、pair境界を変更しない。",
+    "旧runtime/test/CIを実行せず、監査記録からauthority、formal oracle、freeze、実行結果を生成しない。",
+    "各semantic_summaryはsource-levelの説明に限り、exact field value/JSON shapeの証拠へ昇格しない。返却値を特定できないrootはpartial_unknown/unknownとする。",
+    "固定済み盲検草案のbytesとhashを保持し、比較前の暫定値と比較後の監査改訂・未確定を分離する。"
+  ],
+  "connections": {
+    "consumers": [
+      "WR181 OS015 L5/L8 successor review; source-only pilot review record"
+    ],
+    "dependencies": [
+      "WR181 source-only pilot in L8 at prior revision; L3/L10/L4/L7 pinned source bytes."
+    ],
+    "boundary": "Scaffold research evidence only. It does not form or revise formal L8 expectations, establish a full independent oracle, resolve source authority/qualification, or claim freeze/completion."
+  },
+  "operations": {
+    "allowed": [
+      "read-only JSON/source pointer/hash inspection",
+      "python3 -m json.tool",
+      "scfctl validate/stale",
+      "git diff --check"
+    ],
+    "forbidden": [
+      "L4 algorithm_python_document_text execution",
+      "L5 formal_reference or L7/L8/L9 expected values as derivation input",
+      "editing formal expected rows, L7 input, or L3/L10/L4 meaning",
+      "old HELIX runtime/CLI/hook/test/CI execution",
+      "claiming full independence, authority, freeze, or completion"
+    ]
+  },
+  "artifacts": [
+    "scaffold/research/wr181-os015-l5-l8-successor-20261031/manual-source-only-pilot.json",
+    "scaffold/research/wr181-os015-l5-l8-successor-20261031/manual-source-only-pilot.md",
+    "scaffold/bindings/SCF-B-0180.json",
+    "scaffold/research/wr181-os015-l5-l8-successor-20261031/blind-derivation-fixed-e96d09af.json"
+  ],
+  "verification": {
+    "evidence_kind": "scaffold",
+    "scope": [
+      "schema_interface",
+      "source_revision_stale",
+      "negative_case",
+      "forbidden_write_scope"
+    ],
+    "oracles": [
+      "python3 -m json.tool scaffold/research/wr181-os015-l5-l8-successor-20261031/manual-source-only-pilot.json",
+      "python3 -m json.tool scaffold/bindings/SCF-B-0180.json",
+      "python3 -B scaffold/tools/scfctl.py validate",
+      "python3 -B scaffold/tools/scfctl.py stale",
+      "git diff --check"
+    ],
+    "negative_cases": [
+      "The three-case pilot is partial; unknown roots and source authority/qualification remain unresolved.",
+      "After the blind derivation was fixed, Codex compared seven scalar roots and current_source_material; the remainder was not compared. Prior expected rows are not a derivation oracle.",
+      "No full 91-representative independence or freeze is claimed.",
+      "target_correspondence等のsemantic_summary、またはretention方針のみを完成したserialized output valueとして扱わない。"
+    ]
+  },
+  "replacement": {
+    "role_target": "正式なL8期待導出根拠とレビュー可能な監査記録",
+    "formal_artifacts": [],
+    "issue": 0,
+    "status": "pending"
+  },
+  "created": "2026-10-31",
+  "updated": "2026-10-31"
+}
