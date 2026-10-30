@@ -35,8 +35,8 @@
     },
     {
       "path": "docs/helix-harness/L5-detail-design/tdd-development-flow.json",
-      "sha256": "7d9b4ea9827d24d918ad917413caeb19fdd56208d6c05738cdff437e011050a1",
-      "note": "Local candidate L5 bytes used for the F03 L8 contract target; this digest is held here rather than in the L8 document."
+      "sha256": "a7fd79b52e6e5431ed0b5d2e72524c805e3ecdf1226c17f3ee01de5ed4dc24e0",
+      "note": "Local candidate L5 bytes after R1/F1 Japanese wording correction; digest is held here rather than in the L8 document."
     }
   ],
   "role": "WR243 F03 source-only comparison, L5 condition candidate and L8 existing-U-ID reference table evidence.",
@@ -82,7 +82,8 @@
     "scaffold/research/wr243-tdd-f03-l5-l8-20261031/verification-summary.json",
     "scaffold/research/wr243-tdd-f03-l5-l8-20261031/source/wr243-tdd-clean-source-only.json",
     "docs/helix-harness/L5-detail-design/tdd-development-flow.json",
-    "docs/helix-harness/L8-unit-verification/tdd-development-flow.json"
+    "docs/helix-harness/L8-unit-verification/tdd-development-flow.json",
+    "scaffold/research/wr243-tdd-f03-l5-l8-20261031/correction-r1-f1.json"
   ],
   "verification": {
     "evidence_kind": "scaffold",

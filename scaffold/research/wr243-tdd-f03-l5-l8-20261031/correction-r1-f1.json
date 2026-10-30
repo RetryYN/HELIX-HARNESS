@@ -1,0 +1,262 @@
+{
+  "schema": "wr243-review-correction.v1",
+  "evidence_kind": "scaffold",
+  "authority_effect": "none",
+  "request_id": "WR243-TDD-F03-PR3984-R1",
+  "finding_id": "F1",
+  "request_payload_sha256": "2e885cb2e08f64b04a59f645a30c31665ba360dab532b8e77b529211152c5644",
+  "correction": "F03 L5/L8 candidate condition and expected-result prose translated to Japanese without changing meaning; fixed comparison inputs remain unchanged.",
+  "fixed_evidence": [
+    {
+      "path": "scaffold/research/wr243-tdd-f03-l5-l8-20261031/source/wr243-tdd-clean-source-only.json",
+      "sha256": "846907d5802170ed775fbf08664c0b85f42e7b6ac0a9623e8584452f81ead813"
+    },
+    {
+      "path": "scaffold/research/wr243-tdd-f03-l5-l8-20261031/comparison.json",
+      "sha256": "a330dd6e155a9c3577ff0c61ae9da49dee1906d300877b6d4eb064ed042d602a"
+    },
+    {
+      "path": "scaffold/research/wr243-tdd-f03-l5-l8-20261031/verification-summary.json",
+      "sha256": "38a2e3a0566d447150fc2f2bb741e4e16848b70c5a7d2e940ef194beae549ab1"
+    }
+  ],
+  "mappings": [
+    {
+      "source_only_ref": "WR243-SO-F03-01",
+      "negative_condition_en": "Frozen oracle is weakened or replaced to make the implementation pass; or the Green observation does not satisfy the same frozen oracle.",
+      "negative_condition_ja": "凍結oracleを弱めたり差し替えたりして実装を通す、またはGreenの観測結果が同じ凍結oracleを満たさない。",
+      "expected_observation_en": "Do not recognize Green closure. Preserve oracle identity/content mismatch and route the semantic change upstream; do not count a pass against a changed expectation.",
+      "expected_observation_ja": "Greenによる完了を認定しない。oracleの同一性または内容の不一致を保持し、意味変更を上流へ戻す。変更後の期待値に対するpassとして数えない。",
+      "l8_existing_unit_case_refs": [
+        "HARNESS-L9-015-F03-oracle_relaxed"
+      ]
+    },
+    {
+      "source_only_ref": "WR243-SO-F03-02",
+      "negative_condition_en": "The implementation body is changed before the intended pre-body Red is observed, or the required causal order is inverted.",
+      "negative_condition_ja": "意図した本体変更前Redを観測する前に実装本体を変更する、または必要な因果順序を逆転させる。",
+      "expected_observation_en": "Keep the pre-body Red obligation unsatisfied; later evidence cannot establish the missing earlier observation. Do not close the F03 sequence.",
+      "expected_observation_ja": "本体変更前Redの義務は未充足のままとする。後から得た証拠で、欠けている先行観測を成立させない。F03シーケンスを完了扱いしない。",
+      "l8_existing_unit_case_refs": [
+        "HARNESS-L9-015-F03-body_before_red"
+      ]
+    },
+    {
+      "source_only_ref": "WR243-SO-F03-03",
+      "negative_condition_en": "A local refactor changes public contract, requirement meaning, architecture meaning, or state meaning.",
+      "negative_condition_ja": "局所Refactorによってpublic contract、要求の意味、architectureの意味、またはstateの意味を変更する。",
+      "expected_observation_en": "Do not accept it as a meaning-preserving local refactor; preserve the change as an upstream/backflow obligation to the relevant owner/layer.",
+      "expected_observation_ja": "意味を保つ局所Refactorとして受け入れない。変更を、該当するownerまたはlayerへの上流戻し義務として保持する。",
+      "l8_existing_unit_case_refs": [
+        "HARNESS-L9-015-F03-public_change",
+        "HARNESS-L9-015-F03-architecture_change",
+        "HARNESS-L9-015-F03-state_change",
+        "HARNESS-L9-015-F03-requirement_change"
+      ]
+    },
+    {
+      "source_only_ref": "WR243-SO-F03-04",
+      "negative_condition_en": "Extra behavior outside the minimal body scope is added, or an incorrect observed Green is treated as satisfying the oracle.",
+      "negative_condition_ja": "最小本体scopeの外に振る舞いを追加する、または誤ったGreen観測をoracle充足として扱う。",
+      "expected_observation_en": "Preserve the out-of-scope behavior or wrong observation as an unresolved failure; successful unrelated behavior cannot cancel it.",
+      "expected_observation_ja": "scope外の振る舞いまたは誤った観測を、未解決のfailureとして保持する。無関係な成功で相殺しない。",
+      "l8_existing_unit_case_refs": [
+        "HARNESS-L9-015-F03-minimal_body_scope_expansion",
+        "HARNESS-L9-015-F03-green_wrong_behavior"
+      ]
+    },
+    {
+      "source_only_ref": "WR243-SO-F03-05",
+      "negative_condition_en": "Atomic CI success is presented as product quality, system verification, user acceptance, or release completion.",
+      "negative_condition_ja": "Atomic CIの成功を、製品品質、システム検証、ユーザー受入、またはrelease完了として提示する。",
+      "expected_observation_en": "Keep F03/atomic-CI evidence separate from higher verification and acceptance; do not produce those higher states from this CI result.",
+      "expected_observation_ja": "F03/atomic-CIの証拠を上位の検証・受入と分けて扱う。このCI結果から上位状態を生成しない。",
+      "l8_existing_unit_case_refs": [
+        "HARNESS-L9-015-F03-ci_as_quality"
+      ]
+    }
+  ],
+  "candidate_hashes": {
+    "docs/helix-harness/L5-detail-design/tdd-development-flow.json": "a7fd79b52e6e5431ed0b5d2e72524c805e3ecdf1226c17f3ee01de5ed4dc24e0",
+    "docs/helix-harness/L8-unit-verification/tdd-development-flow.json": "3467fe21dd0ad803b9414abe4087fb2ef9088cbe94298d4371b1baed65c9396f"
+  },
+  "l5_pin": {
+    "binding": "SCF-B-0204",
+    "path": "docs/helix-harness/L5-detail-design/tdd-development-flow.json",
+    "previous_sha256": "7d9b4ea9827d24d918ad917413caeb19fdd56208d6c05738cdff437e011050a1",
+    "current_sha256": "a7fd79b52e6e5431ed0b5d2e72524c805e3ecdf1226c17f3ee01de5ed4dc24e0"
+  },
+  "preceding_bindings": {
+    "reviewed": [
+      "SCF-B-0185",
+      "SCF-B-0192"
+    ],
+    "l5_l8_sha_pins_found": [],
+    "rebinding_required": false,
+    "basis": "Both bindings list the shared L5/L8 design files under artifacts only; neither has an upstream SHA pin for either file."
+  },
+  "latest_main_hypothesis": {
+    "base": "216c22400e2823eff6126982a44459b4a938fe70",
+    "unique_fetch_ref": "refs/remotes/origin/wr243-r1-main-216c224",
+    "parent": "03141af4af6c5c3d9dc1f1bf075f29d96928d0f7",
+    "method": "temporary worktree; merge --no-commit --no-ff of c3d880dbdd6ce0cdf16a5d27a844edef960b89e6, then overlay the uncommitted R1 correction files",
+    "status": "clean_no_commit_merge",
+    "merge_result": "Automatic merge went well; stopped before committing as requested."
+  },
+  "validation": {
+    "status": "passed_with_expected_static_residuals",
+    "commands": [
+      {
+        "name": "validate_static_candidate.py",
+        "context": "current candidate and 03141 hypothetical merged worktree",
+        "result": "pass",
+        "checks": 28
+      },
+      {
+        "name": "scaffold/tools/scfctl.py validate",
+        "context": "03141 hypothetical merged worktree",
+        "result": "pass",
+        "bindings": 187,
+        "fail": 0,
+        "SCF-B-0204": "registered"
+      },
+      {
+        "name": "scaffold/tools/scfctl.py stale",
+        "context": "03141 hypothetical merged worktree",
+        "result": "pass",
+        "stale": 0
+      },
+      {
+        "name": "design_verification_checker.py check-child",
+        "context": "03141 hypothetical merged worktree",
+        "result": "expected residual",
+        "exit_code": 1,
+        "pairs": {
+          "L4_L9": "pass",
+          "L5_L8": "pass"
+        },
+        "negative_4way_counts": {
+          "L4": 30,
+          "L9": 30,
+          "L8": 0,
+          "L5": 0
+        },
+        "matched_case_count": 0,
+        "failure_count": 35,
+        "ownership_cap_failures": {
+          "L4": 0,
+          "L9": 35,
+          "L5": 0,
+          "L8": 1647
+        },
+        "pins": "all 4 pass"
+      },
+      {
+        "name": "git diff --check",
+        "context": "03141 hypothetical merged worktree",
+        "result": "pass"
+      }
+    ],
+    "prior_binding_rebind_check": {
+      "bindings": [
+        "SCF-B-0185",
+        "SCF-B-0192"
+      ],
+      "latest_main_state": "artifacts entries only for shared L5/L8 documents; no upstream SHA pins to these documents",
+      "result": "not_required"
+    },
+    "fixed_artifacts_changed": false,
+    "old_or_new_runtime_tests_ci_run": false,
+    "requested_216c_main_hypothesis": {
+      "static_validator": {
+        "result": "pass",
+        "checks": 28
+      },
+      "scfctl_validate": {
+        "result": "pass",
+        "bindings": 185,
+        "fail": 0,
+        "SCF-B-0204": "registered"
+      },
+      "scfctl_stale": {
+        "result": "pass",
+        "stale": 0
+      },
+      "check_child": {
+        "result": "expected_residual",
+        "exit_code": 1,
+        "pair_status": {
+          "L4_L9": "pass",
+          "L5_L8": "pass"
+        },
+        "fourway_counts": {
+          "L4": 30,
+          "L9": 30,
+          "L8": 0,
+          "L5": 0
+        },
+        "matched_case_count": 0,
+        "failure_count": 35,
+        "cap_failures": {
+          "L4": 0,
+          "L9": 35,
+          "L5": 0,
+          "L8": 1647
+        },
+        "pins": "all 4 pass"
+      },
+      "diff_check": {
+        "result": "pass"
+      }
+    },
+    "origin_main_at_fetch_hypothesis": {
+      "static_validator": {
+        "result": "pass",
+        "checks": 28
+      },
+      "scfctl_validate": {
+        "result": "pass",
+        "bindings": 187,
+        "fail": 0,
+        "SCF-B-0204": "registered"
+      },
+      "scfctl_stale": {
+        "result": "pass",
+        "stale": 0
+      },
+      "check_child": {
+        "result": "expected_residual",
+        "exit_code": 1,
+        "pair_status": {
+          "L4_L9": "pass",
+          "L5_L8": "pass"
+        },
+        "fourway_counts": {
+          "L4": 30,
+          "L9": 30,
+          "L8": 0,
+          "L5": 0
+        },
+        "matched_case_count": 0,
+        "failure_count": 35,
+        "cap_failures": {
+          "L4": 0,
+          "L9": 35,
+          "L5": 0,
+          "L8": 1647
+        },
+        "pins": "all 4 pass"
+      },
+      "diff_check": {
+        "result": "pass"
+      }
+    }
+  },
+  "current_main_at_fetch": {
+    "sha": "b8bd81be5a439cf8dd1d4c5272d6a20872edafc3",
+    "unique_fetch_ref": "refs/remotes/origin/wr243-r1-main-check-20261031",
+    "relation": "descendant of requested 216c22400e2823eff6126982a44459b4a938fe70",
+    "method": "temporary worktree; merge --no-commit --no-ff of c3d880dbdd6ce0cdf16a5d27a844edef960b89e6, then overlay the uncommitted R1 correction files",
+    "status": "clean_no_commit_merge"
+  }
+}
