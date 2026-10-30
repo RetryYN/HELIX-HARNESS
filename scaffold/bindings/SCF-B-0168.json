@@ -25,7 +25,7 @@
     },
     {
       "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
-      "sha256": "86cf6c8ff8735c931863d067ba4653923bc26608550f844c9e3a22a9e6715799",
+      "sha256": "b53f8754dfac2c069e36c6427ce1b151398c4b1ea1c81cf9185c4a38b0bb32ce",
       "note": "F05/F10 candidate source; exact JSON pointer set is recorded in scaffold/research/wr154-f10-gap-selection-design-20261030/README.md. Pin is read-only and does not adopt the source."
     },
     {

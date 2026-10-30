@@ -118,7 +118,7 @@
     "L4_sha256": "4a770515153fb97e2f5915af8308868450a22014d5739b996bc0ebf4a62db7db",
     "L9_sha256": "06c255043e143a0ddd23da750fede31ff6d3b4b1c94d854de22d07ff109c0d8b",
     "L5_pre_sha256": "d85ff1a6db76b0b367a0ae51a5a2b82df93298f17375940d0b84c1674e9507ef",
-    "L5_post_sha256": "86cf6c8ff8735c931863d067ba4653923bc26608550f844c9e3a22a9e6715799",
+    "L5_post_sha256": "b53f8754dfac2c069e36c6427ce1b151398c4b1ea1c81cf9185c4a38b0bb32ce",
     "L8_pre_sha256": "bc1a74cb56612e555899c585c42f2c2843b6c2ee8efce5df5c27404de4ac35bd",
     "L8_post_sha256": "da37ff653d24eb3432aea09e4aea92005050cd95316da9949ef00658c77b8a21"
   },
@@ -157,6 +157,7 @@
     "matched_case_count": 107,
     "failure_count": 0,
     "passed": true,
+    "parent_link_mode": "legacy",
     "comparison_mode": "legacy_casewise_four_layer",
     "comparison_scope": {
       "case_rows": [
