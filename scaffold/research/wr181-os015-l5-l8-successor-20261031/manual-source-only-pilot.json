@@ -74,14 +74,9 @@
           {
             "root": "current_source_material",
             "status": "partial_unknown",
-            "basis": "Per-target source status is recorded below. A single global boolean is one interpretation, not an explicit L4 output shape or aggregation rule; serialization and type remain undetermined.",
-            "semantic_summary": "Per-target source status is recorded below. A single global boolean is one interpretation, not an explicit L4 output shape or aggregation rule; serialization and type remain undetermined.",
-            "exact_value_status": "unknown",
-            "per_target_semantic": {
-              "target_a": "corresponding",
-              "target_b": "corresponding"
-            },
-            "hypothetical_global_boolean": true
+            "basis": "L4 says source/event/authority defects make current_source_material false, but the target aggregation and output shape are unspecified. Do not derive a result after comparison; rederive after the L4 clarification.",
+            "semantic_summary": "L4 says source/event/authority defects make current_source_material false, but the target aggregation and output shape are unspecified. Do not derive a result after comparison; rederive after the L4 clarification.",
+            "exact_value_status": "unknown"
           },
           {
             "root": "original_classification_state",
@@ -204,14 +199,9 @@
           {
             "root": "current_source_material",
             "status": "partial_unknown",
-            "basis": "Per-target source status is recorded below. A single global boolean is one interpretation, not an explicit L4 output shape or aggregation rule; serialization and type remain undetermined.",
-            "semantic_summary": "Per-target source status is recorded below. A single global boolean is one interpretation, not an explicit L4 output shape or aggregation rule; serialization and type remain undetermined.",
-            "exact_value_status": "unknown",
-            "per_target_semantic": {
-              "target_a": "unknown",
-              "target_b": "corresponding"
-            },
-            "hypothetical_global_boolean": false
+            "basis": "L4 says source/event/authority defects make current_source_material false, but the target aggregation and output shape are unspecified. Do not derive a result after comparison; rederive after the L4 clarification.",
+            "semantic_summary": "L4 says source/event/authority defects make current_source_material false, but the target aggregation and output shape are unspecified. Do not derive a result after comparison; rederive after the L4 clarification.",
+            "exact_value_status": "unknown"
           },
           {
             "root": "original_classification_state",
@@ -338,14 +328,9 @@
           {
             "root": "current_source_material",
             "status": "partial_unknown",
-            "basis": "Per-target source status is recorded below. A single global boolean is one interpretation, not an explicit L4 output shape or aggregation rule; serialization and type remain undetermined.",
-            "semantic_summary": "Per-target source status is recorded below. A single global boolean is one interpretation, not an explicit L4 output shape or aggregation rule; serialization and type remain undetermined.",
-            "exact_value_status": "unknown",
-            "per_target_semantic": {
-              "target_a": "violation",
-              "target_b": "corresponding"
-            },
-            "hypothetical_global_boolean": false
+            "basis": "L4 says source/event/authority defects make current_source_material false, but the target aggregation and output shape are unspecified. Do not derive a result after comparison; rederive after the L4 clarification.",
+            "semantic_summary": "L4 says source/event/authority defects make current_source_material false, but the target aggregation and output shape are unspecified. Do not derive a result after comparison; rederive after the L4 clarification.",
+            "exact_value_status": "unknown"
           },
           {
             "root": "original_classification_state",
@@ -532,7 +517,19 @@
         "/connection_materials/OS015/case/cases/4/given/input"
       ]
     },
-    "post_derivation_comparison": "After the blind derivation was fixed, Codex compared seven scalar roots and current_source_material against existing expectations; see issue #3510 comment 6529774668. The scalar roots matched, but the blind single-boolean interpretation differs from the existing per-target object. Other roots remain unexamined in that comparison."
+    "post_derivation_comparison": "After the blind derivation was fixed, Codex compared seven scalar roots and current_source_material against existing expectations; see issue #3510 comment 6529774668. The scalar roots matched, but the blind single-boolean interpretation differs from the existing per-target object. Other roots remain unexamined in that comparison.",
+    "fixed_derivation_artifact": {
+      "path": "scaffold/research/wr181-os015-l5-l8-successor-20261031/blind-derivation-fixed-e96d09af.json",
+      "sha256": "e96d09afb12131681bf126b6414a4700f60c37da156cb9297b823f6344362b79",
+      "status": "original_blind_semantic_draft_fixed_before_comparison",
+      "limitation": "Semantic descriptions and provisional scalar interpretation, not a complete serialized oracle."
+    },
+    "revision_history": [
+      "Blind worker fixed e96d09af before Codex compared seven scalar roots and current_source_material against existing expectations; issue 3510 comment 6529774668.",
+      "After the partial comparison, the audit was expanded to include L4 contracts 0–3 and allowed L10 observations/failure classifications. The blind worker had not read existing expected values; Codex later revised this audit with knowledge of the comparison.",
+      "In the fixed artifact current_source_material was a provisional single boolean (true/false/false), and whole_registry_verified was false. The current audit records both as partial_unknown for serialized output, because the L4 mapping/type is not specified. No post-comparison expected value is adopted.",
+      "Other rows are semantic descriptions, not claims that every frozen value has a verified output serialization. Exact comparison is limited to the eight named roots; remaining roots were not compared."
+    ]
   },
   "presentation": {
     "markdown_path": "scaffold/research/wr181-os015-l5-l8-successor-20261031/manual-source-only-pilot.md",

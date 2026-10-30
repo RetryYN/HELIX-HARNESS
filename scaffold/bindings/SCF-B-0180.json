@@ -40,18 +40,23 @@
     },
     {
       "path": "docs/helix-os/L8-unit-verification/management-authority-source-record.json",
-      "sha256": "8f36fe5cd183be374bf59a23d38b5b169af156350f5fbd7a31ce9837c9761724",
-      "note": "L8 carries only provenance correction and pointer/status; no formal expectation change."
+      "sha256": "32784b1aefffbd2f5763d5e07c4d145ff866d4c2ab14dfecffafb469bba8dd8c",
+      "note": "L8 carries only provenance correction and pointer/status; no formal expectation change. R4 response: L8 comparison status only; prior=8f36fe5cd183be374bf59a23d38b5b169af156350f5fbd7a31ce9837c9761724; current=32784b1aefffbd2f5763d5e07c4d145ff866d4c2ab14dfecffafb469bba8dd8c; formal expectations unchanged."
     },
     {
       "path": "scaffold/research/wr181-os015-l5-l8-successor-20261031/manual-source-only-pilot.json",
-      "sha256": "3e4a57cd3585331ec69c4c86ed891079a3a54399c7e2793c2e5fdf30efbe6b8e",
+      "sha256": "2d453043a0e035459119f536678233570e17690d1fb0a3e3febe8535a938fe30",
       "note": "Manual source-only pilot, including case/root pointers, statuses, and post-freeze comparison scope."
     },
     {
       "path": "scaffold/research/wr181-os015-l5-l8-successor-20261031/manual-source-only-pilot.md",
-      "sha256": "df747875b381d69e811e79ef15123b912be6f56e1e5f75aa0ba21ee469d2d34d",
+      "sha256": "55aecb5f17b8951877a6a8624f6c7737fd6a6b55dcb9f57223173e34fdba748e",
       "note": "Review-summary rendering; detailed root basis remains in JSON."
+    },
+    {
+      "path": "scaffold/research/wr181-os015-l5-l8-successor-20261031/blind-derivation-fixed-e96d09af.json",
+      "sha256": "e96d09afb12131681bf126b6414a4700f60c37da156cb9297b823f6344362b79",
+      "note": "Original blind semantic draft fixed before the limited comparison; not a formal oracle."
     }
   ],
   "role": "WR181 OS015の手導出pilotについて、固定source revision・3 cohort・16 roots・根拠pointer・未解決root・停止境界をレビュー可能なscaffold research auditとして記録する。",
@@ -61,7 +66,8 @@
     "unknown/partial_unknownを未解決のまま保持し、盲検導出時は既存期待を使わず、固定後の一部比較と残り未比較、全91代表の独立性未成立を明示する。",
     "L8のformal expected rows/cases、L7、L3/L10/L4の意味、pair境界を変更しない。",
     "旧runtime/test/CIを実行せず、監査記録からauthority、formal oracle、freeze、実行結果を生成しない。",
-    "各semantic_summaryはsource-levelの説明に限り、exact field value/JSON shapeの証拠へ昇格しない。返却値を特定できないrootはpartial_unknown/unknownとする。"
+    "各semantic_summaryはsource-levelの説明に限り、exact field value/JSON shapeの証拠へ昇格しない。返却値を特定できないrootはpartial_unknown/unknownとする。",
+    "固定済み盲検草案のbytesとhashを保持し、比較前の暫定値と比較後の監査改訂・未確定を分離する。"
   ],
   "connections": {
     "consumers": [
@@ -90,7 +96,8 @@
   "artifacts": [
     "scaffold/research/wr181-os015-l5-l8-successor-20261031/manual-source-only-pilot.json",
     "scaffold/research/wr181-os015-l5-l8-successor-20261031/manual-source-only-pilot.md",
-    "scaffold/bindings/SCF-B-0180.json"
+    "scaffold/bindings/SCF-B-0180.json",
+    "scaffold/research/wr181-os015-l5-l8-successor-20261031/blind-derivation-fixed-e96d09af.json"
   ],
   "verification": {
     "evidence_kind": "scaffold",

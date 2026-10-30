@@ -1,0 +1,311 @@
+{
+  "assessment": "blind_source_only_OS015_redo",
+  "l3_l10_revision": {
+    "source_revision": "a2cc3defcee5a229145c89217af30c7d20da998f",
+    "base_l3_l10_content_revision": "0200d20aa4d5086e9cf9e9305ec9fdea59dc2c39"
+  },
+  "asserted_l4_contracts": [
+    {
+      "id": "HELIXOS-L4-015-B01",
+      "requirement_ref": "HELIXOS-L3-015-B01",
+      "system_oracle_ref": "HELIXOS-L10-015-B01"
+    },
+    {
+      "id": "HELIXOS-L4-015-F01",
+      "requirement_ref": "HELIXOS-L3-015-F01",
+      "system_oracle_ref": "HELIXOS-L10-015-F01"
+    },
+    {
+      "id": "HELIXOS-L4-015-F02",
+      "requirement_ref": "HELIXOS-L3-015-F02",
+      "system_oracle_ref": "HELIXOS-L10-015-F02"
+    },
+    {
+      "id": "HELIXOS-L4-015-F03",
+      "requirement_ref": "HELIXOS-L3-015-F03",
+      "system_oracle_ref": "HELIXOS-L10-015-F03"
+    }
+  ],
+  "exact_source_ids": [
+    "HELIXOS-L10-015-B01",
+    "HELIXOS-L10-015-F01",
+    "HELIXOS-L10-015-F02",
+    "HELIXOS-L10-015-F03",
+    "HELIXOS-L3-015-B01",
+    "HELIXOS-L3-015-F01",
+    "HELIXOS-L3-015-F02",
+    "HELIXOS-L3-015-F03"
+  ],
+  "case_inputs": {
+    "C0001": {
+      "raw_case_index": 0,
+      "expanded_input_sha256": "bd9ff7d34df78bfb4251a38febb31d8002b39d2c1ea6124a3008d316b95fa195"
+    },
+    "C0004": {
+      "raw_case_index": 3,
+      "expanded_input_sha256": "cf07992881cbab1aca3d171b76f68a4c026245e1fd63899a808c4beb859dde9c"
+    },
+    "C0005": {
+      "raw_case_index": 4,
+      "expanded_input_sha256": "91f4dcc9f44bf83aeb59bc34ed9ad5c8b8ca3452a5d6f3f9b48b0c1f52a897ce"
+    }
+  },
+  "result_fields": [
+    "condition",
+    "selected_phase",
+    "target_correspondence",
+    "current_source_material",
+    "original_classification_state",
+    "original_authority_state",
+    "retained_original_events",
+    "retained_original_classifications",
+    "retained_unresolved_history",
+    "retained_classification_lineage",
+    "findings",
+    "actual_management_record_written",
+    "actual_event_rewritten",
+    "actual_authority_generated",
+    "whole_registry_verified",
+    "operation_effect"
+  ],
+  "roots_by_case": {
+    "C0001": {
+      "condition": "management_material_corresponding",
+      "selected_phase": "inspect",
+      "target_correspondence": {
+        "target_a": "corresponding",
+        "target_b": "corresponding"
+      },
+      "current_source_material": true,
+      "original_classification_state": {
+        "target_a": {
+          "raw_original_classification": null,
+          "phase_evaluated": "not evaluated by inspect"
+        },
+        "target_b": {
+          "raw_original_classification": null,
+          "phase_evaluated": "not evaluated by inspect"
+        }
+      },
+      "original_authority_state": {
+        "target_a": {
+          "authority_origin": "canonical_source",
+          "authority_state": "current_material",
+          "current_material_claim": false,
+          "fields_match_context": true
+        },
+        "target_b": {
+          "authority_origin": "canonical_source",
+          "authority_state": "current_material",
+          "current_material_claim": false,
+          "fields_match_context": true
+        }
+      },
+      "retained_original_events": {
+        "target_a": "raw original_event retained unchanged",
+        "target_b": "raw original_event retained unchanged"
+      },
+      "retained_original_classifications": {
+        "target_a": null,
+        "target_b": null
+      },
+      "retained_unresolved_history": {
+        "target_a": [
+          "UNRESOLVED-target_a"
+        ],
+        "target_b": [
+          "UNRESOLVED-target_b"
+        ]
+      },
+      "retained_classification_lineage": {
+        "target_a": {
+          "new_classification": null,
+          "history": []
+        },
+        "target_b": {
+          "new_classification": null,
+          "history": []
+        }
+      },
+      "findings": [],
+      "actual_management_record_written": false,
+      "actual_event_rewritten": false,
+      "actual_authority_generated": false,
+      "whole_registry_verified": false,
+      "operation_effect": "none"
+    },
+    "C0004": {
+      "condition": "management_material_unknown",
+      "selected_phase": "inspect",
+      "target_correspondence": {
+        "target_a": "unknown",
+        "target_b": "corresponding"
+      },
+      "current_source_material": false,
+      "original_classification_state": {
+        "target_a": {
+          "raw_original_classification": null,
+          "phase_evaluated": "not evaluated by inspect"
+        },
+        "target_b": {
+          "raw_original_classification": null,
+          "phase_evaluated": "not evaluated by inspect"
+        }
+      },
+      "original_authority_state": {
+        "target_a": {
+          "authority_origin": "canonical_source",
+          "authority_state": "current_material",
+          "current_material_claim": false,
+          "fields_match_context": true
+        },
+        "target_b": {
+          "authority_origin": "canonical_source",
+          "authority_state": "current_material",
+          "current_material_claim": false,
+          "fields_match_context": true
+        }
+      },
+      "retained_original_events": {
+        "target_a": "raw original_event retained unchanged",
+        "target_b": "raw original_event retained unchanged"
+      },
+      "retained_original_classifications": {
+        "target_a": null,
+        "target_b": null
+      },
+      "retained_unresolved_history": {
+        "target_a": [
+          "UNRESOLVED-target_a"
+        ],
+        "target_b": [
+          "UNRESOLVED-target_b"
+        ]
+      },
+      "retained_classification_lineage": {
+        "target_a": {
+          "new_classification": null,
+          "history": []
+        },
+        "target_b": {
+          "new_classification": null,
+          "history": []
+        }
+      },
+      "findings": [
+        {
+          "code": "source_unresolved",
+          "pointer_location": [
+            "records",
+            "target_a",
+            "source",
+            "target_id"
+          ],
+          "facet": "source",
+          "disposition": "unknown",
+          "return_owner": "management-authority-owner"
+        }
+      ],
+      "actual_management_record_written": false,
+      "actual_event_rewritten": false,
+      "actual_authority_generated": false,
+      "whole_registry_verified": false,
+      "operation_effect": "none"
+    },
+    "C0005": {
+      "condition": "management_material_violation",
+      "selected_phase": "inspect",
+      "target_correspondence": {
+        "target_a": "violation",
+        "target_b": "corresponding"
+      },
+      "current_source_material": false,
+      "original_classification_state": {
+        "target_a": {
+          "raw_original_classification": null,
+          "phase_evaluated": "not evaluated by inspect"
+        },
+        "target_b": {
+          "raw_original_classification": null,
+          "phase_evaluated": "not evaluated by inspect"
+        }
+      },
+      "original_authority_state": {
+        "target_a": {
+          "authority_origin": "canonical_source",
+          "authority_state": "current_material",
+          "current_material_claim": false,
+          "fields_match_context": true
+        },
+        "target_b": {
+          "authority_origin": "canonical_source",
+          "authority_state": "current_material",
+          "current_material_claim": false,
+          "fields_match_context": true
+        }
+      },
+      "retained_original_events": {
+        "target_a": "raw original_event retained unchanged",
+        "target_b": "raw original_event retained unchanged"
+      },
+      "retained_original_classifications": {
+        "target_a": null,
+        "target_b": null
+      },
+      "retained_unresolved_history": {
+        "target_a": [
+          "UNRESOLVED-target_a"
+        ],
+        "target_b": [
+          "UNRESOLVED-target_b"
+        ]
+      },
+      "retained_classification_lineage": {
+        "target_a": {
+          "new_classification": null,
+          "history": []
+        },
+        "target_b": {
+          "new_classification": null,
+          "history": []
+        }
+      },
+      "findings": [
+        {
+          "code": "source_conflict",
+          "pointer_location": [
+            "records",
+            "target_a",
+            "source",
+            "target_id"
+          ],
+          "facet": "source",
+          "disposition": "violation",
+          "return_owner": "management-authority-owner"
+        }
+      ],
+      "actual_management_record_written": false,
+      "actual_event_rewritten": false,
+      "actual_authority_generated": false,
+      "whole_registry_verified": false,
+      "operation_effect": "none"
+    }
+  },
+  "limits": [
+    "L4 defines the 16 result field names and semantic rules but not a complete JSON serialization schema for target_correspondence, state fields, or findings pointer encoding; values here are source-only semantic derivations.",
+    "current_source_material is an operation-level boolean by the singular field name and L4 aggregation rule; per-target outcomes are preserved separately in target_correspondence.",
+    "inspect does not evaluate classification/history future receipts; original classification raw null, history empty, and unresolved history are retained without asserting a classification decision.",
+    "whole_registry_claim is false; current_material means only document correspondence over these two synthetic targets, not formal validity, approval, or whole-registry verification."
+  ],
+  "source_refs": [
+    "docs/helix-os/L3-requirements/business-requirements.json#HELIXOS-L3-015-B01",
+    "docs/helix-os/L3-requirements/functional-requirements.json#HELIXOS-L3-015-F01/F02/F03",
+    "docs/helix-os/L10-verification/business-verification.json#HELIXOS-L10-015-B01",
+    "docs/helix-os/L10-verification/functional-verification.json#HELIXOS-L10-015-F01/F02/F03",
+    "docs/helix-os/L4-basic-design/management-authority-source-record.json#/contracts/0..3",
+    "docs/helix-os/L4-basic-design/management-authority-source-record.json#/diagnostic_contract (prohibited algorithm field removed before display)",
+    "docs/helix-os/L4-basic-design/management-authority-source-record.json#/failure_classifications (only source unresolved/conflict summary fields)",
+    "docs/helix-os/L7-function-verification/management-authority-source-record.json#/connection_materials/OS015/case/fixture_inputs/inspect",
+    "docs/helix-os/L7-function-verification/management-authority-source-record.json#/connection_materials/OS015/case/cases/0,3,4/given/input"
+  ]
+}

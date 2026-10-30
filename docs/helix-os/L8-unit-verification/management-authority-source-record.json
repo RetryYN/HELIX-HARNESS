@@ -3046,7 +3046,7 @@
     "実source/custody/issuer/owner/actor/時刻資格、正式schema/codec/参照解決、writer原子性・耐久性、OS016/019/053正式consumer bindingは未成立。",
     "固定carrierと有限raw/期待での照合であり、任意JSON一般域・全複合・全非等価変異の意味網羅は未成立。元L9 expectedはL7へ値を保持しているが、当時の期待構成はL9値から独立していない。新しい保持rootと返却先候補の独立導出は未実証であり、今回のpilotでも未導出rootを確認した。",
     "TDD/実装/CI/L11/全92親430対閉包/実装Ready未成立。L6関数設計・L7対検証、実装は層外。",
-    "91代表の独立手導出はscaffold research recordでpilot 3件を開始したが、16 root中にL3/L10/L4散文から一意に決められないrootがあり停止。既存期待との照合は未実施。残る代表88件および非代表494件の意味再導出は未実施。"
+    "91代表の独立手導出はscaffold research recordでpilot 3件を開始したが、16 root中にL3/L10/L4散文から一意に決められないrootがあり停止。固定後、7 scalarとcurrent_source_materialのみ既存期待と比較し、後者に返却形の不一致を確認。他rootは未比較（#3510 comment 6529774668）。残る代表88件および非代表494件の意味再導出は未実施。"
   ],
   "verification_state": "static_design_comparison_only",
   "case_execution_state": "not_executed",
@@ -4681,7 +4681,7 @@
     "mutation_limit": "既知のknown/strset/claim/classify/correct/kind/route不足へ局所例を追加するが全非等価変異識別の証明ではない。",
     "source_reuse": "追加先固定期待のうち原sourceと同一raw/全返却3行はsource_reuse_checksで原case/callsへ結線。旧独立全値/hashはL7 /unit_materials/OS015/case/source_reuse_checksへ原値保持で移管し、新しいraw/変異coverageへ数えない。",
     "manual_source_only_pilot_ref": {
-      "status": "partial_source_only_derivation_stopped_on_under_specified_roots",
+      "status": "partial_source_only_semantic_derivation_with_serialization_gaps",
       "record": "scaffold/research/wr181-os015-l5-l8-successor-20261031/manual-source-only-pilot.json",
       "review_summary": "scaffold/research/wr181-os015-l5-l8-successor-20261031/manual-source-only-pilot.md",
       "cohort_case_ids": [
@@ -4690,7 +4690,7 @@
         "HELIXOS-L9-015-C0005"
       ],
       "roots_per_case": 16,
-      "existing_expectation_comparison": "not_performed",
+      "existing_expectation_comparison": "partial_after_derivation_fixed",
       "population_and_remaining": {
         "intended_representatives": 91,
         "representative_basis": "47 failure classes across applicable phases yield 80 class×phase representatives, plus 11 positive cases.",
@@ -4702,7 +4702,18 @@
         "freeze": "not established",
         "mapping_status": "91代表の全ID対応は未確定。88は選定済3件以外の予定代表数、494は残り母数の算術値であり、case単位の再導出完了数ではない。"
       },
-      "scope_note": "Detailed source-only derivations and unknowns are in the scaffold research record; L8 does not carry the audit log."
+      "scope_note": "Detailed source-only derivations and unknowns are in the scaffold research record; L8 does not carry the audit log.",
+      "compared_roots": [
+        "condition",
+        "selected_phase",
+        "actual_management_record_written",
+        "actual_event_rewritten",
+        "actual_authority_generated",
+        "whole_registry_verified",
+        "operation_effect",
+        "current_source_material"
+      ],
+      "comparison_note": "固定後に7 scalarは一致、current_source_materialの単一boolean解釈と既存target別objectは不一致。他rootは未比較。#3510 comment 6529774668。L4の返却shape明確化まで確定を停止。"
     }
   },
   "probe_call_bindings": {
