@@ -141,14 +141,14 @@
     },
     {
       "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
-      "revision": "38c862d126d8d70f2ae72c4ad1fba7527c21a968",
-      "whole_sha256": "131fca14dfcae41e491640265ad297bc20a6bcd1730bf4c92d8e4e82e284ee95",
+      "revision": "da7a1e7203719ff8c38fbd7d326ed40aba1d5219",
+      "whole_sha256": "21b922d90061b11378054d9173db4f24b774fdf30f2555e9821f25138cb3c4e3",
       "role": "親pairの基本設計の固定本文。"
     },
     {
       "path": "docs/helix-os/L9-integration-verification/log-feedback-memory-lineage.json",
-      "revision": "38c862d126d8d70f2ae72c4ad1fba7527c21a968",
-      "whole_sha256": "3e1551eb83e8bc94743bc0801c8780a30e2ee6b8f34cb21cf06200ce6d357a94",
+      "revision": "da7a1e7203719ff8c38fbd7d326ed40aba1d5219",
+      "whole_sha256": "a58d53077ca0d3a43d06886a82226ea952946be375648b936af2099cfeaac801",
       "role": "親pairの統合検証。rawと期待値を別々に保持する。"
     },
     {
@@ -4019,16 +4019,18 @@
           "class_id": "OS007-NEG-logs-log_kind_conflict",
           "single_finding_code": "log_kind_conflict",
           "member_count": 0,
-          "co_occurring_rules_and_reason": "L4 R02 (/diagnostic_contract/rules/1) と L5 assess_log_material/steps/1..3 は actual.logs.<slot>.kind と context.logs.<slot>.kind の一致比較 (compare_known_values -> field_conflict) と、actual/context 両側の slot 名一致検証 (validate_equals_iteration_key -> log_kind_conflict) を同時に実行する。actual.kind == context.kind かつ slot 名と異なる場合は actual/context 両側で log_kind_conflict が2件発火し、片側のみ slot 名と異なる場合は actual.kind != context.kind により field_conflict が必ず共起するため、単一1件の log_kind_conflict は単独では発火しない。",
+          "co_occurring_rules_and_reason": "L4 R02 (/diagnostic_contract/rules/1) と L5 assess_log_material/steps/1..3 は四logそれぞれの kind について、log_names の closed 値かを検査し (validate_domain_both -> 未知は各 pointer に log_kind_unknown)、actual.logs.<slot>.kind と context.logs.<slot>.kind の既知値一致比較 (compare_known_values -> field_conflict) と、actual/context 両側の slot 名一致検証 (validate_equals_iteration_key -> log_kind_conflict) を同時に実行する。両側が同じ非slot既知kindであれば actual/context 両側で log_kind_conflict が2件発火し、片側が非slot既知kindで他方が別の既知kindであれば actual.kind != context.kind により field_conflict が共起し、他方が未知kindであれば他方 pointer に log_kind_unknown が必ず共起するため、単一1件の log_kind_conflict は単独では発火しない。",
           "l4_pointers": [
-            "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/failure_classifications/3",
+            "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/codes/1",
+            "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/codes/2",
             "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/codes/3",
             "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/rules/0",
             "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/rules/1",
             "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/rules/11"
           ],
           "l5_pointers": [
-            "docs/helix-os/L5-detail-design/log-feedback-memory-lineage.json#/failure_rules/3",
+            "docs/helix-os/L5-detail-design/log-feedback-memory-lineage.json#/finite_domains/diagnostic_codes/1",
+            "docs/helix-os/L5-detail-design/log-feedback-memory-lineage.json#/finite_domains/diagnostic_codes/2",
             "docs/helix-os/L5-detail-design/log-feedback-memory-lineage.json#/finite_domains/diagnostic_codes/3",
             "docs/helix-os/L5-detail-design/log-feedback-memory-lineage.json#/algorithm/ordered_rules/0",
             "docs/helix-os/L5-detail-design/log-feedback-memory-lineage.json#/algorithm/ordered_rules/1",
@@ -4039,7 +4041,8 @@
           ],
           "realized_composite_class_ids": [
             "OS007-NEG-logs-comp-01-field_conflict_log_kind_conflict",
-            "OS007-NEG-logs-comp-05-log_kind_conflict"
+            "OS007-NEG-logs-comp-05-log_kind_conflict",
+            "OS007-NEG-logs-comp-06-log_kind_conflict_log_kind_unknown"
           ]
         },
         {
@@ -4048,7 +4051,6 @@
           "member_count": 0,
           "co_occurring_rules_and_reason": "L4 R01, R05 (/diagnostic_contract/rules/0, /diagnostic_contract/rules/4) と L5 assess_feedback_material/steps/5 は stages.<stage>.recorded の boolean 不一致 (true vs false) で boolean_conflict を発火させると同時に、少なくとも片側が true であるため compare_fields_when_either_true と compare_join_when_either_true を必ず実行する。recorded=false 側の stage_fields が null なら field_unknown が共起し、非 null なら unrecorded_nonnull_fields により stage_unrecorded_ref_present (または resolved_claim=true で unresolved_claimed_resolved) が必ず共起するため、feedback facet で単一の boolean_conflict は単独では発火しない。",
           "l4_pointers": [
-            "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/failure_classifications/13",
             "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/codes/10",
             "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/rules/0",
             "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/rules/3",
@@ -4056,7 +4058,6 @@
             "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/rules/11"
           ],
           "l5_pointers": [
-            "docs/helix-os/L5-detail-design/log-feedback-memory-lineage.json#/failure_rules/13",
             "docs/helix-os/L5-detail-design/log-feedback-memory-lineage.json#/finite_domains/diagnostic_codes/10",
             "docs/helix-os/L5-detail-design/log-feedback-memory-lineage.json#/algorithm/ordered_rules/0",
             "docs/helix-os/L5-detail-design/log-feedback-memory-lineage.json#/algorithm/ordered_rules/3",
@@ -4074,29 +4075,37 @@
           "class_id": "OS007-NEG-memory-boolean_conflict",
           "single_finding_code": "boolean_conflict",
           "member_count": 0,
-          "co_occurring_rules_and_reason": "L4 R01, R08 (/diagnostic_contract/rules/0, /diagnostic_contract/rules/7) と L5 assess_memory_material/steps/5..9 は reflection.recorded の boolean 不一致 (true vs false) で boolean_conflict を発火させると同時に、片側が true であるため compare_fields_when_either_true・compare_field_when_either_recorded・order_checks を実行し、かつ recorded=false 側に対し unrecorded_nonnull_fields を実行する。recorded=false 側の reflection_fields/order が null なら field_unknown/order_unknown が共起し、非 null の有効値なら reflection_unrecorded_ref_present が共起する ため、memory facet で単一の boolean_conflict は単独では発火しない。",
+          "co_occurring_rules_and_reason": "L4 R01, R08, R09 (/diagnostic_contract/rules/0, /diagnostic_contract/rules/7, /diagnostic_contract/rules/8) と L5 assess_memory_material/steps/5..10 は reflection.recorded の boolean 不一致 (true vs false) で boolean_conflict を発火させると同時に、少なくとも片側が true であるため compare_fields_when_either_true・compare_field_when_either_recorded・order_checks を実行し、かつ recorded=false 側に対し unrecorded_nonnull_fields を実行する。recorded=false 側の reflection_fields/order が null なら field_unknown/order_unknown が共起し、非 null なら reflection_unrecorded_ref_present が必ず共起するため、memory facet で単一の boolean_conflict は単独では発火しない。",
           "l4_pointers": [
-            "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/failure_classifications/24",
+            "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/codes/0",
             "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/codes/10",
+            "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/codes/21",
+            "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/codes/31",
             "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/rules/0",
             "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/rules/7",
+            "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/rules/8",
             "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/rules/11"
           ],
           "l5_pointers": [
-            "docs/helix-os/L5-detail-design/log-feedback-memory-lineage.json#/failure_rules/24",
+            "docs/helix-os/L5-detail-design/log-feedback-memory-lineage.json#/finite_domains/diagnostic_codes/0",
             "docs/helix-os/L5-detail-design/log-feedback-memory-lineage.json#/finite_domains/diagnostic_codes/10",
+            "docs/helix-os/L5-detail-design/log-feedback-memory-lineage.json#/finite_domains/diagnostic_codes/21",
+            "docs/helix-os/L5-detail-design/log-feedback-memory-lineage.json#/finite_domains/diagnostic_codes/31",
             "docs/helix-os/L5-detail-design/log-feedback-memory-lineage.json#/algorithm/ordered_rules/0",
             "docs/helix-os/L5-detail-design/log-feedback-memory-lineage.json#/algorithm/ordered_rules/7",
+            "docs/helix-os/L5-detail-design/log-feedback-memory-lineage.json#/algorithm/ordered_rules/8",
             "docs/helix-os/L5-detail-design/log-feedback-memory-lineage.json#/algorithm/ordered_rules/11",
             "docs/helix-os/L5-detail-design/log-feedback-memory-lineage.json#/formal_program/functions/assess_memory_material/steps/5",
             "docs/helix-os/L5-detail-design/log-feedback-memory-lineage.json#/formal_program/functions/assess_memory_material/steps/6",
             "docs/helix-os/L5-detail-design/log-feedback-memory-lineage.json#/formal_program/functions/assess_memory_material/steps/7",
             "docs/helix-os/L5-detail-design/log-feedback-memory-lineage.json#/formal_program/functions/assess_memory_material/steps/8",
-            "docs/helix-os/L5-detail-design/log-feedback-memory-lineage.json#/formal_program/functions/assess_memory_material/steps/9"
+            "docs/helix-os/L5-detail-design/log-feedback-memory-lineage.json#/formal_program/functions/assess_memory_material/steps/9",
+            "docs/helix-os/L5-detail-design/log-feedback-memory-lineage.json#/formal_program/functions/assess_memory_material/steps/10"
           ],
           "realized_composite_class_ids": [
             "OS007-NEG-memory-comp-10-boolean_conflict_reflection_unrecorded_ref_present_retire_before_reflection",
-            "OS007-NEG-memory-comp-13-boolean_conflict_reflection_unrecorded_ref_present"
+            "OS007-NEG-memory-comp-13-boolean_conflict_reflection_unrecorded_ref_present",
+            "OS007-NEG-memory-comp-16-boolean_conflict_field_unknown_order_unknown"
           ]
         },
         {
@@ -4105,7 +4114,6 @@
           "member_count": 0,
           "co_occurring_rules_and_reason": "L4 R08, R09 (/diagnostic_contract/rules/7, /diagnostic_contract/rules/8) と L5 assess_memory_material/steps/5, 10 において、retirement_basis_unknown は actual.state == 'retired' かつ actual.reflection.recorded が boolean (true/false) でないときにのみ発火するが、先行する step 5 (compare_fields on reflection.recorded with boolean_value) が actual.reflection.recorded の非 boolean に対して必ず boolean_unknown を発火させる ため、単一の retirement_basis_unknown は単独では発火しない。",
           "l4_pointers": [
-            "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/failure_classifications/39",
             "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/codes/34",
             "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/rules/0",
             "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/rules/7",
@@ -4113,7 +4121,6 @@
             "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/rules/11"
           ],
           "l5_pointers": [
-            "docs/helix-os/L5-detail-design/log-feedback-memory-lineage.json#/failure_rules/39",
             "docs/helix-os/L5-detail-design/log-feedback-memory-lineage.json#/finite_domains/diagnostic_codes/34",
             "docs/helix-os/L5-detail-design/log-feedback-memory-lineage.json#/algorithm/ordered_rules/0",
             "docs/helix-os/L5-detail-design/log-feedback-memory-lineage.json#/algorithm/ordered_rules/7",
@@ -4351,57 +4358,6 @@
       ]
     },
     {
-      "id": "OS007-NEG-logs-log_kind_conflict",
-      "code": "record_material_violation",
-      "expected_classification": "record_material_violation",
-      "function_ref": "assess_log_material",
-      "expected": {
-        "finding_codes": [
-          "log_kind_conflict"
-        ]
-      },
-      "expected_preserved": {
-        "actual_records_equal_expanded_input_records": true,
-        "reference_records_equal_expanded_context_records": true
-      },
-      "expected_axis": "logs",
-      "expected_state": "violation",
-      "backflow_owner": "common-log-owner",
-      "side_effect_count": 0,
-      "handling": "assess_log_materialのlogs比較規則がlog_kind_conflictを検出し、common-log-ownerへ返却する。retained_actual_recordsとretained_reference_recordsを別々に保持し、operation_effectはnone。",
-      "source_pointers": [
-        {
-          "path": "docs/helix-os/L3-requirements/functional-requirements.json",
-          "pointers": [
-            "/requirements/21"
-          ]
-        },
-        {
-          "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
-          "pointers": [
-            "/contracts/0",
-            "/diagnostic_contract/codes/3",
-            "/diagnostic_contract/owner_by_facet/logs",
-            "/diagnostic_contract/rules/1",
-            "/diagnostic_contract/rules/11",
-            "/failure_classifications/3"
-          ]
-        },
-        {
-          "path": "docs/helix-os/L5-detail-design/log-feedback-memory-lineage.json",
-          "pointers": [
-            "/contracts/0",
-            "/functions/0",
-            "/finite_domains/diagnostic_codes/3",
-            "/finite_domains/owner_by_facet/logs",
-            "/algorithm/ordered_rules/1",
-            "/algorithm/ordered_rules/11",
-            "/formal_program/functions/assess_log_material/steps/3"
-          ]
-        }
-      ]
-    },
-    {
       "id": "OS007-NEG-logs-log_state_unknown",
       "code": "record_material_unknown",
       "expected_classification": "record_material_unknown",
@@ -4435,7 +4391,7 @@
             "/diagnostic_contract/owner_by_facet/logs",
             "/diagnostic_contract/rules/1",
             "/diagnostic_contract/rules/11",
-            "/failure_classifications/4"
+            "/failure_classifications/3"
           ]
         },
         {
@@ -4487,7 +4443,7 @@
             "/diagnostic_contract/owner_by_facet/logs",
             "/diagnostic_contract/rules/1",
             "/diagnostic_contract/rules/11",
-            "/failure_classifications/5"
+            "/failure_classifications/4"
           ]
         },
         {
@@ -4538,7 +4494,7 @@
             "/diagnostic_contract/owner_by_facet/logs",
             "/diagnostic_contract/rules/1",
             "/diagnostic_contract/rules/11",
-            "/failure_classifications/6"
+            "/failure_classifications/5"
           ]
         },
         {
@@ -4589,7 +4545,7 @@
             "/diagnostic_contract/owner_by_facet/logs",
             "/diagnostic_contract/rules/1",
             "/diagnostic_contract/rules/11",
-            "/failure_classifications/7"
+            "/failure_classifications/6"
           ]
         },
         {
@@ -4640,7 +4596,7 @@
             "/diagnostic_contract/owner_by_facet/logs",
             "/diagnostic_contract/rules/2",
             "/diagnostic_contract/rules/11",
-            "/failure_classifications/8"
+            "/failure_classifications/7"
           ]
         },
         {
@@ -4692,7 +4648,7 @@
             "/diagnostic_contract/rules/0",
             "/diagnostic_contract/rules/2",
             "/diagnostic_contract/rules/11",
-            "/failure_classifications/9"
+            "/failure_classifications/8"
           ]
         },
         {
@@ -4744,7 +4700,7 @@
             "/diagnostic_contract/owner_by_facet/feedback",
             "/diagnostic_contract/rules/0",
             "/diagnostic_contract/rules/11",
-            "/failure_classifications/10"
+            "/failure_classifications/9"
           ]
         },
         {
@@ -4797,7 +4753,7 @@
             "/diagnostic_contract/rules/0",
             "/diagnostic_contract/rules/5",
             "/diagnostic_contract/rules/11",
-            "/failure_classifications/11"
+            "/failure_classifications/10"
           ]
         },
         {
@@ -4853,7 +4809,7 @@
             "/diagnostic_contract/rules/3",
             "/diagnostic_contract/rules/5",
             "/diagnostic_contract/rules/11",
-            "/failure_classifications/12"
+            "/failure_classifications/11"
           ]
         },
         {
@@ -4870,57 +4826,6 @@
             "/formal_program/functions/assess_feedback_material/steps/4",
             "/formal_program/functions/assess_feedback_material/steps/5",
             "/formal_program/functions/assess_feedback_material/steps/7"
-          ]
-        }
-      ]
-    },
-    {
-      "id": "OS007-NEG-feedback-boolean_conflict",
-      "code": "record_material_violation",
-      "expected_classification": "record_material_violation",
-      "function_ref": "assess_feedback_material",
-      "expected": {
-        "finding_codes": [
-          "boolean_conflict"
-        ]
-      },
-      "expected_preserved": {
-        "actual_records_equal_expanded_input_records": true,
-        "reference_records_equal_expanded_context_records": true
-      },
-      "expected_axis": "feedback",
-      "expected_state": "violation",
-      "backflow_owner": "feedback-source-owner",
-      "side_effect_count": 0,
-      "handling": "assess_feedback_materialのfeedback比較規則がboolean_conflictを検出し、feedback-source-ownerへ返却する。retained_actual_recordsとretained_reference_recordsを別々に保持し、operation_effectはnone。",
-      "source_pointers": [
-        {
-          "path": "docs/helix-os/L3-requirements/functional-requirements.json",
-          "pointers": [
-            "/requirements/22"
-          ]
-        },
-        {
-          "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
-          "pointers": [
-            "/contracts/1",
-            "/diagnostic_contract/codes/10",
-            "/diagnostic_contract/owner_by_facet/feedback",
-            "/diagnostic_contract/rules/0",
-            "/diagnostic_contract/rules/11",
-            "/failure_classifications/13"
-          ]
-        },
-        {
-          "path": "docs/helix-os/L5-detail-design/log-feedback-memory-lineage.json",
-          "pointers": [
-            "/contracts/1",
-            "/functions/1",
-            "/finite_domains/diagnostic_codes/10",
-            "/finite_domains/owner_by_facet/feedback",
-            "/algorithm/ordered_rules/0",
-            "/algorithm/ordered_rules/11",
-            "/formal_program/functions/assess_feedback_material/steps/5"
           ]
         }
       ]
@@ -4959,7 +4864,7 @@
             "/diagnostic_contract/owner_by_facet/feedback",
             "/diagnostic_contract/rules/3",
             "/diagnostic_contract/rules/11",
-            "/failure_classifications/14"
+            "/failure_classifications/12"
           ]
         },
         {
@@ -5010,7 +4915,7 @@
             "/diagnostic_contract/owner_by_facet/feedback",
             "/diagnostic_contract/rules/3",
             "/diagnostic_contract/rules/11",
-            "/failure_classifications/15"
+            "/failure_classifications/13"
           ]
         },
         {
@@ -5061,7 +4966,7 @@
             "/diagnostic_contract/owner_by_facet/feedback",
             "/diagnostic_contract/rules/4",
             "/diagnostic_contract/rules/11",
-            "/failure_classifications/16"
+            "/failure_classifications/14"
           ]
         },
         {
@@ -5112,7 +5017,7 @@
             "/diagnostic_contract/owner_by_facet/feedback",
             "/diagnostic_contract/rules/5",
             "/diagnostic_contract/rules/11",
-            "/failure_classifications/17"
+            "/failure_classifications/15"
           ]
         },
         {
@@ -5163,7 +5068,7 @@
             "/diagnostic_contract/owner_by_facet/feedback",
             "/diagnostic_contract/rules/5",
             "/diagnostic_contract/rules/11",
-            "/failure_classifications/18"
+            "/failure_classifications/16"
           ]
         },
         {
@@ -5214,7 +5119,7 @@
             "/diagnostic_contract/owner_by_facet/feedback",
             "/diagnostic_contract/rules/5",
             "/diagnostic_contract/rules/11",
-            "/failure_classifications/19"
+            "/failure_classifications/17"
           ]
         },
         {
@@ -5265,7 +5170,7 @@
             "/diagnostic_contract/owner_by_facet/feedback",
             "/diagnostic_contract/rules/3",
             "/diagnostic_contract/rules/11",
-            "/failure_classifications/20"
+            "/failure_classifications/18"
           ]
         },
         {
@@ -5316,7 +5221,7 @@
             "/diagnostic_contract/owner_by_facet/memory",
             "/diagnostic_contract/rules/0",
             "/diagnostic_contract/rules/11",
-            "/failure_classifications/21"
+            "/failure_classifications/19"
           ]
         },
         {
@@ -5369,7 +5274,7 @@
             "/diagnostic_contract/owner_by_facet/memory",
             "/diagnostic_contract/rules/0",
             "/diagnostic_contract/rules/11",
-            "/failure_classifications/22"
+            "/failure_classifications/20"
           ]
         },
         {
@@ -5423,7 +5328,7 @@
             "/diagnostic_contract/rules/0",
             "/diagnostic_contract/rules/9",
             "/diagnostic_contract/rules/11",
-            "/failure_classifications/23"
+            "/failure_classifications/21"
           ]
         },
         {
@@ -5439,57 +5344,6 @@
             "/formal_program/functions/assess_memory_material/steps/5",
             "/formal_program/functions/assess_memory_material/steps/11",
             "/formal_program/functions/assess_memory_material/steps/18"
-          ]
-        }
-      ]
-    },
-    {
-      "id": "OS007-NEG-memory-boolean_conflict",
-      "code": "record_material_violation",
-      "expected_classification": "record_material_violation",
-      "function_ref": "assess_memory_material",
-      "expected": {
-        "finding_codes": [
-          "boolean_conflict"
-        ]
-      },
-      "expected_preserved": {
-        "actual_records_equal_expanded_input_records": true,
-        "reference_records_equal_expanded_context_records": true
-      },
-      "expected_axis": "memory",
-      "expected_state": "violation",
-      "backflow_owner": "memory-canonical-owner",
-      "side_effect_count": 0,
-      "handling": "assess_memory_materialのmemory比較規則がboolean_conflictを検出し、memory-canonical-ownerへ返却する。retained_actual_recordsとretained_reference_recordsを別々に保持し、operation_effectはnone。",
-      "source_pointers": [
-        {
-          "path": "docs/helix-os/L3-requirements/functional-requirements.json",
-          "pointers": [
-            "/requirements/23"
-          ]
-        },
-        {
-          "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
-          "pointers": [
-            "/contracts/2",
-            "/diagnostic_contract/codes/10",
-            "/diagnostic_contract/owner_by_facet/memory",
-            "/diagnostic_contract/rules/0",
-            "/diagnostic_contract/rules/11",
-            "/failure_classifications/24"
-          ]
-        },
-        {
-          "path": "docs/helix-os/L5-detail-design/log-feedback-memory-lineage.json",
-          "pointers": [
-            "/contracts/2",
-            "/functions/2",
-            "/finite_domains/diagnostic_codes/10",
-            "/finite_domains/owner_by_facet/memory",
-            "/algorithm/ordered_rules/0",
-            "/algorithm/ordered_rules/11",
-            "/formal_program/functions/assess_memory_material/steps/5"
           ]
         }
       ]
@@ -5528,7 +5382,7 @@
             "/diagnostic_contract/owner_by_facet/memory",
             "/diagnostic_contract/rules/7",
             "/diagnostic_contract/rules/11",
-            "/failure_classifications/25"
+            "/failure_classifications/22"
           ]
         },
         {
@@ -5579,7 +5433,7 @@
             "/diagnostic_contract/owner_by_facet/memory",
             "/diagnostic_contract/rules/7",
             "/diagnostic_contract/rules/11",
-            "/failure_classifications/26"
+            "/failure_classifications/23"
           ]
         },
         {
@@ -5630,7 +5484,7 @@
             "/diagnostic_contract/owner_by_facet/memory",
             "/diagnostic_contract/rules/7",
             "/diagnostic_contract/rules/11",
-            "/failure_classifications/27"
+            "/failure_classifications/24"
           ]
         },
         {
@@ -5681,7 +5535,7 @@
             "/diagnostic_contract/owner_by_facet/memory",
             "/diagnostic_contract/rules/7",
             "/diagnostic_contract/rules/11",
-            "/failure_classifications/28"
+            "/failure_classifications/25"
           ]
         },
         {
@@ -5732,7 +5586,7 @@
             "/diagnostic_contract/owner_by_facet/memory",
             "/diagnostic_contract/rules/7",
             "/diagnostic_contract/rules/11",
-            "/failure_classifications/29"
+            "/failure_classifications/26"
           ]
         },
         {
@@ -5784,7 +5638,7 @@
             "/diagnostic_contract/owner_by_facet/memory",
             "/diagnostic_contract/rules/8",
             "/diagnostic_contract/rules/11",
-            "/failure_classifications/30"
+            "/failure_classifications/27"
           ]
         },
         {
@@ -5835,7 +5689,7 @@
             "/diagnostic_contract/owner_by_facet/memory",
             "/diagnostic_contract/rules/9",
             "/diagnostic_contract/rules/11",
-            "/failure_classifications/31"
+            "/failure_classifications/28"
           ]
         },
         {
@@ -5886,7 +5740,7 @@
             "/diagnostic_contract/owner_by_facet/memory",
             "/diagnostic_contract/rules/9",
             "/diagnostic_contract/rules/11",
-            "/failure_classifications/32"
+            "/failure_classifications/29"
           ]
         },
         {
@@ -5937,7 +5791,7 @@
             "/diagnostic_contract/owner_by_facet/memory",
             "/diagnostic_contract/rules/9",
             "/diagnostic_contract/rules/11",
-            "/failure_classifications/33"
+            "/failure_classifications/30"
           ]
         },
         {
@@ -5988,7 +5842,7 @@
             "/diagnostic_contract/owner_by_facet/memory",
             "/diagnostic_contract/rules/9",
             "/diagnostic_contract/rules/11",
-            "/failure_classifications/34"
+            "/failure_classifications/31"
           ]
         },
         {
@@ -6039,7 +5893,7 @@
             "/diagnostic_contract/owner_by_facet/memory",
             "/diagnostic_contract/rules/9",
             "/diagnostic_contract/rules/11",
-            "/failure_classifications/35"
+            "/failure_classifications/32"
           ]
         },
         {
@@ -6090,7 +5944,7 @@
             "/diagnostic_contract/owner_by_facet/memory",
             "/diagnostic_contract/rules/8",
             "/diagnostic_contract/rules/11",
-            "/failure_classifications/36"
+            "/failure_classifications/33"
           ]
         },
         {
@@ -6141,7 +5995,7 @@
             "/diagnostic_contract/owner_by_facet/memory",
             "/diagnostic_contract/rules/8",
             "/diagnostic_contract/rules/11",
-            "/failure_classifications/37"
+            "/failure_classifications/34"
           ]
         },
         {
@@ -6192,7 +6046,7 @@
             "/diagnostic_contract/owner_by_facet/memory",
             "/diagnostic_contract/rules/8",
             "/diagnostic_contract/rules/11",
-            "/failure_classifications/38"
+            "/failure_classifications/35"
           ]
         },
         {
@@ -6201,57 +6055,6 @@
             "/contracts/2",
             "/functions/2",
             "/finite_domains/diagnostic_codes/33",
-            "/finite_domains/owner_by_facet/memory",
-            "/algorithm/ordered_rules/8",
-            "/algorithm/ordered_rules/11",
-            "/formal_program/functions/assess_memory_material/steps/10"
-          ]
-        }
-      ]
-    },
-    {
-      "id": "OS007-NEG-memory-retirement_basis_unknown",
-      "code": "record_material_unknown",
-      "expected_classification": "record_material_unknown",
-      "function_ref": "assess_memory_material",
-      "expected": {
-        "finding_codes": [
-          "retirement_basis_unknown"
-        ]
-      },
-      "expected_preserved": {
-        "actual_records_equal_expanded_input_records": true,
-        "reference_records_equal_expanded_context_records": true
-      },
-      "expected_axis": "memory",
-      "expected_state": "unknown",
-      "backflow_owner": "memory-canonical-owner",
-      "side_effect_count": 0,
-      "handling": "assess_memory_materialのmemory比較規則がretirement_basis_unknownを検出し、memory-canonical-ownerへ返却する。retained_actual_recordsとretained_reference_recordsを別々に保持し、operation_effectはnone。",
-      "source_pointers": [
-        {
-          "path": "docs/helix-os/L3-requirements/functional-requirements.json",
-          "pointers": [
-            "/requirements/23"
-          ]
-        },
-        {
-          "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
-          "pointers": [
-            "/contracts/2",
-            "/diagnostic_contract/codes/34",
-            "/diagnostic_contract/owner_by_facet/memory",
-            "/diagnostic_contract/rules/8",
-            "/diagnostic_contract/rules/11",
-            "/failure_classifications/39"
-          ]
-        },
-        {
-          "path": "docs/helix-os/L5-detail-design/log-feedback-memory-lineage.json",
-          "pointers": [
-            "/contracts/2",
-            "/functions/2",
-            "/finite_domains/diagnostic_codes/34",
             "/finite_domains/owner_by_facet/memory",
             "/algorithm/ordered_rules/8",
             "/algorithm/ordered_rules/11",
@@ -6294,7 +6097,7 @@
             "/diagnostic_contract/owner_by_facet/memory",
             "/diagnostic_contract/rules/9",
             "/diagnostic_contract/rules/11",
-            "/failure_classifications/40"
+            "/failure_classifications/36"
           ]
         },
         {
@@ -6345,7 +6148,7 @@
             "/diagnostic_contract/owner_by_facet/memory",
             "/diagnostic_contract/rules/9",
             "/diagnostic_contract/rules/11",
-            "/failure_classifications/41"
+            "/failure_classifications/37"
           ]
         },
         {
@@ -6395,7 +6198,7 @@
             "/diagnostic_contract/codes/28",
             "/diagnostic_contract/owner_by_facet/boundary",
             "/diagnostic_contract/rules/11",
-            "/failure_classifications/42"
+            "/failure_classifications/38"
           ]
         },
         {
@@ -6444,7 +6247,7 @@
             "/diagnostic_contract/codes/29",
             "/diagnostic_contract/owner_by_facet/boundary",
             "/diagnostic_contract/rules/11",
-            "/failure_classifications/43"
+            "/failure_classifications/39"
           ]
         },
         {
@@ -6498,7 +6301,7 @@
             "/diagnostic_contract/rules/1",
             "/diagnostic_contract/rules/11",
             "/diagnostic_contract/composite_class_formation",
-            "/failure_classifications/44"
+            "/failure_classifications/40"
           ]
         },
         {
@@ -6557,7 +6360,7 @@
             "/diagnostic_contract/rules/1",
             "/diagnostic_contract/rules/11",
             "/diagnostic_contract/composite_class_formation",
-            "/failure_classifications/45"
+            "/failure_classifications/41"
           ]
         },
         {
@@ -6614,7 +6417,7 @@
             "/diagnostic_contract/rules/1",
             "/diagnostic_contract/rules/11",
             "/diagnostic_contract/composite_class_formation",
-            "/failure_classifications/46"
+            "/failure_classifications/42"
           ]
         },
         {
@@ -6671,7 +6474,7 @@
             "/diagnostic_contract/rules/1",
             "/diagnostic_contract/rules/11",
             "/diagnostic_contract/composite_class_formation",
-            "/failure_classifications/47"
+            "/failure_classifications/43"
           ]
         },
         {
@@ -6730,7 +6533,7 @@
             "/diagnostic_contract/rules/3",
             "/diagnostic_contract/rules/11",
             "/diagnostic_contract/composite_class_formation",
-            "/failure_classifications/48"
+            "/failure_classifications/44"
           ]
         },
         {
@@ -6791,7 +6594,7 @@
             "/diagnostic_contract/rules/5",
             "/diagnostic_contract/rules/11",
             "/diagnostic_contract/composite_class_formation",
-            "/failure_classifications/49"
+            "/failure_classifications/45"
           ]
         },
         {
@@ -6856,7 +6659,7 @@
             "/diagnostic_contract/rules/5",
             "/diagnostic_contract/rules/11",
             "/diagnostic_contract/composite_class_formation",
-            "/failure_classifications/50"
+            "/failure_classifications/46"
           ]
         },
         {
@@ -6923,7 +6726,7 @@
             "/diagnostic_contract/rules/5",
             "/diagnostic_contract/rules/11",
             "/diagnostic_contract/composite_class_formation",
-            "/failure_classifications/51"
+            "/failure_classifications/47"
           ]
         },
         {
@@ -6988,7 +6791,7 @@
             "/diagnostic_contract/rules/5",
             "/diagnostic_contract/rules/11",
             "/diagnostic_contract/composite_class_formation",
-            "/failure_classifications/52"
+            "/failure_classifications/48"
           ]
         },
         {
@@ -7054,7 +6857,7 @@
             "/diagnostic_contract/rules/5",
             "/diagnostic_contract/rules/11",
             "/diagnostic_contract/composite_class_formation",
-            "/failure_classifications/53"
+            "/failure_classifications/49"
           ]
         },
         {
@@ -7118,7 +6921,7 @@
             "/diagnostic_contract/rules/5",
             "/diagnostic_contract/rules/11",
             "/diagnostic_contract/composite_class_formation",
-            "/failure_classifications/54"
+            "/failure_classifications/50"
           ]
         },
         {
@@ -7184,7 +6987,7 @@
             "/diagnostic_contract/rules/5",
             "/diagnostic_contract/rules/11",
             "/diagnostic_contract/composite_class_formation",
-            "/failure_classifications/55"
+            "/failure_classifications/51"
           ]
         },
         {
@@ -7248,7 +7051,7 @@
             "/diagnostic_contract/rules/5",
             "/diagnostic_contract/rules/11",
             "/diagnostic_contract/composite_class_formation",
-            "/failure_classifications/56"
+            "/failure_classifications/52"
           ]
         },
         {
@@ -7308,7 +7111,7 @@
             "/diagnostic_contract/rules/5",
             "/diagnostic_contract/rules/11",
             "/diagnostic_contract/composite_class_formation",
-            "/failure_classifications/57"
+            "/failure_classifications/53"
           ]
         },
         {
@@ -7373,7 +7176,7 @@
             "/diagnostic_contract/rules/5",
             "/diagnostic_contract/rules/11",
             "/diagnostic_contract/composite_class_formation",
-            "/failure_classifications/58"
+            "/failure_classifications/54"
           ]
         },
         {
@@ -7434,7 +7237,7 @@
             "/diagnostic_contract/rules/5",
             "/diagnostic_contract/rules/11",
             "/diagnostic_contract/composite_class_formation",
-            "/failure_classifications/59"
+            "/failure_classifications/55"
           ]
         },
         {
@@ -7494,7 +7297,7 @@
             "/diagnostic_contract/rules/5",
             "/diagnostic_contract/rules/11",
             "/diagnostic_contract/composite_class_formation",
-            "/failure_classifications/60"
+            "/failure_classifications/56"
           ]
         },
         {
@@ -7564,7 +7367,7 @@
             "/diagnostic_contract/rules/5",
             "/diagnostic_contract/rules/11",
             "/diagnostic_contract/composite_class_formation",
-            "/failure_classifications/61"
+            "/failure_classifications/57"
           ]
         },
         {
@@ -7627,7 +7430,7 @@
             "/diagnostic_contract/rules/5",
             "/diagnostic_contract/rules/11",
             "/diagnostic_contract/composite_class_formation",
-            "/failure_classifications/62"
+            "/failure_classifications/58"
           ]
         },
         {
@@ -7688,7 +7491,7 @@
             "/diagnostic_contract/rules/5",
             "/diagnostic_contract/rules/11",
             "/diagnostic_contract/composite_class_formation",
-            "/failure_classifications/63"
+            "/failure_classifications/59"
           ]
         },
         {
@@ -7745,7 +7548,7 @@
             "/diagnostic_contract/rules/5",
             "/diagnostic_contract/rules/11",
             "/diagnostic_contract/composite_class_formation",
-            "/failure_classifications/64"
+            "/failure_classifications/60"
           ]
         },
         {
@@ -7803,7 +7606,7 @@
             "/diagnostic_contract/rules/5",
             "/diagnostic_contract/rules/11",
             "/diagnostic_contract/composite_class_formation",
-            "/failure_classifications/65"
+            "/failure_classifications/61"
           ]
         },
         {
@@ -7859,7 +7662,7 @@
             "/diagnostic_contract/rules/3",
             "/diagnostic_contract/rules/11",
             "/diagnostic_contract/composite_class_formation",
-            "/failure_classifications/66"
+            "/failure_classifications/62"
           ]
         },
         {
@@ -7915,7 +7718,7 @@
             "/diagnostic_contract/rules/9",
             "/diagnostic_contract/rules/11",
             "/diagnostic_contract/composite_class_formation",
-            "/failure_classifications/67"
+            "/failure_classifications/63"
           ]
         },
         {
@@ -7980,7 +7783,7 @@
             "/diagnostic_contract/rules/9",
             "/diagnostic_contract/rules/11",
             "/diagnostic_contract/composite_class_formation",
-            "/failure_classifications/68"
+            "/failure_classifications/64"
           ]
         },
         {
@@ -8043,7 +7846,7 @@
             "/diagnostic_contract/rules/9",
             "/diagnostic_contract/rules/11",
             "/diagnostic_contract/composite_class_formation",
-            "/failure_classifications/69"
+            "/failure_classifications/65"
           ]
         },
         {
@@ -8102,7 +7905,7 @@
             "/diagnostic_contract/rules/9",
             "/diagnostic_contract/rules/11",
             "/diagnostic_contract/composite_class_formation",
-            "/failure_classifications/70"
+            "/failure_classifications/66"
           ]
         },
         {
@@ -8160,7 +7963,7 @@
             "/diagnostic_contract/rules/9",
             "/diagnostic_contract/rules/11",
             "/diagnostic_contract/composite_class_formation",
-            "/failure_classifications/71"
+            "/failure_classifications/67"
           ]
         },
         {
@@ -8221,7 +8024,7 @@
             "/diagnostic_contract/rules/9",
             "/diagnostic_contract/rules/11",
             "/diagnostic_contract/composite_class_formation",
-            "/failure_classifications/72"
+            "/failure_classifications/68"
           ]
         },
         {
@@ -8284,7 +8087,7 @@
             "/diagnostic_contract/rules/9",
             "/diagnostic_contract/rules/11",
             "/diagnostic_contract/composite_class_formation",
-            "/failure_classifications/73"
+            "/failure_classifications/69"
           ]
         },
         {
@@ -8342,7 +8145,7 @@
             "/diagnostic_contract/rules/0",
             "/diagnostic_contract/rules/11",
             "/diagnostic_contract/composite_class_formation",
-            "/failure_classifications/74"
+            "/failure_classifications/70"
           ]
         },
         {
@@ -8400,7 +8203,7 @@
             "/diagnostic_contract/rules/9",
             "/diagnostic_contract/rules/11",
             "/diagnostic_contract/composite_class_formation",
-            "/failure_classifications/75"
+            "/failure_classifications/71"
           ]
         },
         {
@@ -8462,7 +8265,7 @@
             "/diagnostic_contract/rules/8",
             "/diagnostic_contract/rules/11",
             "/diagnostic_contract/composite_class_formation",
-            "/failure_classifications/76"
+            "/failure_classifications/72"
           ]
         },
         {
@@ -8526,7 +8329,7 @@
             "/diagnostic_contract/rules/9",
             "/diagnostic_contract/rules/11",
             "/diagnostic_contract/composite_class_formation",
-            "/failure_classifications/77"
+            "/failure_classifications/73"
           ]
         },
         {
@@ -8587,7 +8390,7 @@
             "/diagnostic_contract/rules/8",
             "/diagnostic_contract/rules/11",
             "/diagnostic_contract/composite_class_formation",
-            "/failure_classifications/78"
+            "/failure_classifications/74"
           ]
         },
         {
@@ -8644,7 +8447,7 @@
             "/diagnostic_contract/rules/7",
             "/diagnostic_contract/rules/11",
             "/diagnostic_contract/composite_class_formation",
-            "/failure_classifications/79"
+            "/failure_classifications/75"
           ]
         },
         {
@@ -8705,7 +8508,7 @@
             "/diagnostic_contract/rules/9",
             "/diagnostic_contract/rules/11",
             "/diagnostic_contract/composite_class_formation",
-            "/failure_classifications/80"
+            "/failure_classifications/76"
           ]
         },
         {
@@ -8764,7 +8567,7 @@
             "/diagnostic_contract/rules/9",
             "/diagnostic_contract/rules/11",
             "/diagnostic_contract/composite_class_formation",
-            "/failure_classifications/81"
+            "/failure_classifications/77"
           ]
         },
         {
@@ -8820,7 +8623,7 @@
             "/diagnostic_contract/rules/1",
             "/diagnostic_contract/rules/11",
             "/diagnostic_contract/composite_class_formation",
-            "/failure_classifications/82"
+            "/failure_classifications/78"
           ]
         },
         {
@@ -8882,7 +8685,7 @@
             "/diagnostic_contract/rules/0",
             "/diagnostic_contract/rules/11",
             "/diagnostic_contract/composite_class_formation",
-            "/failure_classifications/83"
+            "/failure_classifications/79"
           ]
         },
         {
@@ -8938,7 +8741,7 @@
             "/diagnostic_contract/rules/5",
             "/diagnostic_contract/rules/11",
             "/diagnostic_contract/composite_class_formation",
-            "/failure_classifications/84"
+            "/failure_classifications/80"
           ]
         },
         {
@@ -8951,6 +8754,147 @@
             "/algorithm/ordered_rules/5",
             "/algorithm/ordered_rules/11",
             "/formal_program/functions/assess_feedback_material/steps/6",
+            "/formal_program/composite_class_formation"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "OS007-NEG-logs-comp-06-log_kind_conflict_log_kind_unknown",
+      "code": "record_material_violation",
+      "expected_classification": "record_material_violation",
+      "function_ref": "assess_log_material",
+      "expected": {
+        "finding_codes": [
+          "log_kind_conflict",
+          "log_kind_unknown"
+        ]
+      },
+      "expected_preserved": {
+        "actual_records_equal_expanded_input_records": true,
+        "reference_records_equal_expanded_context_records": true
+      },
+      "expected_axis": "logs",
+      "expected_state": "violation",
+      "backflow_owner": "common-log-owner",
+      "side_effect_count": 0,
+      "handling": "assess_log_materialのlogs比較規則が[log_kind_conflict, log_kind_unknown]を検出し、common-log-ownerへ返却する。retained_actual_recordsとretained_reference_recordsを別々に保持し、operation_effectはnone。",
+      "source_pointers": [
+        {
+          "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+          "pointers": [
+            "/requirements/21"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
+          "pointers": [
+            "/contracts/0",
+            "/diagnostic_contract/codes/3",
+            "/diagnostic_contract/codes/2",
+            "/diagnostic_contract/owner_by_facet/logs",
+            "/diagnostic_contract/rules/1",
+            "/diagnostic_contract/rules/11",
+            "/diagnostic_contract/composite_class_formation",
+            "/failure_classifications/81"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L5-detail-design/log-feedback-memory-lineage.json",
+          "pointers": [
+            "/contracts/0",
+            "/functions/0",
+            "/finite_domains/diagnostic_codes/3",
+            "/finite_domains/diagnostic_codes/2",
+            "/finite_domains/owner_by_facet/logs",
+            "/algorithm/ordered_rules/1",
+            "/algorithm/ordered_rules/11",
+            "/formal_program/functions/assess_log_material/steps/1",
+            "/formal_program/functions/assess_log_material/steps/3",
+            "/formal_program/composite_class_formation"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "OS007-NEG-memory-comp-16-boolean_conflict_field_unknown_order_unknown",
+      "code": "record_material_violation",
+      "expected_classification": "record_material_violation",
+      "function_ref": "assess_memory_material",
+      "expected": {
+        "finding_codes": [
+          "boolean_conflict",
+          "field_unknown",
+          "field_unknown",
+          "field_unknown",
+          "field_unknown",
+          "field_unknown",
+          "field_unknown",
+          "field_unknown",
+          "field_unknown",
+          "field_unknown",
+          "field_unknown",
+          "field_unknown",
+          "field_unknown",
+          "field_unknown",
+          "field_unknown",
+          "field_unknown",
+          "field_unknown",
+          "field_unknown",
+          "field_unknown",
+          "order_unknown",
+          "order_unknown"
+        ]
+      },
+      "expected_preserved": {
+        "actual_records_equal_expanded_input_records": true,
+        "reference_records_equal_expanded_context_records": true
+      },
+      "expected_axis": "memory",
+      "expected_state": "violation",
+      "backflow_owner": "memory-canonical-owner",
+      "side_effect_count": 0,
+      "handling": "assess_memory_materialのmemory比較規則が[boolean_conflict, field_unknownx18, order_unknownx2]を検出し、memory-canonical-ownerへ返却する。retained_actual_recordsとretained_reference_recordsを別々に保持し、operation_effectはnone。",
+      "source_pointers": [
+        {
+          "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+          "pointers": [
+            "/requirements/23"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
+          "pointers": [
+            "/contracts/2",
+            "/diagnostic_contract/codes/10",
+            "/diagnostic_contract/codes/0",
+            "/diagnostic_contract/codes/31",
+            "/diagnostic_contract/owner_by_facet/memory",
+            "/diagnostic_contract/rules/0",
+            "/diagnostic_contract/rules/7",
+            "/diagnostic_contract/rules/8",
+            "/diagnostic_contract/rules/11",
+            "/diagnostic_contract/composite_class_formation",
+            "/failure_classifications/82"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L5-detail-design/log-feedback-memory-lineage.json",
+          "pointers": [
+            "/contracts/2",
+            "/functions/2",
+            "/finite_domains/diagnostic_codes/10",
+            "/finite_domains/diagnostic_codes/0",
+            "/finite_domains/diagnostic_codes/31",
+            "/finite_domains/owner_by_facet/memory",
+            "/algorithm/ordered_rules/0",
+            "/algorithm/ordered_rules/7",
+            "/algorithm/ordered_rules/8",
+            "/algorithm/ordered_rules/11",
+            "/formal_program/functions/assess_memory_material/steps/5",
+            "/formal_program/functions/assess_memory_material/steps/8",
+            "/formal_program/functions/assess_memory_material/steps/9",
+            "/formal_program/functions/assess_memory_material/steps/10",
             "/formal_program/composite_class_formation"
           ]
         }
