@@ -6,7 +6,7 @@
   "product": "HELIX-HARNESS",
   "owner_candidate": "HELIX-OS OS017 L4/L9 candidate evidence",
   "state": "registered",
-  "reason": "L3/L10 B01 owner-boundary source, L4 role comparison prose, and six L7 raw given_input graphs support one source-qualified ownership/source_unresolved class candidate. L9 rows only reference that L4 candidate; the L9 expected projection remains unchanged. No L4/L5 algorithm execution or formal four-layer marker is added.",
+  "reason": "L3/L10 B01 owner-boundary source, L4 role comparison prose, and twelve L7 raw given_input graphs support source-qualified ownership/source_unresolved and ownership/source_conflict class candidates. L9 rows only reference the L4 candidates; the L9 expected projection remains unchanged. No L4/L5 algorithm execution or formal four-layer marker is added.",
   "upstream": [
     {
       "path": "docs/helix-os/L3-requirements/business-requirements.json",
@@ -20,8 +20,8 @@
     },
     {
       "path": "docs/helix-os/L4-basic-design/ticket-workflow-derivation.json",
-      "sha256": "042b09df96082a9f04e43016bb70928ceef2e807d84b0bbc958210283582fa15",
-      "note": "Current L4 source; role comparison, owner map, class row, pointer evidence. Updated for compact role witness references; prior pin: 45cca359a390061fb63291f10b482c8b643345b6c5f5fe45093fc62d8574dde2."
+      "sha256": "d9765bdb8fb6c78bc130aa5012d11da7c57525de2872b8fa95b7a17e364c1c34",
+      "note": "Current L4 source pin d9765bdb8fb6c78bc130aa5012d11da7c57525de2872b8fa95b7a17e364c1c34; updated from pre-conflict pin 042b09df96082a9f04e43016bb70928ceef2e807d84b0bbc958210283582fa15. Earlier historical pins remain recorded in this binding history. Existing classes are retained; six role-conflict witnesses are added as a separate ownership candidate."
     },
     {
       "path": "docs/helix-os/L7-function-verification/ticket-workflow-derivation.json",
@@ -30,8 +30,8 @@
     },
     {
       "path": "docs/helix-os/L9-integration-verification/ticket-workflow-derivation.json",
-      "sha256": "74458de4b91932c4a6ddad22434e86be4ee5eacfa1f36ac59b9873a06c44652d",
-      "note": "Current L9 source; six candidate links only, expected projection unchanged."
+      "sha256": "fb9997c491a842625948db664b892a22a089923f2ef2be15f46376e3823fc699",
+      "note": "Current L9 source pin fb9997c491a842625948db664b892a22a089923f2ef2be15f46376e3823fc699; updated from pre-conflict pin 74458de4b91932c4a6ddad22434e86be4ee5eacfa1f36ac59b9873a06c44652d. Six roles-conflict rows add candidate links only; all 217 expected projections remain unchanged."
     },
     {
       "path": "docs/governance/design-verification-quality-assurance.md",
@@ -50,15 +50,15 @@
     },
     {
       "path": "scaffold/research/wr204-os017-negative-classes-20261031/validate_manual_derivation.py",
-      "sha256": "3c8e0169f566263f0bbf39ceb39da700e53c10d80eb0f4f352933e0416b3598d",
-      "note": "Shared RFC6901/object-graph resolver validates both the input cohort and six compact role witnesses; no L4/L5 behavior is executed."
+      "sha256": "9f29b4b386a2e4998c24f9a776a10f90c57044c3756f9fafd28a09f5ef33a2f7",
+      "note": "Current shared RFC6901/raw-graph resolver pin 9f29b4b386a2e4998c24f9a776a10f90c57044c3756f9fafd28a09f5ef33a2f7; updated from pre-conflict pin 3c8e0169f566263f0bbf39ceb39da700e53c10d80eb0f4f352933e0416b3598d. It validates inputs and unresolved/conflict role witnesses without executing L4/L5 behavior."
     }
   ],
   "role": "WR204 OS017 ownership facet source-qualified negative-class candidate evidence; not formal four-layer class membership.",
   "obligations": [
-    "L3/L10 B01 owner boundary and L4 role comparison/owner prose are linked to six L7 raw witness graphs.",
-    "Preserve existing inputs classes and record one unresolved actual role leaf per six cases without using L7/L8/L9 expectations as derivation oracle.",
-    "Link the six corresponding L9 cases to the L4 candidate without changing the 217 expected projections.",
+    "L3/L10 B01 owner boundary and L4 role comparison/owner prose are linked to six unresolved and six known-conflict L7 raw witness graphs.",
+    "Preserve existing inputs classes and record one changed actual role leaf per twelve cases without using expected values as derivation oracle.",
+    "Link twelve corresponding L9 cases to the two L4 candidates without changing the 217 expected projections.",
     "Keep L5/L8 projections, owner_ref, explicit marker, freeze, and four-way PASS unformed."
   ],
   "connections": {
@@ -78,7 +78,8 @@
       "Static JSON, revision, and RFC6901 pointer validation",
       "scfctl validate/stale",
       "design-verification check-child",
-      "git diff --check"
+      "git diff --check",
+      "Read raw L7 role conflict witnesses"
     ],
     "forbidden": [
       "Execute L4/L5 embedded algorithm",
@@ -111,9 +112,10 @@
       "git diff --check"
     ],
     "negative_cases": [
-      "Only each designated actual roles leaf is null; all other raw input leaves equal resume baseline.",
-      "L9 candidate references link to L4 row 2 while 217 expected projections remain byte-value invariant.",
-      "No formal four-layer marker, negative_class_ref, L5/L8 projection, or four-way PASS is claimed."
+      "Each of twelve cases changes only its designated actual roles leaf relative to resume baseline; unresolved leaves are null and conflict leaves are nonempty strings different from the known context owner.",
+      "L9 candidate references link six cases to each L4 row while 217 expected projections remain unchanged.",
+      "No formal four-layer marker, negative_class_ref, L5/L8 projection, or four-way PASS is claimed.",
+      "check-child comparison: baseline at de668c9152e730e97db541c0e2e767b2be3a4178 has 3 L4 classes and negative_4way counts L4=3/L9=L8=L5=0 with 5 failures; candidate has L4=4/L9=L8=L5=0 with 6 failures. L4=2 is F01-internal, not the total. Four-way remains false."
     ]
   },
   "replacement": {

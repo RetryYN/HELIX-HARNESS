@@ -2405,6 +2405,11 @@
         "pointer": "/cases/40",
         "revision": "ec98a025d166a5e9f7811233498b7e7e31dbb145",
         "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146"
+      },
+      "l4_source_class_candidate_ref": {
+        "path": "docs/helix-os/L4-basic-design/ticket-workflow-derivation.json",
+        "pointer": "/failure_classifications/3",
+        "class_id": "OS017-NEG-ownership-source_conflict"
       }
     },
     {
@@ -2468,6 +2473,11 @@
         "pointer": "/cases/42",
         "revision": "ec98a025d166a5e9f7811233498b7e7e31dbb145",
         "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146"
+      },
+      "l4_source_class_candidate_ref": {
+        "path": "docs/helix-os/L4-basic-design/ticket-workflow-derivation.json",
+        "pointer": "/failure_classifications/3",
+        "class_id": "OS017-NEG-ownership-source_conflict"
       }
     },
     {
@@ -2531,6 +2541,11 @@
         "pointer": "/cases/44",
         "revision": "ec98a025d166a5e9f7811233498b7e7e31dbb145",
         "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146"
+      },
+      "l4_source_class_candidate_ref": {
+        "path": "docs/helix-os/L4-basic-design/ticket-workflow-derivation.json",
+        "pointer": "/failure_classifications/3",
+        "class_id": "OS017-NEG-ownership-source_conflict"
       }
     },
     {
@@ -2594,6 +2609,11 @@
         "pointer": "/cases/46",
         "revision": "ec98a025d166a5e9f7811233498b7e7e31dbb145",
         "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146"
+      },
+      "l4_source_class_candidate_ref": {
+        "path": "docs/helix-os/L4-basic-design/ticket-workflow-derivation.json",
+        "pointer": "/failure_classifications/3",
+        "class_id": "OS017-NEG-ownership-source_conflict"
       }
     },
     {
@@ -2657,6 +2677,11 @@
         "pointer": "/cases/48",
         "revision": "ec98a025d166a5e9f7811233498b7e7e31dbb145",
         "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146"
+      },
+      "l4_source_class_candidate_ref": {
+        "path": "docs/helix-os/L4-basic-design/ticket-workflow-derivation.json",
+        "pointer": "/failure_classifications/3",
+        "class_id": "OS017-NEG-ownership-source_conflict"
       }
     },
     {
@@ -2720,6 +2745,11 @@
         "pointer": "/cases/50",
         "revision": "ec98a025d166a5e9f7811233498b7e7e31dbb145",
         "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146"
+      },
+      "l4_source_class_candidate_ref": {
+        "path": "docs/helix-os/L4-basic-design/ticket-workflow-derivation.json",
+        "pointer": "/failure_classifications/3",
+        "class_id": "OS017-NEG-ownership-source_conflict"
       }
     },
     {
