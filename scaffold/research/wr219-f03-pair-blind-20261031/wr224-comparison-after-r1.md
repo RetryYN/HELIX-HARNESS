@@ -28,6 +28,12 @@ blind導出では、許可された散文が支持するのは証拠に基づく
 
 L8だけにある`H003-L8-F03-005-BINDING-QUALIFICATION-MISSING-WHOLE`は`valley_result state=missing/value=null`であり、同一IDのL9 rowはない。したがってこれはL8/L9期待の直接対応pairではない。別のL5/L8作業に向けてL8 caseを維持し、対応するL9値を推定しない。
 
+## 値の割当理由に関するR2再確認
+
+固定L9 sourceの該当9行をcase ID、mutation path、pair/valley expected値ごとに照合した。pair conflict/staleの6行はすべて`paired_comparisons`配下を変異させ、valley conflictの1行は`valley.content.steps`を変異させる。origin/traceの2行はそれぞれ`origin`と`trace`を変異させ、pair/valley expected値を`supported_synthetic_condition`としている。具体的なpointerと値はscaffold監査JSONの`prior_design_evidence.status_assignment_rule_resolution.source_rows`に記録する。
+
+この9行ではmutation pathとexpected値の対応が観測できるが、相関から「値はmutation対象fieldだけで割り当てる」などの一般則は導けない。L3/L10と許可L4散文も、origin/trace mutationにsupport値を割り当てる根拠や、pair/valley値の割当規則を定めていない。したがって書き分けの原理は未解決として明示し、既存fixture値を保持する。origin/traceのsupportはsource packetがsynthetic input conditionをsupportするという期待値の記録であり、処理成功の根拠ではない。
+
 ## 設計選択と境界
 
 L4設計では`supported_synthetic_condition`、`conflict`、`stale`をcase単位のsynthetic expected-partial statusとして説明し、L8のstate/value envelopeをL9の平坦なexpected material表現と区別する。すべての値を未実行の出力／finding projectionから分離する。L4にはwrong-pair annotationの`F03_PAIR_SCOPE_CONFLICT` classがあるが独立したstale classはない。L4変更ではstale classificationやmappingを追加しない。L9 executionは`not_executed`、effectは`none`のまま、audit対象のprojection-finding statusは`unknown/unformed`のまま維持する。

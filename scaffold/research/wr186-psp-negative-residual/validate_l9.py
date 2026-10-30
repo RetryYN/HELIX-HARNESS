@@ -100,6 +100,17 @@ def verify_value_domain_audit(l4, l8, l9):
             source_doc = docs[source["path"]]
         assert resolve(source_doc, source["pointer"])
         pinned_docs[source["path"]] = source_doc
+    assignment = audit["prior_design_evidence"]["status_assignment_rule_resolution"]
+    assert assignment["status"] == "unresolved"
+    assert len(assignment["source_rows"]) == 9
+    for evidence_row in assignment["source_rows"]:
+        source_doc = pinned_docs[evidence_row["path"]]
+        source_row = resolve(source_doc, evidence_row["pointer"])
+        assert source_row["id"] == evidence_row["case_id"]
+        assert source_row["mutation"]["path"] == evidence_row["mutation_path"]
+        expected = source_row["expected_material"]
+        assert expected["pair_result"] == evidence_row["pair_result"]
+        assert expected["valley_result"] == evidence_row["valley_result"]
     for ref in audit["references"]:
         if "artifact" in ref:
             artifact_path = ROOT / ref["artifact"]

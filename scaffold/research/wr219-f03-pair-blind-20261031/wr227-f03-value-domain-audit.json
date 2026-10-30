@@ -400,13 +400,13 @@
       "reason": "Would edit expected values without an upstream L3/L10 rule and erase distinctions encoded by source_packet_ref, state tags, mutations, and per-row reasons. L4 missing finding requires a processing-result assertion that these fixtures do not contain."
     },
     {
-      "option": "Explain existing fixture expected-value domain by case context, preserve all values, and keep actual result/finding projection separate",
+      "option": "既存fixtureのcase別期待値を保持し、mutation軸から一般規則を推定しない",
       "decision": "select",
-      "reason": "Covers all current L8/L9 usages, preserves approved L3/L10 meaning and L4 classification vocabulary, explains why support is retained for origin/trace, and leaves unknown/unformed projection and stale-class mapping gaps explicit."
+      "reason": "承認済みL3/L10と許可L4散文に期待値変更または値割当規則の根拠がなく、実処理出力も観測されていない。固定source上の値・mutation対応を記録し、origin/traceとpair/valleyの書き分け原理は未解決として残す。"
     }
   ],
   "prior_design_evidence": {
-    "selected_reason": "Origin-null and trace-empty have L8 known wrappers, source_packet_ref identities SOURCE-H003-F03-ORIGIN-MISSING / SOURCE-H003-F03-TRACE-MISSING, and L9 expected_material supports the synthetic condition. Their support labels describe fixture-condition support, not the result of processing missing origin/trace. L4 F03_REQUIRED_PAIR_MISSING still says actual missing pair/trace processed as success is a failure; no such processing output is present. Replacing support with missing/conflict would conflate an input witness with an unobserved output and would invent a changed expected value. By contrast, conflict/stale rows explicitly encode wrong-pair, foreign-revision, or missing pre-body Red fixture states and L8 state tags; those values are kept and not mapped to new findings.",
+    "selected_reason": "L3/L10と許可されたL4散文に期待値を書き換える根拠がなく、固定sourceに実処理結果もないため、既存値を保持する。固定行のmutationとexpected値の対応はstatus_assignment_rule_resolutionに列挙するが、その相関は値割当の一般規則を証明しない。origin/traceのsupport値はsource packetがsynthetic input conditionをsupportする期待値として残し、処理成功とは解釈しない。",
     "l9_values_preserved": "両witnessのpair_result/valley_result/l9_dimension_results/meaning_backflow/actual_*、classification値、manual projection invalidation row、trigger/ticket候補は維持。説明reason 4箇所の旧新値はscaffoldのwr227-l9-reason-edit-audit.jsonに履歴として記録し、expected output valuesは変えていない。",
     "comparison_history": [
       {
@@ -422,7 +422,129 @@
         "reference": "RetryYN/HELIX-HARNESS PR #3970 comment 6532547942",
         "finding": "F1 full value domain; F2 fixed blind and comparison pointers; I1 move old/new reason history to scaffold."
       }
-    ]
+    ],
+    "status_assignment_rule_resolution": {
+      "status": "unresolved",
+      "finding": "固定fixtureでは、pair_result conflict/staleの6行がpaired_comparisonsを変異させ、valley_result conflictの1行がvalley witnessを変異させる。origin/traceの2行はそれぞれorigin/traceを変異させ、pair_result/valley_resultをsupported_synthetic_conditionのまま記録する。",
+      "interpretation_limit": "この行別相関だけでは、pair_result/valley_resultの期待値割当が変異軸だけに反応するという一般則や、origin/trace欠落にsupport値を割り当てる規則は導けない。L3/L10と許可されたL4散文にもその規則はない。",
+      "preservation_basis": "上流要求の意味を変える根拠がなく、これらは未実行fixtureの期待値であるため、値は変更せず個別対応を保つ。",
+      "source_rows": [
+        {
+          "case_id": "H003-F03-ORIGIN-MISSING",
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "revision": "a0ce1ce787cff3b61664c12d62ae471969edb433",
+          "pointer": "/cases/3/negative_cases/0",
+          "mutation_path": [
+            "origin"
+          ],
+          "pair_result": "supported_synthetic_condition",
+          "valley_result": "supported_synthetic_condition"
+        },
+        {
+          "case_id": "H003-F03-TRACE-MISSING",
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "revision": "a0ce1ce787cff3b61664c12d62ae471969edb433",
+          "pointer": "/cases/3/negative_cases/2",
+          "mutation_path": [
+            "trace"
+          ],
+          "pair_result": "supported_synthetic_condition",
+          "valley_result": "supported_synthetic_condition"
+        },
+        {
+          "case_id": "H003-F03-WRONG-L9-PAIR",
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "revision": "a0ce1ce787cff3b61664c12d62ae471969edb433",
+          "pointer": "/cases/3/negative_cases/10",
+          "mutation_path": [
+            "paired_comparisons",
+            1,
+            "left"
+          ],
+          "pair_result": "conflict",
+          "valley_result": "supported_synthetic_condition"
+        },
+        {
+          "case_id": "H003-F03-FOREIGN-PAIR-REVISION",
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "revision": "a0ce1ce787cff3b61664c12d62ae471969edb433",
+          "pointer": "/cases/3/negative_cases/11",
+          "mutation_path": [
+            "paired_comparisons",
+            1,
+            "revision"
+          ],
+          "pair_result": "stale",
+          "valley_result": "supported_synthetic_condition"
+        },
+        {
+          "case_id": "H003-F03-L8-WRONG-PAIR",
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "revision": "a0ce1ce787cff3b61664c12d62ae471969edb433",
+          "pointer": "/cases/3/negative_cases/35",
+          "mutation_path": [
+            "paired_comparisons",
+            0,
+            "left"
+          ],
+          "pair_result": "conflict",
+          "valley_result": "supported_synthetic_condition"
+        },
+        {
+          "case_id": "H003-F03-L8-FOREIGN-REVISION",
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "revision": "a0ce1ce787cff3b61664c12d62ae471969edb433",
+          "pointer": "/cases/3/negative_cases/36",
+          "mutation_path": [
+            "paired_comparisons",
+            0,
+            "revision"
+          ],
+          "pair_result": "stale",
+          "valley_result": "supported_synthetic_condition"
+        },
+        {
+          "case_id": "H003-F03-L10-WRONG-PAIR",
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "revision": "a0ce1ce787cff3b61664c12d62ae471969edb433",
+          "pointer": "/cases/3/negative_cases/37",
+          "mutation_path": [
+            "paired_comparisons",
+            2,
+            "left"
+          ],
+          "pair_result": "conflict",
+          "valley_result": "supported_synthetic_condition"
+        },
+        {
+          "case_id": "H003-F03-L10-FOREIGN-REVISION",
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "revision": "a0ce1ce787cff3b61664c12d62ae471969edb433",
+          "pointer": "/cases/3/negative_cases/38",
+          "mutation_path": [
+            "paired_comparisons",
+            2,
+            "revision"
+          ],
+          "pair_result": "stale",
+          "valley_result": "supported_synthetic_condition"
+        },
+        {
+          "case_id": "H003-F03-PRE-BODY-RED-ABSENT",
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "revision": "a0ce1ce787cff3b61664c12d62ae471969edb433",
+          "pointer": "/cases/3/negative_cases/23",
+          "mutation_path": [
+            "valley",
+            "content",
+            "steps",
+            1
+          ],
+          "pair_result": "supported_synthetic_condition",
+          "valley_result": "conflict"
+        }
+      ]
+    }
   },
   "measured_counts": {
     "l8_direct_fields": {

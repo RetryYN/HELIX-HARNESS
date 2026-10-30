@@ -1335,7 +1335,7 @@
           "scope": "F03のL8/L9 synthetic expected-partial fixtureにおけるpair_result/valley_resultの値域と型表現。L3/L10要求意味、L4の既存failure分類、L8/L9のformal expected result valuesは変更しない。L9説明reason 4箇所の履歴は参照先scaffold auditに保持する。値は未実行の合成期待であり実処理出力ではない。",
           "fields": {
             "pair_result": "合成期待における対象pairのpartial status。値はsupported_synthetic_condition（fixture source packetが対象synthetic conditionを支持する）、conflict（pair/scopeの期待不整合）、stale（別revisionのpair材料）、またはL8 envelopeでは値nullと組み合わせたstate statusである。どれも実際に処理されたpair結果ではない。",
-            "valley_result": "合成期待における対象V谷のpartial status。値supported_synthetic_conditionはfixture source support、conflictは谷条件/fixture witnessと期待の不整合。L8ではmissing stateも別途存在し、L9のsupported期待との差はそのまま保持する。どれも実際に処理された谷結果ではない。"
+            "valley_result": "合成期待における対象V谷のpartial status。値supported_synthetic_conditionはfixture sourceがsynthetic conditionを支持する期待、conflictは谷条件またはfixture witnessの不整合を表す。L8にはrequired fixture binding qualification未供給を示すstate=missing/value=nullの例もあるが、同一IDのL9対応rowはないため、L9の別caseにあるsupported値との差としては解釈しない。どの値も実際に処理された谷結果ではない。"
           },
           "typed_envelope_boundary": "L8 expected_partial_valuesはstateとvalueを分ける。knownにはsupported_synthetic_condition、conflict/stale/missingにはvalue=nullが置かれる。L9 expected_materialはstateを平坦な文字列へ写すが、execution_state=not_executed/effect=noneの期待recordであり、実処理結果やfinding projectionではない。",
           "classification_separation": "F03_REQUIRED_PAIR_MISSINGのpair_trace/missingは、必要pairまたは原traceが未供給なのに処理結果を成立扱いする分類である。fixtureがmissing条件を支持することとpair/traceが実際に揃っていることを混同せず、supported_synthetic_conditionでmissing分類を置換しない。raw入力差またはmutationだけで処理結果がmissingを成立扱いしたfindingを生成しない。",
@@ -1355,7 +1355,7 @@
             "supported_synthetic_condition": "source_packet_refで特定されたfixture sourceが当該synthetic conditionを支持するという期待。pair/谷の実成立・successful execution・Provisional遷移・上位受入・finding非発生を意味しない。",
             "conflict": "fixture expectationが対象pair/谷の基準との不一致または必要証拠の不整合を表す期待ラベル。L8ではstate=conflict/value=null。L9では具体caseのmutation/reasonに従う。処理結果や形成findingとは扱わない。",
             "stale": "fixture expectationが別要求revisionのpair materialを指し、現targetに使えないことを表す期待ラベル。L8ではstate=stale/value=null。L9ではforeign-revision mutation/reasonに従う。L4にstale用の独立F03 classification codeはなく、本案は新codeもmappingも追加しない。",
-            "missing_state_boundary": "L8 state=missing/value=nullはrequired fixture binding qualificationが未供給の表現（F03 row 44）。これはF03 L4 pair_trace/missing classificationが要求する「処理結果を成立扱いした」findingとは同じ意味でない。L9の対応expectedはsupported_synthetic_conditionのままで、差はL5/L8別PRで再確認する。"
+            "missing_state_boundary": "L8のstate=missing/value=nullはrequired fixture binding qualificationの未供給を示し、L4 F03 pair_trace/missing classificationが要求する「処理結果を成立扱いした」findingとは異なる。このL8 missing例に同一IDのL9 rowはないため、他caseのL9 supported値との比較関係を推定しない。個別pointerはscaffold監査に記録する。"
           },
           "l9_reason_edits_audit_ref": {
             "path": "scaffold/research/wr219-f03-pair-blind-20261031/wr227-l9-reason-edit-audit.json",
@@ -1394,7 +1394,8 @@
             "note": "全行inventory、件数、例外、比較履歴、静的再検証の証拠を持つscaffold専用監査。authorityへの効果はない。"
           },
           "l9_values_preserved": "既存L8/L9の期待出力値、case、mutation、classification、projection audit、trigger/ticket候補、effectを維持する。L9の説明reason 4箇所の履歴は別のscaffold監査に保存する。",
-          "missing_state_boundary": "L8のstate=missing/value=nullは、required fixture binding qualificationが未供給であることを示す。これはL4 F03 pair_trace/missing classificationが要求する「処理結果を成立扱いした」findingと同じ意味ではない。このL8 missing例には同一IDのL9対応rowがなく、他のL9 supported期待と同一caseの対として比較しない。行別の対応・不一致はscaffold監査に記録し、個別rowの差からformal値を変更しない。"
+          "missing_state_boundary": "L8のstate=missing/value=nullは、required fixture binding qualificationが未供給であることを示す。これはL4 F03 pair_trace/missing classificationが要求する「処理結果を成立扱いした」findingと同じ意味ではない。このL8 missing例には同一IDのL9対応rowがなく、他のL9 supported期待と同一caseの対として比較しない。行別の対応・不一致はscaffold監査に記録し、個別rowの差からformal値を変更しない。",
+          "unresolved_assignment_rule": "承認済みL3/L10と許可されたL4散文は、origin/trace欠落、pair比較のconflict/stale、谷witness conflictのmutation軸からexpected値を割り当てる一般規則を定めていない。固定fixtureの行別対応はscaffold監査に示すが、checker規則へ一般化しない。上流根拠がないため既存期待値を保持する。"
         }
       },
       "source_binding_connection": {
