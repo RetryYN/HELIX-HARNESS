@@ -6,7 +6,7 @@
   "product": "HELIX-HARNESS",
   "owner_candidate": "HELIX-SECURITY SEC005 L4/L9 design verification owner",
   "state": "registered",
-  "reason": "SEC005 credential-value-boundaryのL4/L9負例分類（21分類・64割当・5単一契約複合残余・4複数契約残余）の比較前固定artifact（blind-derivation.json）と比較後の変更順序・共有leaf一意化規則・L8/L9粒度差分類を保持する静的研究証拠。",
+  "reason": "SEC005 credential-value-boundaryのL4/L9負例分類（26分類・単一契約負例69件全件割当・未割当0件・4複数契約残余・除いた3系統のL4行き先明記）の比較前固定artifact（R2独立導出 blind-derivation-r2.json および R1履歴 blind-derivation.json）と比較後の変更順序・共有leaf一意化規則・L8/L9粒度差分類を保持する静的研究証拠。",
   "upstream": [
     {
       "path": "docs/helix-security/L3-requirements/functional-requirements.json",
@@ -30,13 +30,13 @@
     },
     {
       "path": "docs/helix-security/L4-basic-design/credential-value-boundary.json",
-      "sha256": "2fd723debe6998a4350f24abd4cd2e4eff84437d957784dcdddad1e141dd30f9",
-      "note": "Pinned SEC005 L4 basic design with 21 negative_classifications / failure_classifications."
+      "sha256": "adc2574f27f58fda8f98ec5df40fe029a784efd14e8154fe1db771d2fd5d96a2",
+      "note": "Pinned SEC005 L4 basic design with 26 negative_classifications / failure_classifications and explicit unit_only / B01 dispositions."
     },
     {
       "path": "docs/helix-security/L9-integration-verification/credential-value-boundary.json",
-      "sha256": "0af16b0ea98552ea6d24266226078e3be41810b83eb90468df1016e37b8f06e7",
-      "note": "Pinned SEC005 L9 integration verification with 64 assigned cases and negative_class_assignment_audit."
+      "sha256": "eba99a92d81d7322132a0793696101af36797c2f0550deb3240f6540d1d4532d",
+      "note": "Pinned SEC005 L9 integration verification with 69 assigned cases (0 unassigned) and negative_class_assignment_audit."
     },
     {
       "path": "docs/helix-security/L5-detail-design/credential-value-boundary.json",
@@ -54,13 +54,13 @@
       "note": "Pinned QA §3 CHK-NEG-4WAY-MATCH specification."
     }
   ],
-  "role": "WR216 SEC005 L4/L9 V-pair（PR-A）の比較前固定artifactとsource-only比較・検証スクリプトを束縛する。",
+  "role": "WR216 SEC005 L4/L9 V-pair（PR-A）の比較前固定artifact（R2独立導出およびR1履歴）とsource-only比較・検証スクリプトを束縛する。",
   "obligations": [
-    "比較前固定artifact（blind-derivation.json SHA-256 b18b662713eb94c3d6bc5a3443128c6c8112f61308886647d0d1f2372f754bf6）をbyte不変で保持する。",
-    "比較後に変更した値と5段階の変更順序、および先行作業の語彙記憶に関する開示をcomparison.jsonとREADME.mdに保持する。",
-    "共有leaf（/capability/tuple/<field>, /request/classification, /capability/tuple/expiry, /context/observed_time）の一意化規則とL8/L9件数差（F01 33/55, F02 9/14, B01 1/0）のsource-only分類を保持する。",
+    "比較前固定artifact（R2独立導出 blind-derivation-r2.json SHA-256 92670bdec0283d3700bb871751487c92f93ec025d2995eab002236cb8fadb85f および R1履歴 blind-derivation.json SHA-256 b18b662713eb94c3d6bc5a3443128c6c8112f61308886647d0d1f2372f754bf6）をbyte不変で保持する。",
+    "R2の24候補とR1 21分類・R2 26分類の根ごとの比較および6段階の変更順序をcomparison.jsonとREADME.mdに保持する。",
+    "共有leaf（/capability/tuple/<field>, /request/classification, /capability/tuple/expiry, /context/observed_time）の一意化規則とL8/L9件数差（F01 33/55, F02 9/14, B01 1/0）のsource-only分類、およびL9単一契約負例から除いた3系統のL4行き先・remaining・PR-Bでの扱いを保持する。",
     "L9既存87ケースの期待値・oracle・要求意味を変えず、member 0のclass行・架空のsingleton・全件residualを作らない。",
-    "PR-Aではexplicit mode markerを追加せず、check-childのnegative_4wayが中間状態（L4=21, L9=69, L8=43, L5=0、136 failures）であることを明記する。"
+    "PR-Aではexplicit mode markerを追加せず、check-childのnegative_4wayが中間状態（L4=26, L9=69, L8=43, L5=0、141 failures）であることを明記する。"
   ],
   "connections": {
     "consumers": [
@@ -81,7 +81,7 @@
       "run design_verification_checker.py check-pair and check-child"
     ],
     "forbidden": [
-      "modify frozen blind-derivation.json",
+      "modify frozen blind-derivation.json or blind-derivation-r2.json",
       "run L4/L5 algorithm, runtime, test, CI, or old workflow",
       "change L9 expected_proposal, oracles, or requirement meanings",
       "add partial negative_equivalence_classes marker in PR-A"
@@ -89,6 +89,7 @@
   },
   "artifacts": [
     "scaffold/research/wr216-sec005-cvb-neg-4way-20261031/blind-derivation.json",
+    "scaffold/research/wr216-sec005-cvb-neg-4way-20261031/blind-derivation-r2.json",
     "scaffold/research/wr216-sec005-cvb-neg-4way-20261031/comparison.json",
     "scaffold/research/wr216-sec005-cvb-neg-4way-20261031/validate_wr216_l4_l9.py",
     "scaffold/research/wr216-sec005-cvb-neg-4way-20261031/README.md",
@@ -101,13 +102,13 @@
       "negative_case"
     ],
     "oracles": [
-      "blind-derivation.json SHA-256 matches b18b662713eb94c3d6bc5a3443128c6c8112f61308886647d0d1f2372f754bf6.",
-      "All 21 L4 classes have >= 1 assigned L9 cases (64 assigned, 5 unassigned compound/shared-leaf, 0 zero-member classes).",
+      "blind-derivation.json SHA-256 matches b18b662713eb94c3d6bc5a3443128c6c8112f61308886647d0d1f2372f754bf6 and blind-derivation-r2.json SHA-256 matches 92670bdec0283d3700bb871751487c92f93ec025d2995eab002236cb8fadb85f.",
+      "All 26 L4 classes have >= 1 assigned L9 cases (69 assigned, 0 unassigned, 0 zero-member classes).",
       "All JSON Pointers in L4 and L9 resolve and L4 contains zero downward references to L5/L8/L9.",
-      "Existing L4 and L9 fields and all 87 L9 cases are preserved byte-for-byte outside added negative classification fields."
+      "Existing L4 and L9 fields and all 87 L9 cases are preserved byte-for-byte outside added negative classification fields and remaining entries."
     ],
     "negative_cases": [
-      "Do not modify frozen blind-derivation.json.",
+      "Do not modify frozen blind-derivation.json or blind-derivation-r2.json.",
       "Do not create zero-member class rows or fictitious singletons.",
       "Do not add or remove L8/L9 cases to force counts to match.",
       "Do not run L4/L5 algorithms or legacy runtime/tests/CI."

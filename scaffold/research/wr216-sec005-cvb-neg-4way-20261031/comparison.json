@@ -23,7 +23,7 @@
       "legacy_casewise_four_layer (default when negative_equivalence_classes marker is absent on any of L4/L5/L8/L9)",
       "explicit_negative_equivalence_classes (active only when all 4 layers declare negative_equivalence_classes)"
     ],
-    "why_split_into_pr_a_and_pr_b": "design_verification PR class は 1 V-pair ごとに PR を分ける規則（#3976 R1 Info I1 で再確認）に従い、L4/L9（PR-A）と L5/L8（PR-B）を別 PR に分割する。QA §3 は 4 層すべてに negative_equivalence_classes marker が揃うことを求め、部分 marker は不一致で FAIL させるため、PR-A では marker を追加せず中間状態として legacy_casewise_four_layer の測定値（L4=21, L9=69, L8=43, L5=0、136 failures）を明記する。",
+    "why_split_into_pr_a_and_pr_b": "design_verification PR class は 1 V-pair ごとに PR を分ける規則（#3976 R1 Info I1 で再確認）に従い、L4/L9（PR-A）と L5/L8（PR-B）を別 PR に分割する。QA §3 は 4 層すべてに negative_equivalence_classes marker が揃うことを求め、部分 marker は不一致で FAIL させるため、PR-A では marker を追加せず中間状態として legacy_casewise_four_layer の測定値（L4=26, L9=69, L8=43, L5=0、141 failures）を明記する。",
     "checker_structural_constraints_recorded": [
       "design_verification_checker.py (_check_negative_equivalence_mode, lines 1898-1955, 2404-2416) はトップレベル L8.unit_cases / L9.integration_cases と 1対1 の integration_case_ref 全単射（integration_case_ref_not_one_to_one / integration_case_not_referenced_from_l8）を要求するが、SEC005 の L8/L9 は contracts ごとの cases[0..2] 構造を持ち、かつ単体検証 L8（43件）と統合検証 L9（69件）で検証粒度が異なる（N対M）。",
       "design_verification_checker.py (lines 1735-1743, 2381-2394) は L5 contract の単数文字列 contract.get(\"function\") を比較するが、SEC005 の L5 contracts[0..2] は function_refs 配列を持つ。"
@@ -46,10 +46,10 @@
     },
     {
       "step": 3,
-      "target": "F01 credential_class_unresolved (BLIND-F01-08) removal from L4/L9 single-contract class rows",
-      "before_in_blind": "Included SEC005_F01_CREDENTIAL_CLASS_UNRESOLVED as an F01 single-finding class candidate",
-      "after_in_l4": "Removed from L4/L9 class rows (0 pure single-finding cases in L9; 2 co-occurring L9 cases [28, 29] recorded in unassigned_single_contract_negative_cases)",
-      "reason": "L8単体検証では compare_credential_classification を単独呼び出しするため単一findingケースが3件存在するが、L9統合パイプラインでは /request/classification が 8項目tuple照合と共有されているため、欠落（[28]）でも相反（[29]）でも tuple finding と credential_class_unresolved の2件が同時発火し、単一findingのL9ケースは0件となる。member 0 の class 行を作らない規則に従い L4/L9 class 行から外し、[28],[29] は共有leaf理由とともに unassigned_single_contract_negative_cases に記録した。"
+      "target": "F01 credential_class_unresolved (HELIXSECURITY-L4-005-F01-NEG-04 / BLIND-F01-08) handling across L9 pipeline (2-finding) and L8 unit (1-finding)",
+      "before_in_blind": "Single candidate class unknown_classification_unrecognized / SEC005_F01_CREDENTIAL_CLASS_UNRESOLVED",
+      "after_in_l4": "In L4/L9, bound to 2 ordered 2-finding classes: SEC005_F01_REQUEST_CLASSIFICATION_BINDING_AND_CLASS_UNRESOLVED (L4#/contracts/0/negative_classifications/12, L9 [28]) and SEC005_F01_REQUEST_CLASSIFICATION_CONFLICT_AND_CLASS_UNRESOLVED (L4#/contracts/0/negative_classifications/13, L9 [29]). For L8 unit-only 1-finding cases (SEC005-L8-CLASS-UNKNOWN/EMPTY/NULL-SET), recorded at L4#/contracts/0/unit_only_negative_classifications/0 (SEC005_F01_CREDENTIAL_CLASS_UNRESOLVED_UNIT) and L4#/remaining/4, L9#/remaining/4.",
+      "reason": "R1レビューF2/F3対応：L9統合パイプラインでは /request/classification が tuple照合と共有されるため欠落（[28]）でも相反（[29]）でも2-finding列として観測される。これらを順序付きfinding_codesのL4 class（#/12, #/13）として立ててL9から束縛し、L8単体関数 compare_credential_classification の単独1-finding 3件は member 0 のL9 class行を作らずに PR-B が L4 無変更で参照できるよう unit_only_negative_classifications/0 と remaining/4 に明記した。"
     },
     {
       "step": 4,
@@ -60,10 +60,17 @@
     },
     {
       "step": 5,
-      "target": "B01 candidate rows (BLIND-B01-01, BLIND-B01-02) removal from L4/L9 negative_classifications",
-      "before_in_blind": "2 candidate rows under B01 (outside_credential_free_scope and use_context_unresolved)",
-      "after_in_l4": "contracts[2].negative_classifications = [] (0 classes in L4/L9)",
-      "reason": "L9 では B01（cases[2]）は正例4件のみで負例0件であり（outside_credential_free_scope は multi_contract_residual の正例 [1] SEC005-OS027-CREDENTIAL-REQUESTED-OUTSIDE-SCOPE として検証され、未知 use_context の InputIssue は L8 単体検証 SEC005-L8-INITIAL-UNKNOWN のみに存在）、member 0 の class 行を作らない規則に従い B01 の negative_classifications を空配列とした。"
+      "target": "B01 candidate rows (HELIXSECURITY-L4-005-B01-NEG-01..06) and F02 non-copy invariant (HELIXSECURITY-L4-005-F02-NEG-06) explicit L4 destination & remaining records",
+      "before_in_blind": "6 candidate rows under B01 (HELIXSECURITY-L4-005-B01-NEG-01..06) and 1 non-copy row under F02 (HELIXSECURITY-L4-005-F02-NEG-06)",
+      "after_in_l4": "contracts[2].negative_classifications = [] accompanied by contracts[2].negative_classifications_disposition (6 upstream B01 candidate dispositions including SEC005_B01_OUTSIDE_CREDENTIAL_FREE_SCOPE and SEC005_B01_USE_CONTEXT_OR_REQUEST_FLAG_UNRESOLVED), contracts[1].invariant_non_class_dispositions, and L4#/remaining/5..6 + L9#/remaining/5..6",
+      "reason": "R1レビューF2対応：B01の空配列が『B01に失敗なし』と読まれないよう、L10-005-B01の反例に対するL9既存の被覆（multi_contract_residual.positive_cases[1]、cases[2].positive_cases[0..3]、F01/F02負例、multi_contract_residual.negative_cases[0..3]）と、L8単体検証 SEC005-L8-INITIAL-UNKNOWN 等のL4接続先（SEC005_B01_USE_CONTEXT_OR_REQUEST_FLAG_UNRESOLVED）・対象・理由・戻り先・PR-Bでの扱いを L4/L9 の disposition および remaining に明記した。"
+    },
+    {
+      "step": 6,
+      "target": "Single-contract F01 2-finding cases ([28], [29], [40], [52], [53]) promoted from unassigned to ordered 2-finding L4 classes (#/contracts/0/negative_classifications/12..16)",
+      "before_in_blind": "Unassigned in R1 (5 cases left in unassigned_single_contract_negative_cases)",
+      "after_in_l4": "5 ordered 2-finding classes added to L4#/contracts/0/negative_classifications/12..16 and L4#/failure_classifications/12..16; all 69 single-contract negative cases in L9 now have negative_class_ref and negative_class_assignment (assigned=69, unassigned=0)",
+      "reason": "R1レビューF3対応：QA §3のclass keyは順序付きfinding_codesであり、[28],[29],[40],[52],[53]はいずれも実在入力に対して決定論的な順序付き2-finding列を返す単一契約F01の負例であるため、5つの順序付き2-finding classをL4に立ててL9の全69件を束縛した。"
     }
   ],
   "shared_leaf_and_deduplication_rules": [
@@ -194,22 +201,22 @@
     ]
   },
   "l4_l9_summary_counts": {
-    "l4_class_count_total": 21,
+    "l4_class_count_total": 26,
     "l4_class_count_by_contract": {
-      "F01": 12,
+      "F01": 17,
       "F02": 9,
       "B01": 0
     },
     "l9_total_cases": 87,
     "l9_single_contract_positive_cases": 12,
     "l9_single_contract_negative_cases": 69,
-    "l9_assigned_single_contract_negative_cases": 64,
+    "l9_assigned_single_contract_negative_cases": 69,
     "l9_assigned_by_contract": {
-      "F01": 50,
+      "F01": 55,
       "F02": 14,
       "B01": 0
     },
-    "l9_unassigned_single_contract_negative_cases": 5,
+    "l9_unassigned_single_contract_negative_cases": 0,
     "l9_multi_contract_residual_positive_cases": 2,
     "l9_multi_contract_residual_negative_cases": 4,
     "l8_single_contract_negative_cases": 43,
@@ -221,12 +228,12 @@
     "l8_multi_contract_residual_negative_cases": 12,
     "check_pair_l4_l9_passed": true,
     "check_child_intermediate_negative_4way_counts": {
-      "L4": 21,
+      "L4": 26,
       "L9": 69,
       "L8": 43,
       "L5": 0
     },
-    "check_child_intermediate_negative_4way_failures": 136
+    "check_child_intermediate_negative_4way_failures": 141
   },
   "legacy_and_failure_precedents": {
     "legacy_assets_consulted": [
@@ -266,5 +273,322 @@
         "lesson": "1 V-pair per PR の原則を守り、4層に跨る negative_4way でも PR-A（L4/L9）と PR-B（L5/L8）に分割し、QA §3 の部分marker禁止と checker の構造制約・中間未成立（136 failures）を正直に明記する。架空のsingletonやmember 0のclass行、件数合わせのcase増減を行わない。"
       }
     ]
-  }
+  },
+  "pre_comparison_freeze_r2": {
+    "artifact_path": "scaffold/research/wr216-sec005-cvb-neg-4way-20261031/blind-derivation-r2.json",
+    "sha256": "92670bdec0283d3700bb871751487c92f93ec025d2995eab002236cb8fadb85f",
+    "issue_comment_url": "https://github.com/RetryYN/HELIX-HARNESS/issues/3510#issuecomment-6534617145",
+    "derived_by": {
+      "agent_role": "SEC005 Upstream Blind Derivator",
+      "session_id": "f73cba46-71bf-40c2-8a3b-ac89c97692a8",
+      "subagent_id": "f0ce0082-355c-460f-9086-c1b153f75eda",
+      "fresh_independent_session": true,
+      "working_tree_L4_read": false,
+      "L5_L6_L7_L8_L9_files_read": 0,
+      "prior_PRs_or_issue_3510_comments_read": 0,
+      "existing_scaffold_wr216_files_read": 0
+    },
+    "blind_candidate_count": 24,
+    "blind_counts_by_contract": {
+      "F01": 12,
+      "F02": 6,
+      "B01": 6
+    },
+    "r1_historical_artifact_preserved": {
+      "artifact_path": "scaffold/research/wr216-sec005-cvb-neg-4way-20261031/blind-derivation.json",
+      "sha256": "b18b662713eb94c3d6bc5a3443128c6c8112f61308886647d0d1f2372f754bf6",
+      "issue_comment_url": "https://github.com/RetryYN/HELIX-HARNESS/issues/3510#issuecomment-6533221683",
+      "status": "untouched_history_per_r1_review_f1 (R1で同一会話の事前調査後に作成されたblind-derivation.jsonは履歴として書き換えず保持し、R2では独立subagentによるblind-derivation-r2.jsonを正本として比較)"
+    }
+  },
+  "r2_blind_24_root_by_root_comparison": [
+    {
+      "r2_classification_id": "HELIXSECURITY-L4-005-F01-NEG-01",
+      "contract_id": "HELIXSECURITY-L4-005-F01",
+      "candidate_classification": "request_capability_binding_unresolved",
+      "r1_21_mapping": "SEC005_F01_CREDENTIAL_BINDING_UNRESOLVED (single-finding [credential_binding_unresolved]); [28] [40] [52] [53] were unassigned in R1",
+      "r2_26_l4_mapping": [
+        "docs/helix-security/L4-basic-design/credential-value-boundary.json#/contracts/0/negative_classifications/4 (SEC005_F01_CREDENTIAL_BINDING_UNRESOLVED)",
+        "docs/helix-security/L4-basic-design/credential-value-boundary.json#/contracts/0/negative_classifications/12 (SEC005_F01_REQUEST_CLASSIFICATION_BINDING_AND_CLASS_UNRESOLVED)",
+        "docs/helix-security/L4-basic-design/credential-value-boundary.json#/contracts/0/negative_classifications/14 (SEC005_F01_CAPABILITY_EXPIRY_BINDING_AND_OBSERVATION_UNRESOLVED)",
+        "docs/helix-security/L4-basic-design/credential-value-boundary.json#/contracts/0/negative_classifications/15 (SEC005_F01_DUAL_OPERAND_CREDENTIAL_BINDING_UNRESOLVED)",
+        "docs/helix-security/L4-basic-design/credential-value-boundary.json#/contracts/0/negative_classifications/16 (SEC005_F01_BINDING_CONFLICT_WITH_INDEPENDENT_BINDING_UNRESOLVED)"
+      ],
+      "change_order_step": "Step 1 (語彙・軸整合) + Step 6 (R2 F3: 単一契約2-finding 5件の順序付きclass化)",
+      "explanation": "単一finding 14件をSEC005_F01_CREDENTIAL_BINDING_UNRESOLVEDとし、R2では共有leaf同時発火・2項目同時異常の順序付き2-finding列（[28] [40] [52] [53]）をL4 contracts[0].negative_classifications[12, 14, 15, 16]として明示class化。"
+    },
+    {
+      "r2_classification_id": "HELIXSECURITY-L4-005-F01-NEG-02",
+      "contract_id": "HELIXSECURITY-L4-005-F01",
+      "candidate_classification": "authority_expected_capability_unresolved",
+      "r1_21_mapping": "SEC005_F01_AUTHORITY_EXPECTED_UNRESOLVED + SEC005_F01_AUTHORITY_MATERIAL_UNRESOLVED",
+      "r2_26_l4_mapping": [
+        "docs/helix-security/L4-basic-design/credential-value-boundary.json#/contracts/0/negative_classifications/7 (SEC005_F01_AUTHORITY_EXPECTED_UNRESOLVED)",
+        "docs/helix-security/L4-basic-design/credential-value-boundary.json#/contracts/0/negative_classifications/9 (SEC005_F01_AUTHORITY_MATERIAL_UNRESOLVED)"
+      ],
+      "change_order_step": "Step 1 (語彙・軸整合: expected_capability 項目欠落 vs authority_source_state 資料状態unknownの分離)",
+      "explanation": "L4#/contracts/0/input_meanings/1 の expected_capability 項目欠落（[54] authority_expected_unresolved）と authority_source_state 資料状態unknown（[49] authority_material_unresolved）の2つの単一finding classに対応。"
+    },
+    {
+      "r2_classification_id": "HELIXSECURITY-L4-005-F01-NEG-03",
+      "contract_id": "HELIXSECURITY-L4-005-F01",
+      "candidate_classification": "bounded_credential_tuple_field_conflict",
+      "r1_21_mapping": "SEC005_F01_REQUEST_BINDING_CONFLICT (1-finding) + SEC005_F01_CAPABILITY_TUPLE_BINDING_CONFLICT (2-finding); [29] [53] were unassigned in R1",
+      "r2_26_l4_mapping": [
+        "docs/helix-security/L4-basic-design/credential-value-boundary.json#/contracts/0/negative_classifications/5 (SEC005_F01_REQUEST_BINDING_CONFLICT)",
+        "docs/helix-security/L4-basic-design/credential-value-boundary.json#/contracts/0/negative_classifications/6 (SEC005_F01_CAPABILITY_TUPLE_BINDING_CONFLICT)",
+        "docs/helix-security/L4-basic-design/credential-value-boundary.json#/contracts/0/negative_classifications/13 (SEC005_F01_REQUEST_CLASSIFICATION_CONFLICT_AND_CLASS_UNRESOLVED)",
+        "docs/helix-security/L4-basic-design/credential-value-boundary.json#/contracts/0/negative_classifications/16 (SEC005_F01_BINDING_CONFLICT_WITH_INDEPENDENT_BINDING_UNRESOLVED)"
+      ],
+      "change_order_step": "Step 2 (Join 1単独相反 vs 共有中間オペランド /capability/tuple/<field> 2-finding相反の分離) + Step 6 (R2 F3: [29] [53] の順序付き2-finding class化)",
+      "explanation": "request単独相反7件（#/5）、capability.tuple共有中間オペランド相反8件（#/6）に加え、R2で[29]（classification相反＋未知class）を#/13、[53]（operation相反＋actor欠落）を#/16としてclass化。"
+    },
+    {
+      "r2_classification_id": "HELIXSECURITY-L4-005-F01-NEG-04",
+      "contract_id": "HELIXSECURITY-L4-005-F01",
+      "candidate_classification": "unknown_classification_unrecognized",
+      "r1_21_mapping": "Excluded in R1 without L4 destination ([28] [29] unassigned; flagged by R1 F2 Major)",
+      "r2_26_l4_mapping": [
+        "docs/helix-security/L4-basic-design/credential-value-boundary.json#/contracts/0/negative_classifications/12 (SEC005_F01_REQUEST_CLASSIFICATION_BINDING_AND_CLASS_UNRESOLVED)",
+        "docs/helix-security/L4-basic-design/credential-value-boundary.json#/contracts/0/negative_classifications/13 (SEC005_F01_REQUEST_CLASSIFICATION_CONFLICT_AND_CLASS_UNRESOLVED)",
+        "docs/helix-security/L4-basic-design/credential-value-boundary.json#/contracts/0/unit_only_negative_classifications/0 (SEC005_F01_CREDENTIAL_CLASS_UNRESOLVED_UNIT)",
+        "docs/helix-security/L4-basic-design/credential-value-boundary.json#/remaining/4"
+      ],
+      "change_order_step": "Step 3 & Step 6 (R2 F2/F3: L9統合粒度[28][29]は#/12・#/13へ束縛、L8単体粒度SEC005-L8-CLASS-UNKNOWN/EMPTY/NULL-SETはunit_only_negative_classifications/0とremaining/4へ固定)",
+      "explanation": "L9統合パイプラインでは /request/classification が tuple Join 1 と共有されるため [28] [29] の順序付き2-finding class（#/12, #/13）としてL4/L9に束縛。L8単体関数 compare_credential_classification の単独1-finding 3件（SEC005-L8-CLASS-UNKNOWN/EMPTY/NULL-SET）は PR-B が L4 無変更で参照できるよう L4#/contracts/0/unit_only_negative_classifications/0 および L4#/remaining/4・L9#/remaining/4 に固定。"
+    },
+    {
+      "r2_classification_id": "HELIXSECURITY-L4-005-F01-NEG-05",
+      "contract_id": "HELIXSECURITY-L4-005-F01",
+      "candidate_classification": "capability_expired",
+      "r1_21_mapping": "Placed in F02 as SEC005_F02_CREDENTIAL_EXPIRED ([10] SEC005-DECLARED-EXPIRED); numeric observed_time >= expiry is in multi_contract_residual [R00, R01]",
+      "r2_26_l4_mapping": [
+        "docs/helix-security/L4-basic-design/credential-value-boundary.json#/contracts/1/negative_classifications/5 (SEC005_F02_CREDENTIAL_EXPIRED)"
+      ],
+      "change_order_step": "Step 4 (F01/F02間の配置整理)",
+      "explanation": "observed_time >= expiry は F01 と F02 の双方に跨るため multi_contract_residual [R00, R01] に保持され、単一契約負例の credential_expired（capability.state=expired、[10] SEC005-DECLARED-EXPIRED）は F02（L4#/contracts/1/negative_classifications/5）に配置。"
+    },
+    {
+      "r2_classification_id": "HELIXSECURITY-L4-005-F01-NEG-06",
+      "contract_id": "HELIXSECURITY-L4-005-F01",
+      "candidate_classification": "time_or_expiry_source_unknown",
+      "r1_21_mapping": "SEC005_F01_EXPIRY_OBSERVATION_UNRESOLVED ([48] SEC005-TIME-UNKNOWN); [40] was unassigned in R1",
+      "r2_26_l4_mapping": [
+        "docs/helix-security/L4-basic-design/credential-value-boundary.json#/contracts/0/negative_classifications/8 (SEC005_F01_EXPIRY_OBSERVATION_UNRESOLVED)",
+        "docs/helix-security/L4-basic-design/credential-value-boundary.json#/contracts/0/negative_classifications/14 (SEC005_F01_CAPABILITY_EXPIRY_BINDING_AND_OBSERVATION_UNRESOLVED)"
+      ],
+      "change_order_step": "Step 1 + Step 6 (R2 F3: [40] SEC005-CAPABILITY-TUPLE-EXPIRY-MISSING の順序付き2-finding class化)",
+      "explanation": "observed_time=null の単一finding（[48]）を #/8 とし、capability.tuple.expiry=null で tuple欠落と期限比較不能が同時発火する [40] を順序付き2-finding class #/14 として追加。"
+    },
+    {
+      "r2_classification_id": "HELIXSECURITY-L4-005-F01-NEG-07",
+      "contract_id": "HELIXSECURITY-L4-005-F01",
+      "candidate_classification": "capability_revoked",
+      "r1_21_mapping": "Placed in F02 as SEC005_F02_CREDENTIAL_REVOKED ([7, 8, 9])",
+      "r2_26_l4_mapping": [
+        "docs/helix-security/L4-basic-design/credential-value-boundary.json#/contracts/1/negative_classifications/4 (SEC005_F02_CREDENTIAL_REVOKED)"
+      ],
+      "change_order_step": "Step 4 (F01/F02間の配置整理)",
+      "explanation": "capability.state=revoked および context.revocation_state=revoked は L4#/contracts/1/content_comparison/2（F02 失効後利用停止）に属し、L9 cases[1] [7, 8, 9] に対応する SEC005_F02_CREDENTIAL_REVOKED として配置。"
+    },
+    {
+      "r2_classification_id": "HELIXSECURITY-L4-005-F01-NEG-08",
+      "contract_id": "HELIXSECURITY-L4-005-F01",
+      "candidate_classification": "worker_direct_store_exposure",
+      "r1_21_mapping": "SEC005_F01_STORE_DIRECT_EXPOSURE + SEC005_F01_STORE_VISIBILITY_UNRESOLVED",
+      "r2_26_l4_mapping": [
+        "docs/helix-security/L4-basic-design/credential-value-boundary.json#/contracts/0/negative_classifications/2 (SEC005_F01_STORE_DIRECT_EXPOSURE)",
+        "docs/helix-security/L4-basic-design/credential-value-boundary.json#/contracts/0/negative_classifications/3 (SEC005_F01_STORE_VISIBILITY_UNRESOLVED)"
+      ],
+      "change_order_step": "Step 1 (store直接開示 [46] と store可視性unknown [47] の分離)",
+      "explanation": "store.worker_can_read_directly=true（#/2, [46]）と store.worker_can_read_directly=unknown（#/3, [47]）に対応。"
+    },
+    {
+      "r2_classification_id": "HELIXSECURITY-L4-005-F01-NEG-09",
+      "contract_id": "HELIXSECURITY-L4-005-F01",
+      "candidate_classification": "surface_raw_value_exposed",
+      "r1_21_mapping": "SEC005_F01_RAW_VALUE_EXPOSURE ([0..6])",
+      "r2_26_l4_mapping": [
+        "docs/helix-security/L4-basic-design/credential-value-boundary.json#/contracts/0/negative_classifications/0 (SEC005_F01_RAW_VALUE_EXPOSURE)"
+      ],
+      "change_order_step": "Step 1 (1対1対応)",
+      "explanation": "7出力面での生値露出（L9 cases[0] [0..6] 7件）に1対1で対応。"
+    },
+    {
+      "r2_classification_id": "HELIXSECURITY-L4-005-F01-NEG-10",
+      "contract_id": "HELIXSECURITY-L4-005-F01",
+      "candidate_classification": "surface_observation_unknown_or_redacted_only",
+      "r1_21_mapping": "SEC005_F01_VALUE_EXPOSURE_UNRESOLVED ([7..13])",
+      "r2_26_l4_mapping": [
+        "docs/helix-security/L4-basic-design/credential-value-boundary.json#/contracts/0/negative_classifications/1 (SEC005_F01_VALUE_EXPOSURE_UNRESOLVED)"
+      ],
+      "change_order_step": "Step 1 (1対1対応)",
+      "explanation": "7出力面での値非露出未観測（L9 cases[0] [7..13] 7件）に1対1で対応。"
+    },
+    {
+      "r2_classification_id": "HELIXSECURITY-L4-005-F01-NEG-11",
+      "contract_id": "HELIXSECURITY-L4-005-F01",
+      "candidate_classification": "prerequisite_007_006_violation",
+      "r1_21_mapping": "SEC005_F01_USE_CONDITION_CONFLICT ([51])",
+      "r2_26_l4_mapping": [
+        "docs/helix-security/L4-basic-design/credential-value-boundary.json#/contracts/0/negative_classifications/11 (SEC005_F01_USE_CONDITION_CONFLICT)"
+      ],
+      "change_order_step": "Step 1 (1対1対応)",
+      "explanation": "007/006 前提条件の violation（L9 cases[0] [51] SEC005-PREREQ-VIOLATION 1件）に1対1で対応。"
+    },
+    {
+      "r2_classification_id": "HELIXSECURITY-L4-005-F01-NEG-12",
+      "contract_id": "HELIXSECURITY-L4-005-F01",
+      "candidate_classification": "prerequisite_007_006_unknown",
+      "r1_21_mapping": "SEC005_F01_USE_CONDITION_UNRESOLVED ([50])",
+      "r2_26_l4_mapping": [
+        "docs/helix-security/L4-basic-design/credential-value-boundary.json#/contracts/0/negative_classifications/10 (SEC005_F01_USE_CONDITION_UNRESOLVED)"
+      ],
+      "change_order_step": "Step 1 (1対1対応)",
+      "explanation": "007/006 前提条件の unknown（L9 cases[0] [50] SEC005-PREREQ-UNKNOWN 1件）に1対1で対応。"
+    },
+    {
+      "r2_classification_id": "HELIXSECURITY-L4-005-F02-NEG-01",
+      "contract_id": "HELIXSECURITY-L4-005-F02",
+      "candidate_classification": "non_canonical_or_mismatched_predicate",
+      "r1_21_mapping": "SEC005_F02_NONCANONICAL_SECRET_PREDICATE ([4, 5])",
+      "r2_26_l4_mapping": [
+        "docs/helix-security/L4-basic-design/credential-value-boundary.json#/contracts/1/negative_classifications/2 (SEC005_F02_NONCANONICAL_SECRET_PREDICATE)"
+      ],
+      "change_order_step": "Step 1 (1対1対応)",
+      "explanation": "repository / external_sink の非canonical predicate（L9 cases[1] [4, 5] 2件）に1対1で対応。"
+    },
+    {
+      "r2_classification_id": "HELIXSECURITY-L4-005-F02-NEG-02",
+      "contract_id": "HELIXSECURITY-L4-005-F02",
+      "candidate_classification": "canonical_predicate_ref_unresolved",
+      "r1_21_mapping": "SEC005_F02_PREDICATE_BINDING_UNRESOLVED ([6])",
+      "r2_26_l4_mapping": [
+        "docs/helix-security/L4-basic-design/credential-value-boundary.json#/contracts/1/negative_classifications/3 (SEC005_F02_PREDICATE_BINDING_UNRESOLVED)"
+      ],
+      "change_order_step": "Step 1 (1対1対応)",
+      "explanation": "canonical predicate Ref の項目欠落（L9 cases[1] [6] 1件）に1対1で対応。"
+    },
+    {
+      "r2_classification_id": "HELIXSECURITY-L4-005-F02-NEG-03",
+      "contract_id": "HELIXSECURITY-L4-005-F02",
+      "candidate_classification": "secret_detected_in_repository_or_external_sink",
+      "r1_21_mapping": "SEC005_F02_SECRET_INSPECTION_DETECTED ([0, 1])",
+      "r2_26_l4_mapping": [
+        "docs/helix-security/L4-basic-design/credential-value-boundary.json#/contracts/1/negative_classifications/0 (SEC005_F02_SECRET_INSPECTION_DETECTED)"
+      ],
+      "change_order_step": "Step 1 (1対1対応)",
+      "explanation": "repository / external_sink の secret 検出（L9 cases[1] [0, 1] 2件）に1対1で対応。"
+    },
+    {
+      "r2_classification_id": "HELIXSECURITY-L4-005-F02-NEG-04",
+      "contract_id": "HELIXSECURITY-L4-005-F02",
+      "candidate_classification": "inspection_unavailable_or_unobserved_or_redacted_only",
+      "r1_21_mapping": "SEC005_F02_SECRET_INSPECTION_UNRESOLVED ([2, 3]) + SEC005_F02_INSPECTION_MATERIAL_UNRESOLVED ([13])",
+      "r2_26_l4_mapping": [
+        "docs/helix-security/L4-basic-design/credential-value-boundary.json#/contracts/1/negative_classifications/1 (SEC005_F02_SECRET_INSPECTION_UNRESOLVED)",
+        "docs/helix-security/L4-basic-design/credential-value-boundary.json#/contracts/1/negative_classifications/8 (SEC005_F02_INSPECTION_MATERIAL_UNRESOLVED)"
+      ],
+      "change_order_step": "Step 4 (個別検査report未観測 [2, 3] と inspection_source_state 資料状態unknown [13] の分離)",
+      "explanation": "個別検査reportの未観測（#/1, [2, 3] 2件）と context.inspection_source_state=unknown（#/8, [13] 1件）の2つの単一finding classに対応。"
+    },
+    {
+      "r2_classification_id": "HELIXSECURITY-L4-005-F02-NEG-05",
+      "contract_id": "HELIXSECURITY-L4-005-F02",
+      "candidate_classification": "revoked_or_expired_capability_subsequent_use",
+      "r1_21_mapping": "SEC005_F02_CREDENTIAL_REVOKED ([7, 8, 9]) + SEC005_F02_CREDENTIAL_EXPIRED ([10]) + SEC005_F02_CAPABILITY_LIFECYCLE_UNRESOLVED ([11]) + SEC005_F02_REVOCATION_MATERIAL_UNRESOLVED ([12])",
+      "r2_26_l4_mapping": [
+        "docs/helix-security/L4-basic-design/credential-value-boundary.json#/contracts/1/negative_classifications/4 (SEC005_F02_CREDENTIAL_REVOKED)",
+        "docs/helix-security/L4-basic-design/credential-value-boundary.json#/contracts/1/negative_classifications/5 (SEC005_F02_CREDENTIAL_EXPIRED)",
+        "docs/helix-security/L4-basic-design/credential-value-boundary.json#/contracts/1/negative_classifications/6 (SEC005_F02_CAPABILITY_LIFECYCLE_UNRESOLVED)",
+        "docs/helix-security/L4-basic-design/credential-value-boundary.json#/contracts/1/negative_classifications/7 (SEC005_F02_REVOCATION_MATERIAL_UNRESOLVED)"
+      ],
+      "change_order_step": "Step 4 (revoked / expired / capability_lifecycle_unresolved / revocation_material_unresolved の4単一finding classへの分離)",
+      "explanation": "L9 cases[1] [7..12] の4つの独立した finding code / state に対応。"
+    },
+    {
+      "r2_classification_id": "HELIXSECURITY-L4-005-F02-NEG-06",
+      "contract_id": "HELIXSECURITY-L4-005-F02",
+      "candidate_classification": "raw_value_copied_to_evidence_or_diagnostic",
+      "r1_21_mapping": "Output non-copy invariant across all rejections + covered by SEC005_F01_RAW_VALUE_EXPOSURE / SEC005_F02_SECRET_INSPECTION_DETECTED",
+      "r2_26_l4_mapping": [
+        "docs/helix-security/L4-basic-design/credential-value-boundary.json#/contracts/1/invariant_non_class_dispositions/0 (SEC005_F02_RAW_VALUE_NON_COPY_INVARIANT)"
+      ],
+      "change_order_step": "Step 5 (出力不変条件として L4#/contracts/1/invariant_non_class_dispositions/0 に明記)",
+      "explanation": "棄却時の出力不変条件（原値を証跡・返却候補・message/pointerへ複写しない）であり、独立入力負例classではなく全ケース共通の事後条件（L4#/contracts/1/output_meanings/1）として L4#/contracts/1/invariant_non_class_dispositions/0 に明記。"
+    },
+    {
+      "r2_classification_id": "HELIXSECURITY-L4-005-B01-NEG-01",
+      "contract_id": "HELIXSECURITY-L4-005-B01",
+      "candidate_classification": "os027_initial_path_with_credential_requested",
+      "r1_21_mapping": "Excluded in R1 without L4 destination (flagged by R1 F2 Major)",
+      "r2_26_l4_mapping": [
+        "docs/helix-security/L4-basic-design/credential-value-boundary.json#/contracts/2/negative_classifications_disposition/families/0 (SEC005_B01_OUTSIDE_CREDENTIAL_FREE_SCOPE)",
+        "docs/helix-security/L4-basic-design/credential-value-boundary.json#/remaining/5"
+      ],
+      "change_order_step": "Step 5 (R2 F2: L4#/contracts/2/negative_classifications_disposition および L4#/remaining/5・L9#/remaining/5 に行き先・理由・戻り先・PR-B扱いを明記)",
+      "explanation": "os027_initial_path + credential_requested=true は L9 では multi_contract_residual.positive_cases[1]（SEC005-OS027-CREDENTIAL-REQUESTED-OUTSIDE-SCOPE）で initial_path_status=outside_credential_free_scope かつ F01/F02 充足の統合経路分離として検証されるため、L4#/contracts/2/negative_classifications_disposition/families/0 と L4#/remaining/5・L9#/remaining/5 に固定。"
+    },
+    {
+      "r2_classification_id": "HELIXSECURITY-L4-005-B01-NEG-02",
+      "contract_id": "HELIXSECURITY-L4-005-B01",
+      "candidate_classification": "blanket_deny_of_authorized_ordinary_credential_use",
+      "r1_21_mapping": "Verified via positive cases in L9 cases[2].positive_cases[0..1]",
+      "r2_26_l4_mapping": [
+        "docs/helix-security/L4-basic-design/credential-value-boundary.json#/contracts/2/negative_classifications_disposition/families/1",
+        "docs/helix-security/L4-basic-design/credential-value-boundary.json#/remaining/5"
+      ],
+      "change_order_step": "Step 5 (R2 F2: L4#/contracts/2/negative_classifications_disposition および remaining/5 に明記)",
+      "explanation": "既許可の通常credential利用を一律拒否しないことは L9 cases[2].positive_cases[0..1] および L8 cases[2].positive_cases[0..1] の正例オラクル（decision=allow_candidate）で検証されるため、member 0 の負例class行を作らず disposition と remaining/5 に記録。"
+    },
+    {
+      "r2_classification_id": "HELIXSECURITY-L4-005-B01-NEG-03",
+      "contract_id": "HELIXSECURITY-L4-005-B01",
+      "candidate_classification": "raw_value_disclosure_from_authenticated_ordinary_use",
+      "r1_21_mapping": "Covered by F01 SEC005_F01_RAW_VALUE_EXPOSURE and F02 SEC005_F02_SECRET_INSPECTION_DETECTED",
+      "r2_26_l4_mapping": [
+        "docs/helix-security/L4-basic-design/credential-value-boundary.json#/contracts/2/negative_classifications_disposition/families/2",
+        "docs/helix-security/L4-basic-design/credential-value-boundary.json#/contracts/0/negative_classifications/0 (SEC005_F01_RAW_VALUE_EXPOSURE)",
+        "docs/helix-security/L4-basic-design/credential-value-boundary.json#/remaining/5"
+      ],
+      "change_order_step": "Step 5 (R2 F2: L4#/contracts/2/negative_classifications_disposition および remaining/5 に明記)",
+      "explanation": "通常利用を根拠とする生値開示は F01 SEC005_F01_RAW_VALUE_EXPOSURE および F02 SEC005_F02_SECRET_INSPECTION_DETECTED で拒否されるため、disposition と remaining/5 に記録。"
+    },
+    {
+      "r2_classification_id": "HELIXSECURITY-L4-005-B01-NEG-04",
+      "contract_id": "HELIXSECURITY-L4-005-B01",
+      "candidate_classification": "general_authorization_or_full_os027_eligibility_generated_from_credential_not_requested",
+      "r1_21_mapping": "Verified via L9 cases[2].positive_cases[2..3] and multi_contract_residual.positive_cases[0]",
+      "r2_26_l4_mapping": [
+        "docs/helix-security/L4-basic-design/credential-value-boundary.json#/contracts/2/negative_classifications_disposition/families/3",
+        "docs/helix-security/L4-basic-design/credential-value-boundary.json#/remaining/5"
+      ],
+      "change_order_step": "Step 5 (R2 F2: L4#/contracts/2/negative_classifications_disposition および remaining/5 に明記)",
+      "explanation": "credential_not_requested_only から一般認可や 027 全体適格性を自己生成しないことは L4#/contracts/2/qualification_rule および L9 cases[2].positive_cases[2..3] で検証されるため、disposition と remaining/5 に記録。"
+    },
+    {
+      "r2_classification_id": "HELIXSECURITY-L4-005-B01-NEG-05",
+      "contract_id": "HELIXSECURITY-L4-005-B01",
+      "candidate_classification": "ordinary_use_f01_f02_boundary_insufficiency_or_overbroad_stop",
+      "r1_21_mapping": "Covered by F01 (17 classes), F02 (9 classes), and L9 multi_contract_residual.negative_cases[0..3]",
+      "r2_26_l4_mapping": [
+        "docs/helix-security/L4-basic-design/credential-value-boundary.json#/contracts/2/negative_classifications_disposition/families/4",
+        "docs/helix-security/L4-basic-design/credential-value-boundary.json#/remaining/5"
+      ],
+      "change_order_step": "Step 5 (R2 F2: L4#/contracts/2/negative_classifications_disposition および remaining/5 に明記)",
+      "explanation": "通常利用時の F01/F02 境界不足と局所停止範囲は F01（17分類）・F02（9分類）および L9 multi_contract_residual.negative_cases[0..3] で検証されるため、disposition と remaining/5 に記録。"
+    },
+    {
+      "r2_classification_id": "HELIXSECURITY-L4-005-B01-NEG-06",
+      "contract_id": "HELIXSECURITY-L4-005-B01",
+      "candidate_classification": "credential_requested_or_path_selection_unresolved",
+      "r1_21_mapping": "Excluded in R1 without L4 destination (flagged by R1 F2 Major; L8 SEC005-L8-INITIAL-UNKNOWN)",
+      "r2_26_l4_mapping": [
+        "docs/helix-security/L4-basic-design/credential-value-boundary.json#/contracts/2/negative_classifications_disposition/families/5 (SEC005_B01_USE_CONTEXT_OR_REQUEST_FLAG_UNRESOLVED)",
+        "docs/helix-security/L4-basic-design/credential-value-boundary.json#/remaining/6"
+      ],
+      "change_order_step": "Step 5 (R2 F2: L4#/contracts/2/negative_classifications_disposition/families/5 および L4#/remaining/6・L9#/remaining/6 に固定)",
+      "explanation": "use_context または credential_requested が unknown の単体境界（L8 SEC005-L8-INITIAL-UNKNOWN および SEC005-L8-PLAN-NULL/TEXT/ABSENT）について、PR-B が L4 無変更で L5 failure_rules / L8 割当を結線できるよう L4#/contracts/2/negative_classifications_disposition/families/5 および L4#/remaining/6・L9#/remaining/6 に固定。"
+    }
+  ]
 }
