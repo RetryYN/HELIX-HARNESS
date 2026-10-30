@@ -10,6 +10,12 @@ authority_effect: none
 全negative assignmentの統計は [Issue #3510 comment 6531272911](https://github.com/RetryYN/HELIX-HARNESS/issues/3510#issuecomment-6531272911) に対応し、全体182件のうち113件assigned、69件unassigned。`F03_REQUIRED_PAIR_MISSING` 自体の所属はこの2 witness pairである。全体数をclassの所属数として扱わない。
 
 
+## 上流で確定する範囲とticket候補の差
+
+固定導出はorigin不明とtrace欠落を別の観測として保持し、双方をFull Reverse復旧候補とする。HARNESSは条件の意味を扱い、実ticket発行はOSの責務であり、候補から実ticketやReverse実行を生成しない。
+
+比較後、origin欠落のL8/L9期待はtrigger `[origin_missing]`、ticket candidate `Reverse` だが、trace欠落はtrigger `[]`、ticket candidate `none` だった。L3の発行条件列挙はtrace欠落を独立したticket発行条件として明記していないため、この差を正誤と確定せず、trace欠落が独立triggerまたはticket candidateを生む条件を未決として残す。Full Reverse復旧候補と実ticket発行を同一視しない。
+
 ## 行ごとの比較と未決差異
 
 ### `origin=null` — `H003-F03-ORIGIN-MISSING`

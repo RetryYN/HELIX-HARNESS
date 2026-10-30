@@ -85,7 +85,7 @@
     "oracles": [
       "python3 -m json.tool on blind-derivation.json, comparison.json, and SCF-B-0188.json",
       "SHA-256 of blind-derivation.json equals fixed source artifact SHA-256 489d2aa4786436b7cfc10b3dc4be9f2c5019727c60291d82293822e341fe60e4",
-      "SHA-256 of comparison.json: 7a3e329f91540fe8b0280d8304d4d2fe6c932cb71cfb64472eb0fffda416d7ff",
+      "SHA-256 of comparison.json: 5a9881dcad1e4fcd3460eb57d4878f41a469e39940042550b9c2befe69587b49",
       "python3 -B scaffold/tools/scfctl.py validate",
       "python3 -B scaffold/tools/scfctl.py stale",
       "git diff --check"
