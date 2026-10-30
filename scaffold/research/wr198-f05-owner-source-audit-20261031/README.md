@@ -3,7 +3,7 @@
 status: scaffold candidate（調査証跡、未採用・未review）  
 authority_effect: none  
 PR class: `design_verification`  
-base: `be407b48779ea1125f12a1a78f998c73316ed2e7`  
+base: `623f2abc6e0022f5aa781af5d1e21c4babcab7b9`
 request: `WR198-F05-GAP-PROPOSAL-BODY-SOURCE`（Issue #3510、Claude査定 comment `6526378182`、request SHA-256 `fe9469e2f644d96210ee409a5fe647364a9dd0a39b942789d96b239aceaae102`）
 
 ## 対象と結論
@@ -19,7 +19,7 @@ SHA-256はこの記録を作成したmain worktreeで計算した。pointerは�
 | 対象 | revision / SHA-256 | 調査した箇所と観測 |
 |---|---|---|
 | WR198依頼（local handoff、main tree外） | request base `32ba19e67227c51d343831f22cea511b204ffc41`; SHA-256 `fe9469e2f644d96210ee409a5fe647364a9dd0a39b942789d96b239aceaae102` | `scaffold/review-handoff/local/brain032-l8-d27-3547-20261023/root-wr198-work-request-r1.json`。HARNESS 009 L4/L9のsource探査を依頼。外部owner bodyの所在を含むと仮定しない。 |
-| 現行main | `be407b48779ea1125f12a1a78f998c73316ed2e7` | 調査・候補作成基点。依頼記載baseとの差分があるため、以下のmain上の現行hash/pointerで照合した。 |
+| 現行main（read-after） | `623f2abc6e0022f5aa781af5d1e21c4babcab7b9` | #3932 merge後に候補をrebaseし、binding空きIDを確認して再検証した基点。依頼記載baseとの差分があるため、以下のmain上の現行hash/pointerで照合した。 |
 | HARNESS L3 | SHA-256 `a3b907cdc316117d4684632f9a1cbf36125eb6e6172f9cfc286060617583d7be` | `docs/helix-harness/L3-requirements/functional-requirements.json#/requirements/27`。source/template/revision/field・義務/evidence/scopeと不足4候補の保持を示す。ownerの原適用contract質問本文や具体body/operandは収録されていない。 |
 | HARNESS L10 | SHA-256 `fc58ad2268746d7924ac9be33e8f3f75e6d3c2cc619e27fbc1ddc34edd065cb2` | `docs/helix-harness/L10-verification/functional-verification.json#/cases/27`。定義欠落と値未決の混同防止を示す。具体のF05 owner statement/bodyや有限期待値を供給しない。 |
 | HARNESS L4 | SHA-256 `009da68d79547770e32a91362a410e014ed1951e0cfe9f67a6f6b31fd4c16824` | `docs/helix-harness/L4-basic-design/product-template-application.json#/field_semantic_evidence_contract/gap_proposition_body`。role別原question、non-empty `requested_operand_refs` / `gap_basis_refs`、同一scope/source/body対応の既存guard。これは設計契約で、F05の当該ownerからの実statement/bodyではない。 |
@@ -58,16 +58,16 @@ HDECと承認済みL3/L10はsource/revision/scopeの保持、欠落と未決の�
 
 ## 実施した静的確認
 
-latest-main worktreeで対象ファイルのhash/pointerを確認し、関連テキスト検索、旧資産台帳と失敗監査を照合した。L4/L9本文、L3/L10、既存freezeは変更していない。L4/L9のhashは確認前後とも上表の値である。
+最新main `623f2abc6e0022f5aa781af5d1e21c4babcab7b9` のclean detached worktreeでread-after基準を取り、候補を載せたworktreeでも再実行した。L4/L9本文、L3/L10、既存freezeは変更していない。clean mainと候補worktreeのL4/L9 hashは上表の値で一致した。
 
-- `python3 -m json.tool scaffold/bindings/SCF-B-0178.json`: exit 0。
-- `python3 -B scaffold/tools/scfctl.py validate`: `bindings=167 fail=0`。
+- `python3 -m json.tool scaffold/bindings/SCF-B-0179.json`: exit 0。
+- `python3 -B scaffold/tools/scfctl.py validate`: `bindings=168 fail=0`。SCF-B-0178は#3932で使用済みのため、本候補をSCF-B-0179へ再採番した。
 - `python3 -B scaffold/tools/scfctl.py stale`: `stale=0`。
 - `git diff --check`: exit 0。
 - 指定された `check-child`（HARNESS L4/L9とL5/L8）: `passed=true`、L4/L9=true、L5/L8=true、negative_4way=true、failures=0。これはcheckerの構造照合結果で、F05 owner oracleやruntime動作の証明ではない。
-- 既存freezeの `check-freeze --root . --worktree` は、作業前に確認した最新mainのbaselineと同じく、以下3件すべて exit 1 / `all_mechanical_matched=false`。この作業はL4/L9を含む凍結対象を変更していない。
+- 既存freezeの `check-freeze --root . --worktree` はclean mainと候補worktreeの双方で、以下3件すべてexit 1 / `all_mechanical_matched=false`となり、pin/countの不一致も同一だった。この作業はL4/L9を含む凍結対象を変更していない。
   - `h009-fn5-function-pair-freeze-2026-10-28.json`: pinned L5 expected `e4780a713ec9703194913a44d3f12803a7d117d48176fc1e469195059d763740` / actual `f5da0e585b3bb91cf5b07d7d3c1e124b9584718395d8b07704cede6e2523ce1c`; L8 expected `e8d02da7d49bde75f2ae8b69bb4ffaed8d038fc60295a3b2bc5844c2d1ae11fa` / actual `65aa4c2e120e6636cc3f3eb260fec32b06b1b44a6f17b21f785dc0d63fa767ce`。既存count差分もあり、L5 failure_rules 107 recorded/108 computed、L8 negative rows 106/107、additional unit cases 25/54。
   - `h009-fn5-application-contract-recipient-refreeze-2026-10-29.json`: L5 expected `8eaf2ec3914857c08191831423259c417927e61e30caee53d2fd9dd6af162dfb` / actual `f5da0e585b3bb91cf5b07d7d3c1e124b9584718395d8b07704cede6e2523ce1c`; L8 expected `d3beadc3b1fca94117e8d57ca601fa961244c6a66f7ed2cf69e237a0da604ee9` / actual `65aa4c2e120e6636cc3f3eb260fec32b06b1b44a6f17b21f785dc0d63fa767ce`。既存count差分はL5 failure_rules 107/108、L8 negative rows 106/107、additional unit cases 26/54。
-  - `h009-fn5-source-content-failure-writer-pr-candidate-freeze-2026-10-29.json`: L4 expected `2384d2fec666055a1fbef2f5ff3e4752ba2dd60a12543b7663fae8f814332b94` / actual `4d94e1d4e98c69dbad830b9bb699cdebaab2b8ad51e24e6733ef8b798ad35cef`; L5 expected `c91d90bb018b86889e951739e6860187f7d45422676b863db8510137ddac45bf` / actual `f5da0e585b3bb91cf5b07d7d3c1e124b9584718395d8b07704cede6e2523ce1c`; L8 expected `5bd6786b06ec804f43080c5999544b101774751f82464c9a42a775443a6a1768` / actual `65aa4c2e120e6636cc3f3eb260fec32b06b1b44a6f17b21f785dc0d63fa767ce`。既存count差分はL8 additional unit cases 48/54。
+  - `h009-fn5-source-content-failure-writer-pr-candidate-freeze-2026-10-29.json`: L9 (`docs/helix-harness/L9-integration-verification/product-template-application.json`) expected `2384d2fec666055a1fbef2f5ff3e4752ba2dd60a12543b7663fae8f814332b94` / actual `4d94e1d4e98c69dbad830b9bb699cdebaab2b8ad51e24e6733ef8b798ad35cef`; L5 expected `c91d90bb018b86889e951739e6860187f7d45422676b863db8510137ddac45bf` / actual `f5da0e585b3bb91cf5b07d7d3c1e124b9584718395d8b07704cede6e2523ce1c`; L8 expected `5bd6786b06ec804f43080c5999544b101774751f82464c9a42a775443a6a1768` / actual `65aa4c2e120e6636cc3f3eb260fec32b06b1b44a6f17b21f785dc0d63fa767ce`。既存count差分はL8 additional unit cases 48/54。
 
 freeze manifestは再生成・修正していない。旧CLI/hook/runtime/test/CIおよび製品runtimeは実行していない。

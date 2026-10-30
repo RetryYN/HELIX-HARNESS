@@ -119,7 +119,7 @@
       "forbidden_write_scope"
     ],
     "oracles": [
-      "python3 -m json.tool scaffold/bindings/SCF-B-0178.json",
+      "python3 -m json.tool scaffold/bindings/SCF-B-0179.json",
       "python3 -B scaffold/tools/scfctl.py validate",
       "python3 -B scaffold/tools/scfctl.py stale",
       "python3 scaffold/tools/design_verification_checker.py check-child --root . --l4 docs/helix-harness/L4-basic-design/product-template-application.json --l9 docs/helix-harness/L9-integration-verification/product-template-application.json --l5 docs/helix-harness/L5-detail-design/product-template-application.json --l8 docs/helix-harness/L8-unit-verification/product-template-application.json",
