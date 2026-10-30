@@ -23,8 +23,23 @@ def unwrap(value):
         return [unwrap(v) for v in value]
     return value
 
+def key_paths(value, names, prefix=""):
+    found = []
+    if isinstance(value, dict):
+        for key, child in value.items():
+            path = f"{prefix}/{key}"
+            if any(token in key.lower() for token in names):
+                found.append(path)
+            found.extend(key_paths(child, names, path))
+    elif isinstance(value, list):
+        for index, child in enumerate(value):
+            found.extend(key_paths(child, names, f"{prefix}/{index}"))
+    return found
+
 def main() -> None:
     comparison = load(HERE / "comparison.json")
+    assignment_audit = load(HERE / "assignment-comparison-r1.json")
+    assert sha(HERE / "comparison.json") == assignment_audit["prior_comparison"]["sha256"]
     pins = comparison["source_pins"]
     for item in pins.values():
         assert sha(ROOT / item["path"]) == item["sha256"], item["path"]
@@ -55,7 +70,53 @@ def main() -> None:
         assert all(projected[key] == l9[case_id][key] for key in projected), case_id
     assert comparison["L8_L9_existing_case_projection"]["matched_rows"] == 22
     assert comparison["L8_L9_existing_case_projection"]["mismatched_rows"] == 0
-    print("ok: fixed blind, 7 source pins, 17 candidate pointers (12 supported candidates / 5 unresolved), 22 typed L8-to-L9 expected projections")
+
+    l9_rows = l9_case["negative_cases"]
+    blind_by_id = {row["l9_row_id"]: row for row in rows}
+    assignment_rows = assignment_audit["rows"]
+    assert len(l9_rows) == len(assignment_rows) == 17
+    relation_counts = {
+        "assigned_class_matches_blind_candidate": 0,
+        "both_unassigned": 0,
+        "l9_assignment_conflicts_with_blind_class_unresolved": 0,
+    }
+    for index, source_row in enumerate(l9_rows):
+        audit_row = assignment_rows[index]
+        row_id = source_row["id"]
+        blind_row = blind_by_id[row_id]
+        assignment = source_row.get("negative_class_assignment")
+        l9_class = assignment.get("classification") if assignment else None
+        blind_class = blind_row.get("l4_class_id")
+        assert audit_row["l9_pointer"] == f"/cases/1/negative_cases/{index}"
+        assert audit_row["l9_row_id"] == row_id
+        assert audit_row["l9_assignment_classification"] == l9_class
+        if blind_class is not None and blind_class == l9_class:
+            relation = "assigned_class_matches_blind_candidate"
+        elif blind_class is None and l9_class is None:
+            relation = "both_unassigned"
+        else:
+            relation = "l9_assignment_conflicts_with_blind_class_unresolved"
+        assert audit_row["comparison"] == relation, row_id
+        relation_counts[relation] += 1
+        assert audit_row["formed_finding"] == "unknown"
+        assert audit_row["observed_processing_result"] == "not present in inspected source fields"
+    assert relation_counts == assignment_audit["assignment_comparison_counts"]
+    assert relation_counts == {
+        "assigned_class_matches_blind_candidate": 12,
+        "both_unassigned": 2,
+        "l9_assignment_conflicts_with_blind_class_unresolved": 3,
+    }
+
+    l3 = load(ROOT / pins["L3"]["path"])["requirements"][64]
+    l10 = load(ROOT / pins["L10"]["path"])["cases"][64]
+    l8_f01 = l8_doc["cases"][1]
+    assert l3["oracle_ref"] == l10["id"] == l8_f01["l10_ref"]
+    row_level_keys = {"oracle", "citation", "test_ref", "test_id", "u_id"}
+    assert not key_paths(l8_f01["cases"], row_level_keys)
+    contract_record = assignment_audit["oracle_and_u_id_scope"]["contract_oracle"]
+    assert contract_record["value"] == l3["oracle_ref"]
+    assert contract_record["l10_id"] == l10["id"]
+    print("ok: fixed blind and comparison bytes, 7 source pins, 22 L8/L9 expected projections, 17 assignment rows (12 match / 2 both unassigned / 3 discrepancy), contract oracle present and per-U-ID oracle/test citation absent")
 
 if __name__ == "__main__":
     main()

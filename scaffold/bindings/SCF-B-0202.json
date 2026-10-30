@@ -86,6 +86,8 @@
     "scaffold/research/wr241-psp-f01-negative-candidates-20261031/comparison.json",
     "scaffold/research/wr241-psp-f01-negative-candidates-20261031/validate_candidate.py",
     "scaffold/research/wr241-psp-f01-negative-candidates-20261031/verification-summary.json",
+    "scaffold/research/wr241-psp-f01-negative-candidates-20261031/assignment-comparison-r1.json",
+    "scaffold/research/wr241-psp-f01-negative-candidates-20261031/verification-summary-r1.json",
     "scaffold/bindings/SCF-B-0202.json"
   ],
   "verification": {
@@ -98,8 +100,10 @@
     ],
     "oracles": [
       "All seven source file hashes match the base source bytes; fixed blind SHA-256 is 5d69a52e4fd4bce2b76f23c593e597e71f28988968fe955aadc20c6e8106e7e4.",
-      "Static validator SHA-256 41f20072f8109d6509e79acde995669d3be74bcf042208b9f6d99002e6a2aa3c verifies all 17 candidate pointers, 12/5 partition and typed projection equality for 22 L8/L9 case pairs.",
-      "Static validator and scfctl/check-child/diff-check outcomes are recorded in scaffold/research/wr241-psp-f01-negative-candidates-20261031/verification-summary.json."
+      "Static validator SHA-256 c9e52389d442582336fc37d69018824c03ef413fed2ae1ab1e1eea3829cdc434 checks frozen artifact bytes, source pins, 22 expected projections, 17 assignment comparisons, and contract-vs-U-ID oracle/citation scope.",
+      "Static validator and scfctl/check-child/diff-check outcomes are recorded in scaffold/research/wr241-psp-f01-negative-candidates-20261031/verification-summary.json.",
+      "R1 comparison supplement scaffold/research/wr241-psp-f01-negative-candidates-20261031/assignment-comparison-r1.json records the 12/2/3 assignment comparison and preserves the prior comparison.json bytes.",
+      "R1 verification outcomes are recorded in scaffold/research/wr241-psp-f01-negative-candidates-20261031/verification-summary-r1.json."
     ],
     "negative_cases": [
       "No formal U-ID rows are added in absence of per-F01 oracle ID and test citation.",
