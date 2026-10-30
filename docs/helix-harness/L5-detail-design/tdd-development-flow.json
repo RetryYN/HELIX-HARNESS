@@ -3580,6 +3580,167 @@
             ]
           }
         ]
+      },
+      "candidate_classification_design": {
+        "status": "candidate_only_not_approved_or_executed",
+        "scope": "HARNESS-L5/L8-015-F01の候補だけ。既存L5 contract/semantic rules、L4/L9、L8のcanonical unit_case_idsは変更しない。formal L5/L8 designや独立oracleを成立させない。",
+        "fixed_artifact": {
+          "path": "scaffold/research/wr223-f01-l5-l8-20261031/source/f01-blind-draft-r2.json",
+          "sha256": "fa047d5d871913b696ba5e01d9227ce13a68bc827ff6e8c66cc29d8e69d7e647",
+          "issue_comment": "https://github.com/RetryYN/HELIX-HARNESS/issues/3510#issuecomment-6531844362",
+          "authority_boundary": "source-only meaning scope; not a formal oracle, schema, classifier, or approval."
+        },
+        "preserved_fixed_artifact_history": [
+          {
+            "path": "scaffold/research/wr223-f01-l5-l8-20261031/source/f01-blind-draft-r1.json",
+            "sha256": "e4f7be9befded4f2398209eac0d3ef226c0cd62cefa5e47d013a18e87f265bbd"
+          },
+          {
+            "path": "scaffold/research/wr223-f01-l5-l8-20261031/source/f01-blind-draft-r2.json",
+            "sha256": "fa047d5d871913b696ba5e01d9227ce13a68bc827ff6e8c66cc29d8e69d7e647"
+          }
+        ],
+        "candidate_source_pins": [
+          {
+            "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+            "revision": "a715e777bd59291b26f09c0c1c5481273c6eba2e",
+            "sha256": "62a954e9244eb184bf3c2c3c1ab6b27763b52ce4a40041debbd9e13eed7d6689",
+            "pointer": "/requirements/40",
+            "claim": "承認済みreviewed headのL3 F01 row。base rowとの同一性はauditで確認。"
+          },
+          {
+            "path": "docs/helix-harness/L10-verification/functional-verification.json",
+            "revision": "a715e777bd59291b26f09c0c1c5481273c6eba2e",
+            "sha256": "e2580d52e8628d4755973e745528702e5cce66ab829c3f9c6f26c5ceb6aace7c",
+            "pointer": "/cases/40",
+            "claim": "承認済みreviewed headのL10 F01 case。base caseとの同一性はauditで確認。"
+          },
+          {
+            "path": "docs/helix-harness/L4-basic-design/tdd-development-flow.json",
+            "revision": "dd5931cfff4ff786da2ced44de2a40529edf7b71",
+            "sha256": "8dfbe628d7beb9b449a3ec48e98b7ed89ebbb4be1ea9b3f061dfd02ba464ea2f",
+            "pointer": "/contracts/1",
+            "claim": "F01の既存L4 output contractとfailure classifications。"
+          },
+          {
+            "path": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json",
+            "revision": "dd5931cfff4ff786da2ced44de2a40529edf7b71",
+            "sha256": "3d2257ee9d0f33f367377a3c379af9852973dc11d87c1f23f8f193724adebeb2",
+            "pointer": "/cases/1",
+            "claim": "F01の既存normal/negative witnessと期待を候補照合に参照。"
+          }
+        ],
+        "positive_candidate_rule": {
+          "candidate_witness_id": "F01-CANDIDATE-POSITIVE-NORMAL",
+          "source_fixture_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/1/normal_fixture/input",
+          "candidate_observations": [
+            "L6契約/L5詳細設計と対test/oracleが実装前に定義・凍結されている。",
+            "契約・設計・test/oracleと対象identity/revision/scopeが対応する。",
+            "freezeがbody changeより前。実Red観測とimplementation successは供給しない。"
+          ],
+          "l4_output_ref": "docs/helix-harness/L4-basic-design/tdd-development-flow.json#/contracts/1/output_contract",
+          "l9_existing_expected_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/1/expected_material",
+          "candidate_expected_projection": {
+            "pair_binding": "synthetic_match",
+            "freeze_before_body": "synthetic_order_supported",
+            "pre_body_red": "missing",
+            "implementation_success": "not_generated"
+          },
+          "branch_boundary": "上流sourceにpositive semantic branchは示されないため1 witnessだけ置く。"
+        },
+        "negative_candidate_rules": [
+          {
+            "code": "freeze_missing",
+            "candidate_witness_id": "F01-CANDIDATE-NEGATIVE-FREEZE-MISSING",
+            "source_fixture_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/1/negative_cases/0/source_packet/owner_material",
+            "fixed_meaning_basis": "凍結不足を保持。",
+            "candidate_observations": "L3 F01はL6/L5と対test/oracleを先に定義・凍結する義務。freeze=nullは未決の選択ではなく必須記録の未供給。pair_bindingにも影響するが、L3-F01の順序（定義・凍結後に対象へ結ぶ）からfreeze_before_bodyをL4の設計選択として採る。L4本文だけでは一意に決まらない。",
+            "l4_design_expected_ref": "docs/helix-harness/L4-basic-design/tdd-development-flow.json#/contracts/1/negative_classifications/0",
+            "l9_existing_expected_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/1/negative_cases/0",
+            "candidate_expected_projection": {
+              "candidate_classification_code": "freeze_missing",
+              "candidate_axis": "freeze_before_body",
+              "candidate_state": "missing",
+              "backflow_component": "FrozenContractIntake",
+              "side_effect_count": 0
+            },
+            "witness_boundary": "source witness and expected projection remain separate; this row is not added to canonical L8 unit_case_ids."
+          },
+          {
+            "code": "test_after_body",
+            "candidate_witness_id": "F01-CANDIDATE-NEGATIVE-TEST-AFTER-BODY",
+            "source_fixture_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/1/negative_cases/1/source_packet/owner_material",
+            "fixed_meaning_basis": "本体sequence3の後付け凍結を拒否。",
+            "candidate_observations": "freezeとbodyは同じr1で、sequence 4の凍結がsequence 3の本体より後。必要な順序との同revision内の相反である。",
+            "l4_design_expected_ref": "docs/helix-harness/L4-basic-design/tdd-development-flow.json#/contracts/1/negative_classifications/1",
+            "l9_existing_expected_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/1/negative_cases/1",
+            "candidate_expected_projection": {
+              "candidate_classification_code": "test_after_body",
+              "candidate_axis": "freeze_before_body",
+              "candidate_state": "conflict",
+              "backflow_component": "FrozenContractIntake",
+              "side_effect_count": 0
+            },
+            "witness_boundary": "source witness and expected projection remain separate; this row is not added to canonical L8 unit_case_ids."
+          },
+          {
+            "code": "foreign_oracle_revision",
+            "candidate_witness_id": "F01-CANDIDATE-NEGATIVE-FOREIGN-ORACLE-REVISION",
+            "source_fixture_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/1/negative_cases/2/source_packet/owner_material",
+            "fixed_meaning_basis": "対oracle版不一致を保持。",
+            "candidate_observations": "oracle_refのみ同scopeのr0へ変わり、元のr1対契約から異なるrevisionを指す。",
+            "l4_design_expected_ref": "docs/helix-harness/L4-basic-design/tdd-development-flow.json#/contracts/1/negative_classifications/2",
+            "l9_existing_expected_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/1/negative_cases/2",
+            "candidate_expected_projection": {
+              "candidate_classification_code": "foreign_oracle_revision",
+              "candidate_axis": "pair_binding",
+              "candidate_state": "stale",
+              "backflow_component": "FrozenContractIntake",
+              "side_effect_count": 0
+            },
+            "witness_boundary": "source witness and expected projection remain separate; this row is not added to canonical L8 unit_case_ids."
+          },
+          {
+            "code": "freeze_as_red",
+            "candidate_witness_id": "F01-CANDIDATE-NEGATIVE-FREEZE-AS-RED",
+            "source_fixture_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/1/negative_cases/3/source_packet/owner_material",
+            "fixed_meaning_basis": "定義凍結は実Redではない。",
+            "candidate_observations": "定義凍結はbehaviorを実観測したRedではなく、L3/L4 F02が要求するRed観測材料が不足する。",
+            "l4_design_expected_ref": "docs/helix-harness/L4-basic-design/tdd-development-flow.json#/contracts/1/negative_classifications/3",
+            "l9_existing_expected_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/1/negative_cases/3",
+            "candidate_expected_projection": {
+              "candidate_classification_code": "freeze_as_red",
+              "candidate_axis": "pre_body_red",
+              "candidate_state": "missing",
+              "backflow_component": "FrozenContractIntake",
+              "side_effect_count": 0
+            },
+            "witness_boundary": "source witness and expected projection remain separate; this row is not added to canonical L8 unit_case_ids."
+          },
+          {
+            "code": "freeze_timestamp_only",
+            "candidate_witness_id": "F01-CANDIDATE-NEGATIVE-FREEZE-TIMESTAMP-ONLY",
+            "source_fixture_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/1/negative_cases/4/source_packet/owner_material",
+            "fixed_meaning_basis": "作成時刻だけが本体変更より前でも対象revision/設計/test/oracle/期待結果/凍結順序の原記録なし。凍結不成立を当該条件に保持。",
+            "candidate_observations": "created_atだけでは対象revision・設計・test・oracle・期待結果・順序の記録が供給されず、L3 F01の凍結義務に必要な材料がない。pair bindingより先の凍結を選ぶ。",
+            "l4_design_expected_ref": "docs/helix-harness/L4-basic-design/tdd-development-flow.json#/contracts/1/negative_classifications/4",
+            "l9_existing_expected_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/1/negative_cases/4",
+            "candidate_expected_projection": {
+              "candidate_classification_code": "freeze_timestamp_only",
+              "candidate_axis": "freeze_before_body",
+              "candidate_state": "missing",
+              "backflow_component": "FrozenContractIntake",
+              "side_effect_count": 0
+            },
+            "witness_boundary": "source witness and expected projection remain separate; this row is not added to canonical L8 unit_case_ids."
+          }
+        ],
+        "semantic_distinctions": [
+          "freeze_missingとfreeze_timestamp_onlyはともにfreeze_before_body=missingへ写るが、異なるL4/L9条件・別witnessとして保持し統合しない。",
+          "freeze_as_redは凍結記録があっても実Red観測が無い条件として分け、L4/L9のpre_body_red=missingを保つ。",
+          "test_after_bodyは対象body revision後の定義・凍結のケース、foreign_oracle_revisionは別revision oracleのケースとして分ける。"
+        ],
+        "candidate_boundary": "L8 candidate cases are manual compact projections of L4/L9 expectations grounded in the fixed L3/L10 meaning. They do not change L9 expected material, do not execute any algorithm, do not establish a formal oracle, and do not count as canonical four-way rows."
       }
     },
     {

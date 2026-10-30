@@ -1,0 +1,60 @@
+{
+  "record": "WR223 HARNESS-015 F01 source-only blind derivation",
+  "base_revision": "dd5931cfff4ff786da2ced44de2a40529edf7b71",
+  "target": "HARNESS-L3-015-F01 / HARNESS-L10-015-F01 paired with HARNESS-L4-015-F01",
+  "source_revision_and_authority": {
+    "l3_source": "docs/helix-harness/L3-requirements/functional-requirements.md",
+    "l3_base_sha256": "f4b9e577958c271b274849aab8323fc11a7a49cd855e31c70433a2a75d14df66",
+    "l3_section": "HARNESS-L3-015-F01 凍結済み対契約を入力",
+    "l4_source": "docs/helix-harness/L4-basic-design/tdd-development-flow.json",
+    "l4_base_sha256": "8dfbe628d7beb9b449a3ec48e98b7ed89ebbb4be1ea9b3f061dfd02ba464ea2f",
+    "l4_section": "HARNESS-L4-015-F01 凍結済み対契約を入力",
+    "approval_decision": "docs/governance/decisions/helix-harness-measurement034-prerequisite-l3-l10-delegated-decision-2026-10-12.md",
+    "decision_record_id": "HDEC-HARNESS-MEASUREMENT034-PREREQUISITE-L3L10-2026-10-12",
+    "decision_pins_match_base": {
+      "l3_functional_requirements_md_sha256": "f4b9e577958c271b274849aab8323fc11a7a49cd855e31c70433a2a75d14df66",
+      "l10_functional_verification_md_sha256": "592aa87623b2e29c712d1241e11c2290ec0c5fd2c4e3a9ab2bce8da89e1be835"
+    },
+    "authority_caveat": "決定記録のmetadataは decision_status=recorded_pending_final_review_and_main_admission、authority_effect=effective_when_this_record_is_admitted_to_main。decision本文は追加13組と先行113組不変を記す。baseにおける最終review/Admission成立まではこの記録だけで確定できないため、承認効力は要確認。L10本文自体は開いていない。"
+  },
+  "meaning_derived_from_l3_and_l4_prose": "実装開始前にL6契約、L5詳細設計、および対test/oracleを定義して凍結し、同一の対象identity・revision・scopeへ結び付ける。コアの工程・検証契約を参照する。定義を凍結した事実だけを実際のRed観測として扱わない。",
+  "representative_positive_conditions": [
+    "実装開始前に、対象となるL6契約とL5詳細設計の両方が定義されている。",
+    "対となるtest/oracleが実装開始前に定義され、凍結されている。",
+    "契約、設計、test/oracleが対象identity・revision・scopeへ結び付いている。",
+    "コアの工程・検証契約を参照している。"
+  ],
+  "representative_negative_conditions": [
+    "本体の実装後にtest/oracleを追加定義する。",
+    "契約・設計・test/oracleの定義を凍結しただけで、実際のRed観測が成立したと扱う。",
+    "契約またはtest/oracleが対象identity・revision・scopeへ結び付いていない。",
+    "L6契約またはL5詳細設計のいずれかを欠いたまま、対契約が揃ったと扱う。"
+  ],
+  "information_exposure_audit": {
+    "read": [
+      "repository AGENTS.md and CLAUDE.md",
+      "docs/governance/new-generation-start-here.md",
+      "docs/concept/helix-concept.md",
+      "docs/concept/helix-principles.md",
+      "docs/governance/decisions/brain-helix-core-po-intent-2026-09-25.md",
+      "scaffold/research/design-template-seed-minimum-gap-20261004/README.md",
+      "scaffold/research/design-template-seed-sdop-20260929/README.md",
+      "scaffold/verification-test-template-seed-20261001/README.md",
+      "target L3 F01 prose at base revision",
+      "target L4 F01 prose fields title, behavior, effect at base revision",
+      "approval decision metadata, exact file pins, and scope summary"
+    ],
+    "not_read_or_compared": [
+      "L5, L7, L8, L9 expected content",
+      "L10 body content (only its SHA-256 pin in the decision was read)",
+      "Issue/PR body or classification result",
+      "L4/L5 executable algorithm fields or implementation",
+      "legacy runtime, tests, or CI"
+    ],
+    "disclosure": "Derived conditions use only the L3 obligation and L4 title/behavior/effect prose. No expectation, classification result, or algorithm was copied into this record."
+  },
+  "unresolved": [
+    "Decision metadata says final independent review and main admission are still pending; confirm the approval authority is effective at the requested base revision.",
+    "This prose does not define a specific executable Red procedure, test technology, numeric threshold, or full rejection taxonomy; none is inferred here."
+  ]
+}

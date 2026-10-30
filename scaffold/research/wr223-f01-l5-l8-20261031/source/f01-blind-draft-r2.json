@@ -1,0 +1,147 @@
+{
+  "record": "WR223 HARNESS-015 F01 source-only blind derivation, revision 2",
+  "base_revision": "dd5931cfff4ff786da2ced44de2a40529edf7b71",
+  "target": {
+    "requirement": "HARNESS-L3-015-F01",
+    "system_oracle": "HARNESS-L10-015-F01",
+    "design_prose": "HARNESS-L4-015-F01"
+  },
+  "source_read_order": [
+    "repository AGENTS.md and CLAUDE.md; mandatory entrance, Concept, principles, JSON-authority decision, and three template seeds",
+    "L3/L10 approval decision metadata, source pins, and scope (no L10 body content)",
+    "L3 F01 Markdown prose and L4 F01 title/behavior/effect prose",
+    "L3 JSON F01 row and L10 JSON F01 case at the specified base revision",
+    "repository audit entry for PR2943 F01 row approval and PR2943/PR2959 merge admissions; approval decision records"
+  ],
+  "canonical_json_sources": {
+    "l3": {
+      "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+      "base_file_sha256": "a3b907cdc316117d4684632f9a1cbf36125eb6e6172f9cfc286060617583d7be",
+      "row_sha256_from_audit": "984bca30459724f7f57f6a4fe7a4b64474fe83897cb4950b3bd2f883e6bf5cce",
+      "row": {
+        "id": "HARNESS-L3-015-F01",
+        "parent": "HARNESS-L2-015",
+        "title": "凍結済み対契約を入力",
+        "obligation": "L6契約/L5詳細設計と対test/oracleを実装前に定義・凍結し、対象identity/revision/scopeへ結ぶ。test後付け/定義凍結だけを実Redにせず、コアの工程/検証契約を参照する。",
+        "oracle_ref": "HARNESS-L10-015-F01"
+      },
+      "base_row_matches_audit_entry": true
+    },
+    "l10": {
+      "path": "docs/helix-harness/L10-verification/functional-verification.json",
+      "base_file_sha256": "fc58ad2268746d7924ac9be33e8f3f75e6d3c2cc619e27fbc1ddc34edd065cb2",
+      "row_sha256_from_audit": "bde3a0c96ff87bfc04c48fcfa0b2ac895f0075943458e5ffc16840c416ea0a99",
+      "case": {
+        "id": "HARNESS-L10-015-F01",
+        "parent": "HARNESS-L2-015",
+        "title": "凍結済み対契約を入力",
+        "requirement_ref": "HARNESS-L3-015-F01",
+        "positive_input": "凍結した設計/test/oracleと対象revisionを照合して未実装/未修正状態からの順序を確認する。",
+        "expected_observation": "凍結とRed観測を区別し、設計/対oracleの版と対象へ辿る。",
+        "negative_input": "実装後oracle後付け、凍結無し、別revision oracle、作成時刻のみ。",
+        "failure_observation": "対契約/凍結不足を保持し、実装成立やTDD成功を生成しない。",
+        "execution_state": "not_executed"
+      },
+      "base_case_matches_audit_entry": true
+    },
+    "l4_prose": {
+      "path": "docs/helix-harness/L4-basic-design/tdd-development-flow.json",
+      "base_file_sha256": "8dfbe628d7beb9b449a3ec48e98b7ed89ebbb4be1ea9b3f061dfd02ba464ea2f",
+      "fields_read": [
+        "title",
+        "behavior",
+        "effect"
+      ],
+      "title": "凍結済み対契約を入力",
+      "behavior": "L6契約/L5詳細設計と対test/oracleを実装前に定義・凍結し、対象identity/revision/scopeへ結ぶ。test後付け/定義凍結だけを実Redにせず、コアの工程/検証契約を参照する。",
+      "effect": "normative_contract_only_no_execution"
+    }
+  },
+  "approval_and_main_admission": {
+    "row_approval_record": {
+      "path": "docs/governance/decisions/helix-harness-verification-prerequisite-l3-l10-delegated-decision-2026-10-12.md",
+      "decision_record_id": "HDEC-HARNESS-VERIFICATION-PREREQUISITE-L3L10-2026-10-12",
+      "approved_scope": "015の5組を含む追加17組",
+      "recorded_status": "recorded_pending_final_review_and_main_admission",
+      "authority_effect": "effective_when_this_record_is_admitted_to_main",
+      "source_revision_pins": {
+        "l3_functional_json_sha256": "62a954e9244eb184bf3c2c3c1ab6b27763b52ce4a40041debbd9e13eed7d6689",
+        "l10_functional_json_sha256": "e2580d52e8628d4755973e745528702e5cce66ab829c3f9c6f26c5ceb6aace7c",
+        "verified_at_approved_content_head": "a715e777bd59291b26f09c0c1c5481273c6eba2e",
+        "verification": "Both full JSON file SHA-256 values in the 005/015 decision match the files at the approved content head; the base F01 row and case equal the corresponding audit entries."
+      },
+      "audit_row_binding": {
+        "audit_path": "docs/governance/audits/prerequisite-l3-l10-definition-audit-2026-10-12.json",
+        "pr": 2943,
+        "approved_content_head": "a715e777bd59291b26f09c0c1c5481273c6eba2e",
+        "approval_comment_id": 6113131428,
+        "merge_commit": "28739e940176b0128c49b4646615674ba33b6771",
+        "audit_requirement_entry_sha256": "984bca30459724f7f57f6a4fe7a4b64474fe83897cb4950b3bd2f883e6bf5cce",
+        "audit_oracle_entry_sha256": "bde3a0c96ff87bfc04c48fcfa0b2ac895f0075943458e5ffc16840c416ea0a99"
+      },
+      "main_admission_check": "PR2943 merge commit 28739e940176b0128c49b4646615674ba33b6771 is an ancestor of base. The audit admission row links this merge to the decision and approval comment."
+    },
+    "later_revision_preservation": {
+      "path": "docs/governance/decisions/helix-harness-measurement034-prerequisite-l3-l10-delegated-decision-2026-10-12.md",
+      "decision_record_id": "HDEC-HARNESS-MEASUREMENT034-PREREQUISITE-L3L10-2026-10-12",
+      "scope": "034 additional 13 pairs; prior 113 pairs unchanged",
+      "base_l3_json_sha256_pinned": "a3b907cdc316117d4684632f9a1cbf36125eb6e6172f9cfc286060617583d7be",
+      "base_l10_json_sha256_pinned": "fc58ad2268746d7924ac9be33e8f3f75e6d3c2cc619e27fbc1ddc34edd065cb2",
+      "recorded_status": "recorded_pending_final_review_and_main_admission",
+      "authority_effect": "effective_when_this_record_is_admitted_to_main",
+      "audit_admission": {
+        "pr": 2959,
+        "approved_content_head": "55fc4365720c0ea8888af85f4b2e3aa530ef5226",
+        "approval_comment_id": 6114073601,
+        "merge_commit": "de53e71f2f3bb0f260a792244fe8badd46f4274d"
+      },
+      "main_admission_check": "PR2959 merge commit de53e71f2f3bb0f260a792244fe8badd46f4274d is an ancestor of base."
+    },
+    "authority_caveat": "両decisionのstatus fieldには final_review_and_main_admission pending が残る一方、監査記録に各merge commitがあり、両commitはbaseの祖先で、measurement034 decisionの本文はprior 113 unchangedを記す。main admissionはrepo証拠で確認できた。decision statusのfinal-review語が現在も未解消か、状態欄が更新されていないかは本repo evidenceだけでは確定できない。Issue/PR本文は開いていない。"
+  },
+  "meaning_derived_from_l3_l10_l4": "L6契約、L5詳細設計、対test/oracleを実装前に定義・凍結し、同じ対象identity/revision/scopeへ結び付ける。対oracleの版と対象revisionを辿れることを確かめる。凍結の成立と実際のRed観測を区別する。L10の正例は未実装/未修正状態からの順序照合を含むが、このF01の観測から実行・実装成立やTDD成功を生成しない。",
+  "representative_positive_conditions": [
+    "実装前にL6契約、L5詳細設計、対test/oracleを定義・凍結している。",
+    "凍結した設計/test/oracleと対象revisionを照合でき、設計・対oracleの版と対象を辿れる。",
+    "照合対象が同一の対象identity・revision・scopeに結び付いている。",
+    "未実装または未修正状態からの順序を確認し、凍結したこと自体をRed実観測とは扱わない。",
+    "コアの工程・検証契約を参照している。"
+  ],
+  "representative_negative_conditions": [
+    "実装後にoracleを後付けする。",
+    "設計/test/oracleが凍結されていない。",
+    "oracleが対象とは別revisionに属する。",
+    "作成時刻だけで順序または凍結を主張し、対象revisionへ結び付けない。",
+    "凍結だけを実Red観測、実装成立、またはTDD成功として扱う。",
+    "対象identity・revision・scopeまたは設計/対oracleの版を辿れない。"
+  ],
+  "information_exposure_audit": {
+    "permitted_target_content_read": [
+      "L3 JSON row HARNESS-L3-015-F01",
+      "L10 JSON case HARNESS-L10-015-F01",
+      "L4 JSON F01 title/behavior/effect prose only",
+      "the two relevant L3/L10 delegated approval decision records and target F01 audit binding"
+    ],
+    "incidental_output_exposure": [
+      "The initial context grep printed neighboring L3-L3-005-F09 and L3-L3-015-F02 prose because of context lines; these were not used in derivation.",
+      "The initial context grep printed neighboring L10-L10-005-F09 and L10-L10-015-F02 cases because of context lines; these were not used in derivation.",
+      "The audit JSON top-level status and one PR2943/PR2959 admission record were read, plus only the target 015-F01 pair entry."
+    ],
+    "not_read_or_compared": [
+      "L5, L7, L8, or L9 expected content",
+      "L4 executable/input/output/failure/negative-classification fields",
+      "Issue or PR bodies/comments",
+      "classification result for WR223",
+      "legacy runtime, tests, CI, or algorithm execution"
+    ],
+    "old_artifact": {
+      "path": "/tmp/wr223-f01-blind.json",
+      "sha256": "e4f7be9befded4f2398209eac0d3ef226c0cd62cefa5e47d013a18e87f265bbd",
+      "preservation": "left unchanged; r2 supersedes its source coverage and records its earlier L10-unread caveat"
+    }
+  },
+  "unresolved": [
+    "The decision metadata still contains a final-review-pending status even though main admission is evidenced by the repository audit and ancestry. The current state of that final-review field is unclear from repository evidence alone.",
+    "This is a normative source derivation only; no algorithm or execution outcome has been inspected or inferred."
+  ]
+}
