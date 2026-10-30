@@ -5,6 +5,7 @@ from __future__ import annotations
 
 import hashlib
 import json
+import re
 import subprocess
 from pathlib import Path
 from typing import Any
@@ -21,6 +22,7 @@ ROLE_BASE = "de668c9152e730e97db541c0e2e767b2be3a4178"
 EXPECTED_DIGEST = "0899fc16c319b4ad2a321048215066e4e2cee47bf5112dccbb4086b2f6220b02"
 ROLE_CLASS_ID = "OS017-NEG-ownership-source_unresolved"
 ROLE_CONFLICT_CLASS_ID = "OS017-NEG-ownership-source_conflict"
+WR226_CASE_INDEXES = (57, 59, 61, 63, 65, 67, 69, 71, 73, 109, 110, 111, 112, 113, 114, 115, 116, 117)
 ROLE_CASES = {
     "promotion": ((39, "OS"), (40, "OS")),
     "process": ((41, "HARNESS"), (42, "HARNESS")),
@@ -491,21 +493,45 @@ def validate_class_rows_and_unmarked_mode() -> None:
         or wr220.get("side_effect_count") != 0
     ):
         raise AssertionError("WR220 L4 F02 workflow class code/facet/state/owner differs")
+    class_l4_pointers = next(source["pointers"] for source in wr220.get("source_pointers", []) if source["path"] == L4_PATH)
     for phrase in (
         "phase=resume",
-        "全体condition=workflow_material_unknown",
-        "全体ordered finding code signature=[source_unresolved]",
-        "workflow facetの局所state=unknown",
-        "authority.source_ref",
-        "resource.source_ref",
-        "本classに含めない",
+        "全体conditionはworkflow_material_unknown",
+        "ordered finding code signatureは[source_unresolved]",
+        "workflow facetはunknown",
+        "algorithm/2が片側unknown operandを原pointerへsource_unresolved",
+        "source_ref/requirement_revision/scope",
+        "algorithm/0 binding overlayは提供process.revision",
+        "(code,pointer,return_owner)でdedup",
+        "algorithm/4の派生比較はknown-list条件",
+        "algorithm/8はintermediate.backflow_refとcontext.process.backflow_refを比較し",
+        "actual process.backflow_refを読まない",
+        "dependency.state closed-set (algorithm/6)",
+        "level_selected boolean selector/条件付き読取 (algorithm/5)",
+        "別class境界",
+        "workflow以外のfacetがcorresponding",
+        "dedup keyはcode/pointer/return_owner",
+        "個別根拠はscaffold比較証跡に置く",
     ):
         if phrase not in wr220_condition:
-            raise AssertionError(f"WR220 class condition omits {phrase}")
-    if "追加finding" not in wr220_condition or "dedupしない" not in wr220_condition:
-        raise AssertionError("WR220 class condition must bound additional findings and preserve distinct pointers")
-    if any(token in wr220_condition for token in ("/cases/51", "/cases/53", "/objects/")):
-        raise AssertionError("WR220 witness-specific pointer leaked into class-wide condition")
+            raise AssertionError(f"WR220 class condition omits general semantic boundary {phrase}")
+    if re.search(r"\bcase\s*\d+", wr220_condition, flags=re.IGNORECASE):
+        raise AssertionError("WR220 formal class condition must not embed witness case numbers")
+    if "algorithm/1" in wr220_condition:
+        raise AssertionError("WR220 formal condition must cite overlay at algorithm/0, not algorithm/1")
+    if re.search(r"\bcase\s*\d+|/cases/\d+", wr220_condition, flags=re.IGNORECASE):
+        raise AssertionError("WR220 formal class condition embeds witness-specific IDs")
+    class_l4_pointers = next(source["pointers"] for source in wr220["source_pointers"] if source["path"] == L4_PATH)
+    if "/diagnostic_contract/algorithm/0" not in class_l4_pointers or "/diagnostic_contract/algorithm/1" in class_l4_pointers:
+        raise AssertionError("WR220 source pointers must resolve generic binding overlay at algorithm/0 only")
+    if "algorithm/0 binding overlay" not in wr220_condition:
+        raise AssertionError("WR220 formal condition omits generalized algorithm/0 overlay semantics")
+    if "/diagnostic_contract/algorithm/0" not in class_l4_pointers or "/diagnostic_contract/algorithm/1" in class_l4_pointers:
+        raise AssertionError("WR220 source pointers must pin the overlay prose at algorithm/0 only")
+    if "same actual operand" in wr220_condition or "algorithm/8でも同じ" in wr220_condition:
+        raise AssertionError("WR220 condition incorrectly claims algorithm/8 reuses actual process.backflow_ref")
+    if "追加finding" not in wr220_condition or "pointer単位dedup" not in wr220_condition:
+        raise AssertionError("WR220 class condition must bound findings and pointer dedup")
 
     def has_marker(document: dict[str, Any]) -> bool:
         if "negative_equivalence_classes" in document:
@@ -522,7 +548,10 @@ def validate_class_rows_and_unmarked_mode() -> None:
         raise AssertionError("explicit class marker must remain absent in all four layers")
     if any("negative_class_ref" in row for row in l9["integration_cases"]):
         raise AssertionError("unmarked L9 case rows must not claim explicit class membership")
-    candidate_rows = [(5, 0), (6, 1), (51, 4), (53, 4)]
+    for residual_index in (108, 127):
+        if "l4_source_class_candidate_ref" in l9["integration_cases"][residual_index]:
+            raise AssertionError(f"WR226 dedicated-rule residual was assigned to the shared class: {residual_index}")
+    candidate_rows = [(5, 0), (6, 1), (51, 4), (53, 4), *[(index, 4) for index in WR226_CASE_INDEXES]]
     audit = json.loads(EVIDENCE.read_text(encoding="utf-8"))
     for witness in audit["cohort"].get("additional_raw_witnesses", []):
         class_index = 0 if witness["class_id"] == expected_ids[0] else 1
@@ -624,7 +653,7 @@ def validate_role_raw_witnesses() -> None:
         for index, _owner in (conflict_case,)
     }
     # These two WR220 rows add only an L4 source-class candidate link.
-    permitted_candidate_link_indexes = l9_role_indexes | {51, 53}
+    permitted_candidate_link_indexes = l9_role_indexes | {51, 53} | set(WR226_CASE_INDEXES)
     for witness in witnesses:
         role = witness["role"]
         unresolved_case, conflict_case = ROLE_CASES[role]

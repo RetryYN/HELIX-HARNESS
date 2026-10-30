@@ -1,0 +1,660 @@
+{
+  "record": "WR226 OS017 ticket-workflow blind derivation r3",
+  "base_revision": "edcb17bb84b5134b4b3149b4521058d983cf972c",
+  "prior_artifact_history": [
+    {
+      "path": "/tmp/wr226-os017-workflow-blind.json",
+      "sha256": "beee1297708861956178d981fa3a65881382462d9b0321c2bc608b9ef783b5ab",
+      "disposition": "retained; mistaken shared-null interpretation explicitly retracted"
+    },
+    {
+      "path": "/tmp/wr226-os017-workflow-blind-r2.json",
+      "sha256": "6199c187010164cb017812c61c7271fac6ae87c3a3e16b325837b9462cb4f779",
+      "disposition": "retained; per-case complete resolved graphs and measured cross-case table, summarized compactly here"
+    }
+  ],
+  "correction_history": [
+    "r1 incorrectly generalized case 57 dependency.source_ref=null to all cases.",
+    "r2 individually resolved each requested input before comparing. It established that each of the 20 cases has one null compared leaf; the dependency source_ref null occurs only at 57.",
+    "r3 records compact per-case root pins and compared leaves rather than copying the full repeated resolved graph from r2."
+  ],
+  "read_order": [
+    "AGENTS.md, CLAUDE.md, new-generation-start-here.md",
+    "HELIX Concept, seven principles, JSON policy, DT-MSG, DT-SDOP, DT-VT seeds",
+    "Only the specified L7 given_input_ref for each case; individually resolve all nested pointers for that raw input",
+    "Approved OS017 L3/L10 rows",
+    "L4 comparison_table and diagnostic-contract natural-language algorithm/semantics"
+  ],
+  "source_pins": [
+    {
+      "revision": "edcb17bb84b5134b4b3149b4521058d983cf972c",
+      "path": "docs/helix-os/L7-function-verification/ticket-workflow-derivation.json",
+      "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146"
+    },
+    {
+      "revision": "edcb17bb84b5134b4b3149b4521058d983cf972c",
+      "path": "docs/helix-os/L4-basic-design/ticket-workflow-derivation.json",
+      "sha256": "3fb45708d58866de46cff0695a1d3f64b2fbe15bb11283bda5594a4b6d01e6ea"
+    },
+    {
+      "revision": "edcb17bb84b5134b4b3149b4521058d983cf972c",
+      "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+      "sha256": "e86254a35b476ed71ebb112e41ccd2b48f89a8d0393e6495dc11cac7a7cf4e02"
+    },
+    {
+      "revision": "edcb17bb84b5134b4b3149b4521058d983cf972c",
+      "path": "docs/helix-os/L3-requirements/business-requirements.json",
+      "sha256": "0df11c612e3e0b531d2103d058471d5be2be8b8df965d10b69e06b0e506488c7"
+    },
+    {
+      "revision": "edcb17bb84b5134b4b3149b4521058d983cf972c",
+      "path": "docs/helix-os/L10-verification/functional-verification.json",
+      "sha256": "583020f951672e48bc37fcd35cb916de5ccd9866f41dd04731f6519325ae500a"
+    },
+    {
+      "revision": "edcb17bb84b5134b4b3149b4521058d983cf972c",
+      "path": "docs/helix-os/L10-verification/business-verification.json",
+      "sha256": "215e1d4a99f73151aa4b3225947a65567fbc3b97bec0cf9eac8d1a6456cbc3dd"
+    }
+  ],
+  "per_case_derivation": [
+    {
+      "array_index": 57,
+      "phase_observed": "resume",
+      "given_input_ref_pointer": "/objects/0b9c15aa6aaf2c1b475232118177bf597bd5938092d116511ea9d4d218d5fc60",
+      "given_input_canonical_sha256_pin": "0b9c15aa6aaf2c1b475232118177bf597bd5938092d116511ea9d4d218d5fc60",
+      "nested_reference_count_resolved": 53,
+      "individually_resolved_compared_leaf": {
+        "actual_pointer": "/dependency/source_ref",
+        "actual_value": null,
+        "context_pointer": "/context/dependency/source_ref",
+        "context_value": "DEP-RECEIPT-A",
+        "facet": "workflow"
+      },
+      "derived_finding_candidate": {
+        "code": "source_unresolved",
+        "pointer": "/dependency/source_ref",
+        "facet": "workflow",
+        "return_owner": "ticket-workflow-owner"
+      },
+      "finding_order": "single candidate; order is therefore unambiguous for this case"
+    },
+    {
+      "array_index": 59,
+      "phase_observed": "resume",
+      "given_input_ref_pointer": "/objects/18bdd6d0c1cd377b7bc370d4322e1e4cf16eaa5f6fd38c661ce44c22f93f8764",
+      "given_input_canonical_sha256_pin": "18bdd6d0c1cd377b7bc370d4322e1e4cf16eaa5f6fd38c661ce44c22f93f8764",
+      "nested_reference_count_resolved": 53,
+      "individually_resolved_compared_leaf": {
+        "actual_pointer": "/dependency/requirement_revision",
+        "actual_value": null,
+        "context_pointer": "/context/dependency/requirement_revision",
+        "context_value": "SYNTHETIC-REQUIREMENT_REVISION",
+        "facet": "workflow"
+      },
+      "derived_finding_candidate": {
+        "code": "source_unresolved",
+        "pointer": "/dependency/requirement_revision",
+        "facet": "workflow",
+        "return_owner": "ticket-workflow-owner"
+      },
+      "finding_order": "single candidate; order is therefore unambiguous for this case"
+    },
+    {
+      "array_index": 61,
+      "phase_observed": "resume",
+      "given_input_ref_pointer": "/objects/3b071fa38edc4f358f49314dada29b8f4eb882c1acd6ebcea5547badc7b46def",
+      "given_input_canonical_sha256_pin": "3b071fa38edc4f358f49314dada29b8f4eb882c1acd6ebcea5547badc7b46def",
+      "nested_reference_count_resolved": 53,
+      "individually_resolved_compared_leaf": {
+        "actual_pointer": "/dependency/scope",
+        "actual_value": null,
+        "context_pointer": "/context/dependency/scope",
+        "context_value": "SYNTHETIC-SCOPE",
+        "facet": "workflow"
+      },
+      "derived_finding_candidate": {
+        "code": "source_unresolved",
+        "pointer": "/dependency/scope",
+        "facet": "workflow",
+        "return_owner": "ticket-workflow-owner"
+      },
+      "finding_order": "single candidate; order is therefore unambiguous for this case"
+    },
+    {
+      "array_index": 63,
+      "phase_observed": "resume",
+      "given_input_ref_pointer": "/objects/fccb3baa47c45c5063a0e343f7c3548143652f80db17417484ad7b677c3ebfe7",
+      "given_input_canonical_sha256_pin": "fccb3baa47c45c5063a0e343f7c3548143652f80db17417484ad7b677c3ebfe7",
+      "nested_reference_count_resolved": 53,
+      "individually_resolved_compared_leaf": {
+        "actual_pointer": "/process/source_ref",
+        "actual_value": null,
+        "context_pointer": "/context/process/source_ref",
+        "context_value": "HARNESS-PROCESS-A",
+        "facet": "workflow"
+      },
+      "derived_finding_candidate": {
+        "code": "source_unresolved",
+        "pointer": "/process/source_ref",
+        "facet": "workflow",
+        "return_owner": "ticket-workflow-owner"
+      },
+      "finding_order": "single candidate; order is therefore unambiguous for this case"
+    },
+    {
+      "array_index": 65,
+      "phase_observed": "resume",
+      "given_input_ref_pointer": "/objects/eff634670518c367aae759bec9ffb663cf3337e14aafe4c8594e6eda2bfbc430",
+      "given_input_canonical_sha256_pin": "eff634670518c367aae759bec9ffb663cf3337e14aafe4c8594e6eda2bfbc430",
+      "nested_reference_count_resolved": 53,
+      "individually_resolved_compared_leaf": {
+        "actual_pointer": "/process/revision",
+        "actual_value": null,
+        "context_pointer": "/context/process/revision",
+        "context_value": "SYNTHETIC-CONTRACT_REVISION",
+        "facet": "workflow"
+      },
+      "derived_finding_candidate": {
+        "code": "source_unresolved",
+        "pointer": "/process/revision",
+        "facet": "workflow",
+        "return_owner": "ticket-workflow-owner"
+      },
+      "finding_order": "single candidate; order is therefore unambiguous for this case"
+    },
+    {
+      "array_index": 67,
+      "phase_observed": "resume",
+      "given_input_ref_pointer": "/objects/3ce0b12bbcececee11ce6717da90cd39e4e753e0a552b312395869b8acd1fc06",
+      "given_input_canonical_sha256_pin": "3ce0b12bbcececee11ce6717da90cd39e4e753e0a552b312395869b8acd1fc06",
+      "nested_reference_count_resolved": 52,
+      "individually_resolved_compared_leaf": {
+        "actual_pointer": "/process/parts",
+        "actual_value": null,
+        "context_pointer": "/context/process/parts",
+        "context_value": [
+          "PART-A",
+          "PART-B"
+        ],
+        "facet": "workflow"
+      },
+      "derived_finding_candidate": {
+        "code": "source_unresolved",
+        "pointer": "/process/parts",
+        "facet": "workflow",
+        "return_owner": "ticket-workflow-owner"
+      },
+      "finding_order": "single candidate; order is therefore unambiguous for this case"
+    },
+    {
+      "array_index": 69,
+      "phase_observed": "resume",
+      "given_input_ref_pointer": "/objects/d78211ee88a4b97e70a8b9885a5418076b54e7f4b231785004c1813db05d8ecd",
+      "given_input_canonical_sha256_pin": "d78211ee88a4b97e70a8b9885a5418076b54e7f4b231785004c1813db05d8ecd",
+      "nested_reference_count_resolved": 51,
+      "individually_resolved_compared_leaf": {
+        "actual_pointer": "/process/allowed_edges",
+        "actual_value": null,
+        "context_pointer": "/context/process/allowed_edges",
+        "context_value": [
+          [
+            "PART-A",
+            "PART-B"
+          ]
+        ],
+        "facet": "workflow"
+      },
+      "derived_finding_candidate": {
+        "code": "source_unresolved",
+        "pointer": "/process/allowed_edges",
+        "facet": "workflow",
+        "return_owner": "ticket-workflow-owner"
+      },
+      "finding_order": "single candidate; order is therefore unambiguous for this case"
+    },
+    {
+      "array_index": 71,
+      "phase_observed": "resume",
+      "given_input_ref_pointer": "/objects/e0e7ef8ec462492a63f3504105d511a5c96887c5ebbb35f7b24a0e72bbd6d361",
+      "given_input_canonical_sha256_pin": "e0e7ef8ec462492a63f3504105d511a5c96887c5ebbb35f7b24a0e72bbd6d361",
+      "nested_reference_count_resolved": 50,
+      "individually_resolved_compared_leaf": {
+        "actual_pointer": "/process/obligations",
+        "actual_value": null,
+        "context_pointer": "/context/process/obligations",
+        "context_value": {
+          "PART-A": [
+            "ORACLE-A"
+          ],
+          "PART-B": [
+            "ORACLE-B"
+          ]
+        },
+        "facet": "workflow"
+      },
+      "derived_finding_candidate": {
+        "code": "source_unresolved",
+        "pointer": "/process/obligations",
+        "facet": "workflow",
+        "return_owner": "ticket-workflow-owner"
+      },
+      "finding_order": "single candidate; order is therefore unambiguous for this case"
+    },
+    {
+      "array_index": 73,
+      "phase_observed": "resume",
+      "given_input_ref_pointer": "/objects/6097da96c5bb54bfd765144e4951d2928eabd6b64056396645d8c7e0b7704554",
+      "given_input_canonical_sha256_pin": "6097da96c5bb54bfd765144e4951d2928eabd6b64056396645d8c7e0b7704554",
+      "nested_reference_count_resolved": 53,
+      "individually_resolved_compared_leaf": {
+        "actual_pointer": "/process/backflow_ref",
+        "actual_value": null,
+        "context_pointer": "/context/process/backflow_ref",
+        "context_value": "BACKFLOW-A",
+        "facet": "workflow"
+      },
+      "derived_finding_candidate": {
+        "code": "source_unresolved",
+        "pointer": "/process/backflow_ref",
+        "facet": "workflow",
+        "return_owner": "ticket-workflow-owner"
+      },
+      "finding_order": "single candidate; order is therefore unambiguous for this case"
+    },
+    {
+      "array_index": 108,
+      "phase_observed": "resume",
+      "given_input_ref_pointer": "/objects/28abf47705771882ddfe6ceb4fa54dd9d697186c6a43c6bb0d3355339214d289",
+      "given_input_canonical_sha256_pin": "28abf47705771882ddfe6ceb4fa54dd9d697186c6a43c6bb0d3355339214d289",
+      "nested_reference_count_resolved": 53,
+      "individually_resolved_compared_leaf": {
+        "actual_pointer": "/dependency/state",
+        "actual_value": "resolved",
+        "context_pointer": "/context/dependency/state",
+        "context_value": null,
+        "facet": "workflow"
+      },
+      "derived_finding_candidate": {
+        "code": "source_unresolved",
+        "pointer": "/context/dependency/state",
+        "facet": "workflow",
+        "return_owner": "ticket-workflow-owner"
+      },
+      "finding_order": "single candidate; order is therefore unambiguous for this case"
+    },
+    {
+      "array_index": 109,
+      "phase_observed": "resume",
+      "given_input_ref_pointer": "/objects/b4306d8fc5ba775a5ea0bd7caf70c5d84d5231d7f60987e0aa89bb2a3d4ee909",
+      "given_input_canonical_sha256_pin": "b4306d8fc5ba775a5ea0bd7caf70c5d84d5231d7f60987e0aa89bb2a3d4ee909",
+      "nested_reference_count_resolved": 53,
+      "individually_resolved_compared_leaf": {
+        "actual_pointer": "/dependency/source_ref",
+        "actual_value": "DEP-RECEIPT-A",
+        "context_pointer": "/context/dependency/source_ref",
+        "context_value": null,
+        "facet": "workflow"
+      },
+      "derived_finding_candidate": {
+        "code": "source_unresolved",
+        "pointer": "/context/dependency/source_ref",
+        "facet": "workflow",
+        "return_owner": "ticket-workflow-owner"
+      },
+      "finding_order": "single candidate; order is therefore unambiguous for this case"
+    },
+    {
+      "array_index": 110,
+      "phase_observed": "resume",
+      "given_input_ref_pointer": "/objects/8a729c8ed4f5d2f632a3f7588821bb476941e719b152184d726af997c48092e4",
+      "given_input_canonical_sha256_pin": "8a729c8ed4f5d2f632a3f7588821bb476941e719b152184d726af997c48092e4",
+      "nested_reference_count_resolved": 53,
+      "individually_resolved_compared_leaf": {
+        "actual_pointer": "/dependency/requirement_revision",
+        "actual_value": "SYNTHETIC-REQUIREMENT_REVISION",
+        "context_pointer": "/context/dependency/requirement_revision",
+        "context_value": null,
+        "facet": "workflow"
+      },
+      "derived_finding_candidate": {
+        "code": "source_unresolved",
+        "pointer": "/context/dependency/requirement_revision",
+        "facet": "workflow",
+        "return_owner": "ticket-workflow-owner"
+      },
+      "finding_order": "single candidate; order is therefore unambiguous for this case"
+    },
+    {
+      "array_index": 111,
+      "phase_observed": "resume",
+      "given_input_ref_pointer": "/objects/a497958135e2c87c3a5ac944ae8b0bbee2ab126a392a4050f00ff15bc316b1a4",
+      "given_input_canonical_sha256_pin": "a497958135e2c87c3a5ac944ae8b0bbee2ab126a392a4050f00ff15bc316b1a4",
+      "nested_reference_count_resolved": 53,
+      "individually_resolved_compared_leaf": {
+        "actual_pointer": "/dependency/scope",
+        "actual_value": "SYNTHETIC-SCOPE",
+        "context_pointer": "/context/dependency/scope",
+        "context_value": null,
+        "facet": "workflow"
+      },
+      "derived_finding_candidate": {
+        "code": "source_unresolved",
+        "pointer": "/context/dependency/scope",
+        "facet": "workflow",
+        "return_owner": "ticket-workflow-owner"
+      },
+      "finding_order": "single candidate; order is therefore unambiguous for this case"
+    },
+    {
+      "array_index": 112,
+      "phase_observed": "resume",
+      "given_input_ref_pointer": "/objects/33ee151df263fa48d7a30af052444d8b5aa934174ec3b2263499360f160ea32f",
+      "given_input_canonical_sha256_pin": "33ee151df263fa48d7a30af052444d8b5aa934174ec3b2263499360f160ea32f",
+      "nested_reference_count_resolved": 53,
+      "individually_resolved_compared_leaf": {
+        "actual_pointer": "/proposal/source_ref",
+        "actual_value": null,
+        "context_pointer": "/context/proposal/source_ref",
+        "context_value": "INT-PROPOSAL-A",
+        "facet": "workflow"
+      },
+      "derived_finding_candidate": {
+        "code": "source_unresolved",
+        "pointer": "/proposal/source_ref",
+        "facet": "workflow",
+        "return_owner": "ticket-workflow-owner"
+      },
+      "finding_order": "single candidate; order is therefore unambiguous for this case"
+    },
+    {
+      "array_index": 113,
+      "phase_observed": "resume",
+      "given_input_ref_pointer": "/objects/f612dfc68bacc1b02b092cf99c8aa5929722fb02481c0b1b61afaca3ad9b370b",
+      "given_input_canonical_sha256_pin": "f612dfc68bacc1b02b092cf99c8aa5929722fb02481c0b1b61afaca3ad9b370b",
+      "nested_reference_count_resolved": 53,
+      "individually_resolved_compared_leaf": {
+        "actual_pointer": "/proposal/requirement_revision",
+        "actual_value": null,
+        "context_pointer": "/context/proposal/requirement_revision",
+        "context_value": "SYNTHETIC-REQUIREMENT_REVISION",
+        "facet": "workflow"
+      },
+      "derived_finding_candidate": {
+        "code": "source_unresolved",
+        "pointer": "/proposal/requirement_revision",
+        "facet": "workflow",
+        "return_owner": "ticket-workflow-owner"
+      },
+      "finding_order": "single candidate; order is therefore unambiguous for this case"
+    },
+    {
+      "array_index": 114,
+      "phase_observed": "resume",
+      "given_input_ref_pointer": "/objects/f45693442c91075e17ad0e4935473cb48f2c51d74269fedf483604aadbc69e4b",
+      "given_input_canonical_sha256_pin": "f45693442c91075e17ad0e4935473cb48f2c51d74269fedf483604aadbc69e4b",
+      "nested_reference_count_resolved": 53,
+      "individually_resolved_compared_leaf": {
+        "actual_pointer": "/proposal/scope",
+        "actual_value": null,
+        "context_pointer": "/context/proposal/scope",
+        "context_value": "SYNTHETIC-SCOPE",
+        "facet": "workflow"
+      },
+      "derived_finding_candidate": {
+        "code": "source_unresolved",
+        "pointer": "/proposal/scope",
+        "facet": "workflow",
+        "return_owner": "ticket-workflow-owner"
+      },
+      "finding_order": "single candidate; order is therefore unambiguous for this case"
+    },
+    {
+      "array_index": 115,
+      "phase_observed": "resume",
+      "given_input_ref_pointer": "/objects/05904458df3467280668bf852bd3a9be8854471fd953b35df56a65fc6c2aa0b0",
+      "given_input_canonical_sha256_pin": "05904458df3467280668bf852bd3a9be8854471fd953b35df56a65fc6c2aa0b0",
+      "nested_reference_count_resolved": 53,
+      "individually_resolved_compared_leaf": {
+        "actual_pointer": "/proposal/reason_ref",
+        "actual_value": null,
+        "context_pointer": "/context/proposal/reason_ref",
+        "context_value": "INT-REASON-A",
+        "facet": "workflow"
+      },
+      "derived_finding_candidate": {
+        "code": "source_unresolved",
+        "pointer": "/proposal/reason_ref",
+        "facet": "workflow",
+        "return_owner": "ticket-workflow-owner"
+      },
+      "finding_order": "single candidate; order is therefore unambiguous for this case"
+    },
+    {
+      "array_index": 116,
+      "phase_observed": "resume",
+      "given_input_ref_pointer": "/objects/f608b6bccc6327d4c7b572f5a584a4d544aff046637ae7b2c55e032c5213a9c5",
+      "given_input_canonical_sha256_pin": "f608b6bccc6327d4c7b572f5a584a4d544aff046637ae7b2c55e032c5213a9c5",
+      "nested_reference_count_resolved": 52,
+      "individually_resolved_compared_leaf": {
+        "actual_pointer": "/proposal/parts",
+        "actual_value": null,
+        "context_pointer": "/context/proposal/parts",
+        "context_value": [
+          "PART-A",
+          "PART-B"
+        ],
+        "facet": "workflow"
+      },
+      "derived_finding_candidate": {
+        "code": "source_unresolved",
+        "pointer": "/proposal/parts",
+        "facet": "workflow",
+        "return_owner": "ticket-workflow-owner"
+      },
+      "finding_order": "single candidate; order is therefore unambiguous for this case"
+    },
+    {
+      "array_index": 117,
+      "phase_observed": "resume",
+      "given_input_ref_pointer": "/objects/e40e1dda36c95e8e45b843824b146bac61f11bf88d10ef0dc84095d866c9b507",
+      "given_input_canonical_sha256_pin": "e40e1dda36c95e8e45b843824b146bac61f11bf88d10ef0dc84095d866c9b507",
+      "nested_reference_count_resolved": 50,
+      "individually_resolved_compared_leaf": {
+        "actual_pointer": "/proposal/obligations",
+        "actual_value": null,
+        "context_pointer": "/context/proposal/obligations",
+        "context_value": {
+          "PART-A": [
+            "ORACLE-A"
+          ],
+          "PART-B": [
+            "ORACLE-B"
+          ]
+        },
+        "facet": "workflow"
+      },
+      "derived_finding_candidate": {
+        "code": "source_unresolved",
+        "pointer": "/proposal/obligations",
+        "facet": "workflow",
+        "return_owner": "ticket-workflow-owner"
+      },
+      "finding_order": "single candidate; order is therefore unambiguous for this case"
+    },
+    {
+      "array_index": 127,
+      "phase_observed": "resume",
+      "given_input_ref_pointer": "/objects/72cc2677414769d5af6457d6d875ff8dab367bb404d2f1bbff579407e34892ee",
+      "given_input_canonical_sha256_pin": "72cc2677414769d5af6457d6d875ff8dab367bb404d2f1bbff579407e34892ee",
+      "nested_reference_count_resolved": 53,
+      "individually_resolved_compared_leaf": {
+        "actual_pointer": "/level_selected",
+        "actual_value": null,
+        "context_pointer": "/context/level_selected",
+        "context_value": false,
+        "facet": "workflow"
+      },
+      "derived_finding_candidate": {
+        "code": "source_unresolved",
+        "pointer": "/level_selected",
+        "facet": "workflow",
+        "return_owner": "ticket-workflow-owner"
+      },
+      "finding_order": "single candidate; order is therefore unambiguous for this case"
+    }
+  ],
+  "common_measurement": {
+    "comparison_basis": "Each case was separately resolved from its own given_input_ref. After resolution, the measured compared leaf pair for that case has one null side. All requested raw phase values are resume.",
+    "observed_tested_leaf_pattern": "The case-specific changed leaf/pair is captured above. Other compared fields are unchanged from their independently resolved raw graph; see retained r2 for full inputs and complete measured leaf table.",
+    "condition_candidate": "workflow_material_unknown for each case with the source_unresolved workflow candidate; case 108 is included because L4 calls for dependency state comparison and context state is null.",
+    "unaffected_facet_candidates": [
+      "ownership",
+      "inputs",
+      "ticket",
+      "backflow",
+      "continuity",
+      "scope_limit"
+    ],
+    "operation_effect": "none per L4 contract; no operation or actual completion is inferred."
+  },
+  "requirement_attribution": {
+    "evidence": {
+      "requirement_mapping": "requirement_refsは親4要求の全体trace、primary_requirement_refsはcaseの直接検証concern。negativeは不成立facet→ownership/scope_limit:B01、inputs/ticket:F01、workflow:F02、backflow/continuity:F03。positiveは選択phaseの主目的、projectionと決定性/対象差はその直接concernを明示。絞込参照は全4要求の完了宣言ではない。",
+      "comparison_table": {
+        "binding": {
+          "fields": [
+            "project",
+            "requirement_revision",
+            "scope",
+            "plan_revision",
+            "contract_revision"
+          ],
+          "facet": "inputs",
+          "type": "string",
+          "phases": [
+            "candidate",
+            "workflow",
+            "backflow",
+            "resume"
+          ]
+        },
+        "management": {
+          "fields": [
+            "purpose_ref",
+            "request_ref",
+            "constraint_ref",
+            "permission_ref",
+            "priority_ref",
+            "dependency_ref",
+            "resource_ref",
+            "budget_ref",
+            "deadline_ref",
+            "stop_condition_ref",
+            "harness_version",
+            "connection_ref"
+          ],
+          "facet": "inputs",
+          "type": "string",
+          "phases": [
+            "candidate",
+            "workflow",
+            "backflow",
+            "resume"
+          ]
+        },
+        "roles": {
+          "fields": [
+            "promotion",
+            "process",
+            "proposal",
+            "level",
+            "authority",
+            "resource"
+          ],
+          "facet": "ownership",
+          "type": "string",
+          "phases": [
+            "candidate",
+            "workflow",
+            "backflow",
+            "resume"
+          ]
+        },
+        "ticket_graph": {
+          "fields": [
+            "ticket_ref",
+            "target",
+            "kind",
+            "parent_revision",
+            "scope",
+            "dependencies",
+            "acceptance",
+            "backflow_ref"
+          ],
+          "set_fields": [
+            "dependencies",
+            "acceptance"
+          ],
+          "facet": "ticket",
+          "phases": [
+            "candidate",
+            "workflow",
+            "backflow",
+            "resume"
+          ]
+        },
+        "process/proposal/dependency/authority/resource/level/constraints": {
+          "facet": "workflow",
+          "phases": [
+            "workflow",
+            "backflow",
+            "resume"
+          ],
+          "details": "algorithmの型・pointer・選択条件をそのまま適用。"
+        },
+        "intermediate": {
+          "facet": "backflow",
+          "phases": [
+            "backflow",
+            "resume"
+          ]
+        },
+        "prior/resumed": {
+          "facet": "continuity",
+          "phases": [
+            "resume"
+          ]
+        }
+      },
+      "finding_fields": [
+        "code",
+        "pointer",
+        "return_owner"
+      ],
+      "return_owner": "ticket-workflow-owner",
+      "diagnostic_code_facet": "comparison facet"
+    },
+    "per_case_finding_facet": "workflow",
+    "finding_concern_mapping": "L4 maps negative workflow facet findings to HELIXOS-L3-017-F02.",
+    "phase_primary_concern": "L4 maps selected phase primary purpose; resume therefore points to HELIXOS-L3-017-F03 as phase-level concern.",
+    "individual_primary_refs": "Exact case primary_requirement_refs remain unknown because expected refs are prohibited; do not combine F02/F03 as a stored value without that evidence.",
+    "other_requirement_families": "No B01 ownership/scope_limit or F01 inputs/ticket finding is derived for these one-leaf cases."
+  },
+  "same_leaf_and_dedup": {
+    "L4_rule": "finding identity=(code,pointer,return_owner).",
+    "observed_subset": "Each case has one source_unresolved candidate and a distinct compared pointer; no duplicate identity within a case.",
+    "known_multifacet_reuse": "L4 also compares ticket_graph parent_revision/scope against context.binding as well as ticket_graph context; those leaves are unchanged and corresponding in the individually resolved inputs, so no multi-facet finding is introduced here.",
+    "class_expansion": "All one-leaf candidates use the L4-mapped source_unresolved code. The available L4 contract does not establish downstream class-registry extension behavior; no extension is claimed or inferred."
+  },
+  "information_exposure_audit": {
+    "excluded": "No L7 expected values/refs, selected_phase_ref, L8/L9 expected outputs, existing classifications, Issue/PR body, or Issue/PR artifact read.",
+    "execution": "No L4/L5 algorithm, legacy runtime/test/CI, or other runtime executed.",
+    "sensitivity": "Resolved values are synthetic fixtures; no secret, credential, or PII observed or copied.",
+    "serialization_limit": "L7 nested canonical_sha256 pins are preserved in r2; they are not independently revalidated under an inferred serializer."
+  },
+  "unresolved": [
+    "Although L4 provides phase-primary and facet-to-requirement rules, the exact primary_requirement_refs to attach to each case cannot be confirmed without reading the forbidden expected refs.",
+    "Whether a downstream class registry can be extended is outside the permitted L4 comparison-table/natural-language contract and remains unknown."
+  ]
+}
