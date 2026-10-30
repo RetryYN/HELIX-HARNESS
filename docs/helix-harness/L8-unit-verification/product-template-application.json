@@ -5203,34 +5203,378 @@
     },
     {
      "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
-     "pointer": "/field_source_materialization_contract/ordered_source_materialization/3"
+     "pointer": "/field_source_materialization_contract/ordered_source_materialization/1"
     },
     {
      "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
-     "pointer": "/field_semantic_evidence_contract/wrapper_and_source_contract/source_payload"
+     "pointer": "/field_source_materialization_contract/ordered_source_materialization/2"
     },
     {
      "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
-     "pointer": "/field_semantic_evidence_contract/common_target_guards/4"
+     "pointer": "/field_semantic_evidence_contract/field_definition_evidence_body/absent_guard"
     },
     {
      "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
-     "pointer": "/field_obligation_scope_contract/cause_patterns/content_unresolved"
+     "pointer": "/field_semantic_evidence_contract/field_definition_evidence_body/undecided_guard"
+    },
+    {
+     "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+     "pointer": "/field_semantic_evidence_contract/common_target_guards/2"
+    },
+    {
+     "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+     "pointer": "/field_semantic_evidence_contract/common_target_guards/3"
+    },
+    {
+     "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+     "pointer": "/field_semantic_evidence_contract/basic_candidate_return/fields/definition_evidence_results"
+    },
+    {
+     "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+     "pointer": "/field_semantic_evidence_contract/basic_candidate_return/cause_vocabulary"
     },
     {
      "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
-     "pointer": "/f05_detail_contract/field_content_source_failure_writer_contract"
+     "pointer": "/f05_detail_contract/field_content_source_failure_writer_contract/writers/2"
+    },
+    {
+     "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+     "pointer": "/f05_detail_contract/cause_kind_crosswalk/values/10"
     }
    ],
    "typed_mutation_plan": "実FieldInput.definition_refs[0]のfull Refを維持し、同じsnapshot input.axis_factsとinput.semantic_recordsを実配列として供給するが、両collectionにRef照合一致recordを置かない。他の同field owner evidenceがあれば原wholeを維持する。",
-   "expected_observation": "両collectionに対応recordがない選択fieldのDefinitionAssessment.judgmentはunformed。元definition Ref、両collection Read/presence、他fieldおよび既存evidence候補を保持し、definition missing/unknownを生成しない。Cause件数/rightの具体表現はSTOP-F05-CONTENT-UNRESOLVED-CAUSE-PAIR-01のため未規定。",
+   "expected_observation": "両collectionに対応recordがない選択fieldのDefinitionAssessment.judgmentはunformed。当該definition_refs[0]のRefOperandはrecord_occurrencesを空配列[]とし、causesに探索順（[0]=/axis_facts全体Read、[1]=/semantic_records全体Read）の2件のcontent_unresolved Cause（各target=/field_inputs/0/definition_refs/0、left=definition_refs[0]の原Read<CoreRef>、rule_pointer=/f05_detail_contract/field_content_source_failure_writer_contract/writers/2）を保持し、親のDefinitionAssessment.judgment（Formation.unformed.causes）へ伝播する。元definition Ref、両collection Read/presence、他fieldおよび既存evidence候補を保持し、definition missing/unknownを生成しない。",
    "l5_technical_expectation": {
-    "writer_state": "STOP-F05-CONTENT-UNRESOLVED-CAUSE-PAIR-01",
-    "read_rule": "既存Cause.rightは単一collection Read。axis_factsとsemantic_records両Readの非合成対応およびCause件数/順序が未定のため、具体Cause期待を定義しない。片側lookup missをfield未解決にしない。"
+    "writer_pointer": "/f05_detail_contract/field_content_source_failure_writer_contract/writers/2",
+    "cause_storage_pointer": "/f05_detail_contract/types/RefOperand/members/causes",
+    "parent_propagation_pointers": [
+     "/f05_detail_contract/types/OperandMaterial/members/causes",
+     "/f05_detail_contract/types/RoleMaterial/members/causes",
+     "/f05_detail_contract/types/DefinitionEvidenceInterpretation/members/causes",
+     "/f05_detail_contract/types/DefinitionAssessment/members/causes",
+     "/f05_detail_contract/types/DefinitionAssessment/members/judgment",
+     "/f05_detail_contract/types/Formation/variants/unformed/causes"
+    ],
+    "read_rule": "present non-null definition_refs[j]の原Read<CoreRef>が観測済みaxis_facts配列とsemantic_records配列の双方で一致record 0件のとき、Cause.rightを合成せず探索順（[0]=/axis_facts全体のRead<CoreJsonValue>、[1]=/semantic_records全体のRead<CoreJsonValue>）の2件のcontent_unresolved CauseをRefOperand.causesへ格納し、record_occurrencesへ架空indexを作らない。片側lookup missでは生成しない。"
    },
    "expected_side_effect_count": 0,
    "execution_state": "not_executed",
-   "fixture_refinement": "U-ID設計のみ。実fixture・全返却・hashは未作成、未実行。"
+   "fixture_refinement": "U-ID設計のみ。実fixture・全返却・hashは未作成、未実行。",
+   "l9_scenario_refs": [
+    "HARNESS-L9-009-F05-EVIDENCE-DEF-LOOKUP-MISS"
+   ],
+   "l9_case_pointers": [
+    "/field_semantic_evidence_verification/cases/3"
+   ],
+   "l9_scenario_coverage_role_ja": "L9のscenario refsとcase pointersはscenario coverageとの照合にのみ使う。L8期待の根拠ではなく、L8期待はL4/L5から独立に導出する。",
+   "fixed_writer_case": {
+    "scope_ja": "L5 writers/2が生成するRefOperand一件（definition_refs[0]）の閉じた期待。F05DetailedReturn全体やfield/proposal親返却全体の期待ではない。",
+    "input_provenance": {
+     "revision": "c9fcb23c010ede88c528c4959929b8bdfedb730e",
+     "path": "docs/helix-harness/L8-unit-verification/product-template-application.json",
+     "pointer": "/fixture_contract/normal_fixtures/0/input",
+     "selected_pointers": [
+      "/field_inputs/0"
+     ],
+     "use_ja": "既存のFieldInput（definition_refs[0]を含む）を固定刺激として切り出す。期待値はこの下流fixtureやL9から作らず、L4/L5のwriter条件と型から独立に記述する。axis_facts=[]、semantic_records=[]として両collection lookup miss条件を作る。"
+    },
+    "input_slice": {
+     "field_inputs": [
+      {
+       "ref": {
+        "identity": "field-A",
+        "revision": "synthetic-A",
+        "scope": {
+         "product": "SYNTHETIC-P",
+         "tenant": "SYNTHETIC-T",
+         "environment": "SYNTHETIC-E"
+        },
+        "owner": "synthetic-core-owner",
+        "source_locator": null,
+        "sha256": null
+       },
+       "template_ref": {
+        "identity": "SYNTHETIC-T-unit",
+        "revision": "synthetic-A",
+        "scope": {
+         "product": "SYNTHETIC-P",
+         "tenant": "SYNTHETIC-T",
+         "environment": "SYNTHETIC-E"
+        },
+        "owner": "synthetic-brain-owner",
+        "source_locator": null,
+        "sha256": null
+       },
+       "binding": {
+        "requirement_ref": {
+         "identity": "synthetic-requirement",
+         "revision": "synthetic-A",
+         "scope": {
+          "product": "SYNTHETIC-P",
+          "tenant": "SYNTHETIC-T",
+          "environment": "SYNTHETIC-E"
+         },
+         "owner": "synthetic-requirement-owner",
+         "source_locator": null,
+         "sha256": null
+        },
+        "product_scope": {
+         "product": "SYNTHETIC-P",
+         "tenant": "SYNTHETIC-T",
+         "environment": "SYNTHETIC-E"
+        },
+        "process_contract_ref": {
+         "identity": "synthetic-process-contract",
+         "revision": "synthetic-A",
+         "scope": {
+          "product": "SYNTHETIC-P",
+          "tenant": "SYNTHETIC-T",
+          "environment": "SYNTHETIC-E"
+         },
+         "owner": "synthetic-harness-owner",
+         "source_locator": null,
+         "sha256": null
+        },
+        "application_contract_ref": {
+         "identity": "synthetic-application-contract",
+         "revision": "synthetic-A",
+         "scope": {
+          "product": "SYNTHETIC-P",
+          "tenant": "SYNTHETIC-T",
+          "environment": "SYNTHETIC-E"
+         },
+         "owner": "synthetic-harness-owner",
+         "source_locator": null,
+         "sha256": null
+        },
+        "template_ref": {
+         "identity": "SYNTHETIC-T-unit",
+         "revision": "synthetic-A",
+         "scope": {
+          "product": "SYNTHETIC-P",
+          "tenant": "SYNTHETIC-T",
+          "environment": "SYNTHETIC-E"
+         },
+         "owner": "synthetic-brain-owner",
+         "source_locator": null,
+         "sha256": null
+        },
+        "knowledge_ref": {
+         "identity": "SYNTHETIC-K-unit",
+         "revision": "synthetic-A",
+         "scope": {
+          "product": "SYNTHETIC-P",
+          "tenant": "SYNTHETIC-T",
+          "environment": "SYNTHETIC-E"
+         },
+         "owner": "synthetic-brain-owner",
+         "source_locator": null,
+         "sha256": null
+        },
+        "oracle_ref": {
+         "identity": "synthetic-pair-unit",
+         "revision": "synthetic-A",
+         "scope": {
+          "product": "SYNTHETIC-P",
+          "tenant": "SYNTHETIC-T",
+          "environment": "SYNTHETIC-E"
+         },
+         "owner": "synthetic-oracle-owner",
+         "source_locator": null,
+         "sha256": null
+        }
+       },
+       "definition_refs": [
+        {
+         "identity": "field-definition",
+         "revision": "synthetic-A",
+         "scope": {
+          "product": "SYNTHETIC-P",
+          "tenant": "SYNTHETIC-T",
+          "environment": "SYNTHETIC-E"
+         },
+         "owner": "synthetic-brain-owner",
+         "source_locator": null,
+         "sha256": null
+        }
+       ],
+       "value_fact_refs": [
+        {
+         "identity": "field-value",
+         "revision": "synthetic-A",
+         "scope": {
+          "product": "SYNTHETIC-P",
+          "tenant": "SYNTHETIC-T",
+          "environment": "SYNTHETIC-E"
+         },
+         "owner": "synthetic-requirement-owner",
+         "source_locator": null,
+         "sha256": null
+        }
+       ],
+       "source_ref": {
+        "identity": "source-synthetic-requirement-owner",
+        "revision": "synthetic-A",
+        "scope": {
+         "product": "SYNTHETIC-P",
+         "tenant": "SYNTHETIC-T",
+         "environment": "SYNTHETIC-E"
+        },
+        "owner": "synthetic-requirement-owner",
+        "source_locator": null,
+        "sha256": null
+       }
+      }
+     ],
+     "axis_facts": [],
+     "semantic_records": [],
+     "sources": []
+    },
+    "expected_ref_operand": {
+     "original_ref": {
+      "tag": "present",
+      "location": {
+       "root": "validation_input",
+       "pointer": "/field_inputs/0/definition_refs/0"
+      },
+      "value": {
+       "identity": "field-definition",
+       "revision": "synthetic-A",
+       "scope": {
+        "product": "SYNTHETIC-P",
+        "tenant": "SYNTHETIC-T",
+        "environment": "SYNTHETIC-E"
+       },
+       "owner": "synthetic-brain-owner",
+       "source_locator": null,
+       "sha256": null
+      }
+     },
+     "operand_index": 0,
+     "role": "definition_refs",
+     "record_occurrences": [],
+     "causes": [
+      {
+       "kind": "content_unresolved",
+       "target": {
+        "root": "validation_input",
+        "pointer": "/field_inputs/0/definition_refs/0"
+       },
+       "left": {
+        "tag": "original",
+        "read": {
+         "tag": "present",
+         "location": {
+          "root": "validation_input",
+          "pointer": "/field_inputs/0/definition_refs/0"
+         },
+         "value": {
+          "identity": "field-definition",
+          "revision": "synthetic-A",
+          "scope": {
+           "product": "SYNTHETIC-P",
+           "tenant": "SYNTHETIC-T",
+           "environment": "SYNTHETIC-E"
+          },
+          "owner": "synthetic-brain-owner",
+          "source_locator": null,
+          "sha256": null
+         }
+        }
+       },
+       "right": {
+        "tag": "original",
+        "read": {
+         "tag": "present",
+         "location": {
+          "root": "validation_input",
+          "pointer": "/axis_facts"
+         },
+         "value": []
+        }
+       },
+       "rule_pointer": "/f05_detail_contract/field_content_source_failure_writer_contract/writers/2"
+      },
+      {
+       "kind": "content_unresolved",
+       "target": {
+        "root": "validation_input",
+        "pointer": "/field_inputs/0/definition_refs/0"
+       },
+       "left": {
+        "tag": "original",
+        "read": {
+         "tag": "present",
+         "location": {
+          "root": "validation_input",
+          "pointer": "/field_inputs/0/definition_refs/0"
+         },
+         "value": {
+          "identity": "field-definition",
+          "revision": "synthetic-A",
+          "scope": {
+           "product": "SYNTHETIC-P",
+           "tenant": "SYNTHETIC-T",
+           "environment": "SYNTHETIC-E"
+          },
+          "owner": "synthetic-brain-owner",
+          "source_locator": null,
+          "sha256": null
+         }
+        }
+       },
+       "right": {
+        "tag": "original",
+        "read": {
+         "tag": "present",
+         "location": {
+          "root": "validation_input",
+          "pointer": "/semantic_records"
+         },
+         "value": []
+        }
+       },
+       "rule_pointer": "/f05_detail_contract/field_content_source_failure_writer_contract/writers/2"
+      }
+     ]
+    },
+    "expectation_basis": [
+     {
+      "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+      "pointer": "/field_source_materialization_contract/ordered_source_materialization/2"
+     },
+     {
+      "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+      "pointer": "/field_semantic_evidence_contract/field_definition_evidence_body/absent_guard"
+     },
+     {
+      "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+      "pointer": "/field_semantic_evidence_contract/field_definition_evidence_body/undecided_guard"
+     },
+     {
+      "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+      "pointer": "/field_semantic_evidence_contract/basic_candidate_return/cause_vocabulary"
+     },
+     {
+      "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+      "pointer": "/f05_detail_contract/types/RefOperand"
+     },
+     {
+      "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+      "pointer": "/f05_detail_contract/reference_and_collection_rules/order"
+     },
+     {
+      "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+      "pointer": "/f05_detail_contract/field_content_source_failure_writer_contract/writers/2"
+     }
+    ],
+    "unformed_extent_ja": [
+     "このsliceはF05DetailedRequest全体ではない。Context/header、前段comparison、Selection、呼出元、親返却の5-member F05DetailedReturn、他field/sibling evidenceは期待に含めない。",
+     "axis_factsとsemantic_recordsの双方で一致recordが0件のためRecordOccurrence、DeclarationOccurrence、ProjectionAttempt、Source/BodyOccurrenceは形成しない。RefOperand.record_occurrencesは空配列[]のままにする。",
+     "definition missingやvalue unknownという判定を作るのではなく、探索順の2件のcontent_unresolved CauseをRefOperand.causesに保持し、親のDefinitionAssessment.judgment（Formation.unformed.causes）へ複写する。",
+     "ADD-45のexecution_stateはnot_executedのまま。U-ID、producer実行、pair freezeを成立済みとはしない。"
+    ]
+   }
   },
   {
    "id": "HARNESS-L8-009-ADD-46",
