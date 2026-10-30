@@ -78,8 +78,11 @@ def main() -> None:
     assert singleton["raw_input_source"]["sha256"] == "5ba0ead8c78e923f2e5807ad131f150c22b51633360542982d5da5b7e44c37fc"
     assert audit["unformed_case_count"] == 181
     assert audit["upper_classification_count"] == 34
-    assert audit["candidate_classification_count"] == 7
-    assert audit["not_formed_classification_count"] == 27
+    formed_codes = {x["class_code"] for x in audit["single_finding_candidates"]}
+    assert audit["candidate_classification_count"] == len(formed_codes) == 1
+    assert audit["not_formed_classification_count"] == audit["upper_classification_count"] - len(formed_codes) == 33
+    assert audit["target_condition_code_count"] == 7
+    assert "six unknown/unformed case sets do not form classes" in audit["classification_count_basis"]
     assert audit["manual_projection_audit_row_count"] == len(audit["manual_projection_audit_rows"]) == 14
     assert audit["supplemental_audit_row_count"] == len(audit["supplemental_audit_rows"]) == 8
     assert "manual_projection_candidates" not in audit and "supplemental_candidate_cases" not in audit
@@ -283,7 +286,7 @@ def main() -> None:
     # The L9 audit must not acquire a scaffold dependency or a formal checker marker.
     assert "scaffold/research/wr186-psp-negative-residual/" not in json.dumps(audit)
     assert "candidate_ref" not in json.dumps(audit)
-    print("WR186/WR192 static audit: PASS; F03/F05 raw pointers=22 unknown/unformed; F04 fixed-input single candidate=1, unknown/unformed=6; L9 expectations unchanged; formal_rows=0; marker=off")
+    print("WR186/WR192 static audit: PASS; F03/F05 raw pointers=22 unknown/unformed; F04 fixed-input single candidate=1, unknown/unformed=6; L9 expectations unchanged; formed_classifications=1/34; target_condition_codes=7; formal_rows=0; marker=off")
 
 
 if __name__ == "__main__":

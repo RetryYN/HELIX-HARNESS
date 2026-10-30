@@ -32,7 +32,7 @@ Release-eligible proof自体がnullのpacketでは、他6 stateのproof content�
 
 全packetは `synthetic_design_fixture_not_actual_owner_or_authority` と資格範囲を明記する。実owner bytes/authority/実source qualificationはunknownである。case metadataは全件 `execution_state=not_executed`, `effect=none` であり、実行や副作用があったとは扱わない。既存 `expected_material` / `negative_class_assignment` は出力観測として使わない。
 
-F04のraw pointer/hash、L4 classification/state basis pointer、Verified lower refsとRelease proofs参照の解決状況、6件のunknown/unformed、1件の単一条件候補は [f04-audit-rows.json](f04-audit-rows.json) に記録した。これは固定入力から導く候補の確認で、実行結果、formal projection row、ownerへの実配送、製品合格を主張しない。L9のcases/expectations、182件母集団、formal projection row、checker marker、freezeは変更しない。監査本文のcase-level candidate数は7から1、unformed数は175から181へ訂正した。
+F04のraw pointer/hash、L4 classification/state basis pointer、Verified lower refsとRelease proofs参照の解決状況、6件のunknown/unformed、1件の単一条件候補は [f04-audit-rows.json](f04-audit-rows.json) に記録した。これは固定入力から導く候補の確認で、実行結果、formal projection row、ownerへの実配送、製品合格を主張しない。L9のcases/expectations、182件母集団、formal projection row、checker marker、freezeは変更しない。L9集計はcase-level candidate数を7から1、未形成case数を175から181へ訂正し、single-finding candidateに由来する形成分類数も7から1、未形成分類を27から33へ訂正した。7 raw target condition labelsは監査情報として別計上し、finding分類として扱わない。
 
 ## 訂正後の状態
 

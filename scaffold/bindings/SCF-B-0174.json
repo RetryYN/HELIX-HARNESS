@@ -25,7 +25,7 @@
     },
     {
       "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
-      "sha256": "a501730c2c055eda29c5219e9824bbfc78de9221159974e05a56ef8fee09716d",
+      "sha256": "25a850073b17f9a086c94d2fcb15f144578abe8937e0f26e2669c79805c77650",
       "note": "L9監査記録と既存182-case population/expectations。固定raw input snapshotはed3981e7b9419d796adf1981f8990c6b626ecabe。F03/F05 22件とF04 6件はunknown/unformed監査行、F04 Release-eligible nullの1件だけ固定raw条件候補。正式期待とケース母集団は不変。"
     }
   ],
