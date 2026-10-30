@@ -1,0 +1,131 @@
+{
+  "schema_revision": 1,
+  "id": "SCF-B-0184",
+  "kind": "scaffold",
+  "title": "WR204 OS017 ownership-role source-only witnesses",
+  "product": "HELIX-HARNESS",
+  "owner_candidate": "HELIX-OS OS017 L4/L9 candidate evidence",
+  "state": "registered",
+  "reason": "L3/L10 B01 owner-boundary source, L4 role comparison prose, and six L7 raw given_input graphs support one source-qualified ownership/source_unresolved class candidate. L9 rows only reference that L4 candidate; the L9 expected projection remains unchanged. No L4/L5 algorithm execution or formal four-layer marker is added.",
+  "upstream": [
+    {
+      "path": "docs/helix-os/L3-requirements/business-requirements.json",
+      "sha256": "0df11c612e3e0b531d2103d058471d5be2be8b8df965d10b69e06b0e506488c7",
+      "note": "B01 ownership boundary requirement source."
+    },
+    {
+      "path": "docs/helix-os/L10-verification/business-verification.json",
+      "sha256": "215e1d4a99f73151aa4b3225947a65567fbc3b97bec0cf9eac8d1a6456cbc3dd",
+      "note": "B01 static verification source."
+    },
+    {
+      "path": "docs/helix-os/L4-basic-design/ticket-workflow-derivation.json",
+      "sha256": "042b09df96082a9f04e43016bb70928ceef2e807d84b0bbc958210283582fa15",
+      "note": "Current L4 source; role comparison, owner map, class row, pointer evidence. Updated for compact role witness references; prior pin: 45cca359a390061fb63291f10b482c8b643345b6c5f5fe45093fc62d8574dde2."
+    },
+    {
+      "path": "docs/helix-os/L7-function-verification/ticket-workflow-derivation.json",
+      "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146",
+      "note": "Fixed given_input_ref raw inputs only; expected refs excluded."
+    },
+    {
+      "path": "docs/helix-os/L9-integration-verification/ticket-workflow-derivation.json",
+      "sha256": "74458de4b91932c4a6ddad22434e86be4ee5eacfa1f36ac59b9873a06c44652d",
+      "note": "Current L9 source; six candidate links only, expected projection unchanged."
+    },
+    {
+      "path": "docs/governance/design-verification-quality-assurance.md",
+      "sha256": "f5751e236dc073fe67114c1fcb4b0f64b3d746290b25d75b61e60a08e3c99c85",
+      "note": "Explicit four-layer class marker boundary; candidate links do not establish membership."
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-requirements.md",
+      "sha256": "f0d0d33a1cced1ad7c1bab061f0a36bcdb5bad122dc58c7e8e43b47032f37d6b",
+      "note": "LEGACY-ASSET-3A15E5645D2D2A59DFF5 §3 and §5 source/owner lineage. 静的read-only参照のみ。"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/predecessor-harness-full-weakness-audit-2026-07-20.md",
+      "sha256": "bab121404c956a0a4b403e589bea1c414af59b5996989bea5fab9f98f42f6872",
+      "note": "LEGACY-ASSET-A127DEC3EEE6ED63CF17 UTW-002/005/021 historical failure evidence. 静的read-only参照のみ。"
+    },
+    {
+      "path": "scaffold/research/wr204-os017-negative-classes-20261031/validate_manual_derivation.py",
+      "sha256": "3c8e0169f566263f0bbf39ceb39da700e53c10d80eb0f4f352933e0416b3598d",
+      "note": "Shared RFC6901/object-graph resolver validates both the input cohort and six compact role witnesses; no L4/L5 behavior is executed."
+    }
+  ],
+  "role": "WR204 OS017 ownership facet source-qualified negative-class candidate evidence; not formal four-layer class membership.",
+  "obligations": [
+    "L3/L10 B01 owner boundary and L4 role comparison/owner prose are linked to six L7 raw witness graphs.",
+    "Preserve existing inputs classes and record one unresolved actual role leaf per six cases without using L7/L8/L9 expectations as derivation oracle.",
+    "Link the six corresponding L9 cases to the L4 candidate without changing the 217 expected projections.",
+    "Keep L5/L8 projections, owner_ref, explicit marker, freeze, and four-way PASS unformed."
+  ],
+  "connections": {
+    "consumers": [
+      "WR204 OS017 L5/L8 successor V-pair"
+    ],
+    "dependencies": [
+      "WR204 OS017 inputs classes evidence SCF-B-0181",
+      "L3/L10 OS017 B01 owner boundary"
+    ],
+    "boundary": "Scaffold evidence only; no authority or completion claim. Candidate links are not formal negative_class_ref membership."
+  },
+  "operations": {
+    "allowed": [
+      "Read L3/L10/L4 prose and tables",
+      "Inspect L7 given_input_ref raw graphs",
+      "Static JSON, revision, and RFC6901 pointer validation",
+      "scfctl validate/stale",
+      "design-verification check-child",
+      "git diff --check"
+    ],
+    "forbidden": [
+      "Execute L4/L5 embedded algorithm",
+      "Use L7/L8/L9 expected data as derivation oracle",
+      "Edit L5/L8 in this V-pair",
+      "Add a new gate or formal marker",
+      "Run legacy CLI/hook/runtime/test/CI",
+      "旧archiveは実行しない"
+    ]
+  },
+  "artifacts": [
+    "docs/helix-os/L4-basic-design/ticket-workflow-derivation.json",
+    "docs/helix-os/L9-integration-verification/ticket-workflow-derivation.json",
+    "scaffold/research/wr204-os017-roles-witnesses-20261031/README.md",
+    "scaffold/research/wr204-os017-roles-witnesses-20261031/manual-derivation.json"
+  ],
+  "verification": {
+    "evidence_kind": "scaffold",
+    "scope": [
+      "schema_interface",
+      "source_revision_stale",
+      "negative_case",
+      "forbidden_write_scope"
+    ],
+    "oracles": [
+      "python3 scaffold/research/wr204-os017-negative-classes-20261031/validate_manual_derivation.py",
+      "python3 scaffold/tools/design_verification_checker.py check-child --root . --l4 docs/helix-os/L4-basic-design/ticket-workflow-derivation.json --l5 docs/helix-os/L5-detail-design/ticket-workflow-derivation.json --l8 docs/helix-os/L8-unit-verification/ticket-workflow-derivation.json --l9 docs/helix-os/L9-integration-verification/ticket-workflow-derivation.json",
+      "python3 -B scaffold/tools/scfctl.py validate",
+      "python3 -B scaffold/tools/scfctl.py stale",
+      "git diff --check"
+    ],
+    "negative_cases": [
+      "Only each designated actual roles leaf is null; all other raw input leaves equal resume baseline.",
+      "L9 candidate references link to L4 row 2 while 217 expected projections remain byte-value invariant.",
+      "No formal four-layer marker, negative_class_ref, L5/L8 projection, or four-way PASS is claimed."
+    ]
+  },
+  "replacement": {
+    "role_target": "Later L5/L8 successor pair and formal four-layer classes",
+    "formal_artifacts": [],
+    "issue": 3510,
+    "status": "pending",
+    "transfer": null,
+    "target_revisions": {},
+    "confirmation_ref": null,
+    "confirmation_digest": null
+  },
+  "created": "2026-10-31",
+  "updated": "2026-10-31"
+}
