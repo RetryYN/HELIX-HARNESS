@@ -6,7 +6,7 @@
   "product": "HELIX-HARNESS",
   "owner_candidate": "HELIX-HARNESS CORE009 F05 source investigation",
   "state": "registered",
-  "reason": "WR198-F05-GAP-PROPOSAL-BODY-SOURCE（Issue #3510）のdesign_verification依頼に基づき、既存Stopと期待を変えず、調査対象・参照revision・検索範囲・結果・再調査条件を記録する。独立owner statement/body、有限L9 oracle、新要求を形成しない。",
+  "reason": "WR198-F05-GAP-PROPOSAL-BODY-SOURCE（Issue #3510）のdesign_verification依頼に基づき、GAP-PROPOSAL Stopと期待を変えず、調査対象・参照revision・検索範囲・結果・再調査条件を記録する。BODY-ENTRY StopはWR197担当であり本記録は判断しない。独立owner statement/body、有限L9 oracle、新要求を形成しない。",
   "upstream": [
     {
       "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
@@ -17,6 +17,21 @@
       "path": "docs/helix-harness/L10-verification/functional-verification.json",
       "sha256": "fc58ad2268746d7924ac9be33e8f3f75e6d3c2cc619e27fbc1ddc34edd065cb2",
       "note": "HARNESS-009-F05 /cases/27。既存verification意味を照合。"
+    },
+    {
+      "path": "docs/helix-harness/L1-planning/product-intent.md",
+      "sha256": "238ae0590f43c10c0a59a0cea4a9907328752a81388891e1a115d4278db00e1f",
+      "note": "HARNESS-L1-009 line 39。templateで設計義務を導き、必要要求input不足を上流へ戻す企画候補。具体F05 owner bodyではない。"
+    },
+    {
+      "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "sha256": "e755aa99f9d8b7add908974ca6254d048fe614e58463c01178a3538e6ce3df13",
+      "note": "HARNESS-L2-009 relation/requirement lines 48,60。template不足inputの質問・要求候補Backflowを示す要求案。具体scopeのowner bodyではない。"
+    },
+    {
+      "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+      "sha256": "671fbea2bae0cf6a7e9d726c04b368df02d95b9f5d78e463f0196a92190d3ffb",
+      "note": "HARNESS-L2-009 acceptance lines 131,1343-1350。一般missing-input scenario/four-category acceptance only; no concrete owner statement/body or operand/basis occurrence."
     },
     {
       "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
@@ -64,15 +79,20 @@
       "note": "LEGACY-ASSET-98372FEE8A3AC8F9C299, lines 33-108。静的read-only参照のみ。"
     },
     {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/universal-workflow-ai-judgment-engine.md",
+      "sha256": "e20f475a3d1d082842415c2b734233e33a59f1b0bb1046c41e4ff4ec9c700e5b",
+      "note": "LEGACY-ASSET-5EE032D657C221184B00, UWJ-FR-017 line 61。envelope field groupingの語句一致のみ。静的read-only参照のみ。"
+    },
+    {
       "path": "archive/legacy-generation-2026-09-14/root/docs/governance/predecessor-harness-full-weakness-audit-2026-07-20.md",
       "sha256": "bab121404c956a0a4b403e589bea1c414af59b5996989bea5fab9f98f42f6872",
       "note": "LEGACY-ASSET-A127DEC3EEE6ED63CF17, UTW-014/020/021 at lines 80,86-87。静的read-only参照のみ。"
     }
   ],
-  "role": "WR198で調査したowner sourceの所在・revision・検索境界・結果・再調査条件を、Stop維持のscaffold証跡として保持する。",
+  "role": "WR198で調査したowner sourceの所在・revision・検索境界・結果・再調査条件を、GAP-PROPOSAL Stop維持のscaffold証跡として保持する。",
   "obligations": [
     "独立owner statement/body、同一scopeのoperand/basis sourceを確認できなかった検索範囲と限定的な結果を記録する。",
-    "既存L4/L9 Stopと期待、HARNESS L3/L10の意味を変更しない。",
+    "WR198対象のGAP-PROPOSAL oracle Stopと期待、HARNESS L3/L10の意味を変更しない。BODY-ENTRY Stopは本記録で判断しない。",
     "未発見を絶対的不在と断定せず、synthetic fixtureや一般的L9期待から有限oracleを形成しない。",
     "旧L4/L5資産とUTW-014/020/021を照合し、失敗監査を新要求や成功条件へ転用しない。",
     "再調査に必要なowner source、revision/pointer、scope、body/operand/basis対応を明示する。"
@@ -84,10 +104,12 @@
     "dependencies": [
       "WR198-F05-GAP-PROPOSAL-BODY-SOURCE request (Issue #3510; request SHA-256 in README)",
       "HARNESS L3 /requirements/27 and L10 /cases/27",
+      "HARNESS L1-009 / L2-009 / corresponding L11 acceptance description",
+      "PR #3933 R1 review comment 6526970112 and response WR198-3933-review-R1",
       "CORE009 prerequisite L3/L10 delegated decision",
       "Existing L4 gap_proposition_body guard and L9 case 4"
     ],
-    "boundary": "scaffold evidence only; no authority effect, requirement change, finite L9 oracle, runtime behavior, implementation completion, or freeze claim."
+    "boundary": "scaffold evidence only; no authority effect, requirement change, finite L9 oracle, runtime behavior, implementation completion, or freeze claim. BODY-ENTRY is WR197 scope and is not adjudicated here."
   },
   "operations": {
     "allowed": [
@@ -130,7 +152,7 @@
     ],
     "negative_cases": [
       "No qualifying same-scope owner statement/body located within the documented search; this bounded result is not proof of global absence.",
-      "Body-entry absence and proposal-body-oracle Stops remain unchanged; no Cause or classification is fabricated.",
+      "WR198 preserves only the GAP-PROPOSAL oracle Stop; BODY-ENTRY is WR197 scope and this record makes no judgment about it.",
       "No L9 input/expected is authored from existing producer fixtures, design descriptions, or generic L3/L10 wording.",
       "Existing freeze checker SHA mismatches, if unchanged from baseline, are pre-existing observations and are not claimed as a pass or resolved by this scaffold record."
     ]
