@@ -1,0 +1,90 @@
+{
+  "schema": "wr238-review-correction.v1",
+  "evidence_kind": "scaffold",
+  "authority_effect": "none",
+  "request_id": "WR238-PROCESS-STATE-L5L8-L4-REBIND",
+  "correction_id": "WR238-3978-R1-F1",
+  "reason": "PR #3978 R1 comment 6533536814 F1: two rows without an L9 counterpart had a generic row verdict claiming agreement with L9.",
+  "prior_record": {
+    "path": "docs/governance/audits/wr238-process-state-l5l8-alignment.json",
+    "sha256_before_correction": "444be7e8dcb53bcf3f065165e3cbaa1cba35f0c3568ead71631d8505824a41b3",
+    "sha256_restored_bytes": "444be7e8dcb53bcf3f065165e3cbaa1cba35f0c3568ead71631d8505824a41b3",
+    "commit": "c1e602adbd2f30a3f8d414f5f9ad6ec10ca0e0ee",
+    "bytes_restored_from_commit": true,
+    "historical_blob_retained_in_git": true,
+    "original_record_bytes_modified": false
+  },
+  "source_reference": {
+    "L4_path": "docs/helix-harness/L4-basic-design/process-state-port.json",
+    "L4_revision": "7c142d7bb96974e9fe0a2fcab5ad2a48a628cb6f",
+    "L4_sha256": "e6253059bb117446412ecb8b054ae533641054c8a1be4a535eb1f784017fa3e9",
+    "L8_pointer": "/cases/3/cases",
+    "L9_path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+    "L9_revision": "7c142d7bb96974e9fe0a2fcab5ad2a48a628cb6f",
+    "L9_sha256": "60942b72d432a79e72b03ab42a616e264b442bfc60b5d53e3aeb54f9c84a847e"
+  },
+  "row_corrections": [
+    {
+      "index": 43,
+      "id": "H003-L8-F03-NORMAL-WHOLE",
+      "pointer": "/L8_F03_review/cases/43/verdict",
+      "previous_value": "L9との比較は一致。synthetic fixture statusであり実処理結果/findingではない",
+      "corrected_value": "L9対応なし。L4とL8 source整合はL9比較とは別に確認。",
+      "l9_comparison_field": "L9同名caseなし",
+      "pair_result": {
+        "state": "known",
+        "value": "supported_synthetic_condition"
+      },
+      "valley_result": {
+        "state": "known",
+        "value": "supported_synthetic_condition"
+      },
+      "correction_action": "interpretation_override_by_append_only_correction",
+      "original_record_field_modified": false
+    },
+    {
+      "index": 44,
+      "id": "H003-L8-F03-005-BINDING-QUALIFICATION-MISSING-WHOLE",
+      "pointer": "/L8_F03_review/cases/44/verdict",
+      "previous_value": "L9との比較は一致。synthetic fixture statusであり実処理結果/findingではない",
+      "corrected_value": "L9対応なし。L4とL8 source整合はL9比較とは別に確認。",
+      "l9_comparison_field": "独立qualification missing row。L9に同一IDのrowなし。別caseのsupported値とは比較しない",
+      "pair_result": {
+        "state": "known",
+        "value": "supported_synthetic_condition"
+      },
+      "valley_result": {
+        "state": "missing",
+        "value": null
+      },
+      "correction_action": "interpretation_override_by_append_only_correction",
+      "original_record_field_modified": false
+    }
+  ],
+  "interpretation": "先行監査JSONのbytesはcommit c1e602adと同じ状態に復元し、変更していない。この追補はindex 43/44の旧verdictを解釈する際に優先し、両行を「L9対応なし。L4とL8 source整合はL9比較とは別に確認。」として扱う。元JSON中の旧verdict文字列は履歴として残すが、L9比較一致の根拠には使わない。group-level verdictの43件一致と2 whole wrapper別構成は変更しない。",
+  "preserved": {
+    "fixed_blind_sha256": "2000a0e42e85679bf047cfdfabb4d8477fc598927a372cee9283f6c7effa7990",
+    "fixed_blind_bytes_changed": false,
+    "L4_L5_L8_L9_expected_values_changed": false,
+    "source_pins_changed": false,
+    "L5_L8_design_content_changed": false
+  },
+  "PR_and_bindings": {
+    "PR_3978_body_changed": true,
+    "PR_body_reason": "PR本文へ追補JSONが元監査JSONのbytesを保全したままindex 43/44の解釈を上書きすることを追記。group-level 43一致/2 whole wrapper別構成の説明は維持。",
+    "SCF_B_0174_0186_0188_changed": false,
+    "binding_reason": "各bindingはL5/L8 formal source digestをupstreamでpinするが、この監査JSONまたは追補をupstream/artifactとして参照しない。formal source bytes/hashは不変なので再束縛不要。"
+  },
+  "verification_scope": {
+    "json_parse": true,
+    "diff_check": true,
+    "scfctl_validate": {
+      "passed": true,
+      "summary": "182 bindings; fail=0"
+    },
+    "scfctl_stale": {
+      "passed": true,
+      "summary": "stale=0"
+    }
+  }
+}

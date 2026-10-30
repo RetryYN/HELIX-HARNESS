@@ -1,0 +1,2427 @@
+{
+  "task": "WR238 PSP blind source-only expected semantics",
+  "base_revision": "7c142d7bb96974e9fe0a2fcab5ad2a48a628cb6f",
+  "source_records": {
+    "L3_F03": {
+      "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+      "revision": "7c142d7bb96974e9fe0a2fcab5ad2a48a628cb6f",
+      "sha256": "a3b907cdc316117d4684632f9a1cbf36125eb6e6172f9cfc286060617583d7be",
+      "pointer": "/requirements/66",
+      "value": {
+        "id": "HARNESS-L3-003-F03",
+        "parent": "HARNESS-L2-003",
+        "title": "Vの谷と右側の照合範囲",
+        "obligation": "005/015の凍結→実装前Red実観測→最小Green→局所Refactor/原子CIと双方向traceを同対象へ結び、出力をProvisionalにする。右側では結合scopeを広げるごとに実物を対設計へ照合し、L8↔L5/L9↔L4/L10↔L3を保つ。正規由来が分かる変更は当該scopeのScoped Reverse、由来不明/旧資産/trace欠落/設計を信用できない/大きなずれは全体Reverseの復旧候補に分ける。L9ではinterface、依存の向き、state/dataの所有、transaction、失敗伝播、retry、timeout、冪等性、結合度、責務重複を照合する。通常の照合ではticketを発行しない。明らかな設計/実装のずれ、由来欠落、同種findingの再発、性能退行、障害後の恒久対策、Scrum Reverse checkpoint、大きな設計退行ではReverse ticketの発行条件となる。小さな境界Refactorは現在のForward ticket内、独立した大きな構造/横断/architecture改善はRefactor/Design-refactor/Performance-refactor ticketへ区別する。HARNESSは条件と種類の意味を提供し、実発行はOSが所有する。",
+        "oracle_ref": "HARNESS-L10-003-F03"
+      }
+    },
+    "L10_F03": {
+      "path": "docs/helix-harness/L10-verification/functional-verification.json",
+      "revision": "7c142d7bb96974e9fe0a2fcab5ad2a48a628cb6f",
+      "sha256": "fc58ad2268746d7924ac9be33e8f3f75e6d3c2cc619e27fbc1ddc34edd065cb2",
+      "pointer": "/cases/66",
+      "value": {
+        "id": "HARNESS-L10-003-F03",
+        "parent": "HARNESS-L2-003",
+        "title": "Vの谷と右側の照合範囲",
+        "requirement_ref": "HARNESS-L3-003-F03",
+        "positive_input": "由来と対が明確な変更、由来不明/trace欠落、実装前Red不足を別々に照合する。通常照合と各Reverse trigger、局所/独立構造改善を分け、L9の各観点の不足を与える。",
+        "expected_observation": "谷の証拠条件と局所/全体照合の選択根拠が辿れ、原子CIを上位証明にしない。L9各観点とticket非発行/発行条件/種類の違いが辿れる。",
+        "negative_input": "正規scope照合でも全体Reverse既定、由来不明を局所成功で埋める、原子CIで品質/Accepted/Release成立。通常照合で毎回Reverse ticket、再発/性能退行のtrigger見落とし、L9のstate所有/transaction/冪等性未検証を照合済み、HARNESSによる実ticket発行。",
+        "failure_observation": "該当証拠/由来不足と復旧候補を残し、Reverse実行成功を生成しない。",
+        "execution_state": "not_executed"
+      }
+    },
+    "L4_F03": {
+      "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
+      "revision": "7c142d7bb96974e9fe0a2fcab5ad2a48a628cb6f",
+      "sha256": "e6253059bb117446412ecb8b054ae533641054c8a1be4a535eb1f784017fa3e9",
+      "pointer": "/contracts/3",
+      "contract_fields": {},
+      "partial_result_semantics_pointer": "/contracts/3/connection_detail/partial_result_semantics",
+      "partial_result_semantics": {
+        "scope": "F03のL8/L9 synthetic expected-partial fixtureにおけるpair_result/valley_resultの値域と型表現。L3/L10要求意味、L4の既存failure分類、L8/L9のformal expected result valuesは変更しない。L9説明reason 4箇所の履歴は参照先scaffold auditに保持する。値は未実行の合成期待であり実処理出力ではない。",
+        "fields": {
+          "pair_result": "合成期待における対象pairのpartial status。値はsupported_synthetic_condition（fixture source packetが対象synthetic conditionを支持する）、conflict（pair/scopeの期待不整合）、stale（別revisionのpair材料）、またはL8 envelopeでは値nullと組み合わせたstate statusである。どれも実際に処理されたpair結果ではない。",
+          "valley_result": "合成期待における対象V谷のpartial status。値supported_synthetic_conditionはfixture sourceがsynthetic conditionを支持する期待、conflictは谷条件またはfixture witnessの不整合を表す。L8にはrequired fixture binding qualification未供給を示すstate=missing/value=nullの例もあるが、同一IDのL9対応rowはないため、L9の別caseにあるsupported値との差としては解釈しない。どの値も実際に処理された谷結果ではない。"
+        },
+        "typed_envelope_boundary": "L8 expected_partial_valuesはstateとvalueを分ける。knownにはsupported_synthetic_condition、conflict/stale/missingにはvalue=nullが置かれる。L9 expected_materialはstateを平坦な文字列へ写すが、execution_state=not_executed/effect=noneの期待recordであり、実処理結果やfinding projectionではない。",
+        "classification_separation": "F03_REQUIRED_PAIR_MISSINGのpair_trace/missingは、必要pairまたは原traceが未供給なのに処理結果を成立扱いする分類である。fixtureがmissing条件を支持することとpair/traceが実際に揃っていることを混同せず、supported_synthetic_conditionでmissing分類を置換しない。raw入力差またはmutationだけで処理結果がmissingを成立扱いしたfindingを生成しない。",
+        "failure_handling": {
+          "unformed_finding": "必要な処理結果がraw evidenceにない場合、finding setはunknown/unformedのまま保持する（空集合にもF03_REQUIRED_PAIR_MISSINGにも自動変換しない）。",
+          "retained_candidate_annotation": "negative_class_assignmentは候補注釈として保持できるが、実際に形成されたfinding集合やchecker evidenceとして扱わない。",
+          "invalidated_projection": "L9 projection auditがinvalidated_prior_candidate_codesを持つ場合は取消記録と残存candidate annotationの双方を保持し、annotationを理由に取消を取り消さない。",
+          "partial_scope": "不足条件、対象revision/scope、元証拠、理由、ownerを保持し、無関係な有効scopeや独立pairを全停止しない。実作用はnone。"
+        },
+        "values": {
+          "supported_synthetic_condition": "source_packet_refで特定されたfixture sourceが当該synthetic conditionを支持するという期待。pair/谷の実成立・successful execution・Provisional遷移・上位受入・finding非発生を意味しない。",
+          "conflict": "fixture expectationが対象pair/谷の基準との不一致または必要証拠の不整合を表す期待ラベル。L8ではstate=conflict/value=null。L9では具体caseのmutation/reasonに従う。処理結果や形成findingとは扱わない。",
+          "stale": "fixture expectationが別要求revisionのpair materialを指し、現targetに使えないことを表す期待ラベル。L8ではstate=stale/value=null。L9ではforeign-revision mutation/reasonに従う。L4にstale用の独立F03 classification codeはなく、本案は新codeもmappingも追加しない。",
+          "missing_state_boundary": "L8のstate=missing/value=nullはrequired fixture binding qualificationの未供給を示し、L4 F03 pair_trace/missing classificationが要求する「処理結果を成立扱いした」findingとは異なる。このL8 missing例に同一IDのL9 rowはないため、他caseのL9 supported値との比較関係を推定しない。個別pointerはscaffold監査に記録する。"
+        },
+        "unresolved_assignment_rule": "承認済みL3/L10と許可されたL4散文は、origin/trace欠落、pair比較のconflict/stale、谷witness conflictのmutation軸からexpected値を割り当てる一般規則を定めていない。固定fixtureの行別対応はscaffold監査に示すが、checker規則へ一般化しない。上流根拠がないため既存期待値を保持する。"
+      }
+    },
+    "L9_F03": {
+      "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+      "revision": "7c142d7bb96974e9fe0a2fcab5ad2a48a628cb6f",
+      "sha256": "60942b72d432a79e72b03ab42a616e264b442bfc60b5d53e3aeb54f9c84a847e",
+      "pointer": "/cases/3",
+      "normal_cases": [
+        {
+          "id": "H003-F03-NORMAL",
+          "expected_material": {
+            "valley_result": "supported_synthetic_condition",
+            "state_ceiling_from_valley": "Provisional",
+            "reverse_scope_candidate": "Scoped Reverse",
+            "reverse_trigger_materials": [],
+            "reverse_ticket_candidate": "none",
+            "ticket_issuer": "OS",
+            "improvement_route": "current_Forward",
+            "meaning_backflow": [],
+            "pair_result": "supported_synthetic_condition",
+            "l9_dimension_results": {
+              "interface": "supported_synthetic_condition",
+              "dependency_direction": "supported_synthetic_condition",
+              "state_data_ownership": "supported_synthetic_condition",
+              "transaction": "supported_synthetic_condition",
+              "failure_propagation": "supported_synthetic_condition",
+              "retry": "supported_synthetic_condition",
+              "timeout": "supported_synthetic_condition",
+              "idempotency": "supported_synthetic_condition",
+              "coupling": "supported_synthetic_condition",
+              "responsibility_duplication": "supported_synthetic_condition"
+            },
+            "actual_ticket_issued": false,
+            "actual_reverse_executed": false,
+            "actual_quality_accepted": false,
+            "actual_user_accepted": false,
+            "actual_release": false,
+            "actual_completion": false
+          }
+        },
+        {
+          "id": "H003-F03-NORMAL-Refactor",
+          "expected_material": {
+            "valley_result": "supported_synthetic_condition",
+            "state_ceiling_from_valley": "Provisional",
+            "reverse_scope_candidate": "Scoped Reverse",
+            "reverse_trigger_materials": [],
+            "reverse_ticket_candidate": "none",
+            "ticket_issuer": "OS",
+            "improvement_route": "Refactor",
+            "meaning_backflow": [],
+            "pair_result": "supported_synthetic_condition",
+            "l9_dimension_results": {
+              "interface": "supported_synthetic_condition",
+              "dependency_direction": "supported_synthetic_condition",
+              "state_data_ownership": "supported_synthetic_condition",
+              "transaction": "supported_synthetic_condition",
+              "failure_propagation": "supported_synthetic_condition",
+              "retry": "supported_synthetic_condition",
+              "timeout": "supported_synthetic_condition",
+              "idempotency": "supported_synthetic_condition",
+              "coupling": "supported_synthetic_condition",
+              "responsibility_duplication": "supported_synthetic_condition"
+            },
+            "actual_ticket_issued": false,
+            "actual_reverse_executed": false,
+            "actual_quality_accepted": false,
+            "actual_user_accepted": false,
+            "actual_release": false,
+            "actual_completion": false
+          }
+        },
+        {
+          "id": "H003-F03-NORMAL-Design-refactor",
+          "expected_material": {
+            "valley_result": "supported_synthetic_condition",
+            "state_ceiling_from_valley": "Provisional",
+            "reverse_scope_candidate": "Scoped Reverse",
+            "reverse_trigger_materials": [],
+            "reverse_ticket_candidate": "none",
+            "ticket_issuer": "OS",
+            "improvement_route": "Design-refactor",
+            "meaning_backflow": [],
+            "pair_result": "supported_synthetic_condition",
+            "l9_dimension_results": {
+              "interface": "supported_synthetic_condition",
+              "dependency_direction": "supported_synthetic_condition",
+              "state_data_ownership": "supported_synthetic_condition",
+              "transaction": "supported_synthetic_condition",
+              "failure_propagation": "supported_synthetic_condition",
+              "retry": "supported_synthetic_condition",
+              "timeout": "supported_synthetic_condition",
+              "idempotency": "supported_synthetic_condition",
+              "coupling": "supported_synthetic_condition",
+              "responsibility_duplication": "supported_synthetic_condition"
+            },
+            "actual_ticket_issued": false,
+            "actual_reverse_executed": false,
+            "actual_quality_accepted": false,
+            "actual_user_accepted": false,
+            "actual_release": false,
+            "actual_completion": false
+          }
+        },
+        {
+          "id": "H003-F03-NORMAL-Performance-refactor",
+          "expected_material": {
+            "valley_result": "supported_synthetic_condition",
+            "state_ceiling_from_valley": "Provisional",
+            "reverse_scope_candidate": "Scoped Reverse",
+            "reverse_trigger_materials": [],
+            "reverse_ticket_candidate": "none",
+            "ticket_issuer": "OS",
+            "improvement_route": "Performance-refactor",
+            "meaning_backflow": [],
+            "pair_result": "supported_synthetic_condition",
+            "l9_dimension_results": {
+              "interface": "supported_synthetic_condition",
+              "dependency_direction": "supported_synthetic_condition",
+              "state_data_ownership": "supported_synthetic_condition",
+              "transaction": "supported_synthetic_condition",
+              "failure_propagation": "supported_synthetic_condition",
+              "retry": "supported_synthetic_condition",
+              "timeout": "supported_synthetic_condition",
+              "idempotency": "supported_synthetic_condition",
+              "coupling": "supported_synthetic_condition",
+              "responsibility_duplication": "supported_synthetic_condition"
+            },
+            "actual_ticket_issued": false,
+            "actual_reverse_executed": false,
+            "actual_quality_accepted": false,
+            "actual_user_accepted": false,
+            "actual_release": false,
+            "actual_completion": false
+          }
+        }
+      ],
+      "negative_cases": [
+        {
+          "id": "H003-F03-ORIGIN-MISSING",
+          "mutation": {
+            "path": [
+              "origin"
+            ],
+            "before": {
+              "requirement": "REQ@r1",
+              "design": "DESIGN-DUP@r1",
+              "pair": "PAIR-DUP@r1",
+              "ticket": "FORWARD-01",
+              "artifact": "ARTIFACT-A@h2"
+            },
+            "after": null
+          },
+          "expected_material": {
+            "valley_result": "supported_synthetic_condition",
+            "state_ceiling_from_valley": "Provisional",
+            "reverse_scope_candidate": "Full Reverse recovery candidate",
+            "reverse_trigger_materials": [
+              "origin_missing"
+            ],
+            "reverse_ticket_candidate": "Reverse",
+            "ticket_issuer": "OS",
+            "improvement_route": "current_Forward",
+            "meaning_backflow": [],
+            "pair_result": "supported_synthetic_condition",
+            "l9_dimension_results": {
+              "interface": "supported_synthetic_condition",
+              "dependency_direction": "supported_synthetic_condition",
+              "state_data_ownership": "supported_synthetic_condition",
+              "transaction": "supported_synthetic_condition",
+              "failure_propagation": "supported_synthetic_condition",
+              "retry": "supported_synthetic_condition",
+              "timeout": "supported_synthetic_condition",
+              "idempotency": "supported_synthetic_condition",
+              "coupling": "supported_synthetic_condition",
+              "responsibility_duplication": "supported_synthetic_condition"
+            },
+            "actual_ticket_issued": false,
+            "actual_reverse_executed": false,
+            "actual_quality_accepted": false,
+            "actual_user_accepted": false,
+            "actual_release": false,
+            "actual_completion": false,
+            "reason": "由来不明は局所の成功で補完しない。pair_result/valley_resultのsupported_synthetic_conditionは、このorigin-null合成入力条件がfixture sourceにより支持されることを示す部分証拠で、正規由来・実pair/谷成立・Provisional更新を意味しない。",
+            "retain_unaffected_material": true
+          }
+        },
+        {
+          "id": "H003-F03-LEGACY-ASSET",
+          "mutation": {
+            "path": [
+              "legacy_asset"
+            ],
+            "before": false,
+            "after": true
+          },
+          "expected_material": {
+            "valley_result": "supported_synthetic_condition",
+            "state_ceiling_from_valley": "Provisional",
+            "reverse_scope_candidate": "Full Reverse recovery candidate",
+            "reverse_trigger_materials": [],
+            "reverse_ticket_candidate": "none",
+            "ticket_issuer": "OS",
+            "improvement_route": "current_Forward",
+            "meaning_backflow": [],
+            "pair_result": "supported_synthetic_condition",
+            "l9_dimension_results": {
+              "interface": "supported_synthetic_condition",
+              "dependency_direction": "supported_synthetic_condition",
+              "state_data_ownership": "supported_synthetic_condition",
+              "transaction": "supported_synthetic_condition",
+              "failure_propagation": "supported_synthetic_condition",
+              "retry": "supported_synthetic_condition",
+              "timeout": "supported_synthetic_condition",
+              "idempotency": "supported_synthetic_condition",
+              "coupling": "supported_synthetic_condition",
+              "responsibility_duplication": "supported_synthetic_condition"
+            },
+            "actual_ticket_issued": false,
+            "actual_reverse_executed": false,
+            "actual_quality_accepted": false,
+            "actual_user_accepted": false,
+            "actual_release": false,
+            "actual_completion": false,
+            "reason": "旧資産は全体復旧候補。単独で実行成功や別triggerを捏造しない。",
+            "retain_unaffected_material": true
+          }
+        },
+        {
+          "id": "H003-F03-TRACE-MISSING",
+          "mutation": {
+            "path": [
+              "trace"
+            ],
+            "before": [
+              [
+                "REQ@r1",
+                "DESIGN-DUP@r1"
+              ],
+              [
+                "DESIGN-DUP@r1",
+                "REQ@r1"
+              ],
+              [
+                "DESIGN-DUP@r1",
+                "BOUNDARY@r1"
+              ],
+              [
+                "BOUNDARY@r1",
+                "DESIGN-DUP@r1"
+              ]
+            ],
+            "after": []
+          },
+          "expected_material": {
+            "valley_result": "supported_synthetic_condition",
+            "state_ceiling_from_valley": "Provisional",
+            "reverse_scope_candidate": "Full Reverse recovery candidate",
+            "reverse_trigger_materials": [],
+            "reverse_ticket_candidate": "none",
+            "ticket_issuer": "OS",
+            "improvement_route": "current_Forward",
+            "meaning_backflow": [],
+            "pair_result": "supported_synthetic_condition",
+            "l9_dimension_results": {
+              "interface": "supported_synthetic_condition",
+              "dependency_direction": "supported_synthetic_condition",
+              "state_data_ownership": "supported_synthetic_condition",
+              "transaction": "supported_synthetic_condition",
+              "failure_propagation": "supported_synthetic_condition",
+              "retry": "supported_synthetic_condition",
+              "timeout": "supported_synthetic_condition",
+              "idempotency": "supported_synthetic_condition",
+              "coupling": "supported_synthetic_condition",
+              "responsibility_duplication": "supported_synthetic_condition"
+            },
+            "actual_ticket_issued": false,
+            "actual_reverse_executed": false,
+            "actual_quality_accepted": false,
+            "actual_user_accepted": false,
+            "actual_release": false,
+            "actual_completion": false,
+            "reason": "設計trace欠落では正規局所由来を確かめられない。pair_result/valley_resultのsupported_synthetic_conditionは、このtrace-empty合成入力条件がfixture sourceにより支持されることを示す部分証拠で、pair/谷の実成立・Provisional更新を意味しない。",
+            "retain_unaffected_material": true
+          }
+        },
+        {
+          "id": "H003-F03-DESIGN-DISPUTED",
+          "mutation": {
+            "path": [
+              "design_trust",
+              "disputed"
+            ],
+            "before": false,
+            "after": true
+          },
+          "expected_material": {
+            "valley_result": "supported_synthetic_condition",
+            "state_ceiling_from_valley": "Provisional",
+            "reverse_scope_candidate": "Full Reverse recovery candidate",
+            "reverse_trigger_materials": [],
+            "reverse_ticket_candidate": "none",
+            "ticket_issuer": "OS",
+            "improvement_route": "current_Forward",
+            "meaning_backflow": [],
+            "pair_result": "supported_synthetic_condition",
+            "l9_dimension_results": {
+              "interface": "supported_synthetic_condition",
+              "dependency_direction": "supported_synthetic_condition",
+              "state_data_ownership": "supported_synthetic_condition",
+              "transaction": "supported_synthetic_condition",
+              "failure_propagation": "supported_synthetic_condition",
+              "retry": "supported_synthetic_condition",
+              "timeout": "supported_synthetic_condition",
+              "idempotency": "supported_synthetic_condition",
+              "coupling": "supported_synthetic_condition",
+              "responsibility_duplication": "supported_synthetic_condition"
+            },
+            "actual_ticket_issued": false,
+            "actual_reverse_executed": false,
+            "actual_quality_accepted": false,
+            "actual_user_accepted": false,
+            "actual_release": false,
+            "actual_completion": false,
+            "reason": "正規設計を信用できない入力は全体復旧候補へ返す。",
+            "retain_unaffected_material": true
+          }
+        },
+        {
+          "id": "H003-F03-LARGE-DEVIATION",
+          "mutation": {
+            "path": [
+              "large_deviation"
+            ],
+            "before": {
+              "expected_architecture": "ARCH@r1",
+              "observed_architecture": "ARCH@r1",
+              "finding_ref": null
+            },
+            "after": {
+              "expected_architecture": "ARCH@r1",
+              "observed_architecture": "ARCH@r2",
+              "finding_ref": {
+                "identity": "LARGE-REGRESSION",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "design-finding-owner"
+              }
+            }
+          },
+          "expected_material": {
+            "valley_result": "supported_synthetic_condition",
+            "state_ceiling_from_valley": "Provisional",
+            "reverse_scope_candidate": "Full Reverse recovery candidate",
+            "reverse_trigger_materials": [
+              "large_design_regression"
+            ],
+            "reverse_ticket_candidate": "Reverse",
+            "ticket_issuer": "OS",
+            "improvement_route": "current_Forward",
+            "meaning_backflow": [],
+            "pair_result": "supported_synthetic_condition",
+            "l9_dimension_results": {
+              "interface": "supported_synthetic_condition",
+              "dependency_direction": "supported_synthetic_condition",
+              "state_data_ownership": "supported_synthetic_condition",
+              "transaction": "supported_synthetic_condition",
+              "failure_propagation": "supported_synthetic_condition",
+              "retry": "supported_synthetic_condition",
+              "timeout": "supported_synthetic_condition",
+              "idempotency": "supported_synthetic_condition",
+              "coupling": "supported_synthetic_condition",
+              "responsibility_duplication": "supported_synthetic_condition"
+            },
+            "actual_ticket_issued": false,
+            "actual_reverse_executed": false,
+            "actual_quality_accepted": false,
+            "actual_user_accepted": false,
+            "actual_release": false,
+            "actual_completion": false,
+            "reason": "大きな設計退行を局所一致で覆わない。",
+            "retain_unaffected_material": true
+          }
+        },
+        {
+          "id": "H003-F03-DESIGN-IMPLEMENTATION-DRIFT",
+          "mutation": {
+            "path": [
+              "trigger_materials",
+              "design_implementation_drift",
+              "observed_contract"
+            ],
+            "before": "CONTRACT-DUP@r1",
+            "after": "CONTRACT-DUP@r2"
+          },
+          "expected_material": {
+            "valley_result": "supported_synthetic_condition",
+            "state_ceiling_from_valley": "Provisional",
+            "reverse_scope_candidate": "Scoped Reverse",
+            "reverse_trigger_materials": [
+              "design_implementation_drift"
+            ],
+            "reverse_ticket_candidate": "Reverse",
+            "ticket_issuer": "OS",
+            "improvement_route": "current_Forward",
+            "meaning_backflow": [],
+            "pair_result": "supported_synthetic_condition",
+            "l9_dimension_results": {
+              "interface": "supported_synthetic_condition",
+              "dependency_direction": "supported_synthetic_condition",
+              "state_data_ownership": "supported_synthetic_condition",
+              "transaction": "supported_synthetic_condition",
+              "failure_propagation": "supported_synthetic_condition",
+              "retry": "supported_synthetic_condition",
+              "timeout": "supported_synthetic_condition",
+              "idempotency": "supported_synthetic_condition",
+              "coupling": "supported_synthetic_condition",
+              "responsibility_duplication": "supported_synthetic_condition"
+            },
+            "actual_ticket_issued": false,
+            "actual_reverse_executed": false,
+            "actual_quality_accepted": false,
+            "actual_user_accepted": false,
+            "actual_release": false,
+            "actual_completion": false,
+            "reason": "実物と設計契約の明らかな相違から発行条件をOSへ返す。",
+            "retain_unaffected_material": true
+          }
+        },
+        {
+          "id": "H003-F03-FINDING-RECURRENCE",
+          "mutation": {
+            "path": [
+              "trigger_materials",
+              "recurrence"
+            ],
+            "before": {
+              "finding_kind": "duplicate_debit",
+              "previous_occurrences": 0,
+              "current_occurrences": 0
+            },
+            "after": {
+              "finding_kind": "duplicate_debit",
+              "previous_occurrences": 1,
+              "current_occurrences": 2
+            }
+          },
+          "expected_material": {
+            "valley_result": "supported_synthetic_condition",
+            "state_ceiling_from_valley": "Provisional",
+            "reverse_scope_candidate": "Scoped Reverse",
+            "reverse_trigger_materials": [
+              "finding_recurrence"
+            ],
+            "reverse_ticket_candidate": "Reverse",
+            "ticket_issuer": "OS",
+            "improvement_route": "current_Forward",
+            "meaning_backflow": [],
+            "pair_result": "supported_synthetic_condition",
+            "l9_dimension_results": {
+              "interface": "supported_synthetic_condition",
+              "dependency_direction": "supported_synthetic_condition",
+              "state_data_ownership": "supported_synthetic_condition",
+              "transaction": "supported_synthetic_condition",
+              "failure_propagation": "supported_synthetic_condition",
+              "retry": "supported_synthetic_condition",
+              "timeout": "supported_synthetic_condition",
+              "idempotency": "supported_synthetic_condition",
+              "coupling": "supported_synthetic_condition",
+              "responsibility_duplication": "supported_synthetic_condition"
+            },
+            "actual_ticket_issued": false,
+            "actual_reverse_executed": false,
+            "actual_quality_accepted": false,
+            "actual_user_accepted": false,
+            "actual_release": false,
+            "actual_completion": false,
+            "reason": "同種findingの過去と今回を別記録で結ぶ。",
+            "retain_unaffected_material": true
+          }
+        },
+        {
+          "id": "H003-F03-PERFORMANCE-REGRESSION",
+          "mutation": {
+            "path": [
+              "trigger_materials",
+              "performance",
+              "observed"
+            ],
+            "before": 10,
+            "after": 12
+          },
+          "expected_material": {
+            "valley_result": "supported_synthetic_condition",
+            "state_ceiling_from_valley": "Provisional",
+            "reverse_scope_candidate": "Scoped Reverse",
+            "reverse_trigger_materials": [
+              "performance_regression"
+            ],
+            "reverse_ticket_candidate": "Reverse",
+            "ticket_issuer": "OS",
+            "improvement_route": "current_Forward",
+            "meaning_backflow": [],
+            "pair_result": "supported_synthetic_condition",
+            "l9_dimension_results": {
+              "interface": "supported_synthetic_condition",
+              "dependency_direction": "supported_synthetic_condition",
+              "state_data_ownership": "supported_synthetic_condition",
+              "transaction": "supported_synthetic_condition",
+              "failure_propagation": "supported_synthetic_condition",
+              "retry": "supported_synthetic_condition",
+              "timeout": "supported_synthetic_condition",
+              "idempotency": "supported_synthetic_condition",
+              "coupling": "supported_synthetic_condition",
+              "responsibility_duplication": "supported_synthetic_condition"
+            },
+            "actual_ticket_issued": false,
+            "actual_reverse_executed": false,
+            "actual_quality_accepted": false,
+            "actual_user_accepted": false,
+            "actual_release": false,
+            "actual_completion": false,
+            "reason": "合成比較10→12の退行。実SLOや固定thresholdを生成しない。",
+            "retain_unaffected_material": true
+          }
+        },
+        {
+          "id": "H003-F03-INCIDENT-PERMANENT-REMEDY",
+          "mutation": {
+            "path": [
+              "trigger_materials",
+              "incident_permanent_remedy"
+            ],
+            "before": {
+              "incident_ref": null,
+              "permanent_remedy_required": false
+            },
+            "after": {
+              "incident_ref": {
+                "identity": "INCIDENT-01",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "OS-original-owner"
+              },
+              "permanent_remedy_required": true
+            }
+          },
+          "expected_material": {
+            "valley_result": "supported_synthetic_condition",
+            "state_ceiling_from_valley": "Provisional",
+            "reverse_scope_candidate": "Scoped Reverse",
+            "reverse_trigger_materials": [
+              "incident_permanent_remedy"
+            ],
+            "reverse_ticket_candidate": "Reverse",
+            "ticket_issuer": "OS",
+            "improvement_route": "current_Forward",
+            "meaning_backflow": [],
+            "pair_result": "supported_synthetic_condition",
+            "l9_dimension_results": {
+              "interface": "supported_synthetic_condition",
+              "dependency_direction": "supported_synthetic_condition",
+              "state_data_ownership": "supported_synthetic_condition",
+              "transaction": "supported_synthetic_condition",
+              "failure_propagation": "supported_synthetic_condition",
+              "retry": "supported_synthetic_condition",
+              "timeout": "supported_synthetic_condition",
+              "idempotency": "supported_synthetic_condition",
+              "coupling": "supported_synthetic_condition",
+              "responsibility_duplication": "supported_synthetic_condition"
+            },
+            "actual_ticket_issued": false,
+            "actual_reverse_executed": false,
+            "actual_quality_accepted": false,
+            "actual_user_accepted": false,
+            "actual_release": false,
+            "actual_completion": false,
+            "reason": "障害後の恒久対策は暫定収束から独立した発行条件。",
+            "retain_unaffected_material": true
+          }
+        },
+        {
+          "id": "H003-F03-SCRUM-CHECKPOINT",
+          "mutation": {
+            "path": [
+              "trigger_materials",
+              "scrum_checkpoint"
+            ],
+            "before": {
+              "style": "V-model",
+              "checkpoint_ref": null,
+              "checkpoint_required": false
+            },
+            "after": {
+              "style": "Scrum",
+              "checkpoint_ref": {
+                "identity": "CHECKPOINT-01",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "Scrum-original-owner"
+              },
+              "checkpoint_required": true
+            }
+          },
+          "expected_material": {
+            "valley_result": "supported_synthetic_condition",
+            "state_ceiling_from_valley": "Provisional",
+            "reverse_scope_candidate": "Scoped Reverse",
+            "reverse_trigger_materials": [
+              "scrum_reverse_checkpoint"
+            ],
+            "reverse_ticket_candidate": "Reverse",
+            "ticket_issuer": "OS",
+            "improvement_route": "current_Forward",
+            "meaning_backflow": [],
+            "pair_result": "supported_synthetic_condition",
+            "l9_dimension_results": {
+              "interface": "supported_synthetic_condition",
+              "dependency_direction": "supported_synthetic_condition",
+              "state_data_ownership": "supported_synthetic_condition",
+              "transaction": "supported_synthetic_condition",
+              "failure_propagation": "supported_synthetic_condition",
+              "retry": "supported_synthetic_condition",
+              "timeout": "supported_synthetic_condition",
+              "idempotency": "supported_synthetic_condition",
+              "coupling": "supported_synthetic_condition",
+              "responsibility_duplication": "supported_synthetic_condition"
+            },
+            "actual_ticket_issued": false,
+            "actual_reverse_executed": false,
+            "actual_quality_accepted": false,
+            "actual_user_accepted": false,
+            "actual_release": false,
+            "actual_completion": false,
+            "reason": "方式内のScrum部分のcheckpointを発行条件として保つ。",
+            "retain_unaffected_material": true
+          }
+        },
+        {
+          "id": "H003-F03-WRONG-L9-PAIR",
+          "mutation": {
+            "path": [
+              "paired_comparisons",
+              1,
+              "left"
+            ],
+            "before": "L4",
+            "after": "L3"
+          },
+          "expected_material": {
+            "valley_result": "supported_synthetic_condition",
+            "state_ceiling_from_valley": "Provisional",
+            "reverse_scope_candidate": "Scoped Reverse",
+            "reverse_trigger_materials": [],
+            "reverse_ticket_candidate": "none",
+            "ticket_issuer": "OS",
+            "improvement_route": "current_Forward",
+            "meaning_backflow": [],
+            "pair_result": "conflict",
+            "l9_dimension_results": {
+              "interface": "supported_synthetic_condition",
+              "dependency_direction": "supported_synthetic_condition",
+              "state_data_ownership": "supported_synthetic_condition",
+              "transaction": "supported_synthetic_condition",
+              "failure_propagation": "supported_synthetic_condition",
+              "retry": "supported_synthetic_condition",
+              "timeout": "supported_synthetic_condition",
+              "idempotency": "supported_synthetic_condition",
+              "coupling": "supported_synthetic_condition",
+              "responsibility_duplication": "supported_synthetic_condition"
+            },
+            "actual_ticket_issued": false,
+            "actual_reverse_executed": false,
+            "actual_quality_accepted": false,
+            "actual_user_accepted": false,
+            "actual_release": false,
+            "actual_completion": false,
+            "reason": "L9の左対はL4でありL3へ置換しない。",
+            "retain_unaffected_material": true
+          }
+        },
+        {
+          "id": "H003-F03-FOREIGN-PAIR-REVISION",
+          "mutation": {
+            "path": [
+              "paired_comparisons",
+              1,
+              "revision"
+            ],
+            "before": "REQ@r1",
+            "after": "REQ@r0"
+          },
+          "expected_material": {
+            "valley_result": "supported_synthetic_condition",
+            "state_ceiling_from_valley": "Provisional",
+            "reverse_scope_candidate": "Scoped Reverse",
+            "reverse_trigger_materials": [],
+            "reverse_ticket_candidate": "none",
+            "ticket_issuer": "OS",
+            "improvement_route": "current_Forward",
+            "meaning_backflow": [],
+            "pair_result": "stale",
+            "l9_dimension_results": {
+              "interface": "supported_synthetic_condition",
+              "dependency_direction": "supported_synthetic_condition",
+              "state_data_ownership": "supported_synthetic_condition",
+              "transaction": "supported_synthetic_condition",
+              "failure_propagation": "supported_synthetic_condition",
+              "retry": "supported_synthetic_condition",
+              "timeout": "supported_synthetic_condition",
+              "idempotency": "supported_synthetic_condition",
+              "coupling": "supported_synthetic_condition",
+              "responsibility_duplication": "supported_synthetic_condition"
+            },
+            "actual_ticket_issued": false,
+            "actual_reverse_executed": false,
+            "actual_quality_accepted": false,
+            "actual_user_accepted": false,
+            "actual_release": false,
+            "actual_completion": false,
+            "reason": "別要求revisionの境界照合を現在へ流用しない。",
+            "retain_unaffected_material": true
+          }
+        },
+        {
+          "id": "H003-F03-L9-MISSING-interface",
+          "mutation": {
+            "path": [
+              "l9_dimensions",
+              0
+            ],
+            "before": {
+              "id": "interface",
+              "expected": {
+                "provider": "OS-record-reader",
+                "consumer": "HARNESS-condition-reader",
+                "input": [
+                  "REQ@r1",
+                  "PRODUCT-P"
+                ],
+                "output": [
+                  "ARTIFACT-A@h2",
+                  "state-proof-ref"
+                ]
+              },
+              "observed": {
+                "provider": "OS-record-reader",
+                "consumer": "HARNESS-condition-reader",
+                "input": [
+                  "REQ@r1",
+                  "PRODUCT-P"
+                ],
+                "output": [
+                  "ARTIFACT-A@h2",
+                  "state-proof-ref"
+                ]
+              },
+              "source": {
+                "identity": "BOUNDARY-interface",
+                "revision": "fixture-r1-content-602feeff09b89e68cb1688ac6df070dfa074116e2c77d1392e29b1eb180d3e0f",
+                "scope": "PRODUCT-P",
+                "owner": "integration-original-owner"
+              }
+            },
+            "after": {
+              "id": "interface",
+              "expected": {
+                "provider": "OS-record-reader",
+                "consumer": "HARNESS-condition-reader",
+                "input": [
+                  "REQ@r1",
+                  "PRODUCT-P"
+                ],
+                "output": [
+                  "ARTIFACT-A@h2",
+                  "state-proof-ref"
+                ]
+              },
+              "observed": null,
+              "source": {
+                "identity": "BOUNDARY-interface",
+                "revision": "fixture-r1-content-4d3a7c4f9c333fa5363f20c16c8e491229f4281bd7303e0dfc0d66da437f2432",
+                "scope": "PRODUCT-P",
+                "owner": "integration-original-owner"
+              }
+            }
+          },
+          "expected_material": {
+            "valley_result": "supported_synthetic_condition",
+            "state_ceiling_from_valley": "Provisional",
+            "reverse_scope_candidate": "Scoped Reverse",
+            "reverse_trigger_materials": [],
+            "reverse_ticket_candidate": "none",
+            "ticket_issuer": "OS",
+            "improvement_route": "current_Forward",
+            "meaning_backflow": [],
+            "pair_result": "supported_synthetic_condition",
+            "l9_dimension_results": {
+              "interface": "missing",
+              "dependency_direction": "supported_synthetic_condition",
+              "state_data_ownership": "supported_synthetic_condition",
+              "transaction": "supported_synthetic_condition",
+              "failure_propagation": "supported_synthetic_condition",
+              "retry": "supported_synthetic_condition",
+              "timeout": "supported_synthetic_condition",
+              "idempotency": "supported_synthetic_condition",
+              "coupling": "supported_synthetic_condition",
+              "responsibility_duplication": "supported_synthetic_condition"
+            },
+            "actual_ticket_issued": false,
+            "actual_reverse_executed": false,
+            "actual_quality_accepted": false,
+            "actual_user_accepted": false,
+            "actual_release": false,
+            "actual_completion": false,
+            "reason": "当該L9観点の未観測を検証済みにしない。他の観点と谷証拠は保持。",
+            "retain_unaffected_material": true
+          }
+        },
+        {
+          "id": "H003-F03-L9-MISSING-dependency_direction",
+          "mutation": {
+            "path": [
+              "l9_dimensions",
+              1
+            ],
+            "before": {
+              "id": "dependency_direction",
+              "expected": {
+                "depends": [
+                  "HARNESS-condition-reader",
+                  "OS-record-read-contract"
+                ],
+                "reverse_dependency": false
+              },
+              "observed": {
+                "depends": [
+                  "HARNESS-condition-reader",
+                  "OS-record-read-contract"
+                ],
+                "reverse_dependency": false
+              },
+              "source": {
+                "identity": "BOUNDARY-dependency_direction",
+                "revision": "fixture-r1-content-3be17bfb83a6cbf6326bd1b40d25d663cae549ddeb815b2edd0da06f4452b18f",
+                "scope": "PRODUCT-P",
+                "owner": "integration-original-owner"
+              }
+            },
+            "after": {
+              "id": "dependency_direction",
+              "expected": {
+                "depends": [
+                  "HARNESS-condition-reader",
+                  "OS-record-read-contract"
+                ],
+                "reverse_dependency": false
+              },
+              "observed": null,
+              "source": {
+                "identity": "BOUNDARY-dependency_direction",
+                "revision": "fixture-r1-content-3ffa3e832830ebb16fedf079bac4f0713737fd538c9aa25b6ecea4a12ec9ee73",
+                "scope": "PRODUCT-P",
+                "owner": "integration-original-owner"
+              }
+            }
+          },
+          "expected_material": {
+            "valley_result": "supported_synthetic_condition",
+            "state_ceiling_from_valley": "Provisional",
+            "reverse_scope_candidate": "Scoped Reverse",
+            "reverse_trigger_materials": [],
+            "reverse_ticket_candidate": "none",
+            "ticket_issuer": "OS",
+            "improvement_route": "current_Forward",
+            "meaning_backflow": [],
+            "pair_result": "supported_synthetic_condition",
+            "l9_dimension_results": {
+              "interface": "supported_synthetic_condition",
+              "dependency_direction": "missing",
+              "state_data_ownership": "supported_synthetic_condition",
+              "transaction": "supported_synthetic_condition",
+              "failure_propagation": "supported_synthetic_condition",
+              "retry": "supported_synthetic_condition",
+              "timeout": "supported_synthetic_condition",
+              "idempotency": "supported_synthetic_condition",
+              "coupling": "supported_synthetic_condition",
+              "responsibility_duplication": "supported_synthetic_condition"
+            },
+            "actual_ticket_issued": false,
+            "actual_reverse_executed": false,
+            "actual_quality_accepted": false,
+            "actual_user_accepted": false,
+            "actual_release": false,
+            "actual_completion": false,
+            "reason": "当該L9観点の未観測を検証済みにしない。他の観点と谷証拠は保持。",
+            "retain_unaffected_material": true
+          }
+        },
+        {
+          "id": "H003-F03-L9-MISSING-state_data_ownership",
+          "mutation": {
+            "path": [
+              "l9_dimensions",
+              2
+            ],
+            "before": {
+              "id": "state_data_ownership",
+              "expected": {
+                "state_writer": "OS",
+                "HARNESS_writes_state": false
+              },
+              "observed": {
+                "state_writer": "OS",
+                "HARNESS_writes_state": false
+              },
+              "source": {
+                "identity": "BOUNDARY-state_data_ownership",
+                "revision": "fixture-r1-content-7b209497e13aa1e8e7dfa146bfc13563724f7e144f3af5bfb2075e0ffd03a089",
+                "scope": "PRODUCT-P",
+                "owner": "integration-original-owner"
+              }
+            },
+            "after": {
+              "id": "state_data_ownership",
+              "expected": {
+                "state_writer": "OS",
+                "HARNESS_writes_state": false
+              },
+              "observed": null,
+              "source": {
+                "identity": "BOUNDARY-state_data_ownership",
+                "revision": "fixture-r1-content-35b5ae172df95b7227284410cd2e846ad81a8a788daa5f25cfd7ef6e7542b552",
+                "scope": "PRODUCT-P",
+                "owner": "integration-original-owner"
+              }
+            }
+          },
+          "expected_material": {
+            "valley_result": "supported_synthetic_condition",
+            "state_ceiling_from_valley": "Provisional",
+            "reverse_scope_candidate": "Scoped Reverse",
+            "reverse_trigger_materials": [],
+            "reverse_ticket_candidate": "none",
+            "ticket_issuer": "OS",
+            "improvement_route": "current_Forward",
+            "meaning_backflow": [],
+            "pair_result": "supported_synthetic_condition",
+            "l9_dimension_results": {
+              "interface": "supported_synthetic_condition",
+              "dependency_direction": "supported_synthetic_condition",
+              "state_data_ownership": "missing",
+              "transaction": "supported_synthetic_condition",
+              "failure_propagation": "supported_synthetic_condition",
+              "retry": "supported_synthetic_condition",
+              "timeout": "supported_synthetic_condition",
+              "idempotency": "supported_synthetic_condition",
+              "coupling": "supported_synthetic_condition",
+              "responsibility_duplication": "supported_synthetic_condition"
+            },
+            "actual_ticket_issued": false,
+            "actual_reverse_executed": false,
+            "actual_quality_accepted": false,
+            "actual_user_accepted": false,
+            "actual_release": false,
+            "actual_completion": false,
+            "reason": "当該L9観点の未観測を検証済みにしない。他の観点と谷証拠は保持。",
+            "retain_unaffected_material": true
+          }
+        },
+        {
+          "id": "H003-F03-L9-MISSING-transaction",
+          "mutation": {
+            "path": [
+              "l9_dimensions",
+              3
+            ],
+            "before": {
+              "id": "transaction",
+              "expected": {
+                "operation": "read-proof-set",
+                "snapshot_revision": "SNAPSHOT@r1",
+                "mixed_revision": false
+              },
+              "observed": {
+                "operation": "read-proof-set",
+                "snapshot_revision": "SNAPSHOT@r1",
+                "mixed_revision": false
+              },
+              "source": {
+                "identity": "BOUNDARY-transaction",
+                "revision": "fixture-r1-content-957373c66e0daf5b85f4ae36e3094d41b76b5dcf199a141b764f82cd33a25c04",
+                "scope": "PRODUCT-P",
+                "owner": "integration-original-owner"
+              }
+            },
+            "after": {
+              "id": "transaction",
+              "expected": {
+                "operation": "read-proof-set",
+                "snapshot_revision": "SNAPSHOT@r1",
+                "mixed_revision": false
+              },
+              "observed": null,
+              "source": {
+                "identity": "BOUNDARY-transaction",
+                "revision": "fixture-r1-content-ee5cbeef68c0c7f64fb20d9db9fbea4586e1db435ef7c3270e7b8e61819e9f2f",
+                "scope": "PRODUCT-P",
+                "owner": "integration-original-owner"
+              }
+            }
+          },
+          "expected_material": {
+            "valley_result": "supported_synthetic_condition",
+            "state_ceiling_from_valley": "Provisional",
+            "reverse_scope_candidate": "Scoped Reverse",
+            "reverse_trigger_materials": [],
+            "reverse_ticket_candidate": "none",
+            "ticket_issuer": "OS",
+            "improvement_route": "current_Forward",
+            "meaning_backflow": [],
+            "pair_result": "supported_synthetic_condition",
+            "l9_dimension_results": {
+              "interface": "supported_synthetic_condition",
+              "dependency_direction": "supported_synthetic_condition",
+              "state_data_ownership": "supported_synthetic_condition",
+              "transaction": "missing",
+              "failure_propagation": "supported_synthetic_condition",
+              "retry": "supported_synthetic_condition",
+              "timeout": "supported_synthetic_condition",
+              "idempotency": "supported_synthetic_condition",
+              "coupling": "supported_synthetic_condition",
+              "responsibility_duplication": "supported_synthetic_condition"
+            },
+            "actual_ticket_issued": false,
+            "actual_reverse_executed": false,
+            "actual_quality_accepted": false,
+            "actual_user_accepted": false,
+            "actual_release": false,
+            "actual_completion": false,
+            "reason": "当該L9観点の未観測を検証済みにしない。他の観点と谷証拠は保持。",
+            "retain_unaffected_material": true
+          }
+        },
+        {
+          "id": "H003-F03-L9-MISSING-failure_propagation",
+          "mutation": {
+            "path": [
+              "l9_dimensions",
+              4
+            ],
+            "before": {
+              "id": "failure_propagation",
+              "expected": {
+                "read_failure": "missing_source",
+                "condition_result": "missing",
+                "OS_return": "original-proof-owner"
+              },
+              "observed": {
+                "read_failure": "missing_source",
+                "condition_result": "missing",
+                "OS_return": "original-proof-owner"
+              },
+              "source": {
+                "identity": "BOUNDARY-failure_propagation",
+                "revision": "fixture-r1-content-8bad354a013f90a5620df4253eda14ed239bd823a53c8d427931da725f6f6563",
+                "scope": "PRODUCT-P",
+                "owner": "integration-original-owner"
+              }
+            },
+            "after": {
+              "id": "failure_propagation",
+              "expected": {
+                "read_failure": "missing_source",
+                "condition_result": "missing",
+                "OS_return": "original-proof-owner"
+              },
+              "observed": null,
+              "source": {
+                "identity": "BOUNDARY-failure_propagation",
+                "revision": "fixture-r1-content-0913dbd136539c4940d85275cd061a07f67482224f48621eb2e486055fd85181",
+                "scope": "PRODUCT-P",
+                "owner": "integration-original-owner"
+              }
+            }
+          },
+          "expected_material": {
+            "valley_result": "supported_synthetic_condition",
+            "state_ceiling_from_valley": "Provisional",
+            "reverse_scope_candidate": "Scoped Reverse",
+            "reverse_trigger_materials": [],
+            "reverse_ticket_candidate": "none",
+            "ticket_issuer": "OS",
+            "improvement_route": "current_Forward",
+            "meaning_backflow": [],
+            "pair_result": "supported_synthetic_condition",
+            "l9_dimension_results": {
+              "interface": "supported_synthetic_condition",
+              "dependency_direction": "supported_synthetic_condition",
+              "state_data_ownership": "supported_synthetic_condition",
+              "transaction": "supported_synthetic_condition",
+              "failure_propagation": "missing",
+              "retry": "supported_synthetic_condition",
+              "timeout": "supported_synthetic_condition",
+              "idempotency": "supported_synthetic_condition",
+              "coupling": "supported_synthetic_condition",
+              "responsibility_duplication": "supported_synthetic_condition"
+            },
+            "actual_ticket_issued": false,
+            "actual_reverse_executed": false,
+            "actual_quality_accepted": false,
+            "actual_user_accepted": false,
+            "actual_release": false,
+            "actual_completion": false,
+            "reason": "当該L9観点の未観測を検証済みにしない。他の観点と谷証拠は保持。",
+            "retain_unaffected_material": true
+          }
+        },
+        {
+          "id": "H003-F03-L9-MISSING-retry",
+          "mutation": {
+            "path": [
+              "l9_dimensions",
+              5
+            ],
+            "before": {
+              "id": "retry",
+              "expected": {
+                "repeated_read_key": "READ-01",
+                "original_source_revision": "SNAPSHOT@r1",
+                "source_revision_after_retry": "SNAPSHOT@r1",
+                "writes": 0
+              },
+              "observed": {
+                "repeated_read_key": "READ-01",
+                "original_source_revision": "SNAPSHOT@r1",
+                "source_revision_after_retry": "SNAPSHOT@r1",
+                "writes": 0
+              },
+              "source": {
+                "identity": "BOUNDARY-retry",
+                "revision": "fixture-r1-content-6fafe9032f219d41ff210b0de5e931efa886b3b3280ee72ba8936cdc7daaecef",
+                "scope": "PRODUCT-P",
+                "owner": "integration-original-owner"
+              }
+            },
+            "after": {
+              "id": "retry",
+              "expected": {
+                "repeated_read_key": "READ-01",
+                "original_source_revision": "SNAPSHOT@r1",
+                "source_revision_after_retry": "SNAPSHOT@r1",
+                "writes": 0
+              },
+              "observed": null,
+              "source": {
+                "identity": "BOUNDARY-retry",
+                "revision": "fixture-r1-content-fbf1e74528f675cd02c19b000b66fc2a788e05432a20a2ac1c72ec7be4e305f0",
+                "scope": "PRODUCT-P",
+                "owner": "integration-original-owner"
+              }
+            }
+          },
+          "expected_material": {
+            "valley_result": "supported_synthetic_condition",
+            "state_ceiling_from_valley": "Provisional",
+            "reverse_scope_candidate": "Scoped Reverse",
+            "reverse_trigger_materials": [],
+            "reverse_ticket_candidate": "none",
+            "ticket_issuer": "OS",
+            "improvement_route": "current_Forward",
+            "meaning_backflow": [],
+            "pair_result": "supported_synthetic_condition",
+            "l9_dimension_results": {
+              "interface": "supported_synthetic_condition",
+              "dependency_direction": "supported_synthetic_condition",
+              "state_data_ownership": "supported_synthetic_condition",
+              "transaction": "supported_synthetic_condition",
+              "failure_propagation": "supported_synthetic_condition",
+              "retry": "missing",
+              "timeout": "supported_synthetic_condition",
+              "idempotency": "supported_synthetic_condition",
+              "coupling": "supported_synthetic_condition",
+              "responsibility_duplication": "supported_synthetic_condition"
+            },
+            "actual_ticket_issued": false,
+            "actual_reverse_executed": false,
+            "actual_quality_accepted": false,
+            "actual_user_accepted": false,
+            "actual_release": false,
+            "actual_completion": false,
+            "reason": "当該L9観点の未観測を検証済みにしない。他の観点と谷証拠は保持。",
+            "retain_unaffected_material": true
+          }
+        },
+        {
+          "id": "H003-F03-L9-MISSING-timeout",
+          "mutation": {
+            "path": [
+              "l9_dimensions",
+              6
+            ],
+            "before": {
+              "id": "timeout",
+              "expected": {
+                "condition_result": "unknown",
+                "synthetic_failure": "source_read_timeout",
+                "assumed_success": false
+              },
+              "observed": {
+                "condition_result": "unknown",
+                "synthetic_failure": "source_read_timeout",
+                "assumed_success": false
+              },
+              "source": {
+                "identity": "BOUNDARY-timeout",
+                "revision": "fixture-r1-content-e3f15cc5a612ee89dae3c47b9643393989cf7f41c9c8954d12a7459c84ae2f8a",
+                "scope": "PRODUCT-P",
+                "owner": "integration-original-owner"
+              }
+            },
+            "after": {
+              "id": "timeout",
+              "expected": {
+                "condition_result": "unknown",
+                "synthetic_failure": "source_read_timeout",
+                "assumed_success": false
+              },
+              "observed": null,
+              "source": {
+                "identity": "BOUNDARY-timeout",
+                "revision": "fixture-r1-content-272e5237faa3dc99a7a0c46d0e633db59b83a985859e605d147262692bf0114e",
+                "scope": "PRODUCT-P",
+                "owner": "integration-original-owner"
+              }
+            }
+          },
+          "expected_material": {
+            "valley_result": "supported_synthetic_condition",
+            "state_ceiling_from_valley": "Provisional",
+            "reverse_scope_candidate": "Scoped Reverse",
+            "reverse_trigger_materials": [],
+            "reverse_ticket_candidate": "none",
+            "ticket_issuer": "OS",
+            "improvement_route": "current_Forward",
+            "meaning_backflow": [],
+            "pair_result": "supported_synthetic_condition",
+            "l9_dimension_results": {
+              "interface": "supported_synthetic_condition",
+              "dependency_direction": "supported_synthetic_condition",
+              "state_data_ownership": "supported_synthetic_condition",
+              "transaction": "supported_synthetic_condition",
+              "failure_propagation": "supported_synthetic_condition",
+              "retry": "supported_synthetic_condition",
+              "timeout": "missing",
+              "idempotency": "supported_synthetic_condition",
+              "coupling": "supported_synthetic_condition",
+              "responsibility_duplication": "supported_synthetic_condition"
+            },
+            "actual_ticket_issued": false,
+            "actual_reverse_executed": false,
+            "actual_quality_accepted": false,
+            "actual_user_accepted": false,
+            "actual_release": false,
+            "actual_completion": false,
+            "reason": "当該L9観点の未観測を検証済みにしない。他の観点と谷証拠は保持。",
+            "retain_unaffected_material": true
+          }
+        },
+        {
+          "id": "H003-F03-L9-MISSING-idempotency",
+          "mutation": {
+            "path": [
+              "l9_dimensions",
+              7
+            ],
+            "before": {
+              "id": "idempotency",
+              "expected": {
+                "same_read_key": "READ-01",
+                "repeated_results": [
+                  "RESULT@r1",
+                  "RESULT@r1"
+                ],
+                "state_writes": 0
+              },
+              "observed": {
+                "same_read_key": "READ-01",
+                "repeated_results": [
+                  "RESULT@r1",
+                  "RESULT@r1"
+                ],
+                "state_writes": 0
+              },
+              "source": {
+                "identity": "BOUNDARY-idempotency",
+                "revision": "fixture-r1-content-a958fa6d76f2d93af001842b008dd30661306005093b2b00281b6d912008d13d",
+                "scope": "PRODUCT-P",
+                "owner": "integration-original-owner"
+              }
+            },
+            "after": {
+              "id": "idempotency",
+              "expected": {
+                "same_read_key": "READ-01",
+                "repeated_results": [
+                  "RESULT@r1",
+                  "RESULT@r1"
+                ],
+                "state_writes": 0
+              },
+              "observed": null,
+              "source": {
+                "identity": "BOUNDARY-idempotency",
+                "revision": "fixture-r1-content-0baad1b8145527546d56953381f0e47d88070afe908434f0a5ec7efeb455139a",
+                "scope": "PRODUCT-P",
+                "owner": "integration-original-owner"
+              }
+            }
+          },
+          "expected_material": {
+            "valley_result": "supported_synthetic_condition",
+            "state_ceiling_from_valley": "Provisional",
+            "reverse_scope_candidate": "Scoped Reverse",
+            "reverse_trigger_materials": [],
+            "reverse_ticket_candidate": "none",
+            "ticket_issuer": "OS",
+            "improvement_route": "current_Forward",
+            "meaning_backflow": [],
+            "pair_result": "supported_synthetic_condition",
+            "l9_dimension_results": {
+              "interface": "supported_synthetic_condition",
+              "dependency_direction": "supported_synthetic_condition",
+              "state_data_ownership": "supported_synthetic_condition",
+              "transaction": "supported_synthetic_condition",
+              "failure_propagation": "supported_synthetic_condition",
+              "retry": "supported_synthetic_condition",
+              "timeout": "supported_synthetic_condition",
+              "idempotency": "missing",
+              "coupling": "supported_synthetic_condition",
+              "responsibility_duplication": "supported_synthetic_condition"
+            },
+            "actual_ticket_issued": false,
+            "actual_reverse_executed": false,
+            "actual_quality_accepted": false,
+            "actual_user_accepted": false,
+            "actual_release": false,
+            "actual_completion": false,
+            "reason": "当該L9観点の未観測を検証済みにしない。他の観点と谷証拠は保持。",
+            "retain_unaffected_material": true
+          }
+        },
+        {
+          "id": "H003-F03-L9-MISSING-coupling",
+          "mutation": {
+            "path": [
+              "l9_dimensions",
+              8
+            ],
+            "before": {
+              "id": "coupling",
+              "expected": {
+                "changed_scope": "PRODUCT-P",
+                "rechecked_scopes": [
+                  "PRODUCT-P"
+                ],
+                "unrelated_scope": "PRODUCT-Q",
+                "unrelated_state_changed": false
+              },
+              "observed": {
+                "changed_scope": "PRODUCT-P",
+                "rechecked_scopes": [
+                  "PRODUCT-P"
+                ],
+                "unrelated_scope": "PRODUCT-Q",
+                "unrelated_state_changed": false
+              },
+              "source": {
+                "identity": "BOUNDARY-coupling",
+                "revision": "fixture-r1-content-b04eb5a95bc9a9c6a26c04f3af1266cf4e2ba10067fbeb3162de5994b9741202",
+                "scope": "PRODUCT-P",
+                "owner": "integration-original-owner"
+              }
+            },
+            "after": {
+              "id": "coupling",
+              "expected": {
+                "changed_scope": "PRODUCT-P",
+                "rechecked_scopes": [
+                  "PRODUCT-P"
+                ],
+                "unrelated_scope": "PRODUCT-Q",
+                "unrelated_state_changed": false
+              },
+              "observed": null,
+              "source": {
+                "identity": "BOUNDARY-coupling",
+                "revision": "fixture-r1-content-d03d4e7a10a28e548c79f5178a6a9f3c2e7d7775c712775e4ea732859c837ddd",
+                "scope": "PRODUCT-P",
+                "owner": "integration-original-owner"
+              }
+            }
+          },
+          "expected_material": {
+            "valley_result": "supported_synthetic_condition",
+            "state_ceiling_from_valley": "Provisional",
+            "reverse_scope_candidate": "Scoped Reverse",
+            "reverse_trigger_materials": [],
+            "reverse_ticket_candidate": "none",
+            "ticket_issuer": "OS",
+            "improvement_route": "current_Forward",
+            "meaning_backflow": [],
+            "pair_result": "supported_synthetic_condition",
+            "l9_dimension_results": {
+              "interface": "supported_synthetic_condition",
+              "dependency_direction": "supported_synthetic_condition",
+              "state_data_ownership": "supported_synthetic_condition",
+              "transaction": "supported_synthetic_condition",
+              "failure_propagation": "supported_synthetic_condition",
+              "retry": "supported_synthetic_condition",
+              "timeout": "supported_synthetic_condition",
+              "idempotency": "supported_synthetic_condition",
+              "coupling": "missing",
+              "responsibility_duplication": "supported_synthetic_condition"
+            },
+            "actual_ticket_issued": false,
+            "actual_reverse_executed": false,
+            "actual_quality_accepted": false,
+            "actual_user_accepted": false,
+            "actual_release": false,
+            "actual_completion": false,
+            "reason": "当該L9観点の未観測を検証済みにしない。他の観点と谷証拠は保持。",
+            "retain_unaffected_material": true
+          }
+        },
+        {
+          "id": "H003-F03-L9-MISSING-responsibility_duplication",
+          "mutation": {
+            "path": [
+              "l9_dimensions",
+              9
+            ],
+            "before": {
+              "id": "responsibility_duplication",
+              "expected": {
+                "state_record_owner": [
+                  "OS"
+                ],
+                "meaning_owner": [
+                  "HARNESS"
+                ],
+                "actual_ticket_issuer": [
+                  "OS"
+                ]
+              },
+              "observed": {
+                "state_record_owner": [
+                  "OS"
+                ],
+                "meaning_owner": [
+                  "HARNESS"
+                ],
+                "actual_ticket_issuer": [
+                  "OS"
+                ]
+              },
+              "source": {
+                "identity": "BOUNDARY-responsibility_duplication",
+                "revision": "fixture-r1-content-a2319c513399c9a9c2c6254c852921863b1da20a1263920dc3260c1be781e040",
+                "scope": "PRODUCT-P",
+                "owner": "integration-original-owner"
+              }
+            },
+            "after": {
+              "id": "responsibility_duplication",
+              "expected": {
+                "state_record_owner": [
+                  "OS"
+                ],
+                "meaning_owner": [
+                  "HARNESS"
+                ],
+                "actual_ticket_issuer": [
+                  "OS"
+                ]
+              },
+              "observed": null,
+              "source": {
+                "identity": "BOUNDARY-responsibility_duplication",
+                "revision": "fixture-r1-content-1decb69fcd3a89003e44ee6d5018673f31a363ddfd59d34d65eafef5eff0a3a0",
+                "scope": "PRODUCT-P",
+                "owner": "integration-original-owner"
+              }
+            }
+          },
+          "expected_material": {
+            "valley_result": "supported_synthetic_condition",
+            "state_ceiling_from_valley": "Provisional",
+            "reverse_scope_candidate": "Scoped Reverse",
+            "reverse_trigger_materials": [],
+            "reverse_ticket_candidate": "none",
+            "ticket_issuer": "OS",
+            "improvement_route": "current_Forward",
+            "meaning_backflow": [],
+            "pair_result": "supported_synthetic_condition",
+            "l9_dimension_results": {
+              "interface": "supported_synthetic_condition",
+              "dependency_direction": "supported_synthetic_condition",
+              "state_data_ownership": "supported_synthetic_condition",
+              "transaction": "supported_synthetic_condition",
+              "failure_propagation": "supported_synthetic_condition",
+              "retry": "supported_synthetic_condition",
+              "timeout": "supported_synthetic_condition",
+              "idempotency": "supported_synthetic_condition",
+              "coupling": "supported_synthetic_condition",
+              "responsibility_duplication": "missing"
+            },
+            "actual_ticket_issued": false,
+            "actual_reverse_executed": false,
+            "actual_quality_accepted": false,
+            "actual_user_accepted": false,
+            "actual_release": false,
+            "actual_completion": false,
+            "reason": "当該L9観点の未観測を検証済みにしない。他の観点と谷証拠は保持。",
+            "retain_unaffected_material": true
+          }
+        },
+        {
+          "id": "H003-F03-STATE-OWNER-CONFLICT",
+          "mutation": {
+            "path": [
+              "l9_dimensions",
+              2
+            ],
+            "before": {
+              "id": "state_data_ownership",
+              "expected": {
+                "state_writer": "OS",
+                "HARNESS_writes_state": false
+              },
+              "observed": {
+                "state_writer": "OS",
+                "HARNESS_writes_state": false
+              },
+              "source": {
+                "identity": "BOUNDARY-state_data_ownership",
+                "revision": "fixture-r1-content-7b209497e13aa1e8e7dfa146bfc13563724f7e144f3af5bfb2075e0ffd03a089",
+                "scope": "PRODUCT-P",
+                "owner": "integration-original-owner"
+              }
+            },
+            "after": {
+              "id": "state_data_ownership",
+              "expected": {
+                "state_writer": "OS",
+                "HARNESS_writes_state": false
+              },
+              "observed": {
+                "state_writer": "HARNESS",
+                "HARNESS_writes_state": false
+              },
+              "source": {
+                "identity": "BOUNDARY-state_data_ownership",
+                "revision": "fixture-r1-content-3594745e21fe272755d9a0825a27c8cee94d8001bae205738af487ea91ccdd86",
+                "scope": "PRODUCT-P",
+                "owner": "integration-original-owner"
+              }
+            }
+          },
+          "expected_material": {
+            "valley_result": "supported_synthetic_condition",
+            "state_ceiling_from_valley": "Provisional",
+            "reverse_scope_candidate": "Scoped Reverse",
+            "reverse_trigger_materials": [],
+            "reverse_ticket_candidate": "none",
+            "ticket_issuer": "OS",
+            "improvement_route": "current_Forward",
+            "meaning_backflow": [],
+            "pair_result": "supported_synthetic_condition",
+            "l9_dimension_results": {
+              "interface": "supported_synthetic_condition",
+              "dependency_direction": "supported_synthetic_condition",
+              "state_data_ownership": "conflict",
+              "transaction": "supported_synthetic_condition",
+              "failure_propagation": "supported_synthetic_condition",
+              "retry": "supported_synthetic_condition",
+              "timeout": "supported_synthetic_condition",
+              "idempotency": "supported_synthetic_condition",
+              "coupling": "supported_synthetic_condition",
+              "responsibility_duplication": "supported_synthetic_condition"
+            },
+            "actual_ticket_issued": false,
+            "actual_reverse_executed": false,
+            "actual_quality_accepted": false,
+            "actual_user_accepted": false,
+            "actual_release": false,
+            "actual_completion": false,
+            "reason": "同じ型でもstate/dataの実所有が設計と違えば不一致。",
+            "retain_unaffected_material": true
+          }
+        },
+        {
+          "id": "H003-F03-PRE-BODY-RED-ABSENT",
+          "mutation": {
+            "path": [
+              "valley",
+              "content",
+              "steps",
+              1
+            ],
+            "before": {
+              "kind": "pre_body_red",
+              "seq": 2,
+              "head": "h0",
+              "expected_debits": 1,
+              "observed_debits": 2,
+              "failure": "duplicate_debit",
+              "executed": true,
+              "oracle": "ORACLE-DUP@r1"
+            },
+            "after": {
+              "kind": "mutation_after_body",
+              "seq": 7,
+              "oracle": "ORACLE-DUP@r1"
+            }
+          },
+          "expected_material": {
+            "valley_result": "conflict",
+            "state_ceiling_from_valley": null,
+            "reverse_scope_candidate": "Scoped Reverse",
+            "reverse_trigger_materials": [],
+            "reverse_ticket_candidate": "none",
+            "ticket_issuer": "OS",
+            "improvement_route": "current_Forward",
+            "meaning_backflow": [],
+            "pair_result": "supported_synthetic_condition",
+            "l9_dimension_results": {
+              "interface": "supported_synthetic_condition",
+              "dependency_direction": "supported_synthetic_condition",
+              "state_data_ownership": "supported_synthetic_condition",
+              "transaction": "supported_synthetic_condition",
+              "failure_propagation": "supported_synthetic_condition",
+              "retry": "supported_synthetic_condition",
+              "timeout": "supported_synthetic_condition",
+              "idempotency": "supported_synthetic_condition",
+              "coupling": "supported_synthetic_condition",
+              "responsibility_duplication": "supported_synthetic_condition"
+            },
+            "actual_ticket_issued": false,
+            "actual_reverse_executed": false,
+            "actual_quality_accepted": false,
+            "actual_user_accepted": false,
+            "actual_release": false,
+            "actual_completion": false,
+            "reason": "実装後mutationは実装前Redの実観測を代替しない。",
+            "retain_unaffected_material": true
+          }
+        },
+        {
+          "id": "H003-F03-PUBLIC-MEANING-CHANGE",
+          "mutation": {
+            "path": [
+              "improvement",
+              "behavior_after"
+            ],
+            "before": "PUBLIC@r1",
+            "after": "PUBLIC@r2"
+          },
+          "expected_material": {
+            "valley_result": "supported_synthetic_condition",
+            "state_ceiling_from_valley": "Provisional",
+            "reverse_scope_candidate": "Scoped Reverse",
+            "reverse_trigger_materials": [],
+            "reverse_ticket_candidate": "none",
+            "ticket_issuer": "OS",
+            "improvement_route": "Backflow",
+            "meaning_backflow": [
+              "behavior"
+            ],
+            "pair_result": "supported_synthetic_condition",
+            "l9_dimension_results": {
+              "interface": "supported_synthetic_condition",
+              "dependency_direction": "supported_synthetic_condition",
+              "state_data_ownership": "supported_synthetic_condition",
+              "transaction": "supported_synthetic_condition",
+              "failure_propagation": "supported_synthetic_condition",
+              "retry": "supported_synthetic_condition",
+              "timeout": "supported_synthetic_condition",
+              "idempotency": "supported_synthetic_condition",
+              "coupling": "supported_synthetic_condition",
+              "responsibility_duplication": "supported_synthetic_condition"
+            },
+            "actual_ticket_issued": false,
+            "actual_reverse_executed": false,
+            "actual_quality_accepted": false,
+            "actual_user_accepted": false,
+            "actual_release": false,
+            "actual_completion": false,
+            "reason": "公開振る舞いの変更を局所Refactorで閉じない。",
+            "retain_unaffected_material": true
+          }
+        },
+        {
+          "id": "H003-F03-ARCHITECTURE-MEANING-CHANGE",
+          "mutation": {
+            "path": [
+              "improvement",
+              "architecture_after"
+            ],
+            "before": "ARCH@r1",
+            "after": "ARCH@r2"
+          },
+          "expected_material": {
+            "valley_result": "supported_synthetic_condition",
+            "state_ceiling_from_valley": "Provisional",
+            "reverse_scope_candidate": "Scoped Reverse",
+            "reverse_trigger_materials": [],
+            "reverse_ticket_candidate": "none",
+            "ticket_issuer": "OS",
+            "improvement_route": "Backflow",
+            "meaning_backflow": [
+              "architecture"
+            ],
+            "pair_result": "supported_synthetic_condition",
+            "l9_dimension_results": {
+              "interface": "supported_synthetic_condition",
+              "dependency_direction": "supported_synthetic_condition",
+              "state_data_ownership": "supported_synthetic_condition",
+              "transaction": "supported_synthetic_condition",
+              "failure_propagation": "supported_synthetic_condition",
+              "retry": "supported_synthetic_condition",
+              "timeout": "supported_synthetic_condition",
+              "idempotency": "supported_synthetic_condition",
+              "coupling": "supported_synthetic_condition",
+              "responsibility_duplication": "supported_synthetic_condition"
+            },
+            "actual_ticket_issued": false,
+            "actual_reverse_executed": false,
+            "actual_quality_accepted": false,
+            "actual_user_accepted": false,
+            "actual_release": false,
+            "actual_completion": false,
+            "reason": "architectureの意味差分はL4 ownerへ返す。",
+            "retain_unaffected_material": true
+          }
+        },
+        {
+          "id": "H003-F03-NORMAL-AS-FULL-REVERSE",
+          "mutation": {
+            "path": [
+              "reverse_scope_candidate"
+            ],
+            "before": "Scoped Reverse",
+            "after": "Full Reverse recovery candidate"
+          },
+          "expected_material": {
+            "valley_result": "supported_synthetic_condition",
+            "state_ceiling_from_valley": "Provisional",
+            "reverse_scope_candidate": "Scoped Reverse",
+            "reverse_trigger_materials": [],
+            "reverse_ticket_candidate": "none",
+            "ticket_issuer": "OS",
+            "improvement_route": "current_Forward",
+            "meaning_backflow": [],
+            "pair_result": "supported_synthetic_condition",
+            "l9_dimension_results": {
+              "interface": "supported_synthetic_condition",
+              "dependency_direction": "supported_synthetic_condition",
+              "state_data_ownership": "supported_synthetic_condition",
+              "transaction": "supported_synthetic_condition",
+              "failure_propagation": "supported_synthetic_condition",
+              "retry": "supported_synthetic_condition",
+              "timeout": "supported_synthetic_condition",
+              "idempotency": "supported_synthetic_condition",
+              "coupling": "supported_synthetic_condition",
+              "responsibility_duplication": "supported_synthetic_condition"
+            },
+            "actual_ticket_issued": false,
+            "actual_reverse_executed": false,
+            "actual_quality_accepted": false,
+            "actual_user_accepted": false,
+            "actual_release": false,
+            "actual_completion": false,
+            "candidate_disposition": "conflict",
+            "candidate_conflicting_field": "reverse_scope_candidate",
+            "reason": "当該原資料が支える条件/責務を越えるcandidateを採用しない。",
+            "retain_unaffected_material": true
+          }
+        },
+        {
+          "id": "H003-F03-NORMAL-AS-REVERSE-TICKET",
+          "mutation": {
+            "path": [
+              "reverse_ticket_candidate"
+            ],
+            "before": "none",
+            "after": "Reverse"
+          },
+          "expected_material": {
+            "valley_result": "supported_synthetic_condition",
+            "state_ceiling_from_valley": "Provisional",
+            "reverse_scope_candidate": "Scoped Reverse",
+            "reverse_trigger_materials": [],
+            "reverse_ticket_candidate": "none",
+            "ticket_issuer": "OS",
+            "improvement_route": "current_Forward",
+            "meaning_backflow": [],
+            "pair_result": "supported_synthetic_condition",
+            "l9_dimension_results": {
+              "interface": "supported_synthetic_condition",
+              "dependency_direction": "supported_synthetic_condition",
+              "state_data_ownership": "supported_synthetic_condition",
+              "transaction": "supported_synthetic_condition",
+              "failure_propagation": "supported_synthetic_condition",
+              "retry": "supported_synthetic_condition",
+              "timeout": "supported_synthetic_condition",
+              "idempotency": "supported_synthetic_condition",
+              "coupling": "supported_synthetic_condition",
+              "responsibility_duplication": "supported_synthetic_condition"
+            },
+            "actual_ticket_issued": false,
+            "actual_reverse_executed": false,
+            "actual_quality_accepted": false,
+            "actual_user_accepted": false,
+            "actual_release": false,
+            "actual_completion": false,
+            "candidate_disposition": "conflict",
+            "candidate_conflicting_field": "reverse_ticket_candidate",
+            "reason": "当該原資料が支える条件/責務を越えるcandidateを採用しない。",
+            "retain_unaffected_material": true
+          }
+        },
+        {
+          "id": "H003-F03-HARNESS-AS-ISSUER",
+          "mutation": {
+            "path": [
+              "ticket_issuer"
+            ],
+            "before": "OS",
+            "after": "HARNESS"
+          },
+          "expected_material": {
+            "valley_result": "supported_synthetic_condition",
+            "state_ceiling_from_valley": "Provisional",
+            "reverse_scope_candidate": "Scoped Reverse",
+            "reverse_trigger_materials": [],
+            "reverse_ticket_candidate": "none",
+            "ticket_issuer": "OS",
+            "improvement_route": "current_Forward",
+            "meaning_backflow": [],
+            "pair_result": "supported_synthetic_condition",
+            "l9_dimension_results": {
+              "interface": "supported_synthetic_condition",
+              "dependency_direction": "supported_synthetic_condition",
+              "state_data_ownership": "supported_synthetic_condition",
+              "transaction": "supported_synthetic_condition",
+              "failure_propagation": "supported_synthetic_condition",
+              "retry": "supported_synthetic_condition",
+              "timeout": "supported_synthetic_condition",
+              "idempotency": "supported_synthetic_condition",
+              "coupling": "supported_synthetic_condition",
+              "responsibility_duplication": "supported_synthetic_condition"
+            },
+            "actual_ticket_issued": false,
+            "actual_reverse_executed": false,
+            "actual_quality_accepted": false,
+            "actual_user_accepted": false,
+            "actual_release": false,
+            "actual_completion": false,
+            "candidate_disposition": "conflict",
+            "candidate_conflicting_field": "ticket_issuer",
+            "reason": "当該原資料が支える条件/責務を越えるcandidateを採用しない。",
+            "retain_unaffected_material": true
+          }
+        },
+        {
+          "id": "H003-F03-VALLEY-AS-QUALITY",
+          "mutation": {
+            "path": [
+              "actual_quality_accepted"
+            ],
+            "before": false,
+            "after": true
+          },
+          "expected_material": {
+            "valley_result": "supported_synthetic_condition",
+            "state_ceiling_from_valley": "Provisional",
+            "reverse_scope_candidate": "Scoped Reverse",
+            "reverse_trigger_materials": [],
+            "reverse_ticket_candidate": "none",
+            "ticket_issuer": "OS",
+            "improvement_route": "current_Forward",
+            "meaning_backflow": [],
+            "pair_result": "supported_synthetic_condition",
+            "l9_dimension_results": {
+              "interface": "supported_synthetic_condition",
+              "dependency_direction": "supported_synthetic_condition",
+              "state_data_ownership": "supported_synthetic_condition",
+              "transaction": "supported_synthetic_condition",
+              "failure_propagation": "supported_synthetic_condition",
+              "retry": "supported_synthetic_condition",
+              "timeout": "supported_synthetic_condition",
+              "idempotency": "supported_synthetic_condition",
+              "coupling": "supported_synthetic_condition",
+              "responsibility_duplication": "supported_synthetic_condition"
+            },
+            "actual_ticket_issued": false,
+            "actual_reverse_executed": false,
+            "actual_quality_accepted": false,
+            "actual_user_accepted": false,
+            "actual_release": false,
+            "actual_completion": false,
+            "candidate_disposition": "conflict",
+            "candidate_conflicting_field": "actual_quality_accepted",
+            "reason": "当該原資料が支える条件/責務を越えるcandidateを採用しない。",
+            "retain_unaffected_material": true
+          }
+        },
+        {
+          "id": "H003-F03-VALLEY-AS-USER-ACCEPTANCE",
+          "mutation": {
+            "path": [
+              "actual_user_accepted"
+            ],
+            "before": false,
+            "after": true
+          },
+          "expected_material": {
+            "valley_result": "supported_synthetic_condition",
+            "state_ceiling_from_valley": "Provisional",
+            "reverse_scope_candidate": "Scoped Reverse",
+            "reverse_trigger_materials": [],
+            "reverse_ticket_candidate": "none",
+            "ticket_issuer": "OS",
+            "improvement_route": "current_Forward",
+            "meaning_backflow": [],
+            "pair_result": "supported_synthetic_condition",
+            "l9_dimension_results": {
+              "interface": "supported_synthetic_condition",
+              "dependency_direction": "supported_synthetic_condition",
+              "state_data_ownership": "supported_synthetic_condition",
+              "transaction": "supported_synthetic_condition",
+              "failure_propagation": "supported_synthetic_condition",
+              "retry": "supported_synthetic_condition",
+              "timeout": "supported_synthetic_condition",
+              "idempotency": "supported_synthetic_condition",
+              "coupling": "supported_synthetic_condition",
+              "responsibility_duplication": "supported_synthetic_condition"
+            },
+            "actual_ticket_issued": false,
+            "actual_reverse_executed": false,
+            "actual_quality_accepted": false,
+            "actual_user_accepted": false,
+            "actual_release": false,
+            "actual_completion": false,
+            "candidate_disposition": "conflict",
+            "candidate_conflicting_field": "actual_user_accepted",
+            "reason": "当該原資料が支える条件/責務を越えるcandidateを採用しない。",
+            "retain_unaffected_material": true
+          }
+        },
+        {
+          "id": "H003-F03-VALLEY-AS-RELEASE",
+          "mutation": {
+            "path": [
+              "actual_release"
+            ],
+            "before": false,
+            "after": true
+          },
+          "expected_material": {
+            "valley_result": "supported_synthetic_condition",
+            "state_ceiling_from_valley": "Provisional",
+            "reverse_scope_candidate": "Scoped Reverse",
+            "reverse_trigger_materials": [],
+            "reverse_ticket_candidate": "none",
+            "ticket_issuer": "OS",
+            "improvement_route": "current_Forward",
+            "meaning_backflow": [],
+            "pair_result": "supported_synthetic_condition",
+            "l9_dimension_results": {
+              "interface": "supported_synthetic_condition",
+              "dependency_direction": "supported_synthetic_condition",
+              "state_data_ownership": "supported_synthetic_condition",
+              "transaction": "supported_synthetic_condition",
+              "failure_propagation": "supported_synthetic_condition",
+              "retry": "supported_synthetic_condition",
+              "timeout": "supported_synthetic_condition",
+              "idempotency": "supported_synthetic_condition",
+              "coupling": "supported_synthetic_condition",
+              "responsibility_duplication": "supported_synthetic_condition"
+            },
+            "actual_ticket_issued": false,
+            "actual_reverse_executed": false,
+            "actual_quality_accepted": false,
+            "actual_user_accepted": false,
+            "actual_release": false,
+            "actual_completion": false,
+            "candidate_disposition": "conflict",
+            "candidate_conflicting_field": "actual_release",
+            "reason": "当該原資料が支える条件/責務を越えるcandidateを採用しない。",
+            "retain_unaffected_material": true
+          }
+        },
+        {
+          "id": "H003-F03-REVERSE-AS-EXECUTED",
+          "mutation": {
+            "path": [
+              "actual_reverse_executed"
+            ],
+            "before": false,
+            "after": true
+          },
+          "expected_material": {
+            "valley_result": "supported_synthetic_condition",
+            "state_ceiling_from_valley": "Provisional",
+            "reverse_scope_candidate": "Scoped Reverse",
+            "reverse_trigger_materials": [],
+            "reverse_ticket_candidate": "none",
+            "ticket_issuer": "OS",
+            "improvement_route": "current_Forward",
+            "meaning_backflow": [],
+            "pair_result": "supported_synthetic_condition",
+            "l9_dimension_results": {
+              "interface": "supported_synthetic_condition",
+              "dependency_direction": "supported_synthetic_condition",
+              "state_data_ownership": "supported_synthetic_condition",
+              "transaction": "supported_synthetic_condition",
+              "failure_propagation": "supported_synthetic_condition",
+              "retry": "supported_synthetic_condition",
+              "timeout": "supported_synthetic_condition",
+              "idempotency": "supported_synthetic_condition",
+              "coupling": "supported_synthetic_condition",
+              "responsibility_duplication": "supported_synthetic_condition"
+            },
+            "actual_ticket_issued": false,
+            "actual_reverse_executed": false,
+            "actual_quality_accepted": false,
+            "actual_user_accepted": false,
+            "actual_release": false,
+            "actual_completion": false,
+            "candidate_disposition": "conflict",
+            "candidate_conflicting_field": "actual_reverse_executed",
+            "reason": "当該原資料が支える条件/責務を越えるcandidateを採用しない。",
+            "retain_unaffected_material": true
+          }
+        },
+        {
+          "id": "H003-F03-REQUIREMENT-MEANING-CHANGE",
+          "mutation": {
+            "path": [
+              "improvement",
+              "requirement_after"
+            ],
+            "before": "REQ@r1",
+            "after": "REQ@r2"
+          },
+          "expected_material": {
+            "valley_result": "supported_synthetic_condition",
+            "state_ceiling_from_valley": "Provisional",
+            "reverse_scope_candidate": "Scoped Reverse",
+            "reverse_trigger_materials": [],
+            "reverse_ticket_candidate": "none",
+            "ticket_issuer": "OS",
+            "improvement_route": "Backflow",
+            "meaning_backflow": [
+              "requirement"
+            ],
+            "pair_result": "supported_synthetic_condition",
+            "l9_dimension_results": {
+              "interface": "supported_synthetic_condition",
+              "dependency_direction": "supported_synthetic_condition",
+              "state_data_ownership": "supported_synthetic_condition",
+              "transaction": "supported_synthetic_condition",
+              "failure_propagation": "supported_synthetic_condition",
+              "retry": "supported_synthetic_condition",
+              "timeout": "supported_synthetic_condition",
+              "idempotency": "supported_synthetic_condition",
+              "coupling": "supported_synthetic_condition",
+              "responsibility_duplication": "supported_synthetic_condition"
+            },
+            "actual_ticket_issued": false,
+            "actual_reverse_executed": false,
+            "actual_quality_accepted": false,
+            "actual_user_accepted": false,
+            "actual_release": false,
+            "actual_completion": false,
+            "reason": "当該意味差分を局所Refactorで閉じない。",
+            "retain_unaffected_material": true
+          }
+        },
+        {
+          "id": "H003-F03-STATE-MEANING-CHANGE",
+          "mutation": {
+            "path": [
+              "improvement",
+              "state_after"
+            ],
+            "before": "STATE@r1",
+            "after": "STATE@r2"
+          },
+          "expected_material": {
+            "valley_result": "supported_synthetic_condition",
+            "state_ceiling_from_valley": "Provisional",
+            "reverse_scope_candidate": "Scoped Reverse",
+            "reverse_trigger_materials": [],
+            "reverse_ticket_candidate": "none",
+            "ticket_issuer": "OS",
+            "improvement_route": "Backflow",
+            "meaning_backflow": [
+              "state"
+            ],
+            "pair_result": "supported_synthetic_condition",
+            "l9_dimension_results": {
+              "interface": "supported_synthetic_condition",
+              "dependency_direction": "supported_synthetic_condition",
+              "state_data_ownership": "supported_synthetic_condition",
+              "transaction": "supported_synthetic_condition",
+              "failure_propagation": "supported_synthetic_condition",
+              "retry": "supported_synthetic_condition",
+              "timeout": "supported_synthetic_condition",
+              "idempotency": "supported_synthetic_condition",
+              "coupling": "supported_synthetic_condition",
+              "responsibility_duplication": "supported_synthetic_condition"
+            },
+            "actual_ticket_issued": false,
+            "actual_reverse_executed": false,
+            "actual_quality_accepted": false,
+            "actual_user_accepted": false,
+            "actual_release": false,
+            "actual_completion": false,
+            "reason": "当該意味差分を局所Refactorで閉じない。",
+            "retain_unaffected_material": true
+          }
+        },
+        {
+          "id": "H003-F03-L8-WRONG-PAIR",
+          "mutation": {
+            "path": [
+              "paired_comparisons",
+              0,
+              "left"
+            ],
+            "before": "L5",
+            "after": "L2"
+          },
+          "expected_material": {
+            "valley_result": "supported_synthetic_condition",
+            "state_ceiling_from_valley": "Provisional",
+            "reverse_scope_candidate": "Scoped Reverse",
+            "reverse_trigger_materials": [],
+            "reverse_ticket_candidate": "none",
+            "ticket_issuer": "OS",
+            "improvement_route": "current_Forward",
+            "meaning_backflow": [],
+            "pair_result": "conflict",
+            "l9_dimension_results": {
+              "interface": "supported_synthetic_condition",
+              "dependency_direction": "supported_synthetic_condition",
+              "state_data_ownership": "supported_synthetic_condition",
+              "transaction": "supported_synthetic_condition",
+              "failure_propagation": "supported_synthetic_condition",
+              "retry": "supported_synthetic_condition",
+              "timeout": "supported_synthetic_condition",
+              "idempotency": "supported_synthetic_condition",
+              "coupling": "supported_synthetic_condition",
+              "responsibility_duplication": "supported_synthetic_condition"
+            },
+            "actual_ticket_issued": false,
+            "actual_reverse_executed": false,
+            "actual_quality_accepted": false,
+            "actual_user_accepted": false,
+            "actual_release": false,
+            "actual_completion": false,
+            "retain_unaffected_material": true,
+            "reason": "L8↔L5の対置換/別要求revisionを流用しない。谷・全L9観点・他二対を保持し、実ticket/受入/実行を生成しない。"
+          }
+        },
+        {
+          "id": "H003-F03-L8-FOREIGN-REVISION",
+          "mutation": {
+            "path": [
+              "paired_comparisons",
+              0,
+              "revision"
+            ],
+            "before": "REQ@r1",
+            "after": "REQ@r0"
+          },
+          "expected_material": {
+            "valley_result": "supported_synthetic_condition",
+            "state_ceiling_from_valley": "Provisional",
+            "reverse_scope_candidate": "Scoped Reverse",
+            "reverse_trigger_materials": [],
+            "reverse_ticket_candidate": "none",
+            "ticket_issuer": "OS",
+            "improvement_route": "current_Forward",
+            "meaning_backflow": [],
+            "pair_result": "stale",
+            "l9_dimension_results": {
+              "interface": "supported_synthetic_condition",
+              "dependency_direction": "supported_synthetic_condition",
+              "state_data_ownership": "supported_synthetic_condition",
+              "transaction": "supported_synthetic_condition",
+              "failure_propagation": "supported_synthetic_condition",
+              "retry": "supported_synthetic_condition",
+              "timeout": "supported_synthetic_condition",
+              "idempotency": "supported_synthetic_condition",
+              "coupling": "supported_synthetic_condition",
+              "responsibility_duplication": "supported_synthetic_condition"
+            },
+            "actual_ticket_issued": false,
+            "actual_reverse_executed": false,
+            "actual_quality_accepted": false,
+            "actual_user_accepted": false,
+            "actual_release": false,
+            "actual_completion": false,
+            "retain_unaffected_material": true,
+            "reason": "L8↔L5の対置換/別要求revisionを流用しない。谷・全L9観点・他二対を保持し、実ticket/受入/実行を生成しない。"
+          }
+        },
+        {
+          "id": "H003-F03-L10-WRONG-PAIR",
+          "mutation": {
+            "path": [
+              "paired_comparisons",
+              2,
+              "left"
+            ],
+            "before": "L3",
+            "after": "L2"
+          },
+          "expected_material": {
+            "valley_result": "supported_synthetic_condition",
+            "state_ceiling_from_valley": "Provisional",
+            "reverse_scope_candidate": "Scoped Reverse",
+            "reverse_trigger_materials": [],
+            "reverse_ticket_candidate": "none",
+            "ticket_issuer": "OS",
+            "improvement_route": "current_Forward",
+            "meaning_backflow": [],
+            "pair_result": "conflict",
+            "l9_dimension_results": {
+              "interface": "supported_synthetic_condition",
+              "dependency_direction": "supported_synthetic_condition",
+              "state_data_ownership": "supported_synthetic_condition",
+              "transaction": "supported_synthetic_condition",
+              "failure_propagation": "supported_synthetic_condition",
+              "retry": "supported_synthetic_condition",
+              "timeout": "supported_synthetic_condition",
+              "idempotency": "supported_synthetic_condition",
+              "coupling": "supported_synthetic_condition",
+              "responsibility_duplication": "supported_synthetic_condition"
+            },
+            "actual_ticket_issued": false,
+            "actual_reverse_executed": false,
+            "actual_quality_accepted": false,
+            "actual_user_accepted": false,
+            "actual_release": false,
+            "actual_completion": false,
+            "retain_unaffected_material": true,
+            "reason": "L10↔L3の対置換/別要求revisionを流用しない。谷・全L9観点・他二対を保持し、実ticket/受入/実行を生成しない。"
+          }
+        },
+        {
+          "id": "H003-F03-L10-FOREIGN-REVISION",
+          "mutation": {
+            "path": [
+              "paired_comparisons",
+              2,
+              "revision"
+            ],
+            "before": "REQ@r1",
+            "after": "REQ@r0"
+          },
+          "expected_material": {
+            "valley_result": "supported_synthetic_condition",
+            "state_ceiling_from_valley": "Provisional",
+            "reverse_scope_candidate": "Scoped Reverse",
+            "reverse_trigger_materials": [],
+            "reverse_ticket_candidate": "none",
+            "ticket_issuer": "OS",
+            "improvement_route": "current_Forward",
+            "meaning_backflow": [],
+            "pair_result": "stale",
+            "l9_dimension_results": {
+              "interface": "supported_synthetic_condition",
+              "dependency_direction": "supported_synthetic_condition",
+              "state_data_ownership": "supported_synthetic_condition",
+              "transaction": "supported_synthetic_condition",
+              "failure_propagation": "supported_synthetic_condition",
+              "retry": "supported_synthetic_condition",
+              "timeout": "supported_synthetic_condition",
+              "idempotency": "supported_synthetic_condition",
+              "coupling": "supported_synthetic_condition",
+              "responsibility_duplication": "supported_synthetic_condition"
+            },
+            "actual_ticket_issued": false,
+            "actual_reverse_executed": false,
+            "actual_quality_accepted": false,
+            "actual_user_accepted": false,
+            "actual_release": false,
+            "actual_completion": false,
+            "retain_unaffected_material": true,
+            "reason": "L10↔L3の対置換/別要求revisionを流用しない。谷・全L9観点・他二対を保持し、実ticket/受入/実行を生成しない。"
+          }
+        }
+      ]
+    }
+  },
+  "derived_expectation": {
+    "basis": "Only the source records/pointers above. No L5/L8 document, existing alignment comparison, or L8 U-ID was read.",
+    "pair_result": {
+      "defined_values_from_L4": [
+        "supported_synthetic_condition",
+        "conflict",
+        "stale"
+      ],
+      "envelope_boundary_from_L4": "known supported value; conflict/stale/missing use value=null; preserve state separately.",
+      "source_directed_cases": [
+        {
+          "condition": "pair/scope comparison inconsistency",
+          "expected_state_value": "conflict",
+          "basis": "L4 allowed value definition; L9 H003-F03-L8-WRONG-PAIR and H003-F03-L10-WRONG-PAIR expected_material.pair_result"
+        },
+        {
+          "condition": "foreign-revision pair material",
+          "expected_state_value": "stale",
+          "basis": "L4 allowed value definition; L9 H003-F03-L8-FOREIGN-REVISION and H003-F03-L10-FOREIGN-REVISION expected_material.pair_result"
+        },
+        {
+          "condition": "origin-null or trace-empty synthetic fixture condition",
+          "expected_state_value": "supported_synthetic_condition as source support only; actual pair result remains unformed/unknown absent raw evidence",
+          "basis": "L4 values/failure_handling; L9 H003-F03-ORIGIN-MISSING and H003-F03-TRACE-MISSING expected_material.pair_result"
+        }
+      ]
+    },
+    "valley_result": {
+      "defined_values_from_L4": [
+        "supported_synthetic_condition",
+        "conflict"
+      ],
+      "source_directed_cases": [
+        {
+          "condition": "fixture supports synthetic condition",
+          "expected_state_value": "supported_synthetic_condition as source support only; not actual valley success or Provisional transition",
+          "basis": "L4 values; L9 F03 expected_material.valley_result rows"
+        },
+        {
+          "condition": "valley condition or fixture witness inconsistent",
+          "expected_state_value": "conflict",
+          "basis": "L4 values"
+        }
+      ],
+      "missing_boundary": "L4 says L8 missing/value=null can represent absent required fixture binding qualification; no same-ID L9 row exists, so no comparison or inference from other L9 rows."
+    },
+    "unresolved": [
+      "No general assignment rule maps origin/trace absence, pair conflict/stale, or valley-witness conflict to expected values; preserve fixed-row evidence only.",
+      "L3 names trace absence among Reverse-ticket conditions; L9 TRACE-MISSING expected row has reverse_trigger_materials=[] and reverse_ticket_candidate=none. Keep this source discrepancy unresolved; do not invent trigger mapping.",
+      "Do not treat source-supported synthetic fixture conditions as formed findings, execution, Provisional state transition, acceptance, release, or completion.",
+      "L4 has no standalone stale classification code; do not add a code or mapping.",
+      "When raw processing evidence is absent, finding set remains unknown/unformed; do not convert to empty set or F03_REQUIRED_PAIR_MISSING automatically."
+    ]
+  }
+}

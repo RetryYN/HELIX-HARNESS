@@ -20,8 +20,8 @@
     },
     {
       "path": "docs/helix-harness/L5-detail-design/process-state-port.json",
-      "sha256": "8d361927ba36ec0599f267f4bf10824cacc160e9f37feb2db383283ea3b28622",
-      "note": "F04 failure conditionsとVerified lower_proof_refs／Release-eligible proofs observationsのstate_basis資格を静的照合。参照先の意味不足はL5へ返し、predicateは実行しない。"
+      "sha256": "b8b77871f3970a10b21313028f762346e75e85c4ed4209639a23fe6f2f5f6f2d",
+      "note": "F04 failure conditionsとVerified lower_proof_refs／Release-eligible proofs observationsのstate_basis資格を静的照合。参照先の意味不足はL5へ返し、predicateは実行しない。 Historical fixed source at WR238 base 7c142d7bb96974e9fe0a2fcab5ad2a48a628cb6f: SHA-256 8d361927ba36ec0599f267f4bf10824cacc160e9f37feb2db383283ea3b28622. Current digest refreshed to b8b77871f3970a10b21313028f762346e75e85c4ed4209639a23fe6f2f5f6f2d for stale detection only; source semantics/expected values unchanged. Recomparison confirmed this worktree differs from the base only in explicit L4 source pin / revision metadata."
     },
     {
       "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
@@ -95,7 +95,8 @@
       "SHA-256 of scaffold/research/wr186-psp-negative-residual/validate_l9.py equals 70d5ded675eb2eb14b91ebbcaf479b2498469d8353ced2572467fcbdd5ecf3eb; validator compares both fixed baselines after normalizing only four explicit reason fields.",
       "SHA-256 of scaffold/research/wr219-f03-pair-blind-20261031/wr227-l9-reason-edit-audit.json equals bbbc34625f02d8ed0e957ba9ab40ab5cf49bd4d15d019ae66f0401e9febfdcc7; contains the old/new reason-edit history outside L4.",
       "SHA-256 of scaffold/research/wr186-psp-negative-residual/validate_l9.py equals 70d5ded675eb2eb14b91ebbcaf479b2498469d8353ced2572467fcbdd5ecf3eb; checks both fixed baselines, four reason edits, every F03 L8/L9 row, recomputed status counts, and exception pointers.",
-      "SHA-256 of scaffold/research/wr219-f03-pair-blind-20261031/wr227-f03-value-domain-audit.json equals bf7beab57f0878d6353e547395f3525d434afc1421dbc4d3f25180eead776a2f; scaffold-only exhaustive source-row/count/exception inventory."
+      "SHA-256 of scaffold/research/wr219-f03-pair-blind-20261031/wr227-f03-value-domain-audit.json equals bf7beab57f0878d6353e547395f3525d434afc1421dbc4d3f25180eead776a2f; scaffold-only exhaustive source-row/count/exception inventory.",
+      "WR238 static rebind docs/helix-harness/L5-detail-design/process-state-port.json: historical SHA-256 8d361927ba36ec0599f267f4bf10824cacc160e9f37feb2db383283ea3b28622; current working-tree candidate SHA-256 b8b77871f3970a10b21313028f762346e75e85c4ed4209639a23fe6f2f5f6f2d. Normalized JSON comparison against base 7c142d7bb96974e9fe0a2fcab5ad2a48a628cb6f confirms only L4 source pin/revision metadata changed; formal values, consumer target fields, and audit inputs are unchanged."
     ],
     "negative_cases": [
       "F03 14件とF05 8件はfinding set unknown/unformedであり、空集合やformal outputと扱わない。",

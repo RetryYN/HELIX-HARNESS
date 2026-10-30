@@ -1,0 +1,1332 @@
+{
+  "schema": "wr238-process-state-l5l8-alignment-audit.v1",
+  "evidence_kind": "scaffold",
+  "authority_effect": "none",
+  "request_id": "WR238-PROCESS-STATE-L5L8-L4-REBIND",
+  "base_revision": "7c142d7bb96974e9fe0a2fcab5ad2a48a628cb6f",
+  "fixed_blind_artifact": {
+    "path": "docs/governance/audits/wr238-psp-blind-source-derived.json",
+    "sha256": "2000a0e42e85679bf047cfdfabb4d8477fc598927a372cee9283f6c7effa7990",
+    "fixed_before_comparison": true,
+    "bytes_modified": false,
+    "source_pointer": "Issue #3510 comment 6533296350"
+  },
+  "source_pins": {
+    "L3": {
+      "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+      "revision": "7c142d7bb96974e9fe0a2fcab5ad2a48a628cb6f",
+      "sha256": "a3b907cdc316117d4684632f9a1cbf36125eb6e6172f9cfc286060617583d7be"
+    },
+    "L10": {
+      "path": "docs/helix-harness/L10-verification/functional-verification.json",
+      "revision": "7c142d7bb96974e9fe0a2fcab5ad2a48a628cb6f",
+      "sha256": "fc58ad2268746d7924ac9be33e8f3f75e6d3c2cc619e27fbc1ddc34edd065cb2"
+    },
+    "L4": {
+      "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
+      "revision": "7c142d7bb96974e9fe0a2fcab5ad2a48a628cb6f",
+      "sha256": "e6253059bb117446412ecb8b054ae533641054c8a1be4a535eb1f784017fa3e9"
+    },
+    "L5": {
+      "path": "docs/helix-harness/L5-detail-design/process-state-port.json",
+      "revision": "working_tree_candidate",
+      "based_on_revision": "7c142d7bb96974e9fe0a2fcab5ad2a48a628cb6f",
+      "sha256": "b8b77871f3970a10b21313028f762346e75e85c4ed4209639a23fe6f2f5f6f2d"
+    },
+    "L8": {
+      "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+      "revision": "working_tree_candidate",
+      "based_on_revision": "7c142d7bb96974e9fe0a2fcab5ad2a48a628cb6f",
+      "sha256": "f5055c9a7d19654402f3f2b595038cf0f81ed717659c342c6190c5f88577e5b2"
+    },
+    "L9": {
+      "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+      "revision": "7c142d7bb96974e9fe0a2fcab5ad2a48a628cb6f",
+      "sha256": "60942b72d432a79e72b03ab42a616e264b442bfc60b5d53e3aeb54f9c84a847e"
+    }
+  },
+  "upstream_meaning": {
+    "L3_pointer": "/requirements/66",
+    "L3_id": "HARNESS-L3-003-F03",
+    "L3_obligation": "005/015の凍結→実装前Red実観測→最小Green→局所Refactor/原子CIと双方向traceを同対象へ結び、出力をProvisionalにする。右側では結合scopeを広げるごとに実物を対設計へ照合し、L8↔L5/L9↔L4/L10↔L3を保つ。正規由来が分かる変更は当該scopeのScoped Reverse、由来不明/旧資産/trace欠落/設計を信用できない/大きなずれは全体Reverseの復旧候補に分ける。L9ではinterface、依存の向き、state/dataの所有、transaction、失敗伝播、retry、timeout、冪等性、結合度、責務重複を照合する。通常の照合ではticketを発行しない。明らかな設計/実装のずれ、由来欠落、同種findingの再発、性能退行、障害後の恒久対策、Scrum Reverse checkpoint、大きな設計退行ではReverse ticketの発行条件となる。小さな境界Refactorは現在のForward ticket内、独立した大きな構造/横断/architecture改善はRefactor/Design-refactor/Performance-refactor ticketへ区別する。HARNESSは条件と種類の意味を提供し、実発行はOSが所有する。",
+    "L10_pointer": "/cases/66",
+    "L10_id": "HARNESS-L10-003-F03",
+    "L10_positive_input": "由来と対が明確な変更、由来不明/trace欠落、実装前Red不足を別々に照合する。通常照合と各Reverse trigger、局所/独立構造改善を分け、L9の各観点の不足を与える。",
+    "L10_expected_observation": "谷の証拠条件と局所/全体照合の選択根拠が辿れ、原子CIを上位証明にしない。L9各観点とticket非発行/発行条件/種類の違いが辿れる。",
+    "derived_semantics_pointer": "/contracts/3/connection_detail/partial_result_semantics",
+    "blind_conclusion": "pair_result/valley_result値はsynthetic fixture conditionへのsource支持・fixture conflict/stale/missingを示すtyped expected partial statusであり、処理結果・finding・成功ではない。L9期待はflat projectionの未実行fixture record。"
+  },
+  "L5_F03_review": {
+    "function_pointer": "/functions/3",
+    "steps": [
+      {
+        "index": 0,
+        "pointer": "/functions/3/internal_steps/0",
+        "verdict": "独立raw source資格、005/015谷証拠、由来/trace/設計信頼、L9観測、trigger資料を分ける。L4型包絡とL3/L10要求に整合。"
+      },
+      {
+        "index": 1,
+        "pointer": "/functions/3/internal_steps/1",
+        "verdict": "谷証拠のfreeze→実装前Red→minimum body→Green→refactor→atomic CI接続を要求。L3/L10の谷条件を保持。"
+      },
+      {
+        "index": 2,
+        "pointer": "/functions/3/internal_steps/2",
+        "verdict": "双方向traceとrefactor前後意味保存を照合し、不足時はstate ceilingをnullにする。L4部分状態を上書きしない。"
+      },
+      {
+        "index": 3,
+        "pointer": "/functions/3/internal_steps/3",
+        "verdict": "正規originはscoped候補、欠落・旧資産・trace等は復旧候補へ分ける。triggerのtrace包含意味は未決として保持。"
+      },
+      {
+        "index": 4,
+        "pointer": "/functions/3/internal_steps/4",
+        "verdict": "3 pairを別々に比較し、集約未成立でも他pairを残す。L4部分結果/scope方針と一致。"
+      },
+      {
+        "index": 5,
+        "pointer": "/functions/3/internal_steps/5",
+        "verdict": "L9の10観点を個別比較し、unknownを成功/空へ補わない。L4 unknown分類を保つ。"
+      },
+      {
+        "index": 6,
+        "pointer": "/functions/3/internal_steps/6",
+        "verdict": "通常照合ticket noneと個別trigger/規模を分ける。origin-null triggerとtrace-emptyの差を保持し一般化しない。"
+      },
+      {
+        "index": 7,
+        "pointer": "/functions/3/internal_steps/7",
+        "verdict": "意味保存refactorと独立改善候補、上流意味差のbackflowを分ける。L3/L10に整合。"
+      },
+      {
+        "index": 8,
+        "pointer": "/functions/3/internal_steps/8",
+        "verdict": "candidate資料と実ticket/Reverse実行を分け、HARNESSによる発行を禁止。L4 actual_side_effect境界に整合。"
+      },
+      {
+        "index": 9,
+        "pointer": "/functions/3/internal_steps/9",
+        "verdict": "L4 source-binding role、qualification sidecarとrequest association、raw return/private recordの分離。現行L4依存契約と一致。"
+      },
+      {
+        "index": 10,
+        "pointer": "/functions/3/internal_steps/10",
+        "verdict": "missing/unknown/conflictを既存PartialValue依存にのみ伝播し、他roleの値で補わない。L4 failure propagationと一致。"
+      },
+      {
+        "index": 11,
+        "pointer": "/functions/3/internal_steps/11",
+        "verdict": "valley/pair/L9/origin/trace/triggerを個別照合し、他pairを保持。部分結果保持と一致。"
+      }
+    ],
+    "failure_rules": [
+      {
+        "index": 19,
+        "id": "RULE-F03_REQUIRED_PAIR_MISSING",
+        "state": "missing",
+        "axis": "pair_trace",
+        "source_pointer": "/failure_rules/19",
+        "l4_pointer": "/contracts/3/negative_classifications/0",
+        "verdict": "L4 /contracts/3/negative_classifications と意味一致。"
+      },
+      {
+        "index": 20,
+        "id": "RULE-F03_L9_DIMENSION_UNKNOWN",
+        "state": "unknown",
+        "axis": "l9_system_observation",
+        "source_pointer": "/failure_rules/20",
+        "l4_pointer": "/contracts/3/negative_classifications/1",
+        "verdict": "L4 /contracts/3/negative_classifications と意味一致。"
+      },
+      {
+        "index": 21,
+        "id": "RULE-F03_PAIR_SCOPE_CONFLICT",
+        "state": "conflict",
+        "axis": "pair_target_scope",
+        "source_pointer": "/failure_rules/21",
+        "l4_pointer": "/contracts/3/negative_classifications/2",
+        "verdict": "L4 /contracts/3/negative_classifications と意味一致。"
+      },
+      {
+        "index": 22,
+        "id": "RULE-F03_TICKET_REVERSE_EFFECT_CONFLICT",
+        "state": "conflict",
+        "axis": "actual_ticket_reverse_effect",
+        "source_pointer": "/failure_rules/22",
+        "l4_pointer": "/contracts/3/negative_classifications/3",
+        "verdict": "L4 /contracts/3/negative_classifications と意味一致。"
+      }
+    ],
+    "procedure_verdict": "F03手順と4 failure_rulesはL3/L10の要求意味、L4既存classification、L9 expected-material境界に矛盾なし。L4 source pin / F03 revision pointerだけを更新。"
+  },
+  "L8_F03_review": {
+    "group_pointer": "/cases/3",
+    "case_count": 45,
+    "cases": [
+      {
+        "index": 0,
+        "id": "H003-L8-F03-NORMAL",
+        "source_case_pointer": "/cases/3/cases/0",
+        "pair_result": {
+          "state": "known",
+          "value": "supported_synthetic_condition"
+        },
+        "valley_result": {
+          "state": "known",
+          "value": "supported_synthetic_condition"
+        },
+        "pair_results_by_pair_state": {
+          "L8": "known",
+          "L9": "known",
+          "L10": "known"
+        },
+        "l9_comparison": "L9同名caseと一致",
+        "verdict": "L9との比較は一致。synthetic fixture statusであり実処理結果/findingではない"
+      },
+      {
+        "index": 1,
+        "id": "H003-L8-F03-NORMAL-Refactor",
+        "source_case_pointer": "/cases/3/cases/1",
+        "pair_result": {
+          "state": "known",
+          "value": "supported_synthetic_condition"
+        },
+        "valley_result": {
+          "state": "known",
+          "value": "supported_synthetic_condition"
+        },
+        "pair_results_by_pair_state": {
+          "L8": "known",
+          "L9": "known",
+          "L10": "known"
+        },
+        "l9_comparison": "L9同名caseと一致",
+        "verdict": "L9との比較は一致。synthetic fixture statusであり実処理結果/findingではない"
+      },
+      {
+        "index": 2,
+        "id": "H003-L8-F03-NORMAL-Design-refactor",
+        "source_case_pointer": "/cases/3/cases/2",
+        "pair_result": {
+          "state": "known",
+          "value": "supported_synthetic_condition"
+        },
+        "valley_result": {
+          "state": "known",
+          "value": "supported_synthetic_condition"
+        },
+        "pair_results_by_pair_state": {
+          "L8": "known",
+          "L9": "known",
+          "L10": "known"
+        },
+        "l9_comparison": "L9同名caseと一致",
+        "verdict": "L9との比較は一致。synthetic fixture statusであり実処理結果/findingではない"
+      },
+      {
+        "index": 3,
+        "id": "H003-L8-F03-NORMAL-Performance-refactor",
+        "source_case_pointer": "/cases/3/cases/3",
+        "pair_result": {
+          "state": "known",
+          "value": "supported_synthetic_condition"
+        },
+        "valley_result": {
+          "state": "known",
+          "value": "supported_synthetic_condition"
+        },
+        "pair_results_by_pair_state": {
+          "L8": "known",
+          "L9": "known",
+          "L10": "known"
+        },
+        "l9_comparison": "L9同名caseと一致",
+        "verdict": "L9との比較は一致。synthetic fixture statusであり実処理結果/findingではない"
+      },
+      {
+        "index": 4,
+        "id": "H003-L8-F03-ORIGIN-MISSING",
+        "source_case_pointer": "/cases/3/cases/4",
+        "pair_result": {
+          "state": "known",
+          "value": "supported_synthetic_condition"
+        },
+        "valley_result": {
+          "state": "known",
+          "value": "supported_synthetic_condition"
+        },
+        "pair_results_by_pair_state": {
+          "L8": "known",
+          "L9": "known",
+          "L10": "known"
+        },
+        "l9_comparison": "L9同名caseと一致",
+        "verdict": "L9との比較は一致。synthetic fixture statusであり実処理結果/findingではない"
+      },
+      {
+        "index": 5,
+        "id": "H003-L8-F03-LEGACY-ASSET",
+        "source_case_pointer": "/cases/3/cases/5",
+        "pair_result": {
+          "state": "known",
+          "value": "supported_synthetic_condition"
+        },
+        "valley_result": {
+          "state": "known",
+          "value": "supported_synthetic_condition"
+        },
+        "pair_results_by_pair_state": {
+          "L8": "known",
+          "L9": "known",
+          "L10": "known"
+        },
+        "l9_comparison": "L9同名caseと一致",
+        "verdict": "L9との比較は一致。synthetic fixture statusであり実処理結果/findingではない"
+      },
+      {
+        "index": 6,
+        "id": "H003-L8-F03-TRACE-MISSING",
+        "source_case_pointer": "/cases/3/cases/6",
+        "pair_result": {
+          "state": "known",
+          "value": "supported_synthetic_condition"
+        },
+        "valley_result": {
+          "state": "known",
+          "value": "supported_synthetic_condition"
+        },
+        "pair_results_by_pair_state": {
+          "L8": "known",
+          "L9": "known",
+          "L10": "known"
+        },
+        "l9_comparison": "L9同名caseと一致",
+        "verdict": "L9との比較は一致。synthetic fixture statusであり実処理結果/findingではない"
+      },
+      {
+        "index": 7,
+        "id": "H003-L8-F03-DESIGN-DISPUTED",
+        "source_case_pointer": "/cases/3/cases/7",
+        "pair_result": {
+          "state": "known",
+          "value": "supported_synthetic_condition"
+        },
+        "valley_result": {
+          "state": "known",
+          "value": "supported_synthetic_condition"
+        },
+        "pair_results_by_pair_state": {
+          "L8": "known",
+          "L9": "known",
+          "L10": "known"
+        },
+        "l9_comparison": "L9同名caseと一致",
+        "verdict": "L9との比較は一致。synthetic fixture statusであり実処理結果/findingではない"
+      },
+      {
+        "index": 8,
+        "id": "H003-L8-F03-LARGE-DEVIATION",
+        "source_case_pointer": "/cases/3/cases/8",
+        "pair_result": {
+          "state": "known",
+          "value": "supported_synthetic_condition"
+        },
+        "valley_result": {
+          "state": "known",
+          "value": "supported_synthetic_condition"
+        },
+        "pair_results_by_pair_state": {
+          "L8": "known",
+          "L9": "known",
+          "L10": "known"
+        },
+        "l9_comparison": "L9同名caseと一致",
+        "verdict": "L9との比較は一致。synthetic fixture statusであり実処理結果/findingではない"
+      },
+      {
+        "index": 9,
+        "id": "H003-L8-F03-DESIGN-IMPLEMENTATION-DRIFT",
+        "source_case_pointer": "/cases/3/cases/9",
+        "pair_result": {
+          "state": "known",
+          "value": "supported_synthetic_condition"
+        },
+        "valley_result": {
+          "state": "known",
+          "value": "supported_synthetic_condition"
+        },
+        "pair_results_by_pair_state": {
+          "L8": "known",
+          "L9": "known",
+          "L10": "known"
+        },
+        "l9_comparison": "L9同名caseと一致",
+        "verdict": "L9との比較は一致。synthetic fixture statusであり実処理結果/findingではない"
+      },
+      {
+        "index": 10,
+        "id": "H003-L8-F03-FINDING-RECURRENCE",
+        "source_case_pointer": "/cases/3/cases/10",
+        "pair_result": {
+          "state": "known",
+          "value": "supported_synthetic_condition"
+        },
+        "valley_result": {
+          "state": "known",
+          "value": "supported_synthetic_condition"
+        },
+        "pair_results_by_pair_state": {
+          "L8": "known",
+          "L9": "known",
+          "L10": "known"
+        },
+        "l9_comparison": "L9同名caseと一致",
+        "verdict": "L9との比較は一致。synthetic fixture statusであり実処理結果/findingではない"
+      },
+      {
+        "index": 11,
+        "id": "H003-L8-F03-PERFORMANCE-REGRESSION",
+        "source_case_pointer": "/cases/3/cases/11",
+        "pair_result": {
+          "state": "known",
+          "value": "supported_synthetic_condition"
+        },
+        "valley_result": {
+          "state": "known",
+          "value": "supported_synthetic_condition"
+        },
+        "pair_results_by_pair_state": {
+          "L8": "known",
+          "L9": "known",
+          "L10": "known"
+        },
+        "l9_comparison": "L9同名caseと一致",
+        "verdict": "L9との比較は一致。synthetic fixture statusであり実処理結果/findingではない"
+      },
+      {
+        "index": 12,
+        "id": "H003-L8-F03-INCIDENT-PERMANENT-REMEDY",
+        "source_case_pointer": "/cases/3/cases/12",
+        "pair_result": {
+          "state": "known",
+          "value": "supported_synthetic_condition"
+        },
+        "valley_result": {
+          "state": "known",
+          "value": "supported_synthetic_condition"
+        },
+        "pair_results_by_pair_state": {
+          "L8": "known",
+          "L9": "known",
+          "L10": "known"
+        },
+        "l9_comparison": "L9同名caseと一致",
+        "verdict": "L9との比較は一致。synthetic fixture statusであり実処理結果/findingではない"
+      },
+      {
+        "index": 13,
+        "id": "H003-L8-F03-SCRUM-CHECKPOINT",
+        "source_case_pointer": "/cases/3/cases/13",
+        "pair_result": {
+          "state": "known",
+          "value": "supported_synthetic_condition"
+        },
+        "valley_result": {
+          "state": "known",
+          "value": "supported_synthetic_condition"
+        },
+        "pair_results_by_pair_state": {
+          "L8": "known",
+          "L9": "known",
+          "L10": "known"
+        },
+        "l9_comparison": "L9同名caseと一致",
+        "verdict": "L9との比較は一致。synthetic fixture statusであり実処理結果/findingではない"
+      },
+      {
+        "index": 14,
+        "id": "H003-L8-F03-WRONG-L9-PAIR",
+        "source_case_pointer": "/cases/3/cases/14",
+        "pair_result": {
+          "state": "conflict",
+          "value": null
+        },
+        "valley_result": {
+          "state": "known",
+          "value": "supported_synthetic_condition"
+        },
+        "pair_results_by_pair_state": {
+          "L8": "known",
+          "L9": "conflict",
+          "L10": "known"
+        },
+        "l9_comparison": "L9同名caseと一致",
+        "verdict": "L9との比較は一致。synthetic fixture statusであり実処理結果/findingではない"
+      },
+      {
+        "index": 15,
+        "id": "H003-L8-F03-FOREIGN-PAIR-REVISION",
+        "source_case_pointer": "/cases/3/cases/15",
+        "pair_result": {
+          "state": "stale",
+          "value": null
+        },
+        "valley_result": {
+          "state": "known",
+          "value": "supported_synthetic_condition"
+        },
+        "pair_results_by_pair_state": {
+          "L8": "known",
+          "L9": "stale",
+          "L10": "known"
+        },
+        "l9_comparison": "L9同名caseと一致",
+        "verdict": "L9との比較は一致。synthetic fixture statusであり実処理結果/findingではない"
+      },
+      {
+        "index": 16,
+        "id": "H003-L8-F03-L9-MISSING-interface",
+        "source_case_pointer": "/cases/3/cases/16",
+        "pair_result": {
+          "state": "known",
+          "value": "supported_synthetic_condition"
+        },
+        "valley_result": {
+          "state": "known",
+          "value": "supported_synthetic_condition"
+        },
+        "pair_results_by_pair_state": {
+          "L8": "known",
+          "L9": "known",
+          "L10": "known"
+        },
+        "l9_comparison": "L9同名caseと一致",
+        "verdict": "L9との比較は一致。synthetic fixture statusであり実処理結果/findingではない"
+      },
+      {
+        "index": 17,
+        "id": "H003-L8-F03-L9-MISSING-dependency_direction",
+        "source_case_pointer": "/cases/3/cases/17",
+        "pair_result": {
+          "state": "known",
+          "value": "supported_synthetic_condition"
+        },
+        "valley_result": {
+          "state": "known",
+          "value": "supported_synthetic_condition"
+        },
+        "pair_results_by_pair_state": {
+          "L8": "known",
+          "L9": "known",
+          "L10": "known"
+        },
+        "l9_comparison": "L9同名caseと一致",
+        "verdict": "L9との比較は一致。synthetic fixture statusであり実処理結果/findingではない"
+      },
+      {
+        "index": 18,
+        "id": "H003-L8-F03-L9-MISSING-state_data_ownership",
+        "source_case_pointer": "/cases/3/cases/18",
+        "pair_result": {
+          "state": "known",
+          "value": "supported_synthetic_condition"
+        },
+        "valley_result": {
+          "state": "known",
+          "value": "supported_synthetic_condition"
+        },
+        "pair_results_by_pair_state": {
+          "L8": "known",
+          "L9": "known",
+          "L10": "known"
+        },
+        "l9_comparison": "L9同名caseと一致",
+        "verdict": "L9との比較は一致。synthetic fixture statusであり実処理結果/findingではない"
+      },
+      {
+        "index": 19,
+        "id": "H003-L8-F03-L9-MISSING-transaction",
+        "source_case_pointer": "/cases/3/cases/19",
+        "pair_result": {
+          "state": "known",
+          "value": "supported_synthetic_condition"
+        },
+        "valley_result": {
+          "state": "known",
+          "value": "supported_synthetic_condition"
+        },
+        "pair_results_by_pair_state": {
+          "L8": "known",
+          "L9": "known",
+          "L10": "known"
+        },
+        "l9_comparison": "L9同名caseと一致",
+        "verdict": "L9との比較は一致。synthetic fixture statusであり実処理結果/findingではない"
+      },
+      {
+        "index": 20,
+        "id": "H003-L8-F03-L9-MISSING-failure_propagation",
+        "source_case_pointer": "/cases/3/cases/20",
+        "pair_result": {
+          "state": "known",
+          "value": "supported_synthetic_condition"
+        },
+        "valley_result": {
+          "state": "known",
+          "value": "supported_synthetic_condition"
+        },
+        "pair_results_by_pair_state": {
+          "L8": "known",
+          "L9": "known",
+          "L10": "known"
+        },
+        "l9_comparison": "L9同名caseと一致",
+        "verdict": "L9との比較は一致。synthetic fixture statusであり実処理結果/findingではない"
+      },
+      {
+        "index": 21,
+        "id": "H003-L8-F03-L9-MISSING-retry",
+        "source_case_pointer": "/cases/3/cases/21",
+        "pair_result": {
+          "state": "known",
+          "value": "supported_synthetic_condition"
+        },
+        "valley_result": {
+          "state": "known",
+          "value": "supported_synthetic_condition"
+        },
+        "pair_results_by_pair_state": {
+          "L8": "known",
+          "L9": "known",
+          "L10": "known"
+        },
+        "l9_comparison": "L9同名caseと一致",
+        "verdict": "L9との比較は一致。synthetic fixture statusであり実処理結果/findingではない"
+      },
+      {
+        "index": 22,
+        "id": "H003-L8-F03-L9-MISSING-timeout",
+        "source_case_pointer": "/cases/3/cases/22",
+        "pair_result": {
+          "state": "known",
+          "value": "supported_synthetic_condition"
+        },
+        "valley_result": {
+          "state": "known",
+          "value": "supported_synthetic_condition"
+        },
+        "pair_results_by_pair_state": {
+          "L8": "known",
+          "L9": "known",
+          "L10": "known"
+        },
+        "l9_comparison": "L9同名caseと一致",
+        "verdict": "L9との比較は一致。synthetic fixture statusであり実処理結果/findingではない"
+      },
+      {
+        "index": 23,
+        "id": "H003-L8-F03-L9-MISSING-idempotency",
+        "source_case_pointer": "/cases/3/cases/23",
+        "pair_result": {
+          "state": "known",
+          "value": "supported_synthetic_condition"
+        },
+        "valley_result": {
+          "state": "known",
+          "value": "supported_synthetic_condition"
+        },
+        "pair_results_by_pair_state": {
+          "L8": "known",
+          "L9": "known",
+          "L10": "known"
+        },
+        "l9_comparison": "L9同名caseと一致",
+        "verdict": "L9との比較は一致。synthetic fixture statusであり実処理結果/findingではない"
+      },
+      {
+        "index": 24,
+        "id": "H003-L8-F03-L9-MISSING-coupling",
+        "source_case_pointer": "/cases/3/cases/24",
+        "pair_result": {
+          "state": "known",
+          "value": "supported_synthetic_condition"
+        },
+        "valley_result": {
+          "state": "known",
+          "value": "supported_synthetic_condition"
+        },
+        "pair_results_by_pair_state": {
+          "L8": "known",
+          "L9": "known",
+          "L10": "known"
+        },
+        "l9_comparison": "L9同名caseと一致",
+        "verdict": "L9との比較は一致。synthetic fixture statusであり実処理結果/findingではない"
+      },
+      {
+        "index": 25,
+        "id": "H003-L8-F03-L9-MISSING-responsibility_duplication",
+        "source_case_pointer": "/cases/3/cases/25",
+        "pair_result": {
+          "state": "known",
+          "value": "supported_synthetic_condition"
+        },
+        "valley_result": {
+          "state": "known",
+          "value": "supported_synthetic_condition"
+        },
+        "pair_results_by_pair_state": {
+          "L8": "known",
+          "L9": "known",
+          "L10": "known"
+        },
+        "l9_comparison": "L9同名caseと一致",
+        "verdict": "L9との比較は一致。synthetic fixture statusであり実処理結果/findingではない"
+      },
+      {
+        "index": 26,
+        "id": "H003-L8-F03-STATE-OWNER-CONFLICT",
+        "source_case_pointer": "/cases/3/cases/26",
+        "pair_result": {
+          "state": "known",
+          "value": "supported_synthetic_condition"
+        },
+        "valley_result": {
+          "state": "known",
+          "value": "supported_synthetic_condition"
+        },
+        "pair_results_by_pair_state": {
+          "L8": "known",
+          "L9": "known",
+          "L10": "known"
+        },
+        "l9_comparison": "L9同名caseと一致",
+        "verdict": "L9との比較は一致。synthetic fixture statusであり実処理結果/findingではない"
+      },
+      {
+        "index": 27,
+        "id": "H003-L8-F03-PRE-BODY-RED-ABSENT",
+        "source_case_pointer": "/cases/3/cases/27",
+        "pair_result": {
+          "state": "known",
+          "value": "supported_synthetic_condition"
+        },
+        "valley_result": {
+          "state": "conflict",
+          "value": null
+        },
+        "pair_results_by_pair_state": {
+          "L8": "known",
+          "L9": "known",
+          "L10": "known"
+        },
+        "l9_comparison": "L9同名caseと一致",
+        "verdict": "L9との比較は一致。synthetic fixture statusであり実処理結果/findingではない"
+      },
+      {
+        "index": 28,
+        "id": "H003-L8-F03-PUBLIC-MEANING-CHANGE",
+        "source_case_pointer": "/cases/3/cases/28",
+        "pair_result": {
+          "state": "known",
+          "value": "supported_synthetic_condition"
+        },
+        "valley_result": {
+          "state": "known",
+          "value": "supported_synthetic_condition"
+        },
+        "pair_results_by_pair_state": {
+          "L8": "known",
+          "L9": "known",
+          "L10": "known"
+        },
+        "l9_comparison": "L9同名caseと一致",
+        "verdict": "L9との比較は一致。synthetic fixture statusであり実処理結果/findingではない"
+      },
+      {
+        "index": 29,
+        "id": "H003-L8-F03-ARCHITECTURE-MEANING-CHANGE",
+        "source_case_pointer": "/cases/3/cases/29",
+        "pair_result": {
+          "state": "known",
+          "value": "supported_synthetic_condition"
+        },
+        "valley_result": {
+          "state": "known",
+          "value": "supported_synthetic_condition"
+        },
+        "pair_results_by_pair_state": {
+          "L8": "known",
+          "L9": "known",
+          "L10": "known"
+        },
+        "l9_comparison": "L9同名caseと一致",
+        "verdict": "L9との比較は一致。synthetic fixture statusであり実処理結果/findingではない"
+      },
+      {
+        "index": 30,
+        "id": "H003-L8-F03-NORMAL-AS-FULL-REVERSE",
+        "source_case_pointer": "/cases/3/cases/30",
+        "pair_result": {
+          "state": "known",
+          "value": "supported_synthetic_condition"
+        },
+        "valley_result": {
+          "state": "known",
+          "value": "supported_synthetic_condition"
+        },
+        "pair_results_by_pair_state": {
+          "L8": "known",
+          "L9": "known",
+          "L10": "known"
+        },
+        "l9_comparison": "L9同名caseと一致",
+        "verdict": "L9との比較は一致。synthetic fixture statusであり実処理結果/findingではない"
+      },
+      {
+        "index": 31,
+        "id": "H003-L8-F03-NORMAL-AS-REVERSE-TICKET",
+        "source_case_pointer": "/cases/3/cases/31",
+        "pair_result": {
+          "state": "known",
+          "value": "supported_synthetic_condition"
+        },
+        "valley_result": {
+          "state": "known",
+          "value": "supported_synthetic_condition"
+        },
+        "pair_results_by_pair_state": {
+          "L8": "known",
+          "L9": "known",
+          "L10": "known"
+        },
+        "l9_comparison": "L9同名caseと一致",
+        "verdict": "L9との比較は一致。synthetic fixture statusであり実処理結果/findingではない"
+      },
+      {
+        "index": 32,
+        "id": "H003-L8-F03-HARNESS-AS-ISSUER",
+        "source_case_pointer": "/cases/3/cases/32",
+        "pair_result": {
+          "state": "known",
+          "value": "supported_synthetic_condition"
+        },
+        "valley_result": {
+          "state": "known",
+          "value": "supported_synthetic_condition"
+        },
+        "pair_results_by_pair_state": {
+          "L8": "known",
+          "L9": "known",
+          "L10": "known"
+        },
+        "l9_comparison": "L9同名caseと一致",
+        "verdict": "L9との比較は一致。synthetic fixture statusであり実処理結果/findingではない"
+      },
+      {
+        "index": 33,
+        "id": "H003-L8-F03-VALLEY-AS-QUALITY",
+        "source_case_pointer": "/cases/3/cases/33",
+        "pair_result": {
+          "state": "known",
+          "value": "supported_synthetic_condition"
+        },
+        "valley_result": {
+          "state": "known",
+          "value": "supported_synthetic_condition"
+        },
+        "pair_results_by_pair_state": {
+          "L8": "known",
+          "L9": "known",
+          "L10": "known"
+        },
+        "l9_comparison": "L9同名caseと一致",
+        "verdict": "L9との比較は一致。synthetic fixture statusであり実処理結果/findingではない"
+      },
+      {
+        "index": 34,
+        "id": "H003-L8-F03-VALLEY-AS-USER-ACCEPTANCE",
+        "source_case_pointer": "/cases/3/cases/34",
+        "pair_result": {
+          "state": "known",
+          "value": "supported_synthetic_condition"
+        },
+        "valley_result": {
+          "state": "known",
+          "value": "supported_synthetic_condition"
+        },
+        "pair_results_by_pair_state": {
+          "L8": "known",
+          "L9": "known",
+          "L10": "known"
+        },
+        "l9_comparison": "L9同名caseと一致",
+        "verdict": "L9との比較は一致。synthetic fixture statusであり実処理結果/findingではない"
+      },
+      {
+        "index": 35,
+        "id": "H003-L8-F03-VALLEY-AS-RELEASE",
+        "source_case_pointer": "/cases/3/cases/35",
+        "pair_result": {
+          "state": "known",
+          "value": "supported_synthetic_condition"
+        },
+        "valley_result": {
+          "state": "known",
+          "value": "supported_synthetic_condition"
+        },
+        "pair_results_by_pair_state": {
+          "L8": "known",
+          "L9": "known",
+          "L10": "known"
+        },
+        "l9_comparison": "L9同名caseと一致",
+        "verdict": "L9との比較は一致。synthetic fixture statusであり実処理結果/findingではない"
+      },
+      {
+        "index": 36,
+        "id": "H003-L8-F03-REVERSE-AS-EXECUTED",
+        "source_case_pointer": "/cases/3/cases/36",
+        "pair_result": {
+          "state": "known",
+          "value": "supported_synthetic_condition"
+        },
+        "valley_result": {
+          "state": "known",
+          "value": "supported_synthetic_condition"
+        },
+        "pair_results_by_pair_state": {
+          "L8": "known",
+          "L9": "known",
+          "L10": "known"
+        },
+        "l9_comparison": "L9同名caseと一致",
+        "verdict": "L9との比較は一致。synthetic fixture statusであり実処理結果/findingではない"
+      },
+      {
+        "index": 37,
+        "id": "H003-L8-F03-REQUIREMENT-MEANING-CHANGE",
+        "source_case_pointer": "/cases/3/cases/37",
+        "pair_result": {
+          "state": "known",
+          "value": "supported_synthetic_condition"
+        },
+        "valley_result": {
+          "state": "known",
+          "value": "supported_synthetic_condition"
+        },
+        "pair_results_by_pair_state": {
+          "L8": "known",
+          "L9": "known",
+          "L10": "known"
+        },
+        "l9_comparison": "L9同名caseと一致",
+        "verdict": "L9との比較は一致。synthetic fixture statusであり実処理結果/findingではない"
+      },
+      {
+        "index": 38,
+        "id": "H003-L8-F03-STATE-MEANING-CHANGE",
+        "source_case_pointer": "/cases/3/cases/38",
+        "pair_result": {
+          "state": "known",
+          "value": "supported_synthetic_condition"
+        },
+        "valley_result": {
+          "state": "known",
+          "value": "supported_synthetic_condition"
+        },
+        "pair_results_by_pair_state": {
+          "L8": "known",
+          "L9": "known",
+          "L10": "known"
+        },
+        "l9_comparison": "L9同名caseと一致",
+        "verdict": "L9との比較は一致。synthetic fixture statusであり実処理結果/findingではない"
+      },
+      {
+        "index": 39,
+        "id": "H003-L8-F03-L8-WRONG-PAIR",
+        "source_case_pointer": "/cases/3/cases/39",
+        "pair_result": {
+          "state": "conflict",
+          "value": null
+        },
+        "valley_result": {
+          "state": "known",
+          "value": "supported_synthetic_condition"
+        },
+        "pair_results_by_pair_state": {
+          "L8": "conflict",
+          "L9": "known",
+          "L10": "known"
+        },
+        "l9_comparison": "L9同名caseと一致",
+        "verdict": "L9との比較は一致。synthetic fixture statusであり実処理結果/findingではない"
+      },
+      {
+        "index": 40,
+        "id": "H003-L8-F03-L8-FOREIGN-REVISION",
+        "source_case_pointer": "/cases/3/cases/40",
+        "pair_result": {
+          "state": "stale",
+          "value": null
+        },
+        "valley_result": {
+          "state": "known",
+          "value": "supported_synthetic_condition"
+        },
+        "pair_results_by_pair_state": {
+          "L8": "stale",
+          "L9": "known",
+          "L10": "known"
+        },
+        "l9_comparison": "L9同名caseと一致",
+        "verdict": "L9との比較は一致。synthetic fixture statusであり実処理結果/findingではない"
+      },
+      {
+        "index": 41,
+        "id": "H003-L8-F03-L10-WRONG-PAIR",
+        "source_case_pointer": "/cases/3/cases/41",
+        "pair_result": {
+          "state": "conflict",
+          "value": null
+        },
+        "valley_result": {
+          "state": "known",
+          "value": "supported_synthetic_condition"
+        },
+        "pair_results_by_pair_state": {
+          "L8": "known",
+          "L9": "known",
+          "L10": "conflict"
+        },
+        "l9_comparison": "L9同名caseと一致",
+        "verdict": "L9との比較は一致。synthetic fixture statusであり実処理結果/findingではない"
+      },
+      {
+        "index": 42,
+        "id": "H003-L8-F03-L10-FOREIGN-REVISION",
+        "source_case_pointer": "/cases/3/cases/42",
+        "pair_result": {
+          "state": "stale",
+          "value": null
+        },
+        "valley_result": {
+          "state": "known",
+          "value": "supported_synthetic_condition"
+        },
+        "pair_results_by_pair_state": {
+          "L8": "known",
+          "L9": "known",
+          "L10": "stale"
+        },
+        "l9_comparison": "L9同名caseと一致",
+        "verdict": "L9との比較は一致。synthetic fixture statusであり実処理結果/findingではない"
+      },
+      {
+        "index": 43,
+        "id": "H003-L8-F03-NORMAL-WHOLE",
+        "source_case_pointer": "/cases/3/cases/43",
+        "pair_result": {
+          "state": "known",
+          "value": "supported_synthetic_condition"
+        },
+        "valley_result": {
+          "state": "known",
+          "value": "supported_synthetic_condition"
+        },
+        "pair_results_by_pair_state": {
+          "L8": "known",
+          "L9": "known",
+          "L10": "known"
+        },
+        "l9_comparison": "L9同名caseなし",
+        "verdict": "L9との比較は一致。synthetic fixture statusであり実処理結果/findingではない"
+      },
+      {
+        "index": 44,
+        "id": "H003-L8-F03-005-BINDING-QUALIFICATION-MISSING-WHOLE",
+        "source_case_pointer": "/cases/3/cases/44",
+        "pair_result": {
+          "state": "known",
+          "value": "supported_synthetic_condition"
+        },
+        "valley_result": {
+          "state": "missing",
+          "value": null
+        },
+        "pair_results_by_pair_state": {
+          "L8": "known",
+          "L9": "known",
+          "L10": "known"
+        },
+        "l9_comparison": "独立qualification missing row。L9に同一IDのrowなし。別caseのsupported値とは比較しない",
+        "verdict": "L9との比較は一致。synthetic fixture statusであり実処理結果/findingではない"
+      }
+    ],
+    "valley_content_counterexample_count": 10,
+    "valley_content_counterexamples": [
+      {
+        "index": 0,
+        "id": "H003-L8-F03-CONTENT-FREEZE-AFTER-RED",
+        "source_case_pointer": "/cases/3/valley_content_counterexamples/0",
+        "pair_result": {
+          "state": "known",
+          "value": "supported_synthetic_condition"
+        },
+        "valley_result": {
+          "state": "conflict",
+          "value": null
+        },
+        "verdict": "補助fixture反例。期待partial値はsynthetic input supportで、処理結果/findingではない"
+      },
+      {
+        "index": 1,
+        "id": "H003-L8-F03-CONTENT-RED-NOT-EXECUTED",
+        "source_case_pointer": "/cases/3/valley_content_counterexamples/1",
+        "pair_result": {
+          "state": "known",
+          "value": "supported_synthetic_condition"
+        },
+        "valley_result": {
+          "state": "conflict",
+          "value": null
+        },
+        "verdict": "補助fixture反例。期待partial値はsynthetic input supportで、処理結果/findingではない"
+      },
+      {
+        "index": 2,
+        "id": "H003-L8-F03-CONTENT-RED-ALREADY-GREEN",
+        "source_case_pointer": "/cases/3/valley_content_counterexamples/2",
+        "pair_result": {
+          "state": "known",
+          "value": "supported_synthetic_condition"
+        },
+        "valley_result": {
+          "state": "conflict",
+          "value": null
+        },
+        "verdict": "補助fixture反例。期待partial値はsynthetic input supportで、処理結果/findingではない"
+      },
+      {
+        "index": 3,
+        "id": "H003-L8-F03-CONTENT-GREEN-DIFFERENT-ORACLE",
+        "source_case_pointer": "/cases/3/valley_content_counterexamples/3",
+        "pair_result": {
+          "state": "known",
+          "value": "supported_synthetic_condition"
+        },
+        "valley_result": {
+          "state": "conflict",
+          "value": null
+        },
+        "verdict": "補助fixture反例。期待partial値はsynthetic input supportで、処理結果/findingではない"
+      },
+      {
+        "index": 4,
+        "id": "H003-L8-F03-CONTENT-REFACTOR-PUBLIC-MEANING-CHANGE",
+        "source_case_pointer": "/cases/3/valley_content_counterexamples/4",
+        "pair_result": {
+          "state": "known",
+          "value": "supported_synthetic_condition"
+        },
+        "valley_result": {
+          "state": "conflict",
+          "value": null
+        },
+        "verdict": "補助fixture反例。期待partial値はsynthetic input supportで、処理結果/findingではない"
+      },
+      {
+        "index": 5,
+        "id": "H003-L8-F03-CONTENT-REVERIFY-BEFORE-REFACTOR",
+        "source_case_pointer": "/cases/3/valley_content_counterexamples/5",
+        "pair_result": {
+          "state": "known",
+          "value": "supported_synthetic_condition"
+        },
+        "valley_result": {
+          "state": "conflict",
+          "value": null
+        },
+        "verdict": "補助fixture反例。期待partial値はsynthetic input supportで、処理結果/findingではない"
+      },
+      {
+        "index": 6,
+        "id": "H003-L8-F03-CONTENT-REVERIFY-NOT-EXECUTED",
+        "source_case_pointer": "/cases/3/valley_content_counterexamples/6",
+        "pair_result": {
+          "state": "known",
+          "value": "supported_synthetic_condition"
+        },
+        "valley_result": {
+          "state": "conflict",
+          "value": null
+        },
+        "verdict": "補助fixture反例。期待partial値はsynthetic input supportで、処理結果/findingではない"
+      },
+      {
+        "index": 7,
+        "id": "H003-L8-F03-CONTENT-REVERIFY-REGRESSION",
+        "source_case_pointer": "/cases/3/valley_content_counterexamples/7",
+        "pair_result": {
+          "state": "known",
+          "value": "supported_synthetic_condition"
+        },
+        "valley_result": {
+          "state": "conflict",
+          "value": null
+        },
+        "verdict": "補助fixture反例。期待partial値はsynthetic input supportで、処理結果/findingではない"
+      },
+      {
+        "index": 8,
+        "id": "H003-L8-F03-CONTENT-GREEN-NOT-EXECUTED",
+        "source_case_pointer": "/cases/3/valley_content_counterexamples/8",
+        "pair_result": {
+          "state": "known",
+          "value": "supported_synthetic_condition"
+        },
+        "valley_result": {
+          "state": "conflict",
+          "value": null
+        },
+        "verdict": "補助fixture反例。期待partial値はsynthetic input supportで、処理結果/findingではない"
+      },
+      {
+        "index": 9,
+        "id": "H003-L8-F03-CONTENT-GREEN-REGRESSION",
+        "source_case_pointer": "/cases/3/valley_content_counterexamples/9",
+        "pair_result": {
+          "state": "known",
+          "value": "supported_synthetic_condition"
+        },
+        "valley_result": {
+          "state": "conflict",
+          "value": null
+        },
+        "verdict": "補助fixture反例。期待partial値はsynthetic input supportで、処理結果/findingではない"
+      }
+    ],
+    "negative_case_count": 0,
+    "negative_cases_present": false,
+    "verdict": "L8 typed envelopeのknown/supported、conflict/null、stale/null、missing/nullはL4の値域と一致。43通常caseはL9同名caseと一致、whole wrapper 2件は別構成。missing qualification rowに同一IDのL9 counterpartはない。L8負例0件は未充足測定値として保持。"
+  },
+  "decisions_and_limits": {
+    "unresolved_assignment_rule": "未決のまま。決定・追加なし。",
+    "trace_trigger": "trace欠落を「由来欠落」triggerに含めるかは未決のまま。origin-missingとtrace-missingのL9 trigger差を保つ。",
+    "L4_L9_edits": "なし",
+    "L8_expected_value_edits": "なし",
+    "negative_cases_added": 0,
+    "l5_l8_change": "L4 source_pinsをcurrent revision/file SHAへ再束縛。L5 F03のL4 source pointer revisionもcurrentへ再束縛。"
+  },
+  "legacy_comparison": [
+    {
+      "asset_id": "LEGACY-ASSET-02319C2481B9E01698D5",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+      "lines": [
+        29,
+        66
+      ],
+      "relation": "要求範囲・最新化を確認。L2を暗黙に飛ばさず、N/A等の根拠を残す旧意味を再導出。"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-34DF3B535879CC73FA86",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/process/forward/L08-L14-verification-phase.md",
+      "lines": [
+        26,
+        79
+      ],
+      "relation": "旧G8 L5↔L8 / G9 L4↔L9 / G10 L3↔L10対応、失敗時に左腕へ戻す意味を確認。層番号や旧gate機構は移植しない。"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-4F5A1F0739EC1111D91D",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/design-template-json-authority.md",
+      "lines": [
+        30,
+        96
+      ],
+      "relation": "型付き契約、V-pair binding、欠落/unknownを丸めない意味を確認。旧runtime/schemaを実行・移植しない。"
+    },
+    {
+      "failure_record": "docs/governance/feature-tickets/FT-DESIGN-REFACTOR-001.md",
+      "locator": "「最初は更新漏れが実際に起きたHARNESS009 F03」節",
+      "relation": "同値raw証拠と返却mirrorの二重収載・consumer追随漏れを実際の失敗起点として記録。本作業では期待値を複製せずsource pinsとrow pointerを明示。"
+    }
+  ],
+  "comparison_finding": "L8のsupported_synthetic_conditionはfixture source packetがsynthetic scenarioを支持するという期待値であり、ORIGIN-MISSING / TRACE-MISSINGの処理成功や実trace資格を意味しない。Conflict/stale/missing typed statesはfixture expectation側の結果であり、処理failure findingとは別。L9 formal expected_materialのflattened statusesもexecution_state=not_executed / effect=none。",
+  "verification_scope": {
+    "static_only": true,
+    "l4_algorithm": false,
+    "old_runtime_test_ci": false,
+    "old_asset_read_as_reference_only": true,
+    "scaffold_upstream_added": false
+  },
+  "validation_results": {
+    "scfctl_validate": {
+      "passed": true,
+      "summary": "182 bindings; fail=0 after rebind"
+    },
+    "scfctl_stale": {
+      "passed": true,
+      "stale_bindings": [],
+      "reason": "SCF-B-0174/0186/0188のL5/L8 current digestを、対象consumer領域の固定旧sourceとの照合後に再束縛。旧SHAは各binding note/oracleに履歴として保持。各upstream pathはscaffold外。"
+    },
+    "check_child": {
+      "passed": false,
+      "L4_L9_pair": true,
+      "L5_L8_pair": true,
+      "ownership_caps": true,
+      "pins": true,
+      "negative_4way": false,
+      "negative_4way_counts": {
+        "L4": 34,
+        "L9": 182,
+        "L8": 0,
+        "L5": 34
+      },
+      "reason": "CHK-NEG-4WAY-MATCHは既存全体の各層負例行数・case identityの差を検出。L8 F03負例0件は依頼により維持し、他caseもscope外のため本件で補完しない。"
+    },
+    "json_parse": true,
+    "git_diff_check": true
+  },
+  "binding_revalidation": {
+    "bindings": {
+      "SCF-B-0174": {
+        "path": "scaffold/bindings/SCF-B-0174.json",
+        "sha256_after_rebind": "3551f2839891c6dbf591c1a8a0445cc97aae1f3abac04ca11098844b71f6bfa8",
+        "upstream_paths_outside_scaffold": true,
+        "scaffold_upstream_count": 0,
+        "current_digest_rebindings": {
+          "docs/helix-harness/L5-detail-design/process-state-port.json": "b8b77871f3970a10b21313028f762346e75e85c4ed4209639a23fe6f2f5f6f2d"
+        }
+      },
+      "SCF-B-0186": {
+        "path": "scaffold/bindings/SCF-B-0186.json",
+        "sha256_after_rebind": "90132bd23c8bf2ec668a10f8f5f934700fd64100c6fd6ccd1983a18fc91f0cab",
+        "upstream_paths_outside_scaffold": true,
+        "scaffold_upstream_count": 0,
+        "current_digest_rebindings": {
+          "docs/helix-harness/L5-detail-design/process-state-port.json": "b8b77871f3970a10b21313028f762346e75e85c4ed4209639a23fe6f2f5f6f2d",
+          "docs/helix-harness/L8-unit-verification/process-state-port.json": "f5055c9a7d19654402f3f2b595038cf0f81ed717659c342c6190c5f88577e5b2"
+        }
+      },
+      "SCF-B-0188": {
+        "path": "scaffold/bindings/SCF-B-0188.json",
+        "sha256_after_rebind": "f86593cac4474a5ae4e486fa606c2ec768ac5bc5c5f71e62730bf995d4188e15",
+        "upstream_paths_outside_scaffold": true,
+        "scaffold_upstream_count": 0,
+        "current_digest_rebindings": {
+          "docs/helix-harness/L8-unit-verification/process-state-port.json": "f5055c9a7d19654402f3f2b595038cf0f81ed717659c342c6190c5f88577e5b2"
+        }
+      }
+    },
+    "historical_L5_SHA256": "8d361927ba36ec0599f267f4bf10824cacc160e9f37feb2db383283ea3b28622",
+    "current_L5_candidate_SHA256": "b8b77871f3970a10b21313028f762346e75e85c4ed4209639a23fe6f2f5f6f2d",
+    "historical_L8_SHA256": "ee564c12ea81158f14a0483bd0fd4d9d35352b62c8050bdf8686195f32df213f",
+    "current_L8_candidate_SHA256": "f5055c9a7d19654402f3f2b595038cf0f81ed717659c342c6190c5f88577e5b2",
+    "consumer_review": "L5/L8 JSONをbase revisionと比較し、WR238の差分はL4 source pinおよびL5 F03のL4 pointer revisionだけと確認。formal expected、F03 failure semantics、bindingsが消費するL9 audit入力は変更なし。各旧SHAはbinding note/verification.oraclesへ固定履歴として保持し、upstream sha256をstale検出用候補digestに再束縛。",
+    "scaffold_upstream_moved_to_oracles": false,
+    "scaffold_upstream_present_before_rebind": false
+  }
+}
