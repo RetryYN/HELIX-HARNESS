@@ -1203,7 +1203,7 @@
       },
       {
         "id": "R02",
-        "rule": "四logそれぞれcommon_fieldsをcontextへ照合する。kindはlog_namesのclosed値で、未知はlog_kind_unknown、fixture keyのkindと異なるknown kindは両側各pointerにlog_kind_conflict。known actual/context kind差はfield_conflict。stateはlog_statesで未知は両側log_state_unknown、known差はactual log_state_conflict。actual duplicate/staleはlog_duplicate/log_stale、actual unobservedはlog_state_unknown。原recordを捨てない。"
+        "rule": "四logそれぞれcommon_fieldsをcontextへ照合する。kindはlog_namesのclosed値で、actual/context各operandを個別に検査し、unknownはunknown operand自身のpointerへlog_kind_unknownを付す（片側unknownならその側、両側unknownなら双方）。fixture keyのkindと異なるknown kindは両側各pointerにlog_kind_conflict。known actual/context kind差はfield_conflict。stateはlog_statesのclosed値で、actual/context各operandを個別に検査し、unknownはunknown operand自身のpointerへlog_state_unknownを付す（片側unknownならその側、両側unknownなら双方）。known actual/context state差はactual log_state_conflict。actual duplicate/staleはlog_duplicate/log_stale。actual unobservedはknown state値に対する専用診断log_state_unknownをactual pointerへ付す。原recordを捨てない。"
       },
       {
         "id": "R03",

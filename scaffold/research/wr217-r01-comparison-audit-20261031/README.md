@@ -121,3 +121,19 @@ L4/L5の既存legacy comparisonは`semantic_rederivation`／`semantic_rederive`�
 - 最新mainのbinding scanでは0187は未使用、0183/0184は別対象、target L4 pathをupstream pinする既存SCF Bindingは無かった。新SCF-B-0187は変更後L4 hashへ束縛する。L5/L8 source pinは上記の通りstale残件。
 - 独立reviewは作成側と別contextのレビュー対応側がexact HEADを読む。作成者の本照合を独立review証拠とは扱わない。
 - 正式承認、実装動作、L7 expectedの独立性、L7未収録6件のpointer-level期待は未確認・未成立。
+
+## WR229 後続記録: OS007 R02 pointer選択
+
+この節はWR217/WR222の過去比較・結論を書き換えず、WR229の後続記録として追加する。過去節にあるL4旧SHA `21b922d90061b11378054d9173db4f24b774fdf30f2555e9821f25138cb3c4e3` は歴史値である。過去節の「21b922 pin stale」はWR222再束縛前の記録で、#3963後のL5/L8 `source_pins[3]` はL4 SHA `4b1eea9beaa7a4179dec374e8c914632dbef850c25f88bdc619a3b5808f7a2fb` を参照していた。WR229候補L4 SHAは `9248fd760d5aeaa7c682fcb744493243ef8dbc7a855ed5f9e497ea567ea994c2` となるため、L5/L8の既存source pinは候補上staleとなる。L5/L8は今回編集せず、この後続pair作業へ残す。
+
+対象branchは、main専用ref `280d5c8dc854e5100be6ed21188d5ebd13f5abd8`をbaseに作った隔離worktreeである。正式層の変更はL4 `/diagnostic_contract/rules/1` のR02 proseのみ。L3/L10、L5/L7/L8/L9、L9期待値とfixtureは変更していない。比較対象whole SHAはL3 `e86254a35b476ed71ebb112e41ccd2b48f89a8d0393e6495dc11cac7a7cf4e02`、WR229 L4 candidate `9248fd760d5aeaa7c682fcb744493243ef8dbc7a855ed5f9e497ea567ea994c2`、L5 `47d2256d3b3295548156b6b8a92de1102e8e167f1d677288397393cdf268cb21`、L7 `5a38e644013f755769b8cda433c871bbac6bdd3b652019b548072e5acff03e78`、L8 `1c99e457cb57131a7ac93eef84f728789b0e76dff02e7364e5ee47d51d366877`、L9 `a58d53077ca0d3a43d06886a82226ea952946be375648b936af2099cfeaac801`、L10 `583020f951672e48bc37fcd35cb916de5ccd9866f41dd04731f6519325ae500a`。L5/L8内のL4 source pinはどちらも`4b1eea9beaa7a4179dec374e8c914632dbef850c25f88bdc619a3b5808f7a2fb`で、WR229 candidateに対してstaleとなる。
+
+Issue #3510 comment 6532235464にある固定blind `/tmp/wr225-os007-r02-independent-blind.json` のSHA-256 `dd93205b77dee6ede8e3f4f7bf85c65ba124d5b962f044f983f969de393ffd45`を確認し、byte同一の `r02-blind.json` として保存した（copy SHA-256も同じ `dd93205b77dee6ede8e3f4f7bf85c65ba124d5b962f044f983f969de393ffd45`）。blindはunknown stateをactual/context双方pointerへ出す候補。比較後のlane decision（Issue #3510 comment 6532249514）は、L3/L10がpointer side/countを定めない設計選択として、unknown operand自身のpointerを採用した。片側unknownならその側、両側unknownなら双方である。この決定はblind導出から推測したものではなく、blind bytesは変更していない。L7/L9期待は選択理由に使っていない。
+
+R02 kind/state unknownをoperand-local pointerへ明確化した。L7 raw inputs C0038/C0082にactual-only/context-only kind-null、C0041/C0085にactual-only/context-only state-nullの実例があり、それぞれの既存expected pointerは対応operand側を指す。一方、全945 material-backed caseのcompressed raw replacementを静的に確認した範囲では、4 log種のいずれにもactual/context双方がclosed set外となるkindまたはstate inputはなかった。両側unknown時の2-pointer規則はL7 raw cohortで確認されたものではなく、decisionを反映した候補である。両側unknownのkind witnessも存在を確認していない。
+
+`unobserved`はclosed `log_states`に含まれる既知stateであり、unknown operandと同一視しない。既存R02「actual unobserved」専用条項にはpointer指定がなかったため、L7 expectedとの整合確認も記録した上で、この候補ではactual pointerを明記した。C0094はactual/contextともknown `unobserved`でactual `/logs/worker/state`に`log_state_unknown`一件、C0045はactual `unobserved`とcontext `current_material`でactual pointerへ`log_state_unknown`と`log_state_conflict`を持つ。専用actual条項に基づく配置であり、両側unknown一般規則の反例ではない。L7/L8/L9 expectedは不変。
+
+旧HELIXとの関係は既存節のとおり、source factと未解決記録の保持は意味再導出、pointer-side選択は旧sourceから完全一致再利用する規則がなく、新しいL4明確化候補である。関連failure UTW-014（欠損sourceを空集合へ縮退するabsence blindness）とUTW-021（完了証拠が時刻/prose/自己申告へ戻る余地）はunknownを成功扱いしない目的に関係するが、pointer選択そのものを導かない。
+
+SCF-B-0187は既存bindingを使い、L4 upstream digestと `r02-blind.json` artifactを登録する。L4 candidate SHA `9248fd760d5aeaa7c682fcb744493243ef8dbc7a855ed5f9e497ea567ea994c2`、r02 blind source/copy SHA `dd93205b77dee6ede8e3f4f7bf85c65ba124d5b962f044f983f969de393ffd45`、L7/L8/L9不変SHA、SCF validate/stale、JSON構文、diff-checkを静的確認する。L4/L5 algorithm、旧runtime/test/CIは実行しない。正式設計承認、L5/L8 pin同期、両側unknown raw witnessは未成立／未確認として残す。
