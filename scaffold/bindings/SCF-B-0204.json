@@ -35,8 +35,8 @@
     },
     {
       "path": "docs/helix-harness/L5-detail-design/tdd-development-flow.json",
-      "sha256": "a7fd79b52e6e5431ed0b5d2e72524c805e3ecdf1226c17f3ee01de5ed4dc24e0",
-      "note": "Local candidate L5 bytes after R1/F1 Japanese wording correction; digest is held here rather than in the L8 document."
+      "sha256": "b4b120f025efeb7fe6bfaf020d950eb7a75949baaed3268f5e3b32e88853758d",
+      "note": "Current shared L5 document after F04 candidate extension; prior F03 pin at merge cf31240384980220249a4f58abe62ce57d47a880 was a7fd79b52e6e5431ed0b5d2e72524c805e3ecdf1226c17f3ee01de5ed4dc24e0 (recorded in correction-r1-f1.json). F03 candidate bytes remain unchanged."
     }
   ],
   "role": "WR243 F03 source-only comparison, L5 condition candidate and L8 existing-U-ID reference table evidence.",

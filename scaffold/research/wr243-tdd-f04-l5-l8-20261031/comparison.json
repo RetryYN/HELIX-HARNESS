@@ -1,0 +1,213 @@
+{
+  "schema": "wr243-f04-comparison.v1",
+  "evidence_kind": "scaffold",
+  "authority_effect": "none",
+  "request_id": "WR243-TDD-F03F04B01-L5L8",
+  "issue": 3510,
+  "base_revision": "988765e9be335f2a1d376721c1b11f808fd03372",
+  "fixed_blind_artifact": {
+    "path": "scaffold/research/wr243-tdd-f03-l5-l8-20261031/source/wr243-tdd-clean-source-only.json",
+    "sha256": "846907d5802170ed775fbf08664c0b85f42e7b6ac0a9623e8584452f81ead813",
+    "issue_comment": "https://github.com/RetryYN/HELIX-HARNESS/issues/3510#issuecomment-6534177643",
+    "source_only_ids": [
+      "WR243-SO-F04-01",
+      "WR243-SO-F04-02"
+    ]
+  },
+  "source_file_sha256": {
+    "docs/helix-harness/L3-requirements/functional-requirements.json": "a3b907cdc316117d4684632f9a1cbf36125eb6e6172f9cfc286060617583d7be",
+    "docs/helix-harness/L10-verification/functional-verification.json": "fc58ad2268746d7924ac9be33e8f3f75e6d3c2cc619e27fbc1ddc34edd065cb2",
+    "docs/helix-harness/L4-basic-design/tdd-development-flow.json": "347bfd83b7685b52c45f62b5ee6f336fd74338ee65e67327e6e810d6eb489a16",
+    "docs/helix-harness/L9-integration-verification/tdd-development-flow.json": "4f64977ee8b2900733a823d5b9755f567952caef8cf323036a9b0776202d2462"
+  },
+  "l3_l10_contract_scope": {
+    "l3_pointer": "/requirements/43",
+    "l3_record_sha256": "5a32b65268770bc0f6dd8fdfc592533ff939363d7b7b41547d692fe916bf846f",
+    "l10_pointer": "/cases/43",
+    "l10_record_sha256": "868127e5b2bd65ff6f133539ae2e582d5f7864b2ff2bea02dc4cd07de6f475a5",
+    "contract_oracle": "HARNESS-L10-015-F04"
+  },
+  "comparison_method": "After the blind artifact was fixed, compare the allowed L3/L10 F04 meanings to L4 behavior/output/failure-condition prose and then inspect every existing F04 L4/L9 negative row. Existing row codes, axis/state, owner and effect values are recorded only for comparison.",
+  "row_counts": {
+    "source_only_f04_conditions": 2,
+    "l4_negative_classifications": 5,
+    "l9_negative_cases": 5,
+    "compared_rows": 5,
+    "condition_text_equal_rows": 5,
+    "existing_l8_negative_ids": 5
+  },
+  "rows": [
+    {
+      "row_index": 0,
+      "existing_unit_case_ref": "HARNESS-L9-015-F04-reverse_trace_missing",
+      "l4_pointer": "/contracts/4/negative_classifications/0",
+      "l9_pointer": "/cases/4/negative_cases/0",
+      "l4_existing_code_label_for_comparison_only": "reverse_trace_missing",
+      "l4_source_reference": {
+        "revision": "f5d511841c665b3424e159c8c1029bde51434521",
+        "pointer": "/contracts/4/failure_conditions/0",
+        "requirement_ref": "HARNESS-L3-015-F04",
+        "verification_ref": "HARNESS-L10-015-F04"
+      },
+      "l4_l9_condition_text_equal": true,
+      "l4_existing_projection_for_comparison_only": {
+        "expected_axis": "trace",
+        "expected_state": "missing",
+        "backflow_owner": "DevelopmentTraceAndFrontier",
+        "expected_side_effect_count": 0
+      },
+      "l9_existing_projection_for_comparison_only": {
+        "expected_axis": "trace",
+        "expected_state": "missing",
+        "backflow_owner": "DevelopmentTraceAndFrontier",
+        "expected_side_effect_count": 0
+      },
+      "l9_mutation_path_for_comparison_only": "artifacts.1.out_refs",
+      "blind_source_only_ref": "WR243-SO-F04-01",
+      "blind_condition": "Design/test-to-code trace is one-way or points to a different target revision.",
+      "blind_expected_observation": "Report the missing reverse edge or revision mismatch; do not treat trace as bidirectional/current or close the obligation.",
+      "candidate_japanese_condition": "設計またはtestからcodeへのtraceだけが存在し、codeから設計またはtestへの逆方向traceが欠けている、または参照先の対象revisionが一致しない。",
+      "candidate_alignment": "semantic condition aligns at the stated source-only granularity; existing classification values remain comparison-only; U-ID row oracle and test citation absent"
+    },
+    {
+      "row_index": 1,
+      "existing_unit_case_ref": "HARNESS-L9-015-F04-foreign_trace_revision",
+      "l4_pointer": "/contracts/4/negative_classifications/1",
+      "l9_pointer": "/cases/4/negative_cases/1",
+      "l4_existing_code_label_for_comparison_only": "foreign_trace_revision",
+      "l4_source_reference": {
+        "revision": "f5d511841c665b3424e159c8c1029bde51434521",
+        "pointer": "/contracts/4/failure_conditions/1",
+        "requirement_ref": "HARNESS-L3-015-F04",
+        "verification_ref": "HARNESS-L10-015-F04"
+      },
+      "l4_l9_condition_text_equal": true,
+      "l4_existing_projection_for_comparison_only": {
+        "expected_axis": "trace",
+        "expected_state": "stale",
+        "backflow_owner": "DevelopmentTraceAndFrontier",
+        "expected_side_effect_count": 0
+      },
+      "l9_existing_projection_for_comparison_only": {
+        "expected_axis": "trace",
+        "expected_state": "stale",
+        "backflow_owner": "DevelopmentTraceAndFrontier",
+        "expected_side_effect_count": 0
+      },
+      "l9_mutation_path_for_comparison_only": "artifacts.1.out_refs.0.revision",
+      "blind_source_only_ref": "WR243-SO-F04-01",
+      "blind_condition": "Design/test-to-code trace is one-way or points to a different target revision.",
+      "blind_expected_observation": "Report the missing reverse edge or revision mismatch; do not treat trace as bidirectional/current or close the obligation.",
+      "candidate_japanese_condition": "設計またはtestからcodeへのtraceだけが存在し、codeから設計またはtestへの逆方向traceが欠けている、または参照先の対象revisionが一致しない。",
+      "candidate_alignment": "semantic condition aligns at the stated source-only granularity; existing classification values remain comparison-only; U-ID row oracle and test citation absent"
+    },
+    {
+      "row_index": 2,
+      "existing_unit_case_ref": "HARNESS-L9-015-F04-development_as_integrated",
+      "l4_pointer": "/contracts/4/negative_classifications/2",
+      "l9_pointer": "/cases/4/negative_cases/2",
+      "l4_existing_code_label_for_comparison_only": "development_as_integrated",
+      "l4_source_reference": {
+        "revision": "f5d511841c665b3424e159c8c1029bde51434521",
+        "pointer": "/contracts/4/failure_conditions/2",
+        "requirement_ref": "HARNESS-L3-015-F04",
+        "verification_ref": "HARNESS-L10-015-F04"
+      },
+      "l4_l9_condition_text_equal": true,
+      "l4_existing_projection_for_comparison_only": {
+        "expected_axis": "integrated",
+        "expected_state": "unknown",
+        "backflow_owner": "DevelopmentTraceAndFrontier",
+        "expected_side_effect_count": 0
+      },
+      "l9_existing_projection_for_comparison_only": {
+        "expected_axis": "integrated",
+        "expected_state": "unknown",
+        "backflow_owner": "DevelopmentTraceAndFrontier",
+        "expected_side_effect_count": 0
+      },
+      "l9_mutation_path_for_comparison_only": "integrated",
+      "blind_source_only_ref": "WR243-SO-F04-02",
+      "blind_condition": "④ development alone, or its atomic CI Green, is used to claim Integrated, quality completion, Accepted, or Release.",
+      "blind_expected_observation": "Cap the standalone output at Provisional and retain Integrated/verification/acceptance/release as unestablished pending their own contracts and owners.",
+      "candidate_japanese_condition": "④開発単独の出力、またはそのatomic CI Greenを、Integrated、品質完了、Accepted、またはReleaseの成立根拠として扱う。",
+      "candidate_alignment": "semantic condition aligns at the stated source-only granularity; existing classification values remain comparison-only; U-ID row oracle and test citation absent"
+    },
+    {
+      "row_index": 3,
+      "existing_unit_case_ref": "HARNESS-L9-015-F04-ci_as_accepted",
+      "l4_pointer": "/contracts/4/negative_classifications/3",
+      "l9_pointer": "/cases/4/negative_cases/3",
+      "l4_existing_code_label_for_comparison_only": "ci_as_accepted",
+      "l4_source_reference": {
+        "revision": "f5d511841c665b3424e159c8c1029bde51434521",
+        "pointer": "/contracts/4/failure_conditions/3",
+        "requirement_ref": "HARNESS-L3-015-F04",
+        "verification_ref": "HARNESS-L10-015-F04"
+      },
+      "l4_l9_condition_text_equal": true,
+      "l4_existing_projection_for_comparison_only": {
+        "expected_axis": "accepted",
+        "expected_state": "unknown",
+        "backflow_owner": "DevelopmentTraceAndFrontier",
+        "expected_side_effect_count": 0
+      },
+      "l9_existing_projection_for_comparison_only": {
+        "expected_axis": "accepted",
+        "expected_state": "unknown",
+        "backflow_owner": "DevelopmentTraceAndFrontier",
+        "expected_side_effect_count": 0
+      },
+      "l9_mutation_path_for_comparison_only": "accepted",
+      "blind_source_only_ref": "WR243-SO-F04-02",
+      "blind_condition": "④ development alone, or its atomic CI Green, is used to claim Integrated, quality completion, Accepted, or Release.",
+      "blind_expected_observation": "Cap the standalone output at Provisional and retain Integrated/verification/acceptance/release as unestablished pending their own contracts and owners.",
+      "candidate_japanese_condition": "④開発単独の出力、またはそのatomic CI Greenを、Integrated、品質完了、Accepted、またはReleaseの成立根拠として扱う。",
+      "candidate_alignment": "semantic condition aligns at the stated source-only granularity; existing classification values remain comparison-only; U-ID row oracle and test citation absent"
+    },
+    {
+      "row_index": 4,
+      "existing_unit_case_ref": "HARNESS-L9-015-F04-ci_as_release",
+      "l4_pointer": "/contracts/4/negative_classifications/4",
+      "l9_pointer": "/cases/4/negative_cases/4",
+      "l4_existing_code_label_for_comparison_only": "ci_as_release",
+      "l4_source_reference": {
+        "revision": "f5d511841c665b3424e159c8c1029bde51434521",
+        "pointer": "/contracts/4/failure_conditions/4",
+        "requirement_ref": "HARNESS-L3-015-F04",
+        "verification_ref": "HARNESS-L10-015-F04"
+      },
+      "l4_l9_condition_text_equal": true,
+      "l4_existing_projection_for_comparison_only": {
+        "expected_axis": "release",
+        "expected_state": "unknown",
+        "backflow_owner": "DevelopmentTraceAndFrontier",
+        "expected_side_effect_count": 0
+      },
+      "l9_existing_projection_for_comparison_only": {
+        "expected_axis": "release",
+        "expected_state": "unknown",
+        "backflow_owner": "DevelopmentTraceAndFrontier",
+        "expected_side_effect_count": 0
+      },
+      "l9_mutation_path_for_comparison_only": "release",
+      "blind_source_only_ref": "WR243-SO-F04-02",
+      "blind_condition": "④ development alone, or its atomic CI Green, is used to claim Integrated, quality completion, Accepted, or Release.",
+      "blind_expected_observation": "Cap the standalone output at Provisional and retain Integrated/verification/acceptance/release as unestablished pending their own contracts and owners.",
+      "candidate_japanese_condition": "④開発単独の出力、またはそのatomic CI Greenを、Integrated、品質完了、Accepted、またはReleaseの成立根拠として扱う。",
+      "candidate_alignment": "semantic condition aligns at the stated source-only granularity; existing classification values remain comparison-only; U-ID row oracle and test citation absent"
+    }
+  ],
+  "findings": [
+    "All five L4/L9 condition strings match row-by-row.",
+    "WR243-SO-F04-01 aligns to existing rows 0-1; WR243-SO-F04-02 aligns to rows 2-4. This many-to-one comparison does not establish code, axis/state, or row-oracle assignments.",
+    "L8 contract oracle is L10 F04; U-ID row oracle and test citation remain missing."
+  ],
+  "unresolved": [
+    "failure-code vocabulary and row-level assignments",
+    "U-ID row oracle",
+    "test citation",
+    "unresolved_assignment_rule",
+    "sequence-equality meaning (shared WR243 boundary; not determined here)"
+  ]
+}

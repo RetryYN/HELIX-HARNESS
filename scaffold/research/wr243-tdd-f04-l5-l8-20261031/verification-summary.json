@@ -1,0 +1,115 @@
+{
+  "schema": "wr243-f04-verification-summary.v1",
+  "evidence_kind": "scaffold",
+  "authority_effect": "none",
+  "status": "F04 candidate annotations static-validated; existing checker residuals unchanged",
+  "base_revision": "cf31240384980220249a4f58abe62ce57d47a880",
+  "fixed_blind_artifact": {
+    "path": "scaffold/research/wr243-tdd-f03-l5-l8-20261031/source/wr243-tdd-clean-source-only.json",
+    "sha256": "846907d5802170ed775fbf08664c0b85f42e7b6ac0a9623e8584452f81ead813",
+    "issue_comment": "https://github.com/RetryYN/HELIX-HARNESS/issues/3510#issuecomment-6534177643",
+    "bytes_changed": false
+  },
+  "comparison": {
+    "l3_id": "HARNESS-L3-015-F04",
+    "l3_pointer": "/requirements/43",
+    "l3_record_sha256": "5a32b65268770bc0f6dd8fdfc592533ff939363d7b7b41547d692fe916bf846f",
+    "l10_id": "HARNESS-L10-015-F04",
+    "l10_pointer": "/cases/43",
+    "l10_record_sha256": "868127e5b2bd65ff6f133539ae2e582d5f7864b2ff2bea02dc4cd07de6f475a5",
+    "source_only_conditions": 2,
+    "l4_rows": 5,
+    "l9_rows": 5,
+    "condition_text_equal_rows": 5,
+    "mapping": "F04-01 -> rows 0-1; F04-02 -> rows 2-4; comparison-only, no code/axis/state/oracle assignment",
+    "row_oracles_created": 0,
+    "test_citations_created": 0
+  },
+  "candidate_documents": {
+    "docs/helix-harness/L5-detail-design/tdd-development-flow.json": {
+      "base_sha256": "a7fd79b52e6e5431ed0b5d2e72524c805e3ecdf1226c17f3ee01de5ed4dc24e0",
+      "candidate_sha256": "b4b120f025efeb7fe6bfaf020d950eb7a75949baaed3268f5e3b32e88853758d",
+      "base_bytes": 207107,
+      "candidate_bytes": 211596,
+      "delta_bytes": 4489
+    },
+    "docs/helix-harness/L8-unit-verification/tdd-development-flow.json": {
+      "base_sha256": "3467fe21dd0ad803b9414abe4087fb2ef9088cbe94298d4371b1baed65c9396f",
+      "candidate_sha256": "37aebaa7c81edd37c8b0ec97dfe7226f27e898ffa2bf1a8d2aa3ec82a4bedd9e",
+      "base_bytes": 2267394,
+      "candidate_bytes": 2273491,
+      "delta_bytes": 6097
+    }
+  },
+  "preservation": {
+    "L4_L9_bytes_unchanged": true,
+    "F03_candidate_content_unchanged": true,
+    "F03_fixed_blind_comparison_verification_summary_unchanged": true,
+    "F04_canonical_unit_case_ids_added": 0,
+    "F04_canonical_unit_cases_changed": false,
+    "L8_candidate_hash_or_fixture_keys_added": 0
+  },
+  "verification": {
+    "F04_static_candidate_validator": "pass (29 checks)",
+    "F03_static_candidate_validator": "pass (28 checks, updated only to tolerate F04 candidate field and shared L5 pin refresh)",
+    "check_child_before": {
+      "exit_code": 1,
+      "l4_l9_pair": "pass",
+      "l5_l8_pair": "pass",
+      "negative_4way_counts": {
+        "L4": 30,
+        "L9": 30,
+        "L8": 0,
+        "L5": 0
+      },
+      "matched_case_count": 0,
+      "failure_count": 35,
+      "ownership_cap_failures": {
+        "L4": 0,
+        "L9": 35,
+        "L5": 0,
+        "L8": 1647
+      },
+      "pins": "all 4 pass"
+    },
+    "check_child_after": {
+      "exit_code": 1,
+      "l4_l9_pair": "pass",
+      "l5_l8_pair": "pass",
+      "negative_4way_counts": {
+        "L4": 30,
+        "L9": 30,
+        "L8": 0,
+        "L5": 0
+      },
+      "matched_case_count": 0,
+      "failure_count": 35,
+      "ownership_cap_failures": {
+        "L4": 0,
+        "L9": 35,
+        "L5": 0,
+        "L8": 1647
+      },
+      "pins": "all 4 pass",
+      "meaning": "candidate rows are not canonical 4way rows; existing 4way/cap residual counts are unchanged from before."
+    },
+    "scfctl_validate_before": "pass: bindings=188 fail=0",
+    "scfctl_validate_after": "pass: bindings=189 fail=0",
+    "scfctl_stale_before": "pass: stale=0",
+    "scfctl_stale_after": "pass: stale=0",
+    "test_citation_static_search": "no matching U-ID reference found in repository *.py/*.ts/*.js/*.sh sources",
+    "git_diff_check": "pass"
+  },
+  "bindings": {
+    "new": "SCF-B-0208",
+    "shared_F03": "SCF-B-0204 L5 file-level pin refreshed only",
+    "upstream_scaffold_paths": 0
+  },
+  "not_run": [
+    "L4/L5 algorithm",
+    "old CLI/hook/runtime/test/CI",
+    "new runtime/test/CI"
+  ],
+  "commit_created": false,
+  "push_performed": false
+}
