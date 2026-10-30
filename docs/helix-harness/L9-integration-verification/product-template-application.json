@@ -12309,11 +12309,11 @@
      },
      {
       "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
-      "pointer": "/field_source_materialization_contract/ordered_source_materialization/2"
+      "pointer": "/field_source_materialization_contract/ordered_source_materialization/1"
      },
      {
       "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
-      "pointer": "/field_source_materialization_contract/ordered_source_materialization/3"
+      "pointer": "/field_source_materialization_contract/ordered_source_materialization/2"
      },
      {
       "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
@@ -12329,15 +12329,15 @@
      },
      {
       "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+      "pointer": "/field_semantic_evidence_contract/basic_candidate_return/fields/local_unestablished"
+     },
+     {
+      "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
       "pointer": "/field_semantic_evidence_contract/basic_candidate_return/cause_vocabulary"
      },
      {
       "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
-      "pointer": "/field_obligation_scope_contract/basic_view_contract/types/Cause"
-     },
-     {
-      "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
-      "pointer": "/field_obligation_scope_contract/cause_patterns/content_unresolved"
+      "pointer": "/field_semantic_evidence_contract/basic_candidate_return/cause_boundary"
      }
     ],
     "not_full_return": [
@@ -12366,9 +12366,9 @@
     "asserted_output_scope": "asserted_output_pathsはこのcaseで選んだfield/proposal/roleに対する有限projectionを示す。/local_unestablishedと/unfinished_obligation_refsはC全体の配列同値ではない。",
     "logical_input_root_pointer": "/input/projection_operand",
     "input_mutation_ja": "同一snapshotの選択FieldInput（/field_inputs/0）のdefinition_refs[0]にpresent non-nullのfull Refを置き、同snapshotのinput.axis_factsおよびinput.semantic_recordsの双方を実配列（Read.present）として供給するが、両collectionのいずれにも当該Refに一致するrecordを0件とする。片側collectionに一致recordがある入力、definition_refs自体の欠落/null/空配列、またはcollection自体の欠落/null/型外とは混ぜない。同fieldの既存owner evidence候補または兄弟fieldがあれば原wholeを維持する。",
-    "l4_meaning_ja": "L4 ordered_source_materialization/2..3 / field_definition_evidence_body.absent_guard・undecided_guard / basic_candidate_return.fields.definition_evidence_results / cause_patterns.content_unresolved: 各原definition_refs operandをaxis_factsおよびsemantic_records双方の同binding全原recordへ照合し、両検索domainで対応recordが0件の未解決operandはその原Ref/所在（/field_inputs/0/definition_refs/0）と実探索した両collection（/axis_factsおよび/semantic_records）の取得不成立をcontent_unresolvedとして保存し、架空record/source/body indexやbasis_occurrencesを作らず、局所owner evidenceのformed/missing/unknown候補を残したままfield単位のjudgmentをunformedにする。",
-    "selected_operand_expectation_ja": "対象FieldInput（/field_inputs/0）のdefinition_refs[0]の同じ原Ref出現について、同snapshotのaxis_factsおよびsemantic_recordsの両検索domainがともにRead.presentで対応recordが0件の場合のみ、content_occurrences[0]をrecord_resolution=unresolvedとし、探索した/axis_factsと/semantic_records双方に対するcontent_unresolved（left=原definition_refs[0] Ref Read、right=実探索した各原collection Read、架空index無し）によりfield-level未形成（judgment.formation=unformed）およびlocal_unestablishedへの局所原因保持を観測する。片方のdomainに一致recordがある入力はこの未解決caseでない。null/absent/未到達parentや他fieldを混ぜない。",
-    "expected_semantic_observation_ja": "両collection（axis_factsおよびsemantic_records）に対応recordがない選択field（/field_inputs/0）のdefinition_evidence_results[0].judgmentは{formation:unformed,causes}となり、content_occurrences[0]（field_definition_refs_index=0、原ref、record_resolution=unresolved）とlocal_unestablishedに当該definition_refs[0]のcontent_unresolvedが局所保持される。元field/definition_refs[0]のRead/presence、実探索したaxis_factsおよびsemantic_records両collectionの原Read/presence（片側collectionのみへの縮退やJSON member absentへの読み替えをしない）、および既存owner evidence候補と兄弟fieldを保持し、架空のrecord/source/body出現やbasis_occurrences index、definition missing/unknownを生成しない。L5の内部Cause件数・走査順・writer格納構造はこのL9意味期待には含めず、L3/L10/L4契約から独立に照合する（DT-VT-105）。",
+    "l4_meaning_ja": "L4 ordered_source_materialization/1..2 / field_definition_evidence_body.absent_guard・undecided_guard / basic_candidate_return.fields.definition_evidence_results・local_unestablished: 各原definition_refs operandをaxis_factsおよびsemantic_records双方の同binding全原recordへ照合し、両検索domainで対応recordが0件の未解決operandはその原Ref/所在（/field_inputs/0/definition_refs/0）と取得不成立をcontent_unresolvedとして保存し、両collection（/axis_factsおよび/semantic_records）の原Readとpresenceを保持したまま、架空record/source/body indexやbasis_occurrencesを作らず、局所owner evidenceのformed/missing/unknown候補を残してfield単位のjudgmentをunformedにする。",
+    "selected_operand_expectation_ja": "対象FieldInput（/field_inputs/0）のdefinition_refs[0]の同じ原Ref出現について、同snapshotのaxis_factsおよびsemantic_recordsの両検索domainがともにRead.presentで対応recordが0件の場合のみ、原Ref/所在（/field_inputs/0/definition_refs/0）と両collection（/axis_factsおよび/semantic_records）の原Readとpresenceを保持し、取得不成立（content_unresolved、架空index無し）によりfield-level未形成（judgment.formation=unformed）およびlocal_unestablishedへの局所原因保持を観測する。片方のdomainに一致recordがある入力はこの未解決caseでない。null/absent/未到達parentや他fieldを混ぜない。",
+    "expected_semantic_observation_ja": "両collection（axis_factsおよびsemantic_records）に対応recordがない選択field（/field_inputs/0）のdefinition_evidence_results[0].judgmentは{formation:unformed,causes}となり、local_unestablishedと共に当該definition_refs[0]の取得不成立（content_unresolved）が局所保持される。元field/definition_refs[0]のRead/presence、実探索したaxis_factsおよびsemantic_records両collectionの原Readとpresence（片側collectionのみへの縮退やJSON member absentへの読み替えをしない）、および既存owner evidence候補と兄弟fieldを保持し、架空のrecord/source/body出現やbasis_occurrences index、definition missing/unknownを生成しない。L5の内部Cause件数・right Readの具体表現・走査順・writer格納構造はこのL9意味期待には含めず、L3/L10/L4契約から独立に照合する（DT-VT-105）。",
     "l3_l10_meaning_basis": [
      "L3#/requirements/27: source/template/revision/field/義務/evidence/scopeと不足4候補を保持する",
      "L10#/cases/27: definition absenceとvalue undecidedを混同せず、分類不明を補完しない"
