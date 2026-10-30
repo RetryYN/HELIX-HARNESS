@@ -3,8 +3,8 @@
   "authority_effect": "none",
   "base_revision": "fa3d2d515ce8df79c0a74d5360a4d1254863a6f1",
   "candidate_documents": {
-    "docs/helix-harness/L5-detail-design/tdd-development-flow.json": "40d71e8c754d7a26d19f84c649f83189de95246aa6980eb61de7c6e62b66633c",
-    "docs/helix-harness/L8-unit-verification/tdd-development-flow.json": "5ce7abc4b9ebfc0b9c9cf68e387694066b1883725d1eab7f73797564cfec24e9"
+    "docs/helix-harness/L5-detail-design/tdd-development-flow.json": "426a0b4299a76eaf7a097d33ab56e16244a69163c878ddb265f8bdc4b465b742",
+    "docs/helix-harness/L8-unit-verification/tdd-development-flow.json": "3e38a79b0b9bbc27526e6699fe8d4dfa0189a103300e85ec0c44e2531d2c2ba4"
   },
   "fixed_blind_artifact": {
     "path": "scaffold/research/wr206-f02-l5-l8-pr-b-20261031/source/f02-blind-draft.json",
@@ -15,10 +15,10 @@
   "input_material_boundary": {
     "scope_owner_input_source_found": false,
     "synthetic_facts_path": "scaffold/research/wr206-f02-l5-l8-pr-b-20261031/source/f02-candidate-input-facts.json",
-    "synthetic_facts_sha256": "0c29879c96c8502dd2b88f91a3f4737a228a0fcb1fb7ce4f1539717ef03d3022",
+    "synthetic_facts_sha256": "2bc3059606c992ca07bb012bc3ca1ecd195a4ad2e1aafb180e5fa3e68f2b7b0f",
     "l8_embeds_full_input_payload": false,
     "l8_embeds_full_return_or_fixture_body": false,
-    "l8_retains": "shared baseline pointer, 8 delta-row pointers, case reconstruction note, and compact semantic projections only",
+    "l8_retains": "shared baseline pointer, 9 delta-row pointers, case reconstruction note, and compact semantic projections only",
     "candidate_fixture_is_formal_oracle": false,
     "case_id_is_evaluator_input_or_output": false
   },
@@ -32,7 +32,7 @@
     "l4_l9_bytes_unchanged_from_base": true,
     "candidate_rows": {
       "positive": 2,
-      "negative_witnesses": 6,
+      "negative_witnesses": 7,
       "negative_classifications": 5
     },
     "check_child_base_vs_candidate": {
@@ -58,12 +58,21 @@
       "new runtime/test/CI"
     ],
     "case_identity_handling": "F-015-05 input and return types exclude candidate_case_id; L8 expectation is attached directly to each fixture-reference row.",
-    "delta_reconstruction": "shared_input_ref plus explicit ordered FieldValue replacement semantics; manual candidate record only"
+    "delta_reconstruction": "shared_input_ref plus explicit ordered FieldValue replacement semantics; manual candidate record only",
+    "after_body_branch_review": {
+      "pre_body_head_late_record": "retained as a distinct candidate branch; it does not establish post-body execution",
+      "post_body_target_revision": "added H1=body_change.to_head witness with red.sequence 40 > body_change.sequence 30",
+      "fixed_artifact_bytes_changed": false,
+      "L4_L9_bytes_changed": false
+    },
+    "l8_l4_output_pointer_resolution": "RFC6901 resolution to /contracts/2/output_contract",
+    "candidate_fixture_delta_reconstruction": "9 ordered delta rows; new after-body revision witness adds red.head=H1 and red.sequence=40"
   },
   "unresolved": [
     "No owner-derived raw input packet within L3/L10 scope was identified; the scaffold fixture is synthetic candidate material, so formal L8 input linkage remains unestablished.",
     "F-015-05 typed owner is not resolved by the checker because it reads L5 functions[]; no alias or marker was added.",
     "The candidate F02 fixture rows do not count toward the checker four-way negative case rows.",
     "Chosen head/revision mapping, syntax-to-environment_error mapping, actual-absent behavior, and multi-predicate precedence remain candidate design choices or unresolved."
-  ]
+  ],
+  "binding_sha256": "9f6c135d1d08a39d4c5107bfebe2abfe2fa92434a23038bb39cd395002caed14"
 }

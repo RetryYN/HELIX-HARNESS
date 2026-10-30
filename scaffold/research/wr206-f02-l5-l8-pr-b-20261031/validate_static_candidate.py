@@ -19,6 +19,7 @@ L4_PATH = "docs/helix-harness/L4-basic-design/tdd-development-flow.json"
 L9_PATH = "docs/helix-harness/L9-integration-verification/tdd-development-flow.json"
 BLIND_PATH = "scaffold/research/wr206-f02-l5-l8-pr-b-20261031/source/f02-blind-draft.json"
 INPUT_FACTS_PATH = "scaffold/research/wr206-f02-l5-l8-pr-b-20261031/source/f02-candidate-input-facts.json"
+BINDING_PATH = "scaffold/bindings/SCF-B-0185.json"
 
 
 def read_json(path: str) -> dict:
@@ -91,9 +92,14 @@ def main() -> None:
     blind = (ROOT / BLIND_PATH).read_bytes()
     assert sha(blind) == BLIND_SHA
     candidate_facts = read_json(INPUT_FACTS_PATH)
+    binding = read_json(BINDING_PATH)
+    binding_hash_notes = binding["verification"]["oracles"]
+    for path in (L5_PATH, L8_PATH, INPUT_FACTS_PATH):
+        digest = sha((ROOT / path).read_bytes())
+        assert f"candidate artifact SHA-256: {path}={digest}" in binding_hash_notes, f"binding candidate artifact hash missing/mismatched: {path}"
     assert candidate_facts["status"].startswith("candidate_synthetic")
     assert candidate_facts["authority_effect"] == "none"
-    assert len(candidate_facts["case_deltas"]) == 8
+    assert len(candidate_facts["case_deltas"]) == 9
 
     for pin in candidate_l5["candidate_source_pins"]:
         assert at_revision_sha(pin) == pin["sha256"], f"L5 source pin mismatch: {pin['path']}"
@@ -125,8 +131,47 @@ def main() -> None:
     negative = [case for case in candidate_l8["cases"] if case["polarity"] == "negative"]
     positive = [case for case in candidate_l8["cases"] if case["polarity"] == "positive"]
     assert len(positive) == 2
-    assert len(negative) == 6
+    assert len(negative) == 7
     assert len({case["expected_projection"]["candidate_classification_code"] for case in negative}) == 5
+    after_body = [case for case in negative if case["expected_projection"]["candidate_classification_code"] == "after_body_red"]
+    assert {case["case_id"] for case in after_body} == {
+        "F02-CANDIDATE-NEGATIVE-AFTER-BODY",
+        "F02-CANDIDATE-NEGATIVE-AFTER-BODY-REVISION",
+    }
+    after_rule = rules["after_body_red"]
+    assert after_rule["observations"] == [
+        "red.executed=true",
+        "red.failure_kind=intended_behavior_mismatch",
+        "red.oracle_ref equals frozen_oracle.ref",
+    ]
+    assert after_rule["branch_join"] == "OR across candidate_branches; AND within each branch observations"
+    branches = {row["branch_id"]: row for row in after_rule["candidate_branches"]}
+    assert set(branches) == {"post_body_target_revision", "pre_body_target_head_late_record"}
+    assert branches["post_body_target_revision"]["observations"] == [
+        "red.head=body_change.to_head",
+        "red.sequence>body_change.sequence",
+    ]
+    assert branches["pre_body_target_head_late_record"]["observations"] == [
+        "red.head=pre_body.head=body_change.from_head",
+        "red.sequence>body_change.sequence",
+    ]
+    old_late_delta = at_pointer(candidate_facts, "/case_deltas/2")
+    new_revision_delta = at_pointer(candidate_facts, "/case_deltas/8")
+    assert old_late_delta["case_id"] == "F02-CANDIDATE-NEGATIVE-AFTER-BODY"
+    assert old_late_delta["input_delta"] == [{
+        "path": "red.sequence", "field_value": {"state": "provided", "value": 40}
+    }]
+    assert new_revision_delta["case_id"] == "F02-CANDIDATE-NEGATIVE-AFTER-BODY-REVISION"
+    assert new_revision_delta["input_delta"] == [
+        {"path": "red.head", "field_value": {"state": "provided", "value": "H1"}},
+        {"path": "red.sequence", "field_value": {"state": "provided", "value": 40}},
+    ]
+    baseline = at_pointer(candidate_facts, "/shared_input_baseline/source_payload/value")
+    assert baseline["body_change"]["value"]["from_head"]["value"] == "H0"
+    assert baseline["body_change"]["value"]["to_head"]["value"] == "H1"
+    assert baseline["body_change"]["value"]["sequence"]["value"] == 30
+    assert baseline["red"]["value"]["head"]["value"] == "H0"
+    assert new_revision_delta["input_delta"][0]["field_value"]["value"] == baseline["body_change"]["value"]["to_head"]["value"]
     for case in negative:
         expected = case["expected_projection"]
         code = expected["candidate_classification_code"]
@@ -138,7 +183,11 @@ def main() -> None:
         assert expected["side_effect_count"] == rule["side_effect_count"] == l4_row["expected_side_effect_count"]
         assert case["input_ref"].startswith(INPUT_FACTS_PATH + "#")
     for case in positive:
-        assert case["expected_projection"]["l4_output_ref"].startswith(L4_PATH + "#")
+        pointer = case["expected_projection"]["l4_output_ref"]
+        assert pointer.startswith(L4_PATH + "#")
+        resolved = at_pointer(l4, pointer.split("#", 1)[1])
+        assert resolved is l4["contracts"][2]["output_contract"]
+        assert "expected_output_contract" not in l4["contracts"][2]
 
     print("static candidate validation: PASS")
     print(f"blind artifact sha256: {BLIND_SHA}")
@@ -146,8 +195,11 @@ def main() -> None:
     print(f"L8 existing unit cases: unchanged ({len(l8_base['unit_cases'])})")
     print("L8 F02 candidate: only case/input refs and small semantic projections; synthetic input packet lives in scaffold research")
     print("L4/L9 bytes: unchanged")
+    print("SCF-B-0185 candidate artifact pins: exact working-tree SHA match")
     print("source pins: exact revision/blob SHA match; reviewed L3/L10 F02 rows equal current rows")
-    print("candidate cases: positives=2 negatives=6 unique negative classes=5")
+    print("candidate cases: positives=2 negatives=7 unique negative classes=5")
+    print("after-body branches: H1 target revision; H0 late record kept distinct")
+    print("L8 positive L4 output pointers: RFC6901 resolution PASS")
     print("candidate L5/L8/L4 code-axis-state-owner-effect references: matched")
 
 

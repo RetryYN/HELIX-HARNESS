@@ -3827,8 +3827,6 @@
             "observations": [
               "red.executed=true",
               "red.failure_kind=intended_behavior_mismatch",
-              "red.head=pre_body.head",
-              "red.sequence>body_change.sequence",
               "red.oracle_ref equals frozen_oracle.ref"
             ],
             "candidate_l4_result": {
@@ -3837,7 +3835,26 @@
               "backflow_owner": "PreBodyRedEvidence",
               "side_effect_count": 0
             },
-            "meaning": "本体変更後のRedを実装前Redに用いない。"
+            "meaning": "candidate codeは上記の異なる二枝を記録する。post_body_target_revisionのみが固定artifactのafter-body revision意味に対応する。pre_body_target_head_late_recordはcandidate sequence mapping上の順序所見であり、実行時点を確定しない。",
+            "candidate_branches": [
+              {
+                "branch_id": "post_body_target_revision",
+                "observations": [
+                  "red.head=body_change.to_head",
+                  "red.sequence>body_change.sequence"
+                ],
+                "meaning": "本体変更先revision H1上のRedで、固定artifactの「本体実装/修正後revisionだけのRed」に対応するcandidate witness。"
+              },
+              {
+                "branch_id": "pre_body_target_head_late_record",
+                "observations": [
+                  "red.head=pre_body.head=body_change.from_head",
+                  "red.sequence>body_change.sequence"
+                ],
+                "meaning": "対象headは本体前H0のまま記録sequenceだけが後。これは実行が本体後に起きた証拠ではなく、candidateがsequenceを順序proxyとする設計選択による別の記録順序所見。固定artifactのafter-body revision意味とは同一視しない。"
+              }
+            ],
+            "branch_join": "OR across candidate_branches; AND within each branch observations"
           },
           {
             "code": "foreign_pre_body_head",

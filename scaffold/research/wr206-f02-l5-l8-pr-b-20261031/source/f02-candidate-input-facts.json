@@ -634,6 +634,25 @@
           }
         }
       ]
+    },
+    {
+      "case_id": "F02-CANDIDATE-NEGATIVE-AFTER-BODY-REVISION",
+      "input_delta": [
+        {
+          "path": "red.head",
+          "field_value": {
+            "state": "provided",
+            "value": "H1"
+          }
+        },
+        {
+          "path": "red.sequence",
+          "field_value": {
+            "state": "provided",
+            "value": 40
+          }
+        }
+      ]
     }
   ]
 }

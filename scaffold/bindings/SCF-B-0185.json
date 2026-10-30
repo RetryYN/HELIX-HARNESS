@@ -6,7 +6,7 @@
   "product": "HELIX-HARNESS",
   "owner_candidate": "HARNESS-015 F02 L5/L8候補設計の責務owner候補",
   "state": "registered",
-  "reason": "WR206-HARNESS-TDD-FLOW-NEG-4WAY（Issue #3510）のPR-B候補として、F02に限定したL5入力述語とL8手動照合fixtureを記録する。正例2枝・負例5分類のcandidate designであり、上流意味候補の承認、独立oracle、正式設計、実行、受入を成立させない。",
+  "reason": "WR206-HARNESS-TDD-FLOW-NEG-4WAY（Issue #3510）のPR-B候補として、F02に限定したL5入力述語とL8手動照合fixtureを記録する。正例2枝・負例5分類（after-bodyのH1 revisionとH0遅延記録の別witnessを含む）のcandidate designであり、上流意味候補の承認、独立oracle、正式設計、実行、受入を成立させない。",
   "upstream": [
     {
       "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
@@ -32,7 +32,7 @@
   "role": "WR206 PR-BのHARNESS-015 F02 L5/L8 candidate classifier述語と手動unit input/expected設計、source provenance、未決限界をレビュー可能に記録する。",
   "obligations": [
     "比較前固定のF02 blind artifact bytes/hashとL3/L10 reviewed-head由来を保持し、意味範囲だけが独立固定されたことを明記する。",
-    "L5候補述語は実際のPayloadF02 input factを評価し、5 negative classの条件、L4 candidate axis/state、PreBodyRedEvidence backflow component、zero-side-effect候補を対応づける。",
+    "L5候補述語は実際のPayloadF02 input factを評価し、5 negative classの条件とafter-bodyの別head/sequence branches、L4 candidate axis/state、PreBodyRedEvidence backflow component、zero-side-effect候補を対応づける。",
     "L8 F02で新規/既存positive枝と5 negative分類（environment/syntaxの別witnessを含む）を合成入力と手動照合期待で示す。L9既存input/expectedを使わず、変更しない。",
     "head/revision、syntax→environment_error、未実行actual不在、multiple predicate、typed owner解決、4way residualをcandidate limitationとして記録する。",
     "既存L5/L8 source_mainと過去revision pinsは履歴を保ち、F02候補が依拠するL3/L10/L4/L5のexact path/revision/hashを候補節と証跡へ分けて記録する。"
@@ -86,7 +86,10 @@
       "L8 shared baseline plus case deltas and manually stated candidate projections",
       "L8 pre-existing expected projections and L9 whole-document bytes unchanged",
       "check-child owner and 4way diagnostics, reported as residual",
-      "scfctl validate/stale and PR-scope diff check"
+      "scfctl validate/stale and PR-scope diff check",
+      "candidate artifact SHA-256: docs/helix-harness/L5-detail-design/tdd-development-flow.json=426a0b4299a76eaf7a097d33ab56e16244a69163c878ddb265f8bdc4b465b742",
+      "candidate artifact SHA-256: docs/helix-harness/L8-unit-verification/tdd-development-flow.json=3e38a79b0b9bbc27526e6699fe8d4dfa0189a103300e85ec0c44e2531d2c2ba4",
+      "candidate artifact SHA-256: scaffold/research/wr206-f02-l5-l8-pr-b-20261031/source/f02-candidate-input-facts.json=2bc3059606c992ca07bb012bc3ca1ecd195a4ad2e1aafb180e5fa3e68f2b7b0f"
     ],
     "negative_cases": [
       "Do not present chosen axis/state/schema as upstream approval or independent oracle.",
