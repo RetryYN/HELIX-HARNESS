@@ -62151,12 +62151,6 @@
           "pointers": [
             "/failure_classifications/0"
           ]
-        },
-        {
-          "path": "docs/helix-os/L5-detail-design/log-feedback-memory-lineage.json",
-          "pointers": [
-            "/failure_rules/0"
-          ]
         }
       ]
     },
@@ -62185,12 +62179,6 @@
           "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
           "pointers": [
             "/failure_classifications/1"
-          ]
-        },
-        {
-          "path": "docs/helix-os/L5-detail-design/log-feedback-memory-lineage.json",
-          "pointers": [
-            "/failure_rules/1"
           ]
         }
       ]
@@ -62221,12 +62209,6 @@
           "pointers": [
             "/failure_classifications/2"
           ]
-        },
-        {
-          "path": "docs/helix-os/L5-detail-design/log-feedback-memory-lineage.json",
-          "pointers": [
-            "/failure_rules/2"
-          ]
         }
       ]
     },
@@ -62254,13 +62236,7 @@
         {
           "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
           "pointers": [
-            "/failure_classifications/4"
-          ]
-        },
-        {
-          "path": "docs/helix-os/L5-detail-design/log-feedback-memory-lineage.json",
-          "pointers": [
-            "/failure_rules/4"
+            "/failure_classifications/3"
           ]
         }
       ]
@@ -62289,13 +62265,7 @@
         {
           "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
           "pointers": [
-            "/failure_classifications/5"
-          ]
-        },
-        {
-          "path": "docs/helix-os/L5-detail-design/log-feedback-memory-lineage.json",
-          "pointers": [
-            "/failure_rules/5"
+            "/failure_classifications/4"
           ]
         }
       ]
@@ -62324,13 +62294,7 @@
         {
           "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
           "pointers": [
-            "/failure_classifications/6"
-          ]
-        },
-        {
-          "path": "docs/helix-os/L5-detail-design/log-feedback-memory-lineage.json",
-          "pointers": [
-            "/failure_rules/6"
+            "/failure_classifications/5"
           ]
         }
       ]
@@ -62359,13 +62323,7 @@
         {
           "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
           "pointers": [
-            "/failure_classifications/7"
-          ]
-        },
-        {
-          "path": "docs/helix-os/L5-detail-design/log-feedback-memory-lineage.json",
-          "pointers": [
-            "/failure_rules/7"
+            "/failure_classifications/6"
           ]
         }
       ]
@@ -62394,13 +62352,7 @@
         {
           "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
           "pointers": [
-            "/failure_classifications/8"
-          ]
-        },
-        {
-          "path": "docs/helix-os/L5-detail-design/log-feedback-memory-lineage.json",
-          "pointers": [
-            "/failure_rules/8"
+            "/failure_classifications/7"
           ]
         }
       ]
@@ -62429,13 +62381,7 @@
         {
           "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
           "pointers": [
-            "/failure_classifications/9"
-          ]
-        },
-        {
-          "path": "docs/helix-os/L5-detail-design/log-feedback-memory-lineage.json",
-          "pointers": [
-            "/failure_rules/9"
+            "/failure_classifications/8"
           ]
         }
       ]
@@ -62464,7 +62410,7 @@
         {
           "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
           "pointers": [
-            "/failure_classifications/10"
+            "/failure_classifications/9"
           ]
         }
       ]
@@ -62493,7 +62439,7 @@
         {
           "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
           "pointers": [
-            "/failure_classifications/11"
+            "/failure_classifications/10"
           ]
         }
       ]
@@ -62522,13 +62468,7 @@
         {
           "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
           "pointers": [
-            "/failure_classifications/12"
-          ]
-        },
-        {
-          "path": "docs/helix-os/L5-detail-design/log-feedback-memory-lineage.json",
-          "pointers": [
-            "/failure_rules/12"
+            "/failure_classifications/11"
           ]
         }
       ]
@@ -62557,13 +62497,7 @@
         {
           "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
           "pointers": [
-            "/failure_classifications/14"
-          ]
-        },
-        {
-          "path": "docs/helix-os/L5-detail-design/log-feedback-memory-lineage.json",
-          "pointers": [
-            "/failure_rules/14"
+            "/failure_classifications/12"
           ]
         }
       ]
@@ -62592,7 +62526,7 @@
         {
           "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
           "pointers": [
-            "/failure_classifications/15"
+            "/failure_classifications/13"
           ]
         }
       ]
@@ -62621,13 +62555,7 @@
         {
           "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
           "pointers": [
-            "/failure_classifications/16"
-          ]
-        },
-        {
-          "path": "docs/helix-os/L5-detail-design/log-feedback-memory-lineage.json",
-          "pointers": [
-            "/failure_rules/16"
+            "/failure_classifications/14"
           ]
         }
       ]
@@ -62656,7 +62584,7 @@
         {
           "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
           "pointers": [
-            "/failure_classifications/17"
+            "/failure_classifications/15"
           ]
         }
       ]
@@ -62685,13 +62613,7 @@
         {
           "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
           "pointers": [
-            "/failure_classifications/18"
-          ]
-        },
-        {
-          "path": "docs/helix-os/L5-detail-design/log-feedback-memory-lineage.json",
-          "pointers": [
-            "/failure_rules/18"
+            "/failure_classifications/16"
           ]
         }
       ]
@@ -62720,13 +62642,7 @@
         {
           "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
           "pointers": [
-            "/failure_classifications/19"
-          ]
-        },
-        {
-          "path": "docs/helix-os/L5-detail-design/log-feedback-memory-lineage.json",
-          "pointers": [
-            "/failure_rules/19"
+            "/failure_classifications/17"
           ]
         }
       ]
@@ -62755,13 +62671,7 @@
         {
           "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
           "pointers": [
-            "/failure_classifications/20"
-          ]
-        },
-        {
-          "path": "docs/helix-os/L5-detail-design/log-feedback-memory-lineage.json",
-          "pointers": [
-            "/failure_rules/20"
+            "/failure_classifications/18"
           ]
         }
       ]
@@ -62790,13 +62700,7 @@
         {
           "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
           "pointers": [
-            "/failure_classifications/21"
-          ]
-        },
-        {
-          "path": "docs/helix-os/L5-detail-design/log-feedback-memory-lineage.json",
-          "pointers": [
-            "/failure_rules/21"
+            "/failure_classifications/19"
           ]
         }
       ]
@@ -62825,13 +62729,7 @@
         {
           "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
           "pointers": [
-            "/failure_classifications/22"
-          ]
-        },
-        {
-          "path": "docs/helix-os/L5-detail-design/log-feedback-memory-lineage.json",
-          "pointers": [
-            "/failure_rules/22"
+            "/failure_classifications/20"
           ]
         }
       ]
@@ -62860,13 +62758,7 @@
         {
           "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
           "pointers": [
-            "/failure_classifications/23"
-          ]
-        },
-        {
-          "path": "docs/helix-os/L5-detail-design/log-feedback-memory-lineage.json",
-          "pointers": [
-            "/failure_rules/23"
+            "/failure_classifications/21"
           ]
         }
       ]
@@ -62895,13 +62787,7 @@
         {
           "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
           "pointers": [
-            "/failure_classifications/25"
-          ]
-        },
-        {
-          "path": "docs/helix-os/L5-detail-design/log-feedback-memory-lineage.json",
-          "pointers": [
-            "/failure_rules/25"
+            "/failure_classifications/22"
           ]
         }
       ]
@@ -62930,13 +62816,7 @@
         {
           "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
           "pointers": [
-            "/failure_classifications/26"
-          ]
-        },
-        {
-          "path": "docs/helix-os/L5-detail-design/log-feedback-memory-lineage.json",
-          "pointers": [
-            "/failure_rules/26"
+            "/failure_classifications/23"
           ]
         }
       ]
@@ -62965,13 +62845,7 @@
         {
           "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
           "pointers": [
-            "/failure_classifications/27"
-          ]
-        },
-        {
-          "path": "docs/helix-os/L5-detail-design/log-feedback-memory-lineage.json",
-          "pointers": [
-            "/failure_rules/27"
+            "/failure_classifications/24"
           ]
         }
       ]
@@ -63000,13 +62874,7 @@
         {
           "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
           "pointers": [
-            "/failure_classifications/28"
-          ]
-        },
-        {
-          "path": "docs/helix-os/L5-detail-design/log-feedback-memory-lineage.json",
-          "pointers": [
-            "/failure_rules/28"
+            "/failure_classifications/25"
           ]
         }
       ]
@@ -63035,13 +62903,7 @@
         {
           "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
           "pointers": [
-            "/failure_classifications/29"
-          ]
-        },
-        {
-          "path": "docs/helix-os/L5-detail-design/log-feedback-memory-lineage.json",
-          "pointers": [
-            "/failure_rules/29"
+            "/failure_classifications/26"
           ]
         }
       ]
@@ -63070,13 +62932,7 @@
         {
           "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
           "pointers": [
-            "/failure_classifications/30"
-          ]
-        },
-        {
-          "path": "docs/helix-os/L5-detail-design/log-feedback-memory-lineage.json",
-          "pointers": [
-            "/failure_rules/30"
+            "/failure_classifications/27"
           ]
         }
       ]
@@ -63105,13 +62961,7 @@
         {
           "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
           "pointers": [
-            "/failure_classifications/31"
-          ]
-        },
-        {
-          "path": "docs/helix-os/L5-detail-design/log-feedback-memory-lineage.json",
-          "pointers": [
-            "/failure_rules/31"
+            "/failure_classifications/28"
           ]
         }
       ]
@@ -63140,13 +62990,7 @@
         {
           "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
           "pointers": [
-            "/failure_classifications/32"
-          ]
-        },
-        {
-          "path": "docs/helix-os/L5-detail-design/log-feedback-memory-lineage.json",
-          "pointers": [
-            "/failure_rules/32"
+            "/failure_classifications/29"
           ]
         }
       ]
@@ -63175,13 +63019,7 @@
         {
           "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
           "pointers": [
-            "/failure_classifications/33"
-          ]
-        },
-        {
-          "path": "docs/helix-os/L5-detail-design/log-feedback-memory-lineage.json",
-          "pointers": [
-            "/failure_rules/33"
+            "/failure_classifications/30"
           ]
         }
       ]
@@ -63210,13 +63048,7 @@
         {
           "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
           "pointers": [
-            "/failure_classifications/34"
-          ]
-        },
-        {
-          "path": "docs/helix-os/L5-detail-design/log-feedback-memory-lineage.json",
-          "pointers": [
-            "/failure_rules/34"
+            "/failure_classifications/31"
           ]
         }
       ]
@@ -63245,13 +63077,7 @@
         {
           "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
           "pointers": [
-            "/failure_classifications/35"
-          ]
-        },
-        {
-          "path": "docs/helix-os/L5-detail-design/log-feedback-memory-lineage.json",
-          "pointers": [
-            "/failure_rules/35"
+            "/failure_classifications/32"
           ]
         }
       ]
@@ -63280,13 +63106,7 @@
         {
           "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
           "pointers": [
-            "/failure_classifications/36"
-          ]
-        },
-        {
-          "path": "docs/helix-os/L5-detail-design/log-feedback-memory-lineage.json",
-          "pointers": [
-            "/failure_rules/36"
+            "/failure_classifications/33"
           ]
         }
       ]
@@ -63315,13 +63135,7 @@
         {
           "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
           "pointers": [
-            "/failure_classifications/37"
-          ]
-        },
-        {
-          "path": "docs/helix-os/L5-detail-design/log-feedback-memory-lineage.json",
-          "pointers": [
-            "/failure_rules/37"
+            "/failure_classifications/34"
           ]
         }
       ]
@@ -63350,13 +63164,7 @@
         {
           "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
           "pointers": [
-            "/failure_classifications/38"
-          ]
-        },
-        {
-          "path": "docs/helix-os/L5-detail-design/log-feedback-memory-lineage.json",
-          "pointers": [
-            "/failure_rules/38"
+            "/failure_classifications/35"
           ]
         }
       ]
@@ -63385,13 +63193,7 @@
         {
           "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
           "pointers": [
-            "/failure_classifications/40"
-          ]
-        },
-        {
-          "path": "docs/helix-os/L5-detail-design/log-feedback-memory-lineage.json",
-          "pointers": [
-            "/failure_rules/40"
+            "/failure_classifications/36"
           ]
         }
       ]
@@ -63420,13 +63222,7 @@
         {
           "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
           "pointers": [
-            "/failure_classifications/41"
-          ]
-        },
-        {
-          "path": "docs/helix-os/L5-detail-design/log-feedback-memory-lineage.json",
-          "pointers": [
-            "/failure_rules/41"
+            "/failure_classifications/37"
           ]
         }
       ]
@@ -63455,7 +63251,7 @@
         {
           "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
           "pointers": [
-            "/failure_classifications/42"
+            "/failure_classifications/38"
           ]
         }
       ]
@@ -63484,7 +63280,7 @@
         {
           "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
           "pointers": [
-            "/failure_classifications/43"
+            "/failure_classifications/39"
           ]
         }
       ]
@@ -63514,7 +63310,7 @@
         {
           "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
           "pointers": [
-            "/failure_classifications/44"
+            "/failure_classifications/40"
           ]
         }
       ]
@@ -63544,7 +63340,7 @@
         {
           "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
           "pointers": [
-            "/failure_classifications/45"
+            "/failure_classifications/41"
           ]
         }
       ]
@@ -63574,7 +63370,7 @@
         {
           "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
           "pointers": [
-            "/failure_classifications/46"
+            "/failure_classifications/42"
           ]
         }
       ]
@@ -63604,7 +63400,7 @@
         {
           "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
           "pointers": [
-            "/failure_classifications/47"
+            "/failure_classifications/43"
           ]
         }
       ]
@@ -63634,7 +63430,7 @@
         {
           "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
           "pointers": [
-            "/failure_classifications/48"
+            "/failure_classifications/44"
           ]
         }
       ]
@@ -63664,7 +63460,7 @@
         {
           "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
           "pointers": [
-            "/failure_classifications/49"
+            "/failure_classifications/45"
           ]
         }
       ]
@@ -63696,7 +63492,7 @@
         {
           "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
           "pointers": [
-            "/failure_classifications/50"
+            "/failure_classifications/46"
           ]
         }
       ]
@@ -63730,7 +63526,7 @@
         {
           "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
           "pointers": [
-            "/failure_classifications/51"
+            "/failure_classifications/47"
           ]
         }
       ]
@@ -63761,7 +63557,7 @@
         {
           "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
           "pointers": [
-            "/failure_classifications/52"
+            "/failure_classifications/48"
           ]
         }
       ]
@@ -63792,7 +63588,7 @@
         {
           "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
           "pointers": [
-            "/failure_classifications/53"
+            "/failure_classifications/49"
           ]
         }
       ]
@@ -63822,7 +63618,7 @@
         {
           "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
           "pointers": [
-            "/failure_classifications/54"
+            "/failure_classifications/50"
           ]
         }
       ]
@@ -63857,7 +63653,7 @@
         {
           "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
           "pointers": [
-            "/failure_classifications/55"
+            "/failure_classifications/51"
           ]
         }
       ]
@@ -63887,7 +63683,7 @@
         {
           "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
           "pointers": [
-            "/failure_classifications/56"
+            "/failure_classifications/52"
           ]
         }
       ]
@@ -63917,7 +63713,7 @@
         {
           "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
           "pointers": [
-            "/failure_classifications/57"
+            "/failure_classifications/53"
           ]
         }
       ]
@@ -63948,7 +63744,7 @@
         {
           "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
           "pointers": [
-            "/failure_classifications/58"
+            "/failure_classifications/54"
           ]
         }
       ]
@@ -63978,7 +63774,7 @@
         {
           "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
           "pointers": [
-            "/failure_classifications/59"
+            "/failure_classifications/55"
           ]
         }
       ]
@@ -64008,7 +63804,7 @@
         {
           "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
           "pointers": [
-            "/failure_classifications/60"
+            "/failure_classifications/56"
           ]
         }
       ]
@@ -64046,7 +63842,7 @@
         {
           "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
           "pointers": [
-            "/failure_classifications/61"
+            "/failure_classifications/57"
           ]
         }
       ]
@@ -64077,7 +63873,7 @@
         {
           "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
           "pointers": [
-            "/failure_classifications/62"
+            "/failure_classifications/58"
           ]
         }
       ]
@@ -64107,7 +63903,7 @@
         {
           "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
           "pointers": [
-            "/failure_classifications/63"
+            "/failure_classifications/59"
           ]
         }
       ]
@@ -64137,7 +63933,7 @@
         {
           "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
           "pointers": [
-            "/failure_classifications/64"
+            "/failure_classifications/60"
           ]
         }
       ]
@@ -64168,7 +63964,7 @@
         {
           "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
           "pointers": [
-            "/failure_classifications/65"
+            "/failure_classifications/61"
           ]
         }
       ]
@@ -64198,7 +63994,7 @@
         {
           "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
           "pointers": [
-            "/failure_classifications/66"
+            "/failure_classifications/62"
           ]
         }
       ]
@@ -64228,7 +64024,7 @@
         {
           "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
           "pointers": [
-            "/failure_classifications/67"
+            "/failure_classifications/63"
           ]
         }
       ]
@@ -64261,7 +64057,7 @@
         {
           "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
           "pointers": [
-            "/failure_classifications/68"
+            "/failure_classifications/64"
           ]
         }
       ]
@@ -64291,7 +64087,7 @@
         {
           "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
           "pointers": [
-            "/failure_classifications/69"
+            "/failure_classifications/65"
           ]
         }
       ]
@@ -64321,7 +64117,7 @@
         {
           "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
           "pointers": [
-            "/failure_classifications/70"
+            "/failure_classifications/66"
           ]
         }
       ]
@@ -64351,7 +64147,7 @@
         {
           "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
           "pointers": [
-            "/failure_classifications/71"
+            "/failure_classifications/67"
           ]
         }
       ]
@@ -64383,7 +64179,7 @@
         {
           "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
           "pointers": [
-            "/failure_classifications/72"
+            "/failure_classifications/68"
           ]
         }
       ]
@@ -64414,7 +64210,7 @@
         {
           "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
           "pointers": [
-            "/failure_classifications/73"
+            "/failure_classifications/69"
           ]
         }
       ]
@@ -64444,7 +64240,7 @@
         {
           "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
           "pointers": [
-            "/failure_classifications/74"
+            "/failure_classifications/70"
           ]
         }
       ]
@@ -64474,7 +64270,7 @@
         {
           "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
           "pointers": [
-            "/failure_classifications/75"
+            "/failure_classifications/71"
           ]
         }
       ]
@@ -64505,7 +64301,7 @@
         {
           "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
           "pointers": [
-            "/failure_classifications/76"
+            "/failure_classifications/72"
           ]
         }
       ]
@@ -64535,7 +64331,7 @@
         {
           "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
           "pointers": [
-            "/failure_classifications/77"
+            "/failure_classifications/73"
           ]
         }
       ]
@@ -64565,7 +64361,7 @@
         {
           "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
           "pointers": [
-            "/failure_classifications/78"
+            "/failure_classifications/74"
           ]
         }
       ]
@@ -64595,7 +64391,7 @@
         {
           "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
           "pointers": [
-            "/failure_classifications/79"
+            "/failure_classifications/75"
           ]
         }
       ]
@@ -64626,7 +64422,7 @@
         {
           "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
           "pointers": [
-            "/failure_classifications/80"
+            "/failure_classifications/76"
           ]
         }
       ]
@@ -64656,7 +64452,7 @@
         {
           "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
           "pointers": [
-            "/failure_classifications/81"
+            "/failure_classifications/77"
           ]
         }
       ]
@@ -64686,7 +64482,7 @@
         {
           "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
           "pointers": [
-            "/failure_classifications/82"
+            "/failure_classifications/78"
           ]
         }
       ]
@@ -64723,7 +64519,7 @@
         {
           "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
           "pointers": [
-            "/failure_classifications/83"
+            "/failure_classifications/79"
           ]
         }
       ]
@@ -64753,7 +64549,7 @@
         {
           "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
           "pointers": [
-            "/failure_classifications/84"
+            "/failure_classifications/80"
           ]
         }
       ]
