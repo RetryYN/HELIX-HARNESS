@@ -1,0 +1,573 @@
+{
+  "schema": "wr230-sec009-l4-l9-compact-transition-candidate.v2",
+  "candidate_only": true,
+  "formal_four_way_status": "not_established",
+  "comparison_mode": "legacy_casewise_four_layer (no explicit marker)",
+  "authority_effect": "none",
+  "operation_effect": "none",
+  "implementation_readiness": "not_ready",
+  "security_boundary": "素材照合のみ。認証/認可設定、credential、実revoke、隔離・復旧、本番/外部操作なし。",
+  "source_revision": "c8f20a4f91456f6d5e5c16e1be0083c34aab6651",
+  "source_pins": [
+    {
+      "path": "docs/helix-security/L4-basic-design/revoke-quarantine-propagation.json",
+      "sha256": "c0a31c5c663d39854ed1df13b9bf2bfc439fdb46419d089bc617607d6e6ac5b6"
+    },
+    {
+      "path": "docs/helix-security/L5-detail-design/revoke-quarantine-propagation.json",
+      "sha256": "90c3761e88ea76fefe1222372ffa1218afcf2fc8cb4dec666ca8b7ca98bd8734"
+    },
+    {
+      "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+      "sha256": "62913b58577cfc0f3c7e6682ad160d8f236157a0ceed9c88ef71822330ed60fc"
+    },
+    {
+      "path": "docs/governance/design-verification-quality-assurance.md",
+      "sha256": "f5751e236dc073fe67114c1fcb4b0f64b3d746290b25d75b61e60a08e3c99c85"
+    },
+    {
+      "path": "docs/governance/decisions/helix-security-prerequisite-l3-l10-delegated-decision-2026-10-12.md",
+      "sha256": "ec7f54991b540a5afd7ffeb49fd2dc63479fd0907ca93c9e49e2f34fe72bed92"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/business-requirements.json",
+      "sha256": "f1668180a3daccb38da15f471ade0806c64f094a77b0d7a5cef25edc9b6ce901"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/business-verification.json",
+      "sha256": "c34b8f9a99f8f240558458dd63033acd0d756dfe61ad9cd3aac0e8e1c8193f42"
+    }
+  ],
+  "pointer_contract": {
+    "pointer_base": "JSON Pointer into the pinned source file named by the section",
+    "ordering": "L4 class rows follow existing fixed_taxonomy_source_pointers order; case pointer arrays preserve source order within each source array; L9 array indices reconstruct source order; no case IDs or expected values are copied."
+  },
+  "population_counts": {
+    "all_l9_source_cases": 356,
+    "simple_positive": 8,
+    "single_contract_negative": 277,
+    "assigned_single_contract_negative": 275,
+    "ambiguous_single_contract_negative": 2,
+    "multi_contract_residual_positive": 28,
+    "multi_contract_residual_negative": 43,
+    "multi_contract_residual_total": 71,
+    "fixed_classes": 30
+  },
+  "classes": [
+    {
+      "l4_taxonomy_pointer": "/contracts/0/negative_classifications/0",
+      "existing_l9_assignment_pointers": [
+        "/cases/0/negative_cases/0/negative_class_assignment",
+        "/cases/0/negative_cases/2/negative_class_assignment",
+        "/cases/0/negative_cases/4/negative_class_assignment",
+        "/cases/0/negative_cases/6/negative_class_assignment",
+        "/cases/0/negative_cases/8/negative_class_assignment"
+      ]
+    },
+    {
+      "l4_taxonomy_pointer": "/contracts/0/negative_classifications/1",
+      "existing_l9_assignment_pointers": [
+        "/cases/0/negative_cases/1/negative_class_assignment",
+        "/cases/0/negative_cases/3/negative_class_assignment",
+        "/cases/0/negative_cases/5/negative_class_assignment",
+        "/cases/0/negative_cases/7/negative_class_assignment",
+        "/cases/0/negative_cases/9/negative_class_assignment"
+      ]
+    },
+    {
+      "l4_taxonomy_pointer": "/contracts/0/negative_classifications/2",
+      "existing_l9_assignment_pointers": [
+        "/cases/0/negative_cases/12/negative_class_assignment"
+      ]
+    },
+    {
+      "l4_taxonomy_pointer": "/contracts/0/negative_classifications/3",
+      "existing_l9_assignment_pointers": [
+        "/cases/0/negative_cases/10/negative_class_assignment",
+        "/cases/0/negative_cases/11/negative_class_assignment"
+      ]
+    },
+    {
+      "l4_taxonomy_pointer": "/contracts/1/negative_classifications/0",
+      "existing_l9_assignment_pointers": [
+        "/cases/1/negative_cases/0/negative_class_assignment",
+        "/cases/1/negative_cases/36/negative_class_assignment",
+        "/cases/1/negative_cases/85/negative_class_assignment",
+        "/cases/1/negative_cases/125/negative_class_assignment",
+        "/cases/1/negative_cases/165/negative_class_assignment"
+      ]
+    },
+    {
+      "l4_taxonomy_pointer": "/contracts/1/negative_classifications/1",
+      "existing_l9_assignment_pointers": [
+        "/cases/1/negative_cases/1/negative_class_assignment",
+        "/cases/1/negative_cases/3/negative_class_assignment",
+        "/cases/1/negative_cases/5/negative_class_assignment",
+        "/cases/1/negative_cases/7/negative_class_assignment",
+        "/cases/1/negative_cases/9/negative_class_assignment",
+        "/cases/1/negative_cases/11/negative_class_assignment",
+        "/cases/1/negative_cases/26/negative_class_assignment",
+        "/cases/1/negative_cases/37/negative_class_assignment",
+        "/cases/1/negative_cases/39/negative_class_assignment",
+        "/cases/1/negative_cases/41/negative_class_assignment",
+        "/cases/1/negative_cases/43/negative_class_assignment",
+        "/cases/1/negative_cases/45/negative_class_assignment",
+        "/cases/1/negative_cases/47/negative_class_assignment",
+        "/cases/1/negative_cases/49/negative_class_assignment",
+        "/cases/1/negative_cases/51/negative_class_assignment",
+        "/cases/1/negative_cases/70/negative_class_assignment",
+        "/cases/1/negative_cases/86/negative_class_assignment",
+        "/cases/1/negative_cases/88/negative_class_assignment",
+        "/cases/1/negative_cases/90/negative_class_assignment",
+        "/cases/1/negative_cases/92/negative_class_assignment",
+        "/cases/1/negative_cases/94/negative_class_assignment",
+        "/cases/1/negative_cases/96/negative_class_assignment",
+        "/cases/1/negative_cases/98/negative_class_assignment",
+        "/cases/1/negative_cases/115/negative_class_assignment",
+        "/cases/1/negative_cases/126/negative_class_assignment",
+        "/cases/1/negative_cases/128/negative_class_assignment",
+        "/cases/1/negative_cases/130/negative_class_assignment",
+        "/cases/1/negative_cases/132/negative_class_assignment",
+        "/cases/1/negative_cases/134/negative_class_assignment",
+        "/cases/1/negative_cases/136/negative_class_assignment",
+        "/cases/1/negative_cases/138/negative_class_assignment",
+        "/cases/1/negative_cases/155/negative_class_assignment",
+        "/cases/1/negative_cases/166/negative_class_assignment",
+        "/cases/1/negative_cases/168/negative_class_assignment",
+        "/cases/1/negative_cases/170/negative_class_assignment",
+        "/cases/1/negative_cases/172/negative_class_assignment",
+        "/cases/1/negative_cases/174/negative_class_assignment",
+        "/cases/1/negative_cases/176/negative_class_assignment",
+        "/cases/1/negative_cases/178/negative_class_assignment",
+        "/cases/1/negative_cases/195/negative_class_assignment"
+      ]
+    },
+    {
+      "l4_taxonomy_pointer": "/contracts/1/negative_classifications/2",
+      "existing_l9_assignment_pointers": [
+        "/cases/1/negative_cases/2/negative_class_assignment",
+        "/cases/1/negative_cases/4/negative_class_assignment",
+        "/cases/1/negative_cases/6/negative_class_assignment",
+        "/cases/1/negative_cases/8/negative_class_assignment",
+        "/cases/1/negative_cases/10/negative_class_assignment",
+        "/cases/1/negative_cases/12/negative_class_assignment",
+        "/cases/1/negative_cases/38/negative_class_assignment",
+        "/cases/1/negative_cases/40/negative_class_assignment",
+        "/cases/1/negative_cases/42/negative_class_assignment",
+        "/cases/1/negative_cases/44/negative_class_assignment",
+        "/cases/1/negative_cases/46/negative_class_assignment",
+        "/cases/1/negative_cases/48/negative_class_assignment",
+        "/cases/1/negative_cases/50/negative_class_assignment",
+        "/cases/1/negative_cases/52/negative_class_assignment",
+        "/cases/1/negative_cases/87/negative_class_assignment",
+        "/cases/1/negative_cases/89/negative_class_assignment",
+        "/cases/1/negative_cases/91/negative_class_assignment",
+        "/cases/1/negative_cases/93/negative_class_assignment",
+        "/cases/1/negative_cases/95/negative_class_assignment",
+        "/cases/1/negative_cases/97/negative_class_assignment",
+        "/cases/1/negative_cases/99/negative_class_assignment",
+        "/cases/1/negative_cases/127/negative_class_assignment",
+        "/cases/1/negative_cases/129/negative_class_assignment",
+        "/cases/1/negative_cases/131/negative_class_assignment",
+        "/cases/1/negative_cases/133/negative_class_assignment",
+        "/cases/1/negative_cases/135/negative_class_assignment",
+        "/cases/1/negative_cases/137/negative_class_assignment",
+        "/cases/1/negative_cases/139/negative_class_assignment",
+        "/cases/1/negative_cases/167/negative_class_assignment",
+        "/cases/1/negative_cases/169/negative_class_assignment",
+        "/cases/1/negative_cases/171/negative_class_assignment",
+        "/cases/1/negative_cases/173/negative_class_assignment",
+        "/cases/1/negative_cases/175/negative_class_assignment",
+        "/cases/1/negative_cases/177/negative_class_assignment",
+        "/cases/1/negative_cases/179/negative_class_assignment"
+      ]
+    },
+    {
+      "l4_taxonomy_pointer": "/contracts/1/negative_classifications/3",
+      "existing_l9_assignment_pointers": [
+        "/cases/1/negative_cases/206/negative_class_assignment",
+        "/cases/1/negative_cases/207/negative_class_assignment",
+        "/cases/1/negative_cases/208/negative_class_assignment",
+        "/cases/1/negative_cases/209/negative_class_assignment",
+        "/cases/1/negative_cases/210/negative_class_assignment",
+        "/cases/1/negative_cases/211/negative_class_assignment",
+        "/cases/1/negative_cases/212/negative_class_assignment",
+        "/cases/1/negative_cases/213/negative_class_assignment",
+        "/cases/1/negative_cases/214/negative_class_assignment",
+        "/cases/1/negative_cases/215/negative_class_assignment",
+        "/cases/1/negative_cases/216/negative_class_assignment",
+        "/cases/1/negative_cases/217/negative_class_assignment",
+        "/cases/1/negative_cases/218/negative_class_assignment",
+        "/cases/1/negative_cases/219/negative_class_assignment",
+        "/cases/1/negative_cases/220/negative_class_assignment"
+      ]
+    },
+    {
+      "l4_taxonomy_pointer": "/contracts/1/negative_classifications/4",
+      "existing_l9_assignment_pointers": [
+        "/cases/1/negative_cases/35/negative_class_assignment",
+        "/cases/1/negative_cases/84/negative_class_assignment",
+        "/cases/1/negative_cases/124/negative_class_assignment",
+        "/cases/1/negative_cases/164/negative_class_assignment",
+        "/cases/1/negative_cases/204/negative_class_assignment"
+      ]
+    },
+    {
+      "l4_taxonomy_pointer": "/contracts/1/negative_classifications/5",
+      "existing_l9_assignment_pointers": [
+        "/cases/1/negative_cases/13/negative_class_assignment",
+        "/cases/1/negative_cases/53/negative_class_assignment",
+        "/cases/1/negative_cases/100/negative_class_assignment",
+        "/cases/1/negative_cases/140/negative_class_assignment",
+        "/cases/1/negative_cases/180/negative_class_assignment"
+      ]
+    },
+    {
+      "l4_taxonomy_pointer": "/contracts/1/negative_classifications/6",
+      "existing_l9_assignment_pointers": [
+        "/cases/1/negative_cases/14/negative_class_assignment",
+        "/cases/1/negative_cases/16/negative_class_assignment",
+        "/cases/1/negative_cases/18/negative_class_assignment",
+        "/cases/1/negative_cases/20/negative_class_assignment",
+        "/cases/1/negative_cases/22/negative_class_assignment",
+        "/cases/1/negative_cases/24/negative_class_assignment",
+        "/cases/1/negative_cases/27/negative_class_assignment",
+        "/cases/1/negative_cases/54/negative_class_assignment",
+        "/cases/1/negative_cases/56/negative_class_assignment",
+        "/cases/1/negative_cases/58/negative_class_assignment",
+        "/cases/1/negative_cases/60/negative_class_assignment",
+        "/cases/1/negative_cases/62/negative_class_assignment",
+        "/cases/1/negative_cases/64/negative_class_assignment",
+        "/cases/1/negative_cases/66/negative_class_assignment",
+        "/cases/1/negative_cases/68/negative_class_assignment",
+        "/cases/1/negative_cases/71/negative_class_assignment",
+        "/cases/1/negative_cases/101/negative_class_assignment",
+        "/cases/1/negative_cases/103/negative_class_assignment",
+        "/cases/1/negative_cases/105/negative_class_assignment",
+        "/cases/1/negative_cases/107/negative_class_assignment",
+        "/cases/1/negative_cases/109/negative_class_assignment",
+        "/cases/1/negative_cases/111/negative_class_assignment",
+        "/cases/1/negative_cases/113/negative_class_assignment",
+        "/cases/1/negative_cases/116/negative_class_assignment",
+        "/cases/1/negative_cases/141/negative_class_assignment",
+        "/cases/1/negative_cases/143/negative_class_assignment",
+        "/cases/1/negative_cases/145/negative_class_assignment",
+        "/cases/1/negative_cases/147/negative_class_assignment",
+        "/cases/1/negative_cases/149/negative_class_assignment",
+        "/cases/1/negative_cases/151/negative_class_assignment",
+        "/cases/1/negative_cases/153/negative_class_assignment",
+        "/cases/1/negative_cases/156/negative_class_assignment",
+        "/cases/1/negative_cases/181/negative_class_assignment",
+        "/cases/1/negative_cases/183/negative_class_assignment",
+        "/cases/1/negative_cases/185/negative_class_assignment",
+        "/cases/1/negative_cases/187/negative_class_assignment",
+        "/cases/1/negative_cases/189/negative_class_assignment",
+        "/cases/1/negative_cases/191/negative_class_assignment",
+        "/cases/1/negative_cases/193/negative_class_assignment",
+        "/cases/1/negative_cases/196/negative_class_assignment"
+      ]
+    },
+    {
+      "l4_taxonomy_pointer": "/contracts/1/negative_classifications/7",
+      "existing_l9_assignment_pointers": [
+        "/cases/1/negative_cases/15/negative_class_assignment",
+        "/cases/1/negative_cases/17/negative_class_assignment",
+        "/cases/1/negative_cases/19/negative_class_assignment",
+        "/cases/1/negative_cases/21/negative_class_assignment",
+        "/cases/1/negative_cases/23/negative_class_assignment",
+        "/cases/1/negative_cases/25/negative_class_assignment",
+        "/cases/1/negative_cases/55/negative_class_assignment",
+        "/cases/1/negative_cases/57/negative_class_assignment",
+        "/cases/1/negative_cases/59/negative_class_assignment",
+        "/cases/1/negative_cases/61/negative_class_assignment",
+        "/cases/1/negative_cases/63/negative_class_assignment",
+        "/cases/1/negative_cases/65/negative_class_assignment",
+        "/cases/1/negative_cases/67/negative_class_assignment",
+        "/cases/1/negative_cases/69/negative_class_assignment",
+        "/cases/1/negative_cases/102/negative_class_assignment",
+        "/cases/1/negative_cases/104/negative_class_assignment",
+        "/cases/1/negative_cases/106/negative_class_assignment",
+        "/cases/1/negative_cases/108/negative_class_assignment",
+        "/cases/1/negative_cases/110/negative_class_assignment",
+        "/cases/1/negative_cases/112/negative_class_assignment",
+        "/cases/1/negative_cases/114/negative_class_assignment",
+        "/cases/1/negative_cases/142/negative_class_assignment",
+        "/cases/1/negative_cases/144/negative_class_assignment",
+        "/cases/1/negative_cases/146/negative_class_assignment",
+        "/cases/1/negative_cases/148/negative_class_assignment",
+        "/cases/1/negative_cases/150/negative_class_assignment",
+        "/cases/1/negative_cases/152/negative_class_assignment",
+        "/cases/1/negative_cases/154/negative_class_assignment",
+        "/cases/1/negative_cases/182/negative_class_assignment",
+        "/cases/1/negative_cases/184/negative_class_assignment",
+        "/cases/1/negative_cases/186/negative_class_assignment",
+        "/cases/1/negative_cases/188/negative_class_assignment",
+        "/cases/1/negative_cases/190/negative_class_assignment",
+        "/cases/1/negative_cases/192/negative_class_assignment",
+        "/cases/1/negative_cases/194/negative_class_assignment"
+      ]
+    },
+    {
+      "l4_taxonomy_pointer": "/contracts/1/negative_classifications/8",
+      "existing_l9_assignment_pointers": [
+        "/cases/1/negative_cases/29/negative_class_assignment",
+        "/cases/1/negative_cases/73/negative_class_assignment",
+        "/cases/1/negative_cases/118/negative_class_assignment",
+        "/cases/1/negative_cases/158/negative_class_assignment",
+        "/cases/1/negative_cases/198/negative_class_assignment"
+      ]
+    },
+    {
+      "l4_taxonomy_pointer": "/contracts/1/negative_classifications/9",
+      "existing_l9_assignment_pointers": [
+        "/cases/1/negative_cases/28/negative_class_assignment",
+        "/cases/1/negative_cases/72/negative_class_assignment",
+        "/cases/1/negative_cases/117/negative_class_assignment",
+        "/cases/1/negative_cases/157/negative_class_assignment",
+        "/cases/1/negative_cases/197/negative_class_assignment"
+      ]
+    },
+    {
+      "l4_taxonomy_pointer": "/contracts/1/negative_classifications/10",
+      "existing_l9_assignment_pointers": [
+        "/cases/1/negative_cases/31/negative_class_assignment",
+        "/cases/1/negative_cases/32/negative_class_assignment",
+        "/cases/1/negative_cases/75/negative_class_assignment",
+        "/cases/1/negative_cases/76/negative_class_assignment",
+        "/cases/1/negative_cases/78/negative_class_assignment",
+        "/cases/1/negative_cases/79/negative_class_assignment",
+        "/cases/1/negative_cases/120/negative_class_assignment",
+        "/cases/1/negative_cases/121/negative_class_assignment",
+        "/cases/1/negative_cases/160/negative_class_assignment",
+        "/cases/1/negative_cases/161/negative_class_assignment",
+        "/cases/1/negative_cases/200/negative_class_assignment",
+        "/cases/1/negative_cases/201/negative_class_assignment"
+      ]
+    },
+    {
+      "l4_taxonomy_pointer": "/contracts/1/negative_classifications/11",
+      "existing_l9_assignment_pointers": [
+        "/cases/1/negative_cases/30/negative_class_assignment",
+        "/cases/1/negative_cases/74/negative_class_assignment",
+        "/cases/1/negative_cases/77/negative_class_assignment",
+        "/cases/1/negative_cases/119/negative_class_assignment",
+        "/cases/1/negative_cases/159/negative_class_assignment",
+        "/cases/1/negative_cases/199/negative_class_assignment"
+      ]
+    },
+    {
+      "l4_taxonomy_pointer": "/contracts/1/negative_classifications/12",
+      "existing_l9_assignment_pointers": [
+        "/cases/1/negative_cases/34/negative_class_assignment",
+        "/cases/1/negative_cases/81/negative_class_assignment",
+        "/cases/1/negative_cases/83/negative_class_assignment",
+        "/cases/1/negative_cases/123/negative_class_assignment",
+        "/cases/1/negative_cases/163/negative_class_assignment",
+        "/cases/1/negative_cases/203/negative_class_assignment"
+      ]
+    },
+    {
+      "l4_taxonomy_pointer": "/contracts/1/negative_classifications/13",
+      "existing_l9_assignment_pointers": [
+        "/cases/1/negative_cases/33/negative_class_assignment",
+        "/cases/1/negative_cases/80/negative_class_assignment",
+        "/cases/1/negative_cases/82/negative_class_assignment",
+        "/cases/1/negative_cases/122/negative_class_assignment",
+        "/cases/1/negative_cases/162/negative_class_assignment",
+        "/cases/1/negative_cases/202/negative_class_assignment"
+      ]
+    },
+    {
+      "l4_taxonomy_pointer": "/contracts/2/negative_classifications/0",
+      "existing_l9_assignment_pointers": [
+        "/cases/2/negative_cases/35/negative_class_assignment",
+        "/cases/2/negative_cases/38/negative_class_assignment"
+      ]
+    },
+    {
+      "l4_taxonomy_pointer": "/contracts/2/negative_classifications/1",
+      "existing_l9_assignment_pointers": [
+        "/cases/2/negative_cases/36/negative_class_assignment",
+        "/cases/2/negative_cases/39/negative_class_assignment"
+      ]
+    },
+    {
+      "l4_taxonomy_pointer": "/contracts/2/negative_classifications/2",
+      "existing_l9_assignment_pointers": [
+        "/cases/2/negative_cases/41/negative_class_assignment",
+        "/cases/2/negative_cases/42/negative_class_assignment"
+      ]
+    },
+    {
+      "l4_taxonomy_pointer": "/contracts/2/negative_classifications/3",
+      "existing_l9_assignment_pointers": [
+        "/cases/2/negative_cases/34/negative_class_assignment",
+        "/cases/2/negative_cases/37/negative_class_assignment"
+      ]
+    },
+    {
+      "l4_taxonomy_pointer": "/contracts/2/negative_classifications/4",
+      "existing_l9_assignment_pointers": [
+        "/cases/2/negative_cases/0/negative_class_assignment",
+        "/cases/2/negative_cases/2/negative_class_assignment",
+        "/cases/2/negative_cases/4/negative_class_assignment",
+        "/cases/2/negative_cases/6/negative_class_assignment",
+        "/cases/2/negative_cases/8/negative_class_assignment",
+        "/cases/2/negative_cases/10/negative_class_assignment",
+        "/cases/2/negative_cases/12/negative_class_assignment"
+      ]
+    },
+    {
+      "l4_taxonomy_pointer": "/contracts/2/negative_classifications/5",
+      "existing_l9_assignment_pointers": [
+        "/cases/2/negative_cases/1/negative_class_assignment",
+        "/cases/2/negative_cases/3/negative_class_assignment",
+        "/cases/2/negative_cases/5/negative_class_assignment",
+        "/cases/2/negative_cases/7/negative_class_assignment",
+        "/cases/2/negative_cases/9/negative_class_assignment",
+        "/cases/2/negative_cases/11/negative_class_assignment",
+        "/cases/2/negative_cases/13/negative_class_assignment"
+      ]
+    },
+    {
+      "l4_taxonomy_pointer": "/contracts/2/negative_classifications/6",
+      "existing_l9_assignment_pointers": [
+        "/cases/2/negative_cases/14/negative_class_assignment",
+        "/cases/2/negative_cases/16/negative_class_assignment"
+      ]
+    },
+    {
+      "l4_taxonomy_pointer": "/contracts/2/negative_classifications/7",
+      "existing_l9_assignment_pointers": [
+        "/cases/2/negative_cases/15/negative_class_assignment"
+      ]
+    },
+    {
+      "l4_taxonomy_pointer": "/contracts/2/negative_classifications/8",
+      "existing_l9_assignment_pointers": [
+        "/cases/2/negative_cases/17/negative_class_assignment",
+        "/cases/2/negative_cases/19/negative_class_assignment",
+        "/cases/2/negative_cases/21/negative_class_assignment",
+        "/cases/2/negative_cases/23/negative_class_assignment",
+        "/cases/2/negative_cases/25/negative_class_assignment",
+        "/cases/2/negative_cases/27/negative_class_assignment",
+        "/cases/2/negative_cases/29/negative_class_assignment"
+      ]
+    },
+    {
+      "l4_taxonomy_pointer": "/contracts/2/negative_classifications/9",
+      "existing_l9_assignment_pointers": [
+        "/cases/2/negative_cases/18/negative_class_assignment",
+        "/cases/2/negative_cases/20/negative_class_assignment",
+        "/cases/2/negative_cases/22/negative_class_assignment",
+        "/cases/2/negative_cases/24/negative_class_assignment",
+        "/cases/2/negative_cases/26/negative_class_assignment",
+        "/cases/2/negative_cases/28/negative_class_assignment",
+        "/cases/2/negative_cases/30/negative_class_assignment"
+      ]
+    },
+    {
+      "l4_taxonomy_pointer": "/contracts/2/negative_classifications/10",
+      "existing_l9_assignment_pointers": [
+        "/cases/2/negative_cases/31/negative_class_assignment",
+        "/cases/2/negative_cases/33/negative_class_assignment"
+      ]
+    },
+    {
+      "l4_taxonomy_pointer": "/contracts/2/negative_classifications/11",
+      "existing_l9_assignment_pointers": [
+        "/cases/2/negative_cases/32/negative_class_assignment"
+      ]
+    }
+  ],
+  "simple_positive_case_pointers": [
+    "/cases/0/positive_cases/0",
+    "/cases/0/positive_cases/1",
+    "/cases/0/positive_cases/2",
+    "/cases/0/positive_cases/3",
+    "/cases/0/positive_cases/4",
+    "/cases/0/positive_cases/5",
+    "/cases/0/positive_cases/6",
+    "/cases/2/positive_cases/0"
+  ],
+  "ambiguous_single_contract_negative_case_pointers": [
+    "/cases/1/negative_cases/205",
+    "/cases/2/negative_cases/40"
+  ],
+  "multi_contract_positive_residual_case_pointers": [
+    "/multi_contract_residual/positive_cases/0",
+    "/multi_contract_residual/positive_cases/1",
+    "/multi_contract_residual/positive_cases/2",
+    "/multi_contract_residual/positive_cases/3",
+    "/multi_contract_residual/positive_cases/4",
+    "/multi_contract_residual/positive_cases/5",
+    "/multi_contract_residual/positive_cases/6",
+    "/multi_contract_residual/positive_cases/7",
+    "/multi_contract_residual/positive_cases/8",
+    "/multi_contract_residual/positive_cases/9",
+    "/multi_contract_residual/positive_cases/10",
+    "/multi_contract_residual/positive_cases/11",
+    "/multi_contract_residual/positive_cases/12",
+    "/multi_contract_residual/positive_cases/13",
+    "/multi_contract_residual/positive_cases/14",
+    "/multi_contract_residual/positive_cases/15",
+    "/multi_contract_residual/positive_cases/16",
+    "/multi_contract_residual/positive_cases/17",
+    "/multi_contract_residual/positive_cases/18",
+    "/multi_contract_residual/positive_cases/19",
+    "/multi_contract_residual/positive_cases/20",
+    "/multi_contract_residual/positive_cases/21",
+    "/multi_contract_residual/positive_cases/22",
+    "/multi_contract_residual/positive_cases/23",
+    "/multi_contract_residual/positive_cases/24",
+    "/multi_contract_residual/positive_cases/25",
+    "/multi_contract_residual/positive_cases/26",
+    "/multi_contract_residual/positive_cases/27"
+  ],
+  "multi_contract_negative_residual_case_pointers": [
+    "/multi_contract_residual/negative_cases/0",
+    "/multi_contract_residual/negative_cases/1",
+    "/multi_contract_residual/negative_cases/2",
+    "/multi_contract_residual/negative_cases/3",
+    "/multi_contract_residual/negative_cases/4",
+    "/multi_contract_residual/negative_cases/5",
+    "/multi_contract_residual/negative_cases/6",
+    "/multi_contract_residual/negative_cases/7",
+    "/multi_contract_residual/negative_cases/8",
+    "/multi_contract_residual/negative_cases/9",
+    "/multi_contract_residual/negative_cases/10",
+    "/multi_contract_residual/negative_cases/11",
+    "/multi_contract_residual/negative_cases/12",
+    "/multi_contract_residual/negative_cases/13",
+    "/multi_contract_residual/negative_cases/14",
+    "/multi_contract_residual/negative_cases/15",
+    "/multi_contract_residual/negative_cases/16",
+    "/multi_contract_residual/negative_cases/17",
+    "/multi_contract_residual/negative_cases/18",
+    "/multi_contract_residual/negative_cases/19",
+    "/multi_contract_residual/negative_cases/20",
+    "/multi_contract_residual/negative_cases/21",
+    "/multi_contract_residual/negative_cases/22",
+    "/multi_contract_residual/negative_cases/23",
+    "/multi_contract_residual/negative_cases/24",
+    "/multi_contract_residual/negative_cases/25",
+    "/multi_contract_residual/negative_cases/26",
+    "/multi_contract_residual/negative_cases/27",
+    "/multi_contract_residual/negative_cases/28",
+    "/multi_contract_residual/negative_cases/29",
+    "/multi_contract_residual/negative_cases/30",
+    "/multi_contract_residual/negative_cases/31",
+    "/multi_contract_residual/negative_cases/32",
+    "/multi_contract_residual/negative_cases/33",
+    "/multi_contract_residual/negative_cases/34",
+    "/multi_contract_residual/negative_cases/35",
+    "/multi_contract_residual/negative_cases/36",
+    "/multi_contract_residual/negative_cases/37",
+    "/multi_contract_residual/negative_cases/38",
+    "/multi_contract_residual/negative_cases/39",
+    "/multi_contract_residual/negative_cases/40",
+    "/multi_contract_residual/negative_cases/41",
+    "/multi_contract_residual/negative_cases/42"
+  ],
+  "assignment_basis": "Existing L9 negative_class_assignment records only. Ambiguous and multi-contract cases remain outside all class membership. This candidate is not a canonical membership source."
+}
