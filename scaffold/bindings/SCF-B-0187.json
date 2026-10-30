@@ -1,0 +1,112 @@
+{
+  "schema_revision": 1,
+  "id": "SCF-B-0187",
+  "kind": "scaffold",
+  "title": "WR217 OS007 R01 comparison-after pointer audit candidate",
+  "product": "HELIX-OS",
+  "owner_candidate": "HELIX-OS L4 OS007 log-feedback-memory-lineage design owner",
+  "state": "registered",
+  "reason": "WR217 R01 string/bool actual-context pointer ambiguityについて、WR213 pilotの両pointer解釈と今回candidateの不明側pointer解釈の差、比較後の選択理由、L4/L5/L7/L8/L9 source照合、旧source/failure referenceを記録する候補。既存要求・expected・実動作を変えず、設計候補と残件を可視化する。",
+  "upstream": [
+    {
+      "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+      "sha256": "e86254a35b476ed71ebb112e41ccd2b48f89a8d0393e6495dc11cac7a7cf4e02",
+      "note": "OS007 L3-F01 current comparison bytes; authority source remains approved revision 7f1719f."
+    },
+    {
+      "path": "docs/helix-os/L10-verification/functional-verification.json",
+      "sha256": "583020f951672e48bc37fcd35cb916de5ccd9866f41dd04731f6519325ae500a",
+      "note": "OS007 L10-F01 current comparison bytes; authority source remains approved revision 7f1719f."
+    },
+    {
+      "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
+      "sha256": "4b1eea9beaa7a4179dec374e8c914632dbef850c25f88bdc619a3b5808f7a2fb",
+      "note": "Current branch L4 candidate after R01 prose clarification; baseline SHA-256 21b922d90061b11378054d9173db4f24b774fdf30f2555e9821f25138cb3c4e3 at approved source lineage."
+    },
+    {
+      "path": "docs/helix-os/L5-detail-design/log-feedback-memory-lineage.json",
+      "sha256": "17cc4b4a400ccebf68902b6befaea682b2c81287a202113709a41e0fec28c200",
+      "note": "Expected codes/provenance pointers only; no edits."
+    },
+    {
+      "path": "docs/helix-os/L7-function-verification/log-feedback-memory-lineage.json",
+      "sha256": "5a38e644013f755769b8cda433c871bbac6bdd3b652019b548072e5acff03e78",
+      "note": "Selected expected material pointers only; not an independent oracle."
+    },
+    {
+      "path": "docs/helix-os/L8-unit-verification/log-feedback-memory-lineage.json",
+      "sha256": "0c20492e0ee7eb92c50053a67fadacd782259c64802e3a338a1f9435d7727516",
+      "note": "Selected expected code/pointer references only; no edits."
+    },
+    {
+      "path": "docs/helix-os/L9-integration-verification/log-feedback-memory-lineage.json",
+      "sha256": "a58d53077ca0d3a43d06886a82226ea952946be375648b936af2099cfeaac801",
+      "note": "Selected expected code/pointer references only; no edits."
+    }
+  ],
+  "role": "OS007 R01のunknown/conflict pointer配置をsource意味と既存expectedに照合する監査材料を保全する。",
+  "obligations": [
+    "承認済みL3/L10 OS007 F01の意味を保持し、要求を追加・変更しない。",
+    "比較前固定artifactのbytesとSHA-256を保全し、比較後の発見を別記する。",
+    "WR213 pilotのpointer解釈と今回candidateの差、および比較後に記録した選択理由を区別して記録し、pilot/candidate bytesを変更しない。",
+    "L4 R01散文の候補明確化をactual/context operand自身のpointer規則として提示し、既存expectedへ値合わせしない。",
+    "R02/R03/R07とL5/L7/L8/L9の一致・不足・差異を必要最小のpointerで記録する。",
+    "旧sourceの意味再導出と失敗記録を分け、新gate・実装・実行・完了証拠を生成しない。"
+  ],
+  "connections": {
+    "consumers": [
+      "WR217 OS007 R01 comparison-after review and prospective PR preparation"
+    ],
+    "dependencies": [
+      "Approved HELIXOS-L3-007-F01 and HELIXOS-L10-007-F01 at revision 7f1719fb6a89837c1bb9775faa9a634a066df4a3",
+      "WR213 pilot recorded at Issue #3510 comment 6530663198; artifact SHA-256 8cb4af88feb7c4e91e0acdc5dd1d299ef2de3094141f0f8515af2de33ca9a1fc",
+      "L4/L5/L7/L8/L9 log-feedback-memory-lineage JSON at pinned comparison HEAD",
+      "Pre-comparison candidate artifact SHA-256 622b92a532c9ca316b3ad58f32df42870b43437ba573ea7e039c64af5684f767"
+    ],
+    "boundary": "Source-only static audit and candidate prose. No requirement change, expected-value editing, algorithm execution, implementation, runtime/test/CI, approval, or gate."
+  },
+  "operations": {
+    "allowed": [
+      "Read pinned source rows and selected expected pointers only",
+      "Preserve and hash-verify the fixed pre-comparison artifact",
+      "Static JSON/binding syntax and current scaffold validation"
+    ],
+    "forbidden": [
+      "Execute L4/L5 algorithms or old HELIX runtime/test/CI",
+      "Edit L3/L10, L5/L7/L8/L9 expected values, or promote candidate to approved design",
+      "Create a new gate, runtime, test, CI, approval, or completion claim"
+    ]
+  },
+  "artifacts": [
+    "scaffold/research/wr217-r01-comparison-audit-20261031/README.md",
+    "scaffold/research/wr217-r01-comparison-audit-20261031/r01-blind.json"
+  ],
+  "verification": {
+    "evidence_kind": "scaffold",
+    "scope": [
+      "source_revision_stale",
+      "negative_case",
+      "forbidden_write_scope"
+    ],
+    "oracles": [
+      "Approved OS007 L3/L10 F01 source row meaning",
+      "Pinned L4 R01/R02/R03/R07 prose; L5/L7/L8/L9 expected pointers; selected L7 raw input operands at the pinned fixture pointers",
+      "SHA-256 equality for the immutable pre-comparison candidate artifact"
+    ],
+    "negative_cases": [
+      "Do not interpret unknown as successful or silently complete it.",
+      "Do not infer successful completion or rewrite expected values from the pointer comparison.",
+      "Do not use L7 expected materials as independent oracle or mutate existing expected values.",
+      "Do not use L7 expected values as the rationale for choosing the unknown-side-only pointer candidate.",
+      "Do not execute L4/L5 algorithms or legacy runtime/test/CI."
+    ]
+  },
+  "replacement": {
+    "role_target": "正式なHELIX-OS L4/L9 OS007 diagnostic pointer contract and its authorized pair audit record",
+    "formal_artifacts": [],
+    "issue": 1866,
+    "status": "pending"
+  },
+  "created": "2026-10-31",
+  "updated": "2026-10-31"
+}

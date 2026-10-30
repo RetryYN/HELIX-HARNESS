@@ -1,0 +1,79 @@
+{
+  "purpose": "WR217 R01 comparison-before blind source-only candidate",
+  "classification": "candidate_design_choice_only",
+  "authority_effect": "none",
+  "execution_status": "not_executed",
+  "source_revisions": {
+    "l3_l10": "7f1719fb6a89837c1bb9775faa9a634a066df4a3",
+    "l4": "51ebe7e7e563cdc85607f72fdc234e1c7f665a70"
+  },
+  "source_sha256": {
+    "docs/helix-os/L3-requirements/functional-requirements.json": "b62571c3e939f8bb79b46b5612e78d461ab406ffb51c161c51e9ef7bbcfc27df",
+    "docs/helix-os/L10-verification/functional-verification.json": "f006230a825139211be6277abaa5731f3c9f4a17198a4d20b370469f8a5c46ec",
+    "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json": "21b922d90061b11378054d9173db4f24b774fdf30f2555e9821f25138cb3c4e3"
+  },
+  "selected_rows": {
+    "l3": "HELIXOS-L3-007-F01; requirements[21]",
+    "l10": "HELIXOS-L10-007-F01; cases[21]"
+  },
+  "source_basis": {
+    "l3_obligation": "Worker・判断・操作・検証の原ログと証拠を共通形式で保存し、対象project/要求revisionとsourceへ結ぶ。欠落/重複/staleおよび共通形式不足で他機構へ結べない記録を成功証拠から分ける。",
+    "l10_observation": "出典/revisionと共通項目を辿れ、不完全な記録と成功証拠を区別する。",
+    "l10_failure_observation": "不足形式・参照・発生元と未完を保持し、証拠の存在で承認/完了にしない。",
+    "l4_r01_source_wording": "stringはactual/context各々が非空stringか検査。片側不明は各pointerにfield_unknown、両側knownで相違はactual pointerにfield_conflict。boolはtypeがboolか検査し、非boolは各pointerにboolean_unknown、両側boolで相違ならactual pointerにboolean_conflict。比較codeは呼出元のlogs/feedback/memory facetに入れる。"
+  },
+  "candidate_clarification": {
+    "applies_to": "各string actual/context operandと各bool actual/context operandを個別に型・存在検査した後の比較",
+    "unknown_cases": [
+      {
+        "condition": "actualが欠落、null、またはstring比較対象として非空stringでない（boolではtypeがboolでない）一方、contextはknown",
+        "pointer_target": "actualの当該field pointerだけ",
+        "diagnostic": "string=field_unknown; bool=boolean_unknown"
+      },
+      {
+        "condition": "contextが欠落、null、または比較対象型でない一方、actualはknown",
+        "pointer_target": "contextの当該field pointerだけ",
+        "diagnostic": "string=field_unknown; bool=boolean_unknown"
+      },
+      {
+        "condition": "actualとcontextがともに欠落または比較対象型でない",
+        "pointer_target": "actualとcontextの各当該field pointerに別々に付与",
+        "diagnostic": "string=field_unknownを各pointer; bool=boolean_unknownを各pointer"
+      }
+    ],
+    "known_unequal_cases": [
+      {
+        "condition": "actualとcontextがともにknown stringで値が異なる",
+        "pointer_target": "actualの当該field pointerだけ",
+        "diagnostic": "field_conflict"
+      },
+      {
+        "condition": "actualとcontextがともにboolで値が異なる",
+        "pointer_target": "actualの当該field pointerだけ",
+        "diagnostic": "boolean_conflict"
+      }
+    ],
+    "pointer_allowlist": "診断は比較対象のactual/context field pointerに限る。unknownはunknownであるoperand自身のpointer、known unequal conflictはactual operandのpointerを指す。比較codeの格納facetは呼出元のlogs/feedback/memoryに限る。具体的なJSON Pointerの綴り・field pathはこのsource範囲では未確定。",
+    "non_effect": "unknown/conflictを成功証拠へ昇格させず、欠落を黙示補完しない。これはL3/L10の意味を保つための候補設計で、承認・実動作・実装を意味しない。"
+  },
+  "r02_r03_r07_alignment_and_open_items": {
+    "R02": {
+      "alignment": "unknown状態をunknown codeで保持し、known kind/stateの相違をactual側の問題として扱う部分はR01候補と整合する。原recordを捨てない点もL3/L10の保持意図に沿う。",
+      "open": "R02はfixture-kind不一致に両側pointerのlog_kind_conflict、actual/context known kind差にfield_conflictとだけ記す。後者のpointer配置は明示されず、R01候補のactual-onlyを同語形へ適用するかは未確定。state差はactual log_state_conflictと明示。"
+    },
+    "R03": {
+      "alignment": "actual success_evidence_claimの非boolをboolean_unknownとする型判定は、R01のbool unknown codeと同じ語形。材料usableを正式成功と分ける点は成功証拠を勝手に成立させない。",
+      "open": "非bool時のpointer配置がrule文にない。R01候補のoperand自身pointerを採る場合、actual claim field pointerになるが、本source-only提案ではR03本文を改訂したとは扱わない。"
+    },
+    "R07": {
+      "alignment": "resolution_material_correspondingの成立条件を限定しactual_resolvedは常にfalseとするため、材料対応から解決・完了を生成しない。R01のunknown/conflictを成功にしない候補と矛盾しない。",
+      "open": "resolution.recordedが欠落または非boolのときのunknown code/pointerと、false・未解決の分類はrule文に明示されない。R01のboolean_unknownを適用するかは未確定。"
+    }
+  },
+  "evidence_scope": {
+    "read": "プロジェクトAGENTS.md/CLAUDE.md、指定入口、Concept、七大原則、JSON正本方針、3つの指定seed、承認済みrevisionのL3/L10対象row、指定L4 fileの指定散文フィールドのみ。",
+    "not_read_or_used": "L5/L7/L8/L9、Issue/PR、既存expectation、L4 embedded algorithm本文。旧runtime/test/CIを実行せず、L4 algorithmを実行していない。",
+    "prohibited_information_exposure": "なし。許可外sourceの内容は参照・推論に使っていない。"
+  },
+  "unresolved": "actual/context fieldの具体的なJSON Pointer pathとR02/R03/R07への同語形の一括適用可否は、指定sourceだけでは決められない。候補として明示し、人の承認や実動作と混同しない。"
+}
