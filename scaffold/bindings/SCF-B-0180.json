@@ -9,19 +9,29 @@
   "reason": "L8に置かれていた3×16 rootの手導出監査ログを、QA §3 L8の期待/ケース範囲から分離し、source-only research auditとして保持する。L8 formal expectations、L7 raw、L3/L10/L4意味は変更せず、unknownはunknownのまま記録する。",
   "upstream": [
     {
+      "path": "docs/helix-os/L10-verification/business-verification.json",
+      "sha256": "215e1d4a99f73151aa4b3225947a65567fbc3b97bec0cf9eac8d1a6456cbc3dd",
+      "note": "OS015 B01 including upstream expected_observation."
+    },
+    {
+      "path": "docs/helix-os/L3-requirements/business-requirements.json",
+      "sha256": "0df11c612e3e0b531d2103d058471d5be2be8b8df965d10b69e06b0e506488c7",
+      "note": "OS015 B01 requirement prose."
+    },
+    {
       "path": "docs/helix-os/L3-requirements/functional-requirements.json",
       "sha256": "e86254a35b476ed71ebb112e41ccd2b48f89a8d0393e6495dc11cac7a7cf4e02",
-      "note": "OS015 F01 source prose only; no change to requirement."
+      "note": "OS015 F01–F03 requirement prose, source-only derivation."
     },
     {
       "path": "docs/helix-os/L10-verification/functional-verification.json",
       "sha256": "583020f951672e48bc37fcd35cb916de5ccd9866f41dd04731f6519325ae500a",
-      "note": "Positive/negative/failure prose only; expected_observation excluded."
+      "note": "OS015 F01–F03 including upstream expected_observation; source-only derivation."
     },
     {
       "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
       "sha256": "c468e6cd85c26a6d8fa18d44c000ce32a8e607d48ff77241e233f251ea394a81",
-      "note": "OS015 diagnostic contract prose/tables; embedded algorithm and expected columns excluded."
+      "note": "OS015 contracts and diagnostic prose/tables plus source unresolved/conflict classifications; embedded algorithm body excluded."
     },
     {
       "path": "docs/helix-os/L7-function-verification/management-authority-source-record.json",
@@ -35,20 +45,20 @@
     },
     {
       "path": "scaffold/research/wr181-os015-l5-l8-successor-20261031/manual-source-only-pilot.json",
-      "sha256": "379308b5ad488f8b60a34e01df4c697caf93551496020b5d4bfe588710287e3c",
-      "note": "Moved manual source-only pilot, including case/root pointers, statuses, and unknowns."
+      "sha256": "3e4a57cd3585331ec69c4c86ed891079a3a54399c7e2793c2e5fdf30efbe6b8e",
+      "note": "Manual source-only pilot, including case/root pointers, statuses, and post-freeze comparison scope."
     },
     {
       "path": "scaffold/research/wr181-os015-l5-l8-successor-20261031/manual-source-only-pilot.md",
-      "sha256": "7e821488e47ea402dd992f3d18baebf9c0c43a2a9fd331fbdf38cd11cdfaec65",
-      "note": "Review-summary rendering of the moved pilot; detailed root basis remains in the JSON audit record."
+      "sha256": "df747875b381d69e811e79ef15123b912be6f56e1e5f75aa0ba21ee469d2d34d",
+      "note": "Review-summary rendering; detailed root basis remains in JSON."
     }
   ],
   "role": "WR181 OS015の手導出pilotについて、固定source revision・3 cohort・16 roots・根拠pointer・未解決root・停止境界をレビュー可能なscaffold research auditとして記録する。",
   "obligations": [
     "3 cohortそれぞれの16 root source derivation/status/basis/pointerをmanual-source-only-pilot.jsonに保持する。",
     "L3/L10 prose、L4 diagnostic contract prose/tables、L7 fixed given.inputだけを導出根拠とし、L4 embedded algorithm、L5 formal_reference、既存expected valuesを導出根拠にしない。",
-    "unknown/partial_unknownを未解決のまま保持し、existing expectation comparison not_performedと全91代表の独立性未成立を明示する。",
+    "unknown/partial_unknownを未解決のまま保持し、盲検導出時は既存期待を使わず、固定後の一部比較と残り未比較、全91代表の独立性未成立を明示する。",
     "L8のformal expected rows/cases、L7、L3/L10/L4の意味、pair境界を変更しない。",
     "旧runtime/test/CIを実行せず、監査記録からauthority、formal oracle、freeze、実行結果を生成しない。",
     "各semantic_summaryはsource-levelの説明に限り、exact field value/JSON shapeの証拠へ昇格しない。返却値を特定できないrootはpartial_unknown/unknownとする。"
@@ -99,7 +109,7 @@
     ],
     "negative_cases": [
       "The three-case pilot is partial; unknown roots and source authority/qualification remain unresolved.",
-      "Expected comparison was not performed; prior expected rows are preserved and are not an oracle for derivation.",
+      "After the blind derivation was fixed, Codex compared seven scalar roots and current_source_material; the remainder was not compared. Prior expected rows are not a derivation oracle.",
       "No full 91-representative independence or freeze is claimed.",
       "target_correspondence等のsemantic_summary、またはretention方針のみを完成したserialized output valueとして扱わない。"
     ]
