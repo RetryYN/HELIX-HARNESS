@@ -2,6 +2,7 @@
 """WR186固定raw・pointer・既存case保持の静的監査。finding predicateは評価しない。"""
 from __future__ import annotations
 
+import copy
 import hashlib
 import json
 import subprocess
@@ -22,6 +23,27 @@ MANIFESTS = (
     AUDIT_DIR / "f05-audit-rows.json",
 )
 F04_MANIFEST = AUDIT_DIR / "f04-audit-rows.json"
+# WR227 records only explanatory reason-text edits for the two F03 witnesses.
+# These are not expected output values; every other case/expectation byte must
+# remain equal to both fixed audit baselines.
+F03_REASON_EDITS = {
+    "/cases/3/negative_cases/0/expected_material/reason": (
+        "由来不明は局所の成功で補完しない。",
+        "由来不明は局所の成功で補完しない。pair_result/valley_resultのsupported_synthetic_conditionは、このorigin-null合成入力条件がfixture sourceにより支持されることを示す部分証拠で、正規由来・実pair/谷成立・Provisional更新を意味しない。",
+    ),
+    "/cases/3/negative_cases/0/negative_class_assignment/reason": (
+        "originまたはtraceの必要原材料を直接除去し、pair/trace証拠欠落を期待する。",
+        "origin原材料の除去に基づく候補分類annotation。実処理結果または形成済みfinding集合を示さず、supported_synthetic_conditionもmissing分類を相殺しない。",
+    ),
+    "/cases/3/negative_cases/2/expected_material/reason": (
+        "設計trace欠落では正規局所由来を確かめられない。",
+        "設計trace欠落では正規局所由来を確かめられない。pair_result/valley_resultのsupported_synthetic_conditionは、このtrace-empty合成入力条件がfixture sourceにより支持されることを示す部分証拠で、pair/谷の実成立・Provisional更新を意味しない。",
+    ),
+    "/cases/3/negative_cases/2/negative_class_assignment/reason": (
+        "originまたはtraceの必要原材料を直接除去し、pair/trace証拠欠落を期待する。",
+        "trace原材料の除去に基づく候補分類annotation。実処理結果または形成済みfinding集合を示さず、L9 projection auditのunknown/unformedとinvalidated codeを取り消さない。",
+    ),
+}
 
 
 def git_bytes(revision: str, path: str) -> bytes:
@@ -42,6 +64,26 @@ def rows_by_id(rows):
     return result
 
 
+def put_pointer(doc, pointer: str, value) -> None:
+    tokens = [token.replace("~1", "/").replace("~0", "~") for token in pointer.strip("/").split("/")]
+    parent = doc
+    for token in tokens[:-1]:
+        parent = parent[int(token)] if isinstance(parent, list) else parent[token]
+    if isinstance(parent, list):
+        parent[int(tokens[-1])] = value
+    else:
+        parent[tokens[-1]] = value
+
+
+def assert_cases_preserved_with_reason_edits(current, historical, baseline_name: str) -> None:
+    normalized = copy.deepcopy(current)
+    for pointer, (old_value, new_value) in F03_REASON_EDITS.items():
+        assert resolve(historical, pointer) == old_value, f"{baseline_name} reason baseline changed: {pointer}"
+        assert resolve(current, pointer) == new_value, f"WR227 reason edit missing or changed: {pointer}"
+        put_pointer(normalized, pointer, old_value)
+    assert normalized["cases"] == historical["cases"], f"L9 cases differ beyond the four recorded reason edits vs {baseline_name}"
+
+
 def main() -> None:
     l9 = json.loads(L9_PATH.read_bytes())
     previous_audit_base_l9 = json.loads(git_bytes(BASE, RAW_PATH))
@@ -54,8 +96,13 @@ def main() -> None:
     l5 = json.loads((ROOT / L5_PATH).read_bytes())
     audit = l9["negative_output_projection_audit"]
 
-    assert l9["cases"] == previous_audit_base_l9["cases"], "L9 existing cases/expectations differ from prior audit baseline"
-    assert l9["cases"] == wr192_base_l9["cases"], "L9 existing cases/expectations differ from WR192 base"
+    assert_cases_preserved_with_reason_edits(l9, previous_audit_base_l9, "WR186 prior audit BASE")
+    assert_cases_preserved_with_reason_edits(l9, wr192_base_l9, "WR192 base")
+    l4_reason_edits = resolve(l4, "/contracts/3/connection_detail/partial_result_semantics/l9_reason_edits")
+    assert len(l4_reason_edits) == len(F03_REASON_EDITS) == 4
+    for edit in l4_reason_edits:
+        pointer = edit["pointer"]
+        assert (edit["original_value"], edit["new_value"]) == F03_REASON_EDITS[pointer]
     assert hashlib.sha256(raw_bytes).hexdigest() == "91d0bcd34b8b451bc8e81f5d13d0c5f413de3ad5f7c70ba90a704134c4af3735"
     assert audit["mode"] == "audit_only_no_checker_marker"
     assert audit["source_population_count"] == 182
@@ -340,7 +387,7 @@ def main() -> None:
     # The L9 audit must not acquire a scaffold dependency or a formal checker marker.
     assert "scaffold/research/wr186-psp-negative-residual/" not in json.dumps(audit)
     assert "candidate_ref" not in json.dumps(audit)
-    print("WR186/WR192 static audit: PASS; F03/F05 raw pointers=22 unknown/unformed; F04 candidate=0, unknown/unformed=7; L9 expectations unchanged; formed_classifications=0/34; target_condition_codes=7; formal_rows=0; marker=off")
+    print("WR186/WR192 static audit: PASS; F03/F05 raw pointers=22 unknown/unformed; F04 candidate=0, unknown/unformed=7; L9 output expectations unchanged; four F03 explanatory reasons matched against fixed old/new history; formed_classifications=0/34; target_condition_codes=7; formal_rows=0; marker=off")
 
 
 if __name__ == "__main__":

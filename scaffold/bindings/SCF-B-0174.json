@@ -15,8 +15,8 @@
     },
     {
       "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
-      "sha256": "eb0f43e23906d04b9554786a2574c94d01de85faa75f7fb1f33e08eb3276f464",
-      "note": "F03/F05 classesに加え、F04 classificationとartifact_state_basisのsource conditionsを固定参照。手動静的照合のみ。"
+      "sha256": "4b67f2a4b038cd0501e540ab0389a6f7364cabea4ffe83aea3cc731cb44b14e4",
+      "note": "F03/F05 classesに加え、F04 classificationとartifact_state_basisのsource conditionsを固定参照。手動静的照合のみ。 Historical fixed source: revision d8ce18426a549b9e28f64b5bec4c81f202e74183, SHA-256 eb0f43e23906d04b9554786a2574c94d01de85faa75f7fb1f33e08eb3276f464. Current digest refreshed to 4b67f2a4b038cd0501e540ab0389a6f7364cabea4ffe83aea3cc731cb44b14e4 for stale detection only; fixed comparison/audit remains tied to the historical revision and its frozen evidence. Existing case population, expected values, projection rows, markers and freeze are preserved; this source refresh records only the L4 prose addition and L9 explanatory reason edits."
     },
     {
       "path": "docs/helix-harness/L5-detail-design/process-state-port.json",
@@ -25,8 +25,8 @@
     },
     {
       "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
-      "sha256": "ccac38abfa3a204fdd1b5c325b67835e13957914f5a8f239e87efe55d190dff5",
-      "note": "L9監査記録と既存182-case population/expectations。固定raw input snapshotはed3981e7b9419d796adf1981f8990c6b626ecabe。F03/F05 22件とF04全7件はunknown/unformed監査行、候補0。従来R1 revisionのhash 25a850073b17f9a086c94d2fcb15f144578abe8937e0f26e2669c79805c77650 は1 candidate/6 unknown記録を指し、本revisionではR2 M1後にcandidateを撤回。正式期待とケース母集団は不変。"
+      "sha256": "60942b72d432a79e72b03ab42a616e264b442bfc60b5d53e3aeb54f9c84a847e",
+      "note": "L9監査記録と既存182-case population/expectations。固定raw input snapshotはed3981e7b9419d796adf1981f8990c6b626ecabe。F03/F05 22件とF04全7件はunknown/unformed監査行、候補0。従来R1 revisionのhash 25a850073b17f9a086c94d2fcb15f144578abe8937e0f26e2669c79805c77650 は1 candidate/6 unknown記録を指し、本revisionではR2 M1後にcandidateを撤回。正式な期待出力値とケース母集団は不変。WR227のF03 explanatory reason 4箇所だけはWR186/WR192 fixed baselineの旧値→新値をvalidatorで照合。 Historical fixed source: revision d8ce18426a549b9e28f64b5bec4c81f202e74183, SHA-256 ccac38abfa3a204fdd1b5c325b67835e13957914f5a8f239e87efe55d190dff5. Current digest refreshed to 60942b72d432a79e72b03ab42a616e264b442bfc60b5d53e3aeb54f9c84a847e for stale detection only; fixed comparison/audit remains tied to the historical revision and its frozen evidence. Existing expected output values, case population, projection rows, markers and freeze are preserved; only four explanatory F03 reason fields differ and the validator checks their explicit old/new values against both fixed baselines."
     }
   ],
   "role": "HARNESS L4/L9 design_verification pair向けに、process-state-portのF03/F04/F05入力条件、raw出典、候補の有無を監査する。",
@@ -89,14 +89,16 @@
       "python3 -B scaffold/tools/scfctl.py validate",
       "python3 -B scaffold/tools/scfctl.py stale",
       "git diff --check",
-      "scaffold/research/wr186-psp-negative-residual/independent-manual-review.md"
+      "scaffold/research/wr186-psp-negative-residual/independent-manual-review.md",
+      "SHA-256 of scaffold/research/wr186-psp-negative-residual/validate_l9.py equals 876fe18ee61de21806e4ec37d21a59e2da48042e91e21564a23bea15a7104c9a; validator checks the exact four explanatory reason old/new deltas and full case equality after normalizing only those pointers."
     ],
     "negative_cases": [
       "F03 14件とF05 8件はfinding set unknown/unformedであり、空集合やformal outputと扱わない。",
       "182-case populationと既存期待は不変、formal row・checker markerを追加しない。",
       "従来の22候補は要件追加条件を裏付けるraw観測がなく撤回し、履歴上の主張と混同しない。",
       "既存negative checker残余223 FAILとfreeze状態は監査候補と分けて記録する。",
-      "F04全7件はfinding set unknown/unformed、候補0。state_basis参照の未解決を発火へ変換せず、正式期待・182件母集団・formal row・checker marker不変。"
+      "F04全7件はfinding set unknown/unformed、候補0。state_basis参照の未解決を発火へ変換せず、正式期待・182件母集団・formal row・checker marker不変。",
+      "Only the four recorded F03 explanatory reason fields differ from fixed WR186/WR192 bases; all other L9 cases and expected output values remain identical."
     ]
   },
   "replacement": {

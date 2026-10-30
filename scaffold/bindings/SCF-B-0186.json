@@ -20,8 +20,8 @@
     },
     {
       "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
-      "sha256": "eb0f43e23906d04b9554786a2574c94d01de85faa75f7fb1f33e08eb3276f464",
-      "note": "main 51ebe7e7e563cdc85607f72fdc234e1c7f665a70時点。F03 class/axis/state/owner taxonomyの比較後参照。witness expectedとの一致を意味しない。"
+      "sha256": "4b67f2a4b038cd0501e540ab0389a6f7364cabea4ffe83aea3cc731cb44b14e4",
+      "note": "main 51ebe7e7e563cdc85607f72fdc234e1c7f665a70時点。F03 class/axis/state/owner taxonomyの比較後参照。witness expectedとの一致を意味しない。 Historical fixed source: revision 51ebe7e7e563cdc85607f72fdc234e1c7f665a70, SHA-256 eb0f43e23906d04b9554786a2574c94d01de85faa75f7fb1f33e08eb3276f464. Current digest refreshed to 4b67f2a4b038cd0501e540ab0389a6f7364cabea4ffe83aea3cc731cb44b14e4 for stale detection only; fixed comparison/audit remains tied to the historical revision and its frozen evidence. The source-only artifact and comparison-after record remain immutable; L8/L9 expected values, mutation and case identity remain unchanged."
     },
     {
       "path": "docs/helix-harness/L5-detail-design/process-state-port.json",
@@ -35,8 +35,8 @@
     },
     {
       "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
-      "sha256": "ccac38abfa3a204fdd1b5c325b67835e13957914f5a8f239e87efe55d190dff5",
-      "note": "main 51ebe7e7e563cdc85607f72fdc234e1c7f665a70時点。F03 negative case 0/2だけを比較後参照。"
+      "sha256": "60942b72d432a79e72b03ab42a616e264b442bfc60b5d53e3aeb54f9c84a847e",
+      "note": "main 51ebe7e7e563cdc85607f72fdc234e1c7f665a70時点。F03 negative case 0/2だけを比較後参照。 Historical fixed source: revision 51ebe7e7e563cdc85607f72fdc234e1c7f665a70, SHA-256 ccac38abfa3a204fdd1b5c325b67835e13957914f5a8f239e87efe55d190dff5. Current digest refreshed to 60942b72d432a79e72b03ab42a616e264b442bfc60b5d53e3aeb54f9c84a847e for stale detection only; fixed comparison/audit remains tied to the historical revision and its frozen evidence. The source-only artifact and comparison-after record remain immutable; L8/L9 expected values, mutation and case identity remain unchanged."
     }
   ],
   "role": "固定source-only導出と既存L5/L8/L9期待の比較順序を、2 witnessの別理由・既存class assignmentとexpected gap・個別trigger/ticket候補を保って監査可能にする。",

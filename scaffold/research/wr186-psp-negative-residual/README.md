@@ -48,3 +48,9 @@ python3 -B scaffold/tools/scfctl.py stale
 ```
 
 `validate_l9.py` は基準revisionのcase/expectation不変、固定raw bytesのhash、pointer解決、L9 mutation参照、F04の0 candidate/7 unknown-unformed分類、同形state_basis参照のL4/L5 pointerを静的照合する。L4/L5 predicateをコード化・実行せず、findingを算出しない。
+
+## WR227の説明reason差分と検証境界
+
+WR227は、F03のorigin-null / trace-empty witnessで `expected_material.reason` と `negative_class_assignment.reason` の計4箇所だけを説明補足した。固定監査base `ca4bd911142cc17789366ae6f9f1f0fee8c7c589` およびWR192 base `62d7db6aa076d81c1b1f1fd584adeacf76c2f815` のreason原文と現行reasonの対応は `validate_l9.py` の `F03_REASON_EDITS` に明示する。validatorは現行L9を4箇所だけ旧値へ正規化して両baseの全 `cases` と比較し、他のcase内容・expected output・mutation・assignment分類が一致することを検査する。さらにL4 `/contracts/3/connection_detail/partial_result_semantics/l9_reason_edits` の旧値・新値記録とも照合する。
+
+この差分は説明reasonに限り、期待するpair/valley・dimension・effect値、分類値、case母集団、mutation、projection audit、checker marker、freezeを変えない。旧raw snapshotと過去のL4/L9 source比較は固定revision・SHAを保持する。L4/L5 predicateは実行しない。
