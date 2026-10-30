@@ -1,0 +1,2995 @@
+{
+  "work_item": "WR242-H053",
+  "artifact_version": 2,
+  "mode": "independent_source_only_derivation",
+  "source_revision": "dd07a3498be74f32519adf42a221caf51e547ea1",
+  "scope": {
+    "included": [
+      "HARNESS-L2-053 L3 functional/business requirements",
+      "matching L10 functional/business cases",
+      "L4 semantic-asset-lineage prose at enumerated pointers",
+      "QA §3 six-field key"
+    ],
+    "excluded_without_inspection": [
+      "L4 failure_classifications rows",
+      "all L5 documents",
+      "all L8 documents",
+      "all L9 documents"
+    ],
+    "leaf_inventory_scope": "All individual L3/L10 053 obligation/case leaves and all L4 architecture/contract prose leaves used as evidence for the provisional failure meanings below; no claim to inventory unrelated JSON fields."
+  },
+  "qa_key_definition": {
+    "source": {
+      "path": "docs/governance/design-verification-quality-assurance.md",
+      "revision": "dd07a3498be74f32519adf42a221caf51e547ea1",
+      "pointer": "§3 opening paragraph",
+      "content_revision_sha256": "f5751e236dc073fe67114c1fcb4b0f64b3d746290b25d75b61e60a08e3c99c85",
+      "git_revision": "dd07a3498be74f32519adf42a221caf51e547ea1"
+    },
+    "ordered_fields": [
+      "classification_code",
+      "finding_codes_ordered",
+      "backflow_owner",
+      "expected_axis",
+      "expected_state",
+      "owner_ref_typed"
+    ],
+    "deduplication_rule": "Source leaf identity is (source revision, repository path, JSON Pointer). Keep every such leaf once in source_leaf_inventory and attach all provisional candidate references. Repeated meaning text at different pointers remains separate leaves and is recorded as a repeated reference. Candidate grouping never establishes key equality. A six-field class can be asserted only when all six scalar/typed fields are evidenced; otherwise its key is unresolved."
+  },
+  "source_hashes": {
+    "l3f": "a3b907cdc316117d4684632f9a1cbf36125eb6e6172f9cfc286060617583d7be",
+    "l3b": "25e0e8f8ee8acbc220483ab6854155218193861086cf757f933e2cd6263f444d",
+    "l10f": "fc58ad2268746d7924ac9be33e8f3f75e6d3c2cc619e27fbc1ddc34edd065cb2",
+    "l10b": "3a9982ef2e59e3d027ce8e5cd72b9879b6224a8e4ea74b657bf9b67c90934319",
+    "l4": "99621490097336317e2787d831cf94c761cdd39b04c696af8144c442748cf929",
+    "qa": "f5751e236dc073fe67114c1fcb4b0f64b3d746290b25d75b61e60a08e3c99c85"
+  },
+  "source_leaf_inventory": [
+    {
+      "leaf_id": "H053-SRC-001",
+      "source": {
+        "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+        "revision": "dd07a3498be74f32519adf42a221caf51e547ea1",
+        "pointer": "/requirements/19",
+        "value_sha256": "be149118d5d887809ec2f4aafe59a25a09159ddea0e4607875d1dc047cf55460",
+        "content_revision": {
+          "document_content_revision": "a2cc3defcee5a229145c89217af30c7d20da998f",
+          "content_revision_field": "/source_revision",
+          "additional_declared_content_revision": "85103aa71e12d48da3b3eabd6020ef1fc22aa902",
+          "additional_field": "/base_l3_l10_content_revision"
+        }
+      },
+      "failure_meaning_evidence": "HARNESS-L3-053-F01: immutable asset ID; path/name changes cannot establish identity, semantic change, or authority transfer.",
+      "provisional_axis": "identity",
+      "provisional_state": "unknown",
+      "candidate_groups": [
+        "C01",
+        "C02"
+      ],
+      "finding_deduplication": {
+        "canonical_destination": "H053-SRC-001",
+        "source_leaf_identity": [
+          "source.revision",
+          "source.path",
+          "source.pointer"
+        ],
+        "candidate_finding_code": "unknown",
+        "atomization": "unknown_if_leaf_contains_multiple_independent_negative_inputs",
+        "same_leaf_reuse_rule": "Record this source leaf once. Any one-to-many effect on other facets is listed below and does not create another source-origin finding. This is a provisional source attribution, not an assertion of a single semantic finding."
+      },
+      "facet_analysis": {
+        "primary_facet_candidates": "identity",
+        "propagation_facets": [
+          "semantic_revision",
+          "location_history",
+          "authority_mapping"
+        ],
+        "local_state_by_facet": {
+          "identity": {
+            "expected_local_state": "unknown",
+            "determinacy": "not_uniquely_determined_from_this_leaf",
+            "basis": "This leaf states an obligation or bundles alternatives; the permitted text does not select one QA state for this facet."
+          },
+          "semantic_revision": {
+            "expected_local_state": "unknown",
+            "determinacy": "not_uniquely_determined_from_this_leaf",
+            "basis": "This leaf states an obligation or bundles alternatives; the permitted text does not select one QA state for this facet."
+          },
+          "location_history": {
+            "expected_local_state": "unknown",
+            "determinacy": "not_uniquely_determined_from_this_leaf",
+            "basis": "This leaf states an obligation or bundles alternatives; the permitted text does not select one QA state for this facet."
+          },
+          "authority_mapping": {
+            "expected_local_state": "unknown",
+            "determinacy": "not_uniquely_determined_from_this_leaf",
+            "basis": "This leaf states an obligation or bundles alternatives; the permitted text does not select one QA state for this facet."
+          }
+        },
+        "primary_attribution_determinate": true
+      }
+    },
+    {
+      "leaf_id": "H053-SRC-002",
+      "source": {
+        "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+        "revision": "dd07a3498be74f32519adf42a221caf51e547ea1",
+        "pointer": "/requirements/20",
+        "value_sha256": "530b7938c89c249a3f1c92679fe1d81aba6ee5d23a626f01fd74896f7c65ab16",
+        "content_revision": {
+          "document_content_revision": "a2cc3defcee5a229145c89217af30c7d20da998f",
+          "content_revision_field": "/source_revision",
+          "additional_declared_content_revision": "85103aa71e12d48da3b3eabd6020ef1fc22aa902",
+          "additional_field": "/base_l3_l10_content_revision"
+        }
+      },
+      "failure_meaning_evidence": "HARNESS-L3-053-F02: distinguish same-identity semantic revisions and impact from location/name-only changes.",
+      "provisional_axis": "semantic_revision",
+      "provisional_state": "unknown",
+      "candidate_groups": [
+        "C03",
+        "C04"
+      ],
+      "finding_deduplication": {
+        "canonical_destination": "H053-SRC-002",
+        "source_leaf_identity": [
+          "source.revision",
+          "source.path",
+          "source.pointer"
+        ],
+        "candidate_finding_code": "unknown",
+        "atomization": "unknown_if_leaf_contains_multiple_independent_negative_inputs",
+        "same_leaf_reuse_rule": "Record this source leaf once. Any one-to-many effect on other facets is listed below and does not create another source-origin finding. This is a provisional source attribution, not an assertion of a single semantic finding."
+      },
+      "facet_analysis": {
+        "primary_facet_candidates": "semantic_revision",
+        "propagation_facets": [
+          "location_history",
+          "oracle_mapping",
+          "typed_edge_mapping"
+        ],
+        "local_state_by_facet": {
+          "semantic_revision": {
+            "expected_local_state": "unknown",
+            "determinacy": "not_uniquely_determined_from_this_leaf",
+            "basis": "This leaf states an obligation or bundles alternatives; the permitted text does not select one QA state for this facet."
+          },
+          "location_history": {
+            "expected_local_state": "unknown",
+            "determinacy": "not_uniquely_determined_from_this_leaf",
+            "basis": "This leaf states an obligation or bundles alternatives; the permitted text does not select one QA state for this facet."
+          },
+          "oracle_mapping": {
+            "expected_local_state": "unknown",
+            "determinacy": "not_uniquely_determined_from_this_leaf",
+            "basis": "This leaf states an obligation or bundles alternatives; the permitted text does not select one QA state for this facet."
+          },
+          "typed_edge_mapping": {
+            "expected_local_state": "unknown",
+            "determinacy": "not_uniquely_determined_from_this_leaf",
+            "basis": "This leaf states an obligation or bundles alternatives; the permitted text does not select one QA state for this facet."
+          }
+        },
+        "primary_attribution_determinate": true
+      }
+    },
+    {
+      "leaf_id": "H053-SRC-003",
+      "source": {
+        "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+        "revision": "dd07a3498be74f32519adf42a221caf51e547ea1",
+        "pointer": "/requirements/21",
+        "value_sha256": "893d62f0a14ab3c3b8f575acc27c9325aca8ffa2e66ca97ebc2edc3f527e6963",
+        "content_revision": {
+          "document_content_revision": "a2cc3defcee5a229145c89217af30c7d20da998f",
+          "content_revision_field": "/source_revision",
+          "additional_declared_content_revision": "85103aa71e12d48da3b3eabd6020ef1fc22aa902",
+          "additional_field": "/base_l3_l10_content_revision"
+        }
+      },
+      "failure_meaning_evidence": "HARNESS-L3-053-F03: map supplied rename/move and split/merge/supersede relations to endpoints, revisions, history, authority, oracle, typed edge; do not issue transformation.",
+      "provisional_axis": "unknown",
+      "provisional_state": "unknown",
+      "candidate_groups": [
+        "C05",
+        "C06",
+        "C07",
+        "C08",
+        "C09"
+      ],
+      "finding_deduplication": {
+        "canonical_destination": "H053-SRC-003",
+        "source_leaf_identity": [
+          "source.revision",
+          "source.path",
+          "source.pointer"
+        ],
+        "candidate_finding_code": "unknown",
+        "atomization": "unknown_if_leaf_contains_multiple_independent_negative_inputs",
+        "same_leaf_reuse_rule": "Record this source leaf once. Any one-to-many effect on other facets is listed below and does not create another source-origin finding. This is a provisional source attribution, not an assertion of a single semantic finding."
+      },
+      "facet_analysis": {
+        "primary_facet_candidates": [
+          "lineage_relation",
+          "authority_mapping",
+          "oracle_mapping",
+          "typed_edge_mapping"
+        ],
+        "propagation_facets": [
+          "history_mapping",
+          "authority_mapping",
+          "oracle_mapping",
+          "typed_edge_mapping",
+          "identity",
+          "semantic_revision",
+          "location_history"
+        ],
+        "local_state_by_facet": {
+          "identity": {
+            "expected_local_state": "unknown",
+            "determinacy": "not_uniquely_determined_from_this_leaf",
+            "basis": "This leaf states an obligation or bundles alternatives; the permitted text does not select one QA state for this facet."
+          },
+          "semantic_revision": {
+            "expected_local_state": "unknown",
+            "determinacy": "not_uniquely_determined_from_this_leaf",
+            "basis": "This leaf states an obligation or bundles alternatives; the permitted text does not select one QA state for this facet."
+          },
+          "location_history": {
+            "expected_local_state": "unknown",
+            "determinacy": "not_uniquely_determined_from_this_leaf",
+            "basis": "This leaf states an obligation or bundles alternatives; the permitted text does not select one QA state for this facet."
+          },
+          "lineage_relation": {
+            "expected_local_state": "unknown",
+            "determinacy": "not_uniquely_determined_from_this_leaf",
+            "basis": "This leaf states an obligation or bundles alternatives; the permitted text does not select one QA state for this facet."
+          },
+          "history_mapping": {
+            "expected_local_state": "unknown",
+            "determinacy": "not_uniquely_determined_from_this_leaf",
+            "basis": "This leaf states an obligation or bundles alternatives; the permitted text does not select one QA state for this facet."
+          },
+          "authority_mapping": {
+            "expected_local_state": "unknown",
+            "determinacy": "not_uniquely_determined_from_this_leaf",
+            "basis": "This leaf states an obligation or bundles alternatives; the permitted text does not select one QA state for this facet."
+          },
+          "oracle_mapping": {
+            "expected_local_state": "unknown",
+            "determinacy": "not_uniquely_determined_from_this_leaf",
+            "basis": "This leaf states an obligation or bundles alternatives; the permitted text does not select one QA state for this facet."
+          },
+          "typed_edge_mapping": {
+            "expected_local_state": "unknown",
+            "determinacy": "not_uniquely_determined_from_this_leaf",
+            "basis": "This leaf states an obligation or bundles alternatives; the permitted text does not select one QA state for this facet."
+          }
+        },
+        "primary_attribution_determinate": false
+      }
+    },
+    {
+      "leaf_id": "H053-SRC-004",
+      "source": {
+        "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+        "revision": "dd07a3498be74f32519adf42a221caf51e547ea1",
+        "pointer": "/requirements/22",
+        "value_sha256": "c2ca8b0921212969dbb572fac15f261237031735186a611c8f627c946fc34361",
+        "content_revision": {
+          "document_content_revision": "a2cc3defcee5a229145c89217af30c7d20da998f",
+          "content_revision_field": "/source_revision",
+          "additional_declared_content_revision": "85103aa71e12d48da3b3eabd6020ef1fc22aa902",
+          "additional_field": "/base_l3_l10_content_revision"
+        }
+      },
+      "failure_meaning_evidence": "HARNESS-L3-053-F04: missing/unclear authority, acceptance oracle, or typed edge remains unknown/unsatisfied; other evidence cannot compensate.",
+      "provisional_axis": "unknown",
+      "provisional_state": "unknown",
+      "candidate_groups": [
+        "C07",
+        "C08",
+        "C09"
+      ],
+      "finding_deduplication": {
+        "canonical_destination": "H053-SRC-004",
+        "source_leaf_identity": [
+          "source.revision",
+          "source.path",
+          "source.pointer"
+        ],
+        "candidate_finding_code": "unknown",
+        "atomization": "unknown_if_leaf_contains_multiple_independent_negative_inputs",
+        "same_leaf_reuse_rule": "Record this source leaf once. Any one-to-many effect on other facets is listed below and does not create another source-origin finding. This is a provisional source attribution, not an assertion of a single semantic finding."
+      },
+      "facet_analysis": {
+        "primary_facet_candidates": [
+          "authority_mapping",
+          "oracle_mapping",
+          "typed_edge_mapping"
+        ],
+        "propagation_facets": [
+          "lineage_relation",
+          "history_mapping"
+        ],
+        "local_state_by_facet": {
+          "authority_mapping": {
+            "expected_local_state": "unknown",
+            "determinacy": "explicit",
+            "basis": "L3 F04 says the axis is missing/unclear and must be returned unknown/unsatisfied"
+          },
+          "oracle_mapping": {
+            "expected_local_state": "unknown",
+            "determinacy": "explicit",
+            "basis": "L3 F04 says the axis is missing/unclear and must be returned unknown/unsatisfied"
+          },
+          "typed_edge_mapping": {
+            "expected_local_state": "unknown",
+            "determinacy": "explicit",
+            "basis": "L3 F04 says the axis is missing/unclear and must be returned unknown/unsatisfied"
+          },
+          "lineage_relation": {
+            "expected_local_state": "unknown",
+            "determinacy": "not_uniquely_determined_from_this_leaf",
+            "basis": "Potential propagated facet only; the permitted leaf does not state a local result for it."
+          },
+          "history_mapping": {
+            "expected_local_state": "unknown",
+            "determinacy": "not_uniquely_determined_from_this_leaf",
+            "basis": "Potential propagated facet only; the permitted leaf does not state a local result for it."
+          }
+        },
+        "primary_attribution_determinate": false
+      }
+    },
+    {
+      "leaf_id": "H053-SRC-005",
+      "source": {
+        "path": "docs/helix-harness/L3-requirements/business-requirements.json",
+        "revision": "dd07a3498be74f32519adf42a221caf51e547ea1",
+        "pointer": "/requirements/3",
+        "value_sha256": "c3c45dee66f2a0eb8430d0a91390cb3048588b3f49e28a6a9c01413b8020c7c2",
+        "content_revision": {
+          "document_content_revision": "a2cc3defcee5a229145c89217af30c7d20da998f",
+          "content_revision_field": "/source_revision",
+          "additional_declared_content_revision": "85103aa71e12d48da3b3eabd6020ef1fc22aa902",
+          "additional_field": "/base_l3_l10_content_revision"
+        }
+      },
+      "failure_meaning_evidence": "HARNESS-L3-053-B01: identity/location/revision/lineage records do not create save/rollback, authority, adoption, or acceptance.",
+      "provisional_axis": "operation_request_state",
+      "provisional_state": "unknown",
+      "candidate_groups": [
+        "C11"
+      ],
+      "finding_deduplication": {
+        "canonical_destination": "H053-SRC-005",
+        "source_leaf_identity": [
+          "source.revision",
+          "source.path",
+          "source.pointer"
+        ],
+        "candidate_finding_code": "unknown",
+        "atomization": "unknown_if_leaf_contains_multiple_independent_negative_inputs",
+        "same_leaf_reuse_rule": "Record this source leaf once. Any one-to-many effect on other facets is listed below and does not create another source-origin finding. This is a provisional source attribution, not an assertion of a single semantic finding."
+      },
+      "facet_analysis": {
+        "primary_facet_candidates": "claim_or_operation_state",
+        "propagation_facets": [],
+        "local_state_by_facet": {
+          "claim_state": {
+            "expected_local_state": "unknown",
+            "determinacy": "not_uniquely_determined_from_this_leaf",
+            "basis": "Record claim or action effect is stated, but a single claim-state code is not selected by this leaf."
+          },
+          "operation_request_state": {
+            "expected_local_state": "unknown",
+            "determinacy": "not_uniquely_determined_from_this_leaf",
+            "basis": "Operation categories are distinct and this leaf does not select one outcome."
+          },
+          "operation_selection_state": {
+            "expected_local_state": "unknown",
+            "determinacy": "not_uniquely_determined_from_this_leaf",
+            "basis": "Operation categories are distinct and this leaf does not select one outcome."
+          },
+          "claim_or_operation_state": {
+            "expected_local_state": "unknown",
+            "determinacy": "not_uniquely_determined_from_this_leaf",
+            "basis": "Potential propagated facet only; the permitted leaf does not state a local result for it."
+          }
+        },
+        "primary_attribution_determinate": true
+      }
+    },
+    {
+      "leaf_id": "H053-SRC-006",
+      "source": {
+        "path": "docs/helix-harness/L10-verification/functional-verification.json",
+        "revision": "dd07a3498be74f32519adf42a221caf51e547ea1",
+        "pointer": "/cases/19",
+        "value_sha256": "5ea58be7a40a50850dcc9a3081f9b002cabeef71e57e39af05f9f7550133b4b8",
+        "content_revision": {
+          "document_content_revision": "a2cc3defcee5a229145c89217af30c7d20da998f",
+          "content_revision_field": "/source_revision",
+          "additional_declared_content_revision": "85103aa71e12d48da3b3eabd6020ef1fc22aa902",
+          "additional_field": "/base_l3_l10_content_revision"
+        }
+      },
+      "failure_meaning_evidence": "HARNESS-L10-053-F01: negative inputs reuse a path, merge namesakes, or hide duplicate identity; failure observation rejects path/name-only identity and retains unknown.",
+      "provisional_axis": "identity",
+      "provisional_state": "unknown",
+      "candidate_groups": [
+        "C01",
+        "C02"
+      ],
+      "finding_deduplication": {
+        "canonical_destination": "H053-SRC-006",
+        "source_leaf_identity": [
+          "source.revision",
+          "source.path",
+          "source.pointer"
+        ],
+        "candidate_finding_code": "unknown",
+        "atomization": "unknown_if_leaf_contains_multiple_independent_negative_inputs",
+        "same_leaf_reuse_rule": "Record this source leaf once. Any one-to-many effect on other facets is listed below and does not create another source-origin finding. This is a provisional source attribution, not an assertion of a single semantic finding."
+      },
+      "facet_analysis": {
+        "primary_facet_candidates": "identity",
+        "propagation_facets": [
+          "semantic_revision",
+          "location_history",
+          "authority_mapping"
+        ],
+        "local_state_by_facet": {
+          "identity": {
+            "expected_local_state": "unknown",
+            "determinacy": "not_uniquely_determined_from_this_leaf",
+            "basis": "This leaf states an obligation or bundles alternatives; the permitted text does not select one QA state for this facet."
+          },
+          "semantic_revision": {
+            "expected_local_state": "unknown",
+            "determinacy": "not_uniquely_determined_from_this_leaf",
+            "basis": "This leaf states an obligation or bundles alternatives; the permitted text does not select one QA state for this facet."
+          },
+          "location_history": {
+            "expected_local_state": "unknown",
+            "determinacy": "not_uniquely_determined_from_this_leaf",
+            "basis": "This leaf states an obligation or bundles alternatives; the permitted text does not select one QA state for this facet."
+          },
+          "authority_mapping": {
+            "expected_local_state": "unknown",
+            "determinacy": "not_uniquely_determined_from_this_leaf",
+            "basis": "This leaf states an obligation or bundles alternatives; the permitted text does not select one QA state for this facet."
+          }
+        },
+        "primary_attribution_determinate": true
+      }
+    },
+    {
+      "leaf_id": "H053-SRC-007",
+      "source": {
+        "path": "docs/helix-harness/L10-verification/functional-verification.json",
+        "revision": "dd07a3498be74f32519adf42a221caf51e547ea1",
+        "pointer": "/cases/20",
+        "value_sha256": "aa7f2f442fbb138a6349bb589e9fcb4e1bc38178bb6b8e23bceccb1a025879cf",
+        "content_revision": {
+          "document_content_revision": "a2cc3defcee5a229145c89217af30c7d20da998f",
+          "content_revision_field": "/source_revision",
+          "additional_declared_content_revision": "85103aa71e12d48da3b3eabd6020ef1fc22aa902",
+          "additional_field": "/base_l3_l10_content_revision"
+        }
+      },
+      "failure_meaning_evidence": "HARNESS-L10-053-F02: negative inputs promote location-only delta to semantic revision or hide semantic delta as location history.",
+      "provisional_axis": "unknown",
+      "provisional_state": "unknown",
+      "candidate_groups": [
+        "C03",
+        "C04"
+      ],
+      "finding_deduplication": {
+        "canonical_destination": "H053-SRC-007",
+        "source_leaf_identity": [
+          "source.revision",
+          "source.path",
+          "source.pointer"
+        ],
+        "candidate_finding_code": "unknown",
+        "atomization": "unknown_if_leaf_contains_multiple_independent_negative_inputs",
+        "same_leaf_reuse_rule": "Record this source leaf once. Any one-to-many effect on other facets is listed below and does not create another source-origin finding. This is a provisional source attribution, not an assertion of a single semantic finding."
+      },
+      "facet_analysis": {
+        "primary_facet_candidates": "semantic_revision",
+        "propagation_facets": [
+          "location_history",
+          "oracle_mapping",
+          "typed_edge_mapping"
+        ],
+        "local_state_by_facet": {
+          "semantic_revision": {
+            "expected_local_state": "unknown",
+            "determinacy": "not_uniquely_determined_from_this_leaf",
+            "basis": "This leaf states an obligation or bundles alternatives; the permitted text does not select one QA state for this facet."
+          },
+          "location_history": {
+            "expected_local_state": "unknown",
+            "determinacy": "not_uniquely_determined_from_this_leaf",
+            "basis": "This leaf states an obligation or bundles alternatives; the permitted text does not select one QA state for this facet."
+          },
+          "oracle_mapping": {
+            "expected_local_state": "unknown",
+            "determinacy": "not_uniquely_determined_from_this_leaf",
+            "basis": "This leaf states an obligation or bundles alternatives; the permitted text does not select one QA state for this facet."
+          },
+          "typed_edge_mapping": {
+            "expected_local_state": "unknown",
+            "determinacy": "not_uniquely_determined_from_this_leaf",
+            "basis": "This leaf states an obligation or bundles alternatives; the permitted text does not select one QA state for this facet."
+          }
+        },
+        "primary_attribution_determinate": true
+      }
+    },
+    {
+      "leaf_id": "H053-SRC-008",
+      "source": {
+        "path": "docs/helix-harness/L10-verification/functional-verification.json",
+        "revision": "dd07a3498be74f32519adf42a221caf51e547ea1",
+        "pointer": "/cases/21",
+        "value_sha256": "4c9b3f86917aa99b1227cfb17f81bb87464ea9798fa149972e0ede4f552d8587",
+        "content_revision": {
+          "document_content_revision": "a2cc3defcee5a229145c89217af30c7d20da998f",
+          "content_revision_field": "/source_revision",
+          "additional_declared_content_revision": "85103aa71e12d48da3b3eabd6020ef1fc22aa902",
+          "additional_field": "/base_l3_l10_content_revision"
+        }
+      },
+      "failure_meaning_evidence": "HARNESS-L10-053-F03: negative inputs break lineage endpoint/relation, use wrong base revision, or omit target; failure retains unknown and rejects success claim.",
+      "provisional_axis": "unknown",
+      "provisional_state": "unknown",
+      "candidate_groups": [
+        "C05",
+        "C06"
+      ],
+      "finding_deduplication": {
+        "canonical_destination": "H053-SRC-008",
+        "source_leaf_identity": [
+          "source.revision",
+          "source.path",
+          "source.pointer"
+        ],
+        "candidate_finding_code": "unknown",
+        "atomization": "unknown_if_leaf_contains_multiple_independent_negative_inputs",
+        "same_leaf_reuse_rule": "Record this source leaf once. Any one-to-many effect on other facets is listed below and does not create another source-origin finding. This is a provisional source attribution, not an assertion of a single semantic finding."
+      },
+      "facet_analysis": {
+        "primary_facet_candidates": "lineage_relation",
+        "propagation_facets": [
+          "history_mapping",
+          "authority_mapping",
+          "oracle_mapping",
+          "typed_edge_mapping",
+          "identity",
+          "semantic_revision",
+          "location_history"
+        ],
+        "local_state_by_facet": {
+          "identity": {
+            "expected_local_state": "unknown",
+            "determinacy": "not_uniquely_determined_from_this_leaf",
+            "basis": "This leaf states an obligation or bundles alternatives; the permitted text does not select one QA state for this facet."
+          },
+          "semantic_revision": {
+            "expected_local_state": "unknown",
+            "determinacy": "not_uniquely_determined_from_this_leaf",
+            "basis": "This leaf states an obligation or bundles alternatives; the permitted text does not select one QA state for this facet."
+          },
+          "location_history": {
+            "expected_local_state": "unknown",
+            "determinacy": "not_uniquely_determined_from_this_leaf",
+            "basis": "This leaf states an obligation or bundles alternatives; the permitted text does not select one QA state for this facet."
+          },
+          "lineage_relation": {
+            "expected_local_state": "unknown",
+            "determinacy": "not_uniquely_determined_from_this_leaf",
+            "basis": "This leaf states an obligation or bundles alternatives; the permitted text does not select one QA state for this facet."
+          },
+          "history_mapping": {
+            "expected_local_state": "unknown",
+            "determinacy": "not_uniquely_determined_from_this_leaf",
+            "basis": "This leaf states an obligation or bundles alternatives; the permitted text does not select one QA state for this facet."
+          },
+          "authority_mapping": {
+            "expected_local_state": "unknown",
+            "determinacy": "not_uniquely_determined_from_this_leaf",
+            "basis": "This leaf states an obligation or bundles alternatives; the permitted text does not select one QA state for this facet."
+          },
+          "oracle_mapping": {
+            "expected_local_state": "unknown",
+            "determinacy": "not_uniquely_determined_from_this_leaf",
+            "basis": "This leaf states an obligation or bundles alternatives; the permitted text does not select one QA state for this facet."
+          },
+          "typed_edge_mapping": {
+            "expected_local_state": "unknown",
+            "determinacy": "not_uniquely_determined_from_this_leaf",
+            "basis": "This leaf states an obligation or bundles alternatives; the permitted text does not select one QA state for this facet."
+          }
+        },
+        "primary_attribution_determinate": true
+      }
+    },
+    {
+      "leaf_id": "H053-SRC-009",
+      "source": {
+        "path": "docs/helix-harness/L10-verification/functional-verification.json",
+        "revision": "dd07a3498be74f32519adf42a221caf51e547ea1",
+        "pointer": "/cases/22",
+        "value_sha256": "cd758000fb59c0c837006966864f9f31c92e58bb86bd48a7d2e1e6093a7c32b3",
+        "content_revision": {
+          "document_content_revision": "a2cc3defcee5a229145c89217af30c7d20da998f",
+          "content_revision_field": "/source_revision",
+          "additional_declared_content_revision": "85103aa71e12d48da3b3eabd6020ef1fc22aa902",
+          "additional_field": "/base_l3_l10_content_revision"
+        }
+      },
+      "failure_meaning_evidence": "HARNESS-L10-053-F04: independently omit authority, oracle, or typed edge; failure preserves the omitted axis as unknown and prevents closure success.",
+      "provisional_axis": "unknown",
+      "provisional_state": "unknown",
+      "candidate_groups": [
+        "C07",
+        "C08",
+        "C09"
+      ],
+      "finding_deduplication": {
+        "canonical_destination": "H053-SRC-009",
+        "source_leaf_identity": [
+          "source.revision",
+          "source.path",
+          "source.pointer"
+        ],
+        "candidate_finding_code": "unknown",
+        "atomization": "unknown_if_leaf_contains_multiple_independent_negative_inputs",
+        "same_leaf_reuse_rule": "Record this source leaf once. Any one-to-many effect on other facets is listed below and does not create another source-origin finding. This is a provisional source attribution, not an assertion of a single semantic finding."
+      },
+      "facet_analysis": {
+        "primary_facet_candidates": [
+          "authority_mapping",
+          "oracle_mapping",
+          "typed_edge_mapping"
+        ],
+        "propagation_facets": [
+          "lineage_relation",
+          "history_mapping"
+        ],
+        "local_state_by_facet": {
+          "authority_mapping": {
+            "expected_local_state": "unknown",
+            "determinacy": "explicit",
+            "basis": "L10 F04 individually omits this axis and expects its unknown to remain"
+          },
+          "oracle_mapping": {
+            "expected_local_state": "unknown",
+            "determinacy": "explicit",
+            "basis": "L10 F04 individually omits this axis and expects its unknown to remain"
+          },
+          "typed_edge_mapping": {
+            "expected_local_state": "unknown",
+            "determinacy": "explicit",
+            "basis": "L10 F04 individually omits this axis and expects its unknown to remain"
+          },
+          "lineage_relation": {
+            "expected_local_state": "unknown",
+            "determinacy": "not_uniquely_determined_from_this_leaf",
+            "basis": "Potential propagated facet only; the permitted leaf does not state a local result for it."
+          },
+          "history_mapping": {
+            "expected_local_state": "unknown",
+            "determinacy": "not_uniquely_determined_from_this_leaf",
+            "basis": "Potential propagated facet only; the permitted leaf does not state a local result for it."
+          }
+        },
+        "primary_attribution_determinate": false
+      }
+    },
+    {
+      "leaf_id": "H053-SRC-010",
+      "source": {
+        "path": "docs/helix-harness/L10-verification/business-verification.json",
+        "revision": "dd07a3498be74f32519adf42a221caf51e547ea1",
+        "pointer": "/cases/3",
+        "value_sha256": "41ba469392c48b1ec9da31124290c21cc3ade7f5ab0d3719bd9b29e73e7b4c79",
+        "content_revision": {
+          "document_content_revision": "a2cc3defcee5a229145c89217af30c7d20da998f",
+          "content_revision_field": "/source_revision",
+          "additional_declared_content_revision": "85103aa71e12d48da3b3eabd6020ef1fc22aa902",
+          "additional_field": "/base_l3_l10_content_revision"
+        }
+      },
+      "failure_meaning_evidence": "HARNESS-L10-053-B01: record/fixture presence is not proof of operation, authority decision, or PO acceptance.",
+      "provisional_axis": "operation_request_state",
+      "provisional_state": "unknown",
+      "candidate_groups": [
+        "C11"
+      ],
+      "finding_deduplication": {
+        "canonical_destination": "H053-SRC-010",
+        "source_leaf_identity": [
+          "source.revision",
+          "source.path",
+          "source.pointer"
+        ],
+        "candidate_finding_code": "unknown",
+        "atomization": "unknown_if_leaf_contains_multiple_independent_negative_inputs",
+        "same_leaf_reuse_rule": "Record this source leaf once. Any one-to-many effect on other facets is listed below and does not create another source-origin finding. This is a provisional source attribution, not an assertion of a single semantic finding."
+      },
+      "facet_analysis": {
+        "primary_facet_candidates": "claim_or_operation_state",
+        "propagation_facets": [],
+        "local_state_by_facet": {
+          "claim_state": {
+            "expected_local_state": "unknown",
+            "determinacy": "not_uniquely_determined_from_this_leaf",
+            "basis": "Record claim or action effect is stated, but a single claim-state code is not selected by this leaf."
+          },
+          "operation_request_state": {
+            "expected_local_state": "unknown",
+            "determinacy": "not_uniquely_determined_from_this_leaf",
+            "basis": "Operation categories are distinct and this leaf does not select one outcome."
+          },
+          "operation_selection_state": {
+            "expected_local_state": "unknown",
+            "determinacy": "not_uniquely_determined_from_this_leaf",
+            "basis": "Operation categories are distinct and this leaf does not select one outcome."
+          },
+          "claim_or_operation_state": {
+            "expected_local_state": "unknown",
+            "determinacy": "not_uniquely_determined_from_this_leaf",
+            "basis": "Potential propagated facet only; the permitted leaf does not state a local result for it."
+          }
+        },
+        "primary_attribution_determinate": true
+      }
+    },
+    {
+      "leaf_id": "H053-SRC-011",
+      "source": {
+        "path": "docs/helix-harness/L4-basic-design/semantic-asset-lineage.json",
+        "revision": "dd07a3498be74f32519adf42a221caf51e547ea1",
+        "pointer": "/architecture/identity",
+        "value_sha256": "44373314b07468ea6edcf288f14953350b16be2eaed36bcd19043b7d81fd5acf",
+        "content_revision": {
+          "document_content_revision": "not_declared",
+          "content_revision_field": null,
+          "declared_source_pin_revisions": [
+            "3c572d540e27a74de93559a54d8c5c522cdbeb60"
+          ],
+          "source_pins_field": "/source_pins/*/revision"
+        }
+      },
+      "failure_meaning_evidence": "Opaque owner-supplied immutable ID; same-ID conflicting records or unknown owner are conflict/unknown; no first-wins.",
+      "provisional_axis": "identity",
+      "provisional_state": "unknown",
+      "candidate_groups": [
+        "C01",
+        "C02"
+      ],
+      "finding_deduplication": {
+        "canonical_destination": "H053-SRC-011",
+        "source_leaf_identity": [
+          "source.revision",
+          "source.path",
+          "source.pointer"
+        ],
+        "candidate_finding_code": "unknown",
+        "atomization": "unknown_if_leaf_contains_multiple_independent_negative_inputs",
+        "same_leaf_reuse_rule": "Record this source leaf once. Any one-to-many effect on other facets is listed below and does not create another source-origin finding. This is a provisional source attribution, not an assertion of a single semantic finding."
+      },
+      "facet_analysis": {
+        "primary_facet_candidates": "identity",
+        "propagation_facets": [
+          "semantic_revision",
+          "location_history",
+          "authority_mapping"
+        ],
+        "local_state_by_facet": {
+          "identity": {
+            "expected_local_state": "conditional_by_input",
+            "determinacy": "conditional_rule_explicit",
+            "state_rule": {
+              "contradictory_exact_records_or_known_identity_collision": "conflict",
+              "owner_or_identity_basis_unknown": "unknown"
+            },
+            "basis": "L4 architecture.identity"
+          },
+          "location_history": {
+            "expected_local_state": "unknown",
+            "determinacy": "not_uniquely_determined_from_this_leaf",
+            "basis": "Potential propagated facet only; the permitted leaf does not state a local result for it."
+          },
+          "authority_mapping": {
+            "expected_local_state": "unknown",
+            "determinacy": "not_uniquely_determined_from_this_leaf",
+            "basis": "Potential propagated facet only; the permitted leaf does not state a local result for it."
+          },
+          "semantic_revision": {
+            "expected_local_state": "unknown",
+            "determinacy": "not_uniquely_determined_from_this_leaf",
+            "basis": "Potential propagated facet only; the permitted leaf does not state a local result for it."
+          }
+        },
+        "primary_attribution_determinate": true
+      }
+    },
+    {
+      "leaf_id": "H053-SRC-012",
+      "source": {
+        "path": "docs/helix-harness/L4-basic-design/semantic-asset-lineage.json",
+        "revision": "dd07a3498be74f32519adf42a221caf51e547ea1",
+        "pointer": "/architecture/revision_axes",
+        "value_sha256": "db9500bd9eb09b8d41bb95c2d55b70744584d685bcc3ad15880443154560366b",
+        "content_revision": {
+          "document_content_revision": "not_declared",
+          "content_revision_field": null,
+          "declared_source_pin_revisions": [
+            "3c572d540e27a74de93559a54d8c5c522cdbeb60"
+          ],
+          "source_pins_field": "/source_pins/*/revision"
+        }
+      },
+      "failure_meaning_evidence": "Location-only change is not semantic revision; meaning change needs qualified before/after source and diff; missing source stays unknown.",
+      "provisional_axis": "unknown",
+      "provisional_state": "unknown",
+      "candidate_groups": [
+        "C03",
+        "C04"
+      ],
+      "finding_deduplication": {
+        "canonical_destination": "H053-SRC-012",
+        "source_leaf_identity": [
+          "source.revision",
+          "source.path",
+          "source.pointer"
+        ],
+        "candidate_finding_code": "unknown",
+        "atomization": "unknown_if_leaf_contains_multiple_independent_negative_inputs",
+        "same_leaf_reuse_rule": "Record this source leaf once. Any one-to-many effect on other facets is listed below and does not create another source-origin finding. This is a provisional source attribution, not an assertion of a single semantic finding."
+      },
+      "facet_analysis": {
+        "primary_facet_candidates": "semantic_revision",
+        "propagation_facets": [
+          "location_history",
+          "oracle_mapping",
+          "typed_edge_mapping"
+        ],
+        "local_state_by_facet": {
+          "semantic_revision": {
+            "expected_local_state": "unknown",
+            "determinacy": "not_uniquely_determined_from_this_leaf",
+            "basis": "This leaf states an obligation or bundles alternatives; the permitted text does not select one QA state for this facet."
+          },
+          "location_history": {
+            "expected_local_state": "unknown",
+            "determinacy": "not_uniquely_determined_from_this_leaf",
+            "basis": "This leaf states an obligation or bundles alternatives; the permitted text does not select one QA state for this facet."
+          },
+          "oracle_mapping": {
+            "expected_local_state": "unknown",
+            "determinacy": "not_uniquely_determined_from_this_leaf",
+            "basis": "This leaf states an obligation or bundles alternatives; the permitted text does not select one QA state for this facet."
+          },
+          "typed_edge_mapping": {
+            "expected_local_state": "unknown",
+            "determinacy": "not_uniquely_determined_from_this_leaf",
+            "basis": "This leaf states an obligation or bundles alternatives; the permitted text does not select one QA state for this facet."
+          }
+        },
+        "primary_attribution_determinate": true
+      }
+    },
+    {
+      "leaf_id": "H053-SRC-013",
+      "source": {
+        "path": "docs/helix-harness/L4-basic-design/semantic-asset-lineage.json",
+        "revision": "dd07a3498be74f32519adf42a221caf51e547ea1",
+        "pointer": "/architecture/lineage",
+        "value_sha256": "8b94320ca5781565ee2d8fc819cbfed6c9f1b7d92aa2e6ca050fc1462f477645",
+        "content_revision": {
+          "document_content_revision": "not_declared",
+          "content_revision_field": null,
+          "declared_source_pin_revisions": [
+            "3c572d540e27a74de93559a54d8c5c522cdbeb60"
+          ],
+          "source_pins_field": "/source_pins/*/revision"
+        }
+      },
+      "failure_meaning_evidence": "Rename/move uses same-ID location history; split/merge/supersede uses endpoints/revisions/relation/history; authority/oracle/edge are separate axes.",
+      "provisional_axis": "unknown",
+      "provisional_state": "unknown",
+      "candidate_groups": [
+        "C05",
+        "C07",
+        "C08",
+        "C09"
+      ],
+      "finding_deduplication": {
+        "canonical_destination": "H053-SRC-013",
+        "source_leaf_identity": [
+          "source.revision",
+          "source.path",
+          "source.pointer"
+        ],
+        "candidate_finding_code": "unknown",
+        "atomization": "unknown_if_leaf_contains_multiple_independent_negative_inputs",
+        "same_leaf_reuse_rule": "Record this source leaf once. Any one-to-many effect on other facets is listed below and does not create another source-origin finding. This is a provisional source attribution, not an assertion of a single semantic finding."
+      },
+      "facet_analysis": {
+        "primary_facet_candidates": [
+          "lineage_relation",
+          "authority_mapping",
+          "oracle_mapping",
+          "typed_edge_mapping"
+        ],
+        "propagation_facets": [
+          "history_mapping",
+          "authority_mapping",
+          "oracle_mapping",
+          "typed_edge_mapping"
+        ],
+        "local_state_by_facet": {
+          "lineage_relation": {
+            "expected_local_state": "unknown",
+            "determinacy": "not_uniquely_determined_from_this_leaf",
+            "basis": "This leaf states an obligation or bundles alternatives; the permitted text does not select one QA state for this facet."
+          },
+          "history_mapping": {
+            "expected_local_state": "unknown",
+            "determinacy": "not_uniquely_determined_from_this_leaf",
+            "basis": "This leaf states an obligation or bundles alternatives; the permitted text does not select one QA state for this facet."
+          },
+          "authority_mapping": {
+            "expected_local_state": "unknown",
+            "determinacy": "not_uniquely_determined_from_this_leaf",
+            "basis": "This leaf states an obligation or bundles alternatives; the permitted text does not select one QA state for this facet."
+          },
+          "oracle_mapping": {
+            "expected_local_state": "unknown",
+            "determinacy": "not_uniquely_determined_from_this_leaf",
+            "basis": "This leaf states an obligation or bundles alternatives; the permitted text does not select one QA state for this facet."
+          },
+          "typed_edge_mapping": {
+            "expected_local_state": "unknown",
+            "determinacy": "not_uniquely_determined_from_this_leaf",
+            "basis": "This leaf states an obligation or bundles alternatives; the permitted text does not select one QA state for this facet."
+          }
+        },
+        "primary_attribution_determinate": false
+      }
+    },
+    {
+      "leaf_id": "H053-SRC-014",
+      "source": {
+        "path": "docs/helix-harness/L4-basic-design/semantic-asset-lineage.json",
+        "revision": "dd07a3498be74f32519adf42a221caf51e547ea1",
+        "pointer": "/architecture/snapshot",
+        "value_sha256": "58a696f086b01f69f15ae3e1f406a2613a58fff06d4579cd67c681c16cd850f8",
+        "content_revision": {
+          "document_content_revision": "not_declared",
+          "content_revision_field": null,
+          "declared_source_pin_revisions": [
+            "3c572d540e27a74de93559a54d8c5c522cdbeb60"
+          ],
+          "source_pins_field": "/source_pins/*/revision"
+        }
+      },
+      "failure_meaning_evidence": "Bind records to request revision/scope and owner snapshot; wrong base or absent endpoint is local unknown/conflict, no inferred ID.",
+      "provisional_axis": "unknown",
+      "provisional_state": "unknown",
+      "candidate_groups": [
+        "C05",
+        "C06"
+      ],
+      "finding_deduplication": {
+        "canonical_destination": "H053-SRC-014",
+        "source_leaf_identity": [
+          "source.revision",
+          "source.path",
+          "source.pointer"
+        ],
+        "candidate_finding_code": "unknown",
+        "atomization": "unknown_if_leaf_contains_multiple_independent_negative_inputs",
+        "same_leaf_reuse_rule": "Record this source leaf once. Any one-to-many effect on other facets is listed below and does not create another source-origin finding. This is a provisional source attribution, not an assertion of a single semantic finding."
+      },
+      "facet_analysis": {
+        "primary_facet_candidates": "lineage_relation",
+        "propagation_facets": [
+          "history_mapping",
+          "authority_mapping",
+          "oracle_mapping",
+          "typed_edge_mapping",
+          "identity",
+          "semantic_revision",
+          "location_history"
+        ],
+        "local_state_by_facet": {
+          "lineage_relation": {
+            "expected_local_state": "conditional_by_input",
+            "determinacy": "conditional_rule_explicit",
+            "state_rule": {
+              "base_revision_or_endpoint_conflict": "conflict",
+              "endpoint_or_scope_basis_missing_or_unclear": "unknown"
+            },
+            "basis": "L4 architecture.snapshot"
+          },
+          "identity": {
+            "expected_local_state": "unknown",
+            "determinacy": "not_uniquely_determined_from_this_leaf",
+            "basis": "Potential propagated facet only; the permitted leaf does not state a local result for it."
+          },
+          "authority_mapping": {
+            "expected_local_state": "unknown",
+            "determinacy": "not_uniquely_determined_from_this_leaf",
+            "basis": "Potential propagated facet only; the permitted leaf does not state a local result for it."
+          },
+          "location_history": {
+            "expected_local_state": "unknown",
+            "determinacy": "not_uniquely_determined_from_this_leaf",
+            "basis": "Potential propagated facet only; the permitted leaf does not state a local result for it."
+          },
+          "semantic_revision": {
+            "expected_local_state": "unknown",
+            "determinacy": "not_uniquely_determined_from_this_leaf",
+            "basis": "Potential propagated facet only; the permitted leaf does not state a local result for it."
+          },
+          "oracle_mapping": {
+            "expected_local_state": "unknown",
+            "determinacy": "not_uniquely_determined_from_this_leaf",
+            "basis": "Potential propagated facet only; the permitted leaf does not state a local result for it."
+          },
+          "typed_edge_mapping": {
+            "expected_local_state": "unknown",
+            "determinacy": "not_uniquely_determined_from_this_leaf",
+            "basis": "Potential propagated facet only; the permitted leaf does not state a local result for it."
+          },
+          "history_mapping": {
+            "expected_local_state": "unknown",
+            "determinacy": "not_uniquely_determined_from_this_leaf",
+            "basis": "Potential propagated facet only; the permitted leaf does not state a local result for it."
+          }
+        },
+        "primary_attribution_determinate": true
+      }
+    },
+    {
+      "leaf_id": "H053-SRC-015",
+      "source": {
+        "path": "docs/helix-harness/L4-basic-design/semantic-asset-lineage.json",
+        "revision": "dd07a3498be74f32519adf42a221caf51e547ea1",
+        "pointer": "/architecture/qualification",
+        "value_sha256": "baeb8c34c8f6181136248c4d442e97f6c32381990471bb14fa10b0dd9c15f300",
+        "content_revision": {
+          "document_content_revision": "not_declared",
+          "content_revision_field": null,
+          "declared_source_pin_revisions": [
+            "3c572d540e27a74de93559a54d8c5c522cdbeb60"
+          ],
+          "source_pins_field": "/source_pins/*/revision"
+        }
+      },
+      "failure_meaning_evidence": "Only qualified owner scope/revision source can be consumed; plain Ref/digest/receipt/self-signature cannot establish meaning/authority/oracle.",
+      "provisional_axis": "unknown",
+      "provisional_state": "unknown",
+      "candidate_groups": [
+        "C02",
+        "C10"
+      ],
+      "finding_deduplication": {
+        "canonical_destination": "H053-SRC-015",
+        "source_leaf_identity": [
+          "source.revision",
+          "source.path",
+          "source.pointer"
+        ],
+        "candidate_finding_code": "unknown",
+        "atomization": "unknown_if_leaf_contains_multiple_independent_negative_inputs",
+        "same_leaf_reuse_rule": "Record this source leaf once. Any one-to-many effect on other facets is listed below and does not create another source-origin finding. This is a provisional source attribution, not an assertion of a single semantic finding."
+      },
+      "facet_analysis": {
+        "primary_facet_candidates": [
+          "identity",
+          "lineage_relation"
+        ],
+        "propagation_facets": [
+          "authority_mapping",
+          "semantic_revision",
+          "oracle_mapping",
+          "typed_edge_mapping"
+        ],
+        "local_state_by_facet": {
+          "identity": {
+            "expected_local_state": "unknown",
+            "determinacy": "explicit_for_unqualified_reference",
+            "basis": "plain Ref/digest/receipt/self-signature cannot establish meaning/authority/oracle"
+          },
+          "authority_mapping": {
+            "expected_local_state": "unknown",
+            "determinacy": "explicit_for_unqualified_reference",
+            "basis": "L4 architecture.qualification"
+          },
+          "oracle_mapping": {
+            "expected_local_state": "unknown",
+            "determinacy": "explicit_for_unqualified_reference",
+            "basis": "L4 architecture.qualification"
+          },
+          "lineage_relation": {
+            "expected_local_state": "unknown",
+            "determinacy": "not_uniquely_determined_from_this_leaf",
+            "basis": "Potential propagated facet only; the permitted leaf does not state a local result for it."
+          },
+          "semantic_revision": {
+            "expected_local_state": "unknown",
+            "determinacy": "not_uniquely_determined_from_this_leaf",
+            "basis": "Potential propagated facet only; the permitted leaf does not state a local result for it."
+          },
+          "typed_edge_mapping": {
+            "expected_local_state": "unknown",
+            "determinacy": "not_uniquely_determined_from_this_leaf",
+            "basis": "Potential propagated facet only; the permitted leaf does not state a local result for it."
+          }
+        },
+        "primary_attribution_determinate": false
+      }
+    },
+    {
+      "leaf_id": "H053-SRC-016",
+      "source": {
+        "path": "docs/helix-harness/L4-basic-design/semantic-asset-lineage.json",
+        "revision": "dd07a3498be74f32519adf42a221caf51e547ea1",
+        "pointer": "/architecture/axis_reduction",
+        "value_sha256": "b0fa4dd36483fde264e9d36dd0e25ce1fd894cf0448c659fa8c5752a3b442e07",
+        "content_revision": {
+          "document_content_revision": "not_declared",
+          "content_revision_field": null,
+          "declared_source_pin_revisions": [
+            "3c572d540e27a74de93559a54d8c5c522cdbeb60"
+          ],
+          "source_pins_field": "/source_pins/*/revision"
+        }
+      },
+      "failure_meaning_evidence": "Missing, unknown, conflict, N/A remain distinct; matched other axes cannot cancel missing axes; all required axes must match.",
+      "provisional_axis": "unknown",
+      "provisional_state": "unknown",
+      "candidate_groups": [
+        "C04",
+        "C05",
+        "C07",
+        "C08",
+        "C09"
+      ],
+      "finding_deduplication": {
+        "canonical_destination": "H053-SRC-016",
+        "source_leaf_identity": [
+          "source.revision",
+          "source.path",
+          "source.pointer"
+        ],
+        "candidate_finding_code": "unknown",
+        "atomization": "unknown_if_leaf_contains_multiple_independent_negative_inputs",
+        "same_leaf_reuse_rule": "Record this source leaf once. Any one-to-many effect on other facets is listed below and does not create another source-origin finding. This is a provisional source attribution, not an assertion of a single semantic finding."
+      },
+      "facet_analysis": {
+        "primary_facet_candidates": [
+          "semantic_revision",
+          "lineage_relation",
+          "authority_mapping",
+          "oracle_mapping",
+          "typed_edge_mapping"
+        ],
+        "propagation_facets": [
+          "oracle_mapping",
+          "typed_edge_mapping",
+          "history_mapping",
+          "authority_mapping"
+        ],
+        "local_state_by_facet": {
+          "identity": {
+            "expected_local_state": "conditional_by_input",
+            "determinacy": "conditional_rule_explicit",
+            "state_rule": {
+              "known_missing": "missing",
+              "not_determined": "unknown",
+              "contradictory": "conflict",
+              "all_required_axes_match": "matched"
+            },
+            "basis": "L4 architecture.axis_reduction"
+          },
+          "semantic_revision": {
+            "expected_local_state": "conditional_by_input",
+            "determinacy": "conditional_rule_explicit",
+            "state_rule": {
+              "known_missing": "missing",
+              "not_determined": "unknown",
+              "contradictory": "conflict",
+              "all_required_axes_match": "matched"
+            },
+            "basis": "L4 architecture.axis_reduction"
+          },
+          "location_history": {
+            "expected_local_state": "conditional_by_input",
+            "determinacy": "conditional_rule_explicit",
+            "state_rule": {
+              "known_missing": "missing",
+              "not_determined": "unknown",
+              "contradictory": "conflict",
+              "all_required_axes_match": "matched"
+            },
+            "basis": "L4 architecture.axis_reduction"
+          },
+          "lineage_relation": {
+            "expected_local_state": "conditional_by_input",
+            "determinacy": "conditional_rule_explicit",
+            "state_rule": {
+              "known_missing": "missing",
+              "not_determined": "unknown",
+              "contradictory": "conflict",
+              "all_required_axes_match": "matched"
+            },
+            "basis": "L4 architecture.axis_reduction"
+          },
+          "history_mapping": {
+            "expected_local_state": "conditional_by_input",
+            "determinacy": "conditional_rule_explicit",
+            "state_rule": {
+              "known_missing": "missing",
+              "not_determined": "unknown",
+              "contradictory": "conflict",
+              "all_required_axes_match": "matched"
+            },
+            "basis": "L4 architecture.axis_reduction"
+          },
+          "authority_mapping": {
+            "expected_local_state": "conditional_by_input",
+            "determinacy": "conditional_rule_explicit",
+            "state_rule": {
+              "known_missing": "missing",
+              "not_determined": "unknown",
+              "contradictory": "conflict",
+              "all_required_axes_match": "matched"
+            },
+            "basis": "L4 architecture.axis_reduction"
+          },
+          "oracle_mapping": {
+            "expected_local_state": "conditional_by_input",
+            "determinacy": "conditional_rule_explicit",
+            "state_rule": {
+              "known_missing": "missing",
+              "not_determined": "unknown",
+              "contradictory": "conflict",
+              "all_required_axes_match": "matched"
+            },
+            "basis": "L4 architecture.axis_reduction"
+          },
+          "typed_edge_mapping": {
+            "expected_local_state": "conditional_by_input",
+            "determinacy": "conditional_rule_explicit",
+            "state_rule": {
+              "known_missing": "missing",
+              "not_determined": "unknown",
+              "contradictory": "conflict",
+              "all_required_axes_match": "matched"
+            },
+            "basis": "L4 architecture.axis_reduction"
+          }
+        },
+        "primary_attribution_determinate": false
+      }
+    },
+    {
+      "leaf_id": "H053-SRC-017",
+      "source": {
+        "path": "docs/helix-harness/L4-basic-design/semantic-asset-lineage.json",
+        "revision": "dd07a3498be74f32519adf42a221caf51e547ea1",
+        "pointer": "/architecture/operation_boundary",
+        "value_sha256": "a9c9c89302fd4c311ebc4e16e8ae326027a25d8014df60bd5778ff2670f2e1f1",
+        "content_revision": {
+          "document_content_revision": "not_declared",
+          "content_revision_field": null,
+          "declared_source_pin_revisions": [
+            "3c572d540e27a74de93559a54d8c5c522cdbeb60"
+          ],
+          "source_pins_field": "/source_pins/*/revision"
+        }
+      },
+      "failure_meaning_evidence": "Unresolved 053→042 stays unresolved; dependent operations held; unrelated local comparisons need not stop.",
+      "provisional_axis": "unknown",
+      "provisional_state": "unknown",
+      "candidate_groups": [
+        "C10",
+        "C11"
+      ],
+      "finding_deduplication": {
+        "canonical_destination": "H053-SRC-017",
+        "source_leaf_identity": [
+          "source.revision",
+          "source.path",
+          "source.pointer"
+        ],
+        "candidate_finding_code": "unknown",
+        "atomization": "unknown_if_leaf_contains_multiple_independent_negative_inputs",
+        "same_leaf_reuse_rule": "Record this source leaf once. Any one-to-many effect on other facets is listed below and does not create another source-origin finding. This is a provisional source attribution, not an assertion of a single semantic finding."
+      },
+      "facet_analysis": {
+        "primary_facet_candidates": [
+          "lineage_relation",
+          "claim_or_operation_state"
+        ],
+        "propagation_facets": [
+          "identity",
+          "semantic_revision",
+          "authority_mapping",
+          "oracle_mapping",
+          "typed_edge_mapping"
+        ],
+        "local_state_by_facet": {
+          "lineage_relation": {
+            "expected_local_state": "unknown",
+            "determinacy": "explicit_for_053_042_reference",
+            "basis": "L4 requires unresolved_reference to remain unresolved"
+          },
+          "operation_request_state": {
+            "expected_local_state": "held",
+            "determinacy": "explicit_for_dependent_operations",
+            "basis": "L4 says dependent operations remain held"
+          },
+          "claim_state": {
+            "expected_local_state": "unknown",
+            "determinacy": "not_uniquely_determined_from_this_leaf",
+            "basis": "Record claim or action effect is stated, but a single claim-state code is not selected by this leaf."
+          },
+          "operation_selection_state": {
+            "expected_local_state": "unknown",
+            "determinacy": "not_uniquely_determined_from_this_leaf",
+            "basis": "Operation categories are distinct and this leaf does not select one outcome."
+          },
+          "claim_or_operation_state": {
+            "expected_local_state": "unknown",
+            "determinacy": "not_uniquely_determined_from_this_leaf",
+            "basis": "Potential propagated facet only; the permitted leaf does not state a local result for it."
+          },
+          "identity": {
+            "expected_local_state": "unknown",
+            "determinacy": "not_uniquely_determined_from_this_leaf",
+            "basis": "Potential propagated facet only; the permitted leaf does not state a local result for it."
+          },
+          "authority_mapping": {
+            "expected_local_state": "unknown",
+            "determinacy": "not_uniquely_determined_from_this_leaf",
+            "basis": "Potential propagated facet only; the permitted leaf does not state a local result for it."
+          },
+          "semantic_revision": {
+            "expected_local_state": "unknown",
+            "determinacy": "not_uniquely_determined_from_this_leaf",
+            "basis": "Potential propagated facet only; the permitted leaf does not state a local result for it."
+          },
+          "oracle_mapping": {
+            "expected_local_state": "unknown",
+            "determinacy": "not_uniquely_determined_from_this_leaf",
+            "basis": "Potential propagated facet only; the permitted leaf does not state a local result for it."
+          },
+          "typed_edge_mapping": {
+            "expected_local_state": "unknown",
+            "determinacy": "not_uniquely_determined_from_this_leaf",
+            "basis": "Potential propagated facet only; the permitted leaf does not state a local result for it."
+          }
+        },
+        "primary_attribution_determinate": false
+      }
+    },
+    {
+      "leaf_id": "H053-SRC-018",
+      "source": {
+        "path": "docs/helix-harness/L4-basic-design/semantic-asset-lineage.json",
+        "revision": "dd07a3498be74f32519adf42a221caf51e547ea1",
+        "pointer": "/architecture/backflow",
+        "value_sha256": "63dda5a828f1675b92a295b5a414ccd3e18ce9844b5fafbad63a481873733749",
+        "content_revision": {
+          "document_content_revision": "not_declared",
+          "content_revision_field": null,
+          "declared_source_pin_revisions": [
+            "3c572d540e27a74de93559a54d8c5c522cdbeb60"
+          ],
+          "source_pins_field": "/source_pins/*/revision"
+        }
+      },
+      "failure_meaning_evidence": "Missing/conflicting records return to record owner; reference correction to 053 requirement owner; authority/oracle/trace gaps to their respective owners; no new approval.",
+      "provisional_axis": "unknown",
+      "provisional_state": "unknown",
+      "candidate_groups": [
+        "C05",
+        "C07",
+        "C08",
+        "C09",
+        "C10",
+        "C11"
+      ],
+      "finding_deduplication": {
+        "canonical_destination": "H053-SRC-018",
+        "source_leaf_identity": [
+          "source.revision",
+          "source.path",
+          "source.pointer"
+        ],
+        "candidate_finding_code": "unknown",
+        "atomization": "unknown_if_leaf_contains_multiple_independent_negative_inputs",
+        "same_leaf_reuse_rule": "Record this source leaf once. Any one-to-many effect on other facets is listed below and does not create another source-origin finding. This is a provisional source attribution, not an assertion of a single semantic finding."
+      },
+      "facet_analysis": {
+        "primary_facet_candidates": [
+          "lineage_relation",
+          "authority_mapping",
+          "oracle_mapping",
+          "typed_edge_mapping",
+          "claim_or_operation_state"
+        ],
+        "propagation_facets": [
+          "history_mapping",
+          "authority_mapping",
+          "oracle_mapping",
+          "typed_edge_mapping",
+          "identity",
+          "semantic_revision"
+        ],
+        "local_state_by_facet": {
+          "identity": {
+            "expected_local_state": "unknown",
+            "determinacy": "not_uniquely_determined_from_this_leaf",
+            "basis": "This leaf states an obligation or bundles alternatives; the permitted text does not select one QA state for this facet."
+          },
+          "semantic_revision": {
+            "expected_local_state": "unknown",
+            "determinacy": "not_uniquely_determined_from_this_leaf",
+            "basis": "This leaf states an obligation or bundles alternatives; the permitted text does not select one QA state for this facet."
+          },
+          "lineage_relation": {
+            "expected_local_state": "unknown",
+            "determinacy": "not_uniquely_determined_from_this_leaf",
+            "basis": "This leaf states an obligation or bundles alternatives; the permitted text does not select one QA state for this facet."
+          },
+          "history_mapping": {
+            "expected_local_state": "unknown",
+            "determinacy": "not_uniquely_determined_from_this_leaf",
+            "basis": "This leaf states an obligation or bundles alternatives; the permitted text does not select one QA state for this facet."
+          },
+          "authority_mapping": {
+            "expected_local_state": "unknown",
+            "determinacy": "not_uniquely_determined_from_this_leaf",
+            "basis": "This leaf states an obligation or bundles alternatives; the permitted text does not select one QA state for this facet."
+          },
+          "oracle_mapping": {
+            "expected_local_state": "unknown",
+            "determinacy": "not_uniquely_determined_from_this_leaf",
+            "basis": "This leaf states an obligation or bundles alternatives; the permitted text does not select one QA state for this facet."
+          },
+          "typed_edge_mapping": {
+            "expected_local_state": "unknown",
+            "determinacy": "not_uniquely_determined_from_this_leaf",
+            "basis": "This leaf states an obligation or bundles alternatives; the permitted text does not select one QA state for this facet."
+          },
+          "claim_state": {
+            "expected_local_state": "unknown",
+            "determinacy": "not_uniquely_determined_from_this_leaf",
+            "basis": "Record claim or action effect is stated, but a single claim-state code is not selected by this leaf."
+          },
+          "operation_request_state": {
+            "expected_local_state": "unknown",
+            "determinacy": "not_uniquely_determined_from_this_leaf",
+            "basis": "Operation categories are distinct and this leaf does not select one outcome."
+          },
+          "operation_selection_state": {
+            "expected_local_state": "unknown",
+            "determinacy": "not_uniquely_determined_from_this_leaf",
+            "basis": "Operation categories are distinct and this leaf does not select one outcome."
+          },
+          "claim_or_operation_state": {
+            "expected_local_state": "unknown",
+            "determinacy": "not_uniquely_determined_from_this_leaf",
+            "basis": "Potential propagated facet only; the permitted leaf does not state a local result for it."
+          }
+        },
+        "primary_attribution_determinate": false
+      }
+    },
+    {
+      "leaf_id": "H053-SRC-019",
+      "source": {
+        "path": "docs/helix-harness/L4-basic-design/semantic-asset-lineage.json",
+        "revision": "dd07a3498be74f32519adf42a221caf51e547ea1",
+        "pointer": "/architecture/side_effects",
+        "value_sha256": "198b2c7c0e387cf72e5cd92cf1092d938507fe6772f4d9460066ae83d6d02626",
+        "content_revision": {
+          "document_content_revision": "not_declared",
+          "content_revision_field": null,
+          "declared_source_pin_revisions": [
+            "3c572d540e27a74de93559a54d8c5c522cdbeb60"
+          ],
+          "source_pins_field": "/source_pins/*/revision"
+        }
+      },
+      "failure_meaning_evidence": "Comparison does not issue IDs/revisions, transformations, saves/rollback, permissions, adoption, or acceptance.",
+      "provisional_axis": "unknown",
+      "provisional_state": "unknown",
+      "candidate_groups": [
+        "C11"
+      ],
+      "finding_deduplication": {
+        "canonical_destination": "H053-SRC-019",
+        "source_leaf_identity": [
+          "source.revision",
+          "source.path",
+          "source.pointer"
+        ],
+        "candidate_finding_code": "unknown",
+        "atomization": "unknown_if_leaf_contains_multiple_independent_negative_inputs",
+        "same_leaf_reuse_rule": "Record this source leaf once. Any one-to-many effect on other facets is listed below and does not create another source-origin finding. This is a provisional source attribution, not an assertion of a single semantic finding."
+      },
+      "facet_analysis": {
+        "primary_facet_candidates": "claim_or_operation_state",
+        "propagation_facets": [],
+        "local_state_by_facet": {
+          "operation_selection_state": {
+            "expected_local_state": "not_selected",
+            "determinacy": "explicit_for_listed_operations",
+            "basis": "L4 prohibits comparison from executing or declaring listed side effects"
+          },
+          "claim_state": {
+            "expected_local_state": "unknown",
+            "determinacy": "not_uniquely_determined_from_this_leaf",
+            "basis": "Record claim or action effect is stated, but a single claim-state code is not selected by this leaf."
+          },
+          "operation_request_state": {
+            "expected_local_state": "unknown",
+            "determinacy": "not_uniquely_determined_from_this_leaf",
+            "basis": "Operation categories are distinct and this leaf does not select one outcome."
+          },
+          "claim_or_operation_state": {
+            "expected_local_state": "unknown",
+            "determinacy": "not_uniquely_determined_from_this_leaf",
+            "basis": "Potential propagated facet only; the permitted leaf does not state a local result for it."
+          }
+        },
+        "primary_attribution_determinate": true
+      }
+    },
+    {
+      "leaf_id": "H053-SRC-020",
+      "source": {
+        "path": "docs/helix-harness/L4-basic-design/semantic-asset-lineage.json",
+        "revision": "dd07a3498be74f32519adf42a221caf51e547ea1",
+        "pointer": "/architecture/claim_reduction",
+        "value_sha256": "9f0afa085fbe174efaed433ccdbc5e7ea53d7904837df211cc9d73952bc13a77",
+        "content_revision": {
+          "document_content_revision": "not_declared",
+          "content_revision_field": null,
+          "declared_source_pin_revisions": [
+            "3c572d540e27a74de93559a54d8c5c522cdbeb60"
+          ],
+          "source_pins_field": "/source_pins/*/revision"
+        }
+      },
+      "failure_meaning_evidence": "Claims are separate from source axes; contradictions conflict, insufficient basis unknown; claims cannot turn unknown into matched or prove external operations.",
+      "provisional_axis": "unknown",
+      "provisional_state": "unknown",
+      "candidate_groups": [
+        "C02",
+        "C10",
+        "C11"
+      ],
+      "finding_deduplication": {
+        "canonical_destination": "H053-SRC-020",
+        "source_leaf_identity": [
+          "source.revision",
+          "source.path",
+          "source.pointer"
+        ],
+        "candidate_finding_code": "unknown",
+        "atomization": "unknown_if_leaf_contains_multiple_independent_negative_inputs",
+        "same_leaf_reuse_rule": "Record this source leaf once. Any one-to-many effect on other facets is listed below and does not create another source-origin finding. This is a provisional source attribution, not an assertion of a single semantic finding."
+      },
+      "facet_analysis": {
+        "primary_facet_candidates": [
+          "identity",
+          "lineage_relation",
+          "claim_or_operation_state"
+        ],
+        "propagation_facets": [
+          "authority_mapping",
+          "semantic_revision",
+          "oracle_mapping",
+          "typed_edge_mapping"
+        ],
+        "local_state_by_facet": {
+          "claim_state": {
+            "expected_local_state": "conditional_by_input",
+            "determinacy": "conditional_rule_explicit",
+            "state_rule": {
+              "contradicted_by_known_axis": "conflict",
+              "required_basis_missing_or_unknown": "unknown",
+              "not_reported": "not_reported"
+            },
+            "basis": "L4 architecture.claim_reduction"
+          },
+          "operation_request_state": {
+            "expected_local_state": "unknown",
+            "determinacy": "not_uniquely_determined_from_this_leaf",
+            "basis": "Operation categories are distinct and this leaf does not select one outcome."
+          },
+          "operation_selection_state": {
+            "expected_local_state": "unknown",
+            "determinacy": "not_uniquely_determined_from_this_leaf",
+            "basis": "Operation categories are distinct and this leaf does not select one outcome."
+          },
+          "lineage_relation": {
+            "expected_local_state": "unknown",
+            "determinacy": "not_uniquely_determined_from_this_leaf",
+            "basis": "Potential propagated facet only; the permitted leaf does not state a local result for it."
+          },
+          "claim_or_operation_state": {
+            "expected_local_state": "unknown",
+            "determinacy": "not_uniquely_determined_from_this_leaf",
+            "basis": "Potential propagated facet only; the permitted leaf does not state a local result for it."
+          },
+          "identity": {
+            "expected_local_state": "unknown",
+            "determinacy": "not_uniquely_determined_from_this_leaf",
+            "basis": "Potential propagated facet only; the permitted leaf does not state a local result for it."
+          },
+          "authority_mapping": {
+            "expected_local_state": "unknown",
+            "determinacy": "not_uniquely_determined_from_this_leaf",
+            "basis": "Potential propagated facet only; the permitted leaf does not state a local result for it."
+          },
+          "semantic_revision": {
+            "expected_local_state": "unknown",
+            "determinacy": "not_uniquely_determined_from_this_leaf",
+            "basis": "Potential propagated facet only; the permitted leaf does not state a local result for it."
+          },
+          "oracle_mapping": {
+            "expected_local_state": "unknown",
+            "determinacy": "not_uniquely_determined_from_this_leaf",
+            "basis": "Potential propagated facet only; the permitted leaf does not state a local result for it."
+          },
+          "typed_edge_mapping": {
+            "expected_local_state": "unknown",
+            "determinacy": "not_uniquely_determined_from_this_leaf",
+            "basis": "Potential propagated facet only; the permitted leaf does not state a local result for it."
+          }
+        },
+        "primary_attribution_determinate": false
+      }
+    },
+    {
+      "leaf_id": "H053-SRC-021",
+      "source": {
+        "path": "docs/helix-harness/L4-basic-design/semantic-asset-lineage.json",
+        "revision": "dd07a3498be74f32519adf42a221caf51e547ea1",
+        "pointer": "/contracts/0/behavior",
+        "value_sha256": "8f2582a6832bf4e59dc6a2b607d6282fbf3dab5a8d3a06f2775d54ce69497f1b",
+        "content_revision": {
+          "document_content_revision": "not_declared",
+          "content_revision_field": null,
+          "declared_source_pin_revisions": [
+            "3c572d540e27a74de93559a54d8c5c522cdbeb60"
+          ],
+          "source_pins_field": "/source_pins/*/revision"
+        }
+      },
+      "failure_meaning_evidence": "L4 contract HARNESS-L4-053-F01: 要求・設計・資産はimmutable asset IDで識別し、path/nameの一致や変更から同一性・意味変更・authority移転を推定しない。採番/符号化/永続化方式は後続設計へ残す。",
+      "provisional_axis": "unknown",
+      "provisional_state": "unknown",
+      "candidate_groups": [
+        "C01",
+        "C02"
+      ],
+      "finding_deduplication": {
+        "canonical_destination": "H053-SRC-021",
+        "source_leaf_identity": [
+          "source.revision",
+          "source.path",
+          "source.pointer"
+        ],
+        "candidate_finding_code": "unknown",
+        "atomization": "unknown_if_leaf_contains_multiple_independent_negative_inputs",
+        "same_leaf_reuse_rule": "Record this source leaf once. Any one-to-many effect on other facets is listed below and does not create another source-origin finding. This is a provisional source attribution, not an assertion of a single semantic finding."
+      },
+      "facet_analysis": {
+        "primary_facet_candidates": "identity",
+        "propagation_facets": [
+          "semantic_revision",
+          "location_history",
+          "authority_mapping"
+        ],
+        "local_state_by_facet": {
+          "identity": {
+            "expected_local_state": "unknown",
+            "determinacy": "not_uniquely_determined_from_this_leaf",
+            "basis": "This leaf states an obligation or bundles alternatives; the permitted text does not select one QA state for this facet."
+          },
+          "semantic_revision": {
+            "expected_local_state": "unknown",
+            "determinacy": "not_uniquely_determined_from_this_leaf",
+            "basis": "This leaf states an obligation or bundles alternatives; the permitted text does not select one QA state for this facet."
+          },
+          "location_history": {
+            "expected_local_state": "unknown",
+            "determinacy": "not_uniquely_determined_from_this_leaf",
+            "basis": "This leaf states an obligation or bundles alternatives; the permitted text does not select one QA state for this facet."
+          },
+          "authority_mapping": {
+            "expected_local_state": "unknown",
+            "determinacy": "not_uniquely_determined_from_this_leaf",
+            "basis": "This leaf states an obligation or bundles alternatives; the permitted text does not select one QA state for this facet."
+          }
+        },
+        "primary_attribution_determinate": true
+      }
+    },
+    {
+      "leaf_id": "H053-SRC-022",
+      "source": {
+        "path": "docs/helix-harness/L4-basic-design/semantic-asset-lineage.json",
+        "revision": "dd07a3498be74f32519adf42a221caf51e547ea1",
+        "pointer": "/contracts/0/backflow",
+        "value_sha256": "63dda5a828f1675b92a295b5a414ccd3e18ce9844b5fafbad63a481873733749",
+        "content_revision": {
+          "document_content_revision": "not_declared",
+          "content_revision_field": null,
+          "declared_source_pin_revisions": [
+            "3c572d540e27a74de93559a54d8c5c522cdbeb60"
+          ],
+          "source_pins_field": "/source_pins/*/revision"
+        }
+      },
+      "failure_meaning_evidence": "L4 contract HARNESS-L4-053-F01 backflow mapping; retained as a separate leaf because this pointer is distinct even where text repeats.",
+      "provisional_axis": "unknown",
+      "provisional_state": "unknown",
+      "candidate_groups": [
+        "C01",
+        "C02"
+      ],
+      "finding_deduplication": {
+        "canonical_destination": "H053-SRC-022",
+        "source_leaf_identity": [
+          "source.revision",
+          "source.path",
+          "source.pointer"
+        ],
+        "candidate_finding_code": "unknown",
+        "atomization": "unknown_if_leaf_contains_multiple_independent_negative_inputs",
+        "same_leaf_reuse_rule": "Record this source leaf once. Any one-to-many effect on other facets is listed below and does not create another source-origin finding. This is a provisional source attribution, not an assertion of a single semantic finding."
+      },
+      "facet_analysis": {
+        "primary_facet_candidates": "identity",
+        "propagation_facets": [
+          "semantic_revision",
+          "location_history",
+          "authority_mapping"
+        ],
+        "local_state_by_facet": {
+          "identity": {
+            "expected_local_state": "unknown",
+            "determinacy": "not_uniquely_determined_from_this_leaf",
+            "basis": "This leaf states an obligation or bundles alternatives; the permitted text does not select one QA state for this facet."
+          },
+          "semantic_revision": {
+            "expected_local_state": "unknown",
+            "determinacy": "not_uniquely_determined_from_this_leaf",
+            "basis": "This leaf states an obligation or bundles alternatives; the permitted text does not select one QA state for this facet."
+          },
+          "location_history": {
+            "expected_local_state": "unknown",
+            "determinacy": "not_uniquely_determined_from_this_leaf",
+            "basis": "This leaf states an obligation or bundles alternatives; the permitted text does not select one QA state for this facet."
+          },
+          "authority_mapping": {
+            "expected_local_state": "unknown",
+            "determinacy": "not_uniquely_determined_from_this_leaf",
+            "basis": "This leaf states an obligation or bundles alternatives; the permitted text does not select one QA state for this facet."
+          }
+        },
+        "primary_attribution_determinate": true
+      }
+    },
+    {
+      "leaf_id": "H053-SRC-023",
+      "source": {
+        "path": "docs/helix-harness/L4-basic-design/semantic-asset-lineage.json",
+        "revision": "dd07a3498be74f32519adf42a221caf51e547ea1",
+        "pointer": "/contracts/1/behavior",
+        "value_sha256": "a325ccb85064b03833b7d43215e6c2adfb43a174e34c95bef52f52ade33cf4a9",
+        "content_revision": {
+          "document_content_revision": "not_declared",
+          "content_revision_field": null,
+          "declared_source_pin_revisions": [
+            "3c572d540e27a74de93559a54d8c5c522cdbeb60"
+          ],
+          "source_pins_field": "/source_pins/*/revision"
+        }
+      },
+      "failure_meaning_evidence": "L4 contract HARNESS-L4-053-F02: 意味変更の前後を同一identityの異なるrevisionとして識別し、semantic diffと影響するoracle/typed edgeへ結ぶ。配置や名称だけの変更を新identity・意味変更として数えない。",
+      "provisional_axis": "unknown",
+      "provisional_state": "unknown",
+      "candidate_groups": [
+        "C03",
+        "C04"
+      ],
+      "finding_deduplication": {
+        "canonical_destination": "H053-SRC-023",
+        "source_leaf_identity": [
+          "source.revision",
+          "source.path",
+          "source.pointer"
+        ],
+        "candidate_finding_code": "unknown",
+        "atomization": "unknown_if_leaf_contains_multiple_independent_negative_inputs",
+        "same_leaf_reuse_rule": "Record this source leaf once. Any one-to-many effect on other facets is listed below and does not create another source-origin finding. This is a provisional source attribution, not an assertion of a single semantic finding."
+      },
+      "facet_analysis": {
+        "primary_facet_candidates": "semantic_revision",
+        "propagation_facets": [
+          "location_history",
+          "oracle_mapping",
+          "typed_edge_mapping"
+        ],
+        "local_state_by_facet": {
+          "semantic_revision": {
+            "expected_local_state": "unknown",
+            "determinacy": "not_uniquely_determined_from_this_leaf",
+            "basis": "This leaf states an obligation or bundles alternatives; the permitted text does not select one QA state for this facet."
+          },
+          "location_history": {
+            "expected_local_state": "unknown",
+            "determinacy": "not_uniquely_determined_from_this_leaf",
+            "basis": "This leaf states an obligation or bundles alternatives; the permitted text does not select one QA state for this facet."
+          },
+          "oracle_mapping": {
+            "expected_local_state": "unknown",
+            "determinacy": "not_uniquely_determined_from_this_leaf",
+            "basis": "This leaf states an obligation or bundles alternatives; the permitted text does not select one QA state for this facet."
+          },
+          "typed_edge_mapping": {
+            "expected_local_state": "unknown",
+            "determinacy": "not_uniquely_determined_from_this_leaf",
+            "basis": "This leaf states an obligation or bundles alternatives; the permitted text does not select one QA state for this facet."
+          }
+        },
+        "primary_attribution_determinate": true
+      }
+    },
+    {
+      "leaf_id": "H053-SRC-024",
+      "source": {
+        "path": "docs/helix-harness/L4-basic-design/semantic-asset-lineage.json",
+        "revision": "dd07a3498be74f32519adf42a221caf51e547ea1",
+        "pointer": "/contracts/1/backflow",
+        "value_sha256": "63dda5a828f1675b92a295b5a414ccd3e18ce9844b5fafbad63a481873733749",
+        "content_revision": {
+          "document_content_revision": "not_declared",
+          "content_revision_field": null,
+          "declared_source_pin_revisions": [
+            "3c572d540e27a74de93559a54d8c5c522cdbeb60"
+          ],
+          "source_pins_field": "/source_pins/*/revision"
+        }
+      },
+      "failure_meaning_evidence": "L4 contract HARNESS-L4-053-F02 backflow mapping; retained as a separate leaf because this pointer is distinct even where text repeats.",
+      "provisional_axis": "unknown",
+      "provisional_state": "unknown",
+      "candidate_groups": [
+        "C03",
+        "C04"
+      ],
+      "finding_deduplication": {
+        "canonical_destination": "H053-SRC-024",
+        "source_leaf_identity": [
+          "source.revision",
+          "source.path",
+          "source.pointer"
+        ],
+        "candidate_finding_code": "unknown",
+        "atomization": "unknown_if_leaf_contains_multiple_independent_negative_inputs",
+        "same_leaf_reuse_rule": "Record this source leaf once. Any one-to-many effect on other facets is listed below and does not create another source-origin finding. This is a provisional source attribution, not an assertion of a single semantic finding."
+      },
+      "facet_analysis": {
+        "primary_facet_candidates": "semantic_revision",
+        "propagation_facets": [
+          "location_history",
+          "oracle_mapping",
+          "typed_edge_mapping"
+        ],
+        "local_state_by_facet": {
+          "semantic_revision": {
+            "expected_local_state": "unknown",
+            "determinacy": "not_uniquely_determined_from_this_leaf",
+            "basis": "This leaf states an obligation or bundles alternatives; the permitted text does not select one QA state for this facet."
+          },
+          "location_history": {
+            "expected_local_state": "unknown",
+            "determinacy": "not_uniquely_determined_from_this_leaf",
+            "basis": "This leaf states an obligation or bundles alternatives; the permitted text does not select one QA state for this facet."
+          },
+          "oracle_mapping": {
+            "expected_local_state": "unknown",
+            "determinacy": "not_uniquely_determined_from_this_leaf",
+            "basis": "This leaf states an obligation or bundles alternatives; the permitted text does not select one QA state for this facet."
+          },
+          "typed_edge_mapping": {
+            "expected_local_state": "unknown",
+            "determinacy": "not_uniquely_determined_from_this_leaf",
+            "basis": "This leaf states an obligation or bundles alternatives; the permitted text does not select one QA state for this facet."
+          }
+        },
+        "primary_attribution_determinate": true
+      }
+    },
+    {
+      "leaf_id": "H053-SRC-025",
+      "source": {
+        "path": "docs/helix-harness/L4-basic-design/semantic-asset-lineage.json",
+        "revision": "dd07a3498be74f32519adf42a221caf51e547ea1",
+        "pointer": "/contracts/2/behavior",
+        "value_sha256": "a8b2b7bd366895995a2b6b699e447fafa7d8bdb5a3a9a34bfbff35a2988437b6",
+        "content_revision": {
+          "document_content_revision": "not_declared",
+          "content_revision_field": null,
+          "declared_source_pin_revisions": [
+            "3c572d540e27a74de93559a54d8c5c522cdbeb60"
+          ],
+          "source_pins_field": "/source_pins/*/revision"
+        }
+      },
+      "failure_meaning_evidence": "L4 contract HARNESS-L4-053-F03: 供給済みのrename/move履歴は同identityのlocation履歴へ、split/merge/supersede記録は前後identity・revision・関係種別・影響history・authority・oracle・typed edgeへ個別に対応付ける。変換操作自体は初回に選択せず、この照合から発行しない。",
+      "provisional_axis": "unknown",
+      "provisional_state": "unknown",
+      "candidate_groups": [
+        "C05",
+        "C06",
+        "C07",
+        "C08",
+        "C09"
+      ],
+      "finding_deduplication": {
+        "canonical_destination": "H053-SRC-025",
+        "source_leaf_identity": [
+          "source.revision",
+          "source.path",
+          "source.pointer"
+        ],
+        "candidate_finding_code": "unknown",
+        "atomization": "unknown_if_leaf_contains_multiple_independent_negative_inputs",
+        "same_leaf_reuse_rule": "Record this source leaf once. Any one-to-many effect on other facets is listed below and does not create another source-origin finding. This is a provisional source attribution, not an assertion of a single semantic finding."
+      },
+      "facet_analysis": {
+        "primary_facet_candidates": [
+          "lineage_relation",
+          "authority_mapping",
+          "oracle_mapping",
+          "typed_edge_mapping"
+        ],
+        "propagation_facets": [
+          "history_mapping",
+          "authority_mapping",
+          "oracle_mapping",
+          "typed_edge_mapping",
+          "identity",
+          "semantic_revision",
+          "location_history"
+        ],
+        "local_state_by_facet": {
+          "identity": {
+            "expected_local_state": "unknown",
+            "determinacy": "not_uniquely_determined_from_this_leaf",
+            "basis": "This leaf states an obligation or bundles alternatives; the permitted text does not select one QA state for this facet."
+          },
+          "semantic_revision": {
+            "expected_local_state": "unknown",
+            "determinacy": "not_uniquely_determined_from_this_leaf",
+            "basis": "This leaf states an obligation or bundles alternatives; the permitted text does not select one QA state for this facet."
+          },
+          "location_history": {
+            "expected_local_state": "unknown",
+            "determinacy": "not_uniquely_determined_from_this_leaf",
+            "basis": "This leaf states an obligation or bundles alternatives; the permitted text does not select one QA state for this facet."
+          },
+          "lineage_relation": {
+            "expected_local_state": "unknown",
+            "determinacy": "not_uniquely_determined_from_this_leaf",
+            "basis": "This leaf states an obligation or bundles alternatives; the permitted text does not select one QA state for this facet."
+          },
+          "history_mapping": {
+            "expected_local_state": "unknown",
+            "determinacy": "not_uniquely_determined_from_this_leaf",
+            "basis": "This leaf states an obligation or bundles alternatives; the permitted text does not select one QA state for this facet."
+          },
+          "authority_mapping": {
+            "expected_local_state": "unknown",
+            "determinacy": "not_uniquely_determined_from_this_leaf",
+            "basis": "This leaf states an obligation or bundles alternatives; the permitted text does not select one QA state for this facet."
+          },
+          "oracle_mapping": {
+            "expected_local_state": "unknown",
+            "determinacy": "not_uniquely_determined_from_this_leaf",
+            "basis": "This leaf states an obligation or bundles alternatives; the permitted text does not select one QA state for this facet."
+          },
+          "typed_edge_mapping": {
+            "expected_local_state": "unknown",
+            "determinacy": "not_uniquely_determined_from_this_leaf",
+            "basis": "This leaf states an obligation or bundles alternatives; the permitted text does not select one QA state for this facet."
+          }
+        },
+        "primary_attribution_determinate": false
+      }
+    },
+    {
+      "leaf_id": "H053-SRC-026",
+      "source": {
+        "path": "docs/helix-harness/L4-basic-design/semantic-asset-lineage.json",
+        "revision": "dd07a3498be74f32519adf42a221caf51e547ea1",
+        "pointer": "/contracts/2/backflow",
+        "value_sha256": "63dda5a828f1675b92a295b5a414ccd3e18ce9844b5fafbad63a481873733749",
+        "content_revision": {
+          "document_content_revision": "not_declared",
+          "content_revision_field": null,
+          "declared_source_pin_revisions": [
+            "3c572d540e27a74de93559a54d8c5c522cdbeb60"
+          ],
+          "source_pins_field": "/source_pins/*/revision"
+        }
+      },
+      "failure_meaning_evidence": "L4 contract HARNESS-L4-053-F03 backflow mapping; retained as a separate leaf because this pointer is distinct even where text repeats.",
+      "provisional_axis": "unknown",
+      "provisional_state": "unknown",
+      "candidate_groups": [
+        "C05",
+        "C06",
+        "C07",
+        "C08",
+        "C09"
+      ],
+      "finding_deduplication": {
+        "canonical_destination": "H053-SRC-026",
+        "source_leaf_identity": [
+          "source.revision",
+          "source.path",
+          "source.pointer"
+        ],
+        "candidate_finding_code": "unknown",
+        "atomization": "unknown_if_leaf_contains_multiple_independent_negative_inputs",
+        "same_leaf_reuse_rule": "Record this source leaf once. Any one-to-many effect on other facets is listed below and does not create another source-origin finding. This is a provisional source attribution, not an assertion of a single semantic finding."
+      },
+      "facet_analysis": {
+        "primary_facet_candidates": [
+          "lineage_relation",
+          "authority_mapping",
+          "oracle_mapping",
+          "typed_edge_mapping"
+        ],
+        "propagation_facets": [
+          "history_mapping",
+          "authority_mapping",
+          "oracle_mapping",
+          "typed_edge_mapping",
+          "identity",
+          "semantic_revision",
+          "location_history"
+        ],
+        "local_state_by_facet": {
+          "identity": {
+            "expected_local_state": "unknown",
+            "determinacy": "not_uniquely_determined_from_this_leaf",
+            "basis": "This leaf states an obligation or bundles alternatives; the permitted text does not select one QA state for this facet."
+          },
+          "semantic_revision": {
+            "expected_local_state": "unknown",
+            "determinacy": "not_uniquely_determined_from_this_leaf",
+            "basis": "This leaf states an obligation or bundles alternatives; the permitted text does not select one QA state for this facet."
+          },
+          "location_history": {
+            "expected_local_state": "unknown",
+            "determinacy": "not_uniquely_determined_from_this_leaf",
+            "basis": "This leaf states an obligation or bundles alternatives; the permitted text does not select one QA state for this facet."
+          },
+          "lineage_relation": {
+            "expected_local_state": "unknown",
+            "determinacy": "not_uniquely_determined_from_this_leaf",
+            "basis": "This leaf states an obligation or bundles alternatives; the permitted text does not select one QA state for this facet."
+          },
+          "history_mapping": {
+            "expected_local_state": "unknown",
+            "determinacy": "not_uniquely_determined_from_this_leaf",
+            "basis": "This leaf states an obligation or bundles alternatives; the permitted text does not select one QA state for this facet."
+          },
+          "authority_mapping": {
+            "expected_local_state": "unknown",
+            "determinacy": "not_uniquely_determined_from_this_leaf",
+            "basis": "This leaf states an obligation or bundles alternatives; the permitted text does not select one QA state for this facet."
+          },
+          "oracle_mapping": {
+            "expected_local_state": "unknown",
+            "determinacy": "not_uniquely_determined_from_this_leaf",
+            "basis": "This leaf states an obligation or bundles alternatives; the permitted text does not select one QA state for this facet."
+          },
+          "typed_edge_mapping": {
+            "expected_local_state": "unknown",
+            "determinacy": "not_uniquely_determined_from_this_leaf",
+            "basis": "This leaf states an obligation or bundles alternatives; the permitted text does not select one QA state for this facet."
+          }
+        },
+        "primary_attribution_determinate": false
+      }
+    },
+    {
+      "leaf_id": "H053-SRC-027",
+      "source": {
+        "path": "docs/helix-harness/L4-basic-design/semantic-asset-lineage.json",
+        "revision": "dd07a3498be74f32519adf42a221caf51e547ea1",
+        "pointer": "/contracts/3/behavior",
+        "value_sha256": "5bcc5ae652f807fe01eb86eb51b3b2ec80d869d765147dc7d70612352fe19f51",
+        "content_revision": {
+          "document_content_revision": "not_declared",
+          "content_revision_field": null,
+          "declared_source_pin_revisions": [
+            "3c572d540e27a74de93559a54d8c5c522cdbeb60"
+          ],
+          "source_pins_field": "/source_pins/*/revision"
+        }
+      },
+      "failure_meaning_evidence": "L4 contract HARNESS-L4-053-F04: lineage記録でauthority、acceptance oracle、typed edgeのいずれかが欠けるか対応不明なら、その項目をunknown/不成立として返す。他の項目やreceiptの存在で補わない。",
+      "provisional_axis": "unknown",
+      "provisional_state": "unknown",
+      "candidate_groups": [
+        "C07",
+        "C08",
+        "C09"
+      ],
+      "finding_deduplication": {
+        "canonical_destination": "H053-SRC-027",
+        "source_leaf_identity": [
+          "source.revision",
+          "source.path",
+          "source.pointer"
+        ],
+        "candidate_finding_code": "unknown",
+        "atomization": "unknown_if_leaf_contains_multiple_independent_negative_inputs",
+        "same_leaf_reuse_rule": "Record this source leaf once. Any one-to-many effect on other facets is listed below and does not create another source-origin finding. This is a provisional source attribution, not an assertion of a single semantic finding."
+      },
+      "facet_analysis": {
+        "primary_facet_candidates": [
+          "authority_mapping",
+          "oracle_mapping",
+          "typed_edge_mapping"
+        ],
+        "propagation_facets": [
+          "lineage_relation",
+          "history_mapping"
+        ],
+        "local_state_by_facet": {
+          "lineage_relation": {
+            "expected_local_state": "unknown",
+            "determinacy": "not_uniquely_determined_from_this_leaf",
+            "basis": "This leaf states an obligation or bundles alternatives; the permitted text does not select one QA state for this facet."
+          },
+          "history_mapping": {
+            "expected_local_state": "unknown",
+            "determinacy": "not_uniquely_determined_from_this_leaf",
+            "basis": "This leaf states an obligation or bundles alternatives; the permitted text does not select one QA state for this facet."
+          },
+          "authority_mapping": {
+            "expected_local_state": "unknown",
+            "determinacy": "not_uniquely_determined_from_this_leaf",
+            "basis": "This leaf states an obligation or bundles alternatives; the permitted text does not select one QA state for this facet."
+          },
+          "oracle_mapping": {
+            "expected_local_state": "unknown",
+            "determinacy": "not_uniquely_determined_from_this_leaf",
+            "basis": "This leaf states an obligation or bundles alternatives; the permitted text does not select one QA state for this facet."
+          },
+          "typed_edge_mapping": {
+            "expected_local_state": "unknown",
+            "determinacy": "not_uniquely_determined_from_this_leaf",
+            "basis": "This leaf states an obligation or bundles alternatives; the permitted text does not select one QA state for this facet."
+          }
+        },
+        "primary_attribution_determinate": false
+      }
+    },
+    {
+      "leaf_id": "H053-SRC-028",
+      "source": {
+        "path": "docs/helix-harness/L4-basic-design/semantic-asset-lineage.json",
+        "revision": "dd07a3498be74f32519adf42a221caf51e547ea1",
+        "pointer": "/contracts/3/backflow",
+        "value_sha256": "63dda5a828f1675b92a295b5a414ccd3e18ce9844b5fafbad63a481873733749",
+        "content_revision": {
+          "document_content_revision": "not_declared",
+          "content_revision_field": null,
+          "declared_source_pin_revisions": [
+            "3c572d540e27a74de93559a54d8c5c522cdbeb60"
+          ],
+          "source_pins_field": "/source_pins/*/revision"
+        }
+      },
+      "failure_meaning_evidence": "L4 contract HARNESS-L4-053-F04 backflow mapping; retained as a separate leaf because this pointer is distinct even where text repeats.",
+      "provisional_axis": "unknown",
+      "provisional_state": "unknown",
+      "candidate_groups": [
+        "C07",
+        "C08",
+        "C09"
+      ],
+      "finding_deduplication": {
+        "canonical_destination": "H053-SRC-028",
+        "source_leaf_identity": [
+          "source.revision",
+          "source.path",
+          "source.pointer"
+        ],
+        "candidate_finding_code": "unknown",
+        "atomization": "unknown_if_leaf_contains_multiple_independent_negative_inputs",
+        "same_leaf_reuse_rule": "Record this source leaf once. Any one-to-many effect on other facets is listed below and does not create another source-origin finding. This is a provisional source attribution, not an assertion of a single semantic finding."
+      },
+      "facet_analysis": {
+        "primary_facet_candidates": [
+          "authority_mapping",
+          "oracle_mapping",
+          "typed_edge_mapping"
+        ],
+        "propagation_facets": [
+          "lineage_relation",
+          "history_mapping"
+        ],
+        "local_state_by_facet": {
+          "lineage_relation": {
+            "expected_local_state": "unknown",
+            "determinacy": "not_uniquely_determined_from_this_leaf",
+            "basis": "This leaf states an obligation or bundles alternatives; the permitted text does not select one QA state for this facet."
+          },
+          "history_mapping": {
+            "expected_local_state": "unknown",
+            "determinacy": "not_uniquely_determined_from_this_leaf",
+            "basis": "This leaf states an obligation or bundles alternatives; the permitted text does not select one QA state for this facet."
+          },
+          "authority_mapping": {
+            "expected_local_state": "unknown",
+            "determinacy": "not_uniquely_determined_from_this_leaf",
+            "basis": "This leaf states an obligation or bundles alternatives; the permitted text does not select one QA state for this facet."
+          },
+          "oracle_mapping": {
+            "expected_local_state": "unknown",
+            "determinacy": "not_uniquely_determined_from_this_leaf",
+            "basis": "This leaf states an obligation or bundles alternatives; the permitted text does not select one QA state for this facet."
+          },
+          "typed_edge_mapping": {
+            "expected_local_state": "unknown",
+            "determinacy": "not_uniquely_determined_from_this_leaf",
+            "basis": "This leaf states an obligation or bundles alternatives; the permitted text does not select one QA state for this facet."
+          }
+        },
+        "primary_attribution_determinate": false
+      }
+    },
+    {
+      "leaf_id": "H053-SRC-029",
+      "source": {
+        "path": "docs/helix-harness/L4-basic-design/semantic-asset-lineage.json",
+        "revision": "dd07a3498be74f32519adf42a221caf51e547ea1",
+        "pointer": "/contracts/4/behavior",
+        "value_sha256": "f6a57b0c83b05ce59f80a96c03a7110e4f3c5b856f31803a06442805ef2a4d3e",
+        "content_revision": {
+          "document_content_revision": "not_declared",
+          "content_revision_field": null,
+          "declared_source_pin_revisions": [
+            "3c572d540e27a74de93559a54d8c5c522cdbeb60"
+          ],
+          "source_pins_field": "/source_pins/*/revision"
+        }
+      },
+      "failure_meaning_evidence": "L4 contract HARNESS-L4-053-N01: 053が042をsource revision/再現可能性として参照する意味不整合を未決として保持する。042をprovenance保証として消費せず代替IDを推測しない。初回ではrename/move/split/merge/supersede/Design Refactorの実操作を選ばず、必要となる操作は053 ownerの参照訂正/適用判断まで保留する。",
+      "provisional_axis": "unknown",
+      "provisional_state": "unknown",
+      "candidate_groups": [
+        "C10",
+        "C11"
+      ],
+      "finding_deduplication": {
+        "canonical_destination": "H053-SRC-029",
+        "source_leaf_identity": [
+          "source.revision",
+          "source.path",
+          "source.pointer"
+        ],
+        "candidate_finding_code": "unknown",
+        "atomization": "unknown_if_leaf_contains_multiple_independent_negative_inputs",
+        "same_leaf_reuse_rule": "Record this source leaf once. Any one-to-many effect on other facets is listed below and does not create another source-origin finding. This is a provisional source attribution, not an assertion of a single semantic finding."
+      },
+      "facet_analysis": {
+        "primary_facet_candidates": [
+          "lineage_relation",
+          "claim_or_operation_state"
+        ],
+        "propagation_facets": [
+          "identity",
+          "semantic_revision",
+          "authority_mapping",
+          "oracle_mapping",
+          "typed_edge_mapping"
+        ],
+        "local_state_by_facet": {
+          "identity": {
+            "expected_local_state": "unknown",
+            "determinacy": "not_uniquely_determined_from_this_leaf",
+            "basis": "This leaf states an obligation or bundles alternatives; the permitted text does not select one QA state for this facet."
+          },
+          "semantic_revision": {
+            "expected_local_state": "unknown",
+            "determinacy": "not_uniquely_determined_from_this_leaf",
+            "basis": "This leaf states an obligation or bundles alternatives; the permitted text does not select one QA state for this facet."
+          },
+          "lineage_relation": {
+            "expected_local_state": "unknown",
+            "determinacy": "not_uniquely_determined_from_this_leaf",
+            "basis": "This leaf states an obligation or bundles alternatives; the permitted text does not select one QA state for this facet."
+          },
+          "authority_mapping": {
+            "expected_local_state": "unknown",
+            "determinacy": "not_uniquely_determined_from_this_leaf",
+            "basis": "This leaf states an obligation or bundles alternatives; the permitted text does not select one QA state for this facet."
+          },
+          "oracle_mapping": {
+            "expected_local_state": "unknown",
+            "determinacy": "not_uniquely_determined_from_this_leaf",
+            "basis": "This leaf states an obligation or bundles alternatives; the permitted text does not select one QA state for this facet."
+          },
+          "typed_edge_mapping": {
+            "expected_local_state": "unknown",
+            "determinacy": "not_uniquely_determined_from_this_leaf",
+            "basis": "This leaf states an obligation or bundles alternatives; the permitted text does not select one QA state for this facet."
+          },
+          "claim_state": {
+            "expected_local_state": "unknown",
+            "determinacy": "not_uniquely_determined_from_this_leaf",
+            "basis": "Record claim or action effect is stated, but a single claim-state code is not selected by this leaf."
+          },
+          "operation_request_state": {
+            "expected_local_state": "unknown",
+            "determinacy": "not_uniquely_determined_from_this_leaf",
+            "basis": "Operation categories are distinct and this leaf does not select one outcome."
+          },
+          "operation_selection_state": {
+            "expected_local_state": "unknown",
+            "determinacy": "not_uniquely_determined_from_this_leaf",
+            "basis": "Operation categories are distinct and this leaf does not select one outcome."
+          },
+          "claim_or_operation_state": {
+            "expected_local_state": "unknown",
+            "determinacy": "not_uniquely_determined_from_this_leaf",
+            "basis": "Potential propagated facet only; the permitted leaf does not state a local result for it."
+          }
+        },
+        "primary_attribution_determinate": false
+      }
+    },
+    {
+      "leaf_id": "H053-SRC-030",
+      "source": {
+        "path": "docs/helix-harness/L4-basic-design/semantic-asset-lineage.json",
+        "revision": "dd07a3498be74f32519adf42a221caf51e547ea1",
+        "pointer": "/contracts/4/backflow",
+        "value_sha256": "63dda5a828f1675b92a295b5a414ccd3e18ce9844b5fafbad63a481873733749",
+        "content_revision": {
+          "document_content_revision": "not_declared",
+          "content_revision_field": null,
+          "declared_source_pin_revisions": [
+            "3c572d540e27a74de93559a54d8c5c522cdbeb60"
+          ],
+          "source_pins_field": "/source_pins/*/revision"
+        }
+      },
+      "failure_meaning_evidence": "L4 contract HARNESS-L4-053-N01 backflow mapping; retained as a separate leaf because this pointer is distinct even where text repeats.",
+      "provisional_axis": "unknown",
+      "provisional_state": "unknown",
+      "candidate_groups": [
+        "C10",
+        "C11"
+      ],
+      "finding_deduplication": {
+        "canonical_destination": "H053-SRC-030",
+        "source_leaf_identity": [
+          "source.revision",
+          "source.path",
+          "source.pointer"
+        ],
+        "candidate_finding_code": "unknown",
+        "atomization": "unknown_if_leaf_contains_multiple_independent_negative_inputs",
+        "same_leaf_reuse_rule": "Record this source leaf once. Any one-to-many effect on other facets is listed below and does not create another source-origin finding. This is a provisional source attribution, not an assertion of a single semantic finding."
+      },
+      "facet_analysis": {
+        "primary_facet_candidates": [
+          "lineage_relation",
+          "claim_or_operation_state"
+        ],
+        "propagation_facets": [
+          "identity",
+          "semantic_revision",
+          "authority_mapping",
+          "oracle_mapping",
+          "typed_edge_mapping"
+        ],
+        "local_state_by_facet": {
+          "identity": {
+            "expected_local_state": "unknown",
+            "determinacy": "not_uniquely_determined_from_this_leaf",
+            "basis": "This leaf states an obligation or bundles alternatives; the permitted text does not select one QA state for this facet."
+          },
+          "semantic_revision": {
+            "expected_local_state": "unknown",
+            "determinacy": "not_uniquely_determined_from_this_leaf",
+            "basis": "This leaf states an obligation or bundles alternatives; the permitted text does not select one QA state for this facet."
+          },
+          "lineage_relation": {
+            "expected_local_state": "unknown",
+            "determinacy": "not_uniquely_determined_from_this_leaf",
+            "basis": "This leaf states an obligation or bundles alternatives; the permitted text does not select one QA state for this facet."
+          },
+          "authority_mapping": {
+            "expected_local_state": "unknown",
+            "determinacy": "not_uniquely_determined_from_this_leaf",
+            "basis": "This leaf states an obligation or bundles alternatives; the permitted text does not select one QA state for this facet."
+          },
+          "oracle_mapping": {
+            "expected_local_state": "unknown",
+            "determinacy": "not_uniquely_determined_from_this_leaf",
+            "basis": "This leaf states an obligation or bundles alternatives; the permitted text does not select one QA state for this facet."
+          },
+          "typed_edge_mapping": {
+            "expected_local_state": "unknown",
+            "determinacy": "not_uniquely_determined_from_this_leaf",
+            "basis": "This leaf states an obligation or bundles alternatives; the permitted text does not select one QA state for this facet."
+          },
+          "claim_state": {
+            "expected_local_state": "unknown",
+            "determinacy": "not_uniquely_determined_from_this_leaf",
+            "basis": "Record claim or action effect is stated, but a single claim-state code is not selected by this leaf."
+          },
+          "operation_request_state": {
+            "expected_local_state": "unknown",
+            "determinacy": "not_uniquely_determined_from_this_leaf",
+            "basis": "Operation categories are distinct and this leaf does not select one outcome."
+          },
+          "operation_selection_state": {
+            "expected_local_state": "unknown",
+            "determinacy": "not_uniquely_determined_from_this_leaf",
+            "basis": "Operation categories are distinct and this leaf does not select one outcome."
+          },
+          "claim_or_operation_state": {
+            "expected_local_state": "unknown",
+            "determinacy": "not_uniquely_determined_from_this_leaf",
+            "basis": "Potential propagated facet only; the permitted leaf does not state a local result for it."
+          }
+        },
+        "primary_attribution_determinate": false
+      }
+    },
+    {
+      "leaf_id": "H053-SRC-031",
+      "source": {
+        "path": "docs/helix-harness/L4-basic-design/semantic-asset-lineage.json",
+        "revision": "dd07a3498be74f32519adf42a221caf51e547ea1",
+        "pointer": "/contracts/5/behavior",
+        "value_sha256": "937c5a5b4f7f278afab3431684fd399113d4ab453a3333c16a719e922912c571",
+        "content_revision": {
+          "document_content_revision": "not_declared",
+          "content_revision_field": null,
+          "declared_source_pin_revisions": [
+            "3c572d540e27a74de93559a54d8c5c522cdbeb60"
+          ],
+          "source_pins_field": "/source_pins/*/revision"
+        }
+      },
+      "failure_meaning_evidence": "L4 contract HARNESS-L4-053-B01: identity/location history、asset revision、split/merge disposition、semantic diffは確認する記録成果であり、その存在から保存/rollback/権限/採択/受入を生成しない。003/004/016の既存revision/trace/stale/差分条件を再定義せず、052の採択や実施順序を前提として新設しない。",
+      "provisional_axis": "unknown",
+      "provisional_state": "unknown",
+      "candidate_groups": [
+        "C11"
+      ],
+      "finding_deduplication": {
+        "canonical_destination": "H053-SRC-031",
+        "source_leaf_identity": [
+          "source.revision",
+          "source.path",
+          "source.pointer"
+        ],
+        "candidate_finding_code": "unknown",
+        "atomization": "unknown_if_leaf_contains_multiple_independent_negative_inputs",
+        "same_leaf_reuse_rule": "Record this source leaf once. Any one-to-many effect on other facets is listed below and does not create another source-origin finding. This is a provisional source attribution, not an assertion of a single semantic finding."
+      },
+      "facet_analysis": {
+        "primary_facet_candidates": "claim_or_operation_state",
+        "propagation_facets": [],
+        "local_state_by_facet": {
+          "claim_state": {
+            "expected_local_state": "unknown",
+            "determinacy": "not_uniquely_determined_from_this_leaf",
+            "basis": "Record claim or action effect is stated, but a single claim-state code is not selected by this leaf."
+          },
+          "operation_request_state": {
+            "expected_local_state": "unknown",
+            "determinacy": "not_uniquely_determined_from_this_leaf",
+            "basis": "Operation categories are distinct and this leaf does not select one outcome."
+          },
+          "operation_selection_state": {
+            "expected_local_state": "unknown",
+            "determinacy": "not_uniquely_determined_from_this_leaf",
+            "basis": "Operation categories are distinct and this leaf does not select one outcome."
+          },
+          "claim_or_operation_state": {
+            "expected_local_state": "unknown",
+            "determinacy": "not_uniquely_determined_from_this_leaf",
+            "basis": "Potential propagated facet only; the permitted leaf does not state a local result for it."
+          }
+        },
+        "primary_attribution_determinate": true
+      }
+    },
+    {
+      "leaf_id": "H053-SRC-032",
+      "source": {
+        "path": "docs/helix-harness/L4-basic-design/semantic-asset-lineage.json",
+        "revision": "dd07a3498be74f32519adf42a221caf51e547ea1",
+        "pointer": "/contracts/5/backflow",
+        "value_sha256": "63dda5a828f1675b92a295b5a414ccd3e18ce9844b5fafbad63a481873733749",
+        "content_revision": {
+          "document_content_revision": "not_declared",
+          "content_revision_field": null,
+          "declared_source_pin_revisions": [
+            "3c572d540e27a74de93559a54d8c5c522cdbeb60"
+          ],
+          "source_pins_field": "/source_pins/*/revision"
+        }
+      },
+      "failure_meaning_evidence": "L4 contract HARNESS-L4-053-B01 backflow mapping; retained as a separate leaf because this pointer is distinct even where text repeats.",
+      "provisional_axis": "unknown",
+      "provisional_state": "unknown",
+      "candidate_groups": [
+        "C11"
+      ],
+      "finding_deduplication": {
+        "canonical_destination": "H053-SRC-032",
+        "source_leaf_identity": [
+          "source.revision",
+          "source.path",
+          "source.pointer"
+        ],
+        "candidate_finding_code": "unknown",
+        "atomization": "unknown_if_leaf_contains_multiple_independent_negative_inputs",
+        "same_leaf_reuse_rule": "Record this source leaf once. Any one-to-many effect on other facets is listed below and does not create another source-origin finding. This is a provisional source attribution, not an assertion of a single semantic finding."
+      },
+      "facet_analysis": {
+        "primary_facet_candidates": "claim_or_operation_state",
+        "propagation_facets": [],
+        "local_state_by_facet": {
+          "claim_state": {
+            "expected_local_state": "unknown",
+            "determinacy": "not_uniquely_determined_from_this_leaf",
+            "basis": "Record claim or action effect is stated, but a single claim-state code is not selected by this leaf."
+          },
+          "operation_request_state": {
+            "expected_local_state": "unknown",
+            "determinacy": "not_uniquely_determined_from_this_leaf",
+            "basis": "Operation categories are distinct and this leaf does not select one outcome."
+          },
+          "operation_selection_state": {
+            "expected_local_state": "unknown",
+            "determinacy": "not_uniquely_determined_from_this_leaf",
+            "basis": "Operation categories are distinct and this leaf does not select one outcome."
+          },
+          "claim_or_operation_state": {
+            "expected_local_state": "unknown",
+            "determinacy": "not_uniquely_determined_from_this_leaf",
+            "basis": "Potential propagated facet only; the permitted leaf does not state a local result for it."
+          }
+        },
+        "primary_attribution_determinate": true
+      }
+    }
+  ],
+  "provisional_candidates": [
+    {
+      "candidate_id": "C01",
+      "provisional_failure_meaning": "path/name/hash mistaken for identity",
+      "source_leaf_refs": [
+        "H053-SRC-001",
+        "H053-SRC-006",
+        "H053-SRC-011",
+        "H053-SRC-021",
+        "H053-SRC-022"
+      ],
+      "candidate_key_status": "unresolved_not_an_actual_class_key",
+      "six_field_observation": {
+        "classification_code": "unknown",
+        "finding_codes_ordered": "unknown",
+        "backflow_owner": "unknown",
+        "expected_axis": "unknown",
+        "expected_state": "unknown",
+        "owner_ref_typed": {
+          "type": "unknown",
+          "id": null
+        }
+      },
+      "non_equivalence_note": "Provisional grouping only. This candidate does not assert that its leaves share a QA six-field key or an existing classification."
+    },
+    {
+      "candidate_id": "C02",
+      "provisional_failure_meaning": "identity collision or unqualified identity",
+      "source_leaf_refs": [
+        "H053-SRC-001",
+        "H053-SRC-006",
+        "H053-SRC-011",
+        "H053-SRC-015",
+        "H053-SRC-020",
+        "H053-SRC-021",
+        "H053-SRC-022"
+      ],
+      "candidate_key_status": "unresolved_not_an_actual_class_key",
+      "six_field_observation": {
+        "classification_code": "unknown",
+        "finding_codes_ordered": "unknown",
+        "backflow_owner": "unknown",
+        "expected_axis": "unknown",
+        "expected_state": "unknown",
+        "owner_ref_typed": {
+          "type": "unknown",
+          "id": null
+        }
+      },
+      "non_equivalence_note": "Provisional grouping only. This candidate does not assert that its leaves share a QA six-field key or an existing classification."
+    },
+    {
+      "candidate_id": "C03",
+      "provisional_failure_meaning": "semantic revision/location axis conflation",
+      "source_leaf_refs": [
+        "H053-SRC-002",
+        "H053-SRC-007",
+        "H053-SRC-012",
+        "H053-SRC-023",
+        "H053-SRC-024"
+      ],
+      "candidate_key_status": "unresolved_not_an_actual_class_key",
+      "six_field_observation": {
+        "classification_code": "unknown",
+        "finding_codes_ordered": "unknown",
+        "backflow_owner": "unknown",
+        "expected_axis": "unknown",
+        "expected_state": "unknown",
+        "owner_ref_typed": {
+          "type": "unknown",
+          "id": null
+        }
+      },
+      "non_equivalence_note": "Provisional grouping only. This candidate does not assert that its leaves share a QA six-field key or an existing classification."
+    },
+    {
+      "candidate_id": "C04",
+      "provisional_failure_meaning": "semantic revision evidence missing",
+      "source_leaf_refs": [
+        "H053-SRC-002",
+        "H053-SRC-007",
+        "H053-SRC-012",
+        "H053-SRC-016",
+        "H053-SRC-023",
+        "H053-SRC-024"
+      ],
+      "candidate_key_status": "unresolved_not_an_actual_class_key",
+      "six_field_observation": {
+        "classification_code": "unknown",
+        "finding_codes_ordered": "unknown",
+        "backflow_owner": "unknown",
+        "expected_axis": "unknown",
+        "expected_state": "unknown",
+        "owner_ref_typed": {
+          "type": "unknown",
+          "id": null
+        }
+      },
+      "non_equivalence_note": "Provisional grouping only. This candidate does not assert that its leaves share a QA six-field key or an existing classification."
+    },
+    {
+      "candidate_id": "C05",
+      "provisional_failure_meaning": "lineage relation/endpoints/history gap",
+      "source_leaf_refs": [
+        "H053-SRC-003",
+        "H053-SRC-008",
+        "H053-SRC-013",
+        "H053-SRC-014",
+        "H053-SRC-016",
+        "H053-SRC-018",
+        "H053-SRC-025",
+        "H053-SRC-026"
+      ],
+      "candidate_key_status": "unresolved_not_an_actual_class_key",
+      "six_field_observation": {
+        "classification_code": "unknown",
+        "finding_codes_ordered": "unknown",
+        "backflow_owner": "unknown",
+        "expected_axis": "unknown",
+        "expected_state": "unknown",
+        "owner_ref_typed": {
+          "type": "unknown",
+          "id": null
+        }
+      },
+      "non_equivalence_note": "Provisional grouping only. This candidate does not assert that its leaves share a QA six-field key or an existing classification."
+    },
+    {
+      "candidate_id": "C06",
+      "provisional_failure_meaning": "base revision or scope mismatch",
+      "source_leaf_refs": [
+        "H053-SRC-003",
+        "H053-SRC-008",
+        "H053-SRC-014",
+        "H053-SRC-025",
+        "H053-SRC-026"
+      ],
+      "candidate_key_status": "unresolved_not_an_actual_class_key",
+      "six_field_observation": {
+        "classification_code": "unknown",
+        "finding_codes_ordered": "unknown",
+        "backflow_owner": "unknown",
+        "expected_axis": "unknown",
+        "expected_state": "unknown",
+        "owner_ref_typed": {
+          "type": "unknown",
+          "id": null
+        }
+      },
+      "non_equivalence_note": "Provisional grouping only. This candidate does not assert that its leaves share a QA six-field key or an existing classification."
+    },
+    {
+      "candidate_id": "C07",
+      "provisional_failure_meaning": "authority mapping gap",
+      "source_leaf_refs": [
+        "H053-SRC-003",
+        "H053-SRC-004",
+        "H053-SRC-009",
+        "H053-SRC-013",
+        "H053-SRC-016",
+        "H053-SRC-018",
+        "H053-SRC-025",
+        "H053-SRC-026",
+        "H053-SRC-027",
+        "H053-SRC-028"
+      ],
+      "candidate_key_status": "unresolved_not_an_actual_class_key",
+      "six_field_observation": {
+        "classification_code": "unknown",
+        "finding_codes_ordered": "unknown",
+        "backflow_owner": "unknown",
+        "expected_axis": "unknown",
+        "expected_state": "unknown",
+        "owner_ref_typed": {
+          "type": "unknown",
+          "id": null
+        }
+      },
+      "non_equivalence_note": "Provisional grouping only. This candidate does not assert that its leaves share a QA six-field key or an existing classification."
+    },
+    {
+      "candidate_id": "C08",
+      "provisional_failure_meaning": "acceptance oracle mapping gap",
+      "source_leaf_refs": [
+        "H053-SRC-003",
+        "H053-SRC-004",
+        "H053-SRC-009",
+        "H053-SRC-013",
+        "H053-SRC-016",
+        "H053-SRC-018",
+        "H053-SRC-025",
+        "H053-SRC-026",
+        "H053-SRC-027",
+        "H053-SRC-028"
+      ],
+      "candidate_key_status": "unresolved_not_an_actual_class_key",
+      "six_field_observation": {
+        "classification_code": "unknown",
+        "finding_codes_ordered": "unknown",
+        "backflow_owner": "unknown",
+        "expected_axis": "unknown",
+        "expected_state": "unknown",
+        "owner_ref_typed": {
+          "type": "unknown",
+          "id": null
+        }
+      },
+      "non_equivalence_note": "Provisional grouping only. This candidate does not assert that its leaves share a QA six-field key or an existing classification."
+    },
+    {
+      "candidate_id": "C09",
+      "provisional_failure_meaning": "typed edge mapping gap",
+      "source_leaf_refs": [
+        "H053-SRC-003",
+        "H053-SRC-004",
+        "H053-SRC-009",
+        "H053-SRC-013",
+        "H053-SRC-016",
+        "H053-SRC-018",
+        "H053-SRC-025",
+        "H053-SRC-026",
+        "H053-SRC-027",
+        "H053-SRC-028"
+      ],
+      "candidate_key_status": "unresolved_not_an_actual_class_key",
+      "six_field_observation": {
+        "classification_code": "unknown",
+        "finding_codes_ordered": "unknown",
+        "backflow_owner": "unknown",
+        "expected_axis": "unknown",
+        "expected_state": "unknown",
+        "owner_ref_typed": {
+          "type": "unknown",
+          "id": null
+        }
+      },
+      "non_equivalence_note": "Provisional grouping only. This candidate does not assert that its leaves share a QA six-field key or an existing classification."
+    },
+    {
+      "candidate_id": "C10",
+      "provisional_failure_meaning": "unresolved 053→042 reference or unqualified source",
+      "source_leaf_refs": [
+        "H053-SRC-015",
+        "H053-SRC-017",
+        "H053-SRC-018",
+        "H053-SRC-020",
+        "H053-SRC-029",
+        "H053-SRC-030"
+      ],
+      "candidate_key_status": "unresolved_not_an_actual_class_key",
+      "six_field_observation": {
+        "classification_code": "unknown",
+        "finding_codes_ordered": "unknown",
+        "backflow_owner": "unknown",
+        "expected_axis": "unknown",
+        "expected_state": "unknown",
+        "owner_ref_typed": {
+          "type": "unknown",
+          "id": null
+        }
+      },
+      "non_equivalence_note": "Provisional grouping only. This candidate does not assert that its leaves share a QA six-field key or an existing classification."
+    },
+    {
+      "candidate_id": "C11",
+      "provisional_failure_meaning": "record result overclaimed as operation/authority/acceptance",
+      "source_leaf_refs": [
+        "H053-SRC-005",
+        "H053-SRC-010",
+        "H053-SRC-017",
+        "H053-SRC-018",
+        "H053-SRC-019",
+        "H053-SRC-020",
+        "H053-SRC-029",
+        "H053-SRC-030",
+        "H053-SRC-031",
+        "H053-SRC-032"
+      ],
+      "candidate_key_status": "unresolved_not_an_actual_class_key",
+      "six_field_observation": {
+        "classification_code": "unknown",
+        "finding_codes_ordered": "unknown",
+        "backflow_owner": "unknown",
+        "expected_axis": "unknown",
+        "expected_state": "unknown",
+        "owner_ref_typed": {
+          "type": "unknown",
+          "id": null
+        }
+      },
+      "non_equivalence_note": "Provisional grouping only. This candidate does not assert that its leaves share a QA six-field key or an existing classification."
+    }
+  ],
+  "repeated_reference_handling": {
+    "method": "Each source leaf has one unique leaf_id based on exactly one (revision,path,pointer); multiple candidates may reference that ID. Same leaf referenced by multiple requirements/cases is not copied into multiple leaf records.",
+    "known_repeated_prose": "L4 /contracts/0..5 have distinct behavior/backflow pointers. Repeated boilerplate backflow remains separate source leaves; value_sha256 reveals byte-equivalent normalized values where applicable.",
+    "cross_layer_overlap": "The L3 requirement, L10 case, and L4 contract can support the same provisional meaning but remain distinct source leaves with independent pointers.",
+    "same_value_distinct_pointer_groups": [
+      {
+        "normalized_leaf_value_sha256": "63dda5a828f1675b92a295b5a414ccd3e18ce9844b5fafbad63a481873733749",
+        "leaf_ids": [
+          "H053-SRC-018",
+          "H053-SRC-022",
+          "H053-SRC-024",
+          "H053-SRC-026",
+          "H053-SRC-028",
+          "H053-SRC-030",
+          "H053-SRC-032"
+        ],
+        "meaning": "Distinct source leaves; value equality does not merge leaf identity."
+      }
+    ],
+    "facet_deduplication": "Each source leaf has one canonical_destination. Its primary facet candidate and all possible propagation facets are listed once; propagated effects do not create duplicate source findings. If multiple primary facets or multiple independent negative inputs prevent a unique finding identity, code/atomization remain unknown."
+  },
+  "counts": {
+    "l3_l10_leaf_count": 10,
+    "l4_prose_leaf_count": 22,
+    "total_unique_source_leaves": 32,
+    "provisional_candidate_groups": 11,
+    "candidate_keys_asserted": 0,
+    "unknown_classification_code": 11,
+    "unknown_backflow_owner": 11,
+    "unknown_owner_ref": 11,
+    "source_leaves_with_facet_analysis": 32,
+    "source_leaves_with_dedup_destination": 32,
+    "leaves_with_determinate_primary_facet": 17,
+    "leaves_with_unknown_or_conditional_local_state": 32
+  },
+  "unresolved": [
+    "Actual classification_code, ordered finding_codes, backflow owner, and typed owner_ref cannot be established from the permitted L3/L10 and L4 prose sources alone.",
+    "Axis/state are kept unknown at candidate level because grouped source leaves span multiple axes/states and no actual six-field key may be asserted.",
+    "Whether any provisional candidates correspond to, split, or merge with existing classifications remains unanswered.",
+    "No permitted source uniquely specifies generated finding codes or the six-field class key.",
+    "Some source leaves bundle multiple negative inputs; their internal finding atomization cannot be fixed without a more granular authorized source pointer or additional approved design."
+  ],
+  "content_revisions": {
+    "l3f": "a2cc3defcee5a229145c89217af30c7d20da998f",
+    "l3b": "a2cc3defcee5a229145c89217af30c7d20da998f",
+    "l10f": "85103aa71e12d48da3b3eabd6020ef1fc22aa902",
+    "l10b": "85103aa71e12d48da3b3eabd6020ef1fc22aa902",
+    "l4": "3c572d540e27a74de93559a54d8c5c522cdbeb60"
+  },
+  "declared_content_revisions_by_document": {
+    "docs/helix-harness/L3-requirements/functional-requirements.json": {
+      "document_content_revision": "a2cc3defcee5a229145c89217af30c7d20da998f",
+      "content_revision_field": "/source_revision",
+      "additional_declared_content_revision": "85103aa71e12d48da3b3eabd6020ef1fc22aa902",
+      "additional_field": "/base_l3_l10_content_revision"
+    },
+    "docs/helix-harness/L3-requirements/business-requirements.json": {
+      "document_content_revision": "a2cc3defcee5a229145c89217af30c7d20da998f",
+      "content_revision_field": "/source_revision",
+      "additional_declared_content_revision": "85103aa71e12d48da3b3eabd6020ef1fc22aa902",
+      "additional_field": "/base_l3_l10_content_revision"
+    },
+    "docs/helix-harness/L10-verification/functional-verification.json": {
+      "document_content_revision": "a2cc3defcee5a229145c89217af30c7d20da998f",
+      "content_revision_field": "/source_revision",
+      "additional_declared_content_revision": "85103aa71e12d48da3b3eabd6020ef1fc22aa902",
+      "additional_field": "/base_l3_l10_content_revision"
+    },
+    "docs/helix-harness/L10-verification/business-verification.json": {
+      "document_content_revision": "a2cc3defcee5a229145c89217af30c7d20da998f",
+      "content_revision_field": "/source_revision",
+      "additional_declared_content_revision": "85103aa71e12d48da3b3eabd6020ef1fc22aa902",
+      "additional_field": "/base_l3_l10_content_revision"
+    },
+    "docs/helix-harness/L4-basic-design/semantic-asset-lineage.json": {
+      "document_content_revision": "not_declared",
+      "content_revision_field": null,
+      "declared_source_pin_revisions": [
+        "3c572d540e27a74de93559a54d8c5c522cdbeb60"
+      ],
+      "source_pins_field": "/source_pins/*/revision"
+    },
+    "docs/governance/design-verification-quality-assurance.md": {
+      "document_content_revision": "f5751e236dc073fe67114c1fcb4b0f64b3d746290b25d75b61e60a08e3c99c85",
+      "content_revision_field": "sha256_of_file_bytes"
+    }
+  },
+  "hash_method": {
+    "leaf_value_sha256": "SHA-256 over UTF-8 bytes of compact canonical JSON serialization of the JSON Pointer value: json.dumps(value, ensure_ascii=False, sort_keys=True, separators=(\",\", \":\")); arrays retain source order; object keys sort lexicographically; no trailing newline.",
+    "file_sha256": "SHA-256 over exact raw bytes returned by git show <revision>:<path>, no normalization.",
+    "verification_source": "Every source leaf was re-resolved by its source.revision and source.path using git show, then its pointer value was canonicalized and hashed by the method above."
+  },
+  "revision_note": "For every citation, source.revision is the Git commit actually used with git show (dd07a3498be74f32519adf42a221caf51e547ea1). source.content_revision records document-internal source/content revision metadata separately; it is not a Git object lookup target.",
+  "hash_verification": {
+    "method": "hash_method.leaf_value_sha256 for JSON pointer values; hash_method.file_sha256 for Markdown file.",
+    "verified_leaf_count": 32,
+    "all_match": true,
+    "git_object_revision": "dd07a3498be74f32519adf42a221caf51e547ea1"
+  }
+}
