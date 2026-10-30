@@ -1078,7 +1078,7 @@
       "aggregation_second_sentence_and_claim_scope": {
         "second_sentence": "source/event/authorityの不備だけがcurrent_source_materialをfalseにする。",
         "scope": "target_keyed",
-        "current_material_claim_location": "target配下（actual.targets.<target>.current_material_claim または actual.<target>.current_material_claim、boolean）",
+        "current_material_claim_location": "target配下の current_material_claim（boolean；入力容器の親key名は許可資料から未確定）",
         "rationale": "L3-015-F03（別scopeの有効authorityで穴を埋めない）・L10-015-F03（当該対象を未解決にし、関係しない有効記録を失効させない）・L4-015-F03（他対象は独立に保持する）およびfailure_classifications/35（actual側target_a.source.source_digestをnull、current_material_claimをtrueへ置換）により、current_material_claimはtarget配下に属し、aggregation第2文のcurrent_source_material判定もtarget単位（当該targetのsource/original_event/authorityの3 facetに不備があるか否か）で独立に決まる。",
         "source_pointers": [
           "docs/helix-os/L3-requirements/functional-requirements.json#/requirements/24",
@@ -1221,15 +1221,15 @@
         },
         "retained_unresolved_history": {
           "granularity": "target_keyed",
-          "type": "object (target_id in [target_a, target_b] -> array of string)",
-          "absence_or_empty_representation": "target_a/target_bをキーとするdict。各targetの値は文字列の配列（list[str]）であり、未解決履歴が空の場合は空配列 [] で表す（入力が非リスト等で未解決の場合も、contextの既知文字列リストまたは [] を保持し、entryを消失させない）。",
+          "type": "object (target_id in [target_a, target_b] -> unresolved_history representation (array of string | raw input value; candidates below))",
+          "absence_or_empty_representation": "target_a/target_bをキーとするdict。各targetの未解決履歴を出力へ保持する。正常時の型（既知文字列リストか否か）および空・非リスト・不正型入力時の表現（入力のraw値をそのまま保持するか、contextの既知文字列リストまたは [] にするか等）は下記候補の通りL3/L10およびL4散文からは一意に決まらない。",
           "determined_from_l3_l10_l4_prose": false,
           "candidates_if_undetermined": [
-            "候補1 (contextとactualの順序保持union / context保全): contextのunresolved_history entryを失わず保持した文字列リスト（list[str]）をtargetごとに返す。",
-            "候補2 (context基準のdeepcopyリスト): context.<target>.unresolved_historyの文字列リスト（不正型時は []）をtargetごとに返す。"
+            "候補1 (contextまたはactualのraw値deepcopy保全): 各targetのunresolved_history入力値（文字列配列、空配列 []、または非リスト・null等の不正型を含む生値）を正規化・置換せずそのままdeepcopyして保持する。",
+            "候補2 (contextとactualの順序保持union / context基準の文字列リスト保全): 正常時に既知文字列リスト（list[str]、空は []）を保持し、非リスト等の不正型時はcontext側のリストまたは [] を返す。"
           ],
-          "undetermined_reason": "failure_classifications/19（actual unresolved_historyからcontext entryが失われる）・20（unresolved_historyが既知文字列集合として形成されない）およびraw_retentionから、target_a/target_b別の文字列配列（空は []）であることは確定するが、actualに追加entryがある場合にcontextとマージするかcontextのみを保持するかが散文だけでは一意に決まらないため。",
-          "rationale": "L3-015-F02「訂正前eventと未解決状態を次処理へ引き継ぐ」・L3-015-F03・failure_classifications/19..20「既知文字列集合」から、target別のlist[str]である。",
+          "undetermined_reason": "L3-015-F02「訂正前eventと未解決状態を次処理へ引き継ぐ」・L3-015-F03・raw_retention「不一致/unknownでも原event、旧分類、未解決履歴を出力へ保持する」から、target_a/target_b別のマップとして未解決履歴を保持することは確定するが、failure_classifications/19..20（「unresolved_historyが既知文字列集合として形成されない」等）は診断条件であって返却値の型変換・置換規則を定めておらず、actual側とcontext側のどちらを採るか、また非リスト入力時に生値をそのまま保持するか [] 等へ置換するかはL3/L10およびL4散文・表からは一意に決まらないため。",
+          "rationale": "複数targetの未解決履歴を対象ごとに混同せず出力へ保持する責務（L3-015-F02/F03、raw_retention）からtarget_keyedマップであることは確定する。情報源（actualかcontextか）および非リスト・空時の具体的な型と表現は候補に分離する。",
           "source_pointers": [
             "docs/helix-os/L3-requirements/functional-requirements.json#/requirements/25",
             "docs/helix-os/L3-requirements/functional-requirements.json#/requirements/26",
