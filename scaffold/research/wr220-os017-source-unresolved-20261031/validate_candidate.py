@@ -7,6 +7,7 @@ import subprocess
 from pathlib import Path
 
 BASE = "a53f04482ff883decf1019dc9c212ab712271749"
+WR226_FROZEN_BASE = "84c82b5b35f57105b4db7af4e8efe9b530eead88"
 ROOT = Path(__file__).resolve().parents[3]
 L3 = "docs/helix-os/L3-requirements/functional-requirements.json"
 L10 = "docs/helix-os/L10-verification/functional-verification.json"
@@ -15,6 +16,10 @@ L7 = "docs/helix-os/L7-function-verification/ticket-workflow-derivation.json"
 L9 = "docs/helix-os/L9-integration-verification/ticket-workflow-derivation.json"
 COMP = "scaffold/research/wr226-os017-workflow-residual-20261031/comparison.json"
 CLASS_ID = "OS017-NEG-workflow-resume-source_unresolved"
+WR235_CLASS_IDS = {
+    108: "OS017-NEG-workflow-resume-dependency-state-closed-set-source_unresolved",
+    127: "OS017-NEG-workflow-resume-level-selected-boolean-selector-source_unresolved",
+}
 WR226_CASES = {
     57: ("/dependency/source_ref", "/context/dependency/source_ref"),
     59: ("/dependency/requirement_revision", "/context/dependency/requirement_revision"),
@@ -124,8 +129,15 @@ def main():
     assert comparison["class_extension_decision"]["decision"] == "extend existing source_unresolved class for 18 cases only; retain cases 108 and 127 as residuals"
     case_evidence = {row["case_index"]: row for row in comparison["cases"]}
     assert set(case_evidence) == set(WR226_CASES)
+    wr235 = read("scaffold/research/wr235-os017-residual-rules-20261031/comparison.json")
+    wr235_current_pins = {source["path"]: source["sha256"] for source in wr235["compared_sources"]}
     for source in comparison["source_documents"]:
-        assert hashlib.sha256((ROOT / source["path"]).read_bytes()).hexdigest() == source["sha256"]
+        if source["path"] in (L4, L9):
+            frozen = subprocess.check_output(["git", "show", f"{WR226_FROZEN_BASE}:{source['path']}"], cwd=ROOT)
+            assert hashlib.sha256(frozen).hexdigest() == source["sha256"]
+            assert hashlib.sha256((ROOT / source["path"]).read_bytes()).hexdigest() == wr235_current_pins[source["path"]]
+        else:
+            assert hashlib.sha256((ROOT / source["path"]).read_bytes()).hexdigest() == source["sha256"]
     for source in cls["source_pointers"]:
         doc = read(source["path"])
         for pointer in source["pointers"]:
@@ -254,9 +266,13 @@ def main():
         assert evidence["L7_expected_comparison"]["facet_correspondence"] == facets
         assert evidence["L8_expected_comparison"]["condition"] == unit_by_source[case_pointer]["condition"]
         assert evidence["L8_expected_comparison"]["expected"] == unit_by_source[case_pointer]["expected"]
-        assert evidence["L9_expected_comparison"]["candidate_ref"] == l9["integration_cases"][index].get("l4_source_class_candidate_ref")
+        if index not in WR235_CLASS_IDS:
+            assert evidence["L9_expected_comparison"]["candidate_ref"] == l9["integration_cases"][index].get("l4_source_class_candidate_ref")
         if index in (108, 127):
             assert evidence["candidate_status"].startswith("residual:") and evidence["L4_candidate_ref"] is None
+            current_ref = l9["integration_cases"][index].get("l4_source_class_candidate_ref")
+            expected_pointer = 5 if index == 108 else 6
+            assert current_ref == {"path": L4, "pointer": f"/failure_classifications/{expected_pointer}", "class_id": WR235_CLASS_IDS[index]}
         else:
             assert evidence["candidate_status"].startswith("candidate:")
             assert evidence["L4_candidate_ref"] == {"path": L4, "pointer": "/failure_classifications/4", "class_id": CLASS_ID}
@@ -275,6 +291,11 @@ def main():
         expected_ref = {"path": L4, "pointer": "/failure_classifications/4", "class_id": CLASS_ID}
         if index in WR226_CLASS_CASES:
             assert current["l4_source_class_candidate_ref"] == expected_ref
+        elif index in WR235_CLASS_IDS:
+            row_index = 5 if index == 108 else 6
+            assert current["l4_source_class_candidate_ref"] == {
+                "path": L4, "pointer": f"/failure_classifications/{row_index}", "class_id": WR235_CLASS_IDS[index]
+            }
         else:
             assert "l4_source_class_candidate_ref" not in current
         for key in ("condition", "selected_phase", "expected", "execution_state"):
@@ -328,10 +349,10 @@ def main():
         for key in ("condition", "selected_phase", "expected", "execution_state", "actual_observation"):
             assert l9["integration_cases"][i][key] == base_l9["integration_cases"][i][key]
     assert l4["failure_classifications"].index(cls) == 4
-    assert l4["contracts"][1]["negative_class_refs"] == [CLASS_ID]
-    assert sum("l4_source_class_candidate_ref" in row for row in l9["integration_cases"]) == 83
+    assert l4["contracts"][1]["negative_class_refs"] == [CLASS_ID, *WR235_CLASS_IDS.values()]
+    assert sum("l4_source_class_candidate_ref" in row for row in l9["integration_cases"]) == 85
     assert sum(row.get("l4_source_class_candidate_ref", {}).get("class_id") == CLASS_ID for row in l9["integration_cases"]) == 20
-    assert {108, 127}.isdisjoint(WR226_CLASS_CASES)
+    assert all(l4["failure_classifications"][i + 5]["class_id"] == class_id for i, class_id in enumerate(WR235_CLASS_IDS.values()))
     print(json.dumps({
         "status": "pass",
         "evidence_kind": "scaffold",

@@ -4584,6 +4584,11 @@
         "pointer": "/cases/108",
         "revision": "ec98a025d166a5e9f7811233498b7e7e31dbb145",
         "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146"
+      },
+      "l4_source_class_candidate_ref": {
+        "path": "docs/helix-os/L4-basic-design/ticket-workflow-derivation.json",
+        "pointer": "/failure_classifications/5",
+        "class_id": "OS017-NEG-workflow-resume-dependency-state-closed-set-source_unresolved"
       }
     },
     {
@@ -5180,6 +5185,11 @@
         "pointer": "/cases/127",
         "revision": "ec98a025d166a5e9f7811233498b7e7e31dbb145",
         "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146"
+      },
+      "l4_source_class_candidate_ref": {
+        "path": "docs/helix-os/L4-basic-design/ticket-workflow-derivation.json",
+        "pointer": "/failure_classifications/6",
+        "class_id": "OS017-NEG-workflow-resume-level-selected-boolean-selector-source_unresolved"
       }
     },
     {

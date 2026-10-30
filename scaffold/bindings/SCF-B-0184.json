@@ -20,8 +20,8 @@
     },
     {
       "path": "docs/helix-os/L4-basic-design/ticket-workflow-derivation.json",
-      "sha256": "a1d19b1f81dfda3d3f96715c9e5aec44118f87c0319d4b1f760c08a08f13bc05",
-      "note": "Current-main pin a1d19b1f81dfda3d3f96715c9e5aec44118f87c0319d4b1f760c08a08f13bc05; generalized class condition cites algorithm/0 overlay; per-case details remain in scaffold comparison. Prior pins retained in history."
+      "sha256": "5ea8f51d6204deaa10a599912940d940fb93d06f6b6bc9fc81cd6714cc03aa2a",
+      "note": "Current-main pin a1d19b1f81dfda3d3f96715c9e5aec44118f87c0319d4b1f760c08a08f13bc05; generalized class condition cites algorithm/0 overlay; per-case details remain in scaffold comparison. Prior pins retained in history. Historical pin a1d19b1f81dfda3d3f96715c9e5aec44118f87c0319d4b1f760c08a08f13bc05 retained; WR235 adds separate algorithm/6 and algorithm/5 residual source candidates. WR235 rebind: prior immediate pin 1b429d60f4257bc862c60a89e25e1c97a8e0a9e8ea0a88e8212c718eac8e5045; separate algorithm/6 and algorithm/5 source candidates. Earlier base pin a1d19b1f81dfda3d3f96715c9e5aec44118f87c0319d4b1f760c08a08f13bc05 retained in note. Exact current rebind; previous pin c985e593cf49ed2d745859472f8581abdf3f828b99ff15c36500c8ebeda1ec80 retained."
     },
     {
       "path": "docs/helix-os/L7-function-verification/ticket-workflow-derivation.json",
@@ -30,8 +30,8 @@
     },
     {
       "path": "docs/helix-os/L9-integration-verification/ticket-workflow-derivation.json",
-      "sha256": "5cfdfb3441cf1168a4e08c04ebb49b4b7afc8f8e3df395c8d9822892205ae9ad",
-      "note": "Current-main pin 5cfdfb3441cf1168a4e08c04ebb49b4b7afc8f8e3df395c8d9822892205ae9ad; previous pins retained in binding history. WR226 added 18 class candidate refs; L9 expected fields unchanged; dedicated-rule cases 108/127 have no candidate ref."
+      "sha256": "6eba641aebf4bcec30a9988e3997aa6c83b52f5612ba24fba251d79f36ce7c4b",
+      "note": "Current-main pin 5cfdfb3441cf1168a4e08c04ebb49b4b7afc8f8e3df395c8d9822892205ae9ad; previous pins retained in binding history. WR226 added 18 class candidate refs; L9 expected fields unchanged; dedicated-rule cases 108/127 have no candidate ref. Historical pin 5cfdfb3441cf1168a4e08c04ebb49b4b7afc8f8e3df395c8d9822892205ae9ad retained; WR235 adds only separate source-candidate refs at cases 108/127; expected projections remain unchanged. WR235 rebind: prior immediate pin 6eba641aebf4bcec30a9988e3997aa6c83b52f5612ba24fba251d79f36ce7c4b; cases 108/127 receive separate candidate refs, expected fields preserved; earlier base pin 5cfdfb3441cf1168a4e08c04ebb49b4b7afc8f8e3df395c8d9822892205ae9ad retained in note."
     },
     {
       "path": "docs/governance/design-verification-quality-assurance.md",
@@ -47,11 +47,6 @@
       "path": "archive/legacy-generation-2026-09-14/root/docs/governance/predecessor-harness-full-weakness-audit-2026-07-20.md",
       "sha256": "bab121404c956a0a4b403e589bea1c414af59b5996989bea5fab9f98f42f6872",
       "note": "LEGACY-ASSET-A127DEC3EEE6ED63CF17 UTW-002/005/021 historical failure evidence. 静的read-only参照のみ。"
-    },
-    {
-      "path": "scaffold/research/wr204-os017-negative-classes-20261031/validate_manual_derivation.py",
-      "sha256": "51b770466b6bd91b1aa7bfe6dba9cc33926dfc836b1512bedc78392e2a34c7fa",
-      "note": "Current static validator pin 51b770466b6bd91b1aa7bfe6dba9cc33926dfc836b1512bedc78392e2a34c7fa; prior 51 input/12 role checks preserved and general L4 condition validated without case IDs."
     }
   ],
   "role": "WR204 OS017 ownership facet source-qualified negative-class candidate evidence; not formal four-layer class membership.",
@@ -109,7 +104,9 @@
       "python3 scaffold/tools/design_verification_checker.py check-child --root . --l4 docs/helix-os/L4-basic-design/ticket-workflow-derivation.json --l5 docs/helix-os/L5-detail-design/ticket-workflow-derivation.json --l8 docs/helix-os/L8-unit-verification/ticket-workflow-derivation.json --l9 docs/helix-os/L9-integration-verification/ticket-workflow-derivation.json",
       "python3 -B scaffold/tools/scfctl.py validate",
       "python3 -B scaffold/tools/scfctl.py stale",
-      "git diff --check"
+      "git diff --check",
+      "WR235 retained source pin from former upstream scaffold/research/wr204-os017-negative-classes-20261031/validate_manual_derivation.py; sha256=f201db06c9e59e2467e344e7d37f9fb2acf533e500d11d64727c75bab8a9013d",
+      "WR235 current artifact SHA-256 scaffold/research/wr204-os017-negative-classes-20261031/validate_manual_derivation.py: f201db06c9e59e2467e344e7d37f9fb2acf533e500d11d64727c75bab8a9013d"
     ],
     "negative_cases": [
       "Each of twelve cases changes only its designated actual roles leaf relative to resume baseline; unresolved leaves are null and conflict leaves are nonempty strings different from the known context owner.",

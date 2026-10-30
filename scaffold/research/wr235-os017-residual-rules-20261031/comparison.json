@@ -1,0 +1,478 @@
+{
+  "artifact_kind": "wr235_comparison_after_blind_freeze",
+  "base_revision": "84c82b5b35f57105b4db7af4e8efe9b530eead88",
+  "blind_artifact": {
+    "path": "scaffold/research/wr235-os017-residual-rules-20261031/source-only.json",
+    "sha256": "c6bbbc3ec5a1fa3712380e1b0398e64f077df058f829f1525bce2bb22f2f9a88"
+  },
+  "cases": [
+    {
+      "case": 108,
+      "given_input_ref": {
+        "pointer": "/objects/28abf47705771882ddfe6ceb4fa54dd9d697186c6a43c6bb0d3355339214d289",
+        "canonical_sha256": "28abf47705771882ddfe6ceb4fa54dd9d697186c6a43c6bb0d3355339214d289"
+      },
+      "resolved_input": {
+        "phase": "resume",
+        "level_selected": false,
+        "dependency": {
+          "state": "resolved",
+          "source_ref": "DEP-RECEIPT-A",
+          "requirement_revision": "SYNTHETIC-REQUIREMENT_REVISION",
+          "scope": "SYNTHETIC-SCOPE"
+        },
+        "context_dependency": {
+          "state": null,
+          "source_ref": "DEP-RECEIPT-A",
+          "requirement_revision": "SYNTHETIC-REQUIREMENT_REVISION",
+          "scope": "SYNTHETIC-SCOPE"
+        },
+        "context_level_selected": false,
+        "level": null
+      },
+      "l7_expected_ref": {
+        "pointer": "/objects/852f7ad7e3946a4fc1ccacfcdd4b1c531174adb93993637878c67d9fb1e68313",
+        "canonical_sha256": "852f7ad7e3946a4fc1ccacfcdd4b1c531174adb93993637878c67d9fb1e68313"
+      },
+      "l7_expected": {
+        "condition": "workflow_material_unknown",
+        "phase": "resume",
+        "facets": {
+          "ownership": "corresponding",
+          "inputs": "corresponding",
+          "ticket": "corresponding",
+          "workflow": "unknown",
+          "backflow": "corresponding",
+          "continuity": "corresponding",
+          "scope_limit": "corresponding"
+        },
+        "findings": [
+          {
+            "code": "source_unresolved",
+            "pointer": "/context/dependency/state",
+            "return_owner": "ticket-workflow-owner"
+          }
+        ],
+        "operation_effect": "none",
+        "actual_effect_flags": {
+          "actual_ticket_written": false,
+          "actual_workflow_started": false,
+          "actual_assignment_issued": false,
+          "actual_backflow_applied": false,
+          "actual_resume_executed": false,
+          "whole_workflow_verified": false
+        }
+      },
+      "l8_expected": {
+        "condition": "workflow_material_unknown",
+        "selected_phase": "resume",
+        "expected": {
+          "finding_codes": [
+            "source_unresolved"
+          ]
+        },
+        "execution_state": "not_executed"
+      },
+      "l9_expected": {
+        "condition": "workflow_material_unknown",
+        "selected_phase": "resume",
+        "expected": {
+          "finding_codes": [
+            "source_unresolved"
+          ]
+        },
+        "execution_state": "not_executed",
+        "actual_observation": "not_observed",
+        "primary_requirement_refs": [
+          "HELIXOS-L3-017-F02"
+        ]
+      },
+      "l9_candidate_ref": {
+        "path": "docs/helix-os/L4-basic-design/ticket-workflow-derivation.json",
+        "pointer": "/failure_classifications/5",
+        "class_id": "OS017-NEG-workflow-resume-dependency-state-closed-set-source_unresolved"
+      },
+      "rule_candidate_limitation": "only actual state resolved + context state outside closed set; other known actual dependency states excluded because L4 adds status findings"
+    },
+    {
+      "case": 127,
+      "given_input_ref": {
+        "pointer": "/objects/72cc2677414769d5af6457d6d875ff8dab367bb404d2f1bbff579407e34892ee",
+        "canonical_sha256": "72cc2677414769d5af6457d6d875ff8dab367bb404d2f1bbff579407e34892ee"
+      },
+      "resolved_input": {
+        "phase": "resume",
+        "level_selected": null,
+        "dependency": {
+          "state": "resolved",
+          "source_ref": "DEP-RECEIPT-A",
+          "requirement_revision": "SYNTHETIC-REQUIREMENT_REVISION",
+          "scope": "SYNTHETIC-SCOPE"
+        },
+        "context_dependency": {
+          "state": "resolved",
+          "source_ref": "DEP-RECEIPT-A",
+          "requirement_revision": "SYNTHETIC-REQUIREMENT_REVISION",
+          "scope": "SYNTHETIC-SCOPE"
+        },
+        "context_level_selected": false,
+        "level": null
+      },
+      "l7_expected_ref": {
+        "pointer": "/objects/63581d301556cd8889b001f5f2017c4db256eaf15da743ff42583a15421eeb74",
+        "canonical_sha256": "63581d301556cd8889b001f5f2017c4db256eaf15da743ff42583a15421eeb74"
+      },
+      "l7_expected": {
+        "condition": "workflow_material_unknown",
+        "phase": "resume",
+        "facets": {
+          "ownership": "corresponding",
+          "inputs": "corresponding",
+          "ticket": "corresponding",
+          "workflow": "unknown",
+          "backflow": "corresponding",
+          "continuity": "corresponding",
+          "scope_limit": "corresponding"
+        },
+        "findings": [
+          {
+            "code": "source_unresolved",
+            "pointer": "/level_selected",
+            "return_owner": "ticket-workflow-owner"
+          }
+        ],
+        "operation_effect": "none",
+        "actual_effect_flags": {
+          "actual_ticket_written": false,
+          "actual_workflow_started": false,
+          "actual_assignment_issued": false,
+          "actual_backflow_applied": false,
+          "actual_resume_executed": false,
+          "whole_workflow_verified": false
+        }
+      },
+      "l8_expected": {
+        "condition": "workflow_material_unknown",
+        "selected_phase": "resume",
+        "expected": {
+          "finding_codes": [
+            "source_unresolved"
+          ]
+        },
+        "execution_state": "not_executed"
+      },
+      "l9_expected": {
+        "condition": "workflow_material_unknown",
+        "selected_phase": "resume",
+        "expected": {
+          "finding_codes": [
+            "source_unresolved"
+          ]
+        },
+        "execution_state": "not_executed",
+        "actual_observation": "not_observed",
+        "primary_requirement_refs": [
+          "HELIXOS-L3-017-F02"
+        ]
+      },
+      "l9_candidate_ref": {
+        "path": "docs/helix-os/L4-basic-design/ticket-workflow-derivation.json",
+        "pointer": "/failure_classifications/6",
+        "class_id": "OS017-NEG-workflow-resume-level-selected-boolean-selector-source_unresolved"
+      },
+      "rule_candidate_limitation": "only actual selector unknown + context selector known boolean; context-side unknown excluded"
+    }
+  ],
+  "conclusions": {
+    "108": "L4 algorithm/6 closed-set: context dependency.state is null (outside closed set), actual is resolved; one local workflow source_unresolved at /context/dependency/state. No additional state-derived finding.",
+    "127": "L4 algorithm/5 boolean selector: actual level_selected null vs context false; source_unresolved at /level_selected; actual not true, so level record not read. No additional selector/level finding.",
+    "both": "L7 expected condition/phase/facets/ordered finding, L8 and L9 compact expected all agree. primary_requirement_refs contains HELIXOS-L3-017-F02. Blind candidate pointer matches expanded L7 expected."
+  },
+  "class_review": {
+    "separate_boundaries": [
+      "algorithm/6 dependency.state closed-set",
+      "algorithm/5 level_selected boolean selector and conditional read"
+    ],
+    "full_key_fields_known": {
+      "classification": "workflow_material_unknown",
+      "finding_codes": [
+        "source_unresolved"
+      ],
+      "backflow_owner": "ticket-workflow-owner",
+      "expected_axis": "workflow",
+      "expected_state": "unknown"
+    },
+    "typed_owner_ref": "unknown; no target-specific typed owner declaration in current L5 source",
+    "formal_class_identity": "unknown; retain 2 separate source candidates and do not assert formal equivalence classes",
+    "target_slice_witnesses": {
+      "108": 1,
+      "127": 1
+    },
+    "singleton": "not established; one examined target witness each is not a global census and full typed key unresolved. QA §3 zero classes/cases is not_evaluated/fail, not singleton success.",
+    "membership": "l4_source_class_candidate_ref only; no negative_class_ref/table/four-layer marker.",
+    "singleton_precedent": "WR181 permits a singleton residual class when its witness and key are established; member_count=0 means non-occurrence and is not success. This permits singleton representation in principle, but these two cases lack a complete typed key/global census, so neither is declared a successful singleton."
+  },
+  "expected_immutability": {
+    "docs/helix-os/L7-function-verification/ticket-workflow-derivation.json": {
+      "base_sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146",
+      "current_sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146",
+      "whole_file_unchanged": true
+    },
+    "docs/helix-os/L8-unit-verification/ticket-workflow-derivation.json": {
+      "base_sha256": "7b2f15b8fb131f3e346dff4825f74696cc0b3a3f727515cd901019278bad60ad",
+      "current_sha256": "7b2f15b8fb131f3e346dff4825f74696cc0b3a3f727515cd901019278bad60ad",
+      "whole_file_unchanged": true
+    },
+    "docs/helix-os/L9-integration-verification/ticket-workflow-derivation.json": {
+      "base_sha256": "5cfdfb3441cf1168a4e08c04ebb49b4b7afc8f8e3df395c8d9822892205ae9ad",
+      "current_sha256": "6eba641aebf4bcec30a9988e3997aa6c83b52f5612ba24fba251d79f36ce7c4b",
+      "whole_file_unchanged": false,
+      "all_case_expected_fields_unchanged": true,
+      "only_candidate_reference_metadata_added": true
+    }
+  },
+  "all_expected_source_files_unchanged": true,
+  "additional_findings": "none indicated by permitted L4 rules or expanded expected objects",
+  "scope_limit": "L4/L9 source candidates only; no runtime/algorithm execution or formal 4-way PASS.",
+  "compared_sources": [
+    {
+      "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+      "sha256": "e86254a35b476ed71ebb112e41ccd2b48f89a8d0393e6495dc11cac7a7cf4e02",
+      "pointers": [
+        "/requirements/35"
+      ]
+    },
+    {
+      "path": "docs/helix-os/L10-verification/functional-verification.json",
+      "sha256": "583020f951672e48bc37fcd35cb916de5ccd9866f41dd04731f6519325ae500a",
+      "pointers": [
+        "/cases/35"
+      ]
+    },
+    {
+      "path": "docs/helix-os/L4-basic-design/ticket-workflow-derivation.json",
+      "sha256": "5ea8f51d6204deaa10a599912940d940fb93d06f6b6bc9fc81cd6714cc03aa2a",
+      "pointers": [
+        "/contracts/1",
+        "/diagnostic_contract/condition_semantics",
+        "/diagnostic_contract/diagnostic_code_facets/source_unresolved",
+        "/diagnostic_contract/algorithm/5",
+        "/diagnostic_contract/algorithm/6",
+        "/failure_classifications/4"
+      ]
+    },
+    {
+      "path": "docs/helix-os/L5-detail-design/ticket-workflow-derivation.json",
+      "sha256": "1f4c0791ba416d3fab607058acb8b70381d2950aa4cc483b70c94f0dc9557ffc",
+      "pointers": [
+        "/functions/1",
+        "/functions/2",
+        "/functions/3",
+        "/functions/4",
+        "/functions/5",
+        "/functions/6",
+        "/functions/7"
+      ]
+    },
+    {
+      "path": "docs/helix-os/L7-function-verification/ticket-workflow-derivation.json",
+      "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146",
+      "pointers": [
+        "/cases/108/given_input_ref",
+        "/cases/108/original_expected_ref",
+        "/cases/127/given_input_ref",
+        "/cases/127/original_expected_ref"
+      ]
+    },
+    {
+      "path": "docs/helix-os/L8-unit-verification/ticket-workflow-derivation.json",
+      "sha256": "7b2f15b8fb131f3e346dff4825f74696cc0b3a3f727515cd901019278bad60ad",
+      "pointers": [
+        "/unit_cases/108",
+        "/unit_cases/127"
+      ]
+    },
+    {
+      "path": "docs/helix-os/L9-integration-verification/ticket-workflow-derivation.json",
+      "sha256": "6eba641aebf4bcec30a9988e3997aa6c83b52f5612ba24fba251d79f36ce7c4b",
+      "pointers": [
+        "/integration_cases/108",
+        "/integration_cases/127"
+      ]
+    },
+    {
+      "path": "docs/governance/design-verification-quality-assurance.md",
+      "sha256": "f5751e236dc073fe67114c1fcb4b0f64b3d746290b25d75b61e60a08e3c99c85",
+      "pointers": [
+        "§3 class key and empty-count rules"
+      ]
+    },
+    {
+      "path": "scaffold/research/wr181-os015-residual-l4-l9-20261030/singleton-residual-update-20261031.md",
+      "sha256": "26ce1ca889e1ce74864406cb8a74a7a16d6c0e6e7b9e94a8189c7ac9f5b91ea2",
+      "pointers": [
+        "singleton residual explanation"
+      ]
+    }
+  ],
+  "per_case_rule_scope_correction": {
+    "case108": {
+      "change": "The previous L4 candidate wording generalized “known member means no additional status finding.” Restrict it to actual dependency.state=resolved. The raw actual state is resolved; the context state is null/outside the closed set. L4 algorithm/6 can add dependency_not_resolved and dependency_unresolved for actual missing/failed/conflict/stale/issue_closed, so those states are explicitly excluded."
+    },
+    "case127": {
+      "change": "The previous wording did not distinguish unknown selector side. Restrict the candidate to actual level_selected unknown with context selector known boolean. Context-side unknown is a separate operand and is excluded. Actual is null and context is false; no level record is read."
+    },
+    "frozen_WR226_record": "The previous post-WR235 mutation of WR226 comparison.json and README.md was reverted byte-for-byte to base 84c82b5. WR235 source pins and this correction history remain here."
+  },
+  "correction_history": [
+    {
+      "trigger": "Independent review found the two candidate conditions wider than L4 algorithm prose.",
+      "case108_before": "actual state known and closed-set member implies no status finding.",
+      "case108_correction": "Limit to actual state resolved; actual missing/failed/conflict/stale/issue_closed generates dependency_not_resolved and dependency_unresolved and is excluded.",
+      "case127_before": "unknown selector generically returns at actual selector pointer.",
+      "case127_correction": "Limit to actual selector unknown with context selector known boolean; context-side unknown is a separate operand and excluded.",
+      "expected_change": false,
+      "blind_artifact_change": false
+    },
+    {
+      "trigger": "WR226 audit records are frozen historical evidence.",
+      "action": "Restored WR226 README.md and comparison.json byte-for-byte from base 84c82b5b35f57105b4db7af4e8efe9b530eead88.",
+      "restored_sha256": {
+        "scaffold/research/wr226-os017-workflow-residual-20261031/README.md": "89bed999a7174d49db62fadbaa2bb69b296aa1df41f378c9fde99044b95d0a05",
+        "scaffold/research/wr226-os017-workflow-residual-20261031/comparison.json": "2c507260c9704c676897564ea052c15c3a583536ee9b83f9d9b13e7a70424183"
+      }
+    }
+  ],
+  "binding_upstream_migration": {
+    "rule": "All upstream[].path references must be outside scaffold/. Former scaffold artifact path+SHA pins are retained as verification.oracles; the pre-migration binding SHA and exact old upstream records are historical evidence.",
+    "bindings": {
+      "0181": {
+        "prior_binding_sha256": "5c22fb36a0064d9c9e2628204c3d1966860f86bffb5c6f754a879e74b1aa1210",
+        "scaffold_upstream": [
+          {
+            "path": "scaffold/research/wr204-os017-negative-classes-20261031/README.md",
+            "sha256": "52712a56ec87abf54cfc797f5ea9704b47d86eda19faba706b9ca71c95574ad5",
+            "note": "Describes three cross-facet context.binding reuse cases, including resume intermediate comparisons and conditional level reading; also records non-reused groups and denominator."
+          }
+        ],
+        "current_artifact_sha256": {
+          "scaffold/research/wr204-os017-negative-classes-20261031/README.md": "52712a56ec87abf54cfc797f5ea9704b47d86eda19faba706b9ca71c95574ad5"
+        }
+      },
+      "0184": {
+        "prior_binding_sha256": "2cb679b4422ad461a9c8d2a5fe4cc6a0c528c9724da28b3d8b42c0d8832d807f",
+        "scaffold_upstream": [
+          {
+            "path": "scaffold/research/wr204-os017-negative-classes-20261031/validate_manual_derivation.py",
+            "sha256": "f201db06c9e59e2467e344e7d37f9fb2acf533e500d11d64727c75bab8a9013d",
+            "note": "Current static validator pin 51b770466b6bd91b1aa7bfe6dba9cc33926dfc836b1512bedc78392e2a34c7fa; prior 51 input/12 role checks preserved and general L4 condition validated without case IDs. WR235 residual source candidates added while preserving earlier input/role checks; prior pin 51b770466b6bd91b1aa7bfe6dba9cc33926dfc836b1512bedc78392e2a34c7fa. WR235 branch rebind: prior pin f201db06c9e59e2467e344e7d37f9fb2acf533e500d11d64727c75bab8a9013d; previous checks preserved."
+          }
+        ],
+        "current_artifact_sha256": {
+          "scaffold/research/wr204-os017-negative-classes-20261031/validate_manual_derivation.py": "f201db06c9e59e2467e344e7d37f9fb2acf533e500d11d64727c75bab8a9013d"
+        }
+      },
+      "0189": {
+        "prior_binding_sha256": "7c3acbd41768f0bdb5092511d2a930687f6520f17943030737ef572f60a4a711",
+        "scaffold_upstream": [],
+        "current_artifact_sha256": {}
+      },
+      "0190": {
+        "prior_binding_sha256": "354e52f73223f088f8aa8850b7eadc9719537b667a44d913f27dedd4a6bff1ce",
+        "scaffold_upstream": [],
+        "current_artifact_sha256": {}
+      },
+      "0194": {
+        "prior_binding_sha256": "a1b95badea0b539bdb4ccdea435c763ff0c0466afc0fe6586d99918fe1a88147",
+        "scaffold_upstream": [
+          {
+            "path": "scaffold/research/wr226-os017-workflow-residual-20261031/blind-derivation.json",
+            "sha256": "fe7e00049ecaa89b8c36839abe7b29feb17a860ab5b3bddba32c0f26bb44e7f3",
+            "note": "WR226 static source/evidence pin; no execution."
+          },
+          {
+            "path": "scaffold/research/wr226-os017-workflow-residual-20261031/comparison.json",
+            "sha256": "2c507260c9704c676897564ea052c15c3a583536ee9b83f9d9b13e7a70424183",
+            "note": "WR226 static source/evidence pin; no execution. WR235 post-comparison source-pin history retained; previous pin 2c507260c9704c676897564ea052c15c3a583536ee9b83f9d9b13e7a70424183. WR235 comparison rebind; prior pin 01db0bebd4ff962203cacca1815449a7054ada7c289e73ed2087e0d64a5bdd1b retained. Exact current rebind; previous pin 4ccdb17d7f9b43df4cfea97ef320178c1a21cc26f2fce36d7c8b892442e8e3b4 retained."
+          },
+          {
+            "path": "scaffold/research/wr220-os017-source-unresolved-20261031/validate_candidate.py",
+            "sha256": "d1fa2969089e511be962057c0973a0c7702614c2fa84c4c87768fb9607743161",
+            "note": "Current static validator pin ceaa64a55775d45bc1e8fc65127729bfb1ac117b835ff3c0ff2d083aeee6d373; validates general L4 condition, all scaffold case proofs and algorithm/0 operand/facet evidence. WR235 residual branches added while preserving earlier witness assertions; prior pin ceaa64a55775d45bc1e8fc65127729bfb1ac117b835ff3c0ff2d083aeee6d373. WR235 branch rebind: prior pin a86e185b6cbbcba95341fe5f930bbf5f0e8a751f2fc016445d77169090199205; historical witness assertions retained. Exact current rebind; previous pin d0c8125f5362e0a4e03891c46e9cec3dee9808dc7d420a72af1e8323fe364f36 retained."
+          },
+          {
+            "path": "scaffold/research/wr204-os017-negative-classes-20261031/validate_manual_derivation.py",
+            "sha256": "f201db06c9e59e2467e344e7d37f9fb2acf533e500d11d64727c75bab8a9013d",
+            "note": "Current static validator pin 51b770466b6bd91b1aa7bfe6dba9cc33926dfc836b1512bedc78392e2a34c7fa; prior 51 input/12 role checks preserved and general L4 condition validated without case IDs. WR235 residual source candidates added while preserving earlier input/role checks; prior pin 51b770466b6bd91b1aa7bfe6dba9cc33926dfc836b1512bedc78392e2a34c7fa. WR235 branch rebind: prior pin f201db06c9e59e2467e344e7d37f9fb2acf533e500d11d64727c75bab8a9013d; previous checks preserved."
+          }
+        ],
+        "current_artifact_sha256": {
+          "scaffold/research/wr226-os017-workflow-residual-20261031/blind-derivation.json": "fe7e00049ecaa89b8c36839abe7b29feb17a860ab5b3bddba32c0f26bb44e7f3",
+          "scaffold/research/wr226-os017-workflow-residual-20261031/comparison.json": "2c507260c9704c676897564ea052c15c3a583536ee9b83f9d9b13e7a70424183",
+          "scaffold/research/wr220-os017-source-unresolved-20261031/validate_candidate.py": "d1fa2969089e511be962057c0973a0c7702614c2fa84c4c87768fb9607743161",
+          "scaffold/research/wr204-os017-negative-classes-20261031/validate_manual_derivation.py": "f201db06c9e59e2467e344e7d37f9fb2acf533e500d11d64727c75bab8a9013d"
+        }
+      },
+      "0195": {
+        "prior_binding_sha256": "a729129b3ed42fbd7227944461fe94df37e2908de5005e03f3cde9ebadce1024",
+        "scaffold_upstream": [
+          {
+            "path": "scaffold/research/wr226-os017-workflow-residual-20261031/blind-derivation.json",
+            "sha256": "fe7e00049ecaa89b8c36839abe7b29feb17a860ab5b3bddba32c0f26bb44e7f3",
+            "note": "WR226 static source/evidence pin; no execution."
+          },
+          {
+            "path": "scaffold/research/wr226-os017-workflow-residual-20261031/comparison.json",
+            "sha256": "2c507260c9704c676897564ea052c15c3a583536ee9b83f9d9b13e7a70424183",
+            "note": "WR226 static source/evidence pin; no execution. WR235 comparison rebind; prior pin 01db0bebd4ff962203cacca1815449a7054ada7c289e73ed2087e0d64a5bdd1b retained. Exact current rebind; previous pin 4ccdb17d7f9b43df4cfea97ef320178c1a21cc26f2fce36d7c8b892442e8e3b4 retained."
+          },
+          {
+            "path": "scaffold/research/wr220-os017-source-unresolved-20261031/validate_candidate.py",
+            "sha256": "d1fa2969089e511be962057c0973a0c7702614c2fa84c4c87768fb9607743161",
+            "note": "WR220 prior witnesses preserved; explicit branches allow WR235 refs for 108/127. Prior pin ceaa64a55775d45bc1e8fc65127729bfb1ac117b835ff3c0ff2d083aeee6d373. Exact current rebind; previous pin d0c8125f5362e0a4e03891c46e9cec3dee9808dc7d420a72af1e8323fe364f36 retained."
+          },
+          {
+            "path": "scaffold/research/wr204-os017-negative-classes-20261031/validate_manual_derivation.py",
+            "sha256": "f201db06c9e59e2467e344e7d37f9fb2acf533e500d11d64727c75bab8a9013d",
+            "note": "WR204 51 input and 12 role checks preserved; WR235 candidate refs allowed. Prior pin 51b770466b6bd91b1aa7bfe6dba9cc33926dfc836b1512bedc78392e2a34c7fa."
+          },
+          {
+            "path": "scaffold/research/wr235-os017-residual-rules-20261031/README.md",
+            "sha256": "0a17cfe8f0b6c42b57702908070882787644f0ae9c5559a2aae4f98d54abed5c",
+            "note": "WR235 scaffold research evidence; no authority/operation effect. Rebound to current bytes; previous pin 7287fd1cc5289dffbe0bbdd9820753efd187769b33df5c4ea72a528a0c774ba5."
+          },
+          {
+            "path": "scaffold/research/wr235-os017-residual-rules-20261031/source-only.json",
+            "sha256": "c6bbbc3ec5a1fa3712380e1b0398e64f077df058f829f1525bce2bb22f2f9a88",
+            "note": "WR235 scaffold research evidence; no authority/operation effect."
+          },
+          {
+            "path": "scaffold/research/wr235-os017-residual-rules-20261031/comparison.json",
+            "sha256": "464c5c6c964ed58b3bd0d4d22c3db878e136d646ea3f9600c31dcff9162259c0",
+            "note": "WR235 scaffold research evidence; no authority/operation effect. Rebound to current bytes; previous pin 6c16a5f5705f0fe821d36ccb6410d3febc79555b998fcf399ccaaf0731421b97. rebind; previous pin 443561fc6d731ccb73c439c12539cac4131123beb43766c40765aadd9354ba07."
+          },
+          {
+            "path": "scaffold/research/wr235-os017-residual-rules-20261031/validate_candidate.py",
+            "sha256": "3db54ac6e96fb21d2761b9f84b73e41704631f2af9e53f5e35e180e28301b944",
+            "note": "WR235 scaffold research evidence; no authority/operation effect. Rebound to current bytes; previous pin 6b69245d447ff5b36247b73553e2179c8ee443b9a0866f04af4c9ef006e5ab43. rebind; previous pin c050eb5a27eb3e14cf84c229a5430ada2e86068266c0431c151a2737640f6a7f."
+          },
+          {
+            "path": "scaffold/research/wr235-os017-residual-rules-20261031/verification-summary.json",
+            "sha256": "0b920406d7723dcece5867dd43758648a451bd3b74fbb3128589642955adb892",
+            "note": "WR235 static verification summary; expected projections unchanged, four-layer legacy check remains unmatched."
+          }
+        ],
+        "current_artifact_sha256": {
+          "scaffold/research/wr226-os017-workflow-residual-20261031/blind-derivation.json": "fe7e00049ecaa89b8c36839abe7b29feb17a860ab5b3bddba32c0f26bb44e7f3",
+          "scaffold/research/wr226-os017-workflow-residual-20261031/comparison.json": "2c507260c9704c676897564ea052c15c3a583536ee9b83f9d9b13e7a70424183",
+          "scaffold/research/wr220-os017-source-unresolved-20261031/validate_candidate.py": "d1fa2969089e511be962057c0973a0c7702614c2fa84c4c87768fb9607743161",
+          "scaffold/research/wr204-os017-negative-classes-20261031/validate_manual_derivation.py": "f201db06c9e59e2467e344e7d37f9fb2acf533e500d11d64727c75bab8a9013d",
+          "scaffold/research/wr235-os017-residual-rules-20261031/README.md": "0a17cfe8f0b6c42b57702908070882787644f0ae9c5559a2aae4f98d54abed5c",
+          "scaffold/research/wr235-os017-residual-rules-20261031/source-only.json": "c6bbbc3ec5a1fa3712380e1b0398e64f077df058f829f1525bce2bb22f2f9a88",
+          "scaffold/research/wr235-os017-residual-rules-20261031/validate_candidate.py": "8c710b77f77dc0c2cb4880034ab0637aa6b554f26829bb15946f00a9168f66d3",
+          "scaffold/research/wr235-os017-residual-rules-20261031/verification-summary.json": "0b920406d7723dcece5867dd43758648a451bd3b74fbb3128589642955adb892"
+        }
+      }
+    }
+  }
+}

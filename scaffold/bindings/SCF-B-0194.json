@@ -20,8 +20,8 @@
     },
     {
       "path": "docs/helix-os/L4-basic-design/ticket-workflow-derivation.json",
-      "sha256": "a1d19b1f81dfda3d3f96715c9e5aec44118f87c0319d4b1f760c08a08f13bc05",
-      "note": "Current-main pin a1d19b1f81dfda3d3f96715c9e5aec44118f87c0319d4b1f760c08a08f13bc05; generalized class condition cites algorithm/0 overlay; per-case details remain in scaffold comparison. Prior pins retained in history."
+      "sha256": "5ea8f51d6204deaa10a599912940d940fb93d06f6b6bc9fc81cd6714cc03aa2a",
+      "note": "Current-main pin a1d19b1f81dfda3d3f96715c9e5aec44118f87c0319d4b1f760c08a08f13bc05; generalized class condition cites algorithm/0 overlay; per-case details remain in scaffold comparison. Prior pins retained in history. Historical pin a1d19b1f81dfda3d3f96715c9e5aec44118f87c0319d4b1f760c08a08f13bc05 retained; WR235 adds separate algorithm/6 and algorithm/5 residual source candidates. WR235 rebind: prior immediate pin 1b429d60f4257bc862c60a89e25e1c97a8e0a9e8ea0a88e8212c718eac8e5045; separate algorithm/6 and algorithm/5 source candidates. Earlier base pin a1d19b1f81dfda3d3f96715c9e5aec44118f87c0319d4b1f760c08a08f13bc05 retained in note. Exact current rebind; previous pin c985e593cf49ed2d745859472f8581abdf3f828b99ff15c36500c8ebeda1ec80 retained."
     },
     {
       "path": "docs/helix-os/L7-function-verification/ticket-workflow-derivation.json",
@@ -35,28 +35,8 @@
     },
     {
       "path": "docs/helix-os/L9-integration-verification/ticket-workflow-derivation.json",
-      "sha256": "5cfdfb3441cf1168a4e08c04ebb49b4b7afc8f8e3df395c8d9822892205ae9ad",
-      "note": "Current-main pin 5cfdfb3441cf1168a4e08c04ebb49b4b7afc8f8e3df395c8d9822892205ae9ad; previous pins retained in binding history. WR226 added 18 class candidate refs; L9 expected fields unchanged; dedicated-rule cases 108/127 have no candidate ref."
-    },
-    {
-      "path": "scaffold/research/wr226-os017-workflow-residual-20261031/blind-derivation.json",
-      "sha256": "fe7e00049ecaa89b8c36839abe7b29feb17a860ab5b3bddba32c0f26bb44e7f3",
-      "note": "WR226 static source/evidence pin; no execution."
-    },
-    {
-      "path": "scaffold/research/wr226-os017-workflow-residual-20261031/comparison.json",
-      "sha256": "2c507260c9704c676897564ea052c15c3a583536ee9b83f9d9b13e7a70424183",
-      "note": "WR226 static source/evidence pin; no execution."
-    },
-    {
-      "path": "scaffold/research/wr220-os017-source-unresolved-20261031/validate_candidate.py",
-      "sha256": "ceaa64a55775d45bc1e8fc65127729bfb1ac117b835ff3c0ff2d083aeee6d373",
-      "note": "Current static validator pin ceaa64a55775d45bc1e8fc65127729bfb1ac117b835ff3c0ff2d083aeee6d373; validates general L4 condition, all scaffold case proofs and algorithm/0 operand/facet evidence."
-    },
-    {
-      "path": "scaffold/research/wr204-os017-negative-classes-20261031/validate_manual_derivation.py",
-      "sha256": "51b770466b6bd91b1aa7bfe6dba9cc33926dfc836b1512bedc78392e2a34c7fa",
-      "note": "Current static validator pin 51b770466b6bd91b1aa7bfe6dba9cc33926dfc836b1512bedc78392e2a34c7fa; prior 51 input/12 role checks preserved and general L4 condition validated without case IDs."
+      "sha256": "6eba641aebf4bcec30a9988e3997aa6c83b52f5612ba24fba251d79f36ce7c4b",
+      "note": "Current-main pin 5cfdfb3441cf1168a4e08c04ebb49b4b7afc8f8e3df395c8d9822892205ae9ad; previous pins retained in binding history. WR226 added 18 class candidate refs; L9 expected fields unchanged; dedicated-rule cases 108/127 receive separate WR235 source-candidate refs; expected fields unchanged. Historical pin 5cfdfb3441cf1168a4e08c04ebb49b4b7afc8f8e3df395c8d9822892205ae9ad retained; WR235 adds only separate source-candidate refs at cases 108/127; expected projections remain unchanged. WR235 rebind: prior immediate pin 6eba641aebf4bcec30a9988e3997aa6c83b52f5612ba24fba251d79f36ce7c4b; cases 108/127 receive separate candidate refs, expected fields preserved; earlier base pin 5cfdfb3441cf1168a4e08c04ebb49b4b7afc8f8e3df395c8d9822892205ae9ad retained in note."
     }
   ],
   "role": "OS017 F02の20 workflow-resume witnessに対するL4 class extensionとL9 candidate-refの静的証跡。formal class membershipではない。",
@@ -110,7 +90,15 @@
     "oracles": [
       "frozen r3 SHA and raw source graph hashes",
       "post-freeze L7/L8/L9 expected comparisons",
-      "WR204 and WR220 static source validators"
+      "WR204 and WR220 static source validators",
+      "WR235 retained source pin from former upstream scaffold/research/wr226-os017-workflow-residual-20261031/blind-derivation.json; sha256=fe7e00049ecaa89b8c36839abe7b29feb17a860ab5b3bddba32c0f26bb44e7f3",
+      "WR235 retained source pin from former upstream scaffold/research/wr226-os017-workflow-residual-20261031/comparison.json; sha256=2c507260c9704c676897564ea052c15c3a583536ee9b83f9d9b13e7a70424183",
+      "WR235 retained source pin from former upstream scaffold/research/wr220-os017-source-unresolved-20261031/validate_candidate.py; sha256=d1fa2969089e511be962057c0973a0c7702614c2fa84c4c87768fb9607743161",
+      "WR235 retained source pin from former upstream scaffold/research/wr204-os017-negative-classes-20261031/validate_manual_derivation.py; sha256=f201db06c9e59e2467e344e7d37f9fb2acf533e500d11d64727c75bab8a9013d",
+      "WR235 current artifact SHA-256 scaffold/research/wr226-os017-workflow-residual-20261031/blind-derivation.json: fe7e00049ecaa89b8c36839abe7b29feb17a860ab5b3bddba32c0f26bb44e7f3",
+      "WR235 current artifact SHA-256 scaffold/research/wr226-os017-workflow-residual-20261031/comparison.json: 2c507260c9704c676897564ea052c15c3a583536ee9b83f9d9b13e7a70424183",
+      "WR235 current artifact SHA-256 scaffold/research/wr220-os017-source-unresolved-20261031/validate_candidate.py: d1fa2969089e511be962057c0973a0c7702614c2fa84c4c87768fb9607743161",
+      "WR235 current artifact SHA-256 scaffold/research/wr204-os017-negative-classes-20261031/validate_manual_derivation.py: f201db06c9e59e2467e344e7d37f9fb2acf533e500d11d64727c75bab8a9013d"
     ],
     "negative_cases": [
       "r1 dependency.source_ref null is not generalized; each graph is independently resolved",

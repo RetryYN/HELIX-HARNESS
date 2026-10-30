@@ -435,11 +435,15 @@ def validate_class_rows_and_unmarked_mode() -> None:
         "OS017-NEG-ownership-source_conflict",
     ]
     wr220_class_id = "OS017-NEG-workflow-resume-source_unresolved"
+    wr235_class_ids = [
+        "OS017-NEG-workflow-resume-dependency-state-closed-set-source_unresolved",
+        "OS017-NEG-workflow-resume-level-selected-boolean-selector-source_unresolved",
+    ]
     rows = l4.get("failure_classifications")
     if (
         not isinstance(rows, list)
         or [row.get("class_id") for row in rows[:4]] != expected_ids
-        or [row.get("class_id") for row in rows[4:]] != [wr220_class_id]
+        or [row.get("class_id") for row in rows[4:]] != [wr220_class_id, *wr235_class_ids]
     ):
         raise AssertionError("L4 formal failure_classifications rows differ")
     condition_invariants = [
@@ -473,7 +477,7 @@ def validate_class_rows_and_unmarked_mode() -> None:
         raise AssertionError("L4 F01 reverse parent link differs")
     if contract_refs.get("HELIXOS-L4-017-B01") != expected_ids[2:4]:
         raise AssertionError("L4 B01 reverse parent link differs")
-    if contract_refs.get("HELIXOS-L4-017-F02") != [wr220_class_id]:
+    if contract_refs.get("HELIXOS-L4-017-F02") != [wr220_class_id, *wr235_class_ids]:
         raise AssertionError("L4 F02 reverse parent link differs")
     if contract_refs.get("HELIXOS-L4-017-F03") != []:
         raise AssertionError("L4 F03 reverse parent link must remain empty")
@@ -548,10 +552,7 @@ def validate_class_rows_and_unmarked_mode() -> None:
         raise AssertionError("explicit class marker must remain absent in all four layers")
     if any("negative_class_ref" in row for row in l9["integration_cases"]):
         raise AssertionError("unmarked L9 case rows must not claim explicit class membership")
-    for residual_index in (108, 127):
-        if "l4_source_class_candidate_ref" in l9["integration_cases"][residual_index]:
-            raise AssertionError(f"WR226 dedicated-rule residual was assigned to the shared class: {residual_index}")
-    candidate_rows = [(5, 0), (6, 1), (51, 4), (53, 4), *[(index, 4) for index in WR226_CASE_INDEXES]]
+    candidate_rows = [(5, 0), (6, 1), (51, 4), (53, 4), *[(index, 4) for index in WR226_CASE_INDEXES], (108, 5), (127, 6)]
     audit = json.loads(EVIDENCE.read_text(encoding="utf-8"))
     for witness in audit["cohort"].get("additional_raw_witnesses", []):
         class_index = 0 if witness["class_id"] == expected_ids[0] else 1
@@ -653,7 +654,7 @@ def validate_role_raw_witnesses() -> None:
         for index, _owner in (conflict_case,)
     }
     # These two WR220 rows add only an L4 source-class candidate link.
-    permitted_candidate_link_indexes = l9_role_indexes | {51, 53} | set(WR226_CASE_INDEXES)
+    permitted_candidate_link_indexes = l9_role_indexes | {51, 53} | set(WR226_CASE_INDEXES) | {108, 127}
     for witness in witnesses:
         role = witness["role"]
         unresolved_case, conflict_case = ROLE_CASES[role]
