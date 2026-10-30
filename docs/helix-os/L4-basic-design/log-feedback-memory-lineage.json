@@ -794,7 +794,8 @@
         "OS007-NEG-logs-comp-02-log_duplicate_log_state_conflict",
         "OS007-NEG-logs-comp-03-log_stale_log_state_conflict",
         "OS007-NEG-logs-comp-04-log_state_conflict_log_state_unknown",
-        "OS007-NEG-logs-comp-05-log_kind_conflict"
+        "OS007-NEG-logs-comp-05-log_kind_conflict",
+        "OS007-NEG-logs-comp-06-log_kind_conflict_log_kind_unknown"
       ]
     },
     {
@@ -879,7 +880,8 @@
         "OS007-NEG-memory-comp-12-order_conflict_reflection_not_before_retire",
         "OS007-NEG-memory-comp-13-boolean_conflict_reflection_unrecorded_ref_present",
         "OS007-NEG-memory-comp-14-consume_without_delivery_duplicate_successful_use_use_state_conflict",
-        "OS007-NEG-memory-comp-15-consume_without_delivery_duplicate_successful_use"
+        "OS007-NEG-memory-comp-15-consume_without_delivery_duplicate_successful_use",
+        "OS007-NEG-memory-comp-16-boolean_conflict_field_unknown_order_unknown"
       ]
     }
   ],
@@ -1297,8 +1299,10 @@
           "class_id": "OS007-NEG-logs-log_kind_conflict",
           "single_finding_code": "log_kind_conflict",
           "member_count": 0,
-          "co_occurring_rules_and_reason": "L4 R01, R02 (/diagnostic_contract/rules/0, /diagnostic_contract/rules/1) は四logそれぞれの kind について、log_names の既知値であれば actual.logs.<slot>.kind と context.logs.<slot>.kind の一致比較 (相違なら field_conflict) と、fixture key (<slot>) との一致検査 (不一致なら actual/context 各 pointer に log_kind_conflict) を同時に適用する。両側が同じ非slot既知kindであれば actual/context 両側で log_kind_conflict が2件発火し、片側のみ非slot既知kindであれば actual.kind != context.kind により field_conflict が必ず共起するため、単一1件の log_kind_conflict は単独では発火しない。",
+          "co_occurring_rules_and_reason": "L4 R02 (/diagnostic_contract/rules/1) は四logそれぞれの kind について、log_names の closed 値かを検査し (未知は各 pointer に log_kind_unknown)、fixture key (<slot>) と異なる既知 kind には両側各 pointer に log_kind_conflict を、両側既知 kind の actual/context 差には actual pointer に field_conflict を同時に適用する。両側が同じ非slot既知kindであれば actual/context 両側で log_kind_conflict が2件発火し、片側が非slot既知kindで他方が別の既知kindであれば known actual/context kind 差により field_conflict が共起し、他方が未知kindであれば他方 pointer に log_kind_unknown が必ず共起するため、単一1件の log_kind_conflict は単独では発火しない。",
           "l4_pointers": [
+            "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/codes/1",
+            "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/codes/2",
             "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/codes/3",
             "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/rules/0",
             "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/rules/1",
@@ -1306,7 +1310,8 @@
           ],
           "realized_composite_class_ids": [
             "OS007-NEG-logs-comp-01-field_conflict_log_kind_conflict",
-            "OS007-NEG-logs-comp-05-log_kind_conflict"
+            "OS007-NEG-logs-comp-05-log_kind_conflict",
+            "OS007-NEG-logs-comp-06-log_kind_conflict_log_kind_unknown"
           ]
         },
         {
@@ -1333,14 +1338,19 @@
           "member_count": 0,
           "co_occurring_rules_and_reason": "L4 R01, R08, R09 (/diagnostic_contract/rules/0, /diagnostic_contract/rules/7, /diagnostic_contract/rules/8) は memory reflection.recorded を R01 bool比較し (相違なら boolean_conflict)、同時に各側 recorded=false で reflection_fields または order に非nullがあれば reflection_unrecorded_ref_present を、片側でも recorded=true なら全 reflection_fields・source join・reflection.order の検査を適用する。actual/context 間で reflection.recorded が true/false 不一致のとき、少なくとも片側が recorded=true であるため recorded=false 側の reflection_fields/order が null なら field_unknown/order_unknown が共起し、非nullなら reflection_unrecorded_ref_present が必ず共起するため、memory facet で単一の boolean_conflict は単独では発火しない。",
           "l4_pointers": [
+            "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/codes/0",
             "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/codes/10",
+            "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/codes/21",
+            "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/codes/31",
             "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/rules/0",
             "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/rules/7",
+            "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/rules/8",
             "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/rules/11"
           ],
           "realized_composite_class_ids": [
             "OS007-NEG-memory-comp-10-boolean_conflict_reflection_unrecorded_ref_present_retire_before_reflection",
-            "OS007-NEG-memory-comp-13-boolean_conflict_reflection_unrecorded_ref_present"
+            "OS007-NEG-memory-comp-13-boolean_conflict_reflection_unrecorded_ref_present",
+            "OS007-NEG-memory-comp-16-boolean_conflict_field_unknown_order_unknown"
           ]
         },
         {
@@ -4649,6 +4659,110 @@
             "/diagnostic_contract/codes/14",
             "/diagnostic_contract/owner_by_facet/feedback",
             "/diagnostic_contract/rules/5",
+            "/diagnostic_contract/rules/11",
+            "/diagnostic_contract/composite_class_formation"
+          ]
+        }
+      ]
+    },
+    {
+      "class_id": "OS007-NEG-logs-comp-06-log_kind_conflict_log_kind_unknown",
+      "code": "record_material_violation",
+      "design_ref": "HELIXOS-L4-007-F01",
+      "condition": "logs facetにおける複合・複数発火診断[log_kind_conflict, log_kind_unknown]（disposition=violation）",
+      "expected_classification": "record_material_violation",
+      "expected": {
+        "finding_codes": [
+          "log_kind_conflict",
+          "log_kind_unknown"
+        ]
+      },
+      "expected_preserved": {
+        "actual_records_equal_expanded_input_records": true,
+        "reference_records_equal_expanded_context_records": true
+      },
+      "expected_axis": "logs",
+      "expected_state": "violation",
+      "backflow_owner": "common-log-owner",
+      "side_effect_count": 0,
+      "source_pointers": [
+        {
+          "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+          "pointers": [
+            "/requirements/21"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
+          "pointers": [
+            "/contracts/0",
+            "/diagnostic_contract/codes/3",
+            "/diagnostic_contract/codes/2",
+            "/diagnostic_contract/owner_by_facet/logs",
+            "/diagnostic_contract/rules/1",
+            "/diagnostic_contract/rules/11",
+            "/diagnostic_contract/composite_class_formation"
+          ]
+        }
+      ]
+    },
+    {
+      "class_id": "OS007-NEG-memory-comp-16-boolean_conflict_field_unknown_order_unknown",
+      "code": "record_material_violation",
+      "design_ref": "HELIXOS-L4-007-F03",
+      "condition": "memory facetにおける複合・複数発火診断[boolean_conflict, field_unknownx18, order_unknownx2]（disposition=violation）",
+      "expected_classification": "record_material_violation",
+      "expected": {
+        "finding_codes": [
+          "boolean_conflict",
+          "field_unknown",
+          "field_unknown",
+          "field_unknown",
+          "field_unknown",
+          "field_unknown",
+          "field_unknown",
+          "field_unknown",
+          "field_unknown",
+          "field_unknown",
+          "field_unknown",
+          "field_unknown",
+          "field_unknown",
+          "field_unknown",
+          "field_unknown",
+          "field_unknown",
+          "field_unknown",
+          "field_unknown",
+          "field_unknown",
+          "order_unknown",
+          "order_unknown"
+        ]
+      },
+      "expected_preserved": {
+        "actual_records_equal_expanded_input_records": true,
+        "reference_records_equal_expanded_context_records": true
+      },
+      "expected_axis": "memory",
+      "expected_state": "violation",
+      "backflow_owner": "memory-canonical-owner",
+      "side_effect_count": 0,
+      "source_pointers": [
+        {
+          "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+          "pointers": [
+            "/requirements/23"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
+          "pointers": [
+            "/contracts/2",
+            "/diagnostic_contract/codes/10",
+            "/diagnostic_contract/codes/0",
+            "/diagnostic_contract/codes/31",
+            "/diagnostic_contract/owner_by_facet/memory",
+            "/diagnostic_contract/rules/0",
+            "/diagnostic_contract/rules/7",
+            "/diagnostic_contract/rules/8",
             "/diagnostic_contract/rules/11",
             "/diagnostic_contract/composite_class_formation"
           ]
