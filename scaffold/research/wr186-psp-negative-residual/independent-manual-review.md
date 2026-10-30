@@ -1,23 +1,19 @@
-# F03/F05独立手動照合の記録（L9 PR-A範囲）
+# WR186 F03/F05入力監査の再確認
 
-## 方法と限界
+## 確認方法
 
-別workerがcandidate manifestを見る前に、固定main `821a655ad6949b2a7a5344b26e3c170cccc353a6` のL3/L4/L5と固定raw snapshot `ed3981e7b9419d796adf1981f8990c6b626ecabe` のL9 `raw_utf8` からF03 14件・F05 8件を手動で照合した。元メモSHA-256はF03 `181c85c63c6e286830e71b3d6bf0c7d62df9b581f163226b047df62a6e98c619`、F05 `35dbf7772bd15adcfe31c99e3e4488cf7d6b1cfaa943c35342e7291800710baf`。
+固定L9 raw snapshot `ed3981e7b9419d796adf1981f8990c6b626ecabe` と対象caseのmutationを入力事実として読み、L3/L4の分類文およびL5 failure output条件が要求するclaimが入力資料にあるかを照合した。L9既存 `expected_material` は処理結果の観測ではないため、finding形成根拠に使わない。過去の独立照合メモもL5順序を見ていたため、F03のfinding/order根拠として採用しない。
 
-独立照合ではL5も読まれており、特にF03のwrong-layer 3件のL5 rule順を確認した。そのため、元メモをL4/L9間のL9出力順の独立根拠とは扱わない。PR-AではL3/L4 class情報と固定L9入力からfinding集合を保持し、L4に順序規則がないwrong-layer 3件のL9順序はunknownとする。L5はcode・ownerの一致確認に限る。
+## F03 14件
 
-## F03: 14件
+- 観点欠落10件は、raw上の未形成/nullだけを示す。L4 `/contracts/3/negative_classifications/1` とL5 `/failure_rules/20` が要求する「未決を成功または空観測へ補った」出力はrawにないため、finding setは `unknown/unformed`。
+- trace欠落1件は、mutationでtraceが空になる入力差を示す。しかしL4 `/contracts/3/negative_classifications/0` とL5 `/failure_rules/19` が要求する「trace未供給を成立扱いした」処理出力はrawにない。よってfinding setは `unknown/unformed`。
+- wrong-pair 3件は、固定rawの `paired_comparisons` が持つpair入力とmutationでpairのlayer値を変更する入力差を示す。`paired_comparisons` は比較対象の入力であり、処理がpair不一致をどう分類したかという出力ではない。L4 `/contracts/3/negative_classifications/0,2` とL5 `/failure_rules/19,21` が要求する「不一致なのに同一pairとして比較した」処理結果はrawにない。既存 `expected_material` も期待であって実出力ではないため、集合・owner・順序を形成しない。L4はrule orderも定めない。
 
-根拠はL3 `HARNESS-L3-003-F03` の `/requirements/66/obligation`、L4 `/contracts/3/negative_classifications/0..3` と固定L9 raw。trace欠落1件は `F03_REQUIRED_PAIR_MISSING`、L9観点欠落10件は各々 `F03_L9_DIMENSION_UNKNOWN`。いずれもL4がcodeとbackflow ownerを単独で定める。
+## F05 8件
 
-wrong-layer 3件はL4から `F03_REQUIRED_PAIR_MISSING` と `F03_PAIR_SCOPE_CONFLICT` の2-code集合までを導出できる。L4には両classの一意なemission orderがない。元の独立メモで見たL5順 `F03_REQUIRED_PAIR_MISSING` → `F03_PAIR_SCOPE_CONFLICT` はL9期待の根拠に採用しない。3件の候補には集合と順序unknownを記録した。
+対象Port fieldがrawで欠落/nullという入力差は保持する。一方、L4 `/contracts/5/negative_classifications/0` とL5 `/failure_rules/23` が要求する「欠落のままRelease-eligible扱いした」処理出力はrawにない。したがって8件ともfinding setは `unknown/unformed`。
 
-## F05: 8件
+## 訂正後の状態
 
-根拠はL3 `HARNESS-L3-003-F05` の `/requirements/68/obligation`、L4 `/contracts/5/negative_classifications/0..4`・`connection_detail/port_fields`・`initial_order` と固定L9 raw。各rawで対象必須fieldの観測のみnull、定義seq `0` は開始seq `1` より前。他のrequired observationは存在する。
-
-8件ともL4から `F05_REQUIRED_PORT_FIELD_MISSING` のsingleton codeとHARNESS ownerを導出する。未決authorityを操作許可にせず、戻り先null・Reverse未実行を保ち、恒久対策・backfill・Issue closeを成立させないため、他4 classは発火しない。L5はL4 code/ownerとの一致確認のみで、singleton出力候補の生成元ではない。
-
-## 限界
-
-これは固定文書・pointer・raw bytesと手動class照合の記録であり、関数実行、製品test、checker合格、freezeを意味しない。既存期待・182件のcase populationは変更しない。175件の未形成caseは残る。
+対象22件は空集合でもpositiveでもなく、finding set・owner・ordered outputが未形成である。raw hash、raw pointer、mutation pointer、L3/L4 source pointerは各行に保持した。L9のexisting cases/expectations、182件の母集団、formal projection row、checker marker、freezeは変更しない。元の候補主張はgit履歴に残るが、現在の監査正本では撤回済みと明示する。

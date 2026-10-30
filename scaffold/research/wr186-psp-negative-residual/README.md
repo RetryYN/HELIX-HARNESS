@@ -1,42 +1,35 @@
-# WR186 process-state-port L9負例監査候補
+# WR186 process-state-port L9入力監査の訂正
 
-## PR-Aの範囲
+## 対象と境界
 
-PR classは `design_verification`、対象V-pairは **HELIX-HARNESS L4/L9**。このcandidateはL9監査記録と共有scaffold evidenceに限定し、L9の既存期待、case population、checker marker、formal projection row、freezeを変更しない。F03 14件とF05 8件、合計22件の固定入力根拠と上流照合を保持する。L9の出力は監査候補であり、製品実行・test・checker合格ではない。
+PR classは `design_verification`、対象V-pairは **HELIX-HARNESS L4/L9**。この記録はL9固定入力・mutation・source pointer/hashの監査に限る。L9の既存期待、case population、checker marker、formal projection row、freezeを変更しない。候補findingは形成しない。L8はWR186成果に含めない。
 
-共有証拠は [SCF-B-0174](../../bindings/SCF-B-0174.json) に登録した。後続PR-Bでは同じ証拠ファイルを再配置・複製せず、必要な層側の参照だけを追加する。
+共有根拠は [SCF-B-0174](../../bindings/SCF-B-0174.json) と、この文書の隣にあるF03/F05監査行に保持する。L9からscaffoldへの参照は置かず、scaffoldからL9監査箇所を参照する。
 
-## 期待の出典境界
+## #3916候補の訂正
 
-L3は要求の意味を持ち、L4の負例分類はcaseのfinding code、state、backflow ownerと各singletonの `expected.finding_codes` を持つ。候補の期待はL3/L4のこの情報と固定L9入力から導く。L5はL4と候補のcode/ownerが整合するかを確かめる照合情報に限り、候補期待・finding順の生成元にしない。
+#3916の初期監査では、固定rawの入力欠落からF03 14件・F05 8件についてfinding候補を置いた。しかしL4のnegative classificationとL5 `failure_output_contract` が要求するのは入力欠落だけではない。対象の条件が成立しない/未決のままなのに成功・空へ補った、または欠落のままRelease-eligibleとして扱った、という処理結果まで必要である。L5は、成立が確認されたruleだけを出力し、成立が不明なcodeを作らないと定める。
 
-## F03 14件
+固定rawとcase mutationを再確認した結果、その22件で確認できるのは入力とmutationであり、要求される「成立扱い」の処理結果は記録されていない。よって元候補を撤回し、finding set・owner・ordered outputをすべて `unknown/unformed` と記録する。これは空集合との判断ではない。元のL9 `expected_material` は既存期待であり、実際の処理結果として使用しない。
 
-入力刺激は固定L9 raw snapshot `ed3981e7b9419d796adf1981f8990c6b626ecabe` の `docs/helix-harness/L9-integration-verification/process-state-port.json` にあるcase-specific `independent_source_packet.raw_utf8`。L9各case自身の `base_case_ref` と `mutation` を入力由来として記録する。既存 `expected_material`、`negative_class_assignment`、checker出力からfindingを導いていない。
+| 対象 | 件数 | rawで確認できること | 成立扱いを確認できない理由 |
+|---|---:|---|---|
+| F03 L9観点欠落 | 10 | 固定rawの対象dimensionが欠落/null | 未決観点を成功・空観測へ補った処理出力がない |
+| F03 trace欠落 | 1 | mutationでtraceが空 | trace不足を成立扱いした処理出力がない |
+| F03 wrong-pair | 3 | mutationで対象pairのlayer値を変更 | 不一致pairを同一pairとして扱った処理出力がない。L4に出力順もない |
+| F05 必須field欠落 | 8 | 固定rawの対象Port fieldが欠落/null | 欠落のままRelease-eligibleとした処理出力がない |
 
-L3 `/requirements/66/obligation`、L4 `/contracts/3/negative_classifications/0..3` と各caseの固定rawを照合した。trace欠落1件と観点欠落10件はsingletonであり、L4の `expected.finding_codes`・`backflow_owner` から候補code/ownerを得る。wrong-layer pair 3件はL4の「必要pair欠落」と「pair scope conflict」による2-code**集合**を保持するが、L4はemission orderを定めていないためL9の順序はunknownとする。候補にL5の順序を採用しない。各入力hash、raw pointer、L9 mutation pointer、発火・非発火class、L4 source pointer、候補または順序未確定状態は [`manual-projection-candidates.json`](manual-projection-candidates.json) に記録した。
+これら22行のraw revision/path/pointer/SHA-256、L9 mutation pointer、L3/L4 source pointerは保持する。L4 classification pointerと過去に候補として挙げたcodeは、撤回履歴を識別する資料としてだけ残し、期待・finding集合として使わない。F03 wrong-pairの旧unordered setも撤回し、順序・集合ともunknownとする。
 
-L9の `negative_output_projection_audit` にF03各caseとF05 8件の候補finding集合、L3 obligation pointer、L4 classification pointer、固定raw revision/path/pointer/hash、同case mutation pointerを記録する。L9はscaffold manifestを参照しない。manifestは監査補助資料として別に保持し、検証script側からL9記録との一致を確認する。候補findingはすべて `unordered_set` で、L9の正式な期待値やchecker用ordered outputではない。F03 singletonは単一要素なので順序が自明、compound 3件は順序unknownを明記した。
+## 件数とcheckerの扱い
 
-## F05 8件
+L9 negative populationは182件。既存F04監査候補7件のみを候補として維持し、F03/F05の22件はunknown/unformed監査行、全体の未形成は175件のまま。34分類中、既存候補の扱いは変更せず、残り27分類は未形成。正式projection rowは0件、checker marker無効、freezeなし。これらの監査行をcase coverageやPASSへ数えない。
 
-固定raw snapshotは同じrevisionのL9 `raw_utf8`。8件とも必須Port観測のうち対象1項目がnull、定義seq `0` が開発開始seq `1` より前である。L3 `/requirements/68/obligation`、L4 `/contracts/5/negative_classifications/0..4`、`connection_detail/port_fields`、`initial_order` と各rawを照合した。対象必須field欠落だけがL4分類として成立し、他4分類を発火させない根拠も記録した。8件ともsingletonなので、L4のcode/ownerからL9候補を順方向に記録した。L9自身の `base_case_ref` と `mutation` を維持し、L5はruleとの一致照合だけに使う。詳細は [`f05-single-finding-candidates.json`](f05-single-finding-candidates.json)。
+latest main (`origin/main`、branch base `ca4bd911142cc17789366ae6f9f1f0fee8c7c589`) と修正後で、既存L9 `cases` と `expected_material` は同一である。既存negative 4-way checkerのbase記録と最新HEADでの明示4 path trialは、どちらもL4=34、L9=182、L8=0、L5=34、matched=0、failure=223。内訳はnegative case count 7、presence 216（L4/L5のみ34、L9のみ182）で不変。L4/L9 pair、L5/L8 pair、ownership caps、pinsは今回のtrialでも成功した。F04既存単一finding候補7件は保持し、formal projection rowは0件のまま。これは現行scaffold checkerの文書・構造照合であり、製品testや実行合格を意味しない。
 
-## 独立照合と境界
+## 固定入力と再現
 
-別workerはcandidateを見る前にL3/L4/L5と固定rawからF03 14件・F05 8件を手動照合した。F03の手動メモはL5 rule順も確認しているため、wrong-layer 3件のL9出力順に関する独立した上流根拠とは扱わない。F03の独立照合が示すのは対象2-code集合までであり、L9順序は未確定のままとする。F05はsingleton code/ownerをL4根拠で再照合し、L5は一致確認とする。日本語要約は [`independent-manual-review.md`](independent-manual-review.md)、元メモSHA-256はF03 `181c85c63c6e286830e71b3d6bf0c7d62df9b581f163226b047df62a6e98c619`、F05 `35dbf7772bd15adcfe31c99e3e4488cf7d6b1cfaa943c35342e7291800710baf`。
-
-監査候補22件をformal projection rowまたは全体coverageへ昇格させない。process-state-portのnegative populationは182件で、175件は未形成のまま残る。
-
-## 現行checkerの前後比較とfreeze
-
-`design_verification_checker.py check-child` を最新main `85b23733be007c890107d5fa706a8182964e10b2` のbaseと、このcandidateをそのmainへ統合したno-commit trialで同じ4つの明示path（L4/L9/L5/L8）を指定して比較した。両方の出力でL4↔L9とL5↔L8のpairはPASS、ownership caps 4件とpin 4件もPASS。negative 4-wayは両方 `L4=34, L9=182, L8=0, L5=34; matched=0` で223 FAIL、failure detail配列も完全一致した。全体checker結果は223 FAILを含むためFAILのままで、候補22件を4-way coverageへ算入しない。新しいL9要約によるchecker差分はない。
-
-`docs/governance/audits/tdd` をprocess-state-portのpathとHARNESS-L4/L5/L8/L9-003-F03/F05 IDで照合したが、対象pairのfreeze recordは見つからなかった。よってfreeze前後比較の対象はなく、この候補からfreezeも生成しない。
-
-比較用に既存の `harness001-v12-layer-contract-pair-freeze-2026-10-28.json` もbase/trial双方で `check-freeze --worktree` を実行したが、結果は同一で `all_mechanical_matched=false`。これは別pair・別文書の既存記録であり、process-state-port候補のfreezeとして扱わない。
-
-## 再現可能な静的確認
+固定raw snapshotは `ed3981e7b9419d796adf1981f8990c6b626ecabe` の `docs/helix-harness/L9-integration-verification/process-state-port.json`、file SHA-256 `91d0bcd34b8b451bc8e81f5d13d0c5f413de3ad5f7c70ba90a704134c4af3735`。
 
 ```sh
 python3 scaffold/research/wr186-psp-negative-residual/validate_l9.py
@@ -44,4 +37,4 @@ python3 -B scaffold/tools/scfctl.py validate
 python3 -B scaffold/tools/scfctl.py stale
 ```
 
-`validate_l9.py` は固定git object、L9 input pointer/mutation、raw SHA-256、L3/L4 class参照、L9内候補要約と補助manifestの一致、case populationと既存期待の不変を確認する。L9監査objectにはscaffold path/candidate refがないことも確かめる。L5は候補の発火・出力を生成せず、L4との一致だけを照合する。L4/L5 predicateをコード化・実行せず、期待値を算出しない。
+`validate_l9.py` は基準revisionのcase/expectation不変、固定raw bytesのhash、pointer解決、L9 mutation参照、各監査行のunknown/unformed状態、L3/L4参照先を静的照合する。L4/L5 predicateをコード化・実行せず、findingを算出しない。
