@@ -12546,6 +12546,55 @@
     ],
     "fixture_source_ref": "HARNESS-L8-009-ADD-47",
     "execution_state": "not_executed"
+   },
+   {
+    "id": "HARNESS-L9-009-F05-EVIDENCE-BODY-ENTRY-ABSENT",
+    "source_basis": [
+     {
+      "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+      "pointer": "/requirements/27"
+     },
+     {
+      "path": "docs/helix-harness/L10-verification/functional-verification.json",
+      "pointer": "/cases/27"
+     },
+     {
+      "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+      "pointer": "/field_source_materialization_contract/ordered_source_materialization/3"
+     },
+     {
+      "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+      "pointer": "/field_semantic_evidence_contract/wrapper_and_source_contract/source_payload"
+     },
+     {
+      "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+      "pointer": "/field_semantic_evidence_contract/common_target_guards/4"
+     },
+     {
+      "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+      "pointer": "/field_semantic_evidence_contract/basic_candidate_return/cause_kind_extension_rules/rules/2"
+     }
+    ],
+    "l3_l10_meaning_basis": [
+     "L3#/requirements/27: 根拠source/template/revision/field/義務/scopeの対応を保持する",
+     "L10#/cases/27: 根拠の不成立を定義missing/value unknownや分類成功へ補完しない"
+    ],
+    "input_mutation_ja": "同一snapshotの選択FieldInput.definition_refsが指すSemanticRecordと、そのpresent non-null source_refに一致するSourceEnvelopeは実在し、SourceEnvelope.body.records collectionも実配列として観測できるが、当該body.records内にcollection=semantic_recordsかつref=当該SemanticRecord.refに一致するbody entryが0件である。source_unresolved、body_unformed、content_unresolved、source_body_mismatchの入力条件とは混ぜない。",
+    "expected_semantic_observation_ja": "当該evidenceのsource/body対応はbody_entry_unresolvedとして当該fieldに局所化して未形成（unformed）となり、解決済みSemanticRecord、そのref Read、解決済みSourceEnvelopeおよび観測済みbody.records配列Readを保持し、架空のbody entry/indexやbasis_occurrences indexを作らない。source_unresolved/body_unformed/content_unresolved/source_body_mismatchへ読み替えず、definition missing/unknownや意味候補を通さず、独立した有効兄弟は維持する。",
+    "asserted_output_paths": [
+     "/definition_evidence_results",
+     "/local_unestablished",
+     "/domain_observations/field_inputs/0"
+    ],
+    "uninstantiated_output_paths": [
+     "/original_context",
+     "/domain_observations/gap_proposals"
+    ],
+    "not_full_return": [
+     "/original_context の全leaf",
+     "選択field外の全出力"
+    ],
+    "execution_state": "not_executed"
    }
   ],
   "unexercised_and_unverified": {
@@ -12588,7 +12637,7 @@
     },
     {
      "role": "対象body entry 0件（collection観測済み）",
-     "status": "STOP-F05-BODY-ENTRY-ABSENT-01: 既存L4にCause意味対応なし。L9期待を作らず未評価のまま。"
+     "status": "未実行（L4 rules/2で既存16語のどれにも当たらないことを記録しL3#/requirements/27に基づきbody_entry_unresolvedを定義、独立L9意味期待をcases/11およびcause_kind_extension_cases/2に記述済み。L5 writer/L8 U-ID追補とL5側のSTOP-F05-BODY-ENTRY-ABSENT-01解除は後続L5+L8 PRで実施）"
     },
     {
      "role": "body collection absent/null/type外",
@@ -12787,6 +12836,48 @@
      "rule_pointer": "/field_semantic_evidence_contract/basic_candidate_return/cause_kind_extension_rules/rules/1"
     },
     "expected_preserved": "当該ProjectionAttemptだけをunformedにし、全宣言/content Readを保持する。native_definition_whole/V0/D0へ置換せず、DefinitionAssessmentへCauseを伝えない。",
+    "expected_side_effect_count": 0
+   },
+   {
+    "id": "HARNESS-L9-009-F05-CAUSE-BODY-ENTRY-UNRESOLVED",
+    "name": "source-body-records-observed-with-zero-matching-collection-ref-entries",
+    "execution_state": "not_executed",
+    "logical_input_status": "型付き条件を記述した設計case。入力fixtureは未作成。",
+    "source_basis": [
+     {
+      "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+      "pointer": "/requirements/27"
+     },
+     {
+      "path": "docs/helix-harness/L10-verification/functional-verification.json",
+      "pointer": "/cases/27"
+     },
+     {
+      "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+      "pointer": "/field_source_materialization_contract/ordered_source_materialization/3"
+     },
+     {
+      "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+      "pointer": "/field_semantic_evidence_contract/wrapper_and_source_contract/source_payload"
+     },
+     {
+      "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+      "pointer": "/field_semantic_evidence_contract/common_target_guards/4"
+     },
+     {
+      "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+      "pointer": "/field_semantic_evidence_contract/basic_candidate_return/cause_kind_extension_rules/rules/2"
+     }
+    ],
+    "condition": "対象record（SemanticRecordまたはAxisFact）が所属collection（semantic_records / obligations / axis_facts）上で解決済み、record.source_refがsources内の対象SourceEnvelopeへ解決済み、かつ対象SourceEnvelopeのbody.records collectionが配列として観測済み（Read.present）であるが、body.records内に対象(collection, record.ref)と一致するentryが0件。",
+    "expected_cause": {
+     "kind": "body_entry_unresolved",
+     "target": "対象recordのsource_refまたはref Readのlocation（対象SourceEnvelopeのbody.records locationを併記）",
+     "left": "所属collection上で解決済みの対象record（collection, ref, source_ref）の原Read全体",
+     "right": "対象SourceEnvelopeの観測済みbody.records collectionの原Read全体（対象(collection, record.ref) entry 0件）",
+     "rule_pointer": "/field_semantic_evidence_contract/basic_candidate_return/cause_kind_extension_rules/rules/2"
+    },
+    "expected_preserved": "対象recordの原Read、source_refの原Read、SourceEnvelope.body.recordsの原Readを消去・正規化せず保持し、対象evidence checkをunestablishedとして扱う。source_unresolved、body_unformed、content_unresolved、source_body_mismatchへ読み替えず、DefinitionAssessment / VerificationAssessment / TraceAssessmentのknown/missing/unknown/conflictをこのCauseから生成しない。",
     "expected_side_effect_count": 0
    }
   ],
