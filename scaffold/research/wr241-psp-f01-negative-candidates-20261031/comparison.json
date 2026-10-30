@@ -1,0 +1,256 @@
+{
+  "record": "WR241 F01 post-freeze static comparison; scaffold evidence only",
+  "base_revision": "0041b4b7e7138eba79df172a88c537699142390a",
+  "fixed_blind": {
+    "path": "scaffold/research/wr241-psp-f01-negative-candidates-20261031/source-only-fixed.json",
+    "sha256": "5d69a52e4fd4bce2b76f23c593e597e71f28988968fe955aadc20c6e8106e7e4",
+    "issue": "#3510 comment 6533755502"
+  },
+  "source_pins": {
+    "L3": {
+      "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+      "sha256": "a3b907cdc316117d4684632f9a1cbf36125eb6e6172f9cfc286060617583d7be"
+    },
+    "L10": {
+      "path": "docs/helix-harness/L10-verification/functional-verification.json",
+      "sha256": "fc58ad2268746d7924ac9be33e8f3f75e6d3c2cc619e27fbc1ddc34edd065cb2"
+    },
+    "L4": {
+      "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
+      "sha256": "e6253059bb117446412ecb8b054ae533641054c8a1be4a535eb1f784017fa3e9"
+    },
+    "L5": {
+      "path": "docs/helix-harness/L5-detail-design/process-state-port.json",
+      "sha256": "b8b77871f3970a10b21313028f762346e75e85c4ed4209639a23fe6f2f5f6f2d"
+    },
+    "L8": {
+      "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+      "sha256": "f5055c9a7d19654402f3f2b595038cf0f81ed717659c342c6190c5f88577e5b2"
+    },
+    "L9": {
+      "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+      "sha256": "60942b72d432a79e72b03ab42a616e264b442bfc60b5d53e3aeb54f9c84a847e"
+    },
+    "QA": {
+      "path": "docs/governance/design-verification-quality-assurance.md",
+      "sha256": "f5751e236dc073fe67114c1fcb4b0f64b3d746290b25d75b61e60a08e3c99c85"
+    }
+  },
+  "scope": {
+    "L3": "/requirements/64",
+    "L10": "/cases/64",
+    "L4": "/contracts/1",
+    "L5": "/functions/1",
+    "L8": "/cases/1",
+    "L9": "/cases/1"
+  },
+  "L8_L9_existing_case_projection": {
+    "L8_primary_case_count": 22,
+    "L9_normal_case_count": 5,
+    "L9_negative_case_count": 17,
+    "matched_by_basic_case_ref": 22,
+    "typed_projection": "L8 typed envelopes interpreted by their state; values compared to corresponding L9 expected_material",
+    "field_count_per_row": 9,
+    "matched_rows": 22,
+    "mismatched_rows": 0,
+    "execution_performed": false
+  },
+  "source_only_candidate_rows": [
+    {
+      "l9_pointer": "/cases/1/negative_cases/0",
+      "l9_row_id": "H003-F01-MISSING-agreement",
+      "l4_class_pointer": "/contracts/1/negative_classifications/0",
+      "l4_class_id": "F01_REQUIRED_CONDITION_MISSING",
+      "candidate_status": "candidate_condition_supported",
+      "formed_finding": "unknown",
+      "observed_processing_result": "not present in inspected source fields"
+    },
+    {
+      "l9_pointer": "/cases/1/negative_cases/1",
+      "l9_row_id": "H003-F01-MISSING-requirements_approval",
+      "l4_class_pointer": "/contracts/1/negative_classifications/0",
+      "l4_class_id": "F01_REQUIRED_CONDITION_MISSING",
+      "candidate_status": "candidate_condition_supported",
+      "formed_finding": "unknown",
+      "observed_processing_result": "not present in inspected source fields"
+    },
+    {
+      "l9_pointer": "/cases/1/negative_cases/2",
+      "l9_row_id": "H003-F01-MISSING-pair",
+      "l4_class_pointer": "/contracts/1/negative_classifications/0",
+      "l4_class_id": "F01_REQUIRED_CONDITION_MISSING",
+      "candidate_status": "candidate_condition_supported",
+      "formed_finding": "unknown",
+      "observed_processing_result": "not present in inspected source fields"
+    },
+    {
+      "l9_pointer": "/cases/1/negative_cases/3",
+      "l9_row_id": "H003-F01-FOREIGN-APPROVAL",
+      "l4_class_pointer": "/contracts/1/negative_classifications/3",
+      "l4_class_id": "F01_CONDITION_TARGET_STALE",
+      "candidate_status": "candidate_condition_supported",
+      "formed_finding": "unknown",
+      "observed_processing_result": "not present in inspected source fields"
+    },
+    {
+      "l9_pointer": "/cases/1/negative_cases/4",
+      "l9_row_id": "H003-F01-CONSULTATION-AS-APPROVAL",
+      "l4_class_pointer": "/contracts/1/negative_classifications/2",
+      "l4_class_id": "F01_ROLE_AUTHORITY_CONFLICT",
+      "candidate_status": "candidate_condition_supported",
+      "formed_finding": "unknown",
+      "observed_processing_result": "not present in inspected source fields"
+    },
+    {
+      "l9_pointer": "/cases/1/negative_cases/5",
+      "l9_row_id": "H003-F01-WORK_REQUEST-AS-APPROVAL",
+      "l4_class_pointer": "/contracts/1/negative_classifications/2",
+      "l4_class_id": "F01_ROLE_AUTHORITY_CONFLICT",
+      "candidate_status": "candidate_condition_supported",
+      "formed_finding": "unknown",
+      "observed_processing_result": "not present in inspected source fields"
+    },
+    {
+      "l9_pointer": "/cases/1/negative_cases/6",
+      "l9_row_id": "H003-F01-SELECTION-AS-APPROVAL",
+      "l4_class_pointer": "/contracts/1/negative_classifications/2",
+      "l4_class_id": "F01_ROLE_AUTHORITY_CONFLICT",
+      "candidate_status": "candidate_condition_supported",
+      "formed_finding": "unknown",
+      "observed_processing_result": "not present in inspected source fields"
+    },
+    {
+      "l9_pointer": "/cases/1/negative_cases/7",
+      "l9_row_id": "H003-F01-OPERATION_AUTHORIZATION-AS-APPROVAL",
+      "l4_class_pointer": "/contracts/1/negative_classifications/2",
+      "l4_class_id": "F01_ROLE_AUTHORITY_CONFLICT",
+      "candidate_status": "candidate_condition_supported",
+      "formed_finding": "unknown",
+      "observed_processing_result": "not present in inspected source fields"
+    },
+    {
+      "l9_pointer": "/cases/1/negative_cases/8",
+      "l9_row_id": "H003-F01-UNDELEGATED-MEANING",
+      "l4_class_pointer": null,
+      "l4_class_id": null,
+      "candidate_status": "class_unresolved",
+      "formed_finding": "unknown",
+      "observed_processing_result": "not present in inspected source fields"
+    },
+    {
+      "l9_pointer": "/cases/1/negative_cases/9",
+      "l9_row_id": "H003-F01-UNDELEGATED-AUTHORITY",
+      "l4_class_pointer": null,
+      "l4_class_id": null,
+      "candidate_status": "class_unresolved",
+      "formed_finding": "unknown",
+      "observed_processing_result": "not present in inspected source fields"
+    },
+    {
+      "l9_pointer": "/cases/1/negative_cases/10",
+      "l9_row_id": "H003-F01-REPEAT-APPROVAL-FOR-DETAIL",
+      "l4_class_pointer": "/contracts/1/negative_classifications/2",
+      "l4_class_id": "F01_ROLE_AUTHORITY_CONFLICT",
+      "candidate_status": "candidate_condition_supported",
+      "formed_finding": "unknown",
+      "observed_processing_result": "not present in inspected source fields"
+    },
+    {
+      "l9_pointer": "/cases/1/negative_cases/11",
+      "l9_row_id": "H003-F01-IMPLEMENTATION-AS-COMPLETION",
+      "l4_class_pointer": null,
+      "l4_class_id": null,
+      "candidate_status": "class_unresolved",
+      "formed_finding": "unknown",
+      "observed_processing_result": "not present in inspected source fields"
+    },
+    {
+      "l9_pointer": "/cases/1/negative_cases/12",
+      "l9_row_id": "H003-F01-CONSULTATION-AS-ACTUAL-APPROVAL",
+      "l4_class_pointer": "/contracts/1/negative_classifications/2",
+      "l4_class_id": "F01_ROLE_AUTHORITY_CONFLICT",
+      "candidate_status": "candidate_condition_supported",
+      "formed_finding": "unknown",
+      "observed_processing_result": "not present in inspected source fields"
+    },
+    {
+      "l9_pointer": "/cases/1/negative_cases/13",
+      "l9_row_id": "H003-F01-FREEZE-VERIFICATION",
+      "l4_class_pointer": "/contracts/1/negative_classifications/0",
+      "l4_class_id": "F01_REQUIRED_CONDITION_MISSING",
+      "candidate_status": "candidate_condition_supported",
+      "formed_finding": "unknown",
+      "observed_processing_result": "not present in inspected source fields"
+    },
+    {
+      "l9_pointer": "/cases/1/negative_cases/14",
+      "l9_row_id": "H003-F01-REOPEN-UNRESOLVED",
+      "l4_class_pointer": null,
+      "l4_class_id": null,
+      "candidate_status": "class_unresolved",
+      "formed_finding": "unknown",
+      "observed_processing_result": "not present in inspected source fields"
+    },
+    {
+      "l9_pointer": "/cases/1/negative_cases/15",
+      "l9_row_id": "H003-F01-COMPLETE-PAIR",
+      "l4_class_pointer": "/contracts/1/negative_classifications/0",
+      "l4_class_id": "F01_REQUIRED_CONDITION_MISSING",
+      "candidate_status": "candidate_condition_supported",
+      "formed_finding": "unknown",
+      "observed_processing_result": "not present in inspected source fields"
+    },
+    {
+      "l9_pointer": "/cases/1/negative_cases/16",
+      "l9_row_id": "H003-F01-APPROVAL-UNKNOWN",
+      "l4_class_pointer": null,
+      "l4_class_id": null,
+      "candidate_status": "class_unresolved",
+      "formed_finding": "unknown",
+      "observed_processing_result": "not present in inspected source fields"
+    }
+  ],
+  "candidate_summary": {
+    "candidate_condition_supported": 12,
+    "unresolved": 5,
+    "formed_findings": "all unknown/unformed",
+    "observed_processing_results": "none in inspected fields"
+  },
+  "citation_search": {
+    "current_source_result": "L8 F01 plus inspected L3/L10/L4/L9 do not contain F01-specific oracle ID or test citation; not fabricated",
+    "legacy_assets": [
+      {
+        "asset_id": "LEGACY-ASSET-4103AA9615714BD6E9D3",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L8-gate-evidence-substance.md",
+        "finding": "historical U-ID/test citation examples only"
+      },
+      {
+        "asset_id": "LEGACY-ASSET-AC2BD305E065609C98F8",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L8-ci-verification-plan-unit-test-design.md",
+        "finding": "historical U-ID/test citation examples only"
+      }
+    ]
+  },
+  "comparison_mode": {
+    "mode": "legacy_casewise_four_layer",
+    "reason": "no complete four-layer marker set; explicit mode additionally requires WR240 checker; partial marker not introduced",
+    "global_counts": {
+      "L4": 34,
+      "L5": 34,
+      "L9": 182,
+      "L8": 0
+    }
+  },
+  "unresolved": [
+    "five source-only candidate rows do not have a uniquely supported L4 class membership",
+    "L8 F01 oracle ID and test citation absent",
+    "unresolved_assignment_rule and trace trigger remain undecided",
+    "all-layer 34/34/182/0 casewise mismatch remains"
+  ],
+  "scope_exclusions": [
+    "No formal L8 U-ID rows added.",
+    "No L4/L9 edits.",
+    "No L4/L5 algorithm, runtime, test, or CI executed.",
+    "No L9 expected fields interpreted as observed results."
+  ]
+}
