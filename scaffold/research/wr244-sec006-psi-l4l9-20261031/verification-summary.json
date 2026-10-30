@@ -1,0 +1,56 @@
+{
+  "schema": "wr244-sec006-verification-summary.v1",
+  "evidence_kind": "scaffold",
+  "authority_effect": "none",
+  "base_revision": "2684816ad6179cc3535e4a6c297e61d10fd75ca0",
+  "source_comparison": {
+    "blind_source_only_sha256": "14b28cc8a9e4cee9727d458a6e7fbe175c02a46fed06a5fa57bacb983edd4e22",
+    "blind_source_only_sha256_matches": true,
+    "l9_assignment_rows": 114,
+    "l9_main_negative_cases": 98,
+    "l9_residual_negative_rows": 16,
+    "l9_residual_multi_finding_rows": 13,
+    "l9_multi_finding_order_matches_l4_sort": 13,
+    "l9_multi_finding_order_mismatches": 0,
+    "l4_l9_expected_oracles_changed": false,
+    "l5_l8_changed": false
+  },
+  "design_verification_checker": {
+    "command": "python3 scaffold/tools/design_verification_checker.py check-child --l4 docs/helix-security/L4-basic-design/project-scope-isolation.json --l9 docs/helix-security/L9-integration-verification/project-scope-isolation.json --l5 docs/helix-security/L5-detail-design/project-scope-isolation.json --l8 docs/helix-security/L8-unit-verification/project-scope-isolation.json --root .",
+    "before": {
+      "exit_code": 1,
+      "passed": false,
+      "comparison_mode": "legacy_casewise_four_layer",
+      "l4_l9_pair_passed": true,
+      "l5_l8_pair_passed": true,
+      "negative_4way_counts": {"L4": 0, "L9": 98, "L8": 52, "L5": 0},
+      "matched_case_count": 0,
+      "negative_4way_failures": 152
+    },
+    "after": {
+      "exit_code": 1,
+      "passed": false,
+      "comparison_mode": "legacy_casewise_four_layer",
+      "l4_l9_pair_passed": true,
+      "l5_l8_pair_passed": true,
+      "negative_4way_counts": {"L4": 0, "L9": 98, "L8": 52, "L5": 0},
+      "matched_case_count": 0,
+      "negative_4way_failures": 152
+    },
+    "interpretation": "The return code 1 is the measured pre-existing negative_4way failure. No L4 algorithm, test, runtime, or CI was executed. No L4/L9 document change was made, so the requested intermediate measurement remains 0/98/52/0 and 152 failures."
+  },
+  "scaffold_static_checks": {
+    "scfctl_validate_exit_code": 0,
+    "scfctl_validate_bindings": 185,
+    "scfctl_validate_failures": 0,
+    "scfctl_stale_exit_code": 0,
+    "scfctl_stale_count": 0,
+    "json_artifacts_parse": true,
+    "git_diff_check": "passed"
+  },
+  "boundaries": [
+    "No old runtime, CLI, hook, workflow, test, or CI execution.",
+    "No authentication/authorization configuration, credential, production action, or external service change.",
+    "Scaffold checks are structural evidence only and do not establish requirements, design approval, runtime behavior, or completion."
+  ]
+}

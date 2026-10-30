@@ -1,0 +1,176 @@
+{
+  "artifact": "WR244 project-scope-isolation blind clean source-only derivation",
+  "mode": "source-only; no assignment comparison, issue posting, repository edit, auth-setting change, commit, algorithm inspection, or execution",
+  "base_revision": "2684816ad6179cc3535e4a6c297e61d10fd75ca0",
+  "allowed_scope": [
+    "HELIX-SECURITY L3 functional requirements pointers /requirements/3 and /requirements/4",
+    "HELIX-SECURITY L10 verification pointers /cases/3 and /cases/4",
+    "project-scope-isolation L4 pointers /scope, /architecture/pure_boundary, /architecture/scope_locality, and selected contract fields in /contracts/0 and /contracts/1"
+  ],
+  "provenance": [
+    {
+      "revision": "2684816ad6179cc3535e4a6c297e61d10fd75ca0",
+      "path": "docs/helix-security/L3-requirements/functional-requirements.json",
+      "git_blob": "cd4b8dfd079dc90ac86c0180f65453dbba4b05f9",
+      "file_sha256": "e4eeb70cc303e44199c7d898281e91c22dba89b47666353b9c80a4c634e898b5",
+      "pointers": {
+        "/requirements/3": "1369f93ccafb41c6ba10e144cba9197e2da1a38aacf2f635416c1c88a06adfa9",
+        "/requirements/4": "19b26caf00defe161d17757bf7a0eabc001062fa7b8e8cf8f910461297b7e351"
+      }
+    },
+    {
+      "revision": "2684816ad6179cc3535e4a6c297e61d10fd75ca0",
+      "path": "docs/helix-security/L10-verification/functional-verification.json",
+      "git_blob": "51deee64dcfd42a90c20c680ca0e7a39790ec5d4",
+      "file_sha256": "e6da7eaff29a623b5d069801280c295d9dd7cc43b51d9cde25b12a8110e5072a",
+      "pointers": {
+        "/cases/3": "17b262cc24e1b75f42eff2910bccaeeb9dfd0d5b487ced623cf09b5a56863615",
+        "/cases/4": "27841ff00050409c3f65a1ebc6ed29f0a5be70f4b9cd8df77ce13ba585687803"
+      }
+    },
+    {
+      "revision": "2684816ad6179cc3535e4a6c297e61d10fd75ca0",
+      "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+      "git_blob": "f1b768ab6d760a05671d3073bb66902634ffbc4b",
+      "file_sha256": "3ef0816e6a1d1156a970f1230da5e3199076210862463a348a7058772d67bf25",
+      "pointers": {
+        "/scope": "93ba4a29fd7bb7d15009b74615b6f9fd917d6b7be5a90720fd8af41d93ef79d2",
+        "/architecture/pure_boundary": "98a9641dd8f7fac6a337ffba54d6a7e50da5b198a5041644605fd122052cabd7",
+        "/architecture/scope_locality": "37286d2cf4b3508f90d22550de6913eef78724262e371d2731a7167778c422a5",
+        "/contracts/0[approved_requirement,input_meanings,output_meanings,content_comparison,qualification_rule]": "86c11ae610a23c3a61ee1aa3478076309057ccf8c30127955d75d8d5d815fbb5",
+        "/contracts/1[approved_requirement,input_meanings,output_meanings,content_comparison,qualification_rule]": "e66fbbaf0b40794b78a055da563555270d29ac34526bd423cf5d0ab0370bcc7d"
+      }
+    }
+  ],
+  "hash_method": "Value SHA-256 is SHA-256 of UTF-8 JSON serialized with ensure_ascii=false, sorted keys, and compact separators; L4 contract hashes cover only the five named fields. File SHA-256 covers the complete source file bytes at the stated revision.",
+  "source_facts": {
+    "L3_F01": {
+      "id": "HELIXSECURITY-L3-003-F01",
+      "title": "隔離identityと作用範囲",
+      "obligation": "権限/state/data/Worker/credential/artifact/memory/実行対象をproject・tenant・environment・assignment/worktreeへ結ぶ。OSのassignment、INFRAの実環境、CONNECTの明示接続identityを各ownerから照合する。対象にないtenantを捏造せず、適用されるtenantは省略しない。",
+      "oracle_ref": "HELIXSECURITY-L10-003-F01",
+      "source": "docs/helix-security/L3-requirements/functional-requirements.json#/requirements/3"
+    },
+    "L3_F02": {
+      "id": "HELIXSECURITY-L3-003-F02",
+      "title": "資産とstateの越境拒否",
+      "obligation": "Agent/Hook/memory/credential/設定/Workerが明示接続なしに他projectへ作用しない。read/write/execute/network/state/credential/artifactの各境界を対象revision/scopeへ照合し、各機構のstate正本を代替しない。",
+      "oracle_ref": "HELIXSECURITY-L10-003-F02",
+      "source": "docs/helix-security/L3-requirements/functional-requirements.json#/requirements/4"
+    },
+    "L10_F01": {
+      "id": "HELIXSECURITY-L10-003-F01",
+      "positive_input": "合成A/B project/tenant/environment/worktreeと同scope/別scopeの作用を照合する。",
+      "expected_observation": "明示接続のある作用だけが対象内に限定され、identityの出所が辿れる。",
+      "negative_input": "identity欠落/衝突、primary tree/別project fallback、tenant適用省略。",
+      "failure_observation": "該当操作を止め、identity不足はそのowner、実環境不足はINFRAへ返す。",
+      "execution_state": "not_executed",
+      "source": "docs/helix-security/L10-verification/functional-verification.json#/cases/3"
+    },
+    "L10_F02": {
+      "id": "HELIXSECURITY-L10-003-F02",
+      "positive_input": "各作用種別を同projectの有効接続と別project/環境へ一つずつ試す。",
+      "expected_observation": "許可対象と拒否/未観測を分け、scope不明を許可にしない。",
+      "negative_input": "別project stateを最新扱い、暗黙fallback、あるread許可で全write/network許可。",
+      "failure_observation": "該当境界へ戻し、無関係な有効scopeを保持する。",
+      "execution_state": "not_executed",
+      "source": "docs/helix-security/L10-verification/functional-verification.json#/cases/4"
+    },
+    "L4_scope": {
+      "version_target": "1.0",
+      "historical_sequence_stage": "Stage 1",
+      "authoring_stage": "Stage 1",
+      "approved_content_revision": "0f9b1a0ec7554cd5a2ec85a3002a897a649383d3",
+      "boundary": "003のF01/F02のidentity/content接続照合だけ。実tenant runtime/権限変更/実隔離/各owner state正本代替/毎回人approveを生成しない。",
+      "source": "docs/helix-security/L4-basic-design/project-scope-isolation.json#/scope"
+    },
+    "pure_boundary": "immutable供給資料の比較だけ。network/fs/process/clock/env/credential/Tool起動・各owner DBやstateの書換なし。",
+    "scope_locality": "pending_operationsは今回requestの1操作だけ。他のscope/正常requestへ全停止を生成しない。",
+    "contract_0_selected_fields": {
+      "approved_requirement": {"revision":"0f9b1a0ec7554cd5a2ec85a3002a897a649383d3","source_path":"docs/helix-security/L3-requirements/functional-requirements.json","object_canonical_sha256":"1369f93ccafb41c6ba10e144cba9197e2da1a38aacf2f635416c1c88a06adfa9"},
+      "input_meanings": ["原origin/target/asset identityのproject・tenant・environment・assignment・worktree・revisionと各ownerの独立expected identity。", "tenant適用true/falseは独立ownerの対象条件から読む。非適用はnull、不明を非適用にせずunknownへ。OS/INFRA/CONNECTの原素材状態を別保持。"],
+      "output_meanings": ["各identityの対応/不足/相反、tenant適用/非適用/unknownの別候補。", "原request identityを保持し、操作/実環境/tenantを生成しない。"],
+      "content_comparison": ["permission/state/data/Worker/credential/artifact/memory/execution_targetを原identityへ結ぶ。caller種別Agent/Hook/memory/credential/configuration/Workerでも境界を保持。", "OSのassignment/project（適用tenantを含む）、INFRAの実環境、CONNECTの明示接続を各ownerの資料へ照合。metadata currentだけで実資格を生成しない。", "tenant適用時の欠落はunknown、非適用時にtenantを投入している場合はtenant_invented。identity欠落・相反をprimary treeや別projectの値で補完しない。", "tenant=trueは必要Textをexpectedと比較。falseはnull以外をtenant_inventedとしtenant値の同一性は比較しない。unknownはtenant_applicability_unresolvedとしtenant値をidentity/asset/接続の意味比較から除く。他5軸の不足/相反は独立に保持する。sideが接続照合可能なのは他5軸が全て既知非空Textで、trueならtenantも既知Text、falseならtenantがnullの場合だけ。unknown又はtenant_invented/必要identity不足のside全体のrequest→connection joinは未成立として比較を補完しない。"],
+      "qualification_rule": "この基本pairは固定合成expected snapshotと内容を比較するだけ。実owner/custody/state正本の成立は独立consumer bindingへ。"
+    },
+    "contract_1_selected_fields": {
+      "approved_requirement": {"revision":"0f9b1a0ec7554cd5a2ec85a3002a897a649383d3","source_path":"docs/helix-security/L3-requirements/functional-requirements.json","object_canonical_sha256":"19b26caf00defe161d17757bf7a0eabc001062fa7b8e8cf8f910461297b7e351"},
+      "input_meanings": ["requested operation（read/write/execute/network/state/credential/artifact）とorigin→targetの接続identity/revision・許容operation集合。", "独立CONNECT expected connection、asset scope、fallback選択、OS/INFRA/CONNECTの素材状態。"],
+      "output_meanings": ["対象operationだけのscope_corresponding/isolation_violation/scope_unresolved候補と該当操作停止候補。", "実許可/変更/操作を行わず、他の有効scope/操作を保持する。"],
+      "content_comparison": ["同projectも別projectも明示接続の対象origin/target/revision/operationへ照合する。明示接続がある越境は一律禁止しない。", "あるread条件からwrite/network等へ拡張せず、actual connectionを独立expected connectionと完全一致で比較しrequested operationが列挙内か確認。", "Agent/Hook/memory/credential/configuration/Workerにprimary_tree/other_projectの暗黙fallbackを許さない。", "別projectや別environmentのasset/stateをlatest自己申告だけで現scopeへ採用しない。各機構の正本stateを比較候補で代替しない。"],
+      "qualification_rule": "対応は接続内容の比較候補だけ。実authority008/制約007と実resource/enforcement/owner bindingを別に成立させる。"
+    }
+  },
+  "derived_negative_examples": [
+    {
+      "case": "identity_missing_or_conflicting",
+      "source_basis": ["L3 F01: bind identities to project/tenant/environment/assignment/worktree", "L10 F01: identity欠落/衝突", "L4 contract 0: missing/conflicting identity remains missing/conflicting; do not fill from primary tree/other project"],
+      "expected_candidate": "identity correspondence is missing/conflicting; do not substitute a nearby tree/project identity; affected operation remains unresolved/stopped.",
+      "unknown": "The source does not define a more specific finding leaf for each identity axis."
+    },
+    {
+      "case": "tenant_applicability_unknown_or_missing",
+      "source_basis": ["L3 F01: do not invent an inapplicable tenant and do not omit an applicable one", "L10 F01: tenant omission", "L4 contract 0: unknown applicability stays unknown; applicable-but-missing is unknown; unknown applicability excludes tenant from semantic identity/asset/connection comparison"],
+      "expected_candidate": "tenant applicability unresolved; do not treat unknown as false and do not complete the comparison using an inferred tenant.",
+      "unknown": "No ordering or precedence relative to independent findings on the other five identity axes is specified."
+    },
+    {
+      "case": "tenant_invented_when_not_applicable",
+      "source_basis": ["L3 F01: do not invent tenant absent from target", "L4 contract 0: false applicability with non-null tenant is tenant_invented; tenant value equality is not compared"],
+      "expected_candidate": "tenant_invented; request-to-connection join is not established for that side; preserve findings on other axes independently.",
+      "unknown": "The disposition/leaf identifier and ordering are not specified."
+    },
+    {
+      "case": "implicit_primary_tree_or_other_project_fallback",
+      "source_basis": ["L10 F01: primary tree/other project fallback", "L10 F02: implicit fallback", "L4 contracts 0/1: do not fill missing/conflicting identity by fallback; do not permit implicit fallback"],
+      "expected_candidate": "no fallback-based correspondence; classify only from supplied immutable inputs as unresolved or isolation-violation candidate.",
+      "unknown": "The source does not fully map every fallback shape to one exact output classification."
+    },
+    {
+      "case": "cross_project_or_environment_asset_state_claimed_latest",
+      "source_basis": ["L10 F02: separate-project state treated as latest", "L3 F02: compare each boundary against target revision/scope and do not replace owner state of record", "L4 contract 1: latest self-assertion from another project/environment does not make asset/state applicable"],
+      "expected_candidate": "do not adopt state/asset into current scope based only on latest claim; keep the current operation unresolved or violation according to explicit connection/scope evidence.",
+      "unknown": "Exact classification for each combination of explicit connection, revision, and owner evidence is not fully specified by these selected pointers."
+    },
+    {
+      "case": "operation_authority_does_not_extend_across_operation_kinds",
+      "source_basis": ["L10 F02: one read permission must not authorize all write/network", "L4 contract 1: compare actual connection to independent expected connection and check requested operation is enumerated; do not extend read to write/network"],
+      "expected_candidate": "requested operation not in the explicitly allowed set yields an isolation-violation candidate for that operation; do not broaden authority.",
+      "unknown": "No stable leaf ID or within-operation finding order is supplied."
+    }
+  ],
+  "synthetic_multi_finding_example": {
+    "status": "illustrative synthetic input only; not a source fixture or approved taxonomy",
+    "input": {
+      "request": {"operation":"write","origin_project":"A","target_project":"B","revision":"r1"},
+      "independent_expected_connection": {"origin_project":"A","target_project":"B","revision":"r1","allowed_operations":["read"]},
+      "asset_scope": {"project":"B","environment":"test"},
+      "tenant_applicability": "true",
+      "tenant": null,
+      "identity_axis_observations": {"project":"corresponding","tenant":"applicable_but_missing","environment":"corresponding","assignment":"unknown","worktree":"corresponding","revision":"corresponding"},
+      "fallback_selected": false,
+      "owner_material_states": {"OS":"present","INFRA":"present","CONNECT":"present"}
+    },
+    "independent_candidate_findings": [
+      "tenant applicable but missing => unknown / unresolved tenant comparison",
+      "requested write absent from allowed_operations=[read] => isolation-violation candidate for the write operation",
+      "assignment unknown => identity insufficiency candidate; do not fill from fallback"
+    ],
+    "ordering": {
+      "normative_order": "unknown",
+      "source_order_candidates": ["identity axes are listed project, tenant, environment, assignment, worktree, revision in L4 contract 0 input_meanings", "operation boundaries are listed read, write, execute, network, state, credential, artifact in L3 F02 and L4 contract 1 input_meanings"],
+      "note": "The selected sources require independent preservation of findings and request-local stopping, but do not prescribe a canonical ordering across findings. The listed sequences are source presentation order only, not a derived normative order."
+    }
+  },
+  "same_leaf_uniquification": {
+    "status": "unknown",
+    "basis": "The selected L3/L10 requirements and L4 contract fields do not define finding leaf identifiers, a deduplication key, whether repeated same-leaf findings collapse, or which occurrence retains provenance. No rule is inferred.",
+    "preserved_constraints": ["independent missing/conflicting axes remain independently represented (L4 contract 0)", "pending_operations concerns only the one operation in the current request; unrelated scopes/normal requests are not globally stopped (L4 architecture/scope_locality)"]
+  },
+  "boundaries": [
+    "L10 cases are marked not_executed; this artifact derives candidate observations and does not claim execution.",
+    "No runtime, test, CI, L4 algorithm, or existing classification was read or run.",
+    "No actual tenant runtime, permission change, enforcement, owner state-of-record substitution, or per-request human approval is derived.",
+    "Pure comparison is limited to immutable supplied material; no network, filesystem, process, clock, environment, credential, or Tool access and no owner DB/state write."
+  ]
+}
