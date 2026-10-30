@@ -3621,318 +3621,92 @@
             "sha256": "8dfbe628d7beb9b449a3ec48e98b7ed89ebbb4be1ea9b3f061dfd02ba464ea2f",
             "pointer": "/contracts/1",
             "claim": "F01の既存L4 output contractとfailure classifications。"
-          },
-          {
-            "path": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json",
-            "revision": "dd5931cfff4ff786da2ced44de2a40529edf7b71",
-            "sha256": "3d2257ee9d0f33f367377a3c379af9852973dc11d87c1f23f8f193724adebeb2",
-            "pointer": "/cases/1",
-            "claim": "F01の既存normal/negative witnessと期待を候補照合に参照。"
           }
-        ],
-        "positive_candidate_rule": {
-          "candidate_witness_id": "F01-CANDIDATE-POSITIVE-NORMAL",
-          "source_fixture_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/1/normal_fixture/input",
-          "candidate_observations": [
-            "合成fixture内で、binding/design pair/freezeの参照値がsource_condition記載のidentity/revision/scope/owner関係で揃う。",
-            "合成fixture内でfreeze.sequence (1) < body_change.sequence (3)。redはprovided null、implementation_successはabsent。",
-            "これらは固定済み意味を例示するfixture事実であり、実実行・Red・実装成功を証明しない。"
-          ],
-          "l4_output_ref": "docs/helix-harness/L4-basic-design/tdd-development-flow.json#/contracts/1/output_contract",
-          "l9_existing_expected_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/1/expected_material",
-          "candidate_expected_projection": {
-            "pair_binding": "synthetic_match",
-            "freeze_before_body": "synthetic_order_supported",
-            "pre_body_red": "missing",
-            "implementation_success": "not_generated"
-          },
-          "branch_boundary": "上流sourceにpositive semantic branchは示されないため1 witnessだけ置く。",
-          "source_condition": {
-            "evidence_status": "合成L9 owner_materialの例。正式なowner由来入力ではない。",
-            "facts": [
-              {
-                "path": "binding",
-                "presence": "provided record",
-                "fields": {
-                  "identity": "TDD-TARGET",
-                  "revision": "r1",
-                  "scope": {
-                    "project": "P",
-                    "tenant": "synthetic-T",
-                    "environment": "synthetic-test"
-                  }
-                }
-              },
-              {
-                "path": "design_pair.l6_ref, design_pair.l5_ref, design_pair.paired_test_ref, design_pair.oracle_ref",
-                "presence": "all provided records",
-                "relation": "bindingと同じrevision/scopeを持ち、identityは各々L6-CONTRACT、L5-DESIGN、TEST-1、ORACLE-1"
-              },
-              {
-                "path": "freeze",
-                "presence": "provided record"
-              },
-              {
-                "path": "freeze.target_ref",
-                "presence": "provided record",
-                "relation": "identity/revision/scope equals binding"
-              },
-              {
-                "path": "freeze.design_ref, freeze.l6_ref, freeze.test_ref, freeze.oracle_ref",
-                "presence": "all provided records",
-                "relation": "identity/revision/scope/ownerの各値が対応するdesign_pair refと一致"
-              },
-              {
-                "path": "freeze.sequence, body_change.sequence",
-                "presence": "both provided integers",
-                "relation": "1 < 3"
-              },
-              {
-                "path": "red",
-                "presence": "provided null"
-              },
-              {
-                "path": "implementation_success",
-                "presence": "absent"
-              }
-            ],
-            "predicate": "列挙したrecordが提供され、target identity/revision/scopeと対参照の関係が揃い、freeze.sequence < body_change.sequence。redの観測recordはなく、implementation_successはabsent。",
-            "scope_limit": "このfixture内の参照関係だけを示す。実際の凍結、Red実行、owner資格、実装結果を成立させない。"
-          }
-        },
-        "negative_candidate_rules": [
-          {
-            "code": "freeze_missing",
-            "candidate_witness_id": "F01-CANDIDATE-NEGATIVE-FREEZE-MISSING",
-            "source_fixture_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/1/negative_cases/0/source_packet/owner_material",
-            "fixed_meaning_basis": "凍結不足を保持。",
-            "candidate_observations": "The freeze record is not supplied. The L3/L10 meaning supports retaining freeze insufficiency; it does not uniquely select pair_binding vs freeze_before_body as the primary classification axis. Concrete source predicate and unresolved axis priority are recorded in source_condition.",
-            "l4_design_expected_ref": "docs/helix-harness/L4-basic-design/tdd-development-flow.json#/contracts/1/negative_classifications/0",
-            "l9_existing_expected_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/1/negative_cases/0",
-            "candidate_expected_projection": {
-              "candidate_classification_code": "freeze_missing",
-              "candidate_axis": "freeze_before_body",
-              "candidate_state": "missing",
-              "backflow_component": "FrozenContractIntake",
-              "side_effect_count": 0
-            },
-            "witness_boundary": "source witness and expected projection remain separate; this row is not added to canonical L8 unit_case_ids.",
-            "source_condition": {
-              "evidence_status": "合成L9 owner_materialの例。正式なowner由来入力ではない。",
-              "facts": [
-                {
-                  "path": "freeze",
-                  "presence": "provided null"
-                },
-                {
-                  "path": "body_change.sequence",
-                  "presence": "provided integer",
-                  "value": 3
-                },
-                {
-                  "path": "design_pair.l6_ref, design_pair.l5_ref, design_pair.paired_test_ref, design_pair.oracle_ref",
-                  "presence": "provided records"
-                }
-              ],
-              "predicate": "freezeがprovided nullで、対となるdesign refsとbody-change sequenceはprovided。",
-              "meaning": "凍結recordが供給されていない。L3/L10の意味は凍結不足の保持を支えるが、pair_bindingとfreeze_before_bodyのどちらを一次分類軸とするかは一意に選ばない。",
-              "post_r2_choice": "r2固定後、既存L4/L9 projection (freeze_before_body/missing)を候補設計として保持した。優先順位は未決。",
-              "scope_limit": "記載は参照fixture内の事実に限る。値や結果をproduction schemaへ一般化しない。"
-            }
-          },
-          {
-            "code": "test_after_body",
-            "candidate_witness_id": "F01-CANDIDATE-NEGATIVE-TEST-AFTER-BODY",
-            "source_fixture_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/1/negative_cases/1/source_packet/owner_material",
-            "fixed_meaning_basis": "本体sequence3の後付け凍結を拒否。",
-            "candidate_observations": "freeze.sequence (4) > body_change.sequence (3) on the same target revision. Concrete sequence relation is recorded in source_condition.",
-            "l4_design_expected_ref": "docs/helix-harness/L4-basic-design/tdd-development-flow.json#/contracts/1/negative_classifications/1",
-            "l9_existing_expected_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/1/negative_cases/1",
-            "candidate_expected_projection": {
-              "candidate_classification_code": "test_after_body",
-              "candidate_axis": "freeze_before_body",
-              "candidate_state": "conflict",
-              "backflow_component": "FrozenContractIntake",
-              "side_effect_count": 0
-            },
-            "witness_boundary": "source witness and expected projection remain separate; this row is not added to canonical L8 unit_case_ids.",
-            "source_condition": {
-              "evidence_status": "合成L9 owner_materialの例。正式なowner由来入力ではない。",
-              "facts": [
-                {
-                  "path": "freeze.sequence",
-                  "presence": "provided integer",
-                  "value": 4
-                },
-                {
-                  "path": "body_change.sequence",
-                  "presence": "provided integer",
-                  "value": 3
-                },
-                {
-                  "path": "freeze.target_ref.revision",
-                  "presence": "provided",
-                  "value": "r1"
-                },
-                {
-                  "path": "binding.revision",
-                  "presence": "provided",
-                  "value": "r1"
-                }
-              ],
-              "predicate": "同じowner_material内でfreeze.sequence (4) > body_change.sequence (3)。fixtureにはbindingとtarget_refのrevision r1があるが、body_change自身にはrevision fieldがない。",
-              "meaning": "提供されたsequence関係では凍結が本体変更より後。",
-              "post_r2_choice": "L10は実装後のoracle後付けを明示する。既存L4/L9のtest_after_body/conflict projectionへの割当は候補mappingであり、新たな上流規則ではない。",
-              "scope_limit": "記載は参照fixture内の事実に限る。値や結果をproduction schemaへ一般化しない。"
-            }
-          },
-          {
-            "code": "foreign_oracle_revision",
-            "candidate_witness_id": "F01-CANDIDATE-NEGATIVE-FOREIGN-ORACLE-REVISION",
-            "source_fixture_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/1/negative_cases/2/source_packet/owner_material",
-            "fixed_meaning_basis": "対oracle版不一致を保持。",
-            "candidate_observations": "freeze.oracle_ref.revision != design_pair.oracle_ref.revision (r0 != r1), while the sequence relation is before-body. Concrete revision relation is recorded in source_condition.",
-            "l4_design_expected_ref": "docs/helix-harness/L4-basic-design/tdd-development-flow.json#/contracts/1/negative_classifications/2",
-            "l9_existing_expected_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/1/negative_cases/2",
-            "candidate_expected_projection": {
-              "candidate_classification_code": "foreign_oracle_revision",
-              "candidate_axis": "pair_binding",
-              "candidate_state": "stale",
-              "backflow_component": "FrozenContractIntake",
-              "side_effect_count": 0
-            },
-            "witness_boundary": "source witness and expected projection remain separate; this row is not added to canonical L8 unit_case_ids.",
-            "source_condition": {
-              "evidence_status": "合成L9 owner_materialの例。正式なowner由来入力ではない。",
-              "facts": [
-                {
-                  "path": "binding.revision",
-                  "presence": "provided",
-                  "value": "r1"
-                },
-                {
-                  "path": "design_pair.oracle_ref.revision",
-                  "presence": "provided",
-                  "value": "r1"
-                },
-                {
-                  "path": "freeze.oracle_ref.revision",
-                  "presence": "provided",
-                  "value": "r0"
-                },
-                {
-                  "path": "freeze.sequence, body_change.sequence",
-                  "presence": "provided integers",
-                  "relation": "1 < 3"
-                }
-              ],
-              "predicate": "freeze.oracle_ref.revision != design_pair.oracle_ref.revision (r0 != r1)。sequenceは本体変更より前 (1 < 3)。",
-              "meaning": "凍結されたoracle refのrevisionが、対になったoracle refと異なる。",
-              "post_r2_choice": "この不一致はpair-binding差を直接示す。L4/L9のstale state/code projectionは候補語彙としての選択。",
-              "scope_limit": "記載は参照fixture内の事実に限る。値や結果をproduction schemaへ一般化しない。"
-            }
-          },
-          {
-            "code": "freeze_as_red",
-            "candidate_witness_id": "F01-CANDIDATE-NEGATIVE-FREEZE-AS-RED",
-            "source_fixture_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/1/negative_cases/3/source_packet/owner_material",
-            "fixed_meaning_basis": "定義凍結は実Redではない。",
-            "candidate_observations": "The candidate output claims pre_body_red=observed_from_freeze while raw owner_material.red is null; freeze metadata alone is not a red observation. Red provenance is not inferred from freeze metadata.",
-            "l4_design_expected_ref": "docs/helix-harness/L4-basic-design/tdd-development-flow.json#/contracts/1/negative_classifications/3",
-            "l9_existing_expected_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/1/negative_cases/3",
-            "candidate_expected_projection": {
-              "candidate_classification_code": "freeze_as_red",
-              "candidate_axis": "pre_body_red",
-              "candidate_state": "missing",
-              "backflow_component": "FrozenContractIntake",
-              "side_effect_count": 0
-            },
-            "witness_boundary": "source witness and expected projection remain separate; this row is not added to canonical L8 unit_case_ids.",
-            "source_condition": {
-              "evidence_status": "合成L9 owner_materialの例。正式なowner由来入力ではない。",
-              "facts": [
-                {
-                  "path": "freeze",
-                  "presence": "provided record"
-                },
-                {
-                  "path": "freeze.sequence, body_change.sequence",
-                  "presence": "provided integers",
-                  "relation": "1 < 3"
-                },
-                {
-                  "path": "red",
-                  "presence": "provided null"
-                },
-                {
-                  "path": "candidate output pre_body_red",
-                  "presence": "provided value",
-                  "value": "observed_from_freeze"
-                }
-              ],
-              "predicate": "候補出力はpre_body_red=observed_from_freezeとする一方、raw owner_material.redはprovided null。freeze metadataだけではRed観測にならない。",
-              "meaning": "凍結recordとRed観測は別であり、raw inputにRed観測はない。",
-              "post_r2_choice": "出力field mutationとpre_body_red/missing projectionは候補分類設計。source factsだけでは閉じたclassifierは定まらない。",
-              "scope_limit": "記載は参照fixture内の事実に限る。値や結果をproduction schemaへ一般化しない。"
-            }
-          },
-          {
-            "code": "freeze_timestamp_only",
-            "candidate_witness_id": "F01-CANDIDATE-NEGATIVE-FREEZE-TIMESTAMP-ONLY",
-            "source_fixture_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/1/negative_cases/4/source_packet/owner_material",
-            "fixed_meaning_basis": "作成時刻だけが本体変更より前でも対象revision/設計/test/oracle/期待結果/凍結順序の原記録なし。凍結不成立を当該条件に保持。",
-            "candidate_observations": "freeze contains only created_at; the freeze target/design/test/oracle/expected/sequence fields are absent, although created_at precedes body_change.created_at. Distinction from freeze=null is fixture-local; classification priority remains unresolved.",
-            "l4_design_expected_ref": "docs/helix-harness/L4-basic-design/tdd-development-flow.json#/contracts/1/negative_classifications/4",
-            "l9_existing_expected_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/1/negative_cases/4",
-            "candidate_expected_projection": {
-              "candidate_classification_code": "freeze_timestamp_only",
-              "candidate_axis": "freeze_before_body",
-              "candidate_state": "missing",
-              "backflow_component": "FrozenContractIntake",
-              "side_effect_count": 0
-            },
-            "witness_boundary": "source witness and expected projection remain separate; this row is not added to canonical L8 unit_case_ids.",
-            "source_condition": {
-              "evidence_status": "合成L9 owner_materialの例。正式なowner由来入力ではない。",
-              "facts": [
-                {
-                  "path": "freeze",
-                  "presence": "provided record"
-                },
-                {
-                  "path": "freeze.created_at",
-                  "presence": "provided timestamp",
-                  "value": "2026-10-01T00:00:01Z"
-                },
-                {
-                  "path": "freeze.ref, freeze.target_ref, freeze.design_ref, freeze.l6_ref, freeze.test_ref, freeze.oracle_ref, freeze.expected, freeze.sequence",
-                  "presence": "all absent"
-                },
-                {
-                  "path": "body_change.created_at",
-                  "presence": "provided timestamp",
-                  "value": "2026-10-01T00:00:03Z"
-                },
-                {
-                  "path": "body_change.sequence",
-                  "presence": "provided integer",
-                  "value": 3
-                }
-              ],
-              "predicate": "freezeはcreated_atだけを持つrecord。凍結対象/design/test/oracle/expected/sequence fieldはabsentだが、created_atはbody_change.created_atより早い。",
-              "meaning": "timestampの順序はあるが、参照先の凍結内容とsequence関係はない。",
-              "post_r2_choice": "freeze=nullとは異なるL10由来witnessとして保持。freeze_before_body/missing再利用は候補選択であり、freeze_missingとの重複・分類優先順位は未決。",
-              "scope_limit": "記載は参照fixture内の事実に限る。値や結果をproduction schemaへ一般化しない。"
-            }
-          }
-        ],
-        "semantic_distinctions": [
-          "freeze_missingとfreeze_timestamp_onlyはともにfreeze_before_body=missingへ写るが、異なるL4/L9条件・別witnessとして保持し統合しない。",
-          "freeze_as_redは凍結記録があっても実Red観測が無い条件として分け、L4/L9のpre_body_red=missingを保つ。",
-          "test_after_bodyは対象body revision後の定義・凍結のケース、foreign_oracle_revisionは別revision oracleのケースとして分ける。"
         ],
         "candidate_boundary": "L8 candidate cases are manual compact projections of L4/L9 expectations grounded in the fixed L3/L10 meaning. They do not change L9 expected material, do not execute any algorithm, do not establish a formal oracle, and do not count as canonical four-way rows.",
-        "classification_authority_note": "各code/axis/state projectionはr2固定後に記録した候補mappingのまま。source predicateはfixture factsを記述する。source meaningが分類優先順位を定めない箇所は未決とし、L4/L9値合わせで解消しない。"
+        "classification_authority_note": "値を持たない候補述語一覧で、field presenceと比較関係だけを記す。production schema、分類code/axis/stateは定義しない。具体fixture evidenceとr2後のmapping差分はscaffold研究資料へ置く。",
+        "source_fact_evidence_ref": "scaffold/research/wr223-f01-l5-l8-20261031/source/f01-candidate-input-facts.json#/cases",
+        "candidate_predicate_catalog": {
+          "status": "candidate_general_predicates_only_not_approved_or_executed",
+          "positive": {
+            "required_presence": [
+              "binding.identity",
+              "binding.revision",
+              "binding.scope",
+              "design_pair.l6_ref",
+              "design_pair.l5_ref",
+              "design_pair.paired_test_ref",
+              "design_pair.oracle_ref",
+              "freeze.target_ref",
+              "freeze.design_ref",
+              "freeze.l6_ref",
+              "freeze.test_ref",
+              "freeze.oracle_ref",
+              "freeze.sequence",
+              "body_change.sequence"
+            ],
+            "relations": [
+              "freeze.target_ref matches binding on identity/revision/scope",
+              "each freeze design/L6/test/oracle ref matches its paired design_pair ref on identity/revision/scope/owner",
+              "freeze.sequence < body_change.sequence"
+            ],
+            "observation_boundary": [
+              "Red observation is absent or null",
+              "implementation-success material is absent"
+            ],
+            "unresolved": [
+              "formal field schema and required-field policy",
+              "whether absent and null are equivalent for each member",
+              "source owner qualification"
+            ]
+          },
+          "negative": [
+            {
+              "predicate_id": "freeze_record_absent",
+              "required_presence": "freeze is absent or null",
+              "condition": "No freeze record is available; other missing evidence is retained without selecting a primary axis."
+            },
+            {
+              "predicate_id": "freeze_after_body_change",
+              "required_presence": [
+                "freeze.sequence",
+                "body_change.sequence"
+              ],
+              "relation": "freeze.sequence > body_change.sequence",
+              "unresolved": "Meaning of sequence values and their binding to target revision."
+            },
+            {
+              "predicate_id": "paired_oracle_revision_mismatch",
+              "required_presence": [
+                "design_pair.oracle_ref.revision",
+                "freeze.oracle_ref.revision"
+              ],
+              "relation": "the revisions differ",
+              "unresolved": "Whether revision mismatch alone determines a classification axis/state."
+            },
+            {
+              "predicate_id": "red_claim_without_observation",
+              "required_presence": "candidate claims a Red observation; raw red observation is absent or null",
+              "condition": "Freeze metadata alone does not supply a Red observation.",
+              "unresolved": "Formal input/output boundary and precedence."
+            },
+            {
+              "predicate_id": "timestamp_without_freeze_material",
+              "required_presence": [
+                "freeze.created_at",
+                "body_change.created_at"
+              ],
+              "condition": "Freeze record lacks target/design/L6/test/oracle/expected/sequence members; timestamps alone do not establish the required frozen pair or sequence relation.",
+              "unresolved": "Overlap and precedence relative to an absent/null freeze record."
+            }
+          ],
+          "no_classification_mapping": "This catalog contains no candidate code, axis, state, fixture value, or case ID. Candidate mapping priority remains unresolved."
+        },
+        "semantic_distinctions": [
+          "凍結記録と実Red観測は別であり、凍結をRed実観測へ昇格させない。",
+          "実装前凍結、後付け凍結、oracle revision不一致、時刻だけの記録は意味上の異なる反例候補として扱う。",
+          "各反例が複数のpredicateを満たす場合の分類優先順位は未決。"
+        ]
       }
     },
     {
