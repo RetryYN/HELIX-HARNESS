@@ -1093,7 +1093,941 @@
         "HARNESS-L9-015-F02-environment_error",
         "HARNESS-L9-015-F02-unexecuted_red",
         "HARNESS-L9-015-F02-mutation_substitute"
-      ]
+      ],
+      "candidate_unit_design": {
+        "status": "candidate_only_not_formal_unit_oracle",
+        "pair_ref": "HARNESS-L5-015-F02.candidate_classification_design",
+        "function_ref": "F-015-05",
+        "candidate_source_revision": "a715e777bd59291b26f09c0c1c5481273c6eba2e",
+        "source_revision_note": "L3/L10 reviewed-head whole-file pinsは固定artifactに記録。source pointerは意味根拠であり、synthetic input値の出典ではない。",
+        "source_pins": [
+          {
+            "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+            "revision": "a715e777bd59291b26f09c0c1c5481273c6eba2e",
+            "sha256": "62a954e9244eb184bf3c2c3c1ab6b27763b52ce4a40041debbd9e13eed7d6689",
+            "pointer": "/requirements/41"
+          },
+          {
+            "path": "docs/helix-harness/L10-verification/functional-verification.json",
+            "revision": "a715e777bd59291b26f09c0c1c5481273c6eba2e",
+            "sha256": "e2580d52e8628d4755973e745528702e5cce66ab829c3f9c6f26c5ceb6aace7c",
+            "pointer": "/cases/41"
+          },
+          {
+            "path": "docs/helix-harness/L4-basic-design/tdd-development-flow.json",
+            "revision": "29c9031159f1cf77b0c503cbf87bbcdc16d31320",
+            "sha256": "8dfbe628d7beb9b449a3ec48e98b7ed89ebbb4be1ea9b3f061dfd02ba464ea2f",
+            "pointer": "/contracts/2"
+          },
+          {
+            "path": "docs/helix-harness/L5-detail-design/tdd-development-flow.json",
+            "revision": "e69e4bdf1aabf7587925896b77c7871dadf35790",
+            "sha256": "f958060d9239df8a86b6b7ab0a5c80891e0df295793bd95d0c05b7dbeb60b0e0",
+            "pointer": "/contracts/2/candidate_classification_design"
+          }
+        ],
+        "expected_origin": "各positiveのfield projectionは現行L4 F02 output_contract、各negativeのcode/axis/stateは現行L4 F02 negative_classificationsから候補として手で照合。blind artifactは意味のscopeだけを固定し、state/code/fixtureを承認していない。L9 expectedは参照しない。",
+        "input_provenance": "下記値はこのL8候補内だけに作った合成手動fixture。現行L8 unit_casesのL9 source_packetをコピーせず、L9 input/expectedの独立oracle化もしていない。",
+        "head_and_revision_semantics": "pre_body.head/body_change.from_head/red.headはこの候補内で対象コードrevision token。binding/ref.revisionはfixture/source recordのrevision metadataで別物。これはcandidate design choiceで、上流sourceによるfield意味指定ではない。",
+        "field_presence_semantics": "FieldValueのabsent/null/providedを維持。未実行例はred.executed=falseかつred.actualの観測値absentとする。actualがpresentなのに未実行の矛盾は未決で、この候補に含めない。",
+        "shared_input_baseline": {
+          "candidate_case_id": "F02-CANDIDATE-BASELINE-EXISTING",
+          "input_source": "candidate-local-fixture-not-L9-owner-input",
+          "payload_type": "PayloadF02",
+          "source_payload": {
+            "tag": "F02",
+            "value": {
+              "binding": {
+                "state": "provided",
+                "value": {
+                  "identity": {
+                    "state": "provided",
+                    "value": "TDD-TARGET-CANDIDATE"
+                  },
+                  "owner": {
+                    "state": "provided",
+                    "value": "candidate-design-owner"
+                  },
+                  "revision": {
+                    "state": "provided",
+                    "value": "candidate-source-r1"
+                  },
+                  "scope": {
+                    "state": "provided",
+                    "value": {
+                      "environment": {
+                        "state": "provided",
+                        "value": "candidate-test"
+                      },
+                      "project": {
+                        "state": "provided",
+                        "value": "P"
+                      },
+                      "tenant": {
+                        "state": "provided",
+                        "value": "candidate-T"
+                      }
+                    }
+                  }
+                }
+              },
+              "body_change": {
+                "state": "provided",
+                "value": {
+                  "from_head": {
+                    "state": "provided",
+                    "value": "H0"
+                  },
+                  "sequence": {
+                    "state": "provided",
+                    "value": 30
+                  },
+                  "to_head": {
+                    "state": "provided",
+                    "value": "H1"
+                  }
+                }
+              },
+              "change_kind": {
+                "state": "provided",
+                "value": "existing"
+              },
+              "frozen_oracle": {
+                "state": "provided",
+                "value": {
+                  "expected": {
+                    "state": "provided",
+                    "value": {
+                      "receiver_debits": {
+                        "state": "provided",
+                        "value": 1
+                      }
+                    }
+                  },
+                  "freeze_sequence": {
+                    "state": "provided",
+                    "value": 10
+                  },
+                  "input": {
+                    "state": "provided",
+                    "value": {
+                      "command": {
+                        "state": "provided",
+                        "value": "CANDIDATE-CMD"
+                      },
+                      "deliveries": {
+                        "state": "provided",
+                        "value": 2
+                      }
+                    }
+                  },
+                  "ref": {
+                    "state": "provided",
+                    "value": {
+                      "identity": {
+                        "state": "provided",
+                        "value": "ORACLE-F02-CANDIDATE"
+                      },
+                      "owner": {
+                        "state": "provided",
+                        "value": "candidate-verification-owner"
+                      },
+                      "revision": {
+                        "state": "provided",
+                        "value": "candidate-source-r1"
+                      },
+                      "scope": {
+                        "state": "provided",
+                        "value": {
+                          "environment": {
+                            "state": "provided",
+                            "value": "candidate-test"
+                          },
+                          "project": {
+                            "state": "provided",
+                            "value": "P"
+                          },
+                          "tenant": {
+                            "state": "provided",
+                            "value": "candidate-T"
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "test_ref": {
+                    "state": "provided",
+                    "value": {
+                      "identity": {
+                        "state": "provided",
+                        "value": "TEST-F02-CANDIDATE"
+                      },
+                      "owner": {
+                        "state": "provided",
+                        "value": "candidate-verification-owner"
+                      },
+                      "revision": {
+                        "state": "provided",
+                        "value": "candidate-source-r1"
+                      },
+                      "scope": {
+                        "state": "provided",
+                        "value": {
+                          "environment": {
+                            "state": "provided",
+                            "value": "candidate-test"
+                          },
+                          "project": {
+                            "state": "provided",
+                            "value": "P"
+                          },
+                          "tenant": {
+                            "state": "provided",
+                            "value": "candidate-T"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "non_target": {
+                "state": "provided",
+                "value": {
+                  "binding": {
+                    "state": "provided",
+                    "value": {
+                      "identity": {
+                        "state": "provided",
+                        "value": "OTHER-TARGET-CANDIDATE"
+                      },
+                      "owner": {
+                        "state": "provided",
+                        "value": "candidate-design-owner"
+                      },
+                      "revision": {
+                        "state": "provided",
+                        "value": "candidate-source-r1"
+                      },
+                      "scope": {
+                        "state": "provided",
+                        "value": {
+                          "environment": {
+                            "state": "provided",
+                            "value": "candidate-test"
+                          },
+                          "project": {
+                            "state": "provided",
+                            "value": "Q"
+                          },
+                          "tenant": {
+                            "state": "provided",
+                            "value": "candidate-T"
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "state": {
+                    "state": "provided",
+                    "value": "valid_original"
+                  }
+                }
+              },
+              "post_mutation": {
+                "state": "absent"
+              },
+              "pre_body": {
+                "state": "provided",
+                "value": {
+                  "defect": {
+                    "state": "provided",
+                    "value": "duplicate_debit"
+                  },
+                  "head": {
+                    "state": "provided",
+                    "value": "H0"
+                  },
+                  "state": {
+                    "state": "provided",
+                    "value": "unrepaired"
+                  }
+                }
+              },
+              "red": {
+                "state": "provided",
+                "value": {
+                  "actual": {
+                    "state": "provided",
+                    "value": {
+                      "behavior_observation": {
+                        "state": "provided",
+                        "value": "duplicate_debit_observed"
+                      },
+                      "exception": {
+                        "state": "absent"
+                      },
+                      "receiver_debits": {
+                        "state": "provided",
+                        "value": 2
+                      }
+                    }
+                  },
+                  "executed": {
+                    "state": "provided",
+                    "value": true
+                  },
+                  "failure_kind": {
+                    "state": "provided",
+                    "value": "intended_behavior_mismatch"
+                  },
+                  "head": {
+                    "state": "provided",
+                    "value": "H0"
+                  },
+                  "oracle_ref": {
+                    "state": "provided",
+                    "value": {
+                      "identity": {
+                        "state": "provided",
+                        "value": "ORACLE-F02-CANDIDATE"
+                      },
+                      "owner": {
+                        "state": "provided",
+                        "value": "candidate-verification-owner"
+                      },
+                      "revision": {
+                        "state": "provided",
+                        "value": "candidate-source-r1"
+                      },
+                      "scope": {
+                        "state": "provided",
+                        "value": {
+                          "environment": {
+                            "state": "provided",
+                            "value": "candidate-test"
+                          },
+                          "project": {
+                            "state": "provided",
+                            "value": "P"
+                          },
+                          "tenant": {
+                            "state": "provided",
+                            "value": "candidate-T"
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "ref": {
+                    "state": "provided",
+                    "value": {
+                      "identity": {
+                        "state": "provided",
+                        "value": "RED-F02-CANDIDATE"
+                      },
+                      "owner": {
+                        "state": "provided",
+                        "value": "candidate-execution-owner"
+                      },
+                      "revision": {
+                        "state": "provided",
+                        "value": "candidate-source-r1"
+                      },
+                      "scope": {
+                        "state": "provided",
+                        "value": {
+                          "environment": {
+                            "state": "provided",
+                            "value": "candidate-test"
+                          },
+                          "project": {
+                            "state": "provided",
+                            "value": "P"
+                          },
+                          "tenant": {
+                            "state": "provided",
+                            "value": "candidate-T"
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "sequence": {
+                    "state": "provided",
+                    "value": 20
+                  }
+                }
+              },
+              "source_assumption": {
+                "state": "absent"
+              }
+            }
+          }
+        },
+        "cases": [
+          {
+            "candidate_case_id": "F02-CANDIDATE-POSITIVE-NEW",
+            "polarity": "positive",
+            "function_ref": "F-015-05",
+            "base_input_ref": "shared_payload_baseline",
+            "input_delta": [
+              {
+                "path": "change_kind",
+                "field_value": {
+                  "state": "provided",
+                  "value": "new"
+                }
+              },
+              {
+                "path": "pre_body.state",
+                "field_value": {
+                  "state": "provided",
+                  "value": "unimplemented"
+                }
+              }
+            ],
+            "expected": {
+              "candidate_semantic_state": "supported_by_fixture",
+              "candidate_output_fields": {
+                "pre_body_head": "H0",
+                "red_meaning": "intended_duplicate_debit_detected",
+                "red_before_body": "synthetic_order_supported",
+                "post_mutation_role": "oracle_strength_only",
+                "actual_tdd_success": "not_generated"
+              },
+              "side_effect_count": 0
+            },
+            "source_pointers": [
+              {
+                "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+                "revision": "a715e777bd59291b26f09c0c1c5481273c6eba2e",
+                "sha256": "62a954e9244eb184bf3c2c3c1ab6b27763b52ce4a40041debbd9e13eed7d6689",
+                "pointer": "/requirements/41"
+              },
+              {
+                "path": "docs/helix-harness/L10-verification/functional-verification.json",
+                "revision": "a715e777bd59291b26f09c0c1c5481273c6eba2e",
+                "sha256": "e2580d52e8628d4755973e745528702e5cce66ab829c3f9c6f26c5ceb6aace7c",
+                "pointer": "/cases/41"
+              },
+              {
+                "path": "docs/helix-harness/L4-basic-design/tdd-development-flow.json",
+                "revision": "29c9031159f1cf77b0c503cbf87bbcdc16d31320",
+                "sha256": "8dfbe628d7beb9b449a3ec48e98b7ed89ebbb4be1ea9b3f061dfd02ba464ea2f",
+                "pointer": "/contracts/2"
+              }
+            ],
+            "manual_check": "pre-body Red条件のうち新規実装枝。未実装、凍結oracle、同一H0、freeze<red<body、意図した欠陥の実観測を確認する。"
+          },
+          {
+            "candidate_case_id": "F02-CANDIDATE-POSITIVE-EXISTING",
+            "polarity": "positive",
+            "function_ref": "F-015-05",
+            "base_input_ref": "shared_payload_baseline",
+            "input_delta": [],
+            "expected": {
+              "candidate_semantic_state": "supported_by_fixture",
+              "candidate_output_fields": {
+                "pre_body_head": "H0",
+                "red_meaning": "intended_duplicate_debit_detected",
+                "red_before_body": "synthetic_order_supported",
+                "post_mutation_role": "oracle_strength_only",
+                "actual_tdd_success": "not_generated"
+              },
+              "side_effect_count": 0
+            },
+            "source_pointers": [
+              {
+                "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+                "revision": "a715e777bd59291b26f09c0c1c5481273c6eba2e",
+                "sha256": "62a954e9244eb184bf3c2c3c1ab6b27763b52ce4a40041debbd9e13eed7d6689",
+                "pointer": "/requirements/41"
+              },
+              {
+                "path": "docs/helix-harness/L10-verification/functional-verification.json",
+                "revision": "a715e777bd59291b26f09c0c1c5481273c6eba2e",
+                "sha256": "e2580d52e8628d4755973e745528702e5cce66ab829c3f9c6f26c5ceb6aace7c",
+                "pointer": "/cases/41"
+              },
+              {
+                "path": "docs/helix-harness/L4-basic-design/tdd-development-flow.json",
+                "revision": "29c9031159f1cf77b0c503cbf87bbcdc16d31320",
+                "sha256": "8dfbe628d7beb9b449a3ec48e98b7ed89ebbb4be1ea9b3f061dfd02ba464ea2f",
+                "pointer": "/contracts/2"
+              }
+            ],
+            "manual_check": "pre-body Red条件の既存改修枝。未修正状態と固定oracleに対する実観測を確認する。"
+          },
+          {
+            "candidate_case_id": "F02-CANDIDATE-NEGATIVE-AFTER-BODY",
+            "polarity": "negative",
+            "function_ref": "F-015-05",
+            "base_input_ref": "shared_payload_baseline",
+            "input_delta": [
+              {
+                "path": "red.sequence",
+                "field_value": {
+                  "state": "provided",
+                  "value": 40
+                }
+              }
+            ],
+            "expected": {
+              "candidate_classification_code": "after_body_red",
+              "candidate_axis": "red_before_body",
+              "candidate_state": "conflict",
+              "backflow_component": "PreBodyRedEvidence",
+              "side_effect_count": 0,
+              "manual_basis": "実Redはあるがbody変更sequenceより後。L4候補は本体前Redの順序不足をconflictとする。"
+            },
+            "source_pointers": [
+              {
+                "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+                "revision": "a715e777bd59291b26f09c0c1c5481273c6eba2e",
+                "sha256": "62a954e9244eb184bf3c2c3c1ab6b27763b52ce4a40041debbd9e13eed7d6689",
+                "pointer": "/requirements/41"
+              },
+              {
+                "path": "docs/helix-harness/L10-verification/functional-verification.json",
+                "revision": "a715e777bd59291b26f09c0c1c5481273c6eba2e",
+                "sha256": "e2580d52e8628d4755973e745528702e5cce66ab829c3f9c6f26c5ceb6aace7c",
+                "pointer": "/cases/41"
+              },
+              {
+                "path": "docs/helix-harness/L4-basic-design/tdd-development-flow.json",
+                "revision": "29c9031159f1cf77b0c503cbf87bbcdc16d31320",
+                "sha256": "8dfbe628d7beb9b449a3ec48e98b7ed89ebbb4be1ea9b3f061dfd02ba464ea2f",
+                "pointer": "/contracts/2"
+              }
+            ],
+            "manual_check": "他のfixture事実はpositive existingと同一。Red sequenceだけをbody変更後に動かす。"
+          },
+          {
+            "candidate_case_id": "F02-CANDIDATE-NEGATIVE-FOREIGN-HEAD",
+            "polarity": "negative",
+            "function_ref": "F-015-05",
+            "base_input_ref": "shared_payload_baseline",
+            "input_delta": [
+              {
+                "path": "red.head",
+                "field_value": {
+                  "state": "provided",
+                  "value": "H-FOREIGN"
+                }
+              }
+            ],
+            "expected": {
+              "candidate_classification_code": "foreign_pre_body_head",
+              "candidate_axis": "pre_body_head",
+              "candidate_state": "stale",
+              "backflow_component": "PreBodyRedEvidence",
+              "side_effect_count": 0,
+              "manual_basis": "Redはpre-body対象H0と異なるopaque code-head tokenで、対象Redとして結べない。"
+            },
+            "source_pointers": [
+              {
+                "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+                "revision": "a715e777bd59291b26f09c0c1c5481273c6eba2e",
+                "sha256": "62a954e9244eb184bf3c2c3c1ab6b27763b52ce4a40041debbd9e13eed7d6689",
+                "pointer": "/requirements/41"
+              },
+              {
+                "path": "docs/helix-harness/L10-verification/functional-verification.json",
+                "revision": "a715e777bd59291b26f09c0c1c5481273c6eba2e",
+                "sha256": "e2580d52e8628d4755973e745528702e5cce66ab829c3f9c6f26c5ceb6aace7c",
+                "pointer": "/cases/41"
+              },
+              {
+                "path": "docs/helix-harness/L4-basic-design/tdd-development-flow.json",
+                "revision": "29c9031159f1cf77b0c503cbf87bbcdc16d31320",
+                "sha256": "8dfbe628d7beb9b449a3ec48e98b7ed89ebbb4be1ea9b3f061dfd02ba464ea2f",
+                "pointer": "/contracts/2"
+              }
+            ],
+            "manual_check": "Redはbody変更前の順序だが、red.headだけが指定pre-body headから異なる。head tokenを対象revision identityとする設計選択を適用する。"
+          },
+          {
+            "candidate_case_id": "F02-CANDIDATE-NEGATIVE-ENVIRONMENT",
+            "polarity": "negative",
+            "function_ref": "F-015-05",
+            "base_input_ref": "shared_payload_baseline",
+            "input_delta": [
+              {
+                "path": "red.failure_kind",
+                "field_value": {
+                  "state": "provided",
+                  "value": "environment_failure"
+                }
+              },
+              {
+                "path": "red.actual.behavior_observation",
+                "field_value": {
+                  "state": "provided",
+                  "value": "missing"
+                }
+              },
+              {
+                "path": "red.actual.exception",
+                "field_value": {
+                  "state": "provided",
+                  "value": "candidate_dependency_unavailable"
+                }
+              },
+              {
+                "path": "red.actual.receiver_debits",
+                "field_value": {
+                  "state": "absent"
+                }
+              }
+            ],
+            "expected": {
+              "candidate_classification_code": "environment_error",
+              "candidate_axis": "red_meaning",
+              "candidate_state": "unknown",
+              "backflow_component": "PreBodyRedEvidence",
+              "side_effect_count": 0,
+              "manual_basis": "実行はしたが環境障害で意図したbehaviorを観測していない。"
+            },
+            "source_pointers": [
+              {
+                "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+                "revision": "a715e777bd59291b26f09c0c1c5481273c6eba2e",
+                "sha256": "62a954e9244eb184bf3c2c3c1ab6b27763b52ce4a40041debbd9e13eed7d6689",
+                "pointer": "/requirements/41"
+              },
+              {
+                "path": "docs/helix-harness/L10-verification/functional-verification.json",
+                "revision": "a715e777bd59291b26f09c0c1c5481273c6eba2e",
+                "sha256": "e2580d52e8628d4755973e745528702e5cce66ab829c3f9c6f26c5ceb6aace7c",
+                "pointer": "/cases/41"
+              },
+              {
+                "path": "docs/helix-harness/L4-basic-design/tdd-development-flow.json",
+                "revision": "29c9031159f1cf77b0c503cbf87bbcdc16d31320",
+                "sha256": "8dfbe628d7beb9b449a3ec48e98b7ed89ebbb4be1ea9b3f061dfd02ba464ea2f",
+                "pointer": "/contracts/2"
+              }
+            ],
+            "manual_check": "L3/L10の環境障害例。数値actualはabsentとし、観測なしをRedの実値で補わない。"
+          },
+          {
+            "candidate_case_id": "F02-CANDIDATE-NEGATIVE-SYNTAX",
+            "polarity": "negative",
+            "function_ref": "F-015-05",
+            "base_input_ref": "shared_payload_baseline",
+            "input_delta": [
+              {
+                "path": "red.failure_kind",
+                "field_value": {
+                  "state": "provided",
+                  "value": "syntax_failure"
+                }
+              },
+              {
+                "path": "red.actual.behavior_observation",
+                "field_value": {
+                  "state": "provided",
+                  "value": "missing"
+                }
+              },
+              {
+                "path": "red.actual.exception",
+                "field_value": {
+                  "state": "provided",
+                  "value": "candidate_syntax_error"
+                }
+              },
+              {
+                "path": "red.actual.receiver_debits",
+                "field_value": {
+                  "state": "absent"
+                }
+              }
+            ],
+            "expected": {
+              "candidate_classification_code": "environment_error",
+              "candidate_axis": "red_meaning",
+              "candidate_state": "unknown",
+              "backflow_component": "PreBodyRedEvidence",
+              "side_effect_count": 0,
+              "manual_basis": "構文障害で意図したbehaviorを観測していない。environment_errorへの統合はL5候補選択であり、L4の分類名との意味関係を独立reviewで確認する。"
+            },
+            "source_pointers": [
+              {
+                "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+                "revision": "a715e777bd59291b26f09c0c1c5481273c6eba2e",
+                "sha256": "62a954e9244eb184bf3c2c3c1ab6b27763b52ce4a40041debbd9e13eed7d6689",
+                "pointer": "/requirements/41"
+              },
+              {
+                "path": "docs/helix-harness/L10-verification/functional-verification.json",
+                "revision": "a715e777bd59291b26f09c0c1c5481273c6eba2e",
+                "sha256": "e2580d52e8628d4755973e745528702e5cce66ab829c3f9c6f26c5ceb6aace7c",
+                "pointer": "/cases/41"
+              },
+              {
+                "path": "docs/helix-harness/L4-basic-design/tdd-development-flow.json",
+                "revision": "29c9031159f1cf77b0c503cbf87bbcdc16d31320",
+                "sha256": "8dfbe628d7beb9b449a3ec48e98b7ed89ebbb4be1ea9b3f061dfd02ba464ea2f",
+                "pointer": "/contracts/2"
+              }
+            ],
+            "manual_check": "L3/L10は構文障害を明記するがL4負例分類名はenvironment_error。両者を同じ候補結果へ束ねる選択を可視化し、taxonomyが閉じているとは主張しない。"
+          },
+          {
+            "candidate_case_id": "F02-CANDIDATE-NEGATIVE-UNEXECUTED",
+            "polarity": "negative",
+            "function_ref": "F-015-05",
+            "base_input_ref": "shared_payload_baseline",
+            "input_delta": [
+              {
+                "path": "red.executed",
+                "field_value": {
+                  "state": "provided",
+                  "value": false
+                }
+              },
+              {
+                "path": "red.failure_kind",
+                "field_value": {
+                  "state": "absent"
+                }
+              },
+              {
+                "path": "red.sequence",
+                "field_value": {
+                  "state": "absent"
+                }
+              },
+              {
+                "path": "red.actual.behavior_observation",
+                "field_value": {
+                  "state": "absent"
+                }
+              },
+              {
+                "path": "red.actual.exception",
+                "field_value": {
+                  "state": "absent"
+                }
+              },
+              {
+                "path": "red.actual.receiver_debits",
+                "field_value": {
+                  "state": "absent"
+                }
+              }
+            ],
+            "expected": {
+              "candidate_classification_code": "unexecuted_red",
+              "candidate_axis": "red_meaning",
+              "candidate_state": "missing",
+              "backflow_component": "PreBodyRedEvidence",
+              "side_effect_count": 0,
+              "manual_basis": "実行も実Red観測もない。actual値は全てabsent。"
+            },
+            "source_pointers": [
+              {
+                "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+                "revision": "a715e777bd59291b26f09c0c1c5481273c6eba2e",
+                "sha256": "62a954e9244eb184bf3c2c3c1ab6b27763b52ce4a40041debbd9e13eed7d6689",
+                "pointer": "/requirements/41"
+              },
+              {
+                "path": "docs/helix-harness/L10-verification/functional-verification.json",
+                "revision": "a715e777bd59291b26f09c0c1c5481273c6eba2e",
+                "sha256": "e2580d52e8628d4755973e745528702e5cce66ab829c3f9c6f26c5ceb6aace7c",
+                "pointer": "/cases/41"
+              },
+              {
+                "path": "docs/helix-harness/L4-basic-design/tdd-development-flow.json",
+                "revision": "29c9031159f1cf77b0c503cbf87bbcdc16d31320",
+                "sha256": "8dfbe628d7beb9b449a3ec48e98b7ed89ebbb4be1ea9b3f061dfd02ba464ea2f",
+                "pointer": "/contracts/2"
+              }
+            ],
+            "manual_check": "実行状態falseとactual absenceを同時に確認する。executed=falseでactual値ありの衝突ケースは対象外・未確定。"
+          },
+          {
+            "candidate_case_id": "F02-CANDIDATE-NEGATIVE-MUTATION-SUBSTITUTE",
+            "polarity": "negative",
+            "function_ref": "F-015-05",
+            "base_input_ref": "shared_payload_baseline",
+            "input_delta": [
+              {
+                "path": "red",
+                "field_value": {
+                  "state": "absent"
+                }
+              },
+              {
+                "path": "post_mutation",
+                "field_value": {
+                  "state": "provided",
+                  "value": {
+                    "actual": {
+                      "state": "provided",
+                      "value": {
+                        "receiver_debits": {
+                          "state": "provided",
+                          "value": 2
+                        }
+                      }
+                    },
+                    "executed": {
+                      "state": "provided",
+                      "value": true
+                    },
+                    "expected": {
+                      "state": "provided",
+                      "value": {
+                        "receiver_debits": {
+                          "state": "provided",
+                          "value": 1
+                        }
+                      }
+                    },
+                    "head": {
+                      "state": "provided",
+                      "value": "H1"
+                    },
+                    "input": {
+                      "state": "provided",
+                      "value": {
+                        "command": {
+                          "state": "provided",
+                          "value": "CANDIDATE-CMD"
+                        },
+                        "deliveries": {
+                          "state": "provided",
+                          "value": 2
+                        }
+                      }
+                    },
+                    "oracle_ref": {
+                      "state": "provided",
+                      "value": {
+                        "identity": {
+                          "state": "provided",
+                          "value": "ORACLE-F02-CANDIDATE"
+                        },
+                        "owner": {
+                          "state": "provided",
+                          "value": "candidate-verification-owner"
+                        },
+                        "revision": {
+                          "state": "provided",
+                          "value": "candidate-source-r1"
+                        },
+                        "scope": {
+                          "state": "provided",
+                          "value": {
+                            "environment": {
+                              "state": "provided",
+                              "value": "candidate-test"
+                            },
+                            "project": {
+                              "state": "provided",
+                              "value": "P"
+                            },
+                            "tenant": {
+                              "state": "provided",
+                              "value": "candidate-T"
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "ref": {
+                      "state": "provided",
+                      "value": {
+                        "identity": {
+                          "state": "provided",
+                          "value": "MUTATION-F02-CANDIDATE"
+                        },
+                        "owner": {
+                          "state": "provided",
+                          "value": "candidate-execution-owner"
+                        },
+                        "revision": {
+                          "state": "provided",
+                          "value": "candidate-source-r1"
+                        },
+                        "scope": {
+                          "state": "provided",
+                          "value": {
+                            "environment": {
+                              "state": "provided",
+                              "value": "candidate-test"
+                            },
+                            "project": {
+                              "state": "provided",
+                              "value": "P"
+                            },
+                            "tenant": {
+                              "state": "provided",
+                              "value": "candidate-T"
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "role": {
+                      "state": "provided",
+                      "value": "oracle_strength_only"
+                    },
+                    "seeded_defect": {
+                      "state": "provided",
+                      "value": "duplicate_debit"
+                    },
+                    "sequence": {
+                      "state": "provided",
+                      "value": 40
+                    }
+                  }
+                }
+              }
+            ],
+            "expected": {
+              "candidate_classification_code": "mutation_substitute",
+              "candidate_axis": "red_before_body",
+              "candidate_state": "missing",
+              "backflow_component": "PreBodyRedEvidence",
+              "side_effect_count": 0,
+              "manual_basis": "pre-body red is absent; post-body mutation detects the seeded defect but remains a separate oracle-strength fact."
+            },
+            "source_pointers": [
+              {
+                "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+                "revision": "a715e777bd59291b26f09c0c1c5481273c6eba2e",
+                "sha256": "62a954e9244eb184bf3c2c3c1ab6b27763b52ce4a40041debbd9e13eed7d6689",
+                "pointer": "/requirements/41"
+              },
+              {
+                "path": "docs/helix-harness/L10-verification/functional-verification.json",
+                "revision": "a715e777bd59291b26f09c0c1c5481273c6eba2e",
+                "sha256": "e2580d52e8628d4755973e745528702e5cce66ab829c3f9c6f26c5ceb6aace7c",
+                "pointer": "/cases/41"
+              },
+              {
+                "path": "docs/helix-harness/L4-basic-design/tdd-development-flow.json",
+                "revision": "29c9031159f1cf77b0c503cbf87bbcdc16d31320",
+                "sha256": "8dfbe628d7beb9b449a3ec48e98b7ed89ebbb4be1ea9b3f061dfd02ba464ea2f",
+                "pointer": "/contracts/2"
+              }
+            ],
+            "manual_check": "pre-body Red absentとpost-body mutationありを別fieldで確認する。mutationのactualをRed入力へ流用しない。"
+          }
+        ],
+        "manual_resolution": "各caseはshared_input_baselineへJSON pointer形式のinput_deltaを順に適用し、FieldValueのpresence stateを保ったままF-015-05の述語とcandidate expectedを手で照合する。これはalgorithm実行でも正式L8 expectedでもない。",
+        "non_goals": [
+          "L9 unit/integration inputs and expectations are unchanged.",
+          "This candidate does not establish a closed syntax/environment error taxonomy.",
+          "This candidate does not decide precedence for multiple simultaneously true negative predicates.",
+          "This candidate is not an independent oracle, actual source qualification, approval, acceptance, or runtime result."
+        ]
+      }
     },
     {
       "id": "HARNESS-L8-015-F03",

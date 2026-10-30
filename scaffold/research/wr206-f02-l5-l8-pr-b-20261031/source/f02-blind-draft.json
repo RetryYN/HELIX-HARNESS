@@ -1,0 +1,159 @@
+{
+  "artifact_id": "WR206-F02-source-only-draft",
+  "status": "candidate_source_only_draft",
+  "authority_effect": "none",
+  "scope": {
+    "purpose": "L5設計・L8 test対へ渡すpre-body Redの意味候補。承認済み要求の意味と未指定の具体化を分離する。",
+    "source_revision_for_l3_l10": "a715e777bd59291b26f09c0c1c5481273c6eba2e",
+    "l4_prose_source": "worktree snapshot; L4はa715e777bd59291b26f09c0c1c5481273c6eba2eのtreeには存在しないため、L4 proseを承認済みsourceとして扱わない。"
+  },
+  "source_pointers": [
+    {
+      "layer": "L3",
+      "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+      "pointer": "/requirements/41",
+      "identity": "HARNESS-L3-015-F02",
+      "revision": "a715e777bd59291b26f09c0c1c5481273c6eba2e",
+      "source_role": "承認済みrevision上の要求意味"
+    },
+    {
+      "layer": "L10",
+      "path": "docs/helix-harness/L10-verification/functional-verification.json",
+      "pointer": "/cases/41",
+      "identity": "HARNESS-L10-015-F02",
+      "revision": "a715e777bd59291b26f09c0c1c5481273c6eba2e",
+      "source_role": "承認済みrevision上の検証意味"
+    },
+    {
+      "layer": "L4",
+      "path": "docs/helix-harness/L4-basic-design/tdd-development-flow.json",
+      "pointer": "/contracts/2/behavior and /contracts/2/input_contract",
+      "identity": "HARNESS-L4-015-F02",
+      "revision": "worktree snapshot (not present at a715e777bd59291b26f09c0c1c5481273c6eba2e)",
+      "source_role": "散文の候補参照のみ。authority_effectなし"
+    }
+  ],
+  "candidate_pairs": [
+    {
+      "candidate_label": "positive_pre_body_red",
+      "polarity": "positive",
+      "verified_facts_to_collect": [
+        "対象caseが新規実装（対象behavior未実装）か既存改修（本体変更前の未修正revision）かを特定する。",
+        "本体実装・修正前の対象revisionで凍結済みtest/oracleを実行した事実と、その実際の結果を観測する。",
+        "観測された失敗が対象の意図した不足・欠陥に対応し、環境障害・構文障害など無関係な失敗ではないことを示す事実を集める。",
+        "対象revision、対象欠陥、凍結oracle、実Red観測の相互対応が確認できる証拠を集める。"
+      ],
+      "semantic_expectation": [
+        "新規実装と既存改修の各caseで、本体変更前の対象revisionに対する意図した不成立が実観測される。",
+        "pre-body Redとして扱う意味は、未実装/未修正revision・対象不足/欠陥・凍結oracle・実Redの結合に限る。"
+      ],
+      "not_specified_upstream": [
+        "具体的なfixture、対象behavior、欠陥のdomain上の値。",
+        "test/oracleのschema、凍結を表すfield、証拠のschemaとfield名。",
+        "対象revisionと本体変更時点の具体的な表現・比較方法。",
+        "意図した不足/欠陥を実失敗へ対応付ける具体的な分類規則。",
+        "test実行後の返却state、status名、エラーcode。"
+      ],
+      "source_pointers": [
+        "docs/helix-harness/L3-requirements/functional-requirements.json#/requirements/41",
+        "docs/helix-harness/L10-verification/functional-verification.json#/cases/41",
+        "docs/helix-harness/L4-basic-design/tdd-development-flow.json#/contracts/2/behavior",
+        "docs/helix-harness/L4-basic-design/tdd-development-flow.json#/contracts/2/input_contract"
+      ]
+    },
+    {
+      "candidate_label": "negative_after_body_only",
+      "polarity": "negative",
+      "verified_facts_to_collect": [
+        "Red観測が本体実装または修正後のrevisionでだけ発生したこと。"
+      ],
+      "semantic_expectation": [
+        "実装後/修正後のRedだけでは、実装前Redを成立させない。",
+        "後付け証拠で実装前Redを補わない。"
+      ],
+      "not_specified_upstream": [
+        "本体変更の境界を記録する具体schema、時刻精度、返却state。"
+      ],
+      "source_pointers": [
+        "docs/helix-harness/L10-verification/functional-verification.json#/cases/41/negative_input",
+        "docs/helix-harness/L10-verification/functional-verification.json#/cases/41/failure_observation"
+      ]
+    },
+    {
+      "candidate_label": "negative_different_target_revision",
+      "polarity": "negative",
+      "verified_facts_to_collect": [
+        "Red観測が、対象として指定された本体変更前の未修正revisionとは異なる対象revisionに属すること。"
+      ],
+      "semantic_expectation": [
+        "対象revisionの不一致は実装前Redを成立させない。",
+        "時点/対象の不一致と不足を明示し、別revisionの証拠で補わない。"
+      ],
+      "not_specified_upstream": [
+        "revision identityの具体表現、比較規則、返却state。"
+      ],
+      "source_pointers": [
+        "docs/helix-harness/L3-requirements/functional-requirements.json#/requirements/41/obligation",
+        "docs/helix-harness/L10-verification/functional-verification.json#/cases/41/failure_observation"
+      ]
+    },
+    {
+      "candidate_label": "negative_environment_or_syntax_failure",
+      "polarity": "negative",
+      "verified_facts_to_collect": [
+        "失敗原因が環境障害または構文障害など、意図したbehavior不足/欠陥と無関係であること。"
+      ],
+      "semantic_expectation": [
+        "無関係な環境/構文失敗をRedとして数えない。"
+      ],
+      "not_specified_upstream": [
+        "環境/構文障害の閉じた分類集合、検出方法、返却state。"
+      ],
+      "source_pointers": [
+        "docs/helix-harness/L3-requirements/functional-requirements.json#/requirements/41/obligation",
+        "docs/helix-harness/L10-verification/functional-verification.json#/cases/41/negative_input"
+      ]
+    },
+    {
+      "candidate_label": "negative_unexecuted",
+      "polarity": "negative",
+      "verified_facts_to_collect": [
+        "実行事実または実際のRed観測が存在しないこと。"
+      ],
+      "semantic_expectation": [
+        "観測なしはRedではない。"
+      ],
+      "not_specified_upstream": [
+        "未実行を表すevidence schema、返却state、再実行の扱い。"
+      ],
+      "source_pointers": [
+        "docs/helix-harness/L10-verification/functional-verification.json#/cases/41/negative_input"
+      ]
+    },
+    {
+      "candidate_label": "negative_mutation_substitute",
+      "polarity": "negative",
+      "verified_facts_to_collect": [
+        "実装後のmutation検出だけがあり、本体変更前の対象revisionに対する実Red観測がないこと。"
+      ],
+      "semantic_expectation": [
+        "mutation検出で本体変更前Redの欠落を代替しない。",
+        "実装後mutation検出はoracle強度の別証拠として分離する。"
+      ],
+      "not_specified_upstream": [
+        "mutationの形式、oracle強度の具体測定法、証拠schema、返却state。"
+      ],
+      "source_pointers": [
+        "docs/helix-harness/L3-requirements/functional-requirements.json#/requirements/41/obligation",
+        "docs/helix-harness/L10-verification/functional-verification.json#/cases/41/negative_input"
+      ]
+    }
+  ],
+  "design_boundary": {
+    "no_approved_test_rows": true,
+    "no_approved_return_state_or_code": true,
+    "no_fixture_schema_or_domain_value_selected": true,
+    "no_l5_l7_l8_l9_or_issue_pr_sources_used": true,
+    "l4_input_unknowns": "実operation、実authority、正式codecは別途bind対象。unknownは補完しない。"
+  }
+}
