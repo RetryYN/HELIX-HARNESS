@@ -1576,7 +1576,7 @@
       }
     },
     {
-      "class_id": "OS015-NEG-COMPOSITE-16d683cd7ee2843f08cec57658ca1239665f058443160c35f3d700c0fd9fdc4c",
+      "class_id": "OS015-NEG-COMPOSITE-a0f8ffe7cb48eb9237554e7c9344182b48c98fed14721acb96cafa89481c6429",
       "is_new": true,
       "key": {
         "expected_classification": "management_material_violation",
@@ -1590,7 +1590,7 @@
         ],
         "backflow_owner": "management-authority-owner",
         "expected_axis": "classification",
-        "expected_state": "violation",
+        "expected_state": "unknown",
         "owner_ref": {
           "kind": "function_ref",
           "id": "FN-OS015-01"

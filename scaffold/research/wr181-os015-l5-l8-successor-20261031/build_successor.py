@@ -14,6 +14,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[3]
 BASE = "0dd2045801e9e30def00913b57a6177d8d9be3a8"
+PAIR_REVISION = "5e7286c6def741df3f8abfabdb1f2058eaaedd07"
 DIR = ROOT / "scaffold/research/wr181-os015-l5-l8-successor-20261031"
 MANIFEST = ROOT / "scaffold/research/wr181-os015-residual-l4-l9-20261030/projection-manifest.json"
 L3 = "docs/helix-os/L3-requirements/functional-requirements.json"
@@ -131,8 +132,8 @@ def build_l5(l3: dict, l4: dict, l5_base: dict, manifest: dict) -> tuple[dict, l
         additions.append(row)
     out["failure_rules"].extend(additions)
     out["source_pair_pins"] = [
-        {"path": L4, "revision": BASE, "sha256": sha(raw_at(BASE, L4))},
-        {"path": L9, "revision": BASE, "sha256": sha(raw_at(BASE, L9))},
+        {"path": L4, "revision": PAIR_REVISION, "sha256": sha(raw_at(PAIR_REVISION, L4))},
+        {"path": L9, "revision": PAIR_REVISION, "sha256": sha(raw_at(PAIR_REVISION, L9))},
     ]
     return out, additions
 
@@ -227,8 +228,8 @@ def build_l8(
     assert not (set(assignments) & set(prior))
     out["negative_equivalence_classes"].extend(new_l8_classes)
     out["source_pair_pins"] = [
-        {"path": L4, "revision": BASE, "sha256": sha(raw_at(BASE, L4))},
-        {"path": L9, "revision": BASE, "sha256": sha(raw_at(BASE, L9))},
+        {"path": L4, "revision": PAIR_REVISION, "sha256": sha(raw_at(PAIR_REVISION, L4))},
+        {"path": L9, "revision": PAIR_REVISION, "sha256": sha(raw_at(PAIR_REVISION, L9))},
     ]
     out["candidate_l5_bytes"] = {
         "path": L5,

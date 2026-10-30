@@ -485,7 +485,6 @@
         "OS015-NEG-COMPOSITE-0847e4310de684d30c54c16de19c0ce068f2666a3e68fe3e3d93f144934f9a42",
         "OS015-NEG-COMPOSITE-08695e0fad423852ebf0d60b18b944ec130ec1c4865698ff05c83b4646a9e405",
         "OS015-NEG-COMPOSITE-087fdf8f8d9303e619d04ccc3cbc6da653d08a4b20f6009bab1ec8dfe3cc90c9",
-        "OS015-NEG-COMPOSITE-16d683cd7ee2843f08cec57658ca1239665f058443160c35f3d700c0fd9fdc4c",
         "OS015-NEG-COMPOSITE-3123046e6695da60ba6abef15c2588c632081391d431ec133fa509d6d90017bb",
         "OS015-NEG-COMPOSITE-4e80f5977bf48e95192dcbe7ebd26ffba7aa253ddef99755e42e3e0990008f72",
         "OS015-NEG-COMPOSITE-4ed7dc758943d0971c6a7853ba3568609804d47e1f5f615e39eaa5e523ef1c04",
@@ -494,6 +493,7 @@
         "OS015-NEG-COMPOSITE-931c9057eaac57f35bd0ed64d5288c4339e3e4ff9b96eb19b2d77ff8a25767e2",
         "OS015-NEG-COMPOSITE-9539a1f0e6787f121075bfc71469d281caadb1e4c31ba4a8df9ccd5fe882d3d7",
         "OS015-NEG-COMPOSITE-9c5c0fb87d1b6f9fbdf5e2e825c9e600024bbcd3f5bac7a32e7c20423fca521c",
+        "OS015-NEG-COMPOSITE-a0f8ffe7cb48eb9237554e7c9344182b48c98fed14721acb96cafa89481c6429",
         "OS015-NEG-COMPOSITE-d509d10e51a98c1fe8971d91e909e058b360a803c1d686891282e3a8667a158f",
         "OS015-NEG-COMPOSITE-dead4dfeefccac8eec603d8be3bf804b928f0882d4c1b4ff907acba7b10f277a",
         "OS015-NEG-COMPOSITE-df9154ac8720b176f3ba2d4bf5fc0362496e530eafdd829278de18d4a3d5c39b",
@@ -2455,60 +2455,6 @@
       ]
     },
     {
-      "class_id": "OS015-NEG-COMPOSITE-16d683cd7ee2843f08cec57658ca1239665f058443160c35f3d700c0fd9fdc4c",
-      "code": "management_material_violation",
-      "design_ref": "HELIXOS-L4-015-F02",
-      "condition": "classifyでcontext original_classificationが{}またはUNKNOWN-PRIOR、actual original_classificationはnull。new_classification prior ref/revisionはactual/context双方nullのままなので4 pointerでsource_unresolved。context prior-unresolvedとactual mutationも保持する。",
-      "expected_classification": "management_material_violation",
-      "expected": {
-        "finding_codes": [
-          "first_classification_prior_unresolved",
-          "original_classification_mutated",
-          "source_unresolved",
-          "source_unresolved",
-          "source_unresolved",
-          "source_unresolved"
-        ]
-      },
-      "expected_preserved": {
-        "original_event": "原event wholeとrevisionを不変に保持する",
-        "original_classification": "旧分類とrevisionを保持し新旧を上書きしない",
-        "source_authority": "対象/source/authorityの元scopeと出所を保持する",
-        "unresolved_history": "未解決履歴と無関係な有効対象を保持する"
-      },
-      "expected_axis": "classification",
-      "expected_state": "violation",
-      "backflow_owner": "management-authority-owner",
-      "side_effect_count": 0,
-      "source_pointers": [
-        {
-          "path": "docs/helix-os/L3-requirements/functional-requirements.json",
-          "pointers": [
-            "/requirements/25"
-          ]
-        },
-        {
-          "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
-          "pointers": [
-            "/contracts/2",
-            "/diagnostic_contract/composite_class_formation",
-            "/diagnostic_contract/algorithm_dependencies/phases",
-            "/diagnostic_contract/classification_fields",
-            "/diagnostic_contract/raw_retention",
-            "/diagnostic_contract/new_classification_absence_reporting",
-            "/diagnostic_contract/facets",
-            "/diagnostic_contract/aggregation",
-            "/diagnostic_contract/condition_values",
-            "/diagnostic_contract/return_owner",
-            "/diagnostic_contract/algorithm_python_document_text",
-            "/diagnostic_contract/codes/25",
-            "/diagnostic_contract/codes/4",
-            "/diagnostic_contract/codes/0"
-          ]
-        }
-      ]
-    },
-    {
       "class_id": "OS015-NEG-COMPOSITE-3123046e6695da60ba6abef15c2588c632081391d431ec133fa509d6d90017bb",
       "code": "management_material_violation",
       "design_ref": "HELIXOS-L4-015-F02",
@@ -2886,6 +2832,60 @@
             "/diagnostic_contract/algorithm_python_document_text",
             "/diagnostic_contract/codes/3",
             "/diagnostic_contract/codes/1"
+          ]
+        }
+      ]
+    },
+    {
+      "class_id": "OS015-NEG-COMPOSITE-a0f8ffe7cb48eb9237554e7c9344182b48c98fed14721acb96cafa89481c6429",
+      "code": "management_material_violation",
+      "design_ref": "HELIXOS-L4-015-F02",
+      "condition": "classifyでcontext original_classificationが{}またはUNKNOWN-PRIOR、actual original_classificationはnull。new_classification prior ref/revisionはactual/context双方nullのままなので4 pointerでsource_unresolved。context prior-unresolvedとactual mutationも保持する。",
+      "expected_classification": "management_material_violation",
+      "expected": {
+        "finding_codes": [
+          "first_classification_prior_unresolved",
+          "original_classification_mutated",
+          "source_unresolved",
+          "source_unresolved",
+          "source_unresolved",
+          "source_unresolved"
+        ]
+      },
+      "expected_preserved": {
+        "original_event": "原event wholeとrevisionを不変に保持する",
+        "original_classification": "旧分類とrevisionを保持し新旧を上書きしない",
+        "source_authority": "対象/source/authorityの元scopeと出所を保持する",
+        "unresolved_history": "未解決履歴と無関係な有効対象を保持する"
+      },
+      "expected_axis": "classification",
+      "expected_state": "unknown",
+      "backflow_owner": "management-authority-owner",
+      "side_effect_count": 0,
+      "source_pointers": [
+        {
+          "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+          "pointers": [
+            "/requirements/25"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
+          "pointers": [
+            "/contracts/2",
+            "/diagnostic_contract/composite_class_formation",
+            "/diagnostic_contract/algorithm_dependencies/phases",
+            "/diagnostic_contract/classification_fields",
+            "/diagnostic_contract/raw_retention",
+            "/diagnostic_contract/new_classification_absence_reporting",
+            "/diagnostic_contract/facets",
+            "/diagnostic_contract/aggregation",
+            "/diagnostic_contract/condition_values",
+            "/diagnostic_contract/return_owner",
+            "/diagnostic_contract/algorithm_python_document_text",
+            "/diagnostic_contract/codes/25",
+            "/diagnostic_contract/codes/4",
+            "/diagnostic_contract/codes/0"
           ]
         }
       ]

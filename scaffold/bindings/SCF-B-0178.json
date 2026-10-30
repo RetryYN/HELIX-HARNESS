@@ -15,13 +15,13 @@
     },
     {
       "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
-      "sha256": "5038893210d772bc46fa75802757a90d9658ec4f427f76adcc3cf8a6702ce96f",
-      "note": "Corrected L4 classification rows and class keys, source of successor projection."
+      "sha256": "32e4a7b6432e7454d242277b37a0948916dc876b6e8e008ad8e4f8c2d7207081",
+      "note": "Corrected L4 classification rows and class keys, source of successor projection. M1 successor alignment: retain prior pin=5038893210d772bc46fa75802757a90d9658ec4f427f76adcc3cf8a6702ce96f; current candidate pin=32e4a7b6432e7454d242277b37a0948916dc876b6e8e008ad8e4f8c2d7207081; C0577/C0580 selected classification state is unknown while overall classification remains violation."
     },
     {
       "path": "docs/helix-os/L5-detail-design/management-authority-source-record.json",
-      "sha256": "25bd183b3725fce8a994d24710e29280b00ed27b83efe3a0f989d62641d61d94",
-      "note": "Successor L5: 33 prior rules retained plus 18 ordered composite class rules. Owner join comes from existing rules and L5 composite formation contract."
+      "sha256": "ce3f7579d3be09cbd6cf786e4d69f0ff3fdc31fe36645669b0379368a9f448d7",
+      "note": "Successor L5: 33 prior rules retained plus 18 ordered composite class rules. Owner join comes from existing rules and L5 composite formation contract. M1 successor alignment: retain prior pin=25bd183b3725fce8a994d24710e29280b00ed27b83efe3a0f989d62641d61d94; current candidate pin=ce3f7579d3be09cbd6cf786e4d69f0ff3fdc31fe36645669b0379368a9f448d7; C0577/C0580 selected classification state is unknown while overall classification remains violation."
     },
     {
       "path": "docs/helix-os/L7-function-verification/management-authority-source-record.json",
@@ -40,18 +40,18 @@
     },
     {
       "path": "scaffold/research/wr181-os015-residual-l4-l9-20261030/projection-manifest.json",
-      "sha256": "417da5eaf959ee26daa7c1fe34add98ed6f3b5f22212234cf076f66213a8c3f3",
-      "note": "Corrected 20-class mapping and 112 L7 raw-input pointers, previously derived from L4/L7."
+      "sha256": "fd1c81f801d59fd89bff48332e6aa4047cf368ffc97176127f742257303a0f17",
+      "note": "Corrected 20-class mapping and 112 L7 raw-input pointers, previously derived from L4/L7. M1 successor alignment: retain prior pin=417da5eaf959ee26daa7c1fe34add98ed6f3b5f22212234cf076f66213a8c3f3; current candidate pin=fd1c81f801d59fd89bff48332e6aa4047cf368ffc97176127f742257303a0f17; C0577/C0580 selected classification state is unknown while overall classification remains violation."
     },
     {
       "path": "scaffold/research/wr181-os015-residual-l4-l9-20261030/class-correction-audit-5d541.md",
-      "sha256": "be773b98faa2916b8b144689edd45ca93ac3ca067ceb3d8b51ca395908822d90",
-      "note": "Source-only C0573-C0582 correction audit based on L4 algorithm and L7 given.input."
+      "sha256": "3429e4886f3c960a78ce9a142619e43e02dbc5ec527399f6dbfa028c28d800ba",
+      "note": "Source-only C0573-C0582 correction audit based on L4 algorithm and L7 given.input. M1 successor alignment: retain prior pin=be773b98faa2916b8b144689edd45ca93ac3ca067ceb3d8b51ca395908822d90; current candidate pin=3429e4886f3c960a78ce9a142619e43e02dbc5ec527399f6dbfa028c28d800ba; C0577/C0580 selected classification state is unknown while overall classification remains violation."
     },
     {
       "path": "scaffold/research/wr181-os015-residual-l4-l9-20261030/class-correction-cases.json",
-      "sha256": "1d2f8de636f5ed238ebaecd3d5a3ce76650b9e413ff7eeed62f2d74d400a2c68",
-      "note": "Ordered code/pointer evidence for C0573-C0582; no L8/L9 expectation source."
+      "sha256": "fda0a1cbbcf5638ccfe88b08d7de62e3f7b9c0f7bf6be2d2621e67d6d121a680",
+      "note": "Ordered code/pointer evidence for C0573-C0582; no L8/L9 expectation source. M1 successor alignment: retain prior pin=1d2f8de636f5ed238ebaecd3d5a3ce76650b9e413ff7eeed62f2d74d400a2c68; current candidate pin=fda0a1cbbcf5638ccfe88b08d7de62e3f7b9c0f7bf6be2d2621e67d6d121a680; C0577/C0580 selected classification state is unknown while overall classification remains violation."
     },
     {
       "path": "scaffold/research/wr181-os015-residual-l4-l9-20261030/manual-case-audit-05614.md",
@@ -65,13 +65,13 @@
     },
     {
       "path": "scaffold/research/wr181-os015-l5-l8-successor-20261031/build_successor.py",
-      "sha256": "8e2703c77e0724d3169c84eee529129664c98fd82a8acc5465781e9144639093",
-      "note": "Static source-only L5/L8 projection builder."
+      "sha256": "69703bc5bdfd6e4036f61300989cccf3f74c5f88ad2d2709b921704448e88ecd",
+      "note": "Static source-only L5/L8 projection builder. M1 successor alignment: retain prior pin=8e2703c77e0724d3169c84eee529129664c98fd82a8acc5465781e9144639093; current candidate pin=69703bc5bdfd6e4036f61300989cccf3f74c5f88ad2d2709b921704448e88ecd; C0577/C0580 selected classification state is unknown while overall classification remains violation."
     },
     {
       "path": "scaffold/research/wr181-os015-l5-l8-successor-20261031/validate_successor.py",
-      "sha256": "cb42a30015b2147a5e047911d78a145b5d87037ea67b44450b3777dae0422db9",
-      "note": "Static validator; does not load L9 document or case expectations."
+      "sha256": "de9e9d3be6bf7f6765f1a66774a3d1e21e186b05eae90423cebc3abd35cc0a05",
+      "note": "Static validator; does not load L9 document or case expectations. M1 successor alignment: retain prior pin=cb42a30015b2147a5e047911d78a145b5d87037ea67b44450b3777dae0422db9; current candidate pin=de9e9d3be6bf7f6765f1a66774a3d1e21e186b05eae90423cebc3abd35cc0a05; C0577/C0580 selected classification state is unknown while overall classification remains violation."
     },
     {
       "path": "scaffold/research/wr181-os015-l5-l8-successor-20261031/static-validation.json",
@@ -85,28 +85,28 @@
     },
     {
       "path": "scaffold/bindings/SCF-B-0170.json",
-      "sha256": "944ace0f511b468650996698a4694d97a0b9ebcc5e945d63de1a48bb918ba139",
-      "note": "Predecessor source/inventory binding, current pins updated with history."
+      "sha256": "b43cb6c5848bae8b580859816f98ab06b6e929c724dbdd86d89500bbc19be037",
+      "note": "Predecessor source/inventory binding, current pins updated with history. M1 successor alignment: retain prior pin=944ace0f511b468650996698a4694d97a0b9ebcc5e945d63de1a48bb918ba139; current candidate pin=b43cb6c5848bae8b580859816f98ab06b6e929c724dbdd86d89500bbc19be037; C0577/C0580 selected classification state is unknown while overall classification remains violation."
     },
     {
       "path": "scaffold/bindings/SCF-B-0173.json",
-      "sha256": "c9ab16d9571a01c98c2bf597247bf46938020a6cab49ef64248c5748698afdf9",
-      "note": "Predecessor PR-A L4/L9 binding."
+      "sha256": "e95e5527ecb5d6a0af2af99b5720b0bcb0822439bdd24adedb40bbae1b119dbb",
+      "note": "Predecessor PR-A L4/L9 binding. M1 successor alignment: retain prior pin=c9ab16d9571a01c98c2bf597247bf46938020a6cab49ef64248c5748698afdf9; current candidate pin=e95e5527ecb5d6a0af2af99b5720b0bcb0822439bdd24adedb40bbae1b119dbb; C0577/C0580 selected classification state is unknown while overall classification remains violation."
     },
     {
       "path": "scaffold/bindings/SCF-B-0175.json",
-      "sha256": "abec97a660ae4f2b1d3169f4464a187d9d76140c0f41b8376c33757db57a20ae",
-      "note": "Predecessor PR-B L5/L8 29-case binding; prior snapshot hash retained in note."
+      "sha256": "5bc13d1a478e157cc249468f5d6e64c0d79dacf69c5d62b3903eee87e2d52c10",
+      "note": "Predecessor PR-B L5/L8 29-case binding; prior snapshot hash retained in note. M1 successor alignment: retain prior pin=abec97a660ae4f2b1d3169f4464a187d9d76140c0f41b8376c33757db57a20ae; current candidate pin=5bc13d1a478e157cc249468f5d6e64c0d79dacf69c5d62b3903eee87e2d52c10; C0577/C0580 selected classification state is unknown while overall classification remains violation."
     },
     {
       "path": "scaffold/bindings/SCF-B-0176.json",
-      "sha256": "51cd7f87d82b3c395b81592ca01b8357fc4caa9353b9b8a8928bf9bbbd2f4257",
-      "note": "Predecessor PR-C L9 pointer binding; prior snapshot hash retained in note."
+      "sha256": "c8938fea915e063db95864f1fe0d8603e95a8e743a22f1126f7aa346209ae846",
+      "note": "Predecessor PR-C L9 pointer binding; prior snapshot hash retained in note. M1 successor alignment: retain prior pin=51cd7f87d82b3c395b81592ca01b8357fc4caa9353b9b8a8928bf9bbbd2f4257; current candidate pin=c8938fea915e063db95864f1fe0d8603e95a8e743a22f1126f7aa346209ae846; C0577/C0580 selected classification state is unknown while overall classification remains violation."
     },
     {
       "path": "scaffold/bindings/SCF-B-0177.json",
-      "sha256": "f123f5cac1fe2b5ea7a9d31fbbdcace285601374f4466e6439b0bc0a89cead9c",
-      "note": "Predecessor L4/L9 residual binding; prior snapshot hash retained in note."
+      "sha256": "3904a37c49cb1cd3be5209027078f9cece34c28db2e8edd1452573e800cfa6ad",
+      "note": "Predecessor L4/L9 residual binding; prior snapshot hash retained in note. M1 successor alignment: retain prior pin=f123f5cac1fe2b5ea7a9d31fbbdcace285601374f4466e6439b0bc0a89cead9c; current candidate pin=3904a37c49cb1cd3be5209027078f9cece34c28db2e8edd1452573e800cfa6ad; C0577/C0580 selected classification state is unknown while overall classification remains violation."
     }
   ],
   "role": "OS015 corrected L4/L9後続のL5/L8 18-class・112-case static successor evidence。",

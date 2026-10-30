@@ -30,10 +30,10 @@ source finding 4件の完全なpointer列:
 | C0574 | context known prior、actual null | 両側prior ref/revisionはnull。context priorが非nullなので4件unknown | `first_classification_prior_present`, `original_classification_mutated`, `source_unresolved` ×4 | violation / classification / violation |
 | C0575 | actual/context同じknown prior | 両側prior ref/revisionはnull。context priorが非nullなので4件unknown | `first_classification_prior_present` ×2, `source_unresolved` ×4 | violation / classification / violation |
 | C0576 | actual `{}`、context null | null、context nullのためskip | `first_classification_prior_unresolved`, `original_classification_mutated` | violation / classification / violation |
-| C0577 | context `{}`、actual null | 両側prior ref/revisionはnull。context priorが非nullなので4件unknown | `first_classification_prior_unresolved`, `original_classification_mutated`, `source_unresolved` ×4 | violation / classification / violation |
+| C0577 | context `{}`、actual null | 両側prior ref/revisionはnull。context priorが非nullなので4件unknown | `first_classification_prior_unresolved`, `original_classification_mutated`, `source_unresolved` ×4 | violation / classification / unknown |
 | C0578 | actual/context `{}` | 両側prior ref/revisionはnull。context priorが非nullなので4件unknown | `first_classification_prior_unresolved` ×2, `source_unresolved` ×4 | unknown / classification / unknown |
 | C0579 | actual `UNKNOWN-PRIOR`、context null | null、context nullのためskip | `first_classification_prior_unresolved`, `original_classification_mutated` | violation / classification / violation |
-| C0580 | context `UNKNOWN-PRIOR`、actual null | 両側prior ref/revisionはnull。context priorが非nullなので4件unknown | `first_classification_prior_unresolved`, `original_classification_mutated`, `source_unresolved` ×4 | violation / classification / violation |
+| C0580 | context `UNKNOWN-PRIOR`、actual null | 両側prior ref/revisionはnull。context priorが非nullなので4件unknown | `first_classification_prior_unresolved`, `original_classification_mutated`, `source_unresolved` ×4 | violation / classification / unknown |
 | C0581 | actual/context `UNKNOWN-PRIOR` | 両側prior ref/revisionはnull。context priorが非nullなので4件unknown | `first_classification_prior_unresolved` ×2, `source_unresolved` ×4 | unknown / classification / unknown |
 | C0582 | actual/context同じknown priorと新分類prior | 両側のprior ref/revisionがknownで一致 | `first_classification_prior_present` ×2 | violation / classification / violation |
 
@@ -44,4 +44,4 @@ source finding 4件の完全なpointer列:
 - C0582の既存2-finding keyを維持し、C0575を追加6-finding keyにする。
 - C0578/C0581は既存prior finding 2件にsource finding 4件が加わる同じ6-finding keyへ更新する。
 
-全体conditionは全facetのseverityで、axis/stateは最初の非corresponding facetのseverityで導く。よってmutationを含むC0577/C0580はclassification/violation、prior unresolvedだけのC0578/C0581はunknown/classification/unknownとなる。
+全体conditionは全facetのseverityで決まり、axis/stateは最初の非corresponding facetの局所severityで決まる。C0577/C0580の`original_classification_mutated`はhistory/violationだが、先に選択されるclassification facetのprior unresolvedと比較不明所見はunknownなので、全体はviolation、axis/stateはclassification/unknownとなる。C0578/C0581もunknown/classification/unknown。
