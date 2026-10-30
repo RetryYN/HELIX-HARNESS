@@ -30,8 +30,8 @@
     },
     {
       "path": "docs/helix-os/L8-unit-verification/management-authority-source-record.json",
-      "sha256": "63fc2084a2a41cce1c84ac0db7a437ce25a0525f9f24d060f47bcf61357aa621",
-      "note": "既存583 unit case期待を保持したことの比較source。L8文書は変更しない。"
+      "sha256": "04eb8f8ffcc0b5d7676e8c319ed5d368e6ec816ae111084058722e19f6e152b1",
+      "note": "既存583 unit case期待を保持したことの比較source。L8文書は変更しない。 prior pin=63fc2084a2a41cce1c84ac0db7a437ce25a0525f9f24d060f47bcf61357aa621. 0dd204 L4/L9 audit snapshot pin is retained in verification-summary; current L8 successor extends it with the separately bound 112-case pair."
     },
     {
       "path": "docs/helix-os/L9-integration-verification/management-authority-source-record.json",
@@ -70,12 +70,12 @@
     },
     {
       "path": "scaffold/bindings/SCF-B-0175.json",
-      "sha256": "86d61eac488f5960bfb25bf607ba655f277153bafa9e06d2f61b6f08068fb472",
+      "sha256": "abec97a660ae4f2b1d3169f4464a187d9d76140c0f41b8376c33757db57a20ae",
       "note": "本候補のL4/L9追補後にhashを更新した前段binding。歴史差分と更新理由は各binding noteに保持。"
     },
     {
       "path": "scaffold/bindings/SCF-B-0176.json",
-      "sha256": "61fd8c6ce0375540ab0f61b17874a3cb44bee5a13d79e0ef376482d8bd0e1909",
+      "sha256": "51cd7f87d82b3c395b81592ca01b8357fc4caa9353b9b8a8928bf9bbbd2f4257",
       "note": "本候補のL4/L9追補後にhashを更新した前段binding。歴史差分と更新理由は各binding noteに保持。"
     },
     {

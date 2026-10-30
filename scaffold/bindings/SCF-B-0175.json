@@ -30,8 +30,8 @@
     },
     {
       "path": "docs/helix-os/L8-unit-verification/management-authority-source-record.json",
-      "sha256": "63fc2084a2a41cce1c84ac0db7a437ce25a0525f9f24d060f47bcf61357aa621",
-      "note": "583 rowsを保持し29件だけlinkを追加する候補L8 bytes。"
+      "sha256": "04eb8f8ffcc0b5d7676e8c319ed5d368e6ec816ae111084058722e19f6e152b1",
+      "note": "583 rowsを保持し29件だけlinkを追加する候補L8 bytes。 prior pin=63fc2084a2a41cce1c84ac0db7a437ce25a0525f9f24d060f47bcf61357aa621. #3927 corrected 0dd204 residual successor adds 18 L8 class rows and 112 case link fields; 29 predecessor links and all case expectations remain unchanged."
     },
     {
       "path": "docs/helix-os/L9-integration-verification/management-authority-source-record.json",

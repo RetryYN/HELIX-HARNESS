@@ -1,0 +1,27 @@
+{
+  "status": "PASS",
+  "base_revision": "0dd2045801e9e30def00913b57a6177d8d9be3a8",
+  "l4_l5_l8_counts": [
+    51,
+    51,
+    45
+  ],
+  "new_l5_rules": 18,
+  "new_l8_classes": 18,
+  "new_l8_case_links": 112,
+  "preserved_prior_case_links": 29,
+  "l8_case_count": 583,
+  "expected_condition_preserved_all_583": true,
+  "corrected_cases_axis_state_verified": 6,
+  "singleton_less_ids": [
+    "OS015-NEG-first_classification_prior_present",
+    "OS015-NEG-first_classification_prior_unresolved",
+    "OS015-NEG-original_event_mutated",
+    "OS015-NEG-source_conflict-original_event",
+    "OS015-NEG-source_unresolved-original_event",
+    "OS015-NEG-unresolved_promoted_to_current"
+  ],
+  "l5_sha256": "25bd183b3725fce8a994d24710e29280b00ed27b83efe3a0f989d62641d61d94",
+  "l8_sha256": "04eb8f8ffcc0b5d7676e8c319ed5d368e6ec816ae111084058722e19f6e152b1",
+  "l9_expected_loaded": false
+}
