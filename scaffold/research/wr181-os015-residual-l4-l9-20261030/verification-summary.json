@@ -1,128 +1,131 @@
 {
-  "schema": "wr181-os015-residual-l4-l9-summary.v1",
-  "base_revision": "64d3cf379335e0a4b034f7295a9a225a2d755986",
-  "base_main_merge_base": "64d3cf379335e0a4b034f7295a9a225a2d755986",
+  "schema": "wr181-os015-class-correction-summary.v1",
+  "correction_base_revision": "5d541f69ff86674e585311558ad2dac1972d42e4",
+  "source_base_revision": "64d3cf379335e0a4b034f7295a9a225a2d755986",
+  "candidate_commit": "7654e0b21965ba61d9a2137e6090a8ae033ffcb9",
   "latest_main_revision": "ca4bd911142cc17789366ae6f9f1f0fee8c7c589",
   "latest_main_fetch_matches_ls_remote": true,
-  "pr_3923_head": "64d3cf379335e0a4b034f7295a9a225a2d755986",
   "pr_3923_state": "MERGED",
-  "pr_3923_mergeable": "UNKNOWN",
-  "main_changed_paths_from_merge_base": [
-    "docs/helix-harness/L6-function-design/product-template-application.json",
-    "docs/helix-harness/L7-function-verification/product-template-application.json",
-    "docs/helix-harness/L9-integration-verification/process-state-port.json",
-    "docs/helix-os/L7-function-verification/ticket-workflow-derivation.json",
-    "docs/helix-security/L4-basic-design/revoke-quarantine-propagation.json",
-    "docs/helix-security/L8-unit-verification/data-use-classification.json",
-    "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
-    "helix/helix-harness/units/HELIXHARNESS-UNIT-PRODUCT-TEMPLATE-APPLICATION/src/application_general_proposal_exchange.py",
-    "helix/helix-harness/units/HELIXHARNESS-UNIT-PRODUCT-TEMPLATE-APPLICATION/src/general_proposal_exchange_body.py",
-    "helix/helix-harness/units/HELIXHARNESS-UNIT-PRODUCT-TEMPLATE-APPLICATION/src/general_proposal_exchange_f02_detail.py",
-    "helix/helix-harness/units/HELIXHARNESS-UNIT-PRODUCT-TEMPLATE-APPLICATION/src/general_proposal_exchange_native.py",
-    "helix/helix-harness/units/HELIXHARNESS-UNIT-PRODUCT-TEMPLATE-APPLICATION/src/general_proposal_exchange_publication.py",
-    "helix/helix-harness/units/HELIXHARNESS-UNIT-PRODUCT-TEMPLATE-APPLICATION/src/product_template_application.py",
-    "helix/helix-harness/units/HELIXHARNESS-UNIT-PRODUCT-TEMPLATE-APPLICATION/tests/fixtures/general_proposal_exchange.json",
-    "helix/helix-harness/units/HELIXHARNESS-UNIT-PRODUCT-TEMPLATE-APPLICATION/tests/gpe_case_support.py",
-    "helix/helix-harness/units/HELIXHARNESS-UNIT-PRODUCT-TEMPLATE-APPLICATION/tests/test_general_proposal_exchange.py",
-    "scaffold/bindings/SCF-B-0174.json",
-    "scaffold/research/wr186-psp-negative-residual/README.md",
-    "scaffold/research/wr186-psp-negative-residual/f05-single-finding-candidates.json",
-    "scaffold/research/wr186-psp-negative-residual/independent-manual-review.md",
-    "scaffold/research/wr186-psp-negative-residual/manual-projection-candidates.json",
-    "scaffold/research/wr186-psp-negative-residual/validate_l9.py"
-  ],
-  "paths_overlap_with_candidate": false,
-  "manual_audit_revision": "05614def4e0427f9390c2b6535e520f5c7c26590",
-  "manual_audit_sha256": "eaa14a609b08f58b12078f68fdbb02921df3805d9d977668c0b9bd9a5f4c73dd",
-  "projection_manifest_sha256": "8f7a4391837746879d4f159f631ab22078b5374d15c856565f8516cbc6a31090",
-  "class_counts": {
+  "pr_3927_state": "NOT_IN_MAIN_AT_FETCH",
+  "correction_scope": {
+    "cases": [
+      "HELIXOS-L9-015-C0574",
+      "HELIXOS-L9-015-C0575",
+      "HELIXOS-L9-015-C0577",
+      "HELIXOS-L9-015-C0578",
+      "HELIXOS-L9-015-C0580",
+      "HELIXOS-L9-015-C0581"
+    ],
+    "findings_added": "source_unresolved x4 at context prior ref, context prior revision, actual prior ref, actual prior revision",
+    "new_l4_l9_class_rows": 18,
+    "obsolete_incorrect_group_removed": 1
+  },
+  "class_population": {
+    "total_manifest_classes": 20,
     "existing_two_classes": 2,
-    "new_classes": 15,
-    "new_l4_rows": 15,
-    "new_l9_rows": 15,
-    "existing_class_residual_case_links": 75,
-    "new_class_case_links": 37,
-    "total_new_l9_case_links": 112,
-    "previously_linked_cases_untouched": 29,
-    "singleton_less_classes_remaining": 6
+    "new_l4_l9_classes": 18,
+    "existing_class_links": 75,
+    "new_class_links": 37,
+    "total_l9_case_links": 112,
+    "l9_case_rows": 583,
+    "previously_linked_29_unchanged": true,
+    "singleton_less_classes_unformed": 6
   },
-  "l4_sha256": "6613e77d651496efe9d576ce840324050147aca8f785c635ce1a858d6eba7ca8",
-  "l9_sha256": "ab875f72dfef9f1afaa72b04dd1c8b341d5fc13c4320c1640f42f58f91798c90",
-  "l9_case_rows": 583,
-  "case_expected_condition_expected_preserved_unchanged": true,
+  "l4_sha256": "5038893210d772bc46fa75802757a90d9658ec4f427f76adcc3cf8a6702ce96f",
+  "l9_sha256": "1e2bac6a7cabe48b11ba17736c7081fcbe27c35de79f835c75a1a709d5891b39",
+  "l9_case_expected_condition_expected_preserved_unchanged": true,
   "l5_l8_source_documents_unchanged": true,
-  "check_child": {
-    "before": {
-      "exit": 1,
-      "passed": false,
-      "negative_4way_failures": 136,
-      "counts": {
-        "L4": 33,
-        "L9": 27,
-        "L8": 27,
-        "L5": 33
-      },
-      "matched_case_count": 460,
-      "raw_report_sha256": "ab17c2c12750a0641cdfe66db3c2c8b350c5f52ab57103ee3a71ea6ec1ab46be"
-    },
-    "after": {
-      "exit": 1,
-      "passed": false,
-      "L4_L9_pair": true,
-      "L5_L8_pair": true,
-      "ownership_caps": true,
-      "pins": true,
-      "negative_4way_passed": false,
-      "negative_4way_failures": 211,
-      "counts": {
-        "L4": 48,
-        "L9": 42,
-        "L8": 27,
-        "L5": 33
-      },
-      "matched_case_count": 460,
-      "failure_breakdown": {
-        "class_key_missing_from_layer:L5": 30,
-        "class_key_missing_from_layer:L8": 42,
-        "class_key_missing_from_layer:L9": 12,
-        "class_owner_ref_unresolved:L4": 15,
-        "negative_case_class_ref_missing_or_unresolved:L8": 112
-      },
-      "raw_report_sha256": "c0a31f0bad616229824fc7b08fcd6616f7aa6c44db9f31685575ef68c69517a5"
-    },
-    "change_in_failures": 75
+  "static_validation": "PASS",
+  "static_validation_report_sha256": "17343b1d981ed00abee660335ca2802c9ad8622b8da85945b2f333f522ebcc41",
+  "static_trial_report_sha256": "17343b1d981ed00abee660335ca2802c9ad8622b8da85945b2f333f522ebcc41",
+  "scfctl_current_branch": {
+    "validate": "PASS (bindings=165 fail=0)",
+    "stale": "PASS (stale=0)"
   },
-  "check_freeze": {
-    "before_exit": 1,
-    "after_exit": 1,
-    "before_mechanical_match": false,
-    "after_mechanical_match": false,
-    "same_measured_issues": true,
+  "scfctl_latest_main_trial": {
+    "validate": "PASS (bindings=166 fail=0)",
+    "stale": "PASS (stale=0)"
+  },
+  "child_before_correction_on_5d541": {
+    "exit": 1,
+    "passed": false,
+    "L4_L9_pair": true,
+    "L5_L8_pair": true,
+    "negative_4way_passed": false,
+    "negative_4way_failures": 211,
+    "counts": {
+      "L4": 48,
+      "L9": 42,
+      "L8": 27,
+      "L5": 33
+    },
+    "matched_case_count": 460,
+    "raw_report_sha256": "c0a31f0bad616229824fc7b08fcd6616f7aa6c44db9f31685575ef68c69517a5"
+  },
+  "child_after_correction": {
+    "exit": 1,
+    "passed": false,
+    "L4_L9_pair": true,
+    "L5_L8_pair": true,
+    "negative_4way_passed": false,
+    "negative_4way_failures": 226,
+    "counts": {
+      "L4": 51,
+      "L9": 45,
+      "L8": 27,
+      "L5": 33
+    },
+    "matched_case_count": 460,
+    "raw_report_sha256": "7fdb5e2e5a460988a1a2c7d259f9c9a086c74c6d18f612c7f130948c7fc73184"
+  },
+  "child_latest_main_trial": {
+    "exit": 1,
+    "passed": false,
+    "L4_L9_pair": true,
+    "L5_L8_pair": true,
+    "negative_4way_passed": false,
+    "negative_4way_failures": 226,
+    "counts": {
+      "L4": 51,
+      "L9": 45,
+      "L8": 27,
+      "L5": 33
+    },
+    "matched_case_count": 460,
+    "raw_report_sha256": "7fdb5e2e5a460988a1a2c7d259f9c9a086c74c6d18f612c7f130948c7fc73184"
+  },
+  "freeze_before_correction_on_5d541": {
+    "exit": 1,
+    "mechanical_match": false,
     "json_pointer_failures": 2421,
     "public_function_failures": 8,
-    "before_report_sha256": "cc4bd1a42fcde81c9b38c3d9f68af3531cab8a235811fb937e2a57f35d320003",
-    "after_report_sha256": "cc4bd1a42fcde81c9b38c3d9f68af3531cab8a235811fb937e2a57f35d320003"
+    "raw_report_sha256": "cc4bd1a42fcde81c9b38c3d9f68af3531cab8a235811fb937e2a57f35d320003"
   },
-  "scfctl": {
-    "bindings_before_new_binding": 164,
-    "bindings_after_new_binding": 165,
-    "validate": "PASS (fail=0)",
-    "stale_before_candidate": 0,
-    "stale_after_candidate": "PASS (stale=0)",
-    "final_latest_main_trial": "PASS (bindings=166 fail=0; stale=0)",
-    "updated_pins": [
-      "SCF-B-0170 L4",
-      "SCF-B-0173 L4/L9",
-      "SCF-B-0175 L4/L9 and SCF-B-0170 binding digest",
-      "SCF-B-0176 L4/L9 and SCF-B-0170 binding digest"
-    ]
+  "freeze_after_correction": {
+    "exit": 1,
+    "mechanical_match": false,
+    "json_pointer_failures": 2421,
+    "public_function_failures": 8,
+    "raw_report_sha256": "cc4bd1a42fcde81c9b38c3d9f68af3531cab8a235811fb937e2a57f35d320003"
+  },
+  "freeze_latest_main_trial": {
+    "exit": 1,
+    "mechanical_match": false,
+    "json_pointer_failures": 2421,
+    "public_function_failures": 8,
+    "raw_report_sha256": "cc4bd1a42fcde81c9b38c3d9f68af3531cab8a235811fb937e2a57f35d320003"
+  },
+  "freeze_same_before_after": {
+    "report_sha256_5d541": "cc4bd1a42fcde81c9b38c3d9f68af3531cab8a235811fb937e2a57f35d320003",
+    "report_sha256_corrected": "cc4bd1a42fcde81c9b38c3d9f68af3531cab8a235811fb937e2a57f35d320003",
+    "json_pointer_failures": 2421,
+    "public_function_failures": 8
   },
   "latest_main_trial": {
-    "status": "PASS no-conflict no-commit merge trial after PR-C merge",
-    "base_revision": "ca4bd911142cc17789366ae6f9f1f0fee8c7c589",
+    "status": "PASS (no-conflict no-commit merge trial)",
     "merge_base": "64d3cf379335e0a4b034f7295a9a225a2d755986",
-    "candidate_commit": "395baadd42b5f658de203e7aba49c0f2ae295721",
-    "merge_result": "Automatic merge went well; stopped before committing as requested",
+    "main_revision": "ca4bd911142cc17789366ae6f9f1f0fee8c7c589",
+    "candidate_commit": "7654e0b21965ba61d9a2137e6090a8ae033ffcb9",
     "main_changed_paths_from_merge_base": [
       "docs/helix-harness/L6-function-design/product-template-application.json",
       "docs/helix-harness/L7-function-verification/product-template-application.json",
@@ -157,78 +160,45 @@
       "scaffold/bindings/SCF-B-0177.json",
       "scaffold/research/wr181-os015-residual-l4-l9-20261030/README.md",
       "scaffold/research/wr181-os015-residual-l4-l9-20261030/build_projection.py",
+      "scaffold/research/wr181-os015-residual-l4-l9-20261030/class-correction-audit-5d541.md",
+      "scaffold/research/wr181-os015-residual-l4-l9-20261030/class-correction-cases.json",
       "scaffold/research/wr181-os015-residual-l4-l9-20261030/manual-case-audit-05614.md",
       "scaffold/research/wr181-os015-residual-l4-l9-20261030/projection-manifest.json",
       "scaffold/research/wr181-os015-residual-l4-l9-20261030/static-validation.json",
       "scaffold/research/wr181-os015-residual-l4-l9-20261030/validate_projection.py",
       "scaffold/research/wr181-os015-residual-l4-l9-20261030/verification-summary.json"
     ],
-    "changed_paths_overlap": false,
-    "trial_staged_paths_equal_candidate_paths": true,
-    "static_validator": "PASS",
-    "static_validator_sha256": "6740d48b613337e8bb733b9b9274ba479540759c750e7cbc9f9046b8e01bb13a",
-    "check_child": {
-      "exit": 1,
-      "overall_passed": false,
-      "L4_L9_pair": true,
-      "L5_L8_pair": true,
-      "ownership_caps": true,
-      "pins": true,
-      "negative_4way_failures": 211,
-      "counts": {
-        "L4": 48,
-        "L9": 42,
-        "L8": 27,
-        "L5": 33
-      },
-      "matched_case_count": 460,
-      "raw_report_sha256": "c0a31f0bad616229824fc7b08fcd6616f7aa6c44db9f31685575ef68c69517a5"
+    "path_overlap": [],
+    "staged_paths_equal_candidate_paths": true,
+    "trial_staged_path_count": 16,
+    "diff_check": "PASS"
+  },
+  "main_only_baseline": {
+    "child_failures": 136,
+    "counts": {
+      "L4": 33,
+      "L9": 27,
+      "L8": 27,
+      "L5": 33
     },
-    "check_freeze": {
-      "exit": 1,
-      "mechanical_match": false,
-      "json_pointer_failures": 2421,
-      "public_function_failures": 8,
-      "raw_report_sha256": "cc4bd1a42fcde81c9b38c3d9f68af3531cab8a235811fb937e2a57f35d320003"
-    },
-    "scfctl_validate": "PASS (bindings=166 fail=0)",
-    "scfctl_stale": "PASS (stale=0)",
-    "diff_check": "PASS (git diff --cached --check on trial; merge-base range diff --check)",
-    "main_only_baseline": {
-      "check_child_failures": 136,
-      "counts": {
-        "L4": 33,
-        "L9": 27,
-        "L8": 27,
-        "L5": 33
-      },
-      "matched_case_count": 460,
-      "freeze_mechanical_match": false,
-      "json_pointer_failures": 2421,
-      "public_function_failures": 8,
-      "scfctl_validate": "bindings=165 fail=0",
-      "scfctl_stale": "stale=0",
-      "freeze_report_sha256": "cc4bd1a42fcde81c9b38c3d9f68af3531cab8a235811fb937e2a57f35d320003",
-      "child_report_sha256": "ab17c2c12750a0641cdfe66db3c2c8b350c5f52ab57103ee3a71ea6ec1ab46be"
-    }
+    "matched_case_count": 460,
+    "freeze_mechanical_match": false,
+    "json_pointer_failures": 2421,
+    "public_function_failures": 8,
+    "scfctl_validate": "bindings=165 fail=0",
+    "scfctl_stale": "stale=0",
+    "child_report_sha256": "ab17c2c12750a0641cdfe66db3c2c8b350c5f52ab57103ee3a71ea6ec1ab46be"
   },
   "remaining": [
-    "L8 112 case refs未追加",
-    "6 singleton-less classはL8/L9未形成: OS015-NEG-source_unresolved-original_event, OS015-NEG-source_conflict-original_event, OS015-NEG-original_event_mutated, OS015-NEG-unresolved_promoted_to_current, OS015-NEG-first_classification_prior_present, OS015-NEG-first_classification_prior_unresolved",
-    "L5/L8 projection未実施",
-    "negative-4wayは211 failuresでFAIL",
-    "旧freeze mechanical matchせず"
+    "L5/L8 successor pair is not formed; do not treat L9 case expected as L8 oracle.",
+    "L8 112 case refs are not added.",
+    "6 singleton-less classes remain unformed.",
+    "check-child remains FAIL: 226 failures; check-freeze remains mechanical_match=false."
   ],
-  "raw_check_report_sha256": {
-    "child_before": "ab17c2c12750a0641cdfe66db3c2c8b350c5f52ab57103ee3a71ea6ec1ab46be",
-    "child_after": "c0a31f0bad616229824fc7b08fcd6616f7aa6c44db9f31685575ef68c69517a5",
-    "freeze_before": "cc4bd1a42fcde81c9b38c3d9f68af3531cab8a235811fb937e2a57f35d320003",
-    "freeze_after": "cc4bd1a42fcde81c9b38c3d9f68af3531cab8a235811fb937e2a57f35d320003",
-    "main_trial_child": "c0a31f0bad616229824fc7b08fcd6616f7aa6c44db9f31685575ef68c69517a5",
-    "main_trial_freeze": "cc4bd1a42fcde81c9b38c3d9f68af3531cab8a235811fb937e2a57f35d320003"
-  },
-  "static_validation_sha256": "6740d48b613337e8bb733b9b9274ba479540759c750e7cbc9f9046b8e01bb13a",
-  "builder_sha256": "6bd9e8b35bf65e6d359743a9084c56ff3bd347109b6295ae153805b2158ac8c6",
-  "validator_sha256": "38081c13641d25489f6c95b1edf4d8832317c808d232c5bdf369fbf6e2157338",
-  "pr_3923_merge_commit": "ca4bd911142cc17789366ae6f9f1f0fee8c7c589"
+  "prohibitions_observed": [
+    "No L5/L8 documents edited.",
+    "L7 expected_proposal and L8/L9 case expected were not used to derive corrected findings/classes.",
+    "No push or PR was created.",
+    "No product runtime, test, or CI was executed."
+  ]
 }
