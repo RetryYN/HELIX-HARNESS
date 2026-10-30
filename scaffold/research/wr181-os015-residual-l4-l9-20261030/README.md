@@ -1,3 +1,9 @@
+## 2026-10-31 L4/L9 singleton-residual update
+
+On latest main `0fc143f1bc356b4b1e0ab410d974572b935bffa1`, the six L4 singleton rows were moved to `diagnostic_contract.composite_class_formation.non_occurring_singleton_residuals` with `member_count: 0`; this records lack of singleton classes, not lack of code/pointer witnesses. L4 adds two promotion composite rows and L9 appends C0584/C0585 from the fixed L7 `fixture_inputs/inspect` material via `forward_stimulus_replacements`. L7, L5, L8, and the existing 583 L9 case expectations remain byte-semantically unchanged. L9 now has 585 integration rows and 31 F03 case references. The 583/585 L7/L9 count difference is recorded in L9 `remaining`; L7 remains unchanged. See [`singleton-residual-update-20261031.md`](singleton-residual-update-20261031.md) for source-only witnesses, finding order, axes/states, and the hand-derived input pair.
+
+The follow-on L5/L8 pair is still unformed; the six residual rules remain represented in those unchanged documents until their separate pair work. The prior 112-case scope remains the existing projection; C0584/C0585 are separate promotion route witnesses.
+
 # WR181 OS015 残112件のL4/L9候補
 
 ## 対象と根拠
