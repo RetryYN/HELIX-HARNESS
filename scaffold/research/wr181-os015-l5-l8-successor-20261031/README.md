@@ -21,10 +21,10 @@ C0574/C0575はprior-present findings、C0577/C0580とC0578/C0581はprior-unresol
 
 ## 保持した境界
 
-- L5/L8ともL4/L9 pair pinはM1 corrected head `5e7286c6` のpath bytesを固定する。L8 `candidate_l5_bytes`はM1 source pinとL5 successor rowを含むmerge commit `bfbec191fef79d315b37ec50f7051bcd1e1c6ede`とそのpath hashを固定する。
+- L5/L8ともL4/L9 pair pinは#3927 merge済みmain `2e5ef018a89898bede25c8aa280ce61fe4ee5104` のpath bytesを固定する。L8 `candidate_l5_bytes`は最新pair pinを含むL5 successor commit `e60ab113dc8d2018a8fd48680bdccf5ac0254b1a`とそのpath hashを固定する。
 - L8 case rowsの条件・期待・expected_preserved、および先行29 linksは不変。追加112件で変えるのはraw `given.input` pointer、`negative_class_ref`、`rule_ref`、`function_ref`だけ。
 - 6 singleton-less classesはL4/L5には残し、L8に形成しない。対象は`OS015-NEG-source_unresolved-original_event`、`OS015-NEG-source_conflict-original_event`、`OS015-NEG-original_event_mutated`、`OS015-NEG-unresolved_promoted_to_current`、`OS015-NEG-first_classification_prior_present`、`OS015-NEG-first_classification_prior_unresolved`。L8/L9での対応未形成によりchildは24 class mismatchでFAILし、freezeも成立しない。
-- このsuccessorが#3927 corrected classificationがmergeされる前にpush/PRされることはない。
+- #3927のcorrected classificationはmainへmerge済み。successor候補は未push・未PR。
 
 ## 静的確認
 

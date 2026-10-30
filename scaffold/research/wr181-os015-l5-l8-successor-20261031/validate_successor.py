@@ -14,8 +14,8 @@ MANIFEST = ROOT / "scaffold/research/wr181-os015-residual-l4-l9-20261030/project
 CORRECTION = ROOT / "scaffold/research/wr181-os015-residual-l4-l9-20261030/class-correction-cases.json"
 PR_A = ROOT / "scaffold/research/wr181-os015-pr-a-l4-l9-20261030/case-evidence.json"
 BASE = "0dd2045801e9e30def00913b57a6177d8d9be3a8"
-PAIR_REVISION = "5e7286c6def741df3f8abfabdb1f2058eaaedd07"
-L5_CANDIDATE_REVISION = "bfbec191fef79d315b37ec50f7051bcd1e1c6ede"
+PAIR_REVISION = "2e5ef018a89898bede25c8aa280ce61fe4ee5104"
+L5_CANDIDATE_REVISION = "e60ab113dc8d2018a8fd48680bdccf5ac0254b1a"
 L3 = "docs/helix-os/L3-requirements/functional-requirements.json"
 L4 = "docs/helix-os/L4-basic-design/management-authority-source-record.json"
 L5 = "docs/helix-os/L5-detail-design/management-authority-source-record.json"
@@ -115,7 +115,21 @@ def main() -> dict:
         "same_candidate": True,
         "sha256": sha((ROOT / L5).read_bytes()),
     }
-    assert candidate_l5["revision"] in subprocess.check_output(["git", "rev-list", "HEAD"], cwd=ROOT, text=True).splitlines()
+    reachable = set(subprocess.check_output(["git", "rev-list", "HEAD"], cwd=ROOT, text=True).splitlines())
+    merge_head = subprocess.run(
+        ["git", "rev-parse", "--verify", "MERGE_HEAD"],
+        cwd=ROOT,
+        text=True,
+        capture_output=True,
+        check=False,
+    )
+    if merge_head.returncode == 0:
+        reachable.update(
+            subprocess.check_output(
+                ["git", "rev-list", merge_head.stdout.strip()], cwd=ROOT, text=True
+            ).splitlines()
+        )
+    assert candidate_l5["revision"] in reachable
 
     l4_by_id = {row["class_id"]: (i, row) for i, row in enumerate(l4["failure_classifications"])}
     l5_by_id = {row["id"]: (i, row) for i, row in enumerate(l5["failure_rules"])}
