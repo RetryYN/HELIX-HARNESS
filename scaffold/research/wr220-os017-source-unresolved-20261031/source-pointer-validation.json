@@ -1,0 +1,21 @@
+{
+  "status": "pass",
+  "evidence_kind": "scaffold",
+  "authority_effect": "none",
+  "source_pointers_resolved": 13,
+  "raw_witness_null_leaves": {
+    "/cases/51": null,
+    "/cases/53": null
+  },
+  "approved_rows_equal_at_5c62_and_base_a53": true,
+  "approved_f02_row_sha256": {
+    "l3": "03d8ea7b4efc46c6eea5eadba8f8f1a16df2df4fe0d516de61aae266d04dede5",
+    "l10": "ed4c1488245bfc491c2a54b0368c6eb03a09589a256a39f27dbc8df9cf102165"
+  },
+  "delegated_admission_merge_commit": "2945b75bc5",
+  "delegated_admission_subject": "Merge pull request #2952 from RetryYN/codex/prerequisite-os-workflow-l3-l10-20261012",
+  "l9_expected_fields_unchanged_for_cases_51_53": true,
+  "l4_class_count": 5,
+  "l9_source_class_candidate_row_refs": 65,
+  "execution": "none"
+}

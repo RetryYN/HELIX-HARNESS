@@ -353,7 +353,9 @@
       "operation_effect": "none",
       "requirement_pointer": "docs/helix-os/L3-requirements/functional-requirements.json#/requirements/35",
       "system_oracle_pointer": "docs/helix-os/L10-verification/functional-verification.json#/cases/35",
-      "negative_class_refs": []
+      "negative_class_refs": [
+        "OS017-NEG-workflow-resume-source_unresolved"
+      ]
     },
     {
       "id": "HELIXOS-L4-017-F03",
@@ -878,6 +880,57 @@
             "/cases/46/given_input_ref",
             "/cases/48/given_input_ref",
             "/cases/50/given_input_ref"
+          ]
+        }
+      ]
+    },
+    {
+      "class_id": "OS017-NEG-workflow-resume-source_unresolved",
+      "code": "workflow_material_unknown",
+      "design_ref": "HELIXOS-L4-017-F02",
+      "condition": "phase=resumeの負例意味: 全体condition=workflow_material_unknown、全体ordered finding code signature=[source_unresolved]、workflow facetの局所state=unknown。各witnessはauthority.source_refまたはresource.source_refの一方だけがnullであり、対応する独立context参照とaccepted stateが存在する。各witnessのpointerは異なるためdedupしない。追加findingを持つcase、全体conditionまたは全体ordered finding code signatureが異なるcaseは本classに含めない。",
+      "expected_classification": "workflow_material_unknown",
+      "expected": {
+        "finding_codes": [
+          "source_unresolved"
+        ]
+      },
+      "expected_axis": "workflow",
+      "expected_state": "unknown",
+      "backflow_owner": "ticket-workflow-owner",
+      "side_effect_count": 0,
+      "source_pointers": [
+        {
+          "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+          "pointers": [
+            "/requirements/35"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L10-verification/functional-verification.json",
+          "pointers": [
+            "/cases/35"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L4-basic-design/ticket-workflow-derivation.json",
+          "pointers": [
+            "/contracts/1",
+            "/diagnostic_contract/condition_semantics",
+            "/diagnostic_contract/diagnostic_code_facets/source_unresolved",
+            "/diagnostic_contract/comparison_table/process~1proposal~1dependency~1authority~1resource~1level~1constraints",
+            "/diagnostic_contract/algorithm/2",
+            "/diagnostic_contract/algorithm/6",
+            "/diagnostic_contract/algorithm/10"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L7-function-verification/ticket-workflow-derivation.json",
+          "pointers": [
+            "/cases/51/given_input_ref",
+            "/cases/53/given_input_ref",
+            "/objects/e80a1ab73d1026599b8f940b0b8fb211199bd3a6967a90392b0c5bfeafec1da2/source_ref",
+            "/objects/25ad46768dea84694bdf2fdd7e076197e3597248f16aaa26d7e630e895d542e2/source_ref"
           ]
         }
       ]
