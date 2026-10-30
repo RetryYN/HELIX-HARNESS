@@ -4934,7 +4934,7 @@
         "pointer": "/f03_head_connection_oracles",
         "file_sha256": "919b1ebdf074f291458947af0db8b751f3fd45a144aa542020759febcd652a83",
         "value_canonical_sha256": "821f24b4f95fa28d6b72758b649be27203f75a2a9cf6adf071cad564abd931b8",
-        "use_boundary": "撤去前の固定L8節を由来・照合のためだけに指す。現行algorithm、期待、実行inputとして再利用しない。"
+        "use_boundary": "撤去前の固定L8節は由来・照合だけに使用。現行oracle本文はoracle_locationが指す現行F03 unit_case_rowsであり、過去snapshotをalgorithm、期待、実行inputとして再利用しない。"
       }
     },
     "call_binding": "既存evaluate_contract_semantics(input:SemanticEvaluationInput,rules:SemanticRuleSet)の同一F03 branch。headは既存PayloadF03_steps_itemのFieldValue<string>を読む。関数名/引数/返却型/他predicate/他4rootは変更しない。",
@@ -4953,7 +4953,7 @@
       "encoding": "有限JSONのrecord keyはUnicode code point順、array順は保持、UTF8非ASCIIを原文字で出力しcomma/colonの余分空白なし。文字列escapeは既存正常hashと同じJSON encoding。SHA-256を小文字hexで保持。実transport bytesの資格とは区別する。",
       "compatibility": "旧正常8hashを変更しない。head変異はsteps観測hashへ反映するが、hash相違だけで因果を判定しない。"
     },
-    "oracle_location": "46864fcaa2426a480dbd037040cd4c4332c61ddd:docs/helix-harness/L8-unit-verification/tdd-development-flow.json#/f03_head_connection_oracles",
+    "oracle_location": "docs/helix-harness/L8-unit-verification/tdd-development-flow.json#/cases/3/unit_case_rows",
     "legacy_relation": [
       {
         "path": "archive/legacy-generation-2026-09-14/root/docs/governance/ddd-tdd-rules.md",

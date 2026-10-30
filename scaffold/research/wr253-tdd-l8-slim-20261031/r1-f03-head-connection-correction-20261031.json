@@ -1,0 +1,50 @@
+{
+  "schema": "wr253-r1-f03-head-connection-correction.v1",
+  "evidence_kind": "scaffold",
+  "authority_effect": "none",
+  "review_refs": [
+    "https://github.com/RetryYN/HELIX-HARNESS/pull/4003#issuecomment-6535778580",
+    "https://github.com/RetryYN/HELIX-HARNESS/pull/4003#issuecomment-6535783014",
+    "https://github.com/RetryYN/HELIX-HARNESS/pull/4003#issuecomment-6535897453"
+  ],
+  "historical_source": {
+    "revision": "1a09e8670706c211c3fcb4ef6aa1f2a45a9dc3f5",
+    "path": "docs/helix-harness/L8-unit-verification/tdd-development-flow.json",
+    "pointer": "/f03_head_connection_oracles",
+    "use_boundary": "歴史的な意味の確認に限定。fixture、全返却、hash、runtime、test、algorithmの再利用は禁止。"
+  },
+  "current_scope": {
+    "root_id": "HARNESS-L9-015-F03",
+    "existing_l9_mapped_cases": 35,
+    "additional_f03_head_cases": 3,
+    "total_comparison_cases": 38,
+    "l9_changed": false,
+    "candidate_unit_design_changed": false
+  },
+  "boundary_rules": {
+    "required_head_absent_null_or_wrong_type": "order.source_status=not_observed; no inference from other steps or candidate; other seven findings unchanged.",
+    "mismatching_string": "when required shape/value exists, a different string yields contradicted_by_fixture.",
+    "head_value": "exact original string comparison only; no H0/H1/SHA format or real Git HEAD requirement."
+  },
+  "unverified_input_branches": {
+    "required_head_absent": "No complete-return example; unverified.",
+    "required_head_null": "No complete-return example; unverified.",
+    "required_head_wrong_type": "No complete-return example; unverified."
+  },
+  "oracle_test_status": {
+    "contract_oracle_id": "HARNESS-L10-015-F03",
+    "row_oracle_id": null,
+    "test_citation": null,
+    "execution_state": "not_executed"
+  },
+  "current_l5_pointer": "docs/helix-harness/L8-unit-verification/tdd-development-flow.json#/cases/3/unit_case_rows",
+  "current_l5_pointer_use": "L5 oracle_location resolves directly to the current F03 unit_case_rows; the removed snapshot is historical provenance only.",
+  "verification_summary": "scaffold/research/wr253-tdd-l8-slim-20261031/verification-summary.json remains unchanged as a point-in-time record.",
+  "restored_case_ids": [
+    "AUDIT-015-F03-HEAD-normal",
+    "AUDIT-015-F03-HEAD-other_pre_body_revision",
+    "AUDIT-015-F03-HEAD-other_green_revision"
+  ],
+  "canonical_case_definition": "Current case counterexamples and expected values exist only in docs/helix-harness/L8-unit-verification/tdd-development-flow.json#/cases/3/unit_case_rows.",
+  "source_trace_boundary": "Each added row source_trace_ref points to its raw_source_recipe in the fixed historical L8 revision above; expected_source_ref points to that historical case expected order status as provenance. These historical values are not active oracle input."
+}

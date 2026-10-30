@@ -110,7 +110,8 @@ def main() -> int:
 
     base_l8 = json.loads(base_bytes(L8_PATH))
     base_l8f = next(row for row in base_l8["cases"] if row["id"] == "HARNESS-L8-015-F03")
-    checks["canonical_L8_F03_ids_and_historical_unit_cases_preserved"] = l8f["unit_case_ids"] == base_l8f["unit_case_ids"] and json.loads(base_bytes_at_revision(F03_MERGE_REVISION, L8_PATH))["unit_cases"] == json.loads(base_bytes(L8_PATH))["unit_cases"]
+    r1_head_ids = ["AUDIT-015-F03-HEAD-normal", "AUDIT-015-F03-HEAD-other_pre_body_revision", "AUDIT-015-F03-HEAD-other_green_revision"]
+    checks["canonical_L8_F03_ids_and_historical_unit_cases_preserved"] = l8f["unit_case_ids"] == base_l8f["unit_case_ids"] + r1_head_ids and json.loads(base_bytes_at_revision(F03_MERGE_REVISION, L8_PATH))["unit_cases"] == json.loads(base_bytes(L8_PATH))["unit_cases"]
     base_l5 = json.loads(base_bytes(L5_PATH))
     base_l5f = next(row for row in base_l5["contracts"] if row["id"] == "HARNESS-L5-015-F03")
     current_l5_without_candidate = dict(l5f); current_l5_without_candidate.pop("candidate_classification_design", None)

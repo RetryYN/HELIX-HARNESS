@@ -40,7 +40,7 @@ WR223_L5_REV = "87e5d15cdb909e88fd5d132ae7ad1d32c14b71d5"
 WR223_L5_SHA = "fce881931580d26381df12721dc740a82b685e29c2039a5e1ff838475824c176"
 WR223_L8_REV = "07b3462402992d51337b583f9f3d1f895c82e7c8"
 WR223_L8_SHA = "ee1648c067009e819d41f869733290042e103c39e41c0980d29dcdb46c107392"
-WR253_HISTORY_NOTE = "Historical L8 whole-file SHA-256 9f52fe3f90769cdacee9d147dceb0fabb2c36386839f39fdcb2d4039086ed6b7 is fixed evidence at revision 92cb38ffb792151ddd8029d654ca700126d02681, not the current L8 bytes. Current compact 35-row U-ID table and candidate values are checked by WR253 validator under SCF-B-0215."
+WR253_HISTORY_NOTE = "Historical L8 whole-file SHA-256 9f52fe3f90769cdacee9d147dceb0fabb2c36386839f39fdcb2d4039086ed6b7 is fixed evidence at revision 92cb38ffb792151ddd8029d654ca700126d02681, not the current L8 bytes. Current compact table has 35 existing L9-mapped rows plus 3 concise F03 head-comparison rows; candidate values and all 38 comparisons are checked by WR253 validator under SCF-B-0215."
 
 
 def read_json(path: str) -> dict:

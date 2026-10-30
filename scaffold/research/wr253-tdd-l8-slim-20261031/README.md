@@ -10,9 +10,9 @@
 
 ## 軽量化と保持
 
-L8から35件の展開済み`unit_cases`、fixture/body・mutation/value・full return・typed projection/COPY/hash、承認済みL3/L10の写し、legacy comparison、一般trace/scope/completion snapshot、および`f03_head_connection_oracles`を除いた。L8はrootごとのU-ID集合（5 root、35 ID）、既存25 source pin、authority境界、5つの`candidate_unit_design`を保持する。candidate_unit_designの値はWR243（#3984/#3989/#3994/#3995相当の候補記録）から一切変えていない。全35 U-IDに対して短い識別的な反例・期待、RFC6901のnumeric配列indexで解決するL9 source/expected-source traceを`unit_case_rows`へ短く残し、各rootの対象・contract oracle・未実行状態・row oracle欠落・test citation欠落は`unit_case_contract`へまとめた。未作成のrow oracle/test citationはnullと明示し、候補designは値を変えていない。
+L8から35件の展開済み`unit_cases`、fixture/body・mutation/value・full return・typed projection/COPY/hash、承認済みL3/L10の写し、legacy comparison、一般trace/scope/completion snapshot、および`f03_head_connection_oracles`の詳細payloadを除いた。L8はrootごとの既存35 U-ID、追加F03 head比較3件（計38比較、L9対応35件＋L8内の追加3件）、既存25 source pin、authority境界、5つの`candidate_unit_design`を保持する。candidate_unit_designの値はWR243（#3984/#3989/#3994/#3995相当の候補記録）から一切変えていない。既存35 U-IDには短い識別的な反例・期待と、numeric RFC6901配列indexで解決するL9 source/expected-source traceを残す。追加3件は、head一致／pre-body head不一致／Green head不一致と`order.source_status`だけを短く残し、fixture/full return/hashは戻さない。38比較の内訳はこの文書と`removed_materials`に明記する。`unit_case_contract`には追加3 IDの参照、3つの境界規則、absent/null/誤型の未検証状態、および既存の対象・contract oracle・実行・row oracle/test citation状態を置く。追加3件は未実行の合成case上の期待であり、実Red・実観測・TDD成功を示さない。row oracleとtest citationは未作成のnullであり、候補designは不変。
 
-L5の`f03_head_connection_detail`は設計関数とhash観測の技術的説明を持つ一方、旧L8節は独立比較用の3ケース、8 Findingの照合境界、候補binding等を持つ。両節の意味・field集合が同一とは確認できないため、意味上の別節へ付替えず、L5の`oracle_location`を撤去前L8の固定revision・pointerへ束縛した。撤去前L8 file SHAとsection canonical SHAを記録し、旧L8を実行・期待・algorithm生成へ使わない境界を付けた。
+L5の`f03_head_connection_detail`は設計関数とhash観測の技術的説明を持ち、旧L8節は独立比較用の3ケースと境界を持つ。旧L8のfull returnやhashは戻さず、3 caseのhead関係とsource status、境界規則、未検証枝だけを現行F03 contract/tableへ短く追補した。L5の`oracle_location`は実際に解決可能な現行L8 F03 `unit_case_rows`へ戻し、撤去前L8の固定revision/pointer/hashは由来として保持する。3行のsource_trace_refは固定旧revisionのraw_source_recipeを由来として指し、expected_source_refも固定旧caseのstatus由来に限定する。現行の期待定義は3行だけに置く。旧snapshotを実行・期待・algorithm生成へ使わない。
 
 ## 旧HELIXと失敗事例
 
@@ -22,7 +22,7 @@ L5の`f03_head_connection_detail`は設計関数とhash観測の技術的説明�
 
 ## 静的照合
 
-`verification-summary.json`に、撤去前pointer文字列の固定revision保持、35件の短文意味監査、RFC6901 numeric pointerの35件解決、撤去前後の35 U-ID照合、全5 candidate designのcanonical値照合、L9への35件のsource/expected pointer比較、L5の旧L8節binding、check-childのbefore/after、`scfctl validate`と`stale`を記録する。4つのWR243/WR249 validatorとWR253 U-ID表validatorは静的に実行した。旧runtime/test/CI/algorithmは実行しない。check-childのpair/pin検査はPASS。legacy 4-way row比較35件とL9の禁止byte-hash key35件は残り、L9は対象外で編集していない。
+`verification-summary.json`は元の時点証拠として変更しない。R1追補と新しい静的検証artifactは別ファイルへ記録する。WR253共通validatorは既存35件のL9 pointer/意味を維持し、追加3件のID・簡潔な意味・boundary 3則・unverified 3枝・現行L5 pointer解決を別に検査する。全5 candidate designのcanonical値は不変。旧runtime/test/CI/algorithmは実行しない。L9は対象外で編集しない。
 
 ## F01/F02 validatorの追補
 

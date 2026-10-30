@@ -63,7 +63,14 @@ def main() -> int:
         checks[f"{label}_candidate_count_and_one_to_one_ids"] = len(c5) == len(c8) == count and refs5 == refs8 and len(set(refs5)) == count
         checks[f"{label}_L5_L8_source_text_matches_by_UID"] = all(a["negative_condition"] == b["counterexample"] and a["expected_observation"] == b["candidate_expected_result"] for a, b in zip(c5, c8))
         checks[f"{label}_existing_L9_trace_refs"] = all(row["source_trace_ref"] == f"{L9}#/cases/{index}/negative_cases/{i}" for i, row in enumerate(c8))
-        checks[f"{label}_canonical_unit_case_ids_preserved"] = c8_obj["unit_case_ids"] == keyed(json.loads(git_bytes(L8)), "cases", l8id)["unit_case_ids"]
+        historical_ids = keyed(json.loads(git_bytes(L8)), "cases", l8id)["unit_case_ids"]
+        current_ids = c8_obj["unit_case_ids"]
+        expected_additions = [
+            "AUDIT-015-F03-HEAD-normal",
+            "AUDIT-015-F03-HEAD-other_pre_body_revision",
+            "AUDIT-015-F03-HEAD-other_green_revision",
+        ] if label == "F03" else []
+        checks[f"{label}_canonical_unit_case_ids_preserved"] = current_ids == historical_ids + expected_additions
         checks[f"{label}_missing_row_oracle_and_test_citation_preserved"] = all(row["row_oracle_id"] is None and row["row_oracle_status"] == "missing_not_created" and row["test_citation"] is None and row["test_citation_status"] == "not_found_not_created" for row in c8)
         checks[f"{label}_contract_oracle_preserved"] = all(row["contract_oracle_id"] == f"HARNESS-L10-015-{label}" and row["target_ref"] == l5id for row in c8)
     checks["all_14_existing_U_IDs_are_unique"] = len(all_refs) == 14 and len(set(all_refs)) == 14

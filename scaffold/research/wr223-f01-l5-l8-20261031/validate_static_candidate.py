@@ -16,7 +16,7 @@ BASE = "dd5931cfff4ff786da2ced44de2a40529edf7b71"
 L5_REV = "87e5d15cdb909e88fd5d132ae7ad1d32c14b71d5"
 L8_REV = "07b3462402992d51337b583f9f3d1f895c82e7c8"
 L8_SHA = "ee1648c067009e819d41f869733290042e103c39e41c0980d29dcdb46c107392"
-WR253_HISTORY_NOTE = "Historical L8 whole-file SHA-256 ee1648c067009e819d41f869733290042e103c39e41c0980d29dcdb46c107392 is fixed evidence at revision 07b3462402992d51337b583f9f3d1f895c82e7c8, not the current L8 bytes. Current compact 35-row U-ID table and candidate values are checked by WR253 validator under SCF-B-0215."
+WR253_HISTORY_NOTE = "Historical L8 whole-file SHA-256 ee1648c067009e819d41f869733290042e103c39e41c0980d29dcdb46c107392 is fixed evidence at revision 07b3462402992d51337b583f9f3d1f895c82e7c8, not the current L8 bytes. Current compact table has 35 existing L9-mapped rows plus 3 concise F03 head-comparison rows; candidate values and all 38 comparisons are checked by WR253 validator under SCF-B-0215."
 REVIEWED = "a715e777bd59291b26f09c0c1c5481273c6eba2e"
 L3 = "docs/helix-harness/L3-requirements/functional-requirements.json"
 L10 = "docs/helix-harness/L10-verification/functional-verification.json"
@@ -353,7 +353,14 @@ def main() -> None:
     candidate_ids = {x["case_id"] for x in candidate_l8["cases"]}
     assert candidate_ids.isdisjoint(canonical_ids) and candidate_ids.isdisjoint(all_unit_ids)
     assert len(l8_f01["unit_case_ids"]) == len(l8_f01_base["unit_case_ids"]) == 6
-    assert len(all_unit_ids) == len(l8_base["unit_cases"]) == 35
+    historical_unit_ids = {row["id"] for row in l8_base["unit_cases"]}
+    added_head_ids = {
+        "AUDIT-015-F03-HEAD-normal",
+        "AUDIT-015-F03-HEAD-other_pre_body_revision",
+        "AUDIT-015-F03-HEAD-other_green_revision",
+    }
+    assert len(historical_unit_ids) == 35
+    assert len(all_unit_ids) == 38 and historical_unit_ids <= all_unit_ids and all_unit_ids - historical_unit_ids == added_head_ids
 
     assert binding["id"] == "SCF-B-0192"
     expected_artifacts = {

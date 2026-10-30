@@ -8,10 +8,16 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[3]
 BASE = "46864fcaa2426a480dbd037040cd4c4332c61ddd"
+HEAD_ORACLE_SOURCE = "1a09e8670706c211c3fcb4ef6aa1f2a45a9dc3f5"
 CURRENT_SOURCE_REVISION = BASE
 L8 = "docs/helix-harness/L8-unit-verification/tdd-development-flow.json"
 L9 = "docs/helix-harness/L9-integration-verification/tdd-development-flow.json"
 CANDIDATE_FIELDS = ("candidate_unit_design",)
+HEAD_CASES = {
+    "AUDIT-015-F03-HEAD-normal": {"counterexample": "合成例: pre-body H0、body from H0、Green H1、body to H1が一致。", "expected": "期待（未実行・合成case）: order.source_status=supported_by_fixture。", "head_relation": "pre-body H0 = body.from_head H0; Green H1 = body.to_head H1", "source_status": "supported_by_fixture"},
+    "AUDIT-015-F03-HEAD-other_pre_body_revision": {"counterexample": "合成例: body from H9がpre-body H0と不一致。", "expected": "期待（未実行・合成case）: order.source_status=contradicted_by_fixture。", "head_relation": "body.from_head H9 differs from pre-body H0", "source_status": "contradicted_by_fixture"},
+    "AUDIT-015-F03-HEAD-other_green_revision": {"counterexample": "合成例: Green H8がbody to H1と不一致。", "expected": "期待（未実行・合成case）: order.source_status=contradicted_by_fixture。", "head_relation": "Green H8 differs from body.to_head H1", "source_status": "contradicted_by_fixture"},
+}
 COMPACT_MEANING_AUDIT = {'HARNESS-L9-015-B01-NORMAL': {'counterexample': '正常系: 同一契約を利用者CIへ渡す。',
                                'expected': '同一契約の利用者CI利用を支援し、品質・C1・受入を分離。Provisional上限。'},
  'HARNESS-L9-015-B01-OS-CI': {'counterexample': '正常系: 同一契約をOS CIへ渡す。',
@@ -108,6 +114,22 @@ def pointer(doc, ref, path):
     return value
 
 
+def resolve_fixed_or_current_ref(ref):
+    """Resolve current L9/current L8 refs or a revision:path#pointer provenance ref."""
+    head, marker, fragment = ref.partition("#")
+    if not marker:
+        raise ValueError(f"missing JSON pointer fragment: {ref}")
+    if len(head) > 41 and head[40] == ":" and all(c in "0123456789abcdef" for c in head[:40]):
+        revision, path = head[:40], head[41:]
+        doc = git_json(revision, path)
+        return pointer(doc, f"{path}#{fragment}", path)
+    if head == L8:
+        return pointer(read(L8), ref, L8)
+    if head == L9:
+        return pointer(read(L9), ref, L9)
+    raise ValueError(f"unsupported provenance pointer: {ref}")
+
+
 def canonical_l9_ref(l9, ref):
     prefix = L9 + "#/"
     if not ref.startswith(prefix):
@@ -129,6 +151,8 @@ def normalized_pre_slim_l8(doc):
     for key in ("reviewed_content_head", "decision_record_sha256", "main_ancestor_check", "approved_wholes_source_revision"):
         boundary.pop(key, None)
     for case in doc.get("cases", []):
+        if case.get("root_id") == "HARNESS-L9-015-F03":
+            case["unit_case_ids"] = [uid for uid in case.get("unit_case_ids", []) if uid not in HEAD_CASES]
         case.pop("unit_case_rows", None)
         case.pop("unit_case_contract", None)
     return doc
@@ -140,7 +164,12 @@ def normalized_pre_slim_l5(doc):
     def visit(value):
         if isinstance(value, dict):
             value.pop("l8_oracle_removed_snapshot", None)
-            if value.get("oracle_location") == f"{BASE}:{L8}#/f03_head_connection_oracles":
+            if value.get("oracle_location") in (
+                f"{BASE}:{L8}#/f03_head_connection_oracles",
+                f"{L8}#/f03_head_connection_oracles",
+                f"{L8}#/cases/3/unit_case_contract/head_connection_cases",
+                f"{L8}#/cases/3/unit_case_rows",
+            ):
                 value["oracle_location"] = f"{L8}#/f03_head_connection_oracles"
             for child in value.values():
                 visit(child)
@@ -153,11 +182,14 @@ def normalized_pre_slim_l5(doc):
 
 def run_checks():
     current, historical, l9 = read(L8), git_json(BASE, L8), read(L9)
+    historical_head = git_json(HEAD_ORACLE_SOURCE, L8)["f03_head_connection_oracles"]
     old_by_id = {row["id"]: row for row in historical["unit_cases"]}
     current_cases = {row["id"]: row for row in current["cases"]}
     old_cases = {row["id"]: row for row in historical["cases"]}
     checks = {}
-    checks["historical_35_U_IDs_resolve_to_current_table"] = len(old_by_id) == 35 and sum(len(row.get("unit_case_rows", [])) for row in current["cases"]) == 35
+    current_ids = {r.get("id") for c in current["cases"] for r in c.get("unit_case_rows", [])}
+    checks["historical_35_U_IDs_resolve_to_current_table"] = len(old_by_id) == 35 and set(old_by_id) <= current_ids
+    checks["current_comparison_count_is_35_plus_3"] = sum(len(row.get("unit_case_rows", [])) for row in current["cases"]) == 38
     all_ids = []
     checks["current_rows_are_compact_and_complete"] = True
     checks["all_row_sources_resolve"] = True
@@ -175,15 +207,16 @@ def run_checks():
         oracle_ids = {old_rows[uid]["system_oracle_ref"] for uid in ids}
         checks["all_shared_targets_and_oracles_match"] &= len(oracle_ids) == 1
         expected_contract_oracle = next(iter(oracle_ids)) if oracle_ids else None
-        checks["current_rows_are_compact_and_complete"] &= [r.get("id") for r in rows] == ids
+        expected_ids = ids + (list(HEAD_CASES) if now.get("root_id") == "HARNESS-L9-015-F03" else [])
+        checks["current_rows_are_compact_and_complete"] &= [r.get("id") for r in rows] == expected_ids
         checks["current_rows_are_compact_and_complete"] &= all(
             set(r) == {"id", "source_trace_ref", "expected_source_ref", "counterexample", "expected"}
             and isinstance(r.get("counterexample"), str) and bool(r["counterexample"])
             and isinstance(r.get("expected"), str) and bool(r["expected"])
-            and COMPACT_MEANING_AUDIT.get(r["id"]) == {"counterexample": r["counterexample"], "expected": r["expected"]}
+            and (COMPACT_MEANING_AUDIT.get(r["id"]) or {k: HEAD_CASES.get(r["id"], {}).get(k) for k in ("counterexample", "expected")}) == {"counterexample": r["counterexample"], "expected": r["expected"]}
             for r in rows
         )
-        checks["all_shared_targets_and_oracles_match"] &= contract == {
+        expected_contract = {
             "target_ref": old.get("l5_contract_ref"),
             "contract_oracle_id": expected_contract_oracle,
             "execution_state": "not_executed",
@@ -192,20 +225,52 @@ def run_checks():
             "test_citation": None,
             "test_citation_status": "not_found_not_created",
         }
+        if now.get("root_id") == "HARNESS-L9-015-F03":
+            expected_contract.update({
+                "head_connection_case_refs": list(HEAD_CASES),
+                "head_connection_boundary_rules": {
+                    "required_head_absent_null_or_wrong_type": "order.source_status=not_observed; do not infer from other steps or candidate, and leave the other seven findings unchanged.",
+                    "mismatching_string": "when required shape/value exists, a different string yields contradicted_by_fixture.",
+                    "head_value": "compare original strings exactly; do not require H0/H1/SHA format or a real Git HEAD.",
+                },
+                "unverified_input_branches": {
+                    "required_head_absent": "No complete-return example; unverified.",
+                    "required_head_null": "No complete-return example; unverified.",
+                    "required_head_wrong_type": "No complete-return example; unverified.",
+                },
+            })
+        checks["all_shared_targets_and_oracles_match"] &= contract == expected_contract
         checks["all_candidate_design_values_unchanged"] &= now.get("candidate_unit_design") == old.get("candidate_unit_design")
         all_ids.extend(r["id"] for r in rows)
         for row in rows:
             try:
-                parts = row["source_trace_ref"].split("#/", 1)[1].split("/")
-                if len(parts) < 4 or parts[0] != "cases" or not parts[1].isdigit():
-                    raise ValueError("source_trace_ref must use numeric RFC6901 case index")
-                resolved = pointer(l9, row["source_trace_ref"], L9)
-                expected_parts = row["expected_source_ref"].split("#/", 1)[1].split("/")
-                if len(expected_parts) < 3 or expected_parts[0] != "cases" or not expected_parts[1].isdigit():
-                    raise ValueError("expected_source_ref must use numeric RFC6901 case index")
-                pointer(l9, row["expected_source_ref"], L9)
-                if resolved.get("source_ref", {}).get("identity") != "SOURCE-" + row["id"]:
-                    raise ValueError("source identity does not match U-ID")
+                if row["id"] in HEAD_CASES:
+                    resolved = resolve_fixed_or_current_ref(row["source_trace_ref"])
+                    expected = resolve_fixed_or_current_ref(row["expected_source_ref"])
+                    old_index = {
+                        "AUDIT-015-F03-HEAD-normal": 0,
+                        "AUDIT-015-F03-HEAD-other_pre_body_revision": 1,
+                        "AUDIT-015-F03-HEAD-other_green_revision": 2,
+                    }[row["id"]]
+                    old_prefix = f"{HEAD_ORACLE_SOURCE}:{L8}#/f03_head_connection_oracles/cases/{old_index}"
+                    if (
+                        row["source_trace_ref"] != old_prefix + "/raw_source_recipe"
+                        or row["expected_source_ref"] != old_prefix + "/expected_output_projection/findings/0/source_status"
+                        or not isinstance(resolved, dict)
+                        or expected != HEAD_CASES[row["id"]]["source_status"]
+                    ):
+                        raise ValueError("head row lacks the fixed historical source/status provenance")
+                else:
+                    parts = row["source_trace_ref"].split("#", 1)[1].split("/", 1)[1].split("/")
+                    if len(parts) < 4 or parts[0] != "cases" or not parts[1].isdigit():
+                        raise ValueError("source_trace_ref must use numeric RFC6901 case index")
+                    resolved = pointer(l9, row["source_trace_ref"], L9)
+                    expected_parts = row["expected_source_ref"].split("#", 1)[1].split("/", 1)[1].split("/")
+                    if len(expected_parts) < 3 or expected_parts[0] != "cases" or not expected_parts[1].isdigit():
+                        raise ValueError("expected_source_ref must use numeric RFC6901 case index")
+                    pointer(l9, row["expected_source_ref"], L9)
+                    if resolved.get("source_ref", {}).get("identity") != "SOURCE-" + row["id"]:
+                        raise ValueError("source identity does not match U-ID")
             except Exception:
                 checks["all_row_sources_resolve"] = False
         for uid in ids:
@@ -239,7 +304,48 @@ def run_checks():
                 checks["all_35_concise_meanings_are_rowwise_audited"] &= audited == {"counterexample": summary.get("counterexample"), "expected": summary.get("expected")}
             except Exception:
                 checks["all_35_old_source_and_expected_materials_match"] = False
-    checks["all_35_U_IDs_unique"] = len(all_ids) == 35 and len(set(all_ids)) == 35 and set(all_ids) == set(old_by_id)
+    checks["all_35_U_IDs_unique"] = len(all_ids) == 38 and len(set(all_ids)) == 38 and set(old_by_id) <= set(all_ids)
+    f03 = current_cases["HARNESS-L8-015-F03"]
+    checks["F03_three_head_cases_boundary_and_unverified_branches_match"] = (
+        [r["id"] for r in f03["unit_case_rows"][-3:]] == list(HEAD_CASES)
+        and len(f03["unit_case_contract"].get("head_connection_boundary_rules", {})) == 3
+        and set(f03["unit_case_contract"].get("unverified_input_branches", {})) == {"required_head_absent", "required_head_null", "required_head_wrong_type"}
+    )
+    old_head_cases = {case["id"]: case for case in historical_head["cases"]}
+    historical_meanings_match = True
+    for uid, data in HEAD_CASES.items():
+        old_case = old_head_cases.get(uid, {})
+        steps = old_case.get("raw_source_recipe", {}).get("expanded_owner_material", {}).get("steps", [])
+        step_by_kind = {step.get("kind"): step for step in steps}
+        candidate = old_case.get("function_arguments", {}).get("input", {}).get("candidate_value")
+        finding = old_case.get("expected_output_projection", {}).get("findings", [{}])[0]
+        historical_meanings_match &= (
+            old_case.get("meaning_expected") == data["source_status"]
+            and finding.get("source_status") == data["source_status"]
+            and candidate == {"state": "absent"}
+            and (step_by_kind.get("pre_body_red", {}).get("head"), step_by_kind.get("minimal_body", {}).get("from_head"), step_by_kind.get("green", {}).get("head"), step_by_kind.get("minimal_body", {}).get("to_head"))
+            == {
+                "AUDIT-015-F03-HEAD-normal": ("H0", "H0", "H1", "H1"),
+                "AUDIT-015-F03-HEAD-other_pre_body_revision": ("H0", "H9", "H1", "H1"),
+                "AUDIT-015-F03-HEAD-other_green_revision": ("H0", "H0", "H8", "H1"),
+            }[uid]
+        )
+    checks["F03_head_cases_match_fixed_historical_semantics"] = historical_meanings_match
+    old_unverified = historical_head.get("scenario_scope", {}).get("unverified_input_branches", {})
+    checks["F03_unverified_branches_preserved_as_unverified"] = (
+        set(old_unverified) == {"required_head_absent", "required_head_null", "required_head_wrong_type"}
+        and all("未実施" in value for value in old_unverified.values())
+        and all("unverified" in value for value in f03["unit_case_contract"]["unverified_input_branches"].values())
+    )
+    l5 = read("docs/helix-harness/L5-detail-design/tdd-development-flow.json")
+    oracle_pointer = l5["f03_head_connection_detail"]["oracle_location"]
+    current_rows = f03["unit_case_rows"]
+    referenced_head_rows = [row for row in current_rows if row["id"] in HEAD_CASES]
+    checks["L5_oracle_location_resolves_to_current_F03_unit_case_rows"] = (
+        pointer(current, oracle_pointer, L8) == current_rows
+        and [row["id"] for row in referenced_head_rows] == list(f03["unit_case_contract"]["head_connection_case_refs"])
+        and all(row["expected"].endswith(HEAD_CASES[row["id"]]["source_status"] + "。") for row in referenced_head_rows)
+    )
     return checks
 
 
