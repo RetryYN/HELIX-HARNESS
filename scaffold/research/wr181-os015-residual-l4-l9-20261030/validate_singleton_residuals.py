@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Static structure checks for WR181 OS015 L4/L9 singleton residual candidate."""
 import json
+import hashlib
 from pathlib import Path
 ROOT=Path(__file__).resolve().parents[3]
 L4=json.loads((ROOT/'docs/helix-os/L4-basic-design/management-authority-source-record.json').read_text())
@@ -12,6 +13,11 @@ removed={
 new={'OS015-NEG-COMPOSITE-62fb66a6e279702c28b1aa4f8ee9380369f59c8322c999587e174c6c4992b558','OS015-NEG-COMPOSITE-deac8ce9011311dc91b808f2f94e7d2dcd7320bd68b2b820d7eeef6ac092e7f9'}
 ids={x['class_id'] for x in L4['failure_classifications']}
 assert len(ids)==47 and not ids.intersection(removed) and new <= ids
+for row in L4['failure_classifications']:
+    if row['class_id'] in new:
+        key={'expected_classification':row['expected_classification'],'finding_codes':row['expected']['finding_codes'],'backflow_owner':row['backflow_owner'],'expected_axis':row['expected_axis'],'expected_state':row['expected_state'],'owner_ref':{'kind':'function_ref','id':'FN-OS015-01'}}
+        encoded=json.dumps(key,ensure_ascii=False,sort_keys=True,separators=(',',':')).encode()
+        assert row['class_id']=='OS015-NEG-COMPOSITE-'+hashlib.sha256(encoded).hexdigest()
 res=L4['diagnostic_contract']['composite_class_formation']['non_occurring_singleton_residuals']
 assert len(res)==6 and {x['class_id'] for x in res}==removed and all(x['member_count']==0 for x in res)
 assert len(L9['integration_cases'])==585 and L9['completion']['synthetic_case_count']==585
