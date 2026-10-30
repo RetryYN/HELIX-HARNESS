@@ -1,0 +1,327 @@
+{
+  "schema": "wr186-l9-f05-single-finding-audit-rows.v1",
+  "authority_effect": "none",
+  "fixed_source_revision": "ed3981e7b9419d796adf1981f8990c6b626ecabe",
+  "fixed_source_path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+  "l3_source": {
+    "revision": "827c4ea924a15b6b54bbe9d1f5d2f9fbdefa65de",
+    "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+    "pointer": "/requirements/68/obligation",
+    "id": "HARNESS-L3-003-F05"
+  },
+  "l4_source": {
+    "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
+    "contract_pointer": "/contracts/5",
+    "classification_pointer": "/contracts/5/negative_classifications/0",
+    "port_fields_pointer": "/contracts/5/connection_detail/port_fields",
+    "initial_order_pointer": "/contracts/5/connection_detail/initial_order",
+    "expected_origin": "L4 class membership, finding code, state and backflow_owner; all cases are singleton."
+  },
+  "l5_source": null,
+  "method": "静的なsource pointer・raw hash・case参照の監査。finding outputを生成しない。",
+  "excluded_inputs": [
+    "L9 expected_material",
+    "negative_class_assignment",
+    "checker output",
+    "L5-generated expected output",
+    "L9 expected_materialを、観測済み処理結果として扱うこと"
+  ],
+  "shared_review": {
+    "firing_rule": "固定L9 rawでport.defined_seq=0、development_start_seq=1。port.requiredに対象fieldがあり、port.observationsの同じfieldがnull。L4の開始時定義順と必須port_fields、F05_REQUIRED_PORT_FIELD_MISSINGのL4 classificationに一致する。各caseで対象fieldだけが欠落し、他のrequired observationは非null。",
+    "non_firing_authority": "existing_authority.qualificationはsynthetic_reference_not_actual_permissionだが、initial_scopeのactual_release_selectedとactual_incident_operation_selectedはいずれもfalse。原rawは実操作を許可・実行扱いしていないため、未決authorityを実操作許可扱いする条件ではない。",
+    "non_firing_return_target": "incident.reverse_fullback.stateはnot_executed、incident.return_layerはnull。戻り先をunknownのまま保持し、既定層への補完がないためF05_RETURN_TARGET_UNKNOWNの誤処理条件に当たらない。",
+    "non_firing_operation_effect": "初回scopeの実release/Incident運転選択はfalseで、actual release/deployment/approval/completionの値もない。Port照合を実作用として扱っていない。",
+    "non_firing_completion": "permanent_remedyはnull、current_backfillのL1-L12は全てnull、issue_closedはfalse。配備/closeから恒久対策やbackfill完了を導いていない。",
+    "l9_input_and_output": "各L9 case自身のbase_case_ref/mutationと固定source packetを刺激として保持し、L3要求・L4 classificationからsingleton code/owner候補を独立に記録する。L5は一致照合のみで、既存L9 expected_materialは参照しない。"
+  },
+  "candidate_count": 0,
+  "checker_marker_enabled": false,
+  "execution_or_product_test": false,
+  "fixed_source_sha256": "91d0bcd34b8b451bc8e81f5d13d0c5f413de3ad5f7c70ba90a704134c4af3735",
+  "l5_concordance": {
+    "path": "docs/helix-harness/L5-detail-design/process-state-port.json",
+    "function_pointer": "/functions/5",
+    "output_contract_pointer": "/functions/5/failure_output_contract",
+    "rule_order_pointer": "/functions/5/failure_output_contract/ordered_rule_refs",
+    "role": "欠落fieldそのものをfindingとする根拠ではなく、成立/Release-eligibleの追加条件を確認する照合先。観測できない場合は期待を形成しない。",
+    "ordered_rule_refs_are_expectation_source": false
+  },
+  "base_revision": "821a655ad6949b2a7a5344b26e3c170cccc353a6",
+  "audit_row_count": 8,
+  "invalidated_prior_candidate_count": 8,
+  "finding_formation": "unknown/unformed; 固定rawは刺激・mutationを示すが、成立扱い/Release-eligible扱いの処理結果を示さない。",
+  "audit_rows": [
+    {
+      "case_id": "H003-F05-MISSING-proofs",
+      "finding_set_status": "unknown/unformed",
+      "finding_set": "unknown/unformed",
+      "owner_status": "unknown/unformed",
+      "ordered_output_status": "unknown/unformed",
+      "not_an_empty_set": true,
+      "reason": "必須field欠落の入力差は示されるが、欠落したままRelease-eligibleとして扱った処理結果はない。",
+      "invalidated_prior_candidate_codes": [
+        "F05_REQUIRED_PORT_FIELD_MISSING"
+      ],
+      "l3_source_pointer": {
+        "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+        "revision": "827c4ea924a15b6b54bbe9d1f5d2f9fbdefa65de",
+        "pointer": "/requirements/68/obligation"
+      },
+      "l4_classification_source_pointers": [
+        {
+          "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
+          "pointer": "/contracts/5/negative_classifications/0"
+        }
+      ],
+      "raw_input_source": {
+        "revision": "ed3981e7b9419d796adf1981f8990c6b626ecabe",
+        "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+        "pointer": "/verification_obligations/5/negative_cases/0/independent_source_packet/raw_utf8",
+        "sha256": "264db0c55e04e7e6151ec20aa7e3603888619fbd1931eb473e9adf12095dbc70"
+      },
+      "mutation_pointer": {
+        "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+        "pointer": "/cases/5/negative_cases/0/mutation"
+      },
+      "base_case_ref": null
+    },
+    {
+      "case_id": "H003-F05-MISSING-artifact_identity",
+      "finding_set_status": "unknown/unformed",
+      "finding_set": "unknown/unformed",
+      "owner_status": "unknown/unformed",
+      "ordered_output_status": "unknown/unformed",
+      "not_an_empty_set": true,
+      "reason": "必須field欠落の入力差は示されるが、欠落したままRelease-eligibleとして扱った処理結果はない。",
+      "invalidated_prior_candidate_codes": [
+        "F05_REQUIRED_PORT_FIELD_MISSING"
+      ],
+      "l3_source_pointer": {
+        "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+        "revision": "827c4ea924a15b6b54bbe9d1f5d2f9fbdefa65de",
+        "pointer": "/requirements/68/obligation"
+      },
+      "l4_classification_source_pointers": [
+        {
+          "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
+          "pointer": "/contracts/5/negative_classifications/0"
+        }
+      ],
+      "raw_input_source": {
+        "revision": "ed3981e7b9419d796adf1981f8990c6b626ecabe",
+        "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+        "pointer": "/verification_obligations/5/negative_cases/1/independent_source_packet/raw_utf8",
+        "sha256": "53504110f22564264aa099ea7f2b818913e28c145e5189f1fd72f07d932903c1"
+      },
+      "mutation_pointer": {
+        "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+        "pointer": "/cases/5/negative_cases/1/mutation"
+      },
+      "base_case_ref": null
+    },
+    {
+      "case_id": "H003-F05-MISSING-environment",
+      "finding_set_status": "unknown/unformed",
+      "finding_set": "unknown/unformed",
+      "owner_status": "unknown/unformed",
+      "ordered_output_status": "unknown/unformed",
+      "not_an_empty_set": true,
+      "reason": "必須field欠落の入力差は示されるが、欠落したままRelease-eligibleとして扱った処理結果はない。",
+      "invalidated_prior_candidate_codes": [
+        "F05_REQUIRED_PORT_FIELD_MISSING"
+      ],
+      "l3_source_pointer": {
+        "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+        "revision": "827c4ea924a15b6b54bbe9d1f5d2f9fbdefa65de",
+        "pointer": "/requirements/68/obligation"
+      },
+      "l4_classification_source_pointers": [
+        {
+          "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
+          "pointer": "/contracts/5/negative_classifications/0"
+        }
+      ],
+      "raw_input_source": {
+        "revision": "ed3981e7b9419d796adf1981f8990c6b626ecabe",
+        "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+        "pointer": "/verification_obligations/5/negative_cases/2/independent_source_packet/raw_utf8",
+        "sha256": "e087e3ddba4edf2f7413806d29200164b01b464b8ee0ccf2349ebea6e8211617"
+      },
+      "mutation_pointer": {
+        "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+        "pointer": "/cases/5/negative_cases/2/mutation"
+      },
+      "base_case_ref": null
+    },
+    {
+      "case_id": "H003-F05-MISSING-dependencies",
+      "finding_set_status": "unknown/unformed",
+      "finding_set": "unknown/unformed",
+      "owner_status": "unknown/unformed",
+      "ordered_output_status": "unknown/unformed",
+      "not_an_empty_set": true,
+      "reason": "必須field欠落の入力差は示されるが、欠落したままRelease-eligibleとして扱った処理結果はない。",
+      "invalidated_prior_candidate_codes": [
+        "F05_REQUIRED_PORT_FIELD_MISSING"
+      ],
+      "l3_source_pointer": {
+        "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+        "revision": "827c4ea924a15b6b54bbe9d1f5d2f9fbdefa65de",
+        "pointer": "/requirements/68/obligation"
+      },
+      "l4_classification_source_pointers": [
+        {
+          "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
+          "pointer": "/contracts/5/negative_classifications/0"
+        }
+      ],
+      "raw_input_source": {
+        "revision": "ed3981e7b9419d796adf1981f8990c6b626ecabe",
+        "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+        "pointer": "/verification_obligations/5/negative_cases/3/independent_source_packet/raw_utf8",
+        "sha256": "6a1d7b9dfdbcf247745c69bdd94fa08ff38c021e512a2776760b00996b41ac49"
+      },
+      "mutation_pointer": {
+        "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+        "pointer": "/cases/5/negative_cases/3/mutation"
+      },
+      "base_case_ref": null
+    },
+    {
+      "case_id": "H003-F05-MISSING-security",
+      "finding_set_status": "unknown/unformed",
+      "finding_set": "unknown/unformed",
+      "owner_status": "unknown/unformed",
+      "ordered_output_status": "unknown/unformed",
+      "not_an_empty_set": true,
+      "reason": "必須field欠落の入力差は示されるが、欠落したままRelease-eligibleとして扱った処理結果はない。",
+      "invalidated_prior_candidate_codes": [
+        "F05_REQUIRED_PORT_FIELD_MISSING"
+      ],
+      "l3_source_pointer": {
+        "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+        "revision": "827c4ea924a15b6b54bbe9d1f5d2f9fbdefa65de",
+        "pointer": "/requirements/68/obligation"
+      },
+      "l4_classification_source_pointers": [
+        {
+          "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
+          "pointer": "/contracts/5/negative_classifications/0"
+        }
+      ],
+      "raw_input_source": {
+        "revision": "ed3981e7b9419d796adf1981f8990c6b626ecabe",
+        "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+        "pointer": "/verification_obligations/5/negative_cases/4/independent_source_packet/raw_utf8",
+        "sha256": "c490b15502c00f5a90125552e1f0b1d88f19f77775e4cb888b0ddabfc0b9d193"
+      },
+      "mutation_pointer": {
+        "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+        "pointer": "/cases/5/negative_cases/4/mutation"
+      },
+      "base_case_ref": null
+    },
+    {
+      "case_id": "H003-F05-MISSING-rollback",
+      "finding_set_status": "unknown/unformed",
+      "finding_set": "unknown/unformed",
+      "owner_status": "unknown/unformed",
+      "ordered_output_status": "unknown/unformed",
+      "not_an_empty_set": true,
+      "reason": "必須field欠落の入力差は示されるが、欠落したままRelease-eligibleとして扱った処理結果はない。",
+      "invalidated_prior_candidate_codes": [
+        "F05_REQUIRED_PORT_FIELD_MISSING"
+      ],
+      "l3_source_pointer": {
+        "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+        "revision": "827c4ea924a15b6b54bbe9d1f5d2f9fbdefa65de",
+        "pointer": "/requirements/68/obligation"
+      },
+      "l4_classification_source_pointers": [
+        {
+          "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
+          "pointer": "/contracts/5/negative_classifications/0"
+        }
+      ],
+      "raw_input_source": {
+        "revision": "ed3981e7b9419d796adf1981f8990c6b626ecabe",
+        "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+        "pointer": "/verification_obligations/5/negative_cases/5/independent_source_packet/raw_utf8",
+        "sha256": "ebe6142b9306ad7f541f7ca24001bc607094a06672ee488c88a51bc10e5e3fe1"
+      },
+      "mutation_pointer": {
+        "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+        "pointer": "/cases/5/negative_cases/5/mutation"
+      },
+      "base_case_ref": null
+    },
+    {
+      "case_id": "H003-F05-MISSING-deployment_conditions",
+      "finding_set_status": "unknown/unformed",
+      "finding_set": "unknown/unformed",
+      "owner_status": "unknown/unformed",
+      "ordered_output_status": "unknown/unformed",
+      "not_an_empty_set": true,
+      "reason": "必須field欠落の入力差は示されるが、欠落したままRelease-eligibleとして扱った処理結果はない。",
+      "invalidated_prior_candidate_codes": [
+        "F05_REQUIRED_PORT_FIELD_MISSING"
+      ],
+      "l3_source_pointer": {
+        "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+        "revision": "827c4ea924a15b6b54bbe9d1f5d2f9fbdefa65de",
+        "pointer": "/requirements/68/obligation"
+      },
+      "l4_classification_source_pointers": [
+        {
+          "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
+          "pointer": "/contracts/5/negative_classifications/0"
+        }
+      ],
+      "raw_input_source": {
+        "revision": "ed3981e7b9419d796adf1981f8990c6b626ecabe",
+        "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+        "pointer": "/verification_obligations/5/negative_cases/6/independent_source_packet/raw_utf8",
+        "sha256": "7696c06fd4acbfbd5ae718ff3dd160335a36a010793a1a724d9bcc14e1688323"
+      },
+      "mutation_pointer": {
+        "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+        "pointer": "/cases/5/negative_cases/6/mutation"
+      },
+      "base_case_ref": null
+    },
+    {
+      "case_id": "H003-F05-MISSING-acceptance",
+      "finding_set_status": "unknown/unformed",
+      "finding_set": "unknown/unformed",
+      "owner_status": "unknown/unformed",
+      "ordered_output_status": "unknown/unformed",
+      "not_an_empty_set": true,
+      "reason": "必須field欠落の入力差は示されるが、欠落したままRelease-eligibleとして扱った処理結果はない。",
+      "invalidated_prior_candidate_codes": [
+        "F05_REQUIRED_PORT_FIELD_MISSING"
+      ],
+      "l3_source_pointer": {
+        "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+        "revision": "827c4ea924a15b6b54bbe9d1f5d2f9fbdefa65de",
+        "pointer": "/requirements/68/obligation"
+      },
+      "l4_classification_source_pointers": [
+        {
+          "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
+          "pointer": "/contracts/5/negative_classifications/0"
+        }
+      ],
+      "raw_input_source": {
+        "revision": "ed3981e7b9419d796adf1981f8990c6b626ecabe",
+        "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+        "pointer": "/verification_obligations/5/negative_cases/7/independent_source_packet/raw_utf8",
+        "sha256": "45797625df2c95275e5d9021ac509a011c6819e43e8d078bd8aa5f43309ab474"
+      },
+      "mutation_pointer": {
+        "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+        "pointer": "/cases/5/negative_cases/7/mutation"
+      },
+      "base_case_ref": null
+    }
+  ]
+}

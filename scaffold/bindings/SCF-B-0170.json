@@ -6,7 +6,7 @@
   "product": "HELIX-OS",
   "owner_candidate": "HELIX-OS OS015 管理record/source projection設計",
   "state": "registered",
-  "reason": "既存のL4/L5 class形成規則と固定入力inventoryを保持する。PR-AではL4の2分類とL9の29ケースprojectionだけを追加し、L5 rule/L8 unit projectionは後続PR-Bへ分ける。",
+  "reason": "既存のL4/L5 class形成規則と固定入力inventoryを保持する。PR-AでL4分類とL9の29件projectionを追加し、PR-BではL5 failure ruleとL8 unit projectionを追加した。L9 class source pointer追記はPR-Cの残件。",
   "role": "OS015複合negative-equivalence-class形成規則の下流設計記録とL7固定入力の静的inventory",
   "upstream": [
     {
@@ -21,13 +21,13 @@
     },
     {
       "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
-      "sha256": "9146ffd557bc5da60f79cdcd462578b38edf6ec524143a705ab07eeb34c7997b",
-      "note": "L4 fixed input domain、finding/aggregation、condition_valuesと、PR-Aで追加する2 composite classificationを固定。L5 failure_ruleとL8 projectionは別PR-Bまで未形成。PR-A候補pinの対象path bytes。"
+      "sha256": "32e4a7b6432e7454d242277b37a0948916dc876b6e8e008ad8e4f8c2d7207081",
+      "note": "L4 fixed input domain、finding/aggregation、condition_valuesと、PR-Aで追加した2 composite classificationを固定。L5 failure_ruleとL8 projectionは別PR-Bまで未形成。PR-A候補pinの対象path bytes。 以前のpin=9146ffd557bc5da60f79cdcd462578b38edf6ec524143a705ab07eeb34c7997b。候補base 64d3cf3に新15 classと112件のL9 linkを追補後の現在bytes=fff2aa4e0883666d73af98733d32eda7b18a4e6a1bc2ebf6741df1c456c62bf6。新たに独立手動監査した15 classをL4へ追補。既存classとdiagnostic_contractは不変。 以前のpin=fff2aa4e0883666d73af98733d32eda7b18a4e6a1bc2ebf6741df1c456c62bf6。L4へ手動監査根拠の15 class rowsと対応するnegative_class_refsを追加。旧class、F02本文、diagnostic_contractは保持。 現在bytes sha256=a1746eea4b021e6d370fca76125179c38c8c241413044e31984e6b549ed0a38a。 2026-10-30 condition照合後candidate sha256=6613e77d651496efe9d576ce840324050147aca8f785c635ce1a858d6eba7ca8。class conditionをL7 fixed given.inputのphase/pointer/value照合に合わせ明確化。 2026-10-30 #3927 C0573–C0582のL4/L7再導出を反映したclass grouping candidate sha256=5038893210d772bc46fa75802757a90d9658ec4f427f76adcc3cf8a6702ce96f. M1 correction 16d683cd -> a0f8ffe7: prior pin=5038893210d772bc46fa75802757a90d9658ec4f427f76adcc3cf8a6702ce96f; current pin=32e4a7b6432e7454d242277b37a0948916dc876b6e8e008ad8e4f8c2d7207081; overall severity remains violation while selected classification facet state is unknown."
     },
     {
       "path": "docs/helix-os/L5-detail-design/management-authority-source-record.json",
-      "sha256": "6d313e6faaf56c0806c1964ac2bece5da0699de1d82dcc804fc77962f679275e",
-      "note": "固定carrierとfield比較、finding/retention、31既存failure rules、L4投影からのcomposite key/owner_ref解決。複合case rowsは未形成。"
+      "sha256": "c7d979d397f7ebc9b82b1cb5fa3e32f82737956c6a54adc2080342b729607c7f",
+      "note": "固定carrierとfield比較、finding/retention、33 failure rules、およびL4投影からの2 composite ruleを含むPR-B L5 bytes。"
     },
     {
       "path": "docs/helix-os/L7-function-verification/management-authority-source-record.json",
@@ -36,7 +36,7 @@
     },
     {
       "path": "scaffold/tools/design_verification_checker.py",
-      "sha256": "211e39ff48ec96adf37f948db91dd63795435c53671e16576b39eb0e3a0538d6",
+      "sha256": "cfd12c5bc4a1dd45351858488b476af0025d35deca7027da35bb1373818b129d",
       "note": "explicit_negative_equivalence_classesのclass keyと全L4/L5/L8/L9 rows比較の現行実装。候補はcheckerを変更しない。"
     },
     {
@@ -70,7 +70,7 @@
     "L4 facet order/within-facet and whole-result aggregation/condition_valuesから、single-axis class fieldへの明示的投影規則を記録する。",
     "L4 fixed carrierとbounded finding positionsから組合せ上限を計算し、full universeを列挙しない理由を記録する。",
     "L4 algorithmからsingletonとして成立しない6 finding classを特定し、併発所見の根拠を示す。",
-    "L9 observation combinationsをclass formation sourceとして使わない。case単位class assignmentは独立した手動照合が終わるまで未形成とする。"
+    "L9観測の組合せからclass形成や期待を逆生成しない。独立手動照合済み29件をL8へ投影し、残る112件は未割当として保持する。"
   ],
   "connections": {
     "consumers": [
@@ -104,7 +104,11 @@
     "scaffold/research/wr181-os015-composite-class-formation-20261030/residual-population-141.json",
     "scaffold/research/wr181-os015-composite-class-formation-20261030/inventory_141.py",
     "scaffold/research/wr181-os015-composite-class-formation-20261030/l7-fixed-input-inventory-141.json",
-    "scaffold/bindings/SCF-B-0170.json"
+    "scaffold/bindings/SCF-B-0170.json",
+    "scaffold/research/wr181-os015-pr-b-l5-l8-20261030/README.md",
+    "scaffold/research/wr181-os015-pr-b-l5-l8-20261030/validate_static_projection.py",
+    "scaffold/research/wr181-os015-pr-b-l5-l8-20261030/verification-summary.json",
+    "scaffold/research/wr181-os015-pr-b-l5-l8-20261030/static-validation.json"
   ],
   "verification": {
     "evidence_kind": "scaffold",

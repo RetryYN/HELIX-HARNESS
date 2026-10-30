@@ -1,0 +1,188 @@
+{
+  "schema": "wr181-os015-class-correction-summary.v1",
+  "correction_base_revision": "5d541f69ff86674e585311558ad2dac1972d42e4",
+  "source_base_revision": "64d3cf379335e0a4b034f7295a9a225a2d755986",
+  "candidate_commit": "450eb6343837379ce6bd073dde6a4e2189e962d4",
+  "latest_main_revision": "32ba19e67227c51d343831f22cea511b204ffc41",
+  "latest_main_fetch_matches_ls_remote": true,
+  "pr_3923_state": "MERGED",
+  "pr_3927_state": "NOT_IN_MAIN_AT_FETCH",
+  "correction_scope": {
+    "cases": [
+      "HELIXOS-L9-015-C0574",
+      "HELIXOS-L9-015-C0575",
+      "HELIXOS-L9-015-C0577",
+      "HELIXOS-L9-015-C0578",
+      "HELIXOS-L9-015-C0580",
+      "HELIXOS-L9-015-C0581"
+    ],
+    "findings_added": "source_unresolved x4 at context prior ref, context prior revision, actual prior ref, actual prior revision",
+    "new_l4_l9_class_rows": 18,
+    "obsolete_incorrect_group_removed": 1
+  },
+  "class_population": {
+    "total_manifest_classes": 20,
+    "existing_two_classes": 2,
+    "new_l4_l9_classes": 18,
+    "existing_class_links": 75,
+    "new_class_links": 37,
+    "total_l9_case_links": 112,
+    "l9_case_rows": 583,
+    "previously_linked_29_unchanged": true,
+    "singleton_less_classes_unformed": 6
+  },
+  "l4_sha256": "32e4a7b6432e7454d242277b37a0948916dc876b6e8e008ad8e4f8c2d7207081",
+  "l9_sha256": "365b89c9131e5edd9b64d474438ff780360118819cc651ee535f64a70aa5ff1d",
+  "l9_case_expected_condition_expected_preserved_unchanged": true,
+  "l5_l8_source_documents_unchanged": true,
+  "static_validation": "PASS",
+  "static_validation_report_sha256": "9de311bd309a24868150e1c0da687f57252c12b89b2ed831efab46d4f9cf4ed1",
+  "static_trial_report_sha256": "9de311bd309a24868150e1c0da687f57252c12b89b2ed831efab46d4f9cf4ed1",
+  "scfctl_current_branch": {
+    "validate": "PASS (bindings=166 fail=0)",
+    "stale": "PASS (stale=0)"
+  },
+  "scfctl_latest_main_trial": {
+    "validate": "PASS (bindings=165 fail=0)",
+    "stale": "PASS (stale=0)"
+  },
+  "child_before_correction_on_5d541": {
+    "exit": 1,
+    "passed": false,
+    "L4_L9_pair": true,
+    "L5_L8_pair": true,
+    "negative_4way_passed": false,
+    "negative_4way_failures": 211,
+    "counts": {
+      "L4": 48,
+      "L9": 42,
+      "L8": 27,
+      "L5": 33
+    },
+    "matched_case_count": 460,
+    "raw_report_sha256": "c0a31f0bad616229824fc7b08fcd6616f7aa6c44db9f31685575ef68c69517a5"
+  },
+  "child_after_correction": {
+    "exit": 1,
+    "passed": false,
+    "L4_L9_pair": true,
+    "L5_L8_pair": true,
+    "negative_4way_passed": false,
+    "negative_4way_failures": 226,
+    "counts": {
+      "L4": 51,
+      "L9": 45,
+      "L8": 27,
+      "L5": 33
+    },
+    "matched_case_count": 460,
+    "raw_report_sha256": "7fdb5e2e5a460988a1a2c7d259f9c9a086c74c6d18f612c7f130948c7fc73184"
+  },
+  "child_latest_main_trial": {
+    "exit": 1,
+    "passed": false,
+    "L4_L9_pair": true,
+    "L5_L8_pair": true,
+    "negative_4way_passed": false,
+    "negative_4way_failures": 226,
+    "counts": {
+      "L4": 51,
+      "L9": 45,
+      "L8": 27,
+      "L5": 33
+    },
+    "matched_case_count": 460,
+    "raw_report_sha256": "7fdb5e2e5a460988a1a2c7d259f9c9a086c74c6d18f612c7f130948c7fc73184"
+  },
+  "freeze_before_correction_on_5d541": {
+    "exit": 1,
+    "mechanical_match": false,
+    "json_pointer_failures": 2421,
+    "public_function_failures": 8,
+    "raw_report_sha256": "cc4bd1a42fcde81c9b38c3d9f68af3531cab8a235811fb937e2a57f35d320003"
+  },
+  "freeze_after_correction": {
+    "exit": 1,
+    "mechanical_match": false,
+    "json_pointer_failures": 2421,
+    "public_function_failures": 8,
+    "raw_report_sha256": "cc4bd1a42fcde81c9b38c3d9f68af3531cab8a235811fb937e2a57f35d320003"
+  },
+  "freeze_latest_main_trial": {
+    "exit": 1,
+    "mechanical_match": false,
+    "json_pointer_failures": 2421,
+    "public_function_failures": 8,
+    "raw_report_sha256": "cc4bd1a42fcde81c9b38c3d9f68af3531cab8a235811fb937e2a57f35d320003"
+  },
+  "freeze_same_before_after": {
+    "report_sha256_5d541": "cc4bd1a42fcde81c9b38c3d9f68af3531cab8a235811fb937e2a57f35d320003",
+    "report_sha256_corrected": "cc4bd1a42fcde81c9b38c3d9f68af3531cab8a235811fb937e2a57f35d320003",
+    "json_pointer_failures": 2421,
+    "public_function_failures": 8
+  },
+  "latest_main_trial": {
+    "status": "PASS (no-commit merge trial; child/freeze retain known residual failures)",
+    "merge_base": "4aa01e387f87a591e79c51b4dfb9f33a50e8b703",
+    "main_revision": "32ba19e67227c51d343831f22cea511b204ffc41",
+    "candidate_head_before_merge": "450eb6343837379ce6bd073dde6a4e2189e962d4",
+    "conflict_paths": [],
+    "candidate_changed_path_count": 16,
+    "main_changed_path_count": 14,
+    "path_overlap_count": 0,
+    "candidate_changed_paths_preserved": true,
+    "L4_sha256": "32e4a7b6432e7454d242277b37a0948916dc876b6e8e008ad8e4f8c2d7207081",
+    "L9_sha256": "365b89c9131e5edd9b64d474438ff780360118819cc651ee535f64a70aa5ff1d",
+    "child_report_sha256": "95a3077c343c26040ab2111852bdd4392f328f9f820420b3170cb5377c4ee4fa",
+    "child_passed": false,
+    "L4_L9_pair_passed": true,
+    "L5_L8_pair_passed": true,
+    "negative_4way_counts": {
+      "L4": 51,
+      "L9": 45,
+      "L8": 27,
+      "L5": 33
+    },
+    "negative_4way_failures": 226,
+    "matched_case_count": 460,
+    "freeze_report_sha256": "cc4bd1a42fcde81c9b38c3d9f68af3531cab8a235811fb937e2a57f35d320003",
+    "freeze_mechanical_match": false,
+    "freeze_json_pointer_failures": 2421,
+    "freeze_public_function_failures": 8,
+    "static_validator": "PASS (20 classes, 112 case links, L5/L8 bytes unchanged)",
+    "scfctl_validate": "PASS (bindings=166 fail=0)",
+    "scfctl_stale": "PASS (stale=0)",
+    "diff_check": "PASS"
+  },
+  "main_only_baseline": {
+    "child_failures": 136,
+    "counts": {
+      "L4": 33,
+      "L9": 27,
+      "L8": 27,
+      "L5": 33
+    },
+    "matched_case_count": 460,
+    "L4_L9_pair_passed": true,
+    "L5_L8_pair_passed": true,
+    "freeze_mechanical_match": false,
+    "freeze_json_pointer_failures": 2421,
+    "freeze_public_function_failures": 8,
+    "scfctl_validate": "bindings=165 fail=0",
+    "scfctl_stale": "stale=0",
+    "child_report_sha256": "ab17c2c12750a0641cdfe66db3c2c8b350c5f52ab57103ee3a71ea6ec1ab46be",
+    "freeze_report_sha256": "cc4bd1a42fcde81c9b38c3d9f68af3531cab8a235811fb937e2a57f35d320003"
+  },
+  "remaining": [
+    "L5/L8 successor pair is not formed; do not treat L9 case expected as L8 oracle.",
+    "L8 112 case refs are not added.",
+    "6 singleton-less classes remain unformed.",
+    "check-child remains FAIL: 226 failures; check-freeze remains all_mechanical_matched=false."
+  ],
+  "prohibitions_observed": [
+    "No L5/L8 documents edited.",
+    "L7 expected_proposal and L8/L9 case expected were not used to derive corrected findings/classes.",
+    "No push or PR was created.",
+    "No product runtime, test, or CI was executed."
+  ]
+}

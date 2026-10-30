@@ -1,0 +1,17 @@
+{
+  "status": "PASS",
+  "base_revision": "2d7cabb70861f4cc40d4d2e850d35c6b09083034",
+  "pr_a_merge_revision": "36947baf69999c99d5370d804d69ee2f3acaed72",
+  "prior_l9_sha256": "392417ce60ff10beed23d1aee27aadc7afaaf4062fb1dc04473325e30ad2c7e5",
+  "candidate_l9_sha256": "a4a186902d29330d5d88bdb8366e70b8678a31d3e2e750b8e2e7e46e83b5776c",
+  "l9_changes": "既存2 class rowsへL5 pointerを各1件append",
+  "source_pointer_map": {
+    "OS015-NEG-COMPOSITE-07c9fd844a293140f5dc77476ab8ed90116889361788956739abfdcf65b874c4": "docs/helix-os/L5-detail-design/management-authority-source-record.json#/failure_rules/31",
+    "OS015-NEG-COMPOSITE-4e0c28b06920d3a9665cbe4beeaf48cea44d7b0d350dddfaec9c8471de1e86b5": "docs/helix-os/L5-detail-design/management-authority-source-record.json#/failure_rules/32"
+  },
+  "l9_case_rows": 583,
+  "l9_expectations_and_case_links_unchanged": true,
+  "pr_a_pr_b_pr_c_case_coverage": 29,
+  "pr_a_pr_b_bindings_follow_current_l9": true,
+  "other_layers_changed": false
+}

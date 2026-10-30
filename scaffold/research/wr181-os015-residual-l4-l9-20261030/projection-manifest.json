@@ -1,0 +1,1858 @@
+{
+  "evidence_kind": "scaffold",
+  "authority_effect": "none",
+  "base_revision": "64d3cf379335e0a4b034f7295a9a225a2d755986",
+  "pr_c_pr": 3923,
+  "manual_audit_revision": "05614def4e0427f9390c2b6535e520f5c7c26590",
+  "manual_audit_path": "scaffold/research/wr181-os015-residual-l4-l9-20261030/manual-case-audit-05614.md",
+  "manual_audit_sha256": "eaa14a609b08f58b12078f68fdbb02921df3805d9d977668c0b9bd9a5f4c73dd",
+  "source_revisions": {
+    "L4_sha256": "9146ffd557bc5da60f79cdcd462578b38edf6ec524143a705ab07eeb34c7997b",
+    "L5_sha256": "c7d979d397f7ebc9b82b1cb5fa3e32f82737956c6a54adc2080342b729607c7f",
+    "L7_sha256": "b2a71c3d2a99c5268275e183f21c2b1bbc4b21ad79d577af42573a079e920a09",
+    "L8_sha256": "63fc2084a2a41cce1c84ac0db7a437ce25a0525f9f24d060f47bcf61357aa621",
+    "L9_sha256": "a4a186902d29330d5d88bdb8366e70b8678a31d3e2e750b8e2e7e46e83b5776c"
+  },
+  "class_id_formation": "既存2 IDは保持。新IDは指定されたclass keyをensure_ascii=False, sort_keys=True, separators=(comma, colon)でUTF-8 JSON化し、SHA-256全64桁にOS015-NEG-COMPOSITE-を付ける。",
+  "expected_generation": "L4/L9 class rowsは独立監査済みのclass keyから順方向に形成する。L8/L9 case-level expected、condition、expected_preservedはclass keyや他層expectedの生成元に使わずbyte不変を確認する。",
+  "population": {
+    "existing_two_class_residual_cases": 75,
+    "new_class_cases": 37,
+    "total_l9_links": 112,
+    "prior_pr_a_case_assignments_untouched": 29,
+    "new_l4_l9_classes": 18,
+    "six_singleton_less_classes_unformed": 6
+  },
+  "c0044_independent_derivation": {
+    "case_id": "HELIXOS-L9-015-C0044",
+    "source_pointer": "/connection_materials/OS015/case/cases/43/given/input",
+    "input_sha256": "9975567cf158a570be3f1d62cbf9af619c2166d78e5fdaef7908d9ee06088148",
+    "given_input": "base_ref=inspect; replacementsはtarget_a.original_event.event_id=nullの1件。L7 expected_proposalとL8/L9 expectedは参照しない。",
+    "fixture_comparison": "inspect fixtureでactual/context target_a event_idは同じ既知文字列。replacementによりactual側のみnullとなる。その他のfield、target_b、authority、classification/history、claimsはfixture上一致またはfalse。",
+    "l4_manual_trace": "L4 comparison contractに従いactual event_id pointerにsource_unresolved、whole-event差分によりtarget_a original_event pointerにoriginal_event_mutatedが出る。facet順とviolation優先からmanagement_material_violation / original_event / violation。",
+    "derived_class_id": "OS015-NEG-COMPOSITE-4e0c28b06920d3a9665cbe4beeaf48cea44d7b0d350dddfaec9c8471de1e86b5",
+    "supporting_pointers": [
+      "/contracts/2",
+      "/diagnostic_contract/event_fields",
+      "/diagnostic_contract/codes/0",
+      "/diagnostic_contract/codes/3",
+      "/diagnostic_contract/comparison_facets",
+      "/diagnostic_contract/mutation_rule",
+      "/diagnostic_contract/aggregation",
+      "/diagnostic_contract/condition_values",
+      "/diagnostic_contract/return_owner",
+      "/diagnostic_contract/algorithm_python_document_text"
+    ]
+  },
+  "classes": [
+    {
+      "class_id": "OS015-NEG-COMPOSITE-07c9fd844a293140f5dc77476ab8ed90116889361788956739abfdcf65b874c4",
+      "existing_class_id": "OS015-NEG-COMPOSITE-07c9fd844a293140f5dc77476ab8ed90116889361788956739abfdcf65b874c4",
+      "is_new": false,
+      "key": {
+        "expected_classification": "management_material_violation",
+        "finding_codes": [
+          "original_event_mutated",
+          "source_conflict"
+        ],
+        "backflow_owner": "management-authority-owner",
+        "expected_axis": "original_event",
+        "expected_state": "violation",
+        "owner_ref": {
+          "kind": "function_ref",
+          "id": "FN-OS015-01"
+        }
+      },
+      "condition": "inspect/classify/correctで比較対象event fieldのknown値が一致せずwhole event mutationを伴う。",
+      "case_ids": [
+        "HELIXOS-L9-015-C0115",
+        "HELIXOS-L9-015-C0117",
+        "HELIXOS-L9-015-C0119",
+        "HELIXOS-L9-015-C0161",
+        "HELIXOS-L9-015-C0163",
+        "HELIXOS-L9-015-C0165",
+        "HELIXOS-L9-015-C0167",
+        "HELIXOS-L9-015-C0169",
+        "HELIXOS-L9-015-C0171",
+        "HELIXOS-L9-015-C0173",
+        "HELIXOS-L9-015-C0175",
+        "HELIXOS-L9-015-C0177",
+        "HELIXOS-L9-015-C0223",
+        "HELIXOS-L9-015-C0225",
+        "HELIXOS-L9-015-C0227",
+        "HELIXOS-L9-015-C0229",
+        "HELIXOS-L9-015-C0231",
+        "HELIXOS-L9-015-C0233",
+        "HELIXOS-L9-015-C0235",
+        "HELIXOS-L9-015-C0277",
+        "HELIXOS-L9-015-C0279",
+        "HELIXOS-L9-015-C0281",
+        "HELIXOS-L9-015-C0283",
+        "HELIXOS-L9-015-C0285",
+        "HELIXOS-L9-015-C0287",
+        "HELIXOS-L9-015-C0289",
+        "HELIXOS-L9-015-C0291",
+        "HELIXOS-L9-015-C0293",
+        "HELIXOS-L9-015-C0339",
+        "HELIXOS-L9-015-C0341",
+        "HELIXOS-L9-015-C0343",
+        "HELIXOS-L9-015-C0345",
+        "HELIXOS-L9-015-C0347",
+        "HELIXOS-L9-015-C0349",
+        "HELIXOS-L9-015-C0351"
+      ],
+      "source_reference": {
+        "path": "manual-case-audit-05614.md",
+        "section": "Candidate key一覧",
+        "line": 418
+      },
+      "special_case_ids": [],
+      "l7_raw_inputs": [
+        {
+          "case_id": "HELIXOS-L9-015-C0115",
+          "l7_input_pointer": "/connection_materials/OS015/case/cases/114/given/input",
+          "expanded_input_sha256": "a962bc0e11548e2c4dbc739a6b2ee5316820426f990cd9ccf75b86fdfde8827e"
+        },
+        {
+          "case_id": "HELIXOS-L9-015-C0117",
+          "l7_input_pointer": "/connection_materials/OS015/case/cases/116/given/input",
+          "expanded_input_sha256": "015b96d8b0a3421bfca07451d4f9a50b3041a482ce432686a5c7aa3459baf248"
+        },
+        {
+          "case_id": "HELIXOS-L9-015-C0119",
+          "l7_input_pointer": "/connection_materials/OS015/case/cases/118/given/input",
+          "expanded_input_sha256": "b77a347b0d8c3f2e44af7fceaf8c1d2118d03a017007f5f6d2c7bb8cd12e56a0"
+        },
+        {
+          "case_id": "HELIXOS-L9-015-C0161",
+          "l7_input_pointer": "/connection_materials/OS015/case/cases/160/given/input",
+          "expanded_input_sha256": "55c62b87a5e396dc652d679e370cb6eafea49e95806f8170c28331707ee9e8a2"
+        },
+        {
+          "case_id": "HELIXOS-L9-015-C0163",
+          "l7_input_pointer": "/connection_materials/OS015/case/cases/162/given/input",
+          "expanded_input_sha256": "5b372bd9a7e73868fc6fb9a1a02fc45d657616621721ca37ad729469467aaa78"
+        },
+        {
+          "case_id": "HELIXOS-L9-015-C0165",
+          "l7_input_pointer": "/connection_materials/OS015/case/cases/164/given/input",
+          "expanded_input_sha256": "d1b9358310e901eb45089ff903f6f9e7fdbb091dd30daec70616e96c4d20858a"
+        },
+        {
+          "case_id": "HELIXOS-L9-015-C0167",
+          "l7_input_pointer": "/connection_materials/OS015/case/cases/166/given/input",
+          "expanded_input_sha256": "56044b5ad7d9e10e3047c8c207b5dfc6f6a26799ed5f8826008f2f010e45ef65"
+        },
+        {
+          "case_id": "HELIXOS-L9-015-C0169",
+          "l7_input_pointer": "/connection_materials/OS015/case/cases/168/given/input",
+          "expanded_input_sha256": "d292ec73f42afb09ea91bc3ec51b2e3f4a3efce5ff048853429fb406efb92d9a"
+        },
+        {
+          "case_id": "HELIXOS-L9-015-C0171",
+          "l7_input_pointer": "/connection_materials/OS015/case/cases/170/given/input",
+          "expanded_input_sha256": "b1542cf50bcb8ba058d05f7b885c56848a7f8933bf01a1d899a079c3467f796e"
+        },
+        {
+          "case_id": "HELIXOS-L9-015-C0173",
+          "l7_input_pointer": "/connection_materials/OS015/case/cases/172/given/input",
+          "expanded_input_sha256": "6cc0f12871c9815cd14f2cff6679f8761b3e4b7133399d1b02890246046b4e80"
+        },
+        {
+          "case_id": "HELIXOS-L9-015-C0175",
+          "l7_input_pointer": "/connection_materials/OS015/case/cases/174/given/input",
+          "expanded_input_sha256": "878ba8af0788789feb689dc7e81b478c78121150cb6c758c19bb15f5a2c2f9df"
+        },
+        {
+          "case_id": "HELIXOS-L9-015-C0177",
+          "l7_input_pointer": "/connection_materials/OS015/case/cases/176/given/input",
+          "expanded_input_sha256": "bff72017527bd881fcdba042e197cfddde9c1489a5d2bd0f04b4cc1a89f34b0d"
+        },
+        {
+          "case_id": "HELIXOS-L9-015-C0223",
+          "l7_input_pointer": "/connection_materials/OS015/case/cases/222/given/input",
+          "expanded_input_sha256": "24ec8b41d397ee0299010b2e7d5e81306031cf8709a007ab6bdf25230c277978"
+        },
+        {
+          "case_id": "HELIXOS-L9-015-C0225",
+          "l7_input_pointer": "/connection_materials/OS015/case/cases/224/given/input",
+          "expanded_input_sha256": "1a86f042afe3a1cae410435e6f0acd33fdeb3b51f86c89269dc60f7f62c4ab59"
+        },
+        {
+          "case_id": "HELIXOS-L9-015-C0227",
+          "l7_input_pointer": "/connection_materials/OS015/case/cases/226/given/input",
+          "expanded_input_sha256": "2e3804c6f8473e1e33861bc9bc7042324dc51ca97b749d33c19972d80b86a4c7"
+        },
+        {
+          "case_id": "HELIXOS-L9-015-C0229",
+          "l7_input_pointer": "/connection_materials/OS015/case/cases/228/given/input",
+          "expanded_input_sha256": "6cfc18f666bb5dd592da08405424c671c906494a1c22eeb3a3ffff5b9a622b82"
+        },
+        {
+          "case_id": "HELIXOS-L9-015-C0231",
+          "l7_input_pointer": "/connection_materials/OS015/case/cases/230/given/input",
+          "expanded_input_sha256": "dfbd53e882a39fe34eaf15a000135463d4e30c5de5fd49cae53d63fd3bc68ea0"
+        },
+        {
+          "case_id": "HELIXOS-L9-015-C0233",
+          "l7_input_pointer": "/connection_materials/OS015/case/cases/232/given/input",
+          "expanded_input_sha256": "470510a8ec801fc1906a584b009933a7f494320e6c695e021c421e8971e50dce"
+        },
+        {
+          "case_id": "HELIXOS-L9-015-C0235",
+          "l7_input_pointer": "/connection_materials/OS015/case/cases/234/given/input",
+          "expanded_input_sha256": "9769d035f04adc2402716127874230cf2e4a938faaac652530d9131b68d45290"
+        },
+        {
+          "case_id": "HELIXOS-L9-015-C0277",
+          "l7_input_pointer": "/connection_materials/OS015/case/cases/276/given/input",
+          "expanded_input_sha256": "cb9e42d6fd47cc61e1a0e97c908d05918e88b03ac5ded7b851f3e372b27c04c8"
+        },
+        {
+          "case_id": "HELIXOS-L9-015-C0279",
+          "l7_input_pointer": "/connection_materials/OS015/case/cases/278/given/input",
+          "expanded_input_sha256": "efd701f3940a49155d1d451955bd87915dd43436ff25f3f6fe224024339f5863"
+        },
+        {
+          "case_id": "HELIXOS-L9-015-C0281",
+          "l7_input_pointer": "/connection_materials/OS015/case/cases/280/given/input",
+          "expanded_input_sha256": "c8f870ef4274fc9d3db68f9004e8d0ffd9ba9d2d42dfb57a66706de95b670dab"
+        },
+        {
+          "case_id": "HELIXOS-L9-015-C0283",
+          "l7_input_pointer": "/connection_materials/OS015/case/cases/282/given/input",
+          "expanded_input_sha256": "8cb4d48c74275026c1ea5e398ab89e0b3248489eac393e5afef72d7f5730c3b4"
+        },
+        {
+          "case_id": "HELIXOS-L9-015-C0285",
+          "l7_input_pointer": "/connection_materials/OS015/case/cases/284/given/input",
+          "expanded_input_sha256": "0ded7219a7b66b36f79f0aa1ca552860649551b969e78ae9a1ac3a0e71849006"
+        },
+        {
+          "case_id": "HELIXOS-L9-015-C0287",
+          "l7_input_pointer": "/connection_materials/OS015/case/cases/286/given/input",
+          "expanded_input_sha256": "b904fb858758dda5af3ec7c1ee89f5cbdf06ca71ebb47c8c6ded1b2b17df4eda"
+        },
+        {
+          "case_id": "HELIXOS-L9-015-C0289",
+          "l7_input_pointer": "/connection_materials/OS015/case/cases/288/given/input",
+          "expanded_input_sha256": "aea2a7cfa672f466b7b56c5239a4e3b93387e9a01e55bc38be9820e4f6aeeb9c"
+        },
+        {
+          "case_id": "HELIXOS-L9-015-C0291",
+          "l7_input_pointer": "/connection_materials/OS015/case/cases/290/given/input",
+          "expanded_input_sha256": "7c620be2961f13bb13acd1f80fdbb16467a5b5e1a787b96f3f91eee7463ac43b"
+        },
+        {
+          "case_id": "HELIXOS-L9-015-C0293",
+          "l7_input_pointer": "/connection_materials/OS015/case/cases/292/given/input",
+          "expanded_input_sha256": "a5c15b48df677f05e3ae6c193a761e8952f7cbd21b42c5423405b7e36c8fb5e5"
+        },
+        {
+          "case_id": "HELIXOS-L9-015-C0339",
+          "l7_input_pointer": "/connection_materials/OS015/case/cases/338/given/input",
+          "expanded_input_sha256": "1265deed2a3ae1a91d8032bb7b7287592d2c99ea84e539cb379403046b302293"
+        },
+        {
+          "case_id": "HELIXOS-L9-015-C0341",
+          "l7_input_pointer": "/connection_materials/OS015/case/cases/340/given/input",
+          "expanded_input_sha256": "4976b715449414e88ffc0059d7468e5c76c5957537a7679700ff1a11479f3899"
+        },
+        {
+          "case_id": "HELIXOS-L9-015-C0343",
+          "l7_input_pointer": "/connection_materials/OS015/case/cases/342/given/input",
+          "expanded_input_sha256": "46d7ac4fe6687882ff5702005fd2efbc65aec562ea6dae761f04640b43747882"
+        },
+        {
+          "case_id": "HELIXOS-L9-015-C0345",
+          "l7_input_pointer": "/connection_materials/OS015/case/cases/344/given/input",
+          "expanded_input_sha256": "eaea385023908ddca32195306ce545294f8f07746ff6338aee0e909c4c763180"
+        },
+        {
+          "case_id": "HELIXOS-L9-015-C0347",
+          "l7_input_pointer": "/connection_materials/OS015/case/cases/346/given/input",
+          "expanded_input_sha256": "f034312e184edf632c376fe0498a3f3ca28a56417090ef89352d3985ee4f6fb6"
+        },
+        {
+          "case_id": "HELIXOS-L9-015-C0349",
+          "l7_input_pointer": "/connection_materials/OS015/case/cases/348/given/input",
+          "expanded_input_sha256": "0817049ae44158be884b2dfdcbd993bd44bb689b3affcf2c8737c1fa3e59d8d1"
+        },
+        {
+          "case_id": "HELIXOS-L9-015-C0351",
+          "l7_input_pointer": "/connection_materials/OS015/case/cases/350/given/input",
+          "expanded_input_sha256": "72c8fc118915250b672cd603c7d348d31a69c527ad39dffbfe9bc7a9b88707ac"
+        }
+      ],
+      "group_name": "existing_event_conflict",
+      "condition_review": {
+        "reviewed_phase_set": [
+          "inspect",
+          "classify",
+          "correct"
+        ],
+        "reviewed_stimulus_targets": [
+          "/context/records/target_a/original_event/actor_ref",
+          "/context/records/target_a/original_event/causal_id",
+          "/context/records/target_a/original_event/observed_at_ref",
+          "/context/records/target_a/original_event/payload_ref",
+          "/context/records/target_a/original_event/source_digest",
+          "/context/records/target_a/original_event/source_ref",
+          "/context/records/target_a/original_event/source_revision",
+          "/records/target_a/original_event/actor_ref",
+          "/records/target_a/original_event/causal_id",
+          "/records/target_a/original_event/event_id",
+          "/records/target_a/original_event/event_revision",
+          "/records/target_a/original_event/observed_at_ref",
+          "/records/target_a/original_event/payload_ref",
+          "/records/target_a/original_event/source_digest",
+          "/records/target_a/original_event/source_ref",
+          "/records/target_a/original_event/source_revision"
+        ],
+        "raw_stimulus_input_count": 35,
+        "raw_stimulus_summary": "L7 given.inputのbase_refとreplacementsのみを照合。各pointer・置換値は固定inputのhashで束縛。expected_proposal、L8/L9 expectedは参照しない。",
+        "manual_alignment": "条件のevent field known mismatch / whole-event mutationとraw inputの片側event field置換を照合。"
+      }
+    },
+    {
+      "class_id": "OS015-NEG-COMPOSITE-4e0c28b06920d3a9665cbe4beeaf48cea44d7b0d350dddfaec9c8471de1e86b5",
+      "existing_class_id": "OS015-NEG-COMPOSITE-4e0c28b06920d3a9665cbe4beeaf48cea44d7b0d350dddfaec9c8471de1e86b5",
+      "is_new": false,
+      "key": {
+        "expected_classification": "management_material_violation",
+        "finding_codes": [
+          "original_event_mutated",
+          "source_unresolved"
+        ],
+        "backflow_owner": "management-authority-owner",
+        "expected_axis": "original_event",
+        "expected_state": "violation",
+        "owner_ref": {
+          "kind": "function_ref",
+          "id": "FN-OS015-01"
+        }
+      },
+      "condition": "inspect/classify/correctで比較operandがunknownとなりwhole event mutationを伴う。",
+      "case_ids": [
+        "HELIXOS-L9-015-C0044",
+        "HELIXOS-L9-015-C0114",
+        "HELIXOS-L9-015-C0116",
+        "HELIXOS-L9-015-C0118",
+        "HELIXOS-L9-015-C0160",
+        "HELIXOS-L9-015-C0162",
+        "HELIXOS-L9-015-C0164",
+        "HELIXOS-L9-015-C0166",
+        "HELIXOS-L9-015-C0168",
+        "HELIXOS-L9-015-C0170",
+        "HELIXOS-L9-015-C0172",
+        "HELIXOS-L9-015-C0174",
+        "HELIXOS-L9-015-C0176",
+        "HELIXOS-L9-015-C0218",
+        "HELIXOS-L9-015-C0220",
+        "HELIXOS-L9-015-C0222",
+        "HELIXOS-L9-015-C0224",
+        "HELIXOS-L9-015-C0226",
+        "HELIXOS-L9-015-C0228",
+        "HELIXOS-L9-015-C0230",
+        "HELIXOS-L9-015-C0232",
+        "HELIXOS-L9-015-C0234",
+        "HELIXOS-L9-015-C0276",
+        "HELIXOS-L9-015-C0278",
+        "HELIXOS-L9-015-C0280",
+        "HELIXOS-L9-015-C0282",
+        "HELIXOS-L9-015-C0284",
+        "HELIXOS-L9-015-C0286",
+        "HELIXOS-L9-015-C0288",
+        "HELIXOS-L9-015-C0290",
+        "HELIXOS-L9-015-C0292",
+        "HELIXOS-L9-015-C0334",
+        "HELIXOS-L9-015-C0336",
+        "HELIXOS-L9-015-C0338",
+        "HELIXOS-L9-015-C0340",
+        "HELIXOS-L9-015-C0342",
+        "HELIXOS-L9-015-C0344",
+        "HELIXOS-L9-015-C0346",
+        "HELIXOS-L9-015-C0348",
+        "HELIXOS-L9-015-C0350"
+      ],
+      "source_reference": {
+        "path": "manual-case-audit-05614.md",
+        "section": "Candidate key一覧",
+        "line": 419
+      },
+      "special_case_ids": [
+        "HELIXOS-L9-015-C0044"
+      ],
+      "l7_raw_inputs": [
+        {
+          "case_id": "HELIXOS-L9-015-C0044",
+          "l7_input_pointer": "/connection_materials/OS015/case/cases/43/given/input",
+          "expanded_input_sha256": "9975567cf158a570be3f1d62cbf9af619c2166d78e5fdaef7908d9ee06088148"
+        },
+        {
+          "case_id": "HELIXOS-L9-015-C0114",
+          "l7_input_pointer": "/connection_materials/OS015/case/cases/113/given/input",
+          "expanded_input_sha256": "21382fce55af1091542e04914d6dd6e91258dc9e3f7c01923c84c5eea2e542b9"
+        },
+        {
+          "case_id": "HELIXOS-L9-015-C0116",
+          "l7_input_pointer": "/connection_materials/OS015/case/cases/115/given/input",
+          "expanded_input_sha256": "64c9bc61744d4d8fb1a8d6162374f2c05d1a243d37f3ecde3115235b99555cf8"
+        },
+        {
+          "case_id": "HELIXOS-L9-015-C0118",
+          "l7_input_pointer": "/connection_materials/OS015/case/cases/117/given/input",
+          "expanded_input_sha256": "b87fadcbd343625232780e5c5210afda1f7482306122039bec917d6b326de486"
+        },
+        {
+          "case_id": "HELIXOS-L9-015-C0160",
+          "l7_input_pointer": "/connection_materials/OS015/case/cases/159/given/input",
+          "expanded_input_sha256": "debb32bd8c05b134e585870261382e5adf29f407231ccbb7b4c56cd75f726962"
+        },
+        {
+          "case_id": "HELIXOS-L9-015-C0162",
+          "l7_input_pointer": "/connection_materials/OS015/case/cases/161/given/input",
+          "expanded_input_sha256": "eae82e977265806178bcf09f0de0638c8cfd28d5fc175b63d7bf90780e82a566"
+        },
+        {
+          "case_id": "HELIXOS-L9-015-C0164",
+          "l7_input_pointer": "/connection_materials/OS015/case/cases/163/given/input",
+          "expanded_input_sha256": "3020347c0ecd4a5bf317633b784d54b53f911ba16b348318a3ef2e7ea814a75c"
+        },
+        {
+          "case_id": "HELIXOS-L9-015-C0166",
+          "l7_input_pointer": "/connection_materials/OS015/case/cases/165/given/input",
+          "expanded_input_sha256": "3b62034fc5ea7e5c6be545eaca24a0b67402b2a7bc88d4ea153917a5aed4a6bc"
+        },
+        {
+          "case_id": "HELIXOS-L9-015-C0168",
+          "l7_input_pointer": "/connection_materials/OS015/case/cases/167/given/input",
+          "expanded_input_sha256": "0b28a23d8db1eb467e309cbe93b89d47da95ce63d528ae0f03806cd608527794"
+        },
+        {
+          "case_id": "HELIXOS-L9-015-C0170",
+          "l7_input_pointer": "/connection_materials/OS015/case/cases/169/given/input",
+          "expanded_input_sha256": "3fd2dc9f22157dfa13fedd9655a15328f2aa112c7cea61788f01ef6bab77b849"
+        },
+        {
+          "case_id": "HELIXOS-L9-015-C0172",
+          "l7_input_pointer": "/connection_materials/OS015/case/cases/171/given/input",
+          "expanded_input_sha256": "4d6dd92fd47eeb0869ccba056c16e75e642c9d819777f7a862c237414ed27d40"
+        },
+        {
+          "case_id": "HELIXOS-L9-015-C0174",
+          "l7_input_pointer": "/connection_materials/OS015/case/cases/173/given/input",
+          "expanded_input_sha256": "1eb5308d0d7ee4709b96c4275e29f5c8462f09a1edfb4a7d5926b8e2b275085f"
+        },
+        {
+          "case_id": "HELIXOS-L9-015-C0176",
+          "l7_input_pointer": "/connection_materials/OS015/case/cases/175/given/input",
+          "expanded_input_sha256": "e1a9bbb4f2feb0d33d30c87a0452f4e351dd9201c343eca5ee8d7edae4c64683"
+        },
+        {
+          "case_id": "HELIXOS-L9-015-C0218",
+          "l7_input_pointer": "/connection_materials/OS015/case/cases/217/given/input",
+          "expanded_input_sha256": "83a2e95e90c965ff498378e9f2907c441d52bfeee2ce7d296e9d9d48be649dce"
+        },
+        {
+          "case_id": "HELIXOS-L9-015-C0220",
+          "l7_input_pointer": "/connection_materials/OS015/case/cases/219/given/input",
+          "expanded_input_sha256": "627873ba23e05bbe5b6b3ed4e2690865e91841d023ceb3b097b8f96be11319ce"
+        },
+        {
+          "case_id": "HELIXOS-L9-015-C0222",
+          "l7_input_pointer": "/connection_materials/OS015/case/cases/221/given/input",
+          "expanded_input_sha256": "3df1bcbf61012f973af287c0d02dd4a86e3bf4d9c0561f01610954f4807d4216"
+        },
+        {
+          "case_id": "HELIXOS-L9-015-C0224",
+          "l7_input_pointer": "/connection_materials/OS015/case/cases/223/given/input",
+          "expanded_input_sha256": "1d1d3fee1f4e766b8ce69c32d79410ded531823d880aa6a0ee376e3ec32dcb8e"
+        },
+        {
+          "case_id": "HELIXOS-L9-015-C0226",
+          "l7_input_pointer": "/connection_materials/OS015/case/cases/225/given/input",
+          "expanded_input_sha256": "77b82ff4a2e2c20677c16918c4f6f7a17c1299fb604621041976dc817371a53e"
+        },
+        {
+          "case_id": "HELIXOS-L9-015-C0228",
+          "l7_input_pointer": "/connection_materials/OS015/case/cases/227/given/input",
+          "expanded_input_sha256": "a55514cf48f86e783ed6f2e62563a83e02c5c7053fb1c0f72d6ffe3dbb653ae1"
+        },
+        {
+          "case_id": "HELIXOS-L9-015-C0230",
+          "l7_input_pointer": "/connection_materials/OS015/case/cases/229/given/input",
+          "expanded_input_sha256": "4ddd38a237719c331d7fce1ab54a5a5c9e27a8962d62be34ea55e1f227ee5b0e"
+        },
+        {
+          "case_id": "HELIXOS-L9-015-C0232",
+          "l7_input_pointer": "/connection_materials/OS015/case/cases/231/given/input",
+          "expanded_input_sha256": "ae4cf6b11f0c41d962379152375e67739efea3acb3bfb71b6fd756921b3572a0"
+        },
+        {
+          "case_id": "HELIXOS-L9-015-C0234",
+          "l7_input_pointer": "/connection_materials/OS015/case/cases/233/given/input",
+          "expanded_input_sha256": "02ba974cac026c90897c0aa085f142b7fa7cbc1b98846e84dfd43d4197be5e17"
+        },
+        {
+          "case_id": "HELIXOS-L9-015-C0276",
+          "l7_input_pointer": "/connection_materials/OS015/case/cases/275/given/input",
+          "expanded_input_sha256": "292d412075cd8873011585e7a6b8537fd46c6be4580a25f8de85a35d9bce54b3"
+        },
+        {
+          "case_id": "HELIXOS-L9-015-C0278",
+          "l7_input_pointer": "/connection_materials/OS015/case/cases/277/given/input",
+          "expanded_input_sha256": "ba82d7e295780d9de316a7fca24fbd699ac69103425d56b4f11cc567f7f1f184"
+        },
+        {
+          "case_id": "HELIXOS-L9-015-C0280",
+          "l7_input_pointer": "/connection_materials/OS015/case/cases/279/given/input",
+          "expanded_input_sha256": "82214cd163518ea8c075be96a487308761a3265ba71aac15c183dcb90d8e89e1"
+        },
+        {
+          "case_id": "HELIXOS-L9-015-C0282",
+          "l7_input_pointer": "/connection_materials/OS015/case/cases/281/given/input",
+          "expanded_input_sha256": "f381021b41a1259817460f9b44e402eedaec6bd5c2135bcd2a4379749715452a"
+        },
+        {
+          "case_id": "HELIXOS-L9-015-C0284",
+          "l7_input_pointer": "/connection_materials/OS015/case/cases/283/given/input",
+          "expanded_input_sha256": "27d139aaa4c6473299ca048a8da6918642b4ccd427a21a3ccd897f5e94afe8b3"
+        },
+        {
+          "case_id": "HELIXOS-L9-015-C0286",
+          "l7_input_pointer": "/connection_materials/OS015/case/cases/285/given/input",
+          "expanded_input_sha256": "564995fa6ef1bb1d78727bf4b471a9e8b3737f6e2c8e76e75e50e5740b9e1535"
+        },
+        {
+          "case_id": "HELIXOS-L9-015-C0288",
+          "l7_input_pointer": "/connection_materials/OS015/case/cases/287/given/input",
+          "expanded_input_sha256": "6476166f1e24c8287f8cf1e8b9318706a634b76d7a17df633b5b77cb82aed3c0"
+        },
+        {
+          "case_id": "HELIXOS-L9-015-C0290",
+          "l7_input_pointer": "/connection_materials/OS015/case/cases/289/given/input",
+          "expanded_input_sha256": "4f7cc61a364be60b4b62bd24d7cbb3bb9c292eca107e6c6c0b284fc63f6b1973"
+        },
+        {
+          "case_id": "HELIXOS-L9-015-C0292",
+          "l7_input_pointer": "/connection_materials/OS015/case/cases/291/given/input",
+          "expanded_input_sha256": "ee98756b572e8c724ff21056e7bff4197f4ba14cf0d554a96afe3ca461e1b958"
+        },
+        {
+          "case_id": "HELIXOS-L9-015-C0334",
+          "l7_input_pointer": "/connection_materials/OS015/case/cases/333/given/input",
+          "expanded_input_sha256": "67a51425956c8f9fb3c840e67dda99d6bc3aac26ae9e29e4e0c051d3c14db1c1"
+        },
+        {
+          "case_id": "HELIXOS-L9-015-C0336",
+          "l7_input_pointer": "/connection_materials/OS015/case/cases/335/given/input",
+          "expanded_input_sha256": "0125062143af3f22a0c97cb079585416c9c852a16601175f1965d4e5f6ca9f5b"
+        },
+        {
+          "case_id": "HELIXOS-L9-015-C0338",
+          "l7_input_pointer": "/connection_materials/OS015/case/cases/337/given/input",
+          "expanded_input_sha256": "a6cfa61bb87d94bf73f219f6a443aaa38db42e6823a615dec2dac372c9af4d17"
+        },
+        {
+          "case_id": "HELIXOS-L9-015-C0340",
+          "l7_input_pointer": "/connection_materials/OS015/case/cases/339/given/input",
+          "expanded_input_sha256": "fccc66c4f48c4fb7058151e1280b1f1a6904ecf58f9af287363a0f6f7e73879a"
+        },
+        {
+          "case_id": "HELIXOS-L9-015-C0342",
+          "l7_input_pointer": "/connection_materials/OS015/case/cases/341/given/input",
+          "expanded_input_sha256": "21503bdae7a2ecee562e4249833f3647fac48553fec404240b35e8bb5181dabe"
+        },
+        {
+          "case_id": "HELIXOS-L9-015-C0344",
+          "l7_input_pointer": "/connection_materials/OS015/case/cases/343/given/input",
+          "expanded_input_sha256": "6ce8af04534a40787ebdb1f997d640e02cd8daa10e84ed61e5038fbf68f39f53"
+        },
+        {
+          "case_id": "HELIXOS-L9-015-C0346",
+          "l7_input_pointer": "/connection_materials/OS015/case/cases/345/given/input",
+          "expanded_input_sha256": "f11d3125c637a910cce04ae6c1cba6e0694f0629363c05e3ce2c2bd2d9358bb7"
+        },
+        {
+          "case_id": "HELIXOS-L9-015-C0348",
+          "l7_input_pointer": "/connection_materials/OS015/case/cases/347/given/input",
+          "expanded_input_sha256": "dc3ac5311ec9d82ec14f210c0aebdc88a96cd0944b21402b9f72578735fe3187"
+        },
+        {
+          "case_id": "HELIXOS-L9-015-C0350",
+          "l7_input_pointer": "/connection_materials/OS015/case/cases/349/given/input",
+          "expanded_input_sha256": "a029bba0ebd48687b033823a6af45b95b4a23bd55ca94d298fc0cd7c9f1057fe"
+        }
+      ],
+      "group_name": "existing_event_unresolved",
+      "condition_review": {
+        "reviewed_phase_set": [
+          "inspect",
+          "classify",
+          "correct"
+        ],
+        "reviewed_stimulus_targets": [
+          "/context/records/target_a/original_event/actor_ref",
+          "/context/records/target_a/original_event/causal_id",
+          "/context/records/target_a/original_event/event_id",
+          "/context/records/target_a/original_event/event_revision",
+          "/context/records/target_a/original_event/observed_at_ref",
+          "/context/records/target_a/original_event/payload_ref",
+          "/context/records/target_a/original_event/source_digest",
+          "/context/records/target_a/original_event/source_ref",
+          "/context/records/target_a/original_event/source_revision",
+          "/records/target_a/original_event/actor_ref",
+          "/records/target_a/original_event/causal_id",
+          "/records/target_a/original_event/event_id",
+          "/records/target_a/original_event/event_revision",
+          "/records/target_a/original_event/observed_at_ref",
+          "/records/target_a/original_event/payload_ref",
+          "/records/target_a/original_event/source_digest",
+          "/records/target_a/original_event/source_ref",
+          "/records/target_a/original_event/source_revision"
+        ],
+        "raw_stimulus_input_count": 40,
+        "raw_stimulus_summary": "L7 given.inputのbase_refとreplacementsのみを照合。各pointer・置換値は固定inputのhashで束縛。expected_proposal、L8/L9 expectedは参照しない。",
+        "manual_alignment": "条件のevent operand unknown / whole-event mutationとraw inputの片側event field null置換を照合。"
+      }
+    },
+    {
+      "class_id": "OS015-NEG-COMPOSITE-0847e4310de684d30c54c16de19c0ce068f2666a3e68fe3e3d93f144934f9a42",
+      "is_new": true,
+      "key": {
+        "expected_classification": "management_material_violation",
+        "finding_codes": [
+          "source_conflict",
+          "source_conflict"
+        ],
+        "backflow_owner": "management-authority-owner",
+        "expected_axis": "source",
+        "expected_state": "violation",
+        "owner_ref": {
+          "kind": "function_ref",
+          "id": "FN-OS015-01"
+        }
+      },
+      "condition": "classify/correct。context側target_a.source.target_idまたはscopeの片方を既知のFOREIGN値に置換し、対応するactual new_classification fieldとの不一致を作る。sourceとnew_classificationの別々のactual pointerにsource_conflictが各1件。",
+      "case_ids": [
+        "HELIXOS-L9-015-C0179",
+        "HELIXOS-L9-015-C0185",
+        "HELIXOS-L9-015-C0295",
+        "HELIXOS-L9-015-C0301"
+      ],
+      "source_reference": {
+        "path": "manual-case-audit-05614.md",
+        "section": "Candidate key一覧",
+        "line": 420
+      },
+      "audit_slug": "source_conflict_twice",
+      "l7_raw_inputs": [
+        {
+          "case_id": "HELIXOS-L9-015-C0179",
+          "l7_input_pointer": "/connection_materials/OS015/case/cases/178/given/input",
+          "expanded_input_sha256": "7add75b704e43588e01c88ff807e2767326c41f84161d731182e13fe8be0111e"
+        },
+        {
+          "case_id": "HELIXOS-L9-015-C0185",
+          "l7_input_pointer": "/connection_materials/OS015/case/cases/184/given/input",
+          "expanded_input_sha256": "6468179f85a11567d0f54d947c337d149a0e472d8b02dae4a6d01f304d61e37b"
+        },
+        {
+          "case_id": "HELIXOS-L9-015-C0295",
+          "l7_input_pointer": "/connection_materials/OS015/case/cases/294/given/input",
+          "expanded_input_sha256": "1f3d817c242c79c9696a879befedf44f2026511623fb0ce02ebed4fa5f809afe"
+        },
+        {
+          "case_id": "HELIXOS-L9-015-C0301",
+          "l7_input_pointer": "/connection_materials/OS015/case/cases/300/given/input",
+          "expanded_input_sha256": "a3bd0401d8118fcecc5b2584574a134ffa19f6027d21c354ad91ce2507fd4a4e"
+        }
+      ],
+      "condition_review": {
+        "reviewed_phase_set": [
+          "classify",
+          "correct"
+        ],
+        "reviewed_stimulus_targets": [
+          "/context/records/target_a/source/scope",
+          "/context/records/target_a/source/target_id"
+        ],
+        "raw_stimulus_input_count": 4,
+        "raw_stimulus_summary": "L7 given.inputのbase_refとreplacementsのみを照合。ケースごとの置換pointer/valueはmanifest固定hashに束縛し、conditionが全入力を包含することを確認。expected_proposal、L8/L9 expectedは参照しない。",
+        "manual_alignment": "上記conditionのphase・対象pointer・置換値を全raw入力と照合。"
+      }
+    },
+    {
+      "class_id": "OS015-NEG-COMPOSITE-9c5c0fb87d1b6f9fbdf5e2e825c9e600024bbcd3f5bac7a32e7c20423fca521c",
+      "is_new": true,
+      "key": {
+        "expected_classification": "management_material_violation",
+        "finding_codes": [
+          "original_event_mutated",
+          "source_conflict",
+          "source_conflict"
+        ],
+        "backflow_owner": "management-authority-owner",
+        "expected_axis": "original_event",
+        "expected_state": "violation",
+        "owner_ref": {
+          "kind": "function_ref",
+          "id": "FN-OS015-01"
+        }
+      },
+      "condition": "classify/correct。context側target_a.original_event.event_idまたはevent_revisionの片方を既知のFOREIGN値に置換。whole-event比較でoriginal_event_mutated、eventとnew_classificationの別々のactual pointerにsource_conflictが各1件。",
+      "case_ids": [
+        "HELIXOS-L9-015-C0219",
+        "HELIXOS-L9-015-C0221",
+        "HELIXOS-L9-015-C0335",
+        "HELIXOS-L9-015-C0337"
+      ],
+      "source_reference": {
+        "path": "manual-case-audit-05614.md",
+        "section": "Candidate key一覧",
+        "line": 421
+      },
+      "audit_slug": "event_mutated_conflict_twice",
+      "l7_raw_inputs": [
+        {
+          "case_id": "HELIXOS-L9-015-C0219",
+          "l7_input_pointer": "/connection_materials/OS015/case/cases/218/given/input",
+          "expanded_input_sha256": "c3788fc02eb6797fbd9ab3e254823043a99a0cc08da520825a00574dc7f81899"
+        },
+        {
+          "case_id": "HELIXOS-L9-015-C0221",
+          "l7_input_pointer": "/connection_materials/OS015/case/cases/220/given/input",
+          "expanded_input_sha256": "aea1cda7956a764897e42b3b7c48b3b8a0c30439249d7fa80a6c63863d7d3316"
+        },
+        {
+          "case_id": "HELIXOS-L9-015-C0335",
+          "l7_input_pointer": "/connection_materials/OS015/case/cases/334/given/input",
+          "expanded_input_sha256": "f23ee125144eb4b7c4fa6c644b5b3f1e3465fd7bc3bbc5a1f83e6ac7acb0728d"
+        },
+        {
+          "case_id": "HELIXOS-L9-015-C0337",
+          "l7_input_pointer": "/connection_materials/OS015/case/cases/336/given/input",
+          "expanded_input_sha256": "62a05bd0310e5e9a6f31ce412300c10d68fca644b69843ff7b36057b85894df2"
+        }
+      ],
+      "condition_review": {
+        "reviewed_phase_set": [
+          "classify",
+          "correct"
+        ],
+        "reviewed_stimulus_targets": [
+          "/context/records/target_a/original_event/event_id",
+          "/context/records/target_a/original_event/event_revision"
+        ],
+        "raw_stimulus_input_count": 4,
+        "raw_stimulus_summary": "L7 given.inputのbase_refとreplacementsのみを照合。ケースごとの置換pointer/valueはmanifest固定hashに束縛し、conditionが全入力を包含することを確認。expected_proposal、L8/L9 expectedは参照しない。",
+        "manual_alignment": "上記conditionのphase・対象pointer・置換値を全raw入力と照合。"
+      }
+    },
+    {
+      "class_id": "OS015-NEG-COMPOSITE-f26b128d495605fef34af26296623a373d06205bdbe8e9e366001ee980e6f294",
+      "is_new": true,
+      "key": {
+        "expected_classification": "management_material_unknown",
+        "finding_codes": [
+          "classification_kind_unresolved",
+          "source_unresolved"
+        ],
+        "backflow_owner": "management-authority-owner",
+        "expected_axis": "classification",
+        "expected_state": "unknown",
+        "owner_ref": {
+          "kind": "function_ref",
+          "id": "FN-OS015-01"
+        }
+      },
+      "condition": "classify/correct。actual側target_a.new_classification.kindをnullに置換し、classification_kind_unresolvedとsource_unresolvedを生じる。",
+      "case_ids": [
+        "HELIXOS-L9-015-C0364",
+        "HELIXOS-L9-015-C0414"
+      ],
+      "source_reference": {
+        "path": "manual-case-audit-05614.md",
+        "section": "Candidate key一覧",
+        "line": 422
+      },
+      "audit_slug": "classification_kind_unresolved_and_source_unresolved",
+      "l7_raw_inputs": [
+        {
+          "case_id": "HELIXOS-L9-015-C0364",
+          "l7_input_pointer": "/connection_materials/OS015/case/cases/363/given/input",
+          "expanded_input_sha256": "4302bfd933f10d415523a9b2ba8bcf055b03da1a4bdf8018847510fbd902fbb4"
+        },
+        {
+          "case_id": "HELIXOS-L9-015-C0414",
+          "l7_input_pointer": "/connection_materials/OS015/case/cases/413/given/input",
+          "expanded_input_sha256": "4c757081eb77048ba54f226478df2a4c8d18e3606cf2ffe4926a0e68e34d1b6c"
+        }
+      ],
+      "condition_review": {
+        "reviewed_phase_set": [
+          "classify",
+          "correct"
+        ],
+        "reviewed_stimulus_targets": [
+          "/records/target_a/new_classification/kind"
+        ],
+        "raw_stimulus_input_count": 2,
+        "raw_stimulus_summary": "L7 given.inputのbase_refとreplacementsのみを照合。ケースごとの置換pointer/valueはmanifest固定hashに束縛し、conditionが全入力を包含することを確認。expected_proposal、L8/L9 expectedは参照しない。",
+        "manual_alignment": "上記conditionのphase・対象pointer・置換値を全raw入力と照合。"
+      }
+    },
+    {
+      "class_id": "OS015-NEG-COMPOSITE-df9154ac8720b176f3ba2d4bf5fc0362496e530eafdd829278de18d4a3d5c39b",
+      "is_new": true,
+      "key": {
+        "expected_classification": "management_material_violation",
+        "finding_codes": [
+          "classification_kind_unresolved",
+          "source_conflict"
+        ],
+        "backflow_owner": "management-authority-owner",
+        "expected_axis": "classification",
+        "expected_state": "violation",
+        "owner_ref": {
+          "kind": "function_ref",
+          "id": "FN-OS015-01"
+        }
+      },
+      "condition": "classify/correct。actual側target_a.new_classification.kindを許可値外の既知値FOREIGN-kindに置換し、classification_kind_unresolvedとsource_conflictを生じる。",
+      "case_ids": [
+        "HELIXOS-L9-015-C0365",
+        "HELIXOS-L9-015-C0415"
+      ],
+      "source_reference": {
+        "path": "manual-case-audit-05614.md",
+        "section": "Candidate key一覧",
+        "line": 423
+      },
+      "audit_slug": "classification_kind_unresolved_and_source_conflict",
+      "l7_raw_inputs": [
+        {
+          "case_id": "HELIXOS-L9-015-C0365",
+          "l7_input_pointer": "/connection_materials/OS015/case/cases/364/given/input",
+          "expanded_input_sha256": "0f7b4851c29c6dc13bd714dfac7d4a53422b6b7015f83f127fdfbed5a2222971"
+        },
+        {
+          "case_id": "HELIXOS-L9-015-C0415",
+          "l7_input_pointer": "/connection_materials/OS015/case/cases/414/given/input",
+          "expanded_input_sha256": "78cf60434b2e3becb2e98dfb32c89bd88ed837be6e8ee74a01dd85c7303d6460"
+        }
+      ],
+      "condition_review": {
+        "reviewed_phase_set": [
+          "classify",
+          "correct"
+        ],
+        "reviewed_stimulus_targets": [
+          "/records/target_a/new_classification/kind"
+        ],
+        "raw_stimulus_input_count": 2,
+        "raw_stimulus_summary": "L7 given.inputのbase_refとreplacementsのみを照合。ケースごとの置換pointer/valueはmanifest固定hashに束縛し、conditionが全入力を包含することを確認。expected_proposal、L8/L9 expectedは参照しない。",
+        "manual_alignment": "上記conditionのphase・対象pointer・置換値を全raw入力と照合。"
+      }
+    },
+    {
+      "class_id": "OS015-NEG-COMPOSITE-89de10e4554c2fb25885bc24b09de095d209750e791130a0f121afac952aa4ea",
+      "is_new": true,
+      "key": {
+        "expected_classification": "management_material_violation",
+        "finding_codes": [
+          "authority_origin_forbidden",
+          "source_conflict"
+        ],
+        "backflow_owner": "management-authority-owner",
+        "expected_axis": "authority",
+        "expected_state": "violation",
+        "owner_ref": {
+          "kind": "function_ref",
+          "id": "FN-OS015-01"
+        }
+      },
+      "condition": "correct。actual側target_a.authority_originを許可enum内の非canonical値（issue/pr/ci/memory/management_recordのいずれか）に置換し、canonical_sourceとの不一致を作る。",
+      "case_ids": [
+        "HELIXOS-L9-015-C0460",
+        "HELIXOS-L9-015-C0463",
+        "HELIXOS-L9-015-C0466",
+        "HELIXOS-L9-015-C0469",
+        "HELIXOS-L9-015-C0472"
+      ],
+      "source_reference": {
+        "path": "manual-case-audit-05614.md",
+        "section": "Candidate key一覧",
+        "line": 424
+      },
+      "audit_slug": "authority_origin_forbidden_and_source_conflict",
+      "l7_raw_inputs": [
+        {
+          "case_id": "HELIXOS-L9-015-C0460",
+          "l7_input_pointer": "/connection_materials/OS015/case/cases/459/given/input",
+          "expanded_input_sha256": "9c4e99d9ea183324f8b938e5413f50d546440070dad14768b198fa66e8a5b849"
+        },
+        {
+          "case_id": "HELIXOS-L9-015-C0463",
+          "l7_input_pointer": "/connection_materials/OS015/case/cases/462/given/input",
+          "expanded_input_sha256": "5fef6a05d5a33f1d49d0894d29081f0bc493f79e2373ed1d7f813ee0f440d0a2"
+        },
+        {
+          "case_id": "HELIXOS-L9-015-C0466",
+          "l7_input_pointer": "/connection_materials/OS015/case/cases/465/given/input",
+          "expanded_input_sha256": "d10c6515b0daa1dc1aa720a39dbb41241548aa1139290f0ff84cf9b11416a675"
+        },
+        {
+          "case_id": "HELIXOS-L9-015-C0469",
+          "l7_input_pointer": "/connection_materials/OS015/case/cases/468/given/input",
+          "expanded_input_sha256": "20f12b9393cc44e98ed1823888e918bc8e88a7f4b5d94e21f50a68b28c6263a0"
+        },
+        {
+          "case_id": "HELIXOS-L9-015-C0472",
+          "l7_input_pointer": "/connection_materials/OS015/case/cases/471/given/input",
+          "expanded_input_sha256": "a0d1e5e26d53137fe912f084ec32b900569bd86d53f07e31590fd4c3bcd67569"
+        }
+      ],
+      "condition_review": {
+        "reviewed_phase_set": [
+          "correct"
+        ],
+        "reviewed_stimulus_targets": [
+          "/records/target_a/authority_origin"
+        ],
+        "raw_stimulus_input_count": 5,
+        "raw_stimulus_summary": "L7 given.inputのbase_refとreplacementsのみを照合。ケースごとの置換pointer/valueはmanifest固定hashに束縛し、conditionが全入力を包含することを確認。expected_proposal、L8/L9 expectedは参照しない。",
+        "manual_alignment": "上記conditionのphase・対象pointer・置換値を全raw入力と照合。"
+      }
+    },
+    {
+      "class_id": "OS015-NEG-COMPOSITE-4ed7dc758943d0971c6a7853ba3568609804d47e1f5f615e39eaa5e523ef1c04",
+      "is_new": true,
+      "key": {
+        "expected_classification": "management_material_unknown",
+        "finding_codes": [
+          "authority_origin_unresolved",
+          "authority_origin_unresolved"
+        ],
+        "backflow_owner": "management-authority-owner",
+        "expected_axis": "authority",
+        "expected_state": "unknown",
+        "owner_ref": {
+          "kind": "function_ref",
+          "id": "FN-OS015-01"
+        }
+      },
+      "condition": "correct。actual/context双方のtarget_a.authority_originを同じ未許可値（nullまたはunknown_origin）に置換し、両側pointerにauthority_origin_unresolvedを保持する。",
+      "case_ids": [
+        "HELIXOS-L9-015-C0477",
+        "HELIXOS-L9-015-C0480"
+      ],
+      "source_reference": {
+        "path": "manual-case-audit-05614.md",
+        "section": "Candidate key一覧",
+        "line": 425
+      },
+      "audit_slug": "authority_origin_unresolved_twice",
+      "l7_raw_inputs": [
+        {
+          "case_id": "HELIXOS-L9-015-C0477",
+          "l7_input_pointer": "/connection_materials/OS015/case/cases/476/given/input",
+          "expanded_input_sha256": "6c4da25b9830ed40121b6a772c9558c149e7d3136d4f4f4b9adbdd57c6eb511f"
+        },
+        {
+          "case_id": "HELIXOS-L9-015-C0480",
+          "l7_input_pointer": "/connection_materials/OS015/case/cases/479/given/input",
+          "expanded_input_sha256": "9455a362e5f8a40c71e68f2264b87bcf5d4fbf49f83dc4b4c5d37370825d9cbd"
+        }
+      ],
+      "condition_review": {
+        "reviewed_phase_set": [
+          "correct"
+        ],
+        "reviewed_stimulus_targets": [
+          "/context/records/target_a/authority_origin",
+          "/records/target_a/authority_origin"
+        ],
+        "raw_stimulus_input_count": 2,
+        "raw_stimulus_summary": "L7 given.inputのbase_refとreplacementsのみを照合。ケースごとの置換pointer/valueはmanifest固定hashに束縛し、conditionが全入力を包含することを確認。expected_proposal、L8/L9 expectedは参照しない。",
+        "manual_alignment": "上記conditionのphase・対象pointer・置換値を全raw入力と照合。"
+      }
+    },
+    {
+      "class_id": "OS015-NEG-COMPOSITE-e23551bcfb260256f33d6911d244f0715dee4f62c3f09840e48d7de5c6473ae9",
+      "is_new": true,
+      "key": {
+        "expected_classification": "management_material_violation",
+        "finding_codes": [
+          "authority_stale",
+          "source_conflict"
+        ],
+        "backflow_owner": "management-authority-owner",
+        "expected_axis": "authority",
+        "expected_state": "violation",
+        "owner_ref": {
+          "kind": "function_ref",
+          "id": "FN-OS015-01"
+        }
+      },
+      "condition": "correct。actual側target_a.authority_stateをstale_materialに置換し、context側current_materialとの不一致を作る。",
+      "case_ids": [
+        "HELIXOS-L9-015-C0481"
+      ],
+      "source_reference": {
+        "path": "manual-case-audit-05614.md",
+        "section": "Candidate key一覧",
+        "line": 426
+      },
+      "audit_slug": "authority_stale_and_source_conflict",
+      "l7_raw_inputs": [
+        {
+          "case_id": "HELIXOS-L9-015-C0481",
+          "l7_input_pointer": "/connection_materials/OS015/case/cases/480/given/input",
+          "expanded_input_sha256": "f43e8ce0fe9d3c11bdaeb0aaaf55539fc6e04c3c40d1b926aa398e4e0a08b604"
+        }
+      ],
+      "condition_review": {
+        "reviewed_phase_set": [
+          "correct"
+        ],
+        "reviewed_stimulus_targets": [
+          "/records/target_a/authority_state"
+        ],
+        "raw_stimulus_input_count": 1,
+        "raw_stimulus_summary": "L7 given.inputのbase_refとreplacementsのみを照合。ケースごとの置換pointer/valueはmanifest固定hashに束縛し、conditionが全入力を包含することを確認。expected_proposal、L8/L9 expectedは参照しない。",
+        "manual_alignment": "上記conditionのphase・対象pointer・置換値を全raw入力と照合。"
+      }
+    },
+    {
+      "class_id": "OS015-NEG-COMPOSITE-087fdf8f8d9303e619d04ccc3cbc6da653d08a4b20f6009bab1ec8dfe3cc90c9",
+      "is_new": true,
+      "key": {
+        "expected_classification": "management_material_violation",
+        "finding_codes": [
+          "authority_conflict",
+          "source_conflict"
+        ],
+        "backflow_owner": "management-authority-owner",
+        "expected_axis": "authority",
+        "expected_state": "violation",
+        "owner_ref": {
+          "kind": "function_ref",
+          "id": "FN-OS015-01"
+        }
+      },
+      "condition": "correct。actual側target_a.authority_stateをconflict_materialに置換し、context側current_materialとの不一致を作る。",
+      "case_ids": [
+        "HELIXOS-L9-015-C0484"
+      ],
+      "source_reference": {
+        "path": "manual-case-audit-05614.md",
+        "section": "Candidate key一覧",
+        "line": 427
+      },
+      "audit_slug": "authority_conflict_and_source_conflict",
+      "l7_raw_inputs": [
+        {
+          "case_id": "HELIXOS-L9-015-C0484",
+          "l7_input_pointer": "/connection_materials/OS015/case/cases/483/given/input",
+          "expanded_input_sha256": "a13587285be055d701feb9e9465eaa90279a2b29db655fa44fd0d6d9bc7ceee6"
+        }
+      ],
+      "condition_review": {
+        "reviewed_phase_set": [
+          "correct"
+        ],
+        "reviewed_stimulus_targets": [
+          "/records/target_a/authority_state"
+        ],
+        "raw_stimulus_input_count": 1,
+        "raw_stimulus_summary": "L7 given.inputのbase_refとreplacementsのみを照合。ケースごとの置換pointer/valueはmanifest固定hashに束縛し、conditionが全入力を包含することを確認。expected_proposal、L8/L9 expectedは参照しない。",
+        "manual_alignment": "上記conditionのphase・対象pointer・置換値を全raw入力と照合。"
+      }
+    },
+    {
+      "class_id": "OS015-NEG-COMPOSITE-3123046e6695da60ba6abef15c2588c632081391d431ec133fa509d6d90017bb",
+      "is_new": true,
+      "key": {
+        "expected_classification": "management_material_violation",
+        "finding_codes": [
+          "authority_state_unresolved",
+          "source_conflict"
+        ],
+        "backflow_owner": "management-authority-owner",
+        "expected_axis": "authority",
+        "expected_state": "violation",
+        "owner_ref": {
+          "kind": "function_ref",
+          "id": "FN-OS015-01"
+        }
+      },
+      "condition": "correct。actual側target_a.authority_stateをunresolvedに置換し、context側current_materialとの不一致を作る。",
+      "case_ids": [
+        "HELIXOS-L9-015-C0487"
+      ],
+      "source_reference": {
+        "path": "manual-case-audit-05614.md",
+        "section": "Candidate key一覧",
+        "line": 428
+      },
+      "audit_slug": "authority_state_unresolved_and_source_conflict",
+      "l7_raw_inputs": [
+        {
+          "case_id": "HELIXOS-L9-015-C0487",
+          "l7_input_pointer": "/connection_materials/OS015/case/cases/486/given/input",
+          "expanded_input_sha256": "94db73cbdc8aa4989b55c1caebaaee6355657eb16241284b631324440e6aacf0"
+        }
+      ],
+      "condition_review": {
+        "reviewed_phase_set": [
+          "correct"
+        ],
+        "reviewed_stimulus_targets": [
+          "/records/target_a/authority_state"
+        ],
+        "raw_stimulus_input_count": 1,
+        "raw_stimulus_summary": "L7 given.inputのbase_refとreplacementsのみを照合。ケースごとの置換pointer/valueはmanifest固定hashに束縛し、conditionが全入力を包含することを確認。expected_proposal、L8/L9 expectedは参照しない。",
+        "manual_alignment": "上記conditionのphase・対象pointer・置換値を全raw入力と照合。"
+      }
+    },
+    {
+      "class_id": "OS015-NEG-COMPOSITE-9539a1f0e6787f121075bfc71469d281caadb1e4c31ba4a8df9ccd5fe882d3d7",
+      "is_new": true,
+      "key": {
+        "expected_classification": "management_material_unknown",
+        "finding_codes": [
+          "authority_state_unresolved",
+          "authority_state_unresolved"
+        ],
+        "backflow_owner": "management-authority-owner",
+        "expected_axis": "authority",
+        "expected_state": "unknown",
+        "owner_ref": {
+          "kind": "function_ref",
+          "id": "FN-OS015-01"
+        }
+      },
+      "condition": "correct。actual/context双方のtarget_a.authority_stateを同じ未定義値（nullまたはunknown_state）に置換し、両側pointerにauthority_state_unresolvedを保持する。",
+      "case_ids": [
+        "HELIXOS-L9-015-C0492",
+        "HELIXOS-L9-015-C0495"
+      ],
+      "source_reference": {
+        "path": "manual-case-audit-05614.md",
+        "section": "Candidate key一覧",
+        "line": 429
+      },
+      "audit_slug": "authority_state_unresolved_twice",
+      "l7_raw_inputs": [
+        {
+          "case_id": "HELIXOS-L9-015-C0492",
+          "l7_input_pointer": "/connection_materials/OS015/case/cases/491/given/input",
+          "expanded_input_sha256": "31343937280ddbb8d473f0602263dc9816a3edd13618c7e0edc12ff6a3d237e0"
+        },
+        {
+          "case_id": "HELIXOS-L9-015-C0495",
+          "l7_input_pointer": "/connection_materials/OS015/case/cases/494/given/input",
+          "expanded_input_sha256": "305263aca5bba535fdc0f07b660894734093ef09faa9b65bbd291ba8cf1dc0dd"
+        }
+      ],
+      "condition_review": {
+        "reviewed_phase_set": [
+          "correct"
+        ],
+        "reviewed_stimulus_targets": [
+          "/context/records/target_a/authority_state",
+          "/records/target_a/authority_state"
+        ],
+        "raw_stimulus_input_count": 2,
+        "raw_stimulus_summary": "L7 given.inputのbase_refとreplacementsのみを照合。ケースごとの置換pointer/valueはmanifest固定hashに束縛し、conditionが全入力を包含することを確認。expected_proposal、L8/L9 expectedは参照しない。",
+        "manual_alignment": "上記conditionのphase・対象pointer・置換値を全raw入力と照合。"
+      }
+    },
+    {
+      "class_id": "OS015-NEG-COMPOSITE-931c9057eaac57f35bd0ed64d5288c4339e3e4ff9b96eb19b2d77ff8a25767e2",
+      "is_new": true,
+      "key": {
+        "expected_classification": "management_material_violation",
+        "finding_codes": [
+          "source_unresolved",
+          "unresolved_promoted_to_current"
+        ],
+        "backflow_owner": "management-authority-owner",
+        "expected_axis": "source",
+        "expected_state": "unknown",
+        "owner_ref": {
+          "kind": "function_ref",
+          "id": "FN-OS015-01"
+        }
+      },
+      "condition": "inspect/classify/correct。actual側target_a.source.source_digestをnull、current_material_claimをtrueへ置換し、L4のpromotion branchでsource_unresolvedとunresolved_promoted_to_currentを生じる。",
+      "case_ids": [
+        "HELIXOS-L9-015-C0505",
+        "HELIXOS-L9-015-C0522",
+        "HELIXOS-L9-015-C0539"
+      ],
+      "source_reference": {
+        "path": "manual-case-audit-05614.md",
+        "section": "Candidate key一覧",
+        "line": 430
+      },
+      "audit_slug": "source_unresolved_and_promoted_to_current",
+      "l7_raw_inputs": [
+        {
+          "case_id": "HELIXOS-L9-015-C0505",
+          "l7_input_pointer": "/connection_materials/OS015/case/cases/504/given/input",
+          "expanded_input_sha256": "66d00bb9f5d67a780d6a097ed31d585b35333007c2221804b18353ef056d5436"
+        },
+        {
+          "case_id": "HELIXOS-L9-015-C0522",
+          "l7_input_pointer": "/connection_materials/OS015/case/cases/521/given/input",
+          "expanded_input_sha256": "78bc52c3428970b3f718dd40d67a2a4c86101dc913d574460b202d9cc5fa0e9e"
+        },
+        {
+          "case_id": "HELIXOS-L9-015-C0539",
+          "l7_input_pointer": "/connection_materials/OS015/case/cases/538/given/input",
+          "expanded_input_sha256": "ce364a4e77349fc6c8b793004ccf787c1d55fe745080dac7e83e447872fb1e23"
+        }
+      ],
+      "condition_review": {
+        "reviewed_phase_set": [
+          "inspect",
+          "classify",
+          "correct"
+        ],
+        "reviewed_stimulus_targets": [
+          "/records/target_a/current_material_claim",
+          "/records/target_a/source/source_digest"
+        ],
+        "raw_stimulus_input_count": 3,
+        "raw_stimulus_summary": "L7 given.inputのbase_refとreplacementsのみを照合。ケースごとの置換pointer/valueはmanifest固定hashに束縛し、conditionが全入力を包含することを確認。expected_proposal、L8/L9 expectedは参照しない。",
+        "manual_alignment": "上記conditionのphase・対象pointer・置換値を全raw入力と照合。"
+      }
+    },
+    {
+      "class_id": "OS015-NEG-COMPOSITE-f5d02578a904f76ed01d15f549851918588f40e74d8216f84c54500cc38a384a",
+      "is_new": true,
+      "key": {
+        "expected_classification": "management_material_violation",
+        "finding_codes": [
+          "first_classification_prior_present",
+          "original_classification_mutated"
+        ],
+        "backflow_owner": "management-authority-owner",
+        "expected_axis": "classification",
+        "expected_state": "violation",
+        "owner_ref": {
+          "kind": "function_ref",
+          "id": "FN-OS015-01"
+        }
+      },
+      "condition": "classifyでactual original_classificationにknown priorを設定し、context original_classificationはnullのまま。prior-presentとoriginal-classification mutationが併発する。",
+      "case_ids": [
+        "HELIXOS-L9-015-C0573"
+      ],
+      "source_reference": {
+        "path": "manual-case-audit-05614.md",
+        "section": "Candidate key一覧",
+        "line": 431
+      },
+      "audit_slug": "prior_present_and_original_classification_mutated",
+      "l7_raw_inputs": [
+        {
+          "case_id": "HELIXOS-L9-015-C0573",
+          "l7_input_pointer": "/connection_materials/OS015/case/cases/572/given/input",
+          "expanded_input_sha256": "0caa9c9666add694384805bc5abf26bd5790a99ede3f636e89082e81a20e3ae3"
+        }
+      ],
+      "condition_review": {
+        "reviewed_phase_set": [
+          "classify"
+        ],
+        "reviewed_stimulus_targets": [
+          "/records/target_a/original_classification"
+        ],
+        "raw_stimulus_input_count": 1,
+        "raw_stimulus_summary": "L7 fixed given.inputのphase/pointer/valueを修正後membershipで再照合。",
+        "manual_alignment": "上記conditionのphase・対象pointer・置換値を全raw入力と照合。"
+      }
+    },
+    {
+      "class_id": "OS015-NEG-COMPOSITE-4e80f5977bf48e95192dcbe7ebd26ffba7aa253ddef99755e42e3e0990008f72",
+      "is_new": true,
+      "key": {
+        "expected_classification": "management_material_violation",
+        "finding_codes": [
+          "first_classification_prior_unresolved",
+          "original_classification_mutated"
+        ],
+        "backflow_owner": "management-authority-owner",
+        "expected_axis": "classification",
+        "expected_state": "unknown",
+        "owner_ref": {
+          "kind": "function_ref",
+          "id": "FN-OS015-01"
+        }
+      },
+      "condition": "classifyでactual original_classificationを{}またはUNKNOWN-PRIORに置換し、context original_classificationはnullのまま。prior-unresolvedとoriginal-classification mutationが併発する。",
+      "case_ids": [
+        "HELIXOS-L9-015-C0576",
+        "HELIXOS-L9-015-C0579"
+      ],
+      "source_reference": {
+        "path": "manual-case-audit-05614.md",
+        "section": "Candidate key一覧",
+        "line": 432
+      },
+      "audit_slug": "prior_unresolved_and_original_classification_mutated",
+      "l7_raw_inputs": [
+        {
+          "case_id": "HELIXOS-L9-015-C0576",
+          "l7_input_pointer": "/connection_materials/OS015/case/cases/575/given/input",
+          "expanded_input_sha256": "a272cd166d470aed32ba7bbc07bebbc5a5fa85f68837f767ffb078209f36c73e"
+        },
+        {
+          "case_id": "HELIXOS-L9-015-C0579",
+          "l7_input_pointer": "/connection_materials/OS015/case/cases/578/given/input",
+          "expanded_input_sha256": "b807d7c40121ac266011d10c9a5ce316c750eca0ee8c0548e17935c95e895009"
+        }
+      ],
+      "condition_review": {
+        "reviewed_phase_set": [
+          "classify"
+        ],
+        "reviewed_stimulus_targets": [
+          "/records/target_a/original_classification"
+        ],
+        "raw_stimulus_input_count": 2,
+        "raw_stimulus_summary": "L7 fixed given.inputのphase/pointer/valueを修正後membershipで再照合。",
+        "manual_alignment": "上記conditionのphase・対象pointer・置換値を全raw入力と照合。"
+      }
+    },
+    {
+      "class_id": "OS015-NEG-COMPOSITE-d509d10e51a98c1fe8971d91e909e058b360a803c1d686891282e3a8667a158f",
+      "is_new": true,
+      "key": {
+        "expected_classification": "management_material_violation",
+        "finding_codes": [
+          "first_classification_prior_present",
+          "first_classification_prior_present"
+        ],
+        "backflow_owner": "management-authority-owner",
+        "expected_axis": "classification",
+        "expected_state": "violation",
+        "owner_ref": {
+          "kind": "function_ref",
+          "id": "FN-OS015-01"
+        }
+      },
+      "condition": "classify。actual/context双方のtarget_a.original_classificationに同一の既知prior objectを設定し、両側にfirst_classification_prior_presentを1件ずつ生じる。C0582では双方のnew_classification class/prior refとrevisionも同priorへ合わせる。",
+      "case_ids": [
+        "HELIXOS-L9-015-C0582"
+      ],
+      "source_reference": {
+        "path": "manual-case-audit-05614.md",
+        "section": "Candidate key一覧",
+        "line": 433
+      },
+      "audit_slug": "prior_present_twice",
+      "l7_raw_inputs": [
+        {
+          "case_id": "HELIXOS-L9-015-C0582",
+          "l7_input_pointer": "/connection_materials/OS015/case/cases/581/given/input",
+          "expanded_input_sha256": "f29a638488f00dc7c9b2e19875ddaf2ba05f4f3e458dadb7e94b1fd214969801"
+        }
+      ],
+      "condition_review": {
+        "reviewed_phase_set": [
+          "classify"
+        ],
+        "reviewed_stimulus_targets": [
+          "/context/records/target_a/new_classification/classification_ref",
+          "/context/records/target_a/new_classification/classification_revision",
+          "/context/records/target_a/new_classification/prior_classification_ref",
+          "/context/records/target_a/new_classification/prior_classification_revision",
+          "/context/records/target_a/original_classification",
+          "/records/target_a/new_classification/classification_ref",
+          "/records/target_a/new_classification/classification_revision",
+          "/records/target_a/new_classification/prior_classification_ref",
+          "/records/target_a/new_classification/prior_classification_revision",
+          "/records/target_a/original_classification"
+        ],
+        "raw_stimulus_input_count": 1,
+        "raw_stimulus_summary": "L7 fixed given.inputのphase/pointer/valueを修正後membershipで再照合。",
+        "manual_alignment": "上記conditionのphase・対象pointer・置換値を全raw入力と照合。"
+      }
+    },
+    {
+      "class_id": "OS015-NEG-COMPOSITE-dead4dfeefccac8eec603d8be3bf804b928f0882d4c1b4ff907acba7b10f277a",
+      "is_new": true,
+      "key": {
+        "expected_classification": "management_material_violation",
+        "finding_codes": [
+          "first_classification_prior_present",
+          "original_classification_mutated",
+          "source_unresolved",
+          "source_unresolved",
+          "source_unresolved",
+          "source_unresolved"
+        ],
+        "backflow_owner": "management-authority-owner",
+        "expected_axis": "classification",
+        "expected_state": "violation",
+        "owner_ref": {
+          "kind": "function_ref",
+          "id": "FN-OS015-01"
+        }
+      },
+      "condition": "classifyでcontext original_classificationにknown prior、actual original_classificationはnull。new_classification prior ref/revisionはactual/context双方nullのままなので4 pointerでsource_unresolved。prior-presentとactual original-classification mutationも保持する。",
+      "case_ids": [
+        "HELIXOS-L9-015-C0574"
+      ],
+      "source_reference": {
+        "path": "class-correction-cases.json",
+        "section": "corrected_groups",
+        "manual_audit_lines": [
+          431
+        ]
+      },
+      "correction_audit": "class-correction-audit-5d541.md",
+      "l7_raw_inputs": [
+        {
+          "case_id": "HELIXOS-L9-015-C0574",
+          "l7_input_pointer": "/connection_materials/OS015/case/cases/573/given/input",
+          "expanded_input_sha256": "5a7948fcd5626fa63379a7ae0db44e8b742fdaa11719aeab6b30124985f274c1"
+        }
+      ],
+      "condition_review": {
+        "manual_audit_sections": [
+          "class-correction-audit-5d541.md"
+        ],
+        "reviewed_phase_set": [
+          "classify"
+        ],
+        "reviewed_stimulus_targets": [
+          "/context/records/target_a/original_classification"
+        ],
+        "raw_stimulus_input_count": 1,
+        "raw_stimulus_summary": "L7 fixed classify fixtureのactual/context new_classification prior ref/revisionは全4欄null。given.input replacementでoriginal_classificationを変更。",
+        "manual_alignment": "L4 classify branchのcontext prior guard、actual/context prior fieldsのnull knownness、final finding sortを逐case照合。",
+        "derived_finding_pointers": [
+          "/context/records/target_a/new_classification/prior_classification_ref",
+          "/context/records/target_a/new_classification/prior_classification_revision",
+          "/records/target_a/new_classification/prior_classification_ref",
+          "/records/target_a/new_classification/prior_classification_revision"
+        ]
+      },
+      "independent_findings": {
+        "HELIXOS-L9-015-C0574": [
+          {
+            "code": "first_classification_prior_present",
+            "pointer": "/context/records/target_a/original_classification",
+            "return_owner": "management-authority-owner"
+          },
+          {
+            "code": "original_classification_mutated",
+            "pointer": "/records/target_a/original_classification",
+            "return_owner": "management-authority-owner"
+          },
+          {
+            "code": "source_unresolved",
+            "pointer": "/context/records/target_a/new_classification/prior_classification_ref",
+            "return_owner": "management-authority-owner"
+          },
+          {
+            "code": "source_unresolved",
+            "pointer": "/context/records/target_a/new_classification/prior_classification_revision",
+            "return_owner": "management-authority-owner"
+          },
+          {
+            "code": "source_unresolved",
+            "pointer": "/records/target_a/new_classification/prior_classification_ref",
+            "return_owner": "management-authority-owner"
+          },
+          {
+            "code": "source_unresolved",
+            "pointer": "/records/target_a/new_classification/prior_classification_revision",
+            "return_owner": "management-authority-owner"
+          }
+        ]
+      }
+    },
+    {
+      "class_id": "OS015-NEG-COMPOSITE-8db83e3dc818dc613437d06b57bc7695b8867a0c7a35f630b9e0837c6c5950a4",
+      "is_new": true,
+      "key": {
+        "expected_classification": "management_material_violation",
+        "finding_codes": [
+          "first_classification_prior_present",
+          "first_classification_prior_present",
+          "source_unresolved",
+          "source_unresolved",
+          "source_unresolved",
+          "source_unresolved"
+        ],
+        "backflow_owner": "management-authority-owner",
+        "expected_axis": "classification",
+        "expected_state": "violation",
+        "owner_ref": {
+          "kind": "function_ref",
+          "id": "FN-OS015-01"
+        }
+      },
+      "condition": "classifyでactual/context original_classificationが同じknown prior。new_classification prior ref/revisionはactual/context双方nullのままなので4 pointerでsource_unresolved。両側prior-present findingsも保持する。",
+      "case_ids": [
+        "HELIXOS-L9-015-C0575"
+      ],
+      "source_reference": {
+        "path": "class-correction-cases.json",
+        "section": "corrected_groups",
+        "manual_audit_lines": [
+          433
+        ]
+      },
+      "correction_audit": "class-correction-audit-5d541.md",
+      "l7_raw_inputs": [
+        {
+          "case_id": "HELIXOS-L9-015-C0575",
+          "l7_input_pointer": "/connection_materials/OS015/case/cases/574/given/input",
+          "expanded_input_sha256": "99b66273f06831b5fd3295c4fdf49b34806da85d580f98e20c8afb74fb1bfd1f"
+        }
+      ],
+      "condition_review": {
+        "manual_audit_sections": [
+          "class-correction-audit-5d541.md"
+        ],
+        "reviewed_phase_set": [
+          "classify"
+        ],
+        "reviewed_stimulus_targets": [
+          "/context/records/target_a/original_classification",
+          "/records/target_a/original_classification"
+        ],
+        "raw_stimulus_input_count": 1,
+        "raw_stimulus_summary": "L7 fixed classify fixtureのactual/context new_classification prior ref/revisionは全4欄null。given.input replacementでoriginal_classificationを変更。",
+        "manual_alignment": "L4 classify branchのcontext prior guard、actual/context prior fieldsのnull knownness、final finding sortを逐case照合。",
+        "derived_finding_pointers": [
+          "/context/records/target_a/new_classification/prior_classification_ref",
+          "/context/records/target_a/new_classification/prior_classification_revision",
+          "/records/target_a/new_classification/prior_classification_ref",
+          "/records/target_a/new_classification/prior_classification_revision"
+        ]
+      },
+      "independent_findings": {
+        "HELIXOS-L9-015-C0575": [
+          {
+            "code": "first_classification_prior_present",
+            "pointer": "/context/records/target_a/original_classification",
+            "return_owner": "management-authority-owner"
+          },
+          {
+            "code": "first_classification_prior_present",
+            "pointer": "/records/target_a/original_classification",
+            "return_owner": "management-authority-owner"
+          },
+          {
+            "code": "source_unresolved",
+            "pointer": "/context/records/target_a/new_classification/prior_classification_ref",
+            "return_owner": "management-authority-owner"
+          },
+          {
+            "code": "source_unresolved",
+            "pointer": "/context/records/target_a/new_classification/prior_classification_revision",
+            "return_owner": "management-authority-owner"
+          },
+          {
+            "code": "source_unresolved",
+            "pointer": "/records/target_a/new_classification/prior_classification_ref",
+            "return_owner": "management-authority-owner"
+          },
+          {
+            "code": "source_unresolved",
+            "pointer": "/records/target_a/new_classification/prior_classification_revision",
+            "return_owner": "management-authority-owner"
+          }
+        ]
+      }
+    },
+    {
+      "class_id": "OS015-NEG-COMPOSITE-a0f8ffe7cb48eb9237554e7c9344182b48c98fed14721acb96cafa89481c6429",
+      "is_new": true,
+      "key": {
+        "expected_classification": "management_material_violation",
+        "finding_codes": [
+          "first_classification_prior_unresolved",
+          "original_classification_mutated",
+          "source_unresolved",
+          "source_unresolved",
+          "source_unresolved",
+          "source_unresolved"
+        ],
+        "backflow_owner": "management-authority-owner",
+        "expected_axis": "classification",
+        "expected_state": "unknown",
+        "owner_ref": {
+          "kind": "function_ref",
+          "id": "FN-OS015-01"
+        }
+      },
+      "condition": "classifyでcontext original_classificationが{}またはUNKNOWN-PRIOR、actual original_classificationはnull。new_classification prior ref/revisionはactual/context双方nullのままなので4 pointerでsource_unresolved。context prior-unresolvedとactual mutationも保持する。",
+      "case_ids": [
+        "HELIXOS-L9-015-C0577",
+        "HELIXOS-L9-015-C0580"
+      ],
+      "source_reference": {
+        "path": "class-correction-cases.json",
+        "section": "corrected_groups",
+        "manual_audit_lines": [
+          432
+        ]
+      },
+      "correction_audit": "class-correction-audit-5d541.md",
+      "l7_raw_inputs": [
+        {
+          "case_id": "HELIXOS-L9-015-C0577",
+          "l7_input_pointer": "/connection_materials/OS015/case/cases/576/given/input",
+          "expanded_input_sha256": "39593fb283cb22badf86c59a265a9449d36bf4aaab9c29144709a5fe2482f7ce"
+        },
+        {
+          "case_id": "HELIXOS-L9-015-C0580",
+          "l7_input_pointer": "/connection_materials/OS015/case/cases/579/given/input",
+          "expanded_input_sha256": "d034a0faa908957715bba295565cc97d9542a44949478323adf1eb613350e9b6"
+        }
+      ],
+      "condition_review": {
+        "manual_audit_sections": [
+          "class-correction-audit-5d541.md"
+        ],
+        "reviewed_phase_set": [
+          "classify"
+        ],
+        "reviewed_stimulus_targets": [
+          "/context/records/target_a/original_classification"
+        ],
+        "raw_stimulus_input_count": 2,
+        "raw_stimulus_summary": "L7 fixed classify fixtureのactual/context new_classification prior ref/revisionは全4欄null。given.input replacementでoriginal_classificationを変更。",
+        "manual_alignment": "L4 classify branchのcontext prior guard、actual/context prior fieldsのnull knownness、final finding sortを逐case照合。",
+        "derived_finding_pointers": [
+          "/context/records/target_a/new_classification/prior_classification_ref",
+          "/context/records/target_a/new_classification/prior_classification_revision",
+          "/records/target_a/new_classification/prior_classification_ref",
+          "/records/target_a/new_classification/prior_classification_revision"
+        ]
+      },
+      "independent_findings": {
+        "HELIXOS-L9-015-C0577": [
+          {
+            "code": "first_classification_prior_unresolved",
+            "pointer": "/context/records/target_a/original_classification",
+            "return_owner": "management-authority-owner"
+          },
+          {
+            "code": "original_classification_mutated",
+            "pointer": "/records/target_a/original_classification",
+            "return_owner": "management-authority-owner"
+          },
+          {
+            "code": "source_unresolved",
+            "pointer": "/context/records/target_a/new_classification/prior_classification_ref",
+            "return_owner": "management-authority-owner"
+          },
+          {
+            "code": "source_unresolved",
+            "pointer": "/context/records/target_a/new_classification/prior_classification_revision",
+            "return_owner": "management-authority-owner"
+          },
+          {
+            "code": "source_unresolved",
+            "pointer": "/records/target_a/new_classification/prior_classification_ref",
+            "return_owner": "management-authority-owner"
+          },
+          {
+            "code": "source_unresolved",
+            "pointer": "/records/target_a/new_classification/prior_classification_revision",
+            "return_owner": "management-authority-owner"
+          }
+        ],
+        "HELIXOS-L9-015-C0580": [
+          {
+            "code": "first_classification_prior_unresolved",
+            "pointer": "/context/records/target_a/original_classification",
+            "return_owner": "management-authority-owner"
+          },
+          {
+            "code": "original_classification_mutated",
+            "pointer": "/records/target_a/original_classification",
+            "return_owner": "management-authority-owner"
+          },
+          {
+            "code": "source_unresolved",
+            "pointer": "/context/records/target_a/new_classification/prior_classification_ref",
+            "return_owner": "management-authority-owner"
+          },
+          {
+            "code": "source_unresolved",
+            "pointer": "/context/records/target_a/new_classification/prior_classification_revision",
+            "return_owner": "management-authority-owner"
+          },
+          {
+            "code": "source_unresolved",
+            "pointer": "/records/target_a/new_classification/prior_classification_ref",
+            "return_owner": "management-authority-owner"
+          },
+          {
+            "code": "source_unresolved",
+            "pointer": "/records/target_a/new_classification/prior_classification_revision",
+            "return_owner": "management-authority-owner"
+          }
+        ]
+      }
+    },
+    {
+      "class_id": "OS015-NEG-COMPOSITE-08695e0fad423852ebf0d60b18b944ec130ec1c4865698ff05c83b4646a9e405",
+      "is_new": true,
+      "key": {
+        "expected_classification": "management_material_unknown",
+        "finding_codes": [
+          "first_classification_prior_unresolved",
+          "first_classification_prior_unresolved",
+          "source_unresolved",
+          "source_unresolved",
+          "source_unresolved",
+          "source_unresolved"
+        ],
+        "backflow_owner": "management-authority-owner",
+        "expected_axis": "classification",
+        "expected_state": "unknown",
+        "owner_ref": {
+          "kind": "function_ref",
+          "id": "FN-OS015-01"
+        }
+      },
+      "condition": "classifyでactual/context original_classificationが双方{}またはUNKNOWN-PRIOR。new_classification prior ref/revisionはactual/context双方nullのままなので4 pointerでsource_unresolved。両側prior-unresolved findingsも保持する。",
+      "case_ids": [
+        "HELIXOS-L9-015-C0578",
+        "HELIXOS-L9-015-C0581"
+      ],
+      "source_reference": {
+        "path": "class-correction-cases.json",
+        "section": "corrected_groups",
+        "manual_audit_lines": [
+          434
+        ]
+      },
+      "correction_audit": "class-correction-audit-5d541.md",
+      "l7_raw_inputs": [
+        {
+          "case_id": "HELIXOS-L9-015-C0578",
+          "l7_input_pointer": "/connection_materials/OS015/case/cases/577/given/input",
+          "expanded_input_sha256": "89f3fd01ece80c9576841b2b5c7556393198e1fb070aabaac0ef26da8b686fd9"
+        },
+        {
+          "case_id": "HELIXOS-L9-015-C0581",
+          "l7_input_pointer": "/connection_materials/OS015/case/cases/580/given/input",
+          "expanded_input_sha256": "876b14318dbe2118931db728413bb1162334edcf0fb2daa7841f80f1d3b12f81"
+        }
+      ],
+      "condition_review": {
+        "manual_audit_sections": [
+          "class-correction-audit-5d541.md"
+        ],
+        "reviewed_phase_set": [
+          "classify"
+        ],
+        "reviewed_stimulus_targets": [
+          "/context/records/target_a/original_classification",
+          "/records/target_a/original_classification"
+        ],
+        "raw_stimulus_input_count": 2,
+        "raw_stimulus_summary": "L7 fixed classify fixtureのactual/context new_classification prior ref/revisionは全4欄null。given.input replacementでoriginal_classificationを変更。",
+        "manual_alignment": "L4 classify branchのcontext prior guard、actual/context prior fieldsのnull knownness、final finding sortを逐case照合。",
+        "derived_finding_pointers": [
+          "/context/records/target_a/new_classification/prior_classification_ref",
+          "/context/records/target_a/new_classification/prior_classification_revision",
+          "/records/target_a/new_classification/prior_classification_ref",
+          "/records/target_a/new_classification/prior_classification_revision"
+        ]
+      },
+      "independent_findings": {
+        "HELIXOS-L9-015-C0578": [
+          {
+            "code": "first_classification_prior_unresolved",
+            "pointer": "/context/records/target_a/original_classification",
+            "return_owner": "management-authority-owner"
+          },
+          {
+            "code": "first_classification_prior_unresolved",
+            "pointer": "/records/target_a/original_classification",
+            "return_owner": "management-authority-owner"
+          },
+          {
+            "code": "source_unresolved",
+            "pointer": "/context/records/target_a/new_classification/prior_classification_ref",
+            "return_owner": "management-authority-owner"
+          },
+          {
+            "code": "source_unresolved",
+            "pointer": "/context/records/target_a/new_classification/prior_classification_revision",
+            "return_owner": "management-authority-owner"
+          },
+          {
+            "code": "source_unresolved",
+            "pointer": "/records/target_a/new_classification/prior_classification_ref",
+            "return_owner": "management-authority-owner"
+          },
+          {
+            "code": "source_unresolved",
+            "pointer": "/records/target_a/new_classification/prior_classification_revision",
+            "return_owner": "management-authority-owner"
+          }
+        ],
+        "HELIXOS-L9-015-C0581": [
+          {
+            "code": "first_classification_prior_unresolved",
+            "pointer": "/context/records/target_a/original_classification",
+            "return_owner": "management-authority-owner"
+          },
+          {
+            "code": "first_classification_prior_unresolved",
+            "pointer": "/records/target_a/original_classification",
+            "return_owner": "management-authority-owner"
+          },
+          {
+            "code": "source_unresolved",
+            "pointer": "/context/records/target_a/new_classification/prior_classification_ref",
+            "return_owner": "management-authority-owner"
+          },
+          {
+            "code": "source_unresolved",
+            "pointer": "/context/records/target_a/new_classification/prior_classification_revision",
+            "return_owner": "management-authority-owner"
+          },
+          {
+            "code": "source_unresolved",
+            "pointer": "/records/target_a/new_classification/prior_classification_ref",
+            "return_owner": "management-authority-owner"
+          },
+          {
+            "code": "source_unresolved",
+            "pointer": "/records/target_a/new_classification/prior_classification_revision",
+            "return_owner": "management-authority-owner"
+          }
+        ]
+      }
+    }
+  ],
+  "prohibitions": [
+    "L4 algorithm/product runtime/checker implementation or execution",
+    "L7 expected_proposal and L8/L9 expected as classification source",
+    "L9-based class generation",
+    "L5/L8 documents change",
+    "case-level expected/condition/expected_preserved changes"
+  ],
+  "correction_audit_path": "scaffold/research/wr181-os015-residual-l4-l9-20261030/class-correction-audit-5d541.md",
+  "correction_cases_path": "scaffold/research/wr181-os015-residual-l4-l9-20261030/class-correction-cases.json",
+  "correction_base_revision": "5d541f69ff86674e585311558ad2dac1972d42e4",
+  "class_count_after_correction": 20,
+  "new_l4_l9_class_count_after_correction": 18
+}

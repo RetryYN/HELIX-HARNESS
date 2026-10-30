@@ -474,6 +474,12 @@ def check_pin_sha256(
                 )
 
     # 2. `source_pins`, `source_basis`, `basic_design_ref`, `removed_materials`
+    def _read_pin_target(tpath: str, rev: str | None) -> bytes | None:
+        raw = _read_bytes(repo_root, tpath, rev)
+        if raw is None and "#" in tpath:
+            raw = _read_bytes(repo_root, tpath.split("#", 1)[0], rev)
+        return raw
+
     def _verify_pin_obj(obj: dict[str, Any], ptr: str) -> None:
         nonlocal checked_count
         tpath = obj.get("path") or obj.get("source_path")
@@ -492,11 +498,18 @@ def check_pin_sha256(
             and rev not in ("WORKTREE", "HEAD")
         ):
             return
-        for sha_key in ("sha256", "file_sha256", "source_sha256", "whole_sha256"):
+        for sha_key in (
+            "sha256",
+            "file_sha256",
+            "source_sha256",
+            "whole_sha256",
+            "whole_file_sha256",
+            "working_bytes_sha256",
+        ):
             exp = obj.get(sha_key)
             if isinstance(exp, str) and HEX64_RE.match(exp):
                 checked_count += 1
-                raw = _read_bytes(repo_root, tpath, rev)
+                raw = _read_pin_target(tpath, rev)
                 act = hashlib.sha256(raw).hexdigest() if raw is not None else "missing"
                 if act != exp:
                     failures.append(
@@ -513,7 +526,7 @@ def check_pin_sha256(
         c_exp = obj.get("canonical_json_sha256")
         if isinstance(c_exp, str) and HEX64_RE.match(c_exp):
             checked_count += 1
-            raw = _read_bytes(repo_root, tpath, rev)
+            raw = _read_pin_target(tpath, rev)
             if raw is None:
                 c_act = "missing"
             else:
@@ -534,6 +547,53 @@ def check_pin_sha256(
                     }
                 )
 
+    def _walk_pin_section(node: Any, ptr: str, allow_flat_map: bool = False) -> None:
+        nonlocal checked_count
+        if isinstance(node, dict):
+            if isinstance(node.get("path") or node.get("source_path"), str):
+                _verify_pin_obj(node, ptr)
+                return
+            for k, v in node.items():
+                if isinstance(v, (dict, list)):
+                    _walk_pin_section(v, f"{ptr}/{k}", allow_flat_map=False)
+                elif (
+                    allow_flat_map
+                    and isinstance(k, str)
+                    and "/" in k
+                    and isinstance(v, str)
+                    and HEX64_RE.match(v)
+                ):
+                    pin_rev = data.get("source_pin_revision")
+                    flat_rev = (
+                        pin_rev
+                        if isinstance(pin_rev, str) and HEX40_RE.match(pin_rev)
+                        else eff_head
+                    )
+                    checked_count += 1
+                    raw = _read_pin_target(k, flat_rev)
+                    act = (
+                        hashlib.sha256(raw).hexdigest()
+                        if raw is not None
+                        else "missing"
+                    )
+                    if act != v:
+                        esc_k = k.replace("~", "~0").replace("/", "~1")
+                        failures.append(
+                            {
+                                "check": "CHK-PIN-SHA256",
+                                "file": file_path,
+                                "pointer": f"{ptr}/{esc_k}",
+                                "target_path": k,
+                                "revision": flat_rev or "WORKTREE",
+                                "expected_sha256": v,
+                                "actual_sha256": act,
+                            }
+                        )
+        elif isinstance(node, list):
+            for i, v in enumerate(node):
+                if isinstance(v, (dict, list)):
+                    _walk_pin_section(v, f"{ptr}/{i}", allow_flat_map=False)
+
     for top_key in (
         "source_pins",
         "source_basis",
@@ -541,17 +601,10 @@ def check_pin_sha256(
         "removed_materials",
     ):
         sec = data.get(top_key)
-        if isinstance(sec, dict):
-            if "path" in sec or "source_path" in sec:
-                _verify_pin_obj(sec, f"/{top_key}")
-            else:
-                for k, v in sec.items():
-                    if isinstance(v, dict):
-                        _verify_pin_obj(v, f"/{top_key}/{k}")
-        elif isinstance(sec, list):
-            for i, v in enumerate(sec):
-                if isinstance(v, dict):
-                    _verify_pin_obj(v, f"/{top_key}/{i}")
+        if isinstance(sec, (dict, list)):
+            _walk_pin_section(
+                sec, f"/{top_key}", allow_flat_map=(top_key == "source_pins")
+            )
 
     not_evaluated = checked_count == 0
     not_evaluated_reason = "no_pinned_inputs_found" if not_evaluated else None
