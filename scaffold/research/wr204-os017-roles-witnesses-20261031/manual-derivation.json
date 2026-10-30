@@ -2,8 +2,8 @@
   "schema": "wr204-os017-roles-witness-index.v1",
   "evidence_kind": "scaffold",
   "authority_effect": "none",
-  "base_revision": "fa3d2d515ce8df79c0a74d5360a4d1254863a6f1",
-  "scope": "Six raw OS017 ownership-role unknown witnesses linked to one unmarked L4/L9 candidate class.",
+  "base_revision": "de668c9152e730e97db541c0e2e767b2be3a4178",
+  "scope": "Twelve raw OS017 ownership-role witnesses (six source_unresolved, six source_conflict) linked to two unmarked L4/L9 candidate classes.",
   "method": "Use L7 given_input_ref graphs and L4 prose; the existing validate_manual_derivation.py resolver checks actual/context values, single changed role leaf, fixed owner, class state/signature, and L9 candidate links. No expected values or embedded L4/L5 algorithm are used to derive classification.",
   "source_basis": [
     {
@@ -23,11 +23,13 @@
         "/diagnostic_contract/owner_roles",
         "/diagnostic_contract/comparison_table/roles",
         "/diagnostic_contract/diagnostic_code_facets/source_unresolved",
+        "/diagnostic_contract/diagnostic_code_facets/source_conflict",
         "/diagnostic_contract/condition_semantics",
         "/diagnostic_contract/return_owner",
         "/diagnostic_contract/algorithm/1",
         "/diagnostic_contract/algorithm/2",
         "/diagnostic_contract/condition_names/1",
+        "/diagnostic_contract/condition_names/2",
         "/diagnostic_contract/result_fields"
       ]
     }
@@ -62,6 +64,36 @@
       "l7_case_pointer": "/cases/49",
       "role": "resource",
       "class_id": "OS017-NEG-ownership-source_unresolved"
+    },
+    {
+      "l7_case_pointer": "/cases/40",
+      "role": "promotion",
+      "class_id": "OS017-NEG-ownership-source_conflict"
+    },
+    {
+      "l7_case_pointer": "/cases/42",
+      "role": "process",
+      "class_id": "OS017-NEG-ownership-source_conflict"
+    },
+    {
+      "l7_case_pointer": "/cases/44",
+      "role": "proposal",
+      "class_id": "OS017-NEG-ownership-source_conflict"
+    },
+    {
+      "l7_case_pointer": "/cases/46",
+      "role": "level",
+      "class_id": "OS017-NEG-ownership-source_conflict"
+    },
+    {
+      "l7_case_pointer": "/cases/48",
+      "role": "authority",
+      "class_id": "OS017-NEG-ownership-source_conflict"
+    },
+    {
+      "l7_case_pointer": "/cases/50",
+      "role": "resource",
+      "class_id": "OS017-NEG-ownership-source_conflict"
     }
   ],
   "limits": [

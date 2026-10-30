@@ -390,7 +390,8 @@
       "requirement_pointer": "docs/helix-os/L3-requirements/business-requirements.json#/requirements/5",
       "system_oracle_pointer": "docs/helix-os/L10-verification/business-verification.json#/cases/5",
       "negative_class_refs": [
-        "OS017-NEG-ownership-source_unresolved"
+        "OS017-NEG-ownership-source_unresolved",
+        "OS017-NEG-ownership-source_conflict"
       ]
     }
   ],
@@ -821,6 +822,62 @@
             "/cases/45/given_input_ref",
             "/cases/47/given_input_ref",
             "/cases/49/given_input_ref"
+          ]
+        }
+      ]
+    },
+    {
+      "class_id": "OS017-NEG-ownership-source_conflict",
+      "code": "workflow_material_violation",
+      "design_ref": "HELIXOS-L4-017-B01",
+      "condition": "phase非依存の負例意味: 全体condition=workflow_material_violation、全体ordered finding code signature=[source_conflict]、ownership facetの局所state=violation。各witnessはcontext.rolesの当該roleがL4固定ownerと一致し、actual role leafは非空文字列でcontext値と不一致。追加findingを持つcase、全体conditionまたは全体ordered finding code signatureが異なるcaseは本classに含めない。role field自体はclass keyに含めない。witnessごとのactual pointerはgiven_input_ref raw graphから再解決する。",
+      "expected_classification": "workflow_material_violation",
+      "expected": {
+        "finding_codes": [
+          "source_conflict"
+        ]
+      },
+      "expected_axis": "ownership",
+      "expected_state": "violation",
+      "backflow_owner": "ticket-workflow-owner",
+      "side_effect_count": 0,
+      "source_pointers": [
+        {
+          "path": "docs/helix-os/L3-requirements/business-requirements.json",
+          "pointers": [
+            "/requirements/5"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L10-verification/business-verification.json",
+          "pointers": [
+            "/cases/5"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L4-basic-design/ticket-workflow-derivation.json",
+          "pointers": [
+            "/contracts/3",
+            "/diagnostic_contract/owner_roles",
+            "/diagnostic_contract/comparison_table/roles",
+            "/diagnostic_contract/diagnostic_code_facets/source_conflict",
+            "/diagnostic_contract/condition_names/2",
+            "/diagnostic_contract/condition_semantics",
+            "/diagnostic_contract/return_owner",
+            "/diagnostic_contract/algorithm/1",
+            "/diagnostic_contract/algorithm/2",
+            "/diagnostic_contract/result_fields"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L7-function-verification/ticket-workflow-derivation.json",
+          "pointers": [
+            "/cases/40/given_input_ref",
+            "/cases/42/given_input_ref",
+            "/cases/44/given_input_ref",
+            "/cases/46/given_input_ref",
+            "/cases/48/given_input_ref",
+            "/cases/50/given_input_ref"
           ]
         }
       ]
