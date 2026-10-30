@@ -6,7 +6,7 @@
   "product": "HELIX-HARNESS",
   "owner_candidate": "HELIX-HARNESS F03 pair/trace evidence review",
   "state": "registered",
-  "reason": "固定したWR219 F03盲導出artifactと、固定baseのL8/L9二つのraw mutation期待値・分類注釈を対応づけ、上流で決まる候補範囲と未決事項を記録する。要求・設計・正式classification・ticket発行を生成しない。",
+  "reason": "固定blind導出と、固定baseのL4 class定義、L8/L9 synthetic期待、L9 projection invalidation auditの差異を証拠化する。正式sourceや分類値は変更せず、矛盾の解消判断もしない。",
   "upstream": [
     {
       "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
@@ -36,10 +36,10 @@
   ],
   "role": "WR219 F03のorigin-null / trace-empty synthetic witnessに関する固定blind derivationと既存L8/L9期待値の比較を保持する。",
   "obligations": [
-    "由来nullとtrace辺空を別のraw mutationとして記録する。",
-    "L8/L9に存在する期待値・同一の分類注釈・actual side-effect falseを出典pointer付きで保つ。",
-    "Full Reverse recovery candidateとactual ticket/reverseを区別し、未確定のtrigger、classification code、owner、serializationを未決として残す。",
-    "supported_synthetic_conditionを実観測または実pair成立へ昇格しない。"
+    "固定blind artifact SHAとbyte一致を保持し、origin-null / trace-empty witnessを分けて記録する。",
+    "L4 F03_REQUIRED_PAIR_MISSING のpair_trace/missing/HARNESS定義と、L8/L9 pair_result・valley_result・10観点のsynthetic supported期待を同じ行で比較する。",
+    "L9 trace witnessのinvalidated_prior_candidate_codesと同一行のnegative_class_assignmentの両方を記録し、origin witnessの対応audit有無も記録する。",
+    "相互に異なる値を保持し、正式source・expected・classificationを変更または成功へ置換しない。"
   ],
   "connections": {
     "consumers": [
@@ -49,7 +49,8 @@
       "fixed blind artifact SHA-256 489d2aa4786436b7cfc10b3dc4be9f2c5019727c60291d82293822e341fe60e4",
       "approved L3/L10 F03 source rows",
       "L4/L8/L9 F03 source files",
-      "all-negative inventory: Issue #3510 comment 6531272911 (linked from comparison.json)"
+      "all-negative inventory: Issue #3510 comment 6531272911 (linked from comparison.json)",
+      "PR #3962 R1 review comment 6531673161 and response artifact"
     ],
     "boundary": "Scaffold evidence only. No canonical class membership, requirement meaning, design change, ticket issuance, reverse success, or acceptance is established."
   },
@@ -84,16 +85,16 @@
     "oracles": [
       "python3 -m json.tool on blind-derivation.json, comparison.json, and SCF-B-0188.json",
       "SHA-256 of blind-derivation.json equals fixed source artifact SHA-256 489d2aa4786436b7cfc10b3dc4be9f2c5019727c60291d82293822e341fe60e4",
-      "SHA-256 of comparison.json: 1a0e895ba580b25404eef5fef1701b497751e9a5e73a36cf8424d90f92be0dc3",
+      "SHA-256 of comparison.json: 7a3e329f91540fe8b0280d8304d4d2fe6c932cb71cfb64472eb0fffda416d7ff",
       "python3 -B scaffold/tools/scfctl.py validate",
       "python3 -B scaffold/tools/scfctl.py stale",
       "git diff --check"
     ],
     "negative_cases": [
-      "Do not collapse origin-null and trace-empty observations into one root cause.",
-      "Do not infer a trace ticket trigger solely from the Full Reverse recovery candidate; keep the source wording gap visible.",
-      "Do not infer actual pair success from supported_synthetic_condition values.",
-      "Do not treat F03_REQUIRED_PAIR_MISSING as an approved canonical class; the base audit marks the annotations as candidate-only and checker-failing."
+      "Do not replace L4 state=missing with a supported/success value, or treat L8/L9 supported_synthetic_condition as actual pair success.",
+      "Keep the L9 trace projection audit invalidation and same-row retained assignment distinct; do not infer an equivalent origin invalidation without a matching record.",
+      "Do not rewrite L4/L8/L9 formal values while recording unresolved source disagreement.",
+      "Do not run L4/L5 algorithms, old runtime, tests, or CI."
     ]
   },
   "replacement": {
