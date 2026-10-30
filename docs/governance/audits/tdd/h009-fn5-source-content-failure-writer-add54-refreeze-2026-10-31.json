@@ -1,0 +1,274 @@
+{
+  "schema": "function-pair-judgment-manifest.v1",
+  "decision_ref": "https://github.com/RetryYN/HELIX-HARNESS/issues/3510#issuecomment-6528240452",
+  "path_aliases": {
+    "L3F": "docs/helix-harness/L3-requirements/functional-requirements.json",
+    "L10F": "docs/helix-harness/L10-verification/functional-verification.json",
+    "L4": "docs/helix-harness/L4-basic-design/product-template-application.json",
+    "L9": "docs/helix-harness/L9-integration-verification/product-template-application.json",
+    "L5": "docs/helix-harness/L5-detail-design/product-template-application.json",
+    "L8": "docs/helix-harness/L8-unit-verification/product-template-application.json"
+  },
+  "record_id": "HARNESS009-FN5-SOURCE-CONTENT-FAILURE-WRITER-ADD54-REFREEZE-20261031",
+  "record_kind": "function_scoped_l5_l8_pair_freeze_record",
+  "slice_id": "D-H009-FN5-SOURCE-CONTENT-FAILURE-WRITER-ADD54-REFREEZE",
+  "request_id": "WR197-F05-BODY-ENTRY-ABSENT-L5L8",
+  "record_path": "docs/governance/audits/tdd/h009-fn5-source-content-failure-writer-add54-refreeze-2026-10-31.json",
+  "legacy_and_failure_basis": [
+    {
+      "asset_id": "LEGACY-ASSET-98372FEE8A3AC8F9C299",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/design-template-json-authority.md",
+      "lines": "33–108",
+      "keep_ja": "I/O・failure・consumer/traceとunknown保持を参考にし、未取得を空や意味判定へ変換しない。",
+      "change_ja": "旧TPL文法・registry/runtimeは移植せず、現行L4/L5のRead/Cause設計で閉じる範囲だけを下流詳細化する。"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-A127DEC3EEE6ED63CF17",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/predecessor-harness-full-weakness-audit-2026-07-20.md",
+      "lines": "80,86–87",
+      "keep_ja": "UTW-014欠損→空、UTW-020 aggregate診断の粗さ、UTW-021自己申告completionを失敗事例として照合する。",
+      "change_ja": "これらは現行F05の解釈材料であり、新要求やgateを作らず、未形成branchをsuccessとして扱わない。"
+    }
+  ],
+  "l3_obligation_decomposition": [
+    {
+      "element_id": "O1-source-preservation",
+      "obligation_ja": "F05ではfield/evidenceの元Refと根拠source/bodyをscopeに結び、取得不成立（source_ref lookup miss、実body entry payload不一致、観測済みbody.records内の対象(collection, record.ref)一致entry 0件）を定義missing/value unknownへ補完せず、未形成と元資料を保つ。",
+      "l3_pointers": [
+        "L3F#/requirements/27"
+      ],
+      "l10_pointers": [
+        "L10F#/cases/27"
+      ],
+      "l5_pointers": [
+        "L5#/f05_detail_contract/field_content_source_failure_writer_contract",
+        "L5#/f05_detail_contract/field_content_source_failure_writer_contract/writers/0",
+        "L5#/f05_detail_contract/field_content_source_failure_writer_contract/writers/1",
+        "L5#/f05_detail_contract/field_content_source_failure_writer_contract/writers/2",
+        "L5#/f05_detail_contract/cause_kind_crosswalk/values/22",
+        "L5#/f05_detail_contract/reference_and_collection_rules/records",
+        "L5#/f05_detail_contract/reference_and_collection_rules/order",
+        "L5#/f05_detail_contract/types/RecordOccurrence",
+        "L5#/f05_detail_contract/types/BodyOccurrence",
+        "L5#/f05_detail_contract/types/DefinitionAssessment"
+      ],
+      "l8_pointers": [
+        "L8#/additional_unit_cases/45",
+        "L8#/additional_unit_cases/46",
+        "L8#/additional_unit_cases/47",
+        "L8#/additional_unit_cases/54",
+        "L8#/additional_unit_cases/55"
+      ],
+      "l4_pointers": [
+        "L4#/field_source_materialization_contract/ordered_source_materialization/2",
+        "L4#/field_source_materialization_contract/ordered_source_materialization/3",
+        "L4#/field_semantic_evidence_contract/field_definition_evidence_body/absent_guard",
+        "L4#/field_semantic_evidence_contract/field_definition_evidence_body/undecided_guard",
+        "L4#/field_semantic_evidence_contract/wrapper_and_source_contract/source_payload",
+        "L4#/field_semantic_evidence_contract/common_target_guards/3",
+        "L4#/field_semantic_evidence_contract/common_target_guards/5",
+        "L4#/field_semantic_evidence_contract/basic_candidate_return/cause_kind_extension_rules/rules/2"
+      ],
+      "l9_pointers": [
+        "L9#/field_semantic_evidence_verification/cases/3",
+        "L9#/field_semantic_evidence_verification/cases/9",
+        "L9#/field_semantic_evidence_verification/cases/10",
+        "L9#/field_semantic_evidence_verification/cases/11",
+        "L9#/field_semantic_evidence_verification/cause_kind_extension_cases/2"
+      ],
+      "basis_pointers": [
+        "L3F#/requirements/27",
+        "L10F#/cases/27",
+        "L4#/field_source_materialization_contract/ordered_source_materialization/2",
+        "L4#/field_source_materialization_contract/ordered_source_materialization/3",
+        "L4#/field_semantic_evidence_contract/field_definition_evidence_body/absent_guard",
+        "L4#/field_semantic_evidence_contract/field_definition_evidence_body/undecided_guard",
+        "L4#/field_semantic_evidence_contract/wrapper_and_source_contract/source_payload",
+        "L4#/field_semantic_evidence_contract/common_target_guards/3",
+        "L4#/field_semantic_evidence_contract/common_target_guards/5",
+        "L4#/field_semantic_evidence_contract/basic_candidate_return/cause_kind_extension_rules/rules/2",
+        "L9#/field_semantic_evidence_verification/cases/3",
+        "L9#/field_semantic_evidence_verification/cases/9",
+        "L9#/field_semantic_evidence_verification/cases/10",
+        "L9#/field_semantic_evidence_verification/cases/11",
+        "L9#/field_semantic_evidence_verification/cause_kind_extension_cases/2"
+      ]
+    }
+  ],
+  "target_bindings": {
+    "public_functions": [],
+    "private_detail_contract_pairs": [
+      {
+        "detail_pointer": "L5#/f05_detail_contract/field_content_source_failure_writer_contract",
+        "symbol": "f05_field_content_source_failure_writer_contract",
+        "visibility": "private_detail_contract_for_fn5",
+        "owner": "HARNESS-CORE",
+        "reentry_slice": "STOP-F05-CONTENT-UNRESOLVED-CAUSE-PAIR-01",
+        "bound_public_function": "HARNESS-L5-009-compare_requirement_gaps",
+        "l8_oracle_pointer": "L8#/additional_unit_cases/46",
+        "unit_case_pointers": [
+          "L8#/additional_unit_cases/45",
+          "L8#/additional_unit_cases/46",
+          "L8#/additional_unit_cases/47",
+          "L8#/additional_unit_cases/54",
+          "L8#/additional_unit_cases/55"
+        ],
+        "basis_pointers": [
+          "L4#/field_source_materialization_contract/ordered_source_materialization/2",
+          "L4#/field_source_materialization_contract/ordered_source_materialization/3",
+          "L4#/field_semantic_evidence_contract/field_definition_evidence_body/absent_guard",
+          "L4#/field_semantic_evidence_contract/field_definition_evidence_body/undecided_guard",
+          "L4#/field_semantic_evidence_contract/wrapper_and_source_contract/source_payload",
+          "L4#/field_semantic_evidence_contract/common_target_guards/3",
+          "L4#/field_semantic_evidence_contract/common_target_guards/5",
+          "L4#/field_semantic_evidence_contract/basic_candidate_return/cause_kind_extension_rules/rules/2",
+          "L9#/field_semantic_evidence_verification/cases/3",
+          "L9#/field_semantic_evidence_verification/cases/9",
+          "L9#/field_semantic_evidence_verification/cases/10",
+          "L9#/field_semantic_evidence_verification/cases/11",
+          "L9#/field_semantic_evidence_verification/cause_kind_extension_cases/2"
+        ]
+      }
+    ]
+  },
+  "remaining_scope_ja": "対象はFN5のsource/body failure writer sliceのみ。PR #3937でL4 cause_kind_extension_rules/rules/2及びL9 cases/11・cause_kind_extension_cases/2が成立しreentry条件を満たしたため、STOP-F05-BODY-ENTRY-ABSENT-01を解消してL5 writers/2 (F05-SOURCE-BODY-ENTRY-ABSENT, body_entry_unresolved: SemanticRecord及びAxisFact双方のRecordOccurrence並びに対応SourceEnvelopeごとのsources原順判定・一部一致時の原因保持) とL8 ADD-54（semantic_records枝）・ADD-55（axis_facts枝）を追加した。ADD-45の両collection missに対するcontent_unresolved L5 writerはSTOP-F05-CONTENT-UNRESOLVED-CAUSE-PAIR-01で未形成のまま保持し、proposition/constraint cause、gap proposal body、既存owner STOPも各STOPのまま。全U-IDはnot_executedであり、公開producerの実接続・独立意味review・F05全体freeze承認を主張しない。",
+  "evidence_kind": "slice_level_function_pair_freeze",
+  "authority_effect": "none",
+  "source_main": "f5d511841c665b3424e159c8c1029bde51434521",
+  "request_base_sha": "f5d511841c665b3424e159c8c1029bde51434521",
+  "modified_aliases": [
+    "L5",
+    "L8"
+  ],
+  "verification": {
+    "l8_full_return_or_fixture_or_hash_added": false,
+    "scfctl_stale_count": 0,
+    "all_pointers_resolved": true,
+    "negative_4way_matched_count": 107,
+    "negative_4way_parent_link_mode": "legacy",
+    "negative_4way_comparison_mode": "legacy_casewise_four_layer",
+    "negative_4way_comparison_scope": {
+      "case_rows": [
+        "L4.contracts[].negative_classifications",
+        "L9.cases[].negative_cases",
+        "L8.cases[].negative_cases",
+        "L5.failure_rules"
+      ],
+      "case_attributes": [
+        "change_or_condition",
+        "classification_or_code",
+        "expected_axis",
+        "expected_state",
+        "expected",
+        "expected_preserved",
+        "backflow_owner"
+      ],
+      "side_effect_count": "zero_across_L4_L9_L8_L5",
+      "case_identity": "existing_casewise_identity_rules"
+    },
+    "negative_4way_count_unit": "negative_case_rows_per_layer",
+    "negative_4way_matched_count_unit": "matched_negative_case_rows"
+  },
+  "change_reason_ja": "main f5d511841cを基点に、STOP-F05-BODY-ENTRY-ABSENT-01のreentry条件充足に伴いL5 field_content_source_failure_writer_contract/writers/2 (F05-SOURCE-BODY-ENTRY-ABSENT) 及びcause_kind_crosswalk/values/22、L8 HARNESS-L8-009-ADD-54/ADD-55を追加（ADD-45/46/47のsource_basis 0-based pointer整合を含む）し、L5/L8 pre/post SHA-256とpointer/countをgenerate-freezeで更新する。",
+  "recorded_at_utc": "2026-10-30T17:05:00+00:00",
+  "pins": {
+    "L3F_sha256": "a3b907cdc316117d4684632f9a1cbf36125eb6e6172f9cfc286060617583d7be",
+    "L10F_sha256": "fc58ad2268746d7924ac9be33e8f3f75e6d3c2cc619e27fbc1ddc34edd065cb2",
+    "L4_sha256": "4a770515153fb97e2f5915af8308868450a22014d5739b996bc0ebf4a62db7db",
+    "L9_sha256": "06c255043e143a0ddd23da750fede31ff6d3b4b1c94d854de22d07ff109c0d8b",
+    "L5_pre_sha256": "f5da0e585b3bb91cf5b07d7d3c1e124b9584718395d8b07704cede6e2523ce1c",
+    "L5_post_sha256": "d85ff1a6db76b0b367a0ae51a5a2b82df93298f17375940d0b84c1674e9507ef",
+    "L8_pre_sha256": "65aa4c2e120e6636cc3f3eb260fec32b06b1b44a6f17b21f785dc0d63fa767ce",
+    "L8_post_sha256": "bc1a74cb56612e555899c585c42f2c2843b6c2ee8efce5df5c27404de4ac35bd"
+  },
+  "head_entity_counts": {
+    "L5_contracts": 11,
+    "L5_functions": 14,
+    "L5_failure_rules": 108,
+    "L8_cases": 11,
+    "L8_negative_cases_total": 107,
+    "L8_normal_function_oracles": 13,
+    "L8_additional_unit_cases": 56,
+    "L5_source_pins": 21,
+    "L8_source_pins": 21,
+    "L8_wire_codec_cases": 36,
+    "L8_encoder_obligations": 3,
+    "L8_proposal_formation_cases": 13,
+    "L8_proposal_native_record_cases": 7,
+    "L8_opp_component_checks": 7,
+    "L8_general_proposal_exchange_family_contracts": 8,
+    "L8_general_proposal_exchange_finite_cases": 11,
+    "L8_general_proposal_exchange_additional_branch_probes": 9
+  },
+  "pointer_resolution_summary": {
+    "checked_count": 67,
+    "expanded_target_count": 67,
+    "unresolved_count": 0,
+    "passed": true
+  },
+  "negative_case_4way_verification": {
+    "counts": {
+      "L4": 107,
+      "L9": 107,
+      "L8": 107,
+      "L5": 107
+    },
+    "matched_case_count": 107,
+    "failure_count": 0,
+    "passed": true,
+    "parent_link_mode": "legacy",
+    "comparison_mode": "legacy_casewise_four_layer",
+    "comparison_scope": {
+      "case_rows": [
+        "L4.contracts[].negative_classifications",
+        "L9.cases[].negative_cases",
+        "L8.cases[].negative_cases",
+        "L5.failure_rules"
+      ],
+      "case_attributes": [
+        "change_or_condition",
+        "classification_or_code",
+        "expected_axis",
+        "expected_state",
+        "expected",
+        "expected_preserved",
+        "backflow_owner"
+      ],
+      "side_effect_count": "zero_across_L4_L9_L8_L5",
+      "case_identity": "existing_casewise_identity_rules"
+    },
+    "count_unit": "negative_case_rows_per_layer",
+    "matched_case_count_unit": "matched_negative_case_rows"
+  },
+  "resolved_function_rows": [
+    {
+      "kind": "private_detail_contract_pair",
+      "symbol": "f05_field_content_source_failure_writer_contract",
+      "l5_pointer": "L5#/f05_detail_contract/field_content_source_failure_writer_contract",
+      "visibility": "private_detail_contract_for_fn5",
+      "has_owner_or_caller_disposition": true
+    }
+  ],
+  "human_judgment_pending": [
+    {
+      "check": "CHK-PUBLIC-FN-FREEZE",
+      "target": "f05_field_content_source_failure_writer_contract",
+      "l5_pointer": "L5#/f05_detail_contract/field_content_source_failure_writer_contract",
+      "status": "pending_human_or_independent_semantic_review",
+      "judgment_required": "Confirm private detail boundary and reentry slice/owner assignment preserve caller contract without premature public freeze (#3763 R1-m1)."
+    },
+    {
+      "check": "CHK-L3-OBLIGATION-MAP",
+      "item_id": "O1-source-preservation",
+      "status": "pending_human_or_independent_semantic_review",
+      "judgment_required": "Confirm O1..On decomposition has no natural-language semantic omission from parent L3 requirement text (#3759 R1-m1)."
+    }
+  ],
+  "supersedes_records": [
+    {
+      "record_id": "HARNESS009-FN5-SOURCE-CONTENT-FAILURE-WRITER-PR-CANDIDATE-20261029",
+      "record_path": "docs/governance/audits/tdd/h009-fn5-source-content-failure-writer-pr-candidate-freeze-2026-10-29.json",
+      "supersession_scope": "PR #3937 (L4/L9 body_entry_unresolved) 及び PR #3942 (L9 content_unresolved cause pair) merge後のmain f5d511841cを基点に、STOP-F05-BODY-ENTRY-ABSENT-01のreentry条件充足に伴うL5 writers/2 (F05-SOURCE-BODY-ENTRY-ABSENT)・cause_kind_crosswalk/values/22及びL8 ADD-54/ADD-55を追加した新L5/L8 revisionへ差し替える。旧recordと旧revisionの歴史証拠は変更せず保持する。"
+    }
+  ]
+}
