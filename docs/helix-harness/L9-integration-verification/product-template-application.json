@@ -12869,15 +12869,15 @@
       "pointer": "/field_semantic_evidence_contract/basic_candidate_return/cause_kind_extension_rules/rules/2"
      }
     ],
-    "condition": "対象record（SemanticRecordまたはAxisFact）が所属collection（semantic_records / obligations / axis_facts）上で解決済み、record.source_refがsources内の対象SourceEnvelopeへ解決済み、かつ対象SourceEnvelopeのbody.records collectionが配列として観測済み（Read.present）であるが、body.records内に対象(collection, record.ref)と一致するentryが0件。",
+    "condition": "対象record（SemanticRecord又はAxisFact）が原collection（semantic_records又はaxis_facts）で解決済み、当該record.source_refがpresent non-nullで同snapshot sourcesの対応SourceEnvelopeへ解決済み、かつ当該SourceEnvelope.body.records collectionが実配列（Read.present）として観測済みであるが、当該body.records内に元collection名および当該record.refと一致するbody entryが0件。",
     "expected_cause": {
      "kind": "body_entry_unresolved",
-     "target": "対象recordのsource_refまたはref Readのlocation（対象SourceEnvelopeのbody.records locationを併記）",
-     "left": "所属collection上で解決済みの対象record（collection, ref, source_ref）の原Read全体",
-     "right": "対象SourceEnvelopeの観測済みbody.records collectionの原Read全体（対象(collection, record.ref) entry 0件）",
+     "target": "当該解決済みrecord.refのoriginal Read location",
+     "left": "当該解決済みrecord.refのoriginal Read全値",
+     "right": "対応済みSourceEnvelopeの/sources/{i}/body/records collection全体のoriginal Read（対象(collection, record.ref)一致entry 0件。検索missを配列要素のRead.absentへ変換しない）",
      "rule_pointer": "/field_semantic_evidence_contract/basic_candidate_return/cause_kind_extension_rules/rules/2"
     },
-    "expected_preserved": "対象recordの原Read、source_refの原Read、SourceEnvelope.body.recordsの原Readを消去・正規化せず保持し、対象evidence checkをunestablishedとして扱う。source_unresolved、body_unformed、content_unresolved、source_body_mismatchへ読み替えず、DefinitionAssessment / VerificationAssessment / TraceAssessmentのknown/missing/unknown/conflictをこのCauseから生成しない。",
+    "expected_preserved": "解決済み対象recordの原Read、当該record.refおよびrecord.source_refの原Read、対応SourceEnvelopeおよび観測済みbody.records配列の原Readを消去・正規化せず保持し、架空のsource/body出現やbasis_occurrences entry/indexを作らない。当該evidence/projectionをunformedとしてlocal_unestablishedへ局所保持し、source_unresolved、body_unformed、content_unresolved、source_body_mismatchへ読み替えず、definition_evidence_resultsのknown/missing/unknown/conflictやgap_evidence_resultsのformed意味候補をこのCauseから生成しない。",
     "expected_side_effect_count": 0
    }
   ],
