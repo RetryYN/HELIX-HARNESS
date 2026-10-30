@@ -35,11 +35,6 @@
       "note": "対象141件のfixed fixture_inputsとcase given.input replacements。expected_proposalは独立class導出元にしない。"
     },
     {
-      "path": "scaffold/tools/design_verification_checker.py",
-      "sha256": "cfd12c5bc4a1dd45351858488b476af0025d35deca7027da35bb1373818b129d",
-      "note": "explicit_negative_equivalence_classesのclass keyと全L4/L5/L8/L9 rows比較の現行実装。候補はcheckerを変更しない。"
-    },
-    {
       "path": "docs/governance/legacy-asset-disposition.jsonl",
       "sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
       "note": "旧HELIX資産の対応・authority状態を確認。"
@@ -119,7 +114,8 @@
     "oracles": [
       "python3 scaffold/research/wr181-os015-composite-class-formation-20261030/analyze_bounds.py",
       "python3 scaffold/research/wr181-os015-composite-class-formation-20261030/inventory_141.py",
-      "git diff --check"
+      "git diff --check",
+      "Static SHA pin moved from upstream: path=scaffold/tools/design_verification_checker.py; prior_sha256=cfd12c5bc4a1dd45351858488b476af0025d35deca7027da35bb1373818b129d; current_sha256=e751526d67cd8df11e5aac1c5a1a178dfbd0fecc3f2ed21f995b7dda11ea4d5d; authority_effect=none; original note=explicit_negative_equivalence_classesのclass keyと全L4/L5/L8/L9 rows比較の現行実装。候補はcheckerを変更しない。. Previous checker SHA-256=cfd12c5bc4a1dd45351858488b476af0025d35deca7027da35bb1373818b129d at revision dc3461491446bc66fb3331afa29d2140b7f9f7ee; re-evaluation evidence: current OS015 L4/L9 pair, WR206 check-child, and OS007/OS015 check-freeze outputs byte-identical before/after; PR-A/B/C fixed evidence revisions validate PASS while latest-source validators retain historical byte-mismatch failures. Independent digest check: `sha256sum scaffold/tools/design_verification_checker.py` must report e751526d67cd8df11e5aac1c5a1a178dfbd0fecc3f2ed21f995b7dda11ea4d5d."
     ],
     "negative_cases": [
       "多層でfinding_codesをcode set化すると、同codeが異なるpointerに出るケースのmultiplicityが失われるため不採用。",

@@ -1249,6 +1249,35 @@ def _extract_neg_key(item: dict[str, Any]) -> str:
     return ""
 
 
+def _contract_declares_function(contract: dict[str, Any], function_ref: str) -> bool:
+    """Validate every declared function form against an explicit-mode rule ref."""
+    has_function = "function" in contract
+    has_function_refs = "function_refs" in contract
+    if not has_function and not has_function_refs:
+        return False
+    if has_function:
+        declared = contract["function"]
+        if (
+            not isinstance(declared, str)
+            or not declared.strip()
+            or declared != function_ref
+        ):
+            return False
+    if has_function_refs:
+        declared_refs = contract["function_refs"]
+        if (
+            not isinstance(declared_refs, list)
+            or not declared_refs
+            or any(
+                not isinstance(value, str) or not value.strip()
+                for value in declared_refs
+            )
+            or function_ref not in declared_refs
+        ):
+            return False
+    return True
+
+
 def _negative_case_identity(item: dict[str, Any]) -> str | None:
     for key in ("integration_case_ref", "basic_case_ref"):
         value = item.get(key)
@@ -1734,7 +1763,7 @@ def _check_negative_equivalence_mode(
             elif (
                 isinstance(function_ref, str)
                 and function_ref.strip()
-                and contract.get("function") != function_ref
+                and not _contract_declares_function(contract, function_ref)
             ):
                 fail(
                     "contract_ref",
@@ -2386,7 +2415,7 @@ def _check_negative_equivalence_mode(
                         case_id=l8_id,
                         reason="rule_contract_ref_unresolved",
                     )
-                elif contract.get("function") != rule_function_ref:
+                elif not _contract_declares_function(contract, rule_function_ref):
                     fail(
                         "contract_ref",
                         layer="L5",

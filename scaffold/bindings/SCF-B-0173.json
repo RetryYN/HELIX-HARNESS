@@ -27,11 +27,6 @@
       "path": "docs/helix-os/L9-integration-verification/management-authority-source-record.json",
       "sha256": "637f2499479913a629a15ddab80e46b383121d38a0dd1482bc1a1ca2d66ee84b",
       "note": "PR-A/B時点のL9 bytes hash 392417ce60ff10beed23d1aee27aadc7afaaf4062fb1dc04473325e30ad2c7e5から、PR-Cが既存2 composite rowへL5 /failure_rules/31,/32 pointerを各1件追記した現在のL9 bytes。583 integration_casesと既存class/link/expectationは維持。current sha256=a4a186902d29330d5d88bdb8366e70b8678a31d3e2e750b8e2e7e46e83b5776c。 以前のpin=a4a186902d29330d5d88bdb8366e70b8678a31d3e2e750b8e2e7e46e83b5776c。候補base 64d3cf3に新15 classと112件のL9 linkを追補後の現在bytes=ab875f72dfef9f1afaa72b04dd1c8b341d5fc13c4320c1640f42f58f91798c90。L4の新15 classをL9へ順方向投影し、残112 caseのmaterial_ref/raw inputとnegative_class_refを追加。case expected等583件は不変。 2026-10-30 condition照合後candidate sha256=ab875f72dfef9f1afaa72b04dd1c8b341d5fc13c4320c1640f42f58f91798c90。class conditionをL7 fixed given.inputのphase/pointer/value照合に合わせ明確化。 2026-10-30 #3927 C0573–C0582のL4/L7再導出を反映したclass grouping candidate sha256=1e2bac6a7cabe48b11ba17736c7081fcbe27c35de79f835c75a1a709d5891b39. M1 correction 16d683cd -> a0f8ffe7: prior pin=1e2bac6a7cabe48b11ba17736c7081fcbe27c35de79f835c75a1a709d5891b39; current pin=365b89c9131e5edd9b64d474438ff780360118819cc651ee535f64a70aa5ff1d; overall severity remains violation while selected classification facet state is unknown. 2026-10-31 successor pin: prior=365b89c9131e5edd9b64d474438ff780360118819cc651ee535f64a70aa5ff1d; current=637f2499479913a629a15ddab80e46b383121d38a0dd1482bc1a1ca2d66ee84b; L4/L9 source-only residual update and promotion case pair is in SCF-B-0177; preserve historical evidence and leave L5/L8 formal documents unchanged."
-    },
-    {
-      "path": "scaffold/tools/design_verification_checker.py",
-      "sha256": "cfd12c5bc4a1dd45351858488b476af0025d35deca7027da35bb1373818b129d",
-      "note": "main 821aの未変更checker。"
     }
   ],
   "role": "OS015 L4/L9限定候補の固定sourceと静的照合証拠。",
@@ -92,7 +87,8 @@
       "python3 scaffold/tools/design_verification_checker.py check-freeze --root . --worktree docs/governance/audits/tdd/os007-os015-function-pair-freeze-2026-10-28.json",
       "python3 -B scaffold/tools/scfctl.py validate",
       "python3 -B scaffold/tools/scfctl.py stale",
-      "git diff --check"
+      "git diff --check",
+      "Static SHA pin moved from upstream: path=scaffold/tools/design_verification_checker.py; prior_sha256=cfd12c5bc4a1dd45351858488b476af0025d35deca7027da35bb1373818b129d; current_sha256=e751526d67cd8df11e5aac1c5a1a178dfbd0fecc3f2ed21f995b7dda11ea4d5d; authority_effect=none; original note=main 821aの未変更checker。. Previous checker SHA-256=cfd12c5bc4a1dd45351858488b476af0025d35deca7027da35bb1373818b129d at revision dc3461491446bc66fb3331afa29d2140b7f9f7ee; re-evaluation evidence: current OS015 L4/L9 pair, WR206 check-child, and OS007/OS015 check-freeze outputs byte-identical before/after; PR-A/B/C fixed evidence revisions validate PASS while latest-source validators retain historical byte-mismatch failures. Independent digest check: `sha256sum scaffold/tools/design_verification_checker.py` must report e751526d67cd8df11e5aac1c5a1a178dfbd0fecc3f2ed21f995b7dda11ea4d5d."
     ],
     "negative_cases": [
       "PR-A時点ではL5/L8 pairが未形成であり、PR-Aの中間negative-4wayはFAIL。後続PR-BでL5/L8は形成済み。",
