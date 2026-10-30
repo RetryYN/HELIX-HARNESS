@@ -768,7 +768,8 @@
     "feedbackの解決十分条件と正式finding型は各meaning owner/検証ownerへ。未ackの実保存・部分走査/破損journal・terminal世代保全は未成立。",
     "memory反映の実target同一性/耐久成功/順序証拠、expiry clock/fence/takeover/compactionと部分失敗recovery、data-use/secret除去は各consumerへ残す。原内容参照はbodyを再提示する許可ではない。",
     "ordinalは同episode内の順序を表す合成入力で、実source custody/時刻の証明ではない。successful use countは同entryの論理的成功効果数。physical retryを二重成功へ同一視しない。",
-    "OS015/016/019/053とHARNESS共通証拠意味へのexact binding/全構造閉包、独立oracle凍結・実装前Red→Green→Refactor・実CI/L9/L10/PO L11は未成立。92親430対の全体目標を保持。"
+    "OS015/016/019/053とHARNESS共通証拠意味へのexact binding/全構造閉包、独立oracle凍結・実装前Red→Green→Refactor・実CI/L9/L10/PO L11は未成立。92親430対の全体目標を保持。",
+    "L7の固定case_materialsは945件のまま。L9はsource_packets/records/inputをinput_material_refに置きforward_stimulus_replacementsで6件の合成刺激（HELIXOS-L9-007-C0946〜C0951）を追加し951件とした。L7側の追加・対応付けは後続L6/L7の判断・作業に残す。"
   ],
   "document_id": "HELIXOS-L9-007",
   "layer": "L9",
@@ -2664,9 +2665,10 @@
           "id": "HELIXOS-L9-007-C0940",
           "source_case_pointer": "/cases/939",
           "integration_case_pointer": "/integration_cases/939"
-        }
+        },
+        "HELIXOS-L9-007-C0950"
       ],
-      "source_case_count": 377,
+      "source_case_count": 378,
       "l4_contract_ref": "HELIXOS-L4-007-F01",
       "positive_case_refs": [
         "HELIXOS-L9-007-C0001"
@@ -5536,9 +5538,10 @@
           "id": "HELIXOS-L9-007-C0945",
           "source_case_pointer": "/cases/944",
           "integration_case_pointer": "/integration_cases/944"
-        }
+        },
+        "HELIXOS-L9-007-C0951"
       ],
-      "source_case_count": 355,
+      "source_case_count": 356,
       "l4_contract_ref": "HELIXOS-L4-007-F03",
       "positive_case_refs": [
         "HELIXOS-L9-007-C0651",
@@ -5548,10 +5551,447 @@
     }
   ],
   "completion": {
-    "synthetic_case_count": 949,
+    "synthetic_case_count": 951,
     "independent_review": "pending",
     "formal_closure": "unproven",
-    "actual_red_green_refactor": "not_executed"
+    "actual_red_green_refactor": "not_executed",
+    "non_occurring_singleton_residuals": [
+      {
+        "class_id": "OS007-NEG-logs-log_kind_conflict",
+        "single_finding_code": "log_kind_conflict",
+        "member_count": 0,
+        "l4_residual_pointer": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/composite_class_formation/non_occurring_singleton_residuals/0",
+        "realized_composite_class_ids": [
+          "OS007-NEG-logs-comp-01-field_conflict_log_kind_conflict",
+          "OS007-NEG-logs-comp-05-log_kind_conflict",
+          "OS007-NEG-logs-comp-06-log_kind_conflict_log_kind_unknown"
+        ],
+        "source_only_witnesses": [
+          {
+            "code": "log_kind_conflict",
+            "finding_pointer": "/logs/worker/kind",
+            "return_owner": "common-log-owner",
+            "l4_condition_pointers": [
+              "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/rules/0",
+              "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/rules/1",
+              "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/log_names/0",
+              "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/codes/1",
+              "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/codes/2",
+              "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/codes/3"
+            ],
+            "l9_ordered_finding_pointers": [
+              "docs/helix-os/L9-integration-verification/log-feedback-memory-lineage.json#/integration_cases/39/compact_whole_observation/ordered_findings/1",
+              "docs/helix-os/L9-integration-verification/log-feedback-memory-lineage.json#/integration_cases/936/compact_whole_observation/ordered_findings/1",
+              "docs/helix-os/L9-integration-verification/log-feedback-memory-lineage.json#/integration_cases/949/compact_whole_observation/ordered_findings/0"
+            ],
+            "l9_case_ids": [
+              "HELIXOS-L9-007-C0040",
+              "HELIXOS-L9-007-C0937",
+              "HELIXOS-L9-007-C0950"
+            ],
+            "realized_negative_class_refs": [
+              "OS007-NEG-logs-comp-01-field_conflict_log_kind_conflict",
+              "OS007-NEG-logs-comp-05-log_kind_conflict",
+              "OS007-NEG-logs-comp-06-log_kind_conflict_log_kind_unknown"
+            ]
+          },
+          {
+            "code": "log_kind_conflict",
+            "finding_pointer": "/context/logs/worker/kind",
+            "return_owner": "common-log-owner",
+            "l4_condition_pointers": [
+              "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/rules/0",
+              "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/rules/1",
+              "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/log_names/0",
+              "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/codes/3"
+            ],
+            "l9_ordered_finding_pointers": [
+              "docs/helix-os/L9-integration-verification/log-feedback-memory-lineage.json#/integration_cases/83/compact_whole_observation/ordered_findings/1",
+              "docs/helix-os/L9-integration-verification/log-feedback-memory-lineage.json#/integration_cases/936/compact_whole_observation/ordered_findings/0"
+            ],
+            "l9_case_ids": [
+              "HELIXOS-L9-007-C0084",
+              "HELIXOS-L9-007-C0937"
+            ],
+            "realized_negative_class_refs": [
+              "OS007-NEG-logs-comp-01-field_conflict_log_kind_conflict",
+              "OS007-NEG-logs-comp-05-log_kind_conflict"
+            ]
+          },
+          {
+            "code": "log_kind_conflict",
+            "finding_pointer": "/logs/decision/kind",
+            "return_owner": "common-log-owner",
+            "l4_condition_pointers": [
+              "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/rules/0",
+              "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/rules/1",
+              "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/log_names/1",
+              "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/codes/3"
+            ],
+            "l9_ordered_finding_pointers": [
+              "docs/helix-os/L9-integration-verification/log-feedback-memory-lineage.json#/integration_cases/132/compact_whole_observation/ordered_findings/1",
+              "docs/helix-os/L9-integration-verification/log-feedback-memory-lineage.json#/integration_cases/937/compact_whole_observation/ordered_findings/1"
+            ],
+            "l9_case_ids": [
+              "HELIXOS-L9-007-C0133",
+              "HELIXOS-L9-007-C0938"
+            ],
+            "realized_negative_class_refs": [
+              "OS007-NEG-logs-comp-01-field_conflict_log_kind_conflict",
+              "OS007-NEG-logs-comp-05-log_kind_conflict"
+            ]
+          },
+          {
+            "code": "log_kind_conflict",
+            "finding_pointer": "/context/logs/decision/kind",
+            "return_owner": "common-log-owner",
+            "l4_condition_pointers": [
+              "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/rules/0",
+              "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/rules/1",
+              "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/log_names/1",
+              "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/codes/3"
+            ],
+            "l9_ordered_finding_pointers": [
+              "docs/helix-os/L9-integration-verification/log-feedback-memory-lineage.json#/integration_cases/176/compact_whole_observation/ordered_findings/1",
+              "docs/helix-os/L9-integration-verification/log-feedback-memory-lineage.json#/integration_cases/937/compact_whole_observation/ordered_findings/0"
+            ],
+            "l9_case_ids": [
+              "HELIXOS-L9-007-C0177",
+              "HELIXOS-L9-007-C0938"
+            ],
+            "realized_negative_class_refs": [
+              "OS007-NEG-logs-comp-01-field_conflict_log_kind_conflict",
+              "OS007-NEG-logs-comp-05-log_kind_conflict"
+            ]
+          },
+          {
+            "code": "log_kind_conflict",
+            "finding_pointer": "/logs/operation/kind",
+            "return_owner": "common-log-owner",
+            "l4_condition_pointers": [
+              "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/rules/0",
+              "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/rules/1",
+              "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/log_names/2",
+              "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/codes/3"
+            ],
+            "l9_ordered_finding_pointers": [
+              "docs/helix-os/L9-integration-verification/log-feedback-memory-lineage.json#/integration_cases/225/compact_whole_observation/ordered_findings/1",
+              "docs/helix-os/L9-integration-verification/log-feedback-memory-lineage.json#/integration_cases/938/compact_whole_observation/ordered_findings/1"
+            ],
+            "l9_case_ids": [
+              "HELIXOS-L9-007-C0226",
+              "HELIXOS-L9-007-C0939"
+            ],
+            "realized_negative_class_refs": [
+              "OS007-NEG-logs-comp-01-field_conflict_log_kind_conflict",
+              "OS007-NEG-logs-comp-05-log_kind_conflict"
+            ]
+          },
+          {
+            "code": "log_kind_conflict",
+            "finding_pointer": "/context/logs/operation/kind",
+            "return_owner": "common-log-owner",
+            "l4_condition_pointers": [
+              "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/rules/0",
+              "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/rules/1",
+              "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/log_names/2",
+              "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/codes/3"
+            ],
+            "l9_ordered_finding_pointers": [
+              "docs/helix-os/L9-integration-verification/log-feedback-memory-lineage.json#/integration_cases/269/compact_whole_observation/ordered_findings/1",
+              "docs/helix-os/L9-integration-verification/log-feedback-memory-lineage.json#/integration_cases/938/compact_whole_observation/ordered_findings/0"
+            ],
+            "l9_case_ids": [
+              "HELIXOS-L9-007-C0270",
+              "HELIXOS-L9-007-C0939"
+            ],
+            "realized_negative_class_refs": [
+              "OS007-NEG-logs-comp-01-field_conflict_log_kind_conflict",
+              "OS007-NEG-logs-comp-05-log_kind_conflict"
+            ]
+          },
+          {
+            "code": "log_kind_conflict",
+            "finding_pointer": "/logs/verification/kind",
+            "return_owner": "common-log-owner",
+            "l4_condition_pointers": [
+              "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/rules/0",
+              "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/rules/1",
+              "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/log_names/3",
+              "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/codes/3"
+            ],
+            "l9_ordered_finding_pointers": [
+              "docs/helix-os/L9-integration-verification/log-feedback-memory-lineage.json#/integration_cases/318/compact_whole_observation/ordered_findings/1",
+              "docs/helix-os/L9-integration-verification/log-feedback-memory-lineage.json#/integration_cases/939/compact_whole_observation/ordered_findings/1"
+            ],
+            "l9_case_ids": [
+              "HELIXOS-L9-007-C0319",
+              "HELIXOS-L9-007-C0940"
+            ],
+            "realized_negative_class_refs": [
+              "OS007-NEG-logs-comp-01-field_conflict_log_kind_conflict",
+              "OS007-NEG-logs-comp-05-log_kind_conflict"
+            ]
+          },
+          {
+            "code": "log_kind_conflict",
+            "finding_pointer": "/context/logs/verification/kind",
+            "return_owner": "common-log-owner",
+            "l4_condition_pointers": [
+              "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/rules/0",
+              "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/rules/1",
+              "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/log_names/3",
+              "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/codes/3"
+            ],
+            "l9_ordered_finding_pointers": [
+              "docs/helix-os/L9-integration-verification/log-feedback-memory-lineage.json#/integration_cases/362/compact_whole_observation/ordered_findings/1",
+              "docs/helix-os/L9-integration-verification/log-feedback-memory-lineage.json#/integration_cases/939/compact_whole_observation/ordered_findings/0"
+            ],
+            "l9_case_ids": [
+              "HELIXOS-L9-007-C0363",
+              "HELIXOS-L9-007-C0940"
+            ],
+            "realized_negative_class_refs": [
+              "OS007-NEG-logs-comp-01-field_conflict_log_kind_conflict",
+              "OS007-NEG-logs-comp-05-log_kind_conflict"
+            ]
+          }
+        ]
+      },
+      {
+        "class_id": "OS007-NEG-feedback-boolean_conflict",
+        "single_finding_code": "boolean_conflict",
+        "member_count": 0,
+        "l4_residual_pointer": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/composite_class_formation/non_occurring_singleton_residuals/1",
+        "realized_composite_class_ids": [
+          "OS007-NEG-feedback-comp-11-boolean_conflict_stage_unrecorded_ref_present_unresolved_claimed_resolved",
+          "OS007-NEG-feedback-comp-14-boolean_conflict_field_unknown_unresolved_claimed_resolved",
+          "OS007-NEG-feedback-comp-20-boolean_conflict_field_unknown"
+        ],
+        "source_only_witnesses": [
+          {
+            "code": "boolean_conflict",
+            "finding_pointer": "/feedback/resolved/stages/intake/recorded",
+            "return_owner": "feedback-source-owner",
+            "l4_condition_pointers": [
+              "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/rules/0",
+              "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/rules/4",
+              "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/stages/0",
+              "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/codes/10"
+            ],
+            "l9_ordered_finding_pointers": [
+              "docs/helix-os/L9-integration-verification/log-feedback-memory-lineage.json#/integration_cases/473/compact_whole_observation/ordered_findings/0",
+              "docs/helix-os/L9-integration-verification/log-feedback-memory-lineage.json#/integration_cases/515/compact_whole_observation/ordered_findings/0"
+            ],
+            "l9_case_ids": [
+              "HELIXOS-L9-007-C0474",
+              "HELIXOS-L9-007-C0516"
+            ],
+            "realized_negative_class_refs": [
+              "OS007-NEG-feedback-comp-11-boolean_conflict_stage_unrecorded_ref_present_unresolved_claimed_resolved"
+            ]
+          },
+          {
+            "code": "boolean_conflict",
+            "finding_pointer": "/feedback/resolved/stages/classify/recorded",
+            "return_owner": "feedback-source-owner",
+            "l4_condition_pointers": [
+              "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/rules/0",
+              "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/rules/4",
+              "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/stages/1",
+              "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/codes/10"
+            ],
+            "l9_ordered_finding_pointers": [
+              "docs/helix-os/L9-integration-verification/log-feedback-memory-lineage.json#/integration_cases/483/compact_whole_observation/ordered_findings/0",
+              "docs/helix-os/L9-integration-verification/log-feedback-memory-lineage.json#/integration_cases/525/compact_whole_observation/ordered_findings/0"
+            ],
+            "l9_case_ids": [
+              "HELIXOS-L9-007-C0484",
+              "HELIXOS-L9-007-C0526"
+            ],
+            "realized_negative_class_refs": [
+              "OS007-NEG-feedback-comp-11-boolean_conflict_stage_unrecorded_ref_present_unresolved_claimed_resolved"
+            ]
+          },
+          {
+            "code": "boolean_conflict",
+            "finding_pointer": "/feedback/unacked/stages/classify/recorded",
+            "return_owner": "feedback-source-owner",
+            "l4_condition_pointers": [
+              "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/rules/0",
+              "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/rules/4",
+              "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/stages/1",
+              "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/codes/10"
+            ],
+            "l9_ordered_finding_pointers": [
+              "docs/helix-os/L9-integration-verification/log-feedback-memory-lineage.json#/integration_cases/940/compact_whole_observation/ordered_findings/0"
+            ],
+            "l9_case_ids": [
+              "HELIXOS-L9-007-C0941"
+            ],
+            "realized_negative_class_refs": [
+              "OS007-NEG-feedback-comp-20-boolean_conflict_field_unknown"
+            ]
+          },
+          {
+            "code": "boolean_conflict",
+            "finding_pointer": "/feedback/resolved/stages/ack/recorded",
+            "return_owner": "feedback-source-owner",
+            "l4_condition_pointers": [
+              "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/rules/0",
+              "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/rules/4",
+              "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/stages/2",
+              "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/codes/10"
+            ],
+            "l9_ordered_finding_pointers": [
+              "docs/helix-os/L9-integration-verification/log-feedback-memory-lineage.json#/integration_cases/493/compact_whole_observation/ordered_findings/0",
+              "docs/helix-os/L9-integration-verification/log-feedback-memory-lineage.json#/integration_cases/535/compact_whole_observation/ordered_findings/0"
+            ],
+            "l9_case_ids": [
+              "HELIXOS-L9-007-C0494",
+              "HELIXOS-L9-007-C0536"
+            ],
+            "realized_negative_class_refs": [
+              "OS007-NEG-feedback-comp-11-boolean_conflict_stage_unrecorded_ref_present_unresolved_claimed_resolved"
+            ]
+          },
+          {
+            "code": "boolean_conflict",
+            "finding_pointer": "/feedback/resolved/stages/pending/recorded",
+            "return_owner": "feedback-source-owner",
+            "l4_condition_pointers": [
+              "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/rules/0",
+              "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/rules/4",
+              "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/stages/3",
+              "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/codes/10"
+            ],
+            "l9_ordered_finding_pointers": [
+              "docs/helix-os/L9-integration-verification/log-feedback-memory-lineage.json#/integration_cases/503/compact_whole_observation/ordered_findings/0",
+              "docs/helix-os/L9-integration-verification/log-feedback-memory-lineage.json#/integration_cases/545/compact_whole_observation/ordered_findings/0"
+            ],
+            "l9_case_ids": [
+              "HELIXOS-L9-007-C0504",
+              "HELIXOS-L9-007-C0546"
+            ],
+            "realized_negative_class_refs": [
+              "OS007-NEG-feedback-comp-14-boolean_conflict_field_unknown_unresolved_claimed_resolved"
+            ]
+          },
+          {
+            "code": "boolean_conflict",
+            "finding_pointer": "/feedback/resolved/stages/resolution/recorded",
+            "return_owner": "feedback-source-owner",
+            "l4_condition_pointers": [
+              "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/rules/0",
+              "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/rules/4",
+              "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/stages/4",
+              "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/codes/10"
+            ],
+            "l9_ordered_finding_pointers": [
+              "docs/helix-os/L9-integration-verification/log-feedback-memory-lineage.json#/integration_cases/505/compact_whole_observation/ordered_findings/0",
+              "docs/helix-os/L9-integration-verification/log-feedback-memory-lineage.json#/integration_cases/547/compact_whole_observation/ordered_findings/0"
+            ],
+            "l9_case_ids": [
+              "HELIXOS-L9-007-C0506",
+              "HELIXOS-L9-007-C0548"
+            ],
+            "realized_negative_class_refs": [
+              "OS007-NEG-feedback-comp-11-boolean_conflict_stage_unrecorded_ref_present_unresolved_claimed_resolved"
+            ]
+          }
+        ]
+      },
+      {
+        "class_id": "OS007-NEG-memory-boolean_conflict",
+        "single_finding_code": "boolean_conflict",
+        "member_count": 0,
+        "l4_residual_pointer": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/composite_class_formation/non_occurring_singleton_residuals/2",
+        "realized_composite_class_ids": [
+          "OS007-NEG-memory-comp-10-boolean_conflict_reflection_unrecorded_ref_present_retire_before_reflection",
+          "OS007-NEG-memory-comp-13-boolean_conflict_reflection_unrecorded_ref_present",
+          "OS007-NEG-memory-comp-16-boolean_conflict_field_unknown_order_unknown"
+        ],
+        "source_only_witnesses": [
+          {
+            "code": "boolean_conflict",
+            "finding_pointer": "/memory/pending_reflection/reflection/recorded",
+            "return_owner": "memory-canonical-owner",
+            "l4_condition_pointers": [
+              "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/rules/0",
+              "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/rules/7",
+              "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/rules/8",
+              "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/codes/0",
+              "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/codes/10",
+              "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/codes/31"
+            ],
+            "l9_ordered_finding_pointers": [
+              "docs/helix-os/L9-integration-verification/log-feedback-memory-lineage.json#/integration_cases/950/compact_whole_observation/ordered_findings/0"
+            ],
+            "l9_case_ids": [
+              "HELIXOS-L9-007-C0951"
+            ],
+            "realized_negative_class_refs": [
+              "OS007-NEG-memory-comp-16-boolean_conflict_field_unknown_order_unknown"
+            ]
+          },
+          {
+            "code": "boolean_conflict",
+            "finding_pointer": "/memory/retired/reflection/recorded",
+            "return_owner": "memory-canonical-owner",
+            "l4_condition_pointers": [
+              "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/rules/0",
+              "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/rules/7",
+              "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/rules/8",
+              "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/codes/10",
+              "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/codes/21"
+            ],
+            "l9_ordered_finding_pointers": [
+              "docs/helix-os/L9-integration-verification/log-feedback-memory-lineage.json#/integration_cases/881/compact_whole_observation/ordered_findings/0",
+              "docs/helix-os/L9-integration-verification/log-feedback-memory-lineage.json#/integration_cases/909/compact_whole_observation/ordered_findings/0"
+            ],
+            "l9_case_ids": [
+              "HELIXOS-L9-007-C0882",
+              "HELIXOS-L9-007-C0910"
+            ],
+            "realized_negative_class_refs": [
+              "OS007-NEG-memory-comp-10-boolean_conflict_reflection_unrecorded_ref_present_retire_before_reflection",
+              "OS007-NEG-memory-comp-13-boolean_conflict_reflection_unrecorded_ref_present"
+            ]
+          }
+        ]
+      },
+      {
+        "class_id": "OS007-NEG-memory-retirement_basis_unknown",
+        "single_finding_code": "retirement_basis_unknown",
+        "member_count": 0,
+        "l4_residual_pointer": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/composite_class_formation/non_occurring_singleton_residuals/3",
+        "realized_composite_class_ids": [
+          "OS007-NEG-memory-comp-11-boolean_unknown_retirement_basis_unknown"
+        ],
+        "source_only_witnesses": [
+          {
+            "code": "retirement_basis_unknown",
+            "finding_pointer": "/memory/retired/reflection/recorded",
+            "return_owner": "memory-canonical-owner",
+            "l4_condition_pointers": [
+              "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/rules/0",
+              "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/rules/7",
+              "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/rules/8",
+              "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/codes/34"
+            ],
+            "l9_ordered_finding_pointers": [
+              "docs/helix-os/L9-integration-verification/log-feedback-memory-lineage.json#/integration_cases/882/compact_whole_observation/ordered_findings/1"
+            ],
+            "l9_case_ids": [
+              "HELIXOS-L9-007-C0883"
+            ],
+            "realized_negative_class_refs": [
+              "OS007-NEG-memory-comp-11-boolean_unknown_retirement_basis_unknown"
+            ]
+          }
+        ]
+      }
+    ]
   },
   "l7_material_contract_ref": {
     "path": "docs/helix-os/L7-function-verification/log-feedback-memory-lineage.json",
@@ -62122,6 +62562,315 @@
           ]
         }
       ]
+    },
+    {
+      "id": "HELIXOS-L9-007-C0950",
+      "title": "worker logのactual kindが別既知kindでcontext kindがnullなら複合診断log_kind_conflict+log_kind_unknownを返し原記録と基準記録を別々に保持する",
+      "primary_trace": {
+        "requirement_ref": "HELIXOS-L3-007-F01",
+        "oracle_ref": "HELIXOS-L10-007-F01"
+      },
+      "source_case_pointer": "/integration_cases/949",
+      "input_material_ref": {
+        "path": "docs/helix-os/L7-function-verification/log-feedback-memory-lineage.json",
+        "pointer": "/l9_material_bundle/case/source_packets/records/input"
+      },
+      "forward_stimulus_replacements": [
+        {
+          "path": [
+            "logs",
+            "worker",
+            "kind"
+          ],
+          "value": "decision"
+        },
+        {
+          "path": [
+            "context",
+            "logs",
+            "worker",
+            "kind"
+          ],
+          "value": null
+        }
+      ],
+      "compact_whole_observation": {
+        "condition": "record_material_violation",
+        "facet_correspondence": {
+          "logs": "violation",
+          "feedback": "corresponding",
+          "memory": "corresponding",
+          "boundary": "corresponding"
+        },
+        "ordered_findings": [
+          {
+            "code": "log_kind_conflict",
+            "pointer": "/logs/worker/kind",
+            "return_owner": "common-log-owner"
+          },
+          {
+            "code": "log_kind_unknown",
+            "pointer": "/context/logs/worker/kind",
+            "return_owner": "common-log-owner"
+          }
+        ],
+        "retention_relation": {
+          "actual_records_equal_expanded_input_records": true,
+          "reference_records_equal_expanded_context_records": true
+        },
+        "non_effects": {
+          "whole_management_complete": false,
+          "operation_effect": "none",
+          "actual_log_written": false,
+          "actual_feedback_resolved": false,
+          "actual_memory_retired": false
+        }
+      },
+      "execution_state": "synthetic_document_comparison_only",
+      "expected": {
+        "finding_codes": [
+          "log_kind_conflict",
+          "log_kind_unknown"
+        ]
+      },
+      "expected_preserved": {
+        "actual_records_equal_expanded_input_records": true,
+        "reference_records_equal_expanded_context_records": true
+      },
+      "condition": "record_material_violation",
+      "population_state": "negative",
+      "negative_class_ref": "OS007-NEG-logs-comp-06-log_kind_conflict_log_kind_unknown",
+      "source_pointers": [
+        {
+          "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+          "pointers": [
+            "/requirements/21"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
+          "pointers": [
+            "/contracts/0",
+            "/diagnostic_contract/rules/0",
+            "/diagnostic_contract/rules/1",
+            "/diagnostic_contract/rules/11"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L7-function-verification/log-feedback-memory-lineage.json",
+          "pointers": [
+            "/l9_material_bundle/case/source_packets/records/input"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "HELIXOS-L9-007-C0951",
+      "title": "未反映memoryのreflection.recordedがactualのみtrueでreflection_fieldsおよびorderがnullなら複合診断boolean_conflict+field_unknownx18+order_unknownx2を返し原記録と基準記録を別々に保持する",
+      "primary_trace": {
+        "requirement_ref": "HELIXOS-L3-007-F03",
+        "oracle_ref": "HELIXOS-L10-007-F03"
+      },
+      "source_case_pointer": "/integration_cases/950",
+      "input_material_ref": {
+        "path": "docs/helix-os/L7-function-verification/log-feedback-memory-lineage.json",
+        "pointer": "/l9_material_bundle/case/source_packets/records/input"
+      },
+      "forward_stimulus_replacements": [
+        {
+          "path": [
+            "memory",
+            "pending_reflection",
+            "reflection",
+            "recorded"
+          ],
+          "value": true
+        }
+      ],
+      "compact_whole_observation": {
+        "condition": "record_material_violation",
+        "facet_correspondence": {
+          "logs": "corresponding",
+          "feedback": "corresponding",
+          "memory": "violation",
+          "boundary": "corresponding"
+        },
+        "ordered_findings": [
+          {
+            "code": "boolean_conflict",
+            "pointer": "/memory/pending_reflection/reflection/recorded",
+            "return_owner": "memory-canonical-owner"
+          },
+          {
+            "code": "field_unknown",
+            "pointer": "/context/memory/pending_reflection/reflection/episode_ref",
+            "return_owner": "memory-canonical-owner"
+          },
+          {
+            "code": "field_unknown",
+            "pointer": "/context/memory/pending_reflection/reflection/reflection_ref",
+            "return_owner": "memory-canonical-owner"
+          },
+          {
+            "code": "field_unknown",
+            "pointer": "/context/memory/pending_reflection/reflection/responsibility_ref",
+            "return_owner": "memory-canonical-owner"
+          },
+          {
+            "code": "field_unknown",
+            "pointer": "/context/memory/pending_reflection/reflection/source_digest",
+            "return_owner": "memory-canonical-owner"
+          },
+          {
+            "code": "field_unknown",
+            "pointer": "/context/memory/pending_reflection/reflection/source_entry_id",
+            "return_owner": "memory-canonical-owner"
+          },
+          {
+            "code": "field_unknown",
+            "pointer": "/context/memory/pending_reflection/reflection/source_revision",
+            "return_owner": "memory-canonical-owner"
+          },
+          {
+            "code": "field_unknown",
+            "pointer": "/context/memory/pending_reflection/reflection/target_canonical_ref",
+            "return_owner": "memory-canonical-owner"
+          },
+          {
+            "code": "field_unknown",
+            "pointer": "/context/memory/pending_reflection/reflection/target_content_digest",
+            "return_owner": "memory-canonical-owner"
+          },
+          {
+            "code": "field_unknown",
+            "pointer": "/context/memory/pending_reflection/reflection/target_revision",
+            "return_owner": "memory-canonical-owner"
+          },
+          {
+            "code": "field_unknown",
+            "pointer": "/memory/pending_reflection/reflection/episode_ref",
+            "return_owner": "memory-canonical-owner"
+          },
+          {
+            "code": "field_unknown",
+            "pointer": "/memory/pending_reflection/reflection/reflection_ref",
+            "return_owner": "memory-canonical-owner"
+          },
+          {
+            "code": "field_unknown",
+            "pointer": "/memory/pending_reflection/reflection/responsibility_ref",
+            "return_owner": "memory-canonical-owner"
+          },
+          {
+            "code": "field_unknown",
+            "pointer": "/memory/pending_reflection/reflection/source_digest",
+            "return_owner": "memory-canonical-owner"
+          },
+          {
+            "code": "field_unknown",
+            "pointer": "/memory/pending_reflection/reflection/source_entry_id",
+            "return_owner": "memory-canonical-owner"
+          },
+          {
+            "code": "field_unknown",
+            "pointer": "/memory/pending_reflection/reflection/source_revision",
+            "return_owner": "memory-canonical-owner"
+          },
+          {
+            "code": "field_unknown",
+            "pointer": "/memory/pending_reflection/reflection/target_canonical_ref",
+            "return_owner": "memory-canonical-owner"
+          },
+          {
+            "code": "field_unknown",
+            "pointer": "/memory/pending_reflection/reflection/target_content_digest",
+            "return_owner": "memory-canonical-owner"
+          },
+          {
+            "code": "field_unknown",
+            "pointer": "/memory/pending_reflection/reflection/target_revision",
+            "return_owner": "memory-canonical-owner"
+          },
+          {
+            "code": "order_unknown",
+            "pointer": "/context/memory/pending_reflection/reflection/order",
+            "return_owner": "memory-canonical-owner"
+          },
+          {
+            "code": "order_unknown",
+            "pointer": "/memory/pending_reflection/reflection/order",
+            "return_owner": "memory-canonical-owner"
+          }
+        ],
+        "retention_relation": {
+          "actual_records_equal_expanded_input_records": true,
+          "reference_records_equal_expanded_context_records": true
+        },
+        "non_effects": {
+          "whole_management_complete": false,
+          "operation_effect": "none",
+          "actual_log_written": false,
+          "actual_feedback_resolved": false,
+          "actual_memory_retired": false
+        }
+      },
+      "execution_state": "synthetic_document_comparison_only",
+      "expected": {
+        "finding_codes": [
+          "boolean_conflict",
+          "field_unknown",
+          "field_unknown",
+          "field_unknown",
+          "field_unknown",
+          "field_unknown",
+          "field_unknown",
+          "field_unknown",
+          "field_unknown",
+          "field_unknown",
+          "field_unknown",
+          "field_unknown",
+          "field_unknown",
+          "field_unknown",
+          "field_unknown",
+          "field_unknown",
+          "field_unknown",
+          "field_unknown",
+          "field_unknown",
+          "order_unknown",
+          "order_unknown"
+        ]
+      },
+      "expected_preserved": {
+        "actual_records_equal_expanded_input_records": true,
+        "reference_records_equal_expanded_context_records": true
+      },
+      "condition": "record_material_violation",
+      "population_state": "negative",
+      "negative_class_ref": "OS007-NEG-memory-comp-16-boolean_conflict_field_unknown_order_unknown",
+      "source_pointers": [
+        {
+          "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+          "pointers": [
+            "/requirements/23"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
+          "pointers": [
+            "/contracts/2",
+            "/diagnostic_contract/rules/0",
+            "/diagnostic_contract/rules/7",
+            "/diagnostic_contract/rules/8",
+            "/diagnostic_contract/rules/11"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L7-function-verification/log-feedback-memory-lineage.json",
+          "pointers": [
+            "/l9_material_bundle/case/source_packets/records/input"
+          ]
+        }
+      ]
     }
   ],
   "negative_equivalence_classes": [
@@ -62150,12 +62899,6 @@
           "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
           "pointers": [
             "/failure_classifications/0"
-          ]
-        },
-        {
-          "path": "docs/helix-os/L5-detail-design/log-feedback-memory-lineage.json",
-          "pointers": [
-            "/failure_rules/0"
           ]
         }
       ]
@@ -62186,12 +62929,6 @@
           "pointers": [
             "/failure_classifications/1"
           ]
-        },
-        {
-          "path": "docs/helix-os/L5-detail-design/log-feedback-memory-lineage.json",
-          "pointers": [
-            "/failure_rules/1"
-          ]
         }
       ]
     },
@@ -62221,12 +62958,6 @@
           "pointers": [
             "/failure_classifications/2"
           ]
-        },
-        {
-          "path": "docs/helix-os/L5-detail-design/log-feedback-memory-lineage.json",
-          "pointers": [
-            "/failure_rules/2"
-          ]
         }
       ]
     },
@@ -62254,13 +62985,7 @@
         {
           "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
           "pointers": [
-            "/failure_classifications/4"
-          ]
-        },
-        {
-          "path": "docs/helix-os/L5-detail-design/log-feedback-memory-lineage.json",
-          "pointers": [
-            "/failure_rules/4"
+            "/failure_classifications/3"
           ]
         }
       ]
@@ -62289,13 +63014,7 @@
         {
           "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
           "pointers": [
-            "/failure_classifications/5"
-          ]
-        },
-        {
-          "path": "docs/helix-os/L5-detail-design/log-feedback-memory-lineage.json",
-          "pointers": [
-            "/failure_rules/5"
+            "/failure_classifications/4"
           ]
         }
       ]
@@ -62324,13 +63043,7 @@
         {
           "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
           "pointers": [
-            "/failure_classifications/6"
-          ]
-        },
-        {
-          "path": "docs/helix-os/L5-detail-design/log-feedback-memory-lineage.json",
-          "pointers": [
-            "/failure_rules/6"
+            "/failure_classifications/5"
           ]
         }
       ]
@@ -62359,13 +63072,7 @@
         {
           "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
           "pointers": [
-            "/failure_classifications/7"
-          ]
-        },
-        {
-          "path": "docs/helix-os/L5-detail-design/log-feedback-memory-lineage.json",
-          "pointers": [
-            "/failure_rules/7"
+            "/failure_classifications/6"
           ]
         }
       ]
@@ -62394,13 +63101,7 @@
         {
           "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
           "pointers": [
-            "/failure_classifications/8"
-          ]
-        },
-        {
-          "path": "docs/helix-os/L5-detail-design/log-feedback-memory-lineage.json",
-          "pointers": [
-            "/failure_rules/8"
+            "/failure_classifications/7"
           ]
         }
       ]
@@ -62429,13 +63130,7 @@
         {
           "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
           "pointers": [
-            "/failure_classifications/9"
-          ]
-        },
-        {
-          "path": "docs/helix-os/L5-detail-design/log-feedback-memory-lineage.json",
-          "pointers": [
-            "/failure_rules/9"
+            "/failure_classifications/8"
           ]
         }
       ]
@@ -62464,7 +63159,7 @@
         {
           "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
           "pointers": [
-            "/failure_classifications/10"
+            "/failure_classifications/9"
           ]
         }
       ]
@@ -62493,7 +63188,7 @@
         {
           "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
           "pointers": [
-            "/failure_classifications/11"
+            "/failure_classifications/10"
           ]
         }
       ]
@@ -62522,13 +63217,7 @@
         {
           "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
           "pointers": [
-            "/failure_classifications/12"
-          ]
-        },
-        {
-          "path": "docs/helix-os/L5-detail-design/log-feedback-memory-lineage.json",
-          "pointers": [
-            "/failure_rules/12"
+            "/failure_classifications/11"
           ]
         }
       ]
@@ -62557,13 +63246,7 @@
         {
           "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
           "pointers": [
-            "/failure_classifications/14"
-          ]
-        },
-        {
-          "path": "docs/helix-os/L5-detail-design/log-feedback-memory-lineage.json",
-          "pointers": [
-            "/failure_rules/14"
+            "/failure_classifications/12"
           ]
         }
       ]
@@ -62592,7 +63275,7 @@
         {
           "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
           "pointers": [
-            "/failure_classifications/15"
+            "/failure_classifications/13"
           ]
         }
       ]
@@ -62621,13 +63304,7 @@
         {
           "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
           "pointers": [
-            "/failure_classifications/16"
-          ]
-        },
-        {
-          "path": "docs/helix-os/L5-detail-design/log-feedback-memory-lineage.json",
-          "pointers": [
-            "/failure_rules/16"
+            "/failure_classifications/14"
           ]
         }
       ]
@@ -62656,7 +63333,7 @@
         {
           "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
           "pointers": [
-            "/failure_classifications/17"
+            "/failure_classifications/15"
           ]
         }
       ]
@@ -62685,13 +63362,7 @@
         {
           "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
           "pointers": [
-            "/failure_classifications/18"
-          ]
-        },
-        {
-          "path": "docs/helix-os/L5-detail-design/log-feedback-memory-lineage.json",
-          "pointers": [
-            "/failure_rules/18"
+            "/failure_classifications/16"
           ]
         }
       ]
@@ -62720,13 +63391,7 @@
         {
           "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
           "pointers": [
-            "/failure_classifications/19"
-          ]
-        },
-        {
-          "path": "docs/helix-os/L5-detail-design/log-feedback-memory-lineage.json",
-          "pointers": [
-            "/failure_rules/19"
+            "/failure_classifications/17"
           ]
         }
       ]
@@ -62755,13 +63420,7 @@
         {
           "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
           "pointers": [
-            "/failure_classifications/20"
-          ]
-        },
-        {
-          "path": "docs/helix-os/L5-detail-design/log-feedback-memory-lineage.json",
-          "pointers": [
-            "/failure_rules/20"
+            "/failure_classifications/18"
           ]
         }
       ]
@@ -62790,13 +63449,7 @@
         {
           "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
           "pointers": [
-            "/failure_classifications/21"
-          ]
-        },
-        {
-          "path": "docs/helix-os/L5-detail-design/log-feedback-memory-lineage.json",
-          "pointers": [
-            "/failure_rules/21"
+            "/failure_classifications/19"
           ]
         }
       ]
@@ -62825,13 +63478,7 @@
         {
           "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
           "pointers": [
-            "/failure_classifications/22"
-          ]
-        },
-        {
-          "path": "docs/helix-os/L5-detail-design/log-feedback-memory-lineage.json",
-          "pointers": [
-            "/failure_rules/22"
+            "/failure_classifications/20"
           ]
         }
       ]
@@ -62860,13 +63507,7 @@
         {
           "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
           "pointers": [
-            "/failure_classifications/23"
-          ]
-        },
-        {
-          "path": "docs/helix-os/L5-detail-design/log-feedback-memory-lineage.json",
-          "pointers": [
-            "/failure_rules/23"
+            "/failure_classifications/21"
           ]
         }
       ]
@@ -62895,13 +63536,7 @@
         {
           "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
           "pointers": [
-            "/failure_classifications/25"
-          ]
-        },
-        {
-          "path": "docs/helix-os/L5-detail-design/log-feedback-memory-lineage.json",
-          "pointers": [
-            "/failure_rules/25"
+            "/failure_classifications/22"
           ]
         }
       ]
@@ -62930,13 +63565,7 @@
         {
           "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
           "pointers": [
-            "/failure_classifications/26"
-          ]
-        },
-        {
-          "path": "docs/helix-os/L5-detail-design/log-feedback-memory-lineage.json",
-          "pointers": [
-            "/failure_rules/26"
+            "/failure_classifications/23"
           ]
         }
       ]
@@ -62965,13 +63594,7 @@
         {
           "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
           "pointers": [
-            "/failure_classifications/27"
-          ]
-        },
-        {
-          "path": "docs/helix-os/L5-detail-design/log-feedback-memory-lineage.json",
-          "pointers": [
-            "/failure_rules/27"
+            "/failure_classifications/24"
           ]
         }
       ]
@@ -63000,13 +63623,7 @@
         {
           "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
           "pointers": [
-            "/failure_classifications/28"
-          ]
-        },
-        {
-          "path": "docs/helix-os/L5-detail-design/log-feedback-memory-lineage.json",
-          "pointers": [
-            "/failure_rules/28"
+            "/failure_classifications/25"
           ]
         }
       ]
@@ -63035,13 +63652,7 @@
         {
           "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
           "pointers": [
-            "/failure_classifications/29"
-          ]
-        },
-        {
-          "path": "docs/helix-os/L5-detail-design/log-feedback-memory-lineage.json",
-          "pointers": [
-            "/failure_rules/29"
+            "/failure_classifications/26"
           ]
         }
       ]
@@ -63070,13 +63681,7 @@
         {
           "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
           "pointers": [
-            "/failure_classifications/30"
-          ]
-        },
-        {
-          "path": "docs/helix-os/L5-detail-design/log-feedback-memory-lineage.json",
-          "pointers": [
-            "/failure_rules/30"
+            "/failure_classifications/27"
           ]
         }
       ]
@@ -63105,13 +63710,7 @@
         {
           "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
           "pointers": [
-            "/failure_classifications/31"
-          ]
-        },
-        {
-          "path": "docs/helix-os/L5-detail-design/log-feedback-memory-lineage.json",
-          "pointers": [
-            "/failure_rules/31"
+            "/failure_classifications/28"
           ]
         }
       ]
@@ -63140,13 +63739,7 @@
         {
           "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
           "pointers": [
-            "/failure_classifications/32"
-          ]
-        },
-        {
-          "path": "docs/helix-os/L5-detail-design/log-feedback-memory-lineage.json",
-          "pointers": [
-            "/failure_rules/32"
+            "/failure_classifications/29"
           ]
         }
       ]
@@ -63175,13 +63768,7 @@
         {
           "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
           "pointers": [
-            "/failure_classifications/33"
-          ]
-        },
-        {
-          "path": "docs/helix-os/L5-detail-design/log-feedback-memory-lineage.json",
-          "pointers": [
-            "/failure_rules/33"
+            "/failure_classifications/30"
           ]
         }
       ]
@@ -63210,13 +63797,7 @@
         {
           "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
           "pointers": [
-            "/failure_classifications/34"
-          ]
-        },
-        {
-          "path": "docs/helix-os/L5-detail-design/log-feedback-memory-lineage.json",
-          "pointers": [
-            "/failure_rules/34"
+            "/failure_classifications/31"
           ]
         }
       ]
@@ -63245,13 +63826,7 @@
         {
           "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
           "pointers": [
-            "/failure_classifications/35"
-          ]
-        },
-        {
-          "path": "docs/helix-os/L5-detail-design/log-feedback-memory-lineage.json",
-          "pointers": [
-            "/failure_rules/35"
+            "/failure_classifications/32"
           ]
         }
       ]
@@ -63280,13 +63855,7 @@
         {
           "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
           "pointers": [
-            "/failure_classifications/36"
-          ]
-        },
-        {
-          "path": "docs/helix-os/L5-detail-design/log-feedback-memory-lineage.json",
-          "pointers": [
-            "/failure_rules/36"
+            "/failure_classifications/33"
           ]
         }
       ]
@@ -63315,13 +63884,7 @@
         {
           "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
           "pointers": [
-            "/failure_classifications/37"
-          ]
-        },
-        {
-          "path": "docs/helix-os/L5-detail-design/log-feedback-memory-lineage.json",
-          "pointers": [
-            "/failure_rules/37"
+            "/failure_classifications/34"
           ]
         }
       ]
@@ -63350,13 +63913,7 @@
         {
           "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
           "pointers": [
-            "/failure_classifications/38"
-          ]
-        },
-        {
-          "path": "docs/helix-os/L5-detail-design/log-feedback-memory-lineage.json",
-          "pointers": [
-            "/failure_rules/38"
+            "/failure_classifications/35"
           ]
         }
       ]
@@ -63385,13 +63942,7 @@
         {
           "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
           "pointers": [
-            "/failure_classifications/40"
-          ]
-        },
-        {
-          "path": "docs/helix-os/L5-detail-design/log-feedback-memory-lineage.json",
-          "pointers": [
-            "/failure_rules/40"
+            "/failure_classifications/36"
           ]
         }
       ]
@@ -63420,13 +63971,7 @@
         {
           "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
           "pointers": [
-            "/failure_classifications/41"
-          ]
-        },
-        {
-          "path": "docs/helix-os/L5-detail-design/log-feedback-memory-lineage.json",
-          "pointers": [
-            "/failure_rules/41"
+            "/failure_classifications/37"
           ]
         }
       ]
@@ -63455,7 +64000,7 @@
         {
           "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
           "pointers": [
-            "/failure_classifications/42"
+            "/failure_classifications/38"
           ]
         }
       ]
@@ -63484,7 +64029,7 @@
         {
           "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
           "pointers": [
-            "/failure_classifications/43"
+            "/failure_classifications/39"
           ]
         }
       ]
@@ -63514,7 +64059,7 @@
         {
           "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
           "pointers": [
-            "/failure_classifications/44"
+            "/failure_classifications/40"
           ]
         }
       ]
@@ -63544,7 +64089,7 @@
         {
           "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
           "pointers": [
-            "/failure_classifications/45"
+            "/failure_classifications/41"
           ]
         }
       ]
@@ -63574,7 +64119,7 @@
         {
           "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
           "pointers": [
-            "/failure_classifications/46"
+            "/failure_classifications/42"
           ]
         }
       ]
@@ -63604,7 +64149,7 @@
         {
           "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
           "pointers": [
-            "/failure_classifications/47"
+            "/failure_classifications/43"
           ]
         }
       ]
@@ -63634,7 +64179,7 @@
         {
           "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
           "pointers": [
-            "/failure_classifications/48"
+            "/failure_classifications/44"
           ]
         }
       ]
@@ -63664,7 +64209,7 @@
         {
           "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
           "pointers": [
-            "/failure_classifications/49"
+            "/failure_classifications/45"
           ]
         }
       ]
@@ -63696,7 +64241,7 @@
         {
           "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
           "pointers": [
-            "/failure_classifications/50"
+            "/failure_classifications/46"
           ]
         }
       ]
@@ -63730,7 +64275,7 @@
         {
           "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
           "pointers": [
-            "/failure_classifications/51"
+            "/failure_classifications/47"
           ]
         }
       ]
@@ -63761,7 +64306,7 @@
         {
           "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
           "pointers": [
-            "/failure_classifications/52"
+            "/failure_classifications/48"
           ]
         }
       ]
@@ -63792,7 +64337,7 @@
         {
           "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
           "pointers": [
-            "/failure_classifications/53"
+            "/failure_classifications/49"
           ]
         }
       ]
@@ -63822,7 +64367,7 @@
         {
           "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
           "pointers": [
-            "/failure_classifications/54"
+            "/failure_classifications/50"
           ]
         }
       ]
@@ -63857,7 +64402,7 @@
         {
           "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
           "pointers": [
-            "/failure_classifications/55"
+            "/failure_classifications/51"
           ]
         }
       ]
@@ -63887,7 +64432,7 @@
         {
           "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
           "pointers": [
-            "/failure_classifications/56"
+            "/failure_classifications/52"
           ]
         }
       ]
@@ -63917,7 +64462,7 @@
         {
           "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
           "pointers": [
-            "/failure_classifications/57"
+            "/failure_classifications/53"
           ]
         }
       ]
@@ -63948,7 +64493,7 @@
         {
           "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
           "pointers": [
-            "/failure_classifications/58"
+            "/failure_classifications/54"
           ]
         }
       ]
@@ -63978,7 +64523,7 @@
         {
           "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
           "pointers": [
-            "/failure_classifications/59"
+            "/failure_classifications/55"
           ]
         }
       ]
@@ -64008,7 +64553,7 @@
         {
           "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
           "pointers": [
-            "/failure_classifications/60"
+            "/failure_classifications/56"
           ]
         }
       ]
@@ -64046,7 +64591,7 @@
         {
           "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
           "pointers": [
-            "/failure_classifications/61"
+            "/failure_classifications/57"
           ]
         }
       ]
@@ -64077,7 +64622,7 @@
         {
           "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
           "pointers": [
-            "/failure_classifications/62"
+            "/failure_classifications/58"
           ]
         }
       ]
@@ -64107,7 +64652,7 @@
         {
           "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
           "pointers": [
-            "/failure_classifications/63"
+            "/failure_classifications/59"
           ]
         }
       ]
@@ -64137,7 +64682,7 @@
         {
           "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
           "pointers": [
-            "/failure_classifications/64"
+            "/failure_classifications/60"
           ]
         }
       ]
@@ -64168,7 +64713,7 @@
         {
           "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
           "pointers": [
-            "/failure_classifications/65"
+            "/failure_classifications/61"
           ]
         }
       ]
@@ -64198,7 +64743,7 @@
         {
           "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
           "pointers": [
-            "/failure_classifications/66"
+            "/failure_classifications/62"
           ]
         }
       ]
@@ -64228,7 +64773,7 @@
         {
           "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
           "pointers": [
-            "/failure_classifications/67"
+            "/failure_classifications/63"
           ]
         }
       ]
@@ -64261,7 +64806,7 @@
         {
           "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
           "pointers": [
-            "/failure_classifications/68"
+            "/failure_classifications/64"
           ]
         }
       ]
@@ -64291,7 +64836,7 @@
         {
           "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
           "pointers": [
-            "/failure_classifications/69"
+            "/failure_classifications/65"
           ]
         }
       ]
@@ -64321,7 +64866,7 @@
         {
           "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
           "pointers": [
-            "/failure_classifications/70"
+            "/failure_classifications/66"
           ]
         }
       ]
@@ -64351,7 +64896,7 @@
         {
           "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
           "pointers": [
-            "/failure_classifications/71"
+            "/failure_classifications/67"
           ]
         }
       ]
@@ -64383,7 +64928,7 @@
         {
           "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
           "pointers": [
-            "/failure_classifications/72"
+            "/failure_classifications/68"
           ]
         }
       ]
@@ -64414,7 +64959,7 @@
         {
           "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
           "pointers": [
-            "/failure_classifications/73"
+            "/failure_classifications/69"
           ]
         }
       ]
@@ -64444,7 +64989,7 @@
         {
           "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
           "pointers": [
-            "/failure_classifications/74"
+            "/failure_classifications/70"
           ]
         }
       ]
@@ -64474,7 +65019,7 @@
         {
           "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
           "pointers": [
-            "/failure_classifications/75"
+            "/failure_classifications/71"
           ]
         }
       ]
@@ -64505,7 +65050,7 @@
         {
           "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
           "pointers": [
-            "/failure_classifications/76"
+            "/failure_classifications/72"
           ]
         }
       ]
@@ -64535,7 +65080,7 @@
         {
           "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
           "pointers": [
-            "/failure_classifications/77"
+            "/failure_classifications/73"
           ]
         }
       ]
@@ -64565,7 +65110,7 @@
         {
           "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
           "pointers": [
-            "/failure_classifications/78"
+            "/failure_classifications/74"
           ]
         }
       ]
@@ -64595,7 +65140,7 @@
         {
           "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
           "pointers": [
-            "/failure_classifications/79"
+            "/failure_classifications/75"
           ]
         }
       ]
@@ -64626,7 +65171,7 @@
         {
           "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
           "pointers": [
-            "/failure_classifications/80"
+            "/failure_classifications/76"
           ]
         }
       ]
@@ -64656,7 +65201,7 @@
         {
           "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
           "pointers": [
-            "/failure_classifications/81"
+            "/failure_classifications/77"
           ]
         }
       ]
@@ -64686,7 +65231,7 @@
         {
           "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
           "pointers": [
-            "/failure_classifications/82"
+            "/failure_classifications/78"
           ]
         }
       ]
@@ -64723,7 +65268,7 @@
         {
           "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
           "pointers": [
-            "/failure_classifications/83"
+            "/failure_classifications/79"
           ]
         }
       ]
@@ -64753,7 +65298,86 @@
         {
           "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
           "pointers": [
-            "/failure_classifications/84"
+            "/failure_classifications/80"
+          ]
+        }
+      ]
+    },
+    {
+      "class_id": "OS007-NEG-logs-comp-06-log_kind_conflict_log_kind_unknown",
+      "expected_classification": "record_material_violation",
+      "expected": {
+        "finding_codes": [
+          "log_kind_conflict",
+          "log_kind_unknown"
+        ]
+      },
+      "expected_axis": "logs",
+      "expected_state": "violation",
+      "backflow_owner": "common-log-owner",
+      "side_effect_count": 0,
+      "source_pointers": [
+        {
+          "path": "docs/helix-os/L9-integration-verification/log-feedback-memory-lineage.json",
+          "pointers": [
+            "/integration_cases/949/expected",
+            "/integration_cases/949/condition",
+            "/integration_cases/949/compact_whole_observation/ordered_findings/0"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
+          "pointers": [
+            "/failure_classifications/81"
+          ]
+        }
+      ]
+    },
+    {
+      "class_id": "OS007-NEG-memory-comp-16-boolean_conflict_field_unknown_order_unknown",
+      "expected_classification": "record_material_violation",
+      "expected": {
+        "finding_codes": [
+          "boolean_conflict",
+          "field_unknown",
+          "field_unknown",
+          "field_unknown",
+          "field_unknown",
+          "field_unknown",
+          "field_unknown",
+          "field_unknown",
+          "field_unknown",
+          "field_unknown",
+          "field_unknown",
+          "field_unknown",
+          "field_unknown",
+          "field_unknown",
+          "field_unknown",
+          "field_unknown",
+          "field_unknown",
+          "field_unknown",
+          "field_unknown",
+          "order_unknown",
+          "order_unknown"
+        ]
+      },
+      "expected_axis": "memory",
+      "expected_state": "violation",
+      "backflow_owner": "memory-canonical-owner",
+      "side_effect_count": 0,
+      "source_pointers": [
+        {
+          "path": "docs/helix-os/L9-integration-verification/log-feedback-memory-lineage.json",
+          "pointers": [
+            "/integration_cases/950/expected",
+            "/integration_cases/950/condition",
+            "/integration_cases/950/compact_whole_observation/ordered_findings/0"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
+          "pointers": [
+            "/failure_classifications/82"
           ]
         }
       ]
