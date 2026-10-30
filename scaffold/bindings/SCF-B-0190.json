@@ -20,8 +20,8 @@
     },
     {
       "path": "docs/helix-os/L4-basic-design/ticket-workflow-derivation.json",
-      "sha256": "a1d19b1f81dfda3d3f96715c9e5aec44118f87c0319d4b1f760c08a08f13bc05",
-      "note": "Current-main pin a1d19b1f81dfda3d3f96715c9e5aec44118f87c0319d4b1f760c08a08f13bc05; generalized class condition cites algorithm/0 overlay; per-case details remain in scaffold comparison. Prior pins retained in history."
+      "sha256": "5ea8f51d6204deaa10a599912940d940fb93d06f6b6bc9fc81cd6714cc03aa2a",
+      "note": "Current-main pin a1d19b1f81dfda3d3f96715c9e5aec44118f87c0319d4b1f760c08a08f13bc05; generalized class condition cites algorithm/0 overlay; per-case details remain in scaffold comparison. Prior pins retained in history. Historical pin a1d19b1f81dfda3d3f96715c9e5aec44118f87c0319d4b1f760c08a08f13bc05 retained; WR235 adds separate algorithm/6 and algorithm/5 residual source candidates. WR235 rebind: prior immediate pin 1b429d60f4257bc862c60a89e25e1c97a8e0a9e8ea0a88e8212c718eac8e5045; separate algorithm/6 and algorithm/5 source candidates. Earlier base pin a1d19b1f81dfda3d3f96715c9e5aec44118f87c0319d4b1f760c08a08f13bc05 retained in note. Exact current rebind; previous pin c985e593cf49ed2d745859472f8581abdf3f828b99ff15c36500c8ebeda1ec80 retained."
     },
     {
       "path": "docs/helix-os/L7-function-verification/ticket-workflow-derivation.json",
@@ -35,8 +35,8 @@
     },
     {
       "path": "docs/helix-os/L9-integration-verification/ticket-workflow-derivation.json",
-      "sha256": "5cfdfb3441cf1168a4e08c04ebb49b4b7afc8f8e3df395c8d9822892205ae9ad",
-      "note": "Current-main pin 5cfdfb3441cf1168a4e08c04ebb49b4b7afc8f8e3df395c8d9822892205ae9ad; previous pins retained in binding history. WR226 added 18 class candidate refs; L9 expected fields unchanged; dedicated-rule cases 108/127 have no candidate ref."
+      "sha256": "6eba641aebf4bcec30a9988e3997aa6c83b52f5612ba24fba251d79f36ce7c4b",
+      "note": "Current-main pin 5cfdfb3441cf1168a4e08c04ebb49b4b7afc8f8e3df395c8d9822892205ae9ad; previous pins retained in binding history. WR226 added 18 class candidate refs; L9 expected fields unchanged; dedicated-rule cases 108/127 have no candidate ref. Historical pin 5cfdfb3441cf1168a4e08c04ebb49b4b7afc8f8e3df395c8d9822892205ae9ad retained; WR235 adds only separate source-candidate refs at cases 108/127; expected projections remain unchanged. WR235 rebind: prior immediate pin 6eba641aebf4bcec30a9988e3997aa6c83b52f5612ba24fba251d79f36ce7c4b; cases 108/127 receive separate candidate refs, expected fields preserved; earlier base pin 5cfdfb3441cf1168a4e08c04ebb49b4b7afc8f8e3df395c8d9822892205ae9ad retained in note."
     }
   ],
   "role": "OS017 F02の2 witnessについて、固定blind導出と既存L7/L8/L9 expected比較を保持する候補証跡。",

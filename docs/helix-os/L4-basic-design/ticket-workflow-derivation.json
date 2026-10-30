@@ -354,7 +354,9 @@
       "requirement_pointer": "docs/helix-os/L3-requirements/functional-requirements.json#/requirements/35",
       "system_oracle_pointer": "docs/helix-os/L10-verification/functional-verification.json#/cases/35",
       "negative_class_refs": [
-        "OS017-NEG-workflow-resume-source_unresolved"
+        "OS017-NEG-workflow-resume-source_unresolved",
+        "OS017-NEG-workflow-resume-dependency-state-closed-set-source_unresolved",
+        "OS017-NEG-workflow-resume-level-selected-boolean-selector-source_unresolved"
       ]
     },
     {
@@ -969,6 +971,102 @@
             "/objects/07f917849bf9cec8ef9e015ca4d92574ecb68ac2f6aeff50324df740cd6351a4/parts",
             "/cases/117/given_input_ref",
             "/objects/7e7047aafcc550a0f637460e1eedaa09bc4b314e51055121601b0684d8f79f18/obligations"
+          ]
+        }
+      ]
+    },
+    {
+      "class_id": "OS017-NEG-workflow-resume-dependency-state-closed-set-source_unresolved",
+      "code": "workflow_material_unknown",
+      "design_ref": "HELIXOS-L4-017-F02",
+      "condition": "phase=resume。dependency.stateはalgorithm/6のclosed set {resolved, missing, failed, conflict, stale, issue_closed}と照合する。このsource candidateはactual stateがresolved、context stateが閉集合外の場合に限る。context operand pointerへsource_unresolvedを返し、actual state=resolvedなので状態起因のdependency_not_resolved / dependency_unresolvedは出さない。actual stateがmissing/failed/conflict/stale/issue_closedならそれぞれの後続診断を伴うため本候補に含めない。workflow facetのみunknownで、他facetがcorresponding、ordered finding signature=[source_unresolved]、副作用0。level_selected boolean selector規則(algorithm/5)とは別境界。完全class key・typed owner_ref・global member数は未確定。",
+      "expected_classification": "workflow_material_unknown",
+      "expected": {
+        "finding_codes": [
+          "source_unresolved"
+        ]
+      },
+      "expected_axis": "workflow",
+      "expected_state": "unknown",
+      "backflow_owner": "ticket-workflow-owner",
+      "side_effect_count": 0,
+      "source_pointers": [
+        {
+          "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+          "pointers": [
+            "/requirements/35"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L10-verification/functional-verification.json",
+          "pointers": [
+            "/cases/35"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L4-basic-design/ticket-workflow-derivation.json",
+          "pointers": [
+            "/contracts/1",
+            "/diagnostic_contract/condition_semantics",
+            "/diagnostic_contract/comparison_table/process~1proposal~1dependency~1authority~1resource~1level~1constraints",
+            "/diagnostic_contract/algorithm/6",
+            "/diagnostic_contract/algorithm/10",
+            "/failure_classifications/4"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L7-function-verification/ticket-workflow-derivation.json",
+          "pointers": [
+            "/cases/108/given_input_ref",
+            "/objects/e3f4f026e83e5304a4b37a975a182895526ed3d85b49d9426c6e3ccd50375e32/state"
+          ]
+        }
+      ]
+    },
+    {
+      "class_id": "OS017-NEG-workflow-resume-level-selected-boolean-selector-source_unresolved",
+      "code": "workflow_material_unknown",
+      "design_ref": "HELIXOS-L4-017-F02",
+      "condition": "phase=resume。level_selectedはalgorithm/5のboolean selector規則に従い両側を検査する。このsource candidateはactual selectorがunknown、context selectorがknown booleanの場合に限り、actual selectorの原pointerへsource_unresolvedを返す。context-side unknown selectorは別operandであり本候補に含めない。actual selectorがtrueでないのでlevel recordは読まない。workflow facetのみunknownで、他facetがcorresponding、ordered finding signature=[source_unresolved]、副作用0。dependency.state closed-set規則(algorithm/6)とは別境界。完全class key・typed owner_ref・global member数は未確定。",
+      "expected_classification": "workflow_material_unknown",
+      "expected": {
+        "finding_codes": [
+          "source_unresolved"
+        ]
+      },
+      "expected_axis": "workflow",
+      "expected_state": "unknown",
+      "backflow_owner": "ticket-workflow-owner",
+      "side_effect_count": 0,
+      "source_pointers": [
+        {
+          "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+          "pointers": [
+            "/requirements/35"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L10-verification/functional-verification.json",
+          "pointers": [
+            "/cases/35"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L4-basic-design/ticket-workflow-derivation.json",
+          "pointers": [
+            "/contracts/1",
+            "/diagnostic_contract/condition_semantics",
+            "/diagnostic_contract/comparison_table/process~1proposal~1dependency~1authority~1resource~1level~1constraints",
+            "/diagnostic_contract/algorithm/5",
+            "/diagnostic_contract/algorithm/10",
+            "/failure_classifications/4"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L7-function-verification/ticket-workflow-derivation.json",
+          "pointers": [
+            "/cases/127/given_input_ref",
+            "/objects/72cc2677414769d5af6457d6d875ff8dab367bb404d2f1bbff579407e34892ee/level_selected"
           ]
         }
       ]

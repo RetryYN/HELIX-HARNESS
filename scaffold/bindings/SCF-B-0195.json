@@ -1,0 +1,130 @@
+{
+  "schema_revision": 1,
+  "id": "SCF-B-0195",
+  "kind": "scaffold",
+  "title": "WR235 OS017 F02 algorithm 5/6 residual source candidates",
+  "product": "HELIX-OS",
+  "owner_candidate": "HELIX-OS L4/L9 source-qualified negative-class evidence owner",
+  "state": "registered",
+  "reason": "WR235 preserves the frozen independent source-only artifact and compares two algorithm-specific residuals after freeze. Each gets a distinct L4 source-candidate row and matching L9 candidate pointer; formal class identity, typed owner_ref, global singleton status, and four-layer membership remain unestablished. L7/L8/L9 expected projections remain unchanged.",
+  "upstream": [
+    {
+      "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+      "sha256": "e86254a35b476ed71ebb112e41ccd2b48f89a8d0393e6495dc11cac7a7cf4e02",
+      "note": "WR226 static source/evidence pin; no execution."
+    },
+    {
+      "path": "docs/helix-os/L10-verification/functional-verification.json",
+      "sha256": "583020f951672e48bc37fcd35cb916de5ccd9866f41dd04731f6519325ae500a",
+      "note": "WR226 static source/evidence pin; no execution."
+    },
+    {
+      "path": "docs/helix-os/L4-basic-design/ticket-workflow-derivation.json",
+      "sha256": "5ea8f51d6204deaa10a599912940d940fb93d06f6b6bc9fc81cd6714cc03aa2a",
+      "note": "WR235 separate algorithm/6 and algorithm/5 source candidates; earlier pins are recorded in dependent binding histories. Exact current rebind; previous pin c985e593cf49ed2d745859472f8581abdf3f828b99ff15c36500c8ebeda1ec80 retained."
+    },
+    {
+      "path": "docs/helix-os/L7-function-verification/ticket-workflow-derivation.json",
+      "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146",
+      "note": "WR226 static source/evidence pin; no execution."
+    },
+    {
+      "path": "docs/helix-os/L8-unit-verification/ticket-workflow-derivation.json",
+      "sha256": "7b2f15b8fb131f3e346dff4825f74696cc0b3a3f727515cd901019278bad60ad",
+      "note": "WR226 static source/evidence pin; no execution."
+    },
+    {
+      "path": "docs/helix-os/L9-integration-verification/ticket-workflow-derivation.json",
+      "sha256": "6eba641aebf4bcec30a9988e3997aa6c83b52f5612ba24fba251d79f36ce7c4b",
+      "note": "Only source-candidate refs at cases 108/127 are added; all expected fields unchanged."
+    }
+  ],
+  "role": "OS017 F02 residual-source evidence for distinct algorithm/6 and algorithm/5 triggers; not formal class membership.",
+  "obligations": [
+    "r3 blind artifactを固定SHAのまま保全し、r1/r2訂正履歴を記録する。",
+    "20個のgiven_input_ref graphを個別に解決したroot hash、raw leaf pointer、valueを保持し、18件の候補と2件の専用規則残件を区別する。",
+    "L7/L8/L9 expectedをblind freeze後の比較として個別caseごとに記録し、expectedを変更しない。",
+    "L4 algorithm/2 operand comparisonを共通基点とし、algorithm/1 binding overlay、algorithm/3〜4の条件と下流効果、algorithm/8のpointer重複をcase別に記録する。",
+    "algorithm/6 dependency.state closed-setとalgorithm/5 level_selected boolean selectorを別規則としてclass候補から除外する。",
+    "既存WR204 51 input/12 role checksとWR220 2 witness checksを維持したvalidator結果を記録する。",
+    "algorithm、legacy runtime/test/CI、CIは実行しない。"
+  ],
+  "connections": {
+    "consumers": [
+      "WR220 source-to-expected review",
+      "OS017 L4/L9 candidate-pair review"
+    ],
+    "dependencies": [
+      "Approved L3/L10 B01/F02 target 5c62d19",
+      "L4 diagnostic contract and selected L7/L8/L9 rows at base a53f04482ff883decf1019dc9c212ab712271749"
+    ],
+    "boundary": "Scaffold-only comparison evidence plus source-qualified L4/L9 candidate rows; no L7/L8/L9 expected mutation, implementation execution, actual incident classification, ticket/Reverse action, or four-layer completion."
+  },
+  "operations": {
+    "allowed": [
+      "static source, expected, hash and pointer comparison",
+      "python3 -B WR220 and WR204 static validators",
+      "scfctl validate/stale",
+      "git diff --check"
+    ],
+    "forbidden": [
+      "L4/L5 algorithm execution",
+      "old/new runtime, test, or CI execution",
+      "changing L7/L8/L9 expected fields",
+      "claiming formal four-layer class membership or completion"
+    ]
+  },
+  "artifacts": [
+    "scaffold/research/wr235-os017-residual-rules-20261031/README.md",
+    "scaffold/research/wr235-os017-residual-rules-20261031/source-only.json",
+    "scaffold/research/wr235-os017-residual-rules-20261031/comparison.json",
+    "scaffold/research/wr235-os017-residual-rules-20261031/validate_candidate.py",
+    "scaffold/research/wr235-os017-residual-rules-20261031/verification-summary.json"
+  ],
+  "verification": {
+    "evidence_kind": "scaffold",
+    "scope": [
+      "schema_interface",
+      "source_revision_stale",
+      "negative_case",
+      "forbidden_write_scope"
+    ],
+    "oracles": [
+      "Frozen source-only artifact SHA-256 c6bbbc3ec5a1fa3712380e1b0398e64f077df058f829f1525bce2bb22f2f9a88.",
+      "Static WR235 pointer/input/expectation validator; WR220 and WR204 historical witness validators.",
+      "Baseline and post-change scfctl validate/stale and check-child pair / legacy mode outcomes recorded in verification-summary.json.",
+      "WR235 retained source pin from former upstream scaffold/research/wr226-os017-workflow-residual-20261031/blind-derivation.json; sha256=fe7e00049ecaa89b8c36839abe7b29feb17a860ab5b3bddba32c0f26bb44e7f3",
+      "WR235 retained source pin from former upstream scaffold/research/wr226-os017-workflow-residual-20261031/comparison.json; sha256=2c507260c9704c676897564ea052c15c3a583536ee9b83f9d9b13e7a70424183",
+      "WR235 retained source pin from former upstream scaffold/research/wr220-os017-source-unresolved-20261031/validate_candidate.py; sha256=d1fa2969089e511be962057c0973a0c7702614c2fa84c4c87768fb9607743161",
+      "WR235 retained source pin from former upstream scaffold/research/wr204-os017-negative-classes-20261031/validate_manual_derivation.py; sha256=f201db06c9e59e2467e344e7d37f9fb2acf533e500d11d64727c75bab8a9013d",
+      "WR235 retained source pin from former upstream scaffold/research/wr235-os017-residual-rules-20261031/README.md; sha256=0a17cfe8f0b6c42b57702908070882787644f0ae9c5559a2aae4f98d54abed5c",
+      "WR235 retained source pin from former upstream scaffold/research/wr235-os017-residual-rules-20261031/source-only.json; sha256=c6bbbc3ec5a1fa3712380e1b0398e64f077df058f829f1525bce2bb22f2f9a88",
+      "WR235 retained source pin from former upstream scaffold/research/wr235-os017-residual-rules-20261031/comparison.json; sha256=464c5c6c964ed58b3bd0d4d22c3db878e136d646ea3f9600c31dcff9162259c0",
+      "WR235 retained source pin from former upstream scaffold/research/wr235-os017-residual-rules-20261031/validate_candidate.py; sha256=3db54ac6e96fb21d2761b9f84b73e41704631f2af9e53f5e35e180e28301b944",
+      "WR235 retained source pin from former upstream scaffold/research/wr235-os017-residual-rules-20261031/verification-summary.json; sha256=0b920406d7723dcece5867dd43758648a451bd3b74fbb3128589642955adb892",
+      "WR235 current artifact SHA-256 scaffold/research/wr226-os017-workflow-residual-20261031/blind-derivation.json: fe7e00049ecaa89b8c36839abe7b29feb17a860ab5b3bddba32c0f26bb44e7f3",
+      "WR235 current artifact SHA-256 scaffold/research/wr226-os017-workflow-residual-20261031/comparison.json: 2c507260c9704c676897564ea052c15c3a583536ee9b83f9d9b13e7a70424183",
+      "WR235 current artifact SHA-256 scaffold/research/wr220-os017-source-unresolved-20261031/validate_candidate.py: d1fa2969089e511be962057c0973a0c7702614c2fa84c4c87768fb9607743161",
+      "WR235 current artifact SHA-256 scaffold/research/wr204-os017-negative-classes-20261031/validate_manual_derivation.py: f201db06c9e59e2467e344e7d37f9fb2acf533e500d11d64727c75bab8a9013d",
+      "WR235 current artifact SHA-256 scaffold/research/wr235-os017-residual-rules-20261031/README.md: 0a17cfe8f0b6c42b57702908070882787644f0ae9c5559a2aae4f98d54abed5c",
+      "WR235 current artifact SHA-256 scaffold/research/wr235-os017-residual-rules-20261031/source-only.json: c6bbbc3ec5a1fa3712380e1b0398e64f077df058f829f1525bce2bb22f2f9a88",
+      "WR235 current artifact SHA-256 scaffold/research/wr235-os017-residual-rules-20261031/comparison.json: 600bd3ebb3a15823fc5b1d8e35da0957a504eb50eb25cce4a7f2bf032758505b",
+      "WR235 current artifact SHA-256 scaffold/research/wr235-os017-residual-rules-20261031/validate_candidate.py: 8c710b77f77dc0c2cb4880034ab0637aa6b554f26829bb15946f00a9168f66d3",
+      "WR235 current artifact SHA-256 scaffold/research/wr235-os017-residual-rules-20261031/verification-summary.json: 0b920406d7723dcece5867dd43758648a451bd3b74fbb3128589642955adb892"
+    ],
+    "negative_cases": [
+      "Do not merge algorithm/6 closed-set and algorithm/5 boolean selector boundaries based only on code/facet.",
+      "Do not claim typed owner_ref, complete six-part class key, formal class membership, or global singleton success without evidence.",
+      "L7/L8/L9 expected fields stay unchanged; L9 gains only candidate-link metadata.",
+      "Old runtime/test/CI and L4/L5 algorithms remain unexecuted."
+    ]
+  },
+  "replacement": {
+    "role_target": "Formal OS017 negative-class trace must preserve approved source, witness identity, expected comparison, and layer-specific class membership evidence.",
+    "formal_artifacts": [],
+    "issue": 1866,
+    "status": "pending"
+  },
+  "created": "2026-10-31",
+  "updated": "2026-10-31"
+}

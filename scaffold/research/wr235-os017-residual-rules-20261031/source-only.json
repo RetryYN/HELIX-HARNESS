@@ -1,0 +1,240 @@
+{
+  "artifact_kind": "source_only_blind_derivation",
+  "work_item": "WR235 OS017",
+  "base_revision": "84c82b5b35f57105b4db7af4e8efe9b530eead88",
+  "comparison_status": "not_compared",
+  "scope": {
+    "pair": "HELIXOS-L3/L10-017",
+    "cases": [
+      "/cases/108",
+      "/cases/127"
+    ],
+    "allowed_sources": [
+      "L3 requirements OS017 rows",
+      "L10 OS017 oracles",
+      "L4 ticket-workflow-derivation body and its failure_classifications",
+      "L7 target cases' given_input_ref and only their dereferenced raw input objects",
+      "QA §3 relevant layer definitions",
+      "WR181 singleton residual precedent"
+    ],
+    "not_read": [
+      "target L5 body, expectations, or classifications",
+      "target L8 body, expectations, or classifications",
+      "target L9 body, expectations, or classifications",
+      "L7 expected references or expected values",
+      "Issue/PR comparison material"
+    ],
+    "procedures_not_run": [
+      "legacy runtime/test/CI",
+      "L4 algorithm",
+      "L5 algorithm"
+    ]
+  },
+  "sources": [
+    {
+      "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+      "sha256": "e86254a35b476ed71ebb112e41ccd2b48f89a8d0393e6495dc11cac7a7cf4e02",
+      "pointers": [
+        "/requirements/34",
+        "/requirements/35",
+        "/requirements/36"
+      ]
+    },
+    {
+      "path": "docs/helix-os/L10-verification/functional-verification.json",
+      "sha256": "583020f951672e48bc37fcd35cb916de5ccd9866f41dd04731f6519325ae500a",
+      "pointers": [
+        "/cases/34",
+        "/cases/35",
+        "/cases/36"
+      ]
+    },
+    {
+      "path": "docs/helix-os/L4-basic-design/ticket-workflow-derivation.json",
+      "sha256": "a1d19b1f81dfda3d3f96715c9e5aec44118f87c0319d4b1f760c08a08f13bc05",
+      "pointers": [
+        "/contracts/0",
+        "/contracts/1",
+        "/contracts/2",
+        "/diagnostic_contract/condition_semantics",
+        "/diagnostic_contract/condition_names",
+        "/diagnostic_contract/diagnostic_code_facets",
+        "/failure_classifications/4",
+        "/diagnostic_contract/algorithm/5",
+        "/diagnostic_contract/algorithm/6"
+      ]
+    },
+    {
+      "path": "docs/helix-os/L7-function-verification/ticket-workflow-derivation.json",
+      "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146",
+      "pointers": [
+        "/cases/108/given_input_ref",
+        "/cases/127/given_input_ref"
+      ]
+    },
+    {
+      "path": "docs/governance/design-verification-quality-assurance.md",
+      "sha256": "f5751e236dc073fe67114c1fcb4b0f64b3d746290b25d75b61e60a08e3c99c85",
+      "pointers": [
+        "§3; L3, L4, L7, L10 definitions"
+      ]
+    },
+    {
+      "path": "scaffold/research/wr181-os015-residual-l4-l9-20261030/singleton-residual-update-20261031.md",
+      "sha256": "26ce1ca889e1ce74864406cb8a74a7a16d6c0e6e7b9e94a8189c7ac9f5b91ea2",
+      "pointers": [
+        "singleton residual explanation"
+      ]
+    }
+  ],
+  "upstream_obligations": {
+    "L3-F01": "管理入力とHARNESS工程契約、接続状況、提供された案・水準を元revision/scopeに結び、対象・kind・親revision・scope・依存・受入義務・戻し先をticket graphに保持する。",
+    "L3-F02": "INTELLIGENCE案を工程語彙・順序・義務、authority、budget、期限、依存と照合。1.0は定義済み工程部品の規則的組合せと既定戻し先への差戻しに限定し、部品外flow生成は4.0に保持する。",
+    "L3-F03": "途中結果、未解決依存、unknown/conflict/scope逸脱をticketの元revisionと既存戻し先に結ぶ。再開時も停止理由、元要求revision、未完義務、累積budget/期限を保持し、意味変更をOSが自己確定しない。",
+    "L10-F03": "既定差戻しと入力更新後の再開を同一仕事へ照合し、停止/再開理由・制約・未完・再導出候補が追跡できる。停止理由削除、budget reset、scope差替え、未解決の実行可能化は反例。"
+  },
+  "l4_classification_basis": {
+    "condition_aggregation": "violationが1つでもあればworkflow_material_violation。違反がなくunknownがあればworkflow_material_unknown。それ以外はworkflow_material_corresponding。これは実workflow適格性・完了を意味しない。",
+    "resume_unknown_class": {
+      "class_id": "OS017-NEG-workflow-resume-source_unresolved",
+      "condition_shape": "phase=resume; overall condition=workflow_material_unknown; ordered finding code signature=[source_unresolved]; workflow facet=unknown; ticket-workflow-ownerへ戻す; side_effect_count=0",
+      "limit": "これは候補クラスの定義。対象入力が単一findingでこのkeyに一致するか、algorithmを見ずには確定しない。"
+    },
+    "l4_diagnostic_codes_considered": [
+      "source_unresolved",
+      "workflow_condition_unresolved",
+      "dependency_unresolved",
+      "dependency_not_resolved"
+    ],
+    "qa_rule": "QA §3ではL4とL9の対の照合を定義し、L3/L10は義務とoracleを一対一に結ぶ。class keyが一致することは各層のclass数/case数や具体case期待の同一性を意味しない。",
+    "singleton_rule": "WR181先例ではmember_count=0はsingleton finding classが発火しない意味であり、code/pointer witnessが存在しない意味ではない。ここでは発火・非発火をsource-onlyから決めない。",
+    "manual_rule_application": {
+      "algorithm_5": "level_selectedは両側boolean照合。不明selectorは原pointerにsource_unresolved。actual trueの場合だけlevel recordを読む。",
+      "algorithm_6": "dependency.stateはclosed set（resolved/missing/failed/conflict/stale/issue_closed）と照合し、集合外は原位置source_unresolved。known相反だけactual stateにsource_conflict。actual stateがresolved以外の場合のstatus codeは別途併記する。",
+      "method": "散文ruleと対象raw operandの手読み照合のみ。algorithmを実行していない。"
+    },
+    "existing_class_exclusion": {
+      "pointer": "/failure_classifications/4",
+      "source_text": "dependency.state closed-set (algorithm/6)とlevel_selected boolean selector/条件付き読取 (algorithm/5) は別class境界。",
+      "effect": "dependency.stateの負例とlevel_selectedの負例は、局所code/facetがworkflow unknown / source_unresolvedで共通しても、OS017-NEG-workflow-resume-source_unresolvedへ割り当てない。",
+      "correction": "前版が両件に当該class IDを候補提示したのは誤り。class候補から除外する。"
+    }
+  },
+  "case_derivations": [
+    {
+      "l7_case_pointer": "/cases/108",
+      "case_id_as_recorded_in_l7": "OS017-L8-EXPECTED-DEPENDENCY-STATE-UNKNOWN",
+      "given_input_ref": {
+        "pointer": "/objects/28abf47705771882ddfe6ceb4fa54dd9d697186c6a43c6bb0d3355339214d289",
+        "canonical_sha256": "28abf47705771882ddfe6ceb4fa54dd9d697186c6a43c6bb0d3355339214d289"
+      },
+      "raw_facts": {
+        "phase": "resume",
+        "actual_dependency_state": "resolved",
+        "actual_dependency_ref": "/objects/8de3b6e0628759f73bed6dcab0239b5eee6e4c6f3ff9d85e2c4731a249ed4972",
+        "context_dependency_ref": "/objects/e3f4f026e83e5304a4b37a975a182895526ed3d85b49d9426c6e3ccd50375e32",
+        "context_dependency_state": null
+      },
+      "source_only_condition": "L4 algorithm/6 says an out-of-closed-set dependency state yields source_unresolved at the original operand location. The context-side null is outside the closed set; actual state resolved is in-set and creates no not-resolved status finding. The three other dependency fields match. This supports a local workflow unknown finding at /context/dependency/state.",
+      "classification_candidates": [
+        {
+          "existing_class_id": "OS017-NEG-workflow-resume-source_unresolved",
+          "assignment": "excluded_by_L4_boundary",
+          "local_condition_candidate": "workflow_material_unknown",
+          "local_facet": "workflow",
+          "local_state_candidate": "unknown",
+          "finding_code_candidate": "source_unresolved",
+          "pointer_candidate": "/context/dependency/state",
+          "new_class_identity_candidate": "resume + context dependency.state outside L4 closed set",
+          "new_class_id": "not_assigned",
+          "basis": "L4 /failure_classifications/4 explicitly places dependency.state closed-set failures at a separate class boundary."
+        }
+      ],
+      "unknowns": [
+        "new class ID and complete class key are not established by the permitted sources; do not invent a code or infer another facet",
+        "global witness count and singleton status are unknown; only this one target witness was examined",
+        "unexamined facets may affect whole-case aggregation, so the local unknown is not a final whole-case condition"
+      ],
+      "operand_comparison": {
+        "actual_dependency_state": "resolved",
+        "context_dependency_state": null,
+        "context_dependency_state_pointer_candidate": "/context/dependency/state",
+        "context_state_closed_set_member": false,
+        "other_dependency_fields_equal": [
+          "source_ref",
+          "requirement_revision",
+          "scope"
+        ],
+        "actual_status_additional_finding": "none indicated by the listed L4 state rule because actual state is resolved"
+      }
+    },
+    {
+      "l7_case_pointer": "/cases/127",
+      "case_id_as_recorded_in_l7": "OS017-L8-LEVEL-SELECTION-UNKNOWN",
+      "given_input_ref": {
+        "pointer": "/objects/72cc2677414769d5af6457d6d875ff8dab367bb404d2f1bbff579407e34892ee",
+        "canonical_sha256": "72cc2677414769d5af6457d6d875ff8dab367bb404d2f1bbff579407e34892ee"
+      },
+      "raw_facts": {
+        "phase": "resume",
+        "level_selected": null,
+        "context_dependency_state": "resolved"
+      },
+      "source_only_condition": "L4 algorithm/5 says the selector is boolean-compared and an unknown selector yields source_unresolved at its original pointer; level record is read only when actual selector is true. Actual null versus context false therefore supports a local workflow unknown finding at /level_selected, and does not authorize reading level material.",
+      "classification_candidates": [
+        {
+          "existing_class_id": "OS017-NEG-workflow-resume-source_unresolved",
+          "assignment": "excluded_by_L4_boundary",
+          "local_condition_candidate": "workflow_material_unknown",
+          "local_facet": "workflow",
+          "local_state_candidate": "unknown",
+          "finding_code_candidate": "source_unresolved",
+          "pointer_candidate": "/level_selected",
+          "new_class_identity_candidate": "resume + unknown level_selected boolean selector",
+          "new_class_id": "not_assigned",
+          "basis": "L4 /failure_classifications/4 explicitly places level_selected boolean selector/conditional read at a separate class boundary."
+        }
+      ],
+      "unknowns": [
+        "new class ID and complete class key are not established by the permitted sources; do not invent a code or infer another facet",
+        "global witness count and singleton status are unknown; only this one target witness was examined",
+        "unexamined facets may affect whole-case aggregation, so the local unknown is not a final whole-case condition",
+        "no level record is read under the L4 conditional read rule because actual selector is not true"
+      ],
+      "operand_comparison": {
+        "actual_level_selected": null,
+        "context_level_selected": false,
+        "actual_selector_is_boolean": false,
+        "context_selector_is_boolean": true,
+        "selector_pointer_candidate": "/level_selected",
+        "level_record_read": false
+      }
+    }
+  ],
+  "artifact_limit": "Independent source-only candidates, not expected values, test oracles, confirmed class membership, implementation design, or acceptance evidence.",
+  "new_class_identity_and_singleton_review": {
+    "separate_semantic_boundaries": [
+      {
+        "trigger": "resume context dependency.state outside L4 closed set",
+        "witness": "/cases/108",
+        "local_code": "source_unresolved",
+        "local_facet": "workflow",
+        "new_class_id": "not assigned"
+      },
+      {
+        "trigger": "resume level_selected unknown boolean selector",
+        "witness": "/cases/127",
+        "local_code": "source_unresolved",
+        "local_facet": "workflow",
+        "new_class_id": "not assigned"
+      }
+    ],
+    "identity_limits": "L4 explicitly separates these triggers from its generic resume-source-unresolved class. They remain separate candidate semantic boundaries. The permitted evidence supports the local shared code/facet only; it does not establish a valid full class key or authorize a new code. L5 owner_ref and downstream class evidence are outside this blind read.",
+    "singleton_suitability": "Each boundary has one witness in the inspected target scope. This is not a global singleton count. WR181 explains that member_count=0 means a singleton class does not fire, not that a code/pointer witness is absent; its co-occurrence analysis cannot be transferred to these OS017 cases. Need a permitted complete witness census and class-key resolution before claiming singleton or nonsingleton.",
+    "qa_section_3": "Class matching uses code, ordered finding_codes, backflow_owner, expected_axis, expected_state, and typed owner_ref. A local code/facet match alone does not establish equivalence-class membership."
+  },
+  "correction_history": {
+    "previous_sha256": "bea727867fc103bc487fc75dba50a43e7355e9fe95d3c76dadba90fc9dc7ec01",
+    "reason": "L4 /failure_classifications/4 explicitly excludes dependency.state closed-set and level_selected selector/conditional-read triggers from the existing generic resume-source-unresolved class; artifact now records those as separate unassigned class candidates and leaves singleton status unknown."
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "artifact_kind": "static_verification_summary",
+  "base_revision": "84c82b5b35f57105b4db7af4e8efe9b530eead88",
+  "frozen_source_only_sha256": "c6bbbc3ec5a1fa3712380e1b0398e64f077df058f829f1525bce2bb22f2f9a88",
+  "validators": {
+    "WR220": "pass; prior 20 witness proof retained and case 108/127 references validated separately",
+    "WR204": "pass; 51 input witnesses, 12 role witnesses, expected digest, and prior checks preserved",
+    "WR235": "pass; 2 source candidates distinct; expected projections unchanged; no formal class membership or singleton success"
+  },
+  "baseline_at_base": {
+    "scfctl_validate": "pass; bindings=181 fail=0",
+    "scfctl_stale": "pass; stale=0",
+    "check_child_exit_code": 1,
+    "L4_L9_pair": "pass",
+    "L5_L8_pair": "pass",
+    "legacy_negative_4way": "fail; L4=5 L9=0 L8=0 L5=0 matched=0 failures=8"
+  },
+  "after_change": {
+    "scfctl_validate": "pass; bindings=182 fail=0",
+    "scfctl_stale": "pass; stale=0",
+    "check_child_exit_code": 1,
+    "L4_L9_pair": "pass",
+    "L5_L8_pair": "pass",
+    "legacy_negative_4way": "fail; L4=7 L9=0 L8=0 L5=0 matched=0 failures=10; two source candidate rows have no formal four-layer class counterparts"
+  },
+  "expectation_preservation": {
+    "L7_bytes_unchanged": true,
+    "L8_bytes_unchanged": true,
+    "L9_all_217_expected_and_non_candidate_fields_unchanged": true,
+    "L4_first_5_class_rows_unchanged": true,
+    "primary_requirement": "HELIXOS-L3-017-F02",
+    "formal_negative_membership": false,
+    "singleton_success": false
+  },
+  "execution_boundary": "No L4/L5 algorithm, legacy runtime/test/CI, or CI was run."
+}
