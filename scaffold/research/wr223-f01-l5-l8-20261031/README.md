@@ -31,7 +31,22 @@ L4/L9とL8の既存unit-case ID一覧、L5の既存contract、既存L8 unit case
 
 ## L5/L8候補
 
-L5候補の第1commitは `f97e1ff9331bafdc5d87b4f6e1af067020e78b76`、同revisionのL5全体SHA-256は `216e8f04638ab8734c91333bbb6bae48031e13224d084eb9fc750f125d703610`。L8 candidate source pinはこのrevisionと全体SHAを固定する。既存L5 F01 fieldsとsemantic rulesは同一で、末尾へcandidate-only分類案を追加した。
+初回L5候補commitは `f97e1ff9331bafdc5d87b4f6e1af067020e78b76`（SHA-256 `216e8f04638ab8734c91333bbb6bae48031e13224d084eb9fc750f125d703610`）。r2固定後のsource-condition再照合をL5だけの追加commit `7d72703bb1fe3e350292751141146f300d70574a` に固定し、L5全体SHA-256は `f1ac1bd4e47365378ebf09f53b0e24b02d3be7033411df881672206363805b4a`。L8 candidate source pinは追加commitのrevisionと完全bytesを参照する。L5 F01既存field/semantic rulesは不変で、candidate-only annotationへfixture-local factsを追記した。
+
+### r2固定後のsource-condition再照合
+
+初回候補のL5 `negative_candidate_rules`はL4/L9のcode/axis/stateを参照し、candidate projectionを写す一方、入力側で何を観測すれば各witnessになるかをfield path・presence・revision/sequence関係として十分に記していなかった。r2は意味範囲だけを固定し、このschemaや判定条件を指定していない。Issueへのr2固定後にL9 `owner_material` rawと照合し、L5 candidate annotationへfixture-localなsource conditionを追記した。L4/L9、既存期待、r1/r2 bytesは変更していない。
+
+| witness | L9 owner_material上の具体条件 | projectionに関する扱い |
+|---|---|---|
+| positive normal | `binding`・`design_pair.*_ref`・`freeze.*_ref`がprovided。target refとbinding、freeze refsとdesign-pair refsのidentity/revision/scope/owner関係が揃い、`freeze.sequence=1 < body_change.sequence=3`。`red`はprovided null、`implementation_success`はabsent。 | 既存L4/L9 normal projectionは候補参照のまま。fixtureは実凍結・Red・実装成功を証明しない。 |
+| freeze missing | `freeze`はprovided null。paired design refsと`body_change.sequence`はprovided。 | 凍結不足の意味は導けるが、`pair_binding`対`freeze_before_body`の一次軸は決まらない。既存projectionはr2固定後に選んだ候補mappingとして残し、優先順位は未決。 |
+| test after body | 同じowner_material内で`freeze.sequence=4 > body_change.sequence=3`。binding/target ref revisionはr1だが、`body_change`にrevision fieldはない。 | 後順序の事実は明示できる。`test_after_body/conflict`はL10の意味と既存L4/L9語彙を結ぶ候補mappingで、新規上流規則ではない。 |
+| foreign oracle revision | `design_pair.oracle_ref.revision=r1`、`freeze.oracle_ref.revision=r0`、freeze sequenceはbody changeより前。 | ref revision不一致は具体化できる。`pair_binding/stale`のstate/codeは候補語彙選択として区別する。 |
+| freeze as Red | raw `red`はprovided null、freeze recordとsequenceは存在。一方L9 caseは候補出力`pre_body_red=observed_from_freeze`へ置換している。 | 出力の主張とraw inputの不一致を示す。凍結metadataだけではRed観測にならない。閉じた分類条件や出力の優先順位は未決。 |
+| timestamp only | `freeze`はprovided recordだが`created_at`だけ。target/design/test/oracle/expected/sequence各fieldはabsent。`created_at`は`body_change.created_at`より早い。 | `freeze=null`と別witnessとして維持。両者を同じ`freeze_before_body/missing`へ投影する選択はr2後の候補設計で、重複と優先順位は未決。 |
+
+L9のowner_materialはsynthetic fixtureであり、正式なowner-qualified入力ではない。source factsをfixture範囲で記述できることと、production schemaや正式分類器を定めることは別である。L4/L9の既存projectionは候補参照として残るが、条件の導出や優先順位を期待値との一致で補っていない。特にfreeze欠落とtimestamp-onlyの一次axis、複数条件同時成立時の分類優先順位、`body_change`のrevision対応field、`freeze_as_red`出力変異の正式な入力/出力境界は未決である。
 
 L8 candidateは1 positive、5 negative witnessを持つ。正例projectionはL4 `/contracts/1/output_contract` とL9 `/cases/1/expected_material` を参照する。負例projectionは対応するL4 `negative_classifications` とL9 `negative_cases` の軸、状態、owner、副作用数を短く写し、各入力witnessは既存L9 owner-material pointerを指す。L4のoutput pointerは静的に解決する。L9 fixtureは `synthetic_independent_owner_design_fixture` であり、正式owner由来inputと主張しない。
 
@@ -56,6 +71,6 @@ L8 candidateは1 positive、5 negative witnessを持つ。正例projectionはL4 
 
 ## 検証と未決
 
-再現可能な静的validatorは [`validate_static_candidate.py`](validate_static_candidate.py)。JSON parse、source revision/file hashes、RFC6901 pointer解決、L4/L9/L8既存bytes・期待の不変、L8 L5 final pin、r1/r2 hashes、候補IDとcanonical IDの分離を確認する。validatorはL4/L5 algorithmを実行しない。旧HELIX runtime/test/CIと新runtime/test/CIは起動しない。 実行結果はvalidator PASS、`scfctl validate` `bindings=177 fail=0`、`scfctl stale` `stale=0`、staged `git diff --check` はclean。
+再現可能な静的validatorは [`validate_static_candidate.py`](validate_static_candidate.py)。JSON parse、source revision/file hashes、RFC6901 pointer解決、L4/L9/L8既存bytes・期待の不変、L8 L5 final pin、r1/r2 hashes、候補IDとcanonical IDの分離を確認する。source predicateのfield factsを候補期待値との等値で分類する検査はしない。validatorはL4/L5 algorithmを実行しない。旧HELIX runtime/test/CIと新runtime/test/CIは起動しない。 実行結果はvalidator PASS、`scfctl validate` `bindings=177 fail=0`、`scfctl stale` `stale=0`、staged `git diff --check` はclean。
 
 正式な入力owner、production schema/codec、分類優先順位、L5/L8正式設計、independent oracle、実行・受入、全negative 4way matching、L8 ownership-cap、通常のL3再開は未成立のまま残す。候補artifactの存在やvalidatorの成功でこれらを生成しない。

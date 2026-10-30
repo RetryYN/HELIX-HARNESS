@@ -1120,10 +1120,10 @@
           },
           {
             "path": "docs/helix-harness/L5-detail-design/tdd-development-flow.json",
-            "revision": "f97e1ff9331bafdc5d87b4f6e1af067020e78b76",
-            "sha256": "216e8f04638ab8734c91333bbb6bae48031e13224d084eb9fc750f125d703610",
+            "revision": "7d72703bb1fe3e350292751141146f300d70574a",
+            "sha256": "f1ac1bd4e47365378ebf09f53b0e24b02d3be7033411df881672206363805b4a",
             "pointer": "/contracts/1/candidate_classification_design",
-            "claim": "前段で固定したL5 candidate bytes。このrevisionをL8のL5 source pinに使用。"
+            "claim": "前段で固定したL5 candidate source-predicate bytes。L8はこのrevisionの完全bytesをpinし、source conditionと短いU-ID projectionだけを扱う。"
           }
         ],
         "input_source_boundary": "source_fixture_ref points to existing synthetic L9 owner-material examples only. It is a candidate witness pointer, not a new owner-qualified raw source, formal input binding, or independent oracle.",
