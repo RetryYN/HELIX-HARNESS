@@ -19,7 +19,7 @@
       "L8 expectations",
       "L9 case condition/expected values"
     ],
-    "derivation_note": "L7 /cases/3、/cases/5、/cases/6 のgiven_input_refからraw入力object graphだけを展開した。3入力の再帰的差分は /binding/project のみ。L4 binding比較表はbinding.projectをinputs/string比較に置き、diagnostic_code_facetsはsource_unresolvedとsource_conflictをcomparison facetに対応させる。L4のformal rowはtop-level failure_classificationsに置き、contracts[].negative_class_refsへF01のreverse linkを設定した。negative_equivalence_classes marker自体は4層揃うまで設定していない。L4 condition_semanticsが全体severity集約を定める。L4のresume規則文は設計文として読み手で適用し、診断algorithm/実装は実行していない。期待値からconditionを写していない。",
+    "derivation_note": "L7 /cases/3、/cases/5、/cases/6 のgiven_input_refからraw入力object graphだけを展開した。3入力の再帰的差分は /binding/project のみ。L4 binding比較表はbinding.projectをinputs/string比較に置き、diagnostic_code_facetsはsource_unresolvedとsource_conflictをcomparison facetに対応させる。L4のformal rowはtop-level failure_classificationsに置き、contracts[].negative_class_refsへF01のreverse linkを設定した。negative_equivalence_classes marker自体は4層揃うまで設定していない。L4 condition_semanticsが全体severity集約を定める。L4のresume規則文は設計文として読み手で適用し、診断algorithm/実装は実行していない。期待値からconditionを写していない。 2026-10-31 extension: L7 given_input_ref raw graph onlyを追加49件確認。/cases/7..38のactual binding/management 32件と、/cases/91..107のcontext-side binding/management 17件で、各phase baselineとの差は対象のbinding/management 1 leafのみ。L4のbinding/management string comparison規則から、33件はsource_unresolved、16件はsource_conflictとして既存2 classのcandidate witnessに追加した。L9の217 expected projectionは保持確認にだけ用い、classification oracleには使わない。",
     "historical_expectation_note": "L7 original_expected_ref lineageは独立oracleとして使わない。L9 expected fieldは編集前後の保持だけをdigestで確認し、分類導出には使わない。",
     "existing_shape_comparison": {
       "conclusion": "L9 negative_class_ref is a membership reference to that same L9 document’s negative_equivalence_classes table. This tranche has no L9 class table or marker, so the L4 source candidate remains expressed as l4_source_class_candidate_ref; negative_class_ref would be unresolved in the L9 table and would overstate a formal L9 projection.",
@@ -62,6 +62,7 @@
         "/diagnostic_contract/condition_names",
         "/diagnostic_contract/condition_semantics",
         "/diagnostic_contract/return_owner",
+        "/diagnostic_contract/algorithm/0",
         "/diagnostic_contract/algorithm/1",
         "/diagnostic_contract/algorithm/2",
         "/diagnostic_contract/algorithm/3",
@@ -76,17 +77,15 @@
         "/failure_classifications/0",
         "/failure_classifications/1",
         "/contracts/0/negative_class_refs"
-      ]
+      ],
+      "purpose": "L4 diagnostic source and context.binding reuse scan, including conditional level reading and resume intermediate comparisons."
     },
     {
       "path": "docs/helix-os/L7-function-verification/ticket-workflow-derivation.json",
       "pointers": [
         "/cases/3/given_input_ref",
-        "/objects/1586f614cc69eb6f2e655c825fef3f3d997b29fefcdc517413ee05acc651d07e/binding",
         "/cases/5/given_input_ref",
         "/cases/6/given_input_ref",
-        "/objects/503f5d7a9aa22046ec2e55ee05ee1b9a362553e1a8f881af99e05997244d0ccb/project",
-        "/objects/3067a4f2dd8a085db4b59cdda7e6d9e8aaa9d413dc63e33087048d828a61911f/project",
         "/objects/6f5cccd81e8bf8f4de90ff3d1f5029bda2b0eeed9285be8e04b7a4808a05c790/project"
       ]
     },
@@ -163,20 +162,514 @@
     "scope": {
       "positive_cases_in_negative_classes": 0,
       "negative_candidates_formed": 2,
-      "other_population": 214,
+      "other_population": 165,
       "four_layer_explicit_mode_marker": "意図的に未設定。L5/L8後続まで待つ",
-      "four_way_status": "legacy/not_evaluated。PASSではない"
+      "four_way_status": "legacy/not_evaluated。PASSではない",
+      "source_qualified_negative_witnesses_total": 51,
+      "additional_witnesses_this_extension": 49,
+      "baseline_positive_witnesses_checked": 1,
+      "uninspected_raw_input_cases": 165,
+      "class_witness_counts": {
+        "OS017-NEG-inputs-source_unresolved": 34,
+        "OS017-NEG-inputs-source_conflict": 17
+      }
     },
     "facet_source_check": {
       "phase": "resume",
-      "inputs_baseline": "基準入力では5つのbinding値と12のmanagement値がcontextと一致する。各負例候補ではraw graph上の差はbinding.projectのみ。",
-      "ownership": "6個のrole値がcontextおよび固定owner roleと一致する。",
-      "ticket": "ticket graph 1件はcontextと一致し、parent_revisionとscopeは共通bindingに一致する。",
-      "workflow": "process parts/edge/obligationsおよびselected proposalはcontextと一致し、proposalのpartsとobligationsはprocessに存在する。level selectorは両側false。authorityはcurrent、resourceはobserved_material、dependencyはresolvedで、共通revision/scopeに結ばれている。budget/deadlineは100/100、costは7、nowは90。",
-      "backflow": "intermediate stateは許容されるbackflow素材failedで、revision/scope/ticket/backflow参照はcontextと一致する。",
-      "continuity": "prior/resumedのrevision/scope/stop reasonは一致する。budget/deadlineは変わらず、cost/failuresは4/1から7/2へ増加。priorのoutstanding obligation Aはresumed集合に残り、meaning_change_self_confirmedはfalse。",
-      "scope_limit": "completion_claimはfalse。projection labelを完了の根拠にしない。",
-      "aggregate": "他の全facetはcorrespondingと手で確認したため、null project比較はworkflow_material_unknown、既知の相反project比較はworkflow_material_violation。L4のseverity優先規則を適用した。"
+      "inputs_baseline": "基準入力ではbinding 5 fieldとmanagement 12 fieldがcontextと一致する。全追加caseはraw graph上で基準から1 leafだけ異なるが、これを単一findingとは同一視しない。",
+      "ownership": "6 role値がcontextおよび固定owner roleと一致し、追加caseの変更箇所ではない。",
+      "ticket": "基準ではticket graph 1件とcontextが一致する。context binding requirement_revision/scopeがnullとなる/cases/92,93だけ、ticket parent_revision/scope比較もunknownとなり得る。他の追加witnessではticket facet comparison inputは変わらない。",
+      "workflow": "基準のprocess/proposal/dependency/level/authority/resource/constraintsはL4記述上対応状態。context binding requirement_revision/scopeはproposal/dependency comparisonsにも、contract_revisionはprocess.revision comparisonにも再利用されるため/cases/92,93,95ではworkflow facetもunknownとなり得る。他の追加witnessではworkflow comparison inputは変わらない。",
+      "backflow": "resumeのintermediate actual値は変わらないが、/cases/92,93では対応するcontext.binding requirement_revision/scopeがnullとなり、intermediate比較でもbackflow facetがunknownとなり得る。他の追加witnessではこのcomparison inputは変わらない。",
+      "continuity": "resumeのprior/resumed comparison入力は追加caseで変わらない。",
+      "scope_limit": "completion_claimとprojectionは追加caseで変わらない。",
+      "aggregate": "/cases/92,93,95は複数facetがunknownになり得るがviolationはなく、L4 severity規則では全体unknown。共有context pointerへのsource_unresolved findingは(code,pointer,return_owner)一意化でsignatureを単一コードに保つ。残りの入力差分はinputs comparisonだけに影響する。これはL4散文を手適用した分類で、validatorはfacet/finding計算をしない。"
+    },
+    "additional_raw_witnesses": [
+      {
+        "l7_case_pointer": "/cases/7",
+        "class_id": "OS017-NEG-inputs-source_unresolved",
+        "field_family": "binding",
+        "field": "requirement_revision",
+        "changed_side": "actual"
+      },
+      {
+        "l7_case_pointer": "/cases/8",
+        "class_id": "OS017-NEG-inputs-source_conflict",
+        "field_family": "binding",
+        "field": "requirement_revision",
+        "changed_side": "actual"
+      },
+      {
+        "l7_case_pointer": "/cases/9",
+        "class_id": "OS017-NEG-inputs-source_unresolved",
+        "field_family": "binding",
+        "field": "scope",
+        "changed_side": "actual"
+      },
+      {
+        "l7_case_pointer": "/cases/10",
+        "class_id": "OS017-NEG-inputs-source_conflict",
+        "field_family": "binding",
+        "field": "scope",
+        "changed_side": "actual"
+      },
+      {
+        "l7_case_pointer": "/cases/11",
+        "class_id": "OS017-NEG-inputs-source_unresolved",
+        "field_family": "binding",
+        "field": "plan_revision",
+        "changed_side": "actual"
+      },
+      {
+        "l7_case_pointer": "/cases/12",
+        "class_id": "OS017-NEG-inputs-source_conflict",
+        "field_family": "binding",
+        "field": "plan_revision",
+        "changed_side": "actual"
+      },
+      {
+        "l7_case_pointer": "/cases/13",
+        "class_id": "OS017-NEG-inputs-source_unresolved",
+        "field_family": "binding",
+        "field": "contract_revision",
+        "changed_side": "actual"
+      },
+      {
+        "l7_case_pointer": "/cases/14",
+        "class_id": "OS017-NEG-inputs-source_conflict",
+        "field_family": "binding",
+        "field": "contract_revision",
+        "changed_side": "actual"
+      },
+      {
+        "l7_case_pointer": "/cases/15",
+        "class_id": "OS017-NEG-inputs-source_unresolved",
+        "field_family": "management",
+        "field": "purpose_ref",
+        "changed_side": "actual"
+      },
+      {
+        "l7_case_pointer": "/cases/16",
+        "class_id": "OS017-NEG-inputs-source_conflict",
+        "field_family": "management",
+        "field": "purpose_ref",
+        "changed_side": "actual"
+      },
+      {
+        "l7_case_pointer": "/cases/17",
+        "class_id": "OS017-NEG-inputs-source_unresolved",
+        "field_family": "management",
+        "field": "request_ref",
+        "changed_side": "actual"
+      },
+      {
+        "l7_case_pointer": "/cases/18",
+        "class_id": "OS017-NEG-inputs-source_conflict",
+        "field_family": "management",
+        "field": "request_ref",
+        "changed_side": "actual"
+      },
+      {
+        "l7_case_pointer": "/cases/19",
+        "class_id": "OS017-NEG-inputs-source_unresolved",
+        "field_family": "management",
+        "field": "constraint_ref",
+        "changed_side": "actual"
+      },
+      {
+        "l7_case_pointer": "/cases/20",
+        "class_id": "OS017-NEG-inputs-source_conflict",
+        "field_family": "management",
+        "field": "constraint_ref",
+        "changed_side": "actual"
+      },
+      {
+        "l7_case_pointer": "/cases/21",
+        "class_id": "OS017-NEG-inputs-source_unresolved",
+        "field_family": "management",
+        "field": "permission_ref",
+        "changed_side": "actual"
+      },
+      {
+        "l7_case_pointer": "/cases/22",
+        "class_id": "OS017-NEG-inputs-source_conflict",
+        "field_family": "management",
+        "field": "permission_ref",
+        "changed_side": "actual"
+      },
+      {
+        "l7_case_pointer": "/cases/23",
+        "class_id": "OS017-NEG-inputs-source_unresolved",
+        "field_family": "management",
+        "field": "priority_ref",
+        "changed_side": "actual"
+      },
+      {
+        "l7_case_pointer": "/cases/24",
+        "class_id": "OS017-NEG-inputs-source_conflict",
+        "field_family": "management",
+        "field": "priority_ref",
+        "changed_side": "actual"
+      },
+      {
+        "l7_case_pointer": "/cases/25",
+        "class_id": "OS017-NEG-inputs-source_unresolved",
+        "field_family": "management",
+        "field": "dependency_ref",
+        "changed_side": "actual"
+      },
+      {
+        "l7_case_pointer": "/cases/26",
+        "class_id": "OS017-NEG-inputs-source_conflict",
+        "field_family": "management",
+        "field": "dependency_ref",
+        "changed_side": "actual"
+      },
+      {
+        "l7_case_pointer": "/cases/27",
+        "class_id": "OS017-NEG-inputs-source_unresolved",
+        "field_family": "management",
+        "field": "resource_ref",
+        "changed_side": "actual"
+      },
+      {
+        "l7_case_pointer": "/cases/28",
+        "class_id": "OS017-NEG-inputs-source_conflict",
+        "field_family": "management",
+        "field": "resource_ref",
+        "changed_side": "actual"
+      },
+      {
+        "l7_case_pointer": "/cases/29",
+        "class_id": "OS017-NEG-inputs-source_unresolved",
+        "field_family": "management",
+        "field": "budget_ref",
+        "changed_side": "actual"
+      },
+      {
+        "l7_case_pointer": "/cases/30",
+        "class_id": "OS017-NEG-inputs-source_conflict",
+        "field_family": "management",
+        "field": "budget_ref",
+        "changed_side": "actual"
+      },
+      {
+        "l7_case_pointer": "/cases/31",
+        "class_id": "OS017-NEG-inputs-source_unresolved",
+        "field_family": "management",
+        "field": "deadline_ref",
+        "changed_side": "actual"
+      },
+      {
+        "l7_case_pointer": "/cases/32",
+        "class_id": "OS017-NEG-inputs-source_conflict",
+        "field_family": "management",
+        "field": "deadline_ref",
+        "changed_side": "actual"
+      },
+      {
+        "l7_case_pointer": "/cases/33",
+        "class_id": "OS017-NEG-inputs-source_unresolved",
+        "field_family": "management",
+        "field": "stop_condition_ref",
+        "changed_side": "actual"
+      },
+      {
+        "l7_case_pointer": "/cases/34",
+        "class_id": "OS017-NEG-inputs-source_conflict",
+        "field_family": "management",
+        "field": "stop_condition_ref",
+        "changed_side": "actual"
+      },
+      {
+        "l7_case_pointer": "/cases/35",
+        "class_id": "OS017-NEG-inputs-source_unresolved",
+        "field_family": "management",
+        "field": "harness_version",
+        "changed_side": "actual"
+      },
+      {
+        "l7_case_pointer": "/cases/36",
+        "class_id": "OS017-NEG-inputs-source_conflict",
+        "field_family": "management",
+        "field": "harness_version",
+        "changed_side": "actual"
+      },
+      {
+        "l7_case_pointer": "/cases/37",
+        "class_id": "OS017-NEG-inputs-source_unresolved",
+        "field_family": "management",
+        "field": "connection_ref",
+        "changed_side": "actual"
+      },
+      {
+        "l7_case_pointer": "/cases/38",
+        "class_id": "OS017-NEG-inputs-source_conflict",
+        "field_family": "management",
+        "field": "connection_ref",
+        "changed_side": "actual"
+      },
+      {
+        "l7_case_pointer": "/cases/91",
+        "class_id": "OS017-NEG-inputs-source_unresolved",
+        "field_family": "binding",
+        "field": "project",
+        "changed_side": "context"
+      },
+      {
+        "l7_case_pointer": "/cases/92",
+        "class_id": "OS017-NEG-inputs-source_unresolved",
+        "field_family": "binding",
+        "field": "requirement_revision",
+        "changed_side": "context"
+      },
+      {
+        "l7_case_pointer": "/cases/93",
+        "class_id": "OS017-NEG-inputs-source_unresolved",
+        "field_family": "binding",
+        "field": "scope",
+        "changed_side": "context"
+      },
+      {
+        "l7_case_pointer": "/cases/94",
+        "class_id": "OS017-NEG-inputs-source_unresolved",
+        "field_family": "binding",
+        "field": "plan_revision",
+        "changed_side": "context"
+      },
+      {
+        "l7_case_pointer": "/cases/95",
+        "class_id": "OS017-NEG-inputs-source_unresolved",
+        "field_family": "binding",
+        "field": "contract_revision",
+        "changed_side": "context"
+      },
+      {
+        "l7_case_pointer": "/cases/96",
+        "class_id": "OS017-NEG-inputs-source_unresolved",
+        "field_family": "management",
+        "field": "purpose_ref",
+        "changed_side": "context"
+      },
+      {
+        "l7_case_pointer": "/cases/97",
+        "class_id": "OS017-NEG-inputs-source_unresolved",
+        "field_family": "management",
+        "field": "request_ref",
+        "changed_side": "context"
+      },
+      {
+        "l7_case_pointer": "/cases/98",
+        "class_id": "OS017-NEG-inputs-source_unresolved",
+        "field_family": "management",
+        "field": "constraint_ref",
+        "changed_side": "context"
+      },
+      {
+        "l7_case_pointer": "/cases/99",
+        "class_id": "OS017-NEG-inputs-source_unresolved",
+        "field_family": "management",
+        "field": "permission_ref",
+        "changed_side": "context"
+      },
+      {
+        "l7_case_pointer": "/cases/100",
+        "class_id": "OS017-NEG-inputs-source_unresolved",
+        "field_family": "management",
+        "field": "priority_ref",
+        "changed_side": "context"
+      },
+      {
+        "l7_case_pointer": "/cases/101",
+        "class_id": "OS017-NEG-inputs-source_unresolved",
+        "field_family": "management",
+        "field": "dependency_ref",
+        "changed_side": "context"
+      },
+      {
+        "l7_case_pointer": "/cases/102",
+        "class_id": "OS017-NEG-inputs-source_unresolved",
+        "field_family": "management",
+        "field": "resource_ref",
+        "changed_side": "context"
+      },
+      {
+        "l7_case_pointer": "/cases/103",
+        "class_id": "OS017-NEG-inputs-source_unresolved",
+        "field_family": "management",
+        "field": "budget_ref",
+        "changed_side": "context"
+      },
+      {
+        "l7_case_pointer": "/cases/104",
+        "class_id": "OS017-NEG-inputs-source_unresolved",
+        "field_family": "management",
+        "field": "deadline_ref",
+        "changed_side": "context"
+      },
+      {
+        "l7_case_pointer": "/cases/105",
+        "class_id": "OS017-NEG-inputs-source_unresolved",
+        "field_family": "management",
+        "field": "stop_condition_ref",
+        "changed_side": "context"
+      },
+      {
+        "l7_case_pointer": "/cases/106",
+        "class_id": "OS017-NEG-inputs-source_unresolved",
+        "field_family": "management",
+        "field": "harness_version",
+        "changed_side": "context"
+      },
+      {
+        "l7_case_pointer": "/cases/107",
+        "class_id": "OS017-NEG-inputs-source_unresolved",
+        "field_family": "management",
+        "field": "connection_ref",
+        "changed_side": "context"
+      }
+    ],
+    "cross_facet_reuse_analysis": {
+      "l4_prose_pointers": [
+        "/diagnostic_contract/algorithm/0",
+        "/diagnostic_contract/algorithm/1",
+        "/diagnostic_contract/algorithm/2",
+        "/diagnostic_contract/algorithm/5",
+        "/diagnostic_contract/algorithm/7",
+        "/diagnostic_contract/algorithm/8",
+        "/diagnostic_contract/condition_semantics",
+        "/diagnostic_contract/diagnostic_code_facets/source_unresolved"
+      ],
+      "meaning": "L4 prose explicitly reuses selected context.binding leaves as operands in ticket/workflow comparisons; for resume requirement_revision/scope it also compares the intermediate record to context.binding. The findings deduplicate by code/pointer/return_owner. A one-leaf raw difference therefore does not imply a single comparison or a single affected facet.",
+      "shared_context_binding_cases": [
+        {
+          "l7_case_pointer": "/cases/92",
+          "changed_context_leaf": "/context/binding/requirement_revision",
+          "dependent_comparison_paths": [
+            "ticket_graph/0/parent_revision",
+            "proposal/requirement_revision",
+            "dependency/requirement_revision",
+            "intermediate/requirement_revision"
+          ],
+          "affected_facets": [
+            "inputs",
+            "ticket",
+            "workflow",
+            "backflow"
+          ],
+          "local_states_from_l4_prose": {
+            "inputs": "unknown",
+            "ticket": "unknown",
+            "workflow": "unknown",
+            "backflow": "unknown"
+          },
+          "deduplicated_finding_signature": [
+            "source_unresolved"
+          ],
+          "overall_condition": "workflow_material_unknown",
+          "raw_conditions": {
+            "phase": "resume",
+            "proposal_selected": true,
+            "level_selected": false,
+            "intermediate_operand": "known nonempty string"
+          }
+        },
+        {
+          "l7_case_pointer": "/cases/93",
+          "changed_context_leaf": "/context/binding/scope",
+          "dependent_comparison_paths": [
+            "ticket_graph/0/scope",
+            "proposal/scope",
+            "dependency/scope",
+            "intermediate/scope"
+          ],
+          "affected_facets": [
+            "inputs",
+            "ticket",
+            "workflow",
+            "backflow"
+          ],
+          "local_states_from_l4_prose": {
+            "inputs": "unknown",
+            "ticket": "unknown",
+            "workflow": "unknown",
+            "backflow": "unknown"
+          },
+          "deduplicated_finding_signature": [
+            "source_unresolved"
+          ],
+          "overall_condition": "workflow_material_unknown",
+          "raw_conditions": {
+            "phase": "resume",
+            "proposal_selected": true,
+            "level_selected": false,
+            "intermediate_operand": "known nonempty string"
+          }
+        },
+        {
+          "l7_case_pointer": "/cases/95",
+          "changed_context_leaf": "/context/binding/contract_revision",
+          "dependent_comparison_paths": [
+            "process/revision"
+          ],
+          "affected_facets": [
+            "inputs",
+            "workflow"
+          ],
+          "local_states_from_l4_prose": {
+            "inputs": "unknown",
+            "workflow": "unknown"
+          },
+          "deduplicated_finding_signature": [
+            "source_unresolved"
+          ],
+          "overall_condition": "workflow_material_unknown"
+        }
+      ],
+      "non_reused_witness_groups": [
+        {
+          "cases": "/cases/91 and /cases/94",
+          "changed_fields": [
+            "context.binding.project",
+            "context.binding.plan_revision"
+          ],
+          "l4_reading": "L4 prose names only binding requirement_revision/scope and contract_revision in cross-facet comparisons; project and plan_revision are used by the direct binding comparison only."
+        },
+        {
+          "cases": "/cases/7..38",
+          "changed_fields": "actual binding and management fields",
+          "l4_reading": "Cross-facet comparisons target context.binding. They do not reuse the changed actual binding operand; management values have no cross-facet comparison use in L4 prose."
+        },
+        {
+          "cases": "/cases/96..107",
+          "changed_fields": "context management fields",
+          "l4_reading": "L4 prose compares management fields directly against context.management; the identified ticket/workflow cross-facet references target context.binding only."
+        }
+      ],
+      "validation_boundary": "Validator checks source prose anchors and raw operand references for the three shared-leaf cases, including resume intermediate values and selectors. It does not execute L4, derive finding lists, or calculate facet/overall states; those states remain manual source-only derivations.",
+      "context_binding_reference_inventory": [
+        {
+          "l4_pointer": "/diagnostic_contract/algorithm/0",
+          "reading": "process.revision and proposal/dependency/provided-level requirement_revision/scope compare to context.binding."
+        },
+        {
+          "l4_pointer": "/diagnostic_contract/algorithm/1",
+          "reading": "ticket_graph parent_revision/scope also compare to context.binding."
+        },
+        {
+          "l4_pointer": "/diagnostic_contract/algorithm/5",
+          "reading": "level record is read only when actual level_selected=true; all three shared-leaf raw cases have level_selected=false."
+        },
+        {
+          "l4_pointer": "/diagnostic_contract/algorithm/7",
+          "reading": "constraints-only budget/deadline/cost/failure/time rules; no context.binding reference."
+        },
+        {
+          "l4_pointer": "/diagnostic_contract/algorithm/8",
+          "reading": "in backflow/resume intermediate requirement_revision/scope compare to context.binding; applies to cases 92/93."
+        }
+      ]
     }
   },
   "preservation_check": {
@@ -194,7 +687,7 @@
   "limitations": [
     "L4 failure_classifications rowsはformal source rowsだが、negative_equivalence_classes markerがないため4層explicit class modeではない。L5 owner_refとL8/L5 projectionを形成し全4層markerを揃えるまでlegacy modeを維持する。",
     "authority、approval、runtime実行、implementation completion、freeze、four-way PASSを主張しない。",
-    "この証拠の対象外214件はこのtrancheで分類していない。"
+    "この証拠のこの調査で確認した52件（負例候補51件＋基準正例1件）を除く165件はこのtrancheで分類していない。"
   ],
   "source_qualified_class_shape": {
     "l4_container": "/failure_classifications",
@@ -216,6 +709,12 @@
       "invariant": "全体condition、全体ordered finding signature、inputs facetの局所stateがclass rowに記録した値と一致すること。同facet内のslot/field差はclass区分に使わず、別findingや異なる全体severityを持つcaseは同じclassへ含めない。",
       "fixed_witness": "resume phaseはL7 fixed raw inputから導いたcase-specific witnessであり、class key/conditionの範囲をresumeへ限定しない。"
     },
-    "fixed_witness": "resume phaseはL7 fixed raw inputから導いたcase-specific witness。binding.projectはこのwitnessとsource pointerで特定し、class condition/keyは個別field/slotに限定しない。"
+    "fixed_witness": "resume phaseはL7 fixed raw inputから導いたcase-specific witness。binding.projectはこのwitnessとsource pointerで特定し、class condition/keyは個別field/slotに限定しない。",
+    "candidate_case_count": 51,
+    "additional_candidate_case_count": 49,
+    "witnesses_by_class": {
+      "OS017-NEG-inputs-source_unresolved": 34,
+      "OS017-NEG-inputs-source_conflict": 17
+    }
   }
 }
