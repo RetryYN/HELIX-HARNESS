@@ -128,6 +128,7 @@ def leaf_differences(left: Any, right: Any, path: str = "") -> list[str]:
 
 def validate_l7_input_refs() -> None:
     l7 = read_json(L7_PATH)
+    l9 = read_json(L9_PATH)
     audit = json.loads(EVIDENCE.read_text(encoding="utf-8"))
     cases = {case["id"]: case for case in l7["cases"]}
     case_pointers = [
@@ -146,6 +147,90 @@ def validate_l7_input_refs() -> None:
         differences = leaf_differences(expanded[baseline_id], expanded[case_id])
         if differences != ["/binding/project"]:
             raise AssertionError(f"unexpected raw input diff {baseline_id} -> {case_id}: {differences}")
+
+    witnesses = audit["cohort"].get("additional_raw_witnesses", [])
+    if len(witnesses) != 49:
+        raise AssertionError(f"expected 49 additional raw witnesses, got {len(witnesses)}")
+    l4 = read_json(L4_PATH)
+    comparison_table = l4["diagnostic_contract"]["comparison_table"]
+    class_counts: dict[str, int] = {}
+    for witness in witnesses:
+        case_pointer = witness["l7_case_pointer"]
+        case = resolve_pointer(l7, case_pointer)
+        case_id = case["id"]
+        input_pointer = case["given_input_ref"]["pointer"]
+        raw_input = resolve_pointer(l7, input_pointer)
+        family = witness["field_family"]
+        field = witness["field"]
+        if family not in ("binding", "management"):
+            raise AssertionError(f"non-input comparison family in {case_id}: {family}")
+        if field not in comparison_table[family]["fields"]:
+            raise AssertionError(f"field is not covered by L4 {family} table: {case_id} {field}")
+        phase = raw_input["phase"]
+        baseline_case_id, phase_baseline = next(
+            (baseline_case_id, value)
+            for baseline_case_id, value in (
+                (candidate_id, expand_l7_value(l7, resolve_pointer(l7, candidate["given_input_ref"]["pointer"])))
+                for candidate_id, candidate in cases.items()
+                if candidate_id.endswith("NORMAL-" + phase.upper())
+            )
+        )
+        if phase != phase_baseline["phase"]:
+            raise AssertionError(f"phase baseline mismatch for {case_id}")
+
+        # Resolve the actual and context references from the raw input graph itself.
+        actual_ref = raw_input[family]["pointer"]
+        context_pointer = raw_input["context"]["pointer"]
+        context_object = resolve_pointer(l7, context_pointer)
+        context_ref = context_object[family]["pointer"]
+        actual_value = resolve_pointer(l7, actual_ref + "/" + field)
+        context_value = resolve_pointer(l7, context_ref + "/" + field)
+        expanded_input = expand_l7_value(l7, resolve_pointer(l7, input_pointer))
+        differences = leaf_differences(phase_baseline, expanded_input)
+        if witness["changed_side"] == "actual":
+            expected_difference = f"/{family}/{field}"
+            if actual_value == phase_baseline[family][field] or context_value != phase_baseline["context"][family][field]:
+                raise AssertionError(f"actual-side operand is not the single changed leaf: {case_id}")
+        elif witness["changed_side"] == "context":
+            expected_difference = f"/context/{family}/{field}"
+            if context_value == phase_baseline["context"][family][field] or actual_value != phase_baseline[family][field]:
+                raise AssertionError(f"context-side operand is not the single changed leaf: {case_id}")
+        else:
+            raise AssertionError(f"invalid changed_side for {case_id}")
+        if differences != [expected_difference]:
+            raise AssertionError(f"raw input is not a single-leaf witness for {case_id}: {differences}")
+
+        if actual_value is None or context_value is None:
+            if not ((actual_value is None) != (context_value is None)):
+                raise AssertionError(f"unresolved witness must have exactly one null operand: {case_id}")
+            expected_class_id = "OS017-NEG-inputs-source_unresolved"
+        elif (
+            isinstance(actual_value, str) and actual_value
+            and isinstance(context_value, str) and context_value
+            and actual_value != context_value
+        ):
+            expected_class_id = "OS017-NEG-inputs-source_conflict"
+        else:
+            raise AssertionError(f"raw operands do not witness either class: {case_id}")
+        if witness["class_id"] != expected_class_id:
+            raise AssertionError(f"raw operands resolve to a different class for {case_id}")
+        class_counts[expected_class_id] = class_counts.get(expected_class_id, 0) + 1
+
+        row = next(row for row in l4["failure_classifications"] if row["class_id"] == expected_class_id)
+        declared_pointers = next(
+            source["pointers"] for source in row["source_pointers"] if source["path"] == L7_PATH
+        )
+        if case_pointer + "/given_input_ref" not in declared_pointers:
+            raise AssertionError(f"L4 row does not declare the given_input_ref witness for {case_id}")
+        l9_pointer = "/integration_cases/" + case_pointer.split("/")[-1]
+        if resolve_pointer(l9, l9_pointer)["source_case_pointer"] != case_pointer:
+            raise AssertionError(f"L9 case mapping differs for {case_id}")
+
+    if class_counts != {
+        "OS017-NEG-inputs-source_unresolved": 33,
+        "OS017-NEG-inputs-source_conflict": 16,
+    }:
+        raise AssertionError(f"additional witness class distribution differs: {class_counts}")
 
     for case_id, input_obj_pointer, context_obj_pointer in [
         (
@@ -251,8 +336,15 @@ def validate_class_rows_and_unmarked_mode() -> None:
         raise AssertionError("explicit class marker must remain absent in all four layers")
     if any("negative_class_ref" in row for row in l9["integration_cases"]):
         raise AssertionError("unmarked L9 case rows must not claim explicit class membership")
-    for case_index, class_index in ((5, 0), (6, 1)):
+    candidate_rows = [(5, 0), (6, 1)]
+    audit = json.loads(EVIDENCE.read_text(encoding="utf-8"))
+    for witness in audit["cohort"].get("additional_raw_witnesses", []):
+        class_index = 0 if witness["class_id"] == expected_ids[0] else 1
+        candidate_rows.append((int(witness["l7_case_pointer"].split("/")[-1]), class_index))
+    for case_index, class_index in candidate_rows:
         case = l9["integration_cases"][case_index]
+        if case.get("source_case_pointer") != f"/cases/{case_index}":
+            raise AssertionError(f"L9 source case does not match candidate index {case_index}")
         ref = case.get("l4_source_class_candidate_ref")
         if not isinstance(ref, dict) or ref.get("path") != L4_PATH:
             raise AssertionError(f"L9 source candidate reference missing for case {case_index}")
@@ -275,7 +367,7 @@ def main() -> None:
     if (candidate_count, candidate_hash) != (base_count, base_hash):
         raise AssertionError("L9 expected projection changed")
     print(
-        f"static source validation: pointers={checked}, raw cases=3, L4 classes=2, "
+        f"static source validation: pointers={checked}, raw cases=52, class witnesses=51, L4 classes=2, "
         f"L9 cases={candidate_count}, expected_digest={candidate_hash}, four_layer_marker=absent"
     )
 
