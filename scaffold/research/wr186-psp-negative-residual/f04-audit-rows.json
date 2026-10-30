@@ -1,0 +1,403 @@
+{
+  "schema": "wr192-f04-manual-audit.v1",
+  "evidence_kind": "scaffold",
+  "authority_effect": "none",
+  "candidate_count": 7,
+  "audit_row_count": 7,
+  "formal_projection_rows_added": 0,
+  "formal_expectations_changed": false,
+  "fixed_raw_source": {
+    "revision": "ed3981e7b9419d796adf1981f8990c6b626ecabe",
+    "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+    "sha256": "91d0bcd34b8b451bc8e81f5d13d0c5f413de3ad5f7c70ba90a704134c4af3735",
+    "pointer_field": "independent_source_packet.raw_utf8"
+  },
+  "method": "L4 F04 class condition and state basis were read directly. Each fixed raw source packet was parsed as input; L9 expected_material and negative_class_assignment were excluded as result evidence. Exactly one state proof is explicit null per input and the other seven are present/non-null. Candidate status means input-derived condition candidate only, not executed output or runtime pass.",
+  "audit_rows": [
+    {
+      "case_id": "H003-F04-MISSING-Provisional",
+      "candidate_status": "retained_single_finding_candidate",
+      "finding_set_status": "candidate_from_fixed_input",
+      "finding_code": "F04_STATE_PROVISIONAL_PROOF_MISSING",
+      "axis": "state_Provisional_basis",
+      "state": "missing",
+      "condition_source": "Provisional固有の原証拠が不足。前状態/後続状態の証拠で補わず、独立に読めた他stateの証拠は保持する。",
+      "owner_role": "当該状態の原証拠owner",
+      "raw_input_source": {
+        "revision": "ed3981e7b9419d796adf1981f8990c6b626ecabe",
+        "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+        "pointer": "/verification_obligations/4/negative_cases/1/independent_source_packet/raw_utf8",
+        "sha256": "19b98b3376437675eaf4ecf53e4b82b180a4e8b38f67b32fc9e8ec3a85c86a42",
+        "payload_sha256": "19b98b3376437675eaf4ecf53e4b82b180a4e8b38f67b32fc9e8ec3a85c86a42",
+        "state_proofs_pointer": "/state_proofs"
+      },
+      "raw_condition_evidence": {
+        "missing_state_pointer": "/state_proofs/Provisional",
+        "missing_state_value": "explicit_null",
+        "other_state_proof_count": 7,
+        "other_state_proofs_non_null": true,
+        "non_firing_f04_codes": [
+          "F04_STATE_INTEGRATED_PROOF_MISSING",
+          "F04_STATE_VERIFIED_PROOF_MISSING",
+          "F04_STATE_ACCEPTED_PROOF_MISSING",
+          "F04_STATE_RELEASE-ELIGIBLE_PROOF_MISSING",
+          "F04_STATE_DEPLOYED_PROOF_MISSING",
+          "F04_STATE_OBSERVED_PROOF_MISSING"
+        ]
+      },
+      "case_provenance": {
+        "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+        "pointer": "/verification_obligations/4/negative_cases/1",
+        "mutation_pointer": "/cases/4/negative_cases/1/mutation",
+        "execution_state": "not_executed",
+        "effect": "none",
+        "note": "not_executed/none はfixtureの実行・副作用状態のみ。expected_materialは処理結果観測として使用しない。"
+      },
+      "l4_source_pointer": {
+        "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
+        "pointer": "/contracts/4/negative_classifications/0"
+      },
+      "l4_state_basis_pointer": {
+        "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
+        "pointer": "/artifact_state_basis/1"
+      },
+      "l5_condition_crosscheck_pointer": {
+        "path": "docs/helix-harness/L5-detail-design/process-state-port.json",
+        "pointer": "/functions/4/failure_output_contract/conditions/0",
+        "use": "condition wording cross-check only; no output execution/result claimed"
+      },
+      "output_scope": "one L4 state-missing condition is supported by the fixed input; no runtime output, formal projection row, actual owner delivery, or execution pass is asserted.",
+      "ordered_output": "single condition only; no multi-finding ordering claim is needed."
+    },
+    {
+      "case_id": "H003-F04-MISSING-Integrated",
+      "candidate_status": "retained_single_finding_candidate",
+      "finding_set_status": "candidate_from_fixed_input",
+      "finding_code": "F04_STATE_INTEGRATED_PROOF_MISSING",
+      "axis": "state_Integrated_basis",
+      "state": "missing",
+      "condition_source": "Integrated固有の原証拠が不足。前状態/後続状態の証拠で補わず、独立に読めた他stateの証拠は保持する。",
+      "owner_role": "当該状態の原証拠owner",
+      "raw_input_source": {
+        "revision": "ed3981e7b9419d796adf1981f8990c6b626ecabe",
+        "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+        "pointer": "/verification_obligations/4/negative_cases/2/independent_source_packet/raw_utf8",
+        "sha256": "450e344eb8974e9b101a895b3d2a9e74542fc07b7eebc9687c08d364eb62b69c",
+        "payload_sha256": "450e344eb8974e9b101a895b3d2a9e74542fc07b7eebc9687c08d364eb62b69c",
+        "state_proofs_pointer": "/state_proofs"
+      },
+      "raw_condition_evidence": {
+        "missing_state_pointer": "/state_proofs/Integrated",
+        "missing_state_value": "explicit_null",
+        "other_state_proof_count": 7,
+        "other_state_proofs_non_null": true,
+        "non_firing_f04_codes": [
+          "F04_STATE_PROVISIONAL_PROOF_MISSING",
+          "F04_STATE_VERIFIED_PROOF_MISSING",
+          "F04_STATE_ACCEPTED_PROOF_MISSING",
+          "F04_STATE_RELEASE-ELIGIBLE_PROOF_MISSING",
+          "F04_STATE_DEPLOYED_PROOF_MISSING",
+          "F04_STATE_OBSERVED_PROOF_MISSING"
+        ]
+      },
+      "case_provenance": {
+        "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+        "pointer": "/verification_obligations/4/negative_cases/2",
+        "mutation_pointer": "/cases/4/negative_cases/2/mutation",
+        "execution_state": "not_executed",
+        "effect": "none",
+        "note": "not_executed/none はfixtureの実行・副作用状態のみ。expected_materialは処理結果観測として使用しない。"
+      },
+      "l4_source_pointer": {
+        "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
+        "pointer": "/contracts/4/negative_classifications/1"
+      },
+      "l4_state_basis_pointer": {
+        "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
+        "pointer": "/artifact_state_basis/2"
+      },
+      "l5_condition_crosscheck_pointer": {
+        "path": "docs/helix-harness/L5-detail-design/process-state-port.json",
+        "pointer": "/functions/4/failure_output_contract/conditions/1",
+        "use": "condition wording cross-check only; no output execution/result claimed"
+      },
+      "output_scope": "one L4 state-missing condition is supported by the fixed input; no runtime output, formal projection row, actual owner delivery, or execution pass is asserted.",
+      "ordered_output": "single condition only; no multi-finding ordering claim is needed."
+    },
+    {
+      "case_id": "H003-F04-MISSING-Verified",
+      "candidate_status": "retained_single_finding_candidate",
+      "finding_set_status": "candidate_from_fixed_input",
+      "finding_code": "F04_STATE_VERIFIED_PROOF_MISSING",
+      "axis": "state_Verified_basis",
+      "state": "missing",
+      "condition_source": "Verified固有の原証拠が不足。前状態/後続状態の証拠で補わず、独立に読めた他stateの証拠は保持する。",
+      "owner_role": "当該状態の原証拠owner",
+      "raw_input_source": {
+        "revision": "ed3981e7b9419d796adf1981f8990c6b626ecabe",
+        "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+        "pointer": "/verification_obligations/4/negative_cases/3/independent_source_packet/raw_utf8",
+        "sha256": "6b14f417ae9ca6a7c1774c6815e477e6350ac007f430575d87f69fd3fc100edd",
+        "payload_sha256": "6b14f417ae9ca6a7c1774c6815e477e6350ac007f430575d87f69fd3fc100edd",
+        "state_proofs_pointer": "/state_proofs"
+      },
+      "raw_condition_evidence": {
+        "missing_state_pointer": "/state_proofs/Verified",
+        "missing_state_value": "explicit_null",
+        "other_state_proof_count": 7,
+        "other_state_proofs_non_null": true,
+        "non_firing_f04_codes": [
+          "F04_STATE_PROVISIONAL_PROOF_MISSING",
+          "F04_STATE_INTEGRATED_PROOF_MISSING",
+          "F04_STATE_ACCEPTED_PROOF_MISSING",
+          "F04_STATE_RELEASE-ELIGIBLE_PROOF_MISSING",
+          "F04_STATE_DEPLOYED_PROOF_MISSING",
+          "F04_STATE_OBSERVED_PROOF_MISSING"
+        ]
+      },
+      "case_provenance": {
+        "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+        "pointer": "/verification_obligations/4/negative_cases/3",
+        "mutation_pointer": "/cases/4/negative_cases/3/mutation",
+        "execution_state": "not_executed",
+        "effect": "none",
+        "note": "not_executed/none はfixtureの実行・副作用状態のみ。expected_materialは処理結果観測として使用しない。"
+      },
+      "l4_source_pointer": {
+        "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
+        "pointer": "/contracts/4/negative_classifications/2"
+      },
+      "l4_state_basis_pointer": {
+        "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
+        "pointer": "/artifact_state_basis/3"
+      },
+      "l5_condition_crosscheck_pointer": {
+        "path": "docs/helix-harness/L5-detail-design/process-state-port.json",
+        "pointer": "/functions/4/failure_output_contract/conditions/2",
+        "use": "condition wording cross-check only; no output execution/result claimed"
+      },
+      "output_scope": "one L4 state-missing condition is supported by the fixed input; no runtime output, formal projection row, actual owner delivery, or execution pass is asserted.",
+      "ordered_output": "single condition only; no multi-finding ordering claim is needed."
+    },
+    {
+      "case_id": "H003-F04-MISSING-Accepted",
+      "candidate_status": "retained_single_finding_candidate",
+      "finding_set_status": "candidate_from_fixed_input",
+      "finding_code": "F04_STATE_ACCEPTED_PROOF_MISSING",
+      "axis": "state_Accepted_basis",
+      "state": "missing",
+      "condition_source": "Accepted固有の原証拠が不足。前状態/後続状態の証拠で補わず、独立に読めた他stateの証拠は保持する。",
+      "owner_role": "当該状態の原証拠owner",
+      "raw_input_source": {
+        "revision": "ed3981e7b9419d796adf1981f8990c6b626ecabe",
+        "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+        "pointer": "/verification_obligations/4/negative_cases/4/independent_source_packet/raw_utf8",
+        "sha256": "21460e0b1f3143a2f308d01951ba97b167f3ba3fd54543f4e392cb7f6b01bb6c",
+        "payload_sha256": "21460e0b1f3143a2f308d01951ba97b167f3ba3fd54543f4e392cb7f6b01bb6c",
+        "state_proofs_pointer": "/state_proofs"
+      },
+      "raw_condition_evidence": {
+        "missing_state_pointer": "/state_proofs/Accepted",
+        "missing_state_value": "explicit_null",
+        "other_state_proof_count": 7,
+        "other_state_proofs_non_null": true,
+        "non_firing_f04_codes": [
+          "F04_STATE_PROVISIONAL_PROOF_MISSING",
+          "F04_STATE_INTEGRATED_PROOF_MISSING",
+          "F04_STATE_VERIFIED_PROOF_MISSING",
+          "F04_STATE_RELEASE-ELIGIBLE_PROOF_MISSING",
+          "F04_STATE_DEPLOYED_PROOF_MISSING",
+          "F04_STATE_OBSERVED_PROOF_MISSING"
+        ]
+      },
+      "case_provenance": {
+        "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+        "pointer": "/verification_obligations/4/negative_cases/4",
+        "mutation_pointer": "/cases/4/negative_cases/4/mutation",
+        "execution_state": "not_executed",
+        "effect": "none",
+        "note": "not_executed/none はfixtureの実行・副作用状態のみ。expected_materialは処理結果観測として使用しない。"
+      },
+      "l4_source_pointer": {
+        "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
+        "pointer": "/contracts/4/negative_classifications/3"
+      },
+      "l4_state_basis_pointer": {
+        "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
+        "pointer": "/artifact_state_basis/4"
+      },
+      "l5_condition_crosscheck_pointer": {
+        "path": "docs/helix-harness/L5-detail-design/process-state-port.json",
+        "pointer": "/functions/4/failure_output_contract/conditions/3",
+        "use": "condition wording cross-check only; no output execution/result claimed"
+      },
+      "output_scope": "one L4 state-missing condition is supported by the fixed input; no runtime output, formal projection row, actual owner delivery, or execution pass is asserted.",
+      "ordered_output": "single condition only; no multi-finding ordering claim is needed."
+    },
+    {
+      "case_id": "H003-F04-MISSING-Release-eligible",
+      "candidate_status": "retained_single_finding_candidate",
+      "finding_set_status": "candidate_from_fixed_input",
+      "finding_code": "F04_STATE_RELEASE-ELIGIBLE_PROOF_MISSING",
+      "axis": "state_Release-eligible_basis",
+      "state": "missing",
+      "condition_source": "Release-eligible固有の原証拠が不足。前状態/後続状態の証拠で補わず、独立に読めた他stateの証拠は保持する。",
+      "owner_role": "当該状態の原証拠owner",
+      "raw_input_source": {
+        "revision": "ed3981e7b9419d796adf1981f8990c6b626ecabe",
+        "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+        "pointer": "/verification_obligations/4/negative_cases/5/independent_source_packet/raw_utf8",
+        "sha256": "5ba0ead8c78e923f2e5807ad131f150c22b51633360542982d5da5b7e44c37fc",
+        "payload_sha256": "5ba0ead8c78e923f2e5807ad131f150c22b51633360542982d5da5b7e44c37fc",
+        "state_proofs_pointer": "/state_proofs"
+      },
+      "raw_condition_evidence": {
+        "missing_state_pointer": "/state_proofs/Release-eligible",
+        "missing_state_value": "explicit_null",
+        "other_state_proof_count": 7,
+        "other_state_proofs_non_null": true,
+        "non_firing_f04_codes": [
+          "F04_STATE_PROVISIONAL_PROOF_MISSING",
+          "F04_STATE_INTEGRATED_PROOF_MISSING",
+          "F04_STATE_VERIFIED_PROOF_MISSING",
+          "F04_STATE_ACCEPTED_PROOF_MISSING",
+          "F04_STATE_DEPLOYED_PROOF_MISSING",
+          "F04_STATE_OBSERVED_PROOF_MISSING"
+        ]
+      },
+      "case_provenance": {
+        "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+        "pointer": "/verification_obligations/4/negative_cases/5",
+        "mutation_pointer": "/cases/4/negative_cases/5/mutation",
+        "execution_state": "not_executed",
+        "effect": "none",
+        "note": "not_executed/none はfixtureの実行・副作用状態のみ。expected_materialは処理結果観測として使用しない。"
+      },
+      "l4_source_pointer": {
+        "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
+        "pointer": "/contracts/4/negative_classifications/4"
+      },
+      "l4_state_basis_pointer": {
+        "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
+        "pointer": "/artifact_state_basis/5"
+      },
+      "l5_condition_crosscheck_pointer": {
+        "path": "docs/helix-harness/L5-detail-design/process-state-port.json",
+        "pointer": "/functions/4/failure_output_contract/conditions/4",
+        "use": "condition wording cross-check only; no output execution/result claimed"
+      },
+      "output_scope": "one L4 state-missing condition is supported by the fixed input; no runtime output, formal projection row, actual owner delivery, or execution pass is asserted.",
+      "ordered_output": "single condition only; no multi-finding ordering claim is needed."
+    },
+    {
+      "case_id": "H003-F04-MISSING-Deployed",
+      "candidate_status": "retained_single_finding_candidate",
+      "finding_set_status": "candidate_from_fixed_input",
+      "finding_code": "F04_STATE_DEPLOYED_PROOF_MISSING",
+      "axis": "state_Deployed_basis",
+      "state": "missing",
+      "condition_source": "Deployed固有の原証拠が不足。前状態/後続状態の証拠で補わず、独立に読めた他stateの証拠は保持する。",
+      "owner_role": "当該状態の原証拠owner",
+      "raw_input_source": {
+        "revision": "ed3981e7b9419d796adf1981f8990c6b626ecabe",
+        "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+        "pointer": "/verification_obligations/4/negative_cases/6/independent_source_packet/raw_utf8",
+        "sha256": "b57d01bd2d40f7fb8658a4ac114ef75c9a5786fa76469a644f409d9cf14bf84a",
+        "payload_sha256": "b57d01bd2d40f7fb8658a4ac114ef75c9a5786fa76469a644f409d9cf14bf84a",
+        "state_proofs_pointer": "/state_proofs"
+      },
+      "raw_condition_evidence": {
+        "missing_state_pointer": "/state_proofs/Deployed",
+        "missing_state_value": "explicit_null",
+        "other_state_proof_count": 7,
+        "other_state_proofs_non_null": true,
+        "non_firing_f04_codes": [
+          "F04_STATE_PROVISIONAL_PROOF_MISSING",
+          "F04_STATE_INTEGRATED_PROOF_MISSING",
+          "F04_STATE_VERIFIED_PROOF_MISSING",
+          "F04_STATE_ACCEPTED_PROOF_MISSING",
+          "F04_STATE_RELEASE-ELIGIBLE_PROOF_MISSING",
+          "F04_STATE_OBSERVED_PROOF_MISSING"
+        ]
+      },
+      "case_provenance": {
+        "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+        "pointer": "/verification_obligations/4/negative_cases/6",
+        "mutation_pointer": "/cases/4/negative_cases/6/mutation",
+        "execution_state": "not_executed",
+        "effect": "none",
+        "note": "not_executed/none はfixtureの実行・副作用状態のみ。expected_materialは処理結果観測として使用しない。"
+      },
+      "l4_source_pointer": {
+        "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
+        "pointer": "/contracts/4/negative_classifications/5"
+      },
+      "l4_state_basis_pointer": {
+        "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
+        "pointer": "/artifact_state_basis/6"
+      },
+      "l5_condition_crosscheck_pointer": {
+        "path": "docs/helix-harness/L5-detail-design/process-state-port.json",
+        "pointer": "/functions/4/failure_output_contract/conditions/5",
+        "use": "condition wording cross-check only; no output execution/result claimed"
+      },
+      "output_scope": "one L4 state-missing condition is supported by the fixed input; no runtime output, formal projection row, actual owner delivery, or execution pass is asserted.",
+      "ordered_output": "single condition only; no multi-finding ordering claim is needed."
+    },
+    {
+      "case_id": "H003-F04-MISSING-Observed",
+      "candidate_status": "retained_single_finding_candidate",
+      "finding_set_status": "candidate_from_fixed_input",
+      "finding_code": "F04_STATE_OBSERVED_PROOF_MISSING",
+      "axis": "state_Observed_basis",
+      "state": "missing",
+      "condition_source": "Observed固有の原証拠が不足。前状態/後続状態の証拠で補わず、独立に読めた他stateの証拠は保持する。",
+      "owner_role": "当該状態の原証拠owner",
+      "raw_input_source": {
+        "revision": "ed3981e7b9419d796adf1981f8990c6b626ecabe",
+        "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+        "pointer": "/verification_obligations/4/negative_cases/7/independent_source_packet/raw_utf8",
+        "sha256": "63fa3d08f125ade270bb215426cba5fe812c92ecd70be912ebb13ba9e012e257",
+        "payload_sha256": "63fa3d08f125ade270bb215426cba5fe812c92ecd70be912ebb13ba9e012e257",
+        "state_proofs_pointer": "/state_proofs"
+      },
+      "raw_condition_evidence": {
+        "missing_state_pointer": "/state_proofs/Observed",
+        "missing_state_value": "explicit_null",
+        "other_state_proof_count": 7,
+        "other_state_proofs_non_null": true,
+        "non_firing_f04_codes": [
+          "F04_STATE_PROVISIONAL_PROOF_MISSING",
+          "F04_STATE_INTEGRATED_PROOF_MISSING",
+          "F04_STATE_VERIFIED_PROOF_MISSING",
+          "F04_STATE_ACCEPTED_PROOF_MISSING",
+          "F04_STATE_RELEASE-ELIGIBLE_PROOF_MISSING",
+          "F04_STATE_DEPLOYED_PROOF_MISSING"
+        ]
+      },
+      "case_provenance": {
+        "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+        "pointer": "/verification_obligations/4/negative_cases/7",
+        "mutation_pointer": "/cases/4/negative_cases/7/mutation",
+        "execution_state": "not_executed",
+        "effect": "none",
+        "note": "not_executed/none はfixtureの実行・副作用状態のみ。expected_materialは処理結果観測として使用しない。"
+      },
+      "l4_source_pointer": {
+        "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
+        "pointer": "/contracts/4/negative_classifications/6"
+      },
+      "l4_state_basis_pointer": {
+        "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
+        "pointer": "/artifact_state_basis/7"
+      },
+      "l5_condition_crosscheck_pointer": {
+        "path": "docs/helix-harness/L5-detail-design/process-state-port.json",
+        "pointer": "/functions/4/failure_output_contract/conditions/6",
+        "use": "condition wording cross-check only; no output execution/result claimed"
+      },
+      "output_scope": "one L4 state-missing condition is supported by the fixed input; no runtime output, formal projection row, actual owner delivery, or execution pass is asserted.",
+      "ordered_output": "single condition only; no multi-finding ordering claim is needed."
+    }
+  ]
+}

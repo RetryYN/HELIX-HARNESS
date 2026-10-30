@@ -1,4 +1,4 @@
-# WR186 F03/F05入力監査の再確認
+# WR186 F03/F04/F05入力監査の再確認
 
 ## 確認方法
 
@@ -13,6 +13,14 @@
 ## F05 8件
 
 対象Port fieldがrawで欠落/nullという入力差は保持する。一方、L4 `/contracts/5/negative_classifications/0` とL5 `/failure_rules/23` が要求する「欠落のままRelease-eligible扱いした」処理出力はrawにない。したがって8件ともfinding setは `unknown/unformed`。
+
+## WR192 F04 7候補
+
+L4 `/contracts/4/negative_classifications/0..6` はProvisional、Integrated、Verified、Accepted、Release-eligible、Deployed、Observedそれぞれの固有原証拠不足を条件にする。`/artifact_state_basis/1..7` は各証拠のstate固有source keyを定め、前stateから次stateを推定しない。L5 `/functions/4/failure_output_contract/conditions/0..6` は同じL4 condition sourceを指定しており、後続実行実測を要求していない。ここではL5をcondition wordingの照合に限って使い、順序や実測結果のoracleにしない。
+
+固定raw `ed3981e7b9419d796adf1981f8990c6b626ecabe` のF04独立source packet 7件を個別に確認した。各packetで該当する `state_proofs.<state>` は明示null、他7 state proofは全て存在してnullではない。したがって各件で対応するL4 missing conditionは入力から支持され、他の6 state-missing conditionは入力上非発火である。case metadataは全件 `execution_state=not_executed`, `effect=none` であり、実行や副作用があったとは扱わない。既存 `expected_material` / `negative_class_assignment` は出力観測として使わない。
+
+F04のraw pointer/hash、L4 classification/state basis pointer、他6 classの非発火、単一条件候補の範囲は [f04-audit-rows.json](f04-audit-rows.json) に記録した。これは固定入力から導く候補の確認で、実行結果、formal projection row、ownerへの実配送、製品合格を主張しない。L9のcases/expectationsと既存監査候補は変更しない。
 
 ## 訂正後の状態
 
