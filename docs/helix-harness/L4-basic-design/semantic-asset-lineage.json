@@ -358,7 +358,7 @@
       "backflow_owners": [
         "authority_record_owner"
       ],
-      "effect": "該当axis/claimの不足と差分を保全、関係のない既知axisまで消さない。実変換/保存/権限発行0。",
+      "effect": "authority対応が不明な項目をunknown/不成立として返し、履歴やreceiptで補わずauthority record ownerへ返す。 関係のない既知axisまで消さない。実変換/保存/権限発行0。",
       "expected_record_axes": [
         {
           "subject": "LS",
@@ -386,7 +386,7 @@
       "backflow_owners": [
         "authority_record_owner"
       ],
-      "effect": "該当axis/claimの不足と差分を保全、関係のない既知axisまで消さない。実変換/保存/権限発行0。",
+      "effect": "記録照合から新しいauthority裁定手続きや移転を生成せず、authority判断は既存ownerへ返す。 関係のない既知axisまで消さない。実変換/保存/権限発行0。",
       "expected_record_axes": [
         {
           "subject": "LS",
@@ -414,7 +414,7 @@
       "backflow_owners": [
         "record_owner"
       ],
-      "effect": "該当axis/claimの不足と差分を保全、関係のない既知axisまで消さない。実変換/保存/権限発行0。",
+      "effect": "対象revisionとの不一致を不整合として保全し、対応履歴として補わずrecord ownerへ返す。 関係のない既知axisまで消さない。実変換/保存/権限発行0。",
       "expected_record_axes": [
         {
           "subject": "LS A/r1 vs r2",
@@ -447,7 +447,7 @@
       "backflow_owners": [
         "persistence_owner"
       ],
-      "effect": "該当axis/claimの不足と差分を保全、関係のない既知axisまで消さない。実変換/保存/権限発行0。",
+      "effect": "記録またはfixtureの存在からrollback成立を生成せず、未充足の実操作はpersistence ownerへ残す。 関係のない既知axisまで消さない。実変換/保存/権限発行0。",
       "expected_record_axes": [
         {
           "subject": "LS",
@@ -475,7 +475,7 @@
       "backflow_owners": [
         "harness053_requirement_owner"
       ],
-      "effect": "該当axis/claimの不足と差分を保全、関係のない既知axisまで消さない。実変換/保存/権限発行0。",
+      "effect": "未決参照に依存しない局所照合を全停止にせず、独立に辿れる結果は区別して残す。 関係のない既知axisまで消さない。実変換/保存/権限発行0。",
       "expected_record_axes": [
         {
           "subject": "A/B",
@@ -503,7 +503,7 @@
       "backflow_owners": [
         "record_owner"
       ],
-      "effect": "該当axis/claimの不足と差分を保全、関係のない既知axisまで消さない。実変換/保存/権限発行0。",
+      "effect": "immutable asset IDをidentityとして扱い、別の入力値の一致だけからidentity対応を推定しない。採番・符号化方式は後続設計へ残す。 関係のない既知axisまで消さない。実変換/保存/権限発行0。",
       "expected_record_axes": [
         {
           "subject": "A/B",
@@ -531,7 +531,7 @@
       "backflow_owners": [
         "record_owner"
       ],
-      "effect": "該当axis/claimの不足と差分を保全、関係のない既知axisまで消さない。実変換/保存/権限発行0。",
+      "effect": "lineage historyの欠落を欠落のまま保全し、全履歴保持を主張せずrecord ownerへ返す。 関係のない既知axisまで消さない。実変換/保存/権限発行0。",
       "expected_record_axes": [
         {
           "subject": "LS",
@@ -559,7 +559,7 @@
       "backflow_owners": [
         "record_owner"
       ],
-      "effect": "該当axis/claimの不足と差分を保全、関係のない既知axisまで消さない。実変換/保存/権限発行0。",
+      "effect": "相反するidentity対応を矛盾として保全し、単一identityへ併合せずrecord ownerへ返す。 関係のない既知axisまで消さない。実変換/保存/権限発行0。",
       "expected_record_axes": [
         {
           "subject": "A/r1",
@@ -587,7 +587,7 @@
       "backflow_owners": [
         "record_owner"
       ],
-      "effect": "該当axis/claimの不足と差分を保全、関係のない既知axisまで消さない。実変換/保存/権限発行0。",
+      "effect": "immutable asset IDの欠落をpath/nameから補わず、ID欠落をrecord ownerへ返す。採番方式は後続設計へ残す。 関係のない既知axisまで消さない。実変換/保存/権限発行0。",
       "expected_record_axes": [
         {
           "subject": "A record slot",
@@ -615,7 +615,7 @@
       "backflow_owners": [
         "harness053_requirement_owner"
       ],
-      "effect": "該当axis/claimの不足と差分を保全、関係のない既知axisまで消さない。実変換/保存/権限発行0。",
+      "effect": "記録成果から旧要求に係る実操作や全義務の移管完了を生成せず、未完の実操作/義務は既存ownerへ返す。 関係のない既知axisまで消さない。実変換/保存/権限発行0。",
       "expected_record_axes": [
         {
           "subject": "LS",
@@ -643,7 +643,7 @@
       "backflow_owners": [
         "authority_record_owner"
       ],
-      "effect": "該当axis/claimの不足と差分を保全、関係のない既知axisまで消さない。実変換/保存/権限発行0。",
+      "effect": "rename/move等のlocation履歴との対応をauthority移転と同一視せず、authority対応はauthority record ownerへ返す。 関係のない既知axisまで消さない。実変換/保存/権限発行0。",
       "expected_record_axes": [
         {
           "subject": "A/r1 rename",
@@ -704,7 +704,7 @@
       "backflow_owners": [
         "record_owner"
       ],
-      "effect": "該当axis/claimの不足と差分を保全、関係のない既知axisまで消さない。実変換/保存/権限発行0。",
+      "effect": "lineage endpointのidentity欠落を推測で補わず、relation対応はunknownとしてrecord ownerへ返す。 関係のない既知axisまで消さない。実変換/保存/権限発行0。",
       "expected_record_axes": [
         {
           "subject": "LX D/d1",
@@ -737,7 +737,7 @@
       "backflow_owners": [
         "harness053_requirement_owner"
       ],
-      "effect": "該当axis/claimの不足と差分を保全、関係のない既知axisまで消さない。実変換/保存/権限発行0。",
+      "effect": "局所identity対応を053全要件の成立へ拡張せず、未確認の能力は未成立/unknownとして残す。 関係のない既知axisまで消さない。実変換/保存/権限発行0。",
       "expected_record_axes": [
         {
           "subject": "A/B",
@@ -798,7 +798,7 @@
       "backflow_owners": [
         "record_owner"
       ],
-      "effect": "該当axis/claimの不足と差分を保全、関係のない既知axisまで消さない。実変換/保存/権限発行0。",
+      "effect": "path/locationの変更だけでimmutable asset IDを変更せず、同一identityのlocation履歴へ対応させる。 関係のない既知axisまで消さない。実変換/保存/権限発行0。",
       "expected_record_axes": [
         {
           "subject": "A/r1",
@@ -831,7 +831,7 @@
       "backflow_owners": [
         "record_owner"
       ],
-      "effect": "該当axis/claimの不足と差分を保全、関係のない既知axisまで消さない。実変換/保存/権限発行0。",
+      "effect": "nameの一致・変更だけからidentityを推定せず、供給済みのasset ID・履歴で別々に照合する。 関係のない既知axisまで消さない。実変換/保存/権限発行0。",
       "expected_record_axes": [
         {
           "subject": "A/B",
@@ -859,7 +859,7 @@
       "backflow_owners": [
         "harness053_requirement_owner"
       ],
-      "effect": "該当axis/claimの不足と差分を保全、関係のない既知axisまで消さない。実変換/保存/権限発行0。",
+      "effect": "052の採択や実施順序を前提として新設しない。 関係のない既知axisまで消さない。実変換/保存/権限発行0。",
       "expected_record_axes": [
         {
           "subject": "A/B",
@@ -887,7 +887,7 @@
       "backflow_owners": [
         "oracle_owner"
       ],
-      "effect": "該当axis/claimの不足と差分を保全、関係のない既知axisまで消さない。実変換/保存/権限発行0。",
+      "effect": "acceptance oracle対応の欠落をそのまま返し、別項目で受入可能へ補わずoracle ownerへ返す。 関係のない既知axisまで消さない。実変換/保存/権限発行0。",
       "expected_record_axes": [
         {
           "subject": "LS",
@@ -925,7 +925,7 @@
       "backflow_owners": [
         "oracle_owner"
       ],
-      "effect": "該当axis/claimの不足と差分を保全、関係のない既知axisまで消さない。実変換/保存/権限発行0。",
+      "effect": "対象revisionとのoracle対応の不一致を不整合として保全し、受入根拠として扱わずoracle ownerへ返す。 関係のない既知axisまで消さない。実変換/保存/権限発行0。",
       "expected_record_axes": [
         {
           "subject": "LS",
@@ -953,7 +953,7 @@
       "backflow_owners": [
         "harness053_requirement_owner"
       ],
-      "effect": "該当axis/claimの不足と差分を保全、関係のない既知axisまで消さない。実変換/保存/権限発行0。",
+      "effect": "003/004/016の既存revision/trace/stale/diff条件を053で再定義しない。 関係のない既知axisまで消さない。実変換/保存/権限発行0。",
       "expected_record_axes": [
         {
           "subject": "LS",
@@ -1009,7 +1009,7 @@
       "backflow_owners": [
         "PO"
       ],
-      "effect": "該当axis/claimの不足と差分を保全、関係のない既知axisまで消さない。実変換/保存/権限発行0。",
+      "effect": "lineage記録から要求採択やPO受入を生成せず、受入判断は既存POへ残す。 関係のない既知axisまで消さない。実変換/保存/権限発行0。",
       "expected_record_axes": [
         {
           "subject": "LS",
@@ -1037,7 +1037,7 @@
       "backflow_owners": [
         "authority_record_owner"
       ],
-      "effect": "該当axis/claimの不足と差分を保全、関係のない既知axisまで消さない。実変換/保存/権限発行0。",
+      "effect": "record linkageから実権限発行やauthority移転を生成せず、権限判断をauthority record ownerへ残す。 関係のない既知axisまで消さない。実変換/保存/権限発行0。",
       "expected_record_axes": [
         {
           "subject": "LS",
@@ -1121,7 +1121,7 @@
       "backflow_owners": [
         "harness053_requirement_owner"
       ],
-      "effect": "該当axis/claimの不足と差分を保全、関係のない既知axisまで消さない。実変換/保存/権限発行0。",
+      "effect": "意味不整合の参照をprovenance保証として消費せず、代替IDを推測せず、ownerの訂正/適用判断まで未決を保持する。 関係のない既知axisまで消さない。実変換/保存/権限発行0。",
       "expected_record_axes": [
         {
           "subject": "A/B",
@@ -1149,7 +1149,7 @@
       "backflow_owners": [
         "record_owner"
       ],
-      "effect": "該当axis/claimの不足と差分を保全、関係のない既知axisまで消さない。実変換/保存/権限発行0。",
+      "effect": "relation種別の欠落を他のID/revision一致で補わず、欠落のままrecord ownerへ返す。 関係のない既知axisまで消さない。実変換/保存/権限発行0。",
       "expected_record_axes": [
         {
           "subject": "LX",
@@ -1177,7 +1177,7 @@
       "backflow_owners": [
         "record_owner"
       ],
-      "effect": "該当axis/claimの不足と差分を保全、関係のない既知axisまで消さない。実変換/保存/権限発行0。",
+      "effect": "同一identityのsemantic revisionに矛盾がある場合、意味変更や一致を確定せず、不整合をrecord ownerへ返す。 関係のない既知axisまで消さない。実変換/保存/権限発行0。",
       "expected_record_axes": [
         {
           "subject": "A/r1",
@@ -1205,7 +1205,7 @@
       "backflow_owners": [
         "record_owner"
       ],
-      "effect": "該当axis/claimの不足と差分を保全、関係のない既知axisまで消さない。実変換/保存/権限発行0。",
+      "effect": "対象revision/scopeに適合しないlineage対応を成立扱いせず、lineage relation・history mapping・authority mapping・oracle mapping・typed edge mappingの対応をunknownとしてrecord ownerへ返す。 関係のない既知axisまで消さない。実変換/保存/権限発行0。",
       "expected_record_axes": [
         {
           "subject": "LS",
@@ -1253,7 +1253,7 @@
       "backflow_owners": [
         "record_owner"
       ],
-      "effect": "該当axis/claimの不足と差分を保全、関係のない既知axisまで消さない。実変換/保存/権限発行0。",
+      "effect": "semantic diffをlocation履歴として隠さず、同一identityのrevision差と影響するoracle/typed edgeへの対応を返す。 関係のない既知axisまで消さない。実変換/保存/権限発行0。",
       "expected_record_axes": [
         {
           "subject": "A/r1→r2",
@@ -1291,7 +1291,7 @@
       "backflow_owners": [
         "record_owner"
       ],
-      "effect": "該当axis/claimの不足と差分を保全、関係のない既知axisまで消さない。実変換/保存/権限発行0。",
+      "effect": "意味変更は新identityへ切らず、同一identityの異なるrevisionとsemantic diffとして対応付ける。 関係のない既知axisまで消さない。実変換/保存/権限発行0。",
       "expected_record_axes": [
         {
           "subject": "A/r1→r2",
@@ -1324,7 +1324,7 @@
       "backflow_owners": [
         "trace_owner"
       ],
-      "effect": "該当axis/claimの不足と差分を保全、関係のない既知axisまで消さない。実変換/保存/権限発行0。",
+      "effect": "semantic revisionの対応を保ちつつ、影響するoracle/typed edgeの欠落を個別に保持し、diffだけでclosureを主張しない。 関係のない既知axisまで消さない。実変換/保存/権限発行0。",
       "expected_record_axes": [
         {
           "subject": "A/r1→r2",
@@ -1362,7 +1362,7 @@
       "backflow_owners": [
         "record_owner"
       ],
-      "effect": "該当axis/claimの不足と差分を保全、関係のない既知axisまで消さない。実変換/保存/権限発行0。",
+      "effect": "before sourceの欠落を保全し、差分なしとは扱わずrevision/diffの判定根拠として補わない。record ownerへ返す。 関係のない既知axisまで消さない。実変換/保存/権限発行0。",
       "expected_record_axes": [
         {
           "subject": "A/r1 before",
@@ -1390,7 +1390,7 @@
       "backflow_owners": [
         "trace_owner"
       ],
-      "effect": "該当axis/claimの不足と差分を保全、関係のない既知axisまで消さない。実変換/保存/権限発行0。",
+      "effect": "typed edgeの関係種別の不一致を不整合として保全し、ID一致だけで対応成立とせずtrace ownerへ返す。 関係のない既知axisまで消さない。実変換/保存/権限発行0。",
       "expected_record_axes": [
         {
           "subject": "LS",
@@ -1418,7 +1418,7 @@
       "backflow_owners": [
         "trace_owner"
       ],
-      "effect": "該当axis/claimの不足と差分を保全、関係のない既知axisまで消さない。実変換/保存/権限発行0。",
+      "effect": "typed edgeの欠落をreceiptや他項目で補わず、欠落のままtrace ownerへ返す。 関係のない既知axisまで消さない。実変換/保存/権限発行0。",
       "expected_record_axes": [
         {
           "subject": "LS",
@@ -1456,7 +1456,7 @@
       "backflow_owners": [
         "harness053_requirement_owner"
       ],
-      "effect": "該当axis/claimの不足と差分を保全、関係のない既知axisまで消さない。実変換/保存/権限発行0。",
+      "effect": "参照未決に依存する実操作を選択せず、053 ownerの参照訂正/適用判断まで保留し、無関係な局所照合は維持する。 関係のない既知axisまで消さない。実変換/保存/権限発行0。",
       "expected_record_axes": [
         {
           "subject": "LS",
