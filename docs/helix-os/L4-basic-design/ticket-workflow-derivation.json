@@ -329,7 +329,9 @@
       "component": "source_bound_deterministic_ticket_material",
       "input_meaning": "管理の目的・要求・制約・許可・優先度・依存・資源・budget・期限・停止条件、HARNESS版/工程契約、接続状況、提供されたINTELLIGENCE案とLABO水準を元revision/scopeへ結ぶ。対象・kind・親revision・scope・依存・受入義務・戻し先をticket graphへ保持する。",
       "output_meaning": "facet別対応/unknown/違反、原source不足候補と既定戻し先素材。実操作はnone。",
-      "operation_effect": "none"
+      "operation_effect": "none",
+      "requirement_pointer": "docs/helix-os/L3-requirements/functional-requirements.json#/requirements/34",
+      "system_oracle_pointer": "docs/helix-os/L10-verification/functional-verification.json#/cases/34"
     },
     {
       "id": "HELIXOS-L4-017-F02",
@@ -344,7 +346,9 @@
       "component": "predefined_process_proposal_eligibility",
       "input_meaning": "INTELLIGENCE案をHARNESS語彙/順序/義務、authority、budget、期限、依存へ照合してからworkflow instanceへ進める。1.0は定義済み工程部品の規則的組合せと途中結果による既定戻し先への差戻しに限り、部品外flow生成は4.0に保持する。",
       "output_meaning": "facet別対応/unknown/違反、原source不足候補と既定戻し先素材。実操作はnone。",
-      "operation_effect": "none"
+      "operation_effect": "none",
+      "requirement_pointer": "docs/helix-os/L3-requirements/functional-requirements.json#/requirements/35",
+      "system_oracle_pointer": "docs/helix-os/L10-verification/functional-verification.json#/cases/35"
     },
     {
       "id": "HELIXOS-L4-017-F03",
@@ -359,7 +363,9 @@
       "component": "existing_backflow_and_cumulative_resume",
       "input_meaning": "途中結果/未解決依存/unknown/conflict/scope逸脱をticketの元revisionと既存戻し先へ結ぶ。再開時も停止理由・元要求revision・未完義務・累積budget/期限を保持し、意味変更をOSが自己確定しない。",
       "output_meaning": "facet別対応/unknown/違反、原source不足候補と既定戻し先素材。実操作はnone。",
-      "operation_effect": "none"
+      "operation_effect": "none",
+      "requirement_pointer": "docs/helix-os/L3-requirements/functional-requirements.json#/requirements/36",
+      "system_oracle_pointer": "docs/helix-os/L10-verification/functional-verification.json#/cases/36"
     },
     {
       "id": "HELIXOS-L4-017-B01",
@@ -374,7 +380,9 @@
       "component": "promotion_owner_and_projection_boundary",
       "input_meaning": "推進はOSが担い、HARNESSが工程と検証義務、INTELLIGENCEが案、LABOが水準、SECURITYがauthority、INFRASTRUCTUREが資源を持つ。ticketとIssue/PR projection、仕事の意味とassignment/attempt/測定を分け、案やclose/mergeを実行/完了へ昇格しない。",
       "output_meaning": "facet別対応/unknown/違反、原source不足候補と既定戻し先素材。実操作はnone。",
-      "operation_effect": "none"
+      "operation_effect": "none",
+      "requirement_pointer": "docs/helix-os/L3-requirements/business-requirements.json#/requirements/5",
+      "system_oracle_pointer": "docs/helix-os/L10-verification/business-verification.json#/cases/5"
     }
   ],
   "diagnostic_contract": {
