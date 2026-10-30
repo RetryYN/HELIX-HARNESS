@@ -6,7 +6,7 @@
   "product": "HELIX-HARNESS",
   "owner_candidate": "HELIX-SECURITY SEC009 source comparison evidence owner",
   "state": "registered",
-  "reason": "比較前固定されたSEC009 30-case source-only blindを旧/current source、既存assignment、QA §3と静的checkerへ照合し、不一致とschema・原子性の未決を隔離記録する。正式4層移行、要求意味、authority、実操作を生成しない。",
+  "reason": "比較前固定されたSEC009 30-case source-only blindを旧/current source、既存assignment、QA §3と静的checkerへ照合する。#3976 R1追補で空actionsは既存conflict根拠に合うと訂正し、blindとの不一致と『非空文字列list』の文言課題を分けて記録する。正式4層移行、要求意味、authority、実操作を生成しない。",
   "upstream": [
     {
       "path": "docs/helix-security/L4-basic-design/revoke-quarantine-propagation.json",
@@ -66,7 +66,9 @@
     "30 sample IDsをlegacy/current L9へ照合し、class assignment差とexpected projection差を別々に記録する。",
     "不一致は値合わせせず、actions conflict classのsample不足、2 ambiguous、71 multi-contract residualを明示的に未解決のまま保つ。",
     "QA §3 owner_refとL5 function_refs/source shapeの不一致を記録する。checker/schemaまたは正式L4/L5/L8/L9を変更しない。",
-    "legacy casewise checker結果、one-V-pair運用規則、およびPR #3897 OS007の4-layer precedentを分けて記録する。",
+    "legacy casewise checker結果、one-V-pair運用規則、およびcommit 8125b6fe…を含むPR #3888のOS007 4-layer precedentを分けて記録する。比較時点のcomparison.jsonは保持し、#3976 R1訂正をreview-followup.jsonに追補する。",
+    "空actionsがL4/L5括弧内の非list・非文字列要素・重複要素の3形に含まれず、既存conflict分類に根拠があることを記録する。blind不一致は変更せず、『非空文字列list』の文言不明瞭さと分ける。",
+    "通常のdesign_verificationを一V-pair/PRとして扱い、L4/L9→L5/L8を検討用の段階案として記録する。各PRのmerge admissionが別途必要であり、L5 function_refsとcheckerの不整合が残る間はmerge許可・完了を主張しない。途中の4層照合は不一致となる。4層同時PRの例外を主張しない。",
     "formal four-way成立、実装readiness、authority/operation effectを主張しない。"
   ],
   "connections": {
@@ -101,6 +103,7 @@
   "artifacts": [
     "scaffold/research/wr236-sec009-explicit-class-migration-20261031/README.md",
     "scaffold/research/wr236-sec009-explicit-class-migration-20261031/comparison.json",
+    "scaffold/research/wr236-sec009-explicit-class-migration-20261031/review-followup.json",
     "scaffold/research/wr236-sec009-explicit-class-migration-20261031/source/blind-classification.json",
     "scaffold/research/wr236-sec009-explicit-class-migration-20261031/source/blind-sample-index.json",
     "docs/helix-security/L4-basic-design/revoke-quarantine-propagation.json",
@@ -129,7 +132,10 @@
     "negative_cases": [
       "Do not reconcile the one blind/assignment mismatch by editing or remapping expected values.",
       "Do not infer that the four unselected action-conflict cases, ambiguous cases, or multi-contract residuals have a valid class.",
-      "Do not interpret PR #3897 as a general override to the current one-V-pair operating model.",
+      "Do not interpret PR #3888 as a general override to the current one-V-pair operating model.",
+      "Do not rewrite the frozen blind, expected oracle, assignment, or historical comparison to reconcile their recorded mismatch.",
+      "Do not conflate the evidence supporting conflict for empty actions with the separate wording ambiguity in the phrase 'nonempty string list'.",
+      "Do not treat QA's all-four-marker requirement as forbidding sequential L4/L9 and L5/L8 one-pair PRs.",
       "Do not alter checker, QA, formal layers, auth settings, credentials, or operation behavior."
     ]
   },

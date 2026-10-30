@@ -1,0 +1,79 @@
+{
+  "schema": "wr236-sec009-comparison-review-followup.v1",
+  "evidence_kind": "scaffold_append_only_review_followup",
+  "authority_effect": "none",
+  "operation_effect": "none",
+  "review_reference": "https://github.com/RetryYN/HELIX-HARNESS/pull/3976#issuecomment-6533394550",
+  "reviewed_head": "f7da9b34fa9ae3f4d7c46f6749d9af344bd8861f",
+  "prior_comparison": {
+    "path": "scaffold/research/wr236-sec009-explicit-class-migration-20261031/comparison.json",
+    "sha256_at_review": "d3c4eda8088961534ab5b1823efc51a781a2c89a0f135b3061fc1b9e3cf148dc",
+    "preserved_without_edit": true,
+    "note": "比較時点の記録を上書きせず、本追補で解釈上の訂正を明示する。"
+  },
+  "fixed_blind": {
+    "path": "scaffold/research/wr236-sec009-explicit-class-migration-20261031/source/blind-classification.json",
+    "sha256": "b060f87a2c7963dac82e9ecf9a70ec7f486f28b4f2ce463418e310b3ce321c5b",
+    "changed": false
+  },
+  "finding_f1": {
+    "case_id": "SEC009-OS_ASSIGNMENT-ACTIONS-EMPTY",
+    "blind_class_id": "SEC009_F01_RECIPIENT_ACTIONS_UNRESOLVED",
+    "existing_class_id": "SEC009_F01_RECIPIENT_ACTIONS_CONFLICT",
+    "existing_l4_pointer": "/failure_classifications/8",
+    "legacy_input_pointer": "/cases/109/given/input/instructions/os_assignment/actions",
+    "current_l9_case_pointer": "/cases/1/negative_cases/35",
+    "current_expected_pointer": "/cases/1/negative_cases/35/expected_proposal",
+    "current_assignment_pointer": "/cases/1/negative_cases/35/negative_class_assignment",
+    "input_shape": {
+      "type": "list",
+      "length": 0
+    },
+    "l4_unresolved_pointer": "/failure_classifications/7",
+    "l5_unresolved_rule_pointer": "/failure_rules/7",
+    "enumerated_unresolved_shapes": [
+      "nonlist",
+      "nonstring_element",
+      "duplicate_element"
+    ],
+    "resolution": "L4/L5の括弧内に列挙された3形に空listは含まれない。空actionsは既知の必須action集合と一致せず、L4 conflict分類および既存L9 expected/assignmentの根拠に合う。固定blindの1件不一致は残し、値は変更しない。",
+    "wording_issue": "『重複なし非空文字列list』という表現は括弧内の列挙より広く読めるため、L4/L5文言の明瞭さに課題が残る。この文言課題と空actionsの分類根拠は区別する。",
+    "population_support": {
+      "recipient_scopes": 5,
+      "unresolved_assignments": 15,
+      "unresolved_shapes": [
+        "NONLIST",
+        "NONSTRING",
+        "DUPLICATE"
+      ],
+      "conflict_assignments": 5,
+      "conflict_all_empty_actions": true,
+      "remaining_conflict_recipients_not_independently_checked": 4
+    },
+    "formal_l4_l5_l9_oracle_changed": false,
+    "blind_changed": false
+  },
+  "finding_f2": {
+    "precedent_commit": "8125b6fee699dd22d14161f04c0a25e6416586b2",
+    "correct_pr": 3888,
+    "incorrect_pr_number_in_historical_comparison": 3897,
+    "correction": "commit 8125b6fe…を含むOS007 4層PRは#3888。#3897は別のOS007負例PR。元comparison.jsonの当時記載は保持し、READMEとbindingの現在説明を訂正した。",
+    "overrides_one_v_pair_scope": false
+  },
+  "scope_note": {
+    "ordinary_design_verification_scope": "one V-pair per PR",
+    "qa_explicit_mode": "all four L4/L5/L8/L9 markers are required together for the four-layer comparison",
+    "candidate_staged_plan": "Consider L4/L9 followed by L5/L8 in separate ordinary one-pair PRs; this is a plan only.",
+    "merge_admission": "Each PR must independently satisfy its merge admission. No merge permission is implied.",
+    "interim_state": "four-layer check-child comparison is mismatched during the partial state; the L5 function_refs versus checker singular-function mismatch remains unresolved and must be addressed before claiming completion",
+    "four_layer_pr_exception_claimed": false,
+    "formal_migration_established": false
+  },
+  "non_changes": {
+    "formal_l4_l5_l8_l9": false,
+    "expected_or_assignments": false,
+    "checker_or_qa": false,
+    "authentication_authorization_settings_or_credentials": false,
+    "production_or_external_actions": false
+  }
+}

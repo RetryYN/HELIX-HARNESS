@@ -13,13 +13,17 @@ blindのL4/L3/L10根拠はbase `f38ee6f21a680a82ef5ecc1c6c4c25ba2f0bda52`。L4�
 
 ## 比較結果と未決
 
-blind class IDと既存assignmentは30件中29件一致、1件不一致。`SEC009-OS_ASSIGNMENT-ACTIONS-EMPTY` はblindがL4 `/failure_classifications/7`（actions unresolved）を選び、現L9 `/cases/1/negative_cases/35/negative_class_assignment` とexpectedは `/failure_classifications/8` 相当のactions conflictを指す。旧L9 `/cases/109/given/input/instructions/os_assignment/actions` は空list。L4のunresolved説明は非空listでない形を広く含み得る一方、conflict説明は既知action集合との不一致を指すため、空listの分類はL4内で重なりがある。期待値やassignmentを値合わせせず、意味の未決として保持する。
+blind class IDと既存assignmentは30件中29件一致、1件不一致。`SEC009-OS_ASSIGNMENT-ACTIONS-EMPTY` はblindがL4 `/failure_classifications/7`（actions unresolved）を選び、現L9 `/cases/1/negative_cases/35/negative_class_assignment` とexpectedは `/failure_classifications/8` 相当のactions conflictを指す。旧L9 `/cases/109/given/input/instructions/os_assignment/actions` は空list。期待値、assignment、固定blindは変更していない。
+
+後続の独立review（PR #3976 R1、comment 6533394550）はL4 `/failure_classifications/7` とL5 `/failure_rules/7` の括弧内に列挙された形を、非list・非文字列要素・重複要素の3形と確認した。空listはこの3形に含まれず、既知の必須action集合と一致しないため、現行L4 `/failure_classifications/8` とL9 expected/assignmentのactions conflict側に根拠がある。現行5 recipientの割当も、UNRESOLVED 15件が3形×5 recipient、CONFLICT 5件がすべて空actionsである。この根拠により、前段のcomparison.jsonに記録した「意味の重なりが未決」という解釈は訂正する。comparison.jsonは比較時点の記録としてそのまま保持し、現在の読みは追補証跡 `review-followup.json` に記録した。
+
+blindと既存割当の1件不一致は、分類根拠がconflict側を支持することとは別に残る。blindにある「非空文字列list」という語は括弧の3列挙より広く読めるため、L4/L5の文言が不明瞭である。この文言上の曖昧さは後続の文書整理課題として記録し、現行要求意味や期待値を変更する判断にはしない。残る4 recipientの独立確認も未実施である。
 
 action conflict assignmentは5件で、層化blindはそのうちOS空listの1件を不一致に分類した。残る4 recipientのaction conflictはsample外であり、独立確認は未成立。2 ambiguousと71 multi-contract residualもblind sampleには含まず、割当を追加していない。30件は代表標本で、275 assignment全件のblind確認ではない。詳細pointer・期待差・層別限界は `comparison.json` に記録した。
 
 QA §3のexplicit `owner_ref`規則は、L5 ruleが両方を宣言すると `function_ref` をownerに使い、contract内の宣言functionと整合させる。現L5 failure_rules 30件はsingular `function_ref` と `contract_ref` を持つ一方、3 contractは `function_refs` 配列（2/3/3件）だけでsingular `function` を持たない。明示mode checkerはsingular `contract.function` とruleのfunctionを比較する（`scaffold/tools/design_verification_checker.py` 1735–1743、2381–2394行）。checkerは変更せず、QA・schemaとの不整合を移行blockerとして残す。
 
-運用モデルの `design_verification` は通常一つのV-pairを対象とする。QA §3のexplicit modeはL4/L5/L8/L9の4層markerを同時に要求し、部分markerを拒否する。commit `8125b6fee699dd22d14161f04c0a25e6416586b2` はPR #3897内でOS007の4層文書を同一PRに含めた先例だが、現行の一pair規則を一般に上書きするものではない。checker/schemaと空actions意味が未解決のため、正式4層移行は停止したままとする。
+運用モデルの `design_verification` は通常一つのV-pairを対象とする。QA §3のexplicit modeはL4/L5/L8/L9の4層markerを同時に要求し、部分markerでは4層照合が成立しない。L4/L9、次にL5/L8という順序は検討用の段階案に留める。各PRはそれぞれmerge admissionを満たす必要があり、この案はmerge許可や完了を意味しない。途中は4層check-child照合が不一致となる。現L5は`function_refs`配列を宣言し、checkerはsingular `contract.function`と比較するため、このschema/checker不整合も解消されていない。commit `8125b6fee699dd22d14161f04c0a25e6416586b2` を含むOS007の4層PRは#3888であり、一pairの運用規則を上書きする根拠にはしない。blind mismatch、checker/schema課題、未確認の4 recipientを残すため、正式移行は停止したままとする。
 
 ## 静的検証と境界
 
