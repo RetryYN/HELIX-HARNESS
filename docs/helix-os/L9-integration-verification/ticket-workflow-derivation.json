@@ -2965,6 +2965,11 @@
         "pointer": "/cases/57",
         "revision": "ec98a025d166a5e9f7811233498b7e7e31dbb145",
         "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146"
+      },
+      "l4_source_class_candidate_ref": {
+        "path": "docs/helix-os/L4-basic-design/ticket-workflow-derivation.json",
+        "pointer": "/failure_classifications/4",
+        "class_id": "OS017-NEG-workflow-resume-source_unresolved"
       }
     },
     {
@@ -3023,6 +3028,11 @@
         "pointer": "/cases/59",
         "revision": "ec98a025d166a5e9f7811233498b7e7e31dbb145",
         "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146"
+      },
+      "l4_source_class_candidate_ref": {
+        "path": "docs/helix-os/L4-basic-design/ticket-workflow-derivation.json",
+        "pointer": "/failure_classifications/4",
+        "class_id": "OS017-NEG-workflow-resume-source_unresolved"
       }
     },
     {
@@ -3081,6 +3091,11 @@
         "pointer": "/cases/61",
         "revision": "ec98a025d166a5e9f7811233498b7e7e31dbb145",
         "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146"
+      },
+      "l4_source_class_candidate_ref": {
+        "path": "docs/helix-os/L4-basic-design/ticket-workflow-derivation.json",
+        "pointer": "/failure_classifications/4",
+        "class_id": "OS017-NEG-workflow-resume-source_unresolved"
       }
     },
     {
@@ -3139,6 +3154,11 @@
         "pointer": "/cases/63",
         "revision": "ec98a025d166a5e9f7811233498b7e7e31dbb145",
         "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146"
+      },
+      "l4_source_class_candidate_ref": {
+        "path": "docs/helix-os/L4-basic-design/ticket-workflow-derivation.json",
+        "pointer": "/failure_classifications/4",
+        "class_id": "OS017-NEG-workflow-resume-source_unresolved"
       }
     },
     {
@@ -3197,6 +3217,11 @@
         "pointer": "/cases/65",
         "revision": "ec98a025d166a5e9f7811233498b7e7e31dbb145",
         "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146"
+      },
+      "l4_source_class_candidate_ref": {
+        "path": "docs/helix-os/L4-basic-design/ticket-workflow-derivation.json",
+        "pointer": "/failure_classifications/4",
+        "class_id": "OS017-NEG-workflow-resume-source_unresolved"
       }
     },
     {
@@ -3255,6 +3280,11 @@
         "pointer": "/cases/67",
         "revision": "ec98a025d166a5e9f7811233498b7e7e31dbb145",
         "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146"
+      },
+      "l4_source_class_candidate_ref": {
+        "path": "docs/helix-os/L4-basic-design/ticket-workflow-derivation.json",
+        "pointer": "/failure_classifications/4",
+        "class_id": "OS017-NEG-workflow-resume-source_unresolved"
       }
     },
     {
@@ -3315,6 +3345,11 @@
         "pointer": "/cases/69",
         "revision": "ec98a025d166a5e9f7811233498b7e7e31dbb145",
         "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146"
+      },
+      "l4_source_class_candidate_ref": {
+        "path": "docs/helix-os/L4-basic-design/ticket-workflow-derivation.json",
+        "pointer": "/failure_classifications/4",
+        "class_id": "OS017-NEG-workflow-resume-source_unresolved"
       }
     },
     {
@@ -3374,6 +3409,11 @@
         "pointer": "/cases/71",
         "revision": "ec98a025d166a5e9f7811233498b7e7e31dbb145",
         "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146"
+      },
+      "l4_source_class_candidate_ref": {
+        "path": "docs/helix-os/L4-basic-design/ticket-workflow-derivation.json",
+        "pointer": "/failure_classifications/4",
+        "class_id": "OS017-NEG-workflow-resume-source_unresolved"
       }
     },
     {
@@ -3434,6 +3474,11 @@
         "pointer": "/cases/73",
         "revision": "ec98a025d166a5e9f7811233498b7e7e31dbb145",
         "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146"
+      },
+      "l4_source_class_candidate_ref": {
+        "path": "docs/helix-os/L4-basic-design/ticket-workflow-derivation.json",
+        "pointer": "/failure_classifications/4",
+        "class_id": "OS017-NEG-workflow-resume-source_unresolved"
       }
     },
     {
@@ -4568,6 +4613,11 @@
         "pointer": "/cases/109",
         "revision": "ec98a025d166a5e9f7811233498b7e7e31dbb145",
         "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146"
+      },
+      "l4_source_class_candidate_ref": {
+        "path": "docs/helix-os/L4-basic-design/ticket-workflow-derivation.json",
+        "pointer": "/failure_classifications/4",
+        "class_id": "OS017-NEG-workflow-resume-source_unresolved"
       }
     },
     {
@@ -4597,6 +4647,11 @@
         "pointer": "/cases/110",
         "revision": "ec98a025d166a5e9f7811233498b7e7e31dbb145",
         "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146"
+      },
+      "l4_source_class_candidate_ref": {
+        "path": "docs/helix-os/L4-basic-design/ticket-workflow-derivation.json",
+        "pointer": "/failure_classifications/4",
+        "class_id": "OS017-NEG-workflow-resume-source_unresolved"
       }
     },
     {
@@ -4626,6 +4681,11 @@
         "pointer": "/cases/111",
         "revision": "ec98a025d166a5e9f7811233498b7e7e31dbb145",
         "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146"
+      },
+      "l4_source_class_candidate_ref": {
+        "path": "docs/helix-os/L4-basic-design/ticket-workflow-derivation.json",
+        "pointer": "/failure_classifications/4",
+        "class_id": "OS017-NEG-workflow-resume-source_unresolved"
       }
     },
     {
@@ -4655,6 +4715,11 @@
         "pointer": "/cases/112",
         "revision": "ec98a025d166a5e9f7811233498b7e7e31dbb145",
         "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146"
+      },
+      "l4_source_class_candidate_ref": {
+        "path": "docs/helix-os/L4-basic-design/ticket-workflow-derivation.json",
+        "pointer": "/failure_classifications/4",
+        "class_id": "OS017-NEG-workflow-resume-source_unresolved"
       }
     },
     {
@@ -4684,6 +4749,11 @@
         "pointer": "/cases/113",
         "revision": "ec98a025d166a5e9f7811233498b7e7e31dbb145",
         "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146"
+      },
+      "l4_source_class_candidate_ref": {
+        "path": "docs/helix-os/L4-basic-design/ticket-workflow-derivation.json",
+        "pointer": "/failure_classifications/4",
+        "class_id": "OS017-NEG-workflow-resume-source_unresolved"
       }
     },
     {
@@ -4713,6 +4783,11 @@
         "pointer": "/cases/114",
         "revision": "ec98a025d166a5e9f7811233498b7e7e31dbb145",
         "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146"
+      },
+      "l4_source_class_candidate_ref": {
+        "path": "docs/helix-os/L4-basic-design/ticket-workflow-derivation.json",
+        "pointer": "/failure_classifications/4",
+        "class_id": "OS017-NEG-workflow-resume-source_unresolved"
       }
     },
     {
@@ -4742,6 +4817,11 @@
         "pointer": "/cases/115",
         "revision": "ec98a025d166a5e9f7811233498b7e7e31dbb145",
         "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146"
+      },
+      "l4_source_class_candidate_ref": {
+        "path": "docs/helix-os/L4-basic-design/ticket-workflow-derivation.json",
+        "pointer": "/failure_classifications/4",
+        "class_id": "OS017-NEG-workflow-resume-source_unresolved"
       }
     },
     {
@@ -4771,6 +4851,11 @@
         "pointer": "/cases/116",
         "revision": "ec98a025d166a5e9f7811233498b7e7e31dbb145",
         "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146"
+      },
+      "l4_source_class_candidate_ref": {
+        "path": "docs/helix-os/L4-basic-design/ticket-workflow-derivation.json",
+        "pointer": "/failure_classifications/4",
+        "class_id": "OS017-NEG-workflow-resume-source_unresolved"
       }
     },
     {
@@ -4800,6 +4885,11 @@
         "pointer": "/cases/117",
         "revision": "ec98a025d166a5e9f7811233498b7e7e31dbb145",
         "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146"
+      },
+      "l4_source_class_candidate_ref": {
+        "path": "docs/helix-os/L4-basic-design/ticket-workflow-derivation.json",
+        "pointer": "/failure_classifications/4",
+        "class_id": "OS017-NEG-workflow-resume-source_unresolved"
       }
     },
     {

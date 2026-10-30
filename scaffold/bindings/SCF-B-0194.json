@@ -1,0 +1,129 @@
+{
+  "schema_revision": 1,
+  "id": "SCF-B-0194",
+  "kind": "scaffold",
+  "title": "WR226 OS017 F02 workflow-resume 20 witness source-only candidate evidence",
+  "product": "HELIX-OS",
+  "owner_candidate": "HELIX-OS L4/L9 source-qualified negative-class evidence owner",
+  "state": "registered",
+  "reason": "r3で固定したblind導出と、期待比較後のL4/L9候補対応を保全する。r1誤共通化、r2個別再解決、r3の圧縮記録を明示する。algorithm/2 unknown operandを共有する18件のみ既存class候補にし、algorithm/6 closed-state case108とalgorithm/5 boolean selector case127は残件にする。L7/L8/L9 expectedや実行観測、formal four-layer membershipは生成しない。",
+  "upstream": [
+    {
+      "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+      "sha256": "e86254a35b476ed71ebb112e41ccd2b48f89a8d0393e6495dc11cac7a7cf4e02",
+      "note": "WR226 static source/evidence pin; no execution."
+    },
+    {
+      "path": "docs/helix-os/L10-verification/functional-verification.json",
+      "sha256": "583020f951672e48bc37fcd35cb916de5ccd9866f41dd04731f6519325ae500a",
+      "note": "WR226 static source/evidence pin; no execution."
+    },
+    {
+      "path": "docs/helix-os/L4-basic-design/ticket-workflow-derivation.json",
+      "sha256": "a1d19b1f81dfda3d3f96715c9e5aec44118f87c0319d4b1f760c08a08f13bc05",
+      "note": "Current-main pin a1d19b1f81dfda3d3f96715c9e5aec44118f87c0319d4b1f760c08a08f13bc05; generalized class condition cites algorithm/0 overlay; per-case details remain in scaffold comparison. Prior pins retained in history."
+    },
+    {
+      "path": "docs/helix-os/L7-function-verification/ticket-workflow-derivation.json",
+      "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146",
+      "note": "WR226 static source/evidence pin; no execution."
+    },
+    {
+      "path": "docs/helix-os/L8-unit-verification/ticket-workflow-derivation.json",
+      "sha256": "7b2f15b8fb131f3e346dff4825f74696cc0b3a3f727515cd901019278bad60ad",
+      "note": "WR226 static source/evidence pin; no execution."
+    },
+    {
+      "path": "docs/helix-os/L9-integration-verification/ticket-workflow-derivation.json",
+      "sha256": "5cfdfb3441cf1168a4e08c04ebb49b4b7afc8f8e3df395c8d9822892205ae9ad",
+      "note": "Current-main pin 5cfdfb3441cf1168a4e08c04ebb49b4b7afc8f8e3df395c8d9822892205ae9ad; previous pins retained in binding history. WR226 added 18 class candidate refs; L9 expected fields unchanged; dedicated-rule cases 108/127 have no candidate ref."
+    },
+    {
+      "path": "scaffold/research/wr226-os017-workflow-residual-20261031/blind-derivation.json",
+      "sha256": "fe7e00049ecaa89b8c36839abe7b29feb17a860ab5b3bddba32c0f26bb44e7f3",
+      "note": "WR226 static source/evidence pin; no execution."
+    },
+    {
+      "path": "scaffold/research/wr226-os017-workflow-residual-20261031/comparison.json",
+      "sha256": "2c507260c9704c676897564ea052c15c3a583536ee9b83f9d9b13e7a70424183",
+      "note": "WR226 static source/evidence pin; no execution."
+    },
+    {
+      "path": "scaffold/research/wr220-os017-source-unresolved-20261031/validate_candidate.py",
+      "sha256": "ceaa64a55775d45bc1e8fc65127729bfb1ac117b835ff3c0ff2d083aeee6d373",
+      "note": "Current static validator pin ceaa64a55775d45bc1e8fc65127729bfb1ac117b835ff3c0ff2d083aeee6d373; validates general L4 condition, all scaffold case proofs and algorithm/0 operand/facet evidence."
+    },
+    {
+      "path": "scaffold/research/wr204-os017-negative-classes-20261031/validate_manual_derivation.py",
+      "sha256": "51b770466b6bd91b1aa7bfe6dba9cc33926dfc836b1512bedc78392e2a34c7fa",
+      "note": "Current static validator pin 51b770466b6bd91b1aa7bfe6dba9cc33926dfc836b1512bedc78392e2a34c7fa; prior 51 input/12 role checks preserved and general L4 condition validated without case IDs."
+    }
+  ],
+  "role": "OS017 F02の20 workflow-resume witnessに対するL4 class extensionとL9 candidate-refの静的証跡。formal class membershipではない。",
+  "obligations": [
+    "r3 blind artifactを固定SHAのまま保全し、r1/r2訂正履歴を記録する。",
+    "20個のgiven_input_ref graphを個別に解決したroot hash、raw leaf pointer、valueを保持し、18件の候補と2件の専用規則残件を区別する。",
+    "L7/L8/L9 expectedをblind freeze後の比較として個別caseごとに記録し、expectedを変更しない。",
+    "L4 algorithm/2 operand comparisonを共通基点とし、algorithm/1 binding overlay、algorithm/3〜4の条件と下流効果、algorithm/8のpointer重複をcase別に記録する。",
+    "algorithm/6 dependency.state closed-setとalgorithm/5 level_selected boolean selectorを別規則としてclass候補から除外する。",
+    "既存WR204 51 input/12 role checksとWR220 2 witness checksを維持したvalidator結果を記録する。",
+    "algorithm、legacy runtime/test/CI、CIは実行しない。"
+  ],
+  "connections": {
+    "consumers": [
+      "WR220 source-to-expected review",
+      "OS017 L4/L9 candidate-pair review"
+    ],
+    "dependencies": [
+      "Approved L3/L10 B01/F02 target 5c62d19",
+      "L4 diagnostic contract and selected L7/L8/L9 rows at base a53f04482ff883decf1019dc9c212ab712271749"
+    ],
+    "boundary": "Scaffold-only comparison evidence plus source-qualified L4/L9 candidate rows; no L7/L8/L9 expected mutation, implementation execution, actual incident classification, ticket/Reverse action, or four-layer completion."
+  },
+  "operations": {
+    "allowed": [
+      "static source, expected, hash and pointer comparison",
+      "python3 -B WR220 and WR204 static validators",
+      "scfctl validate/stale",
+      "git diff --check"
+    ],
+    "forbidden": [
+      "L4/L5 algorithm execution",
+      "old/new runtime, test, or CI execution",
+      "changing L7/L8/L9 expected fields",
+      "claiming formal four-layer class membership or completion"
+    ]
+  },
+  "artifacts": [
+    "scaffold/research/wr226-os017-workflow-residual-20261031/README.md",
+    "scaffold/research/wr226-os017-workflow-residual-20261031/blind-derivation.json",
+    "scaffold/research/wr226-os017-workflow-residual-20261031/comparison.json",
+    "scaffold/research/wr226-os017-workflow-residual-20261031/verification-summary.json"
+  ],
+  "verification": {
+    "evidence_kind": "scaffold",
+    "scope": [
+      "schema_interface",
+      "source_revision_stale",
+      "negative_case"
+    ],
+    "oracles": [
+      "frozen r3 SHA and raw source graph hashes",
+      "post-freeze L7/L8/L9 expected comparisons",
+      "WR204 and WR220 static source validators"
+    ],
+    "negative_cases": [
+      "r1 dependency.source_ref null is not generalized; each graph is independently resolved",
+      "no new finding signature or facet is introduced",
+      "L9 candidate refs are not same-layer class membership"
+    ]
+  },
+  "replacement": {
+    "role_target": "Formal OS017 negative-class trace must preserve approved source, witness identity, expected comparison, and layer-specific class membership evidence.",
+    "formal_artifacts": [],
+    "issue": 1866,
+    "status": "pending"
+  },
+  "created": "2026-10-31",
+  "updated": "2026-10-31"
+}

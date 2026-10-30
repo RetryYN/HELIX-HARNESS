@@ -20,8 +20,8 @@
     },
     {
       "path": "docs/helix-os/L4-basic-design/ticket-workflow-derivation.json",
-      "sha256": "3fb45708d58866de46cff0695a1d3f64b2fbe15bb11283bda5594a4b6d01e6ea",
-      "note": "Current L4 pin 3fb45708d58866de46cff0695a1d3f64b2fbe15bb11283bda5594a4b6d01e6ea; previous d9765bdb and pre-conflict 042b09df pins remain in binding history. WR220 adds only a separate F02 workflow-resume class; the B01 ownership classes and twelve role witness meanings remain unchanged."
+      "sha256": "a1d19b1f81dfda3d3f96715c9e5aec44118f87c0319d4b1f760c08a08f13bc05",
+      "note": "Current-main pin a1d19b1f81dfda3d3f96715c9e5aec44118f87c0319d4b1f760c08a08f13bc05; generalized class condition cites algorithm/0 overlay; per-case details remain in scaffold comparison. Prior pins retained in history."
     },
     {
       "path": "docs/helix-os/L7-function-verification/ticket-workflow-derivation.json",
@@ -30,8 +30,8 @@
     },
     {
       "path": "docs/helix-os/L9-integration-verification/ticket-workflow-derivation.json",
-      "sha256": "fe7d7fc5b23ec66042c1db5e0f45004c095b5703faa2d6284e442fdb81f81225",
-      "note": "Current L9 pin fe7d7fc5b23ec66042c1db5e0f45004c095b5703faa2d6284e442fdb81f81225; previous fb9997c4 and pre-conflict 74458de4 pins remain in binding history. Existing twelve role candidate links and all 217 expected projections remain unchanged; WR220 adds only refs for separate F02 cases 51/53."
+      "sha256": "5cfdfb3441cf1168a4e08c04ebb49b4b7afc8f8e3df395c8d9822892205ae9ad",
+      "note": "Current-main pin 5cfdfb3441cf1168a4e08c04ebb49b4b7afc8f8e3df395c8d9822892205ae9ad; previous pins retained in binding history. WR226 added 18 class candidate refs; L9 expected fields unchanged; dedicated-rule cases 108/127 have no candidate ref."
     },
     {
       "path": "docs/governance/design-verification-quality-assurance.md",
@@ -50,8 +50,8 @@
     },
     {
       "path": "scaffold/research/wr204-os017-negative-classes-20261031/validate_manual_derivation.py",
-      "sha256": "2c0c6431c1963f03271a6d4ca556adc9a5029f402d8e4db9cbe43ffd64d97d2a",
-      "note": "Updated static source validator pin 2c0c6431c1963f03271a6d4ca556adc9a5029f402d8e4db9cbe43ffd64d97d2a; retains prior 51 input witnesses and 12 role witnesses and additionally recognizes the WR220 F02 workflow candidate plus its two L9 refs. No L4/L5 behavior is executed."
+      "sha256": "51b770466b6bd91b1aa7bfe6dba9cc33926dfc836b1512bedc78392e2a34c7fa",
+      "note": "Current static validator pin 51b770466b6bd91b1aa7bfe6dba9cc33926dfc836b1512bedc78392e2a34c7fa; prior 51 input/12 role checks preserved and general L4 condition validated without case IDs."
     }
   ],
   "role": "WR204 OS017 ownership facet source-qualified negative-class candidate evidence; not formal four-layer class membership.",

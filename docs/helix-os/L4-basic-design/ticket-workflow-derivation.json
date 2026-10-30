@@ -888,7 +888,7 @@
       "class_id": "OS017-NEG-workflow-resume-source_unresolved",
       "code": "workflow_material_unknown",
       "design_ref": "HELIXOS-L4-017-F02",
-      "condition": "phase=resumeの負例意味: 全体condition=workflow_material_unknown、全体ordered finding code signature=[source_unresolved]、workflow facetの局所state=unknown。各witnessはauthority.source_refまたはresource.source_refの一方だけがnullであり、対応する独立context参照とaccepted stateが存在する。各witnessのpointerは異なるためdedupしない。追加findingを持つcase、全体conditionまたは全体ordered finding code signatureが異なるcaseは本classに含めない。",
+      "condition": "phase=resume。全体conditionはworkflow_material_unknown、ordered finding code signatureは[source_unresolved]、workflow facetはunknown。候補fieldはworkflow comparison tableのauthority/resource.source_ref、dependency source_ref/requirement_revision/scope、process source_ref/revision/parts/allowed_edges/obligations/backflow_ref、proposal source_ref/requirement_revision/scope/reason_ref/parts/obligations。algorithm/2が片側unknown operandを原pointerへsource_unresolvedとして返す場合に限る。algorithm/3ではprocess/proposal recordはdict、proposal field読取時は両selectorがboolean true。authority/resourceは対応stateが有効であること。algorithm/0 binding overlayは提供process.revisionとproposal/dependency/provided levelのrequirement_revision/scopeをcontext.bindingと照合する。同じunknown operandの再比較は(code,pointer,return_owner)でdedupする。context-side unknownだけではactual operand再利用を推定せず、別binding pointerやinputs facetを加えない。algorithm/4の派生比較はknown-list条件を満たす場合に限る。algorithm/8はintermediate.backflow_refとcontext.process.backflow_refを比較し、actual process.backflow_refを読まない。dependency.state closed-set (algorithm/6)とlevel_selected boolean selector/条件付き読取 (algorithm/5) は別class境界。候補はworkflow以外のfacetがcorrespondingでfinding一件・追加findingなしの場合のみ。dedup keyはcode/pointer/return_owner。pointer単位dedupを行い、相異なるlogical pointerを統合しない。個別根拠はscaffold比較証跡に置く。",
       "expected_classification": "workflow_material_unknown",
       "expected": {
         "finding_codes": [
@@ -921,7 +921,12 @@
             "/diagnostic_contract/comparison_table/process~1proposal~1dependency~1authority~1resource~1level~1constraints",
             "/diagnostic_contract/algorithm/2",
             "/diagnostic_contract/algorithm/6",
-            "/diagnostic_contract/algorithm/10"
+            "/diagnostic_contract/algorithm/10",
+            "/diagnostic_contract/algorithm/3",
+            "/diagnostic_contract/algorithm/4",
+            "/diagnostic_contract/algorithm/5",
+            "/diagnostic_contract/algorithm/8",
+            "/diagnostic_contract/algorithm/0"
           ]
         },
         {
@@ -930,7 +935,40 @@
             "/cases/51/given_input_ref",
             "/cases/53/given_input_ref",
             "/objects/e80a1ab73d1026599b8f940b0b8fb211199bd3a6967a90392b0c5bfeafec1da2/source_ref",
-            "/objects/25ad46768dea84694bdf2fdd7e076197e3597248f16aaa26d7e630e895d542e2/source_ref"
+            "/objects/25ad46768dea84694bdf2fdd7e076197e3597248f16aaa26d7e630e895d542e2/source_ref",
+            "/cases/57/given_input_ref",
+            "/objects/bb259d855766b3a10b8a60aeff69bea81260c7f8a7eea59be6598ac63ec5a865/source_ref",
+            "/cases/59/given_input_ref",
+            "/objects/4d0b9f95142c0162efc200531f58fef3c1ad089192735c2dd7b13a25a720e614/requirement_revision",
+            "/cases/61/given_input_ref",
+            "/objects/30aeb63c0363ab75d587ed28dbda3ddf92348e1c6d160bf502eb5180bcf47dd9/scope",
+            "/cases/63/given_input_ref",
+            "/objects/a8332408bb1ac7b688afaf8a0bdfd0fc6551473ec5385bd502971049b0a7e2a9/source_ref",
+            "/cases/65/given_input_ref",
+            "/objects/56f180204d6b2264e5e96383fa7fcb077cf4a0b32d4b379958fae3692e7373ef/revision",
+            "/cases/67/given_input_ref",
+            "/objects/062c09184617e83df872a09cb74b3fbbbc9f874090abd51f74dd18ee02e486da/parts",
+            "/cases/69/given_input_ref",
+            "/objects/eb78917c7459b7c889eaa8c14db462cf5b94a1645986806fa26ea2f2f7c977dc/allowed_edges",
+            "/cases/71/given_input_ref",
+            "/objects/f953d3d76ca8600e1bbe519a2a100e28cbae56cedc615289680d58a9b700aec6/obligations",
+            "/cases/73/given_input_ref",
+            "/objects/8ecbb004122a8fc01dc17be9be708dba5dd93eb9d32de13992b2e8dbcdf0ce79/backflow_ref",
+            "/cases/109/given_input_ref",
+            "/cases/110/given_input_ref",
+            "/cases/111/given_input_ref",
+            "/cases/112/given_input_ref",
+            "/objects/3d087801baef410d56b20718f637498068936828c95e01ac5ecff681408a1dc6/source_ref",
+            "/cases/113/given_input_ref",
+            "/objects/492af1f9cbec9d026d16c964abb1ec5cd4b24f10750187ea42ebdbed3fa1d793/requirement_revision",
+            "/cases/114/given_input_ref",
+            "/objects/3ecb6705663a99d061b31f60f0aaf5c99364ab3e240bfc5ac9ce8e0a07413a91/scope",
+            "/cases/115/given_input_ref",
+            "/objects/db460dddf87f4410f7db5df2b20b5f81708c9cdb125771442c83e155a9d7a173/reason_ref",
+            "/cases/116/given_input_ref",
+            "/objects/07f917849bf9cec8ef9e015ca4d92574ecb68ac2f6aeff50324df740cd6351a4/parts",
+            "/cases/117/given_input_ref",
+            "/objects/7e7047aafcc550a0f637460e1eedaa09bc4b314e51055121601b0684d8f79f18/obligations"
           ]
         }
       ]

@@ -1,0 +1,2056 @@
+{
+  "artifact": "WR226 OS017 20-case source-to-expected comparison",
+  "status": "scaffold candidate evidence only",
+  "base_revision": "280d5c8dc854e5100be6ed21188d5ebd13f5abd8",
+  "blind_derivation": {
+    "path": "scaffold/research/wr226-os017-workflow-residual-20261031/blind-derivation.json",
+    "sha256": "fe7e00049ecaa89b8c36839abe7b29feb17a860ab5b3bddba32c0f26bb44e7f3",
+    "frozen_comment": "Issue #3510 comment 6532230602",
+    "history": {
+      "r1_sha256": "beee1297708861956178d981fa3a65881382462d9b0321c2bc608b9ef783b5ab",
+      "r2_sha256": "6199c187010164cb017812c61c7271fac6ae87c3a3e16b325837b9462cb4f779",
+      "r3_sha256": "fe7e00049ecaa89b8c36839abe7b29feb17a860ab5b3bddba32c0f26bb44e7f3",
+      "correction": "r1のdependency.source_ref全nullという誤共通化をroot指摘後に訂正。r2/r3で20 graphを個別解決し、case57のみnull、case63を含む他19件はDEP-RECEIPT-A。"
+    }
+  },
+  "source_documents": [
+    {
+      "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+      "sha256": "e86254a35b476ed71ebb112e41ccd2b48f89a8d0393e6495dc11cac7a7cf4e02"
+    },
+    {
+      "path": "docs/helix-os/L10-verification/functional-verification.json",
+      "sha256": "583020f951672e48bc37fcd35cb916de5ccd9866f41dd04731f6519325ae500a"
+    },
+    {
+      "path": "docs/helix-os/L4-basic-design/ticket-workflow-derivation.json",
+      "sha256": "a1d19b1f81dfda3d3f96715c9e5aec44118f87c0319d4b1f760c08a08f13bc05"
+    },
+    {
+      "path": "docs/helix-os/L7-function-verification/ticket-workflow-derivation.json",
+      "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146"
+    },
+    {
+      "path": "docs/helix-os/L8-unit-verification/ticket-workflow-derivation.json",
+      "sha256": "7b2f15b8fb131f3e346dff4825f74696cc0b3a3f727515cd901019278bad60ad"
+    },
+    {
+      "path": "docs/helix-os/L9-integration-verification/ticket-workflow-derivation.json",
+      "sha256": "5cfdfb3441cf1168a4e08c04ebb49b4b7afc8f8e3df395c8d9822892205ae9ad"
+    }
+  ],
+  "cases": [
+    {
+      "case_index": 57,
+      "case_id": "OS017-L8-DEPENDENCY-SOURCE_REF-UNKNOWN",
+      "input_root": {
+        "case_pointer": "/cases/57",
+        "given_input_pointer": "/objects/0b9c15aa6aaf2c1b475232118177bf597bd5938092d116511ea9d4d218d5fc60",
+        "given_input_canonical_sha256": "0b9c15aa6aaf2c1b475232118177bf597bd5938092d116511ea9d4d218d5fc60"
+      },
+      "raw_leaf": {
+        "raw_object_leaf_pointer": "/objects/bb259d855766b3a10b8a60aeff69bea81260c7f8a7eea59be6598ac63ec5a865/source_ref",
+        "logical_finding_pointer": "/dependency/source_ref",
+        "resolved_value": null
+      },
+      "blind_candidate": {
+        "phase": "resume",
+        "facet": "workflow",
+        "condition": "workflow_material_unknown",
+        "ordered_findings": [
+          "source_unresolved"
+        ],
+        "return_owner": "ticket-workflow-owner",
+        "finding_pointer": "/dependency/source_ref"
+      },
+      "L7_expected_comparison": {
+        "expected_pointer": "/objects/75c790bd792d287faff3a0579d27c47345c877310424f7b172d11939a642d322",
+        "expected_hash": "75c790bd792d287faff3a0579d27c47345c877310424f7b172d11939a642d322",
+        "condition": "workflow_material_unknown",
+        "phase": "resume",
+        "facet_correspondence": {
+          "ownership": "corresponding",
+          "inputs": "corresponding",
+          "ticket": "corresponding",
+          "workflow": "unknown",
+          "backflow": "corresponding",
+          "continuity": "corresponding",
+          "scope_limit": "corresponding"
+        },
+        "findings": [
+          {
+            "code": "source_unresolved",
+            "pointer": "/dependency/source_ref",
+            "return_owner": "ticket-workflow-owner"
+          }
+        ],
+        "execution_state": "not_executed"
+      },
+      "L8_expected_comparison": {
+        "id": "OS017-L8-DEPENDENCY-SOURCE_REF-UNKNOWN",
+        "condition": "workflow_material_unknown",
+        "phase": "resume",
+        "expected": {
+          "finding_codes": [
+            "source_unresolved"
+          ]
+        },
+        "execution_state": "not_executed",
+        "primary_requirement_refs": [
+          "HELIXOS-L3-017-F02"
+        ]
+      },
+      "L9_expected_comparison": {
+        "id": "OS017-DEPENDENCY-SOURCE_REF-UNKNOWN",
+        "condition": "workflow_material_unknown",
+        "phase": "resume",
+        "expected": {
+          "finding_codes": [
+            "source_unresolved"
+          ]
+        },
+        "execution_state": "not_executed",
+        "actual_observation": "not_observed",
+        "primary_requirement_refs": [
+          "HELIXOS-L3-017-F02"
+        ],
+        "candidate_ref": {
+          "path": "docs/helix-os/L4-basic-design/ticket-workflow-derivation.json",
+          "pointer": "/failure_classifications/4",
+          "class_id": "OS017-NEG-workflow-resume-source_unresolved"
+        }
+      },
+      "L4_candidate_ref": {
+        "path": "docs/helix-os/L4-basic-design/ticket-workflow-derivation.json",
+        "pointer": "/failure_classifications/4",
+        "class_id": "OS017-NEG-workflow-resume-source_unresolved"
+      },
+      "rule_path": "L4 algorithm/6 dependency.source_ref → algorithm/2 string comparison",
+      "preconditions_and_downstream_effects": "dependency comparison runs; source_ref is one unknown operand. dependency.state remains known in its accepted closed set; no dependency_not_resolved/state closed-set branch fires.",
+      "candidate_status": "candidate: shared algorithm/2 unknown operand; caller conditions and downstream effects separately described"
+    },
+    {
+      "case_index": 59,
+      "case_id": "OS017-L8-DEPENDENCY-REQUIREMENT_REVISION-UNKNOWN",
+      "input_root": {
+        "case_pointer": "/cases/59",
+        "given_input_pointer": "/objects/18bdd6d0c1cd377b7bc370d4322e1e4cf16eaa5f6fd38c661ce44c22f93f8764",
+        "given_input_canonical_sha256": "18bdd6d0c1cd377b7bc370d4322e1e4cf16eaa5f6fd38c661ce44c22f93f8764"
+      },
+      "raw_leaf": {
+        "raw_object_leaf_pointer": "/objects/4d0b9f95142c0162efc200531f58fef3c1ad089192735c2dd7b13a25a720e614/requirement_revision",
+        "logical_finding_pointer": "/dependency/requirement_revision",
+        "resolved_value": null
+      },
+      "blind_candidate": {
+        "phase": "resume",
+        "facet": "workflow",
+        "condition": "workflow_material_unknown",
+        "ordered_findings": [
+          "source_unresolved"
+        ],
+        "return_owner": "ticket-workflow-owner",
+        "finding_pointer": "/dependency/requirement_revision"
+      },
+      "L7_expected_comparison": {
+        "expected_pointer": "/objects/3fedf48d75c7a0bbd694e447252719e7d71676bfdaea5e00b7c8875599825a79",
+        "expected_hash": "3fedf48d75c7a0bbd694e447252719e7d71676bfdaea5e00b7c8875599825a79",
+        "condition": "workflow_material_unknown",
+        "phase": "resume",
+        "facet_correspondence": {
+          "ownership": "corresponding",
+          "inputs": "corresponding",
+          "ticket": "corresponding",
+          "workflow": "unknown",
+          "backflow": "corresponding",
+          "continuity": "corresponding",
+          "scope_limit": "corresponding"
+        },
+        "findings": [
+          {
+            "code": "source_unresolved",
+            "pointer": "/dependency/requirement_revision",
+            "return_owner": "ticket-workflow-owner"
+          }
+        ],
+        "execution_state": "not_executed"
+      },
+      "L8_expected_comparison": {
+        "id": "OS017-L8-DEPENDENCY-REQUIREMENT_REVISION-UNKNOWN",
+        "condition": "workflow_material_unknown",
+        "phase": "resume",
+        "expected": {
+          "finding_codes": [
+            "source_unresolved"
+          ]
+        },
+        "execution_state": "not_executed",
+        "primary_requirement_refs": [
+          "HELIXOS-L3-017-F02"
+        ]
+      },
+      "L9_expected_comparison": {
+        "id": "OS017-DEPENDENCY-REQUIREMENT_REVISION-UNKNOWN",
+        "condition": "workflow_material_unknown",
+        "phase": "resume",
+        "expected": {
+          "finding_codes": [
+            "source_unresolved"
+          ]
+        },
+        "execution_state": "not_executed",
+        "actual_observation": "not_observed",
+        "primary_requirement_refs": [
+          "HELIXOS-L3-017-F02"
+        ],
+        "candidate_ref": {
+          "path": "docs/helix-os/L4-basic-design/ticket-workflow-derivation.json",
+          "pointer": "/failure_classifications/4",
+          "class_id": "OS017-NEG-workflow-resume-source_unresolved"
+        }
+      },
+      "L4_candidate_ref": {
+        "path": "docs/helix-os/L4-basic-design/ticket-workflow-derivation.json",
+        "pointer": "/failure_classifications/4",
+        "class_id": "OS017-NEG-workflow-resume-source_unresolved"
+      },
+      "rule_path": "algorithm/6 dependency.requirement_revision → algorithm/2 string comparison; algorithm/0 binding overlay",
+      "preconditions_and_downstream_effects": "The same unknown field is also compared with context.binding. Unknown-source finding uses the original dependency pointer; repeated same (code,pointer,owner) is deduplicated. No extra finding signature. The same null actual field is also the algorithm/0 overlay operand; context.binding is known. Both comparisons point at the same workflow-owned field, so dedup leaves one finding and does not add an inputs facet.",
+      "candidate_status": "candidate: shared algorithm/2 unknown operand; caller conditions and downstream effects separately described",
+      "algorithm0_binding_overlay": {
+        "l4_rule_pointer": "/diagnostic_contract/algorithm/0",
+        "actual_operand": {
+          "pointer": "/objects/4d0b9f95142c0162efc200531f58fef3c1ad089192735c2dd7b13a25a720e614/requirement_revision",
+          "value": null
+        },
+        "context_operand": {
+          "pointer": "/objects/8de3b6e0628759f73bed6dcab0239b5eee6e4c6f3ff9d85e2c4731a249ed4972/requirement_revision",
+          "value": "SYNTHETIC-REQUIREMENT_REVISION"
+        },
+        "context_binding_operand": {
+          "pointer": "/objects/3067a4f2dd8a085db4b59cdda7e6d9e8aaa9d413dc63e33087048d828a61911f/requirement_revision",
+          "value": "SYNTHETIC-REQUIREMENT_REVISION"
+        },
+        "actual_unknown_operand_is_reused": true,
+        "same_pointer_dedup_effect": "algorithm/2 and algorithm/0 observe the same missing actual pointer and collapse to one (source_unresolved,pointer,ticket-workflow-owner)",
+        "facet_effect": "comparison_table assigns the workflow field to workflow facet. The binding side is known and algorithm/0 does not create a separate missing binding pointer or inputs facet; post-freeze expected comparison has only workflow unknown and other facets corresponding."
+      }
+    },
+    {
+      "case_index": 61,
+      "case_id": "OS017-L8-DEPENDENCY-SCOPE-UNKNOWN",
+      "input_root": {
+        "case_pointer": "/cases/61",
+        "given_input_pointer": "/objects/3b071fa38edc4f358f49314dada29b8f4eb882c1acd6ebcea5547badc7b46def",
+        "given_input_canonical_sha256": "3b071fa38edc4f358f49314dada29b8f4eb882c1acd6ebcea5547badc7b46def"
+      },
+      "raw_leaf": {
+        "raw_object_leaf_pointer": "/objects/30aeb63c0363ab75d587ed28dbda3ddf92348e1c6d160bf502eb5180bcf47dd9/scope",
+        "logical_finding_pointer": "/dependency/scope",
+        "resolved_value": null
+      },
+      "blind_candidate": {
+        "phase": "resume",
+        "facet": "workflow",
+        "condition": "workflow_material_unknown",
+        "ordered_findings": [
+          "source_unresolved"
+        ],
+        "return_owner": "ticket-workflow-owner",
+        "finding_pointer": "/dependency/scope"
+      },
+      "L7_expected_comparison": {
+        "expected_pointer": "/objects/aa0150d3cba09dfb89b5fb3ab5ebd71c49087ca0e0e3deec4574033b95b45879",
+        "expected_hash": "aa0150d3cba09dfb89b5fb3ab5ebd71c49087ca0e0e3deec4574033b95b45879",
+        "condition": "workflow_material_unknown",
+        "phase": "resume",
+        "facet_correspondence": {
+          "ownership": "corresponding",
+          "inputs": "corresponding",
+          "ticket": "corresponding",
+          "workflow": "unknown",
+          "backflow": "corresponding",
+          "continuity": "corresponding",
+          "scope_limit": "corresponding"
+        },
+        "findings": [
+          {
+            "code": "source_unresolved",
+            "pointer": "/dependency/scope",
+            "return_owner": "ticket-workflow-owner"
+          }
+        ],
+        "execution_state": "not_executed"
+      },
+      "L8_expected_comparison": {
+        "id": "OS017-L8-DEPENDENCY-SCOPE-UNKNOWN",
+        "condition": "workflow_material_unknown",
+        "phase": "resume",
+        "expected": {
+          "finding_codes": [
+            "source_unresolved"
+          ]
+        },
+        "execution_state": "not_executed",
+        "primary_requirement_refs": [
+          "HELIXOS-L3-017-F02"
+        ]
+      },
+      "L9_expected_comparison": {
+        "id": "OS017-DEPENDENCY-SCOPE-UNKNOWN",
+        "condition": "workflow_material_unknown",
+        "phase": "resume",
+        "expected": {
+          "finding_codes": [
+            "source_unresolved"
+          ]
+        },
+        "execution_state": "not_executed",
+        "actual_observation": "not_observed",
+        "primary_requirement_refs": [
+          "HELIXOS-L3-017-F02"
+        ],
+        "candidate_ref": {
+          "path": "docs/helix-os/L4-basic-design/ticket-workflow-derivation.json",
+          "pointer": "/failure_classifications/4",
+          "class_id": "OS017-NEG-workflow-resume-source_unresolved"
+        }
+      },
+      "L4_candidate_ref": {
+        "path": "docs/helix-os/L4-basic-design/ticket-workflow-derivation.json",
+        "pointer": "/failure_classifications/4",
+        "class_id": "OS017-NEG-workflow-resume-source_unresolved"
+      },
+      "rule_path": "algorithm/6 dependency.scope → algorithm/2 string comparison; algorithm/0 binding overlay",
+      "preconditions_and_downstream_effects": "The same unknown field is also compared with context.binding. Unknown-source finding uses the original dependency pointer; repeated same (code,pointer,owner) is deduplicated. No extra finding signature. The same null actual field is also the algorithm/0 overlay operand; context.binding is known. Both comparisons point at the same workflow-owned field, so dedup leaves one finding and does not add an inputs facet.",
+      "candidate_status": "candidate: shared algorithm/2 unknown operand; caller conditions and downstream effects separately described",
+      "algorithm0_binding_overlay": {
+        "l4_rule_pointer": "/diagnostic_contract/algorithm/0",
+        "actual_operand": {
+          "pointer": "/objects/30aeb63c0363ab75d587ed28dbda3ddf92348e1c6d160bf502eb5180bcf47dd9/scope",
+          "value": null
+        },
+        "context_operand": {
+          "pointer": "/objects/8de3b6e0628759f73bed6dcab0239b5eee6e4c6f3ff9d85e2c4731a249ed4972/scope",
+          "value": "SYNTHETIC-SCOPE"
+        },
+        "context_binding_operand": {
+          "pointer": "/objects/3067a4f2dd8a085db4b59cdda7e6d9e8aaa9d413dc63e33087048d828a61911f/scope",
+          "value": "SYNTHETIC-SCOPE"
+        },
+        "actual_unknown_operand_is_reused": true,
+        "same_pointer_dedup_effect": "algorithm/2 and algorithm/0 observe the same missing actual pointer and collapse to one (source_unresolved,pointer,ticket-workflow-owner)",
+        "facet_effect": "comparison_table assigns the workflow field to workflow facet. The binding side is known and algorithm/0 does not create a separate missing binding pointer or inputs facet; post-freeze expected comparison has only workflow unknown and other facets corresponding."
+      }
+    },
+    {
+      "case_index": 63,
+      "case_id": "OS017-L8-PROCESS-SOURCE_REF-UNKNOWN",
+      "input_root": {
+        "case_pointer": "/cases/63",
+        "given_input_pointer": "/objects/fccb3baa47c45c5063a0e343f7c3548143652f80db17417484ad7b677c3ebfe7",
+        "given_input_canonical_sha256": "fccb3baa47c45c5063a0e343f7c3548143652f80db17417484ad7b677c3ebfe7"
+      },
+      "raw_leaf": {
+        "raw_object_leaf_pointer": "/objects/a8332408bb1ac7b688afaf8a0bdfd0fc6551473ec5385bd502971049b0a7e2a9/source_ref",
+        "logical_finding_pointer": "/process/source_ref",
+        "resolved_value": null
+      },
+      "blind_candidate": {
+        "phase": "resume",
+        "facet": "workflow",
+        "condition": "workflow_material_unknown",
+        "ordered_findings": [
+          "source_unresolved"
+        ],
+        "return_owner": "ticket-workflow-owner",
+        "finding_pointer": "/process/source_ref"
+      },
+      "L7_expected_comparison": {
+        "expected_pointer": "/objects/216f170166a28c9dad4e9ca762e04c8c3b5e573985f39da05ae3728c6fa5a1e7",
+        "expected_hash": "216f170166a28c9dad4e9ca762e04c8c3b5e573985f39da05ae3728c6fa5a1e7",
+        "condition": "workflow_material_unknown",
+        "phase": "resume",
+        "facet_correspondence": {
+          "ownership": "corresponding",
+          "inputs": "corresponding",
+          "ticket": "corresponding",
+          "workflow": "unknown",
+          "backflow": "corresponding",
+          "continuity": "corresponding",
+          "scope_limit": "corresponding"
+        },
+        "findings": [
+          {
+            "code": "source_unresolved",
+            "pointer": "/process/source_ref",
+            "return_owner": "ticket-workflow-owner"
+          }
+        ],
+        "execution_state": "not_executed"
+      },
+      "L8_expected_comparison": {
+        "id": "OS017-L8-PROCESS-SOURCE_REF-UNKNOWN",
+        "condition": "workflow_material_unknown",
+        "phase": "resume",
+        "expected": {
+          "finding_codes": [
+            "source_unresolved"
+          ]
+        },
+        "execution_state": "not_executed",
+        "primary_requirement_refs": [
+          "HELIXOS-L3-017-F02"
+        ]
+      },
+      "L9_expected_comparison": {
+        "id": "OS017-PROCESS-SOURCE_REF-UNKNOWN",
+        "condition": "workflow_material_unknown",
+        "phase": "resume",
+        "expected": {
+          "finding_codes": [
+            "source_unresolved"
+          ]
+        },
+        "execution_state": "not_executed",
+        "actual_observation": "not_observed",
+        "primary_requirement_refs": [
+          "HELIXOS-L3-017-F02"
+        ],
+        "candidate_ref": {
+          "path": "docs/helix-os/L4-basic-design/ticket-workflow-derivation.json",
+          "pointer": "/failure_classifications/4",
+          "class_id": "OS017-NEG-workflow-resume-source_unresolved"
+        }
+      },
+      "L4_candidate_ref": {
+        "path": "docs/helix-os/L4-basic-design/ticket-workflow-derivation.json",
+        "pointer": "/failure_classifications/4",
+        "class_id": "OS017-NEG-workflow-resume-source_unresolved"
+      },
+      "rule_path": "algorithm/3 process record → algorithm/2 string comparison",
+      "preconditions_and_downstream_effects": "Prerequisite: actual/expected process records are dicts. Only process.source_ref is unknown; no process-specific downstream derivation reads this field.",
+      "candidate_status": "candidate: shared algorithm/2 unknown operand; caller conditions and downstream effects separately described"
+    },
+    {
+      "case_index": 65,
+      "case_id": "OS017-L8-PROCESS-REVISION-UNKNOWN",
+      "input_root": {
+        "case_pointer": "/cases/65",
+        "given_input_pointer": "/objects/eff634670518c367aae759bec9ffb663cf3337e14aafe4c8594e6eda2bfbc430",
+        "given_input_canonical_sha256": "eff634670518c367aae759bec9ffb663cf3337e14aafe4c8594e6eda2bfbc430"
+      },
+      "raw_leaf": {
+        "raw_object_leaf_pointer": "/objects/56f180204d6b2264e5e96383fa7fcb077cf4a0b32d4b379958fae3692e7373ef/revision",
+        "logical_finding_pointer": "/process/revision",
+        "resolved_value": null
+      },
+      "blind_candidate": {
+        "phase": "resume",
+        "facet": "workflow",
+        "condition": "workflow_material_unknown",
+        "ordered_findings": [
+          "source_unresolved"
+        ],
+        "return_owner": "ticket-workflow-owner",
+        "finding_pointer": "/process/revision"
+      },
+      "L7_expected_comparison": {
+        "expected_pointer": "/objects/fa096b230c0e3447193a60f6cc5f93b922e156c518da792f0f11fd70d2ef1b21",
+        "expected_hash": "fa096b230c0e3447193a60f6cc5f93b922e156c518da792f0f11fd70d2ef1b21",
+        "condition": "workflow_material_unknown",
+        "phase": "resume",
+        "facet_correspondence": {
+          "ownership": "corresponding",
+          "inputs": "corresponding",
+          "ticket": "corresponding",
+          "workflow": "unknown",
+          "backflow": "corresponding",
+          "continuity": "corresponding",
+          "scope_limit": "corresponding"
+        },
+        "findings": [
+          {
+            "code": "source_unresolved",
+            "pointer": "/process/revision",
+            "return_owner": "ticket-workflow-owner"
+          }
+        ],
+        "execution_state": "not_executed"
+      },
+      "L8_expected_comparison": {
+        "id": "OS017-L8-PROCESS-REVISION-UNKNOWN",
+        "condition": "workflow_material_unknown",
+        "phase": "resume",
+        "expected": {
+          "finding_codes": [
+            "source_unresolved"
+          ]
+        },
+        "execution_state": "not_executed",
+        "primary_requirement_refs": [
+          "HELIXOS-L3-017-F02"
+        ]
+      },
+      "L9_expected_comparison": {
+        "id": "OS017-PROCESS-REVISION-UNKNOWN",
+        "condition": "workflow_material_unknown",
+        "phase": "resume",
+        "expected": {
+          "finding_codes": [
+            "source_unresolved"
+          ]
+        },
+        "execution_state": "not_executed",
+        "actual_observation": "not_observed",
+        "primary_requirement_refs": [
+          "HELIXOS-L3-017-F02"
+        ],
+        "candidate_ref": {
+          "path": "docs/helix-os/L4-basic-design/ticket-workflow-derivation.json",
+          "pointer": "/failure_classifications/4",
+          "class_id": "OS017-NEG-workflow-resume-source_unresolved"
+        }
+      },
+      "L4_candidate_ref": {
+        "path": "docs/helix-os/L4-basic-design/ticket-workflow-derivation.json",
+        "pointer": "/failure_classifications/4",
+        "class_id": "OS017-NEG-workflow-resume-source_unresolved"
+      },
+      "rule_path": "algorithm/3 process.revision → algorithm/2 string comparison; algorithm/0 binding overlay",
+      "preconditions_and_downstream_effects": "Prerequisite: process records are dicts. The revision is also compared with context.binding.contract_revision; same-pointer unknown findings deduplicate. The same null actual field is also the algorithm/0 overlay operand; context.binding is known. Both comparisons point at the same workflow-owned field, so dedup leaves one finding and does not add an inputs facet.",
+      "candidate_status": "candidate: shared algorithm/2 unknown operand; caller conditions and downstream effects separately described",
+      "algorithm0_binding_overlay": {
+        "l4_rule_pointer": "/diagnostic_contract/algorithm/0",
+        "actual_operand": {
+          "pointer": "/objects/56f180204d6b2264e5e96383fa7fcb077cf4a0b32d4b379958fae3692e7373ef/revision",
+          "value": null
+        },
+        "context_operand": {
+          "pointer": "/objects/58dad1533668ea6953eab50bb361936c081d497fe180fe0a5cb56a136a26528f/revision",
+          "value": "SYNTHETIC-CONTRACT_REVISION"
+        },
+        "context_binding_operand": {
+          "pointer": "/objects/3067a4f2dd8a085db4b59cdda7e6d9e8aaa9d413dc63e33087048d828a61911f/contract_revision",
+          "value": "SYNTHETIC-CONTRACT_REVISION"
+        },
+        "actual_unknown_operand_is_reused": true,
+        "same_pointer_dedup_effect": "algorithm/2 and algorithm/0 observe the same missing actual pointer and collapse to one (source_unresolved,pointer,ticket-workflow-owner)",
+        "facet_effect": "comparison_table assigns the workflow field to workflow facet. The binding side is known and algorithm/0 does not create a separate missing binding pointer or inputs facet; post-freeze expected comparison has only workflow unknown and other facets corresponding."
+      }
+    },
+    {
+      "case_index": 67,
+      "case_id": "OS017-L8-PROCESS-PARTS-UNKNOWN",
+      "input_root": {
+        "case_pointer": "/cases/67",
+        "given_input_pointer": "/objects/3ce0b12bbcececee11ce6717da90cd39e4e753e0a552b312395869b8acd1fc06",
+        "given_input_canonical_sha256": "3ce0b12bbcececee11ce6717da90cd39e4e753e0a552b312395869b8acd1fc06"
+      },
+      "raw_leaf": {
+        "raw_object_leaf_pointer": "/objects/062c09184617e83df872a09cb74b3fbbbc9f874090abd51f74dd18ee02e486da/parts",
+        "logical_finding_pointer": "/process/parts",
+        "resolved_value": null
+      },
+      "blind_candidate": {
+        "phase": "resume",
+        "facet": "workflow",
+        "condition": "workflow_material_unknown",
+        "ordered_findings": [
+          "source_unresolved"
+        ],
+        "return_owner": "ticket-workflow-owner",
+        "finding_pointer": "/process/parts"
+      },
+      "L7_expected_comparison": {
+        "expected_pointer": "/objects/6c81fdc965ba7cd6dc84640419e9abd15d12c2a981db95d71ce7df18e0f46f03",
+        "expected_hash": "6c81fdc965ba7cd6dc84640419e9abd15d12c2a981db95d71ce7df18e0f46f03",
+        "condition": "workflow_material_unknown",
+        "phase": "resume",
+        "facet_correspondence": {
+          "ownership": "corresponding",
+          "inputs": "corresponding",
+          "ticket": "corresponding",
+          "workflow": "unknown",
+          "backflow": "corresponding",
+          "continuity": "corresponding",
+          "scope_limit": "corresponding"
+        },
+        "findings": [
+          {
+            "code": "source_unresolved",
+            "pointer": "/process/parts",
+            "return_owner": "ticket-workflow-owner"
+          }
+        ],
+        "execution_state": "not_executed"
+      },
+      "L8_expected_comparison": {
+        "id": "OS017-L8-PROCESS-PARTS-UNKNOWN",
+        "condition": "workflow_material_unknown",
+        "phase": "resume",
+        "expected": {
+          "finding_codes": [
+            "source_unresolved"
+          ]
+        },
+        "execution_state": "not_executed",
+        "primary_requirement_refs": [
+          "HELIXOS-L3-017-F02"
+        ]
+      },
+      "L9_expected_comparison": {
+        "id": "OS017-PROCESS-PARTS-UNKNOWN",
+        "condition": "workflow_material_unknown",
+        "phase": "resume",
+        "expected": {
+          "finding_codes": [
+            "source_unresolved"
+          ]
+        },
+        "execution_state": "not_executed",
+        "actual_observation": "not_observed",
+        "primary_requirement_refs": [
+          "HELIXOS-L3-017-F02"
+        ],
+        "candidate_ref": {
+          "path": "docs/helix-os/L4-basic-design/ticket-workflow-derivation.json",
+          "pointer": "/failure_classifications/4",
+          "class_id": "OS017-NEG-workflow-resume-source_unresolved"
+        }
+      },
+      "L4_candidate_ref": {
+        "path": "docs/helix-os/L4-basic-design/ticket-workflow-derivation.json",
+        "pointer": "/failure_classifications/4",
+        "class_id": "OS017-NEG-workflow-resume-source_unresolved"
+      },
+      "rule_path": "algorithm/3 process.parts → algorithm/2 set comparison; algorithm/4 dependent checks",
+      "preconditions_and_downstream_effects": "Unknown parts fails algorithm/4’s known-list prerequisite, so undefined_process_component and process_order_conflict are not emitted.",
+      "candidate_status": "candidate: shared algorithm/2 unknown operand; caller conditions and downstream effects separately described"
+    },
+    {
+      "case_index": 69,
+      "case_id": "OS017-L8-PROCESS-ALLOWED_EDGES-UNKNOWN",
+      "input_root": {
+        "case_pointer": "/cases/69",
+        "given_input_pointer": "/objects/d78211ee88a4b97e70a8b9885a5418076b54e7f4b231785004c1813db05d8ecd",
+        "given_input_canonical_sha256": "d78211ee88a4b97e70a8b9885a5418076b54e7f4b231785004c1813db05d8ecd"
+      },
+      "raw_leaf": {
+        "raw_object_leaf_pointer": "/objects/eb78917c7459b7c889eaa8c14db462cf5b94a1645986806fa26ea2f2f7c977dc/allowed_edges",
+        "logical_finding_pointer": "/process/allowed_edges",
+        "resolved_value": null
+      },
+      "blind_candidate": {
+        "phase": "resume",
+        "facet": "workflow",
+        "condition": "workflow_material_unknown",
+        "ordered_findings": [
+          "source_unresolved"
+        ],
+        "return_owner": "ticket-workflow-owner",
+        "finding_pointer": "/process/allowed_edges"
+      },
+      "L7_expected_comparison": {
+        "expected_pointer": "/objects/3d2680ddf23532c2094127bf350e201e521a184a76569bed2bd98a3181545272",
+        "expected_hash": "3d2680ddf23532c2094127bf350e201e521a184a76569bed2bd98a3181545272",
+        "condition": "workflow_material_unknown",
+        "phase": "resume",
+        "facet_correspondence": {
+          "ownership": "corresponding",
+          "inputs": "corresponding",
+          "ticket": "corresponding",
+          "workflow": "unknown",
+          "backflow": "corresponding",
+          "continuity": "corresponding",
+          "scope_limit": "corresponding"
+        },
+        "findings": [
+          {
+            "code": "source_unresolved",
+            "pointer": "/process/allowed_edges",
+            "return_owner": "ticket-workflow-owner"
+          }
+        ],
+        "execution_state": "not_executed"
+      },
+      "L8_expected_comparison": {
+        "id": "OS017-L8-PROCESS-ALLOWED_EDGES-UNKNOWN",
+        "condition": "workflow_material_unknown",
+        "phase": "resume",
+        "expected": {
+          "finding_codes": [
+            "source_unresolved"
+          ]
+        },
+        "execution_state": "not_executed",
+        "primary_requirement_refs": [
+          "HELIXOS-L3-017-F02"
+        ]
+      },
+      "L9_expected_comparison": {
+        "id": "OS017-PROCESS-ALLOWED_EDGES-UNKNOWN",
+        "condition": "workflow_material_unknown",
+        "phase": "resume",
+        "expected": {
+          "finding_codes": [
+            "source_unresolved"
+          ]
+        },
+        "execution_state": "not_executed",
+        "actual_observation": "not_observed",
+        "primary_requirement_refs": [
+          "HELIXOS-L3-017-F02"
+        ],
+        "candidate_ref": {
+          "path": "docs/helix-os/L4-basic-design/ticket-workflow-derivation.json",
+          "pointer": "/failure_classifications/4",
+          "class_id": "OS017-NEG-workflow-resume-source_unresolved"
+        }
+      },
+      "L4_candidate_ref": {
+        "path": "docs/helix-os/L4-basic-design/ticket-workflow-derivation.json",
+        "pointer": "/failure_classifications/4",
+        "class_id": "OS017-NEG-workflow-resume-source_unresolved"
+      },
+      "rule_path": "algorithm/3 process.allowed_edges → algorithm/2 edge comparison; algorithm/4 order check",
+      "preconditions_and_downstream_effects": "Unknown allowed_edges fails algorithm/4’s list prerequisite, so process_order_conflict is not emitted.",
+      "candidate_status": "candidate: shared algorithm/2 unknown operand; caller conditions and downstream effects separately described"
+    },
+    {
+      "case_index": 71,
+      "case_id": "OS017-L8-PROCESS-OBLIGATIONS-UNKNOWN",
+      "input_root": {
+        "case_pointer": "/cases/71",
+        "given_input_pointer": "/objects/e0e7ef8ec462492a63f3504105d511a5c96887c5ebbb35f7b24a0e72bbd6d361",
+        "given_input_canonical_sha256": "e0e7ef8ec462492a63f3504105d511a5c96887c5ebbb35f7b24a0e72bbd6d361"
+      },
+      "raw_leaf": {
+        "raw_object_leaf_pointer": "/objects/f953d3d76ca8600e1bbe519a2a100e28cbae56cedc615289680d58a9b700aec6/obligations",
+        "logical_finding_pointer": "/process/obligations",
+        "resolved_value": null
+      },
+      "blind_candidate": {
+        "phase": "resume",
+        "facet": "workflow",
+        "condition": "workflow_material_unknown",
+        "ordered_findings": [
+          "source_unresolved"
+        ],
+        "return_owner": "ticket-workflow-owner",
+        "finding_pointer": "/process/obligations"
+      },
+      "L7_expected_comparison": {
+        "expected_pointer": "/objects/3f8dc4e38e13ebe52e3ab74676c7f7a28f1ee637662d3756c0b057d992a45c8f",
+        "expected_hash": "3f8dc4e38e13ebe52e3ab74676c7f7a28f1ee637662d3756c0b057d992a45c8f",
+        "condition": "workflow_material_unknown",
+        "phase": "resume",
+        "facet_correspondence": {
+          "ownership": "corresponding",
+          "inputs": "corresponding",
+          "ticket": "corresponding",
+          "workflow": "unknown",
+          "backflow": "corresponding",
+          "continuity": "corresponding",
+          "scope_limit": "corresponding"
+        },
+        "findings": [
+          {
+            "code": "source_unresolved",
+            "pointer": "/process/obligations",
+            "return_owner": "ticket-workflow-owner"
+          }
+        ],
+        "execution_state": "not_executed"
+      },
+      "L8_expected_comparison": {
+        "id": "OS017-L8-PROCESS-OBLIGATIONS-UNKNOWN",
+        "condition": "workflow_material_unknown",
+        "phase": "resume",
+        "expected": {
+          "finding_codes": [
+            "source_unresolved"
+          ]
+        },
+        "execution_state": "not_executed",
+        "primary_requirement_refs": [
+          "HELIXOS-L3-017-F02"
+        ]
+      },
+      "L9_expected_comparison": {
+        "id": "OS017-PROCESS-OBLIGATIONS-UNKNOWN",
+        "condition": "workflow_material_unknown",
+        "phase": "resume",
+        "expected": {
+          "finding_codes": [
+            "source_unresolved"
+          ]
+        },
+        "execution_state": "not_executed",
+        "actual_observation": "not_observed",
+        "primary_requirement_refs": [
+          "HELIXOS-L3-017-F02"
+        ],
+        "candidate_ref": {
+          "path": "docs/helix-os/L4-basic-design/ticket-workflow-derivation.json",
+          "pointer": "/failure_classifications/4",
+          "class_id": "OS017-NEG-workflow-resume-source_unresolved"
+        }
+      },
+      "L4_candidate_ref": {
+        "path": "docs/helix-os/L4-basic-design/ticket-workflow-derivation.json",
+        "pointer": "/failure_classifications/4",
+        "class_id": "OS017-NEG-workflow-resume-source_unresolved"
+      },
+      "rule_path": "algorithm/3 process.obligations → algorithm/2 obligations comparison; algorithm/4 obligation check",
+      "preconditions_and_downstream_effects": "Unknown obligations fails algorithm/4’s known-obligation-list prerequisite, so process_obligation_missing is not emitted.",
+      "candidate_status": "candidate: shared algorithm/2 unknown operand; caller conditions and downstream effects separately described"
+    },
+    {
+      "case_index": 73,
+      "case_id": "OS017-L8-PROCESS-BACKFLOW_REF-UNKNOWN",
+      "input_root": {
+        "case_pointer": "/cases/73",
+        "given_input_pointer": "/objects/6097da96c5bb54bfd765144e4951d2928eabd6b64056396645d8c7e0b7704554",
+        "given_input_canonical_sha256": "6097da96c5bb54bfd765144e4951d2928eabd6b64056396645d8c7e0b7704554"
+      },
+      "raw_leaf": {
+        "raw_object_leaf_pointer": "/objects/8ecbb004122a8fc01dc17be9be708dba5dd93eb9d32de13992b2e8dbcdf0ce79/backflow_ref",
+        "logical_finding_pointer": "/process/backflow_ref",
+        "resolved_value": null
+      },
+      "blind_candidate": {
+        "phase": "resume",
+        "facet": "workflow",
+        "condition": "workflow_material_unknown",
+        "ordered_findings": [
+          "source_unresolved"
+        ],
+        "return_owner": "ticket-workflow-owner",
+        "finding_pointer": "/process/backflow_ref"
+      },
+      "L7_expected_comparison": {
+        "expected_pointer": "/objects/f8c78a18dd3978f0e665e034fe06c385dd80b0c9aff3afd9fa9e0831f9a65d8a",
+        "expected_hash": "f8c78a18dd3978f0e665e034fe06c385dd80b0c9aff3afd9fa9e0831f9a65d8a",
+        "condition": "workflow_material_unknown",
+        "phase": "resume",
+        "facet_correspondence": {
+          "ownership": "corresponding",
+          "inputs": "corresponding",
+          "ticket": "corresponding",
+          "workflow": "unknown",
+          "backflow": "corresponding",
+          "continuity": "corresponding",
+          "scope_limit": "corresponding"
+        },
+        "findings": [
+          {
+            "code": "source_unresolved",
+            "pointer": "/process/backflow_ref",
+            "return_owner": "ticket-workflow-owner"
+          }
+        ],
+        "execution_state": "not_executed"
+      },
+      "L8_expected_comparison": {
+        "id": "OS017-L8-PROCESS-BACKFLOW_REF-UNKNOWN",
+        "condition": "workflow_material_unknown",
+        "phase": "resume",
+        "expected": {
+          "finding_codes": [
+            "source_unresolved"
+          ]
+        },
+        "execution_state": "not_executed",
+        "primary_requirement_refs": [
+          "HELIXOS-L3-017-F02"
+        ]
+      },
+      "L9_expected_comparison": {
+        "id": "OS017-PROCESS-BACKFLOW_REF-UNKNOWN",
+        "condition": "workflow_material_unknown",
+        "phase": "resume",
+        "expected": {
+          "finding_codes": [
+            "source_unresolved"
+          ]
+        },
+        "execution_state": "not_executed",
+        "actual_observation": "not_observed",
+        "primary_requirement_refs": [
+          "HELIXOS-L3-017-F02"
+        ],
+        "candidate_ref": {
+          "path": "docs/helix-os/L4-basic-design/ticket-workflow-derivation.json",
+          "pointer": "/failure_classifications/4",
+          "class_id": "OS017-NEG-workflow-resume-source_unresolved"
+        }
+      },
+      "L4_candidate_ref": {
+        "path": "docs/helix-os/L4-basic-design/ticket-workflow-derivation.json",
+        "pointer": "/failure_classifications/4",
+        "class_id": "OS017-NEG-workflow-resume-source_unresolved"
+      },
+      "rule_path": "L4 algorithm/3 process.backflow_ref → algorithm/2 string comparison; algorithm/8 separately compares intermediate.backflow_ref to context.process.backflow_ref",
+      "preconditions_and_downstream_effects": "process records are available as dicts; the actual process.backflow_ref operand is null and yields the sole source_unresolved at /process/backflow_ref. algorithm/8 reads intermediate.backflow_ref and context.process.backflow_ref (both BACKFLOW-A), and does not read the actual process.backflow_ref. Therefore algorithm/8 produces no unknown finding here and no finding dedup occurs across algorithm/3 and algorithm/8.",
+      "candidate_status": "candidate: shared algorithm/2 unknown operand; caller conditions and downstream effects separately described",
+      "cross_rule_pointer_audit": {
+        "actual_process_backflow_ref": {
+          "pointer": "/objects/8ecbb004122a8fc01dc17be9be708dba5dd93eb9d32de13992b2e8dbcdf0ce79/backflow_ref",
+          "value": null
+        },
+        "context_process_backflow_ref": {
+          "pointer": "/objects/58dad1533668ea6953eab50bb361936c081d497fe180fe0a5cb56a136a26528f/backflow_ref",
+          "value": "BACKFLOW-A"
+        },
+        "intermediate_backflow_ref": {
+          "pointer": "/objects/1cc048cd2422dc0bb8cf1b49b4c3e17296ab3b43942d299d11ee267eab5f3e05/backflow_ref",
+          "value": "BACKFLOW-A"
+        },
+        "algorithm8_reads": [
+          "intermediate_backflow_ref",
+          "context.process.backflow_ref"
+        ],
+        "algorithm8_reads_actual_process_backflow_ref": false,
+        "dedup_between_algorithm3_and_algorithm8": false
+      }
+    },
+    {
+      "case_index": 108,
+      "case_id": "OS017-L8-EXPECTED-DEPENDENCY-STATE-UNKNOWN",
+      "input_root": {
+        "case_pointer": "/cases/108",
+        "given_input_pointer": "/objects/28abf47705771882ddfe6ceb4fa54dd9d697186c6a43c6bb0d3355339214d289",
+        "given_input_canonical_sha256": "28abf47705771882ddfe6ceb4fa54dd9d697186c6a43c6bb0d3355339214d289"
+      },
+      "raw_leaf": {
+        "raw_object_leaf_pointer": "/objects/e3f4f026e83e5304a4b37a975a182895526ed3d85b49d9426c6e3ccd50375e32/state",
+        "logical_finding_pointer": "/context/dependency/state",
+        "resolved_value": null
+      },
+      "blind_candidate": {
+        "phase": "resume",
+        "facet": "workflow",
+        "condition": "workflow_material_unknown",
+        "ordered_findings": [
+          "source_unresolved"
+        ],
+        "return_owner": "ticket-workflow-owner",
+        "finding_pointer": "/context/dependency/state"
+      },
+      "L7_expected_comparison": {
+        "expected_pointer": "/objects/852f7ad7e3946a4fc1ccacfcdd4b1c531174adb93993637878c67d9fb1e68313",
+        "expected_hash": "852f7ad7e3946a4fc1ccacfcdd4b1c531174adb93993637878c67d9fb1e68313",
+        "condition": "workflow_material_unknown",
+        "phase": "resume",
+        "facet_correspondence": {
+          "ownership": "corresponding",
+          "inputs": "corresponding",
+          "ticket": "corresponding",
+          "workflow": "unknown",
+          "backflow": "corresponding",
+          "continuity": "corresponding",
+          "scope_limit": "corresponding"
+        },
+        "findings": [
+          {
+            "code": "source_unresolved",
+            "pointer": "/context/dependency/state",
+            "return_owner": "ticket-workflow-owner"
+          }
+        ],
+        "execution_state": "not_executed"
+      },
+      "L8_expected_comparison": {
+        "id": "OS017-L8-EXPECTED-DEPENDENCY-STATE-UNKNOWN",
+        "condition": "workflow_material_unknown",
+        "phase": "resume",
+        "expected": {
+          "finding_codes": [
+            "source_unresolved"
+          ]
+        },
+        "execution_state": "not_executed",
+        "primary_requirement_refs": [
+          "HELIXOS-L3-017-F02"
+        ]
+      },
+      "L9_expected_comparison": {
+        "id": "OS017-EXPECTED-DEPENDENCY-STATE-UNKNOWN",
+        "condition": "workflow_material_unknown",
+        "phase": "resume",
+        "expected": {
+          "finding_codes": [
+            "source_unresolved"
+          ]
+        },
+        "execution_state": "not_executed",
+        "actual_observation": "not_observed",
+        "primary_requirement_refs": [
+          "HELIXOS-L3-017-F02"
+        ],
+        "candidate_ref": null
+      },
+      "L4_candidate_ref": null,
+      "rule_path": "algorithm/6 dependency.state closed-set validation",
+      "preconditions_and_downstream_effects": "Dedicated finite state vocabulary and follow-on dependency_not_resolved/dependency_unresolved effects differ from generic algorithm/2 comparison. Retained as residual; no L4/L9 class candidate ref.",
+      "candidate_status": "residual: algorithm-specific selector/state rule; no shared-class ref"
+    },
+    {
+      "case_index": 109,
+      "case_id": "OS017-L8-EXPECTED-DEPENDENCY-SOURCE_REF-UNKNOWN",
+      "input_root": {
+        "case_pointer": "/cases/109",
+        "given_input_pointer": "/objects/b4306d8fc5ba775a5ea0bd7caf70c5d84d5231d7f60987e0aa89bb2a3d4ee909",
+        "given_input_canonical_sha256": "b4306d8fc5ba775a5ea0bd7caf70c5d84d5231d7f60987e0aa89bb2a3d4ee909"
+      },
+      "raw_leaf": {
+        "raw_object_leaf_pointer": "/objects/bb259d855766b3a10b8a60aeff69bea81260c7f8a7eea59be6598ac63ec5a865/source_ref",
+        "logical_finding_pointer": "/context/dependency/source_ref",
+        "resolved_value": null
+      },
+      "blind_candidate": {
+        "phase": "resume",
+        "facet": "workflow",
+        "condition": "workflow_material_unknown",
+        "ordered_findings": [
+          "source_unresolved"
+        ],
+        "return_owner": "ticket-workflow-owner",
+        "finding_pointer": "/context/dependency/source_ref"
+      },
+      "L7_expected_comparison": {
+        "expected_pointer": "/objects/8f6a18509407ce7758ffcbbb1a64ccd4619f5917e8e41dd1583ef246f1a82f8e",
+        "expected_hash": "8f6a18509407ce7758ffcbbb1a64ccd4619f5917e8e41dd1583ef246f1a82f8e",
+        "condition": "workflow_material_unknown",
+        "phase": "resume",
+        "facet_correspondence": {
+          "ownership": "corresponding",
+          "inputs": "corresponding",
+          "ticket": "corresponding",
+          "workflow": "unknown",
+          "backflow": "corresponding",
+          "continuity": "corresponding",
+          "scope_limit": "corresponding"
+        },
+        "findings": [
+          {
+            "code": "source_unresolved",
+            "pointer": "/context/dependency/source_ref",
+            "return_owner": "ticket-workflow-owner"
+          }
+        ],
+        "execution_state": "not_executed"
+      },
+      "L8_expected_comparison": {
+        "id": "OS017-L8-EXPECTED-DEPENDENCY-SOURCE_REF-UNKNOWN",
+        "condition": "workflow_material_unknown",
+        "phase": "resume",
+        "expected": {
+          "finding_codes": [
+            "source_unresolved"
+          ]
+        },
+        "execution_state": "not_executed",
+        "primary_requirement_refs": [
+          "HELIXOS-L3-017-F02"
+        ]
+      },
+      "L9_expected_comparison": {
+        "id": "OS017-EXPECTED-DEPENDENCY-SOURCE_REF-UNKNOWN",
+        "condition": "workflow_material_unknown",
+        "phase": "resume",
+        "expected": {
+          "finding_codes": [
+            "source_unresolved"
+          ]
+        },
+        "execution_state": "not_executed",
+        "actual_observation": "not_observed",
+        "primary_requirement_refs": [
+          "HELIXOS-L3-017-F02"
+        ],
+        "candidate_ref": {
+          "path": "docs/helix-os/L4-basic-design/ticket-workflow-derivation.json",
+          "pointer": "/failure_classifications/4",
+          "class_id": "OS017-NEG-workflow-resume-source_unresolved"
+        }
+      },
+      "L4_candidate_ref": {
+        "path": "docs/helix-os/L4-basic-design/ticket-workflow-derivation.json",
+        "pointer": "/failure_classifications/4",
+        "class_id": "OS017-NEG-workflow-resume-source_unresolved"
+      },
+      "rule_path": "algorithm/6 context dependency.source_ref → algorithm/2 string comparison",
+      "preconditions_and_downstream_effects": "The context operand is unknown while its counterpart is known. dependency.state is known/closed, so state follow-on effects do not fire.",
+      "candidate_status": "candidate: shared algorithm/2 unknown operand; caller conditions and downstream effects separately described"
+    },
+    {
+      "case_index": 110,
+      "case_id": "OS017-L8-EXPECTED-DEPENDENCY-REQUIREMENT_REVISION-UNKNOWN",
+      "input_root": {
+        "case_pointer": "/cases/110",
+        "given_input_pointer": "/objects/8a729c8ed4f5d2f632a3f7588821bb476941e719b152184d726af997c48092e4",
+        "given_input_canonical_sha256": "8a729c8ed4f5d2f632a3f7588821bb476941e719b152184d726af997c48092e4"
+      },
+      "raw_leaf": {
+        "raw_object_leaf_pointer": "/objects/4d0b9f95142c0162efc200531f58fef3c1ad089192735c2dd7b13a25a720e614/requirement_revision",
+        "logical_finding_pointer": "/context/dependency/requirement_revision",
+        "resolved_value": null
+      },
+      "blind_candidate": {
+        "phase": "resume",
+        "facet": "workflow",
+        "condition": "workflow_material_unknown",
+        "ordered_findings": [
+          "source_unresolved"
+        ],
+        "return_owner": "ticket-workflow-owner",
+        "finding_pointer": "/context/dependency/requirement_revision"
+      },
+      "L7_expected_comparison": {
+        "expected_pointer": "/objects/6098405da2b9522c441be6124e76886330ca1370e42d649fea8497cf39c25c7b",
+        "expected_hash": "6098405da2b9522c441be6124e76886330ca1370e42d649fea8497cf39c25c7b",
+        "condition": "workflow_material_unknown",
+        "phase": "resume",
+        "facet_correspondence": {
+          "ownership": "corresponding",
+          "inputs": "corresponding",
+          "ticket": "corresponding",
+          "workflow": "unknown",
+          "backflow": "corresponding",
+          "continuity": "corresponding",
+          "scope_limit": "corresponding"
+        },
+        "findings": [
+          {
+            "code": "source_unresolved",
+            "pointer": "/context/dependency/requirement_revision",
+            "return_owner": "ticket-workflow-owner"
+          }
+        ],
+        "execution_state": "not_executed"
+      },
+      "L8_expected_comparison": {
+        "id": "OS017-L8-EXPECTED-DEPENDENCY-REQUIREMENT_REVISION-UNKNOWN",
+        "condition": "workflow_material_unknown",
+        "phase": "resume",
+        "expected": {
+          "finding_codes": [
+            "source_unresolved"
+          ]
+        },
+        "execution_state": "not_executed",
+        "primary_requirement_refs": [
+          "HELIXOS-L3-017-F02"
+        ]
+      },
+      "L9_expected_comparison": {
+        "id": "OS017-EXPECTED-DEPENDENCY-REQUIREMENT_REVISION-UNKNOWN",
+        "condition": "workflow_material_unknown",
+        "phase": "resume",
+        "expected": {
+          "finding_codes": [
+            "source_unresolved"
+          ]
+        },
+        "execution_state": "not_executed",
+        "actual_observation": "not_observed",
+        "primary_requirement_refs": [
+          "HELIXOS-L3-017-F02"
+        ],
+        "candidate_ref": {
+          "path": "docs/helix-os/L4-basic-design/ticket-workflow-derivation.json",
+          "pointer": "/failure_classifications/4",
+          "class_id": "OS017-NEG-workflow-resume-source_unresolved"
+        }
+      },
+      "L4_candidate_ref": {
+        "path": "docs/helix-os/L4-basic-design/ticket-workflow-derivation.json",
+        "pointer": "/failure_classifications/4",
+        "class_id": "OS017-NEG-workflow-resume-source_unresolved"
+      },
+      "rule_path": "algorithm/6 context dependency.requirement_revision → algorithm/2 string comparison; algorithm/0 independently overlays the provided actual dependency revision",
+      "preconditions_and_downstream_effects": "The context operand is null and the actual dependency revision is known. algorithm/0 reads the actual provided revision, not the null context operand; it does not repeat this unknown finding or deduplicate it. The missing context field belongs to a workflow-table comparison; algorithm/0 separately reads the known actual field and matching known context.binding value. It creates no second missing-field finding; no algorithm/0 dedup occurs.",
+      "candidate_status": "candidate: shared algorithm/2 unknown operand; caller conditions and downstream effects separately described",
+      "algorithm0_binding_overlay": {
+        "l4_rule_pointer": "/diagnostic_contract/algorithm/0",
+        "actual_operand": {
+          "pointer": "/objects/8de3b6e0628759f73bed6dcab0239b5eee6e4c6f3ff9d85e2c4731a249ed4972/requirement_revision",
+          "value": "SYNTHETIC-REQUIREMENT_REVISION"
+        },
+        "context_operand": {
+          "pointer": "/objects/4d0b9f95142c0162efc200531f58fef3c1ad089192735c2dd7b13a25a720e614/requirement_revision",
+          "value": null
+        },
+        "context_binding_operand": {
+          "pointer": "/objects/3067a4f2dd8a085db4b59cdda7e6d9e8aaa9d413dc63e33087048d828a61911f/requirement_revision",
+          "value": "SYNTHETIC-REQUIREMENT_REVISION"
+        },
+        "actual_unknown_operand_is_reused": false,
+        "same_pointer_dedup_effect": "no repeat: algorithm/0 reads the separate known actual field and known binding; it does not read the null context operand",
+        "facet_effect": "comparison_table assigns the workflow field to workflow facet. The binding side is known and algorithm/0 does not create a separate missing binding pointer or inputs facet; post-freeze expected comparison has only workflow unknown and other facets corresponding."
+      }
+    },
+    {
+      "case_index": 111,
+      "case_id": "OS017-L8-EXPECTED-DEPENDENCY-SCOPE-UNKNOWN",
+      "input_root": {
+        "case_pointer": "/cases/111",
+        "given_input_pointer": "/objects/a497958135e2c87c3a5ac944ae8b0bbee2ab126a392a4050f00ff15bc316b1a4",
+        "given_input_canonical_sha256": "a497958135e2c87c3a5ac944ae8b0bbee2ab126a392a4050f00ff15bc316b1a4"
+      },
+      "raw_leaf": {
+        "raw_object_leaf_pointer": "/objects/30aeb63c0363ab75d587ed28dbda3ddf92348e1c6d160bf502eb5180bcf47dd9/scope",
+        "logical_finding_pointer": "/context/dependency/scope",
+        "resolved_value": null
+      },
+      "blind_candidate": {
+        "phase": "resume",
+        "facet": "workflow",
+        "condition": "workflow_material_unknown",
+        "ordered_findings": [
+          "source_unresolved"
+        ],
+        "return_owner": "ticket-workflow-owner",
+        "finding_pointer": "/context/dependency/scope"
+      },
+      "L7_expected_comparison": {
+        "expected_pointer": "/objects/9196cff8c813061180fd2316641a385de7e566b77690d6d6ff2959b1454bab56",
+        "expected_hash": "9196cff8c813061180fd2316641a385de7e566b77690d6d6ff2959b1454bab56",
+        "condition": "workflow_material_unknown",
+        "phase": "resume",
+        "facet_correspondence": {
+          "ownership": "corresponding",
+          "inputs": "corresponding",
+          "ticket": "corresponding",
+          "workflow": "unknown",
+          "backflow": "corresponding",
+          "continuity": "corresponding",
+          "scope_limit": "corresponding"
+        },
+        "findings": [
+          {
+            "code": "source_unresolved",
+            "pointer": "/context/dependency/scope",
+            "return_owner": "ticket-workflow-owner"
+          }
+        ],
+        "execution_state": "not_executed"
+      },
+      "L8_expected_comparison": {
+        "id": "OS017-L8-EXPECTED-DEPENDENCY-SCOPE-UNKNOWN",
+        "condition": "workflow_material_unknown",
+        "phase": "resume",
+        "expected": {
+          "finding_codes": [
+            "source_unresolved"
+          ]
+        },
+        "execution_state": "not_executed",
+        "primary_requirement_refs": [
+          "HELIXOS-L3-017-F02"
+        ]
+      },
+      "L9_expected_comparison": {
+        "id": "OS017-EXPECTED-DEPENDENCY-SCOPE-UNKNOWN",
+        "condition": "workflow_material_unknown",
+        "phase": "resume",
+        "expected": {
+          "finding_codes": [
+            "source_unresolved"
+          ]
+        },
+        "execution_state": "not_executed",
+        "actual_observation": "not_observed",
+        "primary_requirement_refs": [
+          "HELIXOS-L3-017-F02"
+        ],
+        "candidate_ref": {
+          "path": "docs/helix-os/L4-basic-design/ticket-workflow-derivation.json",
+          "pointer": "/failure_classifications/4",
+          "class_id": "OS017-NEG-workflow-resume-source_unresolved"
+        }
+      },
+      "L4_candidate_ref": {
+        "path": "docs/helix-os/L4-basic-design/ticket-workflow-derivation.json",
+        "pointer": "/failure_classifications/4",
+        "class_id": "OS017-NEG-workflow-resume-source_unresolved"
+      },
+      "rule_path": "algorithm/6 context dependency.scope → algorithm/2 string comparison; algorithm/0 independently overlays the provided actual dependency scope",
+      "preconditions_and_downstream_effects": "The context operand is null and the actual dependency scope is known. algorithm/0 reads the actual provided scope, not the null context operand; it does not repeat this unknown finding or deduplicate it. The missing context field belongs to a workflow-table comparison; algorithm/0 separately reads the known actual field and matching known context.binding value. It creates no second missing-field finding; no algorithm/0 dedup occurs.",
+      "candidate_status": "candidate: shared algorithm/2 unknown operand; caller conditions and downstream effects separately described",
+      "algorithm0_binding_overlay": {
+        "l4_rule_pointer": "/diagnostic_contract/algorithm/0",
+        "actual_operand": {
+          "pointer": "/objects/8de3b6e0628759f73bed6dcab0239b5eee6e4c6f3ff9d85e2c4731a249ed4972/scope",
+          "value": "SYNTHETIC-SCOPE"
+        },
+        "context_operand": {
+          "pointer": "/objects/30aeb63c0363ab75d587ed28dbda3ddf92348e1c6d160bf502eb5180bcf47dd9/scope",
+          "value": null
+        },
+        "context_binding_operand": {
+          "pointer": "/objects/3067a4f2dd8a085db4b59cdda7e6d9e8aaa9d413dc63e33087048d828a61911f/scope",
+          "value": "SYNTHETIC-SCOPE"
+        },
+        "actual_unknown_operand_is_reused": false,
+        "same_pointer_dedup_effect": "no repeat: algorithm/0 reads the separate known actual field and known binding; it does not read the null context operand",
+        "facet_effect": "comparison_table assigns the workflow field to workflow facet. The binding side is known and algorithm/0 does not create a separate missing binding pointer or inputs facet; post-freeze expected comparison has only workflow unknown and other facets corresponding."
+      }
+    },
+    {
+      "case_index": 112,
+      "case_id": "OS017-L8-PROPOSAL-SOURCE_REF-UNKNOWN",
+      "input_root": {
+        "case_pointer": "/cases/112",
+        "given_input_pointer": "/objects/33ee151df263fa48d7a30af052444d8b5aa934174ec3b2263499360f160ea32f",
+        "given_input_canonical_sha256": "33ee151df263fa48d7a30af052444d8b5aa934174ec3b2263499360f160ea32f"
+      },
+      "raw_leaf": {
+        "raw_object_leaf_pointer": "/objects/3d087801baef410d56b20718f637498068936828c95e01ac5ecff681408a1dc6/source_ref",
+        "logical_finding_pointer": "/proposal/source_ref",
+        "resolved_value": null
+      },
+      "blind_candidate": {
+        "phase": "resume",
+        "facet": "workflow",
+        "condition": "workflow_material_unknown",
+        "ordered_findings": [
+          "source_unresolved"
+        ],
+        "return_owner": "ticket-workflow-owner",
+        "finding_pointer": "/proposal/source_ref"
+      },
+      "L7_expected_comparison": {
+        "expected_pointer": "/objects/9dd91136152b1eaeb2c917575d3e799cd524bacc0c906bc08675d7586db82d3d",
+        "expected_hash": "9dd91136152b1eaeb2c917575d3e799cd524bacc0c906bc08675d7586db82d3d",
+        "condition": "workflow_material_unknown",
+        "phase": "resume",
+        "facet_correspondence": {
+          "ownership": "corresponding",
+          "inputs": "corresponding",
+          "ticket": "corresponding",
+          "workflow": "unknown",
+          "backflow": "corresponding",
+          "continuity": "corresponding",
+          "scope_limit": "corresponding"
+        },
+        "findings": [
+          {
+            "code": "source_unresolved",
+            "pointer": "/proposal/source_ref",
+            "return_owner": "ticket-workflow-owner"
+          }
+        ],
+        "execution_state": "not_executed"
+      },
+      "L8_expected_comparison": {
+        "id": "OS017-L8-PROPOSAL-SOURCE_REF-UNKNOWN",
+        "condition": "workflow_material_unknown",
+        "phase": "resume",
+        "expected": {
+          "finding_codes": [
+            "source_unresolved"
+          ]
+        },
+        "execution_state": "not_executed",
+        "primary_requirement_refs": [
+          "HELIXOS-L3-017-F02"
+        ]
+      },
+      "L9_expected_comparison": {
+        "id": "OS017-PROPOSAL-SOURCE_REF-UNKNOWN",
+        "condition": "workflow_material_unknown",
+        "phase": "resume",
+        "expected": {
+          "finding_codes": [
+            "source_unresolved"
+          ]
+        },
+        "execution_state": "not_executed",
+        "actual_observation": "not_observed",
+        "primary_requirement_refs": [
+          "HELIXOS-L3-017-F02"
+        ],
+        "candidate_ref": {
+          "path": "docs/helix-os/L4-basic-design/ticket-workflow-derivation.json",
+          "pointer": "/failure_classifications/4",
+          "class_id": "OS017-NEG-workflow-resume-source_unresolved"
+        }
+      },
+      "L4_candidate_ref": {
+        "path": "docs/helix-os/L4-basic-design/ticket-workflow-derivation.json",
+        "pointer": "/failure_classifications/4",
+        "class_id": "OS017-NEG-workflow-resume-source_unresolved"
+      },
+      "rule_path": "algorithm/3 proposal record → algorithm/2 string comparison",
+      "preconditions_and_downstream_effects": "Prerequisite: proposal_selected is boolean true on both sides, and both proposal records are dicts. No selector or record-shape diagnostic fires.",
+      "candidate_status": "candidate: shared algorithm/2 unknown operand; caller conditions and downstream effects separately described"
+    },
+    {
+      "case_index": 113,
+      "case_id": "OS017-L8-PROPOSAL-REQUIREMENT_REVISION-UNKNOWN",
+      "input_root": {
+        "case_pointer": "/cases/113",
+        "given_input_pointer": "/objects/f612dfc68bacc1b02b092cf99c8aa5929722fb02481c0b1b61afaca3ad9b370b",
+        "given_input_canonical_sha256": "f612dfc68bacc1b02b092cf99c8aa5929722fb02481c0b1b61afaca3ad9b370b"
+      },
+      "raw_leaf": {
+        "raw_object_leaf_pointer": "/objects/492af1f9cbec9d026d16c964abb1ec5cd4b24f10750187ea42ebdbed3fa1d793/requirement_revision",
+        "logical_finding_pointer": "/proposal/requirement_revision",
+        "resolved_value": null
+      },
+      "blind_candidate": {
+        "phase": "resume",
+        "facet": "workflow",
+        "condition": "workflow_material_unknown",
+        "ordered_findings": [
+          "source_unresolved"
+        ],
+        "return_owner": "ticket-workflow-owner",
+        "finding_pointer": "/proposal/requirement_revision"
+      },
+      "L7_expected_comparison": {
+        "expected_pointer": "/objects/8d8a9a7f28c40888a12464ec9392d6c15241ab2d711330da791eb45538fb3584",
+        "expected_hash": "8d8a9a7f28c40888a12464ec9392d6c15241ab2d711330da791eb45538fb3584",
+        "condition": "workflow_material_unknown",
+        "phase": "resume",
+        "facet_correspondence": {
+          "ownership": "corresponding",
+          "inputs": "corresponding",
+          "ticket": "corresponding",
+          "workflow": "unknown",
+          "backflow": "corresponding",
+          "continuity": "corresponding",
+          "scope_limit": "corresponding"
+        },
+        "findings": [
+          {
+            "code": "source_unresolved",
+            "pointer": "/proposal/requirement_revision",
+            "return_owner": "ticket-workflow-owner"
+          }
+        ],
+        "execution_state": "not_executed"
+      },
+      "L8_expected_comparison": {
+        "id": "OS017-L8-PROPOSAL-REQUIREMENT_REVISION-UNKNOWN",
+        "condition": "workflow_material_unknown",
+        "phase": "resume",
+        "expected": {
+          "finding_codes": [
+            "source_unresolved"
+          ]
+        },
+        "execution_state": "not_executed",
+        "primary_requirement_refs": [
+          "HELIXOS-L3-017-F02"
+        ]
+      },
+      "L9_expected_comparison": {
+        "id": "OS017-PROPOSAL-REQUIREMENT_REVISION-UNKNOWN",
+        "condition": "workflow_material_unknown",
+        "phase": "resume",
+        "expected": {
+          "finding_codes": [
+            "source_unresolved"
+          ]
+        },
+        "execution_state": "not_executed",
+        "actual_observation": "not_observed",
+        "primary_requirement_refs": [
+          "HELIXOS-L3-017-F02"
+        ],
+        "candidate_ref": {
+          "path": "docs/helix-os/L4-basic-design/ticket-workflow-derivation.json",
+          "pointer": "/failure_classifications/4",
+          "class_id": "OS017-NEG-workflow-resume-source_unresolved"
+        }
+      },
+      "L4_candidate_ref": {
+        "path": "docs/helix-os/L4-basic-design/ticket-workflow-derivation.json",
+        "pointer": "/failure_classifications/4",
+        "class_id": "OS017-NEG-workflow-resume-source_unresolved"
+      },
+      "rule_path": "algorithm/3 proposal.requirement_revision → algorithm/2 string comparison; algorithm/0 binding overlay",
+      "preconditions_and_downstream_effects": "Proposal is selected and both records are dicts. Field is also compared to context.binding; same logical pointer unknown findings deduplicate. The same null actual field is also the algorithm/0 overlay operand; context.binding is known. Both comparisons point at the same workflow-owned field, so dedup leaves one finding and does not add an inputs facet.",
+      "candidate_status": "candidate: shared algorithm/2 unknown operand; caller conditions and downstream effects separately described",
+      "algorithm0_binding_overlay": {
+        "l4_rule_pointer": "/diagnostic_contract/algorithm/0",
+        "actual_operand": {
+          "pointer": "/objects/492af1f9cbec9d026d16c964abb1ec5cd4b24f10750187ea42ebdbed3fa1d793/requirement_revision",
+          "value": null
+        },
+        "context_operand": {
+          "pointer": "/objects/8e0680ed2315d4367019576e3852b5d839b4b9ee61f1dae4e11ce1ecf5950b36/requirement_revision",
+          "value": "SYNTHETIC-REQUIREMENT_REVISION"
+        },
+        "context_binding_operand": {
+          "pointer": "/objects/3067a4f2dd8a085db4b59cdda7e6d9e8aaa9d413dc63e33087048d828a61911f/requirement_revision",
+          "value": "SYNTHETIC-REQUIREMENT_REVISION"
+        },
+        "actual_unknown_operand_is_reused": true,
+        "same_pointer_dedup_effect": "algorithm/2 and algorithm/0 observe the same missing actual pointer and collapse to one (source_unresolved,pointer,ticket-workflow-owner)",
+        "facet_effect": "comparison_table assigns the workflow field to workflow facet. The binding side is known and algorithm/0 does not create a separate missing binding pointer or inputs facet; post-freeze expected comparison has only workflow unknown and other facets corresponding."
+      }
+    },
+    {
+      "case_index": 114,
+      "case_id": "OS017-L8-PROPOSAL-SCOPE-UNKNOWN",
+      "input_root": {
+        "case_pointer": "/cases/114",
+        "given_input_pointer": "/objects/f45693442c91075e17ad0e4935473cb48f2c51d74269fedf483604aadbc69e4b",
+        "given_input_canonical_sha256": "f45693442c91075e17ad0e4935473cb48f2c51d74269fedf483604aadbc69e4b"
+      },
+      "raw_leaf": {
+        "raw_object_leaf_pointer": "/objects/3ecb6705663a99d061b31f60f0aaf5c99364ab3e240bfc5ac9ce8e0a07413a91/scope",
+        "logical_finding_pointer": "/proposal/scope",
+        "resolved_value": null
+      },
+      "blind_candidate": {
+        "phase": "resume",
+        "facet": "workflow",
+        "condition": "workflow_material_unknown",
+        "ordered_findings": [
+          "source_unresolved"
+        ],
+        "return_owner": "ticket-workflow-owner",
+        "finding_pointer": "/proposal/scope"
+      },
+      "L7_expected_comparison": {
+        "expected_pointer": "/objects/fb8768b7befde9652bb2c9a4af3f074f02d8e1b45b12cf4049ecec36de185cf5",
+        "expected_hash": "fb8768b7befde9652bb2c9a4af3f074f02d8e1b45b12cf4049ecec36de185cf5",
+        "condition": "workflow_material_unknown",
+        "phase": "resume",
+        "facet_correspondence": {
+          "ownership": "corresponding",
+          "inputs": "corresponding",
+          "ticket": "corresponding",
+          "workflow": "unknown",
+          "backflow": "corresponding",
+          "continuity": "corresponding",
+          "scope_limit": "corresponding"
+        },
+        "findings": [
+          {
+            "code": "source_unresolved",
+            "pointer": "/proposal/scope",
+            "return_owner": "ticket-workflow-owner"
+          }
+        ],
+        "execution_state": "not_executed"
+      },
+      "L8_expected_comparison": {
+        "id": "OS017-L8-PROPOSAL-SCOPE-UNKNOWN",
+        "condition": "workflow_material_unknown",
+        "phase": "resume",
+        "expected": {
+          "finding_codes": [
+            "source_unresolved"
+          ]
+        },
+        "execution_state": "not_executed",
+        "primary_requirement_refs": [
+          "HELIXOS-L3-017-F02"
+        ]
+      },
+      "L9_expected_comparison": {
+        "id": "OS017-PROPOSAL-SCOPE-UNKNOWN",
+        "condition": "workflow_material_unknown",
+        "phase": "resume",
+        "expected": {
+          "finding_codes": [
+            "source_unresolved"
+          ]
+        },
+        "execution_state": "not_executed",
+        "actual_observation": "not_observed",
+        "primary_requirement_refs": [
+          "HELIXOS-L3-017-F02"
+        ],
+        "candidate_ref": {
+          "path": "docs/helix-os/L4-basic-design/ticket-workflow-derivation.json",
+          "pointer": "/failure_classifications/4",
+          "class_id": "OS017-NEG-workflow-resume-source_unresolved"
+        }
+      },
+      "L4_candidate_ref": {
+        "path": "docs/helix-os/L4-basic-design/ticket-workflow-derivation.json",
+        "pointer": "/failure_classifications/4",
+        "class_id": "OS017-NEG-workflow-resume-source_unresolved"
+      },
+      "rule_path": "algorithm/3 proposal.scope → algorithm/2 string comparison; algorithm/0 binding overlay",
+      "preconditions_and_downstream_effects": "Proposal is selected and both records are dicts. Field is also compared to context.binding; same logical pointer unknown findings deduplicate. The same null actual field is also the algorithm/0 overlay operand; context.binding is known. Both comparisons point at the same workflow-owned field, so dedup leaves one finding and does not add an inputs facet.",
+      "candidate_status": "candidate: shared algorithm/2 unknown operand; caller conditions and downstream effects separately described",
+      "algorithm0_binding_overlay": {
+        "l4_rule_pointer": "/diagnostic_contract/algorithm/0",
+        "actual_operand": {
+          "pointer": "/objects/3ecb6705663a99d061b31f60f0aaf5c99364ab3e240bfc5ac9ce8e0a07413a91/scope",
+          "value": null
+        },
+        "context_operand": {
+          "pointer": "/objects/8e0680ed2315d4367019576e3852b5d839b4b9ee61f1dae4e11ce1ecf5950b36/scope",
+          "value": "SYNTHETIC-SCOPE"
+        },
+        "context_binding_operand": {
+          "pointer": "/objects/3067a4f2dd8a085db4b59cdda7e6d9e8aaa9d413dc63e33087048d828a61911f/scope",
+          "value": "SYNTHETIC-SCOPE"
+        },
+        "actual_unknown_operand_is_reused": true,
+        "same_pointer_dedup_effect": "algorithm/2 and algorithm/0 observe the same missing actual pointer and collapse to one (source_unresolved,pointer,ticket-workflow-owner)",
+        "facet_effect": "comparison_table assigns the workflow field to workflow facet. The binding side is known and algorithm/0 does not create a separate missing binding pointer or inputs facet; post-freeze expected comparison has only workflow unknown and other facets corresponding."
+      }
+    },
+    {
+      "case_index": 115,
+      "case_id": "OS017-L8-PROPOSAL-REASON_REF-UNKNOWN",
+      "input_root": {
+        "case_pointer": "/cases/115",
+        "given_input_pointer": "/objects/05904458df3467280668bf852bd3a9be8854471fd953b35df56a65fc6c2aa0b0",
+        "given_input_canonical_sha256": "05904458df3467280668bf852bd3a9be8854471fd953b35df56a65fc6c2aa0b0"
+      },
+      "raw_leaf": {
+        "raw_object_leaf_pointer": "/objects/db460dddf87f4410f7db5df2b20b5f81708c9cdb125771442c83e155a9d7a173/reason_ref",
+        "logical_finding_pointer": "/proposal/reason_ref",
+        "resolved_value": null
+      },
+      "blind_candidate": {
+        "phase": "resume",
+        "facet": "workflow",
+        "condition": "workflow_material_unknown",
+        "ordered_findings": [
+          "source_unresolved"
+        ],
+        "return_owner": "ticket-workflow-owner",
+        "finding_pointer": "/proposal/reason_ref"
+      },
+      "L7_expected_comparison": {
+        "expected_pointer": "/objects/de047187b3cd5225f52fd74bc5e246137e67904a43b05e949b8b03379c2f2d18",
+        "expected_hash": "de047187b3cd5225f52fd74bc5e246137e67904a43b05e949b8b03379c2f2d18",
+        "condition": "workflow_material_unknown",
+        "phase": "resume",
+        "facet_correspondence": {
+          "ownership": "corresponding",
+          "inputs": "corresponding",
+          "ticket": "corresponding",
+          "workflow": "unknown",
+          "backflow": "corresponding",
+          "continuity": "corresponding",
+          "scope_limit": "corresponding"
+        },
+        "findings": [
+          {
+            "code": "source_unresolved",
+            "pointer": "/proposal/reason_ref",
+            "return_owner": "ticket-workflow-owner"
+          }
+        ],
+        "execution_state": "not_executed"
+      },
+      "L8_expected_comparison": {
+        "id": "OS017-L8-PROPOSAL-REASON_REF-UNKNOWN",
+        "condition": "workflow_material_unknown",
+        "phase": "resume",
+        "expected": {
+          "finding_codes": [
+            "source_unresolved"
+          ]
+        },
+        "execution_state": "not_executed",
+        "primary_requirement_refs": [
+          "HELIXOS-L3-017-F02"
+        ]
+      },
+      "L9_expected_comparison": {
+        "id": "OS017-PROPOSAL-REASON_REF-UNKNOWN",
+        "condition": "workflow_material_unknown",
+        "phase": "resume",
+        "expected": {
+          "finding_codes": [
+            "source_unresolved"
+          ]
+        },
+        "execution_state": "not_executed",
+        "actual_observation": "not_observed",
+        "primary_requirement_refs": [
+          "HELIXOS-L3-017-F02"
+        ],
+        "candidate_ref": {
+          "path": "docs/helix-os/L4-basic-design/ticket-workflow-derivation.json",
+          "pointer": "/failure_classifications/4",
+          "class_id": "OS017-NEG-workflow-resume-source_unresolved"
+        }
+      },
+      "L4_candidate_ref": {
+        "path": "docs/helix-os/L4-basic-design/ticket-workflow-derivation.json",
+        "pointer": "/failure_classifications/4",
+        "class_id": "OS017-NEG-workflow-resume-source_unresolved"
+      },
+      "rule_path": "algorithm/3 proposal.reason_ref → algorithm/2 string comparison",
+      "preconditions_and_downstream_effects": "Proposal is selected and both records are dicts; no proposal-specific downstream effect consumes reason_ref.",
+      "candidate_status": "candidate: shared algorithm/2 unknown operand; caller conditions and downstream effects separately described"
+    },
+    {
+      "case_index": 116,
+      "case_id": "OS017-L8-PROPOSAL-PARTS-UNKNOWN",
+      "input_root": {
+        "case_pointer": "/cases/116",
+        "given_input_pointer": "/objects/f608b6bccc6327d4c7b572f5a584a4d544aff046637ae7b2c55e032c5213a9c5",
+        "given_input_canonical_sha256": "f608b6bccc6327d4c7b572f5a584a4d544aff046637ae7b2c55e032c5213a9c5"
+      },
+      "raw_leaf": {
+        "raw_object_leaf_pointer": "/objects/07f917849bf9cec8ef9e015ca4d92574ecb68ac2f6aeff50324df740cd6351a4/parts",
+        "logical_finding_pointer": "/proposal/parts",
+        "resolved_value": null
+      },
+      "blind_candidate": {
+        "phase": "resume",
+        "facet": "workflow",
+        "condition": "workflow_material_unknown",
+        "ordered_findings": [
+          "source_unresolved"
+        ],
+        "return_owner": "ticket-workflow-owner",
+        "finding_pointer": "/proposal/parts"
+      },
+      "L7_expected_comparison": {
+        "expected_pointer": "/objects/3196cbc183c5daf015c3c578d56f7340636d4a17409872a15de9db9b3f083a2d",
+        "expected_hash": "3196cbc183c5daf015c3c578d56f7340636d4a17409872a15de9db9b3f083a2d",
+        "condition": "workflow_material_unknown",
+        "phase": "resume",
+        "facet_correspondence": {
+          "ownership": "corresponding",
+          "inputs": "corresponding",
+          "ticket": "corresponding",
+          "workflow": "unknown",
+          "backflow": "corresponding",
+          "continuity": "corresponding",
+          "scope_limit": "corresponding"
+        },
+        "findings": [
+          {
+            "code": "source_unresolved",
+            "pointer": "/proposal/parts",
+            "return_owner": "ticket-workflow-owner"
+          }
+        ],
+        "execution_state": "not_executed"
+      },
+      "L8_expected_comparison": {
+        "id": "OS017-L8-PROPOSAL-PARTS-UNKNOWN",
+        "condition": "workflow_material_unknown",
+        "phase": "resume",
+        "expected": {
+          "finding_codes": [
+            "source_unresolved"
+          ]
+        },
+        "execution_state": "not_executed",
+        "primary_requirement_refs": [
+          "HELIXOS-L3-017-F02"
+        ]
+      },
+      "L9_expected_comparison": {
+        "id": "OS017-PROPOSAL-PARTS-UNKNOWN",
+        "condition": "workflow_material_unknown",
+        "phase": "resume",
+        "expected": {
+          "finding_codes": [
+            "source_unresolved"
+          ]
+        },
+        "execution_state": "not_executed",
+        "actual_observation": "not_observed",
+        "primary_requirement_refs": [
+          "HELIXOS-L3-017-F02"
+        ],
+        "candidate_ref": {
+          "path": "docs/helix-os/L4-basic-design/ticket-workflow-derivation.json",
+          "pointer": "/failure_classifications/4",
+          "class_id": "OS017-NEG-workflow-resume-source_unresolved"
+        }
+      },
+      "L4_candidate_ref": {
+        "path": "docs/helix-os/L4-basic-design/ticket-workflow-derivation.json",
+        "pointer": "/failure_classifications/4",
+        "class_id": "OS017-NEG-workflow-resume-source_unresolved"
+      },
+      "rule_path": "algorithm/3 proposal.parts → algorithm/2 ordered comparison; algorithm/4 component check",
+      "preconditions_and_downstream_effects": "Proposal is selected and records are dicts. Unknown parts fails algorithm/4’s known-list prerequisite, so proposal component findings are not emitted.",
+      "candidate_status": "candidate: shared algorithm/2 unknown operand; caller conditions and downstream effects separately described"
+    },
+    {
+      "case_index": 117,
+      "case_id": "OS017-L8-PROPOSAL-OBLIGATIONS-UNKNOWN",
+      "input_root": {
+        "case_pointer": "/cases/117",
+        "given_input_pointer": "/objects/e40e1dda36c95e8e45b843824b146bac61f11bf88d10ef0dc84095d866c9b507",
+        "given_input_canonical_sha256": "e40e1dda36c95e8e45b843824b146bac61f11bf88d10ef0dc84095d866c9b507"
+      },
+      "raw_leaf": {
+        "raw_object_leaf_pointer": "/objects/7e7047aafcc550a0f637460e1eedaa09bc4b314e51055121601b0684d8f79f18/obligations",
+        "logical_finding_pointer": "/proposal/obligations",
+        "resolved_value": null
+      },
+      "blind_candidate": {
+        "phase": "resume",
+        "facet": "workflow",
+        "condition": "workflow_material_unknown",
+        "ordered_findings": [
+          "source_unresolved"
+        ],
+        "return_owner": "ticket-workflow-owner",
+        "finding_pointer": "/proposal/obligations"
+      },
+      "L7_expected_comparison": {
+        "expected_pointer": "/objects/4e507dd12c433d6149fd813bf596ea5a411a1a795398434c575997186c47ad5d",
+        "expected_hash": "4e507dd12c433d6149fd813bf596ea5a411a1a795398434c575997186c47ad5d",
+        "condition": "workflow_material_unknown",
+        "phase": "resume",
+        "facet_correspondence": {
+          "ownership": "corresponding",
+          "inputs": "corresponding",
+          "ticket": "corresponding",
+          "workflow": "unknown",
+          "backflow": "corresponding",
+          "continuity": "corresponding",
+          "scope_limit": "corresponding"
+        },
+        "findings": [
+          {
+            "code": "source_unresolved",
+            "pointer": "/proposal/obligations",
+            "return_owner": "ticket-workflow-owner"
+          }
+        ],
+        "execution_state": "not_executed"
+      },
+      "L8_expected_comparison": {
+        "id": "OS017-L8-PROPOSAL-OBLIGATIONS-UNKNOWN",
+        "condition": "workflow_material_unknown",
+        "phase": "resume",
+        "expected": {
+          "finding_codes": [
+            "source_unresolved"
+          ]
+        },
+        "execution_state": "not_executed",
+        "primary_requirement_refs": [
+          "HELIXOS-L3-017-F02"
+        ]
+      },
+      "L9_expected_comparison": {
+        "id": "OS017-PROPOSAL-OBLIGATIONS-UNKNOWN",
+        "condition": "workflow_material_unknown",
+        "phase": "resume",
+        "expected": {
+          "finding_codes": [
+            "source_unresolved"
+          ]
+        },
+        "execution_state": "not_executed",
+        "actual_observation": "not_observed",
+        "primary_requirement_refs": [
+          "HELIXOS-L3-017-F02"
+        ],
+        "candidate_ref": {
+          "path": "docs/helix-os/L4-basic-design/ticket-workflow-derivation.json",
+          "pointer": "/failure_classifications/4",
+          "class_id": "OS017-NEG-workflow-resume-source_unresolved"
+        }
+      },
+      "L4_candidate_ref": {
+        "path": "docs/helix-os/L4-basic-design/ticket-workflow-derivation.json",
+        "pointer": "/failure_classifications/4",
+        "class_id": "OS017-NEG-workflow-resume-source_unresolved"
+      },
+      "rule_path": "algorithm/3 proposal.obligations → algorithm/2 obligations comparison; algorithm/4 obligation check",
+      "preconditions_and_downstream_effects": "Proposal is selected and records are dicts. Unknown obligations fails algorithm/4’s both-known-list prerequisite, so process_obligation_missing is not emitted.",
+      "candidate_status": "candidate: shared algorithm/2 unknown operand; caller conditions and downstream effects separately described"
+    },
+    {
+      "case_index": 127,
+      "case_id": "OS017-L8-LEVEL-SELECTION-UNKNOWN",
+      "input_root": {
+        "case_pointer": "/cases/127",
+        "given_input_pointer": "/objects/72cc2677414769d5af6457d6d875ff8dab367bb404d2f1bbff579407e34892ee",
+        "given_input_canonical_sha256": "72cc2677414769d5af6457d6d875ff8dab367bb404d2f1bbff579407e34892ee"
+      },
+      "raw_leaf": {
+        "raw_object_leaf_pointer": "/objects/72cc2677414769d5af6457d6d875ff8dab367bb404d2f1bbff579407e34892ee/level_selected",
+        "logical_finding_pointer": "/level_selected",
+        "resolved_value": null
+      },
+      "blind_candidate": {
+        "phase": "resume",
+        "facet": "workflow",
+        "condition": "workflow_material_unknown",
+        "ordered_findings": [
+          "source_unresolved"
+        ],
+        "return_owner": "ticket-workflow-owner",
+        "finding_pointer": "/level_selected"
+      },
+      "L7_expected_comparison": {
+        "expected_pointer": "/objects/63581d301556cd8889b001f5f2017c4db256eaf15da743ff42583a15421eeb74",
+        "expected_hash": "63581d301556cd8889b001f5f2017c4db256eaf15da743ff42583a15421eeb74",
+        "condition": "workflow_material_unknown",
+        "phase": "resume",
+        "facet_correspondence": {
+          "ownership": "corresponding",
+          "inputs": "corresponding",
+          "ticket": "corresponding",
+          "workflow": "unknown",
+          "backflow": "corresponding",
+          "continuity": "corresponding",
+          "scope_limit": "corresponding"
+        },
+        "findings": [
+          {
+            "code": "source_unresolved",
+            "pointer": "/level_selected",
+            "return_owner": "ticket-workflow-owner"
+          }
+        ],
+        "execution_state": "not_executed"
+      },
+      "L8_expected_comparison": {
+        "id": "OS017-L8-LEVEL-SELECTION-UNKNOWN",
+        "condition": "workflow_material_unknown",
+        "phase": "resume",
+        "expected": {
+          "finding_codes": [
+            "source_unresolved"
+          ]
+        },
+        "execution_state": "not_executed",
+        "primary_requirement_refs": [
+          "HELIXOS-L3-017-F02"
+        ]
+      },
+      "L9_expected_comparison": {
+        "id": "OS017-LEVEL-SELECTION-UNKNOWN",
+        "condition": "workflow_material_unknown",
+        "phase": "resume",
+        "expected": {
+          "finding_codes": [
+            "source_unresolved"
+          ]
+        },
+        "execution_state": "not_executed",
+        "actual_observation": "not_observed",
+        "primary_requirement_refs": [
+          "HELIXOS-L3-017-F02"
+        ],
+        "candidate_ref": null
+      },
+      "L4_candidate_ref": null,
+      "rule_path": "algorithm/5 level_selected boolean selector",
+      "preconditions_and_downstream_effects": "Dedicated boolean selector comparison and conditional level-record read differ from algorithm/2 operand comparison. Retained as residual; no L4/L9 class candidate ref.",
+      "candidate_status": "residual: algorithm-specific selector/state rule; no shared-class ref"
+    }
+  ],
+  "aggregate": {
+    "case_count": 20,
+    "condition": "workflow_material_unknown",
+    "phase": "resume",
+    "facet": "workflow",
+    "ordered_findings": [
+      "source_unresolved"
+    ],
+    "return_owner": "ticket-workflow-owner",
+    "requirement": "HELIXOS-L3-017-F02",
+    "L9_candidate_refs_before": 65,
+    "L9_candidate_refs_after": 83,
+    "expected_values_changed": false,
+    "dedup": "one finding per case; same raw object alias across cases does not collapse distinct logical pointers",
+    "existing_class_refs_after": 20,
+    "residual_case_indexes": [
+      108,
+      127
+    ]
+  },
+  "class_extension_decision": {
+    "decision": "extend existing source_unresolved class for 18 cases only; retain cases 108 and 127 as residuals",
+    "common_basis": "All 18 candidate rows reach algorithm/2 single-unknown-operand handling and retain the same original pointer, phase=resume, workflow facet, source_unresolved code, and owner.",
+    "qualification": "algorithm/3 field gates and algorithm/0 binding overlays are individually listed per case. algorithm/4 checks are suppressed when the unknown parts/allowed_edges/obligations operand fails their known-list prerequisite. case73 algorithm/8 compares only intermediate.backflow_ref with context.process.backflow_ref; both are BACKFLOW-A and neither is the null actual process operand, so no algorithm/8 finding or dedup occurs.",
+    "excluded": "case108 dependency.state uses algorithm/6 finite closed-state rules and follow-on state diagnostics. case127 uses algorithm/5 boolean selector and conditional level-record reading. Same code alone is insufficient to join either to this class."
+  },
+  "shared_physical_null_leaf_aliases": [
+    {
+      "raw_leaf_pointer": "/objects/30aeb63c0363ab75d587ed28dbda3ddf92348e1c6d160bf502eb5180bcf47dd9/scope",
+      "case_indexes": [
+        61,
+        111
+      ],
+      "case_logical_finding_pointers": [
+        "/dependency/scope",
+        "/context/dependency/scope"
+      ],
+      "meaning": "same immutable L7 object leaf is referenced in different case graphs; case-level logical pointers remain distinct"
+    },
+    {
+      "raw_leaf_pointer": "/objects/4d0b9f95142c0162efc200531f58fef3c1ad089192735c2dd7b13a25a720e614/requirement_revision",
+      "case_indexes": [
+        59,
+        110
+      ],
+      "case_logical_finding_pointers": [
+        "/dependency/requirement_revision",
+        "/context/dependency/requirement_revision"
+      ],
+      "meaning": "same immutable L7 object leaf is referenced in different case graphs; case-level logical pointers remain distinct"
+    },
+    {
+      "raw_leaf_pointer": "/objects/bb259d855766b3a10b8a60aeff69bea81260c7f8a7eea59be6598ac63ec5a865/source_ref",
+      "case_indexes": [
+        57,
+        109
+      ],
+      "case_logical_finding_pointers": [
+        "/dependency/source_ref",
+        "/context/dependency/source_ref"
+      ],
+      "meaning": "same immutable L7 object leaf is referenced in different case graphs; case-level logical pointers remain distinct"
+    }
+  ],
+  "cross_rule_correction_history": [
+    {
+      "source": "root reinspection after expected comparison",
+      "case_index": 73,
+      "prior_statement": "algorithm/8 reads the same actual process.backflow_ref operand and duplicates/deduplicates its finding",
+      "correction": "Root reinspection: algorithm/8 compares intermediate.backflow_ref with context.process.backflow_ref only. Raw /cases/73 has actual process.backflow_ref=null, context.process.backflow_ref=BACKFLOW-A, intermediate.backflow_ref=BACKFLOW-A. There is no algorithm/8 unknown finding and no cross-rule dedup.",
+      "blind_artifact_changed": false,
+      "recorded_recheck": {
+        "raw_pointer_audit": "WR220 validator re-resolved all 20 raw null leaves and the three alias groups",
+        "algorithm8_actual_reuse": false
+      }
+    }
+  ],
+  "algorithm0_overlay_audit": {
+    "l4_source_pointer": "/diagnostic_contract/algorithm/0",
+    "purpose": "process.revision; proposal/dependency/provided level requirement_revision/scope compared to context.binding",
+    "distinct_from_algorithm1": "algorithm/1 is phase selection and binding/management/roles/ticket-graph comparison; it does not contain the overlay wording",
+    "same_unknown_actual_operand_cases": [
+      59,
+      61,
+      65,
+      113,
+      114
+    ],
+    "context_side_unknown_cases_without_overlay_reuse": [
+      110,
+      111
+    ],
+    "facet": "workflow facet from comparison_table for the original process/proposal/dependency field; no separate context.binding missing pointer or inputs facet is added"
+  },
+  "artifact_correction_history": [
+    {
+      "source": "WR220 validator after being extended to cross-check scaffold details",
+      "prior_artifact_issue": "L7 expected findings/facets and displayed logical finding pointer retained nested object-reference pointers instead of recursively expanded semantic values.",
+      "correction": "comparison rows now use recursively resolved L7 expected findings and facet-correspondence values and the frozen r3 logical candidate pointer. No formal expected or blind artifact was changed.",
+      "r3_sha256_unchanged": true
+    }
+  ]
+}

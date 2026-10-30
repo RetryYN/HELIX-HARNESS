@@ -30,8 +30,8 @@
     },
     {
       "path": "docs/helix-os/L4-basic-design/ticket-workflow-derivation.json",
-      "sha256": "3fb45708d58866de46cff0695a1d3f64b2fbe15bb11283bda5594a4b6d01e6ea",
-      "note": "Current L4 pin 3fb45708d58866de46cff0695a1d3f64b2fbe15bb11283bda5594a4b6d01e6ea; prior d9765bdb and pre-conflict 042b09df pins remain in binding history. WR220 adds a separate F02 workflow-resume class; the existing F01 input class rows and meanings are retained."
+      "sha256": "a1d19b1f81dfda3d3f96715c9e5aec44118f87c0319d4b1f760c08a08f13bc05",
+      "note": "Current-main pin a1d19b1f81dfda3d3f96715c9e5aec44118f87c0319d4b1f760c08a08f13bc05; generalized class condition cites algorithm/0 overlay; per-case details remain in scaffold comparison. Prior pins retained in history."
     },
     {
       "path": "docs/helix-os/L7-function-verification/ticket-workflow-derivation.json",
@@ -45,8 +45,8 @@
     },
     {
       "path": "docs/helix-os/L9-integration-verification/ticket-workflow-derivation.json",
-      "sha256": "fe7d7fc5b23ec66042c1db5e0f45004c095b5703faa2d6284e442fdb81f81225",
-      "note": "Current L9 pin fe7d7fc5b23ec66042c1db5e0f45004c095b5703faa2d6284e442fdb81f81225; prior fb9997c4 and pre-conflict 74458de4 pins remain in binding history. WR220 adds refs on separate F02 cases 51/53; all 217 expected projections and WR204 witness evidence remain unchanged."
+      "sha256": "5cfdfb3441cf1168a4e08c04ebb49b4b7afc8f8e3df395c8d9822892205ae9ad",
+      "note": "Current-main pin 5cfdfb3441cf1168a4e08c04ebb49b4b7afc8f8e3df395c8d9822892205ae9ad; previous pins retained in binding history. WR226 added 18 class candidate refs; L9 expected fields unchanged; dedicated-rule cases 108/127 have no candidate ref."
     },
     {
       "path": "docs/helix-os/L9-integration-verification/management-authority-source-record.json",

@@ -1,0 +1,280 @@
+{
+  "artifact": "WR226 verification summary",
+  "status": "scaffold only; no authority effect",
+  "base_revision": "280d5c8dc854e5100be6ed21188d5ebd13f5abd8",
+  "r3_blind_sha256": "fe7e00049ecaa89b8c36839abe7b29feb17a860ab5b3bddba32c0f26bb44e7f3",
+  "class_cohort": {
+    "shared_algorithm2_unknown_operand_candidates": 18,
+    "algorithm6_closed_state_residuals": [
+      108
+    ],
+    "algorithm5_boolean_selector_residuals": [
+      127
+    ],
+    "same_code_alone_used_for_class_assignment": false
+  },
+  "validators": {
+    "WR220": {
+      "command": "python3 -B scaffold/research/wr220-os017-source-unresolved-20261031/validate_candidate.py",
+      "status": "pass",
+      "raw_witnesses": 20,
+      "candidate_refs": 20,
+      "dedicated_rule_residuals": [
+        108,
+        127
+      ],
+      "L9_candidate_refs_total": 83,
+      "execution": "none",
+      "source_pointers_resolved": 51,
+      "shared_physical_null_leaf_aliases": {
+        "/objects/bb259d855766b3a10b8a60aeff69bea81260c7f8a7eea59be6598ac63ec5a865/source_ref": [
+          57,
+          109
+        ],
+        "/objects/4d0b9f95142c0162efc200531f58fef3c1ad089192735c2dd7b13a25a720e614/requirement_revision": [
+          59,
+          110
+        ],
+        "/objects/30aeb63c0363ab75d587ed28dbda3ddf92348e1c6d160bf502eb5180bcf47dd9/scope": [
+          61,
+          111
+        ]
+      },
+      "case73_algorithm8_actual_process_leaf_reused": false,
+      "case73_context_backflow_ref": "BACKFLOW-A",
+      "case73_intermediate_backflow_ref": "BACKFLOW-A",
+      "raw_cases_checked": 20,
+      "algorithm0_overlay_rule_pointer": "/diagnostic_contract/algorithm/0",
+      "algorithm0_overlay_cases": [
+        {
+          "case_pointer": "/cases/59",
+          "actual_operand_pointer": "/objects/4d0b9f95142c0162efc200531f58fef3c1ad089192735c2dd7b13a25a720e614/requirement_revision",
+          "context_operand_pointer": "/objects/8de3b6e0628759f73bed6dcab0239b5eee6e4c6f3ff9d85e2c4731a249ed4972/requirement_revision",
+          "binding_operand_pointer": "/objects/3067a4f2dd8a085db4b59cdda7e6d9e8aaa9d413dc63e33087048d828a61911f/requirement_revision",
+          "same_unknown_operand_reused": true,
+          "actual_value": null,
+          "context_value": "SYNTHETIC-REQUIREMENT_REVISION",
+          "binding_value": "SYNTHETIC-REQUIREMENT_REVISION"
+        },
+        {
+          "case_pointer": "/cases/61",
+          "actual_operand_pointer": "/objects/30aeb63c0363ab75d587ed28dbda3ddf92348e1c6d160bf502eb5180bcf47dd9/scope",
+          "context_operand_pointer": "/objects/8de3b6e0628759f73bed6dcab0239b5eee6e4c6f3ff9d85e2c4731a249ed4972/scope",
+          "binding_operand_pointer": "/objects/3067a4f2dd8a085db4b59cdda7e6d9e8aaa9d413dc63e33087048d828a61911f/scope",
+          "same_unknown_operand_reused": true,
+          "actual_value": null,
+          "context_value": "SYNTHETIC-SCOPE",
+          "binding_value": "SYNTHETIC-SCOPE"
+        },
+        {
+          "case_pointer": "/cases/65",
+          "actual_operand_pointer": "/objects/56f180204d6b2264e5e96383fa7fcb077cf4a0b32d4b379958fae3692e7373ef/revision",
+          "context_operand_pointer": "/objects/58dad1533668ea6953eab50bb361936c081d497fe180fe0a5cb56a136a26528f/revision",
+          "binding_operand_pointer": "/objects/3067a4f2dd8a085db4b59cdda7e6d9e8aaa9d413dc63e33087048d828a61911f/contract_revision",
+          "same_unknown_operand_reused": true,
+          "actual_value": null,
+          "context_value": "SYNTHETIC-CONTRACT_REVISION",
+          "binding_value": "SYNTHETIC-CONTRACT_REVISION"
+        },
+        {
+          "case_pointer": "/cases/110",
+          "actual_operand_pointer": "/objects/8de3b6e0628759f73bed6dcab0239b5eee6e4c6f3ff9d85e2c4731a249ed4972/requirement_revision",
+          "context_operand_pointer": "/objects/4d0b9f95142c0162efc200531f58fef3c1ad089192735c2dd7b13a25a720e614/requirement_revision",
+          "binding_operand_pointer": "/objects/3067a4f2dd8a085db4b59cdda7e6d9e8aaa9d413dc63e33087048d828a61911f/requirement_revision",
+          "same_unknown_operand_reused": false,
+          "actual_value": "SYNTHETIC-REQUIREMENT_REVISION",
+          "context_value": null,
+          "binding_value": "SYNTHETIC-REQUIREMENT_REVISION"
+        },
+        {
+          "case_pointer": "/cases/111",
+          "actual_operand_pointer": "/objects/8de3b6e0628759f73bed6dcab0239b5eee6e4c6f3ff9d85e2c4731a249ed4972/scope",
+          "context_operand_pointer": "/objects/30aeb63c0363ab75d587ed28dbda3ddf92348e1c6d160bf502eb5180bcf47dd9/scope",
+          "binding_operand_pointer": "/objects/3067a4f2dd8a085db4b59cdda7e6d9e8aaa9d413dc63e33087048d828a61911f/scope",
+          "same_unknown_operand_reused": false,
+          "actual_value": "SYNTHETIC-SCOPE",
+          "context_value": null,
+          "binding_value": "SYNTHETIC-SCOPE"
+        },
+        {
+          "case_pointer": "/cases/113",
+          "actual_operand_pointer": "/objects/492af1f9cbec9d026d16c964abb1ec5cd4b24f10750187ea42ebdbed3fa1d793/requirement_revision",
+          "context_operand_pointer": "/objects/8e0680ed2315d4367019576e3852b5d839b4b9ee61f1dae4e11ce1ecf5950b36/requirement_revision",
+          "binding_operand_pointer": "/objects/3067a4f2dd8a085db4b59cdda7e6d9e8aaa9d413dc63e33087048d828a61911f/requirement_revision",
+          "same_unknown_operand_reused": true,
+          "actual_value": null,
+          "context_value": "SYNTHETIC-REQUIREMENT_REVISION",
+          "binding_value": "SYNTHETIC-REQUIREMENT_REVISION"
+        },
+        {
+          "case_pointer": "/cases/114",
+          "actual_operand_pointer": "/objects/3ecb6705663a99d061b31f60f0aaf5c99364ab3e240bfc5ac9ce8e0a07413a91/scope",
+          "context_operand_pointer": "/objects/8e0680ed2315d4367019576e3852b5d839b4b9ee61f1dae4e11ce1ecf5950b36/scope",
+          "binding_operand_pointer": "/objects/3067a4f2dd8a085db4b59cdda7e6d9e8aaa9d413dc63e33087048d828a61911f/scope",
+          "same_unknown_operand_reused": true,
+          "actual_value": null,
+          "context_value": "SYNTHETIC-SCOPE",
+          "binding_value": "SYNTHETIC-SCOPE"
+        }
+      ],
+      "cases_checked": 20,
+      "algorithm0_binding_overlay_cases": [
+        {
+          "case_pointer": "/cases/59",
+          "actual_operand_pointer": "/objects/4d0b9f95142c0162efc200531f58fef3c1ad089192735c2dd7b13a25a720e614/requirement_revision",
+          "context_operand_pointer": "/objects/8de3b6e0628759f73bed6dcab0239b5eee6e4c6f3ff9d85e2c4731a249ed4972/requirement_revision",
+          "binding_operand_pointer": "/objects/3067a4f2dd8a085db4b59cdda7e6d9e8aaa9d413dc63e33087048d828a61911f/requirement_revision",
+          "same_unknown_operand_reused": true,
+          "actual_value": null,
+          "context_value": "SYNTHETIC-REQUIREMENT_REVISION",
+          "binding_value": "SYNTHETIC-REQUIREMENT_REVISION"
+        },
+        {
+          "case_pointer": "/cases/61",
+          "actual_operand_pointer": "/objects/30aeb63c0363ab75d587ed28dbda3ddf92348e1c6d160bf502eb5180bcf47dd9/scope",
+          "context_operand_pointer": "/objects/8de3b6e0628759f73bed6dcab0239b5eee6e4c6f3ff9d85e2c4731a249ed4972/scope",
+          "binding_operand_pointer": "/objects/3067a4f2dd8a085db4b59cdda7e6d9e8aaa9d413dc63e33087048d828a61911f/scope",
+          "same_unknown_operand_reused": true,
+          "actual_value": null,
+          "context_value": "SYNTHETIC-SCOPE",
+          "binding_value": "SYNTHETIC-SCOPE"
+        },
+        {
+          "case_pointer": "/cases/65",
+          "actual_operand_pointer": "/objects/56f180204d6b2264e5e96383fa7fcb077cf4a0b32d4b379958fae3692e7373ef/revision",
+          "context_operand_pointer": "/objects/58dad1533668ea6953eab50bb361936c081d497fe180fe0a5cb56a136a26528f/revision",
+          "binding_operand_pointer": "/objects/3067a4f2dd8a085db4b59cdda7e6d9e8aaa9d413dc63e33087048d828a61911f/contract_revision",
+          "same_unknown_operand_reused": true,
+          "actual_value": null,
+          "context_value": "SYNTHETIC-CONTRACT_REVISION",
+          "binding_value": "SYNTHETIC-CONTRACT_REVISION"
+        },
+        {
+          "case_pointer": "/cases/110",
+          "actual_operand_pointer": "/objects/8de3b6e0628759f73bed6dcab0239b5eee6e4c6f3ff9d85e2c4731a249ed4972/requirement_revision",
+          "context_operand_pointer": "/objects/4d0b9f95142c0162efc200531f58fef3c1ad089192735c2dd7b13a25a720e614/requirement_revision",
+          "binding_operand_pointer": "/objects/3067a4f2dd8a085db4b59cdda7e6d9e8aaa9d413dc63e33087048d828a61911f/requirement_revision",
+          "same_unknown_operand_reused": false,
+          "actual_value": "SYNTHETIC-REQUIREMENT_REVISION",
+          "context_value": null,
+          "binding_value": "SYNTHETIC-REQUIREMENT_REVISION"
+        },
+        {
+          "case_pointer": "/cases/111",
+          "actual_operand_pointer": "/objects/8de3b6e0628759f73bed6dcab0239b5eee6e4c6f3ff9d85e2c4731a249ed4972/scope",
+          "context_operand_pointer": "/objects/30aeb63c0363ab75d587ed28dbda3ddf92348e1c6d160bf502eb5180bcf47dd9/scope",
+          "binding_operand_pointer": "/objects/3067a4f2dd8a085db4b59cdda7e6d9e8aaa9d413dc63e33087048d828a61911f/scope",
+          "same_unknown_operand_reused": false,
+          "actual_value": "SYNTHETIC-SCOPE",
+          "context_value": null,
+          "binding_value": "SYNTHETIC-SCOPE"
+        },
+        {
+          "case_pointer": "/cases/113",
+          "actual_operand_pointer": "/objects/492af1f9cbec9d026d16c964abb1ec5cd4b24f10750187ea42ebdbed3fa1d793/requirement_revision",
+          "context_operand_pointer": "/objects/8e0680ed2315d4367019576e3852b5d839b4b9ee61f1dae4e11ce1ecf5950b36/requirement_revision",
+          "binding_operand_pointer": "/objects/3067a4f2dd8a085db4b59cdda7e6d9e8aaa9d413dc63e33087048d828a61911f/requirement_revision",
+          "same_unknown_operand_reused": true,
+          "actual_value": null,
+          "context_value": "SYNTHETIC-REQUIREMENT_REVISION",
+          "binding_value": "SYNTHETIC-REQUIREMENT_REVISION"
+        },
+        {
+          "case_pointer": "/cases/114",
+          "actual_operand_pointer": "/objects/3ecb6705663a99d061b31f60f0aaf5c99364ab3e240bfc5ac9ce8e0a07413a91/scope",
+          "context_operand_pointer": "/objects/8e0680ed2315d4367019576e3852b5d839b4b9ee61f1dae4e11ce1ecf5950b36/scope",
+          "binding_operand_pointer": "/objects/3067a4f2dd8a085db4b59cdda7e6d9e8aaa9d413dc63e33087048d828a61911f/scope",
+          "same_unknown_operand_reused": true,
+          "actual_value": null,
+          "context_value": "SYNTHETIC-SCOPE",
+          "binding_value": "SYNTHETIC-SCOPE"
+        }
+      ],
+      "comparison_artifact_cases_crosschecked": 20
+    },
+    "WR204": {
+      "command": "python3 -B scaffold/research/wr204-os017-negative-classes-20261031/validate_manual_derivation.py",
+      "status": "pass",
+      "reported": "static source validation: pointers=230, input cohort=52 cases/51 witnesses, role witnesses=12, L4 classes=5, cross_facet_reuse_cases=3, L9 cases=217, expected_digest=0899fc16c319b4ad2a321048215066e4e2cee47bf5112dccbb4086b2f6220b02, four_layer_marker=absent",
+      "invariants": [
+        "prior 51 input witnesses preserved",
+        "12 role witnesses preserved",
+        "legacy expected digest preserved",
+        "general L4 class condition contains no case IDs"
+      ]
+    }
+  },
+  "check_child": {
+    "command": "python3 -B scaffold/tools/design_verification_checker.py check-child --root . --l4 docs/helix-os/L4-basic-design/ticket-workflow-derivation.json --l5 docs/helix-os/L5-detail-design/ticket-workflow-derivation.json --l8 docs/helix-os/L8-unit-verification/ticket-workflow-derivation.json --l9 docs/helix-os/L9-integration-verification/ticket-workflow-derivation.json",
+    "exit_code": 1,
+    "passed": false,
+    "L4_L9_pair_pass": true,
+    "L5_L8_pair_pass": true,
+    "negative_4way_pass": false,
+    "negative_4way_counts": {
+      "L4": 5,
+      "L9": 0,
+      "L8": 0,
+      "L5": 0
+    },
+    "negative_4way_matched_case_count": 0,
+    "negative_4way_failure_count": 8,
+    "interpretation": "pair checks pass; pre-existing legacy casewise four-layer check remains unmatched (L4=5, L9=0, L8=0, L5=0), with 8 failures. This is recorded, not treated as WR226 oracle."
+  },
+  "static_checks": {
+    "scfctl_validate": "pass; bindings=180 fail=0",
+    "scfctl_stale": "pass; stale=0",
+    "json_parse": "pass",
+    "git_diff_check": "pass"
+  },
+  "expected_mutation": false,
+  "forbidden_execution": "L4/L5 algorithm, old runtime/test/CI, CI not run",
+  "cross_rule_correction": {
+    "case_index": 73,
+    "root_reinspection_recorded": true,
+    "r3_blind_artifact_unchanged": true,
+    "algorithm8_reads_actual_process_leaf": false,
+    "algorithm8_context_and_intermediate_values": [
+      "BACKFLOW-A",
+      "BACKFLOW-A"
+    ],
+    "algorithm3_actual_process_value": null,
+    "cross_rule_dedup": false,
+    "all20_null_leaf_pointer_audit": "pass",
+    "shared_physical_null_leaf_alias_groups": {
+      "/objects/bb259d855766b3a10b8a60aeff69bea81260c7f8a7eea59be6598ac63ec5a865/source_ref": [
+        57,
+        109
+      ],
+      "/objects/4d0b9f95142c0162efc200531f58fef3c1ad089192735c2dd7b13a25a720e614/requirement_revision": [
+        59,
+        110
+      ],
+      "/objects/30aeb63c0363ab75d587ed28dbda3ddf92348e1c6d160bf502eb5180bcf47dd9/scope": [
+        61,
+        111
+      ]
+    },
+    "raw_pointer_audit": "pass: independently resolve all 20 declared raw null leaves; exact shared-object alias groups are 57/109, 59/110, and 61/111 only."
+  },
+  "algorithm0_overlay_audit": {
+    "same_unknown_actual_operand_dedup_cases": [
+      59,
+      61,
+      65,
+      113,
+      114
+    ],
+    "context_side_unknown_without_overlay_reuse_cases": [
+      110,
+      111
+    ],
+    "binding_values_checked": "non-null for all seven; for 110/111 known actual values equal the binding operand",
+    "facet_result": "workflow facet remains assigned by comparison_table; no separate missing context.binding pointer or inputs facet"
+  },
+  "formal_class_condition": {
+    "utf8_bytes": 1646,
+    "witness_case_numbers_embedded": false,
+    "case_specific_rule_and_pointer_evidence": "scaffold/research/wr226-os017-workflow-residual-20261031/comparison.json"
+  }
+}
