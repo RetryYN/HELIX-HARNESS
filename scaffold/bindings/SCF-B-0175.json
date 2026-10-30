@@ -40,7 +40,7 @@
     },
     {
       "path": "scaffold/tools/design_verification_checker.py",
-      "sha256": "211e39ff48ec96adf37f948db91dd63795435c53671e16576b39eb0e3a0538d6",
+      "sha256": "cfd12c5bc4a1dd45351858488b476af0025d35deca7027da35bb1373818b129d",
       "note": "現行document checker。変更せず、明示照合に使用。"
     },
     {
@@ -50,7 +50,7 @@
     },
     {
       "path": "scaffold/bindings/SCF-B-0170.json",
-      "sha256": "9b925b4ecc8de86841f222c49149cb3e2bb156ae4e1106d90d1feffa95fbe204",
+      "sha256": "a105e1b9978b86c38da0de345936d4c05a836512cd9c651b541e369a5e3efa2a",
       "note": "固定入力inventoryとclass形成根拠のbinding。"
     }
   ],
