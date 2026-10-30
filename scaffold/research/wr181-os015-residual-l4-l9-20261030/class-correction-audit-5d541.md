@@ -45,4 +45,3 @@ source finding 4件の完全なpointer列:
 - C0578/C0581は既存prior finding 2件にsource finding 4件が加わる同じ6-finding keyへ更新する。
 
 全体conditionは全facetのseverityで、axis/stateは最初の非corresponding facetのseverityで導く。よってmutationを含むC0577/C0580はclassification/violation、prior unresolvedだけのC0578/C0581はunknown/classification/unknownとなる。
-

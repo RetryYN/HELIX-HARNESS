@@ -80,7 +80,7 @@
     },
     {
       "path": "scaffold/research/wr181-os015-residual-l4-l9-20261030/class-correction-audit-5d541.md",
-      "sha256": "dcacfa05614766118a3fca28a196447a8e4a4bd680595705d54e24c85270f7ea",
+      "sha256": "be773b98faa2916b8b144689edd45ca93ac3ca067ceb3d8b51ca395908822d90",
       "note": "#3927 head 5d541からL4 algorithmとL7 given.inputだけでC0573–C0582を再照合した独立監査記録。"
     },
     {
