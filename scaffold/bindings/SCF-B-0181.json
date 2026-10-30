@@ -50,8 +50,8 @@
     },
     {
       "path": "docs/helix-os/L9-integration-verification/management-authority-source-record.json",
-      "sha256": "365b89c9131e5edd9b64d474438ff780360118819cc651ee535f64a70aa5ff1d",
-      "note": "OS015 L9 precedent: negative_class_ref resolves to the same document’s negative_equivalence_classes row; used only to compare shape semantics."
+      "sha256": "637f2499479913a629a15ddab80e46b383121d38a0dd1482bc1a1ca2d66ee84b",
+      "note": "Current main byte pin (f5d51184); L9 negative_class_ref resolves to same-document negative_equivalence_classes class_id. OS015 precedent used only for shape semantics."
     }
   ],
   "role": "WR204 OS017 L4/L9 source-qualified負例class候補の証拠。4層class登録ではない。",
