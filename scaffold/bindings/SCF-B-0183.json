@@ -1,0 +1,89 @@
+{
+  "schema_revision": 1,
+  "id": "SCF-B-0183",
+  "kind": "scaffold",
+  "title": "WR211 L8 hash reference reconciliation audit",
+  "product": "HELIX-HARNESS",
+  "owner_candidate": "HELIX-HARNESS L8 semantic-asset-lineage hash-reference audit owner",
+  "state": "registered",
+  "reason": "WR211の既存candidate L8からbody/freeze/rule hashの参照重複を除いた後も、固定履歴revisionとsource pointerから値を再構成できることを記録する。source omissionは共有checkoutのlocal fileで一致するが、配布可能なGit sourceではない事実も保持する。L8/L5のcase・期待・要求・実装は生成しない。",
+  "upstream": [
+    {
+      "path": "docs/helix-harness/L8-unit-verification/semantic-asset-lineage.json",
+      "sha256": "6365651422b2aa7cc4ae3d7596c445cc854eea140daabeddb8990da6c57d7bd2",
+      "note": "WR211 reference reconciliationを含む候補bytes。削除前の複製値は固定履歴revision 4bee77125480c578068aa0760d2f6b33c497d53aからvalidatorが読む。"
+    },
+    {
+      "path": "docs/helix-harness/L5-detail-design/semantic-asset-lineage.json",
+      "sha256": "6a66cffd1521e91130c710bbfd0d997c73c2cb56fd79d0959de725f6defdcb41",
+      "note": "現行候補context。4 ruleの削除前canonical hashは固定candidate revision 572ad5be595b2f052c72199f5edcc52c92f82ddaおよびL8のexact-file pin/pointerで検査する。"
+    }
+  ],
+  "role": "L8/L5 candidateの既存hash参照重複削除を、固定revision・pointer・raw fixture bytesから静的に再構成する監査資料を保持する。",
+  "obligations": [
+    "ADD-22/23/24の削除済みbody hash 3値を、固定L8履歴・各source_ref・typed input fixture content bytesから再構成する。",
+    "ADD-25/26/27とcase summaryの削除済みfreeze hash 6値を固定L8履歴から読み、L8中央provenance path/hashへ結び直す。",
+    "4つのL5 rule hashを固定L5候補file revision、whole-file SHA、rule pointer/IDから再計算する。",
+    "30のQualification subject_sha256 typed input、全case input、expected/oracleに差分がないことを照合する。",
+    "freeze local fileは共有checkoutで内容hashが一致したがGit追跡source/commitではない限界を隠さず記録する。"
+  ],
+  "connections": {
+    "consumers": [
+      "WR211 L5/L8 limited-pair candidate review"
+    ],
+    "dependencies": [
+      "fixed L8 history 4bee77125480c578068aa0760d2f6b33c497d53a",
+      "fixed L5 candidate revision 572ad5be595b2f052c72199f5edcc52c92f82dda",
+      "L8 central source_failure_freeze_provenance path/SHA"
+    ],
+    "boundary": "Scaffold audit only. Does not assert freeze source distribution, raw source availability, independent oracle, implementation, authority, or acceptance. Thirty typed Qualification refs remain out of scope for removal."
+  },
+  "operations": {
+    "allowed": [
+      "Python standard-library JSON, RFC6901 pointer, Git object, and SHA-256 inspection",
+      "python3 -m json.tool",
+      "git diff --check"
+    ],
+    "forbidden": [
+      "L4/L5 embedded algorithm execution",
+      "old HELIX runtime, CLI, hook, test, or CI execution",
+      "editing case input, expected/oracle, Qualification hashes, or owner semantics",
+      "claiming local freeze file as distributable Git source or supplying a replacement source"
+    ]
+  },
+  "artifacts": [
+    "scaffold/research/wr211-hash-reference-reconciliation-20261031/README.md",
+    "scaffold/research/wr211-hash-reference-reconciliation-20261031/validate.py",
+    "docs/helix-harness/L8-unit-verification/semantic-asset-lineage.json",
+    "scaffold/bindings/SCF-B-0183.json"
+  ],
+  "verification": {
+    "evidence_kind": "scaffold",
+    "scope": [
+      "schema_interface",
+      "source_revision_stale",
+      "negative_case",
+      "forbidden_write_scope"
+    ],
+    "oracles": [
+      "python3 scaffold/research/wr211-hash-reference-reconciliation-20261031/validate.py",
+      "python3 -m json.tool on changed JSON files",
+      "git diff --check",
+      "root checker on base 4bee77125480c578068aa0760d2f6b33c497d53a plus candidate L8: ownership-cap L8 43 to 30, both pairs PASS, 4-way 76 failures/matched_case_count=0 unchanged; latest main fa3d2d515ce8df79c0a74d5360a4d1254863a6f1 candidate rerun confirms both pairs PASS, 76 failures, matched 0, L8 cap 30"
+    ],
+    "negative_cases": [
+      "Do not count the 30 retained Qualification subject_sha256 typed inputs as duplicate metadata; do not rename or hide them.",
+      "Do not convert the shared-checkout freeze local file into a claimed tracked Git source; source commit remains unresolved.",
+      "Do not infer missing raw source, output value, or owner value from hash reconstruction.",
+      "Keep the reported checker outcome scoped: L8 cap 30 remains and 4-way remains 76 failures with matched_case_count=0."
+    ]
+  },
+  "replacement": {
+    "role_target": "正式設計検証のL8 ownership boundaryにおけるhash参照所有と監査可能なsource pin解決",
+    "formal_artifacts": [],
+    "issue": 3510,
+    "status": "pending"
+  },
+  "created": "2026-10-31",
+  "updated": "2026-10-31"
+}

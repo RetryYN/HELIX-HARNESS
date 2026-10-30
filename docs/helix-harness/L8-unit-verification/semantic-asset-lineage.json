@@ -3270,7 +3270,6 @@
               "owner": "trace_owner",
               "sha256": "727db3b76f406a89b3a69a0c23fc842e05c538fb8dfefc1892f17a7a57325074"
             },
-            "source_body_sha256": "727db3b76f406a89b3a69a0c23fc842e05c538fb8dfefc1892f17a7a57325074",
             "envelope_qualification_ref": {
               "identity": "qualification:reason:typed-edge",
               "revision": "q2",
@@ -4972,7 +4971,6 @@
               "owner": "trace_owner",
               "sha256": "ce233450315d8724d26a8065baf991d8886ed9c3488be42c28512ba061695b66"
             },
-            "source_body_sha256": "ce233450315d8724d26a8065baf991d8886ed9c3488be42c28512ba061695b66",
             "envelope_qualification_ref": {
               "identity": "qualification:reason:foreign-scope",
               "revision": "q2",
@@ -6512,7 +6510,6 @@
               "owner": "trace_owner",
               "sha256": "ce233450315d8724d26a8065baf991d8886ed9c3488be42c28512ba061695b66"
             },
-            "source_body_sha256": "ce233450315d8724d26a8065baf991d8886ed9c3488be42c28512ba061695b66",
             "envelope_qualification_ref": {
               "identity": "qualification:reason:foreign-scope",
               "revision": "q2",
@@ -7940,7 +7937,6 @@
         "source_fixture_id": "root-H053-selected-source_missing",
         "input_sha256_canonical": "66bf48d0d6c7cdbeec923e05b69c74a0a8de3900968fdea3f451481dabf23164",
         "expected_comparison_sha256_canonical": "0f4a1b3c11f66c8d4d7056a42af6a2c82dbfe8e3f894dd89f4b1555eeacb9bc5",
-        "source_freeze_sha256": "3f4e2f58adad8c2fefba92e78400dc2377170923013e6fb0c55946b81cd37ee2",
         "relationship_to_existing_case": "root凍結source-failure wholeの新規case。ADD22/23/24および旧6+21の入力・期待値は変更しない。"
       }
     },
@@ -9417,7 +9413,6 @@
         "source_fixture_id": "root-H053-selected-source_bytes_mismatch",
         "input_sha256_canonical": "9ce1e91c5df33a3712de34098b964125559e4b471355fddd87333dd3bd861047",
         "expected_comparison_sha256_canonical": "1f8f379456c14baef15a02c51ad06e1cc29025357919b0e43b915ab910b5c8ea",
-        "source_freeze_sha256": "3f4e2f58adad8c2fefba92e78400dc2377170923013e6fb0c55946b81cd37ee2",
         "relationship_to_existing_case": "root凍結source-failure wholeの新規case。ADD22/23/24および旧6+21の入力・期待値は変更しない。"
       }
     },
@@ -10894,7 +10889,6 @@
         "source_fixture_id": "root-H053-selected-qualification_unresolved",
         "input_sha256_canonical": "c4ac8746aea8e472f636ab5be3f02ef6af7a0c8fb79e5a36e5573949d6978354",
         "expected_comparison_sha256_canonical": "8799115b326b633f40a5b751302750aa9fa4fc1c401f6e4429f4c041b78aa04b",
-        "source_freeze_sha256": "3f4e2f58adad8c2fefba92e78400dc2377170923013e6fb0c55946b81cd37ee2",
         "relationship_to_existing_case": "root凍結source-failure wholeの新規case。ADD22/23/24および旧6+21の入力・期待値は変更しない。"
       }
     }
@@ -11093,7 +11087,6 @@
         "expected_comparison_pointer": "/additional_unit_cases/24/expected_comparison",
         "typed_input_sha256_canonical": "66bf48d0d6c7cdbeec923e05b69c74a0a8de3900968fdea3f451481dabf23164",
         "expected_comparison_sha256_canonical": "0f4a1b3c11f66c8d4d7056a42af6a2c82dbfe8e3f894dd89f4b1555eeacb9bc5",
-        "source_freeze_sha256": "3f4e2f58adad8c2fefba92e78400dc2377170923013e6fb0c55946b81cd37ee2",
         "execution_state": "not_executed",
         "meaning": "inputと全Comparison期待値はこのL8候補JSON本文に完全値で置く。",
         "invocation_binding": "typed_inputのLineageMappingEvidence全体を直接渡す。旧ValidatedInput adapterによる再wrapはしない。"
@@ -11105,7 +11098,6 @@
         "expected_comparison_pointer": "/additional_unit_cases/25/expected_comparison",
         "typed_input_sha256_canonical": "9ce1e91c5df33a3712de34098b964125559e4b471355fddd87333dd3bd861047",
         "expected_comparison_sha256_canonical": "1f8f379456c14baef15a02c51ad06e1cc29025357919b0e43b915ab910b5c8ea",
-        "source_freeze_sha256": "3f4e2f58adad8c2fefba92e78400dc2377170923013e6fb0c55946b81cd37ee2",
         "execution_state": "not_executed",
         "meaning": "inputと全Comparison期待値はこのL8候補JSON本文に完全値で置く。",
         "invocation_binding": "typed_inputのLineageMappingEvidence全体を直接渡す。旧ValidatedInput adapterによる再wrapはしない。"
@@ -11117,7 +11109,6 @@
         "expected_comparison_pointer": "/additional_unit_cases/26/expected_comparison",
         "typed_input_sha256_canonical": "c4ac8746aea8e472f636ab5be3f02ef6af7a0c8fb79e5a36e5573949d6978354",
         "expected_comparison_sha256_canonical": "8799115b326b633f40a5b751302750aa9fa4fc1c401f6e4429f4c041b78aa04b",
-        "source_freeze_sha256": "3f4e2f58adad8c2fefba92e78400dc2377170923013e6fb0c55946b81cd37ee2",
         "execution_state": "not_executed",
         "meaning": "inputと全Comparison期待値はこのL8候補JSON本文に完全値で置く。",
         "invocation_binding": "typed_inputのLineageMappingEvidence全体を直接渡す。旧ValidatedInput adapterによる再wrapはしない。"
@@ -11178,6 +11169,19 @@
       "sha256": "3f4e2f58adad8c2fefba92e78400dc2377170923013e6fb0c55946b81cd37ee2",
       "role": "入力/期待値は各ADD25/26/27本文に完全配置済み。このfreezeは由来を示す記録で、候補の値を読む唯一依存先ではない。"
     },
+    "hash_reference_reconciliation": {
+      "revision": "4bee77125480c578068aa0760d2f6b33c497d53a",
+      "scope": "既存candidate L5/L8の参照重複だけを除去。入力・期待値・oracle・case ID・owner semanticsは変更しない。",
+      "audit_bundle": "scaffold/research/wr211-hash-reference-reconciliation-20261031/README.md、validate.py（SCF-B-0183）。",
+      "source_body_reference_reconciliation": "ADD-22/23/24のsource_whole_identity/reason_qualification_addresses/0にあった3値を削除。各値は同じaddressのsource_ref.sha256およびcase内Envelope.content_bytesのUTF-8 SHA-256と一致し、正本を各caseのtyped_inputに保持。",
+      "source_freeze_reference_reconciliation": "ADD-25/26/27のsource_whole_identityおよびcase_mapping_and_complete_valuesの計6複製を削除。source_failure_freeze_provenanceのpathとsha256を監査参照として保持。指定pathのfreeze実体とそのcommitはorigin/mainのtree/historyで解決できず、ここでは復元・代替しない。",
+      "l5_rule_value_reconciliation": "4つのvalue_canonical_sha256を削除し、rule_idとJSON pointerは保持。L5候補全体のsha256、revision、path、および各rule pointerで固定し、revisionの候補file bytesはsha256一致を確認。",
+      "qualification_inputs": "ADD-22..27のtyped Qualification subject_sha256 30値は変更せず保持。これらはcase inputであり、削除した参照複製とは異なる。",
+      "projected_l8_ownership_cap": "基準の43件から13重複を除去し、main fa3d2d515ce8df79c0a74d5360a4d1254863a6f1のcandidate child checkerで30件を実測。残る30件は保持したtyped Qualification subject_sha256。",
+      "expected_and_oracle": "既存case expected_comparison、expected state、side-effect期待を不変。base 4bee77125480c578068aa0760d2f6b33c497d53aと未commit候補L8での親側child checker結果は、4-wayの76 failuresが残りmatched_case_count=0で変更前後不変、L4/L9とL5/L8 pairはPASS。rebase先fa3d2d515ce8df79c0a74d5360a4d1254863a6f1への更新でL8 bytesは不変。latest main fa3d2d515ce8df79c0a74d5360a4d1254863a6f1上でも候補childを再測定し、両pair PASS、4-way 76 failures／matched 0、L8 cap 30を確認。この結果は要求や受入を追加しない。",
+      "legacy_and_failure_basis": "根拠は本書legacy_comparisonおよびfailure_basisの既存参照を維持。旧sourceの実行・再解釈はしていない。",
+      "remaining": "4-wayは76 failures/matched_case_count=0、30件のownership cap残、freeze実体/commitの不在、およびsource omission以外のoracle・期待変更は別途未解決。"
+    },
     "input_binding_and_legacy_scope": {
       "rule": "L8 invocationはtyped_inputの宣言型に従う。LineageMappingEvidenceは3 member全体を直接渡し、ValidatedInputは必要な場合だけ一度bundleへwrapする。",
       "legacy_scope": "ADD-12/13の既存prose scope・ID・入力/期待記録はそのまま保持する。ADD-22以降は各case本文に全値を持つ別のtyped bundleであり、ADD-12/13のraw入力へ黙って当てはめない。",
@@ -11188,28 +11192,25 @@
   "candidate_l5_binding": {
     "path": "docs/helix-harness/L5-detail-design/semantic-asset-lineage.json",
     "sha256": "48de565e7ce09551183792fcc935f2ea8099e5de8b9ea208e178677d1004251d",
+    "revision": "572ad5be595b2f052c72199f5edcc52c92f82dda",
     "binding_kind": "exact_candidate_file_bytes",
     "meaning": "公開候補を同pairとして適用する場合の正式L5配置先と候補bytesを結ぶ。現在のformal L5 bytesがこの候補へ置換済みであること、承認、製品実装を主張しない。",
     "rule_bindings": [
       {
         "pointer": "/type_contract/private_mapping_evidence_contract/reason_local_rules/0",
-        "rule_id": "HARNESS-L5-053-R-non_applicability_source_missing",
-        "value_canonical_sha256": "f3cda17c83d56bca869b64927d52ee59ebc475d40de3b87030848566bcfa1522"
+        "rule_id": "HARNESS-L5-053-R-non_applicability_source_missing"
       },
       {
         "pointer": "/type_contract/private_mapping_evidence_contract/reason_local_rules/1",
-        "rule_id": "HARNESS-L5-053-R-non_applicability_source_bytes_mismatch",
-        "value_canonical_sha256": "7da00ad49fd2907fc7cce9a69206fce6c32a2360f97945550fdeeb0f38857e8e"
+        "rule_id": "HARNESS-L5-053-R-non_applicability_source_bytes_mismatch"
       },
       {
         "pointer": "/type_contract/private_mapping_evidence_contract/reason_local_rules/2",
-        "rule_id": "HARNESS-L5-053-R-non_applicability_qualification_unresolved",
-        "value_canonical_sha256": "b9cec44566fcc44d2e2b60280ba415d73638ebe20812fc4fab8e6f232c5537d9"
+        "rule_id": "HARNESS-L5-053-R-non_applicability_qualification_unresolved"
       },
       {
         "pointer": "/type_contract/private_mapping_evidence_contract/reason_local_rules/3",
-        "rule_id": "HARNESS-L5-053-R-non_applicability_scope_mismatch",
-        "value_canonical_sha256": "860705e5142011737ce672aedd7235998225d85762c402e21728c285f12df808"
+        "rule_id": "HARNESS-L5-053-R-non_applicability_scope_mismatch"
       }
     ]
   }
