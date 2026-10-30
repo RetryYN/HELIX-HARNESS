@@ -15,8 +15,8 @@
     },
     {
       "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
-      "sha256": "9146ffd557bc5da60f79cdcd462578b38edf6ec524143a705ab07eeb34c7997b",
-      "note": "PR-Aの2 composite classificationを含むL4 bytes。"
+      "sha256": "32e4a7b6432e7454d242277b37a0948916dc876b6e8e008ad8e4f8c2d7207081",
+      "note": "PR-Aの2 composite classificationを含むL4 bytes。 以前のpin=9146ffd557bc5da60f79cdcd462578b38edf6ec524143a705ab07eeb34c7997b。候補base 64d3cf3に新15 classと112件のL9 linkを追補後の現在bytes=fff2aa4e0883666d73af98733d32eda7b18a4e6a1bc2ebf6741df1c456c62bf6。新たに独立手動監査した15 classをL4へ追補。既存classとdiagnostic_contractは不変。 以前のpin=fff2aa4e0883666d73af98733d32eda7b18a4e6a1bc2ebf6741df1c456c62bf6。L4へ手動監査根拠の15 class rowsと対応するnegative_class_refsを追加。旧class、F02本文、diagnostic_contractは保持。 現在bytes sha256=a1746eea4b021e6d370fca76125179c38c8c241413044e31984e6b549ed0a38a。 2026-10-30 condition照合後candidate sha256=6613e77d651496efe9d576ce840324050147aca8f785c635ce1a858d6eba7ca8。class conditionをL7 fixed given.inputのphase/pointer/value照合に合わせ明確化。 2026-10-30 #3927 C0573–C0582のL4/L7再導出を反映したclass grouping candidate sha256=5038893210d772bc46fa75802757a90d9658ec4f427f76adcc3cf8a6702ce96f. M1 correction 16d683cd -> a0f8ffe7: prior pin=5038893210d772bc46fa75802757a90d9658ec4f427f76adcc3cf8a6702ce96f; current pin=32e4a7b6432e7454d242277b37a0948916dc876b6e8e008ad8e4f8c2d7207081; overall severity remains violation while selected classification facet state is unknown."
     },
     {
       "path": "docs/helix-os/L7-function-verification/management-authority-source-record.json",
@@ -25,8 +25,8 @@
     },
     {
       "path": "docs/helix-os/L9-integration-verification/management-authority-source-record.json",
-      "sha256": "a4a186902d29330d5d88bdb8366e70b8678a31d3e2e750b8e2e7e46e83b5776c",
-      "note": "PR-A/B時点のL9 bytes hash 392417ce60ff10beed23d1aee27aadc7afaaf4062fb1dc04473325e30ad2c7e5から、PR-Cが既存2 composite rowへL5 /failure_rules/31,/32 pointerを各1件追記した現在のL9 bytes。583 integration_casesと既存class/link/expectationは維持。current sha256=a4a186902d29330d5d88bdb8366e70b8678a31d3e2e750b8e2e7e46e83b5776c。"
+      "sha256": "365b89c9131e5edd9b64d474438ff780360118819cc651ee535f64a70aa5ff1d",
+      "note": "PR-A/B時点のL9 bytes hash 392417ce60ff10beed23d1aee27aadc7afaaf4062fb1dc04473325e30ad2c7e5から、PR-Cが既存2 composite rowへL5 /failure_rules/31,/32 pointerを各1件追記した現在のL9 bytes。583 integration_casesと既存class/link/expectationは維持。current sha256=a4a186902d29330d5d88bdb8366e70b8678a31d3e2e750b8e2e7e46e83b5776c。 以前のpin=a4a186902d29330d5d88bdb8366e70b8678a31d3e2e750b8e2e7e46e83b5776c。候補base 64d3cf3に新15 classと112件のL9 linkを追補後の現在bytes=ab875f72dfef9f1afaa72b04dd1c8b341d5fc13c4320c1640f42f58f91798c90。L4の新15 classをL9へ順方向投影し、残112 caseのmaterial_ref/raw inputとnegative_class_refを追加。case expected等583件は不変。 2026-10-30 condition照合後candidate sha256=ab875f72dfef9f1afaa72b04dd1c8b341d5fc13c4320c1640f42f58f91798c90。class conditionをL7 fixed given.inputのphase/pointer/value照合に合わせ明確化。 2026-10-30 #3927 C0573–C0582のL4/L7再導出を反映したclass grouping candidate sha256=1e2bac6a7cabe48b11ba17736c7081fcbe27c35de79f835c75a1a709d5891b39. M1 correction 16d683cd -> a0f8ffe7: prior pin=1e2bac6a7cabe48b11ba17736c7081fcbe27c35de79f835c75a1a709d5891b39; current pin=365b89c9131e5edd9b64d474438ff780360118819cc651ee535f64a70aa5ff1d; overall severity remains violation while selected classification facet state is unknown."
     },
     {
       "path": "scaffold/tools/design_verification_checker.py",

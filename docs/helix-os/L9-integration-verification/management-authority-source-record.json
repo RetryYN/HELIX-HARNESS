@@ -5691,7 +5691,7 @@
       },
       "material_ref": {
         "path": "docs/helix-os/L7-function-verification/management-authority-source-record.json",
-        "pointer": "/derived_observations/cases/43"
+        "pointer": "/connection_materials/OS015/case/cases/43/given/input"
       },
       "execution_state": "synthetic_document_comparison_only",
       "condition": "management_material_violation",
@@ -5749,7 +5749,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0044"
+      "integration_case_ref": "HELIXOS-L9-015-C0044",
+      "negative_class_ref": "OS015-NEG-COMPOSITE-4e0c28b06920d3a9665cbe4beeaf48cea44d7b0d350dddfaec9c8471de1e86b5"
     },
     {
       "id": "HELIXOS-L9-015-C0045",
@@ -10350,7 +10351,7 @@
       },
       "material_ref": {
         "path": "docs/helix-os/L7-function-verification/management-authority-source-record.json",
-        "pointer": "/derived_observations/cases/113"
+        "pointer": "/connection_materials/OS015/case/cases/113/given/input"
       },
       "execution_state": "synthetic_document_comparison_only",
       "condition": "management_material_violation",
@@ -10408,7 +10409,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0114"
+      "integration_case_ref": "HELIXOS-L9-015-C0114",
+      "negative_class_ref": "OS015-NEG-COMPOSITE-4e0c28b06920d3a9665cbe4beeaf48cea44d7b0d350dddfaec9c8471de1e86b5"
     },
     {
       "id": "HELIXOS-L9-015-C0115",
@@ -10419,7 +10421,7 @@
       },
       "material_ref": {
         "path": "docs/helix-os/L7-function-verification/management-authority-source-record.json",
-        "pointer": "/derived_observations/cases/114"
+        "pointer": "/connection_materials/OS015/case/cases/114/given/input"
       },
       "execution_state": "synthetic_document_comparison_only",
       "condition": "management_material_violation",
@@ -10477,7 +10479,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0115"
+      "integration_case_ref": "HELIXOS-L9-015-C0115",
+      "negative_class_ref": "OS015-NEG-COMPOSITE-07c9fd844a293140f5dc77476ab8ed90116889361788956739abfdcf65b874c4"
     },
     {
       "id": "HELIXOS-L9-015-C0116",
@@ -10488,7 +10491,7 @@
       },
       "material_ref": {
         "path": "docs/helix-os/L7-function-verification/management-authority-source-record.json",
-        "pointer": "/derived_observations/cases/115"
+        "pointer": "/connection_materials/OS015/case/cases/115/given/input"
       },
       "execution_state": "synthetic_document_comparison_only",
       "condition": "management_material_violation",
@@ -10546,7 +10549,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0116"
+      "integration_case_ref": "HELIXOS-L9-015-C0116",
+      "negative_class_ref": "OS015-NEG-COMPOSITE-4e0c28b06920d3a9665cbe4beeaf48cea44d7b0d350dddfaec9c8471de1e86b5"
     },
     {
       "id": "HELIXOS-L9-015-C0117",
@@ -10557,7 +10561,7 @@
       },
       "material_ref": {
         "path": "docs/helix-os/L7-function-verification/management-authority-source-record.json",
-        "pointer": "/derived_observations/cases/116"
+        "pointer": "/connection_materials/OS015/case/cases/116/given/input"
       },
       "execution_state": "synthetic_document_comparison_only",
       "condition": "management_material_violation",
@@ -10615,7 +10619,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0117"
+      "integration_case_ref": "HELIXOS-L9-015-C0117",
+      "negative_class_ref": "OS015-NEG-COMPOSITE-07c9fd844a293140f5dc77476ab8ed90116889361788956739abfdcf65b874c4"
     },
     {
       "id": "HELIXOS-L9-015-C0118",
@@ -10626,7 +10631,7 @@
       },
       "material_ref": {
         "path": "docs/helix-os/L7-function-verification/management-authority-source-record.json",
-        "pointer": "/derived_observations/cases/117"
+        "pointer": "/connection_materials/OS015/case/cases/117/given/input"
       },
       "execution_state": "synthetic_document_comparison_only",
       "condition": "management_material_violation",
@@ -10684,7 +10689,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0118"
+      "integration_case_ref": "HELIXOS-L9-015-C0118",
+      "negative_class_ref": "OS015-NEG-COMPOSITE-4e0c28b06920d3a9665cbe4beeaf48cea44d7b0d350dddfaec9c8471de1e86b5"
     },
     {
       "id": "HELIXOS-L9-015-C0119",
@@ -10695,7 +10701,7 @@
       },
       "material_ref": {
         "path": "docs/helix-os/L7-function-verification/management-authority-source-record.json",
-        "pointer": "/derived_observations/cases/118"
+        "pointer": "/connection_materials/OS015/case/cases/118/given/input"
       },
       "execution_state": "synthetic_document_comparison_only",
       "condition": "management_material_violation",
@@ -10753,7 +10759,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0119"
+      "integration_case_ref": "HELIXOS-L9-015-C0119",
+      "negative_class_ref": "OS015-NEG-COMPOSITE-07c9fd844a293140f5dc77476ab8ed90116889361788956739abfdcf65b874c4"
     },
     {
       "id": "HELIXOS-L9-015-C0120",
@@ -13324,7 +13331,7 @@
       },
       "material_ref": {
         "path": "docs/helix-os/L7-function-verification/management-authority-source-record.json",
-        "pointer": "/derived_observations/cases/159"
+        "pointer": "/connection_materials/OS015/case/cases/159/given/input"
       },
       "execution_state": "synthetic_document_comparison_only",
       "condition": "management_material_violation",
@@ -13382,7 +13389,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0160"
+      "integration_case_ref": "HELIXOS-L9-015-C0160",
+      "negative_class_ref": "OS015-NEG-COMPOSITE-4e0c28b06920d3a9665cbe4beeaf48cea44d7b0d350dddfaec9c8471de1e86b5"
     },
     {
       "id": "HELIXOS-L9-015-C0161",
@@ -13393,7 +13401,7 @@
       },
       "material_ref": {
         "path": "docs/helix-os/L7-function-verification/management-authority-source-record.json",
-        "pointer": "/derived_observations/cases/160"
+        "pointer": "/connection_materials/OS015/case/cases/160/given/input"
       },
       "execution_state": "synthetic_document_comparison_only",
       "condition": "management_material_violation",
@@ -13451,7 +13459,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0161"
+      "integration_case_ref": "HELIXOS-L9-015-C0161",
+      "negative_class_ref": "OS015-NEG-COMPOSITE-07c9fd844a293140f5dc77476ab8ed90116889361788956739abfdcf65b874c4"
     },
     {
       "id": "HELIXOS-L9-015-C0162",
@@ -13462,7 +13471,7 @@
       },
       "material_ref": {
         "path": "docs/helix-os/L7-function-verification/management-authority-source-record.json",
-        "pointer": "/derived_observations/cases/161"
+        "pointer": "/connection_materials/OS015/case/cases/161/given/input"
       },
       "execution_state": "synthetic_document_comparison_only",
       "condition": "management_material_violation",
@@ -13520,7 +13529,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0162"
+      "integration_case_ref": "HELIXOS-L9-015-C0162",
+      "negative_class_ref": "OS015-NEG-COMPOSITE-4e0c28b06920d3a9665cbe4beeaf48cea44d7b0d350dddfaec9c8471de1e86b5"
     },
     {
       "id": "HELIXOS-L9-015-C0163",
@@ -13531,7 +13541,7 @@
       },
       "material_ref": {
         "path": "docs/helix-os/L7-function-verification/management-authority-source-record.json",
-        "pointer": "/derived_observations/cases/162"
+        "pointer": "/connection_materials/OS015/case/cases/162/given/input"
       },
       "execution_state": "synthetic_document_comparison_only",
       "condition": "management_material_violation",
@@ -13589,7 +13599,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0163"
+      "integration_case_ref": "HELIXOS-L9-015-C0163",
+      "negative_class_ref": "OS015-NEG-COMPOSITE-07c9fd844a293140f5dc77476ab8ed90116889361788956739abfdcf65b874c4"
     },
     {
       "id": "HELIXOS-L9-015-C0164",
@@ -13600,7 +13611,7 @@
       },
       "material_ref": {
         "path": "docs/helix-os/L7-function-verification/management-authority-source-record.json",
-        "pointer": "/derived_observations/cases/163"
+        "pointer": "/connection_materials/OS015/case/cases/163/given/input"
       },
       "execution_state": "synthetic_document_comparison_only",
       "condition": "management_material_violation",
@@ -13658,7 +13669,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0164"
+      "integration_case_ref": "HELIXOS-L9-015-C0164",
+      "negative_class_ref": "OS015-NEG-COMPOSITE-4e0c28b06920d3a9665cbe4beeaf48cea44d7b0d350dddfaec9c8471de1e86b5"
     },
     {
       "id": "HELIXOS-L9-015-C0165",
@@ -13669,7 +13681,7 @@
       },
       "material_ref": {
         "path": "docs/helix-os/L7-function-verification/management-authority-source-record.json",
-        "pointer": "/derived_observations/cases/164"
+        "pointer": "/connection_materials/OS015/case/cases/164/given/input"
       },
       "execution_state": "synthetic_document_comparison_only",
       "condition": "management_material_violation",
@@ -13727,7 +13739,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0165"
+      "integration_case_ref": "HELIXOS-L9-015-C0165",
+      "negative_class_ref": "OS015-NEG-COMPOSITE-07c9fd844a293140f5dc77476ab8ed90116889361788956739abfdcf65b874c4"
     },
     {
       "id": "HELIXOS-L9-015-C0166",
@@ -13738,7 +13751,7 @@
       },
       "material_ref": {
         "path": "docs/helix-os/L7-function-verification/management-authority-source-record.json",
-        "pointer": "/derived_observations/cases/165"
+        "pointer": "/connection_materials/OS015/case/cases/165/given/input"
       },
       "execution_state": "synthetic_document_comparison_only",
       "condition": "management_material_violation",
@@ -13796,7 +13809,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0166"
+      "integration_case_ref": "HELIXOS-L9-015-C0166",
+      "negative_class_ref": "OS015-NEG-COMPOSITE-4e0c28b06920d3a9665cbe4beeaf48cea44d7b0d350dddfaec9c8471de1e86b5"
     },
     {
       "id": "HELIXOS-L9-015-C0167",
@@ -13807,7 +13821,7 @@
       },
       "material_ref": {
         "path": "docs/helix-os/L7-function-verification/management-authority-source-record.json",
-        "pointer": "/derived_observations/cases/166"
+        "pointer": "/connection_materials/OS015/case/cases/166/given/input"
       },
       "execution_state": "synthetic_document_comparison_only",
       "condition": "management_material_violation",
@@ -13865,7 +13879,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0167"
+      "integration_case_ref": "HELIXOS-L9-015-C0167",
+      "negative_class_ref": "OS015-NEG-COMPOSITE-07c9fd844a293140f5dc77476ab8ed90116889361788956739abfdcf65b874c4"
     },
     {
       "id": "HELIXOS-L9-015-C0168",
@@ -13876,7 +13891,7 @@
       },
       "material_ref": {
         "path": "docs/helix-os/L7-function-verification/management-authority-source-record.json",
-        "pointer": "/derived_observations/cases/167"
+        "pointer": "/connection_materials/OS015/case/cases/167/given/input"
       },
       "execution_state": "synthetic_document_comparison_only",
       "condition": "management_material_violation",
@@ -13934,7 +13949,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0168"
+      "integration_case_ref": "HELIXOS-L9-015-C0168",
+      "negative_class_ref": "OS015-NEG-COMPOSITE-4e0c28b06920d3a9665cbe4beeaf48cea44d7b0d350dddfaec9c8471de1e86b5"
     },
     {
       "id": "HELIXOS-L9-015-C0169",
@@ -13945,7 +13961,7 @@
       },
       "material_ref": {
         "path": "docs/helix-os/L7-function-verification/management-authority-source-record.json",
-        "pointer": "/derived_observations/cases/168"
+        "pointer": "/connection_materials/OS015/case/cases/168/given/input"
       },
       "execution_state": "synthetic_document_comparison_only",
       "condition": "management_material_violation",
@@ -14003,7 +14019,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0169"
+      "integration_case_ref": "HELIXOS-L9-015-C0169",
+      "negative_class_ref": "OS015-NEG-COMPOSITE-07c9fd844a293140f5dc77476ab8ed90116889361788956739abfdcf65b874c4"
     },
     {
       "id": "HELIXOS-L9-015-C0170",
@@ -14014,7 +14031,7 @@
       },
       "material_ref": {
         "path": "docs/helix-os/L7-function-verification/management-authority-source-record.json",
-        "pointer": "/derived_observations/cases/169"
+        "pointer": "/connection_materials/OS015/case/cases/169/given/input"
       },
       "execution_state": "synthetic_document_comparison_only",
       "condition": "management_material_violation",
@@ -14072,7 +14089,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0170"
+      "integration_case_ref": "HELIXOS-L9-015-C0170",
+      "negative_class_ref": "OS015-NEG-COMPOSITE-4e0c28b06920d3a9665cbe4beeaf48cea44d7b0d350dddfaec9c8471de1e86b5"
     },
     {
       "id": "HELIXOS-L9-015-C0171",
@@ -14083,7 +14101,7 @@
       },
       "material_ref": {
         "path": "docs/helix-os/L7-function-verification/management-authority-source-record.json",
-        "pointer": "/derived_observations/cases/170"
+        "pointer": "/connection_materials/OS015/case/cases/170/given/input"
       },
       "execution_state": "synthetic_document_comparison_only",
       "condition": "management_material_violation",
@@ -14141,7 +14159,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0171"
+      "integration_case_ref": "HELIXOS-L9-015-C0171",
+      "negative_class_ref": "OS015-NEG-COMPOSITE-07c9fd844a293140f5dc77476ab8ed90116889361788956739abfdcf65b874c4"
     },
     {
       "id": "HELIXOS-L9-015-C0172",
@@ -14152,7 +14171,7 @@
       },
       "material_ref": {
         "path": "docs/helix-os/L7-function-verification/management-authority-source-record.json",
-        "pointer": "/derived_observations/cases/171"
+        "pointer": "/connection_materials/OS015/case/cases/171/given/input"
       },
       "execution_state": "synthetic_document_comparison_only",
       "condition": "management_material_violation",
@@ -14210,7 +14229,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0172"
+      "integration_case_ref": "HELIXOS-L9-015-C0172",
+      "negative_class_ref": "OS015-NEG-COMPOSITE-4e0c28b06920d3a9665cbe4beeaf48cea44d7b0d350dddfaec9c8471de1e86b5"
     },
     {
       "id": "HELIXOS-L9-015-C0173",
@@ -14221,7 +14241,7 @@
       },
       "material_ref": {
         "path": "docs/helix-os/L7-function-verification/management-authority-source-record.json",
-        "pointer": "/derived_observations/cases/172"
+        "pointer": "/connection_materials/OS015/case/cases/172/given/input"
       },
       "execution_state": "synthetic_document_comparison_only",
       "condition": "management_material_violation",
@@ -14279,7 +14299,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0173"
+      "integration_case_ref": "HELIXOS-L9-015-C0173",
+      "negative_class_ref": "OS015-NEG-COMPOSITE-07c9fd844a293140f5dc77476ab8ed90116889361788956739abfdcf65b874c4"
     },
     {
       "id": "HELIXOS-L9-015-C0174",
@@ -14290,7 +14311,7 @@
       },
       "material_ref": {
         "path": "docs/helix-os/L7-function-verification/management-authority-source-record.json",
-        "pointer": "/derived_observations/cases/173"
+        "pointer": "/connection_materials/OS015/case/cases/173/given/input"
       },
       "execution_state": "synthetic_document_comparison_only",
       "condition": "management_material_violation",
@@ -14348,7 +14369,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0174"
+      "integration_case_ref": "HELIXOS-L9-015-C0174",
+      "negative_class_ref": "OS015-NEG-COMPOSITE-4e0c28b06920d3a9665cbe4beeaf48cea44d7b0d350dddfaec9c8471de1e86b5"
     },
     {
       "id": "HELIXOS-L9-015-C0175",
@@ -14359,7 +14381,7 @@
       },
       "material_ref": {
         "path": "docs/helix-os/L7-function-verification/management-authority-source-record.json",
-        "pointer": "/derived_observations/cases/174"
+        "pointer": "/connection_materials/OS015/case/cases/174/given/input"
       },
       "execution_state": "synthetic_document_comparison_only",
       "condition": "management_material_violation",
@@ -14417,7 +14439,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0175"
+      "integration_case_ref": "HELIXOS-L9-015-C0175",
+      "negative_class_ref": "OS015-NEG-COMPOSITE-07c9fd844a293140f5dc77476ab8ed90116889361788956739abfdcf65b874c4"
     },
     {
       "id": "HELIXOS-L9-015-C0176",
@@ -14428,7 +14451,7 @@
       },
       "material_ref": {
         "path": "docs/helix-os/L7-function-verification/management-authority-source-record.json",
-        "pointer": "/derived_observations/cases/175"
+        "pointer": "/connection_materials/OS015/case/cases/175/given/input"
       },
       "execution_state": "synthetic_document_comparison_only",
       "condition": "management_material_violation",
@@ -14486,7 +14509,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0176"
+      "integration_case_ref": "HELIXOS-L9-015-C0176",
+      "negative_class_ref": "OS015-NEG-COMPOSITE-4e0c28b06920d3a9665cbe4beeaf48cea44d7b0d350dddfaec9c8471de1e86b5"
     },
     {
       "id": "HELIXOS-L9-015-C0177",
@@ -14497,7 +14521,7 @@
       },
       "material_ref": {
         "path": "docs/helix-os/L7-function-verification/management-authority-source-record.json",
-        "pointer": "/derived_observations/cases/176"
+        "pointer": "/connection_materials/OS015/case/cases/176/given/input"
       },
       "execution_state": "synthetic_document_comparison_only",
       "condition": "management_material_violation",
@@ -14555,7 +14579,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0177"
+      "integration_case_ref": "HELIXOS-L9-015-C0177",
+      "negative_class_ref": "OS015-NEG-COMPOSITE-07c9fd844a293140f5dc77476ab8ed90116889361788956739abfdcf65b874c4"
     },
     {
       "id": "HELIXOS-L9-015-C0178",
@@ -14630,7 +14655,7 @@
       },
       "material_ref": {
         "path": "docs/helix-os/L7-function-verification/management-authority-source-record.json",
-        "pointer": "/derived_observations/cases/178"
+        "pointer": "/connection_materials/OS015/case/cases/178/given/input"
       },
       "execution_state": "synthetic_document_comparison_only",
       "condition": "management_material_violation",
@@ -14688,7 +14713,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0179"
+      "integration_case_ref": "HELIXOS-L9-015-C0179",
+      "negative_class_ref": "OS015-NEG-COMPOSITE-0847e4310de684d30c54c16de19c0ce068f2666a3e68fe3e3d93f144934f9a42"
     },
     {
       "id": "HELIXOS-L9-015-C0180",
@@ -15019,7 +15045,7 @@
       },
       "material_ref": {
         "path": "docs/helix-os/L7-function-verification/management-authority-source-record.json",
-        "pointer": "/derived_observations/cases/184"
+        "pointer": "/connection_materials/OS015/case/cases/184/given/input"
       },
       "execution_state": "synthetic_document_comparison_only",
       "condition": "management_material_violation",
@@ -15077,7 +15103,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0185"
+      "integration_case_ref": "HELIXOS-L9-015-C0185",
+      "negative_class_ref": "OS015-NEG-COMPOSITE-0847e4310de684d30c54c16de19c0ce068f2666a3e68fe3e3d93f144934f9a42"
     },
     {
       "id": "HELIXOS-L9-015-C0186",
@@ -17136,7 +17163,7 @@
       },
       "material_ref": {
         "path": "docs/helix-os/L7-function-verification/management-authority-source-record.json",
-        "pointer": "/derived_observations/cases/217"
+        "pointer": "/connection_materials/OS015/case/cases/217/given/input"
       },
       "execution_state": "synthetic_document_comparison_only",
       "condition": "management_material_violation",
@@ -17194,7 +17221,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0218"
+      "integration_case_ref": "HELIXOS-L9-015-C0218",
+      "negative_class_ref": "OS015-NEG-COMPOSITE-4e0c28b06920d3a9665cbe4beeaf48cea44d7b0d350dddfaec9c8471de1e86b5"
     },
     {
       "id": "HELIXOS-L9-015-C0219",
@@ -17205,7 +17233,7 @@
       },
       "material_ref": {
         "path": "docs/helix-os/L7-function-verification/management-authority-source-record.json",
-        "pointer": "/derived_observations/cases/218"
+        "pointer": "/connection_materials/OS015/case/cases/218/given/input"
       },
       "execution_state": "synthetic_document_comparison_only",
       "condition": "management_material_violation",
@@ -17269,7 +17297,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0219"
+      "integration_case_ref": "HELIXOS-L9-015-C0219",
+      "negative_class_ref": "OS015-NEG-COMPOSITE-9c5c0fb87d1b6f9fbdf5e2e825c9e600024bbcd3f5bac7a32e7c20423fca521c"
     },
     {
       "id": "HELIXOS-L9-015-C0220",
@@ -17280,7 +17309,7 @@
       },
       "material_ref": {
         "path": "docs/helix-os/L7-function-verification/management-authority-source-record.json",
-        "pointer": "/derived_observations/cases/219"
+        "pointer": "/connection_materials/OS015/case/cases/219/given/input"
       },
       "execution_state": "synthetic_document_comparison_only",
       "condition": "management_material_violation",
@@ -17338,7 +17367,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0220"
+      "integration_case_ref": "HELIXOS-L9-015-C0220",
+      "negative_class_ref": "OS015-NEG-COMPOSITE-4e0c28b06920d3a9665cbe4beeaf48cea44d7b0d350dddfaec9c8471de1e86b5"
     },
     {
       "id": "HELIXOS-L9-015-C0221",
@@ -17349,7 +17379,7 @@
       },
       "material_ref": {
         "path": "docs/helix-os/L7-function-verification/management-authority-source-record.json",
-        "pointer": "/derived_observations/cases/220"
+        "pointer": "/connection_materials/OS015/case/cases/220/given/input"
       },
       "execution_state": "synthetic_document_comparison_only",
       "condition": "management_material_violation",
@@ -17413,7 +17443,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0221"
+      "integration_case_ref": "HELIXOS-L9-015-C0221",
+      "negative_class_ref": "OS015-NEG-COMPOSITE-9c5c0fb87d1b6f9fbdf5e2e825c9e600024bbcd3f5bac7a32e7c20423fca521c"
     },
     {
       "id": "HELIXOS-L9-015-C0222",
@@ -17424,7 +17455,7 @@
       },
       "material_ref": {
         "path": "docs/helix-os/L7-function-verification/management-authority-source-record.json",
-        "pointer": "/derived_observations/cases/221"
+        "pointer": "/connection_materials/OS015/case/cases/221/given/input"
       },
       "execution_state": "synthetic_document_comparison_only",
       "condition": "management_material_violation",
@@ -17482,7 +17513,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0222"
+      "integration_case_ref": "HELIXOS-L9-015-C0222",
+      "negative_class_ref": "OS015-NEG-COMPOSITE-4e0c28b06920d3a9665cbe4beeaf48cea44d7b0d350dddfaec9c8471de1e86b5"
     },
     {
       "id": "HELIXOS-L9-015-C0223",
@@ -17493,7 +17525,7 @@
       },
       "material_ref": {
         "path": "docs/helix-os/L7-function-verification/management-authority-source-record.json",
-        "pointer": "/derived_observations/cases/222"
+        "pointer": "/connection_materials/OS015/case/cases/222/given/input"
       },
       "execution_state": "synthetic_document_comparison_only",
       "condition": "management_material_violation",
@@ -17551,7 +17583,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0223"
+      "integration_case_ref": "HELIXOS-L9-015-C0223",
+      "negative_class_ref": "OS015-NEG-COMPOSITE-07c9fd844a293140f5dc77476ab8ed90116889361788956739abfdcf65b874c4"
     },
     {
       "id": "HELIXOS-L9-015-C0224",
@@ -17562,7 +17595,7 @@
       },
       "material_ref": {
         "path": "docs/helix-os/L7-function-verification/management-authority-source-record.json",
-        "pointer": "/derived_observations/cases/223"
+        "pointer": "/connection_materials/OS015/case/cases/223/given/input"
       },
       "execution_state": "synthetic_document_comparison_only",
       "condition": "management_material_violation",
@@ -17620,7 +17653,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0224"
+      "integration_case_ref": "HELIXOS-L9-015-C0224",
+      "negative_class_ref": "OS015-NEG-COMPOSITE-4e0c28b06920d3a9665cbe4beeaf48cea44d7b0d350dddfaec9c8471de1e86b5"
     },
     {
       "id": "HELIXOS-L9-015-C0225",
@@ -17631,7 +17665,7 @@
       },
       "material_ref": {
         "path": "docs/helix-os/L7-function-verification/management-authority-source-record.json",
-        "pointer": "/derived_observations/cases/224"
+        "pointer": "/connection_materials/OS015/case/cases/224/given/input"
       },
       "execution_state": "synthetic_document_comparison_only",
       "condition": "management_material_violation",
@@ -17689,7 +17723,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0225"
+      "integration_case_ref": "HELIXOS-L9-015-C0225",
+      "negative_class_ref": "OS015-NEG-COMPOSITE-07c9fd844a293140f5dc77476ab8ed90116889361788956739abfdcf65b874c4"
     },
     {
       "id": "HELIXOS-L9-015-C0226",
@@ -17700,7 +17735,7 @@
       },
       "material_ref": {
         "path": "docs/helix-os/L7-function-verification/management-authority-source-record.json",
-        "pointer": "/derived_observations/cases/225"
+        "pointer": "/connection_materials/OS015/case/cases/225/given/input"
       },
       "execution_state": "synthetic_document_comparison_only",
       "condition": "management_material_violation",
@@ -17758,7 +17793,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0226"
+      "integration_case_ref": "HELIXOS-L9-015-C0226",
+      "negative_class_ref": "OS015-NEG-COMPOSITE-4e0c28b06920d3a9665cbe4beeaf48cea44d7b0d350dddfaec9c8471de1e86b5"
     },
     {
       "id": "HELIXOS-L9-015-C0227",
@@ -17769,7 +17805,7 @@
       },
       "material_ref": {
         "path": "docs/helix-os/L7-function-verification/management-authority-source-record.json",
-        "pointer": "/derived_observations/cases/226"
+        "pointer": "/connection_materials/OS015/case/cases/226/given/input"
       },
       "execution_state": "synthetic_document_comparison_only",
       "condition": "management_material_violation",
@@ -17827,7 +17863,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0227"
+      "integration_case_ref": "HELIXOS-L9-015-C0227",
+      "negative_class_ref": "OS015-NEG-COMPOSITE-07c9fd844a293140f5dc77476ab8ed90116889361788956739abfdcf65b874c4"
     },
     {
       "id": "HELIXOS-L9-015-C0228",
@@ -17838,7 +17875,7 @@
       },
       "material_ref": {
         "path": "docs/helix-os/L7-function-verification/management-authority-source-record.json",
-        "pointer": "/derived_observations/cases/227"
+        "pointer": "/connection_materials/OS015/case/cases/227/given/input"
       },
       "execution_state": "synthetic_document_comparison_only",
       "condition": "management_material_violation",
@@ -17896,7 +17933,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0228"
+      "integration_case_ref": "HELIXOS-L9-015-C0228",
+      "negative_class_ref": "OS015-NEG-COMPOSITE-4e0c28b06920d3a9665cbe4beeaf48cea44d7b0d350dddfaec9c8471de1e86b5"
     },
     {
       "id": "HELIXOS-L9-015-C0229",
@@ -17907,7 +17945,7 @@
       },
       "material_ref": {
         "path": "docs/helix-os/L7-function-verification/management-authority-source-record.json",
-        "pointer": "/derived_observations/cases/228"
+        "pointer": "/connection_materials/OS015/case/cases/228/given/input"
       },
       "execution_state": "synthetic_document_comparison_only",
       "condition": "management_material_violation",
@@ -17965,7 +18003,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0229"
+      "integration_case_ref": "HELIXOS-L9-015-C0229",
+      "negative_class_ref": "OS015-NEG-COMPOSITE-07c9fd844a293140f5dc77476ab8ed90116889361788956739abfdcf65b874c4"
     },
     {
       "id": "HELIXOS-L9-015-C0230",
@@ -17976,7 +18015,7 @@
       },
       "material_ref": {
         "path": "docs/helix-os/L7-function-verification/management-authority-source-record.json",
-        "pointer": "/derived_observations/cases/229"
+        "pointer": "/connection_materials/OS015/case/cases/229/given/input"
       },
       "execution_state": "synthetic_document_comparison_only",
       "condition": "management_material_violation",
@@ -18034,7 +18073,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0230"
+      "integration_case_ref": "HELIXOS-L9-015-C0230",
+      "negative_class_ref": "OS015-NEG-COMPOSITE-4e0c28b06920d3a9665cbe4beeaf48cea44d7b0d350dddfaec9c8471de1e86b5"
     },
     {
       "id": "HELIXOS-L9-015-C0231",
@@ -18045,7 +18085,7 @@
       },
       "material_ref": {
         "path": "docs/helix-os/L7-function-verification/management-authority-source-record.json",
-        "pointer": "/derived_observations/cases/230"
+        "pointer": "/connection_materials/OS015/case/cases/230/given/input"
       },
       "execution_state": "synthetic_document_comparison_only",
       "condition": "management_material_violation",
@@ -18103,7 +18143,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0231"
+      "integration_case_ref": "HELIXOS-L9-015-C0231",
+      "negative_class_ref": "OS015-NEG-COMPOSITE-07c9fd844a293140f5dc77476ab8ed90116889361788956739abfdcf65b874c4"
     },
     {
       "id": "HELIXOS-L9-015-C0232",
@@ -18114,7 +18155,7 @@
       },
       "material_ref": {
         "path": "docs/helix-os/L7-function-verification/management-authority-source-record.json",
-        "pointer": "/derived_observations/cases/231"
+        "pointer": "/connection_materials/OS015/case/cases/231/given/input"
       },
       "execution_state": "synthetic_document_comparison_only",
       "condition": "management_material_violation",
@@ -18172,7 +18213,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0232"
+      "integration_case_ref": "HELIXOS-L9-015-C0232",
+      "negative_class_ref": "OS015-NEG-COMPOSITE-4e0c28b06920d3a9665cbe4beeaf48cea44d7b0d350dddfaec9c8471de1e86b5"
     },
     {
       "id": "HELIXOS-L9-015-C0233",
@@ -18183,7 +18225,7 @@
       },
       "material_ref": {
         "path": "docs/helix-os/L7-function-verification/management-authority-source-record.json",
-        "pointer": "/derived_observations/cases/232"
+        "pointer": "/connection_materials/OS015/case/cases/232/given/input"
       },
       "execution_state": "synthetic_document_comparison_only",
       "condition": "management_material_violation",
@@ -18241,7 +18283,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0233"
+      "integration_case_ref": "HELIXOS-L9-015-C0233",
+      "negative_class_ref": "OS015-NEG-COMPOSITE-07c9fd844a293140f5dc77476ab8ed90116889361788956739abfdcf65b874c4"
     },
     {
       "id": "HELIXOS-L9-015-C0234",
@@ -18252,7 +18295,7 @@
       },
       "material_ref": {
         "path": "docs/helix-os/L7-function-verification/management-authority-source-record.json",
-        "pointer": "/derived_observations/cases/233"
+        "pointer": "/connection_materials/OS015/case/cases/233/given/input"
       },
       "execution_state": "synthetic_document_comparison_only",
       "condition": "management_material_violation",
@@ -18310,7 +18353,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0234"
+      "integration_case_ref": "HELIXOS-L9-015-C0234",
+      "negative_class_ref": "OS015-NEG-COMPOSITE-4e0c28b06920d3a9665cbe4beeaf48cea44d7b0d350dddfaec9c8471de1e86b5"
     },
     {
       "id": "HELIXOS-L9-015-C0235",
@@ -18321,7 +18365,7 @@
       },
       "material_ref": {
         "path": "docs/helix-os/L7-function-verification/management-authority-source-record.json",
-        "pointer": "/derived_observations/cases/234"
+        "pointer": "/connection_materials/OS015/case/cases/234/given/input"
       },
       "execution_state": "synthetic_document_comparison_only",
       "condition": "management_material_violation",
@@ -18379,7 +18423,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0235"
+      "integration_case_ref": "HELIXOS-L9-015-C0235",
+      "negative_class_ref": "OS015-NEG-COMPOSITE-07c9fd844a293140f5dc77476ab8ed90116889361788956739abfdcf65b874c4"
     },
     {
       "id": "HELIXOS-L9-015-C0236",
@@ -20950,7 +20995,7 @@
       },
       "material_ref": {
         "path": "docs/helix-os/L7-function-verification/management-authority-source-record.json",
-        "pointer": "/derived_observations/cases/275"
+        "pointer": "/connection_materials/OS015/case/cases/275/given/input"
       },
       "execution_state": "synthetic_document_comparison_only",
       "condition": "management_material_violation",
@@ -21008,7 +21053,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0276"
+      "integration_case_ref": "HELIXOS-L9-015-C0276",
+      "negative_class_ref": "OS015-NEG-COMPOSITE-4e0c28b06920d3a9665cbe4beeaf48cea44d7b0d350dddfaec9c8471de1e86b5"
     },
     {
       "id": "HELIXOS-L9-015-C0277",
@@ -21019,7 +21065,7 @@
       },
       "material_ref": {
         "path": "docs/helix-os/L7-function-verification/management-authority-source-record.json",
-        "pointer": "/derived_observations/cases/276"
+        "pointer": "/connection_materials/OS015/case/cases/276/given/input"
       },
       "execution_state": "synthetic_document_comparison_only",
       "condition": "management_material_violation",
@@ -21077,7 +21123,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0277"
+      "integration_case_ref": "HELIXOS-L9-015-C0277",
+      "negative_class_ref": "OS015-NEG-COMPOSITE-07c9fd844a293140f5dc77476ab8ed90116889361788956739abfdcf65b874c4"
     },
     {
       "id": "HELIXOS-L9-015-C0278",
@@ -21088,7 +21135,7 @@
       },
       "material_ref": {
         "path": "docs/helix-os/L7-function-verification/management-authority-source-record.json",
-        "pointer": "/derived_observations/cases/277"
+        "pointer": "/connection_materials/OS015/case/cases/277/given/input"
       },
       "execution_state": "synthetic_document_comparison_only",
       "condition": "management_material_violation",
@@ -21146,7 +21193,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0278"
+      "integration_case_ref": "HELIXOS-L9-015-C0278",
+      "negative_class_ref": "OS015-NEG-COMPOSITE-4e0c28b06920d3a9665cbe4beeaf48cea44d7b0d350dddfaec9c8471de1e86b5"
     },
     {
       "id": "HELIXOS-L9-015-C0279",
@@ -21157,7 +21205,7 @@
       },
       "material_ref": {
         "path": "docs/helix-os/L7-function-verification/management-authority-source-record.json",
-        "pointer": "/derived_observations/cases/278"
+        "pointer": "/connection_materials/OS015/case/cases/278/given/input"
       },
       "execution_state": "synthetic_document_comparison_only",
       "condition": "management_material_violation",
@@ -21215,7 +21263,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0279"
+      "integration_case_ref": "HELIXOS-L9-015-C0279",
+      "negative_class_ref": "OS015-NEG-COMPOSITE-07c9fd844a293140f5dc77476ab8ed90116889361788956739abfdcf65b874c4"
     },
     {
       "id": "HELIXOS-L9-015-C0280",
@@ -21226,7 +21275,7 @@
       },
       "material_ref": {
         "path": "docs/helix-os/L7-function-verification/management-authority-source-record.json",
-        "pointer": "/derived_observations/cases/279"
+        "pointer": "/connection_materials/OS015/case/cases/279/given/input"
       },
       "execution_state": "synthetic_document_comparison_only",
       "condition": "management_material_violation",
@@ -21284,7 +21333,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0280"
+      "integration_case_ref": "HELIXOS-L9-015-C0280",
+      "negative_class_ref": "OS015-NEG-COMPOSITE-4e0c28b06920d3a9665cbe4beeaf48cea44d7b0d350dddfaec9c8471de1e86b5"
     },
     {
       "id": "HELIXOS-L9-015-C0281",
@@ -21295,7 +21345,7 @@
       },
       "material_ref": {
         "path": "docs/helix-os/L7-function-verification/management-authority-source-record.json",
-        "pointer": "/derived_observations/cases/280"
+        "pointer": "/connection_materials/OS015/case/cases/280/given/input"
       },
       "execution_state": "synthetic_document_comparison_only",
       "condition": "management_material_violation",
@@ -21353,7 +21403,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0281"
+      "integration_case_ref": "HELIXOS-L9-015-C0281",
+      "negative_class_ref": "OS015-NEG-COMPOSITE-07c9fd844a293140f5dc77476ab8ed90116889361788956739abfdcf65b874c4"
     },
     {
       "id": "HELIXOS-L9-015-C0282",
@@ -21364,7 +21415,7 @@
       },
       "material_ref": {
         "path": "docs/helix-os/L7-function-verification/management-authority-source-record.json",
-        "pointer": "/derived_observations/cases/281"
+        "pointer": "/connection_materials/OS015/case/cases/281/given/input"
       },
       "execution_state": "synthetic_document_comparison_only",
       "condition": "management_material_violation",
@@ -21422,7 +21473,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0282"
+      "integration_case_ref": "HELIXOS-L9-015-C0282",
+      "negative_class_ref": "OS015-NEG-COMPOSITE-4e0c28b06920d3a9665cbe4beeaf48cea44d7b0d350dddfaec9c8471de1e86b5"
     },
     {
       "id": "HELIXOS-L9-015-C0283",
@@ -21433,7 +21485,7 @@
       },
       "material_ref": {
         "path": "docs/helix-os/L7-function-verification/management-authority-source-record.json",
-        "pointer": "/derived_observations/cases/282"
+        "pointer": "/connection_materials/OS015/case/cases/282/given/input"
       },
       "execution_state": "synthetic_document_comparison_only",
       "condition": "management_material_violation",
@@ -21491,7 +21543,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0283"
+      "integration_case_ref": "HELIXOS-L9-015-C0283",
+      "negative_class_ref": "OS015-NEG-COMPOSITE-07c9fd844a293140f5dc77476ab8ed90116889361788956739abfdcf65b874c4"
     },
     {
       "id": "HELIXOS-L9-015-C0284",
@@ -21502,7 +21555,7 @@
       },
       "material_ref": {
         "path": "docs/helix-os/L7-function-verification/management-authority-source-record.json",
-        "pointer": "/derived_observations/cases/283"
+        "pointer": "/connection_materials/OS015/case/cases/283/given/input"
       },
       "execution_state": "synthetic_document_comparison_only",
       "condition": "management_material_violation",
@@ -21560,7 +21613,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0284"
+      "integration_case_ref": "HELIXOS-L9-015-C0284",
+      "negative_class_ref": "OS015-NEG-COMPOSITE-4e0c28b06920d3a9665cbe4beeaf48cea44d7b0d350dddfaec9c8471de1e86b5"
     },
     {
       "id": "HELIXOS-L9-015-C0285",
@@ -21571,7 +21625,7 @@
       },
       "material_ref": {
         "path": "docs/helix-os/L7-function-verification/management-authority-source-record.json",
-        "pointer": "/derived_observations/cases/284"
+        "pointer": "/connection_materials/OS015/case/cases/284/given/input"
       },
       "execution_state": "synthetic_document_comparison_only",
       "condition": "management_material_violation",
@@ -21629,7 +21683,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0285"
+      "integration_case_ref": "HELIXOS-L9-015-C0285",
+      "negative_class_ref": "OS015-NEG-COMPOSITE-07c9fd844a293140f5dc77476ab8ed90116889361788956739abfdcf65b874c4"
     },
     {
       "id": "HELIXOS-L9-015-C0286",
@@ -21640,7 +21695,7 @@
       },
       "material_ref": {
         "path": "docs/helix-os/L7-function-verification/management-authority-source-record.json",
-        "pointer": "/derived_observations/cases/285"
+        "pointer": "/connection_materials/OS015/case/cases/285/given/input"
       },
       "execution_state": "synthetic_document_comparison_only",
       "condition": "management_material_violation",
@@ -21698,7 +21753,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0286"
+      "integration_case_ref": "HELIXOS-L9-015-C0286",
+      "negative_class_ref": "OS015-NEG-COMPOSITE-4e0c28b06920d3a9665cbe4beeaf48cea44d7b0d350dddfaec9c8471de1e86b5"
     },
     {
       "id": "HELIXOS-L9-015-C0287",
@@ -21709,7 +21765,7 @@
       },
       "material_ref": {
         "path": "docs/helix-os/L7-function-verification/management-authority-source-record.json",
-        "pointer": "/derived_observations/cases/286"
+        "pointer": "/connection_materials/OS015/case/cases/286/given/input"
       },
       "execution_state": "synthetic_document_comparison_only",
       "condition": "management_material_violation",
@@ -21767,7 +21823,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0287"
+      "integration_case_ref": "HELIXOS-L9-015-C0287",
+      "negative_class_ref": "OS015-NEG-COMPOSITE-07c9fd844a293140f5dc77476ab8ed90116889361788956739abfdcf65b874c4"
     },
     {
       "id": "HELIXOS-L9-015-C0288",
@@ -21778,7 +21835,7 @@
       },
       "material_ref": {
         "path": "docs/helix-os/L7-function-verification/management-authority-source-record.json",
-        "pointer": "/derived_observations/cases/287"
+        "pointer": "/connection_materials/OS015/case/cases/287/given/input"
       },
       "execution_state": "synthetic_document_comparison_only",
       "condition": "management_material_violation",
@@ -21836,7 +21893,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0288"
+      "integration_case_ref": "HELIXOS-L9-015-C0288",
+      "negative_class_ref": "OS015-NEG-COMPOSITE-4e0c28b06920d3a9665cbe4beeaf48cea44d7b0d350dddfaec9c8471de1e86b5"
     },
     {
       "id": "HELIXOS-L9-015-C0289",
@@ -21847,7 +21905,7 @@
       },
       "material_ref": {
         "path": "docs/helix-os/L7-function-verification/management-authority-source-record.json",
-        "pointer": "/derived_observations/cases/288"
+        "pointer": "/connection_materials/OS015/case/cases/288/given/input"
       },
       "execution_state": "synthetic_document_comparison_only",
       "condition": "management_material_violation",
@@ -21905,7 +21963,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0289"
+      "integration_case_ref": "HELIXOS-L9-015-C0289",
+      "negative_class_ref": "OS015-NEG-COMPOSITE-07c9fd844a293140f5dc77476ab8ed90116889361788956739abfdcf65b874c4"
     },
     {
       "id": "HELIXOS-L9-015-C0290",
@@ -21916,7 +21975,7 @@
       },
       "material_ref": {
         "path": "docs/helix-os/L7-function-verification/management-authority-source-record.json",
-        "pointer": "/derived_observations/cases/289"
+        "pointer": "/connection_materials/OS015/case/cases/289/given/input"
       },
       "execution_state": "synthetic_document_comparison_only",
       "condition": "management_material_violation",
@@ -21974,7 +22033,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0290"
+      "integration_case_ref": "HELIXOS-L9-015-C0290",
+      "negative_class_ref": "OS015-NEG-COMPOSITE-4e0c28b06920d3a9665cbe4beeaf48cea44d7b0d350dddfaec9c8471de1e86b5"
     },
     {
       "id": "HELIXOS-L9-015-C0291",
@@ -21985,7 +22045,7 @@
       },
       "material_ref": {
         "path": "docs/helix-os/L7-function-verification/management-authority-source-record.json",
-        "pointer": "/derived_observations/cases/290"
+        "pointer": "/connection_materials/OS015/case/cases/290/given/input"
       },
       "execution_state": "synthetic_document_comparison_only",
       "condition": "management_material_violation",
@@ -22043,7 +22103,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0291"
+      "integration_case_ref": "HELIXOS-L9-015-C0291",
+      "negative_class_ref": "OS015-NEG-COMPOSITE-07c9fd844a293140f5dc77476ab8ed90116889361788956739abfdcf65b874c4"
     },
     {
       "id": "HELIXOS-L9-015-C0292",
@@ -22054,7 +22115,7 @@
       },
       "material_ref": {
         "path": "docs/helix-os/L7-function-verification/management-authority-source-record.json",
-        "pointer": "/derived_observations/cases/291"
+        "pointer": "/connection_materials/OS015/case/cases/291/given/input"
       },
       "execution_state": "synthetic_document_comparison_only",
       "condition": "management_material_violation",
@@ -22112,7 +22173,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0292"
+      "integration_case_ref": "HELIXOS-L9-015-C0292",
+      "negative_class_ref": "OS015-NEG-COMPOSITE-4e0c28b06920d3a9665cbe4beeaf48cea44d7b0d350dddfaec9c8471de1e86b5"
     },
     {
       "id": "HELIXOS-L9-015-C0293",
@@ -22123,7 +22185,7 @@
       },
       "material_ref": {
         "path": "docs/helix-os/L7-function-verification/management-authority-source-record.json",
-        "pointer": "/derived_observations/cases/292"
+        "pointer": "/connection_materials/OS015/case/cases/292/given/input"
       },
       "execution_state": "synthetic_document_comparison_only",
       "condition": "management_material_violation",
@@ -22181,7 +22243,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0293"
+      "integration_case_ref": "HELIXOS-L9-015-C0293",
+      "negative_class_ref": "OS015-NEG-COMPOSITE-07c9fd844a293140f5dc77476ab8ed90116889361788956739abfdcf65b874c4"
     },
     {
       "id": "HELIXOS-L9-015-C0294",
@@ -22256,7 +22319,7 @@
       },
       "material_ref": {
         "path": "docs/helix-os/L7-function-verification/management-authority-source-record.json",
-        "pointer": "/derived_observations/cases/294"
+        "pointer": "/connection_materials/OS015/case/cases/294/given/input"
       },
       "execution_state": "synthetic_document_comparison_only",
       "condition": "management_material_violation",
@@ -22314,7 +22377,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0295"
+      "integration_case_ref": "HELIXOS-L9-015-C0295",
+      "negative_class_ref": "OS015-NEG-COMPOSITE-0847e4310de684d30c54c16de19c0ce068f2666a3e68fe3e3d93f144934f9a42"
     },
     {
       "id": "HELIXOS-L9-015-C0296",
@@ -22645,7 +22709,7 @@
       },
       "material_ref": {
         "path": "docs/helix-os/L7-function-verification/management-authority-source-record.json",
-        "pointer": "/derived_observations/cases/300"
+        "pointer": "/connection_materials/OS015/case/cases/300/given/input"
       },
       "execution_state": "synthetic_document_comparison_only",
       "condition": "management_material_violation",
@@ -22703,7 +22767,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0301"
+      "integration_case_ref": "HELIXOS-L9-015-C0301",
+      "negative_class_ref": "OS015-NEG-COMPOSITE-0847e4310de684d30c54c16de19c0ce068f2666a3e68fe3e3d93f144934f9a42"
     },
     {
       "id": "HELIXOS-L9-015-C0302",
@@ -24762,7 +24827,7 @@
       },
       "material_ref": {
         "path": "docs/helix-os/L7-function-verification/management-authority-source-record.json",
-        "pointer": "/derived_observations/cases/333"
+        "pointer": "/connection_materials/OS015/case/cases/333/given/input"
       },
       "execution_state": "synthetic_document_comparison_only",
       "condition": "management_material_violation",
@@ -24820,7 +24885,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0334"
+      "integration_case_ref": "HELIXOS-L9-015-C0334",
+      "negative_class_ref": "OS015-NEG-COMPOSITE-4e0c28b06920d3a9665cbe4beeaf48cea44d7b0d350dddfaec9c8471de1e86b5"
     },
     {
       "id": "HELIXOS-L9-015-C0335",
@@ -24831,7 +24897,7 @@
       },
       "material_ref": {
         "path": "docs/helix-os/L7-function-verification/management-authority-source-record.json",
-        "pointer": "/derived_observations/cases/334"
+        "pointer": "/connection_materials/OS015/case/cases/334/given/input"
       },
       "execution_state": "synthetic_document_comparison_only",
       "condition": "management_material_violation",
@@ -24895,7 +24961,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0335"
+      "integration_case_ref": "HELIXOS-L9-015-C0335",
+      "negative_class_ref": "OS015-NEG-COMPOSITE-9c5c0fb87d1b6f9fbdf5e2e825c9e600024bbcd3f5bac7a32e7c20423fca521c"
     },
     {
       "id": "HELIXOS-L9-015-C0336",
@@ -24906,7 +24973,7 @@
       },
       "material_ref": {
         "path": "docs/helix-os/L7-function-verification/management-authority-source-record.json",
-        "pointer": "/derived_observations/cases/335"
+        "pointer": "/connection_materials/OS015/case/cases/335/given/input"
       },
       "execution_state": "synthetic_document_comparison_only",
       "condition": "management_material_violation",
@@ -24964,7 +25031,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0336"
+      "integration_case_ref": "HELIXOS-L9-015-C0336",
+      "negative_class_ref": "OS015-NEG-COMPOSITE-4e0c28b06920d3a9665cbe4beeaf48cea44d7b0d350dddfaec9c8471de1e86b5"
     },
     {
       "id": "HELIXOS-L9-015-C0337",
@@ -24975,7 +25043,7 @@
       },
       "material_ref": {
         "path": "docs/helix-os/L7-function-verification/management-authority-source-record.json",
-        "pointer": "/derived_observations/cases/336"
+        "pointer": "/connection_materials/OS015/case/cases/336/given/input"
       },
       "execution_state": "synthetic_document_comparison_only",
       "condition": "management_material_violation",
@@ -25039,7 +25107,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0337"
+      "integration_case_ref": "HELIXOS-L9-015-C0337",
+      "negative_class_ref": "OS015-NEG-COMPOSITE-9c5c0fb87d1b6f9fbdf5e2e825c9e600024bbcd3f5bac7a32e7c20423fca521c"
     },
     {
       "id": "HELIXOS-L9-015-C0338",
@@ -25050,7 +25119,7 @@
       },
       "material_ref": {
         "path": "docs/helix-os/L7-function-verification/management-authority-source-record.json",
-        "pointer": "/derived_observations/cases/337"
+        "pointer": "/connection_materials/OS015/case/cases/337/given/input"
       },
       "execution_state": "synthetic_document_comparison_only",
       "condition": "management_material_violation",
@@ -25108,7 +25177,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0338"
+      "integration_case_ref": "HELIXOS-L9-015-C0338",
+      "negative_class_ref": "OS015-NEG-COMPOSITE-4e0c28b06920d3a9665cbe4beeaf48cea44d7b0d350dddfaec9c8471de1e86b5"
     },
     {
       "id": "HELIXOS-L9-015-C0339",
@@ -25119,7 +25189,7 @@
       },
       "material_ref": {
         "path": "docs/helix-os/L7-function-verification/management-authority-source-record.json",
-        "pointer": "/derived_observations/cases/338"
+        "pointer": "/connection_materials/OS015/case/cases/338/given/input"
       },
       "execution_state": "synthetic_document_comparison_only",
       "condition": "management_material_violation",
@@ -25177,7 +25247,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0339"
+      "integration_case_ref": "HELIXOS-L9-015-C0339",
+      "negative_class_ref": "OS015-NEG-COMPOSITE-07c9fd844a293140f5dc77476ab8ed90116889361788956739abfdcf65b874c4"
     },
     {
       "id": "HELIXOS-L9-015-C0340",
@@ -25188,7 +25259,7 @@
       },
       "material_ref": {
         "path": "docs/helix-os/L7-function-verification/management-authority-source-record.json",
-        "pointer": "/derived_observations/cases/339"
+        "pointer": "/connection_materials/OS015/case/cases/339/given/input"
       },
       "execution_state": "synthetic_document_comparison_only",
       "condition": "management_material_violation",
@@ -25246,7 +25317,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0340"
+      "integration_case_ref": "HELIXOS-L9-015-C0340",
+      "negative_class_ref": "OS015-NEG-COMPOSITE-4e0c28b06920d3a9665cbe4beeaf48cea44d7b0d350dddfaec9c8471de1e86b5"
     },
     {
       "id": "HELIXOS-L9-015-C0341",
@@ -25257,7 +25329,7 @@
       },
       "material_ref": {
         "path": "docs/helix-os/L7-function-verification/management-authority-source-record.json",
-        "pointer": "/derived_observations/cases/340"
+        "pointer": "/connection_materials/OS015/case/cases/340/given/input"
       },
       "execution_state": "synthetic_document_comparison_only",
       "condition": "management_material_violation",
@@ -25315,7 +25387,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0341"
+      "integration_case_ref": "HELIXOS-L9-015-C0341",
+      "negative_class_ref": "OS015-NEG-COMPOSITE-07c9fd844a293140f5dc77476ab8ed90116889361788956739abfdcf65b874c4"
     },
     {
       "id": "HELIXOS-L9-015-C0342",
@@ -25326,7 +25399,7 @@
       },
       "material_ref": {
         "path": "docs/helix-os/L7-function-verification/management-authority-source-record.json",
-        "pointer": "/derived_observations/cases/341"
+        "pointer": "/connection_materials/OS015/case/cases/341/given/input"
       },
       "execution_state": "synthetic_document_comparison_only",
       "condition": "management_material_violation",
@@ -25384,7 +25457,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0342"
+      "integration_case_ref": "HELIXOS-L9-015-C0342",
+      "negative_class_ref": "OS015-NEG-COMPOSITE-4e0c28b06920d3a9665cbe4beeaf48cea44d7b0d350dddfaec9c8471de1e86b5"
     },
     {
       "id": "HELIXOS-L9-015-C0343",
@@ -25395,7 +25469,7 @@
       },
       "material_ref": {
         "path": "docs/helix-os/L7-function-verification/management-authority-source-record.json",
-        "pointer": "/derived_observations/cases/342"
+        "pointer": "/connection_materials/OS015/case/cases/342/given/input"
       },
       "execution_state": "synthetic_document_comparison_only",
       "condition": "management_material_violation",
@@ -25453,7 +25527,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0343"
+      "integration_case_ref": "HELIXOS-L9-015-C0343",
+      "negative_class_ref": "OS015-NEG-COMPOSITE-07c9fd844a293140f5dc77476ab8ed90116889361788956739abfdcf65b874c4"
     },
     {
       "id": "HELIXOS-L9-015-C0344",
@@ -25464,7 +25539,7 @@
       },
       "material_ref": {
         "path": "docs/helix-os/L7-function-verification/management-authority-source-record.json",
-        "pointer": "/derived_observations/cases/343"
+        "pointer": "/connection_materials/OS015/case/cases/343/given/input"
       },
       "execution_state": "synthetic_document_comparison_only",
       "condition": "management_material_violation",
@@ -25522,7 +25597,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0344"
+      "integration_case_ref": "HELIXOS-L9-015-C0344",
+      "negative_class_ref": "OS015-NEG-COMPOSITE-4e0c28b06920d3a9665cbe4beeaf48cea44d7b0d350dddfaec9c8471de1e86b5"
     },
     {
       "id": "HELIXOS-L9-015-C0345",
@@ -25533,7 +25609,7 @@
       },
       "material_ref": {
         "path": "docs/helix-os/L7-function-verification/management-authority-source-record.json",
-        "pointer": "/derived_observations/cases/344"
+        "pointer": "/connection_materials/OS015/case/cases/344/given/input"
       },
       "execution_state": "synthetic_document_comparison_only",
       "condition": "management_material_violation",
@@ -25591,7 +25667,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0345"
+      "integration_case_ref": "HELIXOS-L9-015-C0345",
+      "negative_class_ref": "OS015-NEG-COMPOSITE-07c9fd844a293140f5dc77476ab8ed90116889361788956739abfdcf65b874c4"
     },
     {
       "id": "HELIXOS-L9-015-C0346",
@@ -25602,7 +25679,7 @@
       },
       "material_ref": {
         "path": "docs/helix-os/L7-function-verification/management-authority-source-record.json",
-        "pointer": "/derived_observations/cases/345"
+        "pointer": "/connection_materials/OS015/case/cases/345/given/input"
       },
       "execution_state": "synthetic_document_comparison_only",
       "condition": "management_material_violation",
@@ -25660,7 +25737,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0346"
+      "integration_case_ref": "HELIXOS-L9-015-C0346",
+      "negative_class_ref": "OS015-NEG-COMPOSITE-4e0c28b06920d3a9665cbe4beeaf48cea44d7b0d350dddfaec9c8471de1e86b5"
     },
     {
       "id": "HELIXOS-L9-015-C0347",
@@ -25671,7 +25749,7 @@
       },
       "material_ref": {
         "path": "docs/helix-os/L7-function-verification/management-authority-source-record.json",
-        "pointer": "/derived_observations/cases/346"
+        "pointer": "/connection_materials/OS015/case/cases/346/given/input"
       },
       "execution_state": "synthetic_document_comparison_only",
       "condition": "management_material_violation",
@@ -25729,7 +25807,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0347"
+      "integration_case_ref": "HELIXOS-L9-015-C0347",
+      "negative_class_ref": "OS015-NEG-COMPOSITE-07c9fd844a293140f5dc77476ab8ed90116889361788956739abfdcf65b874c4"
     },
     {
       "id": "HELIXOS-L9-015-C0348",
@@ -25740,7 +25819,7 @@
       },
       "material_ref": {
         "path": "docs/helix-os/L7-function-verification/management-authority-source-record.json",
-        "pointer": "/derived_observations/cases/347"
+        "pointer": "/connection_materials/OS015/case/cases/347/given/input"
       },
       "execution_state": "synthetic_document_comparison_only",
       "condition": "management_material_violation",
@@ -25798,7 +25877,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0348"
+      "integration_case_ref": "HELIXOS-L9-015-C0348",
+      "negative_class_ref": "OS015-NEG-COMPOSITE-4e0c28b06920d3a9665cbe4beeaf48cea44d7b0d350dddfaec9c8471de1e86b5"
     },
     {
       "id": "HELIXOS-L9-015-C0349",
@@ -25809,7 +25889,7 @@
       },
       "material_ref": {
         "path": "docs/helix-os/L7-function-verification/management-authority-source-record.json",
-        "pointer": "/derived_observations/cases/348"
+        "pointer": "/connection_materials/OS015/case/cases/348/given/input"
       },
       "execution_state": "synthetic_document_comparison_only",
       "condition": "management_material_violation",
@@ -25867,7 +25947,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0349"
+      "integration_case_ref": "HELIXOS-L9-015-C0349",
+      "negative_class_ref": "OS015-NEG-COMPOSITE-07c9fd844a293140f5dc77476ab8ed90116889361788956739abfdcf65b874c4"
     },
     {
       "id": "HELIXOS-L9-015-C0350",
@@ -25878,7 +25959,7 @@
       },
       "material_ref": {
         "path": "docs/helix-os/L7-function-verification/management-authority-source-record.json",
-        "pointer": "/derived_observations/cases/349"
+        "pointer": "/connection_materials/OS015/case/cases/349/given/input"
       },
       "execution_state": "synthetic_document_comparison_only",
       "condition": "management_material_violation",
@@ -25936,7 +26017,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0350"
+      "integration_case_ref": "HELIXOS-L9-015-C0350",
+      "negative_class_ref": "OS015-NEG-COMPOSITE-4e0c28b06920d3a9665cbe4beeaf48cea44d7b0d350dddfaec9c8471de1e86b5"
     },
     {
       "id": "HELIXOS-L9-015-C0351",
@@ -25947,7 +26029,7 @@
       },
       "material_ref": {
         "path": "docs/helix-os/L7-function-verification/management-authority-source-record.json",
-        "pointer": "/derived_observations/cases/350"
+        "pointer": "/connection_materials/OS015/case/cases/350/given/input"
       },
       "execution_state": "synthetic_document_comparison_only",
       "condition": "management_material_violation",
@@ -26005,7 +26087,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0351"
+      "integration_case_ref": "HELIXOS-L9-015-C0351",
+      "negative_class_ref": "OS015-NEG-COMPOSITE-07c9fd844a293140f5dc77476ab8ed90116889361788956739abfdcf65b874c4"
     },
     {
       "id": "HELIXOS-L9-015-C0352",
@@ -26784,7 +26867,7 @@
       },
       "material_ref": {
         "path": "docs/helix-os/L7-function-verification/management-authority-source-record.json",
-        "pointer": "/derived_observations/cases/363"
+        "pointer": "/connection_materials/OS015/case/cases/363/given/input"
       },
       "execution_state": "synthetic_document_comparison_only",
       "condition": "management_material_unknown",
@@ -26842,7 +26925,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0364"
+      "integration_case_ref": "HELIXOS-L9-015-C0364",
+      "negative_class_ref": "OS015-NEG-COMPOSITE-f26b128d495605fef34af26296623a373d06205bdbe8e9e366001ee980e6f294"
     },
     {
       "id": "HELIXOS-L9-015-C0365",
@@ -26853,7 +26937,7 @@
       },
       "material_ref": {
         "path": "docs/helix-os/L7-function-verification/management-authority-source-record.json",
-        "pointer": "/derived_observations/cases/364"
+        "pointer": "/connection_materials/OS015/case/cases/364/given/input"
       },
       "execution_state": "synthetic_document_comparison_only",
       "condition": "management_material_violation",
@@ -26911,7 +26995,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0365"
+      "integration_case_ref": "HELIXOS-L9-015-C0365",
+      "negative_class_ref": "OS015-NEG-COMPOSITE-df9154ac8720b176f3ba2d4bf5fc0362496e530eafdd829278de18d4a3d5c39b"
     },
     {
       "id": "HELIXOS-L9-015-C0366",
@@ -29994,7 +30079,7 @@
       },
       "material_ref": {
         "path": "docs/helix-os/L7-function-verification/management-authority-source-record.json",
-        "pointer": "/derived_observations/cases/413"
+        "pointer": "/connection_materials/OS015/case/cases/413/given/input"
       },
       "execution_state": "synthetic_document_comparison_only",
       "condition": "management_material_unknown",
@@ -30052,7 +30137,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0414"
+      "integration_case_ref": "HELIXOS-L9-015-C0414",
+      "negative_class_ref": "OS015-NEG-COMPOSITE-f26b128d495605fef34af26296623a373d06205bdbe8e9e366001ee980e6f294"
     },
     {
       "id": "HELIXOS-L9-015-C0415",
@@ -30063,7 +30149,7 @@
       },
       "material_ref": {
         "path": "docs/helix-os/L7-function-verification/management-authority-source-record.json",
-        "pointer": "/derived_observations/cases/414"
+        "pointer": "/connection_materials/OS015/case/cases/414/given/input"
       },
       "execution_state": "synthetic_document_comparison_only",
       "condition": "management_material_violation",
@@ -30121,7 +30207,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0415"
+      "integration_case_ref": "HELIXOS-L9-015-C0415",
+      "negative_class_ref": "OS015-NEG-COMPOSITE-df9154ac8720b176f3ba2d4bf5fc0362496e530eafdd829278de18d4a3d5c39b"
     },
     {
       "id": "HELIXOS-L9-015-C0416",
@@ -32948,7 +33035,7 @@
       },
       "material_ref": {
         "path": "docs/helix-os/L7-function-verification/management-authority-source-record.json",
-        "pointer": "/derived_observations/cases/459"
+        "pointer": "/connection_materials/OS015/case/cases/459/given/input"
       },
       "execution_state": "synthetic_document_comparison_only",
       "condition": "management_material_violation",
@@ -33006,7 +33093,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0460"
+      "integration_case_ref": "HELIXOS-L9-015-C0460",
+      "negative_class_ref": "OS015-NEG-COMPOSITE-89de10e4554c2fb25885bc24b09de095d209750e791130a0f121afac952aa4ea"
     },
     {
       "id": "HELIXOS-L9-015-C0461",
@@ -33145,7 +33233,7 @@
       },
       "material_ref": {
         "path": "docs/helix-os/L7-function-verification/management-authority-source-record.json",
-        "pointer": "/derived_observations/cases/462"
+        "pointer": "/connection_materials/OS015/case/cases/462/given/input"
       },
       "execution_state": "synthetic_document_comparison_only",
       "condition": "management_material_violation",
@@ -33203,7 +33291,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0463"
+      "integration_case_ref": "HELIXOS-L9-015-C0463",
+      "negative_class_ref": "OS015-NEG-COMPOSITE-89de10e4554c2fb25885bc24b09de095d209750e791130a0f121afac952aa4ea"
     },
     {
       "id": "HELIXOS-L9-015-C0464",
@@ -33342,7 +33431,7 @@
       },
       "material_ref": {
         "path": "docs/helix-os/L7-function-verification/management-authority-source-record.json",
-        "pointer": "/derived_observations/cases/465"
+        "pointer": "/connection_materials/OS015/case/cases/465/given/input"
       },
       "execution_state": "synthetic_document_comparison_only",
       "condition": "management_material_violation",
@@ -33400,7 +33489,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0466"
+      "integration_case_ref": "HELIXOS-L9-015-C0466",
+      "negative_class_ref": "OS015-NEG-COMPOSITE-89de10e4554c2fb25885bc24b09de095d209750e791130a0f121afac952aa4ea"
     },
     {
       "id": "HELIXOS-L9-015-C0467",
@@ -33539,7 +33629,7 @@
       },
       "material_ref": {
         "path": "docs/helix-os/L7-function-verification/management-authority-source-record.json",
-        "pointer": "/derived_observations/cases/468"
+        "pointer": "/connection_materials/OS015/case/cases/468/given/input"
       },
       "execution_state": "synthetic_document_comparison_only",
       "condition": "management_material_violation",
@@ -33597,7 +33687,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0469"
+      "integration_case_ref": "HELIXOS-L9-015-C0469",
+      "negative_class_ref": "OS015-NEG-COMPOSITE-89de10e4554c2fb25885bc24b09de095d209750e791130a0f121afac952aa4ea"
     },
     {
       "id": "HELIXOS-L9-015-C0470",
@@ -33736,7 +33827,7 @@
       },
       "material_ref": {
         "path": "docs/helix-os/L7-function-verification/management-authority-source-record.json",
-        "pointer": "/derived_observations/cases/471"
+        "pointer": "/connection_materials/OS015/case/cases/471/given/input"
       },
       "execution_state": "synthetic_document_comparison_only",
       "condition": "management_material_violation",
@@ -33794,7 +33885,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0472"
+      "integration_case_ref": "HELIXOS-L9-015-C0472",
+      "negative_class_ref": "OS015-NEG-COMPOSITE-89de10e4554c2fb25885bc24b09de095d209750e791130a0f121afac952aa4ea"
     },
     {
       "id": "HELIXOS-L9-015-C0473",
@@ -34061,7 +34153,7 @@
       },
       "material_ref": {
         "path": "docs/helix-os/L7-function-verification/management-authority-source-record.json",
-        "pointer": "/derived_observations/cases/476"
+        "pointer": "/connection_materials/OS015/case/cases/476/given/input"
       },
       "execution_state": "synthetic_document_comparison_only",
       "condition": "management_material_unknown",
@@ -34119,7 +34211,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0477"
+      "integration_case_ref": "HELIXOS-L9-015-C0477",
+      "negative_class_ref": "OS015-NEG-COMPOSITE-4ed7dc758943d0971c6a7853ba3568609804d47e1f5f615e39eaa5e523ef1c04"
     },
     {
       "id": "HELIXOS-L9-015-C0478",
@@ -34258,7 +34351,7 @@
       },
       "material_ref": {
         "path": "docs/helix-os/L7-function-verification/management-authority-source-record.json",
-        "pointer": "/derived_observations/cases/479"
+        "pointer": "/connection_materials/OS015/case/cases/479/given/input"
       },
       "execution_state": "synthetic_document_comparison_only",
       "condition": "management_material_unknown",
@@ -34316,7 +34409,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0480"
+      "integration_case_ref": "HELIXOS-L9-015-C0480",
+      "negative_class_ref": "OS015-NEG-COMPOSITE-4ed7dc758943d0971c6a7853ba3568609804d47e1f5f615e39eaa5e523ef1c04"
     },
     {
       "id": "HELIXOS-L9-015-C0481",
@@ -34327,7 +34421,7 @@
       },
       "material_ref": {
         "path": "docs/helix-os/L7-function-verification/management-authority-source-record.json",
-        "pointer": "/derived_observations/cases/480"
+        "pointer": "/connection_materials/OS015/case/cases/480/given/input"
       },
       "execution_state": "synthetic_document_comparison_only",
       "condition": "management_material_violation",
@@ -34385,7 +34479,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0481"
+      "integration_case_ref": "HELIXOS-L9-015-C0481",
+      "negative_class_ref": "OS015-NEG-COMPOSITE-e23551bcfb260256f33d6911d244f0715dee4f62c3f09840e48d7de5c6473ae9"
     },
     {
       "id": "HELIXOS-L9-015-C0482",
@@ -34524,7 +34619,7 @@
       },
       "material_ref": {
         "path": "docs/helix-os/L7-function-verification/management-authority-source-record.json",
-        "pointer": "/derived_observations/cases/483"
+        "pointer": "/connection_materials/OS015/case/cases/483/given/input"
       },
       "execution_state": "synthetic_document_comparison_only",
       "condition": "management_material_violation",
@@ -34582,7 +34677,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0484"
+      "integration_case_ref": "HELIXOS-L9-015-C0484",
+      "negative_class_ref": "OS015-NEG-COMPOSITE-087fdf8f8d9303e619d04ccc3cbc6da653d08a4b20f6009bab1ec8dfe3cc90c9"
     },
     {
       "id": "HELIXOS-L9-015-C0485",
@@ -34721,7 +34817,7 @@
       },
       "material_ref": {
         "path": "docs/helix-os/L7-function-verification/management-authority-source-record.json",
-        "pointer": "/derived_observations/cases/486"
+        "pointer": "/connection_materials/OS015/case/cases/486/given/input"
       },
       "execution_state": "synthetic_document_comparison_only",
       "condition": "management_material_violation",
@@ -34779,7 +34875,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0487"
+      "integration_case_ref": "HELIXOS-L9-015-C0487",
+      "negative_class_ref": "OS015-NEG-COMPOSITE-3123046e6695da60ba6abef15c2588c632081391d431ec133fa509d6d90017bb"
     },
     {
       "id": "HELIXOS-L9-015-C0488",
@@ -35046,7 +35143,7 @@
       },
       "material_ref": {
         "path": "docs/helix-os/L7-function-verification/management-authority-source-record.json",
-        "pointer": "/derived_observations/cases/491"
+        "pointer": "/connection_materials/OS015/case/cases/491/given/input"
       },
       "execution_state": "synthetic_document_comparison_only",
       "condition": "management_material_unknown",
@@ -35104,7 +35201,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0492"
+      "integration_case_ref": "HELIXOS-L9-015-C0492",
+      "negative_class_ref": "OS015-NEG-COMPOSITE-9539a1f0e6787f121075bfc71469d281caadb1e4c31ba4a8df9ccd5fe882d3d7"
     },
     {
       "id": "HELIXOS-L9-015-C0493",
@@ -35243,7 +35341,7 @@
       },
       "material_ref": {
         "path": "docs/helix-os/L7-function-verification/management-authority-source-record.json",
-        "pointer": "/derived_observations/cases/494"
+        "pointer": "/connection_materials/OS015/case/cases/494/given/input"
       },
       "execution_state": "synthetic_document_comparison_only",
       "condition": "management_material_unknown",
@@ -35301,7 +35399,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0495"
+      "integration_case_ref": "HELIXOS-L9-015-C0495",
+      "negative_class_ref": "OS015-NEG-COMPOSITE-9539a1f0e6787f121075bfc71469d281caadb1e4c31ba4a8df9ccd5fe882d3d7"
     },
     {
       "id": "HELIXOS-L9-015-C0496",
@@ -35922,7 +36021,7 @@
       },
       "material_ref": {
         "path": "docs/helix-os/L7-function-verification/management-authority-source-record.json",
-        "pointer": "/derived_observations/cases/504"
+        "pointer": "/connection_materials/OS015/case/cases/504/given/input"
       },
       "execution_state": "synthetic_document_comparison_only",
       "condition": "management_material_violation",
@@ -35980,7 +36079,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0505"
+      "integration_case_ref": "HELIXOS-L9-015-C0505",
+      "negative_class_ref": "OS015-NEG-COMPOSITE-931c9057eaac57f35bd0ed64d5288c4339e3e4ff9b96eb19b2d77ff8a25767e2"
     },
     {
       "id": "HELIXOS-L9-015-C0506",
@@ -37067,7 +37167,7 @@
       },
       "material_ref": {
         "path": "docs/helix-os/L7-function-verification/management-authority-source-record.json",
-        "pointer": "/derived_observations/cases/521"
+        "pointer": "/connection_materials/OS015/case/cases/521/given/input"
       },
       "execution_state": "synthetic_document_comparison_only",
       "condition": "management_material_violation",
@@ -37125,7 +37225,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0522"
+      "integration_case_ref": "HELIXOS-L9-015-C0522",
+      "negative_class_ref": "OS015-NEG-COMPOSITE-931c9057eaac57f35bd0ed64d5288c4339e3e4ff9b96eb19b2d77ff8a25767e2"
     },
     {
       "id": "HELIXOS-L9-015-C0523",
@@ -38216,7 +38317,7 @@
       },
       "material_ref": {
         "path": "docs/helix-os/L7-function-verification/management-authority-source-record.json",
-        "pointer": "/derived_observations/cases/538"
+        "pointer": "/connection_materials/OS015/case/cases/538/given/input"
       },
       "execution_state": "synthetic_document_comparison_only",
       "condition": "management_material_violation",
@@ -38274,7 +38375,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0539"
+      "integration_case_ref": "HELIXOS-L9-015-C0539",
+      "negative_class_ref": "OS015-NEG-COMPOSITE-931c9057eaac57f35bd0ed64d5288c4339e3e4ff9b96eb19b2d77ff8a25767e2"
     },
     {
       "id": "HELIXOS-L9-015-C0540",
@@ -40451,7 +40553,7 @@
       },
       "material_ref": {
         "path": "docs/helix-os/L7-function-verification/management-authority-source-record.json",
-        "pointer": "/derived_observations/cases/572"
+        "pointer": "/connection_materials/OS015/case/cases/572/given/input"
       },
       "execution_state": "synthetic_document_comparison_only",
       "condition": "management_material_violation",
@@ -40509,7 +40611,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0573"
+      "integration_case_ref": "HELIXOS-L9-015-C0573",
+      "negative_class_ref": "OS015-NEG-COMPOSITE-f5d02578a904f76ed01d15f549851918588f40e74d8216f84c54500cc38a384a"
     },
     {
       "id": "HELIXOS-L9-015-C0574",
@@ -40520,7 +40623,7 @@
       },
       "material_ref": {
         "path": "docs/helix-os/L7-function-verification/management-authority-source-record.json",
-        "pointer": "/derived_observations/cases/573"
+        "pointer": "/connection_materials/OS015/case/cases/573/given/input"
       },
       "execution_state": "synthetic_document_comparison_only",
       "condition": "management_material_violation",
@@ -40602,7 +40705,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0574"
+      "integration_case_ref": "HELIXOS-L9-015-C0574",
+      "negative_class_ref": "OS015-NEG-COMPOSITE-dead4dfeefccac8eec603d8be3bf804b928f0882d4c1b4ff907acba7b10f277a"
     },
     {
       "id": "HELIXOS-L9-015-C0575",
@@ -40613,7 +40717,7 @@
       },
       "material_ref": {
         "path": "docs/helix-os/L7-function-verification/management-authority-source-record.json",
-        "pointer": "/derived_observations/cases/574"
+        "pointer": "/connection_materials/OS015/case/cases/574/given/input"
       },
       "execution_state": "synthetic_document_comparison_only",
       "condition": "management_material_violation",
@@ -40695,7 +40799,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0575"
+      "integration_case_ref": "HELIXOS-L9-015-C0575",
+      "negative_class_ref": "OS015-NEG-COMPOSITE-8db83e3dc818dc613437d06b57bc7695b8867a0c7a35f630b9e0837c6c5950a4"
     },
     {
       "id": "HELIXOS-L9-015-C0576",
@@ -40706,7 +40811,7 @@
       },
       "material_ref": {
         "path": "docs/helix-os/L7-function-verification/management-authority-source-record.json",
-        "pointer": "/derived_observations/cases/575"
+        "pointer": "/connection_materials/OS015/case/cases/575/given/input"
       },
       "execution_state": "synthetic_document_comparison_only",
       "condition": "management_material_violation",
@@ -40764,7 +40869,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0576"
+      "integration_case_ref": "HELIXOS-L9-015-C0576",
+      "negative_class_ref": "OS015-NEG-COMPOSITE-4e80f5977bf48e95192dcbe7ebd26ffba7aa253ddef99755e42e3e0990008f72"
     },
     {
       "id": "HELIXOS-L9-015-C0577",
@@ -40775,7 +40881,7 @@
       },
       "material_ref": {
         "path": "docs/helix-os/L7-function-verification/management-authority-source-record.json",
-        "pointer": "/derived_observations/cases/576"
+        "pointer": "/connection_materials/OS015/case/cases/576/given/input"
       },
       "execution_state": "synthetic_document_comparison_only",
       "condition": "management_material_violation",
@@ -40857,7 +40963,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0577"
+      "integration_case_ref": "HELIXOS-L9-015-C0577",
+      "negative_class_ref": "OS015-NEG-COMPOSITE-a0f8ffe7cb48eb9237554e7c9344182b48c98fed14721acb96cafa89481c6429"
     },
     {
       "id": "HELIXOS-L9-015-C0578",
@@ -40868,7 +40975,7 @@
       },
       "material_ref": {
         "path": "docs/helix-os/L7-function-verification/management-authority-source-record.json",
-        "pointer": "/derived_observations/cases/577"
+        "pointer": "/connection_materials/OS015/case/cases/577/given/input"
       },
       "execution_state": "synthetic_document_comparison_only",
       "condition": "management_material_unknown",
@@ -40950,7 +41057,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0578"
+      "integration_case_ref": "HELIXOS-L9-015-C0578",
+      "negative_class_ref": "OS015-NEG-COMPOSITE-08695e0fad423852ebf0d60b18b944ec130ec1c4865698ff05c83b4646a9e405"
     },
     {
       "id": "HELIXOS-L9-015-C0579",
@@ -40961,7 +41069,7 @@
       },
       "material_ref": {
         "path": "docs/helix-os/L7-function-verification/management-authority-source-record.json",
-        "pointer": "/derived_observations/cases/578"
+        "pointer": "/connection_materials/OS015/case/cases/578/given/input"
       },
       "execution_state": "synthetic_document_comparison_only",
       "condition": "management_material_violation",
@@ -41019,7 +41127,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0579"
+      "integration_case_ref": "HELIXOS-L9-015-C0579",
+      "negative_class_ref": "OS015-NEG-COMPOSITE-4e80f5977bf48e95192dcbe7ebd26ffba7aa253ddef99755e42e3e0990008f72"
     },
     {
       "id": "HELIXOS-L9-015-C0580",
@@ -41030,7 +41139,7 @@
       },
       "material_ref": {
         "path": "docs/helix-os/L7-function-verification/management-authority-source-record.json",
-        "pointer": "/derived_observations/cases/579"
+        "pointer": "/connection_materials/OS015/case/cases/579/given/input"
       },
       "execution_state": "synthetic_document_comparison_only",
       "condition": "management_material_violation",
@@ -41112,7 +41221,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0580"
+      "integration_case_ref": "HELIXOS-L9-015-C0580",
+      "negative_class_ref": "OS015-NEG-COMPOSITE-a0f8ffe7cb48eb9237554e7c9344182b48c98fed14721acb96cafa89481c6429"
     },
     {
       "id": "HELIXOS-L9-015-C0581",
@@ -41123,7 +41233,7 @@
       },
       "material_ref": {
         "path": "docs/helix-os/L7-function-verification/management-authority-source-record.json",
-        "pointer": "/derived_observations/cases/580"
+        "pointer": "/connection_materials/OS015/case/cases/580/given/input"
       },
       "execution_state": "synthetic_document_comparison_only",
       "condition": "management_material_unknown",
@@ -41205,7 +41315,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0581"
+      "integration_case_ref": "HELIXOS-L9-015-C0581",
+      "negative_class_ref": "OS015-NEG-COMPOSITE-08695e0fad423852ebf0d60b18b944ec130ec1c4865698ff05c83b4646a9e405"
     },
     {
       "id": "HELIXOS-L9-015-C0582",
@@ -41216,7 +41327,7 @@
       },
       "material_ref": {
         "path": "docs/helix-os/L7-function-verification/management-authority-source-record.json",
-        "pointer": "/derived_observations/cases/581"
+        "pointer": "/connection_materials/OS015/case/cases/581/given/input"
       },
       "execution_state": "synthetic_document_comparison_only",
       "condition": "management_material_violation",
@@ -41274,7 +41385,8 @@
         }
       },
       "population_state": "negative",
-      "integration_case_ref": "HELIXOS-L9-015-C0582"
+      "integration_case_ref": "HELIXOS-L9-015-C0582",
+      "negative_class_ref": "OS015-NEG-COMPOSITE-d509d10e51a98c1fe8971d91e909e058b360a803c1d686891282e3a8667a158f"
     },
     {
       "id": "HELIXOS-L9-015-C0583",
@@ -42455,6 +42567,546 @@
           "path": "docs/helix-os/L5-detail-design/management-authority-source-record.json",
           "pointers": [
             "/failure_rules/32"
+          ]
+        }
+      ]
+    },
+    {
+      "class_id": "OS015-NEG-COMPOSITE-0847e4310de684d30c54c16de19c0ce068f2666a3e68fe3e3d93f144934f9a42",
+      "expected_classification": "management_material_violation",
+      "expected": {
+        "finding_codes": [
+          "source_conflict",
+          "source_conflict"
+        ]
+      },
+      "expected_axis": "source",
+      "expected_state": "violation",
+      "backflow_owner": "management-authority-owner",
+      "side_effect_count": 0,
+      "source_pointers": [
+        {
+          "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
+          "pointers": [
+            "/failure_classifications/33"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L7-function-verification/management-authority-source-record.json",
+          "pointers": [
+            "/connection_materials/OS015/case/cases/178/given/input",
+            "/connection_materials/OS015/case/cases/184/given/input",
+            "/connection_materials/OS015/case/cases/294/given/input",
+            "/connection_materials/OS015/case/cases/300/given/input"
+          ]
+        }
+      ]
+    },
+    {
+      "class_id": "OS015-NEG-COMPOSITE-08695e0fad423852ebf0d60b18b944ec130ec1c4865698ff05c83b4646a9e405",
+      "expected_classification": "management_material_unknown",
+      "expected": {
+        "finding_codes": [
+          "first_classification_prior_unresolved",
+          "first_classification_prior_unresolved",
+          "source_unresolved",
+          "source_unresolved",
+          "source_unresolved",
+          "source_unresolved"
+        ]
+      },
+      "expected_axis": "classification",
+      "expected_state": "unknown",
+      "backflow_owner": "management-authority-owner",
+      "side_effect_count": 0,
+      "source_pointers": [
+        {
+          "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
+          "pointers": [
+            "/failure_classifications/34"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L7-function-verification/management-authority-source-record.json",
+          "pointers": [
+            "/connection_materials/OS015/case/cases/577/given/input",
+            "/connection_materials/OS015/case/cases/580/given/input"
+          ]
+        }
+      ]
+    },
+    {
+      "class_id": "OS015-NEG-COMPOSITE-087fdf8f8d9303e619d04ccc3cbc6da653d08a4b20f6009bab1ec8dfe3cc90c9",
+      "expected_classification": "management_material_violation",
+      "expected": {
+        "finding_codes": [
+          "authority_conflict",
+          "source_conflict"
+        ]
+      },
+      "expected_axis": "authority",
+      "expected_state": "violation",
+      "backflow_owner": "management-authority-owner",
+      "side_effect_count": 0,
+      "source_pointers": [
+        {
+          "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
+          "pointers": [
+            "/failure_classifications/35"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L7-function-verification/management-authority-source-record.json",
+          "pointers": [
+            "/connection_materials/OS015/case/cases/483/given/input"
+          ]
+        }
+      ]
+    },
+    {
+      "class_id": "OS015-NEG-COMPOSITE-3123046e6695da60ba6abef15c2588c632081391d431ec133fa509d6d90017bb",
+      "expected_classification": "management_material_violation",
+      "expected": {
+        "finding_codes": [
+          "authority_state_unresolved",
+          "source_conflict"
+        ]
+      },
+      "expected_axis": "authority",
+      "expected_state": "violation",
+      "backflow_owner": "management-authority-owner",
+      "side_effect_count": 0,
+      "source_pointers": [
+        {
+          "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
+          "pointers": [
+            "/failure_classifications/36"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L7-function-verification/management-authority-source-record.json",
+          "pointers": [
+            "/connection_materials/OS015/case/cases/486/given/input"
+          ]
+        }
+      ]
+    },
+    {
+      "class_id": "OS015-NEG-COMPOSITE-4e80f5977bf48e95192dcbe7ebd26ffba7aa253ddef99755e42e3e0990008f72",
+      "expected_classification": "management_material_violation",
+      "expected": {
+        "finding_codes": [
+          "first_classification_prior_unresolved",
+          "original_classification_mutated"
+        ]
+      },
+      "expected_axis": "classification",
+      "expected_state": "unknown",
+      "backflow_owner": "management-authority-owner",
+      "side_effect_count": 0,
+      "source_pointers": [
+        {
+          "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
+          "pointers": [
+            "/failure_classifications/37"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L7-function-verification/management-authority-source-record.json",
+          "pointers": [
+            "/connection_materials/OS015/case/cases/575/given/input",
+            "/connection_materials/OS015/case/cases/578/given/input"
+          ]
+        }
+      ]
+    },
+    {
+      "class_id": "OS015-NEG-COMPOSITE-4ed7dc758943d0971c6a7853ba3568609804d47e1f5f615e39eaa5e523ef1c04",
+      "expected_classification": "management_material_unknown",
+      "expected": {
+        "finding_codes": [
+          "authority_origin_unresolved",
+          "authority_origin_unresolved"
+        ]
+      },
+      "expected_axis": "authority",
+      "expected_state": "unknown",
+      "backflow_owner": "management-authority-owner",
+      "side_effect_count": 0,
+      "source_pointers": [
+        {
+          "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
+          "pointers": [
+            "/failure_classifications/38"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L7-function-verification/management-authority-source-record.json",
+          "pointers": [
+            "/connection_materials/OS015/case/cases/476/given/input",
+            "/connection_materials/OS015/case/cases/479/given/input"
+          ]
+        }
+      ]
+    },
+    {
+      "class_id": "OS015-NEG-COMPOSITE-89de10e4554c2fb25885bc24b09de095d209750e791130a0f121afac952aa4ea",
+      "expected_classification": "management_material_violation",
+      "expected": {
+        "finding_codes": [
+          "authority_origin_forbidden",
+          "source_conflict"
+        ]
+      },
+      "expected_axis": "authority",
+      "expected_state": "violation",
+      "backflow_owner": "management-authority-owner",
+      "side_effect_count": 0,
+      "source_pointers": [
+        {
+          "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
+          "pointers": [
+            "/failure_classifications/39"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L7-function-verification/management-authority-source-record.json",
+          "pointers": [
+            "/connection_materials/OS015/case/cases/459/given/input",
+            "/connection_materials/OS015/case/cases/462/given/input",
+            "/connection_materials/OS015/case/cases/465/given/input",
+            "/connection_materials/OS015/case/cases/468/given/input",
+            "/connection_materials/OS015/case/cases/471/given/input"
+          ]
+        }
+      ]
+    },
+    {
+      "class_id": "OS015-NEG-COMPOSITE-8db83e3dc818dc613437d06b57bc7695b8867a0c7a35f630b9e0837c6c5950a4",
+      "expected_classification": "management_material_violation",
+      "expected": {
+        "finding_codes": [
+          "first_classification_prior_present",
+          "first_classification_prior_present",
+          "source_unresolved",
+          "source_unresolved",
+          "source_unresolved",
+          "source_unresolved"
+        ]
+      },
+      "expected_axis": "classification",
+      "expected_state": "violation",
+      "backflow_owner": "management-authority-owner",
+      "side_effect_count": 0,
+      "source_pointers": [
+        {
+          "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
+          "pointers": [
+            "/failure_classifications/40"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L7-function-verification/management-authority-source-record.json",
+          "pointers": [
+            "/connection_materials/OS015/case/cases/574/given/input"
+          ]
+        }
+      ]
+    },
+    {
+      "class_id": "OS015-NEG-COMPOSITE-931c9057eaac57f35bd0ed64d5288c4339e3e4ff9b96eb19b2d77ff8a25767e2",
+      "expected_classification": "management_material_violation",
+      "expected": {
+        "finding_codes": [
+          "source_unresolved",
+          "unresolved_promoted_to_current"
+        ]
+      },
+      "expected_axis": "source",
+      "expected_state": "unknown",
+      "backflow_owner": "management-authority-owner",
+      "side_effect_count": 0,
+      "source_pointers": [
+        {
+          "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
+          "pointers": [
+            "/failure_classifications/41"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L7-function-verification/management-authority-source-record.json",
+          "pointers": [
+            "/connection_materials/OS015/case/cases/504/given/input",
+            "/connection_materials/OS015/case/cases/521/given/input",
+            "/connection_materials/OS015/case/cases/538/given/input"
+          ]
+        }
+      ]
+    },
+    {
+      "class_id": "OS015-NEG-COMPOSITE-9539a1f0e6787f121075bfc71469d281caadb1e4c31ba4a8df9ccd5fe882d3d7",
+      "expected_classification": "management_material_unknown",
+      "expected": {
+        "finding_codes": [
+          "authority_state_unresolved",
+          "authority_state_unresolved"
+        ]
+      },
+      "expected_axis": "authority",
+      "expected_state": "unknown",
+      "backflow_owner": "management-authority-owner",
+      "side_effect_count": 0,
+      "source_pointers": [
+        {
+          "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
+          "pointers": [
+            "/failure_classifications/42"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L7-function-verification/management-authority-source-record.json",
+          "pointers": [
+            "/connection_materials/OS015/case/cases/491/given/input",
+            "/connection_materials/OS015/case/cases/494/given/input"
+          ]
+        }
+      ]
+    },
+    {
+      "class_id": "OS015-NEG-COMPOSITE-9c5c0fb87d1b6f9fbdf5e2e825c9e600024bbcd3f5bac7a32e7c20423fca521c",
+      "expected_classification": "management_material_violation",
+      "expected": {
+        "finding_codes": [
+          "original_event_mutated",
+          "source_conflict",
+          "source_conflict"
+        ]
+      },
+      "expected_axis": "original_event",
+      "expected_state": "violation",
+      "backflow_owner": "management-authority-owner",
+      "side_effect_count": 0,
+      "source_pointers": [
+        {
+          "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
+          "pointers": [
+            "/failure_classifications/43"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L7-function-verification/management-authority-source-record.json",
+          "pointers": [
+            "/connection_materials/OS015/case/cases/218/given/input",
+            "/connection_materials/OS015/case/cases/220/given/input",
+            "/connection_materials/OS015/case/cases/334/given/input",
+            "/connection_materials/OS015/case/cases/336/given/input"
+          ]
+        }
+      ]
+    },
+    {
+      "class_id": "OS015-NEG-COMPOSITE-a0f8ffe7cb48eb9237554e7c9344182b48c98fed14721acb96cafa89481c6429",
+      "expected_classification": "management_material_violation",
+      "expected": {
+        "finding_codes": [
+          "first_classification_prior_unresolved",
+          "original_classification_mutated",
+          "source_unresolved",
+          "source_unresolved",
+          "source_unresolved",
+          "source_unresolved"
+        ]
+      },
+      "expected_axis": "classification",
+      "expected_state": "unknown",
+      "backflow_owner": "management-authority-owner",
+      "side_effect_count": 0,
+      "source_pointers": [
+        {
+          "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
+          "pointers": [
+            "/failure_classifications/44"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L7-function-verification/management-authority-source-record.json",
+          "pointers": [
+            "/connection_materials/OS015/case/cases/576/given/input",
+            "/connection_materials/OS015/case/cases/579/given/input"
+          ]
+        }
+      ]
+    },
+    {
+      "class_id": "OS015-NEG-COMPOSITE-d509d10e51a98c1fe8971d91e909e058b360a803c1d686891282e3a8667a158f",
+      "expected_classification": "management_material_violation",
+      "expected": {
+        "finding_codes": [
+          "first_classification_prior_present",
+          "first_classification_prior_present"
+        ]
+      },
+      "expected_axis": "classification",
+      "expected_state": "violation",
+      "backflow_owner": "management-authority-owner",
+      "side_effect_count": 0,
+      "source_pointers": [
+        {
+          "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
+          "pointers": [
+            "/failure_classifications/45"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L7-function-verification/management-authority-source-record.json",
+          "pointers": [
+            "/connection_materials/OS015/case/cases/581/given/input"
+          ]
+        }
+      ]
+    },
+    {
+      "class_id": "OS015-NEG-COMPOSITE-dead4dfeefccac8eec603d8be3bf804b928f0882d4c1b4ff907acba7b10f277a",
+      "expected_classification": "management_material_violation",
+      "expected": {
+        "finding_codes": [
+          "first_classification_prior_present",
+          "original_classification_mutated",
+          "source_unresolved",
+          "source_unresolved",
+          "source_unresolved",
+          "source_unresolved"
+        ]
+      },
+      "expected_axis": "classification",
+      "expected_state": "violation",
+      "backflow_owner": "management-authority-owner",
+      "side_effect_count": 0,
+      "source_pointers": [
+        {
+          "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
+          "pointers": [
+            "/failure_classifications/46"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L7-function-verification/management-authority-source-record.json",
+          "pointers": [
+            "/connection_materials/OS015/case/cases/573/given/input"
+          ]
+        }
+      ]
+    },
+    {
+      "class_id": "OS015-NEG-COMPOSITE-df9154ac8720b176f3ba2d4bf5fc0362496e530eafdd829278de18d4a3d5c39b",
+      "expected_classification": "management_material_violation",
+      "expected": {
+        "finding_codes": [
+          "classification_kind_unresolved",
+          "source_conflict"
+        ]
+      },
+      "expected_axis": "classification",
+      "expected_state": "violation",
+      "backflow_owner": "management-authority-owner",
+      "side_effect_count": 0,
+      "source_pointers": [
+        {
+          "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
+          "pointers": [
+            "/failure_classifications/47"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L7-function-verification/management-authority-source-record.json",
+          "pointers": [
+            "/connection_materials/OS015/case/cases/364/given/input",
+            "/connection_materials/OS015/case/cases/414/given/input"
+          ]
+        }
+      ]
+    },
+    {
+      "class_id": "OS015-NEG-COMPOSITE-e23551bcfb260256f33d6911d244f0715dee4f62c3f09840e48d7de5c6473ae9",
+      "expected_classification": "management_material_violation",
+      "expected": {
+        "finding_codes": [
+          "authority_stale",
+          "source_conflict"
+        ]
+      },
+      "expected_axis": "authority",
+      "expected_state": "violation",
+      "backflow_owner": "management-authority-owner",
+      "side_effect_count": 0,
+      "source_pointers": [
+        {
+          "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
+          "pointers": [
+            "/failure_classifications/48"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L7-function-verification/management-authority-source-record.json",
+          "pointers": [
+            "/connection_materials/OS015/case/cases/480/given/input"
+          ]
+        }
+      ]
+    },
+    {
+      "class_id": "OS015-NEG-COMPOSITE-f26b128d495605fef34af26296623a373d06205bdbe8e9e366001ee980e6f294",
+      "expected_classification": "management_material_unknown",
+      "expected": {
+        "finding_codes": [
+          "classification_kind_unresolved",
+          "source_unresolved"
+        ]
+      },
+      "expected_axis": "classification",
+      "expected_state": "unknown",
+      "backflow_owner": "management-authority-owner",
+      "side_effect_count": 0,
+      "source_pointers": [
+        {
+          "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
+          "pointers": [
+            "/failure_classifications/49"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L7-function-verification/management-authority-source-record.json",
+          "pointers": [
+            "/connection_materials/OS015/case/cases/363/given/input",
+            "/connection_materials/OS015/case/cases/413/given/input"
+          ]
+        }
+      ]
+    },
+    {
+      "class_id": "OS015-NEG-COMPOSITE-f5d02578a904f76ed01d15f549851918588f40e74d8216f84c54500cc38a384a",
+      "expected_classification": "management_material_violation",
+      "expected": {
+        "finding_codes": [
+          "first_classification_prior_present",
+          "original_classification_mutated"
+        ]
+      },
+      "expected_axis": "classification",
+      "expected_state": "violation",
+      "backflow_owner": "management-authority-owner",
+      "side_effect_count": 0,
+      "source_pointers": [
+        {
+          "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
+          "pointers": [
+            "/failure_classifications/50"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L7-function-verification/management-authority-source-record.json",
+          "pointers": [
+            "/connection_materials/OS015/case/cases/572/given/input"
           ]
         }
       ]
