@@ -18,7 +18,11 @@
 
 L4 `/contracts/4/negative_classifications/0..6` はProvisional、Integrated、Verified、Accepted、Release-eligible、Deployed、Observedそれぞれの固有原証拠不足を条件にする。`/artifact_state_basis/1..7` は各証拠のstate固有source keyを定め、前stateから次stateを推定しない。L5 `/functions/4/failure_output_contract/conditions/0..6` は同じL4 condition sourceを指定しており、後続実行実測を要求していない。ここではL5をcondition wordingの照合に限って使い、順序や実測結果のoracleにしない。
 
-固定raw `ed3981e7b9419d796adf1981f8990c6b626ecabe` のF04独立source packet 7件を個別に確認した。各packetで該当する `state_proofs.<state>` は明示null、他7 state proofは全て存在してnullではない。したがって各件で対応するL4 missing conditionは入力から支持され、他の6 state-missing conditionは入力上非発火である。case metadataは全件 `execution_state=not_executed`, `effect=none` であり、実行や副作用があったとは扱わない。既存 `expected_material` / `negative_class_assignment` は出力観測として使わない。
+固定raw `ed3981e7b9419d796adf1981f8990c6b626ecabe` のF04独立source packet 7件を個別に確認した。各packetで該当する `state_proofs.<state>` は明示null。残るstate proofは、nullかどうかだけでなく、state-specific content、外側のidentity/revision/scope/ownerとtarget binding、固有属性を照合した。各残存proof objectは、該当proofを持つ他のcandidate packet間で同一canonical hashとなる。
+
+照合した内容は、WorkingのWORK-01/artifact/work_kind、Provisionalのfreeze・rawに `executed=true` と記録されたRed/Green/atomic CI・trace、Integratedの2 obligationsと10 dimension observations/source refs、Verifiedのsystem obligation観測と005/022差分、AcceptedのL11/L2 human originalとAI解釈の分離、Release-eligible Portの8必須参照、Deployedのartifact/environment/digest、ObservedのL12/L1 operation record/value observationである。全ての残存proof outer bindingは対象REQ@r1 / PRODUCT-P / ARTIFACT-A@h2 / ENV-Aに一致した。これにより支持するのは、固定synthetic fixture入力上で対象以外のstate-specific missing classを発火させる内容欠落が見られないことまでで、前state依存の充足やstate成立を示さない。
+
+全packetは `synthetic_design_fixture_not_actual_owner_or_authority` と資格範囲を明記する。実owner bytes/authority/実source qualificationはunknownである。case metadataは全件 `execution_state=not_executed`, `effect=none` であり、実行や副作用があったとは扱わない。既存 `expected_material` / `negative_class_assignment` は出力観測として使わない。
 
 F04のraw pointer/hash、L4 classification/state basis pointer、他6 classの非発火、単一条件候補の範囲は [f04-audit-rows.json](f04-audit-rows.json) に記録した。これは固定入力から導く候補の確認で、実行結果、formal projection row、ownerへの実配送、製品合格を主張しない。L9のcases/expectationsと既存監査候補は変更しない。
 

@@ -12,12 +12,12 @@
     "sha256": "91d0bcd34b8b451bc8e81f5d13d0c5f413de3ad5f7c70ba90a704134c4af3735",
     "pointer_field": "independent_source_packet.raw_utf8"
   },
-  "method": "L4 F04 class condition and state basis were read directly. Each fixed raw source packet was parsed as input; L9 expected_material and negative_class_assignment were excluded as result evidence. Exactly one state proof is explicit null per input and the other seven are present/non-null. Candidate status means input-derived condition candidate only, not executed output or runtime pass.",
+  "method": "L4 F04 class condition and state basis were read directly. Each fixed raw source packet was manually reviewed; the target proof is explicit null and the remaining state proof objects were checked for native content, source/owner role, target binding and state-specific attributes. L9 expected_material and negative_class_assignment were excluded as result evidence. Candidate status is limited to fixed synthetic input content; it does not assert executed output, actual source qualification, authority, or state attainment.",
   "audit_rows": [
     {
       "case_id": "H003-F04-MISSING-Provisional",
-      "candidate_status": "retained_single_finding_candidate",
-      "finding_set_status": "candidate_from_fixed_input",
+      "candidate_status": "retained_fixture_input_single_condition_candidate",
+      "finding_set_status": "candidate_from_fixed_synthetic_fixture_input",
       "finding_code": "F04_STATE_PROVISIONAL_PROOF_MISSING",
       "axis": "state_Provisional_basis",
       "state": "missing",
@@ -67,12 +67,22 @@
         "use": "condition wording cross-check only; no output execution/result claimed"
       },
       "output_scope": "one L4 state-missing condition is supported by the fixed input; no runtime output, formal projection row, actual owner delivery, or execution pass is asserted.",
-      "ordered_output": "single condition only; no multi-finding ordering claim is needed."
+      "ordered_output": "single condition only; no multi-finding ordering claim is needed.",
+      "non_firing_basis_scope": "supported_at_fixed_synthetic_fixture_content_level_only",
+      "non_firing_actual_source_qualification": "unknown",
+      "common_other_state_proof_review_ref": "/common_other_state_proof_review/states",
+      "qualification_limit": "raw packetはsynthetic design fixture。recorded content/owner role/bindingの内容監査に限る。実owner資格、authority、state成立は示さない。",
+      "raw_packet_qualification": {
+        "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+        "pointer": "/verification_obligations/4/negative_cases/1/independent_source_packet/qualification",
+        "value": "synthetic_design_fixture_not_actual_owner_or_authority"
+      },
+      "state_establishment": "unknown_not_claimed"
     },
     {
       "case_id": "H003-F04-MISSING-Integrated",
-      "candidate_status": "retained_single_finding_candidate",
-      "finding_set_status": "candidate_from_fixed_input",
+      "candidate_status": "retained_fixture_input_single_condition_candidate",
+      "finding_set_status": "candidate_from_fixed_synthetic_fixture_input",
       "finding_code": "F04_STATE_INTEGRATED_PROOF_MISSING",
       "axis": "state_Integrated_basis",
       "state": "missing",
@@ -122,12 +132,22 @@
         "use": "condition wording cross-check only; no output execution/result claimed"
       },
       "output_scope": "one L4 state-missing condition is supported by the fixed input; no runtime output, formal projection row, actual owner delivery, or execution pass is asserted.",
-      "ordered_output": "single condition only; no multi-finding ordering claim is needed."
+      "ordered_output": "single condition only; no multi-finding ordering claim is needed.",
+      "non_firing_basis_scope": "supported_at_fixed_synthetic_fixture_content_level_only",
+      "non_firing_actual_source_qualification": "unknown",
+      "common_other_state_proof_review_ref": "/common_other_state_proof_review/states",
+      "qualification_limit": "raw packetはsynthetic design fixture。recorded content/owner role/bindingの内容監査に限る。実owner資格、authority、state成立は示さない。",
+      "raw_packet_qualification": {
+        "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+        "pointer": "/verification_obligations/4/negative_cases/2/independent_source_packet/qualification",
+        "value": "synthetic_design_fixture_not_actual_owner_or_authority"
+      },
+      "state_establishment": "unknown_not_claimed"
     },
     {
       "case_id": "H003-F04-MISSING-Verified",
-      "candidate_status": "retained_single_finding_candidate",
-      "finding_set_status": "candidate_from_fixed_input",
+      "candidate_status": "retained_fixture_input_single_condition_candidate",
+      "finding_set_status": "candidate_from_fixed_synthetic_fixture_input",
       "finding_code": "F04_STATE_VERIFIED_PROOF_MISSING",
       "axis": "state_Verified_basis",
       "state": "missing",
@@ -177,12 +197,22 @@
         "use": "condition wording cross-check only; no output execution/result claimed"
       },
       "output_scope": "one L4 state-missing condition is supported by the fixed input; no runtime output, formal projection row, actual owner delivery, or execution pass is asserted.",
-      "ordered_output": "single condition only; no multi-finding ordering claim is needed."
+      "ordered_output": "single condition only; no multi-finding ordering claim is needed.",
+      "non_firing_basis_scope": "supported_at_fixed_synthetic_fixture_content_level_only",
+      "non_firing_actual_source_qualification": "unknown",
+      "common_other_state_proof_review_ref": "/common_other_state_proof_review/states",
+      "qualification_limit": "raw packetはsynthetic design fixture。recorded content/owner role/bindingの内容監査に限る。実owner資格、authority、state成立は示さない。",
+      "raw_packet_qualification": {
+        "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+        "pointer": "/verification_obligations/4/negative_cases/3/independent_source_packet/qualification",
+        "value": "synthetic_design_fixture_not_actual_owner_or_authority"
+      },
+      "state_establishment": "unknown_not_claimed"
     },
     {
       "case_id": "H003-F04-MISSING-Accepted",
-      "candidate_status": "retained_single_finding_candidate",
-      "finding_set_status": "candidate_from_fixed_input",
+      "candidate_status": "retained_fixture_input_single_condition_candidate",
+      "finding_set_status": "candidate_from_fixed_synthetic_fixture_input",
       "finding_code": "F04_STATE_ACCEPTED_PROOF_MISSING",
       "axis": "state_Accepted_basis",
       "state": "missing",
@@ -232,12 +262,22 @@
         "use": "condition wording cross-check only; no output execution/result claimed"
       },
       "output_scope": "one L4 state-missing condition is supported by the fixed input; no runtime output, formal projection row, actual owner delivery, or execution pass is asserted.",
-      "ordered_output": "single condition only; no multi-finding ordering claim is needed."
+      "ordered_output": "single condition only; no multi-finding ordering claim is needed.",
+      "non_firing_basis_scope": "supported_at_fixed_synthetic_fixture_content_level_only",
+      "non_firing_actual_source_qualification": "unknown",
+      "common_other_state_proof_review_ref": "/common_other_state_proof_review/states",
+      "qualification_limit": "raw packetはsynthetic design fixture。recorded content/owner role/bindingの内容監査に限る。実owner資格、authority、state成立は示さない。",
+      "raw_packet_qualification": {
+        "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+        "pointer": "/verification_obligations/4/negative_cases/4/independent_source_packet/qualification",
+        "value": "synthetic_design_fixture_not_actual_owner_or_authority"
+      },
+      "state_establishment": "unknown_not_claimed"
     },
     {
       "case_id": "H003-F04-MISSING-Release-eligible",
-      "candidate_status": "retained_single_finding_candidate",
-      "finding_set_status": "candidate_from_fixed_input",
+      "candidate_status": "retained_fixture_input_single_condition_candidate",
+      "finding_set_status": "candidate_from_fixed_synthetic_fixture_input",
       "finding_code": "F04_STATE_RELEASE-ELIGIBLE_PROOF_MISSING",
       "axis": "state_Release-eligible_basis",
       "state": "missing",
@@ -287,12 +327,22 @@
         "use": "condition wording cross-check only; no output execution/result claimed"
       },
       "output_scope": "one L4 state-missing condition is supported by the fixed input; no runtime output, formal projection row, actual owner delivery, or execution pass is asserted.",
-      "ordered_output": "single condition only; no multi-finding ordering claim is needed."
+      "ordered_output": "single condition only; no multi-finding ordering claim is needed.",
+      "non_firing_basis_scope": "supported_at_fixed_synthetic_fixture_content_level_only",
+      "non_firing_actual_source_qualification": "unknown",
+      "common_other_state_proof_review_ref": "/common_other_state_proof_review/states",
+      "qualification_limit": "raw packetはsynthetic design fixture。recorded content/owner role/bindingの内容監査に限る。実owner資格、authority、state成立は示さない。",
+      "raw_packet_qualification": {
+        "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+        "pointer": "/verification_obligations/4/negative_cases/5/independent_source_packet/qualification",
+        "value": "synthetic_design_fixture_not_actual_owner_or_authority"
+      },
+      "state_establishment": "unknown_not_claimed"
     },
     {
       "case_id": "H003-F04-MISSING-Deployed",
-      "candidate_status": "retained_single_finding_candidate",
-      "finding_set_status": "candidate_from_fixed_input",
+      "candidate_status": "retained_fixture_input_single_condition_candidate",
+      "finding_set_status": "candidate_from_fixed_synthetic_fixture_input",
       "finding_code": "F04_STATE_DEPLOYED_PROOF_MISSING",
       "axis": "state_Deployed_basis",
       "state": "missing",
@@ -342,12 +392,22 @@
         "use": "condition wording cross-check only; no output execution/result claimed"
       },
       "output_scope": "one L4 state-missing condition is supported by the fixed input; no runtime output, formal projection row, actual owner delivery, or execution pass is asserted.",
-      "ordered_output": "single condition only; no multi-finding ordering claim is needed."
+      "ordered_output": "single condition only; no multi-finding ordering claim is needed.",
+      "non_firing_basis_scope": "supported_at_fixed_synthetic_fixture_content_level_only",
+      "non_firing_actual_source_qualification": "unknown",
+      "common_other_state_proof_review_ref": "/common_other_state_proof_review/states",
+      "qualification_limit": "raw packetはsynthetic design fixture。recorded content/owner role/bindingの内容監査に限る。実owner資格、authority、state成立は示さない。",
+      "raw_packet_qualification": {
+        "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+        "pointer": "/verification_obligations/4/negative_cases/6/independent_source_packet/qualification",
+        "value": "synthetic_design_fixture_not_actual_owner_or_authority"
+      },
+      "state_establishment": "unknown_not_claimed"
     },
     {
       "case_id": "H003-F04-MISSING-Observed",
-      "candidate_status": "retained_single_finding_candidate",
-      "finding_set_status": "candidate_from_fixed_input",
+      "candidate_status": "retained_fixture_input_single_condition_candidate",
+      "finding_set_status": "candidate_from_fixed_synthetic_fixture_input",
       "finding_code": "F04_STATE_OBSERVED_PROOF_MISSING",
       "axis": "state_Observed_basis",
       "state": "missing",
@@ -397,7 +457,320 @@
         "use": "condition wording cross-check only; no output execution/result claimed"
       },
       "output_scope": "one L4 state-missing condition is supported by the fixed input; no runtime output, formal projection row, actual owner delivery, or execution pass is asserted.",
-      "ordered_output": "single condition only; no multi-finding ordering claim is needed."
+      "ordered_output": "single condition only; no multi-finding ordering claim is needed.",
+      "non_firing_basis_scope": "supported_at_fixed_synthetic_fixture_content_level_only",
+      "non_firing_actual_source_qualification": "unknown",
+      "common_other_state_proof_review_ref": "/common_other_state_proof_review/states",
+      "qualification_limit": "raw packetはsynthetic design fixture。recorded content/owner role/bindingの内容監査に限る。実owner資格、authority、state成立は示さない。",
+      "raw_packet_qualification": {
+        "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+        "pointer": "/verification_obligations/4/negative_cases/7/independent_source_packet/qualification",
+        "value": "synthetic_design_fixture_not_actual_owner_or_authority"
+      },
+      "state_establishment": "unknown_not_claimed"
     }
-  ]
+  ],
+  "common_other_state_proof_review": {
+    "source_population": "same fixed raw snapshot and seven F04 candidate packets listed in audit_rows",
+    "target_binding": {
+      "revision": "REQ@r1",
+      "scope": "PRODUCT-P",
+      "artifact": "ARTIFACT-A@h2",
+      "environment": "ENV-A"
+    },
+    "method": "各残存stateについてraw packetのstate-specific content・outer ref/owner・bindingを手動照合。各proof objectのcanonical SHA-256は、そのstateを欠く1 candidateを除く残りcandidate packetで同一。機械validatorは原文hash/pointerとこの記録の一致だけを検査し、conditionを評価しない。",
+    "qualification_limit": "独立source packet自身が synthetic_design_fixture_not_actual_owner_or_authority と明示するため、実sourceの資格・実owner bytes・実authorityはunknown。実stateが成立したとは扱わない。",
+    "states": [
+      {
+        "state": "Working",
+        "l4_state_basis_pointer": "/artifact_state_basis/0",
+        "source_material_key": "state_proofs.Working",
+        "representative_raw_input_pointer": "/verification_obligations/4/negative_cases/1/independent_source_packet/raw_utf8#/state_proofs/Working",
+        "present_in_candidate_case_ids": [
+          "H003-F04-MISSING-Provisional",
+          "H003-F04-MISSING-Integrated",
+          "H003-F04-MISSING-Verified",
+          "H003-F04-MISSING-Accepted",
+          "H003-F04-MISSING-Release-eligible",
+          "H003-F04-MISSING-Deployed",
+          "H003-F04-MISSING-Observed"
+        ],
+        "present_in_candidate_count": 7,
+        "canonical_proof_sha256": "0f875664a1bc2f203ff4f0cd13b9b43dd34b47fe08e62268c16514dd3a59a743",
+        "reference": {
+          "identity": "PROOF-Working",
+          "revision": "fixture-r1-content-fcb8e51f45f7b1fdf1a0d6d0c479dad5be468d5f73dc4e551a3a75d6b304054a",
+          "scope": "PRODUCT-P",
+          "owner": "OS"
+        },
+        "binding": {
+          "revision": "REQ@r1",
+          "scope": "PRODUCT-P",
+          "artifact": "ARTIFACT-A@h2",
+          "environment": "ENV-A"
+        },
+        "binding_matches_target_in_each_present_packet": true,
+        "content_review": "source_material_key state_proofs.Working。contentにwork_record=WORK-01、target artifactと一致するartifact=ARTIFACT-A@h2、work_kind=Forward。owner role OS。後続証拠からWorking成立を推定しない。",
+        "qualification_limit": "固定source packet全体のqualificationはsynthetic_design_fixture_not_actual_owner_or_authority。ここで支持するのはfixture内のstate-specific content/owner-role/bindingだけで、実owner資格・実authority・実状態の成立ではない。",
+        "non_firing_scope": "対象state proofの欠落classに対するfixture-input-levelの非発火支持。前状態条件や実資格の成立を含むstate attainmentは判定しない。",
+        "proof_pointer": "/state_proofs/Working",
+        "proof_content_pointer": "/state_proofs/Working/content",
+        "reference_pointer": "/state_proofs/Working/ref",
+        "binding_pointer": "/state_proofs/Working/binding"
+      },
+      {
+        "state": "Provisional",
+        "l4_state_basis_pointer": "/artifact_state_basis/1",
+        "source_material_key": "state_proofs.Provisional",
+        "representative_raw_input_pointer": "/verification_obligations/4/negative_cases/2/independent_source_packet/raw_utf8#/state_proofs/Provisional",
+        "present_in_candidate_case_ids": [
+          "H003-F04-MISSING-Integrated",
+          "H003-F04-MISSING-Verified",
+          "H003-F04-MISSING-Accepted",
+          "H003-F04-MISSING-Release-eligible",
+          "H003-F04-MISSING-Deployed",
+          "H003-F04-MISSING-Observed"
+        ],
+        "present_in_candidate_count": 6,
+        "canonical_proof_sha256": "c90cf610c6b6fc7869f5ffcffa703fd64b834265a780f48c1d4cc47185dea3e2",
+        "reference": {
+          "identity": "PROOF-Provisional",
+          "revision": "fixture-r1-content-2cdbc36f0f6ab822d9eab1f8924c44c8872ba2f07c46dbe0e178520d2149e60b",
+          "scope": "PRODUCT-P",
+          "owner": "execution-owner"
+        },
+        "binding": {
+          "revision": "REQ@r1",
+          "scope": "PRODUCT-P",
+          "artifact": "ARTIFACT-A@h2",
+          "environment": "ENV-A"
+        },
+        "binding_matches_target_in_each_present_packet": true,
+        "content_review": "source_material_key state_proofs.Provisional。freeze、rawに executed=true と記録された pre_body_red (expected 1 / observed 2)、minimum_body、green (1/1)、local_refactor、atomic_ci (1/1) の6 stepとtrace/trace_artifactsを含む。owner role execution-owner。",
+        "qualification_limit": "固定source packet全体のqualificationはsynthetic_design_fixture_not_actual_owner_or_authority。ここで支持するのはfixture内のstate-specific content/owner-role/bindingだけで、実owner資格・実authority・実状態の成立ではない。",
+        "non_firing_scope": "対象state proofの欠落classに対するfixture-input-levelの非発火支持。前状態条件や実資格の成立を含むstate attainmentは判定しない。",
+        "proof_pointer": "/state_proofs/Provisional",
+        "proof_content_pointer": "/state_proofs/Provisional/content",
+        "reference_pointer": "/state_proofs/Provisional/ref",
+        "binding_pointer": "/state_proofs/Provisional/binding"
+      },
+      {
+        "state": "Integrated",
+        "l4_state_basis_pointer": "/artifact_state_basis/2",
+        "source_material_key": "state_proofs.Integrated",
+        "representative_raw_input_pointer": "/verification_obligations/4/negative_cases/1/independent_source_packet/raw_utf8#/state_proofs/Integrated",
+        "present_in_candidate_case_ids": [
+          "H003-F04-MISSING-Provisional",
+          "H003-F04-MISSING-Verified",
+          "H003-F04-MISSING-Accepted",
+          "H003-F04-MISSING-Release-eligible",
+          "H003-F04-MISSING-Deployed",
+          "H003-F04-MISSING-Observed"
+        ],
+        "present_in_candidate_count": 6,
+        "canonical_proof_sha256": "45b98272fe380d1c81cee94541c85aa60cb4f86e8534817e85b28f65ccab1061",
+        "reference": {
+          "identity": "PROOF-Integrated",
+          "revision": "fixture-r1-content-e4f4e70cdf47f8583af0b93d007c001815cc6eb8c20ae9862eb79474a9bda9d3",
+          "scope": "PRODUCT-P",
+          "owner": "integration-owner"
+        },
+        "binding": {
+          "revision": "REQ@r1",
+          "scope": "PRODUCT-P",
+          "artifact": "ARTIFACT-A@h2",
+          "environment": "ENV-A"
+        },
+        "binding_matches_target_in_each_present_packet": true,
+        "content_review": "source_material_key state_proofs.Integrated。single_state_owner/idempotent_deliveryの2 obligation observationがexpectedと一致。10 L9 dimension observationは全てexpected=observedで、各sourceにidentity/revision/scope/ownerがある。owner role integration-owner。",
+        "qualification_limit": "固定source packet全体のqualificationはsynthetic_design_fixture_not_actual_owner_or_authority。ここで支持するのはfixture内のstate-specific content/owner-role/bindingだけで、実owner資格・実authority・実状態の成立ではない。",
+        "non_firing_scope": "対象state proofの欠落classに対するfixture-input-levelの非発火支持。前状態条件や実資格の成立を含むstate attainmentは判定しない。",
+        "proof_pointer": "/state_proofs/Integrated",
+        "proof_content_pointer": "/state_proofs/Integrated/content",
+        "reference_pointer": "/state_proofs/Integrated/ref",
+        "binding_pointer": "/state_proofs/Integrated/binding"
+      },
+      {
+        "state": "Verified",
+        "l4_state_basis_pointer": "/artifact_state_basis/3",
+        "source_material_key": "state_proofs.Verified",
+        "representative_raw_input_pointer": "/verification_obligations/4/negative_cases/1/independent_source_packet/raw_utf8#/state_proofs/Verified",
+        "present_in_candidate_case_ids": [
+          "H003-F04-MISSING-Provisional",
+          "H003-F04-MISSING-Integrated",
+          "H003-F04-MISSING-Accepted",
+          "H003-F04-MISSING-Release-eligible",
+          "H003-F04-MISSING-Deployed",
+          "H003-F04-MISSING-Observed"
+        ],
+        "present_in_candidate_count": 6,
+        "canonical_proof_sha256": "6e2cd515e48cab56fa4b88f09afe3c9546a1ef8be14c281e9dd26d34b0953e0d",
+        "reference": {
+          "identity": "PROOF-Verified",
+          "revision": "fixture-r1-content-2ace4bf7f4280b56ef427e32428599b5e752e0546ca16ac084ca3ea3cb8c71fc",
+          "scope": "PRODUCT-P",
+          "owner": "system-verification-owner"
+        },
+        "binding": {
+          "revision": "REQ@r1",
+          "scope": "PRODUCT-P",
+          "artifact": "ARTIFACT-A@h2",
+          "environment": "ENV-A"
+        },
+        "binding_matches_target_in_each_present_packet": true,
+        "content_review": "source_material_key state_proofs.Verified。L10/L3 pair、global_balance_conservation、before/expected/observed total=10、covered=required、remaining=[]。lower_proof_refsは参照文字列であり、先行stateの成立を代替・証明しない。owner role system-verification-owner。",
+        "qualification_limit": "固定source packet全体のqualificationはsynthetic_design_fixture_not_actual_owner_or_authority。ここで支持するのはfixture内のstate-specific content/owner-role/bindingだけで、実owner資格・実authority・実状態の成立ではない。",
+        "non_firing_scope": "対象state proofの欠落classに対するfixture-input-levelの非発火支持。前状態条件や実資格の成立を含むstate attainmentは判定しない。",
+        "proof_pointer": "/state_proofs/Verified",
+        "proof_content_pointer": "/state_proofs/Verified/content",
+        "reference_pointer": "/state_proofs/Verified/ref",
+        "binding_pointer": "/state_proofs/Verified/binding"
+      },
+      {
+        "state": "Accepted",
+        "l4_state_basis_pointer": "/artifact_state_basis/4",
+        "source_material_key": "state_proofs.Accepted",
+        "representative_raw_input_pointer": "/verification_obligations/4/negative_cases/1/independent_source_packet/raw_utf8#/state_proofs/Accepted",
+        "present_in_candidate_case_ids": [
+          "H003-F04-MISSING-Provisional",
+          "H003-F04-MISSING-Integrated",
+          "H003-F04-MISSING-Verified",
+          "H003-F04-MISSING-Release-eligible",
+          "H003-F04-MISSING-Deployed",
+          "H003-F04-MISSING-Observed"
+        ],
+        "present_in_candidate_count": 6,
+        "canonical_proof_sha256": "efc8ea97e935978a28d18605fc1a573d3ac5ce5075524bdc58751e8d6a4067e7",
+        "reference": {
+          "identity": "PROOF-Accepted",
+          "revision": "fixture-r1-content-f46c295ecad1bb3cbb028073ba55e095ee04ee6435f334633ef5747dbed5158d",
+          "scope": "PRODUCT-P",
+          "owner": "OS-original-acceptance-record"
+        },
+        "binding": {
+          "revision": "REQ@r1",
+          "scope": "PRODUCT-P",
+          "artifact": "ARTIFACT-A@h2",
+          "environment": "ENV-A"
+        },
+        "binding_matches_target_in_each_present_packet": true,
+        "content_review": "source_material_key state_proofs.Accepted。L11/L2 pair、PRODUCT-P scope、nested human_originalはkind=user_acceptance、owner human-PO-original、accepted/rejected axesを保持し、AI interpretationを別recordに分離。owner role OS-original-acceptance-record。",
+        "qualification_limit": "固定source packet全体のqualificationはsynthetic_design_fixture_not_actual_owner_or_authority。ここで支持するのはfixture内のstate-specific content/owner-role/bindingだけで、実owner資格・実authority・実状態の成立ではない。",
+        "non_firing_scope": "対象state proofの欠落classに対するfixture-input-levelの非発火支持。前状態条件や実資格の成立を含むstate attainmentは判定しない。",
+        "proof_pointer": "/state_proofs/Accepted",
+        "proof_content_pointer": "/state_proofs/Accepted/content",
+        "reference_pointer": "/state_proofs/Accepted/ref",
+        "binding_pointer": "/state_proofs/Accepted/binding"
+      },
+      {
+        "state": "Release-eligible",
+        "l4_state_basis_pointer": "/artifact_state_basis/5",
+        "source_material_key": "state_proofs.Release-eligible",
+        "representative_raw_input_pointer": "/verification_obligations/4/negative_cases/1/independent_source_packet/raw_utf8#/state_proofs/Release-eligible",
+        "present_in_candidate_case_ids": [
+          "H003-F04-MISSING-Provisional",
+          "H003-F04-MISSING-Integrated",
+          "H003-F04-MISSING-Verified",
+          "H003-F04-MISSING-Accepted",
+          "H003-F04-MISSING-Deployed",
+          "H003-F04-MISSING-Observed"
+        ],
+        "present_in_candidate_count": 6,
+        "canonical_proof_sha256": "6b747f30252e4067cdee7ff5a4661faf6cd03f01cbf80760f3e7c0341765019d",
+        "reference": {
+          "identity": "PROOF-Release-eligible",
+          "revision": "fixture-r1-content-6516fa37d18e35a21f5e40f6aba4afa48b97a2510466a11157e0d5325f0fdd38",
+          "scope": "PRODUCT-P",
+          "owner": "port-evidence-owner"
+        },
+        "binding": {
+          "revision": "REQ@r1",
+          "scope": "PRODUCT-P",
+          "artifact": "ARTIFACT-A@h2",
+          "environment": "ENV-A"
+        },
+        "binding_matches_target_in_each_present_packet": true,
+        "content_review": "source_material_key state_proofs.Release-eligible。Port basisは8 required categoriesを列挙し、各 category observationでrequired_ref=observed_ref。owner role port-evidence-owner。",
+        "qualification_limit": "固定source packet全体のqualificationはsynthetic_design_fixture_not_actual_owner_or_authority。ここで支持するのはfixture内のstate-specific content/owner-role/bindingだけで、実owner資格・実authority・実状態の成立ではない。",
+        "non_firing_scope": "対象state proofの欠落classに対するfixture-input-levelの非発火支持。前状態条件や実資格の成立を含むstate attainmentは判定しない。",
+        "proof_pointer": "/state_proofs/Release-eligible",
+        "proof_content_pointer": "/state_proofs/Release-eligible/content",
+        "reference_pointer": "/state_proofs/Release-eligible/ref",
+        "binding_pointer": "/state_proofs/Release-eligible/binding"
+      },
+      {
+        "state": "Deployed",
+        "l4_state_basis_pointer": "/artifact_state_basis/6",
+        "source_material_key": "state_proofs.Deployed",
+        "representative_raw_input_pointer": "/verification_obligations/4/negative_cases/1/independent_source_packet/raw_utf8#/state_proofs/Deployed",
+        "present_in_candidate_case_ids": [
+          "H003-F04-MISSING-Provisional",
+          "H003-F04-MISSING-Integrated",
+          "H003-F04-MISSING-Verified",
+          "H003-F04-MISSING-Accepted",
+          "H003-F04-MISSING-Release-eligible",
+          "H003-F04-MISSING-Observed"
+        ],
+        "present_in_candidate_count": 6,
+        "canonical_proof_sha256": "a97334aa552dba2f9b18695f383dd46c79de802f264a587690e373b2b326e29a",
+        "reference": {
+          "identity": "PROOF-Deployed",
+          "revision": "fixture-r1-content-e0e634c2e868c545bbc4fbbe4bb23e5ea3e57bffbfe5e5e534e8feaa3c40f2e2",
+          "scope": "PRODUCT-P",
+          "owner": "OS-deployment-original-record"
+        },
+        "binding": {
+          "revision": "REQ@r1",
+          "scope": "PRODUCT-P",
+          "artifact": "ARTIFACT-A@h2",
+          "environment": "ENV-A"
+        },
+        "binding_matches_target_in_each_present_packet": true,
+        "content_review": "source_material_key state_proofs.Deployed。deployment=DEPLOY-01、artifact=target artifact、target_environment=observed_environment=ENV-A、expected_digest=observed_digest。owner role OS-deployment-original-record。",
+        "qualification_limit": "固定source packet全体のqualificationはsynthetic_design_fixture_not_actual_owner_or_authority。ここで支持するのはfixture内のstate-specific content/owner-role/bindingだけで、実owner資格・実authority・実状態の成立ではない。",
+        "non_firing_scope": "対象state proofの欠落classに対するfixture-input-levelの非発火支持。前状態条件や実資格の成立を含むstate attainmentは判定しない。",
+        "proof_pointer": "/state_proofs/Deployed",
+        "proof_content_pointer": "/state_proofs/Deployed/content",
+        "reference_pointer": "/state_proofs/Deployed/ref",
+        "binding_pointer": "/state_proofs/Deployed/binding"
+      },
+      {
+        "state": "Observed",
+        "l4_state_basis_pointer": "/artifact_state_basis/7",
+        "source_material_key": "state_proofs.Observed",
+        "representative_raw_input_pointer": "/verification_obligations/4/negative_cases/1/independent_source_packet/raw_utf8#/state_proofs/Observed",
+        "present_in_candidate_case_ids": [
+          "H003-F04-MISSING-Provisional",
+          "H003-F04-MISSING-Integrated",
+          "H003-F04-MISSING-Verified",
+          "H003-F04-MISSING-Accepted",
+          "H003-F04-MISSING-Release-eligible",
+          "H003-F04-MISSING-Deployed"
+        ],
+        "present_in_candidate_count": 6,
+        "canonical_proof_sha256": "fa3fcaaba5094e08460eef12476dcc2821826c969905d3a74756405b5bba60ae",
+        "reference": {
+          "identity": "PROOF-Observed",
+          "revision": "fixture-r1-content-5fb4dd0ed83195a979ff76746a5caa36e2e305d7c21a6d9744546cf7ff90ec3a",
+          "scope": "PRODUCT-P",
+          "owner": "L12-operation-evaluation-owner"
+        },
+        "binding": {
+          "revision": "REQ@r1",
+          "scope": "PRODUCT-P",
+          "artifact": "ARTIFACT-A@h2",
+          "environment": "ENV-A"
+        },
+        "binding_matches_target_in_each_present_packet": true,
+        "content_review": "source_material_key state_proofs.Observed。L12/L1 pair、operation_record=OPERATION-01、ENV-A、value_axis、expected_debits_per_command=observed_debits_per_command=1、feedback_target=L1-owner。owner role L12-operation-evaluation-owner。",
+        "qualification_limit": "固定source packet全体のqualificationはsynthetic_design_fixture_not_actual_owner_or_authority。ここで支持するのはfixture内のstate-specific content/owner-role/bindingだけで、実owner資格・実authority・実状態の成立ではない。",
+        "non_firing_scope": "対象state proofの欠落classに対するfixture-input-levelの非発火支持。前状態条件や実資格の成立を含むstate attainmentは判定しない。",
+        "proof_pointer": "/state_proofs/Observed",
+        "proof_content_pointer": "/state_proofs/Observed/content",
+        "reference_pointer": "/state_proofs/Observed/ref",
+        "binding_pointer": "/state_proofs/Observed/binding"
+      }
+    ],
+    "raw_packet_qualification": "synthetic_design_fixture_not_actual_owner_or_authority"
+  }
 }

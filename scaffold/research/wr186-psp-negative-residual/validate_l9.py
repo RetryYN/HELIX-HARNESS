@@ -74,6 +74,10 @@ def main() -> None:
 
     f04 = json.loads(F04_MANIFEST.read_bytes())
     f04_rows = rows_by_id(f04["audit_rows"])
+    common_proof_review = f04["common_other_state_proof_review"]
+    assert common_proof_review["raw_packet_qualification"] == "synthetic_design_fixture_not_actual_owner_or_authority"
+    common_proof_rows = {row["state"]: row for row in common_proof_review["states"]}
+    assert len(common_proof_rows) == len(common_proof_review["states"]) == 8
     f04_raw = next(x for x in raw["verification_obligations"] if x["id"] == "HARNESS-L9-003-F04")
     f04_live = next(x for x in l9["cases"] if x["id"] == "HARNESS-L9-003-F04")
     f04_classes = l4["contracts"][4]["negative_classifications"]
@@ -97,6 +101,8 @@ def main() -> None:
         assert source["revision"] == RAW_REVISION and source["path"] == RAW_PATH
         assert hashlib.sha256(raw_value.encode("utf-8")).hexdigest() == source["sha256"]
         assert source["sha256"] == historical["independent_source_packet"]["sha256"]
+        assert historical["independent_source_packet"]["qualification"] == common_proof_review["raw_packet_qualification"]
+        assert resolve(raw, row["raw_packet_qualification"]["pointer"]) == row["raw_packet_qualification"]["value"]
         assert row["finding_code"] == f04_classes[i]["code"]
         assert row["axis"] == f04_classes[i]["axis"]
         assert row["condition_source"] == f04_classes[i]["change"]
@@ -115,8 +121,33 @@ def main() -> None:
         assert row["case_provenance"]["mutation_pointer"] == f"/cases/4/negative_cases/{i + 1}/mutation"
         assert live["mutation"] == historical["mutation"]
         assert "expected_material" not in row
-        assert row["finding_set_status"] == "candidate_from_fixed_input"
+        assert row["candidate_status"] == "retained_fixture_input_single_condition_candidate"
+        assert row["finding_set_status"] == "candidate_from_fixed_synthetic_fixture_input"
         assert row["output_scope"].startswith("one L4 state-missing condition")
+        assert row["non_firing_basis_scope"] == "supported_at_fixed_synthetic_fixture_content_level_only"
+        assert row["non_firing_actual_source_qualification"] == "unknown"
+        assert row["state_establishment"] == "unknown_not_claimed"
+    for state, review in common_proof_rows.items():
+        state_index = ["Working", *f04_states].index(state)
+        assert review["l4_state_basis_pointer"] == f"/artifact_state_basis/{state_index}"
+        assert resolve(l4, review["l4_state_basis_pointer"])["state"] == state
+        assert review["source_material_key"] == f"state_proofs.{state}"
+        assert review["proof_pointer"] == f"/state_proofs/{state}"
+        assert review["proof_content_pointer"] == f"/state_proofs/{state}/content"
+        assert review["reference_pointer"] == f"/state_proofs/{state}/ref"
+        assert review["binding_pointer"] == f"/state_proofs/{state}/binding"
+        assert review["binding"] == common_proof_review["target_binding"]
+        for case_id in review["present_in_candidate_case_ids"]:
+            case_index = next(j for j, x in enumerate(f04_raw["negative_cases"]) if x["id"] == case_id)
+            packet_ptr = f"/verification_obligations/4/negative_cases/{case_index}/independent_source_packet/raw_utf8"
+            packet_value = resolve(raw, packet_ptr)
+            proof = json.loads(packet_value)["state_proofs"][state]
+            proof_hash = hashlib.sha256(
+                json.dumps(proof, sort_keys=True, separators=(",", ":"), ensure_ascii=False).encode("utf-8")
+            ).hexdigest()
+            assert proof_hash == review["canonical_proof_sha256"]
+            assert proof["ref"] == review["reference"]
+            assert proof["binding"] == review["binding"]
 
     # Verify the currently pinned L3 clauses without deriving any output.
     assert resolve(l3_pinned, "/requirements/66/obligation") == resolve(l3_current, "/requirements/66/obligation")

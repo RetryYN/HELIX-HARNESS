@@ -31,9 +31,9 @@ WR192のlatest-main trialは `origin/main` `623f2abc6e0022f5aa781af5d1e21c4babca
 
 ## WR192 F04 7候補の固定raw照合
 
-F04のL4 negative classification 7件は、各state固有の原証拠が不足することを条件とする。固定snapshot `ed3981e7b9419d796adf1981f8990c6b626ecabe` の各独立source packetでは、対応する1 stateだけが明示nullで、他7 state proofは存在しnullではない。各L4 class conditionとstate basis pointer、raw packet pointer/hash、入力上非発火の他6 F04 missing classを [f04-audit-rows.json](f04-audit-rows.json) に記録した。L5 `failure_output_contract.conditions` は条件文の照合に限って参照し、期待を実出力として使わず、実行結果・owner配送・runtime passを主張しない。
+F04のL4 negative classification 7件は、各state固有の原証拠が不足することを条件とする。固定snapshot `ed3981e7b9419d796adf1981f8990c6b626ecabe` の各独立source packetでは、対応する1 stateだけが明示nullである。残るstateについてはnullでないことだけで判断せず、state-specific content、外側のidentity/revision/scope/owner、targetのrevision/scope/artifact/environmentとのbinding、および各stateの固有属性を個別に照合した。各L4 class conditionとstate basis pointer、raw packet pointer/hash、fixture内で非発火を支持する他6 F04 missing classを [f04-audit-rows.json](f04-audit-rows.json) に記録した。L5 `failure_output_contract.conditions` は条件文の照合に限って参照し、期待を実出力として使わず、実行結果・owner配送・runtime passを主張しない。
 
-したがって既存のF04 7件は固定入力から導く単一条件候補として維持する。L9 `cases` / `expected_material`、182件母集団、formal projection row、checker marker、freezeは変更しない。候補は処理済み結果や製品合格を意味しない。
+したがって既存のF04 7件は固定fixture入力のcontent-levelで導く単一条件候補として維持する。各packetのqualificationは `synthetic_design_fixture_not_actual_owner_or_authority` のため、実source資格・実owner権限・実state成立はunknownである。L9 `cases` / `expected_material`、182件母集団、formal projection row、checker marker、freezeは変更しない。候補は処理済み結果や製品合格を意味しない。
 
 ## 固定入力と再現
 
