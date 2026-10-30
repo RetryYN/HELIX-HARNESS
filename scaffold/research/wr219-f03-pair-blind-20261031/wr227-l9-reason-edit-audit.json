@@ -1,0 +1,77 @@
+{
+  "schema": "wr227-f03-l9-reason-edit-audit.v1",
+  "evidence_kind": "scaffold",
+  "authority_effect": "none",
+  "decision_ref": "docs/helix-harness/L4-basic-design/process-state-port.json#/contracts/3/connection_detail/partial_result_semantics",
+  "historical_baselines": [
+    {
+      "revision": "ca4bd911142cc17789366ae6f9f1f0fee8c7c589",
+      "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+      "purpose": "WR186 prior audit BASE; exact old reason values and full-case comparison"
+    },
+    {
+      "revision": "62d7db6aa076d81c1b1f1fd584adeacf76c2f815",
+      "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+      "purpose": "WR192 base; exact old reason values and full-case comparison"
+    },
+    {
+      "revision": "280d5c8dc854e5100be6ed21188d5ebd13f5abd8",
+      "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+      "purpose": "WR227 task base; current expected output/case structure before reason-only explanatory edits"
+    }
+  ],
+  "comparison_history": [
+    {
+      "reference": "RetryYN/HELIX-HARNESS PR #3970 review comment 6532547942",
+      "finding": "F1: values outside supported_synthetic_condition were not explained; F2: blind artifact/comparison pointers were missing; I1: reason edit history should be scaffold audit."
+    },
+    {
+      "reference": "RetryYN/HELIX-HARNESS Issue #3510 comment 6532122968",
+      "finding": "comparison after WR224 blind; L4 missing vs L8/L9 supported values and trace-ticket candidate discrepancy retained unresolved; no formal values changed."
+    },
+    {
+      "reference": "RetryYN/HELIX-HARNESS Issue #3510 comment 6532068000",
+      "artifact_sha256": "c363ed8bfbf87130be01506092c91d6058c1ffb84452b00fc75cf578f5f79ef5",
+      "finding": "blind derivation did not identify the concrete pair_result/valley_result identifiers, schema, validation predicate, or projection uniquely from permitted L3/L10 and L4 prose."
+    }
+  ],
+  "edits": [
+    {
+      "order": 1,
+      "case_id": "H003-F03-ORIGIN-MISSING",
+      "pointer": "/cases/3/negative_cases/0/expected_material/reason",
+      "original_value": "由来不明は局所の成功で補完しない。",
+      "new_value": "由来不明は局所の成功で補完しない。pair_result/valley_resultのsupported_synthetic_conditionは、このorigin-null合成入力条件がfixture sourceにより支持されることを示す部分証拠で、正規由来・実pair/谷成立・Provisional更新を意味しない。",
+      "basis": "L8 origin witnessのsource_packet_refとreason、L9 origin witnessのsynthetic expected_material、L4 partial_result_semanticsの選択。",
+      "reason": "supportの対象をsynthetic origin-null入力条件に限定し、pair success/正規由来のclaimと区別する。"
+    },
+    {
+      "order": 2,
+      "case_id": "H003-F03-ORIGIN-MISSING",
+      "pointer": "/cases/3/negative_cases/0/negative_class_assignment/reason",
+      "original_value": "originまたはtraceの必要原材料を直接除去し、pair/trace証拠欠落を期待する。",
+      "new_value": "origin原材料の除去に基づく候補分類annotation。実処理結果または形成済みfinding集合を示さず、supported_synthetic_conditionもmissing分類を相殺しない。",
+      "basis": "L9 negative_class_assignment_audit.preservationはassignmentを候補annotationとして保持し、checker evidenceとはしない。",
+      "reason": "入力変異から形成済みfindingを推定せず、候補assignmentをprojection結果と区別する。"
+    },
+    {
+      "order": 3,
+      "case_id": "H003-F03-TRACE-MISSING",
+      "pointer": "/cases/3/negative_cases/2/expected_material/reason",
+      "original_value": "設計trace欠落では正規局所由来を確かめられない。",
+      "new_value": "設計trace欠落では正規局所由来を確かめられない。pair_result/valley_resultのsupported_synthetic_conditionは、このtrace-empty合成入力条件がfixture sourceにより支持されることを示す部分証拠で、pair/谷の実成立・Provisional更新を意味しない。",
+      "basis": "L8 trace witnessのsource_packet_refとreason、L9 trace witnessのsynthetic expected_material、L4 partial_result_semanticsの選択。",
+      "reason": "supportの対象をsynthetic trace-empty入力条件に限定し、実pair/谷成立のclaimと区別する。"
+    },
+    {
+      "order": 4,
+      "case_id": "H003-F03-TRACE-MISSING",
+      "pointer": "/cases/3/negative_cases/2/negative_class_assignment/reason",
+      "original_value": "originまたはtraceの必要原材料を直接除去し、pair/trace証拠欠落を期待する。",
+      "new_value": "trace原材料の除去に基づく候補分類annotation。実処理結果または形成済みfinding集合を示さず、L9 projection auditのunknown/unformedとinvalidated codeを取り消さない。",
+      "basis": "L9 manual_projection_audit_rows/0はfinding set unknown/unformedかつinvalidated_prior_candidate_codesを保持し、negative_class_assignment_audit.preservationはassignmentを候補annotationとして残す。",
+      "reason": "取消記録と残存candidate annotationを別々に保持し、annotationでprojection取消を覆さない。"
+    }
+  ],
+  "scope_limit": "Only the four explanatory reason strings named below differ from WR186/WR192 fixed bases; L9 expected output values, case population, mutation, classification values, and projection audit remain unchanged."
+}

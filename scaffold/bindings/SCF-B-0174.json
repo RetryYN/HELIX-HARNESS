@@ -15,8 +15,8 @@
     },
     {
       "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
-      "sha256": "4b67f2a4b038cd0501e540ab0389a6f7364cabea4ffe83aea3cc731cb44b14e4",
-      "note": "F03/F05 classesに加え、F04 classificationとartifact_state_basisのsource conditionsを固定参照。手動静的照合のみ。 Historical fixed source: revision d8ce18426a549b9e28f64b5bec4c81f202e74183, SHA-256 eb0f43e23906d04b9554786a2574c94d01de85faa75f7fb1f33e08eb3276f464. Current digest refreshed to 4b67f2a4b038cd0501e540ab0389a6f7364cabea4ffe83aea3cc731cb44b14e4 for stale detection only; fixed comparison/audit remains tied to the historical revision and its frozen evidence. Existing case population, expected values, projection rows, markers and freeze are preserved; this source refresh records only the L4 prose addition and L9 explanatory reason edits."
+      "sha256": "2a4230d745cac2c9c9ee9500eba0efe028a16136bedd8b04b7d7d8f3eb382eb3",
+      "note": "F03/F05 classesに加え、F04 classificationとartifact_state_basisのsource conditionsを固定参照。手動静的照合のみ。 Historical fixed source: revision d8ce18426a549b9e28f64b5bec4c81f202e74183, SHA-256 eb0f43e23906d04b9554786a2574c94d01de85faa75f7fb1f33e08eb3276f464. Current digest refreshed to 21f5f0837225fd1c50015528e27fb530f60b6d93046d17877b5655eb4e751a4a for stale detection only; fixed comparison/audit remains tied to the historical revision and its frozen evidence. Existing case population, expected values, projection rows, markers and freeze are preserved; this source refresh records only the L4 prose addition and L9 explanatory reason edits. Current digest at WR227 R1 candidate: 21f5f0837225fd1c50015528e27fb530f60b6d93046d17877b5655eb4e751a4a (stale-detection pin only); historical fixed comparison source remains recorded above. Current digest after R1 compact evidence split: a81f0ae25d937ce9aea830d65f61fd5d04027511acb51ff39a0be526d8bba98a (stale-detection pin only; historical fixed audit/revision unchanged). Current digest after Japanese prose cleanup: d49a2f89364b5a031220ef515988b25d8e02c2894c2602ab7ea316b9ab394a67 (stale-detection pin only; historical fixed source/audit unchanged). Current digest after Japanese wording, unmatched-row clarification, and pointer-centered audit: 2a4230d745cac2c9c9ee9500eba0efe028a16136bedd8b04b7d7d8f3eb382eb3 (stale-detection pin only; historical fixed source/audit unchanged)."
     },
     {
       "path": "docs/helix-harness/L5-detail-design/process-state-port.json",
@@ -74,7 +74,9 @@
     "scaffold/research/wr186-psp-negative-residual/f04-audit-rows.json",
     "scaffold/research/wr186-psp-negative-residual/f05-audit-rows.json",
     "scaffold/research/wr186-psp-negative-residual/independent-manual-review.md",
-    "scaffold/research/wr186-psp-negative-residual/validate_l9.py"
+    "scaffold/research/wr186-psp-negative-residual/validate_l9.py",
+    "scaffold/research/wr219-f03-pair-blind-20261031/wr227-l9-reason-edit-audit.json",
+    "scaffold/research/wr219-f03-pair-blind-20261031/wr227-f03-value-domain-audit.json"
   ],
   "verification": {
     "evidence_kind": "scaffold",
@@ -85,12 +87,15 @@
     ],
     "oracles": [
       "python3 -B scaffold/tools/design_verification_checker.py check-pair --left docs/helix-harness/L4-basic-design/process-state-port.json --right docs/helix-harness/L9-integration-verification/process-state-port.json --root .",
-      "python3 scaffold/research/wr186-psp-negative-residual/validate_l9.py",
+      "SHA-256 of scaffold/research/wr186-psp-negative-residual/validate_l9.py equals 5fc0f7342c17457e54da021e85288f411d0daa70d08e26ff57e2488075af771a; validator compares both fixed baselines after normalizing only four explicit reason fields.",
       "python3 -B scaffold/tools/scfctl.py validate",
       "python3 -B scaffold/tools/scfctl.py stale",
       "git diff --check",
       "scaffold/research/wr186-psp-negative-residual/independent-manual-review.md",
-      "SHA-256 of scaffold/research/wr186-psp-negative-residual/validate_l9.py equals 876fe18ee61de21806e4ec37d21a59e2da48042e91e21564a23bea15a7104c9a; validator checks the exact four explanatory reason old/new deltas and full case equality after normalizing only those pointers."
+      "SHA-256 of scaffold/research/wr186-psp-negative-residual/validate_l9.py equals 5fc0f7342c17457e54da021e85288f411d0daa70d08e26ff57e2488075af771a; validator compares both fixed baselines after normalizing only four explicit reason fields.",
+      "SHA-256 of scaffold/research/wr219-f03-pair-blind-20261031/wr227-l9-reason-edit-audit.json equals bbbc34625f02d8ed0e957ba9ab40ab5cf49bd4d15d019ae66f0401e9febfdcc7; contains the old/new reason-edit history outside L4.",
+      "SHA-256 of scaffold/research/wr186-psp-negative-residual/validate_l9.py equals 5fc0f7342c17457e54da021e85288f411d0daa70d08e26ff57e2488075af771a; checks both fixed baselines, four reason edits, every F03 L8/L9 row, recomputed status counts, and exception pointers.",
+      "SHA-256 of scaffold/research/wr219-f03-pair-blind-20261031/wr227-f03-value-domain-audit.json equals 754c9aa9fdfa8f21e823366c3a17d3a26c4a3598a77d64f271bf75f7f45d5e88; scaffold-only exhaustive source-row/count/exception inventory."
     ],
     "negative_cases": [
       "F03 14件とF05 8件はfinding set unknown/unformedであり、空集合やformal outputと扱わない。",
@@ -98,7 +103,8 @@
       "従来の22候補は要件追加条件を裏付けるraw観測がなく撤回し、履歴上の主張と混同しない。",
       "既存negative checker残余223 FAILとfreeze状態は監査候補と分けて記録する。",
       "F04全7件はfinding set unknown/unformed、候補0。state_basis参照の未解決を発火へ変換せず、正式期待・182件母集団・formal row・checker marker不変。",
-      "Only the four recorded F03 explanatory reason fields differ from fixed WR186/WR192 bases; all other L9 cases and expected output values remain identical."
+      "Only the four recorded F03 explanatory reason fields differ from fixed WR186/WR192 bases; all other L9 cases and expected output values remain identical.",
+      "Only four explanatory F03 reason strings differ from the two fixed L9 bases; all other case fields and expected output values remain identical."
     ]
   },
   "replacement": {

@@ -20,8 +20,8 @@
     },
     {
       "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
-      "sha256": "4b67f2a4b038cd0501e540ab0389a6f7364cabea4ffe83aea3cc731cb44b14e4",
-      "note": "固定base a0ce1ce787cff3b61664c12d62ae471969edb433, /contracts/3の指定散文。 Historical fixed source: revision a0ce1ce787cff3b61664c12d62ae471969edb433, SHA-256 eb0f43e23906d04b9554786a2574c94d01de85faa75f7fb1f33e08eb3276f464. Current digest refreshed to 4b67f2a4b038cd0501e540ab0389a6f7364cabea4ffe83aea3cc731cb44b14e4 for stale detection only; fixed comparison/audit remains tied to the historical revision and its frozen evidence. comparison.json retains the fixed a0ce source digests/pointers, blind artifact digest, and audit values; no comparison artifact is rewritten."
+      "sha256": "2a4230d745cac2c9c9ee9500eba0efe028a16136bedd8b04b7d7d8f3eb382eb3",
+      "note": "固定base a0ce1ce787cff3b61664c12d62ae471969edb433, /contracts/3の指定散文。 Historical fixed source: revision a0ce1ce787cff3b61664c12d62ae471969edb433, SHA-256 eb0f43e23906d04b9554786a2574c94d01de85faa75f7fb1f33e08eb3276f464. Current digest refreshed to 21f5f0837225fd1c50015528e27fb530f60b6d93046d17877b5655eb4e751a4a for stale detection only; fixed comparison/audit remains tied to the historical revision and its frozen evidence. comparison.json retains the fixed a0ce source digests/pointers, blind artifact digest, and audit values; no comparison artifact is rewritten. Current digest at WR227 R1 candidate: 21f5f0837225fd1c50015528e27fb530f60b6d93046d17877b5655eb4e751a4a (stale-detection pin only); historical fixed comparison source remains recorded above. Current digest after R1 compact evidence split: a81f0ae25d937ce9aea830d65f61fd5d04027511acb51ff39a0be526d8bba98a (stale-detection pin only; historical fixed audit/revision unchanged). Current digest after Japanese prose cleanup: d49a2f89364b5a031220ef515988b25d8e02c2894c2602ab7ea316b9ab394a67 (stale-detection pin only; historical fixed source/audit unchanged). Current digest after Japanese wording, unmatched-row clarification, and pointer-centered audit: 2a4230d745cac2c9c9ee9500eba0efe028a16136bedd8b04b7d7d8f3eb382eb3 (stale-detection pin only; historical fixed source/audit unchanged)."
     },
     {
       "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
@@ -72,7 +72,11 @@
     "scaffold/research/wr219-f03-pair-blind-20261031/README.md",
     "scaffold/research/wr219-f03-pair-blind-20261031/blind-derivation.json",
     "scaffold/research/wr219-f03-pair-blind-20261031/comparison.json",
-    "scaffold/bindings/SCF-B-0188.json"
+    "scaffold/bindings/SCF-B-0188.json",
+    "scaffold/research/wr219-f03-pair-blind-20261031/wr224-independent-blind-derivation.json",
+    "scaffold/research/wr219-f03-pair-blind-20261031/wr224-comparison-after-r1.md",
+    "scaffold/research/wr219-f03-pair-blind-20261031/wr227-f03-value-domain-audit.json",
+    "scaffold/research/wr186-psp-negative-residual/validate_l9.py"
   ],
   "verification": {
     "evidence_kind": "scaffold",
@@ -88,7 +92,11 @@
       "SHA-256 of comparison.json: 5a9881dcad1e4fcd3460eb57d4878f41a469e39940042550b9c2befe69587b49",
       "python3 -B scaffold/tools/scfctl.py validate",
       "python3 -B scaffold/tools/scfctl.py stale",
-      "git diff --check"
+      "git diff --check",
+      "SHA-256 of scaffold/research/wr219-f03-pair-blind-20261031/wr224-independent-blind-derivation.json equals c363ed8bfbf87130be01506092c91d6058c1ffb84452b00fc75cf578f5f79ef5 (byte copy of fixed Issue #3510 comment 6532068000 blind artifact).",
+      "SHA-256 of scaffold/research/wr219-f03-pair-blind-20261031/wr224-comparison-after-r1.md equals 3f978848e4b60d4b5c7da027b9b3ee31dd7d44b85318a0e8f49a3ad6a652006b (comparison to fixed blind and PR #3970 R1 findings).",
+      "SHA-256 of scaffold/research/wr219-f03-pair-blind-20261031/wr227-f03-value-domain-audit.json equals 754c9aa9fdfa8f21e823366c3a17d3a26c4a3598a77d64f271bf75f7f45d5e88 (scaffold-only exhaustive row/count/exception evidence).",
+      "SHA-256 of scaffold/research/wr186-psp-negative-residual/validate_l9.py equals 5fc0f7342c17457e54da021e85288f411d0daa70d08e26ff57e2488075af771a (static row, count, exception, and historical L9 reason audit)."
     ],
     "negative_cases": [
       "Do not replace L4 state=missing with a supported/success value, or treat L8/L9 supported_synthetic_condition as actual pair success.",

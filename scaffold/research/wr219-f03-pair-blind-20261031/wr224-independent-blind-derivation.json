@@ -1,0 +1,75 @@
+{
+  "task": "WR224 independent blind derivation: HARNESS L4 F03",
+  "created_by": "independent worker",
+  "derivation_status": "recorded; no expected-value comparison performed",
+  "sources": [
+    {
+      "role": "approved L3 functional requirement /requirements/66",
+      "revision": "771dd7e802189506d88cf9d9570c42b94cf7b8fb",
+      "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+      "git_blob": "52d30fee4c2a35c9a638bf9757bb336fe9b8b7de",
+      "sha256": "5a0ccb8e75f59fb78cd67f211ef2bca8a41f73a440e36ac5374a53fe1dfcfe69",
+      "json_pointer": "/requirements/66",
+      "selected_content": ["id", "parent", "title", "obligation"]
+    },
+    {
+      "role": "approved L10 functional verification case /cases/66",
+      "revision": "771dd7e802189506d88cf9d9570c42b94cf7b8fb",
+      "path": "docs/helix-harness/L10-verification/functional-verification.json",
+      "git_blob": "70283f59cba3f87798e90827c0e008737d77183a",
+      "sha256": "6fea9190c60121d262572c821c7ef8f5e38429e01a98f75d644b2b59297514db",
+      "json_pointer": "/cases/66",
+      "selected_content": ["id", "parent", "title", "requirement_ref", "positive_input", "failure_observation", "execution_state"]
+    },
+    {
+      "role": "base L4 F03 prose",
+      "revision": "0e0941444f099680ae227194d5ccfb31f1cbfc4c",
+      "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
+      "git_blob": "69ffd418200b8d98a842fd8c6caee5620a96df0f",
+      "sha256": "eb0f43e23906d04b9554786a2574c94d01de85faa75f7fb1f33e08eb3276f464",
+      "selection": "contracts entry whose requirement_ref is HARNESS-L3-003-F03; only prose fields id, requirement_ref, l9_ref, approved_requirement, component, input_materials, output_materials, owner_connections, invariants, failure_return, connection_detail, logical_return_boundary (where present), with state_evidence_connection.flow/preservation/actual_side_effect",
+      "selected_content_summary": "F03 describes valley evidence conditions, pairing actuals to design by scope, origin-sensitive scoped/full Reverse candidates, ticket non-issuance for ordinary checks, and OS ownership of actual ticket issuance. It says the L4/L5 and L3/L10 pairings are maintained; the comparison returns condition materials/candidates and does not itself issue a ticket or update OS state."
+    }
+  ],
+  "derivation": {
+    "pair_result_and_valley_result": {
+      "finding": "The permitted prose supports treating valley/pair as evidence-backed partial comparison results or candidate materials. It does not define pair_result or valley_result as artifact lifecycle states. State changes and recording are assigned outside the HARNESS comparison (OS records state; comparison does not update it).",
+      "confidence": "supported by the selected L4 output/ownership/effect-boundary prose and L3/L10 obligations",
+      "limit": "The exact identifiers pair_result and valley_result are not defined by the permitted prose; whether a later schema uses those names remains unresolved."
+    },
+    "trace_and_origin": {
+      "finding": "The approved requirement makes bidirectional trace and origin availability material to same-target comparison and routing: known canonical origin supports scope-local reverse; unknown origin, legacy asset, or missing trace is a full-Reverse recovery candidate. L10 explicitly separates clear-origin, unknown-origin/missing-trace, and insufficient pre-implementation Red cases.",
+      "not_uniquely_inferable": "A concrete trace/origin representation, provenance field schema, validation predicate, and exact association algorithm are not fixed in the allowed prose. L4 selected dependency-limit prose leaves source contracts/adapters and implementation bindings to later layers."
+    },
+    "ticket_trigger_conditions": {
+      "conditions_stated": [
+        "clear design/implementation discrepancy",
+        "missing origin",
+        "recurrence of the same kind of finding",
+        "performance regression",
+        "permanent action after an incident",
+        "Scrum Reverse checkpoint",
+        "material design regression"
+      ],
+      "distinctions_stated": [
+        "ordinary comparison does not issue a ticket",
+        "small boundary refactor stays in the current Forward ticket",
+        "independent large structural/cross-cutting/architecture improvement is a separate Refactor, Design-refactor, or Performance-refactor ticket",
+        "HARNESS provides trigger/type meaning; OS owns actual ticket issuance"
+      ],
+      "unique_derivability": "The trigger categories and ownership/scope distinctions are directly stated and align across L3, L10, and the selected L4 prose. Exact operational predicates or thresholds for qualitative terms such as clear/material discrepancy/regression are not uniquely derivable."
+    }
+  },
+  "exposure_audit": {
+    "l4_access_method": "JSON parsed programmatically from the pinned commit; only the named prose allowlist and selected state-evidence connection prose were emitted to the derivation process.",
+    "excluded_without_output": ["negative_classifications", "negative_class_refs", "expectation/classification-related fields"],
+    "not_read": ["L5", "L7", "L8", "L9 expectations or classifications", "L9 audit", "Issue/PR bodies"],
+    "not_executed": ["L4 algorithm", "L5 algorithm", "legacy runtime", "legacy tests", "legacy CI"],
+    "comparison": "No comparison to expected values was made before Issue fixation."
+  },
+  "unresolved": [
+    "Whether pair_result/valley_result are future field names for evidence references, aggregates, or another typed projection cannot be settled from the allowed sources.",
+    "The schema and validation rules for trace/origin and same-target association are not specified in these permitted excerpts.",
+    "Qualitative ticket triggers lack measurable predicates in these permitted excerpts; deriving thresholds would add unsupported semantics."
+  ]
+}

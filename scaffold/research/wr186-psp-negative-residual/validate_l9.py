@@ -23,27 +23,16 @@ MANIFESTS = (
     AUDIT_DIR / "f05-audit-rows.json",
 )
 F04_MANIFEST = AUDIT_DIR / "f04-audit-rows.json"
-# WR227 records only explanatory reason-text edits for the two F03 witnesses.
-# These are not expected output values; every other case/expectation byte must
-# remain equal to both fixed audit baselines.
-F03_REASON_EDITS = {
-    "/cases/3/negative_cases/0/expected_material/reason": (
-        "由来不明は局所の成功で補完しない。",
-        "由来不明は局所の成功で補完しない。pair_result/valley_resultのsupported_synthetic_conditionは、このorigin-null合成入力条件がfixture sourceにより支持されることを示す部分証拠で、正規由来・実pair/谷成立・Provisional更新を意味しない。",
-    ),
-    "/cases/3/negative_cases/0/negative_class_assignment/reason": (
-        "originまたはtraceの必要原材料を直接除去し、pair/trace証拠欠落を期待する。",
-        "origin原材料の除去に基づく候補分類annotation。実処理結果または形成済みfinding集合を示さず、supported_synthetic_conditionもmissing分類を相殺しない。",
-    ),
-    "/cases/3/negative_cases/2/expected_material/reason": (
-        "設計trace欠落では正規局所由来を確かめられない。",
-        "設計trace欠落では正規局所由来を確かめられない。pair_result/valley_resultのsupported_synthetic_conditionは、このtrace-empty合成入力条件がfixture sourceにより支持されることを示す部分証拠で、pair/谷の実成立・Provisional更新を意味しない。",
-    ),
-    "/cases/3/negative_cases/2/negative_class_assignment/reason": (
-        "originまたはtraceの必要原材料を直接除去し、pair/trace証拠欠落を期待する。",
-        "trace原材料の除去に基づく候補分類annotation。実処理結果または形成済みfinding集合を示さず、L9 projection auditのunknown/unformedとinvalidated codeを取り消さない。",
-    ),
-}
+REASON_EDIT_AUDIT = ROOT / "scaffold/research/wr219-f03-pair-blind-20261031/wr227-l9-reason-edit-audit.json"
+VALUE_DOMAIN_AUDIT = ROOT / "scaffold/research/wr219-f03-pair-blind-20261031/wr227-f03-value-domain-audit.json"
+# Only these four explanation fields are in the WR227 reason-only exception.
+# Their old/new text is owned by the adjacent scaffold audit artifact.
+F03_REASON_EDIT_POINTERS = (
+    (1, "H003-F03-ORIGIN-MISSING", "/cases/3/negative_cases/0/expected_material/reason"),
+    (2, "H003-F03-ORIGIN-MISSING", "/cases/3/negative_cases/0/negative_class_assignment/reason"),
+    (3, "H003-F03-TRACE-MISSING", "/cases/3/negative_cases/2/expected_material/reason"),
+    (4, "H003-F03-TRACE-MISSING", "/cases/3/negative_cases/2/negative_class_assignment/reason"),
+)
 
 
 def git_bytes(revision: str, path: str) -> bytes:
@@ -75,9 +64,175 @@ def put_pointer(doc, pointer: str, value) -> None:
         parent[tokens[-1]] = value
 
 
-def assert_cases_preserved_with_reason_edits(current, historical, baseline_name: str) -> None:
+def status_counts(rows, field):
+    counts = {}
+    for row in rows:
+        value = row[field]
+        if isinstance(value, dict):
+            key = (value["state"], json.dumps(value["value"], sort_keys=True, ensure_ascii=False))
+        else:
+            key = ("flat", json.dumps(value, sort_keys=True, ensure_ascii=False))
+        counts[key] = counts.get(key, 0) + 1
+    return counts
+
+
+def verify_value_domain_audit(l4, l8, l9):
+    """Recheck scaffold inventory and aggregate/exception evidence; never executes a checker."""
+    audit = json.loads(VALUE_DOMAIN_AUDIT.read_bytes())
+    ref = resolve(l4, "/contracts/3/connection_detail/partial_result_semantics/partial_result_audit_ref")
+    assert ref["path"] == str(VALUE_DOMAIN_AUDIT.relative_to(ROOT))
+    assert audit["schema"] == "wr227-f03-value-domain-audit.v1"
+    assert audit["authority_effect"] == "none"
+    docs = {
+        "docs/helix-harness/L3-requirements/functional-requirements.json": json.loads((ROOT / L3_PATH).read_bytes()),
+        "docs/helix-harness/L10-verification/functional-verification.json": json.loads((ROOT / "docs/helix-harness/L10-verification/functional-verification.json").read_bytes()),
+        L4_PATH: l4,
+        "docs/helix-harness/L8-unit-verification/process-state-port.json": l8,
+        RAW_PATH: l9,
+    }
+    pinned_docs = {}
+    for source in audit["source_files"]:
+        if source["revision"]:
+            raw_bytes = git_bytes(source["revision"], source["path"])
+            assert hashlib.sha256(raw_bytes).hexdigest() == source["sha256"]
+            source_doc = json.loads(raw_bytes)
+        else:
+            source_doc = docs[source["path"]]
+        assert resolve(source_doc, source["pointer"])
+        pinned_docs[source["path"]] = source_doc
+    for ref in audit["references"]:
+        if "artifact" in ref:
+            artifact_path = ROOT / ref["artifact"]
+            assert artifact_path.is_file()
+            if ref.get("sha256"):
+                assert hashlib.sha256(artifact_path.read_bytes()).hexdigest() == ref["sha256"]
+            continue
+        if "path" not in ref:
+            continue
+        doc = docs.get(ref["path"])
+        if doc is None and ref.get("revision"):
+            doc = json.loads(git_bytes(ref["revision"], ref["path"]))
+        assert doc is not None and resolve(doc, ref["pointer"]) is not None
+
+    l8f = l8["cases"][3]
+    l8_pinned_f = pinned_docs["docs/helix-harness/L8-unit-verification/process-state-port.json"]["cases"][3]
+    l9f = next(x for x in l9["cases"] if x["id"] == "HARNESS-L9-003-F03")
+    l9_pinned = pinned_docs[RAW_PATH]
+    l9_pinned_f = next(x for x in l9_pinned["cases"] if x["id"] == "HARNESS-L9-003-F03")
+    by_group = {
+        "cases": l8f["cases"],
+        "valley_content_counterexamples": l8f["valley_content_counterexamples"],
+    }
+    assert len(audit["source_row_inventory"]["l8"]) == sum(map(len, by_group.values()))
+    for group_name, group_rows in by_group.items():
+        assert [r["index"] for r in audit["source_row_inventory"]["l8"] if r["group"] == group_name] == list(range(len(group_rows)))
+    for row in audit["source_row_inventory"]["l8"]:
+        source_row = by_group[row["group"]][row["index"]]
+        pinned_row = resolve(l8_pinned_f, row["pointer"].removeprefix("/cases/3/"))
+        assert source_row.get("case_id", source_row.get("id")) == row["case_id"]
+        assert pinned_row.get("case_id", pinned_row.get("id")) == row["case_id"]
+        assert row["path"].endswith("L8-unit-verification/process-state-port.json")
+        assert source_row == pinned_row
+        assert resolve(l8, row["pointer"]) == source_row
+    l9groups = {"normal_cases": l9f["normal_cases"], "negative_cases": l9f["negative_cases"]}
+    assert len(audit["source_row_inventory"]["l9"]) == sum(map(len, l9groups.values()))
+    for group_name, group_rows in l9groups.items():
+        assert [r["index"] for r in audit["source_row_inventory"]["l9"] if r["group"] == group_name] == list(range(len(group_rows)))
+    reason_audit = json.loads(REASON_EDIT_AUDIT.read_bytes())
+    reason_edits = reason_audit["edits"]
+    for row in audit["source_row_inventory"]["l9"]:
+        source_row = l9groups[row["group"]][row["index"]]
+        pinned_row = resolve(l9_pinned_f, row["pointer"].removeprefix("/cases/3/"))
+        assert source_row["id"] == row["case_id"]
+        assert pinned_row["id"] == row["case_id"]
+        normalized = copy.deepcopy(source_row)
+        full_pointer = row["pointer"]
+        for edit in reason_edits:
+            pointer = edit["pointer"]
+            if pointer.startswith(full_pointer + "/"):
+                assert resolve(l9, pointer) == edit["new_value"]
+                local_pointer = pointer[len(full_pointer):]
+                assert resolve(pinned_row, local_pointer) == edit["original_value"]
+                put_pointer(normalized, local_pointer, edit["original_value"])
+        assert normalized == pinned_row
+        assert resolve(l9, row["pointer"]) == source_row
+
+    counts = audit["measured_counts"]
+    assert counts["row_counts"] == {
+        "l8_cases": len(l8f["cases"]),
+        "l8_valley_content_counterexamples": len(l8f["valley_content_counterexamples"]),
+        "l9_normal_cases": len(l9f["normal_cases"]),
+        "l9_negative_cases": len(l9f["negative_cases"]),
+    }
+    def normalized_counter(rows, field, shape):
+        return sorted(({"state": s, "value": json.loads(v), "count": n} for (s, v), n in status_counts(rows, field).items()), key=lambda x:(x["state"], str(x["value"])))
+    for group_name, rows in by_group.items():
+        for field in ("pair_result", "valley_result"):
+            wrapped = [{field: row["expected_partial_values"][field]} for row in rows]
+            assert counts["l8_direct_fields"][f"{group_name}.{field}"] == normalized_counter(wrapped, field, None)
+    nested = []
+    for group_name, rows in by_group.items():
+        for layer in ("L8", "L9", "L10"):
+            vals = [r["expected_partial_values"]["pair_results"]["value"][layer] for r in rows if "pair_results" in r["expected_partial_values"]]
+            histogram = {}
+            for val in vals:
+                key = (val["state"], json.dumps(val["value"], sort_keys=True, ensure_ascii=False))
+                histogram[key] = histogram.get(key, 0) + 1
+            for (state, value), n in histogram.items():
+                nested.append({"group": group_name, "layer": layer, "state": state, "value": json.loads(value), "count": n})
+    assert sorted(nested, key=lambda x:(x["group"], x["layer"], x["state"], str(x["value"]))) == sorted(counts["l8_pair_results_per_layer"], key=lambda x:(x["group"], x["layer"], x["state"], str(x["value"])))
+    l9counts = counts["l9_expected_material_fields"]
+    for group_name in ("normal_cases", "negative_cases"):
+        rows = l9groups[group_name]
+        for field in ("pair_result", "valley_result"):
+            actual = {}
+            for row in rows:
+                val = row["expected_material"][field]
+                actual[val] = actual.get(val, 0) + 1
+            assert actual == l9counts[f"{group_name}.{field}"]
+
+    # Every documented exception pointer must resolve to its source row and preserve its stated status.
+    for category, detail in audit["exception_rows"].items():
+        for exception in detail["rows"]:
+            doc = docs[exception["path"]]
+            source_row = resolve(doc, exception["pointer"])
+            case_id = exception.get("case_id")
+            if case_id:
+                assert source_row.get("case_id", source_row.get("id")) == case_id
+            if exception.get("nested_pair_results_pointer"):
+                nested_value = resolve(doc, exception["nested_pair_results_pointer"])
+                assert nested_value["state"] in ("conflict", "stale")
+            expected_state = {
+                "pair_conflict": ("pair_result", "conflict"),
+                "pair_stale": ("pair_result", "stale"),
+                "valley_conflict": ("valley_result", "conflict"),
+                "l8_unmatched_missing": ("valley_result", "missing"),
+            }.get(category)
+            if expected_state:
+                field, state = expected_state
+                if exception["path"].endswith("L8-unit-verification/process-state-port.json"):
+                    observed = source_row["expected_partial_values"][field]
+                    assert observed["state"] == state
+                    if state in ("conflict", "stale", "missing"):
+                        assert observed["value"] is None
+                else:
+                    observed = source_row["expected_material"][field]
+                    assert observed == state
+            if category == "pair_conflict" and exception["path"].endswith("L9-integration-verification/process-state-port.json"):
+                assert source_row["negative_class_assignment"]["classification"] == "F03_PAIR_SCOPE_CONFLICT"
+            if category == "pair_stale" and exception["path"].endswith("L9-integration-verification/process-state-port.json"):
+                assert source_row.get("negative_class_assignment") is None
+    missing_row = next(r for r in audit["exception_rows"]["l8_unmatched_missing"]["rows"])
+    assert not any(r["case_id"] == missing_row["case_id"] for r in audit["source_row_inventory"]["l9"])
+    print("WR227 F03 value-domain audit: PASS; all L8/L9 rows, aggregate counts, and exception pointers rechecked")
+
+
+def assert_cases_preserved_with_reason_edits(current, historical, reason_edits, baseline_name: str) -> None:
     normalized = copy.deepcopy(current)
-    for pointer, (old_value, new_value) in F03_REASON_EDITS.items():
+    for edit in reason_edits:
+        pointer = edit["pointer"]
+        old_value = edit["original_value"]
+        new_value = edit["new_value"]
         assert resolve(historical, pointer) == old_value, f"{baseline_name} reason baseline changed: {pointer}"
         assert resolve(current, pointer) == new_value, f"WR227 reason edit missing or changed: {pointer}"
         put_pointer(normalized, pointer, old_value)
@@ -86,6 +241,8 @@ def assert_cases_preserved_with_reason_edits(current, historical, baseline_name:
 
 def main() -> None:
     l9 = json.loads(L9_PATH.read_bytes())
+    l8_path = ROOT / "docs/helix-harness/L8-unit-verification/process-state-port.json"
+    l8 = json.loads(l8_path.read_bytes())
     previous_audit_base_l9 = json.loads(git_bytes(BASE, RAW_PATH))
     wr192_base_l9 = json.loads(git_bytes(WR192_BASE, RAW_PATH))
     raw_bytes = git_bytes(RAW_REVISION, RAW_PATH)
@@ -93,16 +250,18 @@ def main() -> None:
     l3_current = json.loads((ROOT / L3_PATH).read_bytes())
     l3_pinned = json.loads(git_bytes("827c4ea924a15b6b54bbe9d1f5d2f9fbdefa65de", L3_PATH))
     l4 = json.loads((ROOT / L4_PATH).read_bytes())
+    verify_value_domain_audit(l4, l8, l9)
     l5 = json.loads((ROOT / L5_PATH).read_bytes())
     audit = l9["negative_output_projection_audit"]
 
-    assert_cases_preserved_with_reason_edits(l9, previous_audit_base_l9, "WR186 prior audit BASE")
-    assert_cases_preserved_with_reason_edits(l9, wr192_base_l9, "WR192 base")
-    l4_reason_edits = resolve(l4, "/contracts/3/connection_detail/partial_result_semantics/l9_reason_edits")
-    assert len(l4_reason_edits) == len(F03_REASON_EDITS) == 4
-    for edit in l4_reason_edits:
-        pointer = edit["pointer"]
-        assert (edit["original_value"], edit["new_value"]) == F03_REASON_EDITS[pointer]
+    reason_audit = json.loads(REASON_EDIT_AUDIT.read_bytes())
+    assert reason_audit["schema"] == "wr227-f03-l9-reason-edit-audit.v1"
+    assert resolve(l4, "/contracts/3/connection_detail/partial_result_semantics/l9_reason_edits_audit_ref/path") == str(REASON_EDIT_AUDIT.relative_to(ROOT))
+    reason_edits = reason_audit["edits"]
+    assert len(reason_edits) == len(F03_REASON_EDIT_POINTERS) == 4
+    assert tuple((e["order"], e["case_id"], e["pointer"]) for e in reason_edits) == F03_REASON_EDIT_POINTERS
+    assert_cases_preserved_with_reason_edits(l9, previous_audit_base_l9, reason_edits, "WR186 prior audit BASE")
+    assert_cases_preserved_with_reason_edits(l9, wr192_base_l9, reason_edits, "WR192 base")
     assert hashlib.sha256(raw_bytes).hexdigest() == "91d0bcd34b8b451bc8e81f5d13d0c5f413de3ad5f7c70ba90a704134c4af3735"
     assert audit["mode"] == "audit_only_no_checker_marker"
     assert audit["source_population_count"] == 182

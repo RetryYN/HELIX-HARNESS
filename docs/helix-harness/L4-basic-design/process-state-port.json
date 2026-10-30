@@ -1331,80 +1331,19 @@
         },
         "dependency_limit": "005 F07/F02、015 packet/semantic evaluation、022 F03のexact source契約とowner/adapters→同target association→consumer境界はsource_binding_connectionへ固定。role閉型/selector/純粋関数/実resolver資格・実operation bindingは後続L5/L8と実装で残る。",
         "partial_result_semantics": {
-          "decision": "synthetic_condition_support_separate_from_pair_or_valley_outcome",
-          "scope": "F03のsynthetic fixtureが返すpair_result/valley_resultの値意味。L3の要求意味、L4の分類語彙、L9の既存期待値そのものを変更しない。",
+          "decision": "case_scoped_synthetic_expected_partial_status_domain",
+          "scope": "F03のL8/L9 synthetic expected-partial fixtureにおけるpair_result/valley_resultの値域と型表現。L3/L10要求意味、L4の既存failure分類、L8/L9のformal expected result valuesは変更しない。L9説明reason 4箇所の履歴は参照先scaffold auditに保持する。値は未実行の合成期待であり実処理出力ではない。",
           "fields": {
-            "pair_result": "対象pairに関するsynthetic fixture conditionが、その入力source packetによって支持されているかを表す部分証拠。supported_synthetic_conditionはpairの実成立、実装成功、またはL8↔L5/L9↔L4/L10↔L3の完了を意味しない。",
-            "valley_result": "対象Vの谷に関するsynthetic fixture conditionが、その入力source packetによって支持されているかを表す部分証拠。supported_synthetic_conditionは谷条件の実充足、Provisionalへの状態更新、または上位受入を意味しない。"
+            "pair_result": "合成期待における対象pairのpartial status。値はsupported_synthetic_condition（fixture source packetが対象synthetic conditionを支持する）、conflict（pair/scopeの期待不整合）、stale（別revisionのpair材料）、またはL8 envelopeでは値nullと組み合わせたstate statusである。どれも実際に処理されたpair結果ではない。",
+            "valley_result": "合成期待における対象V谷のpartial status。値supported_synthetic_conditionはfixture source support、conflictは谷条件/fixture witnessと期待の不整合。L8ではmissing stateも別途存在し、L9のsupported期待との差はそのまま保持する。どれも実際に処理された谷結果ではない。"
           },
-          "typed_envelope_boundary": "L8 fixtureのstate=known wrapperはsynthetic condition support値が既知であることを表し、対象artifactのprocess stateやpair outcomeを表さない。L8のschema/期待値は本変更では編集しない。",
+          "typed_envelope_boundary": "L8 expected_partial_valuesはstateとvalueを分ける。knownにはsupported_synthetic_condition、conflict/stale/missingにはvalue=nullが置かれる。L9 expected_materialはstateを平坦な文字列へ写すが、execution_state=not_executed/effect=noneの期待recordであり、実処理結果やfinding projectionではない。",
           "classification_separation": "F03_REQUIRED_PAIR_MISSINGのpair_trace/missingは、必要pairまたは原traceが未供給なのに処理結果を成立扱いする分類である。fixtureがmissing条件を支持することとpair/traceが実際に揃っていることを混同せず、supported_synthetic_conditionでmissing分類を置換しない。raw入力差またはmutationだけで処理結果がmissingを成立扱いしたfindingを生成しない。",
-          "alternatives_considered": [
-            {
-              "option": "pair_result/valley_resultをpair/谷の実状態または成功状態として扱う",
-              "decision": "reject",
-              "reason": "supported_synthetic_conditionを実成立へ読み替える。L4のmissingを反対の成立値で置換しない契約、およびL9のactual_* false/unknown-unformed projection boundaryと衝突する。"
-            },
-            {
-              "option": "origin-null/trace-empty witnessのpair_resultをmissingへ、valley_resultをunknownへ置換する",
-              "decision": "reject",
-              "reason": "固定rawとmutationは入力条件を示すだけで、L4/L5条件に照らした処理結果を示さない。L9 trace auditはfinding setをunknown/unformedとしており、missing findingを期待値へ作る根拠がない。"
-            },
-            {
-              "option": "field意味を定義せず、同じ値を維持する",
-              "decision": "reject",
-              "reason": "同一行のL4分類とL8/L9 synthetic期待の関係が比較記録で欠落し、#3962 reviewで再発差分として指摘された。"
-            },
-            {
-              "option": "fixture conditionの証拠支持とpair/谷の実状態・L4 failure classificationを別軸にする",
-              "decision": "select",
-              "reason": "L3/L10のscopeとpair/trace義務を維持し、L4 missing分類を成功値で相殺せず、L9の合成期待と実処理findingの境界を保持できる。"
-            }
-          ],
           "preserve_change_reason": {
-            "preserve": "L3/L10の承認済みF03意味、L4のpair_trace/missing/HARNESS分類、scope単位の部分結果と他pair保持、OSのみが実ticketを発行する境界、L8/L9の現行synthetic値。",
-            "change": "pair_result/valley_resultの意味境界を、synthetic fixture conditionの証拠支持と実pair/谷状態・failure classificationの分離として明記する。",
-            "reason": "要求意味は変更せず、既存入力条件の支持、実処理結果、failure分類の混同とmissingの成功値置換を防ぐため。"
+            "preserve": "承認済みL3/L10のF03意味、既存L4分類とowner、既存L8/L9の期待出力値とprojection境界を維持する。",
+            "change": "pair_result/valley_resultの期待値域と、L8のtyped envelope／L9のflattened表現を明確にする。行別inventoryと履歴はscaffold監査に置く。",
+            "reason": "要求意味や期待出力値を変えずにfixture全体の値域を説明できる。実行状態とfinding状態は分離して扱う。"
           },
-          "l9_reason_edits": [
-            {
-              "order": 1,
-              "case_id": "H003-F03-ORIGIN-MISSING",
-              "pointer": "/cases/3/negative_cases/0/expected_material/reason",
-              "original_value": "由来不明は局所の成功で補完しない。",
-              "new_value": "由来不明は局所の成功で補完しない。pair_result/valley_resultのsupported_synthetic_conditionは、このorigin-null合成入力条件がfixture sourceにより支持されることを示す部分証拠で、正規由来・実pair/谷成立・Provisional更新を意味しない。",
-              "basis": "L8 origin witnessのsource_packet_refとreason、L9 origin witnessのsynthetic expected_material、L4 partial_result_semanticsの選択。",
-              "reason": "supportの対象をsynthetic origin-null入力条件に限定し、pair success/正規由来のclaimと区別する。"
-            },
-            {
-              "order": 2,
-              "case_id": "H003-F03-ORIGIN-MISSING",
-              "pointer": "/cases/3/negative_cases/0/negative_class_assignment/reason",
-              "original_value": "originまたはtraceの必要原材料を直接除去し、pair/trace証拠欠落を期待する。",
-              "new_value": "origin原材料の除去に基づく候補分類annotation。実処理結果または形成済みfinding集合を示さず、supported_synthetic_conditionもmissing分類を相殺しない。",
-              "basis": "L9 negative_class_assignment_audit.preservationはassignmentを候補annotationとして保持し、checker evidenceとはしない。",
-              "reason": "入力変異から形成済みfindingを推定せず、候補assignmentをprojection結果と区別する。"
-            },
-            {
-              "order": 3,
-              "case_id": "H003-F03-TRACE-MISSING",
-              "pointer": "/cases/3/negative_cases/2/expected_material/reason",
-              "original_value": "設計trace欠落では正規局所由来を確かめられない。",
-              "new_value": "設計trace欠落では正規局所由来を確かめられない。pair_result/valley_resultのsupported_synthetic_conditionは、このtrace-empty合成入力条件がfixture sourceにより支持されることを示す部分証拠で、pair/谷の実成立・Provisional更新を意味しない。",
-              "basis": "L8 trace witnessのsource_packet_refとreason、L9 trace witnessのsynthetic expected_material、L4 partial_result_semanticsの選択。",
-              "reason": "supportの対象をsynthetic trace-empty入力条件に限定し、実pair/谷成立のclaimと区別する。"
-            },
-            {
-              "order": 4,
-              "case_id": "H003-F03-TRACE-MISSING",
-              "pointer": "/cases/3/negative_cases/2/negative_class_assignment/reason",
-              "original_value": "originまたはtraceの必要原材料を直接除去し、pair/trace証拠欠落を期待する。",
-              "new_value": "trace原材料の除去に基づく候補分類annotation。実処理結果または形成済みfinding集合を示さず、L9 projection auditのunknown/unformedとinvalidated codeを取り消さない。",
-              "basis": "L9 manual_projection_audit_rows/0はfinding set unknown/unformedかつinvalidated_prior_candidate_codesを保持し、negative_class_assignment_audit.preservationはassignmentを候補annotationとして残す。",
-              "reason": "取消記録と残存candidate annotationを別々に保持し、annotationでprojection取消を覆さない。"
-            }
-          ],
-          "l9_values_preserved": "両witnessのpair_result/valley_result/l9_dimension_results/meaning_backflow/actual_*、classification値、manual projection invalidation rowは不変。origin-nullのreverse_trigger_materials=[origin_missing]/reverse_ticket_candidate=Reverseとtrace-emptyのreverse_trigger_materials=[]/reverse_ticket_candidate=noneも不変で、trigger意味は未決候補として保持する。",
           "failure_handling": {
             "unformed_finding": "必要な処理結果がraw evidenceにない場合、finding setはunknown/unformedのまま保持する（空集合にもF03_REQUIRED_PAIR_MISSINGにも自動変換しない）。",
             "retained_candidate_annotation": "negative_class_assignmentは候補注釈として保持できるが、実際に形成されたfinding集合やchecker evidenceとして扱わない。",
@@ -1412,7 +1351,17 @@
             "partial_scope": "不足条件、対象revision/scope、元証拠、理由、ownerを保持し、無関係な有効scopeや独立pairを全停止しない。実作用はnone。"
           },
           "unresolved_requirement_candidate": "trace欠落がL3のticket trigger「由来欠落」に含まれるかは要求意味の判断である。本設計では決めず、origin-nullとtrace-emptyの既存trigger/candidateの差を維持して候補として残す。",
-          "evidence_pointers": [
+          "values": {
+            "supported_synthetic_condition": "source_packet_refで特定されたfixture sourceが当該synthetic conditionを支持するという期待。pair/谷の実成立・successful execution・Provisional遷移・上位受入・finding非発生を意味しない。",
+            "conflict": "fixture expectationが対象pair/谷の基準との不一致または必要証拠の不整合を表す期待ラベル。L8ではstate=conflict/value=null。L9では具体caseのmutation/reasonに従う。処理結果や形成findingとは扱わない。",
+            "stale": "fixture expectationが別要求revisionのpair materialを指し、現targetに使えないことを表す期待ラベル。L8ではstate=stale/value=null。L9ではforeign-revision mutation/reasonに従う。L4にstale用の独立F03 classification codeはなく、本案は新codeもmappingも追加しない。",
+            "missing_state_boundary": "L8 state=missing/value=nullはrequired fixture binding qualificationが未供給の表現（F03 row 44）。これはF03 L4 pair_trace/missing classificationが要求する「処理結果を成立扱いした」findingとは同じ意味でない。L9の対応expectedはsupported_synthetic_conditionのままで、差はL5/L8別PRで再確認する。"
+          },
+          "l9_reason_edits_audit_ref": {
+            "path": "scaffold/research/wr219-f03-pair-blind-20261031/wr227-l9-reason-edit-audit.json",
+            "note": "reasonの旧値・新値と編集経緯はこのscaffold監査に保存し、L4には現行設計の意味だけを記す。"
+          },
+          "source_basis": [
             {
               "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
               "revision": "771dd7e802189506d88cf9d9570c42b94cf7b8fb",
@@ -1428,22 +1377,24 @@
               "pointer": "/contracts/3/negative_classifications/0"
             },
             {
-              "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
-              "pointer": "/cases/3/negative_cases/0/expected_material"
+              "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
+              "pointer": "/contracts/3/negative_classifications/2"
+            },
+            {
+              "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+              "pointer": "/cases/3"
             },
             {
               "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
-              "pointer": "/cases/3/negative_cases/2/expected_material"
-            },
-            {
-              "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
-              "pointer": "/negative_output_projection_audit/manual_projection_audit_rows/0"
-            },
-            {
-              "reference": "RetryYN/HELIX-HARNESS PR #3962 review comments 6531673161 and 6531772236",
-              "finding": "same-row discrepancy omission and loss of trace-trigger uncertainty"
+              "pointer": "/cases/3"
             }
-          ]
+          ],
+          "partial_result_audit_ref": {
+            "path": "scaffold/research/wr219-f03-pair-blind-20261031/wr227-f03-value-domain-audit.json",
+            "note": "全行inventory、件数、例外、比較履歴、静的再検証の証拠を持つscaffold専用監査。authorityへの効果はない。"
+          },
+          "l9_values_preserved": "既存L8/L9の期待出力値、case、mutation、classification、projection audit、trigger/ticket候補、effectを維持する。L9の説明reason 4箇所の履歴は別のscaffold監査に保存する。",
+          "missing_state_boundary": "L8のstate=missing/value=nullは、required fixture binding qualificationが未供給であることを示す。これはL4 F03 pair_trace/missing classificationが要求する「処理結果を成立扱いした」findingと同じ意味ではない。このL8 missing例には同一IDのL9対応rowがなく、他のL9 supported期待と同一caseの対として比較しない。行別の対応・不一致はscaffold監査に記録し、個別rowの差からformal値を変更しない。"
         }
       },
       "source_binding_connection": {
