@@ -12560,7 +12560,7 @@
      },
      {
       "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
-      "pointer": "/field_source_materialization_contract/ordered_source_materialization/3"
+      "pointer": "/field_source_materialization_contract/ordered_source_materialization/2"
      },
      {
       "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
@@ -12568,7 +12568,7 @@
      },
      {
       "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
-      "pointer": "/field_semantic_evidence_contract/common_target_guards/4"
+      "pointer": "/field_semantic_evidence_contract/common_target_guards/3"
      },
      {
       "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
@@ -12854,7 +12854,7 @@
      },
      {
       "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
-      "pointer": "/field_source_materialization_contract/ordered_source_materialization/3"
+      "pointer": "/field_source_materialization_contract/ordered_source_materialization/2"
      },
      {
       "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
@@ -12862,7 +12862,7 @@
      },
      {
       "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
-      "pointer": "/field_semantic_evidence_contract/common_target_guards/4"
+      "pointer": "/field_semantic_evidence_contract/common_target_guards/3"
      },
      {
       "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
