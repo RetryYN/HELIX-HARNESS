@@ -1060,6 +1060,11 @@
         "HELIXOS-L3-017-B01"
       ],
       "purpose": "phaseの素材だけを比較。実operationは全false。",
+      "condition": "workflow_material_corresponding",
+      "selected_phase": "candidate",
+      "expected": {
+        "finding_codes": []
+      },
       "execution_state": "not_executed",
       "actual_observation": "not_observed",
       "primary_requirement_refs": [
@@ -1082,6 +1087,11 @@
         "HELIXOS-L3-017-B01"
       ],
       "purpose": "phaseの素材だけを比較。実operationは全false。",
+      "condition": "workflow_material_corresponding",
+      "selected_phase": "workflow",
+      "expected": {
+        "finding_codes": []
+      },
       "execution_state": "not_executed",
       "actual_observation": "not_observed",
       "primary_requirement_refs": [
@@ -1104,6 +1114,11 @@
         "HELIXOS-L3-017-B01"
       ],
       "purpose": "phaseの素材だけを比較。実operationは全false。",
+      "condition": "workflow_material_corresponding",
+      "selected_phase": "backflow",
+      "expected": {
+        "finding_codes": []
+      },
       "execution_state": "not_executed",
       "actual_observation": "not_observed",
       "primary_requirement_refs": [
@@ -1126,6 +1141,11 @@
         "HELIXOS-L3-017-B01"
       ],
       "purpose": "phaseの素材だけを比較。実operationは全false。",
+      "condition": "workflow_material_corresponding",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": []
+      },
       "execution_state": "not_executed",
       "actual_observation": "not_observed",
       "primary_requirement_refs": [
@@ -1148,6 +1168,11 @@
         "HELIXOS-L3-017-B01"
       ],
       "purpose": "同一入力を再照合して同じ候補/digest。",
+      "condition": "workflow_material_corresponding",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": []
+      },
       "execution_state": "not_executed",
       "actual_observation": "not_observed",
       "primary_requirement_refs": [
@@ -1171,6 +1196,13 @@
         "HELIXOS-L3-017-B01"
       ],
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
+      "condition": "workflow_material_unknown",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_unresolved"
+        ]
+      },
       "execution_state": "not_executed",
       "actual_observation": "not_observed",
       "primary_requirement_refs": [
@@ -1193,6 +1225,13 @@
         "HELIXOS-L3-017-B01"
       ],
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
+      "condition": "workflow_material_violation",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_conflict"
+        ]
+      },
       "execution_state": "not_executed",
       "actual_observation": "not_observed",
       "primary_requirement_refs": [
@@ -1215,6 +1254,13 @@
         "HELIXOS-L3-017-B01"
       ],
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
+      "condition": "workflow_material_unknown",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_unresolved"
+        ]
+      },
       "execution_state": "not_executed",
       "actual_observation": "not_observed",
       "primary_requirement_refs": [
@@ -1237,6 +1283,13 @@
         "HELIXOS-L3-017-B01"
       ],
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
+      "condition": "workflow_material_violation",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_conflict"
+        ]
+      },
       "execution_state": "not_executed",
       "actual_observation": "not_observed",
       "primary_requirement_refs": [
@@ -1259,6 +1312,13 @@
         "HELIXOS-L3-017-B01"
       ],
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
+      "condition": "workflow_material_unknown",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_unresolved"
+        ]
+      },
       "execution_state": "not_executed",
       "actual_observation": "not_observed",
       "primary_requirement_refs": [
@@ -1281,6 +1341,13 @@
         "HELIXOS-L3-017-B01"
       ],
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
+      "condition": "workflow_material_violation",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_conflict"
+        ]
+      },
       "execution_state": "not_executed",
       "actual_observation": "not_observed",
       "primary_requirement_refs": [
@@ -1303,6 +1370,13 @@
         "HELIXOS-L3-017-B01"
       ],
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
+      "condition": "workflow_material_unknown",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_unresolved"
+        ]
+      },
       "execution_state": "not_executed",
       "actual_observation": "not_observed",
       "primary_requirement_refs": [
@@ -1325,6 +1399,13 @@
         "HELIXOS-L3-017-B01"
       ],
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
+      "condition": "workflow_material_violation",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_conflict"
+        ]
+      },
       "execution_state": "not_executed",
       "actual_observation": "not_observed",
       "primary_requirement_refs": [
@@ -1347,6 +1428,13 @@
         "HELIXOS-L3-017-B01"
       ],
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
+      "condition": "workflow_material_unknown",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_unresolved"
+        ]
+      },
       "execution_state": "not_executed",
       "actual_observation": "not_observed",
       "primary_requirement_refs": [
@@ -1369,6 +1457,13 @@
         "HELIXOS-L3-017-B01"
       ],
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
+      "condition": "workflow_material_violation",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_conflict"
+        ]
+      },
       "execution_state": "not_executed",
       "actual_observation": "not_observed",
       "primary_requirement_refs": [
@@ -1391,6 +1486,13 @@
         "HELIXOS-L3-017-B01"
       ],
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
+      "condition": "workflow_material_unknown",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_unresolved"
+        ]
+      },
       "execution_state": "not_executed",
       "actual_observation": "not_observed",
       "primary_requirement_refs": [
@@ -1413,6 +1515,13 @@
         "HELIXOS-L3-017-B01"
       ],
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
+      "condition": "workflow_material_violation",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_conflict"
+        ]
+      },
       "execution_state": "not_executed",
       "actual_observation": "not_observed",
       "primary_requirement_refs": [
@@ -1435,6 +1544,13 @@
         "HELIXOS-L3-017-B01"
       ],
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
+      "condition": "workflow_material_unknown",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_unresolved"
+        ]
+      },
       "execution_state": "not_executed",
       "actual_observation": "not_observed",
       "primary_requirement_refs": [
@@ -1457,6 +1573,13 @@
         "HELIXOS-L3-017-B01"
       ],
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
+      "condition": "workflow_material_violation",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_conflict"
+        ]
+      },
       "execution_state": "not_executed",
       "actual_observation": "not_observed",
       "primary_requirement_refs": [
@@ -1479,6 +1602,13 @@
         "HELIXOS-L3-017-B01"
       ],
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
+      "condition": "workflow_material_unknown",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_unresolved"
+        ]
+      },
       "execution_state": "not_executed",
       "actual_observation": "not_observed",
       "primary_requirement_refs": [
@@ -1501,6 +1631,13 @@
         "HELIXOS-L3-017-B01"
       ],
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
+      "condition": "workflow_material_violation",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_conflict"
+        ]
+      },
       "execution_state": "not_executed",
       "actual_observation": "not_observed",
       "primary_requirement_refs": [
@@ -1523,6 +1660,13 @@
         "HELIXOS-L3-017-B01"
       ],
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
+      "condition": "workflow_material_unknown",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_unresolved"
+        ]
+      },
       "execution_state": "not_executed",
       "actual_observation": "not_observed",
       "primary_requirement_refs": [
@@ -1545,6 +1689,13 @@
         "HELIXOS-L3-017-B01"
       ],
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
+      "condition": "workflow_material_violation",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_conflict"
+        ]
+      },
       "execution_state": "not_executed",
       "actual_observation": "not_observed",
       "primary_requirement_refs": [
@@ -1567,6 +1718,13 @@
         "HELIXOS-L3-017-B01"
       ],
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
+      "condition": "workflow_material_unknown",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_unresolved"
+        ]
+      },
       "execution_state": "not_executed",
       "actual_observation": "not_observed",
       "primary_requirement_refs": [
@@ -1589,6 +1747,13 @@
         "HELIXOS-L3-017-B01"
       ],
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
+      "condition": "workflow_material_violation",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_conflict"
+        ]
+      },
       "execution_state": "not_executed",
       "actual_observation": "not_observed",
       "primary_requirement_refs": [
@@ -1611,6 +1776,13 @@
         "HELIXOS-L3-017-B01"
       ],
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
+      "condition": "workflow_material_unknown",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_unresolved"
+        ]
+      },
       "execution_state": "not_executed",
       "actual_observation": "not_observed",
       "primary_requirement_refs": [
@@ -1633,6 +1805,13 @@
         "HELIXOS-L3-017-B01"
       ],
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
+      "condition": "workflow_material_violation",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_conflict"
+        ]
+      },
       "execution_state": "not_executed",
       "actual_observation": "not_observed",
       "primary_requirement_refs": [
@@ -1655,6 +1834,13 @@
         "HELIXOS-L3-017-B01"
       ],
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
+      "condition": "workflow_material_unknown",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_unresolved"
+        ]
+      },
       "execution_state": "not_executed",
       "actual_observation": "not_observed",
       "primary_requirement_refs": [
@@ -1677,6 +1863,13 @@
         "HELIXOS-L3-017-B01"
       ],
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
+      "condition": "workflow_material_violation",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_conflict"
+        ]
+      },
       "execution_state": "not_executed",
       "actual_observation": "not_observed",
       "primary_requirement_refs": [
@@ -1699,6 +1892,13 @@
         "HELIXOS-L3-017-B01"
       ],
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
+      "condition": "workflow_material_unknown",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_unresolved"
+        ]
+      },
       "execution_state": "not_executed",
       "actual_observation": "not_observed",
       "primary_requirement_refs": [
@@ -1721,6 +1921,13 @@
         "HELIXOS-L3-017-B01"
       ],
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
+      "condition": "workflow_material_violation",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_conflict"
+        ]
+      },
       "execution_state": "not_executed",
       "actual_observation": "not_observed",
       "primary_requirement_refs": [
@@ -1743,6 +1950,13 @@
         "HELIXOS-L3-017-B01"
       ],
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
+      "condition": "workflow_material_unknown",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_unresolved"
+        ]
+      },
       "execution_state": "not_executed",
       "actual_observation": "not_observed",
       "primary_requirement_refs": [
@@ -1765,6 +1979,13 @@
         "HELIXOS-L3-017-B01"
       ],
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
+      "condition": "workflow_material_violation",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_conflict"
+        ]
+      },
       "execution_state": "not_executed",
       "actual_observation": "not_observed",
       "primary_requirement_refs": [
@@ -1787,6 +2008,13 @@
         "HELIXOS-L3-017-B01"
       ],
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
+      "condition": "workflow_material_unknown",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_unresolved"
+        ]
+      },
       "execution_state": "not_executed",
       "actual_observation": "not_observed",
       "primary_requirement_refs": [
@@ -1809,6 +2037,13 @@
         "HELIXOS-L3-017-B01"
       ],
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
+      "condition": "workflow_material_violation",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_conflict"
+        ]
+      },
       "execution_state": "not_executed",
       "actual_observation": "not_observed",
       "primary_requirement_refs": [
@@ -1831,6 +2066,13 @@
         "HELIXOS-L3-017-B01"
       ],
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
+      "condition": "workflow_material_unknown",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_unresolved"
+        ]
+      },
       "execution_state": "not_executed",
       "actual_observation": "not_observed",
       "primary_requirement_refs": [
@@ -1853,6 +2095,13 @@
         "HELIXOS-L3-017-B01"
       ],
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
+      "condition": "workflow_material_violation",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_conflict"
+        ]
+      },
       "execution_state": "not_executed",
       "actual_observation": "not_observed",
       "primary_requirement_refs": [
@@ -1875,6 +2124,13 @@
         "HELIXOS-L3-017-B01"
       ],
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
+      "condition": "workflow_material_unknown",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_unresolved"
+        ]
+      },
       "execution_state": "not_executed",
       "actual_observation": "not_observed",
       "primary_requirement_refs": [
@@ -1897,6 +2153,13 @@
         "HELIXOS-L3-017-B01"
       ],
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
+      "condition": "workflow_material_violation",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_conflict"
+        ]
+      },
       "execution_state": "not_executed",
       "actual_observation": "not_observed",
       "primary_requirement_refs": [
@@ -1919,6 +2182,13 @@
         "HELIXOS-L3-017-B01"
       ],
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
+      "condition": "workflow_material_unknown",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_unresolved"
+        ]
+      },
       "execution_state": "not_executed",
       "actual_observation": "not_observed",
       "primary_requirement_refs": [
@@ -1941,6 +2211,13 @@
         "HELIXOS-L3-017-B01"
       ],
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
+      "condition": "workflow_material_violation",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_conflict"
+        ]
+      },
       "execution_state": "not_executed",
       "actual_observation": "not_observed",
       "primary_requirement_refs": [
@@ -1963,6 +2240,13 @@
         "HELIXOS-L3-017-B01"
       ],
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
+      "condition": "workflow_material_unknown",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_unresolved"
+        ]
+      },
       "execution_state": "not_executed",
       "actual_observation": "not_observed",
       "primary_requirement_refs": [
@@ -1985,6 +2269,13 @@
         "HELIXOS-L3-017-B01"
       ],
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
+      "condition": "workflow_material_violation",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_conflict"
+        ]
+      },
       "execution_state": "not_executed",
       "actual_observation": "not_observed",
       "primary_requirement_refs": [
@@ -2007,6 +2298,13 @@
         "HELIXOS-L3-017-B01"
       ],
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
+      "condition": "workflow_material_unknown",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_unresolved"
+        ]
+      },
       "execution_state": "not_executed",
       "actual_observation": "not_observed",
       "primary_requirement_refs": [
@@ -2029,6 +2327,13 @@
         "HELIXOS-L3-017-B01"
       ],
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
+      "condition": "workflow_material_violation",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_conflict"
+        ]
+      },
       "execution_state": "not_executed",
       "actual_observation": "not_observed",
       "primary_requirement_refs": [
@@ -2051,6 +2356,13 @@
         "HELIXOS-L3-017-B01"
       ],
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
+      "condition": "workflow_material_unknown",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_unresolved"
+        ]
+      },
       "execution_state": "not_executed",
       "actual_observation": "not_observed",
       "primary_requirement_refs": [
@@ -2073,6 +2385,13 @@
         "HELIXOS-L3-017-B01"
       ],
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
+      "condition": "workflow_material_violation",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_conflict"
+        ]
+      },
       "execution_state": "not_executed",
       "actual_observation": "not_observed",
       "primary_requirement_refs": [
@@ -2095,6 +2414,13 @@
         "HELIXOS-L3-017-B01"
       ],
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
+      "condition": "workflow_material_unknown",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_unresolved"
+        ]
+      },
       "execution_state": "not_executed",
       "actual_observation": "not_observed",
       "primary_requirement_refs": [
@@ -2117,6 +2443,13 @@
         "HELIXOS-L3-017-B01"
       ],
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
+      "condition": "workflow_material_violation",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_conflict"
+        ]
+      },
       "execution_state": "not_executed",
       "actual_observation": "not_observed",
       "primary_requirement_refs": [
@@ -2139,6 +2472,13 @@
         "HELIXOS-L3-017-B01"
       ],
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
+      "condition": "workflow_material_unknown",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_unresolved"
+        ]
+      },
       "execution_state": "not_executed",
       "actual_observation": "not_observed",
       "primary_requirement_refs": [
@@ -2161,6 +2501,13 @@
         "HELIXOS-L3-017-B01"
       ],
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
+      "condition": "workflow_material_violation",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_conflict"
+        ]
+      },
       "execution_state": "not_executed",
       "actual_observation": "not_observed",
       "primary_requirement_refs": [
@@ -2183,6 +2530,13 @@
         "HELIXOS-L3-017-B01"
       ],
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
+      "condition": "workflow_material_unknown",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_unresolved"
+        ]
+      },
       "execution_state": "not_executed",
       "actual_observation": "not_observed",
       "primary_requirement_refs": [
@@ -2205,6 +2559,13 @@
         "HELIXOS-L3-017-B01"
       ],
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
+      "condition": "workflow_material_violation",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_conflict"
+        ]
+      },
       "execution_state": "not_executed",
       "actual_observation": "not_observed",
       "primary_requirement_refs": [
@@ -2227,6 +2588,13 @@
         "HELIXOS-L3-017-B01"
       ],
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
+      "condition": "workflow_material_unknown",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_unresolved"
+        ]
+      },
       "execution_state": "not_executed",
       "actual_observation": "not_observed",
       "primary_requirement_refs": [
@@ -2249,6 +2617,13 @@
         "HELIXOS-L3-017-B01"
       ],
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
+      "condition": "workflow_material_violation",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_conflict"
+        ]
+      },
       "execution_state": "not_executed",
       "actual_observation": "not_observed",
       "primary_requirement_refs": [
@@ -2271,6 +2646,14 @@
         "HELIXOS-L3-017-B01"
       ],
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
+      "condition": "workflow_material_unknown",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "dependency_unresolved",
+          "source_unresolved"
+        ]
+      },
       "execution_state": "not_executed",
       "actual_observation": "not_observed",
       "primary_requirement_refs": [
@@ -2293,6 +2676,14 @@
         "HELIXOS-L3-017-B01"
       ],
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
+      "condition": "workflow_material_unknown",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "dependency_unresolved",
+          "source_unresolved"
+        ]
+      },
       "execution_state": "not_executed",
       "actual_observation": "not_observed",
       "primary_requirement_refs": [
@@ -2315,6 +2706,13 @@
         "HELIXOS-L3-017-B01"
       ],
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
+      "condition": "workflow_material_unknown",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_unresolved"
+        ]
+      },
       "execution_state": "not_executed",
       "actual_observation": "not_observed",
       "primary_requirement_refs": [
@@ -2337,6 +2735,13 @@
         "HELIXOS-L3-017-B01"
       ],
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
+      "condition": "workflow_material_violation",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_conflict"
+        ]
+      },
       "execution_state": "not_executed",
       "actual_observation": "not_observed",
       "primary_requirement_refs": [
@@ -2359,6 +2764,13 @@
         "HELIXOS-L3-017-B01"
       ],
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
+      "condition": "workflow_material_unknown",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_unresolved"
+        ]
+      },
       "execution_state": "not_executed",
       "actual_observation": "not_observed",
       "primary_requirement_refs": [
@@ -2381,6 +2793,13 @@
         "HELIXOS-L3-017-B01"
       ],
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
+      "condition": "workflow_material_violation",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_conflict"
+        ]
+      },
       "execution_state": "not_executed",
       "actual_observation": "not_observed",
       "primary_requirement_refs": [
@@ -2403,6 +2822,13 @@
         "HELIXOS-L3-017-B01"
       ],
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
+      "condition": "workflow_material_unknown",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_unresolved"
+        ]
+      },
       "execution_state": "not_executed",
       "actual_observation": "not_observed",
       "primary_requirement_refs": [
@@ -2425,6 +2851,13 @@
         "HELIXOS-L3-017-B01"
       ],
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
+      "condition": "workflow_material_violation",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_conflict"
+        ]
+      },
       "execution_state": "not_executed",
       "actual_observation": "not_observed",
       "primary_requirement_refs": [
@@ -2447,6 +2880,13 @@
         "HELIXOS-L3-017-B01"
       ],
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
+      "condition": "workflow_material_unknown",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_unresolved"
+        ]
+      },
       "execution_state": "not_executed",
       "actual_observation": "not_observed",
       "primary_requirement_refs": [
@@ -2469,6 +2909,13 @@
         "HELIXOS-L3-017-B01"
       ],
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
+      "condition": "workflow_material_violation",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_conflict"
+        ]
+      },
       "execution_state": "not_executed",
       "actual_observation": "not_observed",
       "primary_requirement_refs": [
@@ -2491,6 +2938,13 @@
         "HELIXOS-L3-017-B01"
       ],
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
+      "condition": "workflow_material_unknown",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_unresolved"
+        ]
+      },
       "execution_state": "not_executed",
       "actual_observation": "not_observed",
       "primary_requirement_refs": [
@@ -2513,6 +2967,13 @@
         "HELIXOS-L3-017-B01"
       ],
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
+      "condition": "workflow_material_violation",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_conflict"
+        ]
+      },
       "execution_state": "not_executed",
       "actual_observation": "not_observed",
       "primary_requirement_refs": [
@@ -2535,6 +2996,13 @@
         "HELIXOS-L3-017-B01"
       ],
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
+      "condition": "workflow_material_unknown",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_unresolved"
+        ]
+      },
       "execution_state": "not_executed",
       "actual_observation": "not_observed",
       "primary_requirement_refs": [
@@ -2557,6 +3025,15 @@
         "HELIXOS-L3-017-B01"
       ],
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
+      "condition": "workflow_material_violation",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_conflict",
+          "undefined_process_component",
+          "undefined_process_component"
+        ]
+      },
       "execution_state": "not_executed",
       "actual_observation": "not_observed",
       "primary_requirement_refs": [
@@ -2579,6 +3056,13 @@
         "HELIXOS-L3-017-B01"
       ],
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
+      "condition": "workflow_material_unknown",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_unresolved"
+        ]
+      },
       "execution_state": "not_executed",
       "actual_observation": "not_observed",
       "primary_requirement_refs": [
@@ -2601,6 +3085,14 @@
         "HELIXOS-L3-017-B01"
       ],
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
+      "condition": "workflow_material_violation",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "process_order_conflict",
+          "source_conflict"
+        ]
+      },
       "execution_state": "not_executed",
       "actual_observation": "not_observed",
       "primary_requirement_refs": [
@@ -2623,6 +3115,13 @@
         "HELIXOS-L3-017-B01"
       ],
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
+      "condition": "workflow_material_unknown",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_unresolved"
+        ]
+      },
       "execution_state": "not_executed",
       "actual_observation": "not_observed",
       "primary_requirement_refs": [
@@ -2645,6 +3144,15 @@
         "HELIXOS-L3-017-B01"
       ],
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
+      "condition": "workflow_material_violation",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "process_obligation_missing",
+          "process_obligation_missing",
+          "source_conflict"
+        ]
+      },
       "execution_state": "not_executed",
       "actual_observation": "not_observed",
       "primary_requirement_refs": [
@@ -2667,6 +3175,13 @@
         "HELIXOS-L3-017-B01"
       ],
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
+      "condition": "workflow_material_unknown",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_unresolved"
+        ]
+      },
       "execution_state": "not_executed",
       "actual_observation": "not_observed",
       "primary_requirement_refs": [
@@ -2689,6 +3204,13 @@
         "HELIXOS-L3-017-B01"
       ],
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
+      "condition": "workflow_material_violation",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_conflict"
+        ]
+      },
       "execution_state": "not_executed",
       "actual_observation": "not_observed",
       "primary_requirement_refs": [
@@ -2711,6 +3233,13 @@
         "HELIXOS-L3-017-B01"
       ],
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
+      "condition": "workflow_material_unknown",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_unresolved"
+        ]
+      },
       "execution_state": "not_executed",
       "actual_observation": "not_observed",
       "primary_requirement_refs": [
@@ -2733,6 +3262,13 @@
         "HELIXOS-L3-017-B01"
       ],
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
+      "condition": "workflow_material_violation",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_conflict"
+        ]
+      },
       "execution_state": "not_executed",
       "actual_observation": "not_observed",
       "primary_requirement_refs": [
@@ -2755,6 +3291,13 @@
         "HELIXOS-L3-017-B01"
       ],
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
+      "condition": "workflow_material_unknown",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_unresolved"
+        ]
+      },
       "execution_state": "not_executed",
       "actual_observation": "not_observed",
       "primary_requirement_refs": [
@@ -2777,6 +3320,13 @@
         "HELIXOS-L3-017-B01"
       ],
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
+      "condition": "workflow_material_violation",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_conflict"
+        ]
+      },
       "execution_state": "not_executed",
       "actual_observation": "not_observed",
       "primary_requirement_refs": [
@@ -2799,6 +3349,13 @@
         "HELIXOS-L3-017-B01"
       ],
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
+      "condition": "workflow_material_unknown",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_unresolved"
+        ]
+      },
       "execution_state": "not_executed",
       "actual_observation": "not_observed",
       "primary_requirement_refs": [
@@ -2821,6 +3378,13 @@
         "HELIXOS-L3-017-B01"
       ],
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
+      "condition": "workflow_material_violation",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_conflict"
+        ]
+      },
       "execution_state": "not_executed",
       "actual_observation": "not_observed",
       "primary_requirement_refs": [
@@ -2843,6 +3407,13 @@
         "HELIXOS-L3-017-B01"
       ],
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
+      "condition": "workflow_material_unknown",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_unresolved"
+        ]
+      },
       "execution_state": "not_executed",
       "actual_observation": "not_observed",
       "primary_requirement_refs": [
@@ -2865,6 +3436,13 @@
         "HELIXOS-L3-017-B01"
       ],
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
+      "condition": "workflow_material_violation",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_conflict"
+        ]
+      },
       "execution_state": "not_executed",
       "actual_observation": "not_observed",
       "primary_requirement_refs": [
@@ -2887,6 +3465,13 @@
         "HELIXOS-L3-017-B01"
       ],
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
+      "condition": "workflow_material_unknown",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_unresolved"
+        ]
+      },
       "execution_state": "not_executed",
       "actual_observation": "not_observed",
       "primary_requirement_refs": [
@@ -2909,6 +3494,13 @@
         "HELIXOS-L3-017-B01"
       ],
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
+      "condition": "workflow_material_violation",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_conflict"
+        ]
+      },
       "execution_state": "not_executed",
       "actual_observation": "not_observed",
       "primary_requirement_refs": [
@@ -2931,6 +3523,13 @@
         "HELIXOS-L3-017-B01"
       ],
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
+      "condition": "workflow_material_unknown",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_unresolved"
+        ]
+      },
       "execution_state": "not_executed",
       "actual_observation": "not_observed",
       "primary_requirement_refs": [
@@ -2953,6 +3552,13 @@
         "HELIXOS-L3-017-B01"
       ],
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
+      "condition": "workflow_material_violation",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_conflict"
+        ]
+      },
       "execution_state": "not_executed",
       "actual_observation": "not_observed",
       "primary_requirement_refs": [
@@ -2975,6 +3581,13 @@
         "HELIXOS-L3-017-B01"
       ],
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
+      "condition": "workflow_material_unknown",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_unresolved"
+        ]
+      },
       "execution_state": "not_executed",
       "actual_observation": "not_observed",
       "primary_requirement_refs": [
@@ -2997,6 +3610,13 @@
         "HELIXOS-L3-017-B01"
       ],
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
+      "condition": "workflow_material_violation",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_conflict"
+        ]
+      },
       "execution_state": "not_executed",
       "actual_observation": "not_observed",
       "primary_requirement_refs": [
@@ -3019,6 +3639,13 @@
         "HELIXOS-L3-017-B01"
       ],
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
+      "condition": "workflow_material_unknown",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_unresolved"
+        ]
+      },
       "execution_state": "not_executed",
       "actual_observation": "not_observed",
       "primary_requirement_refs": [
@@ -3041,6 +3668,13 @@
         "HELIXOS-L3-017-B01"
       ],
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
+      "condition": "workflow_material_violation",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_conflict"
+        ]
+      },
       "execution_state": "not_executed",
       "actual_observation": "not_observed",
       "primary_requirement_refs": [
@@ -3063,6 +3697,13 @@
         "HELIXOS-L3-017-B01"
       ],
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
+      "condition": "workflow_material_unknown",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_unresolved"
+        ]
+      },
       "execution_state": "not_executed",
       "actual_observation": "not_observed",
       "primary_requirement_refs": [
@@ -3085,6 +3726,13 @@
         "HELIXOS-L3-017-B01"
       ],
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
+      "condition": "workflow_material_unknown",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_unresolved"
+        ]
+      },
       "execution_state": "not_executed",
       "actual_observation": "not_observed",
       "primary_requirement_refs": [
@@ -3109,6 +3757,13 @@
         "HELIXOS-L3-017-B01"
       ],
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
+      "condition": "workflow_material_unknown",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_unresolved"
+        ]
+      },
       "execution_state": "not_executed",
       "actual_observation": "not_observed",
       "primary_requirement_refs": [
@@ -3133,6 +3788,13 @@
         "HELIXOS-L3-017-B01"
       ],
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
+      "condition": "workflow_material_unknown",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_unresolved"
+        ]
+      },
       "execution_state": "not_executed",
       "actual_observation": "not_observed",
       "primary_requirement_refs": [
@@ -3155,6 +3817,13 @@
         "HELIXOS-L3-017-B01"
       ],
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
+      "condition": "workflow_material_unknown",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_unresolved"
+        ]
+      },
       "execution_state": "not_executed",
       "actual_observation": "not_observed",
       "primary_requirement_refs": [
@@ -3178,6 +3847,13 @@
         "HELIXOS-L3-017-B01"
       ],
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
+      "condition": "workflow_material_unknown",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_unresolved"
+        ]
+      },
       "execution_state": "not_executed",
       "actual_observation": "not_observed",
       "primary_requirement_refs": [
@@ -3200,6 +3876,13 @@
         "HELIXOS-L3-017-B01"
       ],
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
+      "condition": "workflow_material_unknown",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_unresolved"
+        ]
+      },
       "execution_state": "not_executed",
       "actual_observation": "not_observed",
       "primary_requirement_refs": [
@@ -3222,6 +3905,13 @@
         "HELIXOS-L3-017-B01"
       ],
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
+      "condition": "workflow_material_unknown",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_unresolved"
+        ]
+      },
       "execution_state": "not_executed",
       "actual_observation": "not_observed",
       "primary_requirement_refs": [
@@ -3244,6 +3934,13 @@
         "HELIXOS-L3-017-B01"
       ],
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
+      "condition": "workflow_material_unknown",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_unresolved"
+        ]
+      },
       "execution_state": "not_executed",
       "actual_observation": "not_observed",
       "primary_requirement_refs": [
@@ -3266,6 +3963,13 @@
         "HELIXOS-L3-017-B01"
       ],
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
+      "condition": "workflow_material_unknown",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_unresolved"
+        ]
+      },
       "execution_state": "not_executed",
       "actual_observation": "not_observed",
       "primary_requirement_refs": [
@@ -3288,6 +3992,13 @@
         "HELIXOS-L3-017-B01"
       ],
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
+      "condition": "workflow_material_unknown",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_unresolved"
+        ]
+      },
       "execution_state": "not_executed",
       "actual_observation": "not_observed",
       "primary_requirement_refs": [
@@ -3310,6 +4021,13 @@
         "HELIXOS-L3-017-B01"
       ],
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
+      "condition": "workflow_material_unknown",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_unresolved"
+        ]
+      },
       "execution_state": "not_executed",
       "actual_observation": "not_observed",
       "primary_requirement_refs": [
@@ -3332,6 +4050,13 @@
         "HELIXOS-L3-017-B01"
       ],
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
+      "condition": "workflow_material_unknown",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_unresolved"
+        ]
+      },
       "execution_state": "not_executed",
       "actual_observation": "not_observed",
       "primary_requirement_refs": [
@@ -3354,6 +4079,13 @@
         "HELIXOS-L3-017-B01"
       ],
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
+      "condition": "workflow_material_unknown",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_unresolved"
+        ]
+      },
       "execution_state": "not_executed",
       "actual_observation": "not_observed",
       "primary_requirement_refs": [
@@ -3376,6 +4108,13 @@
         "HELIXOS-L3-017-B01"
       ],
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
+      "condition": "workflow_material_unknown",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_unresolved"
+        ]
+      },
       "execution_state": "not_executed",
       "actual_observation": "not_observed",
       "primary_requirement_refs": [
@@ -3398,6 +4137,13 @@
         "HELIXOS-L3-017-B01"
       ],
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
+      "condition": "workflow_material_unknown",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_unresolved"
+        ]
+      },
       "execution_state": "not_executed",
       "actual_observation": "not_observed",
       "primary_requirement_refs": [
@@ -3420,6 +4166,13 @@
         "HELIXOS-L3-017-B01"
       ],
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
+      "condition": "workflow_material_unknown",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_unresolved"
+        ]
+      },
       "execution_state": "not_executed",
       "actual_observation": "not_observed",
       "primary_requirement_refs": [
@@ -3442,6 +4195,13 @@
         "HELIXOS-L3-017-B01"
       ],
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
+      "condition": "workflow_material_unknown",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_unresolved"
+        ]
+      },
       "execution_state": "not_executed",
       "actual_observation": "not_observed",
       "primary_requirement_refs": [
@@ -3464,6 +4224,13 @@
         "HELIXOS-L3-017-B01"
       ],
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
+      "condition": "workflow_material_unknown",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_unresolved"
+        ]
+      },
       "execution_state": "not_executed",
       "actual_observation": "not_observed",
       "primary_requirement_refs": [
@@ -3486,6 +4253,13 @@
         "HELIXOS-L3-017-B01"
       ],
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
+      "condition": "workflow_material_unknown",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_unresolved"
+        ]
+      },
       "execution_state": "not_executed",
       "actual_observation": "not_observed",
       "primary_requirement_refs": [
@@ -3508,6 +4282,13 @@
         "HELIXOS-L3-017-B01"
       ],
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
+      "condition": "workflow_material_unknown",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_unresolved"
+        ]
+      },
       "execution_state": "not_executed",
       "actual_observation": "not_observed",
       "primary_requirement_refs": [
@@ -3530,6 +4311,13 @@
         "HELIXOS-L3-017-B01"
       ],
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
+      "condition": "workflow_material_unknown",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_unresolved"
+        ]
+      },
       "execution_state": "not_executed",
       "actual_observation": "not_observed",
       "primary_requirement_refs": [
@@ -3552,6 +4340,13 @@
         "HELIXOS-L3-017-B01"
       ],
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
+      "condition": "workflow_material_unknown",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_unresolved"
+        ]
+      },
       "execution_state": "not_executed",
       "actual_observation": "not_observed",
       "primary_requirement_refs": [
@@ -3574,6 +4369,13 @@
         "HELIXOS-L3-017-B01"
       ],
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
+      "condition": "workflow_material_unknown",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_unresolved"
+        ]
+      },
       "execution_state": "not_executed",
       "actual_observation": "not_observed",
       "primary_requirement_refs": [
@@ -3596,6 +4398,13 @@
         "HELIXOS-L3-017-B01"
       ],
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
+      "condition": "workflow_material_unknown",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_unresolved"
+        ]
+      },
       "execution_state": "not_executed",
       "actual_observation": "not_observed",
       "primary_requirement_refs": [
@@ -3618,6 +4427,13 @@
         "HELIXOS-L3-017-B01"
       ],
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
+      "condition": "workflow_material_unknown",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_unresolved"
+        ]
+      },
       "execution_state": "not_executed",
       "actual_observation": "not_observed",
       "primary_requirement_refs": [
@@ -3640,6 +4456,13 @@
         "HELIXOS-L3-017-B01"
       ],
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
+      "condition": "workflow_material_unknown",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_unresolved"
+        ]
+      },
       "execution_state": "not_executed",
       "actual_observation": "not_observed",
       "primary_requirement_refs": [
@@ -3662,6 +4485,15 @@
         "HELIXOS-L3-017-B01"
       ],
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
+      "condition": "workflow_material_violation",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "process_order_conflict",
+          "source_conflict",
+          "undefined_process_component"
+        ]
+      },
       "execution_state": "not_executed",
       "actual_observation": "not_observed",
       "primary_requirement_refs": [
@@ -3684,6 +4516,14 @@
         "HELIXOS-L3-017-B01"
       ],
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
+      "condition": "workflow_material_violation",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "process_order_conflict",
+          "source_conflict"
+        ]
+      },
       "execution_state": "not_executed",
       "actual_observation": "not_observed",
       "primary_requirement_refs": [
@@ -3706,6 +4546,14 @@
         "HELIXOS-L3-017-B01"
       ],
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
+      "condition": "workflow_material_violation",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "process_obligation_missing",
+          "source_conflict"
+        ]
+      },
       "execution_state": "not_executed",
       "actual_observation": "not_observed",
       "primary_requirement_refs": [
@@ -3728,6 +4576,13 @@
         "HELIXOS-L3-017-B01"
       ],
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
+      "condition": "workflow_material_unknown",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "proposal_record_unresolved"
+        ]
+      },
       "execution_state": "not_executed",
       "actual_observation": "not_observed",
       "primary_requirement_refs": [
@@ -3750,6 +4605,13 @@
         "HELIXOS-L3-017-B01"
       ],
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
+      "condition": "workflow_material_unknown",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "proposal_selection_unresolved"
+        ]
+      },
       "execution_state": "not_executed",
       "actual_observation": "not_observed",
       "primary_requirement_refs": [
@@ -3772,6 +4634,13 @@
         "HELIXOS-L3-017-B01"
       ],
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
+      "condition": "workflow_material_violation",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_conflict"
+        ]
+      },
       "execution_state": "not_executed",
       "actual_observation": "not_observed",
       "primary_requirement_refs": [
@@ -3794,6 +4663,11 @@
         "HELIXOS-L3-017-B01"
       ],
       "purpose": "INT案の非提供を一律欠損/全停止にしない。提供時にだけ当該案を照合。",
+      "condition": "workflow_material_corresponding",
+      "selected_phase": "workflow",
+      "expected": {
+        "finding_codes": []
+      },
       "execution_state": "not_executed",
       "actual_observation": "not_observed",
       "primary_requirement_refs": [
@@ -3816,6 +4690,11 @@
         "HELIXOS-L3-017-B01"
       ],
       "purpose": "提供されたLABO水準素材の同source/revision/scopeを照合。",
+      "condition": "workflow_material_corresponding",
+      "selected_phase": "workflow",
+      "expected": {
+        "finding_codes": []
+      },
       "execution_state": "not_executed",
       "actual_observation": "not_observed",
       "primary_requirement_refs": [
@@ -3838,6 +4717,13 @@
         "HELIXOS-L3-017-B01"
       ],
       "purpose": "別scope水準を当該workflow適格性に流用しない。",
+      "condition": "workflow_material_violation",
+      "selected_phase": "workflow",
+      "expected": {
+        "finding_codes": [
+          "source_conflict"
+        ]
+      },
       "execution_state": "not_executed",
       "actual_observation": "not_observed",
       "primary_requirement_refs": [
@@ -3860,6 +4746,13 @@
         "HELIXOS-L3-017-B01"
       ],
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
+      "condition": "workflow_material_unknown",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_unresolved"
+        ]
+      },
       "execution_state": "not_executed",
       "actual_observation": "not_observed",
       "primary_requirement_refs": [
@@ -3882,6 +4775,13 @@
         "HELIXOS-L3-017-B01"
       ],
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
+      "condition": "workflow_material_violation",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "workflow_condition_rejected"
+        ]
+      },
       "execution_state": "not_executed",
       "actual_observation": "not_observed",
       "primary_requirement_refs": [
@@ -3904,6 +4804,13 @@
         "HELIXOS-L3-017-B01"
       ],
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
+      "condition": "workflow_material_violation",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "workflow_condition_rejected"
+        ]
+      },
       "execution_state": "not_executed",
       "actual_observation": "not_observed",
       "primary_requirement_refs": [
@@ -3926,6 +4833,13 @@
         "HELIXOS-L3-017-B01"
       ],
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
+      "condition": "workflow_material_violation",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "workflow_condition_rejected"
+        ]
+      },
       "execution_state": "not_executed",
       "actual_observation": "not_observed",
       "primary_requirement_refs": [
@@ -3948,6 +4862,13 @@
         "HELIXOS-L3-017-B01"
       ],
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
+      "condition": "workflow_material_violation",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "workflow_condition_rejected"
+        ]
+      },
       "execution_state": "not_executed",
       "actual_observation": "not_observed",
       "primary_requirement_refs": [
@@ -3970,6 +4891,13 @@
         "HELIXOS-L3-017-B01"
       ],
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
+      "condition": "workflow_material_unknown",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "workflow_condition_unresolved"
+        ]
+      },
       "execution_state": "not_executed",
       "actual_observation": "not_observed",
       "primary_requirement_refs": [
@@ -3992,6 +4920,13 @@
         "HELIXOS-L3-017-B01"
       ],
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
+      "condition": "workflow_material_violation",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "workflow_condition_rejected"
+        ]
+      },
       "execution_state": "not_executed",
       "actual_observation": "not_observed",
       "primary_requirement_refs": [
@@ -4014,6 +4949,13 @@
         "HELIXOS-L3-017-B01"
       ],
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
+      "condition": "workflow_material_violation",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "workflow_condition_rejected"
+        ]
+      },
       "execution_state": "not_executed",
       "actual_observation": "not_observed",
       "primary_requirement_refs": [
@@ -4036,6 +4978,13 @@
         "HELIXOS-L3-017-B01"
       ],
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
+      "condition": "workflow_material_violation",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "workflow_condition_rejected"
+        ]
+      },
       "execution_state": "not_executed",
       "actual_observation": "not_observed",
       "primary_requirement_refs": [
@@ -4058,6 +5007,13 @@
         "HELIXOS-L3-017-B01"
       ],
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
+      "condition": "workflow_material_violation",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "workflow_condition_rejected"
+        ]
+      },
       "execution_state": "not_executed",
       "actual_observation": "not_observed",
       "primary_requirement_refs": [
@@ -4080,6 +5036,13 @@
         "HELIXOS-L3-017-B01"
       ],
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
+      "condition": "workflow_material_unknown",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "workflow_condition_unresolved"
+        ]
+      },
       "execution_state": "not_executed",
       "actual_observation": "not_observed",
       "primary_requirement_refs": [
@@ -4102,6 +5065,14 @@
         "HELIXOS-L3-017-B01"
       ],
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
+      "condition": "workflow_material_violation",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "dependency_not_resolved",
+          "source_conflict"
+        ]
+      },
       "execution_state": "not_executed",
       "actual_observation": "not_observed",
       "primary_requirement_refs": [
@@ -4124,6 +5095,14 @@
         "HELIXOS-L3-017-B01"
       ],
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
+      "condition": "workflow_material_violation",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "dependency_not_resolved",
+          "source_conflict"
+        ]
+      },
       "execution_state": "not_executed",
       "actual_observation": "not_observed",
       "primary_requirement_refs": [
@@ -4146,6 +5125,14 @@
         "HELIXOS-L3-017-B01"
       ],
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
+      "condition": "workflow_material_violation",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "dependency_not_resolved",
+          "source_conflict"
+        ]
+      },
       "execution_state": "not_executed",
       "actual_observation": "not_observed",
       "primary_requirement_refs": [
@@ -4168,6 +5155,14 @@
         "HELIXOS-L3-017-B01"
       ],
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
+      "condition": "workflow_material_violation",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "dependency_not_resolved",
+          "source_conflict"
+        ]
+      },
       "execution_state": "not_executed",
       "actual_observation": "not_observed",
       "primary_requirement_refs": [
@@ -4190,6 +5185,14 @@
         "HELIXOS-L3-017-B01"
       ],
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
+      "condition": "workflow_material_violation",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "dependency_not_resolved",
+          "source_conflict"
+        ]
+      },
       "execution_state": "not_executed",
       "actual_observation": "not_observed",
       "primary_requirement_refs": [
@@ -4212,6 +5215,14 @@
         "HELIXOS-L3-017-B01"
       ],
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
+      "condition": "workflow_material_unknown",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "dependency_unresolved",
+          "source_unresolved"
+        ]
+      },
       "execution_state": "not_executed",
       "actual_observation": "not_observed",
       "primary_requirement_refs": [
@@ -4234,6 +5245,13 @@
         "HELIXOS-L3-017-B01"
       ],
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
+      "condition": "workflow_material_unknown",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "quantity_unresolved"
+        ]
+      },
       "execution_state": "not_executed",
       "actual_observation": "not_observed",
       "primary_requirement_refs": [
@@ -4256,6 +5274,13 @@
         "HELIXOS-L3-017-B01"
       ],
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
+      "condition": "workflow_material_unknown",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "quantity_unresolved"
+        ]
+      },
       "execution_state": "not_executed",
       "actual_observation": "not_observed",
       "primary_requirement_refs": [
@@ -4278,6 +5303,13 @@
         "HELIXOS-L3-017-B01"
       ],
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
+      "condition": "workflow_material_unknown",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "quantity_unresolved"
+        ]
+      },
       "execution_state": "not_executed",
       "actual_observation": "not_observed",
       "primary_requirement_refs": [
@@ -4300,6 +5332,13 @@
         "HELIXOS-L3-017-B01"
       ],
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
+      "condition": "workflow_material_unknown",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "quantity_unresolved"
+        ]
+      },
       "execution_state": "not_executed",
       "actual_observation": "not_observed",
       "primary_requirement_refs": [
@@ -4322,6 +5361,13 @@
         "HELIXOS-L3-017-B01"
       ],
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
+      "condition": "workflow_material_unknown",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "quantity_unresolved"
+        ]
+      },
       "execution_state": "not_executed",
       "actual_observation": "not_observed",
       "primary_requirement_refs": [
@@ -4344,6 +5390,13 @@
         "HELIXOS-L3-017-B01"
       ],
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
+      "condition": "workflow_material_unknown",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "quantity_unresolved"
+        ]
+      },
       "execution_state": "not_executed",
       "actual_observation": "not_observed",
       "primary_requirement_refs": [
@@ -4366,6 +5419,13 @@
         "HELIXOS-L3-017-B01"
       ],
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
+      "condition": "workflow_material_unknown",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "quantity_unresolved"
+        ]
+      },
       "execution_state": "not_executed",
       "actual_observation": "not_observed",
       "primary_requirement_refs": [
@@ -4388,6 +5448,13 @@
         "HELIXOS-L3-017-B01"
       ],
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
+      "condition": "workflow_material_unknown",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "quantity_unresolved"
+        ]
+      },
       "execution_state": "not_executed",
       "actual_observation": "not_observed",
       "primary_requirement_refs": [
@@ -4410,6 +5477,13 @@
         "HELIXOS-L3-017-B01"
       ],
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
+      "condition": "workflow_material_unknown",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "quantity_unresolved"
+        ]
+      },
       "execution_state": "not_executed",
       "actual_observation": "not_observed",
       "primary_requirement_refs": [
@@ -4432,6 +5506,13 @@
         "HELIXOS-L3-017-B01"
       ],
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
+      "condition": "workflow_material_unknown",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "quantity_unresolved"
+        ]
+      },
       "execution_state": "not_executed",
       "actual_observation": "not_observed",
       "primary_requirement_refs": [
@@ -4454,6 +5535,13 @@
         "HELIXOS-L3-017-B01"
       ],
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
+      "condition": "workflow_material_unknown",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "quantity_unresolved"
+        ]
+      },
       "execution_state": "not_executed",
       "actual_observation": "not_observed",
       "primary_requirement_refs": [
@@ -4476,6 +5564,13 @@
         "HELIXOS-L3-017-B01"
       ],
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
+      "condition": "workflow_material_unknown",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "quantity_unresolved"
+        ]
+      },
       "execution_state": "not_executed",
       "actual_observation": "not_observed",
       "primary_requirement_refs": [
@@ -4498,6 +5593,13 @@
         "HELIXOS-L3-017-B01"
       ],
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
+      "condition": "workflow_material_unknown",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "quantity_unresolved"
+        ]
+      },
       "execution_state": "not_executed",
       "actual_observation": "not_observed",
       "primary_requirement_refs": [
@@ -4520,6 +5622,13 @@
         "HELIXOS-L3-017-B01"
       ],
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
+      "condition": "workflow_material_unknown",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "quantity_unresolved"
+        ]
+      },
       "execution_state": "not_executed",
       "actual_observation": "not_observed",
       "primary_requirement_refs": [
@@ -4542,6 +5651,13 @@
         "HELIXOS-L3-017-B01"
       ],
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
+      "condition": "workflow_material_unknown",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "quantity_unresolved"
+        ]
+      },
       "execution_state": "not_executed",
       "actual_observation": "not_observed",
       "primary_requirement_refs": [
@@ -4564,6 +5680,13 @@
         "HELIXOS-L3-017-B01"
       ],
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
+      "condition": "workflow_material_violation",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "budget_exhausted"
+        ]
+      },
       "execution_state": "not_executed",
       "actual_observation": "not_observed",
       "primary_requirement_refs": [
@@ -4586,6 +5709,13 @@
         "HELIXOS-L3-017-B01"
       ],
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
+      "condition": "workflow_material_violation",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "deadline_reached"
+        ]
+      },
       "execution_state": "not_executed",
       "actual_observation": "not_observed",
       "primary_requirement_refs": [
@@ -4608,6 +5738,13 @@
         "HELIXOS-L3-017-B01"
       ],
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
+      "condition": "workflow_material_violation",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_conflict"
+        ]
+      },
       "execution_state": "not_executed",
       "actual_observation": "not_observed",
       "primary_requirement_refs": [
@@ -4630,6 +5767,13 @@
         "HELIXOS-L3-017-B01"
       ],
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
+      "condition": "workflow_material_unknown",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_unresolved"
+        ]
+      },
       "execution_state": "not_executed",
       "actual_observation": "not_observed",
       "primary_requirement_refs": [
@@ -4652,6 +5796,13 @@
         "HELIXOS-L3-017-B01"
       ],
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
+      "condition": "workflow_material_violation",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_conflict"
+        ]
+      },
       "execution_state": "not_executed",
       "actual_observation": "not_observed",
       "primary_requirement_refs": [
@@ -4674,6 +5825,13 @@
         "HELIXOS-L3-017-B01"
       ],
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
+      "condition": "workflow_material_unknown",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_unresolved"
+        ]
+      },
       "execution_state": "not_executed",
       "actual_observation": "not_observed",
       "primary_requirement_refs": [
@@ -4696,6 +5854,13 @@
         "HELIXOS-L3-017-B01"
       ],
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
+      "condition": "workflow_material_violation",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_conflict"
+        ]
+      },
       "execution_state": "not_executed",
       "actual_observation": "not_observed",
       "primary_requirement_refs": [
@@ -4718,6 +5883,13 @@
         "HELIXOS-L3-017-B01"
       ],
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
+      "condition": "workflow_material_unknown",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_unresolved"
+        ]
+      },
       "execution_state": "not_executed",
       "actual_observation": "not_observed",
       "primary_requirement_refs": [
@@ -4740,6 +5912,13 @@
         "HELIXOS-L3-017-B01"
       ],
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
+      "condition": "workflow_material_violation",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_conflict"
+        ]
+      },
       "execution_state": "not_executed",
       "actual_observation": "not_observed",
       "primary_requirement_refs": [
@@ -4762,6 +5941,13 @@
         "HELIXOS-L3-017-B01"
       ],
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
+      "condition": "workflow_material_unknown",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_unresolved"
+        ]
+      },
       "execution_state": "not_executed",
       "actual_observation": "not_observed",
       "primary_requirement_refs": [
@@ -4784,6 +5970,11 @@
         "HELIXOS-L3-017-B01"
       ],
       "purpose": "途中不成立は既定戻し先の素材であり、成功/解決とは別。",
+      "condition": "workflow_material_corresponding",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": []
+      },
       "execution_state": "not_executed",
       "actual_observation": "not_observed",
       "primary_requirement_refs": [
@@ -4806,6 +5997,11 @@
         "HELIXOS-L3-017-B01"
       ],
       "purpose": "途中不成立は既定戻し先の素材であり、成功/解決とは別。",
+      "condition": "workflow_material_corresponding",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": []
+      },
       "execution_state": "not_executed",
       "actual_observation": "not_observed",
       "primary_requirement_refs": [
@@ -4828,6 +6024,11 @@
         "HELIXOS-L3-017-B01"
       ],
       "purpose": "途中不成立は既定戻し先の素材であり、成功/解決とは別。",
+      "condition": "workflow_material_corresponding",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": []
+      },
       "execution_state": "not_executed",
       "actual_observation": "not_observed",
       "primary_requirement_refs": [
@@ -4850,6 +6051,11 @@
         "HELIXOS-L3-017-B01"
       ],
       "purpose": "途中不成立は既定戻し先の素材であり、成功/解決とは別。",
+      "condition": "workflow_material_corresponding",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": []
+      },
       "execution_state": "not_executed",
       "actual_observation": "not_observed",
       "primary_requirement_refs": [
@@ -4872,6 +6078,13 @@
         "HELIXOS-L3-017-B01"
       ],
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
+      "condition": "workflow_material_unknown",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "backflow_result_unresolved"
+        ]
+      },
       "execution_state": "not_executed",
       "actual_observation": "not_observed",
       "primary_requirement_refs": [
@@ -4894,6 +6107,13 @@
         "HELIXOS-L3-017-B01"
       ],
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
+      "condition": "workflow_material_unknown",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_unresolved"
+        ]
+      },
       "execution_state": "not_executed",
       "actual_observation": "not_observed",
       "primary_requirement_refs": [
@@ -4916,6 +6136,13 @@
         "HELIXOS-L3-017-B01"
       ],
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
+      "condition": "workflow_material_violation",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_conflict"
+        ]
+      },
       "execution_state": "not_executed",
       "actual_observation": "not_observed",
       "primary_requirement_refs": [
@@ -4938,6 +6165,13 @@
         "HELIXOS-L3-017-B01"
       ],
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
+      "condition": "workflow_material_unknown",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_unresolved"
+        ]
+      },
       "execution_state": "not_executed",
       "actual_observation": "not_observed",
       "primary_requirement_refs": [
@@ -4960,6 +6194,13 @@
         "HELIXOS-L3-017-B01"
       ],
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
+      "condition": "workflow_material_violation",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_conflict"
+        ]
+      },
       "execution_state": "not_executed",
       "actual_observation": "not_observed",
       "primary_requirement_refs": [
@@ -4982,6 +6223,14 @@
         "HELIXOS-L3-017-B01"
       ],
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
+      "condition": "workflow_material_unknown",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_unresolved",
+          "stop_reason_unresolved"
+        ]
+      },
       "execution_state": "not_executed",
       "actual_observation": "not_observed",
       "primary_requirement_refs": [
@@ -5004,6 +6253,13 @@
         "HELIXOS-L3-017-B01"
       ],
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
+      "condition": "workflow_material_violation",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_conflict"
+        ]
+      },
       "execution_state": "not_executed",
       "actual_observation": "not_observed",
       "primary_requirement_refs": [
@@ -5026,6 +6282,13 @@
         "HELIXOS-L3-017-B01"
       ],
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
+      "condition": "workflow_material_unknown",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "quantity_unresolved"
+        ]
+      },
       "execution_state": "not_executed",
       "actual_observation": "not_observed",
       "primary_requirement_refs": [
@@ -5048,6 +6311,13 @@
         "HELIXOS-L3-017-B01"
       ],
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
+      "condition": "workflow_material_violation",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "cumulative_constraint_reset"
+        ]
+      },
       "execution_state": "not_executed",
       "actual_observation": "not_observed",
       "primary_requirement_refs": [
@@ -5070,6 +6340,13 @@
         "HELIXOS-L3-017-B01"
       ],
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
+      "condition": "workflow_material_unknown",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "quantity_unresolved"
+        ]
+      },
       "execution_state": "not_executed",
       "actual_observation": "not_observed",
       "primary_requirement_refs": [
@@ -5092,6 +6369,13 @@
         "HELIXOS-L3-017-B01"
       ],
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
+      "condition": "workflow_material_violation",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "cumulative_constraint_reset"
+        ]
+      },
       "execution_state": "not_executed",
       "actual_observation": "not_observed",
       "primary_requirement_refs": [
@@ -5114,6 +6398,13 @@
         "HELIXOS-L3-017-B01"
       ],
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
+      "condition": "workflow_material_unknown",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "quantity_unresolved"
+        ]
+      },
       "execution_state": "not_executed",
       "actual_observation": "not_observed",
       "primary_requirement_refs": [
@@ -5136,6 +6427,13 @@
         "HELIXOS-L3-017-B01"
       ],
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
+      "condition": "workflow_material_violation",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "cumulative_constraint_reset"
+        ]
+      },
       "execution_state": "not_executed",
       "actual_observation": "not_observed",
       "primary_requirement_refs": [
@@ -5158,6 +6456,13 @@
         "HELIXOS-L3-017-B01"
       ],
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
+      "condition": "workflow_material_unknown",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "quantity_unresolved"
+        ]
+      },
       "execution_state": "not_executed",
       "actual_observation": "not_observed",
       "primary_requirement_refs": [
@@ -5180,6 +6485,13 @@
         "HELIXOS-L3-017-B01"
       ],
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
+      "condition": "workflow_material_violation",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "cumulative_constraint_reset"
+        ]
+      },
       "execution_state": "not_executed",
       "actual_observation": "not_observed",
       "primary_requirement_refs": [
@@ -5202,6 +6514,13 @@
         "HELIXOS-L3-017-B01"
       ],
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
+      "condition": "workflow_material_violation",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "outstanding_obligation_lost"
+        ]
+      },
       "execution_state": "not_executed",
       "actual_observation": "not_observed",
       "primary_requirement_refs": [
@@ -5224,6 +6543,13 @@
         "HELIXOS-L3-017-B01"
       ],
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
+      "condition": "workflow_material_unknown",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_unresolved"
+        ]
+      },
       "execution_state": "not_executed",
       "actual_observation": "not_observed",
       "primary_requirement_refs": [
@@ -5246,6 +6572,13 @@
         "HELIXOS-L3-017-B01"
       ],
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
+      "condition": "workflow_material_violation",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "meaning_change_self_confirmed"
+        ]
+      },
       "execution_state": "not_executed",
       "actual_observation": "not_observed",
       "primary_requirement_refs": [
@@ -5268,6 +6601,13 @@
         "HELIXOS-L3-017-B01"
       ],
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
+      "condition": "workflow_material_unknown",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_unresolved"
+        ]
+      },
       "execution_state": "not_executed",
       "actual_observation": "not_observed",
       "primary_requirement_refs": [
@@ -5290,6 +6630,13 @@
         "HELIXOS-L3-017-B01"
       ],
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
+      "condition": "workflow_material_violation",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "completion_claim_unproven"
+        ]
+      },
       "execution_state": "not_executed",
       "actual_observation": "not_observed",
       "primary_requirement_refs": [
@@ -5312,6 +6659,13 @@
         "HELIXOS-L3-017-B01"
       ],
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
+      "condition": "workflow_material_unknown",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "completion_claim_unresolved"
+        ]
+      },
       "execution_state": "not_executed",
       "actual_observation": "not_observed",
       "primary_requirement_refs": [
@@ -5334,6 +6688,13 @@
         "HELIXOS-L3-017-B01"
       ],
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
+      "condition": "workflow_material_unknown",
+      "selected_phase": null,
+      "expected": {
+        "finding_codes": [
+          "phase_unresolved"
+        ]
+      },
       "execution_state": "not_executed",
       "actual_observation": "not_observed",
       "primary_requirement_refs": [
@@ -5356,6 +6717,11 @@
         "HELIXOS-L3-017-B01"
       ],
       "purpose": "左側候補形成に未来の実認可/実資源/receiptを一律要求しない。",
+      "condition": "workflow_material_corresponding",
+      "selected_phase": "candidate",
+      "expected": {
+        "finding_codes": []
+      },
       "execution_state": "not_executed",
       "actual_observation": "not_observed",
       "primary_requirement_refs": [
@@ -5378,6 +6744,11 @@
         "HELIXOS-L3-017-B01"
       ],
       "purpose": "close/merge/labelは実workflow完了の証拠にしない。",
+      "condition": "workflow_material_corresponding",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": []
+      },
       "execution_state": "not_executed",
       "actual_observation": "not_observed",
       "primary_requirement_refs": [
@@ -5400,6 +6771,11 @@
         "HELIXOS-L3-017-B01"
       ],
       "purpose": "現在priorityは外部bindingで、ticket意味候補/digestを改めない。",
+      "condition": "workflow_material_corresponding",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": []
+      },
       "execution_state": "not_executed",
       "actual_observation": "not_observed",
       "primary_requirement_refs": [
@@ -5423,6 +6799,11 @@
         "HELIXOS-L3-017-B01"
       ],
       "purpose": "対象変更を候補/digestへ保持し、固定全案件列へ縮退しない。",
+      "condition": "workflow_material_corresponding",
+      "selected_phase": "candidate",
+      "expected": {
+        "finding_codes": []
+      },
       "execution_state": "not_executed",
       "actual_observation": "not_observed",
       "primary_requirement_refs": [
@@ -5445,6 +6826,11 @@
         "HELIXOS-L3-017-B01"
       ],
       "purpose": "必要依存の差を候補/digestへ保持。",
+      "condition": "workflow_material_corresponding",
+      "selected_phase": "candidate",
+      "expected": {
+        "finding_codes": []
+      },
       "execution_state": "not_executed",
       "actual_observation": "not_observed",
       "primary_requirement_refs": [
@@ -5467,6 +6853,11 @@
         "HELIXOS-L3-017-B01"
       ],
       "purpose": "案件によってgraphの対象/件数が変わる。ここから固定階層/分解数を定めない。",
+      "condition": "workflow_material_corresponding",
+      "selected_phase": "candidate",
+      "expected": {
+        "finding_codes": []
+      },
       "execution_state": "not_executed",
       "actual_observation": "not_observed",
       "primary_requirement_refs": [
@@ -5489,6 +6880,13 @@
         "HELIXOS-L3-017-B01"
       ],
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
+      "condition": "workflow_material_unknown",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_unresolved"
+        ]
+      },
       "execution_state": "not_executed",
       "actual_observation": "not_observed",
       "primary_requirement_refs": [
@@ -5511,6 +6909,13 @@
         "HELIXOS-L3-017-B01"
       ],
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
+      "condition": "workflow_material_unknown",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_unresolved"
+        ]
+      },
       "execution_state": "not_executed",
       "actual_observation": "not_observed",
       "primary_requirement_refs": [
@@ -5534,6 +6939,14 @@
         "HELIXOS-L3-017-B01"
       ],
       "purpose": "空受入を充足へしない。",
+      "condition": "workflow_material_unknown",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_unresolved",
+          "source_unresolved"
+        ]
+      },
       "execution_state": "not_executed",
       "actual_observation": "not_observed",
       "primary_requirement_refs": [
@@ -5556,6 +6969,13 @@
         "HELIXOS-L3-017-B01"
       ],
       "purpose": "提供record間で一致していても元bindingへの結合を欠かさない。",
+      "condition": "workflow_material_violation",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_conflict"
+        ]
+      },
       "execution_state": "not_executed",
       "actual_observation": "not_observed",
       "primary_requirement_refs": [
@@ -5578,6 +6998,13 @@
         "HELIXOS-L3-017-B01"
       ],
       "purpose": "提供record間で一致していても元bindingへの結合を欠かさない。",
+      "condition": "workflow_material_violation",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_conflict"
+        ]
+      },
       "execution_state": "not_executed",
       "actual_observation": "not_observed",
       "primary_requirement_refs": [
@@ -5600,6 +7027,13 @@
         "HELIXOS-L3-017-B01"
       ],
       "purpose": "提供record間で一致していても元bindingへの結合を欠かさない。",
+      "condition": "workflow_material_violation",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_conflict"
+        ]
+      },
       "execution_state": "not_executed",
       "actual_observation": "not_observed",
       "primary_requirement_refs": [
@@ -5622,6 +7056,13 @@
         "HELIXOS-L3-017-B01"
       ],
       "purpose": "提供record間で一致していても元bindingへの結合を欠かさない。",
+      "condition": "workflow_material_violation",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_conflict"
+        ]
+      },
       "execution_state": "not_executed",
       "actual_observation": "not_observed",
       "primary_requirement_refs": [
@@ -5644,6 +7085,13 @@
         "HELIXOS-L3-017-B01"
       ],
       "purpose": "工程sourceと元contract bindingを混同しない。",
+      "condition": "workflow_material_violation",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_conflict"
+        ]
+      },
       "execution_state": "not_executed",
       "actual_observation": "not_observed",
       "primary_requirement_refs": [
@@ -5666,6 +7114,13 @@
         "HELIXOS-L3-017-B01"
       ],
       "purpose": "差戻しphaseで不足/相反/運転制約を個別保持し、素材routeを実適用へしない。",
+      "condition": "workflow_material_violation",
+      "selected_phase": "backflow",
+      "expected": {
+        "finding_codes": [
+          "source_conflict"
+        ]
+      },
       "execution_state": "not_executed",
       "actual_observation": "not_observed",
       "primary_requirement_refs": [
@@ -5688,6 +7143,13 @@
         "HELIXOS-L3-017-B01"
       ],
       "purpose": "差戻しphaseで不足/相反/運転制約を個別保持し、素材routeを実適用へしない。",
+      "condition": "workflow_material_violation",
+      "selected_phase": "backflow",
+      "expected": {
+        "finding_codes": [
+          "source_conflict"
+        ]
+      },
       "execution_state": "not_executed",
       "actual_observation": "not_observed",
       "primary_requirement_refs": [
@@ -5710,6 +7172,13 @@
         "HELIXOS-L3-017-B01"
       ],
       "purpose": "差戻しphaseで不足/相反/運転制約を個別保持し、素材routeを実適用へしない。",
+      "condition": "workflow_material_unknown",
+      "selected_phase": "backflow",
+      "expected": {
+        "finding_codes": [
+          "source_unresolved"
+        ]
+      },
       "execution_state": "not_executed",
       "actual_observation": "not_observed",
       "primary_requirement_refs": [
@@ -5732,6 +7201,13 @@
         "HELIXOS-L3-017-B01"
       ],
       "purpose": "差戻しphaseで不足/相反/運転制約を個別保持し、素材routeを実適用へしない。",
+      "condition": "workflow_material_unknown",
+      "selected_phase": "backflow",
+      "expected": {
+        "finding_codes": [
+          "backflow_result_unresolved"
+        ]
+      },
       "execution_state": "not_executed",
       "actual_observation": "not_observed",
       "primary_requirement_refs": [
@@ -5754,6 +7230,13 @@
         "HELIXOS-L3-017-B01"
       ],
       "purpose": "差戻しphaseで不足/相反/運転制約を個別保持し、素材routeを実適用へしない。",
+      "condition": "workflow_material_violation",
+      "selected_phase": "backflow",
+      "expected": {
+        "finding_codes": [
+          "workflow_condition_rejected"
+        ]
+      },
       "execution_state": "not_executed",
       "actual_observation": "not_observed",
       "primary_requirement_refs": [
@@ -5776,6 +7259,14 @@
         "HELIXOS-L3-017-B01"
       ],
       "purpose": "差戻しphaseで不足/相反/運転制約を個別保持し、素材routeを実適用へしない。",
+      "condition": "workflow_material_unknown",
+      "selected_phase": "backflow",
+      "expected": {
+        "finding_codes": [
+          "dependency_unresolved",
+          "source_unresolved"
+        ]
+      },
       "execution_state": "not_executed",
       "actual_observation": "not_observed",
       "primary_requirement_refs": [
@@ -5798,6 +7289,11 @@
         "HELIXOS-L3-017-B01"
       ],
       "purpose": "左側素材生成が運転前の権限成立を主張しない。",
+      "condition": "workflow_material_corresponding",
+      "selected_phase": "candidate",
+      "expected": {
+        "finding_codes": []
+      },
       "execution_state": "not_executed",
       "actual_observation": "not_observed",
       "primary_requirement_refs": [
@@ -5820,6 +7316,11 @@
         "HELIXOS-L3-017-B01"
       ],
       "purpose": "workflowで未選択の未来resume結果を読まない。",
+      "condition": "workflow_material_corresponding",
+      "selected_phase": "workflow",
+      "expected": {
+        "finding_codes": []
+      },
       "execution_state": "not_executed",
       "actual_observation": "not_observed",
       "primary_requirement_refs": [
@@ -5835,23 +7336,11 @@
     }
   ],
   "removed_materials": {
-    "decision_ref": "docs/governance/decisions/verification-doc-Four-layer-dedup-po-decision-2026-10-16.md",
+    "decision_ref": "https://github.com/RetryYN/HELIX-HARNESS/issues/3510#issuecomment-6447665479",
     "git_commit": "65e8e0180da7901b5c9e405382714a14d4d20002",
-    "revision": "65e8e0180da7901b5c9e405382714a14d4d20002",
     "path": "docs/helix-os/L9-integration-verification/ticket-workflow-derivation.json",
-    "sha256": "fa579b288405aa12c5e553c44347056c7b45e5a36ea0695e5cb758e5e9b72548",
-    "relocated_to": {
-      "path": "docs/helix-os/L7-function-verification/ticket-workflow-derivation.json",
-      "revision": "ec98a025d166a5e9f7811233498b7e7e31dbb145",
-      "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146",
-      "pointers": [
-        "/shared_values_contract",
-        "/objects",
-        "/cases"
-      ]
-    },
-    "meaning": "原L9（commit 65e8e0180da7901b5c9e405382714a14d4d20002, SHA-256 fa579b288405aa12c5e553c44347056c7b45e5a36ea0695e5cb758e5e9b72548）が保有していた217件の具体検証材料（/cases[*].given および /cases[*].expected_proposal）はPR-2（#3921, merge commit ec98a025d166a5e9f7811233498b7e7e31dbb145, SHA-256 505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146）でL7（docs/helix-os/L7-function-verification/ticket-workflow-derivation.json）の /objects（given_input_ref, original_expected_ref）および /cases[*].original_case_metadata へ無損失・同順序で移管済みであるため本L9から撤去し、L9にはL4 /contracts[0..3]と1対1に対応する /cases[0..3]（HELIXOS-L9-017-F01..F03, HELIXOS-L9-017-B01）、integration_cases（217件のメタデータ・L7 pointer参照）、および #3921 merge commit ec98a025d166a5e9f7811233498b7e7e31dbb145 固定のL7 pointer参照を保持する。L7の /objects・/cases と本L9の保持メタデータを合成することで原L9（2,498,822 bytes, SHA-256 fa579b288405aa12c5e553c44347056c7b45e5a36ea0695e5cb758e5e9b72548）が100%無損失（byte-for-byte完全一致）に再構成される。",
-    "removed_key_rule": "L7（docs/helix-os/L7-function-verification/ticket-workflow-derivation.json @ ec98a025d166a5e9f7811233498b7e7e31dbb145）へ完全一致で移管済みの /cases[*].(given, expected_proposal) の具体材料本体のみをL9から撤去し、L4↔L9 1対1契約束縛（/cases[0..3]）・217件のintegration_casesメタデータ・全source_pins・approved_whole_objects・specification・completion・L7 pointer参照を保持する。",
+    "meaning": "原L9（commit 65e8e0180da7901b5c9e405382714a14d4d20002, SHA-256 fa579b288405aa12c5e553c44347056c7b45e5a36ea0695e5cb758e5e9b72548）が保有していた217件の具体検証材料（/cases[*].given および /cases[*].expected_proposal の大域構造）はPR-2（#3921, merge commit ec98a025d166a5e9f7811233498b7e7e31dbb145, SHA-256 505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146）でL7（docs/helix-os/L7-function-verification/ticket-workflow-derivation.json）の /objects（given_input_ref, original_expected_ref）および /cases[*].original_case_metadata へ無損失・同順序で移管済みであるため本L9から撤去し、L9にはL4 /contracts[0..3]と1対1に対応する /cases[0..3]（HELIXOS-L9-017-F01..F03, HELIXOS-L9-017-B01）、integration_cases（217件のメタデータ・原expected_proposalのcondition/selected_phase/expected.finding_codes・l7_material_ref）、および l7_material_bundle_ref を保持する。L7の /objects・/cases と本L9の保持メタデータを合成することで原L9（2,498,822 bytes, SHA-256 fa579b288405aa12c5e553c44347056c7b45e5a36ea0695e5cb758e5e9b72548）が100%無損失（byte-for-byte完全一致）に再構成される。",
+    "removed_key_rule": "L7（docs/helix-os/L7-function-verification/ticket-workflow-derivation.json @ ec98a025d166a5e9f7811233498b7e7e31dbb145）へ完全一致で移管済みの /cases[*].(given, expected_proposal) の具体材料本体のみをL9から撤去し、L4↔L9 1対1契約束縛（/cases[0..3]）・217件のintegration_cases（id, requirement_refs, purpose, condition, selected_phase, expected.finding_codes, execution_state, actual_observation, primary_requirement_refs, source_case_pointer, l7_material_ref）・source_pins・legacy_comparison・approved_whole_objects・remaining・fixture_contract・l7_material_bundle_ref・completionを保持する。",
     "use_boundary": "git履歴参照は監査・由来追跡に限り、テスト生成・検証実行・要求意味の導出には使用しない。"
   },
   "completion": {
