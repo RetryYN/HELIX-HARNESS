@@ -213,8 +213,9 @@
     "owner_ref": "deferred to L5 successor",
     "class_scope": {
       "phase_in_key": false,
-      "invariant": "全体condition、全体ordered finding signature、binding.project comparisonのaxis/stateがclass rowに記録した値と一致すること。別findingや異なる全体severityを持つcaseは同じclassへ含めない。",
+      "invariant": "全体condition、全体ordered finding signature、inputs facetの局所stateがclass rowに記録した値と一致すること。同facet内のslot/field差はclass区分に使わず、別findingや異なる全体severityを持つcaseは同じclassへ含めない。",
       "fixed_witness": "resume phaseはL7 fixed raw inputから導いたcase-specific witnessであり、class key/conditionの範囲をresumeへ限定しない。"
-    }
+    },
+    "fixed_witness": "resume phaseはL7 fixed raw inputから導いたcase-specific witness。binding.projectはこのwitnessとsource pointerで特定し、class condition/keyは個別field/slotに限定しない。"
   }
 }

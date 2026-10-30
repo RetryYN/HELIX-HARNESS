@@ -215,8 +215,10 @@ def validate_class_rows_and_unmarked_mode() -> None:
     ]
     for row, (overall_condition, finding_signature, comparison_state) in zip(rows, condition_invariants):
         condition = row.get("condition", "")
-        if "Phase非依存" not in condition or "resume" in condition.lower():
+        if "phase非依存" not in condition or "resume" in condition.lower():
             raise AssertionError(f"class condition must be phase-independent: {row.get('class_id')}")
+        if "binding.project" in condition or "inputs facetの局所state" not in condition:
+            raise AssertionError(f"class condition must describe facet state without a field/slot: {row.get('class_id')}")
         if (
             row.get("code") != overall_condition
             or row.get("expected", {}).get("finding_codes") != finding_signature

@@ -4,7 +4,7 @@
 
 - 対象V-pair: HELIX-OS OS017 L4/L9、PR #3945 R1 M1/F2への対応。
 - L4条件表とL7 `given_input_ref` の固定入力から、resume phaseの `binding.project` 比較に関する2つの負例候補を形成した。
-- resumeは固定入力のwitnessが置かれたcase phaseであり、L4 class condition/keyはphaseを含まない。classの不変条件は全体condition、全体ordered finding signature、binding.project comparisonのinputs axis/stateである。全体finding signatureやseverityが異なるcaseは同じclassに含めない。
+- resumeは固定入力のwitnessが置かれたcase phaseであり、L4 class condition/keyはphaseやfield/slotを含まない。classの不変条件は全体condition、全体ordered finding signature、inputs facetの局所stateである。同じinputs facet内の別field witnessも同じkeyに属し得るが、全体finding signatureやseverityが異なるcaseは同じclassに含めない。
 - L9 `OS017-NORMAL-RESUME`に対応するL7 `OS017-L8-NORMAL-RESUME`は比較用の基準入力であり、負例classには含めない。
 - L9の `condition` / `expected` は導出に使わない。L7 `original_expected_ref` も導出に使わない。L7期待は旧L9→旧L8→L7の移管lineageがあるため独立oracleと主張しない。
 - L7の入力・binding・context bindingはRFC6901 pointerを実値まで解決して記録した。context参照はcontext objectの`/binding`からbinding objectの`/project`へ辿る。

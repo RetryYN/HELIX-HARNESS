@@ -598,7 +598,7 @@
       "class_id": "OS017-NEG-inputs-source_unresolved",
       "code": "workflow_material_unknown",
       "design_ref": "HELIXOS-L4-017-F01",
-      "condition": "Phase非依存の負例意味: 全体condition=workflow_material_unknown、全体ordered finding signature=[source_unresolved]、binding.project comparisonのaxis=inputs / comparison state=unknown。全体conditionまたは全体finding signatureが異なるcaseは本classに含めない。",
+      "condition": "phase非依存の負例意味: 全体condition=workflow_material_unknown、全体ordered finding signature=[source_unresolved]、inputs facetの局所state=unknown。全体conditionまたは全体finding signatureが異なるcaseは本classに含めない。",
       "expected_classification": "workflow_material_unknown",
       "expected": {
         "finding_codes": [
@@ -659,7 +659,7 @@
       "class_id": "OS017-NEG-inputs-source_conflict",
       "code": "workflow_material_violation",
       "design_ref": "HELIXOS-L4-017-F01",
-      "condition": "Phase非依存の負例意味: 全体condition=workflow_material_violation、全体ordered finding signature=[source_conflict]、binding.project comparisonのaxis=inputs / comparison state=violation。全体conditionまたは全体finding signatureが異なるcaseは本classに含めない。",
+      "condition": "phase非依存の負例意味: 全体condition=workflow_material_violation、全体ordered finding signature=[source_conflict]、inputs facetの局所state=violation。全体conditionまたは全体finding signatureが異なるcaseは本classに含めない。",
       "expected_classification": "workflow_material_violation",
       "expected": {
         "finding_codes": [
