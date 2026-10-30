@@ -1,0 +1,53 @@
+{
+  "schema": "wr245-phase-reference-source-index.v1",
+  "source_revision": "4ba3f600df75aa6e860e0ddf53db68644e1edf98",
+  "row_count": 4,
+  "rows": [
+    {
+      "reference_id": "REFERENCE-1",
+      "phase": "dispatch",
+      "source_revision": "4ba3f600df75aa6e860e0ddf53db68644e1edf98",
+      "source_path": "docs/helix-security/L8-unit-verification/revoke-quarantine-propagation.json",
+      "source_file_sha256": "b9d803fe039eb8ed23623b91724cf54092eb83f4f6af86de8ebe64e36676ca6b",
+      "source_pointer": "/cases/0/raw_input/value",
+      "source_case_id": "SEC009-REVOKED-DISPATCH",
+      "input_sha256_canonical_json": "00b16e6a021ec172d50e6e3743c3cfba8c6a4bfcfde928f53848f7cbf36232a9",
+      "cross_layer_source_pointer": {
+        "source_path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+        "source_file_sha256": "ed74cdc558bd8ba9cad5d8b075eee137bafba9c65e9a4a18bb862c728b646b4f",
+        "pointer": "/cases/0/given/input",
+        "case_id": "SEC009-REVOKED-DISPATCH"
+      }
+    },
+    {
+      "reference_id": "REFERENCE-2",
+      "phase": "received",
+      "source_revision": "4ba3f600df75aa6e860e0ddf53db68644e1edf98",
+      "source_path": "docs/helix-security/L8-unit-verification/revoke-quarantine-propagation.json",
+      "source_file_sha256": "b9d803fe039eb8ed23623b91724cf54092eb83f4f6af86de8ebe64e36676ca6b",
+      "source_pointer": "/cases/1/raw_input/value",
+      "source_case_id": "SEC009-REVOKED-RECEIVED",
+      "input_sha256_canonical_json": "c7bde6c7ebfe9e21104ef08dd85e2da1882e82fb0af9cf45b517c7cc34e2d779"
+    },
+    {
+      "reference_id": "REFERENCE-3",
+      "phase": "applied",
+      "source_revision": "4ba3f600df75aa6e860e0ddf53db68644e1edf98",
+      "source_path": "docs/helix-security/L8-unit-verification/revoke-quarantine-propagation.json",
+      "source_file_sha256": "b9d803fe039eb8ed23623b91724cf54092eb83f4f6af86de8ebe64e36676ca6b",
+      "source_pointer": "/cases/2/raw_input/value",
+      "source_case_id": "SEC009-REVOKED-APPLIED",
+      "input_sha256_canonical_json": "857be1796142a577a95ce37ddc5c4ee2001f44967de40da0b4f3774c9bf82575"
+    },
+    {
+      "reference_id": "REFERENCE-4",
+      "phase": "recovery",
+      "source_revision": "4ba3f600df75aa6e860e0ddf53db68644e1edf98",
+      "source_path": "docs/helix-security/L8-unit-verification/revoke-quarantine-propagation.json",
+      "source_file_sha256": "b9d803fe039eb8ed23623b91724cf54092eb83f4f6af86de8ebe64e36676ca6b",
+      "source_pointer": "/cases/3/raw_input/value",
+      "source_case_id": "SEC009-REVOKED-RECOVERY",
+      "input_sha256_canonical_json": "bbfb1f810c68d5259c19c53d1b642f0a9cfb71221f2d0b39ef65759e342d9f7f"
+    }
+  ]
+}

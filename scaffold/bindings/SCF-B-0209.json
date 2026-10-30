@@ -1,0 +1,147 @@
+{
+  "schema_revision": 1,
+  "id": "SCF-B-0209",
+  "kind": "scaffold",
+  "title": "WR245 SEC009 fixed blind and explicit pair measurement evidence",
+  "product": "HELIX-HARNESS",
+  "owner_candidate": "HELIX-SECURITY SEC009 L4/L9 source comparison evidence owner",
+  "state": "registered",
+  "reason": "WR245の比較前固定blind bytes、入力/source再構成、既存L9との行別比較、L8/L9 pair測定を追試可能なsource-only scaffold evidenceとして保持する。",
+  "upstream": [
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.json",
+      "sha256": "e4eeb70cc303e44199c7d898281e91c22dba89b47666353b9c80a4c634e898b5",
+      "note": "Approved SEC009 L3 functional meaning used for source-only independent classification."
+    },
+    {
+      "path": "docs/helix-security/L4-basic-design/revoke-quarantine-propagation.json",
+      "sha256": "c0a31c5c663d39854ed1df13b9bf2bfc439fdb46419d089bc617607d6e6ac5b6",
+      "note": "Base source for class meanings; no L4 algorithm executed and source bytes unchanged."
+    },
+    {
+      "path": "docs/helix-security/L8-unit-verification/revoke-quarantine-propagation.json",
+      "sha256": "ebfb5a50360fbcf4c0df262a4c31c87870b963b9d4e557888d63aef74699c777",
+      "note": "Nested L8 case inventory measured read-only; no source edits."
+    },
+    {
+      "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+      "sha256": "62913b58577cfc0f3c7e6682ad160d8f236157a0ceed9c88ef71822330ed60fc",
+      "note": "Existing assignments and nested case inventory measured read-only; expected values and assignment semantics unchanged."
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.json",
+      "sha256": "e6da7eaff29a623b5d069801280c295d9dd7cc43b51d9cde25b12a8110e5072a",
+      "note": "Approved SEC009 L10 verification obligations used for source-only independent classification."
+    },
+    {
+      "path": "docs/governance/design-verification-quality-assurance.md",
+      "sha256": "f5751e236dc073fe67114c1fcb4b0f64b3d746290b25d75b61e60a08e3c99c85",
+      "note": "QA §3 explicit marker, class table, and L8 unit_cases/L9 integration_cases schema requirements."
+    },
+    {
+      "path": "docs/governance/github-upstream-operating-model.md",
+      "sha256": "637f4c4b8ba76ebd4b722a3d36cfa1f7faed45f0228f7528e56c072bc288f2d3",
+      "note": "design_verification one V-pair/PR scope."
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/security-engagement-authority-requirements.md",
+      "sha256": "38a68e48ca26cb277b6f5d88439b33b58aecf48f5b650f7596aec04e438b6b16",
+      "note": "LEGACY-ASSET-D461943347D372ECF6DA lines 24-42; semantic rederivation only, no runtime or authority import. 静的read-only参照のみ"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/security-capability-broker-authority.md",
+      "sha256": "161722d80e7b0199310b1401992c3737bef2014b19b2776c0df4b15f833fe0a7",
+      "note": "LEGACY-ASSET-B62E49D2E156232B8C63 lines 121-151; semantic rederivation only, no runtime or authority import. 静的read-only参照のみ"
+    }
+  ],
+  "role": "WR245 source-only blind comparison and explicit L8/L9 pair measurement",
+  "obligations": [
+    "Record the WR245 casewise blind artifact SHA and source-only input/reference pins before comparison.",
+    "Compare all 245 new blind rows with existing L9 assignments and preserve row-specific evidence.",
+    "Reuse the WR236 frozen blind 30 only as a separately counted population; preserve its one recorded mismatch and later review rationale without rewriting it.",
+    "Measure all nested L8/L9 case IDs and positive/negative contract groupings; do not infer explicit schema conformance from matching IDs alone.",
+    "Keep 2 ambiguous cases and 71 multi-contract residuals outside class assignments with their existing semantic return reasons.",
+    "Do not add four-layer markers, mutate L4/L9 expectations, touch L5/L8, execute old runtime/test/CI, or execute the L4 algorithm."
+  ],
+  "verification": {
+    "evidence_kind": "scaffold",
+    "scope": [
+      "negative_case",
+      "schema_interface",
+      "source_revision_stale"
+    ],
+    "oracles": [
+      "WR245 245-row blind artifact exact bytes SHA-256 d047fcec962b1c9d83a191d9fdd777eea47862af2f906f3adf8f0b1450d1db97, fixed before comparison in Issue #3510 comment 6534549651",
+      "Static validator replays pinned source Git history and RFC 6902 context-copy records; verifies pre-freeze input SHA-256 95343ae906be8e2d64f793eb2bb88eb9d67a42d4dce29d4165689a35ce80cc2f and each of 245 canonical input digests",
+      "Static validator verifies four phase references against historical L8 source pointers and REFERENCE-1 against L9 source pointer",
+      "Static validator verifies 245 measurement rows against fixed blind bytes and compares recorded assignments to the base L9 source; it does not generate classifications, expected results, or assignments",
+      "WR236 30-row frozen blind comparison independently counted as 29 matches and one preserved mismatch",
+      "L8/L9 nested case inventory exact ID bijection and contract/population split",
+      "QA §3 explicit schema arrays and same-layer class marker presence measured separately",
+      "source-only before/after SHA-256 equality for L3/L4/L8/L9/L10 and operating references",
+      "71 row-wise multi-contract and two ambiguous audit rows: source input/finding pointers and values, L3/L10/L4 target crosswalk, return owner, and PR-B disposition checked by static validator"
+    ],
+    "negative_cases": [
+      "Do not report all 275 rows as blind matches; the combined reused population contains one frozen WR236 mismatch.",
+      "Do not infer formal explicit-mode readiness from the 285-row matching ID sets.",
+      "Do not alter ambiguous or multi-contract residual assignments to make counts align.",
+      "Do not alter expected values, case IDs, L5/L8, authentication settings, or runtime behavior.",
+      "Do not edit or regenerate the frozen WR245 blind bytes; validate their exact SHA-256 and pre-comparison comment reference."
+    ]
+  },
+  "replacement": {
+    "role_target": "Follow-up explicit class tables after L5/L8 pair schema and four-layer marker readiness are established",
+    "formal_artifacts": [],
+    "issue": 3510,
+    "status": "pending"
+  },
+  "created": "2026-10-31",
+  "updated": "2026-10-31",
+  "connections": {
+    "consumers": [
+      "WR245 / Issue #3510 SEC009 L4/L9 PR-A planning"
+    ],
+    "dependencies": [
+      "WR245 fixed independent blind bytes frozen in Issue #3510 comment 6534549651",
+      "Pinned historical SEC009 L8/L9 fixture Git blobs and RFC 6902 materialization patch",
+      "WR236 frozen 30-case blind artifact and review follow-up",
+      "QA §3 explicit class mode",
+      "existing SEC009 L8/L9 nested case inventories"
+    ],
+    "boundary": "scaffold research only; canonical L4/L9 source bytes are unchanged; L5/L8 unchanged; no authority or operation effect."
+  },
+  "operations": {
+    "allowed": [
+      "read exact pinned L3/L4/L8/L9/L10 and QA source bytes",
+      "compare fixed opaque blind rows by case ID with existing L9 assignments",
+      "measure nested L8/L9 ID uniqueness and set equality",
+      "run scfctl validate and static source/hash checks",
+      "read pinned historical SEC009 case inputs, expected findings, and requirement/design/verification cross-layer pointers for residual disposition evidence"
+    ],
+    "forbidden": [
+      "edit L5 or L8",
+      "change L4 class semantics, L9 expectations or case assignments",
+      "add partial or complete explicit four-layer markers",
+      "alter case IDs or fabricate/delete cases to fit the checker",
+      "execute old-generation archive source/runtime/test/hook/adapter/CI",
+      "execute L4 algorithm or any runtime/test/CI",
+      "modify authentication, authorization, credentials, production systems or external services",
+      "旧archiveは実行しない",
+      "assign a single class to multi-contract or ambiguous rows without source-supported one-to-one semantic evidence"
+    ]
+  },
+  "artifacts": [
+    "scaffold/research/wr245-sec009-explicit-pair-measurement-20261031/README.md",
+    "scaffold/research/wr245-sec009-explicit-pair-measurement-20261031/measurement.json",
+    "scaffold/bindings/SCF-B-0209.json",
+    "scaffold/research/wr245-sec009-explicit-pair-measurement-20261031/wr245-casewise-blind-fixed.json",
+    "scaffold/research/wr245-sec009-explicit-pair-measurement-20261031/wr245-unlabeled-inputs-fixed.json",
+    "scaffold/research/wr245-sec009-explicit-pair-measurement-20261031/wr245-phase-reference-inputs-fixed.json",
+    "scaffold/research/wr245-sec009-explicit-pair-measurement-20261031/wr245-input-source-index.json",
+    "scaffold/research/wr245-sec009-explicit-pair-measurement-20261031/wr245-reference-source-index.json",
+    "scaffold/research/wr245-sec009-explicit-pair-measurement-20261031/wr245-postfreeze-comparison.json",
+    "scaffold/research/wr245-sec009-explicit-pair-measurement-20261031/validate_wr245_materialization.py",
+    "scaffold/research/wr245-sec009-explicit-pair-measurement-20261031/multi-contract-residual-audit.json",
+    "scaffold/research/wr245-sec009-explicit-pair-measurement-20261031/validate_wr245_residual_audit.py"
+  ]
+}
