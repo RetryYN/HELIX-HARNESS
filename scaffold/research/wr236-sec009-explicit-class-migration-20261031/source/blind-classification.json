@@ -1,0 +1,940 @@
+{
+  "schema": "wr236-sec009-blind-classification/v1",
+  "base_revision": "f38ee6f21a680a82ef5ecc1c6c4c25ba2f0bda52",
+  "index_sha256": "380ec88fe03a2b5ebe34c2961e42bafdd2d90b46c586be92b0c52b7eb2685fa0",
+  "legacy_source_revision": "4ba3f600df75aa6e860e0ddf53db68644e1edf98",
+  "legacy_source_sha256": "ed74cdc558bd8ba9cad5d8b075eee137bafba9c65e9a4a18bb862c728b646b4f",
+  "basis": {
+    "requirements": "docs/helix-security/L3-requirements/functional-requirements.json",
+    "verification": "docs/helix-security/L10-verification/functional-verification.json",
+    "design": "docs/helix-security/L4-basic-design/revoke-quarantine-propagation.json",
+    "scope": "選択されたphase内のoperation/recipient。実停止・実復旧の成否や再開許可を生成しない。"
+  },
+  "cases": [
+    {
+      "case_id": "SEC009-CATEGORY-CONFLICT",
+      "phase": "applied",
+      "assessment": "candidate",
+      "candidate_classes": [
+        {
+          "class_id": "SEC009_F02_TRIGGER_CATEGORY_CONFLICT",
+          "axis": "safety_vs_general_meaning_category",
+          "state": "violation",
+          "owner": "revoke-quarantine-owner",
+          "design_pointer": "/failure_classifications/19",
+          "rationale": "event.categoryと独立expected_categoryが既知値どうしで相反し、安全triggerを一般meaning通知と偽るか一般通知を安全triggerと取り違えている。"
+        }
+      ],
+      "input_pointer": "/cases/323/given/input",
+      "evidence_fields": [
+        "/event/category",
+        "/event/trigger",
+        "/context/expected_category"
+      ],
+      "note": "入力で示された該当fieldとphaseを、L4のfailure_classificationsのconditionおよびaxis/state/ownerに照合した候補。",
+      "source_case_index": 323,
+      "context_provenance": {
+        "mode": "rfc6902_copy",
+        "patch_destination": "/cases/323/given/input/context",
+        "copy_source": "/cases/0/given/input/context",
+        "source_context_has_expected_category": true,
+        "source_context_has_expected_recipient_set": true,
+        "source_context_has_expected_policy_and_report_refs": true
+      },
+      "effective_context_pointer": "/cases/0/given/input/context"
+    },
+    {
+      "case_id": "SEC009-CATEGORY-UNKNOWN",
+      "phase": "applied",
+      "assessment": "candidate",
+      "candidate_classes": [
+        {
+          "class_id": "SEC009_F02_TRIGGER_CATEGORY_UNRESOLVED",
+          "axis": "safety_vs_general_meaning_category",
+          "state": "unknown",
+          "owner": "revoke-quarantine-owner",
+          "design_pointer": "/failure_classifications/18",
+          "rationale": "event.categoryまたは独立expected_categoryが既知閉集合（safety/general_meaning）で解決できず、安全triggerか一般meaning通知かが未確定である。"
+        }
+      ],
+      "input_pointer": "/cases/322/given/input",
+      "evidence_fields": [
+        "/event/category"
+      ],
+      "note": "入力で示された該当fieldとphaseを、L4のfailure_classificationsのconditionおよびaxis/state/ownerに照合した候補。",
+      "source_case_index": 322,
+      "context_provenance": {
+        "mode": "rfc6902_copy",
+        "patch_destination": "/cases/322/given/input/context",
+        "copy_source": "/cases/0/given/input/context",
+        "source_context_has_expected_category": true,
+        "source_context_has_expected_recipient_set": true,
+        "source_context_has_expected_policy_and_report_refs": true
+      },
+      "effective_context_pointer": "/cases/0/given/input/context"
+    },
+    {
+      "case_id": "SEC009-EXPECTED-UNKNOWN",
+      "phase": "applied",
+      "assessment": "candidate",
+      "candidate_classes": [
+        {
+          "class_id": "SEC009_B01_RECIPIENT_SET_UNRESOLVED",
+          "axis": "selected_recipient_closure_set",
+          "state": "unknown",
+          "owner": "revoke-quarantine-owner",
+          "design_pointer": "/failure_classifications/2",
+          "rationale": "独立供給された期待recipient集合またはpolicy.selected_recipientsが五recipient閉集合の重複なしlistとして解決できない。"
+        }
+      ],
+      "input_pointer": "/cases/320/given/input",
+      "evidence_fields": [
+        "/context/expected_recipients"
+      ],
+      "note": "inline contextで独立期待recipient集合が解決できない。contextのexpected identity/policy/report refsは対応素材と一致し、追加のconflict候補は支持されない。",
+      "source_case_index": 320,
+      "context_provenance": {
+        "mode": "inline",
+        "pointer": "/cases/320/given/input/context",
+        "expected_recipient_set_resolved": false
+      },
+      "effective_context_pointer": "/cases/320/given/input/context"
+    },
+    {
+      "case_id": "SEC009-GLOBAL-STOP",
+      "phase": "applied",
+      "assessment": "candidate",
+      "candidate_classes": [
+        {
+          "class_id": "SEC009_F02_GLOBAL_STOP_EXPANSION",
+          "axis": "local_stop_scope_boundary",
+          "state": "violation",
+          "owner": "revoke-quarantine-owner",
+          "design_pointer": "/failure_classifications/21",
+          "rationale": "policy.all_scopes_stop_requested=trueにより、当該revision/scope・該当operation/recipientを超えて無関係な有効scopeへの全停止拡張が要求されている。"
+        }
+      ],
+      "input_pointer": "/cases/321/given/input",
+      "evidence_fields": [
+        "/policy/all_scopes_stop_requested"
+      ],
+      "note": "入力で示された該当fieldとphaseを、L4のfailure_classificationsのconditionおよびaxis/state/ownerに照合した候補。",
+      "source_case_index": 321,
+      "context_provenance": {
+        "mode": "rfc6902_copy",
+        "patch_destination": "/cases/321/given/input/context",
+        "copy_source": "/cases/0/given/input/context",
+        "source_context_has_expected_category": true,
+        "source_context_has_expected_recipient_set": true,
+        "source_context_has_expected_policy_and_report_refs": true
+      },
+      "effective_context_pointer": "/cases/0/given/input/context"
+    },
+    {
+      "case_id": "SEC009-ISOLATION-EVENT_ID-CONFLICT",
+      "phase": "recovery",
+      "assessment": "candidate",
+      "candidate_classes": [
+        {
+          "class_id": "SEC009_F02_ISOLATION_BINDING_CONFLICT",
+          "axis": "isolation_identity_or_before_state_binding",
+          "state": "violation",
+          "owner": "revoke-quarantine-owner",
+          "design_pointer": "/failure_classifications/23",
+          "rationale": "applied/recoveryのphaseで、isolation素材の共通5field・source_ref・before_state_refが原安全eventまたは独立context（expected_isolation_source_ref/before_state_ref）と既知値どうしで相反する。"
+        }
+      ],
+      "input_pointer": "/cases/285/given/input",
+      "evidence_fields": [
+        "/isolation/binding/event_id"
+      ],
+      "note": "入力で示された該当fieldとphaseを、L4のfailure_classificationsのconditionおよびaxis/state/ownerに照合した候補。",
+      "source_case_index": 285,
+      "context_provenance": {
+        "mode": "rfc6902_copy",
+        "patch_destination": "/cases/285/given/input/context",
+        "copy_source": "/cases/0/given/input/context",
+        "source_context_has_expected_category": true,
+        "source_context_has_expected_recipient_set": true,
+        "source_context_has_expected_policy_and_report_refs": true
+      },
+      "effective_context_pointer": "/cases/0/given/input/context"
+    },
+    {
+      "case_id": "SEC009-ISOLATION-EVENT_ID-MISSING",
+      "phase": "recovery",
+      "assessment": "candidate",
+      "candidate_classes": [
+        {
+          "class_id": "SEC009_F02_ISOLATION_BINDING_UNRESOLVED",
+          "axis": "isolation_identity_or_before_state_binding",
+          "state": "unknown",
+          "owner": "revoke-quarantine-owner",
+          "design_pointer": "/failure_classifications/22",
+          "rationale": "applied/recoveryのphaseで、isolation素材の共通5field・source_ref・before_state_refのいずれかが欠落・未解決であり、隔離対象と問題前状態の束縛が確定できない。"
+        }
+      ],
+      "input_pointer": "/cases/284/given/input",
+      "evidence_fields": [
+        "/isolation/binding/event_id"
+      ],
+      "note": "入力で示された該当fieldとphaseを、L4のfailure_classificationsのconditionおよびaxis/state/ownerに照合した候補。",
+      "source_case_index": 284,
+      "context_provenance": {
+        "mode": "rfc6902_copy",
+        "patch_destination": "/cases/284/given/input/context",
+        "copy_source": "/cases/0/given/input/context",
+        "source_context_has_expected_category": true,
+        "source_context_has_expected_recipient_set": true,
+        "source_context_has_expected_policy_and_report_refs": true
+      },
+      "effective_context_pointer": "/cases/0/given/input/context"
+    },
+    {
+      "case_id": "SEC009-ISOLATION-STATE-NOT_ISOLATED",
+      "phase": "recovery",
+      "assessment": "candidate",
+      "candidate_classes": [
+        {
+          "class_id": "SEC009_F02_ISOLATION_NOT_APPLIED",
+          "axis": "isolation_state",
+          "state": "violation",
+          "owner": "revoke-quarantine-owner",
+          "design_pointer": "/failure_classifications/25",
+          "rationale": "applied/recoveryのphaseで、isolation.stateがnot_isolatedであり、問題範囲の未隔離が確認された。"
+        }
+      ],
+      "input_pointer": "/cases/299/given/input",
+      "evidence_fields": [
+        "/isolation/state"
+      ],
+      "note": "入力で示された該当fieldとphaseを、L4のfailure_classificationsのconditionおよびaxis/state/ownerに照合した候補。",
+      "source_case_index": 299,
+      "context_provenance": {
+        "mode": "rfc6902_copy",
+        "patch_destination": "/cases/299/given/input/context",
+        "copy_source": "/cases/0/given/input/context",
+        "source_context_has_expected_category": true,
+        "source_context_has_expected_recipient_set": true,
+        "source_context_has_expected_policy_and_report_refs": true
+      },
+      "effective_context_pointer": "/cases/0/given/input/context"
+    },
+    {
+      "case_id": "SEC009-ISOLATION-STATE-UNKNOWN",
+      "phase": "recovery",
+      "assessment": "candidate",
+      "candidate_classes": [
+        {
+          "class_id": "SEC009_F02_ISOLATION_UNRESOLVED",
+          "axis": "isolation_state",
+          "state": "unknown",
+          "owner": "revoke-quarantine-owner",
+          "design_pointer": "/failure_classifications/24",
+          "rationale": "applied/recoveryのphaseで、isolation.stateがisolated以外の未確定状態（unknown/planned等）であり、問題範囲の隔離完了が確認できない。"
+        }
+      ],
+      "input_pointer": "/cases/298/given/input",
+      "evidence_fields": [
+        "/isolation/state"
+      ],
+      "note": "入力で示された該当fieldとphaseを、L4のfailure_classificationsのconditionおよびaxis/state/ownerに照合した候補。",
+      "source_case_index": 298,
+      "context_provenance": {
+        "mode": "rfc6902_copy",
+        "patch_destination": "/cases/298/given/input/context",
+        "copy_source": "/cases/0/given/input/context",
+        "source_context_has_expected_category": true,
+        "source_context_has_expected_recipient_set": true,
+        "source_context_has_expected_policy_and_report_refs": true
+      },
+      "effective_context_pointer": "/cases/0/given/input/context"
+    },
+    {
+      "case_id": "SEC009-OS_ASSIGNMENT-ACTIONS-DUPLICATE",
+      "phase": "dispatch",
+      "assessment": "candidate",
+      "candidate_classes": [
+        {
+          "class_id": "SEC009_F01_RECIPIENT_ACTIONS_UNRESOLVED",
+          "axis": "recipient_required_actions_shape",
+          "state": "unknown",
+          "owner": "revoke-quarantine-owner",
+          "design_pointer": "/failure_classifications/7",
+          "rationale": "選択された該当recipientのinstruction.actionsが重複なし非空文字列listとして成立せず（非list・非文字列要素・重複要素）、要求action集合を確定できない。"
+        }
+      ],
+      "input_pointer": "/cases/341/given/input",
+      "evidence_fields": [
+        "/instructions/os_assignment/actions"
+      ],
+      "note": "入力で示された該当fieldとphaseを、L4のfailure_classificationsのconditionおよびaxis/state/ownerに照合した候補。",
+      "source_case_index": 341,
+      "context_provenance": {
+        "mode": "rfc6902_copy",
+        "patch_destination": "/cases/341/given/input/context",
+        "copy_source": "/cases/0/given/input/context",
+        "source_context_has_expected_category": true,
+        "source_context_has_expected_recipient_set": true,
+        "source_context_has_expected_policy_and_report_refs": true
+      },
+      "effective_context_pointer": "/cases/0/given/input/context"
+    },
+    {
+      "case_id": "SEC009-OS_ASSIGNMENT-ACTIONS-EMPTY",
+      "phase": "applied",
+      "assessment": "candidate",
+      "candidate_classes": [
+        {
+          "class_id": "SEC009_F01_RECIPIENT_ACTIONS_UNRESOLVED",
+          "axis": "recipient_required_actions_shape",
+          "state": "unknown",
+          "owner": "revoke-quarantine-owner",
+          "design_pointer": "/failure_classifications/7",
+          "rationale": "選択された該当recipientのinstruction.actionsが重複なし非空文字列listとして成立せず（非list・非文字列要素・重複要素）、要求action集合を確定できない。"
+        }
+      ],
+      "input_pointer": "/cases/109/given/input",
+      "evidence_fields": [
+        "/instructions/os_assignment/actions"
+      ],
+      "note": "入力で示された該当fieldとphaseを、L4のfailure_classificationsのconditionおよびaxis/state/ownerに照合した候補。",
+      "source_case_index": 109,
+      "context_provenance": {
+        "mode": "rfc6902_copy",
+        "patch_destination": "/cases/109/given/input/context",
+        "copy_source": "/cases/0/given/input/context",
+        "source_context_has_expected_category": true,
+        "source_context_has_expected_recipient_set": true,
+        "source_context_has_expected_policy_and_report_refs": true
+      },
+      "effective_context_pointer": "/cases/0/given/input/context"
+    },
+    {
+      "case_id": "SEC009-OS_ASSIGNMENT-INSTRUCTIONS-EVENT_ID-CONFLICT",
+      "phase": "applied",
+      "assessment": "candidate",
+      "candidate_classes": [
+        {
+          "class_id": "SEC009_F01_INSTRUCTION_BINDING_CONFLICT",
+          "axis": "recipient_instruction_identity_or_policy_source_binding",
+          "state": "violation",
+          "owner": "revoke-quarantine-owner",
+          "design_pointer": "/failure_classifications/6",
+          "rationale": "選択された該当recipientのinstructionにおける共通5field・recipient固有identityまたはsource_refが、原安全eventまたは独立expected_policy_refsと既知値どうしで相反する。"
+        }
+      ],
+      "input_pointer": "/cases/76/given/input",
+      "evidence_fields": [
+        "/instructions/os_assignment/binding/event_id"
+      ],
+      "note": "入力で示された該当fieldとphaseを、L4のfailure_classificationsのconditionおよびaxis/state/ownerに照合した候補。",
+      "source_case_index": 76,
+      "context_provenance": {
+        "mode": "rfc6902_copy",
+        "patch_destination": "/cases/76/given/input/context",
+        "copy_source": "/cases/0/given/input/context",
+        "source_context_has_expected_category": true,
+        "source_context_has_expected_recipient_set": true,
+        "source_context_has_expected_policy_and_report_refs": true
+      },
+      "effective_context_pointer": "/cases/0/given/input/context"
+    },
+    {
+      "case_id": "SEC009-OS_ASSIGNMENT-INSTRUCTIONS-EVENT_ID-MISSING",
+      "phase": "applied",
+      "assessment": "candidate",
+      "candidate_classes": [
+        {
+          "class_id": "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED",
+          "axis": "recipient_instruction_identity_or_policy_source_binding",
+          "state": "unknown",
+          "owner": "revoke-quarantine-owner",
+          "design_pointer": "/failure_classifications/5",
+          "rationale": "選択された該当recipientのinstructionにおける共通5field・recipient固有identity（worker/environment/connection/credential/artifact）・source_refまたは独立expected_policy_refsが欠落・未解決である。"
+        }
+      ],
+      "input_pointer": "/cases/75/given/input",
+      "evidence_fields": [
+        "/instructions/os_assignment/binding/event_id"
+      ],
+      "note": "入力で示された該当fieldとphaseを、L4のfailure_classificationsのconditionおよびaxis/state/ownerに照合した候補。",
+      "source_case_index": 75,
+      "context_provenance": {
+        "mode": "rfc6902_copy",
+        "patch_destination": "/cases/75/given/input/context",
+        "copy_source": "/cases/0/given/input/context",
+        "source_context_has_expected_category": true,
+        "source_context_has_expected_recipient_set": true,
+        "source_context_has_expected_policy_and_report_refs": true
+      },
+      "effective_context_pointer": "/cases/0/given/input/context"
+    },
+    {
+      "case_id": "SEC009-OS_ASSIGNMENT-INSTRUCTIONS-MISSING",
+      "phase": "applied",
+      "assessment": "candidate",
+      "candidate_classes": [
+        {
+          "class_id": "SEC009_F01_INSTRUCTION_UNRESOLVED",
+          "axis": "recipient_instruction_presence",
+          "state": "unknown",
+          "owner": "revoke-quarantine-owner",
+          "design_pointer": "/failure_classifications/4",
+          "rationale": "選択された該当recipientに対する停止instruction素材が欠落（null）しており、停止指示の到達・適用前提が未解決である。"
+        }
+      ],
+      "input_pointer": "/cases/74/given/input",
+      "evidence_fields": [
+        "/instructions/os_assignment"
+      ],
+      "note": "入力で示された該当fieldとphaseを、L4のfailure_classificationsのconditionおよびaxis/state/ownerに照合した候補。",
+      "source_case_index": 74,
+      "context_provenance": {
+        "mode": "rfc6902_copy",
+        "patch_destination": "/cases/74/given/input/context",
+        "copy_source": "/cases/0/given/input/context",
+        "source_context_has_expected_category": true,
+        "source_context_has_expected_recipient_set": true,
+        "source_context_has_expected_policy_and_report_refs": true
+      },
+      "effective_context_pointer": "/cases/0/given/input/context"
+    },
+    {
+      "case_id": "SEC009-OS_ASSIGNMENT-NEW_ASSIGNMENT_CONTINUES-NONE",
+      "phase": "applied",
+      "assessment": "candidate",
+      "candidate_classes": [
+        {
+          "class_id": "SEC009_F01_RECIPIENT_POST_STATE_UNRESOLVED",
+          "axis": "recipient_post_stop_non_continuation",
+          "state": "unknown",
+          "owner": "revoke-quarantine-owner",
+          "design_pointer": "/failure_classifications/16",
+          "rationale": "applied/recoveryのphaseで、選択された該当recipientのreport.post_stateにおける継続・露出flag（new_assignment_continues/execution_continues/partial_artifact_exposed/communication_continues/use_continues/access_continues）が未解決（非boolean/null）である。"
+        }
+      ],
+      "input_pointer": "/cases/108/given/input",
+      "evidence_fields": [
+        "/reports/os_assignment/post_state/new_assignment_continues"
+      ],
+      "note": "入力で示された該当fieldとphaseを、L4のfailure_classificationsのconditionおよびaxis/state/ownerに照合した候補。",
+      "source_case_index": 108,
+      "context_provenance": {
+        "mode": "rfc6902_copy",
+        "patch_destination": "/cases/108/given/input/context",
+        "copy_source": "/cases/0/given/input/context",
+        "source_context_has_expected_category": true,
+        "source_context_has_expected_recipient_set": true,
+        "source_context_has_expected_policy_and_report_refs": true
+      },
+      "effective_context_pointer": "/cases/0/given/input/context"
+    },
+    {
+      "case_id": "SEC009-OS_ASSIGNMENT-NEW_ASSIGNMENT_CONTINUES-TRUE",
+      "phase": "applied",
+      "assessment": "candidate",
+      "candidate_classes": [
+        {
+          "class_id": "SEC009_F01_RECIPIENT_CONTINUES_AFTER_STOP",
+          "axis": "recipient_post_stop_non_continuation",
+          "state": "violation",
+          "owner": "revoke-quarantine-owner",
+          "design_pointer": "/failure_classifications/17",
+          "rationale": "applied/recoveryのphaseで、選択された該当recipientのreport.post_stateにおいて停止・失効後の新規割当・in-flight実行継続・部分成果物露出・通信継続・credential利用継続・artifact access継続のいずれかがtrueである。"
+        }
+      ],
+      "input_pointer": "/cases/107/given/input",
+      "evidence_fields": [
+        "/reports/os_assignment/post_state/new_assignment_continues"
+      ],
+      "note": "入力で示された該当fieldとphaseを、L4のfailure_classificationsのconditionおよびaxis/state/ownerに照合した候補。",
+      "source_case_index": 107,
+      "context_provenance": {
+        "mode": "rfc6902_copy",
+        "patch_destination": "/cases/107/given/input/context",
+        "copy_source": "/cases/0/given/input/context",
+        "source_context_has_expected_category": true,
+        "source_context_has_expected_recipient_set": true,
+        "source_context_has_expected_policy_and_report_refs": true
+      },
+      "effective_context_pointer": "/cases/0/given/input/context"
+    },
+    {
+      "case_id": "SEC009-OS_ASSIGNMENT-RECEIPT-NOT_DELIVERED",
+      "phase": "applied",
+      "assessment": "candidate",
+      "candidate_classes": [
+        {
+          "class_id": "SEC009_F01_RECIPIENT_NOT_DELIVERED",
+          "axis": "recipient_receipt_status",
+          "state": "violation",
+          "owner": "revoke-quarantine-owner",
+          "design_pointer": "/failure_classifications/13",
+          "rationale": "received/applied/recoveryの各phaseで、選択された該当recipientのreport.receiptがnot_deliveredであり、停止指示の未達が確認された。"
+        }
+      ],
+      "input_pointer": "/cases/102/given/input",
+      "evidence_fields": [
+        "/reports/os_assignment/receipt"
+      ],
+      "note": "入力で示された該当fieldとphaseを、L4のfailure_classificationsのconditionおよびaxis/state/ownerに照合した候補。",
+      "source_case_index": 102,
+      "context_provenance": {
+        "mode": "rfc6902_copy",
+        "patch_destination": "/cases/102/given/input/context",
+        "copy_source": "/cases/0/given/input/context",
+        "source_context_has_expected_category": true,
+        "source_context_has_expected_recipient_set": true,
+        "source_context_has_expected_policy_and_report_refs": true
+      },
+      "effective_context_pointer": "/cases/0/given/input/context"
+    },
+    {
+      "case_id": "SEC009-OS_ASSIGNMENT-RECEIPT-UNKNOWN",
+      "phase": "applied",
+      "assessment": "candidate",
+      "candidate_classes": [
+        {
+          "class_id": "SEC009_F01_RECIPIENT_RECEIPT_UNRESOLVED",
+          "axis": "recipient_receipt_status",
+          "state": "unknown",
+          "owner": "revoke-quarantine-owner",
+          "design_pointer": "/failure_classifications/12",
+          "rationale": "received/applied/recoveryの各phaseで、選択された該当recipientのreport.receiptが未観測または未知状態であり、指示受領が確定できない。"
+        }
+      ],
+      "input_pointer": "/cases/103/given/input",
+      "evidence_fields": [
+        "/reports/os_assignment/receipt"
+      ],
+      "note": "入力で示された該当fieldとphaseを、L4のfailure_classificationsのconditionおよびaxis/state/ownerに照合した候補。",
+      "source_case_index": 103,
+      "context_provenance": {
+        "mode": "rfc6902_copy",
+        "patch_destination": "/cases/103/given/input/context",
+        "copy_source": "/cases/0/given/input/context",
+        "source_context_has_expected_category": true,
+        "source_context_has_expected_recipient_set": true,
+        "source_context_has_expected_policy_and_report_refs": true
+      },
+      "effective_context_pointer": "/cases/0/given/input/context"
+    },
+    {
+      "case_id": "SEC009-OS_ASSIGNMENT-REPORTS-EVENT_ID-CONFLICT",
+      "phase": "applied",
+      "assessment": "candidate",
+      "candidate_classes": [
+        {
+          "class_id": "SEC009_F01_REPORT_BINDING_CONFLICT",
+          "axis": "recipient_report_identity_or_report_source_binding",
+          "state": "violation",
+          "owner": "revoke-quarantine-owner",
+          "design_pointer": "/failure_classifications/11",
+          "rationale": "received/applied/recoveryの各phaseで、選択された該当recipientのreportにおける共通5field・recipient固有identityまたはsource_refが、原安全eventまたは独立expected_report_refsと既知値どうしで相反する。"
+        }
+      ],
+      "input_pointer": "/cases/89/given/input",
+      "evidence_fields": [
+        "/reports/os_assignment/binding/event_id"
+      ],
+      "note": "入力で示された該当fieldとphaseを、L4のfailure_classificationsのconditionおよびaxis/state/ownerに照合した候補。",
+      "source_case_index": 89,
+      "context_provenance": {
+        "mode": "rfc6902_copy",
+        "patch_destination": "/cases/89/given/input/context",
+        "copy_source": "/cases/0/given/input/context",
+        "source_context_has_expected_category": true,
+        "source_context_has_expected_recipient_set": true,
+        "source_context_has_expected_policy_and_report_refs": true
+      },
+      "effective_context_pointer": "/cases/0/given/input/context"
+    },
+    {
+      "case_id": "SEC009-OS_ASSIGNMENT-REPORTS-EVENT_ID-MISSING",
+      "phase": "applied",
+      "assessment": "candidate",
+      "candidate_classes": [
+        {
+          "class_id": "SEC009_F01_REPORT_BINDING_UNRESOLVED",
+          "axis": "recipient_report_identity_or_report_source_binding",
+          "state": "unknown",
+          "owner": "revoke-quarantine-owner",
+          "design_pointer": "/failure_classifications/10",
+          "rationale": "received/applied/recoveryの各phaseで、選択された該当recipientのreportにおける共通5field・recipient固有identity・source_refまたは独立expected_report_refsが欠落・未解決である。"
+        }
+      ],
+      "input_pointer": "/cases/88/given/input",
+      "evidence_fields": [
+        "/reports/os_assignment/binding/event_id"
+      ],
+      "note": "入力で示された該当fieldとphaseを、L4のfailure_classificationsのconditionおよびaxis/state/ownerに照合した候補。",
+      "source_case_index": 88,
+      "context_provenance": {
+        "mode": "rfc6902_copy",
+        "patch_destination": "/cases/88/given/input/context",
+        "copy_source": "/cases/0/given/input/context",
+        "source_context_has_expected_category": true,
+        "source_context_has_expected_recipient_set": true,
+        "source_context_has_expected_policy_and_report_refs": true
+      },
+      "effective_context_pointer": "/cases/0/given/input/context"
+    },
+    {
+      "case_id": "SEC009-OS_ASSIGNMENT-REPORTS-MISSING",
+      "phase": "applied",
+      "assessment": "candidate",
+      "candidate_classes": [
+        {
+          "class_id": "SEC009_F01_RECIPIENT_REPORT_UNRESOLVED",
+          "axis": "recipient_report_presence",
+          "state": "unknown",
+          "owner": "revoke-quarantine-owner",
+          "design_pointer": "/failure_classifications/9",
+          "rationale": "received/applied/recoveryの各phaseで、選択された該当recipientのreport素材が欠落（null）しており、受領・適用・停止後状態を照合できない。"
+        }
+      ],
+      "input_pointer": "/cases/87/given/input",
+      "evidence_fields": [
+        "/reports/os_assignment"
+      ],
+      "note": "入力で示された該当fieldとphaseを、L4のfailure_classificationsのconditionおよびaxis/state/ownerに照合した候補。",
+      "source_case_index": 87,
+      "context_provenance": {
+        "mode": "rfc6902_copy",
+        "patch_destination": "/cases/87/given/input/context",
+        "copy_source": "/cases/0/given/input/context",
+        "source_context_has_expected_category": true,
+        "source_context_has_expected_recipient_set": true,
+        "source_context_has_expected_policy_and_report_refs": true
+      },
+      "effective_context_pointer": "/cases/0/given/input/context"
+    },
+    {
+      "case_id": "SEC009-OS_ASSIGNMENT-STOP_NEW_ASSIGNMENT-NOT_APPLIED",
+      "phase": "applied",
+      "assessment": "candidate",
+      "candidate_classes": [
+        {
+          "class_id": "SEC009_F01_RECIPIENT_NOT_APPLIED",
+          "axis": "recipient_action_application_status",
+          "state": "violation",
+          "owner": "revoke-quarantine-owner",
+          "design_pointer": "/failure_classifications/15",
+          "rationale": "applied/recoveryのphaseで、選択された該当recipientの必須停止actionに対するreport.applicationがnot_appliedであり、停止・隔離の未適用が確認された。"
+        }
+      ],
+      "input_pointer": "/cases/104/given/input",
+      "evidence_fields": [
+        "/reports/os_assignment/application/stop_new_assignment"
+      ],
+      "note": "入力で示された該当fieldとphaseを、L4のfailure_classificationsのconditionおよびaxis/state/ownerに照合した候補。",
+      "source_case_index": 104,
+      "context_provenance": {
+        "mode": "rfc6902_copy",
+        "patch_destination": "/cases/104/given/input/context",
+        "copy_source": "/cases/0/given/input/context",
+        "source_context_has_expected_category": true,
+        "source_context_has_expected_recipient_set": true,
+        "source_context_has_expected_policy_and_report_refs": true
+      },
+      "effective_context_pointer": "/cases/0/given/input/context"
+    },
+    {
+      "case_id": "SEC009-OS_ASSIGNMENT-STOP_NEW_ASSIGNMENT-NOT_OBSERVED",
+      "phase": "applied",
+      "assessment": "candidate",
+      "candidate_classes": [
+        {
+          "class_id": "SEC009_F01_RECIPIENT_APPLICATION_UNRESOLVED",
+          "axis": "recipient_action_application_status",
+          "state": "unknown",
+          "owner": "revoke-quarantine-owner",
+          "design_pointer": "/failure_classifications/14",
+          "rationale": "applied/recoveryのphaseで、選択された該当recipientの必須停止actionに対するreport.applicationの状態が未観測または未知（not_observed/null等）である。"
+        }
+      ],
+      "input_pointer": "/cases/105/given/input",
+      "evidence_fields": [
+        "/reports/os_assignment/application/stop_new_assignment"
+      ],
+      "note": "入力で示された該当fieldとphaseを、L4のfailure_classificationsのconditionおよびaxis/state/ownerに照合した候補。",
+      "source_case_index": 105,
+      "context_provenance": {
+        "mode": "rfc6902_copy",
+        "patch_destination": "/cases/105/given/input/context",
+        "copy_source": "/cases/0/given/input/context",
+        "source_context_has_expected_category": true,
+        "source_context_has_expected_recipient_set": true,
+        "source_context_has_expected_policy_and_report_refs": true
+      },
+      "effective_context_pointer": "/cases/0/given/input/context"
+    },
+    {
+      "case_id": "SEC009-POLICY-EVENT_ID-CONFLICT",
+      "phase": "applied",
+      "assessment": "candidate",
+      "candidate_classes": [
+        {
+          "class_id": "SEC009_B01_POLICY_BINDING_CONFLICT",
+          "axis": "policy_common_identity_binding",
+          "state": "violation",
+          "owner": "revoke-quarantine-owner",
+          "design_pointer": "/failure_classifications/1",
+          "rationale": "SEC停止policyの共通identity束縛（event_id/revision/scope/operation/project）が原安全eventの共通identityと既知値どうしで相反する。"
+        }
+      ],
+      "input_pointer": "/cases/65/given/input",
+      "evidence_fields": [
+        "/policy/binding/event_id"
+      ],
+      "note": "入力で示された該当fieldとphaseを、L4のfailure_classificationsのconditionおよびaxis/state/ownerに照合した候補。",
+      "source_case_index": 65,
+      "context_provenance": {
+        "mode": "rfc6902_copy",
+        "patch_destination": "/cases/65/given/input/context",
+        "copy_source": "/cases/0/given/input/context",
+        "source_context_has_expected_category": true,
+        "source_context_has_expected_recipient_set": true,
+        "source_context_has_expected_policy_and_report_refs": true
+      },
+      "effective_context_pointer": "/cases/0/given/input/context"
+    },
+    {
+      "case_id": "SEC009-POLICY-EVENT_ID-MISSING",
+      "phase": "applied",
+      "assessment": "candidate",
+      "candidate_classes": [
+        {
+          "class_id": "SEC009_B01_POLICY_BINDING_UNRESOLVED",
+          "axis": "policy_common_identity_binding",
+          "state": "unknown",
+          "owner": "revoke-quarantine-owner",
+          "design_pointer": "/failure_classifications/0",
+          "rationale": "SEC停止policyの共通identity束縛（event_id/revision/scope/operation/project）のいずれかが未解決または欠落し、原安全eventとの同一束縛が確定できない。"
+        }
+      ],
+      "input_pointer": "/cases/64/given/input",
+      "evidence_fields": [
+        "/policy/binding/event_id"
+      ],
+      "note": "入力で示された該当fieldとphaseを、L4のfailure_classificationsのconditionおよびaxis/state/ownerに照合した候補。",
+      "source_case_index": 64,
+      "context_provenance": {
+        "mode": "rfc6902_copy",
+        "patch_destination": "/cases/64/given/input/context",
+        "copy_source": "/cases/0/given/input/context",
+        "source_context_has_expected_category": true,
+        "source_context_has_expected_recipient_set": true,
+        "source_context_has_expected_policy_and_report_refs": true
+      },
+      "effective_context_pointer": "/cases/0/given/input/context"
+    },
+    {
+      "case_id": "SEC009-POLICY-OMISSION",
+      "phase": "applied",
+      "assessment": "candidate",
+      "candidate_classes": [
+        {
+          "class_id": "SEC009_B01_RECIPIENT_SET_CONFLICT",
+          "axis": "selected_recipient_closure_set",
+          "state": "violation",
+          "owner": "revoke-quarantine-owner",
+          "design_pointer": "/failure_classifications/3",
+          "rationale": "SEC停止policyのselected_recipientsに独立供給の期待recipient集合に対する漏れまたは余剰があり、該当recipient閉包集合が一致しない。"
+        }
+      ],
+      "input_pointer": "/cases/318/given/input",
+      "evidence_fields": [
+        "/policy/selected_recipients"
+      ],
+      "note": "入力で示された該当fieldとphaseを、L4のfailure_classificationsのconditionおよびaxis/state/ownerに照合した候補。",
+      "source_case_index": 318,
+      "context_provenance": {
+        "mode": "rfc6902_copy",
+        "patch_destination": "/cases/318/given/input/context",
+        "copy_source": "/cases/0/given/input/context",
+        "source_context_has_expected_category": true,
+        "source_context_has_expected_recipient_set": true,
+        "source_context_has_expected_policy_and_report_refs": true
+      },
+      "effective_context_pointer": "/cases/0/given/input/context"
+    },
+    {
+      "case_id": "SEC009-RECOVERY-EVENT_ID-CONFLICT",
+      "phase": "recovery",
+      "assessment": "candidate",
+      "candidate_classes": [
+        {
+          "class_id": "SEC009_F02_RECOVERY_BINDING_CONFLICT",
+          "axis": "recovery_identity_or_restored_state_binding",
+          "state": "violation",
+          "owner": "revoke-quarantine-owner",
+          "design_pointer": "/failure_classifications/27",
+          "rationale": "recoveryのphaseで、recovery素材の共通5field・source_ref・restored_state_refが原安全eventまたは独立context（expected_recovery_source_ref/before_state_ref）と既知値どうしで相反する。"
+        }
+      ],
+      "input_pointer": "/cases/302/given/input",
+      "evidence_fields": [
+        "/recovery/binding/event_id"
+      ],
+      "note": "入力で示された該当fieldとphaseを、L4のfailure_classificationsのconditionおよびaxis/state/ownerに照合した候補。",
+      "source_case_index": 302,
+      "context_provenance": {
+        "mode": "rfc6902_copy",
+        "patch_destination": "/cases/302/given/input/context",
+        "copy_source": "/cases/0/given/input/context",
+        "source_context_has_expected_category": true,
+        "source_context_has_expected_recipient_set": true,
+        "source_context_has_expected_policy_and_report_refs": true
+      },
+      "effective_context_pointer": "/cases/0/given/input/context"
+    },
+    {
+      "case_id": "SEC009-RECOVERY-EVENT_ID-MISSING",
+      "phase": "recovery",
+      "assessment": "candidate",
+      "candidate_classes": [
+        {
+          "class_id": "SEC009_F02_RECOVERY_BINDING_UNRESOLVED",
+          "axis": "recovery_identity_or_restored_state_binding",
+          "state": "unknown",
+          "owner": "revoke-quarantine-owner",
+          "design_pointer": "/failure_classifications/26",
+          "rationale": "recoveryのphaseで、recovery素材の共通5field・source_ref・restored_state_refのいずれかが欠落・未解決であり、復旧対象または問題前の状態参照との対応が確定できない。"
+        }
+      ],
+      "input_pointer": "/cases/301/given/input",
+      "evidence_fields": [
+        "/recovery/binding/event_id"
+      ],
+      "note": "入力で示された該当fieldとphaseを、L4のfailure_classificationsのconditionおよびaxis/state/ownerに照合した候補。",
+      "source_case_index": 301,
+      "context_provenance": {
+        "mode": "rfc6902_copy",
+        "patch_destination": "/cases/301/given/input/context",
+        "copy_source": "/cases/0/given/input/context",
+        "source_context_has_expected_category": true,
+        "source_context_has_expected_recipient_set": true,
+        "source_context_has_expected_policy_and_report_refs": true
+      },
+      "effective_context_pointer": "/cases/0/given/input/context"
+    },
+    {
+      "case_id": "SEC009-RECOVERY-STATE-PARTIAL",
+      "phase": "recovery",
+      "assessment": "candidate",
+      "candidate_classes": [
+        {
+          "class_id": "SEC009_F02_RECOVERY_INCOMPLETE",
+          "axis": "recovery_state",
+          "state": "violation",
+          "owner": "revoke-quarantine-owner",
+          "design_pointer": "/failure_classifications/29",
+          "rationale": "recoveryのphaseで、recovery.stateがpartialまたはunavailableであり、問題前の状態への復帰が部分復旧・未完了にとどまる。"
+        }
+      ],
+      "input_pointer": "/cases/316/given/input",
+      "evidence_fields": [
+        "/recovery/state"
+      ],
+      "note": "入力で示された該当fieldとphaseを、L4のfailure_classificationsのconditionおよびaxis/state/ownerに照合した候補。",
+      "source_case_index": 316,
+      "context_provenance": {
+        "mode": "rfc6902_copy",
+        "patch_destination": "/cases/316/given/input/context",
+        "copy_source": "/cases/0/given/input/context",
+        "source_context_has_expected_category": true,
+        "source_context_has_expected_recipient_set": true,
+        "source_context_has_expected_policy_and_report_refs": true
+      },
+      "effective_context_pointer": "/cases/0/given/input/context"
+    },
+    {
+      "case_id": "SEC009-RECOVERY-STATE-UNKNOWN",
+      "phase": "recovery",
+      "assessment": "candidate",
+      "candidate_classes": [
+        {
+          "class_id": "SEC009_F02_RECOVERY_UNRESOLVED",
+          "axis": "recovery_state",
+          "state": "unknown",
+          "owner": "revoke-quarantine-owner",
+          "design_pointer": "/failure_classifications/28",
+          "rationale": "recoveryのphaseで、recovery.stateがrestored以外の未確定状態（unknown/planned等）であり、問題前の状態への復帰が完了していない。"
+        }
+      ],
+      "input_pointer": "/cases/315/given/input",
+      "evidence_fields": [
+        "/recovery/state"
+      ],
+      "note": "入力で示された該当fieldとphaseを、L4のfailure_classificationsのconditionおよびaxis/state/ownerに照合した候補。",
+      "source_case_index": 315,
+      "context_provenance": {
+        "mode": "rfc6902_copy",
+        "patch_destination": "/cases/315/given/input/context",
+        "copy_source": "/cases/0/given/input/context",
+        "source_context_has_expected_category": true,
+        "source_context_has_expected_recipient_set": true,
+        "source_context_has_expected_policy_and_report_refs": true
+      },
+      "effective_context_pointer": "/cases/0/given/input/context"
+    },
+    {
+      "case_id": "SEC009-SAFETY-STOP-SCOPE-NULL",
+      "phase": "dispatch",
+      "assessment": "candidate",
+      "candidate_classes": [
+        {
+          "class_id": "SEC009_F02_STOP_SCOPE_UNRESOLVED",
+          "axis": "local_stop_scope_boundary",
+          "state": "unknown",
+          "owner": "revoke-quarantine-owner",
+          "design_pointer": "/failure_classifications/20",
+          "rationale": "policy.all_scopes_stop_requestedがbooleanとして解決できず（null等）、停止範囲が当該対象scopeに限定されているか確定できない。"
+        }
+      ],
+      "input_pointer": "/cases/339/given/input",
+      "evidence_fields": [
+        "/policy/all_scopes_stop_requested"
+      ],
+      "note": "入力で示された該当fieldとphaseを、L4のfailure_classificationsのconditionおよびaxis/state/ownerに照合した候補。",
+      "source_case_index": 339,
+      "context_provenance": {
+        "mode": "rfc6902_copy",
+        "patch_destination": "/cases/339/given/input/context",
+        "copy_source": "/cases/0/given/input/context",
+        "source_context_has_expected_category": true,
+        "source_context_has_expected_recipient_set": true,
+        "source_context_has_expected_policy_and_report_refs": true
+      },
+      "effective_context_pointer": "/cases/0/given/input/context"
+    }
+  ],
+  "materialization_check": {
+    "method": "RFC6902 materialization_patchのop/path/fromを静的参照し、copy元contextを直接読み取り、indexのallowed_input_pointerから30件それぞれのsource array indexへ対応付けた。patch/旧algorithmは実行していない。",
+    "patch_operation_count": 311,
+    "selected_context_copy_count": 29,
+    "selected_inline_context_count": 1,
+    "shared_copy_source": "/cases/0/given/input/context",
+    "case323": {
+      "source_case_index": 323,
+      "raw_context": "null placeholder",
+      "patch_destination": "/cases/323/given/input/context",
+      "copy_source": "/cases/0/given/input/context",
+      "restored_expected_category": "safety"
+    },
+    "inline_case320": {
+      "case_id": "SEC009-EXPECTED-UNKNOWN",
+      "source_case_index": 320,
+      "pointer": "/cases/320/given/input/context",
+      "expected_recipient_set": "null; unresolved"
+    }
+  },
+  "revision_history": [
+    {
+      "previous_sha256": "7baf0a8afd519fb8bc527f888d28699ec08e277a23da80fae5fac3ed1a4c586f",
+      "change": "compressed shared context 29 copy sourceを復元根拠として追記。case320 inline contextを確認し、placeholderを未復元のまま比較していた複数候補をB01_RECIPIENT_SET_UNRESOLVED単一候補へ訂正。case323のF02_TRIGGER_CATEGORY_CONFLICT根拠に復元expected_categoryを追加。"
+    }
+  ]
+}

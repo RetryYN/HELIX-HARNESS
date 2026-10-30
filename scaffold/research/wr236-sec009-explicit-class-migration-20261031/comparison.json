@@ -1,0 +1,736 @@
+{
+  "schema": "wr236-sec009-explicit-class-blind-comparison.v1",
+  "evidence_kind": "scaffold",
+  "comparison_kind": "post_freeze_static_casewise_source_and_assignment_comparison",
+  "authority_effect": "none",
+  "operation_effect": "none",
+  "formal_four_way_status": "not_established",
+  "fixed_artifacts": [
+    {
+      "path": "scaffold/research/wr236-sec009-explicit-class-migration-20261031/source/blind-classification.json",
+      "source_path": "/tmp/wr236-sec009-blind-classification.json",
+      "bytes": 44176,
+      "sha256": "b060f87a2c7963dac82e9ecf9a70ec7f486f28b4f2ce463418e310b3ce321c5b",
+      "expected_sha256": "b060f87a2c7963dac82e9ecf9a70ec7f486f28b4f2ce463418e310b3ce321c5b",
+      "byte_identical_to_fixed_source": true,
+      "frozen_reference": "https://github.com/RetryYN/HELIX-HARNESS/issues/3510#issuecomment-6533190026"
+    },
+    {
+      "path": "scaffold/research/wr236-sec009-explicit-class-migration-20261031/source/blind-sample-index.json",
+      "source_path": "/tmp/wr236-blind-sample-index.json",
+      "bytes": 5426,
+      "sha256": "380ec88fe03a2b5ebe34c2961e42bafdd2d90b46c586be92b0c52b7eb2685fa0",
+      "expected_sha256": "380ec88fe03a2b5ebe34c2961e42bafdd2d90b46c586be92b0c52b7eb2685fa0",
+      "byte_identical_to_fixed_source": true,
+      "frozen_reference": "https://github.com/RetryYN/HELIX-HARNESS/issues/3510#issuecomment-6533190026"
+    }
+  ],
+  "revisions": {
+    "candidate_revision": "c8f20a4f91456f6d5e5c16e1be0083c34aab6651",
+    "blind_base_revision": "f38ee6f21a680a82ef5ecc1c6c4c25ba2f0bda52",
+    "blind_l4": {
+      "path": "docs/helix-security/L4-basic-design/revoke-quarantine-propagation.json",
+      "revision": "f38ee6f21a680a82ef5ecc1c6c4c25ba2f0bda52",
+      "sha256": "c0a31c5c663d39854ed1df13b9bf2bfc439fdb46419d089bc617607d6e6ac5b6",
+      "bytes": 197756
+    },
+    "current_l4": {
+      "path": "docs/helix-security/L4-basic-design/revoke-quarantine-propagation.json",
+      "revision": "c8f20a4f91456f6d5e5c16e1be0083c34aab6651",
+      "sha256": "c0a31c5c663d39854ed1df13b9bf2bfc439fdb46419d089bc617607d6e6ac5b6",
+      "bytes": 197756,
+      "bytes_equal_to_blind_l4": true
+    },
+    "legacy_l9": {
+      "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+      "revision": "4ba3f600df75aa6e860e0ddf53db68644e1edf98",
+      "sha256": "ed74cdc558bd8ba9cad5d8b075eee137bafba9c65e9a4a18bb862c728b646b4f",
+      "bytes": 3539257,
+      "case_shape": "flat /cases/{i}"
+    },
+    "current_l9": {
+      "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+      "revision": "c8f20a4f91456f6d5e5c16e1be0083c34aab6651",
+      "sha256": "62913b58577cfc0f3c7e6682ad160d8f236157a0ceed9c88ef71822330ed60fc",
+      "bytes": 1636561,
+      "case_shape": "contracts[].positive_cases/negative_cases plus multi_contract_residual",
+      "worktree_bytes_match_pinned_revision": true
+    },
+    "blind_index_source_revision": "4ba3f600df75aa6e860e0ddf53db68644e1edf98",
+    "blind_index_source_sha256": "ed74cdc558bd8ba9cad5d8b075eee137bafba9c65e9a4a18bb862c728b646b4f"
+  },
+  "population_comparison": {
+    "blind_cases": 30,
+    "selected_case_ids_resolved_in_legacy_source": 30,
+    "selected_case_ids_resolved_in_current_source": 30,
+    "selected_case_pointers_changed": 30,
+    "expected_projection_differences_legacy_to_current": 0,
+    "expected_projection_digest_over_fixed_selected_order": "73cb3c3ddfe5df8b204f85371b9700c5fb548e7e165a1037ccb56c0d490e67ee",
+    "blind_class_to_current_assignment_matches": 29,
+    "blind_class_to_current_assignment_mismatches": 1,
+    "casewise_rows": [
+      {
+        "case_id": "SEC009-CATEGORY-CONFLICT",
+        "index_raw_case_pointer": "/cases/323",
+        "blind_input_pointer": "/cases/323/given/input",
+        "legacy_l9_case_pointer": "/cases/323",
+        "current_l9_case_pointer": "/cases/2/negative_cases/36",
+        "current_assignment_pointer": "/cases/2/negative_cases/36/negative_class_assignment",
+        "blind_class_ids": [
+          "SEC009_F02_TRIGGER_CATEGORY_CONFLICT"
+        ],
+        "current_assigned_class": "SEC009_F02_TRIGGER_CATEGORY_CONFLICT",
+        "class_match": true,
+        "expected_projection_equal_old_to_current": true
+      },
+      {
+        "case_id": "SEC009-CATEGORY-UNKNOWN",
+        "index_raw_case_pointer": "/cases/322",
+        "blind_input_pointer": "/cases/322/given/input",
+        "legacy_l9_case_pointer": "/cases/322",
+        "current_l9_case_pointer": "/cases/2/negative_cases/35",
+        "current_assignment_pointer": "/cases/2/negative_cases/35/negative_class_assignment",
+        "blind_class_ids": [
+          "SEC009_F02_TRIGGER_CATEGORY_UNRESOLVED"
+        ],
+        "current_assigned_class": "SEC009_F02_TRIGGER_CATEGORY_UNRESOLVED",
+        "class_match": true,
+        "expected_projection_equal_old_to_current": true
+      },
+      {
+        "case_id": "SEC009-EXPECTED-UNKNOWN",
+        "index_raw_case_pointer": "/cases/320",
+        "blind_input_pointer": "/cases/320/given/input",
+        "legacy_l9_case_pointer": "/cases/320",
+        "current_l9_case_pointer": "/cases/0/negative_cases/12",
+        "current_assignment_pointer": "/cases/0/negative_cases/12/negative_class_assignment",
+        "blind_class_ids": [
+          "SEC009_B01_RECIPIENT_SET_UNRESOLVED"
+        ],
+        "current_assigned_class": "SEC009_B01_RECIPIENT_SET_UNRESOLVED",
+        "class_match": true,
+        "expected_projection_equal_old_to_current": true
+      },
+      {
+        "case_id": "SEC009-GLOBAL-STOP",
+        "index_raw_case_pointer": "/cases/321",
+        "blind_input_pointer": "/cases/321/given/input",
+        "legacy_l9_case_pointer": "/cases/321",
+        "current_l9_case_pointer": "/cases/2/negative_cases/34",
+        "current_assignment_pointer": "/cases/2/negative_cases/34/negative_class_assignment",
+        "blind_class_ids": [
+          "SEC009_F02_GLOBAL_STOP_EXPANSION"
+        ],
+        "current_assigned_class": "SEC009_F02_GLOBAL_STOP_EXPANSION",
+        "class_match": true,
+        "expected_projection_equal_old_to_current": true
+      },
+      {
+        "case_id": "SEC009-ISOLATION-EVENT_ID-CONFLICT",
+        "index_raw_case_pointer": "/cases/285",
+        "blind_input_pointer": "/cases/285/given/input",
+        "legacy_l9_case_pointer": "/cases/285",
+        "current_l9_case_pointer": "/cases/2/negative_cases/1",
+        "current_assignment_pointer": "/cases/2/negative_cases/1/negative_class_assignment",
+        "blind_class_ids": [
+          "SEC009_F02_ISOLATION_BINDING_CONFLICT"
+        ],
+        "current_assigned_class": "SEC009_F02_ISOLATION_BINDING_CONFLICT",
+        "class_match": true,
+        "expected_projection_equal_old_to_current": true
+      },
+      {
+        "case_id": "SEC009-ISOLATION-EVENT_ID-MISSING",
+        "index_raw_case_pointer": "/cases/284",
+        "blind_input_pointer": "/cases/284/given/input",
+        "legacy_l9_case_pointer": "/cases/284",
+        "current_l9_case_pointer": "/cases/2/negative_cases/0",
+        "current_assignment_pointer": "/cases/2/negative_cases/0/negative_class_assignment",
+        "blind_class_ids": [
+          "SEC009_F02_ISOLATION_BINDING_UNRESOLVED"
+        ],
+        "current_assigned_class": "SEC009_F02_ISOLATION_BINDING_UNRESOLVED",
+        "class_match": true,
+        "expected_projection_equal_old_to_current": true
+      },
+      {
+        "case_id": "SEC009-ISOLATION-STATE-NOT_ISOLATED",
+        "index_raw_case_pointer": "/cases/299",
+        "blind_input_pointer": "/cases/299/given/input",
+        "legacy_l9_case_pointer": "/cases/299",
+        "current_l9_case_pointer": "/cases/2/negative_cases/15",
+        "current_assignment_pointer": "/cases/2/negative_cases/15/negative_class_assignment",
+        "blind_class_ids": [
+          "SEC009_F02_ISOLATION_NOT_APPLIED"
+        ],
+        "current_assigned_class": "SEC009_F02_ISOLATION_NOT_APPLIED",
+        "class_match": true,
+        "expected_projection_equal_old_to_current": true
+      },
+      {
+        "case_id": "SEC009-ISOLATION-STATE-UNKNOWN",
+        "index_raw_case_pointer": "/cases/298",
+        "blind_input_pointer": "/cases/298/given/input",
+        "legacy_l9_case_pointer": "/cases/298",
+        "current_l9_case_pointer": "/cases/2/negative_cases/14",
+        "current_assignment_pointer": "/cases/2/negative_cases/14/negative_class_assignment",
+        "blind_class_ids": [
+          "SEC009_F02_ISOLATION_UNRESOLVED"
+        ],
+        "current_assigned_class": "SEC009_F02_ISOLATION_UNRESOLVED",
+        "class_match": true,
+        "expected_projection_equal_old_to_current": true
+      },
+      {
+        "case_id": "SEC009-OS_ASSIGNMENT-ACTIONS-DUPLICATE",
+        "index_raw_case_pointer": "/cases/341",
+        "blind_input_pointer": "/cases/341/given/input",
+        "legacy_l9_case_pointer": "/cases/341",
+        "current_l9_case_pointer": "/cases/1/negative_cases/206",
+        "current_assignment_pointer": "/cases/1/negative_cases/206/negative_class_assignment",
+        "blind_class_ids": [
+          "SEC009_F01_RECIPIENT_ACTIONS_UNRESOLVED"
+        ],
+        "current_assigned_class": "SEC009_F01_RECIPIENT_ACTIONS_UNRESOLVED",
+        "class_match": true,
+        "expected_projection_equal_old_to_current": true
+      },
+      {
+        "case_id": "SEC009-OS_ASSIGNMENT-ACTIONS-EMPTY",
+        "index_raw_case_pointer": "/cases/109",
+        "blind_input_pointer": "/cases/109/given/input",
+        "legacy_l9_case_pointer": "/cases/109",
+        "current_l9_case_pointer": "/cases/1/negative_cases/35",
+        "current_assignment_pointer": "/cases/1/negative_cases/35/negative_class_assignment",
+        "blind_class_ids": [
+          "SEC009_F01_RECIPIENT_ACTIONS_UNRESOLVED"
+        ],
+        "current_assigned_class": "SEC009_F01_RECIPIENT_ACTIONS_CONFLICT",
+        "class_match": false,
+        "expected_projection_equal_old_to_current": true
+      },
+      {
+        "case_id": "SEC009-OS_ASSIGNMENT-INSTRUCTIONS-EVENT_ID-CONFLICT",
+        "index_raw_case_pointer": "/cases/76",
+        "blind_input_pointer": "/cases/76/given/input",
+        "legacy_l9_case_pointer": "/cases/76",
+        "current_l9_case_pointer": "/cases/1/negative_cases/2",
+        "current_assignment_pointer": "/cases/1/negative_cases/2/negative_class_assignment",
+        "blind_class_ids": [
+          "SEC009_F01_INSTRUCTION_BINDING_CONFLICT"
+        ],
+        "current_assigned_class": "SEC009_F01_INSTRUCTION_BINDING_CONFLICT",
+        "class_match": true,
+        "expected_projection_equal_old_to_current": true
+      },
+      {
+        "case_id": "SEC009-OS_ASSIGNMENT-INSTRUCTIONS-EVENT_ID-MISSING",
+        "index_raw_case_pointer": "/cases/75",
+        "blind_input_pointer": "/cases/75/given/input",
+        "legacy_l9_case_pointer": "/cases/75",
+        "current_l9_case_pointer": "/cases/1/negative_cases/1",
+        "current_assignment_pointer": "/cases/1/negative_cases/1/negative_class_assignment",
+        "blind_class_ids": [
+          "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED"
+        ],
+        "current_assigned_class": "SEC009_F01_INSTRUCTION_BINDING_UNRESOLVED",
+        "class_match": true,
+        "expected_projection_equal_old_to_current": true
+      },
+      {
+        "case_id": "SEC009-OS_ASSIGNMENT-INSTRUCTIONS-MISSING",
+        "index_raw_case_pointer": "/cases/74",
+        "blind_input_pointer": "/cases/74/given/input",
+        "legacy_l9_case_pointer": "/cases/74",
+        "current_l9_case_pointer": "/cases/1/negative_cases/0",
+        "current_assignment_pointer": "/cases/1/negative_cases/0/negative_class_assignment",
+        "blind_class_ids": [
+          "SEC009_F01_INSTRUCTION_UNRESOLVED"
+        ],
+        "current_assigned_class": "SEC009_F01_INSTRUCTION_UNRESOLVED",
+        "class_match": true,
+        "expected_projection_equal_old_to_current": true
+      },
+      {
+        "case_id": "SEC009-OS_ASSIGNMENT-NEW_ASSIGNMENT_CONTINUES-NONE",
+        "index_raw_case_pointer": "/cases/108",
+        "blind_input_pointer": "/cases/108/given/input",
+        "legacy_l9_case_pointer": "/cases/108",
+        "current_l9_case_pointer": "/cases/1/negative_cases/34",
+        "current_assignment_pointer": "/cases/1/negative_cases/34/negative_class_assignment",
+        "blind_class_ids": [
+          "SEC009_F01_RECIPIENT_POST_STATE_UNRESOLVED"
+        ],
+        "current_assigned_class": "SEC009_F01_RECIPIENT_POST_STATE_UNRESOLVED",
+        "class_match": true,
+        "expected_projection_equal_old_to_current": true
+      },
+      {
+        "case_id": "SEC009-OS_ASSIGNMENT-NEW_ASSIGNMENT_CONTINUES-TRUE",
+        "index_raw_case_pointer": "/cases/107",
+        "blind_input_pointer": "/cases/107/given/input",
+        "legacy_l9_case_pointer": "/cases/107",
+        "current_l9_case_pointer": "/cases/1/negative_cases/33",
+        "current_assignment_pointer": "/cases/1/negative_cases/33/negative_class_assignment",
+        "blind_class_ids": [
+          "SEC009_F01_RECIPIENT_CONTINUES_AFTER_STOP"
+        ],
+        "current_assigned_class": "SEC009_F01_RECIPIENT_CONTINUES_AFTER_STOP",
+        "class_match": true,
+        "expected_projection_equal_old_to_current": true
+      },
+      {
+        "case_id": "SEC009-OS_ASSIGNMENT-RECEIPT-NOT_DELIVERED",
+        "index_raw_case_pointer": "/cases/102",
+        "blind_input_pointer": "/cases/102/given/input",
+        "legacy_l9_case_pointer": "/cases/102",
+        "current_l9_case_pointer": "/cases/1/negative_cases/28",
+        "current_assignment_pointer": "/cases/1/negative_cases/28/negative_class_assignment",
+        "blind_class_ids": [
+          "SEC009_F01_RECIPIENT_NOT_DELIVERED"
+        ],
+        "current_assigned_class": "SEC009_F01_RECIPIENT_NOT_DELIVERED",
+        "class_match": true,
+        "expected_projection_equal_old_to_current": true
+      },
+      {
+        "case_id": "SEC009-OS_ASSIGNMENT-RECEIPT-UNKNOWN",
+        "index_raw_case_pointer": "/cases/103",
+        "blind_input_pointer": "/cases/103/given/input",
+        "legacy_l9_case_pointer": "/cases/103",
+        "current_l9_case_pointer": "/cases/1/negative_cases/29",
+        "current_assignment_pointer": "/cases/1/negative_cases/29/negative_class_assignment",
+        "blind_class_ids": [
+          "SEC009_F01_RECIPIENT_RECEIPT_UNRESOLVED"
+        ],
+        "current_assigned_class": "SEC009_F01_RECIPIENT_RECEIPT_UNRESOLVED",
+        "class_match": true,
+        "expected_projection_equal_old_to_current": true
+      },
+      {
+        "case_id": "SEC009-OS_ASSIGNMENT-REPORTS-EVENT_ID-CONFLICT",
+        "index_raw_case_pointer": "/cases/89",
+        "blind_input_pointer": "/cases/89/given/input",
+        "legacy_l9_case_pointer": "/cases/89",
+        "current_l9_case_pointer": "/cases/1/negative_cases/15",
+        "current_assignment_pointer": "/cases/1/negative_cases/15/negative_class_assignment",
+        "blind_class_ids": [
+          "SEC009_F01_REPORT_BINDING_CONFLICT"
+        ],
+        "current_assigned_class": "SEC009_F01_REPORT_BINDING_CONFLICT",
+        "class_match": true,
+        "expected_projection_equal_old_to_current": true
+      },
+      {
+        "case_id": "SEC009-OS_ASSIGNMENT-REPORTS-EVENT_ID-MISSING",
+        "index_raw_case_pointer": "/cases/88",
+        "blind_input_pointer": "/cases/88/given/input",
+        "legacy_l9_case_pointer": "/cases/88",
+        "current_l9_case_pointer": "/cases/1/negative_cases/14",
+        "current_assignment_pointer": "/cases/1/negative_cases/14/negative_class_assignment",
+        "blind_class_ids": [
+          "SEC009_F01_REPORT_BINDING_UNRESOLVED"
+        ],
+        "current_assigned_class": "SEC009_F01_REPORT_BINDING_UNRESOLVED",
+        "class_match": true,
+        "expected_projection_equal_old_to_current": true
+      },
+      {
+        "case_id": "SEC009-OS_ASSIGNMENT-REPORTS-MISSING",
+        "index_raw_case_pointer": "/cases/87",
+        "blind_input_pointer": "/cases/87/given/input",
+        "legacy_l9_case_pointer": "/cases/87",
+        "current_l9_case_pointer": "/cases/1/negative_cases/13",
+        "current_assignment_pointer": "/cases/1/negative_cases/13/negative_class_assignment",
+        "blind_class_ids": [
+          "SEC009_F01_RECIPIENT_REPORT_UNRESOLVED"
+        ],
+        "current_assigned_class": "SEC009_F01_RECIPIENT_REPORT_UNRESOLVED",
+        "class_match": true,
+        "expected_projection_equal_old_to_current": true
+      },
+      {
+        "case_id": "SEC009-OS_ASSIGNMENT-STOP_NEW_ASSIGNMENT-NOT_APPLIED",
+        "index_raw_case_pointer": "/cases/104",
+        "blind_input_pointer": "/cases/104/given/input",
+        "legacy_l9_case_pointer": "/cases/104",
+        "current_l9_case_pointer": "/cases/1/negative_cases/30",
+        "current_assignment_pointer": "/cases/1/negative_cases/30/negative_class_assignment",
+        "blind_class_ids": [
+          "SEC009_F01_RECIPIENT_NOT_APPLIED"
+        ],
+        "current_assigned_class": "SEC009_F01_RECIPIENT_NOT_APPLIED",
+        "class_match": true,
+        "expected_projection_equal_old_to_current": true
+      },
+      {
+        "case_id": "SEC009-OS_ASSIGNMENT-STOP_NEW_ASSIGNMENT-NOT_OBSERVED",
+        "index_raw_case_pointer": "/cases/105",
+        "blind_input_pointer": "/cases/105/given/input",
+        "legacy_l9_case_pointer": "/cases/105",
+        "current_l9_case_pointer": "/cases/1/negative_cases/31",
+        "current_assignment_pointer": "/cases/1/negative_cases/31/negative_class_assignment",
+        "blind_class_ids": [
+          "SEC009_F01_RECIPIENT_APPLICATION_UNRESOLVED"
+        ],
+        "current_assigned_class": "SEC009_F01_RECIPIENT_APPLICATION_UNRESOLVED",
+        "class_match": true,
+        "expected_projection_equal_old_to_current": true
+      },
+      {
+        "case_id": "SEC009-POLICY-EVENT_ID-CONFLICT",
+        "index_raw_case_pointer": "/cases/65",
+        "blind_input_pointer": "/cases/65/given/input",
+        "legacy_l9_case_pointer": "/cases/65",
+        "current_l9_case_pointer": "/cases/0/negative_cases/1",
+        "current_assignment_pointer": "/cases/0/negative_cases/1/negative_class_assignment",
+        "blind_class_ids": [
+          "SEC009_B01_POLICY_BINDING_CONFLICT"
+        ],
+        "current_assigned_class": "SEC009_B01_POLICY_BINDING_CONFLICT",
+        "class_match": true,
+        "expected_projection_equal_old_to_current": true
+      },
+      {
+        "case_id": "SEC009-POLICY-EVENT_ID-MISSING",
+        "index_raw_case_pointer": "/cases/64",
+        "blind_input_pointer": "/cases/64/given/input",
+        "legacy_l9_case_pointer": "/cases/64",
+        "current_l9_case_pointer": "/cases/0/negative_cases/0",
+        "current_assignment_pointer": "/cases/0/negative_cases/0/negative_class_assignment",
+        "blind_class_ids": [
+          "SEC009_B01_POLICY_BINDING_UNRESOLVED"
+        ],
+        "current_assigned_class": "SEC009_B01_POLICY_BINDING_UNRESOLVED",
+        "class_match": true,
+        "expected_projection_equal_old_to_current": true
+      },
+      {
+        "case_id": "SEC009-POLICY-OMISSION",
+        "index_raw_case_pointer": "/cases/318",
+        "blind_input_pointer": "/cases/318/given/input",
+        "legacy_l9_case_pointer": "/cases/318",
+        "current_l9_case_pointer": "/cases/0/negative_cases/10",
+        "current_assignment_pointer": "/cases/0/negative_cases/10/negative_class_assignment",
+        "blind_class_ids": [
+          "SEC009_B01_RECIPIENT_SET_CONFLICT"
+        ],
+        "current_assigned_class": "SEC009_B01_RECIPIENT_SET_CONFLICT",
+        "class_match": true,
+        "expected_projection_equal_old_to_current": true
+      },
+      {
+        "case_id": "SEC009-RECOVERY-EVENT_ID-CONFLICT",
+        "index_raw_case_pointer": "/cases/302",
+        "blind_input_pointer": "/cases/302/given/input",
+        "legacy_l9_case_pointer": "/cases/302",
+        "current_l9_case_pointer": "/cases/2/negative_cases/18",
+        "current_assignment_pointer": "/cases/2/negative_cases/18/negative_class_assignment",
+        "blind_class_ids": [
+          "SEC009_F02_RECOVERY_BINDING_CONFLICT"
+        ],
+        "current_assigned_class": "SEC009_F02_RECOVERY_BINDING_CONFLICT",
+        "class_match": true,
+        "expected_projection_equal_old_to_current": true
+      },
+      {
+        "case_id": "SEC009-RECOVERY-EVENT_ID-MISSING",
+        "index_raw_case_pointer": "/cases/301",
+        "blind_input_pointer": "/cases/301/given/input",
+        "legacy_l9_case_pointer": "/cases/301",
+        "current_l9_case_pointer": "/cases/2/negative_cases/17",
+        "current_assignment_pointer": "/cases/2/negative_cases/17/negative_class_assignment",
+        "blind_class_ids": [
+          "SEC009_F02_RECOVERY_BINDING_UNRESOLVED"
+        ],
+        "current_assigned_class": "SEC009_F02_RECOVERY_BINDING_UNRESOLVED",
+        "class_match": true,
+        "expected_projection_equal_old_to_current": true
+      },
+      {
+        "case_id": "SEC009-RECOVERY-STATE-PARTIAL",
+        "index_raw_case_pointer": "/cases/316",
+        "blind_input_pointer": "/cases/316/given/input",
+        "legacy_l9_case_pointer": "/cases/316",
+        "current_l9_case_pointer": "/cases/2/negative_cases/32",
+        "current_assignment_pointer": "/cases/2/negative_cases/32/negative_class_assignment",
+        "blind_class_ids": [
+          "SEC009_F02_RECOVERY_INCOMPLETE"
+        ],
+        "current_assigned_class": "SEC009_F02_RECOVERY_INCOMPLETE",
+        "class_match": true,
+        "expected_projection_equal_old_to_current": true
+      },
+      {
+        "case_id": "SEC009-RECOVERY-STATE-UNKNOWN",
+        "index_raw_case_pointer": "/cases/315",
+        "blind_input_pointer": "/cases/315/given/input",
+        "legacy_l9_case_pointer": "/cases/315",
+        "current_l9_case_pointer": "/cases/2/negative_cases/31",
+        "current_assignment_pointer": "/cases/2/negative_cases/31/negative_class_assignment",
+        "blind_class_ids": [
+          "SEC009_F02_RECOVERY_UNRESOLVED"
+        ],
+        "current_assigned_class": "SEC009_F02_RECOVERY_UNRESOLVED",
+        "class_match": true,
+        "expected_projection_equal_old_to_current": true
+      },
+      {
+        "case_id": "SEC009-SAFETY-STOP-SCOPE-NULL",
+        "index_raw_case_pointer": "/cases/339",
+        "blind_input_pointer": "/cases/339/given/input",
+        "legacy_l9_case_pointer": "/cases/339",
+        "current_l9_case_pointer": "/cases/2/negative_cases/41",
+        "current_assignment_pointer": "/cases/2/negative_cases/41/negative_class_assignment",
+        "blind_class_ids": [
+          "SEC009_F02_STOP_SCOPE_UNRESOLVED"
+        ],
+        "current_assigned_class": "SEC009_F02_STOP_SCOPE_UNRESOLVED",
+        "class_match": true,
+        "expected_projection_equal_old_to_current": true
+      }
+    ]
+  },
+  "mismatch_detail": {
+    "case_id": "SEC009-OS_ASSIGNMENT-ACTIONS-EMPTY",
+    "blind_class_id": "SEC009_F01_RECIPIENT_ACTIONS_UNRESOLVED",
+    "blind_design_pointer": "/failure_classifications/7",
+    "blind_axis": "recipient_required_actions_shape",
+    "blind_state": "unknown",
+    "blind_owner": "revoke-quarantine-owner",
+    "legacy_case_pointer": "/cases/109",
+    "legacy_input_pointer": "/cases/109/given/input",
+    "input_field_pointer": "/cases/109/given/input/instructions/os_assignment/actions",
+    "input_shape_only": {
+      "type": "list",
+      "length": 0
+    },
+    "legacy_expected_pointer": "/cases/109/expected_proposal",
+    "current_case_pointer": "/cases/1/negative_cases/35",
+    "current_expected_pointer": "/cases/1/negative_cases/35/expected_proposal",
+    "current_assignment_pointer": "/cases/1/negative_cases/35/negative_class_assignment",
+    "current_assigned_class": "SEC009_F01_RECIPIENT_ACTIONS_CONFLICT",
+    "current_expected_condition": "revoke_material_violation",
+    "current_expected_finding_codes": [
+      "recipient_actions_conflict"
+    ],
+    "relevant_current_l4_rows": [
+      {
+        "pointer": "/failure_classifications/7",
+        "code": "SEC009_F01_RECIPIENT_ACTIONS_UNRESOLVED",
+        "axis": "recipient_required_actions_shape",
+        "state": "unknown",
+        "condition": "選択された該当recipientのinstruction.actionsが重複なし非空文字列listとして成立せず（非list・非文字列要素・重複要素）、要求action集合を確定できない。"
+      },
+      {
+        "pointer": "/failure_classifications/8",
+        "code": "SEC009_F01_RECIPIENT_ACTIONS_CONFLICT",
+        "axis": "recipient_required_actions_set",
+        "state": "violation",
+        "condition": "選択された該当recipientのinstruction.actionsが、recipient別必須停止action集合（OS新規割当停止、Worker in-flight停止＋部分成果物隔離、Connect通信遮断、Credential利用停止、Artifact access停止）と一致しない。"
+      }
+    ],
+    "interpretation": "既存expected/assignmentはconflict/violationを選ぶ。known empty setは要求action集合と不一致だが、L4 unresolved説明の「非空listでない」条件にも空listが含まれ得るため、L4条件の意味重複を未決として保持。期待値やblind候補は変更しない。"
+  },
+  "coverage_limits": {
+    "existing_action_conflict_assignment_rows": 5,
+    "blind_sample_action_conflict_rows": 1,
+    "blind_sample_action_conflict_rows_independently_matching": 0,
+    "action_conflict_cases_not_in_sample": 4,
+    "ambiguous_cases": 2,
+    "multi_contract_residual_cases": 71,
+    "blind_sample_includes_ambiguous_or_multi_contract": false,
+    "not_claimed": "30件は層化代表であり275 assignment全件のblind独立確認ではない。未選択actions conflict、2 ambiguous、71 multi-contractの割当は推定しない。"
+  },
+  "checker_schema_observation": {
+    "checker_path": "scaffold/tools/design_verification_checker.py",
+    "checker_sha256": "cfd12c5bc4a1dd45351858488b476af0025d35deca7027da35bb1373818b129d",
+    "checker_revision": "c8f20a4f91456f6d5e5c16e1be0083c34aab6651",
+    "qa_path": "docs/governance/design-verification-quality-assurance.md",
+    "qa_sha256": "f5751e236dc073fe67114c1fcb4b0f64b3d746290b25d75b61e60a08e3c99c85",
+    "l5_failure_rules": 30,
+    "rules_with_function_ref_and_contract_ref": 30,
+    "l5_contract_function_refs_counts": [
+      2,
+      3,
+      3
+    ],
+    "qa_rule": "QA §3 owner_ref is typed function_ref when the rule declares function_ref; when both refs exist, contract must resolve and its declared function must match.",
+    "checker_behavior": "explicit-mode source compares contract.get(\"function\") to rule.function_ref at lines 1735-1743 and 2381-2394.",
+    "source_field_mismatch": "L5 contracts declare function_refs arrays and have no singular function field; a literal singular equality check cannot match the current source representation.",
+    "checker_modified": false
+  },
+  "static_check_child": {
+    "command": "python3 -B scaffold/tools/design_verification_checker.py check-child --root . --l4 docs/helix-security/L4-basic-design/revoke-quarantine-propagation.json --l5 docs/helix-security/L5-detail-design/revoke-quarantine-propagation.json --l8 docs/helix-security/L8-unit-verification/revoke-quarantine-propagation.json --l9 docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+    "result": "FAIL",
+    "overall_pass": false,
+    "l4_l9_pair": {
+      "passed": true,
+      "counts": [
+        3,
+        3
+      ]
+    },
+    "l5_l8_pair": {
+      "passed": true,
+      "counts": [
+        3,
+        3
+      ]
+    },
+    "negative_4way": {
+      "mode": "legacy_casewise_four_layer",
+      "parent_link_mode": "legacy",
+      "counts": {
+        "L4": 30,
+        "L9": 277,
+        "L8": 277,
+        "L5": 30
+      },
+      "matched": 0,
+      "failure_count": 310
+    },
+    "pins": {
+      "all_passed": true,
+      "checked_per_layer": [
+        18,
+        18,
+        34,
+        34
+      ]
+    },
+    "ownership_caps": {
+      "all_passed": true,
+      "layers": [
+        "L4",
+        "L9",
+        "L5",
+        "L8"
+      ]
+    },
+    "explicit_markers_present": {
+      "L4": false,
+      "L5": false,
+      "L8": false,
+      "L9": false
+    }
+  },
+  "precedent_and_scope": {
+    "design_verification_rule": "github-upstream-operating-model.md §PR atomicity: one V-pair as ordinary scope.",
+    "explicit_mode_rule": "QA §3 requires four-layer markers together and rejects partial marker.",
+    "four_layer_precedent": {
+      "commit": "8125b6fee699dd22d14161f04c0a25e6416586b2",
+      "merge_pr": 3897,
+      "paths": [
+        "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
+        "docs/helix-os/L5-detail-design/log-feedback-memory-lineage.json",
+        "docs/helix-os/L8-unit-verification/log-feedback-memory-lineage.json",
+        "docs/helix-os/L9-integration-verification/log-feedback-memory-lineage.json"
+      ]
+    },
+    "interpretation": "PR #3897 is a concrete four-layer precedent, not a general override to the current one-V-pair operating rule. Any future atomic four-layer change requires explicit scope rationale and review; this evidence does not establish exception authority."
+  },
+  "legacy_failure_basis": {
+    "legacy_assets": [
+      "LEGACY-ASSET-D461943347D372ECF6DA",
+      "LEGACY-ASSET-B62E49D2E156232B8C63"
+    ],
+    "rederivation": "Current SEC009 source records semantic rederivation, keeping conditional recipient scope and owner separation without importing old engagement/broker runtime or authority behavior.",
+    "qa_failure": "QA §2/§3 cites PR #3835 R1 duplicate per-case 4-layer material failure; explicit class mode was introduced to separate class equivalence from L8/L9 case-specific expected rows."
+  },
+  "boundary": {
+    "formal_l4_l5_l8_l9_edited": false,
+    "expected_or_assignments_changed": false,
+    "authority_or_operation_effect": "none",
+    "authentication_authorization_settings_touched": false,
+    "credentials_touched": false,
+    "production_or_external_action": false,
+    "old_runtime_test_ci_or_algorithm_run": false,
+    "new_runtime_test_ci_or_l4_l5_algorithm_run": false
+  },
+  "source_pins": [
+    {
+      "path": "docs/helix-security/L4-basic-design/revoke-quarantine-propagation.json",
+      "revision": "c8f20a4f91456f6d5e5c16e1be0083c34aab6651",
+      "sha256": "c0a31c5c663d39854ed1df13b9bf2bfc439fdb46419d089bc617607d6e6ac5b6",
+      "worktree_bytes_match": true
+    },
+    {
+      "path": "docs/helix-security/L5-detail-design/revoke-quarantine-propagation.json",
+      "revision": "c8f20a4f91456f6d5e5c16e1be0083c34aab6651",
+      "sha256": "90c3761e88ea76fefe1222372ffa1218afcf2fc8cb4dec666ca8b7ca98bd8734",
+      "worktree_bytes_match": true
+    },
+    {
+      "path": "docs/helix-security/L8-unit-verification/revoke-quarantine-propagation.json",
+      "revision": "c8f20a4f91456f6d5e5c16e1be0083c34aab6651",
+      "sha256": "ebfb5a50360fbcf4c0df262a4c31c87870b963b9d4e557888d63aef74699c777",
+      "worktree_bytes_match": true
+    },
+    {
+      "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+      "revision": "c8f20a4f91456f6d5e5c16e1be0083c34aab6651",
+      "sha256": "62913b58577cfc0f3c7e6682ad160d8f236157a0ceed9c88ef71822330ed60fc",
+      "worktree_bytes_match": true
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.json",
+      "revision": "c8f20a4f91456f6d5e5c16e1be0083c34aab6651",
+      "sha256": "e4eeb70cc303e44199c7d898281e91c22dba89b47666353b9c80a4c634e898b5",
+      "worktree_bytes_match": true
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.json",
+      "revision": "c8f20a4f91456f6d5e5c16e1be0083c34aab6651",
+      "sha256": "e6da7eaff29a623b5d069801280c295d9dd7cc43b51d9cde25b12a8110e5072a",
+      "worktree_bytes_match": true
+    },
+    {
+      "path": "docs/governance/design-verification-quality-assurance.md",
+      "revision": "c8f20a4f91456f6d5e5c16e1be0083c34aab6651",
+      "sha256": "f5751e236dc073fe67114c1fcb4b0f64b3d746290b25d75b61e60a08e3c99c85",
+      "worktree_bytes_match": true
+    },
+    {
+      "path": "docs/governance/github-upstream-operating-model.md",
+      "revision": "c8f20a4f91456f6d5e5c16e1be0083c34aab6651",
+      "sha256": "637f4c4b8ba76ebd4b722a3d36cfa1f7faed45f0228f7528e56c072bc288f2d3",
+      "worktree_bytes_match": true
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/security-engagement-authority-requirements.md",
+      "revision": "c8f20a4f91456f6d5e5c16e1be0083c34aab6651",
+      "sha256": "38a68e48ca26cb277b6f5d88439b33b58aecf48f5b650f7596aec04e438b6b16",
+      "worktree_bytes_match": true
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/security-capability-broker-authority.md",
+      "revision": "c8f20a4f91456f6d5e5c16e1be0083c34aab6651",
+      "sha256": "161722d80e7b0199310b1401992c3737bef2014b19b2776c0df4b15f833fe0a7",
+      "worktree_bytes_match": true
+    }
+  ],
+  "result": "FAIL_CANDIDATE_BLOCKED_BY_UNRESOLVED_EVIDENCE",
+  "failures": [
+    "1/30 blind classification disagrees with the existing L9 assignment and expected oracle.",
+    "Explicit-mode checker owner link is incompatible with the L5 function_refs array shape.",
+    "Actions conflict class has no matching blind representative and four assigned recipient cases remain outside the blind sample.",
+    "Formal explicit four-way markers are absent; legacy checker result remains 310 failures."
+  ],
+  "scaffold_binding_validation": {
+    "scfctl_validate": {
+      "result": "PASS",
+      "bindings": 181,
+      "failures": 0
+    },
+    "scfctl_stale": {
+      "result": "PASS",
+      "stale": 0
+    },
+    "git_diff_check": "PASS",
+    "json_syntax": [
+      "comparison.json",
+      "SCF-B-0197.json"
+    ]
+  }
+}
