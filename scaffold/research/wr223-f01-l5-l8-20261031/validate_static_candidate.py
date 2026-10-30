@@ -10,7 +10,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[3]
 BASE = "dd5931cfff4ff786da2ced44de2a40529edf7b71"
-L5_REV = "706343a6d75dedd0d07040958d5f340baf259514"
+L5_REV = "87e5d15cdb909e88fd5d132ae7ad1d32c14b71d5"
 REVIEWED = "a715e777bd59291b26f09c0c1c5481273c6eba2e"
 L3 = "docs/helix-harness/L3-requirements/functional-requirements.json"
 L10 = "docs/helix-harness/L10-verification/functional-verification.json"
@@ -26,7 +26,7 @@ COMMENT = "https://github.com/RetryYN/HELIX-HARNESS/issues/3510#issuecomment-653
 R1_SHA = "e4f7be9befded4f2398209eac0d3ef226c0cd62cefa5e47d013a18e87f265bbd"
 R2_SHA = "fa047d5d871913b696ba5e01d9227ce13a68bc827ff6e8c66cc29d8e69d7e647"
 L9_SHA = "3d2257ee9d0f33f367377a3c379af9852973dc11d87c1f23f8f193724adebeb2"
-L5_SHA = "d5e5bc2611e47da7c0a55020c52152453f932c9665a0eeca5e44ddc71a1d3a15"
+L5_SHA = "fce881931580d26381df12721dc740a82b685e29c2039a5e1ff838475824c176"
 FACTS_SHA = "f16de2d4cb641c34a7289a81496e4618ff5a4a88eb8be3da1896123920db21de"
 
 
@@ -152,6 +152,8 @@ def main() -> None:
     assert catalog["status"] == "candidate_general_predicates_only_not_approved_or_executed"
     assert len(catalog["negative"]) == 6
     assert catalog["negative"][-1]["predicate_id"] == "target_and_pair_refs_untraceable"
+    assert catalog["negative"][-1]["required_presence"] == "An evaluation input record is available for inspection."
+    assert "member is absent, incomplete, or cannot be related" in catalog["negative"][-1]["condition"]
     assert any("sequence ==" in item for item in catalog["unresolved"])
     assert any("r2 negative condition" in item for item in catalog["unresolved"])
     assert candidate_l5["source_fact_evidence_ref"] == f"{FACTS}#/cases"

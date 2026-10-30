@@ -4,8 +4,8 @@
   "authority_effect": "none",
   "base_revision": "dd5931cfff4ff786da2ced44de2a40529edf7b71",
   "candidate_documents": {
-    "docs/helix-harness/L5-detail-design/tdd-development-flow.json": "d5e5bc2611e47da7c0a55020c52152453f932c9665a0eeca5e44ddc71a1d3a15",
-    "docs/helix-harness/L8-unit-verification/tdd-development-flow.json": "05c51527a9ff77402797ec4e54bc291569f63257b273cc44f7144903992f6002"
+    "docs/helix-harness/L5-detail-design/tdd-development-flow.json": "fce881931580d26381df12721dc740a82b685e29c2039a5e1ff838475824c176",
+    "docs/helix-harness/L8-unit-verification/tdd-development-flow.json": "ee1648c067009e819d41f869733290042e103c39e41c0980d29dcdb46c107392"
   },
   "fixed_artifacts": {
     "r1": {
@@ -64,7 +64,11 @@
     "l8_negative_witnesses": "pass: 5 only; no invented projection for r2 sixth negative because L4/L9 have no row",
     "decision_admission_read": "PR2943 and PR2959 admission conditions satisfied by merge ancestry; recorded status interpreted as decision-time display",
     "fixed_r2_artifact": "unchanged bytes; SHA fa047d5d871913b696ba5e01d9227ce13a68bc827ff6e8c66cc29d8e69d7e647",
-    "sequence_equality": "unresolved; no classification assigned"
+    "sequence_equality": "unresolved; no classification assigned",
+    "r2_f1_minimum_precondition": "pass: required_presence states only that an evaluation input record is available; predicate condition detects absent, incomplete, or unrelatable required refs",
+    "l8_projection_after_r2_f1": "pass: unchanged; no additional expected projection",
+    "post_r2_f1_validation": "PASS: static candidate validator; SCF-B-0192 validate bindings=177 fail=0; stale=0; git diff --check clean",
+    "l5_l8_pin_order": "pass: L5 bytes committed first as 87e5d15cdb909e88fd5d132ae7ad1d32c14b71d5; L8 pin now references exact revision and bytes"
   },
   "historical_failure_basis": {
     "current_pr_a": "WR206 PR-A research record: L4/L9 each had 28 negative classifications while L5/L8 had zero; 33 child mismatches and existing L8 ownership-cap findings remained.",
@@ -103,13 +107,18 @@
     {
       "revision": "706343a6d75dedd0d07040958d5f340baf259514",
       "sha256": "d5e5bc2611e47da7c0a55020c52152453f932c9665a0eeca5e44ddc71a1d3a15",
-      "note": "value-free general predicate added for r2 sixth negative; L8 pin follows"
+      "note": "value-free general predicate added for r2 sixth negative; superseded by R2 F1 precondition correction"
+    },
+    {
+      "revision": "87e5d15cdb909e88fd5d132ae7ad1d32c14b71d5",
+      "sha256": "fce881931580d26381df12721dc740a82b685e29c2039a5e1ff838475824c176",
+      "note": "R2 F1: minimum evaluation precondition clarified; L8 pin rebound in following commit"
     }
   ],
   "l5_ownership_correction": {
-    "revision": "706343a6d75dedd0d07040958d5f340baf259514",
-    "sha256": "d5e5bc2611e47da7c0a55020c52152453f932c9665a0eeca5e44ddc71a1d3a15",
-    "change": "value-free sixth general predicate added; no concrete facts or classification mapping"
+    "revision": "87e5d15cdb909e88fd5d132ae7ad1d32c14b71d5",
+    "sha256": "fce881931580d26381df12721dc740a82b685e29c2039a5e1ff838475824c176",
+    "change": "R2 F1: minimum precondition is an available evaluation input record; predicate condition detects absent, incomplete, or unrelatable required reference members; value-free and no classification mapping"
   },
   "source_fact_evidence": {
     "path": "scaffold/research/wr223-f01-l5-l8-20261031/source/f01-candidate-input-facts.json",
@@ -127,11 +136,19 @@
     "note": "Superseded: fixture facts and per-witness projections were temporarily placed in L5 and then removed to restore the QA §3 ownership boundary."
   },
   "l5_current_pinned_commit": {
-    "revision": "706343a6d75dedd0d07040958d5f340baf259514",
+    "revision": "87e5d15cdb909e88fd5d132ae7ad1d32c14b71d5",
     "path": "docs/helix-harness/L5-detail-design/tdd-development-flow.json",
-    "sha256": "d5e5bc2611e47da7c0a55020c52152453f932c9665a0eeca5e44ddc71a1d3a15"
+    "sha256": "fce881931580d26381df12721dc740a82b685e29c2039a5e1ff838475824c176"
   },
   "resolved_authority_admission": "PR2943 and PR2959 merge admission conditions are satisfied by merge ancestry; decision status fields are read as decision-time records. Source decision records and fixed r2 were not edited.",
+  "review_r2_followup": {
+    "pr": 3967,
+    "review_comment_id": 6532411765,
+    "reviewed_head": "d0ccf6b3f46f382e65a7fa2589678f4b936d5ec8",
+    "response_path": "scaffold/review-handoff/local/brain032-l8-d27-3547-20261023/root-wr223-pr3967-review-r2-response-R1.json",
+    "response_sha256": "8947a178cea3083f3c27fdd09b7756e81b7e29d367d628f261855dfa0e3c9399",
+    "finding_recorded": "minimum precondition now states evaluation input record availability; missing/incomplete/unrelatable required members remain the value-free condition; no L8 projection added"
+  },
   "review_r1_followup": {
     "pr": 3967,
     "review_comment_id": 6532324816,

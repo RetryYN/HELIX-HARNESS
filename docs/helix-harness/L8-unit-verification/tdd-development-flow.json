@@ -1120,8 +1120,8 @@
           },
           {
             "path": "docs/helix-harness/L5-detail-design/tdd-development-flow.json",
-            "revision": "706343a6d75dedd0d07040958d5f340baf259514",
-            "sha256": "d5e5bc2611e47da7c0a55020c52152453f932c9665a0eeca5e44ddc71a1d3a15",
+            "revision": "87e5d15cdb909e88fd5d132ae7ad1d32c14b71d5",
+            "sha256": "fce881931580d26381df12721dc740a82b685e29c2039a5e1ff838475824c176",
             "pointer": "/contracts/1/candidate_classification_design",
             "claim": "前段で固定した値を含まないL5 general predicate catalog。r2第6負例に対する述語は候補意味だけを持ち、L8 expected projectionは定義しない。"
           }

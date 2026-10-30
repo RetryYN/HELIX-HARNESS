@@ -31,7 +31,7 @@ L4/L9とL8の既存unit-case ID一覧、L5の既存contract、既存L8 unit case
 
 ## L5/L8候補
 
-初回L5候補commitは `f97e1ff9331bafdc5d87b4f6e1af067020e78b76`（SHA-256 `216e8f04638ab8734c91333bbb6bae48031e13224d084eb9fc750f125d703610`）。r2固定後にL5へfixture factsを加えた中間revisionはQA §3所有境界に反したため、具体値とfact listをscaffoldへ移した。その後、R1で未対応のr2第6負例を受け、値を含まない一般述語だけを追加したL5 commit `706343a6d75dedd0d07040958d5f340baf259514`（SHA-256 `d5e5bc2611e47da7c0a55020c52152453f932c9665a0eeca5e44ddc71a1d3a15`）を固定した。L8 source pinはこのrevisionと完全bytesを参照する。L5 F01既存field/semantic rulesは不変。
+初回L5候補commitは `f97e1ff9331bafdc5d87b4f6e1af067020e78b76`（SHA-256 `216e8f04638ab8734c91333bbb6bae48031e13224d084eb9fc750f125d703610`）。r2固定後にL5へfixture factsを加えた中間revisionはQA §3所有境界に反したため、具体値とfact listをscaffoldへ移した。その後、R1で未対応のr2第6負例を受け、値を含まない一般述語だけを追加したL5 commit `706343a6d75dedd0d07040958d5f340baf259514`（SHA-256 `d5e5bc2611e47da7c0a55020c52152453f932c9665a0eeca5e44ddc71a1d3a15`）を固定した。R2 F1では最小前提と欠落条件の矛盾を指摘され、`required_presence`を「評価対象input recordがある」へ限定したL5 commit `87e5d15cdb909e88fd5d132ae7ad1d32c14b71d5`（SHA-256 `fce881931580d26381df12721dc740a82b685e29c2039a5e1ff838475824c176`）を固定した。L8 source pinはこのrevisionと完全bytesを参照する。L5 F01既存field/semantic rulesは不変。
 
 ### r2固定後のsource-condition再照合
 
@@ -52,7 +52,9 @@ L9のowner_materialはsynthetic fixtureであり、正式なowner-qualified入�
 
 r2の`representative_negative_conditions`第6項は「対象identity/revision/scopeまたは設計/対oracleの版を辿れない」条件で、L3 F01の対象結線義務とL10 F01の設計・oracle版と対象を辿る観測に根拠がある。既存L4 F01とL9 F01には負例行が各5件だけで、この第6条件に対応する行はない。[PR #3967 R1 comment 6532324816](https://github.com/RetryYN/HELIX-HARNESS/pull/3967#issuecomment-6532324816)もこの差をMajorとして指摘した。
 
-L5には値を持たない`target_and_pair_refs_untraceable`一般述語を追加し、どのrequired ref memberが解決しない／対象と結べないかを候補述語として示した。分類code/axis/state/backflowや優先順位は未定義のまま。L8は既存L4/L9に根拠のない6件目の期待projectionを作らず、引き続き1 positive・5 negativeのままにする。第6意味をL4/L9のnegative rowへ定義する場合は別V-pair作業として扱う。source facts artifactのunresolvedにもこの欠落を記録した。
+L5には値を持たない`target_and_pair_refs_untraceable`一般述語を追加し、最小評価前提はinput recordの存在、検出条件はrequired ref memberの欠落・不完全・target bindingへの非関連とした。分類code/axis/state/backflowや優先順位は未定義のまま。L8は既存L4/L9に根拠のない6件目の期待projectionを作らず、引き続き1 positive・5 negativeのままにする。第6意味をL4/L9のnegative rowへ定義する場合は別V-pair作業として扱う。source facts artifactのunresolvedにもこの欠落を記録した。
+
+PR #3967 R2 comment 6532411765 / response `root-wr223-pr3967-review-r2-response-R1.json`（SHA-256 `8947a178cea3083f3c27fdd09b7756e81b7e29d367d628f261855dfa0e3c9399`）のF1に従い、required_presenceを対象recordが利用可能という最小前提へ直した。欠落等を述語条件に保持し、value-freeを維持した。L8の期待projectionは増やしていない。r2固定bytes・L4/L9・既存期待は不変。
 
 同R1のI1に従い、`freeze.sequence == body_change.sequence`は正例`<`にも負例`>`にも属する根拠が固定sourceにないため未決へ追加した。等値を受理・拒否・unknownのどれかに決めない。r2のbytesとIssue固定SHAは不変。
 

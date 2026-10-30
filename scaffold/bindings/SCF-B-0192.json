@@ -112,11 +112,11 @@
       "Existing L8 unit_case_ids and unit_cases are unchanged; candidate IDs remain outside canonical sets",
       "design_verification_checker check-child: L4/L9 and L5/L8 pair links pass; negative 4way remains L4=28, L9=28, L8=0, L5=0, matched=0; candidate rows not counted; L9/L8 ownership-cap residuals remain.",
       "Sequence equality between freeze.sequence and body_change.sequence is unresolved; no output classification is assigned.",
-      "candidate artifact SHA-256: docs/helix-harness/L5-detail-design/tdd-development-flow.json=d5e5bc2611e47da7c0a55020c52152453f932c9665a0eeca5e44ddc71a1d3a15",
-      "candidate artifact SHA-256: docs/helix-harness/L8-unit-verification/tdd-development-flow.json=05c51527a9ff77402797ec4e54bc291569f63257b273cc44f7144903992f6002",
-      "candidate artifact SHA-256: scaffold/research/wr223-f01-l5-l8-20261031/README.md=5a9646a50ae4eb3ef24b8445920185578c61ba7203f12ccadc740ac654c1c8c6",
-      "candidate artifact SHA-256: scaffold/research/wr223-f01-l5-l8-20261031/validate_static_candidate.py=a31c90274068034638e766dc31e9f0b7fc366fe1eabba5c8a71515faa8968cbd",
-      "candidate artifact SHA-256: scaffold/research/wr223-f01-l5-l8-20261031/verification-summary.json=25d7706404860282bb5c88efe651f6b4a27474128366160294762fdee121a8be",
+      "candidate artifact SHA-256: docs/helix-harness/L5-detail-design/tdd-development-flow.json=fce881931580d26381df12721dc740a82b685e29c2039a5e1ff838475824c176",
+      "candidate artifact SHA-256: docs/helix-harness/L8-unit-verification/tdd-development-flow.json=ee1648c067009e819d41f869733290042e103c39e41c0980d29dcdb46c107392",
+      "candidate artifact SHA-256: scaffold/research/wr223-f01-l5-l8-20261031/README.md=7e5fe7f82acac693785d4589f9e14752d632dc6ae414c6b652dd03c467d9f60c",
+      "candidate artifact SHA-256: scaffold/research/wr223-f01-l5-l8-20261031/validate_static_candidate.py=60e8fdc132be18131f42e48f6a617e6391a883efb7e3deb4f6086c3db8029307",
+      "candidate artifact SHA-256: scaffold/research/wr223-f01-l5-l8-20261031/verification-summary.json=7f2f84406dffde75ab351eed7c436031c6e01fc8ce1939d9c258606d0fda6ad4",
       "candidate artifact SHA-256: scaffold/research/wr223-f01-l5-l8-20261031/source/f01-candidate-input-facts.json=f16de2d4cb641c34a7289a81496e4618ff5a4a88eb8be3da1896123920db21de"
     ],
     "negative_cases": [
