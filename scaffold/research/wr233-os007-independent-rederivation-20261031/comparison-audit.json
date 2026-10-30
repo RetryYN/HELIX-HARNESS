@@ -10,9 +10,30 @@
   "pre_comparison_frozen_artifact": {
     "path": "scaffold/research/wr233-os007-independent-rederivation-20261031/blind-derivation.json",
     "sha256": "7143bc0f631dff2ab6f0c1b36fc30bccd19d2513ba2ab16c18f28d27ea3748ca",
+    "derived_at_utc_in_artifact": "2026-10-30T22:32:00Z",
+    "local_artifact_frozen_at_utc": "2026-10-30T22:32:07Z",
     "issue_comment_url": "https://github.com/RetryYN/HELIX-HARNESS/issues/3510#issuecomment-6534998289",
+    "issue_comment_created_at_utc": "2026-10-30T22:39:10Z",
     "derived_by_subagent": "7fa2a2e6-c87a-4f81-94b5-58dfbc7af802",
-    "bytes_modified_after_freeze": false
+    "bytes_modified_after_freeze": false,
+    "step_a_upstream_files_read": [
+      "docs/helix-os/L3-requirements/functional-requirements.json",
+      "docs/helix-os/L3-requirements/business-requirements.json",
+      "docs/helix-os/L10-verification/functional-verification.json",
+      "docs/helix-os/L10-verification/business-verification.json",
+      "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json (prose-only copy /tmp/l4-os007-prose-only.json)"
+    ],
+    "step_a_l7_read_count": 0,
+    "step_a_read_scope_note": "Step A read ONLY L3, L10, and L4 prose (l5_read_count=0, l7_read_count=0, l8_read_count=0, l9_read_count=0). L7 was NOT read in Step A; L7 was read only in Step B to separate the 77 L7-recorded classes from the 6 L7-unrecorded branches.",
+    "pre_freeze_derived_items": {
+      "representative_negative_rows_count": 12,
+      "representative_negative_rows_R01_R02_count": 2,
+      "representative_negative_rows_R03_R12_count": 10,
+      "freeze_comment_prose_count_explanation": "Issue #3510 comment #issuecomment-6534998289 and blind-derivation.json#/selection_policy_and_overview prose wrote \"10 representative negative rows\" (counting R10A/R10B/R10C together as 1 rule group), while the actual frozen JSON array blind-derivation.json#/representative_negative_rows has 12 elements (index 0..11: 2 rows for R01..R02 and 10 rows for R03..R12).",
+      "complete_37_code_matrix_count": 37,
+      "uninstantiated_or_deferred_branches_count": 7,
+      "class_by_class_83_rows_in_frozen_artifact": 0
+    }
   },
   "source_pins_at_comparison": {
     "L3_functional": {
@@ -59,16 +80,288 @@
     }
   },
   "summary_counts": {
+    "pre_freeze_blind_representative_rule_rows": 12,
+    "pre_freeze_blind_representative_rule_rows_R01_R02": 2,
+    "pre_freeze_blind_representative_rule_rows_R03_R12": 10,
+    "pre_freeze_blind_diagnostic_codes": 37,
+    "pre_freeze_matched_representative_rule_rows": 12,
+    "pre_freeze_matched_diagnostic_codes": 37,
+    "pre_freeze_blind_83_class_rows": 0,
     "total_negative_equivalence_classes": 83,
     "l7_recorded_negative_classes": 77,
     "l7_unrecorded_negative_classes": 6,
     "total_l8_unit_cases": 951,
     "positive_l8_unit_cases": 7,
     "negative_l8_unit_cases": 944,
-    "representative_rows_selected_from_83": 23,
-    "code_and_condition_matches_across_83": 83,
+    "post_freeze_representative_l8_classes_selected_from_83": 23,
+    "post_freeze_rule_projection_matches_across_83": 83,
     "l8_unit_return_projection_gaps_in_77_l7_backed_rows": 77,
     "l4_prose_pointer_or_wording_gaps_across_83_rows": 20
+  },
+  "pre_freeze_direct_comparison": {
+    "description": "Direct comparison between the pre-freeze artifact (blind-derivation.json: 12 representative rule rows and 37 diagnostic codes) and L8/L5/L9.",
+    "representative_12_rule_rows_comparison": [
+      {
+        "blind_row_index": 0,
+        "row_id": "NEG-OS007-R01-COMMON-PRIMITIVES",
+        "contract_id": "HELIXOS-L4-007-F01 / HELIXOS-L4-007-F02 / HELIXOS-L4-007-F03",
+        "rule_ids": [
+          "R01",
+          "R12"
+        ],
+        "blind_expected_finding_codes": [
+          "field_unknown",
+          "field_conflict",
+          "boolean_unknown",
+          "boolean_conflict"
+        ],
+        "matched_against_l8_l5_l9_on_codes_and_conditions": true,
+        "layer_notes": [
+          "Exact JSON pointer prefix formatting for actual vs context in findings (e.g. whether pointers start with /logs/... vs /actual/logs/... and /context/logs/... is fixed in L5/L8, not spelled out as a literal path template in L4 prose)",
+          "Concrete synthetic string/boolean values used in L8/L9 test fixtures"
+        ]
+      },
+      {
+        "blind_row_index": 1,
+        "row_id": "NEG-OS007-R02-LOG-COMMON-FIELDS-KIND-AND-STATE",
+        "contract_id": "HELIXOS-L4-007-F01",
+        "rule_ids": [
+          "R01",
+          "R02",
+          "R03",
+          "R12"
+        ],
+        "blind_expected_finding_codes": [
+          "field_unknown",
+          "field_conflict",
+          "log_kind_unknown",
+          "log_kind_conflict",
+          "log_state_unknown",
+          "log_state_conflict",
+          "log_duplicate",
+          "log_stale"
+        ],
+        "matched_against_l8_l5_l9_on_codes_and_conditions": true,
+        "layer_notes": [
+          "Formal BASE-01 schema/codec and real actor/model/capability/time/source qualification (explicitly deferred in /remaining/0 to L5/L8)",
+          "Formal N/A evidence type for model_revision on human records (/diagnostic_contract/common_meanings/model_revision)"
+        ]
+      },
+      {
+        "blind_row_index": 2,
+        "row_id": "NEG-OS007-R03-LOG-SUCCESS-CLAIM-FORBIDDEN",
+        "contract_id": "HELIXOS-L4-007-F01",
+        "rule_ids": [
+          "R03",
+          "R12"
+        ],
+        "blind_expected_finding_codes": [
+          "log_success_claim_forbidden",
+          "boolean_unknown"
+        ],
+        "matched_against_l8_l5_l9_on_codes_and_conditions": true,
+        "layer_notes": [
+          "Concrete pointer path string for success_evidence_claim in L8/L9 fixtures"
+        ]
+      },
+      {
+        "blind_row_index": 3,
+        "row_id": "NEG-OS007-R04-FEEDBACK-ORIGINAL-FINDING-PRESERVATION",
+        "contract_id": "HELIXOS-L4-007-F02",
+        "rule_ids": [
+          "R01",
+          "R04",
+          "R07",
+          "R12"
+        ],
+        "blind_expected_finding_codes": [
+          "finding_missing",
+          "original_finding_changed",
+          "field_unknown",
+          "field_conflict",
+          "finding_discard_forbidden",
+          "boolean_unknown"
+        ],
+        "matched_against_l8_l5_l9_on_codes_and_conditions": true,
+        "layer_notes": [
+          "Real persistence/journal recovery and partial scan completeness markers for unacked findings (/remaining/1)"
+        ]
+      },
+      {
+        "blind_row_index": 4,
+        "row_id": "NEG-OS007-R05-FEEDBACK-STAGE-RECORDING-AND-SOURCE-HEAD-JOIN",
+        "contract_id": "HELIXOS-L4-007-F02",
+        "rule_ids": [
+          "R01",
+          "R05",
+          "R07",
+          "R12"
+        ],
+        "blind_expected_finding_codes": [
+          "boolean_unknown",
+          "boolean_conflict",
+          "stage_unrecorded_ref_present",
+          "field_unknown",
+          "field_conflict"
+        ],
+        "matched_against_l8_l5_l9_on_codes_and_conditions": true,
+        "layer_notes": [
+          "Concrete stage receipt identifiers and timestamps used in downstream test fixtures"
+        ]
+      },
+      {
+        "blind_row_index": 5,
+        "row_id": "NEG-OS007-R06-R07-FEEDBACK-RESOLUTION-ORIGIN-AND-UNRESOLVED-CLAIM",
+        "contract_id": "HELIXOS-L4-007-F02",
+        "rule_ids": [
+          "R06",
+          "R07",
+          "R12"
+        ],
+        "blind_expected_finding_codes": [
+          "resolution_origin_unknown",
+          "field_conflict",
+          "resolution_origin_forbidden",
+          "boolean_unknown",
+          "unresolved_claimed_resolved"
+        ],
+        "matched_against_l8_l5_l9_on_codes_and_conditions": true,
+        "layer_notes": [
+          "Sufficient conditions for real domain resolution and formal finding schemas owned by each meaning/verification owner (/remaining/1)"
+        ]
+      },
+      {
+        "blind_row_index": 6,
+        "row_id": "NEG-OS007-R08-MEMORY-SOURCE-STATE-FRESHNESS-AND-REFLECTION-JOIN",
+        "contract_id": "HELIXOS-L4-007-F03",
+        "rule_ids": [
+          "R01",
+          "R08",
+          "R11",
+          "R12"
+        ],
+        "blind_expected_finding_codes": [
+          "memory_state_unknown",
+          "memory_state_conflict",
+          "memory_freshness_unknown",
+          "memory_freshness_conflict",
+          "reflection_unrecorded_ref_present",
+          "field_unknown",
+          "field_conflict",
+          "boolean_unknown",
+          "boolean_conflict"
+        ],
+        "matched_against_l8_l5_l9_on_codes_and_conditions": true,
+        "layer_notes": [
+          "Real target identity / durable write verification / physical target file realpath check (/remaining/2)"
+        ]
+      },
+      {
+        "blind_row_index": 7,
+        "row_id": "NEG-OS007-R09-MEMORY-RETIRE-BEFORE-REFLECTION-AND-ORDERING",
+        "contract_id": "HELIXOS-L4-007-F03",
+        "rule_ids": [
+          "R09",
+          "R11",
+          "R12"
+        ],
+        "blind_expected_finding_codes": [
+          "order_unknown",
+          "order_conflict",
+          "retire_before_reflection",
+          "retirement_basis_unknown",
+          "reflection_not_before_retire"
+        ],
+        "matched_against_l8_l5_l9_on_codes_and_conditions": true,
+        "layer_notes": [
+          "Exact pointer chosen for retire_before_reflection, retirement_basis_unknown, and reflection_not_before_retire (e.g., whether attached to state, reflection.recorded, or retire_order pointer in L5/L8)",
+          "Real custody/timestamp proof of ordering beyond synthetic episode ordinal (/remaining/3)"
+        ]
+      },
+      {
+        "blind_row_index": 8,
+        "row_id": "NEG-OS007-R10A-MEMORY-TERMINAL-OR-STALE-RESURFACED",
+        "contract_id": "HELIXOS-L4-007-F03",
+        "rule_ids": [
+          "R10",
+          "R11",
+          "R12"
+        ],
+        "blind_expected_finding_codes": [
+          "boolean_unknown",
+          "terminal_instruction_resurfaced"
+        ],
+        "matched_against_l8_l5_l9_on_codes_and_conditions": true,
+        "layer_notes": [
+          "Expiry clock injection, compaction tombstone redaction, and physical surface budget clipping (/remaining/2)"
+        ]
+      },
+      {
+        "blind_row_index": 9,
+        "row_id": "NEG-OS007-R10B-MEMORY-DELIVERY-CONSUME-COUNTS-AND-USE-STATE",
+        "contract_id": "HELIXOS-L4-007-F03",
+        "rule_ids": [
+          "R10",
+          "R11",
+          "R12"
+        ],
+        "blind_expected_finding_codes": [
+          "use_count_unknown",
+          "use_count_conflict",
+          "duplicate_successful_use",
+          "consume_without_delivery",
+          "use_state_conflict"
+        ],
+        "matched_against_l8_l5_l9_on_codes_and_conditions": true,
+        "layer_notes": [
+          "Physical at-least-once delivery transport and SQLite coordination lock/fencing mechanics (/legacy_comparison/consumer_boundary, /remaining/2, /remaining/3)"
+        ]
+      },
+      {
+        "blind_row_index": 10,
+        "row_id": "NEG-OS007-R10C-PROVIDER-MEMORY-AUTHORITY-FORBIDDEN",
+        "contract_id": "HELIXOS-L4-007-F03",
+        "rule_ids": [
+          "R10",
+          "R11",
+          "R12"
+        ],
+        "blind_expected_finding_codes": [
+          "provider_memory_authority_forbidden",
+          "boolean_unknown"
+        ],
+        "matched_against_l8_l5_l9_on_codes_and_conditions": true,
+        "layer_notes": [
+          "Provider-specific memory adapter shapes (explicitly excluded from migration in /legacy_comparison/change and /legacy_comparison/consumer_boundary)"
+        ]
+      },
+      {
+        "blind_row_index": 11,
+        "row_id": "NEG-OS007-R12-BOUNDARY-WHOLE-COMPLETION-AND-PRECEDENCE",
+        "contract_id": "HELIXOS-L4-007-F01 / HELIXOS-L4-007-F02 / HELIXOS-L4-007-F03",
+        "rule_ids": [
+          "R12"
+        ],
+        "blind_expected_finding_codes": [
+          "whole_completion_forbidden",
+          "whole_claim_unknown"
+        ],
+        "matched_against_l8_l5_l9_on_codes_and_conditions": true,
+        "layer_notes": [
+          "Exact binding and full structural closure to OS015/016/019/053 and HARNESS common evidence semantics (/remaining/4)"
+        ]
+      }
+    ],
+    "complete_37_code_matrix_comparison_summary": {
+      "total_codes_in_frozen_artifact": 37,
+      "matched_codes_on_disposition_facet_and_owner": 37,
+      "pointer_or_wording_gaps_identified_in_l4_prose": [
+        "R02 log_kind_conflict: L4 prose says both sides pointers, whereas L5/L8/L9 emit only on the operand pointer whose known kind differs from fixture key.",
+        "R08 memory_state_unknown / memory_freshness_unknown: L4 prose says both sides, whereas L5/L9 emit only on the offending unknown operand pointer.",
+        "R09 retire_before_reflection / retirement_basis_unknown / reflection_not_before_retire: L4 prose does not specify which pointer among state / reflection/recorded / retire_order receives the finding.",
+        "R10 consume_without_delivery / use_state_conflict: L4 prose does not specify which cross-field pointer (consume_success_count vs state) receives the finding."
+      ]
+    }
   },
   "representative_rows_selected_from_83": [
     {
@@ -84,13 +377,13 @@
       ],
       "l5_function_ref": "assess_log_material",
       "選定理由": "R01/R12（logs共通string比較の片側不明field_unknownと全体優先順位）の最小単一負例として選定。",
-      "blind_derived_finding_codes": [
+      "post_freeze_projected_finding_codes": [
         "field_unknown"
       ],
-      "blind_derived_condition": "record_material_unknown",
-      "blind_derived_axis_and_state": "logs / unknown",
-      "blind_derived_backflow_owner": "common-log-owner",
-      "l8_match_on_code_and_condition": true,
+      "post_freeze_projected_condition": "record_material_unknown",
+      "post_freeze_projected_axis_and_state": "logs / unknown",
+      "post_freeze_projected_backflow_owner": "common-log-owner",
+      "l8_match_on_post_freeze_projection": true,
       "layer_diagnosis_summary": "[L8] L8-PROVENANCE-AND-UNIT-RETURN-ROOT-GAP"
     },
     {
@@ -106,13 +399,13 @@
       ],
       "l5_function_ref": "assess_log_material",
       "選定理由": "R02/R12（log_names閉集合外のlog_kind_unknownとunknown状態帰属）を代表するため選定。",
-      "blind_derived_finding_codes": [
+      "post_freeze_projected_finding_codes": [
         "log_kind_unknown"
       ],
-      "blind_derived_condition": "record_material_unknown",
-      "blind_derived_axis_and_state": "logs / unknown",
-      "blind_derived_backflow_owner": "common-log-owner",
-      "l8_match_on_code_and_condition": true,
+      "post_freeze_projected_condition": "record_material_unknown",
+      "post_freeze_projected_axis_and_state": "logs / unknown",
+      "post_freeze_projected_backflow_owner": "common-log-owner",
+      "l8_match_on_post_freeze_projection": true,
       "layer_diagnosis_summary": "[L8] L8-PROVENANCE-AND-UNIT-RETURN-ROOT-GAP"
     },
     {
@@ -128,13 +421,13 @@
       ],
       "l5_function_ref": "assess_log_material",
       "選定理由": "R02/R03/R12（duplicate_materialのlog_duplicate識別と成功証拠からの分離・usable=false）を代表するため選定。",
-      "blind_derived_finding_codes": [
+      "post_freeze_projected_finding_codes": [
         "log_duplicate"
       ],
-      "blind_derived_condition": "record_material_unknown",
-      "blind_derived_axis_and_state": "logs / unknown",
-      "blind_derived_backflow_owner": "common-log-owner",
-      "l8_match_on_code_and_condition": true,
+      "post_freeze_projected_condition": "record_material_unknown",
+      "post_freeze_projected_axis_and_state": "logs / unknown",
+      "post_freeze_projected_backflow_owner": "common-log-owner",
+      "l8_match_on_post_freeze_projection": true,
       "layer_diagnosis_summary": "[L8] L8-PROVENANCE-AND-UNIT-RETURN-ROOT-GAP"
     },
     {
@@ -149,13 +442,13 @@
       ],
       "l5_function_ref": "assess_log_material",
       "選定理由": "R03/R12（actual logのsuccess_evidence_claim=trueに対するlog_success_claim_forbidden拒否）を代表するため選定。",
-      "blind_derived_finding_codes": [
+      "post_freeze_projected_finding_codes": [
         "log_success_claim_forbidden"
       ],
-      "blind_derived_condition": "record_material_violation",
-      "blind_derived_axis_and_state": "logs / violation",
-      "blind_derived_backflow_owner": "common-log-owner",
-      "l8_match_on_code_and_condition": true,
+      "post_freeze_projected_condition": "record_material_violation",
+      "post_freeze_projected_axis_and_state": "logs / violation",
+      "post_freeze_projected_backflow_owner": "common-log-owner",
+      "l8_match_on_post_freeze_projection": true,
       "layer_diagnosis_summary": "[L8] L8-PROVENANCE-AND-UNIT-RETURN-ROOT-GAP"
     },
     {
@@ -171,13 +464,13 @@
       ],
       "l5_function_ref": "assess_feedback_material",
       "選定理由": "R04/R07/R12（original_finding非dict時のfinding_missing識別とreference原記録の別枠保持）を代表するため選定。",
-      "blind_derived_finding_codes": [
+      "post_freeze_projected_finding_codes": [
         "finding_missing"
       ],
-      "blind_derived_condition": "record_material_unknown",
-      "blind_derived_axis_and_state": "feedback / unknown",
-      "blind_derived_backflow_owner": "feedback-source-owner",
-      "l8_match_on_code_and_condition": true,
+      "post_freeze_projected_condition": "record_material_unknown",
+      "post_freeze_projected_axis_and_state": "feedback / unknown",
+      "post_freeze_projected_backflow_owner": "feedback-source-owner",
+      "l8_match_on_post_freeze_projection": true,
       "layer_diagnosis_summary": "[L8] L8-PROVENANCE-AND-UNIT-RETURN-ROOT-GAP"
     },
     {
@@ -193,13 +486,13 @@
       ],
       "l5_function_ref": "assess_feedback_material",
       "選定理由": "R05/R07/R12（未記録stageにおける非null stage_fields混入を拒否するstage_unrecorded_ref_present）を代表するため選定。",
-      "blind_derived_finding_codes": [
+      "post_freeze_projected_finding_codes": [
         "stage_unrecorded_ref_present"
       ],
-      "blind_derived_condition": "record_material_violation",
-      "blind_derived_axis_and_state": "feedback / violation",
-      "blind_derived_backflow_owner": "feedback-source-owner",
-      "l8_match_on_code_and_condition": true,
+      "post_freeze_projected_condition": "record_material_violation",
+      "post_freeze_projected_axis_and_state": "feedback / violation",
+      "post_freeze_projected_backflow_owner": "feedback-source-owner",
+      "l8_match_on_post_freeze_projection": true,
       "layer_diagnosis_summary": "[L8] L8-PROVENANCE-AND-UNIT-RETURN-ROOT-GAP"
     },
     {
@@ -215,13 +508,13 @@
       ],
       "l5_function_ref": "assess_feedback_material",
       "選定理由": "R06/R07/R12（canonical_resolution_source以外のprose等を解決根拠とすることを拒否するresolution_origin_forbiddenとactual_resolved=false）を代表するため選定。",
-      "blind_derived_finding_codes": [
+      "post_freeze_projected_finding_codes": [
         "resolution_origin_forbidden"
       ],
-      "blind_derived_condition": "record_material_violation",
-      "blind_derived_axis_and_state": "feedback / violation",
-      "blind_derived_backflow_owner": "feedback-source-owner",
-      "l8_match_on_code_and_condition": true,
+      "post_freeze_projected_condition": "record_material_violation",
+      "post_freeze_projected_axis_and_state": "feedback / violation",
+      "post_freeze_projected_backflow_owner": "feedback-source-owner",
+      "l8_match_on_post_freeze_projection": true,
       "layer_diagnosis_summary": "[L8] L8-PROVENANCE-AND-UNIT-RETURN-ROOT-GAP"
     },
     {
@@ -237,13 +530,13 @@
       ],
       "l5_function_ref": "assess_feedback_material",
       "選定理由": "R06/R07/R12（resolution未記録またはfinding存在時のresolved_claim=trueを拒否するunresolved_claimed_resolved）を代表するため選定。",
-      "blind_derived_finding_codes": [
+      "post_freeze_projected_finding_codes": [
         "unresolved_claimed_resolved"
       ],
-      "blind_derived_condition": "record_material_violation",
-      "blind_derived_axis_and_state": "feedback / violation",
-      "blind_derived_backflow_owner": "feedback-source-owner",
-      "l8_match_on_code_and_condition": true,
+      "post_freeze_projected_condition": "record_material_violation",
+      "post_freeze_projected_axis_and_state": "feedback / violation",
+      "post_freeze_projected_backflow_owner": "feedback-source-owner",
+      "l8_match_on_post_freeze_projection": true,
       "layer_diagnosis_summary": "[L8] L8-PROVENANCE-AND-UNIT-RETURN-ROOT-GAP"
     },
     {
@@ -259,13 +552,13 @@
       ],
       "l5_function_ref": "assess_feedback_material",
       "選定理由": "R04/R07/R12（未ack findingの破棄主張discard_original_claim=trueを拒否するfinding_discard_forbidden）を代表するため選定。",
-      "blind_derived_finding_codes": [
+      "post_freeze_projected_finding_codes": [
         "finding_discard_forbidden"
       ],
-      "blind_derived_condition": "record_material_violation",
-      "blind_derived_axis_and_state": "feedback / violation",
-      "blind_derived_backflow_owner": "feedback-source-owner",
-      "l8_match_on_code_and_condition": true,
+      "post_freeze_projected_condition": "record_material_violation",
+      "post_freeze_projected_axis_and_state": "feedback / violation",
+      "post_freeze_projected_backflow_owner": "feedback-source-owner",
+      "l8_match_on_post_freeze_projection": true,
       "layer_diagnosis_summary": "[L8] L8-PROVENANCE-AND-UNIT-RETURN-ROOT-GAP"
     },
     {
@@ -281,13 +574,13 @@
       ],
       "l5_function_ref": "assess_memory_material",
       "選定理由": "R08/R11/R12（memory_states閉集合外のmemory_state_unknownと、L4散文「両側」表記とL5/L9片側pointerの差分確認）を代表するため選定。",
-      "blind_derived_finding_codes": [
+      "post_freeze_projected_finding_codes": [
         "memory_state_unknown"
       ],
-      "blind_derived_condition": "record_material_unknown",
-      "blind_derived_axis_and_state": "memory / unknown",
-      "blind_derived_backflow_owner": "memory-canonical-owner",
-      "l8_match_on_code_and_condition": true,
+      "post_freeze_projected_condition": "record_material_unknown",
+      "post_freeze_projected_axis_and_state": "memory / unknown",
+      "post_freeze_projected_backflow_owner": "memory-canonical-owner",
+      "l8_match_on_post_freeze_projection": true,
       "layer_diagnosis_summary": "[L8] L8-PROVENANCE-AND-UNIT-RETURN-ROOT-GAP; [L4] L4-R08-BOTH-SIDES-PROSE-WORDING"
     },
     {
@@ -303,13 +596,13 @@
       ],
       "l5_function_ref": "assess_memory_material",
       "選定理由": "R08/R11/R12（reflection.recorded=false時の非null reflection_fields/order混入を拒否するreflection_unrecorded_ref_present）を代表するため選定。",
-      "blind_derived_finding_codes": [
+      "post_freeze_projected_finding_codes": [
         "reflection_unrecorded_ref_present"
       ],
-      "blind_derived_condition": "record_material_violation",
-      "blind_derived_axis_and_state": "memory / violation",
-      "blind_derived_backflow_owner": "memory-canonical-owner",
-      "l8_match_on_code_and_condition": true,
+      "post_freeze_projected_condition": "record_material_violation",
+      "post_freeze_projected_axis_and_state": "memory / violation",
+      "post_freeze_projected_backflow_owner": "memory-canonical-owner",
+      "l8_match_on_post_freeze_projection": true,
       "layer_diagnosis_summary": "[L8] L8-PROVENANCE-AND-UNIT-RETURN-ROOT-GAP"
     },
     {
@@ -325,13 +618,13 @@
       ],
       "l5_function_ref": "assess_memory_material",
       "選定理由": "R09/R11/R12（actual state=retiredかつreflection.recorded=falseの未反映retireを拒否するretire_before_reflection）を代表するため選定。",
-      "blind_derived_finding_codes": [
+      "post_freeze_projected_finding_codes": [
         "retire_before_reflection"
       ],
-      "blind_derived_condition": "record_material_violation",
-      "blind_derived_axis_and_state": "memory / violation",
-      "blind_derived_backflow_owner": "memory-canonical-owner",
-      "l8_match_on_code_and_condition": true,
+      "post_freeze_projected_condition": "record_material_violation",
+      "post_freeze_projected_axis_and_state": "memory / violation",
+      "post_freeze_projected_backflow_owner": "memory-canonical-owner",
+      "l8_match_on_post_freeze_projection": true,
       "layer_diagnosis_summary": "[L8] L8-PROVENANCE-AND-UNIT-RETURN-ROOT-GAP; [L4] L4-R09-POINTER-TARGET-UNDERSPECIFIED"
     },
     {
@@ -347,13 +640,13 @@
       ],
       "l5_function_ref": "assess_memory_material",
       "選定理由": "R10/R11/R12（terminalまたはstaleなmemory entryのactive再提示を拒否するterminal_instruction_resurfaced）を代表するため選定。",
-      "blind_derived_finding_codes": [
+      "post_freeze_projected_finding_codes": [
         "terminal_instruction_resurfaced"
       ],
-      "blind_derived_condition": "record_material_violation",
-      "blind_derived_axis_and_state": "memory / violation",
-      "blind_derived_backflow_owner": "memory-canonical-owner",
-      "l8_match_on_code_and_condition": true,
+      "post_freeze_projected_condition": "record_material_violation",
+      "post_freeze_projected_axis_and_state": "memory / violation",
+      "post_freeze_projected_backflow_owner": "memory-canonical-owner",
+      "l8_match_on_post_freeze_projection": true,
       "layer_diagnosis_summary": "[L8] L8-PROVENANCE-AND-UNIT-RETURN-ROOT-GAP"
     },
     {
@@ -369,13 +662,13 @@
       ],
       "l5_function_ref": "assess_memory_material",
       "選定理由": "R10/R11/R12（deliver_success_count > 1の二重利用を拒否するduplicate_successful_use）を代表するため選定。",
-      "blind_derived_finding_codes": [
+      "post_freeze_projected_finding_codes": [
         "duplicate_successful_use"
       ],
-      "blind_derived_condition": "record_material_violation",
-      "blind_derived_axis_and_state": "memory / violation",
-      "blind_derived_backflow_owner": "memory-canonical-owner",
-      "l8_match_on_code_and_condition": true,
+      "post_freeze_projected_condition": "record_material_violation",
+      "post_freeze_projected_axis_and_state": "memory / violation",
+      "post_freeze_projected_backflow_owner": "memory-canonical-owner",
+      "l8_match_on_post_freeze_projection": true,
       "layer_diagnosis_summary": "[L8] L8-PROVENANCE-AND-UNIT-RETURN-ROOT-GAP"
     },
     {
@@ -391,13 +684,13 @@
       ],
       "l5_function_ref": "assess_memory_material",
       "選定理由": "R10/R11/R12（provider_authority_claim=trueによるprovider memory正本化を拒否するprovider_memory_authority_forbidden）を代表するため選定。",
-      "blind_derived_finding_codes": [
+      "post_freeze_projected_finding_codes": [
         "provider_memory_authority_forbidden"
       ],
-      "blind_derived_condition": "record_material_violation",
-      "blind_derived_axis_and_state": "memory / violation",
-      "blind_derived_backflow_owner": "memory-canonical-owner",
-      "l8_match_on_code_and_condition": true,
+      "post_freeze_projected_condition": "record_material_violation",
+      "post_freeze_projected_axis_and_state": "memory / violation",
+      "post_freeze_projected_backflow_owner": "memory-canonical-owner",
+      "l8_match_on_post_freeze_projection": true,
       "layer_diagnosis_summary": "[L8] L8-PROVENANCE-AND-UNIT-RETURN-ROOT-GAP"
     },
     {
@@ -413,13 +706,13 @@
       ],
       "l5_function_ref": "assess_memory_material",
       "選定理由": "R09/R11/R12（actual state=retiredでreflection.order >= retire_orderの順序逆転を拒否するreflection_not_before_retire）を代表するため選定。",
-      "blind_derived_finding_codes": [
+      "post_freeze_projected_finding_codes": [
         "reflection_not_before_retire"
       ],
-      "blind_derived_condition": "record_material_violation",
-      "blind_derived_axis_and_state": "memory / violation",
-      "blind_derived_backflow_owner": "memory-canonical-owner",
-      "l8_match_on_code_and_condition": true,
+      "post_freeze_projected_condition": "record_material_violation",
+      "post_freeze_projected_axis_and_state": "memory / violation",
+      "post_freeze_projected_backflow_owner": "memory-canonical-owner",
+      "l8_match_on_post_freeze_projection": true,
       "layer_diagnosis_summary": "[L8] L8-PROVENANCE-AND-UNIT-RETURN-ROOT-GAP; [L4] L4-R09-POINTER-TARGET-UNDERSPECIFIED"
     },
     {
@@ -435,13 +728,13 @@
       ],
       "l5_function_ref": "assess_memory_material",
       "選定理由": "R10/R11/R12（consume_success_count > deliver_success_countの未配信消費を拒否するconsume_without_delivery）を代表するため選定。",
-      "blind_derived_finding_codes": [
+      "post_freeze_projected_finding_codes": [
         "consume_without_delivery"
       ],
-      "blind_derived_condition": "record_material_violation",
-      "blind_derived_axis_and_state": "memory / violation",
-      "blind_derived_backflow_owner": "memory-canonical-owner",
-      "l8_match_on_code_and_condition": true,
+      "post_freeze_projected_condition": "record_material_violation",
+      "post_freeze_projected_axis_and_state": "memory / violation",
+      "post_freeze_projected_backflow_owner": "memory-canonical-owner",
+      "l8_match_on_post_freeze_projection": true,
       "layer_diagnosis_summary": "[L8] L8-PROVENANCE-AND-UNIT-RETURN-ROOT-GAP; [L4] L4-R10-CROSS-FIELD-POINTER-UNDERSPECIFIED"
     },
     {
@@ -457,13 +750,13 @@
       ],
       "l5_function_ref": "assess_memory_material",
       "選定理由": "R10/R11/R12（state=activeかつconsume>0、またはstate=consumedかつconsume=0の矛盾を拒否するuse_state_conflict）を代表するため選定。",
-      "blind_derived_finding_codes": [
+      "post_freeze_projected_finding_codes": [
         "use_state_conflict"
       ],
-      "blind_derived_condition": "record_material_violation",
-      "blind_derived_axis_and_state": "memory / violation",
-      "blind_derived_backflow_owner": "memory-canonical-owner",
-      "l8_match_on_code_and_condition": true,
+      "post_freeze_projected_condition": "record_material_violation",
+      "post_freeze_projected_axis_and_state": "memory / violation",
+      "post_freeze_projected_backflow_owner": "memory-canonical-owner",
+      "l8_match_on_post_freeze_projection": true,
       "layer_diagnosis_summary": "[L8] L8-PROVENANCE-AND-UNIT-RETURN-ROOT-GAP; [L4] L4-R10-CROSS-FIELD-POINTER-UNDERSPECIFIED"
     },
     {
@@ -477,13 +770,13 @@
       ],
       "l5_function_ref": "assemble_evidence_record",
       "選定理由": "R12（boundary facetでwhole_completion_claim=trueの全体完了主張を拒否するwhole_completion_forbidden）を代表するため選定。",
-      "blind_derived_finding_codes": [
+      "post_freeze_projected_finding_codes": [
         "whole_completion_forbidden"
       ],
-      "blind_derived_condition": "record_material_violation",
-      "blind_derived_axis_and_state": "boundary / violation",
-      "blind_derived_backflow_owner": "management-authority-owner",
-      "l8_match_on_code_and_condition": true,
+      "post_freeze_projected_condition": "record_material_violation",
+      "post_freeze_projected_axis_and_state": "boundary / violation",
+      "post_freeze_projected_backflow_owner": "management-authority-owner",
+      "l8_match_on_post_freeze_projection": true,
       "layer_diagnosis_summary": "[L8] L8-L9-CASE-MATERIAL-PROVENANCE-SHARING"
     },
     {
@@ -497,13 +790,13 @@
       ],
       "l5_function_ref": "assemble_evidence_record",
       "選定理由": "R12（boundary facetでwhole_completion_claim非boolをunknown識別するwhole_claim_unknown）を代表するため選定。",
-      "blind_derived_finding_codes": [
+      "post_freeze_projected_finding_codes": [
         "whole_claim_unknown"
       ],
-      "blind_derived_condition": "record_material_unknown",
-      "blind_derived_axis_and_state": "boundary / unknown",
-      "blind_derived_backflow_owner": "management-authority-owner",
-      "l8_match_on_code_and_condition": true,
+      "post_freeze_projected_condition": "record_material_unknown",
+      "post_freeze_projected_axis_and_state": "boundary / unknown",
+      "post_freeze_projected_backflow_owner": "management-authority-owner",
+      "l8_match_on_post_freeze_projection": true,
       "layer_diagnosis_summary": "[L8] L8-L9-CASE-MATERIAL-PROVENANCE-SHARING"
     },
     {
@@ -521,16 +814,16 @@
       ],
       "l5_function_ref": "assess_feedback_material",
       "選定理由": "R01/R04/R05/R07/R12（context original_finding.source_head変更時にoriginal_finding比較と記録済みstage.source_head joinの双方が発火する複合負例）を代表するため選定。",
-      "blind_derived_finding_codes": [
+      "post_freeze_projected_finding_codes": [
         "field_conflict",
         "field_conflict",
         "field_conflict",
         "original_finding_changed"
       ],
-      "blind_derived_condition": "record_material_violation",
-      "blind_derived_axis_and_state": "feedback / violation",
-      "blind_derived_backflow_owner": "feedback-source-owner",
-      "l8_match_on_code_and_condition": true,
+      "post_freeze_projected_condition": "record_material_violation",
+      "post_freeze_projected_axis_and_state": "feedback / violation",
+      "post_freeze_projected_backflow_owner": "feedback-source-owner",
+      "l8_match_on_post_freeze_projection": true,
       "layer_diagnosis_summary": "[L8] L8-PROVENANCE-AND-UNIT-RETURN-ROOT-GAP"
     },
     {
@@ -546,14 +839,14 @@
       ],
       "l5_function_ref": "assess_memory_material",
       "選定理由": "R01/R08/R11/R12（context memory.retired.source.entry_id変更時にsource比較とreflection.source_entry_id joinの双方が発火する複合負例）を代表するため選定。",
-      "blind_derived_finding_codes": [
+      "post_freeze_projected_finding_codes": [
         "field_conflict",
         "field_conflict"
       ],
-      "blind_derived_condition": "record_material_violation",
-      "blind_derived_axis_and_state": "memory / violation",
-      "blind_derived_backflow_owner": "memory-canonical-owner",
-      "l8_match_on_code_and_condition": true,
+      "post_freeze_projected_condition": "record_material_violation",
+      "post_freeze_projected_axis_and_state": "memory / violation",
+      "post_freeze_projected_backflow_owner": "memory-canonical-owner",
+      "l8_match_on_post_freeze_projection": true,
       "layer_diagnosis_summary": "[L8] L8-PROVENANCE-AND-UNIT-RETURN-ROOT-GAP"
     },
     {
@@ -571,14 +864,14 @@
       ],
       "l5_function_ref": "assess_memory_material",
       "選定理由": "R01/R08/R09/R11/R12（actual state=retiredでreflection.recorded=nullのときboolean_unknownとretirement_basis_unknownが共起する複合負例）を代表するため選定。",
-      "blind_derived_finding_codes": [
+      "post_freeze_projected_finding_codes": [
         "boolean_unknown",
         "retirement_basis_unknown"
       ],
-      "blind_derived_condition": "record_material_unknown",
-      "blind_derived_axis_and_state": "memory / unknown",
-      "blind_derived_backflow_owner": "memory-canonical-owner",
-      "l8_match_on_code_and_condition": true,
+      "post_freeze_projected_condition": "record_material_unknown",
+      "post_freeze_projected_axis_and_state": "memory / unknown",
+      "post_freeze_projected_backflow_owner": "memory-canonical-owner",
+      "l8_match_on_post_freeze_projection": true,
       "layer_diagnosis_summary": "[L8] L8-PROVENANCE-AND-UNIT-RETURN-ROOT-GAP; [L4] L4-R09-POINTER-TARGET-UNDERSPECIFIED"
     }
   ],
@@ -810,8 +1103,8 @@
       "root_category": "whole_output_root (L4 /diagnostic_contract/output_fields)",
       "root_name": "condition",
       "pre_comparison_blind_derivation": "derived: violation > unknown > corresponding の優先順位に従い record_material_violation / record_material_unknown / record_material_corresponding に一意決定（R12）。",
-      "l8_unit_cases_comparison": "全83負例（944 negative unit_cases）で L8 unit_cases[*].condition および negative_equivalence_classes[*].expected_classification と完全一致。",
-      "post_comparison_change": "変更なし（比較前のsource-only導出と完全一致）。ただし単体関数 assess_log_material / assess_feedback_material / assess_memory_material は全体 condition ではなく facet_status を返すため、L8の原77負例が単体ケースの expected_property に全体 condition を置いている点は L8 層の粒度混在として記録。",
+      "l8_unit_cases_comparison": "固定した代表12行（R01..R12）および37 codeの優先順位規則と一致。また固定後に当該規則をL8の83負例クラス（944 negative unit_cases）へ射影した post_freeze_rule_projection も L8 unit_cases[*].condition および negative_equivalence_classes[*].expected_classification と一致。",
+      "post_comparison_change": "blind-derivation.json（代表12行＋37 code）は変更なし。83負例クラス別の期待値は固定artifact内には無く比較時に固定規則から射影した値であるため、欄名を post_freeze_rule_projection と明記。また単体関数 assess_log_material / assess_feedback_material / assess_memory_material は全体 condition ではなく facet_status を返すため、L8の原77負例が単体ケースの expected_property に全体 condition を置いている点は L8 層の粒度混在として記録。",
       "problem_layer": "L8（単体関数ケースにL9全体conditionを配置）"
     },
     {
@@ -866,7 +1159,7 @@
       "root_category": "whole_output_root & unit_output_root",
       "root_name": "findings",
       "pre_comparison_blind_derivation": "partial_unknown_on_exact_pointers / derived_on_codes_and_owners: 全37診断code・disposition・return_owner・重複除去/整列規則（code, pointer, return_owner辞書順）はL3/L10とL4散文から一意導出。一方、(1) actual/contextのJSON pointer prefix表記（/logs/... vs /context/logs/...）、(2) R09 retire_before_reflection / retirement_basis_unknown / reflection_not_before_retire の対象pointer、および (3) R10 consume_without_delivery / use_state_conflict の対象pointerはL4散文だけでは未規定と記録。",
-      "l8_unit_cases_comparison": "全83負例で finding_codes の集合・多重度は L4/L5/L8/L9 と100%一致。一方、比較後に以下の層別課題を確認：(a) L8のL7収録77負例は finding_codes のみを持ち finding pointer と return_owner を unit_cases 内に持たない、(b) L4 R08散文は memory_state_unknown / memory_freshness_unknown に「両側」と記すが L5/L9（Row 22, 24, 63, 65）は不明operand側1 pointerのみに出力、(c) L4 R02散文は log_kind_conflict に「両側各pointer」と記すが L5/L8/L9（Row 40, 78, 81）はfixture keyと不一致のoperand側pointerのみに出力、(d) R09/R10のクロスフィールド診断pointerはL4散文未記載でL5/L9が固定。",
+      "l8_unit_cases_comparison": "固定した代表12行および全37診断codeについて、code定義・disposition・facet・return_ownerがL4/L5/L8/L9と一致（固定後に83負例クラスへ射影した post_freeze_rule_projection の finding_codes も83クラスすべてで一致）。一方、比較後に以下の層別課題を確認：(a) L8のL7収録77負例は finding_codes のみを持ち finding pointer と return_owner を unit_cases 内に持たない、(b) L4 R08散文は memory_state_unknown / memory_freshness_unknown に「両側」と記すが L5/L9（Row 22, 24, 63, 65）は不明operand側1 pointerのみに出力、(c) L4 R02散文は log_kind_conflict に「両側各pointer」と記すが L5/L8/L9（Row 40, 78, 81）はfixture keyと不一致のoperand側pointerのみに出力、(d) R09/R10のクロスフィールド診断pointerはL4散文未記載でL5/L9が固定。",
       "post_comparison_change": "blind-derivation.json の bytes は変更せず、比較後の監査記録として (1) R02 log_kind_conflict の「両側各pointer」文言と片側不一致時の1-pointer動作の差、(2) R08 memory_state/freshness_unknown の「両側」文言残存、(3) R09/R10のpointer選択のL4散文未規定、(4) L8の77負例におけるpointer/return_owner未記載をroot別に明記。",
       "problem_layer": "L4（R02/R08の「両側」散文表記、R09/R10のpointer未明記）および L8（L7収録77負例のunit_casesにpointer/return_owner未記載）"
     },
@@ -950,7 +1243,7 @@
           "value": null
         }
       ],
-      "blind_derived_expected": {
+      "post_freeze_rule_projection": {
         "expected_classification": "record_material_unknown",
         "finding_codes": [
           "field_unknown"
@@ -990,7 +1283,7 @@
           "return_owner": "common-log-owner"
         }
       ],
-      "code_and_condition_match_with_blind": true,
+      "code_and_condition_match_with_post_freeze_projection": true,
       "layer_diagnosis": [
         {
           "layer": "L8",
@@ -1031,7 +1324,7 @@
           "value": "FOREIGN-project_id"
         }
       ],
-      "blind_derived_expected": {
+      "post_freeze_rule_projection": {
         "expected_classification": "record_material_violation",
         "finding_codes": [
           "field_conflict"
@@ -1071,7 +1364,7 @@
           "return_owner": "common-log-owner"
         }
       ],
-      "code_and_condition_match_with_blind": true,
+      "code_and_condition_match_with_post_freeze_projection": true,
       "layer_diagnosis": [
         {
           "layer": "L8",
@@ -1110,7 +1403,7 @@
           "value": null
         }
       ],
-      "blind_derived_expected": {
+      "post_freeze_rule_projection": {
         "expected_classification": "record_material_unknown",
         "finding_codes": [
           "log_kind_unknown"
@@ -1150,7 +1443,7 @@
           "return_owner": "common-log-owner"
         }
       ],
-      "code_and_condition_match_with_blind": true,
+      "code_and_condition_match_with_post_freeze_projection": true,
       "layer_diagnosis": [
         {
           "layer": "L8",
@@ -1189,7 +1482,7 @@
           "value": null
         }
       ],
-      "blind_derived_expected": {
+      "post_freeze_rule_projection": {
         "expected_classification": "record_material_unknown",
         "finding_codes": [
           "log_state_unknown"
@@ -1229,7 +1522,7 @@
           "return_owner": "common-log-owner"
         }
       ],
-      "code_and_condition_match_with_blind": true,
+      "code_and_condition_match_with_post_freeze_projection": true,
       "layer_diagnosis": [
         {
           "layer": "L8",
@@ -1269,7 +1562,7 @@
           "value": "duplicate_material"
         }
       ],
-      "blind_derived_expected": {
+      "post_freeze_rule_projection": {
         "expected_classification": "record_material_violation",
         "finding_codes": [
           "log_state_conflict"
@@ -1309,7 +1602,7 @@
           "return_owner": "common-log-owner"
         }
       ],
-      "code_and_condition_match_with_blind": true,
+      "code_and_condition_match_with_post_freeze_projection": true,
       "layer_diagnosis": [
         {
           "layer": "L8",
@@ -1357,7 +1650,7 @@
           "value": "duplicate_material"
         }
       ],
-      "blind_derived_expected": {
+      "post_freeze_rule_projection": {
         "expected_classification": "record_material_unknown",
         "finding_codes": [
           "log_duplicate"
@@ -1397,7 +1690,7 @@
           "return_owner": "common-log-owner"
         }
       ],
-      "code_and_condition_match_with_blind": true,
+      "code_and_condition_match_with_post_freeze_projection": true,
       "layer_diagnosis": [
         {
           "layer": "L8",
@@ -1445,7 +1738,7 @@
           "value": "stale_material"
         }
       ],
-      "blind_derived_expected": {
+      "post_freeze_rule_projection": {
         "expected_classification": "record_material_unknown",
         "finding_codes": [
           "log_stale"
@@ -1485,7 +1778,7 @@
           "return_owner": "common-log-owner"
         }
       ],
-      "code_and_condition_match_with_blind": true,
+      "code_and_condition_match_with_post_freeze_projection": true,
       "layer_diagnosis": [
         {
           "layer": "L8",
@@ -1523,7 +1816,7 @@
           "value": true
         }
       ],
-      "blind_derived_expected": {
+      "post_freeze_rule_projection": {
         "expected_classification": "record_material_violation",
         "finding_codes": [
           "log_success_claim_forbidden"
@@ -1563,7 +1856,7 @@
           "return_owner": "common-log-owner"
         }
       ],
-      "code_and_condition_match_with_blind": true,
+      "code_and_condition_match_with_post_freeze_projection": true,
       "layer_diagnosis": [
         {
           "layer": "L8",
@@ -1603,7 +1896,7 @@
           "value": null
         }
       ],
-      "blind_derived_expected": {
+      "post_freeze_rule_projection": {
         "expected_classification": "record_material_unknown",
         "finding_codes": [
           "boolean_unknown"
@@ -1643,7 +1936,7 @@
           "return_owner": "common-log-owner"
         }
       ],
-      "code_and_condition_match_with_blind": true,
+      "code_and_condition_match_with_post_freeze_projection": true,
       "layer_diagnosis": [
         {
           "layer": "L8",
@@ -1684,7 +1977,7 @@
           "value": null
         }
       ],
-      "blind_derived_expected": {
+      "post_freeze_rule_projection": {
         "expected_classification": "record_material_unknown",
         "finding_codes": [
           "field_unknown"
@@ -1724,7 +2017,7 @@
           "return_owner": "feedback-source-owner"
         }
       ],
-      "code_and_condition_match_with_blind": true,
+      "code_and_condition_match_with_post_freeze_projection": true,
       "layer_diagnosis": [
         {
           "layer": "L7 / L8 / L9",
@@ -1767,7 +2060,7 @@
           "value": "FOREIGN-record_ref"
         }
       ],
-      "blind_derived_expected": {
+      "post_freeze_rule_projection": {
         "expected_classification": "record_material_violation",
         "finding_codes": [
           "field_conflict"
@@ -1807,7 +2100,7 @@
           "return_owner": "feedback-source-owner"
         }
       ],
-      "code_and_condition_match_with_blind": true,
+      "code_and_condition_match_with_post_freeze_projection": true,
       "layer_diagnosis": [
         {
           "layer": "L7 / L8 / L9",
@@ -1850,7 +2143,7 @@
           "value": null
         }
       ],
-      "blind_derived_expected": {
+      "post_freeze_rule_projection": {
         "expected_classification": "record_material_unknown",
         "finding_codes": [
           "boolean_unknown"
@@ -1890,7 +2183,7 @@
           "return_owner": "feedback-source-owner"
         }
       ],
-      "code_and_condition_match_with_blind": true,
+      "code_and_condition_match_with_post_freeze_projection": true,
       "layer_diagnosis": [
         {
           "layer": "L8",
@@ -1929,7 +2222,7 @@
           "value": null
         }
       ],
-      "blind_derived_expected": {
+      "post_freeze_rule_projection": {
         "expected_classification": "record_material_unknown",
         "finding_codes": [
           "finding_missing"
@@ -1969,7 +2262,7 @@
           "return_owner": "feedback-source-owner"
         }
       ],
-      "code_and_condition_match_with_blind": true,
+      "code_and_condition_match_with_post_freeze_projection": true,
       "layer_diagnosis": [
         {
           "layer": "L8",
@@ -2009,7 +2302,7 @@
           "value": "x"
         }
       ],
-      "blind_derived_expected": {
+      "post_freeze_rule_projection": {
         "expected_classification": "record_material_violation",
         "finding_codes": [
           "original_finding_changed"
@@ -2049,7 +2342,7 @@
           "return_owner": "feedback-source-owner"
         }
       ],
-      "code_and_condition_match_with_blind": true,
+      "code_and_condition_match_with_post_freeze_projection": true,
       "layer_diagnosis": [
         {
           "layer": "L7 / L8 / L9",
@@ -2090,7 +2383,7 @@
           "value": "SYN-FABRICATED-ACK"
         }
       ],
-      "blind_derived_expected": {
+      "post_freeze_rule_projection": {
         "expected_classification": "record_material_violation",
         "finding_codes": [
           "stage_unrecorded_ref_present"
@@ -2130,7 +2423,7 @@
           "return_owner": "feedback-source-owner"
         }
       ],
-      "code_and_condition_match_with_blind": true,
+      "code_and_condition_match_with_post_freeze_projection": true,
       "layer_diagnosis": [
         {
           "layer": "L8",
@@ -2177,7 +2470,7 @@
           "value": false
         }
       ],
-      "blind_derived_expected": {
+      "post_freeze_rule_projection": {
         "expected_classification": "record_material_unknown",
         "finding_codes": [
           "resolution_origin_unknown"
@@ -2217,7 +2510,7 @@
           "return_owner": "feedback-source-owner"
         }
       ],
-      "code_and_condition_match_with_blind": true,
+      "code_and_condition_match_with_post_freeze_projection": true,
       "layer_diagnosis": [
         {
           "layer": "L7 / L8 / L9",
@@ -2273,7 +2566,7 @@
           "value": false
         }
       ],
-      "blind_derived_expected": {
+      "post_freeze_rule_projection": {
         "expected_classification": "record_material_violation",
         "finding_codes": [
           "resolution_origin_forbidden"
@@ -2313,7 +2606,7 @@
           "return_owner": "feedback-source-owner"
         }
       ],
-      "code_and_condition_match_with_blind": true,
+      "code_and_condition_match_with_post_freeze_projection": true,
       "layer_diagnosis": [
         {
           "layer": "L8",
@@ -2352,7 +2645,7 @@
           "value": true
         }
       ],
-      "blind_derived_expected": {
+      "post_freeze_rule_projection": {
         "expected_classification": "record_material_violation",
         "finding_codes": [
           "unresolved_claimed_resolved"
@@ -2392,7 +2685,7 @@
           "return_owner": "feedback-source-owner"
         }
       ],
-      "code_and_condition_match_with_blind": true,
+      "code_and_condition_match_with_post_freeze_projection": true,
       "layer_diagnosis": [
         {
           "layer": "L8",
@@ -2431,7 +2724,7 @@
           "value": true
         }
       ],
-      "blind_derived_expected": {
+      "post_freeze_rule_projection": {
         "expected_classification": "record_material_violation",
         "finding_codes": [
           "finding_discard_forbidden"
@@ -2471,7 +2764,7 @@
           "return_owner": "feedback-source-owner"
         }
       ],
-      "code_and_condition_match_with_blind": true,
+      "code_and_condition_match_with_post_freeze_projection": true,
       "layer_diagnosis": [
         {
           "layer": "L8",
@@ -2511,7 +2804,7 @@
           "value": null
         }
       ],
-      "blind_derived_expected": {
+      "post_freeze_rule_projection": {
         "expected_classification": "record_material_unknown",
         "finding_codes": [
           "field_unknown"
@@ -2551,7 +2844,7 @@
           "return_owner": "memory-canonical-owner"
         }
       ],
-      "code_and_condition_match_with_blind": true,
+      "code_and_condition_match_with_post_freeze_projection": true,
       "layer_diagnosis": [
         {
           "layer": "L8",
@@ -2591,7 +2884,7 @@
           "value": "FOREIGN-entry_id"
         }
       ],
-      "blind_derived_expected": {
+      "post_freeze_rule_projection": {
         "expected_classification": "record_material_violation",
         "finding_codes": [
           "field_conflict"
@@ -2631,7 +2924,7 @@
           "return_owner": "memory-canonical-owner"
         }
       ],
-      "code_and_condition_match_with_blind": true,
+      "code_and_condition_match_with_post_freeze_projection": true,
       "layer_diagnosis": [
         {
           "layer": "L8",
@@ -2672,7 +2965,7 @@
           "value": null
         }
       ],
-      "blind_derived_expected": {
+      "post_freeze_rule_projection": {
         "expected_classification": "record_material_unknown",
         "finding_codes": [
           "boolean_unknown"
@@ -2712,7 +3005,7 @@
           "return_owner": "memory-canonical-owner"
         }
       ],
-      "code_and_condition_match_with_blind": true,
+      "code_and_condition_match_with_post_freeze_projection": true,
       "layer_diagnosis": [
         {
           "layer": "L8",
@@ -2752,7 +3045,7 @@
           "value": null
         }
       ],
-      "blind_derived_expected": {
+      "post_freeze_rule_projection": {
         "expected_classification": "record_material_unknown",
         "finding_codes": [
           "memory_state_unknown"
@@ -2792,7 +3085,7 @@
           "return_owner": "memory-canonical-owner"
         }
       ],
-      "code_and_condition_match_with_blind": true,
+      "code_and_condition_match_with_post_freeze_projection": true,
       "layer_diagnosis": [
         {
           "layer": "L8",
@@ -2837,7 +3130,7 @@
           "value": "retired"
         }
       ],
-      "blind_derived_expected": {
+      "post_freeze_rule_projection": {
         "expected_classification": "record_material_violation",
         "finding_codes": [
           "memory_state_conflict"
@@ -2877,7 +3170,7 @@
           "return_owner": "memory-canonical-owner"
         }
       ],
-      "code_and_condition_match_with_blind": true,
+      "code_and_condition_match_with_post_freeze_projection": true,
       "layer_diagnosis": [
         {
           "layer": "L8",
@@ -2917,7 +3210,7 @@
           "value": null
         }
       ],
-      "blind_derived_expected": {
+      "post_freeze_rule_projection": {
         "expected_classification": "record_material_unknown",
         "finding_codes": [
           "memory_freshness_unknown"
@@ -2957,7 +3250,7 @@
           "return_owner": "memory-canonical-owner"
         }
       ],
-      "code_and_condition_match_with_blind": true,
+      "code_and_condition_match_with_post_freeze_projection": true,
       "layer_diagnosis": [
         {
           "layer": "L8",
@@ -3002,7 +3295,7 @@
           "value": "stale_material"
         }
       ],
-      "blind_derived_expected": {
+      "post_freeze_rule_projection": {
         "expected_classification": "record_material_violation",
         "finding_codes": [
           "memory_freshness_conflict"
@@ -3042,7 +3335,7 @@
           "return_owner": "memory-canonical-owner"
         }
       ],
-      "code_and_condition_match_with_blind": true,
+      "code_and_condition_match_with_post_freeze_projection": true,
       "layer_diagnosis": [
         {
           "layer": "L8",
@@ -3082,7 +3375,7 @@
           "value": "SYN-FABRICATED-REFLECTION"
         }
       ],
-      "blind_derived_expected": {
+      "post_freeze_rule_projection": {
         "expected_classification": "record_material_violation",
         "finding_codes": [
           "reflection_unrecorded_ref_present"
@@ -3122,7 +3415,7 @@
           "return_owner": "memory-canonical-owner"
         }
       ],
-      "code_and_condition_match_with_blind": true,
+      "code_and_condition_match_with_post_freeze_projection": true,
       "layer_diagnosis": [
         {
           "layer": "L8",
@@ -3204,7 +3497,7 @@
           "value": false
         }
       ],
-      "blind_derived_expected": {
+      "post_freeze_rule_projection": {
         "expected_classification": "record_material_violation",
         "finding_codes": [
           "retire_before_reflection"
@@ -3244,7 +3537,7 @@
           "return_owner": "memory-canonical-owner"
         }
       ],
-      "code_and_condition_match_with_blind": true,
+      "code_and_condition_match_with_post_freeze_projection": true,
       "layer_diagnosis": [
         {
           "layer": "L8",
@@ -3288,7 +3581,7 @@
           "value": true
         }
       ],
-      "blind_derived_expected": {
+      "post_freeze_rule_projection": {
         "expected_classification": "record_material_violation",
         "finding_codes": [
           "terminal_instruction_resurfaced"
@@ -3328,7 +3621,7 @@
           "return_owner": "memory-canonical-owner"
         }
       ],
-      "code_and_condition_match_with_blind": true,
+      "code_and_condition_match_with_post_freeze_projection": true,
       "layer_diagnosis": [
         {
           "layer": "L8",
@@ -3367,7 +3660,7 @@
           "value": null
         }
       ],
-      "blind_derived_expected": {
+      "post_freeze_rule_projection": {
         "expected_classification": "record_material_unknown",
         "finding_codes": [
           "use_count_unknown"
@@ -3407,7 +3700,7 @@
           "return_owner": "memory-canonical-owner"
         }
       ],
-      "code_and_condition_match_with_blind": true,
+      "code_and_condition_match_with_post_freeze_projection": true,
       "layer_diagnosis": [
         {
           "layer": "L8",
@@ -3447,7 +3740,7 @@
           "value": 2
         }
       ],
-      "blind_derived_expected": {
+      "post_freeze_rule_projection": {
         "expected_classification": "record_material_violation",
         "finding_codes": [
           "use_count_conflict"
@@ -3487,7 +3780,7 @@
           "return_owner": "memory-canonical-owner"
         }
       ],
-      "code_and_condition_match_with_blind": true,
+      "code_and_condition_match_with_post_freeze_projection": true,
       "layer_diagnosis": [
         {
           "layer": "L8",
@@ -3535,7 +3828,7 @@
           "value": 2
         }
       ],
-      "blind_derived_expected": {
+      "post_freeze_rule_projection": {
         "expected_classification": "record_material_violation",
         "finding_codes": [
           "duplicate_successful_use"
@@ -3575,7 +3868,7 @@
           "return_owner": "memory-canonical-owner"
         }
       ],
-      "code_and_condition_match_with_blind": true,
+      "code_and_condition_match_with_post_freeze_projection": true,
       "layer_diagnosis": [
         {
           "layer": "L8",
@@ -3614,7 +3907,7 @@
           "value": true
         }
       ],
-      "blind_derived_expected": {
+      "post_freeze_rule_projection": {
         "expected_classification": "record_material_violation",
         "finding_codes": [
           "provider_memory_authority_forbidden"
@@ -3654,7 +3947,7 @@
           "return_owner": "memory-canonical-owner"
         }
       ],
-      "code_and_condition_match_with_blind": true,
+      "code_and_condition_match_with_post_freeze_projection": true,
       "layer_diagnosis": [
         {
           "layer": "L8",
@@ -3694,7 +3987,7 @@
           "value": null
         }
       ],
-      "blind_derived_expected": {
+      "post_freeze_rule_projection": {
         "expected_classification": "record_material_unknown",
         "finding_codes": [
           "order_unknown"
@@ -3734,7 +4027,7 @@
           "return_owner": "memory-canonical-owner"
         }
       ],
-      "code_and_condition_match_with_blind": true,
+      "code_and_condition_match_with_post_freeze_projection": true,
       "layer_diagnosis": [
         {
           "layer": "L8",
@@ -3773,7 +4066,7 @@
           "value": 3
         }
       ],
-      "blind_derived_expected": {
+      "post_freeze_rule_projection": {
         "expected_classification": "record_material_violation",
         "finding_codes": [
           "order_conflict"
@@ -3813,7 +4106,7 @@
           "return_owner": "memory-canonical-owner"
         }
       ],
-      "code_and_condition_match_with_blind": true,
+      "code_and_condition_match_with_post_freeze_projection": true,
       "layer_diagnosis": [
         {
           "layer": "L8",
@@ -3863,7 +4156,7 @@
           "value": 2
         }
       ],
-      "blind_derived_expected": {
+      "post_freeze_rule_projection": {
         "expected_classification": "record_material_violation",
         "finding_codes": [
           "reflection_not_before_retire"
@@ -3903,7 +4196,7 @@
           "return_owner": "memory-canonical-owner"
         }
       ],
-      "code_and_condition_match_with_blind": true,
+      "code_and_condition_match_with_post_freeze_projection": true,
       "layer_diagnosis": [
         {
           "layer": "L8",
@@ -3956,7 +4249,7 @@
           "value": 0
         }
       ],
-      "blind_derived_expected": {
+      "post_freeze_rule_projection": {
         "expected_classification": "record_material_violation",
         "finding_codes": [
           "consume_without_delivery"
@@ -3996,7 +4289,7 @@
           "return_owner": "memory-canonical-owner"
         }
       ],
-      "code_and_condition_match_with_blind": true,
+      "code_and_condition_match_with_post_freeze_projection": true,
       "layer_diagnosis": [
         {
           "layer": "L8",
@@ -4066,7 +4359,7 @@
           "value": 1
         }
       ],
-      "blind_derived_expected": {
+      "post_freeze_rule_projection": {
         "expected_classification": "record_material_violation",
         "finding_codes": [
           "use_state_conflict"
@@ -4106,7 +4399,7 @@
           "return_owner": "memory-canonical-owner"
         }
       ],
-      "code_and_condition_match_with_blind": true,
+      "code_and_condition_match_with_post_freeze_projection": true,
       "layer_diagnosis": [
         {
           "layer": "L8",
@@ -4145,7 +4438,7 @@
           "value": true
         }
       ],
-      "blind_derived_expected": {
+      "post_freeze_rule_projection": {
         "expected_classification": "record_material_violation",
         "finding_codes": [
           "whole_completion_forbidden"
@@ -4185,7 +4478,7 @@
           "return_owner": "management-authority-owner"
         }
       ],
-      "code_and_condition_match_with_blind": true,
+      "code_and_condition_match_with_post_freeze_projection": true,
       "layer_diagnosis": [
         {
           "layer": "L8",
@@ -4219,7 +4512,7 @@
           "value": null
         }
       ],
-      "blind_derived_expected": {
+      "post_freeze_rule_projection": {
         "expected_classification": "record_material_unknown",
         "finding_codes": [
           "whole_claim_unknown"
@@ -4259,7 +4552,7 @@
           "return_owner": "management-authority-owner"
         }
       ],
-      "code_and_condition_match_with_blind": true,
+      "code_and_condition_match_with_post_freeze_projection": true,
       "layer_diagnosis": [
         {
           "layer": "L8",
@@ -4300,7 +4593,7 @@
           "value": "decision"
         }
       ],
-      "blind_derived_expected": {
+      "post_freeze_rule_projection": {
         "expected_classification": "record_material_violation",
         "finding_codes": [
           "field_conflict",
@@ -4347,7 +4640,7 @@
           "return_owner": "common-log-owner"
         }
       ],
-      "code_and_condition_match_with_blind": true,
+      "code_and_condition_match_with_post_freeze_projection": true,
       "layer_diagnosis": [
         {
           "layer": "L8",
@@ -4391,7 +4684,7 @@
           "value": "duplicate_material"
         }
       ],
-      "blind_derived_expected": {
+      "post_freeze_rule_projection": {
         "expected_classification": "record_material_violation",
         "finding_codes": [
           "log_duplicate",
@@ -4438,7 +4731,7 @@
           "return_owner": "common-log-owner"
         }
       ],
-      "code_and_condition_match_with_blind": true,
+      "code_and_condition_match_with_post_freeze_projection": true,
       "layer_diagnosis": [
         {
           "layer": "L8",
@@ -4477,7 +4770,7 @@
           "value": "stale_material"
         }
       ],
-      "blind_derived_expected": {
+      "post_freeze_rule_projection": {
         "expected_classification": "record_material_violation",
         "finding_codes": [
           "log_stale",
@@ -4524,7 +4817,7 @@
           "return_owner": "common-log-owner"
         }
       ],
-      "code_and_condition_match_with_blind": true,
+      "code_and_condition_match_with_post_freeze_projection": true,
       "layer_diagnosis": [
         {
           "layer": "L8",
@@ -4563,7 +4856,7 @@
           "value": "unobserved"
         }
       ],
-      "blind_derived_expected": {
+      "post_freeze_rule_projection": {
         "expected_classification": "record_material_violation",
         "finding_codes": [
           "log_state_conflict",
@@ -4610,7 +4903,7 @@
           "return_owner": "common-log-owner"
         }
       ],
-      "code_and_condition_match_with_blind": true,
+      "code_and_condition_match_with_post_freeze_projection": true,
       "layer_diagnosis": [
         {
           "layer": "L8",
@@ -4652,7 +4945,7 @@
           "value": null
         }
       ],
-      "blind_derived_expected": {
+      "post_freeze_rule_projection": {
         "expected_classification": "record_material_violation",
         "finding_codes": [
           "field_unknown",
@@ -4699,7 +4992,7 @@
           "return_owner": "feedback-source-owner"
         }
       ],
-      "code_and_condition_match_with_blind": true,
+      "code_and_condition_match_with_post_freeze_projection": true,
       "layer_diagnosis": [
         {
           "layer": "L8",
@@ -4743,7 +5036,7 @@
           "value": "FOREIGN-finding_id"
         }
       ],
-      "blind_derived_expected": {
+      "post_freeze_rule_projection": {
         "expected_classification": "record_material_violation",
         "finding_codes": [
           "field_conflict",
@@ -4790,7 +5083,7 @@
           "return_owner": "feedback-source-owner"
         }
       ],
-      "code_and_condition_match_with_blind": true,
+      "code_and_condition_match_with_post_freeze_projection": true,
       "layer_diagnosis": [
         {
           "layer": "L8",
@@ -4835,7 +5128,7 @@
           "value": "FOREIGN-source_head"
         }
       ],
-      "blind_derived_expected": {
+      "post_freeze_rule_projection": {
         "expected_classification": "record_material_violation",
         "finding_codes": [
           "field_conflict",
@@ -4896,7 +5189,7 @@
           "return_owner": "feedback-source-owner"
         }
       ],
-      "code_and_condition_match_with_blind": true,
+      "code_and_condition_match_with_post_freeze_projection": true,
       "layer_diagnosis": [
         {
           "layer": "L8",
@@ -4941,7 +5234,7 @@
           "value": "FOREIGN-source_head"
         }
       ],
-      "blind_derived_expected": {
+      "post_freeze_rule_projection": {
         "expected_classification": "record_material_violation",
         "finding_codes": [
           "field_conflict",
@@ -5016,7 +5309,7 @@
           "return_owner": "feedback-source-owner"
         }
       ],
-      "code_and_condition_match_with_blind": true,
+      "code_and_condition_match_with_post_freeze_projection": true,
       "layer_diagnosis": [
         {
           "layer": "L8",
@@ -5060,7 +5353,7 @@
           "value": null
         }
       ],
-      "blind_derived_expected": {
+      "post_freeze_rule_projection": {
         "expected_classification": "record_material_violation",
         "finding_codes": [
           "field_unknown",
@@ -5114,7 +5407,7 @@
           "return_owner": "feedback-source-owner"
         }
       ],
-      "code_and_condition_match_with_blind": true,
+      "code_and_condition_match_with_post_freeze_projection": true,
       "layer_diagnosis": [
         {
           "layer": "L8",
@@ -5158,7 +5451,7 @@
           "value": "FOREIGN-finding_id"
         }
       ],
-      "blind_derived_expected": {
+      "post_freeze_rule_projection": {
         "expected_classification": "record_material_violation",
         "finding_codes": [
           "field_conflict",
@@ -5212,7 +5505,7 @@
           "return_owner": "feedback-source-owner"
         }
       ],
-      "code_and_condition_match_with_blind": true,
+      "code_and_condition_match_with_post_freeze_projection": true,
       "layer_diagnosis": [
         {
           "layer": "L8",
@@ -5253,7 +5546,7 @@
           "value": null
         }
       ],
-      "blind_derived_expected": {
+      "post_freeze_rule_projection": {
         "expected_classification": "record_material_violation",
         "finding_codes": [
           "finding_missing",
@@ -5300,7 +5593,7 @@
           "return_owner": "feedback-source-owner"
         }
       ],
-      "code_and_condition_match_with_blind": true,
+      "code_and_condition_match_with_post_freeze_projection": true,
       "layer_diagnosis": [
         {
           "layer": "L8",
@@ -5345,7 +5638,7 @@
           "value": "FOREIGN-source_head"
         }
       ],
-      "blind_derived_expected": {
+      "post_freeze_rule_projection": {
         "expected_classification": "record_material_violation",
         "finding_codes": [
           "field_conflict",
@@ -5427,7 +5720,7 @@
           "return_owner": "feedback-source-owner"
         }
       ],
-      "code_and_condition_match_with_blind": true,
+      "code_and_condition_match_with_post_freeze_projection": true,
       "layer_diagnosis": [
         {
           "layer": "L8",
@@ -5468,7 +5761,7 @@
           "value": true
         }
       ],
-      "blind_derived_expected": {
+      "post_freeze_rule_projection": {
         "expected_classification": "record_material_violation",
         "finding_codes": [
           "finding_discard_forbidden",
@@ -5515,7 +5808,7 @@
           "return_owner": "feedback-source-owner"
         }
       ],
-      "code_and_condition_match_with_blind": true,
+      "code_and_condition_match_with_post_freeze_projection": true,
       "layer_diagnosis": [
         {
           "layer": "L8",
@@ -5558,7 +5851,7 @@
           "value": null
         }
       ],
-      "blind_derived_expected": {
+      "post_freeze_rule_projection": {
         "expected_classification": "record_material_violation",
         "finding_codes": [
           "boolean_unknown",
@@ -5605,7 +5898,7 @@
           "return_owner": "feedback-source-owner"
         }
       ],
-      "code_and_condition_match_with_blind": true,
+      "code_and_condition_match_with_post_freeze_projection": true,
       "layer_diagnosis": [
         {
           "layer": "L8",
@@ -5650,7 +5943,7 @@
           "value": false
         }
       ],
-      "blind_derived_expected": {
+      "post_freeze_rule_projection": {
         "expected_classification": "record_material_violation",
         "finding_codes": [
           "boolean_conflict",
@@ -5704,7 +5997,7 @@
           "return_owner": "feedback-source-owner"
         }
       ],
-      "code_and_condition_match_with_blind": true,
+      "code_and_condition_match_with_post_freeze_projection": true,
       "layer_diagnosis": [
         {
           "layer": "L8",
@@ -5747,7 +6040,7 @@
           "value": null
         }
       ],
-      "blind_derived_expected": {
+      "post_freeze_rule_projection": {
         "expected_classification": "record_material_violation",
         "finding_codes": [
           "field_unknown",
@@ -5794,7 +6087,7 @@
           "return_owner": "feedback-source-owner"
         }
       ],
-      "code_and_condition_match_with_blind": true,
+      "code_and_condition_match_with_post_freeze_projection": true,
       "layer_diagnosis": [
         {
           "layer": "L8",
@@ -5837,7 +6130,7 @@
           "value": "FOREIGN-record_ref"
         }
       ],
-      "blind_derived_expected": {
+      "post_freeze_rule_projection": {
         "expected_classification": "record_material_violation",
         "finding_codes": [
           "field_conflict",
@@ -5884,7 +6177,7 @@
           "return_owner": "feedback-source-owner"
         }
       ],
-      "code_and_condition_match_with_blind": true,
+      "code_and_condition_match_with_post_freeze_projection": true,
       "layer_diagnosis": [
         {
           "layer": "L8",
@@ -5927,7 +6220,7 @@
           "value": true
         }
       ],
-      "blind_derived_expected": {
+      "post_freeze_rule_projection": {
         "expected_classification": "record_material_violation",
         "finding_codes": [
           "boolean_conflict",
@@ -6030,7 +6323,7 @@
           "return_owner": "feedback-source-owner"
         }
       ],
-      "code_and_condition_match_with_blind": true,
+      "code_and_condition_match_with_post_freeze_projection": true,
       "layer_diagnosis": [
         {
           "layer": "L8",
@@ -6071,7 +6364,7 @@
           "value": "ack"
         }
       ],
-      "blind_derived_expected": {
+      "post_freeze_rule_projection": {
         "expected_classification": "record_material_violation",
         "finding_codes": [
           "field_conflict",
@@ -6125,7 +6418,7 @@
           "return_owner": "feedback-source-owner"
         }
       ],
-      "code_and_condition_match_with_blind": true,
+      "code_and_condition_match_with_post_freeze_projection": true,
       "layer_diagnosis": [
         {
           "layer": "L8",
@@ -6173,7 +6466,7 @@
           "value": "ack"
         }
       ],
-      "blind_derived_expected": {
+      "post_freeze_rule_projection": {
         "expected_classification": "record_material_violation",
         "finding_codes": [
           "resolution_origin_forbidden",
@@ -6220,7 +6513,7 @@
           "return_owner": "feedback-source-owner"
         }
       ],
-      "code_and_condition_match_with_blind": true,
+      "code_and_condition_match_with_post_freeze_projection": true,
       "layer_diagnosis": [
         {
           "layer": "L8",
@@ -6259,7 +6552,7 @@
           "value": null
         }
       ],
-      "blind_derived_expected": {
+      "post_freeze_rule_projection": {
         "expected_classification": "record_material_violation",
         "finding_codes": [
           "resolution_origin_unknown",
@@ -6306,7 +6599,7 @@
           "return_owner": "feedback-source-owner"
         }
       ],
-      "code_and_condition_match_with_blind": true,
+      "code_and_condition_match_with_post_freeze_projection": true,
       "layer_diagnosis": [
         {
           "layer": "L8",
@@ -6354,7 +6647,7 @@
           "value": null
         }
       ],
-      "blind_derived_expected": {
+      "post_freeze_rule_projection": {
         "expected_classification": "record_material_violation",
         "finding_codes": [
           "resolution_origin_unknown",
@@ -6408,7 +6701,7 @@
           "return_owner": "feedback-source-owner"
         }
       ],
-      "code_and_condition_match_with_blind": true,
+      "code_and_condition_match_with_post_freeze_projection": true,
       "layer_diagnosis": [
         {
           "layer": "L8",
@@ -6456,7 +6749,7 @@
           "value": null
         }
       ],
-      "blind_derived_expected": {
+      "post_freeze_rule_projection": {
         "expected_classification": "record_material_unknown",
         "finding_codes": [
           "finding_missing",
@@ -6503,7 +6796,7 @@
           "return_owner": "feedback-source-owner"
         }
       ],
-      "code_and_condition_match_with_blind": true,
+      "code_and_condition_match_with_post_freeze_projection": true,
       "layer_diagnosis": [
         {
           "layer": "L8",
@@ -6544,7 +6837,7 @@
           "value": null
         }
       ],
-      "blind_derived_expected": {
+      "post_freeze_rule_projection": {
         "expected_classification": "record_material_violation",
         "finding_codes": [
           "memory_state_unknown",
@@ -6591,7 +6884,7 @@
           "return_owner": "memory-canonical-owner"
         }
       ],
-      "code_and_condition_match_with_blind": true,
+      "code_and_condition_match_with_post_freeze_projection": true,
       "layer_diagnosis": [
         {
           "layer": "L8",
@@ -6639,7 +6932,7 @@
           "value": "retired"
         }
       ],
-      "blind_derived_expected": {
+      "post_freeze_rule_projection": {
         "expected_classification": "record_material_violation",
         "finding_codes": [
           "memory_state_conflict",
@@ -6707,7 +7000,7 @@
           "return_owner": "memory-canonical-owner"
         }
       ],
-      "code_and_condition_match_with_blind": true,
+      "code_and_condition_match_with_post_freeze_projection": true,
       "layer_diagnosis": [
         {
           "layer": "L8",
@@ -6753,7 +7046,7 @@
           "value": null
         }
       ],
-      "blind_derived_expected": {
+      "post_freeze_rule_projection": {
         "expected_classification": "record_material_violation",
         "finding_codes": [
           "memory_freshness_unknown",
@@ -6800,7 +7093,7 @@
           "return_owner": "memory-canonical-owner"
         }
       ],
-      "code_and_condition_match_with_blind": true,
+      "code_and_condition_match_with_post_freeze_projection": true,
       "layer_diagnosis": [
         {
           "layer": "L8",
@@ -6846,7 +7139,7 @@
           "value": "stale_material"
         }
       ],
-      "blind_derived_expected": {
+      "post_freeze_rule_projection": {
         "expected_classification": "record_material_violation",
         "finding_codes": [
           "memory_freshness_conflict",
@@ -6893,7 +7186,7 @@
           "return_owner": "memory-canonical-owner"
         }
       ],
-      "code_and_condition_match_with_blind": true,
+      "code_and_condition_match_with_post_freeze_projection": true,
       "layer_diagnosis": [
         {
           "layer": "L8",
@@ -6932,7 +7225,7 @@
           "value": 2
         }
       ],
-      "blind_derived_expected": {
+      "post_freeze_rule_projection": {
         "expected_classification": "record_material_violation",
         "finding_codes": [
           "duplicate_successful_use",
@@ -6979,7 +7272,7 @@
           "return_owner": "memory-canonical-owner"
         }
       ],
-      "code_and_condition_match_with_blind": true,
+      "code_and_condition_match_with_post_freeze_projection": true,
       "layer_diagnosis": [
         {
           "layer": "L8",
@@ -7018,7 +7311,7 @@
           "value": 2
         }
       ],
-      "blind_derived_expected": {
+      "post_freeze_rule_projection": {
         "expected_classification": "record_material_violation",
         "finding_codes": [
           "consume_without_delivery",
@@ -7079,7 +7372,7 @@
           "return_owner": "memory-canonical-owner"
         }
       ],
-      "code_and_condition_match_with_blind": true,
+      "code_and_condition_match_with_post_freeze_projection": true,
       "layer_diagnosis": [
         {
           "layer": "L8",
@@ -7123,7 +7416,7 @@
           "value": 2
         }
       ],
-      "blind_derived_expected": {
+      "post_freeze_rule_projection": {
         "expected_classification": "record_material_violation",
         "finding_codes": [
           "consume_without_delivery",
@@ -7177,7 +7470,7 @@
           "return_owner": "memory-canonical-owner"
         }
       ],
-      "code_and_condition_match_with_blind": true,
+      "code_and_condition_match_with_post_freeze_projection": true,
       "layer_diagnosis": [
         {
           "layer": "L8",
@@ -7223,7 +7516,7 @@
           "value": "FOREIGN-entry_id"
         }
       ],
-      "blind_derived_expected": {
+      "post_freeze_rule_projection": {
         "expected_classification": "record_material_violation",
         "finding_codes": [
           "field_conflict",
@@ -7270,7 +7563,7 @@
           "return_owner": "memory-canonical-owner"
         }
       ],
-      "code_and_condition_match_with_blind": true,
+      "code_and_condition_match_with_post_freeze_projection": true,
       "layer_diagnosis": [
         {
           "layer": "L8",
@@ -7311,7 +7604,7 @@
           "value": "active"
         }
       ],
-      "blind_derived_expected": {
+      "post_freeze_rule_projection": {
         "expected_classification": "record_material_violation",
         "finding_codes": [
           "memory_state_conflict",
@@ -7358,7 +7651,7 @@
           "return_owner": "memory-canonical-owner"
         }
       ],
-      "code_and_condition_match_with_blind": true,
+      "code_and_condition_match_with_post_freeze_projection": true,
       "layer_diagnosis": [
         {
           "layer": "L8",
@@ -7407,7 +7700,7 @@
           "value": false
         }
       ],
-      "blind_derived_expected": {
+      "post_freeze_rule_projection": {
         "expected_classification": "record_material_violation",
         "finding_codes": [
           "boolean_conflict",
@@ -7461,7 +7754,7 @@
           "return_owner": "memory-canonical-owner"
         }
       ],
-      "code_and_condition_match_with_blind": true,
+      "code_and_condition_match_with_post_freeze_projection": true,
       "layer_diagnosis": [
         {
           "layer": "L8",
@@ -7510,7 +7803,7 @@
           "value": null
         }
       ],
-      "blind_derived_expected": {
+      "post_freeze_rule_projection": {
         "expected_classification": "record_material_unknown",
         "finding_codes": [
           "boolean_unknown",
@@ -7557,7 +7850,7 @@
           "return_owner": "memory-canonical-owner"
         }
       ],
-      "code_and_condition_match_with_blind": true,
+      "code_and_condition_match_with_post_freeze_projection": true,
       "layer_diagnosis": [
         {
           "layer": "L8",
@@ -7602,7 +7895,7 @@
           "value": 3
         }
       ],
-      "blind_derived_expected": {
+      "post_freeze_rule_projection": {
         "expected_classification": "record_material_violation",
         "finding_codes": [
           "order_conflict",
@@ -7649,7 +7942,7 @@
           "return_owner": "memory-canonical-owner"
         }
       ],
-      "code_and_condition_match_with_blind": true,
+      "code_and_condition_match_with_post_freeze_projection": true,
       "layer_diagnosis": [
         {
           "layer": "L8",
@@ -7697,7 +7990,7 @@
           "value": false
         }
       ],
-      "blind_derived_expected": {
+      "post_freeze_rule_projection": {
         "expected_classification": "record_material_violation",
         "finding_codes": [
           "boolean_conflict",
@@ -7744,7 +8037,7 @@
           "return_owner": "memory-canonical-owner"
         }
       ],
-      "code_and_condition_match_with_blind": true,
+      "code_and_condition_match_with_post_freeze_projection": true,
       "layer_diagnosis": [
         {
           "layer": "L8",
@@ -7792,7 +8085,7 @@
           "value": 2
         }
       ],
-      "blind_derived_expected": {
+      "post_freeze_rule_projection": {
         "expected_classification": "record_material_violation",
         "finding_codes": [
           "consume_without_delivery",
@@ -7846,7 +8139,7 @@
           "return_owner": "memory-canonical-owner"
         }
       ],
-      "code_and_condition_match_with_blind": true,
+      "code_and_condition_match_with_post_freeze_projection": true,
       "layer_diagnosis": [
         {
           "layer": "L8",
@@ -7899,7 +8192,7 @@
           "value": 2
         }
       ],
-      "blind_derived_expected": {
+      "post_freeze_rule_projection": {
         "expected_classification": "record_material_violation",
         "finding_codes": [
           "consume_without_delivery",
@@ -7946,7 +8239,7 @@
           "return_owner": "memory-canonical-owner"
         }
       ],
-      "code_and_condition_match_with_blind": true,
+      "code_and_condition_match_with_post_freeze_projection": true,
       "layer_diagnosis": [
         {
           "layer": "L8",
@@ -7999,7 +8292,7 @@
           "value": "decision"
         }
       ],
-      "blind_derived_expected": {
+      "post_freeze_rule_projection": {
         "expected_classification": "record_material_violation",
         "finding_codes": [
           "log_kind_conflict",
@@ -8046,7 +8339,7 @@
           "return_owner": "common-log-owner"
         }
       ],
-      "code_and_condition_match_with_blind": true,
+      "code_and_condition_match_with_post_freeze_projection": true,
       "layer_diagnosis": [
         {
           "layer": "L8",
@@ -8092,7 +8385,7 @@
           "value": true
         }
       ],
-      "blind_derived_expected": {
+      "post_freeze_rule_projection": {
         "expected_classification": "record_material_violation",
         "finding_codes": [
           "boolean_conflict",
@@ -8188,7 +8481,7 @@
           "return_owner": "feedback-source-owner"
         }
       ],
-      "code_and_condition_match_with_blind": true,
+      "code_and_condition_match_with_post_freeze_projection": true,
       "layer_diagnosis": [
         {
           "layer": "L8",
@@ -8244,7 +8537,7 @@
           "value": false
         }
       ],
-      "blind_derived_expected": {
+      "post_freeze_rule_projection": {
         "expected_classification": "record_material_unknown",
         "finding_codes": [
           "resolution_origin_unknown",
@@ -8291,7 +8584,7 @@
           "return_owner": "feedback-source-owner"
         }
       ],
-      "code_and_condition_match_with_blind": true,
+      "code_and_condition_match_with_post_freeze_projection": true,
       "layer_diagnosis": [
         {
           "layer": "L8",
@@ -8339,7 +8632,7 @@
           "value": null
         }
       ],
-      "blind_derived_expected": {
+      "post_freeze_rule_projection": {
         "expected_classification": "record_material_violation",
         "finding_codes": [
           "log_kind_conflict",
@@ -8386,7 +8679,7 @@
           "return_owner": "common-log-owner"
         }
       ],
-      "code_and_condition_match_with_blind": true,
+      "code_and_condition_match_with_post_freeze_projection": true,
       "layer_diagnosis": [
         {
           "layer": "L7 / L8 / L9",
@@ -8435,7 +8728,7 @@
           "value": true
         }
       ],
-      "blind_derived_expected": {
+      "post_freeze_rule_projection": {
         "expected_classification": "record_material_violation",
         "finding_codes": [
           "boolean_conflict",
@@ -8615,7 +8908,7 @@
           "return_owner": "memory-canonical-owner"
         }
       ],
-      "code_and_condition_match_with_blind": true,
+      "code_and_condition_match_with_post_freeze_projection": true,
       "layer_diagnosis": [
         {
           "layer": "L7 / L8 / L9",

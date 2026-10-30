@@ -6,7 +6,7 @@
   "product": "HELIX-OS",
   "owner_candidate": "HELIX-OS-007 L8 unit-verification independent rederivation audit owner candidate",
   "state": "registered",
-  "reason": "Issue #3510 WR233: preserve the fixed Step A independent source-only derivation (L3/L10/L4/L7) and Step B comparison audit across all 83 negative cases of OS007 without modifying docs/helix-os/L8-unit-verification/log-feedback-memory-lineage.json.",
+  "reason": "Issue #3510 WR233: preserve the fixed Step A independent source-only derivation (L3/L10 and L4 prose only; l7_read_count=0, 12 representative rule rows + 37 diagnostic codes) and Step B comparison audit and post-freeze 83-class rule projection of OS007 without modifying docs/helix-os/L8-unit-verification/log-feedback-memory-lineage.json.",
   "upstream": [
     {
       "path": "docs/helix-os/L3-requirements/functional-requirements.json",
@@ -41,7 +41,7 @@
     {
       "path": "docs/helix-os/L7-function-verification/log-feedback-memory-lineage.json",
       "sha256": "5a38e644013f755769b8cda433c871bbac6bdd3b652019b548072e5acff03e78",
-      "note": "OS007 L7 case_materials (0..944) read in Step A; 6 unrecorded negative classes (C0946..C0951) are separated without fabricating L7 values."
+      "note": "OS007 L7 case_materials (0..944) read in Step B only (Step A l7_read_count=0); 6 unrecorded negative classes (C0946..C0951) are separated without fabricating L7 values."
     },
     {
       "path": "docs/helix-os/L8-unit-verification/log-feedback-memory-lineage.json",
@@ -102,8 +102,8 @@
       "negative_case"
     ],
     "oracles": [
-      "Fixed blind-derivation.json raw-byte SHA-256 7143bc0f631dff2ab6f0c1b36fc30bccd19d2513ba2ab16c18f28d27ea3748ca and Issue #3510 comment 6534998289.",
-      "All 83 negative equivalence classes compared row-by-row with layer-specific discrepancy diagnosis.",
+      "Fixed blind-derivation.json raw-byte SHA-256 7143bc0f631dff2ab6f0c1b36fc30bccd19d2513ba2ab16c18f28d27ea3748ca (derived_at_utc 2026-10-30T22:32:00Z, local artifact freeze 2026-10-30T22:32:07Z) and Issue #3510 comment 6534998289 (created_at 2026-10-30T22:39:10Z).",
+      "Pre-freeze 12 representative rule rows (R01..R12) and 37 diagnostic codes directly compared against L8/L5/L9; all 83 negative equivalence classes evaluated via post_freeze_rule_projection with layer-specific discrepancy diagnosis.",
       "6 L7-unrecorded cases (C0946..C0951) explicitly separated without fabricating L7 values.",
       "Zero diff under docs/helix-os/.",
       "scfctl stale, scfctl validate, and design_verification_checker check-child."
