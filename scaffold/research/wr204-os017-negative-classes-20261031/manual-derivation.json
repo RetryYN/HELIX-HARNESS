@@ -180,7 +180,7 @@
       "ownership": "6 role値がcontextおよび固定owner roleと一致し、追加caseの変更箇所ではない。",
       "ticket": "基準ではticket graph 1件とcontextが一致する。context binding requirement_revision/scopeがnullとなる/cases/92,93だけ、ticket parent_revision/scope比較もunknownとなり得る。他の追加witnessではticket facet comparison inputは変わらない。",
       "workflow": "基準のprocess/proposal/dependency/level/authority/resource/constraintsはL4記述上対応状態。context binding requirement_revision/scopeはproposal/dependency comparisonsにも、contract_revisionはprocess.revision comparisonにも再利用されるため/cases/92,93,95ではworkflow facetもunknownとなり得る。他の追加witnessではworkflow comparison inputは変わらない。",
-      "backflow": "resumeのintermediate comparison入力は追加caseで変わらない。",
+      "backflow": "resumeのintermediate actual値は変わらないが、/cases/92,93では対応するcontext.binding requirement_revision/scopeがnullとなり、intermediate比較でもbackflow facetがunknownとなり得る。他の追加witnessではこのcomparison inputは変わらない。",
       "continuity": "resumeのprior/resumed comparison入力は追加caseで変わらない。",
       "scope_limit": "completion_claimとprojectionは追加caseで変わらない。",
       "aggregate": "/cases/92,93,95は複数facetがunknownになり得るがviolationはなく、L4 severity規則では全体unknown。共有context pointerへのsource_unresolved findingは(code,pointer,return_owner)一意化でsignatureを単一コードに保つ。残りの入力差分はinputs comparisonだけに影響する。これはL4散文を手適用した分類で、validatorはfacet/finding計算をしない。"
