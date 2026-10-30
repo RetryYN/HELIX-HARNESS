@@ -32,7 +32,13 @@
       "freeze_comment_prose_count_explanation": "Issue #3510 comment #issuecomment-6534998289 and blind-derivation.json#/selection_policy_and_overview prose wrote \"10 representative negative rows\" (counting R10A/R10B/R10C together as 1 rule group), while the actual frozen JSON array blind-derivation.json#/representative_negative_rows has 12 elements (index 0..11: 2 rows for R01..R02 and 10 rows for R03..R12).",
       "complete_37_code_matrix_count": 37,
       "uninstantiated_or_deferred_branches_count": 7,
-      "class_by_class_83_rows_in_frozen_artifact": 0
+      "class_by_class_83_rows_in_frozen_artifact": 0,
+      "representative_negative_rows_from_older_l4_r01_r02_prose_count": 2,
+      "representative_negative_rows_matching_current_l4_r03_r12_prose_count": 10,
+      "complete_37_code_matrix_exclusively_r03_r12_identical_prose_count": 27,
+      "complete_37_code_matrix_r01_r02_involved_count": 10,
+      "complete_37_code_matrix_r01_r02_changed_operand_pointer_prose_count": 4,
+      "complete_37_code_matrix_r01_r02_unchanged_pointer_prose_count": 6
     }
   },
   "source_pins_at_comparison": {
@@ -58,9 +64,13 @@
     },
     "L4_basic_design": {
       "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
+      "step_a_l4_commit": "214a51d0f",
+      "step_a_l4_commit_date": "2026-10-15",
+      "step_a_read_origin": "root checkout (/home/tenni/HELIX-HARNESS, HEAD aa1244411) working tree copy stripped of algorithm_python_document_text (/tmp/l4-os007-prose-only.json, SHA-256: 2d042cf0a20cee285b0a1969356b2af3c56cfa98846474c471a6891a367b8504)",
       "sha256_at_step_a_blind_derivation": "a69db9b9b13622528b96712afb6aa8f72a208629f18dc13694e96ec5b760b5b8",
+      "step_b_base_l4_commit": "d4fa97152ce4f59618601c9a056bbfa406f25868",
       "sha256_at_step_b_comparison_main": "9248fd760d5aeaa7c682fcb744493243ef8dbc7a855ed5f9e497ea567ea994c2",
-      "note": "Step A blind derivation read prose-only copy of a69db9b9... (before #3938/#3961/#3969 added failure_classifications and clarified R01/R02 operand-local pointers); Step B compares against current main 9248fd76..."
+      "note": "Step A read the prose-only copy derived from commit 214a51d0f (a69db9b9..., root checkout HEAD aa1244411), whereas wreq_233 base (d4fa9715) / main L4 is 9248fd76... Between the two revisions, R03..R12 prose and the 37 code definitions (/diagnostic_contract/codes) are 100% identical, while R01 and R02 prose were updated in WR217 (#3961) / WR229 (#3969) to specify operand-own pointer attribution for unknown values, and composite_class_formation, negative_equivalence_classes, and failure_classifications (83 rows) were added. See /step_a_l4_revision_difference_and_impact for full diff and impact analysis."
     },
     "L5_detail_design": {
       "path": "docs/helix-os/L5-detail-design/log-feedback-memory-lineage.json",
@@ -79,13 +89,188 @@
       "sha256": "a58d53077ca0d3a43d06886a82226ea952946be375648b936af2099cfeaac801"
     }
   },
+  "step_a_l4_revision_difference_and_impact": {
+    "step_a_l4_commit": "214a51d0f",
+    "step_a_l4_commit_date": "2026-10-15",
+    "step_a_l4_sha256": "a69db9b9b13622528b96712afb6aa8f72a208629f18dc13694e96ec5b760b5b8",
+    "step_a_prose_only_copy_sha256": "2d042cf0a20cee285b0a1969356b2af3c56cfa98846474c471a6891a367b8504",
+    "step_a_read_cause": "Step A generated /tmp/l4-os007-prose-only.json from the root checkout (/home/tenni/HELIX-HARNESS, HEAD aa1244411) working tree, whose L4 file was at commit 214a51d0f (a69db9b9...), instead of git show d4fa97152ce4f59618601c9a056bbfa406f25868:docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json (9248fd76...). The 4 L3/L10 files had identical SHA-256 hashes across both commits.",
+    "base_l4_commit": "d4fa97152ce4f59618601c9a056bbfa406f25868",
+    "base_l4_sha256": "9248fd760d5aeaa7c682fcb744493243ef8dbc7a855ed5f9e497ea567ea994c2",
+    "exact_differences_between_214a51d0f_and_d4fa9715": {
+      "rules_changed": [
+        {
+          "rule_id": "R01",
+          "pointer": "/diagnostic_contract/rules/0",
+          "changed_in_commit": "b3bf915a24 (PR #3961 / WR217)",
+          "prose_in_214a51d0f": "共通string比較はactual/context各々が非空stringかを検査する。片側不明は各pointerにfield_unknown、両側knownで相違はactual pointerにfield_conflict。bool比較はtypeがboolでなければ各pointerにboolean_unknown、両側boolで相違ならactual pointerにboolean_conflict。比較codeは呼出元のlogs/feedback/memory facetに入れる。",
+          "prose_in_d4fa9715": "共通string比較はactual/context各々が非空stringかを検査する。各operandが非空stringでなければ、そのoperand自身のpointerにfield_unknownを付ける（片側不明なら不明側のみ、両側不明なら双方）。両側が非空stringで相違するときはactual pointerにfield_conflictを付ける。bool比較はactual/context各々のtypeがboolかを検査する。各operandがboolでなければ、そのoperand自身のpointerにboolean_unknownを付ける（片側不明なら不明側のみ、両側不明なら双方）。両側boolで相違するときはactual pointerにboolean_conflictを付ける。比較codeは呼出元のlogs/feedback/memory facetに入れる。",
+          "semantic_diff_summary": "片側不明時のfield_unknownおよびboolean_unknownの付与先が、旧版の「各pointer」という曖昧表現から、現行版では「そのoperand自身のpointer（片側不明なら不明側のみ、両側不明なら双方）」へ明確化された。field_conflict / boolean_conflictのactual pointer付与とfacet帰属規則は同一。"
+        },
+        {
+          "rule_id": "R02",
+          "pointer": "/diagnostic_contract/rules/1",
+          "changed_in_commit": "7c376ebba5 (PR #3969 / WR229)",
+          "prose_in_214a51d0f": "四logそれぞれcommon_fieldsをcontextへ照合する。kindはlog_namesのclosed値で、未知はlog_kind_unknown、fixture keyのkindと異なるknown kindは両側各pointerにlog_kind_conflict。known actual/context kind差はfield_conflict。stateはlog_statesで未知は両側log_state_unknown、known差はactual log_state_conflict。actual duplicate/staleはlog_duplicate/log_stale、actual unobservedはlog_state_unknown。原recordを捨てない。",
+          "prose_in_d4fa9715": "四logそれぞれcommon_fieldsをcontextへ照合する。kindはlog_namesのclosed値で、actual/context各operandを個別に検査し、unknownはunknown operand自身のpointerへlog_kind_unknownを付す（片側unknownならその側、両側unknownなら双方）。fixture keyのkindと異なるknown kindは両側各pointerにlog_kind_conflict。known actual/context kind差はfield_conflict。stateはlog_statesのclosed値で、actual/context各operandを個別に検査し、unknownはunknown operand自身のpointerへlog_state_unknownを付す（片側unknownならその側、両側unknownなら双方）。known actual/context state差はactual log_state_conflict。actual duplicate/staleはlog_duplicate/log_stale。actual unobservedはknown state値に対する専用診断log_state_unknownをactual pointerへ付す。原recordを捨てない。",
+          "semantic_diff_summary": "log_kind_unknownおよびlog_state_unknownの付与先が、旧版の「未知はlog_kind_unknown」「未知は両側log_state_unknown」から、現行版では「actual/context各operandを個別に検査し、unknownはunknown operand自身のpointerへ付す（片側unknownならその側、両側unknownなら双方）」および「actual unobservedは専用診断log_state_unknownをactual pointerへ付す」へ修正された。一方、「fixture keyのkindと異なるknown kindは両側各pointerにlog_kind_conflict」の文言は2版で同一のまま残っている。"
+        }
+      ],
+      "rules_identical": [
+        "R03 (/diagnostic_contract/rules/2)",
+        "R04 (/diagnostic_contract/rules/3)",
+        "R05 (/diagnostic_contract/rules/4)",
+        "R06 (/diagnostic_contract/rules/5)",
+        "R07 (/diagnostic_contract/rules/6)",
+        "R08 (/diagnostic_contract/rules/7)",
+        "R09 (/diagnostic_contract/rules/8)",
+        "R10 (/diagnostic_contract/rules/9)",
+        "R11 (/diagnostic_contract/rules/10)",
+        "R12 (/diagnostic_contract/rules/11)"
+      ],
+      "other_sections_identical": [
+        "/diagnostic_contract/codes (all 37 diagnostic code entries: code, facet, disposition)",
+        "/diagnostic_contract/owner_by_facet",
+        "/diagnostic_contract/output_fields (all 13 whole output roots)",
+        "/diagnostic_contract/log_names, common_fields, common_meanings, log_states, feedback_stages, stage_fields, memory_states, memory_freshness, reflection_fields",
+        "/legacy_comparison and /remaining"
+      ],
+      "other_sections_changed_or_added_in_d4fa9715": [
+        "/diagnostic_contract/composite_class_formation (absent in 214a51d0f; added in d4fa9715 to codify composite negative equivalence class projection and 4 non-occurring singleton residuals)",
+        "/negative_equivalence_classes (absent in 214a51d0f; added in d4fa9715 as {\"source_rows\": \"failure_classifications\"})",
+        "/failure_classifications (absent in 214a51d0f; 83 negative equivalence classes added in d4fa9715)",
+        "/contracts[0..2] (oracle_ref updated to HELIXOS-L9-007-P-F01..F03, system_oracle_ref and negative_class_refs added; contract prose text identical)",
+        "/source_pins (updated hashes/revisions for L2/L11 and v12-layer-contract)"
+      ]
+    },
+    "impact_on_12_representative_rule_rows": {
+      "total_frozen_representative_rows": 12,
+      "rows_derived_from_older_l4_r01_r02_prose_count": 2,
+      "rows_derived_from_older_l4_r01_r02_prose_ids": [
+        "NEG-OS007-R01-COMMON-PRIMITIVES (blind_row_index 0, rules R01/R12)",
+        "NEG-OS007-R02-LOG-COMMON-FIELDS-KIND-AND-STATE (blind_row_index 1, rules R01/R02/R03/R12)"
+      ],
+      "rows_derived_from_current_l4_identical_prose_count": 10,
+      "rows_derived_from_current_l4_identical_prose_ids": [
+        "NEG-OS007-R03-LOG-SUCCESS-CLAIM-FORBIDDEN (blind_row_index 2, rules R03/R12)",
+        "NEG-OS007-R04-FEEDBACK-ORIGINAL-FINDING-PRESERVATION (blind_row_index 3, primary rules R04/R07/R12; R01 sub-comparison)",
+        "NEG-OS007-R05-FEEDBACK-STAGE-RECORDING-AND-SOURCE-HEAD-JOIN (blind_row_index 4, primary rules R05/R07/R12; R01 sub-comparison)",
+        "NEG-OS007-R06-R07-FEEDBACK-RESOLUTION-ORIGIN-AND-UNRESOLVED-CLAIM (blind_row_index 5, rules R06/R07/R12)",
+        "NEG-OS007-R08-MEMORY-SOURCE-STATE-FRESHNESS-AND-REFLECTION-JOIN (blind_row_index 6, primary rules R08/R11/R12; R01 sub-comparison)",
+        "NEG-OS007-R09-MEMORY-RETIRE-BEFORE-REFLECTION-AND-ORDERING (blind_row_index 7, rules R09/R11/R12)",
+        "NEG-OS007-R10A-MEMORY-TERMINAL-OR-STALE-RESURFACED (blind_row_index 8, rules R10/R11/R12)",
+        "NEG-OS007-R10B-MEMORY-DELIVERY-CONSUME-COUNTS-AND-USE-STATE (blind_row_index 9, rules R10/R11/R12)",
+        "NEG-OS007-R10C-PROVIDER-MEMORY-AUTHORITY-FORBIDDEN (blind_row_index 10, rules R10/R11/R12)",
+        "NEG-OS007-R12-BOUNDARY-WHOLE-COMPLETION-AND-PRECEDENCE (blind_row_index 11, rules R12)"
+      ],
+      "why_pre_freeze_matched_12_did_not_show_pointer_diff": "pre_freeze_matched_representative_rule_rows: 12 evaluated agreement on finding code sets, dispositions, and overall condition, without comparing operand pointer attribution. Because R01 and R02 changed only the operand pointer rule for unknown values (from \"各pointer\" / \"両側\" in 214a51d0f to \"そのoperand自身のpointer（片側不明なら不明側のみ、両側不明なら双方）\" in d4fa9715) while keeping finding codes and dispositions unchanged, the 2 rows (R01, R02) matched on code and condition despite being derived from the older L4 prose. Counting only rows whose primary rule prose in Step A is identical to current L4 (d4fa9715) yields 10 rows (R03..R12)."
+    },
+    "impact_on_37_diagnostic_codes_comparison": {
+      "total_diagnostic_codes": 37,
+      "codes_table_entries_identical_across_revisions": 37,
+      "codes_exclusively_from_identical_r03_r12_prose_count": 27,
+      "codes_exclusively_from_identical_r03_r12_prose": [
+        "log_success_claim_forbidden (R03)",
+        "finding_missing (R04)",
+        "original_finding_changed (R04)",
+        "finding_discard_forbidden (R04)",
+        "stage_unrecorded_ref_present (R05)",
+        "resolution_origin_unknown (R06)",
+        "resolution_origin_forbidden (R06)",
+        "unresolved_claimed_resolved (R06)",
+        "memory_state_unknown (R08)",
+        "memory_state_conflict (R08)",
+        "memory_freshness_unknown (R08)",
+        "memory_freshness_conflict (R08)",
+        "reflection_unrecorded_ref_present (R08)",
+        "retire_before_reflection (R09)",
+        "order_unknown (R09)",
+        "order_conflict (R09)",
+        "reflection_not_before_retire (R09)",
+        "retirement_basis_unknown (R09)",
+        "terminal_instruction_resurfaced (R10)",
+        "use_count_unknown (R10)",
+        "use_count_conflict (R10)",
+        "duplicate_successful_use (R10)",
+        "provider_memory_authority_forbidden (R10)",
+        "consume_without_delivery (R10)",
+        "use_state_conflict (R10)",
+        "whole_completion_forbidden (R12)",
+        "whole_claim_unknown (R12)"
+      ],
+      "codes_involving_r01_or_r02_count": 10,
+      "codes_in_r01_r02_with_changed_operand_pointer_prose_count": 4,
+      "codes_in_r01_r02_with_changed_operand_pointer_prose": [
+        {
+          "code": "field_unknown",
+          "rules": [
+            "R01",
+            "R02",
+            "R04",
+            "R05",
+            "R08"
+          ],
+          "prose_in_214a51d0f": "片側不明は各pointerにfield_unknown",
+          "prose_in_d4fa9715": "各operandが非空stringでなければ、そのoperand自身のpointerにfield_unknownを付ける（片側不明なら不明側のみ、両側不明なら双方）"
+        },
+        {
+          "code": "boolean_unknown",
+          "rules": [
+            "R01",
+            "R03",
+            "R04",
+            "R05",
+            "R06",
+            "R08",
+            "R10"
+          ],
+          "prose_in_214a51d0f": "bool比較はtypeがboolでなければ各pointerにboolean_unknown",
+          "prose_in_d4fa9715": "各operandがboolでなければ、そのoperand自身のpointerにboolean_unknownを付ける（片側不明なら不明側のみ、両側不明なら双方）"
+        },
+        {
+          "code": "log_kind_unknown",
+          "rules": [
+            "R02"
+          ],
+          "prose_in_214a51d0f": "kindはlog_namesのclosed値で、未知はlog_kind_unknown",
+          "prose_in_d4fa9715": "kindはlog_namesのclosed値で、actual/context各operandを個別に検査し、unknownはunknown operand自身のpointerへlog_kind_unknownを付す（片側unknownならその側、両側unknownなら双方）"
+        },
+        {
+          "code": "log_state_unknown",
+          "rules": [
+            "R02"
+          ],
+          "prose_in_214a51d0f": "stateはlog_statesで未知は両側log_state_unknown... actual unobservedはlog_state_unknown",
+          "prose_in_d4fa9715": "stateはlog_statesのclosed値で、actual/context各operandを個別に検査し、unknownはunknown operand自身のpointerへlog_state_unknownを付す（片側unknownならその側、両側unknownなら双方）... actual unobservedはknown state値に対する専用診断log_state_unknownをactual pointerへ付す"
+        }
+      ],
+      "codes_in_r01_r02_with_unchanged_pointer_prose_count": 6,
+      "codes_in_r01_r02_with_unchanged_pointer_prose": [
+        "field_conflict (R01: actual pointer in both 214a51d0f and d4fa9715)",
+        "boolean_conflict (R01: actual pointer in both 214a51d0f and d4fa9715)",
+        "log_kind_conflict (R02: clause \"fixture keyのkindと異なるknown kindは両側各pointerにlog_kind_conflict\" is identical in both 214a51d0f and d4fa9715)",
+        "log_state_conflict (R02: actual pointer in both 214a51d0f and d4fa9715)",
+        "log_duplicate (R02: actual state pointer in both 214a51d0f and d4fa9715)",
+        "log_stale (R02: actual state pointer in both 214a51d0f and d4fa9715)"
+      ]
+    },
+    "non_dependence_of_audit_conclusions": "本監査の主要結論である (1) L8のL7収録77負例におけるL5単体関数返却root（expected_function_output_projection: facet_status, items, findings[pointer/return_owner], findings_by_item）の欠落とL8 candidate_l5_bindingのstale SHA、(2) L4 R08散文の「両側」表記（memory_state_unknown / memory_freshness_unknown）とL5/L9の片側pointer出力の差、(3) L4 R02 log_kind_conflictの「両側各pointer」表記と片側不一致時の1-pointer出力の差、(4) L4 R09/R10のクロスフィールドpointer未明記、および (5) L7未収録6分岐（C0946..C0951）の分離は、すべてR01・R02の2版間差分に依らない（R08・R09・R10の本文およびR02のlog_kind_conflict文言は214a51d0fとd4fa9715の2版で完全同一である）。"
+  },
   "summary_counts": {
     "pre_freeze_blind_representative_rule_rows": 12,
     "pre_freeze_blind_representative_rule_rows_R01_R02": 2,
     "pre_freeze_blind_representative_rule_rows_R03_R12": 10,
-    "pre_freeze_blind_diagnostic_codes": 37,
+    "pre_freeze_representative_rows_matching_current_l4_prose": 10,
+    "pre_freeze_representative_rows_from_older_l4_r01_r02_prose": 2,
     "pre_freeze_matched_representative_rule_rows": 12,
+    "pre_freeze_matched_representative_rule_rows_note": "12 matched on code and condition only (operand pointer not compared); 10 of 12 rows (R03..R12) were derived from L4 prose identical to current main (9248fd76...), while 2 rows (R01, R02) were derived from older L4 revision 214a51d0f (a69db9b9...)",
+    "pre_freeze_blind_diagnostic_codes": 37,
     "pre_freeze_matched_diagnostic_codes": 37,
+    "pre_freeze_diagnostic_codes_exclusively_from_identical_r03_r12_prose": 27,
+    "pre_freeze_diagnostic_codes_involving_r01_r02": 10,
+    "pre_freeze_diagnostic_codes_in_r01_r02_with_changed_operand_pointer_prose": 4,
+    "pre_freeze_diagnostic_codes_in_r01_r02_with_unchanged_pointer_prose": 6,
+    "pre_freeze_diagnostic_codes_with_identical_pointer_prose_in_current_l4": 33,
     "pre_freeze_blind_83_class_rows": 0,
     "total_negative_equivalence_classes": 83,
     "l7_recorded_negative_classes": 77,
@@ -119,7 +304,9 @@
         "layer_notes": [
           "Exact JSON pointer prefix formatting for actual vs context in findings (e.g. whether pointers start with /logs/... vs /actual/logs/... and /context/logs/... is fixed in L5/L8, not spelled out as a literal path template in L4 prose)",
           "Concrete synthetic string/boolean values used in L8/L9 test fixtures"
-        ]
+        ],
+        "l4_prose_revision_status": "derived_from_older_l4_214a51d0f_r01_prose",
+        "l4_revision_diff_note": "Step A read R01 from commit 214a51d0f (\"片側不明は各pointerにfield_unknown\", \"bool比較はtypeがboolでなければ各pointerにboolean_unknown\"). Current L4 (d4fa9715 / 9248fd76...) updated R01 in WR217 (#3961) to \"そのoperand自身のpointer（片側不明なら不明側のみ、両側不明なら双方）\". Code and condition match, but operand pointer specificity in L4 prose differs between the two revisions."
       },
       {
         "blind_row_index": 1,
@@ -145,7 +332,9 @@
         "layer_notes": [
           "Formal BASE-01 schema/codec and real actor/model/capability/time/source qualification (explicitly deferred in /remaining/0 to L5/L8)",
           "Formal N/A evidence type for model_revision on human records (/diagnostic_contract/common_meanings/model_revision)"
-        ]
+        ],
+        "l4_prose_revision_status": "derived_from_older_l4_214a51d0f_r01_r02_prose",
+        "l4_revision_diff_note": "Step A read R02 from commit 214a51d0f (\"未知はlog_kind_unknown\", \"未知は両側log_state_unknown\", \"actual unobservedはlog_state_unknown\"). Current L4 (d4fa9715 / 9248fd76...) updated R02 in WR229 (#3969) to \"unknownはunknown operand自身のpointerへlog_kind_unknown/log_state_unknownを付す（片側unknownならその側、両側unknownなら双方）\" and \"actual unobservedはknown state値に対する専用診断log_state_unknownをactual pointerへ付す\". Code and condition match, but operand pointer specificity in L4 prose differs between the two revisions (except log_kind_conflict which retains \"両側各pointer\" in both)."
       },
       {
         "blind_row_index": 2,
@@ -162,7 +351,9 @@
         "matched_against_l8_l5_l9_on_codes_and_conditions": true,
         "layer_notes": [
           "Concrete pointer path string for success_evidence_claim in L8/L9 fixtures"
-        ]
+        ],
+        "l4_prose_revision_status": "derived_from_prose_identical_to_current_l4_9248fd76",
+        "l4_revision_diff_note": "All referenced rule prose (within R03..R12) is 100% identical between 214a51d0f and d4fa9715 (9248fd76...)."
       },
       {
         "blind_row_index": 3,
@@ -185,7 +376,9 @@
         "matched_against_l8_l5_l9_on_codes_and_conditions": true,
         "layer_notes": [
           "Real persistence/journal recovery and partial scan completeness markers for unacked findings (/remaining/1)"
-        ]
+        ],
+        "l4_prose_revision_status": "derived_from_prose_identical_to_current_l4_9248fd76",
+        "l4_revision_diff_note": "Primary rule prose (R03..R12) is 100% identical between 214a51d0f and d4fa9715 (9248fd76...); only secondary R01 primitive unknown pointer wording was clarified in d4fa9715."
       },
       {
         "blind_row_index": 4,
@@ -207,7 +400,9 @@
         "matched_against_l8_l5_l9_on_codes_and_conditions": true,
         "layer_notes": [
           "Concrete stage receipt identifiers and timestamps used in downstream test fixtures"
-        ]
+        ],
+        "l4_prose_revision_status": "derived_from_prose_identical_to_current_l4_9248fd76",
+        "l4_revision_diff_note": "Primary rule prose (R03..R12) is 100% identical between 214a51d0f and d4fa9715 (9248fd76...); only secondary R01 primitive unknown pointer wording was clarified in d4fa9715."
       },
       {
         "blind_row_index": 5,
@@ -228,7 +423,9 @@
         "matched_against_l8_l5_l9_on_codes_and_conditions": true,
         "layer_notes": [
           "Sufficient conditions for real domain resolution and formal finding schemas owned by each meaning/verification owner (/remaining/1)"
-        ]
+        ],
+        "l4_prose_revision_status": "derived_from_prose_identical_to_current_l4_9248fd76",
+        "l4_revision_diff_note": "All referenced rule prose (within R03..R12) is 100% identical between 214a51d0f and d4fa9715 (9248fd76...)."
       },
       {
         "blind_row_index": 6,
@@ -254,7 +451,9 @@
         "matched_against_l8_l5_l9_on_codes_and_conditions": true,
         "layer_notes": [
           "Real target identity / durable write verification / physical target file realpath check (/remaining/2)"
-        ]
+        ],
+        "l4_prose_revision_status": "derived_from_prose_identical_to_current_l4_9248fd76",
+        "l4_revision_diff_note": "Primary rule prose (R03..R12) is 100% identical between 214a51d0f and d4fa9715 (9248fd76...); only secondary R01 primitive unknown pointer wording was clarified in d4fa9715."
       },
       {
         "blind_row_index": 7,
@@ -276,7 +475,9 @@
         "layer_notes": [
           "Exact pointer chosen for retire_before_reflection, retirement_basis_unknown, and reflection_not_before_retire (e.g., whether attached to state, reflection.recorded, or retire_order pointer in L5/L8)",
           "Real custody/timestamp proof of ordering beyond synthetic episode ordinal (/remaining/3)"
-        ]
+        ],
+        "l4_prose_revision_status": "derived_from_prose_identical_to_current_l4_9248fd76",
+        "l4_revision_diff_note": "All referenced rule prose (within R03..R12) is 100% identical between 214a51d0f and d4fa9715 (9248fd76...)."
       },
       {
         "blind_row_index": 8,
@@ -294,7 +495,9 @@
         "matched_against_l8_l5_l9_on_codes_and_conditions": true,
         "layer_notes": [
           "Expiry clock injection, compaction tombstone redaction, and physical surface budget clipping (/remaining/2)"
-        ]
+        ],
+        "l4_prose_revision_status": "derived_from_prose_identical_to_current_l4_9248fd76",
+        "l4_revision_diff_note": "All referenced rule prose (within R03..R12) is 100% identical between 214a51d0f and d4fa9715 (9248fd76...)."
       },
       {
         "blind_row_index": 9,
@@ -315,7 +518,9 @@
         "matched_against_l8_l5_l9_on_codes_and_conditions": true,
         "layer_notes": [
           "Physical at-least-once delivery transport and SQLite coordination lock/fencing mechanics (/legacy_comparison/consumer_boundary, /remaining/2, /remaining/3)"
-        ]
+        ],
+        "l4_prose_revision_status": "derived_from_prose_identical_to_current_l4_9248fd76",
+        "l4_revision_diff_note": "All referenced rule prose (within R03..R12) is 100% identical between 214a51d0f and d4fa9715 (9248fd76...)."
       },
       {
         "blind_row_index": 10,
@@ -333,7 +538,9 @@
         "matched_against_l8_l5_l9_on_codes_and_conditions": true,
         "layer_notes": [
           "Provider-specific memory adapter shapes (explicitly excluded from migration in /legacy_comparison/change and /legacy_comparison/consumer_boundary)"
-        ]
+        ],
+        "l4_prose_revision_status": "derived_from_prose_identical_to_current_l4_9248fd76",
+        "l4_revision_diff_note": "All referenced rule prose (within R03..R12) is 100% identical between 214a51d0f and d4fa9715 (9248fd76...)."
       },
       {
         "blind_row_index": 11,
@@ -349,17 +556,29 @@
         "matched_against_l8_l5_l9_on_codes_and_conditions": true,
         "layer_notes": [
           "Exact binding and full structural closure to OS015/016/019/053 and HARNESS common evidence semantics (/remaining/4)"
-        ]
+        ],
+        "l4_prose_revision_status": "derived_from_prose_identical_to_current_l4_9248fd76",
+        "l4_revision_diff_note": "All referenced rule prose (within R03..R12) is 100% identical between 214a51d0f and d4fa9715 (9248fd76...)."
       }
     ],
     "complete_37_code_matrix_comparison_summary": {
       "total_codes_in_frozen_artifact": 37,
       "matched_codes_on_disposition_facet_and_owner": 37,
+      "codes_exclusively_from_identical_r03_r12_prose_count": 27,
+      "codes_involving_r01_or_r02_count": 10,
+      "codes_in_r01_r02_with_changed_operand_pointer_prose_count": 4,
+      "codes_in_r01_r02_with_unchanged_pointer_prose_count": 6,
+      "codes_with_identical_pointer_prose_in_current_l4_count": 33,
+      "r01_r02_vs_r03_r12_distinction": {
+        "r03_r12_exclusive_27_codes": "27 codes (codes[8], codes[11..36]) are governed exclusively by R03..R12, whose L4 prose is 100% identical between Step A (214a51d0f) and base (d4fa9715).",
+        "r01_r02_changed_pointer_prose_4_codes": "4 codes (field_unknown, boolean_unknown in R01; log_kind_unknown, log_state_unknown in R02) had their L4 operand-pointer prose updated between 214a51d0f and d4fa9715 (WR217 #3961 / WR229 #3969) from \"各pointer\" / \"両側\" to \"そのoperand自身のpointer（片側不明なら不明側のみ、両側不明なら双方）\".",
+        "r01_r02_unchanged_pointer_prose_6_codes": "6 codes in R01/R02 (field_conflict, boolean_conflict in R01; log_kind_conflict, log_state_conflict, log_duplicate, log_stale in R02) retain identical target pointer semantics in L4 prose across both 214a51d0f and d4fa9715."
+      },
       "pointer_or_wording_gaps_identified_in_l4_prose": [
-        "R02 log_kind_conflict: L4 prose says both sides pointers, whereas L5/L8/L9 emit only on the operand pointer whose known kind differs from fixture key.",
-        "R08 memory_state_unknown / memory_freshness_unknown: L4 prose says both sides, whereas L5/L9 emit only on the offending unknown operand pointer.",
-        "R09 retire_before_reflection / retirement_basis_unknown / reflection_not_before_retire: L4 prose does not specify which pointer among state / reflection/recorded / retire_order receives the finding.",
-        "R10 consume_without_delivery / use_state_conflict: L4 prose does not specify which cross-field pointer (consume_success_count vs state) receives the finding."
+        "R02 log_kind_conflict (identical prose in 214a51d0f and d4fa9715): L4 prose says both sides pointers (\"両側各pointer\"), whereas L5/L8/L9 emit only on the operand pointer whose known kind differs from fixture key.",
+        "R08 memory_state_unknown / memory_freshness_unknown (identical prose in 214a51d0f and d4fa9715): L4 prose says both sides (\"両側\"), whereas L5/L9 emit only on the offending unknown operand pointer.",
+        "R09 retire_before_reflection / retirement_basis_unknown / reflection_not_before_retire (identical prose in 214a51d0f and d4fa9715): L4 prose does not specify which pointer among state / reflection/recorded / retire_order receives the finding.",
+        "R10 consume_without_delivery / use_state_conflict (identical prose in 214a51d0f and d4fa9715): L4 prose does not specify which cross-field pointer (consume_success_count vs state) receives the finding."
       ]
     }
   },

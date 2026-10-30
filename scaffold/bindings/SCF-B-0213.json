@@ -31,7 +31,7 @@
     {
       "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
       "sha256": "9248fd760d5aeaa7c682fcb744493243ef8dbc7a855ed5f9e497ea567ea994c2",
-      "note": "OS007 basic design rules R01..R12 and failure classifications; read-only comparison source without algorithm execution."
+      "note": "OS007 basic design rules R01..R12 and failure classifications; Step A read commit 214a51d0f (SHA-256 a69db9b9..., R03..R12 prose and 37 code definitions identical, R01/R02 pre-WR217/WR229 prose) from root checkout and Step B compares against current main 9248fd76... without algorithm execution."
     },
     {
       "path": "docs/helix-os/L5-detail-design/log-feedback-memory-lineage.json",
