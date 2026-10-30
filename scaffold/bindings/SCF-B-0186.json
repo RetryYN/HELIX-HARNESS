@@ -6,7 +6,7 @@
   "product": "HELIX-HARNESS",
   "owner_candidate": "HARNESS-L5/L8 process-state-port verification evidence owner",
   "state": "registered",
-  "reason": "WR215 F03のsource-only導出を既存期待の閲覧前に固定し、L5/L8の1 V-pairに対応する2 witnessとの比較履歴を保つ。既存formal caseからはsource-only導出順序が再構成できない。要求・class・oracle・algorithmの変更は行わない。",
+  "reason": "WR215 F03のsource-only導出を既存期待の閲覧前に固定し、L5/L8の1 V-pairに対応する2 witnessとの比較履歴を保つ。既存caseからはsource-only導出順序が再構成できない。要求・class・oracle・algorithmの変更は行わない。",
   "upstream": [
     {
       "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
@@ -21,7 +21,7 @@
     {
       "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
       "sha256": "eb0f43e23906d04b9554786a2574c94d01de85faa75f7fb1f33e08eb3276f464",
-      "note": "main 51ebe7e7e563cdc85607f72fdc234e1c7f665a70時点。F03 class/axis/state/ownerの比較後参照。"
+      "note": "main 51ebe7e7e563cdc85607f72fdc234e1c7f665a70時点。F03 class/axis/state/owner taxonomyの比較後参照。witness expectedとの一致を意味しない。"
     },
     {
       "path": "docs/helix-harness/L5-detail-design/process-state-port.json",
@@ -39,10 +39,11 @@
       "note": "main 51ebe7e7e563cdc85607f72fdc234e1c7f665a70時点。F03 negative case 0/2だけを比較後参照。"
     }
   ],
-  "role": "固定source-only導出と既存L5/L8/L9期待の比較順序を、2 witnessの別理由・共通class・個別trigger/ticket候補を保って監査可能にする。",
+  "role": "固定source-only導出と既存L5/L8/L9期待の比較順序を、2 witnessの別理由・既存class assignmentとexpected gap・個別trigger/ticket候補を保って監査可能にする。",
   "obligations": [
     "比較前のsource-only artifactをbytes不変・SHA-256固定で保存する。",
-    "既存期待を読んだ後の比較結果を別記録とし、既存class groupingと個別trigger/ticket候補、実ticket/Reverseを区別する。",
+    "既存期待を読んだ後の比較結果を別記録とし、既存negative_class_assignmentとexpected pair result/findingの有無、個別trigger/ticket候補、実ticket/Reverseを区別する。",
+    "L8の2 expected pair_result/pair_resultsがNORMALと同じsupportedである差を未解決として残し、classとexpectedの一致や追加class差分なしを主張しない。",
     "L8の既存case ID/input/expected/algorithm/4-way marker、L9 mutationを変更せず、正式L8への新reference fieldを追加しない。",
     "L8全cases配列を出力対象にした比較読取の範囲逸脱を明示し、未対象caseを判断根拠へ使わない。",
     "rootがbase 4beeの静的childで223 failuresを測定し、対象4文書がbase 51ebeと同bytesであることを確認した。4-way成立とは扱わない。"
@@ -84,12 +85,14 @@
     ],
     "oracles": [
       "source-only-frozen.jsonのSHA-256が固定値と一致すること",
-      "2 witnessのID、mutation reason、class/axis/state/owner、個別trigger/ticket候補、actual effectの静的対応",
+      "2 witnessのID、mutation reason、既存class assignment、L8/L9 expected pair結果、個別trigger/ticket候補、actual effectの静的な別々の対応",
+      "L3 approved /requirements/66のticket発行条件文と固定artifactの要約との差を記録し、trigger可否を追加推定しないこと",
       "SCF Bindingのschemaとupstream hashの静的validate/stale確認"
     ],
     "negative_cases": [
       "class一致から実incident同一性やdedupを生成しない。",
       "Reverse candidateを実ticket発行・Reverse実行へ昇格しない。",
+      "negative_class_assignmentをexpected finding/stateと同一視せず、pair結果とmissing/finding未記録の差を解決済みとしない。",
       "223 failuresを4-way成立や独立した意味欠陥223件と誤認しない。",
       "source-only artifactをformal L8 input/expected/algorithmとして扱わない。"
     ]

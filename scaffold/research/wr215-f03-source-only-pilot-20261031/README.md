@@ -11,6 +11,8 @@ L5↔L8の1 V-pairに関係するHARNESS-L3/L10-003-F03の意味を、既存L4/L
 - `source-only-frozen.json` は比較前に固定したbytesの複製である。元の `/tmp/wr215-f03-blind.json` とSHA-256 `0f388cac639d6b1e056ec263849d0b133cc7e2b68b4bca2695b691d3d9bd7800` が一致する。
 - `comparison-after.md` は固定後に初めて読んだL4/L5/L8/L9の2 witnessとの対応、解釈の限界、比較時の範囲逸脱を記録する。
 - 現行L8は変更しない。2 witnessにはすでにL5 contract、L9 mutation、個別input/expectedへのcase参照がある。source-only artifactをL8入力、expected、algorithm、4-way markerの意味へ追加する上流根拠はなく、新fieldは作らない。
+- 既存`negative_class_assignment`は両caseを`F03_REQUIRED_PAIR_MISSING`へ割り当てるが、L8 expectedの`pair_result`/`pair_results`のvalueはNORMALと同じsupported（packet refsはcase別）、L9 expectedの`pair_result`もsupportedで、expectedにfailure codeやmissing stateはない。L5 failure output contractとの関係は未解決であり、classとexpectedの一致とは記さない。
+- L3原文はticket発行条件として由来欠落を挙げるが、trace欠落は同じ列挙に明記しない。固定artifactの`pair_and_trace_obligation`要約はこのticket条件文を含まないため、artifactはticket候補差を導出していない。trace欠落がticket発行を禁止すると推定しない。
 - rootがbase 4beeの静的childで223 failuresを測定し、対象4文書がbase 51ebeと同bytesであることを確認。4-way成立や223個の独立した意味欠陥とは扱わない。既存の4-way markerも変更しない。
 
 ## 上流・現行pair参照
@@ -23,6 +25,8 @@ L5↔L8の1 V-pairに関係するHARNESS-L3/L10-003-F03の意味を、既存L4/L
 - L5 `process-state-port.json` — `HARNESS-L5-003-F03` function/contractとfailure output contract
 - L8 `process-state-port.json` — `H003-L8-F03-ORIGIN-MISSING`、`H003-L8-F03-TRACE-MISSING`
 - L9 `process-state-port.json` — `H003-F03-ORIGIN-MISSING`、`H003-F03-TRACE-MISSING`
+
+R1再確認時のmain `3082abb893bbec7c919d4ed88a927e5100874372`でも、上記6つのupstream fileのbytes/hashはSCF-B-0186のpinと一致した。
 
 ## 旧sourceと失敗記録
 
