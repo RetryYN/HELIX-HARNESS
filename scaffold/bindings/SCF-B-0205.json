@@ -1,0 +1,118 @@
+{
+  "schema_revision": 1,
+  "id": "SCF-B-0205",
+  "kind": "scaffold",
+  "title": "WR246 H053 L8 subject digest ownership cap source-only evidence",
+  "product": "HELIX-HARNESS",
+  "owner_candidate": "HELIX-HARNESS H053 L8 subject digest cap evidence owner",
+  "state": "registered",
+  "reason": "WR246のL8 ownership capに残る30件をADD-22..27のQualification subject_sha256入力として行別に照合する。QA §3に沿うL5 abstract contractを確認し、test fixture本体やsource pin/expectedへの誤分類、L8 key改称によるcap回避をしない。formal L8 U-IDにtest citationが見つからない間は本文変更せず、未解決を記録する。",
+  "upstream": [
+    {
+      "path": "docs/helix-harness/L5-detail-design/semantic-asset-lineage.json",
+      "sha256": "6a66cffd1521e91130c710bbfd0d997c73c2cb56fd79d0959de725f6defdcb41",
+      "note": "HARNESS-L5-053 Qualification type and validate_lineage_input abstract matching contract."
+    },
+    {
+      "path": "docs/helix-harness/L8-unit-verification/semantic-asset-lineage.json",
+      "sha256": "6365651422b2aa7cc4ae3d7596c445cc854eea140daabeddb8990da6c57d7bd2",
+      "note": "WR246 fixed base L8: ADD-22..27, 30 Qualification subject_sha256 values and expected fields. Formal document remains unchanged in this partial result."
+    },
+    {
+      "path": "docs/governance/design-verification-quality-assurance.md",
+      "sha256": "f5751e236dc073fe67114c1fcb4b0f64b3d746290b25d75b61e60a08e3c99c85",
+      "note": "QA §3 L5 fixture boundary and L8 U-ID table ownership/citation contract."
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+      "sha256": "db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+      "note": "LEGACY-ASSET-719D5EC9C06FC4AAD0FF line 143; 静的read-only参照のみ。旧archiveは実行しない。 Historical semantic lineage source, read-only."
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L1-infinity-loop-operational-test-design.md",
+      "sha256": "4f8f67664e360dcb8b40f9c834953d026c9bf3b359a79a64e68fa2296689e576",
+      "note": "LEGACY-ASSET-AFE91778057B7E76BEEC line 76; 静的read-only参照のみ。旧archiveは実行しない。 Historical test design, read-only."
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md",
+      "sha256": "8a46a6a75f1c6159b45b09bd975298347f70997b7969231a0514c09db210dab6",
+      "note": "LEGACY-ASSET-C7F0C3B79CBAA72960BF lines 53 and 82; 静的read-only参照のみ。旧archiveは実行しない。 Historical requirement, read-only."
+    },
+    {
+      "path": "docs/governance/audits/wr238-process-state-l5l8-alignment-correction-r1.json",
+      "sha256": "5e873e5ba00589d1e3a16525568e23eff1b6909979f44c466a12cbd3da8a7422",
+      "note": "PR #3978 R1 correction: do not claim an L9 counterpart/alignment without a resolvable source row; read-only failure case."
+    }
+  ],
+  "role": "30 subject digest values' row-level fixture identity and branch evidence; cap status; unresolved QA §3 citation boundary.",
+  "obligations": [
+    "Pin the exact base L5/L8/QA bytes and classify every subject_sha256 occurrence by case, qualification, subject Ref, owner, fixture/source relation and expected oracle role.",
+    "Resolve each value against same-identity source_ref occurrences and raw Envelope content bytes, preserving intentional source-missing, bytes-mismatch and unresolved-qualification distinctions.",
+    "Keep all expected/output fields distinct from input digest values and verify the formal L8 expectations remain byte-identical to base.",
+    "Do not add concrete fixture bodies to L5, rename/hash-wrap forbidden L8 material, or invent a formal L8 test citation/U-ID.",
+    "Record cap remains unresolved at 30 until existing QA §3 test citation and a reviewable L8 U-ID reference are available."
+  ],
+  "connections": {
+    "consumers": [
+      "WR246 H053 L8 subject SHA ownership cap follow-up"
+    ],
+    "dependencies": [
+      "base revision 03141af4af6c5c3d9dc1f1bf075f29d96928d0f7",
+      "PR #3954 / WR211 prior 13 duplicate reference reduction",
+      "PR #3978 / WR238 R1 source correspondence correction",
+      "QA §3 design-verification-quality-assurance.md"
+    ],
+    "boundary": "Source-only scaffold research evidence. No L4/L9 change, no formal L8/L5 change, no test result/oracle authorization/requirement change, no runtime/test/CI execution."
+  },
+  "operations": {
+    "allowed": [
+      "read fixed source files and JSON pointers",
+      "run validate_static_candidate.py for exact row/value/source-reference correspondence",
+      "run design_verification_checker.py check-child as static document measurement",
+      "run scfctl validate/stale",
+      "run git diff --check"
+    ],
+    "forbidden": [
+      "execute L4/L5 algorithm, product runtime, current test/CI, old CLI/runtime/test/CI/hook/workflow",
+      "change formal L4/L9 or L5/L8 content in this partial evidence result",
+      "invent U-ID, oracle ID or test citation; treat scaffold evidence as a formal test or approved oracle",
+      "rename or mask subject_sha256 to bypass ownership-cap detection",
+      "旧archiveは実行しない"
+    ]
+  },
+  "artifacts": [
+    "scaffold/research/wr246-h053-sha-cap-20261031/README.md",
+    "scaffold/research/wr246-h053-sha-cap-20261031/subject-sha-mapping.json",
+    "scaffold/research/wr246-h053-sha-cap-20261031/validate_static_candidate.py",
+    "scaffold/research/wr246-h053-sha-cap-20261031/verification-summary.json",
+    "scaffold/bindings/SCF-B-0205.json"
+  ],
+  "verification": {
+    "evidence_kind": "scaffold",
+    "scope": [
+      "source_revision_stale",
+      "schema_interface",
+      "negative_case",
+      "forbidden_write_scope"
+    ],
+    "oracles": [
+      "30/30 row pointers, Qualification.subject_ref.sha256 relations and same-identity source_ref occurrences resolve from the fixed base.",
+      "ADD-25 Q4 has no matching source Ref; ADD-26 Q4 content bytes mismatch the declared digest; ADD-27 Q4 has matching body digest but unresolved selected qualification Ref.",
+      "L5 abstract Qualification digest contract and QA §3 fixture/U-ID boundary resolve at the pinned revisions.",
+      "No formal L7 semantic-asset-lineage test file or per-case test_citation field is found, so formal L8 U-ID replacement is not performed."
+    ],
+    "negative_cases": [
+      "Do not assert all 30 values are independently recoverable from an available source body; branch-specific absence/mismatch/unresolved states are retained.",
+      "Do not represent formal L8 expected values as measured output; execution_state remains not_executed.",
+      "L8 cap remains 30 in this partial result."
+    ]
+  },
+  "replacement": {
+    "role_target": "L8 U-ID rows with existing test citation and resolvable oracle IDs; separately resolved before any future cap reduction.",
+    "formal_artifacts": [],
+    "issue": 3510,
+    "status": "pending"
+  },
+  "created": "2026-10-31",
+  "updated": "2026-10-31"
+}

@@ -1,0 +1,86 @@
+{
+  "schema": "wr246-h053-static-verification.v1",
+  "evidence_kind": "scaffold",
+  "authority_effect": "none",
+  "base_sha": "03141af4af6c5c3d9dc1f1bf075f29d96928d0f7",
+  "static_mapping_validation": {
+    "status": "PASS",
+    "result": "30/30 row pointers, Qualification subject Ref/digest equality, same-identity source Ref occurrences and raw Envelope digests checked; ADD-25/Q4 absent source, ADD-26/Q4 mismatched bytes and ADD-27/Q4 unresolved qualification kept distinct.",
+    "formal_L5_L8_bytes_equal_base": true,
+    "expected_and_function_refs_equal_base": true,
+    "test_citation": "missing for ADD-22..27; no formal replacement made"
+  },
+  "check_child_before": {
+    "command": "python3 -B scaffold/tools/design_verification_checker.py check-child --root . --l4 docs/helix-harness/L4-basic-design/semantic-asset-lineage.json --l5 docs/helix-harness/L5-detail-design/semantic-asset-lineage.json --l8 docs/helix-harness/L8-unit-verification/semantic-asset-lineage.json --l9 docs/helix-harness/L9-integration-verification/semantic-asset-lineage.json",
+    "overall_passed": false,
+    "L4_L9_pair": {
+      "passed": true,
+      "left_count": 6,
+      "right_count": 6
+    },
+    "L5_L8_pair": {
+      "passed": true,
+      "left_count": 6,
+      "right_count": 6
+    },
+    "negative_4way": {
+      "passed": false,
+      "counts": {
+        "L4": 38,
+        "L9": 38,
+        "L8": 38,
+        "L5": 38
+      },
+      "matched_case_count": 0,
+      "failures": 76
+    },
+    "L8_ownership_cap": {
+      "passed": false,
+      "findings": 30
+    }
+  },
+  "check_child_after": {
+    "command": "python3 -B scaffold/tools/design_verification_checker.py check-child --root . --l4 docs/helix-harness/L4-basic-design/semantic-asset-lineage.json --l5 docs/helix-harness/L5-detail-design/semantic-asset-lineage.json --l8 docs/helix-harness/L8-unit-verification/semantic-asset-lineage.json --l9 docs/helix-harness/L9-integration-verification/semantic-asset-lineage.json",
+    "overall_passed": false,
+    "L4_L9_pair": {
+      "passed": true,
+      "left_count": 6,
+      "right_count": 6
+    },
+    "L5_L8_pair": {
+      "passed": true,
+      "left_count": 6,
+      "right_count": 6
+    },
+    "negative_4way": {
+      "passed": false,
+      "counts": {
+        "L4": 38,
+        "L9": 38,
+        "L8": 38,
+        "L5": 38
+      },
+      "matched_case_count": 0,
+      "failures": 76
+    },
+    "L8_ownership_cap": {
+      "passed": false,
+      "findings": 30
+    }
+  },
+  "scfctl_validate": {
+    "status": "PASS",
+    "summary": "bindings=187 fail=0"
+  },
+  "scfctl_stale": {
+    "status": "PASS",
+    "summary": "stale=0"
+  },
+  "json_parse": "PASS for subject-sha-mapping.json and SCF-B-0205.json",
+  "git_diff_check": "PASS: git diff --check; new untracked evidence files checked with git diff --no-index --check (no whitespace warnings).",
+  "formal_l5_l8_change": false,
+  "l8_ownership_cap": "unresolved; 30 findings retained because no formal QA §3 test citation exists",
+  "old_runtime_test_ci": "not run",
+  "new_runtime_test_ci": "not run",
+  "l4_l5_algorithm": "not run"
+}
