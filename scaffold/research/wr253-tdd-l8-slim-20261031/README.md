@@ -23,3 +23,7 @@ L5の`f03_head_connection_detail`は設計関数とhash観測の技術的説明�
 ## 静的照合
 
 `verification-summary.json`に、撤去前pointer文字列の固定revision保持、35件の短文意味監査、RFC6901 numeric pointerの35件解決、撤去前後の35 U-ID照合、全5 candidate designのcanonical値照合、L9への35件のsource/expected pointer比較、L5の旧L8節binding、check-childのbefore/after、`scfctl validate`と`stale`を記録する。4つのWR243/WR249 validatorとWR253 U-ID表validatorは静的に実行した。旧runtime/test/CI/algorithmは実行しない。check-childのpair/pin検査はPASS。legacy 4-way row比較35件とL9の禁止byte-hash key35件は残り、L9は対象外で編集していない。
+
+## F01/F02 validatorの追補
+
+旧L8全文を現行bytesと等値比較していたWR206/WR223 validatorは、旧revisionのhash・展開行を履歴として検証し、現行35行表とcandidateはWR253 validatorで確認する。旧validator hashと旧L8 hashは`consumer-validator-followup.json`にrevision付きで保持した。旧summary/監査は変更しない。

@@ -92,7 +92,8 @@
     "docs/helix-harness/L5-detail-design/tdd-development-flow.json",
     "scaffold/research/wr253-tdd-l8-slim-20261031/README.md",
     "scaffold/research/wr253-tdd-l8-slim-20261031/verification-summary.json",
-    "scaffold/research/wr253-tdd-l8-slim-20261031/validate_uid_table.py"
+    "scaffold/research/wr253-tdd-l8-slim-20261031/validate_uid_table.py",
+    "scaffold/research/wr253-tdd-l8-slim-20261031/consumer-validator-followup.json"
   ],
   "verification": {
     "evidence_kind": "scaffold",

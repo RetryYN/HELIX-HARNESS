@@ -5,12 +5,18 @@ from __future__ import annotations
 import hashlib
 import json
 import subprocess
+import sys
 from datetime import datetime
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[3]
+sys.path.insert(0, str(ROOT / "scaffold/research/wr253-tdd-l8-slim-20261031"))
+import validate_uid_table
 BASE = "dd5931cfff4ff786da2ced44de2a40529edf7b71"
 L5_REV = "87e5d15cdb909e88fd5d132ae7ad1d32c14b71d5"
+L8_REV = "07b3462402992d51337b583f9f3d1f895c82e7c8"
+L8_SHA = "ee1648c067009e819d41f869733290042e103c39e41c0980d29dcdb46c107392"
+WR253_HISTORY_NOTE = "Historical L8 whole-file SHA-256 ee1648c067009e819d41f869733290042e103c39e41c0980d29dcdb46c107392 is fixed evidence at revision 07b3462402992d51337b583f9f3d1f895c82e7c8, not the current L8 bytes. Current compact 35-row U-ID table and candidate values are checked by WR253 validator under SCF-B-0215."
 REVIEWED = "a715e777bd59291b26f09c0c1c5481273c6eba2e"
 L3 = "docs/helix-harness/L3-requirements/functional-requirements.json"
 L10 = "docs/helix-harness/L10-verification/functional-verification.json"
@@ -105,6 +111,14 @@ def path_pointer_ref(reference: str):
     path, pointer = reference.split("#", 1)
     return path, pointer
 
+
+
+def without_candidate_annotations(document: dict, collection: str, field: str, record_ids: set[str]) -> dict:
+    stripped = json.loads(json.dumps(document))
+    for row in stripped.get(collection, []):
+        if row.get("id") in record_ids:
+            row.pop(field, None)
+    return stripped
 
 def one(rows: list[dict], identity: str) -> dict:
     matches = [row for row in rows if row.get("id") == identity]
@@ -231,15 +245,23 @@ def main() -> None:
     l8_f01 = one(l8["cases"], "HARNESS-L8-015-F01")
     l8_f01_base = one(l8_base["cases"], "HARNESS-L8-015-F01")
     candidate_l8 = l8_f01["candidate_unit_design"]
-    assert {k: v for k, v in l8_f01.items() if k != "candidate_unit_design"} == l8_f01_base
-    assert l8["unit_cases"] == l8_base["unit_cases"]
-    assert [x for x in l8["cases"] if x["id"] != "HARNESS-L8-015-F01"] == [x for x in l8_base["cases"] if x["id"] != "HARNESS-L8-015-F01"]
+    l8_wr223_fixed = json.loads(git_bytes(L8_REV, L8))
+    l8_f01_wr223_fixed = one(l8_wr223_fixed["cases"], "HARNESS-L8-015-F01")
+    assert candidate_l8 == l8_f01_wr223_fixed["candidate_unit_design"]
+    assert sha(git_bytes(L8_REV, L8)) == L8_SHA
+    assert l8_base["unit_cases"] == l8_wr223_fixed["unit_cases"]
+    current_l8_without_new_candidates = without_candidate_annotations(
+        l8, "cases", "candidate_unit_design",
+        {"HARNESS-L8-015-B01", "HARNESS-L8-015-F01", "HARNESS-L8-015-F03", "HARNESS-L8-015-F04"},
+    )
+    assert validate_uid_table.normalized_pre_slim_l8(current_l8_without_new_candidates) == validate_uid_table.normalized_pre_slim_l8(l8_base)
+    assert all(validate_uid_table.run_checks().values()), "current compact U-ID table/candidate validation failed"
     assert candidate_l8["status"] == "scaffold_candidate_only_not_approved_or_executed"
     assert candidate_l8["fixed_artifact"]["sha256"] == R2_SHA
     assert len(candidate_l8["cases"]) == 6
     l5_l8_pin = next(pin for pin in candidate_l8["source_pins"] if pin["path"] == L5)
     assert l5_l8_pin["revision"] == L5_REV and l5_l8_pin["sha256"] == L5_SHA
-    assert sha((ROOT / L5).read_bytes()) == L5_SHA
+    assert sha(git_bytes(L5_REV, L5)) == L5_SHA
     for pin in candidate_l5["candidate_source_pins"] + candidate_l8["source_pins"]:
         assert sha(git_bytes(pin["revision"], pin["path"])) == pin["sha256"], pin
 
@@ -327,11 +349,11 @@ def main() -> None:
         assert l4_path == L4 and at_pointer(l4, l4_ptr) == l4_ref
         assert l9_path == L9 and at_pointer(l9, l9_ptr) == l9_ref
 
-    canonical_ids, all_unit_ids = set(l8_f01["unit_case_ids"]), {x["id"] for x in l8["unit_cases"]}
+    canonical_ids, all_unit_ids = set(l8_f01["unit_case_ids"]), {x["id"] for c in l8["cases"] for x in c["unit_case_rows"]}
     candidate_ids = {x["case_id"] for x in candidate_l8["cases"]}
     assert candidate_ids.isdisjoint(canonical_ids) and candidate_ids.isdisjoint(all_unit_ids)
     assert len(l8_f01["unit_case_ids"]) == len(l8_f01_base["unit_case_ids"]) == 6
-    assert len(l8["unit_cases"]) == len(l8_base["unit_cases"]) == 35
+    assert len(all_unit_ids) == len(l8_base["unit_cases"]) == 35
 
     assert binding["id"] == "SCF-B-0192"
     expected_artifacts = {
@@ -365,13 +387,26 @@ def main() -> None:
     assert "no row" in current_source_pins[L9]["note"]
     assert WR231_ARTIFACT not in current_source_pins
     artifact_pins = set(binding["verification"]["oracles"])
+    assert WR253_HISTORY_NOTE in artifact_pins
+    binding_0215 = read_json("scaffold/bindings/SCF-B-0215.json")
+    l8_current_pin = next(row for row in binding_0215["upstream"] if row["path"] == L8)
+    assert l8_current_pin["sha256"] == sha((ROOT / L8).read_bytes())
     assert f"candidate artifact SHA-256: {WR231_ARTIFACT}={WR231_SHA}" in artifact_pins
     assert f"candidate artifact SHA-256: {R2}={R2_SHA}" in artifact_pins
     for evidence_pin in binding["verification"]["oracles"]:
         if not evidence_pin.startswith("candidate artifact SHA-256: "):
             continue
         path, expected = evidence_pin.removeprefix("candidate artifact SHA-256: ").split("=", 1)
-        assert sha((ROOT / path).read_bytes()) == expected, path
+        historical_revisions = {
+            (L5, L5_SHA): L5_REV,
+            (L8, L8_SHA): L8_REV,
+            (L5, "426a0b4299a76eaf7a097d33ab56e16244a69163c878ddb265f8bdc4b465b742"): "4c0e29b6d18a8943514ffd25a27cd4e83c11cff0",
+            (L8, "9f52fe3f90769cdacee9d147dceb0fabb2c36386839f39fdcb2d4039086ed6b7"): "92cb38ffb792151ddd8029d654ca700126d02681",
+        }
+        if (path, expected) in historical_revisions:
+            assert sha(git_bytes(historical_revisions[(path, expected)], path)) == expected, (path, expected)
+        else:
+            assert sha((ROOT / path).read_bytes()) == expected, path
 
     print("static F01 candidate/source-fact validation: PASS")
     print(f"L5 pin: {L5_REV}; SHA-256: {L5_SHA}")
@@ -382,7 +417,7 @@ def main() -> None:
     print("L4/L9 fixed BASE hashes and all existing rows preserved; current delta is exactly two WR231 witness rows")
     print("WR231 witness rows retain unknown failure-code status, state=missing, zero side effects, and no success generation")
     print("L4/L9 pointers resolve; candidate projection expected-value equality is not checked")
-    print("L4/L9 existing BASE bytes/rows preserved after removing exactly the two WR231 witness rows; existing L8 canonical cases unchanged; candidate contribution to four-way=0")
+    print("L4/L9 BASE bytes preserved after removing exactly two WR231 witnesses; historical L8 rows checked at git revision; current compact IDs/candidates checked by WR253; candidate contribution to four-way=0")
     print("SCF-B-0192 candidate artifact SHA pins resolve: PASS")
     print("No algorithm, runtime, test suite, or CI was executed.")
 
