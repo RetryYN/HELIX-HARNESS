@@ -3056,7 +3056,7 @@
       ],
       "basis_ref": "docs/helix-harness/L4-basic-design/command-meaning-identity.json#/contracts/3/failure",
       "side_effect_basis_ref": "docs/helix-harness/L4-basic-design/command-meaning-identity.json#/contracts/7/behavior",
-      "derivation_basis": "expected_axis(semantic)とexpected_state(conflict)はL4 /contracts/3/failureの文面で確定。細分code(identity_conflict)はL5 /type_contract/finding_rulesからの転記。"
+      "derivation_basis": "expected_axis(semantic)とexpected_state(conflict)はL4 /contracts/3/failureの文面で確定。細分code(identity_conflict)はL5 /type_contract/finding_rulesからの転記。function_refは主分類のcompare_prior_identityを指し、副次finding(prior_mutated / HARNESS-L5-052-R-prior_mutated)は同契約F04の対関数build_comparison_traceが担う。"
     },
     {
       "id": "HARNESS-L5-052-F04-NEG-03",
@@ -3080,7 +3080,7 @@
       ],
       "basis_ref": "docs/helix-harness/L4-basic-design/command-meaning-identity.json#/contracts/3/failure",
       "side_effect_basis_ref": "docs/helix-harness/L4-basic-design/command-meaning-identity.json#/contracts/7/behavior",
-      "derivation_basis": "expected_axis(semantic)とexpected_state(conflict)はL4 /contracts/3/failureの文面で確定。細分code(identity_conflict)はL5 /type_contract/finding_rulesからの転記。"
+      "derivation_basis": "expected_axis(semantic)とexpected_state(conflict)はL4 /contracts/3/failureの文面で確定。細分code(identity_conflict)はL5 /type_contract/finding_rulesからの転記。function_refは主分類のcompare_prior_identityを指し、副次finding(prior_mutated / HARNESS-L5-052-R-prior_mutated)は同契約F04の対関数build_comparison_traceが担う。"
     },
     {
       "id": "HARNESS-L5-052-F04-NEG-04",
@@ -3126,7 +3126,7 @@
       ],
       "basis_ref": "docs/helix-harness/L4-basic-design/command-meaning-identity.json#/contracts/3/failure",
       "side_effect_basis_ref": "docs/helix-harness/L4-basic-design/command-meaning-identity.json#/contracts/7/behavior",
-      "derivation_basis": "expected_axis(semantic)とexpected_state(conflict)はL4 /contracts/3/failureの文面で確定。細分code(identity_conflict)はL5 /type_contract/finding_rulesからの転記。"
+      "derivation_basis": "expected_axis(semantic)とexpected_state(conflict)はL4 /contracts/3/failureの文面で確定。細分code(identity_conflict)はL5 /type_contract/finding_rulesからの転記。function_refは主分類のcompare_prior_identityを指し、副次finding(boundary_violation / HARNESS-L5-052-R-boundary_violation)は同契約F04の対関数build_comparison_traceが担う。"
     },
     {
       "id": "HARNESS-L5-052-F05-NEG-01",
@@ -3500,7 +3500,7 @@
       ],
       "basis_ref": "docs/helix-harness/L4-basic-design/command-meaning-identity.json#/contracts/6/behavior",
       "side_effect_basis_ref": "docs/helix-harness/L4-basic-design/command-meaning-identity.json#/contracts/7/behavior",
-      "derivation_basis": "expected_state(binding_conflict)とreceipt結合対象はL4 /contracts/6/behaviorの文面で確定。expected_axis名(receipt_binding)とcode(receipt_binding_conflict)はL5 /type_contract/finding_rules/26からの転記。"
+      "derivation_basis": "expected_state(binding_conflict)とreceipt結合対象はL4 /contracts/6/behaviorの文面で確定。expected_axis名(receipt_binding)とcode(receipt_binding_conflict)はL5 /type_contract/finding_rules/26からの転記。function_refは主分類のbind_receipt_basisを指し、副次finding(prior_mutated / HARNESS-L5-052-R-prior_mutated)は同契約N01の対関数build_comparison_traceが担う。"
     },
     {
       "id": "HARNESS-L5-052-N01-NEG-05",
