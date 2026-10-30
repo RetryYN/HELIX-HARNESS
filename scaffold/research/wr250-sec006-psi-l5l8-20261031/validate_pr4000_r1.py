@@ -66,12 +66,12 @@ check(cands['SEC003-L8-CAND-065'].get('comparison_shape_id')=='cross_scope','CAN
 check(cands['SEC003-L8-CAND-083'].get('comparison_shape_id')=='same_scope_tenant','CAND-083 shape lost')
 # L4/L9 remain byte-identical to reviewed head; residual stays 16.
 for p in [L4,L9]:
- old=subprocess.check_output(['git','-C',str(ROOT),'show',f'HEAD:{p.relative_to(ROOT).as_posix()}'])
+ old=subprocess.check_output(['git','-C',str(ROOT),'show',f'{add["reviewed_head"]}:{p.relative_to(ROOT).as_posix()}'])
  check(hashlib.sha256(old).hexdigest()==sha(p),f'{p.name} differs from reviewed head')
 check(l9['multi_contract_residual']['negative_case_count']==16,'L9 residual negative count must remain 16')
 # Frozen commit-time artifacts remain byte-identical to reviewed head and matrix hash pointers.
 for rel,h in audit['frozen_commit_time_artifacts'].items():
- p=ROOT/rel; old=subprocess.check_output(['git','-C',str(ROOT),'show',f'HEAD:{rel}'])
+ p=ROOT/rel; old=subprocess.check_output(['git','-C',str(ROOT),'show',f'{add["reviewed_head"]}:{rel}'])
  check(sha(p)==h and hashlib.sha256(old).hexdigest()==h,f'frozen artifact changed: {rel}')
 # Shape audit verifies source fields and expected output's stated comparison scope.
 for cid,shape in [('SEC003-L8-CAND-065','cross_scope'),('SEC003-L8-CAND-083','same_scope_tenant')]:

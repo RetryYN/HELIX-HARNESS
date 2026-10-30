@@ -105,7 +105,8 @@
     "scaffold/research/wr250-sec006-psi-l5l8-20261031/verification-summary.json",
     "scaffold/research/wr250-sec006-psi-l5l8-20261031/rowwise-comparison-r1.json",
     "scaffold/research/wr250-sec006-psi-l5l8-20261031/pr4000-r1-addendum.json",
-    "scaffold/research/wr250-sec006-psi-l5l8-20261031/validate_pr4000_r1.py"
+    "scaffold/research/wr250-sec006-psi-l5l8-20261031/validate_pr4000_r1.py",
+    "scaffold/research/wr250-sec006-psi-l5l8-20261031/overlay-validation-correction.json"
   ],
   "verification": {
     "evidence_kind": "scaffold",
@@ -131,7 +132,8 @@
       "WR250 static row audit records the actual source-field states (present, explicit null, omitted) for all 98 concise candidate counterexamples; no full L9 input JSON is copied into canonical L8. Expectations are checked against L4, then only condition and ordered finding_codes are compared to L9 expected_observation.",
       "WR250 PR #4000 R1 addendum: 9 of 52 existing L8 rows have no receiving L4 class; remaining 43 assignment reasons are unique; 13 candidate function refs corrected; 32 current-candidate L5 pins match current L5 bytes; duplicate candidate root rows absent; input projections distinguish present/null/omitted; seven exact fallback duplicates are enumerated and 91 candidates retained.",
       "WR250 R1 preserves L9 main negative count 98 and multi_contract_residual negative_case_count 16; L4/L9 source bytes unchanged. Commit-time matrix and summary remain byte-identical to reviewed head.",
-      "WR250 R1 static validator passes: row counts, no-class/unique-reason classification, corrected function refs, function-read-field missing/null/present projections, 32 current L5 pins, L4/L9 unchanged, frozen evidence unchanged, and residual negative count 16."
+      "WR250 R1 static validator passes: row counts, no-class/unique-reason classification, corrected function refs, function-read-field missing/null/present projections, 32 current L5 pins, L4/L9 unchanged, frozen evidence unchanged, and residual negative count 16.",
+      "PR4000 overlay correction: R1 frozen evidence and L4/L9 compare against reviewed revision f9c64394d93d102324da9d02a39f7bbbff77f231, not ambient HEAD. Previous validator hash and observation are preserved in overlay-validation-correction.json."
     ],
     "negative_cases": [
       "Do not treat source presentation order as normative when the L4 diagnostic sort does not apply.",
