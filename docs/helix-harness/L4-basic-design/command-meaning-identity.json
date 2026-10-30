@@ -655,7 +655,7 @@
           "expected_axis": "trace",
           "expected_state": "conflict",
           "expected": "OS not_observedを保持、未実証運転はnot_proven。",
-          "backflow_owner": "HARNESS L3/L4",
+          "backflow_owner": "OSと当該owner",
           "finding_codes": [
             "boundary_violation"
           ],
@@ -1157,7 +1157,7 @@
           "expected_axis": "trace",
           "expected_state": "conflict",
           "expected": "OS実観測なし、atomicity not_proven。",
-          "backflow_owner": "HARNESS L3/L4",
+          "backflow_owner": "OSと当該owner",
           "finding_codes": [
             "boundary_violation"
           ],

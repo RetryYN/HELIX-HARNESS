@@ -390,7 +390,7 @@
           "expected_axis": "trace",
           "expected_state": "conflict",
           "expected": "OS not_observedを保持、未実証運転はnot_proven。",
-          "backflow_owner": "HARNESS L3/L4",
+          "backflow_owner": "OSと当該owner",
           "finding_codes": [
             "boundary_violation"
           ],
@@ -908,7 +908,7 @@
           "expected_axis": "trace",
           "expected_state": "conflict",
           "expected": "OS実観測なし、atomicity not_proven。",
-          "backflow_owner": "HARNESS L3/L4",
+          "backflow_owner": "OSと当該owner",
           "finding_codes": [
             "boundary_violation"
           ],
@@ -1093,7 +1093,7 @@
     "scope": "InputBindingの原source同call受渡しと不成立routeの対条件。既存8case/全期待を保持し、本節の実接続実行済みとはしない。",
     "l4_candidate_binding": {
       "path": "docs/helix-harness/L4-basic-design/command-meaning-identity.json",
-      "sha256": "76cd8eeae42004da2543eb507329037dbaf60ebab573d8135fa249bd893d94a2"
+      "sha256": "ca78188f068b4eeea3d56ecc7e01794cf1ecb989aefbf09431a3f7fb25a78885"
     },
     "l4_contract_pointer": "/architecture/input_binding_source_contract",
     "existing_design_refs": [
