@@ -30,8 +30,8 @@
     },
     {
       "path": "docs/helix-os/L4-basic-design/ticket-workflow-derivation.json",
-      "sha256": "d9765bdb8fb6c78bc130aa5012d11da7c57525de2872b8fa95b7a17e364c1c34",
-      "note": "Current L4 source pin d9765bdb8fb6c78bc130aa5012d11da7c57525de2872b8fa95b7a17e364c1c34; updated from pre-conflict pin 042b09df96082a9f04e43016bb70928ceef2e807d84b0bbc958210283582fa15. Earlier historical pins remain recorded in this binding history. Existing classes are retained; six role-conflict witnesses are added as a separate ownership candidate."
+      "sha256": "3fb45708d58866de46cff0695a1d3f64b2fbe15bb11283bda5594a4b6d01e6ea",
+      "note": "Current L4 pin 3fb45708d58866de46cff0695a1d3f64b2fbe15bb11283bda5594a4b6d01e6ea; prior d9765bdb and pre-conflict 042b09df pins remain in binding history. WR220 adds a separate F02 workflow-resume class; the existing F01 input class rows and meanings are retained."
     },
     {
       "path": "docs/helix-os/L7-function-verification/ticket-workflow-derivation.json",
@@ -45,8 +45,8 @@
     },
     {
       "path": "docs/helix-os/L9-integration-verification/ticket-workflow-derivation.json",
-      "sha256": "fb9997c491a842625948db664b892a22a089923f2ef2be15f46376e3823fc699",
-      "note": "Current L9 source pin fb9997c491a842625948db664b892a22a089923f2ef2be15f46376e3823fc699; updated from pre-conflict pin 74458de4b91932c4a6ddad22434e86be4ee5eacfa1f36ac59b9873a06c44652d. Six roles-conflict rows add candidate links only; all 217 expected projections remain unchanged."
+      "sha256": "fe7d7fc5b23ec66042c1db5e0f45004c095b5703faa2d6284e442fdb81f81225",
+      "note": "Current L9 pin fe7d7fc5b23ec66042c1db5e0f45004c095b5703faa2d6284e442fdb81f81225; prior fb9997c4 and pre-conflict 74458de4 pins remain in binding history. WR220 adds refs on separate F02 cases 51/53; all 217 expected projections and WR204 witness evidence remain unchanged."
     },
     {
       "path": "docs/helix-os/L9-integration-verification/management-authority-source-record.json",

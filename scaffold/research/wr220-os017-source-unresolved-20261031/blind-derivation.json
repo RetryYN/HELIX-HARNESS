@@ -1,0 +1,539 @@
+{
+  "artifact": "WR220 OS017 blind derivation",
+  "method": "Manual semantic derivation from approved L3/L10 B01, L4 diagnostic-contract prose, and only L7 /cases/51 and /cases/53 given_input_ref object graphs. No case labels, expected/case classifications, implementation, or runtime output used.",
+  "comparison_base": "a53f04482ff883decf1019dc9c212ab712271749",
+  "sources": {
+    "l3": {
+      "revision": "a53f04482ff883decf1019dc9c212ab712271749",
+      "path": "docs/helix-os/L3-requirements/business-requirements.json",
+      "pointer": "/requirements/5",
+      "id": "HELIXOS-L3-017-B01",
+      "file_sha256": "0df11c612e3e0b531d2103d058471d5be2be8b8df965d10b69e06b0e506488c7",
+      "canonical_row_sha256": "1377e86de17bb19d269dd9f15fa4ce3d9cb77608a8d43d1fc6f3df5e120f16c4"
+    },
+    "l10": {
+      "revision": "a53f04482ff883decf1019dc9c212ab712271749",
+      "path": "docs/helix-os/L10-verification/business-verification.json",
+      "pointer": "/cases/5",
+      "id": "HELIXOS-L10-017-B01",
+      "file_sha256": "215e1d4a99f73151aa4b3225947a65567fbc3b97bec0cf9eac8d1a6456cbc3dd",
+      "canonical_row_sha256": "dbdf7c9ad556cf60b248a7594937126732dea08ad0797c0f6c78f583ea21dfae"
+    },
+    "l4": {
+      "revision": "a53f04482ff883decf1019dc9c212ab712271749",
+      "path": "docs/helix-os/L4-basic-design/ticket-workflow-derivation.json",
+      "pointer": "/diagnostic_contract",
+      "file_sha256": "d9765bdb8fb6c78bc130aa5012d11da7c57525de2872b8fa95b7a17e364c1c34",
+      "prose_pointers": [
+        "/diagnostic_contract/algorithm/2",
+        "/diagnostic_contract/algorithm/6",
+        "/diagnostic_contract/algorithm/10",
+        "/diagnostic_contract/condition_semantics",
+        "/diagnostic_contract/diagnostic_code_facets/source_unresolved",
+        "/diagnostic_contract/comparison_table/process~1proposal~1dependency~1authority~1resource~1level~1constraints"
+      ]
+    },
+    "l7_raw_inputs": {
+      "revision": "a53f04482ff883decf1019dc9c212ab712271749",
+      "path": "docs/helix-os/L7-function-verification/ticket-workflow-derivation.json",
+      "file_sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146",
+      "only_pointers_consulted": [
+        "/cases/51/given_input_ref",
+        "/cases/53/given_input_ref",
+        "the referenced /objects graph roots and reachable objects"
+      ],
+      "root_refs": [
+        {
+          "pointer": "/objects/a0966d73d91aa0756b1c4376919ee006cace276956226b4543c0af528f1dff1e",
+          "canonical_sha256": "a0966d73d91aa0756b1c4376919ee006cace276956226b4543c0af528f1dff1e"
+        },
+        {
+          "pointer": "/objects/b47447dbf1bfb7379cbd9c2d376e003726374eb521e4afd0b208a54a9dbe6688",
+          "canonical_sha256": "b47447dbf1bfb7379cbd9c2d376e003726374eb521e4afd0b208a54a9dbe6688"
+        }
+      ]
+    }
+  },
+  "approved_requirement_meaning": {
+    "l3_obligation": "推進はOSが担い、HARNESSが工程と検証義務、INTELLIGENCEが案、LABOが水準、SECURITYがauthority、INFRASTRUCTUREが資源を持つ。ticketとIssue/PR projection、仕事の意味とassignment/attempt/測定を分け、案やclose/mergeを実行/完了へ昇格しない。",
+    "l10_obligation": "各判断の出所と対象scopeが別に辿れる。 / 越境を拒み、既存ownerと該当契約へ戻す。",
+    "derived_boundary": "OS drives work while other owners retain their meaning and responsibilities; ticket/Issue/PR projection and work meaning versus assignment/attempt/measurement remain separate. This does not authorize the OS to assume another owner’s domain decision."
+  },
+  "l4_rule_basis": {
+    "source_unresolved": "A single unknown comparison operand produces source_unresolved at its original pointer. This diagnostic code maps to the comparison facet; the comparison table selects workflow for authority/resource fields.",
+    "authority_resource": "Compare authority/resource source_ref with independent context references. `current` and `observed_material` are accepted states; a null source_ref is unknown rather than a conflict.",
+    "dedup": "Deduplicate only by code, pointer, and return_owner.",
+    "aggregation": "Facet and whole condition prioritize violation, then unknown, then corresponding. No violation is derived by either single unresolved comparison.",
+    "fixed_effect_boundary": "Actual effect flags stay false and operation_effect is none."
+  },
+  "inputs": [
+    {
+      "case_pointer": "/cases/51",
+      "given_input_ref": {
+        "pointer": "/objects/a0966d73d91aa0756b1c4376919ee006cace276956226b4543c0af528f1dff1e",
+        "canonical_sha256": "a0966d73d91aa0756b1c4376919ee006cace276956226b4543c0af528f1dff1e"
+      },
+      "resolved_raw_input_graph": {
+        "phase": "resume",
+        "binding": {
+          "project": "SYNTHETIC-PROJECT",
+          "requirement_revision": "SYNTHETIC-REQUIREMENT_REVISION",
+          "scope": "SYNTHETIC-SCOPE",
+          "plan_revision": "SYNTHETIC-PLAN_REVISION",
+          "contract_revision": "SYNTHETIC-CONTRACT_REVISION"
+        },
+        "management": {
+          "purpose_ref": "SYNTHETIC-PURPOSE_REF",
+          "request_ref": "SYNTHETIC-REQUEST_REF",
+          "constraint_ref": "SYNTHETIC-CONSTRAINT_REF",
+          "permission_ref": "SYNTHETIC-PERMISSION_REF",
+          "priority_ref": "SYNTHETIC-PRIORITY_REF",
+          "dependency_ref": "SYNTHETIC-DEPENDENCY_REF",
+          "resource_ref": "SYNTHETIC-RESOURCE_REF",
+          "budget_ref": "SYNTHETIC-BUDGET_REF",
+          "deadline_ref": "SYNTHETIC-DEADLINE_REF",
+          "stop_condition_ref": "SYNTHETIC-STOP_CONDITION_REF",
+          "harness_version": "SYNTHETIC-HARNESS_VERSION",
+          "connection_ref": "SYNTHETIC-CONNECTION_REF"
+        },
+        "roles": {
+          "promotion": "OS",
+          "process": "HARNESS",
+          "proposal": "INTELLIGENCE",
+          "level": "LABO",
+          "authority": "SECURITY",
+          "resource": "INFRASTRUCTURE"
+        },
+        "ticket_graph": [
+          {
+            "ticket_ref": "TICKET-A",
+            "target": "TARGET-A",
+            "kind": "development",
+            "parent_revision": "SYNTHETIC-REQUIREMENT_REVISION",
+            "scope": "SYNTHETIC-SCOPE",
+            "dependencies": [
+              "DEP-A"
+            ],
+            "acceptance": [
+              "OBLIGATION-A"
+            ],
+            "backflow_ref": "BACKFLOW-A"
+          }
+        ],
+        "process": {
+          "source_ref": "HARNESS-PROCESS-A",
+          "revision": "SYNTHETIC-CONTRACT_REVISION",
+          "parts": [
+            "PART-A",
+            "PART-B"
+          ],
+          "allowed_edges": [
+            {
+              "$ref": "/objects/c00e943dff4cefa3721acb02b340cdb717d0aa6109ff2fc0638b45f259e33127",
+              "$sha256": "c00e943dff4cefa3721acb02b340cdb717d0aa6109ff2fc0638b45f259e33127"
+            }
+          ],
+          "obligations": {
+            "PART-A": [
+              "ORACLE-A"
+            ],
+            "PART-B": [
+              "ORACLE-B"
+            ]
+          },
+          "backflow_ref": "BACKFLOW-A"
+        },
+        "proposal_selected": true,
+        "proposal": {
+          "source_ref": "INT-PROPOSAL-A",
+          "requirement_revision": "SYNTHETIC-REQUIREMENT_REVISION",
+          "scope": "SYNTHETIC-SCOPE",
+          "reason_ref": "INT-REASON-A",
+          "parts": {
+            "$ref": "/objects/c00e943dff4cefa3721acb02b340cdb717d0aa6109ff2fc0638b45f259e33127",
+            "$sha256": "c00e943dff4cefa3721acb02b340cdb717d0aa6109ff2fc0638b45f259e33127"
+          },
+          "obligations": {
+            "$ref": "/objects/2e3de437ea597b64fe55cc9aa33887f264a361f77255d9e2310d0b8daed4c568",
+            "$sha256": "2e3de437ea597b64fe55cc9aa33887f264a361f77255d9e2310d0b8daed4c568"
+          }
+        },
+        "level_selected": false,
+        "level": null,
+        "authority": {
+          "state": "current",
+          "source_ref": null
+        },
+        "resource": {
+          "state": "observed_material",
+          "source_ref": "SYNTHETIC-RESOURCE_REF"
+        },
+        "dependency": {
+          "state": "resolved",
+          "source_ref": "DEP-RECEIPT-A",
+          "requirement_revision": "SYNTHETIC-REQUIREMENT_REVISION",
+          "scope": "SYNTHETIC-SCOPE"
+        },
+        "constraints": {
+          "budget_limit": 100,
+          "deadline": 100,
+          "cost_spent": 7,
+          "failures": 2,
+          "now": 90
+        },
+        "intermediate": {
+          "state": "failed",
+          "requirement_revision": "SYNTHETIC-REQUIREMENT_REVISION",
+          "scope": "SYNTHETIC-SCOPE",
+          "ticket_ref": "TICKET-A",
+          "backflow_ref": "BACKFLOW-A"
+        },
+        "prior": {
+          "requirement_revision": "SYNTHETIC-REQUIREMENT_REVISION",
+          "scope": "SYNTHETIC-SCOPE",
+          "stop_reason_ref": "STOP-A",
+          "budget_limit": 100,
+          "deadline": 100,
+          "cost_spent": 4,
+          "failures": 1,
+          "outstanding": {
+            "$ref": "/objects/9335eb818cba29fe02aff62ac847efd2b69e084aab00cdc52db57314018a6fc6",
+            "$sha256": "9335eb818cba29fe02aff62ac847efd2b69e084aab00cdc52db57314018a6fc6"
+          }
+        },
+        "resumed": {
+          "requirement_revision": "SYNTHETIC-REQUIREMENT_REVISION",
+          "scope": "SYNTHETIC-SCOPE",
+          "stop_reason_ref": "STOP-A",
+          "budget_limit": 100,
+          "deadline": 100,
+          "cost_spent": 7,
+          "failures": 2,
+          "outstanding": [
+            "OBLIGATION-A",
+            "OBLIGATION-B"
+          ],
+          "meaning_change_self_confirmed": false
+        },
+        "completion_claim": false,
+        "projection": {
+          "issue_closed": false,
+          "pr_merged": false,
+          "label": "OPEN"
+        },
+        "context": {
+          "binding": {
+            "$ref": "/objects/3067a4f2dd8a085db4b59cdda7e6d9e8aaa9d413dc63e33087048d828a61911f",
+            "$sha256": "3067a4f2dd8a085db4b59cdda7e6d9e8aaa9d413dc63e33087048d828a61911f"
+          },
+          "management": {
+            "$ref": "/objects/9fbde5b7ac83853fc489eb44e8d9b3dd2ebd77985da38477560e17656fb93150",
+            "$sha256": "9fbde5b7ac83853fc489eb44e8d9b3dd2ebd77985da38477560e17656fb93150"
+          },
+          "roles": {
+            "$ref": "/objects/07ea3b6016eb2e0d0a0cd47a7d15ffedb1460ab6c242f9402629e12fce1a6eec",
+            "$sha256": "07ea3b6016eb2e0d0a0cd47a7d15ffedb1460ab6c242f9402629e12fce1a6eec"
+          },
+          "ticket_graph": {
+            "$ref": "/objects/cfbcb6bafa95b08ee2fb611b91e9d455cdd886b241db47bd005e55627f78030a",
+            "$sha256": "cfbcb6bafa95b08ee2fb611b91e9d455cdd886b241db47bd005e55627f78030a"
+          },
+          "process": {
+            "$ref": "/objects/58dad1533668ea6953eab50bb361936c081d497fe180fe0a5cb56a136a26528f",
+            "$sha256": "58dad1533668ea6953eab50bb361936c081d497fe180fe0a5cb56a136a26528f"
+          },
+          "proposal_selected": true,
+          "proposal": {
+            "$ref": "/objects/8e0680ed2315d4367019576e3852b5d839b4b9ee61f1dae4e11ce1ecf5950b36",
+            "$sha256": "8e0680ed2315d4367019576e3852b5d839b4b9ee61f1dae4e11ce1ecf5950b36"
+          },
+          "dependency": {
+            "$ref": "/objects/8de3b6e0628759f73bed6dcab0239b5eee6e4c6f3ff9d85e2c4731a249ed4972",
+            "$sha256": "8de3b6e0628759f73bed6dcab0239b5eee6e4c6f3ff9d85e2c4731a249ed4972"
+          },
+          "level_selected": false,
+          "level": null,
+          "resource_ref": "SYNTHETIC-RESOURCE_REF",
+          "authority_ref": "SYNTHETIC-PERMISSION_REF",
+          "expected_budget_limit": 100,
+          "expected_deadline": 100,
+          "prior": {
+            "$ref": "/objects/3fd086288831e4924b56b8aebccbf84535202194825b496acbd1146df32a9f77",
+            "$sha256": "3fd086288831e4924b56b8aebccbf84535202194825b496acbd1146df32a9f77"
+          }
+        }
+      },
+      "targeted_observation": "authority.source_ref is null; authority.state is current and context.authority_ref is present.",
+      "derived": {
+        "phase": "resume",
+        "facet_status": {
+          "ownership": "corresponding",
+          "inputs": "corresponding",
+          "ticket": "corresponding",
+          "workflow": "unknown",
+          "backflow": "corresponding",
+          "continuity": "corresponding",
+          "scope_limit": "corresponding"
+        },
+        "finding": {
+          "code": "source_unresolved",
+          "pointer": "/objects/e80a1ab73d1026599b8f940b0b8fb211199bd3a6967a90392b0c5bfeafec1da2/source_ref",
+          "facet": "workflow",
+          "return_owner": "ticket-workflow-owner"
+        },
+        "unique_findings_after_code_pointer_owner_dedup": 1,
+        "dedup_basis": "Only one finding in this input; uniqueness key is code+pointer+return_owner. The other case has a different pointer, so pair aggregation must retain both.",
+        "whole_condition": "workflow_material_unknown",
+        "other_facet_propagation": "The unknown workflow facet raises the aggregate condition to unknown; it does not itself change the other six facet statuses. No violation/rejection finding is derived from these input graphs.",
+        "actual_effects": "L4 contract says flags remain false and operation_effect=none; no ticket, workflow, assignment, backflow, resume, or whole-workflow verification is asserted."
+      }
+    },
+    {
+      "case_pointer": "/cases/53",
+      "given_input_ref": {
+        "pointer": "/objects/b47447dbf1bfb7379cbd9c2d376e003726374eb521e4afd0b208a54a9dbe6688",
+        "canonical_sha256": "b47447dbf1bfb7379cbd9c2d376e003726374eb521e4afd0b208a54a9dbe6688"
+      },
+      "resolved_raw_input_graph": {
+        "phase": "resume",
+        "binding": {
+          "project": "SYNTHETIC-PROJECT",
+          "requirement_revision": "SYNTHETIC-REQUIREMENT_REVISION",
+          "scope": "SYNTHETIC-SCOPE",
+          "plan_revision": "SYNTHETIC-PLAN_REVISION",
+          "contract_revision": "SYNTHETIC-CONTRACT_REVISION"
+        },
+        "management": {
+          "purpose_ref": "SYNTHETIC-PURPOSE_REF",
+          "request_ref": "SYNTHETIC-REQUEST_REF",
+          "constraint_ref": "SYNTHETIC-CONSTRAINT_REF",
+          "permission_ref": "SYNTHETIC-PERMISSION_REF",
+          "priority_ref": "SYNTHETIC-PRIORITY_REF",
+          "dependency_ref": "SYNTHETIC-DEPENDENCY_REF",
+          "resource_ref": "SYNTHETIC-RESOURCE_REF",
+          "budget_ref": "SYNTHETIC-BUDGET_REF",
+          "deadline_ref": "SYNTHETIC-DEADLINE_REF",
+          "stop_condition_ref": "SYNTHETIC-STOP_CONDITION_REF",
+          "harness_version": "SYNTHETIC-HARNESS_VERSION",
+          "connection_ref": "SYNTHETIC-CONNECTION_REF"
+        },
+        "roles": {
+          "promotion": "OS",
+          "process": "HARNESS",
+          "proposal": "INTELLIGENCE",
+          "level": "LABO",
+          "authority": "SECURITY",
+          "resource": "INFRASTRUCTURE"
+        },
+        "ticket_graph": [
+          {
+            "ticket_ref": "TICKET-A",
+            "target": "TARGET-A",
+            "kind": "development",
+            "parent_revision": "SYNTHETIC-REQUIREMENT_REVISION",
+            "scope": "SYNTHETIC-SCOPE",
+            "dependencies": [
+              "DEP-A"
+            ],
+            "acceptance": [
+              "OBLIGATION-A"
+            ],
+            "backflow_ref": "BACKFLOW-A"
+          }
+        ],
+        "process": {
+          "source_ref": "HARNESS-PROCESS-A",
+          "revision": "SYNTHETIC-CONTRACT_REVISION",
+          "parts": [
+            "PART-A",
+            "PART-B"
+          ],
+          "allowed_edges": [
+            {
+              "$ref": "/objects/c00e943dff4cefa3721acb02b340cdb717d0aa6109ff2fc0638b45f259e33127",
+              "$sha256": "c00e943dff4cefa3721acb02b340cdb717d0aa6109ff2fc0638b45f259e33127"
+            }
+          ],
+          "obligations": {
+            "PART-A": [
+              "ORACLE-A"
+            ],
+            "PART-B": [
+              "ORACLE-B"
+            ]
+          },
+          "backflow_ref": "BACKFLOW-A"
+        },
+        "proposal_selected": true,
+        "proposal": {
+          "source_ref": "INT-PROPOSAL-A",
+          "requirement_revision": "SYNTHETIC-REQUIREMENT_REVISION",
+          "scope": "SYNTHETIC-SCOPE",
+          "reason_ref": "INT-REASON-A",
+          "parts": {
+            "$ref": "/objects/c00e943dff4cefa3721acb02b340cdb717d0aa6109ff2fc0638b45f259e33127",
+            "$sha256": "c00e943dff4cefa3721acb02b340cdb717d0aa6109ff2fc0638b45f259e33127"
+          },
+          "obligations": {
+            "$ref": "/objects/2e3de437ea597b64fe55cc9aa33887f264a361f77255d9e2310d0b8daed4c568",
+            "$sha256": "2e3de437ea597b64fe55cc9aa33887f264a361f77255d9e2310d0b8daed4c568"
+          }
+        },
+        "level_selected": false,
+        "level": null,
+        "authority": {
+          "state": "current",
+          "source_ref": "SYNTHETIC-PERMISSION_REF"
+        },
+        "resource": {
+          "state": "observed_material",
+          "source_ref": null
+        },
+        "dependency": {
+          "state": "resolved",
+          "source_ref": "DEP-RECEIPT-A",
+          "requirement_revision": "SYNTHETIC-REQUIREMENT_REVISION",
+          "scope": "SYNTHETIC-SCOPE"
+        },
+        "constraints": {
+          "budget_limit": 100,
+          "deadline": 100,
+          "cost_spent": 7,
+          "failures": 2,
+          "now": 90
+        },
+        "intermediate": {
+          "state": "failed",
+          "requirement_revision": "SYNTHETIC-REQUIREMENT_REVISION",
+          "scope": "SYNTHETIC-SCOPE",
+          "ticket_ref": "TICKET-A",
+          "backflow_ref": "BACKFLOW-A"
+        },
+        "prior": {
+          "requirement_revision": "SYNTHETIC-REQUIREMENT_REVISION",
+          "scope": "SYNTHETIC-SCOPE",
+          "stop_reason_ref": "STOP-A",
+          "budget_limit": 100,
+          "deadline": 100,
+          "cost_spent": 4,
+          "failures": 1,
+          "outstanding": {
+            "$ref": "/objects/9335eb818cba29fe02aff62ac847efd2b69e084aab00cdc52db57314018a6fc6",
+            "$sha256": "9335eb818cba29fe02aff62ac847efd2b69e084aab00cdc52db57314018a6fc6"
+          }
+        },
+        "resumed": {
+          "requirement_revision": "SYNTHETIC-REQUIREMENT_REVISION",
+          "scope": "SYNTHETIC-SCOPE",
+          "stop_reason_ref": "STOP-A",
+          "budget_limit": 100,
+          "deadline": 100,
+          "cost_spent": 7,
+          "failures": 2,
+          "outstanding": [
+            "OBLIGATION-A",
+            "OBLIGATION-B"
+          ],
+          "meaning_change_self_confirmed": false
+        },
+        "completion_claim": false,
+        "projection": {
+          "issue_closed": false,
+          "pr_merged": false,
+          "label": "OPEN"
+        },
+        "context": {
+          "binding": {
+            "$ref": "/objects/3067a4f2dd8a085db4b59cdda7e6d9e8aaa9d413dc63e33087048d828a61911f",
+            "$sha256": "3067a4f2dd8a085db4b59cdda7e6d9e8aaa9d413dc63e33087048d828a61911f"
+          },
+          "management": {
+            "$ref": "/objects/9fbde5b7ac83853fc489eb44e8d9b3dd2ebd77985da38477560e17656fb93150",
+            "$sha256": "9fbde5b7ac83853fc489eb44e8d9b3dd2ebd77985da38477560e17656fb93150"
+          },
+          "roles": {
+            "$ref": "/objects/07ea3b6016eb2e0d0a0cd47a7d15ffedb1460ab6c242f9402629e12fce1a6eec",
+            "$sha256": "07ea3b6016eb2e0d0a0cd47a7d15ffedb1460ab6c242f9402629e12fce1a6eec"
+          },
+          "ticket_graph": {
+            "$ref": "/objects/cfbcb6bafa95b08ee2fb611b91e9d455cdd886b241db47bd005e55627f78030a",
+            "$sha256": "cfbcb6bafa95b08ee2fb611b91e9d455cdd886b241db47bd005e55627f78030a"
+          },
+          "process": {
+            "$ref": "/objects/58dad1533668ea6953eab50bb361936c081d497fe180fe0a5cb56a136a26528f",
+            "$sha256": "58dad1533668ea6953eab50bb361936c081d497fe180fe0a5cb56a136a26528f"
+          },
+          "proposal_selected": true,
+          "proposal": {
+            "$ref": "/objects/8e0680ed2315d4367019576e3852b5d839b4b9ee61f1dae4e11ce1ecf5950b36",
+            "$sha256": "8e0680ed2315d4367019576e3852b5d839b4b9ee61f1dae4e11ce1ecf5950b36"
+          },
+          "dependency": {
+            "$ref": "/objects/8de3b6e0628759f73bed6dcab0239b5eee6e4c6f3ff9d85e2c4731a249ed4972",
+            "$sha256": "8de3b6e0628759f73bed6dcab0239b5eee6e4c6f3ff9d85e2c4731a249ed4972"
+          },
+          "level_selected": false,
+          "level": null,
+          "resource_ref": "SYNTHETIC-RESOURCE_REF",
+          "authority_ref": "SYNTHETIC-PERMISSION_REF",
+          "expected_budget_limit": 100,
+          "expected_deadline": 100,
+          "prior": {
+            "$ref": "/objects/3fd086288831e4924b56b8aebccbf84535202194825b496acbd1146df32a9f77",
+            "$sha256": "3fd086288831e4924b56b8aebccbf84535202194825b496acbd1146df32a9f77"
+          }
+        }
+      },
+      "targeted_observation": "resource.source_ref is null; resource.state is observed_material and context.resource_ref is present.",
+      "derived": {
+        "phase": "resume",
+        "facet_status": {
+          "ownership": "corresponding",
+          "inputs": "corresponding",
+          "ticket": "corresponding",
+          "workflow": "unknown",
+          "backflow": "corresponding",
+          "continuity": "corresponding",
+          "scope_limit": "corresponding"
+        },
+        "finding": {
+          "code": "source_unresolved",
+          "pointer": "/objects/25ad46768dea84694bdf2fdd7e076197e3597248f16aaa26d7e630e895d542e2/source_ref",
+          "facet": "workflow",
+          "return_owner": "ticket-workflow-owner"
+        },
+        "unique_findings_after_code_pointer_owner_dedup": 1,
+        "dedup_basis": "Only one finding in this input; uniqueness key is code+pointer+return_owner. The other case has a different pointer, so pair aggregation must retain both.",
+        "whole_condition": "workflow_material_unknown",
+        "other_facet_propagation": "The unknown workflow facet raises the aggregate condition to unknown; it does not itself change the other six facet statuses. No violation/rejection finding is derived from these input graphs.",
+        "actual_effects": "L4 contract says flags remain false and operation_effect=none; no ticket, workflow, assignment, backflow, resume, or whole-workflow verification is asserted."
+      }
+    }
+  ],
+  "pair_summary": {
+    "input_differences": "The given graphs share the same structure and other referenced materials. Case 51 has authority.source_ref=null while case 53 has authority.source_ref=SYNTHETIC-PERMISSION_REF; case 53 has resource.source_ref=null while case 51 has resource.source_ref=SYNTHETIC-RESOURCE_REF. Thus each input yields one distinct unresolved source finding.",
+    "pair_condition": "Both individually yield workflow_material_unknown. The pair retains both distinct findings; there is no cross-case deduplication because their pointers differ.",
+    "not_derived": "No expected observation, canonical serialized result schema, class label, Issue/PR meaning, or actual execution result is inferred."
+  },
+  "exposure_audit_before_comparison": {
+    "consulted": "Required project entry and normative docs/seeds; exact L3/L10 B01 rows; L4 diagnostic_contract prose; L7 selected given_input_ref graphs only.",
+    "not_read_or_used": [
+      "L7 expected/case assertion fields",
+      "L7 classifications",
+      "L8/L9 expected/cases",
+      "Issue or PR body",
+      "L4/L5 executable algorithm/code body"
+    ],
+    "did_not_run": [
+      "algorithm",
+      "runtime",
+      "tests",
+      "CI"
+    ],
+    "prohibited_content_exposed": false
+  },
+  "limitations": [
+    "The artifact records an analyst derivation, not a frozen implementation oracle or canonical serialized result.",
+    "Only selected case given_input_ref graphs are considered; no inference is made from case IDs or expected annotations."
+  ]
+}

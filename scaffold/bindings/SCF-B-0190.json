@@ -1,0 +1,110 @@
+{
+  "schema_revision": 1,
+  "id": "SCF-B-0190",
+  "kind": "scaffold",
+  "title": "WR220 OS017 F02 source-unresolved L4/L9 candidate evidence",
+  "product": "HELIX-OS",
+  "owner_candidate": "HELIX-OS L4/L9 source-qualified negative-class evidence owner",
+  "state": "registered",
+  "reason": "固定済みblind導出とL7/L8/L9期待比較を分けて保持し、2 witnessに対するL4/L9の候補対応を監査可能にする。承認済みF02の意味から導いた候補であり、正式期待、実行観測、4層完了は生成しない。",
+  "upstream": [
+    {
+      "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+      "sha256": "e86254a35b476ed71ebb112e41ccd2b48f89a8d0393e6495dc11cac7a7cf4e02",
+      "note": "Approved target 5c62d19; B01/F02 parent requirement row /requirements/35."
+    },
+    {
+      "path": "docs/helix-os/L10-verification/functional-verification.json",
+      "sha256": "583020f951672e48bc37fcd35cb916de5ccd9866f41dd04731f6519325ae500a",
+      "note": "Approved target 5c62d19; B01/F02 oracle row /cases/35."
+    },
+    {
+      "path": "docs/helix-os/L4-basic-design/ticket-workflow-derivation.json",
+      "sha256": "3fb45708d58866de46cff0695a1d3f64b2fbe15bb11283bda5594a4b6d01e6ea",
+      "note": "Contains F02 contract and source-qualified candidate /failure_classifications/4; no algorithm execution."
+    },
+    {
+      "path": "docs/helix-os/L7-function-verification/ticket-workflow-derivation.json",
+      "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146",
+      "note": "Contains raw given_input_ref source cases 51 and 53 and expected rows compared after blind freeze."
+    },
+    {
+      "path": "docs/helix-os/L8-unit-verification/ticket-workflow-derivation.json",
+      "sha256": "7b2f15b8fb131f3e346dff4825f74696cc0b3a3f727515cd901019278bad60ad",
+      "note": "Contains selected unit expected rows 51 and 53, read only after blind freeze."
+    },
+    {
+      "path": "docs/helix-os/L9-integration-verification/ticket-workflow-derivation.json",
+      "sha256": "fe7d7fc5b23ec66042c1db5e0f45004c095b5703faa2d6284e442fdb81f81225",
+      "note": "Contains F02 integration expected rows 51/53 with candidate refs and Japanese remaining note; expected values unchanged."
+    }
+  ],
+  "role": "OS017 F02の2 witnessについて、固定blind導出と既存L7/L8/L9 expected比較を保持する候補証跡。",
+  "obligations": [
+    "固定blind artifactをbyte-identicalに保全し、SHA-256を照合する。",
+    "2 witnessそれぞれのL7/L8/L9 expectedとblind derivationを別々に比較し、pointer表現差と未記載fieldを明示する。",
+    "L4 source-qualified class candidateとL9 candidate refsを一対の候補として記録し、L9 expectedを変更しない。",
+    "old HELIXの保持点・変更点・理由と同種trace/review failureをsource付きで記録する。",
+    "algorithm/runtime/test/CIを実行せず、実ticket、dedup、Reverse、4-way PASS、完了を主張しない。",
+    "source pointer validator expands the two raw given_input_ref graphs and confirms exact null leaves plus L9 expected invariance.",
+    "Record check-child static counts for the full class/case scope and preserve its nonzero legacy four-layer result without treating it as behavioral evidence."
+  ],
+  "connections": {
+    "consumers": [
+      "WR220 source-to-expected review",
+      "OS017 L4/L9 candidate-pair review"
+    ],
+    "dependencies": [
+      "Approved L3/L10 B01/F02 target 5c62d19",
+      "L4 diagnostic contract and selected L7/L8/L9 rows at base a53f04482ff883decf1019dc9c212ab712271749"
+    ],
+    "boundary": "Scaffold-only comparison evidence plus source-qualified L4/L9 candidate rows; no L7/L8/L9 expected mutation, implementation execution, actual incident classification, ticket/Reverse action, or four-layer completion."
+  },
+  "operations": {
+    "allowed": [
+      "copy and SHA-256 verify fixed blind artifact",
+      "static comparison of specified L7/L8/L9 rows",
+      "static JSON, binding validate/stale, and diff-check"
+    ],
+    "forbidden": [
+      "run L4/L5 algorithm, legacy runtime/test/hook/CI, or CI",
+      "modify L9 expected rows or claim L9 same-layer negative-class membership / 4-way PASS",
+      "infer actual incident identity, issue a ticket, execute Reverse, or declare completion"
+    ]
+  },
+  "artifacts": [
+    "scaffold/research/wr220-os017-source-unresolved-20261031/README.md",
+    "scaffold/research/wr220-os017-source-unresolved-20261031/blind-derivation.json",
+    "scaffold/research/wr220-os017-source-unresolved-20261031/comparison.json",
+    "scaffold/research/wr220-os017-source-unresolved-20261031/validate_candidate.py",
+    "scaffold/research/wr220-os017-source-unresolved-20261031/check-child.json",
+    "scaffold/research/wr220-os017-source-unresolved-20261031/source-pointer-validation.json"
+  ],
+  "verification": {
+    "evidence_kind": "scaffold",
+    "scope": [
+      "source_revision_stale",
+      "negative_case"
+    ],
+    "oracles": [
+      "Blind artifact bytes and SHA-256 match frozen source artifact.",
+      "Each selected L7/L8/L9 row matches the source-qualified witness identifier and expected condition/phase/finding codes.",
+      "L9 expected values are unchanged; only two l4_source_class_candidate_ref fields are added.",
+      "SCF binding schema/upstream digest and stale state are checked statically."
+    ],
+    "negative_cases": [
+      "Do not treat class candidate assignment as expected observation or actual behavior.",
+      "Do not collapse distinct raw pointers under dedup.",
+      "Do not treat source inventory totals as case closure or four-layer pass.",
+      "Do not promote candidate to actual incident, ticket, Reverse, or completion."
+    ]
+  },
+  "replacement": {
+    "role_target": "Formal OS017 negative-class trace must preserve approved source, witness identity, expected comparison, and layer-specific class membership evidence.",
+    "formal_artifacts": [],
+    "issue": 1866,
+    "status": "pending"
+  },
+  "created": "2026-10-31",
+  "updated": "2026-10-31"
+}

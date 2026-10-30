@@ -1,0 +1,283 @@
+{
+  "artifact": "WR220 OS017 L4/L9 source-unresolved candidate comparison",
+  "status": "scaffold research evidence; candidate only; no execution or oracle promotion",
+  "base_revision": "a53f04482ff883decf1019dc9c212ab712271749",
+  "blind_artifact": {
+    "path": "scaffold/research/wr220-os017-source-unresolved-20261031/blind-derivation.json",
+    "sha256": "61647d1a18cb523bbc70af246f670fd8c42c35e6b8ec9511b83358be0a81332d",
+    "preserved_byte_identically_from": "/tmp/wr220-os017-blind.json",
+    "frozen_comment": "Issue #3510 comment 6531650415"
+  },
+  "approved_requirement_target": {
+    "revision": "5c62d19b78fca3be1964c0cd3157a540950150dc",
+    "comparison_base": "a53f04482ff883decf1019dc9c212ab712271749",
+    "source_rows": [
+      {
+        "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+        "pointer": "/requirements/35",
+        "id": "HELIXOS-L3-017-F02",
+        "canonical_row_sha256": "03d8ea7b4efc46c6eea5eadba8f8f1a16df2df4fe0d516de61aae266d04dede5"
+      },
+      {
+        "path": "docs/helix-os/L10-verification/functional-verification.json",
+        "pointer": "/cases/35",
+        "id": "HELIXOS-L10-017-F02",
+        "canonical_row_sha256": "ed4c1488245bfc491c2a54b0368c6eb03a09589a256a39f27dbc8df9cf102165"
+      }
+    ],
+    "revision_check": "Both canonical rows at approved revision 5c62d19 and worktree base a53f04482ff883decf1019dc9c212ab712271749 are byte-content equal.",
+    "decision_and_admission": "L3/L10 delegated approval admitted on the mainline through PR #2952; local merge commit 2945b75bc5 (PR #2952 merge) is present in repository history. The approved source revision used for row comparison is 5c62d19.",
+    "blind_order_boundary": "The frozen blind artifact consulted B01 only for the ownership boundary; F02 was not used to derive the blind results. After blind SHA freeze/comment 6531650415, approved F02 L3/L10 rows were separately compared at 5c62d19 and base a53 to establish the candidate pair scope."
+  },
+  "source_documents": [
+    {
+      "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+      "pointer": "/requirements/35",
+      "sha256": "e86254a35b476ed71ebb112e41ccd2b48f89a8d0393e6495dc11cac7a7cf4e02"
+    },
+    {
+      "path": "docs/helix-os/L10-verification/functional-verification.json",
+      "pointer": "/cases/35",
+      "sha256": "583020f951672e48bc37fcd35cb916de5ccd9866f41dd04731f6519325ae500a"
+    },
+    {
+      "path": "docs/helix-os/L4-basic-design/ticket-workflow-derivation.json",
+      "pointer": "/contracts/1 and diagnostic_contract prose cited by blind artifact",
+      "sha256": "3fb45708d58866de46cff0695a1d3f64b2fbe15bb11283bda5594a4b6d01e6ea"
+    },
+    {
+      "path": "docs/helix-os/L7-function-verification/ticket-workflow-derivation.json",
+      "pointers": [
+        "/cases/51",
+        "/cases/53"
+      ],
+      "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146"
+    },
+    {
+      "path": "docs/helix-os/L8-unit-verification/ticket-workflow-derivation.json",
+      "pointers": [
+        "/unit_cases/51",
+        "/unit_cases/53"
+      ],
+      "sha256": "7b2f15b8fb131f3e346dff4825f74696cc0b3a3f727515cd901019278bad60ad"
+    },
+    {
+      "path": "docs/helix-os/L9-integration-verification/ticket-workflow-derivation.json",
+      "pointers": [
+        "/integration_cases/51",
+        "/integration_cases/53"
+      ],
+      "sha256": "fe7d7fc5b23ec66042c1db5e0f45004c095b5703faa2d6284e442fdb81f81225"
+    }
+  ],
+  "comparison": {
+    "cases": [
+      {
+        "case": "OS017-AUTHORITY-SOURCE_REF-UNKNOWN",
+        "source_case": "/cases/51",
+        "primary_requirement": "HELIXOS-L3-017-F02",
+        "raw_mutation": "authority.source_ref=null; authority.state=current; context authority_ref is present",
+        "blind_result": {
+          "phase": "resume",
+          "condition": "workflow_material_unknown",
+          "workflow_facet": "unknown",
+          "finding_signature": [
+            "source_unresolved"
+          ],
+          "finding_pointer_raw_graph": "/objects/e80a1ab73d1026599b8f940b0b8fb211199bd3a6967a90392b0c5bfeafec1da2/source_ref",
+          "return_owner": "ticket-workflow-owner",
+          "actual_effect": "none"
+        },
+        "L7_expected": {
+          "phase": "resume",
+          "condition": "workflow_material_unknown",
+          "expected_codes": [
+            "source_unresolved"
+          ],
+          "finding_pointer": "/authority/source_ref"
+        },
+        "L8_expected": {
+          "condition": "workflow_material_unknown",
+          "phase": "resume",
+          "expected_codes": [
+            "source_unresolved"
+          ],
+          "execution_state": "not_executed"
+        },
+        "L9_expected": {
+          "condition": "workflow_material_unknown",
+          "phase": "resume",
+          "expected_codes": [
+            "source_unresolved"
+          ],
+          "execution_state": "not_executed",
+          "actual_observation": "not_observed"
+        },
+        "comparison": "semantic result fields agree; L7 expected uses a logical input-relative pointer, while blind derivation records resolved raw object graph pointer. L8/L9 rows do not specify finding pointer, facet, or return owner."
+      },
+      {
+        "case": "OS017-RESOURCE-SOURCE_REF-UNKNOWN",
+        "source_case": "/cases/53",
+        "primary_requirement": "HELIXOS-L3-017-F02",
+        "raw_mutation": "resource.source_ref=null; resource.state=observed_material; context resource_ref is present",
+        "blind_result": {
+          "phase": "resume",
+          "condition": "workflow_material_unknown",
+          "workflow_facet": "unknown",
+          "finding_signature": [
+            "source_unresolved"
+          ],
+          "finding_pointer_raw_graph": "/objects/25ad46768dea84694bdf2fdd7e076197e3597248f16aaa26d7e630e895d542e2/source_ref",
+          "return_owner": "ticket-workflow-owner",
+          "actual_effect": "none"
+        },
+        "L7_expected": {
+          "phase": "resume",
+          "condition": "workflow_material_unknown",
+          "expected_codes": [
+            "source_unresolved"
+          ],
+          "finding_pointer": "/resource/source_ref"
+        },
+        "L8_expected": {
+          "condition": "workflow_material_unknown",
+          "phase": "resume",
+          "expected_codes": [
+            "source_unresolved"
+          ],
+          "execution_state": "not_executed"
+        },
+        "L9_expected": {
+          "condition": "workflow_material_unknown",
+          "phase": "resume",
+          "expected_codes": [
+            "source_unresolved"
+          ],
+          "execution_state": "not_executed",
+          "actual_observation": "not_observed"
+        },
+        "comparison": "semantic result fields agree; L7 expected uses a logical input-relative pointer, while blind derivation records resolved raw object graph pointer. L8/L9 rows do not specify finding pointer, facet, or return owner."
+      }
+    ],
+    "candidate_class": {
+      "id": "OS017-NEG-workflow-resume-source_unresolved",
+      "l4_pointer": "/failure_classifications/4",
+      "l9_candidate_refs": [
+        "/integration_cases/51/l4_source_class_candidate_ref",
+        "/integration_cases/53/l4_source_class_candidate_ref"
+      ],
+      "key_semantics": {
+        "phase": "resume",
+        "facet": "workflow",
+        "facet_state": "unknown",
+        "whole_condition": "workflow_material_unknown",
+        "ordered_finding_signature": [
+          "source_unresolved"
+        ],
+        "return_owner": "ticket-workflow-owner",
+        "side_effect_count": 0,
+        "additional_findings": "excluded"
+      },
+      "distinct_witnesses": "authority and resource leaves differ, therefore code+pointer+return_owner dedup does not collapse them; retain both findings when pairing these rows."
+    },
+    "existing_classification_assignment": "At the base L4 failure_classifications contains four classes (inputs unresolved/conflict and ownership unresolved/conflict); none describes this workflow facet. The new candidate is a separate source-qualified class. Existing L9 candidate refs were 63; these two rows receive refs, resulting in 65 row references, not 65 classes.",
+    "pair_scope": "One L4-F02/L9-F02 V-pair candidate. L9 expected rows remain byte-content-equivalent at the field level. No L9 same-layer negative-equivalence membership exists for this tranche; no 4-way PASS.",
+    "inventory_context": "Issue #3510 comment 6531608819 tracks the OS017 remaining-negative inventory (217 integration rows, 198 negative rows, 63 previously source-class-referenced rows, 135 remaining at that inventory snapshot; 33 groups). This is a separate inventory count, not the number of class rows or proof of pair closure."
+  },
+  "legacy_failure_basis": {
+    "legacy_asset": {
+      "id": "LEGACY-ASSET-3A15E5645D2D2A59DFF5",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-requirements.md",
+      "source_path": "docs/governance/candidates/execution-ticket-requirements.md",
+      "lines": "80-82, 105, 190, 194",
+      "preserve": "ticket meaning remains separate from assignment, attempt, and measurement; source and responsibility boundaries remain traceable",
+      "change": "derive a source-qualified current L4 candidate without adopting legacy CLI, DB, schema, or admission engine",
+      "reason": "legacy operational machinery does not create current requirements or new gates"
+    },
+    "same_type_failure": {
+      "id": "LEGACY-ASSET-A127DEC3EEE6ED63CF17",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/predecessor-harness-full-weakness-audit-2026-07-20.md",
+      "line": "71 (UTW-005)",
+      "failure": "PR trace/review evidence was not consistently rebound to latest HEAD/merge-base",
+      "application": "pin the approved sources, raw witness refs, expected-row comparison, and candidate refs in one reviewable evidence bundle; this does not claim execution or closure"
+    }
+  },
+  "limits": [
+    "Comparison is static reading of source and expected rows only. No L4/L5 algorithm, legacy runtime, tests, or CI was run.",
+    "L7 logical pointer versus blind raw graph pointer representation is not resolved by rewriting the blind record or formal expected values.",
+    "L8/L9 expected rows do not independently determine finding facet, return owner, serialized result shape, or full pointer serialization.",
+    "L9 expected rows remain not_executed/not_observed; the candidate does not assert actual implementation behavior or 4-layer closure.",
+    "Candidate classification is not an actual incident identity, dedup decision, ticket issuance, Reverse action, or completion claim.",
+    "The static check-child report is recorded as a separate measurement; its negative_4way failure does not negate or approve the source-derived L4/L9 candidate class."
+  ],
+  "static_validation": {
+    "source_pointer_validator": {
+      "path": "scaffold/research/wr220-os017-source-unresolved-20261031/validate_candidate.py",
+      "result": "pass",
+      "source_pointers_resolved": 13,
+      "raw_graph_root_hashes_verified": true,
+      "raw_null_leaves": {
+        "/cases/51/authority/source_ref": null,
+        "/cases/53/resource/source_ref": null
+      },
+      "approved_rows_equal_at_5c62_and_a53": true,
+      "l9_expected_fields_unchanged_for_cases_51_53": true,
+      "execution": "none",
+      "sha256": "1ec4469b337585d6754e778d2fb767506beeda5bb660155034e3cf869d6bea9c",
+      "report_path": "scaffold/research/wr220-os017-source-unresolved-20261031/source-pointer-validation.json",
+      "report_sha256": "5fa25569f83e4a6a18a03b3d0d667354c20df9ecbd8acf408804db3c5fdc52ba"
+    },
+    "check_child": {
+      "path": "scaffold/research/wr220-os017-source-unresolved-20261031/check-child.json",
+      "command": "python3 scaffold/tools/design_verification_checker.py check-child --root . --l4 docs/helix-os/L4-basic-design/ticket-workflow-derivation.json --l5 docs/helix-os/L5-detail-design/ticket-workflow-derivation.json --l8 docs/helix-os/L8-unit-verification/ticket-workflow-derivation.json --l9 docs/helix-os/L9-integration-verification/ticket-workflow-derivation.json",
+      "overall_passed": false,
+      "L4_L9_pair": {
+        "passed": true,
+        "left_count": 4,
+        "right_count": 4,
+        "failures": 0
+      },
+      "L5_L8_pair": {
+        "passed": true,
+        "left_count": 4,
+        "right_count": 4,
+        "failures": 0
+      },
+      "negative_4way": {
+        "passed": false,
+        "counts": {
+          "L4": 5,
+          "L9": 0,
+          "L8": 0,
+          "L5": 0
+        },
+        "matched_case_count": 0,
+        "failures": 8
+      },
+      "interpretation": "Static legacy casewise checker output. It does not establish behavior or 4-way closure; L4/L9 pair membership candidate is not used by this checker mode.",
+      "sha256": "fbed02f071e264b432a873437d79c68502de5e001abe351b2eeb7372dfc7f565"
+    },
+    "existing_wr204_validator": {
+      "path": "scaffold/research/wr204-os017-negative-classes-20261031/validate_manual_derivation.py",
+      "sha256": "2c0c6431c1963f03271a6d4ca556adc9a5029f402d8e4db9cbe43ffd64d97d2a",
+      "result": "pass",
+      "output": "static source validation: pointers=192, input cohort=52 cases/51 witnesses, role witnesses=12, L4 classes=5, cross_facet_reuse_cases=3, L9 cases=217, expected_digest=0899fc16c319b4ad2a321048215066e4e2cee47bf5112dccbb4086b2f6220b02, four_layer_marker=absent",
+      "preserved_assertions": [
+        "the existing four class IDs and all class-wide invariants",
+        "F01/B01 reverse parent links",
+        "four-layer marker absence and no L9 negative_class_ref",
+        "all previous L9 candidate links",
+        "51 input-cohort witnesses and 12 role raw witnesses",
+        "L9 217-row expected projection digest unchanged",
+        "cross-facet reuse coverage",
+        "L9 changes restricted to whitelisted candidate-reference fields"
+      ],
+      "wr220_addition": [
+        "recognize exactly one fifth F02 workflow/resume class",
+        "validate its code/facet/state/owner/whole finding signature and pointer-neutral class condition",
+        "require L9 candidate references for cases 51 and 53 to point to L4 failure_classifications/4",
+        "permit only these two additional candidate-ref-only L9 row differences"
+      ]
+    }
+  }
+}

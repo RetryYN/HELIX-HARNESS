@@ -311,7 +311,7 @@
     "複数ticketの中間result/typed Backflow route、元source影響評価/再導出、実回収・lease/実assignment/attempt/measurement、部分義務解消・全累積履歴/復旧/raceの正式契約は未成立。",
     "OS015016→017→018019020023/SEC/INFRA/INT/LABO全scopeのowner-qualified exact binding、全型/不正shape・未見独立実証・oracle凍結・実装前Red→最小Green→Refactor/再検証・実L9L10・PO実物L11は未成立。",
     "全92親430対の基本/詳細閉包と最終独立二重監査・実装準備を継続。candidate素材/独立合成照合/mergeから実READY、実許可、Issue close、Release/Deployを生成しない。",
-    "WR204 R1 trancheはL4 failure_classificationsのsource-qualified負例2 rowとL9 caseのl4_source_class_candidate_refのみを形成する。L9 negative_class_refは同層negative_equivalence_classes表への正式membershipであり、このtrancheにはL9 class tableがないため付けない。正例OS017-NORMAL-RESUMEは負例cohortの外。L5/L8 projectionと4層negative_equivalence_classes markerは後続へ残し、このpairを4way PASSとしない。"
+    "WR204 R1 trancheはL4 failure_classificationsのsource-qualified負例2 rowとL9 caseのl4_source_class_candidate_refのみを形成する。L9 negative_class_refは同層negative_equivalence_classes表への正式membershipであり、このtrancheにはL9 class tableがないため付けない。正例OS017-NORMAL-RESUMEは負例cohortの外。L5/L8 projectionと4層negative_equivalence_classes markerは後続へ残し、このpairを4way PASSとしない。 WR220ではF02のresume時workflow source_unresolved候補classを追加し、cases 51/53にsource-class候補参照を付けた。L9 expected行は変更していない。L9同層のnegative-class membershipではなく、4層PASSも成立しない。"
   ],
   "document_id": "HELIXOS-L9-017",
   "layer": "L9",
@@ -2779,6 +2779,11 @@
         "pointer": "/cases/51",
         "revision": "ec98a025d166a5e9f7811233498b7e7e31dbb145",
         "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146"
+      },
+      "l4_source_class_candidate_ref": {
+        "path": "docs/helix-os/L4-basic-design/ticket-workflow-derivation.json",
+        "pointer": "/failure_classifications/4",
+        "class_id": "OS017-NEG-workflow-resume-source_unresolved"
       }
     },
     {
@@ -2837,6 +2842,11 @@
         "pointer": "/cases/53",
         "revision": "ec98a025d166a5e9f7811233498b7e7e31dbb145",
         "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146"
+      },
+      "l4_source_class_candidate_ref": {
+        "path": "docs/helix-os/L4-basic-design/ticket-workflow-derivation.json",
+        "pointer": "/failure_classifications/4",
+        "class_id": "OS017-NEG-workflow-resume-source_unresolved"
       }
     },
     {

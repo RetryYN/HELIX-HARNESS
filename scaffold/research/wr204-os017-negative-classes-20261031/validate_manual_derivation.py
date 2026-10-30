@@ -432,8 +432,13 @@ def validate_class_rows_and_unmarked_mode() -> None:
         "OS017-NEG-ownership-source_unresolved",
         "OS017-NEG-ownership-source_conflict",
     ]
+    wr220_class_id = "OS017-NEG-workflow-resume-source_unresolved"
     rows = l4.get("failure_classifications")
-    if not isinstance(rows, list) or [row.get("class_id") for row in rows] != expected_ids:
+    if (
+        not isinstance(rows, list)
+        or [row.get("class_id") for row in rows[:4]] != expected_ids
+        or [row.get("class_id") for row in rows[4:]] != [wr220_class_id]
+    ):
         raise AssertionError("L4 formal failure_classifications rows differ")
     condition_invariants = [
         ("workflow_material_unknown", ["source_unresolved"], "inputs", "unknown"),
@@ -464,10 +469,43 @@ def validate_class_rows_and_unmarked_mode() -> None:
     contract_refs = {contract["id"]: contract.get("negative_class_refs") for contract in l4["contracts"]}
     if contract_refs.get("HELIXOS-L4-017-F01") != expected_ids[:2]:
         raise AssertionError("L4 F01 reverse parent link differs")
-    if contract_refs.get("HELIXOS-L4-017-B01") != expected_ids[2:]:
+    if contract_refs.get("HELIXOS-L4-017-B01") != expected_ids[2:4]:
         raise AssertionError("L4 B01 reverse parent link differs")
-    if any(contract_refs.get(cid) != [] for cid in ("HELIXOS-L4-017-F02", "HELIXOS-L4-017-F03")):
-        raise AssertionError("L4 non-F01 reverse parent links must be empty arrays")
+    if contract_refs.get("HELIXOS-L4-017-F02") != [wr220_class_id]:
+        raise AssertionError("L4 F02 reverse parent link differs")
+    if contract_refs.get("HELIXOS-L4-017-F03") != []:
+        raise AssertionError("L4 F03 reverse parent link must remain empty")
+
+    # The WR220 class is phase-specific, unlike the four WR204 phase-independent
+    # classes above. Keep every old invariant and check this addition separately.
+    wr220 = rows[4]
+    wr220_condition = wr220.get("condition", "")
+    if (
+        wr220.get("code") != "workflow_material_unknown"
+        or wr220.get("expected_classification") != "workflow_material_unknown"
+        or wr220.get("expected", {}).get("finding_codes") != ["source_unresolved"]
+        or wr220.get("expected_axis") != "workflow"
+        or wr220.get("expected_state") != "unknown"
+        or wr220.get("design_ref") != "HELIXOS-L4-017-F02"
+        or wr220.get("backflow_owner") != "ticket-workflow-owner"
+        or wr220.get("side_effect_count") != 0
+    ):
+        raise AssertionError("WR220 L4 F02 workflow class code/facet/state/owner differs")
+    for phrase in (
+        "phase=resume",
+        "全体condition=workflow_material_unknown",
+        "全体ordered finding code signature=[source_unresolved]",
+        "workflow facetの局所state=unknown",
+        "authority.source_ref",
+        "resource.source_ref",
+        "本classに含めない",
+    ):
+        if phrase not in wr220_condition:
+            raise AssertionError(f"WR220 class condition omits {phrase}")
+    if "追加finding" not in wr220_condition or "dedupしない" not in wr220_condition:
+        raise AssertionError("WR220 class condition must bound additional findings and preserve distinct pointers")
+    if any(token in wr220_condition for token in ("/cases/51", "/cases/53", "/objects/")):
+        raise AssertionError("WR220 witness-specific pointer leaked into class-wide condition")
 
     def has_marker(document: dict[str, Any]) -> bool:
         if "negative_equivalence_classes" in document:
@@ -484,7 +522,7 @@ def validate_class_rows_and_unmarked_mode() -> None:
         raise AssertionError("explicit class marker must remain absent in all four layers")
     if any("negative_class_ref" in row for row in l9["integration_cases"]):
         raise AssertionError("unmarked L9 case rows must not claim explicit class membership")
-    candidate_rows = [(5, 0), (6, 1)]
+    candidate_rows = [(5, 0), (6, 1), (51, 4), (53, 4)]
     audit = json.loads(EVIDENCE.read_text(encoding="utf-8"))
     for witness in audit["cohort"].get("additional_raw_witnesses", []):
         class_index = 0 if witness["class_id"] == expected_ids[0] else 1
@@ -585,6 +623,8 @@ def validate_role_raw_witnesses() -> None:
         for _unresolved_case, conflict_case in ROLE_CASES.values()
         for index, _owner in (conflict_case,)
     }
+    # These two WR220 rows add only an L4 source-class candidate link.
+    permitted_candidate_link_indexes = l9_role_indexes | {51, 53}
     for witness in witnesses:
         role = witness["role"]
         unresolved_case, conflict_case = ROLE_CASES[role]
@@ -640,7 +680,7 @@ def validate_role_raw_witnesses() -> None:
         raise AssertionError("L9 integration case count differs")
     for index, (base_case, current_case) in enumerate(zip(base_l9["integration_cases"], l9["integration_cases"])):
         comparable = dict(current_case)
-        if index in l9_role_indexes:
+        if index in permitted_candidate_link_indexes:
             comparable.pop("l4_source_class_candidate_ref", None)
         if comparable != base_case:
             raise AssertionError(f"L9 changed outside the six candidate links at {index}")
