@@ -1,38 +1,43 @@
-# WR181 OS015 残112件 L5/L8 successor候補
+# WR181 OS015 L5/L8 successor candidate
 
-## 対象と根拠
+## Scope
 
-- 基点は#3927 M1 correction head `5e7286c6def741df3f8abfabdb1f2058eaaedd07`。C0577/C0580はoverall violation、classification局所state unknownへ修正済み。先行L5/L8候補`0b3573b7845381d1ab33e7efaf883c2644b8430a`へM1をmergeし、同じ分類keyをL5/L8へ反映した。
-- 対象はHELIX-OS OS015のL5/L8 pair。L5は既存33 failure rulesを保持して18 composite rule rowsを追加し、L8は既存27 class rowsを保持して18 class rowsを追加する。
-- 追加caseは既存2 classの残75件と補正後18 classの37件、計112件。L8基点の460 class linksへ112 linksを追加する。先行29 composite linksは460件に含まれ、変更しない。
-- class keyはL4/L7独立auditのmanifestを入力とし、L5 `formal_reference.composite_class_formation` のordered-code保持、既存failure ruleへのowner join、`input_boundary`を照合してL5 rowsへ形成した。L8では既存unit caseのcase IDとraw input sourceを結び、L7 `given.input`のbase/replacements/hashを確認してL5 class/rule/function refsを付けた。
-- L7 `expected_proposal`、L8 case `expected`、L9 class row／case `expected`をclass形成のoracleにしていない。L8の全583件で既存`condition`、`expected`、`expected_preserved`を0dd基点から保持する。
+- Pair: HELIX-OS OS015 L5/L8, `design_verification` scaffold candidate.
+- Source pair pin: `e3a16010cce138001d33df19afef92e3fa049d81` (#3939 read-after; L4/L9 bytes remain unchanged at latest main).
+- Latest main trial: `f7ee0a09cf113afe7b9b1b3377e2d5d0908cbc53`.
+- L5 commit: `5dec530a950d9c1280ab2226121ea148af539ae4` (reachable after rebase).
+- L5/L8 documents remain provisional; this evidence does not create authority, implementation readiness, or freeze.
 
-## C0573–C0582 correctionの反映
+## Projection
 
-6 affected caseのclass keyはL4 algorithm/L7 raw input correction auditに合わせた。source unresolvedは次の4 occurrenceを順に保持する。
+The merged L4 has 47 classes. L5 now has the same 47 IDs: six standalone singleton rules are removed, and the two new composite classes are added. L8 now has 47 class rows and 585 unit cases, including C0584/C0585. All 583 existing L8 case rows are unchanged. The existing 572 class links remain unchanged, including the 112 residual links from the prior projection and the earlier 29 links.
 
-1. context `prior_classification_ref`
-2. context `prior_classification_revision`
-3. actual `prior_classification_ref`
-4. actual `prior_classification_revision`
+The six removed L5 singleton IDs are `OS015-NEG-first_classification_prior_present`, `OS015-NEG-first_classification_prior_unresolved`, `OS015-NEG-original_event_mutated`, `OS015-NEG-source_conflict-original_event`, `OS015-NEG-source_unresolved-original_event`, and `OS015-NEG-unresolved_promoted_to_current`.
 
-C0574/C0575はprior-present findings、C0577/C0580とC0578/C0581はprior-unresolved findingsを保持する。C0574/C0575はoverall violation・classification/violation、C0577/C0580はoverall violation・classification/unknown、C0578/C0581はoverall unknown・classification/unknown。C0577/C0580では`original_classification_mutated`がhistory/violationだが、選択されたclassification facet内の所見はunknownである。L8の元case expectedは変更しない。
+The two added classes and manually projected L8 expectations are:
 
-## 保持した境界
+| Case | Ordered findings | Overall condition | Axis/state |
+|---|---|---|---|
+| C0584 | `original_event_mutated`, `source_unresolved`, `unresolved_promoted_to_current` | `management_material_violation` | `original_event` / `violation` |
+| C0585 | `authority_state_unresolved`, `unresolved_promoted_to_current` | `management_material_violation` | `authority` / `violation` |
 
-- L5/L8ともL4/L9 pair pinは#3927 merge済みmain `be407b48779ea1125f12a1a78f998c73316ed2e7` のpath bytesを固定する。L8 `candidate_l5_bytes`は最新pair pinを含むL5 successor commit `34f315ea69522e113433f3b16ef71ddb262e2b80`とそのpath hashを固定する。
-- L8 case rowsの条件・期待・expected_preserved、および先行29 linksは不変。追加112件で変えるのはraw `given.input` pointer、`negative_class_ref`、`rule_ref`、`function_ref`だけ。
-- 6 singleton-less classesはL4/L5には残し、L8に形成しない。対象は`OS015-NEG-source_unresolved-original_event`、`OS015-NEG-source_conflict-original_event`、`OS015-NEG-original_event_mutated`、`OS015-NEG-unresolved_promoted_to_current`、`OS015-NEG-first_classification_prior_present`、`OS015-NEG-first_classification_prior_unresolved`。L8/L9での対応未形成によりchildは24 class mismatchでFAILし、freezeも成立しない。
-- #3927のcorrected classificationはmainへmerge済み。successor候補は未push・未PR。
+For both cases, source input is L7 `/connection_materials/OS015/case/fixture_inputs/inspect`. The explicit replacement recipe and canonical expanded-input SHA-256 are recorded in [`source-projection-evidence.json`](source-projection-evidence.json). Those hashes are kept in scaffold evidence because the L8 ownership-boundary check rejects `expanded_input_sha256` fields in L8. The expected findings and state were derived by manual comparison of the L7 input changes with the fixed L4 contract/class rows and L5 `composite_class_formation` plus surviving existing-rule owner joins. The L4 embedded algorithm was not executed. L7 `expected_proposal` and L9 expected values were not used to derive the expectation; after derivation, the two L8 expected projections were compared with L9 as a consistency check.
 
-## 静的確認
+L5 and L8 `source_pair_pins` target exact L4/L9 path bytes from source pair pin `e3a16010`; these bytes are unchanged at latest main `f7ee0a09`. L8 `candidate_l5_bytes` points to the reachable L5 commit above. L8 class pointers to L4/L5 were remapped by class ID after checking their targets.
 
-`build_successor.py`は文書投影のみ行い、L4 predicate、product runtime、test、CIを実行しない。`validate_successor.py`はL5/L8のsource pointer、L5 owner join、L7 raw input hash、全583 case expected preservation、29 prior links、112新規links、6 singleton-less class、candidate pinを確認する。validatorはL9文書をロードしない。
+## Static checks
 
-再現コマンド:
+`validate_successor.py` checks class identity and fields, rule ownership, JSON pointers, L7 fixture/replacement hashes, all 583 old case rows, 572 existing links, the 112 residual manifest assignments, the earlier 29 assignments, and candidate/source pins. It does not load L9 expected material.
+
+The existing `design_verification_checker.py check-child` is used as a static document measurement. The `check-freeze` output is reported separately; its existing freeze record may remain mechanically unmatched and is not edited here. `scfctl validate`, `scfctl stale`, and `git diff --check` are also recorded in `verification-summary.json`.
+
+The latest-main trial uses `f7ee0a09`. The main changes since the source pair revision are process-state-port, SCF-B-0174, and WR186 research paths, all disjoint from this pair. `SCF-B-0178` validates; predecessor binding pins follow the successor bytes and stale is zero. The branch was not rebased after pinning the L5 commit, preserving revision reachability.
+
+Reproduction:
 
 ```sh
+python3 scaffold/research/wr181-os015-l5-l8-successor-20261031/build_successor.py l5
+python3 scaffold/research/wr181-os015-l5-l8-successor-20261031/build_successor.py l8
 python3 scaffold/research/wr181-os015-l5-l8-successor-20261031/validate_successor.py
 python3 scaffold/tools/design_verification_checker.py check-child --root . --l4 docs/helix-os/L4-basic-design/management-authority-source-record.json --l5 docs/helix-os/L5-detail-design/management-authority-source-record.json --l8 docs/helix-os/L8-unit-verification/management-authority-source-record.json --l9 docs/helix-os/L9-integration-verification/management-authority-source-record.json
 python3 scaffold/tools/design_verification_checker.py check-freeze --root . --worktree docs/governance/audits/tdd/os007-os015-function-pair-freeze-2026-10-28.json
@@ -41,4 +46,4 @@ python3 -B scaffold/tools/scfctl.py stale
 git diff --check
 ```
 
-最新main `be407b48779ea1125f12a1a78f998c73316ed2e7`へのno-commit trialは競合なし、merge-base `5e7286c6`からpath overlapなし（候補12、main17）。product design文書の差分はL5/L8 pairだけ。静的検証PASS、childはbaseline 226→trial24 failures（L4/L9、L5/L8 pair PASS、matched 572）、freeze hashは不変でmechanical matchなし、pointer 2421/public function 8。SCFはbaseline 166、trial 167 valid、stale=0。詳細は`verification-summary.json`。
+No L4 algorithm, old HELIX runtime/CLI/hook/test/CI, product runtime, test, or CI is invoked.

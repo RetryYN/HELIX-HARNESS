@@ -421,13 +421,13 @@
   "source_pair_pins": [
     {
       "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
-      "revision": "be407b48779ea1125f12a1a78f998c73316ed2e7",
-      "sha256": "32e4a7b6432e7454d242277b37a0948916dc876b6e8e008ad8e4f8c2d7207081"
+      "revision": "e3a16010cce138001d33df19afef92e3fa049d81",
+      "sha256": "c468e6cd85c26a6d8fa18d44c000ce32a8e607d48ff77241e233f251ea394a81"
     },
     {
       "path": "docs/helix-os/L9-integration-verification/management-authority-source-record.json",
-      "revision": "be407b48779ea1125f12a1a78f998c73316ed2e7",
-      "sha256": "365b89c9131e5edd9b64d474438ff780360118819cc651ee535f64a70aa5ff1d"
+      "revision": "e3a16010cce138001d33df19afef92e3fa049d81",
+      "sha256": "637f2499479913a629a15ddab80e46b383121d38a0dd1482bc1a1ca2d66ee84b"
     }
   ],
   "document_id": "HELIXOS-L8-015",
@@ -435,9 +435,9 @@
   "pair": "HELIXOS-L5-015",
   "candidate_l5_bytes": {
     "path": "docs/helix-os/L5-detail-design/management-authority-source-record.json",
-    "revision": "34f315ea69522e113433f3b16ef71ddb262e2b80",
+    "revision": "5dec530a950d9c1280ab2226121ea148af539ae4",
     "same_candidate": true,
-    "sha256": "4d686c07580eb0aef0a580dec5e2fa666c14476dcf81facdc469cde05719015d"
+    "sha256": "937c85b4c7ee7db1a61241ab65a9daf1bdab93fbf54ee4ef1ebe446b9f78513e"
   },
   "shared_route_expectations": {
     "l7_material_ref": {
@@ -49738,6 +49738,184 @@
       "negative_class_ref": "OS015-NEG-new_classification_unresolved",
       "rule_ref": "OS015-NEG-new_classification_unresolved",
       "function_ref": "FN-OS015-01"
+    },
+    {
+      "id": "HELIXOS-L9-015-C0584",
+      "source_trace": {
+        "requirement_ref": "HELIXOS-L3-015-F03",
+        "oracle_ref": "HELIXOS-L10-015-F03"
+      },
+      "function_roster_ref": {
+        "path": "docs/helix-os/L8-unit-verification/management-authority-source-record.json",
+        "pointer": "/common_call_contract/function_order"
+      },
+      "counterexample_summary": {
+        "ordered_findings": [
+          {
+            "code": "original_event_mutated",
+            "pointer": "/records/target_a/original_event",
+            "return_owner": "management-authority-owner"
+          },
+          {
+            "code": "source_unresolved",
+            "pointer": "/records/target_a/original_event/event_id",
+            "return_owner": "management-authority-owner"
+          },
+          {
+            "code": "unresolved_promoted_to_current",
+            "pointer": "/records/target_a/current_material_claim",
+            "return_owner": "management-authority-owner"
+          }
+        ],
+        "noneffects_all_false": true,
+        "retention_all_true": true
+      },
+      "l7_material_ref": {
+        "path": "docs/helix-os/L7-function-verification/management-authority-source-record.json",
+        "pointer": "/connection_materials/OS015/case/fixture_inputs/inspect"
+      },
+      "forward_stimulus_replacements": [
+        {
+          "path": [
+            "records",
+            "target_a",
+            "original_event",
+            "event_id"
+          ],
+          "value": null
+        },
+        {
+          "path": [
+            "records",
+            "target_a",
+            "current_material_claim"
+          ],
+          "value": true
+        }
+      ],
+      "case_id": "HELIXOS-L9-015-C0584",
+      "integration_case_ref": "HELIXOS-L9-015-C0584",
+      "contract_ref": "HELIXOS-L5-015-P-F03",
+      "population_state": "negative",
+      "condition": "management_material_violation",
+      "expected": {
+        "finding_codes": [
+          "original_event_mutated",
+          "source_unresolved",
+          "unresolved_promoted_to_current"
+        ]
+      },
+      "expected_preserved": true,
+      "phase": "inspect",
+      "ordered_finding_codes": [
+        "original_event_mutated",
+        "source_unresolved",
+        "unresolved_promoted_to_current"
+      ],
+      "noneffects_all_false": true,
+      "retention_all_true": {
+        "material_retention_checks": true,
+        "retained_new_classification_equal_input": true,
+        "correction_reference_equal_input": true
+      },
+      "classification_states": {
+        "target_a": {
+          "original": "not_evaluated",
+          "new": "not_evaluated"
+        },
+        "target_b": {
+          "original": "not_evaluated",
+          "new": "not_evaluated"
+        }
+      },
+      "negative_class_ref": "OS015-NEG-COMPOSITE-62fb66a6e279702c28b1aa4f8ee9380369f59c8322c999587e174c6c4992b558",
+      "rule_ref": "OS015-NEG-COMPOSITE-62fb66a6e279702c28b1aa4f8ee9380369f59c8322c999587e174c6c4992b558",
+      "function_ref": "FN-OS015-01"
+    },
+    {
+      "id": "HELIXOS-L9-015-C0585",
+      "source_trace": {
+        "requirement_ref": "HELIXOS-L3-015-F03",
+        "oracle_ref": "HELIXOS-L10-015-F03"
+      },
+      "function_roster_ref": {
+        "path": "docs/helix-os/L8-unit-verification/management-authority-source-record.json",
+        "pointer": "/common_call_contract/function_order"
+      },
+      "counterexample_summary": {
+        "ordered_findings": [
+          {
+            "code": "authority_state_unresolved",
+            "pointer": "/records/target_a/authority_state",
+            "return_owner": "management-authority-owner"
+          },
+          {
+            "code": "unresolved_promoted_to_current",
+            "pointer": "/records/target_a/current_material_claim",
+            "return_owner": "management-authority-owner"
+          }
+        ],
+        "noneffects_all_false": true,
+        "retention_all_true": true
+      },
+      "l7_material_ref": {
+        "path": "docs/helix-os/L7-function-verification/management-authority-source-record.json",
+        "pointer": "/connection_materials/OS015/case/fixture_inputs/inspect"
+      },
+      "forward_stimulus_replacements": [
+        {
+          "path": [
+            "records",
+            "target_a",
+            "authority_state"
+          ],
+          "value": null
+        },
+        {
+          "path": [
+            "records",
+            "target_a",
+            "current_material_claim"
+          ],
+          "value": true
+        }
+      ],
+      "case_id": "HELIXOS-L9-015-C0585",
+      "integration_case_ref": "HELIXOS-L9-015-C0585",
+      "contract_ref": "HELIXOS-L5-015-P-F03",
+      "population_state": "negative",
+      "condition": "management_material_violation",
+      "expected": {
+        "finding_codes": [
+          "authority_state_unresolved",
+          "unresolved_promoted_to_current"
+        ]
+      },
+      "expected_preserved": true,
+      "phase": "inspect",
+      "ordered_finding_codes": [
+        "authority_state_unresolved",
+        "unresolved_promoted_to_current"
+      ],
+      "noneffects_all_false": true,
+      "retention_all_true": {
+        "material_retention_checks": true,
+        "retained_new_classification_equal_input": true,
+        "correction_reference_equal_input": true
+      },
+      "classification_states": {
+        "target_a": {
+          "original": "not_evaluated",
+          "new": "not_evaluated"
+        },
+        "target_b": {
+          "original": "not_evaluated",
+          "new": "not_evaluated"
+        }
+      },
+      "negative_class_ref": "OS015-NEG-COMPOSITE-deac8ce9011311dc91b808f2f94e7d2dcd7320bd68b2b820d7eeef6ac092e7f9",
+      "rule_ref": "OS015-NEG-COMPOSITE-deac8ce9011311dc91b808f2f94e7d2dcd7320bd68b2b820d7eeef6ac092e7f9",
+      "function_ref": "FN-OS015-01"
     }
   ],
   "negative_equivalence_classes": [
@@ -49799,13 +49977,13 @@
         {
           "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
           "pointers": [
-            "/failure_classifications/2"
+            "/failure_classifications/1"
           ]
         },
         {
           "path": "docs/helix-os/L5-detail-design/management-authority-source-record.json",
           "pointers": [
-            "/failure_rules/2",
+            "/failure_rules/1",
             "/functions/0"
           ]
         }
@@ -49834,13 +50012,13 @@
         {
           "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
           "pointers": [
-            "/failure_classifications/3"
+            "/failure_classifications/2"
           ]
         },
         {
           "path": "docs/helix-os/L5-detail-design/management-authority-source-record.json",
           "pointers": [
-            "/failure_rules/3",
+            "/failure_rules/2",
             "/functions/0"
           ]
         }
@@ -49869,13 +50047,13 @@
         {
           "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
           "pointers": [
-            "/failure_classifications/5"
+            "/failure_classifications/3"
           ]
         },
         {
           "path": "docs/helix-os/L5-detail-design/management-authority-source-record.json",
           "pointers": [
-            "/failure_rules/5",
+            "/failure_rules/3",
             "/functions/0"
           ]
         }
@@ -49904,13 +50082,13 @@
         {
           "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
           "pointers": [
-            "/failure_classifications/6"
+            "/failure_classifications/4"
           ]
         },
         {
           "path": "docs/helix-os/L5-detail-design/management-authority-source-record.json",
           "pointers": [
-            "/failure_rules/6",
+            "/failure_rules/4",
             "/functions/0"
           ]
         }
@@ -49939,13 +50117,13 @@
         {
           "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
           "pointers": [
-            "/failure_classifications/7"
+            "/failure_classifications/5"
           ]
         },
         {
           "path": "docs/helix-os/L5-detail-design/management-authority-source-record.json",
           "pointers": [
-            "/failure_rules/7",
+            "/failure_rules/5",
             "/functions/0"
           ]
         }
@@ -49974,13 +50152,13 @@
         {
           "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
           "pointers": [
-            "/failure_classifications/9"
+            "/failure_classifications/6"
           ]
         },
         {
           "path": "docs/helix-os/L5-detail-design/management-authority-source-record.json",
           "pointers": [
-            "/failure_rules/9",
+            "/failure_rules/6",
             "/functions/0"
           ]
         }
@@ -50009,13 +50187,13 @@
         {
           "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
           "pointers": [
-            "/failure_classifications/10"
+            "/failure_classifications/7"
           ]
         },
         {
           "path": "docs/helix-os/L5-detail-design/management-authority-source-record.json",
           "pointers": [
-            "/failure_rules/10",
+            "/failure_rules/7",
             "/functions/0"
           ]
         }
@@ -50044,13 +50222,13 @@
         {
           "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
           "pointers": [
-            "/failure_classifications/11"
+            "/failure_classifications/8"
           ]
         },
         {
           "path": "docs/helix-os/L5-detail-design/management-authority-source-record.json",
           "pointers": [
-            "/failure_rules/11",
+            "/failure_rules/8",
             "/functions/0"
           ]
         }
@@ -50079,13 +50257,13 @@
         {
           "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
           "pointers": [
-            "/failure_classifications/12"
+            "/failure_classifications/9"
           ]
         },
         {
           "path": "docs/helix-os/L5-detail-design/management-authority-source-record.json",
           "pointers": [
-            "/failure_rules/12",
+            "/failure_rules/9",
             "/functions/0"
           ]
         }
@@ -50114,13 +50292,13 @@
         {
           "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
           "pointers": [
-            "/failure_classifications/13"
+            "/failure_classifications/10"
           ]
         },
         {
           "path": "docs/helix-os/L5-detail-design/management-authority-source-record.json",
           "pointers": [
-            "/failure_rules/13",
+            "/failure_rules/10",
             "/functions/0"
           ]
         }
@@ -50149,13 +50327,13 @@
         {
           "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
           "pointers": [
-            "/failure_classifications/14"
+            "/failure_classifications/11"
           ]
         },
         {
           "path": "docs/helix-os/L5-detail-design/management-authority-source-record.json",
           "pointers": [
-            "/failure_rules/14",
+            "/failure_rules/11",
             "/functions/0"
           ]
         }
@@ -50184,13 +50362,13 @@
         {
           "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
           "pointers": [
-            "/failure_classifications/16"
+            "/failure_classifications/12"
           ]
         },
         {
           "path": "docs/helix-os/L5-detail-design/management-authority-source-record.json",
           "pointers": [
-            "/failure_rules/16",
+            "/failure_rules/12",
             "/functions/0"
           ]
         }
@@ -50219,13 +50397,13 @@
         {
           "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
           "pointers": [
-            "/failure_classifications/17"
+            "/failure_classifications/13"
           ]
         },
         {
           "path": "docs/helix-os/L5-detail-design/management-authority-source-record.json",
           "pointers": [
-            "/failure_rules/17",
+            "/failure_rules/13",
             "/functions/0"
           ]
         }
@@ -50254,13 +50432,13 @@
         {
           "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
           "pointers": [
-            "/failure_classifications/18"
+            "/failure_classifications/14"
           ]
         },
         {
           "path": "docs/helix-os/L5-detail-design/management-authority-source-record.json",
           "pointers": [
-            "/failure_rules/18",
+            "/failure_rules/14",
             "/functions/0"
           ]
         }
@@ -50289,13 +50467,13 @@
         {
           "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
           "pointers": [
-            "/failure_classifications/19"
+            "/failure_classifications/15"
           ]
         },
         {
           "path": "docs/helix-os/L5-detail-design/management-authority-source-record.json",
           "pointers": [
-            "/failure_rules/19",
+            "/failure_rules/15",
             "/functions/0"
           ]
         }
@@ -50324,13 +50502,13 @@
         {
           "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
           "pointers": [
-            "/failure_classifications/20"
+            "/failure_classifications/16"
           ]
         },
         {
           "path": "docs/helix-os/L5-detail-design/management-authority-source-record.json",
           "pointers": [
-            "/failure_rules/20",
+            "/failure_rules/16",
             "/functions/0"
           ]
         }
@@ -50359,13 +50537,13 @@
         {
           "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
           "pointers": [
-            "/failure_classifications/21"
+            "/failure_classifications/17"
           ]
         },
         {
           "path": "docs/helix-os/L5-detail-design/management-authority-source-record.json",
           "pointers": [
-            "/failure_rules/21",
+            "/failure_rules/17",
             "/functions/0"
           ]
         }
@@ -50394,13 +50572,13 @@
         {
           "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
           "pointers": [
-            "/failure_classifications/22"
+            "/failure_classifications/18"
           ]
         },
         {
           "path": "docs/helix-os/L5-detail-design/management-authority-source-record.json",
           "pointers": [
-            "/failure_rules/22",
+            "/failure_rules/18",
             "/functions/0"
           ]
         }
@@ -50429,13 +50607,13 @@
         {
           "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
           "pointers": [
-            "/failure_classifications/23"
+            "/failure_classifications/19"
           ]
         },
         {
           "path": "docs/helix-os/L5-detail-design/management-authority-source-record.json",
           "pointers": [
-            "/failure_rules/23",
+            "/failure_rules/19",
             "/functions/0"
           ]
         }
@@ -50464,13 +50642,13 @@
         {
           "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
           "pointers": [
-            "/failure_classifications/24"
+            "/failure_classifications/20"
           ]
         },
         {
           "path": "docs/helix-os/L5-detail-design/management-authority-source-record.json",
           "pointers": [
-            "/failure_rules/24",
+            "/failure_rules/20",
             "/functions/0"
           ]
         }
@@ -50499,13 +50677,13 @@
         {
           "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
           "pointers": [
-            "/failure_classifications/25"
+            "/failure_classifications/21"
           ]
         },
         {
           "path": "docs/helix-os/L5-detail-design/management-authority-source-record.json",
           "pointers": [
-            "/failure_rules/25",
+            "/failure_rules/21",
             "/functions/0"
           ]
         }
@@ -50534,13 +50712,13 @@
         {
           "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
           "pointers": [
-            "/failure_classifications/26"
+            "/failure_classifications/22"
           ]
         },
         {
           "path": "docs/helix-os/L5-detail-design/management-authority-source-record.json",
           "pointers": [
-            "/failure_rules/26",
+            "/failure_rules/22",
             "/functions/0"
           ]
         }
@@ -50569,13 +50747,13 @@
         {
           "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
           "pointers": [
-            "/failure_classifications/27"
+            "/failure_classifications/23"
           ]
         },
         {
           "path": "docs/helix-os/L5-detail-design/management-authority-source-record.json",
           "pointers": [
-            "/failure_rules/27",
+            "/failure_rules/23",
             "/functions/0"
           ]
         }
@@ -50604,13 +50782,13 @@
         {
           "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
           "pointers": [
-            "/failure_classifications/28"
+            "/failure_classifications/24"
           ]
         },
         {
           "path": "docs/helix-os/L5-detail-design/management-authority-source-record.json",
           "pointers": [
-            "/failure_rules/28",
+            "/failure_rules/24",
             "/functions/0"
           ]
         }
@@ -50633,13 +50811,13 @@
         {
           "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
           "pointers": [
-            "/failure_classifications/31"
+            "/failure_classifications/25"
           ]
         },
         {
           "path": "docs/helix-os/L5-detail-design/management-authority-source-record.json",
           "pointers": [
-            "/failure_rules/31"
+            "/failure_rules/25"
           ]
         },
         {
@@ -50757,13 +50935,13 @@
         {
           "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
           "pointers": [
-            "/failure_classifications/32"
+            "/failure_classifications/26"
           ]
         },
         {
           "path": "docs/helix-os/L5-detail-design/management-authority-source-record.json",
           "pointers": [
-            "/failure_rules/32"
+            "/failure_rules/26"
           ]
         },
         {
@@ -50875,13 +51053,13 @@
         {
           "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
           "pointers": [
-            "/failure_classifications/33"
+            "/failure_classifications/27"
           ]
         },
         {
           "path": "docs/helix-os/L5-detail-design/management-authority-source-record.json",
           "pointers": [
-            "/failure_rules/33"
+            "/failure_rules/27"
           ]
         },
         {
@@ -50916,13 +51094,13 @@
         {
           "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
           "pointers": [
-            "/failure_classifications/34"
+            "/failure_classifications/28"
           ]
         },
         {
           "path": "docs/helix-os/L5-detail-design/management-authority-source-record.json",
           "pointers": [
-            "/failure_rules/34"
+            "/failure_rules/28"
           ]
         },
         {
@@ -50951,13 +51129,13 @@
         {
           "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
           "pointers": [
-            "/failure_classifications/35"
+            "/failure_classifications/29"
           ]
         },
         {
           "path": "docs/helix-os/L5-detail-design/management-authority-source-record.json",
           "pointers": [
-            "/failure_rules/35"
+            "/failure_rules/29"
           ]
         },
         {
@@ -50985,13 +51163,13 @@
         {
           "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
           "pointers": [
-            "/failure_classifications/36"
+            "/failure_classifications/30"
           ]
         },
         {
           "path": "docs/helix-os/L5-detail-design/management-authority-source-record.json",
           "pointers": [
-            "/failure_rules/36"
+            "/failure_rules/30"
           ]
         },
         {
@@ -51019,13 +51197,13 @@
         {
           "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
           "pointers": [
-            "/failure_classifications/37"
+            "/failure_classifications/31"
           ]
         },
         {
           "path": "docs/helix-os/L5-detail-design/management-authority-source-record.json",
           "pointers": [
-            "/failure_rules/37"
+            "/failure_rules/31"
           ]
         },
         {
@@ -51054,13 +51232,13 @@
         {
           "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
           "pointers": [
-            "/failure_classifications/38"
+            "/failure_classifications/32"
           ]
         },
         {
           "path": "docs/helix-os/L5-detail-design/management-authority-source-record.json",
           "pointers": [
-            "/failure_rules/38"
+            "/failure_rules/32"
           ]
         },
         {
@@ -51089,13 +51267,13 @@
         {
           "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
           "pointers": [
-            "/failure_classifications/39"
+            "/failure_classifications/33"
           ]
         },
         {
           "path": "docs/helix-os/L5-detail-design/management-authority-source-record.json",
           "pointers": [
-            "/failure_rules/39"
+            "/failure_rules/33"
           ]
         },
         {
@@ -51131,13 +51309,13 @@
         {
           "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
           "pointers": [
-            "/failure_classifications/40"
+            "/failure_classifications/34"
           ]
         },
         {
           "path": "docs/helix-os/L5-detail-design/management-authority-source-record.json",
           "pointers": [
-            "/failure_rules/40"
+            "/failure_rules/34"
           ]
         },
         {
@@ -51165,13 +51343,13 @@
         {
           "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
           "pointers": [
-            "/failure_classifications/41"
+            "/failure_classifications/35"
           ]
         },
         {
           "path": "docs/helix-os/L5-detail-design/management-authority-source-record.json",
           "pointers": [
-            "/failure_rules/41"
+            "/failure_rules/35"
           ]
         },
         {
@@ -51201,13 +51379,13 @@
         {
           "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
           "pointers": [
-            "/failure_classifications/42"
+            "/failure_classifications/36"
           ]
         },
         {
           "path": "docs/helix-os/L5-detail-design/management-authority-source-record.json",
           "pointers": [
-            "/failure_rules/42"
+            "/failure_rules/36"
           ]
         },
         {
@@ -51237,13 +51415,13 @@
         {
           "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
           "pointers": [
-            "/failure_classifications/43"
+            "/failure_classifications/37"
           ]
         },
         {
           "path": "docs/helix-os/L5-detail-design/management-authority-source-record.json",
           "pointers": [
-            "/failure_rules/43"
+            "/failure_rules/37"
           ]
         },
         {
@@ -51278,13 +51456,13 @@
         {
           "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
           "pointers": [
-            "/failure_classifications/44"
+            "/failure_classifications/38"
           ]
         },
         {
           "path": "docs/helix-os/L5-detail-design/management-authority-source-record.json",
           "pointers": [
-            "/failure_rules/44"
+            "/failure_rules/38"
           ]
         },
         {
@@ -51313,13 +51491,13 @@
         {
           "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
           "pointers": [
-            "/failure_classifications/45"
+            "/failure_classifications/39"
           ]
         },
         {
           "path": "docs/helix-os/L5-detail-design/management-authority-source-record.json",
           "pointers": [
-            "/failure_rules/45"
+            "/failure_rules/39"
           ]
         },
         {
@@ -51351,13 +51529,13 @@
         {
           "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
           "pointers": [
-            "/failure_classifications/46"
+            "/failure_classifications/40"
           ]
         },
         {
           "path": "docs/helix-os/L5-detail-design/management-authority-source-record.json",
           "pointers": [
-            "/failure_rules/46"
+            "/failure_rules/40"
           ]
         },
         {
@@ -51385,13 +51563,13 @@
         {
           "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
           "pointers": [
-            "/failure_classifications/47"
+            "/failure_classifications/41"
           ]
         },
         {
           "path": "docs/helix-os/L5-detail-design/management-authority-source-record.json",
           "pointers": [
-            "/failure_rules/47"
+            "/failure_rules/41"
           ]
         },
         {
@@ -51420,13 +51598,13 @@
         {
           "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
           "pointers": [
-            "/failure_classifications/48"
+            "/failure_classifications/42"
           ]
         },
         {
           "path": "docs/helix-os/L5-detail-design/management-authority-source-record.json",
           "pointers": [
-            "/failure_rules/48"
+            "/failure_rules/42"
           ]
         },
         {
@@ -51454,13 +51632,13 @@
         {
           "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
           "pointers": [
-            "/failure_classifications/49"
+            "/failure_classifications/43"
           ]
         },
         {
           "path": "docs/helix-os/L5-detail-design/management-authority-source-record.json",
           "pointers": [
-            "/failure_rules/49"
+            "/failure_rules/43"
           ]
         },
         {
@@ -51489,19 +51667,88 @@
         {
           "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
           "pointers": [
-            "/failure_classifications/50"
+            "/failure_classifications/44"
           ]
         },
         {
           "path": "docs/helix-os/L5-detail-design/management-authority-source-record.json",
           "pointers": [
-            "/failure_rules/50"
+            "/failure_rules/44"
           ]
         },
         {
           "path": "docs/helix-os/L7-function-verification/management-authority-source-record.json",
           "pointers": [
             "/connection_materials/OS015/case/cases/572/given/input"
+          ]
+        }
+      ]
+    },
+    {
+      "class_id": "OS015-NEG-COMPOSITE-62fb66a6e279702c28b1aa4f8ee9380369f59c8322c999587e174c6c4992b558",
+      "expected_classification": "management_material_violation",
+      "expected": {
+        "finding_codes": [
+          "original_event_mutated",
+          "source_unresolved",
+          "unresolved_promoted_to_current"
+        ]
+      },
+      "expected_axis": "original_event",
+      "expected_state": "violation",
+      "backflow_owner": "management-authority-owner",
+      "side_effect_count": 0,
+      "source_pointers": [
+        {
+          "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
+          "pointers": [
+            "/failure_classifications/45"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L5-detail-design/management-authority-source-record.json",
+          "pointers": [
+            "/failure_rules/45"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L7-function-verification/management-authority-source-record.json",
+          "pointers": [
+            "/connection_materials/OS015/case/fixture_inputs/inspect"
+          ]
+        }
+      ]
+    },
+    {
+      "class_id": "OS015-NEG-COMPOSITE-deac8ce9011311dc91b808f2f94e7d2dcd7320bd68b2b820d7eeef6ac092e7f9",
+      "expected_classification": "management_material_violation",
+      "expected": {
+        "finding_codes": [
+          "authority_state_unresolved",
+          "unresolved_promoted_to_current"
+        ]
+      },
+      "expected_axis": "authority",
+      "expected_state": "violation",
+      "backflow_owner": "management-authority-owner",
+      "side_effect_count": 0,
+      "source_pointers": [
+        {
+          "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
+          "pointers": [
+            "/failure_classifications/46"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L5-detail-design/management-authority-source-record.json",
+          "pointers": [
+            "/failure_rules/46"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L7-function-verification/management-authority-source-record.json",
+          "pointers": [
+            "/connection_materials/OS015/case/fixture_inputs/inspect"
           ]
         }
       ]
@@ -51515,10 +51762,10 @@
     },
     "raw_input_source": {
       "path": "docs/helix-os/L7-function-verification/management-authority-source-record.json",
-      "pointer": "/connection_materials/OS015/case/cases/*/given/input"
+      "pointer": "/connection_materials/OS015/case/fixture_inputs/inspect"
     },
-    "method": "L8 unit_casesのcase_idとl7_material_refからL7固定given.inputへ結び、manifestに固定されたL4/L7独立manual classificationをL5 composite_class_formationでowner joinした。L5 existing rulesは全ordered code occurrenceのowner条件として照合。L7 expected_proposal、L8/L9 case expected、L9 class rowsを分類oracleに使わない。",
-    "coverage": "先行29 assignmentsを保持し、追加112件（既存2 class residual 75、新規18 class 37）をL8 unit_casesへraw given.input pointerとclass/rule/function refsで接続。L8 classesは18件追加。singleton-less 6 classは未形成のまま。",
-    "preservation": "583 unit_casesのcondition/expected/expected_preserved、全L7 own input以外の既存期待を保持。先行29 linksは変更しない。追加caseで変更するのはl7_material_ref、negative_class_ref、rule_ref、function_refのみ。"
+    "method": "二件のclass/caseはL7固定inspect fixtureへ明示stimulus replacementを適用するsource-forward projection。finding occurrence順・全体condition・axis/stateはL4固定class rowをsourceとして手作業で対応づけ、L5 composite_class_formationと既存failure rule owner joinを照合した。L7 expected_proposal、L8/L9 expected、L9 class rowは期待導出に使用しない。",
+    "coverage": "L4/L5全47 class IDsを対応させ、C0584/C0585の2 caseを追加。6 singleton ruleはL5から除き、L8 classへ形成しない。",
+    "preservation": "従来583 unit_casesとそのcondition/expected/expected_preserved、112既存class linksを保持。追加2 case以外のcase rowはbaseと同一。"
   }
 }
