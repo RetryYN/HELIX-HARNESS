@@ -3657,7 +3657,8 @@
             "unresolved": [
               "formal field schema and required-field policy",
               "whether absent and null are equivalent for each member",
-              "source owner qualification"
+              "source owner qualification",
+              "Whether freeze.sequence equal to body_change.sequence is rejected, accepted, or unknown; only the < and > branches have source basis."
             ]
           },
           "negative": [
@@ -3673,7 +3674,7 @@
                 "body_change.sequence"
               ],
               "relation": "freeze.sequence > body_change.sequence",
-              "unresolved": "Meaning of sequence values and their binding to target revision."
+              "unresolved": "Meaning and target-revision binding of sequence values; equality is not covered by the fixed source and remains unresolved."
             },
             {
               "predicate_id": "paired_oracle_revision_mismatch",
@@ -3698,9 +3699,20 @@
               ],
               "condition": "Freeze record lacks target/design/L6/test/oracle/expected/sequence members; timestamps alone do not establish the required frozen pair or sequence relation.",
               "unresolved": "Overlap and precedence relative to an absent/null freeze record."
+            },
+            {
+              "predicate_id": "target_and_pair_refs_untraceable",
+              "required_presence": "The target binding and required design/test/oracle references are present as resolvable typed members.",
+              "condition": "A required target identity/revision/scope or paired design/test/oracle identity/revision/scope/owner member is absent, incomplete, or cannot be related to the target binding.",
+              "meaning_basis": "L3 requires binding target identity/revision/scope; L10 requires tracing the design/oracle versions and target.",
+              "unresolved": "L4/L9 have no corresponding negative row. Classification output, axis, state, backflow, and priority are not defined here; extending L4/L9 is a separate V-pair task."
             }
           ],
-          "no_classification_mapping": "This catalog contains no candidate code, axis, state, fixture value, or case ID. Candidate mapping priority remains unresolved."
+          "no_classification_mapping": "This catalog contains no candidate code, axis, state, fixture value, or case ID. Candidate mapping priority remains unresolved.",
+          "unresolved": [
+            "r2 negative condition for untraceable target identity/revision/scope or design/oracle version has no L4/L9 negative row; a value-free candidate predicate is recorded without L8 projection.",
+            "freeze.sequence == body_change.sequence has no positive or negative classification in fixed sources."
+          ]
         },
         "semantic_distinctions": [
           "凍結記録と実Red観測は別であり、凍結をRed実観測へ昇格させない。",
