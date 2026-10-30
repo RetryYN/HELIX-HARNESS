@@ -3,7 +3,8 @@
 - status: scaffold candidate（調査証跡、未採用・未review）
 - authority_effect: none
 - PR class: `design_verification`
-- base: `0fc143f1bc356b4b1e0ab410d974572b935bffa1`
+- PR lineage head: `cc7bf20335937ff4585420d69433908b05144cc9`
+- latest-main trial: `0fc143f1bc356b4b1e0ab410d974572b935bffa1`
 - request: `WR198-F05-GAP-PROPOSAL-BODY-SOURCE`（Issue #3510、Claude査定 comment `6526378182`、request SHA-256 `fe9469e2f644d96210ee409a5fe647364a9dd0a39b942789d96b239aceaae102`）
 - review: `WR198-3933-review-R1` response SHA-256 `34b2164fb6722b144fe774137a07165f66035f11d5f01c40ae853f3d99cdea74`; PR #3933 comment `6526970112` reviewed head `cc7bf20335937ff4585420d69433908b05144cc9`
 
@@ -64,14 +65,14 @@ HDECと承認済みL3/L10はsource/revision/scopeの保持、欠落と未決の�
 
 ## 実施した静的確認
 
-最新main `0fc143f1bc356b4b1e0ab410d974572b935bffa1` のclean detached worktreeでread-after基準を取り、候補を載せたworktreeでも再実行した。L1/L2/L11/L3/L4/L9/L10のうち今回pinしたsourceは623fからの変更一覧に含まれず、hashも上表と一致する。既存freeze・正本は変更していない。
+最新main `0fc143f1bc356b4b1e0ab410d974572b935bffa1` のclean detached worktreeでread-after基準を取り、候補のREADMEとSCF-B-0179をそのworktreeへ一時配置したlatest-main trialとPR lineage worktreeでも再実行した。今回pinしたsourceは623fからの変更一覧に含まれず、hashも上表と一致する。既存freeze・正本は変更していない。
 
 - `python3 -m json.tool scaffold/bindings/SCF-B-0179.json`: exit 0。
-- `python3 -B scaffold/tools/scfctl.py validate`: `bindings=168 fail=0`。SCF-B-0178は#3932で使用済みのため、本候補をSCF-B-0179へ再採番した。
-- `python3 -B scaffold/tools/scfctl.py stale`: `stale=0`。
+- `python3 -B scaffold/tools/scfctl.py validate`: PR lineage worktreeとlatest-main trial overlayで `bindings=168 fail=0`。SCF-B-0178は#3932で使用済みのため、本候補をSCF-B-0179へ再採番した。
+- `python3 -B scaffold/tools/scfctl.py stale`: PR lineage worktreeとlatest-main trial overlayで `stale=0`。upstream 16 pinをlatest-mainの実ファイルと照合し、mismatchなし。
 - `git diff --check`: exit 0。
-- 指定された `check-child`（HARNESS L4/L9とL5/L8）: `passed=true`、L4/L9=true、L5/L8=true、negative_4way=true、failures=0。これはcheckerの構造照合結果で、F05 owner oracleやruntime動作の証明ではない。
-- 既存freezeの `check-freeze --root . --worktree` はclean mainと候補worktreeの双方で、以下3件すべてexit 1 / `all_mechanical_matched=false`となり、pin/countの不一致も同一だった。この作業はL4/L9を含む凍結対象を変更していない。
+- 指定された `check-child`（HARNESS L4/L9とL5/L8）はPR lineage worktreeとlatest-main trial overlayで `passed=true`、L4/L9=true、L5/L8=true、negative_4way=true、failures=0。これはcheckerの構造照合結果で、F05 owner oracleやruntime動作の証明ではない。
+- 既存freezeの `check-freeze --root . --worktree` はclean main、latest-main trial overlay、PR lineage worktreeのすべてで、以下3件ともexit 1 / `all_mechanical_matched=false`となりpin/count不一致は同一だった。この作業はL4/L9を含む凍結対象を変更していない。
   - `h009-fn5-function-pair-freeze-2026-10-28.json`: pinned L5 expected `e4780a713ec9703194913a44d3f12803a7d117d48176fc1e469195059d763740` / actual `f5da0e585b3bb91cf5b07d7d3c1e124b9584718395d8b07704cede6e2523ce1c`; L8 expected `e8d02da7d49bde75f2ae8b69bb4ffaed8d038fc60295a3b2bc5844c2d1ae11fa` / actual `65aa4c2e120e6636cc3f3eb260fec32b06b1b44a6f17b21f785dc0d63fa767ce`。既存count差分もあり、L5 failure_rules 107 recorded/108 computed、L8 negative rows 106/107、additional unit cases 25/54。
   - `h009-fn5-application-contract-recipient-refreeze-2026-10-29.json`: L5 expected `8eaf2ec3914857c08191831423259c417927e61e30caee53d2fd9dd6af162dfb` / actual `f5da0e585b3bb91cf5b07d7d3c1e124b9584718395d8b07704cede6e2523ce1c`; L8 expected `d3beadc3b1fca94117e8d57ca601fa961244c6a66f7ed2cf69e237a0da604ee9` / actual `65aa4c2e120e6636cc3f3eb260fec32b06b1b44a6f17b21f785dc0d63fa767ce`。既存count差分はL5 failure_rules 107/108、L8 negative rows 106/107、additional unit cases 26/54。
   - `h009-fn5-source-content-failure-writer-pr-candidate-freeze-2026-10-29.json`: L9 (`docs/helix-harness/L9-integration-verification/product-template-application.json`) expected `2384d2fec666055a1fbef2f5ff3e4752ba2dd60a12543b7663fae8f814332b94` / actual `4d94e1d4e98c69dbad830b9bb699cdebaab2b8ad51e24e6733ef8b798ad35cef`; L5 expected `c91d90bb018b86889e951739e6860187f7d45422676b863db8510137ddac45bf` / actual `f5da0e585b3bb91cf5b07d7d3c1e124b9584718395d8b07704cede6e2523ce1c`; L8 expected `5bd6786b06ec804f43080c5999544b101774751f82464c9a42a775443a6a1768` / actual `65aa4c2e120e6636cc3f3eb260fec32b06b1b44a6f17b21f785dc0d63fa767ce`。既存count差分はL8 additional unit cases 48/54。
