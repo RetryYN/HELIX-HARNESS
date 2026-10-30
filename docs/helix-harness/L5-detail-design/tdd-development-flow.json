@@ -4322,6 +4322,101 @@
             ]
           }
         ]
+      },
+      "candidate_classification_design": {
+        "status": "scaffold_candidate_only_not_approved_or_executed",
+        "scope": "L3/L10-015-F03のsource-only意味に基づく負例の候補条件。既存L4/L9割当は比較記録に留める。",
+        "fixed_artifact": {
+          "path": "scaffold/research/wr243-tdd-f03-l5-l8-20261031/source/wr243-tdd-clean-source-only.json",
+          "sha256": "846907d5802170ed775fbf08664c0b85f42e7b6ac0a9623e8584452f81ead813",
+          "issue_comment": "https://github.com/RetryYN/HELIX-HARNESS/issues/3510#issuecomment-6534177643",
+          "meaning_scope_only": true
+        },
+        "comparison_ref": "scaffold/research/wr243-tdd-f03-l5-l8-20261031/comparison.json",
+        "source_pins": [
+          {
+            "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+            "revision": "988765e9be335f2a1d376721c1b11f808fd03372",
+            "pointer": "/requirements/42",
+            "record_sha256": "b641eb43bd5164ab55101bac10aaa0fbf0fb24a55d4429ad0f013af9594cd6ce"
+          },
+          {
+            "path": "docs/helix-harness/L10-verification/functional-verification.json",
+            "revision": "988765e9be335f2a1d376721c1b11f808fd03372",
+            "pointer": "/cases/42",
+            "record_sha256": "c41bc44981b5cdd6abe939405535a44c163d9714374e168dfe589dac4ce7cd7a"
+          },
+          {
+            "path": "docs/helix-harness/L4-basic-design/tdd-development-flow.json",
+            "revision": "988765e9be335f2a1d376721c1b11f808fd03372",
+            "pointer": "/contracts/3/behavior",
+            "record_sha256": "c6625bec74df1811056424209a81773be4b56c8bf210a6524d51675be1a5ab39",
+            "role": "comparison basis; not a failure-code or classifier authority"
+          }
+        ],
+        "conditions": [
+          {
+            "local_id": "WR243-SO-F03-01",
+            "negative_condition": "Frozen oracle is weakened or replaced to make the implementation pass; or the Green observation does not satisfy the same frozen oracle.",
+            "expected_observation": "Do not recognize Green closure. Preserve oracle identity/content mismatch and route the semantic change upstream; do not count a pass against a changed expectation.",
+            "basis": [
+              "L3 F03 obligation",
+              "L10 F03 negative_input and failure_observation",
+              "L4 /contracts/3 behavior, output_contract, failure_conditions"
+            ],
+            "status": "derived expectation; not executed"
+          },
+          {
+            "local_id": "WR243-SO-F03-02",
+            "negative_condition": "The implementation body is changed before the intended pre-body Red is observed, or the required causal order is inverted.",
+            "expected_observation": "Keep the pre-body Red obligation unsatisfied; later evidence cannot establish the missing earlier observation. Do not close the F03 sequence.",
+            "basis": [
+              "L3 F03 obligation: after pre-body Red",
+              "L10 F03 negative_input and failure_observation",
+              "L4 /contracts/3 failure_conditions"
+            ],
+            "status": "derived expectation; not executed"
+          },
+          {
+            "local_id": "WR243-SO-F03-03",
+            "negative_condition": "A local refactor changes public contract, requirement meaning, architecture meaning, or state meaning.",
+            "expected_observation": "Do not accept it as a meaning-preserving local refactor; preserve the change as an upstream/backflow obligation to the relevant owner/layer.",
+            "basis": [
+              "L3 F03 obligation",
+              "L10 F03 negative_input and failure_observation",
+              "L4 /contracts/3 behavior, failure_conditions"
+            ],
+            "status": "derived expectation; not executed"
+          },
+          {
+            "local_id": "WR243-SO-F03-04",
+            "negative_condition": "Extra behavior outside the minimal body scope is added, or an incorrect observed Green is treated as satisfying the oracle.",
+            "expected_observation": "Preserve the out-of-scope behavior or wrong observation as an unresolved failure; successful unrelated behavior cannot cancel it.",
+            "basis": [
+              "L4 /contracts/3 output_contract and failure_conditions"
+            ],
+            "status": "derived expectation; not executed"
+          },
+          {
+            "local_id": "WR243-SO-F03-05",
+            "negative_condition": "Atomic CI success is presented as product quality, system verification, user acceptance, or release completion.",
+            "expected_observation": "Keep F03/atomic-CI evidence separate from higher verification and acceptance; do not produce those higher states from this CI result.",
+            "basis": [
+              "L3 F03 obligation",
+              "L4 /contracts/3 failure_conditions: ci_as_quality"
+            ],
+            "status": "derived expectation; not executed"
+          }
+        ],
+        "comparison_boundary": {
+          "existing_l4_l9_rows_compared": 9,
+          "existing_l4_and_l9_codes_axis_state_owner": "comparison only; not copied as source-only decisions",
+          "row_level_oracle": "not derived; do not create",
+          "failure_code_vocabulary": "unresolved; do not assign",
+          "sequence_equality": "unresolved; do not assign",
+          "algorithm_or_fixture": "not included"
+        },
+        "execution_state": "not_executed"
       }
     },
     {
