@@ -1,0 +1,294 @@
+{
+  "schema": "wr244-project-scope-isolation-source-comparison.v1",
+  "evidence_kind": "scaffold",
+  "authority_effect": "none",
+  "base_revision": "2684816ad6179cc3535e4a6c297e61d10fd75ca0",
+  "pre_comparison_freeze": {
+    "artifact": "scaffold/research/wr244-sec006-psi-l4l9-20261031/blind-source-only.json",
+    "sha256": "14b28cc8a9e4cee9727d458a6e7fbe175c02a46fed06a5fa57bacb983edd4e22",
+    "fixed_at": "RetryYN/HELIX-HARNESS#3510 comment 6534222680",
+    "fixed_before_existing_l9_assignment_comparison": true,
+    "author_context": "Codex worker with no prior SEC006 L4/L5/L8/L9 assignment work in this task context"
+  },
+  "source_pins": [
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.json",
+      "revision": "2684816ad6179cc3535e4a6c297e61d10fd75ca0",
+      "sha256": "e4eeb70cc303e44199c7d898281e91c22dba89b47666353b9c80a4c634e898b5",
+      "pointers": ["/requirements/3", "/requirements/4"]
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.json",
+      "revision": "2684816ad6179cc3535e4a6c297e61d10fd75ca0",
+      "sha256": "e6da7eaff29a623b5d069801280c295d9dd7cc43b51d9cde25b12a8110e5072a",
+      "pointers": ["/cases/3", "/cases/4"]
+    },
+    {
+      "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+      "revision": "2684816ad6179cc3535e4a6c297e61d10fd75ca0",
+      "sha256": "3ef0816e6a1d1156a970f1230da5e3199076210862463a348a7058772d67bf25",
+      "pointers": ["/scope", "/architecture/pure_boundary", "/architecture/scope_locality", "/contracts/0", "/contracts/1", "/diagnostic_contract"]
+    },
+    {
+      "path": "docs/helix-security/L9-integration-verification/project-scope-isolation.json",
+      "revision": "2684816ad6179cc3535e4a6c297e61d10fd75ca0",
+      "sha256": "f89a3462052873cb4de456918161f43afa471918f6e1dbf20166f599be96ab62",
+      "pointers": ["/cases/0/negative_cases", "/cases/1/negative_cases", "/multi_contract_residual/negative_cases"]
+    },
+    {
+      "path": "docs/helix-security/L5-detail-design/project-scope-isolation.json",
+      "revision": "2684816ad6179cc3535e4a6c297e61d10fd75ca0",
+      "sha256": "1b6e50cd2db88e86ae88723589e12170b0651650cf5dbb280b99c673180ea108"
+    },
+    {
+      "path": "docs/helix-security/L8-unit-verification/project-scope-isolation.json",
+      "revision": "2684816ad6179cc3535e4a6c297e61d10fd75ca0",
+      "sha256": "45d9ae37cf4136aed05d548107a7bdc0c088e2753d36428fb4692c7078a65070"
+    },
+    {
+      "path": "docs/governance/design-verification-quality-assurance.md",
+      "revision": "2684816ad6179cc3535e4a6c297e61d10fd75ca0",
+      "sha256": "f5751e236dc073fe67114c1fcb4b0f64b3d746290b25d75b61e60a08e3c99c85",
+      "pointers": ["§3 CHK-NEG-4WAY-MATCH"]
+    },
+    {
+      "path": "docs/governance/legacy-asset-disposition.jsonl",
+      "revision": "2684816ad6179cc3535e4a6c297e61d10fd75ca0",
+      "pointers": ["LEGACY-ASSET-D461943347D372ECF6DA", "LEGACY-ASSET-349061A71CEF2554B9A7"]
+    }
+  ],
+  "source_derived_meanings": [
+    {
+      "candidate": "identity_missing_or_conflicting",
+      "source_basis": ["L3 F01 binds scope identity axes", "L10 F01 names missing/conflicting identity", "L4 contract 0 preserves missing/conflicting identity and bars fallback completion"],
+      "existing_l9_witnesses": ["SEC003-TARGET-PROJECT-MISSING", "SEC003-ORIGIN-REVISION-MISSING", "SEC003-ORIGIN-PROJECT-CONFLICT", "SEC003-TARGET-REVISION-CONFLICT"],
+      "assignment_result": "existing witnesses; L9 main cases include 12 missing-axis cases and L9 residual contains 12 two-finding conflict cases",
+      "candidate_leaf_id": "unknown; no exact leaf taxonomy is supplied by the selected upstream fields"
+    },
+    {
+      "candidate": "tenant_applicability_unknown_or_missing",
+      "source_basis": ["L3 F01 forbids both inventing an inapplicable tenant and omitting an applicable tenant", "L10 F01 names tenant omission", "L4 contract 0 distinguishes true/false/unknown and keeps unknown unresolved"],
+      "existing_l9_witnesses": ["SEC003-TARGET-TENANT-MISSING", "SEC003-ORIGIN-TENANT-MISSING", "SEC003-TENANT-APPLICABILITY-UNKNOWN", "SEC003-ORIGIN-TENANT-UNKNOWN-VALUES", "SEC003-TARGET-TENANT-UNKNOWN-VALUES"],
+      "assignment_result": "existing witnesses; missing identity and applicability-unknown are distinct observed L9 cases",
+      "candidate_leaf_id": "unknown"
+    },
+    {
+      "candidate": "tenant_invented_when_not_applicable",
+      "source_basis": ["L3 F01 forbids inventing a tenant absent from the target", "L4 contract 0 marks false applicability plus non-null tenant as tenant_invented"],
+      "existing_l9_witnesses": ["SEC003-TENANT-INVENTED"],
+      "assignment_result": "one existing singleton L9 witness",
+      "candidate_leaf_id": "tenant_invented is present in L4 prose, but no source-complete six-element class key exists"
+    },
+    {
+      "candidate": "implicit_primary_tree_or_other_project_fallback",
+      "source_basis": ["L10 F01 names primary-tree/other-project fallback", "L10 F02 names implicit fallback", "L4 contracts 0/1 prohibit filling identity or allowing implicit fallback"],
+      "existing_l9_witnesses": ["SEC003-PRIMARY-TREE-FALLBACK", "SEC003-OTHER-PROJECT-FALLBACK", "SEC003-AGENT-PRIMARY-TREE-FALLBACK", "SEC003-HOOK-PRIMARY-TREE-FALLBACK"],
+      "assignment_result": "existing singleton L9 witnesses and one actual three-finding residual witness SEC003-COMPOUND-LOCAL-FAILURE",
+      "candidate_leaf_id": "implicit_fallback appears in L9; the exact compound key still needs a typed owner_ref"
+    },
+    {
+      "candidate": "cross_project_or_environment_asset_state_claimed_latest",
+      "source_basis": ["L10 F02 says separate-project state is not adopted as latest", "L3 F02 compares each boundary to target revision/scope and preserves owner state-of-record", "L4 contract 1 rejects latest self-assertion as scope evidence"],
+      "existing_l9_witnesses": ["SEC003-OTHER-PROJECT-LATEST", "SEC003-AGENT-OTHER-PROJECT-LATEST", "SEC003-HOOK-OTHER-PROJECT-LATEST"],
+      "assignment_result": "existing singleton L9 witnesses",
+      "candidate_leaf_id": "asset_scope_conflict is an existing L9 code, not an upstream leaf identifier"
+    },
+    {
+      "candidate": "operation_authority_does_not_extend_across_operation_kinds",
+      "source_basis": ["L3 F02 names read/write/execute/network/state/credential/artifact boundaries", "L10 F02 says read authority does not authorize write/network", "L4 contract 1 checks requested operation against the explicit allowed set"],
+      "existing_l9_witnesses": ["SEC003-READ-DOES-NOT-GRANT-WRITE", "SEC003-READ-DOES-NOT-GRANT-EXECUTE", "SEC003-READ-DOES-NOT-GRANT-NETWORK", "SEC003-AGENT-READ-DOES-NOT-GRANT-NETWORK"],
+      "assignment_result": "existing singleton L9 witnesses",
+      "candidate_leaf_id": "operation_scope_conflict is an existing L9 code, not an upstream leaf identifier"
+    }
+  ],
+  "l9_assignment_audit": {
+    "path": "scaffold/research/wr244-sec006-psi-l4l9-20261031/l9-assignment-audit.json",
+    "rows_total": 114,
+    "case_negative_rows": 98,
+    "residual_negative_rows_not_case_membership": 16,
+    "multi_finding_residual_rows": 13,
+    "method": "Record every current L9 negative case and every multi-contract residual negative row by JSON Pointer and ID, preserve existing ordered findings, and state the source-only meaning comparison without changing assignment."
+  },
+  "multi_finding_order": {
+    "blind_derivation": "unknown for combinations/order not stated in L3/L10 and the allowed L4 contract fields; the synthetic combination remains illustrative only",
+    "existing_l9_actual_input": {
+      "pointer": "/multi_contract_residual/negative_cases",
+      "rows": 16,
+      "multi_finding_rows": 13,
+      "two_finding_rows": 12,
+      "three_finding_rows": 1,
+      "representatives": ["SEC003-COMPOUND-LOCAL-FAILURE", "SEC003-ORIGIN-PROJECT-CONFLICT", "SEC003-TARGET-REVISION-CONFLICT"],
+      "sort_rule": "Existing L4 /diagnostic_contract/sort orders (code, pointer, return_owner) by scalar codepoint and uniquifies only an exactly equal triple.",
+      "observed_order_check": "All 13 multi-finding residual rows match the L4 sort tuple order; mismatch count 0.",
+      "same_leaf_limit": "The sort rule only specifies exact-triple uniqueness. It does not establish semantic leaf identity or which occurrence retains provenance outside that tuple."
+    },
+    "l9_main_case_input": {
+      "pointer": "/cases/*/negative_cases",
+      "rows": 98,
+      "multi_finding_rows": 0,
+      "finding_count_per_row": "one"
+    },
+    "l8_scope_note": "L8 has 52 negative unit cases; one two-finding row exists under /multi_contract_residual, outside the case table. L8 was read only and not changed."
+  },
+  "qa_section_3_and_key_feasibility": {
+    "current_mode": "legacy_casewise_four_layer; no explicit_negative_equivalence_classes marker is present in L4/L5/L8/L9",
+    "explicit_mode_rule": "QA §3 requires markers across all four layers for an evaluated explicit-mode match. A partial marker may be an intentional intermediate state only when its expected FAIL is reported.",
+    "six_element_key": ["classification/code", "ordered finding_codes", "backflow_owner", "expected_axis", "expected_state", "typed owner_ref"],
+    "typed_owner_ref_status": "not derivable in this PR-A source: L5 has 0 failure_rules. Its 14 functions do not declare a rule-owned class reference. L5 is out of scope.",
+    "l4_candidate_rows_added": 0,
+    "reason": "The frozen upstream supports source-derived negative meanings, but not complete explicit class membership. Reusing L9 code vocabulary to fill the L4 classification or guessing a L5 function as rule owner would reverse the derivation direction.",
+    "existing_expectations_oracles_changed": false
+  },
+  "mode_evaluation": {
+    "legacy_casewise": {
+      "current_mode": true,
+      "matching_shape": "The checker indexes L4 contracts, L9 cases, L8 cases and L5 contracts by array position, then matches negative rows by direct expected_classification/code/id and compares the legacy row attributes.",
+      "l4_gap": "L4 currently has 0 negative_classifications; L9 has 98 negative case rows whose finding code is nested under expected_observation.findings and whose direct row key falls back to its case ID. L8 has 52 unit negative rows keyed by their distinct unit IDs; L5 has 0 failure_rules.",
+      "family_rows_effect": "Six source-derived L4 family rows would be useful candidate classifications but would not match 98 distinct L9 case IDs or 52 L8 unit IDs in the legacy casewise matcher.",
+      "rejected_recovery": "Copying 98 L4 rows to match L9 row count would duplicate case-specific expectations in L4, preserve the L8/L9 grain mismatch, leave L5 empty, and repeat the documented #3835 failure.",
+      "decision": "Keep the current legacy mode for this L4/L9-only research artifact; do not use count equality as assignment evidence."
+    },
+    "explicit_negative_equivalence_classes": {
+      "partial_marker_allowed_as_intermediate_failure": true,
+      "partial_marker_behavior": "The checker intentionally fails when only a subset of L4/L5/L8/L9 is marked; this result could be reported as an intermediate state, not a pass.",
+      "pr_a_feasibility": "L4/L9-only partial marker is mechanically possible but the current files have no class table or negative_class_ref membership. No complete 6-key row can be assigned a typed owner_ref from the in-scope sources, so creating an incomplete class or member assignment would state more than the evidence supports.",
+      "recovery": "Keep the source-derived families in this scaffold comparison. A later staged transition can add class membership only after L5 owner rules and L8 unit-case references are explicit; if an intermediate partial marker is then needed, report the expected FAIL and counts without claiming admission."
+    }
+  },
+  "l4_negative_row_designability": [
+    {
+      "meaning": "identity axis missing",
+      "source_pointers": ["L3 /requirements/3", "L10 /cases/3", "L4 /contracts/0/input_meanings/0", "L4 /contracts/0/content_comparison/2"],
+      "source_support": "Required identity axes and preserve-missing/unknown behavior are explicit; affected operation stops and owner is the scope binding owner.",
+      "existing_l9_witnesses": ["SEC003-TARGET-PROJECT-MISSING", "SEC003-ORIGIN-REVISION-MISSING"],
+      "l4_legacy_row": "Semantically derivable as a candidate, but a class row does not join to the L9 case ID in the current legacy matcher.",
+      "explicit_key": "classification/code and rule-owned typed owner_ref are not sourced as a complete key."
+    },
+    {
+      "meaning": "identity conflict",
+      "source_pointers": ["L3 /requirements/3", "L10 /cases/3", "L4 /contracts/0/input_meanings/0", "L4 /contracts/0/content_comparison/2"],
+      "source_support": "L3/L10 name conflicting identity; L4 forbids fallback completion and preserves conflicting operands. The exact conflict disposition differs from missing identity.",
+      "existing_l9_witnesses": ["SEC003-PERMISSION-ASSET-PROJECT-DRIFT", "SEC003-ORIGIN-PROJECT-CONFLICT"],
+      "l4_legacy_row": "Semantically derivable as a candidate, but there are distinct single-finding asset conflicts and ordered multi-finding connection/identity conflicts.",
+      "explicit_key": "The 12 actual multi-finding rows require a source-backed ordered code list and typed owner association; do not collapse them to the singleton asset-conflict case."
+    },
+    {
+      "meaning": "tenant applicability unknown or tenant omitted",
+      "source_pointers": ["L3 /requirements/3", "L10 /cases/3", "L4 /contracts/0/input_meanings/1", "L4 /contracts/0/content_comparison/2", "L4 /contracts/0/content_comparison/3"],
+      "source_support": "The source explicitly distinguishes applicable/missing, false/non-null, and unknown; unknown is not converted to false.",
+      "existing_l9_witnesses": ["SEC003-TARGET-TENANT-MISSING", "SEC003-TENANT-APPLICABILITY-UNKNOWN", "SEC003-TARGET-TENANT-UNKNOWN-VALUES"],
+      "l4_legacy_row": "Two source conditions are distinguishable; exact row granularity can be separated without using L9 to derive meaning, but casewise IDs still do not join.",
+      "explicit_key": "No complete ordered finding_codes plus typed owner_ref key is established."
+    },
+    {
+      "meaning": "tenant invented when inapplicable",
+      "source_pointers": ["L3 /requirements/3", "L4 /contracts/0/content_comparison/2", "L4 /contracts/0/content_comparison/3"],
+      "source_support": "The L4 prose explicitly names `tenant_invented` when applicability is false and supplied tenant is non-null.",
+      "existing_l9_witnesses": ["SEC003-TENANT-INVENTED"],
+      "l4_legacy_row": "The classification term and condition are source-backed; single actual L9 witness exists. This is the strongest single-finding candidate for a standalone L4 row.",
+      "explicit_key": "The term alone does not supply a complete six-element key or class-to-case membership."
+    },
+    {
+      "meaning": "implicit primary-tree or other-project fallback",
+      "source_pointers": ["L10 /cases/3", "L10 /cases/4", "L4 /contracts/0/content_comparison/2", "L4 /contracts/1/content_comparison/2"],
+      "source_support": "Both L10 and L4 prohibit implicit fallback and fallback-based completion.",
+      "existing_l9_witnesses": ["SEC003-PRIMARY-TREE-FALLBACK", "SEC003-OTHER-PROJECT-FALLBACK", "SEC003-AGENT-PRIMARY-TREE-FALLBACK"],
+      "l4_legacy_row": "Semantic candidate is supported; current L9 also has a real three-finding compound residual that cannot be represented as this singleton alone.",
+      "explicit_key": "Exact code array for the compound residual is known from its existing L9 row, but class owner/membership is not resolved by L4/L9 alone."
+    },
+    {
+      "meaning": "cross-project/environment state claimed latest",
+      "source_pointers": ["L3 /requirements/4", "L10 /cases/4", "L4 /contracts/1/content_comparison/3"],
+      "source_support": "The latest claim cannot make foreign state/asset applicable and owner state-of-record cannot be replaced.",
+      "existing_l9_witnesses": ["SEC003-OTHER-PROJECT-LATEST", "SEC003-AGENT-OTHER-PROJECT-LATEST"],
+      "l4_legacy_row": "Semantic candidate is supported and existing L9 has singleton witnesses; it shares the observed asset conflict code with other identity drift cases.",
+      "explicit_key": "Same output code does not establish same classification/axis/owner key."
+    },
+    {
+      "meaning": "operation authority does not extend across operation kinds",
+      "source_pointers": ["L3 /requirements/4", "L10 /cases/4", "L4 /contracts/1/content_comparison/1"],
+      "source_support": "Requested operation is checked against the explicitly enumerated allowed set; one operation does not authorize another.",
+      "existing_l9_witnesses": ["SEC003-READ-DOES-NOT-GRANT-WRITE", "SEC003-READ-DOES-NOT-GRANT-NETWORK", "SEC003-AGENT-READ-DOES-NOT-GRANT-NETWORK"],
+      "l4_legacy_row": "Semantic candidate is supported; L9 already has per-operation/per-caller cases and L8 has a different unit-case grain.",
+      "explicit_key": "Per-operation case family is real; complete owner key and four-layer case membership remain open."
+    }
+  ],
+  "unmapped_or_unclosed": [
+    {
+      "meaning": "Exact L4 classification code and ordered finding_codes for source-derived identity/tenant/fallback/operation meanings",
+      "target": "L4 contracts and any L4 failure classification row",
+      "reason": "L3/L10 state obligations and observations but do not provide the output leaf taxonomy; selected L4 fields define comparison semantics but not a complete class with a rule-owned typed owner_ref.",
+      "return_to": "L5 rule owner and L4 classification owner after downstream semantic projection is available",
+      "pr_b": "Establish typed owner_ref and only then evaluate class membership plus L5/L8 correspondence; do not bulk-fill members from L9 population."
+    },
+    {
+      "meaning": "Actual multi-finding residual rows not represented as L9 cases or L4 source classes",
+      "target": "L9 /multi_contract_residual/negative_cases/3..15 and matching L4/L5/L8 class ownership",
+      "reason": "These are recorded residual observations, not current integration-case members. Their arrays are ordered by the existing L4 sort, but class owner and approved case membership are unresolved.",
+      "return_to": "L4/L5/L8/L9 row owners for the same source meaning and owner-qualified pair",
+      "pr_b": "Reassess with L5/L8 in scope; preserve each existing ordered finding array. Do not synthesize a case or singleton to force matching."
+    },
+    {
+      "meaning": "Same-leaf deduplication across distinct source occurrences and retained provenance",
+      "target": "L4 diagnostic/result contract and L5 rule projection",
+      "reason": "L4 specifies exact tuple deduplication only; the frozen upstream does not define semantic leaf identity or provenance retention across occurrences.",
+      "return_to": "L4 diagnostic-contract owner and L5 typed finding-rule owner",
+      "pr_b": "Keep unknown until a source-backed rule exists; preserve occurrence provenance in downstream comparison evidence."
+    }
+  ],
+  "legacy_and_failure_basis": {
+    "legacy_assets": [
+      {
+        "asset_id": "LEGACY-ASSET-D461943347D372ECF6DA",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/security-engagement-authority-requirements.md",
+        "lines": [24, 25, 26, 39, 40],
+        "preserve": "separate target/scope/environment fields, fail-closed unknown/missing/stale behavior, and bounded operation scope",
+        "change": "re-derive for adopted SEC003 project/tenant/environment/assignment/worktree scope and existing OS/INFRA/CONNECT owners; do not carry old privileged engagement classes, extra human gates, broker/runtime, or database",
+        "reason": "The current L3/L4 boundary preserves per-scope identity and owner responsibility without generating real authorization changes."
+      },
+      {
+        "asset_id": "LEGACY-ASSET-349061A71CEF2554B9A7",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/security-engagement-authority-acceptance.md",
+        "lines": [14, 15],
+        "preserve": "wrong target/scope/environment and fallback do not become authorized work",
+        "change": "do not copy engagement-specific admission or runtime behavior; use current SEC003 identity and explicit-connection comparison only",
+        "reason": "Current sources define comparison candidates, not runtime permission or execution evidence."
+      }
+    ],
+    "same_kind_failure_examples": [
+      {
+        "reference": "RetryYN/HELIX-HARNESS#3980 comment 6533971036, R1 F2",
+        "lesson": "Do not drop upstream-derived failure meaning because L9 has no row; record target, reason, return path, and PR-B treatment."
+      },
+      {
+        "reference": "RetryYN/HELIX-HARNESS#3980 comment 6533971036, R1 F3",
+        "lesson": "Real multi-finding inputs require the ordered finding_codes class; do not collapse them to fictional singleton rows."
+      }
+    ]
+  },
+  "checker_measurement": {
+    "command": "python3 scaffold/tools/design_verification_checker.py check-child --l4 docs/helix-security/L4-basic-design/project-scope-isolation.json --l9 docs/helix-security/L9-integration-verification/project-scope-isolation.json --l5 docs/helix-security/L5-detail-design/project-scope-isolation.json --l8 docs/helix-security/L8-unit-verification/project-scope-isolation.json --root .",
+    "checker": "current scaffold design-verification checker; no L4 algorithm/runtime/test/CI executed",
+    "before": {
+      "passed": false,
+      "comparison_mode": "legacy_casewise_four_layer",
+      "counts": {"L4": 0, "L9": 98, "L8": 52, "L5": 0},
+      "matched_case_count": 0,
+      "failures": 152
+    },
+    "after": {
+      "passed": false,
+      "comparison_mode": "legacy_casewise_four_layer",
+      "counts": {"L4": 0, "L9": 98, "L8": 52, "L5": 0},
+      "matched_case_count": 0,
+      "failures": 152,
+      "reason": "Canonical L4/L9 rows and expectations were not edited because the current source did not yield a complete owner-qualified class key; this records the allowed partial result."
+    }
+  },
+  "boundaries": [
+    "No L4/L9 expectation, oracle, class ID, or membership changed.",
+    "No L5/L8 documents changed.",
+    "No L4 algorithm, runtime, test, CI, or old workflow was executed.",
+    "No authentication/authorization configuration, credential, production action, or external service was changed."
+  ]
+}

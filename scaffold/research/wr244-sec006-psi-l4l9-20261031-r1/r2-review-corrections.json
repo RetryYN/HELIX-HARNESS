@@ -1,0 +1,95 @@
+{
+  "schema": "wr244-r2-review-corrections.v1",
+  "evidence_kind": "scaffold",
+  "authority_effect": "none",
+  "review": "PR #3987 R2 F1/F2, comment 6534852168",
+  "base_revision": "2684816ad6179cc3535e4a6c297e61d10fd75ca0",
+  "fixed_evidence_preserved": {
+    "blind_sha256": "14b28cc8a9e4cee9727d458a6e7fbe175c02a46fed06a5fa57bacb983edd4e22",
+    "blind_fixed_at": "#3510 comment 6534222680",
+    "comparison_audit_summary": "Original comparison.json, l9-assignment-audit.json, and verification-summary.json remain byte-for-byte unchanged."
+  },
+  "F1_code_spelling_provenance": {
+    "meaning_and_assignment_source": "Failure meaning, condition, axis, state, backflow owner, expected_preserved semantics, and assignment to a case are derived from L3/L10/L4 source semantics and counterexample input; L9 expected_observation is used only for final consistency comparison.",
+    "adopted_from_existing_L9_leaf_vocabulary": [
+      "asset_scope_conflict",
+      "scope_identity_unresolved",
+      "implicit_fallback",
+      "operation_scope_conflict",
+      "explicit_connection_absent",
+      "connection_content_conflict",
+      "connection_material_unresolved"
+    ],
+    "adopted_from_existing_L4_vocabulary": [
+      "tenant_invented",
+      "tenant_applicability_unresolved"
+    ],
+    "base_and_blind_count_for_7_L9_spellings": 0,
+    "interpretation": "The source-derived claim applies to meaning/condition/assignment, not the literal spelling of all finding codes. Seven leaf spellings came from existing L9 vocabulary; two came from existing L4 vocabulary. The fixed blind was not edited.",
+    "occurrence_counts_at_base_and_fixed_blind": {
+      "asset_scope_conflict": {
+        "base_L3_L10_L4": 0,
+        "fixed_blind": 0
+      },
+      "scope_identity_unresolved": {
+        "base_L3_L10_L4": 0,
+        "fixed_blind": 0
+      },
+      "implicit_fallback": {
+        "base_L3_L10_L4": 0,
+        "fixed_blind": 0
+      },
+      "operation_scope_conflict": {
+        "base_L3_L10_L4": 0,
+        "fixed_blind": 0
+      },
+      "explicit_connection_absent": {
+        "base_L3_L10_L4": 0,
+        "fixed_blind": 0
+      },
+      "connection_content_conflict": {
+        "base_L3_L10_L4": 0,
+        "fixed_blind": 0
+      },
+      "connection_material_unresolved": {
+        "base_L3_L10_L4": 0,
+        "fixed_blind": 0
+      }
+    },
+    "L4_existing_vocabulary_basis": {
+      "tenant_invented": "docs/helix-security/L4-basic-design/project-scope-isolation.json at base, /contracts/0/content_comparison",
+      "tenant_applicability_unresolved": "docs/helix-security/L4-basic-design/project-scope-isolation.json at base, /contracts/0/content_comparison"
+    }
+  },
+  "F2_known_absent_preservation_correction": {
+    "class_id": "SEC003-F02-EXPLICIT-CONNECTION-ABSENT",
+    "classification": "isolation_violation / explicit_connection_absent; known connection_state=absent remains distinct from unknown connection material.",
+    "before": "今回のrequested operationだけを未解決に保持する。",
+    "after": "今回のrequested operationとknown absentを保持する。",
+    "locations": [
+      "docs/helix-security/L4-basic-design/project-scope-isolation.json#/contracts/1/negative_classifications/3/expected_preserved/requested_operation",
+      "docs/helix-security/L4-basic-design/project-scope-isolation.json#/contracts/1/negative_classifications/3/expected_text",
+      "docs/helix-security/L4-basic-design/project-scope-isolation.json#/failure_classifications/7/expected_preserved/requested_operation",
+      "scaffold/research/wr244-sec006-psi-l4l9-20261031-r1/post-comparison-derivation.json#/classes/7/expected_preserved/requested_operation"
+    ],
+    "l9_expected_oracle_changed": false,
+    "authorization_or_operation_effect_changed": false,
+    "unknown_class_changed": false
+  },
+  "binding": {
+    "id": "SCF-B-0201",
+    "L4_sha256": "6f64b6d9654f596d5597a056b4ded9288854640411c8ffccc2b0e6822306193a",
+    "L9_sha256": "e73518018f836294df326a75d48c344085252a81b302a6cc54fd24efb2332412",
+    "upstream_paths_outside_scaffold": true
+  },
+  "prior_fixed_derivation": {
+    "path": "scaffold/research/wr244-sec006-psi-l4l9-20261031-r1/post-comparison-derivation.json",
+    "sha256": "884a5ce6f2f87d08f06a59d7918f870745a55a1ccdcf81c674ac7f975df3173d",
+    "preservation": "R1 derivation is a point-in-time record; this R2 artifact supersedes its code-spelling provenance claims and known-absent requested_operation wording without rewriting it.",
+    "superseded_pointers": [
+      "/classes/7/expected_preserved/requested_operation",
+      "/consistency_review_after_R1",
+      "/consistency_followup_after_source_redraft"
+    ]
+  }
+}

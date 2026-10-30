@@ -1,0 +1,1368 @@
+{
+  "schema": "wr244-post-comparison-classification-derivation.v1",
+  "evidence_kind": "scaffold",
+  "authority_effect": "none",
+  "base_revision": "2684816ad6179cc3535e4a6c297e61d10fd75ca0",
+  "review_response": "PR #3987 R1 F1",
+  "frozen_blind_artifact": {
+    "path": "scaffold/research/wr244-sec006-psi-l4l9-20261031/blind-source-only.json",
+    "sha256": "14b28cc8a9e4cee9727d458a6e7fbe175c02a46fed06a5fa57bacb983edd4e22",
+    "fixed_at": "#3510 comment 6534222680"
+  },
+  "pre_edit_hashes": {
+    "L4": "3ef0816e6a1d1156a970f1230da5e3199076210862463a348a7058772d67bf25",
+    "L9": "f89a3462052873cb4de456918161f43afa471918f6e1dbf20166f599be96ab62"
+  },
+  "precedent": {
+    "WR230": "PR #3973 / scaffold/research/wr230-sec009-l4-l9-compact-candidate-20261031/README.md: marker-free top-level L4 failure_classifications, contract-local negative_classifications, and L9 negative_class_assignment.",
+    "SEC005": "PR #3980 R1 F2/F3: preserve source meanings not covered by L9 and do not collapse actual multi-finding residuals."
+  },
+  "classes": [
+    {
+      "class_id": "SEC003-F01-IDENTITY-CONFLICT",
+      "design_ref": "HELIXSECURITY-L4-003-F01",
+      "code": "SEC003_F01_IDENTITY_CONFLICT",
+      "condition": "明示されたidentity軸の既知値どうしが相反し、同一scope対応を成立させない。",
+      "expected_classification": "isolation_violation",
+      "expected": {
+        "condition": "isolation_violation",
+        "finding_codes": [
+          "asset_scope_conflict"
+        ]
+      },
+      "backflow_owner": "scope-binding-owner",
+      "expected_axis": "scope_identity",
+      "expected_state": "violation",
+      "side_effect_count": 0,
+      "expected_preserved": {
+        "original_identity": "原request identityと存在するfinding/pointer/return_ownerを保持し、他project等の値で補完しない。",
+        "unaffected_scope": "今回のrequest/operation以外の有効scopeを一律停止しない。",
+        "operation_effect": "実認可・credential・接続・state変更、通信、停止や回復の実作用はnone。"
+      },
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L3-requirements/functional-requirements.json",
+          "pointer": "/requirements/3"
+        },
+        {
+          "path": "docs/helix-security/L10-verification/functional-verification.json",
+          "pointer": "/cases/3"
+        },
+        {
+          "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+          "pointer": "/contracts/0/content_comparison"
+        },
+        {
+          "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+          "pointer": "/contracts/0/output_meanings"
+        },
+        {
+          "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+          "pointer": "/diagnostic_contract/return_owner"
+        }
+      ]
+    },
+    {
+      "class_id": "SEC003-F01-IDENTITY-MISSING",
+      "design_ref": "HELIXSECURITY-L4-003-F01",
+      "code": "SEC003_F01_IDENTITY_UNRESOLVED",
+      "condition": "必要なidentity軸が欠落し、primary tree/別projectで補完せずscope対応を未解決に保つ。",
+      "expected_classification": "scope_unresolved",
+      "expected": {
+        "condition": "scope_unresolved",
+        "finding_codes": [
+          "scope_identity_unresolved"
+        ]
+      },
+      "backflow_owner": "scope-binding-owner",
+      "expected_axis": "scope_identity",
+      "expected_state": "unknown",
+      "side_effect_count": 0,
+      "expected_preserved": {
+        "original_identity": "原request identityと存在するfinding/pointer/return_ownerを保持し、他project等の値で補完しない。",
+        "unaffected_scope": "今回のrequest/operation以外の有効scopeを一律停止しない。",
+        "operation_effect": "実認可・credential・接続・state変更、通信、停止や回復の実作用はnone。"
+      },
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L3-requirements/functional-requirements.json",
+          "pointer": "/requirements/3"
+        },
+        {
+          "path": "docs/helix-security/L10-verification/functional-verification.json",
+          "pointer": "/cases/3"
+        },
+        {
+          "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+          "pointer": "/contracts/0/content_comparison"
+        },
+        {
+          "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+          "pointer": "/contracts/0/output_meanings"
+        },
+        {
+          "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+          "pointer": "/diagnostic_contract/return_owner"
+        }
+      ]
+    },
+    {
+      "class_id": "SEC003-F01-TENANT-APPLICABILITY-UNRESOLVED",
+      "design_ref": "HELIXSECURITY-L4-003-F01",
+      "code": "SEC003_F01_TENANT_APPLICABILITY_UNRESOLVED",
+      "condition": "tenant適用条件または適用tenant identityが未解決であり、非適用へ推定せず比較を未解決に保つ。",
+      "expected_classification": "scope_unresolved",
+      "expected": {
+        "condition": "scope_unresolved",
+        "finding_codes": [
+          "tenant_applicability_unresolved"
+        ]
+      },
+      "backflow_owner": "scope-binding-owner",
+      "expected_axis": "tenant_applicability",
+      "expected_state": "unknown",
+      "side_effect_count": 0,
+      "expected_preserved": {
+        "original_identity": "原request identityと存在するfinding/pointer/return_ownerを保持し、他project等の値で補完しない。",
+        "unaffected_scope": "今回のrequest/operation以外の有効scopeを一律停止しない。",
+        "operation_effect": "実認可・credential・接続・state変更、通信、停止や回復の実作用はnone。"
+      },
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L3-requirements/functional-requirements.json",
+          "pointer": "/requirements/3"
+        },
+        {
+          "path": "docs/helix-security/L10-verification/functional-verification.json",
+          "pointer": "/cases/3"
+        },
+        {
+          "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+          "pointer": "/contracts/0/content_comparison"
+        },
+        {
+          "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+          "pointer": "/contracts/0/output_meanings"
+        },
+        {
+          "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+          "pointer": "/diagnostic_contract/return_owner"
+        }
+      ]
+    },
+    {
+      "class_id": "SEC003-F01-TENANT-INVENTED",
+      "design_ref": "HELIXSECURITY-L4-003-F01",
+      "code": "SEC003_F01_TENANT_INVENTED",
+      "condition": "非適用対象へtenantを付与しており、tenant値を生成せず要求scopeに一致しないものとして扱う。",
+      "expected_classification": "isolation_violation",
+      "expected": {
+        "condition": "isolation_violation",
+        "finding_codes": [
+          "tenant_invented"
+        ]
+      },
+      "backflow_owner": "scope-binding-owner",
+      "expected_axis": "tenant_applicability",
+      "expected_state": "violation",
+      "side_effect_count": 0,
+      "expected_preserved": {
+        "original_identity": "原request identityと存在するfinding/pointer/return_ownerを保持し、他project等の値で補完しない。",
+        "unaffected_scope": "今回のrequest/operation以外の有効scopeを一律停止しない。",
+        "operation_effect": "実認可・credential・接続・state変更、通信、停止や回復の実作用はnone。"
+      },
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L3-requirements/functional-requirements.json",
+          "pointer": "/requirements/3"
+        },
+        {
+          "path": "docs/helix-security/L10-verification/functional-verification.json",
+          "pointer": "/cases/3"
+        },
+        {
+          "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+          "pointer": "/contracts/0/content_comparison"
+        },
+        {
+          "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+          "pointer": "/contracts/0/output_meanings"
+        },
+        {
+          "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+          "pointer": "/diagnostic_contract/return_owner"
+        }
+      ]
+    },
+    {
+      "class_id": "SEC003-F02-IMPLICIT-FALLBACK",
+      "design_ref": "HELIXSECURITY-L4-003-F02",
+      "code": "SEC003_F02_IMPLICIT_FALLBACK",
+      "condition": "primary treeまたはother projectへの暗黙fallbackを明示接続として扱わない。",
+      "expected_classification": "isolation_violation",
+      "expected": {
+        "condition": "isolation_violation",
+        "finding_codes": [
+          "implicit_fallback"
+        ]
+      },
+      "backflow_owner": "scope-binding-owner",
+      "expected_axis": "explicit_connection",
+      "expected_state": "violation",
+      "side_effect_count": 0,
+      "expected_preserved": {
+        "original_identity": "原request identityと存在するfinding/pointer/return_ownerを保持し、他project等の値で補完しない。",
+        "unaffected_scope": "今回のrequest/operation以外の有効scopeを一律停止しない。",
+        "operation_effect": "実認可・credential・接続・state変更、通信、停止や回復の実作用はnone。"
+      },
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L3-requirements/functional-requirements.json",
+          "pointer": "/requirements/4"
+        },
+        {
+          "path": "docs/helix-security/L10-verification/functional-verification.json",
+          "pointer": "/cases/4"
+        },
+        {
+          "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+          "pointer": "/contracts/1/content_comparison"
+        },
+        {
+          "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+          "pointer": "/contracts/1/output_meanings"
+        },
+        {
+          "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+          "pointer": "/diagnostic_contract/return_owner"
+        }
+      ]
+    },
+    {
+      "class_id": "SEC003-F02-FOREIGN-LATEST",
+      "design_ref": "HELIXSECURITY-L4-003-F02",
+      "code": "SEC003_F02_FOREIGN_LATEST_NOT_SCOPE_EVIDENCE",
+      "condition": "別project/environmentのasset/stateに付されたlatest自己申告を現scopeの根拠として採用しない。",
+      "expected_classification": "isolation_violation",
+      "expected": {
+        "condition": "isolation_violation",
+        "finding_codes": [
+          "asset_scope_conflict"
+        ]
+      },
+      "backflow_owner": "scope-binding-owner",
+      "expected_axis": "asset_state_scope",
+      "expected_state": "violation",
+      "side_effect_count": 0,
+      "expected_preserved": {
+        "original_identity": "原request identityと存在するfinding/pointer/return_ownerを保持し、他project等の値で補完しない。",
+        "unaffected_scope": "今回のrequest/operation以外の有効scopeを一律停止しない。",
+        "operation_effect": "実認可・credential・接続・state変更、通信、停止や回復の実作用はnone。"
+      },
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L3-requirements/functional-requirements.json",
+          "pointer": "/requirements/4"
+        },
+        {
+          "path": "docs/helix-security/L10-verification/functional-verification.json",
+          "pointer": "/cases/4"
+        },
+        {
+          "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+          "pointer": "/contracts/1/content_comparison"
+        },
+        {
+          "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+          "pointer": "/contracts/1/output_meanings"
+        },
+        {
+          "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+          "pointer": "/diagnostic_contract/return_owner"
+        }
+      ]
+    },
+    {
+      "class_id": "SEC003-F02-OPERATION-SCOPE",
+      "design_ref": "HELIXSECURITY-L4-003-F02",
+      "code": "SEC003_F02_OPERATION_SCOPE_CONFLICT",
+      "condition": "あるoperationの明示許可を別operationへ拡張せず、requested operationをallowed operation集合と照合する。",
+      "expected_classification": "isolation_violation",
+      "expected": {
+        "condition": "isolation_violation",
+        "finding_codes": [
+          "operation_scope_conflict"
+        ]
+      },
+      "backflow_owner": "scope-binding-owner",
+      "expected_axis": "operation_scope",
+      "expected_state": "violation",
+      "side_effect_count": 0,
+      "expected_preserved": {
+        "original_identity": "原request identityと存在するfinding/pointer/return_ownerを保持し、他project等の値で補完しない。",
+        "unaffected_scope": "今回のrequest/operation以外の有効scopeを一律停止しない。",
+        "operation_effect": "実認可・credential・接続・state変更、通信、停止や回復の実作用はnone。"
+      },
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L3-requirements/functional-requirements.json",
+          "pointer": "/requirements/4"
+        },
+        {
+          "path": "docs/helix-security/L10-verification/functional-verification.json",
+          "pointer": "/cases/4"
+        },
+        {
+          "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+          "pointer": "/contracts/1/content_comparison"
+        },
+        {
+          "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+          "pointer": "/contracts/1/output_meanings"
+        },
+        {
+          "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+          "pointer": "/diagnostic_contract/return_owner"
+        }
+      ]
+    },
+    {
+      "class_id": "SEC003-F02-EXPLICIT-CONNECTION-ABSENT",
+      "design_ref": "HELIXSECURITY-L4-003-F02",
+      "code": "SEC003_F02_EXPLICIT_CONNECTION_ABSENT",
+      "condition": "要求された作用のconnection_stateがabsentである。L3 F02は明示接続なしの越境作用を認めず、L4 F02はsame-projectを含む明示接続を照合対象とするため、known absentはscope violationとして扱い、unknownとは分ける。",
+      "expected_classification": "isolation_violation",
+      "expected": {
+        "condition": "isolation_violation",
+        "finding_codes": [
+          "explicit_connection_absent"
+        ]
+      },
+      "backflow_owner": "scope-binding-owner",
+      "expected_axis": "explicit_connection",
+      "expected_state": "violation",
+      "side_effect_count": 0,
+      "expected_preserved": {
+        "requested_operation": "今回のrequested operationだけを未解決に保持する。",
+        "unaffected_scope": "無関係な有効scope/operationを全停止しない。",
+        "operation_effect": "実接続、認可、通信、変更はnone。"
+      },
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L3-requirements/functional-requirements.json",
+          "pointer": "/requirements/4/obligation"
+        },
+        {
+          "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+          "pointer": "/contracts/1/content_comparison/0"
+        },
+        {
+          "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+          "pointer": "/contracts/1/output_meanings/0"
+        },
+        {
+          "path": "docs/helix-security/L10-verification/functional-verification.json",
+          "pointer": "/cases/4/expected_observation"
+        },
+        {
+          "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+          "pointer": "/diagnostic_contract/return_owner"
+        }
+      ]
+    },
+    {
+      "class_id": "SEC003-F02-CONNECTION-MATERIAL-CONFLICT",
+      "design_ref": "HELIXSECURITY-L4-003-F02",
+      "code": "SEC003_F02_CONNECTION_MATERIAL_CONFLICT",
+      "condition": "実connection memberが独立expected connectionの同じmemberと既知値で相反する。",
+      "expected_classification": "isolation_violation",
+      "expected": {
+        "condition": "isolation_violation",
+        "finding_codes": [
+          "connection_content_conflict"
+        ]
+      },
+      "backflow_owner": "scope-binding-owner",
+      "expected_axis": "explicit_connection",
+      "expected_state": "violation",
+      "side_effect_count": 0,
+      "expected_preserved": {
+        "requested_operation": "接続identity/member差とrequested operationを保持する。",
+        "unaffected_scope": "無関係な有効scope/operationを全停止しない。",
+        "operation_effect": "実接続、認可、通信、変更はnone。"
+      },
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L3-requirements/functional-requirements.json",
+          "pointer": "/requirements/4/obligation"
+        },
+        {
+          "path": "docs/helix-security/L10-verification/functional-verification.json",
+          "pointer": "/cases/4/expected_observation"
+        },
+        {
+          "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+          "pointer": "/contracts/1/content_comparison/1"
+        },
+        {
+          "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+          "pointer": "/contracts/1/output_meanings/0"
+        },
+        {
+          "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+          "pointer": "/diagnostic_contract/return_owner"
+        }
+      ]
+    },
+    {
+      "class_id": "SEC003-F02-CONNECTION-MATERIAL-UNRESOLVED",
+      "design_ref": "HELIXSECURITY-L4-003-F02",
+      "code": "SEC003_F02_CONNECTION_MATERIAL_UNRESOLVED",
+      "condition": "実connection memberが不明または欠落し、独立expected connectionとの同member比較を解決できない。",
+      "expected_classification": "scope_unresolved",
+      "expected": {
+        "condition": "scope_unresolved",
+        "finding_codes": [
+          "connection_material_unresolved"
+        ]
+      },
+      "backflow_owner": "scope-binding-owner",
+      "expected_axis": "explicit_connection",
+      "expected_state": "unknown",
+      "side_effect_count": 0,
+      "expected_preserved": {
+        "requested_operation": "unknown connection memberとrequested operationを保持する。",
+        "unaffected_scope": "無関係な有効scope/operationを全停止しない。",
+        "operation_effect": "実接続、認可、通信、変更はnone。"
+      },
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L3-requirements/functional-requirements.json",
+          "pointer": "/requirements/4/obligation"
+        },
+        {
+          "path": "docs/helix-security/L10-verification/functional-verification.json",
+          "pointer": "/cases/4/expected_observation"
+        },
+        {
+          "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+          "pointer": "/contracts/1/content_comparison/1"
+        },
+        {
+          "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+          "pointer": "/contracts/1/output_meanings/0"
+        },
+        {
+          "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+          "pointer": "/diagnostic_contract/return_owner"
+        }
+      ]
+    }
+  ],
+  "candidate_split": "The fixed blind identity_missing_or_conflicting family splits into missing/unknown versus conflicting/violation because L4 F01 distinguishes the two. The six blind families therefore yield seven L4 rows.",
+  "assignment_method": "First derive the fixed six candidates from source-only inputs; after that comparison, independently add connection meanings from selected L3 F02/L10 F02/L4 F02 pointers. Use only blind category plus each L9 counterexample request input for case attachment; never use expected_observation, condition, finding list, or oracle values to choose membership.",
+  "typed_owner_key": "No complete QA §3 six-element key is asserted: typed owner_ref is not source-defined in L5. Marker remains absent. These assignments record the L4/L9 staged mapping only.",
+  "assignment_counts": {
+    "l9_case_negative_total": 98,
+    "assigned": 98,
+    "unassigned": 0,
+    "residual_negative_cases_untouched": 16,
+    "expected_values_changed": 0,
+    "oracle_values_changed": 0
+  },
+  "assigned_rows": [
+    {
+      "pointer": "/cases/0/negative_cases/0",
+      "id": "SEC003-PERMISSION-ASSET-PROJECT-DRIFT",
+      "class_id": "SEC003-F01-IDENTITY-CONFLICT",
+      "input_pointer": "/cases/0/negative_cases/0/counterexample"
+    },
+    {
+      "pointer": "/cases/0/negative_cases/1",
+      "id": "SEC003-PERMISSION-ASSET-TENANT-DRIFT",
+      "class_id": "SEC003-F01-IDENTITY-CONFLICT",
+      "input_pointer": "/cases/0/negative_cases/1/counterexample"
+    },
+    {
+      "pointer": "/cases/0/negative_cases/2",
+      "id": "SEC003-PERMISSION-ASSET-ENVIRONMENT-DRIFT",
+      "class_id": "SEC003-F01-IDENTITY-CONFLICT",
+      "input_pointer": "/cases/0/negative_cases/2/counterexample"
+    },
+    {
+      "pointer": "/cases/0/negative_cases/3",
+      "id": "SEC003-PERMISSION-ASSET-ASSIGNMENT-DRIFT",
+      "class_id": "SEC003-F01-IDENTITY-CONFLICT",
+      "input_pointer": "/cases/0/negative_cases/3/counterexample"
+    },
+    {
+      "pointer": "/cases/0/negative_cases/4",
+      "id": "SEC003-PERMISSION-ASSET-WORKTREE-DRIFT",
+      "class_id": "SEC003-F01-IDENTITY-CONFLICT",
+      "input_pointer": "/cases/0/negative_cases/4/counterexample"
+    },
+    {
+      "pointer": "/cases/0/negative_cases/5",
+      "id": "SEC003-PERMISSION-ASSET-REVISION-DRIFT",
+      "class_id": "SEC003-F01-IDENTITY-CONFLICT",
+      "input_pointer": "/cases/0/negative_cases/5/counterexample"
+    },
+    {
+      "pointer": "/cases/0/negative_cases/6",
+      "id": "SEC003-STATE-ASSET-PROJECT-DRIFT",
+      "class_id": "SEC003-F01-IDENTITY-CONFLICT",
+      "input_pointer": "/cases/0/negative_cases/6/counterexample"
+    },
+    {
+      "pointer": "/cases/0/negative_cases/7",
+      "id": "SEC003-STATE-ASSET-TENANT-DRIFT",
+      "class_id": "SEC003-F01-IDENTITY-CONFLICT",
+      "input_pointer": "/cases/0/negative_cases/7/counterexample"
+    },
+    {
+      "pointer": "/cases/0/negative_cases/8",
+      "id": "SEC003-STATE-ASSET-ENVIRONMENT-DRIFT",
+      "class_id": "SEC003-F01-IDENTITY-CONFLICT",
+      "input_pointer": "/cases/0/negative_cases/8/counterexample"
+    },
+    {
+      "pointer": "/cases/0/negative_cases/9",
+      "id": "SEC003-STATE-ASSET-ASSIGNMENT-DRIFT",
+      "class_id": "SEC003-F01-IDENTITY-CONFLICT",
+      "input_pointer": "/cases/0/negative_cases/9/counterexample"
+    },
+    {
+      "pointer": "/cases/0/negative_cases/10",
+      "id": "SEC003-STATE-ASSET-WORKTREE-DRIFT",
+      "class_id": "SEC003-F01-IDENTITY-CONFLICT",
+      "input_pointer": "/cases/0/negative_cases/10/counterexample"
+    },
+    {
+      "pointer": "/cases/0/negative_cases/11",
+      "id": "SEC003-STATE-ASSET-REVISION-DRIFT",
+      "class_id": "SEC003-F01-IDENTITY-CONFLICT",
+      "input_pointer": "/cases/0/negative_cases/11/counterexample"
+    },
+    {
+      "pointer": "/cases/0/negative_cases/12",
+      "id": "SEC003-DATA-ASSET-PROJECT-DRIFT",
+      "class_id": "SEC003-F01-IDENTITY-CONFLICT",
+      "input_pointer": "/cases/0/negative_cases/12/counterexample"
+    },
+    {
+      "pointer": "/cases/0/negative_cases/13",
+      "id": "SEC003-DATA-ASSET-TENANT-DRIFT",
+      "class_id": "SEC003-F01-IDENTITY-CONFLICT",
+      "input_pointer": "/cases/0/negative_cases/13/counterexample"
+    },
+    {
+      "pointer": "/cases/0/negative_cases/14",
+      "id": "SEC003-DATA-ASSET-ENVIRONMENT-DRIFT",
+      "class_id": "SEC003-F01-IDENTITY-CONFLICT",
+      "input_pointer": "/cases/0/negative_cases/14/counterexample"
+    },
+    {
+      "pointer": "/cases/0/negative_cases/15",
+      "id": "SEC003-DATA-ASSET-ASSIGNMENT-DRIFT",
+      "class_id": "SEC003-F01-IDENTITY-CONFLICT",
+      "input_pointer": "/cases/0/negative_cases/15/counterexample"
+    },
+    {
+      "pointer": "/cases/0/negative_cases/16",
+      "id": "SEC003-DATA-ASSET-WORKTREE-DRIFT",
+      "class_id": "SEC003-F01-IDENTITY-CONFLICT",
+      "input_pointer": "/cases/0/negative_cases/16/counterexample"
+    },
+    {
+      "pointer": "/cases/0/negative_cases/17",
+      "id": "SEC003-DATA-ASSET-REVISION-DRIFT",
+      "class_id": "SEC003-F01-IDENTITY-CONFLICT",
+      "input_pointer": "/cases/0/negative_cases/17/counterexample"
+    },
+    {
+      "pointer": "/cases/0/negative_cases/18",
+      "id": "SEC003-WORKER-ASSET-PROJECT-DRIFT",
+      "class_id": "SEC003-F01-IDENTITY-CONFLICT",
+      "input_pointer": "/cases/0/negative_cases/18/counterexample"
+    },
+    {
+      "pointer": "/cases/0/negative_cases/19",
+      "id": "SEC003-WORKER-ASSET-TENANT-DRIFT",
+      "class_id": "SEC003-F01-IDENTITY-CONFLICT",
+      "input_pointer": "/cases/0/negative_cases/19/counterexample"
+    },
+    {
+      "pointer": "/cases/0/negative_cases/20",
+      "id": "SEC003-WORKER-ASSET-ENVIRONMENT-DRIFT",
+      "class_id": "SEC003-F01-IDENTITY-CONFLICT",
+      "input_pointer": "/cases/0/negative_cases/20/counterexample"
+    },
+    {
+      "pointer": "/cases/0/negative_cases/21",
+      "id": "SEC003-WORKER-ASSET-ASSIGNMENT-DRIFT",
+      "class_id": "SEC003-F01-IDENTITY-CONFLICT",
+      "input_pointer": "/cases/0/negative_cases/21/counterexample"
+    },
+    {
+      "pointer": "/cases/0/negative_cases/22",
+      "id": "SEC003-WORKER-ASSET-WORKTREE-DRIFT",
+      "class_id": "SEC003-F01-IDENTITY-CONFLICT",
+      "input_pointer": "/cases/0/negative_cases/22/counterexample"
+    },
+    {
+      "pointer": "/cases/0/negative_cases/23",
+      "id": "SEC003-WORKER-ASSET-REVISION-DRIFT",
+      "class_id": "SEC003-F01-IDENTITY-CONFLICT",
+      "input_pointer": "/cases/0/negative_cases/23/counterexample"
+    },
+    {
+      "pointer": "/cases/0/negative_cases/24",
+      "id": "SEC003-CREDENTIAL-ASSET-PROJECT-DRIFT",
+      "class_id": "SEC003-F01-IDENTITY-CONFLICT",
+      "input_pointer": "/cases/0/negative_cases/24/counterexample"
+    },
+    {
+      "pointer": "/cases/0/negative_cases/25",
+      "id": "SEC003-CREDENTIAL-ASSET-TENANT-DRIFT",
+      "class_id": "SEC003-F01-IDENTITY-CONFLICT",
+      "input_pointer": "/cases/0/negative_cases/25/counterexample"
+    },
+    {
+      "pointer": "/cases/0/negative_cases/26",
+      "id": "SEC003-CREDENTIAL-ASSET-ENVIRONMENT-DRIFT",
+      "class_id": "SEC003-F01-IDENTITY-CONFLICT",
+      "input_pointer": "/cases/0/negative_cases/26/counterexample"
+    },
+    {
+      "pointer": "/cases/0/negative_cases/27",
+      "id": "SEC003-CREDENTIAL-ASSET-ASSIGNMENT-DRIFT",
+      "class_id": "SEC003-F01-IDENTITY-CONFLICT",
+      "input_pointer": "/cases/0/negative_cases/27/counterexample"
+    },
+    {
+      "pointer": "/cases/0/negative_cases/28",
+      "id": "SEC003-CREDENTIAL-ASSET-WORKTREE-DRIFT",
+      "class_id": "SEC003-F01-IDENTITY-CONFLICT",
+      "input_pointer": "/cases/0/negative_cases/28/counterexample"
+    },
+    {
+      "pointer": "/cases/0/negative_cases/29",
+      "id": "SEC003-CREDENTIAL-ASSET-REVISION-DRIFT",
+      "class_id": "SEC003-F01-IDENTITY-CONFLICT",
+      "input_pointer": "/cases/0/negative_cases/29/counterexample"
+    },
+    {
+      "pointer": "/cases/0/negative_cases/30",
+      "id": "SEC003-ARTIFACT-ASSET-PROJECT-DRIFT",
+      "class_id": "SEC003-F01-IDENTITY-CONFLICT",
+      "input_pointer": "/cases/0/negative_cases/30/counterexample"
+    },
+    {
+      "pointer": "/cases/0/negative_cases/31",
+      "id": "SEC003-ARTIFACT-ASSET-TENANT-DRIFT",
+      "class_id": "SEC003-F01-IDENTITY-CONFLICT",
+      "input_pointer": "/cases/0/negative_cases/31/counterexample"
+    },
+    {
+      "pointer": "/cases/0/negative_cases/32",
+      "id": "SEC003-ARTIFACT-ASSET-ENVIRONMENT-DRIFT",
+      "class_id": "SEC003-F01-IDENTITY-CONFLICT",
+      "input_pointer": "/cases/0/negative_cases/32/counterexample"
+    },
+    {
+      "pointer": "/cases/0/negative_cases/33",
+      "id": "SEC003-ARTIFACT-ASSET-ASSIGNMENT-DRIFT",
+      "class_id": "SEC003-F01-IDENTITY-CONFLICT",
+      "input_pointer": "/cases/0/negative_cases/33/counterexample"
+    },
+    {
+      "pointer": "/cases/0/negative_cases/34",
+      "id": "SEC003-ARTIFACT-ASSET-WORKTREE-DRIFT",
+      "class_id": "SEC003-F01-IDENTITY-CONFLICT",
+      "input_pointer": "/cases/0/negative_cases/34/counterexample"
+    },
+    {
+      "pointer": "/cases/0/negative_cases/35",
+      "id": "SEC003-ARTIFACT-ASSET-REVISION-DRIFT",
+      "class_id": "SEC003-F01-IDENTITY-CONFLICT",
+      "input_pointer": "/cases/0/negative_cases/35/counterexample"
+    },
+    {
+      "pointer": "/cases/0/negative_cases/36",
+      "id": "SEC003-MEMORY-ASSET-PROJECT-DRIFT",
+      "class_id": "SEC003-F01-IDENTITY-CONFLICT",
+      "input_pointer": "/cases/0/negative_cases/36/counterexample"
+    },
+    {
+      "pointer": "/cases/0/negative_cases/37",
+      "id": "SEC003-MEMORY-ASSET-TENANT-DRIFT",
+      "class_id": "SEC003-F01-IDENTITY-CONFLICT",
+      "input_pointer": "/cases/0/negative_cases/37/counterexample"
+    },
+    {
+      "pointer": "/cases/0/negative_cases/38",
+      "id": "SEC003-MEMORY-ASSET-ENVIRONMENT-DRIFT",
+      "class_id": "SEC003-F01-IDENTITY-CONFLICT",
+      "input_pointer": "/cases/0/negative_cases/38/counterexample"
+    },
+    {
+      "pointer": "/cases/0/negative_cases/39",
+      "id": "SEC003-MEMORY-ASSET-ASSIGNMENT-DRIFT",
+      "class_id": "SEC003-F01-IDENTITY-CONFLICT",
+      "input_pointer": "/cases/0/negative_cases/39/counterexample"
+    },
+    {
+      "pointer": "/cases/0/negative_cases/40",
+      "id": "SEC003-MEMORY-ASSET-WORKTREE-DRIFT",
+      "class_id": "SEC003-F01-IDENTITY-CONFLICT",
+      "input_pointer": "/cases/0/negative_cases/40/counterexample"
+    },
+    {
+      "pointer": "/cases/0/negative_cases/41",
+      "id": "SEC003-MEMORY-ASSET-REVISION-DRIFT",
+      "class_id": "SEC003-F01-IDENTITY-CONFLICT",
+      "input_pointer": "/cases/0/negative_cases/41/counterexample"
+    },
+    {
+      "pointer": "/cases/0/negative_cases/42",
+      "id": "SEC003-EXECUTION_TARGET-ASSET-PROJECT-DRIFT",
+      "class_id": "SEC003-F01-IDENTITY-CONFLICT",
+      "input_pointer": "/cases/0/negative_cases/42/counterexample"
+    },
+    {
+      "pointer": "/cases/0/negative_cases/43",
+      "id": "SEC003-EXECUTION_TARGET-ASSET-TENANT-DRIFT",
+      "class_id": "SEC003-F01-IDENTITY-CONFLICT",
+      "input_pointer": "/cases/0/negative_cases/43/counterexample"
+    },
+    {
+      "pointer": "/cases/0/negative_cases/44",
+      "id": "SEC003-EXECUTION_TARGET-ASSET-ENVIRONMENT-DRIFT",
+      "class_id": "SEC003-F01-IDENTITY-CONFLICT",
+      "input_pointer": "/cases/0/negative_cases/44/counterexample"
+    },
+    {
+      "pointer": "/cases/0/negative_cases/45",
+      "id": "SEC003-EXECUTION_TARGET-ASSET-ASSIGNMENT-DRIFT",
+      "class_id": "SEC003-F01-IDENTITY-CONFLICT",
+      "input_pointer": "/cases/0/negative_cases/45/counterexample"
+    },
+    {
+      "pointer": "/cases/0/negative_cases/46",
+      "id": "SEC003-EXECUTION_TARGET-ASSET-WORKTREE-DRIFT",
+      "class_id": "SEC003-F01-IDENTITY-CONFLICT",
+      "input_pointer": "/cases/0/negative_cases/46/counterexample"
+    },
+    {
+      "pointer": "/cases/0/negative_cases/47",
+      "id": "SEC003-EXECUTION_TARGET-ASSET-REVISION-DRIFT",
+      "class_id": "SEC003-F01-IDENTITY-CONFLICT",
+      "input_pointer": "/cases/0/negative_cases/47/counterexample"
+    },
+    {
+      "pointer": "/cases/0/negative_cases/48",
+      "id": "SEC003-TARGET-PROJECT-MISSING",
+      "class_id": "SEC003-F01-IDENTITY-MISSING",
+      "input_pointer": "/cases/0/negative_cases/48/counterexample"
+    },
+    {
+      "pointer": "/cases/0/negative_cases/49",
+      "id": "SEC003-TARGET-TENANT-MISSING",
+      "class_id": "SEC003-F01-IDENTITY-MISSING",
+      "input_pointer": "/cases/0/negative_cases/49/counterexample"
+    },
+    {
+      "pointer": "/cases/0/negative_cases/50",
+      "id": "SEC003-TARGET-ENVIRONMENT-MISSING",
+      "class_id": "SEC003-F01-IDENTITY-MISSING",
+      "input_pointer": "/cases/0/negative_cases/50/counterexample"
+    },
+    {
+      "pointer": "/cases/0/negative_cases/51",
+      "id": "SEC003-TARGET-ASSIGNMENT-MISSING",
+      "class_id": "SEC003-F01-IDENTITY-MISSING",
+      "input_pointer": "/cases/0/negative_cases/51/counterexample"
+    },
+    {
+      "pointer": "/cases/0/negative_cases/52",
+      "id": "SEC003-TARGET-WORKTREE-MISSING",
+      "class_id": "SEC003-F01-IDENTITY-MISSING",
+      "input_pointer": "/cases/0/negative_cases/52/counterexample"
+    },
+    {
+      "pointer": "/cases/0/negative_cases/53",
+      "id": "SEC003-TARGET-REVISION-MISSING",
+      "class_id": "SEC003-F01-IDENTITY-MISSING",
+      "input_pointer": "/cases/0/negative_cases/53/counterexample"
+    },
+    {
+      "pointer": "/cases/0/negative_cases/54",
+      "id": "SEC003-TENANT-INVENTED",
+      "class_id": "SEC003-F01-TENANT-INVENTED",
+      "input_pointer": "/cases/0/negative_cases/54/counterexample"
+    },
+    {
+      "pointer": "/cases/0/negative_cases/55",
+      "id": "SEC003-TENANT-APPLICABILITY-UNKNOWN",
+      "class_id": "SEC003-F01-TENANT-APPLICABILITY-UNRESOLVED",
+      "input_pointer": "/cases/0/negative_cases/55/counterexample"
+    },
+    {
+      "pointer": "/cases/0/negative_cases/56",
+      "id": "SEC003-ORIGIN-PROJECT-MISSING",
+      "class_id": "SEC003-F01-IDENTITY-MISSING",
+      "input_pointer": "/cases/0/negative_cases/56/counterexample"
+    },
+    {
+      "pointer": "/cases/0/negative_cases/57",
+      "id": "SEC003-ORIGIN-TENANT-MISSING",
+      "class_id": "SEC003-F01-IDENTITY-MISSING",
+      "input_pointer": "/cases/0/negative_cases/57/counterexample"
+    },
+    {
+      "pointer": "/cases/0/negative_cases/58",
+      "id": "SEC003-ORIGIN-ENVIRONMENT-MISSING",
+      "class_id": "SEC003-F01-IDENTITY-MISSING",
+      "input_pointer": "/cases/0/negative_cases/58/counterexample"
+    },
+    {
+      "pointer": "/cases/0/negative_cases/59",
+      "id": "SEC003-ORIGIN-ASSIGNMENT-MISSING",
+      "class_id": "SEC003-F01-IDENTITY-MISSING",
+      "input_pointer": "/cases/0/negative_cases/59/counterexample"
+    },
+    {
+      "pointer": "/cases/0/negative_cases/60",
+      "id": "SEC003-ORIGIN-WORKTREE-MISSING",
+      "class_id": "SEC003-F01-IDENTITY-MISSING",
+      "input_pointer": "/cases/0/negative_cases/60/counterexample"
+    },
+    {
+      "pointer": "/cases/0/negative_cases/61",
+      "id": "SEC003-ORIGIN-REVISION-MISSING",
+      "class_id": "SEC003-F01-IDENTITY-MISSING",
+      "input_pointer": "/cases/0/negative_cases/61/counterexample"
+    },
+    {
+      "pointer": "/cases/0/negative_cases/62",
+      "id": "SEC003-ORIGIN-TENANT-UNKNOWN-VALUES",
+      "class_id": "SEC003-F01-TENANT-APPLICABILITY-UNRESOLVED",
+      "input_pointer": "/cases/0/negative_cases/62/counterexample"
+    },
+    {
+      "pointer": "/cases/0/negative_cases/63",
+      "id": "SEC003-TARGET-TENANT-UNKNOWN-VALUES",
+      "class_id": "SEC003-F01-TENANT-APPLICABILITY-UNRESOLVED",
+      "input_pointer": "/cases/0/negative_cases/63/counterexample"
+    },
+    {
+      "pointer": "/cases/1/negative_cases/0",
+      "id": "SEC003-CROSS-READ-ABSENT",
+      "class_id": "SEC003-F02-EXPLICIT-CONNECTION-ABSENT",
+      "input_pointer": "/cases/1/negative_cases/0/counterexample"
+    },
+    {
+      "pointer": "/cases/1/negative_cases/1",
+      "id": "SEC003-CROSS-WRITE-ABSENT",
+      "class_id": "SEC003-F02-EXPLICIT-CONNECTION-ABSENT",
+      "input_pointer": "/cases/1/negative_cases/1/counterexample"
+    },
+    {
+      "pointer": "/cases/1/negative_cases/2",
+      "id": "SEC003-CROSS-EXECUTE-ABSENT",
+      "class_id": "SEC003-F02-EXPLICIT-CONNECTION-ABSENT",
+      "input_pointer": "/cases/1/negative_cases/2/counterexample"
+    },
+    {
+      "pointer": "/cases/1/negative_cases/3",
+      "id": "SEC003-CROSS-NETWORK-ABSENT",
+      "class_id": "SEC003-F02-EXPLICIT-CONNECTION-ABSENT",
+      "input_pointer": "/cases/1/negative_cases/3/counterexample"
+    },
+    {
+      "pointer": "/cases/1/negative_cases/4",
+      "id": "SEC003-CROSS-STATE-ABSENT",
+      "class_id": "SEC003-F02-EXPLICIT-CONNECTION-ABSENT",
+      "input_pointer": "/cases/1/negative_cases/4/counterexample"
+    },
+    {
+      "pointer": "/cases/1/negative_cases/5",
+      "id": "SEC003-CROSS-CREDENTIAL-ABSENT",
+      "class_id": "SEC003-F02-EXPLICIT-CONNECTION-ABSENT",
+      "input_pointer": "/cases/1/negative_cases/5/counterexample"
+    },
+    {
+      "pointer": "/cases/1/negative_cases/6",
+      "id": "SEC003-CROSS-ARTIFACT-ABSENT",
+      "class_id": "SEC003-F02-EXPLICIT-CONNECTION-ABSENT",
+      "input_pointer": "/cases/1/negative_cases/6/counterexample"
+    },
+    {
+      "pointer": "/cases/1/negative_cases/7",
+      "id": "SEC003-PRIMARY-TREE-FALLBACK",
+      "class_id": "SEC003-F02-IMPLICIT-FALLBACK",
+      "input_pointer": "/cases/1/negative_cases/7/counterexample"
+    },
+    {
+      "pointer": "/cases/1/negative_cases/8",
+      "id": "SEC003-OTHER-PROJECT-FALLBACK",
+      "class_id": "SEC003-F02-IMPLICIT-FALLBACK",
+      "input_pointer": "/cases/1/negative_cases/8/counterexample"
+    },
+    {
+      "pointer": "/cases/1/negative_cases/9",
+      "id": "SEC003-OTHER-PROJECT-LATEST",
+      "class_id": "SEC003-F02-FOREIGN-LATEST",
+      "input_pointer": "/cases/1/negative_cases/9/counterexample"
+    },
+    {
+      "pointer": "/cases/1/negative_cases/10",
+      "id": "SEC003-CONNECTION-REVISION",
+      "class_id": "SEC003-F02-CONNECTION-MATERIAL-CONFLICT",
+      "input_pointer": "/cases/1/negative_cases/10/counterexample"
+    },
+    {
+      "pointer": "/cases/1/negative_cases/11",
+      "id": "SEC003-CONNECTION-UNKNOWN",
+      "class_id": "SEC003-F02-CONNECTION-MATERIAL-UNRESOLVED",
+      "input_pointer": "/cases/1/negative_cases/11/counterexample"
+    },
+    {
+      "pointer": "/cases/1/negative_cases/12",
+      "id": "SEC003-READ-DOES-NOT-GRANT-WRITE",
+      "class_id": "SEC003-F02-OPERATION-SCOPE",
+      "input_pointer": "/cases/1/negative_cases/12/counterexample"
+    },
+    {
+      "pointer": "/cases/1/negative_cases/13",
+      "id": "SEC003-READ-DOES-NOT-GRANT-EXECUTE",
+      "class_id": "SEC003-F02-OPERATION-SCOPE",
+      "input_pointer": "/cases/1/negative_cases/13/counterexample"
+    },
+    {
+      "pointer": "/cases/1/negative_cases/14",
+      "id": "SEC003-READ-DOES-NOT-GRANT-NETWORK",
+      "class_id": "SEC003-F02-OPERATION-SCOPE",
+      "input_pointer": "/cases/1/negative_cases/14/counterexample"
+    },
+    {
+      "pointer": "/cases/1/negative_cases/15",
+      "id": "SEC003-READ-DOES-NOT-GRANT-STATE",
+      "class_id": "SEC003-F02-OPERATION-SCOPE",
+      "input_pointer": "/cases/1/negative_cases/15/counterexample"
+    },
+    {
+      "pointer": "/cases/1/negative_cases/16",
+      "id": "SEC003-READ-DOES-NOT-GRANT-CREDENTIAL",
+      "class_id": "SEC003-F02-OPERATION-SCOPE",
+      "input_pointer": "/cases/1/negative_cases/16/counterexample"
+    },
+    {
+      "pointer": "/cases/1/negative_cases/17",
+      "id": "SEC003-READ-DOES-NOT-GRANT-ARTIFACT",
+      "class_id": "SEC003-F02-OPERATION-SCOPE",
+      "input_pointer": "/cases/1/negative_cases/17/counterexample"
+    },
+    {
+      "pointer": "/cases/1/negative_cases/18",
+      "id": "SEC003-SAME-PROJECT-NO-CONNECTION",
+      "class_id": "SEC003-F02-EXPLICIT-CONNECTION-ABSENT",
+      "input_pointer": "/cases/1/negative_cases/18/counterexample"
+    },
+    {
+      "pointer": "/cases/1/negative_cases/19",
+      "id": "SEC003-AGENT-PRIMARY-TREE-FALLBACK",
+      "class_id": "SEC003-F02-IMPLICIT-FALLBACK",
+      "input_pointer": "/cases/1/negative_cases/19/counterexample"
+    },
+    {
+      "pointer": "/cases/1/negative_cases/20",
+      "id": "SEC003-AGENT-OTHER-PROJECT-LATEST",
+      "class_id": "SEC003-F02-FOREIGN-LATEST",
+      "input_pointer": "/cases/1/negative_cases/20/counterexample"
+    },
+    {
+      "pointer": "/cases/1/negative_cases/21",
+      "id": "SEC003-AGENT-READ-DOES-NOT-GRANT-NETWORK",
+      "class_id": "SEC003-F02-OPERATION-SCOPE",
+      "input_pointer": "/cases/1/negative_cases/21/counterexample"
+    },
+    {
+      "pointer": "/cases/1/negative_cases/22",
+      "id": "SEC003-HOOK-PRIMARY-TREE-FALLBACK",
+      "class_id": "SEC003-F02-IMPLICIT-FALLBACK",
+      "input_pointer": "/cases/1/negative_cases/22/counterexample"
+    },
+    {
+      "pointer": "/cases/1/negative_cases/23",
+      "id": "SEC003-HOOK-OTHER-PROJECT-LATEST",
+      "class_id": "SEC003-F02-FOREIGN-LATEST",
+      "input_pointer": "/cases/1/negative_cases/23/counterexample"
+    },
+    {
+      "pointer": "/cases/1/negative_cases/24",
+      "id": "SEC003-HOOK-READ-DOES-NOT-GRANT-NETWORK",
+      "class_id": "SEC003-F02-OPERATION-SCOPE",
+      "input_pointer": "/cases/1/negative_cases/24/counterexample"
+    },
+    {
+      "pointer": "/cases/1/negative_cases/25",
+      "id": "SEC003-MEMORY-PRIMARY-TREE-FALLBACK",
+      "class_id": "SEC003-F02-IMPLICIT-FALLBACK",
+      "input_pointer": "/cases/1/negative_cases/25/counterexample"
+    },
+    {
+      "pointer": "/cases/1/negative_cases/26",
+      "id": "SEC003-MEMORY-OTHER-PROJECT-LATEST",
+      "class_id": "SEC003-F02-FOREIGN-LATEST",
+      "input_pointer": "/cases/1/negative_cases/26/counterexample"
+    },
+    {
+      "pointer": "/cases/1/negative_cases/27",
+      "id": "SEC003-MEMORY-READ-DOES-NOT-GRANT-NETWORK",
+      "class_id": "SEC003-F02-OPERATION-SCOPE",
+      "input_pointer": "/cases/1/negative_cases/27/counterexample"
+    },
+    {
+      "pointer": "/cases/1/negative_cases/28",
+      "id": "SEC003-CREDENTIAL-PRIMARY-TREE-FALLBACK",
+      "class_id": "SEC003-F02-IMPLICIT-FALLBACK",
+      "input_pointer": "/cases/1/negative_cases/28/counterexample"
+    },
+    {
+      "pointer": "/cases/1/negative_cases/29",
+      "id": "SEC003-CREDENTIAL-OTHER-PROJECT-LATEST",
+      "class_id": "SEC003-F02-FOREIGN-LATEST",
+      "input_pointer": "/cases/1/negative_cases/29/counterexample"
+    },
+    {
+      "pointer": "/cases/1/negative_cases/30",
+      "id": "SEC003-CREDENTIAL-READ-DOES-NOT-GRANT-NETWORK",
+      "class_id": "SEC003-F02-OPERATION-SCOPE",
+      "input_pointer": "/cases/1/negative_cases/30/counterexample"
+    },
+    {
+      "pointer": "/cases/1/negative_cases/31",
+      "id": "SEC003-CONFIGURATION-PRIMARY-TREE-FALLBACK",
+      "class_id": "SEC003-F02-IMPLICIT-FALLBACK",
+      "input_pointer": "/cases/1/negative_cases/31/counterexample"
+    },
+    {
+      "pointer": "/cases/1/negative_cases/32",
+      "id": "SEC003-CONFIGURATION-OTHER-PROJECT-LATEST",
+      "class_id": "SEC003-F02-FOREIGN-LATEST",
+      "input_pointer": "/cases/1/negative_cases/32/counterexample"
+    },
+    {
+      "pointer": "/cases/1/negative_cases/33",
+      "id": "SEC003-CONFIGURATION-READ-DOES-NOT-GRANT-NETWORK",
+      "class_id": "SEC003-F02-OPERATION-SCOPE",
+      "input_pointer": "/cases/1/negative_cases/33/counterexample"
+    }
+  ],
+  "unassigned_rows": [],
+  "residual_policy": "All /multi_contract_residual/negative_cases remain unchanged, including 13 actual multi-finding rows and existing order; no promotion or singleton split.",
+  "limits": [
+    "L8=52 and L5=0 remain later PR-B scope; checker is expected to remain FAIL.",
+    "L4 algorithm, runtime, old CLI/hook/CI and tests were not executed.",
+    "No authentication/authorization configuration, credentials or production behavior changed."
+  ],
+  "fixed_artifacts_unchanged": [
+    "blind-source-only.json",
+    "comparison.json",
+    "l9-assignment-audit.json",
+    "verification-summary.json"
+  ],
+  "checker_measurements": {
+    "before": {
+      "head": "9d6d873c911ccd9d97fb72a8ec7023af6d124c7b",
+      "comparison_mode": "legacy_casewise_four_layer",
+      "passed": false,
+      "L4_L9_pair": true,
+      "L5_L8_pair": true,
+      "counts": {
+        "L4": 0,
+        "L9": 98,
+        "L8": 52,
+        "L5": 0
+      },
+      "matched_case_count": 0,
+      "failures": 152
+    },
+    "after": {
+      "worktree": "/tmp/wr244-psi-l4l9",
+      "comparison_mode": "legacy_casewise_four_layer",
+      "passed": false,
+      "L4_L9_pair": true,
+      "L5_L8_pair": true,
+      "counts": {
+        "L4": 10,
+        "L9": 98,
+        "L8": 52,
+        "L5": 0
+      },
+      "matched_case_count": 0,
+      "failures": 162,
+      "interpretation": "Legacy checker remains FAIL; all 98 L9 case assignments statically match L4 expected condition and ordered finding codes. L5/L8 remain follow-up scope."
+    },
+    "interpretation": "The legacy casewise checker remains expected FAIL; not a formal four-layer completion result."
+  },
+  "binding_measurements": {
+    "SCF-B-0201": "existing registered binding updated with current L4/L9 hashes and the R1 supplement; every upstream remains outside scaffold/.",
+    "scfctl_validate": "bindings=185 fail=0 after final L4/L9 pin refresh",
+    "scfctl_stale": "stale=0 after final L4/L9 pin refresh"
+  },
+  "post_comparison_source_additions": {
+    "derivation_order": [
+      {
+        "step": 1,
+        "source": "fixed blind candidate comparison",
+        "result": "The source-only six candidate list did not enumerate explicit-connection absence or connection-material mismatch/unknown as separate rows; L9 audit labels these as outside-six candidates. No classification inferred from their expected findings."
+      },
+      {
+        "step": 2,
+        "source": "docs/helix-security/L3-requirements/functional-requirements.json#/requirements/4/obligation",
+        "meaning": "Other-project action requires explicit connection; operation boundaries are compared against target revision/scope."
+      },
+      {
+        "step": 3,
+        "source": "docs/helix-security/L4-basic-design/project-scope-isolation.json#/contracts/1/content_comparison/0",
+        "meaning": "Both same-project and cross-project connection identities are explicit comparison targets; a missing connection cannot establish correspondence."
+      },
+      {
+        "step": 4,
+        "source": "docs/helix-security/L4-basic-design/project-scope-isolation.json#/contracts/1/content_comparison/1",
+        "meaning": "Actual connection is compared against an independent expected connection member-by-member; known unequal revision is a conflict, absent/unknown material is not completed."
+      },
+      {
+        "step": 5,
+        "source": "docs/helix-security/L4-basic-design/project-scope-isolation.json#/contracts/1/output_meanings/0 + docs/helix-security/L10-verification/functional-verification.json#/cases/4/expected_observation",
+        "meaning": "L4 permits unresolved vs violation distinction; L10 says scope unknown is not allowed and failures return at the affected boundary. Therefore absent/unknown connection maps to unresolved, while a known unequal revision maps to violation."
+      },
+      {
+        "step": 6,
+        "source": "L9 counterexample.request inputs only",
+        "meaning": "Use actual input connection_state, operation and supplied/expected connection revision values to attach these source-derived rows; do not use expected_observation/finding codes to define meaning."
+      }
+    ],
+    "new_source_derived_rows": [
+      {
+        "class_id": "SEC003-F02-EXPLICIT-CONNECTION-ABSENT",
+        "l4_pointer": "/failure_classifications/7",
+        "l3_pointer": "/requirements/4/obligation",
+        "l10_pointer": "/cases/4/expected_observation",
+        "l4_contract_pointer": "/contracts/1/content_comparison/0"
+      },
+      {
+        "class_id": "SEC003-F02-CONNECTION-MATERIAL-CONFLICT",
+        "l4_pointer": "/failure_classifications/8",
+        "l3_pointer": "/requirements/4/obligation",
+        "l10_pointer": "/cases/4/expected_observation",
+        "l4_contract_pointer": "/contracts/1/content_comparison/1"
+      },
+      {
+        "class_id": "SEC003-F02-CONNECTION-MATERIAL-UNRESOLVED",
+        "l4_pointer": "/failure_classifications/9",
+        "l3_pointer": "/requirements/4/obligation",
+        "l10_pointer": "/cases/4/expected_observation",
+        "l4_contract_pointer": "/contracts/1/content_comparison/1"
+      }
+    ],
+    "assignment_additions": [
+      {
+        "pointer": "/cases/1/negative_cases/0",
+        "id": "SEC003-CROSS-READ-ABSENT",
+        "class_id": "SEC003-F02-EXPLICIT-CONNECTION-ABSENT",
+        "input_pointer": "/cases/1/negative_cases/0/counterexample"
+      },
+      {
+        "pointer": "/cases/1/negative_cases/1",
+        "id": "SEC003-CROSS-WRITE-ABSENT",
+        "class_id": "SEC003-F02-EXPLICIT-CONNECTION-ABSENT",
+        "input_pointer": "/cases/1/negative_cases/1/counterexample"
+      },
+      {
+        "pointer": "/cases/1/negative_cases/2",
+        "id": "SEC003-CROSS-EXECUTE-ABSENT",
+        "class_id": "SEC003-F02-EXPLICIT-CONNECTION-ABSENT",
+        "input_pointer": "/cases/1/negative_cases/2/counterexample"
+      },
+      {
+        "pointer": "/cases/1/negative_cases/3",
+        "id": "SEC003-CROSS-NETWORK-ABSENT",
+        "class_id": "SEC003-F02-EXPLICIT-CONNECTION-ABSENT",
+        "input_pointer": "/cases/1/negative_cases/3/counterexample"
+      },
+      {
+        "pointer": "/cases/1/negative_cases/4",
+        "id": "SEC003-CROSS-STATE-ABSENT",
+        "class_id": "SEC003-F02-EXPLICIT-CONNECTION-ABSENT",
+        "input_pointer": "/cases/1/negative_cases/4/counterexample"
+      },
+      {
+        "pointer": "/cases/1/negative_cases/5",
+        "id": "SEC003-CROSS-CREDENTIAL-ABSENT",
+        "class_id": "SEC003-F02-EXPLICIT-CONNECTION-ABSENT",
+        "input_pointer": "/cases/1/negative_cases/5/counterexample"
+      },
+      {
+        "pointer": "/cases/1/negative_cases/6",
+        "id": "SEC003-CROSS-ARTIFACT-ABSENT",
+        "class_id": "SEC003-F02-EXPLICIT-CONNECTION-ABSENT",
+        "input_pointer": "/cases/1/negative_cases/6/counterexample"
+      },
+      {
+        "pointer": "/cases/1/negative_cases/11",
+        "id": "SEC003-CONNECTION-UNKNOWN",
+        "class_id": "SEC003-F02-CONNECTION-MATERIAL-UNRESOLVED",
+        "input_pointer": "/cases/1/negative_cases/11/counterexample"
+      },
+      {
+        "pointer": "/cases/1/negative_cases/18",
+        "id": "SEC003-SAME-PROJECT-NO-CONNECTION",
+        "class_id": "SEC003-F02-EXPLICIT-CONNECTION-ABSENT",
+        "input_pointer": "/cases/1/negative_cases/18/counterexample"
+      },
+      {
+        "pointer": "/cases/1/negative_cases/10",
+        "id": "SEC003-CONNECTION-REVISION",
+        "class_id": "SEC003-F02-CONNECTION-MATERIAL-CONFLICT",
+        "input_pointer": "/cases/1/negative_cases/10/counterexample"
+      }
+    ],
+    "unassigned_remaining": "All 67 rows in unassigned_rows remain unattached: 65 lack a source-complete exact L4-to-L9 diagnostic leaf mapping, and 2 tenant-missing rows have ambiguous applicability."
+  },
+  "consistency_review_after_R1": {
+    "method": "Read L4 source meaning and diagnostic contract first; compare each existing L9 expected_observation only after source derivation, as a consistency check. For mismatches with no source-backed exact code relation, withdraw assignment rather than edit L9 or reverse-derive L4 meaning.",
+    "initial_mismatches": {
+      "count": 73,
+      "groups": {
+        "identity_conflict_vs_asset_scope_conflict": 48,
+        "identity_unresolved_vs_scope_identity_unresolved": 10,
+        "absent_connection_unknown_vs_violation": 8,
+        "foreign_latest_vs_asset_scope_conflict": 6,
+        "connection_material_vs_connection_content_conflict": 1
+      }
+    },
+    "corrected_from_source": {
+      "known_connection_absent": 8,
+      "source_basis": [
+        "L3 /requirements/4/obligation: no action across project without explicit connection",
+        "L4 /contracts/1/content_comparison/0: same and other project require explicit connection comparison",
+        "L4 /contracts/1/output_meanings/0: isolation_violation and scope_unresolved are distinct outputs"
+      ],
+      "mapping": "A requested operation with counterexample request.connection_state=absent is a known boundary violation/isolation_violation with explicit_connection_absent; connection_state=unknown remains scope_unresolved/connection_material_unresolved."
+    },
+    "withdrawn_for_source_code_gap": {
+      "count": 65,
+      "groups": {
+        "asset_identity_conflict_leaf_code": 48,
+        "scope_identity_missing_leaf_code": 10,
+        "foreign_latest_to_asset_scope_leaf_code": 6,
+        "connection_revision_conflict_leaf_code": 1
+      },
+      "reason": "L3/L10/L4 support their broad failure meaning and condition, but do not define an exact finding-code mapping to the existing L9 leaf; do not copy the L9 expected code upstream.",
+      "status": "superseded by source-first L4 design-code redraft; the 65 cases have source-derived codes and are reassigned in consistency_followup_after_source_redraft."
+    },
+    "remaining_unassigned_tenant_missing": 0,
+    "static_acceptance": "All 98 L9 single-finding cases have exact L4 condition and ordered finding-code equality after source-first redraft; tenant applicability is read from nonempty independent expected identity input for the two target/origin omissions, not inferred from L9 oracle."
+  },
+  "consistency_followup_after_source_redraft": {
+    "order": [
+      "fixed blind meaning/candidate",
+      "L3/L10/L4 source semantics",
+      "case counterexample input",
+      "L4 design code and condition",
+      "compare with L9 only as consistency check"
+    ],
+    "design_code_derivation": [
+      {
+        "class": "identity axis missing",
+        "meaning": "L4 F01 requires identity-axis correspondence; explicit null is unresolved and fallback is forbidden.",
+        "code": "scope_identity_unresolved"
+      },
+      {
+        "class": "asset identity mismatch",
+        "meaning": "L3 F01 binds each asset to scope identities; L4 F01 compares those identities and preserves known conflict.",
+        "code": "asset_scope_conflict"
+      },
+      {
+        "class": "foreign latest claim",
+        "meaning": "L3/L10 F02 says other-project state is not adopted merely as latest; L4 F02 keeps it outside current scope.",
+        "code": "asset_scope_conflict",
+        "shared_leaf_rule": "Reuse the source-derived asset_scope_conflict leaf across the F01 and F02 families; class IDs and axes stay distinct. L4 sort still distinguishes pointers and owner, and deduplicates only an exactly identical triple."
+      },
+      {
+        "class": "connection member conflict",
+        "meaning": "L4 F02 compares actual and independently expected connection members exactly; known unequal revision is a content conflict.",
+        "code": "connection_content_conflict"
+      },
+      {
+        "class": "known absent connection",
+        "meaning": "L3 F02 forbids cross-project action without explicit connection and L4 F02 requires explicit connection comparison for same and other projects; known absent is violation, distinct from unknown.",
+        "code": "explicit_connection_absent",
+        "condition": "isolation_violation"
+      },
+      {
+        "class": "tenant target/origin missing",
+        "meaning": "The counterexample input carries a nonempty independent expected_target/expected_origin.tenant Text. Under L4 F01 this supplies the applicable tenant identity; request tenant null is missing applicable identity, not unknown applicability. No oracle tenant_disposition was used.",
+        "code": "scope_identity_unresolved"
+      }
+    ],
+    "assignment_counts": {
+      "case_negative_total": 98,
+      "assigned": 98,
+      "unassigned": 0,
+      "unassigned_rows": []
+    },
+    "static_consistency_check": "All attached L9 rows have L4 expected.condition exactly equal to L9 expected_observation.condition and ordered equality of L4 expected.finding_codes with L9 expected_observation.findings[].code.",
+    "l9_expected_unchanged": true,
+    "residual_16_unchanged": true
+  },
+  "nested_projection_audit": {
+    "precedent": "docs/helix-security/L4-basic-design/revoke-quarantine-propagation.json (WR230 / PR #3973): top-level taxonomy rows carry class_id/design_ref; contracts[].negative_classifications are separate casewise projections with code/change/axis/state/backflow_owner/expected/expected_preserved/expected_side_effect_count/source_pointers/expected_text.",
+    "consumer": "scaffold/tools/design_verification_checker.py _normalize_neg_item consumes nested change/code/axis/state/expected/expected_preserved/backflow_owner/side-effect fields. It rejects a nested row carrying class_id/id matching a top row as dual definition; current design_ref parent-link path requires contract negative_class_refs to reverse-link each top row.",
+    "top_level_count": 10,
+    "nested_projection_count": 10,
+    "nested_projection_schema": [
+      "code",
+      "change",
+      "axis",
+      "state",
+      "backflow_owner",
+      "expected",
+      "expected_preserved",
+      "expected_side_effect_count",
+      "source_pointers",
+      "expected_text"
+    ],
+    "contract_reverse_refs": {
+      "HELIXSECURITY-L4-003-F01": [
+        "SEC003-F01-IDENTITY-CONFLICT",
+        "SEC003-F01-IDENTITY-MISSING",
+        "SEC003-F01-TENANT-APPLICABILITY-UNRESOLVED",
+        "SEC003-F01-TENANT-INVENTED"
+      ],
+      "HELIXSECURITY-L4-003-F02": [
+        "SEC003-F02-IMPLICIT-FALLBACK",
+        "SEC003-F02-FOREIGN-LATEST",
+        "SEC003-F02-OPERATION-SCOPE",
+        "SEC003-F02-EXPLICIT-CONNECTION-ABSENT",
+        "SEC003-F02-CONNECTION-MATERIAL-CONFLICT",
+        "SEC003-F02-CONNECTION-MATERIAL-UNRESOLVED"
+      ]
+    },
+    "expected_text_rule": "L4 condition + L4 expected.condition/finding_codes + all L4 expected_preserved entries; source-only, not copied from L9 expected.",
+    "L9_assignment_l4_pointer": "Each of 98 negative_class_assignment.source_pointers includes the parent contract nested projection plus the L3/L10/L4 source basis and that row’s counterexample input.",
+    "validation": "Static pass compares top/nested fields and L9 condition, ordered finding_codes, derived state, and return_owner for all 98 rows.",
+    "static_result": {
+      "top_to_nested_fields_equal": true,
+      "reverse_parent_refs_exact": true,
+      "l9_assignment_projection_pointers": 98,
+      "l9_condition_finding_code_state_owner_exact": true,
+      "checker_dual_definition_errors": 0,
+      "checker_parent_link_errors": 0,
+      "legacy_negative_4way_failures": 162
+    }
+  }
+}

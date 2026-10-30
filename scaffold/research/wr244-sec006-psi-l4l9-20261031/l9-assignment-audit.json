@@ -1,0 +1,2484 @@
+{
+  "schema": "wr244-sec006-l9-row-assignment-audit.v1",
+  "evidence_kind": "scaffold",
+  "authority_effect": "none",
+  "source_revision": "2684816ad6179cc3535e4a6c297e61d10fd75ca0",
+  "source_path": "docs/helix-security/L9-integration-verification/project-scope-isolation.json",
+  "source_file_sha256": "f89a3462052873cb4de456918161f43afa471918f6e1dbf20166f599be96ab62",
+  "blind_artifact_sha256": "14b28cc8a9e4cee9727d458a6e7fbe175c02a46fed06a5fa57bacb983edd4e22",
+  "rows_total": 114,
+  "case_negative_rows": 98,
+  "residual_negative_rows": 16,
+  "multi_finding_residual_rows": 13,
+  "comparison_policy": "Every L9 negative row and residual negative row is retained once by pointer and ID. Existing L9 values are recorded as comparison targets only and never used as upstream derivation inputs.",
+  "rows": [
+    {
+      "row_kind": "case_negative",
+      "pointer": "/cases/0/negative_cases/0",
+      "id": "SEC003-PERMISSION-ASSET-PROJECT-DRIFT",
+      "requirement_refs": [
+        "HELIXSECURITY-L3-003-F01",
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "expected_condition_observed_in_existing_l9": "isolation_violation",
+      "ordered_findings_observed_in_existing_l9": [
+        {
+          "code": "asset_scope_conflict",
+          "pointer": "/request/asset_scope/project",
+          "return_owner": "scope-binding-owner"
+        }
+      ],
+      "blind_meaning_comparison": [
+        "identity_missing_or_conflicting"
+      ],
+      "assignment_status": "existing_l9_row_compared; not reassigned"
+    },
+    {
+      "row_kind": "case_negative",
+      "pointer": "/cases/0/negative_cases/1",
+      "id": "SEC003-PERMISSION-ASSET-TENANT-DRIFT",
+      "requirement_refs": [
+        "HELIXSECURITY-L3-003-F01",
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "expected_condition_observed_in_existing_l9": "isolation_violation",
+      "ordered_findings_observed_in_existing_l9": [
+        {
+          "code": "asset_scope_conflict",
+          "pointer": "/request/asset_scope/tenant",
+          "return_owner": "scope-binding-owner"
+        }
+      ],
+      "blind_meaning_comparison": [
+        "identity_missing_or_conflicting"
+      ],
+      "assignment_status": "existing_l9_row_compared; not reassigned"
+    },
+    {
+      "row_kind": "case_negative",
+      "pointer": "/cases/0/negative_cases/2",
+      "id": "SEC003-PERMISSION-ASSET-ENVIRONMENT-DRIFT",
+      "requirement_refs": [
+        "HELIXSECURITY-L3-003-F01",
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "expected_condition_observed_in_existing_l9": "isolation_violation",
+      "ordered_findings_observed_in_existing_l9": [
+        {
+          "code": "asset_scope_conflict",
+          "pointer": "/request/asset_scope/environment",
+          "return_owner": "scope-binding-owner"
+        }
+      ],
+      "blind_meaning_comparison": [
+        "identity_missing_or_conflicting"
+      ],
+      "assignment_status": "existing_l9_row_compared; not reassigned"
+    },
+    {
+      "row_kind": "case_negative",
+      "pointer": "/cases/0/negative_cases/3",
+      "id": "SEC003-PERMISSION-ASSET-ASSIGNMENT-DRIFT",
+      "requirement_refs": [
+        "HELIXSECURITY-L3-003-F01",
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "expected_condition_observed_in_existing_l9": "isolation_violation",
+      "ordered_findings_observed_in_existing_l9": [
+        {
+          "code": "asset_scope_conflict",
+          "pointer": "/request/asset_scope/assignment",
+          "return_owner": "scope-binding-owner"
+        }
+      ],
+      "blind_meaning_comparison": [
+        "identity_missing_or_conflicting"
+      ],
+      "assignment_status": "existing_l9_row_compared; not reassigned"
+    },
+    {
+      "row_kind": "case_negative",
+      "pointer": "/cases/0/negative_cases/4",
+      "id": "SEC003-PERMISSION-ASSET-WORKTREE-DRIFT",
+      "requirement_refs": [
+        "HELIXSECURITY-L3-003-F01",
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "expected_condition_observed_in_existing_l9": "isolation_violation",
+      "ordered_findings_observed_in_existing_l9": [
+        {
+          "code": "asset_scope_conflict",
+          "pointer": "/request/asset_scope/worktree",
+          "return_owner": "scope-binding-owner"
+        }
+      ],
+      "blind_meaning_comparison": [
+        "identity_missing_or_conflicting"
+      ],
+      "assignment_status": "existing_l9_row_compared; not reassigned"
+    },
+    {
+      "row_kind": "case_negative",
+      "pointer": "/cases/0/negative_cases/5",
+      "id": "SEC003-PERMISSION-ASSET-REVISION-DRIFT",
+      "requirement_refs": [
+        "HELIXSECURITY-L3-003-F01",
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "expected_condition_observed_in_existing_l9": "isolation_violation",
+      "ordered_findings_observed_in_existing_l9": [
+        {
+          "code": "asset_scope_conflict",
+          "pointer": "/request/asset_scope/revision",
+          "return_owner": "scope-binding-owner"
+        }
+      ],
+      "blind_meaning_comparison": [
+        "identity_missing_or_conflicting"
+      ],
+      "assignment_status": "existing_l9_row_compared; not reassigned"
+    },
+    {
+      "row_kind": "case_negative",
+      "pointer": "/cases/0/negative_cases/6",
+      "id": "SEC003-STATE-ASSET-PROJECT-DRIFT",
+      "requirement_refs": [
+        "HELIXSECURITY-L3-003-F01",
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "expected_condition_observed_in_existing_l9": "isolation_violation",
+      "ordered_findings_observed_in_existing_l9": [
+        {
+          "code": "asset_scope_conflict",
+          "pointer": "/request/asset_scope/project",
+          "return_owner": "scope-binding-owner"
+        }
+      ],
+      "blind_meaning_comparison": [
+        "identity_missing_or_conflicting"
+      ],
+      "assignment_status": "existing_l9_row_compared; not reassigned"
+    },
+    {
+      "row_kind": "case_negative",
+      "pointer": "/cases/0/negative_cases/7",
+      "id": "SEC003-STATE-ASSET-TENANT-DRIFT",
+      "requirement_refs": [
+        "HELIXSECURITY-L3-003-F01",
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "expected_condition_observed_in_existing_l9": "isolation_violation",
+      "ordered_findings_observed_in_existing_l9": [
+        {
+          "code": "asset_scope_conflict",
+          "pointer": "/request/asset_scope/tenant",
+          "return_owner": "scope-binding-owner"
+        }
+      ],
+      "blind_meaning_comparison": [
+        "identity_missing_or_conflicting"
+      ],
+      "assignment_status": "existing_l9_row_compared; not reassigned"
+    },
+    {
+      "row_kind": "case_negative",
+      "pointer": "/cases/0/negative_cases/8",
+      "id": "SEC003-STATE-ASSET-ENVIRONMENT-DRIFT",
+      "requirement_refs": [
+        "HELIXSECURITY-L3-003-F01",
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "expected_condition_observed_in_existing_l9": "isolation_violation",
+      "ordered_findings_observed_in_existing_l9": [
+        {
+          "code": "asset_scope_conflict",
+          "pointer": "/request/asset_scope/environment",
+          "return_owner": "scope-binding-owner"
+        }
+      ],
+      "blind_meaning_comparison": [
+        "identity_missing_or_conflicting"
+      ],
+      "assignment_status": "existing_l9_row_compared; not reassigned"
+    },
+    {
+      "row_kind": "case_negative",
+      "pointer": "/cases/0/negative_cases/9",
+      "id": "SEC003-STATE-ASSET-ASSIGNMENT-DRIFT",
+      "requirement_refs": [
+        "HELIXSECURITY-L3-003-F01",
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "expected_condition_observed_in_existing_l9": "isolation_violation",
+      "ordered_findings_observed_in_existing_l9": [
+        {
+          "code": "asset_scope_conflict",
+          "pointer": "/request/asset_scope/assignment",
+          "return_owner": "scope-binding-owner"
+        }
+      ],
+      "blind_meaning_comparison": [
+        "identity_missing_or_conflicting"
+      ],
+      "assignment_status": "existing_l9_row_compared; not reassigned"
+    },
+    {
+      "row_kind": "case_negative",
+      "pointer": "/cases/0/negative_cases/10",
+      "id": "SEC003-STATE-ASSET-WORKTREE-DRIFT",
+      "requirement_refs": [
+        "HELIXSECURITY-L3-003-F01",
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "expected_condition_observed_in_existing_l9": "isolation_violation",
+      "ordered_findings_observed_in_existing_l9": [
+        {
+          "code": "asset_scope_conflict",
+          "pointer": "/request/asset_scope/worktree",
+          "return_owner": "scope-binding-owner"
+        }
+      ],
+      "blind_meaning_comparison": [
+        "identity_missing_or_conflicting"
+      ],
+      "assignment_status": "existing_l9_row_compared; not reassigned"
+    },
+    {
+      "row_kind": "case_negative",
+      "pointer": "/cases/0/negative_cases/11",
+      "id": "SEC003-STATE-ASSET-REVISION-DRIFT",
+      "requirement_refs": [
+        "HELIXSECURITY-L3-003-F01",
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "expected_condition_observed_in_existing_l9": "isolation_violation",
+      "ordered_findings_observed_in_existing_l9": [
+        {
+          "code": "asset_scope_conflict",
+          "pointer": "/request/asset_scope/revision",
+          "return_owner": "scope-binding-owner"
+        }
+      ],
+      "blind_meaning_comparison": [
+        "identity_missing_or_conflicting"
+      ],
+      "assignment_status": "existing_l9_row_compared; not reassigned"
+    },
+    {
+      "row_kind": "case_negative",
+      "pointer": "/cases/0/negative_cases/12",
+      "id": "SEC003-DATA-ASSET-PROJECT-DRIFT",
+      "requirement_refs": [
+        "HELIXSECURITY-L3-003-F01",
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "expected_condition_observed_in_existing_l9": "isolation_violation",
+      "ordered_findings_observed_in_existing_l9": [
+        {
+          "code": "asset_scope_conflict",
+          "pointer": "/request/asset_scope/project",
+          "return_owner": "scope-binding-owner"
+        }
+      ],
+      "blind_meaning_comparison": [
+        "identity_missing_or_conflicting"
+      ],
+      "assignment_status": "existing_l9_row_compared; not reassigned"
+    },
+    {
+      "row_kind": "case_negative",
+      "pointer": "/cases/0/negative_cases/13",
+      "id": "SEC003-DATA-ASSET-TENANT-DRIFT",
+      "requirement_refs": [
+        "HELIXSECURITY-L3-003-F01",
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "expected_condition_observed_in_existing_l9": "isolation_violation",
+      "ordered_findings_observed_in_existing_l9": [
+        {
+          "code": "asset_scope_conflict",
+          "pointer": "/request/asset_scope/tenant",
+          "return_owner": "scope-binding-owner"
+        }
+      ],
+      "blind_meaning_comparison": [
+        "identity_missing_or_conflicting"
+      ],
+      "assignment_status": "existing_l9_row_compared; not reassigned"
+    },
+    {
+      "row_kind": "case_negative",
+      "pointer": "/cases/0/negative_cases/14",
+      "id": "SEC003-DATA-ASSET-ENVIRONMENT-DRIFT",
+      "requirement_refs": [
+        "HELIXSECURITY-L3-003-F01",
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "expected_condition_observed_in_existing_l9": "isolation_violation",
+      "ordered_findings_observed_in_existing_l9": [
+        {
+          "code": "asset_scope_conflict",
+          "pointer": "/request/asset_scope/environment",
+          "return_owner": "scope-binding-owner"
+        }
+      ],
+      "blind_meaning_comparison": [
+        "identity_missing_or_conflicting"
+      ],
+      "assignment_status": "existing_l9_row_compared; not reassigned"
+    },
+    {
+      "row_kind": "case_negative",
+      "pointer": "/cases/0/negative_cases/15",
+      "id": "SEC003-DATA-ASSET-ASSIGNMENT-DRIFT",
+      "requirement_refs": [
+        "HELIXSECURITY-L3-003-F01",
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "expected_condition_observed_in_existing_l9": "isolation_violation",
+      "ordered_findings_observed_in_existing_l9": [
+        {
+          "code": "asset_scope_conflict",
+          "pointer": "/request/asset_scope/assignment",
+          "return_owner": "scope-binding-owner"
+        }
+      ],
+      "blind_meaning_comparison": [
+        "identity_missing_or_conflicting"
+      ],
+      "assignment_status": "existing_l9_row_compared; not reassigned"
+    },
+    {
+      "row_kind": "case_negative",
+      "pointer": "/cases/0/negative_cases/16",
+      "id": "SEC003-DATA-ASSET-WORKTREE-DRIFT",
+      "requirement_refs": [
+        "HELIXSECURITY-L3-003-F01",
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "expected_condition_observed_in_existing_l9": "isolation_violation",
+      "ordered_findings_observed_in_existing_l9": [
+        {
+          "code": "asset_scope_conflict",
+          "pointer": "/request/asset_scope/worktree",
+          "return_owner": "scope-binding-owner"
+        }
+      ],
+      "blind_meaning_comparison": [
+        "identity_missing_or_conflicting"
+      ],
+      "assignment_status": "existing_l9_row_compared; not reassigned"
+    },
+    {
+      "row_kind": "case_negative",
+      "pointer": "/cases/0/negative_cases/17",
+      "id": "SEC003-DATA-ASSET-REVISION-DRIFT",
+      "requirement_refs": [
+        "HELIXSECURITY-L3-003-F01",
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "expected_condition_observed_in_existing_l9": "isolation_violation",
+      "ordered_findings_observed_in_existing_l9": [
+        {
+          "code": "asset_scope_conflict",
+          "pointer": "/request/asset_scope/revision",
+          "return_owner": "scope-binding-owner"
+        }
+      ],
+      "blind_meaning_comparison": [
+        "identity_missing_or_conflicting"
+      ],
+      "assignment_status": "existing_l9_row_compared; not reassigned"
+    },
+    {
+      "row_kind": "case_negative",
+      "pointer": "/cases/0/negative_cases/18",
+      "id": "SEC003-WORKER-ASSET-PROJECT-DRIFT",
+      "requirement_refs": [
+        "HELIXSECURITY-L3-003-F01",
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "expected_condition_observed_in_existing_l9": "isolation_violation",
+      "ordered_findings_observed_in_existing_l9": [
+        {
+          "code": "asset_scope_conflict",
+          "pointer": "/request/asset_scope/project",
+          "return_owner": "scope-binding-owner"
+        }
+      ],
+      "blind_meaning_comparison": [
+        "identity_missing_or_conflicting"
+      ],
+      "assignment_status": "existing_l9_row_compared; not reassigned"
+    },
+    {
+      "row_kind": "case_negative",
+      "pointer": "/cases/0/negative_cases/19",
+      "id": "SEC003-WORKER-ASSET-TENANT-DRIFT",
+      "requirement_refs": [
+        "HELIXSECURITY-L3-003-F01",
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "expected_condition_observed_in_existing_l9": "isolation_violation",
+      "ordered_findings_observed_in_existing_l9": [
+        {
+          "code": "asset_scope_conflict",
+          "pointer": "/request/asset_scope/tenant",
+          "return_owner": "scope-binding-owner"
+        }
+      ],
+      "blind_meaning_comparison": [
+        "identity_missing_or_conflicting"
+      ],
+      "assignment_status": "existing_l9_row_compared; not reassigned"
+    },
+    {
+      "row_kind": "case_negative",
+      "pointer": "/cases/0/negative_cases/20",
+      "id": "SEC003-WORKER-ASSET-ENVIRONMENT-DRIFT",
+      "requirement_refs": [
+        "HELIXSECURITY-L3-003-F01",
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "expected_condition_observed_in_existing_l9": "isolation_violation",
+      "ordered_findings_observed_in_existing_l9": [
+        {
+          "code": "asset_scope_conflict",
+          "pointer": "/request/asset_scope/environment",
+          "return_owner": "scope-binding-owner"
+        }
+      ],
+      "blind_meaning_comparison": [
+        "identity_missing_or_conflicting"
+      ],
+      "assignment_status": "existing_l9_row_compared; not reassigned"
+    },
+    {
+      "row_kind": "case_negative",
+      "pointer": "/cases/0/negative_cases/21",
+      "id": "SEC003-WORKER-ASSET-ASSIGNMENT-DRIFT",
+      "requirement_refs": [
+        "HELIXSECURITY-L3-003-F01",
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "expected_condition_observed_in_existing_l9": "isolation_violation",
+      "ordered_findings_observed_in_existing_l9": [
+        {
+          "code": "asset_scope_conflict",
+          "pointer": "/request/asset_scope/assignment",
+          "return_owner": "scope-binding-owner"
+        }
+      ],
+      "blind_meaning_comparison": [
+        "identity_missing_or_conflicting"
+      ],
+      "assignment_status": "existing_l9_row_compared; not reassigned"
+    },
+    {
+      "row_kind": "case_negative",
+      "pointer": "/cases/0/negative_cases/22",
+      "id": "SEC003-WORKER-ASSET-WORKTREE-DRIFT",
+      "requirement_refs": [
+        "HELIXSECURITY-L3-003-F01",
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "expected_condition_observed_in_existing_l9": "isolation_violation",
+      "ordered_findings_observed_in_existing_l9": [
+        {
+          "code": "asset_scope_conflict",
+          "pointer": "/request/asset_scope/worktree",
+          "return_owner": "scope-binding-owner"
+        }
+      ],
+      "blind_meaning_comparison": [
+        "identity_missing_or_conflicting"
+      ],
+      "assignment_status": "existing_l9_row_compared; not reassigned"
+    },
+    {
+      "row_kind": "case_negative",
+      "pointer": "/cases/0/negative_cases/23",
+      "id": "SEC003-WORKER-ASSET-REVISION-DRIFT",
+      "requirement_refs": [
+        "HELIXSECURITY-L3-003-F01",
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "expected_condition_observed_in_existing_l9": "isolation_violation",
+      "ordered_findings_observed_in_existing_l9": [
+        {
+          "code": "asset_scope_conflict",
+          "pointer": "/request/asset_scope/revision",
+          "return_owner": "scope-binding-owner"
+        }
+      ],
+      "blind_meaning_comparison": [
+        "identity_missing_or_conflicting"
+      ],
+      "assignment_status": "existing_l9_row_compared; not reassigned"
+    },
+    {
+      "row_kind": "case_negative",
+      "pointer": "/cases/0/negative_cases/24",
+      "id": "SEC003-CREDENTIAL-ASSET-PROJECT-DRIFT",
+      "requirement_refs": [
+        "HELIXSECURITY-L3-003-F01",
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "expected_condition_observed_in_existing_l9": "isolation_violation",
+      "ordered_findings_observed_in_existing_l9": [
+        {
+          "code": "asset_scope_conflict",
+          "pointer": "/request/asset_scope/project",
+          "return_owner": "scope-binding-owner"
+        }
+      ],
+      "blind_meaning_comparison": [
+        "identity_missing_or_conflicting"
+      ],
+      "assignment_status": "existing_l9_row_compared; not reassigned"
+    },
+    {
+      "row_kind": "case_negative",
+      "pointer": "/cases/0/negative_cases/25",
+      "id": "SEC003-CREDENTIAL-ASSET-TENANT-DRIFT",
+      "requirement_refs": [
+        "HELIXSECURITY-L3-003-F01",
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "expected_condition_observed_in_existing_l9": "isolation_violation",
+      "ordered_findings_observed_in_existing_l9": [
+        {
+          "code": "asset_scope_conflict",
+          "pointer": "/request/asset_scope/tenant",
+          "return_owner": "scope-binding-owner"
+        }
+      ],
+      "blind_meaning_comparison": [
+        "identity_missing_or_conflicting"
+      ],
+      "assignment_status": "existing_l9_row_compared; not reassigned"
+    },
+    {
+      "row_kind": "case_negative",
+      "pointer": "/cases/0/negative_cases/26",
+      "id": "SEC003-CREDENTIAL-ASSET-ENVIRONMENT-DRIFT",
+      "requirement_refs": [
+        "HELIXSECURITY-L3-003-F01",
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "expected_condition_observed_in_existing_l9": "isolation_violation",
+      "ordered_findings_observed_in_existing_l9": [
+        {
+          "code": "asset_scope_conflict",
+          "pointer": "/request/asset_scope/environment",
+          "return_owner": "scope-binding-owner"
+        }
+      ],
+      "blind_meaning_comparison": [
+        "identity_missing_or_conflicting"
+      ],
+      "assignment_status": "existing_l9_row_compared; not reassigned"
+    },
+    {
+      "row_kind": "case_negative",
+      "pointer": "/cases/0/negative_cases/27",
+      "id": "SEC003-CREDENTIAL-ASSET-ASSIGNMENT-DRIFT",
+      "requirement_refs": [
+        "HELIXSECURITY-L3-003-F01",
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "expected_condition_observed_in_existing_l9": "isolation_violation",
+      "ordered_findings_observed_in_existing_l9": [
+        {
+          "code": "asset_scope_conflict",
+          "pointer": "/request/asset_scope/assignment",
+          "return_owner": "scope-binding-owner"
+        }
+      ],
+      "blind_meaning_comparison": [
+        "identity_missing_or_conflicting"
+      ],
+      "assignment_status": "existing_l9_row_compared; not reassigned"
+    },
+    {
+      "row_kind": "case_negative",
+      "pointer": "/cases/0/negative_cases/28",
+      "id": "SEC003-CREDENTIAL-ASSET-WORKTREE-DRIFT",
+      "requirement_refs": [
+        "HELIXSECURITY-L3-003-F01",
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "expected_condition_observed_in_existing_l9": "isolation_violation",
+      "ordered_findings_observed_in_existing_l9": [
+        {
+          "code": "asset_scope_conflict",
+          "pointer": "/request/asset_scope/worktree",
+          "return_owner": "scope-binding-owner"
+        }
+      ],
+      "blind_meaning_comparison": [
+        "identity_missing_or_conflicting"
+      ],
+      "assignment_status": "existing_l9_row_compared; not reassigned"
+    },
+    {
+      "row_kind": "case_negative",
+      "pointer": "/cases/0/negative_cases/29",
+      "id": "SEC003-CREDENTIAL-ASSET-REVISION-DRIFT",
+      "requirement_refs": [
+        "HELIXSECURITY-L3-003-F01",
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "expected_condition_observed_in_existing_l9": "isolation_violation",
+      "ordered_findings_observed_in_existing_l9": [
+        {
+          "code": "asset_scope_conflict",
+          "pointer": "/request/asset_scope/revision",
+          "return_owner": "scope-binding-owner"
+        }
+      ],
+      "blind_meaning_comparison": [
+        "identity_missing_or_conflicting"
+      ],
+      "assignment_status": "existing_l9_row_compared; not reassigned"
+    },
+    {
+      "row_kind": "case_negative",
+      "pointer": "/cases/0/negative_cases/30",
+      "id": "SEC003-ARTIFACT-ASSET-PROJECT-DRIFT",
+      "requirement_refs": [
+        "HELIXSECURITY-L3-003-F01",
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "expected_condition_observed_in_existing_l9": "isolation_violation",
+      "ordered_findings_observed_in_existing_l9": [
+        {
+          "code": "asset_scope_conflict",
+          "pointer": "/request/asset_scope/project",
+          "return_owner": "scope-binding-owner"
+        }
+      ],
+      "blind_meaning_comparison": [
+        "identity_missing_or_conflicting"
+      ],
+      "assignment_status": "existing_l9_row_compared; not reassigned"
+    },
+    {
+      "row_kind": "case_negative",
+      "pointer": "/cases/0/negative_cases/31",
+      "id": "SEC003-ARTIFACT-ASSET-TENANT-DRIFT",
+      "requirement_refs": [
+        "HELIXSECURITY-L3-003-F01",
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "expected_condition_observed_in_existing_l9": "isolation_violation",
+      "ordered_findings_observed_in_existing_l9": [
+        {
+          "code": "asset_scope_conflict",
+          "pointer": "/request/asset_scope/tenant",
+          "return_owner": "scope-binding-owner"
+        }
+      ],
+      "blind_meaning_comparison": [
+        "identity_missing_or_conflicting"
+      ],
+      "assignment_status": "existing_l9_row_compared; not reassigned"
+    },
+    {
+      "row_kind": "case_negative",
+      "pointer": "/cases/0/negative_cases/32",
+      "id": "SEC003-ARTIFACT-ASSET-ENVIRONMENT-DRIFT",
+      "requirement_refs": [
+        "HELIXSECURITY-L3-003-F01",
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "expected_condition_observed_in_existing_l9": "isolation_violation",
+      "ordered_findings_observed_in_existing_l9": [
+        {
+          "code": "asset_scope_conflict",
+          "pointer": "/request/asset_scope/environment",
+          "return_owner": "scope-binding-owner"
+        }
+      ],
+      "blind_meaning_comparison": [
+        "identity_missing_or_conflicting"
+      ],
+      "assignment_status": "existing_l9_row_compared; not reassigned"
+    },
+    {
+      "row_kind": "case_negative",
+      "pointer": "/cases/0/negative_cases/33",
+      "id": "SEC003-ARTIFACT-ASSET-ASSIGNMENT-DRIFT",
+      "requirement_refs": [
+        "HELIXSECURITY-L3-003-F01",
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "expected_condition_observed_in_existing_l9": "isolation_violation",
+      "ordered_findings_observed_in_existing_l9": [
+        {
+          "code": "asset_scope_conflict",
+          "pointer": "/request/asset_scope/assignment",
+          "return_owner": "scope-binding-owner"
+        }
+      ],
+      "blind_meaning_comparison": [
+        "identity_missing_or_conflicting"
+      ],
+      "assignment_status": "existing_l9_row_compared; not reassigned"
+    },
+    {
+      "row_kind": "case_negative",
+      "pointer": "/cases/0/negative_cases/34",
+      "id": "SEC003-ARTIFACT-ASSET-WORKTREE-DRIFT",
+      "requirement_refs": [
+        "HELIXSECURITY-L3-003-F01",
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "expected_condition_observed_in_existing_l9": "isolation_violation",
+      "ordered_findings_observed_in_existing_l9": [
+        {
+          "code": "asset_scope_conflict",
+          "pointer": "/request/asset_scope/worktree",
+          "return_owner": "scope-binding-owner"
+        }
+      ],
+      "blind_meaning_comparison": [
+        "identity_missing_or_conflicting"
+      ],
+      "assignment_status": "existing_l9_row_compared; not reassigned"
+    },
+    {
+      "row_kind": "case_negative",
+      "pointer": "/cases/0/negative_cases/35",
+      "id": "SEC003-ARTIFACT-ASSET-REVISION-DRIFT",
+      "requirement_refs": [
+        "HELIXSECURITY-L3-003-F01",
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "expected_condition_observed_in_existing_l9": "isolation_violation",
+      "ordered_findings_observed_in_existing_l9": [
+        {
+          "code": "asset_scope_conflict",
+          "pointer": "/request/asset_scope/revision",
+          "return_owner": "scope-binding-owner"
+        }
+      ],
+      "blind_meaning_comparison": [
+        "identity_missing_or_conflicting"
+      ],
+      "assignment_status": "existing_l9_row_compared; not reassigned"
+    },
+    {
+      "row_kind": "case_negative",
+      "pointer": "/cases/0/negative_cases/36",
+      "id": "SEC003-MEMORY-ASSET-PROJECT-DRIFT",
+      "requirement_refs": [
+        "HELIXSECURITY-L3-003-F01",
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "expected_condition_observed_in_existing_l9": "isolation_violation",
+      "ordered_findings_observed_in_existing_l9": [
+        {
+          "code": "asset_scope_conflict",
+          "pointer": "/request/asset_scope/project",
+          "return_owner": "scope-binding-owner"
+        }
+      ],
+      "blind_meaning_comparison": [
+        "identity_missing_or_conflicting"
+      ],
+      "assignment_status": "existing_l9_row_compared; not reassigned"
+    },
+    {
+      "row_kind": "case_negative",
+      "pointer": "/cases/0/negative_cases/37",
+      "id": "SEC003-MEMORY-ASSET-TENANT-DRIFT",
+      "requirement_refs": [
+        "HELIXSECURITY-L3-003-F01",
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "expected_condition_observed_in_existing_l9": "isolation_violation",
+      "ordered_findings_observed_in_existing_l9": [
+        {
+          "code": "asset_scope_conflict",
+          "pointer": "/request/asset_scope/tenant",
+          "return_owner": "scope-binding-owner"
+        }
+      ],
+      "blind_meaning_comparison": [
+        "identity_missing_or_conflicting"
+      ],
+      "assignment_status": "existing_l9_row_compared; not reassigned"
+    },
+    {
+      "row_kind": "case_negative",
+      "pointer": "/cases/0/negative_cases/38",
+      "id": "SEC003-MEMORY-ASSET-ENVIRONMENT-DRIFT",
+      "requirement_refs": [
+        "HELIXSECURITY-L3-003-F01",
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "expected_condition_observed_in_existing_l9": "isolation_violation",
+      "ordered_findings_observed_in_existing_l9": [
+        {
+          "code": "asset_scope_conflict",
+          "pointer": "/request/asset_scope/environment",
+          "return_owner": "scope-binding-owner"
+        }
+      ],
+      "blind_meaning_comparison": [
+        "identity_missing_or_conflicting"
+      ],
+      "assignment_status": "existing_l9_row_compared; not reassigned"
+    },
+    {
+      "row_kind": "case_negative",
+      "pointer": "/cases/0/negative_cases/39",
+      "id": "SEC003-MEMORY-ASSET-ASSIGNMENT-DRIFT",
+      "requirement_refs": [
+        "HELIXSECURITY-L3-003-F01",
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "expected_condition_observed_in_existing_l9": "isolation_violation",
+      "ordered_findings_observed_in_existing_l9": [
+        {
+          "code": "asset_scope_conflict",
+          "pointer": "/request/asset_scope/assignment",
+          "return_owner": "scope-binding-owner"
+        }
+      ],
+      "blind_meaning_comparison": [
+        "identity_missing_or_conflicting"
+      ],
+      "assignment_status": "existing_l9_row_compared; not reassigned"
+    },
+    {
+      "row_kind": "case_negative",
+      "pointer": "/cases/0/negative_cases/40",
+      "id": "SEC003-MEMORY-ASSET-WORKTREE-DRIFT",
+      "requirement_refs": [
+        "HELIXSECURITY-L3-003-F01",
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "expected_condition_observed_in_existing_l9": "isolation_violation",
+      "ordered_findings_observed_in_existing_l9": [
+        {
+          "code": "asset_scope_conflict",
+          "pointer": "/request/asset_scope/worktree",
+          "return_owner": "scope-binding-owner"
+        }
+      ],
+      "blind_meaning_comparison": [
+        "identity_missing_or_conflicting"
+      ],
+      "assignment_status": "existing_l9_row_compared; not reassigned"
+    },
+    {
+      "row_kind": "case_negative",
+      "pointer": "/cases/0/negative_cases/41",
+      "id": "SEC003-MEMORY-ASSET-REVISION-DRIFT",
+      "requirement_refs": [
+        "HELIXSECURITY-L3-003-F01",
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "expected_condition_observed_in_existing_l9": "isolation_violation",
+      "ordered_findings_observed_in_existing_l9": [
+        {
+          "code": "asset_scope_conflict",
+          "pointer": "/request/asset_scope/revision",
+          "return_owner": "scope-binding-owner"
+        }
+      ],
+      "blind_meaning_comparison": [
+        "identity_missing_or_conflicting"
+      ],
+      "assignment_status": "existing_l9_row_compared; not reassigned"
+    },
+    {
+      "row_kind": "case_negative",
+      "pointer": "/cases/0/negative_cases/42",
+      "id": "SEC003-EXECUTION_TARGET-ASSET-PROJECT-DRIFT",
+      "requirement_refs": [
+        "HELIXSECURITY-L3-003-F01",
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "expected_condition_observed_in_existing_l9": "isolation_violation",
+      "ordered_findings_observed_in_existing_l9": [
+        {
+          "code": "asset_scope_conflict",
+          "pointer": "/request/asset_scope/project",
+          "return_owner": "scope-binding-owner"
+        }
+      ],
+      "blind_meaning_comparison": [
+        "identity_missing_or_conflicting"
+      ],
+      "assignment_status": "existing_l9_row_compared; not reassigned"
+    },
+    {
+      "row_kind": "case_negative",
+      "pointer": "/cases/0/negative_cases/43",
+      "id": "SEC003-EXECUTION_TARGET-ASSET-TENANT-DRIFT",
+      "requirement_refs": [
+        "HELIXSECURITY-L3-003-F01",
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "expected_condition_observed_in_existing_l9": "isolation_violation",
+      "ordered_findings_observed_in_existing_l9": [
+        {
+          "code": "asset_scope_conflict",
+          "pointer": "/request/asset_scope/tenant",
+          "return_owner": "scope-binding-owner"
+        }
+      ],
+      "blind_meaning_comparison": [
+        "identity_missing_or_conflicting"
+      ],
+      "assignment_status": "existing_l9_row_compared; not reassigned"
+    },
+    {
+      "row_kind": "case_negative",
+      "pointer": "/cases/0/negative_cases/44",
+      "id": "SEC003-EXECUTION_TARGET-ASSET-ENVIRONMENT-DRIFT",
+      "requirement_refs": [
+        "HELIXSECURITY-L3-003-F01",
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "expected_condition_observed_in_existing_l9": "isolation_violation",
+      "ordered_findings_observed_in_existing_l9": [
+        {
+          "code": "asset_scope_conflict",
+          "pointer": "/request/asset_scope/environment",
+          "return_owner": "scope-binding-owner"
+        }
+      ],
+      "blind_meaning_comparison": [
+        "identity_missing_or_conflicting"
+      ],
+      "assignment_status": "existing_l9_row_compared; not reassigned"
+    },
+    {
+      "row_kind": "case_negative",
+      "pointer": "/cases/0/negative_cases/45",
+      "id": "SEC003-EXECUTION_TARGET-ASSET-ASSIGNMENT-DRIFT",
+      "requirement_refs": [
+        "HELIXSECURITY-L3-003-F01",
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "expected_condition_observed_in_existing_l9": "isolation_violation",
+      "ordered_findings_observed_in_existing_l9": [
+        {
+          "code": "asset_scope_conflict",
+          "pointer": "/request/asset_scope/assignment",
+          "return_owner": "scope-binding-owner"
+        }
+      ],
+      "blind_meaning_comparison": [
+        "identity_missing_or_conflicting"
+      ],
+      "assignment_status": "existing_l9_row_compared; not reassigned"
+    },
+    {
+      "row_kind": "case_negative",
+      "pointer": "/cases/0/negative_cases/46",
+      "id": "SEC003-EXECUTION_TARGET-ASSET-WORKTREE-DRIFT",
+      "requirement_refs": [
+        "HELIXSECURITY-L3-003-F01",
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "expected_condition_observed_in_existing_l9": "isolation_violation",
+      "ordered_findings_observed_in_existing_l9": [
+        {
+          "code": "asset_scope_conflict",
+          "pointer": "/request/asset_scope/worktree",
+          "return_owner": "scope-binding-owner"
+        }
+      ],
+      "blind_meaning_comparison": [
+        "identity_missing_or_conflicting"
+      ],
+      "assignment_status": "existing_l9_row_compared; not reassigned"
+    },
+    {
+      "row_kind": "case_negative",
+      "pointer": "/cases/0/negative_cases/47",
+      "id": "SEC003-EXECUTION_TARGET-ASSET-REVISION-DRIFT",
+      "requirement_refs": [
+        "HELIXSECURITY-L3-003-F01",
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "expected_condition_observed_in_existing_l9": "isolation_violation",
+      "ordered_findings_observed_in_existing_l9": [
+        {
+          "code": "asset_scope_conflict",
+          "pointer": "/request/asset_scope/revision",
+          "return_owner": "scope-binding-owner"
+        }
+      ],
+      "blind_meaning_comparison": [
+        "identity_missing_or_conflicting"
+      ],
+      "assignment_status": "existing_l9_row_compared; not reassigned"
+    },
+    {
+      "row_kind": "case_negative",
+      "pointer": "/cases/0/negative_cases/48",
+      "id": "SEC003-TARGET-PROJECT-MISSING",
+      "requirement_refs": [
+        "HELIXSECURITY-L3-003-F01",
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "expected_condition_observed_in_existing_l9": "scope_unresolved",
+      "ordered_findings_observed_in_existing_l9": [
+        {
+          "code": "scope_identity_unresolved",
+          "pointer": "/request/target/project",
+          "return_owner": "scope-binding-owner"
+        }
+      ],
+      "blind_meaning_comparison": [
+        "identity_missing_or_conflicting"
+      ],
+      "assignment_status": "existing_l9_row_compared; not reassigned"
+    },
+    {
+      "row_kind": "case_negative",
+      "pointer": "/cases/0/negative_cases/49",
+      "id": "SEC003-TARGET-TENANT-MISSING",
+      "requirement_refs": [
+        "HELIXSECURITY-L3-003-F01",
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "expected_condition_observed_in_existing_l9": "scope_unresolved",
+      "ordered_findings_observed_in_existing_l9": [
+        {
+          "code": "scope_identity_unresolved",
+          "pointer": "/request/target/tenant",
+          "return_owner": "scope-binding-owner"
+        }
+      ],
+      "blind_meaning_comparison": [
+        "identity_missing_or_conflicting",
+        "tenant_applicability_unknown_or_missing"
+      ],
+      "assignment_status": "existing_l9_row_compared; not reassigned"
+    },
+    {
+      "row_kind": "case_negative",
+      "pointer": "/cases/0/negative_cases/50",
+      "id": "SEC003-TARGET-ENVIRONMENT-MISSING",
+      "requirement_refs": [
+        "HELIXSECURITY-L3-003-F01",
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "expected_condition_observed_in_existing_l9": "scope_unresolved",
+      "ordered_findings_observed_in_existing_l9": [
+        {
+          "code": "scope_identity_unresolved",
+          "pointer": "/request/target/environment",
+          "return_owner": "scope-binding-owner"
+        }
+      ],
+      "blind_meaning_comparison": [
+        "identity_missing_or_conflicting"
+      ],
+      "assignment_status": "existing_l9_row_compared; not reassigned"
+    },
+    {
+      "row_kind": "case_negative",
+      "pointer": "/cases/0/negative_cases/51",
+      "id": "SEC003-TARGET-ASSIGNMENT-MISSING",
+      "requirement_refs": [
+        "HELIXSECURITY-L3-003-F01",
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "expected_condition_observed_in_existing_l9": "scope_unresolved",
+      "ordered_findings_observed_in_existing_l9": [
+        {
+          "code": "scope_identity_unresolved",
+          "pointer": "/request/target/assignment",
+          "return_owner": "scope-binding-owner"
+        }
+      ],
+      "blind_meaning_comparison": [
+        "identity_missing_or_conflicting"
+      ],
+      "assignment_status": "existing_l9_row_compared; not reassigned"
+    },
+    {
+      "row_kind": "case_negative",
+      "pointer": "/cases/0/negative_cases/52",
+      "id": "SEC003-TARGET-WORKTREE-MISSING",
+      "requirement_refs": [
+        "HELIXSECURITY-L3-003-F01",
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "expected_condition_observed_in_existing_l9": "scope_unresolved",
+      "ordered_findings_observed_in_existing_l9": [
+        {
+          "code": "scope_identity_unresolved",
+          "pointer": "/request/target/worktree",
+          "return_owner": "scope-binding-owner"
+        }
+      ],
+      "blind_meaning_comparison": [
+        "identity_missing_or_conflicting"
+      ],
+      "assignment_status": "existing_l9_row_compared; not reassigned"
+    },
+    {
+      "row_kind": "case_negative",
+      "pointer": "/cases/0/negative_cases/53",
+      "id": "SEC003-TARGET-REVISION-MISSING",
+      "requirement_refs": [
+        "HELIXSECURITY-L3-003-F01",
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "expected_condition_observed_in_existing_l9": "scope_unresolved",
+      "ordered_findings_observed_in_existing_l9": [
+        {
+          "code": "scope_identity_unresolved",
+          "pointer": "/request/target/revision",
+          "return_owner": "scope-binding-owner"
+        }
+      ],
+      "blind_meaning_comparison": [
+        "identity_missing_or_conflicting"
+      ],
+      "assignment_status": "existing_l9_row_compared; not reassigned"
+    },
+    {
+      "row_kind": "case_negative",
+      "pointer": "/cases/0/negative_cases/54",
+      "id": "SEC003-TENANT-INVENTED",
+      "requirement_refs": [
+        "HELIXSECURITY-L3-003-F01",
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "expected_condition_observed_in_existing_l9": "isolation_violation",
+      "ordered_findings_observed_in_existing_l9": [
+        {
+          "code": "tenant_invented",
+          "pointer": "/request/target/tenant",
+          "return_owner": "scope-binding-owner"
+        }
+      ],
+      "blind_meaning_comparison": [
+        "tenant_invented_when_not_applicable"
+      ],
+      "assignment_status": "existing_l9_row_compared; not reassigned"
+    },
+    {
+      "row_kind": "case_negative",
+      "pointer": "/cases/0/negative_cases/55",
+      "id": "SEC003-TENANT-APPLICABILITY-UNKNOWN",
+      "requirement_refs": [
+        "HELIXSECURITY-L3-003-F01",
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "expected_condition_observed_in_existing_l9": "scope_unresolved",
+      "ordered_findings_observed_in_existing_l9": [
+        {
+          "code": "tenant_applicability_unresolved",
+          "pointer": "/context/target_tenant_applicable",
+          "return_owner": "scope-binding-owner"
+        }
+      ],
+      "blind_meaning_comparison": [
+        "tenant_applicability_unknown_or_missing"
+      ],
+      "assignment_status": "existing_l9_row_compared; not reassigned"
+    },
+    {
+      "row_kind": "case_negative",
+      "pointer": "/cases/0/negative_cases/56",
+      "id": "SEC003-ORIGIN-PROJECT-MISSING",
+      "requirement_refs": [
+        "HELIXSECURITY-L3-003-F01",
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "expected_condition_observed_in_existing_l9": "scope_unresolved",
+      "ordered_findings_observed_in_existing_l9": [
+        {
+          "code": "scope_identity_unresolved",
+          "pointer": "/request/origin/project",
+          "return_owner": "scope-binding-owner"
+        }
+      ],
+      "blind_meaning_comparison": [
+        "identity_missing_or_conflicting"
+      ],
+      "assignment_status": "existing_l9_row_compared; not reassigned"
+    },
+    {
+      "row_kind": "case_negative",
+      "pointer": "/cases/0/negative_cases/57",
+      "id": "SEC003-ORIGIN-TENANT-MISSING",
+      "requirement_refs": [
+        "HELIXSECURITY-L3-003-F01",
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "expected_condition_observed_in_existing_l9": "scope_unresolved",
+      "ordered_findings_observed_in_existing_l9": [
+        {
+          "code": "scope_identity_unresolved",
+          "pointer": "/request/origin/tenant",
+          "return_owner": "scope-binding-owner"
+        }
+      ],
+      "blind_meaning_comparison": [
+        "identity_missing_or_conflicting",
+        "tenant_applicability_unknown_or_missing"
+      ],
+      "assignment_status": "existing_l9_row_compared; not reassigned"
+    },
+    {
+      "row_kind": "case_negative",
+      "pointer": "/cases/0/negative_cases/58",
+      "id": "SEC003-ORIGIN-ENVIRONMENT-MISSING",
+      "requirement_refs": [
+        "HELIXSECURITY-L3-003-F01",
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "expected_condition_observed_in_existing_l9": "scope_unresolved",
+      "ordered_findings_observed_in_existing_l9": [
+        {
+          "code": "scope_identity_unresolved",
+          "pointer": "/request/origin/environment",
+          "return_owner": "scope-binding-owner"
+        }
+      ],
+      "blind_meaning_comparison": [
+        "identity_missing_or_conflicting"
+      ],
+      "assignment_status": "existing_l9_row_compared; not reassigned"
+    },
+    {
+      "row_kind": "case_negative",
+      "pointer": "/cases/0/negative_cases/59",
+      "id": "SEC003-ORIGIN-ASSIGNMENT-MISSING",
+      "requirement_refs": [
+        "HELIXSECURITY-L3-003-F01",
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "expected_condition_observed_in_existing_l9": "scope_unresolved",
+      "ordered_findings_observed_in_existing_l9": [
+        {
+          "code": "scope_identity_unresolved",
+          "pointer": "/request/origin/assignment",
+          "return_owner": "scope-binding-owner"
+        }
+      ],
+      "blind_meaning_comparison": [
+        "identity_missing_or_conflicting"
+      ],
+      "assignment_status": "existing_l9_row_compared; not reassigned"
+    },
+    {
+      "row_kind": "case_negative",
+      "pointer": "/cases/0/negative_cases/60",
+      "id": "SEC003-ORIGIN-WORKTREE-MISSING",
+      "requirement_refs": [
+        "HELIXSECURITY-L3-003-F01",
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "expected_condition_observed_in_existing_l9": "scope_unresolved",
+      "ordered_findings_observed_in_existing_l9": [
+        {
+          "code": "scope_identity_unresolved",
+          "pointer": "/request/origin/worktree",
+          "return_owner": "scope-binding-owner"
+        }
+      ],
+      "blind_meaning_comparison": [
+        "identity_missing_or_conflicting"
+      ],
+      "assignment_status": "existing_l9_row_compared; not reassigned"
+    },
+    {
+      "row_kind": "case_negative",
+      "pointer": "/cases/0/negative_cases/61",
+      "id": "SEC003-ORIGIN-REVISION-MISSING",
+      "requirement_refs": [
+        "HELIXSECURITY-L3-003-F01",
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "expected_condition_observed_in_existing_l9": "scope_unresolved",
+      "ordered_findings_observed_in_existing_l9": [
+        {
+          "code": "scope_identity_unresolved",
+          "pointer": "/request/origin/revision",
+          "return_owner": "scope-binding-owner"
+        }
+      ],
+      "blind_meaning_comparison": [
+        "identity_missing_or_conflicting"
+      ],
+      "assignment_status": "existing_l9_row_compared; not reassigned"
+    },
+    {
+      "row_kind": "case_negative",
+      "pointer": "/cases/0/negative_cases/62",
+      "id": "SEC003-ORIGIN-TENANT-UNKNOWN-VALUES",
+      "requirement_refs": [
+        "HELIXSECURITY-L3-003-F01",
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "expected_condition_observed_in_existing_l9": "scope_unresolved",
+      "ordered_findings_observed_in_existing_l9": [
+        {
+          "code": "tenant_applicability_unresolved",
+          "pointer": "/context/origin_tenant_applicable",
+          "return_owner": "scope-binding-owner"
+        }
+      ],
+      "blind_meaning_comparison": [
+        "tenant_applicability_unknown_or_missing"
+      ],
+      "assignment_status": "existing_l9_row_compared; not reassigned"
+    },
+    {
+      "row_kind": "case_negative",
+      "pointer": "/cases/0/negative_cases/63",
+      "id": "SEC003-TARGET-TENANT-UNKNOWN-VALUES",
+      "requirement_refs": [
+        "HELIXSECURITY-L3-003-F01",
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "expected_condition_observed_in_existing_l9": "scope_unresolved",
+      "ordered_findings_observed_in_existing_l9": [
+        {
+          "code": "tenant_applicability_unresolved",
+          "pointer": "/context/target_tenant_applicable",
+          "return_owner": "scope-binding-owner"
+        }
+      ],
+      "blind_meaning_comparison": [
+        "tenant_applicability_unknown_or_missing"
+      ],
+      "assignment_status": "existing_l9_row_compared; not reassigned"
+    },
+    {
+      "row_kind": "case_negative",
+      "pointer": "/cases/1/negative_cases/0",
+      "id": "SEC003-CROSS-READ-ABSENT",
+      "requirement_refs": [
+        "HELIXSECURITY-L3-003-F01",
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "expected_condition_observed_in_existing_l9": "isolation_violation",
+      "ordered_findings_observed_in_existing_l9": [
+        {
+          "code": "explicit_connection_absent",
+          "pointer": "/request/connection_state",
+          "return_owner": "scope-binding-owner"
+        }
+      ],
+      "blind_meaning_comparison": [
+        "outside_six_examples:explicit_connection_absent; L3 F02/L4 contract 1 source meaning"
+      ],
+      "assignment_status": "existing_l9_row_compared; not reassigned"
+    },
+    {
+      "row_kind": "case_negative",
+      "pointer": "/cases/1/negative_cases/1",
+      "id": "SEC003-CROSS-WRITE-ABSENT",
+      "requirement_refs": [
+        "HELIXSECURITY-L3-003-F01",
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "expected_condition_observed_in_existing_l9": "isolation_violation",
+      "ordered_findings_observed_in_existing_l9": [
+        {
+          "code": "explicit_connection_absent",
+          "pointer": "/request/connection_state",
+          "return_owner": "scope-binding-owner"
+        }
+      ],
+      "blind_meaning_comparison": [
+        "outside_six_examples:explicit_connection_absent; L3 F02/L4 contract 1 source meaning"
+      ],
+      "assignment_status": "existing_l9_row_compared; not reassigned"
+    },
+    {
+      "row_kind": "case_negative",
+      "pointer": "/cases/1/negative_cases/2",
+      "id": "SEC003-CROSS-EXECUTE-ABSENT",
+      "requirement_refs": [
+        "HELIXSECURITY-L3-003-F01",
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "expected_condition_observed_in_existing_l9": "isolation_violation",
+      "ordered_findings_observed_in_existing_l9": [
+        {
+          "code": "explicit_connection_absent",
+          "pointer": "/request/connection_state",
+          "return_owner": "scope-binding-owner"
+        }
+      ],
+      "blind_meaning_comparison": [
+        "outside_six_examples:explicit_connection_absent; L3 F02/L4 contract 1 source meaning"
+      ],
+      "assignment_status": "existing_l9_row_compared; not reassigned"
+    },
+    {
+      "row_kind": "case_negative",
+      "pointer": "/cases/1/negative_cases/3",
+      "id": "SEC003-CROSS-NETWORK-ABSENT",
+      "requirement_refs": [
+        "HELIXSECURITY-L3-003-F01",
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "expected_condition_observed_in_existing_l9": "isolation_violation",
+      "ordered_findings_observed_in_existing_l9": [
+        {
+          "code": "explicit_connection_absent",
+          "pointer": "/request/connection_state",
+          "return_owner": "scope-binding-owner"
+        }
+      ],
+      "blind_meaning_comparison": [
+        "outside_six_examples:explicit_connection_absent; L3 F02/L4 contract 1 source meaning"
+      ],
+      "assignment_status": "existing_l9_row_compared; not reassigned"
+    },
+    {
+      "row_kind": "case_negative",
+      "pointer": "/cases/1/negative_cases/4",
+      "id": "SEC003-CROSS-STATE-ABSENT",
+      "requirement_refs": [
+        "HELIXSECURITY-L3-003-F01",
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "expected_condition_observed_in_existing_l9": "isolation_violation",
+      "ordered_findings_observed_in_existing_l9": [
+        {
+          "code": "explicit_connection_absent",
+          "pointer": "/request/connection_state",
+          "return_owner": "scope-binding-owner"
+        }
+      ],
+      "blind_meaning_comparison": [
+        "outside_six_examples:explicit_connection_absent; L3 F02/L4 contract 1 source meaning"
+      ],
+      "assignment_status": "existing_l9_row_compared; not reassigned"
+    },
+    {
+      "row_kind": "case_negative",
+      "pointer": "/cases/1/negative_cases/5",
+      "id": "SEC003-CROSS-CREDENTIAL-ABSENT",
+      "requirement_refs": [
+        "HELIXSECURITY-L3-003-F01",
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "expected_condition_observed_in_existing_l9": "isolation_violation",
+      "ordered_findings_observed_in_existing_l9": [
+        {
+          "code": "explicit_connection_absent",
+          "pointer": "/request/connection_state",
+          "return_owner": "scope-binding-owner"
+        }
+      ],
+      "blind_meaning_comparison": [
+        "outside_six_examples:explicit_connection_absent; L3 F02/L4 contract 1 source meaning"
+      ],
+      "assignment_status": "existing_l9_row_compared; not reassigned"
+    },
+    {
+      "row_kind": "case_negative",
+      "pointer": "/cases/1/negative_cases/6",
+      "id": "SEC003-CROSS-ARTIFACT-ABSENT",
+      "requirement_refs": [
+        "HELIXSECURITY-L3-003-F01",
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "expected_condition_observed_in_existing_l9": "isolation_violation",
+      "ordered_findings_observed_in_existing_l9": [
+        {
+          "code": "explicit_connection_absent",
+          "pointer": "/request/connection_state",
+          "return_owner": "scope-binding-owner"
+        }
+      ],
+      "blind_meaning_comparison": [
+        "outside_six_examples:explicit_connection_absent; L3 F02/L4 contract 1 source meaning"
+      ],
+      "assignment_status": "existing_l9_row_compared; not reassigned"
+    },
+    {
+      "row_kind": "case_negative",
+      "pointer": "/cases/1/negative_cases/7",
+      "id": "SEC003-PRIMARY-TREE-FALLBACK",
+      "requirement_refs": [
+        "HELIXSECURITY-L3-003-F01",
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "expected_condition_observed_in_existing_l9": "isolation_violation",
+      "ordered_findings_observed_in_existing_l9": [
+        {
+          "code": "implicit_fallback",
+          "pointer": "/request/fallback",
+          "return_owner": "scope-binding-owner"
+        }
+      ],
+      "blind_meaning_comparison": [
+        "implicit_primary_tree_or_other_project_fallback"
+      ],
+      "assignment_status": "existing_l9_row_compared; not reassigned"
+    },
+    {
+      "row_kind": "case_negative",
+      "pointer": "/cases/1/negative_cases/8",
+      "id": "SEC003-OTHER-PROJECT-FALLBACK",
+      "requirement_refs": [
+        "HELIXSECURITY-L3-003-F01",
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "expected_condition_observed_in_existing_l9": "isolation_violation",
+      "ordered_findings_observed_in_existing_l9": [
+        {
+          "code": "implicit_fallback",
+          "pointer": "/request/fallback",
+          "return_owner": "scope-binding-owner"
+        }
+      ],
+      "blind_meaning_comparison": [
+        "implicit_primary_tree_or_other_project_fallback"
+      ],
+      "assignment_status": "existing_l9_row_compared; not reassigned"
+    },
+    {
+      "row_kind": "case_negative",
+      "pointer": "/cases/1/negative_cases/9",
+      "id": "SEC003-OTHER-PROJECT-LATEST",
+      "requirement_refs": [
+        "HELIXSECURITY-L3-003-F01",
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "expected_condition_observed_in_existing_l9": "isolation_violation",
+      "ordered_findings_observed_in_existing_l9": [
+        {
+          "code": "asset_scope_conflict",
+          "pointer": "/request/asset_scope/project",
+          "return_owner": "scope-binding-owner"
+        }
+      ],
+      "blind_meaning_comparison": [
+        "cross_project_or_environment_asset_state_claimed_latest"
+      ],
+      "assignment_status": "existing_l9_row_compared; not reassigned"
+    },
+    {
+      "row_kind": "case_negative",
+      "pointer": "/cases/1/negative_cases/10",
+      "id": "SEC003-CONNECTION-REVISION",
+      "requirement_refs": [
+        "HELIXSECURITY-L3-003-F01",
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "expected_condition_observed_in_existing_l9": "isolation_violation",
+      "ordered_findings_observed_in_existing_l9": [
+        {
+          "code": "connection_content_conflict",
+          "pointer": "/request/connection",
+          "return_owner": "scope-binding-owner"
+        }
+      ],
+      "blind_meaning_comparison": [
+        "outside_six_examples:connection_material_comparison; L4 contract 1 source meaning"
+      ],
+      "assignment_status": "existing_l9_row_compared; not reassigned"
+    },
+    {
+      "row_kind": "case_negative",
+      "pointer": "/cases/1/negative_cases/11",
+      "id": "SEC003-CONNECTION-UNKNOWN",
+      "requirement_refs": [
+        "HELIXSECURITY-L3-003-F01",
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "expected_condition_observed_in_existing_l9": "scope_unresolved",
+      "ordered_findings_observed_in_existing_l9": [
+        {
+          "code": "connection_material_unresolved",
+          "pointer": "/request/connection_state",
+          "return_owner": "scope-binding-owner"
+        }
+      ],
+      "blind_meaning_comparison": [
+        "outside_six_examples:connection_material_comparison; L4 contract 1 source meaning"
+      ],
+      "assignment_status": "existing_l9_row_compared; not reassigned"
+    },
+    {
+      "row_kind": "case_negative",
+      "pointer": "/cases/1/negative_cases/12",
+      "id": "SEC003-READ-DOES-NOT-GRANT-WRITE",
+      "requirement_refs": [
+        "HELIXSECURITY-L3-003-F01",
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "expected_condition_observed_in_existing_l9": "isolation_violation",
+      "ordered_findings_observed_in_existing_l9": [
+        {
+          "code": "operation_scope_conflict",
+          "pointer": "/request/operation",
+          "return_owner": "scope-binding-owner"
+        }
+      ],
+      "blind_meaning_comparison": [
+        "operation_authority_does_not_extend_across_operation_kinds"
+      ],
+      "assignment_status": "existing_l9_row_compared; not reassigned"
+    },
+    {
+      "row_kind": "case_negative",
+      "pointer": "/cases/1/negative_cases/13",
+      "id": "SEC003-READ-DOES-NOT-GRANT-EXECUTE",
+      "requirement_refs": [
+        "HELIXSECURITY-L3-003-F01",
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "expected_condition_observed_in_existing_l9": "isolation_violation",
+      "ordered_findings_observed_in_existing_l9": [
+        {
+          "code": "operation_scope_conflict",
+          "pointer": "/request/operation",
+          "return_owner": "scope-binding-owner"
+        }
+      ],
+      "blind_meaning_comparison": [
+        "operation_authority_does_not_extend_across_operation_kinds"
+      ],
+      "assignment_status": "existing_l9_row_compared; not reassigned"
+    },
+    {
+      "row_kind": "case_negative",
+      "pointer": "/cases/1/negative_cases/14",
+      "id": "SEC003-READ-DOES-NOT-GRANT-NETWORK",
+      "requirement_refs": [
+        "HELIXSECURITY-L3-003-F01",
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "expected_condition_observed_in_existing_l9": "isolation_violation",
+      "ordered_findings_observed_in_existing_l9": [
+        {
+          "code": "operation_scope_conflict",
+          "pointer": "/request/operation",
+          "return_owner": "scope-binding-owner"
+        }
+      ],
+      "blind_meaning_comparison": [
+        "operation_authority_does_not_extend_across_operation_kinds"
+      ],
+      "assignment_status": "existing_l9_row_compared; not reassigned"
+    },
+    {
+      "row_kind": "case_negative",
+      "pointer": "/cases/1/negative_cases/15",
+      "id": "SEC003-READ-DOES-NOT-GRANT-STATE",
+      "requirement_refs": [
+        "HELIXSECURITY-L3-003-F01",
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "expected_condition_observed_in_existing_l9": "isolation_violation",
+      "ordered_findings_observed_in_existing_l9": [
+        {
+          "code": "operation_scope_conflict",
+          "pointer": "/request/operation",
+          "return_owner": "scope-binding-owner"
+        }
+      ],
+      "blind_meaning_comparison": [
+        "operation_authority_does_not_extend_across_operation_kinds"
+      ],
+      "assignment_status": "existing_l9_row_compared; not reassigned"
+    },
+    {
+      "row_kind": "case_negative",
+      "pointer": "/cases/1/negative_cases/16",
+      "id": "SEC003-READ-DOES-NOT-GRANT-CREDENTIAL",
+      "requirement_refs": [
+        "HELIXSECURITY-L3-003-F01",
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "expected_condition_observed_in_existing_l9": "isolation_violation",
+      "ordered_findings_observed_in_existing_l9": [
+        {
+          "code": "operation_scope_conflict",
+          "pointer": "/request/operation",
+          "return_owner": "scope-binding-owner"
+        }
+      ],
+      "blind_meaning_comparison": [
+        "operation_authority_does_not_extend_across_operation_kinds"
+      ],
+      "assignment_status": "existing_l9_row_compared; not reassigned"
+    },
+    {
+      "row_kind": "case_negative",
+      "pointer": "/cases/1/negative_cases/17",
+      "id": "SEC003-READ-DOES-NOT-GRANT-ARTIFACT",
+      "requirement_refs": [
+        "HELIXSECURITY-L3-003-F01",
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "expected_condition_observed_in_existing_l9": "isolation_violation",
+      "ordered_findings_observed_in_existing_l9": [
+        {
+          "code": "operation_scope_conflict",
+          "pointer": "/request/operation",
+          "return_owner": "scope-binding-owner"
+        }
+      ],
+      "blind_meaning_comparison": [
+        "operation_authority_does_not_extend_across_operation_kinds"
+      ],
+      "assignment_status": "existing_l9_row_compared; not reassigned"
+    },
+    {
+      "row_kind": "case_negative",
+      "pointer": "/cases/1/negative_cases/18",
+      "id": "SEC003-SAME-PROJECT-NO-CONNECTION",
+      "requirement_refs": [
+        "HELIXSECURITY-L3-003-F01",
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "expected_condition_observed_in_existing_l9": "isolation_violation",
+      "ordered_findings_observed_in_existing_l9": [
+        {
+          "code": "explicit_connection_absent",
+          "pointer": "/request/connection_state",
+          "return_owner": "scope-binding-owner"
+        }
+      ],
+      "blind_meaning_comparison": [
+        "outside_six_examples:explicit_connection_absent; L3 F02/L4 contract 1 source meaning"
+      ],
+      "assignment_status": "existing_l9_row_compared; not reassigned"
+    },
+    {
+      "row_kind": "case_negative",
+      "pointer": "/cases/1/negative_cases/19",
+      "id": "SEC003-AGENT-PRIMARY-TREE-FALLBACK",
+      "requirement_refs": [
+        "HELIXSECURITY-L3-003-F01",
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "expected_condition_observed_in_existing_l9": "isolation_violation",
+      "ordered_findings_observed_in_existing_l9": [
+        {
+          "code": "implicit_fallback",
+          "pointer": "/request/fallback",
+          "return_owner": "scope-binding-owner"
+        }
+      ],
+      "blind_meaning_comparison": [
+        "implicit_primary_tree_or_other_project_fallback"
+      ],
+      "assignment_status": "existing_l9_row_compared; not reassigned"
+    },
+    {
+      "row_kind": "case_negative",
+      "pointer": "/cases/1/negative_cases/20",
+      "id": "SEC003-AGENT-OTHER-PROJECT-LATEST",
+      "requirement_refs": [
+        "HELIXSECURITY-L3-003-F01",
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "expected_condition_observed_in_existing_l9": "isolation_violation",
+      "ordered_findings_observed_in_existing_l9": [
+        {
+          "code": "asset_scope_conflict",
+          "pointer": "/request/asset_scope/project",
+          "return_owner": "scope-binding-owner"
+        }
+      ],
+      "blind_meaning_comparison": [
+        "cross_project_or_environment_asset_state_claimed_latest"
+      ],
+      "assignment_status": "existing_l9_row_compared; not reassigned"
+    },
+    {
+      "row_kind": "case_negative",
+      "pointer": "/cases/1/negative_cases/21",
+      "id": "SEC003-AGENT-READ-DOES-NOT-GRANT-NETWORK",
+      "requirement_refs": [
+        "HELIXSECURITY-L3-003-F01",
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "expected_condition_observed_in_existing_l9": "isolation_violation",
+      "ordered_findings_observed_in_existing_l9": [
+        {
+          "code": "operation_scope_conflict",
+          "pointer": "/request/operation",
+          "return_owner": "scope-binding-owner"
+        }
+      ],
+      "blind_meaning_comparison": [
+        "operation_authority_does_not_extend_across_operation_kinds"
+      ],
+      "assignment_status": "existing_l9_row_compared; not reassigned"
+    },
+    {
+      "row_kind": "case_negative",
+      "pointer": "/cases/1/negative_cases/22",
+      "id": "SEC003-HOOK-PRIMARY-TREE-FALLBACK",
+      "requirement_refs": [
+        "HELIXSECURITY-L3-003-F01",
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "expected_condition_observed_in_existing_l9": "isolation_violation",
+      "ordered_findings_observed_in_existing_l9": [
+        {
+          "code": "implicit_fallback",
+          "pointer": "/request/fallback",
+          "return_owner": "scope-binding-owner"
+        }
+      ],
+      "blind_meaning_comparison": [
+        "implicit_primary_tree_or_other_project_fallback"
+      ],
+      "assignment_status": "existing_l9_row_compared; not reassigned"
+    },
+    {
+      "row_kind": "case_negative",
+      "pointer": "/cases/1/negative_cases/23",
+      "id": "SEC003-HOOK-OTHER-PROJECT-LATEST",
+      "requirement_refs": [
+        "HELIXSECURITY-L3-003-F01",
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "expected_condition_observed_in_existing_l9": "isolation_violation",
+      "ordered_findings_observed_in_existing_l9": [
+        {
+          "code": "asset_scope_conflict",
+          "pointer": "/request/asset_scope/project",
+          "return_owner": "scope-binding-owner"
+        }
+      ],
+      "blind_meaning_comparison": [
+        "cross_project_or_environment_asset_state_claimed_latest"
+      ],
+      "assignment_status": "existing_l9_row_compared; not reassigned"
+    },
+    {
+      "row_kind": "case_negative",
+      "pointer": "/cases/1/negative_cases/24",
+      "id": "SEC003-HOOK-READ-DOES-NOT-GRANT-NETWORK",
+      "requirement_refs": [
+        "HELIXSECURITY-L3-003-F01",
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "expected_condition_observed_in_existing_l9": "isolation_violation",
+      "ordered_findings_observed_in_existing_l9": [
+        {
+          "code": "operation_scope_conflict",
+          "pointer": "/request/operation",
+          "return_owner": "scope-binding-owner"
+        }
+      ],
+      "blind_meaning_comparison": [
+        "operation_authority_does_not_extend_across_operation_kinds"
+      ],
+      "assignment_status": "existing_l9_row_compared; not reassigned"
+    },
+    {
+      "row_kind": "case_negative",
+      "pointer": "/cases/1/negative_cases/25",
+      "id": "SEC003-MEMORY-PRIMARY-TREE-FALLBACK",
+      "requirement_refs": [
+        "HELIXSECURITY-L3-003-F01",
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "expected_condition_observed_in_existing_l9": "isolation_violation",
+      "ordered_findings_observed_in_existing_l9": [
+        {
+          "code": "implicit_fallback",
+          "pointer": "/request/fallback",
+          "return_owner": "scope-binding-owner"
+        }
+      ],
+      "blind_meaning_comparison": [
+        "implicit_primary_tree_or_other_project_fallback"
+      ],
+      "assignment_status": "existing_l9_row_compared; not reassigned"
+    },
+    {
+      "row_kind": "case_negative",
+      "pointer": "/cases/1/negative_cases/26",
+      "id": "SEC003-MEMORY-OTHER-PROJECT-LATEST",
+      "requirement_refs": [
+        "HELIXSECURITY-L3-003-F01",
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "expected_condition_observed_in_existing_l9": "isolation_violation",
+      "ordered_findings_observed_in_existing_l9": [
+        {
+          "code": "asset_scope_conflict",
+          "pointer": "/request/asset_scope/project",
+          "return_owner": "scope-binding-owner"
+        }
+      ],
+      "blind_meaning_comparison": [
+        "cross_project_or_environment_asset_state_claimed_latest"
+      ],
+      "assignment_status": "existing_l9_row_compared; not reassigned"
+    },
+    {
+      "row_kind": "case_negative",
+      "pointer": "/cases/1/negative_cases/27",
+      "id": "SEC003-MEMORY-READ-DOES-NOT-GRANT-NETWORK",
+      "requirement_refs": [
+        "HELIXSECURITY-L3-003-F01",
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "expected_condition_observed_in_existing_l9": "isolation_violation",
+      "ordered_findings_observed_in_existing_l9": [
+        {
+          "code": "operation_scope_conflict",
+          "pointer": "/request/operation",
+          "return_owner": "scope-binding-owner"
+        }
+      ],
+      "blind_meaning_comparison": [
+        "operation_authority_does_not_extend_across_operation_kinds"
+      ],
+      "assignment_status": "existing_l9_row_compared; not reassigned"
+    },
+    {
+      "row_kind": "case_negative",
+      "pointer": "/cases/1/negative_cases/28",
+      "id": "SEC003-CREDENTIAL-PRIMARY-TREE-FALLBACK",
+      "requirement_refs": [
+        "HELIXSECURITY-L3-003-F01",
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "expected_condition_observed_in_existing_l9": "isolation_violation",
+      "ordered_findings_observed_in_existing_l9": [
+        {
+          "code": "implicit_fallback",
+          "pointer": "/request/fallback",
+          "return_owner": "scope-binding-owner"
+        }
+      ],
+      "blind_meaning_comparison": [
+        "implicit_primary_tree_or_other_project_fallback"
+      ],
+      "assignment_status": "existing_l9_row_compared; not reassigned"
+    },
+    {
+      "row_kind": "case_negative",
+      "pointer": "/cases/1/negative_cases/29",
+      "id": "SEC003-CREDENTIAL-OTHER-PROJECT-LATEST",
+      "requirement_refs": [
+        "HELIXSECURITY-L3-003-F01",
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "expected_condition_observed_in_existing_l9": "isolation_violation",
+      "ordered_findings_observed_in_existing_l9": [
+        {
+          "code": "asset_scope_conflict",
+          "pointer": "/request/asset_scope/project",
+          "return_owner": "scope-binding-owner"
+        }
+      ],
+      "blind_meaning_comparison": [
+        "cross_project_or_environment_asset_state_claimed_latest"
+      ],
+      "assignment_status": "existing_l9_row_compared; not reassigned"
+    },
+    {
+      "row_kind": "case_negative",
+      "pointer": "/cases/1/negative_cases/30",
+      "id": "SEC003-CREDENTIAL-READ-DOES-NOT-GRANT-NETWORK",
+      "requirement_refs": [
+        "HELIXSECURITY-L3-003-F01",
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "expected_condition_observed_in_existing_l9": "isolation_violation",
+      "ordered_findings_observed_in_existing_l9": [
+        {
+          "code": "operation_scope_conflict",
+          "pointer": "/request/operation",
+          "return_owner": "scope-binding-owner"
+        }
+      ],
+      "blind_meaning_comparison": [
+        "operation_authority_does_not_extend_across_operation_kinds"
+      ],
+      "assignment_status": "existing_l9_row_compared; not reassigned"
+    },
+    {
+      "row_kind": "case_negative",
+      "pointer": "/cases/1/negative_cases/31",
+      "id": "SEC003-CONFIGURATION-PRIMARY-TREE-FALLBACK",
+      "requirement_refs": [
+        "HELIXSECURITY-L3-003-F01",
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "expected_condition_observed_in_existing_l9": "isolation_violation",
+      "ordered_findings_observed_in_existing_l9": [
+        {
+          "code": "implicit_fallback",
+          "pointer": "/request/fallback",
+          "return_owner": "scope-binding-owner"
+        }
+      ],
+      "blind_meaning_comparison": [
+        "implicit_primary_tree_or_other_project_fallback"
+      ],
+      "assignment_status": "existing_l9_row_compared; not reassigned"
+    },
+    {
+      "row_kind": "case_negative",
+      "pointer": "/cases/1/negative_cases/32",
+      "id": "SEC003-CONFIGURATION-OTHER-PROJECT-LATEST",
+      "requirement_refs": [
+        "HELIXSECURITY-L3-003-F01",
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "expected_condition_observed_in_existing_l9": "isolation_violation",
+      "ordered_findings_observed_in_existing_l9": [
+        {
+          "code": "asset_scope_conflict",
+          "pointer": "/request/asset_scope/project",
+          "return_owner": "scope-binding-owner"
+        }
+      ],
+      "blind_meaning_comparison": [
+        "cross_project_or_environment_asset_state_claimed_latest"
+      ],
+      "assignment_status": "existing_l9_row_compared; not reassigned"
+    },
+    {
+      "row_kind": "case_negative",
+      "pointer": "/cases/1/negative_cases/33",
+      "id": "SEC003-CONFIGURATION-READ-DOES-NOT-GRANT-NETWORK",
+      "requirement_refs": [
+        "HELIXSECURITY-L3-003-F01",
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "expected_condition_observed_in_existing_l9": "isolation_violation",
+      "ordered_findings_observed_in_existing_l9": [
+        {
+          "code": "operation_scope_conflict",
+          "pointer": "/request/operation",
+          "return_owner": "scope-binding-owner"
+        }
+      ],
+      "blind_meaning_comparison": [
+        "operation_authority_does_not_extend_across_operation_kinds"
+      ],
+      "assignment_status": "existing_l9_row_compared; not reassigned"
+    },
+    {
+      "row_kind": "multi_contract_residual_negative_not_case_membership",
+      "pointer": "/multi_contract_residual/negative_cases/0",
+      "id": "SEC003-OS-MATERIAL-UNKNOWN",
+      "requirement_refs": [
+        "HELIXSECURITY-L3-003-F01",
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "expected_condition_observed_in_existing_l9": "scope_unresolved",
+      "ordered_findings_observed_in_existing_l9": [
+        {
+          "code": "owner_material_unresolved",
+          "pointer": "/context/owner_material_states/OS",
+          "return_owner": "scope-binding-owner"
+        }
+      ],
+      "blind_meaning_comparison": [
+        "outside_six_examples:owner_material_state_unresolved; L4 contract 0 source field"
+      ],
+      "assignment_status": "existing_residual_compared; not promoted to L9 cases or equivalence class"
+    },
+    {
+      "row_kind": "multi_contract_residual_negative_not_case_membership",
+      "pointer": "/multi_contract_residual/negative_cases/1",
+      "id": "SEC003-INFRA-MATERIAL-UNKNOWN",
+      "requirement_refs": [
+        "HELIXSECURITY-L3-003-F01",
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "expected_condition_observed_in_existing_l9": "scope_unresolved",
+      "ordered_findings_observed_in_existing_l9": [
+        {
+          "code": "owner_material_unresolved",
+          "pointer": "/context/owner_material_states/INFRA",
+          "return_owner": "scope-binding-owner"
+        }
+      ],
+      "blind_meaning_comparison": [
+        "outside_six_examples:owner_material_state_unresolved; L4 contract 0 source field"
+      ],
+      "assignment_status": "existing_residual_compared; not promoted to L9 cases or equivalence class"
+    },
+    {
+      "row_kind": "multi_contract_residual_negative_not_case_membership",
+      "pointer": "/multi_contract_residual/negative_cases/2",
+      "id": "SEC003-CONNECT-MATERIAL-UNKNOWN",
+      "requirement_refs": [
+        "HELIXSECURITY-L3-003-F01",
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "expected_condition_observed_in_existing_l9": "scope_unresolved",
+      "ordered_findings_observed_in_existing_l9": [
+        {
+          "code": "owner_material_unresolved",
+          "pointer": "/context/owner_material_states/CONNECT",
+          "return_owner": "scope-binding-owner"
+        }
+      ],
+      "blind_meaning_comparison": [
+        "outside_six_examples:owner_material_state_unresolved; L4 contract 0 source field"
+      ],
+      "assignment_status": "existing_residual_compared; not promoted to L9 cases or equivalence class"
+    },
+    {
+      "row_kind": "multi_contract_residual_negative_not_case_membership",
+      "pointer": "/multi_contract_residual/negative_cases/3",
+      "id": "SEC003-COMPOUND-LOCAL-FAILURE",
+      "requirement_refs": [
+        "HELIXSECURITY-L3-003-F01",
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "expected_condition_observed_in_existing_l9": "isolation_violation",
+      "ordered_findings_observed_in_existing_l9": [
+        {
+          "code": "implicit_fallback",
+          "pointer": "/request/fallback",
+          "return_owner": "scope-binding-owner"
+        },
+        {
+          "code": "owner_material_unresolved",
+          "pointer": "/context/owner_material_states/INFRA",
+          "return_owner": "scope-binding-owner"
+        },
+        {
+          "code": "scope_identity_unresolved",
+          "pointer": "/request/target/environment",
+          "return_owner": "scope-binding-owner"
+        }
+      ],
+      "blind_meaning_comparison": [
+        "component_overlap_only:implicit_primary_tree_or_other_project_fallback",
+        "component_overlap_only:identity_missing_or_conflicting",
+        "owner_material_unresolved_not_in_six_blind_examples"
+      ],
+      "assignment_status": "existing_residual_compared; not promoted to L9 cases or equivalence class"
+    },
+    {
+      "row_kind": "multi_contract_residual_negative_not_case_membership",
+      "pointer": "/multi_contract_residual/negative_cases/4",
+      "id": "SEC003-ORIGIN-PROJECT-CONFLICT",
+      "requirement_refs": [
+        "HELIXSECURITY-L3-003-F01",
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "expected_condition_observed_in_existing_l9": "isolation_violation",
+      "ordered_findings_observed_in_existing_l9": [
+        {
+          "code": "connection_scope_conflict",
+          "pointer": "/request/connection/origin",
+          "return_owner": "scope-binding-owner"
+        },
+        {
+          "code": "scope_identity_conflict",
+          "pointer": "/request/origin/project",
+          "return_owner": "scope-binding-owner"
+        }
+      ],
+      "blind_meaning_comparison": [
+        "identity_missing_or_conflicting"
+      ],
+      "assignment_status": "existing_residual_compared; not promoted to L9 cases or equivalence class"
+    },
+    {
+      "row_kind": "multi_contract_residual_negative_not_case_membership",
+      "pointer": "/multi_contract_residual/negative_cases/5",
+      "id": "SEC003-ORIGIN-TENANT-CONFLICT",
+      "requirement_refs": [
+        "HELIXSECURITY-L3-003-F01",
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "expected_condition_observed_in_existing_l9": "isolation_violation",
+      "ordered_findings_observed_in_existing_l9": [
+        {
+          "code": "connection_scope_conflict",
+          "pointer": "/request/connection/origin",
+          "return_owner": "scope-binding-owner"
+        },
+        {
+          "code": "scope_identity_conflict",
+          "pointer": "/request/origin/tenant",
+          "return_owner": "scope-binding-owner"
+        }
+      ],
+      "blind_meaning_comparison": [
+        "identity_missing_or_conflicting"
+      ],
+      "assignment_status": "existing_residual_compared; not promoted to L9 cases or equivalence class"
+    },
+    {
+      "row_kind": "multi_contract_residual_negative_not_case_membership",
+      "pointer": "/multi_contract_residual/negative_cases/6",
+      "id": "SEC003-ORIGIN-ENVIRONMENT-CONFLICT",
+      "requirement_refs": [
+        "HELIXSECURITY-L3-003-F01",
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "expected_condition_observed_in_existing_l9": "isolation_violation",
+      "ordered_findings_observed_in_existing_l9": [
+        {
+          "code": "connection_scope_conflict",
+          "pointer": "/request/connection/origin",
+          "return_owner": "scope-binding-owner"
+        },
+        {
+          "code": "scope_identity_conflict",
+          "pointer": "/request/origin/environment",
+          "return_owner": "scope-binding-owner"
+        }
+      ],
+      "blind_meaning_comparison": [
+        "identity_missing_or_conflicting"
+      ],
+      "assignment_status": "existing_residual_compared; not promoted to L9 cases or equivalence class"
+    },
+    {
+      "row_kind": "multi_contract_residual_negative_not_case_membership",
+      "pointer": "/multi_contract_residual/negative_cases/7",
+      "id": "SEC003-ORIGIN-ASSIGNMENT-CONFLICT",
+      "requirement_refs": [
+        "HELIXSECURITY-L3-003-F01",
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "expected_condition_observed_in_existing_l9": "isolation_violation",
+      "ordered_findings_observed_in_existing_l9": [
+        {
+          "code": "connection_scope_conflict",
+          "pointer": "/request/connection/origin",
+          "return_owner": "scope-binding-owner"
+        },
+        {
+          "code": "scope_identity_conflict",
+          "pointer": "/request/origin/assignment",
+          "return_owner": "scope-binding-owner"
+        }
+      ],
+      "blind_meaning_comparison": [
+        "identity_missing_or_conflicting"
+      ],
+      "assignment_status": "existing_residual_compared; not promoted to L9 cases or equivalence class"
+    },
+    {
+      "row_kind": "multi_contract_residual_negative_not_case_membership",
+      "pointer": "/multi_contract_residual/negative_cases/8",
+      "id": "SEC003-ORIGIN-WORKTREE-CONFLICT",
+      "requirement_refs": [
+        "HELIXSECURITY-L3-003-F01",
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "expected_condition_observed_in_existing_l9": "isolation_violation",
+      "ordered_findings_observed_in_existing_l9": [
+        {
+          "code": "connection_scope_conflict",
+          "pointer": "/request/connection/origin",
+          "return_owner": "scope-binding-owner"
+        },
+        {
+          "code": "scope_identity_conflict",
+          "pointer": "/request/origin/worktree",
+          "return_owner": "scope-binding-owner"
+        }
+      ],
+      "blind_meaning_comparison": [
+        "identity_missing_or_conflicting"
+      ],
+      "assignment_status": "existing_residual_compared; not promoted to L9 cases or equivalence class"
+    },
+    {
+      "row_kind": "multi_contract_residual_negative_not_case_membership",
+      "pointer": "/multi_contract_residual/negative_cases/9",
+      "id": "SEC003-ORIGIN-REVISION-CONFLICT",
+      "requirement_refs": [
+        "HELIXSECURITY-L3-003-F01",
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "expected_condition_observed_in_existing_l9": "isolation_violation",
+      "ordered_findings_observed_in_existing_l9": [
+        {
+          "code": "connection_scope_conflict",
+          "pointer": "/request/connection/origin",
+          "return_owner": "scope-binding-owner"
+        },
+        {
+          "code": "scope_identity_conflict",
+          "pointer": "/request/origin/revision",
+          "return_owner": "scope-binding-owner"
+        }
+      ],
+      "blind_meaning_comparison": [
+        "identity_missing_or_conflicting"
+      ],
+      "assignment_status": "existing_residual_compared; not promoted to L9 cases or equivalence class"
+    },
+    {
+      "row_kind": "multi_contract_residual_negative_not_case_membership",
+      "pointer": "/multi_contract_residual/negative_cases/10",
+      "id": "SEC003-TARGET-PROJECT-CONFLICT",
+      "requirement_refs": [
+        "HELIXSECURITY-L3-003-F01",
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "expected_condition_observed_in_existing_l9": "isolation_violation",
+      "ordered_findings_observed_in_existing_l9": [
+        {
+          "code": "connection_scope_conflict",
+          "pointer": "/request/connection/target",
+          "return_owner": "scope-binding-owner"
+        },
+        {
+          "code": "scope_identity_conflict",
+          "pointer": "/request/target/project",
+          "return_owner": "scope-binding-owner"
+        }
+      ],
+      "blind_meaning_comparison": [
+        "identity_missing_or_conflicting"
+      ],
+      "assignment_status": "existing_residual_compared; not promoted to L9 cases or equivalence class"
+    },
+    {
+      "row_kind": "multi_contract_residual_negative_not_case_membership",
+      "pointer": "/multi_contract_residual/negative_cases/11",
+      "id": "SEC003-TARGET-TENANT-CONFLICT",
+      "requirement_refs": [
+        "HELIXSECURITY-L3-003-F01",
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "expected_condition_observed_in_existing_l9": "isolation_violation",
+      "ordered_findings_observed_in_existing_l9": [
+        {
+          "code": "connection_scope_conflict",
+          "pointer": "/request/connection/target",
+          "return_owner": "scope-binding-owner"
+        },
+        {
+          "code": "scope_identity_conflict",
+          "pointer": "/request/target/tenant",
+          "return_owner": "scope-binding-owner"
+        }
+      ],
+      "blind_meaning_comparison": [
+        "identity_missing_or_conflicting"
+      ],
+      "assignment_status": "existing_residual_compared; not promoted to L9 cases or equivalence class"
+    },
+    {
+      "row_kind": "multi_contract_residual_negative_not_case_membership",
+      "pointer": "/multi_contract_residual/negative_cases/12",
+      "id": "SEC003-TARGET-ENVIRONMENT-CONFLICT",
+      "requirement_refs": [
+        "HELIXSECURITY-L3-003-F01",
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "expected_condition_observed_in_existing_l9": "isolation_violation",
+      "ordered_findings_observed_in_existing_l9": [
+        {
+          "code": "connection_scope_conflict",
+          "pointer": "/request/connection/target",
+          "return_owner": "scope-binding-owner"
+        },
+        {
+          "code": "scope_identity_conflict",
+          "pointer": "/request/target/environment",
+          "return_owner": "scope-binding-owner"
+        }
+      ],
+      "blind_meaning_comparison": [
+        "identity_missing_or_conflicting"
+      ],
+      "assignment_status": "existing_residual_compared; not promoted to L9 cases or equivalence class"
+    },
+    {
+      "row_kind": "multi_contract_residual_negative_not_case_membership",
+      "pointer": "/multi_contract_residual/negative_cases/13",
+      "id": "SEC003-TARGET-ASSIGNMENT-CONFLICT",
+      "requirement_refs": [
+        "HELIXSECURITY-L3-003-F01",
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "expected_condition_observed_in_existing_l9": "isolation_violation",
+      "ordered_findings_observed_in_existing_l9": [
+        {
+          "code": "connection_scope_conflict",
+          "pointer": "/request/connection/target",
+          "return_owner": "scope-binding-owner"
+        },
+        {
+          "code": "scope_identity_conflict",
+          "pointer": "/request/target/assignment",
+          "return_owner": "scope-binding-owner"
+        }
+      ],
+      "blind_meaning_comparison": [
+        "identity_missing_or_conflicting"
+      ],
+      "assignment_status": "existing_residual_compared; not promoted to L9 cases or equivalence class"
+    },
+    {
+      "row_kind": "multi_contract_residual_negative_not_case_membership",
+      "pointer": "/multi_contract_residual/negative_cases/14",
+      "id": "SEC003-TARGET-WORKTREE-CONFLICT",
+      "requirement_refs": [
+        "HELIXSECURITY-L3-003-F01",
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "expected_condition_observed_in_existing_l9": "isolation_violation",
+      "ordered_findings_observed_in_existing_l9": [
+        {
+          "code": "connection_scope_conflict",
+          "pointer": "/request/connection/target",
+          "return_owner": "scope-binding-owner"
+        },
+        {
+          "code": "scope_identity_conflict",
+          "pointer": "/request/target/worktree",
+          "return_owner": "scope-binding-owner"
+        }
+      ],
+      "blind_meaning_comparison": [
+        "identity_missing_or_conflicting"
+      ],
+      "assignment_status": "existing_residual_compared; not promoted to L9 cases or equivalence class"
+    },
+    {
+      "row_kind": "multi_contract_residual_negative_not_case_membership",
+      "pointer": "/multi_contract_residual/negative_cases/15",
+      "id": "SEC003-TARGET-REVISION-CONFLICT",
+      "requirement_refs": [
+        "HELIXSECURITY-L3-003-F01",
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "expected_condition_observed_in_existing_l9": "isolation_violation",
+      "ordered_findings_observed_in_existing_l9": [
+        {
+          "code": "connection_scope_conflict",
+          "pointer": "/request/connection/target",
+          "return_owner": "scope-binding-owner"
+        },
+        {
+          "code": "scope_identity_conflict",
+          "pointer": "/request/target/revision",
+          "return_owner": "scope-binding-owner"
+        }
+      ],
+      "blind_meaning_comparison": [
+        "identity_missing_or_conflicting"
+      ],
+      "assignment_status": "existing_residual_compared; not promoted to L9 cases or equivalence class"
+    }
+  ]
+}
