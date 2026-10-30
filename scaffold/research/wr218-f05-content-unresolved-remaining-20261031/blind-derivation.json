@@ -1,0 +1,226 @@
+{
+  "work_item_id": "WR218-F05-CONTENT-UNRESOLVED-REMAINING",
+  "target_stop_id": "STOP-F05-CONTENT-UNRESOLVED-CAUSE-PAIR-01",
+  "step": "Step A (Pre-Comparison Blind Derivation & Freeze on #3510)",
+  "derived_by": {
+    "subagent_conversation_id": "11b4f6c6-3a44-4e7e-82ef-ab029f8816a5",
+    "prior_attempt_subagent_conversation_id": "e721c663-05bd-4873-9f22-87a7109ef1f4",
+    "caller_conversation_id": "f0ce0082-355c-460f-9086-c1b153f75eda",
+    "derived_at_utc": "2026-10-30T22:25:00Z"
+  },
+  "strict_blindness_attestation": {
+    "l5_read_count": 0,
+    "l8_read_count": 0,
+    "l9_read_count": 0,
+    "scaffold_research_f05_or_wr196_read_count": 0,
+    "github_pr_or_issue_comment_read_count": 0,
+    "forbidden_files_not_accessed": [
+      "docs/helix-harness/L5-detail-design/product-template-application.json",
+      "docs/helix-harness/L8-unit-verification/product-template-application.json",
+      "docs/helix-harness/L9-integration-verification/product-template-application.json",
+      "scaffold/research/*f05*",
+      "scaffold/research/*wr196*"
+    ],
+    "l4_algorithm_python_document_text_handling": "Verified 0 occurrences of algorithm_python_document_text in docs/helix-harness/L4-basic-design/product-template-application.json and read only via stripped prose copy /tmp/l4-h009-prose-only.json.",
+    "upstream_files_read": [
+      {
+        "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+        "sha256": "a3b907cdc316117d4684632f9a1cbf36125eb6e6172f9cfc286060617583d7be",
+        "selected_pointers": [
+          "/requirements/23",
+          "/requirements/27"
+        ]
+      },
+      {
+        "path": "docs/helix-harness/L3-requirements/business-requirements.json",
+        "sha256": "25e0e8f8ee8acbc220483ab6854155218193861086cf757f933e2cd6263f444d",
+        "selected_pointers": [
+          "/requirements/4",
+          "/requirements/5"
+        ]
+      },
+      {
+        "path": "docs/helix-harness/L10-verification/functional-verification.json",
+        "sha256": "fc58ad2268746d7924ac9be33e8f3f75e6d3c2cc619e27fbc1ddc34edd065cb2",
+        "selected_pointers": [
+          "/cases/23",
+          "/cases/27"
+        ]
+      },
+      {
+        "path": "docs/helix-harness/L10-verification/business-verification.json",
+        "sha256": "3a9982ef2e59e3d027ce8e5cd72b9879b6224a8e4ea74b657bf9b67c90934319",
+        "selected_pointers": [
+          "/cases/4",
+          "/cases/5"
+        ]
+      },
+      {
+        "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+        "sha256": "4330847017a409ef45500e14d73dfc1170489549b23d0f642f6927322d6bb4b3",
+        "selected_pointers": [
+          "/contracts/6",
+          "/failure_classifications/63",
+          "/failure_classifications/64",
+          "/failure_classifications/65",
+          "/failure_classifications/66",
+          "/failure_classifications/67",
+          "/failure_classifications/68",
+          "/failure_classifications/69",
+          "/field_source_materialization_contract",
+          "/field_semantic_evidence_contract",
+          "/f05_validation_material_call_contract",
+          "/field_obligation_scope_contract",
+          "/input_scope_knowledge_gap_contract",
+          "/selected_source_caller_contract"
+        ]
+      }
+    ]
+  },
+  "upstream_baseline_facts": {
+    "stop_id_in_l4_prose": {
+      "present_in_l4_prose": false,
+      "observation": "The identifiers STOP-F05-CONTENT-UNRESOLVED-CAUSE-PAIR-01, unclosed_stops, and binding_relation do not appear in docs/helix-harness/L4-basic-design/product-template-application.json; L4 prose instead delegates the detailed private Cause/Read/leaf-writer specification for F05 to L5/L8 (/field_semantic_evidence_contract/detail_and_consumer_boundary/0)."
+    },
+    "l4_f05_content_unresolved_and_record_domain_rules": {
+      "record_domain_rule": "Each Ref in field.definition_refs or field.value_fact_refs is resolved against BOTH axis_facts and semantic_records collections for all original records with corresponding ref and binding (/field_source_materialization_contract/original_operand_contract/record_domain, /field_source_materialization_contract/ordered_source_materialization/1, /field_source_materialization_contract/ordered_source_materialization/2, /field_source_materialization_contract/ordered_source_materialization/3).",
+      "cause_vocabulary_and_shape": "L4 defines the 14-token cause_vocabulary including content_unresolved (/field_semantic_evidence_contract/basic_candidate_return/cause_vocabulary/10) and states that each cause carries target field/proposal/role/original Ref-index, requested/reached locator, and left/right original value/presence (/field_semantic_evidence_contract/basic_candidate_return/cause_boundary). In /field_obligation_scope_contract/basic_view_contract/types/Cause, Cause is a closed_record {kind, target, left, right, rule_pointer}, where left and right are Operand (original{read: Read<JSONValue>} | normative_literal{value, rule_pointer}).",
+      "only_explicit_content_unresolved_pair_in_l4": "Only /field_obligation_scope_contract/cause_patterns/content_unresolved explicitly defines a left/right Read pair for content_unresolved in L4 prose, and that pattern is strictly for unfinished_obligation_refs lookup in raw.obligations (left = unfinished Ref occurrence Read in the scope statement, right = raw.obligations collection Read). L4 prose does NOT define the exact Cause(left, right, cardinality) writer table for dual-collection (axis_facts + semantic_records) operand resolution under (a), (b), or (c)."
+    }
+  },
+  "branch_derivations": [
+    {
+      "branch_id": "(a)",
+      "branch_label": "matching=unestablished",
+      "uniquely_determined": false,
+      "decision_if_not_uniquely_determined": "keep_in_stop",
+      "derived_elements": {
+        "local_cause_kind": {
+          "outer_or_operand_level_fact": "When an operand in field.definition_refs has unresolved correspondence, L4 prose requires preserving it as content_unresolved (/field_semantic_evidence_contract/field_definition_evidence_body/absent_guard, /field_semantic_evidence_contract/field_definition_evidence_body/undecided_guard). However, whether the local CauseKind for matching=unestablished (e.g. target Ref or candidate record.ref missing/null/non-string identity/revision/scope/owner or digest unestablished) is emitted as content_unresolved, target_unformed, target_mismatch, or per-axis sub-cause is not uniquely specified in L4 prose.",
+          "uniquely_determined": false
+        },
+        "left_and_right_read": {
+          "left_read_candidates": [
+            "Read of the requested operand Ref at /field_inputs/{f}/definition_refs/{k} (or value_fact_refs/{k})",
+            "Read of the specific unestablished Ref member (identity/revision/scope/owner/sha256) on the requested Ref"
+          ],
+          "right_read_candidates": [
+            "Read of the candidate record or candidate record.ref at /axis_facts/{i} or /semantic_records/{s}",
+            "Read of the specific unestablished member on the candidate record.ref",
+            "Collection Read of /axis_facts and/or /semantic_records when no candidate can be matched"
+          ],
+          "uniquely_determined": false
+        },
+        "expected_counts": {
+          "finding_count_public": "Public/native Finding count is not increased by private cause tokens (/field_source_materialization_contract/returned_materials/local_unestablished, /field_semantic_evidence_contract/basic_candidate_return/cause_boundary).",
+          "cause_count": "Not uniquely determined from L4 prose: could be 1 per candidate occurrence with matching=unestablished across axis_facts and semantic_records, 1 per unestablished Ref axis (identity/revision/scope/owner/sha256), or 1 per operand_ref.",
+          "uniquely_determined": false
+        }
+      },
+      "source_pointers": [
+        "docs/helix-harness/L3-requirements/functional-requirements.json#/requirements/27",
+        "docs/helix-harness/L10-verification/functional-verification.json#/cases/27",
+        "docs/helix-harness/L4-basic-design/product-template-application.json#/field_source_materialization_contract/original_operand_contract/record_domain",
+        "docs/helix-harness/L4-basic-design/product-template-application.json#/field_source_materialization_contract/ordered_source_materialization/1",
+        "docs/helix-harness/L4-basic-design/product-template-application.json#/field_source_materialization_contract/ordered_source_materialization/2",
+        "docs/helix-harness/L4-basic-design/product-template-application.json#/field_source_materialization_contract/ordered_source_materialization/3",
+        "docs/helix-harness/L4-basic-design/product-template-application.json#/field_semantic_evidence_contract/common_target_guards/2",
+        "docs/helix-harness/L4-basic-design/product-template-application.json#/field_semantic_evidence_contract/field_definition_evidence_body/absent_guard",
+        "docs/helix-harness/L4-basic-design/product-template-application.json#/field_semantic_evidence_contract/field_definition_evidence_body/undecided_guard",
+        "docs/helix-harness/L4-basic-design/product-template-application.json#/field_semantic_evidence_contract/basic_candidate_return/cause_vocabulary",
+        "docs/helix-harness/L4-basic-design/product-template-application.json#/field_semantic_evidence_contract/basic_candidate_return/cause_boundary",
+        "docs/helix-harness/L4-basic-design/product-template-application.json#/field_semantic_evidence_contract/detail_and_consumer_boundary/0",
+        "docs/helix-harness/L4-basic-design/product-template-application.json#/selected_source_caller_contract/candidate_binding/reference_rule"
+      ],
+      "reasoning": "Approved L3/L10 F05 and L4 prose establish that Ref comparison checks identity/revision/scope/owner (and supplied digest) without using source_locator as identity, and that insufficient supply yields matching=unestablished while preserving all candidate occurrences. However, L4 prose explicitly leaves the detailed private types, guards, branches, and leaf writers to L5/L8 (/field_semantic_evidence_contract/detail_and_consumer_boundary/0). Specifically, when matching=unestablished occurs during F05 operand lookup across axis_facts and semantic_records, L4 prose does not uniquely determine: (1) whether the Cause.kind is content_unresolved vs target_unformed/target_mismatch, (2) whether Cause.left and Cause.right hold the whole Ref/record Reads, the specific unestablished sub-field Reads (identity/revision/scope/owner/sha256), or the collection Reads, and (3) whether one Cause is emitted per operand_ref, per candidate occurrence, or per unestablished axis. Following the rule to advance only branches uniquely determined from upstream and leave undetermined branches in STOP with recorded basis, branch (a) must remain in STOP-F05-CONTENT-UNRESOLVED-CAUSE-PAIR-01."
+    },
+    {
+      "branch_id": "(b)",
+      "branch_label": "同Refで binding_relation=different|unestablished",
+      "uniquely_determined": false,
+      "decision_if_not_uniquely_determined": "keep_in_stop",
+      "derived_elements": {
+        "local_cause_kind": {
+          "outer_or_operand_level_fact": "L4 prose states that even for the same Ref, occurrences whose record binding/revision/scope differ must all be preserved (/field_source_materialization_contract/ordered_source_materialization/3) and that binding correspondence checks requirement_ref, product_scope, process_contract_ref, application_contract_ref, and template/knowledge/oracle refs (/field_semantic_evidence_contract/common_target_guards/1). If no corresponding record with matching binding resolves the operand, the operand is unresolved (content_unresolved at the definition evidence guard level), whereas a candidate record with matching Ref but different/unestablished binding could be classified as content_unresolved, target_mismatch, or target_unformed.",
+          "uniquely_determined": false
+        },
+        "left_and_right_read": {
+          "left_read_candidates": [
+            "Read of the field binding at /field_inputs/{f}/binding (or its specific sub-member requirement_ref/product_scope/process_contract_ref/application_contract_ref/template_ref/knowledge_ref/oracle_ref)",
+            "Read of the operand Ref at /field_inputs/{f}/definition_refs/{k} (or value_fact_refs/{k})"
+          ],
+          "right_read_candidates": [
+            "Read of the candidate record binding at /axis_facts/{i}/binding or /semantic_records/{s}/binding (or its specific differing/unestablished sub-member)",
+            "Read of the candidate record whole at /axis_facts/{i} or /semantic_records/{s}",
+            "Collection Read of /axis_facts and /semantic_records"
+          ],
+          "uniquely_determined": false
+        },
+        "expected_counts": {
+          "finding_count_public": "Public/native Finding count is not increased by private cause tokens.",
+          "cause_count": "Not uniquely determined from L4 prose: could be 1 Cause per same-Ref candidate record with binding_relation=different|unestablished, 1 Cause per differing/unestablished binding axis (up to 7 binding members), or 1 Cause for the unresolved operand.",
+          "uniquely_determined": false
+        }
+      },
+      "source_pointers": [
+        "docs/helix-harness/L3-requirements/functional-requirements.json#/requirements/27",
+        "docs/helix-harness/L10-verification/functional-verification.json#/cases/27",
+        "docs/helix-harness/L4-basic-design/product-template-application.json#/field_source_materialization_contract/original_operand_contract/record_domain",
+        "docs/helix-harness/L4-basic-design/product-template-application.json#/field_source_materialization_contract/ordered_source_materialization/1",
+        "docs/helix-harness/L4-basic-design/product-template-application.json#/field_source_materialization_contract/ordered_source_materialization/2",
+        "docs/helix-harness/L4-basic-design/product-template-application.json#/field_source_materialization_contract/ordered_source_materialization/3",
+        "docs/helix-harness/L4-basic-design/product-template-application.json#/field_semantic_evidence_contract/common_target_guards/1",
+        "docs/helix-harness/L4-basic-design/product-template-application.json#/field_semantic_evidence_contract/field_definition_evidence_body/absent_guard",
+        "docs/helix-harness/L4-basic-design/product-template-application.json#/field_semantic_evidence_contract/field_definition_evidence_body/undecided_guard",
+        "docs/helix-harness/L4-basic-design/product-template-application.json#/field_semantic_evidence_contract/basic_candidate_return/cause_vocabulary",
+        "docs/helix-harness/L4-basic-design/product-template-application.json#/field_semantic_evidence_contract/basic_candidate_return/cause_boundary",
+        "docs/helix-harness/L4-basic-design/product-template-application.json#/field_semantic_evidence_contract/detail_and_consumer_boundary/0"
+      ],
+      "reasoning": "Approved L3/L10 F05 and L4 prose require resolving each operand Ref against both axis_facts and semantic_records for all original records with the same ref AND binding (/field_source_materialization_contract/original_operand_contract/record_domain), and preserving same-Ref occurrences whose record binding differs (/field_source_materialization_contract/ordered_source_materialization/3). However, when a candidate record has matching=corresponding on Ref but binding_relation=different or unestablished, L4 prose does not uniquely specify: (1) whether the Cause.kind emitted for the content_unresolved / binding mismatch pair is content_unresolved vs target_mismatch/target_unformed (or whether different vs unestablished use distinct CauseKinds), (2) whether Cause.left and Cause.right point to the whole binding objects (/field_inputs/{f}/binding vs /axis_facts/{i}/binding or /semantic_records/{s}/binding), the specific binding member Reads that differed/were unestablished, or the operand Ref vs candidate record Reads, and (3) how many Causes are emitted when multiple binding members differ or multiple same-Ref records exist across both collections. Therefore, branch (b) is not uniquely determined from L3/L10 + L4 prose alone and must remain in STOP-F05-CONTENT-UNRESOLVED-CAUSE-PAIR-01."
+    },
+    {
+      "branch_id": "(c)",
+      "branch_label": "片側/両側collection未観測",
+      "uniquely_determined": false,
+      "decision_if_not_uniquely_determined": "keep_in_stop",
+      "derived_elements": {
+        "local_cause_kind": {
+          "outer_or_operand_level_fact": "L4 prose states in /field_semantic_evidence_contract/common_target_guards/0 that input=null or collection unprovided/wrong-type is unobserved or target unformed and does not generate empty-normal or domain missing/unknown, while reading of unrelated collections/fields continues. When resolving an operand Ref across BOTH axis_facts and semantic_records (/field_source_materialization_contract/original_operand_contract/record_domain), if one or both collections are unobserved (absent/null/non-array/unreached), L4 prose does not uniquely specify whether the operand-level CauseKind is content_unresolved, input_unobserved, or body_unformed/target_unformed.",
+          "uniquely_determined": false
+        },
+        "left_and_right_read": {
+          "left_read_candidates": [
+            "Read of the operand Ref at /field_inputs/{f}/definition_refs/{k} (or value_fact_refs/{k})",
+            "Read of the unobserved collection itself (/axis_facts or /semantic_records) when compared against a normative_literal expected type"
+          ],
+          "right_read_candidates": [
+            "Read of the unobserved collection (/axis_facts and/or /semantic_records as absent, present(null/non-array), or unreached)",
+            "normative_literal indicating expected array/collection shape",
+            "Problem of dual collections: a single Cause has only one right Operand, whereas F05 operand lookup searches BOTH /axis_facts and /semantic_records (unlike /field_obligation_scope_contract/cause_patterns/content_unresolved which searches a single raw.obligations collection)"
+          ],
+          "uniquely_determined": false
+        },
+        "expected_counts": {
+          "finding_count_public": "Public/native Finding count is not increased by private cause tokens.",
+          "cause_count": "Not uniquely determined from L4 prose: when one collection is unobserved and the other is observed (with 0 matches), or when both collections are unobserved, L4 prose does not specify whether 1 or 2 Causes are emitted per operand_ref (one per unobserved collection vs one per unresolved collection search vs one combined Cause).",
+          "uniquely_determined": false
+        }
+      },
+      "source_pointers": [
+        "docs/helix-harness/L3-requirements/functional-requirements.json#/requirements/27",
+        "docs/helix-harness/L10-verification/functional-verification.json#/cases/27",
+        "docs/helix-harness/L4-basic-design/product-template-application.json#/field_source_materialization_contract/original_operand_contract/record_domain",
+        "docs/helix-harness/L4-basic-design/product-template-application.json#/field_source_materialization_contract/ordered_source_materialization/2",
+        "docs/helix-harness/L4-basic-design/product-template-application.json#/field_source_materialization_contract/returned_materials/source_observations",
+        "docs/helix-harness/L4-basic-design/product-template-application.json#/field_source_materialization_contract/returned_materials/local_unestablished",
+        "docs/helix-harness/L4-basic-design/product-template-application.json#/field_semantic_evidence_contract/common_target_guards/0",
+        "docs/helix-harness/L4-basic-design/product-template-application.json#/field_semantic_evidence_contract/basic_candidate_return/fields/domain_observations",
+        "docs/helix-harness/L4-basic-design/product-template-application.json#/field_semantic_evidence_contract/basic_candidate_return/fields/local_unestablished",
+        "docs/helix-harness/L4-basic-design/product-template-application.json#/field_semantic_evidence_contract/basic_candidate_return/cause_vocabulary",
+        "docs/helix-harness/L4-basic-design/product-template-application.json#/field_semantic_evidence_contract/detail_and_consumer_boundary/0",
+        "docs/helix-harness/L4-basic-design/product-template-application.json#/field_obligation_scope_contract/cause_patterns/content_unresolved"
+      ],
+      "reasoning": "In /field_obligation_scope_contract/cause_patterns/content_unresolved, a single-collection lookup (unfinished_obligation_refs in raw.obligations) sets left = operand Ref Read and right = raw.obligations collection Read. By contrast, F05 field operand resolution searches TWO collections simultaneously: axis_facts and semantic_records (/field_source_materialization_contract/original_operand_contract/record_domain). When one or both of axis_facts and semantic_records are unobserved (absent/null/non-array/unreached), L4 prose does not uniquely determine: (1) whether the Cause.kind is content_unresolved, input_unobserved, or target_unformed/body_unformed, (2) which collection Read goes into Cause.right (since Cause has only one left and one right Operand) or whether two separate Causes are emitted (one for axis_facts and one for semantic_records), and (3) what happens when one collection is a valid array with no matching occurrence while the other collection is unobserved (whether 1 Cause for the unobserved collection or 2 Causes covering both collections are emitted). Therefore, branch (c) is not uniquely determined from L3/L10 + L4 prose alone and must remain in STOP-F05-CONTENT-UNRESOLVED-CAUSE-PAIR-01."
+    }
+  ]
+}
