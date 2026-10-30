@@ -127,8 +127,8 @@
     },
     {
       "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
-      "revision": "70499a07825f53f2fbbb85935d9888360a6ad14c",
-      "whole_sha256": "4b1eea9beaa7a4179dec374e8c914632dbef850c25f88bdc619a3b5808f7a2fb",
+      "revision": "e7672dbc9df4c8f4e3d443d22ae7e80065a8256d",
+      "whole_sha256": "9248fd760d5aeaa7c682fcb744493243ef8dbc7a855ed5f9e497ea567ea994c2",
       "role": "親pairの基本設計の固定本文。"
     },
     {
