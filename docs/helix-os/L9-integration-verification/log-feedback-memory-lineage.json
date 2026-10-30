@@ -3745,9 +3745,10 @@
         },
         "HELIXOS-L9-007-C0946",
         "HELIXOS-L9-007-C0947",
-        "HELIXOS-L9-007-C0948"
+        "HELIXOS-L9-007-C0948",
+        "HELIXOS-L9-007-C0949"
       ],
-      "source_case_count": 216,
+      "source_case_count": 217,
       "l4_contract_ref": "HELIXOS-L4-007-F02",
       "positive_case_refs": [
         "HELIXOS-L9-007-C0406",
@@ -5547,7 +5548,7 @@
     }
   ],
   "completion": {
-    "synthetic_case_count": 948,
+    "synthetic_case_count": 949,
     "independent_review": "pending",
     "formal_closure": "unproven",
     "actual_red_green_refactor": "not_executed"
@@ -62034,6 +62035,93 @@
           ]
         }
       ]
+    },
+    {
+      "id": "HELIXOS-L9-007-C0949",
+      "title": "未ack feedbackのoriginal_findingが固定7項目一致のまま追加属性を持つなら単一診断original_finding_changedを返し原記録と基準記録を別々に保持する",
+      "primary_trace": {
+        "requirement_ref": "HELIXOS-L3-007-F02",
+        "oracle_ref": "HELIXOS-L10-007-F02"
+      },
+      "source_case_pointer": "/integration_cases/948",
+      "input_material_ref": {
+        "path": "docs/helix-os/L7-function-verification/log-feedback-memory-lineage.json",
+        "pointer": "/l9_material_bundle/case/source_packets/records/input"
+      },
+      "forward_stimulus_replacements": [
+        {
+          "path": [
+            "feedback",
+            "unacked",
+            "original_finding",
+            "note"
+          ],
+          "value": "x"
+        }
+      ],
+      "compact_whole_observation": {
+        "condition": "record_material_violation",
+        "facet_correspondence": {
+          "logs": "corresponding",
+          "feedback": "violation",
+          "memory": "corresponding",
+          "boundary": "corresponding"
+        },
+        "ordered_findings": [
+          {
+            "code": "original_finding_changed",
+            "pointer": "/feedback/unacked/original_finding",
+            "return_owner": "feedback-source-owner"
+          }
+        ],
+        "retention_relation": {
+          "actual_records_equal_expanded_input_records": true,
+          "reference_records_equal_expanded_context_records": true
+        },
+        "non_effects": {
+          "whole_management_complete": false,
+          "operation_effect": "none",
+          "actual_log_written": false,
+          "actual_feedback_resolved": false,
+          "actual_memory_retired": false
+        }
+      },
+      "execution_state": "synthetic_document_comparison_only",
+      "expected": {
+        "finding_codes": [
+          "original_finding_changed"
+        ]
+      },
+      "expected_preserved": {
+        "actual_records_equal_expanded_input_records": true,
+        "reference_records_equal_expanded_context_records": true
+      },
+      "condition": "record_material_violation",
+      "population_state": "negative",
+      "negative_class_ref": "OS007-NEG-feedback-original_finding_changed",
+      "source_pointers": [
+        {
+          "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+          "pointers": [
+            "/requirements/22"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
+          "pointers": [
+            "/contracts/1",
+            "/diagnostic_contract/rules/0",
+            "/diagnostic_contract/rules/3",
+            "/diagnostic_contract/rules/11"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L7-function-verification/log-feedback-memory-lineage.json",
+          "pointers": [
+            "/l9_material_bundle/case/source_packets/records/input"
+          ]
+        }
+      ]
     }
   ],
   "negative_equivalence_classes": [
@@ -62476,6 +62564,35 @@
           "path": "docs/helix-os/L5-detail-design/log-feedback-memory-lineage.json",
           "pointers": [
             "/failure_rules/14"
+          ]
+        }
+      ]
+    },
+    {
+      "class_id": "OS007-NEG-feedback-original_finding_changed",
+      "expected_classification": "record_material_violation",
+      "expected": {
+        "finding_codes": [
+          "original_finding_changed"
+        ]
+      },
+      "expected_axis": "feedback",
+      "expected_state": "violation",
+      "backflow_owner": "feedback-source-owner",
+      "side_effect_count": 0,
+      "source_pointers": [
+        {
+          "path": "docs/helix-os/L9-integration-verification/log-feedback-memory-lineage.json",
+          "pointers": [
+            "/integration_cases/948/expected",
+            "/integration_cases/948/condition",
+            "/integration_cases/948/compact_whole_observation/ordered_findings/0"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
+          "pointers": [
+            "/failure_classifications/15"
           ]
         }
       ]

@@ -1334,28 +1334,6 @@
           ]
         },
         {
-          "class_id": "OS007-NEG-feedback-original_finding_changed",
-          "single_finding_code": "original_finding_changed",
-          "member_count": 0,
-          "co_occurring_rules_and_reason": "L4 R01, R04 (/diagnostic_contract/rules/0, /diagnostic_contract/rules/3) は actual/context 両側の original_finding が dict で canonical JSON whole が異なるときに original_finding_changed を発火させると同時に、その場合も固定7 feedback_fields (/diagnostic_contract/feedback_fields) を R01 で個別比較する。固定7 feedback_fields のいずれかが異なれば少なくとも1 field で field_conflict または field_unknown が必ず共起するため、単一の original_finding_changed は単独では発火しない。",
-          "l4_pointers": [
-            "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/failure_classifications/15",
-            "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/codes/12",
-            "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/rules/0",
-            "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/rules/3",
-            "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/rules/11"
-          ],
-          "realized_composite_class_ids": [
-            "OS007-NEG-feedback-comp-01-field_unknown_original_finding_changed",
-            "OS007-NEG-feedback-comp-02-field_conflict_original_finding_changed",
-            "OS007-NEG-feedback-comp-03-field_conflict_original_finding_changed",
-            "OS007-NEG-feedback-comp-04-field_conflict_original_finding_changed",
-            "OS007-NEG-feedback-comp-05-field_unknown_original_finding_changed_unresolved_claimed_resolved",
-            "OS007-NEG-feedback-comp-06-field_conflict_original_finding_changed_unresolved_claimed_resolved",
-            "OS007-NEG-feedback-comp-08-field_conflict_original_finding_changed_unresolved_claimed_resolved"
-          ]
-        },
-        {
           "class_id": "OS007-NEG-memory-boolean_conflict",
           "single_finding_code": "boolean_conflict",
           "member_count": 0,
