@@ -1120,18 +1120,17 @@
           },
           {
             "path": "docs/helix-harness/L5-detail-design/tdd-development-flow.json",
-            "revision": "7d72703bb1fe3e350292751141146f300d70574a",
-            "sha256": "f1ac1bd4e47365378ebf09f53b0e24b02d3be7033411df881672206363805b4a",
+            "revision": "4f9a76d3dfbfe2bc97ea44c2a82af378e13430ee",
+            "sha256": "7cae2f64eeadaf8067621b1a10af96bcba61b2ac6b16b5fba74fe1d2806f9583",
             "pointer": "/contracts/1/candidate_classification_design",
-            "claim": "前段で固定したL5 candidate source-predicate bytes。L8はこのrevisionの完全bytesをpinし、source conditionと短いU-ID projectionだけを扱う。"
+            "claim": "前段で固定した値を含まないL5 candidate predicate bytes。L8はexact revisionを参照し、具体synthetic事実はscaffold research recordへ分離。"
           }
         ],
-        "input_source_boundary": "source_fixture_ref points to existing synthetic L9 owner-material examples only. It is a candidate witness pointer, not a new owner-qualified raw source, formal input binding, or independent oracle.",
+        "input_source_boundary": "Each candidate U-ID row refers compactly to a scaffold research fact record. The evidence record re-resolves selected facts against the existing synthetic L9 owner_material; it is not a formal owner-qualified input, new raw source, full return, or independent oracle.",
         "cases": [
           {
             "case_id": "F01-CANDIDATE-POSITIVE-NORMAL",
             "polarity": "positive",
-            "source_fixture_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/1/normal_fixture/input",
             "expected_projection": {
               "candidate_l4_output": {
                 "pair_binding": "synthetic_match",
@@ -1141,12 +1140,12 @@
               },
               "l4_output_ref": "docs/helix-harness/L4-basic-design/tdd-development-flow.json#/contracts/1/output_contract",
               "l9_expected_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/1/expected_material"
-            }
+            },
+            "candidate_input_ref": "scaffold/research/wr223-f01-l5-l8-20261031/source/f01-candidate-input-facts.json#/cases/0"
           },
           {
             "case_id": "F01-CANDIDATE-NEGATIVE-FREEZE-MISSING",
             "polarity": "negative",
-            "source_fixture_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/1/negative_cases/0/source_packet/owner_material",
             "expected_projection": {
               "candidate_classification_code": "freeze_missing",
               "candidate_axis": "freeze_before_body",
@@ -1155,12 +1154,12 @@
               "side_effect_count": 0,
               "l4_expected_ref": "docs/helix-harness/L4-basic-design/tdd-development-flow.json#/contracts/1/negative_classifications/0",
               "l9_expected_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/1/negative_cases/0"
-            }
+            },
+            "candidate_input_ref": "scaffold/research/wr223-f01-l5-l8-20261031/source/f01-candidate-input-facts.json#/cases/1"
           },
           {
             "case_id": "F01-CANDIDATE-NEGATIVE-TEST-AFTER-BODY",
             "polarity": "negative",
-            "source_fixture_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/1/negative_cases/1/source_packet/owner_material",
             "expected_projection": {
               "candidate_classification_code": "test_after_body",
               "candidate_axis": "freeze_before_body",
@@ -1169,12 +1168,12 @@
               "side_effect_count": 0,
               "l4_expected_ref": "docs/helix-harness/L4-basic-design/tdd-development-flow.json#/contracts/1/negative_classifications/1",
               "l9_expected_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/1/negative_cases/1"
-            }
+            },
+            "candidate_input_ref": "scaffold/research/wr223-f01-l5-l8-20261031/source/f01-candidate-input-facts.json#/cases/2"
           },
           {
             "case_id": "F01-CANDIDATE-NEGATIVE-FOREIGN-ORACLE-REVISION",
             "polarity": "negative",
-            "source_fixture_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/1/negative_cases/2/source_packet/owner_material",
             "expected_projection": {
               "candidate_classification_code": "foreign_oracle_revision",
               "candidate_axis": "pair_binding",
@@ -1183,12 +1182,12 @@
               "side_effect_count": 0,
               "l4_expected_ref": "docs/helix-harness/L4-basic-design/tdd-development-flow.json#/contracts/1/negative_classifications/2",
               "l9_expected_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/1/negative_cases/2"
-            }
+            },
+            "candidate_input_ref": "scaffold/research/wr223-f01-l5-l8-20261031/source/f01-candidate-input-facts.json#/cases/3"
           },
           {
             "case_id": "F01-CANDIDATE-NEGATIVE-FREEZE-AS-RED",
             "polarity": "negative",
-            "source_fixture_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/1/negative_cases/3/source_packet/owner_material",
             "expected_projection": {
               "candidate_classification_code": "freeze_as_red",
               "candidate_axis": "pre_body_red",
@@ -1197,12 +1196,12 @@
               "side_effect_count": 0,
               "l4_expected_ref": "docs/helix-harness/L4-basic-design/tdd-development-flow.json#/contracts/1/negative_classifications/3",
               "l9_expected_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/1/negative_cases/3"
-            }
+            },
+            "candidate_input_ref": "scaffold/research/wr223-f01-l5-l8-20261031/source/f01-candidate-input-facts.json#/cases/4"
           },
           {
             "case_id": "F01-CANDIDATE-NEGATIVE-FREEZE-TIMESTAMP-ONLY",
             "polarity": "negative",
-            "source_fixture_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/1/negative_cases/4/source_packet/owner_material",
             "expected_projection": {
               "candidate_classification_code": "freeze_timestamp_only",
               "candidate_axis": "freeze_before_body",
@@ -1211,7 +1210,8 @@
               "side_effect_count": 0,
               "l4_expected_ref": "docs/helix-harness/L4-basic-design/tdd-development-flow.json#/contracts/1/negative_classifications/4",
               "l9_expected_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/1/negative_cases/4"
-            }
+            },
+            "candidate_input_ref": "scaffold/research/wr223-f01-l5-l8-20261031/source/f01-candidate-input-facts.json#/cases/5"
           }
         ],
         "expectation_boundary": "Each expected_projection is a compact manual candidate projection grounded in the approved L3/L10 F01 meaning and the existing L4/L9 F01 output/negative expectations. It does not replace or edit those expectations. case_id values are local candidate labels only: none is added to unit_case_ids or unit_cases, and none counts toward canonical four-way coverage.",

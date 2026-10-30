@@ -1,0 +1,536 @@
+{
+  "status": "scaffold_candidate_source_fact_evidence_only",
+  "authority_effect": "none",
+  "base_revision": "dd5931cfff4ff786da2ced44de2a40529edf7b71",
+  "meaning_source": {
+    "path": "scaffold/research/wr223-f01-l5-l8-20261031/source/f01-blind-draft-r2.json",
+    "sha256": "fa047d5d871913b696ba5e01d9227ce13a68bc827ff6e8c66cc29d8e69d7e647",
+    "issue_comment": "https://github.com/RetryYN/HELIX-HARNESS/issues/3510#issuecomment-6531844362",
+    "meaning_only": true
+  },
+  "source_document": {
+    "path": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json",
+    "revision": "dd5931cfff4ff786da2ced44de2a40529edf7b71",
+    "sha256": "3d2257ee9d0f33f367377a3c379af9852973dc11d87c1f23f8f193724adebeb2",
+    "case_pointer": "/cases/1",
+    "qualification": "synthetic fixture, not formal owner-qualified input"
+  },
+  "fixed_meaning_vs_observed_fixture": "r2 fixes only source meaning. The field layout, presence states, values, and relations below were observed later in the existing L9 synthetic fixture. They are not implied by r2 and do not define production schema or classifier priority.",
+  "post_r2_design_choices": "Historical mapping options are retained in README/L8 candidate projections. Their code/axis/state are not treated as source facts or authority.",
+  "cases": [
+    {
+      "case_id": "F01-CANDIDATE-POSITIVE-NORMAL",
+      "polarity": "positive",
+      "l9_source_pointer": "/cases/1/normal_fixture/input",
+      "observed_fields": [
+        {
+          "path": "binding.identity",
+          "presence": "provided",
+          "value": "TDD-TARGET"
+        },
+        {
+          "path": "binding.revision",
+          "presence": "provided",
+          "value": "r1"
+        },
+        {
+          "path": "binding.scope",
+          "presence": "provided",
+          "value": {
+            "project": "P",
+            "tenant": "synthetic-T",
+            "environment": "synthetic-test"
+          }
+        },
+        {
+          "path": "binding.owner",
+          "presence": "provided",
+          "value": "design-owner"
+        },
+        {
+          "path": "design_pair.l6_ref",
+          "presence": "provided",
+          "value": {
+            "identity": "L6-CONTRACT",
+            "revision": "r1",
+            "scope": {
+              "project": "P",
+              "tenant": "synthetic-T",
+              "environment": "synthetic-test"
+            },
+            "owner": "design-owner"
+          }
+        },
+        {
+          "path": "design_pair.l5_ref",
+          "presence": "provided",
+          "value": {
+            "identity": "L5-DESIGN",
+            "revision": "r1",
+            "scope": {
+              "project": "P",
+              "tenant": "synthetic-T",
+              "environment": "synthetic-test"
+            },
+            "owner": "design-owner"
+          }
+        },
+        {
+          "path": "design_pair.paired_test_ref",
+          "presence": "provided",
+          "value": {
+            "identity": "TEST-1",
+            "revision": "r1",
+            "scope": {
+              "project": "P",
+              "tenant": "synthetic-T",
+              "environment": "synthetic-test"
+            },
+            "owner": "verification-design-owner"
+          }
+        },
+        {
+          "path": "design_pair.oracle_ref",
+          "presence": "provided",
+          "value": {
+            "identity": "ORACLE-1",
+            "revision": "r1",
+            "scope": {
+              "project": "P",
+              "tenant": "synthetic-T",
+              "environment": "synthetic-test"
+            },
+            "owner": "verification-design-owner"
+          }
+        },
+        {
+          "path": "freeze.target_ref",
+          "presence": "provided",
+          "value": {
+            "identity": "TDD-TARGET",
+            "revision": "r1",
+            "scope": {
+              "project": "P",
+              "tenant": "synthetic-T",
+              "environment": "synthetic-test"
+            },
+            "owner": "design-owner"
+          }
+        },
+        {
+          "path": "freeze.design_ref",
+          "presence": "provided",
+          "value": {
+            "identity": "L5-DESIGN",
+            "revision": "r1",
+            "scope": {
+              "project": "P",
+              "tenant": "synthetic-T",
+              "environment": "synthetic-test"
+            },
+            "owner": "design-owner"
+          }
+        },
+        {
+          "path": "freeze.l6_ref",
+          "presence": "provided",
+          "value": {
+            "identity": "L6-CONTRACT",
+            "revision": "r1",
+            "scope": {
+              "project": "P",
+              "tenant": "synthetic-T",
+              "environment": "synthetic-test"
+            },
+            "owner": "design-owner"
+          }
+        },
+        {
+          "path": "freeze.test_ref",
+          "presence": "provided",
+          "value": {
+            "identity": "TEST-1",
+            "revision": "r1",
+            "scope": {
+              "project": "P",
+              "tenant": "synthetic-T",
+              "environment": "synthetic-test"
+            },
+            "owner": "verification-design-owner"
+          }
+        },
+        {
+          "path": "freeze.oracle_ref",
+          "presence": "provided",
+          "value": {
+            "identity": "ORACLE-1",
+            "revision": "r1",
+            "scope": {
+              "project": "P",
+              "tenant": "synthetic-T",
+              "environment": "synthetic-test"
+            },
+            "owner": "verification-design-owner"
+          }
+        },
+        {
+          "path": "freeze.sequence",
+          "presence": "provided",
+          "value": 1
+        },
+        {
+          "path": "body_change.sequence",
+          "presence": "provided",
+          "value": 3
+        },
+        {
+          "path": "red",
+          "presence": "null"
+        },
+        {
+          "path": "implementation_success",
+          "presence": "absent"
+        }
+      ],
+      "relations": [
+        {
+          "kind": "equal_fields",
+          "left": "binding",
+          "right": "freeze.target_ref",
+          "fields": [
+            "identity",
+            "revision",
+            "scope"
+          ]
+        },
+        {
+          "kind": "equal_fields",
+          "left": "design_pair.l5_ref",
+          "right": "freeze.design_ref",
+          "fields": [
+            "identity",
+            "revision",
+            "scope",
+            "owner"
+          ]
+        },
+        {
+          "kind": "equal_fields",
+          "left": "design_pair.l6_ref",
+          "right": "freeze.l6_ref",
+          "fields": [
+            "identity",
+            "revision",
+            "scope",
+            "owner"
+          ]
+        },
+        {
+          "kind": "equal_fields",
+          "left": "design_pair.paired_test_ref",
+          "right": "freeze.test_ref",
+          "fields": [
+            "identity",
+            "revision",
+            "scope",
+            "owner"
+          ]
+        },
+        {
+          "kind": "equal_fields",
+          "left": "design_pair.oracle_ref",
+          "right": "freeze.oracle_ref",
+          "fields": [
+            "identity",
+            "revision",
+            "scope",
+            "owner"
+          ]
+        },
+        {
+          "kind": "less_than",
+          "left": "freeze.sequence",
+          "right": "body_change.sequence"
+        }
+      ],
+      "fixed_meaning_relation": "L3/L10 positive meaning: frozen design/test/oracle is bound to the target and pre-body ordering is checked; no execution or success follows."
+    },
+    {
+      "case_id": "F01-CANDIDATE-NEGATIVE-FREEZE-MISSING",
+      "polarity": "negative",
+      "l9_source_pointer": "/cases/1/negative_cases/0/source_packet/owner_material",
+      "observed_fields": [
+        {
+          "path": "binding.identity",
+          "presence": "provided",
+          "value": "TDD-TARGET"
+        },
+        {
+          "path": "binding.revision",
+          "presence": "provided",
+          "value": "r1"
+        },
+        {
+          "path": "binding.scope",
+          "presence": "provided",
+          "value": {
+            "project": "P",
+            "tenant": "synthetic-T",
+            "environment": "synthetic-test"
+          }
+        },
+        {
+          "path": "design_pair.l6_ref",
+          "presence": "provided",
+          "value": {
+            "identity": "L6-CONTRACT",
+            "revision": "r1",
+            "scope": {
+              "project": "P",
+              "tenant": "synthetic-T",
+              "environment": "synthetic-test"
+            },
+            "owner": "design-owner"
+          }
+        },
+        {
+          "path": "design_pair.l5_ref",
+          "presence": "provided",
+          "value": {
+            "identity": "L5-DESIGN",
+            "revision": "r1",
+            "scope": {
+              "project": "P",
+              "tenant": "synthetic-T",
+              "environment": "synthetic-test"
+            },
+            "owner": "design-owner"
+          }
+        },
+        {
+          "path": "design_pair.paired_test_ref",
+          "presence": "provided",
+          "value": {
+            "identity": "TEST-1",
+            "revision": "r1",
+            "scope": {
+              "project": "P",
+              "tenant": "synthetic-T",
+              "environment": "synthetic-test"
+            },
+            "owner": "verification-design-owner"
+          }
+        },
+        {
+          "path": "design_pair.oracle_ref",
+          "presence": "provided",
+          "value": {
+            "identity": "ORACLE-1",
+            "revision": "r1",
+            "scope": {
+              "project": "P",
+              "tenant": "synthetic-T",
+              "environment": "synthetic-test"
+            },
+            "owner": "verification-design-owner"
+          }
+        },
+        {
+          "path": "freeze",
+          "presence": "null"
+        },
+        {
+          "path": "body_change.sequence",
+          "presence": "provided",
+          "value": 3
+        }
+      ],
+      "relations": [],
+      "fixed_meaning_relation": "L10 names no freeze; represented fixture has freeze provided null."
+    },
+    {
+      "case_id": "F01-CANDIDATE-NEGATIVE-TEST-AFTER-BODY",
+      "polarity": "negative",
+      "l9_source_pointer": "/cases/1/negative_cases/1/source_packet/owner_material",
+      "observed_fields": [
+        {
+          "path": "binding.revision",
+          "presence": "provided",
+          "value": "r1"
+        },
+        {
+          "path": "freeze.target_ref.revision",
+          "presence": "provided",
+          "value": "r1"
+        },
+        {
+          "path": "freeze.sequence",
+          "presence": "provided",
+          "value": 4
+        },
+        {
+          "path": "body_change.sequence",
+          "presence": "provided",
+          "value": 3
+        }
+      ],
+      "relations": [
+        {
+          "kind": "greater_than",
+          "left": "freeze.sequence",
+          "right": "body_change.sequence"
+        }
+      ],
+      "fixed_meaning_relation": "L10 names oracle attachment after implementation; fixture supplies a post-body sequence relation."
+    },
+    {
+      "case_id": "F01-CANDIDATE-NEGATIVE-FOREIGN-ORACLE-REVISION",
+      "polarity": "negative",
+      "l9_source_pointer": "/cases/1/negative_cases/2/source_packet/owner_material",
+      "observed_fields": [
+        {
+          "path": "binding.revision",
+          "presence": "provided",
+          "value": "r1"
+        },
+        {
+          "path": "design_pair.oracle_ref.revision",
+          "presence": "provided",
+          "value": "r1"
+        },
+        {
+          "path": "freeze.oracle_ref.revision",
+          "presence": "provided",
+          "value": "r0"
+        },
+        {
+          "path": "freeze.sequence",
+          "presence": "provided",
+          "value": 1
+        },
+        {
+          "path": "body_change.sequence",
+          "presence": "provided",
+          "value": 3
+        }
+      ],
+      "relations": [
+        {
+          "kind": "not_equal",
+          "left": "design_pair.oracle_ref.revision",
+          "right": "freeze.oracle_ref.revision"
+        },
+        {
+          "kind": "less_than",
+          "left": "freeze.sequence",
+          "right": "body_change.sequence"
+        }
+      ],
+      "fixed_meaning_relation": "L10 names an oracle from another revision; fixture supplies a ref revision mismatch."
+    },
+    {
+      "case_id": "F01-CANDIDATE-NEGATIVE-FREEZE-AS-RED",
+      "polarity": "negative",
+      "l9_source_pointer": "/cases/1/negative_cases/3/source_packet/owner_material",
+      "observed_fields": [
+        {
+          "path": "freeze.sequence",
+          "presence": "provided",
+          "value": 1
+        },
+        {
+          "path": "body_change.sequence",
+          "presence": "provided",
+          "value": 3
+        },
+        {
+          "path": "red",
+          "presence": "null"
+        }
+      ],
+      "relations": [
+        {
+          "kind": "less_than",
+          "left": "freeze.sequence",
+          "right": "body_change.sequence"
+        }
+      ],
+      "fixed_meaning_relation": "L3/L10 distinguish freeze from observed Red; this fixture has no Red record.",
+      "candidate_output_mutation": {
+        "l9_pointer": "/cases/1/negative_cases/3/mutation",
+        "lane": "candidate",
+        "operation": "replace",
+        "field_path": "pre_body_red",
+        "after": "observed_from_freeze"
+      }
+    },
+    {
+      "case_id": "F01-CANDIDATE-NEGATIVE-FREEZE-TIMESTAMP-ONLY",
+      "polarity": "negative",
+      "l9_source_pointer": "/cases/1/negative_cases/4/source_packet/owner_material",
+      "observed_fields": [
+        {
+          "path": "freeze.created_at",
+          "presence": "provided",
+          "value": "2026-10-01T00:00:01Z"
+        },
+        {
+          "path": "freeze.ref",
+          "presence": "absent"
+        },
+        {
+          "path": "freeze.target_ref",
+          "presence": "absent"
+        },
+        {
+          "path": "freeze.design_ref",
+          "presence": "absent"
+        },
+        {
+          "path": "freeze.l6_ref",
+          "presence": "absent"
+        },
+        {
+          "path": "freeze.test_ref",
+          "presence": "absent"
+        },
+        {
+          "path": "freeze.oracle_ref",
+          "presence": "absent"
+        },
+        {
+          "path": "freeze.expected",
+          "presence": "absent"
+        },
+        {
+          "path": "freeze.sequence",
+          "presence": "absent"
+        },
+        {
+          "path": "body_change.created_at",
+          "presence": "provided",
+          "value": "2026-10-01T00:00:03Z"
+        },
+        {
+          "path": "body_change.sequence",
+          "presence": "provided",
+          "value": 3
+        }
+      ],
+      "relations": [
+        {
+          "kind": "earlier_than",
+          "left": "freeze.created_at",
+          "right": "body_change.created_at"
+        }
+      ],
+      "fixed_meaning_relation": "L10 names creation time alone; fixture has earlier time but no target/design/test/oracle/expected/sequence freeze material."
+    }
+  ],
+  "unresolved": [
+    "formal owner input and production schema are unconfirmed",
+    "classification priority for overlapping missing/timestamp-only or multiple predicates is unresolved",
+    "body_change revision binding field is not present in the fixture",
+    "freeze-as-Red is represented by candidate output mutation; formal input/output boundary is unresolved"
+  ]
+}

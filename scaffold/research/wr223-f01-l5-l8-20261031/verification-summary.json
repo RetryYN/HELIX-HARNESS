@@ -3,14 +3,9 @@
   "evidence_kind": "scaffold",
   "authority_effect": "none",
   "base_revision": "dd5931cfff4ff786da2ced44de2a40529edf7b71",
-  "l5_first_commit": {
-    "revision": "7d72703bb1fe3e350292751141146f300d70574a",
-    "path": "docs/helix-harness/L5-detail-design/tdd-development-flow.json",
-    "sha256": "f1ac1bd4e47365378ebf09f53b0e24b02d3be7033411df881672206363805b4a"
-  },
   "candidate_documents": {
-    "docs/helix-harness/L5-detail-design/tdd-development-flow.json": "f1ac1bd4e47365378ebf09f53b0e24b02d3be7033411df881672206363805b4a",
-    "docs/helix-harness/L8-unit-verification/tdd-development-flow.json": "7ae8540a90a76d9d936346a67a1cac490ef8c47352b28897ea7aa9e8add5ff68"
+    "docs/helix-harness/L5-detail-design/tdd-development-flow.json": "7cae2f64eeadaf8067621b1a10af96bcba61b2ac6b16b5fba74fe1d2806f9583",
+    "docs/helix-harness/L8-unit-verification/tdd-development-flow.json": "369e412b592aeb46b04412fb72b7f715778e900a0bc4e056942045084edcb3b1"
   },
   "fixed_artifacts": {
     "r1": {
@@ -37,8 +32,8 @@
     "candidate_witnesses_negative": 5,
     "candidate_contribution_to_canonical_four_way": 0,
     "scaffold_binding_validation": "pass: bindings=177, fail=0",
-    "static_candidate_validator": "pass; candidate projection equality against expected values is not validated",
-    "git_diff_check": "pass: unstaged diff clean before second commit",
+    "static_candidate_validator": "pass: 6 source fact records re-resolved against base L9; L5 value-free; L8 compact references",
+    "git_diff_check": "pass: working diff clean before final staging",
     "scaffold_stale": "pass: stale=0",
     "design_verification_checker_check_child": {
       "evidence_kind": "scaffold",
@@ -61,7 +56,10 @@
       "meaning": "formal negative 4way remains incomplete; expected residual, not a candidate validation pass"
     },
     "source_condition_facts_compared_to_l4_l9_expected_values": "not performed; conditions are fixture-local field/presence/revision/sequence statements",
-    "candidate_projection_expected_value_equality": "not used by static validator; candidate mappings remain provisional"
+    "candidate_projection_expected_value_equality": "not used by static validator; candidate mappings remain provisional",
+    "source_fact_resolution": "pass: 6 records, presence/value and field relations re-resolved against base L9 owner_material",
+    "l5_fixture_value_separation": "pass: no case IDs or synthetic fixture values in L5 predicate catalog",
+    "l8_compact_reference_scope": "pass: U-ID rows reference scaffold fact records; no raw payload/full return keys"
   },
   "historical_failure_basis": {
     "current_pr_a": "WR206 PR-A research record: L4/L9 each had 28 negative classifications while L5/L8 had zero; 33 child mismatches and existing L8 ownership-cap findings remained.",
@@ -77,18 +75,49 @@
     "Final-review phrase remains in approval decision metadata despite repo evidence of main admission.",
     "No formal owner-qualified input source, production schema/codec, approved L5/L8 design, independent oracle, execution, or acceptance is established.",
     "Formal four-way matching remains unestablished; candidate rows are excluded from canonical counts.",
-    "freeze_missing and timestamp-only primary-axis/priority overlap; multi-condition priority; body_change revision binding field; formal input/output boundary for freeze-as-Red"
+    "freeze_missing and timestamp-only primary-axis/priority overlap; multi-condition priority; body_change revision binding field; formal input/output boundary for freeze-as-Red",
+    "No formal owner-qualified input is established; research fact records describe the existing synthetic L9 fixture only.",
+    "Synthetic source fact records are research evidence only; they do not qualify the L9 owner as a formal input owner."
   ],
   "l5_initial_commit": {
     "revision": "f97e1ff9331bafdc5d87b4f6e1af067020e78b76",
     "sha256": "216e8f04638ab8734c91333bbb6bae48031e13224d084eb9fc750f125d703610"
   },
-  "l5_source_condition_refinement": {
+  "l5_previous_revision_history": [
+    {
+      "revision": "f97e1ff9331bafdc5d87b4f6e1af067020e78b76",
+      "sha256": "216e8f04638ab8734c91333bbb6bae48031e13224d084eb9fc750f125d703610",
+      "note": "initial candidate"
+    },
+    {
+      "revision": "7d72703bb1fe3e350292751141146f300d70574a",
+      "sha256": "f1ac1bd4e47365378ebf09f53b0e24b02d3be7033411df881672206363805b4a",
+      "note": "fixture values were temporarily recorded in L5; superseded due to ownership boundary"
+    }
+  ],
+  "l5_ownership_correction": {
+    "revision": "4f9a76d3dfbfe2bc97ea44c2a82af378e13430ee",
+    "sha256": "7cae2f64eeadaf8067621b1a10af96bcba61b2ac6b16b5fba74fe1d2806f9583",
+    "change": "case-specific concrete fixture facts, witness IDs, and copied L4/L9 classifications removed from L5; value-free general predicate catalog retained"
+  },
+  "source_fact_evidence": {
+    "path": "scaffold/research/wr223-f01-l5-l8-20261031/source/f01-candidate-input-facts.json",
+    "sha256": "0da753e128198b893530e2be7058dbe6c797774980d112694f08e112b21ed6fb",
+    "records": 6,
+    "basis": "selected concrete facts re-resolved against base L9 owner_material; no full owner_material payload duplicated"
+  },
+  "l5_superseded_source_condition_revision": {
     "revision": "7d72703bb1fe3e350292751141146f300d70574a",
     "path": "docs/helix-harness/L5-detail-design/tdd-development-flow.json",
     "sha256": "f1ac1bd4e47365378ebf09f53b0e24b02d3be7033411df881672206363805b4a",
     "negative_rules_with_fixture_fact_predicates": 5,
     "positive_rule_with_fixture_fact_predicate": 1,
-    "selection_basis": "r2 fixed meaning plus synthetic L9 owner_material field facts; projection choices remain candidate-only; unresolved priority explicitly retained"
+    "selection_basis": "r2 fixed meaning plus synthetic L9 owner_material field facts; projection choices remain candidate-only; unresolved priority explicitly retained",
+    "note": "Superseded: fixture facts and per-witness projections were temporarily placed in L5 and then removed to restore the QA §3 ownership boundary."
+  },
+  "l5_current_pinned_commit": {
+    "revision": "4f9a76d3dfbfe2bc97ea44c2a82af378e13430ee",
+    "path": "docs/helix-harness/L5-detail-design/tdd-development-flow.json",
+    "sha256": "7cae2f64eeadaf8067621b1a10af96bcba61b2ac6b16b5fba74fe1d2806f9583"
   }
 }

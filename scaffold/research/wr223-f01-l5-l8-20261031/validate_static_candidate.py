@@ -1,15 +1,16 @@
 #!/usr/bin/env python3
-"""WR223 F01候補の文書revision・参照・既存期待不変を静的に確認する。"""
+"""WR223 F01 source facts / candidate ownershipの静的照合。classifierやruntimeは実行しない。"""
 from __future__ import annotations
 
 import hashlib
 import json
 import subprocess
+from datetime import datetime
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[3]
 BASE = "dd5931cfff4ff786da2ced44de2a40529edf7b71"
-L5_REV = "7d72703bb1fe3e350292751141146f300d70574a"
+L5_REV = "4f9a76d3dfbfe2bc97ea44c2a82af378e13430ee"
 REVIEWED = "a715e777bd59291b26f09c0c1c5481273c6eba2e"
 L3 = "docs/helix-harness/L3-requirements/functional-requirements.json"
 L10 = "docs/helix-harness/L10-verification/functional-verification.json"
@@ -19,10 +20,13 @@ L8 = "docs/helix-harness/L8-unit-verification/tdd-development-flow.json"
 L9 = "docs/helix-harness/L9-integration-verification/tdd-development-flow.json"
 R1 = "scaffold/research/wr223-f01-l5-l8-20261031/source/f01-blind-draft-r1.json"
 R2 = "scaffold/research/wr223-f01-l5-l8-20261031/source/f01-blind-draft-r2.json"
+FACTS = "scaffold/research/wr223-f01-l5-l8-20261031/source/f01-candidate-input-facts.json"
 COMMENT = "https://github.com/RetryYN/HELIX-HARNESS/issues/3510#issuecomment-6531844362"
 R1_SHA = "e4f7be9befded4f2398209eac0d3ef226c0cd62cefa5e47d013a18e87f265bbd"
 R2_SHA = "fa047d5d871913b696ba5e01d9227ce13a68bc827ff6e8c66cc29d8e69d7e647"
-L5_SHA = "f1ac1bd4e47365378ebf09f53b0e24b02d3be7033411df881672206363805b4a"
+L9_SHA = "3d2257ee9d0f33f367377a3c379af9852973dc11d87c1f23f8f193724adebeb2"
+L5_SHA = "7cae2f64eeadaf8067621b1a10af96bcba61b2ac6b16b5fba74fe1d2806f9583"
+FACTS_SHA = "0da753e128198b893530e2be7058dbe6c797774980d112694f08e112b21ed6fb"
 
 
 def sha(data: bytes) -> str:
@@ -58,135 +62,171 @@ def one(rows: list[dict], identity: str) -> dict:
     return matches[0]
 
 
-def verify_pin(pin: dict):
-    actual = sha(git_bytes(pin["revision"], pin["path"]))
-    assert actual == pin["sha256"], f"source pin mismatch: {pin['path']}@{pin['revision']}"
+def state_at(root, path: str):
+    value = root
+    for segment in path.split("."):
+        if not isinstance(value, dict) or segment not in value:
+            return {"presence": "absent"}
+        value = value[segment]
+    if value is None:
+        return {"presence": "null"}
+    return {"presence": "provided", "value": value}
+
+
+def resolve_dot(root, path: str):
+    state = state_at(root, path)
+    assert state["presence"] == "provided", f"relation path missing/null: {path}"
+    return state["value"]
+
+
+def verify_relation(owner_material: dict, relation: dict):
+    kind = relation["kind"]
+    left = resolve_dot(owner_material, relation["left"])
+    right = resolve_dot(owner_material, relation["right"])
+    if kind == "equal_fields":
+        assert isinstance(left, dict) and isinstance(right, dict)
+        assert all(left[field] == right[field] for field in relation["fields"]), relation
+    elif kind == "less_than":
+        assert left < right, relation
+    elif kind == "greater_than":
+        assert left > right, relation
+    elif kind == "not_equal":
+        assert left != right, relation
+    elif kind == "earlier_than":
+        left_dt = datetime.fromisoformat(left.replace("Z", "+00:00"))
+        right_dt = datetime.fromisoformat(right.replace("Z", "+00:00"))
+        assert left_dt < right_dt, relation
+    else:
+        raise AssertionError(f"unknown research relation kind: {kind}")
+
+
+def verify_fact_record(record: dict, l9: dict):
+    pointer = record["l9_source_pointer"]
+    assert pointer.startswith("/cases/1/")
+    owner_material = at_pointer(l9, pointer)
+    for fact in record["observed_fields"]:
+        actual = state_at(owner_material, fact["path"])
+        assert actual["presence"] == fact["presence"], (record["case_id"], fact, actual)
+        if fact["presence"] == "provided":
+            assert actual["value"] == fact["value"], (record["case_id"], fact, actual)
+    for relation in record["relations"]:
+        verify_relation(owner_material, relation)
+    if "candidate_output_mutation" in record:
+        mutation = record["candidate_output_mutation"]
+        actual = at_pointer(l9, mutation["l9_pointer"])
+        assert actual["lane"] == mutation["lane"]
+        assert actual["operation"] == mutation["operation"]
+        assert actual["field_path"] == mutation["field_path"]
+        assert actual["after"] == mutation["after"]
 
 
 def main() -> None:
-    l3 = read_json(L3)
-    l10 = read_json(L10)
-    l4 = read_json(L4)
-    l5 = read_json(L5)
-    l8 = read_json(L8)
-    l9 = read_json(L9)
+    l3, l10, l4, l5, l8, l9 = (read_json(path) for path in (L3, L10, L4, L5, L8, L9))
     l5_base = json.loads(git_bytes(BASE, L5))
     l8_base = json.loads(git_bytes(BASE, L8))
-    l4_base_bytes = git_bytes(BASE, L4)
-    l9_base_bytes = git_bytes(BASE, L9)
+    l4_base_bytes, l9_base_bytes = git_bytes(BASE, L4), git_bytes(BASE, L9)
+    facts = read_json(FACTS)
+    assert sha((ROOT / FACTS).read_bytes()) == FACTS_SHA
 
-    # Both fixed meaning artifacts are byte-preserved and r2 is the Issue-fixed source.
     assert sha((ROOT / R1).read_bytes()) == R1_SHA
     assert sha((ROOT / R2).read_bytes()) == R2_SHA
     r2 = read_json(R2)
     assert r2["target"]["requirement"] == "HARNESS-L3-015-F01"
     assert r2["target"]["system_oracle"] == "HARNESS-L10-015-F01"
 
-    # L3/L10 exact approved source pins resolve, and target rows match current base docs.
-    l3_fixed = json.loads(git_bytes(REVIEWED, L3))
-    l10_fixed = json.loads(git_bytes(REVIEWED, L10))
-    l3_row = one(l3["requirements"], "HARNESS-L3-015-F01")
-    l10_case = one(l10["cases"], "HARNESS-L10-015-F01")
+    l3_fixed, l10_fixed = json.loads(git_bytes(REVIEWED, L3)), json.loads(git_bytes(REVIEWED, L10))
+    l3_row, l10_case = one(l3["requirements"], "HARNESS-L3-015-F01"), one(l10["cases"], "HARNESS-L10-015-F01")
     assert l3_row == one(l3_fixed["requirements"], "HARNESS-L3-015-F01")
     assert l10_case == one(l10_fixed["cases"], "HARNESS-L10-015-F01")
 
-    # The L5 change is additive to the existing F01 contract; all other fields remain exact.
     l5_f01 = one(l5["contracts"], "HARNESS-L5-015-F01")
     l5_f01_base = one(l5_base["contracts"], "HARNESS-L5-015-F01")
     candidate_l5 = l5_f01["candidate_classification_design"]
     assert {k: v for k, v in l5_f01.items() if k != "candidate_classification_design"} == l5_f01_base
     assert candidate_l5["status"] == "candidate_only_not_approved_or_executed"
     assert candidate_l5["fixed_artifact"]["sha256"] == R2_SHA
-    assert "source predicate" in candidate_l5["classification_authority_note"]
-    assert "source_condition" in candidate_l5["positive_candidate_rule"]
-    assert all("source_condition" in x for x in candidate_l5["negative_candidate_rules"])
     assert candidate_l5["fixed_artifact"]["issue_comment"] == COMMENT
-    assert "6531844362" in candidate_l5["fixed_artifact"]["issue_comment"]
+    catalog = candidate_l5["candidate_predicate_catalog"]
+    assert catalog["status"] == "candidate_general_predicates_only_not_approved_or_executed"
+    assert candidate_l5["source_fact_evidence_ref"] == f"{FACTS}#/cases"
+    assert not any(pin["path"] == L9 for pin in candidate_l5["candidate_source_pins"])
+    l5_text = json.dumps(candidate_l5, ensure_ascii=False)
+    for fixture_value in ("TDD-TARGET", "synthetic-T", "synthetic-test", "2026-10-01T", "observed_from_freeze", "F01-CANDIDATE-"):
+        assert fixture_value not in l5_text, f"fixture-specific value leaked into L5 candidate: {fixture_value}"
     assert sha(git_bytes(L5_REV, L5)) == L5_SHA
 
-    # The L8 change is additive; existing case rows/expected material and unit cases are unchanged.
+    assert facts["status"] == "scaffold_candidate_source_fact_evidence_only"
+    assert facts["meaning_source"]["sha256"] == R2_SHA
+    assert facts["source_document"]["revision"] == BASE
+    assert facts["source_document"]["sha256"] == L9_SHA
+    assert sha(git_bytes(BASE, L9)) == L9_SHA
+    assert len(facts["cases"]) == 6
+    for record in facts["cases"]:
+        verify_fact_record(record, l9)
+
     l8_f01 = one(l8["cases"], "HARNESS-L8-015-F01")
     l8_f01_base = one(l8_base["cases"], "HARNESS-L8-015-F01")
     candidate_l8 = l8_f01["candidate_unit_design"]
     assert {k: v for k, v in l8_f01.items() if k != "candidate_unit_design"} == l8_f01_base
     assert l8["unit_cases"] == l8_base["unit_cases"]
-    assert [x for x in l8["cases"] if x["id"] != "HARNESS-L8-015-F01"] == [
-        x for x in l8_base["cases"] if x["id"] != "HARNESS-L8-015-F01"
-    ]
+    assert [x for x in l8["cases"] if x["id"] != "HARNESS-L8-015-F01"] == [x for x in l8_base["cases"] if x["id"] != "HARNESS-L8-015-F01"]
     assert candidate_l8["status"] == "scaffold_candidate_only_not_approved_or_executed"
     assert candidate_l8["fixed_artifact"]["sha256"] == R2_SHA
+    assert len(candidate_l8["cases"]) == 6
+    l5_l8_pin = next(pin for pin in candidate_l8["source_pins"] if pin["path"] == L5)
+    assert l5_l8_pin["revision"] == L5_REV and l5_l8_pin["sha256"] == L5_SHA
+    assert sha((ROOT / L5).read_bytes()) == L5_SHA
+    for pin in candidate_l5["candidate_source_pins"] + candidate_l8["source_pins"]:
+        assert sha(git_bytes(pin["revision"], pin["path"])) == pin["sha256"], pin
 
-    # No current L4/L9 bytes or expected records are changed.
+    l4_f01 = one(l4["contracts"], "HARNESS-L4-015-F01")
+    l9_f01 = one(l9["cases"], "HARNESS-L9-015-F01")
     assert (ROOT / L4).read_bytes() == l4_base_bytes
     assert (ROOT / L9).read_bytes() == l9_base_bytes
-    l4_f01_index = next(i for i, x in enumerate(l4["contracts"]) if x["id"] == "HARNESS-L4-015-F01")
-    l9_f01_index = next(i for i, x in enumerate(l9["cases"]) if x["id"] == "HARNESS-L9-015-F01")
-    l4_f01 = l4["contracts"][l4_f01_index]
-    l9_f01 = l9["cases"][l9_f01_index]
+    positive, negative = candidate_l8["cases"][0], candidate_l8["cases"][1:]
+    assert positive["polarity"] == "positive" and all(x["polarity"] == "negative" for x in negative)
+    for index, row in enumerate(candidate_l8["cases"]):
+        ref_path, pointer = path_pointer_ref(row["candidate_input_ref"])
+        assert ref_path == FACTS
+        assert at_pointer(facts, pointer) is facts["cases"][index]
+        assert row["case_id"] == facts["cases"][index]["case_id"]
+        assert "source_fixture_ref" not in row
+    def keys_in(value):
+        if isinstance(value, dict):
+            return set(value).union(*(keys_in(child) for child in value.values()))
+        if isinstance(value, list):
+            return set().union(*(keys_in(child) for child in value)) if value else set()
+        return set()
+    forbidden_l8_keys = {"owner_material", "original_bytes_utf8", "full_return", "fixture_patch", "seed", "rfc6902_patch"}
+    assert keys_in(candidate_l8).isdisjoint(forbidden_l8_keys)
+    assert all(set(x["expected_projection"]).issubset({"candidate_l4_output", "l4_output_ref", "l9_expected_ref", "candidate_classification_code", "candidate_axis", "candidate_state", "backflow_component", "side_effect_count", "l4_expected_ref", "l9_expected_ref"}) for x in candidate_l8["cases"])
 
-    # Check every pinned revision/blob and the L8 pin to the first-committed L5 bytes.
-    for pin in candidate_l5["candidate_source_pins"]:
-        verify_pin(pin)
-    l5_l8_pin = next(pin for pin in candidate_l8["source_pins"] if pin["path"] == L5)
-    assert l5_l8_pin["revision"] == L5_REV
-    assert l5_l8_pin["sha256"] == L5_SHA
-    assert sha((ROOT / L5).read_bytes()) == l5_l8_pin["sha256"]
-    for pin in candidate_l8["source_pins"]:
-        verify_pin(pin)
+    # Resolve compact source references; do not compare candidate projections for value equality.
+    pos_projection = positive["expected_projection"]
+    l4_path, l4_ptr = path_pointer_ref(pos_projection["l4_output_ref"])
+    l9_path, l9_ptr = path_pointer_ref(pos_projection["l9_expected_ref"])
+    assert l4_path == L4 and isinstance(at_pointer(l4, l4_ptr), dict)
+    assert l9_path == L9 and isinstance(at_pointer(l9, l9_ptr), dict)
+    for index, (l4_ref, l9_ref) in enumerate(zip(l4_f01["negative_classifications"], l9_f01["negative_cases"])):
+        projection = negative[index]["expected_projection"]
+        l4_path, l4_ptr = path_pointer_ref(projection["l4_expected_ref"])
+        l9_path, l9_ptr = path_pointer_ref(projection["l9_expected_ref"])
+        assert l4_path == L4 and at_pointer(l4, l4_ptr) is l4_ref
+        assert l9_path == L9 and at_pointer(l9, l9_ptr) is l9_ref
 
-    # Positive L4 output pointer resolves and matches the existing L9 normal expected material.
-    positive = [x for x in candidate_l8["cases"] if x["polarity"] == "positive"]
-    negative = [x for x in candidate_l8["cases"] if x["polarity"] == "negative"]
-    assert len(positive) == 1 and len(negative) == 5
-    positive_row = positive[0]
-    l4_path, l4_pointer = path_pointer_ref(positive_row["expected_projection"]["l4_output_ref"])
-    assert l4_path == L4
-    resolved_l4_output = at_pointer(l4, l4_pointer)
-    assert isinstance(resolved_l4_output, dict)
-    l9_path, l9_expected_pointer = path_pointer_ref(positive_row["expected_projection"]["l9_expected_ref"])
-    assert l9_path == L9
-    assert isinstance(at_pointer(l9, l9_expected_pointer), dict)
-    input_path, input_pointer = path_pointer_ref(positive_row["source_fixture_ref"])
-    assert input_path == L9 and at_pointer(l9, input_pointer) == l9_f01["normal_fixture"]["input"]
-
-    # Negative candidate witnesses correspond one-to-one to existing L4/L9 classes.
-    l4_negative = l4_f01["negative_classifications"]
-    l9_negative = l9_f01["negative_cases"]
-    l5_negative = candidate_l5["negative_candidate_rules"]
-    assert len(l4_negative) == len(l9_negative) == len(l5_negative) == len(negative) == 5
-    assert len({x["candidate_witness_id"] for x in l5_negative}) == 5
-    assert len({x["case_id"] for x in candidate_l8["cases"]}) == 6
-    for index, (l4_case, l9_case, l5_rule, candidate_case) in enumerate(zip(l4_negative, l9_negative, l5_negative, negative)):
-        projection = candidate_case["expected_projection"]
-        assert "source_condition" in l5_rule
-        assert set(("candidate_classification_code", "candidate_axis", "candidate_state", "backflow_component", "side_effect_count")).issubset(projection)
-        assert at_pointer(l9, f"/cases/{l9_f01_index}/negative_cases/{index}/source_packet/owner_material")
-        assert at_pointer(l4, f"/contracts/{l4_f01_index}/negative_classifications/{index}") is l4_case
-        assert at_pointer(l9, f"/cases/{l9_f01_index}/negative_cases/{index}") is l9_case
-        l4_ref_path, l4_ref_pointer = path_pointer_ref(l5_rule["l4_design_expected_ref"])
-        l9_ref_path, l9_ref_pointer = path_pointer_ref(l5_rule["l9_existing_expected_ref"])
-        assert l4_ref_path == L4 and at_pointer(l4, l4_ref_pointer) is l4_case
-        assert l9_ref_path == L9 and at_pointer(l9, l9_ref_pointer) is l9_case
-        assert at_pointer(l4, f"/contracts/{l4_f01_index}/negative_classifications/{index}") == l4_case
-        assert at_pointer(l9, f"/cases/{l9_f01_index}/negative_cases/{index}") == l9_case
-
-    # Candidate witness labels do not enter canonical U-ID/unit-case or four-way membership.
-    canonical_ids = set(l8_f01["unit_case_ids"])
-    all_unit_ids = {x["id"] for x in l8["unit_cases"]}
+    canonical_ids, all_unit_ids = set(l8_f01["unit_case_ids"]), {x["id"] for x in l8["unit_cases"]}
     candidate_ids = {x["case_id"] for x in candidate_l8["cases"]}
-    assert candidate_ids.isdisjoint(canonical_ids)
-    assert candidate_ids.isdisjoint(all_unit_ids)
+    assert candidate_ids.isdisjoint(canonical_ids) and candidate_ids.isdisjoint(all_unit_ids)
     assert len(l8_f01["unit_case_ids"]) == len(l8_f01_base["unit_case_ids"]) == 6
     assert len(l8["unit_cases"]) == len(l8_base["unit_cases"]) == 35
 
-    print("static F01 candidate validation: PASS")
-    print(f"L5 first-commit revision: {L5_REV}; SHA-256: {L5_SHA}")
-    print(f"L8 candidate SHA-256: {sha((ROOT / L8).read_bytes())}")
-    print("r1/r2 fixed-artifact SHA-256: PASS; r2 Issue comment binding: PASS")
-    print("approved L3/L10 target rows and all L4/L9/L5 source pins: PASS")
-    print("L4/L9 source pointers resolve; candidate projections are not validated by expected-value equality")
-    print("existing L5 contract, L4/L9 bytes, L8 canonical case IDs and unit cases: unchanged")
-    print("candidate witnesses: positive=1, negative=5; canonical four-way contribution=0")
+    print("static F01 candidate/source-fact validation: PASS")
+    print(f"L5 pin: {L5_REV}; SHA-256: {L5_SHA}")
+    print(f"r1/r2 hashes and Issue-fixed r2 reference: PASS")
+    print("L5 has value-free predicates; six scaffold facts re-resolve against base L9 owner_material: PASS")
+    print("L8 U-ID rows contain compact fact references and short projections only; no raw owner_material/full return")
+    print("L4/L9 pointers resolve; candidate projection expected-value equality is not checked")
+    print("L4/L9 bytes and existing L8 canonical cases unchanged; candidate contribution to four-way=0")
     print("No algorithm, runtime, test suite, or CI was executed.")
 
 
