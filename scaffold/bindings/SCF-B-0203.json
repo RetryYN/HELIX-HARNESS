@@ -1,0 +1,139 @@
+{
+  "schema_revision": 1,
+  "id": "SCF-B-0203",
+  "kind": "scaffold",
+  "title": "WR242 H053 L4/L9 post-freeze comparison evidence",
+  "product": "HELIX-HARNESS",
+  "owner_candidate": "HELIX-HARNESS H053 source-to-L4/L9 class comparison evidence owner",
+  "state": "registered",
+  "reason": "固定済みsource-only導出と現行L4/L9を比較するscaffold記録。formal class membershipは主張せず、このPRではcasewise projectionも実施しない。checkerとfixed blindのSHAはupstream依存でなくverification.oraclesの時点証拠として保持する。",
+  "upstream": [
+    {
+      "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+      "sha256": "a3b907cdc316117d4684632f9a1cbf36125eb6e6172f9cfc286060617583d7be",
+      "note": "固定source-only derivationのHARNESS-L3-053-F01..F04根拠。"
+    },
+    {
+      "path": "docs/helix-harness/L3-requirements/business-requirements.json",
+      "sha256": "25e0e8f8ee8acbc220483ab6854155218193861086cf757f933e2cd6263f444d",
+      "note": "固定source-only derivationのHARNESS-L3-053-B01根拠。"
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/functional-verification.json",
+      "sha256": "fc58ad2268746d7924ac9be33e8f3f75e6d3c2cc619e27fbc1ddc34edd065cb2",
+      "note": "固定source-only derivationのHARNESS-L10-053-F01..F04根拠。"
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/business-verification.json",
+      "sha256": "3a9982ef2e59e3d027ce8e5cd72b9879b6224a8e4ea74b657bf9b67c90934319",
+      "note": "固定source-only derivationのHARNESS-L10-053-B01根拠。"
+    },
+    {
+      "path": "docs/helix-harness/L4-basic-design/semantic-asset-lineage.json",
+      "sha256": "99621490097336317e2787d831cf94c761cdd39b04c696af8144c442748cf929",
+      "note": "base dd07a349の既存38 failure_classificationsとcontracts。改変なし。"
+    },
+    {
+      "path": "docs/helix-harness/L9-integration-verification/semantic-asset-lineage.json",
+      "sha256": "ab18e7965f1210eb638501178db9ccc886feb86fdafa7572f6f71cae1c2e268a",
+      "note": "base dd07a349の既存38 negative cases。改変なし。"
+    },
+    {
+      "path": "docs/helix-harness/L5-detail-design/semantic-asset-lineage.json",
+      "sha256": "6a66cffd1521e91130c710bbfd0d997c73c2cb56fd79d0959de725f6defdcb41",
+      "note": "QA typed owner_refとの比較文脈。PR-Aでは変更しない。"
+    },
+    {
+      "path": "docs/helix-harness/L8-unit-verification/semantic-asset-lineage.json",
+      "sha256": "6365651422b2aa7cc4ae3d7596c445cc854eea140daabeddb8990da6c57d7bd2",
+      "note": "4層marker状態とout-of-scope ownership capのbase文脈。PR-Aでは変更しない。"
+    },
+    {
+      "path": "docs/governance/design-verification-quality-assurance.md",
+      "sha256": "f5751e236dc073fe67114c1fcb4b0f64b3d746290b25d75b61e60a08e3c99c85",
+      "note": "§3 CHK-NEG-4WAY-MATCH six-field explicit class key contract。"
+    }
+  ],
+  "role": "固定source-only evidence、現行L4/L9 row、L5/L8/QA key contractをつないだ比較後crosswalkを保持し、class migrationの成立/未決根拠を再現する。",
+  "obligations": [
+    "固定artifactのSHA-256と32 source-leaf pointer/value hashを確認し、元bytesを維持する。",
+    "38 L4 failure_classifications rowごとにoracle_refsからL9 negative caseを一意に解決し、既存casewise属性を記録する。",
+    "source-only provisional groupとL4 contract source-leafの関係をcontract-level supportとして記録し、L9 case membershipと混同しない。",
+    "QA §3のaxis形式（非空stringまたは順序付き非空string配列）を正確に記述し、未実施のprojectionを不可能と断定しない。",
+    "PR #3983 R1の旧結論訂正を別追補として残し、時点固定comparison/summary/blind bytesを変更しない。",
+    "checkerとfixed blindのSHAをverification.oraclesに時点証拠として記録し、scaffold/ pathをupstreamへ置かない。"
+  ],
+  "connections": {
+    "consumers": [
+      "WR242 H053 PR-A comparison evidence",
+      "separately requested follow-up for H053 L4/L9 casewise projection, using HARNESS011 as precedent",
+      "later L5/L8 V-pair alignment"
+    ],
+    "dependencies": [
+      "base revision dd07a3498be74f32519adf42a221caf51e547ea1",
+      "QA §3 CHK-NEG-4WAY-MATCH",
+      "fixed blind artifact SHA-256 5e69cd0c3c472090947fec9454d892ffa2caa24ed0aa2a1b2540f7d9c18f408b"
+    ],
+    "boundary": "Scaffold-only comparison record. No explicit mode marker, class membership, six-field key, expected/oracle mutation, requirement or authority change is asserted. Canonical L4/L9 and L5/L8 remain unchanged."
+  },
+  "operations": {
+    "allowed": [
+      "static JSON pointer, ID, key-field, source revision and SHA-256 comparison",
+      "run validate_comparison.py for historical evidence integrity checks (read-only; does not rewrite frozen artifacts)",
+      "document-checker check-child as a measurement of the supplied four layer documents",
+      "scfctl validate/stale and git diff --check"
+    ],
+    "forbidden": [
+      "run L4/L5 embedded algorithm, product runtime, test, CI, old CLI, old runtime, old hook, or old workflow",
+      "change the fixed blind artifact bytes or rewrite the time-fixed comparison and baseline summary",
+      "modify canonical L4/L9 in this comparison-only scope; a later casewise projection requires its own request and evidence",
+      "claim explicit class migration is impossible from candidate_keys_asserted=0; if explicit classes are later selected, satisfy the QA §3 key and membership contract",
+      "infer class equality, owner_ref, failure state, or missing-class member from L9 case population or candidate labels"
+    ]
+  },
+  "artifacts": [
+    "scaffold/research/wr242-h053-l4-l9-comparison-20261031/README.md",
+    "scaffold/research/wr242-h053-l4-l9-comparison-20261031/blind-source-only.json",
+    "scaffold/research/wr242-h053-l4-l9-comparison-20261031/comparison.json",
+    "scaffold/research/wr242-h053-l4-l9-comparison-20261031/validate_comparison.py",
+    "scaffold/research/wr242-h053-l4-l9-comparison-20261031/verification-summary.json",
+    "scaffold/bindings/SCF-B-0203.json",
+    "scaffold/research/wr242-h053-l4-l9-comparison-20261031/review-r1-addendum.json"
+  ],
+  "verification": {
+    "evidence_kind": "scaffold",
+    "scope": [
+      "schema_interface",
+      "source_revision_stale",
+      "negative_case",
+      "forbidden_write_scope"
+    ],
+    "oracles": [
+      "Historical fixed blind artifact bytes match SHA-256 5e69cd0c3c472090947fec9454d892ffa2caa24ed0aa2a1b2540f7d9c18f408b; source artifact comment 6534090409 fixed this exact evidence.",
+      "Historical base checker scaffold/tools/design_verification_checker.py at dd07a349 has SHA-256 cfd12c5bc4a1dd45351858488b476af0025d35deca7027da35bb1373818b129d; its measured check-child result remains in the frozen verification-summary.json.",
+      "Latest-main checker at 216c22400e2823eff6126982a44459b4a938fe70 has SHA-256 e751526d67cd8df11e5aac1c5a1a178dfbd0fecc3f2ed21f995b7dda11ea4d5d after PR #3982 merge 2684816ad6179cc3535e4a6c297e61d10fd75ca0; legacy_casewise mode behavior is unchanged.",
+      "R1 addendum records HARNESS011 casewise precedents #3955/#3968, the 38/38 H053 one-to-one L4/L9 correspondence, and the corrected checker field diagnostics; it supersedes the prior categorical migration conclusion without rewriting historical bytes.",
+      "QA §3 permits expected_axis to be a non-empty string or ordered non-empty string array; the addendum removes the prior overstatement that a single-axis string was required.",
+      "Latest-main virtual merge of base dd07a349 and 216c2240 completed with merge-tree c540e17453c0eec9f4fdf62c4cf5d0403d2cb502 and no conflicts; addendum records overlay validation results.",
+      "On latest main overlay, the pre-rebind binding with its old scaffold checker/blind upstream pins reported stale=1 only for scaffold/tools/design_verification_checker.py (expected base SHA cfd12c5bc4a1dd45351858488b476af0025d35deca7027da35bb1373818b129d; actual PR #3982 SHA e751526d67cd8df11e5aac1c5a1a178dfbd0fecc3f2ed21f995b7dda11ea4d5d); the blind SHA matched.",
+      "After moving both scaffold/ SHA pins to verification.oracles, latest-main overlay scfctl validate reported bindings=187 fail=0 and scfctl stale reported stale=0; base worktree reported bindings=184 fail=0 and stale=0.",
+      "Latest-main checker check-child measurement at 216c2240: pair checks pass 6/6 each; legacy casewise negative 4-way has 38 rows per layer, matched=0, failures=76 (38 change_or_condition, 38 expected); L8 ownership cap=30; pin counts [15,15,17,17] all pass.",
+      "Latest-main reference refs/codex-readback/wr244-main points to 216c22400e2823eff6126982a44459b4a938fe70; both #3981 merge 03141af4 and #3982 merge 2684816 are ancestors. This exact target was used for virtual merge/overlay validation."
+    ],
+    "negative_cases": [
+      "Do not interpret fixed blind candidate_keys_asserted=0 as proof that casewise or later explicit design is impossible.",
+      "Do not collapse repeated meaning text at distinct JSON Pointers; deduplicate only by source revision/path/pointer leaf identity.",
+      "Do not create or merge formal class membership from provisional candidates in this comparison-only PR.",
+      "Do not describe QA expected_axis as string-only; non-empty ordered string arrays are allowed.",
+      "Do not place scaffold tooling or fixed artifact under upstream[].path; record hashes as verification oracles."
+    ]
+  },
+  "replacement": {
+    "role_target": "If separately requested, casewise H053 L4/L9 projection aligned with HARNESS011 (#3955/#3968) precedent; explicit equivalence classes are not implied by this record.",
+    "formal_artifacts": [],
+    "issue": 3510,
+    "status": "pending"
+  },
+  "created": "2026-10-31",
+  "updated": "2026-10-31"
+}

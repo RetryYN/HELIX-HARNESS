@@ -1,0 +1,71 @@
+{
+  "evidence_kind": "scaffold_static_comparison",
+  "base_revision": "dd07a3498be74f32519adf42a221caf51e547ea1",
+  "fixed_artifact_sha256": "5e69cd0c3c472090947fec9454d892ffa2caa24ed0aa2a1b2540f7d9c18f408b",
+  "fixed_artifact_bytes_unchanged": true,
+  "source_leaf_hashes_reverified": 32,
+  "l4_rows": 38,
+  "l9_cases_linked_once": 38,
+  "classification_code_matches": 38,
+  "condition_change_exact_matches": 38,
+  "backflow_owner_matches": 38,
+  "record_axes_matches": 38,
+  "claim_state_matches": 38,
+  "operation_state_matches": 38,
+  "operation_selection_matches": 38,
+  "reference_state_matches": 38,
+  "side_effect_count_matches": 38,
+  "l5_rules_with_qa_typed_owner_ref": 0,
+  "explicit_markers": {
+    "L4": false,
+    "L5": false,
+    "L8": false,
+    "L9": false
+  },
+  "class_keys_asserted": 0,
+  "migration_feasible": false,
+  "canonical_l4_l9_changed": false,
+  "binding_validation": {
+    "scfctl_validate_exit_code": 0,
+    "bindings": 184,
+    "failures": 0,
+    "scfctl_stale_exit_code": 0,
+    "stale": 0,
+    "measurement_note": "new-generation scfctl static binding validation; no legacy CLI/runtime"
+  },
+  "check_child_base_measurement": {
+    "command": "python3 scaffold/tools/design_verification_checker.py check-child --root . --l4 docs/helix-harness/L4-basic-design/semantic-asset-lineage.json --l5 docs/helix-harness/L5-detail-design/semantic-asset-lineage.json --l8 docs/helix-harness/L8-unit-verification/semantic-asset-lineage.json --l9 docs/helix-harness/L9-integration-verification/semantic-asset-lineage.json",
+    "exit_code": 1,
+    "overall_passed": false,
+    "L4_L9_pair": "PASS 6/6",
+    "L5_L8_pair": "PASS 6/6",
+    "negative_4way": {
+      "comparison_mode": "legacy_casewise_four_layer",
+      "counts": {
+        "L4": 38,
+        "L9": 38,
+        "L8": 38,
+        "L5": 38
+      },
+      "matched": 0,
+      "failures": 76
+    },
+    "ownership_cap_failures": {
+      "L4": 0,
+      "L9": 0,
+      "L5": 0,
+      "L8": 30
+    },
+    "pin_checks": {
+      "all_passed": true,
+      "checked_counts": [
+        15,
+        15,
+        17,
+        17
+      ]
+    },
+    "measurement_note": "現行document checkerを指定baseで実行した実測。比較作業ではcheckerを変更していない。"
+  },
+  "forbidden_execution": "no L4 algorithm/runtime/test/CI/old-generation runtime was invoked"
+}
