@@ -2811,7 +2811,6 @@
         "name": "F02CandidateInput",
         "kind": "record",
         "fields": {
-          "candidate_case_id": "string",
           "source_payload": "PayloadF02"
         }
       },
@@ -3206,7 +3205,6 @@
       "name": "classify_f02_pre_body_red_candidate",
       "signature": "classify_f02_pre_body_red_candidate(input: F02CandidateInput, rules: JsonValue) -> F02CandidateClassification",
       "reads": [
-        "input.candidate_case_id",
         "input.source_payload.tag/value.binding",
         "input.source_payload.tag/value.body_change",
         "input.source_payload.tag/value.change_kind",
@@ -3218,7 +3216,6 @@
         "rules.candidate_classification_design.negative_classification_rules"
       ],
       "returns": [
-        "candidate_case_id",
         "candidate_classification_code",
         "candidate_axis",
         "candidate_state",
