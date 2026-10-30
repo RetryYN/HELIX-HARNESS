@@ -1,0 +1,34 @@
+{
+  "record": "WR241 PR #3981 R1 supplemental static verification",
+  "evidence_kind": "scaffold",
+  "authority_effect": "none",
+  "base_revision": "0041b4b7e7138eba79df172a88c537699142390a",
+  "preserved_bytes": {
+    "source_only_fixed.json": "5d69a52e4fd4bce2b76f23c593e597e71f28988968fe955aadc20c6e8106e7e4",
+    "comparison.json": "3034245349885995ef86c6920330794cf2abf39008c7a3ea348c98f2adbbd109"
+  },
+  "commands": [
+    {
+      "command": "python3 -B scaffold/research/wr241-psp-f01-negative-candidates-20261031/validate_candidate.py",
+      "exit_code": 0,
+      "result": "17 rows compare as 12 assigned-code matches, 2 both unassigned, and 3 unresolved L9-assignment/blind discrepancies; contract L10 oracle linkage exists; per-U-ID oracle_id/test_citation keys absent in L8 F01 case rows."
+    },
+    {
+      "command": "python3 -B scaffold/tools/scfctl.py validate",
+      "exit_code": 0,
+      "result": "bindings=184 fail=0"
+    },
+    {
+      "command": "python3 -B scaffold/tools/scfctl.py stale",
+      "exit_code": 0,
+      "result": "stale=0"
+    }
+  ],
+  "not_run": [
+    "L4/L5 algorithm",
+    "legacy runtime",
+    "tests",
+    "CI"
+  ],
+  "formal_changes": "No L4/L9 change; no formal L8 U-ID added."
+}

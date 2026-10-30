@@ -1,0 +1,310 @@
+{
+  "record": "WR241 F01 post-freeze assignment comparison R1 supplement (append-only)",
+  "authority_effect": "none",
+  "base_revision": "0041b4b7e7138eba79df172a88c537699142390a",
+  "fixed_blind": {
+    "path": "scaffold/research/wr241-psp-f01-negative-candidates-20261031/source-only-fixed.json",
+    "sha256": "5d69a52e4fd4bce2b76f23c593e597e71f28988968fe955aadc20c6e8106e7e4",
+    "fixed_at": "Issue #3510 comment 6533755502"
+  },
+  "prior_comparison": {
+    "path": "scaffold/research/wr241-psp-f01-negative-candidates-20261031/comparison.json",
+    "sha256": "3034245349885995ef86c6920330794cf2abf39008c7a3ea348c98f2adbbd109",
+    "preservation": "existing committed comparison bytes unchanged; this supplement corrects its blind-only framing for assignment comparison and does not rewrite it"
+  },
+  "source_pins": {
+    "L3": {
+      "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+      "sha256": "a3b907cdc316117d4684632f9a1cbf36125eb6e6172f9cfc286060617583d7be"
+    },
+    "L10": {
+      "path": "docs/helix-harness/L10-verification/functional-verification.json",
+      "sha256": "fc58ad2268746d7924ac9be33e8f3f75e6d3c2cc619e27fbc1ddc34edd065cb2"
+    },
+    "L4": {
+      "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
+      "sha256": "e6253059bb117446412ecb8b054ae533641054c8a1be4a535eb1f784017fa3e9"
+    },
+    "L5": {
+      "path": "docs/helix-harness/L5-detail-design/process-state-port.json",
+      "sha256": "b8b77871f3970a10b21313028f762346e75e85c4ed4209639a23fe6f2f5f6f2d"
+    },
+    "L8": {
+      "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+      "sha256": "f5055c9a7d19654402f3f2b595038cf0f81ed717659c342c6190c5f88577e5b2"
+    },
+    "L9": {
+      "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+      "sha256": "60942b72d432a79e72b03ab42a616e264b442bfc60b5d53e3aeb54f9c84a847e"
+    },
+    "QA": {
+      "path": "docs/governance/design-verification-quality-assurance.md",
+      "sha256": "f5751e236dc073fe67114c1fcb4b0f64b3d746290b25d75b61e60a08e3c99c85"
+    }
+  },
+  "scope": {
+    "L3": "/requirements/64",
+    "L10": "/cases/64",
+    "L4": "/contracts/1/negative_classifications/0..3",
+    "L8": "/cases/1",
+    "L9": "/cases/1/negative_cases/0..16"
+  },
+  "assignment_comparison_counts": {
+    "assigned_class_matches_blind_candidate": 12,
+    "both_unassigned": 2,
+    "l9_assignment_conflicts_with_blind_class_unresolved": 3
+  },
+  "rows": [
+    {
+      "l9_pointer": "/cases/1/negative_cases/0",
+      "l9_row_id": "H003-F01-MISSING-agreement",
+      "blind_l4_class_pointer": "/contracts/1/negative_classifications/0",
+      "blind_l4_class_id": "F01_REQUIRED_CONDITION_MISSING",
+      "blind_status": "candidate_condition_supported",
+      "l9_assignment_pointer": "/cases/1/negative_cases/0/negative_class_assignment",
+      "l9_assignment_classification": "F01_REQUIRED_CONDITION_MISSING",
+      "comparison": "assigned_class_matches_blind_candidate",
+      "formed_finding": "unknown",
+      "observed_processing_result": "not present in inspected source fields",
+      "source_basis": "blind and L9 assignment codes are identical; this is assignment metadata comparison, not observed finding or L4/L9 formal approval."
+    },
+    {
+      "l9_pointer": "/cases/1/negative_cases/1",
+      "l9_row_id": "H003-F01-MISSING-requirements_approval",
+      "blind_l4_class_pointer": "/contracts/1/negative_classifications/0",
+      "blind_l4_class_id": "F01_REQUIRED_CONDITION_MISSING",
+      "blind_status": "candidate_condition_supported",
+      "l9_assignment_pointer": "/cases/1/negative_cases/1/negative_class_assignment",
+      "l9_assignment_classification": "F01_REQUIRED_CONDITION_MISSING",
+      "comparison": "assigned_class_matches_blind_candidate",
+      "formed_finding": "unknown",
+      "observed_processing_result": "not present in inspected source fields",
+      "source_basis": "blind and L9 assignment codes are identical; this is assignment metadata comparison, not observed finding or L4/L9 formal approval."
+    },
+    {
+      "l9_pointer": "/cases/1/negative_cases/2",
+      "l9_row_id": "H003-F01-MISSING-pair",
+      "blind_l4_class_pointer": "/contracts/1/negative_classifications/0",
+      "blind_l4_class_id": "F01_REQUIRED_CONDITION_MISSING",
+      "blind_status": "candidate_condition_supported",
+      "l9_assignment_pointer": "/cases/1/negative_cases/2/negative_class_assignment",
+      "l9_assignment_classification": "F01_REQUIRED_CONDITION_MISSING",
+      "comparison": "assigned_class_matches_blind_candidate",
+      "formed_finding": "unknown",
+      "observed_processing_result": "not present in inspected source fields",
+      "source_basis": "blind and L9 assignment codes are identical; this is assignment metadata comparison, not observed finding or L4/L9 formal approval."
+    },
+    {
+      "l9_pointer": "/cases/1/negative_cases/3",
+      "l9_row_id": "H003-F01-FOREIGN-APPROVAL",
+      "blind_l4_class_pointer": "/contracts/1/negative_classifications/3",
+      "blind_l4_class_id": "F01_CONDITION_TARGET_STALE",
+      "blind_status": "candidate_condition_supported",
+      "l9_assignment_pointer": "/cases/1/negative_cases/3/negative_class_assignment",
+      "l9_assignment_classification": "F01_CONDITION_TARGET_STALE",
+      "comparison": "assigned_class_matches_blind_candidate",
+      "formed_finding": "unknown",
+      "observed_processing_result": "not present in inspected source fields",
+      "source_basis": "blind and L9 assignment codes are identical; this is assignment metadata comparison, not observed finding or L4/L9 formal approval."
+    },
+    {
+      "l9_pointer": "/cases/1/negative_cases/4",
+      "l9_row_id": "H003-F01-CONSULTATION-AS-APPROVAL",
+      "blind_l4_class_pointer": "/contracts/1/negative_classifications/2",
+      "blind_l4_class_id": "F01_ROLE_AUTHORITY_CONFLICT",
+      "blind_status": "candidate_condition_supported",
+      "l9_assignment_pointer": "/cases/1/negative_cases/4/negative_class_assignment",
+      "l9_assignment_classification": "F01_ROLE_AUTHORITY_CONFLICT",
+      "comparison": "assigned_class_matches_blind_candidate",
+      "formed_finding": "unknown",
+      "observed_processing_result": "not present in inspected source fields",
+      "source_basis": "blind and L9 assignment codes are identical; this is assignment metadata comparison, not observed finding or L4/L9 formal approval."
+    },
+    {
+      "l9_pointer": "/cases/1/negative_cases/5",
+      "l9_row_id": "H003-F01-WORK_REQUEST-AS-APPROVAL",
+      "blind_l4_class_pointer": "/contracts/1/negative_classifications/2",
+      "blind_l4_class_id": "F01_ROLE_AUTHORITY_CONFLICT",
+      "blind_status": "candidate_condition_supported",
+      "l9_assignment_pointer": "/cases/1/negative_cases/5/negative_class_assignment",
+      "l9_assignment_classification": "F01_ROLE_AUTHORITY_CONFLICT",
+      "comparison": "assigned_class_matches_blind_candidate",
+      "formed_finding": "unknown",
+      "observed_processing_result": "not present in inspected source fields",
+      "source_basis": "blind and L9 assignment codes are identical; this is assignment metadata comparison, not observed finding or L4/L9 formal approval."
+    },
+    {
+      "l9_pointer": "/cases/1/negative_cases/6",
+      "l9_row_id": "H003-F01-SELECTION-AS-APPROVAL",
+      "blind_l4_class_pointer": "/contracts/1/negative_classifications/2",
+      "blind_l4_class_id": "F01_ROLE_AUTHORITY_CONFLICT",
+      "blind_status": "candidate_condition_supported",
+      "l9_assignment_pointer": "/cases/1/negative_cases/6/negative_class_assignment",
+      "l9_assignment_classification": "F01_ROLE_AUTHORITY_CONFLICT",
+      "comparison": "assigned_class_matches_blind_candidate",
+      "formed_finding": "unknown",
+      "observed_processing_result": "not present in inspected source fields",
+      "source_basis": "blind and L9 assignment codes are identical; this is assignment metadata comparison, not observed finding or L4/L9 formal approval."
+    },
+    {
+      "l9_pointer": "/cases/1/negative_cases/7",
+      "l9_row_id": "H003-F01-OPERATION_AUTHORIZATION-AS-APPROVAL",
+      "blind_l4_class_pointer": "/contracts/1/negative_classifications/2",
+      "blind_l4_class_id": "F01_ROLE_AUTHORITY_CONFLICT",
+      "blind_status": "candidate_condition_supported",
+      "l9_assignment_pointer": "/cases/1/negative_cases/7/negative_class_assignment",
+      "l9_assignment_classification": "F01_ROLE_AUTHORITY_CONFLICT",
+      "comparison": "assigned_class_matches_blind_candidate",
+      "formed_finding": "unknown",
+      "observed_processing_result": "not present in inspected source fields",
+      "source_basis": "blind and L9 assignment codes are identical; this is assignment metadata comparison, not observed finding or L4/L9 formal approval."
+    },
+    {
+      "l9_pointer": "/cases/1/negative_cases/8",
+      "l9_row_id": "H003-F01-UNDELEGATED-MEANING",
+      "blind_l4_class_pointer": null,
+      "blind_l4_class_id": null,
+      "blind_status": "class_unresolved",
+      "l9_assignment_pointer": "/cases/1/negative_cases/8/negative_class_assignment",
+      "l9_assignment_classification": "F01_ROLE_AUTHORITY_CONFLICT",
+      "comparison": "l9_assignment_conflicts_with_blind_class_unresolved",
+      "formed_finding": "unknown",
+      "observed_processing_result": "not present in inspected source fields",
+      "source_basis": "L9 assigns F01_ROLE_AUTHORITY_CONFLICT. Frozen L4 /contracts/1/negative_classifications/2 names role conflation or added approval for delegated technical detail, while L3 /requirements/64 requires un-delegated meaning/authority changes to return to owner. Whether that owner-return scenario is included in this L4 class is not resolved by the cited text; retain discrepancy."
+    },
+    {
+      "l9_pointer": "/cases/1/negative_cases/9",
+      "l9_row_id": "H003-F01-UNDELEGATED-AUTHORITY",
+      "blind_l4_class_pointer": null,
+      "blind_l4_class_id": null,
+      "blind_status": "class_unresolved",
+      "l9_assignment_pointer": "/cases/1/negative_cases/9/negative_class_assignment",
+      "l9_assignment_classification": "F01_ROLE_AUTHORITY_CONFLICT",
+      "comparison": "l9_assignment_conflicts_with_blind_class_unresolved",
+      "formed_finding": "unknown",
+      "observed_processing_result": "not present in inspected source fields",
+      "source_basis": "L9 assigns F01_ROLE_AUTHORITY_CONFLICT. Frozen L4 /contracts/1/negative_classifications/2 names role conflation or added approval for delegated technical detail, while L3 /requirements/64 requires un-delegated meaning/authority changes to return to owner. Whether that owner-return scenario is included in this L4 class is not resolved by the cited text; retain discrepancy."
+    },
+    {
+      "l9_pointer": "/cases/1/negative_cases/10",
+      "l9_row_id": "H003-F01-REPEAT-APPROVAL-FOR-DETAIL",
+      "blind_l4_class_pointer": "/contracts/1/negative_classifications/2",
+      "blind_l4_class_id": "F01_ROLE_AUTHORITY_CONFLICT",
+      "blind_status": "candidate_condition_supported",
+      "l9_assignment_pointer": "/cases/1/negative_cases/10/negative_class_assignment",
+      "l9_assignment_classification": "F01_ROLE_AUTHORITY_CONFLICT",
+      "comparison": "assigned_class_matches_blind_candidate",
+      "formed_finding": "unknown",
+      "observed_processing_result": "not present in inspected source fields",
+      "source_basis": "blind and L9 assignment codes are identical; this is assignment metadata comparison, not observed finding or L4/L9 formal approval."
+    },
+    {
+      "l9_pointer": "/cases/1/negative_cases/11",
+      "l9_row_id": "H003-F01-IMPLEMENTATION-AS-COMPLETION",
+      "blind_l4_class_pointer": null,
+      "blind_l4_class_id": null,
+      "blind_status": "class_unresolved",
+      "l9_assignment_pointer": null,
+      "l9_assignment_classification": null,
+      "comparison": "both_unassigned",
+      "formed_finding": "unknown",
+      "observed_processing_result": "not present in inspected source fields",
+      "source_basis": "the frozen blind has no L4 class candidate and the L9 row has no negative_class_assignment; no class is inferred."
+    },
+    {
+      "l9_pointer": "/cases/1/negative_cases/12",
+      "l9_row_id": "H003-F01-CONSULTATION-AS-ACTUAL-APPROVAL",
+      "blind_l4_class_pointer": "/contracts/1/negative_classifications/2",
+      "blind_l4_class_id": "F01_ROLE_AUTHORITY_CONFLICT",
+      "blind_status": "candidate_condition_supported",
+      "l9_assignment_pointer": "/cases/1/negative_cases/12/negative_class_assignment",
+      "l9_assignment_classification": "F01_ROLE_AUTHORITY_CONFLICT",
+      "comparison": "assigned_class_matches_blind_candidate",
+      "formed_finding": "unknown",
+      "observed_processing_result": "not present in inspected source fields",
+      "source_basis": "blind and L9 assignment codes are identical; this is assignment metadata comparison, not observed finding or L4/L9 formal approval."
+    },
+    {
+      "l9_pointer": "/cases/1/negative_cases/13",
+      "l9_row_id": "H003-F01-FREEZE-VERIFICATION",
+      "blind_l4_class_pointer": "/contracts/1/negative_classifications/0",
+      "blind_l4_class_id": "F01_REQUIRED_CONDITION_MISSING",
+      "blind_status": "candidate_condition_supported",
+      "l9_assignment_pointer": "/cases/1/negative_cases/13/negative_class_assignment",
+      "l9_assignment_classification": "F01_REQUIRED_CONDITION_MISSING",
+      "comparison": "assigned_class_matches_blind_candidate",
+      "formed_finding": "unknown",
+      "observed_processing_result": "not present in inspected source fields",
+      "source_basis": "blind and L9 assignment codes are identical; this is assignment metadata comparison, not observed finding or L4/L9 formal approval."
+    },
+    {
+      "l9_pointer": "/cases/1/negative_cases/14",
+      "l9_row_id": "H003-F01-REOPEN-UNRESOLVED",
+      "blind_l4_class_pointer": null,
+      "blind_l4_class_id": null,
+      "blind_status": "class_unresolved",
+      "l9_assignment_pointer": null,
+      "l9_assignment_classification": null,
+      "comparison": "both_unassigned",
+      "formed_finding": "unknown",
+      "observed_processing_result": "not present in inspected source fields",
+      "source_basis": "the frozen blind has no L4 class candidate and the L9 row has no negative_class_assignment; no class is inferred."
+    },
+    {
+      "l9_pointer": "/cases/1/negative_cases/15",
+      "l9_row_id": "H003-F01-COMPLETE-PAIR",
+      "blind_l4_class_pointer": "/contracts/1/negative_classifications/0",
+      "blind_l4_class_id": "F01_REQUIRED_CONDITION_MISSING",
+      "blind_status": "candidate_condition_supported",
+      "l9_assignment_pointer": "/cases/1/negative_cases/15/negative_class_assignment",
+      "l9_assignment_classification": "F01_REQUIRED_CONDITION_MISSING",
+      "comparison": "assigned_class_matches_blind_candidate",
+      "formed_finding": "unknown",
+      "observed_processing_result": "not present in inspected source fields",
+      "source_basis": "blind and L9 assignment codes are identical; this is assignment metadata comparison, not observed finding or L4/L9 formal approval."
+    },
+    {
+      "l9_pointer": "/cases/1/negative_cases/16",
+      "l9_row_id": "H003-F01-APPROVAL-UNKNOWN",
+      "blind_l4_class_pointer": null,
+      "blind_l4_class_id": null,
+      "blind_status": "class_unresolved",
+      "l9_assignment_pointer": "/cases/1/negative_cases/16/negative_class_assignment",
+      "l9_assignment_classification": "F01_CONDITION_DEFINITION_UNKNOWN",
+      "comparison": "l9_assignment_conflicts_with_blind_class_unresolved",
+      "formed_finding": "unknown",
+      "observed_processing_result": "not present in inspected source fields",
+      "source_basis": "L9 assigns F01_CONDITION_DEFINITION_UNKNOWN because approval content is unknown. Frozen L4 /contracts/1/negative_classifications/1 names a missing/unsupported profile, comparison target, or role/kind definition replaced by a default/near role. The supplied row does not establish whether unknown approval content satisfies that definition boundary; retain discrepancy."
+    }
+  ],
+  "oracle_and_u_id_scope": {
+    "contract_oracle": {
+      "status": "present",
+      "l3_pointer": "/requirements/64/oracle_ref",
+      "value": "HARNESS-L10-003-F01",
+      "l10_pointer": "/cases/64",
+      "l10_id": "HARNESS-L10-003-F01",
+      "l8_pointer": "/cases/1/l10_ref",
+      "l8_value": "HARNESS-L10-003-F01"
+    },
+    "u_id_row_oracle_and_test_citation": {
+      "status": "not present in inspected L8 F01 case structure",
+      "searched_key_patterns": [
+        "oracle",
+        "citation",
+        "test_ref",
+        "test_id",
+        "u_id"
+      ],
+      "matching_paths": []
+    },
+    "distinction": "契約単位でL10 oracle referenceは存在する。欠けているのはQA §3で各U-ID行に要求されるrow-level oracle IDとtest citation。"
+  },
+  "unresolved": [
+    "3件のL9 assignmentと固定blind classification derivationの差は未解決。L4/L9は変更しない。",
+    "未委任meaning/authority行のL9 conflict assignmentがL4 conflict文言に含まれるか未解決。L3 owner-return義務はあるがL4分類への接続を確定しない。",
+    "unknown approval rowがL4 condition-definition-unknown条件を満たすか未解決。",
+    "2行は双方未割当の一致だが、これをformal class membershipとしない。",
+    "全17行でfindingはunknown/unformed、処理実行結果なし。"
+  ]
+}

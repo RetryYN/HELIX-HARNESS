@@ -1,0 +1,123 @@
+{
+  "schema_revision": 1,
+  "id": "SCF-B-0202",
+  "kind": "scaffold",
+  "title": "WR241 process-state-port F01 L8 negative candidate/source comparison",
+  "product": "HELIX-HARNESS",
+  "owner_candidate": "HELIX-HARNESS process-state-port F01 L8 verification evidence owner",
+  "state": "registered",
+  "reason": "F01 L8の既存case期待はL9 expectedと対応するが、QA §3所定のF01 oracle ID/test citationが現行sourceに見つからず、正式U-ID行を形成できない。固定blind候補と比較証拠をscaffoldに保持する。",
+  "upstream": [
+    {
+      "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+      "sha256": "a3b907cdc316117d4684632f9a1cbf36125eb6e6172f9cfc286060617583d7be",
+      "note": "WR241 static source pin at base 0041b4b7e7138eba79df172a88c537699142390a."
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/functional-verification.json",
+      "sha256": "fc58ad2268746d7924ac9be33e8f3f75e6d3c2cc619e27fbc1ddc34edd065cb2",
+      "note": "WR241 static source pin at base 0041b4b7e7138eba79df172a88c537699142390a."
+    },
+    {
+      "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
+      "sha256": "e6253059bb117446412ecb8b054ae533641054c8a1be4a535eb1f784017fa3e9",
+      "note": "WR241 static source pin at base 0041b4b7e7138eba79df172a88c537699142390a."
+    },
+    {
+      "path": "docs/helix-harness/L5-detail-design/process-state-port.json",
+      "sha256": "b8b77871f3970a10b21313028f762346e75e85c4ed4209639a23fe6f2f5f6f2d",
+      "note": "WR241 static source pin at base 0041b4b7e7138eba79df172a88c537699142390a."
+    },
+    {
+      "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+      "sha256": "f5055c9a7d19654402f3f2b595038cf0f81ed717659c342c6190c5f88577e5b2",
+      "note": "WR241 static source pin at base 0041b4b7e7138eba79df172a88c537699142390a."
+    },
+    {
+      "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+      "sha256": "60942b72d432a79e72b03ab42a616e264b442bfc60b5d53e3aeb54f9c84a847e",
+      "note": "WR241 static source pin at base 0041b4b7e7138eba79df172a88c537699142390a."
+    },
+    {
+      "path": "docs/governance/design-verification-quality-assurance.md",
+      "sha256": "f5751e236dc073fe67114c1fcb4b0f64b3d746290b25d75b61e60a08e3c99c85",
+      "note": "WR241 static source pin at base 0041b4b7e7138eba79df172a88c537699142390a."
+    }
+  ],
+  "role": "WR241 F01の固定source-only導出とL8/L9既存期待の静的crosswalkを保持する。正式U-ID、oracle/citation、実行findingを生成しない。",
+  "obligations": [
+    "別workerのsource-only blind bytesとSHAを不変で保全する。",
+    "L3/L10/L4/L5/L8/L9/QA §3のsource revisionとpointerを記録する。",
+    "17 L9負例候補をL4分類候補12・未決5に区別し、findingをunknown/unformedのまま保持する。",
+    "既存L8 primary 22行とL9 F01の22行をtyped envelope projectionで照合し、期待値同士の一致と実行結果を混同しない。",
+    "現行L8/参照sourceにF01 oracle ID/test citationがないため正式U-IDを追加しない。",
+    "legacy L8例文書は歴史的例として記録し、現行citationに転用しない。",
+    "L4/L5 algorithm、runtime、test、CIを実行しない。"
+  ],
+  "connections": {
+    "consumers": [
+      "WR241 F01 L8/L9 static design review"
+    ],
+    "dependencies": [
+      "Issue #3510 comment 6533755502 fixed blind SHA",
+      "QA §3 legacy_casewise_four_layer default and L8 ownership requirements"
+    ],
+    "boundary": "candidate evidence only; no formal L8 row, no L4/L9 edit, no explicit-mode marker, no claim of observed finding or four-way completion."
+  },
+  "operations": {
+    "allowed": [
+      "read pinned JSON/document sources and pointers",
+      "run validate_candidate.py for static pins and projection comparison",
+      "run scfctl validate/stale",
+      "run design_verification_checker.py check-child",
+      "git diff --check"
+    ],
+    "forbidden": [
+      "L4/L5 algorithm execution",
+      "old/new runtime, test, or CI execution",
+      "invent U-ID, oracle ID, test citation, finding, or assignment/trace meaning",
+      "edit L4/L9 or formal L8 expectations",
+      "introduce four-layer explicit markers"
+    ]
+  },
+  "artifacts": [
+    "scaffold/research/wr241-psp-f01-negative-candidates-20261031/README.md",
+    "scaffold/research/wr241-psp-f01-negative-candidates-20261031/source-only-fixed.json",
+    "scaffold/research/wr241-psp-f01-negative-candidates-20261031/comparison.json",
+    "scaffold/research/wr241-psp-f01-negative-candidates-20261031/validate_candidate.py",
+    "scaffold/research/wr241-psp-f01-negative-candidates-20261031/verification-summary.json",
+    "scaffold/research/wr241-psp-f01-negative-candidates-20261031/assignment-comparison-r1.json",
+    "scaffold/research/wr241-psp-f01-negative-candidates-20261031/verification-summary-r1.json",
+    "scaffold/bindings/SCF-B-0202.json"
+  ],
+  "verification": {
+    "evidence_kind": "scaffold",
+    "scope": [
+      "schema_interface",
+      "source_revision_stale",
+      "negative_case",
+      "forbidden_write_scope"
+    ],
+    "oracles": [
+      "All seven source file hashes match the base source bytes; fixed blind SHA-256 is 5d69a52e4fd4bce2b76f23c593e597e71f28988968fe955aadc20c6e8106e7e4.",
+      "Static validator SHA-256 c9e52389d442582336fc37d69018824c03ef413fed2ae1ab1e1eea3829cdc434 checks frozen artifact bytes, source pins, 22 expected projections, 17 assignment comparisons, and contract-vs-U-ID oracle/citation scope.",
+      "Static validator and scfctl/check-child/diff-check outcomes are recorded in scaffold/research/wr241-psp-f01-negative-candidates-20261031/verification-summary.json.",
+      "R1 comparison supplement scaffold/research/wr241-psp-f01-negative-candidates-20261031/assignment-comparison-r1.json records the 12/2/3 assignment comparison and preserves the prior comparison.json bytes.",
+      "R1 verification outcomes are recorded in scaffold/research/wr241-psp-f01-negative-candidates-20261031/verification-summary-r1.json."
+    ],
+    "negative_cases": [
+      "No formal U-ID rows are added in absence of per-F01 oracle ID and test citation.",
+      "Five unresolved candidate cases remain unclassified.",
+      "Expected values are not treated as observations or findings.",
+      "No L4/L5 algorithm, runtime, test, or CI is executed."
+    ]
+  },
+  "replacement": {
+    "role_target": "Formal F01 U-ID rows with approved oracle IDs and test citations, independently derived expectation fields, and QA §3 complete four-layer coverage.",
+    "formal_artifacts": [],
+    "issue": 3510,
+    "status": "pending"
+  },
+  "created": "2026-10-31",
+  "updated": "2026-10-31"
+}

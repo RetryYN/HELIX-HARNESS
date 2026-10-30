@@ -1,0 +1,34 @@
+{
+  "record": "WR241 F01 candidate static verification",
+  "base_revision": "0041b4b7e7138eba79df172a88c537699142390a",
+  "evidence_kind": "scaffold",
+  "authority_effect": "none",
+  "commands": [
+    {
+      "command": "python3 -B scaffold/research/wr241-psp-f01-negative-candidates-20261031/validate_candidate.py",
+      "exit_code": 0,
+      "result": "fixed blind SHA, 7 source pins, 17 candidate pointers (12 supported / 5 unresolved), and 22 typed L8-to-L9 expected projections pass"
+    },
+    {
+      "command": "python3 -B scaffold/tools/scfctl.py validate",
+      "exit_code": 0,
+      "result": "bindings=184 fail=0"
+    },
+    {
+      "command": "python3 -B scaffold/tools/scfctl.py stale",
+      "exit_code": 0,
+      "result": "stale=0"
+    },
+    {
+      "command": "python3 -B scaffold/tools/design_verification_checker.py check-child --l4 docs/helix-harness/L4-basic-design/process-state-port.json --l9 docs/helix-harness/L9-integration-verification/process-state-port.json --l5 docs/helix-harness/L5-detail-design/process-state-port.json --l8 docs/helix-harness/L8-unit-verification/process-state-port.json --root .",
+      "exit_code": 1,
+      "result": "L5_L8_pair passed with 0 failures; negative_4way failed in legacy_casewise_four_layer with 223 failures. Counts remain L4=34, L5=34, L9=182, L8=0; no marker or formal L8 row was added."
+    },
+    {
+      "command": "git diff --check",
+      "exit_code": 0,
+      "result": "no whitespace errors"
+    }
+  ],
+  "not_run": ["L4/L5 algorithm", "legacy runtime", "tests", "CI"]
+}
