@@ -35,7 +35,7 @@
     },
     {
       "path": "docs/helix-os/L9-integration-verification/management-authority-source-record.json",
-      "sha256": "637f2499479913a629a15ddab80e46b383121d38a0dd1482bc1a1ca2d66ee84b",
+      "sha256": "5ee151eeb68209835cf08baa856c2443538e4dac2a46bc64b9e30427abaa99cc",
       "note": "候補L9: existing 583 cases保持、C0584/C0585 forward stimulusを追加。F03 refs=31、synthetic_case_count=585。L7 fixture hashは不変。"
     }
   ],
