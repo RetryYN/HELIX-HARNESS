@@ -15,18 +15,18 @@
   "l4_new_class_pointers_resolve": true,
   "l9_new_class_pointers_resolve_and_only_l4_l7": true,
   "l5_l8_document_bytes_unchanged": true,
-  "current_l4_sha256": "a1746eea4b021e6d370fca76125179c38c8c241413044e31984e6b549ed0a38a",
+  "current_l4_sha256": "6613e77d651496efe9d576ce840324050147aca8f785c635ce1a858d6eba7ca8",
   "current_l9_sha256": "ab875f72dfef9f1afaa72b04dd1c8b341d5fc13c4320c1640f42f58f91798c90",
   "pin_impacts": [
     {
       "binding": "SCF-B-0170",
       "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
-      "sha256": "a1746eea4b021e6d370fca76125179c38c8c241413044e31984e6b549ed0a38a"
+      "sha256": "6613e77d651496efe9d576ce840324050147aca8f785c635ce1a858d6eba7ca8"
     },
     {
       "binding": "SCF-B-0173",
       "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
-      "sha256": "a1746eea4b021e6d370fca76125179c38c8c241413044e31984e6b549ed0a38a"
+      "sha256": "6613e77d651496efe9d576ce840324050147aca8f785c635ce1a858d6eba7ca8"
     },
     {
       "binding": "SCF-B-0173",
@@ -36,7 +36,7 @@
     {
       "binding": "SCF-B-0175",
       "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
-      "sha256": "a1746eea4b021e6d370fca76125179c38c8c241413044e31984e6b549ed0a38a"
+      "sha256": "6613e77d651496efe9d576ce840324050147aca8f785c635ce1a858d6eba7ca8"
     },
     {
       "binding": "SCF-B-0175",
@@ -46,7 +46,7 @@
     {
       "binding": "SCF-B-0176",
       "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
-      "sha256": "a1746eea4b021e6d370fca76125179c38c8c241413044e31984e6b549ed0a38a"
+      "sha256": "6613e77d651496efe9d576ce840324050147aca8f785c635ce1a858d6eba7ca8"
     },
     {
       "binding": "SCF-B-0176",

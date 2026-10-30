@@ -36,6 +36,30 @@ L4 `failure_classifications`に15 rowを追加し、F02 contractの`negative_cla
 
 L9 `negative_equivalence_classes`にはL4 class rowからexpected keyを順方向に写し、source pointersをL4/L7だけにした15 rowを追加する。L9の112 case rowsでは`negative_class_ref`と`material_ref`をL7 fixed `given.input`へ向ける。既存29 linkを変更せず、全583 case rowsの`condition`、`expected`、`expected_preserved`を不変に保つ。L5/L8文書は編集しない。
 
+## L4 class conditionと112件のraw input照合
+
+15個の新規L4 class conditionは、L7 `given.input`の`base_ref`と`replacements`だけを各caseの`expanded_input_sha256`に束縛して照合した。L7 `expected_proposal`、L8/L9の期待値、checker出力からconditionやclassを作っていない。manifestの`condition_review`には各classの対象pointer集合、phase集合、入力件数を残し、静的validatorは112入力すべてでその集合・hash・conditionのphase表記を照合する。
+
+| 新規class ID末尾 | 件数 | input phase | raw stimulusとconditionの範囲 |
+| --- | ---: | --- | --- |
+| `0847e431…` | 4 | classify, correct | context sourceのtarget_idまたはscopeをknown FOREIGN値へ置換 |
+| `9c5c0fb8…` | 4 | classify, correct | context original_eventのevent_idまたはevent_revisionをknown FOREIGN値へ置換 |
+| `f26b128d…` | 2 | classify, correct | actual new_classification.kindをnullへ置換 |
+| `df9154ac…` | 2 | classify, correct | actual new_classification.kindをFOREIGN-kindへ置換 |
+| `89de10e4…` | 5 | correct | actual authority_originを5種の許可enum内非canonical値へ置換 |
+| `4ed7dc75…` | 2 | correct | actual/context authority_originを双方同じnullまたはunknown_originへ置換 |
+| `e23551bc…` | 1 | correct | actual authority_stateをstale_materialへ置換 |
+| `087fdf8f…` | 1 | correct | actual authority_stateをconflict_materialへ置換 |
+| `3123046e…` | 1 | correct | actual authority_stateをunresolvedへ置換 |
+| `9539a1f0…` | 2 | correct | actual/context authority_stateを双方同じnullまたはunknown_stateへ置換 |
+| `931c9057…` | 3 | inspect, classify, correct | actual source_digest=nullとcurrent_material_claim=trueを同時に置換 |
+| `f5d02578…` | 2 | classify | actual/context片側だけにknown prior classificationを設定 |
+| `4e80f597…` | 4 | classify | actual/context片側だけに{}またはUNKNOWN-PRIORを設定 |
+| `d509d10e…` | 2 | classify | actual/context双方に同じknown priorを設定。C0582は両側のnew-classification ref/revisionも同priorへ置換 |
+| `0232f9da…` | 2 | classify | actual/context双方に同じ{}またはUNKNOWN-PRIORを設定 |
+
+両方のphase（classify/correct）を含む4 classは、source target/scope、original event id/revision、kind null、kind FOREIGNの各群である。既存2 event classの75入力も同じraw-input照合に含めた。既存classはinspect/classify/correctの全phaseを含み、fieldごとの片側event mutationに対してknown不一致またはunknown operandの条件が対応する。合計は既存2 class 75件＋新15 class 37件＝112件で、L9 caseの`condition`・`expected`・`expected_preserved`は保全する。
+
 ## Pin・bindingの影響
 
 変更前にL4/L9をpinしていたbindingを全件確認した。SCF-B-0170はL4、SCF-B-0173/0175/0176はL4/L9のpinを新bytesに更新し、各noteに以前のhashと意味差分を残す。0175/0176がpinする0170のbinding hashも追随。新しい独立証拠bindingはSCF-B-0177。candidateでは`scfctl validate`と`scfctl stale`を実測する。

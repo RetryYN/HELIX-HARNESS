@@ -15,8 +15,8 @@
     },
     {
       "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
-      "sha256": "a1746eea4b021e6d370fca76125179c38c8c241413044e31984e6b549ed0a38a",
-      "note": "PR-A merge revisionの2 composite classification。 以前のpin=9146ffd557bc5da60f79cdcd462578b38edf6ec524143a705ab07eeb34c7997b。候補base 64d3cf3に新15 classと112件のL9 linkを追補後の現在bytes=fff2aa4e0883666d73af98733d32eda7b18a4e6a1bc2ebf6741df1c456c62bf6。新たに独立手動監査した15 classをL4へ追補。既存classとdiagnostic_contractは不変。 以前のpin=fff2aa4e0883666d73af98733d32eda7b18a4e6a1bc2ebf6741df1c456c62bf6。L4へ手動監査根拠の15 class rowsと対応するnegative_class_refsを追加。旧class、F02本文、diagnostic_contractは保持。 現在bytes sha256=a1746eea4b021e6d370fca76125179c38c8c241413044e31984e6b549ed0a38a。"
+      "sha256": "6613e77d651496efe9d576ce840324050147aca8f785c635ce1a858d6eba7ca8",
+      "note": "PR-A merge revisionの2 composite classification。 以前のpin=9146ffd557bc5da60f79cdcd462578b38edf6ec524143a705ab07eeb34c7997b。候補base 64d3cf3に新15 classと112件のL9 linkを追補後の現在bytes=fff2aa4e0883666d73af98733d32eda7b18a4e6a1bc2ebf6741df1c456c62bf6。新たに独立手動監査した15 classをL4へ追補。既存classとdiagnostic_contractは不変。 以前のpin=fff2aa4e0883666d73af98733d32eda7b18a4e6a1bc2ebf6741df1c456c62bf6。L4へ手動監査根拠の15 class rowsと対応するnegative_class_refsを追加。旧class、F02本文、diagnostic_contractは保持。 現在bytes sha256=a1746eea4b021e6d370fca76125179c38c8c241413044e31984e6b549ed0a38a。 2026-10-30 condition照合後candidate sha256=6613e77d651496efe9d576ce840324050147aca8f785c635ce1a858d6eba7ca8。class conditionをL7 fixed given.inputのphase/pointer/value照合に合わせ明確化。"
     },
     {
       "path": "docs/helix-os/L5-detail-design/management-authority-source-record.json",
@@ -45,13 +45,13 @@
     },
     {
       "path": "scaffold/bindings/SCF-B-0170.json",
-      "sha256": "a721f60003ebb36d2cd317cce9be5ff510fec938c75d7915b85a1648b27b2038",
+      "sha256": "fa3d984ce7b395cf123871a7c9eac7a874be4104bf64f6738e85351ac0dde4a7",
       "note": "固定入力inventoryとclass形成根拠のbinding。 旧pin=9b925b4ecc8de86841f222c49149cb3e2bb156ae4e1106d90d1feffa95fbe204。SCF-B-0170はL4へ監査由来15 classを追加したcandidateを指し、current sha256=f4b4d666bede7af290ddebc0ca5b7e61d050007e1f2f1b6c15335fccc3bf0771。 prior binding bytes f4b4d666bede7af290ddebc0ca5b7e61d050007e1f2f1b6c15335fccc3bf0771を、L4新15 classとreverse refsを含むSCF-B-0170 current bytes a721f60003ebb36d2cd317cce9be5ff510fec938c75d7915b85a1648b27b2038へ追随。"
     },
     {
       "path": "docs/helix-os/L9-integration-verification/management-authority-source-record.json",
       "sha256": "ab875f72dfef9f1afaa72b04dd1c8b341d5fc13c4320c1640f42f58f91798c90",
-      "note": "PR-C候補L9 bytes。既存2 composite class rowへL5 /failure_rules/31,/32 pointerを各1件追加。583件のcase rows・既存期待・class linksは不変。 以前のpin=a4a186902d29330d5d88bdb8366e70b8678a31d3e2e750b8e2e7e46e83b5776c。候補base 64d3cf3に新15 classと112件のL9 linkを追補後の現在bytes=ab875f72dfef9f1afaa72b04dd1c8b341d5fc13c4320c1640f42f58f91798c90。L4の新15 classをL9へ順方向投影し、残112 caseのmaterial_ref/raw inputとnegative_class_refを追加。case expected等583件は不変。"
+      "note": "PR-C候補L9 bytes。既存2 composite class rowへL5 /failure_rules/31,/32 pointerを各1件追加。583件のcase rows・既存期待・class linksは不変。 以前のpin=a4a186902d29330d5d88bdb8366e70b8678a31d3e2e750b8e2e7e46e83b5776c。候補base 64d3cf3に新15 classと112件のL9 linkを追補後の現在bytes=ab875f72dfef9f1afaa72b04dd1c8b341d5fc13c4320c1640f42f58f91798c90。L4の新15 classをL9へ順方向投影し、残112 caseのmaterial_ref/raw inputとnegative_class_refを追加。case expected等583件は不変。 2026-10-30 condition照合後candidate sha256=ab875f72dfef9f1afaa72b04dd1c8b341d5fc13c4320c1640f42f58f91798c90。class conditionをL7 fixed given.inputのphase/pointer/value照合に合わせ明確化。"
     }
   ],
   "role": "OS015 L9の2 source pointer追記と29件の先行pair被覆を静的に記録する。",

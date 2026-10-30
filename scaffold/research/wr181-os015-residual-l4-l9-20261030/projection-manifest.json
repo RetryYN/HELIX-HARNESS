@@ -283,7 +283,35 @@
           "expanded_input_sha256": "72c8fc118915250b672cd603c7d348d31a69c527ad39dffbfe9bc7a9b88707ac"
         }
       ],
-      "group_name": "existing_event_conflict"
+      "group_name": "existing_event_conflict",
+      "condition_review": {
+        "reviewed_phase_set": [
+          "inspect",
+          "classify",
+          "correct"
+        ],
+        "reviewed_stimulus_targets": [
+          "/context/records/target_a/original_event/actor_ref",
+          "/context/records/target_a/original_event/causal_id",
+          "/context/records/target_a/original_event/observed_at_ref",
+          "/context/records/target_a/original_event/payload_ref",
+          "/context/records/target_a/original_event/source_digest",
+          "/context/records/target_a/original_event/source_ref",
+          "/context/records/target_a/original_event/source_revision",
+          "/records/target_a/original_event/actor_ref",
+          "/records/target_a/original_event/causal_id",
+          "/records/target_a/original_event/event_id",
+          "/records/target_a/original_event/event_revision",
+          "/records/target_a/original_event/observed_at_ref",
+          "/records/target_a/original_event/payload_ref",
+          "/records/target_a/original_event/source_digest",
+          "/records/target_a/original_event/source_ref",
+          "/records/target_a/original_event/source_revision"
+        ],
+        "raw_stimulus_input_count": 35,
+        "raw_stimulus_summary": "L7 given.inputのbase_refとreplacementsのみを照合。各pointer・置換値は固定inputのhashで束縛。expected_proposal、L8/L9 expectedは参照しない。",
+        "manual_alignment": "条件のevent field known mismatch / whole-event mutationとraw inputの片側event field置換を照合。"
+      }
     },
     {
       "class_id": "OS015-NEG-COMPOSITE-4e0c28b06920d3a9665cbe4beeaf48cea44d7b0d350dddfaec9c8471de1e86b5",
@@ -556,7 +584,37 @@
           "expanded_input_sha256": "a029bba0ebd48687b033823a6af45b95b4a23bd55ca94d298fc0cd7c9f1057fe"
         }
       ],
-      "group_name": "existing_event_unresolved"
+      "group_name": "existing_event_unresolved",
+      "condition_review": {
+        "reviewed_phase_set": [
+          "inspect",
+          "classify",
+          "correct"
+        ],
+        "reviewed_stimulus_targets": [
+          "/context/records/target_a/original_event/actor_ref",
+          "/context/records/target_a/original_event/causal_id",
+          "/context/records/target_a/original_event/event_id",
+          "/context/records/target_a/original_event/event_revision",
+          "/context/records/target_a/original_event/observed_at_ref",
+          "/context/records/target_a/original_event/payload_ref",
+          "/context/records/target_a/original_event/source_digest",
+          "/context/records/target_a/original_event/source_ref",
+          "/context/records/target_a/original_event/source_revision",
+          "/records/target_a/original_event/actor_ref",
+          "/records/target_a/original_event/causal_id",
+          "/records/target_a/original_event/event_id",
+          "/records/target_a/original_event/event_revision",
+          "/records/target_a/original_event/observed_at_ref",
+          "/records/target_a/original_event/payload_ref",
+          "/records/target_a/original_event/source_digest",
+          "/records/target_a/original_event/source_ref",
+          "/records/target_a/original_event/source_revision"
+        ],
+        "raw_stimulus_input_count": 40,
+        "raw_stimulus_summary": "L7 given.inputのbase_refとreplacementsのみを照合。各pointer・置換値は固定inputのhashで束縛。expected_proposal、L8/L9 expectedは参照しない。",
+        "manual_alignment": "条件のevent operand unknown / whole-event mutationとraw inputの片側event field null置換を照合。"
+      }
     },
     {
       "class_id": "OS015-NEG-COMPOSITE-0847e4310de684d30c54c16de19c0ce068f2666a3e68fe3e3d93f144934f9a42",
@@ -575,7 +633,7 @@
           "id": "FN-OS015-01"
         }
       },
-      "condition": "classifyでcontext sourceと対応するnew_classification fieldがknown不一致。各pointerにsource_conflict。",
+      "condition": "classify/correct。context側target_a.source.target_idまたはscopeの片方を既知のFOREIGN値に置換し、対応するactual new_classification fieldとの不一致を作る。sourceとnew_classificationの別々のactual pointerにsource_conflictが各1件。",
       "case_ids": [
         "HELIXOS-L9-015-C0179",
         "HELIXOS-L9-015-C0185",
@@ -609,7 +667,20 @@
           "l7_input_pointer": "/connection_materials/OS015/case/cases/300/given/input",
           "expanded_input_sha256": "a3bd0401d8118fcecc5b2584574a134ffa19f6027d21c354ad91ce2507fd4a4e"
         }
-      ]
+      ],
+      "condition_review": {
+        "reviewed_phase_set": [
+          "classify",
+          "correct"
+        ],
+        "reviewed_stimulus_targets": [
+          "/context/records/target_a/source/scope",
+          "/context/records/target_a/source/target_id"
+        ],
+        "raw_stimulus_input_count": 4,
+        "raw_stimulus_summary": "L7 given.inputのbase_refとreplacementsのみを照合。ケースごとの置換pointer/valueはmanifest固定hashに束縛し、conditionが全入力を包含することを確認。expected_proposal、L8/L9 expectedは参照しない。",
+        "manual_alignment": "上記conditionのphase・対象pointer・置換値を全raw入力と照合。"
+      }
     },
     {
       "class_id": "OS015-NEG-COMPOSITE-9c5c0fb87d1b6f9fbdf5e2e825c9e600024bbcd3f5bac7a32e7c20423fca521c",
@@ -629,7 +700,7 @@
           "id": "FN-OS015-01"
         }
       },
-      "condition": "classifyでevent_id/event_revisionがcontext不一致。original_event_mutatedとevent/new_classificationの別pointerでsource_conflictが併発。",
+      "condition": "classify/correct。context側target_a.original_event.event_idまたはevent_revisionの片方を既知のFOREIGN値に置換。whole-event比較でoriginal_event_mutated、eventとnew_classificationの別々のactual pointerにsource_conflictが各1件。",
       "case_ids": [
         "HELIXOS-L9-015-C0219",
         "HELIXOS-L9-015-C0221",
@@ -663,7 +734,20 @@
           "l7_input_pointer": "/connection_materials/OS015/case/cases/336/given/input",
           "expanded_input_sha256": "62a05bd0310e5e9a6f31ce412300c10d68fca644b69843ff7b36057b85894df2"
         }
-      ]
+      ],
+      "condition_review": {
+        "reviewed_phase_set": [
+          "classify",
+          "correct"
+        ],
+        "reviewed_stimulus_targets": [
+          "/context/records/target_a/original_event/event_id",
+          "/context/records/target_a/original_event/event_revision"
+        ],
+        "raw_stimulus_input_count": 4,
+        "raw_stimulus_summary": "L7 given.inputのbase_refとreplacementsのみを照合。ケースごとの置換pointer/valueはmanifest固定hashに束縛し、conditionが全入力を包含することを確認。expected_proposal、L8/L9 expectedは参照しない。",
+        "manual_alignment": "上記conditionのphase・対象pointer・置換値を全raw入力と照合。"
+      }
     },
     {
       "class_id": "OS015-NEG-COMPOSITE-f26b128d495605fef34af26296623a373d06205bdbe8e9e366001ee980e6f294",
@@ -682,7 +766,7 @@
           "id": "FN-OS015-01"
         }
       },
-      "condition": "classify/correctでnew_classification.kind=null。kind未解決とsource_unresolved。",
+      "condition": "classify/correct。actual側target_a.new_classification.kindをnullに置換し、classification_kind_unresolvedとsource_unresolvedを生じる。",
       "case_ids": [
         "HELIXOS-L9-015-C0364",
         "HELIXOS-L9-015-C0414"
@@ -704,7 +788,19 @@
           "l7_input_pointer": "/connection_materials/OS015/case/cases/413/given/input",
           "expanded_input_sha256": "4c757081eb77048ba54f226478df2a4c8d18e3606cf2ffe4926a0e68e34d1b6c"
         }
-      ]
+      ],
+      "condition_review": {
+        "reviewed_phase_set": [
+          "classify",
+          "correct"
+        ],
+        "reviewed_stimulus_targets": [
+          "/records/target_a/new_classification/kind"
+        ],
+        "raw_stimulus_input_count": 2,
+        "raw_stimulus_summary": "L7 given.inputのbase_refとreplacementsのみを照合。ケースごとの置換pointer/valueはmanifest固定hashに束縛し、conditionが全入力を包含することを確認。expected_proposal、L8/L9 expectedは参照しない。",
+        "manual_alignment": "上記conditionのphase・対象pointer・置換値を全raw入力と照合。"
+      }
     },
     {
       "class_id": "OS015-NEG-COMPOSITE-df9154ac8720b176f3ba2d4bf5fc0362496e530eafdd829278de18d4a3d5c39b",
@@ -723,7 +819,7 @@
           "id": "FN-OS015-01"
         }
       },
-      "condition": "classify/correctでnew_classification.kindが許可値外のknown値。kind未解決とsource_conflict。",
+      "condition": "classify/correct。actual側target_a.new_classification.kindを許可値外の既知値FOREIGN-kindに置換し、classification_kind_unresolvedとsource_conflictを生じる。",
       "case_ids": [
         "HELIXOS-L9-015-C0365",
         "HELIXOS-L9-015-C0415"
@@ -745,7 +841,19 @@
           "l7_input_pointer": "/connection_materials/OS015/case/cases/414/given/input",
           "expanded_input_sha256": "78cf60434b2e3becb2e98dfb32c89bd88ed837be6e8ee74a01dd85c7303d6460"
         }
-      ]
+      ],
+      "condition_review": {
+        "reviewed_phase_set": [
+          "classify",
+          "correct"
+        ],
+        "reviewed_stimulus_targets": [
+          "/records/target_a/new_classification/kind"
+        ],
+        "raw_stimulus_input_count": 2,
+        "raw_stimulus_summary": "L7 given.inputのbase_refとreplacementsのみを照合。ケースごとの置換pointer/valueはmanifest固定hashに束縛し、conditionが全入力を包含することを確認。expected_proposal、L8/L9 expectedは参照しない。",
+        "manual_alignment": "上記conditionのphase・対象pointer・置換値を全raw入力と照合。"
+      }
     },
     {
       "class_id": "OS015-NEG-COMPOSITE-89de10e4554c2fb25885bc24b09de095d209750e791130a0f121afac952aa4ea",
@@ -764,7 +872,7 @@
           "id": "FN-OS015-01"
         }
       },
-      "condition": "actual authority_originが許可enum内の非canonical値でcanonical_sourceと不一致。",
+      "condition": "correct。actual側target_a.authority_originを許可enum内の非canonical値（issue/pr/ci/memory/management_recordのいずれか）に置換し、canonical_sourceとの不一致を作る。",
       "case_ids": [
         "HELIXOS-L9-015-C0460",
         "HELIXOS-L9-015-C0463",
@@ -804,7 +912,18 @@
           "l7_input_pointer": "/connection_materials/OS015/case/cases/471/given/input",
           "expanded_input_sha256": "a0d1e5e26d53137fe912f084ec32b900569bd86d53f07e31590fd4c3bcd67569"
         }
-      ]
+      ],
+      "condition_review": {
+        "reviewed_phase_set": [
+          "correct"
+        ],
+        "reviewed_stimulus_targets": [
+          "/records/target_a/authority_origin"
+        ],
+        "raw_stimulus_input_count": 5,
+        "raw_stimulus_summary": "L7 given.inputのbase_refとreplacementsのみを照合。ケースごとの置換pointer/valueはmanifest固定hashに束縛し、conditionが全入力を包含することを確認。expected_proposal、L8/L9 expectedは参照しない。",
+        "manual_alignment": "上記conditionのphase・対象pointer・置換値を全raw入力と照合。"
+      }
     },
     {
       "class_id": "OS015-NEG-COMPOSITE-4ed7dc758943d0971c6a7853ba3568609804d47e1f5f615e39eaa5e523ef1c04",
@@ -823,7 +942,7 @@
           "id": "FN-OS015-01"
         }
       },
-      "condition": "actual/contextが同一の未許可authority_origin値。両側pointerに同codeを保持。",
+      "condition": "correct。actual/context双方のtarget_a.authority_originを同じ未許可値（nullまたはunknown_origin）に置換し、両側pointerにauthority_origin_unresolvedを保持する。",
       "case_ids": [
         "HELIXOS-L9-015-C0477",
         "HELIXOS-L9-015-C0480"
@@ -845,7 +964,19 @@
           "l7_input_pointer": "/connection_materials/OS015/case/cases/479/given/input",
           "expanded_input_sha256": "9455a362e5f8a40c71e68f2264b87bcf5d4fbf49f83dc4b4c5d37370825d9cbd"
         }
-      ]
+      ],
+      "condition_review": {
+        "reviewed_phase_set": [
+          "correct"
+        ],
+        "reviewed_stimulus_targets": [
+          "/context/records/target_a/authority_origin",
+          "/records/target_a/authority_origin"
+        ],
+        "raw_stimulus_input_count": 2,
+        "raw_stimulus_summary": "L7 given.inputのbase_refとreplacementsのみを照合。ケースごとの置換pointer/valueはmanifest固定hashに束縛し、conditionが全入力を包含することを確認。expected_proposal、L8/L9 expectedは参照しない。",
+        "manual_alignment": "上記conditionのphase・対象pointer・置換値を全raw入力と照合。"
+      }
     },
     {
       "class_id": "OS015-NEG-COMPOSITE-e23551bcfb260256f33d6911d244f0715dee4f62c3f09840e48d7de5c6473ae9",
@@ -864,7 +995,7 @@
           "id": "FN-OS015-01"
         }
       },
-      "condition": "actual authority_state=stale_materialとcontext current_materialが不一致。",
+      "condition": "correct。actual側target_a.authority_stateをstale_materialに置換し、context側current_materialとの不一致を作る。",
       "case_ids": [
         "HELIXOS-L9-015-C0481"
       ],
@@ -880,7 +1011,18 @@
           "l7_input_pointer": "/connection_materials/OS015/case/cases/480/given/input",
           "expanded_input_sha256": "f43e8ce0fe9d3c11bdaeb0aaaf55539fc6e04c3c40d1b926aa398e4e0a08b604"
         }
-      ]
+      ],
+      "condition_review": {
+        "reviewed_phase_set": [
+          "correct"
+        ],
+        "reviewed_stimulus_targets": [
+          "/records/target_a/authority_state"
+        ],
+        "raw_stimulus_input_count": 1,
+        "raw_stimulus_summary": "L7 given.inputのbase_refとreplacementsのみを照合。ケースごとの置換pointer/valueはmanifest固定hashに束縛し、conditionが全入力を包含することを確認。expected_proposal、L8/L9 expectedは参照しない。",
+        "manual_alignment": "上記conditionのphase・対象pointer・置換値を全raw入力と照合。"
+      }
     },
     {
       "class_id": "OS015-NEG-COMPOSITE-087fdf8f8d9303e619d04ccc3cbc6da653d08a4b20f6009bab1ec8dfe3cc90c9",
@@ -899,7 +1041,7 @@
           "id": "FN-OS015-01"
         }
       },
-      "condition": "actual authority_state=conflict_materialとcontext current_materialが不一致。",
+      "condition": "correct。actual側target_a.authority_stateをconflict_materialに置換し、context側current_materialとの不一致を作る。",
       "case_ids": [
         "HELIXOS-L9-015-C0484"
       ],
@@ -915,7 +1057,18 @@
           "l7_input_pointer": "/connection_materials/OS015/case/cases/483/given/input",
           "expanded_input_sha256": "a13587285be055d701feb9e9465eaa90279a2b29db655fa44fd0d6d9bc7ceee6"
         }
-      ]
+      ],
+      "condition_review": {
+        "reviewed_phase_set": [
+          "correct"
+        ],
+        "reviewed_stimulus_targets": [
+          "/records/target_a/authority_state"
+        ],
+        "raw_stimulus_input_count": 1,
+        "raw_stimulus_summary": "L7 given.inputのbase_refとreplacementsのみを照合。ケースごとの置換pointer/valueはmanifest固定hashに束縛し、conditionが全入力を包含することを確認。expected_proposal、L8/L9 expectedは参照しない。",
+        "manual_alignment": "上記conditionのphase・対象pointer・置換値を全raw入力と照合。"
+      }
     },
     {
       "class_id": "OS015-NEG-COMPOSITE-3123046e6695da60ba6abef15c2588c632081391d431ec133fa509d6d90017bb",
@@ -934,7 +1087,7 @@
           "id": "FN-OS015-01"
         }
       },
-      "condition": "actual authority_state=unresolvedとcontext current_materialが不一致。",
+      "condition": "correct。actual側target_a.authority_stateをunresolvedに置換し、context側current_materialとの不一致を作る。",
       "case_ids": [
         "HELIXOS-L9-015-C0487"
       ],
@@ -950,7 +1103,18 @@
           "l7_input_pointer": "/connection_materials/OS015/case/cases/486/given/input",
           "expanded_input_sha256": "94db73cbdc8aa4989b55c1caebaaee6355657eb16241284b631324440e6aacf0"
         }
-      ]
+      ],
+      "condition_review": {
+        "reviewed_phase_set": [
+          "correct"
+        ],
+        "reviewed_stimulus_targets": [
+          "/records/target_a/authority_state"
+        ],
+        "raw_stimulus_input_count": 1,
+        "raw_stimulus_summary": "L7 given.inputのbase_refとreplacementsのみを照合。ケースごとの置換pointer/valueはmanifest固定hashに束縛し、conditionが全入力を包含することを確認。expected_proposal、L8/L9 expectedは参照しない。",
+        "manual_alignment": "上記conditionのphase・対象pointer・置換値を全raw入力と照合。"
+      }
     },
     {
       "class_id": "OS015-NEG-COMPOSITE-9539a1f0e6787f121075bfc71469d281caadb1e4c31ba4a8df9ccd5fe882d3d7",
@@ -969,7 +1133,7 @@
           "id": "FN-OS015-01"
         }
       },
-      "condition": "actual/contextが同一の未定義authority_state値。両側pointerに同codeを保持。",
+      "condition": "correct。actual/context双方のtarget_a.authority_stateを同じ未定義値（nullまたはunknown_state）に置換し、両側pointerにauthority_state_unresolvedを保持する。",
       "case_ids": [
         "HELIXOS-L9-015-C0492",
         "HELIXOS-L9-015-C0495"
@@ -991,7 +1155,19 @@
           "l7_input_pointer": "/connection_materials/OS015/case/cases/494/given/input",
           "expanded_input_sha256": "305263aca5bba535fdc0f07b660894734093ef09faa9b65bbd291ba8cf1dc0dd"
         }
-      ]
+      ],
+      "condition_review": {
+        "reviewed_phase_set": [
+          "correct"
+        ],
+        "reviewed_stimulus_targets": [
+          "/context/records/target_a/authority_state",
+          "/records/target_a/authority_state"
+        ],
+        "raw_stimulus_input_count": 2,
+        "raw_stimulus_summary": "L7 given.inputのbase_refとreplacementsのみを照合。ケースごとの置換pointer/valueはmanifest固定hashに束縛し、conditionが全入力を包含することを確認。expected_proposal、L8/L9 expectedは参照しない。",
+        "manual_alignment": "上記conditionのphase・対象pointer・置換値を全raw入力と照合。"
+      }
     },
     {
       "class_id": "OS015-NEG-COMPOSITE-931c9057eaac57f35bd0ed64d5288c4339e3e4ff9b96eb19b2d77ff8a25767e2",
@@ -1010,7 +1186,7 @@
           "id": "FN-OS015-01"
         }
       },
-      "condition": "source_digestがactual側でunresolvedとなり、current_material_claim=trueがL4 promotion branchを発火。",
+      "condition": "inspect/classify/correct。actual側target_a.source.source_digestをnull、current_material_claimをtrueへ置換し、L4のpromotion branchでsource_unresolvedとunresolved_promoted_to_currentを生じる。",
       "case_ids": [
         "HELIXOS-L9-015-C0505",
         "HELIXOS-L9-015-C0522",
@@ -1038,7 +1214,21 @@
           "l7_input_pointer": "/connection_materials/OS015/case/cases/538/given/input",
           "expanded_input_sha256": "ce364a4e77349fc6c8b793004ccf787c1d55fe745080dac7e83e447872fb1e23"
         }
-      ]
+      ],
+      "condition_review": {
+        "reviewed_phase_set": [
+          "inspect",
+          "classify",
+          "correct"
+        ],
+        "reviewed_stimulus_targets": [
+          "/records/target_a/current_material_claim",
+          "/records/target_a/source/source_digest"
+        ],
+        "raw_stimulus_input_count": 3,
+        "raw_stimulus_summary": "L7 given.inputのbase_refとreplacementsのみを照合。ケースごとの置換pointer/valueはmanifest固定hashに束縛し、conditionが全入力を包含することを確認。expected_proposal、L8/L9 expectedは参照しない。",
+        "manual_alignment": "上記conditionのphase・対象pointer・置換値を全raw入力と照合。"
+      }
     },
     {
       "class_id": "OS015-NEG-COMPOSITE-f5d02578a904f76ed01d15f549851918588f40e74d8216f84c54500cc38a384a",
@@ -1057,7 +1247,7 @@
           "id": "FN-OS015-01"
         }
       },
-      "condition": "片側にknown prior classificationが存在し、初回classification条件から外れてprior findingと原分類mutationが併発。",
+      "condition": "classify。actualまたはcontext片側のtarget_a.original_classificationに既知prior objectを設定し、初回classification条件を外す。prior findingとoriginal_classification_mutatedが併発する。",
       "case_ids": [
         "HELIXOS-L9-015-C0573",
         "HELIXOS-L9-015-C0574"
@@ -1079,7 +1269,19 @@
           "l7_input_pointer": "/connection_materials/OS015/case/cases/573/given/input",
           "expanded_input_sha256": "5a7948fcd5626fa63379a7ae0db44e8b742fdaa11719aeab6b30124985f274c1"
         }
-      ]
+      ],
+      "condition_review": {
+        "reviewed_phase_set": [
+          "classify"
+        ],
+        "reviewed_stimulus_targets": [
+          "/context/records/target_a/original_classification",
+          "/records/target_a/original_classification"
+        ],
+        "raw_stimulus_input_count": 2,
+        "raw_stimulus_summary": "L7 given.inputのbase_refとreplacementsのみを照合。ケースごとの置換pointer/valueはmanifest固定hashに束縛し、conditionが全入力を包含することを確認。expected_proposal、L8/L9 expectedは参照しない。",
+        "manual_alignment": "上記conditionのphase・対象pointer・置換値を全raw入力と照合。"
+      }
     },
     {
       "class_id": "OS015-NEG-COMPOSITE-4e80f5977bf48e95192dcbe7ebd26ffba7aa253ddef99755e42e3e0990008f72",
@@ -1098,7 +1300,7 @@
           "id": "FN-OS015-01"
         }
       },
-      "condition": "片側にunresolved prior classificationが存在し、原分類mutationも併発。",
+      "condition": "classify。actualまたはcontext片側のtarget_a.original_classificationを未解決値（{}またはUNKNOWN-PRIOR）に置換し、prior unresolved findingとoriginal_classification_mutatedが併発する。",
       "case_ids": [
         "HELIXOS-L9-015-C0576",
         "HELIXOS-L9-015-C0577",
@@ -1132,7 +1334,19 @@
           "l7_input_pointer": "/connection_materials/OS015/case/cases/579/given/input",
           "expanded_input_sha256": "d034a0faa908957715bba295565cc97d9542a44949478323adf1eb613350e9b6"
         }
-      ]
+      ],
+      "condition_review": {
+        "reviewed_phase_set": [
+          "classify"
+        ],
+        "reviewed_stimulus_targets": [
+          "/context/records/target_a/original_classification",
+          "/records/target_a/original_classification"
+        ],
+        "raw_stimulus_input_count": 4,
+        "raw_stimulus_summary": "L7 given.inputのbase_refとreplacementsのみを照合。ケースごとの置換pointer/valueはmanifest固定hashに束縛し、conditionが全入力を包含することを確認。expected_proposal、L8/L9 expectedは参照しない。",
+        "manual_alignment": "上記conditionのphase・対象pointer・置換値を全raw入力と照合。"
+      }
     },
     {
       "class_id": "OS015-NEG-COMPOSITE-d509d10e51a98c1fe8971d91e909e058b360a803c1d686891282e3a8667a158f",
@@ -1151,7 +1365,7 @@
           "id": "FN-OS015-01"
         }
       },
-      "condition": "actual/context双方に同一のknown prior classification。両側にprior findingが一つずつ出る。",
+      "condition": "classify。actual/context双方のtarget_a.original_classificationに同一の既知prior objectを設定し、両側にfirst_classification_prior_presentを1件ずつ生じる。C0582では双方のnew_classification class/prior refとrevisionも同priorへ合わせる。",
       "case_ids": [
         "HELIXOS-L9-015-C0575",
         "HELIXOS-L9-015-C0582"
@@ -1173,7 +1387,27 @@
           "l7_input_pointer": "/connection_materials/OS015/case/cases/581/given/input",
           "expanded_input_sha256": "f29a638488f00dc7c9b2e19875ddaf2ba05f4f3e458dadb7e94b1fd214969801"
         }
-      ]
+      ],
+      "condition_review": {
+        "reviewed_phase_set": [
+          "classify"
+        ],
+        "reviewed_stimulus_targets": [
+          "/context/records/target_a/new_classification/classification_ref",
+          "/context/records/target_a/new_classification/classification_revision",
+          "/context/records/target_a/new_classification/prior_classification_ref",
+          "/context/records/target_a/new_classification/prior_classification_revision",
+          "/context/records/target_a/original_classification",
+          "/records/target_a/new_classification/classification_ref",
+          "/records/target_a/new_classification/classification_revision",
+          "/records/target_a/new_classification/prior_classification_ref",
+          "/records/target_a/new_classification/prior_classification_revision",
+          "/records/target_a/original_classification"
+        ],
+        "raw_stimulus_input_count": 2,
+        "raw_stimulus_summary": "L7 given.inputのbase_refとreplacementsのみを照合。ケースごとの置換pointer/valueはmanifest固定hashに束縛し、conditionが全入力を包含することを確認。expected_proposal、L8/L9 expectedは参照しない。",
+        "manual_alignment": "上記conditionのphase・対象pointer・置換値を全raw入力と照合。"
+      }
     },
     {
       "class_id": "OS015-NEG-COMPOSITE-0232f9da85ba1659ef16f3a747b5e33cc43faf789d0b80faf1301bc0f131cec1",
@@ -1192,7 +1426,7 @@
           "id": "FN-OS015-01"
         }
       },
-      "condition": "actual/context双方に同一のunresolved prior classification。両側にprior findingが一つずつ出る。",
+      "condition": "classify。actual/context双方のtarget_a.original_classificationを同一の未解決値（{}またはUNKNOWN-PRIOR）に置換し、両側にfirst_classification_prior_unresolvedを1件ずつ生じる。",
       "case_ids": [
         "HELIXOS-L9-015-C0578",
         "HELIXOS-L9-015-C0581"
@@ -1214,7 +1448,19 @@
           "l7_input_pointer": "/connection_materials/OS015/case/cases/580/given/input",
           "expanded_input_sha256": "876b14318dbe2118931db728413bb1162334edcf0fb2daa7841f80f1d3b12f81"
         }
-      ]
+      ],
+      "condition_review": {
+        "reviewed_phase_set": [
+          "classify"
+        ],
+        "reviewed_stimulus_targets": [
+          "/context/records/target_a/original_classification",
+          "/records/target_a/original_classification"
+        ],
+        "raw_stimulus_input_count": 2,
+        "raw_stimulus_summary": "L7 given.inputのbase_refとreplacementsのみを照合。ケースごとの置換pointer/valueはmanifest固定hashに束縛し、conditionが全入力を包含することを確認。expected_proposal、L8/L9 expectedは参照しない。",
+        "manual_alignment": "上記conditionのphase・対象pointer・置換値を全raw入力と照合。"
+      }
     }
   ],
   "prohibitions": [

@@ -15,7 +15,7 @@
     },
     {
       "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
-      "sha256": "a1746eea4b021e6d370fca76125179c38c8c241413044e31984e6b549ed0a38a",
+      "sha256": "6613e77d651496efe9d576ce840324050147aca8f785c635ce1a858d6eba7ca8",
       "note": "候補L4分類行15件とF02 negative_class_refs。hashを含むsource pinsはverification-summaryで記録。"
     },
     {
@@ -50,8 +50,8 @@
     },
     {
       "path": "scaffold/research/wr181-os015-residual-l4-l9-20261030/projection-manifest.json",
-      "sha256": "fb1f66d47da9bd89ba28de16e2b2f429d8c211fe8f13d3c4ed69c542469b5efb",
-      "note": "17 class key群・112 case IDの手動根拠を構造化した候補manifest。"
+      "sha256": "8f7a4391837746879d4f159f631ab22078b5374d15c856565f8516cbc6a31090",
+      "note": "17 class key群・112 case IDの手動根拠を構造化した候補manifest。 Condition review now records the input phases and changed pointers for all 112 raw given.input cases."
     },
     {
       "path": "scaffold/research/wr181-os015-pr-a-l4-l9-20261030/case-evidence.json",
@@ -60,22 +60,22 @@
     },
     {
       "path": "scaffold/bindings/SCF-B-0170.json",
-      "sha256": "a721f60003ebb36d2cd317cce9be5ff510fec938c75d7915b85a1648b27b2038",
+      "sha256": "fa3d984ce7b395cf123871a7c9eac7a874be4104bf64f6738e85351ac0dde4a7",
       "note": "本候補のL4/L9追補後にhashを更新した前段binding。歴史差分と更新理由は各binding noteに保持。"
     },
     {
       "path": "scaffold/bindings/SCF-B-0173.json",
-      "sha256": "940ff5cba37a9ce311246223bd3f36eb9c304f97ad73ec1dc8b1b52f2420fea8",
+      "sha256": "f73baff96bff35cad5e17b3c73db6c5ec073ddc261bfbdd56a23e921b8ab3d2b",
       "note": "本候補のL4/L9追補後にhashを更新した前段binding。歴史差分と更新理由は各binding noteに保持。"
     },
     {
       "path": "scaffold/bindings/SCF-B-0175.json",
-      "sha256": "349db474c38c3c533f2399435746f01d9847c81bb099eb68a0ab1f2fe244da7d",
+      "sha256": "e4645749090f0cc9eaddaa922182b5dc4df4596b7843531c8bdf23af69e9693c",
       "note": "本候補のL4/L9追補後にhashを更新した前段binding。歴史差分と更新理由は各binding noteに保持。"
     },
     {
       "path": "scaffold/bindings/SCF-B-0176.json",
-      "sha256": "26cc5703cbb9845c31dcf64d064e864d9958d23e9e1ddac76b1695b73aced8ad",
+      "sha256": "210a88d07638934b2c03d56eff66036bcd70758c063ecc5e90e4cfab3d9cf31d",
       "note": "本候補のL4/L9追補後にhashを更新した前段binding。歴史差分と更新理由は各binding noteに保持。"
     }
   ],

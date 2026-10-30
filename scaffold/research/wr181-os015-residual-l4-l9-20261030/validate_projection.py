@@ -100,12 +100,24 @@ def main():
     l7cases=cur7['connection_materials']['OS015']['case']['cases'];l7by={r['id']:(i,r) for i,r in enumerate(l7cases)}
     assigned={}
     for c in M['classes']:
+        phases=[];stimulus_targets=set()
         for inp in c['l7_raw_inputs']:
             caseid=inp['case_id'];idx,row=l7by[caseid]
             assert inp['l7_input_pointer']==f'/connection_materials/OS015/case/cases/{idx}/given/input'
             assert row['given']['input']['expanded_input_sha256']==inp['expanded_input_sha256']
             assert caseid in c['case_ids'] and caseid not in assigned
             assigned[caseid]=c['existing_class_id'] if not c['is_new'] else c['class_id']
+            given=row['given']['input']
+            if given['base_ref'] not in phases: phases.append(given['base_ref'])
+            for replacement in given['replacements']:
+                path=replacement['path']
+                pointer=('/context/'+'/'.join(path[1:])) if path[0]=='context' else ('/'+'/'.join(path))
+                stimulus_targets.add(pointer)
+        review=c['condition_review']
+        assert review['reviewed_phase_set']==phases
+        assert review['reviewed_stimulus_targets']==sorted(stimulus_targets)
+        assert review['raw_stimulus_input_count']==len(c['l7_raw_inputs'])
+        assert all(phase in c['condition'] for phase in phases)
     assert len(assigned)==112 and len(assigned)==len(set(assigned))
     c44=M['c0044_independent_derivation'];assert c44['case_id'] in assigned and assigned[c44['case_id']]==c44['derived_class_id']
     i44,row44=l7by[c44['case_id']];gi=row44['given']['input']

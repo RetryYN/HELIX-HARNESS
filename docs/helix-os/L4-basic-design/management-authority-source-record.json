@@ -2309,7 +2309,7 @@
       "class_id": "OS015-NEG-COMPOSITE-0232f9da85ba1659ef16f3a747b5e33cc43faf789d0b80faf1301bc0f131cec1",
       "code": "management_material_unknown",
       "design_ref": "HELIXOS-L4-015-F02",
-      "condition": "actual/context双方に同一のunresolved prior classification。両側にprior findingが一つずつ出る。",
+      "condition": "classify。actual/context双方のtarget_a.original_classificationを同一の未解決値（{}またはUNKNOWN-PRIOR）に置換し、両側にfirst_classification_prior_unresolvedを1件ずつ生じる。",
       "expected_classification": "management_material_unknown",
       "expected": {
         "finding_codes": [
@@ -2357,7 +2357,7 @@
       "class_id": "OS015-NEG-COMPOSITE-0847e4310de684d30c54c16de19c0ce068f2666a3e68fe3e3d93f144934f9a42",
       "code": "management_material_violation",
       "design_ref": "HELIXOS-L4-015-F02",
-      "condition": "classifyでcontext sourceと対応するnew_classification fieldがknown不一致。各pointerにsource_conflict。",
+      "condition": "classify/correct。context側target_a.source.target_idまたはscopeの片方を既知のFOREIGN値に置換し、対応するactual new_classification fieldとの不一致を作る。sourceとnew_classificationの別々のactual pointerにsource_conflictが各1件。",
       "expected_classification": "management_material_violation",
       "expected": {
         "finding_codes": [
@@ -2404,7 +2404,7 @@
       "class_id": "OS015-NEG-COMPOSITE-087fdf8f8d9303e619d04ccc3cbc6da653d08a4b20f6009bab1ec8dfe3cc90c9",
       "code": "management_material_violation",
       "design_ref": "HELIXOS-L4-015-F02",
-      "condition": "actual authority_state=conflict_materialとcontext current_materialが不一致。",
+      "condition": "correct。actual側target_a.authority_stateをconflict_materialに置換し、context側current_materialとの不一致を作る。",
       "expected_classification": "management_material_violation",
       "expected": {
         "finding_codes": [
@@ -2450,7 +2450,7 @@
       "class_id": "OS015-NEG-COMPOSITE-3123046e6695da60ba6abef15c2588c632081391d431ec133fa509d6d90017bb",
       "code": "management_material_violation",
       "design_ref": "HELIXOS-L4-015-F02",
-      "condition": "actual authority_state=unresolvedとcontext current_materialが不一致。",
+      "condition": "correct。actual側target_a.authority_stateをunresolvedに置換し、context側current_materialとの不一致を作る。",
       "expected_classification": "management_material_violation",
       "expected": {
         "finding_codes": [
@@ -2496,7 +2496,7 @@
       "class_id": "OS015-NEG-COMPOSITE-4e80f5977bf48e95192dcbe7ebd26ffba7aa253ddef99755e42e3e0990008f72",
       "code": "management_material_violation",
       "design_ref": "HELIXOS-L4-015-F02",
-      "condition": "片側にunresolved prior classificationが存在し、原分類mutationも併発。",
+      "condition": "classify。actualまたはcontext片側のtarget_a.original_classificationを未解決値（{}またはUNKNOWN-PRIOR）に置換し、prior unresolved findingとoriginal_classification_mutatedが併発する。",
       "expected_classification": "management_material_violation",
       "expected": {
         "finding_codes": [
@@ -2545,7 +2545,7 @@
       "class_id": "OS015-NEG-COMPOSITE-4ed7dc758943d0971c6a7853ba3568609804d47e1f5f615e39eaa5e523ef1c04",
       "code": "management_material_unknown",
       "design_ref": "HELIXOS-L4-015-F02",
-      "condition": "actual/contextが同一の未許可authority_origin値。両側pointerに同codeを保持。",
+      "condition": "correct。actual/context双方のtarget_a.authority_originを同じ未許可値（nullまたはunknown_origin）に置換し、両側pointerにauthority_origin_unresolvedを保持する。",
       "expected_classification": "management_material_unknown",
       "expected": {
         "finding_codes": [
@@ -2590,7 +2590,7 @@
       "class_id": "OS015-NEG-COMPOSITE-89de10e4554c2fb25885bc24b09de095d209750e791130a0f121afac952aa4ea",
       "code": "management_material_violation",
       "design_ref": "HELIXOS-L4-015-F02",
-      "condition": "actual authority_originが許可enum内の非canonical値でcanonical_sourceと不一致。",
+      "condition": "correct。actual側target_a.authority_originを許可enum内の非canonical値（issue/pr/ci/memory/management_recordのいずれか）に置換し、canonical_sourceとの不一致を作る。",
       "expected_classification": "management_material_violation",
       "expected": {
         "finding_codes": [
@@ -2636,7 +2636,7 @@
       "class_id": "OS015-NEG-COMPOSITE-931c9057eaac57f35bd0ed64d5288c4339e3e4ff9b96eb19b2d77ff8a25767e2",
       "code": "management_material_violation",
       "design_ref": "HELIXOS-L4-015-F02",
-      "condition": "source_digestがactual側でunresolvedとなり、current_material_claim=trueがL4 promotion branchを発火。",
+      "condition": "inspect/classify/correct。actual側target_a.source.source_digestをnull、current_material_claimをtrueへ置換し、L4のpromotion branchでsource_unresolvedとunresolved_promoted_to_currentを生じる。",
       "expected_classification": "management_material_violation",
       "expected": {
         "finding_codes": [
@@ -2684,7 +2684,7 @@
       "class_id": "OS015-NEG-COMPOSITE-9539a1f0e6787f121075bfc71469d281caadb1e4c31ba4a8df9ccd5fe882d3d7",
       "code": "management_material_unknown",
       "design_ref": "HELIXOS-L4-015-F02",
-      "condition": "actual/contextが同一の未定義authority_state値。両側pointerに同codeを保持。",
+      "condition": "correct。actual/context双方のtarget_a.authority_stateを同じ未定義値（nullまたはunknown_state）に置換し、両側pointerにauthority_state_unresolvedを保持する。",
       "expected_classification": "management_material_unknown",
       "expected": {
         "finding_codes": [
@@ -2729,7 +2729,7 @@
       "class_id": "OS015-NEG-COMPOSITE-9c5c0fb87d1b6f9fbdf5e2e825c9e600024bbcd3f5bac7a32e7c20423fca521c",
       "code": "management_material_violation",
       "design_ref": "HELIXOS-L4-015-F02",
-      "condition": "classifyでevent_id/event_revisionがcontext不一致。original_event_mutatedとevent/new_classificationの別pointerでsource_conflictが併発。",
+      "condition": "classify/correct。context側target_a.original_event.event_idまたはevent_revisionの片方を既知のFOREIGN値に置換。whole-event比較でoriginal_event_mutated、eventとnew_classificationの別々のactual pointerにsource_conflictが各1件。",
       "expected_classification": "management_material_violation",
       "expected": {
         "finding_codes": [
@@ -2779,7 +2779,7 @@
       "class_id": "OS015-NEG-COMPOSITE-d509d10e51a98c1fe8971d91e909e058b360a803c1d686891282e3a8667a158f",
       "code": "management_material_violation",
       "design_ref": "HELIXOS-L4-015-F02",
-      "condition": "actual/context双方に同一のknown prior classification。両側にprior findingが一つずつ出る。",
+      "condition": "classify。actual/context双方のtarget_a.original_classificationに同一の既知prior objectを設定し、両側にfirst_classification_prior_presentを1件ずつ生じる。C0582では双方のnew_classification class/prior refとrevisionも同priorへ合わせる。",
       "expected_classification": "management_material_violation",
       "expected": {
         "finding_codes": [
@@ -2827,7 +2827,7 @@
       "class_id": "OS015-NEG-COMPOSITE-df9154ac8720b176f3ba2d4bf5fc0362496e530eafdd829278de18d4a3d5c39b",
       "code": "management_material_violation",
       "design_ref": "HELIXOS-L4-015-F02",
-      "condition": "classify/correctでnew_classification.kindが許可値外のknown値。kind未解決とsource_conflict。",
+      "condition": "classify/correct。actual側target_a.new_classification.kindを許可値外の既知値FOREIGN-kindに置換し、classification_kind_unresolvedとsource_conflictを生じる。",
       "expected_classification": "management_material_violation",
       "expected": {
         "finding_codes": [
@@ -2876,7 +2876,7 @@
       "class_id": "OS015-NEG-COMPOSITE-e23551bcfb260256f33d6911d244f0715dee4f62c3f09840e48d7de5c6473ae9",
       "code": "management_material_violation",
       "design_ref": "HELIXOS-L4-015-F02",
-      "condition": "actual authority_state=stale_materialとcontext current_materialが不一致。",
+      "condition": "correct。actual側target_a.authority_stateをstale_materialに置換し、context側current_materialとの不一致を作る。",
       "expected_classification": "management_material_violation",
       "expected": {
         "finding_codes": [
@@ -2922,7 +2922,7 @@
       "class_id": "OS015-NEG-COMPOSITE-f26b128d495605fef34af26296623a373d06205bdbe8e9e366001ee980e6f294",
       "code": "management_material_unknown",
       "design_ref": "HELIXOS-L4-015-F02",
-      "condition": "classify/correctでnew_classification.kind=null。kind未解決とsource_unresolved。",
+      "condition": "classify/correct。actual側target_a.new_classification.kindをnullに置換し、classification_kind_unresolvedとsource_unresolvedを生じる。",
       "expected_classification": "management_material_unknown",
       "expected": {
         "finding_codes": [
@@ -2971,7 +2971,7 @@
       "class_id": "OS015-NEG-COMPOSITE-f5d02578a904f76ed01d15f549851918588f40e74d8216f84c54500cc38a384a",
       "code": "management_material_violation",
       "design_ref": "HELIXOS-L4-015-F02",
-      "condition": "片側にknown prior classificationが存在し、初回classification条件から外れてprior findingと原分類mutationが併発。",
+      "condition": "classify。actualまたはcontext片側のtarget_a.original_classificationに既知prior objectを設定し、初回classification条件を外す。prior findingとoriginal_classification_mutatedが併発する。",
       "expected_classification": "management_material_violation",
       "expected": {
         "finding_codes": [
