@@ -73,4 +73,4 @@ Candidate revision base was latest main `f5d511841c665b3424e159c8c1029bde5143452
 - `check-child` target source-pin checks pass for all four layer documents; `python3 -m json.tool` passed for both target files and the binding. `git diff --check` passed.
 - `python3 scaffold/tools/scfctl.py validate`: `bindings=169 fail=0`; `python3 scaffold/tools/scfctl.py stale`: `stale=0`. Main baseline was 168 bindings / stale=0.
 
-The candidate L4/L9 SHA-256 values after edits are listed above. `SCF-B-0180` records the upstream input hashes; checks above are structural/static evidence only. No algorithm, runtime, old CI, or test suite was run. The 4-way negative set, L9 independent review, and L5/L8 mapping remain open for their separate scope.
+The candidate L4/L9 SHA-256 values after edits are listed above. `SCF-B-0182` records the upstream input hashes; checks above are structural/static evidence only. No algorithm, runtime, old CI, or test suite was run. The 4-way negative set, L9 independent review, and L5/L8 mapping remain open for their separate scope.
