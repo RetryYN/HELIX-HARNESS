@@ -31,7 +31,7 @@ L9の217 integration caseについて、`id`, `condition`, `expected`, `expected
 
 ## 残件
 
-- 残る214件はこのtrancheでは分類していない。旧期待の条件別件数は独立導出の根拠に含めない。
+- 217入力中source-onlyで調べた3件は、負例2件をclass化し、正例1件を基準witnessとして負例class外に置いた。他の214入力は未調査。負例母集団198件のうち残る196件は未分類で、正例19件は負例classの対象外。旧期待の条件別件数は独立導出の根拠に含めない。
 - L5 typed owner mappingとL8 class/case projectionは別V-pairで行う。
 - 4層markerを揃えるまで`CHK-NEG-4WAY-MATCH`はlegacy/not-evaluatedのまま。今回のL4/L9 candidate-only evidenceは4way成立・freeze・実装許可を意味しない。
 
