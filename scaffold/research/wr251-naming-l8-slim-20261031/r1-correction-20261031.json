@@ -1,0 +1,155 @@
+{
+  "schema": "wr251-l8-r1-correction.v1",
+  "evidence_kind": "scaffold",
+  "authority_effect": "none",
+  "request_id": "WR251-NAMING-L8-PR3998-R1",
+  "review_ref": "https://github.com/RetryYN/HELIX-HARNESS/pull/3998#issuecomment-6535403321",
+  "reviewed_commit": "b547d2c5ccda99b8825857b04ed164db734c24ef",
+  "fixed_source_revision": "f1cc56731e8862589eada60892d21e4c12d2c0df",
+  "formal_target": "docs/helix-harness/L8-unit-verification/naming-identity-correspondence.json",
+  "formal_target_sha256": "fc6cbafdc02d4293d9b188bc649ddf3d9a68f3aa2d7914107fb89c5556cf8fb5",
+  "findings": {
+    "F1": {
+      "status": "corrected",
+      "formal_consumer": "docs/helix-harness/L5-detail-design/naming-identity-correspondence.json",
+      "source_pointer": "docs/helix-harness/L8-unit-verification/naming-identity-correspondence.json#/independent_context_values/retained_q_probe/value",
+      "source_revision": "f1cc56731e8862589eada60892d21e4c12d2c0df",
+      "resolved_at_fixed_revision": true,
+      "value": "retained_Q_probe",
+      "value_canonical_sha256": "f59c5e3cf545ec24b6b5c9ed14e483cd4ba126515971b95f181d3778fbec6160",
+      "old_consumer_audit_corrected": "L5 is the one formal consumer of the removed retained_q_probe pointer; prior audit claim of no pointer was incorrect. L5 now resolves the pointer only at fixed source revision f1cc56731e8862589eada60892d21e4c12d2c0df.",
+      "README_corrected": true,
+      "scf_binding_pin_corrected": true
+    },
+    "F2": {
+      "status": "corrected",
+      "method": "各行の期待は旧期待との差別分類だけを短文で保持。F03は全15 condition mapを転記せず、unsupported状態のみ列挙。共通unaffected_Q維持と非作用境界はdocument-level operation_effectに一度だけ記載。新R1監査はsource row input/expectedの差分と形式行text hashを記録し、full returnや形式行 proseを複製しない。",
+      "formal_row_count": 158,
+      "baseline_copy_or_patch_in_formal_rows": false,
+      "serialized_full_return_in_formal_rows": false,
+      "repeated_common_boundary_in_formal_rows": false
+    }
+  },
+  "row_delta_audit_path": "scaffold/research/wr251-naming-l8-slim-20261031/r1-row-delta-audit.json",
+  "historical_evidence_preserved": {
+    "scaffold/research/wr251-naming-l8-slim-20261031/u-id-meaning-mapping.json": "f8e923ebb9787492922eaf93718d5dd360dca67da2c59ea892df8f33ad1888cc",
+    "scaffold/research/wr251-naming-l8-slim-20261031/verification-summary.json": "a20f193b016b1e04f2b28c1258a9c420fc5784fff6d22c39938a5d6fe9190d2e",
+    "scaffold/research/wr251-naming-l8-slim-20261031/evidence/check-child-before.json": "b2ca817900974a3ca8cd0c34e0654d2d8a99020dacecb6e5ab8b9857d46fcde2",
+    "scaffold/research/wr251-naming-l8-slim-20261031/evidence/check-child-after.json": "7badcab11ec594ba36305ff0ecb4cf14342d9bd6f0eaa0b06b6ea9bc8f65525b"
+  },
+  "l5_content_sha256_after_f1": "26d5c05984e2c67d3504f39b077c0a2f7ef7dc9f5e2b803a2dd60c7056ab60aa",
+  "checks_to_record": [
+    "L5 fixed source pointer resolution and retained_Q_probe canonical value hash",
+    "158-row input/expected delta audit against fixed source revision",
+    "check-child after L8/F1 changes",
+    "scfctl validate and stale"
+  ],
+  "limitations": [
+    "Static document evidence only; no runtime/test/CI or algorithm execution.",
+    "F1 resolution is fixed-revision only; the current L8 candidate intentionally has no independent_context_values node."
+  ],
+  "verification": {
+    "evidence_kind": "scaffold",
+    "authority_effect": "none",
+    "retained_q_probe": {
+      "resolved_at_fixed_revision": true,
+      "fixed_revision": "f1cc56731e8862589eada60892d21e4c12d2c0df",
+      "value": "retained_Q_probe",
+      "value_canonical_sha256": "f59c5e3cf545ec24b6b5c9ed14e483cd4ba126515971b95f181d3778fbec6160",
+      "formal_consumer_count": 1
+    },
+    "row_delta_audit": {
+      "path": "scaffold/research/wr251-naming-l8-slim-20261031/r1-row-delta-audit.json",
+      "row_count": 158,
+      "input_delta_rows_exact": 158,
+      "expected_delta_rows_exact": 158,
+      "case_specific_changed_scalar_count": 194,
+      "case_specific_unrepresented_scalar_count": 0,
+      "full_return_objects_copied": false,
+      "formal_row_prose_copied": false
+    },
+    "check_child_after": {
+      "report_path": "scaffold/research/wr251-naming-l8-slim-20261031/evidence/r1-check-child-after.json",
+      "report_sha256": "7badcab11ec594ba36305ff0ecb4cf14342d9bd6f0eaa0b06b6ea9bc8f65525b",
+      "passed": false,
+      "pairs": {
+        "L4_L9_pair": {
+          "status": "not_evaluated",
+          "passed": false,
+          "left_count": 5,
+          "right_count": 0,
+          "failure_count": 7
+        },
+        "L5_L8_pair": {
+          "status": "not_evaluated",
+          "passed": false,
+          "left_count": 0,
+          "right_count": 158,
+          "failure_count": 160
+        }
+      },
+      "negative_4way": {
+        "status": "not_evaluated",
+        "passed": false,
+        "counts": {
+          "L4": 0,
+          "L9": 0,
+          "L8": 0,
+          "L5": 0
+        },
+        "failure_count": 1
+      },
+      "ownership_caps": {
+        "L4": {
+          "passed": true,
+          "failure_count": 0
+        },
+        "L9": {
+          "passed": false,
+          "failure_count": 59
+        },
+        "L5": {
+          "passed": true,
+          "failure_count": 0
+        },
+        "L8": {
+          "passed": true,
+          "failure_count": 0
+        }
+      },
+      "pins": [
+        {
+          "checked_count": 10,
+          "passed": true,
+          "failure_count": 0
+        },
+        {
+          "checked_count": 10,
+          "passed": true,
+          "failure_count": 0
+        },
+        {
+          "checked_count": 24,
+          "passed": true,
+          "failure_count": 0
+        },
+        {
+          "checked_count": 24,
+          "passed": true,
+          "failure_count": 0
+        }
+      ]
+    },
+    "scfctl_validate": {
+      "passed": true,
+      "binding_count": 195,
+      "failure_count": 0
+    },
+    "scfctl_stale": {
+      "passed": true,
+      "stale_count": 0
+    },
+    "git_diff_check": "passed",
+    "historical_evidence_sha256s_unchanged": true
+  }
+}

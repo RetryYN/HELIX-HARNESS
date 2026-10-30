@@ -1,0 +1,189 @@
+{
+  "schema": "wr251-l8-verification-summary.v1",
+  "evidence_kind": "scaffold",
+  "authority_effect": "none",
+  "base_revision": "f1cc56731e8862589eada60892d21e4c12d2c0df",
+  "formal_target": "docs/helix-harness/L8-unit-verification/naming-identity-correspondence.json",
+  "formal_target_sha256": "49f834da97a1ba3a75743d49d4cbd32dadfe5bf7f5f6d932fe3cde32ca2eaf4a",
+  "case_count": 158,
+  "formal_row_fields": [
+    "id",
+    "subject",
+    "counterexample",
+    "expected_result",
+    "oracle_id",
+    "test_citation"
+  ],
+  "formal_rows_use_baseline_patch_operations": false,
+  "test_citation_status": "none found at fixed base; all 158 remain null; no citation invented",
+  "consumer_pin_audit": "L5 is paired by document ID only; no formal pointer/pin to removed L8-only nodes found. L8 source pins retained; all checker pin groups pass.",
+  "check_child": {
+    "before": {
+      "passed": false,
+      "pairs": {
+        "L4_L9_pair": {
+          "status": "not_evaluated",
+          "passed": false,
+          "left_count": 5,
+          "right_count": 0,
+          "failure_count": 7
+        },
+        "L5_L8_pair": {
+          "status": "not_evaluated",
+          "passed": false,
+          "left_count": 0,
+          "right_count": 158,
+          "failure_count": 160
+        }
+      },
+      "negative_4way": {
+        "status": "not_evaluated",
+        "passed": false,
+        "counts": {
+          "L4": 0,
+          "L9": 0,
+          "L8": 0,
+          "L5": 0
+        },
+        "failure_count": 1
+      },
+      "ownership_caps": {
+        "L4": {
+          "passed": true,
+          "failure_count": 0
+        },
+        "L9": {
+          "passed": false,
+          "failure_count": 59
+        },
+        "L5": {
+          "passed": true,
+          "failure_count": 0
+        },
+        "L8": {
+          "passed": false,
+          "failure_count": 661
+        }
+      },
+      "pins": [
+        {
+          "checked_count": 10,
+          "passed": true,
+          "failure_count": 0
+        },
+        {
+          "checked_count": 10,
+          "passed": true,
+          "failure_count": 0
+        },
+        {
+          "checked_count": 24,
+          "passed": true,
+          "failure_count": 0
+        },
+        {
+          "checked_count": 24,
+          "passed": true,
+          "failure_count": 0
+        }
+      ]
+    },
+    "after": {
+      "passed": false,
+      "pairs": {
+        "L4_L9_pair": {
+          "status": "not_evaluated",
+          "passed": false,
+          "left_count": 5,
+          "right_count": 0,
+          "failure_count": 7
+        },
+        "L5_L8_pair": {
+          "status": "not_evaluated",
+          "passed": false,
+          "left_count": 0,
+          "right_count": 158,
+          "failure_count": 160
+        }
+      },
+      "negative_4way": {
+        "status": "not_evaluated",
+        "passed": false,
+        "counts": {
+          "L4": 0,
+          "L9": 0,
+          "L8": 0,
+          "L5": 0
+        },
+        "failure_count": 1
+      },
+      "ownership_caps": {
+        "L4": {
+          "passed": true,
+          "failure_count": 0
+        },
+        "L9": {
+          "passed": false,
+          "failure_count": 59
+        },
+        "L5": {
+          "passed": true,
+          "failure_count": 0
+        },
+        "L8": {
+          "passed": true,
+          "failure_count": 0
+        }
+      },
+      "pins": [
+        {
+          "checked_count": 10,
+          "passed": true,
+          "failure_count": 0
+        },
+        {
+          "checked_count": 10,
+          "passed": true,
+          "failure_count": 0
+        },
+        {
+          "checked_count": 24,
+          "passed": true,
+          "failure_count": 0
+        },
+        {
+          "checked_count": 24,
+          "passed": true,
+          "failure_count": 0
+        }
+      ]
+    },
+    "full_report_artifacts": [
+      "scaffold/research/wr251-naming-l8-slim-20261031/evidence/check-child-before.json",
+      "scaffold/research/wr251-naming-l8-slim-20261031/evidence/check-child-after.json"
+    ]
+  },
+  "other_checks": {
+    "scfctl_validate": {
+      "result": "passed",
+      "binding_count": 193,
+      "failure_count": 0
+    },
+    "scfctl_stale": {
+      "result": "passed",
+      "stale_count": 0
+    },
+    "git_diff_check": "passed",
+    "forbidden_l8_material_scan": "passed: no ownership-cap fixture/full-return/source-derived hash/support keys remain in formal L8; source_pins retained.",
+    "unchanged_formal_pair_sources": [
+      "docs/helix-harness/L4-basic-design/naming-identity-correspondence.json",
+      "docs/helix-harness/L5-detail-design/naming-identity-correspondence.json",
+      "docs/helix-harness/L9-integration-verification/naming-identity-correspondence.json"
+    ]
+  },
+  "interpretation": "L8 ownership cap changes from fail/661 violations to pass/0. L9 remains 59 cap failures, as it was not edited. L4/L9 and L5/L8 child pair checks plus negative_4way remain not_evaluated/failing at baseline; this task does not modify pair/4way semantics. All source-pin groups pass before and after.",
+  "limitations": [
+    "Static document/checker evidence only; not formal verification, test execution, acceptance, or approval.",
+    "No old CLI, hook, runtime, test, CI, product runtime, or L4/L5 algorithm was run."
+  ]
+}

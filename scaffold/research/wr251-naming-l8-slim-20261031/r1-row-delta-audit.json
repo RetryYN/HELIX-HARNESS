@@ -1,0 +1,5766 @@
+{
+  "schema": "wr251-r1-row-delta-audit.v1",
+  "evidence_kind": "scaffold",
+  "authority_effect": "none",
+  "source_revision": "f1cc56731e8862589eada60892d21e4c12d2c0df",
+  "source_path": "docs/helix-harness/L8-unit-verification/naming-identity-correspondence.json",
+  "source_sha256": "c0c9fa25de1f374e99af1da9d6b1fb131d5b18a5cb31101eb0a02dfc5f68e8f7",
+  "rows": [
+    {
+      "u_id": "H048-F01-SAME-NAME-DIFFERENT-ROLE",
+      "root": "F01",
+      "baseline_u_id": "H048-F01-SAME-NAME-DIFFERENT-ROLE",
+      "input_deltas": [],
+      "expected_deltas": [],
+      "formal_counterexample_sha256": "24c55a986122995ba75faa4987a03ec2af59a3e757fff9d3e7dcb80f8fd78e16",
+      "formal_expected_result_sha256": "1b910214de034adc234ffc118df6dea3c603da5d8a314a7cc143e993ef390a7e"
+    },
+    {
+      "u_id": "H048-F01-LEXICAL-GUESS",
+      "root": "F01",
+      "baseline_u_id": "H048-F01-SAME-NAME-DIFFERENT-ROLE",
+      "input_deltas": [
+        {
+          "path": "/packet/targets",
+          "operation": "collection_change",
+          "before": {
+            "type": "array",
+            "count": 2,
+            "ids": [
+              "OBJ-P",
+              "OBJ-R"
+            ]
+          },
+          "after": {
+            "type": "array",
+            "count": 2,
+            "ids": [
+              "OBJ-P",
+              "OBJ-R"
+            ]
+          }
+        }
+      ],
+      "expected_deltas": [
+        {
+          "path": "/target_results/OBJ-P",
+          "operation": "set",
+          "before": "candidate_only:Query",
+          "after": "unknown_role"
+        }
+      ],
+      "formal_counterexample_sha256": "61c86c51982017d103ccf89e1228dcc1bf6987903d46389d5ecd76788012f705",
+      "formal_expected_result_sha256": "bc6247e89c16fdf4fa11d1b5ee8b2160cdefa4603802ef53ccf02e36748d0fd2"
+    },
+    {
+      "u_id": "H048-F01-NO-BASIS-MANAGER",
+      "root": "F01",
+      "baseline_u_id": "H048-F01-SAME-NAME-DIFFERENT-ROLE",
+      "input_deltas": [
+        {
+          "path": "/packet/targets",
+          "operation": "collection_change",
+          "before": {
+            "type": "array",
+            "count": 2,
+            "ids": [
+              "OBJ-P",
+              "OBJ-R"
+            ]
+          },
+          "after": {
+            "type": "array",
+            "count": 2,
+            "ids": [
+              "OBJ-P",
+              "OBJ-R"
+            ]
+          }
+        }
+      ],
+      "expected_deltas": [
+        {
+          "path": "/target_results/OBJ-P",
+          "operation": "set",
+          "before": "candidate_only:Query",
+          "after": "missing_basis"
+        }
+      ],
+      "formal_counterexample_sha256": "5a873ef8d7700b9cf9f31dbe3400d1be26490bd04ac075c3853597c7ca06d5dc",
+      "formal_expected_result_sha256": "2cf0ffadb4e0269716d7170208e5d7e7d3b0a85ff72a9d9ec9d3795902b3e7dd"
+    },
+    {
+      "u_id": "H048-F01-NO-CONSUMER",
+      "root": "F01",
+      "baseline_u_id": "H048-F01-SAME-NAME-DIFFERENT-ROLE",
+      "input_deltas": [
+        {
+          "path": "/packet/targets",
+          "operation": "collection_change",
+          "before": {
+            "type": "array",
+            "count": 2,
+            "ids": [
+              "OBJ-P",
+              "OBJ-R"
+            ]
+          },
+          "after": {
+            "type": "array",
+            "count": 2,
+            "ids": [
+              "OBJ-P",
+              "OBJ-R"
+            ]
+          }
+        }
+      ],
+      "expected_deltas": [
+        {
+          "path": "/target_results/OBJ-P",
+          "operation": "set",
+          "before": "candidate_only:Query",
+          "after": "missing_consumer"
+        }
+      ],
+      "formal_counterexample_sha256": "5fa0388731e063ead40081def63e9d98ef75ad0262019c3d5741bd6b1356bd51",
+      "formal_expected_result_sha256": "97d002f4cba241a1b32d4045523fffefea912adda867610382d71c356fb0f489"
+    },
+    {
+      "u_id": "H048-F01-MANAGER-REASONED-EXCEPTION",
+      "root": "F01",
+      "baseline_u_id": "H048-F01-SAME-NAME-DIFFERENT-ROLE",
+      "input_deltas": [
+        {
+          "path": "/packet/targets",
+          "operation": "collection_change",
+          "before": {
+            "type": "array",
+            "count": 2,
+            "ids": [
+              "OBJ-P",
+              "OBJ-R"
+            ]
+          },
+          "after": {
+            "type": "array",
+            "count": 2,
+            "ids": [
+              "OBJ-P",
+              "OBJ-R"
+            ]
+          }
+        }
+      ],
+      "expected_deltas": [
+        {
+          "path": "/target_results/OBJ-P",
+          "operation": "set",
+          "before": "candidate_only:Query",
+          "after": "candidate_only:Query_with_scoped_exception"
+        }
+      ],
+      "formal_counterexample_sha256": "d8918c317d24b34319d07c8bb0724b68b03407433e2f41e5f4282d8dd6bd5ce4",
+      "formal_expected_result_sha256": "df4194e4d3317535ba9a4d93c0f6fbb3da1bdb53d9888f6ac351cc28adacb4f3"
+    },
+    {
+      "u_id": "H048-F01-MANAGER-NO-EXCEPTION",
+      "root": "F01",
+      "baseline_u_id": "H048-F01-SAME-NAME-DIFFERENT-ROLE",
+      "input_deltas": [
+        {
+          "path": "/packet/targets",
+          "operation": "collection_change",
+          "before": {
+            "type": "array",
+            "count": 2,
+            "ids": [
+              "OBJ-P",
+              "OBJ-R"
+            ]
+          },
+          "after": {
+            "type": "array",
+            "count": 2,
+            "ids": [
+              "OBJ-P",
+              "OBJ-R"
+            ]
+          }
+        }
+      ],
+      "expected_deltas": [
+        {
+          "path": "/target_results/OBJ-P",
+          "operation": "set",
+          "before": "candidate_only:Query",
+          "after": "missing_scoped_exception"
+        }
+      ],
+      "formal_counterexample_sha256": "d1b45d305afb26915280b02d40eda34935ad9f60f7c8d146c74ce12e2d812256",
+      "formal_expected_result_sha256": "bf628ccf4f8653b65ae481aa9ec013344ad4b1739e4a3ad8d2051c26903669e4"
+    },
+    {
+      "u_id": "H048-F02-NORMAL",
+      "root": "F02",
+      "baseline_u_id": "H048-F02-NORMAL",
+      "input_deltas": [],
+      "expected_deltas": [],
+      "formal_counterexample_sha256": "785657583ae90552cfaad1e800b2138e195208f8916492f9090dac1c75753bb8",
+      "formal_expected_result_sha256": "39fcf2bec38aa48ca79614da636ef1750ce2b6654aa9ddbee072405eb1ffc85c"
+    },
+    {
+      "u_id": "H048-F02-OBJECT-ID-CHANGED",
+      "root": "F02",
+      "baseline_u_id": "H048-F02-NORMAL",
+      "input_deltas": [
+        {
+          "path": "/packet/after/object",
+          "operation": "set",
+          "before": "OBJ-P",
+          "after": "OBJ-X"
+        }
+      ],
+      "expected_deltas": [
+        {
+          "path": "/edge_results/object_identity",
+          "operation": "set",
+          "before": "held",
+          "after": "conflict"
+        }
+      ],
+      "formal_counterexample_sha256": "0d0f1b53f1c66b1e117af9857a31e091ddb62d5e1c1513c9e3242bf362981dec",
+      "formal_expected_result_sha256": "63077c2dad11ba7543a79895fde66c8428b3929235b292e94e9d7a1896716df5"
+    },
+    {
+      "u_id": "H048-F02-ORACLE-ID-CHANGED",
+      "root": "F02",
+      "baseline_u_id": "H048-F02-NORMAL",
+      "input_deltas": [
+        {
+          "path": "/packet/after/oracle",
+          "operation": "set",
+          "before": "ORACLE-P",
+          "after": "ORACLE-X"
+        }
+      ],
+      "expected_deltas": [
+        {
+          "path": "/edge_results/oracle_identity",
+          "operation": "set",
+          "before": "held",
+          "after": "conflict"
+        }
+      ],
+      "formal_counterexample_sha256": "278988911139e0b09106f32b4cf8782be18c22958d4739021b62e2d82827815b",
+      "formal_expected_result_sha256": "f788134d50ee41e7dbd14c2628ee72d55d91d88def24028fa0b5820191556b66"
+    },
+    {
+      "u_id": "H048-F02-SYMBOL-EDGE-MISSING",
+      "root": "F02",
+      "baseline_u_id": "H048-F02-NORMAL",
+      "input_deltas": [
+        {
+          "path": "/packet/symbol_edge",
+          "operation": "state_change",
+          "before": {
+            "type": "object",
+            "keys": [
+              "object",
+              "operation",
+              "symbol"
+            ]
+          },
+          "after": null
+        }
+      ],
+      "expected_deltas": [
+        {
+          "path": "/edge_results/symbol_edge",
+          "operation": "set",
+          "before": "bound",
+          "after": "missing"
+        }
+      ],
+      "formal_counterexample_sha256": "2847702a978010cf83c8e2893369646359940ebc37272a5dcafd43911e4ffab0",
+      "formal_expected_result_sha256": "5946818ccc4d6e462757e95cd9a112ee10dc83d072ccf00b86910a0e67314654"
+    },
+    {
+      "u_id": "H048-F02-ORACLE-EDGE-MISSING",
+      "root": "F02",
+      "baseline_u_id": "H048-F02-NORMAL",
+      "input_deltas": [
+        {
+          "path": "/packet/oracle_edge",
+          "operation": "state_change",
+          "before": {
+            "type": "object",
+            "keys": [
+              "object",
+              "operation",
+              "oracle"
+            ]
+          },
+          "after": null
+        }
+      ],
+      "expected_deltas": [
+        {
+          "path": "/edge_results/oracle_edge",
+          "operation": "set",
+          "before": "bound",
+          "after": "missing"
+        }
+      ],
+      "formal_counterexample_sha256": "38ea5bed325f549dddb7355c2e13abfae22202afc8acfcb23077f8c2f8430727",
+      "formal_expected_result_sha256": "797ebd975d1dc3e7159c907a756c5b5d20dd48bc3c7cff2339df80d0c70a880a"
+    },
+    {
+      "u_id": "H048-F02-PRIVATE-ONLY-ORACLE",
+      "root": "F02",
+      "baseline_u_id": "H048-F02-NORMAL",
+      "input_deltas": [
+        {
+          "path": "/packet/oracle_edge/object",
+          "operation": "remove",
+          "before": "OBJ-P",
+          "after": "ABSENT"
+        },
+        {
+          "path": "/packet/oracle_edge/operation",
+          "operation": "remove",
+          "before": "read",
+          "after": "ABSENT"
+        },
+        {
+          "path": "/packet/oracle_edge/oracle",
+          "operation": "remove",
+          "before": "ORACLE-P",
+          "after": "ABSENT"
+        },
+        {
+          "path": "/packet/oracle_edge/private_symbol",
+          "operation": "set",
+          "before": "ABSENT",
+          "after": "readValue"
+        }
+      ],
+      "expected_deltas": [
+        {
+          "path": "/edge_results/oracle_edge",
+          "operation": "set",
+          "before": "bound",
+          "after": "private_only_rejected"
+        }
+      ],
+      "formal_counterexample_sha256": "d0f44e1ae072045270f02844c906cfc017f0ed1405880240812e43b7aa76c897",
+      "formal_expected_result_sha256": "e0834fb476b18f5fdb6c5d3b1830e6d20e36d34c481ec033080b40b682dd5e6f"
+    },
+    {
+      "u_id": "H048-F02-FOREIGN-OBJECT-PAIR",
+      "root": "F02",
+      "baseline_u_id": "H048-F02-NORMAL",
+      "input_deltas": [
+        {
+          "path": "/packet/pair/verification_object",
+          "operation": "set",
+          "before": "OBJ-P",
+          "after": "OBJ-X"
+        }
+      ],
+      "expected_deltas": [
+        {
+          "path": "/edge_results/pair",
+          "operation": "set",
+          "before": "same_object",
+          "after": "conflict"
+        }
+      ],
+      "formal_counterexample_sha256": "7e49e67c8aa852ec460b9ecee241ffc511850e4d606acac7be9631b61ff05c20",
+      "formal_expected_result_sha256": "98a12c5e5127652291f005450c21bf2d82189ef72d9cf3e8bc338155a6bf3af4"
+    },
+    {
+      "u_id": "H048-F03-NORMAL",
+      "root": "F03",
+      "baseline_u_id": "H048-F03-NORMAL",
+      "input_deltas": [],
+      "expected_deltas": [],
+      "formal_counterexample_sha256": "321adc1a278dfe0a7303a8c08ed6c27cd792e5b70ac2e34468c5f65bb4590f7f",
+      "formal_expected_result_sha256": "1342f7a262e3fdf13e9662ff9ddd9aed99af0688f76b597a853540c9a4a7c71a"
+    },
+    {
+      "u_id": "H048-F03-CANONICAL-MISSING",
+      "root": "F03",
+      "baseline_u_id": "H048-F03-NORMAL",
+      "input_deltas": [
+        {
+          "path": "/packet/canonical_decision",
+          "operation": "state_change",
+          "before": {
+            "type": "object",
+            "keys": [
+              "name",
+              "owner",
+              "revision"
+            ]
+          },
+          "after": null
+        }
+      ],
+      "expected_deltas": [
+        {
+          "path": "/candidate_presentable",
+          "operation": "set",
+          "before": true,
+          "after": false
+        },
+        {
+          "path": "/condition_results/canonical",
+          "operation": "set",
+          "before": "supported_synthetic_condition",
+          "after": "missing"
+        }
+      ],
+      "formal_counterexample_sha256": "c53bc358eac515176fdd65b6550ffc70bbcbdeb462f913efdcbd25be81394cad",
+      "formal_expected_result_sha256": "3ec309bde797e4875aa7e57292ddf50d76752ca282772a348e305a4d4cc97b6f"
+    },
+    {
+      "u_id": "H048-F03-PUBLIC-SURFACE",
+      "root": "F03",
+      "baseline_u_id": "H048-F03-NORMAL",
+      "input_deltas": [
+        {
+          "path": "/packet/visibility",
+          "operation": "set",
+          "before": "internal",
+          "after": "public_API"
+        }
+      ],
+      "expected_deltas": [
+        {
+          "path": "/candidate_presentable",
+          "operation": "set",
+          "before": true,
+          "after": false
+        },
+        {
+          "path": "/condition_results/internal",
+          "operation": "set",
+          "before": "supported_synthetic_condition",
+          "after": "rejected"
+        }
+      ],
+      "formal_counterexample_sha256": "4d089055c996581055ce03a19b5664a8886fcdc75fe1fe7da0a6d733c7a82681",
+      "formal_expected_result_sha256": "dd1175876ec9420a26b5d7f91519f8b68c5bbd8cda581bd0e25713910f7c525a"
+    },
+    {
+      "u_id": "H048-F03-CONSUMER-PARTIAL",
+      "root": "F03",
+      "baseline_u_id": "H048-F03-NORMAL",
+      "input_deltas": [
+        {
+          "path": "/packet/observed_consumers",
+          "operation": "collection_change",
+          "before": {
+            "type": "array",
+            "count": 2,
+            "values": [
+              "C1",
+              "C2"
+            ]
+          },
+          "after": {
+            "type": "array",
+            "count": 1,
+            "values": [
+              "C1"
+            ]
+          }
+        }
+      ],
+      "expected_deltas": [
+        {
+          "path": "/candidate_presentable",
+          "operation": "set",
+          "before": true,
+          "after": false
+        },
+        {
+          "path": "/condition_results/consumers",
+          "operation": "set",
+          "before": "supported_synthetic_condition",
+          "after": "missing"
+        }
+      ],
+      "formal_counterexample_sha256": "52c221a558cfb7cf88f7389ea61958fa3df6099ac69925b7d6eba0bf1401ed6d",
+      "formal_expected_result_sha256": "6705855e3777860118cb6cd5f41f9635a5ad61a851b8cb093ba56488b53f3a46"
+    },
+    {
+      "u_id": "H048-F03-CONSUMER-SAME-COUNT-FOREIGN",
+      "root": "F03",
+      "baseline_u_id": "H048-F03-NORMAL",
+      "input_deltas": [
+        {
+          "path": "/packet/observed_consumers/1",
+          "operation": "set",
+          "before": "C2",
+          "after": "CX"
+        }
+      ],
+      "expected_deltas": [
+        {
+          "path": "/candidate_presentable",
+          "operation": "set",
+          "before": true,
+          "after": false
+        },
+        {
+          "path": "/condition_results/consumers",
+          "operation": "set",
+          "before": "supported_synthetic_condition",
+          "after": "conflict"
+        }
+      ],
+      "formal_counterexample_sha256": "7e8bc5e27f89482d1570f2b5f1094a840a6b3ece4ea137fb1a092e4051439df5",
+      "formal_expected_result_sha256": "6959cabcb61ce7886c59d0f2ec9cc72ff1c4044cffe67b9ca94b3e09c924f5cd"
+    },
+    {
+      "u_id": "H048-F03-INVARIANT-MISSING",
+      "root": "F03",
+      "baseline_u_id": "H048-F03-NORMAL",
+      "input_deltas": [
+        {
+          "path": "/packet/behavior_invariant",
+          "operation": "state_change",
+          "before": {
+            "type": "object",
+            "keys": [
+              "expected",
+              "oracle"
+            ]
+          },
+          "after": null
+        }
+      ],
+      "expected_deltas": [
+        {
+          "path": "/candidate_presentable",
+          "operation": "set",
+          "before": true,
+          "after": false
+        },
+        {
+          "path": "/condition_results/behavior_invariant",
+          "operation": "set",
+          "before": "supported_synthetic_condition",
+          "after": "missing"
+        }
+      ],
+      "formal_counterexample_sha256": "8d646b7bd42c4f41fd85a0da0cf517e4d45d99659741daef46972bf480000117",
+      "formal_expected_result_sha256": "3f85918db98d28daf036ea119fe1ad95e626281194a1a17aec5b62fa97977a8f"
+    },
+    {
+      "u_id": "H048-F03-MINIMUM-MISSING",
+      "root": "F03",
+      "baseline_u_id": "H048-F03-NORMAL",
+      "input_deltas": [
+        {
+          "path": "/packet/minimum_transform",
+          "operation": "state_change",
+          "before": {
+            "type": "object",
+            "keys": [
+              "changes"
+            ]
+          },
+          "after": null
+        }
+      ],
+      "expected_deltas": [
+        {
+          "path": "/candidate_presentable",
+          "operation": "set",
+          "before": true,
+          "after": false
+        },
+        {
+          "path": "/condition_results/minimum_transform",
+          "operation": "set",
+          "before": "supported_synthetic_condition",
+          "after": "missing"
+        }
+      ],
+      "formal_counterexample_sha256": "ce1eba86b3bac509bfbd71677ac8e281f39a7f8f2d4bd12061a95e2ae4ef6666",
+      "formal_expected_result_sha256": "11db5249ae5bf9355819ad18af5c96d5f1679df97ea4de977f85b29067321aac"
+    },
+    {
+      "u_id": "H048-F03-ROLLBACK-MISSING",
+      "root": "F03",
+      "baseline_u_id": "H048-F03-NORMAL",
+      "input_deltas": [
+        {
+          "path": "/packet/rollback",
+          "operation": "state_change",
+          "before": {
+            "type": "object",
+            "keys": [
+              "preserve_object",
+              "preserve_oracle",
+              "restore_symbol"
+            ]
+          },
+          "after": null
+        }
+      ],
+      "expected_deltas": [
+        {
+          "path": "/candidate_presentable",
+          "operation": "set",
+          "before": true,
+          "after": false
+        },
+        {
+          "path": "/condition_results/rollback",
+          "operation": "set",
+          "before": "supported_synthetic_condition",
+          "after": "missing"
+        }
+      ],
+      "formal_counterexample_sha256": "ca609a2059c7e92e83d54a9e7bc80c44a53ff7b5856d5bdb3a153fe68b77817f",
+      "formal_expected_result_sha256": "dd50f030e6c940be53fdd05d10ca3ded194bf5672086b76bc9a4b54631557029"
+    },
+    {
+      "u_id": "H048-F03-LEXICAL-ONLY",
+      "root": "F03",
+      "baseline_u_id": "H048-F03-NORMAL",
+      "input_deltas": [
+        {
+          "path": "/packet/evidence_basis",
+          "operation": "set",
+          "before": "content",
+          "after": "lexical_only"
+        }
+      ],
+      "expected_deltas": [
+        {
+          "path": "/candidate_presentable",
+          "operation": "set",
+          "before": true,
+          "after": false
+        },
+        {
+          "path": "/condition_results/semantic_basis",
+          "operation": "set",
+          "before": "supported_synthetic_condition",
+          "after": "rejected"
+        }
+      ],
+      "formal_counterexample_sha256": "c9f79309547f7cb2b3ccfbcc0e87eeba60ef468f02b4be493b94b60678a911de",
+      "formal_expected_result_sha256": "28af98ce31260127faf255b07741110f8ce8d965f5963c4ed7df4aa42c45c293"
+    },
+    {
+      "u_id": "H048-F03-REAL-RENAME-REQUEST",
+      "root": "F03",
+      "baseline_u_id": "H048-F03-NORMAL",
+      "input_deltas": [
+        {
+          "path": "/packet/requested_effect",
+          "operation": "set",
+          "before": "candidate_only",
+          "after": "execute_rename"
+        }
+      ],
+      "expected_deltas": [
+        {
+          "path": "/candidate_presentable",
+          "operation": "set",
+          "before": true,
+          "after": false
+        },
+        {
+          "path": "/condition_results/operation_boundary",
+          "operation": "set",
+          "before": "supported_synthetic_condition",
+          "after": "rejected"
+        }
+      ],
+      "formal_counterexample_sha256": "c00810e896c38f843b3bd4d0731d26fb0b52fcd119c5616e9466b1b5b9f9a635",
+      "formal_expected_result_sha256": "80de06a5d793ba9a88b3fe9fc9ed09e038666c0790578cba5636d5418304ea4e"
+    },
+    {
+      "u_id": "H048-F03-SIGNATURE-INPUTS-MISSING",
+      "root": "F03",
+      "baseline_u_id": "H048-F03-NORMAL",
+      "input_deltas": [
+        {
+          "path": "/packet/signature_after/inputs",
+          "operation": "state_change",
+          "before": {
+            "type": "array",
+            "count": 1,
+            "values": [
+              "value_id"
+            ]
+          },
+          "after": null
+        }
+      ],
+      "expected_deltas": [
+        {
+          "path": "/candidate_presentable",
+          "operation": "set",
+          "before": true,
+          "after": false
+        },
+        {
+          "path": "/condition_results/signature:inputs",
+          "operation": "set",
+          "before": "supported_synthetic_condition",
+          "after": "missing"
+        }
+      ],
+      "formal_counterexample_sha256": "a94bc971154da6514d6538fc18b6f5d083f5692bc1a821d1e12a7dffeac9981a",
+      "formal_expected_result_sha256": "575334693ee06c2aaa5010d2bc1c5cd30953f0bfc09bca79da0278352487391b"
+    },
+    {
+      "u_id": "H048-F03-SIGNATURE-INPUTS-MISMATCH",
+      "root": "F03",
+      "baseline_u_id": "H048-F03-NORMAL",
+      "input_deltas": [
+        {
+          "path": "/packet/signature_after/inputs",
+          "operation": "state_change",
+          "before": {
+            "type": "array",
+            "count": 1,
+            "values": [
+              "value_id"
+            ]
+          },
+          "after": "foreign-signature-value"
+        }
+      ],
+      "expected_deltas": [
+        {
+          "path": "/candidate_presentable",
+          "operation": "set",
+          "before": true,
+          "after": false
+        },
+        {
+          "path": "/condition_results/signature:inputs",
+          "operation": "set",
+          "before": "supported_synthetic_condition",
+          "after": "conflict"
+        }
+      ],
+      "formal_counterexample_sha256": "a134f16d8e51a4d67e2c1603f918da16846af335962d0c94099309e9f4508507",
+      "formal_expected_result_sha256": "ca7df598c45eedfea3a14dd1d0ea0d934b4bf8ce25b62507886063e2e7d40e48"
+    },
+    {
+      "u_id": "H048-F03-SIGNATURE-OUTPUTS-MISSING",
+      "root": "F03",
+      "baseline_u_id": "H048-F03-NORMAL",
+      "input_deltas": [
+        {
+          "path": "/packet/signature_after/outputs",
+          "operation": "state_change",
+          "before": {
+            "type": "array",
+            "count": 1,
+            "values": [
+              "value"
+            ]
+          },
+          "after": null
+        }
+      ],
+      "expected_deltas": [
+        {
+          "path": "/candidate_presentable",
+          "operation": "set",
+          "before": true,
+          "after": false
+        },
+        {
+          "path": "/condition_results/signature:outputs",
+          "operation": "set",
+          "before": "supported_synthetic_condition",
+          "after": "missing"
+        }
+      ],
+      "formal_counterexample_sha256": "6f385b27107a53703224a8b36d1cf7e759ff2c6b9b0ca9be2471b64f66f92702",
+      "formal_expected_result_sha256": "58a5e677a4edf3d3f4815bae69e7fbcac8a9ae8c8b68eeb40406fed62950f061"
+    },
+    {
+      "u_id": "H048-F03-SIGNATURE-OUTPUTS-MISMATCH",
+      "root": "F03",
+      "baseline_u_id": "H048-F03-NORMAL",
+      "input_deltas": [
+        {
+          "path": "/packet/signature_after/outputs",
+          "operation": "state_change",
+          "before": {
+            "type": "array",
+            "count": 1,
+            "values": [
+              "value"
+            ]
+          },
+          "after": "foreign-signature-value"
+        }
+      ],
+      "expected_deltas": [
+        {
+          "path": "/candidate_presentable",
+          "operation": "set",
+          "before": true,
+          "after": false
+        },
+        {
+          "path": "/condition_results/signature:outputs",
+          "operation": "set",
+          "before": "supported_synthetic_condition",
+          "after": "conflict"
+        }
+      ],
+      "formal_counterexample_sha256": "80079ce202488da57aa3766e6ada0f3dff3b716f256910deff5c00a2fe4f7098",
+      "formal_expected_result_sha256": "e1111ce5f569c0c12daf23193669a69af9c82450af76374907a497f5be2aa179"
+    },
+    {
+      "u_id": "H048-F03-SIGNATURE-EFFECTS-MISSING",
+      "root": "F03",
+      "baseline_u_id": "H048-F03-NORMAL",
+      "input_deltas": [
+        {
+          "path": "/packet/signature_after/effects",
+          "operation": "state_change",
+          "before": {
+            "type": "array",
+            "count": 0,
+            "values": []
+          },
+          "after": null
+        }
+      ],
+      "expected_deltas": [
+        {
+          "path": "/candidate_presentable",
+          "operation": "set",
+          "before": true,
+          "after": false
+        },
+        {
+          "path": "/condition_results/signature:effects",
+          "operation": "set",
+          "before": "supported_synthetic_condition",
+          "after": "missing"
+        }
+      ],
+      "formal_counterexample_sha256": "1ddd23bf4b956e5861e904beda2cc138a283ffa14cfbf31378fa165a08640786",
+      "formal_expected_result_sha256": "76216b81bd89f0d4a87a08a6ba67c32539601d0a221027a9a47900cf1e643333"
+    },
+    {
+      "u_id": "H048-F03-SIGNATURE-EFFECTS-MISMATCH",
+      "root": "F03",
+      "baseline_u_id": "H048-F03-NORMAL",
+      "input_deltas": [
+        {
+          "path": "/packet/signature_after/effects",
+          "operation": "state_change",
+          "before": {
+            "type": "array",
+            "count": 0,
+            "values": []
+          },
+          "after": "foreign-signature-value"
+        }
+      ],
+      "expected_deltas": [
+        {
+          "path": "/candidate_presentable",
+          "operation": "set",
+          "before": true,
+          "after": false
+        },
+        {
+          "path": "/condition_results/signature:effects",
+          "operation": "set",
+          "before": "supported_synthetic_condition",
+          "after": "conflict"
+        }
+      ],
+      "formal_counterexample_sha256": "6097678c3c8096931c1e194cefb518ef6e6444855422f357ac4c2cb14321e228",
+      "formal_expected_result_sha256": "992d12b8322d3f668c3c87f98ee9e212d047ba7695465f92c920e4fded7370c3"
+    },
+    {
+      "u_id": "H048-F03-SIGNATURE-FAILURE-MISSING",
+      "root": "F03",
+      "baseline_u_id": "H048-F03-NORMAL",
+      "input_deltas": [
+        {
+          "path": "/packet/signature_after/failure",
+          "operation": "state_change",
+          "before": {
+            "type": "array",
+            "count": 1,
+            "values": [
+              "not_found"
+            ]
+          },
+          "after": null
+        }
+      ],
+      "expected_deltas": [
+        {
+          "path": "/candidate_presentable",
+          "operation": "set",
+          "before": true,
+          "after": false
+        },
+        {
+          "path": "/condition_results/signature:failure",
+          "operation": "set",
+          "before": "supported_synthetic_condition",
+          "after": "missing"
+        }
+      ],
+      "formal_counterexample_sha256": "de1ef657d22a5d4f48b698d97c26c2ab9580428c594cf958bc95f67ed90f6390",
+      "formal_expected_result_sha256": "257321e17aa1fe74b5da73a1834ce582a3fc8e59d644cfc2a2bb64363cf3810c"
+    },
+    {
+      "u_id": "H048-F03-SIGNATURE-FAILURE-MISMATCH",
+      "root": "F03",
+      "baseline_u_id": "H048-F03-NORMAL",
+      "input_deltas": [
+        {
+          "path": "/packet/signature_after/failure",
+          "operation": "state_change",
+          "before": {
+            "type": "array",
+            "count": 1,
+            "values": [
+              "not_found"
+            ]
+          },
+          "after": "foreign-signature-value"
+        }
+      ],
+      "expected_deltas": [
+        {
+          "path": "/candidate_presentable",
+          "operation": "set",
+          "before": true,
+          "after": false
+        },
+        {
+          "path": "/condition_results/signature:failure",
+          "operation": "set",
+          "before": "supported_synthetic_condition",
+          "after": "conflict"
+        }
+      ],
+      "formal_counterexample_sha256": "aae203b0e2892921451a0bb63f7f8aa49dc87ef3a606495574fee143efb7c36d",
+      "formal_expected_result_sha256": "c6a6f07f84acc7212c7070e72ebd1cece4dcef1504e0259d100dc7682c40d5aa"
+    },
+    {
+      "u_id": "H048-F03-SIGNATURE-STATE_TRANSITION-MISSING",
+      "root": "F03",
+      "baseline_u_id": "H048-F03-NORMAL",
+      "input_deltas": [
+        {
+          "path": "/packet/signature_after/state_transition",
+          "operation": "set",
+          "before": "unchanged",
+          "after": null
+        }
+      ],
+      "expected_deltas": [
+        {
+          "path": "/candidate_presentable",
+          "operation": "set",
+          "before": true,
+          "after": false
+        },
+        {
+          "path": "/condition_results/signature:state_transition",
+          "operation": "set",
+          "before": "supported_synthetic_condition",
+          "after": "missing"
+        }
+      ],
+      "formal_counterexample_sha256": "4700d5fc50c2272f12d772ef76d024fb44002176f5d695a8425bd37594387a3e",
+      "formal_expected_result_sha256": "204d0f57eb84f5dfe4caf71ff6d11538233567fd2c18d47c09abdf5f36c8ca72"
+    },
+    {
+      "u_id": "H048-F03-SIGNATURE-STATE_TRANSITION-MISMATCH",
+      "root": "F03",
+      "baseline_u_id": "H048-F03-NORMAL",
+      "input_deltas": [
+        {
+          "path": "/packet/signature_after/state_transition",
+          "operation": "set",
+          "before": "unchanged",
+          "after": "foreign-signature-value"
+        }
+      ],
+      "expected_deltas": [
+        {
+          "path": "/candidate_presentable",
+          "operation": "set",
+          "before": true,
+          "after": false
+        },
+        {
+          "path": "/condition_results/signature:state_transition",
+          "operation": "set",
+          "before": "supported_synthetic_condition",
+          "after": "conflict"
+        }
+      ],
+      "formal_counterexample_sha256": "c160965242886fb56ab3bbbf809a261f4058eabf7d03b7351d47b675e5bf7f2e",
+      "formal_expected_result_sha256": "6dd4c080d6d69f99052deb0fe541ed0efcfd82fdafd5d7f962818faf1fc460b9"
+    },
+    {
+      "u_id": "H048-F03-SIGNATURE-CALL_GRAPH-MISSING",
+      "root": "F03",
+      "baseline_u_id": "H048-F03-NORMAL",
+      "input_deltas": [
+        {
+          "path": "/packet/signature_after/call_graph",
+          "operation": "state_change",
+          "before": {
+            "type": "array",
+            "count": 1,
+            "values": [
+              "port.read"
+            ]
+          },
+          "after": null
+        }
+      ],
+      "expected_deltas": [
+        {
+          "path": "/candidate_presentable",
+          "operation": "set",
+          "before": true,
+          "after": false
+        },
+        {
+          "path": "/condition_results/signature:call_graph",
+          "operation": "set",
+          "before": "supported_synthetic_condition",
+          "after": "missing"
+        }
+      ],
+      "formal_counterexample_sha256": "c32543d2b39fd46ba7e358f7b2b449003018ec4e3d3be6ec6982ac741c2bbb1c",
+      "formal_expected_result_sha256": "ad7c232735bde2a532359388223fabfacf4674e976cc3016a9e01bd3c6c57ed9"
+    },
+    {
+      "u_id": "H048-F03-SIGNATURE-CALL_GRAPH-MISMATCH",
+      "root": "F03",
+      "baseline_u_id": "H048-F03-NORMAL",
+      "input_deltas": [
+        {
+          "path": "/packet/signature_after/call_graph",
+          "operation": "state_change",
+          "before": {
+            "type": "array",
+            "count": 1,
+            "values": [
+              "port.read"
+            ]
+          },
+          "after": "foreign-signature-value"
+        }
+      ],
+      "expected_deltas": [
+        {
+          "path": "/candidate_presentable",
+          "operation": "set",
+          "before": true,
+          "after": false
+        },
+        {
+          "path": "/condition_results/signature:call_graph",
+          "operation": "set",
+          "before": "supported_synthetic_condition",
+          "after": "conflict"
+        }
+      ],
+      "formal_counterexample_sha256": "94ed4397f0ed32bc8c7372e939c2260a845cf6accbbef458c59fcd6b61610239",
+      "formal_expected_result_sha256": "6f1e97304af564138df4fe7fde893618068107393058248cf6ee29f04bf86d44"
+    },
+    {
+      "u_id": "H048-F03-SIGNATURE-CONSUMER_CONTRACT-MISSING",
+      "root": "F03",
+      "baseline_u_id": "H048-F03-NORMAL",
+      "input_deltas": [
+        {
+          "path": "/packet/signature_after/consumer_contract",
+          "operation": "state_change",
+          "before": {
+            "type": "object",
+            "keys": [
+              "C1",
+              "C2"
+            ]
+          },
+          "after": null
+        }
+      ],
+      "expected_deltas": [
+        {
+          "path": "/candidate_presentable",
+          "operation": "set",
+          "before": true,
+          "after": false
+        },
+        {
+          "path": "/condition_results/signature:consumer_contract",
+          "operation": "set",
+          "before": "supported_synthetic_condition",
+          "after": "missing"
+        }
+      ],
+      "formal_counterexample_sha256": "5bd6ba9a2b5558ec24f155b4ace68d5f50534e10fdbfd9e6cfd92ce8e7327064",
+      "formal_expected_result_sha256": "bb004b4267c16a63b10d594851429ff1fb4ba304f930eb2b79ccdcbf85ec5bc5"
+    },
+    {
+      "u_id": "H048-F03-SIGNATURE-CONSUMER_CONTRACT-MISMATCH",
+      "root": "F03",
+      "baseline_u_id": "H048-F03-NORMAL",
+      "input_deltas": [
+        {
+          "path": "/packet/signature_after/consumer_contract",
+          "operation": "state_change",
+          "before": {
+            "type": "object",
+            "keys": [
+              "C1",
+              "C2"
+            ]
+          },
+          "after": "foreign-signature-value"
+        }
+      ],
+      "expected_deltas": [
+        {
+          "path": "/candidate_presentable",
+          "operation": "set",
+          "before": true,
+          "after": false
+        },
+        {
+          "path": "/condition_results/signature:consumer_contract",
+          "operation": "set",
+          "before": "supported_synthetic_condition",
+          "after": "conflict"
+        }
+      ],
+      "formal_counterexample_sha256": "5c088387819ab9993f8007ca65a54fa95c2e89cd735f7a2ab8affeecca84bff3",
+      "formal_expected_result_sha256": "ddb6490127bc1e02bbf8a96da6e0a2e2aa24a823f39d9a47d118ef032aa3dabf"
+    },
+    {
+      "u_id": "H048-F04-VALID-EXCEPTION",
+      "root": "F04",
+      "baseline_u_id": "H048-F04-VALID-EXCEPTION",
+      "input_deltas": [],
+      "expected_deltas": [],
+      "formal_counterexample_sha256": "9f3f98be913fb9c4b4d5376c3ca3dc0879871b75f6e165b91185db1cb59540a2",
+      "formal_expected_result_sha256": "b2102d593e011bd3f5f0726aac921cb408e186f2be9657fc77570d7f5aea7167"
+    },
+    {
+      "u_id": "H048-F04-OWNER-MISSING",
+      "root": "F04",
+      "baseline_u_id": "H048-F04-VALID-EXCEPTION",
+      "input_deltas": [
+        {
+          "path": "/packet/exception/owner",
+          "operation": "set",
+          "before": "PRODUCT-P-owner",
+          "after": null
+        }
+      ],
+      "expected_deltas": [
+        {
+          "path": "/exception_result",
+          "operation": "set",
+          "before": "valid_for_fixture_scope",
+          "after": "missing_owner"
+        },
+        {
+          "path": "/local_continuation",
+          "operation": "set",
+          "before": true,
+          "after": false
+        }
+      ],
+      "formal_counterexample_sha256": "fd04a4a91c76460ba875899b3e8fd8af81d4bcdb9f4d3bcc36fc1f9236c061ed",
+      "formal_expected_result_sha256": "d983eb377deda3bd3aa36ec08f59017dcc09c85dfb54c44beb676bf8163f7be0"
+    },
+    {
+      "u_id": "H048-F04-EXPIRY-MISSING",
+      "root": "F04",
+      "baseline_u_id": "H048-F04-VALID-EXCEPTION",
+      "input_deltas": [
+        {
+          "path": "/packet/exception/expiry",
+          "operation": "set",
+          "before": "2030-02-01",
+          "after": null
+        }
+      ],
+      "expected_deltas": [
+        {
+          "path": "/exception_result",
+          "operation": "set",
+          "before": "valid_for_fixture_scope",
+          "after": "missing_expiry"
+        },
+        {
+          "path": "/local_continuation",
+          "operation": "set",
+          "before": true,
+          "after": false
+        }
+      ],
+      "formal_counterexample_sha256": "92c0a692e6a60bc060a4fe520a55b196396a098a16a6ae6f63a77ce4b1b0abdd",
+      "formal_expected_result_sha256": "bb26abf3352c1c72a41856e67c8a561e1f154571cdd493a4ed47fd92a057d606"
+    },
+    {
+      "u_id": "H048-F04-EXPIRED",
+      "root": "F04",
+      "baseline_u_id": "H048-F04-VALID-EXCEPTION",
+      "input_deltas": [
+        {
+          "path": "/packet/exception/expiry",
+          "operation": "set",
+          "before": "2030-02-01",
+          "after": "2029-12-31"
+        }
+      ],
+      "expected_deltas": [
+        {
+          "path": "/exception_result",
+          "operation": "set",
+          "before": "valid_for_fixture_scope",
+          "after": "expired"
+        },
+        {
+          "path": "/local_continuation",
+          "operation": "set",
+          "before": true,
+          "after": false
+        }
+      ],
+      "formal_counterexample_sha256": "f713b7a4343000cb7b6807f91206bccd8b60704823505099f4bb6e12a1b6d65b",
+      "formal_expected_result_sha256": "fe6213a77d83c264429d87e37f0e7d0b13cccdf59cec9009afd711f8167b805e"
+    },
+    {
+      "u_id": "H048-F04-REASON-MISSING",
+      "root": "F04",
+      "baseline_u_id": "H048-F04-VALID-EXCEPTION",
+      "input_deltas": [
+        {
+          "path": "/packet/exception/reason",
+          "operation": "set",
+          "before": "役割確定まで既存利用を継続",
+          "after": null
+        }
+      ],
+      "expected_deltas": [
+        {
+          "path": "/exception_result",
+          "operation": "set",
+          "before": "valid_for_fixture_scope",
+          "after": "missing_reason"
+        },
+        {
+          "path": "/local_continuation",
+          "operation": "set",
+          "before": true,
+          "after": false
+        }
+      ],
+      "formal_counterexample_sha256": "b5204f01cfaad67ce3d1efc063c7a635bec9e5ee0496beee57070a73072b92b2",
+      "formal_expected_result_sha256": "c0d8970ba559b2bc763c8d78b179a003c7667100fa33dab5c549ef1c2ebd449e"
+    },
+    {
+      "u_id": "H048-F04-FOREIGN-SCOPE",
+      "root": "F04",
+      "baseline_u_id": "H048-F04-VALID-EXCEPTION",
+      "input_deltas": [
+        {
+          "path": "/packet/exception/scope",
+          "operation": "set",
+          "before": "PRODUCT-P",
+          "after": "PRODUCT-Q"
+        }
+      ],
+      "expected_deltas": [
+        {
+          "path": "/exception_result",
+          "operation": "set",
+          "before": "valid_for_fixture_scope",
+          "after": "scope_conflict"
+        },
+        {
+          "path": "/local_continuation",
+          "operation": "set",
+          "before": true,
+          "after": false
+        }
+      ],
+      "formal_counterexample_sha256": "b9ba4c0ded37166a398a0eb35522c53c9c3a99b6af26ab16de850d7b0495619f",
+      "formal_expected_result_sha256": "36e1108330074349c047b7f8ca1bf7137d3b3f983597971e3d4a878ac851f63b"
+    },
+    {
+      "u_id": "H048-F04-PUBLIC_API",
+      "root": "F04",
+      "baseline_u_id": "H048-F04-VALID-EXCEPTION",
+      "input_deltas": [
+        {
+          "path": "/packet/boundary",
+          "operation": "set",
+          "before": "internal",
+          "after": "public_API"
+        },
+        {
+          "path": "/packet/finding/reason",
+          "operation": "set",
+          "before": "role_unknown",
+          "after": "observable_contract_change"
+        }
+      ],
+      "expected_deltas": [
+        {
+          "path": "/return_candidate",
+          "operation": "set",
+          "before": "product_author",
+          "after": "Redesign_or_Retrofit_with_compatibility_migration"
+        }
+      ],
+      "formal_counterexample_sha256": "e4db5f0143f991002a118ed91e2225b3751a7eea96e3a2a6b332178b3b7aaf42",
+      "formal_expected_result_sha256": "18b24de994352ddb7a29e88e83ed0ae33d38c607f7b64bbcfde4121281f32f58"
+    },
+    {
+      "u_id": "H048-F04-PUBLIC_CLI",
+      "root": "F04",
+      "baseline_u_id": "H048-F04-VALID-EXCEPTION",
+      "input_deltas": [
+        {
+          "path": "/packet/boundary",
+          "operation": "set",
+          "before": "internal",
+          "after": "public_CLI"
+        },
+        {
+          "path": "/packet/finding/reason",
+          "operation": "set",
+          "before": "role_unknown",
+          "after": "observable_contract_change"
+        }
+      ],
+      "expected_deltas": [
+        {
+          "path": "/return_candidate",
+          "operation": "set",
+          "before": "product_author",
+          "after": "Redesign_or_Retrofit_with_compatibility_migration"
+        }
+      ],
+      "formal_counterexample_sha256": "0a66c821e694790f8c6d8426821008ed2bdf9a4d7a25c1457fc44830e6aa4177",
+      "formal_expected_result_sha256": "18b24de994352ddb7a29e88e83ed0ae33d38c607f7b64bbcfde4121281f32f58"
+    },
+    {
+      "u_id": "H048-F04-PERSISTED_FIELD",
+      "root": "F04",
+      "baseline_u_id": "H048-F04-VALID-EXCEPTION",
+      "input_deltas": [
+        {
+          "path": "/packet/boundary",
+          "operation": "set",
+          "before": "internal",
+          "after": "persisted_field"
+        },
+        {
+          "path": "/packet/finding/reason",
+          "operation": "set",
+          "before": "role_unknown",
+          "after": "observable_contract_change"
+        }
+      ],
+      "expected_deltas": [
+        {
+          "path": "/return_candidate",
+          "operation": "set",
+          "before": "product_author",
+          "after": "Redesign_or_Retrofit_with_compatibility_migration"
+        }
+      ],
+      "formal_counterexample_sha256": "d6c9d90cd9352cf842eee59452aec5c1092c19c92458853e0e5e102843603ebb",
+      "formal_expected_result_sha256": "18b24de994352ddb7a29e88e83ed0ae33d38c607f7b64bbcfde4121281f32f58"
+    },
+    {
+      "u_id": "H048-F04-PERSISTED_EVENT",
+      "root": "F04",
+      "baseline_u_id": "H048-F04-VALID-EXCEPTION",
+      "input_deltas": [
+        {
+          "path": "/packet/boundary",
+          "operation": "set",
+          "before": "internal",
+          "after": "persisted_event"
+        },
+        {
+          "path": "/packet/finding/reason",
+          "operation": "set",
+          "before": "role_unknown",
+          "after": "observable_contract_change"
+        }
+      ],
+      "expected_deltas": [
+        {
+          "path": "/return_candidate",
+          "operation": "set",
+          "before": "product_author",
+          "after": "Redesign_or_Retrofit_with_compatibility_migration"
+        }
+      ],
+      "formal_counterexample_sha256": "0ea52bb3fac6bce80cc196da7fc9af9523a843bfc2ec3a7de266207ee87d78f7",
+      "formal_expected_result_sha256": "18b24de994352ddb7a29e88e83ed0ae33d38c607f7b64bbcfde4121281f32f58"
+    },
+    {
+      "u_id": "H048-F04-DIRECT_CONFIG_KEY",
+      "root": "F04",
+      "baseline_u_id": "H048-F04-VALID-EXCEPTION",
+      "input_deltas": [
+        {
+          "path": "/packet/boundary",
+          "operation": "set",
+          "before": "internal",
+          "after": "direct_config_key"
+        },
+        {
+          "path": "/packet/finding/reason",
+          "operation": "set",
+          "before": "role_unknown",
+          "after": "observable_contract_change"
+        }
+      ],
+      "expected_deltas": [
+        {
+          "path": "/return_candidate",
+          "operation": "set",
+          "before": "product_author",
+          "after": "Redesign_or_Retrofit_with_compatibility_migration"
+        }
+      ],
+      "formal_counterexample_sha256": "69665931eb3ed7191855052d5e471241bcba7d7bb6a40e766b71fb10b230e918",
+      "formal_expected_result_sha256": "18b24de994352ddb7a29e88e83ed0ae33d38c607f7b64bbcfde4121281f32f58"
+    },
+    {
+      "u_id": "H048-F04-CONSUMER_INCOMPLETE",
+      "root": "F04",
+      "baseline_u_id": "H048-F04-VALID-EXCEPTION",
+      "input_deltas": [
+        {
+          "path": "/packet/finding/reason",
+          "operation": "set",
+          "before": "role_unknown",
+          "after": "consumer_incomplete"
+        }
+      ],
+      "expected_deltas": [],
+      "formal_counterexample_sha256": "d05588088364bf41dd789bef808b58a674ef8f8b40022e15e24daa34497cb76a",
+      "formal_expected_result_sha256": "b2102d593e011bd3f5f0726aac921cb408e186f2be9657fc77570d7f5aea7167"
+    },
+    {
+      "u_id": "H048-F04-SIGNATURE_MISMATCH",
+      "root": "F04",
+      "baseline_u_id": "H048-F04-VALID-EXCEPTION",
+      "input_deltas": [
+        {
+          "path": "/packet/finding/reason",
+          "operation": "set",
+          "before": "role_unknown",
+          "after": "signature_mismatch"
+        }
+      ],
+      "expected_deltas": [],
+      "formal_counterexample_sha256": "c20013a8e6f251ae1a9923e255e88a015faae4824fb75e1767e250f880509db1",
+      "formal_expected_result_sha256": "b2102d593e011bd3f5f0726aac921cb408e186f2be9657fc77570d7f5aea7167"
+    },
+    {
+      "u_id": "H048-F04-WARNING-GLOBAL-STOP-REJECTED",
+      "root": "F04",
+      "baseline_u_id": "H048-F04-VALID-EXCEPTION",
+      "input_deltas": [
+        {
+          "path": "/packet/warning_requests_global_stop",
+          "operation": "set",
+          "before": false,
+          "after": true
+        }
+      ],
+      "expected_deltas": [],
+      "formal_counterexample_sha256": "02195c908970a4dfa69c9d1bc1845fda43f6dbde412252c52cfd1934526fe55c",
+      "formal_expected_result_sha256": "ac598da0596fdfcd55a39afec632fde915f082f080768811501d5e962bdd6edf"
+    },
+    {
+      "u_id": "H048-B01-NORMAL",
+      "root": "B01",
+      "baseline_u_id": "H048-B01-NORMAL",
+      "input_deltas": [],
+      "expected_deltas": [],
+      "formal_counterexample_sha256": "d5220af177b5bd5c59ee8feeb217aae09075674d537fcc99c6ebfd101f3f9e65",
+      "formal_expected_result_sha256": "07855657914b95d72deaf296b2d13acfa65d58885241740330a103d8d0ef2b7f"
+    },
+    {
+      "u_id": "H048-B01-BRAIN-NORM-OVERRIDE",
+      "root": "B01",
+      "baseline_u_id": "H048-B01-NORMAL",
+      "input_deltas": [
+        {
+          "path": "/packet/proposal/norm_content",
+          "operation": "set",
+          "before": "candidate_and_findings_only",
+          "after": "knowledge_overrides_norm"
+        }
+      ],
+      "expected_deltas": [
+        {
+          "path": "/boundary_results/norm",
+          "operation": "set",
+          "before": "held",
+          "after": "rejected"
+        },
+        {
+          "path": "/owner_return_candidates",
+          "operation": "collection_change",
+          "before": {
+            "type": "array",
+            "count": 0,
+            "values": []
+          },
+          "after": {
+            "type": "array",
+            "count": 1,
+            "values": [
+              "HARNESS-norm-owner"
+            ]
+          }
+        }
+      ],
+      "formal_counterexample_sha256": "30b642d59f0e44c428235ce24cf6eed97003b3825a97dac91b62221df58f5c7d",
+      "formal_expected_result_sha256": "117c2eed1b96c5451485aa1683c75ba4e1133a06a772c1a748fcd7e6dee42d3d"
+    },
+    {
+      "u_id": "H048-B01-BRAIN-PRODUCT-OVERRIDE",
+      "root": "B01",
+      "baseline_u_id": "H048-B01-NORMAL",
+      "input_deltas": [
+        {
+          "path": "/packet/proposal/product_name",
+          "operation": "set",
+          "before": "readValue",
+          "after": "knowledgeChosenName"
+        }
+      ],
+      "expected_deltas": [
+        {
+          "path": "/boundary_results/product_decision",
+          "operation": "set",
+          "before": "held",
+          "after": "rejected"
+        },
+        {
+          "path": "/owner_return_candidates",
+          "operation": "collection_change",
+          "before": {
+            "type": "array",
+            "count": 0,
+            "values": []
+          },
+          "after": {
+            "type": "array",
+            "count": 1,
+            "values": [
+              "product-design-owner"
+            ]
+          }
+        }
+      ],
+      "formal_counterexample_sha256": "bf8a5992388944199fda1c800c2571409f0fef70ea0e204d9e23435d8d09df5b",
+      "formal_expected_result_sha256": "69bb339540145b229b42299d684befeed2d3a947b4972882a5370ddb6216a0ea"
+    },
+    {
+      "u_id": "H048-B01-CI-ADOPTION",
+      "root": "B01",
+      "baseline_u_id": "H048-B01-NORMAL",
+      "input_deltas": [
+        {
+          "path": "/packet/proposal/CI_effect",
+          "operation": "set",
+          "before": "finding_only",
+          "after": "adopt"
+        }
+      ],
+      "expected_deltas": [
+        {
+          "path": "/boundary_results/CI",
+          "operation": "set",
+          "before": "candidate_only",
+          "after": "rejected"
+        },
+        {
+          "path": "/owner_return_candidates",
+          "operation": "collection_change",
+          "before": {
+            "type": "array",
+            "count": 0,
+            "values": []
+          },
+          "after": {
+            "type": "array",
+            "count": 1,
+            "values": [
+              "CI-boundary-owner"
+            ]
+          }
+        }
+      ],
+      "formal_counterexample_sha256": "7b8148593feb7d108974d5315fd47eef8428b5e30f63d943cbd490bf7f900443",
+      "formal_expected_result_sha256": "0233150d07f88290834d288b27d08f23b54da5e47e0bcc057b4af85eff98f47c"
+    },
+    {
+      "u_id": "H048-B01-CI-SELF-MERGE",
+      "root": "B01",
+      "baseline_u_id": "H048-B01-NORMAL",
+      "input_deltas": [
+        {
+          "path": "/packet/proposal/CI_effect",
+          "operation": "set",
+          "before": "finding_only",
+          "after": "self_merge"
+        }
+      ],
+      "expected_deltas": [
+        {
+          "path": "/boundary_results/CI",
+          "operation": "set",
+          "before": "candidate_only",
+          "after": "rejected"
+        },
+        {
+          "path": "/owner_return_candidates",
+          "operation": "collection_change",
+          "before": {
+            "type": "array",
+            "count": 0,
+            "values": []
+          },
+          "after": {
+            "type": "array",
+            "count": 1,
+            "values": [
+              "CI-boundary-owner"
+            ]
+          }
+        }
+      ],
+      "formal_counterexample_sha256": "50e20fd9b98741520cc1780c2dbcaac5c05c26eea809c75fa178624984641c47",
+      "formal_expected_result_sha256": "0233150d07f88290834d288b27d08f23b54da5e47e0bcc057b4af85eff98f47c"
+    },
+    {
+      "u_id": "H048-B01-REQUIREMENT_ID-CHANGE",
+      "root": "B01",
+      "baseline_u_id": "H048-B01-NORMAL",
+      "input_deltas": [
+        {
+          "path": "/packet/protected_after/requirement_id",
+          "operation": "set",
+          "before": "REQ-P",
+          "after": "changed"
+        }
+      ],
+      "expected_deltas": [
+        {
+          "path": "/boundary_results/requirement_id",
+          "operation": "set",
+          "before": "held",
+          "after": "out_of_scope_change_rejected"
+        },
+        {
+          "path": "/owner_return_candidates",
+          "operation": "collection_change",
+          "before": {
+            "type": "array",
+            "count": 0,
+            "values": []
+          },
+          "after": {
+            "type": "array",
+            "count": 1,
+            "values": [
+              "original-meaning-owner"
+            ]
+          }
+        }
+      ],
+      "formal_counterexample_sha256": "3fb34b321e595ffb6de4d38108cf5eb1b078f2828152e7f95a1489c70f20362a",
+      "formal_expected_result_sha256": "9479a02d6977dda52cc8f2ce050e1f6025a5ee039a168b0b8fd594031446827b"
+    },
+    {
+      "u_id": "H048-B01-MECHANISM_ROLE-CHANGE",
+      "root": "B01",
+      "baseline_u_id": "H048-B01-NORMAL",
+      "input_deltas": [
+        {
+          "path": "/packet/protected_after/mechanism_role",
+          "operation": "set",
+          "before": "OS",
+          "after": "changed"
+        }
+      ],
+      "expected_deltas": [
+        {
+          "path": "/boundary_results/mechanism_role",
+          "operation": "set",
+          "before": "held",
+          "after": "out_of_scope_change_rejected"
+        },
+        {
+          "path": "/owner_return_candidates",
+          "operation": "collection_change",
+          "before": {
+            "type": "array",
+            "count": 0,
+            "values": []
+          },
+          "after": {
+            "type": "array",
+            "count": 1,
+            "values": [
+              "original-meaning-owner"
+            ]
+          }
+        }
+      ],
+      "formal_counterexample_sha256": "1b0937334f922aff265eeded4733643ef122bf128172b73820dfcf0aca278019",
+      "formal_expected_result_sha256": "199539064aab95853debec207f0bdda28f26cdf622a5f1dcf279c99a8825cc10"
+    },
+    {
+      "u_id": "H048-B01-ADOPTED_BODY-CHANGE",
+      "root": "B01",
+      "baseline_u_id": "H048-B01-NORMAL",
+      "input_deltas": [
+        {
+          "path": "/packet/protected_after/adopted_body",
+          "operation": "set",
+          "before": "original",
+          "after": "changed"
+        }
+      ],
+      "expected_deltas": [
+        {
+          "path": "/boundary_results/adopted_body",
+          "operation": "set",
+          "before": "held",
+          "after": "out_of_scope_change_rejected"
+        },
+        {
+          "path": "/owner_return_candidates",
+          "operation": "collection_change",
+          "before": {
+            "type": "array",
+            "count": 0,
+            "values": []
+          },
+          "after": {
+            "type": "array",
+            "count": 1,
+            "values": [
+              "original-meaning-owner"
+            ]
+          }
+        }
+      ],
+      "formal_counterexample_sha256": "2b0900875a3ac713259fb3bc9ac61baa11f2c70c39bde49e5ecb4ff2c90afafc",
+      "formal_expected_result_sha256": "acff2a369b02140d7afccbff223266d326424d0dcf255c9b452725400ee558b3"
+    },
+    {
+      "u_id": "F01-MULTIPLE-TARGET-DEFECTS",
+      "root": "F01",
+      "baseline_u_id": "H048-F01-SAME-NAME-DIFFERENT-ROLE",
+      "input_deltas": [
+        {
+          "path": "/packet/targets",
+          "operation": "collection_change",
+          "before": {
+            "type": "array",
+            "count": 2,
+            "ids": [
+              "OBJ-P",
+              "OBJ-R"
+            ]
+          },
+          "after": {
+            "type": "array",
+            "count": 2,
+            "ids": [
+              "A",
+              "B"
+            ]
+          }
+        }
+      ],
+      "expected_deltas": [
+        {
+          "path": "/target_results/A",
+          "operation": "set",
+          "before": "ABSENT",
+          "after": "unknown_role"
+        },
+        {
+          "path": "/target_results/B",
+          "operation": "set",
+          "before": "ABSENT",
+          "after": "missing_consumer"
+        },
+        {
+          "path": "/target_results/OBJ-P",
+          "operation": "remove",
+          "before": "candidate_only:Query",
+          "after": "ABSENT"
+        },
+        {
+          "path": "/target_results/OBJ-R",
+          "operation": "remove",
+          "before": "candidate_only:Repository",
+          "after": "ABSENT"
+        }
+      ],
+      "formal_counterexample_sha256": "4880c4ed4b43e4605808a7cb96e3213598b0d7c247e1cc96740843bf39aee836",
+      "formal_expected_result_sha256": "13020f0fb54f89fcc44364e213386f559d794ba298bda70c6a5f585634498e7a"
+    },
+    {
+      "u_id": "F01-MEANING-NULL",
+      "root": "F01",
+      "baseline_u_id": "H048-F01-SAME-NAME-DIFFERENT-ROLE",
+      "input_deltas": [
+        {
+          "path": "/packet/targets",
+          "operation": "collection_change",
+          "before": {
+            "type": "array",
+            "count": 2,
+            "ids": [
+              "OBJ-P",
+              "OBJ-R"
+            ]
+          },
+          "after": {
+            "type": "array",
+            "count": 2,
+            "ids": [
+              "OBJ-P",
+              "OBJ-R"
+            ]
+          }
+        }
+      ],
+      "expected_deltas": [
+        {
+          "path": "/target_results/OBJ-P",
+          "operation": "set",
+          "before": "candidate_only:Query",
+          "after": "missing_target_meaning"
+        }
+      ],
+      "formal_counterexample_sha256": "2cc842395ccd48304d0874032258103ff599255549addb8af269c309203aaa71",
+      "formal_expected_result_sha256": "5ddd364a7383ab6799a53a8c9674d9f743a895b95ebe7f880682420b6506904d"
+    },
+    {
+      "u_id": "F01-ROLE-ABSENT",
+      "root": "F01",
+      "baseline_u_id": "H048-F01-SAME-NAME-DIFFERENT-ROLE",
+      "input_deltas": [
+        {
+          "path": "/packet/targets",
+          "operation": "collection_change",
+          "before": {
+            "type": "array",
+            "count": 2,
+            "ids": [
+              "OBJ-P",
+              "OBJ-R"
+            ]
+          },
+          "after": {
+            "type": "array",
+            "count": 2,
+            "ids": [
+              "OBJ-P",
+              "OBJ-R"
+            ]
+          }
+        }
+      ],
+      "expected_deltas": [
+        {
+          "path": "/target_results/OBJ-P",
+          "operation": "set",
+          "before": "candidate_only:Query",
+          "after": "unknown_role"
+        }
+      ],
+      "formal_counterexample_sha256": "61f719ebe592a938fbfdc9a9ee55550740339a6117157bbb71fb1b67b4523c91",
+      "formal_expected_result_sha256": "bc6247e89c16fdf4fa11d1b5ee8b2160cdefa4603802ef53ccf02e36748d0fd2"
+    },
+    {
+      "u_id": "F01-FOREIGN-EXCEPTION-SCOPE",
+      "root": "F01",
+      "baseline_u_id": "H048-F01-SAME-NAME-DIFFERENT-ROLE",
+      "input_deltas": [
+        {
+          "path": "/packet/targets",
+          "operation": "collection_change",
+          "before": {
+            "type": "array",
+            "count": 2,
+            "ids": [
+              "OBJ-P",
+              "OBJ-R"
+            ]
+          },
+          "after": {
+            "type": "array",
+            "count": 2,
+            "ids": [
+              "OBJ-P",
+              "OBJ-R"
+            ]
+          }
+        }
+      ],
+      "expected_deltas": [
+        {
+          "path": "/target_results/OBJ-P",
+          "operation": "set",
+          "before": "candidate_only:Query",
+          "after": "missing_scoped_exception"
+        }
+      ],
+      "formal_counterexample_sha256": "c97254f486a7ab51e3eb259ebf6b48312b0b5a9f76506d4a3bdf4778b3acc959",
+      "formal_expected_result_sha256": "bf628ccf4f8653b65ae481aa9ec013344ad4b1739e4a3ad8d2051c26903669e4"
+    },
+    {
+      "u_id": "F02-COMPOSITE-EDGE-BINDING",
+      "root": "F02",
+      "baseline_u_id": "H048-F02-NORMAL",
+      "input_deltas": [
+        {
+          "path": "/packet/before/object",
+          "operation": "set",
+          "before": "OBJ-P",
+          "after": "OBJ-X"
+        },
+        {
+          "path": "/packet/oracle_edge/oracle",
+          "operation": "set",
+          "before": "ORACLE-P",
+          "after": "ORACLE-X"
+        },
+        {
+          "path": "/packet/pair/requirement_object",
+          "operation": "set",
+          "before": "OBJ-P",
+          "after": "OBJ-X"
+        },
+        {
+          "path": "/packet/symbol_edge/operation",
+          "operation": "set",
+          "before": "read",
+          "after": "write"
+        }
+      ],
+      "expected_deltas": [
+        {
+          "path": "/edge_results/object_identity",
+          "operation": "set",
+          "before": "held",
+          "after": "conflict"
+        },
+        {
+          "path": "/edge_results/oracle_edge",
+          "operation": "set",
+          "before": "bound",
+          "after": "conflict"
+        },
+        {
+          "path": "/edge_results/pair",
+          "operation": "set",
+          "before": "same_object",
+          "after": "conflict"
+        },
+        {
+          "path": "/edge_results/symbol_edge",
+          "operation": "set",
+          "before": "bound",
+          "after": "conflict"
+        }
+      ],
+      "formal_counterexample_sha256": "b31b6a91dfaaee00e877674ae030e1588342a11cbd86929bcd7645cff9f75093",
+      "formal_expected_result_sha256": "a1a52e5ceda51761a3bdd7d827b7aab3dc9330f9eefda8566313cb5856c1c6eb"
+    },
+    {
+      "u_id": "F02-STABLE-NULL-AND-EDGE-ABSENT",
+      "root": "F02",
+      "baseline_u_id": "H048-F02-NORMAL",
+      "input_deltas": [
+        {
+          "path": "/packet/oracle_edge",
+          "operation": "remove",
+          "before": {
+            "type": "object",
+            "keys": [
+              "object",
+              "operation",
+              "oracle"
+            ]
+          },
+          "after": "ABSENT"
+        },
+        {
+          "path": "/packet/stable_object",
+          "operation": "set",
+          "before": "OBJ-P",
+          "after": null
+        }
+      ],
+      "expected_deltas": [
+        {
+          "path": "/edge_results/object_identity",
+          "operation": "set",
+          "before": "held",
+          "after": "missing"
+        },
+        {
+          "path": "/edge_results/oracle_edge",
+          "operation": "set",
+          "before": "bound",
+          "after": "missing"
+        },
+        {
+          "path": "/edge_results/pair",
+          "operation": "set",
+          "before": "same_object",
+          "after": "unknown"
+        },
+        {
+          "path": "/edge_results/symbol_edge",
+          "operation": "set",
+          "before": "bound",
+          "after": "unknown"
+        }
+      ],
+      "formal_counterexample_sha256": "1791fa22e9ef6b1a5ab1075843c43a2c8dd00b81cb9289635a96bfa14a6e97e9",
+      "formal_expected_result_sha256": "98dbf0a01a9b50fa080f593c246e046748a977e64e453a0ec94584bcdbbb0a38"
+    },
+    {
+      "u_id": "F02-ORACLE-OPERATION-NULL",
+      "root": "F02",
+      "baseline_u_id": "H048-F02-NORMAL",
+      "input_deltas": [
+        {
+          "path": "/packet/oracle_edge/operation",
+          "operation": "set",
+          "before": "read",
+          "after": null
+        }
+      ],
+      "expected_deltas": [
+        {
+          "path": "/edge_results/oracle_edge",
+          "operation": "set",
+          "before": "bound",
+          "after": "missing"
+        }
+      ],
+      "formal_counterexample_sha256": "06ebd750e98899d9aeda6d8f102fd02d5fa8e97be90f69cb98d7e21dd71d60c4",
+      "formal_expected_result_sha256": "797ebd975d1dc3e7159c907a756c5b5d20dd48bc3c7cff2339df80d0c70a880a"
+    },
+    {
+      "u_id": "F03-COMPOSITE-MISSING-CONFLICT",
+      "root": "F03",
+      "baseline_u_id": "H048-F03-NORMAL",
+      "input_deltas": [
+        {
+          "path": "/packet/canonical_decision/owner",
+          "operation": "set",
+          "before": "PRODUCT-P-owner",
+          "after": null
+        },
+        {
+          "path": "/packet/observed_consumers/1",
+          "operation": "set",
+          "before": "C2",
+          "after": "CX"
+        },
+        {
+          "path": "/packet/rollback",
+          "operation": "state_change",
+          "before": {
+            "type": "object",
+            "keys": [
+              "preserve_object",
+              "preserve_oracle",
+              "restore_symbol"
+            ]
+          },
+          "after": null
+        },
+        {
+          "path": "/packet/signature_after/effects",
+          "operation": "collection_change",
+          "before": {
+            "type": "array",
+            "count": 0,
+            "values": []
+          },
+          "after": {
+            "type": "array",
+            "count": 1,
+            "values": [
+              "write"
+            ]
+          }
+        },
+        {
+          "path": "/packet/signature_before/outputs",
+          "operation": "state_change",
+          "before": {
+            "type": "array",
+            "count": 1,
+            "values": [
+              "value"
+            ]
+          },
+          "after": null
+        }
+      ],
+      "expected_deltas": [
+        {
+          "path": "/candidate_presentable",
+          "operation": "set",
+          "before": true,
+          "after": false
+        },
+        {
+          "path": "/condition_results/canonical",
+          "operation": "set",
+          "before": "supported_synthetic_condition",
+          "after": "missing"
+        },
+        {
+          "path": "/condition_results/consumers",
+          "operation": "set",
+          "before": "supported_synthetic_condition",
+          "after": "conflict"
+        },
+        {
+          "path": "/condition_results/rollback",
+          "operation": "set",
+          "before": "supported_synthetic_condition",
+          "after": "missing"
+        },
+        {
+          "path": "/condition_results/signature:effects",
+          "operation": "set",
+          "before": "supported_synthetic_condition",
+          "after": "conflict"
+        },
+        {
+          "path": "/condition_results/signature:outputs",
+          "operation": "set",
+          "before": "supported_synthetic_condition",
+          "after": "missing"
+        }
+      ],
+      "formal_counterexample_sha256": "83e60c97a0e6865ba8047da2d937da04ebe23e075a586ed2ccd670f8fe3d12ba",
+      "formal_expected_result_sha256": "1026179a4c869784dc002e8276a2f36fb1b187928bd6be7e1612eb54f18f8351"
+    },
+    {
+      "u_id": "F03-CANONICAL-REVISION-STALE",
+      "root": "F03",
+      "baseline_u_id": "H048-F03-NORMAL",
+      "input_deltas": [
+        {
+          "path": "/packet/canonical_decision/revision",
+          "operation": "set",
+          "before": "decision-P@r1",
+          "after": "decision-P@old"
+        }
+      ],
+      "expected_deltas": [
+        {
+          "path": "/candidate_presentable",
+          "operation": "set",
+          "before": true,
+          "after": false
+        },
+        {
+          "path": "/condition_results/canonical",
+          "operation": "set",
+          "before": "supported_synthetic_condition",
+          "after": "stale"
+        }
+      ],
+      "formal_counterexample_sha256": "31b48dd019635c05c73575d54c8f3df2abda2f8d9585de760cc56a8f54669ad4",
+      "formal_expected_result_sha256": "7f90a4c659f4e5762b7c6209053277749670265e65ebf99955dadd4185407e3c"
+    },
+    {
+      "u_id": "F03-CANONICAL-OWNER-FOREIGN",
+      "root": "F03",
+      "baseline_u_id": "H048-F03-NORMAL",
+      "input_deltas": [
+        {
+          "path": "/packet/canonical_decision/owner",
+          "operation": "set",
+          "before": "PRODUCT-P-owner",
+          "after": "FOREIGN"
+        }
+      ],
+      "expected_deltas": [
+        {
+          "path": "/candidate_presentable",
+          "operation": "set",
+          "before": true,
+          "after": false
+        },
+        {
+          "path": "/condition_results/canonical",
+          "operation": "set",
+          "before": "supported_synthetic_condition",
+          "after": "conflict"
+        }
+      ],
+      "formal_counterexample_sha256": "140926b4fb80fdc4e6f7586bb35379040a20704a29de43d8608f84cfc8f805e2",
+      "formal_expected_result_sha256": "c9d24b8fd97959c782c801ebcf86dba8fd218eda713cd63911660ee78acacaa2"
+    },
+    {
+      "u_id": "F03-ROLLBACK-FOREIGN-ORACLE",
+      "root": "F03",
+      "baseline_u_id": "H048-F03-NORMAL",
+      "input_deltas": [
+        {
+          "path": "/packet/rollback/preserve_oracle",
+          "operation": "set",
+          "before": "ORACLE-P",
+          "after": "FOREIGN"
+        }
+      ],
+      "expected_deltas": [
+        {
+          "path": "/candidate_presentable",
+          "operation": "set",
+          "before": true,
+          "after": false
+        },
+        {
+          "path": "/condition_results/rollback",
+          "operation": "set",
+          "before": "supported_synthetic_condition",
+          "after": "conflict"
+        }
+      ],
+      "formal_counterexample_sha256": "f692770f2b594191484129f6debd1a6b655d72bd2f65d82085b09988a9071d83",
+      "formal_expected_result_sha256": "da59ad4fbcaf4775facdf05e3addf0f0a2c413ccca1fdd3df8968c67e5f7840b"
+    },
+    {
+      "u_id": "F03-INVARIANT-FOREIGN-ORACLE",
+      "root": "F03",
+      "baseline_u_id": "H048-F03-NORMAL",
+      "input_deltas": [
+        {
+          "path": "/packet/behavior_invariant/oracle",
+          "operation": "set",
+          "before": "ORACLE-P",
+          "after": "FOREIGN"
+        }
+      ],
+      "expected_deltas": [
+        {
+          "path": "/candidate_presentable",
+          "operation": "set",
+          "before": true,
+          "after": false
+        },
+        {
+          "path": "/condition_results/behavior_invariant",
+          "operation": "set",
+          "before": "supported_synthetic_condition",
+          "after": "conflict"
+        }
+      ],
+      "formal_counterexample_sha256": "4ab1f00e6aed6c20706a4569fb0542df3ff07a6600261676f028a1eb68d81bbd",
+      "formal_expected_result_sha256": "31b693e3263fd89145dd27c2f1413c278416f844a3809bfd06807ab2d76b4acf"
+    },
+    {
+      "u_id": "F03-SIGNATURE-ROOT-NULL",
+      "root": "F03",
+      "baseline_u_id": "H048-F03-NORMAL",
+      "input_deltas": [
+        {
+          "path": "/packet/signature_before",
+          "operation": "state_change",
+          "before": {
+            "type": "object",
+            "keys": [
+              "call_graph",
+              "consumer_contract",
+              "effects",
+              "failure",
+              "inputs",
+              "outputs",
+              "state_transition"
+            ]
+          },
+          "after": null
+        }
+      ],
+      "expected_deltas": [
+        {
+          "path": "/candidate_presentable",
+          "operation": "set",
+          "before": true,
+          "after": false
+        },
+        {
+          "path": "/condition_results/signature:call_graph",
+          "operation": "set",
+          "before": "supported_synthetic_condition",
+          "after": "missing"
+        },
+        {
+          "path": "/condition_results/signature:consumer_contract",
+          "operation": "set",
+          "before": "supported_synthetic_condition",
+          "after": "missing"
+        },
+        {
+          "path": "/condition_results/signature:effects",
+          "operation": "set",
+          "before": "supported_synthetic_condition",
+          "after": "missing"
+        },
+        {
+          "path": "/condition_results/signature:failure",
+          "operation": "set",
+          "before": "supported_synthetic_condition",
+          "after": "missing"
+        },
+        {
+          "path": "/condition_results/signature:inputs",
+          "operation": "set",
+          "before": "supported_synthetic_condition",
+          "after": "missing"
+        },
+        {
+          "path": "/condition_results/signature:outputs",
+          "operation": "set",
+          "before": "supported_synthetic_condition",
+          "after": "missing"
+        },
+        {
+          "path": "/condition_results/signature:state_transition",
+          "operation": "set",
+          "before": "supported_synthetic_condition",
+          "after": "missing"
+        }
+      ],
+      "formal_counterexample_sha256": "bc6079e74e1c8a62a3bb53719ab365f2c8b1e830bfe71746850b9b2f72029b31",
+      "formal_expected_result_sha256": "d90fd6260f9bc4efa49ac4d82b98f5f537edfbba918cddfb510b2b58163118d9"
+    },
+    {
+      "u_id": "F03-SIGNATURE-FIELD-ABSENT",
+      "root": "F03",
+      "baseline_u_id": "H048-F03-NORMAL",
+      "input_deltas": [
+        {
+          "path": "/packet/signature_after/inputs",
+          "operation": "remove",
+          "before": {
+            "type": "array",
+            "count": 1,
+            "values": [
+              "value_id"
+            ]
+          },
+          "after": "ABSENT"
+        }
+      ],
+      "expected_deltas": [
+        {
+          "path": "/candidate_presentable",
+          "operation": "set",
+          "before": true,
+          "after": false
+        },
+        {
+          "path": "/condition_results/signature:inputs",
+          "operation": "set",
+          "before": "supported_synthetic_condition",
+          "after": "missing"
+        }
+      ],
+      "formal_counterexample_sha256": "4911d34987265ff45c40edbd777931a7be1aed067109259b856897f971b3695f",
+      "formal_expected_result_sha256": "575334693ee06c2aaa5010d2bc1c5cd30953f0bfc09bca79da0278352487391b"
+    },
+    {
+      "u_id": "F04-COMPOSITE-PUBLIC-MISSING",
+      "root": "F04",
+      "baseline_u_id": "H048-F04-VALID-EXCEPTION",
+      "input_deltas": [
+        {
+          "path": "/packet/boundary",
+          "operation": "set",
+          "before": "internal",
+          "after": "public_API"
+        },
+        {
+          "path": "/packet/exception/expiry",
+          "operation": "set",
+          "before": "2030-02-01",
+          "after": null
+        },
+        {
+          "path": "/packet/exception/owner",
+          "operation": "set",
+          "before": "PRODUCT-P-owner",
+          "after": null
+        },
+        {
+          "path": "/packet/warning_requests_global_stop",
+          "operation": "set",
+          "before": false,
+          "after": true
+        }
+      ],
+      "expected_deltas": [
+        {
+          "path": "/exception_result",
+          "operation": "set",
+          "before": "valid_for_fixture_scope",
+          "after": "missing_owner"
+        },
+        {
+          "path": "/local_continuation",
+          "operation": "set",
+          "before": true,
+          "after": false
+        },
+        {
+          "path": "/return_candidate",
+          "operation": "set",
+          "before": "product_author",
+          "after": "Redesign_or_Retrofit_with_compatibility_migration"
+        }
+      ],
+      "formal_counterexample_sha256": "cf9fab56e543fc87687909875fcaa4b6b13c7d99587fe3cc01f17401c0b4734f",
+      "formal_expected_result_sha256": "cdcfc3e622796e0ec24d4ec69ebc961dd0eff15f389541286bd01cd62a16f444"
+    },
+    {
+      "u_id": "F04-EXCEPTION-ABSENT",
+      "root": "F04",
+      "baseline_u_id": "H048-F04-VALID-EXCEPTION",
+      "input_deltas": [
+        {
+          "path": "/packet/exception",
+          "operation": "remove",
+          "before": {
+            "type": "object",
+            "keys": [
+              "expiry",
+              "owner",
+              "reason",
+              "scope"
+            ]
+          },
+          "after": "ABSENT"
+        }
+      ],
+      "expected_deltas": [
+        {
+          "path": "/exception_result",
+          "operation": "set",
+          "before": "valid_for_fixture_scope",
+          "after": "missing_exception"
+        },
+        {
+          "path": "/local_continuation",
+          "operation": "set",
+          "before": true,
+          "after": false
+        }
+      ],
+      "formal_counterexample_sha256": "302a9fd154817d9dd7d35873c05ce10c02848fcf2974f3902c0f8bf942630651",
+      "formal_expected_result_sha256": "7fd3b79b283e475baf4a7ad00ab929816c55800c0cb88ca514c0a22da9cc47a9"
+    },
+    {
+      "u_id": "F04-EXPIRY-EQUAL-UNDEFINED",
+      "root": "F04",
+      "baseline_u_id": "H048-F04-VALID-EXCEPTION",
+      "input_deltas": [
+        {
+          "path": "/packet/exception/expiry",
+          "operation": "set",
+          "before": "2030-02-01",
+          "after": "2030-01-01"
+        }
+      ],
+      "expected_deltas": [
+        {
+          "path": "/exception_result",
+          "operation": "set",
+          "before": "valid_for_fixture_scope",
+          "after": "unknown"
+        },
+        {
+          "path": "/local_continuation",
+          "operation": "set",
+          "before": true,
+          "after": false
+        }
+      ],
+      "formal_counterexample_sha256": "78b8c8a55388b0544cd51211640719fa347385b060f9bdf8e1bd30a826565db2",
+      "formal_expected_result_sha256": "ad8caa432fa596f5f6caece138d3adf11376e6ed4020ad86796ff7c9a2b8b2af"
+    },
+    {
+      "u_id": "F04-FINDING-ID-NULL",
+      "root": "F04",
+      "baseline_u_id": "H048-F04-VALID-EXCEPTION",
+      "input_deltas": [
+        {
+          "path": "/packet/finding/id",
+          "operation": "set",
+          "before": "FIND-P",
+          "after": null
+        }
+      ],
+      "expected_deltas": [
+        {
+          "path": "/finding_retained",
+          "operation": "set",
+          "before": "FIND-P",
+          "after": null
+        }
+      ],
+      "formal_counterexample_sha256": "eb01c03d63695248697064d3434d21bbe2280b39dca59a2961f263ff329fef61",
+      "formal_expected_result_sha256": "de94ee1b21c9ef89c5f45c4c491dedbef480c2aadcd6df1f3797ea97a75c53bc"
+    },
+    {
+      "u_id": "B01-COMPOSITE-OWNERS",
+      "root": "B01",
+      "baseline_u_id": "H048-B01-NORMAL",
+      "input_deltas": [
+        {
+          "path": "/packet/proposal/CI_effect",
+          "operation": "set",
+          "before": "finding_only",
+          "after": "self_merge"
+        },
+        {
+          "path": "/packet/proposal/norm_content",
+          "operation": "set",
+          "before": "candidate_and_findings_only",
+          "after": "OVERRIDE"
+        },
+        {
+          "path": "/packet/proposal/product_name",
+          "operation": "set",
+          "before": "readValue",
+          "after": "FOREIGN"
+        },
+        {
+          "path": "/packet/protected_after/mechanism_role",
+          "operation": "set",
+          "before": "OS",
+          "after": "CHANGED"
+        },
+        {
+          "path": "/packet/protected_after/requirement_id",
+          "operation": "set",
+          "before": "REQ-P",
+          "after": "CHANGED"
+        }
+      ],
+      "expected_deltas": [
+        {
+          "path": "/boundary_results/CI",
+          "operation": "set",
+          "before": "candidate_only",
+          "after": "rejected"
+        },
+        {
+          "path": "/boundary_results/mechanism_role",
+          "operation": "set",
+          "before": "held",
+          "after": "out_of_scope_change_rejected"
+        },
+        {
+          "path": "/boundary_results/norm",
+          "operation": "set",
+          "before": "held",
+          "after": "rejected"
+        },
+        {
+          "path": "/boundary_results/product_decision",
+          "operation": "set",
+          "before": "held",
+          "after": "rejected"
+        },
+        {
+          "path": "/boundary_results/requirement_id",
+          "operation": "set",
+          "before": "held",
+          "after": "out_of_scope_change_rejected"
+        },
+        {
+          "path": "/owner_return_candidates",
+          "operation": "collection_change",
+          "before": {
+            "type": "array",
+            "count": 0,
+            "values": []
+          },
+          "after": {
+            "type": "array",
+            "count": 4,
+            "values": [
+              "HARNESS-norm-owner",
+              "product-design-owner",
+              "CI-boundary-owner",
+              "original-meaning-owner"
+            ]
+          }
+        }
+      ],
+      "formal_counterexample_sha256": "7dc5807fcd24a2e6171afd673d2a6a86875b6d1a68dff7f074893ff7600a7a67",
+      "formal_expected_result_sha256": "6e4c3b519361113974eb7d7b290d5571ea2ea94cc6f264ef1a1442b0db120a3b"
+    },
+    {
+      "u_id": "B01-SOURCE-OWNER-FOREIGN",
+      "root": "B01",
+      "baseline_u_id": "H048-B01-NORMAL",
+      "input_deltas": [
+        {
+          "path": "/packet/norm_source/owner",
+          "operation": "set",
+          "before": "HARNESS",
+          "after": "BRAIN"
+        }
+      ],
+      "expected_deltas": [
+        {
+          "path": "/boundary_results/norm",
+          "operation": "set",
+          "before": "held",
+          "after": "rejected"
+        },
+        {
+          "path": "/owner_return_candidates",
+          "operation": "collection_change",
+          "before": {
+            "type": "array",
+            "count": 0,
+            "values": []
+          },
+          "after": {
+            "type": "array",
+            "count": 1,
+            "values": [
+              "HARNESS-norm-owner"
+            ]
+          }
+        }
+      ],
+      "formal_counterexample_sha256": "e222a379552ce87a4c85816db785098d96fe5bc5ddff9fe844582e6a01101b90",
+      "formal_expected_result_sha256": "117c2eed1b96c5451485aa1683c75ba4e1133a06a772c1a748fcd7e6dee42d3d"
+    },
+    {
+      "u_id": "B01-SOURCE-REVISION-STALE",
+      "root": "B01",
+      "baseline_u_id": "H048-B01-NORMAL",
+      "input_deltas": [
+        {
+          "path": "/packet/product_decision/revision",
+          "operation": "set",
+          "before": "decision@r1",
+          "after": "decision@old"
+        }
+      ],
+      "expected_deltas": [
+        {
+          "path": "/boundary_results/product_decision",
+          "operation": "set",
+          "before": "held",
+          "after": "stale"
+        },
+        {
+          "path": "/owner_return_candidates",
+          "operation": "collection_change",
+          "before": {
+            "type": "array",
+            "count": 0,
+            "values": []
+          },
+          "after": {
+            "type": "array",
+            "count": 1,
+            "values": [
+              "product-design-owner"
+            ]
+          }
+        }
+      ],
+      "formal_counterexample_sha256": "4bc9110645e972a87ff0b30c774c7ee006f9744f7ad38ca0cd93201714ebb9ab",
+      "formal_expected_result_sha256": "1b5fed9b5f6ad161f9e674505a7dd30361ff4f91229dbaad11082dfe3160dcd7"
+    },
+    {
+      "u_id": "B01-MISSING-ORIGINALS",
+      "root": "B01",
+      "baseline_u_id": "H048-B01-NORMAL",
+      "input_deltas": [
+        {
+          "path": "/packet/norm_source",
+          "operation": "state_change",
+          "before": {
+            "type": "object",
+            "keys": [
+              "content",
+              "owner",
+              "revision"
+            ]
+          },
+          "after": null
+        },
+        {
+          "path": "/packet/proposal/CI_effect",
+          "operation": "set",
+          "before": "finding_only",
+          "after": null
+        },
+        {
+          "path": "/packet/protected_before/adopted_body",
+          "operation": "remove",
+          "before": "original",
+          "after": "ABSENT"
+        }
+      ],
+      "expected_deltas": [
+        {
+          "path": "/boundary_results/CI",
+          "operation": "set",
+          "before": "candidate_only",
+          "after": "missing"
+        },
+        {
+          "path": "/boundary_results/adopted_body",
+          "operation": "set",
+          "before": "held",
+          "after": "unknown"
+        },
+        {
+          "path": "/boundary_results/norm",
+          "operation": "set",
+          "before": "held",
+          "after": "missing"
+        },
+        {
+          "path": "/owner_return_candidates",
+          "operation": "collection_change",
+          "before": {
+            "type": "array",
+            "count": 0,
+            "values": []
+          },
+          "after": {
+            "type": "array",
+            "count": 3,
+            "values": [
+              "HARNESS-norm-owner",
+              "CI-boundary-owner",
+              "original-meaning-owner"
+            ]
+          }
+        }
+      ],
+      "formal_counterexample_sha256": "6c28f9a1c68075eb2f00ddf6cfbe465ce570ecc0613a1060b145f3151014117c",
+      "formal_expected_result_sha256": "b38703fa22b17271aac517a7944937fb3094d2930c071145e98fa9e585f4c114"
+    },
+    {
+      "u_id": "DOMAIN-F01-EMPTY-TARGETS",
+      "root": "F01",
+      "baseline_u_id": "H048-F01-SAME-NAME-DIFFERENT-ROLE",
+      "input_deltas": [
+        {
+          "path": "/packet/targets",
+          "operation": "collection_change",
+          "before": {
+            "type": "array",
+            "count": 2,
+            "ids": [
+              "OBJ-P",
+              "OBJ-R"
+            ]
+          },
+          "after": {
+            "type": "array",
+            "count": 0,
+            "values": []
+          }
+        }
+      ],
+      "expected_deltas": [
+        {
+          "path": "/target_results/OBJ-P",
+          "operation": "remove",
+          "before": "candidate_only:Query",
+          "after": "ABSENT"
+        },
+        {
+          "path": "/target_results/OBJ-R",
+          "operation": "remove",
+          "before": "candidate_only:Repository",
+          "after": "ABSENT"
+        }
+      ],
+      "formal_counterexample_sha256": "50360339b4d249412820667f6070e36574fec0c3599e50800abbc5196c511a9f",
+      "formal_expected_result_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "u_id": "DOMAIN-F01-VOCABULARY-ABSENT",
+      "root": "F01",
+      "baseline_u_id": "H048-F01-SAME-NAME-DIFFERENT-ROLE",
+      "input_deltas": [
+        {
+          "path": "/packet/role_vocabulary",
+          "operation": "remove",
+          "before": {
+            "type": "array",
+            "count": 13,
+            "values": null
+          },
+          "after": "ABSENT"
+        }
+      ],
+      "expected_deltas": [
+        {
+          "path": "/target_results/OBJ-P",
+          "operation": "set",
+          "before": "candidate_only:Query",
+          "after": "unknown_role"
+        },
+        {
+          "path": "/target_results/OBJ-R",
+          "operation": "set",
+          "before": "candidate_only:Repository",
+          "after": "unknown_role"
+        }
+      ],
+      "formal_counterexample_sha256": "d15fd841b6eae164529c46a7785a397f82904a90bc229af6bbd5e57708b0758e",
+      "formal_expected_result_sha256": "17921e808136723f28fd6a722f8bf407df116bab184252cbf906f7a0ce3facff"
+    },
+    {
+      "u_id": "DOMAIN-F01-NULL-CONSUMERS",
+      "root": "F01",
+      "baseline_u_id": "H048-F01-SAME-NAME-DIFFERENT-ROLE",
+      "input_deltas": [
+        {
+          "path": "/packet/targets",
+          "operation": "collection_change",
+          "before": {
+            "type": "array",
+            "count": 2,
+            "ids": [
+              "OBJ-P",
+              "OBJ-R"
+            ]
+          },
+          "after": {
+            "type": "array",
+            "count": 2,
+            "ids": [
+              "OBJ-P",
+              "OBJ-R"
+            ]
+          }
+        }
+      ],
+      "expected_deltas": [
+        {
+          "path": "/target_results/OBJ-P",
+          "operation": "set",
+          "before": "candidate_only:Query",
+          "after": "missing_consumer"
+        }
+      ],
+      "formal_counterexample_sha256": "bd22926b17023802ce7c3076f79e74f4c4d89fa488f3ffb0d1739c2c1756658c",
+      "formal_expected_result_sha256": "97d002f4cba241a1b32d4045523fffefea912adda867610382d71c356fb0f489"
+    },
+    {
+      "u_id": "DOMAIN-F01-CONTEXT-SCOPE-AND-Q",
+      "root": "F01",
+      "baseline_u_id": "H048-F01-SAME-NAME-DIFFERENT-ROLE",
+      "input_deltas": [
+        {
+          "path": "/context/scope",
+          "operation": "set",
+          "before": "PRODUCT-P",
+          "after": "PRODUCT-Q"
+        },
+        {
+          "path": "/context/unaffected_Q",
+          "operation": "set",
+          "before": "original_Q",
+          "after": "retained_Q_probe"
+        },
+        {
+          "path": "/packet/targets",
+          "operation": "collection_change",
+          "before": {
+            "type": "array",
+            "count": 2,
+            "ids": [
+              "OBJ-P",
+              "OBJ-R"
+            ]
+          },
+          "after": {
+            "type": "array",
+            "count": 2,
+            "ids": [
+              "OBJ-P",
+              "OBJ-R"
+            ]
+          }
+        }
+      ],
+      "expected_deltas": [
+        {
+          "path": "/target_results/OBJ-P",
+          "operation": "set",
+          "before": "candidate_only:Query",
+          "after": "missing_scoped_exception"
+        },
+        {
+          "path": "/unaffected_Q",
+          "operation": "set",
+          "before": "original_Q",
+          "after": "retained_Q_probe"
+        }
+      ],
+      "formal_counterexample_sha256": "cf3e173ceec721f7a9d6ba1ba1095f9cee78a9e9736be017621e63a04d6b9d97",
+      "formal_expected_result_sha256": "bf628ccf4f8653b65ae481aa9ec013344ad4b1739e4a3ad8d2051c26903669e4"
+    },
+    {
+      "u_id": "DOMAIN-F02-ORACLE-TBD",
+      "root": "F02",
+      "baseline_u_id": "H048-F02-NORMAL",
+      "input_deltas": [
+        {
+          "path": "/packet/stable_oracle",
+          "operation": "set",
+          "before": "ORACLE-P",
+          "after": "TBD"
+        }
+      ],
+      "expected_deltas": [
+        {
+          "path": "/edge_results/oracle_edge",
+          "operation": "set",
+          "before": "bound",
+          "after": "unknown"
+        },
+        {
+          "path": "/edge_results/oracle_identity",
+          "operation": "set",
+          "before": "held",
+          "after": "unknown"
+        }
+      ],
+      "formal_counterexample_sha256": "a804278b73508f156f6f71bf6ee6c2f270f46f0bfec291c1a848d7c9c290708d",
+      "formal_expected_result_sha256": "a3115b20c736121a0b739adb209645c4b499503ea2cd15864f6ac875f73fc644"
+    },
+    {
+      "u_id": "DOMAIN-F02-PAIR-ABSENT",
+      "root": "F02",
+      "baseline_u_id": "H048-F02-NORMAL",
+      "input_deltas": [
+        {
+          "path": "/packet/pair",
+          "operation": "remove",
+          "before": {
+            "type": "object",
+            "keys": [
+              "requirement_object",
+              "verification_object"
+            ]
+          },
+          "after": "ABSENT"
+        }
+      ],
+      "expected_deltas": [
+        {
+          "path": "/edge_results/pair",
+          "operation": "set",
+          "before": "same_object",
+          "after": "missing"
+        }
+      ],
+      "formal_counterexample_sha256": "d2ba29660d3cb43bf0d675cdb67dc47143a63ebf7c96f875c46709379c692aaf",
+      "formal_expected_result_sha256": "c4e274841a40434fb8e05d7da6b26f5bf35ec627cc628721f4cc677258689e1a"
+    },
+    {
+      "u_id": "DOMAIN-F02-BEFORE-NULL",
+      "root": "F02",
+      "baseline_u_id": "H048-F02-NORMAL",
+      "input_deltas": [
+        {
+          "path": "/packet/before",
+          "operation": "state_change",
+          "before": {
+            "type": "object",
+            "keys": [
+              "object",
+              "oracle",
+              "symbol"
+            ]
+          },
+          "after": null
+        }
+      ],
+      "expected_deltas": [
+        {
+          "path": "/edge_results/object_identity",
+          "operation": "set",
+          "before": "held",
+          "after": "missing"
+        },
+        {
+          "path": "/edge_results/oracle_identity",
+          "operation": "set",
+          "before": "held",
+          "after": "missing"
+        }
+      ],
+      "formal_counterexample_sha256": "21a880343dce60534b0fb54b3c1abade512a3fec4b3ba01a0438ddb51b2a9e38",
+      "formal_expected_result_sha256": "6a1963a886b8ad550448c8a5481287f47ac00124dfe3895c2ccabb05cebfa9eb"
+    },
+    {
+      "u_id": "DOMAIN-F02-ORACLE-EDGE-UNKNOWN",
+      "root": "F02",
+      "baseline_u_id": "H048-F02-NORMAL",
+      "input_deltas": [
+        {
+          "path": "/packet/oracle_edge/oracle",
+          "operation": "set",
+          "before": "ORACLE-P",
+          "after": "TBD"
+        }
+      ],
+      "expected_deltas": [
+        {
+          "path": "/edge_results/oracle_edge",
+          "operation": "set",
+          "before": "bound",
+          "after": "unknown"
+        }
+      ],
+      "formal_counterexample_sha256": "3bb232cbf9f4e0be4288f9943fcb960d20b223861c2d02bea7651b3c9f4c37f7",
+      "formal_expected_result_sha256": "c6211df394e0f143e2535ee0bec04bc3c9d4b03ba9a7b7a992dd19bcabfa858c"
+    },
+    {
+      "u_id": "DOMAIN-F03-CANONICAL-UNKNOWN",
+      "root": "F03",
+      "baseline_u_id": "H048-F03-NORMAL",
+      "input_deltas": [
+        {
+          "path": "/packet/canonical_decision/owner",
+          "operation": "set",
+          "before": "PRODUCT-P-owner",
+          "after": "TBD"
+        }
+      ],
+      "expected_deltas": [
+        {
+          "path": "/candidate_presentable",
+          "operation": "set",
+          "before": true,
+          "after": false
+        },
+        {
+          "path": "/condition_results/canonical",
+          "operation": "set",
+          "before": "supported_synthetic_condition",
+          "after": "unknown"
+        }
+      ],
+      "formal_counterexample_sha256": "a1d50247b1cffa9050f24be238dad5c76ddf27c1ba3b948126547e57ff6a7f93",
+      "formal_expected_result_sha256": "4ef47c79e320141e0213643d3d810c9d2376b2487d939b2853bdda9a39b2fdb7"
+    },
+    {
+      "u_id": "DOMAIN-F03-VISIBILITY-ABSENT",
+      "root": "F03",
+      "baseline_u_id": "H048-F03-NORMAL",
+      "input_deltas": [
+        {
+          "path": "/packet/visibility",
+          "operation": "remove",
+          "before": "internal",
+          "after": "ABSENT"
+        }
+      ],
+      "expected_deltas": [
+        {
+          "path": "/candidate_presentable",
+          "operation": "set",
+          "before": true,
+          "after": false
+        },
+        {
+          "path": "/condition_results/internal",
+          "operation": "set",
+          "before": "supported_synthetic_condition",
+          "after": "missing"
+        }
+      ],
+      "formal_counterexample_sha256": "23c89125818cb05f54e8163429a87166295f72cab47bffdafd6d15e271ca84c6",
+      "formal_expected_result_sha256": "c4cda74dd79b9561c238af3f3be406037985c6d37f7819529fc8a3d16a78106b"
+    },
+    {
+      "u_id": "DOMAIN-F03-REQUIRED-CONSUMERS-NULL",
+      "root": "F03",
+      "baseline_u_id": "H048-F03-NORMAL",
+      "input_deltas": [
+        {
+          "path": "/packet/required_consumers",
+          "operation": "state_change",
+          "before": {
+            "type": "array",
+            "count": 2,
+            "values": [
+              "C1",
+              "C2"
+            ]
+          },
+          "after": null
+        }
+      ],
+      "expected_deltas": [
+        {
+          "path": "/candidate_presentable",
+          "operation": "set",
+          "before": true,
+          "after": false
+        },
+        {
+          "path": "/condition_results/consumers",
+          "operation": "set",
+          "before": "supported_synthetic_condition",
+          "after": "missing"
+        }
+      ],
+      "formal_counterexample_sha256": "ebdfa35e4b4846be74a784e641736ce83f68c651a96ddd1582e71ef836006c04",
+      "formal_expected_result_sha256": "6705855e3777860118cb6cd5f41f9635a5ad61a851b8cb093ba56488b53f3a46"
+    },
+    {
+      "u_id": "DOMAIN-F03-REQUIRED-CONSUMERS-EMPTY",
+      "root": "F03",
+      "baseline_u_id": "H048-F03-NORMAL",
+      "input_deltas": [
+        {
+          "path": "/packet/required_consumers",
+          "operation": "collection_change",
+          "before": {
+            "type": "array",
+            "count": 2,
+            "values": [
+              "C1",
+              "C2"
+            ]
+          },
+          "after": {
+            "type": "array",
+            "count": 0,
+            "values": []
+          }
+        }
+      ],
+      "expected_deltas": [
+        {
+          "path": "/candidate_presentable",
+          "operation": "set",
+          "before": true,
+          "after": false
+        },
+        {
+          "path": "/condition_results/consumers",
+          "operation": "set",
+          "before": "supported_synthetic_condition",
+          "after": "unknown"
+        }
+      ],
+      "formal_counterexample_sha256": "bf535214ade4481faa4e6e7672c682c7a246d652bb620ad2b13c92695786bdd5",
+      "formal_expected_result_sha256": "3e5ccf8b5c14143bba5561e0385d75847e398478e571e4de5e64fb6e1bf23f0c"
+    },
+    {
+      "u_id": "DOMAIN-F03-OBSERVED-CONSUMER-TBD",
+      "root": "F03",
+      "baseline_u_id": "H048-F03-NORMAL",
+      "input_deltas": [
+        {
+          "path": "/packet/observed_consumers",
+          "operation": "collection_change",
+          "before": {
+            "type": "array",
+            "count": 2,
+            "values": [
+              "C1",
+              "C2"
+            ]
+          },
+          "after": {
+            "type": "array",
+            "count": 1,
+            "values": [
+              "TBD"
+            ]
+          }
+        }
+      ],
+      "expected_deltas": [
+        {
+          "path": "/candidate_presentable",
+          "operation": "set",
+          "before": true,
+          "after": false
+        },
+        {
+          "path": "/condition_results/consumers",
+          "operation": "set",
+          "before": "supported_synthetic_condition",
+          "after": "unknown"
+        }
+      ],
+      "formal_counterexample_sha256": "59bc1e0cd4a74bdf7047c6bbe3788a53a72909fb4e67677fd8ad0ba7a4509d83",
+      "formal_expected_result_sha256": "3e5ccf8b5c14143bba5561e0385d75847e398478e571e4de5e64fb6e1bf23f0c"
+    },
+    {
+      "u_id": "DOMAIN-F03-JSON-BOOL-NUMBER",
+      "root": "F03",
+      "baseline_u_id": "H048-F03-NORMAL",
+      "input_deltas": [
+        {
+          "path": "/packet/signature_after/effects",
+          "operation": "collection_change",
+          "before": {
+            "type": "array",
+            "count": 0,
+            "values": []
+          },
+          "after": {
+            "type": "array",
+            "count": 1,
+            "values": [
+              1
+            ]
+          }
+        },
+        {
+          "path": "/packet/signature_before/effects",
+          "operation": "collection_change",
+          "before": {
+            "type": "array",
+            "count": 0,
+            "values": []
+          },
+          "after": {
+            "type": "array",
+            "count": 1,
+            "values": [
+              true
+            ]
+          }
+        }
+      ],
+      "expected_deltas": [
+        {
+          "path": "/candidate_presentable",
+          "operation": "set",
+          "before": true,
+          "after": false
+        },
+        {
+          "path": "/condition_results/signature:effects",
+          "operation": "set",
+          "before": "supported_synthetic_condition",
+          "after": "conflict"
+        }
+      ],
+      "formal_counterexample_sha256": "658daaaecd1bf17b991c230d6a11f4e8df5e4a6365d59a8c7ccaa1fb61037466",
+      "formal_expected_result_sha256": "992d12b8322d3f668c3c87f98ee9e212d047ba7695465f92c920e4fded7370c3"
+    },
+    {
+      "u_id": "DOMAIN-F03-JSON-NESTED-BOOL-NUMBER",
+      "root": "F03",
+      "baseline_u_id": "H048-F03-NORMAL",
+      "input_deltas": [
+        {
+          "path": "/packet/signature_after/consumer_contract/C1",
+          "operation": "state_change",
+          "before": "value-read@r1",
+          "after": {
+            "type": "object",
+            "keys": [
+              "v"
+            ]
+          }
+        },
+        {
+          "path": "/packet/signature_after/consumer_contract/C2",
+          "operation": "remove",
+          "before": "value-read@r1",
+          "after": "ABSENT"
+        },
+        {
+          "path": "/packet/signature_before/consumer_contract/C1",
+          "operation": "state_change",
+          "before": "value-read@r1",
+          "after": {
+            "type": "object",
+            "keys": [
+              "v"
+            ]
+          }
+        },
+        {
+          "path": "/packet/signature_before/consumer_contract/C2",
+          "operation": "remove",
+          "before": "value-read@r1",
+          "after": "ABSENT"
+        }
+      ],
+      "expected_deltas": [
+        {
+          "path": "/candidate_presentable",
+          "operation": "set",
+          "before": true,
+          "after": false
+        },
+        {
+          "path": "/condition_results/signature:consumer_contract",
+          "operation": "set",
+          "before": "supported_synthetic_condition",
+          "after": "conflict"
+        }
+      ],
+      "formal_counterexample_sha256": "b404a7d36f9630e1af28b4fe6cdaa4de74ed48fd50df3af65c4b8d33297399c0",
+      "formal_expected_result_sha256": "ddb6490127bc1e02bbf8a96da6e0a2e2aa24a823f39d9a47d118ef032aa3dabf"
+    },
+    {
+      "u_id": "DOMAIN-F03-SIGNATURE-TBD",
+      "root": "F03",
+      "baseline_u_id": "H048-F03-NORMAL",
+      "input_deltas": [
+        {
+          "path": "/packet/signature_after/outputs",
+          "operation": "state_change",
+          "before": {
+            "type": "array",
+            "count": 1,
+            "values": [
+              "value"
+            ]
+          },
+          "after": "TBD"
+        }
+      ],
+      "expected_deltas": [
+        {
+          "path": "/candidate_presentable",
+          "operation": "set",
+          "before": true,
+          "after": false
+        },
+        {
+          "path": "/condition_results/signature:outputs",
+          "operation": "set",
+          "before": "supported_synthetic_condition",
+          "after": "unknown"
+        }
+      ],
+      "formal_counterexample_sha256": "0a8dfca88e2571af733455c28874e6f7b9539870ef235768c56d9c7041517896",
+      "formal_expected_result_sha256": "ccf01257a549883bded344cfa80568b8d423516087948f041887e1b683022081"
+    },
+    {
+      "u_id": "DOMAIN-F03-INVARIANT-UNKNOWN",
+      "root": "F03",
+      "baseline_u_id": "H048-F03-NORMAL",
+      "input_deltas": [
+        {
+          "path": "/packet/behavior_invariant/oracle",
+          "operation": "set",
+          "before": "ORACLE-P",
+          "after": "TBD"
+        }
+      ],
+      "expected_deltas": [
+        {
+          "path": "/candidate_presentable",
+          "operation": "set",
+          "before": true,
+          "after": false
+        },
+        {
+          "path": "/condition_results/behavior_invariant",
+          "operation": "set",
+          "before": "supported_synthetic_condition",
+          "after": "unknown"
+        }
+      ],
+      "formal_counterexample_sha256": "0e8200584f6c08f3e50b246feb75204c1e91cbf14046b1a2b483be7ef0609496",
+      "formal_expected_result_sha256": "47af4a6724da678eadd5dbf4caa77d4305ee43e4128d38e5d2712a8f053e0276"
+    },
+    {
+      "u_id": "DOMAIN-F03-MULTIPLE-NULL-ABSENT",
+      "root": "F03",
+      "baseline_u_id": "H048-F03-NORMAL",
+      "input_deltas": [
+        {
+          "path": "/packet/evidence_basis",
+          "operation": "set",
+          "before": "content",
+          "after": null
+        },
+        {
+          "path": "/packet/requested_effect",
+          "operation": "remove",
+          "before": "candidate_only",
+          "after": "ABSENT"
+        },
+        {
+          "path": "/packet/rollback",
+          "operation": "state_change",
+          "before": {
+            "type": "object",
+            "keys": [
+              "preserve_object",
+              "preserve_oracle",
+              "restore_symbol"
+            ]
+          },
+          "after": null
+        }
+      ],
+      "expected_deltas": [
+        {
+          "path": "/candidate_presentable",
+          "operation": "set",
+          "before": true,
+          "after": false
+        },
+        {
+          "path": "/condition_results/operation_boundary",
+          "operation": "set",
+          "before": "supported_synthetic_condition",
+          "after": "missing"
+        },
+        {
+          "path": "/condition_results/rollback",
+          "operation": "set",
+          "before": "supported_synthetic_condition",
+          "after": "missing"
+        },
+        {
+          "path": "/condition_results/semantic_basis",
+          "operation": "set",
+          "before": "supported_synthetic_condition",
+          "after": "missing"
+        }
+      ],
+      "formal_counterexample_sha256": "b7194d7a1ef3e250f5958a1c2e8b47d912b1792d3144c15861d817776c4313d2",
+      "formal_expected_result_sha256": "e9d9c303f63c4799af515906d15b0b4cd55849d998bad8219c6d2a8307f1646a"
+    },
+    {
+      "u_id": "DOMAIN-F04-NULL-BOUNDARY-EXCEPTION",
+      "root": "F04",
+      "baseline_u_id": "H048-F04-VALID-EXCEPTION",
+      "input_deltas": [
+        {
+          "path": "/packet/boundary",
+          "operation": "set",
+          "before": "internal",
+          "after": null
+        },
+        {
+          "path": "/packet/exception",
+          "operation": "state_change",
+          "before": {
+            "type": "object",
+            "keys": [
+              "expiry",
+              "owner",
+              "reason",
+              "scope"
+            ]
+          },
+          "after": null
+        }
+      ],
+      "expected_deltas": [
+        {
+          "path": "/exception_result",
+          "operation": "set",
+          "before": "valid_for_fixture_scope",
+          "after": "missing_exception"
+        },
+        {
+          "path": "/local_continuation",
+          "operation": "set",
+          "before": true,
+          "after": false
+        },
+        {
+          "path": "/return_candidate",
+          "operation": "set",
+          "before": "product_author",
+          "after": "unknown"
+        }
+      ],
+      "formal_counterexample_sha256": "d13cbc4d52e88c57e63a36304602a4a46a4c41a8dec9dc8804cc1381d5181c6e",
+      "formal_expected_result_sha256": "ec223d9f0bec9683e799e5476e1304b610bc3d0feecd26feff14b8dc30a63075"
+    },
+    {
+      "u_id": "DOMAIN-F04-EXCEPTION-SCOPE-ABSENT",
+      "root": "F04",
+      "baseline_u_id": "H048-F04-VALID-EXCEPTION",
+      "input_deltas": [
+        {
+          "path": "/packet/exception/scope",
+          "operation": "remove",
+          "before": "PRODUCT-P",
+          "after": "ABSENT"
+        }
+      ],
+      "expected_deltas": [
+        {
+          "path": "/exception_result",
+          "operation": "set",
+          "before": "valid_for_fixture_scope",
+          "after": "missing_scope"
+        },
+        {
+          "path": "/local_continuation",
+          "operation": "set",
+          "before": true,
+          "after": false
+        }
+      ],
+      "formal_counterexample_sha256": "d729586f3950dce6fafa6af0e53ec89746759389736c7be1f8ecc34c03c3df32",
+      "formal_expected_result_sha256": "40e70422f4bb54c74c5ec5a854d6e1e654a015794b616008558c9bdae5ee1794"
+    },
+    {
+      "u_id": "DOMAIN-F04-SCOPE-ABSENT",
+      "root": "F04",
+      "baseline_u_id": "H048-F04-VALID-EXCEPTION",
+      "input_deltas": [
+        {
+          "path": "/packet/scope",
+          "operation": "remove",
+          "before": "PRODUCT-P",
+          "after": "ABSENT"
+        }
+      ],
+      "expected_deltas": [
+        {
+          "path": "/exception_result",
+          "operation": "set",
+          "before": "valid_for_fixture_scope",
+          "after": "unknown"
+        },
+        {
+          "path": "/local_continuation",
+          "operation": "set",
+          "before": true,
+          "after": false
+        }
+      ],
+      "formal_counterexample_sha256": "328e7c631bd3761cf557bed144fb4a217993c43987cb841e53d05964a8ef8b41",
+      "formal_expected_result_sha256": "ad8caa432fa596f5f6caece138d3adf11376e6ed4020ad86796ff7c9a2b8b2af"
+    },
+    {
+      "u_id": "DOMAIN-F04-EXPIRY-UNKNOWN",
+      "root": "F04",
+      "baseline_u_id": "H048-F04-VALID-EXCEPTION",
+      "input_deltas": [
+        {
+          "path": "/packet/exception/expiry",
+          "operation": "set",
+          "before": "2030-02-01",
+          "after": "TBD"
+        }
+      ],
+      "expected_deltas": [
+        {
+          "path": "/exception_result",
+          "operation": "set",
+          "before": "valid_for_fixture_scope",
+          "after": "unknown"
+        },
+        {
+          "path": "/local_continuation",
+          "operation": "set",
+          "before": true,
+          "after": false
+        }
+      ],
+      "formal_counterexample_sha256": "0cadf0428adede86c44136f001d5ad3804eb9e507b25b282dc56273407045387",
+      "formal_expected_result_sha256": "ad8caa432fa596f5f6caece138d3adf11376e6ed4020ad86796ff7c9a2b8b2af"
+    },
+    {
+      "u_id": "DOMAIN-F04-FINDING-ID-ABSENT",
+      "root": "F04",
+      "baseline_u_id": "H048-F04-VALID-EXCEPTION",
+      "input_deltas": [
+        {
+          "path": "/packet/finding/id",
+          "operation": "remove",
+          "before": "FIND-P",
+          "after": "ABSENT"
+        }
+      ],
+      "expected_deltas": [
+        {
+          "path": "/finding_retained",
+          "operation": "set",
+          "before": "FIND-P",
+          "after": null
+        }
+      ],
+      "formal_counterexample_sha256": "0835ac59c6157e42ede92c9a0de35c00ce19913b9f7a326a8cc778e58ac636f2",
+      "formal_expected_result_sha256": "de94ee1b21c9ef89c5f45c4c491dedbef480c2aadcd6df1f3797ea97a75c53bc"
+    },
+    {
+      "u_id": "DOMAIN-F04-FINDING-NULL",
+      "root": "F04",
+      "baseline_u_id": "H048-F04-VALID-EXCEPTION",
+      "input_deltas": [
+        {
+          "path": "/packet/finding",
+          "operation": "state_change",
+          "before": {
+            "type": "object",
+            "keys": [
+              "id",
+              "impact",
+              "owner",
+              "reason"
+            ]
+          },
+          "after": null
+        }
+      ],
+      "expected_deltas": [
+        {
+          "path": "/finding_retained",
+          "operation": "set",
+          "before": "FIND-P",
+          "after": null
+        }
+      ],
+      "formal_counterexample_sha256": "f483b8a3b9081d6d65463b1c3973d69cb55069c276c1cbacaa93518b5d0d81ae",
+      "formal_expected_result_sha256": "de94ee1b21c9ef89c5f45c4c491dedbef480c2aadcd6df1f3797ea97a75c53bc"
+    },
+    {
+      "u_id": "DOMAIN-B01-ORIGIN-TBD-CI-TBD",
+      "root": "B01",
+      "baseline_u_id": "H048-B01-NORMAL",
+      "input_deltas": [
+        {
+          "path": "/packet/norm_source/owner",
+          "operation": "set",
+          "before": "HARNESS",
+          "after": "TBD"
+        },
+        {
+          "path": "/packet/product_decision/revision",
+          "operation": "set",
+          "before": "decision@r1",
+          "after": "TBD"
+        },
+        {
+          "path": "/packet/proposal/CI_effect",
+          "operation": "set",
+          "before": "finding_only",
+          "after": "TBD"
+        }
+      ],
+      "expected_deltas": [
+        {
+          "path": "/boundary_results/CI",
+          "operation": "set",
+          "before": "candidate_only",
+          "after": "unknown"
+        },
+        {
+          "path": "/boundary_results/norm",
+          "operation": "set",
+          "before": "held",
+          "after": "unknown"
+        },
+        {
+          "path": "/boundary_results/product_decision",
+          "operation": "set",
+          "before": "held",
+          "after": "unknown"
+        },
+        {
+          "path": "/owner_return_candidates",
+          "operation": "collection_change",
+          "before": {
+            "type": "array",
+            "count": 0,
+            "values": []
+          },
+          "after": {
+            "type": "array",
+            "count": 3,
+            "values": [
+              "HARNESS-norm-owner",
+              "product-design-owner",
+              "CI-boundary-owner"
+            ]
+          }
+        }
+      ],
+      "formal_counterexample_sha256": "fac8e17d0cde6555d142e6b6a42203e8793448fdcbd3eeaecee186bcb6766c0f",
+      "formal_expected_result_sha256": "a325ce5e268f62722f79244496f82451a1640cae7ed820669bb156b2d12bb9b0"
+    },
+    {
+      "u_id": "DOMAIN-B01-AFTER-NULL",
+      "root": "B01",
+      "baseline_u_id": "H048-B01-NORMAL",
+      "input_deltas": [
+        {
+          "path": "/packet/protected_after",
+          "operation": "state_change",
+          "before": {
+            "type": "object",
+            "keys": [
+              "adopted_body",
+              "mechanism_role",
+              "requirement_id"
+            ]
+          },
+          "after": null
+        }
+      ],
+      "expected_deltas": [
+        {
+          "path": "/boundary_results/adopted_body",
+          "operation": "set",
+          "before": "held",
+          "after": "missing"
+        },
+        {
+          "path": "/boundary_results/mechanism_role",
+          "operation": "set",
+          "before": "held",
+          "after": "missing"
+        },
+        {
+          "path": "/boundary_results/requirement_id",
+          "operation": "set",
+          "before": "held",
+          "after": "missing"
+        },
+        {
+          "path": "/owner_return_candidates",
+          "operation": "collection_change",
+          "before": {
+            "type": "array",
+            "count": 0,
+            "values": []
+          },
+          "after": {
+            "type": "array",
+            "count": 1,
+            "values": [
+              "original-meaning-owner"
+            ]
+          }
+        }
+      ],
+      "formal_counterexample_sha256": "649df1b3c3b446ce70c27722f63d6d6c3e315737f87008da2b9bb55ee767a5d3",
+      "formal_expected_result_sha256": "cf0280608bc49aa8401115a6b7c5957e5f4f0d093171922370f1903d27f1bbef"
+    },
+    {
+      "u_id": "DOMAIN-B01-SOURCE-ABSENT-PROPOSAL-NULL",
+      "root": "B01",
+      "baseline_u_id": "H048-B01-NORMAL",
+      "input_deltas": [
+        {
+          "path": "/packet/norm_source",
+          "operation": "remove",
+          "before": {
+            "type": "object",
+            "keys": [
+              "content",
+              "owner",
+              "revision"
+            ]
+          },
+          "after": "ABSENT"
+        },
+        {
+          "path": "/packet/proposal",
+          "operation": "state_change",
+          "before": {
+            "type": "object",
+            "keys": [
+              "CI_effect",
+              "norm_content",
+              "product_name"
+            ]
+          },
+          "after": null
+        }
+      ],
+      "expected_deltas": [
+        {
+          "path": "/boundary_results/CI",
+          "operation": "set",
+          "before": "candidate_only",
+          "after": "missing"
+        },
+        {
+          "path": "/boundary_results/norm",
+          "operation": "set",
+          "before": "held",
+          "after": "missing"
+        },
+        {
+          "path": "/boundary_results/product_decision",
+          "operation": "set",
+          "before": "held",
+          "after": "missing"
+        },
+        {
+          "path": "/owner_return_candidates",
+          "operation": "collection_change",
+          "before": {
+            "type": "array",
+            "count": 0,
+            "values": []
+          },
+          "after": {
+            "type": "array",
+            "count": 3,
+            "values": [
+              "HARNESS-norm-owner",
+              "product-design-owner",
+              "CI-boundary-owner"
+            ]
+          }
+        }
+      ],
+      "formal_counterexample_sha256": "5937876f7bb9f6cae798eca26b1a35ef3d78a2bcc135b9bfe9bce1b71f9c2c23",
+      "formal_expected_result_sha256": "10693787d8898e93aab3b2cf23047b58ea41d5422ae8ddfa12e1ae4fd7c9704f"
+    },
+    {
+      "u_id": "R1-H048-F01-TBD-CONSUMER",
+      "root": "F01",
+      "baseline_u_id": "H048-F01-SAME-NAME-DIFFERENT-ROLE",
+      "input_deltas": [
+        {
+          "path": "/packet/targets",
+          "operation": "collection_change",
+          "before": {
+            "type": "array",
+            "count": 2,
+            "ids": [
+              "OBJ-P",
+              "OBJ-R"
+            ]
+          },
+          "after": {
+            "type": "array",
+            "count": 2,
+            "ids": [
+              "OBJ-P",
+              "OBJ-R"
+            ]
+          }
+        }
+      ],
+      "expected_deltas": [
+        {
+          "path": "/target_results/OBJ-P",
+          "operation": "set",
+          "before": "candidate_only:Query",
+          "after": "unknown_consumer"
+        }
+      ],
+      "formal_counterexample_sha256": "bb1d15d878cadfe49cd8757d19828b9beb20e157c4174458ffb5c60a827b2098",
+      "formal_expected_result_sha256": "59a040c1b74a2aaf7a15f540c2aaf717b25f47c13456c0fa90de2535824b0b8e"
+    },
+    {
+      "u_id": "R1-H048-F01-EMPTY-CONSUMER-ELEMENT",
+      "root": "F01",
+      "baseline_u_id": "H048-F01-SAME-NAME-DIFFERENT-ROLE",
+      "input_deltas": [
+        {
+          "path": "/packet/targets",
+          "operation": "collection_change",
+          "before": {
+            "type": "array",
+            "count": 2,
+            "ids": [
+              "OBJ-P",
+              "OBJ-R"
+            ]
+          },
+          "after": {
+            "type": "array",
+            "count": 2,
+            "ids": [
+              "OBJ-P",
+              "OBJ-R"
+            ]
+          }
+        }
+      ],
+      "expected_deltas": [
+        {
+          "path": "/target_results/OBJ-P",
+          "operation": "set",
+          "before": "candidate_only:Query",
+          "after": "missing_consumer"
+        }
+      ],
+      "formal_counterexample_sha256": "d4223ab71b6917d44f9caed0c44671ac4ca75d5170398d237ef79162542af89a",
+      "formal_expected_result_sha256": "97d002f4cba241a1b32d4045523fffefea912adda867610382d71c356fb0f489"
+    },
+    {
+      "u_id": "R1-H048-F01-declared_role-TBD",
+      "root": "F01",
+      "baseline_u_id": "H048-F01-SAME-NAME-DIFFERENT-ROLE",
+      "input_deltas": [
+        {
+          "path": "/packet/targets",
+          "operation": "collection_change",
+          "before": {
+            "type": "array",
+            "count": 2,
+            "ids": [
+              "OBJ-P",
+              "OBJ-R"
+            ]
+          },
+          "after": {
+            "type": "array",
+            "count": 2,
+            "ids": [
+              "OBJ-P",
+              "OBJ-R"
+            ]
+          }
+        }
+      ],
+      "expected_deltas": [
+        {
+          "path": "/target_results/OBJ-P",
+          "operation": "set",
+          "before": "candidate_only:Query",
+          "after": "unknown_role"
+        }
+      ],
+      "formal_counterexample_sha256": "524437af290f4667afd88f3a0488ac8b1714073994a780e72190a53b3791e029",
+      "formal_expected_result_sha256": "bc6247e89c16fdf4fa11d1b5ee8b2160cdefa4603802ef53ccf02e36748d0fd2"
+    },
+    {
+      "u_id": "R1-H048-F01-declared_role-unknown",
+      "root": "F01",
+      "baseline_u_id": "H048-F01-SAME-NAME-DIFFERENT-ROLE",
+      "input_deltas": [
+        {
+          "path": "/packet/targets",
+          "operation": "collection_change",
+          "before": {
+            "type": "array",
+            "count": 2,
+            "ids": [
+              "OBJ-P",
+              "OBJ-R"
+            ]
+          },
+          "after": {
+            "type": "array",
+            "count": 2,
+            "ids": [
+              "OBJ-P",
+              "OBJ-R"
+            ]
+          }
+        }
+      ],
+      "expected_deltas": [
+        {
+          "path": "/target_results/OBJ-P",
+          "operation": "set",
+          "before": "candidate_only:Query",
+          "after": "unknown_role"
+        }
+      ],
+      "formal_counterexample_sha256": "30194a08a686fea346a7208dac0aefabd9062fc93f9faf201f1295bb0de11b53",
+      "formal_expected_result_sha256": "bc6247e89c16fdf4fa11d1b5ee8b2160cdefa4603802ef53ccf02e36748d0fd2"
+    },
+    {
+      "u_id": "R1-H048-F01-meaning-TBD",
+      "root": "F01",
+      "baseline_u_id": "H048-F01-SAME-NAME-DIFFERENT-ROLE",
+      "input_deltas": [
+        {
+          "path": "/packet/targets",
+          "operation": "collection_change",
+          "before": {
+            "type": "array",
+            "count": 2,
+            "ids": [
+              "OBJ-P",
+              "OBJ-R"
+            ]
+          },
+          "after": {
+            "type": "array",
+            "count": 2,
+            "ids": [
+              "OBJ-P",
+              "OBJ-R"
+            ]
+          }
+        }
+      ],
+      "expected_deltas": [
+        {
+          "path": "/target_results/OBJ-P",
+          "operation": "set",
+          "before": "candidate_only:Query",
+          "after": "missing_target_meaning"
+        }
+      ],
+      "formal_counterexample_sha256": "59e822bebdda6fed95c75f520363d2bb50fcd14138b7c4220eaf31a2d09db4fc",
+      "formal_expected_result_sha256": "5ddd364a7383ab6799a53a8c9674d9f743a895b95ebe7f880682420b6506904d"
+    },
+    {
+      "u_id": "R1-H048-F01-role_basis-TBD",
+      "root": "F01",
+      "baseline_u_id": "H048-F01-SAME-NAME-DIFFERENT-ROLE",
+      "input_deltas": [
+        {
+          "path": "/packet/targets",
+          "operation": "collection_change",
+          "before": {
+            "type": "array",
+            "count": 2,
+            "ids": [
+              "OBJ-P",
+              "OBJ-R"
+            ]
+          },
+          "after": {
+            "type": "array",
+            "count": 2,
+            "ids": [
+              "OBJ-P",
+              "OBJ-R"
+            ]
+          }
+        }
+      ],
+      "expected_deltas": [
+        {
+          "path": "/target_results/OBJ-P",
+          "operation": "set",
+          "before": "candidate_only:Query",
+          "after": "missing_basis"
+        }
+      ],
+      "formal_counterexample_sha256": "a4b7823b1ee3bc5da9a2c44959653d0244a4f3deb54f3d77d2ac98a3361c88a8",
+      "formal_expected_result_sha256": "2cf0ffadb4e0269716d7170208e5d7e7d3b0a85ff72a9d9ec9d3795902b3e7dd"
+    },
+    {
+      "u_id": "R1-H048-F01-meaning-EMPTY",
+      "root": "F01",
+      "baseline_u_id": "H048-F01-SAME-NAME-DIFFERENT-ROLE",
+      "input_deltas": [
+        {
+          "path": "/packet/targets",
+          "operation": "collection_change",
+          "before": {
+            "type": "array",
+            "count": 2,
+            "ids": [
+              "OBJ-P",
+              "OBJ-R"
+            ]
+          },
+          "after": {
+            "type": "array",
+            "count": 2,
+            "ids": [
+              "OBJ-P",
+              "OBJ-R"
+            ]
+          }
+        }
+      ],
+      "expected_deltas": [
+        {
+          "path": "/target_results/OBJ-P",
+          "operation": "set",
+          "before": "candidate_only:Query",
+          "after": "missing_target_meaning"
+        }
+      ],
+      "formal_counterexample_sha256": "f5491ce99459b76a53bb1376206462a9889d67705c0df3581ff121dd2507265c",
+      "formal_expected_result_sha256": "5ddd364a7383ab6799a53a8c9674d9f743a895b95ebe7f880682420b6506904d"
+    },
+    {
+      "u_id": "R1-H048-F01-AMBIGUOUS-Helper",
+      "root": "F01",
+      "baseline_u_id": "H048-F01-SAME-NAME-DIFFERENT-ROLE",
+      "input_deltas": [
+        {
+          "path": "/packet/targets",
+          "operation": "collection_change",
+          "before": {
+            "type": "array",
+            "count": 2,
+            "ids": [
+              "OBJ-P",
+              "OBJ-R"
+            ]
+          },
+          "after": {
+            "type": "array",
+            "count": 2,
+            "ids": [
+              "OBJ-P",
+              "OBJ-R"
+            ]
+          }
+        }
+      ],
+      "expected_deltas": [
+        {
+          "path": "/target_results/OBJ-P",
+          "operation": "set",
+          "before": "candidate_only:Query",
+          "after": "missing_scoped_exception"
+        }
+      ],
+      "formal_counterexample_sha256": "5c48f4ea57ab88e9d1b0c3528116b6897f9da715b348d16d2216fed192cd72b5",
+      "formal_expected_result_sha256": "bf628ccf4f8653b65ae481aa9ec013344ad4b1739e4a3ad8d2051c26903669e4"
+    },
+    {
+      "u_id": "R1-H048-F01-AMBIGUOUS-Util",
+      "root": "F01",
+      "baseline_u_id": "H048-F01-SAME-NAME-DIFFERENT-ROLE",
+      "input_deltas": [
+        {
+          "path": "/packet/targets",
+          "operation": "collection_change",
+          "before": {
+            "type": "array",
+            "count": 2,
+            "ids": [
+              "OBJ-P",
+              "OBJ-R"
+            ]
+          },
+          "after": {
+            "type": "array",
+            "count": 2,
+            "ids": [
+              "OBJ-P",
+              "OBJ-R"
+            ]
+          }
+        }
+      ],
+      "expected_deltas": [
+        {
+          "path": "/target_results/OBJ-P",
+          "operation": "set",
+          "before": "candidate_only:Query",
+          "after": "missing_scoped_exception"
+        }
+      ],
+      "formal_counterexample_sha256": "ecf69985ead9dc32e22a7dc4024b11a2fde53eb77cff3aaa2d7b6005528f4a17",
+      "formal_expected_result_sha256": "bf628ccf4f8653b65ae481aa9ec013344ad4b1739e4a3ad8d2051c26903669e4"
+    },
+    {
+      "u_id": "R1-H048-F01-AMBIGUOUS-Data",
+      "root": "F01",
+      "baseline_u_id": "H048-F01-SAME-NAME-DIFFERENT-ROLE",
+      "input_deltas": [
+        {
+          "path": "/packet/targets",
+          "operation": "collection_change",
+          "before": {
+            "type": "array",
+            "count": 2,
+            "ids": [
+              "OBJ-P",
+              "OBJ-R"
+            ]
+          },
+          "after": {
+            "type": "array",
+            "count": 2,
+            "ids": [
+              "OBJ-P",
+              "OBJ-R"
+            ]
+          }
+        }
+      ],
+      "expected_deltas": [
+        {
+          "path": "/target_results/OBJ-P",
+          "operation": "set",
+          "before": "candidate_only:Query",
+          "after": "missing_scoped_exception"
+        }
+      ],
+      "formal_counterexample_sha256": "c1f49eab12572434d93a867d5211a2a612f6b9a2c1296165403cbf909a4d7669",
+      "formal_expected_result_sha256": "bf628ccf4f8653b65ae481aa9ec013344ad4b1739e4a3ad8d2051c26903669e4"
+    },
+    {
+      "u_id": "R1-H048-F01-ROLE-BEFORE-OTHER-DEFECTS",
+      "root": "F01",
+      "baseline_u_id": "H048-F01-SAME-NAME-DIFFERENT-ROLE",
+      "input_deltas": [
+        {
+          "path": "/packet/targets",
+          "operation": "collection_change",
+          "before": {
+            "type": "array",
+            "count": 2,
+            "ids": [
+              "OBJ-P",
+              "OBJ-R"
+            ]
+          },
+          "after": {
+            "type": "array",
+            "count": 2,
+            "ids": [
+              "OBJ-P",
+              "OBJ-R"
+            ]
+          }
+        }
+      ],
+      "expected_deltas": [
+        {
+          "path": "/target_results/OBJ-P",
+          "operation": "set",
+          "before": "candidate_only:Query",
+          "after": "unknown_role"
+        }
+      ],
+      "formal_counterexample_sha256": "1471df133729b9e7953585bf00a5c647383f5c1a6b26eace649151f790ed544c",
+      "formal_expected_result_sha256": "bc6247e89c16fdf4fa11d1b5ee8b2160cdefa4603802ef53ccf02e36748d0fd2"
+    },
+    {
+      "u_id": "R1-H048-F01-MEANING-BEFORE-BASIS",
+      "root": "F01",
+      "baseline_u_id": "H048-F01-SAME-NAME-DIFFERENT-ROLE",
+      "input_deltas": [
+        {
+          "path": "/packet/targets",
+          "operation": "collection_change",
+          "before": {
+            "type": "array",
+            "count": 2,
+            "ids": [
+              "OBJ-P",
+              "OBJ-R"
+            ]
+          },
+          "after": {
+            "type": "array",
+            "count": 2,
+            "ids": [
+              "OBJ-P",
+              "OBJ-R"
+            ]
+          }
+        }
+      ],
+      "expected_deltas": [
+        {
+          "path": "/target_results/OBJ-P",
+          "operation": "set",
+          "before": "candidate_only:Query",
+          "after": "missing_target_meaning"
+        }
+      ],
+      "formal_counterexample_sha256": "cc90d1026f13c25140775ad98eafdf1fd6d58bee141db39dcb876571b5c16579",
+      "formal_expected_result_sha256": "5ddd364a7383ab6799a53a8c9674d9f743a895b95ebe7f880682420b6506904d"
+    },
+    {
+      "u_id": "R1-H048-F01-BASIS-BEFORE-CONSUMER",
+      "root": "F01",
+      "baseline_u_id": "H048-F01-SAME-NAME-DIFFERENT-ROLE",
+      "input_deltas": [
+        {
+          "path": "/packet/targets",
+          "operation": "collection_change",
+          "before": {
+            "type": "array",
+            "count": 2,
+            "ids": [
+              "OBJ-P",
+              "OBJ-R"
+            ]
+          },
+          "after": {
+            "type": "array",
+            "count": 2,
+            "ids": [
+              "OBJ-P",
+              "OBJ-R"
+            ]
+          }
+        }
+      ],
+      "expected_deltas": [
+        {
+          "path": "/target_results/OBJ-P",
+          "operation": "set",
+          "before": "candidate_only:Query",
+          "after": "missing_basis"
+        }
+      ],
+      "formal_counterexample_sha256": "04dff13903b7d9072ebd765060fba743e2ca6754709a9b8daac224ffdca97c1d",
+      "formal_expected_result_sha256": "2cf0ffadb4e0269716d7170208e5d7e7d3b0a85ff72a9d9ec9d3795902b3e7dd"
+    },
+    {
+      "u_id": "R1-H048-F02-ORACLE-EDGE-OBJECT-FOREIGN",
+      "root": "F02",
+      "baseline_u_id": "H048-F02-NORMAL",
+      "input_deltas": [
+        {
+          "path": "/packet/oracle_edge/object",
+          "operation": "set",
+          "before": "OBJ-P",
+          "after": "OBJ-Q"
+        }
+      ],
+      "expected_deltas": [
+        {
+          "path": "/edge_results/oracle_edge",
+          "operation": "set",
+          "before": "bound",
+          "after": "conflict"
+        }
+      ],
+      "formal_counterexample_sha256": "b8e1b4e4a361a34c74cfa046dc21a91c8af4655948b53857c85d0437f87b836d",
+      "formal_expected_result_sha256": "ad542013aa09d3057aa74879857b7d4693d9d9037f50fd22046be7f472e1860f"
+    },
+    {
+      "u_id": "R1-H048-F02-PRIVATE-KEYS-EXPLICIT-NULL",
+      "root": "F02",
+      "baseline_u_id": "H048-F02-NORMAL",
+      "input_deltas": [
+        {
+          "path": "/packet/oracle_edge/object",
+          "operation": "set",
+          "before": "OBJ-P",
+          "after": null
+        },
+        {
+          "path": "/packet/oracle_edge/operation",
+          "operation": "set",
+          "before": "read",
+          "after": null
+        },
+        {
+          "path": "/packet/oracle_edge/oracle",
+          "operation": "set",
+          "before": "ORACLE-P",
+          "after": null
+        },
+        {
+          "path": "/packet/oracle_edge/private_symbol",
+          "operation": "set",
+          "before": "ABSENT",
+          "after": "_lookup"
+        }
+      ],
+      "expected_deltas": [
+        {
+          "path": "/edge_results/oracle_edge",
+          "operation": "set",
+          "before": "bound",
+          "after": "missing"
+        }
+      ],
+      "formal_counterexample_sha256": "b2acd84352083d41df273bd82f9fb09a342deeb75ff9f3039e77c8499a5ed222",
+      "formal_expected_result_sha256": "797ebd975d1dc3e7159c907a756c5b5d20dd48bc3c7cff2339df80d0c70a880a"
+    },
+    {
+      "u_id": "R1-H048-F03-CHANGES-TBD",
+      "root": "F03",
+      "baseline_u_id": "H048-F03-NORMAL",
+      "input_deltas": [
+        {
+          "path": "/packet/minimum_transform/changes/0",
+          "operation": "set",
+          "before": "symbol edge only",
+          "after": "TBD"
+        }
+      ],
+      "expected_deltas": [
+        {
+          "path": "/candidate_presentable",
+          "operation": "set",
+          "before": true,
+          "after": false
+        },
+        {
+          "path": "/condition_results/minimum_transform",
+          "operation": "set",
+          "before": "supported_synthetic_condition",
+          "after": "unknown"
+        }
+      ],
+      "formal_counterexample_sha256": "c95f843ddf3867b3a14c216664e6c74228415f4bf48e8190b455a31d60bd07f7",
+      "formal_expected_result_sha256": "368aa397a54f0ffb255c94d8738bd9dd58d3e8ca8ce3b486e7deee37b071ff73"
+    },
+    {
+      "u_id": "R1-H048-F03-CHANGES-MIXED-TBD",
+      "root": "F03",
+      "baseline_u_id": "H048-F03-NORMAL",
+      "input_deltas": [
+        {
+          "path": "/packet/minimum_transform/changes",
+          "operation": "collection_change",
+          "before": {
+            "type": "array",
+            "count": 1,
+            "values": [
+              "symbol edge only"
+            ]
+          },
+          "after": {
+            "type": "array",
+            "count": 2,
+            "values": [
+              "symbol edge only",
+              "TBD"
+            ]
+          }
+        }
+      ],
+      "expected_deltas": [
+        {
+          "path": "/candidate_presentable",
+          "operation": "set",
+          "before": true,
+          "after": false
+        },
+        {
+          "path": "/condition_results/minimum_transform",
+          "operation": "set",
+          "before": "supported_synthetic_condition",
+          "after": "unknown"
+        }
+      ],
+      "formal_counterexample_sha256": "0b659f6d1d3044a2f1a3a7b390d62b1dffd25bcdbe29f55a6db296c373ab32d7",
+      "formal_expected_result_sha256": "368aa397a54f0ffb255c94d8738bd9dd58d3e8ca8ce3b486e7deee37b071ff73"
+    },
+    {
+      "u_id": "R1-H048-F03-CHANGES-UNKNOWN",
+      "root": "F03",
+      "baseline_u_id": "H048-F03-NORMAL",
+      "input_deltas": [
+        {
+          "path": "/packet/minimum_transform/changes/0",
+          "operation": "set",
+          "before": "symbol edge only",
+          "after": "unknown"
+        }
+      ],
+      "expected_deltas": [
+        {
+          "path": "/candidate_presentable",
+          "operation": "set",
+          "before": true,
+          "after": false
+        },
+        {
+          "path": "/condition_results/minimum_transform",
+          "operation": "set",
+          "before": "supported_synthetic_condition",
+          "after": "unknown"
+        }
+      ],
+      "formal_counterexample_sha256": "9d5f004a8c9ea5784a126182ddba1fe7a9d141c4831d067778c3f27b96bb858b",
+      "formal_expected_result_sha256": "368aa397a54f0ffb255c94d8738bd9dd58d3e8ca8ce3b486e7deee37b071ff73"
+    },
+    {
+      "u_id": "R1-H048-F03-CHANGES-EMPTY-ELEMENT",
+      "root": "F03",
+      "baseline_u_id": "H048-F03-NORMAL",
+      "input_deltas": [
+        {
+          "path": "/packet/minimum_transform/changes/0",
+          "operation": "set",
+          "before": "symbol edge only",
+          "after": ""
+        }
+      ],
+      "expected_deltas": [
+        {
+          "path": "/candidate_presentable",
+          "operation": "set",
+          "before": true,
+          "after": false
+        },
+        {
+          "path": "/condition_results/minimum_transform",
+          "operation": "set",
+          "before": "supported_synthetic_condition",
+          "after": "missing"
+        }
+      ],
+      "formal_counterexample_sha256": "4b0bacd3b93d87060b37f3c6b27735fa6c782d09787404edb565e7edeaa5b5af",
+      "formal_expected_result_sha256": "11db5249ae5bf9355819ad18af5c96d5f1679df97ea4de977f85b29067321aac"
+    },
+    {
+      "u_id": "R1-H048-F03-CHANGES-EMPTY-LIST",
+      "root": "F03",
+      "baseline_u_id": "H048-F03-NORMAL",
+      "input_deltas": [
+        {
+          "path": "/packet/minimum_transform/changes",
+          "operation": "collection_change",
+          "before": {
+            "type": "array",
+            "count": 1,
+            "values": [
+              "symbol edge only"
+            ]
+          },
+          "after": {
+            "type": "array",
+            "count": 0,
+            "values": []
+          }
+        }
+      ],
+      "expected_deltas": [
+        {
+          "path": "/candidate_presentable",
+          "operation": "set",
+          "before": true,
+          "after": false
+        },
+        {
+          "path": "/condition_results/minimum_transform",
+          "operation": "set",
+          "before": "supported_synthetic_condition",
+          "after": "missing"
+        }
+      ],
+      "formal_counterexample_sha256": "cd0bca3c8cf20edf2d2b40a4d11cebcaaa96252bcc8f0ea618f70b50ade0c9ef",
+      "formal_expected_result_sha256": "11db5249ae5bf9355819ad18af5c96d5f1679df97ea4de977f85b29067321aac"
+    },
+    {
+      "u_id": "R1-H048-F03-CANONICAL-NAME-MISSING",
+      "root": "F03",
+      "baseline_u_id": "H048-F03-NORMAL",
+      "input_deltas": [
+        {
+          "path": "/packet/canonical_decision/name",
+          "operation": "remove",
+          "before": "readValue",
+          "after": "ABSENT"
+        }
+      ],
+      "expected_deltas": [
+        {
+          "path": "/candidate_presentable",
+          "operation": "set",
+          "before": true,
+          "after": false
+        },
+        {
+          "path": "/condition_results/canonical",
+          "operation": "set",
+          "before": "supported_synthetic_condition",
+          "after": "missing"
+        }
+      ],
+      "formal_counterexample_sha256": "2c7dda332d2d756360fd61734466ab2a658f6fbbc983e8561c901942f69c21ba",
+      "formal_expected_result_sha256": "3ec309bde797e4875aa7e57292ddf50d76752ca282772a348e305a4d4cc97b6f"
+    },
+    {
+      "u_id": "R1-H048-F03-VISIBILITY-TBD",
+      "root": "F03",
+      "baseline_u_id": "H048-F03-NORMAL",
+      "input_deltas": [
+        {
+          "path": "/packet/visibility",
+          "operation": "set",
+          "before": "internal",
+          "after": "TBD"
+        }
+      ],
+      "expected_deltas": [
+        {
+          "path": "/candidate_presentable",
+          "operation": "set",
+          "before": true,
+          "after": false
+        },
+        {
+          "path": "/condition_results/internal",
+          "operation": "set",
+          "before": "supported_synthetic_condition",
+          "after": "unknown"
+        }
+      ],
+      "formal_counterexample_sha256": "776a2ccc0f8443c32d08f52eda7268dddcc8747581b352a997343ca18722875f",
+      "formal_expected_result_sha256": "ca9c25afc38758c7a2633e37b91228043fa3e57c3b3fe43971100b32321c14a1"
+    },
+    {
+      "u_id": "R1-H048-F03-INVARIANT-EXPECTED-MISSING",
+      "root": "F03",
+      "baseline_u_id": "H048-F03-NORMAL",
+      "input_deltas": [
+        {
+          "path": "/packet/behavior_invariant/expected",
+          "operation": "remove",
+          "before": "same value/failure/effects",
+          "after": "ABSENT"
+        }
+      ],
+      "expected_deltas": [
+        {
+          "path": "/candidate_presentable",
+          "operation": "set",
+          "before": true,
+          "after": false
+        },
+        {
+          "path": "/condition_results/behavior_invariant",
+          "operation": "set",
+          "before": "supported_synthetic_condition",
+          "after": "missing"
+        }
+      ],
+      "formal_counterexample_sha256": "3323f12dc6ef4767c3164010893ac1a982ce0a260115650fa4d54d8d1f486063",
+      "formal_expected_result_sha256": "3f85918db98d28daf036ea119fe1ad95e626281194a1a17aec5b62fa97977a8f"
+    },
+    {
+      "u_id": "R1-H048-F03-ROLLBACK-SYMBOL-MISSING",
+      "root": "F03",
+      "baseline_u_id": "H048-F03-NORMAL",
+      "input_deltas": [
+        {
+          "path": "/packet/rollback/restore_symbol",
+          "operation": "remove",
+          "before": "oldLookup",
+          "after": "ABSENT"
+        }
+      ],
+      "expected_deltas": [
+        {
+          "path": "/candidate_presentable",
+          "operation": "set",
+          "before": true,
+          "after": false
+        },
+        {
+          "path": "/condition_results/rollback",
+          "operation": "set",
+          "before": "supported_synthetic_condition",
+          "after": "missing"
+        }
+      ],
+      "formal_counterexample_sha256": "aca298cca470db30a3335416826f895219be4715c3f6eef4b01daee24ac7ed32",
+      "formal_expected_result_sha256": "dd50f030e6c940be53fdd05d10ca3ded194bf5672086b76bc9a4b54631557029"
+    },
+    {
+      "u_id": "R1-H048-F03-EMPTY-CONSUMER-ID",
+      "root": "F03",
+      "baseline_u_id": "H048-F03-NORMAL",
+      "input_deltas": [
+        {
+          "path": "/packet/observed_consumers",
+          "operation": "collection_change",
+          "before": {
+            "type": "array",
+            "count": 2,
+            "values": [
+              "C1",
+              "C2"
+            ]
+          },
+          "after": {
+            "type": "array",
+            "count": 1,
+            "values": [
+              ""
+            ]
+          }
+        }
+      ],
+      "expected_deltas": [
+        {
+          "path": "/candidate_presentable",
+          "operation": "set",
+          "before": true,
+          "after": false
+        },
+        {
+          "path": "/condition_results/consumers",
+          "operation": "set",
+          "before": "supported_synthetic_condition",
+          "after": "unknown"
+        }
+      ],
+      "formal_counterexample_sha256": "5356a726bf73190a4b8d4a7b29c85156cd9f81900bbc1784d4e1b3e32ede5f3e",
+      "formal_expected_result_sha256": "3e5ccf8b5c14143bba5561e0385d75847e398478e571e4de5e64fb6e1bf23f0c"
+    },
+    {
+      "u_id": "R1-H048-F03-NAME-NOT-COMPARED-DISCLOSURE",
+      "root": "F03",
+      "baseline_u_id": "H048-F03-NORMAL",
+      "input_deltas": [
+        {
+          "path": "/packet/canonical_decision/name",
+          "operation": "set",
+          "before": "readValue",
+          "after": "foreign-uncompared-name"
+        }
+      ],
+      "expected_deltas": [],
+      "formal_counterexample_sha256": "b930af819914b39a63960cb9da5699d93cb85f263cb0ff3e530e0cdff2a1bb73",
+      "formal_expected_result_sha256": "1342f7a262e3fdf13e9662ff9ddd9aed99af0688f76b597a853540c9a4a7c71a"
+    },
+    {
+      "u_id": "R1-H048-F03-SCOPE-NOT-COMPARED-DISCLOSURE",
+      "root": "F03",
+      "baseline_u_id": "H048-F03-NORMAL",
+      "input_deltas": [
+        {
+          "path": "/context/scope",
+          "operation": "set",
+          "before": "PRODUCT-P",
+          "after": "PRODUCT-Q"
+        }
+      ],
+      "expected_deltas": [],
+      "formal_counterexample_sha256": "683228651676b31daf5e01a20a89b23db7bde9d7152030a6b140007b1e86aa32",
+      "formal_expected_result_sha256": "1342f7a262e3fdf13e9662ff9ddd9aed99af0688f76b597a853540c9a4a7c71a"
+    },
+    {
+      "u_id": "R1-H048-F04-EVALUATION-TBD",
+      "root": "F04",
+      "baseline_u_id": "H048-F04-VALID-EXCEPTION",
+      "input_deltas": [
+        {
+          "path": "/packet/evaluation_date",
+          "operation": "set",
+          "before": "2030-01-01",
+          "after": "TBD"
+        }
+      ],
+      "expected_deltas": [
+        {
+          "path": "/exception_result",
+          "operation": "set",
+          "before": "valid_for_fixture_scope",
+          "after": "unknown"
+        },
+        {
+          "path": "/local_continuation",
+          "operation": "set",
+          "before": true,
+          "after": false
+        }
+      ],
+      "formal_counterexample_sha256": "775a421bb24d506302a4160814b1ef628a2be6aa740f56e658776a9cb8c34052",
+      "formal_expected_result_sha256": "ad8caa432fa596f5f6caece138d3adf11376e6ed4020ad86796ff7c9a2b8b2af"
+    },
+    {
+      "u_id": "R1-H048-F04-EXPIRY-UNKNOWN",
+      "root": "F04",
+      "baseline_u_id": "H048-F04-VALID-EXCEPTION",
+      "input_deltas": [
+        {
+          "path": "/packet/exception/expiry",
+          "operation": "set",
+          "before": "2030-02-01",
+          "after": "unknown"
+        }
+      ],
+      "expected_deltas": [
+        {
+          "path": "/exception_result",
+          "operation": "set",
+          "before": "valid_for_fixture_scope",
+          "after": "unknown"
+        },
+        {
+          "path": "/local_continuation",
+          "operation": "set",
+          "before": true,
+          "after": false
+        }
+      ],
+      "formal_counterexample_sha256": "537ff4797705557b7839e863763e362e18b39cf75b31a3135df97649b1c9c3f3",
+      "formal_expected_result_sha256": "ad8caa432fa596f5f6caece138d3adf11376e6ed4020ad86796ff7c9a2b8b2af"
+    },
+    {
+      "u_id": "R1-H048-F04-EVALUATION-NULL",
+      "root": "F04",
+      "baseline_u_id": "H048-F04-VALID-EXCEPTION",
+      "input_deltas": [
+        {
+          "path": "/packet/evaluation_date",
+          "operation": "set",
+          "before": "2030-01-01",
+          "after": null
+        }
+      ],
+      "expected_deltas": [
+        {
+          "path": "/exception_result",
+          "operation": "set",
+          "before": "valid_for_fixture_scope",
+          "after": "unknown"
+        },
+        {
+          "path": "/local_continuation",
+          "operation": "set",
+          "before": true,
+          "after": false
+        }
+      ],
+      "formal_counterexample_sha256": "78776a98c29853359f6e8dc5c44979d5b324a3a497273a27fd368939c1849103",
+      "formal_expected_result_sha256": "ad8caa432fa596f5f6caece138d3adf11376e6ed4020ad86796ff7c9a2b8b2af"
+    },
+    {
+      "u_id": "LOCAL-H048-SIGNATURE-INPUTS-TBD",
+      "root": "F03",
+      "baseline_u_id": "H048-F03-NORMAL",
+      "input_deltas": [
+        {
+          "path": "/packet/signature_after/inputs/0",
+          "operation": "set",
+          "before": "value_id",
+          "after": "TBD"
+        },
+        {
+          "path": "/packet/signature_before/inputs/0",
+          "operation": "set",
+          "before": "value_id",
+          "after": "TBD"
+        }
+      ],
+      "expected_deltas": [
+        {
+          "path": "/candidate_presentable",
+          "operation": "set",
+          "before": true,
+          "after": false
+        },
+        {
+          "path": "/condition_results/signature:inputs",
+          "operation": "set",
+          "before": "supported_synthetic_condition",
+          "after": "unknown"
+        }
+      ],
+      "formal_counterexample_sha256": "a44d78dcac68a20970a20678bc04587c524f21a0791f54ade335b8c94ca58ca2",
+      "formal_expected_result_sha256": "6114ffd79efae5f3721074285bf8718c2e33bf5326ac31ca4455961b567f947c"
+    },
+    {
+      "u_id": "LOCAL-H048-SIGNATURE-INPUTS-UNKNOWN",
+      "root": "F03",
+      "baseline_u_id": "H048-F03-NORMAL",
+      "input_deltas": [
+        {
+          "path": "/packet/signature_after/inputs/0",
+          "operation": "set",
+          "before": "value_id",
+          "after": "unknown"
+        },
+        {
+          "path": "/packet/signature_before/inputs/0",
+          "operation": "set",
+          "before": "value_id",
+          "after": "unknown"
+        }
+      ],
+      "expected_deltas": [
+        {
+          "path": "/candidate_presentable",
+          "operation": "set",
+          "before": true,
+          "after": false
+        },
+        {
+          "path": "/condition_results/signature:inputs",
+          "operation": "set",
+          "before": "supported_synthetic_condition",
+          "after": "unknown"
+        }
+      ],
+      "formal_counterexample_sha256": "11136aee1f52a39d78b5a26cfd766564c7486f1a585b01d23d9b991df49f1a65",
+      "formal_expected_result_sha256": "6114ffd79efae5f3721074285bf8718c2e33bf5326ac31ca4455961b567f947c"
+    },
+    {
+      "u_id": "LOCAL-H048-SIGNATURE-OUTPUTS-TBD",
+      "root": "F03",
+      "baseline_u_id": "H048-F03-NORMAL",
+      "input_deltas": [
+        {
+          "path": "/packet/signature_after/outputs/0",
+          "operation": "set",
+          "before": "value",
+          "after": "TBD"
+        },
+        {
+          "path": "/packet/signature_before/outputs/0",
+          "operation": "set",
+          "before": "value",
+          "after": "TBD"
+        }
+      ],
+      "expected_deltas": [
+        {
+          "path": "/candidate_presentable",
+          "operation": "set",
+          "before": true,
+          "after": false
+        },
+        {
+          "path": "/condition_results/signature:outputs",
+          "operation": "set",
+          "before": "supported_synthetic_condition",
+          "after": "unknown"
+        }
+      ],
+      "formal_counterexample_sha256": "422ce6f3c367323e3afae5f94f2b0c38a90dc5786156ccd434e681dbdd753a8e",
+      "formal_expected_result_sha256": "ccf01257a549883bded344cfa80568b8d423516087948f041887e1b683022081"
+    },
+    {
+      "u_id": "LOCAL-H048-SIGNATURE-OUTPUTS-UNKNOWN",
+      "root": "F03",
+      "baseline_u_id": "H048-F03-NORMAL",
+      "input_deltas": [
+        {
+          "path": "/packet/signature_after/outputs/0",
+          "operation": "set",
+          "before": "value",
+          "after": "unknown"
+        },
+        {
+          "path": "/packet/signature_before/outputs/0",
+          "operation": "set",
+          "before": "value",
+          "after": "unknown"
+        }
+      ],
+      "expected_deltas": [
+        {
+          "path": "/candidate_presentable",
+          "operation": "set",
+          "before": true,
+          "after": false
+        },
+        {
+          "path": "/condition_results/signature:outputs",
+          "operation": "set",
+          "before": "supported_synthetic_condition",
+          "after": "unknown"
+        }
+      ],
+      "formal_counterexample_sha256": "a3acdb31fdcfbfd92a92bab34e703f3d8e24059e31dc1480def0326b04ff1d69",
+      "formal_expected_result_sha256": "ccf01257a549883bded344cfa80568b8d423516087948f041887e1b683022081"
+    },
+    {
+      "u_id": "LOCAL-H048-SIGNATURE-EFFECTS-TBD",
+      "root": "F03",
+      "baseline_u_id": "H048-F03-NORMAL",
+      "input_deltas": [
+        {
+          "path": "/packet/signature_after/effects",
+          "operation": "collection_change",
+          "before": {
+            "type": "array",
+            "count": 0,
+            "values": []
+          },
+          "after": {
+            "type": "array",
+            "count": 1,
+            "values": [
+              "TBD"
+            ]
+          }
+        },
+        {
+          "path": "/packet/signature_before/effects",
+          "operation": "collection_change",
+          "before": {
+            "type": "array",
+            "count": 0,
+            "values": []
+          },
+          "after": {
+            "type": "array",
+            "count": 1,
+            "values": [
+              "TBD"
+            ]
+          }
+        }
+      ],
+      "expected_deltas": [
+        {
+          "path": "/candidate_presentable",
+          "operation": "set",
+          "before": true,
+          "after": false
+        },
+        {
+          "path": "/condition_results/signature:effects",
+          "operation": "set",
+          "before": "supported_synthetic_condition",
+          "after": "unknown"
+        }
+      ],
+      "formal_counterexample_sha256": "a7466f3c7f2bd0907bb70a9f49d01a8fe9dfeb620884ec684e4c5d9f4790464e",
+      "formal_expected_result_sha256": "65ab37dc3335e92a4f83251916e28d7b3c02e21362b35772377b8ea52936f539"
+    },
+    {
+      "u_id": "LOCAL-H048-SIGNATURE-EFFECTS-UNKNOWN",
+      "root": "F03",
+      "baseline_u_id": "H048-F03-NORMAL",
+      "input_deltas": [
+        {
+          "path": "/packet/signature_after/effects",
+          "operation": "collection_change",
+          "before": {
+            "type": "array",
+            "count": 0,
+            "values": []
+          },
+          "after": {
+            "type": "array",
+            "count": 1,
+            "values": [
+              "unknown"
+            ]
+          }
+        },
+        {
+          "path": "/packet/signature_before/effects",
+          "operation": "collection_change",
+          "before": {
+            "type": "array",
+            "count": 0,
+            "values": []
+          },
+          "after": {
+            "type": "array",
+            "count": 1,
+            "values": [
+              "unknown"
+            ]
+          }
+        }
+      ],
+      "expected_deltas": [
+        {
+          "path": "/candidate_presentable",
+          "operation": "set",
+          "before": true,
+          "after": false
+        },
+        {
+          "path": "/condition_results/signature:effects",
+          "operation": "set",
+          "before": "supported_synthetic_condition",
+          "after": "unknown"
+        }
+      ],
+      "formal_counterexample_sha256": "231e9041a43b8526a9f0b532a2c02fe3c54bb042de4958deda5b2383565a4a5d",
+      "formal_expected_result_sha256": "65ab37dc3335e92a4f83251916e28d7b3c02e21362b35772377b8ea52936f539"
+    },
+    {
+      "u_id": "LOCAL-H048-SIGNATURE-FAILURE-TBD",
+      "root": "F03",
+      "baseline_u_id": "H048-F03-NORMAL",
+      "input_deltas": [
+        {
+          "path": "/packet/signature_after/failure/0",
+          "operation": "set",
+          "before": "not_found",
+          "after": "TBD"
+        },
+        {
+          "path": "/packet/signature_before/failure/0",
+          "operation": "set",
+          "before": "not_found",
+          "after": "TBD"
+        }
+      ],
+      "expected_deltas": [
+        {
+          "path": "/candidate_presentable",
+          "operation": "set",
+          "before": true,
+          "after": false
+        },
+        {
+          "path": "/condition_results/signature:failure",
+          "operation": "set",
+          "before": "supported_synthetic_condition",
+          "after": "unknown"
+        }
+      ],
+      "formal_counterexample_sha256": "e5c0503cd1ccd18bcedd83fe0d65129b40977992e5652ef2536ad4f503446157",
+      "formal_expected_result_sha256": "72da262238ee9f3c6fc2384c931c2ce4523f51167ba0fe4c7945556da66890a9"
+    },
+    {
+      "u_id": "LOCAL-H048-SIGNATURE-FAILURE-UNKNOWN",
+      "root": "F03",
+      "baseline_u_id": "H048-F03-NORMAL",
+      "input_deltas": [
+        {
+          "path": "/packet/signature_after/failure/0",
+          "operation": "set",
+          "before": "not_found",
+          "after": "unknown"
+        },
+        {
+          "path": "/packet/signature_before/failure/0",
+          "operation": "set",
+          "before": "not_found",
+          "after": "unknown"
+        }
+      ],
+      "expected_deltas": [
+        {
+          "path": "/candidate_presentable",
+          "operation": "set",
+          "before": true,
+          "after": false
+        },
+        {
+          "path": "/condition_results/signature:failure",
+          "operation": "set",
+          "before": "supported_synthetic_condition",
+          "after": "unknown"
+        }
+      ],
+      "formal_counterexample_sha256": "e5566089fafb338c29e1b87e766b6d3752668286afab8a67440075cf422b4ce1",
+      "formal_expected_result_sha256": "72da262238ee9f3c6fc2384c931c2ce4523f51167ba0fe4c7945556da66890a9"
+    },
+    {
+      "u_id": "LOCAL-H048-SIGNATURE-STATE_TRANSITION-TBD",
+      "root": "F03",
+      "baseline_u_id": "H048-F03-NORMAL",
+      "input_deltas": [
+        {
+          "path": "/packet/signature_after/state_transition",
+          "operation": "state_change",
+          "before": "unchanged",
+          "after": {
+            "type": "array",
+            "count": 1,
+            "values": [
+              "TBD"
+            ]
+          }
+        },
+        {
+          "path": "/packet/signature_before/state_transition",
+          "operation": "state_change",
+          "before": "unchanged",
+          "after": {
+            "type": "array",
+            "count": 1,
+            "values": [
+              "TBD"
+            ]
+          }
+        }
+      ],
+      "expected_deltas": [
+        {
+          "path": "/candidate_presentable",
+          "operation": "set",
+          "before": true,
+          "after": false
+        },
+        {
+          "path": "/condition_results/signature:state_transition",
+          "operation": "set",
+          "before": "supported_synthetic_condition",
+          "after": "unknown"
+        }
+      ],
+      "formal_counterexample_sha256": "7b0bb7e0672dac25d397f14c97532549bd0faeecda4c24bf133280e0bdf0ae0d",
+      "formal_expected_result_sha256": "2202c4c7b957e454b9e825f46dc9038fe0195065294ed5e6ac504055dec02d3d"
+    },
+    {
+      "u_id": "LOCAL-H048-SIGNATURE-STATE_TRANSITION-UNKNOWN",
+      "root": "F03",
+      "baseline_u_id": "H048-F03-NORMAL",
+      "input_deltas": [
+        {
+          "path": "/packet/signature_after/state_transition",
+          "operation": "state_change",
+          "before": "unchanged",
+          "after": {
+            "type": "array",
+            "count": 1,
+            "values": [
+              "unknown"
+            ]
+          }
+        },
+        {
+          "path": "/packet/signature_before/state_transition",
+          "operation": "state_change",
+          "before": "unchanged",
+          "after": {
+            "type": "array",
+            "count": 1,
+            "values": [
+              "unknown"
+            ]
+          }
+        }
+      ],
+      "expected_deltas": [
+        {
+          "path": "/candidate_presentable",
+          "operation": "set",
+          "before": true,
+          "after": false
+        },
+        {
+          "path": "/condition_results/signature:state_transition",
+          "operation": "set",
+          "before": "supported_synthetic_condition",
+          "after": "unknown"
+        }
+      ],
+      "formal_counterexample_sha256": "f960237633e8afc1e42fb73c461187c0dc3a9f34f6ea172892be846fe61f38c5",
+      "formal_expected_result_sha256": "2202c4c7b957e454b9e825f46dc9038fe0195065294ed5e6ac504055dec02d3d"
+    },
+    {
+      "u_id": "LOCAL-H048-SIGNATURE-CALL_GRAPH-TBD",
+      "root": "F03",
+      "baseline_u_id": "H048-F03-NORMAL",
+      "input_deltas": [
+        {
+          "path": "/packet/signature_after/call_graph/0",
+          "operation": "set",
+          "before": "port.read",
+          "after": "TBD"
+        },
+        {
+          "path": "/packet/signature_before/call_graph/0",
+          "operation": "set",
+          "before": "port.read",
+          "after": "TBD"
+        }
+      ],
+      "expected_deltas": [
+        {
+          "path": "/candidate_presentable",
+          "operation": "set",
+          "before": true,
+          "after": false
+        },
+        {
+          "path": "/condition_results/signature:call_graph",
+          "operation": "set",
+          "before": "supported_synthetic_condition",
+          "after": "unknown"
+        }
+      ],
+      "formal_counterexample_sha256": "deea9dc2f629748af2f37afc47a2f2ada3e78682ce3793eddcd08ff8f4f60165",
+      "formal_expected_result_sha256": "cce12bf12d79cb563997a98fca1cf023f29cd4d00a3c34c3cd1f7fa5cca200b6"
+    },
+    {
+      "u_id": "LOCAL-H048-SIGNATURE-CALL_GRAPH-UNKNOWN",
+      "root": "F03",
+      "baseline_u_id": "H048-F03-NORMAL",
+      "input_deltas": [
+        {
+          "path": "/packet/signature_after/call_graph/0",
+          "operation": "set",
+          "before": "port.read",
+          "after": "unknown"
+        },
+        {
+          "path": "/packet/signature_before/call_graph/0",
+          "operation": "set",
+          "before": "port.read",
+          "after": "unknown"
+        }
+      ],
+      "expected_deltas": [
+        {
+          "path": "/candidate_presentable",
+          "operation": "set",
+          "before": true,
+          "after": false
+        },
+        {
+          "path": "/condition_results/signature:call_graph",
+          "operation": "set",
+          "before": "supported_synthetic_condition",
+          "after": "unknown"
+        }
+      ],
+      "formal_counterexample_sha256": "fc386bd51e16b4b0e735923bcf7674fc1066895127db8d4b9ecd3b18c4343a86",
+      "formal_expected_result_sha256": "cce12bf12d79cb563997a98fca1cf023f29cd4d00a3c34c3cd1f7fa5cca200b6"
+    },
+    {
+      "u_id": "LOCAL-H048-SIGNATURE-CONSUMER_CONTRACT-TBD",
+      "root": "F03",
+      "baseline_u_id": "H048-F03-NORMAL",
+      "input_deltas": [
+        {
+          "path": "/packet/signature_after/consumer_contract",
+          "operation": "state_change",
+          "before": {
+            "type": "object",
+            "keys": [
+              "C1",
+              "C2"
+            ]
+          },
+          "after": {
+            "type": "array",
+            "count": 1,
+            "values": [
+              "TBD"
+            ]
+          }
+        },
+        {
+          "path": "/packet/signature_before/consumer_contract",
+          "operation": "state_change",
+          "before": {
+            "type": "object",
+            "keys": [
+              "C1",
+              "C2"
+            ]
+          },
+          "after": {
+            "type": "array",
+            "count": 1,
+            "values": [
+              "TBD"
+            ]
+          }
+        }
+      ],
+      "expected_deltas": [
+        {
+          "path": "/candidate_presentable",
+          "operation": "set",
+          "before": true,
+          "after": false
+        },
+        {
+          "path": "/condition_results/signature:consumer_contract",
+          "operation": "set",
+          "before": "supported_synthetic_condition",
+          "after": "unknown"
+        }
+      ],
+      "formal_counterexample_sha256": "f5dc0fa35ad4ffe92a5eec37da28e381e8966cca7b45a28f379e0add4071e200",
+      "formal_expected_result_sha256": "f8f9545e67af777a1e328e9763859988cad37e5e091ad6555ffc119ede267f2f"
+    },
+    {
+      "u_id": "LOCAL-H048-SIGNATURE-CONSUMER_CONTRACT-UNKNOWN",
+      "root": "F03",
+      "baseline_u_id": "H048-F03-NORMAL",
+      "input_deltas": [
+        {
+          "path": "/packet/signature_after/consumer_contract",
+          "operation": "state_change",
+          "before": {
+            "type": "object",
+            "keys": [
+              "C1",
+              "C2"
+            ]
+          },
+          "after": {
+            "type": "array",
+            "count": 1,
+            "values": [
+              "unknown"
+            ]
+          }
+        },
+        {
+          "path": "/packet/signature_before/consumer_contract",
+          "operation": "state_change",
+          "before": {
+            "type": "object",
+            "keys": [
+              "C1",
+              "C2"
+            ]
+          },
+          "after": {
+            "type": "array",
+            "count": 1,
+            "values": [
+              "unknown"
+            ]
+          }
+        }
+      ],
+      "expected_deltas": [
+        {
+          "path": "/candidate_presentable",
+          "operation": "set",
+          "before": true,
+          "after": false
+        },
+        {
+          "path": "/condition_results/signature:consumer_contract",
+          "operation": "set",
+          "before": "supported_synthetic_condition",
+          "after": "unknown"
+        }
+      ],
+      "formal_counterexample_sha256": "f0c64e6d113d6583e429a8dc61a987332ab28179883ff3df620522eaf4db7b7a",
+      "formal_expected_result_sha256": "f8f9545e67af777a1e328e9763859988cad37e5e091ad6555ffc119ede267f2f"
+    },
+    {
+      "u_id": "LOCAL-H048-SIGNATURE-COMPOSITE-MARKERS",
+      "root": "F03",
+      "baseline_u_id": "H048-F03-NORMAL",
+      "input_deltas": [
+        {
+          "path": "/packet/signature_after/failure/0",
+          "operation": "set",
+          "before": "not_found",
+          "after": "unknown"
+        },
+        {
+          "path": "/packet/signature_after/inputs/0",
+          "operation": "set",
+          "before": "value_id",
+          "after": "TBD"
+        },
+        {
+          "path": "/packet/signature_before/failure/0",
+          "operation": "set",
+          "before": "not_found",
+          "after": "unknown"
+        },
+        {
+          "path": "/packet/signature_before/inputs/0",
+          "operation": "set",
+          "before": "value_id",
+          "after": "TBD"
+        }
+      ],
+      "expected_deltas": [
+        {
+          "path": "/candidate_presentable",
+          "operation": "set",
+          "before": true,
+          "after": false
+        },
+        {
+          "path": "/condition_results/signature:failure",
+          "operation": "set",
+          "before": "supported_synthetic_condition",
+          "after": "unknown"
+        },
+        {
+          "path": "/condition_results/signature:inputs",
+          "operation": "set",
+          "before": "supported_synthetic_condition",
+          "after": "unknown"
+        }
+      ],
+      "formal_counterexample_sha256": "27e843d3feaa2fcf9d5b64a36852166bca17021e90c143818f38cb8f2c71925f",
+      "formal_expected_result_sha256": "7d623c733e7f2a5b5e0e861a63e01dd1659afdaef594371b52ff914f7f00838f"
+    },
+    {
+      "u_id": "LOCAL-H048-SIGNATURE-UNKNOWN-BEFORE-CONFLICT",
+      "root": "F03",
+      "baseline_u_id": "H048-F03-NORMAL",
+      "input_deltas": [
+        {
+          "path": "/packet/signature_after/outputs/0",
+          "operation": "set",
+          "before": "value",
+          "after": "different-known-value"
+        },
+        {
+          "path": "/packet/signature_before/outputs/0",
+          "operation": "set",
+          "before": "value",
+          "after": "TBD"
+        }
+      ],
+      "expected_deltas": [
+        {
+          "path": "/candidate_presentable",
+          "operation": "set",
+          "before": true,
+          "after": false
+        },
+        {
+          "path": "/condition_results/signature:outputs",
+          "operation": "set",
+          "before": "supported_synthetic_condition",
+          "after": "unknown"
+        }
+      ],
+      "formal_counterexample_sha256": "6d5929398ff98965fd7cab875f1af14879519da0d975fe32d560e20a105a49b6",
+      "formal_expected_result_sha256": "ccf01257a549883bded344cfa80568b8d423516087948f041887e1b683022081"
+    },
+    {
+      "u_id": "LOCAL-H048-SIGNATURE-NESTED-LIST-MARKER",
+      "root": "F03",
+      "baseline_u_id": "H048-F03-NORMAL",
+      "input_deltas": [
+        {
+          "path": "/packet/signature_after/call_graph/0",
+          "operation": "state_change",
+          "before": "port.read",
+          "after": {
+            "type": "array",
+            "count": 2,
+            "values": [
+              "known",
+              "unknown"
+            ]
+          }
+        },
+        {
+          "path": "/packet/signature_before/call_graph/0",
+          "operation": "state_change",
+          "before": "port.read",
+          "after": {
+            "type": "array",
+            "count": 2,
+            "values": [
+              "known",
+              "unknown"
+            ]
+          }
+        }
+      ],
+      "expected_deltas": [
+        {
+          "path": "/candidate_presentable",
+          "operation": "set",
+          "before": true,
+          "after": false
+        },
+        {
+          "path": "/condition_results/signature:call_graph",
+          "operation": "set",
+          "before": "supported_synthetic_condition",
+          "after": "unknown"
+        }
+      ],
+      "formal_counterexample_sha256": "78c988055ed7863647eb2b39e4105f790b12d845ca1c5d5fa1dd0944fd0f4483",
+      "formal_expected_result_sha256": "cce12bf12d79cb563997a98fca1cf023f29cd4d00a3c34c3cd1f7fa5cca200b6"
+    },
+    {
+      "u_id": "LOCAL-H048-SIGNATURE-OPAQUE-MAP-VALUE-MARKER",
+      "root": "F03",
+      "baseline_u_id": "H048-F03-NORMAL",
+      "input_deltas": [
+        {
+          "path": "/packet/signature_after/consumer_contract/C1",
+          "operation": "remove",
+          "before": "value-read@r1",
+          "after": "ABSENT"
+        },
+        {
+          "path": "/packet/signature_after/consumer_contract/C2",
+          "operation": "remove",
+          "before": "value-read@r1",
+          "after": "ABSENT"
+        },
+        {
+          "path": "/packet/signature_after/consumer_contract/opaque-node",
+          "operation": "set",
+          "before": "ABSENT",
+          "after": {
+            "type": "object",
+            "keys": [
+              "payload"
+            ]
+          }
+        },
+        {
+          "path": "/packet/signature_before/consumer_contract/C1",
+          "operation": "remove",
+          "before": "value-read@r1",
+          "after": "ABSENT"
+        },
+        {
+          "path": "/packet/signature_before/consumer_contract/C2",
+          "operation": "remove",
+          "before": "value-read@r1",
+          "after": "ABSENT"
+        },
+        {
+          "path": "/packet/signature_before/consumer_contract/opaque-node",
+          "operation": "set",
+          "before": "ABSENT",
+          "after": {
+            "type": "object",
+            "keys": [
+              "payload"
+            ]
+          }
+        }
+      ],
+      "expected_deltas": [
+        {
+          "path": "/candidate_presentable",
+          "operation": "set",
+          "before": true,
+          "after": false
+        },
+        {
+          "path": "/condition_results/signature:consumer_contract",
+          "operation": "set",
+          "before": "supported_synthetic_condition",
+          "after": "unknown"
+        }
+      ],
+      "formal_counterexample_sha256": "d6cf93fd8ed76ca22973cff99d4b2c69c8a4b145551b61432f02ced2ab0121cd",
+      "formal_expected_result_sha256": "f8f9545e67af777a1e328e9763859988cad37e5e091ad6555ffc119ede267f2f"
+    },
+    {
+      "u_id": "LOCAL-H048-SIGNATURE-MARKER-KEY-IS-OPAQUE",
+      "root": "F03",
+      "baseline_u_id": "H048-F03-NORMAL",
+      "input_deltas": [
+        {
+          "path": "/packet/signature_after/consumer_contract/C1",
+          "operation": "remove",
+          "before": "value-read@r1",
+          "after": "ABSENT"
+        },
+        {
+          "path": "/packet/signature_after/consumer_contract/C2",
+          "operation": "remove",
+          "before": "value-read@r1",
+          "after": "ABSENT"
+        },
+        {
+          "path": "/packet/signature_after/consumer_contract/TBD",
+          "operation": "set",
+          "before": "ABSENT",
+          "after": "literal-key-known-value"
+        },
+        {
+          "path": "/packet/signature_before/consumer_contract/C1",
+          "operation": "remove",
+          "before": "value-read@r1",
+          "after": "ABSENT"
+        },
+        {
+          "path": "/packet/signature_before/consumer_contract/C2",
+          "operation": "remove",
+          "before": "value-read@r1",
+          "after": "ABSENT"
+        },
+        {
+          "path": "/packet/signature_before/consumer_contract/TBD",
+          "operation": "set",
+          "before": "ABSENT",
+          "after": "literal-key-known-value"
+        }
+      ],
+      "expected_deltas": [],
+      "formal_counterexample_sha256": "40203ee7827f21d6eb604bb0f85c8e18e7f6bdfe53a053e07061e0373fc0308e",
+      "formal_expected_result_sha256": "1342f7a262e3fdf13e9662ff9ddd9aed99af0688f76b597a853540c9a4a7c71a"
+    },
+    {
+      "u_id": "LOCAL-H048-F01-AUTHOR-RETURN-NOT-MATERIALIZED",
+      "root": "F01",
+      "baseline_u_id": "H048-F01-SAME-NAME-DIFFERENT-ROLE",
+      "input_deltas": [
+        {
+          "path": "/packet/targets",
+          "operation": "collection_change",
+          "before": {
+            "type": "array",
+            "count": 2,
+            "ids": [
+              "OBJ-P",
+              "OBJ-R"
+            ]
+          },
+          "after": {
+            "type": "array",
+            "count": 2,
+            "ids": [
+              "OBJ-P",
+              "OBJ-R"
+            ]
+          }
+        }
+      ],
+      "expected_deltas": [
+        {
+          "path": "/target_results/OBJ-P",
+          "operation": "set",
+          "before": "candidate_only:Query",
+          "after": "missing_target_meaning"
+        }
+      ],
+      "formal_counterexample_sha256": "59e822bebdda6fed95c75f520363d2bb50fcd14138b7c4220eaf31a2d09db4fc",
+      "formal_expected_result_sha256": "5ddd364a7383ab6799a53a8c9674d9f743a895b95ebe7f880682420b6506904d"
+    }
+  ]
+}
