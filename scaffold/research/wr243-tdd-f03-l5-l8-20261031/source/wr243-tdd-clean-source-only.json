@@ -1,0 +1,148 @@
+{
+  "artifact": "WR243 TDD source-only independent derivation",
+  "source_revision": "988765e9be335f2a1d376721c1b11f808fd03372",
+  "worktree": "/tmp/wr243-blind-clean",
+  "scope": {
+    "target": "HARNESS-L2-015 TDD development flow: L3/L10 F03, F04, B01",
+    "included": [
+      "L3 requirements and L10 verification requirements for HARNESS-L3/L10-015-F03, F04, B01",
+      "L4 tdd-development-flow.json allowed pointers: /scope, /purpose, /architecture, /contracts/0, /contracts/3, /contracts/4 and the allowed child fields",
+      "Source prose in L3/L10 Markdown for those same three IDs"
+    ],
+    "excluded": [
+      "TDD L5, L8, and L9 files",
+      "L4 algorithm/procedural interpretation, including /architecture/data_flow as derivation evidence",
+      "L4 negative_classifications and existing structured classification/expected rows",
+      "Runtime, tests, and CI execution",
+      "Existing assignment comparison and Issue posting"
+    ],
+    "derivation_status": "independent source-only derivation; no execution evidence"
+  },
+  "hash_method": "For JSON pointer values, SHA-256 is over UTF-8 compact JSON with ensure_ascii=false, sort_keys=true, separators=(',', ':'). Document hashes are SHA-256 over raw file bytes.",
+  "sources": [
+    {"revision":"988765e9be335f2a1d376721c1b11f808fd03372","path":"docs/helix-harness/L3-requirements/functional-requirements.json","pointer":"/requirements/42","sha256":"b641eb43bd5164ab55101bac10aaa0fbf0fb24a55d4429ad0f013af9594cd6ce","id":"HARNESS-L3-015-F03"},
+    {"revision":"988765e9be335f2a1d376721c1b11f808fd03372","path":"docs/helix-harness/L3-requirements/functional-requirements.json","pointer":"/requirements/43","sha256":"5a32b65268770bc0f6dd8fdfc592533ff939363d7b7b41547d692fe916bf846f","id":"HARNESS-L3-015-F04"},
+    {"revision":"988765e9be335f2a1d376721c1b11f808fd03372","path":"docs/helix-harness/L3-requirements/business-requirements.json","pointer":"/requirements/7","sha256":"9fff23f4d422ea65245f21dd2e7ac8276977c2216926dc27b2fe1b142ecf8d43","id":"HARNESS-L3-015-B01"},
+    {"revision":"988765e9be335f2a1d376721c1b11f808fd03372","path":"docs/helix-harness/L10-verification/functional-verification.json","pointer":"/cases/42","sha256":"c41bc44981b5cdd6abe939405535a44c163d9714374e168dfe589dac4ce7cd7a","id":"HARNESS-L10-015-F03"},
+    {"revision":"988765e9be335f2a1d376721c1b11f808fd03372","path":"docs/helix-harness/L10-verification/functional-verification.json","pointer":"/cases/43","sha256":"868127e5b2bd65ff6f133539ae2e582d5f7864b2ff2bea02dc4cd07de6f475a5","id":"HARNESS-L10-015-F04"},
+    {"revision":"988765e9be335f2a1d376721c1b11f808fd03372","path":"docs/helix-harness/L10-verification/business-verification.json","pointer":"/cases/7","sha256":"f725d5f140291596015f190f18eb8a6579787c4cdba387402632c72a250b94b1","id":"HARNESS-L10-015-B01"},
+    {"revision":"988765e9be335f2a1d376721c1b11f808fd03372","path":"docs/helix-harness/L4-basic-design/tdd-development-flow.json","pointer":"/scope","sha256":"927a37f6214e85f2c1fe8fd04655e3dc0b3d755e0f0bb6b99b602ac97d4e1314"},
+    {"revision":"988765e9be335f2a1d376721c1b11f808fd03372","path":"docs/helix-harness/L4-basic-design/tdd-development-flow.json","pointer":"/purpose","sha256":"db7cdc472da8331bb54e105477f1dc56a1d30b6a03c6b18df3db0e95631c5635"},
+    {"revision":"988765e9be335f2a1d376721c1b11f808fd03372","path":"docs/helix-harness/L4-basic-design/tdd-development-flow.json","pointer":"/architecture","sha256":"3afd21459e513a609f1129da5c3592a51cc9032bfe75f07ff305a4fe80b766d6","derivation_limit":"Only role/boundary prose was considered. The architecture data_flow sequence and algorithm-like detail were excluded from derivation."},
+    {"revision":"988765e9be335f2a1d376721c1b11f808fd03372","path":"docs/helix-harness/L4-basic-design/tdd-development-flow.json","pointer":"/contracts/0/title","sha256":"fbebafebb8250c991b36f6ae8fc76b00187aca5ced66f930e0ee1a526c2c2cc8"},
+    {"revision":"988765e9be335f2a1d376721c1b11f808fd03372","path":"docs/helix-harness/L4-basic-design/tdd-development-flow.json","pointer":"/contracts/0/original_l3","sha256":"9fff23f4d422ea65245f21dd2e7ac8276977c2216926dc27b2fe1b142ecf8d43"},
+    {"revision":"988765e9be335f2a1d376721c1b11f808fd03372","path":"docs/helix-harness/L4-basic-design/tdd-development-flow.json","pointer":"/contracts/0/behavior","sha256":"23a0af4b53b8271dd61e28305cc598824a551988dfff3d4379889de5145fb691"},
+    {"revision":"988765e9be335f2a1d376721c1b11f808fd03372","path":"docs/helix-harness/L4-basic-design/tdd-development-flow.json","pointer":"/contracts/0/input_contract","sha256":"98f0f2c45a874fe20e190667c8e45b7c6f1b8ed02af3aafd5dba230c14a3092b"},
+    {"revision":"988765e9be335f2a1d376721c1b11f808fd03372","path":"docs/helix-harness/L4-basic-design/tdd-development-flow.json","pointer":"/contracts/0/output_contract","sha256":"4e1ec8271925562ca608044cd1a7b343e2336ace5f8c37569e5d0e55bdea702f"},
+    {"revision":"988765e9be335f2a1d376721c1b11f808fd03372","path":"docs/helix-harness/L4-basic-design/tdd-development-flow.json","pointer":"/contracts/0/failure_conditions","sha256":"a43c9c50254c7dcc8789f2641f4d94b8c6dbd9012c0492c92bb87cc17390bd74"},
+    {"revision":"988765e9be335f2a1d376721c1b11f808fd03372","path":"docs/helix-harness/L4-basic-design/tdd-development-flow.json","pointer":"/contracts/0/effect","sha256":"5b462fa3de8967f0ef9d9d869a88e67debdc019f5866f0d23b193b5e41419df1"},
+    {"revision":"988765e9be335f2a1d376721c1b11f808fd03372","path":"docs/helix-harness/L4-basic-design/tdd-development-flow.json","pointer":"/contracts/3/title","sha256":"5cddc59c1cd21d3c9d331d3d09412e28d7e4b0b051aeea99345457b85e8406d4"},
+    {"revision":"988765e9be335f2a1d376721c1b11f808fd03372","path":"docs/helix-harness/L4-basic-design/tdd-development-flow.json","pointer":"/contracts/3/original_l3","sha256":"b641eb43bd5164ab55101bac10aaa0fbf0fb24a55d4429ad0f013af9594cd6ce"},
+    {"revision":"988765e9be335f2a1d376721c1b11f808fd03372","path":"docs/helix-harness/L4-basic-design/tdd-development-flow.json","pointer":"/contracts/3/behavior","sha256":"c6625bec74df1811056424209a81773be4b56c8bf210a6524d51675be1a5ab39"},
+    {"revision":"988765e9be335f2a1d376721c1b11f808fd03372","path":"docs/helix-harness/L4-basic-design/tdd-development-flow.json","pointer":"/contracts/3/input_contract","sha256":"98f0f2c45a874fe20e190667c8e45b7c6f1b8ed02af3aafd5dba230c14a3092b"},
+    {"revision":"988765e9be335f2a1d376721c1b11f808fd03372","path":"docs/helix-harness/L4-basic-design/tdd-development-flow.json","pointer":"/contracts/3/output_contract","sha256":"6c31ca66cfaad5e3921ff337d9b33611675aabd70a27e6eef2e224f406c79385"},
+    {"revision":"988765e9be335f2a1d376721c1b11f808fd03372","path":"docs/helix-harness/L4-basic-design/tdd-development-flow.json","pointer":"/contracts/3/failure_conditions","sha256":"280c4b0b90f47313e8a570d3d126ca0bd399373770fb48ef8905427b10c06a07"},
+    {"revision":"988765e9be335f2a1d376721c1b11f808fd03372","path":"docs/helix-harness/L4-basic-design/tdd-development-flow.json","pointer":"/contracts/3/effect","sha256":"5b462fa3de8967f0ef9d9d869a88e67debdc019f5866f0d23b193b5e41419df1"},
+    {"revision":"988765e9be335f2a1d376721c1b11f808fd03372","path":"docs/helix-harness/L4-basic-design/tdd-development-flow.json","pointer":"/contracts/4/title","sha256":"f01f267bc26cc00232d30fc9534eed8b0531b5ad11fc5b552f1e45a74a9b3598"},
+    {"revision":"988765e9be335f2a1d376721c1b11f808fd03372","path":"docs/helix-harness/L4-basic-design/tdd-development-flow.json","pointer":"/contracts/4/original_l3","sha256":"5a32b65268770bc0f6dd8fdfc592533ff939363d7b7b41547d692fe916bf846f"},
+    {"revision":"988765e9be335f2a1d376721c1b11f808fd03372","path":"docs/helix-harness/L4-basic-design/tdd-development-flow.json","pointer":"/contracts/4/behavior","sha256":"47d124beb1e3c6fd6d36eafa7d67b7ec0121dee0c5f842ea51d17133c8cc89cd"},
+    {"revision":"988765e9be335f2a1d376721c1b11f808fd03372","path":"docs/helix-harness/L4-basic-design/tdd-development-flow.json","pointer":"/contracts/4/input_contract","sha256":"98f0f2c45a874fe20e190667c8e45b7c6f1b8ed02af3aafd5dba230c14a3092b"},
+    {"revision":"988765e9be335f2a1d376721c1b11f808fd03372","path":"docs/helix-harness/L4-basic-design/tdd-development-flow.json","pointer":"/contracts/4/output_contract","sha256":"d58bb0f891d9730d9fde68512f34ebdeceaed1054fbd28ec0e8fe8abc375c8ae"},
+    {"revision":"988765e9be335f2a1d376721c1b11f808fd03372","path":"docs/helix-harness/L4-basic-design/tdd-development-flow.json","pointer":"/contracts/4/failure_conditions","sha256":"1184d4e503558b38a3e7b80943569553a1582140773f8d9e40be9520e34d9785"},
+    {"revision":"988765e9be335f2a1d376721c1b11f808fd03372","path":"docs/helix-harness/L4-basic-design/tdd-development-flow.json","pointer":"/contracts/4/effect","sha256":"5b462fa3de8967f0ef9d9d869a88e67debdc019f5866f0d23b193b5e41419df1"}
+  ],
+  "independent_negative_cases": [
+    {
+      "local_id":"WR243-SO-F03-01",
+      "oracle_contract":"HARNESS-L3/L10-015-F03",
+      "negative_condition":"Frozen oracle is weakened or replaced to make the implementation pass; or the Green observation does not satisfy the same frozen oracle.",
+      "expected_observation":"Do not recognize Green closure. Preserve oracle identity/content mismatch and route the semantic change upstream; do not count a pass against a changed expectation.",
+      "basis":["L3 F03 obligation","L10 F03 negative_input and failure_observation","L4 /contracts/3 behavior, output_contract, failure_conditions"],
+      "status":"derived expectation; not executed"
+    },
+    {
+      "local_id":"WR243-SO-F03-02",
+      "oracle_contract":"HARNESS-L3/L10-015-F03",
+      "negative_condition":"The implementation body is changed before the intended pre-body Red is observed, or the required causal order is inverted.",
+      "expected_observation":"Keep the pre-body Red obligation unsatisfied; later evidence cannot establish the missing earlier observation. Do not close the F03 sequence.",
+      "basis":["L3 F03 obligation: after pre-body Red","L10 F03 negative_input and failure_observation","L4 /contracts/3 failure_conditions"],
+      "status":"derived expectation; not executed"
+    },
+    {
+      "local_id":"WR243-SO-F03-03",
+      "oracle_contract":"HARNESS-L3/L10-015-F03",
+      "negative_condition":"A local refactor changes public contract, requirement meaning, architecture meaning, or state meaning.",
+      "expected_observation":"Do not accept it as a meaning-preserving local refactor; preserve the change as an upstream/backflow obligation to the relevant owner/layer.",
+      "basis":["L3 F03 obligation","L10 F03 negative_input and failure_observation","L4 /contracts/3 behavior, failure_conditions"],
+      "status":"derived expectation; not executed"
+    },
+    {
+      "local_id":"WR243-SO-F03-04",
+      "oracle_contract":"HARNESS-L3/L10-015-F03",
+      "negative_condition":"Extra behavior outside the minimal body scope is added, or an incorrect observed Green is treated as satisfying the oracle.",
+      "expected_observation":"Preserve the out-of-scope behavior or wrong observation as an unresolved failure; successful unrelated behavior cannot cancel it.",
+      "basis":["L4 /contracts/3 output_contract and failure_conditions"],
+      "status":"derived expectation; not executed",
+      "qualification":"The example receiver/debit values in L4 are fixture-specific and are not generalized into a system-wide numeric rule."
+    },
+    {
+      "local_id":"WR243-SO-F03-05",
+      "oracle_contract":"HARNESS-L3/L10-015-F03",
+      "negative_condition":"Atomic CI success is presented as product quality, system verification, user acceptance, or release completion.",
+      "expected_observation":"Keep F03/atomic-CI evidence separate from higher verification and acceptance; do not produce those higher states from this CI result.",
+      "basis":["L3 F03 obligation","L4 /contracts/3 failure_conditions: ci_as_quality"],
+      "status":"derived expectation; not executed"
+    },
+    {
+      "local_id":"WR243-SO-F04-01",
+      "oracle_contract":"HARNESS-L3/L10-015-F04",
+      "negative_condition":"Design/test-to-code trace is one-way or points to a different target revision.",
+      "expected_observation":"Report the missing reverse edge or revision mismatch; do not treat trace as bidirectional/current or close the obligation.",
+      "basis":["L3 F04 obligation","L10 F04 negative_input and failure_observation","L4 /contracts/4 behavior, failure_conditions"],
+      "status":"derived expectation; not executed"
+    },
+    {
+      "local_id":"WR243-SO-F04-02",
+      "oracle_contract":"HARNESS-L3/L10-015-F04",
+      "negative_condition":"④ development alone, or its atomic CI Green, is used to claim Integrated, quality completion, Accepted, or Release.",
+      "expected_observation":"Cap the standalone output at Provisional and retain Integrated/verification/acceptance/release as unestablished pending their own contracts and owners.",
+      "basis":["L3 F04 obligation","L10 F04 negative_input and failure_observation","L4 /contracts/4 output_contract and failure_conditions"],
+      "status":"derived expectation; not executed"
+    },
+    {
+      "local_id":"WR243-SO-B01-01",
+      "oracle_contract":"HARNESS-L3/L10-015-B01",
+      "negative_condition":"Use without OS-operated CI is rejected categorically even though the same contract is passed to user CI; or cost/time improvement is claimed as success while required quality is unmet.",
+      "expected_observation":"Preserve standalone user-CI use as an allowed form, but keep quality unmet and improvement success ungenerated when required quality is not met.",
+      "basis":["L3 B01 obligation","L10 B01 negative_input and failure_observation","L4 /contracts/0 behavior, output_contract, failure_conditions"],
+      "status":"derived expectation; not executed"
+    },
+    {
+      "local_id":"WR243-SO-B01-02",
+      "oracle_contract":"HARNESS-L3/L10-015-B01",
+      "negative_condition":"An omitted inspection is erased, or a measurement improvement is converted into acceptance/effect success.",
+      "expected_observation":"Retain the unrecovered inspection and separate measurement/cost/time improvement from quality and user acceptance; do not generate acceptance from the metric.",
+      "basis":["L3 B01 obligation","L10 B01 negative_input and failure_observation","L4 /contracts/0 output_contract, failure_conditions"],
+      "status":"derived expectation; not executed"
+    }
+  ],
+  "leaf_reuse": [
+    {"same_sha256":"b641eb43bd5164ab55101bac10aaa0fbf0fb24a55d4429ad0f013af9594cd6ce","pointers":["L3 functional /requirements/42","L4 /contracts/3/original_l3"],"observation":"L4 original_l3 leaf is byte-semantically identical under the declared canonical JSON hash to the corresponding L3 F03 record."},
+    {"same_sha256":"5a32b65268770bc0f6dd8fdfc592533ff939363d7b7b41547d692fe916bf846f","pointers":["L3 functional /requirements/43","L4 /contracts/4/original_l3"],"observation":"L4 original_l3 leaf is byte-semantically identical under the declared canonical JSON hash to the corresponding L3 F04 record."},
+    {"same_sha256":"9fff23f4d422ea65245f21dd2e7ac8276977c2216926dc27b2fe1b142ecf8d43","pointers":["L3 business /requirements/7","L4 /contracts/0/original_l3"],"observation":"L4 original_l3 leaf is byte-semantically identical under the declared canonical JSON hash to the corresponding L3 B01 record."},
+    {"same_sha256":"98f0f2c45a874fe20e190667c8e45b7c6f1b8ed02af3aafd5dba230c14a3092b","pointers":["L4 /contracts/0/input_contract","L4 /contracts/3/input_contract","L4 /contracts/4/input_contract"],"observation":"The same input-contract prose is reused across the three selected L4 contract leaves; whether this reuse is semantically intended or merely a shared fixture note is uncertain."},
+    {"same_sha256":"5b462fa3de8967f0ef9d9d869a88e67debdc019f5866f0d23b193b5e41419df1","pointers":["L4 /contracts/0/effect","L4 /contracts/3/effect","L4 /contracts/4/effect"],"observation":"The normative-contract-only/no-execution effect leaf is shared across the three selected contracts."}
+  ],
+  "unresolved": {
+    "sequence_equality": "The sources establish causal/order constraints (notably pre-body Red before body change, followed by Green/refactor/atomic CI), but do not specify a canonical sequence encoding, identity, or exact equality comparator. Derivation checks order/causality only; exact sequence equality remains undecided.",
+    "failure_code": "L4 failure_conditions contain local code labels, but L3/L10 prose does not establish a normative failure-code vocabulary, mapping, or precedence. No code is elevated to a canonical output code; code selection remains undecided.",
+    "oracle_unit_vs_u_id_rows": "The L3/L10 contracts are oracle-contract units (F03, F04, B01); a U-ID row would be a finer test/fixture instance. One contract can motivate multiple negative conditions, and one condition could need multiple row fixtures. No one-to-one mapping or U-ID identity is inferred here.",
+    "architecture_algorithm_boundary": "The /architecture pointer includes an ordered data_flow and detailed connections. These were not used to derive negative cases because the request excludes L4 algorithmic content; only non-algorithmic role/boundary prose was considered.",
+    "fixture_authority": "L4 input/output contract prose labels examples synthetic/minimal and says real operation/authority/codec need separate binding. No runtime result, authority state, or formal codec is inferred from these fixtures."
+  },
+  "verification": {
+    "worktree_head": "988765e9be335f2a1d376721c1b11f808fd03372",
+    "json_syntax_check": "not yet run",
+    "artifact_sha256": "reported externally; self-hash is intentionally not embedded"
+  }
+}

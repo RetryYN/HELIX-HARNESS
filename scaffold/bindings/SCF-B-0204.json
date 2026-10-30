@@ -1,0 +1,119 @@
+{
+  "schema_revision": 1,
+  "id": "SCF-B-0204",
+  "kind": "scaffold",
+  "title": "WR243 HARNESS-015 F03 L5/L8 source-only候補証跡",
+  "product": "HELIX-HARNESS",
+  "owner_candidate": "HARNESS-015 F03 L5/L8候補設計の責務owner候補",
+  "state": "registered",
+  "reason": "Issue #3510 WR243で比較前固定したsource-only F03導出、既存L4/L9全行比較、L5/L8候補表および不足事項を、正式な設計・oracle・実行・受入と混同しないよう分離する。",
+  "upstream": [
+    {
+      "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+      "sha256": "a3b907cdc316117d4684632f9a1cbf36125eb6e6172f9cfc286060617583d7be",
+      "note": "Base file pin; only approved/reviewed F03 source row /requirements/42 is referenced by the fixed source-only artifact."
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/functional-verification.json",
+      "sha256": "fc58ad2268746d7924ac9be33e8f3f75e6d3c2cc619e27fbc1ddc34edd065cb2",
+      "note": "Base file pin; only F03 contract oracle /cases/42 is referenced by the fixed source-only artifact."
+    },
+    {
+      "path": "docs/helix-harness/L4-basic-design/tdd-development-flow.json",
+      "sha256": "347bfd83b7685b52c45f62b5ee6f336fd74338ee65e67327e6e810d6eb489a16",
+      "note": "F03 allowed behavior/failure-condition prose and post-freeze comparison inputs. L4 unchanged; codes and projections are not promoted."
+    },
+    {
+      "path": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json",
+      "sha256": "4f64977ee8b2900733a823d5b9755f567952caef8cf323036a9b0776202d2462",
+      "note": "Existing F03 assignments for post-freeze row comparison only. L9 unchanged and not used to derive the blind artifact."
+    },
+    {
+      "path": "docs/governance/design-verification-quality-assurance.md",
+      "sha256": "f5751e236dc073fe67114c1fcb4b0f64b3d746290b25d75b61e60a08e3c99c85",
+      "note": "L8 ownership contract: U-ID table only; oracle/test citation fields remain missing where no evidence exists."
+    },
+    {
+      "path": "docs/helix-harness/L5-detail-design/tdd-development-flow.json",
+      "sha256": "a7fd79b52e6e5431ed0b5d2e72524c805e3ecdf1226c17f3ee01de5ed4dc24e0",
+      "note": "Local candidate L5 bytes after R1/F1 Japanese wording correction; digest is held here rather than in the L8 document."
+    }
+  ],
+  "role": "WR243 F03 source-only comparison, L5 condition candidate and L8 existing-U-ID reference table evidence.",
+  "obligations": [
+    "Preserve the exact source-only fixed artifact bytes and issue-comment provenance; do not treat it as approval, formal oracle, execution, or acceptance.",
+    "Record comparisons for all nine existing F03 L4 classifications and L9 negative rows; keep existing code, axis, state, owner, and mutation values comparison-only.",
+    "L5 F03 candidate contains source-only condition statements only; do not add failure code vocabulary, axis/state, algorithm, fixture, or full return material.",
+    "L8 F03 candidate references existing unit_case IDs only; contract oracle is L10 F03, row-level U-ID oracle and test citation remain missing and are not fabricated.",
+    "Preserve all canonical L8 unit_case_ids/unit_cases, L4/L9 bytes, F03 sequence-equality uncertainty, and all other contracts.",
+    "Keep the 4way checker residual and existing ownership-cap residual visible; candidate rows are not counted as canonical 4way rows."
+  ],
+  "connections": {
+    "consumers": [
+      "WR243 F03 L5/L8 candidate review for Issue #3510"
+    ],
+    "dependencies": [
+      "Fixed WR243 source-only artifact comment 6534177643 and SHA-256 846907d5802170ed775fbf08664c0b85f42e7b6ac0a9623e8584452f81ead813",
+      "HARNESS-L3/L10-015-F03 source rows",
+      "Existing HARNESS-L4/L9-015-F03 contract rows",
+      "Design Verification Quality Assurance §3"
+    ],
+    "boundary": "F03 L5/L8 candidate design and scaffold evidence only; no L4/L9 edits, no L8 canonical row edits, no U-ID oracle/test citation invention, no algorithm/runtime/test/CI execution, no approval/acceptance/4way completion."
+  },
+  "operations": {
+    "allowed": [
+      "Static editing of F03 L5/L8 candidate annotations and scaffold evidence",
+      "Static source pointer/hash and row comparison validation",
+      "design_verification_checker check-child as static document comparison",
+      "scfctl validate/stale and git diff scope checks"
+    ],
+    "forbidden": [
+      "Changing L4, L9, or canonical L8 unit_case_ids/unit_cases",
+      "Selecting failure codes, sequence equality semantics, or row-level oracle values",
+      "Creating test citations or U-ID oracle rows without evidence",
+      "Executing L4/L5 algorithm, old CLI/runtime/hook/test/CI, or new runtime/test/CI",
+      "Counting candidate rows as canonical 4way coverage or generating approval/acceptance/completion"
+    ]
+  },
+  "artifacts": [
+    "scaffold/research/wr243-tdd-f03-l5-l8-20261031/README.md",
+    "scaffold/research/wr243-tdd-f03-l5-l8-20261031/comparison.json",
+    "scaffold/research/wr243-tdd-f03-l5-l8-20261031/validate_static_candidate.py",
+    "scaffold/research/wr243-tdd-f03-l5-l8-20261031/verification-summary.json",
+    "scaffold/research/wr243-tdd-f03-l5-l8-20261031/source/wr243-tdd-clean-source-only.json",
+    "docs/helix-harness/L5-detail-design/tdd-development-flow.json",
+    "docs/helix-harness/L8-unit-verification/tdd-development-flow.json",
+    "scaffold/research/wr243-tdd-f03-l5-l8-20261031/correction-r1-f1.json"
+  ],
+  "verification": {
+    "evidence_kind": "scaffold",
+    "scope": [
+      "schema_interface",
+      "source_revision_stale",
+      "negative_case"
+    ],
+    "oracles": [
+      "Fixed blind artifact raw-byte SHA-256 and Issue #3510 comment 6534177643",
+      "L3 F03 /requirements/42 and L10 F03 /cases/42 canonical pointer hashes",
+      "All nine F03 L4/L9 conditions and existing projection comparison records",
+      "L4/L9 exact bytes and canonical L8 ids/unit_cases unchanged from base",
+      "Static candidate validator; check-child residual comparison; L8 forbidden-key count; scfctl validate/stale",
+      "Independent digest check: `sha256sum scaffold/research/wr243-tdd-f03-l5-l8-20261031/source/wr243-tdd-clean-source-only.json` must report 846907d5802170ed775fbf08664c0b85f42e7b6ac0a9623e8584452f81ead813."
+    ],
+    "negative_cases": [
+      "Do not create U-ID oracle or test citation values; record the missing contract-to-row evidence.",
+      "Do not project the existing ci_as_quality axis/state into the source-only candidate.",
+      "Do not assign failure code vocabulary or sequence equality semantics.",
+      "Do not count candidate rows toward canonical 4way totals.",
+      "Do not execute algorithms, runtime, tests, or CI."
+    ]
+  },
+  "replacement": {
+    "role_target": "Formal HARNESS-015 F03 L5/L8 design and verification pair",
+    "formal_artifacts": [],
+    "issue": 1866,
+    "status": "pending"
+  },
+  "created": "2026-10-31",
+  "updated": "2026-10-31"
+}

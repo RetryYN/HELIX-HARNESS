@@ -4322,6 +4322,101 @@
             ]
           }
         ]
+      },
+      "candidate_classification_design": {
+        "status": "scaffold_candidate_only_not_approved_or_executed",
+        "scope": "L3/L10-015-F03のsource-only意味に基づく負例の候補条件。既存L4/L9割当は比較記録に留める。",
+        "fixed_artifact": {
+          "path": "scaffold/research/wr243-tdd-f03-l5-l8-20261031/source/wr243-tdd-clean-source-only.json",
+          "sha256": "846907d5802170ed775fbf08664c0b85f42e7b6ac0a9623e8584452f81ead813",
+          "issue_comment": "https://github.com/RetryYN/HELIX-HARNESS/issues/3510#issuecomment-6534177643",
+          "meaning_scope_only": true
+        },
+        "comparison_ref": "scaffold/research/wr243-tdd-f03-l5-l8-20261031/comparison.json",
+        "source_pins": [
+          {
+            "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+            "revision": "988765e9be335f2a1d376721c1b11f808fd03372",
+            "pointer": "/requirements/42",
+            "record_sha256": "b641eb43bd5164ab55101bac10aaa0fbf0fb24a55d4429ad0f013af9594cd6ce"
+          },
+          {
+            "path": "docs/helix-harness/L10-verification/functional-verification.json",
+            "revision": "988765e9be335f2a1d376721c1b11f808fd03372",
+            "pointer": "/cases/42",
+            "record_sha256": "c41bc44981b5cdd6abe939405535a44c163d9714374e168dfe589dac4ce7cd7a"
+          },
+          {
+            "path": "docs/helix-harness/L4-basic-design/tdd-development-flow.json",
+            "revision": "988765e9be335f2a1d376721c1b11f808fd03372",
+            "pointer": "/contracts/3/behavior",
+            "record_sha256": "c6625bec74df1811056424209a81773be4b56c8bf210a6524d51675be1a5ab39",
+            "role": "comparison basis; not a failure-code or classifier authority"
+          }
+        ],
+        "conditions": [
+          {
+            "local_id": "WR243-SO-F03-01",
+            "negative_condition": "凍結oracleを弱めたり差し替えたりして実装を通す、またはGreenの観測結果が同じ凍結oracleを満たさない。",
+            "expected_observation": "Greenによる完了を認定しない。oracleの同一性または内容の不一致を保持し、意味変更を上流へ戻す。変更後の期待値に対するpassとして数えない。",
+            "basis": [
+              "L3 F03 obligation",
+              "L10 F03 negative_input and failure_observation",
+              "L4 /contracts/3 behavior, output_contract, failure_conditions"
+            ],
+            "status": "derived expectation; not executed"
+          },
+          {
+            "local_id": "WR243-SO-F03-02",
+            "negative_condition": "意図した本体変更前Redを観測する前に実装本体を変更する、または必要な因果順序を逆転させる。",
+            "expected_observation": "本体変更前Redの義務は未充足のままとする。後から得た証拠で、欠けている先行観測を成立させない。F03シーケンスを完了扱いしない。",
+            "basis": [
+              "L3 F03 obligation: after pre-body Red",
+              "L10 F03 negative_input and failure_observation",
+              "L4 /contracts/3 failure_conditions"
+            ],
+            "status": "derived expectation; not executed"
+          },
+          {
+            "local_id": "WR243-SO-F03-03",
+            "negative_condition": "局所Refactorによってpublic contract、要求の意味、architectureの意味、またはstateの意味を変更する。",
+            "expected_observation": "意味を保つ局所Refactorとして受け入れない。変更を、該当するownerまたはlayerへの上流戻し義務として保持する。",
+            "basis": [
+              "L3 F03 obligation",
+              "L10 F03 negative_input and failure_observation",
+              "L4 /contracts/3 behavior, failure_conditions"
+            ],
+            "status": "derived expectation; not executed"
+          },
+          {
+            "local_id": "WR243-SO-F03-04",
+            "negative_condition": "最小本体scopeの外に振る舞いを追加する、または誤ったGreen観測をoracle充足として扱う。",
+            "expected_observation": "scope外の振る舞いまたは誤った観測を、未解決のfailureとして保持する。無関係な成功で相殺しない。",
+            "basis": [
+              "L4 /contracts/3 output_contract and failure_conditions"
+            ],
+            "status": "derived expectation; not executed"
+          },
+          {
+            "local_id": "WR243-SO-F03-05",
+            "negative_condition": "Atomic CIの成功を、製品品質、システム検証、ユーザー受入、またはrelease完了として提示する。",
+            "expected_observation": "F03/atomic-CIの証拠を上位の検証・受入と分けて扱う。このCI結果から上位状態を生成しない。",
+            "basis": [
+              "L3 F03 obligation",
+              "L4 /contracts/3 failure_conditions: ci_as_quality"
+            ],
+            "status": "derived expectation; not executed"
+          }
+        ],
+        "comparison_boundary": {
+          "existing_l4_l9_rows_compared": 9,
+          "existing_l4_and_l9_codes_axis_state_owner": "comparison only; not copied as source-only decisions",
+          "row_level_oracle": "not derived; do not create",
+          "failure_code_vocabulary": "unresolved; do not assign",
+          "sequence_equality": "unresolved; do not assign",
+          "algorithm_or_fixture": "not included"
+        },
+        "execution_state": "not_executed"
       }
     },
     {

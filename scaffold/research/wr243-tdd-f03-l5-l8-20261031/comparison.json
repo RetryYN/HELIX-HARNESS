@@ -1,0 +1,342 @@
+{
+  "schema": "wr243-f03-post-blind-comparison.v1",
+  "evidence_kind": "scaffold",
+  "authority_effect": "none",
+  "request_id": "WR243-TDD-F03F04B01-L5L8",
+  "issue": 3510,
+  "base_revision": "988765e9be335f2a1d376721c1b11f808fd03372",
+  "fixed_blind_artifact": {
+    "path": "scaffold/research/wr243-tdd-f03-l5-l8-20261031/source/wr243-tdd-clean-source-only.json",
+    "sha256": "846907d5802170ed775fbf08664c0b85f42e7b6ac0a9623e8584452f81ead813",
+    "issue_comment": "https://github.com/RetryYN/HELIX-HARNESS/issues/3510#issuecomment-6534177643",
+    "deriver": "Codex worker /root/wr243_blind_clean",
+    "excluded_candidate_material": [
+      "L5",
+      "L8",
+      "L9",
+      "L4 algorithm/data_flow",
+      "L4 classifications before freeze"
+    ]
+  },
+  "source_file_sha256": {
+    "l3_functional": "a3b907cdc316117d4684632f9a1cbf36125eb6e6172f9cfc286060617583d7be",
+    "l10_functional": "fc58ad2268746d7924ac9be33e8f3f75e6d3c2cc619e27fbc1ddc34edd065cb2",
+    "l4": "347bfd83b7685b52c45f62b5ee6f336fd74338ee65e67327e6e810d6eb489a16",
+    "l9": "4f64977ee8b2900733a823d5b9755f567952caef8cf323036a9b0776202d2462",
+    "l5_before_candidate": "fce881931580d26381df12721dc740a82b685e29c2039a5e1ff838475824c176",
+    "l8_before_candidate": "ee1648c067009e819d41f869733290042e103c39e41c0980d29dcdb46c107392"
+  },
+  "l3_l10_contract_scope": {
+    "l3_id": "HARNESS-L3-015-F03",
+    "l3_pointer": "/requirements/42",
+    "l3_record_sha256": "b641eb43bd5164ab55101bac10aaa0fbf0fb24a55d4429ad0f013af9594cd6ce",
+    "l10_id": "HARNESS-L10-015-F03",
+    "l10_pointer": "/cases/42",
+    "l10_record_sha256": "c41bc44981b5cdd6abe939405535a44c163d9714374e168dfe589dac4ce7cd7a",
+    "l3_obligation": "実装前Redの後に最小本体実装で同じ凍結oracleを満たすGreen証拠を得て、局所Refactorと原子CIまでを閉じる。局所Refactorはpublic contract/要求/architecture意味/state意味を変えず、変更が必要ならBackflowする。",
+    "l10_negative_input": "oracleを実装に合わせて緩和、順序逆転、Refactorでpublic contract/要求/state意味変更。",
+    "l10_failure_observation": "oracle/意味/順序違反を保持し、該当上流へ戻す。"
+  },
+  "comparison_method": "After fixed comment/hash verification, compare only source-only negative meanings against every existing L4 F03 classification and L9 F03 negative row. Existing codes, axis/state, owner and mutation are shown only as compared inputs. Do not select a new failure code, row-level oracle, sequence equality, or test citation.",
+  "row_counts": {
+    "blind_source_only_conditions": 5,
+    "existing_l4_classifications": 9,
+    "existing_l9_negative_rows": 9,
+    "compared_rows": 9
+  },
+  "rows": [
+    {
+      "row_index": 0,
+      "existing_unit_case_ref": "HARNESS-L9-015-F03-oracle_relaxed",
+      "l4_pointer": "/contracts/3/negative_classifications/0",
+      "l9_pointer": "/cases/3/negative_cases/0",
+      "l4_existing_code_label_for_comparison_only": "oracle_relaxed",
+      "l4_source_reference": {
+        "revision": "f5d511841c665b3424e159c8c1029bde51434521",
+        "pointer": "/contracts/3/failure_conditions/0",
+        "requirement_ref": "HARNESS-L3-015-F03",
+        "verification_ref": "HARNESS-L10-015-F03"
+      },
+      "l4_l9_condition_text_equal": true,
+      "l4_existing_projection_for_comparison_only": {
+        "expected_axis": "oracle_binding",
+        "expected_state": "conflict",
+        "backflow_owner": "MinimalGreenLocalRefactor",
+        "expected_side_effect_count": 0
+      },
+      "l9_existing_projection_for_comparison_only": {
+        "expected_axis": "oracle_binding",
+        "expected_state": "conflict",
+        "backflow_owner": "MinimalGreenLocalRefactor",
+        "expected_side_effect_count": 0
+      },
+      "l9_mutation_path_for_comparison_only": "steps.3.oracle_ref",
+      "blind_source_only_ref": "WR243-SO-F03-01",
+      "blind_condition": "Frozen oracle is weakened or replaced to make the implementation pass; or the Green observation does not satisfy the same frozen oracle.",
+      "blind_expected_observation": "Do not recognize Green closure. Preserve oracle identity/content mismatch and route the semantic change upstream; do not count a pass against a changed expectation.",
+      "comparison": "condition aligns; blind source does not assign existing code/axis/state/owner; row-level oracle and test citation absent"
+    },
+    {
+      "row_index": 1,
+      "existing_unit_case_ref": "HARNESS-L9-015-F03-body_before_red",
+      "l4_pointer": "/contracts/3/negative_classifications/1",
+      "l9_pointer": "/cases/3/negative_cases/1",
+      "l4_existing_code_label_for_comparison_only": "body_before_red",
+      "l4_source_reference": {
+        "revision": "f5d511841c665b3424e159c8c1029bde51434521",
+        "pointer": "/contracts/3/failure_conditions/1",
+        "requirement_ref": "HARNESS-L3-015-F03",
+        "verification_ref": "HARNESS-L10-015-F03"
+      },
+      "l4_l9_condition_text_equal": true,
+      "l4_existing_projection_for_comparison_only": {
+        "expected_axis": "order",
+        "expected_state": "conflict",
+        "backflow_owner": "MinimalGreenLocalRefactor",
+        "expected_side_effect_count": 0
+      },
+      "l9_existing_projection_for_comparison_only": {
+        "expected_axis": "order",
+        "expected_state": "conflict",
+        "backflow_owner": "MinimalGreenLocalRefactor",
+        "expected_side_effect_count": 0
+      },
+      "l9_mutation_path_for_comparison_only": "steps.2.sequence",
+      "blind_source_only_ref": "WR243-SO-F03-02",
+      "blind_condition": "The implementation body is changed before the intended pre-body Red is observed, or the required causal order is inverted.",
+      "blind_expected_observation": "Keep the pre-body Red obligation unsatisfied; later evidence cannot establish the missing earlier observation. Do not close the F03 sequence.",
+      "comparison": "condition aligns; blind source does not assign existing code/axis/state/owner; row-level oracle and test citation absent"
+    },
+    {
+      "row_index": 2,
+      "existing_unit_case_ref": "HARNESS-L9-015-F03-public_change",
+      "l4_pointer": "/contracts/3/negative_classifications/2",
+      "l9_pointer": "/cases/3/negative_cases/2",
+      "l4_existing_code_label_for_comparison_only": "public_change",
+      "l4_source_reference": {
+        "revision": "f5d511841c665b3424e159c8c1029bde51434521",
+        "pointer": "/contracts/3/failure_conditions/2",
+        "requirement_ref": "HARNESS-L3-015-F03",
+        "verification_ref": "HARNESS-L10-015-F03"
+      },
+      "l4_l9_condition_text_equal": true,
+      "l4_existing_projection_for_comparison_only": {
+        "expected_axis": "local_meaning",
+        "expected_state": "conflict",
+        "backflow_owner": "MinimalGreenLocalRefactor",
+        "expected_side_effect_count": 0
+      },
+      "l9_existing_projection_for_comparison_only": {
+        "expected_axis": "local_meaning",
+        "expected_state": "conflict",
+        "backflow_owner": "MinimalGreenLocalRefactor",
+        "expected_side_effect_count": 0
+      },
+      "l9_mutation_path_for_comparison_only": "refactor_meaning.public_contract_after",
+      "blind_source_only_ref": "WR243-SO-F03-03",
+      "blind_condition": "A local refactor changes public contract, requirement meaning, architecture meaning, or state meaning.",
+      "blind_expected_observation": "Do not accept it as a meaning-preserving local refactor; preserve the change as an upstream/backflow obligation to the relevant owner/layer.",
+      "comparison": "condition aligns; blind source does not assign existing code/axis/state/owner; row-level oracle and test citation absent"
+    },
+    {
+      "row_index": 3,
+      "existing_unit_case_ref": "HARNESS-L9-015-F03-architecture_change",
+      "l4_pointer": "/contracts/3/negative_classifications/3",
+      "l9_pointer": "/cases/3/negative_cases/3",
+      "l4_existing_code_label_for_comparison_only": "architecture_change",
+      "l4_source_reference": {
+        "revision": "f5d511841c665b3424e159c8c1029bde51434521",
+        "pointer": "/contracts/3/failure_conditions/3",
+        "requirement_ref": "HARNESS-L3-015-F03",
+        "verification_ref": "HARNESS-L10-015-F03"
+      },
+      "l4_l9_condition_text_equal": true,
+      "l4_existing_projection_for_comparison_only": {
+        "expected_axis": "local_meaning",
+        "expected_state": "conflict",
+        "backflow_owner": "MinimalGreenLocalRefactor",
+        "expected_side_effect_count": 0
+      },
+      "l9_existing_projection_for_comparison_only": {
+        "expected_axis": "local_meaning",
+        "expected_state": "conflict",
+        "backflow_owner": "MinimalGreenLocalRefactor",
+        "expected_side_effect_count": 0
+      },
+      "l9_mutation_path_for_comparison_only": "refactor_meaning.architecture_after",
+      "blind_source_only_ref": "WR243-SO-F03-03",
+      "blind_condition": "A local refactor changes public contract, requirement meaning, architecture meaning, or state meaning.",
+      "blind_expected_observation": "Do not accept it as a meaning-preserving local refactor; preserve the change as an upstream/backflow obligation to the relevant owner/layer.",
+      "comparison": "condition aligns; blind source does not assign existing code/axis/state/owner; row-level oracle and test citation absent"
+    },
+    {
+      "row_index": 4,
+      "existing_unit_case_ref": "HARNESS-L9-015-F03-state_change",
+      "l4_pointer": "/contracts/3/negative_classifications/4",
+      "l9_pointer": "/cases/3/negative_cases/4",
+      "l4_existing_code_label_for_comparison_only": "state_change",
+      "l4_source_reference": {
+        "revision": "f5d511841c665b3424e159c8c1029bde51434521",
+        "pointer": "/contracts/3/failure_conditions/4",
+        "requirement_ref": "HARNESS-L3-015-F03",
+        "verification_ref": "HARNESS-L10-015-F03"
+      },
+      "l4_l9_condition_text_equal": true,
+      "l4_existing_projection_for_comparison_only": {
+        "expected_axis": "local_meaning",
+        "expected_state": "conflict",
+        "backflow_owner": "MinimalGreenLocalRefactor",
+        "expected_side_effect_count": 0
+      },
+      "l9_existing_projection_for_comparison_only": {
+        "expected_axis": "local_meaning",
+        "expected_state": "conflict",
+        "backflow_owner": "MinimalGreenLocalRefactor",
+        "expected_side_effect_count": 0
+      },
+      "l9_mutation_path_for_comparison_only": "refactor_meaning.state_after",
+      "blind_source_only_ref": "WR243-SO-F03-03",
+      "blind_condition": "A local refactor changes public contract, requirement meaning, architecture meaning, or state meaning.",
+      "blind_expected_observation": "Do not accept it as a meaning-preserving local refactor; preserve the change as an upstream/backflow obligation to the relevant owner/layer.",
+      "comparison": "condition aligns; blind source does not assign existing code/axis/state/owner; row-level oracle and test citation absent"
+    },
+    {
+      "row_index": 5,
+      "existing_unit_case_ref": "HARNESS-L9-015-F03-ci_as_quality",
+      "l4_pointer": "/contracts/3/negative_classifications/5",
+      "l9_pointer": "/cases/3/negative_cases/5",
+      "l4_existing_code_label_for_comparison_only": "ci_as_quality",
+      "l4_source_reference": {
+        "revision": "f5d511841c665b3424e159c8c1029bde51434521",
+        "pointer": "/contracts/3/failure_conditions/5",
+        "requirement_ref": "HARNESS-L3-015-F03",
+        "verification_ref": "HARNESS-L10-015-F03"
+      },
+      "l4_l9_condition_text_equal": true,
+      "l4_existing_projection_for_comparison_only": {
+        "expected_axis": "actual_tdd_success",
+        "expected_state": "unknown",
+        "backflow_owner": "MinimalGreenLocalRefactor",
+        "expected_side_effect_count": 0
+      },
+      "l9_existing_projection_for_comparison_only": {
+        "expected_axis": "actual_tdd_success",
+        "expected_state": "unknown",
+        "backflow_owner": "MinimalGreenLocalRefactor",
+        "expected_side_effect_count": 0
+      },
+      "l9_mutation_path_for_comparison_only": "actual_tdd_success",
+      "blind_source_only_ref": "WR243-SO-F03-05",
+      "blind_condition": "Atomic CI success is presented as product quality, system verification, user acceptance, or release completion.",
+      "blind_expected_observation": "Keep F03/atomic-CI evidence separate from higher verification and acceptance; do not produce those higher states from this CI result.",
+      "comparison": "direction_matches; existing axis/state/code remain comparison data only; row-level oracle and test citation absent"
+    },
+    {
+      "row_index": 6,
+      "existing_unit_case_ref": "HARNESS-L9-015-F03-requirement_change",
+      "l4_pointer": "/contracts/3/negative_classifications/6",
+      "l9_pointer": "/cases/3/negative_cases/6",
+      "l4_existing_code_label_for_comparison_only": "requirement_change",
+      "l4_source_reference": {
+        "revision": "f5d511841c665b3424e159c8c1029bde51434521",
+        "pointer": "/contracts/3/failure_conditions/6",
+        "requirement_ref": "HARNESS-L3-015-F03",
+        "verification_ref": "HARNESS-L10-015-F03"
+      },
+      "l4_l9_condition_text_equal": true,
+      "l4_existing_projection_for_comparison_only": {
+        "expected_axis": "local_meaning",
+        "expected_state": "conflict",
+        "backflow_owner": "MinimalGreenLocalRefactor",
+        "expected_side_effect_count": 0
+      },
+      "l9_existing_projection_for_comparison_only": {
+        "expected_axis": "local_meaning",
+        "expected_state": "conflict",
+        "backflow_owner": "MinimalGreenLocalRefactor",
+        "expected_side_effect_count": 0
+      },
+      "l9_mutation_path_for_comparison_only": "refactor_meaning.requirement_after",
+      "blind_source_only_ref": "WR243-SO-F03-03",
+      "blind_condition": "A local refactor changes public contract, requirement meaning, architecture meaning, or state meaning.",
+      "blind_expected_observation": "Do not accept it as a meaning-preserving local refactor; preserve the change as an upstream/backflow obligation to the relevant owner/layer.",
+      "comparison": "condition aligns; blind source does not assign existing code/axis/state/owner; row-level oracle and test citation absent"
+    },
+    {
+      "row_index": 7,
+      "existing_unit_case_ref": "HARNESS-L9-015-F03-minimal_body_scope_expansion",
+      "l4_pointer": "/contracts/3/negative_classifications/7",
+      "l9_pointer": "/cases/3/negative_cases/7",
+      "l4_existing_code_label_for_comparison_only": "minimal_body_scope_expansion",
+      "l4_source_reference": {
+        "revision": "f5d511841c665b3424e159c8c1029bde51434521",
+        "pointer": "/contracts/3/failure_conditions/7",
+        "requirement_ref": "HARNESS-L3-015-F03",
+        "verification_ref": "HARNESS-L10-015-F03"
+      },
+      "l4_l9_condition_text_equal": true,
+      "l4_existing_projection_for_comparison_only": {
+        "expected_axis": "minimal_body_scope",
+        "expected_state": "conflict",
+        "backflow_owner": "MinimalGreenLocalRefactor",
+        "expected_side_effect_count": 0
+      },
+      "l9_existing_projection_for_comparison_only": {
+        "expected_axis": "minimal_body_scope",
+        "expected_state": "conflict",
+        "backflow_owner": "MinimalGreenLocalRefactor",
+        "expected_side_effect_count": 0
+      },
+      "l9_mutation_path_for_comparison_only": "steps.2.contract_scope",
+      "blind_source_only_ref": "WR243-SO-F03-04",
+      "blind_condition": "Extra behavior outside the minimal body scope is added, or an incorrect observed Green is treated as satisfying the oracle.",
+      "blind_expected_observation": "Preserve the out-of-scope behavior or wrong observation as an unresolved failure; successful unrelated behavior cannot cancel it.",
+      "comparison": "condition aligns; blind source does not assign existing code/axis/state/owner; row-level oracle and test citation absent"
+    },
+    {
+      "row_index": 8,
+      "existing_unit_case_ref": "HARNESS-L9-015-F03-green_wrong_behavior",
+      "l4_pointer": "/contracts/3/negative_classifications/8",
+      "l9_pointer": "/cases/3/negative_cases/8",
+      "l4_existing_code_label_for_comparison_only": "green_wrong_behavior",
+      "l4_source_reference": {
+        "revision": "f5d511841c665b3424e159c8c1029bde51434521",
+        "pointer": "/contracts/3/failure_conditions/8",
+        "requirement_ref": "HARNESS-L3-015-F03",
+        "verification_ref": "HARNESS-L10-015-F03"
+      },
+      "l4_l9_condition_text_equal": true,
+      "l4_existing_projection_for_comparison_only": {
+        "expected_axis": "green_behavior",
+        "expected_state": "conflict",
+        "backflow_owner": "MinimalGreenLocalRefactor",
+        "expected_side_effect_count": 0
+      },
+      "l9_existing_projection_for_comparison_only": {
+        "expected_axis": "green_behavior",
+        "expected_state": "conflict",
+        "backflow_owner": "MinimalGreenLocalRefactor",
+        "expected_side_effect_count": 0
+      },
+      "l9_mutation_path_for_comparison_only": "steps.3.actual",
+      "blind_source_only_ref": "WR243-SO-F03-04",
+      "blind_condition": "Extra behavior outside the minimal body scope is added, or an incorrect observed Green is treated as satisfying the oracle.",
+      "blind_expected_observation": "Preserve the out-of-scope behavior or wrong observation as an unresolved failure; successful unrelated behavior cannot cancel it.",
+      "comparison": "condition aligns; blind source does not assign existing code/axis/state/owner; row-level oracle and test citation absent"
+    }
+  ],
+  "findings": [
+    "All nine existing L4 F03 conditions are text-equal to their paired L9 F03 condition strings; each existing row has a corresponding existing L8 unit_case_ref.",
+    "Blind F03-03 is one source-only preservation condition spanning four distinct existing witness rows (public, architecture, state, requirement); this many-to-one relation does not create a row oracle or canonical class.",
+    "Blind F03-04 covers two distinct witnesses (minimal body scope expansion and incorrect Green observation); it does not establish their shared code/classification.",
+    "The CI-as-quality witness has matching direction, but its existing axis/state projection is not independently determined by the fixed source-only artifact; preserve it as unresolved in candidate rows.",
+    "Existing L4/L9 axis/state/backflow owner assignments match per row; this confirms existing pairing only and does not elevate them to the independent L3/L10 oracle."
+  ],
+  "unresolved": {
+    "sequence_equality": "The sources establish causal/order constraints (notably pre-body Red before body change, followed by Green/refactor/atomic CI), but do not specify a canonical sequence encoding, identity, or exact equality comparator. Derivation checks order/causality only; exact sequence equality remains undecided.",
+    "failure_code": "L4 failure_conditions contain local code labels, but L3/L10 prose does not establish a normative failure-code vocabulary, mapping, or precedence. No code is elevated to a canonical output code; code selection remains undecided.",
+    "oracle_unit_vs_u_id_rows": "The L3/L10 contracts are oracle-contract units (F03, F04, B01); a U-ID row would be a finer test/fixture instance. One contract can motivate multiple negative conditions, and one condition could need multiple row fixtures. No one-to-one mapping or U-ID identity is inferred here.",
+    "architecture_algorithm_boundary": "The /architecture pointer includes an ordered data_flow and detailed connections. These were not used to derive negative cases because the request excludes L4 algorithmic content; only non-algorithmic role/boundary prose was considered.",
+    "fixture_authority": "L4 input/output contract prose labels examples synthetic/minimal and says real operation/authority/codec need separate binding. No runtime result, authority state, or formal codec is inferred from these fixtures."
+  }
+}
