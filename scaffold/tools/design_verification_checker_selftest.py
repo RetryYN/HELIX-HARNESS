@@ -11,6 +11,7 @@ import sys
 import tempfile
 import unittest
 from pathlib import Path
+from typing import Any
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import design_verification_checker as dvc  # noqa: E402
@@ -908,6 +909,107 @@ class DesignVerificationCheckerSelfTest(unittest.TestCase):
             result["comparison_scope"]["class_key"][-1],
             "owner_ref(kind, id); L5 function_ref wins over contract_ref",
         )
+
+    def test_chk_neg_4way_explicit_contract_function_declaration_shapes(self) -> None:
+        """QA §3 accepts a rule ref only when one declared contract form resolves it."""
+
+        def run(declaration_for: Any) -> dict[str, Any]:
+            layers = list(self._equivalence_mode_layers())
+            l5 = layers[3]
+            contracts = []
+            for index, rule in enumerate(l5["failure_rules"]):
+                contract_id = f"L5-CONTRACT-{index}"
+                rule["contract_ref"] = contract_id
+                declaration = declaration_for(rule["function_ref"])
+                contracts.append({"id": contract_id, **declaration})
+            l5["contracts"] = contracts
+            return dvc.check_neg_4way_match(REPO_ROOT, "L4", "L9", "L8", "L5", *layers)
+
+        valid_declarations = (
+            lambda function_ref: {"function": function_ref},
+            lambda function_ref: {"function_refs": ["L5-fn-B", function_ref]},
+            lambda function_ref: {
+                "function": function_ref,
+                "function_refs": ["L5-fn-B", function_ref],
+            },
+        )
+        for declaration_for in valid_declarations:
+            with self.subTest(declaration=declaration_for("L5-fn-A")):
+                result = run(declaration_for)
+                self.assertTrue(result["passed"], msg=result)
+
+        invalid_declarations = (
+            lambda _function_ref: {"function": ""},
+            lambda _function_ref: {"function": None},
+            lambda _function_ref: {"function": ["L5-fn-A"]},
+            lambda _function_ref: {"function_refs": ["L5-fn-B"]},
+            lambda _function_ref: {"function_refs": []},
+            lambda function_ref: {"function_refs": [function_ref, 7]},
+            lambda _function_ref: {"function_refs": "L5-fn-A"},
+            lambda function_ref: {
+                "function": "L5-fn-D",
+                "function_refs": [function_ref],
+            },
+            lambda function_ref: {
+                "function": function_ref,
+                "function_refs": [],
+            },
+            lambda function_ref: {
+                "function": function_ref,
+                "function_refs": [function_ref, 7],
+            },
+            lambda _function_ref: {},
+        )
+        for declaration_for in invalid_declarations:
+            with self.subTest(declaration=declaration_for("L5-fn-A")):
+                result = run(declaration_for)
+                self.assertFalse(result["passed"], msg=result)
+                self.assertIn(
+                    "rule_function_ref_disagrees_with_contract",
+                    {failure.get("reason") for failure in result["failures"]},
+                )
+
+        unresolved = list(self._equivalence_mode_layers())
+        unresolved_rule = unresolved[3]["failure_rules"][0]
+        unresolved_rule["contract_ref"] = "MISSING-CONTRACT"
+        result = dvc.check_neg_4way_match(
+            REPO_ROOT, "L4", "L9", "L8", "L5", *unresolved
+        )
+        self.assertFalse(result["passed"], msg=result)
+        self.assertIn(
+            "rule_contract_ref_unresolved",
+            {failure.get("reason") for failure in result["failures"]},
+        )
+
+    def test_chk_neg_4way_explicit_contract_matches_real_function_refs_array(
+        self,
+    ) -> None:
+        """The LABO L5 contract's array-only declaration is a valid member source."""
+        actual_l5 = json.loads(
+            (
+                REPO_ROOT
+                / "docs/helix-labo/L5-detail-design/authorized-observation-aggregation.json"
+            ).read_text(encoding="utf-8")
+        )
+        contract = next(
+            row
+            for row in actual_l5["contracts"]
+            if isinstance(row.get("function_refs"), list)
+        )
+        function_ref = contract["function_refs"][0]
+        layers = list(self._equivalence_mode_layers())
+        l5 = layers[3]
+        l5["contracts"] = [copy.deepcopy(contract)]
+        l5["functions"].append({"id": function_ref})
+        rule = l5["failure_rules"][0]
+        rule["function_ref"] = function_ref
+        rule["contract_ref"] = contract["id"]
+        for row in layers[2]["unit_cases"]:
+            if row.get("rule_ref") == rule["id"]:
+                row["function_ref"] = function_ref
+
+        result = dvc.check_neg_4way_match(REPO_ROOT, "L4", "L9", "L8", "L5", *layers)
+        self.assertTrue(result["passed"], msg=result)
 
     def test_chk_neg_4way_explicit_owner_ref_accepts_contract_only_rule_trace(
         self,

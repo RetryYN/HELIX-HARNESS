@@ -32,16 +32,6 @@
       "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
       "sha256": "e6253059bb117446412ecb8b054ae533641054c8a1be4a535eb1f784017fa3e9",
       "note": "revision 3c2538a096b52fd6353770308831ee05de1d358d、local_returnのstate語彙。draft_pending_semantic_and_fixture_reviewの既存L4設計で、独立oracleとは扱わない。 Historical fixed source: revision 3c2538a096b52fd6353770308831ee05de1d358d, SHA-256 eb0f43e23906d04b9554786a2574c94d01de85faa75f7fb1f33e08eb3276f464. Current digest refreshed to 21f5f0837225fd1c50015528e27fb530f60b6d93046d17877b5655eb4e751a4a for stale detection only; fixed comparison/audit remains tied to the historical revision and its frozen evidence. Existing local_return taxonomy and WR206 source comparison remain historical; this source refresh does not make the candidate an independent oracle. Current digest at WR227 R1 candidate: 21f5f0837225fd1c50015528e27fb530f60b6d93046d17877b5655eb4e751a4a (stale-detection pin only); historical fixed comparison source remains recorded above. Current digest after R1 compact evidence split: a81f0ae25d937ce9aea830d65f61fd5d04027511acb51ff39a0be526d8bba98a (stale-detection pin only; historical fixed audit/revision unchanged). Current digest after Japanese prose cleanup: d49a2f89364b5a031220ef515988b25d8e02c2894c2602ab7ea316b9ab394a67 (stale-detection pin only; historical fixed source/audit unchanged). Current digest after Japanese wording, unmatched-row clarification, and pointer-centered audit: 2a4230d745cac2c9c9ee9500eba0efe028a16136bedd8b04b7d7d8f3eb382eb3 (stale-detection pin only; historical fixed source/audit unchanged). Current digest after R2 missing-boundary clarification and unresolved status-assignment disclosure: e6253059bb117446412ecb8b054ae533641054c8a1be4a535eb1f784017fa3e9 (stale-detection pin only; fixed historical sources unchanged)."
-    },
-    {
-      "path": "scaffold/tools/design_verification_checker.py",
-      "sha256": "cfd12c5bc4a1dd45351858488b476af0025d35deca7027da35bb1373818b129d",
-      "note": "casewise L4/L9/L5/L8照合とcheck-childの静的checker。アルゴリズム実行ではない。"
-    },
-    {
-      "path": "scaffold/research/wr206-tdd-flow-neg-4way-pr-a-20261031/README.md",
-      "sha256": "d5d227bc777b2161c10f470bbd9c80daa6c73d58398c382d99fcdf8cf37825ee",
-      "note": "source・照合範囲・分類理由・静的検証結果を含む現行レビュー証跡のpin。"
     }
   ],
   "role": "WR206 PR-AでL4/L9の28既存negative caseに分類属性とsource理由を対応づけ、調査履歴と限界をレビュー可能に記録する。",
@@ -90,7 +80,9 @@
       "L3/L10 source row identity and pinned SHA comparison",
       "L4/L9 negative code count, attribute correspondence, and preservation of existing L9 expectation/mutation/fixture values",
       "design_verification_checker.py check-pair and check-child; child result is reported per L4/L9 and L5/L8 scope",
-      "scfctl validate and scfctl stale"
+      "scfctl validate and scfctl stale",
+      "Static SHA pin moved from upstream: path=scaffold/tools/design_verification_checker.py; prior_sha256=cfd12c5bc4a1dd45351858488b476af0025d35deca7027da35bb1373818b129d; current_sha256=e751526d67cd8df11e5aac1c5a1a178dfbd0fecc3f2ed21f995b7dda11ea4d5d; authority_effect=none; original note=casewise L4/L9/L5/L8照合とcheck-childの静的checker。アルゴリズム実行ではない。. Previous checker SHA-256=cfd12c5bc4a1dd45351858488b476af0025d35deca7027da35bb1373818b129d at revision dc3461491446bc66fb3331afa29d2140b7f9f7ee; re-evaluation evidence: current OS015 L4/L9 pair, WR206 check-child, and OS007/OS015 check-freeze outputs byte-identical before/after; PR-A/B/C fixed evidence revisions validate PASS while latest-source validators retain historical byte-mismatch failures. Independent digest check: `sha256sum scaffold/tools/design_verification_checker.py` must report e751526d67cd8df11e5aac1c5a1a178dfbd0fecc3f2ed21f995b7dda11ea4d5d.",
+      "Static SHA pin moved from upstream: path=scaffold/research/wr206-tdd-flow-neg-4way-pr-a-20261031/README.md; prior_sha256=d5d227bc777b2161c10f470bbd9c80daa6c73d58398c382d99fcdf8cf37825ee; current_sha256=d5d227bc777b2161c10f470bbd9c80daa6c73d58398c382d99fcdf8cf37825ee; authority_effect=none; original note=source・照合範囲・分類理由・静的検証結果を含む現行レビュー証跡のpin。. Independent digest check: `sha256sum scaffold/research/wr206-tdd-flow-neg-4way-pr-a-20261031/README.md` must report d5d227bc777b2161c10f470bbd9c80daa6c73d58398c382d99fcdf8cf37825ee."
     ],
     "negative_cases": [
       "Do not treat the previously read L9 expectation as an independent oracle.",
