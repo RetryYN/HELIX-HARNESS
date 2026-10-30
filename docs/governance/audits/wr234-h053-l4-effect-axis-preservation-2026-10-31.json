@@ -1,0 +1,40 @@
+{
+  "artifact_id": "WR234-H053-L4-EFFECT-AXIS-PRESERVATION-ADDENDUM-2026-10-31",
+  "evidence_kind": "append_only_effect_preservation_record",
+  "authority_effect": "none",
+  "previous_addendum": "docs/governance/audits/wr234-h053-l4-effect-generalization-2026-10-31.json",
+  "previous_addendum_sha256": "dbea4168cb7be03bc51f1f3f4d24a9cd7312b0a276be449ce59438b0c0e09c71",
+  "fixed_source_artifact": {
+    "path": "docs/governance/audits/wr234-h053-negative-source-derived-2026-10-31.json",
+    "sha256": "8fa646f06deee3bce6cad8920cfbb1813a0f0882e8c97f6e7de30a9c694beb6b"
+  },
+  "l4": {
+    "path": "docs/helix-harness/L4-basic-design/semantic-asset-lineage.json",
+    "before_sha256": "9c8587181a8381cab9ee54a8c81bbc33a81d127943299690a0d9cc096710ea30",
+    "after_sha256": "5788ecc35660c23dbbbf6626811b60356576c86d0424ca08bdd65d30d0e3a99e",
+    "updated_effect_codes": [
+      "authority_mapping_missing",
+      "lineage_endpoint_missing",
+      "location_as_semantic",
+      "path_identity_inference",
+      "record_as_persistence",
+      "reference_meaning_mismatch"
+    ]
+  },
+  "preserved_effect_clause": "関係のない既知axisまで消さない。",
+  "basis": "これは変更前の各effectに共通して含まれていた保持の意味を、その行別の一般化後effectにも明示したもの。新しい判定条件やclosure義務は追加していない。",
+  "confirmed_existing_field": "選択した6行すべてのexpected_side_effect_countは既存値0で、変更していない。",
+  "unchanged": [
+    "固定source artifactのbytes/hash",
+    "各行のcondition、構造化expected axes/statesとside-effect count",
+    "L9 cases/expected",
+    "L5/L8、source pins、source_main、freeze、bindings",
+    "前のappend-only比較/追補記録"
+  ],
+  "verification": [
+    "JSON parse",
+    "git diff --check",
+    "scfctl validate/stale",
+    "design_verification_checker check-child (measurement only)"
+  ]
+}

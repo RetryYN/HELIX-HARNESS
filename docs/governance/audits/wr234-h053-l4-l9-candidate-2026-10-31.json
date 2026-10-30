@@ -1,0 +1,207 @@
+{
+  "artifact_id": "WR234-H053-L4-L9-CANDIDATE-COMPARISON-2026-10-31",
+  "evidence_kind": "limited_pair_candidate_comparison",
+  "authority_effect": "none",
+  "candidate_only": true,
+  "base_revision": "d4fa97152ce4f59618601c9a056bbfa406f25868",
+  "fixed_source_only_artifact": {
+    "path": "docs/governance/audits/wr234-h053-negative-source-derived-2026-10-31.json",
+    "sha256": "8fa646f06deee3bce6cad8920cfbb1813a0f0882e8c97f6e7de30a9c694beb6b",
+    "issue_comment": "https://github.com/RetryYN/HELIX-HARNESS/issues/3510#issuecomment-6532930750"
+  },
+  "pair": {
+    "l4_path": "docs/helix-harness/L4-basic-design/semantic-asset-lineage.json",
+    "l4_before_sha256": "24c3925481e5e855ff8b17d3f715dce8eb1f8ef60ea1e27538cd8d3f54475007",
+    "l4_after_sha256": "3789bdd125aff8389e3bc8b9b26856212a9ff5e581b5c484f2211ddc6c3fdeaa",
+    "l9_path": "docs/helix-harness/L9-integration-verification/semantic-asset-lineage.json",
+    "l9_sha256_unchanged": "ab18e7965f1210eb638501178db9ccc886feb86fdafa7572f6f71cae1c2e268a",
+    "l4_l9_case_links": "6/6 PASS",
+    "l9_modified": false,
+    "l4_l9_document_source_main_at_base": "3c572d540e27a74de93559a54d8c5c522cdbeb60"
+  },
+  "candidate_rows": [
+    {
+      "classification": "path_identity_inference",
+      "l4_design_ref": "HARNESS-L4-053-F01",
+      "l4_contract_pointer": "/contracts/0",
+      "l4_negative_pointer": "/failure_classifications/22",
+      "l3_pointer": "docs/helix-harness/L3-requirements/functional-requirements.json#/requirements/19",
+      "l10_pointer": "docs/helix-harness/L10-verification/functional-verification.json#/cases/19",
+      "l9_case_pointer": "/cases/0",
+      "l9_negative_pointer": "/cases/0/negative_cases/0",
+      "l9_negative_id": "HARNESS-L9-053-F01-NEG-01",
+      "condition": "同pathのBを旧Aへ併合",
+      "l9_expected": "Bを別IDに保持、原A/B identityはmatched、確定した別IDを同一とするclaimはconflict。",
+      "candidate_l4_effect": "Bを別IDに保持し、A/B identityはmatched。同pathを根拠にA/Bを同一とするclaimはconflict。pathからIDを生成せず、operation not_requested、side_effect_count=0。"
+    },
+    {
+      "classification": "location_as_semantic",
+      "l4_design_ref": "HARNESS-L4-053-F02",
+      "l4_contract_pointer": "/contracts/1",
+      "l4_negative_pointer": "/failure_classifications/15",
+      "l3_pointer": "docs/helix-harness/L3-requirements/functional-requirements.json#/requirements/20",
+      "l10_pointer": "docs/helix-harness/L10-verification/functional-verification.json#/cases/20",
+      "l9_case_pointer": "/cases/1",
+      "l9_negative_pointer": "/cases/1/negative_cases/0",
+      "l9_negative_id": "HARNESS-L9-053-F02-NEG-01",
+      "condition": "意味不変のmoveだけでA/r2の意味revision成立",
+      "l9_expected": "ID A/r1の意味を保全しlocation軸の差だけを返す。",
+      "candidate_l4_effect": "A/r1の意味を保全し、moveによるlocation履歴の差だけを返す。locationのみでA/r2意味revisionを成立させるclaimはconflict。operation not_requested、side_effect_count=0。"
+    },
+    {
+      "classification": "lineage_endpoint_missing",
+      "l4_design_ref": "HARNESS-L4-053-F03",
+      "l4_contract_pointer": "/contracts/2",
+      "l4_negative_pointer": "/failure_classifications/12",
+      "l3_pointer": "docs/helix-harness/L3-requirements/functional-requirements.json#/requirements/21",
+      "l10_pointer": "docs/helix-harness/L10-verification/functional-verification.json#/cases/21",
+      "l9_case_pointer": "/cases/2",
+      "l9_negative_pointer": "/cases/2/negative_cases/1",
+      "l9_negative_id": "HARNESS-L9-053-F03-NEG-02",
+      "condition": "LM mergeの元Bだけを対応から削除",
+      "l9_expected": "LM元endpoint B/b1の不足を返しCだけでmerge閉包にしない。",
+      "candidate_l4_effect": "LMの元endpoint B/b1の不足を返し、Cだけでmerge閉包にしない。lineage_relationはunknown。operation not_requested、side_effect_count=0。"
+    },
+    {
+      "classification": "authority_mapping_missing",
+      "l4_design_ref": "HARNESS-L4-053-F04",
+      "l4_contract_pointer": "/contracts/3",
+      "l4_negative_pointer": "/failure_classifications/0",
+      "l3_pointer": "docs/helix-harness/L3-requirements/functional-requirements.json#/requirements/22",
+      "l10_pointer": "docs/helix-harness/L10-verification/functional-verification.json#/cases/22",
+      "l9_case_pointer": "/cases/3",
+      "l9_negative_pointer": "/cases/3/negative_cases/0",
+      "l9_negative_id": "HARNESS-L9-053-F04-NEG-01",
+      "condition": "LS authority QAだけ欠落、history有りで保持成功",
+      "l9_expected": "LS authority_mapping missing、QO/QE/historyのmatchedは保持し全closure成功にしない。",
+      "candidate_l4_effect": "LS authority_mappingはmissing。oracle_mapping、typed_edge_mapping、history_mappingのmatched状態は保持し、claimはunknown。全closureを成立させず、side_effect_count=0。"
+    },
+    {
+      "classification": "reference_meaning_mismatch",
+      "l4_design_ref": "HARNESS-L4-053-N01",
+      "l4_contract_pointer": "/contracts/4",
+      "l4_negative_pointer": "/failure_classifications/26",
+      "l3_pointer": "docs/helix-harness/L3-requirements/nfr-grade.json#/requirements/3",
+      "l10_pointer": "docs/helix-harness/L10-verification/nfr-verification.json#/cases/3",
+      "l9_case_pointer": "/cases/4",
+      "l9_negative_pointer": "/cases/4/negative_cases/0",
+      "l9_negative_id": "HARNESS-L9-053-N01-NEG-01",
+      "condition": "042をsource provenance保証へ読替え",
+      "l9_expected": "053→042 unresolved維持、dependent operation held、局所記録比較は継続。",
+      "candidate_l4_effect": "053→042 unresolvedを保持し、依存操作をheldにする。代替IDやprovenance保証を推定せず、無関係な局所照合は続ける。side_effect_count=0。"
+    },
+    {
+      "classification": "record_as_persistence",
+      "l4_design_ref": "HARNESS-L4-053-B01",
+      "l4_contract_pointer": "/contracts/5",
+      "l4_negative_pointer": "/failure_classifications/25",
+      "l3_pointer": "docs/helix-harness/L3-requirements/business-requirements.json#/requirements/3",
+      "l10_pointer": "docs/helix-harness/L10-verification/business-verification.json#/cases/3",
+      "l9_case_pointer": "/cases/5",
+      "l9_negative_pointer": "/cases/5/negative_cases/0",
+      "l9_negative_id": "HARNESS-L9-053-B01-NEG-01",
+      "condition": "対応記録存在で実保存成立",
+      "l9_expected": "記録照合と実保存は別、実保存未証明を保存ownerへ。",
+      "candidate_l4_effect": "lineage記録の照合と実保存を分離し、実保存の未証明をpersistence_ownerへ返す。記録を保存成功へ昇格せず、side_effect_count=0。"
+    }
+  ],
+  "residual_scope": {
+    "l4_failure_classification_rows_total": 38,
+    "candidate_rows_refined": 6,
+    "other_rows_unchanged": 32,
+    "reason": "This candidate refines one representative negative per each of the six L4 contracts. No blanket effect was applied; the other rows remain for a separately rooted row-level disposition."
+  },
+  "legacy_basis": [
+    {
+      "asset_id": "LEGACY-ASSET-719D5EC9C06FC4AAD0FF",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+      "line": "143",
+      "sha256": "db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+      "use": "HIL-FR-53のpath非依存immutable identity、meaning revision、lineage履歴の保持を確認。現行初回に実変換を発行しない差分は承認済みL3の意味に基づく。"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-AFE91778057B7E76BEEC",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L1-infinity-loop-operational-test-design.md",
+      "line": "76",
+      "sha256": "4f8f67664e360dcb8b40f9c834953d026c9bf3b359a79a64e68fa2296689e576",
+      "use": "HOT-HIL-49がidentity/authority/oracle/typed edgeの保持を負例に含めることを確認。文書は読取のみ、実行していない。"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-C7F0C3B79CBAA72960BF",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md",
+      "lines": "53, 82",
+      "sha256": "8a46a6a75f1c6159b45b09bd975298347f70997b7969231a0514c09db210dab6",
+      "use": "HR-FR-HIL-19とHAC-HIL-19cのidentity/revision/authority/trace欠落観点を確認。"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/predecessor-harness-full-weakness-audit-2026-07-20.md",
+      "lines": "80, 86-87",
+      "sha256": "bab121404c956a0a4b403e589bea1c414af59b5996989bea5fab9f98f42f6872",
+      "use": "UTW-014 absence blindness、UTW-020 partial failureの診断粒度、UTW-021 evidenceの自己申告回帰を、unknown保持・個別axis維持・記録と実作用の分離で防ぐ観点として確認。"
+    }
+  ],
+  "binding_history": {
+    "SCF-B-0183": "existing WR211 hash-reference audit binding was inspected and left unchanged; no new Binding or authority was created."
+  },
+  "freeze_and_ownership_cap_followup": {
+    "quality_rule": "docs/governance/design-verification-quality-assurance.md §3 CHK-OWNERSHIP-CAP-L8L9 permits fixed source references and rejects other *_sha256 keys in L8/L9; key renaming is not a resolution.",
+    "fixed_artifact_scope": "Issue comment 6532930750 freezes only the source-only L3/L10 and L4-surface derivation bytes; it is not an L8 case-hash authorization or an L8 freeze update.",
+    "l8_observation": {
+      "path": "docs/helix-harness/L8-unit-verification/semantic-asset-lineage.json",
+      "source_main": "22f542e88175c8daa0b5d114c12afbe42d651c96",
+      "source_pin_count": 17,
+      "subject_sha256_count": 30,
+      "subject_sha256_unique_values": 9,
+      "subject_sha256_matching_source_pins": 0,
+      "locations": "additional_unit_cases/21..26/*/qualifications/0..4/subject_sha256"
+    },
+    "check_child_cap_result": "CHK-OWNERSHIP-CAP-L8L9 reports 30 forbidden subject_sha256 keys for H053 L8 at this base; no L8 edit was made.",
+    "historical_issue_evidence": "Issue #3510 comment 6530030904 recorded the WR211 semantic-asset-lineage L8 ownership-cap remainder as separate from its 4-way mismatch.",
+    "separate_pr_residual": "Trace who owns each subject hash and whether it is an admissible source reference or per-case material; preserve the existing freeze and decide any lossless relocation in a separate PR. This candidate neither removes nor renames the keys.",
+    "source_revision_distinction": {
+      "source_only_artifact_base": "d4fa97152ce4f59618601c9a056bbfa406f25868",
+      "l4_l9_document_source_main": "3c572d540e27a74de93559a54d8c5c522cdbeb60",
+      "l8_document_source_main": "22f542e88175c8daa0b5d114c12afbe42d651c96",
+      "interpretation": "These are distinct revision roles. The Issue-fixed artifact freezes only the derivation inputs at its base; it does not update or attest the older L4/L9 or L8 document snapshot."
+    }
+  },
+  "measurement": {
+    "before": {
+      "scfctl_validate": "PASS; bindings=180 fail=0",
+      "scfctl_stale": "PASS; stale=0",
+      "check_child": {
+        "returncode": 1,
+        "l4_l9_pair": "6/6 PASS",
+        "l5_l8_pair": "6/6 PASS",
+        "negative_4way": "legacy_casewise_four_layer; L4/L9/L8/L5 each 38; matched=0; failures=76",
+        "l8_ownership_cap": "30 subject_sha256 failures"
+      }
+    },
+    "after": {
+      "scfctl_validate": "PASS; bindings=180 fail=0",
+      "scfctl_stale": "PASS; stale=0",
+      "check_child": {
+        "returncode": 1,
+        "l4_l9_pair": "6/6 PASS",
+        "l5_l8_pair": "6/6 PASS",
+        "negative_4way": "legacy_casewise_four_layer; L4/L9/L8/L5 each 38; matched=0; failures=76",
+        "l8_ownership_cap": "30 subject_sha256 failures"
+      },
+      "json_parse": "PASS",
+      "git_diff_check": "PASS"
+    },
+    "interpretation": "The six prose effects do not change negative_4way checker counts; that existing failure remains visible. Checks are static measurements, not behavior execution or approval."
+  },
+  "unresolved": [
+    "The other 32 classification effects were not adjudicated in this representative-row candidate.",
+    "The precise authority/provenance basis for the 30 L8 subject hashes remains unresolved pending the separate PR."
+  ],
+  "prohibited_actions_not_taken": [
+    "L5/L8 edits",
+    "explicit negative-class mode marker",
+    "mass residual rewrite",
+    "checker changes",
+    "old CLI/runtime/test/CI execution",
+    "PR creation or merge"
+  ]
+}

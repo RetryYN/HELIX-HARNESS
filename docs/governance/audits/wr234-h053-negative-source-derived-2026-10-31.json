@@ -1,0 +1,120 @@
+{
+  "artifact_id": "WR234-H053-NEG-4WAY-ROWS",
+  "evidence_kind": "source_only_blind_negative_derivation",
+  "authority_effect": "none",
+  "base_revision": "d4fa97152ce4f59618601c9a056bbfa406f25868",
+  "worktree_revision": "d4fa97152ce4f59618601c9a056bbfa406f25868",
+  "sources": [
+    {
+      "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+      "sha256": "a3b907cdc316117d4684632f9a1cbf36125eb6e6172f9cfc286060617583d7be",
+      "pointers": [
+        "/requirements/19",
+        "/requirements/20",
+        "/requirements/21",
+        "/requirements/22"
+      ]
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/functional-verification.json",
+      "sha256": "fc58ad2268746d7924ac9be33e8f3f75e6d3c2cc619e27fbc1ddc34edd065cb2",
+      "pointers": [
+        "/cases/19",
+        "/cases/20",
+        "/cases/21",
+        "/cases/22"
+      ]
+    },
+    {
+      "path": "docs/helix-harness/L3-requirements/nfr-grade.json",
+      "sha256": "b62f823d1c2edfd192ba8aeccb71159f3322aab17fa991d7ceb85712d8fbd486",
+      "pointers": [
+        "/requirements/3"
+      ]
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/nfr-verification.json",
+      "sha256": "578b1b368bdd3878ade8fcab77cc47320b8acc1d2d967af1708b333bea2f36b0",
+      "pointers": [
+        "/cases/3"
+      ]
+    },
+    {
+      "path": "docs/helix-harness/L3-requirements/business-requirements.json",
+      "sha256": "25e0e8f8ee8acbc220483ab6854155218193861086cf757f933e2cd6263f444d",
+      "pointers": [
+        "/requirements/3"
+      ]
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/business-verification.json",
+      "sha256": "3a9982ef2e59e3d027ce8e5cd72b9879b6224a8e4ea74b657bf9b67c90934319",
+      "pointers": [
+        "/cases/3"
+      ]
+    },
+    {
+      "path": "docs/helix-harness/L4-basic-design/semantic-asset-lineage.json",
+      "sha256": "24c3925481e5e855ff8b17d3f715dce8eb1f8ef60ea1e27538cd8d3f54475007",
+      "pointers": [
+        "/contracts/0",
+        "/contracts/1",
+        "/contracts/2",
+        "/contracts/3",
+        "/contracts/4",
+        "/contracts/5"
+      ]
+    }
+  ],
+  "derivations": [
+    {
+      "l4_contract": "HARNESS-L4-053-F01",
+      "l3_pointer": "docs/helix-harness/L3-requirements/functional-requirements.json#/requirements/19",
+      "l10_pointer": "docs/helix-harness/L10-verification/functional-verification.json#/cases/19",
+      "negative_condition": "異なるassetが同じpath/nameを再利用する、または同一性が競合して一意に対応できない。",
+      "expected_observation": "path/nameだけで同一identityとせず、競合・対応不明をunknownとして保持する。identity・意味変更・authority移転を推定しない。"
+    },
+    {
+      "l4_contract": "HARNESS-L4-053-F02",
+      "l3_pointer": "docs/helix-harness/L3-requirements/functional-requirements.json#/requirements/20",
+      "l10_pointer": "docs/helix-harness/L10-verification/functional-verification.json#/cases/20",
+      "negative_condition": "location/nameだけが変わった記録を意味revision変更と扱う、または意味変更をlocation履歴だけに埋めて差分・影響先を欠落させる。",
+      "expected_observation": "identityを保ったrevisionとlocation/semanticの軸を区別し、semantic diffがあれば影響するoracle/typed edgeに結ぶ。配置・名称だけの変更を意味変更にしない。"
+    },
+    {
+      "l4_contract": "HARNESS-L4-053-F03",
+      "l3_pointer": "docs/helix-harness/L3-requirements/functional-requirements.json#/requirements/21",
+      "l10_pointer": "docs/helix-harness/L10-verification/functional-verification.json#/cases/21",
+      "negative_condition": "供給されたrename/move/split/merge/supersede履歴の対応で、関係種別、前後identity/revision、lineage先、影響historyのいずれかが欠けるか対象revisionが異なる。",
+      "expected_observation": "不足した関係と影響historyをunknownとして保持し、供給記録を個別対応付けする。照合から変換操作を発行せず、全履歴保持や実操作成功を主張しない。"
+    },
+    {
+      "l4_contract": "HARNESS-L4-053-F04",
+      "l3_pointer": "docs/helix-harness/L3-requirements/functional-requirements.json#/requirements/22",
+      "l10_pointer": "docs/helix-harness/L10-verification/functional-verification.json#/cases/22",
+      "negative_condition": "lineage recordのauthority、acceptance oracle、typed edgeの一つが欠落・対応不明だが、別項目やreceiptがあるため欠落も閉じたことにする。",
+      "expected_observation": "欠けた項目を個別にunknown/不成立として返し、他の項目やreceiptで補完しない。成立している別項目を全closure成功に昇格させない。"
+    },
+    {
+      "l4_contract": "HARNESS-L4-053-N01",
+      "l3_pointer": "docs/helix-harness/L3-requirements/nfr-grade.json#/requirements/3",
+      "l10_pointer": "docs/helix-harness/L10-verification/nfr-verification.json#/cases/3",
+      "negative_condition": "053から042への未決参照をprovenance保証と解釈する、代替IDを推測する、または参照未決の状態でrename/move/split/merge/supersede等の実操作を選ぶ。",
+      "expected_observation": "参照不整合を未決のまま保持し、依存する操作を保留して053 ownerへ返す。代替IDや保証を推定せず、局所照合から全体成立・全体不成立のどちらも生成しない。"
+    },
+    {
+      "l4_contract": "HARNESS-L4-053-B01",
+      "l3_pointer": "docs/helix-harness/L3-requirements/business-requirements.json#/requirements/3",
+      "l10_pointer": "docs/helix-harness/L10-verification/business-verification.json#/cases/3",
+      "negative_condition": "identity/location/revision/split-merge/diff記録やfixtureの存在だけから、保存・rollback・権限・採択・受入・全旧要件移管の成立を主張する。",
+      "expected_observation": "記録成果と実操作・authority・受入を分離する。境界外の成立を生成せず、未完義務と実操作は既存ownerに残す。既存revision/trace/stale/diff条件や採択順序を再定義しない。"
+    }
+  ],
+  "provenance_note": "L3/L10は親レーンから指定された承認済みpointerとして扱い、L4は指定された設計散文pointerのみから導出した。各source hashはbase revision上のファイル全体のSHA-256。",
+  "excluded_read_note": "誤って抽出したdocs/helix-brain配下のL3/L10選択pointerは誤読として不採用。本文・導出・source listには使用していない。探索時、対象H053以外のdocs/helix-brain/L4文書から、下流層参照を含む数行が検索出力に現れた。該当下流文書は開かず、出力は導出に使っていない。対象H053のL5/L8/L9本文・期待・分類・比較・assignmentは読まず、H053 L4のnegative_classificationsおよびL8/L9参照も抽出していない。比較・投稿・PRは未実施。",
+  "unknowns": [
+    "このsource-only導出は各assetの実際のidentity、revision、owner record、authority、oracle、typed edgeが正しく供給されたかを確認していない。",
+    "採番・符号化・永続化方式、rename/move/split/merge/supersedeの個別判断、具体的な未決参照の解消結果は対象L3/L4 sourceが後続設計またはowner判断へ残す。",
+    "本artifactは比較前に固定すべき導出候補であり、実際の下流行との一致・不一致や作業完了を表明しない。"
+  ]
+}

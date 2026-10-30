@@ -1,0 +1,110 @@
+{
+  "artifact_id": "WR234-H053-L4-EFFECT-GENERALIZATION-ADDENDUM-2026-10-31",
+  "evidence_kind": "append_only_candidate_revision_record",
+  "authority_effect": "none",
+  "prior_candidate_record": "docs/governance/audits/wr234-h053-l4-l9-candidate-2026-10-31.json",
+  "fixed_source_only_artifact": {
+    "path": "docs/governance/audits/wr234-h053-negative-source-derived-2026-10-31.json",
+    "sha256": "8fa646f06deee3bce6cad8920cfbb1813a0f0882e8c97f6e7de30a9c694beb6b"
+  },
+  "revision_scope": {
+    "l4_path": "docs/helix-harness/L4-basic-design/semantic-asset-lineage.json",
+    "before_sha256": "3789bdd125aff8389e3bc8b9b26856212a9ff5e581b5c484f2211ddc6c3fdeaa",
+    "after_sha256": "9c8587181a8381cab9ee54a8c81bbc33a81d127943299690a0d9cc096710ea30",
+    "l9_path": "docs/helix-harness/L9-integration-verification/semantic-asset-lineage.json",
+    "l9_sha256_unchanged": "ab18e7965f1210eb638501178db9ccc886feb86fdafa7572f6f71cae1c2e268a"
+  },
+  "generalized_effect_rows": [
+    {
+      "code": "path_identity_inference",
+      "l4_contract": "HARNESS-L4-053-F01",
+      "l3_pointer": "docs/helix-harness/L3-requirements/functional-requirements.json#/requirements/19",
+      "l10_pointer": "docs/helix-harness/L10-verification/functional-verification.json#/cases/19",
+      "retained_row_condition": "同pathのBを旧Aへ併合",
+      "effect_basis": "L3はimmutable asset IDでの識別とpath/nameからの同一性推定禁止を定め、L10はidentity対応が曖昧な場合にunknownを保持すると定める。このeffectではclaim状態のconflict/unknownを選ばない。"
+    },
+    {
+      "code": "location_as_semantic",
+      "l4_contract": "HARNESS-L4-053-F02",
+      "l3_pointer": "docs/helix-harness/L3-requirements/functional-requirements.json#/requirements/20",
+      "l10_pointer": "docs/helix-harness/L10-verification/functional-verification.json#/cases/20",
+      "retained_row_condition": "意味不変のmoveだけでA/r2の意味revision成立",
+      "effect_basis": "L3は意味revisionとlocation/nameだけの変更を分ける。L4は意味変更を影響するoracle/typed edgeへ結ぶ。両sourceはこの行のclaim状態enumを指定していない。"
+    },
+    {
+      "code": "lineage_endpoint_missing",
+      "l4_contract": "HARNESS-L4-053-F03",
+      "l3_pointer": "docs/helix-harness/L3-requirements/functional-requirements.json#/requirements/21",
+      "l10_pointer": "docs/helix-harness/L10-verification/functional-verification.json#/cases/21",
+      "retained_row_condition": "LM mergeの元Bだけを対応から削除",
+      "effect_basis": "L3は供給されたendpoint/revision/relation/historyを個別に対応付ける。L10は関係や履歴の不足をunknownとして保持し、操作成功を主張しない。"
+    },
+    {
+      "code": "authority_mapping_missing",
+      "l4_contract": "HARNESS-L4-053-F04",
+      "l3_pointer": "docs/helix-harness/L3-requirements/functional-requirements.json#/requirements/22",
+      "l10_pointer": "docs/helix-harness/L10-verification/functional-verification.json#/cases/22",
+      "retained_row_condition": "LS authority QAだけ欠落、history有りで保持成功",
+      "effect_basis": "L3/L4はauthority/oracle/typed edgeの欠落・不明を各項目ごとにunknown/不成立とし、他記録で補わないと明示する。"
+    },
+    {
+      "code": "reference_meaning_mismatch",
+      "l4_contract": "HARNESS-L4-053-N01",
+      "l3_pointer": "docs/helix-harness/L3-requirements/nfr-grade.json#/requirements/3",
+      "l10_pointer": "docs/helix-harness/L10-verification/nfr-verification.json#/cases/3",
+      "retained_row_condition": "042をsource provenance保証へ読替え",
+      "effect_basis": "L3/L4は意味の不整合な参照を未決のまま残し、provenanceや代替IDを推定せず、依存操作を保留する。L10は全体停止を追加しないことも示す。"
+    },
+    {
+      "code": "record_as_persistence",
+      "l4_contract": "HARNESS-L4-053-B01",
+      "l3_pointer": "docs/helix-harness/L3-requirements/business-requirements.json#/requirements/3",
+      "l10_pointer": "docs/helix-harness/L10-verification/business-verification.json#/cases/3",
+      "retained_row_condition": "対応記録存在で実保存成立",
+      "effect_basis": "L3/L4はlineage/diff記録と実保存・rollback・権限・採択・受入を分ける。L10は未充足の実操作を既存ownerへ残す。"
+    }
+  ],
+  "preserved": [
+    "固定source-only artifactのbytesとIssueでの固定状態は変更していない。",
+    "既存L4のcondition、構造化されたexpected axes/states、L9 cases/expected、source pins、source_main、bindingsは変更していない。",
+    "L4 effect文6件だけを一般化し、ほかの32 classification行は変更していない。",
+    "行固有のID・条件値は時点付き監査記録に残し、一般化したL4 effect文には重ねていない。"
+  ],
+  "enum_boundary": [
+    {
+      "code": "path_identity_inference",
+      "observation": "L10はidentity対応の曖昧さをunknownとして保持する。一方、既存expected_claim_state=conflictは別のclaim-level欄である。L3/L10/L4散文だけでは、このclaim-level enumとの対応を独立に定義していない。",
+      "disposition": "既存の構造化欄は保持し、対応の意味は未決とする。一般化effectではunknown/conflictを選ばない。"
+    },
+    {
+      "code": "location_as_semantic",
+      "observation": "L3/L10/L4はlocation差とsemantic revisionの区別を定めるが、この行のclaim enumを指定していない。",
+      "disposition": "既存の構造化状態は保持する。L9のfixture期待からenum対応を追加推論しない。"
+    },
+    {
+      "code": "lineage_endpoint_missing",
+      "observation": "L10はlineage relation/historyの不足をunknownとして保持すると明示する。",
+      "disposition": "既存の構造化状態を保持し、追加の状態判断を行わない。"
+    },
+    {
+      "code": "authority_mapping_missing",
+      "observation": "L3/L4は欠落・不明をunknown/不成立とし、他項目で補わないと明示する。",
+      "disposition": "既存の構造化状態を保持する。"
+    },
+    {
+      "code": "reference_meaning_mismatch",
+      "observation": "L3/L4は参照不整合を未決に保ち、依存操作を保留する。無関係な局所確認を全停止する意味は加えない。",
+      "disposition": "既存の構造化状態を保持し、全体停止を追加しない。"
+    },
+    {
+      "code": "record_as_persistence",
+      "observation": "L3/L4は記録成果と実操作・受入を分離するが、未証明の実操作に対するclaim-state enumまでは指定しない。",
+      "disposition": "既存の構造化状態を保持し、enum対応は未決とする。"
+    }
+  ],
+  "remaining": [
+    "一般化effect文にL9 expectedの文字列をコピーしていない。",
+    "L5/L8文書・期待・assignment・freezeは編集していない。",
+    "explicit class marker、mass residual変更、checker変更、新しいauthorityを導入していない。"
+  ]
+}
