@@ -38,7 +38,8 @@
         "L5 formal_reference",
         "L7/L8/L9 expected values",
         "L10 expected_observation",
-        "L4 failure_classifications expected/expected_classification/expected_axis/expected_state"
+        "L4 failure_classifications expected/expected_classification/expected_axis/expected_state",
+        "Existing expected values as evidence for exact output shape/value"
       ],
       "hash_resolution_method": "L7 given.input points to its expanded_input_sha256 value. The referenced L7 fixture_inputs[base_ref] and ordered replacements were expanded and that source hash was checked; L8 stores only the source hash pointer, not the raw/input digest."
     },
@@ -64,24 +65,17 @@
           },
           {
             "root": "target_correspondence",
-            "status": "derived",
-            "value": {
-              "target_a": {
-                "source": "corresponding",
-                "other_facets": "corresponding"
-              },
-              "target_b": "all facets corresponding"
-            },
-            "basis": "only target_a.source.target_id differs from the corresponding context value; L4 facets/comparison_facets."
+            "status": "partial_unknown",
+            "basis": "only target_a.source.target_id differs from the corresponding context value; L4 facets/comparison_facets. Exact serialized return shape/value is not specified by the allowed source prose.",
+            "semantic_summary": "L7 rawとL4 facets/comparison_facetsから比較上のカテゴリは {'target_a': {'source': 'corresponding', 'other_facets': 'corresponding'}, 'target_b': 'all facets corresponding'} と整理できる。ただしこれは意味上の要約であり、返却fieldの正確なJSON shape/encodingはsource proseに規定されていない。",
+            "exact_value_status": "unknown"
           },
           {
             "root": "current_source_material",
-            "status": "derived",
-            "value": {
-              "target_a": true,
-              "target_b": true
-            },
-            "basis": "L4 /diagnostic_contract/aggregation: source/event/authority defects make current_source_material false."
+            "status": "partial_unknown",
+            "basis": "L4 /diagnostic_contract/aggregation: source/event/authority defects make current_source_material false. The full aggregation predicate and exact returned value/type are not specified by the allowed source prose.",
+            "semantic_summary": "手比較ではsource/event/authority discrepancyを見つけていない。L4 aggregation proseは欠陥との関係を述べるが、完全なpredicateとこのrootの正確な返却値/型を一意に定めない。",
+            "exact_value_status": "unknown"
           },
           {
             "root": "original_classification_state",
@@ -95,18 +89,24 @@
           },
           {
             "root": "retained_original_events",
-            "status": "derived",
-            "basis": "retain the whole original_event objects unchanged; fixed raw pointer plus L4 /diagnostic_contract/raw_retention and /mutation_rule."
+            "status": "partial_unknown",
+            "basis": "retain the whole original_event objects unchanged; fixed raw pointer plus L4 /diagnostic_contract/raw_retention and /mutation_rule. Retention semantics do not by themselves establish the exact returned field/value serialization.",
+            "semantic_summary": "L4 raw_retention/mutation_rule states that original_event objects are retained unchanged; this records retention semantics, not an exact returned wrapper/field value.",
+            "exact_value_status": "unknown"
           },
           {
             "root": "retained_original_classifications",
-            "status": "derived",
-            "basis": "raw original_classification is null for both targets; L4 /diagnostic_contract/raw_retention."
+            "status": "partial_unknown",
+            "basis": "raw original_classification is null for both targets; L4 /diagnostic_contract/raw_retention. Retention semantics do not by themselves establish the exact returned field/value serialization.",
+            "semantic_summary": "The fixed input has null original_classification values and L4 raw_retention says to preserve originals; exact returned wrapper/field value is not established here.",
+            "exact_value_status": "unknown"
           },
           {
             "root": "retained_unresolved_history",
-            "status": "derived",
-            "basis": "retain both raw unresolved_history arrays unchanged; L4 /diagnostic_contract/raw_retention."
+            "status": "partial_unknown",
+            "basis": "retain both raw unresolved_history arrays unchanged; L4 /diagnostic_contract/raw_retention. Retention semantics do not by themselves establish the exact returned field/value serialization.",
+            "semantic_summary": "L4 raw_retention says to preserve the input unresolved_history arrays unchanged; this records retention semantics, not an exact returned wrapper/field value.",
+            "exact_value_status": "unknown"
           },
           {
             "root": "retained_classification_lineage",
@@ -178,24 +178,17 @@
           },
           {
             "root": "target_correspondence",
-            "status": "derived",
-            "value": {
-              "target_a": {
-                "source": "unknown",
-                "other_facets": "corresponding"
-              },
-              "target_b": "all facets corresponding"
-            },
-            "basis": "only target_a.source.target_id differs from the corresponding context value; L4 facets/comparison_facets."
+            "status": "partial_unknown",
+            "basis": "only target_a.source.target_id differs from the corresponding context value; L4 facets/comparison_facets. Exact serialized return shape/value is not specified by the allowed source prose.",
+            "semantic_summary": "L7 rawとL4 facets/comparison_facetsから比較上のカテゴリは {'target_a': {'source': 'unknown', 'other_facets': 'corresponding'}, 'target_b': 'all facets corresponding'} と整理できる。ただしこれは意味上の要約であり、返却fieldの正確なJSON shape/encodingはsource proseに規定されていない。",
+            "exact_value_status": "unknown"
           },
           {
             "root": "current_source_material",
-            "status": "derived",
-            "value": {
-              "target_a": false,
-              "target_b": true
-            },
-            "basis": "L4 /diagnostic_contract/aggregation: source/event/authority defects make current_source_material false."
+            "status": "partial_unknown",
+            "basis": "L4 /diagnostic_contract/aggregation: source/event/authority defects make current_source_material false. The full aggregation predicate and exact returned value/type are not specified by the allowed source prose.",
+            "semantic_summary": "L7 rawでtarget_a source identityがmissing。L4 aggregation proseは欠陥との関係を述べるが、完全なpredicateとこのrootの正確な返却値/型を一意に定めない。",
+            "exact_value_status": "unknown"
           },
           {
             "root": "original_classification_state",
@@ -209,18 +202,24 @@
           },
           {
             "root": "retained_original_events",
-            "status": "derived",
-            "basis": "retain the whole original_event objects unchanged; fixed raw pointer plus L4 /diagnostic_contract/raw_retention and /mutation_rule."
+            "status": "partial_unknown",
+            "basis": "retain the whole original_event objects unchanged; fixed raw pointer plus L4 /diagnostic_contract/raw_retention and /mutation_rule. Retention semantics do not by themselves establish the exact returned field/value serialization.",
+            "semantic_summary": "L4 raw_retention/mutation_rule states that original_event objects are retained unchanged; this records retention semantics, not an exact returned wrapper/field value.",
+            "exact_value_status": "unknown"
           },
           {
             "root": "retained_original_classifications",
-            "status": "derived",
-            "basis": "raw original_classification is null for both targets; L4 /diagnostic_contract/raw_retention."
+            "status": "partial_unknown",
+            "basis": "raw original_classification is null for both targets; L4 /diagnostic_contract/raw_retention. Retention semantics do not by themselves establish the exact returned field/value serialization.",
+            "semantic_summary": "The fixed input has null original_classification values and L4 raw_retention says to preserve originals; exact returned wrapper/field value is not established here.",
+            "exact_value_status": "unknown"
           },
           {
             "root": "retained_unresolved_history",
-            "status": "derived",
-            "basis": "retain both raw unresolved_history arrays unchanged; L4 /diagnostic_contract/raw_retention."
+            "status": "partial_unknown",
+            "basis": "retain both raw unresolved_history arrays unchanged; L4 /diagnostic_contract/raw_retention. Retention semantics do not by themselves establish the exact returned field/value serialization.",
+            "semantic_summary": "L4 raw_retention says to preserve the input unresolved_history arrays unchanged; this records retention semantics, not an exact returned wrapper/field value.",
+            "exact_value_status": "unknown"
           },
           {
             "root": "retained_classification_lineage",
@@ -293,24 +292,17 @@
           },
           {
             "root": "target_correspondence",
-            "status": "derived",
-            "value": {
-              "target_a": {
-                "source": "violation",
-                "other_facets": "corresponding"
-              },
-              "target_b": "all facets corresponding"
-            },
-            "basis": "only target_a.source.target_id differs from the corresponding context value; L4 facets/comparison_facets."
+            "status": "partial_unknown",
+            "basis": "only target_a.source.target_id differs from the corresponding context value; L4 facets/comparison_facets. Exact serialized return shape/value is not specified by the allowed source prose.",
+            "semantic_summary": "L7 rawとL4 facets/comparison_facetsから比較上のカテゴリは {'target_a': {'source': 'violation', 'other_facets': 'corresponding'}, 'target_b': 'all facets corresponding'} と整理できる。ただしこれは意味上の要約であり、返却fieldの正確なJSON shape/encodingはsource proseに規定されていない。",
+            "exact_value_status": "unknown"
           },
           {
             "root": "current_source_material",
-            "status": "derived",
-            "value": {
-              "target_a": false,
-              "target_b": true
-            },
-            "basis": "L4 /diagnostic_contract/aggregation: source/event/authority defects make current_source_material false."
+            "status": "partial_unknown",
+            "basis": "L4 /diagnostic_contract/aggregation: source/event/authority defects make current_source_material false. The full aggregation predicate and exact returned value/type are not specified by the allowed source prose.",
+            "semantic_summary": "L7 rawでtarget_a source identityがknown-different。L4 aggregation proseは欠陥との関係を述べるが、完全なpredicateとこのrootの正確な返却値/型を一意に定めない。",
+            "exact_value_status": "unknown"
           },
           {
             "root": "original_classification_state",
@@ -324,18 +316,24 @@
           },
           {
             "root": "retained_original_events",
-            "status": "derived",
-            "basis": "retain the whole original_event objects unchanged; fixed raw pointer plus L4 /diagnostic_contract/raw_retention and /mutation_rule."
+            "status": "partial_unknown",
+            "basis": "retain the whole original_event objects unchanged; fixed raw pointer plus L4 /diagnostic_contract/raw_retention and /mutation_rule. Retention semantics do not by themselves establish the exact returned field/value serialization.",
+            "semantic_summary": "L4 raw_retention/mutation_rule states that original_event objects are retained unchanged; this records retention semantics, not an exact returned wrapper/field value.",
+            "exact_value_status": "unknown"
           },
           {
             "root": "retained_original_classifications",
-            "status": "derived",
-            "basis": "raw original_classification is null for both targets; L4 /diagnostic_contract/raw_retention."
+            "status": "partial_unknown",
+            "basis": "raw original_classification is null for both targets; L4 /diagnostic_contract/raw_retention. Retention semantics do not by themselves establish the exact returned field/value serialization.",
+            "semantic_summary": "The fixed input has null original_classification values and L4 raw_retention says to preserve originals; exact returned wrapper/field value is not established here.",
+            "exact_value_status": "unknown"
           },
           {
             "root": "retained_unresolved_history",
-            "status": "derived",
-            "basis": "retain both raw unresolved_history arrays unchanged; L4 /diagnostic_contract/raw_retention."
+            "status": "partial_unknown",
+            "basis": "retain both raw unresolved_history arrays unchanged; L4 /diagnostic_contract/raw_retention. Retention semantics do not by themselves establish the exact returned field/value serialization.",
+            "semantic_summary": "L4 raw_retention says to preserve the input unresolved_history arrays unchanged; this records retention semantics, not an exact returned wrapper/field value.",
+            "exact_value_status": "unknown"
           },
           {
             "root": "retained_classification_lineage",
@@ -425,6 +423,7 @@
   "scope_boundary": [
     "Source-only manual derivation from L3/L10 prose, L4 prose/tables, and fixed L7 given.input only.",
     "Do not execute L4 algorithm_python_document_text; do not use L5 formal_reference or L7/L8/L9 expected values as derivation inputs.",
-    "Unknown and partial_unknown roots remain unresolved; no full 91-representative independence or freeze claim."
+    "Unknown and partial_unknown roots remain unresolved; no full 91-representative independence or freeze claim.",
+    "semantic_summary entries describe source-level meaning only; they are not complete expected field values or serialized output shapes."
   ]
 }

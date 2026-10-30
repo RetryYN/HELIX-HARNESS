@@ -35,8 +35,13 @@
     },
     {
       "path": "scaffold/research/wr181-os015-l5-l8-successor-20261031/manual-source-only-pilot.json",
-      "sha256": "83a3aa6d5320c88d302199a3d64d51d20cc9cc3fc69239416432c73d9e52d059",
+      "sha256": "1d1f50751641002e3b6e155e7bd217a5aa4f85dd4406d018a0bad908f2a90caa",
       "note": "Moved manual source-only pilot, including case/root pointers, statuses, and unknowns."
+    },
+    {
+      "path": "scaffold/research/wr181-os015-l5-l8-successor-20261031/manual-source-only-pilot.md",
+      "sha256": "88950563d1f9d14faa1d08efe9f133831116e18eff1404797fb040af0716344a",
+      "note": "Review-summary rendering of the moved pilot; detailed root basis remains in the JSON audit record."
     }
   ],
   "role": "WR181 OS015の手導出pilotについて、固定source revision・3 cohort・16 roots・根拠pointer・未解決root・停止境界をレビュー可能なscaffold research auditとして記録する。",
@@ -45,7 +50,8 @@
     "L3/L10 prose、L4 diagnostic contract prose/tables、L7 fixed given.inputだけを導出根拠とし、L4 embedded algorithm、L5 formal_reference、既存expected valuesを導出根拠にしない。",
     "unknown/partial_unknownを未解決のまま保持し、existing expectation comparison not_performedと全91代表の独立性未成立を明示する。",
     "L8のformal expected rows/cases、L7、L3/L10/L4の意味、pair境界を変更しない。",
-    "旧runtime/test/CIを実行せず、監査記録からauthority、formal oracle、freeze、実行結果を生成しない。"
+    "旧runtime/test/CIを実行せず、監査記録からauthority、formal oracle、freeze、実行結果を生成しない。",
+    "各semantic_summaryはsource-levelの説明に限り、exact field value/JSON shapeの証拠へ昇格しない。返却値を特定できないrootはpartial_unknown/unknownとする。"
   ],
   "connections": {
     "consumers": [
@@ -94,7 +100,8 @@
     "negative_cases": [
       "The three-case pilot is partial; unknown roots and source authority/qualification remain unresolved.",
       "Expected comparison was not performed; prior expected rows are preserved and are not an oracle for derivation.",
-      "No full 91-representative independence or freeze is claimed."
+      "No full 91-representative independence or freeze is claimed.",
+      "target_correspondence等のsemantic_summary、またはretention方針のみを完成したserialized output valueとして扱わない。"
     ]
   },
   "replacement": {
