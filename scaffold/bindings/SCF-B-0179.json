@@ -40,7 +40,7 @@
     },
     {
       "path": "docs/helix-harness/L9-integration-verification/product-template-application.json",
-      "sha256": "5029f1458e76fee11eddfa2b31a3df0e4d71f884956ef25e8ca0475bca205dc8",
+      "sha256": "06c255043e143a0ddd23da750fede31ff6d3b4b1c94d854de22d07ff109c0d8b",
       "note": "case HARNESS-L9-009-F05-EVIDENCE-QUESTION-CONTRACTと既存Stopを参照。変更なし。"
     },
     {
