@@ -12,6 +12,18 @@ L3/L10の意味は変更しない。既存expectedへ値を合わせず、食い
 
 比較後、作業者がL5-L9を含む範囲に広い`rg`を一度実行し、大量の一致箇所が出力された。これは比較前artifactを固定し、そのhashを確認した後の操作である。出力は本監査の判断根拠に使わず、READMEに結果を転記していない。以降の判定は、下記に明記したsource row、R01関連の期待pointer、およびraw inputの対応operandに限定して行った。この記録は検索範囲の逸脱を隠さないための開示であり、広い出力から新たな根拠を採用するものではない。
 
+## WR222 L5/L8 source-pin rebind follow-up
+
+WR222の作業baseは70499a07825f53f2fbbb85935d9888360a6ad14c（#3961のmerge revision）。このrevisionのL4 bytes SHA-256は4b1eea9beaa7a4179dec374e8c914632dbef850c25f88bdc619a3b5808f7a2fbで、確認したremote-main ref dd5931cfff4ff786da2ced44de2a40529edf7b71のL4 bytesと同一。L5/L8のsource_pins[3]だけをこのrevision/SHAへ再束縛した。L9 pinとその期待値は変更していない。
+
+L5ではalgorithm.ordered_rules[0].source_valueに旧い曖昧なR01引用が残っていたため、L4 /diagnostic_contract/rules/0 の現在文面へ同期した。L5 formal_program.generic_operator_contracts.compare_fields はpredicate不成立側だけunknownをそのside pointerへ追加し、双方predicate成立かつ値不一致の場合は設定sideへconflictを置くと既に定めており、operand-local unknown／actual-side conflictという固定候補と静的に一致する。したがって変更はsource引用文の明確化であり、formal operator semanticsの変更ではない。L8には旧R01散文の複製がなく、L8 unit expectedおよびL9 integration expectedのcode/pointer値も変更していない。
+
+WR222前のwhole SHA-256はL5 17cc4b4a400ccebf68902b6befaea682b2c81287a202113709a41e0fec28c200、L8 0c20492e0ee7eb92c50053a67fadacd782259c64802e3a338a1f9435d7727516。変更後はL5 47d2256d3b3295548156b6b8a92de1102e8e167f1d677288397393cdf268cb21、L8 1c99e457cb57131a7ac93eef84f728789b0e76dff02e7364e5ee47d51d366877。比較前固定artifact r01-blind.jsonは不変でSHA-256 622b92a532c9ca316b3ad58f32df42870b43437ba573ea7e039c64af5684f767。L3/L10 rows、L4/L9 bytes、すべてのL5/L8/L9 expected bytes・values、R02/R03/R07本文は変更していない。L4/L5 algorithmと旧runtime/test/CIの実行はしていない。
+
+SCF-B-0187のupstream L5/L8 digestだけを変更後bytesへ更新し、noteに変更前digestを記録して当時の比較対象を保った。R01監査のrole、obligations、artifact、過去比較revisionは維持した。この追随は既存SCF-B-0187のupstream refreshで足りたため、新しいSCF bindingは作成していない。check-childは変更前後ともexit 0。SCF staleは変更前後ともstale=0、validateは変更前bindings=175 fail=0、変更後も全binding passを確認した。これらは静的scaffold/source整合確認で、要求承認・実動作・独立reviewを意味しない。
+
+R02/R03/R07の既存pointer差・限定整合は上記の比較後監査のとおり残し、一括変更しない。旧sourceはLEGACY-ASSET-F6E9EA3422A0EF1DF090（feedback lifecycle）とLEGACY-ASSET-6679DDF56AC1EA499A42（memory structure）を意味再導出の読取根拠として保持した。UTW-014/UTW-021のabsence-blindness/完了証拠に関する失敗はunknownを成功扱いしない既存目的の根拠に限り、operand-local pointer選択そのものを旧HELIXから再利用したものではない。独立reviewは作成者と別contextのreview対応側がexact HEADを確認する。
+
 ## Source pins
 
 | source | revision / SHA-256 | 用途 |
