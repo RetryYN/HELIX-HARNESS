@@ -6,7 +6,7 @@
   "product": "HELIX-OS",
   "owner_candidate": "HELIX-OS L4 OS007 log-feedback-memory-lineage design owner",
   "state": "registered",
-  "reason": "WR217 R01 string/bool actual-context pointer ambiguityについて、比較前固定artifactと比較後のL4/L5/L7/L8/L9 expected照合、旧source/failure referenceを記録する候補。既存要求・expected・実動作を変えず、設計候補と残件を可視化する。",
+  "reason": "WR217 R01 string/bool actual-context pointer ambiguityについて、WR213 pilotの両pointer解釈と今回candidateの不明側pointer解釈の差、比較後の選択理由、L4/L5/L7/L8/L9 source照合、旧source/failure referenceを記録する候補。既存要求・expected・実動作を変えず、設計候補と残件を可視化する。",
   "upstream": [
     {
       "path": "docs/helix-os/L3-requirements/functional-requirements.json",
@@ -48,6 +48,7 @@
   "obligations": [
     "承認済みL3/L10 OS007 F01の意味を保持し、要求を追加・変更しない。",
     "比較前固定artifactのbytesとSHA-256を保全し、比較後の発見を別記する。",
+    "WR213 pilotのpointer解釈と今回candidateの差、および比較後に記録した選択理由を区別して記録し、pilot/candidate bytesを変更しない。",
     "L4 R01散文の候補明確化をactual/context operand自身のpointer規則として提示し、既存expectedへ値合わせしない。",
     "R02/R03/R07とL5/L7/L8/L9の一致・不足・差異を必要最小のpointerで記録する。",
     "旧sourceの意味再導出と失敗記録を分け、新gate・実装・実行・完了証拠を生成しない。"
@@ -58,6 +59,7 @@
     ],
     "dependencies": [
       "Approved HELIXOS-L3-007-F01 and HELIXOS-L10-007-F01 at revision 7f1719fb6a89837c1bb9775faa9a634a066df4a3",
+      "WR213 pilot recorded at Issue #3510 comment 6530663198; artifact SHA-256 8cb4af88feb7c4e91e0acdc5dd1d299ef2de3094141f0f8515af2de33ca9a1fc",
       "L4/L5/L7/L8/L9 log-feedback-memory-lineage JSON at pinned comparison HEAD",
       "Pre-comparison candidate artifact SHA-256 622b92a532c9ca316b3ad58f32df42870b43437ba573ea7e039c64af5684f767"
     ],
@@ -95,6 +97,7 @@
       "Do not interpret unknown as successful or silently complete it.",
       "Do not infer successful completion or rewrite expected values from the pointer comparison.",
       "Do not use L7 expected materials as independent oracle or mutate existing expected values.",
+      "Do not use L7 expected values as the rationale for choosing the unknown-side-only pointer candidate.",
       "Do not execute L4/L5 algorithms or legacy runtime/test/CI."
     ]
   },

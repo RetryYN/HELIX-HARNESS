@@ -44,6 +44,16 @@ L3/L10の意味は変更しない。既存expectedへ値を合わせず、食い
 4. 両operandがknownで不一致なら、actual pointerだけへ`field_conflict`／`boolean_conflict`を付ける。
 5. 比較結果は呼出元のlogs/feedback/memory facetに置き、unknown/conflictを成功証拠へ昇格させない。
 
+### WR213 pilotとの読みの違いと、比較後に記録する選択理由
+
+WR213の比較前pilot（Issue #3510 comment 6530663198、artifact SHA-256 `8cb4af88feb7c4e91e0acdc5dd1d299ef2de3094141f0f8515af2de33ca9a1fc`）では、actual `/logs/worker/project_id` がnullでcontext counterpartがknownの例について、担当者は旧R01の「片側不明は各pointer」をactual/context両pointerと読んだ。同コメントは、context側known pointerへもunknownを付ける読みと、unknown側だけを付ける読みの両方があり得るとして、pointer数の判断を保留していた。
+
+今回の比較前固定候補（Issue #3510 comment 6530954227、`r01-blind.json` SHA-256 `622b92a532c9ca316b3ad58f32df42870b43437ba573ea7e039c64af5684f767`）は、そのpilot解釈とは異なり、片側だけunknownなら不明側のpointerだけを選ぶ。両側unknownなら両側pointer、known unequalならactual pointerという候補である。以下の理由は比較前artifactに含まれておらず、F1指摘を受けた比較後の説明として記録する。artifact bytesは変更しない。
+
+不明側のみを候補にする理由は、unknown診断を「そのoperandが比較対象としてknownではない」という出所に置き、raw inputでknownな相手側の値をunknownと誤表示しないためである。known側pointerにunknownを付けると、どちらの入力が欠けたかが読取り上失われ、known値も不明だったかのように扱われる。両側がunknownの場合は、それぞれのoperandが独立に不明なので双方のpointerを指す。この説明はoperandの出所を保つための候補設計理由であり、L3/L10の新しい要求や承認を生成しない。L7 expectedとの一致・不一致はこの選択理由に使わない。
+
+pilotのnull例を現候補で扱う場合は、`/logs/worker/project_id`（actual）だけに`field_unknown`を置き、knownなcontext counterpartには置かない。今回の選択はpilot担当の当初の両pointer解釈から変更されるため、pilotを同じ意味の先例として扱わず、差を残す。
+
 ### L4内の既存比較algorithmとの静的照合
 
 L4文書内に実行可能なembedded code blockはなく、比較algorithm本文は`diagnostic_contract.rules`の散文規則と、それを参照するR04-R10の記述である。本文を静的に読んだ限り、候補文案との関係は次の通り。
