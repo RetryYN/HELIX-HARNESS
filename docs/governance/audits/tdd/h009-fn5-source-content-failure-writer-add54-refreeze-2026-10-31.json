@@ -56,14 +56,17 @@
         "L8#/additional_unit_cases/45",
         "L8#/additional_unit_cases/46",
         "L8#/additional_unit_cases/47",
-        "L8#/additional_unit_cases/54"
+        "L8#/additional_unit_cases/54",
+        "L8#/additional_unit_cases/55"
       ],
       "l4_pointers": [
         "L4#/field_source_materialization_contract/ordered_source_materialization/2",
+        "L4#/field_source_materialization_contract/ordered_source_materialization/3",
         "L4#/field_semantic_evidence_contract/field_definition_evidence_body/absent_guard",
         "L4#/field_semantic_evidence_contract/field_definition_evidence_body/undecided_guard",
         "L4#/field_semantic_evidence_contract/wrapper_and_source_contract/source_payload",
         "L4#/field_semantic_evidence_contract/common_target_guards/3",
+        "L4#/field_semantic_evidence_contract/common_target_guards/5",
         "L4#/field_semantic_evidence_contract/basic_candidate_return/cause_kind_extension_rules/rules/2"
       ],
       "l9_pointers": [
@@ -77,10 +80,12 @@
         "L3F#/requirements/27",
         "L10F#/cases/27",
         "L4#/field_source_materialization_contract/ordered_source_materialization/2",
+        "L4#/field_source_materialization_contract/ordered_source_materialization/3",
         "L4#/field_semantic_evidence_contract/field_definition_evidence_body/absent_guard",
         "L4#/field_semantic_evidence_contract/field_definition_evidence_body/undecided_guard",
         "L4#/field_semantic_evidence_contract/wrapper_and_source_contract/source_payload",
         "L4#/field_semantic_evidence_contract/common_target_guards/3",
+        "L4#/field_semantic_evidence_contract/common_target_guards/5",
         "L4#/field_semantic_evidence_contract/basic_candidate_return/cause_kind_extension_rules/rules/2",
         "L9#/field_semantic_evidence_verification/cases/3",
         "L9#/field_semantic_evidence_verification/cases/9",
@@ -105,14 +110,17 @@
           "L8#/additional_unit_cases/45",
           "L8#/additional_unit_cases/46",
           "L8#/additional_unit_cases/47",
-          "L8#/additional_unit_cases/54"
+          "L8#/additional_unit_cases/54",
+          "L8#/additional_unit_cases/55"
         ],
         "basis_pointers": [
           "L4#/field_source_materialization_contract/ordered_source_materialization/2",
+          "L4#/field_source_materialization_contract/ordered_source_materialization/3",
           "L4#/field_semantic_evidence_contract/field_definition_evidence_body/absent_guard",
           "L4#/field_semantic_evidence_contract/field_definition_evidence_body/undecided_guard",
           "L4#/field_semantic_evidence_contract/wrapper_and_source_contract/source_payload",
           "L4#/field_semantic_evidence_contract/common_target_guards/3",
+          "L4#/field_semantic_evidence_contract/common_target_guards/5",
           "L4#/field_semantic_evidence_contract/basic_candidate_return/cause_kind_extension_rules/rules/2",
           "L9#/field_semantic_evidence_verification/cases/3",
           "L9#/field_semantic_evidence_verification/cases/9",
@@ -123,7 +131,7 @@
       }
     ]
   },
-  "remaining_scope_ja": "対象はFN5のsource/body failure writer sliceのみ。PR #3937でL4 cause_kind_extension_rules/rules/2及びL9 cases/11・cause_kind_extension_cases/2が成立しreentry条件を満たしたため、STOP-F05-BODY-ENTRY-ABSENT-01を解消してL5 writers/2 (F05-SOURCE-BODY-ENTRY-ABSENT, body_entry_unresolved) とL8 ADD-54を追加した。ADD-45の両collection missに対するcontent_unresolved L5 writerはSTOP-F05-CONTENT-UNRESOLVED-CAUSE-PAIR-01で未形成のまま保持し、proposition/constraint cause、gap proposal body、既存owner STOPも各STOPのまま。全U-IDはnot_executedであり、公開producerの実接続・独立意味review・F05全体freeze承認を主張しない。",
+  "remaining_scope_ja": "対象はFN5のsource/body failure writer sliceのみ。PR #3937でL4 cause_kind_extension_rules/rules/2及びL9 cases/11・cause_kind_extension_cases/2が成立しreentry条件を満たしたため、STOP-F05-BODY-ENTRY-ABSENT-01を解消してL5 writers/2 (F05-SOURCE-BODY-ENTRY-ABSENT, body_entry_unresolved: SemanticRecord及びAxisFact双方のRecordOccurrence並びに対応SourceEnvelopeごとのsources原順判定・一部一致時の原因保持) とL8 ADD-54（semantic_records枝）・ADD-55（axis_facts枝）を追加した。ADD-45の両collection missに対するcontent_unresolved L5 writerはSTOP-F05-CONTENT-UNRESOLVED-CAUSE-PAIR-01で未形成のまま保持し、proposition/constraint cause、gap proposal body、既存owner STOPも各STOPのまま。全U-IDはnot_executedであり、公開producerの実接続・独立意味review・F05全体freeze承認を主張しない。",
   "evidence_kind": "slice_level_function_pair_freeze",
   "authority_effect": "none",
   "source_main": "f5d511841c665b3424e159c8c1029bde51434521",
@@ -161,7 +169,7 @@
     "negative_4way_count_unit": "negative_case_rows_per_layer",
     "negative_4way_matched_count_unit": "matched_negative_case_rows"
   },
-  "change_reason_ja": "main f5d511841cを基点に、STOP-F05-BODY-ENTRY-ABSENT-01のreentry条件充足に伴いL5 field_content_source_failure_writer_contract/writers/2 (F05-SOURCE-BODY-ENTRY-ABSENT) 及びcause_kind_crosswalk/values/22、L8 HARNESS-L8-009-ADD-54を追加し、L5/L8 pre/post SHA-256とpointer/countをgenerate-freezeで更新する。",
+  "change_reason_ja": "main f5d511841cを基点に、STOP-F05-BODY-ENTRY-ABSENT-01のreentry条件充足に伴いL5 field_content_source_failure_writer_contract/writers/2 (F05-SOURCE-BODY-ENTRY-ABSENT) 及びcause_kind_crosswalk/values/22、L8 HARNESS-L8-009-ADD-54/ADD-55を追加（ADD-45/46/47のsource_basis 0-based pointer整合を含む）し、L5/L8 pre/post SHA-256とpointer/countをgenerate-freezeで更新する。",
   "recorded_at_utc": "2026-10-30T17:05:00+00:00",
   "pins": {
     "L3F_sha256": "a3b907cdc316117d4684632f9a1cbf36125eb6e6172f9cfc286060617583d7be",
@@ -169,9 +177,9 @@
     "L4_sha256": "4a770515153fb97e2f5915af8308868450a22014d5739b996bc0ebf4a62db7db",
     "L9_sha256": "06c255043e143a0ddd23da750fede31ff6d3b4b1c94d854de22d07ff109c0d8b",
     "L5_pre_sha256": "f5da0e585b3bb91cf5b07d7d3c1e124b9584718395d8b07704cede6e2523ce1c",
-    "L5_post_sha256": "ec7f59620cd7860608f6e4e7e7cdcfed5f22f0902bd53bf3d94871ca3b573a10",
+    "L5_post_sha256": "d85ff1a6db76b0b367a0ae51a5a2b82df93298f17375940d0b84c1674e9507ef",
     "L8_pre_sha256": "65aa4c2e120e6636cc3f3eb260fec32b06b1b44a6f17b21f785dc0d63fa767ce",
-    "L8_post_sha256": "07aa9a7c091253a4d76e6a5c50a7f6c81b6bbd11ca78f34cd4118309566991ec"
+    "L8_post_sha256": "bc1a74cb56612e555899c585c42f2c2843b6c2ee8efce5df5c27404de4ac35bd"
   },
   "head_entity_counts": {
     "L5_contracts": 11,
@@ -180,7 +188,7 @@
     "L8_cases": 11,
     "L8_negative_cases_total": 107,
     "L8_normal_function_oracles": 13,
-    "L8_additional_unit_cases": 55,
+    "L8_additional_unit_cases": 56,
     "L5_source_pins": 21,
     "L8_source_pins": 21,
     "L8_wire_codec_cases": 36,
@@ -193,8 +201,8 @@
     "L8_general_proposal_exchange_additional_branch_probes": 9
   },
   "pointer_resolution_summary": {
-    "checked_count": 59,
-    "expanded_target_count": 59,
+    "checked_count": 67,
+    "expanded_target_count": 67,
     "unresolved_count": 0,
     "passed": true
   },
@@ -260,7 +268,7 @@
     {
       "record_id": "HARNESS009-FN5-SOURCE-CONTENT-FAILURE-WRITER-PR-CANDIDATE-20261029",
       "record_path": "docs/governance/audits/tdd/h009-fn5-source-content-failure-writer-pr-candidate-freeze-2026-10-29.json",
-      "supersession_scope": "PR #3937 (L4/L9 body_entry_unresolved) 及び PR #3942 (L9 content_unresolved cause pair) merge後のmain f5d511841cを基点に、STOP-F05-BODY-ENTRY-ABSENT-01のreentry条件充足に伴うL5 writers/2 (F05-SOURCE-BODY-ENTRY-ABSENT)・cause_kind_crosswalk/values/22及びL8 ADD-54を追加した新L5/L8 revisionへ差し替える。旧recordと旧revisionの歴史証拠は変更せず保持する。"
+      "supersession_scope": "PR #3937 (L4/L9 body_entry_unresolved) 及び PR #3942 (L9 content_unresolved cause pair) merge後のmain f5d511841cを基点に、STOP-F05-BODY-ENTRY-ABSENT-01のreentry条件充足に伴うL5 writers/2 (F05-SOURCE-BODY-ENTRY-ABSENT)・cause_kind_crosswalk/values/22及びL8 ADD-54/ADD-55を追加した新L5/L8 revisionへ差し替える。旧recordと旧revisionの歴史証拠は変更せず保持する。"
     }
   ]
 }

@@ -107,20 +107,20 @@
     "L5",
     "L8"
   ],
-  "remaining_scope_ja": "f5d511841c665b3424e159c8c1029bde51434521 mainを基点に、WR197 Part 2（F05-SOURCE-BODY-ENTRY-ABSENT writer及びADD-54）を含むL5/L8 revision pinを更新するD-Axis-0限定refreeze候補。前recordのO2意味と3条件、及びcause_kind_crosswalk/values/14..15の0-based index不変を保つ。L8 ADD-26/27をO2全枝のU-IDとして対応させ、両方not_executedのまま保持する。private detail reentry_slice=D-H009-T3bは別sliceのまま。ADD-46/47/54はD-Axis-0 O2 slice外の候補であり、このrefreezeのcase closureへ数えない。",
+  "remaining_scope_ja": "f5d511841c665b3424e159c8c1029bde51434521 mainを基点に、WR197 Part 2（F05-SOURCE-BODY-ENTRY-ABSENT writer及びADD-54/ADD-55）を含むL5/L8 revision pinを更新するD-Axis-0限定refreeze候補。前recordのO2意味と3条件、及びcause_kind_crosswalk/values/14..15の0-based index不変を保つ。L8 ADD-26/27をO2全枝のU-IDとして対応させ、両方not_executedのまま保持する。private detail reentryは既存後続D-H009-T3bに分離したまま。HARNESS-L3-009-F05全体やproducer実装は主張しない。",
   "evidence_kind": "slice_level_function_pair_freeze",
   "authority_effect": "none",
   "target": "FN5 D-Axis-0とprojection_unformedのL4/L9意味pointer対L5/L8技術pointerを対応付け、未了producer workのreentryを既存後続D-H009-T3bへ送る。",
-  "criterion": "3条件を維持する。1) DT-VT-105に従い、L3/L10上位期待とL4/L9 basic semanticsからO2期待を独立に導き、L5/L8技術shapeを別に対応照合する。2) O2全2枝をL8 U-ID #26/27に対応させ、両行はnot_executed・独立review pendingのまま保持する。3) private detail reentry_slice=D-H009-T3bをこのpair sliceから分離する。latest main e09b2180e06bbdd1ab52d54191518e1c9a6368a5をbaseとし、ADD-47追加後のL8 post pin、L4 unchanged pointer、全pointer/count/verification fieldをcheckerで照合する。ADD-46/47はいずれもこのO2 slice外の候補であり、このrefreezeのcase closureへ数えない。",
+  "criterion": "3条件を維持する。1) DT-VT-105に従い、L3/L10上位期待とL4/L9 basic semanticsからO2期待を独立に導き、L5/L8技術shapeを別に対応照合する。2) O2全2枝をL8 U-ID #26/27に対応させ、両行はnot_executed・独立review pendingのまま保持する。3) private detail reentry_slice=D-H009-T3bをこのpair sliceから分離する。latest main f5d511841c665b3424e159c8c1029bde51434521をbaseとし、ADD-54/ADD-55追加後のL8 post-revision（additional_unit_cases=56、functions/5/unit_case_refs=34）及びL5 post-revision（cause_kind_crosswalk.value_count=23、values/22=body_entry_unresolved追加）のfile SHA-256と機械検証結果を記録する。",
   "pins": {
     "L3F_sha256": "a3b907cdc316117d4684632f9a1cbf36125eb6e6172f9cfc286060617583d7be",
     "L10F_sha256": "fc58ad2268746d7924ac9be33e8f3f75e6d3c2cc619e27fbc1ddc34edd065cb2",
     "L4_sha256": "4a770515153fb97e2f5915af8308868450a22014d5739b996bc0ebf4a62db7db",
     "L9_sha256": "06c255043e143a0ddd23da750fede31ff6d3b4b1c94d854de22d07ff109c0d8b",
     "L5_pre_sha256": "f5da0e585b3bb91cf5b07d7d3c1e124b9584718395d8b07704cede6e2523ce1c",
-    "L5_post_sha256": "ec7f59620cd7860608f6e4e7e7cdcfed5f22f0902bd53bf3d94871ca3b573a10",
+    "L5_post_sha256": "d85ff1a6db76b0b367a0ae51a5a2b82df93298f17375940d0b84c1674e9507ef",
     "L8_pre_sha256": "65aa4c2e120e6636cc3f3eb260fec32b06b1b44a6f17b21f785dc0d63fa767ce",
-    "L8_post_sha256": "07aa9a7c091253a4d76e6a5c50a7f6c81b6bbd11ca78f34cd4118309566991ec"
+    "L8_post_sha256": "bc1a74cb56612e555899c585c42f2c2843b6c2ee8efce5df5c27404de4ac35bd"
   },
   "head_entity_counts": {
     "L5_contracts": 11,
@@ -129,7 +129,7 @@
     "L8_cases": 11,
     "L8_negative_cases_total": 107,
     "L8_normal_function_oracles": 13,
-    "L8_additional_unit_cases": 55,
+    "L8_additional_unit_cases": 56,
     "L5_source_pins": 21,
     "L8_source_pins": 21,
     "L8_wire_codec_cases": 36,
@@ -641,7 +641,7 @@
     {
       "record_id": "HARNESS009-FN5-AXIS-CAUSE-POINTER-CROSSWALK-ADD47-REFREEZE-20261030",
       "record_path": "docs/governance/audits/tdd/h009-fn5-axis-cause-pointer-crosswalk-add47-refreeze-2026-10-30.json",
-      "supersession_scope": "同じD-Axis-0/O2 sliceについて、WR197 Part 2（L5 writers/2・values/22及びL8 ADD-54）を含む新L5/L8/L9 file revisionのpin/count/機械検証recordへ差し替える。旧recordと旧revisionの証拠は変更せず保持する。"
+      "supersession_scope": "同じD-Axis-0/O2 sliceについて、WR197 Part 2（L5 writers/2・values/22及びL8 ADD-54/ADD-55）を含む新L5/L8/L9 file revisionのpin/count/機械検証recordへ差し替える。旧recordと旧revisionの証拠は変更せず保持する。"
     }
   ],
   "independent_expectation_trace": {
