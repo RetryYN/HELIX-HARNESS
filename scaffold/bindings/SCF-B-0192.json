@@ -52,10 +52,11 @@
   "role": "HARNESS-015 F01 L5/L8 candidate design evidence",
   "obligations": [
     "Issue固定済みr2 source-only artifactの意味範囲とbytesを保持し、formal oracleへ昇格しない。",
-    "L5 F01 candidate ruleを承認済みL3/L10 F01、現行L4 F01、既存L9 F01へrevision付きで接続する。",
-    "L8 F01 candidate witnessesをL4/L9 existing output/negative expectationsへ小さく投影し、L8のL5 pinを先行commitのfinal L5 bytesへ結ぶ。",
+    "L5 F01 general predicates connect to approved L3/L10 meaning and existing L4/L9 where rows exist; r2 sixth untraceable-ref predicate has no L4/L9 row and remains unmapped.",
+    "L8 F01 keeps only the five negative projections supported by existing L4/L9 rows, plus the positive U-ID; do not invent a sixth expected projection. L8 L5 pin targets the exact preceding L5 commit.",
     "既存L5 contract、L4/L9 bytes、L8 canonical unit_case_ids/unit_casesを変更せず、candidate rowsをformal 4way coverageに数えない。",
-    "意味分岐を個別witnessとして保持し、承認・実行・受入・4way完了を生成しない。"
+    "意味分岐を個別witnessとして保持し、承認・実行・受入・4way完了を生成しない。",
+    "r2 sixth negative and freeze/body sequence equality remain unresolved; any L4/L9 negative expansion is a separate V-pair task."
   ],
   "connections": {
     "consumers": [
@@ -65,7 +66,7 @@
       "Approved HARNESS-L3-015-F01 and HARNESS-L10-015-F01",
       "Existing HARNESS-L4-015-F01 and HARNESS-L9-015-F01",
       "Issue-fixed r2 source artifact",
-      "First-commit L5 F01 candidate revision"
+      "Exact pinned L5 F01 candidate revision"
     ],
     "boundary": "L5/L8 F01 candidate annotations and scaffold evidence only; no L4/L9 or canonical L8 expected/unit-case change, algorithm/runtime/test/CI, formal oracle, approval, or four-way completion."
   },
@@ -91,7 +92,8 @@
     "scaffold/research/wr223-f01-l5-l8-20261031/source/f01-blind-draft-r1.json",
     "scaffold/research/wr223-f01-l5-l8-20261031/source/f01-blind-draft-r2.json",
     "docs/helix-harness/L5-detail-design/tdd-development-flow.json",
-    "docs/helix-harness/L8-unit-verification/tdd-development-flow.json"
+    "docs/helix-harness/L8-unit-verification/tdd-development-flow.json",
+    "scaffold/research/wr223-f01-l5-l8-20261031/source/f01-candidate-input-facts.json"
   ],
   "verification": {
     "evidence_kind": "scaffold",
@@ -104,25 +106,27 @@
       "r1/r2 exact SHA-256 and r2 Issue comment reference",
       "L3/L10 approved-head pins and target row/case equality to repository audit entries",
       "L4/L9 exact source pins and unchanged full-file bytes",
-      "L5 source pin equals first-commit revision and final L5 bytes",
+      "L5 source pin equals exact preceding commit revision and final bytes",
       "L4 positive output pointer resolves to the existing F01 output contract",
-      "L8 candidate witness projections match existing L4/L9 expected axis/state/owner/effect fields",
+      "L8 has five compact negative projections; source pointers resolve; no sixth projection is invented for r2 sixth negative",
       "Existing L8 unit_case_ids and unit_cases are unchanged; candidate IDs remain outside canonical sets",
       "design_verification_checker check-child: L4/L9 and L5/L8 pair links pass; negative 4way remains L4=28, L9=28, L8=0, L5=0, matched=0; candidate rows not counted; L9/L8 ownership-cap residuals remain.",
-      "candidate artifact SHA-256: docs/helix-harness/L5-detail-design/tdd-development-flow.json=216e8f04638ab8734c91333bbb6bae48031e13224d084eb9fc750f125d703610",
-      "candidate artifact SHA-256: docs/helix-harness/L8-unit-verification/tdd-development-flow.json=1a5220049f09bc78897e4544af8bc4c678ec4997d713c91482432aa20a6e0b2b",
-      "candidate artifact SHA-256: scaffold/research/wr223-f01-l5-l8-20261031/README.md=4aa1a66f10753706fed9c52d8e0ed061bbbe533e4aab6bef5eb976fb48e0ed83",
-      "candidate artifact SHA-256: scaffold/research/wr223-f01-l5-l8-20261031/validate_static_candidate.py=4fec9e3786f6d13c2adb3d323054463c7986937852620432d4f37cb43e8c0656",
-      "candidate artifact SHA-256: scaffold/research/wr223-f01-l5-l8-20261031/verification-summary.json=720be777d3bd54378cdc26087173294626ca73f870f9a32a64e7eef1a6e1e817",
-      "candidate artifact SHA-256: scaffold/research/wr223-f01-l5-l8-20261031/source/f01-blind-draft-r1.json=e4f7be9befded4f2398209eac0d3ef226c0cd62cefa5e47d013a18e87f265bbd",
-      "candidate artifact SHA-256: scaffold/research/wr223-f01-l5-l8-20261031/source/f01-blind-draft-r2.json=fa047d5d871913b696ba5e01d9227ce13a68bc827ff6e8c66cc29d8e69d7e647"
+      "Sequence equality between freeze.sequence and body_change.sequence is unresolved; no output classification is assigned.",
+      "candidate artifact SHA-256: docs/helix-harness/L5-detail-design/tdd-development-flow.json=d5e5bc2611e47da7c0a55020c52152453f932c9665a0eeca5e44ddc71a1d3a15",
+      "candidate artifact SHA-256: docs/helix-harness/L8-unit-verification/tdd-development-flow.json=05c51527a9ff77402797ec4e54bc291569f63257b273cc44f7144903992f6002",
+      "candidate artifact SHA-256: scaffold/research/wr223-f01-l5-l8-20261031/README.md=5a9646a50ae4eb3ef24b8445920185578c61ba7203f12ccadc740ac654c1c8c6",
+      "candidate artifact SHA-256: scaffold/research/wr223-f01-l5-l8-20261031/validate_static_candidate.py=a31c90274068034638e766dc31e9f0b7fc366fe1eabba5c8a71515faa8968cbd",
+      "candidate artifact SHA-256: scaffold/research/wr223-f01-l5-l8-20261031/verification-summary.json=25d7706404860282bb5c88efe651f6b4a27474128366160294762fdee121a8be",
+      "candidate artifact SHA-256: scaffold/research/wr223-f01-l5-l8-20261031/source/f01-candidate-input-facts.json=f16de2d4cb641c34a7289a81496e4618ff5a4a88eb8be3da1896123920db21de"
     ],
     "negative_cases": [
       "Do not treat r1 or r2 semantic-scope artifact as formal oracle or approval.",
       "Keep freeze_missing and freeze_timestamp_only as separate witnesses despite shared missing projection.",
       "Do not add candidate witness labels to canonical unit_case_ids or unit_cases, or count them as four-way coverage.",
       "Do not modify L4/L9 bytes or existing L5/L8 expectations.",
-      "Do not execute algorithms, old/new runtime, tests, or CI."
+      "Do not execute algorithms, old/new runtime, tests, or CI.",
+      "Do not invent an L8 expected projection for r2 sixth negative because L4/L9 have no corresponding row; any L4/L9 expansion is a separate V-pair task.",
+      "Keep freeze.sequence == body_change.sequence unresolved."
     ]
   },
   "replacement": {

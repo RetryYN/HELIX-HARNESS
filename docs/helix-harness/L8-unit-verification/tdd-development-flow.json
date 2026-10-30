@@ -1120,10 +1120,10 @@
           },
           {
             "path": "docs/helix-harness/L5-detail-design/tdd-development-flow.json",
-            "revision": "4f9a76d3dfbfe2bc97ea44c2a82af378e13430ee",
-            "sha256": "7cae2f64eeadaf8067621b1a10af96bcba61b2ac6b16b5fba74fe1d2806f9583",
+            "revision": "706343a6d75dedd0d07040958d5f340baf259514",
+            "sha256": "d5e5bc2611e47da7c0a55020c52152453f932c9665a0eeca5e44ddc71a1d3a15",
             "pointer": "/contracts/1/candidate_classification_design",
-            "claim": "前段で固定した値を含まないL5 candidate predicate bytes。L8はexact revisionを参照し、具体synthetic事実はscaffold research recordへ分離。"
+            "claim": "前段で固定した値を含まないL5 general predicate catalog。r2第6負例に対する述語は候補意味だけを持ち、L8 expected projectionは定義しない。"
           }
         ],
         "input_source_boundary": "Each candidate U-ID row refers compactly to a scaffold research fact record. The evidence record re-resolves selected facts against the existing synthetic L9 owner_material; it is not a formal owner-qualified input, new raw source, full return, or independent oracle.",

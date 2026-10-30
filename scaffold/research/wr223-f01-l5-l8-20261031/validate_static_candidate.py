@@ -10,7 +10,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[3]
 BASE = "dd5931cfff4ff786da2ced44de2a40529edf7b71"
-L5_REV = "4f9a76d3dfbfe2bc97ea44c2a82af378e13430ee"
+L5_REV = "706343a6d75dedd0d07040958d5f340baf259514"
 REVIEWED = "a715e777bd59291b26f09c0c1c5481273c6eba2e"
 L3 = "docs/helix-harness/L3-requirements/functional-requirements.json"
 L10 = "docs/helix-harness/L10-verification/functional-verification.json"
@@ -21,12 +21,13 @@ L9 = "docs/helix-harness/L9-integration-verification/tdd-development-flow.json"
 R1 = "scaffold/research/wr223-f01-l5-l8-20261031/source/f01-blind-draft-r1.json"
 R2 = "scaffold/research/wr223-f01-l5-l8-20261031/source/f01-blind-draft-r2.json"
 FACTS = "scaffold/research/wr223-f01-l5-l8-20261031/source/f01-candidate-input-facts.json"
+BINDING = "scaffold/bindings/SCF-B-0192.json"
 COMMENT = "https://github.com/RetryYN/HELIX-HARNESS/issues/3510#issuecomment-6531844362"
 R1_SHA = "e4f7be9befded4f2398209eac0d3ef226c0cd62cefa5e47d013a18e87f265bbd"
 R2_SHA = "fa047d5d871913b696ba5e01d9227ce13a68bc827ff6e8c66cc29d8e69d7e647"
 L9_SHA = "3d2257ee9d0f33f367377a3c379af9852973dc11d87c1f23f8f193724adebeb2"
-L5_SHA = "7cae2f64eeadaf8067621b1a10af96bcba61b2ac6b16b5fba74fe1d2806f9583"
-FACTS_SHA = "0da753e128198b893530e2be7058dbe6c797774980d112694f08e112b21ed6fb"
+L5_SHA = "d5e5bc2611e47da7c0a55020c52152453f932c9665a0eeca5e44ddc71a1d3a15"
+FACTS_SHA = "f16de2d4cb641c34a7289a81496e4618ff5a4a88eb8be3da1896123920db21de"
 
 
 def sha(data: bytes) -> str:
@@ -126,6 +127,7 @@ def main() -> None:
     l8_base = json.loads(git_bytes(BASE, L8))
     l4_base_bytes, l9_base_bytes = git_bytes(BASE, L4), git_bytes(BASE, L9)
     facts = read_json(FACTS)
+    binding = read_json(BINDING)
     assert sha((ROOT / FACTS).read_bytes()) == FACTS_SHA
 
     assert sha((ROOT / R1).read_bytes()) == R1_SHA
@@ -148,6 +150,10 @@ def main() -> None:
     assert candidate_l5["fixed_artifact"]["issue_comment"] == COMMENT
     catalog = candidate_l5["candidate_predicate_catalog"]
     assert catalog["status"] == "candidate_general_predicates_only_not_approved_or_executed"
+    assert len(catalog["negative"]) == 6
+    assert catalog["negative"][-1]["predicate_id"] == "target_and_pair_refs_untraceable"
+    assert any("sequence ==" in item for item in catalog["unresolved"])
+    assert any("r2 negative condition" in item for item in catalog["unresolved"])
     assert candidate_l5["source_fact_evidence_ref"] == f"{FACTS}#/cases"
     assert not any(pin["path"] == L9 for pin in candidate_l5["candidate_source_pins"])
     l5_text = json.dumps(candidate_l5, ensure_ascii=False)
@@ -220,13 +226,22 @@ def main() -> None:
     assert len(l8_f01["unit_case_ids"]) == len(l8_f01_base["unit_case_ids"]) == 6
     assert len(l8["unit_cases"]) == len(l8_base["unit_cases"]) == 35
 
+    assert binding["id"] == "SCF-B-0192"
+    for evidence_pin in binding["verification"]["oracles"]:
+        if not evidence_pin.startswith("candidate artifact SHA-256: "):
+            continue
+        path, expected = evidence_pin.removeprefix("candidate artifact SHA-256: ").split("=", 1)
+        assert sha((ROOT / path).read_bytes()) == expected, path
+
     print("static F01 candidate/source-fact validation: PASS")
     print(f"L5 pin: {L5_REV}; SHA-256: {L5_SHA}")
     print(f"r1/r2 hashes and Issue-fixed r2 reference: PASS")
-    print("L5 has value-free predicates; six scaffold facts re-resolve against base L9 owner_material: PASS")
+    print("L5 has six value-free negative predicates including r2's untraceable-ref meaning; sequence equality unresolved")
+    print("Six scaffold facts re-resolve against base L9 owner_material: PASS")
     print("L8 U-ID rows contain compact fact references and short projections only; no raw owner_material/full return")
     print("L4/L9 pointers resolve; candidate projection expected-value equality is not checked")
     print("L4/L9 bytes and existing L8 canonical cases unchanged; candidate contribution to four-way=0")
+    print("SCF-B-0192 candidate artifact SHA pins resolve: PASS")
     print("No algorithm, runtime, test suite, or CI was executed.")
 
 

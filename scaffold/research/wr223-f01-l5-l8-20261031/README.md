@@ -27,11 +27,11 @@ L4/L9とL8の既存unit-case ID一覧、L5の既存contract、既存L8 unit case
 - L10正本: `docs/helix-harness/L10-verification/functional-verification.json`。F01 caseは同reviewed headの `/cases/40`。decisionの承認時JSON SHA-256 `e2580d52…6ace7c` は当該head上で一致する。
 - `docs/governance/audits/prerequisite-l3-l10-definition-audit-2026-10-12.json` はF01 row pairをPR2943、approval comment 6113131428、merge commit `28739e940176b0128c49b4646615674ba33b6771`へ結び、両base rowがaudit entryと一致する。PR2943 merge commitは基点の祖先である。
 - 後続034 decision PR2959は追加13組と先行113組不変を記録し、merge commit `de53e71f2f3bb0f260a792244fe8badd46f4274d` は基点の祖先である。基点のL3/L10 file SHAは同decisionのpinsと一致し、F01 row/caseはapproval audit entryと同じ。
-- 両decision metadataには `recorded_pending_final_review_and_main_admission` が残る。main admissionは上記repo内audit・merge ancestryで確認できたが、metadataのfinal-review語が未解消か更新漏れかは不明として残す。Issue/PR本文はこの作業で開いていない。
+- 両decision recordの`authority_effect`はmain admission時に有効となる条件付きで、PR2943およびPR2959のmerge commitは基点の祖先であるため、両方のadmission条件は充足している。`recorded_pending_final_review_and_main_admission`はdecision記録時点のstatus表示として読む。decision recordと固定済みr2は書き換えない。
 
 ## L5/L8候補
 
-初回L5候補commitは `f97e1ff9331bafdc5d87b4f6e1af067020e78b76`（SHA-256 `216e8f04638ab8734c91333bbb6bae48031e13224d084eb9fc750f125d703610`）。r2固定後に一度L5へfixture factsを加えたが、QA §3再照合で所有境界逸脱と判明した。その修正として、具体値とfact listをscaffoldへ移し、値を含まないpredicateだけにしたL5をcommit `4f9a76d3dfbfe2bc97ea44c2a82af378e13430ee`（SHA-256 `7cae2f64eeadaf8067621b1a10af96bcba61b2ac6b16b5fba74fe1d2806f9583`）へ固定した。L8 source pinはこのrevisionと完全bytesを参照する。L5 F01既存field/semantic rulesは不変。
+初回L5候補commitは `f97e1ff9331bafdc5d87b4f6e1af067020e78b76`（SHA-256 `216e8f04638ab8734c91333bbb6bae48031e13224d084eb9fc750f125d703610`）。r2固定後にL5へfixture factsを加えた中間revisionはQA §3所有境界に反したため、具体値とfact listをscaffoldへ移した。その後、R1で未対応のr2第6負例を受け、値を含まない一般述語だけを追加したL5 commit `706343a6d75dedd0d07040958d5f340baf259514`（SHA-256 `d5e5bc2611e47da7c0a55020c52152453f932c9665a0eeca5e44ddc71a1d3a15`）を固定した。L8 source pinはこのrevisionと完全bytesを参照する。L5 F01既存field/semantic rulesは不変。
 
 ### r2固定後のsource-condition再照合
 
@@ -47,6 +47,14 @@ r2は意味範囲だけを固定し、具体schema・fixture事実・分類優�
 | timestamp only | `freeze`はprovided recordだが`created_at`だけ。target/design/test/oracle/expected/sequence各fieldはabsent。`created_at`は`body_change.created_at`より早い。 | `freeze=null`と別witnessとして維持。両者を同じ`freeze_before_body/missing`へ投影する選択はr2後の候補設計で、重複と優先順位は未決。 |
 
 L9のowner_materialはsynthetic fixtureであり、正式なowner-qualified入力ではない。具体factsはscaffold研究artifactだけに置き、L5 predicateはfield presence/比較関係に限る。production schemaや正式分類器は定めず、候補期待projectionの意味確認と値の一致検査を混同しない。特にfreeze欠落とtimestamp-onlyの一次axis、複数条件同時成立時の分類優先順位、`body_change`のrevision対応field、`freeze_as_red`出力変異の正式な入力/出力境界は未決である。
+
+### PR #3967 R1で見つかったr2第6負例の未対応
+
+r2の`representative_negative_conditions`第6項は「対象identity/revision/scopeまたは設計/対oracleの版を辿れない」条件で、L3 F01の対象結線義務とL10 F01の設計・oracle版と対象を辿る観測に根拠がある。既存L4 F01とL9 F01には負例行が各5件だけで、この第6条件に対応する行はない。[PR #3967 R1 comment 6532324816](https://github.com/RetryYN/HELIX-HARNESS/pull/3967#issuecomment-6532324816)もこの差をMajorとして指摘した。
+
+L5には値を持たない`target_and_pair_refs_untraceable`一般述語を追加し、どのrequired ref memberが解決しない／対象と結べないかを候補述語として示した。分類code/axis/state/backflowや優先順位は未定義のまま。L8は既存L4/L9に根拠のない6件目の期待projectionを作らず、引き続き1 positive・5 negativeのままにする。第6意味をL4/L9のnegative rowへ定義する場合は別V-pair作業として扱う。source facts artifactのunresolvedにもこの欠落を記録した。
+
+同R1のI1に従い、`freeze.sequence == body_change.sequence`は正例`<`にも負例`>`にも属する根拠が固定sourceにないため未決へ追加した。等値を受理・拒否・unknownのどれかに決めない。r2のbytesとIssue固定SHAは不変。
 
 L8 candidateは1 positive、5 negative witnessを持つ。正例projectionはL4 `/contracts/1/output_contract` とL9 `/cases/1/expected_material` を参照する。負例projectionは候補の短い意味projectionと既存L4/L9への参照を持つ。各U-ID rowの`candidate_input_ref`は [`source/f01-candidate-input-facts.json`](source/f01-candidate-input-facts.json) のcompact case recordを指し、L8にはraw owner_material、全返却、fixture payloadを置かない。fact recordは既存L9 owner_materialをvalidatorで再解決する。L9 fixtureは `synthetic_independent_owner_design_fixture` であり、正式owner由来inputと主張しない。
 
@@ -73,4 +81,4 @@ L8 candidateは1 positive、5 negative witnessを持つ。正例projectionはL4 
 
 再現可能な静的validatorは [`validate_static_candidate.py`](validate_static_candidate.py)。JSON parse、source revision/file hashes、RFC6901 pointer解決、source factsのpresence/value/field relationをbase L9 owner_materialから再解決、L4/L9/L8既存bytes・期待の不変、L8 L5 final pin、r1/r2 hashes、候補IDとcanonical IDの分離を確認する。source factsを候補期待値との等値で分類する検査はしない。validatorはL4/L5 algorithmを実行しない。旧HELIX runtime/test/CIと新runtime/test/CIは起動しない。 実行結果はvalidator PASS、`scfctl validate` `bindings=177 fail=0`、`scfctl stale` `stale=0`、staged `git diff --check` はclean。
 
-正式な入力owner、production schema/codec、分類優先順位、L5/L8正式設計、independent oracle、実行・受入、全negative 4way matching、L8 ownership-cap、通常のL3再開は未成立のまま残す。候補artifactの存在やvalidatorの成功でこれらを生成しない。
+正式な入力owner、production schema/codec、分類優先順位、sequence等値の扱い、r2第6負例のL4/L9対応、L5/L8正式設計、independent oracle、実行・受入、全negative 4way matching、L8 ownership-cap、通常のL3再開は未成立のまま残す。候補artifactの存在やvalidatorの成功でこれらを生成しない。

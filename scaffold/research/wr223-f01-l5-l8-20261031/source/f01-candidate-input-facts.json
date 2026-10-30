@@ -531,6 +531,8 @@
     "formal owner input and production schema are unconfirmed",
     "classification priority for overlapping missing/timestamp-only or multiple predicates is unresolved",
     "body_change revision binding field is not present in the fixture",
-    "freeze-as-Red is represented by candidate output mutation; formal input/output boundary is unresolved"
+    "freeze-as-Red is represented by candidate output mutation; formal input/output boundary is unresolved",
+    "r2 sixth negative meaning (untraceable target identity/revision/scope or design/oracle version) has no corresponding L4/L9 row; no concrete witness or L8 expected projection was invented.",
+    "sequence equality between freeze.sequence and body_change.sequence is neither positive nor negative in fixed sources."
   ]
 }
