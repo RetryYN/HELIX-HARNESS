@@ -1,0 +1,277 @@
+{
+  "evidence_kind": "scaffold",
+  "artifact_sha256": "489d2aa4786436b7cfc10b3dc4be9f2c5019727c60291d82293822e341fe60e4",
+  "comparison_revision": "a0ce1ce787cff3b61664c12d62ae471969edb433",
+  "origin_main_readback": "Comparison revision is intentionally fixed at a0ce1ce787cff3b61664c12d62ae471969edb433. At source selection, origin/main was a0ce. Later observations were a53f04482ff883decf1019dc9c212ab712271749 and, on 2026-10-31, 70499a07825f53f2fbbb85935d9888360a6ad14c. Neither later main revision replaces the fixed comparison source.",
+  "sources": {
+    "approved_l3": {
+      "revision": "771dd7e802189506d88cf9d9570c42b94cf7b8fb",
+      "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+      "pointer": "/requirements/66",
+      "sha256": "5a0ccb8e75f59fb78cd67f211ef2bca8a41f73a440e36ac5374a53fe1dfcfe69",
+      "id": "HARNESS-L3-003-F03"
+    },
+    "approved_l10": {
+      "revision": "771dd7e802189506d88cf9d9570c42b94cf7b8fb",
+      "path": "docs/helix-harness/L10-verification/functional-verification.json",
+      "pointer": "/cases/66",
+      "sha256": "6fea9190c60121d262572c821c7ef8f5e38429e01a98f75d644b2b59297514db",
+      "id": "HARNESS-L10-003-F03"
+    },
+    "l4_contract_prose": {
+      "revision": "a0ce1ce787cff3b61664c12d62ae471969edb433",
+      "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
+      "pointer": "/contracts/3",
+      "sha256": "eb0f43e23906d04b9554786a2574c94d01de85faa75f7fb1f33e08eb3276f464"
+    },
+    "l8": {
+      "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+      "sha256": "ee564c12ea81158f14a0483bd0fd4d9d35352b62c8050bdf8686195f32df213f",
+      "cases": [
+        "/cases/3/cases/4",
+        "/cases/3/cases/6"
+      ],
+      "revision": "a0ce1ce787cff3b61664c12d62ae471969edb433"
+    },
+    "l9": {
+      "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+      "sha256": "ccac38abfa3a204fdd1b5c325b67835e13957914f5a8f239e87efe55d190dff5",
+      "cases": [
+        "/cases/3/negative_cases/0",
+        "/cases/3/negative_cases/2"
+      ],
+      "revision": "a0ce1ce787cff3b61664c12d62ae471969edb433",
+      "manual_projection_audit_pointer": "/negative_output_projection_audit/manual_projection_audit_rows/0"
+    },
+    "l4_negative_classification": {
+      "revision": "a0ce1ce787cff3b61664c12d62ae471969edb433",
+      "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
+      "pointer": "/contracts/3/negative_classifications/0",
+      "sha256": "eb0f43e23906d04b9554786a2574c94d01de85faa75f7fb1f33e08eb3276f464"
+    }
+  },
+  "witnesses": [
+    {
+      "name": "origin-null",
+      "raw_mutation": {
+        "path": [
+          "origin"
+        ],
+        "after": null
+      },
+      "l8_case": "H003-L8-F03-ORIGIN-MISSING",
+      "l9_case": "H003-F03-ORIGIN-MISSING",
+      "negative_class_annotation_at_base": "F03_REQUIRED_PAIR_MISSING",
+      "expected": {
+        "ceiling": "Provisional",
+        "reverse_scope_candidate": "Full Reverse recovery candidate",
+        "reverse_trigger_materials": [
+          "origin_missing"
+        ],
+        "reverse_ticket_candidate": "Reverse",
+        "ticket_issuer": "OS",
+        "pair_result": "supported_synthetic_condition",
+        "l9_dimensions": "all ten are supported_synthetic_condition",
+        "actual_ticket_issued": false,
+        "actual_reverse_executed": false,
+        "actual_quality_accepted": false,
+        "actual_user_accepted": false,
+        "actual_release": false,
+        "actual_completion": false,
+        "valley_result": "supported_synthetic_condition",
+        "meaning_backflow": [],
+        "negative_class_assignment": {
+          "classification": "F03_REQUIRED_PAIR_MISSING",
+          "reason": "originまたはtraceの必要原材料を直接除去し、pair/trace証拠欠落を期待する。"
+        },
+        "l8_expected_partial_values": {
+          "valley_result": "supported_synthetic_condition",
+          "pair_result": "supported_synthetic_condition",
+          "meaning_backflow": [],
+          "source_pointer": "/cases/3/cases/4/expected_partial_values"
+        },
+        "l9_expected_material_pointer": "/cases/3/negative_cases/0/expected_material"
+      },
+      "source_pointers": {
+        "l8": "/cases/3/cases/4",
+        "l9_expected_material": "/cases/3/negative_cases/0/expected_material",
+        "l9_negative_class_assignment": "/cases/3/negative_cases/0/negative_class_assignment"
+      },
+      "blind_derived_pair_result": "局所成功を主張できず、具体的なpair別状態・結果は未定。"
+    },
+    {
+      "name": "trace-empty",
+      "raw_mutation": {
+        "path": [
+          "trace"
+        ],
+        "after": []
+      },
+      "l8_case": "H003-L8-F03-TRACE-MISSING",
+      "l9_case": "H003-F03-TRACE-MISSING",
+      "negative_class_annotation_at_base": "F03_REQUIRED_PAIR_MISSING",
+      "expected": {
+        "ceiling": "Provisional",
+        "reverse_scope_candidate": "Full Reverse recovery candidate",
+        "reverse_trigger_materials": [],
+        "reverse_ticket_candidate": "none",
+        "ticket_issuer": "OS",
+        "pair_result": "supported_synthetic_condition",
+        "l9_dimensions": "all ten are supported_synthetic_condition",
+        "actual_ticket_issued": false,
+        "actual_reverse_executed": false,
+        "actual_quality_accepted": false,
+        "actual_user_accepted": false,
+        "actual_release": false,
+        "actual_completion": false,
+        "valley_result": "supported_synthetic_condition",
+        "meaning_backflow": [],
+        "negative_class_assignment": {
+          "classification": "F03_REQUIRED_PAIR_MISSING",
+          "reason": "originまたはtraceの必要原材料を直接除去し、pair/trace証拠欠落を期待する。"
+        },
+        "l8_expected_partial_values": {
+          "valley_result": "supported_synthetic_condition",
+          "pair_result": "supported_synthetic_condition",
+          "meaning_backflow": [],
+          "source_pointer": "/cases/3/cases/6/expected_partial_values"
+        },
+        "l9_expected_material_pointer": "/cases/3/negative_cases/2/expected_material"
+      },
+      "source_pointers": {
+        "l8": "/cases/3/cases/6",
+        "l9_expected_material": "/cases/3/negative_cases/2/expected_material",
+        "l9_negative_class_assignment": "/cases/3/negative_cases/2/negative_class_assignment",
+        "l9_manual_projection_audit": "/negative_output_projection_audit/manual_projection_audit_rows/0"
+      },
+      "blind_derived_pair_result": "局所成功を主張できず、具体的なpair別状態・結果は未定。"
+    }
+  ],
+  "limits": {
+    "blind_scope_determined": [
+      "Origin-unknown and trace-missing are distinct witness conditions.",
+      "Both conditions are candidates for Full Reverse recovery.",
+      "HARNESS supplies condition meaning; OS owns actual ticket issuance.",
+      "No actual ticket or reverse execution is generated by the candidate.",
+      "Approved L3/L10 meaning alone does not specify a canonical code/state/owner or concrete pair result.",
+      "The frozen blind derivation did not consult L4 negative_classifications, L8/L9 expected values, or L9 projection audits."
+    ],
+    "post_blind_comparison_unresolved": [
+      "L4 defines F03_REQUIRED_PAIR_MISSING with pair_trace/missing/HARNESS and forbids replacing missing with the opposing success value, while L8/L9 expect pair_result/valley_result synthetic supported values.",
+      "L9 trace row records invalidated_prior_candidate_codes but retains the same negative_class_assignment; no matching origin-null manual projection audit row was found.",
+      "The source set does not establish which formal source value should be changed or whether the pair/valley synthetic fields describe evidence support or pair state.",
+      "Whether trace-missing independently populates a ticket-issuance trigger or candidate: origin-null has origin_missing / Reverse while trace-empty has an empty trigger list / none; L3 does not explicitly list trace-missing as an independent ticket issuance condition."
+    ],
+    "do_not_infer": [
+      "Treat synthetic supported values as actual pair success.",
+      "Replace the L4 missing classification with success or alter L4/L9 formal values in this comparison.",
+      "Conflate classification assignment annotations with L9 projection invalidation audit."
+    ]
+  },
+  "classification_audit_at_base": {
+    "classification": "F03_REQUIRED_PAIR_MISSING",
+    "class_member_case_pairs": 2,
+    "checker_passed": false,
+    "matched_case_count": 0,
+    "semantic_oracle_independently_reviewed": false,
+    "status": "candidate annotation only; not canonical or checker evidence",
+    "population_audit_ref": "/negative_class_assignment_audit; its whole-population counts are separately recorded in all_negative_statistics"
+  },
+  "work_boundary": {
+    "did_not_run": [
+      "algorithm",
+      "legacy runtime",
+      "legacy test",
+      "CI"
+    ],
+    "did_not_change": [
+      "L4",
+      "L8",
+      "L9",
+      "L3",
+      "L10"
+    ],
+    "did_not_promote": [
+      "classification",
+      "requirement meaning",
+      "ticket issue",
+      "reverse success"
+    ]
+  },
+  "all_negative_statistics": {
+    "reference": "https://github.com/RetryYN/HELIX-HARNESS/issues/3510#issuecomment-6531272911",
+    "snapshot_base": "a0ce1ce787cff3b61664c12d62ae471969edb433",
+    "l9_negative_rows": 182,
+    "assigned_rows": 113,
+    "unassigned_rows": 69,
+    "f03_negative_cases": 39,
+    "f03_assigned_cases": 16,
+    "f03_unassigned_cases": 23,
+    "f03_membership_witnesses_in_this_comparison": 2,
+    "limits": "Literal strings/code counts are inventory evidence, not semantic alignment or proof that prose semantics are absent.",
+    "shared_snapshot_commit": "51ebe7e7e563cdc85607f72fdc234e1c7f665a70",
+    "membership_limit": "113/182/69 are whole-population assignment audit counts, not membership counts for F03_REQUIRED_PAIR_MISSING; this class has 2 witness pairs.",
+    "source_pointer": "/negative_class_assignment_audit"
+  },
+  "l4_class_definition": {
+    "classification": "F03_REQUIRED_PAIR_MISSING",
+    "source_pointer": "/contracts/3/negative_classifications/0",
+    "axis": "pair_trace",
+    "state": "missing",
+    "backflow_owner": "HARNESS",
+    "definition": "必要pairまたは原traceが未供給なのに成立扱いになる。missingを保持し、反対の成立値で置き換えない。",
+    "expected_finding_codes": [
+      "F03_REQUIRED_PAIR_MISSING"
+    ],
+    "expected_side_effect_count": 0,
+    "interpretation_boundary": "L4にはmissing stateの定義がある。盲導出のL3/L10だけの未決事項とは分ける。これをL9のsynthetic success valuesへ置換する根拠にも、L9 synthetic valueを実成功と読む根拠にもならない。"
+  },
+  "same_row_discrepancy": {
+    "status": "unresolved_source_discrepancy",
+    "detail": "L4はF03_REQUIRED_PAIR_MISSING / pair_trace / missingを定義し、missingを反対の成立値に置き換えない。L8/L9の同じwitness rowはpair_resultとvalley_resultをsupported_synthetic_condition、L9の10 dimensionsもsupported_synthetic_condition、meaning_backflow=[]としている。blind導出は局所成功を主張せずpair別結果を未定とした。これらの値・意味は互いに異なり、どちらが正しいかはこのevidenceで決めない。supported_synthetic_conditionは実観測・実成立を証明しない。",
+    "resolution": "L4/L9への後続入力として残す。正式なL4/L9値・expected/class assignmentを変更しない。"
+  },
+  "l9_projection_audit_reconciliation": {
+    "trace_empty": {
+      "pointer": "/negative_output_projection_audit/manual_projection_audit_rows/0",
+      "case_id": "H003-F03-TRACE-MISSING",
+      "finding_set_status": "unknown/unformed",
+      "not_an_empty_set": true,
+      "invalidated_prior_candidate_codes": [
+        "F03_REQUIRED_PAIR_MISSING"
+      ],
+      "same_case_assignment": "negative_class_assignment still contains F03_REQUIRED_PAIR_MISSING with the pair/trace evidence absence reason.",
+      "reason": "固定rawとmutationはpair/traceの入力差を示すが、不足/不一致を成立扱いした処理結果は記録しない。L4/L5の追加条件を確認できずfinding集合を形成しない。",
+      "l3_source_pointer": {
+        "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+        "revision": "827c4ea924a15b6b54bbe9d1f5d2f9fbdefa65de",
+        "pointer": "/requirements/66/obligation"
+      },
+      "raw_input_source": {
+        "revision": "ed3981e7b9419d796adf1981f8990c6b626ecabe",
+        "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+        "pointer": "/verification_obligations/3/negative_cases/2/independent_source_packet/raw_utf8",
+        "sha256": "c03c68481e5d4367bc890c5da4f5a61918ca528f8939928d5915693ccc428505"
+      },
+      "mutation_pointer": "/cases/3/negative_cases/2/mutation"
+    },
+    "origin_null": {
+      "manual_projection_audit_match": "none among the 14 manual_projection_audit_rows and 8 supplemental_audit_rows at the fixed base",
+      "negative_class_assignment": "F03_REQUIRED_PAIR_MISSING remains assigned in /cases/3/negative_cases/0."
+    },
+    "interpretation": "The trace case contains both an invalidation record and a retained assignment; keep both records visible. No equivalent manual invalidation row was found for origin-null.",
+    "source_sha256": "ccac38abfa3a204fdd1b5c325b67835e13957914f5a8f239e87efe55d190dff5",
+    "audit_row_count_at_base": {
+      "manual": 14,
+      "supplemental": 8
+    }
+  },
+  "review_reference": {
+    "r1_finding": "https://github.com/RetryYN/HELIX-HARNESS/pull/3962#issuecomment-6531673161",
+    "response_artifact_path": "scaffold/review-handoff/local/brain032-l8-d27-3547-20261023/root-wr219-pr3962-review-r1-response-R1.json",
+    "response_artifact_request_id": "wr219-f03-pr3962-review-r1",
+    "response_artifact_content_sha": "82eceff972dd554ae441134844b801c6e2bd072b"
+  },
+  "origin_main_at_selection": "a0ce1ce787cff3b61664c12d62ae471969edb433",
+  "origin_main_latest_check": "70499a07825f53f2fbbb85935d9888360a6ad14c"
+}

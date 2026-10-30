@@ -1,0 +1,73 @@
+{
+  "artifact": "WR219 F03 blind derivation",
+  "method": "L3/L10 approved row plus L4 contract prose only; no algorithm execution or inference from excluded sources",
+  "sources": {
+    "approved_revision": "771dd7e802189506d88cf9d9570c42b94cf7b8fb",
+    "l3": {
+      "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+      "pointer": "/requirements/66",
+      "file_sha256": "5a0ccb8e75f59fb78cd67f211ef2bca8a41f73a440e36ac5374a53fe1dfcfe69",
+      "id": "HARNESS-L3-003-F03",
+      "basis": "通常照合はticket非発行。由来不明・trace欠落等は全体Reverseの復旧候補。HARNESSは条件と種類の意味を提供し、実発行はOSが所有する。"
+    },
+    "l10": {
+      "path": "docs/helix-harness/L10-verification/functional-verification.json",
+      "pointer": "/cases/66",
+      "file_sha256": "6fea9190c60121d262572c821c7ef8f5e38429e01a98f75d644b2b59297514db",
+      "id": "HARNESS-L10-003-F03",
+      "basis": "由来と対が明確な変更、由来不明/trace欠落、実装前Red不足を別々に照合する。由来不足を局所成功で埋めず、Reverse実行成功を生成しない。"
+    },
+    "l4": {
+      "revision": "a0ce1ce787cff3b61664c12d62ae471969edb433",
+      "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
+      "pointer": "/contracts/3",
+      "file_sha256": "eb0f43e23906d04b9554786a2574c94d01de85faa75f7fb1f33e08eb3276f464",
+      "basis": {
+        "approved_requirement": "右側は結合scopeを広げるごとに実物を対設計へ照合し、L8↔L5/L9↔L4/L10↔L3を保つ。由来不明/trace欠落等は全体Reverseの復旧候補に分ける。HARNESSは条件と種類の意味を提供し、実発行はOSが所有する。",
+        "input_materials": ["実物とL5/L4/L3の対設計の各scope参照", "由来・finding・性能/障害/checkpoint・改善の意味差分"],
+        "output_materials": ["当該証拠が揃う場合だけProvisionalの条件材料を返す", "由来不明/trace欠落等なら全体Reverse復旧候補", "通常照合はticket非発行。triggerと改善規模からOSへ種類/発行条件を渡す"],
+        "owner_connections": ["実物+対設計→右側照合→上流Backflow owner", "HARNESSの発行条件/種類→OSの実ticket発行"],
+        "invariants": ["L8↔L5・L9↔L4・L10↔L3を維持", "実発行とReverse実行成功をHARNESSの照合結果から生成しない"],
+        "failure_return": "不足の条件・対象revision/scope・元証拠・理由・当該ownerを保持し、該当しない有効scopeを全停止しない。契約固有のpairを維持し、scopeに関する部分結果を保持する。",
+        "connection_detail_prose": ["meaning_owner: HARNESS", "actual_ticket_owner: OS", "scope_policy: 正規由来なら当該scopeの比較、復旧条件があれば全体Reverse候補。候補は実行成功でない。"],
+        "source_binding_connection_prose": "F03/F04で選択された各producerの同target原対応を、consumer endpointとproducer endpointそれぞれの既存原資料へ結ぶ接続境界。既存工程条件・whole結果を置換しない。"
+      }
+    }
+  },
+  "witnesses": [
+    {
+      "name": "A-origin-null",
+      "synthetic_input": "origin情報がnull。その他の入力はこのwitnessでは指定しない。",
+      "derived_finding_meaning": "由来情報について確かな正規由来を示せない状態として保持し、由来不明の復旧候補に結び付ける。",
+      "pair_result": "局所成功を主張できない。pairを保つ必要は分かるが、具体的なpair別状態・結果は未定。",
+      "trigger": "L3/L10の由来不明条件に該当するため、全体Reverse復旧候補として扱う。",
+      "cause": "原因は未定。nullという観測だけで、由来が失われた原因や設計上の原因は確定しない。",
+      "actual_ticket": "生成しない。実ticketの発行判断・操作はOS側であり、この候補から発行済みとは言えない。",
+      "owner_meaning": "照合条件・findingの意味はHARNESS。実ticket ownerはOS。個別の上流backflow ownerは未定。",
+      "state_code_and_serialized_shape": "未定。nullをmissing/unknown等のどの具体状態へ写すか、field名・enum・record形は参照範囲では定義されない。"
+    },
+    {
+      "name": "B-empty-trace-edges",
+      "synthetic_input": "trace辺が空。その他の入力はこのwitnessでは指定しない。",
+      "derived_finding_meaning": "要求・実物・対設計を結ぶtraceの欠落として保持する。origin情報nullとは別の観測理由として記録する。",
+      "pair_result": "必要なL8↔L5、L9↔L4、L10↔L3のpairを保つべきことは分かるが、空の辺集合から該当scopeや個別pair別結果は導けない。",
+      "trigger": "L3/L10のtrace欠落条件に該当するため、全体Reverse復旧候補として扱う。",
+      "cause": "原因は未定。辺が空という観測だけで、trace生成・保存・照合のどこで欠けたかは確定しない。",
+      "actual_ticket": "生成しない。HARNESSが候補条件を示しても、実ticket発行・Reverse実行成功を意味しない。",
+      "owner_meaning": "照合条件・findingの意味はHARNESS。実ticket ownerはOS。どのtrace辺のproducer/ownerへ戻すかは未定。",
+      "state_code_and_serialized_shape": "未定。空集合をmissing等のどの具体状態へ写すか、edge identity・pair mapping・field名・enum・record形は参照範囲では定義されない。"
+    }
+  ],
+  "limits": [
+    "原因、trigger、HARNESSのfinding意味、OSによる実ticket発行、Reverse実行成功を別の事柄として扱った。",
+    "null originと空traceを同一原因にはまとめていない。両者はそれぞれ由来不明、trace欠落というtrigger候補に対応するが、個別の原因は不明。",
+    "具体的state/code/owner assignment/serialized shape、pair別の結果、実scopeは参照範囲から一意に導出できず未定。",
+    "禁止対象の情報を導出根拠として使っていない。"
+  ],
+  "exposure_audit": {
+    "read_or_used": "指定された正規入口・Concept・七大原則・JSON方針・DT-MSG/DT-SDOP/DT-VT各seed、指定L3/L10行、base L4の指定契約欄のみ。",
+    "prohibited_sources_consulted": false,
+    "prohibited_content_exposed": false,
+    "note": "一時的な抽出確認では許可フィールド内のstructured connection metadataも表示されたが、禁止されたL4/L5 algorithm本文、negative/failure classifications、L5/L7/L8/L9 expected/cases、Issue/PR本文は表示・参照していない。成果物にはL4の散文要約だけを収録した。"
+  }
+}
