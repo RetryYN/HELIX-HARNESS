@@ -2,7 +2,7 @@
 
 ## 対象と境界
 
-PR classは `design_verification`、対象V-pairは **HELIX-HARNESS L4/L9**。この記録はL9固定入力・mutation・source pointer/hashの監査に限る。L9の既存期待、case population、checker marker、formal projection row、freezeを変更しない。F04は既存の単一条件候補を保持し、F03/F05監査から新しいfinding候補を形成しない。L8はWR186成果に含めない。
+PR classは `design_verification`、対象V-pairは **HELIX-HARNESS L4/L9**。この記録はL9固定入力・mutation・source pointer/hashの監査に限る。L9の既存期待、case population、checker marker、formal projection row、freezeを変更しない。F04は7 packetのうち1件のみ単一条件候補を維持し、6件は非発火条件を証明できずunknown/unformedへ訂正する。F03/F05監査から新しいfinding候補を形成しない。L8はWR186成果に含めない。
 
 共有根拠は [SCF-B-0174](../../bindings/SCF-B-0174.json) と、この文書の隣にあるF03/F04/F05監査行に保持する。L9からscaffoldへの参照は置かず、scaffoldからL9監査箇所を参照する。
 
@@ -23,17 +23,17 @@ PR classは `design_verification`、対象V-pairは **HELIX-HARNESS L4/L9**。�
 
 ## 件数とcheckerの扱い
 
-L9 negative populationは182件。既存F04監査候補7件のみを候補として維持し、F03/F05の22件はunknown/unformed監査行、全体の未形成は175件のまま。34分類中、既存候補の扱いは変更せず、残り27分類は未形成。正式projection rowは0件、checker marker無効、freezeなし。これらの監査行をcase coverageやPASSへ数えない。
+L9 negative populationは182件。F04固定raw packet 7件のうち、非発火証拠まで支えられるRelease-eligible proof nullの1件だけを単一条件候補として維持する。残る6件は、Verifiedのdangling `lower_proof_refs` またはRelease-eligibleの未解決`proofs@r1`参照によって他ruleの非発火が不明なため、finding集合をunknown/unformedとする。F03/F05の22件もunknown/unformed監査行である。未形成は従来175件から181件に訂正する。分類コードは7種類とも入力上の候補コードとして識別できるが、6件のcase-level finding集合は形成しない。正式projection rowは0件、checker marker無効、freezeなし。これらの監査行をcase coverageやPASSへ数えない。
 
-latest main (`origin/main`、branch base `ca4bd911142cc17789366ae6f9f1f0fee8c7c589`) と修正後で、既存L9 `cases` と `expected_material` は同一である。既存negative 4-way checkerのbase記録と最新HEADでの明示4 path trialは、どちらもL4=34、L9=182、L8=0、L5=34、matched=0、failure=223。内訳はnegative case count 7、presence 216（L4/L5のみ34、L9のみ182）で不変。L4/L9 pair、L5/L8 pair、ownership caps、pinsは今回のtrialでも成功した。F04既存単一finding候補7件は保持し、formal projection rowは0件のまま。これは現行scaffold checkerの文書・構造照合であり、製品testや実行合格を意味しない。
+現行 `origin/main` `de7908f1c9cb6d05531a339a0054ac577902b58c` とcandidateのL9 `cases` は同一で、既存 `expected_material` を含む正式期待は変更していない。latest-main trialは隔離worktreeで実施し、merge conflictは0、実効差分はL9 audit summaryと5 scaffold pathの計6 pathだった。静的監査PASS（182件母集団、単一条件候補1、未形成181、formal row 0、marker off）、L4/L9 `check-pair` PASS（各7 ID、ownership caps両側PASS）、SCF validateは168件/0失敗、stale=0、JSON parseと `git diff --check` はPASS。L4 SHA-256は `eb0f43e23906d04b9554786a2574c94d01de85faa75f7fb1f33e08eb3276f464`、L9は試験後 `6e906ce86449596648c679f43ad8448e802de723e3004d99d7409ec39988ab17`。L9の差分は負例監査summaryのみで、formal cases/expectations、母集団、formal projection rows、checker markerは不変。製品runtime/test/CI、旧CLI/hook/runtime/CIは起動していない。
 
-WR192のlatest-main trialは `origin/main` `623f2abc6e0022f5aa781af5d1e21c4babcab7b9` から隔離worktreeに差分を適用して実施した。静的監査はPASS、L4/L9 `check-pair` はpair bidirectional IDsと両層ownership capsがPASS、SCF binding validateは167件/0失敗、stale=0、JSON parseと `git diff --check` はPASS。L4/L9の既存pair sourceとcase/expectationsはmainとの差分なし。製品runtime/test/CI、旧CLI/hook/runtime/CIは起動していない。
+## WR192 F04固定raw照合
 
-## WR192 F04 7候補の固定raw照合
+F04のL4 negative classification 7件は、各state固有の原証拠が不足することを条件とする。固定snapshot `ed3981e7b9419d796adf1981f8990c6b626ecabe` の各独立source packetでは、対応する1 stateだけが明示nullである。残るstateについてはnullでないことだけで判断せず、state-specific content、外側のidentity/revision/scope/owner、targetのrevision/scope/artifact/environmentとのbinding、および各stateの固有属性を個別に照合した。
 
-F04のL4 negative classification 7件は、各state固有の原証拠が不足することを条件とする。固定snapshot `ed3981e7b9419d796adf1981f8990c6b626ecabe` の各独立source packetでは、対応する1 stateだけが明示nullである。残るstateについてはnullでないことだけで判断せず、state-specific content、外側のidentity/revision/scope/owner、targetのrevision/scope/artifact/environmentとのbinding、および各stateの固有属性を個別に照合した。各L4 class conditionとstate basis pointer、raw packet pointer/hash、fixture内で非発火を支持する他6 F04 missing classを [f04-audit-rows.json](f04-audit-rows.json) に記録した。L5 `failure_output_contract.conditions` は条件文の照合に限って参照し、期待を実出力として使わず、実行結果・owner配送・runtime passを主張しない。
+R1 M1再確認により、既存F04 7件すべてを単一条件候補とする主張を訂正した。Provisional-nullとIntegrated-nullのpacketでは、Verifiedの`lower_proof_refs`がnullのproofを指す。L5 `/functions/4/state_detail/qualification_groups/Verified_lower_proof_refs` はこれをVerifiedのstate_basisとするが、L4/L5はdangling referenceの扱いを定義していない。そのためVerified非発火を証明できない。さらに6 packetのRelease-eligible proofには`observations/0`の`required_ref=observed_ref=proofs@r1`しかなく、参照先content/source/owner qualificationや、参照先と個別`state_proofs`との対応は固定packetにない。L4 `/artifact_state_basis/5` とL5 `Release-eligible_observations_proofs` がこのobservationをstate_basisに含めるため、文字列一致だけでRelease-eligible proof contentが充足すると判断できない。これらの未解決参照をfailure発火とは扱わず、Provisional/Integrated/Verified/Accepted/Deployed/Observed nullの6 packetはfinding setをunknown/unformedとする。
 
-したがって既存のF04 7件は固定fixture入力のcontent-levelで導く単一条件候補として維持する。各packetのqualificationは `synthetic_design_fixture_not_actual_owner_or_authority` のため、実source資格・実owner権限・実state成立はunknownである。L9 `cases` / `expected_material`、182件母集団、formal projection row、checker marker、freezeは変更しない。候補は処理済み結果や製品合格を意味しない。
+Release-eligible proof自体がnullの1 packetでは、他6 stateのproof contentとbindingを個別照合し、Verified lower refsは存在するProvisional/Integrated proofを指す。この固定synthetic fixture内では、同packetに明示nullな対象stateがRelease-eligibleだけで、他ruleの非発火が支えられるため単一条件候補を維持する。全packetのqualificationは `synthetic_design_fixture_not_actual_owner_or_authority` であり、実source資格・実owner権限・実state成立はunknownである。L9 `cases` / `expected_material`、182件母集団、formal projection row、checker marker、freezeは変更しない。候補は処理済み結果や製品合格を意味しない。
 
 ## 固定入力と再現
 
@@ -45,4 +45,4 @@ python3 -B scaffold/tools/scfctl.py validate
 python3 -B scaffold/tools/scfctl.py stale
 ```
 
-`validate_l9.py` は基準revisionのcase/expectation不変、固定raw bytesのhash、pointer解決、L9 mutation参照、各監査行のunknown/unformed状態、L3/L4参照先を静的照合する。L4/L5 predicateをコード化・実行せず、findingを算出しない。
+`validate_l9.py` は基準revisionのcase/expectation不変、固定raw bytesのhash、pointer解決、L9 mutation参照、F04の1 candidate/6 unknown-unformed分類、L3/L4/L5参照先を静的照合する。L4/L5 predicateをコード化・実行せず、findingを算出しない。

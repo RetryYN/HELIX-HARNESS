@@ -27212,131 +27212,12 @@
     "case_projection_rows_added": 0,
     "single_finding_candidates": [
       {
-        "case_id": "H003-F04-MISSING-Accepted",
-        "class_code": "F04_STATE_ACCEPTED_PROOF_MISSING",
-        "same_layer_source_pointers": [
-          {
-            "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
-            "pointer": "/cases/4/negative_cases/4/mutation"
-          },
-          {
-            "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
-            "pointer": "/cases/4/negative_cases/4/expected_material"
-          }
-        ],
-        "single_finding_candidate": {
-          "condition": "F04_STATE_ACCEPTED_PROOF_MISSING",
-          "ordered_findings": [
-            {
-              "code": "F04_STATE_ACCEPTED_PROOF_MISSING",
-              "return_owner": "当該状態の原証拠owner"
-            }
-          ]
-        }
-      },
-      {
-        "case_id": "H003-F04-MISSING-Deployed",
-        "class_code": "F04_STATE_DEPLOYED_PROOF_MISSING",
-        "same_layer_source_pointers": [
-          {
-            "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
-            "pointer": "/cases/4/negative_cases/6/mutation"
-          },
-          {
-            "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
-            "pointer": "/cases/4/negative_cases/6/expected_material"
-          }
-        ],
-        "single_finding_candidate": {
-          "condition": "F04_STATE_DEPLOYED_PROOF_MISSING",
-          "ordered_findings": [
-            {
-              "code": "F04_STATE_DEPLOYED_PROOF_MISSING",
-              "return_owner": "当該状態の原証拠owner"
-            }
-          ]
-        }
-      },
-      {
-        "case_id": "H003-F04-MISSING-Integrated",
-        "class_code": "F04_STATE_INTEGRATED_PROOF_MISSING",
-        "same_layer_source_pointers": [
-          {
-            "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
-            "pointer": "/cases/4/negative_cases/2/mutation"
-          },
-          {
-            "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
-            "pointer": "/cases/4/negative_cases/2/expected_material"
-          }
-        ],
-        "single_finding_candidate": {
-          "condition": "F04_STATE_INTEGRATED_PROOF_MISSING",
-          "ordered_findings": [
-            {
-              "code": "F04_STATE_INTEGRATED_PROOF_MISSING",
-              "return_owner": "当該状態の原証拠owner"
-            }
-          ]
-        }
-      },
-      {
-        "case_id": "H003-F04-MISSING-Observed",
-        "class_code": "F04_STATE_OBSERVED_PROOF_MISSING",
-        "same_layer_source_pointers": [
-          {
-            "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
-            "pointer": "/cases/4/negative_cases/7/mutation"
-          },
-          {
-            "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
-            "pointer": "/cases/4/negative_cases/7/expected_material"
-          }
-        ],
-        "single_finding_candidate": {
-          "condition": "F04_STATE_OBSERVED_PROOF_MISSING",
-          "ordered_findings": [
-            {
-              "code": "F04_STATE_OBSERVED_PROOF_MISSING",
-              "return_owner": "当該状態の原証拠owner"
-            }
-          ]
-        }
-      },
-      {
-        "case_id": "H003-F04-MISSING-Provisional",
-        "class_code": "F04_STATE_PROVISIONAL_PROOF_MISSING",
-        "same_layer_source_pointers": [
-          {
-            "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
-            "pointer": "/cases/4/negative_cases/1/mutation"
-          },
-          {
-            "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
-            "pointer": "/cases/4/negative_cases/1/expected_material"
-          }
-        ],
-        "single_finding_candidate": {
-          "condition": "F04_STATE_PROVISIONAL_PROOF_MISSING",
-          "ordered_findings": [
-            {
-              "code": "F04_STATE_PROVISIONAL_PROOF_MISSING",
-              "return_owner": "当該状態の原証拠owner"
-            }
-          ]
-        }
-      },
-      {
         "case_id": "H003-F04-MISSING-Release-eligible",
         "class_code": "F04_STATE_RELEASE-ELIGIBLE_PROOF_MISSING",
         "same_layer_source_pointers": [
           {
             "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
             "pointer": "/cases/4/negative_cases/5/mutation"
-          },
-          {
-            "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
-            "pointer": "/cases/4/negative_cases/5/expected_material"
           }
         ],
         "single_finding_candidate": {
@@ -27347,35 +27228,18 @@
               "return_owner": "当該状態の原証拠owner"
             }
           ]
-        }
-      },
-      {
-        "case_id": "H003-F04-MISSING-Verified",
-        "class_code": "F04_STATE_VERIFIED_PROOF_MISSING",
-        "same_layer_source_pointers": [
-          {
-            "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
-            "pointer": "/cases/4/negative_cases/3/mutation"
-          },
-          {
-            "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
-            "pointer": "/cases/4/negative_cases/3/expected_material"
-          }
-        ],
-        "single_finding_candidate": {
-          "condition": "F04_STATE_VERIFIED_PROOF_MISSING",
-          "ordered_findings": [
-            {
-              "code": "F04_STATE_VERIFIED_PROOF_MISSING",
-              "return_owner": "当該状態の原証拠owner"
-            }
-          ]
+        },
+        "raw_input_source": {
+          "revision": "ed3981e7b9419d796adf1981f8990c6b626ecabe",
+          "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+          "pointer": "/verification_obligations/4/negative_cases/5/independent_source_packet/raw_utf8",
+          "sha256": "5ba0ead8c78e923f2e5807ad131f150c22b51633360542982d5da5b7e44c37fc"
         }
       }
     ],
-    "single_finding_candidate_count": 7,
-    "unformed_case_count": 175,
-    "unformed_case_handling": "元L8/L9 casesと期待を正本として保つ。F03 14件・F05 8件は入力/差分とsource pointerを監査行に保持するが、処理結果の成立扱いが固定rawで観測できないためfinding集合をunknown/unformedとする。空集合とは判断しない。",
+    "single_finding_candidate_count": 1,
+    "unformed_case_count": 181,
+    "unformed_case_handling": "元L8/L9 casesと期待を正本として保つ。F03 14件・F05 8件は入力/差分とsource pointerを監査行に保持するが、処理結果の成立扱いが固定rawで観測できないためfinding集合をunknown/unformedとする。F04のうち6件は対象proof null以外のrule非発火を証明できず、source referenceの解決不足は発火と推定せずunknown/unformedとする。固定fixture inputから単一条件候補を支えられるF04はRelease-eligible nullの1件のみ。空集合とは判断しない。",
     "upper_classification_count": 34,
     "candidate_classification_count": 7,
     "not_formed_classification_count": 27,
@@ -27389,7 +27253,7 @@
         "case_count": 0
       }
     ],
-    "coverage_boundary": "形成済み候補は既存F04 7件のみ。WR186 F03 14件・F05 8件は監査行でありfinding集合を形成していない。元182件母集団を維持し、175件は未形成。正式projection rowは0件、case期待不変、checker marker無効。",
+    "coverage_boundary": "単一条件候補は既存F04の1件のみ。F04残る6件およびWR186 F03 14件・F05 8件は監査行でありfinding集合を形成していない。元182件母集団を維持し、181件は未形成。正式projection rowは0件、case期待不変、checker marker無効。",
     "fixed_raw_source": {
       "revision": "ed3981e7b9419d796adf1981f8990c6b626ecabe",
       "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",

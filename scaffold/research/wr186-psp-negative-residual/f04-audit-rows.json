@@ -2,7 +2,7 @@
   "schema": "wr192-f04-manual-audit.v1",
   "evidence_kind": "scaffold",
   "authority_effect": "none",
-  "candidate_count": 7,
+  "candidate_count": 1,
   "audit_row_count": 7,
   "formal_projection_rows_added": 0,
   "formal_expectations_changed": false,
@@ -16,9 +16,8 @@
   "audit_rows": [
     {
       "case_id": "H003-F04-MISSING-Provisional",
-      "candidate_status": "retained_fixture_input_single_condition_candidate",
-      "finding_set_status": "candidate_from_fixed_synthetic_fixture_input",
-      "finding_code": "F04_STATE_PROVISIONAL_PROOF_MISSING",
+      "candidate_status": "withdrawn_single_finding_candidate_nonfiring_unknown",
+      "finding_set_status": "unknown/unformed",
       "axis": "state_Provisional_basis",
       "state": "missing",
       "condition_source": "Provisional固有の原証拠が不足。前状態/後続状態の証拠で補わず、独立に読めた他stateの証拠は保持する。",
@@ -38,12 +37,35 @@
         "other_state_proofs_non_null": true,
         "non_firing_f04_codes": [
           "F04_STATE_INTEGRATED_PROOF_MISSING",
-          "F04_STATE_VERIFIED_PROOF_MISSING",
           "F04_STATE_ACCEPTED_PROOF_MISSING",
-          "F04_STATE_RELEASE-ELIGIBLE_PROOF_MISSING",
           "F04_STATE_DEPLOYED_PROOF_MISSING",
           "F04_STATE_OBSERVED_PROOF_MISSING"
-        ]
+        ],
+        "single_finding_set_status": "unknown/unformed",
+        "non_firing_unknown_f04_codes": [
+          "F04_STATE_VERIFIED_PROOF_MISSING",
+          "F04_STATE_RELEASE-ELIGIBLE_PROOF_MISSING"
+        ],
+        "non_firing_unknown_basis": {
+          "verified_lower_proof_refs": {
+            "applicable": true,
+            "raw_pointer": "/state_proofs/Verified/content/lower_proof_refs",
+            "l5_pointer": "/functions/4/state_detail/qualification_groups/Verified_lower_proof_refs",
+            "state_role": "state_basis",
+            "resolution": "unknown; ref strings include null target proof in Provisional/Integrated cases; L4/L5 do not define dangling-ref treatment"
+          },
+          "release_eligible_proofs": {
+            "raw_pointer": "/state_proofs/Release-eligible/content/observations/0",
+            "l4_pointer": "/artifact_state_basis/5",
+            "l5_pointer": "/functions/4/state_detail/qualification_groups/Release-eligible_observations_proofs",
+            "raw_value": {
+              "required_ref": "proofs@r1",
+              "observed_ref": "proofs@r1"
+            },
+            "state_role": "state_basis",
+            "resolution": "unknown; referenced content/source/owner qualification and its mapping to per-state proofs are not present or defined; do not convert to a firing finding"
+          }
+        }
       },
       "case_provenance": {
         "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
@@ -66,9 +88,9 @@
         "pointer": "/functions/4/failure_output_contract/conditions/0",
         "use": "condition wording cross-check only; no output execution/result claimed"
       },
-      "output_scope": "one L4 state-missing condition is supported by the fixed input; no runtime output, formal projection row, actual owner delivery, or execution pass is asserted.",
-      "ordered_output": "single condition only; no multi-finding ordering claim is needed.",
-      "non_firing_basis_scope": "supported_at_fixed_synthetic_fixture_content_level_only",
+      "output_scope": "The raw identifies the target state as explicitly null, but non-firing of all other rules is not established; no single-finding candidate, output, formal row, or execution result is asserted.",
+      "ordered_output": "unknown/unformed; no finding-set membership, multiplicity, or order is asserted.",
+      "non_firing_basis_scope": "incomplete_unknown_unformed; do not infer a firing code from unresolved references",
       "non_firing_actual_source_qualification": "unknown",
       "common_other_state_proof_review_ref": "/common_other_state_proof_review/states",
       "qualification_limit": "raw packetはsynthetic design fixture。recorded content/owner role/bindingの内容監査に限る。実owner資格、authority、state成立は示さない。",
@@ -77,13 +99,35 @@
         "pointer": "/verification_obligations/4/negative_cases/1/independent_source_packet/qualification",
         "value": "synthetic_design_fixture_not_actual_owner_or_authority"
       },
-      "state_establishment": "unknown_not_claimed"
+      "state_establishment": "unknown_not_claimed",
+      "non_firing_unknown_reason": "Verified.lower_proof_refsはstate_basisで、Provisionalの実proofがnullの同一packetを参照する。Release-eligible.observations.proofsはproofs@r1という一致文字列のみで参照先内容・qualificationとstate proof群への対応が解決されず、Release-eligibleのnonfireも判断できない。",
+      "definition_gap_return": {
+        "layer": "L5",
+        "owner": "L5 function 4 detail-design owner",
+        "source_pointers": [
+          {
+            "path": "docs/helix-harness/L5-detail-design/process-state-port.json",
+            "pointer": "/functions/4/state_detail/qualification_groups/Verified_lower_proof_refs"
+          },
+          {
+            "path": "docs/helix-harness/L5-detail-design/process-state-port.json",
+            "pointer": "/functions/4/state_detail/qualification_groups/Release-eligible_observations_proofs"
+          },
+          {
+            "path": "docs/helix-harness/L5-detail-design/process-state-port.json",
+            "pointer": "/functions/4/failure_output_contract/conditions"
+          }
+        ],
+        "reason": "dangling lower_proof_refsとproofs@r1参照内容/qualification・proof集合との対応の意味が未定義。L4/L5 sourceはmissing/unknown referenceをfailureに変換する条件を定めていないため、これを発火扱いせず、qualification/reference resolutionの契約不足をL5へ戻す。"
+      },
+      "target_condition_code": "F04_STATE_PROVISIONAL_PROOF_MISSING",
+      "finding_code": null,
+      "finding_code_status": "not_formed_unknown_set"
     },
     {
       "case_id": "H003-F04-MISSING-Integrated",
-      "candidate_status": "retained_fixture_input_single_condition_candidate",
-      "finding_set_status": "candidate_from_fixed_synthetic_fixture_input",
-      "finding_code": "F04_STATE_INTEGRATED_PROOF_MISSING",
+      "candidate_status": "withdrawn_single_finding_candidate_nonfiring_unknown",
+      "finding_set_status": "unknown/unformed",
       "axis": "state_Integrated_basis",
       "state": "missing",
       "condition_source": "Integrated固有の原証拠が不足。前状態/後続状態の証拠で補わず、独立に読めた他stateの証拠は保持する。",
@@ -103,12 +147,35 @@
         "other_state_proofs_non_null": true,
         "non_firing_f04_codes": [
           "F04_STATE_PROVISIONAL_PROOF_MISSING",
-          "F04_STATE_VERIFIED_PROOF_MISSING",
           "F04_STATE_ACCEPTED_PROOF_MISSING",
-          "F04_STATE_RELEASE-ELIGIBLE_PROOF_MISSING",
           "F04_STATE_DEPLOYED_PROOF_MISSING",
           "F04_STATE_OBSERVED_PROOF_MISSING"
-        ]
+        ],
+        "single_finding_set_status": "unknown/unformed",
+        "non_firing_unknown_f04_codes": [
+          "F04_STATE_VERIFIED_PROOF_MISSING",
+          "F04_STATE_RELEASE-ELIGIBLE_PROOF_MISSING"
+        ],
+        "non_firing_unknown_basis": {
+          "verified_lower_proof_refs": {
+            "applicable": true,
+            "raw_pointer": "/state_proofs/Verified/content/lower_proof_refs",
+            "l5_pointer": "/functions/4/state_detail/qualification_groups/Verified_lower_proof_refs",
+            "state_role": "state_basis",
+            "resolution": "unknown; ref strings include null target proof in Provisional/Integrated cases; L4/L5 do not define dangling-ref treatment"
+          },
+          "release_eligible_proofs": {
+            "raw_pointer": "/state_proofs/Release-eligible/content/observations/0",
+            "l4_pointer": "/artifact_state_basis/5",
+            "l5_pointer": "/functions/4/state_detail/qualification_groups/Release-eligible_observations_proofs",
+            "raw_value": {
+              "required_ref": "proofs@r1",
+              "observed_ref": "proofs@r1"
+            },
+            "state_role": "state_basis",
+            "resolution": "unknown; referenced content/source/owner qualification and its mapping to per-state proofs are not present or defined; do not convert to a firing finding"
+          }
+        }
       },
       "case_provenance": {
         "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
@@ -131,9 +198,9 @@
         "pointer": "/functions/4/failure_output_contract/conditions/1",
         "use": "condition wording cross-check only; no output execution/result claimed"
       },
-      "output_scope": "one L4 state-missing condition is supported by the fixed input; no runtime output, formal projection row, actual owner delivery, or execution pass is asserted.",
-      "ordered_output": "single condition only; no multi-finding ordering claim is needed.",
-      "non_firing_basis_scope": "supported_at_fixed_synthetic_fixture_content_level_only",
+      "output_scope": "The raw identifies the target state as explicitly null, but non-firing of all other rules is not established; no single-finding candidate, output, formal row, or execution result is asserted.",
+      "ordered_output": "unknown/unformed; no finding-set membership, multiplicity, or order is asserted.",
+      "non_firing_basis_scope": "incomplete_unknown_unformed; do not infer a firing code from unresolved references",
       "non_firing_actual_source_qualification": "unknown",
       "common_other_state_proof_review_ref": "/common_other_state_proof_review/states",
       "qualification_limit": "raw packetはsynthetic design fixture。recorded content/owner role/bindingの内容監査に限る。実owner資格、authority、state成立は示さない。",
@@ -142,13 +209,35 @@
         "pointer": "/verification_obligations/4/negative_cases/2/independent_source_packet/qualification",
         "value": "synthetic_design_fixture_not_actual_owner_or_authority"
       },
-      "state_establishment": "unknown_not_claimed"
+      "state_establishment": "unknown_not_claimed",
+      "non_firing_unknown_reason": "Verified.lower_proof_refsはstate_basisで、Integratedの実proofがnullの同一packetを参照する。Release-eligible.observations.proofsはproofs@r1という一致文字列のみで参照先内容・qualificationとstate proof群への対応が解決されず、Release-eligibleのnonfireも判断できない。",
+      "definition_gap_return": {
+        "layer": "L5",
+        "owner": "L5 function 4 detail-design owner",
+        "source_pointers": [
+          {
+            "path": "docs/helix-harness/L5-detail-design/process-state-port.json",
+            "pointer": "/functions/4/state_detail/qualification_groups/Verified_lower_proof_refs"
+          },
+          {
+            "path": "docs/helix-harness/L5-detail-design/process-state-port.json",
+            "pointer": "/functions/4/state_detail/qualification_groups/Release-eligible_observations_proofs"
+          },
+          {
+            "path": "docs/helix-harness/L5-detail-design/process-state-port.json",
+            "pointer": "/functions/4/failure_output_contract/conditions"
+          }
+        ],
+        "reason": "dangling lower_proof_refsとproofs@r1参照内容/qualification・proof集合との対応の意味が未定義。L4/L5 sourceはmissing/unknown referenceをfailureに変換する条件を定めていないため、これを発火扱いせず、qualification/reference resolutionの契約不足をL5へ戻す。"
+      },
+      "target_condition_code": "F04_STATE_INTEGRATED_PROOF_MISSING",
+      "finding_code": null,
+      "finding_code_status": "not_formed_unknown_set"
     },
     {
       "case_id": "H003-F04-MISSING-Verified",
-      "candidate_status": "retained_fixture_input_single_condition_candidate",
-      "finding_set_status": "candidate_from_fixed_synthetic_fixture_input",
-      "finding_code": "F04_STATE_VERIFIED_PROOF_MISSING",
+      "candidate_status": "withdrawn_single_finding_candidate_nonfiring_unknown",
+      "finding_set_status": "unknown/unformed",
       "axis": "state_Verified_basis",
       "state": "missing",
       "condition_source": "Verified固有の原証拠が不足。前状態/後続状態の証拠で補わず、独立に読めた他stateの証拠は保持する。",
@@ -170,10 +259,33 @@
           "F04_STATE_PROVISIONAL_PROOF_MISSING",
           "F04_STATE_INTEGRATED_PROOF_MISSING",
           "F04_STATE_ACCEPTED_PROOF_MISSING",
-          "F04_STATE_RELEASE-ELIGIBLE_PROOF_MISSING",
           "F04_STATE_DEPLOYED_PROOF_MISSING",
           "F04_STATE_OBSERVED_PROOF_MISSING"
-        ]
+        ],
+        "single_finding_set_status": "unknown/unformed",
+        "non_firing_unknown_f04_codes": [
+          "F04_STATE_RELEASE-ELIGIBLE_PROOF_MISSING"
+        ],
+        "non_firing_unknown_basis": {
+          "verified_lower_proof_refs": {
+            "applicable": false,
+            "raw_pointer": "/state_proofs/Verified/content/lower_proof_refs",
+            "l5_pointer": "/functions/4/state_detail/qualification_groups/Verified_lower_proof_refs",
+            "state_role": "state_basis",
+            "resolution": "unknown; ref strings include null target proof in Provisional/Integrated cases; L4/L5 do not define dangling-ref treatment"
+          },
+          "release_eligible_proofs": {
+            "raw_pointer": "/state_proofs/Release-eligible/content/observations/0",
+            "l4_pointer": "/artifact_state_basis/5",
+            "l5_pointer": "/functions/4/state_detail/qualification_groups/Release-eligible_observations_proofs",
+            "raw_value": {
+              "required_ref": "proofs@r1",
+              "observed_ref": "proofs@r1"
+            },
+            "state_role": "state_basis",
+            "resolution": "unknown; referenced content/source/owner qualification and its mapping to per-state proofs are not present or defined; do not convert to a firing finding"
+          }
+        }
       },
       "case_provenance": {
         "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
@@ -196,9 +308,9 @@
         "pointer": "/functions/4/failure_output_contract/conditions/2",
         "use": "condition wording cross-check only; no output execution/result claimed"
       },
-      "output_scope": "one L4 state-missing condition is supported by the fixed input; no runtime output, formal projection row, actual owner delivery, or execution pass is asserted.",
-      "ordered_output": "single condition only; no multi-finding ordering claim is needed.",
-      "non_firing_basis_scope": "supported_at_fixed_synthetic_fixture_content_level_only",
+      "output_scope": "The raw identifies the target state as explicitly null, but non-firing of all other rules is not established; no single-finding candidate, output, formal row, or execution result is asserted.",
+      "ordered_output": "unknown/unformed; no finding-set membership, multiplicity, or order is asserted.",
+      "non_firing_basis_scope": "incomplete_unknown_unformed; do not infer a firing code from unresolved references",
       "non_firing_actual_source_qualification": "unknown",
       "common_other_state_proof_review_ref": "/common_other_state_proof_review/states",
       "qualification_limit": "raw packetはsynthetic design fixture。recorded content/owner role/bindingの内容監査に限る。実owner資格、authority、state成立は示さない。",
@@ -207,13 +319,31 @@
         "pointer": "/verification_obligations/4/negative_cases/3/independent_source_packet/qualification",
         "value": "synthetic_design_fixture_not_actual_owner_or_authority"
       },
-      "state_establishment": "unknown_not_claimed"
+      "state_establishment": "unknown_not_claimed",
+      "non_firing_unknown_reason": "Release-eligible.observations.proofsはRelease state_basisのfieldだが、proofs@r1の参照先content/source/owner qualificationがpacket内に無く、Verified proof nullとの包含関係もL4/L5で定義されない。Release-eligible非発火を立証できない。",
+      "definition_gap_return": {
+        "layer": "L5",
+        "owner": "L5 function 4 detail-design owner",
+        "source_pointers": [
+          {
+            "path": "docs/helix-harness/L5-detail-design/process-state-port.json",
+            "pointer": "/functions/4/state_detail/qualification_groups/Release-eligible_observations_proofs"
+          },
+          {
+            "path": "docs/helix-harness/L5-detail-design/process-state-port.json",
+            "pointer": "/functions/4/failure_output_contract/conditions"
+          }
+        ],
+        "reason": "dangling lower_proof_refsとproofs@r1参照内容/qualification・proof集合との対応の意味が未定義。L4/L5 sourceはmissing/unknown referenceをfailureに変換する条件を定めていないため、これを発火扱いせず、qualification/reference resolutionの契約不足をL5へ戻す。"
+      },
+      "target_condition_code": "F04_STATE_VERIFIED_PROOF_MISSING",
+      "finding_code": null,
+      "finding_code_status": "not_formed_unknown_set"
     },
     {
       "case_id": "H003-F04-MISSING-Accepted",
-      "candidate_status": "retained_fixture_input_single_condition_candidate",
-      "finding_set_status": "candidate_from_fixed_synthetic_fixture_input",
-      "finding_code": "F04_STATE_ACCEPTED_PROOF_MISSING",
+      "candidate_status": "withdrawn_single_finding_candidate_nonfiring_unknown",
+      "finding_set_status": "unknown/unformed",
       "axis": "state_Accepted_basis",
       "state": "missing",
       "condition_source": "Accepted固有の原証拠が不足。前状態/後続状態の証拠で補わず、独立に読めた他stateの証拠は保持する。",
@@ -235,10 +365,33 @@
           "F04_STATE_PROVISIONAL_PROOF_MISSING",
           "F04_STATE_INTEGRATED_PROOF_MISSING",
           "F04_STATE_VERIFIED_PROOF_MISSING",
-          "F04_STATE_RELEASE-ELIGIBLE_PROOF_MISSING",
           "F04_STATE_DEPLOYED_PROOF_MISSING",
           "F04_STATE_OBSERVED_PROOF_MISSING"
-        ]
+        ],
+        "single_finding_set_status": "unknown/unformed",
+        "non_firing_unknown_f04_codes": [
+          "F04_STATE_RELEASE-ELIGIBLE_PROOF_MISSING"
+        ],
+        "non_firing_unknown_basis": {
+          "verified_lower_proof_refs": {
+            "applicable": false,
+            "raw_pointer": "/state_proofs/Verified/content/lower_proof_refs",
+            "l5_pointer": "/functions/4/state_detail/qualification_groups/Verified_lower_proof_refs",
+            "state_role": "state_basis",
+            "resolution": "unknown; ref strings include null target proof in Provisional/Integrated cases; L4/L5 do not define dangling-ref treatment"
+          },
+          "release_eligible_proofs": {
+            "raw_pointer": "/state_proofs/Release-eligible/content/observations/0",
+            "l4_pointer": "/artifact_state_basis/5",
+            "l5_pointer": "/functions/4/state_detail/qualification_groups/Release-eligible_observations_proofs",
+            "raw_value": {
+              "required_ref": "proofs@r1",
+              "observed_ref": "proofs@r1"
+            },
+            "state_role": "state_basis",
+            "resolution": "unknown; referenced content/source/owner qualification and its mapping to per-state proofs are not present or defined; do not convert to a firing finding"
+          }
+        }
       },
       "case_provenance": {
         "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
@@ -261,9 +414,9 @@
         "pointer": "/functions/4/failure_output_contract/conditions/3",
         "use": "condition wording cross-check only; no output execution/result claimed"
       },
-      "output_scope": "one L4 state-missing condition is supported by the fixed input; no runtime output, formal projection row, actual owner delivery, or execution pass is asserted.",
-      "ordered_output": "single condition only; no multi-finding ordering claim is needed.",
-      "non_firing_basis_scope": "supported_at_fixed_synthetic_fixture_content_level_only",
+      "output_scope": "The raw identifies the target state as explicitly null, but non-firing of all other rules is not established; no single-finding candidate, output, formal row, or execution result is asserted.",
+      "ordered_output": "unknown/unformed; no finding-set membership, multiplicity, or order is asserted.",
+      "non_firing_basis_scope": "incomplete_unknown_unformed; do not infer a firing code from unresolved references",
       "non_firing_actual_source_qualification": "unknown",
       "common_other_state_proof_review_ref": "/common_other_state_proof_review/states",
       "qualification_limit": "raw packetはsynthetic design fixture。recorded content/owner role/bindingの内容監査に限る。実owner資格、authority、state成立は示さない。",
@@ -272,7 +425,26 @@
         "pointer": "/verification_obligations/4/negative_cases/4/independent_source_packet/qualification",
         "value": "synthetic_design_fixture_not_actual_owner_or_authority"
       },
-      "state_establishment": "unknown_not_claimed"
+      "state_establishment": "unknown_not_claimed",
+      "non_firing_unknown_reason": "Release-eligible.observations.proofsはRelease state_basisのfieldだが、proofs@r1の参照先content/source/owner qualificationがpacket内に無く、Accepted proof nullとの包含関係もL4/L5で定義されない。Release-eligible非発火を立証できない。",
+      "definition_gap_return": {
+        "layer": "L5",
+        "owner": "L5 function 4 detail-design owner",
+        "source_pointers": [
+          {
+            "path": "docs/helix-harness/L5-detail-design/process-state-port.json",
+            "pointer": "/functions/4/state_detail/qualification_groups/Release-eligible_observations_proofs"
+          },
+          {
+            "path": "docs/helix-harness/L5-detail-design/process-state-port.json",
+            "pointer": "/functions/4/failure_output_contract/conditions"
+          }
+        ],
+        "reason": "dangling lower_proof_refsとproofs@r1参照内容/qualification・proof集合との対応の意味が未定義。L4/L5 sourceはmissing/unknown referenceをfailureに変換する条件を定めていないため、これを発火扱いせず、qualification/reference resolutionの契約不足をL5へ戻す。"
+      },
+      "target_condition_code": "F04_STATE_ACCEPTED_PROOF_MISSING",
+      "finding_code": null,
+      "finding_code_status": "not_formed_unknown_set"
     },
     {
       "case_id": "H003-F04-MISSING-Release-eligible",
@@ -303,7 +475,9 @@
           "F04_STATE_ACCEPTED_PROOF_MISSING",
           "F04_STATE_DEPLOYED_PROOF_MISSING",
           "F04_STATE_OBSERVED_PROOF_MISSING"
-        ]
+        ],
+        "single_finding_set_status": "candidate",
+        "non_firing_unknown_f04_codes": []
       },
       "case_provenance": {
         "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
@@ -337,13 +511,14 @@
         "pointer": "/verification_obligations/4/negative_cases/5/independent_source_packet/qualification",
         "value": "synthetic_design_fixture_not_actual_owner_or_authority"
       },
-      "state_establishment": "unknown_not_claimed"
+      "state_establishment": "unknown_not_claimed",
+      "non_firing_unknown_reason": null,
+      "finding_code_status": "input_candidate_code_for_single_condition_candidate"
     },
     {
       "case_id": "H003-F04-MISSING-Deployed",
-      "candidate_status": "retained_fixture_input_single_condition_candidate",
-      "finding_set_status": "candidate_from_fixed_synthetic_fixture_input",
-      "finding_code": "F04_STATE_DEPLOYED_PROOF_MISSING",
+      "candidate_status": "withdrawn_single_finding_candidate_nonfiring_unknown",
+      "finding_set_status": "unknown/unformed",
       "axis": "state_Deployed_basis",
       "state": "missing",
       "condition_source": "Deployed固有の原証拠が不足。前状態/後続状態の証拠で補わず、独立に読めた他stateの証拠は保持する。",
@@ -366,9 +541,32 @@
           "F04_STATE_INTEGRATED_PROOF_MISSING",
           "F04_STATE_VERIFIED_PROOF_MISSING",
           "F04_STATE_ACCEPTED_PROOF_MISSING",
-          "F04_STATE_RELEASE-ELIGIBLE_PROOF_MISSING",
           "F04_STATE_OBSERVED_PROOF_MISSING"
-        ]
+        ],
+        "single_finding_set_status": "unknown/unformed",
+        "non_firing_unknown_f04_codes": [
+          "F04_STATE_RELEASE-ELIGIBLE_PROOF_MISSING"
+        ],
+        "non_firing_unknown_basis": {
+          "verified_lower_proof_refs": {
+            "applicable": false,
+            "raw_pointer": "/state_proofs/Verified/content/lower_proof_refs",
+            "l5_pointer": "/functions/4/state_detail/qualification_groups/Verified_lower_proof_refs",
+            "state_role": "state_basis",
+            "resolution": "unknown; ref strings include null target proof in Provisional/Integrated cases; L4/L5 do not define dangling-ref treatment"
+          },
+          "release_eligible_proofs": {
+            "raw_pointer": "/state_proofs/Release-eligible/content/observations/0",
+            "l4_pointer": "/artifact_state_basis/5",
+            "l5_pointer": "/functions/4/state_detail/qualification_groups/Release-eligible_observations_proofs",
+            "raw_value": {
+              "required_ref": "proofs@r1",
+              "observed_ref": "proofs@r1"
+            },
+            "state_role": "state_basis",
+            "resolution": "unknown; referenced content/source/owner qualification and its mapping to per-state proofs are not present or defined; do not convert to a firing finding"
+          }
+        }
       },
       "case_provenance": {
         "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
@@ -391,9 +589,9 @@
         "pointer": "/functions/4/failure_output_contract/conditions/5",
         "use": "condition wording cross-check only; no output execution/result claimed"
       },
-      "output_scope": "one L4 state-missing condition is supported by the fixed input; no runtime output, formal projection row, actual owner delivery, or execution pass is asserted.",
-      "ordered_output": "single condition only; no multi-finding ordering claim is needed.",
-      "non_firing_basis_scope": "supported_at_fixed_synthetic_fixture_content_level_only",
+      "output_scope": "The raw identifies the target state as explicitly null, but non-firing of all other rules is not established; no single-finding candidate, output, formal row, or execution result is asserted.",
+      "ordered_output": "unknown/unformed; no finding-set membership, multiplicity, or order is asserted.",
+      "non_firing_basis_scope": "incomplete_unknown_unformed; do not infer a firing code from unresolved references",
       "non_firing_actual_source_qualification": "unknown",
       "common_other_state_proof_review_ref": "/common_other_state_proof_review/states",
       "qualification_limit": "raw packetはsynthetic design fixture。recorded content/owner role/bindingの内容監査に限る。実owner資格、authority、state成立は示さない。",
@@ -402,13 +600,31 @@
         "pointer": "/verification_obligations/4/negative_cases/6/independent_source_packet/qualification",
         "value": "synthetic_design_fixture_not_actual_owner_or_authority"
       },
-      "state_establishment": "unknown_not_claimed"
+      "state_establishment": "unknown_not_claimed",
+      "non_firing_unknown_reason": "Release-eligible.observations.proofsはRelease state_basisのfieldだが、proofs@r1の参照先content/source/owner qualificationがpacket内に無い。Deployedは後続stateなのでReleaseがそれを含むとは推定せず、独立したRelease proof contentの充足もこのpointerだけから確定しない。",
+      "definition_gap_return": {
+        "layer": "L5",
+        "owner": "L5 function 4 detail-design owner",
+        "source_pointers": [
+          {
+            "path": "docs/helix-harness/L5-detail-design/process-state-port.json",
+            "pointer": "/functions/4/state_detail/qualification_groups/Release-eligible_observations_proofs"
+          },
+          {
+            "path": "docs/helix-harness/L5-detail-design/process-state-port.json",
+            "pointer": "/functions/4/failure_output_contract/conditions"
+          }
+        ],
+        "reason": "dangling lower_proof_refsとproofs@r1参照内容/qualification・proof集合との対応の意味が未定義。L4/L5 sourceはmissing/unknown referenceをfailureに変換する条件を定めていないため、これを発火扱いせず、qualification/reference resolutionの契約不足をL5へ戻す。"
+      },
+      "target_condition_code": "F04_STATE_DEPLOYED_PROOF_MISSING",
+      "finding_code": null,
+      "finding_code_status": "not_formed_unknown_set"
     },
     {
       "case_id": "H003-F04-MISSING-Observed",
-      "candidate_status": "retained_fixture_input_single_condition_candidate",
-      "finding_set_status": "candidate_from_fixed_synthetic_fixture_input",
-      "finding_code": "F04_STATE_OBSERVED_PROOF_MISSING",
+      "candidate_status": "withdrawn_single_finding_candidate_nonfiring_unknown",
+      "finding_set_status": "unknown/unformed",
       "axis": "state_Observed_basis",
       "state": "missing",
       "condition_source": "Observed固有の原証拠が不足。前状態/後続状態の証拠で補わず、独立に読めた他stateの証拠は保持する。",
@@ -431,9 +647,32 @@
           "F04_STATE_INTEGRATED_PROOF_MISSING",
           "F04_STATE_VERIFIED_PROOF_MISSING",
           "F04_STATE_ACCEPTED_PROOF_MISSING",
-          "F04_STATE_RELEASE-ELIGIBLE_PROOF_MISSING",
           "F04_STATE_DEPLOYED_PROOF_MISSING"
-        ]
+        ],
+        "single_finding_set_status": "unknown/unformed",
+        "non_firing_unknown_f04_codes": [
+          "F04_STATE_RELEASE-ELIGIBLE_PROOF_MISSING"
+        ],
+        "non_firing_unknown_basis": {
+          "verified_lower_proof_refs": {
+            "applicable": false,
+            "raw_pointer": "/state_proofs/Verified/content/lower_proof_refs",
+            "l5_pointer": "/functions/4/state_detail/qualification_groups/Verified_lower_proof_refs",
+            "state_role": "state_basis",
+            "resolution": "unknown; ref strings include null target proof in Provisional/Integrated cases; L4/L5 do not define dangling-ref treatment"
+          },
+          "release_eligible_proofs": {
+            "raw_pointer": "/state_proofs/Release-eligible/content/observations/0",
+            "l4_pointer": "/artifact_state_basis/5",
+            "l5_pointer": "/functions/4/state_detail/qualification_groups/Release-eligible_observations_proofs",
+            "raw_value": {
+              "required_ref": "proofs@r1",
+              "observed_ref": "proofs@r1"
+            },
+            "state_role": "state_basis",
+            "resolution": "unknown; referenced content/source/owner qualification and its mapping to per-state proofs are not present or defined; do not convert to a firing finding"
+          }
+        }
       },
       "case_provenance": {
         "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
@@ -456,9 +695,9 @@
         "pointer": "/functions/4/failure_output_contract/conditions/6",
         "use": "condition wording cross-check only; no output execution/result claimed"
       },
-      "output_scope": "one L4 state-missing condition is supported by the fixed input; no runtime output, formal projection row, actual owner delivery, or execution pass is asserted.",
-      "ordered_output": "single condition only; no multi-finding ordering claim is needed.",
-      "non_firing_basis_scope": "supported_at_fixed_synthetic_fixture_content_level_only",
+      "output_scope": "The raw identifies the target state as explicitly null, but non-firing of all other rules is not established; no single-finding candidate, output, formal row, or execution result is asserted.",
+      "ordered_output": "unknown/unformed; no finding-set membership, multiplicity, or order is asserted.",
+      "non_firing_basis_scope": "incomplete_unknown_unformed; do not infer a firing code from unresolved references",
       "non_firing_actual_source_qualification": "unknown",
       "common_other_state_proof_review_ref": "/common_other_state_proof_review/states",
       "qualification_limit": "raw packetはsynthetic design fixture。recorded content/owner role/bindingの内容監査に限る。実owner資格、authority、state成立は示さない。",
@@ -467,7 +706,26 @@
         "pointer": "/verification_obligations/4/negative_cases/7/independent_source_packet/qualification",
         "value": "synthetic_design_fixture_not_actual_owner_or_authority"
       },
-      "state_establishment": "unknown_not_claimed"
+      "state_establishment": "unknown_not_claimed",
+      "non_firing_unknown_reason": "Release-eligible.observations.proofsはRelease state_basisのfieldだが、proofs@r1の参照先content/source/owner qualificationがpacket内に無い。Observedは後続stateなのでReleaseがそれを含むとは推定せず、独立したRelease proof contentの充足もこのpointerだけから確定しない。",
+      "definition_gap_return": {
+        "layer": "L5",
+        "owner": "L5 function 4 detail-design owner",
+        "source_pointers": [
+          {
+            "path": "docs/helix-harness/L5-detail-design/process-state-port.json",
+            "pointer": "/functions/4/state_detail/qualification_groups/Release-eligible_observations_proofs"
+          },
+          {
+            "path": "docs/helix-harness/L5-detail-design/process-state-port.json",
+            "pointer": "/functions/4/failure_output_contract/conditions"
+          }
+        ],
+        "reason": "dangling lower_proof_refsとproofs@r1参照内容/qualification・proof集合との対応の意味が未定義。L4/L5 sourceはmissing/unknown referenceをfailureに変換する条件を定めていないため、これを発火扱いせず、qualification/reference resolutionの契約不足をL5へ戻す。"
+      },
+      "target_condition_code": "F04_STATE_OBSERVED_PROOF_MISSING",
+      "finding_code": null,
+      "finding_code_status": "not_formed_unknown_set"
     }
   ],
   "common_other_state_proof_review": {
@@ -486,16 +744,6 @@
         "l4_state_basis_pointer": "/artifact_state_basis/0",
         "source_material_key": "state_proofs.Working",
         "representative_raw_input_pointer": "/verification_obligations/4/negative_cases/1/independent_source_packet/raw_utf8#/state_proofs/Working",
-        "present_in_candidate_case_ids": [
-          "H003-F04-MISSING-Provisional",
-          "H003-F04-MISSING-Integrated",
-          "H003-F04-MISSING-Verified",
-          "H003-F04-MISSING-Accepted",
-          "H003-F04-MISSING-Release-eligible",
-          "H003-F04-MISSING-Deployed",
-          "H003-F04-MISSING-Observed"
-        ],
-        "present_in_candidate_count": 7,
         "canonical_proof_sha256": "0f875664a1bc2f203ff4f0cd13b9b43dd34b47fe08e62268c16514dd3a59a743",
         "reference": {
           "identity": "PROOF-Working",
@@ -516,14 +764,9 @@
         "proof_pointer": "/state_proofs/Working",
         "proof_content_pointer": "/state_proofs/Working/content",
         "reference_pointer": "/state_proofs/Working/ref",
-        "binding_pointer": "/state_proofs/Working/binding"
-      },
-      {
-        "state": "Provisional",
-        "l4_state_basis_pointer": "/artifact_state_basis/1",
-        "source_material_key": "state_proofs.Provisional",
-        "representative_raw_input_pointer": "/verification_obligations/4/negative_cases/2/independent_source_packet/raw_utf8#/state_proofs/Provisional",
-        "present_in_candidate_case_ids": [
+        "binding_pointer": "/state_proofs/Working/binding",
+        "present_in_audit_case_ids": [
+          "H003-F04-MISSING-Provisional",
           "H003-F04-MISSING-Integrated",
           "H003-F04-MISSING-Verified",
           "H003-F04-MISSING-Accepted",
@@ -531,7 +774,13 @@
           "H003-F04-MISSING-Deployed",
           "H003-F04-MISSING-Observed"
         ],
-        "present_in_candidate_count": 6,
+        "present_in_audit_count": 7
+      },
+      {
+        "state": "Provisional",
+        "l4_state_basis_pointer": "/artifact_state_basis/1",
+        "source_material_key": "state_proofs.Provisional",
+        "representative_raw_input_pointer": "/verification_obligations/4/negative_cases/2/independent_source_packet/raw_utf8#/state_proofs/Provisional",
         "canonical_proof_sha256": "c90cf610c6b6fc7869f5ffcffa703fd64b834265a780f48c1d4cc47185dea3e2",
         "reference": {
           "identity": "PROOF-Provisional",
@@ -552,22 +801,22 @@
         "proof_pointer": "/state_proofs/Provisional",
         "proof_content_pointer": "/state_proofs/Provisional/content",
         "reference_pointer": "/state_proofs/Provisional/ref",
-        "binding_pointer": "/state_proofs/Provisional/binding"
-      },
-      {
-        "state": "Integrated",
-        "l4_state_basis_pointer": "/artifact_state_basis/2",
-        "source_material_key": "state_proofs.Integrated",
-        "representative_raw_input_pointer": "/verification_obligations/4/negative_cases/1/independent_source_packet/raw_utf8#/state_proofs/Integrated",
-        "present_in_candidate_case_ids": [
-          "H003-F04-MISSING-Provisional",
+        "binding_pointer": "/state_proofs/Provisional/binding",
+        "present_in_audit_case_ids": [
+          "H003-F04-MISSING-Integrated",
           "H003-F04-MISSING-Verified",
           "H003-F04-MISSING-Accepted",
           "H003-F04-MISSING-Release-eligible",
           "H003-F04-MISSING-Deployed",
           "H003-F04-MISSING-Observed"
         ],
-        "present_in_candidate_count": 6,
+        "present_in_audit_count": 6
+      },
+      {
+        "state": "Integrated",
+        "l4_state_basis_pointer": "/artifact_state_basis/2",
+        "source_material_key": "state_proofs.Integrated",
+        "representative_raw_input_pointer": "/verification_obligations/4/negative_cases/1/independent_source_packet/raw_utf8#/state_proofs/Integrated",
         "canonical_proof_sha256": "45b98272fe380d1c81cee94541c85aa60cb4f86e8534817e85b28f65ccab1061",
         "reference": {
           "identity": "PROOF-Integrated",
@@ -588,22 +837,22 @@
         "proof_pointer": "/state_proofs/Integrated",
         "proof_content_pointer": "/state_proofs/Integrated/content",
         "reference_pointer": "/state_proofs/Integrated/ref",
-        "binding_pointer": "/state_proofs/Integrated/binding"
+        "binding_pointer": "/state_proofs/Integrated/binding",
+        "present_in_audit_case_ids": [
+          "H003-F04-MISSING-Provisional",
+          "H003-F04-MISSING-Verified",
+          "H003-F04-MISSING-Accepted",
+          "H003-F04-MISSING-Release-eligible",
+          "H003-F04-MISSING-Deployed",
+          "H003-F04-MISSING-Observed"
+        ],
+        "present_in_audit_count": 6
       },
       {
         "state": "Verified",
         "l4_state_basis_pointer": "/artifact_state_basis/3",
         "source_material_key": "state_proofs.Verified",
         "representative_raw_input_pointer": "/verification_obligations/4/negative_cases/1/independent_source_packet/raw_utf8#/state_proofs/Verified",
-        "present_in_candidate_case_ids": [
-          "H003-F04-MISSING-Provisional",
-          "H003-F04-MISSING-Integrated",
-          "H003-F04-MISSING-Accepted",
-          "H003-F04-MISSING-Release-eligible",
-          "H003-F04-MISSING-Deployed",
-          "H003-F04-MISSING-Observed"
-        ],
-        "present_in_candidate_count": 6,
         "canonical_proof_sha256": "6e2cd515e48cab56fa4b88f09afe3c9546a1ef8be14c281e9dd26d34b0953e0d",
         "reference": {
           "identity": "PROOF-Verified",
@@ -618,28 +867,49 @@
           "environment": "ENV-A"
         },
         "binding_matches_target_in_each_present_packet": true,
-        "content_review": "source_material_key state_proofs.Verified。L10/L3 pair、global_balance_conservation、before/expected/observed total=10、covered=required、remaining=[]。lower_proof_refsは参照文字列であり、先行stateの成立を代替・証明しない。owner role system-verification-owner。",
+        "content_review": "source_material_key state_proofs.Verified。L10/L3 pair、global_balance_conservation、before/expected/observed total=10、covered=required、remaining=[]。lower_proof_refs is a Verified state_basis field; in Provisional/Integrated-null packets its references point to a null proof. L4/L5 do not define dangling-ref handling, so Verified non-firing is unknown for those packets. Owner role system-verification-owner.",
         "qualification_limit": "固定source packet全体のqualificationはsynthetic_design_fixture_not_actual_owner_or_authority。ここで支持するのはfixture内のstate-specific content/owner-role/bindingだけで、実owner資格・実authority・実状態の成立ではない。",
         "non_firing_scope": "対象state proofの欠落classに対するfixture-input-levelの非発火支持。前状態条件や実資格の成立を含むstate attainmentは判定しない。",
         "proof_pointer": "/state_proofs/Verified",
         "proof_content_pointer": "/state_proofs/Verified/content",
         "reference_pointer": "/state_proofs/Verified/ref",
-        "binding_pointer": "/state_proofs/Verified/binding"
+        "binding_pointer": "/state_proofs/Verified/binding",
+        "lower_proof_refs_resolution": {
+          "l4_state_basis_pointer": "/artifact_state_basis/3",
+          "l5_qualification_pointer": "/functions/4/state_detail/qualification_groups/Verified_lower_proof_refs",
+          "qualification_role": "state_basis",
+          "raw_field_pointer": "/state_proofs/Verified/content/lower_proof_refs",
+          "raw_values": [
+            "PROOF-Provisional",
+            "PROOF-Integrated"
+          ],
+          "case_results": {
+            "H003-F04-MISSING-Provisional": "unknown: same packet /state_proofs/Provisional is null; no L4/L5 rule says whether a dangling lower proof reference counts as a missing Verified basis",
+            "H003-F04-MISSING-Integrated": "unknown: same packet /state_proofs/Integrated is null; no L4/L5 rule says whether a dangling lower proof reference counts as a missing Verified basis",
+            "other present Verified proof packets": "references resolve to non-null Provisional and Integrated proof objects in this fixture; this does not assert actual source qualification or state establishment"
+          },
+          "classification_limit": "Unresolved reference is not treated as a firing finding; it prevents proving Verified non-firing in the two packets."
+        },
+        "definition_gap_return": {
+          "layer": "L5",
+          "owner": "L5 function 4 detail-design owner",
+          "reason": "state_basis参照の解決方法・content qualification・dangling/unknown時の部分結果が未定義。新規failure codeは作らず、定義不足をL5へ返す。"
+        },
+        "present_in_audit_case_ids": [
+          "H003-F04-MISSING-Provisional",
+          "H003-F04-MISSING-Integrated",
+          "H003-F04-MISSING-Accepted",
+          "H003-F04-MISSING-Release-eligible",
+          "H003-F04-MISSING-Deployed",
+          "H003-F04-MISSING-Observed"
+        ],
+        "present_in_audit_count": 6
       },
       {
         "state": "Accepted",
         "l4_state_basis_pointer": "/artifact_state_basis/4",
         "source_material_key": "state_proofs.Accepted",
         "representative_raw_input_pointer": "/verification_obligations/4/negative_cases/1/independent_source_packet/raw_utf8#/state_proofs/Accepted",
-        "present_in_candidate_case_ids": [
-          "H003-F04-MISSING-Provisional",
-          "H003-F04-MISSING-Integrated",
-          "H003-F04-MISSING-Verified",
-          "H003-F04-MISSING-Release-eligible",
-          "H003-F04-MISSING-Deployed",
-          "H003-F04-MISSING-Observed"
-        ],
-        "present_in_candidate_count": 6,
         "canonical_proof_sha256": "efc8ea97e935978a28d18605fc1a573d3ac5ce5075524bdc58751e8d6a4067e7",
         "reference": {
           "identity": "PROOF-Accepted",
@@ -660,22 +930,22 @@
         "proof_pointer": "/state_proofs/Accepted",
         "proof_content_pointer": "/state_proofs/Accepted/content",
         "reference_pointer": "/state_proofs/Accepted/ref",
-        "binding_pointer": "/state_proofs/Accepted/binding"
+        "binding_pointer": "/state_proofs/Accepted/binding",
+        "present_in_audit_case_ids": [
+          "H003-F04-MISSING-Provisional",
+          "H003-F04-MISSING-Integrated",
+          "H003-F04-MISSING-Verified",
+          "H003-F04-MISSING-Release-eligible",
+          "H003-F04-MISSING-Deployed",
+          "H003-F04-MISSING-Observed"
+        ],
+        "present_in_audit_count": 6
       },
       {
         "state": "Release-eligible",
         "l4_state_basis_pointer": "/artifact_state_basis/5",
         "source_material_key": "state_proofs.Release-eligible",
         "representative_raw_input_pointer": "/verification_obligations/4/negative_cases/1/independent_source_packet/raw_utf8#/state_proofs/Release-eligible",
-        "present_in_candidate_case_ids": [
-          "H003-F04-MISSING-Provisional",
-          "H003-F04-MISSING-Integrated",
-          "H003-F04-MISSING-Verified",
-          "H003-F04-MISSING-Accepted",
-          "H003-F04-MISSING-Deployed",
-          "H003-F04-MISSING-Observed"
-        ],
-        "present_in_candidate_count": 6,
         "canonical_proof_sha256": "6b747f30252e4067cdee7ff5a4661faf6cd03f01cbf80760f3e7c0341765019d",
         "reference": {
           "identity": "PROOF-Release-eligible",
@@ -690,28 +960,54 @@
           "environment": "ENV-A"
         },
         "binding_matches_target_in_each_present_packet": true,
-        "content_review": "source_material_key state_proofs.Release-eligible。Port basisは8 required categoriesを列挙し、各 category observationでrequired_ref=observed_ref。owner role port-evidence-owner。",
+        "content_review": "source_material_key state_proofs.Release-eligible。Port basis lists 8 required categories and the raw observations have required_ref=observed_ref. The proofs category resolves only to matching strings; its referenced proof-set content and qualification are absent, so the raw does not establish that all required state proofs are present.",
         "qualification_limit": "固定source packet全体のqualificationはsynthetic_design_fixture_not_actual_owner_or_authority。ここで支持するのはfixture内のstate-specific content/owner-role/bindingだけで、実owner資格・実authority・実状態の成立ではない。",
         "non_firing_scope": "対象state proofの欠落classに対するfixture-input-levelの非発火支持。前状態条件や実資格の成立を含むstate attainmentは判定しない。",
         "proof_pointer": "/state_proofs/Release-eligible",
         "proof_content_pointer": "/state_proofs/Release-eligible/content",
         "reference_pointer": "/state_proofs/Release-eligible/ref",
-        "binding_pointer": "/state_proofs/Release-eligible/binding"
+        "binding_pointer": "/state_proofs/Release-eligible/binding",
+        "proofs_observation_resolution": {
+          "l4_state_basis_pointer": "/artifact_state_basis/5",
+          "l5_qualification_pointer": "/functions/4/state_detail/qualification_groups/Release-eligible_observations_proofs",
+          "qualification_role": "state_basis",
+          "raw_observation_pointer": "/state_proofs/Release-eligible/content/observations/0",
+          "raw_value": {
+            "id": "proofs",
+            "required_ref": "proofs@r1",
+            "observed_ref": "proofs@r1"
+          },
+          "content_resolution": "The fixed packet contains only the matching reference strings; it contains no referenced proof-set content, source/owner qualification, or mapping to individual state_proofs / Verified.lower_proof_refs.",
+          "case_results": {
+            "H003-F04-MISSING-Provisional": "unknown: Release-eligible proof content/non-firing cannot be established from a matching ref string alone; no missing finding is inferred",
+            "H003-F04-MISSING-Integrated": "unknown: Release-eligible proof content/non-firing cannot be established from a matching ref string alone; no missing finding is inferred",
+            "H003-F04-MISSING-Verified": "unknown: Release-eligible proof content/non-firing cannot be established from a matching ref string alone; no missing finding is inferred",
+            "H003-F04-MISSING-Accepted": "unknown: Release-eligible proof content/non-firing cannot be established from a matching ref string alone; no missing finding is inferred",
+            "H003-F04-MISSING-Deployed": "unknown: Release-eligible proof content/non-firing cannot be established from a matching ref string alone; no missing finding is inferred",
+            "H003-F04-MISSING-Observed": "unknown: Release-eligible proof content/non-firing cannot be established from a matching ref string alone; no missing finding is inferred"
+          },
+          "classification_limit": "L4/L5 mark this observation as Release-eligible state_basis but do not define the referenced object or its relation to other state proofs; keep the case set unknown/unformed."
+        },
+        "definition_gap_return": {
+          "layer": "L5",
+          "owner": "L5 function 4 detail-design owner",
+          "reason": "state_basis参照の解決方法・content qualification・dangling/unknown時の部分結果が未定義。新規failure codeは作らず、定義不足をL5へ返す。"
+        },
+        "present_in_audit_case_ids": [
+          "H003-F04-MISSING-Provisional",
+          "H003-F04-MISSING-Integrated",
+          "H003-F04-MISSING-Verified",
+          "H003-F04-MISSING-Accepted",
+          "H003-F04-MISSING-Deployed",
+          "H003-F04-MISSING-Observed"
+        ],
+        "present_in_audit_count": 6
       },
       {
         "state": "Deployed",
         "l4_state_basis_pointer": "/artifact_state_basis/6",
         "source_material_key": "state_proofs.Deployed",
         "representative_raw_input_pointer": "/verification_obligations/4/negative_cases/1/independent_source_packet/raw_utf8#/state_proofs/Deployed",
-        "present_in_candidate_case_ids": [
-          "H003-F04-MISSING-Provisional",
-          "H003-F04-MISSING-Integrated",
-          "H003-F04-MISSING-Verified",
-          "H003-F04-MISSING-Accepted",
-          "H003-F04-MISSING-Release-eligible",
-          "H003-F04-MISSING-Observed"
-        ],
-        "present_in_candidate_count": 6,
         "canonical_proof_sha256": "a97334aa552dba2f9b18695f383dd46c79de802f264a587690e373b2b326e29a",
         "reference": {
           "identity": "PROOF-Deployed",
@@ -732,22 +1028,22 @@
         "proof_pointer": "/state_proofs/Deployed",
         "proof_content_pointer": "/state_proofs/Deployed/content",
         "reference_pointer": "/state_proofs/Deployed/ref",
-        "binding_pointer": "/state_proofs/Deployed/binding"
+        "binding_pointer": "/state_proofs/Deployed/binding",
+        "present_in_audit_case_ids": [
+          "H003-F04-MISSING-Provisional",
+          "H003-F04-MISSING-Integrated",
+          "H003-F04-MISSING-Verified",
+          "H003-F04-MISSING-Accepted",
+          "H003-F04-MISSING-Release-eligible",
+          "H003-F04-MISSING-Observed"
+        ],
+        "present_in_audit_count": 6
       },
       {
         "state": "Observed",
         "l4_state_basis_pointer": "/artifact_state_basis/7",
         "source_material_key": "state_proofs.Observed",
         "representative_raw_input_pointer": "/verification_obligations/4/negative_cases/1/independent_source_packet/raw_utf8#/state_proofs/Observed",
-        "present_in_candidate_case_ids": [
-          "H003-F04-MISSING-Provisional",
-          "H003-F04-MISSING-Integrated",
-          "H003-F04-MISSING-Verified",
-          "H003-F04-MISSING-Accepted",
-          "H003-F04-MISSING-Release-eligible",
-          "H003-F04-MISSING-Deployed"
-        ],
-        "present_in_candidate_count": 6,
         "canonical_proof_sha256": "fa3fcaaba5094e08460eef12476dcc2821826c969905d3a74756405b5bba60ae",
         "reference": {
           "identity": "PROOF-Observed",
@@ -768,9 +1064,20 @@
         "proof_pointer": "/state_proofs/Observed",
         "proof_content_pointer": "/state_proofs/Observed/content",
         "reference_pointer": "/state_proofs/Observed/ref",
-        "binding_pointer": "/state_proofs/Observed/binding"
+        "binding_pointer": "/state_proofs/Observed/binding",
+        "present_in_audit_case_ids": [
+          "H003-F04-MISSING-Provisional",
+          "H003-F04-MISSING-Integrated",
+          "H003-F04-MISSING-Verified",
+          "H003-F04-MISSING-Accepted",
+          "H003-F04-MISSING-Release-eligible",
+          "H003-F04-MISSING-Deployed"
+        ],
+        "present_in_audit_count": 6
       }
     ],
     "raw_packet_qualification": "synthetic_design_fixture_not_actual_owner_or_authority"
-  }
+  },
+  "single_finding_candidate_count": 1,
+  "unknown_unformed_case_count": 6
 }

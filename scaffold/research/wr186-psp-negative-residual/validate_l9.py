@@ -60,8 +60,23 @@ def main() -> None:
     assert audit["mode"] == "audit_only_no_checker_marker"
     assert audit["source_population_count"] == 182
     assert audit["case_projection_rows_added"] == 0
-    assert audit["single_finding_candidate_count"] == len(audit["single_finding_candidates"]) == 7
-    assert audit["unformed_case_count"] == 175
+    expected_single_f04 = {"H003-F04-MISSING-Release-eligible"}
+    expected_unformed_f04 = {
+        "H003-F04-MISSING-Provisional",
+        "H003-F04-MISSING-Integrated",
+        "H003-F04-MISSING-Verified",
+        "H003-F04-MISSING-Accepted",
+        "H003-F04-MISSING-Deployed",
+        "H003-F04-MISSING-Observed",
+    }
+    assert audit["single_finding_candidate_count"] == len(audit["single_finding_candidates"]) == 1
+    assert {x["case_id"] for x in audit["single_finding_candidates"]} == expected_single_f04
+    singleton = audit["single_finding_candidates"][0]
+    assert all(not x["pointer"].endswith("/expected_material") for x in singleton["same_layer_source_pointers"])
+    assert singleton["raw_input_source"]["revision"] == RAW_REVISION
+    assert singleton["raw_input_source"]["pointer"] == "/verification_obligations/4/negative_cases/5/independent_source_packet/raw_utf8"
+    assert singleton["raw_input_source"]["sha256"] == "5ba0ead8c78e923f2e5807ad131f150c22b51633360542982d5da5b7e44c37fc"
+    assert audit["unformed_case_count"] == 181
     assert audit["upper_classification_count"] == 34
     assert audit["candidate_classification_count"] == 7
     assert audit["not_formed_classification_count"] == 27
@@ -83,14 +98,16 @@ def main() -> None:
     f04_classes = l4["contracts"][4]["negative_classifications"]
     f04_states = ["Provisional", "Integrated", "Verified", "Accepted", "Release-eligible", "Deployed", "Observed"]
     expected_f04_ids = {f"H003-F04-MISSING-{state}" for state in f04_states}
-    assert f04["candidate_count"] == f04["audit_row_count"] == len(f04_rows) == 7
+    assert f04["candidate_count"] == f04["single_finding_candidate_count"] == 1
+    assert f04["unknown_unformed_case_count"] == 6
+    assert f04["audit_row_count"] == len(f04_rows) == 7
     assert f04["formal_projection_rows_added"] == 0
     assert f04["formal_expectations_changed"] is False
     assert f04["fixed_raw_source"]["revision"] == RAW_REVISION
     assert f04["fixed_raw_source"]["path"] == RAW_PATH
     assert f04["fixed_raw_source"]["sha256"] == hashlib.sha256(raw_bytes).hexdigest()
     assert set(f04_rows) == expected_f04_ids
-    assert {x["case_id"] for x in audit["single_finding_candidates"]} == expected_f04_ids
+    assert expected_single_f04 | expected_unformed_f04 == expected_f04_ids
     for i, state in enumerate(f04_states):
         cid = f"H003-F04-MISSING-{state}"
         row = f04_rows[cid]
@@ -103,7 +120,8 @@ def main() -> None:
         assert source["sha256"] == historical["independent_source_packet"]["sha256"]
         assert historical["independent_source_packet"]["qualification"] == common_proof_review["raw_packet_qualification"]
         assert resolve(raw, row["raw_packet_qualification"]["pointer"]) == row["raw_packet_qualification"]["value"]
-        assert row["finding_code"] == f04_classes[i]["code"]
+        audited_condition_code = row.get("target_condition_code") or row.get("finding_code")
+        assert audited_condition_code == f04_classes[i]["code"]
         assert row["axis"] == f04_classes[i]["axis"]
         assert row["condition_source"] == f04_classes[i]["change"]
         assert row["owner_role"] == f04_classes[i]["backflow_owner"]
@@ -115,16 +133,43 @@ def main() -> None:
         assert resolve(l5, row["l5_condition_crosscheck_pointer"]["pointer"])["code"] == f04_classes[i]["code"]
         assert resolve(l5, row["l5_condition_crosscheck_pointer"]["pointer"])["condition_source"] == f04_classes[i]["change"]
         assert row["raw_condition_evidence"]["missing_state_pointer"] == f"/state_proofs/{state}"
-        assert row["raw_condition_evidence"]["non_firing_f04_codes"] == [x["code"] for j, x in enumerate(f04_classes) if j != i]
+        recorded_non_firing_codes = (
+            row["raw_condition_evidence"]["non_firing_f04_codes"]
+            + row["raw_condition_evidence"]["non_firing_unknown_f04_codes"]
+        )
+        assert set(recorded_non_firing_codes) == {x["code"] for j, x in enumerate(f04_classes) if j != i}
         assert live["execution_state"] == historical["execution_state"] == "not_executed"
         assert live["effect"] == historical["effect"] == "none"
         assert row["case_provenance"]["mutation_pointer"] == f"/cases/4/negative_cases/{i + 1}/mutation"
         assert live["mutation"] == historical["mutation"]
         assert "expected_material" not in row
-        assert row["candidate_status"] == "retained_fixture_input_single_condition_candidate"
-        assert row["finding_set_status"] == "candidate_from_fixed_synthetic_fixture_input"
-        assert row["output_scope"].startswith("one L4 state-missing condition")
-        assert row["non_firing_basis_scope"] == "supported_at_fixed_synthetic_fixture_content_level_only"
+        assert raw_value == historical["independent_source_packet"]["raw_utf8"]
+        if cid in expected_unformed_f04:
+            assert row["candidate_status"] == "withdrawn_single_finding_candidate_nonfiring_unknown"
+            assert row["finding_set_status"] == "unknown/unformed"
+            assert row["finding_code"] is None
+            assert row["finding_code_status"] == "not_formed_unknown_set"
+            assert row["raw_condition_evidence"]["single_finding_set_status"] == "unknown/unformed"
+            assert row["raw_condition_evidence"]["non_firing_unknown_f04_codes"]
+            assert row["non_firing_unknown_reason"]
+            assert row["definition_gap_return"]["layer"] == "L5"
+            assert row["definition_gap_return"]["owner"] == "L5 function 4 detail-design owner"
+            assert "未定義" in row["definition_gap_return"]["reason"]
+            for gap_ref in row["definition_gap_return"]["source_pointers"]:
+                assert gap_ref["path"] == L5_PATH
+                assert resolve(l5, gap_ref["pointer"])
+            assert row["ordered_output"].startswith("unknown/unformed")
+            assert "no single-finding candidate" in row["output_scope"]
+            assert row["non_firing_basis_scope"].startswith("incomplete_unknown_unformed")
+        else:
+            assert row["candidate_status"] == "retained_fixture_input_single_condition_candidate"
+            assert row["finding_set_status"] == "candidate_from_fixed_synthetic_fixture_input"
+            assert row["finding_code"] == f04_classes[i]["code"]
+            assert row["finding_code_status"] == "input_candidate_code_for_single_condition_candidate"
+            assert row["raw_condition_evidence"]["single_finding_set_status"] == "candidate"
+            assert row["raw_condition_evidence"]["non_firing_unknown_f04_codes"] == []
+            assert row["output_scope"].startswith("one L4 state-missing condition")
+            assert row["non_firing_basis_scope"] == "supported_at_fixed_synthetic_fixture_content_level_only"
         assert row["non_firing_actual_source_qualification"] == "unknown"
         assert row["state_establishment"] == "unknown_not_claimed"
     for state, review in common_proof_rows.items():
@@ -137,7 +182,7 @@ def main() -> None:
         assert review["reference_pointer"] == f"/state_proofs/{state}/ref"
         assert review["binding_pointer"] == f"/state_proofs/{state}/binding"
         assert review["binding"] == common_proof_review["target_binding"]
-        for case_id in review["present_in_candidate_case_ids"]:
+        for case_id in review["present_in_audit_case_ids"]:
             case_index = next(j for j, x in enumerate(f04_raw["negative_cases"]) if x["id"] == case_id)
             packet_ptr = f"/verification_obligations/4/negative_cases/{case_index}/independent_source_packet/raw_utf8"
             packet_value = resolve(raw, packet_ptr)
@@ -148,6 +193,38 @@ def main() -> None:
             assert proof_hash == review["canonical_proof_sha256"]
             assert proof["ref"] == review["reference"]
             assert proof["binding"] == review["binding"]
+
+    # The unresolved cross-state references remain unknown; they are never
+    # promoted to firing findings by this static validator.
+    verified_ref_review = common_proof_rows["Verified"]["lower_proof_refs_resolution"]
+    assert verified_ref_review["l4_state_basis_pointer"] == "/artifact_state_basis/3"
+    assert verified_ref_review["l5_qualification_pointer"] == "/functions/4/state_detail/qualification_groups/Verified_lower_proof_refs"
+    assert resolve(l5, verified_ref_review["l5_qualification_pointer"]) == {
+        "affected_state": "Verified",
+        "qualification_role": "state_basis",
+    }
+    for cid in ("H003-F04-MISSING-Provisional", "H003-F04-MISSING-Integrated"):
+        row = f04_rows[cid]
+        packet_index = next(i for i, x in enumerate(f04_raw["negative_cases"]) if x["id"] == cid)
+        packet = json.loads(resolve(raw, f"/verification_obligations/4/negative_cases/{packet_index}/independent_source_packet/raw_utf8"))
+        state = "Provisional" if cid.endswith("Provisional") else "Integrated"
+        assert packet["state_proofs"][state] is None
+        assert packet["state_proofs"]["Verified"]["content"]["lower_proof_refs"] == verified_ref_review["raw_values"]
+        assert "F04_STATE_VERIFIED_PROOF_MISSING" in row["raw_condition_evidence"]["non_firing_unknown_f04_codes"]
+    release_ref_review = common_proof_rows["Release-eligible"]["proofs_observation_resolution"]
+    assert release_ref_review["l4_state_basis_pointer"] == "/artifact_state_basis/5"
+    assert release_ref_review["l5_qualification_pointer"] == "/functions/4/state_detail/qualification_groups/Release-eligible_observations_proofs"
+    assert resolve(l5, release_ref_review["l5_qualification_pointer"]) == {
+        "affected_state": "Release-eligible",
+        "qualification_role": "state_basis",
+    }
+    for cid in expected_unformed_f04:
+        row = f04_rows[cid]
+        assert "F04_STATE_RELEASE-ELIGIBLE_PROOF_MISSING" in row["raw_condition_evidence"]["non_firing_unknown_f04_codes"]
+        assert row["raw_condition_evidence"]["non_firing_unknown_basis"]["release_eligible_proofs"]["raw_value"] == {
+            "required_ref": "proofs@r1",
+            "observed_ref": "proofs@r1",
+        }
 
     # Verify the currently pinned L3 clauses without deriving any output.
     assert resolve(l3_pinned, "/requirements/66/obligation") == resolve(l3_current, "/requirements/66/obligation")
@@ -206,7 +283,7 @@ def main() -> None:
     # The L9 audit must not acquire a scaffold dependency or a formal checker marker.
     assert "scaffold/research/wr186-psp-negative-residual/" not in json.dumps(audit)
     assert "candidate_ref" not in json.dumps(audit)
-    print("WR186/WR192 static audit: PASS; F03/F05 raw pointers=22 unknown/unformed; F04 fixed-input candidates=7; L9 expectations unchanged; formal_rows=0; marker=off")
+    print("WR186/WR192 static audit: PASS; F03/F05 raw pointers=22 unknown/unformed; F04 fixed-input single candidate=1, unknown/unformed=6; L9 expectations unchanged; formal_rows=0; marker=off")
 
 
 if __name__ == "__main__":
