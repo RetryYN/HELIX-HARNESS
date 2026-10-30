@@ -2,11 +2,11 @@
   "schema_revision": 1,
   "id": "SCF-B-0205",
   "kind": "scaffold",
-  "title": "WR246 H053 L8 subject digest ownership cap source-only evidence",
+  "title": "WR246 H053 L8 subject digest removal and source-only mapping evidence",
   "product": "HELIX-HARNESS",
-  "owner_candidate": "HELIX-HARNESS H053 L8 subject digest cap evidence owner",
+  "owner_candidate": "HELIX-HARNESS H053 L8 subject digest removal evidence owner",
   "state": "registered",
-  "reason": "WR246のL8 ownership capに残る30件をADD-22..27のQualification subject_sha256入力として行別に照合する。QA §3に沿うL5 abstract contractを確認し、test fixture本体やsource pin/expectedへの誤分類、L8 key改称によるcap回避をしない。formal L8 U-IDにtest citationが見つからない間は本文変更せず、未解決を記録する。",
+  "reason": "PR #3986 R1 F1対応。#3510 comment 6447665479と#3911/#3924/#3929/#3930のremoved_materials先例に基づき、ADD-22..27の30 typed Qualification subject_sha256 input propertiesを撤去。case branch/expected/rule/source pinは保持し、removed_materialsとbase git provenanceを記録。固定30行mapping evidenceをscaffoldに保全し、L5は未変更、正式test/oracle/citationを捏造しない。",
   "upstream": [
     {
       "path": "docs/helix-harness/L5-detail-design/semantic-asset-lineage.json",
@@ -15,8 +15,8 @@
     },
     {
       "path": "docs/helix-harness/L8-unit-verification/semantic-asset-lineage.json",
-      "sha256": "6365651422b2aa7cc4ae3d7596c445cc854eea140daabeddb8990da6c57d7bd2",
-      "note": "WR246 fixed base L8: ADD-22..27, 30 Qualification subject_sha256 values and expected fields. Formal document remains unchanged in this partial result."
+      "sha256": "0e0de093df806bb0fc7df68a4d0d3371178a49c5528eb8f7c6066e7d42e4fa20",
+      "note": "WR246 fixed-base L8 after candidate-only removal of 30 ADD-22..27 typed Qualification subject_sha256 inputs. Pre-removal bytes remain at base commit/path; expected fields and case semantics are preserved."
     },
     {
       "path": "docs/governance/design-verification-quality-assurance.md",
@@ -44,13 +44,14 @@
       "note": "PR #3978 R1 correction: do not claim an L9 counterpart/alignment without a resolvable source row; read-only failure case."
     }
   ],
-  "role": "30 subject digest values' row-level fixture identity and branch evidence; cap status; unresolved QA §3 citation boundary.",
+  "role": "30撤去値の行別fixture identity/branch/source比較証拠と、撤去前後の責務・cap解消の証拠。",
   "obligations": [
-    "Pin the exact base L5/L8/QA bytes and classify every subject_sha256 occurrence by case, qualification, subject Ref, owner, fixture/source relation and expected oracle role.",
-    "Resolve each value against same-identity source_ref occurrences and raw Envelope content bytes, preserving intentional source-missing, bytes-mismatch and unresolved-qualification distinctions.",
-    "Keep all expected/output fields distinct from input digest values and verify the formal L8 expectations remain byte-identical to base.",
-    "Do not add concrete fixture bodies to L5, rename/hash-wrap forbidden L8 material, or invent a formal L8 test citation/U-ID.",
-    "Record cap remains unresolved at 30 until existing QA §3 test citation and a reviewable L8 U-ID reference are available."
+    "Pin fixed-base L5/L8/QA and source-only mapping bytes; row-map every pre-removal subject_sha256 by case, qualification, subject Ref, source relation, branch and expected role.",
+    "Resolve every pre-removal value against same-identity source_ref and raw Envelope content bytes; retain source-missing, bytes-mismatch and unresolved-qualification distinctions in the row evidence and L8 case branches.",
+    "Remove only ADD-22..27 typed_input.validated_input.input.qualifications[0..4].subject_sha256 (30 properties); preserve branch, all other input, function_ref, expected, expected_comparison, rule refs and case IDs.",
+    "Record decision_ref, pre-removal commit/path, count/reason and future L7 handoff in removed_materials; keep values recoverable through git history and keep the mapping evidence bytes unchanged.",
+    "Keep concrete fixture material out of L5; do not add scaffold references as formal L8 dependencies, test code, approved oracle, U-ID or test citation.",
+    "Do not change L4/L5/L9 semantics, and do not run any legacy/current runtime, tests or CI."
   ],
   "connections": {
     "consumers": [
@@ -74,9 +75,9 @@
     ],
     "forbidden": [
       "execute L4/L5 algorithm, product runtime, current test/CI, old CLI/runtime/test/CI/hook/workflow",
-      "change formal L4/L9 or L5/L8 content in this partial evidence result",
+      "change formal L4/L5/L9 content or alter L8 case meaning/expected values while addressing this removal",
       "invent U-ID, oracle ID or test citation; treat scaffold evidence as a formal test or approved oracle",
-      "rename or mask subject_sha256 to bypass ownership-cap detection",
+      "rename or mask retained subject Ref/source material to bypass ownership-cap detection",
       "旧archiveは実行しない"
     ]
   },
@@ -85,7 +86,8 @@
     "scaffold/research/wr246-h053-sha-cap-20261031/subject-sha-mapping.json",
     "scaffold/research/wr246-h053-sha-cap-20261031/validate_static_candidate.py",
     "scaffold/research/wr246-h053-sha-cap-20261031/verification-summary.json",
-    "scaffold/bindings/SCF-B-0205.json"
+    "scaffold/bindings/SCF-B-0205.json",
+    "scaffold/research/wr246-h053-sha-cap-20261031/verification-summary-r1.json"
   ],
   "verification": {
     "evidence_kind": "scaffold",
@@ -96,19 +98,20 @@
       "forbidden_write_scope"
     ],
     "oracles": [
-      "30/30 row pointers, Qualification.subject_ref.sha256 relations and same-identity source_ref occurrences resolve from the fixed base.",
-      "ADD-25 Q4 has no matching source Ref; ADD-26 Q4 content bytes mismatch the declared digest; ADD-27 Q4 has matching body digest but unresolved selected qualification Ref.",
-      "L5 abstract Qualification digest contract and QA §3 fixture/U-ID boundary resolve at the pinned revisions.",
-      "No formal L7 semantic-asset-lineage test file or per-case test_citation field is found, so formal L8 U-ID replacement is not performed."
+      "The fixed 30-row mapping resolves each pre-removal L8 pointer/value against Qualification.subject_ref.sha256, source_ref occurrences and Envelope content digest.",
+      "ADD-25/Q4 remains source-missing; ADD-26/Q4 remains declared digest/content bytes mismatch; ADD-27/Q4 remains matching source-body digest with unresolved selected qualification Ref.",
+      "The candidate removes exactly the 30 specified subject_sha256 input keys; case branch/function refs, all other typed input and expected/oracle fields remain equal to fixed base.",
+      "L5 remains byte-identical to the fixed base; removed_materials records the decision and pre-removal git provenance.",
+      "No L7 semantic-asset-lineage test file or per-case test_citation exists at fixed base; no test citation or oracle was invented."
     ],
     "negative_cases": [
-      "Do not assert all 30 values are independently recoverable from an available source body; branch-specific absence/mismatch/unresolved states are retained.",
-      "Do not represent formal L8 expected values as measured output; execution_state remains not_executed.",
-      "L8 cap remains 30 in this partial result."
+      "Do not infer that the source-missing, byte-mismatch and unresolved-qualification cases are equivalent; retain each separate branch and expected rule.",
+      "Do not represent scaffold mapping evidence as formal test output, approved fixture or oracle; execution_state remains not_executed.",
+      "The target L8 ownership-cap finding count is expected to fall from 30 to 0; child-check results may retain unrelated negative_4way failures."
     ]
   },
   "replacement": {
-    "role_target": "L8 U-ID rows with existing test citation and resolvable oracle IDs; separately resolved before any future cap reduction.",
+    "role_target": "Future independently authored L7 test/fixture/oracle and valid citation, when established by the applicable authority; this scaffold evidence does not create it.",
     "formal_artifacts": [],
     "issue": 3510,
     "status": "pending"

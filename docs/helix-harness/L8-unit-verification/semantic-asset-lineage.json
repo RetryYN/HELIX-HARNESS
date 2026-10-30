@@ -2357,7 +2357,6 @@
                   }
                 },
                 "owner": "authority_record_owner",
-                "subject_sha256": "f704e13f9edb1e5fa40d04fa2a9ca8e72171fe99eb88dd1e122989eb323324bc",
                 "applicable": true,
                 "reason": null
               },
@@ -2414,7 +2413,6 @@
                   }
                 },
                 "owner": "oracle_owner",
-                "subject_sha256": "9304db19a5f2d77e00c36e7537c3a378177b53344dba297516e70b72bf1d5e64",
                 "applicable": true,
                 "reason": null
               },
@@ -2471,7 +2469,6 @@
                   }
                 },
                 "owner": "relation-body-owner",
-                "subject_sha256": "b21c812225f1d6bac2756372811c57168679e81439844b7d3c2fc607f6a9abbb",
                 "applicable": true,
                 "reason": null
               },
@@ -2528,7 +2525,6 @@
                   }
                 },
                 "owner": "relation-record-owner",
-                "subject_sha256": "ce891fdb8e2210395a43b4b8cf7c868a838902491cb2450f699e3a49fab32d73",
                 "applicable": true,
                 "reason": null
               },
@@ -2585,7 +2581,6 @@
                   }
                 },
                 "owner": "trace_owner",
-                "subject_sha256": "727db3b76f406a89b3a69a0c23fc842e05c538fb8dfefc1892f17a7a57325074",
                 "applicable": true,
                 "reason": null
               }
@@ -3803,7 +3798,6 @@
                   }
                 },
                 "owner": "oracle_owner",
-                "subject_sha256": "9304db19a5f2d77e00c36e7537c3a378177b53344dba297516e70b72bf1d5e64",
                 "applicable": true,
                 "reason": null
               },
@@ -3860,7 +3854,6 @@
                   }
                 },
                 "owner": "trace_owner",
-                "subject_sha256": "6357d0609e1535d186abbdd291b31b949a859f32ba5c01863d996b833c431696",
                 "applicable": true,
                 "reason": null
               },
@@ -3917,7 +3910,6 @@
                   }
                 },
                 "owner": "relation-body-owner",
-                "subject_sha256": "6a86e7ca4808fe012b3acfb93d15f281589b8ec1ed82c224fff2b7109483ff92",
                 "applicable": true,
                 "reason": null
               },
@@ -3974,7 +3966,6 @@
                   }
                 },
                 "owner": "relation-record-owner",
-                "subject_sha256": "1e56fb80451f4a96b8629054616a1c272bea673859e17640206523886f081be0",
                 "applicable": true,
                 "reason": null
               },
@@ -4031,7 +4022,6 @@
                   }
                 },
                 "owner": "trace_owner",
-                "subject_sha256": "ce233450315d8724d26a8065baf991d8886ed9c3488be42c28512ba061695b66",
                 "applicable": true,
                 "reason": null
               }
@@ -5504,7 +5494,6 @@
                   }
                 },
                 "owner": "oracle_owner",
-                "subject_sha256": "9304db19a5f2d77e00c36e7537c3a378177b53344dba297516e70b72bf1d5e64",
                 "applicable": true,
                 "reason": null
               },
@@ -5561,7 +5550,6 @@
                   }
                 },
                 "owner": "trace_owner",
-                "subject_sha256": "6357d0609e1535d186abbdd291b31b949a859f32ba5c01863d996b833c431696",
                 "applicable": true,
                 "reason": null
               },
@@ -5618,7 +5606,6 @@
                   }
                 },
                 "owner": "relation-body-owner",
-                "subject_sha256": "6a86e7ca4808fe012b3acfb93d15f281589b8ec1ed82c224fff2b7109483ff92",
                 "applicable": true,
                 "reason": null
               },
@@ -5675,7 +5662,6 @@
                   }
                 },
                 "owner": "relation-record-owner",
-                "subject_sha256": "1e56fb80451f4a96b8629054616a1c272bea673859e17640206523886f081be0",
                 "applicable": true,
                 "reason": null
               },
@@ -5732,7 +5718,6 @@
                   }
                 },
                 "owner": "trace_owner",
-                "subject_sha256": "ce233450315d8724d26a8065baf991d8886ed9c3488be42c28512ba061695b66",
                 "applicable": true,
                 "reason": null
               }
@@ -7043,7 +7028,6 @@
                   }
                 },
                 "owner": "authority_record_owner",
-                "subject_sha256": "f704e13f9edb1e5fa40d04fa2a9ca8e72171fe99eb88dd1e122989eb323324bc",
                 "applicable": true,
                 "reason": null
               },
@@ -7100,7 +7084,6 @@
                   }
                 },
                 "owner": "oracle_owner",
-                "subject_sha256": "9304db19a5f2d77e00c36e7537c3a378177b53344dba297516e70b72bf1d5e64",
                 "applicable": true,
                 "reason": null
               },
@@ -7157,7 +7140,6 @@
                   }
                 },
                 "owner": "relation-body-owner",
-                "subject_sha256": "b21c812225f1d6bac2756372811c57168679e81439844b7d3c2fc607f6a9abbb",
                 "applicable": true,
                 "reason": null
               },
@@ -7214,7 +7196,6 @@
                   }
                 },
                 "owner": "relation-record-owner",
-                "subject_sha256": "ce891fdb8e2210395a43b4b8cf7c868a838902491cb2450f699e3a49fab32d73",
                 "applicable": true,
                 "reason": null
               },
@@ -7271,7 +7252,6 @@
                   }
                 },
                 "owner": "trace_owner",
-                "subject_sha256": "727db3b76f406a89b3a69a0c23fc842e05c538fb8dfefc1892f17a7a57325074",
                 "applicable": true,
                 "reason": null
               }
@@ -8458,7 +8438,6 @@
                   }
                 },
                 "owner": "authority_record_owner",
-                "subject_sha256": "f704e13f9edb1e5fa40d04fa2a9ca8e72171fe99eb88dd1e122989eb323324bc",
                 "applicable": true,
                 "reason": null
               },
@@ -8515,7 +8494,6 @@
                   }
                 },
                 "owner": "oracle_owner",
-                "subject_sha256": "9304db19a5f2d77e00c36e7537c3a378177b53344dba297516e70b72bf1d5e64",
                 "applicable": true,
                 "reason": null
               },
@@ -8572,7 +8550,6 @@
                   }
                 },
                 "owner": "relation-body-owner",
-                "subject_sha256": "b21c812225f1d6bac2756372811c57168679e81439844b7d3c2fc607f6a9abbb",
                 "applicable": true,
                 "reason": null
               },
@@ -8629,7 +8606,6 @@
                   }
                 },
                 "owner": "relation-record-owner",
-                "subject_sha256": "ce891fdb8e2210395a43b4b8cf7c868a838902491cb2450f699e3a49fab32d73",
                 "applicable": true,
                 "reason": null
               },
@@ -8686,7 +8662,6 @@
                   }
                 },
                 "owner": "trace_owner",
-                "subject_sha256": "727db3b76f406a89b3a69a0c23fc842e05c538fb8dfefc1892f17a7a57325074",
                 "applicable": true,
                 "reason": null
               }
@@ -9934,7 +9909,6 @@
                   }
                 },
                 "owner": "authority_record_owner",
-                "subject_sha256": "f704e13f9edb1e5fa40d04fa2a9ca8e72171fe99eb88dd1e122989eb323324bc",
                 "applicable": true,
                 "reason": null
               },
@@ -9991,7 +9965,6 @@
                   }
                 },
                 "owner": "oracle_owner",
-                "subject_sha256": "9304db19a5f2d77e00c36e7537c3a378177b53344dba297516e70b72bf1d5e64",
                 "applicable": true,
                 "reason": null
               },
@@ -10048,7 +10021,6 @@
                   }
                 },
                 "owner": "relation-body-owner",
-                "subject_sha256": "b21c812225f1d6bac2756372811c57168679e81439844b7d3c2fc607f6a9abbb",
                 "applicable": true,
                 "reason": null
               },
@@ -10105,7 +10077,6 @@
                   }
                 },
                 "owner": "relation-record-owner",
-                "subject_sha256": "ce891fdb8e2210395a43b4b8cf7c868a838902491cb2450f699e3a49fab32d73",
                 "applicable": true,
                 "reason": null
               },
@@ -10162,7 +10133,6 @@
                   }
                 },
                 "owner": "trace_owner",
-                "subject_sha256": "727db3b76f406a89b3a69a0c23fc842e05c538fb8dfefc1892f17a7a57325074",
                 "applicable": true,
                 "reason": null
               }
@@ -11213,5 +11183,13 @@
         "rule_id": "HARNESS-L5-053-R-non_applicability_scope_mismatch"
       }
     ]
+  },
+  "removed_materials": {
+    "decision_ref": "https://github.com/RetryYN/HELIX-HARNESS/issues/3510#issuecomment-6447665479",
+    "git_commit": "03141af4af6c5c3d9dc1f1bf075f29d96928d0f7",
+    "path": "docs/helix-harness/L8-unit-verification/semantic-asset-lineage.json",
+    "meaning": "実装前L8軽量化（#3510 comment 6447665479）として、ADD-22..ADD-27の合成Qualification入力からsubject_sha256を各5件、計30件撤去した。撤去前の固定本文はgit_commitの同一pathから辿れる。30値はすべて同じQualificationのsubject_ref.sha256と一致していたが、source pinや期待出力ではなく、subject body digest claimの入力値である。分岐の意味はケース本文と期待値に保持する。ADD-22はsource-qualified whole non-applicability、ADD-23はselected foreign-scope non-applicability、ADD-24はunselected foreign control。ADD-25 Q4はreason source missing、ADD-26 Q4は宣言digestとEnvelope bytesの不一致、ADD-27 Q4は一致するbodyに対するselected qualification Ref unresolvedであり、3 failure branchを混同しない。全caseのbranch、typed-inputのその他のmember、function_ref、expected、expected_comparison、rule refsとcase IDsは維持する。将来L7へ移る際は、30行それぞれのQualification/subject Ref/source関係とこのbranch対応を引継ぎ材料にし、期待とtest citationはL7の承認済み契約に従って独立に記述する。",
+    "removed_key_rule": "本変更で除去したのはadditional_unit_casesのADD-22..ADD-27にあるtyped_input.validated_input.input.qualifications[0..4].subject_sha256各1値、計30件のみ。subject_ref.sha256、source_ref/Envelope、全expected値とrule参照、既存のsource pinsおよびケース責務は保持する。key名変更、別名hash化、expectedへの移動は行わない。",
+    "use_boundary": "撤去前の値はgit_commitとpathで監査・由来追跡する。固定30行mappingは登録済みscaffold evidenceとして別に保全し、正式L8 fixture・test code・承認済みoracle・test citationとして扱わない。将来L7で期待値を独立著述する際の引継ぎ材料に限る。"
   }
 }
