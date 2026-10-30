@@ -25,8 +25,8 @@
     },
     {
       "path": "docs/helix-os/L5-detail-design/log-feedback-memory-lineage.json",
-      "sha256": "17cc4b4a400ccebf68902b6befaea682b2c81287a202113709a41e0fec28c200",
-      "note": "Expected codes/provenance pointers only; no edits."
+      "sha256": "47d2256d3b3295548156b6b8a92de1102e8e167f1d677288397393cdf268cb21",
+      "note": "Expected codes/provenance pointers unchanged; R01 source_value synchronized to current L4 wording in WR222. Historical comparison baseline SHA-256: 17cc4b4a400ccebf68902b6befaea682b2c81287a202113709a41e0fec28c200."
     },
     {
       "path": "docs/helix-os/L7-function-verification/log-feedback-memory-lineage.json",
@@ -35,8 +35,8 @@
     },
     {
       "path": "docs/helix-os/L8-unit-verification/log-feedback-memory-lineage.json",
-      "sha256": "0c20492e0ee7eb92c50053a67fadacd782259c64802e3a338a1f9435d7727516",
-      "note": "Selected expected code/pointer references only; no edits."
+      "sha256": "1c99e457cb57131a7ac93eef84f728789b0e76dff02e7364e5ee47d51d366877",
+      "note": "Selected expected code/pointer references unchanged; only the L4 source pin was rebound in WR222. Historical comparison baseline SHA-256: 0c20492e0ee7eb92c50053a67fadacd782259c64802e3a338a1f9435d7727516."
     },
     {
       "path": "docs/helix-os/L9-integration-verification/log-feedback-memory-lineage.json",

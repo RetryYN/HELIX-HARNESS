@@ -141,8 +141,8 @@
     },
     {
       "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
-      "revision": "da7a1e7203719ff8c38fbd7d326ed40aba1d5219",
-      "whole_sha256": "21b922d90061b11378054d9173db4f24b774fdf30f2555e9821f25138cb3c4e3",
+      "revision": "70499a07825f53f2fbbb85935d9888360a6ad14c",
+      "whole_sha256": "4b1eea9beaa7a4179dec374e8c914632dbef850c25f88bdc619a3b5808f7a2fb",
       "role": "親pairの基本設計の固定本文。"
     },
     {
@@ -892,7 +892,7 @@
       {
         "rule_id": "R01",
         "source_pointer": "/diagnostic_contract/rules/0",
-        "source_value": "共通string比較はactual/context各々が非空stringかを検査する。片側不明は各pointerにfield_unknown、両側knownで相違はactual pointerにfield_conflict。bool比較はtypeがboolでなければ各pointerにboolean_unknown、両側boolで相違ならactual pointerにboolean_conflict。比較codeは呼出元のlogs/feedback/memory facetに入れる。"
+        "source_value": "共通string比較はactual/context各々が非空stringかを検査する。各operandが非空stringでなければ、そのoperand自身のpointerにfield_unknownを付ける（片側不明なら不明側のみ、両側不明なら双方）。両側が非空stringで相違するときはactual pointerにfield_conflictを付ける。bool比較はactual/context各々のtypeがboolかを検査する。各operandがboolでなければ、そのoperand自身のpointerにboolean_unknownを付ける（片側不明なら不明側のみ、両側不明なら双方）。両側boolで相違するときはactual pointerにboolean_conflictを付ける。比較codeは呼出元のlogs/feedback/memory facetに入れる。"
       },
       {
         "rule_id": "R02",
