@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Static, read-only validation of WR246 subject digest row mapping."""
 import hashlib
+import copy
 import json
 import pathlib
 import subprocess
@@ -48,11 +49,11 @@ current_l5_bytes = pathlib.Path(L5).read_bytes()
 require(hashlib.sha256(base_l8_bytes).hexdigest() == artifact["source_files"][L8]["sha256"], "base L8 SHA mismatch")
 require(hashlib.sha256(base_l5_bytes).hexdigest() == artifact["source_files"][L5]["sha256"], "base L5 SHA mismatch")
 require(hashlib.sha256(base_qa_bytes).hexdigest() == artifact["source_files"][QA]["sha256"], "base QA SHA mismatch")
-require(current_l8_bytes == base_l8_bytes, "formal L8 changed from fixed base")
 require(current_l5_bytes == base_l5_bytes, "formal L5 changed from fixed base")
 
 l8 = parse(base_l8_bytes, L8)
 l5 = parse(base_l5_bytes, L5)
+candidate_l8 = parse(current_l8_bytes, L8)
 rows = artifact["rows"]
 require(len(rows) == 30, f"expected 30 source rows, found {len(rows)}")
 require(len({row["row_id"] for row in rows}) == 30, "row IDs are not unique")
@@ -88,13 +89,43 @@ for case_id in expected_cases:
     case = next(x for x in l8["additional_unit_cases"] if x["id"] == case_id)
     require("function_ref" in case and "expected" in case and "expected_comparison" in case, f"expected/oracle context missing {case_id}")
     require("test_citation" not in case, f"unexpected test citation requires review: {case_id}")
+    candidate_case = next(x for x in candidate_l8["additional_unit_cases"] if x["id"] == case_id)
+    require(candidate_case.get("branch") == case.get("branch"), f"candidate branch changed {case_id}")
+    require(candidate_case.get("function_ref") == case.get("function_ref"), f"candidate function_ref changed {case_id}")
+    require(candidate_case.get("expected") == case.get("expected"), f"candidate expected changed {case_id}")
+    require(candidate_case.get("expected_comparison") == case.get("expected_comparison"), f"candidate expected_comparison changed {case_id}")
+    require("test_citation" not in candidate_case, f"candidate invented test citation {case_id}")
+
+# The candidate may remove only the 30 typed fixture claim keys and add the
+# six-key history record. All case meaning, branch, source material, and
+# independent expected/oracle fields must remain structurally identical.
+expected_candidate = copy.deepcopy(l8)
+for case in expected_candidate["additional_unit_cases"]:
+    if case.get("id") not in expected_cases:
+        continue
+    qualifications = case["typed_input"]["validated_input"]["input"]["qualifications"]
+    require(len(qualifications) == 5, f"unexpected Qualification count {case['id']}")
+    for qualification in qualifications:
+        qualification.pop("subject_sha256", None)
+metadata = candidate_l8.get("removed_materials")
+require(isinstance(metadata, dict), "removed_materials record missing")
+require(set(metadata) == {"decision_ref", "git_commit", "path", "meaning", "removed_key_rule", "use_boundary"}, "removed_materials keys differ from precedent")
+expected_candidate["removed_materials"] = metadata
+require(candidate_l8 == expected_candidate, "candidate has changes beyond the 30 subject_sha256 removals and removed_materials record")
+candidate_remaining = sum(
+    "subject_sha256" in q
+    for case in candidate_l8["additional_unit_cases"]
+    if case.get("id") in expected_cases
+    for q in case["typed_input"]["validated_input"]["input"]["qualifications"]
+)
+require(candidate_remaining == 0, f"candidate retained {candidate_remaining} target subject_sha256 fields")
 require(l5["type_contract"]["types"]["Qualification"]["subject_sha256"] == "Digest", "L5 Qualification type contract changed")
 fn = next(x for x in l5["functions"] if x["id"] == "HARNESS-L5-053-validate_lineage_input")
 require(any("subject_ref/subject_sha256" in step for step in fn["algorithm"]), "L5 Qualification check contract changed")
 qa = base_qa_bytes.decode()
 require("L8 単体検証設計" in qa and "test citation" in qa, "QA §3 contract unavailable")
 
-print("PASS: 30/30 row pointers, subject Ref/digest relations, source_ref occurrences, and raw Envelope digests resolve.")
-print("PASS: ADD-22..27 branch, function_ref, and expected fields remain at fixed-base bytes.")
-print("PASS: abstract L5 Qualification contract matches the mapped fields; no concrete fixture was added to L5.")
-print("INCOMPLETE: QA §3 test citations are absent; formal L8 was left unchanged and ownership cap remains 30.")
+print("PASS: 30/30 pre-removal row pointers, subject Ref/digest relations, source_ref occurrences, and raw Envelope digests resolve.")
+print("PASS: candidate removes exactly the 30 subject_sha256 input fields and preserves branches, function refs, all other inputs, and expected fields.")
+print("PASS: removed_materials has the six precedent keys; L5 remains byte-identical and no fixture/test citation was added.")
+print("NOTE: the fixed mapping is source-only evidence; it is not a formal test, oracle, or fixture authorization.")

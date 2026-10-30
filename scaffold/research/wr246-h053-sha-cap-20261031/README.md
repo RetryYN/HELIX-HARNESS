@@ -1,6 +1,6 @@
 # WR246 H053 L8 subject digest cap 調査
 
-status: scaffold research evidence（正式L8改訂、承認、実行済みtestではない）
+status: scaffold research evidence（正式test/実行証拠ではない）
 authority_effect: none
 base: `03141af4af6c5c3d9dc1f1bf075f29d96928d0f7`
 
@@ -19,11 +19,21 @@ WR211で残したL8 forbidden-key 30件を行別に調べた。対象は `additi
 
 これら30値は文書source pinではなく、期待出力でもない。合成fixtureのQualification input（外部に出ていないsource claimを含む）で、L5 `Qualification.subject_sha256`を検査する具体値に当たる。値の抽象的な責務と検査条件は既存L5の`type_contract/types/Qualification/subject_sha256`と`HARNESS-L5-053-validate_lineage_input` algorithm[2]にある。
 
-## L8からの移動可否
+## L8材料の撤去と保持
 
-QA §3はL5にtest用合成fixture本体を置かず、L8を対象・反例/期待・oracle ID・test citationのU-ID表に限る。したがって具体値をL5へ移すことも、L8内で別名に置き換えることも行わない。固定baseのADD-22..27に`test_citation` fieldはなく、L7にsemantic-asset-lineageのtest fileもない。関数参照だけをtest citationとみなす根拠は確認できなかった。
+PR #3986 R1 F1の指摘と、#3510 comment 6447665479の軽量化決定に従い、ADD-22..27のtyped fixture inputにあった`subject_sha256` 30 propertyをL8から撤去した。`removed_materials`に決定参照、撤去前commit/path、件数と意味、将来L7への引継ぎ境界を記録した。L5は未変更、L8のcase ID・branch・他input・function_ref・expected・expected_comparison・rule refsは維持した。key改名やexpectedへの移動はしていない。
 
-各値とsubject Refの対応は30/30、同identityのsource Ref/body hashは29/30の範囲で再解決できた。唯一のsource-missing caseであるADD-25 Q4は、その不在自体が反例の意味である。ADD-26 Q4では、宣言SHAとraw content digestの不一致を確認した。ADD-27 Q4はsource body一致と資格Ref unresolvedを区別している。これらをL5にfixtureとして移すとQA配置境界に反し、L8から単純に消すとU-IDに必要なtest citationがない。従って正式L5/L8本文を変更せず、capを30件から下げるのは未完とする。mapping artifactは値の行き先と分岐意味を調べたsource-only evidenceであり、test code・正式oracle・承認済みfixtureではない。
+`subject-sha-mapping.json`は固定baseから採取した30行の比較証拠としてbytesを変更せず保全した。これはscaffold-onlyの著述・照合材料であり、正式fixture、test code、承認済みoracle、test citationではない。QA §3に従ってL5へfixtureを移さず、正式L8からscaffold evidenceへの参照も追加していない。将来L7を作る際、mappingのbranch/subject/sourceの区別を引き継ぎ、期待とcitationは承認済み契約に従って独立に記す。
+
+### 撤去前のgit provenanceと先例
+
+- #3510 [decision comment 6447665479](https://github.com/RetryYN/HELIX-HARNESS/issues/3510#issuecomment-6447665479)は、BRAIN以外のL8/L9にも同じ軽量化基準を適用し、`removed_materials`で撤去元を辿らせ、要求の意味・git履歴・新しいgateを変えないと決定している。
+- #3911の`docs/helix-security/L8-unit-verification/configuration-revision-integrity.json`は、撤去前をcommit `1b91e01d30ab40b5023b06d72f1fd83039ce7590`で指す。`removed_materials`が全文写し・L9重複・補助digestの種類と件数を列挙し、function expected、oracle recipe、pointer、source pinを保持する。
+- #3924の`docs/helix-security/L8-unit-verification/data-use-classification.json`は、撤去前commit `860e9c8ff5607f8b00890a04393b147f1c142f2d`とpathを残す。L3/L10・L9複製、source pin以外の補助hashを撤去材料として区別し、単体入力/期待、function expected、traceとrecipeを保持する。
+- #3929の`docs/helix-security/L8-unit-verification/project-scope-isolation.json`は、撤去前commit `c24f3a662b6f50d28875f4b090969b144cab3538`からのpathを残す。192件の文書側hashを種類別に数え、反例と期待、275件のsource pin、fixture digestは保持したと記録する。
+- #3930の`docs/helix-security/L8-unit-verification/credential-value-boundary.json`は、直前の記録commit `c3f5fac3770c5a3aa456ab36f1d7bf25447da209`とpathを維持し、`removed_materials`のkey改称を戻して既存名を保った。
+
+これらは各merge commitとその第一親の同一pathを`git show`で直接確認した。今回もbase commit `03141af4af6c5c3d9dc1f1bf075f29d96928d0f7`の同一pathに撤去前の全文が保存される。添付のmappingは撤去値の意味を行別に読むための固定証拠であり、L8の正式契約には昇格しない。
 
 ## 旧HELIXと失敗事例
 
@@ -35,4 +45,4 @@ QA §3はL5にtest用合成fixture本体を置かず、L8を対象・反例/期�
 
 ## 検証
 
-`validate_static_candidate.py` は指定baseのGit objectを読み、30行のpointer/valueとsubject/source Ref対応、Envelope content digest、branch/期待参照、L5抽象契約、固定source revision、test citationの有無を静的に確認する。設計checker `check-child` は変更前後の測定に使うが、L4/L5 algorithm、旧runtime/test/CIは実行しない。check-child結果は `verification-summary.json` に記録する。
+`validate_static_candidate.py` は指定baseのGit objectを読み、30行の撤去前pointer/valueとsubject/source Ref対応、Envelope content digestを確かめる。候補L8が30個の指定input memberだけを除き、branch/function/全期待/残りのinputを維持したこと、L5がbase bytesと同一であることも静的に比較する。設計checker `check-child` は変更前後の測定に使うが、L4/L5 algorithm、旧runtime/test/CIは実行しない。初回調査の測定は `verification-summary.json` に保持し、R1対応後の測定は `verification-summary-r1.json` に記録する。

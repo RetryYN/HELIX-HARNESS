@@ -1,0 +1,131 @@
+{
+  "schema": "wr246-h053-static-verification.v1",
+  "evidence_kind": "scaffold",
+  "authority_effect": "none",
+  "base_sha": "03141af4af6c5c3d9dc1f1bf075f29d96928d0f7",
+  "candidate_l8_sha256": "0e0de093df806bb0fc7df68a4d0d3371178a49c5528eb8f7c6066e7d42e4fa20",
+  "fixed_mapping_sha256": "632c566d61aed1bf631a6498bfbcd27dc2ed6520b0b00e4c3bf1cd58f9fce414",
+  "fixed_mapping_validation": {
+    "status": "PASS",
+    "result": "The exact preserved 30-row mapping resolves all pre-removal case/value pointers, subject Ref equality, same-identity source refs and raw Envelope digests. ADD-25/Q4 missing source, ADD-26/Q4 digest/content mismatch, and ADD-27/Q4 unresolved selected Qualification remain distinct.",
+    "bytes_changed_from_initial_scaffold_evidence": false,
+    "candidate_preserves_case_meaning": true
+  },
+  "candidate_static_comparison": {
+    "status": "PASS",
+    "removed_properties": 30,
+    "removed_cases": [
+      "HARNESS-L8-053-ADD-22",
+      "HARNESS-L8-053-ADD-23",
+      "HARNESS-L8-053-ADD-24",
+      "HARNESS-L8-053-ADD-25",
+      "HARNESS-L8-053-ADD-26",
+      "HARNESS-L8-053-ADD-27"
+    ],
+    "only_case_input_keys_removed": "typed_input.validated_input.input.qualifications[0..4].subject_sha256",
+    "branch_function_refs_all_other_inputs_expected_expected_comparison_and_rule_refs": "identical to fixed base",
+    "removed_materials": "six precedent keys; decision_ref, base git_commit/path, 30-value rationale, branch distinctions and future L7 handoff recorded",
+    "formal_L5_bytes_equal_base": true,
+    "test_citation_or_U_ID_invented": false
+  },
+  "check_child_before": {
+    "overall_passed": false,
+    "L4_L9_pair": {
+      "passed": true,
+      "left_count": 6,
+      "right_count": 6
+    },
+    "L5_L8_pair": {
+      "passed": true,
+      "left_count": 6,
+      "right_count": 6
+    },
+    "negative_4way": {
+      "passed": false,
+      "counts": {
+        "L4": 38,
+        "L9": 38,
+        "L8": 38,
+        "L5": 38
+      },
+      "matched_case_count": 0,
+      "failures": 76
+    },
+    "L8_ownership_cap": {
+      "passed": false,
+      "findings": 30
+    },
+    "pins": {
+      "passed": true
+    }
+  },
+  "check_child_after": {
+    "command": "python3 -B scaffold/tools/design_verification_checker.py check-child --root . --l4 docs/helix-harness/L4-basic-design/semantic-asset-lineage.json --l5 docs/helix-harness/L5-detail-design/semantic-asset-lineage.json --l8 docs/helix-harness/L8-unit-verification/semantic-asset-lineage.json --l9 docs/helix-harness/L9-integration-verification/semantic-asset-lineage.json",
+    "overall_passed": false,
+    "L4_L9_pair": {
+      "passed": true,
+      "left_count": 6,
+      "right_count": 6
+    },
+    "L5_L8_pair": {
+      "passed": true,
+      "left_count": 6,
+      "right_count": 6
+    },
+    "negative_4way": {
+      "passed": false,
+      "counts": {
+        "L4": 38,
+        "L9": 38,
+        "L8": 38,
+        "L5": 38
+      },
+      "matched_case_count": 0,
+      "failures": 76
+    },
+    "ownership_cap": {
+      "L4": 0,
+      "L5": 0,
+      "L8": 0,
+      "L9": 0
+    },
+    "pins": {
+      "all_passed": true,
+      "checked_counts": [
+        15,
+        15,
+        17,
+        17
+      ]
+    }
+  },
+  "binding_validation": {
+    "status": "PASS",
+    "summary": "bindings=187 fail=0"
+  },
+  "binding_stale": {
+    "status": "PASS",
+    "summary": "stale=0; SCF-B-0183 and SCF-B-0205 L8 pins rebound to candidate L8 bytes"
+  },
+  "descendant_impact": {
+    "direct_L9_references_to_removed_subject_sha_values": "none found; case IDs and L8/L5 mappings remain",
+    "formal_L5_L8_pair": "PASS 6/6",
+    "mapping_evidence": "remains exact and independently resolvable from fixed base"
+  },
+  "l8_change_scope": "Only 30 target subject_sha256 properties were removed, with one top-level removed_materials record added; L5/L4/L9 untouched.",
+  "old_runtime_test_ci": "not run",
+  "current_runtime_test_ci": "not run",
+  "l4_l5_algorithm": "not run",
+  "predecessor_validator_impact": {
+    "binding": "SCF-B-0183 / WR211",
+    "command": "python3 -B scaffold/research/wr211-hash-reference-reconciliation-20261031/validate.py",
+    "result": "FAIL: 許可した13 pointer削除・2 metadata追補以外にL8 JSON差分があります",
+    "reason": "The WR211 validator compares the current full L8 against its WR211 candidate and therefore rejects the later WR246 removal of 30 Qualification input keys. WR211 source/candidate remains in Git history; this is a predecessor validator scope boundary, not a current WR246 mapping failure.",
+    "changed": false
+  },
+  "prior_point_in_time_summary": {
+    "path": "scaffold/research/wr246-h053-sha-cap-20261031/verification-summary.json",
+    "sha256": "01ca404fc7b7b7df1fb52eee7a2f39ae92ac7c326302cef8ea0ab5794d60619f",
+    "preservation": "PR R1 snapshot preserved unchanged; this R1 follow-up records the later removal."
+  }
+}
