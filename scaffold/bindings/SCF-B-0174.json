@@ -6,7 +6,7 @@
   "product": "HELIX-HARNESS",
   "owner_candidate": "HELIX-HARNESS CORE003 design_verification (L4/L9)",
   "state": "registered",
-  "reason": "HARNESS L4/L9 process-state-portのF03 14件・F05 8件のunknown/unformed監査、F04の6件unknown/unformed・1件候補監査を保持するscaffold。F04は対象state proofの明示nullを確認するが、Provisional/IntegratedのVerified.lower_proof_refs dangling、および6 packetのRelease-eligible proofs参照先content未解決により完全なfinding setが不明。source qualification/実authority/実state成立はunknown。正式期待、formal projection row、checker marker、freeze、関数実行、製品testは変更・生成しない。",
+  "reason": "HARNESS L4/L9 process-state-portのF03 14件・F05 8件unknown/unformed監査、およびF04全7件unknown/unformed監査を保持するscaffold。Release-null packetを含む非null proofにもL5 state_basis参照の内容・対応付け・qualificationの未解決があるため単一条件候補は0件。未解決をfinding発火へ変換しない。source qualification/実authority/実state成立はunknown。正式期待、formal projection row、checker marker、freeze、関数実行、製品testは変更・生成しない。",
   "upstream": [
     {
       "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
@@ -25,8 +25,8 @@
     },
     {
       "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
-      "sha256": "25a850073b17f9a086c94d2fcb15f144578abe8937e0f26e2669c79805c77650",
-      "note": "L9監査記録と既存182-case population/expectations。固定raw input snapshotはed3981e7b9419d796adf1981f8990c6b626ecabe。F03/F05 22件とF04 6件はunknown/unformed監査行、F04 Release-eligible nullの1件だけ固定raw条件候補。正式期待とケース母集団は不変。"
+      "sha256": "ccac38abfa3a204fdd1b5c325b67835e13957914f5a8f239e87efe55d190dff5",
+      "note": "L9監査記録と既存182-case population/expectations。固定raw input snapshotはed3981e7b9419d796adf1981f8990c6b626ecabe。F03/F05 22件とF04全7件はunknown/unformed監査行、候補0。従来R1 revisionのhash 25a850073b17f9a086c94d2fcb15f144578abe8937e0f26e2669c79805c77650 は1 candidate/6 unknown記録を指し、本revisionではR2 M1後にcandidateを撤回。正式期待とケース母集団は不変。"
     }
   ],
   "role": "HARNESS L4/L9 design_verification pair向けに、process-state-portのF03/F04/F05入力条件、raw出典、候補の有無を監査する。",
@@ -34,8 +34,8 @@
     "固定raw revision/path/pointer/hashとL9 mutation/base case参照を保持し、既存case/expectationを変更しない。",
     "F03 14件・F05 8件で、L4/L5が要求する「未決/欠落を成立またはRelease-eligible扱いした処理結果」がrawにないことを個別記録し、finding setをunknown/unformed（空集合ではない）とする。",
     "F03/F05の既存case・期待、182件母集団、formal projection rows、checker marker、freezeを変更しない。",
-    "残る未形成181件と既存negative checker 223 FAILを明示し、部分監査を全体PASSと扱わない。",
-    "F04 7 packetは固定raw各packetの対象state proof nullと他state contentを記録し、非発火が支えられる1件だけ単一条件候補とする。Verified lower_proof_refsのnull参照とRelease-eligible proofs reference未解決がある6件はunknown/unformedとし、未解決を発火扱いしない。state_basis参照qualificationの定義不足はL5 function 4 ownerへ返す。synthetic qualificationのため実source資格/authority/state成立はunknown、実行結果やformal outputとは扱わない。"
+    "残る未形成182件と既存negative checker 223 FAILを明示し、部分監査を全体PASSと扱わない。",
+    "F04 7 packetは固定raw各packetの対象state proof nullとstate_basis根拠を記録する。Release-null packetを含め、参照先原内容・対応付け・qualificationが解決しないため全7件をunknown/unformedとし、単一条件候補は形成しない。未解決を発火扱いせず、state_basis参照qualificationの定義不足はL5 function 4 ownerへ返す。synthetic qualificationのため実source資格/authority/state成立はunknown、実行結果やformal outputとは扱わない。"
   ],
   "connections": {
     "consumers": [
@@ -47,7 +47,7 @@
       "HARNESS L5 process-state-port condition source, state_detail qualification groups, and failure conditions",
       "fixed L9 raw input snapshot ed3981e7b9419d796adf1981f8990c6b626ecabe"
     ],
-    "boundary": "design_verification（HARNESS L4/L9）の静的入力・参照監査のみ。F04 1件は固定fixture input-level単一条件候補、6件は他rule非発火根拠未解決のためunknown/unformed。F03/F05 22件もunknown/unformed。実source資格/authority/state成立と処理出力はunknown。L9 formal expectations/case population、formal projection row、checker marker、freeze、関数実行、製品test、CI結果を生成しない。"
+    "boundary": "design_verification（HARNESS L4/L9）の静的入力・参照監査のみ。F04全7件は他rule非発火根拠/ state_basis参照が未解決のためunknown/unformed、候補0。F03/F05 22件もunknown/unformed。実source資格/authority/state成立と処理出力はunknown。L9 formal expectations/case population、formal projection row、checker marker、freeze、関数実行、製品test、CI結果を生成しない。"
   },
   "operations": {
     "allowed": [
@@ -96,7 +96,7 @@
       "182-case populationと既存期待は不変、formal row・checker markerを追加しない。",
       "従来の22候補は要件追加条件を裏付けるraw観測がなく撤回し、履歴上の主張と混同しない。",
       "既存negative checker残余223 FAILとfreeze状態は監査候補と分けて記録する。",
-      "F04は1件だけ単一条件候補。6件はnull lower proof reference/Release-eligible proofs referenceの内容解決不足によりfinding set unknown/unformedであり、missing/unknownを発火へ変換しない。正式期待・182-case母集団・formal row・checker marker不変。"
+      "F04全7件はfinding set unknown/unformed、候補0。state_basis参照の未解決を発火へ変換せず、正式期待・182件母集団・formal row・checker marker不変。"
     ]
   },
   "replacement": {

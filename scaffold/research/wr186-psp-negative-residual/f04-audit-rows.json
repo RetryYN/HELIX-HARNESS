@@ -2,7 +2,7 @@
   "schema": "wr192-f04-manual-audit.v1",
   "evidence_kind": "scaffold",
   "authority_effect": "none",
-  "candidate_count": 1,
+  "candidate_count": 0,
   "audit_row_count": 7,
   "formal_projection_rows_added": 0,
   "formal_expectations_changed": false,
@@ -12,7 +12,7 @@
     "sha256": "91d0bcd34b8b451bc8e81f5d13d0c5f413de3ad5f7c70ba90a704134c4af3735",
     "pointer_field": "independent_source_packet.raw_utf8"
   },
-  "method": "L4 F04 class condition and state basis were read directly. Each fixed raw source packet was manually reviewed; the target proof is explicit null and the remaining state proof objects were checked for native content, source/owner role, target binding and state-specific attributes. L9 expected_material and negative_class_assignment were excluded as result evidence. Candidate status is limited to fixed synthetic input content; it does not assert executed output, actual source qualification, authority, or state attainment.",
+  "method": "L4 F04 class condition and state basis were read directly. Each fixed raw source packet was manually reviewed; target proof null is recorded as an input condition only. Same-shape state_basis references in non-null proof objects were checked against L4/L5 and the raw packet; where the referenced original content/mapping is not present and reference-resolution semantics are not defined, non-firing is unknown. L9 expected_material and negative_class_assignment were excluded as result evidence. No condition is treated as a firing finding, and no candidate is formed.",
   "audit_rows": [
     {
       "case_id": "H003-F04-MISSING-Provisional",
@@ -448,9 +448,9 @@
     },
     {
       "case_id": "H003-F04-MISSING-Release-eligible",
-      "candidate_status": "retained_fixture_input_single_condition_candidate",
-      "finding_set_status": "candidate_from_fixed_synthetic_fixture_input",
-      "finding_code": "F04_STATE_RELEASE-ELIGIBLE_PROOF_MISSING",
+      "candidate_status": "withdrawn_single_finding_candidate_nonfiring_unknown",
+      "finding_set_status": "unknown/unformed",
+      "finding_code": null,
       "axis": "state_Release-eligible_basis",
       "state": "missing",
       "condition_source": "Release-eligible固有の原証拠が不足。前状態/後続状態の証拠で補わず、独立に読めた他stateの証拠は保持する。",
@@ -468,7 +468,9 @@
         "missing_state_value": "explicit_null",
         "other_state_proof_count": 7,
         "other_state_proofs_non_null": true,
-        "non_firing_f04_codes": [
+        "non_firing_f04_codes": [],
+        "single_finding_set_status": "unknown/unformed",
+        "non_firing_unknown_f04_codes": [
           "F04_STATE_PROVISIONAL_PROOF_MISSING",
           "F04_STATE_INTEGRATED_PROOF_MISSING",
           "F04_STATE_VERIFIED_PROOF_MISSING",
@@ -476,8 +478,84 @@
           "F04_STATE_DEPLOYED_PROOF_MISSING",
           "F04_STATE_OBSERVED_PROOF_MISSING"
         ],
-        "single_finding_set_status": "candidate",
-        "non_firing_unknown_f04_codes": []
+        "non_firing_unknown_basis": {
+          "same_shape_state_basis_references": [
+            {
+              "state": "Working",
+              "raw_pointer": "/state_proofs/Working/content/work_record",
+              "l5_pointer": "/functions/4/state_detail/qualification_groups/Working_work_record",
+              "raw_value": "WORK-01",
+              "resolution": "unknown; record content/source qualification is not included or mapped in the fixed packet"
+            },
+            {
+              "state": "Provisional",
+              "raw_pointer": "/state_proofs/Provisional/content/contract",
+              "l5_pointer": "/functions/4/state_detail/qualification_groups/Provisional_contract",
+              "raw_value": "CONTRACT-DUP@r1",
+              "resolution": "unknown; referenced original contract content/source qualification is not included or mapped in the fixed packet"
+            },
+            {
+              "state": "Provisional",
+              "raw_pointer": "/state_proofs/Provisional/content/oracle",
+              "l5_pointer": "/functions/4/state_detail/qualification_groups/Provisional_oracle",
+              "raw_value": "ORACLE-DUP@r1",
+              "resolution": "unknown; referenced original oracle content/source qualification is not included or mapped in the fixed packet"
+            },
+            {
+              "state": "Integrated",
+              "raw_pointer": "/state_proofs/Integrated/content/design",
+              "l5_pointer": "/functions/4/state_detail/qualification_groups/Integrated_design",
+              "raw_value": "BOUNDARY@r1",
+              "resolution": "unknown; referenced design content/source qualification and mapping to dimension observations are not defined"
+            },
+            {
+              "state": "Integrated",
+              "raw_pointer": "/state_proofs/Integrated/content/observed_boundary",
+              "l5_pointer": "/functions/4/state_detail/qualification_groups/Integrated_observed_boundary",
+              "raw_value": "BOUNDARY@r1",
+              "resolution": "unknown; referenced observed-boundary content/source qualification and mapping to dimension observations are not defined"
+            },
+            {
+              "state": "Verified",
+              "raw_pointer": "/state_proofs/Verified/content/lower_proof_refs",
+              "l5_pointer": "/functions/4/state_detail/qualification_groups/Verified_lower_proof_refs",
+              "raw_value": [
+                "PROOF-Provisional",
+                "PROOF-Integrated"
+              ],
+              "resolution": "unknown transitively; IDs resolve to local proof identities, but transitive Provisional/Integrated state_basis references are unqualified; L4/L5 do not define this resolution"
+            },
+            {
+              "state": "Accepted",
+              "raw_pointer": "/state_proofs/Accepted/content/l2",
+              "l5_pointer": "/functions/4/state_detail/qualification_groups/Accepted_l2",
+              "raw_value": "USER-REQUIREMENT@r1",
+              "resolution": "unknown; referenced L2 requirement content/source qualification is not included or mapped in the fixed packet"
+            },
+            {
+              "state": "Observed",
+              "raw_pointer": "/state_proofs/Observed/content/planning",
+              "l5_pointer": "/functions/4/state_detail/qualification_groups/Observed_planning",
+              "raw_value": "VALUE-PLAN@r1",
+              "resolution": "unknown; referenced planning record content/source qualification is not included or mapped in the fixed packet"
+            },
+            {
+              "state": "Observed",
+              "raw_pointer": "/state_proofs/Observed/content/operation_record",
+              "l5_pointer": "/functions/4/state_detail/qualification_groups/Observed_operation_record",
+              "raw_value": "OPERATION-01",
+              "resolution": "unknown; referenced operation record content/source qualification is not included or mapped in the fixed packet"
+            }
+          ],
+          "l4_state_evidence_connection": {
+            "raw_pointer": "/state_evidence_connection",
+            "resolution": "requires independent original source evidence bound to the same revision/scope/artifact/environment and state-specific content comparison"
+          },
+          "l5_qualification_rule": {
+            "raw_pointer": "/functions/4/state_detail/qualification_rule",
+            "resolution": "qualifies each state root/binding and state-specific source materials individually; does not define string-only reference resolution"
+          }
+        }
       },
       "case_provenance": {
         "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
@@ -500,9 +578,9 @@
         "pointer": "/functions/4/failure_output_contract/conditions/4",
         "use": "condition wording cross-check only; no output execution/result claimed"
       },
-      "output_scope": "one L4 state-missing condition is supported by the fixed input; no runtime output, formal projection row, actual owner delivery, or execution pass is asserted.",
-      "ordered_output": "single condition only; no multi-finding ordering claim is needed.",
-      "non_firing_basis_scope": "supported_at_fixed_synthetic_fixture_content_level_only",
+      "output_scope": "The raw identifies Release-eligible as explicitly null, but the non-firing status of other state-missing rules is not established because state_basis references in non-null proof objects are not resolved by the fixed packet or L4/L5 semantics; no single-finding candidate, output, formal row, or execution result is asserted.",
+      "ordered_output": "unknown/unformed; no finding-set membership, multiplicity, or order is asserted.",
+      "non_firing_basis_scope": "incomplete_unknown_unformed; do not infer a firing code from unresolved state_basis references",
       "non_firing_actual_source_qualification": "unknown",
       "common_other_state_proof_review_ref": "/common_other_state_proof_review/states",
       "qualification_limit": "raw packetはsynthetic design fixture。recorded content/owner role/bindingの内容監査に限る。実owner資格、authority、state成立は示さない。",
@@ -512,8 +590,60 @@
         "value": "synthetic_design_fixture_not_actual_owner_or_authority"
       },
       "state_establishment": "unknown_not_claimed",
-      "non_firing_unknown_reason": null,
-      "finding_code_status": "input_candidate_code_for_single_condition_candidate"
+      "non_firing_unknown_reason": "他の非null proofにもL5 state_basisとして分類される参照（Working.work_record、Provisional.contract/oracle、Integrated.design/observed_boundary、Verified.lower_proof_refs、Accepted.l2、Observed.planning/operation_record）がある。固定rawには参照先の原内容・一部の対応付けがなく、L4/L5は文字列だけでの解決や未解決参照の扱いを定義しない。対象Release-eligible null以外の非発火を確認できずfinding setはunknown/unformed。未解決を発火とは扱わない。",
+      "finding_code_status": "not_formed_unknown_set",
+      "definition_gap_return": {
+        "layer": "L5",
+        "owner": "L5 function 4 detail-design owner",
+        "source_pointers": [
+          {
+            "path": "docs/helix-harness/L5-detail-design/process-state-port.json",
+            "pointer": "/functions/4/state_detail/qualification_groups/Working_work_record"
+          },
+          {
+            "path": "docs/helix-harness/L5-detail-design/process-state-port.json",
+            "pointer": "/functions/4/state_detail/qualification_groups/Provisional_contract"
+          },
+          {
+            "path": "docs/helix-harness/L5-detail-design/process-state-port.json",
+            "pointer": "/functions/4/state_detail/qualification_groups/Provisional_oracle"
+          },
+          {
+            "path": "docs/helix-harness/L5-detail-design/process-state-port.json",
+            "pointer": "/functions/4/state_detail/qualification_groups/Integrated_design"
+          },
+          {
+            "path": "docs/helix-harness/L5-detail-design/process-state-port.json",
+            "pointer": "/functions/4/state_detail/qualification_groups/Integrated_observed_boundary"
+          },
+          {
+            "path": "docs/helix-harness/L5-detail-design/process-state-port.json",
+            "pointer": "/functions/4/state_detail/qualification_groups/Verified_lower_proof_refs"
+          },
+          {
+            "path": "docs/helix-harness/L5-detail-design/process-state-port.json",
+            "pointer": "/functions/4/state_detail/qualification_groups/Accepted_l2"
+          },
+          {
+            "path": "docs/helix-harness/L5-detail-design/process-state-port.json",
+            "pointer": "/functions/4/state_detail/qualification_groups/Observed_planning"
+          },
+          {
+            "path": "docs/helix-harness/L5-detail-design/process-state-port.json",
+            "pointer": "/functions/4/state_detail/qualification_groups/Observed_operation_record"
+          },
+          {
+            "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
+            "pointer": "/state_evidence_connection"
+          },
+          {
+            "path": "docs/helix-harness/L5-detail-design/process-state-port.json",
+            "pointer": "/functions/4/state_detail/qualification_rule"
+          }
+        ],
+        "reason": "state_basis参照先の原内容・対応付け・qualificationと未解決時の扱いが未定義。参照不足をfinding発火とせず、L5 function 4へqualification/reference-resolution契約の明確化を戻す。"
+      },
+      "target_condition_code": "F04_STATE_RELEASE-ELIGIBLE_PROOF_MISSING"
     },
     {
       "case_id": "H003-F04-MISSING-Deployed",
@@ -736,7 +866,7 @@
       "artifact": "ARTIFACT-A@h2",
       "environment": "ENV-A"
     },
-    "method": "各残存stateについてraw packetのstate-specific content・outer ref/owner・bindingを手動照合。各proof objectのcanonical SHA-256は、そのstateを欠く1 candidateを除く残りcandidate packetで同一。機械validatorは原文hash/pointerとこの記録の一致だけを検査し、conditionを評価しない。",
+    "method": "各packetに存在するproof objectの共通構造・canonical hash・outer bindingを記録する。これはstate_basis参照先の原内容/qualification解決を意味しない。Release-null packetを含む参照先qualificationはcandidate_nonfiring_reference_recheckに従いunknownとして扱い、機械validatorは原文hash/pointerと記録値だけを静的照合する。conditionは評価しない。",
     "qualification_limit": "独立source packet自身が synthetic_design_fixture_not_actual_owner_or_authority と明示するため、実sourceの資格・実owner bytes・実authorityはunknown。実stateが成立したとは扱わない。",
     "states": [
       {
@@ -1078,6 +1208,81 @@
     ],
     "raw_packet_qualification": "synthetic_design_fixture_not_actual_owner_or_authority"
   },
-  "single_finding_candidate_count": 1,
-  "unknown_unformed_case_count": 6
+  "single_finding_candidate_count": 0,
+  "unknown_unformed_case_count": 7,
+  "candidate_nonfiring_reference_recheck": {
+    "review_basis": "L4/L5 source and fixed raw input only; no L4 predicate, L9 expected_material, or L8/L9 result oracle used",
+    "release_null_case_id": "H003-F04-MISSING-Release-eligible",
+    "same_shape_state_basis_reference_count": 9,
+    "unresolved_condition": "The raw packet contains identifiers/references for state_basis items but does not contain or map the cited original content in the cited cases; L4/L5 do not define string-only resolution or treatment of unresolved references.",
+    "result": "withdraw candidate; all seven F04 cases remain unknown/unformed; no finding is inferred to fire",
+    "references": [
+      {
+        "state": "Working",
+        "raw_pointer": "/state_proofs/Working/content/work_record",
+        "l5_pointer": "/functions/4/state_detail/qualification_groups/Working_work_record",
+        "raw_value": "WORK-01",
+        "resolution": "unknown; record content/source qualification is not included or mapped in the fixed packet"
+      },
+      {
+        "state": "Provisional",
+        "raw_pointer": "/state_proofs/Provisional/content/contract",
+        "l5_pointer": "/functions/4/state_detail/qualification_groups/Provisional_contract",
+        "raw_value": "CONTRACT-DUP@r1",
+        "resolution": "unknown; referenced original contract content/source qualification is not included or mapped in the fixed packet"
+      },
+      {
+        "state": "Provisional",
+        "raw_pointer": "/state_proofs/Provisional/content/oracle",
+        "l5_pointer": "/functions/4/state_detail/qualification_groups/Provisional_oracle",
+        "raw_value": "ORACLE-DUP@r1",
+        "resolution": "unknown; referenced original oracle content/source qualification is not included or mapped in the fixed packet"
+      },
+      {
+        "state": "Integrated",
+        "raw_pointer": "/state_proofs/Integrated/content/design",
+        "l5_pointer": "/functions/4/state_detail/qualification_groups/Integrated_design",
+        "raw_value": "BOUNDARY@r1",
+        "resolution": "unknown; referenced design content/source qualification and mapping to dimension observations are not defined"
+      },
+      {
+        "state": "Integrated",
+        "raw_pointer": "/state_proofs/Integrated/content/observed_boundary",
+        "l5_pointer": "/functions/4/state_detail/qualification_groups/Integrated_observed_boundary",
+        "raw_value": "BOUNDARY@r1",
+        "resolution": "unknown; referenced observed-boundary content/source qualification and mapping to dimension observations are not defined"
+      },
+      {
+        "state": "Verified",
+        "raw_pointer": "/state_proofs/Verified/content/lower_proof_refs",
+        "l5_pointer": "/functions/4/state_detail/qualification_groups/Verified_lower_proof_refs",
+        "raw_value": [
+          "PROOF-Provisional",
+          "PROOF-Integrated"
+        ],
+        "resolution": "unknown transitively; IDs resolve to local proof identities, but transitive Provisional/Integrated state_basis references are unqualified; L4/L5 do not define this resolution"
+      },
+      {
+        "state": "Accepted",
+        "raw_pointer": "/state_proofs/Accepted/content/l2",
+        "l5_pointer": "/functions/4/state_detail/qualification_groups/Accepted_l2",
+        "raw_value": "USER-REQUIREMENT@r1",
+        "resolution": "unknown; referenced L2 requirement content/source qualification is not included or mapped in the fixed packet"
+      },
+      {
+        "state": "Observed",
+        "raw_pointer": "/state_proofs/Observed/content/planning",
+        "l5_pointer": "/functions/4/state_detail/qualification_groups/Observed_planning",
+        "raw_value": "VALUE-PLAN@r1",
+        "resolution": "unknown; referenced planning record content/source qualification is not included or mapped in the fixed packet"
+      },
+      {
+        "state": "Observed",
+        "raw_pointer": "/state_proofs/Observed/content/operation_record",
+        "l5_pointer": "/functions/4/state_detail/qualification_groups/Observed_operation_record",
+        "raw_value": "OPERATION-01",
+        "resolution": "unknown; referenced operation record content/source qualification is not included or mapped in the fixed packet"
+      }
+    ]
+  }
 }
