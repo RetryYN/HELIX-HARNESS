@@ -6,7 +6,7 @@
   "product": "HELIX-HARNESS",
   "owner_candidate": "HELIX-SECURITY SEC009 L4/L9 source comparison evidence owner",
   "state": "registered",
-  "reason": "WR245 source-only blind comparison, L4/L9 explicit PR-A proposal, and audited R1/R2 source-semantic evidence; no authority or operation effect.",
+  "reason": "WR245 frozen blind and R2 measurement plus PR #3996 R1 source-derived SEC009 composite classification correction, all without authority or operation effect.",
   "upstream": [
     {
       "path": "docs/helix-security/L3-requirements/functional-requirements.json",
@@ -15,8 +15,8 @@
     },
     {
       "path": "docs/helix-security/L4-basic-design/revoke-quarantine-propagation.json",
-      "sha256": "d46e39cad2e2a90cfc532fa57226a4d650336e794a375f07e1cc2e6cbba15eb3",
-      "note": "Historical L4 source hash c0a31c5c663d39854ed1df13b9bf2bfc439fdb46419d089bc617607d6e6ac5b6 at base 7382d9c749951074d54240c5473243841c4bc765 is retained as fixed evidence; current pin covers the 30 existing class code projections, no new composite classes, with nested payloads unchanged."
+      "sha256": "00376c402930e1287e9e0e896804b1de8a20390f8abbea8377b70712f868b9da",
+      "note": "Historical L4 source hash c0a31c5c663d39854ed1df13b9bf2bfc439fdb46419d089bc617607d6e6ac5b6 at base 7382d9c749951074d54240c5473243841c4bc765 is retained as fixed evidence; current pin covers the 30 existing class code projections, no new composite classes, with nested payloads unchanged. Previous current pin at c50eb21b34f034262ced3f8052d2502fb84c57c9: d46e39cad2e2a90cfc532fa57226a4d650336e794a375f07e1cc2e6cbba15eb3; historical candidate/audit source pins remain recorded unchanged. Current pin follows WR245 PR-A R1 source bytes; L9 expected_proposal and all 71 multi-contract residuals are unchanged."
     },
     {
       "path": "docs/helix-security/L8-unit-verification/revoke-quarantine-propagation.json",
@@ -25,8 +25,8 @@
     },
     {
       "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
-      "sha256": "166a86af69e4f9ab067631580752c2f154fddb10c4ed2e2c6bd6ed45b0c769b9",
-      "note": "Base L9 expectations were compared at 7382d9c and remain unchanged across 285 nested single-contract cases and all 71 multi-contract residuals; current digest pins the PR-A explicit class/case projection."
+      "sha256": "af0f3e68683233ee1caa68b816ee7221b1fd4359442b179b4eaa0052068548e1",
+      "note": "Base L9 expectations were compared at 7382d9c and remain unchanged across 285 nested single-contract cases and all 71 multi-contract residuals; current digest pins the PR-A explicit class/case projection. Previous current pin at c50eb21b34f034262ced3f8052d2502fb84c57c9: 166a86af69e4f9ab067631580752c2f154fddb10c4ed2e2c6bd6ed45b0c769b9; historical candidate/audit source pins remain recorded unchanged. Current pin follows WR245 PR-A R1 source bytes; L9 expected_proposal and all 71 multi-contract residuals are unchanged."
     },
     {
       "path": "docs/helix-security/L10-verification/functional-verification.json",
@@ -56,13 +56,13 @@
   ],
   "role": "WR245 source-only blind comparison and explicit L8/L9 pair measurement",
   "obligations": [
-    "Preserve the 245-row frozen blind bytes and the separate WR236 30-row comparison with its 29/1 split.",
-    "Keep stable class_id/rule IDs; R1 decision permits projecting L4/L5 code to expected_classification when source semantics remain stable.",
-    "Derive both ambiguous rows from source facts and L3/L10/L4 before checking L9 expected values; retain all findings/axes and singleton-pattern limitations.",
-    "Preserve all 71 multi-contract residuals without inferred single-contract class assignments.",
-    "Keep L9 nested source inputs, given/when, expected_proposal and operation semantics unchanged; explicit integration index is additive.",
-    "Keep existing L4 nested consumer payloads and all measured RFC6901 targets value/type-equivalent; retire nested payloads only after all consumer redirects and required-field audit.",
-    "L5/L8 remain unchanged in PR-A; partial 4-layer marker state is expected to FAIL until PR-B completes L5/L8 schema and case cross-references.",
+    "Preserve the 245-row fixed blind bytes and WR236 30-row comparison with its separate 29/1 result.",
+    "Keep the historical R2 measurement/audit immutable; R2 records the then-current 30-class/283-row state with two unassigned cases.",
+    "Apply PR #3996 R1 response as a separate source-derived update: two L4 composite classes from reusable finding/axis formation rules and two L9 case assignments; no L9 expected_proposal changes.",
+    "Keep stable existing class_id/rule IDs; project L4 code to expected_classification as the R1 schema decision specifies.",
+    "Preserve all 71 multi-contract residuals and all 285 nested L9 given/when/expected_proposal rows.",
+    "Keep L4 nested consumer payloads and all 308 L8 plus 308 L9 RFC6901 targets value/type/field-equivalent; retire only after explicit redirects and a full reviewed pointer/field audit.",
+    "Keep L5/L8 unchanged in PR-A; partial marker checker remains FAIL until PR-B.",
     "Do not execute old runtime/test/CI or L4 algorithm; no commit/push from this lane."
   ],
   "verification": {
@@ -86,19 +86,24 @@
       "R2 measures 30 existing classes, 283 explicit integration rows (8 positive and 275 assigned negative), two unassigned ambiguous cases, 285 unchanged nested expectations and 71 unchanged multi-contract residuals.",
       "L8 and L9 each retain 308 RFC6901 references to unchanged L4 nested classification targets; value, type and required fields are checked.",
       "Current PR-A partial marker checker: 436 failures, matched 0; PR #3992 historical trial remains fixed at its recorded 438 failures.",
-      "The simultaneous omission of two unassigned rows from explicit arrays is not detected by the checker; independently audit original nested inventory and do not claim full 285-row coverage."
+      "The simultaneous omission of two unassigned rows from explicit arrays is not detected by the checker; independently audit original nested inventory and do not claim full 285-row coverage.",
+      "PR #3996 R1 correction artifact separately records source-backed composite formation, two ordered-axis class definitions, and c50 historical R2 validator/artifact state.",
+      "Current R1 projection: L4/L9 32 classes, L9 285 integration rows (8 positive and 277 negative), both ambiguous rows assigned through new L4/L9 composite classes; original R2 audit is preserved and R1 effective counts live in an additive audit entry.",
+      "R1 check-child is intentionally partial: 448 failures, matched 0; L5/L8 remain unmodified."
     ],
     "negative_cases": [
       "Do not report 275 rows as blind matches; WR236 frozen comparison includes one mismatch.",
       "Do not equate 285 ID bijection with semantic equality or 4-layer readiness.",
-      "Do not alter the two source-derived candidate meanings or L9 expectations for checker counts; keep the 71 multi-contract residual unchanged.",
       "Do not alter L5/L8 in PR-A, complete or claim the four-layer markers, or report intermediate FAIL as PASS.",
       "Do not remove L4 nested class payloads until all consumers have explicit redirects and every target/required field is proven equivalent.",
-      "Do not modify frozen measurement.json, fixed blind bytes, post-freeze comparison, or prior checker/audit records."
+      "Do not modify frozen measurement.json, fixed blind bytes, post-freeze comparison, or prior checker/audit records.",
+      "Do not change L9 expected_proposal to obtain a checker match.",
+      "Do not assign any of the 71 multi-contract residual rows to a single-contract class.",
+      "Do not claim four-layer PASS from this PR-A partial marker state."
     ]
   },
   "replacement": {
-    "role_target": "PR-B may address L5/L8 markers, rules and explicit links for 30 existing classes and 283 indexed rows. Two ambiguous rows remain unassigned and must not be silently omitted from a claim of complete correspondence.",
+    "role_target": "PR-B may add L5/L8 explicit rows, unit_cases, and integration refs for the 32 source-derived classes and 285 L9 rows; it must preserve L9 expectations and the 71 residual.",
     "formal_artifacts": [
       "docs/helix-security/L4-basic-design/revoke-quarantine-propagation.json",
       "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json"
@@ -119,7 +124,7 @@
       "QA §3 explicit class mode",
       "existing SEC009 L8/L9 nested case inventories"
     ],
-    "boundary": "scaffold evidence and L4/L9 PR-A proposal; no authority/operation effect; L5/L8 unchanged. The 2 ambiguous cases remain unassigned and checker omission is explicitly audited."
+    "boundary": "Scaffold evidence plus uncommitted PR-A R1 L4/L9 proposal; no authority/operation effect; L5/L8 unchanged."
   },
   "operations": {
     "allowed": [
@@ -173,6 +178,9 @@
     "scaffold/research/wr245-sec009-explicit-pair-measurement-20261031/validate_r2_ambiguous_source_first_design.py",
     "scaffold/research/wr245-sec009-explicit-pair-measurement-20261031/pr-a-r2-static-source-measurement.json",
     "scaffold/research/wr245-sec009-explicit-pair-measurement-20261031/validate_pr_a_r2_measurement.py",
-    "scaffold/research/wr245-sec009-explicit-pair-measurement-20261031/checker-trials/reports/pr-a-r2-check-child-report.json"
+    "scaffold/research/wr245-sec009-explicit-pair-measurement-20261031/checker-trials/reports/pr-a-r2-check-child-report.json",
+    "scaffold/research/wr245-sec009-explicit-pair-measurement-20261031/pr3996-r1-correction.json",
+    "scaffold/research/wr245-sec009-explicit-pair-measurement-20261031/validate_pr_a_r1_correction.py",
+    "scaffold/research/wr245-sec009-explicit-pair-measurement-20261031/checker-trials/reports/pr-a-r1-correction-check-child-report.json"
   ]
 }

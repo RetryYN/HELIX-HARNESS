@@ -5318,14 +5318,16 @@
           "original_pointer": "/cases/331",
           "population_state": "negative",
           "nested_pointer": "#/cases/1/negative_cases/205",
-          "assignment_rule": "single_axis_recipient_delivery_application_F01",
+          "assignment_rule": "composite_multi_finding_multi_axis_F01",
           "basis_pointers": [
             "docs/helix-security/L4-basic-design/revoke-quarantine-propagation.json#/contracts/1/component",
             "docs/helix-security/L4-basic-design/revoke-quarantine-propagation.json#/contracts/1/input_meaning",
             "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json#/cases/1/negative_cases/205/expected_proposal/recipient_correspondence",
-            "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json#/cases/1/negative_cases/205/expected_proposal/findings"
+            "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json#/cases/1/negative_cases/205/expected_proposal/findings",
+            "docs/helix-security/L4-basic-design/revoke-quarantine-propagation.json#/failure_classifications/30",
+            "docs/helix-security/L4-basic-design/revoke-quarantine-propagation.json#/diagnostic_contract/composite_class_formation"
           ],
-          "unassigned_classification_reason": "multiple_findings_compound_case"
+          "negative_classification_ref": "SEC009_F01_RECIPIENT_COMPOSITE_FINDINGS"
         },
         {
           "id": "SEC009-OS_ASSIGNMENT-ACTIONS-DUPLICATE",
@@ -21418,7 +21420,25 @@
             "operation_effect": "none"
           },
           "execution_state": "not_executed",
-          "actual_observation": "not_observed"
+          "actual_observation": "not_observed",
+          "negative_class_assignment": {
+            "classification": "SEC009_F01_RECIPIENT_COMPOSITE_FINDINGS",
+            "reason": "3 independently emitted F01 findings are retained in existing L4 finding sort order; worker continuation and credential not-applied are violations while OS receipt remains unknown.",
+            "source_pointers": [
+              {
+                "path": "docs/helix-security/L4-basic-design/revoke-quarantine-propagation.json",
+                "pointer": "/failure_classifications/30"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/revoke-quarantine-propagation.json",
+                "pointer": "/diagnostic_contract/composite_class_formation"
+              },
+              {
+                "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+                "pointer": "/cases/1/negative_cases/205/expected_proposal/findings"
+              }
+            ]
+          }
         },
         {
           "id": "SEC009-OS_ASSIGNMENT-ACTIONS-DUPLICATE",
@@ -23286,15 +23306,17 @@
           "original_pointer": "/cases/335",
           "population_state": "negative",
           "nested_pointer": "#/cases/2/negative_cases/40",
-          "assignment_rule": "single_axis_local_isolation_recovery_F02",
+          "assignment_rule": "shared_before_state_multi_axis_F02",
           "basis_pointers": [
             "docs/helix-security/L4-basic-design/revoke-quarantine-propagation.json#/contracts/2/component",
             "docs/helix-security/L4-basic-design/revoke-quarantine-propagation.json#/contracts/2/input_meaning",
             "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json#/cases/2/negative_cases/40/expected_proposal/isolation_correspondence",
             "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json#/cases/2/negative_cases/40/expected_proposal/recovery_correspondence",
-            "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json#/cases/2/negative_cases/40/expected_proposal/findings"
+            "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json#/cases/2/negative_cases/40/expected_proposal/findings",
+            "docs/helix-security/L4-basic-design/revoke-quarantine-propagation.json#/failure_classifications/31",
+            "docs/helix-security/L4-basic-design/revoke-quarantine-propagation.json#/diagnostic_contract/composite_class_formation"
           ],
-          "unassigned_classification_reason": "shared_before_state_ref_affecting_both_isolation_and_recovery"
+          "negative_classification_ref": "SEC009_F02_ISOLATION_RECOVERY_BINDING_UNRESOLVED"
         },
         {
           "id": "SEC009-SAFETY-STOP-SCOPE-NULL",
@@ -26490,7 +26512,25 @@
             "operation_effect": "none"
           },
           "execution_state": "not_executed",
-          "actual_observation": "not_observed"
+          "actual_observation": "not_observed",
+          "negative_class_assignment": {
+            "classification": "SEC009_F02_ISOLATION_RECOVERY_BINDING_UNRESOLVED",
+            "reason": "One shared context.before_state_ref finding leaves both existing F02 isolation and recovery binding axes unknown; neither axis is dropped or treated as resolved.",
+            "source_pointers": [
+              {
+                "path": "docs/helix-security/L4-basic-design/revoke-quarantine-propagation.json",
+                "pointer": "/failure_classifications/31"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/revoke-quarantine-propagation.json",
+                "pointer": "/diagnostic_contract/composite_class_formation"
+              },
+              {
+                "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+                "pointer": "/cases/2/negative_cases/40/expected_proposal/findings"
+              }
+            ]
+          }
         },
         {
           "id": "SEC009-SAFETY-STOP-SCOPE-NULL",
@@ -32876,6 +32916,55 @@
           "pointer": "/failure_classifications/29"
         }
       ]
+    },
+    {
+      "class_id": "SEC009_F01_RECIPIENT_COMPOSITE_FINDINGS",
+      "expected_classification": "revoke_material_violation",
+      "expected": {
+        "condition": "revoke_material_violation",
+        "finding_codes": [
+          "recipient_continues_after_stop",
+          "recipient_not_applied",
+          "recipient_receipt_unresolved"
+        ]
+      },
+      "backflow_owner": "revoke-quarantine-owner",
+      "expected_axis": [
+        "recipient_post_stop_non_continuation",
+        "recipient_action_application_status",
+        "recipient_receipt_status"
+      ],
+      "expected_state": "violation",
+      "side_effect_count": 0,
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L4-basic-design/revoke-quarantine-propagation.json",
+          "pointer": "/failure_classifications/30"
+        }
+      ]
+    },
+    {
+      "class_id": "SEC009_F02_ISOLATION_RECOVERY_BINDING_UNRESOLVED",
+      "expected_classification": "revoke_material_unknown",
+      "expected": {
+        "condition": "revoke_material_unknown",
+        "finding_codes": [
+          "binding_unresolved"
+        ]
+      },
+      "backflow_owner": "revoke-quarantine-owner",
+      "expected_axis": [
+        "isolation_identity_or_before_state_binding",
+        "recovery_identity_or_restored_state_binding"
+      ],
+      "expected_state": "unknown",
+      "side_effect_count": 0,
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L4-basic-design/revoke-quarantine-propagation.json",
+          "pointer": "/failure_classifications/31"
+        }
+      ]
     }
   ],
   "integration_cases": [
@@ -36266,6 +36355,30 @@
         }
       ],
       "negative_class_ref": "SEC009_F02_STOP_SCOPE_UNRESOLVED"
+    },
+    {
+      "id": "SEC009-COMPOUND-OS-UNKNOWN-CREDENTIAL-UNAPPLIED-WORKER-CONTINUES",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F01",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/1/negative_cases/205"
+        }
+      ],
+      "negative_class_ref": "SEC009_F01_RECIPIENT_COMPOSITE_FINDINGS"
+    },
+    {
+      "id": "SEC009-RECOVERY-PRIOR-SOURCE-MISSING",
+      "population_state": "negative",
+      "contract_ref": "HELIXSECURITY-L4-009-F02",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/2/negative_cases/40"
+        }
+      ],
+      "negative_class_ref": "SEC009_F02_ISOLATION_RECOVERY_BINDING_UNRESOLVED"
     }
   ],
   "explicit_pr_a_transition_audit": {
@@ -36274,6 +36387,66 @@
     "previous_audit_revision": "7382d9c749951074d54240c5473243841c4bc765",
     "projection_scope": "PR-A explicit L9 integration index contains the 8 positive and 275 existing assigned negative single-contract cases (283 rows). The two source-supported ambiguous cases remain unassigned in the nested source and audit; do not infer composite classes absent an upstream L3/L10/L4 class definition. All 71 multi-contract residual rows remain outside the single-contract index.",
     "preservation": "All existing L9 nested given/when/expected_proposal/operation fields remain unchanged; integration_cases is an additive 283-row index. The two ambiguous source rows remain nested and explicitly unassigned.",
-    "checker_limit": "PR-A provides L4/L9 explicit source/table and L9 integration index, but L5/L8 remain unchanged and lack explicit marker/class/unit_cases links. check-child is expected to FAIL in this intermediate state; no 4-way PASS is claimed."
+    "checker_limit": "PR-A provides L4/L9 explicit source/table and L9 integration index, but L5/L8 remain unchanged and lack explicit marker/class/unit_cases links. check-child is expected to FAIL in this intermediate state; no 4-way PASS is claimed.",
+    "as_of_revision": "c50eb21b34f034262ced3f8052d2502fb84c57c9"
+  },
+  "negative_class_assignment_audit_r1_addendum": {
+    "review_source": "PR #3996 R1 comment 6535373957; design response by PR author, not independent approval",
+    "prior_audit_pointer": "/negative_class_assignment_audit",
+    "prior_audit_preserved_exactly": true,
+    "resolved_case_count": 2,
+    "resolved_case_ids": [
+      "SEC009-COMPOUND-OS-UNKNOWN-CREDENTIAL-UNAPPLIED-WORKER-CONTINUES",
+      "SEC009-RECOVERY-PRIOR-SOURCE-MISSING"
+    ],
+    "effective_counts_after_r1": {
+      "single_contract_negative_population_count": 277,
+      "assigned_single_contract_negative_case_count": 277,
+      "unassigned_single_contract_negative_case_count": 0,
+      "fixed_upper_classification_count": 32,
+      "represented_classification_count": 32,
+      "integration_case_count": 285,
+      "positive": 8,
+      "assigned_negative": 277,
+      "multi_contract_residual_total_count": 71
+    },
+    "resolution_basis": "OS015 L4 composite_class_formation is a structural precedent, rederived in SEC009 terms. Preserve existing L4 findings in scalar sort order and map them to existing ordered axes, including a shared finding affecting multiple independently unknown axes. Copy scalar expected_state from the existing classification of the first ordered axis and separately preserve every axis state; do not add a cross-axis severity or aggregation rule. expected_classification is the existing overall result.condition. No new finding, authority or operation effect.",
+    "assignments": [
+      {
+        "case_id": "SEC009-COMPOUND-OS-UNKNOWN-CREDENTIAL-UNAPPLIED-WORKER-CONTINUES",
+        "case_pointer": "/cases/1/negative_cases/205",
+        "class_id": "SEC009_F01_RECIPIENT_COMPOSITE_FINDINGS",
+        "finding_codes": [
+          "recipient_continues_after_stop",
+          "recipient_not_applied",
+          "recipient_receipt_unresolved"
+        ],
+        "expected_axis": [
+          "recipient_post_stop_non_continuation",
+          "recipient_action_application_status",
+          "recipient_receipt_status"
+        ],
+        "expected_classification": "revoke_material_violation",
+        "expected_state": "violation",
+        "previous_unassigned_reason": "multiple_findings_compound_case"
+      },
+      {
+        "case_id": "SEC009-RECOVERY-PRIOR-SOURCE-MISSING",
+        "case_pointer": "/cases/2/negative_cases/40",
+        "class_id": "SEC009_F02_ISOLATION_RECOVERY_BINDING_UNRESOLVED",
+        "finding_codes": [
+          "binding_unresolved"
+        ],
+        "expected_axis": [
+          "isolation_identity_or_before_state_binding",
+          "recovery_identity_or_restored_state_binding"
+        ],
+        "expected_classification": "revoke_material_unknown",
+        "expected_state": "unknown",
+        "previous_unassigned_reason": "shared_before_state_ref_affecting_both_isolation_and_recovery"
+      }
+    ],
+    "expected_proposal_changed": false,
+    "multi_contract_residual_changed": false
   }
 }

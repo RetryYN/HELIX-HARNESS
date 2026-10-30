@@ -1299,7 +1299,8 @@
         "SEC009_F01_RECIPIENT_APPLICATION_UNRESOLVED",
         "SEC009_F01_RECIPIENT_NOT_APPLIED",
         "SEC009_F01_RECIPIENT_POST_STATE_UNRESOLVED",
-        "SEC009_F01_RECIPIENT_CONTINUES_AFTER_STOP"
+        "SEC009_F01_RECIPIENT_CONTINUES_AFTER_STOP",
+        "SEC009_F01_RECIPIENT_COMPOSITE_FINDINGS"
       ]
     },
     {
@@ -2030,7 +2031,8 @@
         "SEC009_F02_RECOVERY_BINDING_UNRESOLVED",
         "SEC009_F02_RECOVERY_BINDING_CONFLICT",
         "SEC009_F02_RECOVERY_UNRESOLVED",
-        "SEC009_F02_RECOVERY_INCOMPLETE"
+        "SEC009_F02_RECOVERY_INCOMPLETE",
+        "SEC009_F02_ISOLATION_RECOVERY_BINDING_UNRESOLVED"
       ]
     }
   ],
@@ -2064,6 +2066,20 @@
       "stop_scope_unresolved": "unknown",
       "trigger_category_conflict": "violation",
       "trigger_category_unresolved": "unknown"
+    },
+    "composite_class_formation": {
+      "purpose": "複数findingまたは複数axisが同じSEC009 resultに寄与するとき、L4が既に出したfinding・axis・stateを失わずに負例class keyへ写す規則。新しいfinding、owner、判定、authority、operation effectは生成しない。",
+      "finding_sequence": "L4 diagnostic_contract.sort の scalar順（code, pointer, return_owner）を使う。各findingのcodeをこの順で写し、異なるpointerの同code findingを重複して保持する。集合化・deduplicateは禁止。",
+      "axis_projection": "順序付け済み各findingについて、契約上そのfindingが判定する既存axisを写す。1つのshared source findingが複数の独立比較axisを未解決にする場合は、契約依存順に各axisを列挙する。expected_axisはこの順序付き配列とし、新しいbundle axis名を作らない。",
+      "overall_classification": "result.conditionから得たconditionをexpected_classificationへ写す。単一axisのstateから全体classificationを再計算しない。",
+      "expected_state": "既存class keyが要求するscalar expected_stateには、順序付きexpected_axisの先頭axisについて既存L4単軸classificationが示すstateを写す。全axis stateはexpected_preserved.contract_detailで順序対応を保持する。cross-axis優先順位・severity集約規則は定義しない。",
+      "class_reuse": "class_idはexisting expected_classification・ordered finding_codes・backflow_owner・ordered expected_axis・expected_stateの意味を識別する。4層照合ではL5 rule由来のtyped owner_refを加えたQA §3の6要素が一致するとき同じclass keyとして扱う。例のmember countだけからcase固有のclassを生成しない。 同じkeyの別caseへ再利用可能。",
+      "non_goals": [
+        "existing L4 findingsやL9 expected_proposalにないfinding/axis/stateを追加しない",
+        "recipient別またはcontract別の返却先を統合・変更しない",
+        "side effect、実停止、隔離、回復、再開許可を生じさせない",
+        "axis state間のseverity順序・優先規則を新設しない"
+      ]
     }
   },
   "failure_classifications": [
@@ -3846,6 +3862,205 @@
         {
           "path": "docs/helix-security/L4-basic-design/revoke-quarantine-propagation.json",
           "pointer": "/diagnostic_contract/code_classes/recovery_incomplete"
+        }
+      ]
+    },
+    {
+      "class_id": "SEC009_F01_RECIPIENT_COMPOSITE_FINDINGS",
+      "design_ref": "HELIXSECURITY-L4-009-F01",
+      "code": "revoke_material_violation",
+      "condition": "applied/recoveryのrecipient照合で、worker継続・credential未適用・OS receipt未解決が同時に生じた場合、3 findingとそのrecipient別axisを順序どおり保持する複合class。少なくとも2軸はviolation、receipt軸はunknownとして残す。",
+      "expected_classification": "revoke_material_violation",
+      "expected": {
+        "condition": "revoke_material_violation",
+        "finding_codes": [
+          "recipient_continues_after_stop",
+          "recipient_not_applied",
+          "recipient_receipt_unresolved"
+        ]
+      },
+      "backflow_owner": "revoke-quarantine-owner",
+      "expected_axis": [
+        "recipient_post_stop_non_continuation",
+        "recipient_action_application_status",
+        "recipient_receipt_status"
+      ],
+      "expected_state": "violation",
+      "side_effect_count": 0,
+      "expected_preserved": {
+        "target": "対象event/revision/scope・worker_execution/credential_use/os_assignment各finding pointer・return_ownerを保持",
+        "unaffected_scope": "該当しない有効scopeを全停止しない（unrelated_scope_stop_requested=false）",
+        "contract_detail": "worker継続=violation (既存SEC009_F01_RECIPIENT_CONTINUES_AFTER_STOP)、credential未適用=violation (既存SEC009_F01_RECIPIENT_NOT_APPLIED)、OS receipt unknown=unknown (既存SEC009_F01_RECIPIENT_RECEIPT_UNRESOLVED) の順序付きaxis stateを保持し、3 findingを単一failureや単一axisへ縮約しない。",
+        "operation_effect": "実停止/失効/隔離/回復・自動再開許可はnone"
+      },
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L3-requirements/business-requirements.json",
+          "pointer": "/requirements/2"
+        },
+        {
+          "path": "docs/helix-security/L10-verification/business-verification.json",
+          "pointer": "/cases/2"
+        },
+        {
+          "path": "docs/helix-security/L4-basic-design/revoke-quarantine-propagation.json",
+          "pointer": "/diagnostic_contract/composite_class_formation"
+        },
+        {
+          "path": "docs/helix-security/L4-basic-design/revoke-quarantine-propagation.json",
+          "pointer": "/diagnostic_contract/sort"
+        },
+        {
+          "path": "docs/helix-security/L4-basic-design/revoke-quarantine-propagation.json",
+          "pointer": "/diagnostic_contract/return_owner"
+        },
+        {
+          "path": "docs/helix-security/L3-requirements/functional-requirements.json",
+          "pointer": "/requirements/21"
+        },
+        {
+          "path": "docs/helix-security/L10-verification/functional-verification.json",
+          "pointer": "/cases/21"
+        },
+        {
+          "path": "docs/helix-security/L4-basic-design/revoke-quarantine-propagation.json",
+          "pointer": "/contracts/1/component"
+        },
+        {
+          "path": "docs/helix-security/L4-basic-design/revoke-quarantine-propagation.json",
+          "pointer": "/contracts/1/input_meaning"
+        },
+        {
+          "path": "docs/helix-security/L4-basic-design/revoke-quarantine-propagation.json",
+          "pointer": "/contracts/1/output_meaning"
+        },
+        {
+          "path": "docs/helix-security/L4-basic-design/revoke-quarantine-propagation.json",
+          "pointer": "/failure_classifications/12"
+        },
+        {
+          "path": "docs/helix-security/L4-basic-design/revoke-quarantine-propagation.json",
+          "pointer": "/failure_classifications/15"
+        },
+        {
+          "path": "docs/helix-security/L4-basic-design/revoke-quarantine-propagation.json",
+          "pointer": "/failure_classifications/17"
+        },
+        {
+          "path": "docs/helix-security/L4-basic-design/revoke-quarantine-propagation.json",
+          "pointer": "/diagnostic_contract/code_classes/recipient_continues_after_stop"
+        },
+        {
+          "path": "docs/helix-security/L4-basic-design/revoke-quarantine-propagation.json",
+          "pointer": "/diagnostic_contract/code_classes/recipient_not_applied"
+        },
+        {
+          "path": "docs/helix-security/L4-basic-design/revoke-quarantine-propagation.json",
+          "pointer": "/diagnostic_contract/code_classes/recipient_receipt_unresolved"
+        }
+      ],
+      "expectation_comparison_refs": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/1/negative_cases/205/expected_proposal/findings"
+        },
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/1/negative_cases/205/expected_proposal/recipient_correspondence"
+        }
+      ]
+    },
+    {
+      "class_id": "SEC009_F02_ISOLATION_RECOVERY_BINDING_UNRESOLVED",
+      "design_ref": "HELIXSECURITY-L4-009-F02",
+      "code": "revoke_material_unknown",
+      "condition": "isolationとrecoveryが同じ独立before-state sourceを照合し、そのsourceが欠落して両比較が未解決となる場合、1つのbinding_unresolved findingと両axisを順序どおり保持する複合class。",
+      "expected_classification": "revoke_material_unknown",
+      "expected": {
+        "condition": "revoke_material_unknown",
+        "finding_codes": [
+          "binding_unresolved"
+        ]
+      },
+      "backflow_owner": "revoke-quarantine-owner",
+      "expected_axis": [
+        "isolation_identity_or_before_state_binding",
+        "recovery_identity_or_restored_state_binding"
+      ],
+      "expected_state": "unknown",
+      "side_effect_count": 0,
+      "expected_preserved": {
+        "target": "対象event/revision/scope・context.before_state_ref pointer・return_ownerを保持",
+        "unaffected_scope": "該当しない有効scopeを全停止しない（unrelated_scope_stop_requested=false）",
+        "contract_detail": "isolation before-state binding=unknown (既存SEC009_F02_ISOLATION_BINDING_UNRESOLVED)、recovery restored-state binding=unknown (既存SEC009_F02_RECOVERY_BINDING_UNRESOLVED) の順序付きaxis stateを保持し、一方の照合状態や復旧完了・resume許可を推測しない。",
+        "operation_effect": "実停止/失効/隔離/回復・自動再開許可はnone"
+      },
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L3-requirements/business-requirements.json",
+          "pointer": "/requirements/2"
+        },
+        {
+          "path": "docs/helix-security/L10-verification/business-verification.json",
+          "pointer": "/cases/2"
+        },
+        {
+          "path": "docs/helix-security/L4-basic-design/revoke-quarantine-propagation.json",
+          "pointer": "/diagnostic_contract/composite_class_formation"
+        },
+        {
+          "path": "docs/helix-security/L4-basic-design/revoke-quarantine-propagation.json",
+          "pointer": "/diagnostic_contract/sort"
+        },
+        {
+          "path": "docs/helix-security/L4-basic-design/revoke-quarantine-propagation.json",
+          "pointer": "/diagnostic_contract/return_owner"
+        },
+        {
+          "path": "docs/helix-security/L3-requirements/functional-requirements.json",
+          "pointer": "/requirements/22"
+        },
+        {
+          "path": "docs/helix-security/L10-verification/functional-verification.json",
+          "pointer": "/cases/22"
+        },
+        {
+          "path": "docs/helix-security/L4-basic-design/revoke-quarantine-propagation.json",
+          "pointer": "/contracts/2/component"
+        },
+        {
+          "path": "docs/helix-security/L4-basic-design/revoke-quarantine-propagation.json",
+          "pointer": "/contracts/2/input_meaning"
+        },
+        {
+          "path": "docs/helix-security/L4-basic-design/revoke-quarantine-propagation.json",
+          "pointer": "/contracts/2/output_meaning"
+        },
+        {
+          "path": "docs/helix-security/L4-basic-design/revoke-quarantine-propagation.json",
+          "pointer": "/failure_classifications/22"
+        },
+        {
+          "path": "docs/helix-security/L4-basic-design/revoke-quarantine-propagation.json",
+          "pointer": "/failure_classifications/26"
+        },
+        {
+          "path": "docs/helix-security/L4-basic-design/revoke-quarantine-propagation.json",
+          "pointer": "/diagnostic_contract/code_classes/binding_unresolved"
+        }
+      ],
+      "expectation_comparison_refs": [
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/2/negative_cases/40/expected_proposal/findings"
+        },
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/2/negative_cases/40/expected_proposal/isolation_correspondence"
+        },
+        {
+          "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+          "pointer": "/cases/2/negative_cases/40/expected_proposal/recovery_correspondence"
         }
       ]
     }
