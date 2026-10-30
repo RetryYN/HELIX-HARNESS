@@ -20,13 +20,13 @@
     },
     {
       "path": "docs/helix-harness/L4-basic-design/tdd-development-flow.json",
-      "sha256": "36ba5cad0b3f49b9424635a670e6d309e8379bb44bb1f056e556f26ad44507f4",
-      "note": "Current L4 F01 compact candidate witness IDs, source meaning and evidence pointers; no new failure_conditions code. Existing F02 unchanged."
+      "sha256": "0636c1e7609777eea2811fbcb7dd980e5bae764c622ce57784dce50da5aa152e",
+      "note": "Current L4 F01 compact candidate witness IDs, source meaning and evidence pointers; no new failure_conditions code. Existing F02 unchanged. R1 F1/F2 state correction verified against fixed BASE and exact WR231 candidate rows; prior pin 36ba5cad0b3f49b9424635a670e6d309e8379bb44bb1f056e556f26ad44507f4 retained in WR231 comparison evidence. Rebound to current bytes 0636c1e7609777eea2811fbcb7dd980e5bae764c622ce57784dce50da5aa152e."
     },
     {
       "path": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json",
-      "sha256": "6626dab873e21bf560f427729caa73addc48146bf50fbeb4883dddf742bd06fc",
-      "note": "Current L9 F01 compact candidate witness IDs and evidence pointers; existing expected materials and five negatives preserved; synthetic inputs remain in fixed scaffold artifact."
+      "sha256": "4f64977ee8b2900733a823d5b9755f567952caef8cf323036a9b0776202d2462",
+      "note": "Current L9 F01 compact candidate witness IDs and evidence pointers; existing expected materials and five negatives preserved; synthetic inputs remain in fixed scaffold artifact. R1 F1/F2 state correction verified against fixed BASE and exact WR231 candidate rows; prior pin 6626dab873e21bf560f427729caa73addc48146bf50fbeb4883dddf742bd06fc retained in WR231 comparison evidence. Rebound to current bytes 4f64977ee8b2900733a823d5b9755f567952caef8cf323036a9b0776202d2462."
     },
     {
       "path": "docs/governance/legacy-asset-disposition.jsonl",
@@ -92,10 +92,12 @@
       "Static checker consumer semantics recorded; no execution consumer or runtime behavior asserted",
       "SCF-B-0192 stale=1 reason retained: preceding L5/L8 evidence marks L4/L9 unhandled; separate L5/L8 recompare required",
       "scfctl validate/stale, design_verification_checker check-pair/check-child, git diff --check",
-      "candidate artifact SHA-256: scaffold/research/wr231-tdd-f01-untraceable-l4l9-20261031/post-wr223-binding-recheck-20261031.json=8697527832af4934621422a4ec00f779a5fd5d0baf7edbc057f247e34ec82a19",
+      "candidate artifact SHA-256: scaffold/research/wr231-tdd-f01-untraceable-l4l9-20261031/post-wr223-binding-recheck-20261031.json=70271a76f37eea270fdcad92c8405d0332c757463ac680b2cc289e70578b5728",
       "WR223 README and verification-summary remain original pre-WR231 point-in-time bytes; post-WR223 binding reassessment is held in the separate WR231 evidence artifact.",
       "candidate artifact SHA-256: scaffold/research/wr231-tdd-f01-untraceable-l4l9-20261031/source/f01-blind-retry.json=2a53b965d023d81e6add971f8693cf633cfd6152c700e863a13da65568de3983",
-      "candidate artifact SHA-256: scaffold/research/wr231-tdd-f01-untraceable-l4l9-20261031/README.md=21bcdb8d411159eb9e3b682d85d433b35e24ff223bb7cfd69abceb3cd606cfa9"
+      "candidate artifact SHA-256: scaffold/research/wr231-tdd-f01-untraceable-l4l9-20261031/README.md=a250b1fe93702c140a45071f4ba81f4bd2244f5215ef08dde1a3b89e4ead7e5d",
+      "WR231 R1 response: github-upstream-operating-model.md:264 requires upstream[].path outside scaffold/; fixed artifact byte SHA is checked by the WR231 static validator, while historical scaffold paths and SHA remain in WR231 comparison evidence.",
+      "candidate artifact SHA-256: scaffold/research/wr231-tdd-f01-untraceable-l4l9-20261031/validate_static_candidate.py=a9a6d81e45c0a2c4bf6f46c9798fb6729373b1b31c7b9d671a3c5c11292a9c52"
     ],
     "negative_cases": [
       "Do not treat witness IDs as failure codes or classification enums.",

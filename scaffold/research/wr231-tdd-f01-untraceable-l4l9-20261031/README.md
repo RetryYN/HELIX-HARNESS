@@ -21,9 +21,16 @@ Artifactは2つの合成input（対象binding unavailable、design/oracle revisi
 - blind artifactが参照したL4 file SHA `738a76b4753a8c51d1c684ae2ffa18d91b7bdbc2794961cde66a47c585aa299b` を持つrevisionは `96083e82980af86a3939f2cd1100bbd2ebf0e6b7`。base `c8f20a4f91456f6d5e5c16e1be0083c34aab6651` のL4 file SHAは `8dfbe628d7beb9b449a3ec48e98b7ed89ebbb4be1ea9b3f061dfd02ba464ea2f`。両revisionの`/contracts/1` row全体は一致せず、base側に既存`negative_classifications` 5件が追加されていた。blindが実際に参照したF01 `failure_conditions`と本文は一致し、それ以外のrow差は既存classificationだった。この差と両revision/hashを比較後に記録した。blindがbase全体を参照したとは扱わず、fixed artifactは編集していない。
 - L4 `failure_conditions[].code`は既存のfailure condition keyであり、各`meaning`に結びつく。固定blindの2件はどちらも`failure_code: unknown`で、L3/L10にも新しいfailure codeの意味・enum定義はない。よって追加したfailure conditionsは撤回した。正式L4/L9行の`id`（`WR231-F01-...`）はこの証跡内のcandidate witness row識別子に限定し、failure code/classificationを主張しない。`failure_code_status: unknown`を明示した。
 - 静的consumerの調査: `scaffold/tools/design_verification_checker.py`の`_extract_neg_key`は`expected_classification`→`code`→`id`の順に行を識別し、4-way比較の`_normalize_neg_item`は`expected_classification`または`code`をclassification値として比較する。F02用静的validatorもL4 `negative_classifications[].code`を参照する。これらは文書照合であり、failure codeの実行consumerではない。今回の`id`はpopulation/witness識別にのみ使われ、4-way classification値ではない。L5/L8に対応行がなく、4-way完了を主張しない。
-- L4/L9には必要な設計意味と証拠pointerだけを残した。L4既存`output_contract.pair_binding`を軸にし、null/未決を`unknown`とする既存state vocabularyを参照する。対象trace不足とpair内design/oracle revision trace不足は別のunresolved witnessとして示す。両行の`FrozenContractIntake`はL4 component refsと既存行由来であり、owner拡張はしていない。
+- L4/L9には必要な設計意味と証拠pointerだけを残した。L4既存`output_contract.pair_binding`を軸候補とするが、sourceから一意ではないため`axis_selection_status=l4_design_choice_not_unique_from_source`を記録した。今回の2行は対象identity/revision/scopeまたはdesign/oracle revisionの必須記録が未供給なので、L4の既存state vocabularyと`freeze_missing`のbasisに合わせて`expected_state=missing`とした。`failure_code_status=unknown`は状態とは別で、failure codeの意味未確定を示す。L4/L9とも副作用期待は0、固定blindが述べるpair freeze/TDD success/implementation successは生成しない。L9の非対象保全はblindに材料がないため未主張、`execution_state=not_executed`とした。両行の`FrozenContractIntake`はL4 component refsと既存行由来であり、owner拡張はしていない。
 - `known_binding`等の合成値、L9の`input`/`source_packet`/`owner_material`/`original_bytes_utf8`、candidate/preservationの重複はL4/L9から除き、固定artifact一箇所に保持した。証跡行はartifact path/SHA/pointerで参照する。固定bytesそのものは変更していない。
 - `target_ref`不一致、owner不一致、個別L6/test reference不一致、sequence等値などはblind input/source basisに分類根拠がなく未決。oracleの既知別revisionは既存`foreign_oracle_revision`が扱う。対象revが分かる場合の細分化もここから導出しない。
+
+## R1 review comment 6533283057への対応
+
+- F1: L4 `negative_classification_state_vocabulary`は必須所見/比較軸の未供給を`missing`、null/未決を`unknown`と区別する。盲導出の2 inputは必須target identity/revision/scopeまたはdesign/oracle revisionをnullで未供給にしている。L4既存`freeze_missing`はnull必須凍結記録を未供給として`missing`にする。従って候補状態を両層で`missing`へ揃えた。failure codeは依然`unknown`である。
+- F2: 行に`expected_side_effect_count=0`、成功非生成、L4軸選択の不確実性を記録した。L9には`expected_issue`、`expected_partial_material`、`non_target_preserved`、`execution_state`を追加し、非対象材料がblindに無いことを明記した。
+- F3: [GitHub上流運用モデル](../../../docs/governance/github-upstream-operating-model.md)264行は、全PR classで`upstream[].path`を`scaffold/`外と定める。main上の既存違反はこの明示条項を上書きしない。固定artifact SHAは各bindingの`verification.oracles`に保持し、WR231 validatorで実bytesと照合する。過去のscaffold upstream path/hashと時点は後続の比較証跡に保全した。
+- F4: 変更前WR223 validator revision `c8f20a4f91456f6d5e5c16e1be0083c34aab6651` / SHA-256 `60e8fdc132be18131f42e48f6a617e6391a883efb7e3deb4f6086c3db8029307`、WR206 validator同revision / SHA-256 `0f71c5fce995ca7defecfcec7f9ae8ef572c5b78a91c70313ec2649c75626323`を履歴証跡に保持した。既存validator pathは拡張版を保ち、WR231の固定BASE、2行だけのL4/L9差、WR223固定L8 `candidate_unit_design`、全3 bindingのupstreamとartifact SHAを静的検査する。旧validator bytesは上記revision/SHAで復元できる。別のWR231 validatorも同じ特定条件を独立照合する。
 
 ## 既存失敗と旧HELIX
 
@@ -37,7 +44,7 @@ Artifactは2つの合成input（対象binding unavailable、design/oracle revisi
 - L4既存`failure_conditions` 5件、既存分類5件、`output_contract`、L9既存`expected_material`、normal fixture、negative 5行と他caseを維持した。既存期待値は変更せず、L9の合成入力重複だけを除去した。
 - timestamp-onlyは既存行が扱う。blindが示す2条件を越えた分類、既知target内のrevision不一致と未供給の区別、sequence等値は未決である。
 - F02専用`SCF-B-0185`はF02 row本体が変わっていないことを確認し、L4全体pinを更新した。旧SHAと理由はbinding noteに保持した。
-- 初回WR231検証時は`SCF-B-0192`がstale=1だった。先行L5/L8証跡が「BASE時点のL4/L9に未対応」と記録し、その後L4/L9へ2 witnessが追加された実質差分が理由だった。後続で固定BASE差分をvalidatorで独立照合し、upstream scaffold参照を修正した結果は末尾の別証跡に記録する。
+- R1対応で2行のstateを`unknown`から`missing`へ変更した。WR223/WR206/WR231各validatorで固定BASE・候補2行・期待値保全を再検証した後、SCF-B-0185/0192/0193のL4/L9 upstream pinを現在の検証済みbytesへ更新した。`scfctl stale=0`はこの照合後のpin一致を示し、L5/L8の意味照合・4way分類完了を示さない。
 - scaffold候補の静的照合は正式設計・実operation・実Red/Green・受入を生成しない。
 
 ## 静的検証
@@ -49,14 +56,14 @@ Artifactは2つの合成input（対象binding unavailable、design/oracle revisi
 | JSON parse / existing-material comparison | pass。L4既存F01 conditions/output/分類5行、L9既存F01 expected/fixture/negative5行、他L9 caseを保持。 |
 | fixed blind artifact | SHA-256 `2a53b965d023d81e6add971f8693cf633cfd6152c700e863a13da65568de3983` と一致。 |
 | `scfctl validate` | `bindings=181 fail=0`。 |
-| `scfctl stale` | 初回WR231検証時は`stale=1`（SCF-B-0192）。後続のBASE差分validator確認とbinding修正後の結果は末尾の別証跡を参照。 |
+| `scfctl stale` | `stale=0`。3 bindingのL4/L9 pinは固定BASEと2行候補を検査後、現在のbytesへ再束縛。 |
 | `check-pair` | L4/L9 pair-bidir pass、L4 ownership pass。L9に既存`byte_sha256` ownership違反35件が残り、全体exit 1。 |
 | `check-child` pair links | L4/L9とL5/L8ともpass。 |
 | `check-child` negative 4-way | exit 1。counts L4=30, L9=30, L8=0, L5=0、matched=0。今回のwitness id 2件はL4/L9のみで、L5/L8 counterpartなし。4-way完了ではない。 |
 | ownership-cap / pins | L9 35件、L8 1647件の既存違反。L4/L5 pass。全4 pin groups pass（15/14/25/25件）。 |
 | `git diff --check` | clean。 |
 
-これらは初回時点での文書・binding静的照合結果である。checkerの失敗を成功扱いにしない。後続証跡でSCF-B-0192のstaleはpin整合とBASE差分の再検証により解消したが、L5/L8意味照合と既存ownership違反は未解消である。旧runtime・algorithm・test・CI、新runtime/test/CIは実行していない。
+これらは初回時点での文書・binding静的照合結果である。checkerの失敗を成功扱いにしない。L5/L8の意味照合、failure-code分類、既存ownership違反は未解決である。旧runtime・algorithm・test・CI、新runtime/test/CIは実行していない。
 
 ## WR223 binding再評価の後続証跡
 

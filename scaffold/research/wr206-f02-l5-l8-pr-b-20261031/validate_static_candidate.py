@@ -92,7 +92,7 @@ def verify_binding_upstream_scope() -> None:
         },
         "scaffold/bindings/SCF-B-0193.json": {
             "scaffold/research/wr231-tdd-f01-untraceable-l4l9-20261031/source/f01-blind-retry.json": "2a53b965d023d81e6add971f8693cf633cfd6152c700e863a13da65568de3983",
-            "scaffold/research/wr231-tdd-f01-untraceable-l4l9-20261031/README.md": "21bcdb8d411159eb9e3b682d85d433b35e24ff223bb7cfd69abceb3cd606cfa9",
+            "scaffold/research/wr231-tdd-f01-untraceable-l4l9-20261031/README.md": "a250b1fe93702c140a45071f4ba81f4bd2244f5215ef08dde1a3b89e4ead7e5d",
         },
     }
     for path in ALL_BINDINGS:
@@ -157,6 +157,14 @@ def main() -> None:
     l9_f01 = one(l9_current["cases"], "HARNESS-L9-015-F01")
     assert {row.get("id") for row in l4_f01["negative_classifications"] if row.get("id") in WR231_IDS} == WR231_IDS
     assert {row.get("id") for row in l9_f01["negative_cases"] if row.get("id") in WR231_IDS} == WR231_IDS
+    wr231_l4 = {row["id"]: row for row in l4_f01["negative_classifications"] if row.get("id") in WR231_IDS}
+    wr231_l9 = {row["id"]: row for row in l9_f01["negative_cases"] if row.get("id") in WR231_IDS}
+    for witness_id in WR231_IDS:
+        l4_row, l9_row = wr231_l4[witness_id], wr231_l9[witness_id]
+        assert l4_row["expected_state"] == l9_row["expected_state"] == "missing"
+        assert l4_row["failure_code_status"] == l9_row["failure_code_status"] == "unknown"
+        assert l4_row["expected_side_effect_count"] == l9_row["expected_side_effect_count"] == 0
+        assert l4_row["expected_non_generation"] == l9_row["expected_non_generation"] == ["pair_freeze_established", "TDD success", "implementation_success"]
     l4_f01["negative_classifications"] = [row for row in l4_f01["negative_classifications"] if row.get("id") not in WR231_IDS]
     l9_f01["negative_cases"] = [row for row in l9_f01["negative_cases"] if row.get("id") not in WR231_IDS]
     assert l4_current == l4_base, "current L4 differs from fixed WR206 BASE beyond two WR231 witness rows"

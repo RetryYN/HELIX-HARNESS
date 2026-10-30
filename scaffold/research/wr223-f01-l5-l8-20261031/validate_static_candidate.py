@@ -218,10 +218,21 @@ def main() -> None:
     assert l4_f01["output_contract"] == l4_f01_base["output_contract"]
     assert l9_f01["expected_material"] == l9_f01_base["expected_material"]
     assert l9_f01["normal_fixture"] == l9_f01_base["normal_fixture"]
-    for row in l4_rows + l9_rows:
-        assert "code" not in row and row["failure_code_status"] == "unknown"
-        assert row["expected_axis"] == "pair_binding" and row["expected_state"] == "unknown"
-        assert row["backflow_owner"] == "FrozenContractIntake"
+    l4_by_id = {row["id"]: row for row in l4_rows}
+    l9_by_id = {row["id"]: row for row in l9_rows}
+    for row_id in WR231_IDS:
+        l4_row, l9_row = l4_by_id[row_id], l9_by_id[row_id]
+        assert "code" not in l4_row and "code" not in l9_row
+        assert l4_row["failure_code_status"] == l9_row["failure_code_status"] == "unknown"
+        assert l4_row["expected_axis"] == l9_row["expected_axis"] == "pair_binding"
+        assert l4_row["expected_state"] == l9_row["expected_state"] == "missing"
+        assert l4_row["expected_side_effect_count"] == l9_row["expected_side_effect_count"] == 0
+        assert l4_row["axis_selection_status"] == l9_row["axis_selection_status"] == "l4_design_choice_not_unique_from_source"
+        assert l9_row["execution_state"] == "not_executed"
+        assert l9_row["non_target_preserved"].startswith("not_asserted:")
+        assert l4_row["expected_non_generation"] == l9_row["expected_non_generation"] == [
+            "pair_freeze_established", "TDD success", "implementation_success"
+        ]
     l4_by_id, l9_by_id = ({row["id"]: row for row in rows} for rows in (l4_rows, l9_rows))
     expected_source_pointers = {
         "WR231-F01-target-binding-unavailable": "/negative_inputs/0",
@@ -292,7 +303,7 @@ def main() -> None:
         },
         "scaffold/bindings/SCF-B-0193.json": {
             WR231_ARTIFACT: WR231_SHA,
-            "scaffold/research/wr231-tdd-f01-untraceable-l4l9-20261031/README.md": "21bcdb8d411159eb9e3b682d85d433b35e24ff223bb7cfd69abceb3cd606cfa9",
+            "scaffold/research/wr231-tdd-f01-untraceable-l4l9-20261031/README.md": "a250b1fe93702c140a45071f4ba81f4bd2244f5215ef08dde1a3b89e4ead7e5d",
         },
     }
     for binding_path in ALL_BINDINGS:
@@ -328,7 +339,7 @@ def main() -> None:
     print("Six scaffold facts re-resolve against base L9 owner_material: PASS")
     print("L8 U-ID rows contain compact fact references and short projections only; no raw owner_material/full return")
     print("L4/L9 fixed BASE hashes and all existing rows preserved; current delta is exactly two WR231 witness rows")
-    print("WR231 witness rows remain unknown-code candidates with fixed source pointers; no L5/L8 classification is asserted")
+    print("WR231 witness rows retain unknown failure-code status, state=missing, zero side effects, and no success generation")
     print("L4/L9 pointers resolve; candidate projection expected-value equality is not checked")
     print("L4/L9 existing BASE bytes/rows preserved after removing exactly the two WR231 witness rows; existing L8 canonical cases unchanged; candidate contribution to four-way=0")
     print("SCF-B-0192 candidate artifact SHA pins resolve: PASS")

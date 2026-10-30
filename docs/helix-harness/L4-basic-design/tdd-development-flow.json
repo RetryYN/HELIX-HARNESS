@@ -554,9 +554,9 @@
           "condition": "凍結対象のidentity・revision・scopeが未供給で、対象に結ぶ根拠がない。",
           "failure_code_status": "unknown",
           "expected_axis": "pair_binding",
-          "expected_state": "unknown",
+          "expected_state": "missing",
           "backflow_owner": "FrozenContractIntake",
-          "classification_basis": "L3 F01/L10 F01の対象・対revision trace義務に対応する候補行。blind artifactはfailure_codeをunknownとしているため、idは証拠行の識別子でありfailure code/classification enumを定義しない。pair_bindingは既存L4 output_contractの軸、unknownは既存L4 state vocabularyに基づく。",
+          "classification_basis": "L3 F01が要求する対象identity/revision/scopeが固定blindでnullのまま未供給であり、既存L4 state vocabularyおよびfreeze_missing（nullの必須記録は未供給としてmissing）と同じ根拠でmissingを候補とする。pair_binding軸はL4設計選択でソースから一意でない。fixed blindはfailure_codeだけをunknownとし、実際のfailure code/classificationは未確定のまま。pair freeze/TDD success/implementation successを生成しない。",
           "source_reference": {
             "revision": "a715e777bd59291b26f09c0c1c5481273c6eba2e",
             "pointer": "/requirements/40",
@@ -569,16 +569,24 @@
             "sha256": "2a53b965d023d81e6add971f8693cf633cfd6152c700e863a13da65568de3983",
             "pointer": "/negative_inputs/0",
             "issue_comment": "https://github.com/RetryYN/HELIX-HARNESS/issues/3510#issuecomment-6532785305"
-          }
+          },
+          "expected_side_effect_count": 0,
+          "axis_selection_status": "l4_design_choice_not_unique_from_source",
+          "expected_non_generation": [
+            "pair_freeze_established",
+            "TDD success",
+            "implementation_success"
+          ],
+          "expected_non_generation_status": "not_generated; preserve as unproven/incomplete"
         },
         {
           "id": "WR231-F01-design-oracle-revision-untraceable",
           "condition": "対象は識別できるが、設計またはoracleのrevisionを対象へ辿れない。",
           "failure_code_status": "unknown",
           "expected_axis": "pair_binding",
-          "expected_state": "unknown",
+          "expected_state": "missing",
           "backflow_owner": "FrozenContractIntake",
-          "classification_basis": "L3 F01/L10 F01の対象・対revision trace義務に対応する候補行。blind artifactはfailure_codeをunknownとしているため、idは証拠行の識別子でありfailure code/classification enumを定義しない。pair_bindingは既存L4 output_contractの軸、unknownは既存L4 state vocabularyに基づく。",
+          "classification_basis": "L3 F01が要求する対象identity/revision/scopeが固定blindでnullのまま未供給であり、既存L4 state vocabularyおよびfreeze_missing（nullの必須記録は未供給としてmissing）と同じ根拠でmissingを候補とする。pair_binding軸はL4設計選択でソースから一意でない。fixed blindはfailure_codeだけをunknownとし、実際のfailure code/classificationは未確定のまま。pair freeze/TDD success/implementation successを生成しない。",
           "source_reference": {
             "revision": "a715e777bd59291b26f09c0c1c5481273c6eba2e",
             "pointer": "/requirements/40",
@@ -591,7 +599,15 @@
             "sha256": "2a53b965d023d81e6add971f8693cf633cfd6152c700e863a13da65568de3983",
             "pointer": "/negative_inputs/1",
             "issue_comment": "https://github.com/RetryYN/HELIX-HARNESS/issues/3510#issuecomment-6532785305"
-          }
+          },
+          "expected_side_effect_count": 0,
+          "axis_selection_status": "l4_design_choice_not_unique_from_source",
+          "expected_non_generation": [
+            "pair_freeze_established",
+            "TDD success",
+            "implementation_success"
+          ],
+          "expected_non_generation_status": "not_generated; preserve as unproven/incomplete"
         }
       ]
     },
