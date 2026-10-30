@@ -8,6 +8,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[3]
 BASE = "988765e9be335f2a1d376721c1b11f808fd03372"
+F03_MERGE_REVISION = "cf31240384980220249a4f58abe62ce57d47a880"
 PKG = "scaffold/research/wr243-tdd-f03-l5-l8-20261031"
 BLIND_SHA = "846907d5802170ed775fbf08664c0b85f42e7b6ac0a9623e8584452f81ead813"
 L5_PATH = "docs/helix-harness/L5-detail-design/tdd-development-flow.json"
@@ -40,6 +41,9 @@ def at_pointer(value, pointer: str):
 
 def base_bytes(path: str) -> bytes:
     return subprocess.check_output(["git", "show", f"{BASE}:{path}"], cwd=ROOT)
+
+def base_bytes_at_revision(revision: str, path: str) -> bytes:
+    return subprocess.check_output(["git", "show", f"{revision}:{path}"], cwd=ROOT)
 
 
 def main() -> int:
@@ -87,8 +91,10 @@ def main() -> int:
     blind_oracle = f"Independent digest check: `sha256sum {PKG}/source/wr243-tdd-clean-source-only.json` must report {BLIND_SHA}."
     checks["binding_holds_fixed_and_candidate_L5_sha"] = blind_oracle in binding["verification"]["oracles"] and (L5_PATH, digest_bytes((ROOT / L5_PATH).read_bytes())) in binding_pins
     checks["binding_upstream_excludes_scaffold"] = all(not row["path"].startswith("scaffold/") for row in binding["upstream"])
-    checks["correction_candidate_hashes_match"] = correction["candidate_hashes"].get(L5_PATH) == digest_bytes((ROOT / L5_PATH).read_bytes()) and correction["candidate_hashes"].get(L8_PATH) == digest_bytes((ROOT / L8_PATH).read_bytes())
-    checks["correction_L5_pin_matches_binding"] = correction["l5_pin"]["current_sha256"] == digest_bytes((ROOT / L5_PATH).read_bytes()) and (L5_PATH, correction["l5_pin"]["current_sha256"]) in binding_pins
+    historical_l5_sha = digest_bytes(base_bytes_at_revision(F03_MERGE_REVISION, L5_PATH))
+    historical_l8_sha = digest_bytes(base_bytes_at_revision(F03_MERGE_REVISION, L8_PATH))
+    checks["correction_records_exact_F03_merge_L5_L8_bytes"] = correction["candidate_hashes"].get(L5_PATH) == historical_l5_sha and correction["candidate_hashes"].get(L8_PATH) == historical_l8_sha and correction["l5_pin"].get("current_sha256") == historical_l5_sha
+    checks["current_shared_L5_pin_matches_binding"] = (L5_PATH, digest_bytes((ROOT / L5_PATH).read_bytes())) in binding_pins
 
     base_l8 = json.loads(base_bytes(L8_PATH))
     base_l8f = next(row for row in base_l8["cases"] if row["id"] == "HARNESS-L8-015-F03")
@@ -103,11 +109,13 @@ def main() -> int:
     current_l5_without_candidate_doc = json.loads(json.dumps(l5))
     next(row for row in base_l5_without_candidate["contracts"] if row["id"] == "HARNESS-L5-015-F03").pop("candidate_classification_design", None)
     next(row for row in current_l5_without_candidate_doc["contracts"] if row["id"] == "HARNESS-L5-015-F03").pop("candidate_classification_design", None)
+    next(row for row in current_l5_without_candidate_doc["contracts"] if row["id"] == "HARNESS-L5-015-F04").pop("candidate_classification_design", None)
     checks["all_other_L5_bytes_structurally_unchanged"] = current_l5_without_candidate_doc == base_l5_without_candidate
     base_l8_without_candidate = json.loads(base_bytes(L8_PATH))
     current_l8_without_candidate = json.loads(json.dumps(l8))
     next(row for row in base_l8_without_candidate["cases"] if row["id"] == "HARNESS-L8-015-F03").pop("candidate_unit_design", None)
     next(row for row in current_l8_without_candidate["cases"] if row["id"] == "HARNESS-L8-015-F03").pop("candidate_unit_design", None)
+    next(row for row in current_l8_without_candidate["cases"] if row["id"] == "HARNESS-L8-015-F04").pop("candidate_unit_design", None)
     checks["all_other_L8_bytes_structurally_unchanged"] = current_l8_without_candidate == base_l8_without_candidate
     checks["L8_candidate_only_field"] = len(l8f["candidate_unit_design"]["cases"]) == 9
 

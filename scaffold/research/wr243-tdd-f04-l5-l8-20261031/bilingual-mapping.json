@@ -1,0 +1,26 @@
+{
+  "schema": "wr243-f04-bilingual-candidate-mapping.v1",
+  "evidence_kind": "scaffold",
+  "authority_effect": "none",
+  "fixed_artifact_sha256": "846907d5802170ed775fbf08664c0b85f42e7b6ac0a9623e8584452f81ead813",
+  "mappings": [
+    {
+      "source_only_ref": "WR243-SO-F04-01",
+      "negative_condition_en": "Design/test-to-code trace is one-way or points to a different target revision.",
+      "expected_observation_en": "Report the missing reverse edge or revision mismatch; do not treat trace as bidirectional/current or close the obligation.",
+      "negative_condition_ja": "設計またはtestからcodeへのtraceだけが存在し、codeから設計またはtestへの逆方向traceが欠けている、または参照先の対象revisionが一致しない。",
+      "expected_observation_ja": "逆方向traceの欠落または対象revisionの不一致を保持し、traceを双方向・同revisionの成立として扱わない。F04の義務を完了扱いしない。",
+      "l8_counterexample_ja": "設計またはtestからcodeへの参照はあるが、codeから設計またはtestへ戻る参照がない、またはそれらの参照が異なる対象revisionを指す。",
+      "l8_expected_result_ja": "逆方向traceの不足または対象revisionの不一致を示す。traceを双方向・同revisionと認定せず、義務を未完了として保持する。"
+    },
+    {
+      "source_only_ref": "WR243-SO-F04-02",
+      "negative_condition_en": "④ development alone, or its atomic CI Green, is used to claim Integrated, quality completion, Accepted, or Release.",
+      "expected_observation_en": "Cap the standalone output at Provisional and retain Integrated/verification/acceptance/release as unestablished pending their own contracts and owners.",
+      "negative_condition_ja": "④開発単独の出力、またはそのatomic CI Greenを、Integrated、品質完了、Accepted、またはReleaseの成立根拠として扱う。",
+      "expected_observation_ja": "単独出力の上限をProvisionalとし、Integrated／verification／acceptance／releaseは各契約とownerの根拠がそろうまで未成立として保持する。atomic CIから上位状態を生成しない。",
+      "l8_counterexample_ja": "④開発だけ、またはそのatomic CI Greenだけを根拠に、Integrated、品質完了、Accepted、またはReleaseのいずれかが成立したと主張する。",
+      "l8_expected_result_ja": "各上位状態の義務を未成立のまま保持し、開発単独やatomic CIで補完したと扱わない。Integrated以降はL3 F04が求める別契約・ownerの根拠と区別する。"
+    }
+  ]
+}

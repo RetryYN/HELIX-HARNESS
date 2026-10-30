@@ -1,0 +1,122 @@
+{
+  "schema_revision": 1,
+  "id": "SCF-B-0208",
+  "kind": "scaffold",
+  "title": "WR243 HARNESS-015 F04 L5/L8 source-only candidate evidence",
+  "product": "HELIX-HARNESS",
+  "owner_candidate": "HARNESS-015 F04 L5/L8 candidate-design responsibility owner candidate",
+  "state": "registered",
+  "reason": "Issue #3510 WR243: preserve the fixed independent source-only meaning, compare every existing F04 L4/L9 negative row, and keep incomplete L8 row-oracle/test-citation evidence separate from formal verification.",
+  "upstream": [
+    {
+      "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+      "sha256": "a3b907cdc316117d4684632f9a1cbf36125eb6e6172f9cfc286060617583d7be",
+      "note": "F04 requirement source; the fixed blind points to /requirements/43 at base 988765e9be335f2a1d376721c1b11f808fd03372."
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/functional-verification.json",
+      "sha256": "fc58ad2268746d7924ac9be33e8f3f75e6d3c2cc619e27fbc1ddc34edd065cb2",
+      "note": "F04 contract oracle source; the fixed blind points to /cases/43 at base 988765e9be335f2a1d376721c1b11f808fd03372."
+    },
+    {
+      "path": "docs/helix-harness/L4-basic-design/tdd-development-flow.json",
+      "sha256": "347bfd83b7685b52c45f62b5ee6f336fd74338ee65e67327e6e810d6eb489a16",
+      "note": "Allowed F04 behavior/output/failure-condition prose and post-freeze comparison rows; not an algorithm source."
+    },
+    {
+      "path": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json",
+      "sha256": "4f64977ee8b2900733a823d5b9755f567952caef8cf323036a9b0776202d2462",
+      "note": "All five existing F04 integration rows are compared after blind fixation; values remain comparison-only."
+    },
+    {
+      "path": "docs/governance/design-verification-quality-assurance.md",
+      "sha256": "f5751e236dc073fe67114c1fcb4b0f64b3d746290b25d75b61e60a08e3c99c85",
+      "note": "QA §3 U-ID table/cap boundary; no oracle or test citation is created without evidence."
+    },
+    {
+      "path": "docs/helix-harness/L5-detail-design/tdd-development-flow.json",
+      "sha256": "b4b120f025efeb7fe6bfaf020d950eb7a75949baaed3268f5e3b32e88853758d",
+      "note": "Current shared L5 document containing F03 plus F04 candidate annotations; F03 candidate content preserved."
+    }
+  ],
+  "role": "F04 source-only L5 condition candidate, five existing L8 U-ID references, and all-row L4/L9 comparison evidence.",
+  "obligations": [
+    "Preserve fixed source-only artifact raw bytes and SHA-256 846907d5802170ed775fbf08664c0b85f42e7b6ac0a9623e8584452f81ead813; its Issue #3510 provenance is already fixed at comment 6534177643.",
+    "Record comparison of every one of the five existing F04 L4 classifications and L9 negative cases; keep code, axis/state, owner, and side-effect fields comparison-only.",
+    "L5 candidate adds two source-derived condition statements only; no failure-code vocabulary, axis/state projection, algorithm, fixture, or return material.",
+    "L8 candidate references existing F04 negative U-ID rows only; contract oracle is L10 F04; row oracle and test citation remain missing.",
+    "Preserve F03 L5/L8 candidate content and fixed blind/comparison/verification-summary; preserve canonical F04 unit_case_ids/unit_cases and all L4/L9 bytes.",
+    "Keep check-child 4way/cap residuals visible; candidate annotations are not canonical 4way rows."
+  ],
+  "connections": {
+    "consumers": [
+      "WR243 F04 L5/L8 candidate review for Issue #3510"
+    ],
+    "dependencies": [
+      "Fixed shared blind artifact scaffold/research/wr243-tdd-f03-l5-l8-20261031/source/wr243-tdd-clean-source-only.json SHA-256 846907d5802170ed775fbf08664c0b85f42e7b6ac0a9623e8584452f81ead813; Issue #3510 comment 6534177643.",
+      "HARNESS-L3/L10-015-F04 contract source rows",
+      "All existing HARNESS-L4/L9-015-F04 negative rows",
+      "Design Verification Quality Assurance §3",
+      "Merged F03 candidate pair on main cf31240384980220249a4f58abe62ce57d47a880"
+    ],
+    "boundary": "F04-only candidate extension and evidence. No L4/L9 edits, no F03 candidate or fixed-evidence edits, no canonical L8 row edits, no test citation or row-oracle invention, no runtime/test/CI/algorithm execution, no approval/acceptance/4way completion."
+  },
+  "operations": {
+    "allowed": [
+      "Static source pointer/hash and row comparison validation",
+      "F04-only candidate annotation in L5/L8",
+      "design_verification_checker check-child as static document comparison",
+      "scfctl validate/stale and diff-scope checks"
+    ],
+    "forbidden": [
+      "Changing L4 or L9",
+      "Changing F03 candidate content or fixed blind/comparison/verification-summary",
+      "Changing canonical F04 unit_case_ids/unit_cases",
+      "Choosing failure codes, unresolved_assignment_rule, or sequence-equality semantics",
+      "Creating U-ID row oracle or test citations without evidence",
+      "Adding fixture, seed, COPY, hash, full return, or runtime material to L8",
+      "Executing L4/L5 algorithm, old CLI/hook/runtime/test/CI, or new runtime/test/CI"
+    ]
+  },
+  "artifacts": [
+    "scaffold/research/wr243-tdd-f04-l5-l8-20261031/README.md",
+    "scaffold/research/wr243-tdd-f04-l5-l8-20261031/comparison.json",
+    "scaffold/research/wr243-tdd-f04-l5-l8-20261031/bilingual-mapping.json",
+    "scaffold/research/wr243-tdd-f04-l5-l8-20261031/validate_f04_candidate.py",
+    "scaffold/research/wr243-tdd-f04-l5-l8-20261031/verification-summary.json",
+    "docs/helix-harness/L5-detail-design/tdd-development-flow.json",
+    "docs/helix-harness/L8-unit-verification/tdd-development-flow.json",
+    "scaffold/research/wr243-tdd-f03-l5-l8-20261031/source/wr243-tdd-clean-source-only.json",
+    "scaffold/bindings/SCF-B-0204.json"
+  ],
+  "verification": {
+    "evidence_kind": "scaffold",
+    "scope": [
+      "schema_interface",
+      "source_revision_stale",
+      "negative_case"
+    ],
+    "oracles": [
+      "Fixed blind raw-byte SHA-256 846907d5802170ed775fbf08664c0b85f42e7b6ac0a9623e8584452f81ead813 and Issue #3510 comment 6534177643.",
+      "L3 F04 /requirements/43 and L10 F04 /cases/43 record hashes.",
+      "All five F04 L4/L9 row conditions and comparison-only projections.",
+      "L4/L9 exact bytes unchanged; F03 candidate content and fixed F03 evidence unchanged; F04 canonical L8 IDs/unit_cases unchanged.",
+      "Static F04 validator, F03 validator compatibility, check-child, forbidden-key/cap count, scfctl validate/stale."
+    ],
+    "negative_cases": [
+      "Do not create U-ID row oracle or test citation values.",
+      "Do not promote existing L4/L9 classifier projections.",
+      "Do not assign failure-code vocabulary or unresolved_assignment_rule.",
+      "Do not count candidate rows toward canonical 4way totals.",
+      "Do not execute algorithms, runtimes, tests, or CI."
+    ]
+  },
+  "replacement": {
+    "role_target": "Formal HARNESS-015 F04 L5/L8 design and verification pair",
+    "formal_artifacts": [],
+    "issue": 1866,
+    "status": "pending"
+  },
+  "created": "2026-10-31",
+  "updated": "2026-10-31"
+}

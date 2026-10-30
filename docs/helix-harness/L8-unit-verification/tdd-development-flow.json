@@ -1541,7 +1541,88 @@
         "HARNESS-L9-015-F04-development_as_integrated",
         "HARNESS-L9-015-F04-ci_as_accepted",
         "HARNESS-L9-015-F04-ci_as_release"
-      ]
+      ],
+      "candidate_unit_design": {
+        "status": "scaffold_candidate_only_not_approved_or_executed",
+        "pair_ref": "HARNESS-L5-015-F04",
+        "comparison_ref": "scaffold/research/wr243-tdd-f04-l5-l8-20261031/comparison.json",
+        "cases": [
+          {
+            "existing_unit_case_ref": "HARNESS-L9-015-F04-reverse_trace_missing",
+            "target_ref": "HARNESS-L5-015-F04",
+            "source_trace_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/4/negative_cases/0",
+            "counterexample": "設計またはtestからcodeへの参照はあるが、codeから設計またはtestへ戻る参照がない、またはそれらの参照が異なる対象revisionを指す。",
+            "candidate_expected_result": "逆方向traceの不足または対象revisionの不一致を示す。traceを双方向・同revisionと認定せず、義務を未完了として保持する。",
+            "contract_oracle_id": "HARNESS-L10-015-F04",
+            "row_oracle_id": null,
+            "row_oracle_status": "missing_not_created",
+            "test_citation": null,
+            "test_citation_status": "not_found_not_created",
+            "source_only_ref": "WR243-SO-F04-01"
+          },
+          {
+            "existing_unit_case_ref": "HARNESS-L9-015-F04-foreign_trace_revision",
+            "target_ref": "HARNESS-L5-015-F04",
+            "source_trace_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/4/negative_cases/1",
+            "counterexample": "設計またはtestからcodeへの参照はあるが、codeから設計またはtestへ戻る参照がない、またはそれらの参照が異なる対象revisionを指す。",
+            "candidate_expected_result": "逆方向traceの不足または対象revisionの不一致を示す。traceを双方向・同revisionと認定せず、義務を未完了として保持する。",
+            "contract_oracle_id": "HARNESS-L10-015-F04",
+            "row_oracle_id": null,
+            "row_oracle_status": "missing_not_created",
+            "test_citation": null,
+            "test_citation_status": "not_found_not_created",
+            "source_only_ref": "WR243-SO-F04-01"
+          },
+          {
+            "existing_unit_case_ref": "HARNESS-L9-015-F04-development_as_integrated",
+            "target_ref": "HARNESS-L5-015-F04",
+            "source_trace_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/4/negative_cases/2",
+            "counterexample": "④開発だけ、またはそのatomic CI Greenだけを根拠に、Integrated、品質完了、Accepted、またはReleaseのいずれかが成立したと主張する。",
+            "candidate_expected_result": "各上位状態の義務を未成立のまま保持し、開発単独やatomic CIで補完したと扱わない。Integrated以降はL3 F04が求める別契約・ownerの根拠と区別する。",
+            "contract_oracle_id": "HARNESS-L10-015-F04",
+            "row_oracle_id": null,
+            "row_oracle_status": "missing_not_created",
+            "test_citation": null,
+            "test_citation_status": "not_found_not_created",
+            "source_only_ref": "WR243-SO-F04-02"
+          },
+          {
+            "existing_unit_case_ref": "HARNESS-L9-015-F04-ci_as_accepted",
+            "target_ref": "HARNESS-L5-015-F04",
+            "source_trace_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/4/negative_cases/3",
+            "counterexample": "④開発だけ、またはそのatomic CI Greenだけを根拠に、Integrated、品質完了、Accepted、またはReleaseのいずれかが成立したと主張する。",
+            "candidate_expected_result": "各上位状態の義務を未成立のまま保持し、開発単独やatomic CIで補完したと扱わない。Integrated以降はL3 F04が求める別契約・ownerの根拠と区別する。",
+            "contract_oracle_id": "HARNESS-L10-015-F04",
+            "row_oracle_id": null,
+            "row_oracle_status": "missing_not_created",
+            "test_citation": null,
+            "test_citation_status": "not_found_not_created",
+            "source_only_ref": "WR243-SO-F04-02"
+          },
+          {
+            "existing_unit_case_ref": "HARNESS-L9-015-F04-ci_as_release",
+            "target_ref": "HARNESS-L5-015-F04",
+            "source_trace_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/4/negative_cases/4",
+            "counterexample": "④開発だけ、またはそのatomic CI Greenだけを根拠に、Integrated、品質完了、Accepted、またはReleaseのいずれかが成立したと主張する。",
+            "candidate_expected_result": "各上位状態の義務を未成立のまま保持し、開発単独やatomic CIで補完したと扱わない。Integrated以降はL3 F04が求める別契約・ownerの根拠と区別する。",
+            "contract_oracle_id": "HARNESS-L10-015-F04",
+            "row_oracle_id": null,
+            "row_oracle_status": "missing_not_created",
+            "test_citation": null,
+            "test_citation_status": "not_found_not_created",
+            "source_only_ref": "WR243-SO-F04-02"
+          }
+        ],
+        "expectation_boundary": {
+          "contract_oracle_ref": "HARNESS-L10-015-F04",
+          "row_level_oracle": "missing; no U-ID row oracle was created",
+          "test_citation": "missing; no citation was found or created",
+          "existing_unit_case_ids": "existing F04 negative IDs are references only; canonical IDs and unit_cases remain unchanged",
+          "mapping": "two fixed source-only meanings compared against five existing L9/L8 row instances; many-to-one alignment is candidate evidence, not a row oracle",
+          "source_independence": "candidate counterexamples and expected outcomes derive from L3/L10 and permitted L4 prose; L9 pointers provide row trace only"
+        },
+        "execution_state": "not_executed"
+      }
     }
   ],
   "unit_cases": [
