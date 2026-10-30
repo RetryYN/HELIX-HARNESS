@@ -214,9 +214,9 @@
           ],
           "integration_case_ref": "HARNESS-L9-052-F01-NEG-09",
           "expected_side_effect_count": 0,
-          "basis_ref": "docs/helix-harness/L4-basic-design/command-meaning-identity.json#/contracts/0/failure",
+          "basis_ref": "docs/helix-harness/L4-basic-design/command-meaning-identity.json#/architecture/input_binding_source_contract/failure_and_backflow",
           "side_effect_basis_ref": "docs/helix-harness/L4-basic-design/command-meaning-identity.json#/contracts/7/behavior",
-          "derivation_basis": "expected_axis(semantic)とexpected_state(conflict)はL4 /contracts/0/failureの文面で確定。細分code(base_conflict)はL5 /type_contract/finding_rulesからの転記。"
+          "derivation_basis": "base集合の重複禁止条件はL4 /contracts/0/failureおよび/architecture/input_binding_source_contract/selection_and_projection/4、観測した原値の矛盾をconflictへ保持することはL4 /architecture/input_binding_source_contract/failure_and_backflowの文面で確定。expected_axis(semantic)と細分code(base_conflict)はL5 /type_contract/finding_rules/7からの転記。"
         }
       ],
       "failure_observation": "原入力/規則/scope/base/先行証拠/OS snapshotと相違・不足・owner・戻し先を保持。正常と同じ成功出力ならoracle不成立。未実行・未観測を合格へ変えない。",
@@ -271,9 +271,9 @@
           ],
           "integration_case_ref": "HARNESS-L9-052-F02-NEG-02",
           "expected_side_effect_count": 0,
-          "basis_ref": "docs/helix-harness/L4-basic-design/command-meaning-identity.json#/contracts/1/failure",
+          "basis_ref": "docs/helix-harness/L4-basic-design/command-meaning-identity.json#/contracts/1/behavior",
           "side_effect_basis_ref": "docs/helix-harness/L4-basic-design/command-meaning-identity.json#/contracts/7/behavior",
-          "derivation_basis": "expected_axis(semantic)とexpected_state(conflict)はL4 /contracts/1/failureの文面で確定。細分code(identity_conflict)はL5 /type_contract/finding_rulesからの転記。"
+          "derivation_basis": "normalized bytes/digest結合・規則/scope revision差の保持・RuleRefのarray扱い遵守条件はL4 /contracts/1/behaviorの文面で確定。expected_axis(semantic)/expected_state(conflict)/code(identity_conflict)はL5 /type_contract/finding_rules/20からの転記。"
         },
         {
           "id": "HARNESS-L9-052-F02-NEG-03",
@@ -288,9 +288,9 @@
           ],
           "integration_case_ref": "HARNESS-L9-052-F02-NEG-03",
           "expected_side_effect_count": 0,
-          "basis_ref": "docs/helix-harness/L4-basic-design/command-meaning-identity.json#/contracts/1/failure",
+          "basis_ref": "docs/helix-harness/L4-basic-design/command-meaning-identity.json#/contracts/1/behavior",
           "side_effect_basis_ref": "docs/helix-harness/L4-basic-design/command-meaning-identity.json#/contracts/7/behavior",
-          "derivation_basis": "expected_axis(semantic)とexpected_state(conflict)はL4 /contracts/1/failureの文面で確定。細分code(identity_conflict)はL5 /type_contract/finding_rulesからの転記。"
+          "derivation_basis": "normalized bytes/digest結合・規則/scope revision差の保持・RuleRefのarray扱い遵守条件はL4 /contracts/1/behaviorの文面で確定。expected_axis(semantic)/expected_state(conflict)/code(identity_conflict)はL5 /type_contract/finding_rules/20からの転記。"
         },
         {
           "id": "HARNESS-L9-052-F02-NEG-04",
@@ -305,9 +305,9 @@
           ],
           "integration_case_ref": "HARNESS-L9-052-F02-NEG-04",
           "expected_side_effect_count": 0,
-          "basis_ref": "docs/helix-harness/L4-basic-design/command-meaning-identity.json#/contracts/1/failure",
+          "basis_ref": "docs/helix-harness/L4-basic-design/command-meaning-identity.json#/contracts/1/behavior",
           "side_effect_basis_ref": "docs/helix-harness/L4-basic-design/command-meaning-identity.json#/contracts/7/behavior",
-          "derivation_basis": "expected_axis(semantic)とexpected_state(conflict)はL4 /contracts/1/failureの文面で確定。細分code(payload_binding_conflict)はL5 /type_contract/finding_rulesからの転記。"
+          "derivation_basis": "normalized bytes/digest結合・規則/scope revision差の保持・RuleRefのarray扱い遵守条件はL4 /contracts/1/behaviorの文面で確定。expected_axis(semantic)/expected_state(conflict)/code(payload_binding_conflict)はL5 /type_contract/finding_rules/16からの転記。"
         },
         {
           "id": "HARNESS-L9-052-F02-NEG-05",
@@ -322,9 +322,9 @@
           ],
           "integration_case_ref": "HARNESS-L9-052-F02-NEG-05",
           "expected_side_effect_count": 0,
-          "basis_ref": "docs/helix-harness/L4-basic-design/command-meaning-identity.json#/contracts/1/failure",
+          "basis_ref": "docs/helix-harness/L4-basic-design/command-meaning-identity.json#/contracts/1/behavior",
           "side_effect_basis_ref": "docs/helix-harness/L4-basic-design/command-meaning-identity.json#/contracts/7/behavior",
-          "derivation_basis": "expected_axis(semantic)とexpected_state(conflict)はL4 /contracts/1/failureの文面で確定。細分code(identity_conflict)はL5 /type_contract/finding_rulesからの転記。"
+          "derivation_basis": "normalized bytes/digest結合・規則/scope revision差の保持・RuleRefのarray扱い遵守条件はL4 /contracts/1/behaviorの文面で確定。expected_axis(semantic)/expected_state(conflict)/code(identity_conflict)はL5 /type_contract/finding_rules/20からの転記。"
         },
         {
           "id": "HARNESS-L9-052-F02-NEG-06",
@@ -756,9 +756,9 @@
           ],
           "integration_case_ref": "HARNESS-L9-052-F06-NEG-01",
           "expected_side_effect_count": 0,
-          "basis_ref": "docs/helix-harness/L4-basic-design/command-meaning-identity.json#/contracts/5/failure",
+          "basis_ref": "docs/helix-harness/L4-basic-design/command-meaning-identity.json#/contracts/5/behavior",
           "side_effect_basis_ref": "docs/helix-harness/L4-basic-design/command-meaning-identity.json#/contracts/7/behavior",
-          "derivation_basis": "expected_axis(semantic)とexpected_state(unknown)はL4 /contracts/5/failureの文面で確定。細分code(required_missing)はL5 /type_contract/finding_rulesからの転記。"
+          "derivation_basis": "expected_axis(semantic)とexpected_state(unknown)はL4 /contracts/5/behaviorの文面（missing/unknown/staleはunknown、内容やidentity/scope/revisionの矛盾はconflict、別scope/revision流用禁止）で確定。細分code(required_missing)はL5 /type_contract/finding_rules/1からの転記。"
         },
         {
           "id": "HARNESS-L9-052-F06-NEG-02",
@@ -773,9 +773,9 @@
           ],
           "integration_case_ref": "HARNESS-L9-052-F06-NEG-02",
           "expected_side_effect_count": 0,
-          "basis_ref": "docs/helix-harness/L4-basic-design/command-meaning-identity.json#/contracts/5/failure",
+          "basis_ref": "docs/helix-harness/L4-basic-design/command-meaning-identity.json#/contracts/5/behavior",
           "side_effect_basis_ref": "docs/helix-harness/L4-basic-design/command-meaning-identity.json#/contracts/7/behavior",
-          "derivation_basis": "expected_axis(semantic)とexpected_state(unknown)はL4 /contracts/5/failureの文面で確定。細分code(required_missing)はL5 /type_contract/finding_rulesからの転記。"
+          "derivation_basis": "expected_axis(semantic)とexpected_state(unknown)はL4 /contracts/5/behaviorの文面（missing/unknown/staleはunknown、内容やidentity/scope/revisionの矛盾はconflict、別scope/revision流用禁止）で確定。細分code(required_missing)はL5 /type_contract/finding_rules/1からの転記。"
         },
         {
           "id": "HARNESS-L9-052-F06-NEG-03",
@@ -790,9 +790,9 @@
           ],
           "integration_case_ref": "HARNESS-L9-052-F06-NEG-03",
           "expected_side_effect_count": 0,
-          "basis_ref": "docs/helix-harness/L4-basic-design/command-meaning-identity.json#/contracts/5/failure",
+          "basis_ref": "docs/helix-harness/L4-basic-design/command-meaning-identity.json#/contracts/5/behavior",
           "side_effect_basis_ref": "docs/helix-harness/L4-basic-design/command-meaning-identity.json#/contracts/7/behavior",
-          "derivation_basis": "expected_axis(semantic)とexpected_state(unknown)はL4 /contracts/5/failureの文面で確定。細分code(target_missing)はL5 /type_contract/finding_rulesからの転記。"
+          "derivation_basis": "expected_axis(semantic)とexpected_state(unknown)はL4 /contracts/5/behaviorの文面（missing/unknown/staleはunknown、内容やidentity/scope/revisionの矛盾はconflict、別scope/revision流用禁止）で確定。細分code(target_missing)はL5 /type_contract/finding_rules/6からの転記。"
         },
         {
           "id": "HARNESS-L9-052-F06-NEG-04",
@@ -807,9 +807,9 @@
           ],
           "integration_case_ref": "HARNESS-L9-052-F06-NEG-04",
           "expected_side_effect_count": 0,
-          "basis_ref": "docs/helix-harness/L4-basic-design/command-meaning-identity.json#/contracts/5/failure",
+          "basis_ref": "docs/helix-harness/L4-basic-design/command-meaning-identity.json#/contracts/5/behavior",
           "side_effect_basis_ref": "docs/helix-harness/L4-basic-design/command-meaning-identity.json#/contracts/7/behavior",
-          "derivation_basis": "expected_axis(semantic)とexpected_state(unknown)はL4 /contracts/5/failureの文面で確定。細分code(required_missing)はL5 /type_contract/finding_rulesからの転記。"
+          "derivation_basis": "expected_axis(semantic)とexpected_state(unknown)はL4 /contracts/5/behaviorの文面（missing/unknown/staleはunknown、内容やidentity/scope/revisionの矛盾はconflict、別scope/revision流用禁止）で確定。細分code(required_missing)はL5 /type_contract/finding_rules/1からの転記。"
         },
         {
           "id": "HARNESS-L9-052-F06-NEG-05",
@@ -824,9 +824,9 @@
           ],
           "integration_case_ref": "HARNESS-L9-052-F06-NEG-05",
           "expected_side_effect_count": 0,
-          "basis_ref": "docs/helix-harness/L4-basic-design/command-meaning-identity.json#/contracts/5/failure",
+          "basis_ref": "docs/helix-harness/L4-basic-design/command-meaning-identity.json#/contracts/5/behavior",
           "side_effect_basis_ref": "docs/helix-harness/L4-basic-design/command-meaning-identity.json#/contracts/7/behavior",
-          "derivation_basis": "expected_axis(semantic)とexpected_state(unknown)はL4 /contracts/5/failureの文面で確定。細分code(resolution_unknown)はL5 /type_contract/finding_rulesからの転記。"
+          "derivation_basis": "expected_axis(semantic)とexpected_state(unknown)はL4 /contracts/5/behaviorの文面（missing/unknown/staleはunknown、内容やidentity/scope/revisionの矛盾はconflict、別scope/revision流用禁止）で確定。細分code(resolution_unknown)はL5 /type_contract/finding_rules/2からの転記。"
         },
         {
           "id": "HARNESS-L9-052-F06-NEG-06",
@@ -841,9 +841,9 @@
           ],
           "integration_case_ref": "HARNESS-L9-052-F06-NEG-06",
           "expected_side_effect_count": 0,
-          "basis_ref": "docs/helix-harness/L4-basic-design/command-meaning-identity.json#/contracts/5/failure",
+          "basis_ref": "docs/helix-harness/L4-basic-design/command-meaning-identity.json#/contracts/5/behavior",
           "side_effect_basis_ref": "docs/helix-harness/L4-basic-design/command-meaning-identity.json#/contracts/7/behavior",
-          "derivation_basis": "expected_axis(semantic)とexpected_state(conflict)はL4 /contracts/5/failureの文面で確定。細分code(oracle_mismatch)はL5 /type_contract/finding_rulesからの転記。"
+          "derivation_basis": "expected_axis(semantic)とexpected_state(conflict)はL4 /contracts/5/behaviorの文面（missing/unknown/staleはunknown、内容やidentity/scope/revisionの矛盾はconflict、別scope/revision流用禁止）で確定。細分code(oracle_mismatch)はL5 /type_contract/finding_rules/5からの転記。"
         },
         {
           "id": "HARNESS-L9-052-F06-NEG-07",
@@ -858,9 +858,9 @@
           ],
           "integration_case_ref": "HARNESS-L9-052-F06-NEG-07",
           "expected_side_effect_count": 0,
-          "basis_ref": "docs/helix-harness/L4-basic-design/command-meaning-identity.json#/contracts/5/failure",
+          "basis_ref": "docs/helix-harness/L4-basic-design/command-meaning-identity.json#/contracts/5/behavior",
           "side_effect_basis_ref": "docs/helix-harness/L4-basic-design/command-meaning-identity.json#/contracts/7/behavior",
-          "derivation_basis": "expected_axis(semantic)とexpected_state(conflict)はL4 /contracts/5/failureの文面で確定。細分code(reference_conflict)はL5 /type_contract/finding_rulesからの転記。"
+          "derivation_basis": "expected_axis(semantic)とexpected_state(conflict)はL4 /contracts/5/behaviorの文面（missing/unknown/staleはunknown、内容やidentity/scope/revisionの矛盾はconflict、別scope/revision流用禁止）で確定。細分code(reference_conflict)はL5 /type_contract/finding_rules/3からの転記。"
         }
       ],
       "failure_observation": "原入力/規則/scope/base/先行証拠/OS snapshotと相違・不足・owner・戻し先を保持。正常と同じ成功出力ならoracle不成立。未実行・未観測を合格へ変えない。",
@@ -891,7 +891,7 @@
           "expected_axis": "trace",
           "expected_state": "conflict",
           "expected": "局所fixtureだけ、実retry not_proven。",
-          "backflow_owner": "HARNESS L3/L4",
+          "backflow_owner": "OSと当該owner",
           "finding_codes": [
             "boundary_violation"
           ],
