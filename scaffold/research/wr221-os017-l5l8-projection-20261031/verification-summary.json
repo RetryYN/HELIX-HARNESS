@@ -1,0 +1,228 @@
+{
+  "schema": "wr221-os017-candidate-projection-summary.v3",
+  "evidence_kind": "scaffold",
+  "authority_effect": "none",
+  "status": "candidate_partial_incomplete",
+  "base_revision": "a53f04482ff883decf1019dc9c212ab712271749",
+  "latest_main_revision": "edcb17bb84b5134b4b3149b4521058d983cf972c",
+  "formal_paths_unchanged": {
+    "L5": true,
+    "L8": true,
+    "l5_sha256": "1f4c0791ba416d3fab607058acb8b70381d2950aa4cc483b70c94f0dc9557ffc",
+    "l8_sha256": "7b2f15b8fb131f3e346dff4825f74696cc0b3a3f727515cd901019278bad60ad"
+  },
+  "authority": {
+    "decision_id": "HDEC-OS-WORKFLOW-PREREQUISITE-L3L10-2026-10-12",
+    "decision_path": "docs/governance/decisions/helix-os-workflow-prerequisite-l3-l10-delegated-decision-2026-10-12.md",
+    "reviewed_content_head": "5c62d19b78fca3be1964c0cd3157a540950150dc",
+    "pr": 2952,
+    "independent_review_comment": 6113847591,
+    "merge_commit": "2945b75bc5a71c19885a62a867b0a884399bffae",
+    "merge_is_current_head_ancestor": true,
+    "scope_includes_os017_b01_f01_f03": true,
+    "current_f01_b01_rows_equal_reviewed_rows": true,
+    "document_status_metadata": "draft_not_approved/not_executed retained; decision covers exact rows only, not operation, runtime, or L11 acceptance"
+  },
+  "class_candidates": [
+    {
+      "class_id": "OS017-NEG-inputs-source_unresolved",
+      "l4_pointer": "/failure_classifications/0",
+      "u_id_rows": 34,
+      "finding_codes": [
+        "source_unresolved"
+      ],
+      "condition": "workflow_material_unknown",
+      "axis": "inputs",
+      "state": "unknown",
+      "owner": "ticket-workflow-owner",
+      "formal_four_layer_membership": false,
+      "existing_single_l5_contract_membership_counts": {
+        "HELIXOS-L5-017-F01": 31
+      },
+      "multi_contract_exceptions": [
+        {
+          "unit_case_id": "OS017-L8-EXPECTED-BINDING-REQUIREMENT_REVISION-UNKNOWN",
+          "l7_case_pointer": "/cases/92",
+          "existing_l5_contract_refs": [
+            "HELIXOS-L5-017-F01",
+            "HELIXOS-L5-017-F02",
+            "HELIXOS-L5-017-F03"
+          ]
+        },
+        {
+          "unit_case_id": "OS017-L8-EXPECTED-BINDING-SCOPE-UNKNOWN",
+          "l7_case_pointer": "/cases/93",
+          "existing_l5_contract_refs": [
+            "HELIXOS-L5-017-F01",
+            "HELIXOS-L5-017-F02",
+            "HELIXOS-L5-017-F03"
+          ]
+        },
+        {
+          "unit_case_id": "OS017-L8-EXPECTED-BINDING-CONTRACT_REVISION-UNKNOWN",
+          "l7_case_pointer": "/cases/95",
+          "existing_l5_contract_refs": [
+            "HELIXOS-L5-017-F01",
+            "HELIXOS-L5-017-F02"
+          ]
+        }
+      ]
+    },
+    {
+      "class_id": "OS017-NEG-inputs-source_conflict",
+      "l4_pointer": "/failure_classifications/1",
+      "u_id_rows": 17,
+      "finding_codes": [
+        "source_conflict"
+      ],
+      "condition": "workflow_material_violation",
+      "axis": "inputs",
+      "state": "violation",
+      "owner": "ticket-workflow-owner",
+      "formal_four_layer_membership": false,
+      "existing_single_l5_contract_membership_counts": {
+        "HELIXOS-L5-017-F01": 17
+      },
+      "multi_contract_exceptions": []
+    },
+    {
+      "class_id": "OS017-NEG-ownership-source_unresolved",
+      "l4_pointer": "/failure_classifications/2",
+      "u_id_rows": 6,
+      "finding_codes": [
+        "source_unresolved"
+      ],
+      "condition": "workflow_material_unknown",
+      "axis": "ownership",
+      "state": "unknown",
+      "owner": "ticket-workflow-owner",
+      "formal_four_layer_membership": false,
+      "existing_single_l5_contract_membership_counts": {
+        "HELIXOS-L5-017-B01": 6
+      },
+      "multi_contract_exceptions": []
+    },
+    {
+      "class_id": "OS017-NEG-ownership-source_conflict",
+      "l4_pointer": "/failure_classifications/3",
+      "u_id_rows": 6,
+      "finding_codes": [
+        "source_conflict"
+      ],
+      "condition": "workflow_material_violation",
+      "axis": "ownership",
+      "state": "violation",
+      "owner": "ticket-workflow-owner",
+      "formal_four_layer_membership": false,
+      "existing_single_l5_contract_membership_counts": {
+        "HELIXOS-L5-017-B01": 6
+      },
+      "multi_contract_exceptions": []
+    }
+  ],
+  "u_id_candidate_projection": {
+    "row_count": 63,
+    "sidecar_bytes": 18736,
+    "per_row_stored_fields": [
+      "unit_case_id",
+      "l7_case_pointer"
+    ],
+    "per_uid_target_resolved_count": 63,
+    "target_function_refs": [
+      "F01701",
+      "F01702",
+      "F01703",
+      "F01704",
+      "F01705",
+      "F01706",
+      "F01707",
+      "F01708"
+    ],
+    "project_calls_resolved": 63,
+    "function_call_refs_resolved": 441,
+    "all_call_refs_resolved": 504,
+    "raw_given_input_graphs_resolved": 63,
+    "candidate_expected_checks": 63,
+    "l8_unit_cases_total": 217,
+    "l8_expected_values_changed": 0,
+    "per_uid_oracle_identity_assigned": 0,
+    "test_citations_observed": 0,
+    "test_citations_unresolved": 63,
+    "expected_basis": "L3/L10 requirement meaning + L4 candidate fields + L7 raw given_input_ref; existing L8 compact value is checked for preservation; L9 expected is not used as derivation input"
+  },
+  "l5_crosswalk": {
+    "status": "unformed",
+    "formal_l5_l8_paths_changed": false,
+    "multi_contract_u_id_count": 3
+  },
+  "qa_section_3": {
+    "target": "resolved using L8 call IDs and L7 function_call.function to L5 function IDs",
+    "counterexample_and_expected_result": "raw graph pointers and class expected are recorded/resolved; compact expected checked against existing L8 row",
+    "oracle_id": "unassigned per U-ID; generic contract refs preserved only",
+    "test_citation": "absent; not inferred from function call IDs"
+  },
+  "check_child": {
+    "overall_passed": false,
+    "L4_L9_pair_passed": true,
+    "L5_L8_pair_passed": true,
+    "negative_4way_counts": {
+      "L4": 5,
+      "L9": 0,
+      "L8": 0,
+      "L5": 0
+    },
+    "negative_4way_failures": 8,
+    "candidate_formal_paths_equal_base": true,
+    "current_main_fifth_class_out_of_scope": "OS017-NEG-workflow-resume-source_unresolved; cases 51/53 candidate refs are not in the 63-row projection"
+  },
+  "source_sha256": {
+    "docs/helix-os/L3-requirements/functional-requirements.json": "e86254a35b476ed71ebb112e41ccd2b48f89a8d0393e6495dc11cac7a7cf4e02",
+    "docs/helix-os/L10-verification/functional-verification.json": "583020f951672e48bc37fcd35cb916de5ccd9866f41dd04731f6519325ae500a",
+    "docs/helix-os/L3-requirements/business-requirements.json": "0df11c612e3e0b531d2103d058471d5be2be8b8df965d10b69e06b0e506488c7",
+    "docs/helix-os/L10-verification/business-verification.json": "215e1d4a99f73151aa4b3225947a65567fbc3b97bec0cf9eac8d1a6456cbc3dd",
+    "docs/helix-os/L4-basic-design/ticket-workflow-derivation.json": "3fb45708d58866de46cff0695a1d3f64b2fbe15bb11283bda5594a4b6d01e6ea",
+    "docs/helix-os/L5-detail-design/ticket-workflow-derivation.json": "1f4c0791ba416d3fab607058acb8b70381d2950aa4cc483b70c94f0dc9557ffc",
+    "docs/helix-os/L7-function-verification/ticket-workflow-derivation.json": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146",
+    "docs/helix-os/L8-unit-verification/ticket-workflow-derivation.json": "7b2f15b8fb131f3e346dff4825f74696cc0b3a3f727515cd901019278bad60ad",
+    "docs/helix-os/L9-integration-verification/ticket-workflow-derivation.json": "fe7d7fc5b23ec66042c1db5e0f45004c095b5703faa2d6284e442fdb81f81225",
+    "docs/governance/decisions/helix-os-workflow-prerequisite-l3-l10-delegated-decision-2026-10-12.md": "f6f4a3476cf9314621dbcb9f34d720baad3967d0a40a7eeef6fc72e5f1da30ff",
+    "docs/governance/audits/prerequisite-l3-l10-definition-audit-2026-10-12.json": "6ae8be6b586679e5ea9a79b80e95679bf9473ea37a89bb2dc028133e79b0396a",
+    "docs/governance/design-verification-quality-assurance.md": "f5751e236dc073fe67114c1fcb4b0f64b3d746290b25d75b61e60a08e3c99c85",
+    "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-requirements.md": "f0d0d33a1cced1ad7c1bab061f0a36bcdb5bad122dc58c7e8e43b47032f37d6b",
+    "archive/legacy-generation-2026-09-14/root/docs/governance/predecessor-harness-full-weakness-audit-2026-07-20.md": "bab121404c956a0a4b403e589bea1c414af59b5996989bea5fab9f98f42f6872",
+    "docs/governance/authority-state-model.md": "1c0336ec838d3603231ffe6689175e9422c9cb1d19476159f88ab27f6a6233eb",
+    "docs/governance/github-upstream-operating-model.md": "637f4c4b8ba76ebd4b722a3d36cfa1f7faed45f0228f7528e56c072bc288f2d3"
+  },
+  "candidate_artifact_sha256": {
+    "scaffold/bindings/SCF-B-0189.json": "5ae7bc737e25106c93662ee461ba6c30715efe3fe5761d97647b70363f21f792",
+    "scaffold/research/wr221-os017-l5l8-projection-20261031/README.md": "5a18ddd86de1dc6a2e44e9298bac7f02d806118f3028d5b3b9ae8fc696608f52",
+    "scaffold/research/wr221-os017-l5l8-projection-20261031/u-id-candidate-projection.json": "d0bf0c961b0417ccf4aebef524a013b06198c323c4defc9dc27932b11738b5b8",
+    "scaffold/research/wr221-os017-l5l8-projection-20261031/validate_candidate.py": "22b4958fb879e82bad63e33cd4aa62af707f0ec820d34e309dbd6ea236157f39"
+  },
+  "not_run": [
+    "L4/L5 algorithm",
+    "runtime",
+    "old HELIX CLI/hook/runtime/test/CI",
+    "new runtime/test/CI"
+  ],
+  "legacy_evidence": [
+    {
+      "asset_id": "LEGACY-ASSET-3A15E5645D2D2A59DFF5",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-requirements.md",
+      "sections": [
+        "§4 lines 80-85",
+        "HXT-FR-001..003 lines 190-198"
+      ]
+    },
+    {
+      "asset_id": "LEGACY-ASSET-A127DEC3EEE6ED63CF17",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/predecessor-harness-full-weakness-audit-2026-07-20.md",
+      "failures": [
+        "UTW-002 line 68",
+        "UTW-005 line 71",
+        "UTW-021 line 87"
+      ]
+    }
+  ],
+  "scope_note": "#3965 adds OS017-NEG-workflow-resume-source_unresolved and L9 candidate refs for cases 51/53; this fifth class is outside WR221. Four prior classes and 63 unit rows are compared to the historical task base."
+}

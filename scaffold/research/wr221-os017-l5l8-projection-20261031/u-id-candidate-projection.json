@@ -1,0 +1,533 @@
+{
+  "schema": "wr221-os017-u-id-candidate-projection.v2",
+  "evidence_kind": "scaffold",
+  "authority_effect": "none",
+  "status": "candidate_partial_incomplete",
+  "source_boundary": {
+    "derivation": "L3/L10 approved exact rows + L4 candidate class fields + L7 raw given_input_ref graph. Existing L8 compact expected is read per member only for preservation/comparison; L9 expected is not a derivation oracle.",
+    "L4_or_L5_algorithm_executed": false,
+    "runtime_test_ci_executed": false,
+    "formal_class_membership": false
+  },
+  "qa_section_3": {
+    "target": "Common target F01701-F01708; validator resolves each U-ID project_call + function_calls against L7 and L5.",
+    "counterexample": "Each member retains only its unit_case_id and L7 case pointer; validator resolves the given_input_ref graph.",
+    "expected_result": "One compact expected per class derived from L4 and checked against every existing L8 member expected. Existing L8 rows are not modified.",
+    "oracle_id": {
+      "status": "unassigned_per_uid",
+      "note": "Existing unit-contract refs are not promoted to a per-U-ID QA oracle ID. No value is invented."
+    },
+    "test_citation": {
+      "value": null,
+      "status": "not present in current source rows; no test/runtime execution; no citation inferred"
+    }
+  },
+  "declared_unit_contract_oracle_refs": [
+    {
+      "unit_contract_id": "HELIXOS-L8-017-F01",
+      "system_oracle_ref": "HELIXOS-L10-017-F01",
+      "source_l9_oracle_ref": "HELIXOS-L9-017-F01",
+      "meaning": "preserved declaration only; not assigned as a per-U-ID oracle"
+    },
+    {
+      "unit_contract_id": "HELIXOS-L8-017-F02",
+      "system_oracle_ref": "HELIXOS-L10-017-F02",
+      "source_l9_oracle_ref": "HELIXOS-L9-017-F02",
+      "meaning": "preserved declaration only; not assigned as a per-U-ID oracle"
+    },
+    {
+      "unit_contract_id": "HELIXOS-L8-017-F03",
+      "system_oracle_ref": "HELIXOS-L10-017-F03",
+      "source_l9_oracle_ref": "HELIXOS-L9-017-F03",
+      "meaning": "preserved declaration only; not assigned as a per-U-ID oracle"
+    },
+    {
+      "unit_contract_id": "HELIXOS-L8-017-B01",
+      "system_oracle_ref": "HELIXOS-L10-017-B01",
+      "source_l9_oracle_ref": "HELIXOS-L9-017-B01",
+      "meaning": "preserved declaration only; not assigned as a per-U-ID oracle"
+    }
+  ],
+  "classes": [
+    {
+      "class_id": "OS017-NEG-inputs-source_unresolved",
+      "l4_candidate_ref": {
+        "path": "docs/helix-os/L4-basic-design/ticket-workflow-derivation.json",
+        "pointer": "/failure_classifications/0"
+      },
+      "source_basis": {
+        "condition": "workflow_material_unknown",
+        "finding_codes": [
+          "source_unresolved"
+        ],
+        "expected_axis": "inputs",
+        "expected_state": "unknown",
+        "backflow_owner": "ticket-workflow-owner"
+      },
+      "candidate_compact_expected": {
+        "condition": "workflow_material_unknown",
+        "finding_codes": [
+          "source_unresolved"
+        ]
+      },
+      "existing_l8_expected_check": {
+        "derive_from_l4_and_l3_l10": true,
+        "compare_each_member_existing_l8_fields": [
+          "condition",
+          "expected.finding_codes"
+        ],
+        "selected_phase_observed_common_value": "resume"
+      },
+      "target_function_refs_common": [
+        "F01701",
+        "F01702",
+        "F01703",
+        "F01704",
+        "F01705",
+        "F01706",
+        "F01707",
+        "F01708"
+      ],
+      "target_resolution_rule": "For each U-ID, resolve its project_call and function_calls IDs in L7 /function_calls and assert their distinct function values equal target_function_refs_common and each function exists in L5 /functions.",
+      "counterexample_resolution_rule": "For each listed L7 case pointer, resolve /cases/<n>/given_input_ref to the raw input object; do not copy or recompute it here.",
+      "existing_single_l5_contract_membership_counts": {
+        "HELIXOS-L5-017-F01": 31
+      },
+      "multi_contract_exceptions": [
+        {
+          "unit_case_id": "OS017-L8-EXPECTED-BINDING-REQUIREMENT_REVISION-UNKNOWN",
+          "l7_case_pointer": "/cases/92",
+          "existing_l5_contract_refs": [
+            "HELIXOS-L5-017-F01",
+            "HELIXOS-L5-017-F02",
+            "HELIXOS-L5-017-F03"
+          ]
+        },
+        {
+          "unit_case_id": "OS017-L8-EXPECTED-BINDING-SCOPE-UNKNOWN",
+          "l7_case_pointer": "/cases/93",
+          "existing_l5_contract_refs": [
+            "HELIXOS-L5-017-F01",
+            "HELIXOS-L5-017-F02",
+            "HELIXOS-L5-017-F03"
+          ]
+        },
+        {
+          "unit_case_id": "OS017-L8-EXPECTED-BINDING-CONTRACT_REVISION-UNKNOWN",
+          "l7_case_pointer": "/cases/95",
+          "existing_l5_contract_refs": [
+            "HELIXOS-L5-017-F01",
+            "HELIXOS-L5-017-F02"
+          ]
+        }
+      ],
+      "l5_class_output_crosswalk": "unformed",
+      "members": [
+        {
+          "unit_case_id": "OS017-L8-BINDING-PROJECT-UNKNOWN",
+          "l7_case_pointer": "/cases/5"
+        },
+        {
+          "unit_case_id": "OS017-L8-BINDING-REQUIREMENT_REVISION-UNKNOWN",
+          "l7_case_pointer": "/cases/7"
+        },
+        {
+          "unit_case_id": "OS017-L8-BINDING-SCOPE-UNKNOWN",
+          "l7_case_pointer": "/cases/9"
+        },
+        {
+          "unit_case_id": "OS017-L8-BINDING-PLAN_REVISION-UNKNOWN",
+          "l7_case_pointer": "/cases/11"
+        },
+        {
+          "unit_case_id": "OS017-L8-BINDING-CONTRACT_REVISION-UNKNOWN",
+          "l7_case_pointer": "/cases/13"
+        },
+        {
+          "unit_case_id": "OS017-L8-MANAGEMENT-PURPOSE_REF-UNKNOWN",
+          "l7_case_pointer": "/cases/15"
+        },
+        {
+          "unit_case_id": "OS017-L8-MANAGEMENT-REQUEST_REF-UNKNOWN",
+          "l7_case_pointer": "/cases/17"
+        },
+        {
+          "unit_case_id": "OS017-L8-MANAGEMENT-CONSTRAINT_REF-UNKNOWN",
+          "l7_case_pointer": "/cases/19"
+        },
+        {
+          "unit_case_id": "OS017-L8-MANAGEMENT-PERMISSION_REF-UNKNOWN",
+          "l7_case_pointer": "/cases/21"
+        },
+        {
+          "unit_case_id": "OS017-L8-MANAGEMENT-PRIORITY_REF-UNKNOWN",
+          "l7_case_pointer": "/cases/23"
+        },
+        {
+          "unit_case_id": "OS017-L8-MANAGEMENT-DEPENDENCY_REF-UNKNOWN",
+          "l7_case_pointer": "/cases/25"
+        },
+        {
+          "unit_case_id": "OS017-L8-MANAGEMENT-RESOURCE_REF-UNKNOWN",
+          "l7_case_pointer": "/cases/27"
+        },
+        {
+          "unit_case_id": "OS017-L8-MANAGEMENT-BUDGET_REF-UNKNOWN",
+          "l7_case_pointer": "/cases/29"
+        },
+        {
+          "unit_case_id": "OS017-L8-MANAGEMENT-DEADLINE_REF-UNKNOWN",
+          "l7_case_pointer": "/cases/31"
+        },
+        {
+          "unit_case_id": "OS017-L8-MANAGEMENT-STOP_CONDITION_REF-UNKNOWN",
+          "l7_case_pointer": "/cases/33"
+        },
+        {
+          "unit_case_id": "OS017-L8-MANAGEMENT-HARNESS_VERSION-UNKNOWN",
+          "l7_case_pointer": "/cases/35"
+        },
+        {
+          "unit_case_id": "OS017-L8-MANAGEMENT-CONNECTION_REF-UNKNOWN",
+          "l7_case_pointer": "/cases/37"
+        },
+        {
+          "unit_case_id": "OS017-L8-EXPECTED-BINDING-PROJECT-UNKNOWN",
+          "l7_case_pointer": "/cases/91"
+        },
+        {
+          "unit_case_id": "OS017-L8-EXPECTED-BINDING-REQUIREMENT_REVISION-UNKNOWN",
+          "l7_case_pointer": "/cases/92"
+        },
+        {
+          "unit_case_id": "OS017-L8-EXPECTED-BINDING-SCOPE-UNKNOWN",
+          "l7_case_pointer": "/cases/93"
+        },
+        {
+          "unit_case_id": "OS017-L8-EXPECTED-BINDING-PLAN_REVISION-UNKNOWN",
+          "l7_case_pointer": "/cases/94"
+        },
+        {
+          "unit_case_id": "OS017-L8-EXPECTED-BINDING-CONTRACT_REVISION-UNKNOWN",
+          "l7_case_pointer": "/cases/95"
+        },
+        {
+          "unit_case_id": "OS017-L8-EXPECTED-MANAGEMENT-PURPOSE_REF-UNKNOWN",
+          "l7_case_pointer": "/cases/96"
+        },
+        {
+          "unit_case_id": "OS017-L8-EXPECTED-MANAGEMENT-REQUEST_REF-UNKNOWN",
+          "l7_case_pointer": "/cases/97"
+        },
+        {
+          "unit_case_id": "OS017-L8-EXPECTED-MANAGEMENT-CONSTRAINT_REF-UNKNOWN",
+          "l7_case_pointer": "/cases/98"
+        },
+        {
+          "unit_case_id": "OS017-L8-EXPECTED-MANAGEMENT-PERMISSION_REF-UNKNOWN",
+          "l7_case_pointer": "/cases/99"
+        },
+        {
+          "unit_case_id": "OS017-L8-EXPECTED-MANAGEMENT-PRIORITY_REF-UNKNOWN",
+          "l7_case_pointer": "/cases/100"
+        },
+        {
+          "unit_case_id": "OS017-L8-EXPECTED-MANAGEMENT-DEPENDENCY_REF-UNKNOWN",
+          "l7_case_pointer": "/cases/101"
+        },
+        {
+          "unit_case_id": "OS017-L8-EXPECTED-MANAGEMENT-RESOURCE_REF-UNKNOWN",
+          "l7_case_pointer": "/cases/102"
+        },
+        {
+          "unit_case_id": "OS017-L8-EXPECTED-MANAGEMENT-BUDGET_REF-UNKNOWN",
+          "l7_case_pointer": "/cases/103"
+        },
+        {
+          "unit_case_id": "OS017-L8-EXPECTED-MANAGEMENT-DEADLINE_REF-UNKNOWN",
+          "l7_case_pointer": "/cases/104"
+        },
+        {
+          "unit_case_id": "OS017-L8-EXPECTED-MANAGEMENT-STOP_CONDITION_REF-UNKNOWN",
+          "l7_case_pointer": "/cases/105"
+        },
+        {
+          "unit_case_id": "OS017-L8-EXPECTED-MANAGEMENT-HARNESS_VERSION-UNKNOWN",
+          "l7_case_pointer": "/cases/106"
+        },
+        {
+          "unit_case_id": "OS017-L8-EXPECTED-MANAGEMENT-CONNECTION_REF-UNKNOWN",
+          "l7_case_pointer": "/cases/107"
+        }
+      ],
+      "member_count": 34
+    },
+    {
+      "class_id": "OS017-NEG-inputs-source_conflict",
+      "l4_candidate_ref": {
+        "path": "docs/helix-os/L4-basic-design/ticket-workflow-derivation.json",
+        "pointer": "/failure_classifications/1"
+      },
+      "source_basis": {
+        "condition": "workflow_material_violation",
+        "finding_codes": [
+          "source_conflict"
+        ],
+        "expected_axis": "inputs",
+        "expected_state": "violation",
+        "backflow_owner": "ticket-workflow-owner"
+      },
+      "candidate_compact_expected": {
+        "condition": "workflow_material_violation",
+        "finding_codes": [
+          "source_conflict"
+        ]
+      },
+      "existing_l8_expected_check": {
+        "derive_from_l4_and_l3_l10": true,
+        "compare_each_member_existing_l8_fields": [
+          "condition",
+          "expected.finding_codes"
+        ],
+        "selected_phase_observed_common_value": "resume"
+      },
+      "target_function_refs_common": [
+        "F01701",
+        "F01702",
+        "F01703",
+        "F01704",
+        "F01705",
+        "F01706",
+        "F01707",
+        "F01708"
+      ],
+      "target_resolution_rule": "For each U-ID, resolve its project_call and function_calls IDs in L7 /function_calls and assert their distinct function values equal target_function_refs_common and each function exists in L5 /functions.",
+      "counterexample_resolution_rule": "For each listed L7 case pointer, resolve /cases/<n>/given_input_ref to the raw input object; do not copy or recompute it here.",
+      "existing_single_l5_contract_membership_counts": {
+        "HELIXOS-L5-017-F01": 17
+      },
+      "multi_contract_exceptions": [],
+      "l5_class_output_crosswalk": "unformed",
+      "members": [
+        {
+          "unit_case_id": "OS017-L8-BINDING-PROJECT-CONFLICT",
+          "l7_case_pointer": "/cases/6"
+        },
+        {
+          "unit_case_id": "OS017-L8-BINDING-REQUIREMENT_REVISION-CONFLICT",
+          "l7_case_pointer": "/cases/8"
+        },
+        {
+          "unit_case_id": "OS017-L8-BINDING-SCOPE-CONFLICT",
+          "l7_case_pointer": "/cases/10"
+        },
+        {
+          "unit_case_id": "OS017-L8-BINDING-PLAN_REVISION-CONFLICT",
+          "l7_case_pointer": "/cases/12"
+        },
+        {
+          "unit_case_id": "OS017-L8-BINDING-CONTRACT_REVISION-CONFLICT",
+          "l7_case_pointer": "/cases/14"
+        },
+        {
+          "unit_case_id": "OS017-L8-MANAGEMENT-PURPOSE_REF-CONFLICT",
+          "l7_case_pointer": "/cases/16"
+        },
+        {
+          "unit_case_id": "OS017-L8-MANAGEMENT-REQUEST_REF-CONFLICT",
+          "l7_case_pointer": "/cases/18"
+        },
+        {
+          "unit_case_id": "OS017-L8-MANAGEMENT-CONSTRAINT_REF-CONFLICT",
+          "l7_case_pointer": "/cases/20"
+        },
+        {
+          "unit_case_id": "OS017-L8-MANAGEMENT-PERMISSION_REF-CONFLICT",
+          "l7_case_pointer": "/cases/22"
+        },
+        {
+          "unit_case_id": "OS017-L8-MANAGEMENT-PRIORITY_REF-CONFLICT",
+          "l7_case_pointer": "/cases/24"
+        },
+        {
+          "unit_case_id": "OS017-L8-MANAGEMENT-DEPENDENCY_REF-CONFLICT",
+          "l7_case_pointer": "/cases/26"
+        },
+        {
+          "unit_case_id": "OS017-L8-MANAGEMENT-RESOURCE_REF-CONFLICT",
+          "l7_case_pointer": "/cases/28"
+        },
+        {
+          "unit_case_id": "OS017-L8-MANAGEMENT-BUDGET_REF-CONFLICT",
+          "l7_case_pointer": "/cases/30"
+        },
+        {
+          "unit_case_id": "OS017-L8-MANAGEMENT-DEADLINE_REF-CONFLICT",
+          "l7_case_pointer": "/cases/32"
+        },
+        {
+          "unit_case_id": "OS017-L8-MANAGEMENT-STOP_CONDITION_REF-CONFLICT",
+          "l7_case_pointer": "/cases/34"
+        },
+        {
+          "unit_case_id": "OS017-L8-MANAGEMENT-HARNESS_VERSION-CONFLICT",
+          "l7_case_pointer": "/cases/36"
+        },
+        {
+          "unit_case_id": "OS017-L8-MANAGEMENT-CONNECTION_REF-CONFLICT",
+          "l7_case_pointer": "/cases/38"
+        }
+      ],
+      "member_count": 17
+    },
+    {
+      "class_id": "OS017-NEG-ownership-source_unresolved",
+      "l4_candidate_ref": {
+        "path": "docs/helix-os/L4-basic-design/ticket-workflow-derivation.json",
+        "pointer": "/failure_classifications/2"
+      },
+      "source_basis": {
+        "condition": "workflow_material_unknown",
+        "finding_codes": [
+          "source_unresolved"
+        ],
+        "expected_axis": "ownership",
+        "expected_state": "unknown",
+        "backflow_owner": "ticket-workflow-owner"
+      },
+      "candidate_compact_expected": {
+        "condition": "workflow_material_unknown",
+        "finding_codes": [
+          "source_unresolved"
+        ]
+      },
+      "existing_l8_expected_check": {
+        "derive_from_l4_and_l3_l10": true,
+        "compare_each_member_existing_l8_fields": [
+          "condition",
+          "expected.finding_codes"
+        ],
+        "selected_phase_observed_common_value": "resume"
+      },
+      "target_function_refs_common": [
+        "F01701",
+        "F01702",
+        "F01703",
+        "F01704",
+        "F01705",
+        "F01706",
+        "F01707",
+        "F01708"
+      ],
+      "target_resolution_rule": "For each U-ID, resolve its project_call and function_calls IDs in L7 /function_calls and assert their distinct function values equal target_function_refs_common and each function exists in L5 /functions.",
+      "counterexample_resolution_rule": "For each listed L7 case pointer, resolve /cases/<n>/given_input_ref to the raw input object; do not copy or recompute it here.",
+      "existing_single_l5_contract_membership_counts": {
+        "HELIXOS-L5-017-B01": 6
+      },
+      "multi_contract_exceptions": [],
+      "l5_class_output_crosswalk": "unformed",
+      "members": [
+        {
+          "unit_case_id": "OS017-L8-ROLES-PROMOTION-UNKNOWN",
+          "l7_case_pointer": "/cases/39"
+        },
+        {
+          "unit_case_id": "OS017-L8-ROLES-PROCESS-UNKNOWN",
+          "l7_case_pointer": "/cases/41"
+        },
+        {
+          "unit_case_id": "OS017-L8-ROLES-PROPOSAL-UNKNOWN",
+          "l7_case_pointer": "/cases/43"
+        },
+        {
+          "unit_case_id": "OS017-L8-ROLES-LEVEL-UNKNOWN",
+          "l7_case_pointer": "/cases/45"
+        },
+        {
+          "unit_case_id": "OS017-L8-ROLES-AUTHORITY-UNKNOWN",
+          "l7_case_pointer": "/cases/47"
+        },
+        {
+          "unit_case_id": "OS017-L8-ROLES-RESOURCE-UNKNOWN",
+          "l7_case_pointer": "/cases/49"
+        }
+      ],
+      "member_count": 6
+    },
+    {
+      "class_id": "OS017-NEG-ownership-source_conflict",
+      "l4_candidate_ref": {
+        "path": "docs/helix-os/L4-basic-design/ticket-workflow-derivation.json",
+        "pointer": "/failure_classifications/3"
+      },
+      "source_basis": {
+        "condition": "workflow_material_violation",
+        "finding_codes": [
+          "source_conflict"
+        ],
+        "expected_axis": "ownership",
+        "expected_state": "violation",
+        "backflow_owner": "ticket-workflow-owner"
+      },
+      "candidate_compact_expected": {
+        "condition": "workflow_material_violation",
+        "finding_codes": [
+          "source_conflict"
+        ]
+      },
+      "existing_l8_expected_check": {
+        "derive_from_l4_and_l3_l10": true,
+        "compare_each_member_existing_l8_fields": [
+          "condition",
+          "expected.finding_codes"
+        ],
+        "selected_phase_observed_common_value": "resume"
+      },
+      "target_function_refs_common": [
+        "F01701",
+        "F01702",
+        "F01703",
+        "F01704",
+        "F01705",
+        "F01706",
+        "F01707",
+        "F01708"
+      ],
+      "target_resolution_rule": "For each U-ID, resolve its project_call and function_calls IDs in L7 /function_calls and assert their distinct function values equal target_function_refs_common and each function exists in L5 /functions.",
+      "counterexample_resolution_rule": "For each listed L7 case pointer, resolve /cases/<n>/given_input_ref to the raw input object; do not copy or recompute it here.",
+      "existing_single_l5_contract_membership_counts": {
+        "HELIXOS-L5-017-B01": 6
+      },
+      "multi_contract_exceptions": [],
+      "l5_class_output_crosswalk": "unformed",
+      "members": [
+        {
+          "unit_case_id": "OS017-L8-ROLES-PROMOTION-CONFLICT",
+          "l7_case_pointer": "/cases/40"
+        },
+        {
+          "unit_case_id": "OS017-L8-ROLES-PROCESS-CONFLICT",
+          "l7_case_pointer": "/cases/42"
+        },
+        {
+          "unit_case_id": "OS017-L8-ROLES-PROPOSAL-CONFLICT",
+          "l7_case_pointer": "/cases/44"
+        },
+        {
+          "unit_case_id": "OS017-L8-ROLES-LEVEL-CONFLICT",
+          "l7_case_pointer": "/cases/46"
+        },
+        {
+          "unit_case_id": "OS017-L8-ROLES-AUTHORITY-CONFLICT",
+          "l7_case_pointer": "/cases/48"
+        },
+        {
+          "unit_case_id": "OS017-L8-ROLES-RESOURCE-CONFLICT",
+          "l7_case_pointer": "/cases/50"
+        }
+      ],
+      "member_count": 6
+    }
+  ],
+  "all_member_count": 63
+}
