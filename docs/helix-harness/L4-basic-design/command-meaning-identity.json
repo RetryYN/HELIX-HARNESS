@@ -929,10 +929,10 @@
         },
         {
           "id": "HARNESS-L4-052-F05-NEG-06",
-          "code": "bound",
+          "code": "replay",
           "condition": "current G2を先行O1/G1成功として表示",
           "expected_axis": "os_binding",
-          "expected_state": "bound",
+          "expected_state": "replay",
           "expected": "先行G1とobserved current G2を別fieldで返す。",
           "backflow_owner": "OSOutcomeBinding",
           "finding_codes": [],
