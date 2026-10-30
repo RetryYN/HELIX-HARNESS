@@ -1263,6 +1263,40 @@
             "pending_operations": [
               "read"
             ]
+          },
+          "negative_class_assignment": {
+            "classification": "SEC003_F01_IDENTITY_CONFLICT",
+            "reason": "L4 F01が各資産をproject/tenant/environment/assignment/worktree/revisionへ結ぶ。counterexample inputのasset_scope identity memberが独立expected_targetと相反するためknown asset scope conflictとして扱う。",
+            "source_pointers": [
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/0/negative_classifications/0"
+              },
+              {
+                "path": "docs/helix-security/L3-requirements/functional-requirements.json",
+                "pointer": "/requirements/3"
+              },
+              {
+                "path": "docs/helix-security/L10-verification/functional-verification.json",
+                "pointer": "/cases/3"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/0/content_comparison"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/0/output_meanings"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/diagnostic_contract/return_owner"
+              },
+              {
+                "path": "docs/helix-security/L9-integration-verification/project-scope-isolation.json",
+                "pointer": "/cases/0/negative_cases/0/counterexample"
+              }
+            ]
           }
         },
         {
@@ -1311,6 +1345,40 @@
             ],
             "pending_operations": [
               "read"
+            ]
+          },
+          "negative_class_assignment": {
+            "classification": "SEC003_F01_IDENTITY_CONFLICT",
+            "reason": "L4 F01が各資産をproject/tenant/environment/assignment/worktree/revisionへ結ぶ。counterexample inputのasset_scope identity memberが独立expected_targetと相反するためknown asset scope conflictとして扱う。",
+            "source_pointers": [
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/0/negative_classifications/0"
+              },
+              {
+                "path": "docs/helix-security/L3-requirements/functional-requirements.json",
+                "pointer": "/requirements/3"
+              },
+              {
+                "path": "docs/helix-security/L10-verification/functional-verification.json",
+                "pointer": "/cases/3"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/0/content_comparison"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/0/output_meanings"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/diagnostic_contract/return_owner"
+              },
+              {
+                "path": "docs/helix-security/L9-integration-verification/project-scope-isolation.json",
+                "pointer": "/cases/0/negative_cases/1/counterexample"
+              }
             ]
           }
         },
@@ -1361,6 +1429,40 @@
             "pending_operations": [
               "read"
             ]
+          },
+          "negative_class_assignment": {
+            "classification": "SEC003_F01_IDENTITY_CONFLICT",
+            "reason": "L4 F01が各資産をproject/tenant/environment/assignment/worktree/revisionへ結ぶ。counterexample inputのasset_scope identity memberが独立expected_targetと相反するためknown asset scope conflictとして扱う。",
+            "source_pointers": [
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/0/negative_classifications/0"
+              },
+              {
+                "path": "docs/helix-security/L3-requirements/functional-requirements.json",
+                "pointer": "/requirements/3"
+              },
+              {
+                "path": "docs/helix-security/L10-verification/functional-verification.json",
+                "pointer": "/cases/3"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/0/content_comparison"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/0/output_meanings"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/diagnostic_contract/return_owner"
+              },
+              {
+                "path": "docs/helix-security/L9-integration-verification/project-scope-isolation.json",
+                "pointer": "/cases/0/negative_cases/2/counterexample"
+              }
+            ]
           }
         },
         {
@@ -1409,6 +1511,40 @@
             ],
             "pending_operations": [
               "read"
+            ]
+          },
+          "negative_class_assignment": {
+            "classification": "SEC003_F01_IDENTITY_CONFLICT",
+            "reason": "L4 F01が各資産をproject/tenant/environment/assignment/worktree/revisionへ結ぶ。counterexample inputのasset_scope identity memberが独立expected_targetと相反するためknown asset scope conflictとして扱う。",
+            "source_pointers": [
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/0/negative_classifications/0"
+              },
+              {
+                "path": "docs/helix-security/L3-requirements/functional-requirements.json",
+                "pointer": "/requirements/3"
+              },
+              {
+                "path": "docs/helix-security/L10-verification/functional-verification.json",
+                "pointer": "/cases/3"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/0/content_comparison"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/0/output_meanings"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/diagnostic_contract/return_owner"
+              },
+              {
+                "path": "docs/helix-security/L9-integration-verification/project-scope-isolation.json",
+                "pointer": "/cases/0/negative_cases/3/counterexample"
+              }
             ]
           }
         },
@@ -1459,6 +1595,40 @@
             "pending_operations": [
               "read"
             ]
+          },
+          "negative_class_assignment": {
+            "classification": "SEC003_F01_IDENTITY_CONFLICT",
+            "reason": "L4 F01が各資産をproject/tenant/environment/assignment/worktree/revisionへ結ぶ。counterexample inputのasset_scope identity memberが独立expected_targetと相反するためknown asset scope conflictとして扱う。",
+            "source_pointers": [
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/0/negative_classifications/0"
+              },
+              {
+                "path": "docs/helix-security/L3-requirements/functional-requirements.json",
+                "pointer": "/requirements/3"
+              },
+              {
+                "path": "docs/helix-security/L10-verification/functional-verification.json",
+                "pointer": "/cases/3"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/0/content_comparison"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/0/output_meanings"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/diagnostic_contract/return_owner"
+              },
+              {
+                "path": "docs/helix-security/L9-integration-verification/project-scope-isolation.json",
+                "pointer": "/cases/0/negative_cases/4/counterexample"
+              }
+            ]
           }
         },
         {
@@ -1507,6 +1677,40 @@
             ],
             "pending_operations": [
               "read"
+            ]
+          },
+          "negative_class_assignment": {
+            "classification": "SEC003_F01_IDENTITY_CONFLICT",
+            "reason": "L4 F01が各資産をproject/tenant/environment/assignment/worktree/revisionへ結ぶ。counterexample inputのasset_scope identity memberが独立expected_targetと相反するためknown asset scope conflictとして扱う。",
+            "source_pointers": [
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/0/negative_classifications/0"
+              },
+              {
+                "path": "docs/helix-security/L3-requirements/functional-requirements.json",
+                "pointer": "/requirements/3"
+              },
+              {
+                "path": "docs/helix-security/L10-verification/functional-verification.json",
+                "pointer": "/cases/3"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/0/content_comparison"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/0/output_meanings"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/diagnostic_contract/return_owner"
+              },
+              {
+                "path": "docs/helix-security/L9-integration-verification/project-scope-isolation.json",
+                "pointer": "/cases/0/negative_cases/5/counterexample"
+              }
             ]
           }
         },
@@ -1557,6 +1761,40 @@
             "pending_operations": [
               "read"
             ]
+          },
+          "negative_class_assignment": {
+            "classification": "SEC003_F01_IDENTITY_CONFLICT",
+            "reason": "L4 F01が各資産をproject/tenant/environment/assignment/worktree/revisionへ結ぶ。counterexample inputのasset_scope identity memberが独立expected_targetと相反するためknown asset scope conflictとして扱う。",
+            "source_pointers": [
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/0/negative_classifications/0"
+              },
+              {
+                "path": "docs/helix-security/L3-requirements/functional-requirements.json",
+                "pointer": "/requirements/3"
+              },
+              {
+                "path": "docs/helix-security/L10-verification/functional-verification.json",
+                "pointer": "/cases/3"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/0/content_comparison"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/0/output_meanings"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/diagnostic_contract/return_owner"
+              },
+              {
+                "path": "docs/helix-security/L9-integration-verification/project-scope-isolation.json",
+                "pointer": "/cases/0/negative_cases/6/counterexample"
+              }
+            ]
           }
         },
         {
@@ -1605,6 +1843,40 @@
             ],
             "pending_operations": [
               "read"
+            ]
+          },
+          "negative_class_assignment": {
+            "classification": "SEC003_F01_IDENTITY_CONFLICT",
+            "reason": "L4 F01が各資産をproject/tenant/environment/assignment/worktree/revisionへ結ぶ。counterexample inputのasset_scope identity memberが独立expected_targetと相反するためknown asset scope conflictとして扱う。",
+            "source_pointers": [
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/0/negative_classifications/0"
+              },
+              {
+                "path": "docs/helix-security/L3-requirements/functional-requirements.json",
+                "pointer": "/requirements/3"
+              },
+              {
+                "path": "docs/helix-security/L10-verification/functional-verification.json",
+                "pointer": "/cases/3"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/0/content_comparison"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/0/output_meanings"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/diagnostic_contract/return_owner"
+              },
+              {
+                "path": "docs/helix-security/L9-integration-verification/project-scope-isolation.json",
+                "pointer": "/cases/0/negative_cases/7/counterexample"
+              }
             ]
           }
         },
@@ -1655,6 +1927,40 @@
             "pending_operations": [
               "read"
             ]
+          },
+          "negative_class_assignment": {
+            "classification": "SEC003_F01_IDENTITY_CONFLICT",
+            "reason": "L4 F01が各資産をproject/tenant/environment/assignment/worktree/revisionへ結ぶ。counterexample inputのasset_scope identity memberが独立expected_targetと相反するためknown asset scope conflictとして扱う。",
+            "source_pointers": [
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/0/negative_classifications/0"
+              },
+              {
+                "path": "docs/helix-security/L3-requirements/functional-requirements.json",
+                "pointer": "/requirements/3"
+              },
+              {
+                "path": "docs/helix-security/L10-verification/functional-verification.json",
+                "pointer": "/cases/3"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/0/content_comparison"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/0/output_meanings"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/diagnostic_contract/return_owner"
+              },
+              {
+                "path": "docs/helix-security/L9-integration-verification/project-scope-isolation.json",
+                "pointer": "/cases/0/negative_cases/8/counterexample"
+              }
+            ]
           }
         },
         {
@@ -1703,6 +2009,40 @@
             ],
             "pending_operations": [
               "read"
+            ]
+          },
+          "negative_class_assignment": {
+            "classification": "SEC003_F01_IDENTITY_CONFLICT",
+            "reason": "L4 F01が各資産をproject/tenant/environment/assignment/worktree/revisionへ結ぶ。counterexample inputのasset_scope identity memberが独立expected_targetと相反するためknown asset scope conflictとして扱う。",
+            "source_pointers": [
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/0/negative_classifications/0"
+              },
+              {
+                "path": "docs/helix-security/L3-requirements/functional-requirements.json",
+                "pointer": "/requirements/3"
+              },
+              {
+                "path": "docs/helix-security/L10-verification/functional-verification.json",
+                "pointer": "/cases/3"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/0/content_comparison"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/0/output_meanings"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/diagnostic_contract/return_owner"
+              },
+              {
+                "path": "docs/helix-security/L9-integration-verification/project-scope-isolation.json",
+                "pointer": "/cases/0/negative_cases/9/counterexample"
+              }
             ]
           }
         },
@@ -1753,6 +2093,40 @@
             "pending_operations": [
               "read"
             ]
+          },
+          "negative_class_assignment": {
+            "classification": "SEC003_F01_IDENTITY_CONFLICT",
+            "reason": "L4 F01が各資産をproject/tenant/environment/assignment/worktree/revisionへ結ぶ。counterexample inputのasset_scope identity memberが独立expected_targetと相反するためknown asset scope conflictとして扱う。",
+            "source_pointers": [
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/0/negative_classifications/0"
+              },
+              {
+                "path": "docs/helix-security/L3-requirements/functional-requirements.json",
+                "pointer": "/requirements/3"
+              },
+              {
+                "path": "docs/helix-security/L10-verification/functional-verification.json",
+                "pointer": "/cases/3"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/0/content_comparison"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/0/output_meanings"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/diagnostic_contract/return_owner"
+              },
+              {
+                "path": "docs/helix-security/L9-integration-verification/project-scope-isolation.json",
+                "pointer": "/cases/0/negative_cases/10/counterexample"
+              }
+            ]
           }
         },
         {
@@ -1801,6 +2175,40 @@
             ],
             "pending_operations": [
               "read"
+            ]
+          },
+          "negative_class_assignment": {
+            "classification": "SEC003_F01_IDENTITY_CONFLICT",
+            "reason": "L4 F01が各資産をproject/tenant/environment/assignment/worktree/revisionへ結ぶ。counterexample inputのasset_scope identity memberが独立expected_targetと相反するためknown asset scope conflictとして扱う。",
+            "source_pointers": [
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/0/negative_classifications/0"
+              },
+              {
+                "path": "docs/helix-security/L3-requirements/functional-requirements.json",
+                "pointer": "/requirements/3"
+              },
+              {
+                "path": "docs/helix-security/L10-verification/functional-verification.json",
+                "pointer": "/cases/3"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/0/content_comparison"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/0/output_meanings"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/diagnostic_contract/return_owner"
+              },
+              {
+                "path": "docs/helix-security/L9-integration-verification/project-scope-isolation.json",
+                "pointer": "/cases/0/negative_cases/11/counterexample"
+              }
             ]
           }
         },
@@ -1851,6 +2259,40 @@
             "pending_operations": [
               "read"
             ]
+          },
+          "negative_class_assignment": {
+            "classification": "SEC003_F01_IDENTITY_CONFLICT",
+            "reason": "L4 F01が各資産をproject/tenant/environment/assignment/worktree/revisionへ結ぶ。counterexample inputのasset_scope identity memberが独立expected_targetと相反するためknown asset scope conflictとして扱う。",
+            "source_pointers": [
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/0/negative_classifications/0"
+              },
+              {
+                "path": "docs/helix-security/L3-requirements/functional-requirements.json",
+                "pointer": "/requirements/3"
+              },
+              {
+                "path": "docs/helix-security/L10-verification/functional-verification.json",
+                "pointer": "/cases/3"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/0/content_comparison"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/0/output_meanings"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/diagnostic_contract/return_owner"
+              },
+              {
+                "path": "docs/helix-security/L9-integration-verification/project-scope-isolation.json",
+                "pointer": "/cases/0/negative_cases/12/counterexample"
+              }
+            ]
           }
         },
         {
@@ -1899,6 +2341,40 @@
             ],
             "pending_operations": [
               "read"
+            ]
+          },
+          "negative_class_assignment": {
+            "classification": "SEC003_F01_IDENTITY_CONFLICT",
+            "reason": "L4 F01が各資産をproject/tenant/environment/assignment/worktree/revisionへ結ぶ。counterexample inputのasset_scope identity memberが独立expected_targetと相反するためknown asset scope conflictとして扱う。",
+            "source_pointers": [
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/0/negative_classifications/0"
+              },
+              {
+                "path": "docs/helix-security/L3-requirements/functional-requirements.json",
+                "pointer": "/requirements/3"
+              },
+              {
+                "path": "docs/helix-security/L10-verification/functional-verification.json",
+                "pointer": "/cases/3"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/0/content_comparison"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/0/output_meanings"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/diagnostic_contract/return_owner"
+              },
+              {
+                "path": "docs/helix-security/L9-integration-verification/project-scope-isolation.json",
+                "pointer": "/cases/0/negative_cases/13/counterexample"
+              }
             ]
           }
         },
@@ -1949,6 +2425,40 @@
             "pending_operations": [
               "read"
             ]
+          },
+          "negative_class_assignment": {
+            "classification": "SEC003_F01_IDENTITY_CONFLICT",
+            "reason": "L4 F01が各資産をproject/tenant/environment/assignment/worktree/revisionへ結ぶ。counterexample inputのasset_scope identity memberが独立expected_targetと相反するためknown asset scope conflictとして扱う。",
+            "source_pointers": [
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/0/negative_classifications/0"
+              },
+              {
+                "path": "docs/helix-security/L3-requirements/functional-requirements.json",
+                "pointer": "/requirements/3"
+              },
+              {
+                "path": "docs/helix-security/L10-verification/functional-verification.json",
+                "pointer": "/cases/3"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/0/content_comparison"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/0/output_meanings"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/diagnostic_contract/return_owner"
+              },
+              {
+                "path": "docs/helix-security/L9-integration-verification/project-scope-isolation.json",
+                "pointer": "/cases/0/negative_cases/14/counterexample"
+              }
+            ]
           }
         },
         {
@@ -1997,6 +2507,40 @@
             ],
             "pending_operations": [
               "read"
+            ]
+          },
+          "negative_class_assignment": {
+            "classification": "SEC003_F01_IDENTITY_CONFLICT",
+            "reason": "L4 F01が各資産をproject/tenant/environment/assignment/worktree/revisionへ結ぶ。counterexample inputのasset_scope identity memberが独立expected_targetと相反するためknown asset scope conflictとして扱う。",
+            "source_pointers": [
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/0/negative_classifications/0"
+              },
+              {
+                "path": "docs/helix-security/L3-requirements/functional-requirements.json",
+                "pointer": "/requirements/3"
+              },
+              {
+                "path": "docs/helix-security/L10-verification/functional-verification.json",
+                "pointer": "/cases/3"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/0/content_comparison"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/0/output_meanings"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/diagnostic_contract/return_owner"
+              },
+              {
+                "path": "docs/helix-security/L9-integration-verification/project-scope-isolation.json",
+                "pointer": "/cases/0/negative_cases/15/counterexample"
+              }
             ]
           }
         },
@@ -2047,6 +2591,40 @@
             "pending_operations": [
               "read"
             ]
+          },
+          "negative_class_assignment": {
+            "classification": "SEC003_F01_IDENTITY_CONFLICT",
+            "reason": "L4 F01が各資産をproject/tenant/environment/assignment/worktree/revisionへ結ぶ。counterexample inputのasset_scope identity memberが独立expected_targetと相反するためknown asset scope conflictとして扱う。",
+            "source_pointers": [
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/0/negative_classifications/0"
+              },
+              {
+                "path": "docs/helix-security/L3-requirements/functional-requirements.json",
+                "pointer": "/requirements/3"
+              },
+              {
+                "path": "docs/helix-security/L10-verification/functional-verification.json",
+                "pointer": "/cases/3"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/0/content_comparison"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/0/output_meanings"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/diagnostic_contract/return_owner"
+              },
+              {
+                "path": "docs/helix-security/L9-integration-verification/project-scope-isolation.json",
+                "pointer": "/cases/0/negative_cases/16/counterexample"
+              }
+            ]
           }
         },
         {
@@ -2095,6 +2673,40 @@
             ],
             "pending_operations": [
               "read"
+            ]
+          },
+          "negative_class_assignment": {
+            "classification": "SEC003_F01_IDENTITY_CONFLICT",
+            "reason": "L4 F01が各資産をproject/tenant/environment/assignment/worktree/revisionへ結ぶ。counterexample inputのasset_scope identity memberが独立expected_targetと相反するためknown asset scope conflictとして扱う。",
+            "source_pointers": [
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/0/negative_classifications/0"
+              },
+              {
+                "path": "docs/helix-security/L3-requirements/functional-requirements.json",
+                "pointer": "/requirements/3"
+              },
+              {
+                "path": "docs/helix-security/L10-verification/functional-verification.json",
+                "pointer": "/cases/3"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/0/content_comparison"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/0/output_meanings"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/diagnostic_contract/return_owner"
+              },
+              {
+                "path": "docs/helix-security/L9-integration-verification/project-scope-isolation.json",
+                "pointer": "/cases/0/negative_cases/17/counterexample"
+              }
             ]
           }
         },
@@ -2145,6 +2757,40 @@
             "pending_operations": [
               "read"
             ]
+          },
+          "negative_class_assignment": {
+            "classification": "SEC003_F01_IDENTITY_CONFLICT",
+            "reason": "L4 F01が各資産をproject/tenant/environment/assignment/worktree/revisionへ結ぶ。counterexample inputのasset_scope identity memberが独立expected_targetと相反するためknown asset scope conflictとして扱う。",
+            "source_pointers": [
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/0/negative_classifications/0"
+              },
+              {
+                "path": "docs/helix-security/L3-requirements/functional-requirements.json",
+                "pointer": "/requirements/3"
+              },
+              {
+                "path": "docs/helix-security/L10-verification/functional-verification.json",
+                "pointer": "/cases/3"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/0/content_comparison"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/0/output_meanings"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/diagnostic_contract/return_owner"
+              },
+              {
+                "path": "docs/helix-security/L9-integration-verification/project-scope-isolation.json",
+                "pointer": "/cases/0/negative_cases/18/counterexample"
+              }
+            ]
           }
         },
         {
@@ -2193,6 +2839,40 @@
             ],
             "pending_operations": [
               "read"
+            ]
+          },
+          "negative_class_assignment": {
+            "classification": "SEC003_F01_IDENTITY_CONFLICT",
+            "reason": "L4 F01が各資産をproject/tenant/environment/assignment/worktree/revisionへ結ぶ。counterexample inputのasset_scope identity memberが独立expected_targetと相反するためknown asset scope conflictとして扱う。",
+            "source_pointers": [
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/0/negative_classifications/0"
+              },
+              {
+                "path": "docs/helix-security/L3-requirements/functional-requirements.json",
+                "pointer": "/requirements/3"
+              },
+              {
+                "path": "docs/helix-security/L10-verification/functional-verification.json",
+                "pointer": "/cases/3"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/0/content_comparison"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/0/output_meanings"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/diagnostic_contract/return_owner"
+              },
+              {
+                "path": "docs/helix-security/L9-integration-verification/project-scope-isolation.json",
+                "pointer": "/cases/0/negative_cases/19/counterexample"
+              }
             ]
           }
         },
@@ -2243,6 +2923,40 @@
             "pending_operations": [
               "read"
             ]
+          },
+          "negative_class_assignment": {
+            "classification": "SEC003_F01_IDENTITY_CONFLICT",
+            "reason": "L4 F01が各資産をproject/tenant/environment/assignment/worktree/revisionへ結ぶ。counterexample inputのasset_scope identity memberが独立expected_targetと相反するためknown asset scope conflictとして扱う。",
+            "source_pointers": [
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/0/negative_classifications/0"
+              },
+              {
+                "path": "docs/helix-security/L3-requirements/functional-requirements.json",
+                "pointer": "/requirements/3"
+              },
+              {
+                "path": "docs/helix-security/L10-verification/functional-verification.json",
+                "pointer": "/cases/3"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/0/content_comparison"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/0/output_meanings"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/diagnostic_contract/return_owner"
+              },
+              {
+                "path": "docs/helix-security/L9-integration-verification/project-scope-isolation.json",
+                "pointer": "/cases/0/negative_cases/20/counterexample"
+              }
+            ]
           }
         },
         {
@@ -2291,6 +3005,40 @@
             ],
             "pending_operations": [
               "read"
+            ]
+          },
+          "negative_class_assignment": {
+            "classification": "SEC003_F01_IDENTITY_CONFLICT",
+            "reason": "L4 F01が各資産をproject/tenant/environment/assignment/worktree/revisionへ結ぶ。counterexample inputのasset_scope identity memberが独立expected_targetと相反するためknown asset scope conflictとして扱う。",
+            "source_pointers": [
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/0/negative_classifications/0"
+              },
+              {
+                "path": "docs/helix-security/L3-requirements/functional-requirements.json",
+                "pointer": "/requirements/3"
+              },
+              {
+                "path": "docs/helix-security/L10-verification/functional-verification.json",
+                "pointer": "/cases/3"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/0/content_comparison"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/0/output_meanings"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/diagnostic_contract/return_owner"
+              },
+              {
+                "path": "docs/helix-security/L9-integration-verification/project-scope-isolation.json",
+                "pointer": "/cases/0/negative_cases/21/counterexample"
+              }
             ]
           }
         },
@@ -2341,6 +3089,40 @@
             "pending_operations": [
               "read"
             ]
+          },
+          "negative_class_assignment": {
+            "classification": "SEC003_F01_IDENTITY_CONFLICT",
+            "reason": "L4 F01が各資産をproject/tenant/environment/assignment/worktree/revisionへ結ぶ。counterexample inputのasset_scope identity memberが独立expected_targetと相反するためknown asset scope conflictとして扱う。",
+            "source_pointers": [
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/0/negative_classifications/0"
+              },
+              {
+                "path": "docs/helix-security/L3-requirements/functional-requirements.json",
+                "pointer": "/requirements/3"
+              },
+              {
+                "path": "docs/helix-security/L10-verification/functional-verification.json",
+                "pointer": "/cases/3"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/0/content_comparison"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/0/output_meanings"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/diagnostic_contract/return_owner"
+              },
+              {
+                "path": "docs/helix-security/L9-integration-verification/project-scope-isolation.json",
+                "pointer": "/cases/0/negative_cases/22/counterexample"
+              }
+            ]
           }
         },
         {
@@ -2389,6 +3171,40 @@
             ],
             "pending_operations": [
               "read"
+            ]
+          },
+          "negative_class_assignment": {
+            "classification": "SEC003_F01_IDENTITY_CONFLICT",
+            "reason": "L4 F01が各資産をproject/tenant/environment/assignment/worktree/revisionへ結ぶ。counterexample inputのasset_scope identity memberが独立expected_targetと相反するためknown asset scope conflictとして扱う。",
+            "source_pointers": [
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/0/negative_classifications/0"
+              },
+              {
+                "path": "docs/helix-security/L3-requirements/functional-requirements.json",
+                "pointer": "/requirements/3"
+              },
+              {
+                "path": "docs/helix-security/L10-verification/functional-verification.json",
+                "pointer": "/cases/3"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/0/content_comparison"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/0/output_meanings"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/diagnostic_contract/return_owner"
+              },
+              {
+                "path": "docs/helix-security/L9-integration-verification/project-scope-isolation.json",
+                "pointer": "/cases/0/negative_cases/23/counterexample"
+              }
             ]
           }
         },
@@ -2439,6 +3255,40 @@
             "pending_operations": [
               "read"
             ]
+          },
+          "negative_class_assignment": {
+            "classification": "SEC003_F01_IDENTITY_CONFLICT",
+            "reason": "L4 F01が各資産をproject/tenant/environment/assignment/worktree/revisionへ結ぶ。counterexample inputのasset_scope identity memberが独立expected_targetと相反するためknown asset scope conflictとして扱う。",
+            "source_pointers": [
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/0/negative_classifications/0"
+              },
+              {
+                "path": "docs/helix-security/L3-requirements/functional-requirements.json",
+                "pointer": "/requirements/3"
+              },
+              {
+                "path": "docs/helix-security/L10-verification/functional-verification.json",
+                "pointer": "/cases/3"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/0/content_comparison"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/0/output_meanings"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/diagnostic_contract/return_owner"
+              },
+              {
+                "path": "docs/helix-security/L9-integration-verification/project-scope-isolation.json",
+                "pointer": "/cases/0/negative_cases/24/counterexample"
+              }
+            ]
           }
         },
         {
@@ -2487,6 +3337,40 @@
             ],
             "pending_operations": [
               "read"
+            ]
+          },
+          "negative_class_assignment": {
+            "classification": "SEC003_F01_IDENTITY_CONFLICT",
+            "reason": "L4 F01が各資産をproject/tenant/environment/assignment/worktree/revisionへ結ぶ。counterexample inputのasset_scope identity memberが独立expected_targetと相反するためknown asset scope conflictとして扱う。",
+            "source_pointers": [
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/0/negative_classifications/0"
+              },
+              {
+                "path": "docs/helix-security/L3-requirements/functional-requirements.json",
+                "pointer": "/requirements/3"
+              },
+              {
+                "path": "docs/helix-security/L10-verification/functional-verification.json",
+                "pointer": "/cases/3"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/0/content_comparison"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/0/output_meanings"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/diagnostic_contract/return_owner"
+              },
+              {
+                "path": "docs/helix-security/L9-integration-verification/project-scope-isolation.json",
+                "pointer": "/cases/0/negative_cases/25/counterexample"
+              }
             ]
           }
         },
@@ -2537,6 +3421,40 @@
             "pending_operations": [
               "read"
             ]
+          },
+          "negative_class_assignment": {
+            "classification": "SEC003_F01_IDENTITY_CONFLICT",
+            "reason": "L4 F01が各資産をproject/tenant/environment/assignment/worktree/revisionへ結ぶ。counterexample inputのasset_scope identity memberが独立expected_targetと相反するためknown asset scope conflictとして扱う。",
+            "source_pointers": [
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/0/negative_classifications/0"
+              },
+              {
+                "path": "docs/helix-security/L3-requirements/functional-requirements.json",
+                "pointer": "/requirements/3"
+              },
+              {
+                "path": "docs/helix-security/L10-verification/functional-verification.json",
+                "pointer": "/cases/3"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/0/content_comparison"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/0/output_meanings"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/diagnostic_contract/return_owner"
+              },
+              {
+                "path": "docs/helix-security/L9-integration-verification/project-scope-isolation.json",
+                "pointer": "/cases/0/negative_cases/26/counterexample"
+              }
+            ]
           }
         },
         {
@@ -2585,6 +3503,40 @@
             ],
             "pending_operations": [
               "read"
+            ]
+          },
+          "negative_class_assignment": {
+            "classification": "SEC003_F01_IDENTITY_CONFLICT",
+            "reason": "L4 F01が各資産をproject/tenant/environment/assignment/worktree/revisionへ結ぶ。counterexample inputのasset_scope identity memberが独立expected_targetと相反するためknown asset scope conflictとして扱う。",
+            "source_pointers": [
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/0/negative_classifications/0"
+              },
+              {
+                "path": "docs/helix-security/L3-requirements/functional-requirements.json",
+                "pointer": "/requirements/3"
+              },
+              {
+                "path": "docs/helix-security/L10-verification/functional-verification.json",
+                "pointer": "/cases/3"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/0/content_comparison"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/0/output_meanings"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/diagnostic_contract/return_owner"
+              },
+              {
+                "path": "docs/helix-security/L9-integration-verification/project-scope-isolation.json",
+                "pointer": "/cases/0/negative_cases/27/counterexample"
+              }
             ]
           }
         },
@@ -2635,6 +3587,40 @@
             "pending_operations": [
               "read"
             ]
+          },
+          "negative_class_assignment": {
+            "classification": "SEC003_F01_IDENTITY_CONFLICT",
+            "reason": "L4 F01が各資産をproject/tenant/environment/assignment/worktree/revisionへ結ぶ。counterexample inputのasset_scope identity memberが独立expected_targetと相反するためknown asset scope conflictとして扱う。",
+            "source_pointers": [
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/0/negative_classifications/0"
+              },
+              {
+                "path": "docs/helix-security/L3-requirements/functional-requirements.json",
+                "pointer": "/requirements/3"
+              },
+              {
+                "path": "docs/helix-security/L10-verification/functional-verification.json",
+                "pointer": "/cases/3"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/0/content_comparison"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/0/output_meanings"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/diagnostic_contract/return_owner"
+              },
+              {
+                "path": "docs/helix-security/L9-integration-verification/project-scope-isolation.json",
+                "pointer": "/cases/0/negative_cases/28/counterexample"
+              }
+            ]
           }
         },
         {
@@ -2683,6 +3669,40 @@
             ],
             "pending_operations": [
               "read"
+            ]
+          },
+          "negative_class_assignment": {
+            "classification": "SEC003_F01_IDENTITY_CONFLICT",
+            "reason": "L4 F01が各資産をproject/tenant/environment/assignment/worktree/revisionへ結ぶ。counterexample inputのasset_scope identity memberが独立expected_targetと相反するためknown asset scope conflictとして扱う。",
+            "source_pointers": [
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/0/negative_classifications/0"
+              },
+              {
+                "path": "docs/helix-security/L3-requirements/functional-requirements.json",
+                "pointer": "/requirements/3"
+              },
+              {
+                "path": "docs/helix-security/L10-verification/functional-verification.json",
+                "pointer": "/cases/3"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/0/content_comparison"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/0/output_meanings"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/diagnostic_contract/return_owner"
+              },
+              {
+                "path": "docs/helix-security/L9-integration-verification/project-scope-isolation.json",
+                "pointer": "/cases/0/negative_cases/29/counterexample"
+              }
             ]
           }
         },
@@ -2733,6 +3753,40 @@
             "pending_operations": [
               "read"
             ]
+          },
+          "negative_class_assignment": {
+            "classification": "SEC003_F01_IDENTITY_CONFLICT",
+            "reason": "L4 F01が各資産をproject/tenant/environment/assignment/worktree/revisionへ結ぶ。counterexample inputのasset_scope identity memberが独立expected_targetと相反するためknown asset scope conflictとして扱う。",
+            "source_pointers": [
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/0/negative_classifications/0"
+              },
+              {
+                "path": "docs/helix-security/L3-requirements/functional-requirements.json",
+                "pointer": "/requirements/3"
+              },
+              {
+                "path": "docs/helix-security/L10-verification/functional-verification.json",
+                "pointer": "/cases/3"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/0/content_comparison"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/0/output_meanings"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/diagnostic_contract/return_owner"
+              },
+              {
+                "path": "docs/helix-security/L9-integration-verification/project-scope-isolation.json",
+                "pointer": "/cases/0/negative_cases/30/counterexample"
+              }
+            ]
           }
         },
         {
@@ -2781,6 +3835,40 @@
             ],
             "pending_operations": [
               "read"
+            ]
+          },
+          "negative_class_assignment": {
+            "classification": "SEC003_F01_IDENTITY_CONFLICT",
+            "reason": "L4 F01が各資産をproject/tenant/environment/assignment/worktree/revisionへ結ぶ。counterexample inputのasset_scope identity memberが独立expected_targetと相反するためknown asset scope conflictとして扱う。",
+            "source_pointers": [
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/0/negative_classifications/0"
+              },
+              {
+                "path": "docs/helix-security/L3-requirements/functional-requirements.json",
+                "pointer": "/requirements/3"
+              },
+              {
+                "path": "docs/helix-security/L10-verification/functional-verification.json",
+                "pointer": "/cases/3"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/0/content_comparison"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/0/output_meanings"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/diagnostic_contract/return_owner"
+              },
+              {
+                "path": "docs/helix-security/L9-integration-verification/project-scope-isolation.json",
+                "pointer": "/cases/0/negative_cases/31/counterexample"
+              }
             ]
           }
         },
@@ -2831,6 +3919,40 @@
             "pending_operations": [
               "read"
             ]
+          },
+          "negative_class_assignment": {
+            "classification": "SEC003_F01_IDENTITY_CONFLICT",
+            "reason": "L4 F01が各資産をproject/tenant/environment/assignment/worktree/revisionへ結ぶ。counterexample inputのasset_scope identity memberが独立expected_targetと相反するためknown asset scope conflictとして扱う。",
+            "source_pointers": [
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/0/negative_classifications/0"
+              },
+              {
+                "path": "docs/helix-security/L3-requirements/functional-requirements.json",
+                "pointer": "/requirements/3"
+              },
+              {
+                "path": "docs/helix-security/L10-verification/functional-verification.json",
+                "pointer": "/cases/3"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/0/content_comparison"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/0/output_meanings"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/diagnostic_contract/return_owner"
+              },
+              {
+                "path": "docs/helix-security/L9-integration-verification/project-scope-isolation.json",
+                "pointer": "/cases/0/negative_cases/32/counterexample"
+              }
+            ]
           }
         },
         {
@@ -2879,6 +4001,40 @@
             ],
             "pending_operations": [
               "read"
+            ]
+          },
+          "negative_class_assignment": {
+            "classification": "SEC003_F01_IDENTITY_CONFLICT",
+            "reason": "L4 F01が各資産をproject/tenant/environment/assignment/worktree/revisionへ結ぶ。counterexample inputのasset_scope identity memberが独立expected_targetと相反するためknown asset scope conflictとして扱う。",
+            "source_pointers": [
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/0/negative_classifications/0"
+              },
+              {
+                "path": "docs/helix-security/L3-requirements/functional-requirements.json",
+                "pointer": "/requirements/3"
+              },
+              {
+                "path": "docs/helix-security/L10-verification/functional-verification.json",
+                "pointer": "/cases/3"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/0/content_comparison"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/0/output_meanings"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/diagnostic_contract/return_owner"
+              },
+              {
+                "path": "docs/helix-security/L9-integration-verification/project-scope-isolation.json",
+                "pointer": "/cases/0/negative_cases/33/counterexample"
+              }
             ]
           }
         },
@@ -2929,6 +4085,40 @@
             "pending_operations": [
               "read"
             ]
+          },
+          "negative_class_assignment": {
+            "classification": "SEC003_F01_IDENTITY_CONFLICT",
+            "reason": "L4 F01が各資産をproject/tenant/environment/assignment/worktree/revisionへ結ぶ。counterexample inputのasset_scope identity memberが独立expected_targetと相反するためknown asset scope conflictとして扱う。",
+            "source_pointers": [
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/0/negative_classifications/0"
+              },
+              {
+                "path": "docs/helix-security/L3-requirements/functional-requirements.json",
+                "pointer": "/requirements/3"
+              },
+              {
+                "path": "docs/helix-security/L10-verification/functional-verification.json",
+                "pointer": "/cases/3"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/0/content_comparison"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/0/output_meanings"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/diagnostic_contract/return_owner"
+              },
+              {
+                "path": "docs/helix-security/L9-integration-verification/project-scope-isolation.json",
+                "pointer": "/cases/0/negative_cases/34/counterexample"
+              }
+            ]
           }
         },
         {
@@ -2977,6 +4167,40 @@
             ],
             "pending_operations": [
               "read"
+            ]
+          },
+          "negative_class_assignment": {
+            "classification": "SEC003_F01_IDENTITY_CONFLICT",
+            "reason": "L4 F01が各資産をproject/tenant/environment/assignment/worktree/revisionへ結ぶ。counterexample inputのasset_scope identity memberが独立expected_targetと相反するためknown asset scope conflictとして扱う。",
+            "source_pointers": [
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/0/negative_classifications/0"
+              },
+              {
+                "path": "docs/helix-security/L3-requirements/functional-requirements.json",
+                "pointer": "/requirements/3"
+              },
+              {
+                "path": "docs/helix-security/L10-verification/functional-verification.json",
+                "pointer": "/cases/3"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/0/content_comparison"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/0/output_meanings"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/diagnostic_contract/return_owner"
+              },
+              {
+                "path": "docs/helix-security/L9-integration-verification/project-scope-isolation.json",
+                "pointer": "/cases/0/negative_cases/35/counterexample"
+              }
             ]
           }
         },
@@ -3027,6 +4251,40 @@
             "pending_operations": [
               "read"
             ]
+          },
+          "negative_class_assignment": {
+            "classification": "SEC003_F01_IDENTITY_CONFLICT",
+            "reason": "L4 F01が各資産をproject/tenant/environment/assignment/worktree/revisionへ結ぶ。counterexample inputのasset_scope identity memberが独立expected_targetと相反するためknown asset scope conflictとして扱う。",
+            "source_pointers": [
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/0/negative_classifications/0"
+              },
+              {
+                "path": "docs/helix-security/L3-requirements/functional-requirements.json",
+                "pointer": "/requirements/3"
+              },
+              {
+                "path": "docs/helix-security/L10-verification/functional-verification.json",
+                "pointer": "/cases/3"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/0/content_comparison"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/0/output_meanings"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/diagnostic_contract/return_owner"
+              },
+              {
+                "path": "docs/helix-security/L9-integration-verification/project-scope-isolation.json",
+                "pointer": "/cases/0/negative_cases/36/counterexample"
+              }
+            ]
           }
         },
         {
@@ -3075,6 +4333,40 @@
             ],
             "pending_operations": [
               "read"
+            ]
+          },
+          "negative_class_assignment": {
+            "classification": "SEC003_F01_IDENTITY_CONFLICT",
+            "reason": "L4 F01が各資産をproject/tenant/environment/assignment/worktree/revisionへ結ぶ。counterexample inputのasset_scope identity memberが独立expected_targetと相反するためknown asset scope conflictとして扱う。",
+            "source_pointers": [
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/0/negative_classifications/0"
+              },
+              {
+                "path": "docs/helix-security/L3-requirements/functional-requirements.json",
+                "pointer": "/requirements/3"
+              },
+              {
+                "path": "docs/helix-security/L10-verification/functional-verification.json",
+                "pointer": "/cases/3"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/0/content_comparison"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/0/output_meanings"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/diagnostic_contract/return_owner"
+              },
+              {
+                "path": "docs/helix-security/L9-integration-verification/project-scope-isolation.json",
+                "pointer": "/cases/0/negative_cases/37/counterexample"
+              }
             ]
           }
         },
@@ -3125,6 +4417,40 @@
             "pending_operations": [
               "read"
             ]
+          },
+          "negative_class_assignment": {
+            "classification": "SEC003_F01_IDENTITY_CONFLICT",
+            "reason": "L4 F01が各資産をproject/tenant/environment/assignment/worktree/revisionへ結ぶ。counterexample inputのasset_scope identity memberが独立expected_targetと相反するためknown asset scope conflictとして扱う。",
+            "source_pointers": [
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/0/negative_classifications/0"
+              },
+              {
+                "path": "docs/helix-security/L3-requirements/functional-requirements.json",
+                "pointer": "/requirements/3"
+              },
+              {
+                "path": "docs/helix-security/L10-verification/functional-verification.json",
+                "pointer": "/cases/3"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/0/content_comparison"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/0/output_meanings"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/diagnostic_contract/return_owner"
+              },
+              {
+                "path": "docs/helix-security/L9-integration-verification/project-scope-isolation.json",
+                "pointer": "/cases/0/negative_cases/38/counterexample"
+              }
+            ]
           }
         },
         {
@@ -3173,6 +4499,40 @@
             ],
             "pending_operations": [
               "read"
+            ]
+          },
+          "negative_class_assignment": {
+            "classification": "SEC003_F01_IDENTITY_CONFLICT",
+            "reason": "L4 F01が各資産をproject/tenant/environment/assignment/worktree/revisionへ結ぶ。counterexample inputのasset_scope identity memberが独立expected_targetと相反するためknown asset scope conflictとして扱う。",
+            "source_pointers": [
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/0/negative_classifications/0"
+              },
+              {
+                "path": "docs/helix-security/L3-requirements/functional-requirements.json",
+                "pointer": "/requirements/3"
+              },
+              {
+                "path": "docs/helix-security/L10-verification/functional-verification.json",
+                "pointer": "/cases/3"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/0/content_comparison"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/0/output_meanings"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/diagnostic_contract/return_owner"
+              },
+              {
+                "path": "docs/helix-security/L9-integration-verification/project-scope-isolation.json",
+                "pointer": "/cases/0/negative_cases/39/counterexample"
+              }
             ]
           }
         },
@@ -3223,6 +4583,40 @@
             "pending_operations": [
               "read"
             ]
+          },
+          "negative_class_assignment": {
+            "classification": "SEC003_F01_IDENTITY_CONFLICT",
+            "reason": "L4 F01が各資産をproject/tenant/environment/assignment/worktree/revisionへ結ぶ。counterexample inputのasset_scope identity memberが独立expected_targetと相反するためknown asset scope conflictとして扱う。",
+            "source_pointers": [
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/0/negative_classifications/0"
+              },
+              {
+                "path": "docs/helix-security/L3-requirements/functional-requirements.json",
+                "pointer": "/requirements/3"
+              },
+              {
+                "path": "docs/helix-security/L10-verification/functional-verification.json",
+                "pointer": "/cases/3"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/0/content_comparison"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/0/output_meanings"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/diagnostic_contract/return_owner"
+              },
+              {
+                "path": "docs/helix-security/L9-integration-verification/project-scope-isolation.json",
+                "pointer": "/cases/0/negative_cases/40/counterexample"
+              }
+            ]
           }
         },
         {
@@ -3271,6 +4665,40 @@
             ],
             "pending_operations": [
               "read"
+            ]
+          },
+          "negative_class_assignment": {
+            "classification": "SEC003_F01_IDENTITY_CONFLICT",
+            "reason": "L4 F01が各資産をproject/tenant/environment/assignment/worktree/revisionへ結ぶ。counterexample inputのasset_scope identity memberが独立expected_targetと相反するためknown asset scope conflictとして扱う。",
+            "source_pointers": [
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/0/negative_classifications/0"
+              },
+              {
+                "path": "docs/helix-security/L3-requirements/functional-requirements.json",
+                "pointer": "/requirements/3"
+              },
+              {
+                "path": "docs/helix-security/L10-verification/functional-verification.json",
+                "pointer": "/cases/3"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/0/content_comparison"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/0/output_meanings"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/diagnostic_contract/return_owner"
+              },
+              {
+                "path": "docs/helix-security/L9-integration-verification/project-scope-isolation.json",
+                "pointer": "/cases/0/negative_cases/41/counterexample"
+              }
             ]
           }
         },
@@ -3321,6 +4749,40 @@
             "pending_operations": [
               "read"
             ]
+          },
+          "negative_class_assignment": {
+            "classification": "SEC003_F01_IDENTITY_CONFLICT",
+            "reason": "L4 F01が各資産をproject/tenant/environment/assignment/worktree/revisionへ結ぶ。counterexample inputのasset_scope identity memberが独立expected_targetと相反するためknown asset scope conflictとして扱う。",
+            "source_pointers": [
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/0/negative_classifications/0"
+              },
+              {
+                "path": "docs/helix-security/L3-requirements/functional-requirements.json",
+                "pointer": "/requirements/3"
+              },
+              {
+                "path": "docs/helix-security/L10-verification/functional-verification.json",
+                "pointer": "/cases/3"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/0/content_comparison"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/0/output_meanings"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/diagnostic_contract/return_owner"
+              },
+              {
+                "path": "docs/helix-security/L9-integration-verification/project-scope-isolation.json",
+                "pointer": "/cases/0/negative_cases/42/counterexample"
+              }
+            ]
           }
         },
         {
@@ -3369,6 +4831,40 @@
             ],
             "pending_operations": [
               "read"
+            ]
+          },
+          "negative_class_assignment": {
+            "classification": "SEC003_F01_IDENTITY_CONFLICT",
+            "reason": "L4 F01が各資産をproject/tenant/environment/assignment/worktree/revisionへ結ぶ。counterexample inputのasset_scope identity memberが独立expected_targetと相反するためknown asset scope conflictとして扱う。",
+            "source_pointers": [
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/0/negative_classifications/0"
+              },
+              {
+                "path": "docs/helix-security/L3-requirements/functional-requirements.json",
+                "pointer": "/requirements/3"
+              },
+              {
+                "path": "docs/helix-security/L10-verification/functional-verification.json",
+                "pointer": "/cases/3"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/0/content_comparison"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/0/output_meanings"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/diagnostic_contract/return_owner"
+              },
+              {
+                "path": "docs/helix-security/L9-integration-verification/project-scope-isolation.json",
+                "pointer": "/cases/0/negative_cases/43/counterexample"
+              }
             ]
           }
         },
@@ -3419,6 +4915,40 @@
             "pending_operations": [
               "read"
             ]
+          },
+          "negative_class_assignment": {
+            "classification": "SEC003_F01_IDENTITY_CONFLICT",
+            "reason": "L4 F01が各資産をproject/tenant/environment/assignment/worktree/revisionへ結ぶ。counterexample inputのasset_scope identity memberが独立expected_targetと相反するためknown asset scope conflictとして扱う。",
+            "source_pointers": [
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/0/negative_classifications/0"
+              },
+              {
+                "path": "docs/helix-security/L3-requirements/functional-requirements.json",
+                "pointer": "/requirements/3"
+              },
+              {
+                "path": "docs/helix-security/L10-verification/functional-verification.json",
+                "pointer": "/cases/3"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/0/content_comparison"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/0/output_meanings"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/diagnostic_contract/return_owner"
+              },
+              {
+                "path": "docs/helix-security/L9-integration-verification/project-scope-isolation.json",
+                "pointer": "/cases/0/negative_cases/44/counterexample"
+              }
+            ]
           }
         },
         {
@@ -3467,6 +4997,40 @@
             ],
             "pending_operations": [
               "read"
+            ]
+          },
+          "negative_class_assignment": {
+            "classification": "SEC003_F01_IDENTITY_CONFLICT",
+            "reason": "L4 F01が各資産をproject/tenant/environment/assignment/worktree/revisionへ結ぶ。counterexample inputのasset_scope identity memberが独立expected_targetと相反するためknown asset scope conflictとして扱う。",
+            "source_pointers": [
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/0/negative_classifications/0"
+              },
+              {
+                "path": "docs/helix-security/L3-requirements/functional-requirements.json",
+                "pointer": "/requirements/3"
+              },
+              {
+                "path": "docs/helix-security/L10-verification/functional-verification.json",
+                "pointer": "/cases/3"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/0/content_comparison"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/0/output_meanings"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/diagnostic_contract/return_owner"
+              },
+              {
+                "path": "docs/helix-security/L9-integration-verification/project-scope-isolation.json",
+                "pointer": "/cases/0/negative_cases/45/counterexample"
+              }
             ]
           }
         },
@@ -3517,6 +5081,40 @@
             "pending_operations": [
               "read"
             ]
+          },
+          "negative_class_assignment": {
+            "classification": "SEC003_F01_IDENTITY_CONFLICT",
+            "reason": "L4 F01が各資産をproject/tenant/environment/assignment/worktree/revisionへ結ぶ。counterexample inputのasset_scope identity memberが独立expected_targetと相反するためknown asset scope conflictとして扱う。",
+            "source_pointers": [
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/0/negative_classifications/0"
+              },
+              {
+                "path": "docs/helix-security/L3-requirements/functional-requirements.json",
+                "pointer": "/requirements/3"
+              },
+              {
+                "path": "docs/helix-security/L10-verification/functional-verification.json",
+                "pointer": "/cases/3"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/0/content_comparison"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/0/output_meanings"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/diagnostic_contract/return_owner"
+              },
+              {
+                "path": "docs/helix-security/L9-integration-verification/project-scope-isolation.json",
+                "pointer": "/cases/0/negative_cases/46/counterexample"
+              }
+            ]
           }
         },
         {
@@ -3566,6 +5164,40 @@
             "pending_operations": [
               "read"
             ]
+          },
+          "negative_class_assignment": {
+            "classification": "SEC003_F01_IDENTITY_CONFLICT",
+            "reason": "L4 F01が各資産をproject/tenant/environment/assignment/worktree/revisionへ結ぶ。counterexample inputのasset_scope identity memberが独立expected_targetと相反するためknown asset scope conflictとして扱う。",
+            "source_pointers": [
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/0/negative_classifications/0"
+              },
+              {
+                "path": "docs/helix-security/L3-requirements/functional-requirements.json",
+                "pointer": "/requirements/3"
+              },
+              {
+                "path": "docs/helix-security/L10-verification/functional-verification.json",
+                "pointer": "/cases/3"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/0/content_comparison"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/0/output_meanings"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/diagnostic_contract/return_owner"
+              },
+              {
+                "path": "docs/helix-security/L9-integration-verification/project-scope-isolation.json",
+                "pointer": "/cases/0/negative_cases/47/counterexample"
+              }
+            ]
           }
         },
         {
@@ -3609,6 +5241,40 @@
             ],
             "pending_operations": [
               "read"
+            ]
+          },
+          "negative_class_assignment": {
+            "classification": "SEC003_F01_IDENTITY_UNRESOLVED",
+            "reason": "L4 F01の対象identity memberがrequest inputでnull。既知のmissingをfallback補完せず、scope identity unresolvedとして扱う。",
+            "source_pointers": [
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/0/negative_classifications/1"
+              },
+              {
+                "path": "docs/helix-security/L3-requirements/functional-requirements.json",
+                "pointer": "/requirements/3"
+              },
+              {
+                "path": "docs/helix-security/L10-verification/functional-verification.json",
+                "pointer": "/cases/3"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/0/content_comparison"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/0/output_meanings"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/diagnostic_contract/return_owner"
+              },
+              {
+                "path": "docs/helix-security/L9-integration-verification/project-scope-isolation.json",
+                "pointer": "/cases/0/negative_cases/48/counterexample"
+              }
             ]
           }
         },
@@ -3654,6 +5320,40 @@
             "pending_operations": [
               "read"
             ]
+          },
+          "negative_class_assignment": {
+            "classification": "SEC003_F01_IDENTITY_UNRESOLVED",
+            "reason": "L4 F01の独立owner input context.expected_target.tenantに非空Textがあり適用tenant identityが与えられる一方、request.target.tenantはnull。適用条件を欠落値から推定せず、期待Textと供給nullの差をidentity不足としてscope_unresolvedへ置く。",
+            "source_pointers": [
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/0/negative_classifications/1"
+              },
+              {
+                "path": "docs/helix-security/L3-requirements/functional-requirements.json",
+                "pointer": "/requirements/3"
+              },
+              {
+                "path": "docs/helix-security/L10-verification/functional-verification.json",
+                "pointer": "/cases/3"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/0/content_comparison"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/0/output_meanings"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/diagnostic_contract/return_owner"
+              },
+              {
+                "path": "docs/helix-security/L9-integration-verification/project-scope-isolation.json",
+                "pointer": "/cases/0/negative_cases/49/counterexample"
+              }
+            ]
           }
         },
         {
@@ -3697,6 +5397,40 @@
             ],
             "pending_operations": [
               "read"
+            ]
+          },
+          "negative_class_assignment": {
+            "classification": "SEC003_F01_IDENTITY_UNRESOLVED",
+            "reason": "L4 F01の対象identity memberがrequest inputでnull。既知のmissingをfallback補完せず、scope identity unresolvedとして扱う。",
+            "source_pointers": [
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/0/negative_classifications/1"
+              },
+              {
+                "path": "docs/helix-security/L3-requirements/functional-requirements.json",
+                "pointer": "/requirements/3"
+              },
+              {
+                "path": "docs/helix-security/L10-verification/functional-verification.json",
+                "pointer": "/cases/3"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/0/content_comparison"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/0/output_meanings"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/diagnostic_contract/return_owner"
+              },
+              {
+                "path": "docs/helix-security/L9-integration-verification/project-scope-isolation.json",
+                "pointer": "/cases/0/negative_cases/50/counterexample"
+              }
             ]
           }
         },
@@ -3742,6 +5476,40 @@
             "pending_operations": [
               "read"
             ]
+          },
+          "negative_class_assignment": {
+            "classification": "SEC003_F01_IDENTITY_UNRESOLVED",
+            "reason": "L4 F01の対象identity memberがrequest inputでnull。既知のmissingをfallback補完せず、scope identity unresolvedとして扱う。",
+            "source_pointers": [
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/0/negative_classifications/1"
+              },
+              {
+                "path": "docs/helix-security/L3-requirements/functional-requirements.json",
+                "pointer": "/requirements/3"
+              },
+              {
+                "path": "docs/helix-security/L10-verification/functional-verification.json",
+                "pointer": "/cases/3"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/0/content_comparison"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/0/output_meanings"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/diagnostic_contract/return_owner"
+              },
+              {
+                "path": "docs/helix-security/L9-integration-verification/project-scope-isolation.json",
+                "pointer": "/cases/0/negative_cases/51/counterexample"
+              }
+            ]
           }
         },
         {
@@ -3785,6 +5553,40 @@
             ],
             "pending_operations": [
               "read"
+            ]
+          },
+          "negative_class_assignment": {
+            "classification": "SEC003_F01_IDENTITY_UNRESOLVED",
+            "reason": "L4 F01の対象identity memberがrequest inputでnull。既知のmissingをfallback補完せず、scope identity unresolvedとして扱う。",
+            "source_pointers": [
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/0/negative_classifications/1"
+              },
+              {
+                "path": "docs/helix-security/L3-requirements/functional-requirements.json",
+                "pointer": "/requirements/3"
+              },
+              {
+                "path": "docs/helix-security/L10-verification/functional-verification.json",
+                "pointer": "/cases/3"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/0/content_comparison"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/0/output_meanings"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/diagnostic_contract/return_owner"
+              },
+              {
+                "path": "docs/helix-security/L9-integration-verification/project-scope-isolation.json",
+                "pointer": "/cases/0/negative_cases/52/counterexample"
+              }
             ]
           }
         },
@@ -3830,6 +5632,40 @@
             "pending_operations": [
               "read"
             ]
+          },
+          "negative_class_assignment": {
+            "classification": "SEC003_F01_IDENTITY_UNRESOLVED",
+            "reason": "L4 F01の対象identity memberがrequest inputでnull。既知のmissingをfallback補完せず、scope identity unresolvedとして扱う。",
+            "source_pointers": [
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/0/negative_classifications/1"
+              },
+              {
+                "path": "docs/helix-security/L3-requirements/functional-requirements.json",
+                "pointer": "/requirements/3"
+              },
+              {
+                "path": "docs/helix-security/L10-verification/functional-verification.json",
+                "pointer": "/cases/3"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/0/content_comparison"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/0/output_meanings"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/diagnostic_contract/return_owner"
+              },
+              {
+                "path": "docs/helix-security/L9-integration-verification/project-scope-isolation.json",
+                "pointer": "/cases/0/negative_cases/53/counterexample"
+              }
+            ]
           }
         },
         {
@@ -3874,6 +5710,40 @@
             "pending_operations": [
               "read"
             ]
+          },
+          "negative_class_assignment": {
+            "classification": "SEC003_F01_TENANT_INVENTED",
+            "reason": "L4 F01の独立expected identityでtenantがnullの非適用形に、counterexample requestがnon-null tenantを供給する。tenant_inventedとして扱う。",
+            "source_pointers": [
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/0/negative_classifications/3"
+              },
+              {
+                "path": "docs/helix-security/L3-requirements/functional-requirements.json",
+                "pointer": "/requirements/3"
+              },
+              {
+                "path": "docs/helix-security/L10-verification/functional-verification.json",
+                "pointer": "/cases/3"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/0/content_comparison"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/0/output_meanings"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/diagnostic_contract/return_owner"
+              },
+              {
+                "path": "docs/helix-security/L9-integration-verification/project-scope-isolation.json",
+                "pointer": "/cases/0/negative_cases/54/counterexample"
+              }
+            ]
           }
         },
         {
@@ -3912,6 +5782,40 @@
             ],
             "pending_operations": [
               "read"
+            ]
+          },
+          "negative_class_assignment": {
+            "classification": "SEC003_F01_TENANT_APPLICABILITY_UNRESOLVED",
+            "reason": "L4 F01のtenant applicabilityまたはtenant owner materialがunknown。falseへ推定せずtenant_applicability_unresolvedとしてscope_unresolvedに保つ。",
+            "source_pointers": [
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/0/negative_classifications/2"
+              },
+              {
+                "path": "docs/helix-security/L3-requirements/functional-requirements.json",
+                "pointer": "/requirements/3"
+              },
+              {
+                "path": "docs/helix-security/L10-verification/functional-verification.json",
+                "pointer": "/cases/3"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/0/content_comparison"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/0/output_meanings"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/diagnostic_contract/return_owner"
+              },
+              {
+                "path": "docs/helix-security/L9-integration-verification/project-scope-isolation.json",
+                "pointer": "/cases/0/negative_cases/55/counterexample"
+              }
             ]
           }
         },
@@ -3957,6 +5861,40 @@
             "pending_operations": [
               "read"
             ]
+          },
+          "negative_class_assignment": {
+            "classification": "SEC003_F01_IDENTITY_UNRESOLVED",
+            "reason": "L4 F01の対象identity memberがrequest inputでnull。既知のmissingをfallback補完せず、scope identity unresolvedとして扱う。",
+            "source_pointers": [
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/0/negative_classifications/1"
+              },
+              {
+                "path": "docs/helix-security/L3-requirements/functional-requirements.json",
+                "pointer": "/requirements/3"
+              },
+              {
+                "path": "docs/helix-security/L10-verification/functional-verification.json",
+                "pointer": "/cases/3"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/0/content_comparison"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/0/output_meanings"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/diagnostic_contract/return_owner"
+              },
+              {
+                "path": "docs/helix-security/L9-integration-verification/project-scope-isolation.json",
+                "pointer": "/cases/0/negative_cases/56/counterexample"
+              }
+            ]
           }
         },
         {
@@ -4000,6 +5938,40 @@
             ],
             "pending_operations": [
               "read"
+            ]
+          },
+          "negative_class_assignment": {
+            "classification": "SEC003_F01_IDENTITY_UNRESOLVED",
+            "reason": "L4 F01の独立owner input context.expected_origin.tenantに非空Textがあり適用tenant identityが与えられる一方、request.origin.tenantはnull。適用条件を欠落値から推定せず、期待Textと供給nullの差をidentity不足としてscope_unresolvedへ置く。",
+            "source_pointers": [
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/0/negative_classifications/1"
+              },
+              {
+                "path": "docs/helix-security/L3-requirements/functional-requirements.json",
+                "pointer": "/requirements/3"
+              },
+              {
+                "path": "docs/helix-security/L10-verification/functional-verification.json",
+                "pointer": "/cases/3"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/0/content_comparison"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/0/output_meanings"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/diagnostic_contract/return_owner"
+              },
+              {
+                "path": "docs/helix-security/L9-integration-verification/project-scope-isolation.json",
+                "pointer": "/cases/0/negative_cases/57/counterexample"
+              }
             ]
           }
         },
@@ -4045,6 +6017,40 @@
             "pending_operations": [
               "read"
             ]
+          },
+          "negative_class_assignment": {
+            "classification": "SEC003_F01_IDENTITY_UNRESOLVED",
+            "reason": "L4 F01の対象identity memberがrequest inputでnull。既知のmissingをfallback補完せず、scope identity unresolvedとして扱う。",
+            "source_pointers": [
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/0/negative_classifications/1"
+              },
+              {
+                "path": "docs/helix-security/L3-requirements/functional-requirements.json",
+                "pointer": "/requirements/3"
+              },
+              {
+                "path": "docs/helix-security/L10-verification/functional-verification.json",
+                "pointer": "/cases/3"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/0/content_comparison"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/0/output_meanings"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/diagnostic_contract/return_owner"
+              },
+              {
+                "path": "docs/helix-security/L9-integration-verification/project-scope-isolation.json",
+                "pointer": "/cases/0/negative_cases/58/counterexample"
+              }
+            ]
           }
         },
         {
@@ -4088,6 +6094,40 @@
             ],
             "pending_operations": [
               "read"
+            ]
+          },
+          "negative_class_assignment": {
+            "classification": "SEC003_F01_IDENTITY_UNRESOLVED",
+            "reason": "L4 F01の対象identity memberがrequest inputでnull。既知のmissingをfallback補完せず、scope identity unresolvedとして扱う。",
+            "source_pointers": [
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/0/negative_classifications/1"
+              },
+              {
+                "path": "docs/helix-security/L3-requirements/functional-requirements.json",
+                "pointer": "/requirements/3"
+              },
+              {
+                "path": "docs/helix-security/L10-verification/functional-verification.json",
+                "pointer": "/cases/3"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/0/content_comparison"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/0/output_meanings"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/diagnostic_contract/return_owner"
+              },
+              {
+                "path": "docs/helix-security/L9-integration-verification/project-scope-isolation.json",
+                "pointer": "/cases/0/negative_cases/59/counterexample"
+              }
             ]
           }
         },
@@ -4133,6 +6173,40 @@
             "pending_operations": [
               "read"
             ]
+          },
+          "negative_class_assignment": {
+            "classification": "SEC003_F01_IDENTITY_UNRESOLVED",
+            "reason": "L4 F01の対象identity memberがrequest inputでnull。既知のmissingをfallback補完せず、scope identity unresolvedとして扱う。",
+            "source_pointers": [
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/0/negative_classifications/1"
+              },
+              {
+                "path": "docs/helix-security/L3-requirements/functional-requirements.json",
+                "pointer": "/requirements/3"
+              },
+              {
+                "path": "docs/helix-security/L10-verification/functional-verification.json",
+                "pointer": "/cases/3"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/0/content_comparison"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/0/output_meanings"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/diagnostic_contract/return_owner"
+              },
+              {
+                "path": "docs/helix-security/L9-integration-verification/project-scope-isolation.json",
+                "pointer": "/cases/0/negative_cases/60/counterexample"
+              }
+            ]
           }
         },
         {
@@ -4176,6 +6250,40 @@
             ],
             "pending_operations": [
               "read"
+            ]
+          },
+          "negative_class_assignment": {
+            "classification": "SEC003_F01_IDENTITY_UNRESOLVED",
+            "reason": "L4 F01の対象identity memberがrequest inputでnull。既知のmissingをfallback補完せず、scope identity unresolvedとして扱う。",
+            "source_pointers": [
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/0/negative_classifications/1"
+              },
+              {
+                "path": "docs/helix-security/L3-requirements/functional-requirements.json",
+                "pointer": "/requirements/3"
+              },
+              {
+                "path": "docs/helix-security/L10-verification/functional-verification.json",
+                "pointer": "/cases/3"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/0/content_comparison"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/0/output_meanings"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/diagnostic_contract/return_owner"
+              },
+              {
+                "path": "docs/helix-security/L9-integration-verification/project-scope-isolation.json",
+                "pointer": "/cases/0/negative_cases/61/counterexample"
+              }
             ]
           }
         },
@@ -4221,6 +6329,40 @@
             ],
             "pending_operations": [
               "read"
+            ]
+          },
+          "negative_class_assignment": {
+            "classification": "SEC003_F01_TENANT_APPLICABILITY_UNRESOLVED",
+            "reason": "L4 F01のtenant applicabilityまたはtenant owner materialがunknown。falseへ推定せずtenant_applicability_unresolvedとしてscope_unresolvedに保つ。",
+            "source_pointers": [
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/0/negative_classifications/2"
+              },
+              {
+                "path": "docs/helix-security/L3-requirements/functional-requirements.json",
+                "pointer": "/requirements/3"
+              },
+              {
+                "path": "docs/helix-security/L10-verification/functional-verification.json",
+                "pointer": "/cases/3"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/0/content_comparison"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/0/output_meanings"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/diagnostic_contract/return_owner"
+              },
+              {
+                "path": "docs/helix-security/L9-integration-verification/project-scope-isolation.json",
+                "pointer": "/cases/0/negative_cases/62/counterexample"
+              }
             ]
           }
         },
@@ -4269,6 +6411,40 @@
             ],
             "pending_operations": [
               "read"
+            ]
+          },
+          "negative_class_assignment": {
+            "classification": "SEC003_F01_TENANT_APPLICABILITY_UNRESOLVED",
+            "reason": "L4 F01のtenant applicabilityまたはtenant owner materialがunknown。falseへ推定せずtenant_applicability_unresolvedとしてscope_unresolvedに保つ。",
+            "source_pointers": [
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/0/negative_classifications/2"
+              },
+              {
+                "path": "docs/helix-security/L3-requirements/functional-requirements.json",
+                "pointer": "/requirements/3"
+              },
+              {
+                "path": "docs/helix-security/L10-verification/functional-verification.json",
+                "pointer": "/cases/3"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/0/content_comparison"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/0/output_meanings"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/diagnostic_contract/return_owner"
+              },
+              {
+                "path": "docs/helix-security/L9-integration-verification/project-scope-isolation.json",
+                "pointer": "/cases/0/negative_cases/63/counterexample"
+              }
             ]
           }
         }
@@ -5196,6 +7372,40 @@
             "pending_operations": [
               "read"
             ]
+          },
+          "negative_class_assignment": {
+            "classification": "SEC003_F02_EXPLICIT_CONNECTION_ABSENT",
+            "reason": "counterexample requestにoperationがありconnection_state=absent。L3 F02/L4 F02の明示接続境界に対するknown absenceなのでisolation_violation。",
+            "source_pointers": [
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/1/negative_classifications/3"
+              },
+              {
+                "path": "docs/helix-security/L3-requirements/functional-requirements.json",
+                "pointer": "/requirements/4/obligation"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/1/content_comparison/0"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/1/output_meanings/0"
+              },
+              {
+                "path": "docs/helix-security/L10-verification/functional-verification.json",
+                "pointer": "/cases/4/expected_observation"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/diagnostic_contract/return_owner"
+              },
+              {
+                "path": "docs/helix-security/L9-integration-verification/project-scope-isolation.json",
+                "pointer": "/cases/1/negative_cases/0/counterexample"
+              }
+            ]
           }
         },
         {
@@ -5232,6 +7442,40 @@
             ],
             "pending_operations": [
               "write"
+            ]
+          },
+          "negative_class_assignment": {
+            "classification": "SEC003_F02_EXPLICIT_CONNECTION_ABSENT",
+            "reason": "counterexample requestにoperationがありconnection_state=absent。L3 F02/L4 F02の明示接続境界に対するknown absenceなのでisolation_violation。",
+            "source_pointers": [
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/1/negative_classifications/3"
+              },
+              {
+                "path": "docs/helix-security/L3-requirements/functional-requirements.json",
+                "pointer": "/requirements/4/obligation"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/1/content_comparison/0"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/1/output_meanings/0"
+              },
+              {
+                "path": "docs/helix-security/L10-verification/functional-verification.json",
+                "pointer": "/cases/4/expected_observation"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/diagnostic_contract/return_owner"
+              },
+              {
+                "path": "docs/helix-security/L9-integration-verification/project-scope-isolation.json",
+                "pointer": "/cases/1/negative_cases/1/counterexample"
+              }
             ]
           }
         },
@@ -5270,6 +7514,40 @@
             "pending_operations": [
               "execute"
             ]
+          },
+          "negative_class_assignment": {
+            "classification": "SEC003_F02_EXPLICIT_CONNECTION_ABSENT",
+            "reason": "counterexample requestにoperationがありconnection_state=absent。L3 F02/L4 F02の明示接続境界に対するknown absenceなのでisolation_violation。",
+            "source_pointers": [
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/1/negative_classifications/3"
+              },
+              {
+                "path": "docs/helix-security/L3-requirements/functional-requirements.json",
+                "pointer": "/requirements/4/obligation"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/1/content_comparison/0"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/1/output_meanings/0"
+              },
+              {
+                "path": "docs/helix-security/L10-verification/functional-verification.json",
+                "pointer": "/cases/4/expected_observation"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/diagnostic_contract/return_owner"
+              },
+              {
+                "path": "docs/helix-security/L9-integration-verification/project-scope-isolation.json",
+                "pointer": "/cases/1/negative_cases/2/counterexample"
+              }
+            ]
           }
         },
         {
@@ -5306,6 +7584,40 @@
             ],
             "pending_operations": [
               "network"
+            ]
+          },
+          "negative_class_assignment": {
+            "classification": "SEC003_F02_EXPLICIT_CONNECTION_ABSENT",
+            "reason": "counterexample requestにoperationがありconnection_state=absent。L3 F02/L4 F02の明示接続境界に対するknown absenceなのでisolation_violation。",
+            "source_pointers": [
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/1/negative_classifications/3"
+              },
+              {
+                "path": "docs/helix-security/L3-requirements/functional-requirements.json",
+                "pointer": "/requirements/4/obligation"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/1/content_comparison/0"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/1/output_meanings/0"
+              },
+              {
+                "path": "docs/helix-security/L10-verification/functional-verification.json",
+                "pointer": "/cases/4/expected_observation"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/diagnostic_contract/return_owner"
+              },
+              {
+                "path": "docs/helix-security/L9-integration-verification/project-scope-isolation.json",
+                "pointer": "/cases/1/negative_cases/3/counterexample"
+              }
             ]
           }
         },
@@ -5344,6 +7656,40 @@
             "pending_operations": [
               "state"
             ]
+          },
+          "negative_class_assignment": {
+            "classification": "SEC003_F02_EXPLICIT_CONNECTION_ABSENT",
+            "reason": "counterexample requestにoperationがありconnection_state=absent。L3 F02/L4 F02の明示接続境界に対するknown absenceなのでisolation_violation。",
+            "source_pointers": [
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/1/negative_classifications/3"
+              },
+              {
+                "path": "docs/helix-security/L3-requirements/functional-requirements.json",
+                "pointer": "/requirements/4/obligation"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/1/content_comparison/0"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/1/output_meanings/0"
+              },
+              {
+                "path": "docs/helix-security/L10-verification/functional-verification.json",
+                "pointer": "/cases/4/expected_observation"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/diagnostic_contract/return_owner"
+              },
+              {
+                "path": "docs/helix-security/L9-integration-verification/project-scope-isolation.json",
+                "pointer": "/cases/1/negative_cases/4/counterexample"
+              }
+            ]
           }
         },
         {
@@ -5380,6 +7726,40 @@
             ],
             "pending_operations": [
               "credential"
+            ]
+          },
+          "negative_class_assignment": {
+            "classification": "SEC003_F02_EXPLICIT_CONNECTION_ABSENT",
+            "reason": "counterexample requestにoperationがありconnection_state=absent。L3 F02/L4 F02の明示接続境界に対するknown absenceなのでisolation_violation。",
+            "source_pointers": [
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/1/negative_classifications/3"
+              },
+              {
+                "path": "docs/helix-security/L3-requirements/functional-requirements.json",
+                "pointer": "/requirements/4/obligation"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/1/content_comparison/0"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/1/output_meanings/0"
+              },
+              {
+                "path": "docs/helix-security/L10-verification/functional-verification.json",
+                "pointer": "/cases/4/expected_observation"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/diagnostic_contract/return_owner"
+              },
+              {
+                "path": "docs/helix-security/L9-integration-verification/project-scope-isolation.json",
+                "pointer": "/cases/1/negative_cases/5/counterexample"
+              }
             ]
           }
         },
@@ -5418,6 +7798,40 @@
             "pending_operations": [
               "artifact"
             ]
+          },
+          "negative_class_assignment": {
+            "classification": "SEC003_F02_EXPLICIT_CONNECTION_ABSENT",
+            "reason": "counterexample requestにoperationがありconnection_state=absent。L3 F02/L4 F02の明示接続境界に対するknown absenceなのでisolation_violation。",
+            "source_pointers": [
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/1/negative_classifications/3"
+              },
+              {
+                "path": "docs/helix-security/L3-requirements/functional-requirements.json",
+                "pointer": "/requirements/4/obligation"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/1/content_comparison/0"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/1/output_meanings/0"
+              },
+              {
+                "path": "docs/helix-security/L10-verification/functional-verification.json",
+                "pointer": "/cases/4/expected_observation"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/diagnostic_contract/return_owner"
+              },
+              {
+                "path": "docs/helix-security/L9-integration-verification/project-scope-isolation.json",
+                "pointer": "/cases/1/negative_cases/6/counterexample"
+              }
+            ]
           }
         },
         {
@@ -5455,6 +7869,40 @@
             "pending_operations": [
               "read"
             ]
+          },
+          "negative_class_assignment": {
+            "classification": "SEC003_F02_IMPLICIT_FALLBACK",
+            "reason": "counterexample requestにprimary_tree/other_project fallbackが明示される。L4 F02は暗黙fallbackを認めないためimplicit_fallback violation。",
+            "source_pointers": [
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/1/negative_classifications/0"
+              },
+              {
+                "path": "docs/helix-security/L3-requirements/functional-requirements.json",
+                "pointer": "/requirements/4"
+              },
+              {
+                "path": "docs/helix-security/L10-verification/functional-verification.json",
+                "pointer": "/cases/4"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/1/content_comparison"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/1/output_meanings"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/diagnostic_contract/return_owner"
+              },
+              {
+                "path": "docs/helix-security/L9-integration-verification/project-scope-isolation.json",
+                "pointer": "/cases/1/negative_cases/7/counterexample"
+              }
+            ]
           }
         },
         {
@@ -5491,6 +7939,40 @@
             ],
             "pending_operations": [
               "read"
+            ]
+          },
+          "negative_class_assignment": {
+            "classification": "SEC003_F02_IMPLICIT_FALLBACK",
+            "reason": "counterexample requestにprimary_tree/other_project fallbackが明示される。L4 F02は暗黙fallbackを認めないためimplicit_fallback violation。",
+            "source_pointers": [
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/1/negative_classifications/0"
+              },
+              {
+                "path": "docs/helix-security/L3-requirements/functional-requirements.json",
+                "pointer": "/requirements/4"
+              },
+              {
+                "path": "docs/helix-security/L10-verification/functional-verification.json",
+                "pointer": "/cases/4"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/1/content_comparison"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/1/output_meanings"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/diagnostic_contract/return_owner"
+              },
+              {
+                "path": "docs/helix-security/L9-integration-verification/project-scope-isolation.json",
+                "pointer": "/cases/1/negative_cases/8/counterexample"
+              }
             ]
           }
         },
@@ -5536,6 +8018,40 @@
             ],
             "pending_operations": [
               "read"
+            ]
+          },
+          "negative_class_assignment": {
+            "classification": "SEC003_F02_FOREIGN_LATEST_NOT_SCOPE_EVIDENCE",
+            "reason": "counterexample requestはforeign project/environment asset/stateにlatest claimを付ける。L4 F02はlatest自己申告をcurrent scopeの根拠にしないためasset_scope_conflict。",
+            "source_pointers": [
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/1/negative_classifications/1"
+              },
+              {
+                "path": "docs/helix-security/L3-requirements/functional-requirements.json",
+                "pointer": "/requirements/4"
+              },
+              {
+                "path": "docs/helix-security/L10-verification/functional-verification.json",
+                "pointer": "/cases/4"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/1/content_comparison"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/1/output_meanings"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/diagnostic_contract/return_owner"
+              },
+              {
+                "path": "docs/helix-security/L9-integration-verification/project-scope-isolation.json",
+                "pointer": "/cases/1/negative_cases/9/counterexample"
+              }
             ]
           }
         },
@@ -5621,6 +8137,40 @@
             "pending_operations": [
               "read"
             ]
+          },
+          "negative_class_assignment": {
+            "classification": "SEC003_F02_CONNECTION_MATERIAL_CONFLICT",
+            "reason": "実connection.revisionと独立expected_connection.revisionがcounterexample inputで既知値不一致。L4 F02の完全member comparisonによるconnection_content_conflict。",
+            "source_pointers": [
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/1/negative_classifications/4"
+              },
+              {
+                "path": "docs/helix-security/L3-requirements/functional-requirements.json",
+                "pointer": "/requirements/4/obligation"
+              },
+              {
+                "path": "docs/helix-security/L10-verification/functional-verification.json",
+                "pointer": "/cases/4/expected_observation"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/1/content_comparison/1"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/1/output_meanings/0"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/diagnostic_contract/return_owner"
+              },
+              {
+                "path": "docs/helix-security/L9-integration-verification/project-scope-isolation.json",
+                "pointer": "/cases/1/negative_cases/10/counterexample"
+              }
+            ]
           }
         },
         {
@@ -5657,6 +8207,40 @@
             ],
             "pending_operations": [
               "read"
+            ]
+          },
+          "negative_class_assignment": {
+            "classification": "SEC003_F02_CONNECTION_MATERIAL_UNRESOLVED",
+            "reason": "counterexample input connection_state=unknown。L4 F02はunknown memberを接続対応に補完せずconnection_material_unresolvedとしてscope_unresolved。",
+            "source_pointers": [
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/1/negative_classifications/5"
+              },
+              {
+                "path": "docs/helix-security/L3-requirements/functional-requirements.json",
+                "pointer": "/requirements/4/obligation"
+              },
+              {
+                "path": "docs/helix-security/L10-verification/functional-verification.json",
+                "pointer": "/cases/4/expected_observation"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/1/content_comparison/1"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/1/output_meanings/0"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/diagnostic_contract/return_owner"
+              },
+              {
+                "path": "docs/helix-security/L9-integration-verification/project-scope-isolation.json",
+                "pointer": "/cases/1/negative_cases/11/counterexample"
+              }
             ]
           }
         },
@@ -5706,6 +8290,40 @@
             "pending_operations": [
               "write"
             ]
+          },
+          "negative_class_assignment": {
+            "classification": "SEC003_F02_OPERATION_SCOPE_CONFLICT",
+            "reason": "counterexample request operationが明示allowed_operations集合に含まれない。L4 F02は許可をoperation kind間で拡張せずoperation_scope_conflictへ置く。",
+            "source_pointers": [
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/1/negative_classifications/2"
+              },
+              {
+                "path": "docs/helix-security/L3-requirements/functional-requirements.json",
+                "pointer": "/requirements/4"
+              },
+              {
+                "path": "docs/helix-security/L10-verification/functional-verification.json",
+                "pointer": "/cases/4"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/1/content_comparison"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/1/output_meanings"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/diagnostic_contract/return_owner"
+              },
+              {
+                "path": "docs/helix-security/L9-integration-verification/project-scope-isolation.json",
+                "pointer": "/cases/1/negative_cases/12/counterexample"
+              }
+            ]
           }
         },
         {
@@ -5753,6 +8371,40 @@
             ],
             "pending_operations": [
               "execute"
+            ]
+          },
+          "negative_class_assignment": {
+            "classification": "SEC003_F02_OPERATION_SCOPE_CONFLICT",
+            "reason": "counterexample request operationが明示allowed_operations集合に含まれない。L4 F02は許可をoperation kind間で拡張せずoperation_scope_conflictへ置く。",
+            "source_pointers": [
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/1/negative_classifications/2"
+              },
+              {
+                "path": "docs/helix-security/L3-requirements/functional-requirements.json",
+                "pointer": "/requirements/4"
+              },
+              {
+                "path": "docs/helix-security/L10-verification/functional-verification.json",
+                "pointer": "/cases/4"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/1/content_comparison"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/1/output_meanings"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/diagnostic_contract/return_owner"
+              },
+              {
+                "path": "docs/helix-security/L9-integration-verification/project-scope-isolation.json",
+                "pointer": "/cases/1/negative_cases/13/counterexample"
+              }
             ]
           }
         },
@@ -5802,6 +8454,40 @@
             "pending_operations": [
               "network"
             ]
+          },
+          "negative_class_assignment": {
+            "classification": "SEC003_F02_OPERATION_SCOPE_CONFLICT",
+            "reason": "counterexample request operationが明示allowed_operations集合に含まれない。L4 F02は許可をoperation kind間で拡張せずoperation_scope_conflictへ置く。",
+            "source_pointers": [
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/1/negative_classifications/2"
+              },
+              {
+                "path": "docs/helix-security/L3-requirements/functional-requirements.json",
+                "pointer": "/requirements/4"
+              },
+              {
+                "path": "docs/helix-security/L10-verification/functional-verification.json",
+                "pointer": "/cases/4"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/1/content_comparison"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/1/output_meanings"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/diagnostic_contract/return_owner"
+              },
+              {
+                "path": "docs/helix-security/L9-integration-verification/project-scope-isolation.json",
+                "pointer": "/cases/1/negative_cases/14/counterexample"
+              }
+            ]
           }
         },
         {
@@ -5849,6 +8535,40 @@
             ],
             "pending_operations": [
               "state"
+            ]
+          },
+          "negative_class_assignment": {
+            "classification": "SEC003_F02_OPERATION_SCOPE_CONFLICT",
+            "reason": "counterexample request operationが明示allowed_operations集合に含まれない。L4 F02は許可をoperation kind間で拡張せずoperation_scope_conflictへ置く。",
+            "source_pointers": [
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/1/negative_classifications/2"
+              },
+              {
+                "path": "docs/helix-security/L3-requirements/functional-requirements.json",
+                "pointer": "/requirements/4"
+              },
+              {
+                "path": "docs/helix-security/L10-verification/functional-verification.json",
+                "pointer": "/cases/4"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/1/content_comparison"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/1/output_meanings"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/diagnostic_contract/return_owner"
+              },
+              {
+                "path": "docs/helix-security/L9-integration-verification/project-scope-isolation.json",
+                "pointer": "/cases/1/negative_cases/15/counterexample"
+              }
             ]
           }
         },
@@ -5898,6 +8618,40 @@
             "pending_operations": [
               "credential"
             ]
+          },
+          "negative_class_assignment": {
+            "classification": "SEC003_F02_OPERATION_SCOPE_CONFLICT",
+            "reason": "counterexample request operationが明示allowed_operations集合に含まれない。L4 F02は許可をoperation kind間で拡張せずoperation_scope_conflictへ置く。",
+            "source_pointers": [
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/1/negative_classifications/2"
+              },
+              {
+                "path": "docs/helix-security/L3-requirements/functional-requirements.json",
+                "pointer": "/requirements/4"
+              },
+              {
+                "path": "docs/helix-security/L10-verification/functional-verification.json",
+                "pointer": "/cases/4"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/1/content_comparison"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/1/output_meanings"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/diagnostic_contract/return_owner"
+              },
+              {
+                "path": "docs/helix-security/L9-integration-verification/project-scope-isolation.json",
+                "pointer": "/cases/1/negative_cases/16/counterexample"
+              }
+            ]
           }
         },
         {
@@ -5946,6 +8700,40 @@
             "pending_operations": [
               "artifact"
             ]
+          },
+          "negative_class_assignment": {
+            "classification": "SEC003_F02_OPERATION_SCOPE_CONFLICT",
+            "reason": "counterexample request operationが明示allowed_operations集合に含まれない。L4 F02は許可をoperation kind間で拡張せずoperation_scope_conflictへ置く。",
+            "source_pointers": [
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/1/negative_classifications/2"
+              },
+              {
+                "path": "docs/helix-security/L3-requirements/functional-requirements.json",
+                "pointer": "/requirements/4"
+              },
+              {
+                "path": "docs/helix-security/L10-verification/functional-verification.json",
+                "pointer": "/cases/4"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/1/content_comparison"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/1/output_meanings"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/diagnostic_contract/return_owner"
+              },
+              {
+                "path": "docs/helix-security/L9-integration-verification/project-scope-isolation.json",
+                "pointer": "/cases/1/negative_cases/17/counterexample"
+              }
+            ]
           }
         },
         {
@@ -5983,6 +8771,40 @@
             "pending_operations": [
               "read"
             ]
+          },
+          "negative_class_assignment": {
+            "classification": "SEC003_F02_EXPLICIT_CONNECTION_ABSENT",
+            "reason": "counterexample requestにoperationがありconnection_state=absent。L3 F02/L4 F02の明示接続境界に対するknown absenceなのでisolation_violation。",
+            "source_pointers": [
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/1/negative_classifications/3"
+              },
+              {
+                "path": "docs/helix-security/L3-requirements/functional-requirements.json",
+                "pointer": "/requirements/4/obligation"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/1/content_comparison/0"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/1/output_meanings/0"
+              },
+              {
+                "path": "docs/helix-security/L10-verification/functional-verification.json",
+                "pointer": "/cases/4/expected_observation"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/diagnostic_contract/return_owner"
+              },
+              {
+                "path": "docs/helix-security/L9-integration-verification/project-scope-isolation.json",
+                "pointer": "/cases/1/negative_cases/18/counterexample"
+              }
+            ]
           }
         },
         {
@@ -6019,6 +8841,40 @@
             ],
             "pending_operations": [
               "read"
+            ]
+          },
+          "negative_class_assignment": {
+            "classification": "SEC003_F02_IMPLICIT_FALLBACK",
+            "reason": "counterexample requestにprimary_tree/other_project fallbackが明示される。L4 F02は暗黙fallbackを認めないためimplicit_fallback violation。",
+            "source_pointers": [
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/1/negative_classifications/0"
+              },
+              {
+                "path": "docs/helix-security/L3-requirements/functional-requirements.json",
+                "pointer": "/requirements/4"
+              },
+              {
+                "path": "docs/helix-security/L10-verification/functional-verification.json",
+                "pointer": "/cases/4"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/1/content_comparison"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/1/output_meanings"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/diagnostic_contract/return_owner"
+              },
+              {
+                "path": "docs/helix-security/L9-integration-verification/project-scope-isolation.json",
+                "pointer": "/cases/1/negative_cases/19/counterexample"
+              }
             ]
           }
         },
@@ -6064,6 +8920,40 @@
             ],
             "pending_operations": [
               "read"
+            ]
+          },
+          "negative_class_assignment": {
+            "classification": "SEC003_F02_FOREIGN_LATEST_NOT_SCOPE_EVIDENCE",
+            "reason": "counterexample requestはforeign project/environment asset/stateにlatest claimを付ける。L4 F02はlatest自己申告をcurrent scopeの根拠にしないためasset_scope_conflict。",
+            "source_pointers": [
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/1/negative_classifications/1"
+              },
+              {
+                "path": "docs/helix-security/L3-requirements/functional-requirements.json",
+                "pointer": "/requirements/4"
+              },
+              {
+                "path": "docs/helix-security/L10-verification/functional-verification.json",
+                "pointer": "/cases/4"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/1/content_comparison"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/1/output_meanings"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/diagnostic_contract/return_owner"
+              },
+              {
+                "path": "docs/helix-security/L9-integration-verification/project-scope-isolation.json",
+                "pointer": "/cases/1/negative_cases/20/counterexample"
+              }
             ]
           }
         },
@@ -6113,6 +9003,40 @@
             "pending_operations": [
               "network"
             ]
+          },
+          "negative_class_assignment": {
+            "classification": "SEC003_F02_OPERATION_SCOPE_CONFLICT",
+            "reason": "counterexample request operationが明示allowed_operations集合に含まれない。L4 F02は許可をoperation kind間で拡張せずoperation_scope_conflictへ置く。",
+            "source_pointers": [
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/1/negative_classifications/2"
+              },
+              {
+                "path": "docs/helix-security/L3-requirements/functional-requirements.json",
+                "pointer": "/requirements/4"
+              },
+              {
+                "path": "docs/helix-security/L10-verification/functional-verification.json",
+                "pointer": "/cases/4"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/1/content_comparison"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/1/output_meanings"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/diagnostic_contract/return_owner"
+              },
+              {
+                "path": "docs/helix-security/L9-integration-verification/project-scope-isolation.json",
+                "pointer": "/cases/1/negative_cases/21/counterexample"
+              }
+            ]
           }
         },
         {
@@ -6149,6 +9073,40 @@
             ],
             "pending_operations": [
               "read"
+            ]
+          },
+          "negative_class_assignment": {
+            "classification": "SEC003_F02_IMPLICIT_FALLBACK",
+            "reason": "counterexample requestにprimary_tree/other_project fallbackが明示される。L4 F02は暗黙fallbackを認めないためimplicit_fallback violation。",
+            "source_pointers": [
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/1/negative_classifications/0"
+              },
+              {
+                "path": "docs/helix-security/L3-requirements/functional-requirements.json",
+                "pointer": "/requirements/4"
+              },
+              {
+                "path": "docs/helix-security/L10-verification/functional-verification.json",
+                "pointer": "/cases/4"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/1/content_comparison"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/1/output_meanings"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/diagnostic_contract/return_owner"
+              },
+              {
+                "path": "docs/helix-security/L9-integration-verification/project-scope-isolation.json",
+                "pointer": "/cases/1/negative_cases/22/counterexample"
+              }
             ]
           }
         },
@@ -6194,6 +9152,40 @@
             ],
             "pending_operations": [
               "read"
+            ]
+          },
+          "negative_class_assignment": {
+            "classification": "SEC003_F02_FOREIGN_LATEST_NOT_SCOPE_EVIDENCE",
+            "reason": "counterexample requestはforeign project/environment asset/stateにlatest claimを付ける。L4 F02はlatest自己申告をcurrent scopeの根拠にしないためasset_scope_conflict。",
+            "source_pointers": [
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/1/negative_classifications/1"
+              },
+              {
+                "path": "docs/helix-security/L3-requirements/functional-requirements.json",
+                "pointer": "/requirements/4"
+              },
+              {
+                "path": "docs/helix-security/L10-verification/functional-verification.json",
+                "pointer": "/cases/4"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/1/content_comparison"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/1/output_meanings"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/diagnostic_contract/return_owner"
+              },
+              {
+                "path": "docs/helix-security/L9-integration-verification/project-scope-isolation.json",
+                "pointer": "/cases/1/negative_cases/23/counterexample"
+              }
             ]
           }
         },
@@ -6243,6 +9235,40 @@
             "pending_operations": [
               "network"
             ]
+          },
+          "negative_class_assignment": {
+            "classification": "SEC003_F02_OPERATION_SCOPE_CONFLICT",
+            "reason": "counterexample request operationが明示allowed_operations集合に含まれない。L4 F02は許可をoperation kind間で拡張せずoperation_scope_conflictへ置く。",
+            "source_pointers": [
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/1/negative_classifications/2"
+              },
+              {
+                "path": "docs/helix-security/L3-requirements/functional-requirements.json",
+                "pointer": "/requirements/4"
+              },
+              {
+                "path": "docs/helix-security/L10-verification/functional-verification.json",
+                "pointer": "/cases/4"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/1/content_comparison"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/1/output_meanings"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/diagnostic_contract/return_owner"
+              },
+              {
+                "path": "docs/helix-security/L9-integration-verification/project-scope-isolation.json",
+                "pointer": "/cases/1/negative_cases/24/counterexample"
+              }
+            ]
           }
         },
         {
@@ -6279,6 +9305,40 @@
             ],
             "pending_operations": [
               "read"
+            ]
+          },
+          "negative_class_assignment": {
+            "classification": "SEC003_F02_IMPLICIT_FALLBACK",
+            "reason": "counterexample requestにprimary_tree/other_project fallbackが明示される。L4 F02は暗黙fallbackを認めないためimplicit_fallback violation。",
+            "source_pointers": [
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/1/negative_classifications/0"
+              },
+              {
+                "path": "docs/helix-security/L3-requirements/functional-requirements.json",
+                "pointer": "/requirements/4"
+              },
+              {
+                "path": "docs/helix-security/L10-verification/functional-verification.json",
+                "pointer": "/cases/4"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/1/content_comparison"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/1/output_meanings"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/diagnostic_contract/return_owner"
+              },
+              {
+                "path": "docs/helix-security/L9-integration-verification/project-scope-isolation.json",
+                "pointer": "/cases/1/negative_cases/25/counterexample"
+              }
             ]
           }
         },
@@ -6324,6 +9384,40 @@
             ],
             "pending_operations": [
               "read"
+            ]
+          },
+          "negative_class_assignment": {
+            "classification": "SEC003_F02_FOREIGN_LATEST_NOT_SCOPE_EVIDENCE",
+            "reason": "counterexample requestはforeign project/environment asset/stateにlatest claimを付ける。L4 F02はlatest自己申告をcurrent scopeの根拠にしないためasset_scope_conflict。",
+            "source_pointers": [
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/1/negative_classifications/1"
+              },
+              {
+                "path": "docs/helix-security/L3-requirements/functional-requirements.json",
+                "pointer": "/requirements/4"
+              },
+              {
+                "path": "docs/helix-security/L10-verification/functional-verification.json",
+                "pointer": "/cases/4"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/1/content_comparison"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/1/output_meanings"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/diagnostic_contract/return_owner"
+              },
+              {
+                "path": "docs/helix-security/L9-integration-verification/project-scope-isolation.json",
+                "pointer": "/cases/1/negative_cases/26/counterexample"
+              }
             ]
           }
         },
@@ -6373,6 +9467,40 @@
             "pending_operations": [
               "network"
             ]
+          },
+          "negative_class_assignment": {
+            "classification": "SEC003_F02_OPERATION_SCOPE_CONFLICT",
+            "reason": "counterexample request operationが明示allowed_operations集合に含まれない。L4 F02は許可をoperation kind間で拡張せずoperation_scope_conflictへ置く。",
+            "source_pointers": [
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/1/negative_classifications/2"
+              },
+              {
+                "path": "docs/helix-security/L3-requirements/functional-requirements.json",
+                "pointer": "/requirements/4"
+              },
+              {
+                "path": "docs/helix-security/L10-verification/functional-verification.json",
+                "pointer": "/cases/4"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/1/content_comparison"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/1/output_meanings"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/diagnostic_contract/return_owner"
+              },
+              {
+                "path": "docs/helix-security/L9-integration-verification/project-scope-isolation.json",
+                "pointer": "/cases/1/negative_cases/27/counterexample"
+              }
+            ]
           }
         },
         {
@@ -6409,6 +9537,40 @@
             ],
             "pending_operations": [
               "read"
+            ]
+          },
+          "negative_class_assignment": {
+            "classification": "SEC003_F02_IMPLICIT_FALLBACK",
+            "reason": "counterexample requestにprimary_tree/other_project fallbackが明示される。L4 F02は暗黙fallbackを認めないためimplicit_fallback violation。",
+            "source_pointers": [
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/1/negative_classifications/0"
+              },
+              {
+                "path": "docs/helix-security/L3-requirements/functional-requirements.json",
+                "pointer": "/requirements/4"
+              },
+              {
+                "path": "docs/helix-security/L10-verification/functional-verification.json",
+                "pointer": "/cases/4"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/1/content_comparison"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/1/output_meanings"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/diagnostic_contract/return_owner"
+              },
+              {
+                "path": "docs/helix-security/L9-integration-verification/project-scope-isolation.json",
+                "pointer": "/cases/1/negative_cases/28/counterexample"
+              }
             ]
           }
         },
@@ -6454,6 +9616,40 @@
             ],
             "pending_operations": [
               "read"
+            ]
+          },
+          "negative_class_assignment": {
+            "classification": "SEC003_F02_FOREIGN_LATEST_NOT_SCOPE_EVIDENCE",
+            "reason": "counterexample requestはforeign project/environment asset/stateにlatest claimを付ける。L4 F02はlatest自己申告をcurrent scopeの根拠にしないためasset_scope_conflict。",
+            "source_pointers": [
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/1/negative_classifications/1"
+              },
+              {
+                "path": "docs/helix-security/L3-requirements/functional-requirements.json",
+                "pointer": "/requirements/4"
+              },
+              {
+                "path": "docs/helix-security/L10-verification/functional-verification.json",
+                "pointer": "/cases/4"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/1/content_comparison"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/1/output_meanings"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/diagnostic_contract/return_owner"
+              },
+              {
+                "path": "docs/helix-security/L9-integration-verification/project-scope-isolation.json",
+                "pointer": "/cases/1/negative_cases/29/counterexample"
+              }
             ]
           }
         },
@@ -6503,6 +9699,40 @@
             "pending_operations": [
               "network"
             ]
+          },
+          "negative_class_assignment": {
+            "classification": "SEC003_F02_OPERATION_SCOPE_CONFLICT",
+            "reason": "counterexample request operationが明示allowed_operations集合に含まれない。L4 F02は許可をoperation kind間で拡張せずoperation_scope_conflictへ置く。",
+            "source_pointers": [
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/1/negative_classifications/2"
+              },
+              {
+                "path": "docs/helix-security/L3-requirements/functional-requirements.json",
+                "pointer": "/requirements/4"
+              },
+              {
+                "path": "docs/helix-security/L10-verification/functional-verification.json",
+                "pointer": "/cases/4"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/1/content_comparison"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/1/output_meanings"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/diagnostic_contract/return_owner"
+              },
+              {
+                "path": "docs/helix-security/L9-integration-verification/project-scope-isolation.json",
+                "pointer": "/cases/1/negative_cases/30/counterexample"
+              }
+            ]
           }
         },
         {
@@ -6539,6 +9769,40 @@
             ],
             "pending_operations": [
               "read"
+            ]
+          },
+          "negative_class_assignment": {
+            "classification": "SEC003_F02_IMPLICIT_FALLBACK",
+            "reason": "counterexample requestにprimary_tree/other_project fallbackが明示される。L4 F02は暗黙fallbackを認めないためimplicit_fallback violation。",
+            "source_pointers": [
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/1/negative_classifications/0"
+              },
+              {
+                "path": "docs/helix-security/L3-requirements/functional-requirements.json",
+                "pointer": "/requirements/4"
+              },
+              {
+                "path": "docs/helix-security/L10-verification/functional-verification.json",
+                "pointer": "/cases/4"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/1/content_comparison"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/1/output_meanings"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/diagnostic_contract/return_owner"
+              },
+              {
+                "path": "docs/helix-security/L9-integration-verification/project-scope-isolation.json",
+                "pointer": "/cases/1/negative_cases/31/counterexample"
+              }
             ]
           }
         },
@@ -6584,6 +9848,40 @@
             ],
             "pending_operations": [
               "read"
+            ]
+          },
+          "negative_class_assignment": {
+            "classification": "SEC003_F02_FOREIGN_LATEST_NOT_SCOPE_EVIDENCE",
+            "reason": "counterexample requestはforeign project/environment asset/stateにlatest claimを付ける。L4 F02はlatest自己申告をcurrent scopeの根拠にしないためasset_scope_conflict。",
+            "source_pointers": [
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/1/negative_classifications/1"
+              },
+              {
+                "path": "docs/helix-security/L3-requirements/functional-requirements.json",
+                "pointer": "/requirements/4"
+              },
+              {
+                "path": "docs/helix-security/L10-verification/functional-verification.json",
+                "pointer": "/cases/4"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/1/content_comparison"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/1/output_meanings"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/diagnostic_contract/return_owner"
+              },
+              {
+                "path": "docs/helix-security/L9-integration-verification/project-scope-isolation.json",
+                "pointer": "/cases/1/negative_cases/32/counterexample"
+              }
             ]
           }
         },
@@ -6632,6 +9930,40 @@
             ],
             "pending_operations": [
               "network"
+            ]
+          },
+          "negative_class_assignment": {
+            "classification": "SEC003_F02_OPERATION_SCOPE_CONFLICT",
+            "reason": "counterexample request operationが明示allowed_operations集合に含まれない。L4 F02は許可をoperation kind間で拡張せずoperation_scope_conflictへ置く。",
+            "source_pointers": [
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/1/negative_classifications/2"
+              },
+              {
+                "path": "docs/helix-security/L3-requirements/functional-requirements.json",
+                "pointer": "/requirements/4"
+              },
+              {
+                "path": "docs/helix-security/L10-verification/functional-verification.json",
+                "pointer": "/cases/4"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/1/content_comparison"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/contracts/1/output_meanings"
+              },
+              {
+                "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+                "pointer": "/diagnostic_contract/return_owner"
+              },
+              {
+                "path": "docs/helix-security/L9-integration-verification/project-scope-isolation.json",
+                "pointer": "/cases/1/negative_cases/33/counterexample"
+              }
             ]
           }
         }
