@@ -923,9 +923,7 @@ class DesignVerificationCheckerSelfTest(unittest.TestCase):
                 declaration = declaration_for(rule["function_ref"])
                 contracts.append({"id": contract_id, **declaration})
             l5["contracts"] = contracts
-            return dvc.check_neg_4way_match(
-                REPO_ROOT, "L4", "L9", "L8", "L5", *layers
-            )
+            return dvc.check_neg_4way_match(REPO_ROOT, "L4", "L9", "L8", "L5", *layers)
 
         valid_declarations = (
             lambda function_ref: {"function": function_ref},
@@ -983,7 +981,9 @@ class DesignVerificationCheckerSelfTest(unittest.TestCase):
             {failure.get("reason") for failure in result["failures"]},
         )
 
-    def test_chk_neg_4way_explicit_contract_matches_real_function_refs_array(self) -> None:
+    def test_chk_neg_4way_explicit_contract_matches_real_function_refs_array(
+        self,
+    ) -> None:
         """The LABO L5 contract's array-only declaration is a valid member source."""
         actual_l5 = json.loads(
             (
@@ -1008,9 +1008,7 @@ class DesignVerificationCheckerSelfTest(unittest.TestCase):
             if row.get("rule_ref") == rule["id"]:
                 row["function_ref"] = function_ref
 
-        result = dvc.check_neg_4way_match(
-            REPO_ROOT, "L4", "L9", "L8", "L5", *layers
-        )
+        result = dvc.check_neg_4way_match(REPO_ROOT, "L4", "L9", "L8", "L5", *layers)
         self.assertTrue(result["passed"], msg=result)
 
     def test_chk_neg_4way_explicit_owner_ref_accepts_contract_only_rule_trace(
