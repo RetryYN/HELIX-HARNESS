@@ -1,0 +1,108 @@
+{
+  "schema_revision": 1,
+  "id": "SCF-B-0186",
+  "kind": "scaffold",
+  "title": "WR215 F03 source-only pilot and comparison evidence",
+  "product": "HELIX-HARNESS",
+  "owner_candidate": "HARNESS-L5/L8 process-state-port verification evidence owner",
+  "state": "registered",
+  "reason": "WR215 F03のsource-only導出を既存期待の閲覧前に固定し、L5/L8の1 V-pairに対応する2 witnessとの比較履歴を保つ。既存caseからはsource-only導出順序が再構成できない。要求・class・oracle・algorithmの変更は行わない。",
+  "upstream": [
+    {
+      "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+      "sha256": "a3b907cdc316117d4684632f9a1cbf36125eb6e6172f9cfc286060617583d7be",
+      "note": "main 51ebe7e7e563cdc85607f72fdc234e1c7f665a70時点。approved revision 771dd7e802189506d88cf9d9570c42b94cf7b8fbの/requirements/66をsource-only artifactに引用。"
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/functional-verification.json",
+      "sha256": "fc58ad2268746d7924ac9be33e8f3f75e6d3c2cc619e27fbc1ddc34edd065cb2",
+      "note": "main 51ebe7e7e563cdc85607f72fdc234e1c7f665a70時点。approved revision 771dd7e802189506d88cf9d9570c42b94cf7b8fbの/cases/66をsource-only artifactに引用。"
+    },
+    {
+      "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
+      "sha256": "eb0f43e23906d04b9554786a2574c94d01de85faa75f7fb1f33e08eb3276f464",
+      "note": "main 51ebe7e7e563cdc85607f72fdc234e1c7f665a70時点。F03 class/axis/state/owner taxonomyの比較後参照。witness expectedとの一致を意味しない。"
+    },
+    {
+      "path": "docs/helix-harness/L5-detail-design/process-state-port.json",
+      "sha256": "8d361927ba36ec0599f267f4bf10824cacc160e9f37feb2db383283ea3b28622",
+      "note": "main 51ebe7e7e563cdc85607f72fdc234e1c7f665a70時点。F03 function/failure ruleの比較後参照。"
+    },
+    {
+      "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+      "sha256": "ee564c12ea81158f14a0483bd0fd4d9d35352b62c8050bdf8686195f32df213f",
+      "note": "main 51ebe7e7e563cdc85607f72fdc234e1c7f665a70時点。F03の該当2 caseだけを比較後参照。"
+    },
+    {
+      "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+      "sha256": "ccac38abfa3a204fdd1b5c325b67835e13957914f5a8f239e87efe55d190dff5",
+      "note": "main 51ebe7e7e563cdc85607f72fdc234e1c7f665a70時点。F03 negative case 0/2だけを比較後参照。"
+    }
+  ],
+  "role": "固定source-only導出と既存L5/L8/L9期待の比較順序を、2 witnessの別理由・既存class assignmentとexpected gap・個別trigger/ticket候補を保って監査可能にする。",
+  "obligations": [
+    "比較前のsource-only artifactをbytes不変・SHA-256固定で保存する。",
+    "既存期待を読んだ後の比較結果を別記録とし、既存negative_class_assignmentとexpected pair result/findingの有無、個別trigger/ticket候補、実ticket/Reverseを区別する。",
+    "L8の2 expected pair_result/pair_resultsがNORMALと同じsupportedである差を未解決として残し、classとexpectedの一致や追加class差分なしを主張しない。",
+    "L8の既存case ID/input/expected/algorithm/4-way marker、L9 mutationを変更せず、正式L8への新reference fieldを追加しない。",
+    "L8全cases配列を出力対象にした比較読取の範囲逸脱を明示し、未対象caseを判断根拠へ使わない。",
+    "rootがbase 4beeの静的childで223 failuresを測定し、対象4文書がbase 51ebeと同bytesであることを確認した。4-way成立とは扱わない。"
+  ],
+  "connections": {
+    "consumers": [
+      "WR215 F03 source-only pilot review",
+      "L5/L8 process-state-port F03のsource-to-expectation比較の後続調査"
+    ],
+    "dependencies": [
+      "HARNESS-L3-003-F03とHARNESS-L10-003-F03のapproved revision",
+      "HARNESS-L4/L5/L8/L9 process-state-portの固定hash source"
+    ],
+    "boundary": "L5/L8の1 V-pairに関連するscaffold監査証拠のみ。formal設計、requirements、class taxonomy、L8 case、L9 expected、実incident record、実ticket、Reverse executionを変更・生成しない。"
+  },
+  "operations": {
+    "allowed": [
+      "固定artifactのcopy/hash照合",
+      "L4/L5/L8/L9の指定2 witness・F03 classへの静的pointer照合",
+      "JSON/Markdown diffとSCF Bindingの静的validate/stale確認"
+    ],
+    "forbidden": [
+      "L4/L5 algorithmや旧HELIX CLI/runtime/test/hook/CIの実行",
+      "L8/L9のcase ID/input/expected/algorithm/4-way marker、L9 mutationの変更",
+      "実incidentのdedup決定、実ticket発行、Reverse実行、正式完了の宣言",
+      "この研究証拠だけから承認・merge admission・完了を生成すること"
+    ]
+  },
+  "artifacts": [
+    "scaffold/research/wr215-f03-source-only-pilot-20261031/README.md",
+    "scaffold/research/wr215-f03-source-only-pilot-20261031/source-only-frozen.json",
+    "scaffold/research/wr215-f03-source-only-pilot-20261031/comparison-after.md"
+  ],
+  "verification": {
+    "evidence_kind": "scaffold",
+    "scope": [
+      "source_revision_stale",
+      "negative_case"
+    ],
+    "oracles": [
+      "source-only-frozen.jsonのSHA-256が固定値と一致すること",
+      "2 witnessのID、mutation reason、既存class assignment、L8/L9 expected pair結果、個別trigger/ticket候補、actual effectの静的な別々の対応",
+      "L3 approved /requirements/66のticket発行条件文と固定artifactの要約との差を記録し、trigger可否を追加推定しないこと",
+      "SCF Bindingのschemaとupstream hashの静的validate/stale確認"
+    ],
+    "negative_cases": [
+      "class一致から実incident同一性やdedupを生成しない。",
+      "Reverse candidateを実ticket発行・Reverse実行へ昇格しない。",
+      "negative_class_assignmentをexpected finding/stateと同一視せず、pair結果とmissing/finding未記録の差を解決済みとしない。",
+      "223 failuresを4-way成立や独立した意味欠陥223件と誤認しない。",
+      "source-only artifactをformal L8 input/expected/algorithmとして扱わない。"
+    ]
+  },
+  "replacement": {
+    "role_target": "HELIX-HARNESSの正式L5/L8 verification source traceがsource-only導出と比較後の対応履歴を保持する役割",
+    "formal_artifacts": [],
+    "issue": 1866,
+    "status": "pending"
+  },
+  "created": "2026-10-31",
+  "updated": "2026-10-31"
+}

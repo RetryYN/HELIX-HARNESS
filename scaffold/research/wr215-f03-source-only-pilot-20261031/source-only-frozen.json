@@ -1,0 +1,70 @@
+{
+  "record": "WR215 process-state-port F03 source-only blind comparison",
+  "basis": {
+    "approved_revision": "771dd7e802189506d88cf9d9570c42b94cf7b8fb",
+    "l3_source": {
+      "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+      "pointer": "/requirements/66",
+      "id": "HARNESS-L3-003-F03",
+      "pair_and_trace_obligation": "双方向traceを同対象に結び、L8↔L5/L9↔L4/L10↔L3を保つ。L9では実物を対設計に照合する。由来不明、trace欠落、設計を信用できない等は全体Reverseの復旧候補。HARNESSは条件と種類の意味を提供し、実発行はOSが所有する。"
+    },
+    "l10_source": {
+      "path": "docs/helix-harness/L10-verification/functional-verification.json",
+      "pointer": "/cases/66",
+      "id": "HARNESS-L10-003-F03",
+      "relevant_observation": "由来と対が明確な変更と由来不明/trace欠落を別々に照合する。該当証拠/由来不足と復旧候補を残し、Reverse実行成功を生成しない。"
+    },
+    "mutation_source": {
+      "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+      "read_method": "作業treeをjson.loadし、指定されたmutation pointerのみ選択",
+      "selected_pointers": [
+        "/cases/3/negative_cases/0/mutation",
+        "/cases/3/negative_cases/2/mutation"
+      ]
+    }
+  },
+  "mutations": [
+    {
+      "pointer": "/cases/3/negative_cases/0/mutation",
+      "mutation": {
+        "path": ["origin"],
+        "before": {
+          "requirement": "REQ@r1",
+          "design": "DESIGN-DUP@r1",
+          "pair": "PAIR-DUP@r1",
+          "ticket": "FORWARD-01",
+          "artifact": "ARTIFACT-A@h2"
+        },
+        "after": null
+      },
+      "blind_semantic_expectation": "originが消えるため、artifact変更の正規由来を特定できず、局所scopeのScoped Reverseを選ぶ根拠が失われる。由来不明として全体Reverseの復旧候補を残す。これは実行済みReverseやticket発行を意味しない。",
+      "kept_distinct_because": "欠けているのは変更artifactから要求・設計・pair・ticket等へ遡る由来情報である。pair/trace関係が空になったという事実まではこのmutation単独から導けない。"
+    },
+    {
+      "pointer": "/cases/3/negative_cases/2/mutation",
+      "mutation": {
+        "path": ["trace"],
+        "before": [
+          ["REQ@r1", "DESIGN-DUP@r1"],
+          ["DESIGN-DUP@r1", "REQ@r1"],
+          ["DESIGN-DUP@r1", "BOUNDARY@r1"],
+          ["BOUNDARY@r1", "DESIGN-DUP@r1"]
+        ],
+        "after": []
+      },
+      "blind_semantic_expectation": "双方向traceの辺が全てなくなるため、L3/L10とL4/L9の対を保つ証拠が欠落する。trace欠落として全体Reverseの復旧候補を残す。これは実行済みReverseやticket発行を意味しない。",
+      "kept_distinct_because": "ここではtrace関係の欠落が明示されている。origin nullのmutationのように正規由来そのものがnullになったとは、この値だけから導けない。"
+    }
+  ],
+  "cross_mutation_judgment": {
+    "shared_recovery_level": "両方ともF03に照らして全体Reverseの復旧候補を残す。ただし、由来不明とtrace欠落は異なる理由であり、元のfindingsを同一視したり統合したりする根拠はない。共通の高位な候補区分に置くことだけでは同一class化を確定できない。",
+    "findings_deduplication": "dedupしない。片方はorigin/正規由来の消失、もう片方は双方向trace辺の消失を示し、それぞれ別の証拠不足を表す。",
+    "state_owner_shape": "この上流pair/trace義務だけでは、個別Reverse ticketの具体的state、ticket recordのshape、実担当者を決められない。HARNESSは発行条件と種類の意味を持ち、実発行のownerはOSである。復旧候補の記録を実ticket発行・実行成功へ昇格させない。"
+  },
+  "limitations": [
+    "L3とL10は指定されたapproved revisionのpointerのみを参照した。",
+    "L9は指定された2つのmutation値のみを作業treeから参照した。",
+    "L4/L5/L7/L8、Issue/PR、L9 expected/classification、unknown集約ファイルは参照していない。",
+    "既存classificationへの適合を根拠にせず、algorithm・旧runtime/test/CIを実行していない。"
+  ]
+}
