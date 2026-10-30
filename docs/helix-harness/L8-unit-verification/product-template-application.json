@@ -6275,6 +6275,100 @@
     "/field_obligation_scope_verification/cases/13"
    ],
    "l9_scenario_coverage_role_ja": "L9のscenario refsとcase pointersはscenario coverageとの照合にのみ使う。L8期待の根拠ではなく、L8期待はL4/L5から独立に導出する。"
+  },
+  {
+   "id": "HARNESS-L8-009-ADD-54",
+   "function_ref": "HARNESS-L5-009-compare_requirement_gaps",
+   "name": "対応SourceEnvelopeのbody.records内に対象record Ref一致entryが0件",
+   "input_fixture_ref": "条件を記述した設計行。入力fixtureは未作成。",
+   "l9_scenario_refs": [
+    "HARNESS-L9-009-F05-EVIDENCE-BODY-ENTRY-ABSENT",
+    "HARNESS-L9-009-F05-CAUSE-BODY-ENTRY-UNRESOLVED"
+   ],
+   "l9_case_pointers": [
+    "/field_semantic_evidence_verification/cases/11",
+    "/field_semantic_evidence_verification/cause_kind_extension_cases/2"
+   ],
+   "l9_scenario_coverage_role_ja": "L9のscenario refsとcase pointersはscenario coverageとの照合にのみ使う。L8期待の根拠ではなく、L8期待はL4/L5から独立に導出する。",
+   "source_basis": [
+    {
+     "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+     "pointer": "/requirements/27"
+    },
+    {
+     "path": "docs/helix-harness/L10-verification/functional-verification.json",
+     "pointer": "/cases/27"
+    },
+    {
+     "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+     "pointer": "/field_source_materialization_contract/ordered_source_materialization/2"
+    },
+    {
+     "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+     "pointer": "/field_semantic_evidence_contract/wrapper_and_source_contract/source_payload"
+    },
+    {
+     "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+     "pointer": "/field_semantic_evidence_contract/common_target_guards/3"
+    },
+    {
+     "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+     "pointer": "/field_semantic_evidence_contract/basic_candidate_return/cause_kind_extension_rules/rules/2"
+    },
+    {
+     "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+     "pointer": "/f05_detail_contract/field_content_source_failure_writer_contract/writers/2"
+    },
+    {
+     "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+     "pointer": "/f05_detail_contract/cause_kind_crosswalk/values/22"
+    }
+   ],
+   "typed_mutation_plan": "元SemanticRecordと同full RefのSourceEnvelopeを1件ずつ実在させ、SourceEnvelope.bodyをオブジェクト、body.recordsを空配列[]（または対象(collection=\"semantic_records\", ref=semantic_records[0].ref)に一致するentryを0件とした観測済み配列）にする。source_ref lookup成功とbody.records配列観測済みを固定し、source_unresolvedやbody_unformedを混ぜない。",
+   "expected_observation": "当該RecordOccurrenceはref_readとsource_ref_readを保持し、body_occurrencesは空配列[]のまま架空entryを作らず、causesにbody_entry_unresolved（target=/semantic_records/0/ref、left=semantic_records[0].refの原Read、right=/sources/0/body/recordsの原Read、rule_pointer=/f05_detail_contract/field_content_source_failure_writer_contract/writers/2）を1件保持する。該当definition evidenceやvalue evidenceをknown/missing/unknownとして通さずunformedへ伝播し、独立した有効兄弟は維持する。",
+   "l5_technical_expectation": {
+    "writer_pointer": "/f05_detail_contract/field_content_source_failure_writer_contract/writers/2",
+    "cause_storage_pointer": "/f05_detail_contract/types/RecordOccurrence/members/causes",
+    "read_rule": "解決済みSemanticRecordと同一RefのSourceEnvelopeの観測済みbody.records配列内に対象(collection, record.ref)一致entryが0件のときだけbody_entry_unresolved。leftは解決済みrecord.refのRead<CoreRef>、rightは対応SourceEnvelopeの/sources/{s}/body/records collection全体のRead<CoreJsonValue>とし、検索missを配列要素のRead.absentへ変換しない。"
+   },
+   "expected_side_effect_count": 0,
+   "execution_state": "not_executed",
+   "fixture_refinement": "U-ID設計のみ。実fixture・全返却・hashは未作成、未実行。",
+   "fixed_writer_case": {
+    "scope_ja": "L5 writers/2が生成するRecordOccurrenceのbody_entry_unresolved Cause leafだけを固定する。F05DetailedReturn、ValidationSourceObservation全体、source資格、field/proposal集約の期待ではない。",
+    "input_provenance": {
+     "revision": "ac6e74c7965352571b4ae05041fc3c4f11a0494d",
+     "path": "docs/helix-harness/L8-unit-verification/product-template-application.json",
+     "pointer": "/additional_unit_cases/46/fixed_writer_case/input_slice",
+     "use_ja": "ADD-46で固定済みのfield inputと元SemanticRecordを刺激として再利用する。そこに含まれるsources=[]だけを、下記の同Ref SourceEnvelope（body.records=[]）一件へ置換する。期待値はL4/L5 writer契約から独立に記述し、L9 expectedや旧producer出力を参照しない。"
+    },
+    "input_delta": {
+     "base_input_pointer": "/additional_unit_cases/46/fixed_writer_case/input_slice",
+     "replacement": {
+      "pointer": "/sources",
+      "value_rule": "一件のSourceEnvelopeを供給し、role=semantic_sourceとする。refはbase semantic_records[0].source_refと完全一致させる。bodyはオブジェクトとし、body.recordsは観測済み空配列[]（対象collection=semantic_records、ref=base semantic_records[0].refに一致する実entryが0件）とする。qualification等の未供給memberを生成しない。bodyはその供給値自体として扱い、content_bytesは供給しないためsource usability/digest成立を主張しない。"
+     }
+    },
+    "l8_expected_writer_leaf": {
+     "kind": "body_entry_unresolved",
+     "target_location": {
+      "root": "validation_input",
+      "pointer": "/semantic_records/0/ref"
+     },
+     "left_original_read_pointer": "/semantic_records/0/ref",
+     "right_original_read_pointer": "/sources/0/body/records",
+     "rule_pointer": "/f05_detail_contract/field_content_source_failure_writer_contract/writers/2",
+     "storage_type_pointer": "/f05_detail_contract/types/RecordOccurrence/members/causes",
+     "interpretation_ja": "このcaseはCauseKind/target/original Read/rule_pointerだけを固定する。上記pointerはfixture内のoperand locatorであり、実Return内のarray indexや親返却shapeを指定しない。"
+    },
+    "nonclaims_ja": [
+     "観測済みbody.records配列内の対象(collection, record.ref)一致entry 0件のみを対象にする。source_ref lookup miss（source_unresolved）、body非オブジェクト/records非配列（body_unformed）、一致entryのpayload不一致（source_body_mismatch）、又はdefinition/value_fact Ref自体のlookup miss（content_unresolved）として扱わない。",
+     "Cause左右Readは解決済み元record.refのRead<CoreRef>と対応SourceEnvelopeの/sources/0/body/records collection全体のRead<CoreJsonValue>を指し、検索missを配列要素のRead.absentや架空BodyOccurrenceへ変換しない。",
+     "content_bytes、digest、Qualification、独立rootが未供給のためsource usabilityや定義evidenceのformedを期待しない。Cause leaf以外の返却状態は未形成のまま。",
+     "実producer実行、U-ID成立、全F05 producer完了を主張しない。"
+    ],
+    "execution_state": "not_executed"
+   }
   }
  ],
  "normal_function_oracles": [
