@@ -20,7 +20,7 @@
     },
     {
       "path": "docs/helix-os/L5-detail-design/management-authority-source-record.json",
-      "sha256": "937c85b4c7ee7db1a61241ab65a9daf1bdab93fbf54ee4ef1ebe446b9f78513e",
+      "sha256": "f500e0e56411f26ab6f422b45a613191162139dff2be3c9386c00975ceb59140",
       "note": "Successor L5 bytes: 47 rules match L4; six singleton rows removed and two composite rows added."
     },
     {
@@ -30,7 +30,7 @@
     },
     {
       "path": "docs/helix-os/L8-unit-verification/management-authority-source-record.json",
-      "sha256": "32784b1aefffbd2f5763d5e07c4d145ff866d4c2ab14dfecffafb469bba8dd8c",
+      "sha256": "95a734ea83e7cae101c7d87edbcbaa0da8ffc15ef451b863664c7ea0ca8c3094",
       "note": "Successor L8 bytes: 47 classes/585 cases; all 583 old rows and 572 old class links preserved. 2026-10-31 current-byte repin: prior=ae79843355089120e2d99a294dfa5b29fc624c42e610d965328fe2b7fd92821d; current=09206d99ffbab65a2c06cc79c85836a6adf309bbe5b0ee7b2f2cbdaa2344ad17; scope unchanged. 2026-10-31 source-only pilot pin: prior=165c9af1ae9724ce1ad1e89dc6253adb8aea590f27280e905719affc80ac646c; current=165c9af1ae9724ce1ad1e89dc6253adb8aea590f27280e905719affc80ac646c; expectation-bearing unit rows and L7 raw unchanged; scope/V-pair boundary preserved. 2026-10-31 source-only repin: prior=165c9af1ae9724ce1ad1e89dc6253adb8aea590f27280e905719affc80ac646c; current=ceb282d80e4c3a8f60d0f60018631e69bf5efa5bb3627572521f70ab84de4348; only the bound L8 snapshot and referenced binding hashes advanced; binding scope and V-pair boundary unchanged. 2026-10-31 research-audit separation: prior L8 pin=ceb282d80e4c3a8f60d0f60018631e69bf5efa5bb3627572521f70ab84de4348; current=8f36fe5cd183be374bf59a23d38b5b169af156350f5fbd7a31ce9837c9761724; detailed pilot moved to a separately bound scaffold research record, while formal expectations and pair scope are unchanged. R4 response: L8 comparison status only; prior=8f36fe5cd183be374bf59a23d38b5b169af156350f5fbd7a31ce9837c9761724; current=32784b1aefffbd2f5763d5e07c4d145ff866d4c2ab14dfecffafb469bba8dd8c; formal expectations unchanged."
     },
     {
