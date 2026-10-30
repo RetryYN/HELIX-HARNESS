@@ -19,7 +19,7 @@
       "L8 expectations",
       "L9 case condition/expected values"
     ],
-    "derivation_note": "L7 /cases/3、/cases/5、/cases/6 のgiven_input_refからraw入力object graphだけを展開した。3入力の再帰的差分は /binding/project のみ。L4 binding比較表はbinding.projectをinputs/string比較に置き、diagnostic_code_facetsはsource_unresolvedとsource_conflictをcomparison facetに対応させる。L4 condition_semanticsが全体severity集約を定める。L4のresume規則文は設計文として読み手で適用し、診断algorithm/実装は実行していない。期待値からconditionを写していない。",
+    "derivation_note": "L7 /cases/3、/cases/5、/cases/6 のgiven_input_refからraw入力object graphだけを展開した。3入力の再帰的差分は /binding/project のみ。L4 binding比較表はbinding.projectをinputs/string比較に置き、diagnostic_code_facetsはsource_unresolvedとsource_conflictをcomparison facetに対応させる。L4のformal rowはtop-level failure_classificationsに置き、contracts[].negative_class_refsへF01のreverse linkを設定した。negative_equivalence_classes marker自体は4層揃うまで設定していない。L4 condition_semanticsが全体severity集約を定める。L4のresume規則文は設計文として読み手で適用し、診断algorithm/実装は実行していない。期待値からconditionを写していない。",
     "historical_expectation_note": "L7 original_expected_ref lineageは独立oracleとして使わない。L9 expected fieldは編集前後の保持だけをdigestで確認し、分類導出には使わない。"
   },
   "source_pointers": [
@@ -53,7 +53,6 @@
         "/diagnostic_contract/condition_names",
         "/diagnostic_contract/condition_semantics",
         "/diagnostic_contract/return_owner",
-        "/diagnostic_contract/source_qualified_negative_class_candidates/classes",
         "/diagnostic_contract/algorithm/1",
         "/diagnostic_contract/algorithm/2",
         "/diagnostic_contract/algorithm/3",
@@ -64,19 +63,22 @@
         "/diagnostic_contract/algorithm/8",
         "/diagnostic_contract/algorithm/9",
         "/diagnostic_contract/algorithm/10",
-        "/diagnostic_contract/result_fields"
+        "/diagnostic_contract/result_fields",
+        "/failure_classifications/0",
+        "/failure_classifications/1",
+        "/contracts/0/negative_class_refs"
       ]
     },
     {
       "path": "docs/helix-os/L7-function-verification/ticket-workflow-derivation.json",
       "pointers": [
         "/cases/3/given_input_ref",
+        "/objects/1586f614cc69eb6f2e655c825fef3f3d997b29fefcdc517413ee05acc651d07e/binding",
         "/cases/5/given_input_ref",
         "/cases/6/given_input_ref",
-        "/objects/349e48fcefb66a199a806b2b3fc531cc39192fe8680ecf9cfc73ad0da208ccd3/binding/project",
-        "/objects/349e48fcefb66a199a806b2b3fc531cc39192fe8680ecf9cfc73ad0da208ccd3/context/binding/project",
-        "/objects/44d858290764eced3f62ba0d37593b228a6caee87290c022dc5ced1db2140c02/binding/project",
-        "/objects/44d858290764eced3f62ba0d37593b228a6caee87290c022dc5ced1db2140c02/context/binding/project"
+        "/objects/503f5d7a9aa22046ec2e55ee05ee1b9a362553e1a8f881af99e05997244d0ccb/project",
+        "/objects/3067a4f2dd8a085db4b59cdda7e6d9e8aaa9d413dc63e33087048d828a61911f/project",
+        "/objects/6f5cccd81e8bf8f4de90ff3d1f5029bda2b0eeed9285be8e04b7a4808a05c790/project"
       ]
     }
   ],
@@ -112,7 +114,9 @@
           "side_effect_count": 0
         },
         "source_derivation": "L4 binding tableでprojectはinputs/string比較。nullは非string operandのためsource_unresolved、comparison facetの状態はunknown。他の6 resume facetはL4文章と固定inputに照らして手で確認した（facet_source_check参照）。L9/L7期待値は使っていない。",
-        "owner_ref": "L5 rule owner projectionまで保留"
+        "owner_ref": "L5 rule owner projectionまで保留",
+        "binding_object_pointer": "/objects/503f5d7a9aa22046ec2e55ee05ee1b9a362553e1a8f881af99e05997244d0ccb",
+        "context_binding_object_pointer": "/objects/3067a4f2dd8a085db4b59cdda7e6d9e8aaa9d413dc63e33087048d828a61911f"
       },
       {
         "case_id": "OS017-BINDING-PROJECT-CONFLICT",
@@ -135,7 +139,9 @@
           "side_effect_count": 0
         },
         "source_derivation": "L4 binding tableでprojectはinputs/string比較。両operandは非空文字列かつ不一致のためsource_conflict、comparison facetの状態はviolation。他の6 resume facetはL4文章と固定inputに照らして手で確認した（facet_source_check参照）。L9/L7期待値は使っていない。",
-        "owner_ref": "L5 rule owner projectionまで保留"
+        "owner_ref": "L5 rule owner projectionまで保留",
+        "binding_object_pointer": "/objects/6f5cccd81e8bf8f4de90ff3d1f5029bda2b0eeed9285be8e04b7a4808a05c790",
+        "context_binding_object_pointer": "/objects/3067a4f2dd8a085db4b59cdda7e6d9e8aaa9d413dc63e33087048d828a61911f"
       }
     ],
     "scope": {
@@ -170,8 +176,24 @@
     "interpretation": "編集前後の不変性確認のみ。候補classの導出根拠には使っていない。"
   },
   "limitations": [
-    "source-qualified rowはL5 owner_refとL8/L5 projectionを形成し4層markerを揃えるまで、4層explicit negative equivalence classではない。",
+    "L4 failure_classifications rowsはformal source rowsだが、negative_equivalence_classes markerがないため4層explicit class modeではない。L5 owner_refとL8/L5 projectionを形成し全4層markerを揃えるまでlegacy modeを維持する。",
     "authority、approval、runtime実行、implementation completion、freeze、four-way PASSを主張しない。",
     "この証拠の対象外214件はこのtrancheで分類していない。"
-  ]
+  ],
+  "source_qualified_class_shape": {
+    "l4_container": "/failure_classifications",
+    "l4_count": 2,
+    "reverse_parent_links": {
+      "HELIXOS-L4-017-F01": [
+        "OS017-NEG-inputs-source_unresolved",
+        "OS017-NEG-inputs-source_conflict"
+      ],
+      "HELIXOS-L4-017-F02": [],
+      "HELIXOS-L4-017-F03": [],
+      "HELIXOS-L4-017-B01": []
+    },
+    "explicit_mode_marker": "absent in L4/L5/L8/L9 by design until all four layers are complete",
+    "l9_case_reference_field": "l4_source_class_candidate_ref; unmarked candidate reference, not negative_class_ref",
+    "owner_ref": "deferred to L5 successor"
+  }
 }

@@ -30,8 +30,8 @@
     },
     {
       "path": "docs/helix-os/L4-basic-design/ticket-workflow-derivation.json",
-      "sha256": "8087d3da44345bff96444c69795eb2cfbaf2629c29ccc794697f68c0416e140a",
-      "note": "L4 source-qualified negative class candidates and source prose/tables."
+      "sha256": "cea0aed4af317a01693298ef57f79674d14ca6829ed923732a84fe267359d43a",
+      "note": "Formal failure_classifications rows, source-qualified evidence, and prose/table conditions for the two candidates."
     },
     {
       "path": "docs/helix-os/L7-function-verification/ticket-workflow-derivation.json",
@@ -45,8 +45,8 @@
     },
     {
       "path": "docs/helix-os/L9-integration-verification/ticket-workflow-derivation.json",
-      "sha256": "f833f93695c173fc37ad0025357f0a4ea45d08f898b7b9b967aa2c6f4edae5c0",
-      "note": "Candidate references and remaining scope; 217-case expected projection digest was checked for preservation only, not used to derive classes."
+      "sha256": "4955e543699e3d011075d9b6b75dd642b812569c1b8891d0813f1087264d689b",
+      "note": "Unmarked candidate references and remaining scope; 217-case expected projection digest checked only for preservation."
     }
   ],
   "role": "WR204 OS017 L4/L9 source-qualified負例class候補の証拠。4層class登録ではない。",
@@ -54,7 +54,8 @@
     "L4設計テキストとL7 raw入力値から2つの候補classとsource pointerを手導出する。",
     "対応する正例caseは負例candidate集合の外に置き、phaseはcase、inputsはexpected_axisとして保持する。",
     "L9の217件についてcondition/expected/expected_preservedとL7 given入力参照を保持する。",
-    "owner_ref、L5/L8投影、4層explicit marker、4way PASSは後続へ残す。"
+    "owner_ref、L5/L8投影、4層explicit marker、4way PASSは後続へ残す。",
+    "RFC6901 pointer resolution for all declared source pointers and L7 reference leaves."
   ],
   "connections": {
     "consumers": [
@@ -87,7 +88,8 @@
     "docs/helix-os/L4-basic-design/ticket-workflow-derivation.json",
     "docs/helix-os/L9-integration-verification/ticket-workflow-derivation.json",
     "scaffold/research/wr204-os017-negative-classes-20261031/README.md",
-    "scaffold/research/wr204-os017-negative-classes-20261031/manual-derivation.json"
+    "scaffold/research/wr204-os017-negative-classes-20261031/manual-derivation.json",
+    "scaffold/research/wr204-os017-negative-classes-20261031/validate_manual_derivation.py"
   ],
   "verification": {
     "evidence_kind": "scaffold",
@@ -99,6 +101,7 @@
     ],
     "oracles": [
       "python3 -m json.tool <changed-json>",
+      "python3 scaffold/research/wr204-os017-negative-classes-20261031/validate_manual_derivation.py",
       "python3 scaffold/tools/design_verification_checker.py check-child --root . --l4 docs/helix-os/L4-basic-design/ticket-workflow-derivation.json --l5 docs/helix-os/L5-detail-design/ticket-workflow-derivation.json --l8 docs/helix-os/L8-unit-verification/ticket-workflow-derivation.json --l9 docs/helix-os/L9-integration-verification/ticket-workflow-derivation.json",
       "python3 -B scaffold/tools/scfctl.py validate",
       "python3 -B scaffold/tools/scfctl.py stale",

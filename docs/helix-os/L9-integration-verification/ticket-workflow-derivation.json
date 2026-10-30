@@ -311,7 +311,7 @@
     "複数ticketの中間result/typed Backflow route、元source影響評価/再導出、実回収・lease/実assignment/attempt/measurement、部分義務解消・全累積履歴/復旧/raceの正式契約は未成立。",
     "OS015016→017→018019020023/SEC/INFRA/INT/LABO全scopeのowner-qualified exact binding、全型/不正shape・未見独立実証・oracle凍結・実装前Red→最小Green→Refactor/再検証・実L9L10・PO実物L11は未成立。",
     "全92親430対の基本/詳細閉包と最終独立二重監査・実装準備を継続。candidate素材/独立合成照合/mergeから実READY、実許可、Issue close、Release/Deployを生成しない。",
-    "WR204 R1 trancheはsource-qualifiedなL4/L9負例class候補2件のみを形成する。正例OS017-NORMAL-RESUMEは負例cohortの外に置く。L5/L8 projection、typed owner_ref、4層全てのexplicit markerは後続へ残し、このpairを4way PASSとしない。"
+    "WR204 R1 trancheはL4 failure_classificationsのsource-qualified負例2 rowとL9 case参照のみを形成する。正例OS017-NORMAL-RESUMEは負例cohortの外。L5/L8 projectionと4層negative_equivalence_classes markerは後続へ残し、このpairを4way PASSとしない。"
   ],
   "document_id": "HELIXOS-L9-017",
   "layer": "L9",
@@ -1218,7 +1218,7 @@
       },
       "l4_source_class_candidate_ref": {
         "path": "docs/helix-os/L4-basic-design/ticket-workflow-derivation.json",
-        "pointer": "/diagnostic_contract/source_qualified_negative_class_candidates/classes/0",
+        "pointer": "/failure_classifications/0",
         "class_id": "OS017-NEG-inputs-source_unresolved"
       }
     },
@@ -1252,7 +1252,7 @@
       },
       "l4_source_class_candidate_ref": {
         "path": "docs/helix-os/L4-basic-design/ticket-workflow-derivation.json",
-        "pointer": "/diagnostic_contract/source_qualified_negative_class_candidates/classes/1",
+        "pointer": "/failure_classifications/1",
         "class_id": "OS017-NEG-inputs-source_conflict"
       }
     },
