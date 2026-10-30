@@ -1,0 +1,769 @@
+{
+  "schema": "wr186-l9-manual-projection-candidates.v1",
+  "authority_effect": "none",
+  "base_revision": "821a655ad6949b2a7a5344b26e3c170cccc353a6",
+  "fixed_raw_source": {
+    "revision": "ed3981e7b9419d796adf1981f8990c6b626ecabe",
+    "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+    "sha256": "91d0bcd34b8b451bc8e81f5d13d0c5f413de3ad5f7c70ba90a704134c4af3735",
+    "byte_count": 2586683,
+    "source_pointer_pattern": "/verification_obligations/3/negative_cases/{index}/independent_source_packet/raw_utf8"
+  },
+  "method": "independent_manual_L3_L4_classification_and_fixed_L9_raw_review; L5_concordance_only",
+  "excluded_inputs": [
+    "L9 expected_material",
+    "negative_class_assignment",
+    "checker output",
+    "L5-generated expected finding order"
+  ],
+  "l3_source": {
+    "revision": "827c4ea924a15b6b54bbe9d1f5d2f9fbdefa65de",
+    "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+    "pointer": "/requirements/66/obligation",
+    "id": "HARNESS-L3-003-F03"
+  },
+  "l4_source": {
+    "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
+    "pointer": "/contracts/3/negative_classifications",
+    "contract_pointer": "/contracts/3",
+    "id": "HARNESS-L4-003-F03",
+    "expected_origin": "L4 class membership, finding code, state and backflow_owner; not output order"
+  },
+  "l5_source": null,
+  "rule_sources": {
+    "F03_REQUIRED_PAIR_MISSING": {
+      "l4_classification_pointer": "/contracts/3/negative_classifications/0",
+      "l4_backflow_owner": "HARNESS",
+      "l5_concordance_rule_pointer": "/failure_rules/19"
+    },
+    "F03_L9_DIMENSION_UNKNOWN": {
+      "l4_classification_pointer": "/contracts/3/negative_classifications/1",
+      "l4_backflow_owner": "L9各観点の原観測owner",
+      "l5_concordance_rule_pointer": "/failure_rules/20"
+    },
+    "F03_PAIR_SCOPE_CONFLICT": {
+      "l4_classification_pointer": "/contracts/3/negative_classifications/2",
+      "l4_backflow_owner": "HARNESS",
+      "l5_concordance_rule_pointer": "/failure_rules/21"
+    },
+    "F03_TICKET_REVERSE_EFFECT_CONFLICT": {
+      "l4_classification_pointer": "/contracts/3/negative_classifications/3",
+      "l4_backflow_owner": "OS",
+      "l5_concordance_rule_pointer": "/failure_rules/22"
+    }
+  },
+  "manual_review_groups": {
+    "trace_absent": "L4が必要pairと原traceを別に要求する。固定rawではtraceが空で、canonical pair行は揃う。10観点は観測値を持ち、pairのtarget/scope/revision不一致はなく、実ticket/Reverse実行を示す入力はない。",
+    "single_l9_dimension_absent": "L4が定める10観点のうち当該dimensionの観測だけが未形成。他の9観点、canonical pair/traceは存在し、実ticket/Reverse実行を示す入力はない。",
+    "wrong_layer_pair": "L3/L4が定めるcanonical pairのslotに別layerが入っている。必要pairが未供給であり、提示された左右pairは対象対応と異なるため両ruleが成立する。10観点とtraceは存在し、実ticket/Reverse実行を示す入力はない。"
+  },
+  "layer_independence": {
+    "L9_input": "L9自身のbase_case_ref/mutationと固定snapshot raw_utf8から入力由来を記録する。既存expected_materialは参照しない。",
+    "L9_candidate_source": "L3要求の意味、L4分類と固定L9 rawからclass集合・singleton code/ownerを記録する。L5は一致照合のみ。"
+  },
+  "candidate_count": 14,
+  "checker_marker_enabled": false,
+  "execution_or_product_test": false,
+  "candidates": [
+    {
+      "case_id": "H003-F03-TRACE-MISSING",
+      "category": "trace_absent",
+      "raw_sha256": "c03c68481e5d4367bc890c5da4f5a61918ca528f8939928d5915693ccc428505",
+      "raw_source_pointer": {
+        "revision": "ed3981e7b9419d796adf1981f8990c6b626ecabe",
+        "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+        "pointer": "/verification_obligations/3/negative_cases/2/independent_source_packet/raw_utf8"
+      },
+      "l9_input_derivation": {
+        "base_case_ref": "H003-F03-NORMAL",
+        "mutation_lane": "original",
+        "mutation_pointer": "/cases/3/negative_cases/2/mutation"
+      },
+      "firing_class_set": [
+        "F03_REQUIRED_PAIR_MISSING"
+      ],
+      "not_firing_class_set": [
+        "F03_L9_DIMENSION_UNKNOWN",
+        "F03_PAIR_SCOPE_CONFLICT",
+        "F03_TICKET_REVERSE_EFFECT_CONFLICT"
+      ],
+      "l4_expected_finding_set": {
+        "semantics": "unordered_set",
+        "codes": [
+          "F03_REQUIRED_PAIR_MISSING"
+        ],
+        "source_pointers": [
+          "/contracts/3/negative_classifications/0"
+        ]
+      },
+      "l4_singleton_expected": {
+        "code": "F03_REQUIRED_PAIR_MISSING",
+        "return_owner": "HARNESS",
+        "source_pointer": "/contracts/3/negative_classifications/0"
+      },
+      "l9_candidate_singleton_output": [
+        {
+          "code": "F03_REQUIRED_PAIR_MISSING",
+          "return_owner": "HARNESS"
+        }
+      ],
+      "l9_output_order": {
+        "status": "trivial_singleton_from_L4",
+        "reason": "The L4 classification has one expected finding code; a single member has no order ambiguity."
+      },
+      "class_set_semantics": "unordered",
+      "expected_origin": "L3 requirement meaning + L4 classification + this fixed L9 raw input"
+    },
+    {
+      "case_id": "H003-F03-L9-MISSING-interface",
+      "category": "single_l9_dimension_absent",
+      "dimension": "interface",
+      "raw_sha256": "8ac6eead9f11c32547dbd21e4bb8736f5d55bd304c8293340a269515469c44b9",
+      "raw_source_pointer": {
+        "revision": "ed3981e7b9419d796adf1981f8990c6b626ecabe",
+        "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+        "pointer": "/verification_obligations/3/negative_cases/12/independent_source_packet/raw_utf8"
+      },
+      "l9_input_derivation": {
+        "base_case_ref": "H003-F03-NORMAL",
+        "mutation_lane": "original",
+        "mutation_pointer": "/cases/3/negative_cases/12/mutation"
+      },
+      "firing_class_set": [
+        "F03_L9_DIMENSION_UNKNOWN"
+      ],
+      "not_firing_class_set": [
+        "F03_PAIR_SCOPE_CONFLICT",
+        "F03_REQUIRED_PAIR_MISSING",
+        "F03_TICKET_REVERSE_EFFECT_CONFLICT"
+      ],
+      "l4_expected_finding_set": {
+        "semantics": "unordered_set",
+        "codes": [
+          "F03_L9_DIMENSION_UNKNOWN"
+        ],
+        "source_pointers": [
+          "/contracts/3/negative_classifications/1"
+        ]
+      },
+      "l4_singleton_expected": {
+        "code": "F03_L9_DIMENSION_UNKNOWN",
+        "return_owner": "L9各観点の原観測owner",
+        "source_pointer": "/contracts/3/negative_classifications/1"
+      },
+      "l9_candidate_singleton_output": [
+        {
+          "code": "F03_L9_DIMENSION_UNKNOWN",
+          "return_owner": "L9各観点の原観測owner"
+        }
+      ],
+      "l9_output_order": {
+        "status": "trivial_singleton_from_L4",
+        "reason": "The L4 classification has one expected finding code; a single member has no order ambiguity."
+      },
+      "class_set_semantics": "unordered",
+      "expected_origin": "L3 requirement meaning + L4 classification + this fixed L9 raw input"
+    },
+    {
+      "case_id": "H003-F03-L9-MISSING-dependency_direction",
+      "category": "single_l9_dimension_absent",
+      "dimension": "dependency_direction",
+      "raw_sha256": "3e7705dcb86f927d8d100287397a87f88b479ffd613a28cd205593e71f7be55f",
+      "raw_source_pointer": {
+        "revision": "ed3981e7b9419d796adf1981f8990c6b626ecabe",
+        "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+        "pointer": "/verification_obligations/3/negative_cases/13/independent_source_packet/raw_utf8"
+      },
+      "l9_input_derivation": {
+        "base_case_ref": "H003-F03-NORMAL",
+        "mutation_lane": "original",
+        "mutation_pointer": "/cases/3/negative_cases/13/mutation"
+      },
+      "firing_class_set": [
+        "F03_L9_DIMENSION_UNKNOWN"
+      ],
+      "not_firing_class_set": [
+        "F03_PAIR_SCOPE_CONFLICT",
+        "F03_REQUIRED_PAIR_MISSING",
+        "F03_TICKET_REVERSE_EFFECT_CONFLICT"
+      ],
+      "l4_expected_finding_set": {
+        "semantics": "unordered_set",
+        "codes": [
+          "F03_L9_DIMENSION_UNKNOWN"
+        ],
+        "source_pointers": [
+          "/contracts/3/negative_classifications/1"
+        ]
+      },
+      "l4_singleton_expected": {
+        "code": "F03_L9_DIMENSION_UNKNOWN",
+        "return_owner": "L9各観点の原観測owner",
+        "source_pointer": "/contracts/3/negative_classifications/1"
+      },
+      "l9_candidate_singleton_output": [
+        {
+          "code": "F03_L9_DIMENSION_UNKNOWN",
+          "return_owner": "L9各観点の原観測owner"
+        }
+      ],
+      "l9_output_order": {
+        "status": "trivial_singleton_from_L4",
+        "reason": "The L4 classification has one expected finding code; a single member has no order ambiguity."
+      },
+      "class_set_semantics": "unordered",
+      "expected_origin": "L3 requirement meaning + L4 classification + this fixed L9 raw input"
+    },
+    {
+      "case_id": "H003-F03-L9-MISSING-state_data_ownership",
+      "category": "single_l9_dimension_absent",
+      "dimension": "state_data_ownership",
+      "raw_sha256": "125b088a7cc96ced50d36ffcc9374777c47b56e8ae0268181e984f63c2595cfd",
+      "raw_source_pointer": {
+        "revision": "ed3981e7b9419d796adf1981f8990c6b626ecabe",
+        "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+        "pointer": "/verification_obligations/3/negative_cases/14/independent_source_packet/raw_utf8"
+      },
+      "l9_input_derivation": {
+        "base_case_ref": "H003-F03-NORMAL",
+        "mutation_lane": "original",
+        "mutation_pointer": "/cases/3/negative_cases/14/mutation"
+      },
+      "firing_class_set": [
+        "F03_L9_DIMENSION_UNKNOWN"
+      ],
+      "not_firing_class_set": [
+        "F03_PAIR_SCOPE_CONFLICT",
+        "F03_REQUIRED_PAIR_MISSING",
+        "F03_TICKET_REVERSE_EFFECT_CONFLICT"
+      ],
+      "l4_expected_finding_set": {
+        "semantics": "unordered_set",
+        "codes": [
+          "F03_L9_DIMENSION_UNKNOWN"
+        ],
+        "source_pointers": [
+          "/contracts/3/negative_classifications/1"
+        ]
+      },
+      "l4_singleton_expected": {
+        "code": "F03_L9_DIMENSION_UNKNOWN",
+        "return_owner": "L9各観点の原観測owner",
+        "source_pointer": "/contracts/3/negative_classifications/1"
+      },
+      "l9_candidate_singleton_output": [
+        {
+          "code": "F03_L9_DIMENSION_UNKNOWN",
+          "return_owner": "L9各観点の原観測owner"
+        }
+      ],
+      "l9_output_order": {
+        "status": "trivial_singleton_from_L4",
+        "reason": "The L4 classification has one expected finding code; a single member has no order ambiguity."
+      },
+      "class_set_semantics": "unordered",
+      "expected_origin": "L3 requirement meaning + L4 classification + this fixed L9 raw input"
+    },
+    {
+      "case_id": "H003-F03-L9-MISSING-transaction",
+      "category": "single_l9_dimension_absent",
+      "dimension": "transaction",
+      "raw_sha256": "0eeeba7f2fe08354a7a01ae35a0001e929284547c245b97cab4af2780ed1abab",
+      "raw_source_pointer": {
+        "revision": "ed3981e7b9419d796adf1981f8990c6b626ecabe",
+        "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+        "pointer": "/verification_obligations/3/negative_cases/15/independent_source_packet/raw_utf8"
+      },
+      "l9_input_derivation": {
+        "base_case_ref": "H003-F03-NORMAL",
+        "mutation_lane": "original",
+        "mutation_pointer": "/cases/3/negative_cases/15/mutation"
+      },
+      "firing_class_set": [
+        "F03_L9_DIMENSION_UNKNOWN"
+      ],
+      "not_firing_class_set": [
+        "F03_PAIR_SCOPE_CONFLICT",
+        "F03_REQUIRED_PAIR_MISSING",
+        "F03_TICKET_REVERSE_EFFECT_CONFLICT"
+      ],
+      "l4_expected_finding_set": {
+        "semantics": "unordered_set",
+        "codes": [
+          "F03_L9_DIMENSION_UNKNOWN"
+        ],
+        "source_pointers": [
+          "/contracts/3/negative_classifications/1"
+        ]
+      },
+      "l4_singleton_expected": {
+        "code": "F03_L9_DIMENSION_UNKNOWN",
+        "return_owner": "L9各観点の原観測owner",
+        "source_pointer": "/contracts/3/negative_classifications/1"
+      },
+      "l9_candidate_singleton_output": [
+        {
+          "code": "F03_L9_DIMENSION_UNKNOWN",
+          "return_owner": "L9各観点の原観測owner"
+        }
+      ],
+      "l9_output_order": {
+        "status": "trivial_singleton_from_L4",
+        "reason": "The L4 classification has one expected finding code; a single member has no order ambiguity."
+      },
+      "class_set_semantics": "unordered",
+      "expected_origin": "L3 requirement meaning + L4 classification + this fixed L9 raw input"
+    },
+    {
+      "case_id": "H003-F03-L9-MISSING-failure_propagation",
+      "category": "single_l9_dimension_absent",
+      "dimension": "failure_propagation",
+      "raw_sha256": "82289037f0987d6715db652e89bafc6b69c4ea9161a58719b712017d980702dd",
+      "raw_source_pointer": {
+        "revision": "ed3981e7b9419d796adf1981f8990c6b626ecabe",
+        "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+        "pointer": "/verification_obligations/3/negative_cases/16/independent_source_packet/raw_utf8"
+      },
+      "l9_input_derivation": {
+        "base_case_ref": "H003-F03-NORMAL",
+        "mutation_lane": "original",
+        "mutation_pointer": "/cases/3/negative_cases/16/mutation"
+      },
+      "firing_class_set": [
+        "F03_L9_DIMENSION_UNKNOWN"
+      ],
+      "not_firing_class_set": [
+        "F03_PAIR_SCOPE_CONFLICT",
+        "F03_REQUIRED_PAIR_MISSING",
+        "F03_TICKET_REVERSE_EFFECT_CONFLICT"
+      ],
+      "l4_expected_finding_set": {
+        "semantics": "unordered_set",
+        "codes": [
+          "F03_L9_DIMENSION_UNKNOWN"
+        ],
+        "source_pointers": [
+          "/contracts/3/negative_classifications/1"
+        ]
+      },
+      "l4_singleton_expected": {
+        "code": "F03_L9_DIMENSION_UNKNOWN",
+        "return_owner": "L9各観点の原観測owner",
+        "source_pointer": "/contracts/3/negative_classifications/1"
+      },
+      "l9_candidate_singleton_output": [
+        {
+          "code": "F03_L9_DIMENSION_UNKNOWN",
+          "return_owner": "L9各観点の原観測owner"
+        }
+      ],
+      "l9_output_order": {
+        "status": "trivial_singleton_from_L4",
+        "reason": "The L4 classification has one expected finding code; a single member has no order ambiguity."
+      },
+      "class_set_semantics": "unordered",
+      "expected_origin": "L3 requirement meaning + L4 classification + this fixed L9 raw input"
+    },
+    {
+      "case_id": "H003-F03-L9-MISSING-retry",
+      "category": "single_l9_dimension_absent",
+      "dimension": "retry",
+      "raw_sha256": "8ca73db36255ac7a201f5823f85709d7faf3d2e78d5a13e972d699270dd190e4",
+      "raw_source_pointer": {
+        "revision": "ed3981e7b9419d796adf1981f8990c6b626ecabe",
+        "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+        "pointer": "/verification_obligations/3/negative_cases/17/independent_source_packet/raw_utf8"
+      },
+      "l9_input_derivation": {
+        "base_case_ref": "H003-F03-NORMAL",
+        "mutation_lane": "original",
+        "mutation_pointer": "/cases/3/negative_cases/17/mutation"
+      },
+      "firing_class_set": [
+        "F03_L9_DIMENSION_UNKNOWN"
+      ],
+      "not_firing_class_set": [
+        "F03_PAIR_SCOPE_CONFLICT",
+        "F03_REQUIRED_PAIR_MISSING",
+        "F03_TICKET_REVERSE_EFFECT_CONFLICT"
+      ],
+      "l4_expected_finding_set": {
+        "semantics": "unordered_set",
+        "codes": [
+          "F03_L9_DIMENSION_UNKNOWN"
+        ],
+        "source_pointers": [
+          "/contracts/3/negative_classifications/1"
+        ]
+      },
+      "l4_singleton_expected": {
+        "code": "F03_L9_DIMENSION_UNKNOWN",
+        "return_owner": "L9各観点の原観測owner",
+        "source_pointer": "/contracts/3/negative_classifications/1"
+      },
+      "l9_candidate_singleton_output": [
+        {
+          "code": "F03_L9_DIMENSION_UNKNOWN",
+          "return_owner": "L9各観点の原観測owner"
+        }
+      ],
+      "l9_output_order": {
+        "status": "trivial_singleton_from_L4",
+        "reason": "The L4 classification has one expected finding code; a single member has no order ambiguity."
+      },
+      "class_set_semantics": "unordered",
+      "expected_origin": "L3 requirement meaning + L4 classification + this fixed L9 raw input"
+    },
+    {
+      "case_id": "H003-F03-L9-MISSING-timeout",
+      "category": "single_l9_dimension_absent",
+      "dimension": "timeout",
+      "raw_sha256": "a965f818d4ed012b706f2b28436e89061f682b9daebe352b8d870f272b665530",
+      "raw_source_pointer": {
+        "revision": "ed3981e7b9419d796adf1981f8990c6b626ecabe",
+        "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+        "pointer": "/verification_obligations/3/negative_cases/18/independent_source_packet/raw_utf8"
+      },
+      "l9_input_derivation": {
+        "base_case_ref": "H003-F03-NORMAL",
+        "mutation_lane": "original",
+        "mutation_pointer": "/cases/3/negative_cases/18/mutation"
+      },
+      "firing_class_set": [
+        "F03_L9_DIMENSION_UNKNOWN"
+      ],
+      "not_firing_class_set": [
+        "F03_PAIR_SCOPE_CONFLICT",
+        "F03_REQUIRED_PAIR_MISSING",
+        "F03_TICKET_REVERSE_EFFECT_CONFLICT"
+      ],
+      "l4_expected_finding_set": {
+        "semantics": "unordered_set",
+        "codes": [
+          "F03_L9_DIMENSION_UNKNOWN"
+        ],
+        "source_pointers": [
+          "/contracts/3/negative_classifications/1"
+        ]
+      },
+      "l4_singleton_expected": {
+        "code": "F03_L9_DIMENSION_UNKNOWN",
+        "return_owner": "L9各観点の原観測owner",
+        "source_pointer": "/contracts/3/negative_classifications/1"
+      },
+      "l9_candidate_singleton_output": [
+        {
+          "code": "F03_L9_DIMENSION_UNKNOWN",
+          "return_owner": "L9各観点の原観測owner"
+        }
+      ],
+      "l9_output_order": {
+        "status": "trivial_singleton_from_L4",
+        "reason": "The L4 classification has one expected finding code; a single member has no order ambiguity."
+      },
+      "class_set_semantics": "unordered",
+      "expected_origin": "L3 requirement meaning + L4 classification + this fixed L9 raw input"
+    },
+    {
+      "case_id": "H003-F03-L9-MISSING-idempotency",
+      "category": "single_l9_dimension_absent",
+      "dimension": "idempotency",
+      "raw_sha256": "a020e1d9941cc62fddd55009734a969a837687071e06945814e69bbedf82d491",
+      "raw_source_pointer": {
+        "revision": "ed3981e7b9419d796adf1981f8990c6b626ecabe",
+        "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+        "pointer": "/verification_obligations/3/negative_cases/19/independent_source_packet/raw_utf8"
+      },
+      "l9_input_derivation": {
+        "base_case_ref": "H003-F03-NORMAL",
+        "mutation_lane": "original",
+        "mutation_pointer": "/cases/3/negative_cases/19/mutation"
+      },
+      "firing_class_set": [
+        "F03_L9_DIMENSION_UNKNOWN"
+      ],
+      "not_firing_class_set": [
+        "F03_PAIR_SCOPE_CONFLICT",
+        "F03_REQUIRED_PAIR_MISSING",
+        "F03_TICKET_REVERSE_EFFECT_CONFLICT"
+      ],
+      "l4_expected_finding_set": {
+        "semantics": "unordered_set",
+        "codes": [
+          "F03_L9_DIMENSION_UNKNOWN"
+        ],
+        "source_pointers": [
+          "/contracts/3/negative_classifications/1"
+        ]
+      },
+      "l4_singleton_expected": {
+        "code": "F03_L9_DIMENSION_UNKNOWN",
+        "return_owner": "L9各観点の原観測owner",
+        "source_pointer": "/contracts/3/negative_classifications/1"
+      },
+      "l9_candidate_singleton_output": [
+        {
+          "code": "F03_L9_DIMENSION_UNKNOWN",
+          "return_owner": "L9各観点の原観測owner"
+        }
+      ],
+      "l9_output_order": {
+        "status": "trivial_singleton_from_L4",
+        "reason": "The L4 classification has one expected finding code; a single member has no order ambiguity."
+      },
+      "class_set_semantics": "unordered",
+      "expected_origin": "L3 requirement meaning + L4 classification + this fixed L9 raw input"
+    },
+    {
+      "case_id": "H003-F03-L9-MISSING-coupling",
+      "category": "single_l9_dimension_absent",
+      "dimension": "coupling",
+      "raw_sha256": "260e2575494befac39c72a2ddb6a57763723018c704da81954cd0c69d12b104d",
+      "raw_source_pointer": {
+        "revision": "ed3981e7b9419d796adf1981f8990c6b626ecabe",
+        "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+        "pointer": "/verification_obligations/3/negative_cases/20/independent_source_packet/raw_utf8"
+      },
+      "l9_input_derivation": {
+        "base_case_ref": "H003-F03-NORMAL",
+        "mutation_lane": "original",
+        "mutation_pointer": "/cases/3/negative_cases/20/mutation"
+      },
+      "firing_class_set": [
+        "F03_L9_DIMENSION_UNKNOWN"
+      ],
+      "not_firing_class_set": [
+        "F03_PAIR_SCOPE_CONFLICT",
+        "F03_REQUIRED_PAIR_MISSING",
+        "F03_TICKET_REVERSE_EFFECT_CONFLICT"
+      ],
+      "l4_expected_finding_set": {
+        "semantics": "unordered_set",
+        "codes": [
+          "F03_L9_DIMENSION_UNKNOWN"
+        ],
+        "source_pointers": [
+          "/contracts/3/negative_classifications/1"
+        ]
+      },
+      "l4_singleton_expected": {
+        "code": "F03_L9_DIMENSION_UNKNOWN",
+        "return_owner": "L9各観点の原観測owner",
+        "source_pointer": "/contracts/3/negative_classifications/1"
+      },
+      "l9_candidate_singleton_output": [
+        {
+          "code": "F03_L9_DIMENSION_UNKNOWN",
+          "return_owner": "L9各観点の原観測owner"
+        }
+      ],
+      "l9_output_order": {
+        "status": "trivial_singleton_from_L4",
+        "reason": "The L4 classification has one expected finding code; a single member has no order ambiguity."
+      },
+      "class_set_semantics": "unordered",
+      "expected_origin": "L3 requirement meaning + L4 classification + this fixed L9 raw input"
+    },
+    {
+      "case_id": "H003-F03-L9-MISSING-responsibility_duplication",
+      "category": "single_l9_dimension_absent",
+      "dimension": "responsibility_duplication",
+      "raw_sha256": "9e79e0cb18cd86f39e61d717c5c47c28f166a6ebaee83ffbf1274b708f2417b3",
+      "raw_source_pointer": {
+        "revision": "ed3981e7b9419d796adf1981f8990c6b626ecabe",
+        "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+        "pointer": "/verification_obligations/3/negative_cases/21/independent_source_packet/raw_utf8"
+      },
+      "l9_input_derivation": {
+        "base_case_ref": "H003-F03-NORMAL",
+        "mutation_lane": "original",
+        "mutation_pointer": "/cases/3/negative_cases/21/mutation"
+      },
+      "firing_class_set": [
+        "F03_L9_DIMENSION_UNKNOWN"
+      ],
+      "not_firing_class_set": [
+        "F03_PAIR_SCOPE_CONFLICT",
+        "F03_REQUIRED_PAIR_MISSING",
+        "F03_TICKET_REVERSE_EFFECT_CONFLICT"
+      ],
+      "l4_expected_finding_set": {
+        "semantics": "unordered_set",
+        "codes": [
+          "F03_L9_DIMENSION_UNKNOWN"
+        ],
+        "source_pointers": [
+          "/contracts/3/negative_classifications/1"
+        ]
+      },
+      "l4_singleton_expected": {
+        "code": "F03_L9_DIMENSION_UNKNOWN",
+        "return_owner": "L9各観点の原観測owner",
+        "source_pointer": "/contracts/3/negative_classifications/1"
+      },
+      "l9_candidate_singleton_output": [
+        {
+          "code": "F03_L9_DIMENSION_UNKNOWN",
+          "return_owner": "L9各観点の原観測owner"
+        }
+      ],
+      "l9_output_order": {
+        "status": "trivial_singleton_from_L4",
+        "reason": "The L4 classification has one expected finding code; a single member has no order ambiguity."
+      },
+      "class_set_semantics": "unordered",
+      "expected_origin": "L3 requirement meaning + L4 classification + this fixed L9 raw input"
+    },
+    {
+      "case_id": "H003-F03-WRONG-L9-PAIR",
+      "category": "wrong_layer_pair",
+      "pair": "L9↔L4",
+      "raw_sha256": "d449b4d23259a596403df19ee9597349f4a0ceaa51d07912afa559f68fc05157",
+      "raw_source_pointer": {
+        "revision": "ed3981e7b9419d796adf1981f8990c6b626ecabe",
+        "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+        "pointer": "/verification_obligations/3/negative_cases/10/independent_source_packet/raw_utf8"
+      },
+      "l9_input_derivation": {
+        "base_case_ref": "H003-F03-NORMAL",
+        "mutation_lane": "original",
+        "mutation_pointer": "/cases/3/negative_cases/10/mutation"
+      },
+      "firing_class_set": [
+        "F03_PAIR_SCOPE_CONFLICT",
+        "F03_REQUIRED_PAIR_MISSING"
+      ],
+      "not_firing_class_set": [
+        "F03_L9_DIMENSION_UNKNOWN",
+        "F03_TICKET_REVERSE_EFFECT_CONFLICT"
+      ],
+      "l4_expected_finding_set": {
+        "semantics": "unordered_set",
+        "codes": [
+          "F03_PAIR_SCOPE_CONFLICT",
+          "F03_REQUIRED_PAIR_MISSING"
+        ],
+        "source_pointers": [
+          "/contracts/3/negative_classifications/2",
+          "/contracts/3/negative_classifications/0"
+        ]
+      },
+      "l9_output_order": {
+        "status": "unknown",
+        "reason": "L4 supports the two-code set but declares no emission order. The independently read L5 rule order is concordance only and is not adopted as L9 expected output."
+      },
+      "l5_concordance_observed_codes": [
+        "F03_REQUIRED_PAIR_MISSING",
+        "F03_PAIR_SCOPE_CONFLICT"
+      ],
+      "l5_concordance_observed_codes_adopted_as_expected": false,
+      "class_set_semantics": "unordered",
+      "expected_origin": "L3 requirement meaning + L4 classification + this fixed L9 raw input"
+    },
+    {
+      "case_id": "H003-F03-L8-WRONG-PAIR",
+      "category": "wrong_layer_pair",
+      "pair": "L8↔L5",
+      "raw_sha256": "4cecfda181cbac509a6bcf18c13739e36dbc9df6a07e81e3b05082a80f8023d1",
+      "raw_source_pointer": {
+        "revision": "ed3981e7b9419d796adf1981f8990c6b626ecabe",
+        "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+        "pointer": "/verification_obligations/3/negative_cases/35/independent_source_packet/raw_utf8"
+      },
+      "l9_input_derivation": {
+        "base_case_ref": "H003-F03-NORMAL",
+        "mutation_lane": "original",
+        "mutation_pointer": "/cases/3/negative_cases/35/mutation"
+      },
+      "firing_class_set": [
+        "F03_PAIR_SCOPE_CONFLICT",
+        "F03_REQUIRED_PAIR_MISSING"
+      ],
+      "not_firing_class_set": [
+        "F03_L9_DIMENSION_UNKNOWN",
+        "F03_TICKET_REVERSE_EFFECT_CONFLICT"
+      ],
+      "l4_expected_finding_set": {
+        "semantics": "unordered_set",
+        "codes": [
+          "F03_PAIR_SCOPE_CONFLICT",
+          "F03_REQUIRED_PAIR_MISSING"
+        ],
+        "source_pointers": [
+          "/contracts/3/negative_classifications/2",
+          "/contracts/3/negative_classifications/0"
+        ]
+      },
+      "l9_output_order": {
+        "status": "unknown",
+        "reason": "L4 supports the two-code set but declares no emission order. The independently read L5 rule order is concordance only and is not adopted as L9 expected output."
+      },
+      "l5_concordance_observed_codes": [
+        "F03_REQUIRED_PAIR_MISSING",
+        "F03_PAIR_SCOPE_CONFLICT"
+      ],
+      "l5_concordance_observed_codes_adopted_as_expected": false,
+      "class_set_semantics": "unordered",
+      "expected_origin": "L3 requirement meaning + L4 classification + this fixed L9 raw input"
+    },
+    {
+      "case_id": "H003-F03-L10-WRONG-PAIR",
+      "category": "wrong_layer_pair",
+      "pair": "L10↔L3",
+      "raw_sha256": "4fbba5fce29cd3d18abcd053ed010b22526076f34b8d1df73b6af710f5a7f983",
+      "raw_source_pointer": {
+        "revision": "ed3981e7b9419d796adf1981f8990c6b626ecabe",
+        "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+        "pointer": "/verification_obligations/3/negative_cases/37/independent_source_packet/raw_utf8"
+      },
+      "l9_input_derivation": {
+        "base_case_ref": "H003-F03-NORMAL",
+        "mutation_lane": "original",
+        "mutation_pointer": "/cases/3/negative_cases/37/mutation"
+      },
+      "firing_class_set": [
+        "F03_PAIR_SCOPE_CONFLICT",
+        "F03_REQUIRED_PAIR_MISSING"
+      ],
+      "not_firing_class_set": [
+        "F03_L9_DIMENSION_UNKNOWN",
+        "F03_TICKET_REVERSE_EFFECT_CONFLICT"
+      ],
+      "l4_expected_finding_set": {
+        "semantics": "unordered_set",
+        "codes": [
+          "F03_PAIR_SCOPE_CONFLICT",
+          "F03_REQUIRED_PAIR_MISSING"
+        ],
+        "source_pointers": [
+          "/contracts/3/negative_classifications/2",
+          "/contracts/3/negative_classifications/0"
+        ]
+      },
+      "l9_output_order": {
+        "status": "unknown",
+        "reason": "L4 supports the two-code set but declares no emission order. The independently read L5 rule order is concordance only and is not adopted as L9 expected output."
+      },
+      "l5_concordance_observed_codes": [
+        "F03_REQUIRED_PAIR_MISSING",
+        "F03_PAIR_SCOPE_CONFLICT"
+      ],
+      "l5_concordance_observed_codes_adopted_as_expected": false,
+      "class_set_semantics": "unordered",
+      "expected_origin": "L3 requirement meaning + L4 classification + this fixed L9 raw input"
+    }
+  ],
+  "l5_concordance": {
+    "path": "docs/helix-harness/L5-detail-design/process-state-port.json",
+    "pointer": "/functions/3/failure_output_contract",
+    "ordered_rule_refs_pointer": "/functions/3/failure_output_contract/ordered_rule_refs",
+    "role": "L4と候補code/ownerの一致確認のみ。L9 finding集合・出力・順序を生成しない。",
+    "observed_order_not_adopted": [
+      "F03_REQUIRED_PAIR_MISSING",
+      "F03_L9_DIMENSION_UNKNOWN",
+      "F03_PAIR_SCOPE_CONFLICT",
+      "F03_TICKET_REVERSE_EFFECT_CONFLICT"
+    ],
+    "ordered_rule_refs_are_expectation_source": false
+  }
+}

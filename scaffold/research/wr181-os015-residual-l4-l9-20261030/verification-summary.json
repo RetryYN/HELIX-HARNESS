@@ -3,7 +3,7 @@
   "correction_base_revision": "5d541f69ff86674e585311558ad2dac1972d42e4",
   "source_base_revision": "64d3cf379335e0a4b034f7295a9a225a2d755986",
   "candidate_commit": "7654e0b21965ba61d9a2137e6090a8ae033ffcb9",
-  "latest_main_revision": "ca4bd911142cc17789366ae6f9f1f0fee8c7c589",
+  "latest_main_revision": "4aa01e387f87a591e79c51b4dfb9f33a50e8b703",
   "latest_main_fetch_matches_ls_remote": true,
   "pr_3923_state": "MERGED",
   "pr_3927_state": "NOT_IN_MAIN_AT_FETCH",
@@ -39,11 +39,11 @@
   "static_validation_report_sha256": "17343b1d981ed00abee660335ca2802c9ad8622b8da85945b2f333f522ebcc41",
   "static_trial_report_sha256": "17343b1d981ed00abee660335ca2802c9ad8622b8da85945b2f333f522ebcc41",
   "scfctl_current_branch": {
-    "validate": "PASS (bindings=165 fail=0)",
+    "validate": "PASS (bindings=166 fail=0)",
     "stale": "PASS (stale=0)"
   },
   "scfctl_latest_main_trial": {
-    "validate": "PASS (bindings=166 fail=0)",
+    "validate": "PASS (bindings=165 fail=0)",
     "stale": "PASS (stale=0)"
   },
   "child_before_correction_on_5d541": {
@@ -122,55 +122,24 @@
     "public_function_failures": 8
   },
   "latest_main_trial": {
-    "status": "PASS (no-conflict no-commit merge trial)",
+    "status": "PASS (merge-resolved no-commit trial; child/freeze retain expected residual failures)",
     "merge_base": "64d3cf379335e0a4b034f7295a9a225a2d755986",
-    "main_revision": "ca4bd911142cc17789366ae6f9f1f0fee8c7c589",
-    "candidate_commit": "7654e0b21965ba61d9a2137e6090a8ae033ffcb9",
-    "main_changed_paths_from_merge_base": [
-      "docs/helix-harness/L6-function-design/product-template-application.json",
-      "docs/helix-harness/L7-function-verification/product-template-application.json",
-      "docs/helix-harness/L9-integration-verification/process-state-port.json",
-      "docs/helix-os/L7-function-verification/ticket-workflow-derivation.json",
-      "docs/helix-security/L4-basic-design/revoke-quarantine-propagation.json",
-      "docs/helix-security/L8-unit-verification/data-use-classification.json",
-      "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
-      "helix/helix-harness/units/HELIXHARNESS-UNIT-PRODUCT-TEMPLATE-APPLICATION/src/application_general_proposal_exchange.py",
-      "helix/helix-harness/units/HELIXHARNESS-UNIT-PRODUCT-TEMPLATE-APPLICATION/src/general_proposal_exchange_body.py",
-      "helix/helix-harness/units/HELIXHARNESS-UNIT-PRODUCT-TEMPLATE-APPLICATION/src/general_proposal_exchange_f02_detail.py",
-      "helix/helix-harness/units/HELIXHARNESS-UNIT-PRODUCT-TEMPLATE-APPLICATION/src/general_proposal_exchange_native.py",
-      "helix/helix-harness/units/HELIXHARNESS-UNIT-PRODUCT-TEMPLATE-APPLICATION/src/general_proposal_exchange_publication.py",
-      "helix/helix-harness/units/HELIXHARNESS-UNIT-PRODUCT-TEMPLATE-APPLICATION/src/product_template_application.py",
-      "helix/helix-harness/units/HELIXHARNESS-UNIT-PRODUCT-TEMPLATE-APPLICATION/tests/fixtures/general_proposal_exchange.json",
-      "helix/helix-harness/units/HELIXHARNESS-UNIT-PRODUCT-TEMPLATE-APPLICATION/tests/gpe_case_support.py",
-      "helix/helix-harness/units/HELIXHARNESS-UNIT-PRODUCT-TEMPLATE-APPLICATION/tests/test_general_proposal_exchange.py",
-      "scaffold/bindings/SCF-B-0174.json",
-      "scaffold/research/wr186-psp-negative-residual/README.md",
-      "scaffold/research/wr186-psp-negative-residual/f05-single-finding-candidates.json",
-      "scaffold/research/wr186-psp-negative-residual/independent-manual-review.md",
-      "scaffold/research/wr186-psp-negative-residual/manual-projection-candidates.json",
-      "scaffold/research/wr186-psp-negative-residual/validate_l9.py"
-    ],
-    "candidate_changed_paths_from_merge_base": [
-      "docs/helix-os/L4-basic-design/management-authority-source-record.json",
-      "docs/helix-os/L9-integration-verification/management-authority-source-record.json",
-      "scaffold/bindings/SCF-B-0170.json",
-      "scaffold/bindings/SCF-B-0173.json",
+    "main_revision": "4aa01e387f87a591e79c51b4dfb9f33a50e8b703",
+    "candidate_head_before_merge": "3200dbb040603f2108d9b9b175a9659e2344386d",
+    "conflict_paths": [
       "scaffold/bindings/SCF-B-0175.json",
-      "scaffold/bindings/SCF-B-0176.json",
-      "scaffold/bindings/SCF-B-0177.json",
-      "scaffold/research/wr181-os015-residual-l4-l9-20261030/README.md",
-      "scaffold/research/wr181-os015-residual-l4-l9-20261030/build_projection.py",
-      "scaffold/research/wr181-os015-residual-l4-l9-20261030/class-correction-audit-5d541.md",
-      "scaffold/research/wr181-os015-residual-l4-l9-20261030/class-correction-cases.json",
-      "scaffold/research/wr181-os015-residual-l4-l9-20261030/manual-case-audit-05614.md",
-      "scaffold/research/wr181-os015-residual-l4-l9-20261030/projection-manifest.json",
-      "scaffold/research/wr181-os015-residual-l4-l9-20261030/static-validation.json",
-      "scaffold/research/wr181-os015-residual-l4-l9-20261030/validate_projection.py",
-      "scaffold/research/wr181-os015-residual-l4-l9-20261030/verification-summary.json"
+      "scaffold/bindings/SCF-B-0176.json"
     ],
-    "path_overlap": [],
-    "staged_paths_equal_candidate_paths": true,
-    "trial_staged_path_count": 16,
+    "conflict_scope": "both conflicts limited to SCF-B-0170 upstream pin; main and candidate historical pin notes retained; current pin points to merged SCF-B-0170 bytes",
+    "current_scf_b_0170_sha256": "a79c2d79c53d84cc4aacaaaea49a9a3dcdbb193b300330d56fc571885592ab8b",
+    "candidate_changed_paths_from_merge_base_preserved": true,
+    "L4_sha256": "5038893210d772bc46fa75802757a90d9658ec4f427f76adcc3cf8a6702ce96f",
+    "L9_sha256": "1e2bac6a7cabe48b11ba17736c7081fcbe27c35de79f835c75a1a709d5891b39",
+    "child_report_sha256": "7fdb5e2e5a460988a1a2c7d259f9c9a086c74c6d18f612c7f130948c7fc73184",
+    "freeze_report_sha256": "cc4bd1a42fcde81c9b38c3d9f68af3531cab8a235811fb937e2a57f35d320003",
+    "static_validator": "PASS (20 classes, 112 case links, L5/L8 unchanged)",
+    "scfctl_validate": "PASS (bindings=166 fail=0)",
+    "scfctl_stale": "PASS (stale=0)",
     "diff_check": "PASS"
   },
   "main_only_baseline": {
@@ -183,17 +152,18 @@
     },
     "matched_case_count": 460,
     "freeze_mechanical_match": false,
-    "json_pointer_failures": 2421,
-    "public_function_failures": 8,
+    "freeze_json_pointer_failures": 2421,
+    "freeze_public_function_failures": 8,
     "scfctl_validate": "bindings=165 fail=0",
     "scfctl_stale": "stale=0",
-    "child_report_sha256": "ab17c2c12750a0641cdfe66db3c2c8b350c5f52ab57103ee3a71ea6ec1ab46be"
+    "child_report_sha256": "ab17c2c12750a0641cdfe66db3c2c8b350c5f52ab57103ee3a71ea6ec1ab46be",
+    "freeze_report_sha256": "cc4bd1a42fcde81c9b38c3d9f68af3531cab8a235811fb937e2a57f35d320003"
   },
   "remaining": [
     "L5/L8 successor pair is not formed; do not treat L9 case expected as L8 oracle.",
     "L8 112 case refs are not added.",
     "6 singleton-less classes remain unformed.",
-    "check-child remains FAIL: 226 failures; check-freeze remains mechanical_match=false."
+    "check-child remains FAIL: 226 failures; check-freeze remains all_mechanical_matched=false."
   ],
   "prohibitions_observed": [
     "No L5/L8 documents edited.",

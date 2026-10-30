@@ -40,7 +40,7 @@
     },
     {
       "path": "scaffold/tools/design_verification_checker.py",
-      "sha256": "211e39ff48ec96adf37f948db91dd63795435c53671e16576b39eb0e3a0538d6",
+      "sha256": "cfd12c5bc4a1dd45351858488b476af0025d35deca7027da35bb1373818b129d",
       "note": "現行checkerを変更せずchecker後結果の計測だけに使用。"
     },
     {
@@ -60,22 +60,22 @@
     },
     {
       "path": "scaffold/bindings/SCF-B-0170.json",
-      "sha256": "5d4bc66f9fd4a1fe070c6aaa4dc69a68a568746bdd6ef8dffa3124fe5f581ebf",
+      "sha256": "a79c2d79c53d84cc4aacaaaea49a9a3dcdbb193b300330d56fc571885592ab8b",
       "note": "本候補のL4/L9追補後にhashを更新した前段binding。歴史差分と更新理由は各binding noteに保持。"
     },
     {
       "path": "scaffold/bindings/SCF-B-0173.json",
-      "sha256": "6c65a57dafce136ef1b77ec0b08599e37836750e441037ebc55bf3e70665c165",
+      "sha256": "c9ab16d9571a01c98c2bf597247bf46938020a6cab49ef64248c5748698afdf9",
       "note": "本候補のL4/L9追補後にhashを更新した前段binding。歴史差分と更新理由は各binding noteに保持。"
     },
     {
       "path": "scaffold/bindings/SCF-B-0175.json",
-      "sha256": "00fc0068a7ab57350785b3ff3aaa4728b7e384bae4146614a3e6850c065523e3",
+      "sha256": "e4f57b9afaf44a23a4cc5c30fb76741695aeaeef1bf43f2f60890bd930441b0a",
       "note": "本候補のL4/L9追補後にhashを更新した前段binding。歴史差分と更新理由は各binding noteに保持。"
     },
     {
       "path": "scaffold/bindings/SCF-B-0176.json",
-      "sha256": "f232116f374d8ee22282c2884483b77aebd03da08b32a16bc253631667c2ba2a",
+      "sha256": "96acec08440dde7a1fa50294d4b2d7f9d88808521fe7fa9eb9bf480e5a79304d",
       "note": "本候補のL4/L9追補後にhashを更新した前段binding。歴史差分と更新理由は各binding noteに保持。"
     },
     {
