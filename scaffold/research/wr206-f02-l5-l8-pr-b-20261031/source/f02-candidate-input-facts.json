@@ -9,7 +9,6 @@
   },
   "input_boundary": "下記はL8本体へ置かない合成candidate input packet。実source packet、owner資格、実operation、実Red/Green、actual実行結果ではない。",
   "shared_input_baseline": {
-    "candidate_case_id": "F02-CANDIDATE-BASELINE-EXISTING",
     "input_source": "candidate-local-fixture-not-L9-owner-input",
     "payload_type": "PayloadF02",
     "source_payload": {
@@ -341,7 +340,8 @@
           "state": "absent"
         }
       }
-    }
+    },
+    "baseline_id": "F02-CANDIDATE-BASELINE-EXISTING"
   },
   "case_deltas": [
     {

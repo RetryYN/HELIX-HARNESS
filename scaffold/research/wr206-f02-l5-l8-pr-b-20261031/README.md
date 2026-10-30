@@ -20,7 +20,7 @@ L3/L10 sourceの基点は承認済みreviewed head `a715e777bd59291b26f09c0c1c54
 
 ## L5/L8の候補内容
 
-L5の `HARNESS-L5-015-F02.candidate_classification_design` は共通観測条件、正例述語、5つのnegative predicateを入力pathと比較関係で簡潔に示す。fixtureの値や実行出力は持たない。L8の `HARNESS-L8-015-F02.candidate_unit_design` は、positive 2枝とnegative 6例（5分類、environment/syntaxの2 witness）それぞれにresearch artifactへのpointerと短い意味projectionだけを置く。synthetic input packetは [`source/f02-candidate-input-facts.json`](source/f02-candidate-input-facts.json) に隔離し、L8に全payloadやcaseごとのsource pinを重複させない。
+L5の `HARNESS-L5-015-F02.candidate_classification_design` は共通観測条件、正例述語、5つのnegative predicateを入力pathと比較関係で簡潔に示す。fixtureの値や実行出力は持たない。`F-015-05`のinput/outputは分類事実だけを扱い、case IDを受け取らず返さない。L8の `HARNESS-L8-015-F02.candidate_unit_design` は、positive 2枝とnegative 6例（5分類、environment/syntaxの2 witness）それぞれにresearch artifactへのpointerと短い意味projectionだけを置く。synthetic input packetは [`source/f02-candidate-input-facts.json`](source/f02-candidate-input-facts.json) に隔離し、L8に全payloadやcaseごとのsource pinを重複させない。共有baselineから各case deltaを適用する候補手順もL8で明示した。case IDは参照用の行識別子で、期待値の選択キーではない。
 
 | case | candidate fixtureで照合する事実 | L4候補のcode / axis / state |
 |---|---|---|

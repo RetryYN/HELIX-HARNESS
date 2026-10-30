@@ -1119,8 +1119,8 @@
           },
           {
             "path": "docs/helix-harness/L5-detail-design/tdd-development-flow.json",
-            "revision": "20211ed96",
-            "sha256": "12bc2ddad72df32452e424819ce38da5389301662f80dc8e76c823567d851d69",
+            "revision": "5cc48c7c7ceb72e55917833a4a2368e5323f73f9",
+            "sha256": "40d71e8c754d7a26d19f84c649f83189de95246aa6980eb61de7c6e62b66633c",
             "pointer": "/contracts/2/candidate_classification_design"
           }
         ],
@@ -1220,12 +1220,14 @@
             }
           }
         ],
-        "expectation_boundary": "L8候補の意味projectionは手動照合用。L3/L10の承認済み意味候補とL4候補契約に照らす設計選択であり、独立oracle、正式期待、実行結果ではない。",
+        "expectation_boundary": "L8候補の意味projectionは手動照合用。L3/L10の承認済み意味候補とL4候補契約に照らす設計選択であり、独立oracle、正式期待、実行結果ではない。 case_idはresearch/L8行を指す識別子であり、F-015-05のinput/outputではなく期待値選択にも使わない。",
         "unresolved": [
           "L3/L10 scope内のactual raw packet/source ownerは特定されていない。",
           "L4 axis/state/codeの候補値は承認済み期待ではない。",
           "checker typed owner解決と4way全体対応は未成立。"
-        ]
+        ],
+        "shared_input_ref": "scaffold/research/wr206-f02-l5-l8-pr-b-20261031/source/f02-candidate-input-facts.json#/shared_input_baseline",
+        "case_input_resolution": "各cases[].input_refは同じartifactのcase_deltas内の差分行を指す。各caseはshared_input_refのbaselineを使い、参照行のinput_deltaを配列順にPayloadF02.tag.value相対のdot pathへFieldValueごと置換する。state=absentはabsentのまま、nullはprovided nullのまま保つ。この記録は手動candidate packet再構成の説明で、実行手順・実source packetではない。"
       }
     },
     {

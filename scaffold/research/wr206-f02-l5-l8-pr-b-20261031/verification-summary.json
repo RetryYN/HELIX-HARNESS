@@ -3,8 +3,8 @@
   "authority_effect": "none",
   "base_revision": "fa3d2d515ce8df79c0a74d5360a4d1254863a6f1",
   "candidate_documents": {
-    "docs/helix-harness/L5-detail-design/tdd-development-flow.json": "12bc2ddad72df32452e424819ce38da5389301662f80dc8e76c823567d851d69",
-    "docs/helix-harness/L8-unit-verification/tdd-development-flow.json": "e4ee9ad431c79beb336f1e8bfdc14cb0d3ea854f0ee0c0199499d1cfff8ee1e1"
+    "docs/helix-harness/L5-detail-design/tdd-development-flow.json": "40d71e8c754d7a26d19f84c649f83189de95246aa6980eb61de7c6e62b66633c",
+    "docs/helix-harness/L8-unit-verification/tdd-development-flow.json": "5ce7abc4b9ebfc0b9c9cf68e387694066b1883725d1eab7f73797564cfec24e9"
   },
   "fixed_blind_artifact": {
     "path": "scaffold/research/wr206-f02-l5-l8-pr-b-20261031/source/f02-blind-draft.json",
@@ -15,11 +15,12 @@
   "input_material_boundary": {
     "scope_owner_input_source_found": false,
     "synthetic_facts_path": "scaffold/research/wr206-f02-l5-l8-pr-b-20261031/source/f02-candidate-input-facts.json",
-    "synthetic_facts_sha256": "a4d589a3bb1487eb88412abbed9840499ec5ed7549227d0190fa7f81fe517844",
+    "synthetic_facts_sha256": "0c29879c96c8502dd2b88f91a3f4737a228a0fcb1fb7ce4f1539717ef03d3022",
     "l8_embeds_full_input_payload": false,
     "l8_embeds_full_return_or_fixture_body": false,
-    "l8_retains": "8 case refs and compact semantic projections only",
-    "candidate_fixture_is_formal_oracle": false
+    "l8_retains": "shared baseline pointer, 8 delta-row pointers, case reconstruction note, and compact semantic projections only",
+    "candidate_fixture_is_formal_oracle": false,
+    "case_id_is_evaluator_input_or_output": false
   },
   "verification": {
     "json_syntax": "pass",
@@ -55,7 +56,9 @@
       "L4/L5 algorithm or F-015-05 execution",
       "old HELIX CLI/runtime/test/CI",
       "new runtime/test/CI"
-    ]
+    ],
+    "case_identity_handling": "F-015-05 input and return types exclude candidate_case_id; L8 expectation is attached directly to each fixture-reference row.",
+    "delta_reconstruction": "shared_input_ref plus explicit ordered FieldValue replacement semantics; manual candidate record only"
   },
   "unresolved": [
     "No owner-derived raw input packet within L3/L10 scope was identified; the scaffold fixture is synthetic candidate material, so formal L8 input linkage remains unestablished.",

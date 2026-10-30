@@ -67,6 +67,13 @@ def main() -> None:
     f5_base = one(l5_base["contracts"], "HARNESS-L5-015-F02")
     candidate_l5 = f5["candidate_classification_design"]
     assert {key: value for key, value in f5.items() if key != "candidate_classification_design"} == f5_base
+    candidate_function = one(l5["pure_function_signatures"], "F-015-05")
+    assert "input.candidate_case_id" not in candidate_function["reads"]
+    assert "candidate_case_id" not in candidate_function["returns"]
+    input_type = next(row for row in l5["type_contract"]["other_types"] if row.get("name") == "F02CandidateInput")
+    classification_type = next(row for row in l5["type_contract"]["other_types"] if row.get("name") == "F02CandidateClassification")
+    assert "candidate_case_id" not in input_type["fields"]
+    assert "candidate_case_id" not in classification_type["fields"]
 
     f8 = one(l8["cases"], "HARNESS-L8-015-F02")
     candidate_l8 = f8["candidate_unit_design"]
@@ -105,6 +112,10 @@ def main() -> None:
     assert "shared_input_baseline" not in candidate_l8
     assert "source_payload" not in json.dumps(candidate_l8, ensure_ascii=False)
     assert candidate_l8["input_artifact_ref"] == INPUT_FACTS_PATH
+    assert candidate_l8["shared_input_ref"] == f"{INPUT_FACTS_PATH}#/shared_input_baseline"
+    assert at_pointer(candidate_facts, candidate_l8["shared_input_ref"].split("#", 1)[1])
+    assert "PayloadF02.tag.value相対" in candidate_l8["case_input_resolution"]
+    assert "case_id" in candidate_l8["expectation_boundary"] and "期待値選択にも使わない" in candidate_l8["expectation_boundary"]
     deltas = {row["case_id"]: row for row in candidate_facts["case_deltas"]}
     for index, case in enumerate(candidate_l8["cases"]):
         assert case["input_ref"] == f"{INPUT_FACTS_PATH}#/case_deltas/{index}"
