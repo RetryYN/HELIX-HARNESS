@@ -1,10 +1,10 @@
 # WR198 F05 owner source search record
 
-status: scaffold candidate（調査証跡、未採用・未review）  
-authority_effect: none  
-PR class: `design_verification`  
-base: `623f2abc6e0022f5aa781af5d1e21c4babcab7b9`
-request: `WR198-F05-GAP-PROPOSAL-BODY-SOURCE`（Issue #3510、Claude査定 comment `6526378182`、request SHA-256 `fe9469e2f644d96210ee409a5fe647364a9dd0a39b942789d96b239aceaae102`）
+- status: scaffold candidate（調査証跡、未採用・未review）
+- authority_effect: none
+- PR class: `design_verification`
+- base: `623f2abc6e0022f5aa781af5d1e21c4babcab7b9`
+- request: `WR198-F05-GAP-PROPOSAL-BODY-SOURCE`（Issue #3510、Claude査定 comment `6526378182`、request SHA-256 `fe9469e2f644d96210ee409a5fe647364a9dd0a39b942789d96b239aceaae102`）
 
 ## 対象と結論
 
