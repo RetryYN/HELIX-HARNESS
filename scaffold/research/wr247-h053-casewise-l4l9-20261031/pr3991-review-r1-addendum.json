@@ -1,0 +1,75 @@
+{
+  "artifact_id": "WR247-H053-PR3991-R1-F1-F2-ADDENDUM",
+  "schema": "scaffold-review-response-addendum.v1",
+  "evidence_kind": "scaffold_append_only_correction",
+  "authority_effect": "none",
+  "request_id": "WR247-H053-PR3991-R1",
+  "review_comment": {
+    "pull_request": 3991,
+    "comment_id": 6534923022,
+    "exact_reviewed_head": "ed564e23305c4ca9d6536fc9e8dfd436d63324c8"
+  },
+  "applies_to": {
+    "base_sha": "9cea2b158255942f758b27deba7ed45e31e3750f",
+    "preserved_record_path": "scaffold/research/wr247-h053-casewise-l4l9-20261031/casewise-design-record.json",
+    "preserved_record_sha256": "c6389ca1f7bf57524659e83b573f4b1853794dbaca124b694884060481f00807",
+    "preserved_record_edited": false
+  },
+  "F1_row_count_correction": {
+    "historical_row_mapping_note_value": "six rows without a unique leaf",
+    "corrected_value": 10,
+    "basis": {
+      "total_rows": 38,
+      "rows_with_row_specific_WR239_source_leaves": 28,
+      "rows_with_no_unique_row_leaf_and_direct_L3_L10_derivation": 10
+    },
+    "correction": "The fixed casewise-design-record row_mapping_note contains an obsolete count. This append-only addendum corrects the count to 10; the fixed record bytes remain unchanged. The README states 10."
+  },
+  "F2_expected_and_operation_state": {
+    "interpretation": "Supported conditional reading, not unresolved: `expected_operation_state=not_requested` describes this case input/current state; the `held` wording describes the disposition if an operation that depends on the unresolved 053→042 reference is requested or otherwise becomes necessary. It does not say a currently requested operation is held.",
+    "upstream_basis": [
+      {
+        "path": "docs/helix-harness/L3-requirements/nfr-grade.json",
+        "pointer": "/requirements/3",
+        "relevant_meaning": "N01 keeps the 053→042 meaning mismatch unresolved; it says necessary operations are held until the 053 owner corrects/selects reference applicability."
+      },
+      {
+        "path": "docs/helix-harness/L10-verification/nfr-verification.json",
+        "pointer": "/cases/3",
+        "relevant_meaning": "The positive input separates local identity/semantic revision comparison from a request for an operation dependent on 042. The expected observation preserves local comparison separately and holds the latter with reason/owner. Its failure observation rejects globally stopping unrelated local comparison."
+      },
+      {
+        "path": "docs/helix-harness/L4-basic-design/semantic-asset-lineage.json",
+        "pointer": "/contracts/4",
+        "relevant_meaning": "Inputs include an optional, non-selected operation request; behavior holds only necessary operations; outputs distinguish unresolved_reference from dependent operation held."
+      }
+    ],
+    "rows": [
+      {
+        "classification": "global_stop_added",
+        "l4_pointer": "/failure_classifications/5",
+        "l9_pointer": "/cases/4/negative_cases/4",
+        "l9_case_id": "HARNESS-L9-053-N01-NEG-05",
+        "expected_operation_state": "not_requested",
+        "expected_operation_selection": "not_requested",
+        "reading": "No dependent operation is currently requested in this case. If one depends on unresolved 042, hold that operation; return the unrelated A/B local comparison and do not add a global stop."
+      },
+      {
+        "classification": "reference_meaning_mismatch",
+        "l4_pointer": "/failure_classifications/26",
+        "l9_pointer": "/cases/4/negative_cases/0",
+        "l9_case_id": "HARNESS-L9-053-N01-NEG-01",
+        "expected_operation_state": "not_requested",
+        "expected_operation_selection": "not_requested",
+        "reading": "The case tests the 042 reference reinterpretation, not a requested operation. Preserve 053→042 unresolved and continue local comparison; any subsequently required dependent operation remains held until owner correction/applicability decision."
+      }
+    ],
+    "disposition": "The conditional reading follows L3 N01, L10 N01, and L4 N01. Preserve L9 expected text and both not_requested state fields. No L4/L9 document change."
+  },
+  "fixed_evidence": {
+    "L9_edited": false,
+    "WR239_fixed_blind_edited": false,
+    "WR242_fixed_blind_edited": false,
+    "historical_WR242_comparison_edited": false
+  }
+}
