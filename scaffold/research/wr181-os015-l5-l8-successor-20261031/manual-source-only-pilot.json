@@ -1,0 +1,544 @@
+{
+  "record_type": "scaffold_research_audit",
+  "title": "WR181 OS015 L8期待値のソースのみ手導出pilot",
+  "authority_effect": "none",
+  "status": "partial_source_only_semantic_derivation_with_serialization_gaps",
+  "source_revision": {
+    "commit": "f5d511841c665b3424e159c8c1029bde51434521",
+    "l7_path": "docs/helix-os/L7-function-verification/management-authority-source-record.json",
+    "allowed_basis": [
+      "L3 /requirements/4 (HELIXOS-L3-015-B01) and /requirements/24..26 (HELIXOS-L3-015-F01..F03); source_revision a2cc3defcee5a229145c89217af30c7d20da998f, base_l3_l10_content_revision 0200d20aa4d5086e9cf9e9305ec9fdea59dc2c39",
+      "L10 /cases/4 (HELIXOS-L10-015-B01) and /cases/24..26 (HELIXOS-L10-015-F01..F03), including expected_observation as upstream verification summaries; same source/content revisions as L3",
+      "L4 /contracts/0..3: HELIXOS-L4-015-B01/F01/F02/F03 and their exact requirement_ref/system_oracle_ref",
+      "L4 /diagnostic_contract: phases, source_fields, event_fields, classification_fields, facets, codes, comparison_facets, aggregation, current_material_limit, raw_retention, mutation_rule, finding_shape, return_owner, condition_values, result_fields; embedded algorithm excluded",
+      "L4 /failure_classifications rows OS015-NEG-source_unresolved-source and OS015-NEG-source_conflict-source: code, condition, expected_classification, finding_codes, expected_axis, expected_state, expected_preserved, side_effect_count",
+      "L7 /connection_materials/OS015/case/fixture_inputs/inspect and only /case/cases/{0,3,4}/given/input (including base_ref, replacements, expanded_input_sha256)"
+    ],
+    "not_used": [
+      "L4 embedded Python algorithm text",
+      "L5 formal_reference",
+      "L7/L8/L9 existing expected values and expected proposals",
+      "Using existing expected values to infer an output value, shape, or pointer encoding"
+    ],
+    "hash_resolution_method": "L7 fixture_inputs.inspect and ordered replacements were read only through approved raw input paths. expanded_input_sha256 values were recorded as supplied; this audit did not reconstruct or independently verify their hashes."
+  },
+  "audit": {
+    "status": "partial_source_only_semantic_derivation_with_serialization_gaps",
+    "purpose": "L3/L10 OS015, L4 contracts 0..3 and allowed diagnostic/failure-classification prose, and the specified L7 raw inputs support semantic derivation of the 16 named result roots for three pilot cases. Undefined output serialization remains unknown; the blind author did not compare existing expectations.",
+    "source_revision": {
+      "commit": "f5d511841c665b3424e159c8c1029bde51434521",
+      "l7_path": "docs/helix-os/L7-function-verification/management-authority-source-record.json",
+      "allowed_basis": [
+        "L3 /requirements/4 (HELIXOS-L3-015-B01) and /requirements/24..26 (HELIXOS-L3-015-F01..F03); source_revision a2cc3defcee5a229145c89217af30c7d20da998f, base_l3_l10_content_revision 0200d20aa4d5086e9cf9e9305ec9fdea59dc2c39",
+        "L10 /cases/4 (HELIXOS-L10-015-B01) and /cases/24..26 (HELIXOS-L10-015-F01..F03), including expected_observation as upstream verification summaries; same source/content revisions as L3",
+        "L4 /contracts/0..3: HELIXOS-L4-015-B01/F01/F02/F03 and their exact requirement_ref/system_oracle_ref",
+        "L4 /diagnostic_contract: phases, source_fields, event_fields, classification_fields, facets, codes, comparison_facets, aggregation, current_material_limit, raw_retention, mutation_rule, finding_shape, return_owner, condition_values, result_fields; embedded algorithm excluded",
+        "L4 /failure_classifications rows OS015-NEG-source_unresolved-source and OS015-NEG-source_conflict-source: code, condition, expected_classification, finding_codes, expected_axis, expected_state, expected_preserved, side_effect_count",
+        "L7 /connection_materials/OS015/case/fixture_inputs/inspect and only /case/cases/{0,3,4}/given/input (including base_ref, replacements, expanded_input_sha256)"
+      ],
+      "not_used": [
+        "L4 embedded Python algorithm text",
+        "L5 formal_reference",
+        "L7/L8/L9 existing expected values and expected proposals",
+        "Using existing expected values to infer an output value, shape, or pointer encoding"
+      ],
+      "hash_resolution_method": "L7 fixture_inputs.inspect and ordered replacements were read only through approved raw input paths. expanded_input_sha256 values were recorded as supplied; this audit did not reconstruct or independently verify their hashes."
+    },
+    "cohort": [
+      {
+        "case_id": "HELIXOS-L9-015-C0001",
+        "role": "正常なinspect。raw fixtureは変更なし。",
+        "l7_given_input_pointer": "/connection_materials/OS015/case/cases/0/given/input",
+        "base_ref": "inspect",
+        "replacements": [],
+        "source_derivation": [
+          {
+            "root": "condition",
+            "status": "derived",
+            "value": "management_material_corresponding",
+            "basis": "L4 aggregation/codes plus unchanged source, event, authority and boundary inputs for both targets."
+          },
+          {
+            "root": "selected_phase",
+            "status": "derived",
+            "value": "inspect",
+            "basis": "L7 input has base_ref=inspect; L4 phase contract."
+          },
+          {
+            "root": "target_correspondence",
+            "status": "partial_unknown",
+            "basis": "Semantic: target_a and target_b correspond on compared source/event/authority fields. L4 does not specify exact result JSON shape.",
+            "semantic_summary": "Semantic: target_a and target_b correspond on compared source/event/authority fields. L4 does not specify exact result JSON shape.",
+            "exact_value_status": "unknown"
+          },
+          {
+            "root": "current_source_material",
+            "status": "partial_unknown",
+            "basis": "L4 says source/event/authority defects make current_source_material false, but the target aggregation and output shape are unspecified. Do not derive a result after comparison; rederive after the L4 clarification.",
+            "semantic_summary": "L4 says source/event/authority defects make current_source_material false, but the target aggregation and output shape are unspecified. Do not derive a result after comparison; rederive after the L4 clarification.",
+            "exact_value_status": "unknown"
+          },
+          {
+            "root": "original_classification_state",
+            "status": "unknown",
+            "basis": "Raw original_classification is null for both; inspect does not evaluate future classification/history receipts, and L4 gives no output-state encoding.",
+            "semantic_summary": "Raw original_classification is null for both; inspect does not evaluate future classification/history receipts, and L4 gives no output-state encoding.",
+            "exact_value_status": "unknown"
+          },
+          {
+            "root": "original_authority_state",
+            "status": "unknown",
+            "basis": "Raw authority fields match context (canonical_source/current_material; claim false); L4 gives no output mapping/encoding.",
+            "semantic_summary": "Raw authority fields match context (canonical_source/current_material; claim false); L4 gives no output mapping/encoding.",
+            "exact_value_status": "unknown"
+          },
+          {
+            "root": "retained_original_events",
+            "status": "partial_unknown",
+            "basis": "L4 raw_retention/mutation_rule and failure-class expected_preserved require original event/whole revision to remain unchanged; wrapper/serialization is unspecified.",
+            "semantic_summary": "L4 raw_retention/mutation_rule and failure-class expected_preserved require original event/whole revision to remain unchanged; wrapper/serialization is unspecified.",
+            "exact_value_status": "unknown"
+          },
+          {
+            "root": "retained_original_classifications",
+            "status": "partial_unknown",
+            "basis": "Raw null classifications are retained; L4 preserves prior classification but does not define returned wrapper/serialization.",
+            "semantic_summary": "Raw null classifications are retained; L4 preserves prior classification but does not define returned wrapper/serialization.",
+            "exact_value_status": "unknown"
+          },
+          {
+            "root": "retained_unresolved_history",
+            "status": "partial_unknown",
+            "basis": "Both raw unresolved_history arrays remain unchanged under L4 raw_retention; return shape is unspecified.",
+            "semantic_summary": "Both raw unresolved_history arrays remain unchanged under L4 raw_retention; return shape is unspecified.",
+            "exact_value_status": "unknown"
+          },
+          {
+            "root": "retained_classification_lineage",
+            "status": "unknown",
+            "basis": "Raw new classification is null and history empty; inspect does not evaluate future receipts and no no-lineage output encoding is defined.",
+            "semantic_summary": "Raw new classification is null and history empty; inspect does not evaluate future receipts and no no-lineage output encoding is defined.",
+            "exact_value_status": "unknown"
+          },
+          {
+            "root": "findings",
+            "status": "derived",
+            "value": [],
+            "basis": "No compared field mismatch or unresolved operand; no finding is formed for this corresponding input."
+          },
+          {
+            "root": "actual_management_record_written",
+            "status": "derived",
+            "basis": "L4 operation_effect=none and raw_retention says the real writer is not run; failure-class side_effect_count is zero.",
+            "value": false
+          },
+          {
+            "root": "actual_event_rewritten",
+            "status": "derived",
+            "basis": "L4 raw_retention/mutation_rule preserve event; writer is not run; side_effect_count is zero.",
+            "value": false
+          },
+          {
+            "root": "actual_authority_generated",
+            "status": "derived",
+            "basis": "L4 B01 forbids generated authority and declares no writer/effect; raw generated claims are false.",
+            "value": false
+          },
+          {
+            "root": "whole_registry_verified",
+            "status": "partial_unknown",
+            "basis": "Semantic: no whole-registry verification is established; raw whole_registry_claim is false and fixture covers two synthetic targets. L4 output mapping/type is unspecified.",
+            "semantic_summary": "Semantic: no whole-registry verification is established; raw whole_registry_claim is false and fixture covers two synthetic targets. L4 output mapping/type is unspecified.",
+            "exact_value_status": "unknown"
+          },
+          {
+            "root": "operation_effect",
+            "status": "derived",
+            "basis": "L4 top-level operation_effect is none and diagnostic contract says the real writer is not run.",
+            "value": "none"
+          }
+        ],
+        "l7_input_hash_pointer": "/connection_materials/OS015/case/cases/0/given/input/expanded_input_sha256"
+      },
+      {
+        "case_id": "HELIXOS-L9-015-C0004",
+        "role": "target_a.source.target_idがnullのinspect入力。",
+        "l7_given_input_pointer": "/connection_materials/OS015/case/cases/3/given/input",
+        "base_ref": "inspect",
+        "replacements": [
+          {
+            "path": [
+              "records",
+              "target_a",
+              "source",
+              "target_id"
+            ],
+            "value": null
+          }
+        ],
+        "source_derivation": [
+          {
+            "root": "condition",
+            "status": "derived",
+            "value": "management_material_unknown",
+            "basis": "Target_a source.target_id is missing against a known context value; L4 maps unresolved source comparison to unknown; target_b remains corresponding."
+          },
+          {
+            "root": "selected_phase",
+            "status": "derived",
+            "value": "inspect",
+            "basis": "L7 input has base_ref=inspect; L4 phase contract."
+          },
+          {
+            "root": "target_correspondence",
+            "status": "partial_unknown",
+            "basis": "Semantic: target_a source facet unknown, other compared facets and target_b corresponding. Exact result JSON shape is unspecified.",
+            "semantic_summary": "Semantic: target_a source facet unknown, other compared facets and target_b corresponding. Exact result JSON shape is unspecified.",
+            "exact_value_status": "unknown"
+          },
+          {
+            "root": "current_source_material",
+            "status": "partial_unknown",
+            "basis": "L4 says source/event/authority defects make current_source_material false, but the target aggregation and output shape are unspecified. Do not derive a result after comparison; rederive after the L4 clarification.",
+            "semantic_summary": "L4 says source/event/authority defects make current_source_material false, but the target aggregation and output shape are unspecified. Do not derive a result after comparison; rederive after the L4 clarification.",
+            "exact_value_status": "unknown"
+          },
+          {
+            "root": "original_classification_state",
+            "status": "unknown",
+            "basis": "Raw original_classification is null for both; inspect does not evaluate future classification/history receipts, and L4 gives no output-state encoding.",
+            "semantic_summary": "Raw original_classification is null for both; inspect does not evaluate future classification/history receipts, and L4 gives no output-state encoding.",
+            "exact_value_status": "unknown"
+          },
+          {
+            "root": "original_authority_state",
+            "status": "unknown",
+            "basis": "Raw authority fields themselves match context (canonical_source/current_material; claim false); source identity is unresolved, and L4 gives no output mapping/encoding.",
+            "semantic_summary": "Raw authority fields themselves match context (canonical_source/current_material; claim false); source identity is unresolved, and L4 gives no output mapping/encoding.",
+            "exact_value_status": "unknown"
+          },
+          {
+            "root": "retained_original_events",
+            "status": "partial_unknown",
+            "basis": "L4 raw_retention/mutation_rule and source_unresolved class expected_preserved require unchanged original event/whole revision; wrapper/serialization is unspecified.",
+            "semantic_summary": "L4 raw_retention/mutation_rule and source_unresolved class expected_preserved require unchanged original event/whole revision; wrapper/serialization is unspecified.",
+            "exact_value_status": "unknown"
+          },
+          {
+            "root": "retained_original_classifications",
+            "status": "partial_unknown",
+            "basis": "Raw null classifications are retained; exact returned wrapper/serialization is unspecified.",
+            "semantic_summary": "Raw null classifications are retained; exact returned wrapper/serialization is unspecified.",
+            "exact_value_status": "unknown"
+          },
+          {
+            "root": "retained_unresolved_history",
+            "status": "partial_unknown",
+            "basis": "Both raw unresolved_history arrays remain unchanged under L4 raw_retention; return shape is unspecified.",
+            "semantic_summary": "Both raw unresolved_history arrays remain unchanged under L4 raw_retention; return shape is unspecified.",
+            "exact_value_status": "unknown"
+          },
+          {
+            "root": "retained_classification_lineage",
+            "status": "unknown",
+            "basis": "Raw new classification is null and history empty; inspect does not evaluate future receipts and no no-lineage output encoding is defined.",
+            "semantic_summary": "Raw new classification is null and history empty; inspect does not evaluate future receipts and no no-lineage output encoding is defined.",
+            "exact_value_status": "unknown"
+          },
+          {
+            "root": "findings",
+            "status": "partial_unknown",
+            "basis": "Known finding semantics: source_unresolved, axis source, disposition unknown, return owner management-authority-owner. L4 requires a pointer but does not define pointer serialization or full emitted finding shape.",
+            "known_code": "source_unresolved",
+            "disposition": "unknown",
+            "axis": "source",
+            "return_owner": "management-authority-owner",
+            "exact_pointer_status": "unknown"
+          },
+          {
+            "root": "actual_management_record_written",
+            "status": "derived",
+            "basis": "L4 operation_effect=none and raw_retention says the real writer is not run; source_unresolved class side_effect_count is zero.",
+            "value": false
+          },
+          {
+            "root": "actual_event_rewritten",
+            "status": "derived",
+            "basis": "L4 raw_retention/mutation_rule preserve event; writer is not run; side_effect_count is zero.",
+            "value": false
+          },
+          {
+            "root": "actual_authority_generated",
+            "status": "derived",
+            "basis": "L4 B01 forbids generated authority and declares no writer/effect; raw generated claims are false.",
+            "value": false
+          },
+          {
+            "root": "whole_registry_verified",
+            "status": "partial_unknown",
+            "basis": "Semantic: no whole-registry verification is established; raw whole_registry_claim is false and fixture covers two synthetic targets. L4 output mapping/type is unspecified.",
+            "semantic_summary": "Semantic: no whole-registry verification is established; raw whole_registry_claim is false and fixture covers two synthetic targets. L4 output mapping/type is unspecified.",
+            "exact_value_status": "unknown"
+          },
+          {
+            "root": "operation_effect",
+            "status": "derived",
+            "basis": "L4 top-level operation_effect is none and diagnostic contract says the real writer is not run.",
+            "value": "none"
+          }
+        ],
+        "l7_input_hash_pointer": "/connection_materials/OS015/case/cases/3/given/input/expanded_input_sha256"
+      },
+      {
+        "case_id": "HELIXOS-L9-015-C0005",
+        "role": "target_a.source.target_idが既知でcontextと異なるinspect入力。",
+        "l7_given_input_pointer": "/connection_materials/OS015/case/cases/4/given/input",
+        "base_ref": "inspect",
+        "replacements": [
+          {
+            "path": [
+              "records",
+              "target_a",
+              "source",
+              "target_id"
+            ],
+            "value": "FOREIGN-target_id"
+          }
+        ],
+        "source_derivation": [
+          {
+            "root": "condition",
+            "status": "derived",
+            "value": "management_material_violation",
+            "basis": "Target_a source.target_id is a known nonempty mismatch against context; L4 maps known source conflict to violation; target_b remains corresponding."
+          },
+          {
+            "root": "selected_phase",
+            "status": "derived",
+            "value": "inspect",
+            "basis": "L7 input has base_ref=inspect; L4 phase contract."
+          },
+          {
+            "root": "target_correspondence",
+            "status": "partial_unknown",
+            "basis": "Semantic: target_a source facet violation, other compared facets and target_b corresponding. Exact result JSON shape is unspecified.",
+            "semantic_summary": "Semantic: target_a source facet violation, other compared facets and target_b corresponding. Exact result JSON shape is unspecified.",
+            "exact_value_status": "unknown"
+          },
+          {
+            "root": "current_source_material",
+            "status": "partial_unknown",
+            "basis": "L4 says source/event/authority defects make current_source_material false, but the target aggregation and output shape are unspecified. Do not derive a result after comparison; rederive after the L4 clarification.",
+            "semantic_summary": "L4 says source/event/authority defects make current_source_material false, but the target aggregation and output shape are unspecified. Do not derive a result after comparison; rederive after the L4 clarification.",
+            "exact_value_status": "unknown"
+          },
+          {
+            "root": "original_classification_state",
+            "status": "unknown",
+            "basis": "Raw original_classification is null for both; inspect does not evaluate future classification/history receipts, and L4 gives no output-state encoding.",
+            "semantic_summary": "Raw original_classification is null for both; inspect does not evaluate future classification/history receipts, and L4 gives no output-state encoding.",
+            "exact_value_status": "unknown"
+          },
+          {
+            "root": "original_authority_state",
+            "status": "unknown",
+            "basis": "Raw authority fields themselves match context (canonical_source/current_material; claim false); source identity conflicts, and L4 gives no output mapping/encoding.",
+            "semantic_summary": "Raw authority fields themselves match context (canonical_source/current_material; claim false); source identity conflicts, and L4 gives no output mapping/encoding.",
+            "exact_value_status": "unknown"
+          },
+          {
+            "root": "retained_original_events",
+            "status": "partial_unknown",
+            "basis": "L4 raw_retention/mutation_rule and source_conflict class expected_preserved require unchanged original event/whole revision; wrapper/serialization is unspecified.",
+            "semantic_summary": "L4 raw_retention/mutation_rule and source_conflict class expected_preserved require unchanged original event/whole revision; wrapper/serialization is unspecified.",
+            "exact_value_status": "unknown"
+          },
+          {
+            "root": "retained_original_classifications",
+            "status": "partial_unknown",
+            "basis": "Raw null classifications are retained; exact returned wrapper/serialization is unspecified.",
+            "semantic_summary": "Raw null classifications are retained; exact returned wrapper/serialization is unspecified.",
+            "exact_value_status": "unknown"
+          },
+          {
+            "root": "retained_unresolved_history",
+            "status": "partial_unknown",
+            "basis": "Both raw unresolved_history arrays remain unchanged under L4 raw_retention; return shape is unspecified.",
+            "semantic_summary": "Both raw unresolved_history arrays remain unchanged under L4 raw_retention; return shape is unspecified.",
+            "exact_value_status": "unknown"
+          },
+          {
+            "root": "retained_classification_lineage",
+            "status": "unknown",
+            "basis": "Raw new classification is null and history empty; inspect does not evaluate future receipts and no no-lineage output encoding is defined.",
+            "semantic_summary": "Raw new classification is null and history empty; inspect does not evaluate future receipts and no no-lineage output encoding is defined.",
+            "exact_value_status": "unknown"
+          },
+          {
+            "root": "findings",
+            "status": "partial_unknown",
+            "basis": "Known finding semantics: source_conflict, axis source, disposition violation, return owner management-authority-owner. L4 requires a pointer but does not define pointer serialization or full emitted finding shape.",
+            "known_code": "source_conflict",
+            "disposition": "violation",
+            "axis": "source",
+            "return_owner": "management-authority-owner",
+            "exact_pointer_status": "unknown"
+          },
+          {
+            "root": "actual_management_record_written",
+            "status": "derived",
+            "basis": "L4 operation_effect=none and raw_retention says the real writer is not run; source_conflict class side_effect_count is zero.",
+            "value": false
+          },
+          {
+            "root": "actual_event_rewritten",
+            "status": "derived",
+            "basis": "L4 raw_retention/mutation_rule preserve event; writer is not run; side_effect_count is zero.",
+            "value": false
+          },
+          {
+            "root": "actual_authority_generated",
+            "status": "derived",
+            "basis": "L4 B01 forbids generated authority and declares no writer/effect; raw generated claims are false.",
+            "value": false
+          },
+          {
+            "root": "whole_registry_verified",
+            "status": "partial_unknown",
+            "basis": "Semantic: no whole-registry verification is established; raw whole_registry_claim is false and fixture covers two synthetic targets. L4 output mapping/type is unspecified.",
+            "semantic_summary": "Semantic: no whole-registry verification is established; raw whole_registry_claim is false and fixture covers two synthetic targets. L4 output mapping/type is unspecified.",
+            "exact_value_status": "unknown"
+          },
+          {
+            "root": "operation_effect",
+            "status": "derived",
+            "basis": "L4 top-level operation_effect is none and diagnostic contract says the real writer is not run.",
+            "value": "none"
+          }
+        ],
+        "l7_input_hash_pointer": "/connection_materials/OS015/case/cases/4/given/input/expanded_input_sha256"
+      }
+    ],
+    "root_set": [
+      "condition",
+      "selected_phase",
+      "target_correspondence",
+      "current_source_material",
+      "original_classification_state",
+      "original_authority_state",
+      "retained_original_events",
+      "retained_original_classifications",
+      "retained_unresolved_history",
+      "retained_classification_lineage",
+      "findings",
+      "actual_management_record_written",
+      "actual_event_rewritten",
+      "actual_authority_generated",
+      "whole_registry_verified",
+      "operation_effect"
+    ],
+    "stop_reason": "C0001/C0004/C0005 were semantically rederived from the expanded allowed 015 basis. Remaining gaps are L4 output shape/value mapping for target_correspondence, current_source_material target representation, original classification/authority state, retained wrappers/empty lineage, finding pointer encoding and whole_registry_verified. These gaps are reported root by root; actual_* and operation_effect are derived from L4 declared no-writer/no-side-effect semantics, not from absence of runtime evidence.",
+    "existing_expectation_comparison": "partial_after_derivation_fixed",
+    "population_and_remaining": {
+      "intended_representatives": 91,
+      "representative_basis": "47個のfailure classを適用可能なphaseごとに数えると、class×phaseが80件となり、positive case 11件を加えて代表は91件。",
+      "pilot_cases": 3,
+      "remaining_representatives": 88,
+      "other_retained_unit_cases": 494,
+      "unit_case_population": 585,
+      "population_note": "現在のunit_casesにはC0001–C0585の585行があり、#3943でmergeされたC0584/C0585を含む。91 + 494 = 585で、非代表の494件は残る代表88件とは別の集合。",
+      "freeze": "not established",
+      "mapping_status": "91代表の全ID対応は未確定。88は選定済み3件以外の予定代表数、494は母集団の算術上の残数であり、case単位の再導出完了数ではない。"
+    },
+    "legacy_and_failure_basis": {
+      "disposition": "意味を再導出し、source/authorityの区別、original event/history、projectionの分離を保持する。旧世代のruntime/schema/testは再利用しない。",
+      "legacy_asset_id": "LEGACY-ASSET-9DAA66F829CFA57E5C2B",
+      "legacy_source": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L6-function-design/plan-registry-workflow-identity-projection.md",
+      "failure_record": "archive/legacy-generation-2026-09-14/root/docs/plans/PLAN-L7-575-plan-registry-workflow-identity-projection.md",
+      "failure_basis": "旧PLANは、plan_registryのprojectionに型付きworkflow identityがなく、consumerが旧分類へfallbackし得たと記録している。malformed/partial tupleも記録済みのfailure modeである。これは過去のfailure contextであり、現行authorityやtest evidenceではない。",
+      "change_from_legacy": "現行L3/L10/L4のsourceからOS015のsource/event/classification/authorityの意味を再導出し、旧DB projection modelを移植しない。"
+    },
+    "source_references": {
+      "l3": {
+        "source_revision": "a2cc3defcee5a229145c89217af30c7d20da998f",
+        "base_l3_l10_content_revision": "0200d20aa4d5086e9cf9e9305ec9fdea59dc2c39",
+        "objects": [
+          "HELIXOS-L3-015-B01 at /requirements/4",
+          "HELIXOS-L3-015-F01 at /requirements/24",
+          "HELIXOS-L3-015-F02 at /requirements/25",
+          "HELIXOS-L3-015-F03 at /requirements/26"
+        ]
+      },
+      "l10": {
+        "source_revision": "a2cc3defcee5a229145c89217af30c7d20da998f",
+        "base_l3_l10_content_revision": "0200d20aa4d5086e9cf9e9305ec9fdea59dc2c39",
+        "objects": [
+          "HELIXOS-L10-015-B01 at /cases/4",
+          "HELIXOS-L10-015-F01 at /cases/24",
+          "HELIXOS-L10-015-F02 at /cases/25",
+          "HELIXOS-L10-015-F03 at /cases/26"
+        ],
+        "read_field": "expected_observation (upstream only)"
+      },
+      "l4": {
+        "contracts": [
+          "/contracts/0 HELIXOS-L4-015-B01 -> HELIXOS-L3-015-B01 / HELIXOS-L10-015-B01",
+          "/contracts/1 HELIXOS-L4-015-F01 -> HELIXOS-L3-015-F01 / HELIXOS-L10-015-F01",
+          "/contracts/2 HELIXOS-L4-015-F02 -> HELIXOS-L3-015-F02 / HELIXOS-L10-015-F02",
+          "/contracts/3 HELIXOS-L4-015-F03 -> HELIXOS-L3-015-F03 / HELIXOS-L10-015-F03"
+        ],
+        "diagnostic_rules": [
+          "phases",
+          "source_fields",
+          "event_fields",
+          "classification_fields",
+          "facets",
+          "codes",
+          "comparison_facets",
+          "aggregation",
+          "current_material_limit",
+          "raw_retention",
+          "mutation_rule",
+          "finding_shape",
+          "return_owner",
+          "condition_values",
+          "result_fields"
+        ],
+        "failure_classifications": [
+          "OS015-NEG-source_unresolved-source: code, condition, expected_classification, finding_codes, expected_axis, expected_state, expected_preserved, side_effect_count",
+          "OS015-NEG-source_conflict-source: code, condition, expected_classification, finding_codes, expected_axis, expected_state, expected_preserved, side_effect_count"
+        ],
+        "operation_effect": "none"
+      },
+      "l7_raw_only": [
+        "/connection_materials/OS015/case/fixture_inputs/inspect",
+        "/connection_materials/OS015/case/cases/0/given/input",
+        "/connection_materials/OS015/case/cases/3/given/input",
+        "/connection_materials/OS015/case/cases/4/given/input"
+      ]
+    },
+    "post_derivation_comparison": "After the blind derivation was fixed, Codex compared seven scalar roots and current_source_material against existing expectations; see issue #3510 comment 6529774668. The scalar roots matched, but the blind single-boolean interpretation differs from the existing per-target object. Other roots remain unexamined in that comparison.",
+    "fixed_derivation_artifact": {
+      "path": "scaffold/research/wr181-os015-l5-l8-successor-20261031/blind-derivation-fixed-e96d09af.json",
+      "sha256": "e96d09afb12131681bf126b6414a4700f60c37da156cb9297b823f6344362b79",
+      "status": "original_blind_semantic_draft_fixed_before_comparison",
+      "limitation": "Semantic descriptions and provisional scalar interpretation, not a complete serialized oracle."
+    },
+    "revision_history": [
+      "Blind worker fixed e96d09af before Codex compared seven scalar roots and current_source_material against existing expectations; issue 3510 comment 6529774668.",
+      "After the partial comparison, the audit was expanded to include L4 contracts 0–3 and allowed L10 observations/failure classifications. The blind worker had not read existing expected values; Codex later revised this audit with knowledge of the comparison.",
+      "In the fixed artifact current_source_material was a provisional single boolean (true/false/false), and whole_registry_verified was false. The current audit records both as partial_unknown for serialized output, because the L4 mapping/type is not specified. No post-comparison expected value is adopted.",
+      "Other rows are semantic descriptions, not claims that every frozen value has a verified output serialization. Exact comparison is limited to the eight named roots; remaining roots were not compared."
+    ]
+  },
+  "presentation": {
+    "markdown_path": "scaffold/research/wr181-os015-l5-l8-successor-20261031/manual-source-only-pilot.md",
+    "note": "case/rootの要約をレビュー用に提示する。詳細なpointerと導出根拠はこのJSON記録にある。"
+  },
+  "scope_boundary": [
+    "L3/L10の記述、L4の記述/表、L7の固定given.inputだけを使った手導出監査。",
+    "L4 algorithm_python_document_textを実行せず、L5 formal_referenceまたはL7/L8/L9の期待値を導出根拠に使わない。",
+    "unknownおよびpartial_unknownのrootは未解決のまま保持し、91代表全体の独立性やfreeze成立を主張しない。",
+    "semantic_summaryはsource上の意味の要約だけを示す。完成したexpected field valueやserialized output shapeではない。"
+  ]
+}
