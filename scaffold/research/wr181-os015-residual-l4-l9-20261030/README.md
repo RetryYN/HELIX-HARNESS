@@ -21,7 +21,7 @@ L4 `failure_classifications`に18 rowを追加し、F02 contractの`negative_cla
 | `OS015-NEG-COMPOSITE-0847e4310de684d30c54c16de19c0ce068f2666a3e68fe3e3d93f144934f9a42` | 4 | classify, correct | `source_conflict, source_conflict` | management_material_violation / source / violation |
 | `OS015-NEG-COMPOSITE-08695e0fad423852ebf0d60b18b944ec130ec1c4865698ff05c83b4646a9e405` | 2 | classify | `first_classification_prior_unresolved, first_classification_prior_unresolved, source_unresolved, source_unresolved, source_unresolved, source_unresolved` | management_material_unknown / classification / unknown |
 | `OS015-NEG-COMPOSITE-087fdf8f8d9303e619d04ccc3cbc6da653d08a4b20f6009bab1ec8dfe3cc90c9` | 1 | correct | `authority_conflict, source_conflict` | management_material_violation / authority / violation |
-| `OS015-NEG-COMPOSITE-16d683cd7ee2843f08cec57658ca1239665f058443160c35f3d700c0fd9fdc4c` | 2 | classify | `first_classification_prior_unresolved, original_classification_mutated, source_unresolved, source_unresolved, source_unresolved, source_unresolved` | management_material_violation / classification / violation |
+| `OS015-NEG-COMPOSITE-a0f8ffe7cb48eb9237554e7c9344182b48c98fed14721acb96cafa89481c6429` | 2 | classify | `first_classification_prior_unresolved, original_classification_mutated, source_unresolved, source_unresolved, source_unresolved, source_unresolved` | management_material_violation / classification / unknown |
 | `OS015-NEG-COMPOSITE-3123046e6695da60ba6abef15c2588c632081391d431ec133fa509d6d90017bb` | 1 | correct | `authority_state_unresolved, source_conflict` | management_material_violation / authority / violation |
 | `OS015-NEG-COMPOSITE-4e80f5977bf48e95192dcbe7ebd26ffba7aa253ddef99755e42e3e0990008f72` | 2 | classify | `first_classification_prior_unresolved, original_classification_mutated` | management_material_violation / classification / unknown |
 | `OS015-NEG-COMPOSITE-4ed7dc758943d0971c6a7853ba3568609804d47e1f5f615e39eaa5e523ef1c04` | 2 | correct | `authority_origin_unresolved, authority_origin_unresolved` | management_material_unknown / authority / unknown |
@@ -63,7 +63,7 @@ L9 `negative_equivalence_classes`にはL4 class rowからexpected keyを順方�
 | `80e6f294` | 2 | classify, correct | classify/correct。actual側target_a.new_classification.kindをnullに置換し、classification_kind_unresolvedとsource_unresolvedを生じる。 |
 | `c38a384a` | 1 | classify | classifyでactual original_classificationにknown priorを設定し、context original_classificationはnullのまま。prior-presentとoriginal-classification mutationが併発する。 |
 
-元入力の人口は、既存2 event classへ75件、新規classへ37件、合計112件。既存29件の割当てを維持する。#3927 head `5d541f69`で見つかった分類欠落は、C0574/C0575/C0577/C0578/C0580/C0581におけるactual/context new-classification prior ref/revisionのsource unresolved 4件である。C0573/C0576/C0579はcontext priorがnullなので該当comparisonをskipし、C0582はgiven.inputで両側のprior ref/revisionがknown一致する。
+元入力の人口は、既存2 event classへ75件、新規classへ37件、合計112件。既存29件の割当てを維持する。 C0577/C0580は全体conditionがviolationだが、選択されたclassification facetの局所stateはunknown（mutation findingはhistory/violation）である。#3927 head `5d541f69`で見つかった分類欠落は、C0574/C0575/C0577/C0578/C0580/C0581におけるactual/context new-classification prior ref/revisionのsource unresolved 4件である。C0573/C0576/C0579はcontext priorがnullなので該当comparisonをskipし、C0582はgiven.inputで両側のprior ref/revisionがknown一致する。
 ## Pin・bindingの影響
 
 変更前にL4/L9をpinしていたbindingを全件確認した。SCF-B-0170はL4、SCF-B-0173/0175/0176はL4/L9のpinを新bytesに更新し、各noteに以前のhashと意味差分を残す。0175/0176がpinする0170のbinding hashも追随。新しい独立証拠bindingはSCF-B-0177。candidateでは`scfctl validate`と`scfctl stale`を実測する。

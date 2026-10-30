@@ -4,8 +4,8 @@
   "correction_base_revision": "5d541f69ff86674e585311558ad2dac1972d42e4",
   "manual_audit_revision": "05614def4e0427f9390c2b6535e520f5c7c26590",
   "manual_audit_sha256": "eaa14a609b08f58b12078f68fdbb02921df3805d9d977668c0b9bd9a5f4c73dd",
-  "correction_audit_sha256": "be773b98faa2916b8b144689edd45ca93ac3ca067ceb3d8b51ca395908822d90",
-  "correction_cases_sha256": "1d2f8de636f5ed238ebaecd3d5a3ce76650b9e413ff7eeed62f2d74d400a2c68",
+  "correction_audit_sha256": "3429e4886f3c960a78ce9a142619e43e02dbc5ec527399f6dbfa028c28d800ba",
+  "correction_cases_sha256": "fda0a1cbbcf5638ccfe88b08d7de62e3f7b9c0f7bf6be2d2621e67d6d121a680",
   "class_count": 20,
   "new_l4_and_l9_classes": 18,
   "corrected_prior_case_count": 6,
@@ -27,43 +27,43 @@
   "l4_new_class_pointers_resolve": true,
   "l9_new_class_pointers_resolve_and_only_l4_l7": true,
   "l5_l8_document_bytes_unchanged": true,
-  "current_l4_sha256": "5038893210d772bc46fa75802757a90d9658ec4f427f76adcc3cf8a6702ce96f",
-  "current_l9_sha256": "1e2bac6a7cabe48b11ba17736c7081fcbe27c35de79f835c75a1a709d5891b39",
+  "current_l4_sha256": "32e4a7b6432e7454d242277b37a0948916dc876b6e8e008ad8e4f8c2d7207081",
+  "current_l9_sha256": "365b89c9131e5edd9b64d474438ff780360118819cc651ee535f64a70aa5ff1d",
   "pin_impacts": [
     {
       "binding": "SCF-B-0170",
       "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
-      "sha256": "5038893210d772bc46fa75802757a90d9658ec4f427f76adcc3cf8a6702ce96f"
+      "sha256": "32e4a7b6432e7454d242277b37a0948916dc876b6e8e008ad8e4f8c2d7207081"
     },
     {
       "binding": "SCF-B-0173",
       "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
-      "sha256": "5038893210d772bc46fa75802757a90d9658ec4f427f76adcc3cf8a6702ce96f"
+      "sha256": "32e4a7b6432e7454d242277b37a0948916dc876b6e8e008ad8e4f8c2d7207081"
     },
     {
       "binding": "SCF-B-0173",
       "path": "docs/helix-os/L9-integration-verification/management-authority-source-record.json",
-      "sha256": "1e2bac6a7cabe48b11ba17736c7081fcbe27c35de79f835c75a1a709d5891b39"
+      "sha256": "365b89c9131e5edd9b64d474438ff780360118819cc651ee535f64a70aa5ff1d"
     },
     {
       "binding": "SCF-B-0175",
       "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
-      "sha256": "5038893210d772bc46fa75802757a90d9658ec4f427f76adcc3cf8a6702ce96f"
+      "sha256": "32e4a7b6432e7454d242277b37a0948916dc876b6e8e008ad8e4f8c2d7207081"
     },
     {
       "binding": "SCF-B-0175",
       "path": "docs/helix-os/L9-integration-verification/management-authority-source-record.json",
-      "sha256": "1e2bac6a7cabe48b11ba17736c7081fcbe27c35de79f835c75a1a709d5891b39"
+      "sha256": "365b89c9131e5edd9b64d474438ff780360118819cc651ee535f64a70aa5ff1d"
     },
     {
       "binding": "SCF-B-0176",
       "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
-      "sha256": "5038893210d772bc46fa75802757a90d9658ec4f427f76adcc3cf8a6702ce96f"
+      "sha256": "32e4a7b6432e7454d242277b37a0948916dc876b6e8e008ad8e4f8c2d7207081"
     },
     {
       "binding": "SCF-B-0176",
       "path": "docs/helix-os/L9-integration-verification/management-authority-source-record.json",
-      "sha256": "1e2bac6a7cabe48b11ba17736c7081fcbe27c35de79f835c75a1a709d5891b39"
+      "sha256": "365b89c9131e5edd9b64d474438ff780360118819cc651ee535f64a70aa5ff1d"
     }
   ],
   "checker_or_runtime_executed": false

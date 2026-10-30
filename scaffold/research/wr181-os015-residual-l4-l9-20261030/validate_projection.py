@@ -143,6 +143,23 @@ def main():
       '/records/target_a/new_classification/prior_classification_ref',
       '/records/target_a/new_classification/prior_classification_revision']
     assert set(correction_by_case)==set(expected_codes)
+    # L4 aggregation keeps overall severity separate from selected-facet state.
+    # For C0577/C0580, mutation is history/violation while prior/comparison
+    # findings are classification/unknown; classification is the first
+    # noncorresponding facet, so local expected_state is unknown.
+    local_state_case_ids={'HELIXOS-L9-015-C0577','HELIXOS-L9-015-C0580'}
+    local_state_id='OS015-NEG-COMPOSITE-a0f8ffe7cb48eb9237554e7c9344182b48c98fed14721acb96cafa89481c6429'
+    code_facets={x['code']:x['facet'] for x in cur4['diagnostic_contract']['codes']}
+    code_dispositions={x['code']:x['disposition'] for x in cur4['diagnostic_contract']['codes']}
+    assert code_facets['original_classification_mutated']=='history'
+    assert code_dispositions['original_classification_mutated']=='violation'
+    assert code_facets['first_classification_prior_unresolved']=='classification'
+    assert code_dispositions['first_classification_prior_unresolved']=='unknown'
+    assert code_facets['source_unresolved']=='comparison'
+    local_class=next(c for c in M['classes'] if c['class_id']==local_state_id)
+    assert local_class['key']['expected_classification']=='management_material_violation'
+    assert local_class['key']['expected_axis']=='classification' and local_class['key']['expected_state']=='unknown'
+    assert set(local_class['case_ids'])==local_state_case_ids
     for case_id,ledger_row in correction_by_case.items():
         assert [x['code'] for x in ledger_row['ordered_findings']]==expected_codes[case_id]
         assert ledger_row['ordered_findings']==sorted(ledger_row['ordered_findings'],key=lambda x:(x['code'],x['pointer'],x['return_owner']))
@@ -150,6 +167,10 @@ def main():
         assert [x['pointer'] for x in ledger_row['ordered_findings'] if x['code']=='source_unresolved']==(source_unresolved_pointers if has_unresolved else [])
         l7_index,l7_row=l7by[case_id];given=l7_row['given']['input']
         assert ledger_row['phase']==given['base_ref']=='classify'
+        if case_id in local_state_case_ids:
+            assert ledger_row['class_id']==local_state_id
+            assert ledger_row['class_key']['expected_state']=='unknown'
+            assert ledger_row['overall_axis_state']==['management_material_violation','classification','unknown']
         fixture=json.loads(json.dumps(cur7['connection_materials']['OS015']['case']['fixture_inputs']['classify']))
         for replacement in given['replacements']:
             target=fixture
