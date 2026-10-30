@@ -75,7 +75,8 @@
     "docs/helix-connect/L8-unit-verification/direction-order-feedback-relations.json",
     "scaffold/research/wr252-connect-l8-slim-20261031/README.md",
     "scaffold/research/wr252-connect-l8-slim-20261031/case-row-map.json",
-    "scaffold/bindings/SCF-B-0212.json"
+    "scaffold/bindings/SCF-B-0212.json",
+    "scaffold/research/wr252-connect-l8-slim-20261031/wr252-pr4002-r1-row-meaning-audit.json"
   ],
   "verification": {
     "evidence_kind": "scaffold",
@@ -87,12 +88,14 @@
       "deterministic_behavior"
     ],
     "oracles": [
-      "case-row-map.json preserves each prior id and /cases/N position, prior input and expected digests, L10 oracle ID, audit-only L9/L10 source refs, and old/new expected-summary digests for all 389 rows.",
+      "The committed case-row-map.json remains the point-in-time evidence from reviewed head 83235cc0c28b90531b39cd6a24f30bf0f6750ab3; its bytes are not rewritten by R1.",
+      "wr252-pr4002-r1-row-meaning-audit.json maps original expected digests and pre-R1/post-R1 summary digests for all 389 IDs, with function-state moves and row exceptions.",
       "All 110 current L5 unit_case_refs resolve at unchanged pointers to unchanged prior ids.",
       "All 389 L8 test_citation values are null because no CONNECT L7 test-code reference was found; removed L9/L10 refs resolve only from the scaffold audit map.",
-      "The document-level common expectation boundary and all row-specific preserved-state exceptions are recorded; the audit map records the old/new expectation digest pair per row.",
+      "The common expectation boundary states shared meaning only; function-common operation states appear once, and case rows retain operation exceptions and distinct expectations.",
+      "The R1 audit records the 260 field-judgment restatements removed, the one distinct unobserved branch retained, and 44 retained-state exceptions in plain text.",
       "Start/end check-child measurements and the unchanged not-evaluated pair scope are recorded in the research README.",
-      "scfctl validate and stale are required static scaffold checks; they do not establish product behavior."
+      "scfctl validate and stale are static scaffold checks; they do not establish product behavior."
     ],
     "negative_cases": [
       "Do not infer reverse permission from a forward registration or feedback relation.",

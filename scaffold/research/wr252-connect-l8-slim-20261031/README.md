@@ -22,18 +22,24 @@ POの#3510 comment 6447665479は、L8/L9の実装前材料をallowlistで減ら�
 
 | 項目 | 開始時 | 完了時 |
 |---|---:|---:|
-| L8 bytes / lines | 8,607,618 / 179,427 | 273,631 / 3,167 |
+| L8 bytes / lines | 8,607,618 / 179,427 | 193,807 / 3,181 |
 | L8 cases / U-ID | 389 cases | 389件の既存`id`（U-ID）を維持 |
 | L5 `/functions/*/unit_case_refs` | 110参照 | 110参照、同じ配列index・`id`で解決 |
 | L8 `removed_materials` | なし | 6 required keysを保持 |
 
-`case-row-map.json`は旧`id`、配列pointer、oracle、L9 source refs、旧raw input digest・旧期待JSON digest・要約期待digestを対応づける。389行すべての旧/新期待digestを対にし、共通の意味条件だけを境界へ集約したことと行固有保持差分を記録する。raw inputとfull returnは含めない。counterexample文字列と旧`id`は389件すべて一意である。
+`case-row-map.json`はPR #4002 R1対応前のhead `83235cc0c28b90531b39cd6a24f30bf0f6750ab3` にある時点記録で、SHA-256は`161c6aa61094aecf20eebc8037925031864728e092bd0b583879ddbb4edef274`。そのファイルは変更していない。元期待・当時の要約digestとID/pointer/source mapをそのまま保持する。R1後の389行別before/after digestと操作状態・保持差分の照合は、新設した`wr252-pr4002-r1-row-meaning-audit.json`に記録する。raw inputとfull returnは含めない。
 
 現行L5は変更していない。L8 pinのL5 revisionだけ、旧`ed42...`からL5の現行bytesに一致するmain `e9cca9f1d3d88b1c2049c3a3e492b36b2c2ec905`へ更新した。L3/L4/L9/L10のpinはbyte一致を維持する。Governance crosswalkの`9fdd43c2`固定main snapshotと2026-10-22のdownstream coverage auditは当時の証拠であり、current pinではないため更新していない。
 
+## PR #4002 R1の行別整理
+
+R1では、関数ごとの共通operation状態を`common_expectation_boundary`へ一度だけ自然言語で置いた。各行は既定と異なる操作状態、行固有の期待、反例だけを残す。`field判定`が先行条件の言い直しになっていた260箇所を除き、固有の未観測範囲1件は保持した。44行の保持例外はfixture値をJSON直列化せず、日本語の平文で表した。
+
+旧`case-row-map.json`はR1前の時点証拠として変更していない。R1後の成果は`wr252-pr4002-r1-row-meaning-audit.json`に記録し、389行すべてに元期待digest、R1前の要約digest、R1後の要約digest、関数共通状態か行例外か、保持差分の平文を対応づけた。これにより、両時点の内容と照合を区別して追跡できる。
+
 ## check-child測定
 
-現行checkerの4文書全体を開始時・完了時に読み取り測定した。これは文書ID・参照・ownership cap・pinの静的照合であり、製品testではない。
+現行checkerの4文書全体を開始時・完了時に読み取り測定した。R1後も同じ4文書の構造照合を再実行した。これは文書ID・参照・ownership cap・pinの静的照合であり、製品testではない。
 
 | check-child項目 | 開始時 | 完了時 |
 |---|---:|---:|
@@ -49,9 +55,9 @@ pair checkとnegative 4-wayは、既存の4層文書がcheckerの`contracts`/`ca
 ## 追加の静的照合
 
 - 現在のL5 unit-case refs 110件が、L8の同じnumeric pointerで同じ既存`id`へ到達する。
-- 389件すべてで既存`id`、counterexampleが一意。期待要約の前後digestを行別に照合し、共通意味境界と44行の保持差分を記録した。各行のL10 oracle IDは対象function suffixに一致する。
+- 389件すべてで既存`id`、counterexampleが一意。R1で関数ごとの共通operation stateを10行に一度ずつ記し、異なる状態54行を例外として残した。field判定の言い直し261件中260件を除き、固有の未観測枝1件を維持した。保持例外44行は平文にした。R1行別before/after digestは別auditにある。
 - L8の`test_citation`は全件null。L7 test citationが確認できないためであり、L9/L10参照は監査mapにのみ保存した。
 - L8の5 source pinは、それぞれ記録したrevisionのbytesと一致する。
 - L8 capは1,262 findingから0へ減少した。`scfctl validate`/`stale`の結果と差分チェックはこの記録へ追記する。
 
-`python3 scaffold/tools/scfctl.py validate`はbindings=195、fail=0。`python3 scaffold/tools/scfctl.py stale`はstale=0。`git diff --check`はpass。意味保存の静的照合は、389行の順序・ID、110件のL5参照、389件のL9/L10 source refsの監査map収録とtest citation null、5件のsource pin、`removed_materials`の6 keyを確認した。
+`python3 scaffold/tools/scfctl.py validate`はbindings=195、fail=0。`python3 scaffold/tools/scfctl.py stale`はstale=0。`git diff --check`はpass。R1後L8は193,807 bytes／3,181 lines。意味保存の静的照合は、389行の順序・ID、110件のL5参照、389件のL9/L10 source refsの監査map収録とtest citation null、5件のsource pin、`removed_materials`の6 keyを確認した。
