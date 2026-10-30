@@ -1957,7 +1957,12 @@
         "revision": "ec98a025d166a5e9f7811233498b7e7e31dbb145",
         "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146"
       },
-      "execution_state": "not_executed"
+      "execution_state": "not_executed",
+      "condition": "workflow_material_corresponding",
+      "selected_phase": "candidate",
+      "expected": {
+        "finding_codes": []
+      }
     },
     {
       "id": "OS017-L8-NORMAL-WORKFLOW",
@@ -1993,7 +1998,12 @@
         "revision": "ec98a025d166a5e9f7811233498b7e7e31dbb145",
         "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146"
       },
-      "execution_state": "not_executed"
+      "execution_state": "not_executed",
+      "condition": "workflow_material_corresponding",
+      "selected_phase": "workflow",
+      "expected": {
+        "finding_codes": []
+      }
     },
     {
       "id": "OS017-L8-NORMAL-BACKFLOW",
@@ -2029,7 +2039,12 @@
         "revision": "ec98a025d166a5e9f7811233498b7e7e31dbb145",
         "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146"
       },
-      "execution_state": "not_executed"
+      "execution_state": "not_executed",
+      "condition": "workflow_material_corresponding",
+      "selected_phase": "backflow",
+      "expected": {
+        "finding_codes": []
+      }
     },
     {
       "id": "OS017-L8-NORMAL-RESUME",
@@ -2065,7 +2080,12 @@
         "revision": "ec98a025d166a5e9f7811233498b7e7e31dbb145",
         "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146"
       },
-      "execution_state": "not_executed"
+      "execution_state": "not_executed",
+      "condition": "workflow_material_corresponding",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": []
+      }
     },
     {
       "id": "OS017-L8-SAME-INPUT-REPEAT",
@@ -2102,7 +2122,12 @@
         "revision": "ec98a025d166a5e9f7811233498b7e7e31dbb145",
         "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146"
       },
-      "execution_state": "not_executed"
+      "execution_state": "not_executed",
+      "condition": "workflow_material_corresponding",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": []
+      }
     },
     {
       "id": "OS017-L8-BINDING-PROJECT-UNKNOWN",
@@ -2138,7 +2163,14 @@
         "revision": "ec98a025d166a5e9f7811233498b7e7e31dbb145",
         "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146"
       },
-      "execution_state": "not_executed"
+      "execution_state": "not_executed",
+      "condition": "workflow_material_unknown",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_unresolved"
+        ]
+      }
     },
     {
       "id": "OS017-L8-BINDING-PROJECT-CONFLICT",
@@ -2174,7 +2206,14 @@
         "revision": "ec98a025d166a5e9f7811233498b7e7e31dbb145",
         "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146"
       },
-      "execution_state": "not_executed"
+      "execution_state": "not_executed",
+      "condition": "workflow_material_violation",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_conflict"
+        ]
+      }
     },
     {
       "id": "OS017-L8-BINDING-REQUIREMENT_REVISION-UNKNOWN",
@@ -2210,7 +2249,14 @@
         "revision": "ec98a025d166a5e9f7811233498b7e7e31dbb145",
         "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146"
       },
-      "execution_state": "not_executed"
+      "execution_state": "not_executed",
+      "condition": "workflow_material_unknown",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_unresolved"
+        ]
+      }
     },
     {
       "id": "OS017-L8-BINDING-REQUIREMENT_REVISION-CONFLICT",
@@ -2246,7 +2292,14 @@
         "revision": "ec98a025d166a5e9f7811233498b7e7e31dbb145",
         "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146"
       },
-      "execution_state": "not_executed"
+      "execution_state": "not_executed",
+      "condition": "workflow_material_violation",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_conflict"
+        ]
+      }
     },
     {
       "id": "OS017-L8-BINDING-SCOPE-UNKNOWN",
@@ -2282,7 +2335,14 @@
         "revision": "ec98a025d166a5e9f7811233498b7e7e31dbb145",
         "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146"
       },
-      "execution_state": "not_executed"
+      "execution_state": "not_executed",
+      "condition": "workflow_material_unknown",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_unresolved"
+        ]
+      }
     },
     {
       "id": "OS017-L8-BINDING-SCOPE-CONFLICT",
@@ -2318,7 +2378,14 @@
         "revision": "ec98a025d166a5e9f7811233498b7e7e31dbb145",
         "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146"
       },
-      "execution_state": "not_executed"
+      "execution_state": "not_executed",
+      "condition": "workflow_material_violation",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_conflict"
+        ]
+      }
     },
     {
       "id": "OS017-L8-BINDING-PLAN_REVISION-UNKNOWN",
@@ -2354,7 +2421,14 @@
         "revision": "ec98a025d166a5e9f7811233498b7e7e31dbb145",
         "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146"
       },
-      "execution_state": "not_executed"
+      "execution_state": "not_executed",
+      "condition": "workflow_material_unknown",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_unresolved"
+        ]
+      }
     },
     {
       "id": "OS017-L8-BINDING-PLAN_REVISION-CONFLICT",
@@ -2390,7 +2464,14 @@
         "revision": "ec98a025d166a5e9f7811233498b7e7e31dbb145",
         "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146"
       },
-      "execution_state": "not_executed"
+      "execution_state": "not_executed",
+      "condition": "workflow_material_violation",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_conflict"
+        ]
+      }
     },
     {
       "id": "OS017-L8-BINDING-CONTRACT_REVISION-UNKNOWN",
@@ -2426,7 +2507,14 @@
         "revision": "ec98a025d166a5e9f7811233498b7e7e31dbb145",
         "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146"
       },
-      "execution_state": "not_executed"
+      "execution_state": "not_executed",
+      "condition": "workflow_material_unknown",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_unresolved"
+        ]
+      }
     },
     {
       "id": "OS017-L8-BINDING-CONTRACT_REVISION-CONFLICT",
@@ -2462,7 +2550,14 @@
         "revision": "ec98a025d166a5e9f7811233498b7e7e31dbb145",
         "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146"
       },
-      "execution_state": "not_executed"
+      "execution_state": "not_executed",
+      "condition": "workflow_material_violation",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_conflict"
+        ]
+      }
     },
     {
       "id": "OS017-L8-MANAGEMENT-PURPOSE_REF-UNKNOWN",
@@ -2498,7 +2593,14 @@
         "revision": "ec98a025d166a5e9f7811233498b7e7e31dbb145",
         "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146"
       },
-      "execution_state": "not_executed"
+      "execution_state": "not_executed",
+      "condition": "workflow_material_unknown",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_unresolved"
+        ]
+      }
     },
     {
       "id": "OS017-L8-MANAGEMENT-PURPOSE_REF-CONFLICT",
@@ -2534,7 +2636,14 @@
         "revision": "ec98a025d166a5e9f7811233498b7e7e31dbb145",
         "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146"
       },
-      "execution_state": "not_executed"
+      "execution_state": "not_executed",
+      "condition": "workflow_material_violation",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_conflict"
+        ]
+      }
     },
     {
       "id": "OS017-L8-MANAGEMENT-REQUEST_REF-UNKNOWN",
@@ -2570,7 +2679,14 @@
         "revision": "ec98a025d166a5e9f7811233498b7e7e31dbb145",
         "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146"
       },
-      "execution_state": "not_executed"
+      "execution_state": "not_executed",
+      "condition": "workflow_material_unknown",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_unresolved"
+        ]
+      }
     },
     {
       "id": "OS017-L8-MANAGEMENT-REQUEST_REF-CONFLICT",
@@ -2606,7 +2722,14 @@
         "revision": "ec98a025d166a5e9f7811233498b7e7e31dbb145",
         "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146"
       },
-      "execution_state": "not_executed"
+      "execution_state": "not_executed",
+      "condition": "workflow_material_violation",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_conflict"
+        ]
+      }
     },
     {
       "id": "OS017-L8-MANAGEMENT-CONSTRAINT_REF-UNKNOWN",
@@ -2642,7 +2765,14 @@
         "revision": "ec98a025d166a5e9f7811233498b7e7e31dbb145",
         "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146"
       },
-      "execution_state": "not_executed"
+      "execution_state": "not_executed",
+      "condition": "workflow_material_unknown",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_unresolved"
+        ]
+      }
     },
     {
       "id": "OS017-L8-MANAGEMENT-CONSTRAINT_REF-CONFLICT",
@@ -2678,7 +2808,14 @@
         "revision": "ec98a025d166a5e9f7811233498b7e7e31dbb145",
         "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146"
       },
-      "execution_state": "not_executed"
+      "execution_state": "not_executed",
+      "condition": "workflow_material_violation",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_conflict"
+        ]
+      }
     },
     {
       "id": "OS017-L8-MANAGEMENT-PERMISSION_REF-UNKNOWN",
@@ -2714,7 +2851,14 @@
         "revision": "ec98a025d166a5e9f7811233498b7e7e31dbb145",
         "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146"
       },
-      "execution_state": "not_executed"
+      "execution_state": "not_executed",
+      "condition": "workflow_material_unknown",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_unresolved"
+        ]
+      }
     },
     {
       "id": "OS017-L8-MANAGEMENT-PERMISSION_REF-CONFLICT",
@@ -2750,7 +2894,14 @@
         "revision": "ec98a025d166a5e9f7811233498b7e7e31dbb145",
         "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146"
       },
-      "execution_state": "not_executed"
+      "execution_state": "not_executed",
+      "condition": "workflow_material_violation",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_conflict"
+        ]
+      }
     },
     {
       "id": "OS017-L8-MANAGEMENT-PRIORITY_REF-UNKNOWN",
@@ -2786,7 +2937,14 @@
         "revision": "ec98a025d166a5e9f7811233498b7e7e31dbb145",
         "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146"
       },
-      "execution_state": "not_executed"
+      "execution_state": "not_executed",
+      "condition": "workflow_material_unknown",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_unresolved"
+        ]
+      }
     },
     {
       "id": "OS017-L8-MANAGEMENT-PRIORITY_REF-CONFLICT",
@@ -2822,7 +2980,14 @@
         "revision": "ec98a025d166a5e9f7811233498b7e7e31dbb145",
         "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146"
       },
-      "execution_state": "not_executed"
+      "execution_state": "not_executed",
+      "condition": "workflow_material_violation",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_conflict"
+        ]
+      }
     },
     {
       "id": "OS017-L8-MANAGEMENT-DEPENDENCY_REF-UNKNOWN",
@@ -2858,7 +3023,14 @@
         "revision": "ec98a025d166a5e9f7811233498b7e7e31dbb145",
         "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146"
       },
-      "execution_state": "not_executed"
+      "execution_state": "not_executed",
+      "condition": "workflow_material_unknown",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_unresolved"
+        ]
+      }
     },
     {
       "id": "OS017-L8-MANAGEMENT-DEPENDENCY_REF-CONFLICT",
@@ -2894,7 +3066,14 @@
         "revision": "ec98a025d166a5e9f7811233498b7e7e31dbb145",
         "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146"
       },
-      "execution_state": "not_executed"
+      "execution_state": "not_executed",
+      "condition": "workflow_material_violation",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_conflict"
+        ]
+      }
     },
     {
       "id": "OS017-L8-MANAGEMENT-RESOURCE_REF-UNKNOWN",
@@ -2930,7 +3109,14 @@
         "revision": "ec98a025d166a5e9f7811233498b7e7e31dbb145",
         "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146"
       },
-      "execution_state": "not_executed"
+      "execution_state": "not_executed",
+      "condition": "workflow_material_unknown",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_unresolved"
+        ]
+      }
     },
     {
       "id": "OS017-L8-MANAGEMENT-RESOURCE_REF-CONFLICT",
@@ -2966,7 +3152,14 @@
         "revision": "ec98a025d166a5e9f7811233498b7e7e31dbb145",
         "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146"
       },
-      "execution_state": "not_executed"
+      "execution_state": "not_executed",
+      "condition": "workflow_material_violation",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_conflict"
+        ]
+      }
     },
     {
       "id": "OS017-L8-MANAGEMENT-BUDGET_REF-UNKNOWN",
@@ -3002,7 +3195,14 @@
         "revision": "ec98a025d166a5e9f7811233498b7e7e31dbb145",
         "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146"
       },
-      "execution_state": "not_executed"
+      "execution_state": "not_executed",
+      "condition": "workflow_material_unknown",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_unresolved"
+        ]
+      }
     },
     {
       "id": "OS017-L8-MANAGEMENT-BUDGET_REF-CONFLICT",
@@ -3038,7 +3238,14 @@
         "revision": "ec98a025d166a5e9f7811233498b7e7e31dbb145",
         "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146"
       },
-      "execution_state": "not_executed"
+      "execution_state": "not_executed",
+      "condition": "workflow_material_violation",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_conflict"
+        ]
+      }
     },
     {
       "id": "OS017-L8-MANAGEMENT-DEADLINE_REF-UNKNOWN",
@@ -3074,7 +3281,14 @@
         "revision": "ec98a025d166a5e9f7811233498b7e7e31dbb145",
         "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146"
       },
-      "execution_state": "not_executed"
+      "execution_state": "not_executed",
+      "condition": "workflow_material_unknown",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_unresolved"
+        ]
+      }
     },
     {
       "id": "OS017-L8-MANAGEMENT-DEADLINE_REF-CONFLICT",
@@ -3110,7 +3324,14 @@
         "revision": "ec98a025d166a5e9f7811233498b7e7e31dbb145",
         "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146"
       },
-      "execution_state": "not_executed"
+      "execution_state": "not_executed",
+      "condition": "workflow_material_violation",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_conflict"
+        ]
+      }
     },
     {
       "id": "OS017-L8-MANAGEMENT-STOP_CONDITION_REF-UNKNOWN",
@@ -3146,7 +3367,14 @@
         "revision": "ec98a025d166a5e9f7811233498b7e7e31dbb145",
         "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146"
       },
-      "execution_state": "not_executed"
+      "execution_state": "not_executed",
+      "condition": "workflow_material_unknown",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_unresolved"
+        ]
+      }
     },
     {
       "id": "OS017-L8-MANAGEMENT-STOP_CONDITION_REF-CONFLICT",
@@ -3182,7 +3410,14 @@
         "revision": "ec98a025d166a5e9f7811233498b7e7e31dbb145",
         "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146"
       },
-      "execution_state": "not_executed"
+      "execution_state": "not_executed",
+      "condition": "workflow_material_violation",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_conflict"
+        ]
+      }
     },
     {
       "id": "OS017-L8-MANAGEMENT-HARNESS_VERSION-UNKNOWN",
@@ -3218,7 +3453,14 @@
         "revision": "ec98a025d166a5e9f7811233498b7e7e31dbb145",
         "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146"
       },
-      "execution_state": "not_executed"
+      "execution_state": "not_executed",
+      "condition": "workflow_material_unknown",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_unresolved"
+        ]
+      }
     },
     {
       "id": "OS017-L8-MANAGEMENT-HARNESS_VERSION-CONFLICT",
@@ -3254,7 +3496,14 @@
         "revision": "ec98a025d166a5e9f7811233498b7e7e31dbb145",
         "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146"
       },
-      "execution_state": "not_executed"
+      "execution_state": "not_executed",
+      "condition": "workflow_material_violation",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_conflict"
+        ]
+      }
     },
     {
       "id": "OS017-L8-MANAGEMENT-CONNECTION_REF-UNKNOWN",
@@ -3290,7 +3539,14 @@
         "revision": "ec98a025d166a5e9f7811233498b7e7e31dbb145",
         "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146"
       },
-      "execution_state": "not_executed"
+      "execution_state": "not_executed",
+      "condition": "workflow_material_unknown",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_unresolved"
+        ]
+      }
     },
     {
       "id": "OS017-L8-MANAGEMENT-CONNECTION_REF-CONFLICT",
@@ -3326,7 +3582,14 @@
         "revision": "ec98a025d166a5e9f7811233498b7e7e31dbb145",
         "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146"
       },
-      "execution_state": "not_executed"
+      "execution_state": "not_executed",
+      "condition": "workflow_material_violation",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_conflict"
+        ]
+      }
     },
     {
       "id": "OS017-L8-ROLES-PROMOTION-UNKNOWN",
@@ -3362,7 +3625,14 @@
         "revision": "ec98a025d166a5e9f7811233498b7e7e31dbb145",
         "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146"
       },
-      "execution_state": "not_executed"
+      "execution_state": "not_executed",
+      "condition": "workflow_material_unknown",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_unresolved"
+        ]
+      }
     },
     {
       "id": "OS017-L8-ROLES-PROMOTION-CONFLICT",
@@ -3398,7 +3668,14 @@
         "revision": "ec98a025d166a5e9f7811233498b7e7e31dbb145",
         "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146"
       },
-      "execution_state": "not_executed"
+      "execution_state": "not_executed",
+      "condition": "workflow_material_violation",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_conflict"
+        ]
+      }
     },
     {
       "id": "OS017-L8-ROLES-PROCESS-UNKNOWN",
@@ -3434,7 +3711,14 @@
         "revision": "ec98a025d166a5e9f7811233498b7e7e31dbb145",
         "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146"
       },
-      "execution_state": "not_executed"
+      "execution_state": "not_executed",
+      "condition": "workflow_material_unknown",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_unresolved"
+        ]
+      }
     },
     {
       "id": "OS017-L8-ROLES-PROCESS-CONFLICT",
@@ -3470,7 +3754,14 @@
         "revision": "ec98a025d166a5e9f7811233498b7e7e31dbb145",
         "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146"
       },
-      "execution_state": "not_executed"
+      "execution_state": "not_executed",
+      "condition": "workflow_material_violation",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_conflict"
+        ]
+      }
     },
     {
       "id": "OS017-L8-ROLES-PROPOSAL-UNKNOWN",
@@ -3506,7 +3797,14 @@
         "revision": "ec98a025d166a5e9f7811233498b7e7e31dbb145",
         "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146"
       },
-      "execution_state": "not_executed"
+      "execution_state": "not_executed",
+      "condition": "workflow_material_unknown",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_unresolved"
+        ]
+      }
     },
     {
       "id": "OS017-L8-ROLES-PROPOSAL-CONFLICT",
@@ -3542,7 +3840,14 @@
         "revision": "ec98a025d166a5e9f7811233498b7e7e31dbb145",
         "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146"
       },
-      "execution_state": "not_executed"
+      "execution_state": "not_executed",
+      "condition": "workflow_material_violation",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_conflict"
+        ]
+      }
     },
     {
       "id": "OS017-L8-ROLES-LEVEL-UNKNOWN",
@@ -3578,7 +3883,14 @@
         "revision": "ec98a025d166a5e9f7811233498b7e7e31dbb145",
         "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146"
       },
-      "execution_state": "not_executed"
+      "execution_state": "not_executed",
+      "condition": "workflow_material_unknown",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_unresolved"
+        ]
+      }
     },
     {
       "id": "OS017-L8-ROLES-LEVEL-CONFLICT",
@@ -3614,7 +3926,14 @@
         "revision": "ec98a025d166a5e9f7811233498b7e7e31dbb145",
         "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146"
       },
-      "execution_state": "not_executed"
+      "execution_state": "not_executed",
+      "condition": "workflow_material_violation",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_conflict"
+        ]
+      }
     },
     {
       "id": "OS017-L8-ROLES-AUTHORITY-UNKNOWN",
@@ -3650,7 +3969,14 @@
         "revision": "ec98a025d166a5e9f7811233498b7e7e31dbb145",
         "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146"
       },
-      "execution_state": "not_executed"
+      "execution_state": "not_executed",
+      "condition": "workflow_material_unknown",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_unresolved"
+        ]
+      }
     },
     {
       "id": "OS017-L8-ROLES-AUTHORITY-CONFLICT",
@@ -3686,7 +4012,14 @@
         "revision": "ec98a025d166a5e9f7811233498b7e7e31dbb145",
         "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146"
       },
-      "execution_state": "not_executed"
+      "execution_state": "not_executed",
+      "condition": "workflow_material_violation",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_conflict"
+        ]
+      }
     },
     {
       "id": "OS017-L8-ROLES-RESOURCE-UNKNOWN",
@@ -3722,7 +4055,14 @@
         "revision": "ec98a025d166a5e9f7811233498b7e7e31dbb145",
         "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146"
       },
-      "execution_state": "not_executed"
+      "execution_state": "not_executed",
+      "condition": "workflow_material_unknown",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_unresolved"
+        ]
+      }
     },
     {
       "id": "OS017-L8-ROLES-RESOURCE-CONFLICT",
@@ -3758,7 +4098,14 @@
         "revision": "ec98a025d166a5e9f7811233498b7e7e31dbb145",
         "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146"
       },
-      "execution_state": "not_executed"
+      "execution_state": "not_executed",
+      "condition": "workflow_material_violation",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_conflict"
+        ]
+      }
     },
     {
       "id": "OS017-L8-AUTHORITY-SOURCE_REF-UNKNOWN",
@@ -3794,7 +4141,14 @@
         "revision": "ec98a025d166a5e9f7811233498b7e7e31dbb145",
         "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146"
       },
-      "execution_state": "not_executed"
+      "execution_state": "not_executed",
+      "condition": "workflow_material_unknown",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_unresolved"
+        ]
+      }
     },
     {
       "id": "OS017-L8-AUTHORITY-SOURCE_REF-CONFLICT",
@@ -3830,7 +4184,14 @@
         "revision": "ec98a025d166a5e9f7811233498b7e7e31dbb145",
         "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146"
       },
-      "execution_state": "not_executed"
+      "execution_state": "not_executed",
+      "condition": "workflow_material_violation",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_conflict"
+        ]
+      }
     },
     {
       "id": "OS017-L8-RESOURCE-SOURCE_REF-UNKNOWN",
@@ -3866,7 +4227,14 @@
         "revision": "ec98a025d166a5e9f7811233498b7e7e31dbb145",
         "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146"
       },
-      "execution_state": "not_executed"
+      "execution_state": "not_executed",
+      "condition": "workflow_material_unknown",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_unresolved"
+        ]
+      }
     },
     {
       "id": "OS017-L8-RESOURCE-SOURCE_REF-CONFLICT",
@@ -3902,7 +4270,14 @@
         "revision": "ec98a025d166a5e9f7811233498b7e7e31dbb145",
         "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146"
       },
-      "execution_state": "not_executed"
+      "execution_state": "not_executed",
+      "condition": "workflow_material_violation",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_conflict"
+        ]
+      }
     },
     {
       "id": "OS017-L8-DEPENDENCY-STATE-UNKNOWN",
@@ -3938,7 +4313,15 @@
         "revision": "ec98a025d166a5e9f7811233498b7e7e31dbb145",
         "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146"
       },
-      "execution_state": "not_executed"
+      "execution_state": "not_executed",
+      "condition": "workflow_material_unknown",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "dependency_unresolved",
+          "source_unresolved"
+        ]
+      }
     },
     {
       "id": "OS017-L8-DEPENDENCY-STATE-CONFLICT",
@@ -3974,7 +4357,15 @@
         "revision": "ec98a025d166a5e9f7811233498b7e7e31dbb145",
         "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146"
       },
-      "execution_state": "not_executed"
+      "execution_state": "not_executed",
+      "condition": "workflow_material_unknown",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "dependency_unresolved",
+          "source_unresolved"
+        ]
+      }
     },
     {
       "id": "OS017-L8-DEPENDENCY-SOURCE_REF-UNKNOWN",
@@ -4010,7 +4401,14 @@
         "revision": "ec98a025d166a5e9f7811233498b7e7e31dbb145",
         "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146"
       },
-      "execution_state": "not_executed"
+      "execution_state": "not_executed",
+      "condition": "workflow_material_unknown",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_unresolved"
+        ]
+      }
     },
     {
       "id": "OS017-L8-DEPENDENCY-SOURCE_REF-CONFLICT",
@@ -4046,7 +4444,14 @@
         "revision": "ec98a025d166a5e9f7811233498b7e7e31dbb145",
         "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146"
       },
-      "execution_state": "not_executed"
+      "execution_state": "not_executed",
+      "condition": "workflow_material_violation",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_conflict"
+        ]
+      }
     },
     {
       "id": "OS017-L8-DEPENDENCY-REQUIREMENT_REVISION-UNKNOWN",
@@ -4082,7 +4487,14 @@
         "revision": "ec98a025d166a5e9f7811233498b7e7e31dbb145",
         "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146"
       },
-      "execution_state": "not_executed"
+      "execution_state": "not_executed",
+      "condition": "workflow_material_unknown",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_unresolved"
+        ]
+      }
     },
     {
       "id": "OS017-L8-DEPENDENCY-REQUIREMENT_REVISION-CONFLICT",
@@ -4118,7 +4530,14 @@
         "revision": "ec98a025d166a5e9f7811233498b7e7e31dbb145",
         "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146"
       },
-      "execution_state": "not_executed"
+      "execution_state": "not_executed",
+      "condition": "workflow_material_violation",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_conflict"
+        ]
+      }
     },
     {
       "id": "OS017-L8-DEPENDENCY-SCOPE-UNKNOWN",
@@ -4154,7 +4573,14 @@
         "revision": "ec98a025d166a5e9f7811233498b7e7e31dbb145",
         "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146"
       },
-      "execution_state": "not_executed"
+      "execution_state": "not_executed",
+      "condition": "workflow_material_unknown",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_unresolved"
+        ]
+      }
     },
     {
       "id": "OS017-L8-DEPENDENCY-SCOPE-CONFLICT",
@@ -4190,7 +4616,14 @@
         "revision": "ec98a025d166a5e9f7811233498b7e7e31dbb145",
         "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146"
       },
-      "execution_state": "not_executed"
+      "execution_state": "not_executed",
+      "condition": "workflow_material_violation",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_conflict"
+        ]
+      }
     },
     {
       "id": "OS017-L8-PROCESS-SOURCE_REF-UNKNOWN",
@@ -4226,7 +4659,14 @@
         "revision": "ec98a025d166a5e9f7811233498b7e7e31dbb145",
         "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146"
       },
-      "execution_state": "not_executed"
+      "execution_state": "not_executed",
+      "condition": "workflow_material_unknown",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_unresolved"
+        ]
+      }
     },
     {
       "id": "OS017-L8-PROCESS-SOURCE_REF-CONFLICT",
@@ -4262,7 +4702,14 @@
         "revision": "ec98a025d166a5e9f7811233498b7e7e31dbb145",
         "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146"
       },
-      "execution_state": "not_executed"
+      "execution_state": "not_executed",
+      "condition": "workflow_material_violation",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_conflict"
+        ]
+      }
     },
     {
       "id": "OS017-L8-PROCESS-REVISION-UNKNOWN",
@@ -4298,7 +4745,14 @@
         "revision": "ec98a025d166a5e9f7811233498b7e7e31dbb145",
         "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146"
       },
-      "execution_state": "not_executed"
+      "execution_state": "not_executed",
+      "condition": "workflow_material_unknown",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_unresolved"
+        ]
+      }
     },
     {
       "id": "OS017-L8-PROCESS-REVISION-CONFLICT",
@@ -4334,7 +4788,14 @@
         "revision": "ec98a025d166a5e9f7811233498b7e7e31dbb145",
         "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146"
       },
-      "execution_state": "not_executed"
+      "execution_state": "not_executed",
+      "condition": "workflow_material_violation",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_conflict"
+        ]
+      }
     },
     {
       "id": "OS017-L8-PROCESS-PARTS-UNKNOWN",
@@ -4370,7 +4831,14 @@
         "revision": "ec98a025d166a5e9f7811233498b7e7e31dbb145",
         "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146"
       },
-      "execution_state": "not_executed"
+      "execution_state": "not_executed",
+      "condition": "workflow_material_unknown",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_unresolved"
+        ]
+      }
     },
     {
       "id": "OS017-L8-PROCESS-PARTS-CONFLICT",
@@ -4406,7 +4874,16 @@
         "revision": "ec98a025d166a5e9f7811233498b7e7e31dbb145",
         "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146"
       },
-      "execution_state": "not_executed"
+      "execution_state": "not_executed",
+      "condition": "workflow_material_violation",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_conflict",
+          "undefined_process_component",
+          "undefined_process_component"
+        ]
+      }
     },
     {
       "id": "OS017-L8-PROCESS-ALLOWED_EDGES-UNKNOWN",
@@ -4442,7 +4919,14 @@
         "revision": "ec98a025d166a5e9f7811233498b7e7e31dbb145",
         "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146"
       },
-      "execution_state": "not_executed"
+      "execution_state": "not_executed",
+      "condition": "workflow_material_unknown",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_unresolved"
+        ]
+      }
     },
     {
       "id": "OS017-L8-PROCESS-ALLOWED_EDGES-CONFLICT",
@@ -4478,7 +4962,15 @@
         "revision": "ec98a025d166a5e9f7811233498b7e7e31dbb145",
         "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146"
       },
-      "execution_state": "not_executed"
+      "execution_state": "not_executed",
+      "condition": "workflow_material_violation",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "process_order_conflict",
+          "source_conflict"
+        ]
+      }
     },
     {
       "id": "OS017-L8-PROCESS-OBLIGATIONS-UNKNOWN",
@@ -4514,7 +5006,14 @@
         "revision": "ec98a025d166a5e9f7811233498b7e7e31dbb145",
         "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146"
       },
-      "execution_state": "not_executed"
+      "execution_state": "not_executed",
+      "condition": "workflow_material_unknown",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_unresolved"
+        ]
+      }
     },
     {
       "id": "OS017-L8-PROCESS-OBLIGATIONS-CONFLICT",
@@ -4550,7 +5049,16 @@
         "revision": "ec98a025d166a5e9f7811233498b7e7e31dbb145",
         "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146"
       },
-      "execution_state": "not_executed"
+      "execution_state": "not_executed",
+      "condition": "workflow_material_violation",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "process_obligation_missing",
+          "process_obligation_missing",
+          "source_conflict"
+        ]
+      }
     },
     {
       "id": "OS017-L8-PROCESS-BACKFLOW_REF-UNKNOWN",
@@ -4586,7 +5094,14 @@
         "revision": "ec98a025d166a5e9f7811233498b7e7e31dbb145",
         "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146"
       },
-      "execution_state": "not_executed"
+      "execution_state": "not_executed",
+      "condition": "workflow_material_unknown",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_unresolved"
+        ]
+      }
     },
     {
       "id": "OS017-L8-PROCESS-BACKFLOW_REF-CONFLICT",
@@ -4622,7 +5137,14 @@
         "revision": "ec98a025d166a5e9f7811233498b7e7e31dbb145",
         "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146"
       },
-      "execution_state": "not_executed"
+      "execution_state": "not_executed",
+      "condition": "workflow_material_violation",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_conflict"
+        ]
+      }
     },
     {
       "id": "OS017-L8-TICKET-TICKET_REF-UNKNOWN",
@@ -4658,7 +5180,14 @@
         "revision": "ec98a025d166a5e9f7811233498b7e7e31dbb145",
         "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146"
       },
-      "execution_state": "not_executed"
+      "execution_state": "not_executed",
+      "condition": "workflow_material_unknown",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_unresolved"
+        ]
+      }
     },
     {
       "id": "OS017-L8-TICKET-TICKET_REF-CONFLICT",
@@ -4694,7 +5223,14 @@
         "revision": "ec98a025d166a5e9f7811233498b7e7e31dbb145",
         "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146"
       },
-      "execution_state": "not_executed"
+      "execution_state": "not_executed",
+      "condition": "workflow_material_violation",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_conflict"
+        ]
+      }
     },
     {
       "id": "OS017-L8-TICKET-TARGET-UNKNOWN",
@@ -4730,7 +5266,14 @@
         "revision": "ec98a025d166a5e9f7811233498b7e7e31dbb145",
         "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146"
       },
-      "execution_state": "not_executed"
+      "execution_state": "not_executed",
+      "condition": "workflow_material_unknown",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_unresolved"
+        ]
+      }
     },
     {
       "id": "OS017-L8-TICKET-TARGET-CONFLICT",
@@ -4766,7 +5309,14 @@
         "revision": "ec98a025d166a5e9f7811233498b7e7e31dbb145",
         "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146"
       },
-      "execution_state": "not_executed"
+      "execution_state": "not_executed",
+      "condition": "workflow_material_violation",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_conflict"
+        ]
+      }
     },
     {
       "id": "OS017-L8-TICKET-KIND-UNKNOWN",
@@ -4802,7 +5352,14 @@
         "revision": "ec98a025d166a5e9f7811233498b7e7e31dbb145",
         "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146"
       },
-      "execution_state": "not_executed"
+      "execution_state": "not_executed",
+      "condition": "workflow_material_unknown",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_unresolved"
+        ]
+      }
     },
     {
       "id": "OS017-L8-TICKET-KIND-CONFLICT",
@@ -4838,7 +5395,14 @@
         "revision": "ec98a025d166a5e9f7811233498b7e7e31dbb145",
         "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146"
       },
-      "execution_state": "not_executed"
+      "execution_state": "not_executed",
+      "condition": "workflow_material_violation",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_conflict"
+        ]
+      }
     },
     {
       "id": "OS017-L8-TICKET-PARENT_REVISION-UNKNOWN",
@@ -4874,7 +5438,14 @@
         "revision": "ec98a025d166a5e9f7811233498b7e7e31dbb145",
         "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146"
       },
-      "execution_state": "not_executed"
+      "execution_state": "not_executed",
+      "condition": "workflow_material_unknown",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_unresolved"
+        ]
+      }
     },
     {
       "id": "OS017-L8-TICKET-PARENT_REVISION-CONFLICT",
@@ -4910,7 +5481,14 @@
         "revision": "ec98a025d166a5e9f7811233498b7e7e31dbb145",
         "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146"
       },
-      "execution_state": "not_executed"
+      "execution_state": "not_executed",
+      "condition": "workflow_material_violation",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_conflict"
+        ]
+      }
     },
     {
       "id": "OS017-L8-TICKET-SCOPE-UNKNOWN",
@@ -4946,7 +5524,14 @@
         "revision": "ec98a025d166a5e9f7811233498b7e7e31dbb145",
         "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146"
       },
-      "execution_state": "not_executed"
+      "execution_state": "not_executed",
+      "condition": "workflow_material_unknown",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_unresolved"
+        ]
+      }
     },
     {
       "id": "OS017-L8-TICKET-SCOPE-CONFLICT",
@@ -4982,7 +5567,14 @@
         "revision": "ec98a025d166a5e9f7811233498b7e7e31dbb145",
         "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146"
       },
-      "execution_state": "not_executed"
+      "execution_state": "not_executed",
+      "condition": "workflow_material_violation",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_conflict"
+        ]
+      }
     },
     {
       "id": "OS017-L8-TICKET-DEPENDENCIES-UNKNOWN",
@@ -5018,7 +5610,14 @@
         "revision": "ec98a025d166a5e9f7811233498b7e7e31dbb145",
         "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146"
       },
-      "execution_state": "not_executed"
+      "execution_state": "not_executed",
+      "condition": "workflow_material_unknown",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_unresolved"
+        ]
+      }
     },
     {
       "id": "OS017-L8-TICKET-DEPENDENCIES-CONFLICT",
@@ -5054,7 +5653,14 @@
         "revision": "ec98a025d166a5e9f7811233498b7e7e31dbb145",
         "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146"
       },
-      "execution_state": "not_executed"
+      "execution_state": "not_executed",
+      "condition": "workflow_material_violation",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_conflict"
+        ]
+      }
     },
     {
       "id": "OS017-L8-TICKET-ACCEPTANCE-UNKNOWN",
@@ -5090,7 +5696,14 @@
         "revision": "ec98a025d166a5e9f7811233498b7e7e31dbb145",
         "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146"
       },
-      "execution_state": "not_executed"
+      "execution_state": "not_executed",
+      "condition": "workflow_material_unknown",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_unresolved"
+        ]
+      }
     },
     {
       "id": "OS017-L8-TICKET-ACCEPTANCE-CONFLICT",
@@ -5126,7 +5739,14 @@
         "revision": "ec98a025d166a5e9f7811233498b7e7e31dbb145",
         "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146"
       },
-      "execution_state": "not_executed"
+      "execution_state": "not_executed",
+      "condition": "workflow_material_violation",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_conflict"
+        ]
+      }
     },
     {
       "id": "OS017-L8-TICKET-BACKFLOW_REF-UNKNOWN",
@@ -5162,7 +5782,14 @@
         "revision": "ec98a025d166a5e9f7811233498b7e7e31dbb145",
         "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146"
       },
-      "execution_state": "not_executed"
+      "execution_state": "not_executed",
+      "condition": "workflow_material_unknown",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_unresolved"
+        ]
+      }
     },
     {
       "id": "OS017-L8-TICKET-BACKFLOW_REF-CONFLICT",
@@ -5198,7 +5825,14 @@
         "revision": "ec98a025d166a5e9f7811233498b7e7e31dbb145",
         "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146"
       },
-      "execution_state": "not_executed"
+      "execution_state": "not_executed",
+      "condition": "workflow_material_violation",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_conflict"
+        ]
+      }
     },
     {
       "id": "OS017-L8-EXPECTED-BINDING-PROJECT-UNKNOWN",
@@ -5234,7 +5868,14 @@
         "revision": "ec98a025d166a5e9f7811233498b7e7e31dbb145",
         "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146"
       },
-      "execution_state": "not_executed"
+      "execution_state": "not_executed",
+      "condition": "workflow_material_unknown",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_unresolved"
+        ]
+      }
     },
     {
       "id": "OS017-L8-EXPECTED-BINDING-REQUIREMENT_REVISION-UNKNOWN",
@@ -5272,7 +5913,14 @@
         "revision": "ec98a025d166a5e9f7811233498b7e7e31dbb145",
         "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146"
       },
-      "execution_state": "not_executed"
+      "execution_state": "not_executed",
+      "condition": "workflow_material_unknown",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_unresolved"
+        ]
+      }
     },
     {
       "id": "OS017-L8-EXPECTED-BINDING-SCOPE-UNKNOWN",
@@ -5310,7 +5958,14 @@
         "revision": "ec98a025d166a5e9f7811233498b7e7e31dbb145",
         "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146"
       },
-      "execution_state": "not_executed"
+      "execution_state": "not_executed",
+      "condition": "workflow_material_unknown",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_unresolved"
+        ]
+      }
     },
     {
       "id": "OS017-L8-EXPECTED-BINDING-PLAN_REVISION-UNKNOWN",
@@ -5346,7 +6001,14 @@
         "revision": "ec98a025d166a5e9f7811233498b7e7e31dbb145",
         "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146"
       },
-      "execution_state": "not_executed"
+      "execution_state": "not_executed",
+      "condition": "workflow_material_unknown",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_unresolved"
+        ]
+      }
     },
     {
       "id": "OS017-L8-EXPECTED-BINDING-CONTRACT_REVISION-UNKNOWN",
@@ -5383,7 +6045,14 @@
         "revision": "ec98a025d166a5e9f7811233498b7e7e31dbb145",
         "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146"
       },
-      "execution_state": "not_executed"
+      "execution_state": "not_executed",
+      "condition": "workflow_material_unknown",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_unresolved"
+        ]
+      }
     },
     {
       "id": "OS017-L8-EXPECTED-MANAGEMENT-PURPOSE_REF-UNKNOWN",
@@ -5419,7 +6088,14 @@
         "revision": "ec98a025d166a5e9f7811233498b7e7e31dbb145",
         "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146"
       },
-      "execution_state": "not_executed"
+      "execution_state": "not_executed",
+      "condition": "workflow_material_unknown",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_unresolved"
+        ]
+      }
     },
     {
       "id": "OS017-L8-EXPECTED-MANAGEMENT-REQUEST_REF-UNKNOWN",
@@ -5455,7 +6131,14 @@
         "revision": "ec98a025d166a5e9f7811233498b7e7e31dbb145",
         "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146"
       },
-      "execution_state": "not_executed"
+      "execution_state": "not_executed",
+      "condition": "workflow_material_unknown",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_unresolved"
+        ]
+      }
     },
     {
       "id": "OS017-L8-EXPECTED-MANAGEMENT-CONSTRAINT_REF-UNKNOWN",
@@ -5491,7 +6174,14 @@
         "revision": "ec98a025d166a5e9f7811233498b7e7e31dbb145",
         "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146"
       },
-      "execution_state": "not_executed"
+      "execution_state": "not_executed",
+      "condition": "workflow_material_unknown",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_unresolved"
+        ]
+      }
     },
     {
       "id": "OS017-L8-EXPECTED-MANAGEMENT-PERMISSION_REF-UNKNOWN",
@@ -5527,7 +6217,14 @@
         "revision": "ec98a025d166a5e9f7811233498b7e7e31dbb145",
         "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146"
       },
-      "execution_state": "not_executed"
+      "execution_state": "not_executed",
+      "condition": "workflow_material_unknown",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_unresolved"
+        ]
+      }
     },
     {
       "id": "OS017-L8-EXPECTED-MANAGEMENT-PRIORITY_REF-UNKNOWN",
@@ -5563,7 +6260,14 @@
         "revision": "ec98a025d166a5e9f7811233498b7e7e31dbb145",
         "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146"
       },
-      "execution_state": "not_executed"
+      "execution_state": "not_executed",
+      "condition": "workflow_material_unknown",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_unresolved"
+        ]
+      }
     },
     {
       "id": "OS017-L8-EXPECTED-MANAGEMENT-DEPENDENCY_REF-UNKNOWN",
@@ -5599,7 +6303,14 @@
         "revision": "ec98a025d166a5e9f7811233498b7e7e31dbb145",
         "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146"
       },
-      "execution_state": "not_executed"
+      "execution_state": "not_executed",
+      "condition": "workflow_material_unknown",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_unresolved"
+        ]
+      }
     },
     {
       "id": "OS017-L8-EXPECTED-MANAGEMENT-RESOURCE_REF-UNKNOWN",
@@ -5635,7 +6346,14 @@
         "revision": "ec98a025d166a5e9f7811233498b7e7e31dbb145",
         "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146"
       },
-      "execution_state": "not_executed"
+      "execution_state": "not_executed",
+      "condition": "workflow_material_unknown",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_unresolved"
+        ]
+      }
     },
     {
       "id": "OS017-L8-EXPECTED-MANAGEMENT-BUDGET_REF-UNKNOWN",
@@ -5671,7 +6389,14 @@
         "revision": "ec98a025d166a5e9f7811233498b7e7e31dbb145",
         "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146"
       },
-      "execution_state": "not_executed"
+      "execution_state": "not_executed",
+      "condition": "workflow_material_unknown",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_unresolved"
+        ]
+      }
     },
     {
       "id": "OS017-L8-EXPECTED-MANAGEMENT-DEADLINE_REF-UNKNOWN",
@@ -5707,7 +6432,14 @@
         "revision": "ec98a025d166a5e9f7811233498b7e7e31dbb145",
         "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146"
       },
-      "execution_state": "not_executed"
+      "execution_state": "not_executed",
+      "condition": "workflow_material_unknown",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_unresolved"
+        ]
+      }
     },
     {
       "id": "OS017-L8-EXPECTED-MANAGEMENT-STOP_CONDITION_REF-UNKNOWN",
@@ -5743,7 +6475,14 @@
         "revision": "ec98a025d166a5e9f7811233498b7e7e31dbb145",
         "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146"
       },
-      "execution_state": "not_executed"
+      "execution_state": "not_executed",
+      "condition": "workflow_material_unknown",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_unresolved"
+        ]
+      }
     },
     {
       "id": "OS017-L8-EXPECTED-MANAGEMENT-HARNESS_VERSION-UNKNOWN",
@@ -5779,7 +6518,14 @@
         "revision": "ec98a025d166a5e9f7811233498b7e7e31dbb145",
         "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146"
       },
-      "execution_state": "not_executed"
+      "execution_state": "not_executed",
+      "condition": "workflow_material_unknown",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_unresolved"
+        ]
+      }
     },
     {
       "id": "OS017-L8-EXPECTED-MANAGEMENT-CONNECTION_REF-UNKNOWN",
@@ -5815,7 +6561,14 @@
         "revision": "ec98a025d166a5e9f7811233498b7e7e31dbb145",
         "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146"
       },
-      "execution_state": "not_executed"
+      "execution_state": "not_executed",
+      "condition": "workflow_material_unknown",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_unresolved"
+        ]
+      }
     },
     {
       "id": "OS017-L8-EXPECTED-DEPENDENCY-STATE-UNKNOWN",
@@ -5851,7 +6604,14 @@
         "revision": "ec98a025d166a5e9f7811233498b7e7e31dbb145",
         "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146"
       },
-      "execution_state": "not_executed"
+      "execution_state": "not_executed",
+      "condition": "workflow_material_unknown",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_unresolved"
+        ]
+      }
     },
     {
       "id": "OS017-L8-EXPECTED-DEPENDENCY-SOURCE_REF-UNKNOWN",
@@ -5887,7 +6647,14 @@
         "revision": "ec98a025d166a5e9f7811233498b7e7e31dbb145",
         "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146"
       },
-      "execution_state": "not_executed"
+      "execution_state": "not_executed",
+      "condition": "workflow_material_unknown",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_unresolved"
+        ]
+      }
     },
     {
       "id": "OS017-L8-EXPECTED-DEPENDENCY-REQUIREMENT_REVISION-UNKNOWN",
@@ -5923,7 +6690,14 @@
         "revision": "ec98a025d166a5e9f7811233498b7e7e31dbb145",
         "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146"
       },
-      "execution_state": "not_executed"
+      "execution_state": "not_executed",
+      "condition": "workflow_material_unknown",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_unresolved"
+        ]
+      }
     },
     {
       "id": "OS017-L8-EXPECTED-DEPENDENCY-SCOPE-UNKNOWN",
@@ -5959,7 +6733,14 @@
         "revision": "ec98a025d166a5e9f7811233498b7e7e31dbb145",
         "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146"
       },
-      "execution_state": "not_executed"
+      "execution_state": "not_executed",
+      "condition": "workflow_material_unknown",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_unresolved"
+        ]
+      }
     },
     {
       "id": "OS017-L8-PROPOSAL-SOURCE_REF-UNKNOWN",
@@ -5995,7 +6776,14 @@
         "revision": "ec98a025d166a5e9f7811233498b7e7e31dbb145",
         "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146"
       },
-      "execution_state": "not_executed"
+      "execution_state": "not_executed",
+      "condition": "workflow_material_unknown",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_unresolved"
+        ]
+      }
     },
     {
       "id": "OS017-L8-PROPOSAL-REQUIREMENT_REVISION-UNKNOWN",
@@ -6031,7 +6819,14 @@
         "revision": "ec98a025d166a5e9f7811233498b7e7e31dbb145",
         "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146"
       },
-      "execution_state": "not_executed"
+      "execution_state": "not_executed",
+      "condition": "workflow_material_unknown",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_unresolved"
+        ]
+      }
     },
     {
       "id": "OS017-L8-PROPOSAL-SCOPE-UNKNOWN",
@@ -6067,7 +6862,14 @@
         "revision": "ec98a025d166a5e9f7811233498b7e7e31dbb145",
         "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146"
       },
-      "execution_state": "not_executed"
+      "execution_state": "not_executed",
+      "condition": "workflow_material_unknown",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_unresolved"
+        ]
+      }
     },
     {
       "id": "OS017-L8-PROPOSAL-REASON_REF-UNKNOWN",
@@ -6103,7 +6905,14 @@
         "revision": "ec98a025d166a5e9f7811233498b7e7e31dbb145",
         "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146"
       },
-      "execution_state": "not_executed"
+      "execution_state": "not_executed",
+      "condition": "workflow_material_unknown",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_unresolved"
+        ]
+      }
     },
     {
       "id": "OS017-L8-PROPOSAL-PARTS-UNKNOWN",
@@ -6139,7 +6948,14 @@
         "revision": "ec98a025d166a5e9f7811233498b7e7e31dbb145",
         "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146"
       },
-      "execution_state": "not_executed"
+      "execution_state": "not_executed",
+      "condition": "workflow_material_unknown",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_unresolved"
+        ]
+      }
     },
     {
       "id": "OS017-L8-PROPOSAL-OBLIGATIONS-UNKNOWN",
@@ -6175,7 +6991,14 @@
         "revision": "ec98a025d166a5e9f7811233498b7e7e31dbb145",
         "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146"
       },
-      "execution_state": "not_executed"
+      "execution_state": "not_executed",
+      "condition": "workflow_material_unknown",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_unresolved"
+        ]
+      }
     },
     {
       "id": "OS017-L8-PROPOSAL-OUTSIDE-PARTS",
@@ -6211,7 +7034,16 @@
         "revision": "ec98a025d166a5e9f7811233498b7e7e31dbb145",
         "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146"
       },
-      "execution_state": "not_executed"
+      "execution_state": "not_executed",
+      "condition": "workflow_material_violation",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "process_order_conflict",
+          "source_conflict",
+          "undefined_process_component"
+        ]
+      }
     },
     {
       "id": "OS017-L8-PROPOSAL-ORDER-REVERSED",
@@ -6247,7 +7079,15 @@
         "revision": "ec98a025d166a5e9f7811233498b7e7e31dbb145",
         "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146"
       },
-      "execution_state": "not_executed"
+      "execution_state": "not_executed",
+      "condition": "workflow_material_violation",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "process_order_conflict",
+          "source_conflict"
+        ]
+      }
     },
     {
       "id": "OS017-L8-PROPOSAL-OBLIGATION-LOST",
@@ -6283,7 +7123,15 @@
         "revision": "ec98a025d166a5e9f7811233498b7e7e31dbb145",
         "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146"
       },
-      "execution_state": "not_executed"
+      "execution_state": "not_executed",
+      "condition": "workflow_material_violation",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "process_obligation_missing",
+          "source_conflict"
+        ]
+      }
     },
     {
       "id": "OS017-L8-PROPOSAL-MISSING",
@@ -6319,7 +7167,14 @@
         "revision": "ec98a025d166a5e9f7811233498b7e7e31dbb145",
         "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146"
       },
-      "execution_state": "not_executed"
+      "execution_state": "not_executed",
+      "condition": "workflow_material_unknown",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "proposal_record_unresolved"
+        ]
+      }
     },
     {
       "id": "OS017-L8-PROPOSAL-SELECTION-UNKNOWN",
@@ -6355,7 +7210,14 @@
         "revision": "ec98a025d166a5e9f7811233498b7e7e31dbb145",
         "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146"
       },
-      "execution_state": "not_executed"
+      "execution_state": "not_executed",
+      "condition": "workflow_material_unknown",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "proposal_selection_unresolved"
+        ]
+      }
     },
     {
       "id": "OS017-L8-PROPOSAL-SELECTION-SILENT-DOWNGRADE",
@@ -6391,7 +7253,14 @@
         "revision": "ec98a025d166a5e9f7811233498b7e7e31dbb145",
         "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146"
       },
-      "execution_state": "not_executed"
+      "execution_state": "not_executed",
+      "condition": "workflow_material_violation",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_conflict"
+        ]
+      }
     },
     {
       "id": "OS017-L8-OPTIONAL-PROPOSAL-NOT-PROVIDED",
@@ -6427,7 +7296,12 @@
         "revision": "ec98a025d166a5e9f7811233498b7e7e31dbb145",
         "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146"
       },
-      "execution_state": "not_executed"
+      "execution_state": "not_executed",
+      "condition": "workflow_material_corresponding",
+      "selected_phase": "workflow",
+      "expected": {
+        "finding_codes": []
+      }
     },
     {
       "id": "OS017-L8-OPTIONAL-LEVEL-PROVIDED",
@@ -6463,7 +7337,12 @@
         "revision": "ec98a025d166a5e9f7811233498b7e7e31dbb145",
         "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146"
       },
-      "execution_state": "not_executed"
+      "execution_state": "not_executed",
+      "condition": "workflow_material_corresponding",
+      "selected_phase": "workflow",
+      "expected": {
+        "finding_codes": []
+      }
     },
     {
       "id": "OS017-L8-LEVEL-PROVIDED-WRONG-SCOPE",
@@ -6499,7 +7378,14 @@
         "revision": "ec98a025d166a5e9f7811233498b7e7e31dbb145",
         "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146"
       },
-      "execution_state": "not_executed"
+      "execution_state": "not_executed",
+      "condition": "workflow_material_violation",
+      "selected_phase": "workflow",
+      "expected": {
+        "finding_codes": [
+          "source_conflict"
+        ]
+      }
     },
     {
       "id": "OS017-L8-LEVEL-SELECTION-UNKNOWN",
@@ -6535,7 +7421,14 @@
         "revision": "ec98a025d166a5e9f7811233498b7e7e31dbb145",
         "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146"
       },
-      "execution_state": "not_executed"
+      "execution_state": "not_executed",
+      "condition": "workflow_material_unknown",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_unresolved"
+        ]
+      }
     },
     {
       "id": "OS017-L8-AUTHORITY-REVOKED",
@@ -6571,7 +7464,14 @@
         "revision": "ec98a025d166a5e9f7811233498b7e7e31dbb145",
         "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146"
       },
-      "execution_state": "not_executed"
+      "execution_state": "not_executed",
+      "condition": "workflow_material_violation",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "workflow_condition_rejected"
+        ]
+      }
     },
     {
       "id": "OS017-L8-AUTHORITY-STALE",
@@ -6607,7 +7507,14 @@
         "revision": "ec98a025d166a5e9f7811233498b7e7e31dbb145",
         "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146"
       },
-      "execution_state": "not_executed"
+      "execution_state": "not_executed",
+      "condition": "workflow_material_violation",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "workflow_condition_rejected"
+        ]
+      }
     },
     {
       "id": "OS017-L8-AUTHORITY-DENIED",
@@ -6643,7 +7550,14 @@
         "revision": "ec98a025d166a5e9f7811233498b7e7e31dbb145",
         "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146"
       },
-      "execution_state": "not_executed"
+      "execution_state": "not_executed",
+      "condition": "workflow_material_violation",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "workflow_condition_rejected"
+        ]
+      }
     },
     {
       "id": "OS017-L8-AUTHORITY-FAILED",
@@ -6679,7 +7593,14 @@
         "revision": "ec98a025d166a5e9f7811233498b7e7e31dbb145",
         "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146"
       },
-      "execution_state": "not_executed"
+      "execution_state": "not_executed",
+      "condition": "workflow_material_violation",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "workflow_condition_rejected"
+        ]
+      }
     },
     {
       "id": "OS017-L8-AUTHORITY-UNKNOWN",
@@ -6715,7 +7636,14 @@
         "revision": "ec98a025d166a5e9f7811233498b7e7e31dbb145",
         "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146"
       },
-      "execution_state": "not_executed"
+      "execution_state": "not_executed",
+      "condition": "workflow_material_unknown",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "workflow_condition_unresolved"
+        ]
+      }
     },
     {
       "id": "OS017-L8-RESOURCE-REVOKED",
@@ -6751,7 +7679,14 @@
         "revision": "ec98a025d166a5e9f7811233498b7e7e31dbb145",
         "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146"
       },
-      "execution_state": "not_executed"
+      "execution_state": "not_executed",
+      "condition": "workflow_material_violation",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "workflow_condition_rejected"
+        ]
+      }
     },
     {
       "id": "OS017-L8-RESOURCE-STALE",
@@ -6787,7 +7722,14 @@
         "revision": "ec98a025d166a5e9f7811233498b7e7e31dbb145",
         "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146"
       },
-      "execution_state": "not_executed"
+      "execution_state": "not_executed",
+      "condition": "workflow_material_violation",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "workflow_condition_rejected"
+        ]
+      }
     },
     {
       "id": "OS017-L8-RESOURCE-DENIED",
@@ -6823,7 +7765,14 @@
         "revision": "ec98a025d166a5e9f7811233498b7e7e31dbb145",
         "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146"
       },
-      "execution_state": "not_executed"
+      "execution_state": "not_executed",
+      "condition": "workflow_material_violation",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "workflow_condition_rejected"
+        ]
+      }
     },
     {
       "id": "OS017-L8-RESOURCE-FAILED",
@@ -6859,7 +7808,14 @@
         "revision": "ec98a025d166a5e9f7811233498b7e7e31dbb145",
         "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146"
       },
-      "execution_state": "not_executed"
+      "execution_state": "not_executed",
+      "condition": "workflow_material_violation",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "workflow_condition_rejected"
+        ]
+      }
     },
     {
       "id": "OS017-L8-RESOURCE-UNKNOWN",
@@ -6895,7 +7851,14 @@
         "revision": "ec98a025d166a5e9f7811233498b7e7e31dbb145",
         "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146"
       },
-      "execution_state": "not_executed"
+      "execution_state": "not_executed",
+      "condition": "workflow_material_unknown",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "workflow_condition_unresolved"
+        ]
+      }
     },
     {
       "id": "OS017-L8-DEPENDENCY-MISSING",
@@ -6931,7 +7894,15 @@
         "revision": "ec98a025d166a5e9f7811233498b7e7e31dbb145",
         "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146"
       },
-      "execution_state": "not_executed"
+      "execution_state": "not_executed",
+      "condition": "workflow_material_violation",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "dependency_not_resolved",
+          "source_conflict"
+        ]
+      }
     },
     {
       "id": "OS017-L8-DEPENDENCY-FAILED",
@@ -6967,7 +7938,15 @@
         "revision": "ec98a025d166a5e9f7811233498b7e7e31dbb145",
         "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146"
       },
-      "execution_state": "not_executed"
+      "execution_state": "not_executed",
+      "condition": "workflow_material_violation",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "dependency_not_resolved",
+          "source_conflict"
+        ]
+      }
     },
     {
       "id": "OS017-L8-DEPENDENCY-CONFLICT",
@@ -7003,7 +7982,15 @@
         "revision": "ec98a025d166a5e9f7811233498b7e7e31dbb145",
         "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146"
       },
-      "execution_state": "not_executed"
+      "execution_state": "not_executed",
+      "condition": "workflow_material_violation",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "dependency_not_resolved",
+          "source_conflict"
+        ]
+      }
     },
     {
       "id": "OS017-L8-DEPENDENCY-STALE",
@@ -7039,7 +8026,15 @@
         "revision": "ec98a025d166a5e9f7811233498b7e7e31dbb145",
         "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146"
       },
-      "execution_state": "not_executed"
+      "execution_state": "not_executed",
+      "condition": "workflow_material_violation",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "dependency_not_resolved",
+          "source_conflict"
+        ]
+      }
     },
     {
       "id": "OS017-L8-DEPENDENCY-ISSUE_CLOSED",
@@ -7075,7 +8070,15 @@
         "revision": "ec98a025d166a5e9f7811233498b7e7e31dbb145",
         "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146"
       },
-      "execution_state": "not_executed"
+      "execution_state": "not_executed",
+      "condition": "workflow_material_violation",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "dependency_not_resolved",
+          "source_conflict"
+        ]
+      }
     },
     {
       "id": "OS017-L8-DEPENDENCY-UNKNOWN",
@@ -7111,7 +8114,15 @@
         "revision": "ec98a025d166a5e9f7811233498b7e7e31dbb145",
         "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146"
       },
-      "execution_state": "not_executed"
+      "execution_state": "not_executed",
+      "condition": "workflow_material_unknown",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "dependency_unresolved",
+          "source_unresolved"
+        ]
+      }
     },
     {
       "id": "OS017-L8-QUANTITY-BUDGET_LIMIT-NONE",
@@ -7147,7 +8158,14 @@
         "revision": "ec98a025d166a5e9f7811233498b7e7e31dbb145",
         "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146"
       },
-      "execution_state": "not_executed"
+      "execution_state": "not_executed",
+      "condition": "workflow_material_unknown",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "quantity_unresolved"
+        ]
+      }
     },
     {
       "id": "OS017-L8-QUANTITY-BUDGET_LIMIT--1",
@@ -7183,7 +8201,14 @@
         "revision": "ec98a025d166a5e9f7811233498b7e7e31dbb145",
         "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146"
       },
-      "execution_state": "not_executed"
+      "execution_state": "not_executed",
+      "condition": "workflow_material_unknown",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "quantity_unresolved"
+        ]
+      }
     },
     {
       "id": "OS017-L8-QUANTITY-BUDGET_LIMIT-UNKNOWN",
@@ -7219,7 +8244,14 @@
         "revision": "ec98a025d166a5e9f7811233498b7e7e31dbb145",
         "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146"
       },
-      "execution_state": "not_executed"
+      "execution_state": "not_executed",
+      "condition": "workflow_material_unknown",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "quantity_unresolved"
+        ]
+      }
     },
     {
       "id": "OS017-L8-QUANTITY-DEADLINE-NONE",
@@ -7255,7 +8287,14 @@
         "revision": "ec98a025d166a5e9f7811233498b7e7e31dbb145",
         "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146"
       },
-      "execution_state": "not_executed"
+      "execution_state": "not_executed",
+      "condition": "workflow_material_unknown",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "quantity_unresolved"
+        ]
+      }
     },
     {
       "id": "OS017-L8-QUANTITY-DEADLINE--1",
@@ -7291,7 +8330,14 @@
         "revision": "ec98a025d166a5e9f7811233498b7e7e31dbb145",
         "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146"
       },
-      "execution_state": "not_executed"
+      "execution_state": "not_executed",
+      "condition": "workflow_material_unknown",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "quantity_unresolved"
+        ]
+      }
     },
     {
       "id": "OS017-L8-QUANTITY-DEADLINE-UNKNOWN",
@@ -7327,7 +8373,14 @@
         "revision": "ec98a025d166a5e9f7811233498b7e7e31dbb145",
         "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146"
       },
-      "execution_state": "not_executed"
+      "execution_state": "not_executed",
+      "condition": "workflow_material_unknown",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "quantity_unresolved"
+        ]
+      }
     },
     {
       "id": "OS017-L8-QUANTITY-COST_SPENT-NONE",
@@ -7363,7 +8416,14 @@
         "revision": "ec98a025d166a5e9f7811233498b7e7e31dbb145",
         "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146"
       },
-      "execution_state": "not_executed"
+      "execution_state": "not_executed",
+      "condition": "workflow_material_unknown",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "quantity_unresolved"
+        ]
+      }
     },
     {
       "id": "OS017-L8-QUANTITY-COST_SPENT--1",
@@ -7399,7 +8459,14 @@
         "revision": "ec98a025d166a5e9f7811233498b7e7e31dbb145",
         "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146"
       },
-      "execution_state": "not_executed"
+      "execution_state": "not_executed",
+      "condition": "workflow_material_unknown",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "quantity_unresolved"
+        ]
+      }
     },
     {
       "id": "OS017-L8-QUANTITY-COST_SPENT-UNKNOWN",
@@ -7435,7 +8502,14 @@
         "revision": "ec98a025d166a5e9f7811233498b7e7e31dbb145",
         "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146"
       },
-      "execution_state": "not_executed"
+      "execution_state": "not_executed",
+      "condition": "workflow_material_unknown",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "quantity_unresolved"
+        ]
+      }
     },
     {
       "id": "OS017-L8-QUANTITY-FAILURES-NONE",
@@ -7471,7 +8545,14 @@
         "revision": "ec98a025d166a5e9f7811233498b7e7e31dbb145",
         "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146"
       },
-      "execution_state": "not_executed"
+      "execution_state": "not_executed",
+      "condition": "workflow_material_unknown",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "quantity_unresolved"
+        ]
+      }
     },
     {
       "id": "OS017-L8-QUANTITY-FAILURES--1",
@@ -7507,7 +8588,14 @@
         "revision": "ec98a025d166a5e9f7811233498b7e7e31dbb145",
         "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146"
       },
-      "execution_state": "not_executed"
+      "execution_state": "not_executed",
+      "condition": "workflow_material_unknown",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "quantity_unresolved"
+        ]
+      }
     },
     {
       "id": "OS017-L8-QUANTITY-FAILURES-UNKNOWN",
@@ -7543,7 +8631,14 @@
         "revision": "ec98a025d166a5e9f7811233498b7e7e31dbb145",
         "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146"
       },
-      "execution_state": "not_executed"
+      "execution_state": "not_executed",
+      "condition": "workflow_material_unknown",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "quantity_unresolved"
+        ]
+      }
     },
     {
       "id": "OS017-L8-QUANTITY-NOW-NONE",
@@ -7579,7 +8674,14 @@
         "revision": "ec98a025d166a5e9f7811233498b7e7e31dbb145",
         "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146"
       },
-      "execution_state": "not_executed"
+      "execution_state": "not_executed",
+      "condition": "workflow_material_unknown",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "quantity_unresolved"
+        ]
+      }
     },
     {
       "id": "OS017-L8-QUANTITY-NOW--1",
@@ -7615,7 +8717,14 @@
         "revision": "ec98a025d166a5e9f7811233498b7e7e31dbb145",
         "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146"
       },
-      "execution_state": "not_executed"
+      "execution_state": "not_executed",
+      "condition": "workflow_material_unknown",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "quantity_unresolved"
+        ]
+      }
     },
     {
       "id": "OS017-L8-QUANTITY-NOW-UNKNOWN",
@@ -7651,7 +8760,14 @@
         "revision": "ec98a025d166a5e9f7811233498b7e7e31dbb145",
         "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146"
       },
-      "execution_state": "not_executed"
+      "execution_state": "not_executed",
+      "condition": "workflow_material_unknown",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "quantity_unresolved"
+        ]
+      }
     },
     {
       "id": "OS017-L8-BUDGET-EXHAUSTED",
@@ -7687,7 +8803,14 @@
         "revision": "ec98a025d166a5e9f7811233498b7e7e31dbb145",
         "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146"
       },
-      "execution_state": "not_executed"
+      "execution_state": "not_executed",
+      "condition": "workflow_material_violation",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "budget_exhausted"
+        ]
+      }
     },
     {
       "id": "OS017-L8-DEADLINE-REACHED",
@@ -7723,7 +8846,14 @@
         "revision": "ec98a025d166a5e9f7811233498b7e7e31dbb145",
         "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146"
       },
-      "execution_state": "not_executed"
+      "execution_state": "not_executed",
+      "condition": "workflow_material_violation",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "deadline_reached"
+        ]
+      }
     },
     {
       "id": "OS017-L8-BACKFLOW-REQUIREMENT_REVISION-CONFLICT",
@@ -7759,7 +8889,14 @@
         "revision": "ec98a025d166a5e9f7811233498b7e7e31dbb145",
         "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146"
       },
-      "execution_state": "not_executed"
+      "execution_state": "not_executed",
+      "condition": "workflow_material_violation",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_conflict"
+        ]
+      }
     },
     {
       "id": "OS017-L8-BACKFLOW-REQUIREMENT_REVISION-UNKNOWN",
@@ -7795,7 +8932,14 @@
         "revision": "ec98a025d166a5e9f7811233498b7e7e31dbb145",
         "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146"
       },
-      "execution_state": "not_executed"
+      "execution_state": "not_executed",
+      "condition": "workflow_material_unknown",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_unresolved"
+        ]
+      }
     },
     {
       "id": "OS017-L8-BACKFLOW-SCOPE-CONFLICT",
@@ -7831,7 +8975,14 @@
         "revision": "ec98a025d166a5e9f7811233498b7e7e31dbb145",
         "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146"
       },
-      "execution_state": "not_executed"
+      "execution_state": "not_executed",
+      "condition": "workflow_material_violation",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_conflict"
+        ]
+      }
     },
     {
       "id": "OS017-L8-BACKFLOW-SCOPE-UNKNOWN",
@@ -7867,7 +9018,14 @@
         "revision": "ec98a025d166a5e9f7811233498b7e7e31dbb145",
         "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146"
       },
-      "execution_state": "not_executed"
+      "execution_state": "not_executed",
+      "condition": "workflow_material_unknown",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_unresolved"
+        ]
+      }
     },
     {
       "id": "OS017-L8-BACKFLOW-TICKET_REF-CONFLICT",
@@ -7903,7 +9061,14 @@
         "revision": "ec98a025d166a5e9f7811233498b7e7e31dbb145",
         "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146"
       },
-      "execution_state": "not_executed"
+      "execution_state": "not_executed",
+      "condition": "workflow_material_violation",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_conflict"
+        ]
+      }
     },
     {
       "id": "OS017-L8-BACKFLOW-TICKET_REF-UNKNOWN",
@@ -7939,7 +9104,14 @@
         "revision": "ec98a025d166a5e9f7811233498b7e7e31dbb145",
         "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146"
       },
-      "execution_state": "not_executed"
+      "execution_state": "not_executed",
+      "condition": "workflow_material_unknown",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_unresolved"
+        ]
+      }
     },
     {
       "id": "OS017-L8-BACKFLOW-BACKFLOW_REF-CONFLICT",
@@ -7975,7 +9147,14 @@
         "revision": "ec98a025d166a5e9f7811233498b7e7e31dbb145",
         "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146"
       },
-      "execution_state": "not_executed"
+      "execution_state": "not_executed",
+      "condition": "workflow_material_violation",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_conflict"
+        ]
+      }
     },
     {
       "id": "OS017-L8-BACKFLOW-BACKFLOW_REF-UNKNOWN",
@@ -8011,7 +9190,14 @@
         "revision": "ec98a025d166a5e9f7811233498b7e7e31dbb145",
         "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146"
       },
-      "execution_state": "not_executed"
+      "execution_state": "not_executed",
+      "condition": "workflow_material_unknown",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_unresolved"
+        ]
+      }
     },
     {
       "id": "OS017-L8-BACKFLOW-UNKNOWN",
@@ -8047,7 +9233,12 @@
         "revision": "ec98a025d166a5e9f7811233498b7e7e31dbb145",
         "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146"
       },
-      "execution_state": "not_executed"
+      "execution_state": "not_executed",
+      "condition": "workflow_material_corresponding",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": []
+      }
     },
     {
       "id": "OS017-L8-BACKFLOW-CONFLICT",
@@ -8083,7 +9274,12 @@
         "revision": "ec98a025d166a5e9f7811233498b7e7e31dbb145",
         "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146"
       },
-      "execution_state": "not_executed"
+      "execution_state": "not_executed",
+      "condition": "workflow_material_corresponding",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": []
+      }
     },
     {
       "id": "OS017-L8-BACKFLOW-SCOPE_VIOLATION",
@@ -8119,7 +9315,12 @@
         "revision": "ec98a025d166a5e9f7811233498b7e7e31dbb145",
         "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146"
       },
-      "execution_state": "not_executed"
+      "execution_state": "not_executed",
+      "condition": "workflow_material_corresponding",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": []
+      }
     },
     {
       "id": "OS017-L8-BACKFLOW-UNRESOLVED_DEPENDENCY",
@@ -8155,7 +9356,12 @@
         "revision": "ec98a025d166a5e9f7811233498b7e7e31dbb145",
         "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146"
       },
-      "execution_state": "not_executed"
+      "execution_state": "not_executed",
+      "condition": "workflow_material_corresponding",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": []
+      }
     },
     {
       "id": "OS017-L8-BACKFLOW-RESULT-MISSING",
@@ -8191,7 +9397,14 @@
         "revision": "ec98a025d166a5e9f7811233498b7e7e31dbb145",
         "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146"
       },
-      "execution_state": "not_executed"
+      "execution_state": "not_executed",
+      "condition": "workflow_material_unknown",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "backflow_result_unresolved"
+        ]
+      }
     },
     {
       "id": "OS017-L8-RESUME-REQUIREMENT_REVISION-UNKNOWN",
@@ -8227,7 +9440,14 @@
         "revision": "ec98a025d166a5e9f7811233498b7e7e31dbb145",
         "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146"
       },
-      "execution_state": "not_executed"
+      "execution_state": "not_executed",
+      "condition": "workflow_material_unknown",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_unresolved"
+        ]
+      }
     },
     {
       "id": "OS017-L8-RESUME-REQUIREMENT_REVISION-CONFLICT",
@@ -8263,7 +9483,14 @@
         "revision": "ec98a025d166a5e9f7811233498b7e7e31dbb145",
         "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146"
       },
-      "execution_state": "not_executed"
+      "execution_state": "not_executed",
+      "condition": "workflow_material_violation",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_conflict"
+        ]
+      }
     },
     {
       "id": "OS017-L8-RESUME-SCOPE-UNKNOWN",
@@ -8299,7 +9526,14 @@
         "revision": "ec98a025d166a5e9f7811233498b7e7e31dbb145",
         "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146"
       },
-      "execution_state": "not_executed"
+      "execution_state": "not_executed",
+      "condition": "workflow_material_unknown",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_unresolved"
+        ]
+      }
     },
     {
       "id": "OS017-L8-RESUME-SCOPE-CONFLICT",
@@ -8335,7 +9569,14 @@
         "revision": "ec98a025d166a5e9f7811233498b7e7e31dbb145",
         "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146"
       },
-      "execution_state": "not_executed"
+      "execution_state": "not_executed",
+      "condition": "workflow_material_violation",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_conflict"
+        ]
+      }
     },
     {
       "id": "OS017-L8-RESUME-STOP_REASON_REF-UNKNOWN",
@@ -8371,7 +9612,15 @@
         "revision": "ec98a025d166a5e9f7811233498b7e7e31dbb145",
         "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146"
       },
-      "execution_state": "not_executed"
+      "execution_state": "not_executed",
+      "condition": "workflow_material_unknown",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_unresolved",
+          "stop_reason_unresolved"
+        ]
+      }
     },
     {
       "id": "OS017-L8-RESUME-STOP_REASON_REF-CONFLICT",
@@ -8407,7 +9656,14 @@
         "revision": "ec98a025d166a5e9f7811233498b7e7e31dbb145",
         "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146"
       },
-      "execution_state": "not_executed"
+      "execution_state": "not_executed",
+      "condition": "workflow_material_violation",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_conflict"
+        ]
+      }
     },
     {
       "id": "OS017-L8-RESUME-BUDGET_LIMIT-UNKNOWN",
@@ -8443,7 +9699,14 @@
         "revision": "ec98a025d166a5e9f7811233498b7e7e31dbb145",
         "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146"
       },
-      "execution_state": "not_executed"
+      "execution_state": "not_executed",
+      "condition": "workflow_material_unknown",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "quantity_unresolved"
+        ]
+      }
     },
     {
       "id": "OS017-L8-RESUME-BUDGET_LIMIT-RESET",
@@ -8479,7 +9742,14 @@
         "revision": "ec98a025d166a5e9f7811233498b7e7e31dbb145",
         "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146"
       },
-      "execution_state": "not_executed"
+      "execution_state": "not_executed",
+      "condition": "workflow_material_violation",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "cumulative_constraint_reset"
+        ]
+      }
     },
     {
       "id": "OS017-L8-RESUME-DEADLINE-UNKNOWN",
@@ -8515,7 +9785,14 @@
         "revision": "ec98a025d166a5e9f7811233498b7e7e31dbb145",
         "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146"
       },
-      "execution_state": "not_executed"
+      "execution_state": "not_executed",
+      "condition": "workflow_material_unknown",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "quantity_unresolved"
+        ]
+      }
     },
     {
       "id": "OS017-L8-RESUME-DEADLINE-RESET",
@@ -8551,7 +9828,14 @@
         "revision": "ec98a025d166a5e9f7811233498b7e7e31dbb145",
         "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146"
       },
-      "execution_state": "not_executed"
+      "execution_state": "not_executed",
+      "condition": "workflow_material_violation",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "cumulative_constraint_reset"
+        ]
+      }
     },
     {
       "id": "OS017-L8-RESUME-COST_SPENT-UNKNOWN",
@@ -8587,7 +9871,14 @@
         "revision": "ec98a025d166a5e9f7811233498b7e7e31dbb145",
         "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146"
       },
-      "execution_state": "not_executed"
+      "execution_state": "not_executed",
+      "condition": "workflow_material_unknown",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "quantity_unresolved"
+        ]
+      }
     },
     {
       "id": "OS017-L8-RESUME-COST_SPENT-RESET",
@@ -8623,7 +9914,14 @@
         "revision": "ec98a025d166a5e9f7811233498b7e7e31dbb145",
         "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146"
       },
-      "execution_state": "not_executed"
+      "execution_state": "not_executed",
+      "condition": "workflow_material_violation",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "cumulative_constraint_reset"
+        ]
+      }
     },
     {
       "id": "OS017-L8-RESUME-FAILURES-UNKNOWN",
@@ -8659,7 +9957,14 @@
         "revision": "ec98a025d166a5e9f7811233498b7e7e31dbb145",
         "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146"
       },
-      "execution_state": "not_executed"
+      "execution_state": "not_executed",
+      "condition": "workflow_material_unknown",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "quantity_unresolved"
+        ]
+      }
     },
     {
       "id": "OS017-L8-RESUME-FAILURES-RESET",
@@ -8695,7 +10000,14 @@
         "revision": "ec98a025d166a5e9f7811233498b7e7e31dbb145",
         "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146"
       },
-      "execution_state": "not_executed"
+      "execution_state": "not_executed",
+      "condition": "workflow_material_violation",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "cumulative_constraint_reset"
+        ]
+      }
     },
     {
       "id": "OS017-L8-RESUME-OUTSTANDING-LOST",
@@ -8731,7 +10043,14 @@
         "revision": "ec98a025d166a5e9f7811233498b7e7e31dbb145",
         "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146"
       },
-      "execution_state": "not_executed"
+      "execution_state": "not_executed",
+      "condition": "workflow_material_violation",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "outstanding_obligation_lost"
+        ]
+      }
     },
     {
       "id": "OS017-L8-RESUME-OUTSTANDING-UNKNOWN",
@@ -8767,7 +10086,14 @@
         "revision": "ec98a025d166a5e9f7811233498b7e7e31dbb145",
         "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146"
       },
-      "execution_state": "not_executed"
+      "execution_state": "not_executed",
+      "condition": "workflow_material_unknown",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_unresolved"
+        ]
+      }
     },
     {
       "id": "OS017-L8-RESUME-MEANING-SELF-CONFIRMED",
@@ -8803,7 +10129,14 @@
         "revision": "ec98a025d166a5e9f7811233498b7e7e31dbb145",
         "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146"
       },
-      "execution_state": "not_executed"
+      "execution_state": "not_executed",
+      "condition": "workflow_material_violation",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "meaning_change_self_confirmed"
+        ]
+      }
     },
     {
       "id": "OS017-L8-RESUME-MEANING-CONFIRMATION-UNKNOWN",
@@ -8839,7 +10172,14 @@
         "revision": "ec98a025d166a5e9f7811233498b7e7e31dbb145",
         "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146"
       },
-      "execution_state": "not_executed"
+      "execution_state": "not_executed",
+      "condition": "workflow_material_unknown",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_unresolved"
+        ]
+      }
     },
     {
       "id": "OS017-L8-COMPLETION-CLAIM-TRUE",
@@ -8875,7 +10215,14 @@
         "revision": "ec98a025d166a5e9f7811233498b7e7e31dbb145",
         "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146"
       },
-      "execution_state": "not_executed"
+      "execution_state": "not_executed",
+      "condition": "workflow_material_violation",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "completion_claim_unproven"
+        ]
+      }
     },
     {
       "id": "OS017-L8-COMPLETION-CLAIM-NONE",
@@ -8911,7 +10258,14 @@
         "revision": "ec98a025d166a5e9f7811233498b7e7e31dbb145",
         "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146"
       },
-      "execution_state": "not_executed"
+      "execution_state": "not_executed",
+      "condition": "workflow_material_unknown",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "completion_claim_unresolved"
+        ]
+      }
     },
     {
       "id": "OS017-L8-PHASE-UNKNOWN",
@@ -8947,7 +10301,14 @@
         "revision": "ec98a025d166a5e9f7811233498b7e7e31dbb145",
         "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146"
       },
-      "execution_state": "not_executed"
+      "execution_state": "not_executed",
+      "condition": "workflow_material_unknown",
+      "selected_phase": null,
+      "expected": {
+        "finding_codes": [
+          "phase_unresolved"
+        ]
+      }
     },
     {
       "id": "OS017-L8-CANDIDATE-NO-FUTURE-GATE",
@@ -8983,7 +10344,12 @@
         "revision": "ec98a025d166a5e9f7811233498b7e7e31dbb145",
         "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146"
       },
-      "execution_state": "not_executed"
+      "execution_state": "not_executed",
+      "condition": "workflow_material_corresponding",
+      "selected_phase": "candidate",
+      "expected": {
+        "finding_codes": []
+      }
     },
     {
       "id": "OS017-L8-PROJECTION-DONE-NO-ACTUAL-COMPLETION",
@@ -9019,7 +10385,12 @@
         "revision": "ec98a025d166a5e9f7811233498b7e7e31dbb145",
         "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146"
       },
-      "execution_state": "not_executed"
+      "execution_state": "not_executed",
+      "condition": "workflow_material_corresponding",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": []
+      }
     },
     {
       "id": "OS017-L8-PRIORITY-REBIND-NO-TICKET-REVISION",
@@ -9056,7 +10427,12 @@
         "revision": "ec98a025d166a5e9f7811233498b7e7e31dbb145",
         "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146"
       },
-      "execution_state": "not_executed"
+      "execution_state": "not_executed",
+      "condition": "workflow_material_corresponding",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": []
+      }
     },
     {
       "id": "OS017-L8-DIFFERENT-TARGET",
@@ -9092,7 +10468,12 @@
         "revision": "ec98a025d166a5e9f7811233498b7e7e31dbb145",
         "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146"
       },
-      "execution_state": "not_executed"
+      "execution_state": "not_executed",
+      "condition": "workflow_material_corresponding",
+      "selected_phase": "candidate",
+      "expected": {
+        "finding_codes": []
+      }
     },
     {
       "id": "OS017-L8-DIFFERENT-DEPENDENCY",
@@ -9128,7 +10509,12 @@
         "revision": "ec98a025d166a5e9f7811233498b7e7e31dbb145",
         "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146"
       },
-      "execution_state": "not_executed"
+      "execution_state": "not_executed",
+      "condition": "workflow_material_corresponding",
+      "selected_phase": "candidate",
+      "expected": {
+        "finding_codes": []
+      }
     },
     {
       "id": "OS017-L8-TWO-TICKET-GRAPH",
@@ -9164,7 +10550,12 @@
         "revision": "ec98a025d166a5e9f7811233498b7e7e31dbb145",
         "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146"
       },
-      "execution_state": "not_executed"
+      "execution_state": "not_executed",
+      "condition": "workflow_material_corresponding",
+      "selected_phase": "candidate",
+      "expected": {
+        "finding_codes": []
+      }
     },
     {
       "id": "OS017-L8-EMPTY-ACTUAL-TICKET-GRAPH",
@@ -9200,7 +10591,14 @@
         "revision": "ec98a025d166a5e9f7811233498b7e7e31dbb145",
         "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146"
       },
-      "execution_state": "not_executed"
+      "execution_state": "not_executed",
+      "condition": "workflow_material_unknown",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_unresolved"
+        ]
+      }
     },
     {
       "id": "OS017-L8-EMPTY-EXPECTED-TICKET-GRAPH",
@@ -9237,7 +10635,14 @@
         "revision": "ec98a025d166a5e9f7811233498b7e7e31dbb145",
         "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146"
       },
-      "execution_state": "not_executed"
+      "execution_state": "not_executed",
+      "condition": "workflow_material_unknown",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_unresolved"
+        ]
+      }
     },
     {
       "id": "OS017-L8-EMPTY-BOTH-ACCEPTANCE",
@@ -9273,7 +10678,15 @@
         "revision": "ec98a025d166a5e9f7811233498b7e7e31dbb145",
         "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146"
       },
-      "execution_state": "not_executed"
+      "execution_state": "not_executed",
+      "condition": "workflow_material_unknown",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_unresolved",
+          "source_unresolved"
+        ]
+      }
     },
     {
       "id": "OS017-L8-PROPOSAL-REQUIREMENT_REVISION-BOTH-FOREIGN",
@@ -9309,7 +10722,14 @@
         "revision": "ec98a025d166a5e9f7811233498b7e7e31dbb145",
         "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146"
       },
-      "execution_state": "not_executed"
+      "execution_state": "not_executed",
+      "condition": "workflow_material_violation",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_conflict"
+        ]
+      }
     },
     {
       "id": "OS017-L8-PROPOSAL-SCOPE-BOTH-FOREIGN",
@@ -9345,7 +10765,14 @@
         "revision": "ec98a025d166a5e9f7811233498b7e7e31dbb145",
         "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146"
       },
-      "execution_state": "not_executed"
+      "execution_state": "not_executed",
+      "condition": "workflow_material_violation",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_conflict"
+        ]
+      }
     },
     {
       "id": "OS017-L8-DEPENDENCY-REQUIREMENT_REVISION-BOTH-FOREIGN",
@@ -9381,7 +10808,14 @@
         "revision": "ec98a025d166a5e9f7811233498b7e7e31dbb145",
         "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146"
       },
-      "execution_state": "not_executed"
+      "execution_state": "not_executed",
+      "condition": "workflow_material_violation",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_conflict"
+        ]
+      }
     },
     {
       "id": "OS017-L8-DEPENDENCY-SCOPE-BOTH-FOREIGN",
@@ -9417,7 +10851,14 @@
         "revision": "ec98a025d166a5e9f7811233498b7e7e31dbb145",
         "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146"
       },
-      "execution_state": "not_executed"
+      "execution_state": "not_executed",
+      "condition": "workflow_material_violation",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_conflict"
+        ]
+      }
     },
     {
       "id": "OS017-L8-PROCESS-BOTH-FOREIGN-REVISION",
@@ -9453,7 +10894,14 @@
         "revision": "ec98a025d166a5e9f7811233498b7e7e31dbb145",
         "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146"
       },
-      "execution_state": "not_executed"
+      "execution_state": "not_executed",
+      "condition": "workflow_material_violation",
+      "selected_phase": "resume",
+      "expected": {
+        "finding_codes": [
+          "source_conflict"
+        ]
+      }
     },
     {
       "id": "OS017-L8-BACKFLOW-PHASE-WRONG-ROUTE",
@@ -9489,7 +10937,14 @@
         "revision": "ec98a025d166a5e9f7811233498b7e7e31dbb145",
         "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146"
       },
-      "execution_state": "not_executed"
+      "execution_state": "not_executed",
+      "condition": "workflow_material_violation",
+      "selected_phase": "backflow",
+      "expected": {
+        "finding_codes": [
+          "source_conflict"
+        ]
+      }
     },
     {
       "id": "OS017-L8-BACKFLOW-PHASE-WRONG-SCOPE",
@@ -9525,7 +10980,14 @@
         "revision": "ec98a025d166a5e9f7811233498b7e7e31dbb145",
         "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146"
       },
-      "execution_state": "not_executed"
+      "execution_state": "not_executed",
+      "condition": "workflow_material_violation",
+      "selected_phase": "backflow",
+      "expected": {
+        "finding_codes": [
+          "source_conflict"
+        ]
+      }
     },
     {
       "id": "OS017-L8-BACKFLOW-PHASE-UNKNOWN-ROUTE",
@@ -9561,7 +11023,14 @@
         "revision": "ec98a025d166a5e9f7811233498b7e7e31dbb145",
         "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146"
       },
-      "execution_state": "not_executed"
+      "execution_state": "not_executed",
+      "condition": "workflow_material_unknown",
+      "selected_phase": "backflow",
+      "expected": {
+        "finding_codes": [
+          "source_unresolved"
+        ]
+      }
     },
     {
       "id": "OS017-L8-BACKFLOW-PHASE-UNKNOWN-RESULT",
@@ -9597,7 +11066,14 @@
         "revision": "ec98a025d166a5e9f7811233498b7e7e31dbb145",
         "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146"
       },
-      "execution_state": "not_executed"
+      "execution_state": "not_executed",
+      "condition": "workflow_material_unknown",
+      "selected_phase": "backflow",
+      "expected": {
+        "finding_codes": [
+          "backflow_result_unresolved"
+        ]
+      }
     },
     {
       "id": "OS017-L8-BACKFLOW-PHASE-AUTHORITY-REVOKED",
@@ -9633,7 +11109,14 @@
         "revision": "ec98a025d166a5e9f7811233498b7e7e31dbb145",
         "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146"
       },
-      "execution_state": "not_executed"
+      "execution_state": "not_executed",
+      "condition": "workflow_material_violation",
+      "selected_phase": "backflow",
+      "expected": {
+        "finding_codes": [
+          "workflow_condition_rejected"
+        ]
+      }
     },
     {
       "id": "OS017-L8-BACKFLOW-PHASE-DEPENDENCY-UNRESOLVED",
@@ -9669,7 +11152,15 @@
         "revision": "ec98a025d166a5e9f7811233498b7e7e31dbb145",
         "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146"
       },
-      "execution_state": "not_executed"
+      "execution_state": "not_executed",
+      "condition": "workflow_material_unknown",
+      "selected_phase": "backflow",
+      "expected": {
+        "finding_codes": [
+          "dependency_unresolved",
+          "source_unresolved"
+        ]
+      }
     },
     {
       "id": "OS017-L8-CANDIDATE-DOES-NOT-ADMIT-AUTHORITY",
@@ -9705,7 +11196,12 @@
         "revision": "ec98a025d166a5e9f7811233498b7e7e31dbb145",
         "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146"
       },
-      "execution_state": "not_executed"
+      "execution_state": "not_executed",
+      "condition": "workflow_material_corresponding",
+      "selected_phase": "candidate",
+      "expected": {
+        "finding_codes": []
+      }
     },
     {
       "id": "OS017-L8-WORKFLOW-NO-FUTURE-RESUME-GATE",
@@ -9741,7 +11237,12 @@
         "revision": "ec98a025d166a5e9f7811233498b7e7e31dbb145",
         "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146"
       },
-      "execution_state": "not_executed"
+      "execution_state": "not_executed",
+      "condition": "workflow_material_corresponding",
+      "selected_phase": "workflow",
+      "expected": {
+        "finding_codes": []
+      }
     }
   ],
   "execution_state": "not_executed",
@@ -9920,23 +11421,9 @@
   "removed_materials": {
     "decision_ref": "docs/governance/decisions/verification-doc-Four-layer-dedup-po-decision-2026-10-16.md",
     "git_commit": "821a655ad6949b2a7a5344b26e3c170cccc353a6",
-    "revision": "821a655ad6949b2a7a5344b26e3c170cccc353a6",
     "path": "docs/helix-os/L8-unit-verification/ticket-workflow-derivation.json",
-    "sha256": "5a08449810caf2fbd26746ecfebf77d4be34cb28499bd880f51759f225788aeb",
-    "relocated_to": {
-      "path": "docs/helix-os/L7-function-verification/ticket-workflow-derivation.json",
-      "revision": "ec98a025d166a5e9f7811233498b7e7e31dbb145",
-      "sha256": "505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146",
-      "pointers": [
-        "/shared_values_contract",
-        "/objects",
-        "/function_calls",
-        "/cases",
-        "/local_cases"
-      ]
-    },
-    "meaning": "原L8（commit 821a655ad6949b2a7a5344b26e3c170cccc353a6, SHA-256 5a08449810caf2fbd26746ecfebf77d4be34cb28499bd880f51759f225788aeb）が保有していた具体検証材料5セクション（/shared_values_contract 4 keys, /objects 2783件, /function_calls 1767件, /cases 217件, /local_cases 4件）はPR-2（#3921, merge commit ec98a025d166a5e9f7811233498b7e7e31dbb145, SHA-256 505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146）でL7（docs/helix-os/L7-function-verification/ticket-workflow-derivation.json）へ無損失・同順序で移管済みであるため本L8から撤去し、L8にはL5 /contracts[0..3]と1対1に対応する /cases[0..3]（HELIXOS-L8-017-F01..F03, HELIXOS-L8-017-B01）、unit_contracts（4件）、unit_cases（217件のメタデータと呼出ID束・L7 pointer参照）、local_cases（4件の局所反証条件・L7 pointer参照）、および #3921 merge commit ec98a025d166a5e9f7811233498b7e7e31dbb145 固定のL7 pointer参照を保持する。L7の5セクションと本L8の保持メタデータを合成することで原L8（5,593,146 bytes, SHA-256 5a08449810caf2fbd26746ecfebf77d4be34cb28499bd880f51759f225788aeb）が100%無損失（byte-for-byte完全一致）に再構成される。",
+    "meaning": "原L8（commit 821a655ad6949b2a7a5344b26e3c170cccc353a6, SHA-256 5a08449810caf2fbd26746ecfebf77d4be34cb28499bd880f51759f225788aeb）が保有していた具体検証材料5セクション（/shared_values_contract 4 keys, /objects 2783件, /function_calls 1767件, /cases 217件, /local_cases 4件）はPR-2（#3921, merge commit ec98a025d166a5e9f7811233498b7e7e31dbb145, SHA-256 505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146）でL7（docs/helix-os/L7-function-verification/ticket-workflow-derivation.json）へ無損失・同順序で移管済みであるため本L8から撤去し、L8にはL5 /contracts[0..3]と1対1に対応する /cases[0..3]（HELIXOS-L8-017-F01..F03, HELIXOS-L8-017-B01）、unit_contracts（4件）、unit_cases（217件のメタデータと呼出ID束・L7 pointer参照）、local_cases（4件の局所反証条件・L7 pointer参照）、および #3921 merge commit ec98a025d166a5e9f7811233498b7e7e31dbb145 固定のL7 pointer参照を保持する。再構成では旧L8のtop-level key集合と順序を使い、移管済み5セクション（/shared_values_contract, /objects, /function_calls, /cases, /local_cases）はL7から、その他の旧key値は現行L8から採る。後から追加されたl7_material_bundle_ref、unit_contracts、unit_cases（WR200のcompact期待を含む）、removed_materialsは旧L8にないtop-level keyのため投影対象外とし、compact期待の個別削除は行わない。この手順で原L8（5,593,146 bytes, SHA-256 5a08449810caf2fbd26746ecfebf77d4be34cb28499bd880f51759f225788aeb）を100%無損失（byte-for-byte完全一致）に再構成できる。 元L8の由来revision=821a655ad6949b2a7a5344b26e3c170cccc353a6、全体SHA-256=5a08449810caf2fbd26746ecfebf77d4be34cb28499bd880f51759f225788aeb。具体材料の移管先revision=ec98a025d166a5e9f7811233498b7e7e31dbb145、SHA-256=505fc76fcf587c9a44712928912a41024218c8f80cad94dbf6a810a975a40146。 217件のcompact期待（condition、selected_phase、順序付きfinding code）は、旧L8 commit 821a655ad6949b2a7a5344b26e3c170cccc353a6の各/cases[*]/original_expected_refと参照先findingsから機械的に復元した。original_case_metadata.idとsource_case_pointerで対応する原L9 commit 65e8e0180da7901b5c9e405382714a14d4d20002のexpected_proposalと全217件で一致することを照合した。原L9は同値照合先であり、期待値の生成元ではない。",
     "removed_key_rule": "L7（docs/helix-os/L7-function-verification/ticket-workflow-derivation.json @ ec98a025d166a5e9f7811233498b7e7e31dbb145）へ完全一致で移管済みの /shared_values_contract, /objects, /function_calls と、/cases[*].(input_hash, expected_project_hash, expected_return_hashes, expected_final_hash) および /local_cases[*].(input_patch, expected_return_hashes) の具体材料本体のみをL8から撤去し、L5↔L8 1対1契約束縛（/cases[0..3]）・217件のunit_casesメタデータ・4件のlocal_casesメタデータ・全source_pins・L7 pointer参照を保持する。",
-    "use_boundary": "git履歴参照は監査・由来追跡に限り、テスト生成・検証実行・要求意味の導出には使用しない。"
+    "use_boundary": "旧L8のoriginal_expected_refは既存compact期待の復元・由来追跡に限り参照する。原L9 expected_proposalは対応する値の同値照合だけに用い、期待値を逆生成しない。移管済みの全返却・fixture・seed・hash等の具体材料はL8のテスト生成・検証実行・要求意味の導出には使用しない。"
   }
 }

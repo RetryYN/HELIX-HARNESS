@@ -7875,9 +7875,10 @@
         "constraint_mismatch",
         "aggregation_unestablished",
         "declaration_unresolved",
-        "projection_unformed"
+        "projection_unformed",
+        "body_entry_unresolved"
       ],
-      "cause_boundary": "上記は私有基本viewの局所原因の閉集合で、native/public Finding code/stateではない。各causeは対象field/proposal/role/原Ref-indexとrequested/reached locator、左右原値/presenceを持つ。kind差はoriginal_kind_differenceとして原値とともに別観測し、支持された意味を未決へ置換する原因にしない。 複数role支持それ自体はcauseではなくmultiple_support_observationsに置く。実際の原constraint/源資料の未形成又は既知不一致は既存の該当causeで出現単位に保存し、他の支持済みinterpretationを消さない。 declaration_unresolvedは対応済みcontentに対して必要role/form basisが未供給である局所原因、projection_unformedは実宣言のrequired memberと対応contentの既知差で投影のみが未形成となる局所原因として使う。いずれもnative/public Finding code/state又はdomain missing/unknownを生成しない。",
+      "cause_boundary": "上記は私有基本viewの局所原因の閉集合で、native/public Finding code/stateではない。各causeは対象field/proposal/role/原Ref-indexとrequested/reached locator、左右原値/presenceを持つ。kind差はoriginal_kind_differenceとして原値とともに別観測し、支持された意味を未決へ置換する原因にしない。 複数role支持それ自体はcauseではなくmultiple_support_observationsに置く。実際の原constraint/源資料の未形成又は既知不一致は既存の該当causeで出現単位に保存し、他の支持済みinterpretationを消さない。 declaration_unresolvedは対応済みcontentに対して必要role/form basisが未供給である局所原因、projection_unformedは実宣言のrequired memberと対応contentの既知差で投影のみが未形成となる局所原因として使う。body_entry_unresolvedは対象recordが原collectionで解決し、当該record.source_refが対応SourceEnvelopeへ解決し、当該SourceEnvelope.body.records collectionが実配列として観測済みであるが、当該body.records内に元collectionおよび当該record.refと一致するbody entryが0件である局所原因として使う。source_unresolved（source_ref未形成又はsources/qualification/root lookup 0件）、body_unformed（source.body又はbody.records collection自体の欠落/null/型外又はcontent_bytes_body照合未成立）、content_unresolved（axis_facts/semantic_records/obligationsのrecord lookup 0件）、source_body_mismatch（content_bytes/body既知不一致又は対応する実body.records entryのpayload既知不一致）を含む既存16語のどれにも当たらないため読み替えをせず、L3#/requirements/27の根拠・source/revision/field/scope保持義務に基づき局所原因として区別する。いずれもnative/public Finding code/state又はdomain missing/unknownを生成しない。",
       "cause_kind_extension_rules": {
         "authority_boundary": "既存F05 requirementの意味を変更せず、basic_candidate_returnのlocal causeとして使える二値の意味境界を明記する。native/public Finding code/state、実qualification、runtime実行を主張しない。",
         "rules": [
@@ -7900,6 +7901,19 @@
             "right": "対応する実AxisFact content recordのoriginal Read全値。",
             "storage": "該当projectionだけをunformedとして原宣言/content Readとともにlocal_unestablishedへ保持し、DefinitionAssessmentへCauseを伝えない。",
             "rule_pointer": "/field_semantic_evidence_contract/basic_candidate_return/cause_kind_extension_rules/rules/1"
+          },
+          {
+            "id": "F05-CAUSE-BODY-ENTRY-UNRESOLVED",
+            "kind": "body_entry_unresolved",
+            "l3_obligation_pointer": "docs/helix-harness/L3-requirements/functional-requirements.json#/requirements/27",
+            "l10_oracle_pointer": "docs/helix-harness/L10-verification/functional-verification.json#/cases/27",
+            "existing_cause_vocabulary_evaluation": "既存16語（input_unobserved、target_unformed、source_unresolved、source_unusable、source_body_mismatch、body_unformed、target_mismatch、owner_binding_unestablished、owner_mismatch、statement_source_conflict、content_unresolved、proposition_operand_unresolved、constraint_mismatch、aggregation_unestablished、declaration_unresolved、projection_unformed）のどれにも当たらない。source_unresolvedはsource_ref未形成又はsources/qualification/root lookup 0件であり解決済みSourceEnvelopeには当たらず、body_unformedはsource.body又はbody.records collection自体の欠落/null/型外又はcontent_bytes_body照合未成立であり観測済み配列には当たらず、content_unresolvedはaxis_facts/semantic_records/obligationsのrecord lookup 0件であり解決済みrecordには当たらず、source_body_mismatchはcontent_bytes/body既知不一致又は対応する実body.records entryのpayload既知不一致であり対象entry 0件には当たらず、残る12語（親未観測、対象未形成、source資格不成立、対象不一致、owner対応未成立/不一致、statement/source相反、命題operand未解決、constraint不一致、集約未成立、宣言未解決、投影未形成）も別段階・別対象の局所原因である。どれにも読み替えず、L3#/requirements/27（HARNESS-L3-009-F05）のsource/template/requirement revision・field/obligation identity・根拠・影響scope保持義務、およびL10#/cases/27（HARNESS-L10-009-F05）、L4 /field_source_materialization_contract/ordered_source_materialization/2・/field_semantic_evidence_contract/wrapper_and_source_contract/source_payload・/field_semantic_evidence_contract/common_target_guards/3に基づきL3/L10の意味変更なしでbody_entry_unresolvedを追加する。",
+            "condition": "対象record（SemanticRecord又はAxisFact）が原collectionで解決済み、かつ当該record.source_refがpresent non-nullで同snapshot sourcesの対応SourceEnvelopeへ解決済み、かつ当該SourceEnvelope.body.records collectionが実配列（Read.present）として観測済みであるが、当該body.records内に元collection名および当該record.refと一致するbody entryが0件である場合。source_ref lookup miss（source_unresolved）、body/body.records自体の欠落/null/型外（body_unformed）、record collection lookup miss（content_unresolved）、実在body entryのpayload不一致（source_body_mismatch）とは別条件。",
+            "target": "当該解決済みrecord.refのoriginal Read location。",
+            "left": "当該解決済みrecord.refのoriginal Read全値。",
+            "right": "対応済みSourceEnvelopeの/sources/{i}/body/records collection全体のoriginal Read。検索missを配列要素のRead.absentへ変換しない。",
+            "storage": "当該record出現の局所原因およびlocal_unestablishedへ保持し、架空のsource/body出現やbasis_occurrences entry/indexを作らない。当該evidence/projectionはunformedとし、domainのdefinition missing/unknownや意味候補を生成しない。",
+            "rule_pointer": "/field_semantic_evidence_contract/basic_candidate_return/cause_kind_extension_rules/rules/2"
           }
         ]
       },
@@ -8502,7 +8516,7 @@
         "Cause": {
           "kind": "closed_record",
           "members": {
-            "kind": "enum:input_unobserved|target_unformed|source_unresolved|source_unusable|source_body_mismatch|body_unformed|target_mismatch|owner_binding_unestablished|owner_mismatch|statement_source_conflict|content_unresolved|proposition_operand_unresolved|constraint_mismatch|aggregation_unestablished|declaration_unresolved|projection_unformed",
+            "kind": "enum:input_unobserved|target_unformed|source_unresolved|source_unusable|source_body_mismatch|body_unformed|target_mismatch|owner_binding_unestablished|owner_mismatch|statement_source_conflict|content_unresolved|proposition_operand_unresolved|constraint_mismatch|aggregation_unestablished|declaration_unresolved|projection_unformed|body_entry_unresolved",
             "target": "Location",
             "left": "Operand",
             "right": "Operand",
@@ -8752,9 +8766,10 @@
         "constraint_mismatch",
         "aggregation_unestablished",
         "declaration_unresolved",
-        "projection_unformed"
+        "projection_unformed",
+        "body_entry_unresolved"
       ],
-      "cause_semantics": "既存語の意味/局所性を保持する。source未取得/不成立、body/target/owner未形成、同Refsource相反と異なる有効scope列集約を分ける。declaration_unresolvedは対応済み対象materialの必要role/form basis未供給、projection_unformedは宣言投影のrequired member/content間の既知差であり、いずれも候補scope事実からdomain定義missing/値unknown/NA/完了を発明しない。",
+      "cause_semantics": "既存語の意味/局所性を保持する。source未取得/不成立、body/target/owner未形成、同Refsource相反と異なる有効scope列集約を分ける。declaration_unresolvedは対応済み対象materialの必要role/form basis未供給、projection_unformedは宣言投影のrequired member/content間の既知差、body_entry_unresolvedは解決済みSourceEnvelopeの観測済みbody.records配列内に対象record.ref対応entryが0件の局所原因であり、いずれも候補scope事実からdomain定義missing/値unknown/NA/完了を発明しない。",
       "projection_boundary": "ScopeReturnはこの有限基本viewの全member/leaf。元C/native SourceCheck/InputIssue/全Comparison/全F05wholeは返却typeに偽のnull/{}を置かず別の未束縛symbolic義務として保持する。"
     },
     "cause_patterns": {

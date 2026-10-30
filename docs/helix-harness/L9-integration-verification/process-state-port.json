@@ -27210,175 +27210,13 @@
     "source_population_count": 182,
     "source_population_pointer": "/cases/4/negative_cases",
     "case_projection_rows_added": 0,
-    "single_finding_candidates": [
-      {
-        "case_id": "H003-F04-MISSING-Accepted",
-        "class_code": "F04_STATE_ACCEPTED_PROOF_MISSING",
-        "same_layer_source_pointers": [
-          {
-            "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
-            "pointer": "/cases/4/negative_cases/4/mutation"
-          },
-          {
-            "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
-            "pointer": "/cases/4/negative_cases/4/expected_material"
-          }
-        ],
-        "single_finding_candidate": {
-          "condition": "F04_STATE_ACCEPTED_PROOF_MISSING",
-          "ordered_findings": [
-            {
-              "code": "F04_STATE_ACCEPTED_PROOF_MISSING",
-              "return_owner": "当該状態の原証拠owner"
-            }
-          ]
-        }
-      },
-      {
-        "case_id": "H003-F04-MISSING-Deployed",
-        "class_code": "F04_STATE_DEPLOYED_PROOF_MISSING",
-        "same_layer_source_pointers": [
-          {
-            "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
-            "pointer": "/cases/4/negative_cases/6/mutation"
-          },
-          {
-            "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
-            "pointer": "/cases/4/negative_cases/6/expected_material"
-          }
-        ],
-        "single_finding_candidate": {
-          "condition": "F04_STATE_DEPLOYED_PROOF_MISSING",
-          "ordered_findings": [
-            {
-              "code": "F04_STATE_DEPLOYED_PROOF_MISSING",
-              "return_owner": "当該状態の原証拠owner"
-            }
-          ]
-        }
-      },
-      {
-        "case_id": "H003-F04-MISSING-Integrated",
-        "class_code": "F04_STATE_INTEGRATED_PROOF_MISSING",
-        "same_layer_source_pointers": [
-          {
-            "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
-            "pointer": "/cases/4/negative_cases/2/mutation"
-          },
-          {
-            "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
-            "pointer": "/cases/4/negative_cases/2/expected_material"
-          }
-        ],
-        "single_finding_candidate": {
-          "condition": "F04_STATE_INTEGRATED_PROOF_MISSING",
-          "ordered_findings": [
-            {
-              "code": "F04_STATE_INTEGRATED_PROOF_MISSING",
-              "return_owner": "当該状態の原証拠owner"
-            }
-          ]
-        }
-      },
-      {
-        "case_id": "H003-F04-MISSING-Observed",
-        "class_code": "F04_STATE_OBSERVED_PROOF_MISSING",
-        "same_layer_source_pointers": [
-          {
-            "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
-            "pointer": "/cases/4/negative_cases/7/mutation"
-          },
-          {
-            "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
-            "pointer": "/cases/4/negative_cases/7/expected_material"
-          }
-        ],
-        "single_finding_candidate": {
-          "condition": "F04_STATE_OBSERVED_PROOF_MISSING",
-          "ordered_findings": [
-            {
-              "code": "F04_STATE_OBSERVED_PROOF_MISSING",
-              "return_owner": "当該状態の原証拠owner"
-            }
-          ]
-        }
-      },
-      {
-        "case_id": "H003-F04-MISSING-Provisional",
-        "class_code": "F04_STATE_PROVISIONAL_PROOF_MISSING",
-        "same_layer_source_pointers": [
-          {
-            "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
-            "pointer": "/cases/4/negative_cases/1/mutation"
-          },
-          {
-            "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
-            "pointer": "/cases/4/negative_cases/1/expected_material"
-          }
-        ],
-        "single_finding_candidate": {
-          "condition": "F04_STATE_PROVISIONAL_PROOF_MISSING",
-          "ordered_findings": [
-            {
-              "code": "F04_STATE_PROVISIONAL_PROOF_MISSING",
-              "return_owner": "当該状態の原証拠owner"
-            }
-          ]
-        }
-      },
-      {
-        "case_id": "H003-F04-MISSING-Release-eligible",
-        "class_code": "F04_STATE_RELEASE-ELIGIBLE_PROOF_MISSING",
-        "same_layer_source_pointers": [
-          {
-            "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
-            "pointer": "/cases/4/negative_cases/5/mutation"
-          },
-          {
-            "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
-            "pointer": "/cases/4/negative_cases/5/expected_material"
-          }
-        ],
-        "single_finding_candidate": {
-          "condition": "F04_STATE_RELEASE-ELIGIBLE_PROOF_MISSING",
-          "ordered_findings": [
-            {
-              "code": "F04_STATE_RELEASE-ELIGIBLE_PROOF_MISSING",
-              "return_owner": "当該状態の原証拠owner"
-            }
-          ]
-        }
-      },
-      {
-        "case_id": "H003-F04-MISSING-Verified",
-        "class_code": "F04_STATE_VERIFIED_PROOF_MISSING",
-        "same_layer_source_pointers": [
-          {
-            "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
-            "pointer": "/cases/4/negative_cases/3/mutation"
-          },
-          {
-            "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
-            "pointer": "/cases/4/negative_cases/3/expected_material"
-          }
-        ],
-        "single_finding_candidate": {
-          "condition": "F04_STATE_VERIFIED_PROOF_MISSING",
-          "ordered_findings": [
-            {
-              "code": "F04_STATE_VERIFIED_PROOF_MISSING",
-              "return_owner": "当該状態の原証拠owner"
-            }
-          ]
-        }
-      }
-    ],
-    "single_finding_candidate_count": 7,
-    "unformed_case_count": 175,
-    "unformed_case_handling": "元L8/L9 casesと期待を正本として保つ。F03 14件・F05 8件は入力/差分とsource pointerを監査行に保持するが、処理結果の成立扱いが固定rawで観測できないためfinding集合をunknown/unformedとする。空集合とは判断しない。",
+    "single_finding_candidates": [],
+    "single_finding_candidate_count": 0,
+    "unformed_case_count": 182,
+    "unformed_case_handling": "元L8/L9 casesと期待を正本として保つ。F03 14件・F05 8件は入力/差分とsource pointerを監査行に保持するが、処理結果の成立扱いが固定rawで観測できないためfinding集合をunknown/unformedとする。F04 7件は対象proof null以外のrule非発火を証明できず、state_basis参照の内容・qualification・対応付けもL4/L5で定義されていないためunknown/unformedとする。参照未解決を発火と推定しない。空集合とは判断しない。",
     "upper_classification_count": 34,
-    "candidate_classification_count": 7,
-    "not_formed_classification_count": 27,
+    "candidate_classification_count": 0,
+    "not_formed_classification_count": 34,
     "no_member_classifications": [
       {
         "code": "B01_SCOPE_APPLICABILITY_UNKNOWN",
@@ -27389,7 +27227,7 @@
         "case_count": 0
       }
     ],
-    "coverage_boundary": "形成済み候補は既存F04 7件のみ。WR186 F03 14件・F05 8件は監査行でありfinding集合を形成していない。元182件母集団を維持し、175件は未形成。正式projection rowは0件、case期待不変、checker marker無効。",
+    "coverage_boundary": "単一条件候補は0件、case-level候補は0件。F04 7件はraw target condition codeを記録するがfinding集合はunknown/unformedで分類形成に数えない。WR186 F03 14件・F05 8件も監査行。元182件母集団を維持し、182件は未形成。正式projection rowは0件、case期待不変、checker marker無効。",
     "fixed_raw_source": {
       "revision": "ed3981e7b9419d796adf1981f8990c6b626ecabe",
       "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
@@ -28155,6 +27993,8 @@
           "pointer": "/cases/5/negative_cases/7/mutation"
         }
       }
-    ]
+    ],
+    "target_condition_code_count": 7,
+    "classification_count_basis": "candidate_classification_count is the number of distinct class codes in single_finding_candidates; no candidate is formed, so all 34 upper classifications remain not formed. target_condition_code_count records the seven raw explicit-null target labels only; the unknown/unformed case sets do not form classes."
   }
 }

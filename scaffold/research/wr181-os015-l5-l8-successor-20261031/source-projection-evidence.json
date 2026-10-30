@@ -1,0 +1,105 @@
+{
+  "evidence_kind": "scaffold",
+  "source_main": "e3a16010cce138001d33df19afef92e3fa049d81",
+  "method": "固定L7 inspect fixtureに明示stimulus replacementを適用して入力hashを照合し、L4 class rowとL5 composite contractから手動投影を記録。L4 algorithmは実行せず、L7 expected_proposalとL9 expected/classは導出に使わない。",
+  "cases": [
+    {
+      "case_id": "HELIXOS-L9-015-C0584",
+      "l4_class_id": "OS015-NEG-COMPOSITE-62fb66a6e279702c28b1aa4f8ee9380369f59c8322c999587e174c6c4992b558",
+      "l7_fixture_pointer": "/connection_materials/OS015/case/fixture_inputs/inspect",
+      "stimulus_replacements": [
+        {
+          "path": [
+            "records",
+            "target_a",
+            "original_event",
+            "event_id"
+          ],
+          "value": null
+        },
+        {
+          "path": [
+            "records",
+            "target_a",
+            "current_material_claim"
+          ],
+          "value": true
+        }
+      ],
+      "expanded_input_sha256": "622f442bc8350f275dec386db1516a75e6fe64b4092546ae41a949aede8a4418",
+      "manual_l4_projection": {
+        "condition": "management_material_violation",
+        "ordered_finding_codes": [
+          "original_event_mutated",
+          "source_unresolved",
+          "unresolved_promoted_to_current"
+        ],
+        "expected_axis": "original_event",
+        "expected_state": "violation",
+        "side_effect_count": 0
+      },
+      "finding_pointers": [
+        "/records/target_a/original_event",
+        "/records/target_a/original_event/event_id",
+        "/records/target_a/current_material_claim"
+      ],
+      "l4_source_pointers": [
+        "/contracts/2",
+        "/contracts/3",
+        "/diagnostic_contract/codes/0",
+        "/diagnostic_contract/codes/3",
+        "/diagnostic_contract/codes/10",
+        "/diagnostic_contract/comparison_facets",
+        "/diagnostic_contract/aggregation",
+        "/diagnostic_contract/current_material_limit",
+        "/diagnostic_contract/condition_values"
+      ]
+    },
+    {
+      "case_id": "HELIXOS-L9-015-C0585",
+      "l4_class_id": "OS015-NEG-COMPOSITE-deac8ce9011311dc91b808f2f94e7d2dcd7320bd68b2b820d7eeef6ac092e7f9",
+      "l7_fixture_pointer": "/connection_materials/OS015/case/fixture_inputs/inspect",
+      "stimulus_replacements": [
+        {
+          "path": [
+            "records",
+            "target_a",
+            "authority_state"
+          ],
+          "value": null
+        },
+        {
+          "path": [
+            "records",
+            "target_a",
+            "current_material_claim"
+          ],
+          "value": true
+        }
+      ],
+      "expanded_input_sha256": "b9a798379d22d7dc4fcb542619e0b6cdea7b18378f3c0f6e44b2bf391f3ca6a1",
+      "manual_l4_projection": {
+        "condition": "management_material_violation",
+        "ordered_finding_codes": [
+          "authority_state_unresolved",
+          "unresolved_promoted_to_current"
+        ],
+        "expected_axis": "authority",
+        "expected_state": "violation",
+        "side_effect_count": 0
+      },
+      "finding_pointers": [
+        "/records/target_a/authority_state",
+        "/records/target_a/current_material_claim"
+      ],
+      "l4_source_pointers": [
+        "/contracts/3",
+        "/diagnostic_contract/codes/10",
+        "/diagnostic_contract/codes/14",
+        "/diagnostic_contract/aggregation",
+        "/diagnostic_contract/current_material_limit",
+        "/diagnostic_contract/condition_values"
+      ]
+    }
+  ]
+}
