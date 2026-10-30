@@ -8,7 +8,7 @@
 - binding: `SCF-B-0185`
 - status: scaffold候補。authority effectなし。正式な設計・承認・受入・実行結果ではない。
 
-この候補はL5にF02専用のsource fact評価述語を加え、L8に手で追えるcandidate inputとcandidate expectedを置く。L4/L9、既存L9 input/expected、L5/L8の既存unit casesは変更しない。L4/L5 algorithm、製品runtime、旧runtime/test/CIは実行していない。
+この候補はL5にF02専用のsource fact評価述語を簡潔に記し、L8には合成candidate inputへの参照と小さな意味projectionだけを置く。[設計・実装検証QA §3](../../../docs/governance/design-verification-quality-assurance.md)ではL5にtest用合成fixture本体、L8にU-ID表以外のfixture/full-return/seed/hash材料を持たせない。候補raw factsは許可済み`scaffold/`研究資料へ移したが、scope内のowner由来raw packetは確認できず、正式なinput sourceとは主張しない。L4/L9、既存L9 input/expected、L5/L8の既存unit casesは変更しない。L4/L5 algorithm、製品runtime、旧runtime/test/CIは実行していない。
 
 ## 固定済み意味範囲とsource authority
 
@@ -20,9 +20,9 @@ L3/L10 sourceの基点は承認済みreviewed head `a715e777bd59291b26f09c0c1c54
 
 ## L5/L8の候補内容
 
-L5の `HARNESS-L5-015-F02.candidate_classification_design` は、正例の結合条件と5負例の入力述語を記録する。単なる分類名の複製ではなく、`PayloadF02` のexecution、failure kind、対象head、sequence、oracle Ref、behavior observation、actual値、mutationの各事実を読む案である。L8の `HARNESS-L8-015-F02.candidate_unit_design` は、L9 pointerを持たない合成入力baselineと差分を並べ、positive 2枝（新規・既存）とnegative 6例（5分類、environment/syntaxの2 witness）を手で照合できる形で持つ。
+L5の `HARNESS-L5-015-F02.candidate_classification_design` は共通観測条件、正例述語、5つのnegative predicateを入力pathと比較関係で簡潔に示す。fixtureの値や実行出力は持たない。L8の `HARNESS-L8-015-F02.candidate_unit_design` は、positive 2枝とnegative 6例（5分類、environment/syntaxの2 witness）それぞれにresearch artifactへのpointerと短い意味projectionだけを置く。synthetic input packetは [`source/f02-candidate-input-facts.json`](source/f02-candidate-input-facts.json) に隔離し、L8に全payloadやcaseごとのsource pinを重複させない。
 
-| case | 入力事実の差分 | L4候補のcode / axis / state |
+| case | candidate fixtureで照合する事実 | L4候補のcode / axis / state |
 |---|---|---|
 | 正例・新規 | `change_kind=new`、pre-body state `unimplemented`、実Redが凍結oracleに対応しbody変更前 | L4 F02 output contractとの候補照合 |
 | 正例・既存 | `change_kind=existing`、pre-body state `unrepaired`、他は正例条件 | L4 F02 output contractとの候補照合 |
@@ -33,14 +33,16 @@ L5の `HARNESS-L5-015-F02.candidate_classification_design` は、正例の結合
 | unexecuted | `executed=false`、Red観測とactual値がabsent | `unexecuted_red / red_meaning / missing` |
 | mutation only | pre-body `red` absent、post-body mutation実行とoracle強度所見あり | `mutation_substitute / red_before_body / missing` |
 
-全negativeのbackflow component候補は `PreBodyRedEvidence`、side effect count候補は0。typed evaluator ownerはL5 pure function `F-015-05` とし、component/backflow ownerとは分けた。L8 input valuesは候補内のsynthetic valuesであり、実source packetや実owner qualificationを示さない。
+全negativeのbackflow component候補は `PreBodyRedEvidence`、side effect count候補は0。typed evaluator ownerはL5 pure function `F-015-05` とし、component/backflow ownerとは分けた。fixture factsは合成候補で、実source packetや実owner qualificationを示さない。QA §3でL8に許されるscopeを守るため、L8にはfixture本体を載せず研究artifactへの参照だけを残した。scope内のowner由来入力源がないため、この参照はformal source inputではなくcandidate materialである。
+
+checkerの`CHK-OWNERSHIP-CAP-L8L9`は、禁止keyに基づく限定検査でbyte/KB上限ではない。基点と候補のchild結果を同条件比較し、L8既存1647件は増加せず同数だったが、これはL8追加領域の品質保証ではない。候補のraw fixtureをL8から除いてresearch artifactへ移したのは、QA §3のL8責務（U-ID行）へ合わせるためである。
 
 ## 明示した未決・設計選択
 
 - **headとrevision:** candidate fixtureでは`pre_body.head`、`body_change.from_head`、`red.head`を対象コードrevision tokenとし、`Ref.revision`をsource record revision metadataとして別扱いにした。L3/L10はfield名・比較方法を定めず、L4はH0を例示するだけなので、この対応はL5の設計選択である。
 - **environmentとsyntax:** L3/L10は両方を無関係な失敗として挙げるが、L4負例codeは`environment_error`。syntax witnessも同じL4候補へ束ねるのは、本PRで明示した選択で、closed taxonomyや上流決定とは主張しない。
 - **未実行とactual:** candidate unexecuted fixtureでは`executed=false`かつactual観測値をabsentにした。`executed=false`なのにactualが存在する入力の優先順位は未決で、分類していない。
-- **重複分類:** 複数のnegative predicateが同時に成立する一般入力の優先順位は決めていない。L8例は共通baselineから単一の条件差だけを適用する有限candidate fixtureである。
+- **重複分類:** 複数のnegative predicateが同時に成立する一般入力の優先順位は決めていない。研究artifactの各行は共通baselineと差分から成る有限candidate fixtureである。
 - **owner checker:** L5には`pure_function_signatures`の`F-015-05`を追加したが、checkerは現行L5 `functions[]` からfunction ownerを解決する。checkerを通すためのaliasやclass markerは追加していない。typed owner解決と4way結合は未完了。
 - **4way residual:** PR-A以降も28負例全体のL5/L8/L9 matching、独立review、freeze、formal oracleは未成立。本候補のL8 candidate casesは既存L9 `unit_cases`との連携行ではなく、checkerの4way case数を満たすものとして数えない。
 
@@ -52,4 +54,4 @@ L5の `HARNESS-L5-015-F02.candidate_classification_design` は、正例の結合
 
 ## 静的検証
 
-再現用の静的validatorは [`validate_static_candidate.py`](validate_static_candidate.py)。L5述語を実行せず、候補source pin、候補出力の対応、既存L5/L8期待およびL4/L9 bytesの不変だけを照合する。検証値は [`verification-summary.json`](verification-summary.json) に記録する。`check-child`のowner/4way残件、SCF validate/stale、PR範囲diffも静的文書構造の確認に限る。
+再現用の静的validatorは [`validate_static_candidate.py`](validate_static_candidate.py)。L5述語を実行せず、候補source pin、fixture参照、候補出力projection、既存L5/L8期待およびL4/L9 bytesの不変だけを照合する。L8のcase行にraw payloadを保持していないことも確認する。検証値は [`verification-summary.json`](verification-summary.json) に記録する。`check-child`のowner/4way残件、SCF validate/stale、PR範囲diffも静的文書構造の確認に限る。

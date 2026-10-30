@@ -18,6 +18,7 @@ L8_PATH = "docs/helix-harness/L8-unit-verification/tdd-development-flow.json"
 L4_PATH = "docs/helix-harness/L4-basic-design/tdd-development-flow.json"
 L9_PATH = "docs/helix-harness/L9-integration-verification/tdd-development-flow.json"
 BLIND_PATH = "scaffold/research/wr206-f02-l5-l8-pr-b-20261031/source/f02-blind-draft.json"
+INPUT_FACTS_PATH = "scaffold/research/wr206-f02-l5-l8-pr-b-20261031/source/f02-candidate-input-facts.json"
 
 
 def read_json(path: str) -> dict:
@@ -82,6 +83,10 @@ def main() -> None:
 
     blind = (ROOT / BLIND_PATH).read_bytes()
     assert sha(blind) == BLIND_SHA
+    candidate_facts = read_json(INPUT_FACTS_PATH)
+    assert candidate_facts["status"].startswith("candidate_synthetic")
+    assert candidate_facts["authority_effect"] == "none"
+    assert len(candidate_facts["case_deltas"]) == 8
 
     for pin in candidate_l5["candidate_source_pins"]:
         assert at_revision_sha(pin) == pin["sha256"], f"L5 source pin mismatch: {pin['path']}"
@@ -97,13 +102,22 @@ def main() -> None:
 
     rules = {row["code"]: row for row in candidate_l5["negative_classification_rules"]}
     l4_rows = {row["code"]: row for row in l4["contracts"][2]["negative_classifications"]}
+    assert "shared_input_baseline" not in candidate_l8
+    assert "source_payload" not in json.dumps(candidate_l8, ensure_ascii=False)
+    assert candidate_l8["input_artifact_ref"] == INPUT_FACTS_PATH
+    deltas = {row["case_id"]: row for row in candidate_facts["case_deltas"]}
+    for index, case in enumerate(candidate_l8["cases"]):
+        assert case["input_ref"] == f"{INPUT_FACTS_PATH}#/case_deltas/{index}"
+        pointer = case["input_ref"].split("#", 1)[1]
+        assert at_pointer(candidate_facts, pointer)["case_id"] == case["case_id"]
+        assert case["case_id"] in deltas
     negative = [case for case in candidate_l8["cases"] if case["polarity"] == "negative"]
     positive = [case for case in candidate_l8["cases"] if case["polarity"] == "positive"]
     assert len(positive) == 2
     assert len(negative) == 6
-    assert len({case["expected"]["candidate_classification_code"] for case in negative}) == 5
+    assert len({case["expected_projection"]["candidate_classification_code"] for case in negative}) == 5
     for case in negative:
-        expected = case["expected"]
+        expected = case["expected_projection"]
         code = expected["candidate_classification_code"]
         rule = rules[code]["candidate_l4_result"]
         l4_row = l4_rows[code]
@@ -111,15 +125,15 @@ def main() -> None:
         assert expected["candidate_state"] == rule["expected_state"] == l4_row["expected_state"]
         assert expected["backflow_component"] == rule["backflow_owner"] == l4_row["backflow_owner"]
         assert expected["side_effect_count"] == rule["side_effect_count"] == l4_row["expected_side_effect_count"]
-        assert all("L9-" not in ref["path"] for ref in case["source_pointers"])
+        assert case["input_ref"].startswith(INPUT_FACTS_PATH + "#")
     for case in positive:
-        assert case["expected"]["candidate_output_fields"] == candidate_l5["positive_candidate_rule"]["candidate_output_fields_from_l4_output_contract"]
+        assert case["expected_projection"]["l4_output_ref"].startswith(L4_PATH + "#")
 
     print("static candidate validation: PASS")
     print(f"blind artifact sha256: {BLIND_SHA}")
     print("L5 F02 pre-existing contract: unchanged")
     print(f"L8 existing unit cases: unchanged ({len(l8_base['unit_cases'])})")
-    print("L8 existing case records: unchanged apart from appended F02 candidate design")
+    print("L8 F02 candidate: only case/input refs and small semantic projections; synthetic input packet lives in scaffold research")
     print("L4/L9 bytes: unchanged")
     print("source pins: exact revision/blob SHA match; reviewed L3/L10 F02 rows equal current rows")
     print("candidate cases: positives=2 negatives=6 unique negative classes=5")

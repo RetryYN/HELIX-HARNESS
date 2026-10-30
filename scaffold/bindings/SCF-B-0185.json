@@ -68,6 +68,7 @@
     "scaffold/research/wr206-f02-l5-l8-pr-b-20261031/validate_static_candidate.py",
     "scaffold/research/wr206-f02-l5-l8-pr-b-20261031/verification-summary.json",
     "scaffold/research/wr206-f02-l5-l8-pr-b-20261031/source/f02-blind-draft.json",
+    "scaffold/research/wr206-f02-l5-l8-pr-b-20261031/source/f02-candidate-input-facts.json",
     "docs/helix-harness/L5-detail-design/tdd-development-flow.json",
     "docs/helix-harness/L8-unit-verification/tdd-development-flow.json"
   ],

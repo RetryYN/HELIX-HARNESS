@@ -1,0 +1,639 @@
+{
+  "status": "candidate_synthetic_input_facts_not_owner_source_or_executable_fixture",
+  "authority_effect": "none",
+  "meaning_source": {
+    "artifact": "scaffold/research/wr206-f02-l5-l8-pr-b-20261031/source/f02-blind-draft.json",
+    "sha256": "7adbbee23d54e79773c5c7462c14250b6640c0afb4707495275aab069fb46152",
+    "comment": "https://github.com/RetryYN/HELIX-HARNESS/issues/3510#issuecomment-6530137720",
+    "scope": "意味範囲のみ。具体入力・schema・L4結果を固定しない。"
+  },
+  "input_boundary": "下記はL8本体へ置かない合成candidate input packet。実source packet、owner資格、実operation、実Red/Green、actual実行結果ではない。",
+  "shared_input_baseline": {
+    "candidate_case_id": "F02-CANDIDATE-BASELINE-EXISTING",
+    "input_source": "candidate-local-fixture-not-L9-owner-input",
+    "payload_type": "PayloadF02",
+    "source_payload": {
+      "tag": "F02",
+      "value": {
+        "binding": {
+          "state": "provided",
+          "value": {
+            "identity": {
+              "state": "provided",
+              "value": "TDD-TARGET-CANDIDATE"
+            },
+            "owner": {
+              "state": "provided",
+              "value": "candidate-design-owner"
+            },
+            "revision": {
+              "state": "provided",
+              "value": "candidate-source-r1"
+            },
+            "scope": {
+              "state": "provided",
+              "value": {
+                "environment": {
+                  "state": "provided",
+                  "value": "candidate-test"
+                },
+                "project": {
+                  "state": "provided",
+                  "value": "P"
+                },
+                "tenant": {
+                  "state": "provided",
+                  "value": "candidate-T"
+                }
+              }
+            }
+          }
+        },
+        "body_change": {
+          "state": "provided",
+          "value": {
+            "from_head": {
+              "state": "provided",
+              "value": "H0"
+            },
+            "sequence": {
+              "state": "provided",
+              "value": 30
+            },
+            "to_head": {
+              "state": "provided",
+              "value": "H1"
+            }
+          }
+        },
+        "change_kind": {
+          "state": "provided",
+          "value": "existing"
+        },
+        "frozen_oracle": {
+          "state": "provided",
+          "value": {
+            "expected": {
+              "state": "provided",
+              "value": {
+                "receiver_debits": {
+                  "state": "provided",
+                  "value": 1
+                }
+              }
+            },
+            "freeze_sequence": {
+              "state": "provided",
+              "value": 10
+            },
+            "input": {
+              "state": "provided",
+              "value": {
+                "command": {
+                  "state": "provided",
+                  "value": "CANDIDATE-CMD"
+                },
+                "deliveries": {
+                  "state": "provided",
+                  "value": 2
+                }
+              }
+            },
+            "ref": {
+              "state": "provided",
+              "value": {
+                "identity": {
+                  "state": "provided",
+                  "value": "ORACLE-F02-CANDIDATE"
+                },
+                "owner": {
+                  "state": "provided",
+                  "value": "candidate-verification-owner"
+                },
+                "revision": {
+                  "state": "provided",
+                  "value": "candidate-source-r1"
+                },
+                "scope": {
+                  "state": "provided",
+                  "value": {
+                    "environment": {
+                      "state": "provided",
+                      "value": "candidate-test"
+                    },
+                    "project": {
+                      "state": "provided",
+                      "value": "P"
+                    },
+                    "tenant": {
+                      "state": "provided",
+                      "value": "candidate-T"
+                    }
+                  }
+                }
+              }
+            },
+            "test_ref": {
+              "state": "provided",
+              "value": {
+                "identity": {
+                  "state": "provided",
+                  "value": "TEST-F02-CANDIDATE"
+                },
+                "owner": {
+                  "state": "provided",
+                  "value": "candidate-verification-owner"
+                },
+                "revision": {
+                  "state": "provided",
+                  "value": "candidate-source-r1"
+                },
+                "scope": {
+                  "state": "provided",
+                  "value": {
+                    "environment": {
+                      "state": "provided",
+                      "value": "candidate-test"
+                    },
+                    "project": {
+                      "state": "provided",
+                      "value": "P"
+                    },
+                    "tenant": {
+                      "state": "provided",
+                      "value": "candidate-T"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "non_target": {
+          "state": "provided",
+          "value": {
+            "binding": {
+              "state": "provided",
+              "value": {
+                "identity": {
+                  "state": "provided",
+                  "value": "OTHER-TARGET-CANDIDATE"
+                },
+                "owner": {
+                  "state": "provided",
+                  "value": "candidate-design-owner"
+                },
+                "revision": {
+                  "state": "provided",
+                  "value": "candidate-source-r1"
+                },
+                "scope": {
+                  "state": "provided",
+                  "value": {
+                    "environment": {
+                      "state": "provided",
+                      "value": "candidate-test"
+                    },
+                    "project": {
+                      "state": "provided",
+                      "value": "Q"
+                    },
+                    "tenant": {
+                      "state": "provided",
+                      "value": "candidate-T"
+                    }
+                  }
+                }
+              }
+            },
+            "state": {
+              "state": "provided",
+              "value": "valid_original"
+            }
+          }
+        },
+        "post_mutation": {
+          "state": "absent"
+        },
+        "pre_body": {
+          "state": "provided",
+          "value": {
+            "defect": {
+              "state": "provided",
+              "value": "duplicate_debit"
+            },
+            "head": {
+              "state": "provided",
+              "value": "H0"
+            },
+            "state": {
+              "state": "provided",
+              "value": "unrepaired"
+            }
+          }
+        },
+        "red": {
+          "state": "provided",
+          "value": {
+            "actual": {
+              "state": "provided",
+              "value": {
+                "behavior_observation": {
+                  "state": "provided",
+                  "value": "duplicate_debit_observed"
+                },
+                "exception": {
+                  "state": "absent"
+                },
+                "receiver_debits": {
+                  "state": "provided",
+                  "value": 2
+                }
+              }
+            },
+            "executed": {
+              "state": "provided",
+              "value": true
+            },
+            "failure_kind": {
+              "state": "provided",
+              "value": "intended_behavior_mismatch"
+            },
+            "head": {
+              "state": "provided",
+              "value": "H0"
+            },
+            "oracle_ref": {
+              "state": "provided",
+              "value": {
+                "identity": {
+                  "state": "provided",
+                  "value": "ORACLE-F02-CANDIDATE"
+                },
+                "owner": {
+                  "state": "provided",
+                  "value": "candidate-verification-owner"
+                },
+                "revision": {
+                  "state": "provided",
+                  "value": "candidate-source-r1"
+                },
+                "scope": {
+                  "state": "provided",
+                  "value": {
+                    "environment": {
+                      "state": "provided",
+                      "value": "candidate-test"
+                    },
+                    "project": {
+                      "state": "provided",
+                      "value": "P"
+                    },
+                    "tenant": {
+                      "state": "provided",
+                      "value": "candidate-T"
+                    }
+                  }
+                }
+              }
+            },
+            "ref": {
+              "state": "provided",
+              "value": {
+                "identity": {
+                  "state": "provided",
+                  "value": "RED-F02-CANDIDATE"
+                },
+                "owner": {
+                  "state": "provided",
+                  "value": "candidate-execution-owner"
+                },
+                "revision": {
+                  "state": "provided",
+                  "value": "candidate-source-r1"
+                },
+                "scope": {
+                  "state": "provided",
+                  "value": {
+                    "environment": {
+                      "state": "provided",
+                      "value": "candidate-test"
+                    },
+                    "project": {
+                      "state": "provided",
+                      "value": "P"
+                    },
+                    "tenant": {
+                      "state": "provided",
+                      "value": "candidate-T"
+                    }
+                  }
+                }
+              }
+            },
+            "sequence": {
+              "state": "provided",
+              "value": 20
+            }
+          }
+        },
+        "source_assumption": {
+          "state": "absent"
+        }
+      }
+    }
+  },
+  "case_deltas": [
+    {
+      "case_id": "F02-CANDIDATE-POSITIVE-NEW",
+      "input_delta": [
+        {
+          "path": "change_kind",
+          "field_value": {
+            "state": "provided",
+            "value": "new"
+          }
+        },
+        {
+          "path": "pre_body.state",
+          "field_value": {
+            "state": "provided",
+            "value": "unimplemented"
+          }
+        }
+      ]
+    },
+    {
+      "case_id": "F02-CANDIDATE-POSITIVE-EXISTING",
+      "input_delta": []
+    },
+    {
+      "case_id": "F02-CANDIDATE-NEGATIVE-AFTER-BODY",
+      "input_delta": [
+        {
+          "path": "red.sequence",
+          "field_value": {
+            "state": "provided",
+            "value": 40
+          }
+        }
+      ]
+    },
+    {
+      "case_id": "F02-CANDIDATE-NEGATIVE-FOREIGN-HEAD",
+      "input_delta": [
+        {
+          "path": "red.head",
+          "field_value": {
+            "state": "provided",
+            "value": "H-FOREIGN"
+          }
+        }
+      ]
+    },
+    {
+      "case_id": "F02-CANDIDATE-NEGATIVE-ENVIRONMENT",
+      "input_delta": [
+        {
+          "path": "red.failure_kind",
+          "field_value": {
+            "state": "provided",
+            "value": "environment_failure"
+          }
+        },
+        {
+          "path": "red.actual.behavior_observation",
+          "field_value": {
+            "state": "provided",
+            "value": "missing"
+          }
+        },
+        {
+          "path": "red.actual.exception",
+          "field_value": {
+            "state": "provided",
+            "value": "candidate_dependency_unavailable"
+          }
+        },
+        {
+          "path": "red.actual.receiver_debits",
+          "field_value": {
+            "state": "absent"
+          }
+        }
+      ]
+    },
+    {
+      "case_id": "F02-CANDIDATE-NEGATIVE-SYNTAX",
+      "input_delta": [
+        {
+          "path": "red.failure_kind",
+          "field_value": {
+            "state": "provided",
+            "value": "syntax_failure"
+          }
+        },
+        {
+          "path": "red.actual.behavior_observation",
+          "field_value": {
+            "state": "provided",
+            "value": "missing"
+          }
+        },
+        {
+          "path": "red.actual.exception",
+          "field_value": {
+            "state": "provided",
+            "value": "candidate_syntax_error"
+          }
+        },
+        {
+          "path": "red.actual.receiver_debits",
+          "field_value": {
+            "state": "absent"
+          }
+        }
+      ]
+    },
+    {
+      "case_id": "F02-CANDIDATE-NEGATIVE-UNEXECUTED",
+      "input_delta": [
+        {
+          "path": "red.executed",
+          "field_value": {
+            "state": "provided",
+            "value": false
+          }
+        },
+        {
+          "path": "red.failure_kind",
+          "field_value": {
+            "state": "absent"
+          }
+        },
+        {
+          "path": "red.sequence",
+          "field_value": {
+            "state": "absent"
+          }
+        },
+        {
+          "path": "red.actual.behavior_observation",
+          "field_value": {
+            "state": "absent"
+          }
+        },
+        {
+          "path": "red.actual.exception",
+          "field_value": {
+            "state": "absent"
+          }
+        },
+        {
+          "path": "red.actual.receiver_debits",
+          "field_value": {
+            "state": "absent"
+          }
+        }
+      ]
+    },
+    {
+      "case_id": "F02-CANDIDATE-NEGATIVE-MUTATION-SUBSTITUTE",
+      "input_delta": [
+        {
+          "path": "red",
+          "field_value": {
+            "state": "absent"
+          }
+        },
+        {
+          "path": "post_mutation",
+          "field_value": {
+            "state": "provided",
+            "value": {
+              "actual": {
+                "state": "provided",
+                "value": {
+                  "receiver_debits": {
+                    "state": "provided",
+                    "value": 2
+                  }
+                }
+              },
+              "executed": {
+                "state": "provided",
+                "value": true
+              },
+              "expected": {
+                "state": "provided",
+                "value": {
+                  "receiver_debits": {
+                    "state": "provided",
+                    "value": 1
+                  }
+                }
+              },
+              "head": {
+                "state": "provided",
+                "value": "H1"
+              },
+              "input": {
+                "state": "provided",
+                "value": {
+                  "command": {
+                    "state": "provided",
+                    "value": "CANDIDATE-CMD"
+                  },
+                  "deliveries": {
+                    "state": "provided",
+                    "value": 2
+                  }
+                }
+              },
+              "oracle_ref": {
+                "state": "provided",
+                "value": {
+                  "identity": {
+                    "state": "provided",
+                    "value": "ORACLE-F02-CANDIDATE"
+                  },
+                  "owner": {
+                    "state": "provided",
+                    "value": "candidate-verification-owner"
+                  },
+                  "revision": {
+                    "state": "provided",
+                    "value": "candidate-source-r1"
+                  },
+                  "scope": {
+                    "state": "provided",
+                    "value": {
+                      "environment": {
+                        "state": "provided",
+                        "value": "candidate-test"
+                      },
+                      "project": {
+                        "state": "provided",
+                        "value": "P"
+                      },
+                      "tenant": {
+                        "state": "provided",
+                        "value": "candidate-T"
+                      }
+                    }
+                  }
+                }
+              },
+              "ref": {
+                "state": "provided",
+                "value": {
+                  "identity": {
+                    "state": "provided",
+                    "value": "MUTATION-F02-CANDIDATE"
+                  },
+                  "owner": {
+                    "state": "provided",
+                    "value": "candidate-execution-owner"
+                  },
+                  "revision": {
+                    "state": "provided",
+                    "value": "candidate-source-r1"
+                  },
+                  "scope": {
+                    "state": "provided",
+                    "value": {
+                      "environment": {
+                        "state": "provided",
+                        "value": "candidate-test"
+                      },
+                      "project": {
+                        "state": "provided",
+                        "value": "P"
+                      },
+                      "tenant": {
+                        "state": "provided",
+                        "value": "candidate-T"
+                      }
+                    }
+                  }
+                }
+              },
+              "role": {
+                "state": "provided",
+                "value": "oracle_strength_only"
+              },
+              "seeded_defect": {
+                "state": "provided",
+                "value": "duplicate_debit"
+              },
+              "sequence": {
+                "state": "provided",
+                "value": 40
+              }
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

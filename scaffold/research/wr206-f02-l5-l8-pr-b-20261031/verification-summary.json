@@ -1,11 +1,15 @@
 {
-  "status": "candidate_static_checks_complete_with_residuals",
+  "status": "candidate_static_checks_complete_with_source_and_checker_residuals",
   "authority_effect": "none",
   "base_revision": "fa3d2d515ce8df79c0a74d5360a4d1254863a6f1",
-  "candidate_l5_revision": "e69e4bdf1aabf7587925896b77c7871dadf35790",
+  "candidate_commits": [
+    "e69e4bdf1aabf7587925896b77c7871dadf35790",
+    "f073063c09",
+    "20211ed96"
+  ],
   "candidate_documents": {
-    "docs/helix-harness/L5-detail-design/tdd-development-flow.json": "f958060d9239df8a86b6b7ab0a5c80891e0df295793bd95d0c05b7dbeb60b0e0",
-    "docs/helix-harness/L8-unit-verification/tdd-development-flow.json": "5eff83f754aa94b22b0fa43ac70a20ada244d6d3fa1d1e2adf55d5bdaa6f2505"
+    "docs/helix-harness/L5-detail-design/tdd-development-flow.json": "12bc2ddad72df32452e424819ce38da5389301662f80dc8e76c823567d851d69",
+    "docs/helix-harness/L8-unit-verification/tdd-development-flow.json": "e4ee9ad431c79beb336f1e8bfdc14cb0d3ea854f0ee0c0199499d1cfff8ee1e1"
   },
   "fixed_blind_artifact": {
     "path": "scaffold/research/wr206-f02-l5-l8-pr-b-20261031/source/f02-blind-draft.json",
@@ -13,18 +17,34 @@
     "bytes_changed": false,
     "meaning_scope_only": true
   },
+  "input_material_boundary": {
+    "scope_owner_input_source_found": false,
+    "synthetic_facts_path": "scaffold/research/wr206-f02-l5-l8-pr-b-20261031/source/f02-candidate-input-facts.json",
+    "synthetic_facts_sha256": "a4d589a3bb1487eb88412abbed9840499ec5ed7549227d0190fa7f81fe517844",
+    "l8_embeds_full_input_payload": false,
+    "l8_embeds_full_return_or_fixture_body": false,
+    "l8_retains": "8 case refs and compact semantic projections only",
+    "candidate_fixture_is_formal_oracle": false
+  },
   "verification": {
     "json_syntax": "pass",
     "static_candidate_validator": "pass",
     "source_revision_blob_sha_and_reviewed_f02_row_match": "pass",
     "existing_l5_f02_contract_unchanged": true,
     "existing_l8_unit_cases_unchanged": 35,
-    "existing_l8_case_records_unchanged_except_appended_f02_candidate": true,
+    "existing_l8_case_records_unchanged_except_appended_f02_candidate_design": true,
     "l4_l9_bytes_unchanged_from_base": true,
     "candidate_rows": {
       "positive": 2,
       "negative_witnesses": 6,
       "negative_classifications": 5
+    },
+    "check_child_base_vs_candidate": {
+      "baseline": "fa3d2d515ce8df79c0a74d5360a4d1254863a6f1",
+      "L4_L9_pair": "both pass (5/5)",
+      "L5_L8_pair": "both pass (5/5 formal roots)",
+      "negative_4way": "unchanged failure; L4=28, L9=28, L8=0, L5=0, matched=0, 33 failures",
+      "ownership_caps": "identical counts: L4 pass/0, L9 fail/35, L5 pass/0, L8 fail/1647"
     },
     "scf_validate": {
       "status": "pass",
@@ -35,13 +55,6 @@
       "status": "pass",
       "stale": 0
     },
-    "check_child": {
-      "overall": "fail_with_existing_residuals",
-      "L4_L9_pair": "pass (5/5)",
-      "L5_L8_pair": "pass (5/5 formal roots)",
-      "negative_4way": "fail; L4=28, L9=28, L8=0, L5=0, matched=0, failures=33",
-      "ownership_caps": "L4 pass (0 findings), L9 fail (35), L5 pass (0 findings), L8 fail (1647)"
-    },
     "pr_scope_diff_check": "pass",
     "not_run": [
       "L4/L5 algorithm or F-015-05 execution",
@@ -50,9 +63,9 @@
     ]
   },
   "unresolved": [
+    "No owner-derived raw input packet within L3/L10 scope was identified; the scaffold fixture is synthetic candidate material, so formal L8 input linkage remains unestablished.",
     "F-015-05 typed owner is not resolved by the checker because it reads L5 functions[]; no alias or marker was added.",
-    "The candidate F02 fixtures do not count toward the checker four-way negative case rows.",
-    "The full 4way classification mapping and ownership-cap findings remain outside this F02-only candidate.",
+    "The candidate F02 fixture rows do not count toward the checker four-way negative case rows.",
     "Chosen head/revision mapping, syntax-to-environment_error mapping, actual-absent behavior, and multi-predicate precedence remain candidate design choices or unresolved."
   ]
 }
