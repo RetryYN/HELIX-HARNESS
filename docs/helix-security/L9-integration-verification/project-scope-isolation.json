@@ -176,7 +176,7 @@
       "execution_target"
     ],
     "algorithm": [
-      "counterexample.request/contextに明示して残したcase固有値を入力とし、origin/targetの各軸を独立expectedへ照合する。tenant=trueは必要Textをexpectedと比較する。falseはnull以外をtenant_inventedとしtenant値の同一性は比較しない。unknownはtenant_applicability_unresolvedとしtenant値をidentity/asset/接続の意味比較から除く。各行で保持したtenant適用flag、tenant値、scope軸、allowed_operationsの範囲を越えて元givenを推測で補完しない。他5軸の不足/相反は独立に保持する。sideが接続照合可能なのは他5軸が全て既知非空Textで、trueならtenantも既知Text、falseならtenantがnullの場合だけ。unknown又はtenant_invented/必要identity不足のside全体のrequest→connection joinは未成立として比較を補完しない。",
+      "fixture_contract.comparison_relationsとcounterexample.comparison_shape_idは原L9値の静的な関係要約であり、実行可能な入力・期待値・oracleではない。positive行はshape IDとcaller_kind/asset_kind/operationを保持し、負例行はshapeから変わる実source leafだけを保持する。L7の実行可能input/expectedはDT-VT-105に従い独立に著述し、この要約から合成・推測しない。実L4契約の比較意味はorigin/targetの各軸を独立expectedへ照合する。tenant=trueは必要Textをexpectedと比較。falseはnull以外をtenant_inventedとしtenant値の同一性は比較しない。unknownはtenant_applicability_unresolvedとしtenant値をidentity/asset/接続の意味比較から除く。他5軸の不足/相反は独立に保持する。sideが接続照合可能なのは他5軸が全て既知非空Textで、trueならtenantも既知Text、falseならtenantがnullの場合だけ。unknown又はtenant_invented/必要identity不足のside全体のrequest→connection joinは未成立として比較を補完しない。",
       "asset_scopeの他5軸をexpected_targetへ独立照合。target tenant=trueだけtenant Textを比較し、falseは投入だけtenant_invented、unknownはtenant値の不足/相反を追加推測しない。asset_state_latest_claimは資格の代用にしない。owner素材の非currentを個別unknown findingへ。",
       "connection absentは明示接続なしの違反、非currentは未確認。current内容はexpected_connection全record（非適用null markerも含む）へ完全一致で比較し、requested operationの列挙内を確認。request→connectionのside joinはalgorithm1の照合可能sideだけに行い、他5軸とtenant=trueの場合のtenantを比較する。false/unknownのtenantはこの意味joinで比較しない。connection_content_correspondingはconnection_state currentで独立expected connection全recordと一致し、照合可能sideのrequest→connection joinに相反がない場合だけtrue。比較しないsideの成立、requested operationの許容、asset/source資格や実authorityをこのflagから生成しない。これら不足/相反は別findingと全体conditionに保持する。",
       "fallback none以外は暗黙fallback違反。違反があればisolation_violation、欠落/未確認だけはscope_unresolved、それ以外はscope_correspondingという内容提案。",
@@ -195,7 +195,36 @@
       "actual_state_changed",
       "operation_effect"
     ],
-    "return_owner": "scope-binding-owner"
+    "return_owner": "scope-binding-owner",
+    "comparison_relations": {
+      "status": "原L9 rawに対する静的な比較関係の要約。実行可能な入力・期待値・oracleではなく、L7はDT-VT-105に従いこの要約から独立して入力と期待を著述する。",
+      "common_positive_relations": [
+        "91件のpositiveでorigin/target/asset_scopeとexpected_origin/expected_targetは6軸すべて既知。request.originはcontext.expected_origin、request.targetはcontext.expected_target、request.asset_scopeはrequest.targetと全軸一致する。",
+        "91件のpositiveでrequest.connectionはcontext.expected_connectionと全member一致し、connection.origin/targetはrequest.origin/targetおよびexpected_origin/expected_targetへ対応する。connection_state=current、fallback=none、asset_state_latest_claim=false、OS/INFRA/CONNECTのowner_material_statesはすべてcurrent。",
+        "91件のpositiveでrequest.connection.allowed_operationsとcontext.expected_connection.allowed_operationsはともにrequest.operationだけを含む。tenant適用Boolは各shapeに示す。"
+      ],
+      "positive_shapes": [
+        {
+          "id": "same_scope_tenant",
+          "case_count": 42,
+          "relation": "originとtargetは6軸すべて同一。origin_tenant_applicableとtarget_tenant_applicableはともにtrue。",
+          "example_case_id": "SEC003-AGENT-READ-TENANT"
+        },
+        {
+          "id": "same_scope_no_tenant",
+          "case_count": 42,
+          "relation": "tenantを除く5軸でoriginとtargetは同一。両tenantは明示nullで、origin_tenant_applicableとtarget_tenant_applicableはともにfalse。",
+          "example_case_id": "SEC003-AGENT-READ-NO-TENANT"
+        },
+        {
+          "id": "cross_scope",
+          "case_count": 7,
+          "relation": "originとtargetは6軸すべて相違し、origin_tenant_applicableとtarget_tenant_applicableはともにtrue。",
+          "example_case_id": "SEC003-CROSS-READ-CURRENT"
+        }
+      ],
+      "negative_delta_rule": "全114件のnegativeはcomparison_shape_idを1つ持ち、sourceの基底関係から変わるsource leafだけをcounterexampleに明示する。値はshape宣言から生成せず、未記載入力は補完しない。明示null、unknown値、object/member absentはsourceどおりに区別する。"
+    }
   },
   "cases": [
     {
@@ -1213,7 +1242,8 @@
               "expected_target": {
                 "project": "PROJECT-A"
               }
-            }
+            },
+            "comparison_shape_id": "same_scope_tenant"
           },
           "expected_observation": {
             "condition": "isolation_violation",
@@ -1261,7 +1291,8 @@
               "expected_target": {
                 "tenant": "TENANT-A"
               }
-            }
+            },
+            "comparison_shape_id": "same_scope_tenant"
           },
           "expected_observation": {
             "condition": "isolation_violation",
@@ -1309,7 +1340,8 @@
               "expected_target": {
                 "environment": "ENV-A"
               }
-            }
+            },
+            "comparison_shape_id": "same_scope_tenant"
           },
           "expected_observation": {
             "condition": "isolation_violation",
@@ -1357,7 +1389,8 @@
               "expected_target": {
                 "assignment": "ASSIGN-A"
               }
-            }
+            },
+            "comparison_shape_id": "same_scope_tenant"
           },
           "expected_observation": {
             "condition": "isolation_violation",
@@ -1405,7 +1438,8 @@
               "expected_target": {
                 "worktree": "TREE-A"
               }
-            }
+            },
+            "comparison_shape_id": "same_scope_tenant"
           },
           "expected_observation": {
             "condition": "isolation_violation",
@@ -1453,7 +1487,8 @@
               "expected_target": {
                 "revision": "scope-r1"
               }
-            }
+            },
+            "comparison_shape_id": "same_scope_tenant"
           },
           "expected_observation": {
             "condition": "isolation_violation",
@@ -1501,7 +1536,8 @@
               "expected_target": {
                 "project": "PROJECT-A"
               }
-            }
+            },
+            "comparison_shape_id": "same_scope_tenant"
           },
           "expected_observation": {
             "condition": "isolation_violation",
@@ -1549,7 +1585,8 @@
               "expected_target": {
                 "tenant": "TENANT-A"
               }
-            }
+            },
+            "comparison_shape_id": "same_scope_tenant"
           },
           "expected_observation": {
             "condition": "isolation_violation",
@@ -1597,7 +1634,8 @@
               "expected_target": {
                 "environment": "ENV-A"
               }
-            }
+            },
+            "comparison_shape_id": "same_scope_tenant"
           },
           "expected_observation": {
             "condition": "isolation_violation",
@@ -1645,7 +1683,8 @@
               "expected_target": {
                 "assignment": "ASSIGN-A"
               }
-            }
+            },
+            "comparison_shape_id": "same_scope_tenant"
           },
           "expected_observation": {
             "condition": "isolation_violation",
@@ -1693,7 +1732,8 @@
               "expected_target": {
                 "worktree": "TREE-A"
               }
-            }
+            },
+            "comparison_shape_id": "same_scope_tenant"
           },
           "expected_observation": {
             "condition": "isolation_violation",
@@ -1741,7 +1781,8 @@
               "expected_target": {
                 "revision": "scope-r1"
               }
-            }
+            },
+            "comparison_shape_id": "same_scope_tenant"
           },
           "expected_observation": {
             "condition": "isolation_violation",
@@ -1789,7 +1830,8 @@
               "expected_target": {
                 "project": "PROJECT-A"
               }
-            }
+            },
+            "comparison_shape_id": "same_scope_tenant"
           },
           "expected_observation": {
             "condition": "isolation_violation",
@@ -1837,7 +1879,8 @@
               "expected_target": {
                 "tenant": "TENANT-A"
               }
-            }
+            },
+            "comparison_shape_id": "same_scope_tenant"
           },
           "expected_observation": {
             "condition": "isolation_violation",
@@ -1885,7 +1928,8 @@
               "expected_target": {
                 "environment": "ENV-A"
               }
-            }
+            },
+            "comparison_shape_id": "same_scope_tenant"
           },
           "expected_observation": {
             "condition": "isolation_violation",
@@ -1933,7 +1977,8 @@
               "expected_target": {
                 "assignment": "ASSIGN-A"
               }
-            }
+            },
+            "comparison_shape_id": "same_scope_tenant"
           },
           "expected_observation": {
             "condition": "isolation_violation",
@@ -1981,7 +2026,8 @@
               "expected_target": {
                 "worktree": "TREE-A"
               }
-            }
+            },
+            "comparison_shape_id": "same_scope_tenant"
           },
           "expected_observation": {
             "condition": "isolation_violation",
@@ -2029,7 +2075,8 @@
               "expected_target": {
                 "revision": "scope-r1"
               }
-            }
+            },
+            "comparison_shape_id": "same_scope_tenant"
           },
           "expected_observation": {
             "condition": "isolation_violation",
@@ -2077,7 +2124,8 @@
               "expected_target": {
                 "project": "PROJECT-A"
               }
-            }
+            },
+            "comparison_shape_id": "same_scope_tenant"
           },
           "expected_observation": {
             "condition": "isolation_violation",
@@ -2125,7 +2173,8 @@
               "expected_target": {
                 "tenant": "TENANT-A"
               }
-            }
+            },
+            "comparison_shape_id": "same_scope_tenant"
           },
           "expected_observation": {
             "condition": "isolation_violation",
@@ -2173,7 +2222,8 @@
               "expected_target": {
                 "environment": "ENV-A"
               }
-            }
+            },
+            "comparison_shape_id": "same_scope_tenant"
           },
           "expected_observation": {
             "condition": "isolation_violation",
@@ -2221,7 +2271,8 @@
               "expected_target": {
                 "assignment": "ASSIGN-A"
               }
-            }
+            },
+            "comparison_shape_id": "same_scope_tenant"
           },
           "expected_observation": {
             "condition": "isolation_violation",
@@ -2269,7 +2320,8 @@
               "expected_target": {
                 "worktree": "TREE-A"
               }
-            }
+            },
+            "comparison_shape_id": "same_scope_tenant"
           },
           "expected_observation": {
             "condition": "isolation_violation",
@@ -2317,7 +2369,8 @@
               "expected_target": {
                 "revision": "scope-r1"
               }
-            }
+            },
+            "comparison_shape_id": "same_scope_tenant"
           },
           "expected_observation": {
             "condition": "isolation_violation",
@@ -2365,7 +2418,8 @@
               "expected_target": {
                 "project": "PROJECT-A"
               }
-            }
+            },
+            "comparison_shape_id": "same_scope_tenant"
           },
           "expected_observation": {
             "condition": "isolation_violation",
@@ -2413,7 +2467,8 @@
               "expected_target": {
                 "tenant": "TENANT-A"
               }
-            }
+            },
+            "comparison_shape_id": "same_scope_tenant"
           },
           "expected_observation": {
             "condition": "isolation_violation",
@@ -2461,7 +2516,8 @@
               "expected_target": {
                 "environment": "ENV-A"
               }
-            }
+            },
+            "comparison_shape_id": "same_scope_tenant"
           },
           "expected_observation": {
             "condition": "isolation_violation",
@@ -2509,7 +2565,8 @@
               "expected_target": {
                 "assignment": "ASSIGN-A"
               }
-            }
+            },
+            "comparison_shape_id": "same_scope_tenant"
           },
           "expected_observation": {
             "condition": "isolation_violation",
@@ -2557,7 +2614,8 @@
               "expected_target": {
                 "worktree": "TREE-A"
               }
-            }
+            },
+            "comparison_shape_id": "same_scope_tenant"
           },
           "expected_observation": {
             "condition": "isolation_violation",
@@ -2605,7 +2663,8 @@
               "expected_target": {
                 "revision": "scope-r1"
               }
-            }
+            },
+            "comparison_shape_id": "same_scope_tenant"
           },
           "expected_observation": {
             "condition": "isolation_violation",
@@ -2653,7 +2712,8 @@
               "expected_target": {
                 "project": "PROJECT-A"
               }
-            }
+            },
+            "comparison_shape_id": "same_scope_tenant"
           },
           "expected_observation": {
             "condition": "isolation_violation",
@@ -2701,7 +2761,8 @@
               "expected_target": {
                 "tenant": "TENANT-A"
               }
-            }
+            },
+            "comparison_shape_id": "same_scope_tenant"
           },
           "expected_observation": {
             "condition": "isolation_violation",
@@ -2749,7 +2810,8 @@
               "expected_target": {
                 "environment": "ENV-A"
               }
-            }
+            },
+            "comparison_shape_id": "same_scope_tenant"
           },
           "expected_observation": {
             "condition": "isolation_violation",
@@ -2797,7 +2859,8 @@
               "expected_target": {
                 "assignment": "ASSIGN-A"
               }
-            }
+            },
+            "comparison_shape_id": "same_scope_tenant"
           },
           "expected_observation": {
             "condition": "isolation_violation",
@@ -2845,7 +2908,8 @@
               "expected_target": {
                 "worktree": "TREE-A"
               }
-            }
+            },
+            "comparison_shape_id": "same_scope_tenant"
           },
           "expected_observation": {
             "condition": "isolation_violation",
@@ -2893,7 +2957,8 @@
               "expected_target": {
                 "revision": "scope-r1"
               }
-            }
+            },
+            "comparison_shape_id": "same_scope_tenant"
           },
           "expected_observation": {
             "condition": "isolation_violation",
@@ -2941,7 +3006,8 @@
               "expected_target": {
                 "project": "PROJECT-A"
               }
-            }
+            },
+            "comparison_shape_id": "same_scope_tenant"
           },
           "expected_observation": {
             "condition": "isolation_violation",
@@ -2989,7 +3055,8 @@
               "expected_target": {
                 "tenant": "TENANT-A"
               }
-            }
+            },
+            "comparison_shape_id": "same_scope_tenant"
           },
           "expected_observation": {
             "condition": "isolation_violation",
@@ -3037,7 +3104,8 @@
               "expected_target": {
                 "environment": "ENV-A"
               }
-            }
+            },
+            "comparison_shape_id": "same_scope_tenant"
           },
           "expected_observation": {
             "condition": "isolation_violation",
@@ -3085,7 +3153,8 @@
               "expected_target": {
                 "assignment": "ASSIGN-A"
               }
-            }
+            },
+            "comparison_shape_id": "same_scope_tenant"
           },
           "expected_observation": {
             "condition": "isolation_violation",
@@ -3133,7 +3202,8 @@
               "expected_target": {
                 "worktree": "TREE-A"
               }
-            }
+            },
+            "comparison_shape_id": "same_scope_tenant"
           },
           "expected_observation": {
             "condition": "isolation_violation",
@@ -3181,7 +3251,8 @@
               "expected_target": {
                 "revision": "scope-r1"
               }
-            }
+            },
+            "comparison_shape_id": "same_scope_tenant"
           },
           "expected_observation": {
             "condition": "isolation_violation",
@@ -3229,7 +3300,8 @@
               "expected_target": {
                 "project": "PROJECT-A"
               }
-            }
+            },
+            "comparison_shape_id": "same_scope_tenant"
           },
           "expected_observation": {
             "condition": "isolation_violation",
@@ -3277,7 +3349,8 @@
               "expected_target": {
                 "tenant": "TENANT-A"
               }
-            }
+            },
+            "comparison_shape_id": "same_scope_tenant"
           },
           "expected_observation": {
             "condition": "isolation_violation",
@@ -3325,7 +3398,8 @@
               "expected_target": {
                 "environment": "ENV-A"
               }
-            }
+            },
+            "comparison_shape_id": "same_scope_tenant"
           },
           "expected_observation": {
             "condition": "isolation_violation",
@@ -3373,7 +3447,8 @@
               "expected_target": {
                 "assignment": "ASSIGN-A"
               }
-            }
+            },
+            "comparison_shape_id": "same_scope_tenant"
           },
           "expected_observation": {
             "condition": "isolation_violation",
@@ -3421,7 +3496,8 @@
               "expected_target": {
                 "worktree": "TREE-A"
               }
-            }
+            },
+            "comparison_shape_id": "same_scope_tenant"
           },
           "expected_observation": {
             "condition": "isolation_violation",
@@ -3469,7 +3545,8 @@
               "expected_target": {
                 "revision": "scope-r1"
               }
-            }
+            },
+            "comparison_shape_id": "same_scope_tenant"
           },
           "expected_observation": {
             "condition": "isolation_violation",
@@ -3512,7 +3589,8 @@
               "expected_target": {
                 "project": "PROJECT-A"
               }
-            }
+            },
+            "comparison_shape_id": "same_scope_tenant"
           },
           "expected_observation": {
             "condition": "scope_unresolved",
@@ -3555,7 +3633,8 @@
               "expected_target": {
                 "tenant": "TENANT-A"
               }
-            }
+            },
+            "comparison_shape_id": "same_scope_tenant"
           },
           "expected_observation": {
             "condition": "scope_unresolved",
@@ -3598,7 +3677,8 @@
               "expected_target": {
                 "environment": "ENV-A"
               }
-            }
+            },
+            "comparison_shape_id": "same_scope_tenant"
           },
           "expected_observation": {
             "condition": "scope_unresolved",
@@ -3641,7 +3721,8 @@
               "expected_target": {
                 "assignment": "ASSIGN-A"
               }
-            }
+            },
+            "comparison_shape_id": "same_scope_tenant"
           },
           "expected_observation": {
             "condition": "scope_unresolved",
@@ -3684,7 +3765,8 @@
               "expected_target": {
                 "worktree": "TREE-A"
               }
-            }
+            },
+            "comparison_shape_id": "same_scope_tenant"
           },
           "expected_observation": {
             "condition": "scope_unresolved",
@@ -3727,7 +3809,8 @@
               "expected_target": {
                 "revision": "scope-r1"
               }
-            }
+            },
+            "comparison_shape_id": "same_scope_tenant"
           },
           "expected_observation": {
             "condition": "scope_unresolved",
@@ -3758,27 +3841,17 @@
           "execution_state": "not_executed",
           "actual_observation": "not_observed",
           "counterexample": {
+            "comparison_shape_id": "same_scope_no_tenant",
             "request": {
               "caller_kind": "Worker",
               "asset_kind": "state",
               "operation": "read",
               "target": {
                 "tenant": "INVENTED-TENANT"
-              },
-              "origin": {
-                "tenant": null
-              },
-              "asset_scope": {
-                "tenant": null
               }
             },
             "context": {
               "expected_target": {
-                "tenant": null
-              },
-              "origin_tenant_applicable": false,
-              "target_tenant_applicable": false,
-              "expected_origin": {
                 "tenant": null
               }
             }
@@ -3819,7 +3892,8 @@
             },
             "context": {
               "target_tenant_applicable": null
-            }
+            },
+            "comparison_shape_id": "same_scope_tenant"
           },
           "expected_observation": {
             "condition": "scope_unresolved",
@@ -3862,7 +3936,8 @@
               "expected_origin": {
                 "project": "PROJECT-A"
               }
-            }
+            },
+            "comparison_shape_id": "same_scope_tenant"
           },
           "expected_observation": {
             "condition": "scope_unresolved",
@@ -3905,7 +3980,8 @@
               "expected_origin": {
                 "tenant": "TENANT-A"
               }
-            }
+            },
+            "comparison_shape_id": "same_scope_tenant"
           },
           "expected_observation": {
             "condition": "scope_unresolved",
@@ -3948,7 +4024,8 @@
               "expected_origin": {
                 "environment": "ENV-A"
               }
-            }
+            },
+            "comparison_shape_id": "same_scope_tenant"
           },
           "expected_observation": {
             "condition": "scope_unresolved",
@@ -3991,7 +4068,8 @@
               "expected_origin": {
                 "assignment": "ASSIGN-A"
               }
-            }
+            },
+            "comparison_shape_id": "same_scope_tenant"
           },
           "expected_observation": {
             "condition": "scope_unresolved",
@@ -4034,7 +4112,8 @@
               "expected_origin": {
                 "worktree": "TREE-A"
               }
-            }
+            },
+            "comparison_shape_id": "same_scope_tenant"
           },
           "expected_observation": {
             "condition": "scope_unresolved",
@@ -4077,7 +4156,8 @@
               "expected_origin": {
                 "revision": "scope-r1"
               }
-            }
+            },
+            "comparison_shape_id": "same_scope_tenant"
           },
           "expected_observation": {
             "condition": "scope_unresolved",
@@ -4108,29 +4188,20 @@
           "execution_state": "not_executed",
           "actual_observation": "not_observed",
           "counterexample": {
+            "comparison_shape_id": "same_scope_tenant",
             "request": {
               "caller_kind": "Worker",
               "asset_kind": "state",
               "operation": "read",
               "origin": {
                 "tenant": "UNCONFIRMED-TENANT"
-              },
-              "target": {
-                "tenant": "TENANT-A"
-              },
-              "asset_scope": {
-                "tenant": "TENANT-A"
               }
             },
             "context": {
               "origin_tenant_applicable": null,
               "expected_origin": {
                 "tenant": "TENANT-A"
-              },
-              "expected_target": {
-                "tenant": "TENANT-A"
-              },
-              "target_tenant_applicable": true
+              }
             }
           },
           "expected_observation": {
@@ -4162,13 +4233,11 @@
           "execution_state": "not_executed",
           "actual_observation": "not_observed",
           "counterexample": {
+            "comparison_shape_id": "same_scope_tenant",
             "request": {
               "caller_kind": "Worker",
               "asset_kind": "state",
               "operation": "read",
-              "origin": {
-                "tenant": "TENANT-A"
-              },
               "target": {
                 "tenant": "UNCONFIRMED-TENANT"
               },
@@ -4178,13 +4247,9 @@
             },
             "context": {
               "target_tenant_applicable": null,
-              "expected_origin": {
-                "tenant": "TENANT-A"
-              },
               "expected_target": {
                 "tenant": "TENANT-A"
-              },
-              "origin_tenant_applicable": true
+              }
             }
           },
           "expected_observation": {
@@ -4865,61 +4930,16 @@
           "execution_state": "not_executed",
           "actual_observation": "not_observed",
           "counterexample": {
+            "comparison_shape_id": "cross_scope",
             "request": {
               "caller_kind": "Worker",
               "asset_kind": "state",
               "operation": "read",
               "origin": {
-                "project": "PROJECT-A",
-                "tenant": "TENANT-A",
-                "environment": "ENV-A",
-                "assignment": "ASSIGN-A",
-                "worktree": "TREE-A",
-                "revision": "scope-r1"
+                "project": "PROJECT-A"
               },
               "target": {
-                "project": "PROJECT-B",
-                "tenant": "TENANT-B",
-                "environment": "ENV-B",
-                "assignment": "ASSIGN-B",
-                "worktree": "TREE-B",
-                "revision": "scope-r2"
-              },
-              "connection": {
-                "allowed_operations": [
-                  "read"
-                ]
-              },
-              "asset_scope": {
-                "project": "PROJECT-B",
-                "tenant": "TENANT-B",
-                "environment": "ENV-B",
-                "assignment": "ASSIGN-B",
-                "worktree": "TREE-B",
-                "revision": "scope-r2"
-              }
-            },
-            "context": {
-              "expected_connection": {
-                "allowed_operations": [
-                  "read"
-                ]
-              },
-              "expected_origin": {
-                "project": "PROJECT-A",
-                "tenant": "TENANT-A",
-                "environment": "ENV-A",
-                "assignment": "ASSIGN-A",
-                "worktree": "TREE-A",
-                "revision": "scope-r1"
-              },
-              "expected_target": {
-                "project": "PROJECT-B",
-                "tenant": "TENANT-B",
-                "environment": "ENV-B",
-                "assignment": "ASSIGN-B",
-                "worktree": "TREE-B",
-                "revision": "scope-r2"
+                "project": "PROJECT-B"
               }
             }
           },
@@ -4944,61 +4964,16 @@
           "execution_state": "not_executed",
           "actual_observation": "not_observed",
           "counterexample": {
+            "comparison_shape_id": "cross_scope",
             "request": {
               "caller_kind": "Worker",
               "asset_kind": "state",
               "operation": "write",
               "origin": {
-                "project": "PROJECT-A",
-                "tenant": "TENANT-A",
-                "environment": "ENV-A",
-                "assignment": "ASSIGN-A",
-                "worktree": "TREE-A",
-                "revision": "scope-r1"
+                "project": "PROJECT-A"
               },
               "target": {
-                "project": "PROJECT-B",
-                "tenant": "TENANT-B",
-                "environment": "ENV-B",
-                "assignment": "ASSIGN-B",
-                "worktree": "TREE-B",
-                "revision": "scope-r2"
-              },
-              "connection": {
-                "allowed_operations": [
-                  "write"
-                ]
-              },
-              "asset_scope": {
-                "project": "PROJECT-B",
-                "tenant": "TENANT-B",
-                "environment": "ENV-B",
-                "assignment": "ASSIGN-B",
-                "worktree": "TREE-B",
-                "revision": "scope-r2"
-              }
-            },
-            "context": {
-              "expected_connection": {
-                "allowed_operations": [
-                  "write"
-                ]
-              },
-              "expected_origin": {
-                "project": "PROJECT-A",
-                "tenant": "TENANT-A",
-                "environment": "ENV-A",
-                "assignment": "ASSIGN-A",
-                "worktree": "TREE-A",
-                "revision": "scope-r1"
-              },
-              "expected_target": {
-                "project": "PROJECT-B",
-                "tenant": "TENANT-B",
-                "environment": "ENV-B",
-                "assignment": "ASSIGN-B",
-                "worktree": "TREE-B",
-                "revision": "scope-r2"
+                "project": "PROJECT-B"
               }
             }
           },
@@ -5023,61 +4998,16 @@
           "execution_state": "not_executed",
           "actual_observation": "not_observed",
           "counterexample": {
+            "comparison_shape_id": "cross_scope",
             "request": {
               "caller_kind": "Worker",
               "asset_kind": "state",
               "operation": "execute",
               "origin": {
-                "project": "PROJECT-A",
-                "tenant": "TENANT-A",
-                "environment": "ENV-A",
-                "assignment": "ASSIGN-A",
-                "worktree": "TREE-A",
-                "revision": "scope-r1"
+                "project": "PROJECT-A"
               },
               "target": {
-                "project": "PROJECT-B",
-                "tenant": "TENANT-B",
-                "environment": "ENV-B",
-                "assignment": "ASSIGN-B",
-                "worktree": "TREE-B",
-                "revision": "scope-r2"
-              },
-              "connection": {
-                "allowed_operations": [
-                  "execute"
-                ]
-              },
-              "asset_scope": {
-                "project": "PROJECT-B",
-                "tenant": "TENANT-B",
-                "environment": "ENV-B",
-                "assignment": "ASSIGN-B",
-                "worktree": "TREE-B",
-                "revision": "scope-r2"
-              }
-            },
-            "context": {
-              "expected_connection": {
-                "allowed_operations": [
-                  "execute"
-                ]
-              },
-              "expected_origin": {
-                "project": "PROJECT-A",
-                "tenant": "TENANT-A",
-                "environment": "ENV-A",
-                "assignment": "ASSIGN-A",
-                "worktree": "TREE-A",
-                "revision": "scope-r1"
-              },
-              "expected_target": {
-                "project": "PROJECT-B",
-                "tenant": "TENANT-B",
-                "environment": "ENV-B",
-                "assignment": "ASSIGN-B",
-                "worktree": "TREE-B",
-                "revision": "scope-r2"
+                "project": "PROJECT-B"
               }
             }
           },
@@ -5102,61 +5032,16 @@
           "execution_state": "not_executed",
           "actual_observation": "not_observed",
           "counterexample": {
+            "comparison_shape_id": "cross_scope",
             "request": {
               "caller_kind": "Worker",
               "asset_kind": "state",
               "operation": "network",
               "origin": {
-                "project": "PROJECT-A",
-                "tenant": "TENANT-A",
-                "environment": "ENV-A",
-                "assignment": "ASSIGN-A",
-                "worktree": "TREE-A",
-                "revision": "scope-r1"
+                "project": "PROJECT-A"
               },
               "target": {
-                "project": "PROJECT-B",
-                "tenant": "TENANT-B",
-                "environment": "ENV-B",
-                "assignment": "ASSIGN-B",
-                "worktree": "TREE-B",
-                "revision": "scope-r2"
-              },
-              "connection": {
-                "allowed_operations": [
-                  "network"
-                ]
-              },
-              "asset_scope": {
-                "project": "PROJECT-B",
-                "tenant": "TENANT-B",
-                "environment": "ENV-B",
-                "assignment": "ASSIGN-B",
-                "worktree": "TREE-B",
-                "revision": "scope-r2"
-              }
-            },
-            "context": {
-              "expected_connection": {
-                "allowed_operations": [
-                  "network"
-                ]
-              },
-              "expected_origin": {
-                "project": "PROJECT-A",
-                "tenant": "TENANT-A",
-                "environment": "ENV-A",
-                "assignment": "ASSIGN-A",
-                "worktree": "TREE-A",
-                "revision": "scope-r1"
-              },
-              "expected_target": {
-                "project": "PROJECT-B",
-                "tenant": "TENANT-B",
-                "environment": "ENV-B",
-                "assignment": "ASSIGN-B",
-                "worktree": "TREE-B",
-                "revision": "scope-r2"
+                "project": "PROJECT-B"
               }
             }
           },
@@ -5181,61 +5066,16 @@
           "execution_state": "not_executed",
           "actual_observation": "not_observed",
           "counterexample": {
+            "comparison_shape_id": "cross_scope",
             "request": {
               "caller_kind": "Worker",
               "asset_kind": "state",
               "operation": "state",
               "origin": {
-                "project": "PROJECT-A",
-                "tenant": "TENANT-A",
-                "environment": "ENV-A",
-                "assignment": "ASSIGN-A",
-                "worktree": "TREE-A",
-                "revision": "scope-r1"
+                "project": "PROJECT-A"
               },
               "target": {
-                "project": "PROJECT-B",
-                "tenant": "TENANT-B",
-                "environment": "ENV-B",
-                "assignment": "ASSIGN-B",
-                "worktree": "TREE-B",
-                "revision": "scope-r2"
-              },
-              "connection": {
-                "allowed_operations": [
-                  "state"
-                ]
-              },
-              "asset_scope": {
-                "project": "PROJECT-B",
-                "tenant": "TENANT-B",
-                "environment": "ENV-B",
-                "assignment": "ASSIGN-B",
-                "worktree": "TREE-B",
-                "revision": "scope-r2"
-              }
-            },
-            "context": {
-              "expected_connection": {
-                "allowed_operations": [
-                  "state"
-                ]
-              },
-              "expected_origin": {
-                "project": "PROJECT-A",
-                "tenant": "TENANT-A",
-                "environment": "ENV-A",
-                "assignment": "ASSIGN-A",
-                "worktree": "TREE-A",
-                "revision": "scope-r1"
-              },
-              "expected_target": {
-                "project": "PROJECT-B",
-                "tenant": "TENANT-B",
-                "environment": "ENV-B",
-                "assignment": "ASSIGN-B",
-                "worktree": "TREE-B",
-                "revision": "scope-r2"
+                "project": "PROJECT-B"
               }
             }
           },
@@ -5260,61 +5100,16 @@
           "execution_state": "not_executed",
           "actual_observation": "not_observed",
           "counterexample": {
+            "comparison_shape_id": "cross_scope",
             "request": {
               "caller_kind": "Worker",
               "asset_kind": "state",
               "operation": "credential",
               "origin": {
-                "project": "PROJECT-A",
-                "tenant": "TENANT-A",
-                "environment": "ENV-A",
-                "assignment": "ASSIGN-A",
-                "worktree": "TREE-A",
-                "revision": "scope-r1"
+                "project": "PROJECT-A"
               },
               "target": {
-                "project": "PROJECT-B",
-                "tenant": "TENANT-B",
-                "environment": "ENV-B",
-                "assignment": "ASSIGN-B",
-                "worktree": "TREE-B",
-                "revision": "scope-r2"
-              },
-              "connection": {
-                "allowed_operations": [
-                  "credential"
-                ]
-              },
-              "asset_scope": {
-                "project": "PROJECT-B",
-                "tenant": "TENANT-B",
-                "environment": "ENV-B",
-                "assignment": "ASSIGN-B",
-                "worktree": "TREE-B",
-                "revision": "scope-r2"
-              }
-            },
-            "context": {
-              "expected_connection": {
-                "allowed_operations": [
-                  "credential"
-                ]
-              },
-              "expected_origin": {
-                "project": "PROJECT-A",
-                "tenant": "TENANT-A",
-                "environment": "ENV-A",
-                "assignment": "ASSIGN-A",
-                "worktree": "TREE-A",
-                "revision": "scope-r1"
-              },
-              "expected_target": {
-                "project": "PROJECT-B",
-                "tenant": "TENANT-B",
-                "environment": "ENV-B",
-                "assignment": "ASSIGN-B",
-                "worktree": "TREE-B",
-                "revision": "scope-r2"
+                "project": "PROJECT-B"
               }
             }
           },
@@ -5339,61 +5134,16 @@
           "execution_state": "not_executed",
           "actual_observation": "not_observed",
           "counterexample": {
+            "comparison_shape_id": "cross_scope",
             "request": {
               "caller_kind": "Worker",
               "asset_kind": "state",
               "operation": "artifact",
               "origin": {
-                "project": "PROJECT-A",
-                "tenant": "TENANT-A",
-                "environment": "ENV-A",
-                "assignment": "ASSIGN-A",
-                "worktree": "TREE-A",
-                "revision": "scope-r1"
+                "project": "PROJECT-A"
               },
               "target": {
-                "project": "PROJECT-B",
-                "tenant": "TENANT-B",
-                "environment": "ENV-B",
-                "assignment": "ASSIGN-B",
-                "worktree": "TREE-B",
-                "revision": "scope-r2"
-              },
-              "connection": {
-                "allowed_operations": [
-                  "artifact"
-                ]
-              },
-              "asset_scope": {
-                "project": "PROJECT-B",
-                "tenant": "TENANT-B",
-                "environment": "ENV-B",
-                "assignment": "ASSIGN-B",
-                "worktree": "TREE-B",
-                "revision": "scope-r2"
-              }
-            },
-            "context": {
-              "expected_connection": {
-                "allowed_operations": [
-                  "artifact"
-                ]
-              },
-              "expected_origin": {
-                "project": "PROJECT-A",
-                "tenant": "TENANT-A",
-                "environment": "ENV-A",
-                "assignment": "ASSIGN-A",
-                "worktree": "TREE-A",
-                "revision": "scope-r1"
-              },
-              "expected_target": {
-                "project": "PROJECT-B",
-                "tenant": "TENANT-B",
-                "environment": "ENV-B",
-                "assignment": "ASSIGN-B",
-                "worktree": "TREE-B",
-                "revision": "scope-r2"
+                "project": "PROJECT-B"
               }
             }
           },
@@ -5420,55 +5170,12 @@
           "execution_state": "not_executed",
           "actual_observation": "not_observed",
           "counterexample": {
+            "comparison_shape_id": "cross_scope",
             "request": {
               "caller_kind": "Worker",
               "asset_kind": "state",
               "operation": "read",
-              "connection_state": "absent",
-              "origin": {
-                "project": "PROJECT-A",
-                "tenant": "TENANT-A",
-                "environment": "ENV-A",
-                "assignment": "ASSIGN-A",
-                "worktree": "TREE-A",
-                "revision": "scope-r1"
-              },
-              "target": {
-                "project": "PROJECT-B",
-                "tenant": "TENANT-B",
-                "environment": "ENV-B",
-                "assignment": "ASSIGN-B",
-                "worktree": "TREE-B",
-                "revision": "scope-r2"
-              },
-              "asset_scope": {
-                "project": "PROJECT-B",
-                "tenant": "TENANT-B",
-                "environment": "ENV-B",
-                "assignment": "ASSIGN-B",
-                "worktree": "TREE-B",
-                "revision": "scope-r2"
-              }
-            },
-            "context": {
-              "expected_origin": {
-                "project": "PROJECT-A",
-                "tenant": "TENANT-A",
-                "environment": "ENV-A",
-                "assignment": "ASSIGN-A",
-                "worktree": "TREE-A",
-                "revision": "scope-r1"
-              },
-              "expected_target": {
-                "project": "PROJECT-B",
-                "tenant": "TENANT-B",
-                "environment": "ENV-B",
-                "assignment": "ASSIGN-B",
-                "worktree": "TREE-B",
-                "revision": "scope-r2"
-              },
-              "origin_tenant_applicable": true,
-              "target_tenant_applicable": true
+              "connection_state": "absent"
             }
           },
           "expected_observation": {
@@ -5500,55 +5207,12 @@
           "execution_state": "not_executed",
           "actual_observation": "not_observed",
           "counterexample": {
+            "comparison_shape_id": "cross_scope",
             "request": {
               "caller_kind": "Worker",
               "asset_kind": "state",
               "operation": "write",
-              "connection_state": "absent",
-              "origin": {
-                "project": "PROJECT-A",
-                "tenant": "TENANT-A",
-                "environment": "ENV-A",
-                "assignment": "ASSIGN-A",
-                "worktree": "TREE-A",
-                "revision": "scope-r1"
-              },
-              "target": {
-                "project": "PROJECT-B",
-                "tenant": "TENANT-B",
-                "environment": "ENV-B",
-                "assignment": "ASSIGN-B",
-                "worktree": "TREE-B",
-                "revision": "scope-r2"
-              },
-              "asset_scope": {
-                "project": "PROJECT-B",
-                "tenant": "TENANT-B",
-                "environment": "ENV-B",
-                "assignment": "ASSIGN-B",
-                "worktree": "TREE-B",
-                "revision": "scope-r2"
-              }
-            },
-            "context": {
-              "expected_origin": {
-                "project": "PROJECT-A",
-                "tenant": "TENANT-A",
-                "environment": "ENV-A",
-                "assignment": "ASSIGN-A",
-                "worktree": "TREE-A",
-                "revision": "scope-r1"
-              },
-              "expected_target": {
-                "project": "PROJECT-B",
-                "tenant": "TENANT-B",
-                "environment": "ENV-B",
-                "assignment": "ASSIGN-B",
-                "worktree": "TREE-B",
-                "revision": "scope-r2"
-              },
-              "origin_tenant_applicable": true,
-              "target_tenant_applicable": true
+              "connection_state": "absent"
             }
           },
           "expected_observation": {
@@ -5580,55 +5244,12 @@
           "execution_state": "not_executed",
           "actual_observation": "not_observed",
           "counterexample": {
+            "comparison_shape_id": "cross_scope",
             "request": {
               "caller_kind": "Worker",
               "asset_kind": "state",
               "operation": "execute",
-              "connection_state": "absent",
-              "origin": {
-                "project": "PROJECT-A",
-                "tenant": "TENANT-A",
-                "environment": "ENV-A",
-                "assignment": "ASSIGN-A",
-                "worktree": "TREE-A",
-                "revision": "scope-r1"
-              },
-              "target": {
-                "project": "PROJECT-B",
-                "tenant": "TENANT-B",
-                "environment": "ENV-B",
-                "assignment": "ASSIGN-B",
-                "worktree": "TREE-B",
-                "revision": "scope-r2"
-              },
-              "asset_scope": {
-                "project": "PROJECT-B",
-                "tenant": "TENANT-B",
-                "environment": "ENV-B",
-                "assignment": "ASSIGN-B",
-                "worktree": "TREE-B",
-                "revision": "scope-r2"
-              }
-            },
-            "context": {
-              "expected_origin": {
-                "project": "PROJECT-A",
-                "tenant": "TENANT-A",
-                "environment": "ENV-A",
-                "assignment": "ASSIGN-A",
-                "worktree": "TREE-A",
-                "revision": "scope-r1"
-              },
-              "expected_target": {
-                "project": "PROJECT-B",
-                "tenant": "TENANT-B",
-                "environment": "ENV-B",
-                "assignment": "ASSIGN-B",
-                "worktree": "TREE-B",
-                "revision": "scope-r2"
-              },
-              "origin_tenant_applicable": true,
-              "target_tenant_applicable": true
+              "connection_state": "absent"
             }
           },
           "expected_observation": {
@@ -5660,55 +5281,12 @@
           "execution_state": "not_executed",
           "actual_observation": "not_observed",
           "counterexample": {
+            "comparison_shape_id": "cross_scope",
             "request": {
               "caller_kind": "Worker",
               "asset_kind": "state",
               "operation": "network",
-              "connection_state": "absent",
-              "origin": {
-                "project": "PROJECT-A",
-                "tenant": "TENANT-A",
-                "environment": "ENV-A",
-                "assignment": "ASSIGN-A",
-                "worktree": "TREE-A",
-                "revision": "scope-r1"
-              },
-              "target": {
-                "project": "PROJECT-B",
-                "tenant": "TENANT-B",
-                "environment": "ENV-B",
-                "assignment": "ASSIGN-B",
-                "worktree": "TREE-B",
-                "revision": "scope-r2"
-              },
-              "asset_scope": {
-                "project": "PROJECT-B",
-                "tenant": "TENANT-B",
-                "environment": "ENV-B",
-                "assignment": "ASSIGN-B",
-                "worktree": "TREE-B",
-                "revision": "scope-r2"
-              }
-            },
-            "context": {
-              "expected_origin": {
-                "project": "PROJECT-A",
-                "tenant": "TENANT-A",
-                "environment": "ENV-A",
-                "assignment": "ASSIGN-A",
-                "worktree": "TREE-A",
-                "revision": "scope-r1"
-              },
-              "expected_target": {
-                "project": "PROJECT-B",
-                "tenant": "TENANT-B",
-                "environment": "ENV-B",
-                "assignment": "ASSIGN-B",
-                "worktree": "TREE-B",
-                "revision": "scope-r2"
-              },
-              "origin_tenant_applicable": true,
-              "target_tenant_applicable": true
+              "connection_state": "absent"
             }
           },
           "expected_observation": {
@@ -5740,55 +5318,12 @@
           "execution_state": "not_executed",
           "actual_observation": "not_observed",
           "counterexample": {
+            "comparison_shape_id": "cross_scope",
             "request": {
               "caller_kind": "Worker",
               "asset_kind": "state",
               "operation": "state",
-              "connection_state": "absent",
-              "origin": {
-                "project": "PROJECT-A",
-                "tenant": "TENANT-A",
-                "environment": "ENV-A",
-                "assignment": "ASSIGN-A",
-                "worktree": "TREE-A",
-                "revision": "scope-r1"
-              },
-              "target": {
-                "project": "PROJECT-B",
-                "tenant": "TENANT-B",
-                "environment": "ENV-B",
-                "assignment": "ASSIGN-B",
-                "worktree": "TREE-B",
-                "revision": "scope-r2"
-              },
-              "asset_scope": {
-                "project": "PROJECT-B",
-                "tenant": "TENANT-B",
-                "environment": "ENV-B",
-                "assignment": "ASSIGN-B",
-                "worktree": "TREE-B",
-                "revision": "scope-r2"
-              }
-            },
-            "context": {
-              "expected_origin": {
-                "project": "PROJECT-A",
-                "tenant": "TENANT-A",
-                "environment": "ENV-A",
-                "assignment": "ASSIGN-A",
-                "worktree": "TREE-A",
-                "revision": "scope-r1"
-              },
-              "expected_target": {
-                "project": "PROJECT-B",
-                "tenant": "TENANT-B",
-                "environment": "ENV-B",
-                "assignment": "ASSIGN-B",
-                "worktree": "TREE-B",
-                "revision": "scope-r2"
-              },
-              "origin_tenant_applicable": true,
-              "target_tenant_applicable": true
+              "connection_state": "absent"
             }
           },
           "expected_observation": {
@@ -5820,55 +5355,12 @@
           "execution_state": "not_executed",
           "actual_observation": "not_observed",
           "counterexample": {
+            "comparison_shape_id": "cross_scope",
             "request": {
               "caller_kind": "Worker",
               "asset_kind": "state",
               "operation": "credential",
-              "connection_state": "absent",
-              "origin": {
-                "project": "PROJECT-A",
-                "tenant": "TENANT-A",
-                "environment": "ENV-A",
-                "assignment": "ASSIGN-A",
-                "worktree": "TREE-A",
-                "revision": "scope-r1"
-              },
-              "target": {
-                "project": "PROJECT-B",
-                "tenant": "TENANT-B",
-                "environment": "ENV-B",
-                "assignment": "ASSIGN-B",
-                "worktree": "TREE-B",
-                "revision": "scope-r2"
-              },
-              "asset_scope": {
-                "project": "PROJECT-B",
-                "tenant": "TENANT-B",
-                "environment": "ENV-B",
-                "assignment": "ASSIGN-B",
-                "worktree": "TREE-B",
-                "revision": "scope-r2"
-              }
-            },
-            "context": {
-              "expected_origin": {
-                "project": "PROJECT-A",
-                "tenant": "TENANT-A",
-                "environment": "ENV-A",
-                "assignment": "ASSIGN-A",
-                "worktree": "TREE-A",
-                "revision": "scope-r1"
-              },
-              "expected_target": {
-                "project": "PROJECT-B",
-                "tenant": "TENANT-B",
-                "environment": "ENV-B",
-                "assignment": "ASSIGN-B",
-                "worktree": "TREE-B",
-                "revision": "scope-r2"
-              },
-              "origin_tenant_applicable": true,
-              "target_tenant_applicable": true
+              "connection_state": "absent"
             }
           },
           "expected_observation": {
@@ -5900,55 +5392,12 @@
           "execution_state": "not_executed",
           "actual_observation": "not_observed",
           "counterexample": {
+            "comparison_shape_id": "cross_scope",
             "request": {
               "caller_kind": "Worker",
               "asset_kind": "state",
               "operation": "artifact",
-              "connection_state": "absent",
-              "origin": {
-                "project": "PROJECT-A",
-                "tenant": "TENANT-A",
-                "environment": "ENV-A",
-                "assignment": "ASSIGN-A",
-                "worktree": "TREE-A",
-                "revision": "scope-r1"
-              },
-              "target": {
-                "project": "PROJECT-B",
-                "tenant": "TENANT-B",
-                "environment": "ENV-B",
-                "assignment": "ASSIGN-B",
-                "worktree": "TREE-B",
-                "revision": "scope-r2"
-              },
-              "asset_scope": {
-                "project": "PROJECT-B",
-                "tenant": "TENANT-B",
-                "environment": "ENV-B",
-                "assignment": "ASSIGN-B",
-                "worktree": "TREE-B",
-                "revision": "scope-r2"
-              }
-            },
-            "context": {
-              "expected_origin": {
-                "project": "PROJECT-A",
-                "tenant": "TENANT-A",
-                "environment": "ENV-A",
-                "assignment": "ASSIGN-A",
-                "worktree": "TREE-A",
-                "revision": "scope-r1"
-              },
-              "expected_target": {
-                "project": "PROJECT-B",
-                "tenant": "TENANT-B",
-                "environment": "ENV-B",
-                "assignment": "ASSIGN-B",
-                "worktree": "TREE-B",
-                "revision": "scope-r2"
-              },
-              "origin_tenant_applicable": true,
-              "target_tenant_applicable": true
+              "connection_state": "absent"
             }
           },
           "expected_observation": {
@@ -5985,7 +5434,8 @@
               "asset_kind": "state",
               "operation": "read",
               "fallback": "primary_tree"
-            }
+            },
+            "comparison_shape_id": "same_scope_tenant"
           },
           "expected_observation": {
             "condition": "isolation_violation",
@@ -6021,7 +5471,8 @@
               "asset_kind": "state",
               "operation": "read",
               "fallback": "other_project"
-            }
+            },
+            "comparison_shape_id": "same_scope_tenant"
           },
           "expected_observation": {
             "condition": "isolation_violation",
@@ -6065,7 +5516,8 @@
               "expected_target": {
                 "project": "PROJECT-A"
               }
-            }
+            },
+            "comparison_shape_id": "same_scope_tenant"
           },
           "expected_observation": {
             "condition": "isolation_violation",
@@ -6148,7 +5600,8 @@
                   "read"
                 ]
               }
-            }
+            },
+            "comparison_shape_id": "same_scope_tenant"
           },
           "expected_observation": {
             "condition": "isolation_violation",
@@ -6184,7 +5637,8 @@
               "asset_kind": "state",
               "operation": "read",
               "connection_state": "unknown"
-            }
+            },
+            "comparison_shape_id": "same_scope_tenant"
           },
           "expected_observation": {
             "condition": "scope_unresolved",
@@ -6218,7 +5672,12 @@
             "request": {
               "caller_kind": "Worker",
               "asset_kind": "state",
-              "operation": "write"
+              "operation": "write",
+              "connection": {
+                "allowed_operations": [
+                  "read"
+                ]
+              }
             },
             "context": {
               "expected_connection": {
@@ -6226,7 +5685,8 @@
                   "read"
                 ]
               }
-            }
+            },
+            "comparison_shape_id": "same_scope_tenant"
           },
           "expected_observation": {
             "condition": "isolation_violation",
@@ -6260,7 +5720,12 @@
             "request": {
               "caller_kind": "Worker",
               "asset_kind": "state",
-              "operation": "execute"
+              "operation": "execute",
+              "connection": {
+                "allowed_operations": [
+                  "read"
+                ]
+              }
             },
             "context": {
               "expected_connection": {
@@ -6268,7 +5733,8 @@
                   "read"
                 ]
               }
-            }
+            },
+            "comparison_shape_id": "same_scope_tenant"
           },
           "expected_observation": {
             "condition": "isolation_violation",
@@ -6302,7 +5768,12 @@
             "request": {
               "caller_kind": "Worker",
               "asset_kind": "state",
-              "operation": "network"
+              "operation": "network",
+              "connection": {
+                "allowed_operations": [
+                  "read"
+                ]
+              }
             },
             "context": {
               "expected_connection": {
@@ -6310,7 +5781,8 @@
                   "read"
                 ]
               }
-            }
+            },
+            "comparison_shape_id": "same_scope_tenant"
           },
           "expected_observation": {
             "condition": "isolation_violation",
@@ -6344,7 +5816,12 @@
             "request": {
               "caller_kind": "Worker",
               "asset_kind": "state",
-              "operation": "state"
+              "operation": "state",
+              "connection": {
+                "allowed_operations": [
+                  "read"
+                ]
+              }
             },
             "context": {
               "expected_connection": {
@@ -6352,7 +5829,8 @@
                   "read"
                 ]
               }
-            }
+            },
+            "comparison_shape_id": "same_scope_tenant"
           },
           "expected_observation": {
             "condition": "isolation_violation",
@@ -6386,7 +5864,12 @@
             "request": {
               "caller_kind": "Worker",
               "asset_kind": "state",
-              "operation": "credential"
+              "operation": "credential",
+              "connection": {
+                "allowed_operations": [
+                  "read"
+                ]
+              }
             },
             "context": {
               "expected_connection": {
@@ -6394,7 +5877,8 @@
                   "read"
                 ]
               }
-            }
+            },
+            "comparison_shape_id": "same_scope_tenant"
           },
           "expected_observation": {
             "condition": "isolation_violation",
@@ -6428,7 +5912,12 @@
             "request": {
               "caller_kind": "Worker",
               "asset_kind": "state",
-              "operation": "artifact"
+              "operation": "artifact",
+              "connection": {
+                "allowed_operations": [
+                  "read"
+                ]
+              }
             },
             "context": {
               "expected_connection": {
@@ -6436,7 +5925,8 @@
                   "read"
                 ]
               }
-            }
+            },
+            "comparison_shape_id": "same_scope_tenant"
           },
           "expected_observation": {
             "condition": "isolation_violation",
@@ -6472,7 +5962,8 @@
               "asset_kind": "state",
               "operation": "read",
               "connection_state": "absent"
-            }
+            },
+            "comparison_shape_id": "same_scope_tenant"
           },
           "expected_observation": {
             "condition": "isolation_violation",
@@ -6508,7 +5999,8 @@
               "asset_kind": "state",
               "operation": "read",
               "fallback": "primary_tree"
-            }
+            },
+            "comparison_shape_id": "same_scope_tenant"
           },
           "expected_observation": {
             "condition": "isolation_violation",
@@ -6552,7 +6044,8 @@
               "expected_target": {
                 "project": "PROJECT-A"
               }
-            }
+            },
+            "comparison_shape_id": "same_scope_tenant"
           },
           "expected_observation": {
             "condition": "isolation_violation",
@@ -6586,7 +6079,12 @@
             "request": {
               "caller_kind": "Agent",
               "asset_kind": "state",
-              "operation": "network"
+              "operation": "network",
+              "connection": {
+                "allowed_operations": [
+                  "read"
+                ]
+              }
             },
             "context": {
               "expected_connection": {
@@ -6594,7 +6092,8 @@
                   "read"
                 ]
               }
-            }
+            },
+            "comparison_shape_id": "same_scope_tenant"
           },
           "expected_observation": {
             "condition": "isolation_violation",
@@ -6630,7 +6129,8 @@
               "asset_kind": "state",
               "operation": "read",
               "fallback": "primary_tree"
-            }
+            },
+            "comparison_shape_id": "same_scope_tenant"
           },
           "expected_observation": {
             "condition": "isolation_violation",
@@ -6674,7 +6174,8 @@
               "expected_target": {
                 "project": "PROJECT-A"
               }
-            }
+            },
+            "comparison_shape_id": "same_scope_tenant"
           },
           "expected_observation": {
             "condition": "isolation_violation",
@@ -6708,7 +6209,12 @@
             "request": {
               "caller_kind": "Hook",
               "asset_kind": "state",
-              "operation": "network"
+              "operation": "network",
+              "connection": {
+                "allowed_operations": [
+                  "read"
+                ]
+              }
             },
             "context": {
               "expected_connection": {
@@ -6716,7 +6222,8 @@
                   "read"
                 ]
               }
-            }
+            },
+            "comparison_shape_id": "same_scope_tenant"
           },
           "expected_observation": {
             "condition": "isolation_violation",
@@ -6752,7 +6259,8 @@
               "asset_kind": "state",
               "operation": "read",
               "fallback": "primary_tree"
-            }
+            },
+            "comparison_shape_id": "same_scope_tenant"
           },
           "expected_observation": {
             "condition": "isolation_violation",
@@ -6796,7 +6304,8 @@
               "expected_target": {
                 "project": "PROJECT-A"
               }
-            }
+            },
+            "comparison_shape_id": "same_scope_tenant"
           },
           "expected_observation": {
             "condition": "isolation_violation",
@@ -6830,7 +6339,12 @@
             "request": {
               "caller_kind": "memory",
               "asset_kind": "state",
-              "operation": "network"
+              "operation": "network",
+              "connection": {
+                "allowed_operations": [
+                  "read"
+                ]
+              }
             },
             "context": {
               "expected_connection": {
@@ -6838,7 +6352,8 @@
                   "read"
                 ]
               }
-            }
+            },
+            "comparison_shape_id": "same_scope_tenant"
           },
           "expected_observation": {
             "condition": "isolation_violation",
@@ -6874,7 +6389,8 @@
               "asset_kind": "state",
               "operation": "read",
               "fallback": "primary_tree"
-            }
+            },
+            "comparison_shape_id": "same_scope_tenant"
           },
           "expected_observation": {
             "condition": "isolation_violation",
@@ -6918,7 +6434,8 @@
               "expected_target": {
                 "project": "PROJECT-A"
               }
-            }
+            },
+            "comparison_shape_id": "same_scope_tenant"
           },
           "expected_observation": {
             "condition": "isolation_violation",
@@ -6952,7 +6469,12 @@
             "request": {
               "caller_kind": "credential",
               "asset_kind": "state",
-              "operation": "network"
+              "operation": "network",
+              "connection": {
+                "allowed_operations": [
+                  "read"
+                ]
+              }
             },
             "context": {
               "expected_connection": {
@@ -6960,7 +6482,8 @@
                   "read"
                 ]
               }
-            }
+            },
+            "comparison_shape_id": "same_scope_tenant"
           },
           "expected_observation": {
             "condition": "isolation_violation",
@@ -6996,7 +6519,8 @@
               "asset_kind": "state",
               "operation": "read",
               "fallback": "primary_tree"
-            }
+            },
+            "comparison_shape_id": "same_scope_tenant"
           },
           "expected_observation": {
             "condition": "isolation_violation",
@@ -7040,7 +6564,8 @@
               "expected_target": {
                 "project": "PROJECT-A"
               }
-            }
+            },
+            "comparison_shape_id": "same_scope_tenant"
           },
           "expected_observation": {
             "condition": "isolation_violation",
@@ -7074,7 +6599,12 @@
             "request": {
               "caller_kind": "configuration",
               "asset_kind": "state",
-              "operation": "network"
+              "operation": "network",
+              "connection": {
+                "allowed_operations": [
+                  "read"
+                ]
+              }
             },
             "context": {
               "expected_connection": {
@@ -7082,7 +6612,8 @@
                   "read"
                 ]
               }
-            }
+            },
+            "comparison_shape_id": "same_scope_tenant"
           },
           "expected_observation": {
             "condition": "isolation_violation",
@@ -8740,22 +8271,11 @@
         "execution_state": "not_executed",
         "actual_observation": "not_observed",
         "counterexample": {
+          "comparison_shape_id": "same_scope_tenant",
           "request": {
             "caller_kind": "Agent",
             "asset_kind": "state",
-            "operation": "read",
-            "connection": {
-              "allowed_operations": [
-                "read"
-              ]
-            }
-          },
-          "context": {
-            "expected_connection": {
-              "allowed_operations": [
-                "read"
-              ]
-            }
+            "operation": "read"
           }
         },
         "expected_observation": {
@@ -8779,39 +8299,11 @@
         "execution_state": "not_executed",
         "actual_observation": "not_observed",
         "counterexample": {
+          "comparison_shape_id": "same_scope_no_tenant",
           "request": {
             "caller_kind": "Agent",
             "asset_kind": "state",
-            "operation": "read",
-            "connection": {
-              "allowed_operations": [
-                "read"
-              ]
-            },
-            "origin": {
-              "tenant": null
-            },
-            "target": {
-              "tenant": null
-            },
-            "asset_scope": {
-              "tenant": null
-            }
-          },
-          "context": {
-            "expected_connection": {
-              "allowed_operations": [
-                "read"
-              ]
-            },
-            "origin_tenant_applicable": false,
-            "target_tenant_applicable": false,
-            "expected_origin": {
-              "tenant": null
-            },
-            "expected_target": {
-              "tenant": null
-            }
+            "operation": "read"
           }
         },
         "expected_observation": {
@@ -8835,22 +8327,11 @@
         "execution_state": "not_executed",
         "actual_observation": "not_observed",
         "counterexample": {
+          "comparison_shape_id": "same_scope_tenant",
           "request": {
             "caller_kind": "Agent",
             "asset_kind": "state",
-            "operation": "write",
-            "connection": {
-              "allowed_operations": [
-                "write"
-              ]
-            }
-          },
-          "context": {
-            "expected_connection": {
-              "allowed_operations": [
-                "write"
-              ]
-            }
+            "operation": "write"
           }
         },
         "expected_observation": {
@@ -8874,39 +8355,11 @@
         "execution_state": "not_executed",
         "actual_observation": "not_observed",
         "counterexample": {
+          "comparison_shape_id": "same_scope_no_tenant",
           "request": {
             "caller_kind": "Agent",
             "asset_kind": "state",
-            "operation": "write",
-            "connection": {
-              "allowed_operations": [
-                "write"
-              ]
-            },
-            "origin": {
-              "tenant": null
-            },
-            "target": {
-              "tenant": null
-            },
-            "asset_scope": {
-              "tenant": null
-            }
-          },
-          "context": {
-            "expected_connection": {
-              "allowed_operations": [
-                "write"
-              ]
-            },
-            "origin_tenant_applicable": false,
-            "target_tenant_applicable": false,
-            "expected_origin": {
-              "tenant": null
-            },
-            "expected_target": {
-              "tenant": null
-            }
+            "operation": "write"
           }
         },
         "expected_observation": {
@@ -8930,22 +8383,11 @@
         "execution_state": "not_executed",
         "actual_observation": "not_observed",
         "counterexample": {
+          "comparison_shape_id": "same_scope_tenant",
           "request": {
             "caller_kind": "Agent",
             "asset_kind": "state",
-            "operation": "execute",
-            "connection": {
-              "allowed_operations": [
-                "execute"
-              ]
-            }
-          },
-          "context": {
-            "expected_connection": {
-              "allowed_operations": [
-                "execute"
-              ]
-            }
+            "operation": "execute"
           }
         },
         "expected_observation": {
@@ -8969,39 +8411,11 @@
         "execution_state": "not_executed",
         "actual_observation": "not_observed",
         "counterexample": {
+          "comparison_shape_id": "same_scope_no_tenant",
           "request": {
             "caller_kind": "Agent",
             "asset_kind": "state",
-            "operation": "execute",
-            "connection": {
-              "allowed_operations": [
-                "execute"
-              ]
-            },
-            "origin": {
-              "tenant": null
-            },
-            "target": {
-              "tenant": null
-            },
-            "asset_scope": {
-              "tenant": null
-            }
-          },
-          "context": {
-            "expected_connection": {
-              "allowed_operations": [
-                "execute"
-              ]
-            },
-            "origin_tenant_applicable": false,
-            "target_tenant_applicable": false,
-            "expected_origin": {
-              "tenant": null
-            },
-            "expected_target": {
-              "tenant": null
-            }
+            "operation": "execute"
           }
         },
         "expected_observation": {
@@ -9025,22 +8439,11 @@
         "execution_state": "not_executed",
         "actual_observation": "not_observed",
         "counterexample": {
+          "comparison_shape_id": "same_scope_tenant",
           "request": {
             "caller_kind": "Agent",
             "asset_kind": "state",
-            "operation": "network",
-            "connection": {
-              "allowed_operations": [
-                "network"
-              ]
-            }
-          },
-          "context": {
-            "expected_connection": {
-              "allowed_operations": [
-                "network"
-              ]
-            }
+            "operation": "network"
           }
         },
         "expected_observation": {
@@ -9064,39 +8467,11 @@
         "execution_state": "not_executed",
         "actual_observation": "not_observed",
         "counterexample": {
+          "comparison_shape_id": "same_scope_no_tenant",
           "request": {
             "caller_kind": "Agent",
             "asset_kind": "state",
-            "operation": "network",
-            "connection": {
-              "allowed_operations": [
-                "network"
-              ]
-            },
-            "origin": {
-              "tenant": null
-            },
-            "target": {
-              "tenant": null
-            },
-            "asset_scope": {
-              "tenant": null
-            }
-          },
-          "context": {
-            "expected_connection": {
-              "allowed_operations": [
-                "network"
-              ]
-            },
-            "origin_tenant_applicable": false,
-            "target_tenant_applicable": false,
-            "expected_origin": {
-              "tenant": null
-            },
-            "expected_target": {
-              "tenant": null
-            }
+            "operation": "network"
           }
         },
         "expected_observation": {
@@ -9120,22 +8495,11 @@
         "execution_state": "not_executed",
         "actual_observation": "not_observed",
         "counterexample": {
+          "comparison_shape_id": "same_scope_tenant",
           "request": {
             "caller_kind": "Agent",
             "asset_kind": "state",
-            "operation": "state",
-            "connection": {
-              "allowed_operations": [
-                "state"
-              ]
-            }
-          },
-          "context": {
-            "expected_connection": {
-              "allowed_operations": [
-                "state"
-              ]
-            }
+            "operation": "state"
           }
         },
         "expected_observation": {
@@ -9159,39 +8523,11 @@
         "execution_state": "not_executed",
         "actual_observation": "not_observed",
         "counterexample": {
+          "comparison_shape_id": "same_scope_no_tenant",
           "request": {
             "caller_kind": "Agent",
             "asset_kind": "state",
-            "operation": "state",
-            "connection": {
-              "allowed_operations": [
-                "state"
-              ]
-            },
-            "origin": {
-              "tenant": null
-            },
-            "target": {
-              "tenant": null
-            },
-            "asset_scope": {
-              "tenant": null
-            }
-          },
-          "context": {
-            "expected_connection": {
-              "allowed_operations": [
-                "state"
-              ]
-            },
-            "origin_tenant_applicable": false,
-            "target_tenant_applicable": false,
-            "expected_origin": {
-              "tenant": null
-            },
-            "expected_target": {
-              "tenant": null
-            }
+            "operation": "state"
           }
         },
         "expected_observation": {
@@ -9215,22 +8551,11 @@
         "execution_state": "not_executed",
         "actual_observation": "not_observed",
         "counterexample": {
+          "comparison_shape_id": "same_scope_tenant",
           "request": {
             "caller_kind": "Agent",
             "asset_kind": "state",
-            "operation": "credential",
-            "connection": {
-              "allowed_operations": [
-                "credential"
-              ]
-            }
-          },
-          "context": {
-            "expected_connection": {
-              "allowed_operations": [
-                "credential"
-              ]
-            }
+            "operation": "credential"
           }
         },
         "expected_observation": {
@@ -9254,39 +8579,11 @@
         "execution_state": "not_executed",
         "actual_observation": "not_observed",
         "counterexample": {
+          "comparison_shape_id": "same_scope_no_tenant",
           "request": {
             "caller_kind": "Agent",
             "asset_kind": "state",
-            "operation": "credential",
-            "connection": {
-              "allowed_operations": [
-                "credential"
-              ]
-            },
-            "origin": {
-              "tenant": null
-            },
-            "target": {
-              "tenant": null
-            },
-            "asset_scope": {
-              "tenant": null
-            }
-          },
-          "context": {
-            "expected_connection": {
-              "allowed_operations": [
-                "credential"
-              ]
-            },
-            "origin_tenant_applicable": false,
-            "target_tenant_applicable": false,
-            "expected_origin": {
-              "tenant": null
-            },
-            "expected_target": {
-              "tenant": null
-            }
+            "operation": "credential"
           }
         },
         "expected_observation": {
@@ -9310,22 +8607,11 @@
         "execution_state": "not_executed",
         "actual_observation": "not_observed",
         "counterexample": {
+          "comparison_shape_id": "same_scope_tenant",
           "request": {
             "caller_kind": "Agent",
             "asset_kind": "state",
-            "operation": "artifact",
-            "connection": {
-              "allowed_operations": [
-                "artifact"
-              ]
-            }
-          },
-          "context": {
-            "expected_connection": {
-              "allowed_operations": [
-                "artifact"
-              ]
-            }
+            "operation": "artifact"
           }
         },
         "expected_observation": {
@@ -9349,39 +8635,11 @@
         "execution_state": "not_executed",
         "actual_observation": "not_observed",
         "counterexample": {
+          "comparison_shape_id": "same_scope_no_tenant",
           "request": {
             "caller_kind": "Agent",
             "asset_kind": "state",
-            "operation": "artifact",
-            "connection": {
-              "allowed_operations": [
-                "artifact"
-              ]
-            },
-            "origin": {
-              "tenant": null
-            },
-            "target": {
-              "tenant": null
-            },
-            "asset_scope": {
-              "tenant": null
-            }
-          },
-          "context": {
-            "expected_connection": {
-              "allowed_operations": [
-                "artifact"
-              ]
-            },
-            "origin_tenant_applicable": false,
-            "target_tenant_applicable": false,
-            "expected_origin": {
-              "tenant": null
-            },
-            "expected_target": {
-              "tenant": null
-            }
+            "operation": "artifact"
           }
         },
         "expected_observation": {
@@ -9405,22 +8663,11 @@
         "execution_state": "not_executed",
         "actual_observation": "not_observed",
         "counterexample": {
+          "comparison_shape_id": "same_scope_tenant",
           "request": {
             "caller_kind": "Hook",
             "asset_kind": "state",
-            "operation": "read",
-            "connection": {
-              "allowed_operations": [
-                "read"
-              ]
-            }
-          },
-          "context": {
-            "expected_connection": {
-              "allowed_operations": [
-                "read"
-              ]
-            }
+            "operation": "read"
           }
         },
         "expected_observation": {
@@ -9444,39 +8691,11 @@
         "execution_state": "not_executed",
         "actual_observation": "not_observed",
         "counterexample": {
+          "comparison_shape_id": "same_scope_no_tenant",
           "request": {
             "caller_kind": "Hook",
             "asset_kind": "state",
-            "operation": "read",
-            "connection": {
-              "allowed_operations": [
-                "read"
-              ]
-            },
-            "origin": {
-              "tenant": null
-            },
-            "target": {
-              "tenant": null
-            },
-            "asset_scope": {
-              "tenant": null
-            }
-          },
-          "context": {
-            "expected_connection": {
-              "allowed_operations": [
-                "read"
-              ]
-            },
-            "origin_tenant_applicable": false,
-            "target_tenant_applicable": false,
-            "expected_origin": {
-              "tenant": null
-            },
-            "expected_target": {
-              "tenant": null
-            }
+            "operation": "read"
           }
         },
         "expected_observation": {
@@ -9500,22 +8719,11 @@
         "execution_state": "not_executed",
         "actual_observation": "not_observed",
         "counterexample": {
+          "comparison_shape_id": "same_scope_tenant",
           "request": {
             "caller_kind": "Hook",
             "asset_kind": "state",
-            "operation": "write",
-            "connection": {
-              "allowed_operations": [
-                "write"
-              ]
-            }
-          },
-          "context": {
-            "expected_connection": {
-              "allowed_operations": [
-                "write"
-              ]
-            }
+            "operation": "write"
           }
         },
         "expected_observation": {
@@ -9539,39 +8747,11 @@
         "execution_state": "not_executed",
         "actual_observation": "not_observed",
         "counterexample": {
+          "comparison_shape_id": "same_scope_no_tenant",
           "request": {
             "caller_kind": "Hook",
             "asset_kind": "state",
-            "operation": "write",
-            "connection": {
-              "allowed_operations": [
-                "write"
-              ]
-            },
-            "origin": {
-              "tenant": null
-            },
-            "target": {
-              "tenant": null
-            },
-            "asset_scope": {
-              "tenant": null
-            }
-          },
-          "context": {
-            "expected_connection": {
-              "allowed_operations": [
-                "write"
-              ]
-            },
-            "origin_tenant_applicable": false,
-            "target_tenant_applicable": false,
-            "expected_origin": {
-              "tenant": null
-            },
-            "expected_target": {
-              "tenant": null
-            }
+            "operation": "write"
           }
         },
         "expected_observation": {
@@ -9595,22 +8775,11 @@
         "execution_state": "not_executed",
         "actual_observation": "not_observed",
         "counterexample": {
+          "comparison_shape_id": "same_scope_tenant",
           "request": {
             "caller_kind": "Hook",
             "asset_kind": "state",
-            "operation": "execute",
-            "connection": {
-              "allowed_operations": [
-                "execute"
-              ]
-            }
-          },
-          "context": {
-            "expected_connection": {
-              "allowed_operations": [
-                "execute"
-              ]
-            }
+            "operation": "execute"
           }
         },
         "expected_observation": {
@@ -9634,39 +8803,11 @@
         "execution_state": "not_executed",
         "actual_observation": "not_observed",
         "counterexample": {
+          "comparison_shape_id": "same_scope_no_tenant",
           "request": {
             "caller_kind": "Hook",
             "asset_kind": "state",
-            "operation": "execute",
-            "connection": {
-              "allowed_operations": [
-                "execute"
-              ]
-            },
-            "origin": {
-              "tenant": null
-            },
-            "target": {
-              "tenant": null
-            },
-            "asset_scope": {
-              "tenant": null
-            }
-          },
-          "context": {
-            "expected_connection": {
-              "allowed_operations": [
-                "execute"
-              ]
-            },
-            "origin_tenant_applicable": false,
-            "target_tenant_applicable": false,
-            "expected_origin": {
-              "tenant": null
-            },
-            "expected_target": {
-              "tenant": null
-            }
+            "operation": "execute"
           }
         },
         "expected_observation": {
@@ -9690,22 +8831,11 @@
         "execution_state": "not_executed",
         "actual_observation": "not_observed",
         "counterexample": {
+          "comparison_shape_id": "same_scope_tenant",
           "request": {
             "caller_kind": "Hook",
             "asset_kind": "state",
-            "operation": "network",
-            "connection": {
-              "allowed_operations": [
-                "network"
-              ]
-            }
-          },
-          "context": {
-            "expected_connection": {
-              "allowed_operations": [
-                "network"
-              ]
-            }
+            "operation": "network"
           }
         },
         "expected_observation": {
@@ -9729,39 +8859,11 @@
         "execution_state": "not_executed",
         "actual_observation": "not_observed",
         "counterexample": {
+          "comparison_shape_id": "same_scope_no_tenant",
           "request": {
             "caller_kind": "Hook",
             "asset_kind": "state",
-            "operation": "network",
-            "connection": {
-              "allowed_operations": [
-                "network"
-              ]
-            },
-            "origin": {
-              "tenant": null
-            },
-            "target": {
-              "tenant": null
-            },
-            "asset_scope": {
-              "tenant": null
-            }
-          },
-          "context": {
-            "expected_connection": {
-              "allowed_operations": [
-                "network"
-              ]
-            },
-            "origin_tenant_applicable": false,
-            "target_tenant_applicable": false,
-            "expected_origin": {
-              "tenant": null
-            },
-            "expected_target": {
-              "tenant": null
-            }
+            "operation": "network"
           }
         },
         "expected_observation": {
@@ -9785,22 +8887,11 @@
         "execution_state": "not_executed",
         "actual_observation": "not_observed",
         "counterexample": {
+          "comparison_shape_id": "same_scope_tenant",
           "request": {
             "caller_kind": "Hook",
             "asset_kind": "state",
-            "operation": "state",
-            "connection": {
-              "allowed_operations": [
-                "state"
-              ]
-            }
-          },
-          "context": {
-            "expected_connection": {
-              "allowed_operations": [
-                "state"
-              ]
-            }
+            "operation": "state"
           }
         },
         "expected_observation": {
@@ -9824,39 +8915,11 @@
         "execution_state": "not_executed",
         "actual_observation": "not_observed",
         "counterexample": {
+          "comparison_shape_id": "same_scope_no_tenant",
           "request": {
             "caller_kind": "Hook",
             "asset_kind": "state",
-            "operation": "state",
-            "connection": {
-              "allowed_operations": [
-                "state"
-              ]
-            },
-            "origin": {
-              "tenant": null
-            },
-            "target": {
-              "tenant": null
-            },
-            "asset_scope": {
-              "tenant": null
-            }
-          },
-          "context": {
-            "expected_connection": {
-              "allowed_operations": [
-                "state"
-              ]
-            },
-            "origin_tenant_applicable": false,
-            "target_tenant_applicable": false,
-            "expected_origin": {
-              "tenant": null
-            },
-            "expected_target": {
-              "tenant": null
-            }
+            "operation": "state"
           }
         },
         "expected_observation": {
@@ -9880,22 +8943,11 @@
         "execution_state": "not_executed",
         "actual_observation": "not_observed",
         "counterexample": {
+          "comparison_shape_id": "same_scope_tenant",
           "request": {
             "caller_kind": "Hook",
             "asset_kind": "state",
-            "operation": "credential",
-            "connection": {
-              "allowed_operations": [
-                "credential"
-              ]
-            }
-          },
-          "context": {
-            "expected_connection": {
-              "allowed_operations": [
-                "credential"
-              ]
-            }
+            "operation": "credential"
           }
         },
         "expected_observation": {
@@ -9919,39 +8971,11 @@
         "execution_state": "not_executed",
         "actual_observation": "not_observed",
         "counterexample": {
+          "comparison_shape_id": "same_scope_no_tenant",
           "request": {
             "caller_kind": "Hook",
             "asset_kind": "state",
-            "operation": "credential",
-            "connection": {
-              "allowed_operations": [
-                "credential"
-              ]
-            },
-            "origin": {
-              "tenant": null
-            },
-            "target": {
-              "tenant": null
-            },
-            "asset_scope": {
-              "tenant": null
-            }
-          },
-          "context": {
-            "expected_connection": {
-              "allowed_operations": [
-                "credential"
-              ]
-            },
-            "origin_tenant_applicable": false,
-            "target_tenant_applicable": false,
-            "expected_origin": {
-              "tenant": null
-            },
-            "expected_target": {
-              "tenant": null
-            }
+            "operation": "credential"
           }
         },
         "expected_observation": {
@@ -9975,22 +8999,11 @@
         "execution_state": "not_executed",
         "actual_observation": "not_observed",
         "counterexample": {
+          "comparison_shape_id": "same_scope_tenant",
           "request": {
             "caller_kind": "Hook",
             "asset_kind": "state",
-            "operation": "artifact",
-            "connection": {
-              "allowed_operations": [
-                "artifact"
-              ]
-            }
-          },
-          "context": {
-            "expected_connection": {
-              "allowed_operations": [
-                "artifact"
-              ]
-            }
+            "operation": "artifact"
           }
         },
         "expected_observation": {
@@ -10014,39 +9027,11 @@
         "execution_state": "not_executed",
         "actual_observation": "not_observed",
         "counterexample": {
+          "comparison_shape_id": "same_scope_no_tenant",
           "request": {
             "caller_kind": "Hook",
             "asset_kind": "state",
-            "operation": "artifact",
-            "connection": {
-              "allowed_operations": [
-                "artifact"
-              ]
-            },
-            "origin": {
-              "tenant": null
-            },
-            "target": {
-              "tenant": null
-            },
-            "asset_scope": {
-              "tenant": null
-            }
-          },
-          "context": {
-            "expected_connection": {
-              "allowed_operations": [
-                "artifact"
-              ]
-            },
-            "origin_tenant_applicable": false,
-            "target_tenant_applicable": false,
-            "expected_origin": {
-              "tenant": null
-            },
-            "expected_target": {
-              "tenant": null
-            }
+            "operation": "artifact"
           }
         },
         "expected_observation": {
@@ -10070,22 +9055,11 @@
         "execution_state": "not_executed",
         "actual_observation": "not_observed",
         "counterexample": {
+          "comparison_shape_id": "same_scope_tenant",
           "request": {
             "caller_kind": "memory",
             "asset_kind": "state",
-            "operation": "read",
-            "connection": {
-              "allowed_operations": [
-                "read"
-              ]
-            }
-          },
-          "context": {
-            "expected_connection": {
-              "allowed_operations": [
-                "read"
-              ]
-            }
+            "operation": "read"
           }
         },
         "expected_observation": {
@@ -10109,39 +9083,11 @@
         "execution_state": "not_executed",
         "actual_observation": "not_observed",
         "counterexample": {
+          "comparison_shape_id": "same_scope_no_tenant",
           "request": {
             "caller_kind": "memory",
             "asset_kind": "state",
-            "operation": "read",
-            "connection": {
-              "allowed_operations": [
-                "read"
-              ]
-            },
-            "origin": {
-              "tenant": null
-            },
-            "target": {
-              "tenant": null
-            },
-            "asset_scope": {
-              "tenant": null
-            }
-          },
-          "context": {
-            "expected_connection": {
-              "allowed_operations": [
-                "read"
-              ]
-            },
-            "origin_tenant_applicable": false,
-            "target_tenant_applicable": false,
-            "expected_origin": {
-              "tenant": null
-            },
-            "expected_target": {
-              "tenant": null
-            }
+            "operation": "read"
           }
         },
         "expected_observation": {
@@ -10165,22 +9111,11 @@
         "execution_state": "not_executed",
         "actual_observation": "not_observed",
         "counterexample": {
+          "comparison_shape_id": "same_scope_tenant",
           "request": {
             "caller_kind": "memory",
             "asset_kind": "state",
-            "operation": "write",
-            "connection": {
-              "allowed_operations": [
-                "write"
-              ]
-            }
-          },
-          "context": {
-            "expected_connection": {
-              "allowed_operations": [
-                "write"
-              ]
-            }
+            "operation": "write"
           }
         },
         "expected_observation": {
@@ -10204,39 +9139,11 @@
         "execution_state": "not_executed",
         "actual_observation": "not_observed",
         "counterexample": {
+          "comparison_shape_id": "same_scope_no_tenant",
           "request": {
             "caller_kind": "memory",
             "asset_kind": "state",
-            "operation": "write",
-            "connection": {
-              "allowed_operations": [
-                "write"
-              ]
-            },
-            "origin": {
-              "tenant": null
-            },
-            "target": {
-              "tenant": null
-            },
-            "asset_scope": {
-              "tenant": null
-            }
-          },
-          "context": {
-            "expected_connection": {
-              "allowed_operations": [
-                "write"
-              ]
-            },
-            "origin_tenant_applicable": false,
-            "target_tenant_applicable": false,
-            "expected_origin": {
-              "tenant": null
-            },
-            "expected_target": {
-              "tenant": null
-            }
+            "operation": "write"
           }
         },
         "expected_observation": {
@@ -10260,22 +9167,11 @@
         "execution_state": "not_executed",
         "actual_observation": "not_observed",
         "counterexample": {
+          "comparison_shape_id": "same_scope_tenant",
           "request": {
             "caller_kind": "memory",
             "asset_kind": "state",
-            "operation": "execute",
-            "connection": {
-              "allowed_operations": [
-                "execute"
-              ]
-            }
-          },
-          "context": {
-            "expected_connection": {
-              "allowed_operations": [
-                "execute"
-              ]
-            }
+            "operation": "execute"
           }
         },
         "expected_observation": {
@@ -10299,39 +9195,11 @@
         "execution_state": "not_executed",
         "actual_observation": "not_observed",
         "counterexample": {
+          "comparison_shape_id": "same_scope_no_tenant",
           "request": {
             "caller_kind": "memory",
             "asset_kind": "state",
-            "operation": "execute",
-            "connection": {
-              "allowed_operations": [
-                "execute"
-              ]
-            },
-            "origin": {
-              "tenant": null
-            },
-            "target": {
-              "tenant": null
-            },
-            "asset_scope": {
-              "tenant": null
-            }
-          },
-          "context": {
-            "expected_connection": {
-              "allowed_operations": [
-                "execute"
-              ]
-            },
-            "origin_tenant_applicable": false,
-            "target_tenant_applicable": false,
-            "expected_origin": {
-              "tenant": null
-            },
-            "expected_target": {
-              "tenant": null
-            }
+            "operation": "execute"
           }
         },
         "expected_observation": {
@@ -10355,22 +9223,11 @@
         "execution_state": "not_executed",
         "actual_observation": "not_observed",
         "counterexample": {
+          "comparison_shape_id": "same_scope_tenant",
           "request": {
             "caller_kind": "memory",
             "asset_kind": "state",
-            "operation": "network",
-            "connection": {
-              "allowed_operations": [
-                "network"
-              ]
-            }
-          },
-          "context": {
-            "expected_connection": {
-              "allowed_operations": [
-                "network"
-              ]
-            }
+            "operation": "network"
           }
         },
         "expected_observation": {
@@ -10394,39 +9251,11 @@
         "execution_state": "not_executed",
         "actual_observation": "not_observed",
         "counterexample": {
+          "comparison_shape_id": "same_scope_no_tenant",
           "request": {
             "caller_kind": "memory",
             "asset_kind": "state",
-            "operation": "network",
-            "connection": {
-              "allowed_operations": [
-                "network"
-              ]
-            },
-            "origin": {
-              "tenant": null
-            },
-            "target": {
-              "tenant": null
-            },
-            "asset_scope": {
-              "tenant": null
-            }
-          },
-          "context": {
-            "expected_connection": {
-              "allowed_operations": [
-                "network"
-              ]
-            },
-            "origin_tenant_applicable": false,
-            "target_tenant_applicable": false,
-            "expected_origin": {
-              "tenant": null
-            },
-            "expected_target": {
-              "tenant": null
-            }
+            "operation": "network"
           }
         },
         "expected_observation": {
@@ -10450,22 +9279,11 @@
         "execution_state": "not_executed",
         "actual_observation": "not_observed",
         "counterexample": {
+          "comparison_shape_id": "same_scope_tenant",
           "request": {
             "caller_kind": "memory",
             "asset_kind": "state",
-            "operation": "state",
-            "connection": {
-              "allowed_operations": [
-                "state"
-              ]
-            }
-          },
-          "context": {
-            "expected_connection": {
-              "allowed_operations": [
-                "state"
-              ]
-            }
+            "operation": "state"
           }
         },
         "expected_observation": {
@@ -10489,39 +9307,11 @@
         "execution_state": "not_executed",
         "actual_observation": "not_observed",
         "counterexample": {
+          "comparison_shape_id": "same_scope_no_tenant",
           "request": {
             "caller_kind": "memory",
             "asset_kind": "state",
-            "operation": "state",
-            "connection": {
-              "allowed_operations": [
-                "state"
-              ]
-            },
-            "origin": {
-              "tenant": null
-            },
-            "target": {
-              "tenant": null
-            },
-            "asset_scope": {
-              "tenant": null
-            }
-          },
-          "context": {
-            "expected_connection": {
-              "allowed_operations": [
-                "state"
-              ]
-            },
-            "origin_tenant_applicable": false,
-            "target_tenant_applicable": false,
-            "expected_origin": {
-              "tenant": null
-            },
-            "expected_target": {
-              "tenant": null
-            }
+            "operation": "state"
           }
         },
         "expected_observation": {
@@ -10545,22 +9335,11 @@
         "execution_state": "not_executed",
         "actual_observation": "not_observed",
         "counterexample": {
+          "comparison_shape_id": "same_scope_tenant",
           "request": {
             "caller_kind": "memory",
             "asset_kind": "state",
-            "operation": "credential",
-            "connection": {
-              "allowed_operations": [
-                "credential"
-              ]
-            }
-          },
-          "context": {
-            "expected_connection": {
-              "allowed_operations": [
-                "credential"
-              ]
-            }
+            "operation": "credential"
           }
         },
         "expected_observation": {
@@ -10584,39 +9363,11 @@
         "execution_state": "not_executed",
         "actual_observation": "not_observed",
         "counterexample": {
+          "comparison_shape_id": "same_scope_no_tenant",
           "request": {
             "caller_kind": "memory",
             "asset_kind": "state",
-            "operation": "credential",
-            "connection": {
-              "allowed_operations": [
-                "credential"
-              ]
-            },
-            "origin": {
-              "tenant": null
-            },
-            "target": {
-              "tenant": null
-            },
-            "asset_scope": {
-              "tenant": null
-            }
-          },
-          "context": {
-            "expected_connection": {
-              "allowed_operations": [
-                "credential"
-              ]
-            },
-            "origin_tenant_applicable": false,
-            "target_tenant_applicable": false,
-            "expected_origin": {
-              "tenant": null
-            },
-            "expected_target": {
-              "tenant": null
-            }
+            "operation": "credential"
           }
         },
         "expected_observation": {
@@ -10640,22 +9391,11 @@
         "execution_state": "not_executed",
         "actual_observation": "not_observed",
         "counterexample": {
+          "comparison_shape_id": "same_scope_tenant",
           "request": {
             "caller_kind": "memory",
             "asset_kind": "state",
-            "operation": "artifact",
-            "connection": {
-              "allowed_operations": [
-                "artifact"
-              ]
-            }
-          },
-          "context": {
-            "expected_connection": {
-              "allowed_operations": [
-                "artifact"
-              ]
-            }
+            "operation": "artifact"
           }
         },
         "expected_observation": {
@@ -10679,39 +9419,11 @@
         "execution_state": "not_executed",
         "actual_observation": "not_observed",
         "counterexample": {
+          "comparison_shape_id": "same_scope_no_tenant",
           "request": {
             "caller_kind": "memory",
             "asset_kind": "state",
-            "operation": "artifact",
-            "connection": {
-              "allowed_operations": [
-                "artifact"
-              ]
-            },
-            "origin": {
-              "tenant": null
-            },
-            "target": {
-              "tenant": null
-            },
-            "asset_scope": {
-              "tenant": null
-            }
-          },
-          "context": {
-            "expected_connection": {
-              "allowed_operations": [
-                "artifact"
-              ]
-            },
-            "origin_tenant_applicable": false,
-            "target_tenant_applicable": false,
-            "expected_origin": {
-              "tenant": null
-            },
-            "expected_target": {
-              "tenant": null
-            }
+            "operation": "artifact"
           }
         },
         "expected_observation": {
@@ -10735,22 +9447,11 @@
         "execution_state": "not_executed",
         "actual_observation": "not_observed",
         "counterexample": {
+          "comparison_shape_id": "same_scope_tenant",
           "request": {
             "caller_kind": "credential",
             "asset_kind": "state",
-            "operation": "read",
-            "connection": {
-              "allowed_operations": [
-                "read"
-              ]
-            }
-          },
-          "context": {
-            "expected_connection": {
-              "allowed_operations": [
-                "read"
-              ]
-            }
+            "operation": "read"
           }
         },
         "expected_observation": {
@@ -10774,39 +9475,11 @@
         "execution_state": "not_executed",
         "actual_observation": "not_observed",
         "counterexample": {
+          "comparison_shape_id": "same_scope_no_tenant",
           "request": {
             "caller_kind": "credential",
             "asset_kind": "state",
-            "operation": "read",
-            "connection": {
-              "allowed_operations": [
-                "read"
-              ]
-            },
-            "origin": {
-              "tenant": null
-            },
-            "target": {
-              "tenant": null
-            },
-            "asset_scope": {
-              "tenant": null
-            }
-          },
-          "context": {
-            "expected_connection": {
-              "allowed_operations": [
-                "read"
-              ]
-            },
-            "origin_tenant_applicable": false,
-            "target_tenant_applicable": false,
-            "expected_origin": {
-              "tenant": null
-            },
-            "expected_target": {
-              "tenant": null
-            }
+            "operation": "read"
           }
         },
         "expected_observation": {
@@ -10830,22 +9503,11 @@
         "execution_state": "not_executed",
         "actual_observation": "not_observed",
         "counterexample": {
+          "comparison_shape_id": "same_scope_tenant",
           "request": {
             "caller_kind": "credential",
             "asset_kind": "state",
-            "operation": "write",
-            "connection": {
-              "allowed_operations": [
-                "write"
-              ]
-            }
-          },
-          "context": {
-            "expected_connection": {
-              "allowed_operations": [
-                "write"
-              ]
-            }
+            "operation": "write"
           }
         },
         "expected_observation": {
@@ -10869,39 +9531,11 @@
         "execution_state": "not_executed",
         "actual_observation": "not_observed",
         "counterexample": {
+          "comparison_shape_id": "same_scope_no_tenant",
           "request": {
             "caller_kind": "credential",
             "asset_kind": "state",
-            "operation": "write",
-            "connection": {
-              "allowed_operations": [
-                "write"
-              ]
-            },
-            "origin": {
-              "tenant": null
-            },
-            "target": {
-              "tenant": null
-            },
-            "asset_scope": {
-              "tenant": null
-            }
-          },
-          "context": {
-            "expected_connection": {
-              "allowed_operations": [
-                "write"
-              ]
-            },
-            "origin_tenant_applicable": false,
-            "target_tenant_applicable": false,
-            "expected_origin": {
-              "tenant": null
-            },
-            "expected_target": {
-              "tenant": null
-            }
+            "operation": "write"
           }
         },
         "expected_observation": {
@@ -10925,22 +9559,11 @@
         "execution_state": "not_executed",
         "actual_observation": "not_observed",
         "counterexample": {
+          "comparison_shape_id": "same_scope_tenant",
           "request": {
             "caller_kind": "credential",
             "asset_kind": "state",
-            "operation": "execute",
-            "connection": {
-              "allowed_operations": [
-                "execute"
-              ]
-            }
-          },
-          "context": {
-            "expected_connection": {
-              "allowed_operations": [
-                "execute"
-              ]
-            }
+            "operation": "execute"
           }
         },
         "expected_observation": {
@@ -10964,39 +9587,11 @@
         "execution_state": "not_executed",
         "actual_observation": "not_observed",
         "counterexample": {
+          "comparison_shape_id": "same_scope_no_tenant",
           "request": {
             "caller_kind": "credential",
             "asset_kind": "state",
-            "operation": "execute",
-            "connection": {
-              "allowed_operations": [
-                "execute"
-              ]
-            },
-            "origin": {
-              "tenant": null
-            },
-            "target": {
-              "tenant": null
-            },
-            "asset_scope": {
-              "tenant": null
-            }
-          },
-          "context": {
-            "expected_connection": {
-              "allowed_operations": [
-                "execute"
-              ]
-            },
-            "origin_tenant_applicable": false,
-            "target_tenant_applicable": false,
-            "expected_origin": {
-              "tenant": null
-            },
-            "expected_target": {
-              "tenant": null
-            }
+            "operation": "execute"
           }
         },
         "expected_observation": {
@@ -11020,22 +9615,11 @@
         "execution_state": "not_executed",
         "actual_observation": "not_observed",
         "counterexample": {
+          "comparison_shape_id": "same_scope_tenant",
           "request": {
             "caller_kind": "credential",
             "asset_kind": "state",
-            "operation": "network",
-            "connection": {
-              "allowed_operations": [
-                "network"
-              ]
-            }
-          },
-          "context": {
-            "expected_connection": {
-              "allowed_operations": [
-                "network"
-              ]
-            }
+            "operation": "network"
           }
         },
         "expected_observation": {
@@ -11059,39 +9643,11 @@
         "execution_state": "not_executed",
         "actual_observation": "not_observed",
         "counterexample": {
+          "comparison_shape_id": "same_scope_no_tenant",
           "request": {
             "caller_kind": "credential",
             "asset_kind": "state",
-            "operation": "network",
-            "connection": {
-              "allowed_operations": [
-                "network"
-              ]
-            },
-            "origin": {
-              "tenant": null
-            },
-            "target": {
-              "tenant": null
-            },
-            "asset_scope": {
-              "tenant": null
-            }
-          },
-          "context": {
-            "expected_connection": {
-              "allowed_operations": [
-                "network"
-              ]
-            },
-            "origin_tenant_applicable": false,
-            "target_tenant_applicable": false,
-            "expected_origin": {
-              "tenant": null
-            },
-            "expected_target": {
-              "tenant": null
-            }
+            "operation": "network"
           }
         },
         "expected_observation": {
@@ -11115,22 +9671,11 @@
         "execution_state": "not_executed",
         "actual_observation": "not_observed",
         "counterexample": {
+          "comparison_shape_id": "same_scope_tenant",
           "request": {
             "caller_kind": "credential",
             "asset_kind": "state",
-            "operation": "state",
-            "connection": {
-              "allowed_operations": [
-                "state"
-              ]
-            }
-          },
-          "context": {
-            "expected_connection": {
-              "allowed_operations": [
-                "state"
-              ]
-            }
+            "operation": "state"
           }
         },
         "expected_observation": {
@@ -11154,39 +9699,11 @@
         "execution_state": "not_executed",
         "actual_observation": "not_observed",
         "counterexample": {
+          "comparison_shape_id": "same_scope_no_tenant",
           "request": {
             "caller_kind": "credential",
             "asset_kind": "state",
-            "operation": "state",
-            "connection": {
-              "allowed_operations": [
-                "state"
-              ]
-            },
-            "origin": {
-              "tenant": null
-            },
-            "target": {
-              "tenant": null
-            },
-            "asset_scope": {
-              "tenant": null
-            }
-          },
-          "context": {
-            "expected_connection": {
-              "allowed_operations": [
-                "state"
-              ]
-            },
-            "origin_tenant_applicable": false,
-            "target_tenant_applicable": false,
-            "expected_origin": {
-              "tenant": null
-            },
-            "expected_target": {
-              "tenant": null
-            }
+            "operation": "state"
           }
         },
         "expected_observation": {
@@ -11210,22 +9727,11 @@
         "execution_state": "not_executed",
         "actual_observation": "not_observed",
         "counterexample": {
+          "comparison_shape_id": "same_scope_tenant",
           "request": {
             "caller_kind": "credential",
             "asset_kind": "state",
-            "operation": "credential",
-            "connection": {
-              "allowed_operations": [
-                "credential"
-              ]
-            }
-          },
-          "context": {
-            "expected_connection": {
-              "allowed_operations": [
-                "credential"
-              ]
-            }
+            "operation": "credential"
           }
         },
         "expected_observation": {
@@ -11249,39 +9755,11 @@
         "execution_state": "not_executed",
         "actual_observation": "not_observed",
         "counterexample": {
+          "comparison_shape_id": "same_scope_no_tenant",
           "request": {
             "caller_kind": "credential",
             "asset_kind": "state",
-            "operation": "credential",
-            "connection": {
-              "allowed_operations": [
-                "credential"
-              ]
-            },
-            "origin": {
-              "tenant": null
-            },
-            "target": {
-              "tenant": null
-            },
-            "asset_scope": {
-              "tenant": null
-            }
-          },
-          "context": {
-            "expected_connection": {
-              "allowed_operations": [
-                "credential"
-              ]
-            },
-            "origin_tenant_applicable": false,
-            "target_tenant_applicable": false,
-            "expected_origin": {
-              "tenant": null
-            },
-            "expected_target": {
-              "tenant": null
-            }
+            "operation": "credential"
           }
         },
         "expected_observation": {
@@ -11305,22 +9783,11 @@
         "execution_state": "not_executed",
         "actual_observation": "not_observed",
         "counterexample": {
+          "comparison_shape_id": "same_scope_tenant",
           "request": {
             "caller_kind": "credential",
             "asset_kind": "state",
-            "operation": "artifact",
-            "connection": {
-              "allowed_operations": [
-                "artifact"
-              ]
-            }
-          },
-          "context": {
-            "expected_connection": {
-              "allowed_operations": [
-                "artifact"
-              ]
-            }
+            "operation": "artifact"
           }
         },
         "expected_observation": {
@@ -11344,39 +9811,11 @@
         "execution_state": "not_executed",
         "actual_observation": "not_observed",
         "counterexample": {
+          "comparison_shape_id": "same_scope_no_tenant",
           "request": {
             "caller_kind": "credential",
             "asset_kind": "state",
-            "operation": "artifact",
-            "connection": {
-              "allowed_operations": [
-                "artifact"
-              ]
-            },
-            "origin": {
-              "tenant": null
-            },
-            "target": {
-              "tenant": null
-            },
-            "asset_scope": {
-              "tenant": null
-            }
-          },
-          "context": {
-            "expected_connection": {
-              "allowed_operations": [
-                "artifact"
-              ]
-            },
-            "origin_tenant_applicable": false,
-            "target_tenant_applicable": false,
-            "expected_origin": {
-              "tenant": null
-            },
-            "expected_target": {
-              "tenant": null
-            }
+            "operation": "artifact"
           }
         },
         "expected_observation": {
@@ -11400,22 +9839,11 @@
         "execution_state": "not_executed",
         "actual_observation": "not_observed",
         "counterexample": {
+          "comparison_shape_id": "same_scope_tenant",
           "request": {
             "caller_kind": "configuration",
             "asset_kind": "state",
-            "operation": "read",
-            "connection": {
-              "allowed_operations": [
-                "read"
-              ]
-            }
-          },
-          "context": {
-            "expected_connection": {
-              "allowed_operations": [
-                "read"
-              ]
-            }
+            "operation": "read"
           }
         },
         "expected_observation": {
@@ -11439,39 +9867,11 @@
         "execution_state": "not_executed",
         "actual_observation": "not_observed",
         "counterexample": {
+          "comparison_shape_id": "same_scope_no_tenant",
           "request": {
             "caller_kind": "configuration",
             "asset_kind": "state",
-            "operation": "read",
-            "connection": {
-              "allowed_operations": [
-                "read"
-              ]
-            },
-            "origin": {
-              "tenant": null
-            },
-            "target": {
-              "tenant": null
-            },
-            "asset_scope": {
-              "tenant": null
-            }
-          },
-          "context": {
-            "expected_connection": {
-              "allowed_operations": [
-                "read"
-              ]
-            },
-            "origin_tenant_applicable": false,
-            "target_tenant_applicable": false,
-            "expected_origin": {
-              "tenant": null
-            },
-            "expected_target": {
-              "tenant": null
-            }
+            "operation": "read"
           }
         },
         "expected_observation": {
@@ -11495,22 +9895,11 @@
         "execution_state": "not_executed",
         "actual_observation": "not_observed",
         "counterexample": {
+          "comparison_shape_id": "same_scope_tenant",
           "request": {
             "caller_kind": "configuration",
             "asset_kind": "state",
-            "operation": "write",
-            "connection": {
-              "allowed_operations": [
-                "write"
-              ]
-            }
-          },
-          "context": {
-            "expected_connection": {
-              "allowed_operations": [
-                "write"
-              ]
-            }
+            "operation": "write"
           }
         },
         "expected_observation": {
@@ -11534,39 +9923,11 @@
         "execution_state": "not_executed",
         "actual_observation": "not_observed",
         "counterexample": {
+          "comparison_shape_id": "same_scope_no_tenant",
           "request": {
             "caller_kind": "configuration",
             "asset_kind": "state",
-            "operation": "write",
-            "connection": {
-              "allowed_operations": [
-                "write"
-              ]
-            },
-            "origin": {
-              "tenant": null
-            },
-            "target": {
-              "tenant": null
-            },
-            "asset_scope": {
-              "tenant": null
-            }
-          },
-          "context": {
-            "expected_connection": {
-              "allowed_operations": [
-                "write"
-              ]
-            },
-            "origin_tenant_applicable": false,
-            "target_tenant_applicable": false,
-            "expected_origin": {
-              "tenant": null
-            },
-            "expected_target": {
-              "tenant": null
-            }
+            "operation": "write"
           }
         },
         "expected_observation": {
@@ -11590,22 +9951,11 @@
         "execution_state": "not_executed",
         "actual_observation": "not_observed",
         "counterexample": {
+          "comparison_shape_id": "same_scope_tenant",
           "request": {
             "caller_kind": "configuration",
             "asset_kind": "state",
-            "operation": "execute",
-            "connection": {
-              "allowed_operations": [
-                "execute"
-              ]
-            }
-          },
-          "context": {
-            "expected_connection": {
-              "allowed_operations": [
-                "execute"
-              ]
-            }
+            "operation": "execute"
           }
         },
         "expected_observation": {
@@ -11629,39 +9979,11 @@
         "execution_state": "not_executed",
         "actual_observation": "not_observed",
         "counterexample": {
+          "comparison_shape_id": "same_scope_no_tenant",
           "request": {
             "caller_kind": "configuration",
             "asset_kind": "state",
-            "operation": "execute",
-            "connection": {
-              "allowed_operations": [
-                "execute"
-              ]
-            },
-            "origin": {
-              "tenant": null
-            },
-            "target": {
-              "tenant": null
-            },
-            "asset_scope": {
-              "tenant": null
-            }
-          },
-          "context": {
-            "expected_connection": {
-              "allowed_operations": [
-                "execute"
-              ]
-            },
-            "origin_tenant_applicable": false,
-            "target_tenant_applicable": false,
-            "expected_origin": {
-              "tenant": null
-            },
-            "expected_target": {
-              "tenant": null
-            }
+            "operation": "execute"
           }
         },
         "expected_observation": {
@@ -11685,22 +10007,11 @@
         "execution_state": "not_executed",
         "actual_observation": "not_observed",
         "counterexample": {
+          "comparison_shape_id": "same_scope_tenant",
           "request": {
             "caller_kind": "configuration",
             "asset_kind": "state",
-            "operation": "network",
-            "connection": {
-              "allowed_operations": [
-                "network"
-              ]
-            }
-          },
-          "context": {
-            "expected_connection": {
-              "allowed_operations": [
-                "network"
-              ]
-            }
+            "operation": "network"
           }
         },
         "expected_observation": {
@@ -11724,39 +10035,11 @@
         "execution_state": "not_executed",
         "actual_observation": "not_observed",
         "counterexample": {
+          "comparison_shape_id": "same_scope_no_tenant",
           "request": {
             "caller_kind": "configuration",
             "asset_kind": "state",
-            "operation": "network",
-            "connection": {
-              "allowed_operations": [
-                "network"
-              ]
-            },
-            "origin": {
-              "tenant": null
-            },
-            "target": {
-              "tenant": null
-            },
-            "asset_scope": {
-              "tenant": null
-            }
-          },
-          "context": {
-            "expected_connection": {
-              "allowed_operations": [
-                "network"
-              ]
-            },
-            "origin_tenant_applicable": false,
-            "target_tenant_applicable": false,
-            "expected_origin": {
-              "tenant": null
-            },
-            "expected_target": {
-              "tenant": null
-            }
+            "operation": "network"
           }
         },
         "expected_observation": {
@@ -11780,22 +10063,11 @@
         "execution_state": "not_executed",
         "actual_observation": "not_observed",
         "counterexample": {
+          "comparison_shape_id": "same_scope_tenant",
           "request": {
             "caller_kind": "configuration",
             "asset_kind": "state",
-            "operation": "state",
-            "connection": {
-              "allowed_operations": [
-                "state"
-              ]
-            }
-          },
-          "context": {
-            "expected_connection": {
-              "allowed_operations": [
-                "state"
-              ]
-            }
+            "operation": "state"
           }
         },
         "expected_observation": {
@@ -11819,39 +10091,11 @@
         "execution_state": "not_executed",
         "actual_observation": "not_observed",
         "counterexample": {
+          "comparison_shape_id": "same_scope_no_tenant",
           "request": {
             "caller_kind": "configuration",
             "asset_kind": "state",
-            "operation": "state",
-            "connection": {
-              "allowed_operations": [
-                "state"
-              ]
-            },
-            "origin": {
-              "tenant": null
-            },
-            "target": {
-              "tenant": null
-            },
-            "asset_scope": {
-              "tenant": null
-            }
-          },
-          "context": {
-            "expected_connection": {
-              "allowed_operations": [
-                "state"
-              ]
-            },
-            "origin_tenant_applicable": false,
-            "target_tenant_applicable": false,
-            "expected_origin": {
-              "tenant": null
-            },
-            "expected_target": {
-              "tenant": null
-            }
+            "operation": "state"
           }
         },
         "expected_observation": {
@@ -11875,22 +10119,11 @@
         "execution_state": "not_executed",
         "actual_observation": "not_observed",
         "counterexample": {
+          "comparison_shape_id": "same_scope_tenant",
           "request": {
             "caller_kind": "configuration",
             "asset_kind": "state",
-            "operation": "credential",
-            "connection": {
-              "allowed_operations": [
-                "credential"
-              ]
-            }
-          },
-          "context": {
-            "expected_connection": {
-              "allowed_operations": [
-                "credential"
-              ]
-            }
+            "operation": "credential"
           }
         },
         "expected_observation": {
@@ -11914,39 +10147,11 @@
         "execution_state": "not_executed",
         "actual_observation": "not_observed",
         "counterexample": {
+          "comparison_shape_id": "same_scope_no_tenant",
           "request": {
             "caller_kind": "configuration",
             "asset_kind": "state",
-            "operation": "credential",
-            "connection": {
-              "allowed_operations": [
-                "credential"
-              ]
-            },
-            "origin": {
-              "tenant": null
-            },
-            "target": {
-              "tenant": null
-            },
-            "asset_scope": {
-              "tenant": null
-            }
-          },
-          "context": {
-            "expected_connection": {
-              "allowed_operations": [
-                "credential"
-              ]
-            },
-            "origin_tenant_applicable": false,
-            "target_tenant_applicable": false,
-            "expected_origin": {
-              "tenant": null
-            },
-            "expected_target": {
-              "tenant": null
-            }
+            "operation": "credential"
           }
         },
         "expected_observation": {
@@ -11970,22 +10175,11 @@
         "execution_state": "not_executed",
         "actual_observation": "not_observed",
         "counterexample": {
+          "comparison_shape_id": "same_scope_tenant",
           "request": {
             "caller_kind": "configuration",
             "asset_kind": "state",
-            "operation": "artifact",
-            "connection": {
-              "allowed_operations": [
-                "artifact"
-              ]
-            }
-          },
-          "context": {
-            "expected_connection": {
-              "allowed_operations": [
-                "artifact"
-              ]
-            }
+            "operation": "artifact"
           }
         },
         "expected_observation": {
@@ -12009,39 +10203,11 @@
         "execution_state": "not_executed",
         "actual_observation": "not_observed",
         "counterexample": {
+          "comparison_shape_id": "same_scope_no_tenant",
           "request": {
             "caller_kind": "configuration",
             "asset_kind": "state",
-            "operation": "artifact",
-            "connection": {
-              "allowed_operations": [
-                "artifact"
-              ]
-            },
-            "origin": {
-              "tenant": null
-            },
-            "target": {
-              "tenant": null
-            },
-            "asset_scope": {
-              "tenant": null
-            }
-          },
-          "context": {
-            "expected_connection": {
-              "allowed_operations": [
-                "artifact"
-              ]
-            },
-            "origin_tenant_applicable": false,
-            "target_tenant_applicable": false,
-            "expected_origin": {
-              "tenant": null
-            },
-            "expected_target": {
-              "tenant": null
-            }
+            "operation": "artifact"
           }
         },
         "expected_observation": {
@@ -12065,22 +10231,11 @@
         "execution_state": "not_executed",
         "actual_observation": "not_observed",
         "counterexample": {
+          "comparison_shape_id": "same_scope_tenant",
           "request": {
             "caller_kind": "Worker",
             "asset_kind": "state",
-            "operation": "read",
-            "connection": {
-              "allowed_operations": [
-                "read"
-              ]
-            }
-          },
-          "context": {
-            "expected_connection": {
-              "allowed_operations": [
-                "read"
-              ]
-            }
+            "operation": "read"
           }
         },
         "expected_observation": {
@@ -12104,39 +10259,11 @@
         "execution_state": "not_executed",
         "actual_observation": "not_observed",
         "counterexample": {
+          "comparison_shape_id": "same_scope_no_tenant",
           "request": {
             "caller_kind": "Worker",
             "asset_kind": "state",
-            "operation": "read",
-            "connection": {
-              "allowed_operations": [
-                "read"
-              ]
-            },
-            "origin": {
-              "tenant": null
-            },
-            "target": {
-              "tenant": null
-            },
-            "asset_scope": {
-              "tenant": null
-            }
-          },
-          "context": {
-            "expected_connection": {
-              "allowed_operations": [
-                "read"
-              ]
-            },
-            "origin_tenant_applicable": false,
-            "target_tenant_applicable": false,
-            "expected_origin": {
-              "tenant": null
-            },
-            "expected_target": {
-              "tenant": null
-            }
+            "operation": "read"
           }
         },
         "expected_observation": {
@@ -12160,22 +10287,11 @@
         "execution_state": "not_executed",
         "actual_observation": "not_observed",
         "counterexample": {
+          "comparison_shape_id": "same_scope_tenant",
           "request": {
             "caller_kind": "Worker",
             "asset_kind": "state",
-            "operation": "write",
-            "connection": {
-              "allowed_operations": [
-                "write"
-              ]
-            }
-          },
-          "context": {
-            "expected_connection": {
-              "allowed_operations": [
-                "write"
-              ]
-            }
+            "operation": "write"
           }
         },
         "expected_observation": {
@@ -12199,39 +10315,11 @@
         "execution_state": "not_executed",
         "actual_observation": "not_observed",
         "counterexample": {
+          "comparison_shape_id": "same_scope_no_tenant",
           "request": {
             "caller_kind": "Worker",
             "asset_kind": "state",
-            "operation": "write",
-            "connection": {
-              "allowed_operations": [
-                "write"
-              ]
-            },
-            "origin": {
-              "tenant": null
-            },
-            "target": {
-              "tenant": null
-            },
-            "asset_scope": {
-              "tenant": null
-            }
-          },
-          "context": {
-            "expected_connection": {
-              "allowed_operations": [
-                "write"
-              ]
-            },
-            "origin_tenant_applicable": false,
-            "target_tenant_applicable": false,
-            "expected_origin": {
-              "tenant": null
-            },
-            "expected_target": {
-              "tenant": null
-            }
+            "operation": "write"
           }
         },
         "expected_observation": {
@@ -12255,22 +10343,11 @@
         "execution_state": "not_executed",
         "actual_observation": "not_observed",
         "counterexample": {
+          "comparison_shape_id": "same_scope_tenant",
           "request": {
             "caller_kind": "Worker",
             "asset_kind": "state",
-            "operation": "execute",
-            "connection": {
-              "allowed_operations": [
-                "execute"
-              ]
-            }
-          },
-          "context": {
-            "expected_connection": {
-              "allowed_operations": [
-                "execute"
-              ]
-            }
+            "operation": "execute"
           }
         },
         "expected_observation": {
@@ -12294,39 +10371,11 @@
         "execution_state": "not_executed",
         "actual_observation": "not_observed",
         "counterexample": {
+          "comparison_shape_id": "same_scope_no_tenant",
           "request": {
             "caller_kind": "Worker",
             "asset_kind": "state",
-            "operation": "execute",
-            "connection": {
-              "allowed_operations": [
-                "execute"
-              ]
-            },
-            "origin": {
-              "tenant": null
-            },
-            "target": {
-              "tenant": null
-            },
-            "asset_scope": {
-              "tenant": null
-            }
-          },
-          "context": {
-            "expected_connection": {
-              "allowed_operations": [
-                "execute"
-              ]
-            },
-            "origin_tenant_applicable": false,
-            "target_tenant_applicable": false,
-            "expected_origin": {
-              "tenant": null
-            },
-            "expected_target": {
-              "tenant": null
-            }
+            "operation": "execute"
           }
         },
         "expected_observation": {
@@ -12350,22 +10399,11 @@
         "execution_state": "not_executed",
         "actual_observation": "not_observed",
         "counterexample": {
+          "comparison_shape_id": "same_scope_tenant",
           "request": {
             "caller_kind": "Worker",
             "asset_kind": "state",
-            "operation": "network",
-            "connection": {
-              "allowed_operations": [
-                "network"
-              ]
-            }
-          },
-          "context": {
-            "expected_connection": {
-              "allowed_operations": [
-                "network"
-              ]
-            }
+            "operation": "network"
           }
         },
         "expected_observation": {
@@ -12389,39 +10427,11 @@
         "execution_state": "not_executed",
         "actual_observation": "not_observed",
         "counterexample": {
+          "comparison_shape_id": "same_scope_no_tenant",
           "request": {
             "caller_kind": "Worker",
             "asset_kind": "state",
-            "operation": "network",
-            "connection": {
-              "allowed_operations": [
-                "network"
-              ]
-            },
-            "origin": {
-              "tenant": null
-            },
-            "target": {
-              "tenant": null
-            },
-            "asset_scope": {
-              "tenant": null
-            }
-          },
-          "context": {
-            "expected_connection": {
-              "allowed_operations": [
-                "network"
-              ]
-            },
-            "origin_tenant_applicable": false,
-            "target_tenant_applicable": false,
-            "expected_origin": {
-              "tenant": null
-            },
-            "expected_target": {
-              "tenant": null
-            }
+            "operation": "network"
           }
         },
         "expected_observation": {
@@ -12445,22 +10455,11 @@
         "execution_state": "not_executed",
         "actual_observation": "not_observed",
         "counterexample": {
+          "comparison_shape_id": "same_scope_tenant",
           "request": {
             "caller_kind": "Worker",
             "asset_kind": "state",
-            "operation": "state",
-            "connection": {
-              "allowed_operations": [
-                "state"
-              ]
-            }
-          },
-          "context": {
-            "expected_connection": {
-              "allowed_operations": [
-                "state"
-              ]
-            }
+            "operation": "state"
           }
         },
         "expected_observation": {
@@ -12484,39 +10483,11 @@
         "execution_state": "not_executed",
         "actual_observation": "not_observed",
         "counterexample": {
+          "comparison_shape_id": "same_scope_no_tenant",
           "request": {
             "caller_kind": "Worker",
             "asset_kind": "state",
-            "operation": "state",
-            "connection": {
-              "allowed_operations": [
-                "state"
-              ]
-            },
-            "origin": {
-              "tenant": null
-            },
-            "target": {
-              "tenant": null
-            },
-            "asset_scope": {
-              "tenant": null
-            }
-          },
-          "context": {
-            "expected_connection": {
-              "allowed_operations": [
-                "state"
-              ]
-            },
-            "origin_tenant_applicable": false,
-            "target_tenant_applicable": false,
-            "expected_origin": {
-              "tenant": null
-            },
-            "expected_target": {
-              "tenant": null
-            }
+            "operation": "state"
           }
         },
         "expected_observation": {
@@ -12540,22 +10511,11 @@
         "execution_state": "not_executed",
         "actual_observation": "not_observed",
         "counterexample": {
+          "comparison_shape_id": "same_scope_tenant",
           "request": {
             "caller_kind": "Worker",
             "asset_kind": "state",
-            "operation": "credential",
-            "connection": {
-              "allowed_operations": [
-                "credential"
-              ]
-            }
-          },
-          "context": {
-            "expected_connection": {
-              "allowed_operations": [
-                "credential"
-              ]
-            }
+            "operation": "credential"
           }
         },
         "expected_observation": {
@@ -12579,39 +10539,11 @@
         "execution_state": "not_executed",
         "actual_observation": "not_observed",
         "counterexample": {
+          "comparison_shape_id": "same_scope_no_tenant",
           "request": {
             "caller_kind": "Worker",
             "asset_kind": "state",
-            "operation": "credential",
-            "connection": {
-              "allowed_operations": [
-                "credential"
-              ]
-            },
-            "origin": {
-              "tenant": null
-            },
-            "target": {
-              "tenant": null
-            },
-            "asset_scope": {
-              "tenant": null
-            }
-          },
-          "context": {
-            "expected_connection": {
-              "allowed_operations": [
-                "credential"
-              ]
-            },
-            "origin_tenant_applicable": false,
-            "target_tenant_applicable": false,
-            "expected_origin": {
-              "tenant": null
-            },
-            "expected_target": {
-              "tenant": null
-            }
+            "operation": "credential"
           }
         },
         "expected_observation": {
@@ -12635,22 +10567,11 @@
         "execution_state": "not_executed",
         "actual_observation": "not_observed",
         "counterexample": {
+          "comparison_shape_id": "same_scope_tenant",
           "request": {
             "caller_kind": "Worker",
             "asset_kind": "state",
-            "operation": "artifact",
-            "connection": {
-              "allowed_operations": [
-                "artifact"
-              ]
-            }
-          },
-          "context": {
-            "expected_connection": {
-              "allowed_operations": [
-                "artifact"
-              ]
-            }
+            "operation": "artifact"
           }
         },
         "expected_observation": {
@@ -12674,39 +10595,11 @@
         "execution_state": "not_executed",
         "actual_observation": "not_observed",
         "counterexample": {
+          "comparison_shape_id": "same_scope_no_tenant",
           "request": {
             "caller_kind": "Worker",
             "asset_kind": "state",
-            "operation": "artifact",
-            "connection": {
-              "allowed_operations": [
-                "artifact"
-              ]
-            },
-            "origin": {
-              "tenant": null
-            },
-            "target": {
-              "tenant": null
-            },
-            "asset_scope": {
-              "tenant": null
-            }
-          },
-          "context": {
-            "expected_connection": {
-              "allowed_operations": [
-                "artifact"
-              ]
-            },
-            "origin_tenant_applicable": false,
-            "target_tenant_applicable": false,
-            "expected_origin": {
-              "tenant": null
-            },
-            "expected_target": {
-              "tenant": null
-            }
+            "operation": "artifact"
           }
         },
         "expected_observation": {
@@ -12743,7 +10636,8 @@
               "INFRA": "current",
               "CONNECT": "current"
             }
-          }
+          },
+          "comparison_shape_id": "same_scope_tenant"
         },
         "expected_observation": {
           "condition": "scope_unresolved",
@@ -12785,7 +10679,8 @@
               "INFRA": "unknown",
               "CONNECT": "current"
             }
-          }
+          },
+          "comparison_shape_id": "same_scope_tenant"
         },
         "expected_observation": {
           "condition": "scope_unresolved",
@@ -12827,7 +10722,8 @@
               "INFRA": "current",
               "CONNECT": "unknown"
             }
-          }
+          },
+          "comparison_shape_id": "same_scope_tenant"
         },
         "expected_observation": {
           "condition": "scope_unresolved",
@@ -12874,7 +10770,8 @@
             "expected_target": {
               "environment": "ENV-A"
             }
-          }
+          },
+          "comparison_shape_id": "same_scope_tenant"
         },
         "expected_observation": {
           "condition": "isolation_violation",
@@ -12947,7 +10844,8 @@
             "expected_origin": {
               "project": "PROJECT-A"
             }
-          }
+          },
+          "comparison_shape_id": "same_scope_tenant"
         },
         "expected_observation": {
           "condition": "isolation_violation",
@@ -13015,7 +10913,8 @@
             "expected_origin": {
               "tenant": "TENANT-A"
             }
-          }
+          },
+          "comparison_shape_id": "same_scope_tenant"
         },
         "expected_observation": {
           "condition": "isolation_violation",
@@ -13083,7 +10982,8 @@
             "expected_origin": {
               "environment": "ENV-A"
             }
-          }
+          },
+          "comparison_shape_id": "same_scope_tenant"
         },
         "expected_observation": {
           "condition": "isolation_violation",
@@ -13151,7 +11051,8 @@
             "expected_origin": {
               "assignment": "ASSIGN-A"
             }
-          }
+          },
+          "comparison_shape_id": "same_scope_tenant"
         },
         "expected_observation": {
           "condition": "isolation_violation",
@@ -13219,7 +11120,8 @@
             "expected_origin": {
               "worktree": "TREE-A"
             }
-          }
+          },
+          "comparison_shape_id": "same_scope_tenant"
         },
         "expected_observation": {
           "condition": "isolation_violation",
@@ -13287,7 +11189,8 @@
             "expected_origin": {
               "revision": "scope-r1"
             }
-          }
+          },
+          "comparison_shape_id": "same_scope_tenant"
         },
         "expected_observation": {
           "condition": "isolation_violation",
@@ -13355,7 +11258,8 @@
             "expected_target": {
               "project": "PROJECT-A"
             }
-          }
+          },
+          "comparison_shape_id": "same_scope_tenant"
         },
         "expected_observation": {
           "condition": "isolation_violation",
@@ -13423,7 +11327,8 @@
             "expected_target": {
               "tenant": "TENANT-A"
             }
-          }
+          },
+          "comparison_shape_id": "same_scope_tenant"
         },
         "expected_observation": {
           "condition": "isolation_violation",
@@ -13491,7 +11396,8 @@
             "expected_target": {
               "environment": "ENV-A"
             }
-          }
+          },
+          "comparison_shape_id": "same_scope_tenant"
         },
         "expected_observation": {
           "condition": "isolation_violation",
@@ -13559,7 +11465,8 @@
             "expected_target": {
               "assignment": "ASSIGN-A"
             }
-          }
+          },
+          "comparison_shape_id": "same_scope_tenant"
         },
         "expected_observation": {
           "condition": "isolation_violation",
@@ -13627,7 +11534,8 @@
             "expected_target": {
               "worktree": "TREE-A"
             }
-          }
+          },
+          "comparison_shape_id": "same_scope_tenant"
         },
         "expected_observation": {
           "condition": "isolation_violation",
@@ -13695,7 +11603,8 @@
             "expected_target": {
               "revision": "scope-r1"
             }
-          }
+          },
+          "comparison_shape_id": "same_scope_tenant"
         },
         "expected_observation": {
           "condition": "isolation_violation",
@@ -14476,8 +12385,8 @@
     "decision_ref": "https://github.com/RetryYN/HELIX-HARNESS/issues/3510#issuecomment-6447665479",
     "git_commit": "e465b3b2edcf8951ea3a5bbedc271543eb2e094e",
     "path": "docs/helix-security/L9-integration-verification/project-scope-isolation.json",
-    "meaning": "BASEの同一pathが軽量化前L9の正確な原記録（1,337,364 bytes、SHA-256 8b0fb45c8281fbd4d85c3dffc46eba8c0ccbeeb512eb4efd312a1ee6af101b6f）。205 case rows (cases 105件、multi_contract_residual 100件、うち負例16件)から、given全入力、source_kind/evidence_limitおよび各行で反復していたwhenを除去。whenの「2component局所比較・synthetic proposal・実作用なし」はfixture_contract.scope/algorithmおよびL4 operation_effect=none境界に共通化。expected_proposalのfull returnを除去。given.source_kindはfixture_contract.scopeのsynthetic owner snapshots、evidence_limitはL4 qualification_rule/L9 completionのunproven境界へ対応する。case固有の反例はcounterexample内のcaller_kind/asset_kind/operationと、成立条件に必要なscope軸・tenant applicability flag/tenant値・request.connection.allowed_operations・context.expected_connection.allowed_operationsの原値を保持する。10件の負例はtenant-invented/unknownの各tenant値と、7件のcross-absentではorigin/target/asset_scopeの全scope軸およびexpected_origin/expected_targetを保持する。91件の正例は操作照合に使う両allowed_operationsを保持し、tenant非適用42件はfalse flagとorigin/target/asset_scopeおよびexpected_origin/expected_targetのtenant値を保持する。7件のdirect cross-scope positiveはorigin/target/asset_scopeとexpected_origin/expected_targetの全scope軸を保持する。その他の入力・expected値はBASE blobから監査用に辿るが、現行counterexampleへ再注入しない。expected_proposalの小さいoracleはexpected_observationへ同値で移動: condition、tenant_disposition、requested_operation、connection_content_corresponding、順序と全要素(code/pointer/return_owner)を保持したfindings、pending_operations。removed fieldsの意味対応: origin_identity_preserved=true/target_identity_preserved=trueはL4 output_meaningsの原identity保持として共通境界に残る; actual_scope_authorized=false/actual_state_changed=false/operation_effect=noneはL4 operation_effectとL9 fixture_contract.algorithmの実作用なし境界に残る; requested_operationはcounterexample.request.operationとexpected_observation双方に同値保持; return_ownerはfixture_contract.return_ownerに共通化。その他の全given/expected_proposal値と、旧removed_materials記録（88d8b2516400e80da9d15ec864264af42b8dfb74由来のhash束説明を含む）はこのBASE revisionのblobから辿る。case ID、requirement refs、execution_state/actual_observation、case数、condition、finding順と16件のmulti_contract_residual negative rowsは維持。",
+    "meaning": "BASEの同一pathが軽量化前L9の正確な原記録（1,337,364 bytes、SHA-256 8b0fb45c8281fbd4d85c3dffc46eba8c0ccbeeb512eb4efd312a1ee6af101b6f）。205 case rows (cases 105件、multi_contract_residual 100件、うち負例16件)から、given全入力、source_kind/evidence_limitおよび各行で反復していたwhenを除去。whenの「2component局所比較・synthetic proposal・実作用なし」はfixture_contract.scope/algorithmおよびL4 operation_effect=none境界に共通化。expected_proposalのfull returnを除去。given.source_kindはfixture_contract.scopeのsynthetic owner snapshots、evidence_limitはL4 qualification_rule/L9 completionのunproven境界へ対応する。positive 91行はcaller_kind/asset_kind/operationとcomparison_shape_idを保持する。既存のsource_case_refsが要求するcross positive 7行のorigin.project/target.project計14値は元値のままcounterexampleへ保持し、残るscope・tenant・asset・owner・connection・operationの共通比較関係はfixture_contract.comparison_relationsに一度だけ記す。この関係要約は実行可能input/expected/oracleではなく、L7はDT-VT-105に従い独立に著述する。全114件のnegative（cases 98件、multi_contract_residual 16件）は、sourceのexpected scope関係からsame_scope_tenant 106件、same_scope_no_tenant 1件、cross_scope 7件に分類し、各counterexampleにshape IDとshapeから変わるsource leafを保持する。null・unknown・absentは原sourceの状態を区別して残す。11件の「requested operationはread以外、connection.allowed_operationsは[read]」ではrequest.connection.allowed_operationsも原値で保持し、operationだけから拒否根拠を推測しない。positive rowsで全scope/owner/connection memberを行ごとに反復していた値とallowed_operationsを撤去し、負例のrelation背景もshapeで共通化する。その他のnegative counterexampleは従来のcase固有source leafを保持し、given/full expected_proposalへ復帰しない。10件の負例はtenant-invented/unknownの各tenant値と、7件のcross-absentではorigin/target/asset_scopeの全scope軸およびexpected_origin/expected_targetを保持する。91件の正例は操作照合に使う両allowed_operationsを保持し、tenant非適用42件はfalse flagとorigin/target/asset_scopeおよびexpected_origin/expected_targetのtenant値を保持する。7件のdirect cross-scope positiveはorigin/target/asset_scopeとexpected_origin/expected_targetの全scope軸を保持する。その他の入力・expected値はBASE blobから監査用に辿るが、現行counterexampleへ再注入しない。expected_proposalの小さいoracleはexpected_observationへ同値で移動: condition、tenant_disposition、requested_operation、connection_content_corresponding、順序と全要素(code/pointer/return_owner)を保持したfindings、pending_operations。removed fieldsの意味対応: origin_identity_preserved=true/target_identity_preserved=trueはL4 output_meaningsの原identity保持として共通境界に残る; actual_scope_authorized=false/actual_state_changed=false/operation_effect=noneはL4 operation_effectとL9 fixture_contract.algorithmの実作用なし境界に残る; requested_operationはcounterexample.request.operationとexpected_observation双方に同値保持; return_ownerはfixture_contract.return_ownerに共通化。その他の全given/expected_proposal値と、旧removed_materials記録（88d8b2516400e80da9d15ec864264af42b8dfb74由来のhash束説明を含む）はこのBASE revisionのblobから辿る。case ID、requirement refs、execution_state/actual_observation、case数、condition、finding順と16件のmulti_contract_residual negative rowsは維持。",
     "removed_key_rule": "l9_case_minimal_oracle_projection_with_exact_git_source_reconstruction",
-    "use_boundary": "git_commitとpathは監査・レビュー時のhistorical reconstruction専用。givenまたはfull expected_proposalを現行L9検証/実装入力へ再注入しない。compact counterexampleとexpected_observationだけが現行L9 oracle material。"
+    "use_boundary": "git_commitとpathはhistorical reconstruction専用。givenまたはfull expected_proposalを現行L9へ再注入しない。fixture_contract.comparison_relationsとcounterexample.comparison_shape_idは静的な関係要約で、実行入力・期待値・oracleではない。current L9の小さいexpected_observationは元期待の保持projectionであり、L7実行input/expectedはDT-VT-105に従い独立に著述する。"
   }
 }
