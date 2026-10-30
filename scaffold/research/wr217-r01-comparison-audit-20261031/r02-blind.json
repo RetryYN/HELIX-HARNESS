@@ -1,0 +1,78 @@
+{
+  "artifact_id": "WR225-OS007-R02-independent-blind",
+  "status": "independent_source_only_derivation",
+  "authority": {
+    "approved_revision": "7f1719fb6a89837c1bb9775faa9a634a066df4a3",
+    "decision_record": "docs/governance/decisions/helix-os-management-evidence-prerequisite-l3-l10-delegated-decision-2026-10-12.md",
+    "decision_record_status_as_recorded": "recorded_pending_final_review_and_main_admission",
+    "main_admission": {
+      "main_revision_checked": "aa124441198b3b89cbe089be3dbd46805634201d",
+      "admission_commit": "ddb7420f9f8",
+      "evidence": "The decision record and approved body revision are ancestors of repository main; the first-parent main history records the merge of PR #2951."
+    },
+    "scope": "Derive only the meaning of diagnostic pointers for kind/state unknown or conflict from the named L4 R02 text, its minimal closed-set definitions, and approved OS007 L3/L10 F01 JSON. This is not a new approval or design freeze."
+  },
+  "sources": [
+    {
+      "revision": "7499dfa5b28525fb9eb1e86787e41a5482d42075",
+      "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
+      "sha256": "4b1eea9beaa7a4179dec374e8c914632dbef850c25f88bdc619a3b5808f7a2fb",
+      "read_scope": [
+        "/diagnostic_contract/rules/1",
+        "/diagnostic_contract/log_names",
+        "/diagnostic_contract/log_states"
+      ],
+      "extracted_values": {
+        "rule_id": "R02",
+        "rule": "四logそれぞれcommon_fieldsをcontextへ照合する。kindはlog_namesのclosed値で、未知はlog_kind_unknown、fixture keyのkindと異なるknown kindは両側各pointerにlog_kind_conflict。known actual/context kind差はfield_conflict。stateはlog_statesで未知は両側log_state_unknown、known差はactual log_state_conflict。actual duplicate/staleはlog_duplicate/log_stale、actual unobservedはlog_state_unknown。原recordを捨てない。",
+        "kind_closed_set": ["worker", "decision", "operation", "verification"],
+        "state_closed_set": ["current_material", "duplicate_material", "stale_material", "unobserved"]
+      }
+    },
+    {
+      "revision": "7f1719fb6a89837c1bb9775faa9a634a066df4a3",
+      "paths": [
+        "docs/helix-os/L3-requirements/functional-requirements.json#/requirements/21",
+        "docs/helix-os/L10-verification/functional-verification.json#/cases/21"
+      ],
+      "sha256": {
+        "docs/helix-os/L3-requirements/functional-requirements.json": "b62571c3e939f8bb79b46b5612e78d461ab406ffb51c161c51e9ef7bbcfc27df",
+        "docs/helix-os/L10-verification/functional-verification.json": "f006230a825139211be6277abaa5731f3c9f4a17198a4d20b370469f8a5c46ec"
+      },
+      "selected_ids": ["HELIXOS-L3-007-F01", "HELIXOS-L10-007-F01"],
+      "relevant_obligation": "原ログと証拠を共通形式で保存し、project/要求revision/sourceへ結ぶ。欠落・重複・staleと、共通形式不足で他機構へ結べない記録を成功証拠から分ける。",
+      "relevant_verification_boundary": "出典/revisionと共通項目を辿り、不完全な記録と成功証拠を区別する。不足形式・参照・発生元と未完を保持し、証拠の存在で承認/完了にしない。execution_state is not_executed."
+    }
+  ],
+  "derived_pointer_meaning": {
+    "proposal": "診断pointerは、診断理由となったrecord/context上のkindまたはstate値の位置を示し、その値を原recordへ戻って確認できるようにする。未知値では閉じた集合に適合しない値の位置を指す。R02が両側各pointerを明記する場合（fixture key kindとの既知kind不一致、未知state）には、比較対象の各側の値位置を個別に指す。",
+    "kind": {
+      "unknown": "recordのkind値がlog_namesの閉じた集合にない場合、その不明値を示すlog_kind_unknown診断とする。pointerは当該kind値の位置を示す案。",
+      "conflict": "fixture keyのkindとrecordの既知kindが異なる場合はlog_kind_conflictとし、fixture key側とrecord側それぞれのkind位置をpointerで示す。既知actual/context kind差はfield_conflictであり、R02はこの場合のpointer数・側の割当てを指定していない。"
+    },
+    "state": {
+      "unknown": "stateがlog_statesの閉じた集合にない場合は両側をlog_state_unknownとして、R02が比較する各側のstate位置を指す。actualがunobservedの場合もlog_state_unknownだが、context側pointerの要否はR02に明記されていない。",
+      "conflict": "既知state差ではactual側をlog_state_conflictとしてactual state位置を指す案。R02はcontext側にもpointerを置くかを明記していない。duplicate/staleは専用コードlog_duplicate/log_staleで診断し、unobservedはlog_state_unknownとなる。"
+    },
+    "preservation_and_evidence": "診断pointerは不足・不一致箇所の追跡を助ける。R02は原recordを捨てず、承認済みF01は不完全記録を成功証拠から区別し、証拠の存在から承認・完了を作らない。"
+  },
+  "proposed_wording": "diagnostic.pointer は、診断の根拠となった kind または state の実値位置を示し、元のrecordまたは比較対象へ戻れるものとする。値が閉じた集合にない場合はその値の位置を示す。R02が両側各pointerを明示する比較（fixture key kindとknown kindの不一致、state unknown）では各比較側の値位置を個別に示す。その他の片側／両側の付与条件は、このR02と承認済みF01からは確定しない。診断の有無にかかわらず原recordを保持し、不完全または不一致の記録を成功証拠へ含めず、pointerや証拠の存在を承認・完了の根拠にしない。",
+  "unresolved": [
+    "pointerの表現形式（JSON Pointer等）、root object、field pathの正規化、配列要素の安定識別子は許可sourceで定義されていない。",
+    "known actual/context kind差のfield_conflictに対して片側・両側のどちらへpointerを付けるかは未決。",
+    "known state差のlog_state_conflictでcontext側pointerも付けるかは未決。",
+    "actual unobservedのlog_state_unknownでcontext側pointerも付けるかは未決。",
+    "複数の同時診断のpointer順序、重複排除、親診断との束ね方は許可sourceで定義されていない。"
+  ],
+  "exposure_audit": {
+    "allowed_values_printed": "Only the exact R02 object, the two named closed sets, and the selected OS007 F01 L3/L10 objects were printed into this derivation.",
+    "excluded": [
+      "L4 negative classifications",
+      "L4/L5 algorithms",
+      "L5/L7/L8/L9 expectations, cases, and their comparison",
+      "Issue/PR body content"
+    ],
+    "expected_case_comparison_performed": false,
+    "legacy_runtime_test_ci_executed": false
+  }
+}
