@@ -1,0 +1,79 @@
+{
+  "status": "candidate_static_validation_passed_with_unresolved_formal_4way_and_source_authority",
+  "evidence_kind": "scaffold",
+  "authority_effect": "none",
+  "base_revision": "dd5931cfff4ff786da2ced44de2a40529edf7b71",
+  "l5_first_commit": {
+    "revision": "f97e1ff9331bafdc5d87b4f6e1af067020e78b76",
+    "path": "docs/helix-harness/L5-detail-design/tdd-development-flow.json",
+    "sha256": "216e8f04638ab8734c91333bbb6bae48031e13224d084eb9fc750f125d703610"
+  },
+  "candidate_documents": {
+    "docs/helix-harness/L5-detail-design/tdd-development-flow.json": "216e8f04638ab8734c91333bbb6bae48031e13224d084eb9fc750f125d703610",
+    "docs/helix-harness/L8-unit-verification/tdd-development-flow.json": "1a5220049f09bc78897e4544af8bc4c678ec4997d713c91482432aa20a6e0b2b"
+  },
+  "fixed_artifacts": {
+    "r1": {
+      "path": "scaffold/research/wr223-f01-l5-l8-20261031/source/f01-blind-draft-r1.json",
+      "sha256": "e4f7be9befded4f2398209eac0d3ef226c0cd62cefa5e47d013a18e87f265bbd"
+    },
+    "r2": {
+      "path": "scaffold/research/wr223-f01-l5-l8-20261031/source/f01-blind-draft-r2.json",
+      "sha256": "fa047d5d871913b696ba5e01d9227ce13a68bc827ff6e8c66cc29d8e69d7e647",
+      "issue_comment": "https://github.com/RetryYN/HELIX-HARNESS/issues/3510#issuecomment-6531844362",
+      "meaning_scope_only": true
+    }
+  },
+  "checks": {
+    "json_parse": "pass",
+    "source_revision_and_blob_hashes": "pass",
+    "approved_l3_l10_target_row_equality": "pass",
+    "l4_positive_output_pointer_resolution": "pass",
+    "l9_witness_pointer_resolution": "pass",
+    "l4_l9_full_file_bytes_unchanged": "pass",
+    "existing_l5_contract_fields_unchanged": "pass",
+    "existing_l8_unit_case_ids_and_unit_cases_unchanged": "pass",
+    "candidate_witnesses_positive": 1,
+    "candidate_witnesses_negative": 5,
+    "candidate_contribution_to_canonical_four_way": 0,
+    "scaffold_binding_validation": "pass: bindings=177, fail=0",
+    "static_candidate_validator": "pass",
+    "git_diff_check": "pass: staged diff clean",
+    "scaffold_stale": "pass: stale=0",
+    "design_verification_checker_check_child": {
+      "evidence_kind": "scaffold",
+      "exit_code": 1,
+      "l4_l9_pair": "pass",
+      "l5_l8_pair": "pass",
+      "negative_4way_counts": {
+        "L4": 28,
+        "L9": 28,
+        "L8": 0,
+        "L5": 0
+      },
+      "matched_case_count": 0,
+      "candidate_rows_counted": 0,
+      "ownership_cap_failures": {
+        "L9": 35,
+        "L8": 1647
+      },
+      "pins": "all four documents pass",
+      "meaning": "formal negative 4way remains incomplete; expected residual, not a candidate validation pass"
+    }
+  },
+  "historical_failure_basis": {
+    "current_pr_a": "WR206 PR-A research record: L4/L9 each had 28 negative classifications while L5/L8 had zero; 33 child mismatches and existing L8 ownership-cap findings remained.",
+    "legacy": "A-114 records 15 draft plans without review evidence while implementation was shipped ahead of confirmed plans; old DDD/TDD source requires contract-first and actual intended-defect Red evidence."
+  },
+  "not_run": [
+    "L4/L5 algorithm execution",
+    "old HELIX CLI, runtime, hooks, tests, or CI",
+    "new runtime, tests, or CI",
+    "candidate rows are not formal oracle outcomes"
+  ],
+  "unresolved": [
+    "Final-review phrase remains in approval decision metadata despite repo evidence of main admission.",
+    "No formal owner-qualified input source, production schema/codec, approved L5/L8 design, independent oracle, execution, or acceptance is established.",
+    "Formal four-way matching remains unestablished; candidate rows are excluded from canonical counts."
+  ]
+}

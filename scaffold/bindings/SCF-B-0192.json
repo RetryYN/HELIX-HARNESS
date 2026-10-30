@@ -1,0 +1,136 @@
+{
+  "schema_revision": 1,
+  "id": "SCF-B-0192",
+  "kind": "scaffold",
+  "title": "WR223 HARNESS-015 F01 L5/L8候補の証跡",
+  "product": "HELIX-HARNESS",
+  "owner_candidate": "HARNESS-015 F01 L5/L8候補設計の責務owner候補",
+  "state": "registered",
+  "reason": "Issue #3510のWR223で、承認済みL3/L10 F01意味と現行L4/L9既存期待に基づくL5/L8 candidate-only設計・参照・未決を隔離し、formal artifact成立と混同しないため。",
+  "upstream": [
+    {
+      "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+      "sha256": "a3b907cdc316117d4684632f9a1cbf36125eb6e6172f9cfc286060617583d7be",
+      "note": "Base L3 file pin; F01 source bytes also verified against approved head a715e777... /requirements/40."
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/functional-verification.json",
+      "sha256": "fc58ad2268746d7924ac9be33e8f3f75e6d3c2cc619e27fbc1ddc34edd065cb2",
+      "note": "Base L10 file pin; F01 source bytes also verified against approved head a715e777... /cases/40."
+    },
+    {
+      "path": "docs/helix-harness/L4-basic-design/tdd-development-flow.json",
+      "sha256": "8dfbe628d7beb9b449a3ec48e98b7ed89ebbb4be1ea9b3f061dfd02ba464ea2f",
+      "note": "Existing F01 L4 contract and output pointer; bytes remain unchanged."
+    },
+    {
+      "path": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json",
+      "sha256": "3d2257ee9d0f33f367377a3c379af9852973dc11d87c1f23f8f193724adebeb2",
+      "note": "Existing F01 L9 witnesses and expected material; bytes remain unchanged."
+    },
+    {
+      "path": "docs/governance/decisions/helix-harness-verification-prerequisite-l3-l10-delegated-decision-2026-10-12.md",
+      "sha256": "1df0aa1bdb1b5fcbe2beba5e202601fa0d27fdeb5419e58d8db5cc3691d927fb",
+      "note": "F01 L3/L10 delegated approval record; target row/case admission evidence."
+    },
+    {
+      "path": "docs/governance/decisions/helix-harness-measurement034-prerequisite-l3-l10-delegated-decision-2026-10-12.md",
+      "sha256": "9a3fcd37e7acd0c3d01b38216ee71b14375fef5008d72d53336077013241d94f",
+      "note": "Later 034 decision; records preservation of prior 113 pairs."
+    },
+    {
+      "path": "docs/governance/audits/prerequisite-l3-l10-definition-audit-2026-10-12.json",
+      "sha256": "6ae8be6b586679e5ea9a79b80e95679bf9473ea37a89bb2dc028133e79b0396a",
+      "note": "Audit row for F01 approval and PR merge admissions."
+    },
+    {
+      "path": "scaffold/research/wr223-f01-l5-l8-20261031/source/f01-blind-draft-r2.json",
+      "sha256": "fa047d5d871913b696ba5e01d9227ce13a68bc827ff6e8c66cc29d8e69d7e647",
+      "note": "Issue-fixed r2 semantic-scope artifact; authority effect none."
+    }
+  ],
+  "role": "HARNESS-015 F01 L5/L8 candidate design evidence",
+  "obligations": [
+    "Issue固定済みr2 source-only artifactの意味範囲とbytesを保持し、formal oracleへ昇格しない。",
+    "L5 F01 candidate ruleを承認済みL3/L10 F01、現行L4 F01、既存L9 F01へrevision付きで接続する。",
+    "L8 F01 candidate witnessesをL4/L9 existing output/negative expectationsへ小さく投影し、L8のL5 pinを先行commitのfinal L5 bytesへ結ぶ。",
+    "既存L5 contract、L4/L9 bytes、L8 canonical unit_case_ids/unit_casesを変更せず、candidate rowsをformal 4way coverageに数えない。",
+    "意味分岐を個別witnessとして保持し、承認・実行・受入・4way完了を生成しない。"
+  ],
+  "connections": {
+    "consumers": [
+      "WR223 review for Issue #3510"
+    ],
+    "dependencies": [
+      "Approved HARNESS-L3-015-F01 and HARNESS-L10-015-F01",
+      "Existing HARNESS-L4-015-F01 and HARNESS-L9-015-F01",
+      "Issue-fixed r2 source artifact",
+      "First-commit L5 F01 candidate revision"
+    ],
+    "boundary": "L5/L8 F01 candidate annotations and scaffold evidence only; no L4/L9 or canonical L8 expected/unit-case change, algorithm/runtime/test/CI, formal oracle, approval, or four-way completion."
+  },
+  "operations": {
+    "allowed": [
+      "Static JSON document editing inside the scoped L5/L8 files",
+      "Copying both immutable fixed artifacts into scaffold research",
+      "Static source revision/hash and RFC6901 pointer validation",
+      "Scaffold binding validation and diff-scope checks"
+    ],
+    "forbidden": [
+      "Executing old HELIX runtime, CLI, hooks, tests, or CI",
+      "Executing new runtime, tests, CI, or L4/L5 algorithms",
+      "Changing L4/L9 or existing L8/L5 expectations",
+      "Counting candidate rows as canonical four-way rows",
+      "Generating approval, acceptance, implementation completion, or release"
+    ]
+  },
+  "artifacts": [
+    "scaffold/research/wr223-f01-l5-l8-20261031/README.md",
+    "scaffold/research/wr223-f01-l5-l8-20261031/validate_static_candidate.py",
+    "scaffold/research/wr223-f01-l5-l8-20261031/verification-summary.json",
+    "scaffold/research/wr223-f01-l5-l8-20261031/source/f01-blind-draft-r1.json",
+    "scaffold/research/wr223-f01-l5-l8-20261031/source/f01-blind-draft-r2.json",
+    "docs/helix-harness/L5-detail-design/tdd-development-flow.json",
+    "docs/helix-harness/L8-unit-verification/tdd-development-flow.json"
+  ],
+  "verification": {
+    "evidence_kind": "scaffold",
+    "scope": [
+      "schema_interface",
+      "source_revision_stale",
+      "negative_case"
+    ],
+    "oracles": [
+      "r1/r2 exact SHA-256 and r2 Issue comment reference",
+      "L3/L10 approved-head pins and target row/case equality to repository audit entries",
+      "L4/L9 exact source pins and unchanged full-file bytes",
+      "L5 source pin equals first-commit revision and final L5 bytes",
+      "L4 positive output pointer resolves to the existing F01 output contract",
+      "L8 candidate witness projections match existing L4/L9 expected axis/state/owner/effect fields",
+      "Existing L8 unit_case_ids and unit_cases are unchanged; candidate IDs remain outside canonical sets",
+      "design_verification_checker check-child: L4/L9 and L5/L8 pair links pass; negative 4way remains L4=28, L9=28, L8=0, L5=0, matched=0; candidate rows not counted; L9/L8 ownership-cap residuals remain.",
+      "candidate artifact SHA-256: docs/helix-harness/L5-detail-design/tdd-development-flow.json=216e8f04638ab8734c91333bbb6bae48031e13224d084eb9fc750f125d703610",
+      "candidate artifact SHA-256: docs/helix-harness/L8-unit-verification/tdd-development-flow.json=1a5220049f09bc78897e4544af8bc4c678ec4997d713c91482432aa20a6e0b2b",
+      "candidate artifact SHA-256: scaffold/research/wr223-f01-l5-l8-20261031/README.md=4aa1a66f10753706fed9c52d8e0ed061bbbe533e4aab6bef5eb976fb48e0ed83",
+      "candidate artifact SHA-256: scaffold/research/wr223-f01-l5-l8-20261031/validate_static_candidate.py=4fec9e3786f6d13c2adb3d323054463c7986937852620432d4f37cb43e8c0656",
+      "candidate artifact SHA-256: scaffold/research/wr223-f01-l5-l8-20261031/verification-summary.json=720be777d3bd54378cdc26087173294626ca73f870f9a32a64e7eef1a6e1e817",
+      "candidate artifact SHA-256: scaffold/research/wr223-f01-l5-l8-20261031/source/f01-blind-draft-r1.json=e4f7be9befded4f2398209eac0d3ef226c0cd62cefa5e47d013a18e87f265bbd",
+      "candidate artifact SHA-256: scaffold/research/wr223-f01-l5-l8-20261031/source/f01-blind-draft-r2.json=fa047d5d871913b696ba5e01d9227ce13a68bc827ff6e8c66cc29d8e69d7e647"
+    ],
+    "negative_cases": [
+      "Do not treat r1 or r2 semantic-scope artifact as formal oracle or approval.",
+      "Keep freeze_missing and freeze_timestamp_only as separate witnesses despite shared missing projection.",
+      "Do not add candidate witness labels to canonical unit_case_ids or unit_cases, or count them as four-way coverage.",
+      "Do not modify L4/L9 bytes or existing L5/L8 expectations.",
+      "Do not execute algorithms, old/new runtime, tests, or CI."
+    ]
+  },
+  "replacement": {
+    "role_target": "Formal HARNESS-015 F01 L5/L8 design and paired verification artifacts",
+    "formal_artifacts": [],
+    "issue": 1866,
+    "status": "pending"
+  },
+  "created": "2026-10-31",
+  "updated": "2026-10-31"
+}
