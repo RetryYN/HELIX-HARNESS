@@ -331,7 +331,11 @@
       "output_meaning": "facet別対応/unknown/違反、原source不足候補と既定戻し先素材。実操作はnone。",
       "operation_effect": "none",
       "requirement_pointer": "docs/helix-os/L3-requirements/functional-requirements.json#/requirements/34",
-      "system_oracle_pointer": "docs/helix-os/L10-verification/functional-verification.json#/cases/34"
+      "system_oracle_pointer": "docs/helix-os/L10-verification/functional-verification.json#/cases/34",
+      "negative_class_refs": [
+        "OS017-NEG-inputs-source_unresolved",
+        "OS017-NEG-inputs-source_conflict"
+      ]
     },
     {
       "id": "HELIXOS-L4-017-F02",
@@ -348,7 +352,8 @@
       "output_meaning": "facet別対応/unknown/違反、原source不足候補と既定戻し先素材。実操作はnone。",
       "operation_effect": "none",
       "requirement_pointer": "docs/helix-os/L3-requirements/functional-requirements.json#/requirements/35",
-      "system_oracle_pointer": "docs/helix-os/L10-verification/functional-verification.json#/cases/35"
+      "system_oracle_pointer": "docs/helix-os/L10-verification/functional-verification.json#/cases/35",
+      "negative_class_refs": []
     },
     {
       "id": "HELIXOS-L4-017-F03",
@@ -365,7 +370,8 @@
       "output_meaning": "facet別対応/unknown/違反、原source不足候補と既定戻し先素材。実操作はnone。",
       "operation_effect": "none",
       "requirement_pointer": "docs/helix-os/L3-requirements/functional-requirements.json#/requirements/36",
-      "system_oracle_pointer": "docs/helix-os/L10-verification/functional-verification.json#/cases/36"
+      "system_oracle_pointer": "docs/helix-os/L10-verification/functional-verification.json#/cases/36",
+      "negative_class_refs": []
     },
     {
       "id": "HELIXOS-L4-017-B01",
@@ -382,7 +388,8 @@
       "output_meaning": "facet別対応/unknown/違反、原source不足候補と既定戻し先素材。実操作はnone。",
       "operation_effect": "none",
       "requirement_pointer": "docs/helix-os/L3-requirements/business-requirements.json#/requirements/5",
-      "system_oracle_pointer": "docs/helix-os/L10-verification/business-verification.json#/cases/5"
+      "system_oracle_pointer": "docs/helix-os/L10-verification/business-verification.json#/cases/5",
+      "negative_class_refs": []
     }
   ],
   "diagnostic_contract": {
@@ -585,5 +592,129 @@
     "condition_semantics": "conditionは選択phaseで適用した7facetの集約。violationが1つでもあればworkflow_material_violation、違反なしでunknownがあればworkflow_material_unknown、それ以外workflow_material_corresponding。workflow実適格性や実完了を意味しない。boolean workflow_material_correspondingは別の素材flagで、candidate phaseでは必ずfalse。candidate phaseのconditionがworkflow_material_correspondingでもworkflow instanceの成立を示さない。",
     "case_input_integrity": "givenの値をcaseごとに独立保持する。全caseをcanonical givenでgroup化し、同一入力ならexpected_proposal全field同値を静的に照合する。これは同入力決定性の文書整合証拠で、正式codec/実装oracle凍結を成立させない。",
     "primary_requirement_ref_semantics": "requirement_refsは親4要求の全体trace、primary_requirement_refsはcaseの直接検証concern。negativeは不成立facet→ownership/scope_limit:B01、inputs/ticket:F01、workflow:F02、backflow/continuity:F03。positiveは選択phaseの主目的、projectionと決定性/対象差はその直接concernを明示。絞込参照は全4要求の完了宣言ではない。"
-  }
+  },
+  "failure_classifications": [
+    {
+      "class_id": "OS017-NEG-inputs-source_unresolved",
+      "code": "workflow_material_unknown",
+      "design_ref": "HELIXOS-L4-017-F01",
+      "condition": "phase非依存の負例意味: 全体condition=workflow_material_unknown、全体ordered finding signature=[source_unresolved]、inputs facetの局所state=unknown。全体conditionまたは全体finding signatureが異なるcaseは本classに含めない。",
+      "expected_classification": "workflow_material_unknown",
+      "expected": {
+        "finding_codes": [
+          "source_unresolved"
+        ]
+      },
+      "expected_axis": "inputs",
+      "expected_state": "unknown",
+      "backflow_owner": "ticket-workflow-owner",
+      "side_effect_count": 0,
+      "source_pointers": [
+        {
+          "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+          "pointers": [
+            "/requirements/34"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L10-verification/functional-verification.json",
+          "pointers": [
+            "/cases/34"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L4-basic-design/ticket-workflow-derivation.json",
+          "pointers": [
+            "/contracts/0",
+            "/diagnostic_contract/comparison_table/binding",
+            "/diagnostic_contract/diagnostic_code_facets/source_unresolved",
+            "/diagnostic_contract/condition_names/1",
+            "/diagnostic_contract/condition_semantics",
+            "/diagnostic_contract/return_owner",
+            "/diagnostic_contract/algorithm/1",
+            "/diagnostic_contract/algorithm/2",
+            "/diagnostic_contract/algorithm/3",
+            "/diagnostic_contract/algorithm/4",
+            "/diagnostic_contract/algorithm/5",
+            "/diagnostic_contract/algorithm/6",
+            "/diagnostic_contract/algorithm/7",
+            "/diagnostic_contract/algorithm/8",
+            "/diagnostic_contract/algorithm/9",
+            "/diagnostic_contract/algorithm/10",
+            "/diagnostic_contract/result_fields"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L7-function-verification/ticket-workflow-derivation.json",
+          "pointers": [
+            "/cases/5/given_input_ref",
+            "/objects/1586f614cc69eb6f2e655c825fef3f3d997b29fefcdc517413ee05acc651d07e/binding",
+            "/objects/503f5d7a9aa22046ec2e55ee05ee1b9a362553e1a8f881af99e05997244d0ccb/project",
+            "/objects/3067a4f2dd8a085db4b59cdda7e6d9e8aaa9d413dc63e33087048d828a61911f/project"
+          ]
+        }
+      ]
+    },
+    {
+      "class_id": "OS017-NEG-inputs-source_conflict",
+      "code": "workflow_material_violation",
+      "design_ref": "HELIXOS-L4-017-F01",
+      "condition": "phase非依存の負例意味: 全体condition=workflow_material_violation、全体ordered finding signature=[source_conflict]、inputs facetの局所state=violation。全体conditionまたは全体finding signatureが異なるcaseは本classに含めない。",
+      "expected_classification": "workflow_material_violation",
+      "expected": {
+        "finding_codes": [
+          "source_conflict"
+        ]
+      },
+      "expected_axis": "inputs",
+      "expected_state": "violation",
+      "backflow_owner": "ticket-workflow-owner",
+      "side_effect_count": 0,
+      "source_pointers": [
+        {
+          "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+          "pointers": [
+            "/requirements/34"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L10-verification/functional-verification.json",
+          "pointers": [
+            "/cases/34"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L4-basic-design/ticket-workflow-derivation.json",
+          "pointers": [
+            "/contracts/0",
+            "/diagnostic_contract/comparison_table/binding",
+            "/diagnostic_contract/diagnostic_code_facets/source_conflict",
+            "/diagnostic_contract/condition_names/2",
+            "/diagnostic_contract/condition_semantics",
+            "/diagnostic_contract/return_owner",
+            "/diagnostic_contract/algorithm/1",
+            "/diagnostic_contract/algorithm/2",
+            "/diagnostic_contract/algorithm/3",
+            "/diagnostic_contract/algorithm/4",
+            "/diagnostic_contract/algorithm/5",
+            "/diagnostic_contract/algorithm/6",
+            "/diagnostic_contract/algorithm/7",
+            "/diagnostic_contract/algorithm/8",
+            "/diagnostic_contract/algorithm/9",
+            "/diagnostic_contract/algorithm/10",
+            "/diagnostic_contract/result_fields"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L7-function-verification/ticket-workflow-derivation.json",
+          "pointers": [
+            "/cases/6/given_input_ref",
+            "/objects/1586f614cc69eb6f2e655c825fef3f3d997b29fefcdc517413ee05acc651d07e/binding",
+            "/objects/6f5cccd81e8bf8f4de90ff3d1f5029bda2b0eeed9285be8e04b7a4808a05c790/project",
+            "/objects/3067a4f2dd8a085db4b59cdda7e6d9e8aaa9d413dc63e33087048d828a61911f/project"
+          ]
+        }
+      ]
+    }
+  ]
 }
