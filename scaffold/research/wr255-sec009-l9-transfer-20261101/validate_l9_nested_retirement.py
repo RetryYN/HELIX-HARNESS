@@ -22,7 +22,10 @@ L10B = "docs/helix-security/L10-verification/business-verification.json"
 L10F = "docs/helix-security/L10-verification/functional-verification.json"
 PRE_REMOVAL_REV = "22076e0c0f5aa3fe7b8933dfa556565900623487"
 PRE_REMOVAL_L9_SHA256 = "8296d811f95f94d9391a15a597839ee7f9d47b32dd7c7b780312821fc1c52a19"
-PREVIOUS_AUDIT = HERE / "l9-pointer-transfer-audit-8296d811f95f94d9.json"
+PREVIOUS_AUDIT_REV = "8dc4891e8d613c173afff5b37ed7236918c5d095"
+PREVIOUS_AUDIT_PATH = "scaffold/research/wr255-sec009-l9-transfer-20261101/l9-pointer-transfer-audit-8296d811f95f94d9.json"
+PREVIOUS_AUDIT_BLOB = "8f03d24fa5a805688e2df671f5c34747b5e3c48e"
+PREVIOUS_AUDIT_SHA256 = "4fed697a3f1718fd45c87b1776c645c3933fcdd08cefef783c4489fd60798b73"
 HISTORY_L4_REV = "c50eb21b34f034262ced3f8052d2502fb84c57c9"
 HISTORY_L4_SHA256 = "d46e39cad2e2a90cfc532fa57226a4d650336e794a375f07e1cc2e6cbba15eb3"
 L4_SHA256 = "00376c402930e1287e9e0e896804b1de8a20390f8abbea8377b70712f868b9da"
@@ -128,7 +131,13 @@ def main() -> int:
 
     # Reuse the immutable prior measurement for the 30 aliases and the three
     # fixed R2 history targets; this validator does not duplicate that evidence.
-    previous_audit = json.loads(PREVIOUS_AUDIT.read_text(encoding="utf-8"))
+    previous_audit_blob = git_blob(PREVIOUS_AUDIT_REV, PREVIOUS_AUDIT_PATH)
+    previous_audit_blob_id = subprocess.check_output(
+        ["git", "-C", str(ROOT), "rev-parse", f"{PREVIOUS_AUDIT_REV}:{PREVIOUS_AUDIT_PATH}"], text=True
+    ).strip()
+    if previous_audit_blob_id != PREVIOUS_AUDIT_BLOB or sha(previous_audit_blob) != PREVIOUS_AUDIT_SHA256:
+        fail("固定pointer移行監査のblob/SHAがdispositionと不一致")
+    previous_audit = json.loads(previous_audit_blob)
     alias_proof = previous_audit["current_alias_proof"]
     if alias_proof.get("class_count") != 30 or alias_proof.get("all_types_and_values_equal") is not True or alias_proof.get("expected_text_reconstruction_count") != 30:
         fail("旧監査の30 taxonomy alias型・値照合が成立していない")

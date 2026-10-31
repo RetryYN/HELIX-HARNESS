@@ -111,8 +111,9 @@
     "scaffold/research/wr255-sec009-l4l9-supplement-20261101/validate_l4_l9_supplement.py",
     "scaffold/research/wr255-sec009-l9-transfer-20261101/README.md",
     "scaffold/research/wr255-sec009-l9-transfer-20261101/validate_l9_pointer_transfer.py",
-    "scaffold/research/wr255-sec009-l9-transfer-20261101/l9-pointer-transfer-audit-8296d811f95f94d9.json",
-    "scaffold/research/wr255-sec009-l9-transfer-20261101/latest-main-overlay-ad2dfaf6-22076e0c.json"
+    "scaffold/research/wr255-sec009-l9-transfer-20261101/historical-artifact-disposition.json",
+    "scaffold/research/wr255-sec009-l9-transfer-20261101/l9-nested-retirement-audit-bfcdd2c297c08458.json",
+    "scaffold/research/wr255-sec009-l9-transfer-20261101/latest-main-overlay-4b3dbea-7996290b.json"
   ],
   "verification": {
     "evidence_kind": "scaffold",

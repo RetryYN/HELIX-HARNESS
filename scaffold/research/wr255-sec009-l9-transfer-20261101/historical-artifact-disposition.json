@@ -1,0 +1,46 @@
+{
+  "schema": "wr255-sec009-l9-historical-artifact-disposition.v1",
+  "evidence_kind": "scaffold_history_disposition",
+  "authority_effect": "none",
+  "purpose": "初回pointer移行時点の大きなaudit/overlay本文をcurrent treeから重複配置せず、固定Git blobから復元できるようにする。",
+  "source_commit": "8dc4891e8d613c173afff5b37ed7236918c5d095",
+  "source_commit_subject": "docs(security): record SEC009 L9 overlay transfer checks",
+  "artifacts": [
+    {
+      "path": "scaffold/research/wr255-sec009-l9-transfer-20261101/l9-pointer-transfer-audit-8296d811f95f94d9.json",
+      "git_blob": "8f03d24fa5a805688e2df671f5c34747b5e3c48e",
+      "sha256": "4fed697a3f1718fd45c87b1776c645c3933fcdd08cefef783c4489fd60798b73",
+      "bytes": 64283,
+      "historical_role": "初回pointer移行時の580 aliasの型・値対応証拠と3固定history参照を記録。current retirement validatorはこの固定blobを直接読んで型・値証拠を再利用する。",
+      "restore_to_tmp": "git show 8dc4891e8d613c173afff5b37ed7236918c5d095:scaffold/research/wr255-sec009-l9-transfer-20261101/l9-pointer-transfer-audit-8296d811f95f94d9.json > /tmp/l9-pointer-transfer-audit-8296d811f95f94d9.json",
+      "verify_blob": "git rev-parse 8dc4891e8d613c173afff5b37ed7236918c5d095:scaffold/research/wr255-sec009-l9-transfer-20261101/l9-pointer-transfer-audit-8296d811f95f94d9.json",
+      "verify_sha256": "sha256sum /tmp/l9-pointer-transfer-audit-8296d811f95f94d9.json"
+    },
+    {
+      "path": "scaffold/research/wr255-sec009-l9-transfer-20261101/latest-main-overlay-ad2dfaf6-22076e0c.json",
+      "git_blob": "da5c10c93fa91b0c596b4d8a1d00e07f38e6f26b",
+      "sha256": "e57bb28e642362d330ab4be9d9b5be79cc493336cfc281b3ba2d5d1e84226d2e",
+      "bytes": 3883,
+      "historical_role": "初回移行時main overlayの測定時点記録。現行overlay reportではない。",
+      "restore_to_tmp": "git show 8dc4891e8d613c173afff5b37ed7236918c5d095:scaffold/research/wr255-sec009-l9-transfer-20261101/latest-main-overlay-ad2dfaf6-22076e0c.json > /tmp/latest-main-overlay-ad2dfaf6-22076e0c.json",
+      "verify_blob": "git rev-parse 8dc4891e8d613c173afff5b37ed7236918c5d095:scaffold/research/wr255-sec009-l9-transfer-20261101/latest-main-overlay-ad2dfaf6-22076e0c.json",
+      "verify_sha256": "sha256sum /tmp/latest-main-overlay-ad2dfaf6-22076e0c.json"
+    },
+    {
+      "path": "scaffold/research/wr255-sec009-l9-transfer-20261101/latest-main-overlay-4b3dbea-7996290b.json",
+      "git_blob": "43f5aec6fb9b736fa3e6282664a1e87267108380",
+      "sha256": "63249a7f6fe02e59109445bd1bc574b0b05c072aa7e5018689db0a233de47930",
+      "bytes": 2363,
+      "source_commit": "9d12c811b00890f4b71b3749402995f4d419bbb2",
+      "historical_role": "R1修正commit 7996290のmain overlay測定。後続のvalidator/disposition整理前の測定でありcurrent overlayではない。",
+      "restore_to_tmp": "git show 9d12c811b00890f4b71b3749402995f4d419bbb2:scaffold/research/wr255-sec009-l9-transfer-20261101/latest-main-overlay-4b3dbea-7996290b.json > /tmp/latest-main-overlay-4b3dbea-7996290b.json",
+      "verify_blob": "git rev-parse 9d12c811b00890f4b71b3749402995f4d419bbb2:scaffold/research/wr255-sec009-l9-transfer-20261101/latest-main-overlay-4b3dbea-7996290b.json",
+      "verify_sha256": "sha256sum /tmp/latest-main-overlay-4b3dbea-7996290b.json"
+    }
+  ],
+  "current_artifacts": [
+    "scaffold/research/wr255-sec009-l9-transfer-20261101/l9-nested-retirement-audit-bfcdd2c297c08458.json",
+    "scaffold/research/wr255-sec009-l9-transfer-20261101/latest-main-overlay-4b3dbea-7996290b.json"
+  ],
+  "restoration_note": "restore_to_tmpコマンドでcurrent treeを変更せずGit履歴から復元する。git rev-parseのblob IDとsha256sumを上記値に照合する。current fileとして再配置する必要はなく、歴史の意味は本dispositionとGit blobに保持する。"
+}
