@@ -66,7 +66,7 @@ summaryは正本285行の内容を再複製せず、validatorで再計算したr
 
 R2時点の未割当監査にあるL4参照3件（F01の14要素collection 1件、F02の単体class 2件）は、過去の未割当判断を保持するためL4固定revision `c50eb21b34f034262ced3f8052d2502fb84c57c9`を参照します。collectionの14要素をcurrent 32 classから同じ順序の集合としてJSON Pointer一つで選ぶことはできません。削除したL8 case群を指していた監査内2件は、参照先objectの値を確認したうえで、固定L9 revision `40d6da48a44625bfd064ccabceb7f7ecb47dcd7c`上の同一case objectへ直接付け替えました。L8のF02 source-review pointer `/diagnostic_contract/locality`の訂正履歴は旧L8 revision `24d7f00bdca41c3dfb1f3137655ffdbe3674cfb3`・SHA-256 `91da3af2c6ad997fdf265871f9776c5bed41f196fbccfc2276e1a41f42a267bb`にあり、現行L4 `/architecture/locality`へ訂正済みです。
 
-再帰走査で確認した現行nested pointer文字列はL8が3件（すべて固定R2 L4参照）、L9が583件（`cases` 550件、`negative_class_assignment_audit` 33件）、L5 `failure_rules`が30件です。R1前のL8 wrapper 275件は削除済みです。旧auditの「L8 308件」「L9 308件」は旧時点に認識したconsumer subsetの測定であり、raw pointer文字列の全件数ではありません。L9とL5は各V-pairの別途確認が必要なため、L4のnested payloadを残し、全consumerの移行と照合が揃うまでSCF-B-0209のcheck-replacementとretireを行いません。
+WR255 L5追補後の現行raw nested pointer文字列はL8が3件（すべて固定R2 L4参照）、L9が583件（`cases` 550件、`negative_class_assignment_audit` 33件）、L5 `failure_rules`が0件です。R1前のL8 wrapper 275件は削除済みです。旧auditの「L8 308件」「L9 308件」は旧時点に認識したconsumer subsetの測定であり、raw pointer文字列の全件数ではありません。L5の30件は各ruleに既存canonical pointerがあったためnested重複pointerのみを除き、L4 payloadと他のsource refsは保持しました。L9の583件は未移行なのでSCF-B-0209のcheck-replacementとretireは行いません。
 
 再現コマンドは次の通りです。
 
@@ -74,8 +74,20 @@ R2時点の未割当監査にあるL4参照3件（F01の14要素collection 1件�
 python3 scaffold/research/wr255-sec009-l5l8-audit-20261101/validate_pointer_transfer.py
 ```
 
-監査ではcurrent checkerの明示class modeと`CHK-JSON-POINTER`の読取を確認します。明示modeの4-way照合はtop-level class表を使い、pointer checkerは参照先を解決します。legacy modeはnested classificationを読むため、明示modeのmarkerを維持します。SCF-B-0209はpendingのままです。L8の削除済みcase群、残るL8歴史参照、L5の30件、L9の583 raw pointer文字列をconsumer別に扱い、別V-pair分の移行後に全体を再評価します。
+監査ではcurrent checkerの明示class modeと`CHK-JSON-POINTER`の読取を確認します。明示modeの4-way照合はtop-level class表を使い、pointer checkerは参照先を解決します。legacy modeはnested classificationを読むため、明示modeのmarkerを維持します。SCF-B-0209はpendingのままです。L8の削除済みcase群、残るL8歴史参照、L9の583 raw pointer文字列をconsumer別に扱い、別V-pair分の移行後に全体を再評価します。L5の旧30件計測は移行前時点の固定証拠であり、現行値は0です。
 
 ## 測定artifactの履歴と集約
 
 修正前のcheck-child report、summary、308 subsetのpointer auditは現行測定ではなく、固定時点の意味をGit履歴と[統合disposition](measurement-artifact-disposition.json)に保持します。異なる各revisionのcommit・blob SHA-1・content SHA-256・復元command、同一bytesの重複関係、旧full-report pointerを同dispositionに集約しました。current treeにはこの修正後のsummary/reportを各1本、全consumerを数え直したpointer-transfer監査を1本だけ保持します。
+
+
+## L5 source pointer redirect（WR255 follow-up）
+
+固定base `ad2dfaf6f434fbb81cd34988d4bd76212380f3a5` を照合し、30個のL5 `failure_rules`それぞれに、L4 nested classificationと同じclassのtop-level canonical pointerが既に存在したことを確認しました。各ruleからnested pointerだけを除去し、canonical pointerと他のsource refs、意味字段は保持しています。L4/L8のsource bytesは不変です。
+
+現行検証は `validate_l5_pointer_redirect.py` です。通常実行はread-onlyで、`--record PATH` は新規ファイルのみexclusive createします。 [current redirect audit](l5-pointer-redirect-audit-r2-13f16113cafb-00376c402930.json) は30件の型・値projection、30 nested pointer除去、30 canonical pointer保持、32 L5 ruleのうち変更対象30行だけpointer-only変更を確認します。既存 `validate_pointer_transfer.py` と `pointer-transfer-audit-49875dcdb4bc-e918a289fe88.json` は変更せず移行前の時点証拠として保持します。L9の583 nested pointer stringsは対象外で、L4 nested payloadとSCF-B-0209も保持します。
+
+
+## latest-main overlay (2026-11-01)
+
+`origin/main` `8ca99d8afcfcca2e5240afb992289ea8c80c41a6` をno-commit overlayした時点でredirect validatorとL5/L8 validatorがpass。`check-child`はL4/L9 pair、L5/L8 pairともpass、negative 277 matched / 0 failures。`scfctl validate`は208 bindings / 0 failures、`scfctl stale`は0。測定時のsource SHAとコマンドは[統合disposition](measurement-artifact-disposition.json)に記録しています。L9 nested pointer 583件は残存し、SCF-B-0209はregisteredのままです。

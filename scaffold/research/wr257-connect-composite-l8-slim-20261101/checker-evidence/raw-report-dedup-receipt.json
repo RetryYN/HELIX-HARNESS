@@ -1,0 +1,38 @@
+{
+  "schema": "wr257-check-child-raw-report-dedup-receipt.v1",
+  "evidence_kind": "scaffold",
+  "authority_effect": "none",
+  "same_content_sha256": "89d09246bc42b821133d04b43d375dfe52999ebd5cf6ed8dd436fa32aea08028",
+  "same_line_count": 1930,
+  "same_byte_count": 86207,
+  "retained_copy": "scaffold/research/wr257-connect-composite-l8-slim-20261101/checker-evidence/raw-check-child-report-8d982681.json",
+  "retained_copy_git_blob_sha1": "4fef3377a0c5605e15ee02b981ec062c92e18819",
+  "historical_copies": [
+    {
+      "path": "scaffold/research/wr257-connect-composite-l8-slim-20261101/checker-evidence/raw-check-child-report-8d982681.json",
+      "introduced_in_revision": "e27085e7970124e91b0d2a63e231aa007b8018a5",
+      "git_blob_sha1": "4fef3377a0c5605e15ee02b981ec062c92e18819",
+      "sha256": "89d09246bc42b821133d04b43d375dfe52999ebd5cf6ed8dd436fa32aea08028"
+    },
+    {
+      "path": "scaffold/research/wr257-connect-composite-l8-slim-20261101/checker-evidence/raw-check-child-report-82fba857.json",
+      "introduced_in_revision": "1a61f7e55f3a283f9937cfc43e6aff3b5d91d16c",
+      "git_blob_sha1": "4fef3377a0c5605e15ee02b981ec062c92e18819",
+      "sha256": "89d09246bc42b821133d04b43d375dfe52999ebd5cf6ed8dd436fa32aea08028"
+    },
+    {
+      "path": "scaffold/research/wr257-connect-composite-l8-slim-20261101/checker-evidence/raw-check-child-report-ce813755.json",
+      "introduced_in_revision": "9f7815be124ad05397fbe2aeca38da43e0e29873",
+      "git_blob_sha1": "4fef3377a0c5605e15ee02b981ec062c92e18819",
+      "sha256": "89d09246bc42b821133d04b43d375dfe52999ebd5cf6ed8dd436fa32aea08028"
+    },
+    {
+      "path": "scaffold/research/wr257-connect-composite-l8-slim-20261101/checker-evidence/raw-check-child-report-61cd289c.json",
+      "introduced_in_revision": "99528fc984fd0865b6aba15652dd4263841fd988",
+      "git_blob_sha1": "4fef3377a0c5605e15ee02b981ec062c92e18819",
+      "sha256": "89d09246bc42b821133d04b43d375dfe52999ebd5cf6ed8dd436fa32aea08028"
+    }
+  ],
+  "deduplication": "4本のraw JSONはbyte単位で同一だったため、同じ内容のcopyを1本だけ現行treeに残す。overlay revisionごとの異なる要約・測定は保持し、各過去blobは履歴から復元できる。",
+  "restore_method": "過去の各pathは git show <introduced_in_revision>:<path> > <path> で正確に復元する。復元後のSHA-256がsame_content_sha256、Git blob IDがgit_blob_sha1と一致することを確認する。"
+}

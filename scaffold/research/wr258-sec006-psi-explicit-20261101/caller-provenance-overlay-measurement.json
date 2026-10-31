@@ -1,0 +1,134 @@
+{
+  "schema": "wr258-sec006-caller-provenance-overlay-measurement.v1",
+  "evidence_kind": "scaffold",
+  "authority_effect": "none",
+  "overlay": "caller-provenance-overlay-candidate/",
+  "builder": "build_caller_provenance_overlay.py",
+  "command": "python3 scaffold/tools/design_verification_checker.py check-child --root . --l4 scaffold/research/wr258-sec006-psi-explicit-20261101/caller-provenance-overlay-candidate/l4.json --l5 scaffold/research/wr258-sec006-psi-explicit-20261101/caller-provenance-overlay-candidate/l5.json --l8 scaffold/research/wr258-sec006-psi-explicit-20261101/caller-provenance-overlay-candidate/l8.json --l9 scaffold/research/wr258-sec006-psi-explicit-20261101/caller-provenance-overlay-candidate/l9.json",
+  "exit_code": 1,
+  "overall_passed": false,
+  "pair_checks": {
+    "l4_l9": true,
+    "l5_l8": true
+  },
+  "fourway": {
+    "passed": false,
+    "comparison_mode": "explicit_negative_equivalence_classes",
+    "parent_link_mode": "new_parent_link",
+    "class_rows": {
+      "L4": 16,
+      "L9": 16,
+      "L8": 16,
+      "L5": 16
+    },
+    "matched_case_count": 147,
+    "failure_count": 9,
+    "failure_groups": {
+      "finding_owners_not_unique": 1,
+      "class_key_missing_from_layer": 4,
+      "unexpected_class_key": 4
+    }
+  },
+  "caller_rows": [
+    {
+      "l8_case_id": "SEC003-L8-FALLBACK-PRIMARY",
+      "l9_case_id": "SEC003-PRIMARY-TREE-FALLBACK",
+      "caller_kind_input": "Worker",
+      "l8_expected_preserved_caller_kind": "Worker",
+      "l9_expected_preserved_caller_kind": "Worker",
+      "l5_unit_function": "HELIXSECURITY-L5-003-compose_scope_proposal",
+      "l5_provenance_parameter": "/caller/caller_kind_provenance",
+      "unchanged_fallback_finding": {
+        "code": "implicit_fallback",
+        "pointer": "/request/fallback",
+        "return_owner": "scope-binding-owner"
+      },
+      "permission_or_effect_change": false
+    },
+    {
+      "l8_case_id": "SEC003-L8-FALLBACK-PRIMARY-CALLER-01",
+      "l9_case_id": "SEC003-AGENT-PRIMARY-TREE-FALLBACK",
+      "caller_kind_input": "Agent",
+      "l8_expected_preserved_caller_kind": "Agent",
+      "l9_expected_preserved_caller_kind": "Agent",
+      "l5_unit_function": "HELIXSECURITY-L5-003-compose_scope_proposal",
+      "l5_provenance_parameter": "/caller/caller_kind_provenance",
+      "unchanged_fallback_finding": {
+        "code": "implicit_fallback",
+        "pointer": "/request/fallback",
+        "return_owner": "scope-binding-owner"
+      },
+      "permission_or_effect_change": false
+    },
+    {
+      "l8_case_id": "SEC003-L8-FALLBACK-PRIMARY-CALLER-02",
+      "l9_case_id": "SEC003-HOOK-PRIMARY-TREE-FALLBACK",
+      "caller_kind_input": "Hook",
+      "l8_expected_preserved_caller_kind": "Hook",
+      "l9_expected_preserved_caller_kind": "Hook",
+      "l5_unit_function": "HELIXSECURITY-L5-003-compose_scope_proposal",
+      "l5_provenance_parameter": "/caller/caller_kind_provenance",
+      "unchanged_fallback_finding": {
+        "code": "implicit_fallback",
+        "pointer": "/request/fallback",
+        "return_owner": "scope-binding-owner"
+      },
+      "permission_or_effect_change": false
+    },
+    {
+      "l8_case_id": "SEC003-L8-FALLBACK-PRIMARY-CALLER-03",
+      "l9_case_id": "SEC003-MEMORY-PRIMARY-TREE-FALLBACK",
+      "caller_kind_input": "memory",
+      "l8_expected_preserved_caller_kind": "memory",
+      "l9_expected_preserved_caller_kind": "memory",
+      "l5_unit_function": "HELIXSECURITY-L5-003-compose_scope_proposal",
+      "l5_provenance_parameter": "/caller/caller_kind_provenance",
+      "unchanged_fallback_finding": {
+        "code": "implicit_fallback",
+        "pointer": "/request/fallback",
+        "return_owner": "scope-binding-owner"
+      },
+      "permission_or_effect_change": false
+    },
+    {
+      "l8_case_id": "SEC003-L8-FALLBACK-PRIMARY-CALLER-04",
+      "l9_case_id": "SEC003-CREDENTIAL-PRIMARY-TREE-FALLBACK",
+      "caller_kind_input": "credential",
+      "l8_expected_preserved_caller_kind": "credential",
+      "l9_expected_preserved_caller_kind": "credential",
+      "l5_unit_function": "HELIXSECURITY-L5-003-compose_scope_proposal",
+      "l5_provenance_parameter": "/caller/caller_kind_provenance",
+      "unchanged_fallback_finding": {
+        "code": "implicit_fallback",
+        "pointer": "/request/fallback",
+        "return_owner": "scope-binding-owner"
+      },
+      "permission_or_effect_change": false
+    },
+    {
+      "l8_case_id": "SEC003-L8-FALLBACK-PRIMARY-CALLER-05",
+      "l9_case_id": "SEC003-CONFIGURATION-PRIMARY-TREE-FALLBACK",
+      "caller_kind_input": "configuration",
+      "l8_expected_preserved_caller_kind": "configuration",
+      "l9_expected_preserved_caller_kind": "configuration",
+      "l5_unit_function": "HELIXSECURITY-L5-003-compose_scope_proposal",
+      "l5_provenance_parameter": "/caller/caller_kind_provenance",
+      "unchanged_fallback_finding": {
+        "code": "implicit_fallback",
+        "pointer": "/request/fallback",
+        "return_owner": "scope-binding-owner"
+      },
+      "permission_or_effect_change": false
+    }
+  ],
+  "interpretation": "六known caller値をdistinct provenance input/returnとして扱う別L5/L8候補overlayでは、6行のL8↔L9参照は一対一で解決した。checker残件はoperation-defer空finding ownerと、同class行のL8/L9 class-key双方不一致だけ。overlayは構造候補の実測であり、L5実行・意味承認・正式完了ではない。",
+  "source_hashes": {
+    "docs/helix-security/L3-requirements/functional-requirements.json": "e4eeb70cc303e44199c7d898281e91c22dba89b47666353b9c80a4c634e898b5",
+    "docs/helix-security/L4-basic-design/project-scope-isolation.json": "4777e0714cd7c09135c5b2fae65d6ed26f96ca632b255708a822ff97f9784911",
+    "docs/helix-security/L5-detail-design/project-scope-isolation.json": "41c49bc0b62b415422067297bd9accf848e4f14e253fab9779e778c49c2e1edd",
+    "docs/helix-security/L8-unit-verification/project-scope-isolation.json": "6d093e482b013e733bc3eb5950aef5b8385b3288dc85bbcb9854bea92830900d",
+    "docs/helix-security/L9-integration-verification/project-scope-isolation.json": "fb5895c299f3f14ecbc41fde01bdac605a20b98275e56cb6176b12693c12df72",
+    "scaffold/tools/design_verification_checker.py": "e751526d67cd8df11e5aac1c5a1a178dfbd0fecc3f2ed21f995b7dda11ea4d5d"
+  },
+  "canonical_documents_modified_by_probe": false
+}

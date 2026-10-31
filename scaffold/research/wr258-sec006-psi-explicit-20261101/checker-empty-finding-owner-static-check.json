@@ -1,0 +1,38 @@
+{
+  "schema": "wr258-empty-finding-owner-candidate-static-check.v1",
+  "evidence_kind": "scaffold",
+  "authority_effect": "none",
+  "proposal": "compact_whole_observation.declared_backflow_owner is required only when ordered_findings is empty; otherwise owner derives from non-empty findings and a declaration is forbidden.",
+  "source_row": {
+    "l8_case_id": "SEC003-L8-OPERATION-DEFER",
+    "l9_candidate_id": "WR258-L9-CAND-046",
+    "class_id": "SEC003-F02-OPERATION-CONNECTION-ABSENT-DEFERRED"
+  },
+  "source_owner_values": [
+    "scope-binding-owner",
+    "scope-binding-owner",
+    "scope-binding-owner",
+    "scope-binding-owner",
+    "scope-binding-owner"
+  ],
+  "static_cases": {
+    "positive_source_matched_empty_finding": {
+      "accepted_by_candidate_guard": true,
+      "finding_count": 0,
+      "owner": "scope-binding-owner"
+    },
+    "negative_missing_declaration": {
+      "rejected_by_candidate_guard": true
+    },
+    "negative_wrong_owner": {
+      "rejected_by_candidate_guard": true
+    },
+    "negative_conflicting_nonempty_finding": {
+      "rejected_by_candidate_guard": true
+    },
+    "negative_redundant_nonempty_declaration": {
+      "rejected_by_candidate_guard": true
+    }
+  },
+  "current_checker_result": "FAIL finding_owners_not_unique when ordered_findings is empty; this helper checks the proposal only and does not change or substitute for design_verification_checker.py."
+}

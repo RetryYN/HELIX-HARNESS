@@ -6,7 +6,7 @@
   "product": "HELIX-HARNESS",
   "owner_candidate": "HELIX-HARNESS SEC006 L4/L9 source comparison owner",
   "state": "registered",
-  "reason": "WR244では固定blind候補からL3/L10/L4 semanticsを導出してL9の98単一finding assignmentsを照合した。WR250ではWR244固定artifactを保ったまま、現行L5/L8を追補し候補を比較する。L9 expected/residualとmarkerなしlegacy checkerの中間FAILを維持する。",
+  "reason": "WR244では固定blind候補からL3/L10/L4 semanticsを導出してL9の98単一finding assignmentsを照合した。WR250ではWR244固定artifactを保ったまま、現行L5/L8を追補し候補を比較する。L9 expected/residualとmarkerなしlegacy checkerの中間FAILを維持する。 WR258 stages source-derived L4 classes and L9 row class identities while retaining the legacy four-way mode; QA-complete marker is deferred until L5/L8 can be completed together.",
   "upstream": [
     {
       "path": "docs/helix-security/L3-requirements/functional-requirements.json",
@@ -20,13 +20,13 @@
     },
     {
       "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
-      "sha256": "6f64b6d9654f596d5597a056b4ded9288854640411c8ffccc2b0e6822306193a",
-      "note": "Base 2684816... のL4設計を起点にWR244 R1のsource-backed negative rowsを追補。R2でknown absentのrequested_operation保存文言のみ訂正。期待/oracle/authorization semanticsは不変。"
+      "sha256": "16d4fc5e3fcf0c677703b694b538f6d8f5542db36291850ed7f72865f0d9c72c",
+      "note": "WR244/WR250 historical current pin SHA-256 6f64b6d9654f596d5597a056b4ded9288854640411c8ffccc2b0e6822306193a preserved; WR258 prior current pins 9be1999cce6dd72349d0f359f7ebb8f7dee3c18e8d408d4650ec7e5ba65e0e42, 4ffa408392e77b355dc8b4b43b4876a0bbfb3b0bbd745a581408635f5ac82b9c, 2fdd1427779e4a848a12b23c4cdc1517d08578e3946f83823f10a57db8c49d98, and 2fdd1427779e4a848a12b23c4cdc1517d08578e3946f83823f10a57db8c49d98 retained as revision history. Current pin includes singleton expected_axis normalization for six source classes; no explicit four-layer marker. PR #4007 R1 current pin updated from 4777e0714cd7c09135c5b2fae65d6ed26f96ca632b255708a822ff97f9784911 at reviewed head cf983f81ff09cd90fb3f8f781bdb7c7445923ee6; prior hashes in this note remain history. Current L4/L9 now record 15 classes and 148 negative system-oracle rows (98 existing + 50 source-derived additions)."
     },
     {
       "path": "docs/helix-security/L9-integration-verification/project-scope-isolation.json",
-      "sha256": "e73518018f836294df326a75d48c344085252a81b302a6cc54fd24efb2332412",
-      "note": "Base 2684816... のL9 98 case rowsのうち86へsource-derived negative_class_assignmentを追補。期待/oracle/residual 16行は不変。"
+      "sha256": "0d46617674373fb9b1677c02eac2766765aafb448192b5c6fc1674b4e7fa88da",
+      "note": "WR244/WR250 historical current pin SHA-256 e73518018f836294df326a75d48c344085252a81b302a6cc54fd24efb2332412 preserved; WR258 adds per-row L4 class identity/key projections for the current 98 rows, preserving IDs, expected observations, and 16 residual negatives. No explicit four-layer marker. Intermediate WR258 current-pin SHA-256 fb5895c299f3f14ecbc41fde01bdac605a20b98275e56cb6176b12693c12df72 preserved before class-label refinement. PR #4007 R1 current pin updated from fb5895c299f3f14ecbc41fde01bdac605a20b98275e56cb6176b12693c12df72 at reviewed head cf983f81ff09cd90fb3f8f781bdb7c7445923ee6; prior hashes in this note remain history. Current L4/L9 now record 15 classes and 148 negative system-oracle rows (98 existing + 50 source-derived additions). R1 row-specific-oracle followup: previous pin de953eaa30348263eed914098f559bceca24c0fceef3bd76e733d2887b2f5609 retained in this note; current L9 pin 8cd71128dd5c3e7e4efe0c685e5ad00ad847deb9ea3fa2d311e0202e6f9b7c9b includes 50 unique case conditions and exact L8 input references without using them to derive expected values. PR #4007 R2では、50追加行の固有conditionを維持しつつL8→L9参照・candidate token・重複expected_observationを除去し、L3/L10/L4 source refを保持した。旧current pin 8cd71128dd5c3e7e4efe0c685e5ad00ad847deb9ea3fa2d311e0202e6f9b7c9bは履歴として保持。 WR258 L4/L9 casewise supplement pin updated from eda71cc49c10ddf0681ae7ab629c6862b3e0c984854cecf0fdf8fc9faa0a0e5c at main 151713275e2c2aa65bb23a8fe38eb63c46d570c8; the prior pin remains historical. The 148 nested negative rows, original expected_observation values, 16 residual rows, and 15 class rows remain unchanged; top-level integration_cases adds the casewise projections. WR258 L4/L9 casewise supplementで更新。直前current pin 2ce74993c2ef85e078bd891b007a18dd8d8682b41b7c923fb77ea0be8beb5e8dを履歴として保持。148 casewise rows; 既存98条件はL9 inputから独立導出、追加50 conditionとL4 class expectationをsource照合。 PR #4017 R1補足で更新。R1前pin 80f3adc2c3a00c93f1c5eb81ed1ba28542dc7e31b558db15b9c5909a2f193754を履歴に保持。148 integration rowsからclass/nested source pointer重複を除き、追加50 IDをSEC003-L9-ORACLE-001..050へ改名。"
     },
     {
       "path": "docs/helix-security/L5-detail-design/project-scope-isolation.json",
@@ -49,7 +49,7 @@
       "note": "Base 2684816ad6179cc3535e4a6c297e61d10fd75ca0; read for the two cited legacy asset IDs."
     }
   ],
-  "role": "WR244固定比較証拠を保持し、WR250のL5/L8追補・行別比較・未成立境界を追記するresearch evidence。",
+  "role": "Hold WR244/WR250 historical evidence plus the WR258 staged SEC006 L4/L9 class rows and unresolved QA one-to-one integration candidate.",
   "obligations": [
     "Preserve the blind source-only artifact byte-for-byte and its pre-comparison SHA-256/comment reference.",
     "Compare each source-derived candidate meaning to actual L9 case IDs without deriving upstream meaning from L9.",
@@ -60,7 +60,8 @@
     "WR244のfixed blind/comparison/audit/summary bytesを変更せず、旧L5/L8 pin hashesとbase revisionを時点証拠として保持する。",
     "WR250 initial reviewed-head scope: add ten L5 failure rules, classify the 52 existing L8 negative rows, and record 98 concise per-L9-row candidates using L3/L10/L4 source pointers. PR #4000 R1 retains that commit-time evidence but removes seven candidates with exact existing-L8 fallback input/outcome matches; current R1 set is 91 retained candidate designs plus the seven rowwise existing-L8 correspondences. Keep row pointers in scaffold evidence; candidates are not formal L8 execution evidence.",
     "98 L9 rowsを行別に比較し、L8 row identity/oracle/test citationがない場合はone-to-one未成立を記録する。",
-    "WR250 PR #4000 R1: preserve commit-time rowwise-comparison.json and verification-summary.json byte-for-byte; put corrections and rowwise audit in separate addendum artifacts. Remove only candidate rows with confirmed function-read-field/input and expectation correspondence to existing L8 rows; retain null oracle/test citations."
+    "WR250 PR #4000 R1: preserve commit-time rowwise-comparison.json and verification-summary.json byte-for-byte; put corrections and rowwise audit in separate addendum artifacts. Remove only candidate rows with confirmed function-read-field/input and expectation correspondence to existing L8 rows; retain null oracle/test citations.",
+    "WR258 supplement: add only source-derived SEC006 L4 taxonomy classes and L9 class identity projections in its separate L4↔L9 V-pair; keep explicit marker absent and retain historical WR244/WR250 captures unchanged."
   ],
   "connections": {
     "consumers": [
@@ -74,14 +75,15 @@
       "SEC006 L3 F01/F02 and L10 F01/F02 source pointers",
       "WR250 base revision 1b155cc648d589d32ca111efb3fbfcea1c4048b7"
     ],
-    "boundary": "WR244 historical scope: L4/L9 comparison evidence; its fixed blind/comparison/audit/summary artifacts remain unchanged, and at that revision L5/L8 were read-only. WR250 scope: L5/L8 candidate design rows and only their current upstream pins may be updated. L4/L9, L9 expected/oracle/residual, auth configuration, credentials and runtime remain unchanged. Explicit marker and complete QA §3 key remain unestablished."
+    "boundary": "WR244 historical scope: L4/L9 comparison evidence; its fixed blind/comparison/audit/summary artifacts remain unchanged, and at that revision L5/L8 were read-only. WR250 scope: L5/L8 candidate design rows and only their current upstream pins may be updated. L4/L9, L9 expected/oracle/residual, auth configuration, credentials and runtime remain unchanged. Explicit marker and complete QA §3 key remain unestablished. WR258 is separately scoped to the current SEC006 L4/L9 pair and class-key staging; it does not rewrite WR244 fixed research evidence or WR250 fixed R1 artifacts, and it does not enable explicit mode."
   },
   "operations": {
     "allowed": [
       "Read pinned source files and JSON Pointers.",
       "Run current scaffold design_verification_checker.py check-child for before/after structural measurement.",
       "Run scfctl validate and stale for binding/static stale state.",
-      "WR250 scope: update L5/L8 candidate documents in WR250 scope and rebind only their current upstream pins while retaining WR244 historical hashes as verification oracles."
+      "WR250 scope: update L5/L8 candidate documents in WR250 scope and rebind only their current upstream pins while retaining WR244 historical hashes as verification oracles.",
+      "WR258 supplement: update the current SEC006 L4/L9 canonical pair and the current upstream pin values after source/meaning comparison; keep historical snapshot hashes in notes."
     ],
     "forbidden": [
       "Run L4 algorithm, runtime, tests, CI, old workflow, old CLI, or old hook.",
@@ -106,7 +108,13 @@
     "scaffold/research/wr250-sec006-psi-l5l8-20261031/rowwise-comparison-r1.json",
     "scaffold/research/wr250-sec006-psi-l5l8-20261031/pr4000-r1-addendum.json",
     "scaffold/research/wr250-sec006-psi-l5l8-20261031/validate_pr4000_r1.py",
-    "scaffold/research/wr250-sec006-psi-l5l8-20261031/overlay-validation-correction.json"
+    "scaffold/research/wr250-sec006-psi-l5l8-20261031/overlay-validation-correction.json",
+    "scaffold/research/wr258-sec006-psi-explicit-20261101/validate_pr4007_r1_followup.py",
+    "scaffold/research/wr258-sec006-psi-explicit-20261101/pr-b-l8-integration-case-ref-candidate-r2.json",
+    "scaffold/research/wr258-sec006-psi-explicit-20261101/pr4007-r2-static-validation.json",
+    "scaffold/research/wr258-sec006-psi-explicit-20261101/r2-evidence-disposition.json",
+    "scaffold/research/wr258-sec006-psi-explicit-20261101/validate_pr4007_r2.py",
+    "scaffold/research/wr258-sec006-psi-explicit-20261101/pr4007-r2-final-overlay.json"
   ],
   "verification": {
     "evidence_kind": "scaffold",
@@ -133,7 +141,11 @@
       "WR250 PR #4000 R1 addendum: 9 of 52 existing L8 rows have no receiving L4 class; remaining 43 assignment reasons are unique; 13 candidate function refs corrected; 32 current-candidate L5 pins match current L5 bytes; duplicate candidate root rows absent; input projections distinguish present/null/omitted; seven exact fallback duplicates are enumerated and 91 candidates retained.",
       "WR250 R1 preserves L9 main negative count 98 and multi_contract_residual negative_case_count 16; L4/L9 source bytes unchanged. Commit-time matrix and summary remain byte-identical to reviewed head.",
       "WR250 R1 static validator passes: row counts, no-class/unique-reason classification, corrected function refs, function-read-field missing/null/present projections, 32 current L5 pins, L4/L9 unchanged, frozen evidence unchanged, and residual negative count 16.",
-      "PR4000 overlay correction: R1 frozen evidence and L4/L9 compare against reviewed revision f9c64394d93d102324da9d02a39f7bbbff77f231, not ambient HEAD. Previous validator hash and observation are preserved in overlay-validation-correction.json."
+      "PR4000 overlay correction: R1 frozen evidence and L4/L9 compare against reviewed revision f9c64394d93d102324da9d02a39f7bbbff77f231, not ambient HEAD. Previous validator hash and observation are preserved in overlay-validation-correction.json.",
+      "WR258 supplement: L4 has 16 top-level source classes with code=expected_classification; L9 keeps 98 row IDs/expected observations and 16 residual rows while recording class_id/key projections; L5/L8 and all-four-layer markers remain unchanged.",
+      "R2最新main overlay（origin/main 7d4145ac41ce8aa8d442b6fbb3981c7e83e338c6）: validate 204/0、stale 0。正式check-childはpair 2組pass・4way 0 matched/79 failures。生成統合候補は141/148 matched・10 failures。詳細はpr4007-r2-final-overlay.json。",
+      "同一origin/mainを対象としたR2初回overlay reportは履歴hashと固有SHA/pair内訳をr2-evidence-disposition.jsonへ保全し、現行bindingではvalidator測定を含むconsumer overlay 1本を参照する。",
+      "旧R2 overlay pathは同一mainの重複測定としてdispositionにhash/復元手順/固有情報を保全し、現行artifactは最終候補treeを検証するpr4007-r2-final-overlay.json一つとする。"
     ],
     "negative_cases": [
       "Do not treat source presentation order as normative when the L4 diagnostic sort does not apply.",
@@ -143,7 +155,8 @@
       "Do not treat static checker or binding validation as implementation, security behavior, or completion evidence.",
       "Do not infer class membership from existing expected_observation/finding codes; assignment uses fixed blind categories and counterexample inputs only.",
       "Do not derive class semantics from L9 expected values; use L3/L10/L4 meaning then counterexample inputs, and compare L9 only after code design. Keep absent violation separate from unknown unresolved.",
-      "WR250 PR #4000 R1: do not count equality of finding code and pointer alone as an L8/L9 match; compare function read_fields and candidate input condition, and keep oracle/test citation null when absent."
+      "WR250 PR #4000 R1: do not count equality of finding code and pointer alone as an L8/L9 match; compare function read_fields and candidate input condition, and keep oracle/test citation null when absent.",
+      "Do not add partial explicit markers; do not claim the six distinct L9 primary-tree caller cases have one-to-one L8 pairs."
     ]
   },
   "replacement": {
@@ -153,5 +166,5 @@
     "status": "pending"
   },
   "created": "2026-10-31",
-  "updated": "2026-10-31"
+  "updated": "2026-11-02"
 }

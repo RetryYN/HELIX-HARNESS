@@ -1,0 +1,123 @@
+{
+  "schema_revision": 1,
+  "id": "SCF-B-0226",
+  "kind": "scaffold",
+  "title": "WR258 SEC006 L4/L9 casewise補足",
+  "product": "HELIX-HARNESS",
+  "owner_candidate": "HELIX-HARNESS SEC006 L4/L9補足担当",
+  "state": "registered",
+  "reason": "PR #4007 merge後のL9 98既存行にcasewise condition/expected/expected_preservedがなく、top-level integration_casesもなかったため、L9入力とL3/L10/L4から148行のcasewise候補を独立導出し、照合証拠を登録する。正本変更はL4/L9 pairだけとし、L5/L8 candidateとの比較は導出後の一時overlayに限る。実行・authority effectなし。 PR #4017 R1でcasewise source pointerの重複を撤去し、追加50件をstable L9 IDへ改名した。条件文字列はQA §58どおりcase照合の対象、期待値はL3/L10/L4から独立導出する。",
+  "upstream": [
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.json",
+      "sha256": "e4eeb70cc303e44199c7d898281e91c22dba89b47666353b9c80a4c634e898b5",
+      "note": "SEC003 F01/F02の承認済み要求source。"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.json",
+      "sha256": "e6da7eaff29a623b5d069801280c295d9dd7cc43b51d9cde25b12a8110e5072a",
+      "note": "SEC003 F01/F02のverification source。実行証拠ではない。"
+    },
+    {
+      "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+      "sha256": "16d4fc5e3fcf0c677703b694b538f6d8f5542db36291850ed7f72865f0d9c72c",
+      "note": "15 classの意味とexpected/expected_preserved source。"
+    },
+    {
+      "path": "docs/helix-security/L9-integration-verification/project-scope-isolation.json",
+      "sha256": "0d46617674373fb9b1677c02eac2766765aafb448192b5c6fc1674b4e7fa88da",
+      "note": "148 nested negative rowsとL9 system oracle。新top-level integration_casesはそのcasewise投影。 PR #4017 R1補足で更新。R1前pin 80f3adc2c3a00c93f1c5eb81ed1ba28542dc7e31b558db15b9c5909a2f193754を履歴に保持。148 integration rowsからclass/nested source pointer重複を除き、追加50 IDをSEC003-L9-ORACLE-001..050へ改名。"
+    },
+    {
+      "path": "docs/governance/design-verification-quality-assurance.md",
+      "sha256": "f5751e236dc073fe67114c1fcb4b0f64b3d746290b25d75b61e60a08e3c99c85",
+      "note": "QA §58/82のexplicit class modeとcase-level observation要件。"
+    }
+  ],
+  "role": "L9 casewise条件・期待とsource参照の重複を避けた導出根拠、ID移行、最新overlay結果をscaffold evidenceとして追跡する。",
+  "obligations": [
+    "L9の既存98行・追加50行、15 class、16 residualを保持する。",
+    "既存98 conditionは各L9 counterexample request/contextとL4 axisから個別に導出し、expected/expected_preservedはL4 classから得る。",
+    "L8のcondition・expected・fixtureからL9値を導出しない。L8候補との意味照合は導出後に行い、不一致IDを理由つきで記録する。",
+    "ORACLE-046のsystem-level connection absentを局所operation-deferと混同しない。",
+    "全148行をnot_executedとして保ち、実行済み結果やfixture値を捏造しない。",
+    "L3/L10/L4/L9/QA以外の正本を編集せず、4way結果は実測どおり報告する。",
+    "integration_casesのclass共通source pointerを重複保持せず、L4 classと同一IDのL9 nested rowの参照を正とする。",
+    "追加50 L9 case IDはSEC003-L9-ORACLE-001..050とし、PR-B mappingおよび現行validatorを同時に更新する。",
+    "QA §58のcondition完全一致要件とexpectedの独立導出要件を区別し、L8候補条件はL9 conditionと文字列一致させる。"
+  ],
+  "connections": {
+    "consumers": [
+      "PR #4007で統合されたL4/L9 pair",
+      "別V-pair PR-BのL8↔L9 case照合",
+      "QA §58/82"
+    ],
+    "dependencies": [
+      "SEC003 L3/L10 F01/F02",
+      "L4 15-class source",
+      "L9 148 system-oracle rows",
+      "QA §58/82"
+    ],
+    "boundary": "L4/L9 pairとscaffold証拠に限定。L5/L8は比較対象のみ。runtime、fixture実行、authorityを変更しない。"
+  },
+  "operations": {
+    "allowed": [
+      "JSON、ID、source pointer、hashの静的検証",
+      "current scfctl validate/stale",
+      "正式check-childと候補overlayの比較測定"
+    ],
+    "forbidden": [
+      "L5/L8、L3/L10、QAの編集",
+      "旧runtime、CLI、hook、test、CIの起動",
+      "未提供fixture、実観測、authorizationの捏造",
+      "4way FAILをPASSと扱う"
+    ]
+  },
+  "artifacts": [
+    "docs/helix-security/L9-integration-verification/project-scope-isolation.json",
+    "scaffold/bindings/SCF-B-0201.json",
+    "scaffold/bindings/SCF-B-0218.json",
+    "scaffold/bindings/SCF-B-0226.json",
+    "scaffold/research/wr258-sec006-psi-explicit-20261101/README.md",
+    "scaffold/research/wr258-sec006-psi-explicit-20261101/validate_wr258_l4l9_supplement.py",
+    "scaffold/research/wr258-sec006-psi-explicit-20261101/pr-b-l8-integration-case-ref-candidate-r2.json",
+    "scaffold/research/wr258-sec006-psi-explicit-20261101/validate_pr4007_r1_followup.py",
+    "scaffold/research/wr258-sec006-psi-explicit-20261101/validate_pr4007_r2.py",
+    "scaffold/research/wr258-sec006-psi-explicit-20261101/l4l9-casewise-source-audit-r1.json",
+    "scaffold/research/wr258-sec006-psi-explicit-20261101/l4l9-supplement-current-overlay-r1.json",
+    "scaffold/research/wr258-sec006-psi-explicit-20261101/pr4017-r1-review-disposition.json"
+  ],
+  "replacement": {
+    "role_target": "L5/L8側のsource-derived case conditionsを整えた後、明示modeで4層一体検証する候補。",
+    "formal_artifacts": [],
+    "issue": 3510,
+    "status": "pending"
+  },
+  "created": "2026-11-02",
+  "updated": "2026-11-02",
+  "verification": {
+    "evidence_kind": "scaffold",
+    "scope": [
+      "source_revision_stale",
+      "negative_case",
+      "schema_interface"
+    ],
+    "oracles": [
+      "既存98 conditionは元L9 request/context入力から個別導出し、期待値は対応L4 classから得る。",
+      "追加50 conditionはL9 system oracleを保持し、expected/expected_preservedはL4 classから照合する。",
+      "148 caseのsource pointerはL3/L10/L4および該当L9 rowへ解決する。",
+      "L8比較はL9値の生成後に限る。条件の不一致98件はIDと比較差として報告し、意味一致とは扱わない。",
+      "すべてnot_executedとし、fixture実行、実観測、4way passを主張しない。",
+      "全148 integration_casesでsource_pointersは省略し、negative_class_refと同IDのnested rowから根拠を解決する。",
+      "追加50のstable L9 IDsはPR-B候補mappingへ一意に参照され、作業番号付きIDはcanonical L9/現行mappingに残らない。"
+    ],
+    "negative_cases": [
+      "L8 oracleをL9へ複写しない。",
+      "ORACLE-046 system absentを局所operation-deferの空findingと同一視しない。",
+      "L3/L10/QA/L5/L8の正本を変更しない。",
+      "4way check-childの実際のFAILをPASSと報告しない。",
+      "R1前のaudit/overlay/mappingはGit固定commit/blob/SHAから復元でき、current R1 artifactと混同しない。",
+      "canonical L5/L8はこのV-pairで変更しない。"
+    ]
+  }
+}

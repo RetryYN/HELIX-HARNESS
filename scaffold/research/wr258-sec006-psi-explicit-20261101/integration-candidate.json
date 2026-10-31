@@ -1,0 +1,1011 @@
+{
+  "schema": "wr258-sec006-explicit-integration-candidate.v1",
+  "evidence_kind": "scaffold",
+  "authority_effect": "none",
+  "request_id": "WR258-SEC006-PSI-L4L9-CLASSES",
+  "base_sha": "3e469f273817af640a2adafa50b8548b22a107fd",
+  "scope": {
+    "v_pair": "L4↔L9",
+    "canonical_documents": [
+      "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+      "docs/helix-security/L9-integration-verification/project-scope-isolation.json"
+    ],
+    "four_layer_marker": "not_set",
+    "meaning": "staged source classification and pairing evidence; not completion"
+  },
+  "blind_source": {
+    "path": "scaffold/research/wr244-sec006-psi-l4l9-20261031/blind-source-only.json",
+    "read_via": "git show 3e469f273817af640a2adafa50b8548b22a107fd:scaffold/research/wr244-sec006-psi-l4l9-20261031/blind-source-only.json",
+    "sha256": "14b28cc8a9e4cee9727d458a6e7fbe175c02a46fed06a5fa57bacb983edd4e22",
+    "matches_worktree_copy": true
+  },
+  "base_source_hashes": {
+    "docs/helix-security/L3-requirements/functional-requirements.json": "e4eeb70cc303e44199c7d898281e91c22dba89b47666353b9c80a4c634e898b5",
+    "docs/helix-security/L10-verification/functional-verification.json": "e6da7eaff29a623b5d069801280c295d9dd7cc43b51d9cde25b12a8110e5072a",
+    "docs/helix-security/L4-basic-design/project-scope-isolation.json": "6f64b6d9654f596d5597a056b4ded9288854640411c8ffccc2b0e6822306193a",
+    "docs/helix-security/L9-integration-verification/project-scope-isolation.json": "e73518018f836294df326a75d48c344085252a81b302a6cc54fd24efb2332412",
+    "docs/governance/design-verification-quality-assurance.md": "f5751e236dc073fe67114c1fcb4b0f64b3d746290b25d75b61e60a08e3c99c85"
+  },
+  "l3_l10_source_rows": [
+    {
+      "l3": "docs/helix-security/L3-requirements/functional-requirements.json#/requirements/3",
+      "l10": "docs/helix-security/L10-verification/functional-verification.json#/cases/3",
+      "requirement": "HELIXSECURITY-L3-003-F01",
+      "meaning": "asset/identity axes and owner source comparisons"
+    },
+    {
+      "l3": "docs/helix-security/L3-requirements/functional-requirements.json#/requirements/4",
+      "l10": "docs/helix-security/L10-verification/functional-verification.json#/cases/4",
+      "requirement": "HELIXSECURITY-L3-003-F02",
+      "meaning": "caller/project/operation boundaries and no implicit fallback"
+    }
+  ],
+  "legacy_and_failure_basis": [
+    {
+      "asset_id": "LEGACY-ASSET-D461943347D372ECF6DA",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/security-engagement-authority-requirements.md",
+      "lines": [
+        24,
+        25,
+        26,
+        39,
+        40
+      ],
+      "reuse": "semantic_rederive",
+      "preserve": "scope axes remain distinct; missing/unknown does not infer another target or privilege",
+      "change": "do not carry old special engagement classes, runtime, DB, or additional approval gate into current SEC006"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-349061A71CEF2554B9A7",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/security-engagement-authority-acceptance.md",
+      "lines": [
+        14,
+        15
+      ],
+      "reuse": "semantic_rederive",
+      "preserve": "wrong target/scope and fallback do not cross the boundary",
+      "change": "current L3/L4 scope and owner sources govern; no old mechanism copied"
+    },
+    {
+      "failure": "PR #3835 R1 comment 6471193507; QA §3/58",
+      "lesson": "keep class-level equivalence separate from per-case L8↔L9 matching; do not copy case-specific attributes into L4/L5 classes"
+    },
+    {
+      "failure": "WR250 PR #4000 R1 addendum F1/F3",
+      "lesson": "9 of 52 L8 rows remain without a receiving L4 class; exact fallback input/outcome duplicates were removed; source hash/revision evidence remains frozen"
+    }
+  ],
+  "l4_class_candidates": [
+    {
+      "class_id": "SEC003-F01-SIDE-INPUT-UNRESOLVED",
+      "code": "scope_unresolved",
+      "expected_classification": "scope_unresolved",
+      "expected": {
+        "condition": "scope_unresolved",
+        "finding_codes": [
+          "scope_input_unresolved"
+        ]
+      },
+      "expected_axis": [
+        "scope_identity"
+      ],
+      "expected_state": "unknown",
+      "backflow_owner": "scope-binding-owner",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L3-requirements/functional-requirements.json",
+          "pointer": "/requirements/3"
+        },
+        {
+          "path": "docs/helix-security/L10-verification/functional-verification.json",
+          "pointer": "/cases/3"
+        },
+        {
+          "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+          "pointer": "/contracts/0/content_comparison"
+        },
+        {
+          "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+          "pointer": "/contracts/0/output_meanings"
+        },
+        {
+          "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+          "pointer": "/diagnostic_contract/return_owner"
+        }
+      ]
+    },
+    {
+      "class_id": "SEC003-F01-ASSET-KIND-UNRESOLVED",
+      "code": "scope_unresolved",
+      "expected_classification": "scope_unresolved",
+      "expected": {
+        "condition": "scope_unresolved",
+        "finding_codes": [
+          "scope_input_unresolved"
+        ]
+      },
+      "expected_axis": [
+        "asset_kind"
+      ],
+      "expected_state": "unknown",
+      "backflow_owner": "scope-binding-owner",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L3-requirements/functional-requirements.json",
+          "pointer": "/requirements/3"
+        },
+        {
+          "path": "docs/helix-security/L10-verification/functional-verification.json",
+          "pointer": "/cases/3"
+        },
+        {
+          "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+          "pointer": "/contracts/0/content_comparison"
+        },
+        {
+          "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+          "pointer": "/contracts/0/output_meanings"
+        },
+        {
+          "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+          "pointer": "/diagnostic_contract/return_owner"
+        }
+      ]
+    },
+    {
+      "class_id": "SEC003-F01-OWNER-MATERIAL-UNRESOLVED",
+      "code": "scope_unresolved",
+      "expected_classification": "scope_unresolved",
+      "expected": {
+        "condition": "scope_unresolved",
+        "finding_codes": [
+          "owner_material_unresolved"
+        ]
+      },
+      "expected_axis": [
+        "owner_material_state"
+      ],
+      "expected_state": "unknown",
+      "backflow_owner": "scope-binding-owner",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L3-requirements/functional-requirements.json",
+          "pointer": "/requirements/3"
+        },
+        {
+          "path": "docs/helix-security/L10-verification/functional-verification.json",
+          "pointer": "/cases/3"
+        },
+        {
+          "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+          "pointer": "/contracts/0/content_comparison"
+        },
+        {
+          "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+          "pointer": "/contracts/0/output_meanings"
+        },
+        {
+          "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+          "pointer": "/diagnostic_contract/return_owner"
+        }
+      ]
+    },
+    {
+      "class_id": "SEC003-F02-OPERATION-INPUT-UNRESOLVED",
+      "code": "scope_unresolved",
+      "expected_classification": "scope_unresolved",
+      "expected": {
+        "condition": "scope_unresolved",
+        "finding_codes": [
+          "scope_input_unresolved"
+        ]
+      },
+      "expected_axis": [
+        "operation"
+      ],
+      "expected_state": "unknown",
+      "backflow_owner": "scope-binding-owner",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L3-requirements/functional-requirements.json",
+          "pointer": "/requirements/4"
+        },
+        {
+          "path": "docs/helix-security/L10-verification/functional-verification.json",
+          "pointer": "/cases/4"
+        },
+        {
+          "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+          "pointer": "/contracts/1/content_comparison"
+        },
+        {
+          "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+          "pointer": "/contracts/1/output_meanings"
+        },
+        {
+          "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+          "pointer": "/diagnostic_contract/return_owner"
+        }
+      ]
+    },
+    {
+      "class_id": "SEC003-F02-OPERATION-CONNECTION-ABSENT-DEFERRED",
+      "code": "scope_unresolved",
+      "expected_classification": "scope_unresolved",
+      "expected": {
+        "condition": "scope_unresolved",
+        "finding_codes": []
+      },
+      "expected_axis": [
+        "explicit_connection"
+      ],
+      "expected_state": "unknown",
+      "backflow_owner": "scope-binding-owner",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L3-requirements/functional-requirements.json",
+          "pointer": "/requirements/4"
+        },
+        {
+          "path": "docs/helix-security/L10-verification/functional-verification.json",
+          "pointer": "/cases/4"
+        },
+        {
+          "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+          "pointer": "/contracts/1/content_comparison"
+        },
+        {
+          "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+          "pointer": "/contracts/1/output_meanings"
+        },
+        {
+          "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+          "pointer": "/diagnostic_contract/return_owner"
+        }
+      ],
+      "condition": "operation=readは既知だがconnection_state=absentのため、このoperation-scope比較部分はunknown/空findingを保ち、接続不在のfindingをこの部分で重複生成しない。"
+    },
+    {
+      "class_id": "SEC003-F02-FALLBACK-INPUT-UNRESOLVED",
+      "code": "scope_unresolved",
+      "expected_classification": "scope_unresolved",
+      "expected": {
+        "condition": "scope_unresolved",
+        "finding_codes": [
+          "scope_input_unresolved"
+        ]
+      },
+      "expected_axis": [
+        "explicit_connection"
+      ],
+      "expected_state": "unknown",
+      "backflow_owner": "scope-binding-owner",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L3-requirements/functional-requirements.json",
+          "pointer": "/requirements/4"
+        },
+        {
+          "path": "docs/helix-security/L10-verification/functional-verification.json",
+          "pointer": "/cases/4"
+        },
+        {
+          "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+          "pointer": "/contracts/1/content_comparison"
+        },
+        {
+          "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+          "pointer": "/contracts/1/output_meanings"
+        },
+        {
+          "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+          "pointer": "/diagnostic_contract/return_owner"
+        }
+      ]
+    }
+  ],
+  "nine_l8_rows": [
+    {
+      "id": "SEC003-L8-SIDE-UNKNOWN-SIDE",
+      "pointer": "/cases/0/negative_cases/15",
+      "function_ref": "HELIXSECURITY-L5-003-compare_scope_side",
+      "l8_expected_result": {
+        "grade": "unknown",
+        "findings": [
+          {
+            "code": "scope_input_unresolved",
+            "pointer": "/side",
+            "return_owner": "scope-binding-owner"
+          }
+        ],
+        "tenant_disposition": "unknown",
+        "joinable": false
+      },
+      "candidate_l4_class_id": "SEC003-F01-SIDE-INPUT-UNRESOLVED",
+      "class_expected": {
+        "condition": "scope_unresolved",
+        "finding_codes": [
+          "scope_input_unresolved"
+        ]
+      },
+      "class_axis": [
+        "scope_identity"
+      ],
+      "class_state": "unknown",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L3-requirements/functional-requirements.json",
+          "pointer": "/requirements/3"
+        },
+        {
+          "path": "docs/helix-security/L10-verification/functional-verification.json",
+          "pointer": "/cases/3"
+        },
+        {
+          "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+          "pointer": "/contracts/0/content_comparison"
+        },
+        {
+          "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+          "pointer": "/contracts/0/output_meanings"
+        },
+        {
+          "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+          "pointer": "/diagnostic_contract/return_owner"
+        }
+      ]
+    },
+    {
+      "id": "SEC003-L8-ASSET-UNKNOWN-KIND",
+      "pointer": "/cases/0/negative_cases/23",
+      "function_ref": "HELIXSECURITY-L5-003-compare_asset_scope",
+      "l8_expected_result": {
+        "grade": "unknown",
+        "findings": [
+          {
+            "code": "scope_input_unresolved",
+            "pointer": "/request/asset_kind",
+            "return_owner": "scope-binding-owner"
+          }
+        ]
+      },
+      "candidate_l4_class_id": "SEC003-F01-ASSET-KIND-UNRESOLVED",
+      "class_expected": {
+        "condition": "scope_unresolved",
+        "finding_codes": [
+          "scope_input_unresolved"
+        ]
+      },
+      "class_axis": [
+        "asset_kind"
+      ],
+      "class_state": "unknown",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L3-requirements/functional-requirements.json",
+          "pointer": "/requirements/3"
+        },
+        {
+          "path": "docs/helix-security/L10-verification/functional-verification.json",
+          "pointer": "/cases/3"
+        },
+        {
+          "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+          "pointer": "/contracts/0/content_comparison"
+        },
+        {
+          "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+          "pointer": "/contracts/0/output_meanings"
+        },
+        {
+          "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+          "pointer": "/diagnostic_contract/return_owner"
+        }
+      ]
+    },
+    {
+      "id": "SEC003-L8-OWNERS-STALE-OS",
+      "pointer": "/cases/0/negative_cases/24",
+      "function_ref": "HELIXSECURITY-L5-003-compare_owner_material_states",
+      "l8_expected_result": {
+        "grade": "unknown",
+        "findings": [
+          {
+            "code": "owner_material_unresolved",
+            "pointer": "/context/owner_material_states/OS",
+            "return_owner": "scope-binding-owner"
+          }
+        ]
+      },
+      "candidate_l4_class_id": "SEC003-F01-OWNER-MATERIAL-UNRESOLVED",
+      "class_expected": {
+        "condition": "scope_unresolved",
+        "finding_codes": [
+          "owner_material_unresolved"
+        ]
+      },
+      "class_axis": [
+        "owner_material_state"
+      ],
+      "class_state": "unknown",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L3-requirements/functional-requirements.json",
+          "pointer": "/requirements/3"
+        },
+        {
+          "path": "docs/helix-security/L10-verification/functional-verification.json",
+          "pointer": "/cases/3"
+        },
+        {
+          "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+          "pointer": "/contracts/0/content_comparison"
+        },
+        {
+          "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+          "pointer": "/contracts/0/output_meanings"
+        },
+        {
+          "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+          "pointer": "/diagnostic_contract/return_owner"
+        }
+      ]
+    },
+    {
+      "id": "SEC003-L8-OWNERS-STALE-INFRA",
+      "pointer": "/cases/0/negative_cases/25",
+      "function_ref": "HELIXSECURITY-L5-003-compare_owner_material_states",
+      "l8_expected_result": {
+        "grade": "unknown",
+        "findings": [
+          {
+            "code": "owner_material_unresolved",
+            "pointer": "/context/owner_material_states/INFRA",
+            "return_owner": "scope-binding-owner"
+          }
+        ]
+      },
+      "candidate_l4_class_id": "SEC003-F01-OWNER-MATERIAL-UNRESOLVED",
+      "class_expected": {
+        "condition": "scope_unresolved",
+        "finding_codes": [
+          "owner_material_unresolved"
+        ]
+      },
+      "class_axis": [
+        "owner_material_state"
+      ],
+      "class_state": "unknown",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L3-requirements/functional-requirements.json",
+          "pointer": "/requirements/3"
+        },
+        {
+          "path": "docs/helix-security/L10-verification/functional-verification.json",
+          "pointer": "/cases/3"
+        },
+        {
+          "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+          "pointer": "/contracts/0/content_comparison"
+        },
+        {
+          "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+          "pointer": "/contracts/0/output_meanings"
+        },
+        {
+          "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+          "pointer": "/diagnostic_contract/return_owner"
+        }
+      ]
+    },
+    {
+      "id": "SEC003-L8-OWNERS-STALE-CONNECT",
+      "pointer": "/cases/0/negative_cases/26",
+      "function_ref": "HELIXSECURITY-L5-003-compare_owner_material_states",
+      "l8_expected_result": {
+        "grade": "unknown",
+        "findings": [
+          {
+            "code": "owner_material_unresolved",
+            "pointer": "/context/owner_material_states/CONNECT",
+            "return_owner": "scope-binding-owner"
+          }
+        ]
+      },
+      "candidate_l4_class_id": "SEC003-F01-OWNER-MATERIAL-UNRESOLVED",
+      "class_expected": {
+        "condition": "scope_unresolved",
+        "finding_codes": [
+          "owner_material_unresolved"
+        ]
+      },
+      "class_axis": [
+        "owner_material_state"
+      ],
+      "class_state": "unknown",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L3-requirements/functional-requirements.json",
+          "pointer": "/requirements/3"
+        },
+        {
+          "path": "docs/helix-security/L10-verification/functional-verification.json",
+          "pointer": "/cases/3"
+        },
+        {
+          "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+          "pointer": "/contracts/0/content_comparison"
+        },
+        {
+          "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+          "pointer": "/contracts/0/output_meanings"
+        },
+        {
+          "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+          "pointer": "/diagnostic_contract/return_owner"
+        }
+      ]
+    },
+    {
+      "id": "SEC003-L8-OPERATION-UNKNOWN",
+      "pointer": "/cases/1/negative_cases/15",
+      "function_ref": "HELIXSECURITY-L5-003-compare_operation_scope",
+      "l8_expected_result": {
+        "grade": "unknown",
+        "findings": [
+          {
+            "code": "scope_input_unresolved",
+            "pointer": "/request/operation",
+            "return_owner": "scope-binding-owner"
+          }
+        ]
+      },
+      "candidate_l4_class_id": "SEC003-F02-OPERATION-INPUT-UNRESOLVED",
+      "class_expected": {
+        "condition": "scope_unresolved",
+        "finding_codes": [
+          "scope_input_unresolved"
+        ]
+      },
+      "class_axis": [
+        "operation"
+      ],
+      "class_state": "unknown",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L3-requirements/functional-requirements.json",
+          "pointer": "/requirements/4"
+        },
+        {
+          "path": "docs/helix-security/L10-verification/functional-verification.json",
+          "pointer": "/cases/4"
+        },
+        {
+          "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+          "pointer": "/contracts/1/content_comparison"
+        },
+        {
+          "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+          "pointer": "/contracts/1/output_meanings"
+        },
+        {
+          "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+          "pointer": "/diagnostic_contract/return_owner"
+        }
+      ]
+    },
+    {
+      "id": "SEC003-L8-OPERATION-DEFER",
+      "pointer": "/cases/1/negative_cases/16",
+      "function_ref": "HELIXSECURITY-L5-003-compare_operation_scope",
+      "l8_expected_result": {
+        "grade": "unknown",
+        "findings": []
+      },
+      "candidate_l4_class_id": "SEC003-F02-OPERATION-CONNECTION-ABSENT-DEFERRED",
+      "class_expected": {
+        "condition": "scope_unresolved",
+        "finding_codes": []
+      },
+      "class_axis": [
+        "explicit_connection"
+      ],
+      "class_state": "unknown",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L3-requirements/functional-requirements.json",
+          "pointer": "/requirements/4"
+        },
+        {
+          "path": "docs/helix-security/L10-verification/functional-verification.json",
+          "pointer": "/cases/4"
+        },
+        {
+          "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+          "pointer": "/contracts/1/content_comparison"
+        },
+        {
+          "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+          "pointer": "/contracts/1/output_meanings"
+        },
+        {
+          "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+          "pointer": "/diagnostic_contract/return_owner"
+        }
+      ],
+      "l8_input_projection": {
+        "request/operation": "read",
+        "request/connection_state": "absent"
+      }
+    },
+    {
+      "id": "SEC003-L8-FALLBACK-UNKNOWN",
+      "pointer": "/cases/1/negative_cases/21",
+      "function_ref": "HELIXSECURITY-L5-003-compare_fallback",
+      "l8_expected_result": {
+        "grade": "unknown",
+        "findings": [
+          {
+            "code": "scope_input_unresolved",
+            "pointer": "/request/fallback",
+            "return_owner": "scope-binding-owner"
+          }
+        ]
+      },
+      "candidate_l4_class_id": "SEC003-F02-FALLBACK-INPUT-UNRESOLVED",
+      "class_expected": {
+        "condition": "scope_unresolved",
+        "finding_codes": [
+          "scope_input_unresolved"
+        ]
+      },
+      "class_axis": [
+        "explicit_connection"
+      ],
+      "class_state": "unknown",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L3-requirements/functional-requirements.json",
+          "pointer": "/requirements/4"
+        },
+        {
+          "path": "docs/helix-security/L10-verification/functional-verification.json",
+          "pointer": "/cases/4"
+        },
+        {
+          "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+          "pointer": "/contracts/1/content_comparison"
+        },
+        {
+          "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+          "pointer": "/contracts/1/output_meanings"
+        },
+        {
+          "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+          "pointer": "/diagnostic_contract/return_owner"
+        }
+      ]
+    },
+    {
+      "id": "SEC003-L8-FALLBACK-NULL",
+      "pointer": "/cases/1/negative_cases/22",
+      "function_ref": "HELIXSECURITY-L5-003-compare_fallback",
+      "l8_expected_result": {
+        "grade": "unknown",
+        "findings": [
+          {
+            "code": "scope_input_unresolved",
+            "pointer": "/request/fallback",
+            "return_owner": "scope-binding-owner"
+          }
+        ]
+      },
+      "candidate_l4_class_id": "SEC003-F02-FALLBACK-INPUT-UNRESOLVED",
+      "class_expected": {
+        "condition": "scope_unresolved",
+        "finding_codes": [
+          "scope_input_unresolved"
+        ]
+      },
+      "class_axis": [
+        "explicit_connection"
+      ],
+      "class_state": "unknown",
+      "source_pointers": [
+        {
+          "path": "docs/helix-security/L3-requirements/functional-requirements.json",
+          "pointer": "/requirements/4"
+        },
+        {
+          "path": "docs/helix-security/L10-verification/functional-verification.json",
+          "pointer": "/cases/4"
+        },
+        {
+          "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+          "pointer": "/contracts/1/content_comparison"
+        },
+        {
+          "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+          "pointer": "/contracts/1/output_meanings"
+        },
+        {
+          "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+          "pointer": "/diagnostic_contract/return_owner"
+        }
+      ]
+    }
+  ],
+  "fallback_case_alignment": {
+    "l9_primary_tree_cases": [
+      {
+        "id": "SEC003-PRIMARY-TREE-FALLBACK",
+        "pointer": "/cases/1/negative_cases/7",
+        "caller_kind": "Worker",
+        "l4_class_id": "SEC003-F02-IMPLICIT-FALLBACK",
+        "expected_classification": "isolation_violation",
+        "expected_axis": "explicit_connection",
+        "expected_state": "violation"
+      },
+      {
+        "id": "SEC003-AGENT-PRIMARY-TREE-FALLBACK",
+        "pointer": "/cases/1/negative_cases/19",
+        "caller_kind": "Agent",
+        "l4_class_id": "SEC003-F02-IMPLICIT-FALLBACK",
+        "expected_classification": "isolation_violation",
+        "expected_axis": "explicit_connection",
+        "expected_state": "violation"
+      },
+      {
+        "id": "SEC003-HOOK-PRIMARY-TREE-FALLBACK",
+        "pointer": "/cases/1/negative_cases/22",
+        "caller_kind": "Hook",
+        "l4_class_id": "SEC003-F02-IMPLICIT-FALLBACK",
+        "expected_classification": "isolation_violation",
+        "expected_axis": "explicit_connection",
+        "expected_state": "violation"
+      },
+      {
+        "id": "SEC003-MEMORY-PRIMARY-TREE-FALLBACK",
+        "pointer": "/cases/1/negative_cases/25",
+        "caller_kind": "memory",
+        "l4_class_id": "SEC003-F02-IMPLICIT-FALLBACK",
+        "expected_classification": "isolation_violation",
+        "expected_axis": "explicit_connection",
+        "expected_state": "violation"
+      },
+      {
+        "id": "SEC003-CREDENTIAL-PRIMARY-TREE-FALLBACK",
+        "pointer": "/cases/1/negative_cases/28",
+        "caller_kind": "credential",
+        "l4_class_id": "SEC003-F02-IMPLICIT-FALLBACK",
+        "expected_classification": "isolation_violation",
+        "expected_axis": "explicit_connection",
+        "expected_state": "violation"
+      },
+      {
+        "id": "SEC003-CONFIGURATION-PRIMARY-TREE-FALLBACK",
+        "pointer": "/cases/1/negative_cases/31",
+        "caller_kind": "configuration",
+        "l4_class_id": "SEC003-F02-IMPLICIT-FALLBACK",
+        "expected_classification": "isolation_violation",
+        "expected_axis": "explicit_connection",
+        "expected_state": "violation"
+      }
+    ],
+    "current_l8_primary_tree_case": [
+      {
+        "id": "SEC003-L8-FALLBACK-PRIMARY",
+        "pointer": "/cases/1/negative_cases/19",
+        "function_ref": "HELIXSECURITY-L5-003-compare_fallback",
+        "projected_read_fields": [
+          "/request/fallback"
+        ],
+        "input_value": "primary_tree"
+      }
+    ],
+    "pr4000_r1_exact_duplicate_candidate_count": 6,
+    "pr4000_r1_removed_candidate_ids": [
+      "SEC003-L8-CAND-072",
+      "SEC003-L8-CAND-084",
+      "SEC003-L8-CAND-087",
+      "SEC003-L8-CAND-090",
+      "SEC003-L8-CAND-093",
+      "SEC003-L8-CAND-096"
+    ],
+    "one_to_one_status": "unresolved",
+    "reason": "L9 retains six distinct caller-kind integration rows required by the L3/L4 caller boundary. The current L8 compare_fallback row projects only /request/fallback and does not consume caller_kind. PR #4000 R1 removed six candidate rows with exact present primary_tree read-field/input and matching local outcome as duplicates. QA §3/58 requires one-to-one L8↔L9 case references and rejects repeated L9 references. Counting six removed duplicates as six unit rows would contradict their recorded exact input/outcome correspondence; collapsing the six caller cases would discard distinct L9 inputs. Keep all six L9 rows and do not invent distinct L8 function behavior. Return this row-level conflict to independent author/reviewer for source-level resolution.",
+    "followup_candidate": "A separate L5/L8 V-pair must determine whether caller_kind is part of an approved unit-function contract and whether distinct L8 owner cases can exist without changing the L5 read-field contract. If not, seek source-authority resolution for how QA one-to-one applies to this six-row caller matrix; do not edit QA or L3/L10 here.",
+    "pr4000_r1_removed_candidate_evidence": [
+      {
+        "candidate_id": "SEC003-L8-CAND-072",
+        "function_ref": "HELIXSECURITY-L5-003-compare_fallback",
+        "function_read_fields": [
+          "/request/fallback"
+        ],
+        "input_projection": [
+          {
+            "path": "/request/fallback",
+            "state": "present",
+            "value": "primary_tree"
+          }
+        ],
+        "input_values_and_states_equal": true,
+        "expected_finding_code_and_pointer_equal": true,
+        "execution_state": "not_executed",
+        "oracle_id": null,
+        "test_citation": null
+      },
+      {
+        "candidate_id": "SEC003-L8-CAND-084",
+        "function_ref": "HELIXSECURITY-L5-003-compare_fallback",
+        "function_read_fields": [
+          "/request/fallback"
+        ],
+        "input_projection": [
+          {
+            "path": "/request/fallback",
+            "state": "present",
+            "value": "primary_tree"
+          }
+        ],
+        "input_values_and_states_equal": true,
+        "expected_finding_code_and_pointer_equal": true,
+        "execution_state": "not_executed",
+        "oracle_id": null,
+        "test_citation": null
+      },
+      {
+        "candidate_id": "SEC003-L8-CAND-087",
+        "function_ref": "HELIXSECURITY-L5-003-compare_fallback",
+        "function_read_fields": [
+          "/request/fallback"
+        ],
+        "input_projection": [
+          {
+            "path": "/request/fallback",
+            "state": "present",
+            "value": "primary_tree"
+          }
+        ],
+        "input_values_and_states_equal": true,
+        "expected_finding_code_and_pointer_equal": true,
+        "execution_state": "not_executed",
+        "oracle_id": null,
+        "test_citation": null
+      },
+      {
+        "candidate_id": "SEC003-L8-CAND-090",
+        "function_ref": "HELIXSECURITY-L5-003-compare_fallback",
+        "function_read_fields": [
+          "/request/fallback"
+        ],
+        "input_projection": [
+          {
+            "path": "/request/fallback",
+            "state": "present",
+            "value": "primary_tree"
+          }
+        ],
+        "input_values_and_states_equal": true,
+        "expected_finding_code_and_pointer_equal": true,
+        "execution_state": "not_executed",
+        "oracle_id": null,
+        "test_citation": null
+      },
+      {
+        "candidate_id": "SEC003-L8-CAND-093",
+        "function_ref": "HELIXSECURITY-L5-003-compare_fallback",
+        "function_read_fields": [
+          "/request/fallback"
+        ],
+        "input_projection": [
+          {
+            "path": "/request/fallback",
+            "state": "present",
+            "value": "primary_tree"
+          }
+        ],
+        "input_values_and_states_equal": true,
+        "expected_finding_code_and_pointer_equal": true,
+        "execution_state": "not_executed",
+        "oracle_id": null,
+        "test_citation": null
+      },
+      {
+        "candidate_id": "SEC003-L8-CAND-096",
+        "function_ref": "HELIXSECURITY-L5-003-compare_fallback",
+        "function_read_fields": [
+          "/request/fallback"
+        ],
+        "input_projection": [
+          {
+            "path": "/request/fallback",
+            "state": "present",
+            "value": "primary_tree"
+          }
+        ],
+        "input_values_and_states_equal": true,
+        "expected_finding_code_and_pointer_equal": true,
+        "execution_state": "not_executed",
+        "oracle_id": null,
+        "test_citation": null
+      }
+    ]
+  },
+  "four_layer_activation": {
+    "marker_added": false,
+    "reason": "QA §3/58 and §82 require complete markers across L4/L5/L8/L9; L5/L8 belongs to a separate V-pair. Partial marker is a QA failure. This staged L4/L9 change remains legacy_casewise_four_layer until a separate reviewed change completes all four layers.",
+    "followup_required": [
+      "L5 failure_rules must align code=expected_classification, ordered finding_codes, axis/state and function/contract owner_ref",
+      "L8 negative_equivalence_classes and unit_cases must point to qualified L5 rules and L9 IDs",
+      "L9 negative_equivalence_classes / integration_cases require class refs and one-to-one case refs for every supplied row",
+      "Only after all four layers are complete may one coordinated revision add all markers and run explicit mode"
+    ]
+  },
+  "preserved": {
+    "L9_case_ids": 98,
+    "L9_multi_contract_residual_negative_cases": 16,
+    "L8_cases_changed": false,
+    "L5_cases_changed": false,
+    "L9_expected_observation_changed": false,
+    "l3_l10_changed": false,
+    "qa_changed": false,
+    "historical_blind_changed": false
+  },
+  "verification_limits": [
+    "Static document and ID/source-pointer checks only.",
+    "No L4 algorithm, runtime, old CLI/hook/CI, or test execution.",
+    "Existing not_executed state remains; no product behavior/pass is asserted."
+  ],
+  "verification": {
+    "before": {
+      "comparison_mode": "legacy_casewise_four_layer",
+      "counts": {
+        "L4": 10,
+        "L9": 98,
+        "L8": 52,
+        "L5": 10
+      },
+      "matched_case_count": 0,
+      "failure_count": 172,
+      "L4_L9_pair_passed": true,
+      "L5_L8_pair_passed": true,
+      "all_ownership_caps_passed": true,
+      "all_source_pin_checks_passed": true
+    },
+    "after": {
+      "check_child": {
+        "exit_code": 1,
+        "overall_passed": false,
+        "L4_L9_pair_passed": true,
+        "L5_L8_pair_passed": true,
+        "comparison_mode": "legacy_casewise_four_layer",
+        "parent_link_mode": "legacy",
+        "negative_4way_passed": false,
+        "counts": {
+          "L4": 10,
+          "L9": 98,
+          "L8": 52,
+          "L5": 10
+        },
+        "matched_case_count": 0,
+        "failure_count": 172
+      },
+      "scfctl_validate": {
+        "exit_code": 0,
+        "summary": "bindings=197 fail=0"
+      },
+      "scfctl_stale": {
+        "exit_code": 0,
+        "summary": "stale=0"
+      },
+      "git_diff_check": {
+        "exit_code": 0,
+        "summary": "clean"
+      },
+      "static_integrity": "L4 classes 16 (six newly added), all code=expected_classification and unique IDs; L9 has 98 class_id assignments; case IDs, expected_observation values, and residual 16 rows match the specified base; L5/L8 bytes match base; no explicit marker exists in L4/L5/L8/L9."
+    }
+  },
+  "binding_id": "SCF-B-0218"
+}
