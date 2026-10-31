@@ -561,7 +561,7 @@ def main() -> None:
         assert (item['counterexample'], item['expected_judgment']) == PROBE_EXPECTATIONS[item['id']]
         oi, ci, _ = l9_by_id[item['source_case_id']]
         assert item['source_packet_pointer'] == f'/verification_obligations/{oi}/concrete_cases/{ci}/independent_source_packet/raw_utf8'
-        assert item['boundary'] == 'synthetic local mutation only; qualification/effect unestablished'
+        assert item['boundary'] == '合成probeの静的反例に限る。未実行であり、source/owner資格・挙動・効果は未成立。DT-VT-105照合候補。'
         assert item['execution_state'] == 'not_executed'
         assert item['u_id'].startswith('U-C007-LP-')
         assert not any(key in item for key in ('expected_delta', 'input_patch', 'input_patch_paths', 'baseline_expected_pointer'))
