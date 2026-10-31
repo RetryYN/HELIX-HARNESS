@@ -284,7 +284,7 @@ def verify_evidence_lineage(failures):
     research = ROOT / "scaffold/research/wr256-connect-trace-l8-slim-20261031"
     evidence = research / "evidence"
     history = json.loads((evidence / "evidence-history.json").read_text(encoding="utf-8"))
-    addendum = json.loads((evidence / "evidence-history-addendum-20261101-r2.json").read_text(encoding="utf-8"))
+    addendum = json.loads((evidence / "evidence-history-addendum-20261101-r3.json").read_text(encoding="utf-8"))
     summary_path = "scaffold/research/wr256-connect-trace-l8-slim-20261031/verification-summary.json"
     audit_path = "scaffold/research/wr256-connect-trace-l8-slim-20261031/source-semantic-audit.json"
     expected = {
@@ -340,27 +340,51 @@ def verify_evidence_lineage(failures):
         if hashlib.sha256(data).hexdigest() != artifact.get("sha256") or len(data) != artifact.get("bytes"):
             failures.append({"check": "current_record_artifact_pin", "path": artifact["path"]})
 
-    prior_record = addendum.get("previous_current_record", {})
-    prior_manifest_path = evidence / prior_record.get("path", "")
+    dispositions = {entry["path"]: entry for entry in addendum.get("full_projection_copy_disposition", [])}
+    prior_record = addendum.get("prior_r1_record_manifest", {})
+    prior_manifest_path = research / prior_record.get("path", "")
     prior_manifest_bytes = prior_manifest_path.read_bytes()
     if hashlib.sha256(prior_manifest_bytes).hexdigest() != prior_record.get("sha256"):
         failures.append({"check": "previous_record_manifest_pin", "path": str(prior_manifest_path.relative_to(ROOT))})
     prior_manifest = json.loads(prior_manifest_bytes)
-    for artifact in prior_manifest.get("artifacts", {}).values():
-        artifact_bytes = (ROOT / artifact["path"]).read_bytes()
-        if hashlib.sha256(artifact_bytes).hexdigest() != artifact.get("sha256"):
-            failures.append({"check": "previous_record_artifact_pin", "path": artifact["path"]})
 
-    prior_addendum_name = addendum.get("supersedes_addendum")
-    prior_addendum = json.loads((evidence / prior_addendum_name).read_text(encoding="utf-8"))
-    previous = prior_addendum.get("previous_copy_retained_as_noncurrent", {})
-    for basename in ("source-semantic-audit.json", "verification-summary.json"):
-        path = f"{previous.get('path')}/{basename}"
-        source_path = audit_path if basename.startswith("source") else summary_path
-        data = subprocess.check_output(["git", "show", f"{previous.get('source_revision')}:{source_path}"], cwd=ROOT)
-        copied = (research / previous.get("path") / basename).read_bytes()
-        if copied != data:
-            failures.append({"check": "retained_previous_copy_matches_historical_blob", "path": path, "expected_sha256": hashlib.sha256(data).hexdigest(), "actual_sha256": hashlib.sha256(copied).hexdigest()})
+    def verify_record_artifact(artifact, label):
+        artifact_path = ROOT / artifact["path"]
+        if artifact_path.exists():
+            artifact_bytes = artifact_path.read_bytes()
+            actual_sha = hashlib.sha256(artifact_bytes).hexdigest()
+            if actual_sha != artifact.get("sha256") or len(artifact_bytes) != artifact.get("bytes"):
+                failures.append({"check": "record_artifact_pin", "label": label, "path": artifact["path"]})
+            return
+        disposition = dispositions.get(artifact["path"])
+        if not disposition or disposition.get("status") != "removed_redundant_full_projection_copy":
+            failures.append({"check": "missing_record_artifact_without_disposition", "label": label, "path": artifact["path"]})
+            return
+        try:
+            restored_bytes = subprocess.check_output(["git", "show", f"{disposition['recovery_source_revision']}:{disposition['recovery_source_path']}"], cwd=ROOT)
+            restored_sha = hashlib.sha256(restored_bytes).hexdigest()
+            if restored_sha != artifact.get("sha256") or restored_sha != disposition.get("sha256") or len(restored_bytes) != disposition.get("former_bytes"):
+                failures.append({"check": "disposed_record_artifact_recovery_pin", "label": label, "path": artifact["path"], "sha256": restored_sha})
+            blob = subprocess.check_output(["git", "rev-parse", f"b35c131639ba2f93fa764642497d0fa49d695275:{disposition['path']}"], cwd=ROOT, text=True).strip()
+            if blob != disposition.get("b35c_git_blob"):
+                failures.append({"check": "disposed_copy_git_blob_object_present", "label": label, "blob": disposition.get("b35c_git_blob")})
+        except Exception as exc:
+            failures.append({"check": "disposed_record_artifact_recovery", "label": label, "error": str(exc)})
+
+    for artifact in prior_manifest.get("artifacts", {}).values():
+        verify_record_artifact(artifact, "previous_r1")
+
+    for disposition in dispositions.values():
+        removed_path = ROOT / disposition["path"]
+        if removed_path.exists():
+            failures.append({"check": "redundant_full_projection_copy_absent", "path": disposition["path"]})
+        try:
+            copy_bytes = subprocess.check_output(["git", "show", f"b35c131639ba2f93fa764642497d0fa49d695275:{disposition['path']}"], cwd=ROOT)
+            blob = subprocess.check_output(["git", "rev-parse", f"b35c131639ba2f93fa764642497d0fa49d695275:{disposition['path']}"], cwd=ROOT, text=True).strip()
+            if hashlib.sha256(copy_bytes).hexdigest() != disposition.get("sha256") or blob != disposition.get("b35c_git_blob"):
+                failures.append({"check": "removed_copy_disposition_git_pin", "path": disposition["path"]})
+        except Exception as exc:
+            failures.append({"check": "removed_copy_disposition_blob_resolution", "path": disposition.get("path"), "error": str(exc)})
 
 
 def main(argv=None) -> int:
