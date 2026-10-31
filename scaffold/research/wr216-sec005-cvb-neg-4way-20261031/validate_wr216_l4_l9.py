@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Static validator for WR216 SEC005 credential-value-boundary L4/L9 negative classifications (PR-A R2)."""
+"""Static validator for WR216 SEC005 credential-value-boundary L4/L9 negative classifications (PR-A R3)."""
 
 from __future__ import annotations
 
@@ -30,6 +30,9 @@ L8_REL = "docs/helix-security/L8-unit-verification/credential-value-boundary.jso
 
 EXPECTED_BLIND_R1_SHA256 = (
     "b18b662713eb94c3d6bc5a3443128c6c8112f61308886647d0d1f2372f754bf6"
+)
+EXPECTED_BLIND_R2_PRIOR_SHA256 = (
+    "5945795304fd043dbfddea54322fc943ea8c1cca9b1a7d2aa3a9a6f120261f09"
 )
 EXPECTED_BLIND_R2_SHA256 = (
     "92670bdec0283d3700bb871751487c92f93ec025d2995eab002236cb8fadb85f"
@@ -84,6 +87,34 @@ def main() -> int:
     l8 = json.loads((ROOT / L8_REL).read_text(encoding="utf-8"))
     comp = json.loads(COMP_PATH.read_text(encoding="utf-8"))
 
+    # Verify prior R2 Step A freeze (59457953..., comment 6534537441) is recorded in comparison.json
+    prior_freeze = comp.get("pre_comparison_freeze_r2", {}).get(
+        "prior_step_a_freeze", {}
+    )
+    if prior_freeze.get("sha256") != EXPECTED_BLIND_R2_PRIOR_SHA256:
+        failures.append("prior_step_a_freeze_sha256_mismatch")
+    if (
+        prior_freeze.get("issue_comment_url")
+        != "https://github.com/RetryYN/HELIX-HARNESS/issues/3510#issuecomment-6534537441"
+    ):
+        failures.append("prior_step_a_freeze_comment_url_mismatch")
+    if (
+        prior_freeze.get("derived_by", {}).get("session_id")
+        != "ca41e156-9926-495d-bb4c-e87ecb1d7a24"
+    ):
+        failures.append("prior_step_a_freeze_session_id_mismatch")
+    if len(prior_freeze.get("prior_17_classifications_inventory", [])) != 17:
+        failures.append("prior_step_a_freeze_inventory_count_mismatch")
+    if (
+        len(
+            prior_freeze.get("diff_from_59457953_to_92670bde", {}).get(
+                "contract_diffs", []
+            )
+        )
+        != 3
+    ):
+        failures.append("prior_step_a_freeze_contract_diffs_mismatch")
+
     # Verify all 24 candidates in blind-derivation-r2.json are compared in comparison.json
     r2_ids = [
         item["classification_id"]
@@ -99,13 +130,27 @@ def main() -> int:
             f"r2_blind_24_comparison_mismatch: {len(r2_ids)} vs {len(comp_r2_ids)}"
         )
 
-    # 2. Verify preservation against base_main_sha
+    # 2. Verify composite_class_formation in L4 and preservation against base_main_sha
+    ccf = l4.get("diagnostic_contract", {}).get("composite_class_formation")
+    required_ccf_keys = {
+        "purpose",
+        "finding_sequence",
+        "axis_projection",
+        "overall_classification",
+        "expected_state",
+        "class_reuse",
+        "non_goals",
+    }
+    if not isinstance(ccf, dict) or not required_ccf_keys.issubset(ccf.keys()):
+        failures.append("l4_missing_or_incomplete_composite_class_formation")
+
     base_rev = comp["base_main_sha"]
     l4_base = load_git_json(base_rev, L4_REL)
     l9_base = load_git_json(base_rev, L9_REL)
 
     l4_copy = json.loads(json.dumps(l4))
     l4_copy.pop("failure_classifications", None)
+    l4_copy.get("diagnostic_contract", {}).pop("composite_class_formation", None)
     if (
         l4_copy.get("remaining", [])[:4] != l4_base.get("remaining", [])
         or len(l4_copy.get("remaining", [])) != 7
@@ -172,12 +217,55 @@ def main() -> int:
                 failures.append(f"duplicate_l4_class_code: {code}")
             l4_class_by_code[code] = (ci, idx, cr)
             check_pointer_list(cr["source_pointers"], forbid_downward=True)
+            fcs = cr["expected"]["finding_codes"]
+            axis = cr["axis"]
+            if len(fcs) == 1 and not isinstance(axis, str):
+                failures.append(f"single_finding_axis_not_str: {code} -> {axis}")
+            if len(fcs) > 1 and (
+                not isinstance(axis, list) or len(axis) != len(fcs)
+            ):
+                failures.append(
+                    f"composite_finding_axis_not_ordered_list: {code} -> {axis} vs {fcs}"
+                )
 
     for tr in top_fc:
         check_pointer_list(tr["source_pointers"], forbid_downward=True)
+        code = tr["class_id"]
+        if code in l4_class_by_code:
+            _, _, cr = l4_class_by_code[code]
+            if tr.get("expected_axis") != cr.get("axis") or tr.get(
+                "expected_state"
+            ) != cr.get("state"):
+                failures.append(f"top_fc_axis_or_state_mismatch: {code}")
+
+    # Check specific composite classes highlighted in R2 F2 Major
+    expiry_comp = l4_class_by_code.get(
+        "SEC005_F01_CAPABILITY_EXPIRY_BINDING_AND_OBSERVATION_UNRESOLVED"
+    )
+    if (
+        not expiry_comp
+        or expiry_comp[2].get("axis")
+        != ["use_binding_state", "capability_state_projection"]
+    ):
+        failures.append("expiry_composite_class_missing_second_axis")
+    for cls_code in (
+        "SEC005_F01_REQUEST_CLASSIFICATION_BINDING_AND_CLASS_UNRESOLVED",
+        "SEC005_F01_REQUEST_CLASSIFICATION_CONFLICT_AND_CLASS_UNRESOLVED",
+    ):
+        cls_comp = l4_class_by_code.get(cls_code)
+        if not cls_comp or cls_comp[2].get("axis") != [
+            "use_binding_state",
+            "use_binding_state",
+        ]:
+            failures.append(f"classification_composite_axis_mismatch: {cls_code}")
 
     for u_item in l4["contracts"][0].get("unit_only_negative_classifications", []):
         check_pointer_list(u_item["source_pointers"], forbid_downward=True)
+        if (
+            u_item.get("axis") != "use_binding_state"
+            or u_item.get("state") != "unresolved"
+        ):
+            failures.append("unit_only_class_unresolved_missing_axis_or_state")
     for inv_item in l4["contracts"][1].get("invariant_non_class_dispositions", []):
         check_pointer_list(inv_item["source_pointers"], forbid_downward=True)
     for b_item in (
@@ -221,10 +309,26 @@ def main() -> int:
             if [f["code"] for f in ep["findings"]] != cr["expected"]["finding_codes"]:
                 failures.append(f"finding_codes_mismatch: {nc['id']}")
             axis = cr["axis"]
-            if ep.get(axis) != cr["state"]:
-                failures.append(
-                    f"axis_state_mismatch: {nc['id']} {axis}={ep.get(axis)} vs {cr['state']}"
-                )
+            if isinstance(axis, str):
+                if ep.get(axis) != cr["state"]:
+                    failures.append(
+                        f"axis_state_mismatch: {nc['id']} {axis}={ep.get(axis)} vs {cr['state']}"
+                    )
+            elif isinstance(axis, list):
+                if ep.get(axis[0]) != cr["state"]:
+                    failures.append(
+                        f"leading_axis_state_mismatch: {nc['id']} {axis[0]}={ep.get(axis[0])} vs {cr['state']}"
+                    )
+                if (
+                    code
+                    == "SEC005_F01_CAPABILITY_EXPIRY_BINDING_AND_OBSERVATION_UNRESOLVED"
+                    and ep.get(axis[1]) != "unknown"
+                ):
+                    failures.append(
+                        f"second_axis_state_mismatch: {nc['id']} {axis[1]}={ep.get(axis[1])} != unknown"
+                    )
+            else:
+                failures.append(f"invalid_axis_type: {nc['id']} {axis}")
             for f_obj in ep["findings"]:
                 if f_obj["return_owner"] != cr["backflow_owner"]:
                     failures.append(f"return_owner_mismatch: {nc['id']}")
@@ -268,6 +372,7 @@ def main() -> int:
     report = {
         "passed": len(failures) == 0,
         "blind_r1_sha256": blind_r1_sha,
+        "blind_r2_prior_sha256": prior_freeze.get("sha256"),
         "blind_r2_sha256": blind_r2_sha,
         "l4_class_count": len(top_fc),
         "l9_assigned_count": assigned_total,

@@ -30,13 +30,13 @@
     },
     {
       "path": "docs/helix-security/L4-basic-design/credential-value-boundary.json",
-      "sha256": "adc2574f27f58fda8f98ec5df40fe029a784efd14e8154fe1db771d2fd5d96a2",
-      "note": "Pinned SEC005 L4 basic design with 26 negative_classifications / failure_classifications and explicit unit_only / B01 dispositions."
+      "sha256": "2bd0270ee97d7fc6383ba575dde18ac91ece483235a14d7e2ea4e82a16b19b9b",
+      "note": "Pinned SEC005 L4 basic design with composite_class_formation, ordered expected_axis arrays on composite classes, 26 negative_classifications / failure_classifications, and explicit unit_only / B01 dispositions."
     },
     {
       "path": "docs/helix-security/L9-integration-verification/credential-value-boundary.json",
-      "sha256": "eba99a92d81d7322132a0793696101af36797c2f0550deb3240f6540d1d4532d",
-      "note": "Pinned SEC005 L9 integration verification with 69 assigned cases (0 unassigned) and negative_class_assignment_audit."
+      "sha256": "59c1d3dd3c03565ffdb7bc73b90333528d76670b0aeaabdf20bf42a7e1049634",
+      "note": "Pinned SEC005 L9 integration verification with 69 assigned cases (0 unassigned), composite_class_formation pointers, and negative_class_assignment_audit."
     },
     {
       "path": "docs/helix-security/L5-detail-design/credential-value-boundary.json",
@@ -56,11 +56,12 @@
   ],
   "role": "WR216 SEC005 L4/L9 V-pair（PR-A）の比較前固定artifact（R2独立導出およびR1履歴）とsource-only比較・検証スクリプトを束縛する。",
   "obligations": [
-    "比較前固定artifact（R2独立導出 blind-derivation-r2.json SHA-256 92670bdec0283d3700bb871751487c92f93ec025d2995eab002236cb8fadb85f および R1履歴 blind-derivation.json SHA-256 b18b662713eb94c3d6bc5a3443128c6c8112f61308886647d0d1f2372f754bf6）をbyte不変で保持する。",
+    "比較前固定artifact（R2独立導出 blind-derivation-r2.json SHA-256 92670bdec0283d3700bb871751487c92f93ec025d2995eab002236cb8fadb85f および R1履歴 blind-derivation.json SHA-256 b18b662713eb94c3d6bc5a3443128c6c8112f61308886647d0d1f2372f754bf6）をbyte不変で保持し、R2 Step Aの先行固定（comment 6534537441, SHA-256 5945795304fd043dbfddea54322fc943ea8c1cca9b1a7d2aa3a9a6f120261f09, 17候補）と差し替え理由・全差分をcomparison.jsonとREADME.mdに保持する。",
     "R2の24候補とR1 21分類・R2 26分類の根ごとの比較および6段階の変更順序をcomparison.jsonとREADME.mdに保持する。",
     "共有leaf（/capability/tuple/<field>, /request/classification, /capability/tuple/expiry, /context/observed_time）の一意化規則とL8/L9件数差（F01 33/55, F02 9/14, B01 1/0）のsource-only分類、およびL9単一契約負例から除いた3系統のL4行き先・remaining・PR-Bでの扱いを保持する。",
     "L9既存87ケースの期待値・oracle・要求意味を変えず、member 0のclass行・架空のsingleton・全件residualを作らない。",
-    "PR-Aではexplicit mode markerを追加せず、check-childのnegative_4wayが中間状態（L4=26, L9=69, L8=43, L5=0、141 failures）であることを明記する。"
+    "PR-Aではexplicit mode markerを追加せず、check-childのnegative_4wayが中間状態（L4=26, L9=69, L8=43, L5=0、141 failures）であることを明記する。",
+    "L4#/diagnostic_contract/composite_class_formation の複合class形成規則と、複数findingを持つ6複合classの順序付きexpected_axis配列を保持する。"
   ],
   "connections": {
     "consumers": [

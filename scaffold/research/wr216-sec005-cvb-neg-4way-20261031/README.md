@@ -6,8 +6,12 @@
 - PR 範囲: **PR-A（L4/L9 V-pair のみ）**。L5/L8 V-pair は 1 V-pair per PR 規則に従い後続 PR-B で扱う。
 - 比較前固定 artifact（R2 独立導出・正本）: `scaffold/research/wr216-sec005-cvb-neg-4way-20261031/blind-derivation-r2.json`
   - SHA-256: `92670bdec0283d3700bb871751487c92f93ec025d2995eab002236cb8fadb85f`
-  - 比較前固定コメント: `https://github.com/RetryYN/HELIX-HARNESS/issues/3510#issuecomment-6534617145`
+  - 比較前固定コメント: `https://github.com/RetryYN/HELIX-HARNESS/issues/3510#issuecomment-6534617145`（`2026-10-30T22:13:56Z`）
   - 独立導出担当: `SEC005 Upstream Blind Derivator`（session `f73cba46-71bf-40c2-8a3b-ac89c97692a8`, subagent `f0ce0082-355c-460f-9086-c1b153f75eda`。working-tree L4 および L5/L6/L7/L8/L9、先行 PR、Issue #3510 コメント、既存 `blind-derivation.json`/`comparison.json` の参照 0 件）
+- R2 Step A 先行固定（比較開始前の blind review で上記 `92670bde...` へ差し替え）:
+  - SHA-256: `5945795304fd043dbfddea54322fc943ea8c1cca9b1a7d2aa3a9a6f120261f09`
+  - 先行固定コメント: `https://github.com/RetryYN/HELIX-HARNESS/issues/3510#issuecomment-6534537441`（`2026-10-30T22:08:31Z`）
+  - 担当 session: `ca41e156-9926-495d-bb4c-e87ecb1d7a24`（同一 subagent `f0ce0082-355c-460f-9086-c1b153f75eda` 内の初回 worker、17 候補: `F01=8`, `F02=4`, `B01=5`。詳細は下記 §5 および `comparison.json#/pre_comparison_freeze_r2/prior_step_a_freeze` に全 17 候補と `92670bde...` 24 候補との全差分を収録）
 - R1 比較前固定 artifact（履歴として無変更保持）: `scaffold/research/wr216-sec005-cvb-neg-4way-20261031/blind-derivation.json`
   - SHA-256: `b18b662713eb94c3d6bc5a3443128c6c8112f61308886647d0d1f2372f754bf6`
   - 比較前固定コメント: `https://github.com/RetryYN/HELIX-HARNESS/issues/3510#issuecomment-6533221683`
@@ -44,7 +48,7 @@
 - **F1 対応（独立 subagent による blind 再導出と履歴保持）**:
   - R1 の `blind-derivation.json` は履歴として書き換えず保持し、R2 では下流未参照の独立 subagent が導出した `blind-derivation-r2.json`（24 候補: `F01=12`, `F02=6`, `B01=6`）を `#3510#issuecomment-6534617145` に freeze した上で、`comparison.json#/r2_blind_24_root_by_root_comparison` および `comparison.json#/post_comparison_change_order`（Step 1〜6）に根ごとの比較と変更順序を記録した。
 - **F2 対応（L9 単一契約負例から除いた 3 系統の L4 行き先・remaining・PR-B での扱いの明記）**:
-  1. `F01 credential_class_unresolved`（`HELIXSECURITY-L4-005-F01-NEG-04`）: L9 統合粒度では `[28], [29]` の順序付き 2-finding class（`L4#/contracts/0/negative_classifications/12..13`）として束縛し、L8 単体関数 `compare_credential_classification` の単独 1-finding 3 件（`SEC005-L8-CLASS-UNKNOWN/EMPTY/NULL-SET`）は `L4#/contracts/0/unit_only_negative_classifications/0`（`SEC005_F01_CREDENTIAL_CLASS_UNRESOLVED_UNIT`）および `L4#/remaining/4`・`L9#/remaining/4` に固定した（PR-B は L4 無変更で L5/L8 から当該 pointer へ結線可能）。
+  1. `F01 credential_class_unresolved`（`HELIXSECURITY-L4-005-F01-NEG-04`）: L9 統合粒度では `[28], [29]` の順序付き 2-finding class（`L4#/contracts/0/negative_classifications/12..13`）として束縛し、L8 単体関数 `compare_credential_classification` の単独 1-finding 3 件（`SEC005-L8-CLASS-UNKNOWN/EMPTY/NULL-SET`）は `L4#/contracts/0/unit_only_negative_classifications/0`（`SEC005_F01_CREDENTIAL_CLASS_UNRESOLVED_UNIT`、`axis="use_binding_state"`, `state="unresolved"`）および `L4#/remaining/4`・`L9#/remaining/4` に固定した（PR-B は L4 無変更で L5/L8 から当該 pointer へ結線可能）。
   2. `B01 outside_credential_free_scope` 等（`HELIXSECURITY-L4-005-B01-NEG-01..05`）: `L10-005-B01` 反例に対する L9 既存のオラクル被覆（`multi_contract_residual.positive_cases[1] SEC005-OS027-CREDENTIAL-REQUESTED-OUTSIDE-SCOPE`、`cases[2].positive_cases[0..3]`、F01/F02 負例、`multi_contract_residual.negative_cases[0..3]`）を `L4#/contracts/2/negative_classifications_disposition`（`SEC005_B01_OUTSIDE_CREDENTIAL_FREE_SCOPE` 等）および `L4#/remaining/5`・`L9#/remaining/5` に明記し、`contracts[2].negative_classifications: []` が「B01 に失敗なし」と読まれないようにした。
   3. `B01 use_context / credential_requested unknown`（`HELIXSECURITY-L4-005-B01-NEG-06`）: L8 単体検証 `SEC005-L8-INITIAL-UNKNOWN` および `SEC005-L8-PLAN-NULL/TEXT/ABSENT` の L4 接続先として `L4#/contracts/2/negative_classifications_disposition/families/5`（`SEC005_B01_USE_CONTEXT_OR_REQUEST_FLAG_UNRESOLVED`）および `L4#/remaining/6`・`L9#/remaining/6` に固定した（PR-B は L4 無変更で L5/L8 から当該 pointer へ結線可能）。
 - **F3 対応（単一契約 F01 の 2-finding 5 件の順序付き class 化）**:
@@ -53,3 +57,40 @@
 ## 4. 共有 leaf と一意化規則（#3952 R1 F1）
 
 - `comparison.json#/shared_leaf_and_deduplication_rules` および `L9#/negative_class_assignment_audit/shared_leaf_and_deduplication_rules` に 4 パターン（`/capability/tuple/<field>`、`/request/classification`、`/capability/tuple/expiry`、`/context/observed_time`）の共有比較規則と `(code, pointer, return_owner)` 一意化規則を記録。
+
+## 5. R2 Step A の先行固定（59457953...）と差し替え固定（92670bde...）の経緯・全差分（#3980 R2 F1 Major / #4001）
+
+- **先行固定の事実**:
+  - 独立 Step A subagent（`f0ce0082-355c-460f-9086-c1b153f75eda`）の内部で、最初に初回 worker session（`ca41e156-9926-495d-bb4c-e87ecb1d7a24`）が上流 5 入力（L3 functional 6..7、L3 business 0、L10 functional 6..7、L10 business 0、L4@`73193d8d37` 散文）のみを読んで 17 候補（`F01=8`, `F02=4`, `B01=5`）を作成し、`2026-10-30T22:08:31Z` に `#3510#issuecomment-6534537441`（SHA-256 `5945795304fd043dbfddea54322fc943ea8c1cca9b1a7d2aa3a9a6f120261f09`）として投稿した。
+- **比較開始前に差し替えた理由**:
+  - 親セッションへ返却する前（かつ Step B の既存 L4/L9 との比較を一切開始する前）に、同一 subagent `f0ce0082-355c-460f-9086-c1b153f75eda` 内で自動起動した blind review session（`f73cba46-71bf-40c2-8a3b-ac89c97692a8`、`2026-10-30T22:09:14Z`）が、同じく下流 `L5`〜`L9`・作業ツリー `L4`・先行 PR・Issue コメント・既存 scaffold を一切読まずに上流 5 入力との照合だけで先行 17 候補を監査し、上流散文上で別状態とされている violation/unknown の束ねおよび明示義務の漏れ 4 箇所を指摘して 24 候補（`F01=12`, `F02=6`, `B01=6`）へ改訂し、`2026-10-30T22:13:56Z` に `#3510#issuecomment-6534617145`（SHA-256 `92670bdec0283d3700bb871751487c92f93ec025d2995eab002236cb8fadb85f`）として再固定した。
+- **先行 artifact（59457953...）の復元と両 artifact の全差分（17 候補 → 24 候補、+7）**:
+  - `ca41e156-9926-495d-bb4c-e87ecb1d7a24` の session transcript（step 13）から先行 `59457953...` の JSON 全文を復元し、SHA-256 が `5945795304fd043dbfddea54322fc943ea8c1cca9b1a7d2aa3a9a6f120261f09` と完全一致することを確認した上で、`comparison.json#/pre_comparison_freeze_r2/prior_step_a_freeze/prior_17_classifications_inventory` に全 17 候補の明細を収録した。
+  - **F01（8 → 12、+4）**:
+    1. `F01-NEG-05 (capability_expired_or_time_expiry_unknown, state=expired_or_unknown)` が `expired` と `time/expiry unknown` を 1 候補に束ねかつ `revoked` を漏らしていたため、`L4#/contracts/0/output_meanings/0`（`active/expired/revoked/unknown`）および `content_comparison/1, /4` に従い `F01-NEG-05 (capability_expired)`・`F01-NEG-06 (time_or_expiry_source_unknown)`・`F01-NEG-07 (capability_revoked)` の 3 候補へ分離（+2。旧 `F01-NEG-06 worker_direct_store_exposure` は `F01-NEG-08` へ移動）。
+    2. `F01-NEG-07 (surface_raw_value_exposure_or_redacted_only_unobserved, state=conflict_or_unknown)` が生値露出（conflict）と未観測・redacted 自己申告のみ（unknown）を束ねていたため、`L4#/contracts/0/content_comparison/2` に従い `F01-NEG-09 (surface_raw_value_exposed)` と `F01-NEG-10 (surface_observation_unknown_or_redacted_only)` の 2 候補へ分離（+1）。
+    3. `F01-NEG-08 (prerequisite_007_006_violation_or_unknown, state=violation_or_unknown)` が 007/006 条件の違反（violation）と未確認（unknown）を束ねていたため、`L4#/contracts/0/content_comparison/3` に従い `F01-NEG-11 (prerequisite_007_006_violation)` と `F01-NEG-12 (prerequisite_007_006_unknown)` の 2 候補へ分離（+1）。
+  - **F02（4 → 6、+2）**:
+    1. `F02-NEG-01 (non_canonical_or_mismatched_predicate_ref, state=conflict_or_unresolved_predicate)` が非 canonical predicate 上書き・不一致（conflict）と predicate Ref 欠落（unresolved）を束ねていたため、`L4#/contracts/1/content_comparison/0` に従い `F02-NEG-01 (non_canonical_or_mismatched_predicate)` と `F02-NEG-02 (canonical_predicate_ref_unresolved)` の 2 候補へ分離（+1。旧 `F02-NEG-02..04` は `F02-NEG-03..05` へ移動）。
+    2. `L3-005-F02` obligation（「原値を通常証跡へ複写しない」）・`L4#/contracts/1/content_comparison/1`・`L4#/diagnostic_contract/pointer_base` に対応する独立候補が漏れていたため、`F02-NEG-06 (raw_value_copied_to_evidence_or_diagnostic)` を追補（+1）。
+  - **B01（5 → 6、+1）**:
+    1. `B01-NEG-01..05` はすべて `credential_requested` の真偽および経路選択が既知であることを前提としていたため、`L4#/contracts/2/input_meanings/0` と `L4#/legacy_comparison/0/preserve`（「unknown 非推測」）に従い、`credential_requested` または経路選択自体が不明な場合の `B01-NEG-06 (credential_requested_or_path_selection_unresolved)` を追補（+1）。
+
+## 6. 複合 class の形成規則（`composite_class_formation`）と順序付き `expected_axis` 配列（#3980 R2 F2 Major / #3996 R1 F1）
+
+- `OS015`（`docs/helix-os/L4-basic-design/management-authority-source-record.json`）および `SEC009`（`docs/helix-security/L4-basic-design/revoke-quarantine-propagation.json`）を先例として、`L4#/diagnostic_contract/composite_class_formation` に複合 class の形成規則を追加した。新しい finding・axis・state は一切作らない。
+- 複数 finding を持つ `SEC005` の全 6 複合 class（`L4#/contracts/0/negative_classifications/6, 12..16` および `L4#/failure_classifications/6, 12..16`）について、`expected_axis`（および `axis`）を `finding_codes` と同順の既存 axis 配列とし、`expected_preserved.contract_detail` に各 finding の単一分類が示す順序付き axis state を明記した：
+  1. `[14] SEC005_F01_CAPABILITY_EXPIRY_BINDING_AND_OBSERVATION_UNRESOLVED`（L9 `[40] SEC005-CAPABILITY-TUPLE-EXPIRY-MISSING`）:
+     - `finding_codes`: `["credential_binding_unresolved", "expiry_observation_unresolved"]`
+     - `expected_axis`: `["use_binding_state", "capability_state_projection"]`（2 軸目 `capability_state_projection` を縮約せず保持）
+     - 順序付き state: `use_binding_state=unresolved`（`SEC005_F01_CREDENTIAL_BINDING_UNRESOLVED`）、`capability_state_projection=unknown`（`SEC005_F01_EXPIRY_OBSERVATION_UNRESOLVED`）。scalar `expected_state` は先頭軸の `"unresolved"`。
+  2. `[12] SEC005_F01_REQUEST_CLASSIFICATION_BINDING_AND_CLASS_UNRESOLVED`（L9 `[28] SEC005-REQUEST-CLASSIFICATION-MISSING`）:
+     - `finding_codes`: `["credential_binding_unresolved", "credential_class_unresolved"]`
+     - `expected_axis`: `["use_binding_state", "use_binding_state"]`
+     - 順序付き state: `use_binding_state=unresolved`（Join 1、`SEC005_F01_CREDENTIAL_BINDING_UNRESOLVED`）、`use_binding_state=unresolved`（独立 class 集合照合、`SEC005_F01_CREDENTIAL_CLASS_UNRESOLVED_UNIT`）。scalar `expected_state` は `"unresolved"`。
+  3. `[13] SEC005_F01_REQUEST_CLASSIFICATION_CONFLICT_AND_CLASS_UNRESOLVED`（L9 `[29] SEC005-REQUEST-CLASSIFICATION-CONFLICT`）:
+     - `finding_codes`: `["credential_binding_conflict", "credential_class_unresolved"]`
+     - `expected_axis`: `["use_binding_state", "use_binding_state"]`
+     - 順序付き state: `use_binding_state=conflict`（Join 1、`SEC005_F01_REQUEST_BINDING_CONFLICT`）、`use_binding_state=unresolved`（独立 class 集合照合、`SEC005_F01_CREDENTIAL_CLASS_UNRESOLVED_UNIT`）。2 件目の `unresolved` を縮約せず `contract_detail` に保持し、scalar `expected_state` は先頭 finding の `"conflict"`。
+  4. `[6] SEC005_F01_CAPABILITY_TUPLE_BINDING_CONFLICT`、`[15] SEC005_F01_DUAL_OPERAND_CREDENTIAL_BINDING_UNRESOLVED`、`[16] SEC005_F01_BINDING_CONFLICT_WITH_INDEPENDENT_BINDING_UNRESOLVED`:
+     - `expected_axis`: いずれも `["use_binding_state", "use_binding_state"]` とし、各 finding の順序付き state（`conflict`+`conflict`、`unresolved`+`unresolved`、`conflict`+`unresolved`）を保持。
