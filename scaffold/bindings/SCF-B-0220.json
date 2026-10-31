@@ -1,0 +1,134 @@
+{
+  "schema_revision": 1,
+  "id": "SCF-B-0220",
+  "kind": "scaffold",
+  "title": "WR255 SEC009 L5/L8 U-ID and class audit evidence",
+  "product": "HELIX-HARNESS",
+  "owner_candidate": "SEC009 L5/L8 independent row and class audit evidence owner",
+  "state": "registered",
+  "reason": "Issue #3510 WR255 follow-up: retain the 285-row L8 to L9 source-ID crosswalk under unique U-IDs, audit all 32 classes against L4/L5/L8/L9, record unresolved positive expectations and the current check-child result without claiming four-way completion.",
+  "upstream": [
+    {
+      "path": "docs/helix-security/L3-requirements/business-requirements.json",
+      "sha256": "f1668180a3daccb38da15f471ade0806c64f094a77b0d7a5cef25edc9b6ce901",
+      "note": "Pinned source for static SEC009 L5/L8 ID, class, contract-source, or child-check comparison; no runtime semantics are executed."
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.json",
+      "sha256": "e4eeb70cc303e44199c7d898281e91c22dba89b47666353b9c80a4c634e898b5",
+      "note": "Pinned source for static SEC009 L5/L8 ID, class, contract-source, or child-check comparison; no runtime semantics are executed."
+    },
+    {
+      "path": "docs/helix-security/L4-basic-design/revoke-quarantine-propagation.json",
+      "sha256": "00376c402930e1287e9e0e896804b1de8a20390f8abbea8377b70712f868b9da",
+      "note": "Pinned source for static SEC009 L5/L8 ID, class, contract-source, or child-check comparison; no runtime semantics are executed."
+    },
+    {
+      "path": "docs/helix-security/L5-detail-design/revoke-quarantine-propagation.json",
+      "sha256": "1aefb9b64fb52abc8cf6eec7d32312bfcb9a07359d7406c2ca4e9fa9717fa190",
+      "note": "Pinned source for static SEC009 L5/L8 ID, class, contract-source, or child-check comparison; no runtime semantics are executed."
+    },
+    {
+      "path": "docs/helix-security/L8-unit-verification/revoke-quarantine-propagation.json",
+      "sha256": "73f253a76363fe6f936c3f5707c8b3e43f46f75bec5483925fad96982740293c",
+      "note": "Pinned source for static SEC009 L5/L8 ID, class, contract-source, or child-check comparison; no runtime semantics are executed."
+    },
+    {
+      "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+      "sha256": "af0f3e68683233ee1caa68b816ee7221b1fd4359442b179b4eaa0052068548e1",
+      "note": "Pinned source for static SEC009 L5/L8 ID, class, contract-source, or child-check comparison; no runtime semantics are executed."
+    },
+    {
+      "path": "docs/helix-security/L10-verification/business-verification.json",
+      "sha256": "c34b8f9a99f8f240558458dd63033acd0d756dfe61ad9cd3aac0e8e1c8193f42",
+      "note": "Pinned source for static SEC009 L5/L8 ID, class, contract-source, or child-check comparison; no runtime semantics are executed."
+    },
+    {
+      "path": "docs/governance/design-verification-quality-assurance.md",
+      "sha256": "f5751e236dc073fe67114c1fcb4b0f64b3d746290b25d75b61e60a08e3c99c85",
+      "note": "Pinned source for static SEC009 L5/L8 ID, class, contract-source, or child-check comparison; no runtime semantics are executed."
+    },
+    {
+      "path": "scaffold/tools/design_verification_checker.py",
+      "sha256": "e751526d67cd8df11e5aac1c5a1a178dfbd0fecc3f2ed21f995b7dda11ea4d5d",
+      "note": "Pinned source for static SEC009 L5/L8 ID, class, contract-source, or child-check comparison; no runtime semantics are executed."
+    }
+  ],
+  "role": "Reproducible static audit evidence for the SEC009 L5/L8 V-pair, unique U-ID mapping, source-derived negative class projection, positive expectation gaps, and incomplete 4-way checker outcome.",
+  "obligations": [
+    "Preserve every existing SEC009 source case ID in L8 case_id and integration_case_ref while assigning a unique U-ID in each unit_cases.id.",
+    "Resolve all 285 L8 U-IDs through the L8 shared source index to exactly 285 current L9 integration source IDs and pointers.",
+    "Independently compare all 32 L4/L5/L8/L9 class identities and shared values; retain stable L5 rule IDs and validate the L5 owner function against its contract declarations.",
+    "For each negative U-ID, compare condition, expected, and expected_preserved to its L4 classification; do not derive these fields from L9 expected_proposal.",
+    "Keep eight positive expectations unclosed unless case-specific L3/L10/L4 source facts support an independent expected result; keep row oracle_id and test_citation null where no row source is provided.",
+    "Record contract-level L10 oracle refs separately from individual U-ID oracle IDs and preserve the current static check-child report, including its failures.",
+    "Keep this evidence scaffold-only; do not treat static results as runtime, security behavior, approval, or formal 4-way completion."
+  ],
+  "connections": {
+    "consumers": [
+      "WR255 / Issue #3510 SEC009 L5/L8 PR-B review"
+    ],
+    "dependencies": [
+      "SEC009 L3/L10 approved contract sources",
+      "SEC009 L4/L5/L8/L9 canonical layer documents",
+      "QA §3 class and case comparison rules",
+      "current design_verification_checker.py static comparison"
+    ],
+    "boundary": "Static evidence only. No runtime, test, old CLI/hook/CI, security algorithm, credentials, real revoke/quarantine/recovery, authority, approval, production or external effect."
+  },
+  "operations": {
+    "allowed": [
+      "Run validate_wr255_l5l8.py from the repository root.",
+      "Run current design_verification_checker.py check-child through that validator.",
+      "Review source hashes, row/class audit, positive source facts, and saved checker report."
+    ],
+    "forbidden": [
+      "Generate L9 expected values or per-U-ID oracle/test citations.",
+      "Change L3/L10 requirements or oracle meaning.",
+      "Treat check-child failures as a pass or claim formal 4-way completion.",
+      "Execute old runtime, CLI, hook, test, CI, product runtime, or security algorithm."
+    ]
+  },
+  "artifacts": [
+    "docs/helix-security/L5-detail-design/revoke-quarantine-propagation.json",
+    "docs/helix-security/L8-unit-verification/revoke-quarantine-propagation.json",
+    "scaffold/research/wr255-sec009-l5l8-audit-20261101/README.md",
+    "scaffold/research/wr255-sec009-l5l8-audit-20261101/validate_wr255_l5l8.py",
+    "scaffold/research/wr255-sec009-l5l8-audit-20261101/verification-summary.json",
+    "scaffold/research/wr255-sec009-l5l8-audit-20261101/check-child-report.json",
+    "scaffold/bindings/SCF-B-0220.json"
+  ],
+  "verification": {
+    "evidence_kind": "scaffold",
+    "scope": [
+      "schema_interface",
+      "source_revision_stale",
+      "negative_case"
+    ],
+    "oracles": [
+      "Validator checks 32 stable class IDs and shared classifications across L4/L5/L8/L9, plus L4/L5 condition/preserved values and owner resolution.",
+      "Validator checks 285 unique L8 U-IDs in one-to-one order with 285 L9 source IDs and resolves each shared source pointer.",
+      "Validator checks 277 negative row expectations against the referenced L4 class; eight positive row expected fields remain null.",
+      "Validator resolves positive source identities at L3 business /requirements/2, L3 functional /requirements/21 and /requirements/22, L10 business /cases/2, and L4 /contracts/0.",
+      "Validator reruns static check-child and stores the full report: L4/L9 pass, L5/L8 pass, 4-way matched count 0, failures 2235."
+    ],
+    "negative_cases": [
+      "Do not infer individual oracle IDs or test citations from a contract-level L10 ref.",
+      "Do not copy any of the eight L9 expected_proposal values into L8.",
+      "Do not treat U-ID bijection or L5/L8 pair pass as 4-way completion.",
+      "Do not remove condition, expected, or expected_preserved from L8 rows; the current checker requires them for comparison.",
+      "Do not interpret the checker report as a runtime, test, security-behavior, or approval result."
+    ]
+  },
+  "replacement": {
+    "role_target": "Independent reviewable SEC009 L5/L8 row and class audit evidence for the canonical pair after the 4-way gap is separately resolved.",
+    "formal_artifacts": [
+      "docs/helix-security/L5-detail-design/revoke-quarantine-propagation.json",
+      "docs/helix-security/L8-unit-verification/revoke-quarantine-propagation.json"
+    ],
+    "issue": 3510,
+    "status": "pending"
+  },
+  "created": "2026-11-01",
+  "updated": "2026-11-01"
+}

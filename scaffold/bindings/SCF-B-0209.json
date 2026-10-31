@@ -20,8 +20,8 @@
     },
     {
       "path": "docs/helix-security/L8-unit-verification/revoke-quarantine-propagation.json",
-      "sha256": "ebfb5a50360fbcf4c0df262a4c31c87870b963b9d4e557888d63aef74699c777",
-      "note": "Nested L8 case inventory measured read-only; no source edits."
+      "sha256": "73f253a76363fe6f936c3f5707c8b3e43f46f75bec5483925fad96982740293c",
+      "note": "Nested L8 case inventory measured read-only; no source edits. Current pin updated to 73f253a76363fe6f936c3f5707c8b3e43f46f75bec5483925fad96982740293c at source revision d8e48de751c04f4250326dd049763c08dce3eaac; prior registered pin ebfb5a50360fbcf4c0df262a4c31c87870b963b9d4e557888d63aef74699c777 is retained in this note. WR255 follow-up added dedicated U-IDs and a shared L9 source index; PR-B changes no L4 nested payload and performs no pointer redirect. Previous pin was fixed at c14adddf2678c7a69d76420c451df3f05b1251ab. Replacement remains pending: the 308 L8 plus 308 L9 pointer redirect/audit condition is unmet and check-replacement reports the missing transfer map; do not retire SCF-B-0209."
     },
     {
       "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
@@ -112,7 +112,7 @@
     "status": "pending"
   },
   "created": "2026-10-31",
-  "updated": "2026-10-31",
+  "updated": "2026-11-01",
   "connections": {
     "consumers": [
       "WR245 / Issue #3510 SEC009 L4/L9 PR-A planning"

@@ -15,13 +15,13 @@
     },
     {
       "path": "docs/helix-security/L5-detail-design/revoke-quarantine-propagation.json",
-      "sha256": "90c3761e88ea76fefe1222372ffa1218afcf2fc8cb4dec666ca8b7ca98bd8734",
-      "note": "Current L5 rule function_ref and contract_ref declarations; contract function_refs arrays exposed in the checker/schema comparison."
+      "sha256": "1aefb9b64fb52abc8cf6eec7d32312bfcb9a07359d7406c2ca4e9fa9717fa190",
+      "note": "Current L5 rule function_ref and contract_ref declarations; contract function_refs arrays exposed in the checker/schema comparison. Current pin updated to 1aefb9b64fb52abc8cf6eec7d32312bfcb9a07359d7406c2ca4e9fa9717fa190 at source revision ea8e3c251069f64ca96a060a183693ab1bdfc08d; prior registered pin 90c3761e88ea76fefe1222372ffa1218afcf2fc8cb4dec666ca8b7ca98bd8734 is retained in this note. WR255 PR-B added the explicit 32-rule L5 projection; prior pin was fixed at c14adddf2678c7a69d76420c451df3f05b1251ab."
     },
     {
       "path": "docs/helix-security/L8-unit-verification/revoke-quarantine-propagation.json",
-      "sha256": "ebfb5a50360fbcf4c0df262a4c31c87870b963b9d4e557888d63aef74699c777",
-      "note": "Current L8 pair source; unchanged and no explicit marker."
+      "sha256": "73f253a76363fe6f936c3f5707c8b3e43f46f75bec5483925fad96982740293c",
+      "note": "Current L8 pair source; unchanged and no explicit marker. Current pin updated to 73f253a76363fe6f936c3f5707c8b3e43f46f75bec5483925fad96982740293c at source revision d8e48de751c04f4250326dd049763c08dce3eaac; prior registered pin ebfb5a50360fbcf4c0df262a4c31c87870b963b9d4e557888d63aef74699c777 is retained in this note. WR255 follow-up assigned dedicated U-IDs and shared source index while retaining the SEC009 source IDs; prior pin was fixed at c14adddf2678c7a69d76420c451df3f05b1251ab."
     },
     {
       "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
@@ -147,5 +147,5 @@
     "status": "pending"
   },
   "created": "2026-10-31",
-  "updated": "2026-10-31"
+  "updated": "2026-11-01"
 }
