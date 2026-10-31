@@ -32,3 +32,10 @@ L8主文書の94個のL9参照をすべて調査し、撤去されたnormal/vari
 - `scfctl validate`: bindings=198, fail=0。`scfctl stale`: stale=0。
 - 実測check-childはL4/L9 pair、L5/L8 pair、4層 ownership cap、pinをPASS。4way negativeは既存の35 failures・matched=0を再現する。詳細は`check-child-r1.json`。
 - 旧runtime、旧test、旧CI、algorithm、製品testは実行していない。
+
+## 固定authority参照の保持追補
+
+R1候補の検収で、要求・承認等の固定source pin 14件と `legacy_comparison`・`source_role_comparison` が除外されていたことを確認した。これらは実行材料ではないため元revisionの値を復元し、追加したL4 pinと併せて保持する。14件の固定revisionとSHA-256を再計算し、旧HELIXとの対応および原資料と提出変異の責務分離を維持する。過去のR1測定はその時点の証拠として不変にし、復元後のhashと検証は別の `r2-preservation-audit.json` に追補する。
+
+固定参照の復元後のL9は59,179 bytes。check-childのpinはL4/L9/L5/L8の各15/15/25/25件すべてPASS、4wayは既存35 failuresのまま。
+原資料と提出変異の分離・mutation代替の境界は維持し、L5/L8へ原bytesを置く旧説明は撤去後の構成に合わせて更新した。

@@ -30,8 +30,8 @@
     },
     {
       "path": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json",
-      "sha256": "9e0f0b5efd45685d18c2a2b3a39785556a67963449df86907751da8516aa3931",
-      "note": "35 source packet and expected-material pointers; not edited. WR253 L9 follow-up: prior pin 4f64977ee8b2900733a823d5b9755f567952caef8cf323036a9b0776202d2462 remains historical at 6c1ceb0172c0dcb95b843739bee2c15905dd735f; current pin 805ab74d9792775616e10af7b3da92a8be13002f66180e2a1862de17dbd597d3 removes only 35 source_packet.byte_sha256 fields with source/expected meaning preserved. Earlier unchanged statements refer to their original revision. [WR253 R1 allowlist rebind: prior L9 SHA-256 805ab74d9792775616e10af7b3da92a8be13002f66180e2a1862de17dbd597d3 fixed at 22f14f1866948783a81a7eb665dc3d5da7d97daa; current L9 SHA-256 9e0f0b5efd45685d18c2a2b3a39785556a67963449df86907751da8516aa3931. L4 contracts, 37 numbered system-oracle rows (5 normal, 2 variants, 30 negative) retained; execution fixture, raw source, full return, and mutation payloads removed."
+      "sha256": "fc9857ffab4effa638b32f95a11c0011a66d0f52d3dce32fec4d246171f6d19d",
+      "note": "35 source packet and expected-material pointers; not edited. WR253 L9 follow-up: prior pin 4f64977ee8b2900733a823d5b9755f567952caef8cf323036a9b0776202d2462 remains historical at 6c1ceb0172c0dcb95b843739bee2c15905dd735f; current pin 805ab74d9792775616e10af7b3da92a8be13002f66180e2a1862de17dbd597d3 removes only 35 source_packet.byte_sha256 fields with source/expected meaning preserved. Earlier unchanged statements refer to their original revision. [WR253 R1 allowlist rebind: prior L9 SHA-256 805ab74d9792775616e10af7b3da92a8be13002f66180e2a1862de17dbd597d3 fixed at 22f14f1866948783a81a7eb665dc3d5da7d97daa; current L9 SHA-256 9e0f0b5efd45685d18c2a2b3a39785556a67963449df86907751da8516aa3931. L4 contracts, 37 numbered system-oracle rows (5 normal, 2 variants, 30 negative) retained; execution fixture, raw source, full return, and mutation payloads removed. R1 authority-source preservation follow-up: previous L9 SHA-256 9e0f0b5efd45685d18c2a2b3a39785556a67963449df86907751da8516aa3931 at 2968299a71abd6367b0f66827fb9d00caed56a3e; restored 14 historic source pins and legacy/source-role boundaries; current SHA-256 fc9857ffab4effa638b32f95a11c0011a66d0f52d3dce32fec4d246171f6d19d."
     },
     {
       "path": "docs/helix-harness/L5-detail-design/tdd-development-flow.json",
@@ -83,7 +83,8 @@
     "scaffold/research/wr253-tdd-l9-slim-20261101/README.md",
     "scaffold/research/wr253-tdd-l9-slim-20261101/validate_l9_slim.py",
     "scaffold/research/wr253-tdd-l9-slim-20261101/consumer-validator-followup.json",
-    "scaffold/research/wr253-tdd-l9-slim-20261101/verification-summary.json"
+    "scaffold/research/wr253-tdd-l9-slim-20261101/verification-summary.json",
+    "scaffold/research/wr253-tdd-l9-slim-20261101/r2-preservation-audit.json"
   ],
   "verification": {
     "evidence_kind": "scaffold",
@@ -100,7 +101,11 @@
       "candidate artifact SHA-256: scaffold/research/wr253-tdd-l9-slim-20261101/validate_l9_slim.py=2b96f71d28b4213336858a4c1178614643c753292c3b8e8a41036ddc3d7f639e",
       "candidate artifact SHA-256: scaffold/research/wr253-tdd-l9-slim-20261101/consumer-validator-followup.json=28357a1966733ce2050aa5f2b0e3110de8b5edc582216100b1e7ede2fc956916",
       "candidate artifact SHA-256: scaffold/research/wr253-tdd-l9-slim-20261101/verification-summary.json=1283c87703372b19497d15969ef3b86f8a09124a5fc31221f828900cdf1e77a0",
-      "WR253 R1 validator history: previous hash at 22f14f1866948783a81a7eb665dc3d5da7d97daa retained above; current candidate validator SHA-256 0716bd1763cf3832195e7799eca0e2108f7ad8fc8ea5ab6d971c8509c4c90789 (scaffold/research/wr253-tdd-l9-slim-20261101/validate_l9_slim.py)."
+      "WR253 R1 validator history: previous hash at 22f14f1866948783a81a7eb665dc3d5da7d97daa retained above; current candidate validator SHA-256 0716bd1763cf3832195e7799eca0e2108f7ad8fc8ea5ab6d971c8509c4c90789 (scaffold/research/wr253-tdd-l9-slim-20261101/validate_l9_slim.py).",
+      "R1 authority-source preservation: prior source and validator hashes remain historical at 2968299a71abd6367b0f66827fb9d00caed56a3e; current candidate artifact SHA-256 entries follow.",
+      "candidate artifact SHA-256: scaffold/research/wr253-tdd-l9-slim-20261101/validate_l9_slim.py=f5bd5a6820e0ef46e5a00134de2bcf151065755d9e3e794ab07ef2e625bb15ca",
+      "candidate artifact SHA-256: scaffold/research/wr253-tdd-l9-slim-20261101/r2-preservation-audit.json=0837e3a9af27a6c60a477f8da1e03ea36e22b402ae27babf00e4a032bd81b168",
+      "candidate artifact SHA-256: scaffold/research/wr253-tdd-l9-slim-20261101/README.md=61a4f97b33574e5515b8e299edf30f82644aff5b7794b20929671e0835eae877"
     ],
     "negative_cases": [
       "他のfield、case、期待、候補設計を変更しない。",

@@ -21,7 +21,7 @@ CURRENT_PRE_REMOVAL_SHA256 = "805ab74d9792775616e10af7b3da92a8be13002f66180e2a18
 ALLOWED_ROOT = {
     "parent", "status", "authority_effect", "source_main", "authority_boundary", "scope",
     "document_id", "layer", "paired_document", "purpose", "verification_boundary", "source_pins",
-    "execution_boundary", "cases", "completion", "removed_materials",
+    "execution_boundary", "cases", "completion", "removed_materials", "legacy_comparison", "source_role_comparison",
 }
 FORBIDDEN_KEYS = {
     "source_packet", "normal_fixture", "original", "fixture_preparation", "mutation",
@@ -70,10 +70,17 @@ def main() -> int:
         and hashlib.sha256(historical_raw).hexdigest() == CURRENT_PRE_REMOVAL_SHA256
     )
     l4_at_fixed_revision = subprocess.check_output(["git", "show", f"{PRE_REMOVAL}:{L4}"], cwd=ROOT)
-    l4_pin = current.get("source_pins", [{}])[0]
+    l4_pins = [pin for pin in current.get("source_pins", []) if pin.get("path") == L4]
     checks["L4_contract_source_is_fixed_to_pre_removal_bytes"] = (
-        current.get("source_pins") == [{"path": L4, "revision": PRE_REMOVAL, "sha256": hashlib.sha256(l4_at_fixed_revision).hexdigest()}]
-        and l4_pin.get("sha256") == hashlib.sha256((ROOT / L4).read_bytes()).hexdigest()
+        l4_pins == [{"path": L4, "revision": PRE_REMOVAL, "sha256": hashlib.sha256(l4_at_fixed_revision).hexdigest()}]
+        and l4_pins[0].get("sha256") == hashlib.sha256((ROOT / L4).read_bytes()).hexdigest()
+    )
+    checks["historical_authority_source_pins_and_legacy_boundaries_preserved"] = (
+        current.get("source_pins", [])[:-1] == historical.get("source_pins")
+        and current.get("legacy_comparison") == historical.get("legacy_comparison")
+        and historical.get("source_role_comparison") == "正常rootを原資料例、負例rootを提出変異として分離。同Refの提出変異をownerの原内容更新にしない。F02 mutation代替はRed欠落前提を明示。L5/L8で個別参照資料の原bytes/内容/資格を具体化する。"
+        and current.get("source_role_comparison") == "正常rootの原資料と負例の提出変異を分離し、同Refの提出変異をownerの原内容更新にしない。F02のmutation代替はRed欠落前提を保つ。個別参照の原内容と資格の区別は維持し、撤去した実行bytesは固定revisionの比較資料に限りL7期待・fixtureへ流さない。"
+        and all(hashlib.sha256(subprocess.check_output(["git", "show", pin["revision"] + ":" + pin["path"]], cwd=ROOT)).hexdigest() == pin["sha256"] for pin in historical["source_pins"])
     )
     checks["root_and_branch_are_allowlisted"] = (
         set(current) == ALLOWED_ROOT

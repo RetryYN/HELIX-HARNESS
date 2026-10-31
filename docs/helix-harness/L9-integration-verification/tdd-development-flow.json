@@ -1009,9 +1009,230 @@
   },
   "source_pins": [
     {
+      "path": "docs/concept/helix-concept.md",
+      "revision": "337eb623d4a4d6aaa51b430964eb8f6c2e175202",
+      "sha256": "bbc787c5dc17de9eded156285ad82ef768788cfa31822dfffa477db073a5e715"
+    },
+    {
+      "path": "docs/concept/helix-principles.md",
+      "revision": "337eb623d4a4d6aaa51b430964eb8f6c2e175202",
+      "sha256": "5b3d1d42b38a6e09d5c4da45760036e5234f5a316b3a02e7c48fb88a48a4c441"
+    },
+    {
+      "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "revision": "337eb623d4a4d6aaa51b430964eb8f6c2e175202",
+      "sha256": "c5a2eb180f260534174abbf031121f49122791621f7728c4e1be6348a93dab2d"
+    },
+    {
+      "path": "docs/helix-harness/L3-requirements/business-requirements.json",
+      "revision": "337eb623d4a4d6aaa51b430964eb8f6c2e175202",
+      "sha256": "25e0e8f8ee8acbc220483ab6854155218193861086cf757f933e2cd6263f444d"
+    },
+    {
+      "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+      "revision": "337eb623d4a4d6aaa51b430964eb8f6c2e175202",
+      "sha256": "a3b907cdc316117d4684632f9a1cbf36125eb6e6172f9cfc286060617583d7be"
+    },
+    {
+      "path": "docs/helix-harness/L3-requirements/nfr-grade.json",
+      "revision": "337eb623d4a4d6aaa51b430964eb8f6c2e175202",
+      "sha256": "b62f823d1c2edfd192ba8aeccb71159f3322aab17fa991d7ceb85712d8fbd486"
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/business-verification.json",
+      "revision": "337eb623d4a4d6aaa51b430964eb8f6c2e175202",
+      "sha256": "3a9982ef2e59e3d027ce8e5cd72b9879b6224a8e4ea74b657bf9b67c90934319"
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/functional-verification.json",
+      "revision": "337eb623d4a4d6aaa51b430964eb8f6c2e175202",
+      "sha256": "fc58ad2268746d7924ac9be33e8f3f75e6d3c2cc619e27fbc1ddc34edd065cb2"
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/nfr-verification.json",
+      "revision": "337eb623d4a4d6aaa51b430964eb8f6c2e175202",
+      "sha256": "578b1b368bdd3878ade8fcab77cc47320b8acc1d2d967af1708b333bea2f36b0"
+    },
+    {
+      "path": "docs/governance/decisions/requirements-entry-restart-po-decision-2026-10-12.md",
+      "revision": "337eb623d4a4d6aaa51b430964eb8f6c2e175202",
+      "sha256": "994a81b2d5eb4cbf291951b688fca85fa2b1353848091c0ab4cfac91fb8c131b"
+    },
+    {
+      "path": "docs/governance/decisions/helix-harness-verification-prerequisite-l3-l10-delegated-decision-2026-10-12.md",
+      "revision": "337eb623d4a4d6aaa51b430964eb8f6c2e175202",
+      "sha256": "1df0aa1bdb1b5fcbe2beba5e202601fa0d27fdeb5419e58d8db5cc3691d927fb"
+    },
+    {
+      "path": "docs/helix-harness/L4-basic-design/v12-layer-contract.json",
+      "revision": "337eb623d4a4d6aaa51b430964eb8f6c2e175202",
+      "sha256": "edca02e8ccabbf560058baab322928e23b419d9f4e37d68b35e3cabfb3ff9ae4"
+    },
+    {
+      "path": "docs/helix-harness/L4-basic-design/verification-discipline.json",
+      "revision": "337eb623d4a4d6aaa51b430964eb8f6c2e175202",
+      "sha256": "f5aaccff49e5e6d0584169af009e15aaf59d963018f8f8cceb230d45de321ebb"
+    },
+    {
+      "path": "docs/helix-harness/L9-integration-verification/verification-discipline.json",
+      "revision": "337eb623d4a4d6aaa51b430964eb8f6c2e175202",
+      "sha256": "19498cf4c9cc07d7335592cda45bfdfbaea51cba08ec39c5118ac83b4e8e0221"
+    },
+    {
       "path": "docs/helix-harness/L4-basic-design/tdd-development-flow.json",
       "revision": "22f14f1866948783a81a7eb665dc3d5da7d97daa",
       "sha256": "347bfd83b7685b52c45f62b5ee6f336fd74338ee65e67327e6e810d6eb489a16"
     }
-  ]
+  ],
+  "legacy_comparison": [
+    {
+      "asset_id": "LEGACY-ASSET-6B6C5CB0E481BE01088B",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L1-requirements/functional-requirements.md",
+      "sha256": "a9c1064d359b0d9c7269a2253e416597de77fa91149c162f9a40467be3f1a008",
+      "archive_disposition": "source_snapshot_preservation",
+      "reuse": "semantic_rederivation",
+      "line_quotes": [
+        {
+          "line": 33,
+          "text": "| **FR-L1-02** | TDD 強制フロー (テストファースト順序厳守・実装先行禁止) | L7-implementation | L6 機能設計 (関数仕様 / クラス設計 / エッジケース) | テストコード (red) → 本体実装 (green) | P0 | PM-02 (L7 工程) / HM-07 |"
+        },
+        {
+          "line": 81,
+          "text": "| **FR-L1-50** | DDD/TDD 厳格化 automation (domain boundary / invariant trace / Red-first evidence / oracle strength / integration GWT) | PO directed 2026-06-09 / IMP-097..101 | DDD/TDD rule SSoT、PLAN evidence、source/test docs、L7/L8 test-design | doctor lint findings、workflow anchor、L7 oracle、L8 GWT compliance | P1 | HM-07 / PM-04 |"
+        }
+      ],
+      "preserve": "FR02のtest Red→本体Green、FR50のoracle強度/traceを保持。",
+      "change": "旧層番号とruntime/test入口を転写せず、現行L6契約/L5設計と対の検証へ対応。",
+      "reason": "採用済み015のREDFIRSTとV12の対定義へ導出する。"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-5E22432B0A5A8F7CC8B3",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/ddd-tdd-rules.md",
+      "sha256": "9eac2cc9e5fa8f1177b39f86681fa928cb22070666a5306dce7ae6943597d7af",
+      "archive_disposition": "unresolved",
+      "reuse": "semantic_rederivation",
+      "line_quotes": [
+        {
+          "line": 23,
+          "text": "4. **TDDは検証契約**: Redは「testを書いた時刻」ではなく、意図した欠陥を実際に検出する証拠である。"
+        },
+        {
+          "line": 24,
+          "text": "   Greenは最小実装、Refactorは同じoracleがgreenのまま構造を単純化した証拠で閉じる。"
+        },
+        {
+          "line": 117,
+          "text": "- CIはPRでtargeted oracleとcritical gateを実行し、省略分をpost-merge fullとnightlyで回収する。"
+        },
+        {
+          "line": 118,
+          "text": "  targeted greenをfull greenと偽らず、unknown impactはfullへfail-closeする。"
+        },
+        {
+          "line": 119,
+          "text": "- refactorは公開behaviorを変えない。新behavior、schema、migration、failure semanticsの変更を検出したら"
+        },
+        {
+          "line": 135,
+          "text": "- id: DDD-INV-001 oracle: U-DDDTDD-001 - Governance/domain module は acyclic を保ち、下位 contract は上位 runtime orchestration に依存しない。"
+        },
+        {
+          "line": 145,
+          "text": "  許容するcomplexity budgetをdiscipline baselineとしてfreezeする。"
+        },
+        {
+          "line": 146,
+          "text": "- L4/L9: bounded context、Aggregate/Port/Adapter境界とsystem/integration oracleを対で固定する。"
+        },
+        {
+          "line": 147,
+          "text": "  object modelが不要なら`none`または`pure_function`と理由を残す。"
+        },
+        {
+          "line": 148,
+          "text": "- L5/L8: precondition、postcondition、invariant、failure/rollback、edge caseと単体・結合oracleを対で固定する。"
+        },
+        {
+          "line": 149,
+          "text": "- Forward L6: L7 implementation が始まる前に、domain boundary、invariant、rule ID を定義または更新する。"
+        },
+        {
+          "line": 150,
+          "text": "- L6/L7: Red → 最小Green → behavior-preserving Refactorの順で閉じ、契約外コードを追加しない。"
+        }
+      ],
+      "preserve": "実欠陥を検出したRed、最小Green、意味保存Refactor、設計と対検証の固定を保持。",
+      "change": "旧red_at<=green_atだけの保証、lint rule/旧CLI、full/nightly既定は採用しない。",
+      "reason": "015実装前Redと005ticket関係回収を正にする。新たな全製品gateや承認主体は作らない。"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-FDBA655B1CFF75DCDC0E",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/repository-structure.md",
+      "sha256": "6f8ee784049d03279641151714c3572656eb20c64cfb769853b6e885abf4f262",
+      "archive_disposition": "unresolved",
+      "reuse": "semantic_rederivation",
+      "line_quotes": [
+        {
+          "line": 124,
+          "text": "4 artifact は**別物として別ディレクトリ**に置き、双方向 trace で結ぶ（混在禁止）。"
+        },
+        {
+          "line": 128,
+          "text": "| ① 設計 (文書) | `docs/design/` |"
+        },
+        {
+          "line": 129,
+          "text": "| ② 実装コード | `src/` |"
+        },
+        {
+          "line": 130,
+          "text": "| ③ テスト設計 (文書) | `docs/test-design/` |"
+        },
+        {
+          "line": 131,
+          "text": "| ④ テストコード | `tests/` |"
+        }
+      ],
+      "preserve": "設計/実装/検証設計/検証コードの区別と双方向traceを保持。",
+      "change": "旧src/tests/docs物理配置、旧schema正本/旧runtimeを復元しない。",
+      "reason": "現行機構×層・packへの配置入力と論理traceを分ける。"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-A127DEC3EEE6ED63CF17",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/predecessor-harness-full-weakness-audit-2026-07-20.md",
+      "sha256": "bab121404c956a0a4b403e589bea1c414af59b5996989bea5fab9f98f42f6872",
+      "archive_disposition": "unresolved",
+      "reuse": "semantic_rederivation",
+      "line_quotes": [
+        {
+          "line": 71,
+          "text": "| UTW-005 | Critical | PR trace/review evidenceが最新HEAD・merge-baseへ常時再束縛されない | 既存UT-GH-06/07/12 | UTH-FR-015 |"
+        },
+        {
+          "line": 75,
+          "text": "| UTW-009 | High | full regression/doctorが重く、timeoutと長いself-heal loopを生む | 220.54秒、doctor test 214.17秒 | UTH-NFR-002、UTH-FR-011 |"
+        },
+        {
+          "line": 80,
+          "text": "| UTW-014 | High | source loaderが欠損時に空集合へ縮退する箇所がありabsence blindnessを作る | graph designのfail-open記述等 | UTH-FR-009、UTH-FR-023 |"
+        },
+        {
+          "line": 86,
+          "text": "| UTW-020 | High | DB rebuild、projection、test evidenceが巨大aggregateへ集中し、partial failureの診断単位が粗い | projection/doctor実測 | UTH-FR-011、UTH-FR-021 |"
+        },
+        {
+          "line": 87,
+          "text": "| UTW-021 | High | completion evidenceが時刻・prose・自己申告へ戻る余地がある | legacy evidence grandfather、review schemaの段階強制 | UTH-FR-022 |"
+        },
+        {
+          "line": 95,
+          "text": "| UTW-029 | Medium | consumer setup、source repo、clean distributionで検証集合が分岐しやすい | source/Pack workflow分離 | UTH-FR-027 |"
+        }
+      ],
+      "preserve": "最新HEAD再束縛、source欠落→空の拒否、自己報告/長いfull loopの失敗史を検証論点へ保持。",
+      "change": "旧auditの全弱点/UTH要求/gateを015の要求へ追加しない。",
+      "reason": "承認015の凍結/実観測/品質境界/不足保全の具体負例に限り使用。"
+    }
+  ],
+  "source_role_comparison": "正常rootの原資料と負例の提出変異を分離し、同Refの提出変異をownerの原内容更新にしない。F02のmutation代替はRed欠落前提を保つ。個別参照の原内容と資格の区別は維持し、撤去した実行bytesは固定revisionの比較資料に限りL7期待・fixtureへ流さない。"
 }
