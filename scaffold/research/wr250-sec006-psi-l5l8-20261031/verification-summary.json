@@ -1,0 +1,188 @@
+{
+  "schema": "wr250-sec006-l5l8-verification-summary.v1",
+  "evidence_kind": "scaffold",
+  "authority_effect": "none",
+  "base_revision": "1b155cc648d589d32ca111efb3fbfcea1c4048b7",
+  "source_hashes": {
+    "L4": {
+      "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+      "base_sha256": "6f64b6d9654f596d5597a056b4ded9288854640411c8ffccc2b0e6822306193a",
+      "current_sha256": "6f64b6d9654f596d5597a056b4ded9288854640411c8ffccc2b0e6822306193a",
+      "changed": false
+    },
+    "L5": {
+      "path": "docs/helix-security/L5-detail-design/project-scope-isolation.json",
+      "base_sha256": "1b6e50cd2db88e86ae88723589e12170b0651650cf5dbb280b99c673180ea108",
+      "current_sha256": "41c49bc0b62b415422067297bd9accf848e4f14e253fab9779e778c49c2e1edd",
+      "changed": true
+    },
+    "L8": {
+      "path": "docs/helix-security/L8-unit-verification/project-scope-isolation.json",
+      "base_sha256": "45d9ae37cf4136aed05d548107a7bdc0c088e2753d36428fb4692c7078a65070",
+      "current_sha256": "3e9ba62e992bf99e38a85003bcddc06f93f21d6a4041a56fa2a255739dcf51fb",
+      "changed": true
+    },
+    "L9": {
+      "path": "docs/helix-security/L9-integration-verification/project-scope-isolation.json",
+      "base_sha256": "e73518018f836294df326a75d48c344085252a81b302a6cc54fd24efb2332412",
+      "current_sha256": "e73518018f836294df326a75d48c344085252a81b302a6cc54fd24efb2332412",
+      "changed": false
+    }
+  },
+  "counts": {
+    "L4_failure_classes": 10,
+    "L5_failure_rules": 10,
+    "L8_existing_negative_rows": 52,
+    "L8_rows_with_class_assignment": 52,
+    "L8_L9_raw_deficit": 46,
+    "L8_candidate_unit_cases": 98,
+    "candidate_test_citations_null": 98,
+    "candidate_oracles_null": 98,
+    "L9_negative_rows": 98,
+    "L9_residual_negative_rows": 16,
+    "L8_L9_class_deficit_rows": 56,
+    "L8_L9_class_surplus_rows": 10,
+    "L8_candidate_rows_for_L9": 98,
+    "L9_residual_negative_rows_source": {
+      "path": "docs/helix-security/L9-integration-verification/project-scope-isolation.json",
+      "pointer": "/multi_contract_residual/negative_case_count",
+      "value": 16,
+      "negative_cases_array_length": 16
+    }
+  },
+  "class_counts": {
+    "L8_existing": {
+      "SEC003-F01-IDENTITY-CONFLICT": 12,
+      "SEC003-F01-IDENTITY-MISSING": 15,
+      "SEC003-F01-TENANT-APPLICABILITY-UNRESOLVED": 1,
+      "SEC003-F01-TENANT-INVENTED": 1,
+      "SEC003-F02-CONNECTION-MATERIAL-CONFLICT": 5,
+      "SEC003-F02-CONNECTION-MATERIAL-UNRESOLVED": 4,
+      "SEC003-F02-EXPLICIT-CONNECTION-ABSENT": 1,
+      "SEC003-F02-FOREIGN-LATEST": 0,
+      "SEC003-F02-IMPLICIT-FALLBACK": 4,
+      "SEC003-F02-OPERATION-SCOPE": 9
+    },
+    "L9": {
+      "SEC003-F01-IDENTITY-CONFLICT": 48,
+      "SEC003-F01-IDENTITY-MISSING": 12,
+      "SEC003-F01-TENANT-APPLICABILITY-UNRESOLVED": 3,
+      "SEC003-F01-TENANT-INVENTED": 1,
+      "SEC003-F02-CONNECTION-MATERIAL-CONFLICT": 1,
+      "SEC003-F02-CONNECTION-MATERIAL-UNRESOLVED": 1,
+      "SEC003-F02-EXPLICIT-CONNECTION-ABSENT": 8,
+      "SEC003-F02-FOREIGN-LATEST": 6,
+      "SEC003-F02-IMPLICIT-FALLBACK": 7,
+      "SEC003-F02-OPERATION-SCOPE": 11
+    },
+    "L8_candidates": {
+      "SEC003-F01-IDENTITY-CONFLICT": 48,
+      "SEC003-F01-IDENTITY-MISSING": 12,
+      "SEC003-F01-TENANT-APPLICABILITY-UNRESOLVED": 3,
+      "SEC003-F01-TENANT-INVENTED": 1,
+      "SEC003-F02-CONNECTION-MATERIAL-CONFLICT": 1,
+      "SEC003-F02-CONNECTION-MATERIAL-UNRESOLVED": 1,
+      "SEC003-F02-EXPLICIT-CONNECTION-ABSENT": 8,
+      "SEC003-F02-FOREIGN-LATEST": 6,
+      "SEC003-F02-IMPLICIT-FALLBACK": 7,
+      "SEC003-F02-OPERATION-SCOPE": 11
+    }
+  },
+  "rowwise_mapping": {
+    "rows": 98,
+    "candidate_targets_unique": 98,
+    "field_state_audits": 98,
+    "expected_comparison_scope": [
+      "candidate expected vs L4 class: condition, ordered finding_codes, axis, state, side_effect_count",
+      "L4 expected vs L9 expected_observation: condition and ordered finding_codes only"
+    ],
+    "candidate_l4_rule_consistency": {
+      "condition": 98,
+      "ordered_finding_codes": 98,
+      "expected_axis": 98,
+      "expected_state": 98,
+      "side_effect_count": 98
+    },
+    "L4_vs_L9_comparable_matches": {
+      "condition": 98,
+      "ordered_finding_codes": 98
+    },
+    "full_raw_input_json_copied_to_L8": false,
+    "full_input_json_equality_claimed": false,
+    "formal_l8_l9_one_to_one_established": false,
+    "file": "rowwise-comparison.json",
+    "interpretation": "All 98 short candidate descriptions were reconciled against selected actual L9 request/context paths. Matrix records present values, explicit null, or omitted status. Static expectation checks cover only the listed fields; all candidates remain unexecuted with null oracle/test citation."
+  },
+  "design_verification_checker": {
+    "before": "/tmp/wr250-base-check-child.json",
+    "after": "/tmp/wr250-after-check-child.json",
+    "after_measured": {
+      "comparison_mode": "legacy_casewise_four_layer",
+      "passed": false,
+      "negative_4way_counts": {
+        "L4": 10,
+        "L9": 98,
+        "L8": 52,
+        "L5": 10
+      },
+      "matched_case_count": 0,
+      "negative_4way_failures": 172,
+      "L4_L9_pair_passed": true,
+      "L5_L8_pair_passed": true,
+      "ownership_caps": {
+        "L4": true,
+        "L9": true,
+        "L5": true,
+        "L8": true
+      },
+      "source_pin_checks": [
+        {
+          "passed": true,
+          "checked_count": 10
+        },
+        {
+          "passed": true,
+          "checked_count": 10
+        },
+        {
+          "passed": true,
+          "checked_count": 24
+        },
+        {
+          "passed": true,
+          "checked_count": 24
+        }
+      ]
+    },
+    "explicit_marker_state": {
+      "L4": false,
+      "L5": false,
+      "L8": false,
+      "L9": false,
+      "selected": false,
+      "reason": "one V-pair scope leaves L4/L9 unchanged; partial markers are not introduced."
+    }
+  },
+  "code_decision": {
+    "review": "#3992 review comment 6534981379",
+    "L4_code_equals_expected_classification": 0,
+    "L5_code_equals_expected_classification": 10,
+    "L4_to_L5_classification_match": 10,
+    "interpretation": "L5 follows reviewed expected_classification code meaning; L4 mismatch is upstream and remains unchanged. No identifier rename used."
+  },
+  "scaffold_static_checks": {
+    "scfctl_validate_exit_code": 0,
+    "scfctl_validate_bindings": 191,
+    "scfctl_validate_failures": 0,
+    "scfctl_stale_exit_code": 0,
+    "scfctl_stale_count": 0,
+    "json_artifacts_parse": true,
+    "git_diff_check": "passed"
+  },
+  "boundaries": [
+    "No old runtime/test/CI/CLI/hook or L4 algorithm.",
+    "No auth configuration or credentials changed.",
+    "Candidate rows are source-derived design proposals, not canonical tests or formal evidence.",
+    "No L9 expected/oracle/residual row changed."
+  ]
+}

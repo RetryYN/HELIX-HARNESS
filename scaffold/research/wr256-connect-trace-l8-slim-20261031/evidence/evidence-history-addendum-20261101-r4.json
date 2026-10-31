@@ -1,0 +1,83 @@
+{
+  "schema": "wr256-evidence-history-addendum.v4",
+  "evidence_kind": "scaffold",
+  "authority_effect": "none",
+  "supersedes_addendum": "evidence/evidence-history-addendum-20261101-r3.json",
+  "current_immutable_record": {
+    "path": "evidence/records/wr256-pr4006-r1-20261101/record.json",
+    "schema": "wr256-immutable-evidence-record.v1",
+    "evidence_kind": "scaffold",
+    "authority_effect": "none",
+    "record_id": "wr256-pr4006-r1-20261101",
+    "head_revision_at_recording": "c2087204f73dbc2f72d1a6c9a26c65a5510f9473",
+    "validator_sha256": "e73316da4c8868f987787b54791b2eade8a09c2bf949f64609c1928640e70dc3",
+    "worktree_dirty_at_recording": true,
+    "artifacts": {
+      "source_semantic_audit": {
+        "path": "scaffold/research/wr256-connect-trace-l8-slim-20261031/evidence/records/wr256-pr4006-r1-20261101/source-semantic-audit.json",
+        "sha256": "4a33aff8d0bab2f1eebe6931aa161d43bb814dd68ceac136da6db88d97286dbb",
+        "bytes": 413535
+      },
+      "verification_summary": {
+        "path": "scaffold/research/wr256-connect-trace-l8-slim-20261031/evidence/records/wr256-pr4006-r1-20261101/verification-summary.json",
+        "sha256": "68f2b629ae369ea7d964d3e758f872dad324804734afd2d661b05a1534dd0b55",
+        "bytes": 3735
+      }
+    },
+    "note": "Created with exclusive file creation. Existing evidence is never overwritten; add this record to an append-only lineage artifact in the accompanying change."
+  },
+  "full_projection_copy_disposition": [
+    {
+      "path": "scaffold/research/wr256-connect-trace-l8-slim-20261031/evidence/records/32794e1ca8ce4f4f7508533992b69fcff4e669b0/source-semantic-audit.json",
+      "status": "removed_redundant_full_projection_copy",
+      "former_bytes": 1014510,
+      "former_lines": 18165,
+      "sha256": "7b113b55c3d54676e759bc6acc3448b56dd4386dceafaa336695b73b8754e7ab",
+      "b35c_git_blob": "e594c57f0edf03975ca3d1bab272071b3836a863",
+      "recovery_source_revision": "32794e1ca8ce4f4f7508533992b69fcff4e669b0",
+      "recovery_source_path": "scaffold/research/wr256-connect-trace-l8-slim-20261031/source-semantic-audit.json",
+      "reason": "Byte-identical 1MB full projection duplicate. Keep the initial-path snapshot, later checkpoint commit/blob pins, and current compact audit; recover this copy from its pinned commit only when needed."
+    },
+    {
+      "path": "scaffold/research/wr256-connect-trace-l8-slim-20261031/evidence/records/32794e1ca8ce4f4f7508533992b69fcff4e669b0-r1/source-semantic-audit.json",
+      "status": "removed_redundant_full_projection_copy",
+      "former_bytes": 1014510,
+      "former_lines": 18165,
+      "sha256": "7b113b55c3d54676e759bc6acc3448b56dd4386dceafaa336695b73b8754e7ab",
+      "b35c_git_blob": "e594c57f0edf03975ca3d1bab272071b3836a863",
+      "recovery_source_revision": "32794e1ca8ce4f4f7508533992b69fcff4e669b0",
+      "recovery_source_path": "scaffold/research/wr256-connect-trace-l8-slim-20261031/source-semantic-audit.json",
+      "reason": "Byte-identical 1MB full projection duplicate. Keep the initial-path snapshot, later checkpoint commit/blob pins, and current compact audit; recover this copy from its pinned commit only when needed."
+    },
+    {
+      "path": "scaffold/research/wr256-connect-trace-l8-slim-20261031/evidence/records/wr256-rule-link-32794-append-only-r1/source-semantic-audit.json",
+      "status": "removed_redundant_full_projection_copy",
+      "former_bytes": 1014510,
+      "former_lines": 18165,
+      "sha256": "7b113b55c3d54676e759bc6acc3448b56dd4386dceafaa336695b73b8754e7ab",
+      "b35c_git_blob": "e594c57f0edf03975ca3d1bab272071b3836a863",
+      "recovery_source_revision": "32794e1ca8ce4f4f7508533992b69fcff4e669b0",
+      "recovery_source_path": "scaffold/research/wr256-connect-trace-l8-slim-20261031/source-semantic-audit.json",
+      "reason": "Byte-identical 1MB full projection duplicate. Keep the initial-path snapshot, later checkpoint commit/blob pins, and current compact audit; recover this copy from its pinned commit only when needed."
+    }
+  ],
+  "prior_r1_record_manifest": {
+    "path": "evidence/records/wr256-rule-link-32794-append-only-r1/record.json",
+    "sha256": "11fa32e6dd6eabbdc957ddc332109c3cbe42d84319b4112a04fbb0f10ac61261",
+    "missing_projection_artifact_disposition": "The source_semantic_audit entry is listed above and can be restored from the fixed 32794e1 commit/path. The small summary and record manifest remain present."
+  },
+  "restoration_commands": [
+    "git show 32794e1ca8ce4f4f7508533992b69fcff4e669b0:scaffold/research/wr256-connect-trace-l8-slim-20261031/source-semantic-audit.json",
+    "git show 4e2995c454b84f73b5e12d46e807a4b26831630b:scaffold/research/wr256-connect-trace-l8-slim-20261031/verification-summary.json",
+    "git show 684fa076bdbc7c586d60d04b8208fa4bb6a463fd:scaffold/research/wr256-connect-trace-l8-slim-20261031/source-semantic-audit.json"
+  ],
+  "note": "Append-only PR #4006 R1 revision. Previous initial snapshots, checkpoints, r1/r2 records, and removed-copy dispositions remain pinned; current R1 artifacts are new immutable files. No prior evidence path is rewritten.",
+  "limits": [
+    "The three removed copies are byte-identical and remain recoverable from the pinned commit. No source or checkpoint bytes were rewritten."
+  ],
+  "prior_r2_record_manifest": {
+    "path": "evidence/records/wr256-rule-link-32794-append-only-r2/record.json",
+    "sha256": "ba48091b3a3129cab9854e33cd4fa008549e6eb82e5dec13a2b59a03ba87f125",
+    "record_id": "wr256-rule-link-32794-append-only-r2"
+  }
+}

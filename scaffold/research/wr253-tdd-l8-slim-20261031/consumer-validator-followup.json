@@ -1,0 +1,36 @@
+{
+  "schema": "wr253-l8-validator-consumer-followup.v1",
+  "evidence_kind": "scaffold",
+  "authority_effect": "none",
+  "previous_head": "5d18885661868b2b6274ccd3b929f797c7f0fca3",
+  "finding": "WR206 and WR223 validators assumed old expanded L8 bytes and failed on the compact U-ID table.",
+  "resolution": "Keep checks of historical expanded unit_cases and fixed hashes at their recorded revisions, then verify current compact table and retained candidate values with WR253 validator.",
+  "validators": [
+    {
+      "path": "scaffold/research/wr206-f02-l5-l8-pr-b-20261031/validate_static_candidate.py",
+      "historical_revision": "46864fcaa2426a480dbd037040cd4c4332c61ddd",
+      "historical_sha256": "03e98e0e029e38bc8820fd066d8f29837053ce6f0e8be84529f1dfe1d1b56f18",
+      "current_sha256": "a969ee539db037593d0973b0d39161162193428e13375b36ea0601bb4080f25a",
+      "exit_code": 0
+    },
+    {
+      "path": "scaffold/research/wr223-f01-l5-l8-20261031/validate_static_candidate.py",
+      "historical_revision": "46864fcaa2426a480dbd037040cd4c4332c61ddd",
+      "historical_sha256": "859c6a5ad5b6a8069127a4ab8fa4b9d7e3bb84eea0439512fd10a64c72475ea0",
+      "current_sha256": "d0eaa6a1a9ab5234b669b5bfc8cd007e8ae7de3e8778c14d0c3b2c7866bd2d33",
+      "exit_code": 0
+    }
+  ],
+  "historic_l8_pins": [
+    {
+      "binding": "SCF-B-0185",
+      "revision": "92cb38ffb792151ddd8029d654ca700126d02681",
+      "sha256": "9f52fe3f90769cdacee9d147dceb0fabb2c36386839f39fdcb2d4039086ed6b7"
+    },
+    {
+      "binding": "SCF-B-0192",
+      "revision": "07b3462402992d51337b583f9f3d1f895c82e7c8",
+      "sha256": "ee1648c067009e819d41f869733290042e103c39e41c0980d29dcdb46c107392"
+    }
+  ]
+}

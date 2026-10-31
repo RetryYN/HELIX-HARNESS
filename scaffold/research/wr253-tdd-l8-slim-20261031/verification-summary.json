@@ -1,0 +1,806 @@
+{
+  "schema": "wr253-tdd-l8-slim-verification-summary.v1",
+  "evidence_kind": "scaffold",
+  "authority_effect": "none",
+  "status": "candidate_static_comparison_only",
+  "base_revision": "46864fcaa2426a480dbd037040cd4c4332c61ddd",
+  "latest_main_revision": "46864fcaa2426a480dbd037040cd4c4332c61ddd",
+  "base_is_ancestor_of_latest_main": true,
+  "source_bytes": {
+    "pre_removal_l8_sha256": "919b1ebdf074f291458947af0db8b751f3fd45a144aa542020759febcd652a83",
+    "post_l8_sha256": "e73df7a5ae42a35d8749d821b76489d8ba9c16ff43060e43c6db31081447a515",
+    "post_l5_sha256": "29a67961b7cbf1b495c46466b514bb7c4bd46a50460becc11791ed6edae0f152",
+    "L4_unchanged": true,
+    "L9_unchanged": true
+  },
+  "preservation": {
+    "U_ID_count_before": 35,
+    "U_ID_count_after": 35,
+    "U_IDs_same_in_order": true,
+    "root_group_count": 5,
+    "source_pin_count_before": 25,
+    "source_pin_count_after": 25,
+    "source_pins_unchanged": true,
+    "candidate_designs": [
+      {
+        "id": "HARNESS-L8-015-B01",
+        "old_unit_case_ids": 6,
+        "candidate_unit_design_old_sha256": "9fe15aac251c8199eea5087e6952b795a9f9c0ea30358f21f14ccfbea0393bc9",
+        "candidate_unit_design_new_sha256": "9fe15aac251c8199eea5087e6952b795a9f9c0ea30358f21f14ccfbea0393bc9",
+        "unchanged": true
+      },
+      {
+        "id": "HARNESS-L8-015-F01",
+        "old_unit_case_ids": 6,
+        "candidate_unit_design_old_sha256": "3f3bed2d6deff3d912f71bb2da05bed7db0571c90486b65d78530f022bf95be9",
+        "candidate_unit_design_new_sha256": "3f3bed2d6deff3d912f71bb2da05bed7db0571c90486b65d78530f022bf95be9",
+        "unchanged": true
+      },
+      {
+        "id": "HARNESS-L8-015-F02",
+        "old_unit_case_ids": 7,
+        "candidate_unit_design_old_sha256": "9931dd9f814d044cdfc84fcbfb7d70f1b4fac157fa1a7a8730dbb034eb582e9b",
+        "candidate_unit_design_new_sha256": "9931dd9f814d044cdfc84fcbfb7d70f1b4fac157fa1a7a8730dbb034eb582e9b",
+        "unchanged": true
+      },
+      {
+        "id": "HARNESS-L8-015-F03",
+        "old_unit_case_ids": 10,
+        "candidate_unit_design_old_sha256": "8e81f96a91ec960a3c922ed22a4ef75a6bc4ed255cb4fa7dca9acf5249b24760",
+        "candidate_unit_design_new_sha256": "8e81f96a91ec960a3c922ed22a4ef75a6bc4ed255cb4fa7dca9acf5249b24760",
+        "unchanged": true
+      },
+      {
+        "id": "HARNESS-L8-015-F04",
+        "old_unit_case_ids": 6,
+        "candidate_unit_design_old_sha256": "16045eab73c3cd617e8e4f991527272c6ec3eaf449ab97aa1f81690618954c52",
+        "candidate_unit_design_new_sha256": "16045eab73c3cd617e8e4f991527272c6ec3eaf449ab97aa1f81690618954c52",
+        "unchanged": true
+      }
+    ],
+    "candidate_designs_unchanged": true,
+    "unit_case_rows": {
+      "count": 35,
+      "row_fields": [
+        "id",
+        "source_trace_ref",
+        "expected_source_ref",
+        "counterexample",
+        "expected"
+      ],
+      "shared_boundary_fields": [
+        "target_ref",
+        "contract_oracle_id",
+        "execution_state",
+        "row_oracle_id",
+        "row_oracle_status",
+        "test_citation",
+        "test_citation_status"
+      ],
+      "all_35_rows_present": true,
+      "all_35_counterexample_and_expectation_texts_present": true,
+      "all_row_oracle_ids_missing": true,
+      "all_test_citations_null": true,
+      "all_35_source_trace_refs_use_numeric_RFC6901_case_indexes": true,
+      "all_35_source_trace_refs_resolve_to_matching_SOURCE_identity": true,
+      "shared_contract_oracle_ids": [
+        "HARNESS-L10-015-B01",
+        "HARNESS-L10-015-F01",
+        "HARNESS-L10-015-F02",
+        "HARNESS-L10-015-F03",
+        "HARNESS-L10-015-F04"
+      ],
+      "row_oracle_id": null,
+      "all_35_expected_source_refs_use_numeric_RFC6901_case_indexes": true,
+      "expected_source_rows_match_U_ID_and_expected_material_hash": true,
+      "all_35_rows_are_concise_and_rowwise_meaning_audited": true
+    }
+  },
+  "row_wise_source_expected_comparison": {
+    "rows": [
+      {
+        "id": "HARNESS-L9-015-B01-NORMAL",
+        "root_id": "HARNESS-L9-015-B01",
+        "source_identity_matches_L9": true,
+        "payload_pointer_matches_L9": true,
+        "source_bytes_sha256_matches_L9": true,
+        "expected_material_sha256_matches_L9": true,
+        "expected_issue_matches_L9_reason": true
+      },
+      {
+        "id": "HARNESS-L9-015-B01-OS-CI",
+        "root_id": "HARNESS-L9-015-B01",
+        "source_identity_matches_L9": true,
+        "payload_pointer_matches_L9": true,
+        "source_bytes_sha256_matches_L9": true,
+        "expected_material_sha256_matches_L9": true,
+        "expected_issue_matches_L9_reason": true
+      },
+      {
+        "id": "HARNESS-L9-015-B01-os_only",
+        "root_id": "HARNESS-L9-015-B01",
+        "source_identity_matches_L9": true,
+        "payload_pointer_matches_L9": true,
+        "source_bytes_sha256_matches_L9": true,
+        "expected_material_sha256_matches_L9": true,
+        "expected_issue_matches_L9_reason": true
+      },
+      {
+        "id": "HARNESS-L9-015-B01-cheap_quality_failure",
+        "root_id": "HARNESS-L9-015-B01",
+        "source_identity_matches_L9": true,
+        "payload_pointer_matches_L9": true,
+        "source_bytes_sha256_matches_L9": true,
+        "expected_material_sha256_matches_L9": true,
+        "expected_issue_matches_L9_reason": true
+      },
+      {
+        "id": "HARNESS-L9-015-B01-omission_erased",
+        "root_id": "HARNESS-L9-015-B01",
+        "source_identity_matches_L9": true,
+        "payload_pointer_matches_L9": true,
+        "source_bytes_sha256_matches_L9": true,
+        "expected_material_sha256_matches_L9": true,
+        "expected_issue_matches_L9_reason": true
+      },
+      {
+        "id": "HARNESS-L9-015-B01-metric_as_accepted",
+        "root_id": "HARNESS-L9-015-B01",
+        "source_identity_matches_L9": true,
+        "payload_pointer_matches_L9": true,
+        "source_bytes_sha256_matches_L9": true,
+        "expected_material_sha256_matches_L9": true,
+        "expected_issue_matches_L9_reason": true
+      },
+      {
+        "id": "HARNESS-L9-015-F01-NORMAL",
+        "root_id": "HARNESS-L9-015-F01",
+        "source_identity_matches_L9": true,
+        "payload_pointer_matches_L9": true,
+        "source_bytes_sha256_matches_L9": true,
+        "expected_material_sha256_matches_L9": true,
+        "expected_issue_matches_L9_reason": true
+      },
+      {
+        "id": "HARNESS-L9-015-F01-freeze_missing",
+        "root_id": "HARNESS-L9-015-F01",
+        "source_identity_matches_L9": true,
+        "payload_pointer_matches_L9": true,
+        "source_bytes_sha256_matches_L9": true,
+        "expected_material_sha256_matches_L9": true,
+        "expected_issue_matches_L9_reason": true
+      },
+      {
+        "id": "HARNESS-L9-015-F01-test_after_body",
+        "root_id": "HARNESS-L9-015-F01",
+        "source_identity_matches_L9": true,
+        "payload_pointer_matches_L9": true,
+        "source_bytes_sha256_matches_L9": true,
+        "expected_material_sha256_matches_L9": true,
+        "expected_issue_matches_L9_reason": true
+      },
+      {
+        "id": "HARNESS-L9-015-F01-foreign_oracle_revision",
+        "root_id": "HARNESS-L9-015-F01",
+        "source_identity_matches_L9": true,
+        "payload_pointer_matches_L9": true,
+        "source_bytes_sha256_matches_L9": true,
+        "expected_material_sha256_matches_L9": true,
+        "expected_issue_matches_L9_reason": true
+      },
+      {
+        "id": "HARNESS-L9-015-F01-freeze_as_red",
+        "root_id": "HARNESS-L9-015-F01",
+        "source_identity_matches_L9": true,
+        "payload_pointer_matches_L9": true,
+        "source_bytes_sha256_matches_L9": true,
+        "expected_material_sha256_matches_L9": true,
+        "expected_issue_matches_L9_reason": true
+      },
+      {
+        "id": "HARNESS-L9-015-F01-freeze_timestamp_only",
+        "root_id": "HARNESS-L9-015-F01",
+        "source_identity_matches_L9": true,
+        "payload_pointer_matches_L9": true,
+        "source_bytes_sha256_matches_L9": true,
+        "expected_material_sha256_matches_L9": true,
+        "expected_issue_matches_L9_reason": true
+      },
+      {
+        "id": "HARNESS-L9-015-F02-NORMAL",
+        "root_id": "HARNESS-L9-015-F02",
+        "source_identity_matches_L9": true,
+        "payload_pointer_matches_L9": true,
+        "source_bytes_sha256_matches_L9": true,
+        "expected_material_sha256_matches_L9": true,
+        "expected_issue_matches_L9_reason": true
+      },
+      {
+        "id": "HARNESS-L9-015-F02-NEW-IMPLEMENTATION",
+        "root_id": "HARNESS-L9-015-F02",
+        "source_identity_matches_L9": true,
+        "payload_pointer_matches_L9": true,
+        "source_bytes_sha256_matches_L9": true,
+        "expected_material_sha256_matches_L9": true,
+        "expected_issue_matches_L9_reason": true
+      },
+      {
+        "id": "HARNESS-L9-015-F02-after_body_red",
+        "root_id": "HARNESS-L9-015-F02",
+        "source_identity_matches_L9": true,
+        "payload_pointer_matches_L9": true,
+        "source_bytes_sha256_matches_L9": true,
+        "expected_material_sha256_matches_L9": true,
+        "expected_issue_matches_L9_reason": true
+      },
+      {
+        "id": "HARNESS-L9-015-F02-foreign_pre_body_head",
+        "root_id": "HARNESS-L9-015-F02",
+        "source_identity_matches_L9": true,
+        "payload_pointer_matches_L9": true,
+        "source_bytes_sha256_matches_L9": true,
+        "expected_material_sha256_matches_L9": true,
+        "expected_issue_matches_L9_reason": true
+      },
+      {
+        "id": "HARNESS-L9-015-F02-environment_error",
+        "root_id": "HARNESS-L9-015-F02",
+        "source_identity_matches_L9": true,
+        "payload_pointer_matches_L9": true,
+        "source_bytes_sha256_matches_L9": true,
+        "expected_material_sha256_matches_L9": true,
+        "expected_issue_matches_L9_reason": true
+      },
+      {
+        "id": "HARNESS-L9-015-F02-unexecuted_red",
+        "root_id": "HARNESS-L9-015-F02",
+        "source_identity_matches_L9": true,
+        "payload_pointer_matches_L9": true,
+        "source_bytes_sha256_matches_L9": true,
+        "expected_material_sha256_matches_L9": true,
+        "expected_issue_matches_L9_reason": true
+      },
+      {
+        "id": "HARNESS-L9-015-F02-mutation_substitute",
+        "root_id": "HARNESS-L9-015-F02",
+        "source_identity_matches_L9": true,
+        "payload_pointer_matches_L9": true,
+        "source_bytes_sha256_matches_L9": true,
+        "expected_material_sha256_matches_L9": true,
+        "expected_issue_matches_L9_reason": true
+      },
+      {
+        "id": "HARNESS-L9-015-F03-NORMAL",
+        "root_id": "HARNESS-L9-015-F03",
+        "source_identity_matches_L9": true,
+        "payload_pointer_matches_L9": true,
+        "source_bytes_sha256_matches_L9": true,
+        "expected_material_sha256_matches_L9": true,
+        "expected_issue_matches_L9_reason": true
+      },
+      {
+        "id": "HARNESS-L9-015-F03-oracle_relaxed",
+        "root_id": "HARNESS-L9-015-F03",
+        "source_identity_matches_L9": true,
+        "payload_pointer_matches_L9": true,
+        "source_bytes_sha256_matches_L9": true,
+        "expected_material_sha256_matches_L9": true,
+        "expected_issue_matches_L9_reason": true
+      },
+      {
+        "id": "HARNESS-L9-015-F03-body_before_red",
+        "root_id": "HARNESS-L9-015-F03",
+        "source_identity_matches_L9": true,
+        "payload_pointer_matches_L9": true,
+        "source_bytes_sha256_matches_L9": true,
+        "expected_material_sha256_matches_L9": true,
+        "expected_issue_matches_L9_reason": true
+      },
+      {
+        "id": "HARNESS-L9-015-F03-public_change",
+        "root_id": "HARNESS-L9-015-F03",
+        "source_identity_matches_L9": true,
+        "payload_pointer_matches_L9": true,
+        "source_bytes_sha256_matches_L9": true,
+        "expected_material_sha256_matches_L9": true,
+        "expected_issue_matches_L9_reason": true
+      },
+      {
+        "id": "HARNESS-L9-015-F03-architecture_change",
+        "root_id": "HARNESS-L9-015-F03",
+        "source_identity_matches_L9": true,
+        "payload_pointer_matches_L9": true,
+        "source_bytes_sha256_matches_L9": true,
+        "expected_material_sha256_matches_L9": true,
+        "expected_issue_matches_L9_reason": true
+      },
+      {
+        "id": "HARNESS-L9-015-F03-state_change",
+        "root_id": "HARNESS-L9-015-F03",
+        "source_identity_matches_L9": true,
+        "payload_pointer_matches_L9": true,
+        "source_bytes_sha256_matches_L9": true,
+        "expected_material_sha256_matches_L9": true,
+        "expected_issue_matches_L9_reason": true
+      },
+      {
+        "id": "HARNESS-L9-015-F03-ci_as_quality",
+        "root_id": "HARNESS-L9-015-F03",
+        "source_identity_matches_L9": true,
+        "payload_pointer_matches_L9": true,
+        "source_bytes_sha256_matches_L9": true,
+        "expected_material_sha256_matches_L9": true,
+        "expected_issue_matches_L9_reason": true
+      },
+      {
+        "id": "HARNESS-L9-015-F03-requirement_change",
+        "root_id": "HARNESS-L9-015-F03",
+        "source_identity_matches_L9": true,
+        "payload_pointer_matches_L9": true,
+        "source_bytes_sha256_matches_L9": true,
+        "expected_material_sha256_matches_L9": true,
+        "expected_issue_matches_L9_reason": true
+      },
+      {
+        "id": "HARNESS-L9-015-F03-minimal_body_scope_expansion",
+        "root_id": "HARNESS-L9-015-F03",
+        "source_identity_matches_L9": true,
+        "payload_pointer_matches_L9": true,
+        "source_bytes_sha256_matches_L9": true,
+        "expected_material_sha256_matches_L9": true,
+        "expected_issue_matches_L9_reason": true
+      },
+      {
+        "id": "HARNESS-L9-015-F03-green_wrong_behavior",
+        "root_id": "HARNESS-L9-015-F03",
+        "source_identity_matches_L9": true,
+        "payload_pointer_matches_L9": true,
+        "source_bytes_sha256_matches_L9": true,
+        "expected_material_sha256_matches_L9": true,
+        "expected_issue_matches_L9_reason": true
+      },
+      {
+        "id": "HARNESS-L9-015-F04-NORMAL",
+        "root_id": "HARNESS-L9-015-F04",
+        "source_identity_matches_L9": true,
+        "payload_pointer_matches_L9": true,
+        "source_bytes_sha256_matches_L9": true,
+        "expected_material_sha256_matches_L9": true,
+        "expected_issue_matches_L9_reason": true
+      },
+      {
+        "id": "HARNESS-L9-015-F04-reverse_trace_missing",
+        "root_id": "HARNESS-L9-015-F04",
+        "source_identity_matches_L9": true,
+        "payload_pointer_matches_L9": true,
+        "source_bytes_sha256_matches_L9": true,
+        "expected_material_sha256_matches_L9": true,
+        "expected_issue_matches_L9_reason": true
+      },
+      {
+        "id": "HARNESS-L9-015-F04-foreign_trace_revision",
+        "root_id": "HARNESS-L9-015-F04",
+        "source_identity_matches_L9": true,
+        "payload_pointer_matches_L9": true,
+        "source_bytes_sha256_matches_L9": true,
+        "expected_material_sha256_matches_L9": true,
+        "expected_issue_matches_L9_reason": true
+      },
+      {
+        "id": "HARNESS-L9-015-F04-development_as_integrated",
+        "root_id": "HARNESS-L9-015-F04",
+        "source_identity_matches_L9": true,
+        "payload_pointer_matches_L9": true,
+        "source_bytes_sha256_matches_L9": true,
+        "expected_material_sha256_matches_L9": true,
+        "expected_issue_matches_L9_reason": true
+      },
+      {
+        "id": "HARNESS-L9-015-F04-ci_as_accepted",
+        "root_id": "HARNESS-L9-015-F04",
+        "source_identity_matches_L9": true,
+        "payload_pointer_matches_L9": true,
+        "source_bytes_sha256_matches_L9": true,
+        "expected_material_sha256_matches_L9": true,
+        "expected_issue_matches_L9_reason": true
+      },
+      {
+        "id": "HARNESS-L9-015-F04-ci_as_release",
+        "root_id": "HARNESS-L9-015-F04",
+        "source_identity_matches_L9": true,
+        "payload_pointer_matches_L9": true,
+        "source_bytes_sha256_matches_L9": true,
+        "expected_material_sha256_matches_L9": true,
+        "expected_issue_matches_L9_reason": true
+      }
+    ],
+    "row_count": 35,
+    "source_identity_matches": 35,
+    "source_payload_pointer_matches": 35,
+    "source_bytes_sha256_matches": 35,
+    "expected_material_sha256_matches": 35,
+    "expected_issue_matches": 35,
+    "all_resolved_comparisons_match": true
+  },
+  "L5_removed_oracle_binding": {
+    "oracle_location": "46864fcaa2426a480dbd037040cd4c4332c61ddd:docs/helix-harness/L8-unit-verification/tdd-development-flow.json#/f03_head_connection_oracles",
+    "removed_revision": "46864fcaa2426a480dbd037040cd4c4332c61ddd",
+    "removed_path": "docs/helix-harness/L8-unit-verification/tdd-development-flow.json",
+    "removed_pointer": "/f03_head_connection_oracles",
+    "removed_file_sha256": "919b1ebdf074f291458947af0db8b751f3fd45a144aa542020759febcd652a83",
+    "removed_value_canonical_sha256": "821f24b4f95fa28d6b72758b649be27203f75a2a9cf6adf071cad564abd931b8",
+    "L5_section_not_asserted_equivalent": true,
+    "use_boundary": "historical provenance only"
+  },
+  "check_child_before_after": {
+    "before": {
+      "passed": false,
+      "L4_L9_pair": "pass",
+      "L5_L8_pair": "pass",
+      "negative_4way_failures": 35,
+      "ownership_cap_failures": {
+        "L9": 35,
+        "L8": 1647
+      },
+      "pin_failures": 0
+    },
+    "after": {
+      "passed": false,
+      "L4_L9_pair": "pass",
+      "L5_L8_pair": "pass",
+      "negative_4way_failures": 35,
+      "ownership_cap_failures": {
+        "L9": 35,
+        "L8": 0
+      },
+      "pin_failures": 0
+    },
+    "meaning": "35 negative_4way findings and 35 L9 forbidden-key findings pre-exist and remain; L9 is outside scope and unchanged. L8 cap findings fell from 1647 to 0."
+  },
+  "scfctl_before": {
+    "validate": "194 bindings, fail=0",
+    "stale": "0"
+  },
+  "not_run": [
+    "Old runtime/test/CI/algorithm",
+    "L4 algorithm",
+    "new runtime/test/CI"
+  ],
+  "commit_created": false,
+  "push_performed": false,
+  "scfctl_after": {
+    "validate": "195 bindings, fail=0",
+    "stale": "0"
+  },
+  "diff_check": "git diff --check passed",
+  "ownership_cap_after": {
+    "L8": "0 failures",
+    "L9": "35 pre-existing failures; unchanged and out of scope"
+  },
+  "binding_id_allocation": {
+    "reserved_by_request": [
+      "SCF-B-0211",
+      "SCF-B-0212"
+    ],
+    "conflicts": [
+      {
+        "id": "SCF-B-0213",
+        "branch": "refs/heads/agy/wr233-os007-independent-rederivation-3510",
+        "title": "WR233 OS007 L8 independent source-only rederivation and comparison audit record"
+      },
+      {
+        "id": "SCF-B-0214",
+        "branch": "refs/heads/agy/wr218-f05-content-unresolved-remaining-3510",
+        "title": "WR218 H009 F05 remaining branches non-uniqueness audit"
+      }
+    ],
+    "selected": "SCF-B-0215",
+    "all_ref_count": 2778,
+    "all_worktree_count": 372,
+    "git_all_refs_object_scan": {
+      "0213": true,
+      "0214": true,
+      "0215": false
+    },
+    "worktree_existing_files": {
+      "SCF-B-0213": [
+        "/tmp/wt-wr233"
+      ],
+      "SCF-B-0214": [
+        "/tmp/wt-wr218"
+      ],
+      "SCF-B-0215": [
+        "/home/tenni/.helix-worktrees/codex-wr253-tdd-l8-slim-20261031"
+      ]
+    },
+    "selection_basis": "0211/0212 were already reserved by the request; 0213 and 0214 each exist on another branch; 0215 had no file reachable from any known branch/ref or present in any known worktree.",
+    "scan_timing": "All-ref object scan and known-worktree file scan completed before creating the WR253 SCF-B-0215.json file. After creation, the selected file exists only in this task worktree and is uncommitted."
+  },
+  "not_verified": [
+    "typed_payload_projection_sha256 values were not re-derived because their typed serialization recipe is outside scope; the 35 source identity/payload pointer/raw-byte SHA and expected-material SHA/issue reason comparisons were performed from fixed L9 references."
+  ],
+  "validators_after_followup": {
+    "WR243_F03": "PASS; fixed evidence files unchanged; historical unit_cases/hash checked at pinned git revisions; current slim table/candidate semantics checked by WR253 common validator.",
+    "WR243_F04": "PASS; fixed evidence files unchanged; historical unit_cases/hash checked at pinned git revisions; current slim table/candidate semantics checked by WR253 common validator.",
+    "WR243_B01": "PASS; fixed evidence files unchanged; historical unit_cases/hash checked at pinned git revisions; current slim table/candidate semantics checked by WR253 common validator.",
+    "WR249": "PASS; WR249 base/corrected hashes checked via git show at their recorded revisions; current slim table/candidate semantics checked by WR253 common validator.",
+    "WR253_UID_table": "PASS; all 35 concise meaning pairs match the row audit; F02 NORMAL/NEW-IMPLEMENTATION text labels Red only as a synthetic-fixture candidate and explicitly leaves real Red/TDD success unestablished."
+  },
+  "check_child_after_followup": {
+    "passed": false,
+    "L4_L9_pair": "PASS",
+    "L5_L8_pair": "PASS",
+    "negative_4way_failures": 35,
+    "negative_4way_counts": {
+      "L4": 30,
+      "L9": 30,
+      "L8": 0,
+      "L5": 0
+    },
+    "ownership_caps": {
+      "L4": "PASS, 0 failures",
+      "L9": "FAIL, 35 pre-existing forbidden byte_sha256 keys",
+      "L5": "PASS, 0 failures",
+      "L8": "PASS, 0 failures"
+    },
+    "pins": "PASS, all four layer pin checks",
+    "note": "Current check-child still uses legacy negative_case_rows for CHK-NEG-4WAY-MATCH; compact unit_case_rows are validated by the WR253 static validator. L9 was not edited."
+  },
+  "historical_scaffold_audit": {
+    "revision": "46864fcaa2426a480dbd037040cd4c4332c61ddd",
+    "path": "docs/helix-harness/L8-unit-verification/tdd-development-flow.json",
+    "sha256": "919b1ebdf074f291458947af0db8b751f3fd45a144aa542020759febcd652a83",
+    "pointer_text_preservation": "旧unit_cases内の名前付きcases/HARNESS-L9-...疑似pointerは当該固定revisionにそのまま保持。現行unit_case_rowsへはコピーせず、source_trace_refとexpected_source_refをnumeric RFC6901配列indexへ正規化。WR253 validatorが固定revisionの旧文字列を読み、行ID/source/expectedを照合。"
+  },
+  "row_meaning_audit": {
+    "method": "Each short counterexample/expected pair is reviewed by existing U-ID in validate_uid_table.py; the validator separately resolves source/expected pointers and checks historical expected/source hashes. Full expected materials remain at the fixed historical revision. Shared execution_state is not_executed. F02 rows explicitly identify synthetic-fixture Red candidates; real Red/TDD success remain unestablished.",
+    "row_count": 35,
+    "rows": [
+      {
+        "id": "HARNESS-L9-015-B01-NORMAL",
+        "source_trace_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/0/normal_fixture/source_packet",
+        "expected_source_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/0/expected_material",
+        "meaning_pair_sha256": "7d0324afcae38c1cb64d925ef8d50db555c2d4b99a1eafe552ce53f4943e2a8a",
+        "meaning_reviewed_against_source": true
+      },
+      {
+        "id": "HARNESS-L9-015-B01-OS-CI",
+        "source_trace_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/0/normal_variants/0/source_packet",
+        "expected_source_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/0/normal_variants/0/expected_material",
+        "meaning_pair_sha256": "33c21ca8abbd8de14866c5f200bdb0bf0641e9479d848e8e56ed9200e84008b2",
+        "meaning_reviewed_against_source": true
+      },
+      {
+        "id": "HARNESS-L9-015-B01-os_only",
+        "source_trace_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/0/negative_cases/0/source_packet",
+        "expected_source_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/0/negative_cases/0/expected_partial_material",
+        "meaning_pair_sha256": "bcf7b0085b8d846dc8a940c92cc2624b43564e20362d78e56cd00284e0a29ba5",
+        "meaning_reviewed_against_source": true
+      },
+      {
+        "id": "HARNESS-L9-015-B01-cheap_quality_failure",
+        "source_trace_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/0/negative_cases/1/source_packet",
+        "expected_source_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/0/negative_cases/1/expected_partial_material",
+        "meaning_pair_sha256": "321e854c9b92ec0f73a2f1d8d2c3c67a5ea326ca1c854cdd78da9a5ba7e1567c",
+        "meaning_reviewed_against_source": true
+      },
+      {
+        "id": "HARNESS-L9-015-B01-omission_erased",
+        "source_trace_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/0/negative_cases/2/source_packet",
+        "expected_source_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/0/negative_cases/2/expected_partial_material",
+        "meaning_pair_sha256": "31d9d28813fbf60034231a6471f395dea968f98ef304175afcc1da738a016744",
+        "meaning_reviewed_against_source": true
+      },
+      {
+        "id": "HARNESS-L9-015-B01-metric_as_accepted",
+        "source_trace_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/0/negative_cases/3/source_packet",
+        "expected_source_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/0/negative_cases/3/expected_partial_material",
+        "meaning_pair_sha256": "96fb3a28cd09d6e0bd5803350c202bf061d7a699ec749f27fc4e8b9d0dc0764e",
+        "meaning_reviewed_against_source": true
+      },
+      {
+        "id": "HARNESS-L9-015-F01-NORMAL",
+        "source_trace_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/1/normal_fixture/source_packet",
+        "expected_source_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/1/expected_material",
+        "meaning_pair_sha256": "1182ff8968ceeb499d4a5ad1b080a336916451e305176a7cb36891703cc2cd54",
+        "meaning_reviewed_against_source": true
+      },
+      {
+        "id": "HARNESS-L9-015-F01-freeze_missing",
+        "source_trace_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/1/negative_cases/0/source_packet",
+        "expected_source_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/1/negative_cases/0/expected_partial_material",
+        "meaning_pair_sha256": "feca1c4ac9d68788150231e5e265a67f4e39f7871efe5a2255dff86fc1e9008e",
+        "meaning_reviewed_against_source": true
+      },
+      {
+        "id": "HARNESS-L9-015-F01-test_after_body",
+        "source_trace_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/1/negative_cases/1/source_packet",
+        "expected_source_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/1/negative_cases/1/expected_partial_material",
+        "meaning_pair_sha256": "d847db6492f2f7efb2544563909521950b819ad1f17adbb82c91b455fe56c43c",
+        "meaning_reviewed_against_source": true
+      },
+      {
+        "id": "HARNESS-L9-015-F01-foreign_oracle_revision",
+        "source_trace_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/1/negative_cases/2/source_packet",
+        "expected_source_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/1/negative_cases/2/expected_partial_material",
+        "meaning_pair_sha256": "c4ec9feab65e45c11a3ad5034563ac118f7bf933bfa15b11db828d104160c1b9",
+        "meaning_reviewed_against_source": true
+      },
+      {
+        "id": "HARNESS-L9-015-F01-freeze_as_red",
+        "source_trace_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/1/negative_cases/3/source_packet",
+        "expected_source_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/1/negative_cases/3/expected_partial_material",
+        "meaning_pair_sha256": "b0e9a133383f327c5382a6eabf1b8aa4afb6395a1574b2feebac14751ec9cadd",
+        "meaning_reviewed_against_source": true
+      },
+      {
+        "id": "HARNESS-L9-015-F01-freeze_timestamp_only",
+        "source_trace_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/1/negative_cases/4/source_packet",
+        "expected_source_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/1/negative_cases/4/expected_partial_material",
+        "meaning_pair_sha256": "6d596281efda19d0358b43fca92a1aa87fdccf705c6fad394e370b9ec00e856f",
+        "meaning_reviewed_against_source": true
+      },
+      {
+        "id": "HARNESS-L9-015-F02-NORMAL",
+        "source_trace_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/2/normal_fixture/source_packet",
+        "expected_source_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/2/expected_material",
+        "meaning_pair_sha256": "924eba5129d51e081ea8db0c8d46edd920636fe12ec8f81ceacdec413ba5c3c6",
+        "meaning_reviewed_against_source": true
+      },
+      {
+        "id": "HARNESS-L9-015-F02-NEW-IMPLEMENTATION",
+        "source_trace_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/2/normal_variants/0/source_packet",
+        "expected_source_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/2/normal_variants/0/expected_material",
+        "meaning_pair_sha256": "a1676e814dc3cde851a62df6192dd890d43439f099bc207ce9dcebb992505177",
+        "meaning_reviewed_against_source": true
+      },
+      {
+        "id": "HARNESS-L9-015-F02-after_body_red",
+        "source_trace_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/2/negative_cases/0/source_packet",
+        "expected_source_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/2/negative_cases/0/expected_partial_material",
+        "meaning_pair_sha256": "579644390b5b59824555598603dd1cc835bca3da400bfc005a4937b6ee385b65",
+        "meaning_reviewed_against_source": true
+      },
+      {
+        "id": "HARNESS-L9-015-F02-foreign_pre_body_head",
+        "source_trace_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/2/negative_cases/1/source_packet",
+        "expected_source_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/2/negative_cases/1/expected_partial_material",
+        "meaning_pair_sha256": "9e03f4a854383738aa094890f94bfa892386630392d6957198a9a7559565f354",
+        "meaning_reviewed_against_source": true
+      },
+      {
+        "id": "HARNESS-L9-015-F02-environment_error",
+        "source_trace_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/2/negative_cases/2/source_packet",
+        "expected_source_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/2/negative_cases/2/expected_partial_material",
+        "meaning_pair_sha256": "e07cdb85c2da6a3cb4f1dfb0b9e20c33feabce19cf53fa6b43146dd4e38fe8fb",
+        "meaning_reviewed_against_source": true
+      },
+      {
+        "id": "HARNESS-L9-015-F02-unexecuted_red",
+        "source_trace_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/2/negative_cases/3/source_packet",
+        "expected_source_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/2/negative_cases/3/expected_partial_material",
+        "meaning_pair_sha256": "cfa700d2500664cf0bfcfc0aaad2ba983f9ed95568167251c20fb41f44ce9eab",
+        "meaning_reviewed_against_source": true
+      },
+      {
+        "id": "HARNESS-L9-015-F02-mutation_substitute",
+        "source_trace_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/2/negative_cases/4/source_packet",
+        "expected_source_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/2/negative_cases/4/expected_partial_material",
+        "meaning_pair_sha256": "b1d0ca2fd8d0e4d7bf3cbd341e4255d825414adf16a41c58d156e3c33c71f6dc",
+        "meaning_reviewed_against_source": true
+      },
+      {
+        "id": "HARNESS-L9-015-F03-NORMAL",
+        "source_trace_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/3/normal_fixture/source_packet",
+        "expected_source_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/3/expected_material",
+        "meaning_pair_sha256": "4c3c15ceafa0533f5289add7c3c9a02dce6476b6a8b70c9f5dbaffd2120b7142",
+        "meaning_reviewed_against_source": true
+      },
+      {
+        "id": "HARNESS-L9-015-F03-oracle_relaxed",
+        "source_trace_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/3/negative_cases/0/source_packet",
+        "expected_source_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/3/negative_cases/0/expected_partial_material",
+        "meaning_pair_sha256": "87426721c927878fcd8ea1e64417fd48818f7b80d85307008af2055c194dd122",
+        "meaning_reviewed_against_source": true
+      },
+      {
+        "id": "HARNESS-L9-015-F03-body_before_red",
+        "source_trace_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/3/negative_cases/1/source_packet",
+        "expected_source_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/3/negative_cases/1/expected_partial_material",
+        "meaning_pair_sha256": "cbff0823510219951ee1aceda104e68e9800c91cbe3dcb53d391081496fed2c5",
+        "meaning_reviewed_against_source": true
+      },
+      {
+        "id": "HARNESS-L9-015-F03-public_change",
+        "source_trace_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/3/negative_cases/2/source_packet",
+        "expected_source_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/3/negative_cases/2/expected_partial_material",
+        "meaning_pair_sha256": "a7a9cb0d109bebff45e9ab1cab7b11196818a0f731ef59ca3c133f7b53dbbbd5",
+        "meaning_reviewed_against_source": true
+      },
+      {
+        "id": "HARNESS-L9-015-F03-architecture_change",
+        "source_trace_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/3/negative_cases/3/source_packet",
+        "expected_source_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/3/negative_cases/3/expected_partial_material",
+        "meaning_pair_sha256": "76953754efc3e3fe2d5140731066b531baae7386cd4879592ae99a60a6f5559b",
+        "meaning_reviewed_against_source": true
+      },
+      {
+        "id": "HARNESS-L9-015-F03-state_change",
+        "source_trace_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/3/negative_cases/4/source_packet",
+        "expected_source_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/3/negative_cases/4/expected_partial_material",
+        "meaning_pair_sha256": "74a059491d9798e5c232fc0fd28a0e13f6b5e7a2ab0b681d0eb93e147f4279eb",
+        "meaning_reviewed_against_source": true
+      },
+      {
+        "id": "HARNESS-L9-015-F03-ci_as_quality",
+        "source_trace_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/3/negative_cases/5/source_packet",
+        "expected_source_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/3/negative_cases/5/expected_partial_material",
+        "meaning_pair_sha256": "c9a7142dac8798016579055cfc0853770e3f3b1ad47033a2e8365cf95fcc2d46",
+        "meaning_reviewed_against_source": true
+      },
+      {
+        "id": "HARNESS-L9-015-F03-requirement_change",
+        "source_trace_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/3/negative_cases/6/source_packet",
+        "expected_source_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/3/negative_cases/6/expected_partial_material",
+        "meaning_pair_sha256": "d68e82b283aa0c7e5c7eb87af341a23e1da787d01f1b640ea6a219f43c1c0d29",
+        "meaning_reviewed_against_source": true
+      },
+      {
+        "id": "HARNESS-L9-015-F03-minimal_body_scope_expansion",
+        "source_trace_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/3/negative_cases/7/source_packet",
+        "expected_source_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/3/negative_cases/7/expected_partial_material",
+        "meaning_pair_sha256": "56347d107af93a869ccc7ceee1462574941e7c879bcf78889514b7fb0b975df0",
+        "meaning_reviewed_against_source": true
+      },
+      {
+        "id": "HARNESS-L9-015-F03-green_wrong_behavior",
+        "source_trace_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/3/negative_cases/8/source_packet",
+        "expected_source_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/3/negative_cases/8/expected_partial_material",
+        "meaning_pair_sha256": "943539fef0f78aeb44b39a65bbebf0be733e1027d8fb18f0d1c8fc3e67c4a381",
+        "meaning_reviewed_against_source": true
+      },
+      {
+        "id": "HARNESS-L9-015-F04-NORMAL",
+        "source_trace_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/4/normal_fixture/source_packet",
+        "expected_source_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/4/expected_material",
+        "meaning_pair_sha256": "f1131fecc639232d8c05bb38afa1381517d5bb782a9ded5d6c0bff43d22bbad4",
+        "meaning_reviewed_against_source": true
+      },
+      {
+        "id": "HARNESS-L9-015-F04-reverse_trace_missing",
+        "source_trace_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/4/negative_cases/0/source_packet",
+        "expected_source_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/4/negative_cases/0/expected_partial_material",
+        "meaning_pair_sha256": "2f27ede55d6416fc42ce4261001f2d4bc4304fed051bf4ec8fca8dcc57ce846b",
+        "meaning_reviewed_against_source": true
+      },
+      {
+        "id": "HARNESS-L9-015-F04-foreign_trace_revision",
+        "source_trace_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/4/negative_cases/1/source_packet",
+        "expected_source_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/4/negative_cases/1/expected_partial_material",
+        "meaning_pair_sha256": "923789159bf187330576c966c926a9ed8e9f23e8c27c9e3ca131dfb447d48ab1",
+        "meaning_reviewed_against_source": true
+      },
+      {
+        "id": "HARNESS-L9-015-F04-development_as_integrated",
+        "source_trace_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/4/negative_cases/2/source_packet",
+        "expected_source_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/4/negative_cases/2/expected_partial_material",
+        "meaning_pair_sha256": "4b77964b8c12892547caa35dcbf2f7aceff03d5e6b04ba41c5990aa07a3d496d",
+        "meaning_reviewed_against_source": true
+      },
+      {
+        "id": "HARNESS-L9-015-F04-ci_as_accepted",
+        "source_trace_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/4/negative_cases/3/source_packet",
+        "expected_source_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/4/negative_cases/3/expected_partial_material",
+        "meaning_pair_sha256": "100e7085dfafb4ff06a048c1b8ba92504cfcac3304aa3a7f8c07837c2c1aecca",
+        "meaning_reviewed_against_source": true
+      },
+      {
+        "id": "HARNESS-L9-015-F04-ci_as_release",
+        "source_trace_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/4/negative_cases/4/source_packet",
+        "expected_source_ref": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json#/cases/4/negative_cases/4/expected_partial_material",
+        "meaning_pair_sha256": "495ebbf1bd8c4f412067e10d00aee08a48d4d4846a3ef164b3008823324fb9eb",
+        "meaning_reviewed_against_source": true
+      }
+    ]
+  }
+}
